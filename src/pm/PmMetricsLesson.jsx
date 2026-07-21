@@ -11,8 +11,10 @@ const MENTOR_IMG = 'https://go.coddycamp.uz/uploads/media_library/c7b711619071c9
 //        NavNext/QuestionScreen/MentorTestStats/RecapOverlay/compiler-qobiq/ScreenPodium/arena/badges/
 //        PRACTICE_BASE sentinel) — infra/rels AYNAN ko'chirilgan, kontent yangi (Metrika).
 // AUDIOSIZ: ovoz (TTS) yo'q (useAudio stub, QuestionScreen imzosi saqlangan).
-// PRIMITIVLAR: hook streak-alanga zanjiri · 4 metrika flip-karta · North Star validator ·
-//        metrika-panel ustaxona · MatchPairs juftlash (yangi) · retentionFoiz compiler.
+// PRIMITIVLAR: hook streak-alanga zanjiri · MAQSAD «boshqaruv paneli jonlanadi» (CountUp+sparkline+● JONLI) ·
+//        oshxona-haftaligi interaktiv mini-sahna · 4 metrika 3D-flip (mx3) · North Star validator ·
+//        metrika-panel ustaxona (wsx-chiplar, karta-progress) · MatchPairs (boyitilgan vizual) ·
+//        KODING = MetrikaPanel HISOB-KOMPONENT VS Code-topshirig'i (26-qonun; JTBD props-kartadan farqli).
 // PRODUCTION: <style> ichidagi @import OLIB TASHLANADI — shriftlarni LMS yuklaydi.
 // ============================================================
 
@@ -30,7 +32,6 @@ const T = {
   line: '#E7E3F4', err: '#E5484D', errSoft: '#FCE7E8',
   shadowBase: '40, 34, 82'
 };
-const CODE = { bg: '#1A2436', text: '#E8E5DD', tag: '#FF7755', attr: '#FFD380', str: '#7DD181', comment: '#6B7585', punct: '#9FB4D8' };
 
 // ============================================================
 // JONLI SESSIYA INFRA — InternetLesson etalon bilan bir xil (liveRpc/useLiveSession/LiveGate)
@@ -806,8 +807,8 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
     <Stage eyebrow="Kirish · Duolingo so'rovi" screen={screen} navContent={<NavNext optionalLive disabled={picked === null && !isMentor} label="Davom etish" onClick={onNext} />}>
       <div className="screen" style={{ gap: 'clamp(14px,2.2vw,20px)' }}>
         <div className="hook-hero fade-up"><span className="hook-cup">🦉</span></div>
-        <div className="head"><h2 className="title h-title fade-up" style={{ textAlign: 'center' }}>Nima odamni <span className="italic" style={{ color: T.accent }}>har kuni</span> qaytaradi?</h2></div>
-        <Mentor>Duolingo'da juda ko'p odam <b style={{ color: T.ink }}>har kuni</b> kirib dars qiladi — hatto charchagan kunlari ham. Sizningcha, ularni har kuni qaytishga <b style={{ color: T.ink }}>nima majburlaydi</b>? Ovoz bering — sababini birozdan keyin birga bilib olamiz.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up" style={{ textAlign: 'center' }}>Duolingo'ni <span className="italic" style={{ color: T.accent }}>ertasiga yana</span> ochishga nima majbur qiladi?</h2></div>
+        <Mentor>Duolingo'da minglab odam charchagan kuni ham <b style={{ color: T.ink }}>ertasiga yana kirib</b> dars qiladi. Sizningcha, ularni bir kunni ham o'tkazib yubormaslikka <b style={{ color: T.ink }}>nima majbur qiladi</b>? Ovoz bering — sababini birozdan keyin birga bilib olamiz.</Mentor>
         <div className="hook-menu fade-up delay-1">
           {HOOK_OPTS.map((o, i) => {
             const on = picked === i;
@@ -841,7 +842,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
                 );
               })}
             </div>
-            <p className="streak-cap">{isMentor ? "Sinf ovozi — zanjir uzun bo'lgani sari sabab aniqlashadi. To'g'ri javobni hali ochmang." : "Ovozingiz qabul qilindi. Haqiqiy sababni birozdan keyin ochamiz: bu RETENTION (qaytish) mexanikasi bilan bog'liq. 😉"}</p>
+            <p className="streak-cap">{isMentor ? "Sinf ovozi — zanjir uzun bo'lgani sari sabab aniqlashadi. To'g'ri javobni hali ochmang." : "Ovozingiz qabul qilindi. Haqiqiy sababni birozdan keyin ochamiz: bu RETENTION (ertasiga yana kirish) mexanikasi bilan bog'liq. 😉"}</p>
           </div>
         )}
         <MentorNote>Javobni aytmang. Sinfda Duolingo ishlatganlar bormi — qo'l ko'tarsin (jonlilik). Gapirish 2 daqiqagacha.</MentorNote>
@@ -850,66 +851,120 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
   );
 };
 
-// ===== SCREEN 1 — MAQSAD: jonli natija-preview (metrika-kartalar ko'z oldida birma-bir to'ladi) =====
-// WOW-moment: o'quvchi dars natijasini OLDINDAN ko'radi — bo'sh slotlar namunaviy ko'rsatkichlar
-// bilan o'z-o'zidan to'lib boradi (CSS-taymlayn, reduced-motion'da darhol to'liq holat).
+// ===== METRICS IMZO-PRIMITIV: CountUp — raqam 0'dan sanab «jonlanadi» (reduced-motion: darhol yakuniy) =====
+const prefersReduced = () => (typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+function CountUp({ to, dur = 1100, delay = 0, suffix = '' }) {
+  const [val, setVal] = useState(() => (prefersReduced() ? to : 0));
+  useEffect(() => {
+    if (prefersReduced()) { setVal(to); return; }
+    let raf = 0;
+    const t0 = performance.now() + delay;
+    const step = (tm) => {
+      const p = Math.min(1, Math.max(0, (tm - t0) / dur));
+      setVal(Math.round(to * (1 - Math.pow(1 - p, 3))));
+      if (p < 1) raf = requestAnimationFrame(step);
+    };
+    raf = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(raf);
+  }, [to, dur, delay]);
+  return <>{val}{suffix}</>;
+}
+
+// ===== SCREEN 1 — MAQSAD: «BOSHQARUV PANELI JONLANADI» imzo-sahnasi (Metrics identiteti, 23-qonun) =====
+// WOW: 3 metrika-karta priborlar paneliday ketma-ket «yonadi» — raqam 0'dan sanab o'sadi (CountUp),
+// mini-sparkline chizig'i chiziladi (SVG stroke-dashoffset), karta to'lgach yashil «● JONLI» puls yonadi.
 const DEMO_METRICS = [
-  { ic: '📅', name: 'DAU', what: 'kunlik kirganlar', val: "o'smoqda ▲" },
-  { ic: '↩️', name: 'Retention', what: 'qaytganlar ulushi', val: 'qaytish %' },
-  { ic: '⭐', name: 'North Star', what: 'real qiymat', val: 'bosh raqam' },
+  { ic: '📅', name: 'DAU', what: 'kunlik kirganlar', num: 128, suffix: '', pts: '0,26 14,22 28,24 42,16 56,18 70,10 84,12 98,4' },
+  { ic: '↩️', name: 'Retention', what: 'yana kelganlar ulushi', num: 42, suffix: '%', pts: '0,24 14,25 28,20 42,21 56,15 70,16 84,10 98,7' },
+  { ic: '⭐', name: 'North Star', what: 'haftada 3+ qaytganlar', num: 57, suffix: '', pts: '0,27 14,24 28,25 42,19 56,13 70,14 84,8 98,5' },
 ];
 const Screen1 = ({ screen, onNext, onPrev }) => (
   <Stage eyebrow="Maqsad" screen={screen} mentorStatic navContent={<><NavBack onPrev={onPrev} /><NavNext label="Boshlaymiz →" onClick={onNext} /></>}>
     <div className="screen" style={{ gap: 'clamp(14px,2.2vw,20px)' }}>
-      <div className="head"><h2 className="title h-title fade-up">Dars oxirida sizda <span className="italic" style={{ color: T.accent }}>metrika-panel</span> bo'ladi.</h2></div>
-      <Mentor>Dars oxirida sizda o'z MVP'ingiz uchun <b style={{ color: T.ink }}>NORTH STAR</b> (bosh yulduz-ko'rsatkich) va <b style={{ color: T.ink }}>3 ta asosiy metrika kartasi</b> bo'ladi. Qarang: kartalar hozir ko'z oldingizda to'ladi — dars oxirida xuddi shunday uchtasini o'zingiz to'ldirasiz.</Mentor>
-      <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+      <div className="head"><h2 className="title h-title fade-up">Loyihangiz «pulsi»ni bitta <span className="italic" style={{ color: T.accent }}>jonli panelda</span> ko'rsangiz-chi?</h2></div>
+      <Mentor>Dars oxirida sizda <b style={{ color: T.ink }}>North Star</b> (bosh yulduz-ko'rsatkich) va 3 metrika-kartadan iborat <b style={{ color: T.ink }}>boshqaruv paneli</b> bo'ladi. Qarang — namunaviy panel hozir jonlanadi.</Mentor>
+      <div className="mdash-grid">
         {DEMO_METRICS.map((m, i) => (
-          <div key={i} className="story-silo demo-card" style={{ '--cd': `${0.2 + i * 0.18}s` }}>
-            <span className="story-silo-n">{m.ic}</span>
-            <div className="story-silo-slots">
-              {[['name', 'NOMI', 'kim'], ['what', "O'LCHAYDI", 'nima'], ['val', 'NAMUNA', 'natija']].map(([k, lbl, cls], j) => (
-                <span key={k} className={`silo-slot ${cls} demo-slot`} style={{ '--fd': `${1.1 + (i * 3 + j) * 0.42}s` }}>
-                  <span className="silo-lbl">{lbl}</span>
-                  <span className="silo-fill">{m[k]}</span>
-                </span>
-              ))}
+          <div key={i} className="mdash-card" style={{ '--cd': `${0.15 + i * 0.85}s` }}>
+            <div className="mdash-top">
+              <span className="mdash-ic" aria-hidden="true">{m.ic}</span>
+              <span className="mdash-nm">{m.name}</span>
+              <span className="mlive" style={{ '--ld': `${1.6 + i * 0.85}s` }}>● JONLI</span>
             </div>
-            <span className="silo-done" style={{ '--fd': `${1.1 + (i * 3 + 2) * 0.42 + 0.3}s` }}>✓</span>
+            <div className="mdash-num mono"><CountUp to={m.num} delay={(0.55 + i * 0.85) * 1000} suffix={m.suffix} /></div>
+            <span className="mdash-what">{m.what}</span>
+            <svg className="mdash-spark" viewBox="0 0 98 30" preserveAspectRatio="none" aria-hidden="true">
+              <polyline className="mdash-line" points={m.pts} style={{ '--sd': `${0.55 + i * 0.85}s` }} />
+            </svg>
           </div>
         ))}
       </div>
-      <p className="silo-cap">✨ Xuddi shunday — bugun sizning metrika kartalaringiz ham birma-bir to'ladi.</p>
+      <p className="mdash-cap">✨ Dars oxirida o'z panelingiz xuddi shunday jonlanadi.</p>
       <div className="takeaway fade-up delay-2"><span className="ta-bulb">🎯</span><p className="ta-h">Bu panel bugun to'ladi — va keyingi darsda OKR'ga aylanadi.</p><p className="ta-sub">Tayyor natija = loyihangizning o'lchov tizimi</p></div>
     </div>
   </Stage>
 );
 
-// ===== SCREEN 2 — YADRO: savol-ekran (sinf muhokamasi + oshxona misoli) =====
-const Screen2 = ({ screen, onNext, onPrev }) => (
-  <Stage eyebrow="Muhokama · savol" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive label="Davom etish" onClick={onNext} /></>}>
-    <div className="screen" style={{ gap: 'clamp(14px,2.2vw,20px)' }}>
-      <div className="proj-q fade-up">
-        <span className="proj-q-lbl">🗣️ Sinfga savol</span>
-        <p className="proj-q-body">MVP'ingizga bir haftada <b>100 kishi kirdi</b>. Bu yaxshimi? <b>Qayerdan bilamiz?</b> (Kim qaytdi? Nima qildi?)</p>
+// ===== SCREEN 2 — MUHOKAMA: savol + «OSHXONA HAFTALIGI» interaktiv mini-sahna (24-qonun: statik matn emas) =====
+// Maktab oshxonasida yangi taom: 5 kun-katak — har birini bosganda o'sha kuni oshxonaga KELGANLAR
+// va taomni YANA OLGANLAR soni ochiladi (CountUp + mini-ustuncha). Unscored, 5/5 → xulosa.
+const OSHX_DAYS = [
+  { d: 'Du', keldi: 100, qaytdi: 100 },
+  { d: 'Se', keldi: 98, qaytdi: 55 },
+  { d: 'Cho', keldi: 97, qaytdi: 40 },
+  { d: 'Pa', keldi: 99, qaytdi: 34 },
+  { d: 'Ju', keldi: 98, qaytdi: 31 },
+];
+const Screen2 = ({ screen, onNext, onPrev }) => {
+  const [opened, setOpened] = useState(() => OSHX_DAYS.map(() => false));
+  const openedN = opened.filter(Boolean).length;
+  const allOpen = openedN === OSHX_DAYS.length;
+  const openDay = (i) => setOpened(prev => (prev[i] ? prev : prev.map((v, k) => (k === i ? true : v))));
+  return (
+    <Stage eyebrow="Muhokama · savol" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive label="Davom etish" onClick={onNext} /></>}>
+      <div className="screen" style={{ gap: 'clamp(14px,2.2vw,20px)' }}>
+        <div className="proj-q fade-up">
+          <span className="proj-q-lbl">🗣️ Sinfga savol</span>
+          <p className="proj-q-body">Oshxonada <b>yangi taom</b> chiqdi — birinchi kuni HAMMA oldi. Demak, taom zo'rmi? <b>Qayerdan bilamiz?</b></p>
+        </div>
+        <Mentor>Birinchi kun — bu shunchaki <b style={{ color: T.ink }}>kelish</b> (qiziqish). Besh kunni bosib oching: keyingi kunlari <b style={{ color: T.ink }}>necha kishi YANA oldi</b>?</Mentor>
+        <div className="oshx fade-up delay-1">
+          <div className="oshx-week">
+            {OSHX_DAYS.map((d, i) => {
+              const on = opened[i];
+              return (
+                <button key={d.d} className={`oshx-day ${on ? 'open' : 'taphint'}`} onClick={() => openDay(i)} disabled={on} aria-label={`${d.d} kuni`}>
+                  <span className="oshx-inner">
+                    <span className="oshx-face oshx-front"><span className="oshx-d">{d.d}</span><span className="oshx-plate" aria-hidden="true">🍽️</span><span className="oshx-q" aria-hidden="true">?</span></span>
+                    <span className="oshx-face oshx-back">
+                      <span className="oshx-d back">{d.d}</span>
+                      <span className="oshx-n keldi">🍽️ {on ? <CountUp to={d.keldi} dur={600} /> : 0}</span>
+                      <i className="oshx-bar keldi" style={{ '--w': '100%' }} />
+                      <span className="oshx-n qayt">↩️ {on ? <CountUp to={d.qaytdi} dur={700} delay={150} /> : 0}</span>
+                      <i className="oshx-bar qayt" style={{ '--w': `${d.qaytdi}%` }} />
+                    </span>
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+          <p className="oshx-cap">{allOpen ? '✓ 5/5 — har kuni kelish o\'zgarmadi, YANA OLGANLAR kamayib ketdi' : `Kun-kataklarni bosing (${openedN}/5) · 🍽️ oshxonaga keldi · ↩️ taomni yana oldi`}</p>
+        </div>
+        {allOpen && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Kelish ≠ yana kelish. <b>Haqiqiy baho — necha kishi ertasiga YANA olgani</b>: foyda olmagan odam ertaga yana olmaydi.</p></div>}
+        <MentorNote>Qoidani SAVOLDAN OLDIN aytmang — o'quvchi «kelish emas, qaytish» g'oyasiga kataklarni ochib o'zi kelsin.</MentorNote>
       </div>
-      <Mentor>Muhokama qilamiz: «100 kishi kirdi» — bu shunchaki <b style={{ color: T.ink }}>kelish</b>. Muhimi — qanchasi <b style={{ color: T.ink }}>qaytdi</b> va nima qildi? Foyda olmagan odam ertaga qaytmaydi.</Mentor>
-      <div className="ex-card fade-up delay-1">
-        <span className="ex-lbl">🍽️ O'smir hayotidan misol</span>
-        <p className="ex-body">Maktab oshxonasida <b>yangi taom</b> chiqdi — birinchi kuni HAMMA oladi (qiziqish). Muhimi: <b>ikkinchi haftada nechtasi YANA oladi</b>. Qaytish — haqiqiy baho.</p>
-        <div className="ex-tags"><span className="ex-tag kim">1-kun: HAMMA oladi (kelish)</span><span className="ex-tag natija">2-hafta: kim qaytdi? (qaytish)</span></div>
-      </div>
-      <MentorNote>Qoidani SAVOLDAN OLDIN aytmang — o'quvchi «kelish emas, qaytish» g'oyasiga muhokama orqali o'zi kelsin.</MentorNote>
-    </div>
-  </Stage>
-);
+    </Stage>
+  );
+};
 
-// ===== SCREEN 3 — QOIDA-EKRAN: 4 metrika interaktiv flip-karta (bosib ochiladi) =====
+// ===== SCREEN 3 — QOIDA-EKRAN: 4 metrika 3D-FLIP karta (har biri o'z rang-akcenti) + mini demo-lenta =====
+// Rang-semantika: DAU=ko'k · Retention=indigo · Churn=amber · North Star=oltin (yashil FAQAT muvaffaqiyat).
+// Ball-mantiq o'zgarmagan: 4 karta ochilganda onAnswer(screen, { opened, correct: true }).
 const METRIC_DEFS = [
-  { key: 'dau',  ic: '📅', name: 'DAU / MAU',  short: 'kunlik / oylik faol foydalanuvchi', def: <>Bir kun (yoki oy) ichida mahsulotga <b>kirgan faol odamlar soni</b>. «Bugun nechta odam kirdi?» degan savolga javob beradi.</> },
-  { key: 'ret',  ic: '↩️', name: 'Retention', short: 'qaytish ulushi', def: <>Kirgan odamlarning <b>qanchasi keyin qaytib keladi</b>. Mahsulot foyda berayotganini eng aniq ko'rsatadigan raqamlardan biri.</> },
-  { key: 'churn',ic: '📉', name: 'Churn',      short: 'ketish ulushi', def: <>Retention'ning aksi: <b>qanchasi butunlay ketdi</b>. Churn o'ssa — odamlar mahsulotni tashlab ketmoqda degani.</> },
-  { key: 'ns',   ic: '⭐', name: 'North Star', short: 'bosh yulduz-ko\'rsatkich', def: <>Mahsulotingiz <b>haqiqiy qiymat berayotganini</b> eng yaxshi ko'rsatadigan YAGONA bosh raqam. Butun jamoa shunga qaraydi.</> },
+  { key: 'dau',  ic: '📅', name: 'DAU / MAU',  short: 'kunlik / oylik faol', def: <>Bir kun (yoki oy) ichida mahsulotga <b>kirgan faol odamlar soni</b>. «Bugun nechta odam kirdi?» degan savolga javob beradi.</>, ex: '📅 bugun: 128 kishi' },
+  { key: 'ret',  ic: '↩️', name: 'Retention', short: 'yana kelish ulushi', def: <>Kirganlardan <b>necha kishi keyin YANA kiradi</b>. Mahsulot foyda berayotganini eng aniq ko'rsatadigan raqamlardan biri.</>, ex: '↩️ 42% yana kirdi' },
+  { key: 'churn',ic: '📉', name: 'Churn',      short: 'ketish ulushi', def: <>Retention'ning aksi: <b>necha kishi butunlay ketib qoldi</b>. Churn o'ssa — odamlar mahsulotni tashlab ketmoqda degani.</>, ex: '📉 58% ketdi' },
+  { key: 'ns',   ic: '⭐', name: 'North Star', short: 'bosh yulduz-ko\'rsatkich', def: <>Mahsulotingiz <b>haqiqiy qiymat berayotganini</b> eng yaxshi ko'rsatadigan YAGONA bosh raqam. Butun jamoa shunga qaraydi.</>, ex: '⭐ bitta bosh raqam' },
 ];
 const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [st, setSt] = useState(() => ({ opened: storedAnswer?.opened || METRIC_DEFS.map(() => false) }));
@@ -925,17 +980,33 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow="Qoida" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? 'Davom etish' : `4 kartani oching (${openedN}/4)`} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(14px,2.2vw,20px)' }}>
         <div className="head"><h2 className="title h-title fade-up">Loyihangiz yaxshi ishlayaptimi — buni qaysi <span className="italic" style={{ color: T.accent }}>raqam</span> ko'rsatadi?</h2></div>
-        <Mentor>Metrika — mahsulot salomatligini ko'rsatadigan <b style={{ color: T.ink }}>raqam</b>. To'rt asosiysini bosib oching. Ular ichida bittasi — <b style={{ color: T.ink }}>North Star</b>: mahsulot haqiqiy qiymat berayotganini eng yaxshi ko'rsatadigan yagona bosh raqam.</Mentor>
-        <div className="mcard-grid fade-up delay-1">
+        <Mentor>Metrika — mahsulotning ahvolini ko'rsatadigan <b style={{ color: T.ink }}>raqam</b>. To'rt asosiysini bosib aylantiring. Ular ichida bittasi — <b style={{ color: T.ink }}>North Star</b>: mahsulot haqiqiy qiymat berayotganini eng yaxshi ko'rsatadigan yagona bosh raqam.</Mentor>
+        <div className="mlens fade-up" aria-label="O'lchasang — ko'rasan">
+          <span className="mlens-guess" aria-hidden="true">🤔 «yaxshi ketyapti…»</span>
+          <span className="mlens-arrow" aria-hidden="true">→</span>
+          <span className="mlens-chart" aria-hidden="true">
+            <svg viewBox="0 0 60 24" preserveAspectRatio="none"><polyline className="mlens-line" points="2,20 14,16 26,18 38,10 50,12 58,4" /></svg>
+          </span>
+          <span className="mlens-tag">O'LCHASANG — KO'RASAN</span>
+        </div>
+        <div className="mx3-grid fade-up delay-1">
           {METRIC_DEFS.map((m, i) => {
             const open = st.opened[i];
             return (
-              <button key={m.key} className={`mcard ${m.key} ${open ? 'open' : ''}`} onClick={() => flip(i)} disabled={open}>
-                <span className="mcard-ic">{m.ic}</span>
-                <span className="mcard-name">{m.name}</span>
-                {open
-                  ? <span className="mcard-def">{m.def}</span>
-                  : <><span className="mcard-short">{m.short}</span><span className="mcard-tap">bosib oching ▸</span></>}
+              <button key={m.key} className={`mx3 ${m.key} ${open ? 'flip' : ''}`} onClick={() => flip(i)} disabled={open}>
+                <span className="mx3-inner">
+                  <span className="mx3-face mx3-front">
+                    <span className="mx3-ic" aria-hidden="true">{m.ic}</span>
+                    <span className="mx3-nm">{m.name}</span>
+                    <span className="mx3-short">{m.short}</span>
+                    <span className="mx3-q" aria-hidden="true">?</span>
+                  </span>
+                  <span className="mx3-face mx3-back">
+                    <span className="mx3-nm">{m.name}</span>
+                    <span className="mx3-def">{m.def}</span>
+                    <span className="mx3-ex">{m.ex}</span>
+                  </span>
+                </span>
               </button>
             );
           })}
@@ -978,7 +1049,10 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   );
 };
 
-// ===== SCREEN 5 — O'Z LOYIHASI: North Star nomzodi (jonli validator: raqam + chunki…qiymat) =====
+// ===== SCREEN 5 — O'Z LOYIHASI: North Star nomzodi (28-qonun: narrow YO'Q, split-layout, ● JONLI holat-panel) =====
+// BUG-TARIX (metrika.png, 2026-07-22): editor'da `fade-up` + `.nstar-editor.ok` animatsiyasi to'qnashib,
+// `.ok` animation'ni override qilgach element opacity:0 da G'OYIB bo'lardi. Endi editor opacity-animatsiyaga
+// bog'lanmagan — BARCHA holatlarda (bo'sh/yarim/to'liq/qayta kirganda) ko'rinadi.
 const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [text, setText] = useState(() => {
     const saved = readMetrics();
@@ -992,19 +1066,32 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     writeMetrics({ ...prev, northStar: val });
   };
   return (
-    <Stage eyebrow="Amaliyot · North Star'ingiz" screen={screen} narrow navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!v.full} label={v.full ? 'Davom etish' : 'North Star nomzodini yozing'} onClick={onNext} /></>}>
+    <Stage eyebrow="Amaliyot · North Star'ingiz" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!v.full} label={v.full ? 'Davom etish' : 'North Star nomzodini yozing'} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
         <div className="head"><h2 className="title h-title fade-up">Loyihangizning bosh raqami — <span className="italic" style={{ color: T.accent }}>North Star</span> — qaysi bo'ladi?</h2></div>
-        <Mentor>MVP'ingiz uchun bitta bosh raqam nomzodini yozing. Shablon: <b style={{ color: T.ink }}>«Mening North Star'im — [raqam], chunki u [foydalanuvchi olayotgan qiymat]ni ko'rsatadi»</b>. Pastdagi ikki chiroq yonganda nomzod tayyor.</Mentor>
-        <div className={`nstar-editor ${v.full ? 'ok' : ''} fade-up delay-1`}>
-          <span className="nstar-lead">⭐ Mening North Star'im —</span>
-          <textarea className="nstar-input" value={text} spellCheck={false} rows={3} onChange={e => save(e.target.value)} placeholder="masalan: haftada 3+ marta qaytgan foydalanuvchilar soni, chunki u odam mahsulotdan real foyda olayotganini ko'rsatadi" />
-          <div className="nstar-checks">
-            <StoryCheck ok={v.hasNumber} label="O'lchanadigan raqam bor (soni / ulush / foiz)" />
-            <StoryCheck ok={v.hasReason} label="«chunki … qiymat» — nega muhimligi yozilgan" />
-          </div>
+        <Mentor>Shablon: <b style={{ color: T.ink }}>«Mening North Star'im — [raqam], chunki u [foydalanuvchi olayotgan qiymat]ni ko'rsatadi»</b>. O'ngdagi panelda ikki chiroq yonsa — nomzod ● JONLI.</Mentor>
+        <div className="split">
+          <Col>
+            <div className={`nstar-editor ${v.full ? 'ok' : ''}`}>
+              <span className="nstar-lead">⭐ Mening North Star'im —</span>
+              <textarea className="nstar-input" value={text} spellCheck={false} rows={4} onChange={e => save(e.target.value)} placeholder="masalan: haftada 3+ marta yana kirgan foydalanuvchilar soni, chunki u odam mahsulotdan real foyda olayotganini ko'rsatadi" />
+            </div>
+          </Col>
+          <Col>
+            <div className="mxlamps fade-up delay-1">
+              <span className="card-lbl" style={{ color: T.accent }}>📟 Panel-holati</span>
+              {[['num', "O'lchanadigan raqam (soni/ulush/foiz)", v.hasNumber], ['why', '«chunki … qiymat» sababi', v.hasReason]].map(([k, lbl, on]) => (
+                <div key={k} className={`mxlamp ${on ? 'on' : ''}`}>
+                  <span className="mxlamp-dot" aria-hidden="true" />
+                  <span className="mxlamp-lbl">{lbl}</span>
+                  <span className="mxlamp-st">{on ? 'yondi ✓' : 'kutilmoqda…'}</span>
+                </div>
+              ))}
+              {v.full ? <span className="mlive big">● JONLI</span> : <span className="mxlamp-hint">Ikkala chiroq yonsa — panel jonlanadi</span>}
+            </div>
+            {v.full && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>✅ North Star nomzodi tayyor! U ustaxonaga ko'chadi — u yerda 3 metrika-karta bilan panel yig'asiz.</p></div>}
+          </Col>
         </div>
-        {v.full && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>✅ North Star nomzodi tayyor! U ustaxonaga ko'chadi — u yerda 3 metrika-karta bilan panel yig'asiz.</p></div>}
         <MentorNote>«Hammasi DAU bo'lsin» tuzog'iga tushmasin: North Star — real qiymatni ko'rsatuvchi raqam, shunchaki kelish soni emas.</MentorNote>
       </div>
     </Stage>
@@ -1053,7 +1140,7 @@ const MentorPracticeStats = ({ live, screen, label = "👀 Kim bajardi" }) => {
 // s5'dagi North Star METRICS_KEY orqali ko'chib keladi; o'quvchi 3 metrika-karta qo'shadi (NOMI→NIMANI→NEGA + savol turi).
 const METRIC_ASKS = [
   { k: 'kelish', label: 'Kelish — «bugun nechta odam kirdi?»' },
-  { k: 'qaytish', label: 'Qaytish — «kelganlarning qanchasi qaytdi?»' },
+  { k: 'qaytish', label: 'Qaytish — «necha kishi yana keldi?»' },
   { k: 'qiymat', label: 'Qiymat — «mahsulot real foyda beryaptimi?»' },
 ];
 const emptyMetric = () => ({ nom: '', what: '', why: '', ask: '', hyp: '' });
@@ -1072,17 +1159,18 @@ const ScreenMetricWorkshop = ({ screen, storedAnswer, onAnswer, onNext, onPrev }
     cards: initMetricCards(storedAnswer),
     done: !!(storedAnswer && storedAnswer.solved),
     helpOpen: false,
+    starOpen: false,
   }));
-  const { northStar, cards, done, helpOpen } = st;
-  // RO'YXAT — 3 band jonli validator
+  const { northStar, cards, done, helpOpen, starOpen } = st;
+  // RO'YXAT — 3 band jonli validator (yorliqlar ≤5 so'z — 25-qonun matn-diyeta)
   const nsOk = validateNorthStar(northStar).full;
   const asks = cards.map(c => c.ask).filter(Boolean);
   const threeAsks = new Set(asks).size >= 3;
   const allWhy = cards.every(c => validateMetricCard(c).full);
   const checks = [
-    { ok: nsOk, label: "North Star bitta va o'lchanadigan (raqam chiqadi)" },
-    { ok: threeAsks, label: "3 karta uch xil savolga javob (kelish · qaytish · qiymat)" },
-    { ok: allWhy, label: "Har kartada «nega muhim» real sabab bilan yozilgan" },
+    { ok: nsOk, label: "North Star o'lchanadigan (raqamli)" },
+    { ok: threeAsks, label: "3 karta — 3 xil savol" },
+    { ok: allWhy, label: "Har kartada «nega muhim» bor" },
   ];
   const passed = checks.every(c => c.ok);
   const persistNS = (val) => setSt(prev => { writeMetrics({ northStar: val, cards: prev.cards }); return { ...prev, northStar: val }; });
@@ -1097,7 +1185,7 @@ const ScreenMetricWorkshop = ({ screen, storedAnswer, onAnswer, onNext, onPrev }
     <Stage eyebrow="Mustaqil ish · metrika-panel ✍️" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? 'Davom etish' : 'Avval bajaring'} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
         <div className="head"><h2 className="title h-title fade-up">Loyihangiz <span className="italic" style={{ color: T.accent }}>metrika-panelini</span> o'zingiz yig'a olasizmi?</h2></div>
-        <Mentor>North Star'ingizni tasdiqlang va <b style={{ color: T.ink }}>3 metrika-karta</b> to'ldiring: NOMI → NIMANI o'lchaydi → NEGA muhim. Har karta <b style={{ color: T.ink }}>boshqa savolga</b> javob bersin: kelish · qaytish · qiymat. Tugagach «Bajardim»ni bosing.</Mentor>
+        <Mentor>North Star'ni tasdiqlang, 3 kartani to'ldiring — har biri <b style={{ color: T.ink }}>boshqa savolga</b> javob bersin. Karta to'lsa, ustida <b style={{ color: T.success }}>● JONLI</b> yonadi.</Mentor>
         <div className="split">
           <Col>
             <div className={`nstar-editor mini ${nsOk ? 'ok' : ''}`}>
@@ -1106,24 +1194,29 @@ const ScreenMetricWorkshop = ({ screen, storedAnswer, onAnswer, onNext, onPrev }
             </div>
             {cards.map((c, i) => {
               const v = validateMetricCard(c);
+              const nOk = [v.nomOk, v.whatOk, v.whyOk, v.askOk].filter(Boolean).length;
               return (
                 <div key={i} className={`swcard ${v.full ? 'ok' : ''}`}>
-                  <span className={`swcard-tag ${v.full ? 'kept' : 'new'}`}>{v.full ? '✓ Karta to\'liq' : `✨ Metrika-karta ${i + 1}`}</span>
+                  <div className="swcard-h">
+                    <span className="swcard-n">{i + 1}</span>
+                    <span className="swcard-sent">{c.nom ? <b>{c.nom}</b> : `Metrika-karta ${i + 1}`}</span>
+                    {v.full ? <span className="mlive mini">● JONLI</span> : <span className="swcard-prog">{nOk}/4</span>}
+                  </div>
                   <div className="swcard-fields">
                     <label className={`smini-f kim ${v.nomOk ? 'on' : ''}`}><span>NOMI</span><input value={c.nom} onChange={e => setCard(i, { nom: e.target.value })} placeholder="masalan: retention" /></label>
-                    <label className={`smini-f nima ${v.whatOk ? 'on' : ''}`}><span>NIMANI o'lchaydi</span><input value={c.what} onChange={e => setCard(i, { what: e.target.value })} placeholder="qaytish ulushi" /></label>
-                    <label className={`smini-f natija ${v.whyOk ? 'on' : ''}`}><span>NEGA muhim</span><input value={c.why} onChange={e => setCard(i, { why: e.target.value })} placeholder="real foyda shu yerda ko'rinadi" /></label>
+                    <label className={`smini-f nima ${v.whatOk ? 'on' : ''}`}><span>NIMANI o'lchaydi</span><input value={c.what} onChange={e => setCard(i, { what: e.target.value })} placeholder="yana kelganlar ulushi" /></label>
+                    <label className={`smini-f natija ${v.whyOk ? 'on' : ''}`}><span>NEGA muhim</span><input value={c.why} onChange={e => setCard(i, { why: e.target.value })} placeholder="real foyda shu yerda" /></label>
                   </div>
                   <label className={`mwcard-ask ${c.ask ? 'on' : ''}`}>
-                    <span>Qaysi savolga javob beradi?</span>
+                    <span>Qaysi savolga javob?</span>
                     <select value={c.ask} onChange={e => setCard(i, { ask: e.target.value })}>
                       <option value="">— tanlang —</option>
                       {METRIC_ASKS.map(a => <option key={a.k} value={a.k}>{a.label}</option>)}
                     </select>
                   </label>
                   <label className="mwcard-hyp">
-                    <span>⭐ Gipoteza — taxmin (ixtiyoriy)</span>
-                    <input value={c.hyp} onChange={e => setCard(i, { hyp: e.target.value })} placeholder="…ni qilsak, bu metrika o'sadi" />
+                    <span>⭐ Gipoteza (ixtiyoriy)</span>
+                    <input value={c.hyp} onChange={e => setCard(i, { hyp: e.target.value })} placeholder="…qilsak, bu raqam o'sadi" />
                   </label>
                 </div>
               );
@@ -1134,23 +1227,26 @@ const ScreenMetricWorkshop = ({ screen, storedAnswer, onAnswer, onNext, onPrev }
               <div className="card-lbl" style={{ color: passed ? T.success : T.accent }}>📋 Ro'yxat — {checks.filter(c => c.ok).length}/3</div>
               {checks.map((c, i) => <StoryCheck key={i} ok={c.ok} label={c.label} />)}
             </div>
-            <div className={`yordam ${helpOpen ? 'open' : ''} fade-up`}>
-              <button className="yordam-toggle" onClick={() => setSt(prev => ({ ...prev, helpOpen: !prev.helpOpen }))}>💡 Yordam kerakmi? {helpOpen ? '▾' : '▸'}</button>
-              {helpOpen && <div className="yordam-body">
-                <p>Foydalanuvchi birinchi marta qachon <b>«xursand»</b> bo'ladi? O'sha lahzani qaysi raqam ko'rsatadi? — North Star shu.</p>
-                <p>Kelganlarni <b>kim sanaydi</b>? Qaytganlarni-chi?</p>
-                <p className="yordam-hint">Har savol boshqa raqamni talab qiladi — shuning uchun 3 xil karta.</p>
-              </div>}
-            </div>
-            <div className="star-task fade-up">
-              <span className="card-lbl" style={{ color: T.blue }}>⭐ Yulduzcha topshirig'i</span>
-              <p className="small" style={{ margin: 0, color: T.ink2 }}>Har metrikaga bitta <b>GIPOTEZA</b> yozing: «[X]ni qilsak, bu metrika o'sadi» — keyingi darsdagi OKR'ga tayyorgarlik.</p>
+            <div className="wsx-row fade-up">
+              <div className={`wsx ${helpOpen ? 'open' : ''}`}>
+                <button className="wsx-toggle" onClick={() => setSt(prev => ({ ...prev, helpOpen: !prev.helpOpen }))}>💡 Yordam {helpOpen ? '▾' : '▸'}</button>
+                {helpOpen && <div className="wsx-body">
+                  <p>Foydalanuvchi qachon <b>xursand</b> bo'ladi? O'sha lahzaning raqami — North Star.</p>
+                  <p>Kelish · qaytish · qiymat — har biri <b>o'z raqamini</b> so'raydi.</p>
+                </div>}
+              </div>
+              <div className={`wsx star ${starOpen ? 'open' : ''}`}>
+                <button className="wsx-toggle" onClick={() => setSt(prev => ({ ...prev, starOpen: !prev.starOpen }))}>⭐ Yulduzcha {starOpen ? '▾' : '▸'}</button>
+                {starOpen && <div className="wsx-body">
+                  <p>Har kartaga <b>gipoteza</b> (taxmin): «[X] qilsak, bu raqam o'sadi» — keyingi darsdagi OKR poydevori.</p>
+                </div>}
+              </div>
             </div>
             <MentorPracticeStats live={live} screen={screen} label="✍️ Panelni tugatganlar" />
             <button className={`lp-done-btn ${done ? 'is-done' : ''}`} disabled={done || !passed} onClick={complete}>
               {done ? '✓ Bajarildi — ustozni kuting' : passed ? '✅ Bajardim' : `Ro'yxat 3/3 bo'lsin (${checks.filter(c => c.ok).length}/3)`}
             </button>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Zo'r! Metrika-panelingiz tayyor — mana shu sizning tayyor natijangiz. Ustoz tekshirib, keyingi qadamga o'tkazadi.</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Zo'r! Panelingiz <b>● JONLI</b> — ustoz tekshirib, keyingi qadamga o'tkazadi.</p></div>}
           </Col>
         </div>
         <MentorNote>3/3 = o'tdi · 2/3 = joyida to'ldiradi · kam = YORDAM bilan qaytadan. «Hammasi DAU bo'lsin» tuzog'i: uch karta uch XIL savolga javob berishini tekshiring.</MentorNote>
@@ -1185,10 +1281,10 @@ const Screen8 = (props) => (
       lead="Duolingo misolida ko'rdik — streak odamni qaytaradi."
       cue="Streak birinchi navbatda qaysi metrikani ko'taradi?" />}
     questionText="Test 2: streak qaysi metrikani ko'taradi"
-    options={["Yangi foydalanuvchilar oqimi", "Server tezligi", "Retention — qaytish ulushi", "O'rtacha chek"]}
+    options={["Yangi foydalanuvchilar oqimi", "Server tezligi", "Retention — qaytish ulushi", "Bitta xariddagi o'rtacha pul"]}
     correctIdx={2}
     explainCorrect="Retention — «qaytish» mexanikasi. Streak odamni qayta-qayta qaytaradi, demak avvalo retention o'sadi."
-    explainWrong={{ 0: "Yangi oqim — bu yangi kelganlar. Streak faqat mavjudlarni qaytaradi, yangi odam keltirmaydi. To'g'ri javob — retention.", 1: "Server tezligi — texnik ko'rsatkich, streak'ga bog'liq emas. To'g'ri javob — retention.", 3: "O'rtacha chek — bu daromad metrikasi. Streak avvalo qaytishni oshiradi. To'g'ri javob — retention.", default: "Streak = qaytish mexanikasi → retention." }}
+    explainWrong={{ 0: "Yangi oqim — bu yangi kelganlar. Streak faqat mavjudlarni qaytaradi, yangi odam keltirmaydi. To'g'ri javob — retention.", 1: "Server tezligi — texnik ko'rsatkich, streak'ga bog'liq emas. To'g'ri javob — retention.", 3: "Bitta xariddagi o'rtacha pul («o'rtacha chek») — bu daromad metrikasi. Streak avvalo qaytishni oshiradi. To'g'ri javob — retention.", default: "Streak = qaytish mexanikasi → retention." }}
   />
 );
 
@@ -1196,11 +1292,13 @@ const Screen8 = (props) => (
 // KONTRAKT: 4 chip → 4 nishon · atomik holat (yagona useState) · DOM-transform drag + tap-fallback ·
 // scored: birinchi-urinish mukammal → picked=0, aks holda picked=1 · INLINE_KEYS.s9=0 · Kahoot-reveal.
 const MATCH_PAIRS = [
-  { id: 'dau',   chip: 'DAU',        target: 'Bugun nechta odam kirdi?' },
-  { id: 'ret',   chip: 'retention',  target: 'Kelganlarning qanchasi qaytdi?' },
-  { id: 'churn', chip: 'churn',      target: 'Qanchasi butunlay ketdi?' },
-  { id: 'ns',    chip: 'North Star', target: 'Mahsulot haqiqiy qiymat beryaptimi?' },
+  { id: 'dau',   chip: 'DAU',        ic: '📅', target: 'Bugun nechta odam kirdi?' },
+  { id: 'ret',   chip: 'retention',  ic: '↩️', target: 'Kelganlardan necha kishi yana keldi?' },
+  { id: 'churn', chip: 'churn',      ic: '📉', target: 'Necha kishi butunlay ketdi?' },
+  { id: 'ns',    chip: 'North Star', ic: '⭐', target: 'Mahsulot haqiqiy qiymat beryaptimi?' },
 ];
+// Fon-dekor tokenlari (27-qonun: dekor o'qitadi — Metrics atamalari, ball-mantiqqa aloqasi yo'q)
+const MMX_TOKENS = ['DAU', '%', '📈', 'retention', 'churn', '⭐'];
 // Barqaror (StrictMode-safe) tartiblar — render'da aralashtirilmaydi. Chip tartibi nishondan farqli.
 const MATCH_CHIP_ORDER = [2, 0, 3, 1]; // churn · DAU · North Star · retention
 const MATCH_TARGET_ORDER = [0, 1, 2, 3];
@@ -1260,50 +1358,54 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </div>
         </div>
         {oneShot && !solved && <p className="small mono fade-up" style={{ margin: '-8px 0 0', color: T.accent, fontWeight: 600 }}>⚡ Jonli dars — bitta urinish, o'ylab juftlang!</p>}
-        {/* CHIP POOL */}
-        <div className="match-pool fade-up delay-1">
-          {MATCH_CHIP_ORDER.filter(idx => pool.some(p => p.id === MATCH_PAIRS[idx].id)).map(idx => {
-            const p = MATCH_PAIRS[idx];
-            return (
-              <button key={p.id} className={`match-chip ${sel === p.id ? 'sel' : ''} ${drag === p.id ? 'dragging' : ''}`}
-                draggable={!solved && !isMentorLive}
-                onDragStart={() => setSt(prev => ({ ...prev, drag: p.id, sel: p.id }))}
-                onDragEnd={() => setSt(prev => ({ ...prev, drag: null }))}
-                disabled={solved || isMentorLive}
-                onClick={() => tapChip(p.id)}>
-                {p.chip}
-              </button>
-            );
-          })}
-          {pool.length === 0 && <span className="match-pool-empty">Barcha chiplar joylandi ✓</span>}
-        </div>
-        <div className="match-hint small mono">{sel ? '👉 endi savol ustiga bosing' : (isMentorLive ? '' : 'chipni tanlang yoki savol ustiga torting')}</div>
-        {/* TARGETS */}
-        <div className="match-targets fade-up delay-2">
-          {MATCH_TARGET_ORDER.map(ti => {
-            const chipId = assign[ti];
-            const p = chipId != null ? MATCH_PAIRS.find(x => x.id === chipId) : null;
-            const correctHere = showColors && chipId === MATCH_PAIRS[ti].id;
-            const wrongHere = showColors && chipId != null && chipId !== MATCH_PAIRS[ti].id;
-            return (
-              <div key={ti} className={`match-target ${chipId ? 'filled' : ''} ${sel && !solved && !isMentorLive ? 'droppable' : ''} ${correctHere ? 'ok' : ''} ${wrongHere ? 'bad' : ''}`}
-                onDragOver={e => { if (!solved && !isMentorLive) e.preventDefault(); }}
-                onDrop={() => place(ti, drag)}
-                onClick={() => tapTarget(ti)} role="button">
-                <span className="match-target-q">{MATCH_PAIRS[ti].target}</span>
-                <span className="match-slot">
-                  {p ? <span className={`match-slot-chip ${correctHere ? 'ok' : ''} ${wrongHere ? 'bad' : ''}`}>{p.chip}{showColors && (correctHere ? ' ✓' : ' ✕')}</span> : <span className="match-slot-empty">bu yerga</span>}
-                </span>
-              </div>
-            );
-          })}
+        <div className="mmx-wrap">
+          <div className="mmx-decor" aria-hidden="true">{MMX_TOKENS.map((t, k) => <span key={k} className={`mmx-t md${k}`}>{t}</span>)}</div>
+          {/* CHIP POOL */}
+          <div className="match-pool fade-up delay-1">
+            {MATCH_CHIP_ORDER.filter(idx => pool.some(p => p.id === MATCH_PAIRS[idx].id)).map(idx => {
+              const p = MATCH_PAIRS[idx];
+              return (
+                <button key={p.id} className={`match-chip ${sel === p.id ? 'sel' : ''} ${drag === p.id ? 'dragging' : ''}`}
+                  draggable={!solved && !isMentorLive}
+                  onDragStart={() => setSt(prev => ({ ...prev, drag: p.id, sel: p.id }))}
+                  onDragEnd={() => setSt(prev => ({ ...prev, drag: null }))}
+                  disabled={solved || isMentorLive}
+                  onClick={() => tapChip(p.id)}>
+                  <span className="match-chip-ic" aria-hidden="true">{p.ic}</span>{p.chip}
+                </button>
+              );
+            })}
+            {pool.length === 0 && <span className="match-pool-empty">Barcha chiplar joylandi ✓</span>}
+          </div>
+          <div className="match-hint small mono">{sel ? '👉 endi savol ustiga bosing' : (isMentorLive ? '' : 'chipni tanlang yoki savol ustiga torting')}</div>
+          {/* TARGETS */}
+          <div className="match-targets fade-up delay-2">
+            {MATCH_TARGET_ORDER.map(ti => {
+              const chipId = assign[ti];
+              const p = chipId != null ? MATCH_PAIRS.find(x => x.id === chipId) : null;
+              const correctHere = showColors && chipId === MATCH_PAIRS[ti].id;
+              const wrongHere = showColors && chipId != null && chipId !== MATCH_PAIRS[ti].id;
+              return (
+                <div key={ti} className={`match-target ${chipId ? 'filled' : ''} ${sel && !solved && !isMentorLive ? 'droppable' : ''} ${correctHere ? 'ok' : ''} ${wrongHere ? 'bad' : ''}`}
+                  onDragOver={e => { if (!solved && !isMentorLive) e.preventDefault(); }}
+                  onDrop={() => place(ti, drag)}
+                  onClick={() => tapTarget(ti)} role="button">
+                  <span className="match-target-q">{MATCH_PAIRS[ti].target}</span>
+                  <span className="match-slot">
+                    {p ? <span className={`match-slot-chip ${correctHere ? 'ok' : ''} ${wrongHere ? 'bad' : ''}`}><span className="match-chip-ic sm" aria-hidden="true">{p.ic}</span>{p.chip}{showColors && (correctHere ? ' ✓' : ' ✕')}</span> : <span className="match-slot-empty">bu yerga</span>}
+                    {correctHere && <span className="mmx-burst" aria-hidden="true">{[0, 1, 2, 3, 4, 5].map(k => <span key={k} style={{ '--ba': `${k * 60}deg` }}>✦</span>)}</span>}
+                  </span>
+                </div>
+              );
+            })}
+          </div>
         </div>
         <FeedbackBlock show={isMentorLive ? mReveal : solved} isCorrect={isMentorLive ? true : (allCorrect && !waiting)} neutral={waiting}>
           <p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || allCorrect) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
             {isMentorLive ? '✓ To\'g\'ri juftlik' : waiting ? '📨 Javobingiz qabul qilindi' : allCorrect ? 'Barchasi to\'g\'ri!' : 'To\'g\'ri juftlik quyida'}
           </p>
           <p className="body" style={{ margin: 0 }}>
-            {waiting ? "Hozir to'g'ri juftlikni bilib olasiz." : "DAU → «bugun kirganlar» · retention → «qaytganlar» · churn → «ketganlar» · North Star → «real qiymat». Har metrika bitta savolga javob beradi."}
+            {waiting ? "Hozir to'g'ri juftlikni bilib olasiz." : "DAU → «bugun kirganlar» · retention → «yana kelganlar» · churn → «butunlay ketganlar» · North Star → «real qiymat». Har metrika bitta savolga javob beradi."}
           </p>
           {!isMentorLive && !allCorrect && (!oneShot || revealed) && (
             <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>📖 Qisqa takrorlash — mavzuni yana bir ko'rish</button>
@@ -1317,242 +1419,175 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   );
 };
 
-// ===== SCREEN 10 — KODING: REAL to'liq-ekran kompilyator (Htmllesson1 tizimi PM-qobiqda) =====
-// O'quvchi kodini jonli iframe-hujjatda ishga tushiramiz; yashirin harness 3 shartni tekshirib
-// parent'ga xabar yuboradi. PM-STUDIA palitrasida self-contained (import yo'q).
-const HC_PREVIEW_CSS = `
-  *{box-sizing:border-box}
-  body{font-family:-apple-system,'Segoe UI',Roboto,sans-serif;margin:0;padding:16px;background:#FBFAFE;color:#1B1630}
-  #hcpm-out{display:flex;flex-direction:column;gap:9px}
-  .hcpm-empty{font-style:italic;color:#9C97B4;font-size:13px;margin:0}
-  .hcpm-err{font-family:monospace;font-size:13px;color:#E5484D;background:#FCE7E8;border-radius:9px;padding:10px 12px;margin:0;white-space:pre-wrap;word-break:break-word}
-  .hcpm-card{font-family:Georgia,serif;font-size:15px;line-height:1.5;color:#1B1630;background:#fff;border-radius:9px;padding:11px 13px;box-shadow:0 5px 14px -8px rgba(40,34,82,.25);border-left:3px solid #E7E3F4}
-  .hcpm-card.is-num{border-left-color:#5B3DE6;font-family:'JetBrains Mono',ui-monospace,monospace;font-weight:700}
-  .hcpm-badge{display:inline-block;font-family:'Manrope',system-ui,sans-serif;font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#5B3DE6;background:#EBE5FD;border-radius:99px;padding:3px 9px;margin-bottom:6px}
-  .hcpm-txt{display:block;white-space:pre-wrap;word-break:break-word}
-`;
-// Yashirin harness — iframe ichida o'quvchi kodidan KEYIN ishlaydi (alohida <script>, xato izolyatsiyalangan).
-// retentionFoiz'ni jimgina chaqirib return'ni tekshiradi + console.log lentasini kartalar qilib chizadi.
-const HC_HARNESS = (nonce) => `(function(){
-  var N=${JSON.stringify(nonce)};
-  var logs=window.__logs||[];
-  var probe=null,err=null;
-  try{
-    if(typeof retentionFoiz==="function"){
-      var a=retentionFoiz(20,5), b=retentionFoiz(0,0);
-      probe={a:a,b:b,t:typeof a};
-    }
-  }catch(e){err=String(e&&e.message||e);}
-  var c1=!!probe && probe.t==="number" && isFinite(probe.a);
-  var c2=c1 && probe.a===25 && probe.b===0;
-  var nums=logs.map(function(l){return String(l==null?"":l).trim();}).filter(function(l){return l!=="" && !isNaN(Number(l));});
-  var uniq={},cnt=0; nums.forEach(function(l){if(!Object.prototype.hasOwnProperty.call(uniq,l)){uniq[l]=1;cnt++;}});
-  var c3=cnt>=2;
-  var esc=function(s){return String(s).replace(/[&<>]/g,function(m){return m==="&"?"&amp;":m==="<"?"&lt;":"&gt;";});};
-  var root=document.getElementById("hcpm-out");
-  if(root){
-    if(err){root.innerHTML='<p class="hcpm-err">Xato: '+esc(err)+'</p>';}
-    else if(!logs.length){root.innerHTML='<p class="hcpm-empty">Natija hali chiqmadi — funksiyani toldiring va foizlarni console.log qiling.</p>';}
-    else{root.innerHTML=logs.map(function(l){var s=String(l==null?"":l).trim();var isNum=s!=="" && !isNaN(Number(s));return '<div class="hcpm-card '+(isNum?"is-num":"")+'">'+(isNum?'<span class="hcpm-badge">foiz-raqam</span>':"")+'<span class="hcpm-txt">'+esc(l)+'</span></div>';}).join("");}
-  }
-  try{parent.postMessage({__hcpmReport:true,nonce:N,c1:c1,c2:c2,c3:c3,err:err,count:cnt},"*");}catch(e){}
-})();`;
-// O'quvchi kodini jonli hujjatga o'raymiz: console.log ushlagich → o'quvchi kodi → harness.
-const HC_wrapDoc = (code, nonce) => `<!doctype html><html lang="uz"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>${HC_PREVIEW_CSS}</style>
-<script>window.__logs=[];(function(){var _l=console.log;console.log=function(){for(var i=0;i<arguments.length;i++){var a=arguments[i];try{window.__logs.push(typeof a==="object"?JSON.stringify(a):String(a));}catch(e){window.__logs.push(String(a));}}try{_l.apply(console,arguments);}catch(e){}};})();<\/script>
-</head><body><div id="hcpm-out"></div>
-<script>${code}<\/script>
-<script>${HC_HARNESS(nonce)}<\/script>
-</body></html>`;
-const KODING_STARTER = `function retentionFoiz(kelganlar, qaytganlar) {
-  // Qaytish ulushini foizda hisoblang (yaxlitlangan son qaytsin)
-  return 0;
-}
-console.log(retentionFoiz(20, 5));`;
-// Kompilyator-qobiq shartlari (JS-check: son qaytaradi + to'g'ri formula + nol-himoya + 2 xil juftlik bilan sinaldi).
-const KODING_CONDS = [
-  { id: 'c1', label: "Funksiya son qaytaradi — bo'sh 0 emas", hint: "return qatoriga formula yozing: hozir doim 0 qaytmoqda." },
-  { id: 'c2', label: "retentionFoiz(20, 5) === 25 va retentionFoiz(0, 0) === 0 (nol-himoya)", hint: "Foiz = qaytganlar / kelganlar * 100, Math.round() bilan. kelganlar 0 bo'lsa 0 qaytaring." },
-  { id: 'c3', label: "Kamida 2 xil juftlik bilan sinaldi (natija-lentada 2+ chiqish)", hint: "console.log'ni kamida 2 xil raqam-juftligi bilan chaqiring." },
+// ===== SCREEN 10 — KODING (⚛️ React, 26-qonun): MetrikaPanel — HISOB-KOMPONENT VS Code-topshirig'i =====
+// JTBD (M7-D2) koding'idan FARQLI mexanika: props-karta emas — komponent ICHIDA retention foizi
+// HISOBLANADI (const foiz = Math.round(qaytdi / keldi * 100)) va o'quvchining ustaxonadagi REAL
+// panel-ma'lumotlari (METRICS_KEY) massiv+map bilan chiqadi. Jonli namuna-preview o'quvchining
+// o'z kartalaridan render bo'ladi (bo'sh bo'lsa — namunaviy). Ball-rels AYNAN eski kompilyator
+// relsi: onAnswer({stage:'koding',...solved:true,correct:true}) + submitAnswer(PRACTICE_BASE+screen,'koding',0,true,0).
+const MK_DEMO_CARDS = [
+  { nom: 'DAU', what: 'kunlik kirganlar' },
+  { nom: 'retention', what: 'yana kelganlar ulushi' },
+  { nom: 'North Star', what: 'haftada 3+ qaytganlar' },
 ];
-// ===== PM-KOMPILYATOR — Htmllesson1 (HtmlCompiler) tizimi PM-qobiqda =====
-// To'liq-ekran praktika: tepada topshiriq + JONLI shart-chiplar, chapda kod-muharrir,
-// o'ngda jonli natija (iframe). Kod yozilgani sari shartlar O'ZI tekshiriladi (400ms
-// debounce, ▶ ham bor). Uchala shart yashil bo'lsa — «Davom etish» yonadi.
-function PmCompiler({ initialCode, onContinue, onBack }) {
-  const [code, setCode] = useState(initialCode || KODING_STARTER);
-  const nonceRef = useRef(0);
-  const [doc, setDoc] = useState('');
-  const [st, setSt] = useState({ ran: false, err: null, conds: { c1: false, c2: false, c3: false } });
-  // Jonli tekshiruv — Htmllesson1 uslubida debounce bilan avto-ishga tushadi
-  useEffect(() => {
-    const t = setTimeout(() => {
-      const nonce = ++nonceRef.current;
-      setDoc(HC_wrapDoc(code, nonce));
-    }, 400);
-    return () => clearTimeout(t);
-  }, [code]);
-  useEffect(() => {
-    const onMsg = (e) => {
-      const d = e.data;
-      if (d && d.__hcpmReport && d.nonce === nonceRef.current) {
-        setSt({ ran: true, err: d.err || null, conds: { c1: !!d.c1, c2: !!d.c2, c3: !!d.c3 } });
-      }
-    };
-    window.addEventListener('message', onMsg);
-    return () => window.removeEventListener('message', onMsg);
-  }, []);
-  const { conds, err } = st;
-  const passed = conds.c1 && conds.c2 && conds.c3;
-  const okN = KODING_CONDS.filter(c => conds[c.id]).length;
-  const firstHint = KODING_CONDS.find(c => !conds[c.id])?.hint;
-  const runNow = () => { const nonce = ++nonceRef.current; setDoc(HC_wrapDoc(code, nonce)); };
-  const reset = () => setCode(initialCode || KODING_STARTER);
-  // Tab tugmasi 2 bo'sh joy qo'shsin (Htmllesson1 bilan bir xil)
-  const onKeyDown = (e) => {
-    if (e.key === 'Tab') {
-      e.preventDefault();
-      const el = e.target, s = el.selectionStart, en = el.selectionEnd;
-      const next = code.slice(0, s) + '  ' + code.slice(en);
-      setCode(next);
-      requestAnimationFrame(() => { el.selectionStart = el.selectionEnd = s + 2; });
-    }
-  };
+const mkPanel = () => {
+  const saved = readMetrics();
+  const cards = (saved?.cards || []).filter(c => (c.nom || '').trim() && (c.what || '').trim()).slice(0, 3);
+  const own = cards.length >= 3;
+  return { cards: own ? cards : MK_DEMO_CARDS, ns: ((saved?.northStar) || '').trim(), own };
+};
+const MK_STEPS = [
+  "`src` ichida `MetrikaPanel.jsx` yaratdim",
+  "`foiz` hisobi ishladi: `Math.round(qaytdi/keldi*100)`",
+  "Kartalar massivini `map` bilan chiqardim",
+  "Brauzerda panel va 25% ko'rindi",
+];
+// Nusxalanadigan boshlang'ich kod — KARTALAR massivi o'quvchining O'Z panel-kartalaridan yig'iladi.
+const mkCode = (cards) => `const KARTALAR = [
+${cards.map(c => `  { nom: "${c.nom}", olchov: "${c.what}" },`).join('\n')}
+];
+
+function MetrikaPanel({ keldi, qaytdi }) {
+  const foiz = Math.round(qaytdi / keldi * 100);
   return (
-    <div className="hcp-root">
-      <div className="hcp-wrap">
-        <header className="hcp-top">
-          <span className="hcp-eyebrow">Koding · praktika</span>
-          <h1 className="hcp-title">Mini-asbob: retention hisoblagich</h1>
-          <p className="hcp-brief"><span className="mono">retentionFoiz(kelganlar, qaytganlar)</span> funksiyasini to'ldiring — u qaytish ulushini foizda qaytarsin, so'ng bir nechta juftlik bilan <span className="mono">console.log</span> qilib sinang. Yozgan zahoti o'ngda tekshiriladi.</p>
-          <div className="hcp-checklist">
-            <span className="hcp-count">{okN}/{KODING_CONDS.length}</span>
-            {KODING_CONDS.map((c, i) => (
-              <span key={c.id} className={`hcp-chip ${conds[c.id] ? 'ok' : ''}`} title={c.hint}>
-                <span className="hcp-dot">{conds[c.id] ? '✓' : i + 1}</span>{c.label}
-              </span>
-            ))}
-          </div>
-          {err
-            ? <p className="hcp-err">⚠ Kodda xato: {err}</p>
-            : (!passed && firstHint && <p className="hcp-hint">💡 {firstHint}</p>)}
-        </header>
-        <main className="hcp-split">
-          <section className="hcp-pane">
-            <div className="hcp-pane-bar dark">
-              <span className="bb-dots"><i /><i /><i /></span>
-              <span className="hcp-tab">retentionFoiz.js</span>
-              <button className="hcp-mini" onClick={runNow}>▶ Ishga tushirish</button>
-            </div>
-            <textarea className="hcp-code" value={code} spellCheck={false} autoCapitalize="off" autoCorrect="off" onChange={e => setCode(e.target.value)} onKeyDown={onKeyDown} placeholder="Kodingizni shu yerga yozing…" />
-          </section>
-          <section className="hcp-pane">
-            <div className="hcp-pane-bar">
-              <span className="hcp-pane-name">📺 Natija</span>
-              <span className="hcp-live">jonli</span>
-            </div>
-            {doc
-              ? <iframe key={nonceRef.current} className="hcp-frame" title="Jonli natija" sandbox="allow-scripts" srcDoc={doc} />
-              : <p className="code-out-empty" style={{ padding: 16, margin: 0 }}>Yozishni boshlang — foiz-natijalaringiz shu yerda jonli chiqadi.</p>}
-          </section>
-        </main>
-        <footer className="hcp-bottom">
-          <button className="hcp-ghost" onClick={onBack}>← Darsga qaytish</button>
-          <button className="hcp-ghost" onClick={reset}>Qaytadan</button>
-          <div className="hcp-status">
-            {passed
-              ? <span className="hcp-ok-msg">✓ Uchala shart bajarildi!</span>
-              : <span className="hcp-wait-msg">Shartlarni bajaring — natija o'ngda jonli ko'rinadi</span>}
-          </div>
-          <button className="hcp-next" disabled={!passed} onClick={() => passed && onContinue({ code })}>Davom etish →</button>
-        </footer>
-      </div>
+    <div className="panel">
+      <h3>Retention: {foiz}%</h3>
+      {KARTALAR.map(k => (
+        <p key={k.nom}>{k.nom} — {k.olchov}</p>
+      ))}
     </div>
   );
 }
+
+export default MetrikaPanel;
+
+// App.jsx ichida:
+// <MetrikaPanel keldi={20} qaytdi={5} />`;
+// Mini sintaksis-bo'yoq (VS Code-mockup) — faqat ko'rinish, kod bajarilmaydi.
+const MK_TOKEN = /("[^"]*"|\/\/.*$|\b(?:function|return|export|default|const)\b|<\/?[A-Za-z][\w.]*|\{|\})/g;
+const mkHl = (ln) => ln.split(MK_TOKEN).filter(p => p !== undefined && p !== '').map((p, i) => {
+  if (p.startsWith('//')) return <span key={i} style={{ color: '#6A9955' }}>{p}</span>;
+  if (p.startsWith('"')) return <span key={i} style={{ color: '#CE9178' }}>{p}</span>;
+  if (/^(function|return|export|default|const)$/.test(p)) return <span key={i} style={{ color: '#C586C0' }}>{p}</span>;
+  if (/^<\/?[A-Z]/.test(p)) return <span key={i} style={{ color: '#4EC9B0' }}>{p}</span>;
+  if (/^<\/?[a-z]/.test(p)) return <span key={i} style={{ color: '#569CD6' }}>{p}</span>;
+  if (p === '{' || p === '}') return <span key={i} style={{ color: '#FFD70A' }}>{p}</span>;
+  return <span key={i}>{p}</span>;
+});
 
 const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const gate = useContext(LiveGateCtx) || {};
   const live = gate.live;
   const isMentor = !!(live && live.mode === 'mentor');
-  const [open, setOpen] = useState(false);
-  const [st, setSt] = useState(() => ({
-    code: storedAnswer?.code || KODING_STARTER,
-    done: !!(storedAnswer && storedAnswer.solved),
-  }));
-  const { code, done } = st;
-  // Kompilyatordan qaytish: kod saqlanadi, birinchi marta tugatilganda ball-signal ketadi
-  const finishPractice = ({ code: newCode }) => {
-    setOpen(false);
-    setSt({ code: newCode, done: true });
-    if (!done) {
-      onAnswer(screen, { stage: 'koding', screenIdx: screen, code: newCode, solved: true, correct: true });
-      if (live && live.mode === 'student') live.submitAnswer(PRACTICE_BASE + screen, 'koding', 0, true, 0);
-    }
+  const [panel] = useState(() => mkPanel());
+  const [code] = useState(() => mkCode(panel.cards));
+  const [checked, setChecked] = useState(() => new Set(storedAnswer && storedAnswer.solved ? MK_STEPS.map((_, i) => i) : []));
+  const [done, setDone] = useState(!!(storedAnswer && storedAnswer.solved));
+  const [copied, setCopied] = useState(false);
+  const toggle = (i) => { if (done) return; setChecked(prev => { const s = new Set(prev); if (s.has(i)) s.delete(i); else s.add(i); return s; }); };
+  const allChecked = checked.size === MK_STEPS.length;
+  const copy = () => {
+    try { navigator.clipboard.writeText(code).then(() => { setCopied(true); setTimeout(() => setCopied(false), 2200); }).catch(() => {}); } catch {}
   };
+  // Birinchi marta tugatilganda ball-signal ketadi — AYNAN eski kompilyator-relsdagidek.
+  const complete = () => {
+    if (done || !allChecked) return;
+    setDone(true);
+    onAnswer(screen, { stage: 'koding', screenIdx: screen, solved: true, correct: true });
+    if (live && live.mode === 'student') live.submitAnswer(PRACTICE_BASE + screen, 'koding', 0, true, 0);
+  };
+  const lines = code.split('\n');
   return (
-    <Stage eyebrow="Koding · 🛠 kompilyator" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !isMentor} label={done || isMentor ? 'Davom etish' : 'Avval kompilyatorda bajaring'} onClick={onNext} /></>}>
+    <Stage eyebrow="Koding · ⚛️ React" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !isMentor} label={done || isMentor ? 'Davom etish' : 'Avval bajarib belgilang'} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Qaytish foizini <span className="italic" style={{ color: T.accent }}>kod</span> ham hisoblab beradimi?</h2></div>
-        <Mentor><span className="mono">retentionFoiz(kelganlar, qaytganlar)</span> funksiyasini to'ldiring — u qaytish ulushini <b style={{ color: T.ink }}>foizda</b> qaytarsin. Kompilyatorni oching: kod yozasiz, foiz-natijalaringiz o'ngda jonli chiqadi. Uchala shart yashil bo'lsa, darsga qaytib davom etasiz.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">Retention foizini <span className="italic" style={{ color: T.accent }}>kodning o'zi</span> hisoblasa-chi?</h2></div>
+        <Mentor>Ustaxonadagi kartalaringiz pastdagi panelda turibdi — <b style={{ color: T.ink }}>MetrikaPanel</b> komponenti foizni <b style={{ color: T.ink }}>o'zi hisoblaydi</b>. Kodni nusxalab, VS Code'da o'z loyihangizga qo'shing.</Mentor>
+        <div className="mxprev fade-up delay-1">
+          <div className="mxprev-bar"><span className="bb-dots"><i /><i /><i /></span><span className="mxprev-url">localhost:5173</span><span className="mxprev-src">{panel.own ? '✓ sizning panelingiz' : 'namunaviy panel'}</span></div>
+          <div className="mxprev-body">
+            <div className="mxprev-head">
+              <span className="mxprev-foiz mono"><CountUp to={25} suffix="%" /></span>
+              <div className="mxprev-head-t"><span className="mxprev-lbl">Retention</span><span className="mxprev-calc mono">Math.round(5 / 20 * 100)</span></div>
+              {panel.ns && <span className="mxprev-ns" title={panel.ns}>⭐ {panel.ns}</span>}
+            </div>
+            <div className="mxprev-cards">
+              {panel.cards.map((c, i) => (
+                <div key={i} className="mxprev-card"><span className="mlive mini">●</span><span className="mxprev-card-nm">{c.nom}</span><span className="mxprev-card-what">{c.what}</span></div>
+              ))}
+            </div>
+          </div>
+        </div>
         <div className="split">
           <Col>
-            <div className="hc-task fade-up">
-              <span className="card-lbl" style={{ color: T.accent }}>📋 Kompilyatorda sizni nima kutadi</span>
-              <div className="hc-conds">
-                {KODING_CONDS.map((c, i) => {
-                  const met = done;
-                  return (
-                    <div key={c.id} className={`hc-cond ${met ? 'ok' : ''}`}>
-                      <span className="hc-cond-box">{met ? '✓' : i + 1}</span>
-                      <div className="hc-cond-txt"><span className="hc-cond-label">{c.label}</span></div>
-                    </div>
-                  );
-                })}
+            <div className="vsc fade-up delay-2">
+              <div className="vsc-bar">
+                <span className="vsc-tab on"><span style={{ color: '#61DAFB' }}>⚛</span> MetrikaPanel.jsx</span>
+                <span className="vsc-tab">App.jsx</span>
+                <button className={`vsc-copy ${copied ? 'ok' : ''}`} onClick={copy}>{copied ? '✓ Nusxalandi' : '📋 Nusxalash'}</button>
+              </div>
+              <div className="vsc-body">
+                {lines.map((ln, i) => (
+                  <div key={i} className="vsc-line"><span className="vsc-ln">{i + 1}</span><span className="vsc-code">{ln ? mkHl(ln) : ' '}</span></div>
+                ))}
               </div>
             </div>
-            <div className="star-task"><span className="card-lbl" style={{ color: T.blue }}>⭐ Yulduzcha</span><p className="small" style={{ margin: 0, color: T.ink2 }}>Kunlik kirishlar massividan (<span className="mono">[1,1,0,1,1,1,0…]</span>) eng uzun STREAK'ni topadigan funksiya yozing (2-modul sikllari — Duolingo mexanikasining o'zi!).</p></div>
-            <MentorPracticeStats live={live} screen={screen} label="🛠 Kodni tugatganlar" />
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>✅ Ishladi! Funksiya to'g'ri foizni qaytardi va nolga bo'lishdan himoyalangan.</p></div>}
           </Col>
           <Col>
-            <div className="kod-launch fade-up delay-1">
-              <div className="kod-launch-bar"><span className="bb-dots"><i /><i /><i /></span><span className="kod-launch-title">retentionFoiz.js</span></div>
-              <div className="kod-launch-body" aria-hidden="true">{code.split('\n').slice(0, 6).join('\n')}</div>
-              <div className="kod-launch-veil">
-                <button className="kod-launch-btn" onClick={() => setOpen(true)}>{done ? '↻ Kompilyatorni qayta ochish' : '🛠 Kompilyatorni ochish'}</button>
-                <span className="kod-launch-sub">{done ? "Bajarildi — xohlasangiz kodni yana sayqallang" : "To'liq ekranda yozasiz, tugatgach darsga qaytasiz"}</span>
-              </div>
+            <div className="card-lbl" style={{ color: T.accent, marginBottom: 0 }}>VS Code'da bajarib — belgilang</div>
+            <div className="kd-steps fade-up delay-2">
+              {MK_STEPS.map((s, i) => {
+                const on = checked.has(i);
+                return (
+                  <button key={i} className={`kd-step ${on ? 'on' : ''}`} onClick={() => toggle(i)}>
+                    <span className="kd-check">{on ? '✓' : i + 1}</span>
+                    <span className="kd-step-t">{fmtCode(s)}</span>
+                  </button>
+                );
+              })}
             </div>
+            <div className="star-task"><span className="card-lbl" style={{ color: T.blue }}>⭐ Yulduzcha</span><p className="small" style={{ margin: 0, color: T.ink2 }}>MAU kartasini qo'shib, <span className="mono">DAU/MAU</span> nisbatini (bo'linmasini) chiqaring — «qanchalik tez-tez qaytishadi» ko'rsatkichi.</p></div>
+            <MentorPracticeStats live={live} screen={screen} label="⚛️ Panelni kodlaganlar" />
+            <button className={`lp-done-btn ${done ? 'is-done' : ''}`} disabled={done || !allChecked} onClick={complete}>
+              {done ? '✓ Bajarildi — ustozni kuting' : allChecked ? '✅ Bajardim' : `4 qadamni belgilang (${checked.size}/4)`}
+            </button>
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>✅ MetrikaPanel loyihangizda — retention endi kodda hisoblanadi!</p></div>}
           </Col>
         </div>
-        <MentorNote>Ulgurmagan o'quvchi kodni uyda tugatadi — unga UYGA VAZIFA qisqa versiyada beriladi. Xohlasangiz kompilyatorni ochib, proyektorda yechib ko'rsating.</MentorNote>
+        <MentorNote>Eng ko'p adashish — qavslar va katta harf (MetrikaPanel). Sinfga savol sifatida bering: keldi 0 bo'lsa nima bo'ladi? Ulgurmagan o'quvchi uyda tugatadi. Xohlasangiz proyektorda o'z VS Code'ingizda jonli ko'rsating.</MentorNote>
       </div>
-      {open && <PmCompiler initialCode={code} onContinue={finishPractice} onBack={() => setOpen(false)} />}
     </Stage>
   );
 };
 
-// ===== SCREEN 11 — RECAP: juftlik-taymer + Reflection + 3 tez savol =====
+// ===== SCREEN 11 — RECAP: 3 raqamlangan qadam (rcp-flow) + P0-etalon juftlik-taymer + Reflection =====
 const REFLECT_KEY = 'pm-m8d1-reflection';
+// Juftlik-taymeri (P0 etalon): 60s = avval A gapiradi (30s), keyin B (30s) — kim gapirayotgani
+// doim ko'rinadi (🎙 puls), o'rta-marker progress, «✓ Vaqt tugadi» holati.
 function PairTimer() {
-  const [st, setSt] = useState({ running: false, left: 60 });
+  const [st, setSt] = useState({ running: false, left: 60, done: false });
   useEffect(() => {
     if (!st.running) return;
-    if (st.left <= 0) { setSt(p => ({ ...p, running: false })); return; }
+    if (st.left <= 0) { setSt({ running: false, left: 60, done: true }); return; }
     const t = setTimeout(() => setSt(p => ({ ...p, left: p.left - 1 })), 1000);
     return () => clearTimeout(t);
   }, [st.running, st.left]);
-  const role = st.left > 30 ? 'A' : 'B';
+  const isA = st.left > 30;
   return (
-    <div className="pair-timer fade-up">
-      <div className="pair-timer-top"><span className="pair-role">Navbat: <b>{st.running ? `${role}` : 'A'}</b></span><span className="pair-clock">{Math.floor(st.left / 60)}:{String(st.left % 60).padStart(2, '0')}</span></div>
-      <p className="small" style={{ margin: 0, color: T.ink2 }}>Juftlikda navbat bilan: «mening North Star'im — …, chunki …». 30 soniyada rol almashadi.</p>
+    <div className="pair-timer">
+      {st.running ? (
+        <>
+          <div className="pair-timer-top">
+            <span className="pair-now"><span className="pair-mic" aria-hidden="true">🎙</span> Hozir <span className={`pair-who ${isA ? '' : 'b'}`}>{isA ? 'A' : 'B'}</span> gapiradi{isA ? ' — keyin B' : ''}</span>
+            <span className="pair-clock">{isA ? st.left - 30 : st.left}s</span>
+          </div>
+          <div className="pair-prog"><span className="pair-prog-fill" style={{ width: `${((60 - st.left) / 60) * 100}%` }} /><i className="pair-prog-mid" aria-hidden="true" /></div>
+        </>
+      ) : (
+        <p className="pair-now" style={{ margin: 0 }}>{st.done ? "✓ Vaqt tugadi — ikkalangiz ham aytdingizmi? Barakalla!" : "Har biringizga 30 soniyadan: avval A gapiradi, keyin B."}</p>
+      )}
       <div className="pair-timer-btns">
-        <button className="btn-soft" onClick={() => setSt({ running: true, left: 60 })}>▶ 1 daqiqa boshlash</button>
-        {st.running && <button className="btn-soft" onClick={() => setSt({ running: false, left: 60 })}>⏹ To'xtatish</button>}
+        {!st.running && <button className="btn-soft" onClick={() => setSt({ running: true, left: 60, done: false })}>{st.done ? '↻ Yana 1 daqiqa' : '▶ 1 daqiqani boshlash'}</button>}
+        {st.running && <button className="btn-soft" onClick={() => setSt({ running: false, left: 60, done: false })}>⏹ To'xtatish</button>}
       </div>
     </div>
   );
@@ -1560,20 +1595,30 @@ function PairTimer() {
 const Screen11 = ({ screen, onNext, onPrev }) => {
   const [text, setText] = useState(() => { try { return localStorage.getItem(REFLECT_KEY) || ''; } catch { return ''; } });
   const save = (v) => { setText(v); try { localStorage.setItem(REFLECT_KEY, v); } catch {} };
+  const written = text.trim().length >= 8;
   return (
-    <Stage eyebrow="Mustahkamlash" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext label="Davom etish" onClick={onNext} /></>}>
+    <Stage eyebrow="Mustahkamlash · 3 qadam" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext label="Davom etish" onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
         <div className="head"><h2 className="title h-title fade-up">North Star'ingiz nima — va qaysi <span className="italic" style={{ color: T.accent }}>qiymatni</span> ko'rsatadi?</h2></div>
-        <Mentor>Avval juftlikda <b style={{ color: T.ink }}>bir daqiqa</b> gaplashing: «mening North Star'im — …, chunki …». So'ng javobingizni bir qator qilib yozing. Keyin ekrandagi tez savollarga birga javob beramiz — tayyormisiz?</Mentor>
-        <PairTimer />
-        <div className="reflect fade-up delay-1">
-          <span className="card-lbl" style={{ color: T.accent }}>✍️ Reflection — bir qator</span>
-          <input className="reflect-input" value={text} onChange={e => save(e.target.value)} placeholder="Mening North Star'im — ..., chunki u ...ni ko'rsatadi" maxLength={160} />
-        </div>
-        <div className="qa-cards fade-up delay-2">
-          <div className="qa-card"><span className="qa-ic">✋</span><p>Retention <b>kirganlarni</b> emas, <b>qaytganlarni</b> o'lchaydimi? — qo'l ko'taring</p></div>
-          <div className="qa-card"><span className="qa-ic">🗳️</span><p>«100 kishi kirdi, 90 tasi qaytmadi» — qaysi metrika signal beradi? — ovoz bering</p></div>
-          <div className="qa-card"><span className="qa-ic">📄</span><p>North Star + 3 karta yozganlar — panel ekranini ko'tarsin</p></div>
+        <Mentor>Dars deyarli tugadi — endi o'rganganingiz o'z og'zingizdan chiqsin. Uch qadam: juftlikda aytasiz, bir qator yozasiz, sinf bilan tez savollarga javob berasiz.</Mentor>
+        <div className="rcp-flow">
+          <div className="rcp-step fade-up delay-1">
+            <div className="rcp-step-h"><span className="rcp-n">1</span><div><span className="rcp-t">🗣 Juftlikda ayting</span><span className="rcp-s">«North Star'im — …, chunki …» — 30 soniyada rol almashadi</span></div></div>
+            <PairTimer />
+          </div>
+          <div className="rcp-step fade-up delay-2">
+            <div className="rcp-step-h"><span className="rcp-n">2</span><div><span className="rcp-t">✍️ Bir qator yozing</span><span className="rcp-s">Hozirgina aytganingizni bitta gapga sig'diring</span></div></div>
+            <input className="reflect-input" value={text} onChange={e => save(e.target.value)} placeholder="Mening North Star'im — ..., chunki u ...ni ko'rsatadi" maxLength={160} />
+            {written && <p className="small" style={{ margin: 0, color: T.success, fontWeight: 700 }}>✓ Yozildi — OKR darsida shu raqamdan boshlaymiz.</p>}
+          </div>
+          <div className="rcp-step wide fade-up delay-3">
+            <div className="rcp-step-h"><span className="rcp-n">3</span><div><span className="rcp-t">⚡ Sinf bilan — 3 tez savol</span><span className="rcp-s">Mentor o'qiydi, siz harakat bilan javob berasiz</span></div></div>
+            <div className="qa-cards">
+              <div className="qa-card"><span className="qa-ic">✋</span><p>Retention <b>kirganlarni</b> emas, <b>yana kelganlarni</b> o'lchaydimi? — qo'l ko'taring</p></div>
+              <div className="qa-card"><span className="qa-ic">🗳️</span><p>«100 kishi kirdi, 90 tasi qaytmadi» — qaysi metrika signal beradi? — ovoz bering</p></div>
+              <div className="qa-card"><span className="qa-ic">📄</span><p>North Star + 3 karta yozganlar — panel ekranini ko'tarsin</p></div>
+            </div>
+          </div>
         </div>
         <MentorNote>Sinfning uchdan biri North Star bilan DAU'ni farqlay olmasa — oshxona misolini qayta tushuntiring (kelganlar emas — QAYTGANLAR).</MentorNote>
       </div>
@@ -1641,7 +1686,7 @@ const Screen12 = ({ screen, onNext, onPrev }) => {
 const ACHIEVEMENTS = {
   panelPro:   { icon: '📊', name: 'Panel Pro!',   desc: "Metrika-panelni 3/3 to'ldirdingiz" },
   dataEye:    { icon: '👁️', name: 'Data Eye!',    desc: "3 scored testni ham to'g'ri yechdingiz" },
-  calcMaster: { icon: '🛠️', name: 'Calc Master!', desc: "retention hisoblagichni kod bilan qurdingiz" },
+  calcMaster: { icon: '🛠️', name: 'Calc Master!', desc: "Retention foizini MetrikaPanel komponentida hisobladingiz" },
   graduate:   { icon: '🎓', name: 'Level Up!',    desc: "Metrika darsini yakunladingiz" },
 };
 // Ekran id → nishon (recordAnswer'da, faqat REAL solve bilan). dataEye = 3/3 aggregat, graduate = summary.
@@ -1719,7 +1764,7 @@ const QZ_BG_SHAPES = [
 ];
 // ⚔️ CodeStrike savollari — to'g'ri javoblar 4 pozitsiyaga TENG (12 savol: 3/3/3/3), naqshsiz. darslik-jonli TASDIQLAYDI.
 const QUIZ_BANK = [
-  { q: "Metrika nima?", opts: ["Ilova yuklab olingan qurilma modeli", "Kodda nechta funksiya borligi", "Mahsulot salomatligini ko'rsatadigan raqam", "Dizayn ranglari to'plami"], correct: 2 },
+  { q: "Metrika nima?", opts: ["Ilova yuklab olingan qurilma modeli", "Kodda nechta funksiya borligi", "Mahsulot ahvolini ko'rsatadigan raqam", "Dizayn ranglari to'plami"], correct: 2 },
   { q: "DAU nimani sanaydi?", opts: ["Kunlik faol foydalanuvchilar soni", "Oyiga to'langan pul", "Sahifadagi tugmalar soni", "Serverning tezligi"], correct: 0 },
   { q: "Retention nimani o'lchaydi?", opts: ["Bir kunda kirganlar soni", "Kelganlarning keyin qaytish ulushi", "Yangi foydalanuvchilar oqimi", "Ilova hajmi"], correct: 1 },
   { q: "Churn nima?", opts: ["Qaytganlar ulushi", "Kunlik faol foydalanuvchi", "Bosh yulduz-ko'rsatkich", "Butunlay tashlab ketganlar ulushi"], correct: 3 },
@@ -2239,10 +2284,10 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
     setArenaSolo(studentSolo); setArena(true);
   };
   const RECAP = [
-    "Metrika — mahsulot salomatligini ko'rsatadigan raqam",
-    "DAU/MAU — kelish · retention — qaytish · churn — ketish",
+    "Metrika — mahsulotning ahvolini ko'rsatadigan raqam",
+    "DAU/MAU — kelish · retention — yana kelish · churn — ketish",
     "North Star — real qiymatni ko'rsatuvchi yagona bosh raqam",
-    "Kelganlar emas — QAYTGANLAR haqiqiy bahoni beradi",
+    "Kelganlar emas — ertasiga YANA KELGANLAR haqiqiy bahoni beradi",
     "Duolingo streak — retention'ni ko'taruvchi mahsulot-mexanikasi"
   ];
   const hwTarget = (() => { try { return localStorage.getItem(HW_KEY) || ''; } catch { return ''; } })();
@@ -2455,29 +2500,45 @@ export default function PmMetricsLesson({ lang: langProp, onFinished }) {
         .streak-cap { margin: 0; font-family: 'Manrope', sans-serif; font-weight: 500; font-size: clamp(12.5px,1.5vw,14px); color: ${T.ink2}; text-align: center; }
         @media (prefers-reduced-motion: reduce) { .streak-cell { transition: none; } .streak-cell.lit { animation: none; filter: grayscale(0) drop-shadow(0 0 4px rgba(255,140,30,0.45)); } .streak-crown { animation: none; } .hook-mc.taphint { animation: none; } }
 
-        /* === METRIKA FLIP-KARTA (s3 qoida) === */
-        .mcard-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(10px,1.6vw,14px); }
-        @media (max-width: 560px) { .mcard-grid { grid-template-columns: 1fr; } }
-        .mcard { position: relative; display: flex; flex-direction: column; align-items: flex-start; text-align: left; gap: 6px; background: ${T.paper}; border: none; border-left: 4px solid ${T.ink3}; border-radius: 6px 14px 14px 6px; padding: clamp(14px,2vw,18px); cursor: pointer; box-shadow: 0 8px 20px -8px rgba(${T.shadowBase},0.16); transition: transform 0.18s, box-shadow 0.18s; min-height: 118px; }
-        .mcard:not(.open):not(:hover) { animation: mcard-tap 2.8s ease-in-out infinite; }
-        .mcard-grid .mcard:nth-child(2):not(.open):not(:hover) { animation-delay: 0.45s; } .mcard-grid .mcard:nth-child(3):not(.open):not(:hover) { animation-delay: 0.9s; } .mcard-grid .mcard:nth-child(4):not(.open):not(:hover) { animation-delay: 1.35s; }
-        @keyframes mcard-tap { 0%,86%,100% { box-shadow: 0 8px 20px -8px rgba(${T.shadowBase},0.16); } 93% { box-shadow: 0 12px 26px -8px rgba(91,61,230,0.26); } }
-        .mcard:hover:not(:disabled):not(.open) { transform: translateY(-3px); box-shadow: 0 14px 28px -10px rgba(${T.shadowBase},0.26); }
-        .mcard:disabled { cursor: default; }
-        .mcard.dau { border-left-color: ${T.blue}; } .mcard.ret { border-left-color: ${T.success}; } .mcard.churn { border-left-color: ${T.err}; } .mcard.ns { border-left-color: #F5A623; }
-        .mcard.open { background: linear-gradient(180deg, ${T.paper}, #FBFAFE); box-shadow: 0 10px 24px -8px rgba(${T.shadowBase},0.2), inset 0 0 0 1.5px ${T.line}; animation: mcard-flip 0.5s cubic-bezier(.4,.7,.3,1); }
-        .mcard.churn.open { box-shadow: 0 10px 24px -8px rgba(229,72,77,0.16), inset 0 0 0 1.5px ${T.err}33; }
-        .mcard.ns.open { background: linear-gradient(180deg, #FFFDF6, #FFF7E6); box-shadow: 0 12px 26px -8px rgba(245,166,35,0.28), inset 0 0 0 1.5px #F5A62355; }
-        @keyframes mcard-flip { 0% { transform: perspective(720px) rotateY(-86deg); opacity: 0; } 55% { opacity: 1; } 100% { transform: perspective(720px) rotateY(0); opacity: 1; } }
-        .mcard-ic { font-size: clamp(26px,4vw,34px); line-height: 1; }
-        .mcard.churn .mcard-ic { filter: drop-shadow(0 2px 5px rgba(229,72,77,0.28)); }
-        .mcard.ns .mcard-ic { filter: drop-shadow(0 2px 6px rgba(245,166,35,0.4)); }
-        .mcard-name { font-family: 'Source Serif 4', serif; font-weight: 600; font-size: clamp(16px,2.2vw,20px); color: ${T.ink}; }
-        .mcard-short { font-family: 'Manrope'; font-size: 12.5px; color: ${T.ink3}; }
-        .mcard-tap { font-family: 'Manrope'; font-weight: 700; font-size: 11.5px; color: ${T.accent}; margin-top: auto; }
-        .mcard.churn .mcard-tap { color: ${T.err}; } .mcard.ns .mcard-tap { color: #B7770D; }
-        .mcard-def { font-size: clamp(13px,1.6vw,14.5px); color: ${T.ink2}; line-height: 1.5; } .mcard-def b { color: ${T.ink}; }
-        @media (prefers-reduced-motion: reduce) { .mcard:not(.open):not(:hover) { animation: none; } .mcard.open { animation: none; } }
+        /* === 📊 QOIDA (s3): mini demo-lenta «O'LCHASANG — KO'RASAN» + 4 metrika 3D-FLIP karta === */
+        .mlens { align-self: center; display: flex; align-items: center; justify-content: center; gap: clamp(8px,1.8vw,16px); flex-wrap: wrap; background: ${T.paper}; border-radius: 14px; padding: 10px 18px; box-shadow: 0 8px 20px -8px rgba(${T.shadowBase},0.16), inset 0 0 0 1.5px ${T.line}; }
+        .mlens-guess { font-family: 'Source Serif 4', serif; font-style: italic; font-size: clamp(12.5px,1.6vw,14.5px); color: ${T.ink3}; }
+        .mlens-arrow { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: clamp(15px,2vw,19px); color: ${T.ink3}; }
+        .mlens-chart { width: clamp(54px,7vw,66px); height: clamp(22px,3vw,26px); display: inline-flex; }
+        .mlens-chart svg { width: 100%; height: 100%; }
+        .mlens-line { fill: none; stroke: ${T.accentVivid}; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 80; stroke-dashoffset: 80; animation: mlens-draw 3.4s ease-in-out infinite; }
+        @keyframes mlens-draw { 0%,12% { stroke-dashoffset: 80; } 55%,88% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: 80; } }
+        .mlens-tag { font-family: 'Manrope'; font-weight: 800; font-size: 11px; letter-spacing: 0.04em; color: ${T.accent}; background: ${T.accentSoft}; border-radius: 99px; padding: 5px 12px; }
+        @media (prefers-reduced-motion: reduce) { .mlens-line { animation: none; stroke-dashoffset: 0; } }
+        /* Rang-akcentlar: dau=ko'k · ret=indigo · churn=amber · ns=oltin (yashil FAQAT muvaffaqiyat) */
+        .mx3-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(10px,1.6vw,14px); }
+        @media (max-width: 640px) { .mx3-grid { grid-template-columns: 1fr; } }
+        .mx3 { position: relative; background: none; border: none; padding: 0; cursor: pointer; perspective: 900px; min-height: clamp(168px,21vw,196px); }
+        .mx3:disabled { cursor: default; }
+        .mx3.dau { --mc: ${T.blue}; --mcs: ${T.blueSoft}; --mct: ${T.blue}; }
+        .mx3.ret { --mc: ${T.accent}; --mcs: ${T.accentSoft}; --mct: ${T.accent}; }
+        .mx3.churn { --mc: #E8A13A; --mcs: #FBEED6; --mct: #B77A16; }
+        .mx3.ns { --mc: #F5A623; --mcs: #FFF3DA; --mct: #B7770D; }
+        .mx3-inner { position: absolute; inset: 0; display: block; transform-style: preserve-3d; transition: transform 0.65s cubic-bezier(.3,1.25,.4,1); }
+        .mx3.flip .mx3-inner { transform: rotateY(180deg); }
+        .mx3:not(.flip):hover .mx3-inner { transform: rotateY(15deg); }
+        .mx3-face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 7px; border-radius: 16px; padding: 14px 12px; background: ${T.paper}; border-top: 4px solid var(--mc); box-shadow: 0 8px 20px -8px rgba(${T.shadowBase},0.18), inset 0 0 0 1.5px ${T.line}; overflow: hidden; }
+        .mx3-back { transform: rotateY(180deg); background: linear-gradient(180deg, #fff, #FBFAFE); box-shadow: 0 12px 26px -10px rgba(${T.shadowBase},0.24), inset 0 0 0 1.5px var(--mc); }
+        /* ochilish sayqali: orqa yuzada yaltirash-supurish + misol-chip kechikkan pop */
+        .mx3-back::after { content: ""; position: absolute; top: 0; bottom: 0; left: -70%; width: 45%; background: linear-gradient(100deg, transparent, rgba(255,255,255,0.65), transparent); transform: skewX(-16deg); pointer-events: none; opacity: 0; }
+        .mx3.flip .mx3-back::after { animation: mx3-shine 0.8s ease 0.35s; }
+        @keyframes mx3-shine { 0% { opacity: 0; left: -70%; } 25% { opacity: 1; } 100% { opacity: 0; left: 130%; } }
+        .mx3.flip .mx3-ex { animation: mlive-in 0.45s cubic-bezier(.3,1.5,.45,1) 0.4s both; }
+        .mx3-ic { font-size: clamp(24px,4vw,30px); line-height: 1; width: clamp(48px,7.6vw,56px); height: clamp(48px,7.6vw,56px); display: flex; align-items: center; justify-content: center; border-radius: 50%; background: var(--mcs); animation: mx3-live 2.6s ease-in-out infinite; }
+        .mx3-grid .mx3:nth-child(2) .mx3-ic { animation-delay: 0.4s; } .mx3-grid .mx3:nth-child(3) .mx3-ic { animation-delay: 0.8s; } .mx3-grid .mx3:nth-child(4) .mx3-ic { animation-delay: 1.2s; }
+        @keyframes mx3-live { 0%,100% { transform: scale(1); } 50% { transform: scale(1.09) rotate(-3deg); } }
+        .mx3-nm { font-family: 'Source Serif 4', serif; font-weight: 600; font-size: clamp(15px,2vw,18px); color: ${T.ink}; }
+        .mx3-short { font-family: 'Manrope'; font-weight: 700; font-size: 12px; color: var(--mct); }
+        .mx3-q { font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: 16px; color: var(--mct); background: var(--mcs); border-radius: 99px; width: 28px; height: 28px; display: inline-flex; align-items: center; justify-content: center; margin-top: 2px; animation: mx3-q-bob 2s ease-in-out infinite; }
+        @keyframes mx3-q-bob { 0%,100% { transform: translateY(0); opacity: 0.8; } 50% { transform: translateY(2.5px); opacity: 1; } }
+        .mx3-def { font-size: clamp(12.5px,1.5vw,14px); color: ${T.ink2}; line-height: 1.45; } .mx3-def b { color: ${T.ink}; }
+        .mx3-ex { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 11.5px; color: var(--mct); background: var(--mcs); border-radius: 8px; padding: 5px 10px; margin-top: 2px; }
+        @media (prefers-reduced-motion: reduce) { .mx3-inner { transition: none; } .mx3-ic, .mx3-q { animation: none; } .mx3:not(.flip):hover .mx3-inner { transform: none; } .mx3.flip .mx3-back::after { animation: none; } .mx3.flip .mx3-ex { animation: none; opacity: 1; } }
 
         /* === NORTH STAR VALIDATOR (s5 + ustaxona mini) === */
         .nstar-editor { background: ${T.paper}; border-radius: 14px; border-left: 4px solid ${T.ink3}; padding: 15px 17px; display: flex; flex-direction: column; gap: 10px; box-shadow: 0 8px 20px -8px rgba(${T.shadowBase},0.14); transition: border-color 0.3s, box-shadow 0.3s, background 0.3s; }
@@ -2490,7 +2551,19 @@ export default function PmMetricsLesson({ lang: langProp, onFinished }) {
         @media (prefers-reduced-motion: reduce) { .nstar-editor.ok { animation: none; } }
         .nstar-input { font-family: 'Manrope'; font-weight: 500; font-size: 14.5px; color: ${T.ink}; border: none; border-radius: 10px; padding: 11px 13px; background: ${T.bg}; box-shadow: inset 0 0 0 1.5px ${T.line}; outline: none; resize: vertical; line-height: 1.5; min-width: 0; overflow-wrap: anywhere; word-break: break-word; }
         .nstar-input:focus { box-shadow: inset 0 0 0 1.5px ${T.accent}; }
-        .nstar-checks { display: flex; flex-direction: column; gap: 8px; }
+        /* === 📟 NORTH STAR HOLAT-PANELI (s5, 28-qonun split-layout) — chiroqlar + ● JONLI === */
+        .mxlamps { background: ${T.paper}; border-radius: 14px; padding: 15px 17px; display: flex; flex-direction: column; gap: 9px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.14); }
+        .mxlamp { display: flex; align-items: center; gap: 10px; background: ${T.bg}; border-radius: 11px; padding: 10px 12px; box-shadow: inset 0 0 0 1.5px ${T.line}; transition: background 0.25s, box-shadow 0.25s; }
+        .mxlamp.on { background: ${T.successSoft}; box-shadow: inset 0 0 0 1.5px ${T.success}55; }
+        .mxlamp-dot { width: 12px; height: 12px; border-radius: 50%; background: ${T.ink3}55; flex-shrink: 0; transition: background 0.25s, box-shadow 0.25s; }
+        .mxlamp.on .mxlamp-dot { background: ${T.success}; box-shadow: 0 0 10px rgba(18,169,104,0.65); animation: mxlamp-pop 0.4s cubic-bezier(.3,1.5,.45,1); }
+        @keyframes mxlamp-pop { 0% { transform: scale(0.4); } 55% { transform: scale(1.5); } 100% { transform: scale(1); } }
+        .mxlamp-lbl { flex: 1; font-family: 'Manrope'; font-weight: 700; font-size: clamp(12.5px,1.5vw,14px); color: ${T.ink}; min-width: 0; }
+        .mxlamp-st { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 11px; color: ${T.ink3}; white-space: nowrap; }
+        .mxlamp.on .mxlamp-st { color: ${T.success}; }
+        .mxlamp-hint { font-family: 'Manrope'; font-size: 12px; color: ${T.ink3}; font-style: italic; }
+        .mlive.big { margin-left: 0; align-self: flex-start; font-size: 13px; padding: 6px 14px; animation: mlive-in 0.45s cubic-bezier(.3,1.5,.45,1), mlive-pulse 1.8s ease-in-out 0.5s infinite; }
+        @media (prefers-reduced-motion: reduce) { .mxlamp.on .mxlamp-dot { animation: none; } .mlive.big { animation: none; } }
 
         /* === METRIKA-KARTA USTAXONA (ask/gipoteza) === */
         .mwcard-ask, .mwcard-hyp { display: flex; flex-direction: column; gap: 4px; }
@@ -2500,30 +2573,50 @@ export default function PmMetricsLesson({ lang: langProp, onFinished }) {
         .mwcard-hyp input { font-family: 'Manrope'; font-weight: 500; font-size: 13.5px; color: ${T.ink}; border: none; border-radius: 9px; padding: 9px 11px; background: ${T.bg}; box-shadow: inset 0 0 0 1.5px ${T.line}; outline: none; }
         .mwcard-hyp input:focus { box-shadow: inset 0 0 0 1.5px ${T.blue}; }
 
-        /* === MATCHPAIRS — juftlash (s9 TEST-3) === */
-        .match-pool { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; min-height: 44px; }
-        .match-chip { font-family: 'Manrope'; font-weight: 800; font-size: clamp(14px,1.8vw,16px); padding: 11px 18px; border-radius: 11px; border: none; background: ${T.paper}; color: ${T.accent}; cursor: grab; box-shadow: 0 6px 16px -6px rgba(${T.shadowBase},0.2), inset 0 0 0 1.5px ${T.accent}44; transition: transform 0.16s, box-shadow 0.16s; }
-        .match-chip:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 10px 22px -8px rgba(91,61,230,0.3), inset 0 0 0 1.5px ${T.accent}; }
+        /* === MATCHPAIRS (s9 TEST-3) — 27-qonun: vizual boyitilgan, BALL-MANTIQ TEGILMAGAN === */
+        .mmx-wrap { position: relative; display: flex; flex-direction: column; gap: clamp(14px,2.2vw,20px); }
+        /* fon-dekor: dars atamalaridan xira tokenlar (dekor o'qitadi) */
+        .mmx-decor { position: absolute; inset: -10px; pointer-events: none; z-index: 0; overflow: hidden; }
+        .mmx-t { position: absolute; font-family: 'JetBrains Mono', monospace; font-weight: 800; color: rgba(91,61,230,0.065); user-select: none; white-space: nowrap; }
+        .mmx-t.md0 { left: 1%; top: 2%; font-size: 26px; transform: rotate(-9deg); }
+        .mmx-t.md1 { right: 3%; top: 10%; font-size: 30px; transform: rotate(6deg); }
+        .mmx-t.md2 { left: 40%; top: 40%; font-size: 24px; transform: rotate(-4deg); }
+        .mmx-t.md3 { left: 4%; bottom: 8%; font-size: 20px; transform: rotate(7deg); }
+        .mmx-t.md4 { right: 6%; bottom: 16%; font-size: 22px; transform: rotate(-6deg); }
+        .mmx-t.md5 { right: 28%; top: 26%; font-size: 20px; transform: rotate(4deg); }
+        .match-pool { position: relative; z-index: 1; display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; min-height: 50px; }
+        /* chip — kattaroq, emoji + gradient-fon + soya; hover'da ko'tarilib qiyshayadi */
+        .match-chip { display: inline-flex; align-items: center; gap: 9px; font-family: 'Manrope'; font-weight: 800; font-size: clamp(14px,1.9vw,16px); padding: 12px 18px; border-radius: 13px; border: none; background: linear-gradient(180deg, #fff, #F5F2FE); color: ${T.ink}; cursor: grab; box-shadow: 0 8px 18px -6px rgba(${T.shadowBase},0.26), inset 0 0 0 1.5px ${T.line}; transition: transform 0.16s, box-shadow 0.18s; }
+        .match-chip-ic { font-size: 20px; line-height: 1; }
+        .match-chip-ic.sm { font-size: 15px; margin-right: 5px; }
+        .match-chip:hover:not(:disabled) { transform: translateY(-2px) rotate(-1.5deg) scale(1.02); box-shadow: 0 14px 26px -8px rgba(${T.shadowBase},0.32), inset 0 0 0 1.5px ${T.accent}55; }
         .match-chip:disabled { cursor: default; }
-        .match-chip.sel { background: ${T.accent}; color: #fff; box-shadow: 0 8px 20px -6px rgba(91,61,230,0.42), inset 0 0 0 2px ${T.accent}; }
-        .match-chip.dragging { opacity: 0.45; transform: scale(0.92) rotate(-2deg); cursor: grabbing; }
+        .match-chip.sel { background: ${T.accentSoft}; color: ${T.accent}; box-shadow: 0 10px 22px -8px rgba(91,61,230,0.34), inset 0 0 0 2px ${T.accent}; }
+        /* sudrashda tilt + lift (HTML5 drag — asl element qiyshayadi) */
+        .match-chip.dragging { opacity: 0.85; transform: scale(1.07) rotate(3deg); cursor: grabbing; box-shadow: 0 18px 32px -10px rgba(91,61,230,0.4), inset 0 0 0 2px ${T.accent}; }
         .match-pool-empty { font-family: 'Manrope'; font-size: 13px; color: ${T.success}; font-weight: 700; }
-        .match-hint { text-align: center; color: ${T.ink3}; min-height: 16px; }
-        .match-targets { display: flex; flex-direction: column; gap: 10px; }
+        .match-hint { position: relative; z-index: 1; text-align: center; color: ${T.ink3}; min-height: 16px; }
+        .match-targets { position: relative; z-index: 1; display: flex; flex-direction: column; gap: 10px; }
         .match-target { display: flex; align-items: center; gap: 12px; background: ${T.paper}; border-radius: 12px; padding: 12px 15px; box-shadow: 0 6px 16px -8px rgba(${T.shadowBase},0.16), inset 0 0 0 1.5px ${T.line}; cursor: pointer; transition: box-shadow 0.2s, background 0.2s, transform 0.16s; }
-        .match-target.droppable { box-shadow: 0 8px 20px -8px rgba(91,61,230,0.28), inset 0 0 0 2px ${T.accent}66; }
+        /* tanlangan/sudralayotgan chip uchun drop-zona puls-halo (indigo glow) */
+        .match-target.droppable { box-shadow: 0 8px 20px -8px rgba(91,61,230,0.28), inset 0 0 0 2px ${T.accent}66; animation: mmx-halo 1.4s ease-in-out infinite; }
         .match-target.droppable:hover { transform: translateY(-2px); background: ${T.accentSoft}; box-shadow: 0 12px 26px -8px rgba(91,61,230,0.36), inset 0 0 0 2px ${T.accent}; }
+        @keyframes mmx-halo { 0%,100% { box-shadow: 0 8px 20px -8px rgba(91,61,230,0.28), inset 0 0 0 2px ${T.accent}66; } 50% { box-shadow: 0 12px 32px -6px rgba(110,75,255,0.5), inset 0 0 0 2.5px ${T.accentVivid}; } }
         .match-target.ok { background: ${T.successSoft}; box-shadow: inset 0 0 0 1.5px ${T.success}66; animation: match-target-pop 0.44s cubic-bezier(.34,1.5,.4,1); }
         @keyframes match-target-pop { 0% { transform: scale(1); } 40% { transform: scale(1.015) translateY(-2px); } 100% { transform: scale(1); } }
         .match-target.bad { background: ${T.errSoft}; box-shadow: inset 0 0 0 1.5px ${T.err}66; }
         .match-target-q { flex: 1; font-family: 'Source Serif 4', serif; font-size: clamp(14px,1.9vw,17px); color: ${T.ink}; line-height: 1.35; }
-        .match-slot { flex-shrink: 0; min-width: clamp(96px,20vw,128px); display: flex; justify-content: center; }
-        .match-slot-chip { font-family: 'Manrope'; font-weight: 800; font-size: 13.5px; padding: 8px 12px; border-radius: 9px; background: ${T.accentSoft}; color: ${T.accent}; white-space: nowrap; }
+        .match-slot { position: relative; flex-shrink: 0; min-width: clamp(110px,22vw,150px); display: flex; justify-content: center; }
+        .match-slot-chip { display: inline-flex; align-items: center; font-family: 'Manrope'; font-weight: 800; font-size: 13.5px; padding: 8px 12px; border-radius: 9px; background: ${T.accentSoft}; color: ${T.accent}; white-space: nowrap; animation: match-snap 0.38s cubic-bezier(.3,1.5,.4,1); }
         .match-slot-chip.ok { background: ${T.success}; color: #fff; animation: match-snap 0.42s cubic-bezier(.34,1.55,.4,1); }
         @keyframes match-snap { 0% { transform: scale(0.68); } 48% { transform: scale(1.18); } 100% { transform: scale(1); } }
         .match-slot-chip.bad { background: ${T.err}; color: #fff; }
-        @media (prefers-reduced-motion: reduce) { .match-target.ok { animation: none; } .match-slot-chip.ok { animation: none; } }
         .match-slot-empty { font-family: 'Manrope'; font-size: 12px; color: ${T.ink3}; font-style: italic; border: 1.5px dashed ${T.ink3}66; border-radius: 9px; padding: 8px 14px; }
+        /* to'g'ri juftlik ochilganda mini yulduzcha-burst (reveal bayrami) */
+        .mmx-burst { position: absolute; top: 50%; left: 50%; width: 0; height: 0; pointer-events: none; z-index: 5; }
+        .mmx-burst span { position: absolute; left: -6px; top: -6px; font-size: 12px; color: #F5A623; text-shadow: 0 0 8px rgba(245,166,35,0.7); opacity: 0; transform: rotate(var(--ba)) translateY(0) scale(0.4); animation: mmx-burst-fly 0.8s ease-out 0.1s forwards; }
+        @keyframes mmx-burst-fly { 0% { opacity: 0; transform: rotate(var(--ba)) translateY(0) scale(0.4); } 30% { opacity: 1; } 100% { opacity: 0; transform: rotate(var(--ba)) translateY(-42px) scale(1); } }
+        @media (prefers-reduced-motion: reduce) { .match-target.ok, .match-target.droppable, .match-slot-chip, .match-slot-chip.ok, .match-chip.dragging { animation: none; } .mmx-burst { display: none; } .match-chip:hover:not(:disabled) { transform: none; } }
         .hook-hero { display: flex; justify-content: center; }
         .hook-cup { font-size: clamp(48px,10vw,86px); line-height: 1; filter: drop-shadow(0 10px 18px rgba(91,61,230,0.28)); animation: float-sm 2.6s ease-in-out infinite; }
         @keyframes float-sm { 0%,100% { transform: translateY(0) rotate(-3deg); } 50% { transform: translateY(-8px) rotate(3deg); } }
@@ -2579,29 +2672,65 @@ export default function PmMetricsLesson({ lang: langProp, onFinished }) {
         .bb-dots i { width: 9px; height: 9px; border-radius: 50%; }
         .bb-dots i:first-child { background: #ff5f57; } .bb-dots i:nth-child(2) { background: #febc2e; } .bb-dots i:nth-child(3) { background: #28c840; }
 
-        /* === 🃏 STORY-SILUET — ish stoli ustidagi indeks-kartalar (maqsad) === */
-        .story-silo { position: relative; display: flex; align-items: center; gap: 12px; background: linear-gradient(180deg, #fff, #FBFAFE); border-radius: 4px 12px 12px 4px; padding: 13px 16px 13px 22px; box-shadow: 0 6px 16px -7px rgba(${T.shadowBase},0.2); border-left: 4px solid ${T.accent}44; transition: transform 0.22s, box-shadow 0.22s; }
-        .story-silo::before { content: ""; position: absolute; left: 11px; top: 12px; width: 6px; height: 6px; border-radius: 50%; background: ${T.accent}33; box-shadow: 0 22px 0 ${T.accent}22; }
-        .story-silo:hover { transform: translateY(-2px); box-shadow: 0 12px 24px -8px rgba(${T.shadowBase},0.26); }
-        .story-silo-n { font-family: 'JetBrains Mono'; font-weight: 700; font-size: 13px; color: ${T.accent}; }
-        .story-silo-slots { display: flex; gap: 8px; flex: 1; flex-wrap: wrap; }
-        .silo-slot { font-family: 'Manrope'; font-weight: 800; font-size: 11px; letter-spacing: 0.06em; padding: 5px 11px; border-radius: 7px; border: 1.5px dashed ${T.ink3}; color: ${T.ink3}; }
-        .silo-slot.kim { border-color: ${T.blue}66; color: ${T.blue}; } .silo-slot.nima { border-color: #E8A13A88; color: #B77A16; } .silo-slot.natija { border-color: ${T.success}66; color: ${T.success}; }
-        .story-silo-dots { color: ${T.ink3}; letter-spacing: 3px; }
-        /* === MAQSAD-EKRAN jonli natija-preview: kartalar ko'z oldida to'ladi (CSS-taymlayn) === */
-        .demo-card { opacity: 0; animation: silo-in 0.5s ease-out forwards; animation-delay: var(--cd, 0s); }
-        @keyframes silo-in { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
-        .demo-slot { display: inline-grid; align-items: center; justify-items: center; }
-        .demo-slot .silo-lbl { grid-area: 1 / 1; animation: silo-lbl-out 0.3s ease forwards; animation-delay: var(--fd, 1s); }
-        @keyframes silo-lbl-out { to { opacity: 0.18; transform: scale(0.92); } }
-        .demo-slot .silo-fill { grid-area: 1 / 1; min-width: 0; overflow-wrap: anywhere; word-break: break-word; width: 100%; display: flex; align-items: center; justify-content: center; padding: 0 2px; white-space: nowrap; font-weight: 700; letter-spacing: 0; text-transform: none; background: ${T.paper}; border-radius: 5px; opacity: 0; transform: scale(0.6); animation: silo-fill-pop 0.45s cubic-bezier(.3,1.5,.45,1) forwards; animation-delay: var(--fd, 1s); }
-        .silo-slot.kim .silo-fill { background: ${T.blueSoft}; } .silo-slot.nima .silo-fill { background: #FBEED6; } .silo-slot.natija .silo-fill { background: ${T.successSoft}; }
-        @keyframes silo-fill-pop { 0% { opacity: 0; transform: scale(0.6); } 60% { opacity: 1; transform: scale(1.08); } 100% { opacity: 1; transform: scale(1); } }
-        .silo-done { width: 22px; height: 22px; border-radius: 50%; background: ${T.success}; color: #fff; font-family: 'Manrope'; font-size: 12px; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; opacity: 0; transform: scale(0); animation: silo-fill-pop 0.4s cubic-bezier(.3,1.6,.45,1) forwards; animation-delay: var(--fd, 2s); box-shadow: 0 4px 10px -3px rgba(18,169,104,0.5); }
-        .silo-cap { margin: 0; font-family: 'Manrope'; font-weight: 600; font-size: clamp(12.5px,1.5vw,14px); color: ${T.accent}; text-align: center; opacity: 0; animation: fade-in-up 0.5s ease-out forwards; animation-delay: 4.9s; }
+        /* === 📟 MAQSAD IMZO-SAHNA: «BOSHQARUV PANELI JONLANADI» (Metrics identiteti, 23-qonun) === */
+        .mdash-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: clamp(10px,1.8vw,16px); }
+        @media (max-width: 760px) { .mdash-grid { grid-template-columns: 1fr; } }
+        .mdash-card { position: relative; display: flex; flex-direction: column; gap: 6px; background: linear-gradient(180deg, #fff, #FBFAFE); border-radius: 16px; padding: 14px 16px 12px; box-shadow: 0 10px 24px -10px rgba(${T.shadowBase},0.22), inset 0 0 0 1.5px ${T.line}; overflow: hidden; opacity: 0; animation: mdash-in 0.5s ease-out forwards; animation-delay: var(--cd, 0s); }
+        .mdash-card::before { content: ""; position: absolute; inset: 0; pointer-events: none; background: repeating-linear-gradient(180deg, transparent 0 26px, ${T.line}44 26px 27px); opacity: 0.6; }
+        .mdash-card::after { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, ${T.accent}, ${T.accentVivid}); }
+        @keyframes mdash-in { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+        .mdash-top { position: relative; display: flex; align-items: center; gap: 7px; }
+        .mdash-ic { font-size: clamp(17px,2.2vw,21px); line-height: 1; }
+        .mdash-nm { font-family: 'Manrope'; font-weight: 800; font-size: clamp(12px,1.5vw,13.5px); letter-spacing: 0.04em; color: ${T.ink2}; }
+        .mdash-num { position: relative; font-size: clamp(30px,4.6vw,42px); font-weight: 700; line-height: 1; color: ${T.accent}; font-variant-numeric: tabular-nums; }
+        .mdash-what { position: relative; font-family: 'Manrope'; font-weight: 600; font-size: clamp(11px,1.4vw,12.5px); color: ${T.ink3}; }
+        .mdash-spark { position: relative; width: 100%; height: clamp(26px,3.6vw,34px); margin-top: 4px; }
+        .mdash-line { fill: none; stroke: ${T.accentVivid}; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 170; stroke-dashoffset: 170; animation: mdash-draw 1.1s ease-out forwards; animation-delay: var(--sd, 0.5s); filter: drop-shadow(0 2px 4px rgba(110,75,255,0.35)); }
+        @keyframes mdash-draw { to { stroke-dashoffset: 0; } }
+        .mdash-cap { margin: 0; font-family: 'Manrope'; font-weight: 600; font-size: clamp(12.5px,1.5vw,14px); color: ${T.accent}; text-align: center; opacity: 0; animation: fade-in-up 0.5s ease-out forwards; animation-delay: 3.6s; }
+        /* ● JONLI indikatori — Metrics imzo-chipi (maqsad-preview + ustaxona karta-tasdig'i + koding-preview) */
+        .mlive { margin-left: auto; flex-shrink: 0; display: inline-flex; align-items: center; font-family: 'Manrope'; font-weight: 800; font-size: 10.5px; letter-spacing: 0.08em; color: ${T.success}; background: ${T.successSoft}; border-radius: 99px; padding: 3px 10px; }
+        .mdash-card .mlive { opacity: 0; animation: mlive-in 0.45s cubic-bezier(.3,1.5,.45,1) forwards, mlive-pulse 1.8s ease-in-out infinite; animation-delay: var(--ld, 1.6s), calc(var(--ld, 1.6s) + 0.5s); }
+        .mlive.mini { font-size: 9.5px; padding: 2px 8px; animation: mlive-in 0.4s cubic-bezier(.3,1.5,.45,1), mlive-pulse 1.8s ease-in-out 0.4s infinite; }
+        @keyframes mlive-in { 0% { opacity: 0; transform: scale(0.5); } 60% { opacity: 1; transform: scale(1.12); } 100% { opacity: 1; transform: scale(1); } }
+        @keyframes mlive-pulse { 0%,100% { box-shadow: 0 0 0 0 rgba(18,169,104,0.35); } 50% { box-shadow: 0 0 0 5px rgba(18,169,104,0); } }
         @media (prefers-reduced-motion: reduce) {
-          .demo-card, .demo-slot .silo-lbl, .demo-slot .silo-fill, .silo-done, .silo-cap { animation: none; opacity: 1; transform: none; }
-          .demo-slot .silo-lbl { opacity: 0.35; }
+          .mdash-card, .mdash-cap { animation: none; opacity: 1; transform: none; }
+          .mdash-line { animation: none; stroke-dashoffset: 0; }
+          .mdash-card .mlive, .mlive.mini { animation: none; opacity: 1; }
+        }
+
+        /* === 🍽️ OSHXONA HAFTALIGI (s2 muhokama mini-sahnasi) — kun-katak flip: keldi vs yana oldi === */
+        .oshx { display: flex; flex-direction: column; gap: 10px; }
+        .oshx-week { display: grid; grid-template-columns: repeat(5, minmax(0,1fr)); gap: clamp(8px,1.4vw,12px); }
+        @media (max-width: 560px) { .oshx-week { grid-template-columns: repeat(2, 1fr); } }
+        .oshx-day { position: relative; background: none; border: none; padding: 0; cursor: pointer; perspective: 800px; min-height: clamp(122px,15vw,142px); }
+        .oshx-day:disabled { cursor: default; }
+        .oshx-inner { position: absolute; inset: 0; display: block; transform-style: preserve-3d; transition: transform 0.6s cubic-bezier(.3,1.3,.4,1); }
+        .oshx-day.open .oshx-inner { transform: rotateX(180deg); }
+        .oshx-day:not(.open):hover .oshx-inner { transform: rotateX(14deg); }
+        .oshx-face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; border-radius: 14px; padding: 9px 10px; }
+        .oshx-front { background: ${T.paper}; box-shadow: 0 8px 20px -8px rgba(${T.shadowBase},0.2), inset 0 0 0 1.5px ${T.line}; }
+        .oshx-back { transform: rotateX(180deg); background: linear-gradient(180deg, #fff, #FBFAFE); box-shadow: 0 10px 24px -8px rgba(91,61,230,0.24), inset 0 0 0 1.5px ${T.accent}55; align-items: stretch; justify-content: center; }
+        .oshx-d { font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: 13px; color: ${T.accent}; background: ${T.accentSoft}; border-radius: 8px; padding: 2px 9px; }
+        .oshx-d.back { align-self: center; margin-bottom: 2px; }
+        .oshx-plate { font-size: clamp(24px,3.6vw,30px); line-height: 1; }
+        .oshx-q { font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: 15px; color: ${T.ink3}; }
+        .oshx-n { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: clamp(12px,1.5vw,13.5px); color: ${T.ink}; font-variant-numeric: tabular-nums; }
+        .oshx-n.keldi { color: ${T.blue}; } .oshx-n.qayt { color: ${T.accent}; }
+        .oshx-bar { display: block; height: 6px; border-radius: 99px; background: ${T.bg}; position: relative; overflow: hidden; }
+        .oshx-bar::after { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: var(--w, 0%); border-radius: 99px; transform-origin: left; animation: oshx-bar-in 0.7s cubic-bezier(.3,1,.4,1) both 0.15s; }
+        .oshx-bar.keldi::after { background: ${T.blue}; } .oshx-bar.qayt::after { background: linear-gradient(90deg, ${T.accent}, ${T.accentVivid}); }
+        @keyframes oshx-bar-in { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+        .oshx-day.taphint .oshx-front { animation: oshx-hint 2.4s ease-in-out infinite; }
+        .oshx-week .oshx-day.taphint:nth-child(2) .oshx-front { animation-delay: 0.3s; } .oshx-week .oshx-day.taphint:nth-child(3) .oshx-front { animation-delay: 0.6s; } .oshx-week .oshx-day.taphint:nth-child(4) .oshx-front { animation-delay: 0.9s; } .oshx-week .oshx-day.taphint:nth-child(5) .oshx-front { animation-delay: 1.2s; }
+        @keyframes oshx-hint { 0%,86%,100% { box-shadow: 0 8px 20px -8px rgba(${T.shadowBase},0.2), inset 0 0 0 1.5px ${T.line}; } 93% { box-shadow: 0 10px 24px -8px rgba(91,61,230,0.32), inset 0 0 0 2px ${T.accent}66; transform: translateY(-2px); } }
+        .oshx-cap { margin: 0; font-family: 'Manrope'; font-weight: 600; font-size: clamp(12px,1.4vw,13.5px); color: ${T.ink2}; text-align: center; }
+        @media (prefers-reduced-motion: reduce) {
+          .oshx-inner { transition: none; }
+          .oshx-day.taphint .oshx-front { animation: none; }
+          .oshx-day:not(.open):hover .oshx-inner { transform: none; }
+          .oshx-bar::after { animation: none; transform: scaleX(1); }
         }
 
         /* === PROYEKTOR SAVOL + MISOL (yadro) === */
@@ -2640,15 +2769,7 @@ export default function PmMetricsLesson({ lang: langProp, onFinished }) {
         .smini.ok, .swcard.ok { border-left-color: ${T.success}; box-shadow: 0 8px 20px -8px rgba(18,169,104,0.28); animation: card-fill-pop 0.42s cubic-bezier(.34,1.5,.4,1); }
         @keyframes card-fill-pop { 0% { transform: scale(1); } 40% { transform: scale(1.012) translateY(-2px); } 100% { transform: scale(1); } }
         @media (prefers-reduced-motion: reduce) { .smini.ok, .swcard.ok { animation: none; } }
-        /* karta-turi belgisi: ko'chgan (susaygan) vs yangi (indigo) */
-        .swcard-tag { align-self: flex-start; font-family: 'Manrope'; font-weight: 800; font-size: 10px; letter-spacing: 0.04em; padding: 3px 10px; border-radius: 99px; }
-        .swcard-tag.kept { color: ${T.ink3}; background: ${T.bg}; box-shadow: inset 0 0 0 1px ${T.line}; }
-        .swcard-tag.new { color: ${T.accent}; background: ${T.accentSoft}; }
-        /* yangi bo'sh karta = «bo'sh joy chaqiriq» — punktir indigo + yumshoq pulsatsiya (meni to'ldir) */
-        .swcard-new { border-left-style: dashed; border-left-color: ${T.accent}; animation: sw-new-pulse 2.4s ease-in-out infinite; }
-        @keyframes sw-new-pulse { 0%, 100% { box-shadow: 0 6px 16px -6px rgba(91,61,230,0.14), inset 0 0 0 1.5px ${T.accent}22; } 50% { box-shadow: 0 10px 22px -6px rgba(91,61,230,0.26), inset 0 0 0 1.5px ${T.accent}55; } }
-        @media (prefers-reduced-motion: reduce) { .swcard-new { animation: none; box-shadow: 0 6px 16px -6px rgba(91,61,230,0.16), inset 0 0 0 1.5px ${T.accent}33; } }
-        .smini-h, .swcard-h { display: flex; align-items: flex-start; gap: 10px; }
+        .smini-h, .swcard-h { display: flex; align-items: center; gap: 10px; }
         .smini-n, .swcard-n { font-family: 'JetBrains Mono'; font-weight: 700; font-size: 13px; color: ${T.accent}; flex-shrink: 0; }
         .smini-sent, .swcard-sent { font-size: clamp(13px,1.6vw,15px); color: ${T.ink2}; line-height: 1.4; min-width: 0; overflow-wrap: anywhere; word-break: break-word; } .smini-sent b, .swcard-sent b { color: ${T.ink}; }
         .smini-fields, .swcard-fields { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
@@ -2659,13 +2780,6 @@ export default function PmMetricsLesson({ lang: langProp, onFinished }) {
         .smini-f input { font-family: 'Manrope'; font-weight: 500; font-size: 14px; color: ${T.ink}; border: none; border-radius: 9px; padding: 9px 11px; background: ${T.bg}; box-shadow: inset 0 0 0 1.5px ${T.line}; outline: none; transition: box-shadow 0.18s; width: 100%; }
         .smini-f input:focus { box-shadow: inset 0 0 0 1.5px ${T.accent}; }
         .smini-f.on input { box-shadow: inset 0 0 0 1.5px ${T.success}66; background: ${T.paper}; }
-        .swcard-star { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
-        .swcard-star-lbl { font-family: 'Manrope'; font-weight: 700; font-size: 12px; color: ${T.ink2}; }
-        .star { background: none; border: none; cursor: pointer; font-size: 18px; color: ${T.ink3}; padding: 0 1px; transition: color 0.15s, transform 0.15s; }
-        .star.on { color: #F5A623; } .star:hover { transform: scale(1.2); }
-        .swcard-most { margin-left: auto; font-family: 'Manrope'; font-weight: 700; font-size: 11.5px; padding: 5px 12px; border-radius: 99px; border: none; background: ${T.bg}; color: ${T.ink2}; cursor: pointer; box-shadow: inset 0 0 0 1.5px ${T.line}; }
-        .swcard-most.on { background: ${T.accentSoft}; color: ${T.accent}; box-shadow: inset 0 0 0 1.5px ${T.accent}; }
-
         /* === RO'YXAT / CHECKLIST === */
         .checklist { background: ${T.paper}; border-radius: 14px; padding: 15px 17px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.14); display: flex; flex-direction: column; gap: 9px; }
         .stcheck { display: flex; align-items: center; gap: 10px; font-size: clamp(13px,1.5vw,14.5px); color: ${T.ink2}; font-weight: 500; }
@@ -2673,12 +2787,16 @@ export default function PmMetricsLesson({ lang: langProp, onFinished }) {
         .stcheck.on { color: ${T.ink}; } .stcheck.on .stcheck-box { background: ${T.success}; box-shadow: none; animation: lp-check-pop 0.34s cubic-bezier(.3,1.5,.5,1); }
         @keyframes lp-check-pop { 0% { transform: scale(0.7); } 45% { transform: scale(1.3); } 100% { transform: scale(1); } }
 
-        /* === YORDAM (ochiladigan) === */
-        .yordam { background: ${T.bg}; border: 1.5px dashed ${T.ink3}66; border-radius: 12px; overflow: hidden; }
-        .yordam-toggle { width: 100%; text-align: left; background: none; border: none; padding: 12px 15px; font-family: 'Manrope'; font-weight: 700; font-size: 13.5px; color: ${T.accent}; cursor: pointer; }
-        .yordam-body { padding: 0 15px 13px; display: flex; flex-direction: column; gap: 7px; }
-        .yordam-body p { font-size: 13.5px; color: ${T.ink2}; margin: 0; } .yordam-body b { color: ${T.ink}; }
-        .yordam-hint { color: ${T.accent} !important; font-weight: 700; }
+        /* === YORDAM + YULDUZCHA — bitta qatordagi 2 ixcham yig'ma-chip (25-qonun matn-diyeta) === */
+        .wsx-row { display: flex; gap: 8px; flex-wrap: wrap; align-items: flex-start; }
+        .wsx { flex: 1; min-width: 170px; background: ${T.bg}; border: 1.5px dashed ${T.ink3}66; border-radius: 12px; overflow: hidden; }
+        .wsx.star { border-color: ${T.blue}66; }
+        .wsx-toggle { width: 100%; text-align: left; background: none; border: none; padding: 10px 13px; font-family: 'Manrope'; font-weight: 700; font-size: 13px; color: ${T.accent}; cursor: pointer; }
+        .wsx.star .wsx-toggle { color: ${T.blue}; }
+        .wsx-body { padding: 0 13px 11px; display: flex; flex-direction: column; gap: 6px; animation: fade-step 0.25s ease-out; }
+        .wsx-body p { font-size: 13px; color: ${T.ink2}; margin: 0; line-height: 1.45; } .wsx-body b { color: ${T.ink}; }
+        /* karta-progress (n/4) — «● JONLI» yonguncha */
+        .swcard-prog { margin-left: auto; flex-shrink: 0; font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: 11px; color: ${T.ink3}; background: ${T.bg}; border-radius: 99px; padding: 3px 9px; }
         .star-task { background: ${T.blueSoft}; border-radius: 12px; padding: 12px 15px; display: flex; flex-direction: column; gap: 5px; }
 
         /* === HOTSPOT (buzuq bo'laklar) === */
@@ -2696,90 +2814,79 @@ export default function PmMetricsLesson({ lang: langProp, onFinished }) {
         .hs-miss { background: ${T.errSoft} !important; color: ${T.err} !important; border-color: ${T.err} !important; opacity: 1 !important; text-decoration: line-through; box-shadow: 0 8px 22px -6px rgba(229,72,77,0.28) !important; }
         @media (prefers-reduced-motion: reduce) { .hs-broken { animation: none; } }
 
-        /* === KODING — compiler-panel (natija iframe'da; bo'sh-holat matni) === */
-        .code-out-empty { font-family: 'Manrope', sans-serif; font-size: 12.5px; color: ${T.ink3}; font-style: italic; margin: 0; }
-        /* Compiler topshiriq-panel (JS-check shartlari — jonli ✓) */
-        /* Topshiriq-panel = «brief-hujjat» (chap-accent hoshiya, yumshoq qog'oz) */
-        .hc-task { background: linear-gradient(180deg, ${T.paper}, #FBFAFE); border-radius: 14px; border-left: 4px solid ${T.accent}; padding: 15px 17px 16px; display: flex; flex-direction: column; gap: 10px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.14); }
-        .hc-conds { display: flex; flex-direction: column; gap: 9px; }
-        .hc-cond { display: flex; align-items: flex-start; gap: 10px; background: ${T.bg}; border-radius: 11px; padding: 10px 12px; box-shadow: inset 0 0 0 1.5px ${T.line}; transition: box-shadow 0.25s, background 0.25s; }
-        .hc-cond.ok { background: ${T.successSoft}; box-shadow: inset 0 0 0 1.5px ${T.success}55; animation: hc-cond-pop 0.4s cubic-bezier(.34,1.5,.4,1); }
-        @keyframes hc-cond-pop { 0% { transform: scale(1); } 42% { transform: scale(1.015) translateY(-1px); } 100% { transform: scale(1); } }
-        @media (prefers-reduced-motion: reduce) { .hc-cond.ok { animation: none; } }
-        .hc-cond-box { width: 22px; height: 22px; border-radius: 7px; flex-shrink: 0; box-shadow: inset 0 0 0 2px ${T.ink3}55; display: inline-flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 800; color: ${T.ink3}; transition: all 0.2s; }
-        .hc-cond.ok .hc-cond-box { background: ${T.success}; color: #fff; box-shadow: none; animation: lp-check-pop 0.34s cubic-bezier(.3,1.5,.5,1); }
-        .hc-cond-txt { display: flex; flex-direction: column; gap: 5px; min-width: 0; }
-        .hc-cond-label { font-family: 'Manrope'; font-weight: 600; font-size: clamp(12.5px,1.5vw,14px); color: ${T.ink}; line-height: 1.35; }
-        /* hint = ochiladigan yumshoq indigo maslahat (xato-ogohlantirish EMAS) */
-        .hc-cond-hint { font-family: 'Manrope'; font-size: 12px; color: ${T.accent}; line-height: 1.4; background: ${T.accentSoft}; border-radius: 8px; padding: 6px 10px; align-self: flex-start; }
+        /* === ⚛️ KODING (s10): VS Code-mockup + jonli MetrikaPanel-preview + qadam-checklist === */
+        .vsc { background: #1E1E1E; border-radius: 14px; overflow: hidden; box-shadow: 0 14px 30px -10px rgba(${T.shadowBase},0.35); }
+        .vsc-bar { background: #252526; display: flex; align-items: center; gap: 2px; padding-right: 8px; }
+        .vsc-tab { font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: #8B949E; background: #2D2D2D; padding: 9px 14px; display: inline-flex; align-items: center; gap: 6px; }
+        .vsc-tab.on { background: #1E1E1E; color: #E6EDF3; box-shadow: inset 0 2px 0 #007ACC; }
+        .vsc-copy { margin-left: auto; background: #0E639C; color: #fff; border: none; border-radius: 8px; padding: 6px 12px; font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 11.5px; cursor: pointer; transition: background 0.18s, transform 0.18s; flex-shrink: 0; }
+        .vsc-copy:hover { background: #1177BB; transform: translateY(-1px); }
+        .vsc-copy.ok { background: ${T.success}; }
+        .vsc-body { padding: 12px 14px 14px 6px; font-family: 'JetBrains Mono', monospace; font-size: clamp(11px,1.35vw,12.5px); color: #D4D4D4; line-height: 1.85; overflow-x: auto; }
+        .vsc-line { display: flex; align-items: baseline; min-width: max-content; }
+        .vsc-ln { color: #6E7681; min-width: 26px; text-align: right; margin-right: 14px; font-size: 10.5px; flex-shrink: 0; user-select: none; }
+        .vsc-code { white-space: pre; }
+        /* Jonli natija-preview — o'quvchining REAL panel-kartalari «brauzerda», foiz CountUp bilan jonlanadi */
+        .mxprev { background: ${T.paper}; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 26px -10px rgba(${T.shadowBase},0.2); }
+        .mxprev-bar { display: flex; align-items: center; gap: 10px; padding: 10px 14px; background: #F7F5FD; border-bottom: 1px solid ${T.line}; }
+        .mxprev-url { font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: ${T.ink3}; background: ${T.paper}; border-radius: 99px; padding: 4px 12px; box-shadow: inset 0 0 0 1px ${T.line}; }
+        .mxprev-src { margin-left: auto; font-family: 'Manrope'; font-weight: 700; font-size: 10.5px; color: ${T.success}; background: ${T.successSoft}; border-radius: 99px; padding: 3px 10px; }
+        .mxprev-body { display: flex; flex-direction: column; gap: 10px; padding: clamp(12px,2vw,18px); }
+        .mxprev-head { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+        .mxprev-foiz { font-size: clamp(30px,4.4vw,40px); font-weight: 700; line-height: 1; color: ${T.accent}; font-variant-numeric: tabular-nums; }
+        .mxprev-head-t { display: flex; flex-direction: column; gap: 2px; }
+        .mxprev-lbl { font-family: 'Manrope'; font-weight: 800; font-size: 12px; letter-spacing: 0.05em; color: ${T.ink2}; }
+        .mxprev-calc { font-size: 10.5px; color: ${T.ink3}; }
+        .mxprev-ns { margin-left: auto; max-width: 46%; font-family: 'Manrope'; font-weight: 700; font-size: 11px; color: #B7770D; background: #FFF3DA; border-radius: 99px; padding: 4px 12px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .mxprev-cards { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: clamp(8px,1.4vw,12px); }
+        @media (max-width: 700px) { .mxprev-cards { grid-template-columns: 1fr; } .mxprev-ns { max-width: 100%; margin-left: 0; } }
+        .mxprev-card { display: flex; flex-direction: column; gap: 3px; background: #FBFAFE; border-radius: 12px; border-left: 4px solid ${T.accent}; padding: 10px 12px; box-shadow: 0 6px 14px -8px rgba(${T.shadowBase},0.18); min-width: 0; animation: fade-step 0.4s ease-out both; }
+        .mxprev-card:nth-child(2) { animation-delay: 0.12s; } .mxprev-card:nth-child(3) { animation-delay: 0.24s; }
+        .mxprev-card .mlive.mini { margin-left: 0; align-self: flex-start; }
+        .mxprev-card-nm { font-family: 'Source Serif 4', serif; font-weight: 600; font-size: clamp(13.5px,1.7vw,15.5px); color: ${T.ink}; overflow-wrap: anywhere; }
+        .mxprev-card-what { font-size: clamp(12px,1.4vw,13px); color: ${T.ink2}; overflow-wrap: anywhere; }
+        /* VS Code qadamlari — o'quvchi o'zi belgilaydi */
+        .kd-steps { display: flex; flex-direction: column; gap: 8px; }
+        .kd-step { display: flex; align-items: flex-start; gap: 10px; text-align: left; width: 100%; background: ${T.paper}; border: none; border-radius: 12px; padding: 11px 13px; cursor: pointer; font-family: 'Manrope', sans-serif; font-weight: 600; font-size: clamp(13px,1.5vw,14.5px); color: ${T.ink2}; box-shadow: 0 5px 14px -6px rgba(${T.shadowBase},0.12), inset 0 0 0 1.5px ${T.line}; transition: all 0.18s; }
+        .kd-step:hover:not(.on) { transform: translateY(-1px); box-shadow: 0 8px 18px -6px rgba(${T.shadowBase},0.2), inset 0 0 0 1.5px ${T.accent}44; }
+        .kd-step.on { color: ${T.ink}; background: ${T.successSoft}; box-shadow: inset 0 0 0 1.5px ${T.success}55; }
+        .kd-check { width: 22px; height: 22px; border-radius: 7px; flex-shrink: 0; box-shadow: inset 0 0 0 2px ${T.ink3}55; display: inline-flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 800; color: ${T.ink3}; background: ${T.paper}; transition: all 0.2s; }
+        .kd-step.on .kd-check { background: ${T.success}; color: #fff; box-shadow: none; animation: lp-check-pop 0.34s cubic-bezier(.3,1.5,.5,1); }
+        .kd-step-t { min-width: 0; line-height: 1.4; }
+        @media (prefers-reduced-motion: reduce) { .kd-step.on .kd-check { animation: none; } .mxprev-card { animation: none; } }
 
-        /* === KODING: launch-karta (darsdan kompilyatorga «boradi») === */
-        .kod-launch { position: relative; border-radius: 16px; overflow: hidden; background: ${CODE.bg}; box-shadow: 0 14px 34px -12px rgba(${T.shadowBase},0.35); }
-        .kod-launch-bar { background: #141C2B; padding: 10px 14px; display: flex; align-items: center; gap: 10px; }
-        .kod-launch-title { font-family: 'JetBrains Mono'; font-size: 11.5px; color: #7E92B4; }
-        .kod-launch-body { padding: 16px 18px; min-height: 190px; min-width: 0; font-family: 'JetBrains Mono', monospace; font-size: 12.5px; line-height: 1.7; color: rgba(232,229,221,0.45); white-space: pre-wrap; overflow-wrap: anywhere; word-break: break-word; }
-        .kod-launch-veil { position: absolute; inset: 42px 0 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; background: linear-gradient(180deg, rgba(26,36,54,0.45), rgba(26,36,54,0.85)); }
-        .kod-launch-btn { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: clamp(15px,1.9vw,17px); background: ${T.accent}; color: #fff; border: none; border-radius: 14px; padding: 14px 28px; cursor: pointer; box-shadow: 0 14px 30px -8px rgba(91,61,230,0.65); transition: transform 0.18s, box-shadow 0.18s; animation: kod-btn-pulse 2.2s ease-in-out infinite; }
-        .kod-launch-btn:hover { transform: translateY(-2px); box-shadow: 0 18px 36px -8px rgba(110,75,255,0.75); }
-        @keyframes kod-btn-pulse { 0%,100% { box-shadow: 0 14px 30px -8px rgba(91,61,230,0.65); } 50% { box-shadow: 0 14px 38px -4px rgba(110,75,255,0.85); } }
-        .kod-launch-sub { font-family: 'Manrope'; font-weight: 600; font-size: 12.5px; color: rgba(232,229,221,0.75); text-align: center; padding: 0 14px; }
-        @media (prefers-reduced-motion: reduce) { .kod-launch-btn { animation: none; } }
-
-        /* === PM-KOMPILYATOR (to'liq-ekran, Htmllesson1 relslari, PM palitra) === */
-        .hcp-root { position: fixed; inset: 0; z-index: 2100; background: radial-gradient(120% 80% at 50% -10%, ${T.accentSoft} 0%, rgba(235,229,253,0) 46%), ${T.bg}; overflow: hidden; animation: fade-step 0.3s ease-out; }
-        .hcp-wrap { width: 100%; max-width: 1160px; height: 100dvh; margin: 0 auto; display: flex; flex-direction: column; justify-content: center; gap: clamp(10px,1.6vw,16px); padding: clamp(14px,2.2vw,28px); }
-        .hcp-top { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 7px; }
-        .hcp-eyebrow { font-family: 'Manrope'; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 800; color: ${T.accent}; display: inline-flex; align-items: center; gap: 7px; }
-        .hcp-eyebrow::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: ${T.accent}; }
-        .hcp-title { font-family: 'Source Serif 4', serif; font-weight: 600; font-size: clamp(20px,2.8vw,30px); margin: 0; color: ${T.ink}; letter-spacing: -0.01em; line-height: 1.12; }
-        .hcp-brief { margin: 0; color: ${T.ink2}; font-size: clamp(13px,1.5vw,15px); line-height: 1.55; max-width: 64ch; }
-        .hcp-checklist { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 8px; margin-top: 5px; }
-        .hcp-count { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 12px; color: #fff; background: linear-gradient(135deg, ${T.accent}, ${T.accentVivid}); padding: 6px 11px; border-radius: 99px; box-shadow: 0 6px 16px -6px rgba(91,61,230,0.5); }
-        .hcp-chip { display: inline-flex; align-items: center; gap: 7px; font-family: 'Manrope'; font-size: 13px; font-weight: 500; color: ${T.ink2}; background: ${T.paper}; padding: 6px 14px 6px 7px; border-radius: 99px; border: 1px solid ${T.line}; transition: all 0.22s ease; cursor: default; min-width: 0; overflow-wrap: anywhere; }
-        .hcp-chip.ok { color: ${T.ink}; font-weight: 600; border-color: ${T.success}40; background: ${T.successSoft}; }
-        .hcp-dot { flex-shrink: 0; width: 21px; height: 21px; border-radius: 50%; background: ${T.bg}; color: ${T.ink3}; display: inline-flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; transition: all 0.25s; }
-        .hcp-chip.ok .hcp-dot { background: ${T.success}; color: #fff; box-shadow: 0 3px 8px -2px ${T.success}88; }
-        .hcp-hint { margin: 3px 0 0; font-family: 'Manrope'; font-size: 13px; color: ${T.accent}; background: ${T.accentSoft}; padding: 8px 15px; border-radius: 11px; max-width: 64ch; line-height: 1.5; overflow-wrap: anywhere; }
-        .hcp-err { margin: 3px 0 0; font-family: 'JetBrains Mono', monospace; font-size: 12.5px; color: ${T.err}; background: ${T.errSoft}; padding: 7px 14px; border-radius: 10px; max-width: 74ch; line-height: 1.5; overflow-wrap: anywhere; word-break: break-word; }
-        .hcp-split { flex: none; height: 58vh; min-height: 0; display: grid; grid-template-columns: 1fr 1fr; gap: clamp(12px,1.6vw,18px); }
-        .hcp-pane { display: flex; flex-direction: column; min-height: 0; min-width: 0; border-radius: 18px; overflow: hidden; background: ${T.paper}; box-shadow: 0 1px 0 ${T.line}, 0 18px 40px -22px rgba(${T.shadowBase},0.35); }
-        .hcp-pane-bar { display: flex; align-items: center; gap: 10px; padding: 10px 15px; font-family: 'Manrope'; font-size: 12px; font-weight: 600; color: ${T.ink2}; border-bottom: 1px solid ${T.line}; }
-        .hcp-pane-bar.dark { background: ${CODE.bg}; color: #A7B6D6; border-bottom: 1px solid rgba(255,255,255,0.06); }
-        .hcp-tab { font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 600; color: #fff; background: rgba(255,255,255,0.14); padding: 5px 13px; border-radius: 9px; box-shadow: inset 0 -2px 0 ${T.accent}; }
-        .hcp-mini { margin-left: auto; background: ${T.accent}; color: #fff; border: none; border-radius: 9px; padding: 6px 13px; font-size: 11.5px; font-weight: 700; cursor: pointer; font-family: 'Manrope', sans-serif; transition: all 0.18s; flex-shrink: 0; box-shadow: 0 6px 14px -6px rgba(91,61,230,0.6); }
-        .hcp-mini:hover { transform: translateY(-1px); box-shadow: 0 9px 18px -6px rgba(91,61,230,0.7); }
-        .hcp-code { flex: 1; min-height: 0; resize: none; border: none; outline: none; background: ${CODE.bg}; color: ${CODE.text}; font-family: 'JetBrains Mono', monospace; font-size: 14px; line-height: 1.7; padding: 18px 20px; tab-size: 2; white-space: pre; overflow: auto; caret-color: ${T.accentVivid}; }
-        .hcp-code::placeholder { color: #5B6B86; }
-        .hcp-code::selection { background: ${T.accent}55; }
-        .hcp-pane-name { font-family: 'JetBrains Mono', monospace; font-weight: 700; }
-        .hcp-live { margin-left: auto; font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: ${T.success}; background: ${T.successSoft}; padding: 4px 9px; border-radius: 99px; font-weight: 800; display: inline-flex; align-items: center; gap: 6px; }
-        .hcp-live::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: ${T.success}; animation: hcp-pulse 1.8s infinite; }
-        @keyframes hcp-pulse { 0% { box-shadow: 0 0 0 0 ${T.success}66; } 70% { box-shadow: 0 0 0 6px ${T.success}00; } 100% { box-shadow: 0 0 0 0 ${T.success}00; } }
-        .hcp-frame { flex: 1; min-height: 0; width: 100%; border: none; background: #FBFAFE; }
-        .hcp-bottom { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
-        .hcp-ghost { background: transparent; border: 1px solid transparent; color: ${T.ink2}; font-family: 'Manrope', sans-serif; font-weight: 600; font-size: 14px; cursor: pointer; padding: 11px 17px; border-radius: 12px; transition: all 0.15s; }
-        .hcp-ghost:hover { background: ${T.paper}; color: ${T.ink}; border-color: ${T.line}; box-shadow: 0 6px 16px -10px rgba(${T.shadowBase},0.3); }
-        .hcp-status { margin-left: auto; }
-        .hcp-ok-msg { color: ${T.success}; font-family: 'Manrope'; font-weight: 700; font-size: 14px; }
-        .hcp-wait-msg { color: ${T.ink3}; font-family: 'Manrope'; font-size: 13px; }
-        .hcp-next { background: ${T.accent}; color: #fff; border: none; border-radius: 13px; font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 15px; cursor: pointer; padding: 13px 30px; box-shadow: 0 10px 24px -8px rgba(91,61,230,0.6); transition: all 0.2s; }
-        .hcp-next:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 16px 32px -8px rgba(110,75,255,0.7); }
-        .hcp-next:disabled { background: #D7D8DE; color: #fff; cursor: not-allowed; box-shadow: none; }
-        @media (max-width: 820px) { .hcp-split { grid-template-columns: 1fr; grid-template-rows: 1fr 1fr; } .hcp-checklist { width: 100%; } }
-
-        /* === RECAP (juftlik + reflection + savol) === */
-        .pair-timer { background: ${T.paper}; border-radius: 14px; padding: 15px 17px; display: flex; flex-direction: column; gap: 9px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.14); }
-        .pair-timer-top { display: flex; align-items: center; justify-content: space-between; }
-        .pair-role { font-family: 'Manrope'; font-weight: 700; font-size: 14px; color: ${T.ink2}; } .pair-role b { color: ${T.accent}; }
+        /* === RECAP (s11) — 3 raqamlangan qadam-karta (slide-in) + P0-etalon juftlik-taymer + reflection + savol === */
+        .rcp-flow { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: clamp(12px,2vw,18px); align-items: stretch; }
+        @media (max-width: 760px) { .rcp-flow { grid-template-columns: 1fr; } }
+        .rcp-step { background: ${T.paper}; border-radius: 16px; padding: 16px 18px; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.14); display: flex; flex-direction: column; gap: 12px; }
+        .rcp-step.wide { grid-column: 1 / -1; }
+        .rcp-step-h { display: flex; gap: 11px; align-items: flex-start; }
+        .rcp-n { width: 26px; height: 26px; border-radius: 50%; background: ${T.accent}; color: #fff; font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: 13px; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 5px 12px -5px rgba(91,61,230,0.5), 0 0 0 3px ${T.accentSoft}; }
+        .rcp-t { display: block; font-family: 'Manrope'; font-weight: 800; font-size: clamp(14px,1.7vw,16px); color: ${T.ink}; }
+        .rcp-s { display: block; font-family: 'Manrope'; font-size: 12.5px; color: ${T.ink2}; margin-top: 2px; line-height: 1.4; }
+        .pair-timer { background: ${T.bg}; border-radius: 12px; padding: 13px 15px; display: flex; flex-direction: column; gap: 10px; box-shadow: inset 0 0 0 1.5px ${T.line}; margin-top: auto; }
+        .pair-timer-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+        .pair-now { font-family: 'Manrope'; font-weight: 700; font-size: 14px; color: ${T.ink2}; line-height: 1.45; }
+        .pair-who { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: 8px; background: ${T.accent}; color: #fff; font-weight: 800; font-size: 13px; vertical-align: middle; }
+        .pair-who.b { background: ${T.success}; }
+        .pair-mic { display: inline-block; animation: pair-mic-pulse 1.1s ease-in-out infinite; }
+        @keyframes pair-mic-pulse { 0%,100% { transform: scale(1); opacity: 0.75; } 50% { transform: scale(1.25); opacity: 1; } }
         .pair-clock { font-family: 'JetBrains Mono'; font-weight: 700; font-size: 22px; color: ${T.ink}; font-variant-numeric: tabular-nums; }
+        .pair-prog { position: relative; height: 8px; background: rgba(${T.shadowBase},0.09); border-radius: 99px; }
+        .pair-prog-fill { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 99px; background: linear-gradient(90deg, ${T.accent}, ${T.accentVivid}); transition: width 1s linear; }
+        .pair-prog-mid { position: absolute; left: 50%; top: -3px; bottom: -3px; width: 2px; background: ${T.ink3}; border-radius: 2px; }
         .pair-timer-btns { display: flex; gap: 8px; }
-        .reflect { background: ${T.paper}; border-radius: 14px; padding: 15px 17px; display: flex; flex-direction: column; gap: 8px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.14); }
         .reflect-input { font-family: 'Manrope'; font-size: 15px; color: ${T.ink}; border: none; border-radius: 10px; padding: 12px 14px; background: ${T.bg}; box-shadow: inset 0 0 0 1.5px ${T.line}; outline: none; }
         .reflect-input:focus { box-shadow: inset 0 0 0 1.5px ${T.accent}; }
         .qa-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
         @media (max-width: 620px) { .qa-cards { grid-template-columns: 1fr; } }
-        .qa-card { background: ${T.paper}; border-radius: 12px; padding: 14px; display: flex; flex-direction: column; gap: 8px; box-shadow: 0 6px 16px -6px rgba(${T.shadowBase},0.14); }
-        .qa-ic { font-size: 24px; } .qa-card p { font-size: 13.5px; color: ${T.ink}; margin: 0; line-height: 1.4; } .qa-card b { color: ${T.accent}; }
+        .qa-card { background: ${T.bg}; border-radius: 12px; padding: 14px; display: flex; flex-direction: column; gap: 8px; box-shadow: inset 0 0 0 1.5px ${T.line}; transition: transform 0.18s, box-shadow 0.18s; }
+        .qa-card:hover { transform: translateY(-3px); box-shadow: inset 0 0 0 1.5px ${T.accent}44, 0 10px 22px -8px rgba(${T.shadowBase},0.2); }
+        .qa-ic { font-size: 24px; display: inline-block; width: fit-content; }
+        .qa-card:hover .qa-ic { animation: qa-wiggle 0.5s ease; }
+        @keyframes qa-wiggle { 0%,100% { transform: rotate(0); } 30% { transform: rotate(-14deg) scale(1.12); } 70% { transform: rotate(10deg); } }
+        .qa-card p { font-size: 13.5px; color: ${T.ink}; margin: 0; line-height: 1.4; } .qa-card b { color: ${T.accent}; }
+        @media (prefers-reduced-motion: reduce) { .pair-mic { animation: none; } .qa-card:hover .qa-ic { animation: none; } .qa-card:hover { transform: none; } }
 
         /* === UYGA VAZIFA kartalari === */
         .hw-card { border-radius: 14px; padding: clamp(15px,2.4vw,20px); display: flex; flex-direction: column; gap: 10px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.14); min-width: 0; overflow-wrap: anywhere; word-break: break-word; }

@@ -19,7 +19,14 @@ Siz — **🔍 PM-Auditor** (jamoadagi ismingiz — **Aziz**; bu faqat ko'rinish
 
 ## Ish tartibi
 1. Darslikni TO'LIQ o'qing (katta fayl — bo'lib o'qing), yonma-yon P0 bilan solishtiring.
-2. PM_DARS_ETALON 4-bo'limdagi HAR 20 qoidani yuriting; 3-bo'lim xaritasidagi HAR primitiv bor-yo'qligini grep bilan tasdiqlang.
+2. PM_DARS_ETALON 4-bo'limdagi HAR qoidani yuriting (hozir 28 ta; 21-28 — 2026-07-21/22 foydalanuvchi jonli-ko'rik qonunlari); 3-bo'lim xaritasidagi HAR primitiv bor-yo'qligini grep bilan tasdiqlang. 21-28 uchun maxsus tekshiruvlar:
+   - **21 SCORED-gloss:** QUIZ_BANK/test variantlarida jargon glossasiz qolganmi (lug'atda bor ≠ kodda bajarilgan — grep bilan KODDA tekshiring).
+   - **22 Sanoq:** lead/cue'dagi SON ↔ ekrandagi real element soni (qo'lda sanang).
+   - **23 Klon:** P0 imzo-klasslari (story-silo/demo-slot) boshqa darsning kontent-ekranida aynan takrorlanganmi.
+   - **24 Misol-takror:** bosh-misol (ilova) `PM_PIPELINE_STATE.md` misol-jurnali bilan solishtiring — boshqa darsda ishlatilgan bo'lsa NUQSON.
+   - **26 Koding-mexanika:** oldingi PM darsi bilan BIR XIL koding-mexanikami (JS-funksiya kompilyatori ketma-ket TAQIQ); eski mexanikadan o'lik kod qolganmi.
+   - **28 narrow/vizual:** amaliyot-ekranda `narrow` bormi; kiritish-vizual to'liq holatda ham renderlanadimi (shartli-render/animation-override sinfini o'qib tekshiring — metrika.png saboqi: `.ok` animation `fade-up forwards`ni override qilib opacity:0da qoldirardi).
+   - **CSS-qoplama:** JSX'da ishlatilgan har yangi klassning CSS'i bormi (`grep`-solishtiruv — API-uzilishdan chala qolish sinfi).
 3. Jonli-ball relslari: `useLiveSession(lessonId, answerKey)` · `INLINE_KEYS` ↔ `correctIdx` (qo'lda solishtiring, grep aldaydi) · `QUIZ_BANK` 12 savol + 3/3/3/3 + seq naqshsiz · `SCREEN_META.length === screens.length` · signal-zonalar (test <100 / arena 100+ / practice `PRACTICE_BASE+screen`, `practice: -1` sentinel).
 4. Til-sirt tekshiruvi (chuqur sayqal metodistniki): siz-forma, kirill, apostrof, K-kod yorlig'i EKRANga oqmaganmi.
 5. **Texnik-meros ovi:** `grep -n "dinozavr\|restoran\|oshxona\|HtmlCompiler\|<h1>\|Htmllesson"` uslubidagi izlar + P0'da yo'q texnik-dars naqshlari.

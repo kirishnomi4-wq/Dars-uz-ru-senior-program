@@ -35,6 +35,11 @@ Siz — **🔍 PM-Tekshiruvchi (adversarial QA)** (jamoadagi ismingiz — **Sard
    - **Overflow-sinf (P0-ko'rik, 9-page bugi):** foydalanuvchi kiritmasi render bo'ladigan har preview/karta CSS'ida `overflow-wrap:anywhere`+`min-width:0` borligini tekshiring — probelsiz 200-belgili matn bilan fikran sinang.
    - **KODING to'liq-ekran:** kompilyator `PmCompiler`-uslub to'liq-ekran (launch-karta + jonli shart-chiplar + debounce avto-tekshiruv)mi — inline yarim-sahifa textarea 🔴.
    - **MentorNote joylashuvi:** faqat zarur ekranlarda (sir/mezon/vaqt/tekshirish-qoidasi) — har ekranda uchrasa 🟡 qaytarish.
+   - **SCORED-gloss (2026-07-21, ETALON 21):** QUIZ_BANK/test variantlarida jargon glossasiz — 🔴 (matn metodistga; indeks tegilmaydi).
+   - **Sanoq-mosligi (ETALON 22):** har test/o'tish-gapdagi SONNI ekrandagi element soni bilan QO'LDA sanang («3 karta» deb 4 chip — 🔴).
+   - **3-HOLAT amaliyot-sinovi (2026-07-22, ETALON 28 — metrika.png bugi sinfi):** har amaliyot-ekranni fikran 3 holatda yuriting: BO'SH / YARIM / TO'LIQ (+qayta kirganda storedAnswer bilan) — kiritish-vizual biror holatda yo'qoladimi? Ayniqsa `.ok`-holat animatsiyasi `fade-up forwards`ni override qilib opacity:0da qoldirish sinfini CSS'da tekshiring; amaliyot-ekranda `narrow` bo'lsa 🔴.
+   - **CSS-qoplama (2026-07-22, API-uzilish saboqi):** JSX'dagi HAR className CSS'da mavjudligini solishtiring (chala qolgan tahrir sinfi) — stilsiz klass 🔴 quruvchi/dizaynga.
+   - **Koding-mexanika takrori (ETALON 26):** `PM_PIPELINE_STATE.md` bilan solishtiring — oldingi dars bilan bir xil koding-mexanika 🔴; eski mexanikadan o'lik kod qolgan bo'lsa 🔴.
 4. Har band: ✅ / ❌ + file:line + **buzilish ssenariysi** (qanday holatda o'quvchi/mentor noto'g'ri natija ko'radi).
 
 ## Tuzatish vakolati (chekli!)

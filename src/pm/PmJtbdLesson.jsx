@@ -30,7 +30,6 @@ const T = {
   line: '#E7E3F4', err: '#E5484D', errSoft: '#FCE7E8',
   shadowBase: '40, 34, 82'
 };
-const CODE = { bg: '#1A2436', text: '#E8E5DD', tag: '#FF7755', attr: '#FFD380', str: '#7DD181', comment: '#6B7585', punct: '#9FB4D8' };
 
 // ============================================================
 // JONLI SESSIYA INFRA — InternetLesson etalon bilan bir xil (liveRpc/useLiveSession/LiveGate)
@@ -333,7 +332,7 @@ const SCREEN_META = [
   { id: 's5',       type: 'exploration', template: 'custom',   scored: false, scope: null },          // 7 · MVP bosh-ishi (1 karta)
   { id: 'practice', type: 'practice',    template: 'custom',   scored: false, scope: null },          // 8 · ustaxona (3 JTBD-karta)
   { id: 's9',       type: 'test',        template: 'custom',   scored: true,  scope: 'module-mikro' }, // 9 · TEST-3 (juftlash MatchPairs)
-  { id: 's10',      type: 'koding',      template: 'custom',   scored: false, scope: null },          // 10 · koding jtbdKarta (compiler)
+  { id: 's10',      type: 'koding',      template: 'custom',   scored: false, scope: null },          // 10 · koding JtbdCard (React · VS Code)
   { id: 's11',      type: 'recap',       template: 'custom',   scored: false, scope: null },          // 11
   { id: 's12',      type: 'homework',    template: 'custom',   scored: false, scope: null },          // 12
   { id: 'podium',   type: 'stats',       template: 'custom',   scored: false, scope: null },          // 13
@@ -848,65 +847,91 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
   );
 };
 
-// ===== SCREEN 1 — MAQSAD: jonli natija-preview (JTBD-kartalar ko'z oldida birma-bir to'ladi) =====
-// WOW-moment: o'quvchi dars natijasini OLDINDAN ko'radi — bo'sh MAHSULOT/ISH/TUR slotlari
-// namunaviy JTBD-yozuvlar bilan o'z-o'zidan to'lib boradi (CSS-taymlayn, reduced-motion'da darhol to'liq).
+// ===== SCREEN 1 — MAQSAD: «ISHGA QABUL» imzo-sahnasi (JTBD metaforasi = mahsulot ISHGA YOLLANADI) =====
+// WOW-moment: 3 demo-karta «ish shartnomasi» ko'rinishida CSS-taymlayn bilan «yozilib» to'ladi,
+// har karta to'lgach ustiga indigo «✓ YOLLANDI» shtampi bosiladi (reduced-motion: darhol to'liq holat).
 const DEMO_JTBD = [
-  { mahsulot: 'qahva', ish: 'ish oldidan jonlanish', tur: 'emotsional' },
-  { mahsulot: 'velosiped', ish: 'maktabga tez yetish', tur: 'funksional' },
-  { mahsulot: 'brend krossovka', ish: "davrada o'zini ko'rsatish", tur: 'ijtimoiy' },
+  { em: '☕', mahsulot: 'qahva', ish: 'ish oldidan jonlanish', tur: 'emotsional' },
+  { em: '🚲', mahsulot: 'velosiped', ish: 'maktabga tez yetish', tur: 'funksional' },
+  { em: '👟', mahsulot: 'brend krossovka', ish: "davrada o'zini ko'rsatish", tur: 'ijtimoiy' },
 ];
 const Screen1 = ({ screen, onNext, onPrev }) => (
   <Stage eyebrow="Maqsad" screen={screen} mentorStatic navContent={<><NavBack onPrev={onPrev} /><NavNext label="Boshlaymiz →" onClick={onNext} /></>}>
     <div className="screen" style={{ gap: 'clamp(14px,2.2vw,20px)' }}>
-      <div className="head"><h2 className="title h-title fade-up">Dars oxirida sizda <span className="italic" style={{ color: T.accent }}>3 ta JTBD-karta</span> bo'ladi.</h2></div>
-      <Mentor>Dars oxirida sizda <b style={{ color: T.ink }}>3 mahsulot qaysi «ish»ga yollanishi</b> yozilgan JTBD-karta va o'z <b style={{ color: T.ink }}>MVP'ingizning bosh ishi</b> bo'ladi. Kartalar hozir ko'z oldingizda to'ladi — xuddi shunday uchtasini o'zingiz yozasiz.</Mentor>
-      <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-        {DEMO_JTBD.map((s, i) => (
-          <div key={i} className="story-silo demo-card" style={{ '--cd': `${0.2 + i * 0.18}s` }}>
-            <span className="story-silo-n">{i + 1}</span>
-            <div className="story-silo-slots">
-              {[['kim', 'MAHSULOT', 'mahsulot'], ['nima', 'ISH', 'ish'], ['natija', 'TUR', 'tur']].map(([cls, lbl, k], j) => (
-                <span key={cls} className={`silo-slot ${cls} demo-slot`} style={{ '--fd': `${1.1 + (i * 3 + j) * 0.42}s` }}>
-                  <span className="silo-lbl">{lbl}</span>
-                  <span className="silo-fill">{s[k]}</span>
-                </span>
-              ))}
+      <div className="head"><h2 className="title h-title fade-up">Mahsulot ham <span className="italic" style={{ color: T.accent }}>ishga olinadi</span> — ishonasizmi?</h2></div>
+      <Mentor>JTBD-karta — mahsulot qaysi <b style={{ color: T.ink }}>ISH</b>ga yollanishi yozilgan karta. Hozir 3 namuna ko'z oldingizda to'lib «YOLLANDI» shtampini oladi — dars oxirida 3 tasini o'zingiz yozasiz.</Mentor>
+      <div className="jhire-grid">
+        {DEMO_JTBD.map((s, i) => {
+          const base = 0.3 + i * 1.7;
+          return (
+            <div key={i} className="jhire-card" style={{ '--cd': `${0.12 + i * 0.18}s` }}>
+              <div className="jhire-top"><span className="jhire-em" aria-hidden="true">{s.em}</span><span className="jhire-nm">{s.mahsulot}</span><span className="jhire-doc">ish shartnomasi</span></div>
+              <div className="jhire-rows">
+                {[['MAHSULOT', s.mahsulot, 'kim'], ['ISH', s.ish, 'nima'], ['TUR', s.tur, 'natija']].map(([lbl, val, cls], j) => (
+                  <div key={lbl} className={`jhire-row ${cls}`}><span className="jhire-lbl">{lbl}</span><span className="jhire-val" style={{ '--fd': `${base + j * 0.45}s` }}>{val}</span></div>
+                ))}
+              </div>
+              <span className="jhire-stamp" style={{ '--fd': `${base + 1.75}s` }}>✓ YOLLANDI</span>
             </div>
-            <span className="silo-done" style={{ '--fd': `${1.1 + (i * 3 + 2) * 0.42 + 0.3}s` }}>✓</span>
+          );
+        })}
+      </div>
+      <p className="jhire-cap">✨ Dars oxirida sizning 3 kartangiz ham shu shtampni oladi.</p>
+      <div className="takeaway fade-up delay-2"><span className="ta-bulb">🎯</span><p className="ta-h">Bu 3 karta + MVP bosh-ishi keyingi custdev (mijozni o'rganish) darsida ishlatiladi.</p><p className="ta-sub">Tayyor natija = mijozni o'rganishning poydevori</p></div>
+    </div>
+  </Stage>
+);
+
+// ===== SCREEN 2 — YADRO: kalkulyator-savoli + «telefon ekrani» (ilova qaysi ISHga yollanadi?) =====
+// Interaktiv mini-sahna (unscored, onAnswer'siz): 3 ilova-ikonka bosilganda 3D-flip bilan ISHini ochadi.
+const JAPPS = [
+  { ic: '🧮', name: 'Kalkulyator', job: 'hisob-kitob bitsin' },
+  { ic: '📷', name: 'Kamera', job: 'lahzani saqlab qolish' },
+  { ic: '🗺️', name: 'Xarita', job: 'adashmay yetib borish' },
+];
+const Screen2 = ({ screen, onNext, onPrev }) => {
+  const [opened, setOpened] = useState([false, false, false]);
+  const allOpen = opened.every(Boolean);
+  const openApp = (i) => setOpened(prev => (prev[i] ? prev : prev.map((v, k) => (k === i ? true : v))));
+  return (
+    <Stage eyebrow="Muhokama · savol" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive label="Davom etish" onClick={onNext} /></>}>
+      <div className="screen" style={{ gap: 'clamp(14px,2.2vw,20px)' }}>
+        <div className="proj-q fade-up">
+          <span className="proj-q-lbl">🗣️ Sinfga savol</span>
+          <p className="proj-q-body">Kalkulyatorni oxirgi marta nega ochdingiz — <b>chiroyli</b> bo'lgani uchunmi? 🙂</p>
+        </div>
+        <Mentor>Hech kim kalkulyatorni chiroyi uchun ochmaydi — u faqat bitta <b style={{ color: T.ink }}>ISH</b> uchun kerak. Telefondagi 3 ilovani bosib, har biri qaysi ishga yollanganini oching.</Mentor>
+        <div className="jphone fade-up delay-1">
+          <span className="jphone-notch" aria-hidden="true" />
+          <div className="jphone-grid">
+            {JAPPS.map((a, i) => (
+              <button key={i} className={`japp ${opened[i] ? 'open' : 'taphint'}`} onClick={() => openApp(i)} disabled={opened[i]} aria-label={a.name}>
+                <span className="japp-inner">
+                  <span className="japp-face japp-front"><span className="japp-ic" aria-hidden="true">{a.ic}</span><span className="japp-nm">{a.name}</span></span>
+                  <span className="japp-face japp-back"><span className="japp-lbl">ISHI</span><span className="japp-job">{a.job}</span></span>
+                </span>
+              </button>
+            ))}
           </div>
-        ))}
+          <p className="jphone-cap">{allOpen ? "✓ 3/3 — har ilova o'z ishiga yollangan" : 'Ikonkalarni bosing — ortidagi ISHi ochiladi'}</p>
+        </div>
+        {allOpen && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Ilovani chiroyi uchun emas — <b>ISHI</b> uchun ochamiz.</p></div>}
+        <div className="ex-card fade-up delay-2">
+          <span className="ex-lbl">🚲 O'smir hayotidan</span>
+          <p className="ex-body">Velosipedni ham «<b>maktabga tez yetish</b>» ishiga yollaysiz — raqibi <b>avtobus</b>.</p>
+        </div>
+        <MentorNote>Har kim bittadan javob aytsin. Qoidani SAVOLDAN OLDIN aytmang — o'quvchi «ish» g'oyasiga uchala ikonkani ochib o'zi kelsin.</MentorNote>
       </div>
-      <p className="silo-cap">✨ Bugun sizning 3 kartangiz ham shunday to'ladi.</p>
-      <div className="takeaway fade-up delay-2"><span className="ta-bulb">🎯</span><p className="ta-h">Bu 3 karta + MVP bosh-ishi keyingi custdev darsida ishlatiladi.</p><p className="ta-sub">Tayyor natija = mijozni o'rganishning poydevori</p></div>
-    </div>
-  </Stage>
-);
+    </Stage>
+  );
+};
 
-// ===== SCREEN 2 — YADRO: savol-ekran (sinf muhokamasi + velosiped misoli) =====
-const Screen2 = ({ screen, onNext, onPrev }) => (
-  <Stage eyebrow="Muhokama · savol" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive label="Davom etish" onClick={onNext} /></>}>
-    <div className="screen" style={{ gap: 'clamp(14px,2.2vw,20px)' }}>
-      <div className="proj-q fade-up">
-        <span className="proj-q-lbl">🗣️ Sinfga savol</span>
-        <p className="proj-q-body">Kecha Telegram'ni nima uchun ochdingiz — ilova <b>chiroyli</b> bo'lgani uchunmi yoki biror <b>ISH</b> bitishi uchunmi?</p>
-      </div>
-      <Mentor>«Telegramni ochdim» — bu harakat. Bizga esa <b style={{ color: T.ink }}>ish</b> kerak: «do'st bilan gaplashish». Odamlar mahsulotni emas, u bajaradigan ishni oladi.</Mentor>
-      <div className="ex-card fade-up delay-1">
-        <span className="ex-lbl">🚲 O'smir hayotidan misol</span>
-        <p className="ex-body">Velosipedni «sport anjomi» emas, «<b>maktabga tez yetish</b>»ga yollaysiz. Raqibi — <b>avtobus</b>.</p>
-        <div className="ex-tags"><span className="ex-tag kim">MAHSULOT: velosiped</span><span className="ex-tag nima">ISH: tez yetish</span><span className="ex-tag natija">RAQIB: avtobus</span></div>
-      </div>
-      <MentorNote>Har kim bittadan javob aytsin. Qoidani SAVOLDAN OLDIN aytmang — o'quvchi «ish» g'oyasiga muhokama orqali o'zi kelsin.</MentorNote>
-    </div>
-  </Stage>
-);
-
-// ===== SCREEN 3 — QOIDA: JTBD ta'rifi + 3 ish-turi interaktiv kartalari (bosib ochiladi) =====
+// ===== SCREEN 3 — QOIDA: drel→teshik demo-lenta + 3 ish-turi 3D-FLIP kartalari =====
+// Ball-mantiq o'zgarmagan: uchala karta ochilganda onAnswer(screen, { opened, correct: true }).
 const JOB_TYPES = [
-  { key: 'funksional', ic: '🔧', h: 'Funksional', short: "Vazifa bitsin", body: <>Ish <b>bajarilsin</b>: teshik ochilsin, joyga yetib borilsin, ovqat pishsin. Eng ko'rinadigan tur.</>, ex: 'Drel → devordagi teshik' },
-  { key: 'ijtimoiy',   ic: '👥', h: 'Ijtimoiy',   short: "Qanday ko'rinaman", body: <>Ish — <b>boshqalar ko'zida qanday ko'rinishim</b>: obro', tan olinish, guruhga mansublik.</>, ex: 'Brend soat → nufuz belgisi' },
-  { key: 'emotsional', ic: '💗', h: 'Emotsional', short: "Qanday his qilaman", body: <>Ish — <b>o'zimni qanday his qilishim</b>: xotirjamlik, hayajon, shinamlik, ishonch.</>, ex: 'Issiq choy → shinam his' },
+  { key: 'funksional', ic: '🔧', h: 'Funksional', short: 'Vazifa bitsin', body: <>Ish <b>bajarilsin</b>: teshik ochilsin, manzilga yetib borilsin.</>, ex: 'Drel → teshik' },
+  { key: 'ijtimoiy',   ic: '👥', h: 'Ijtimoiy',   short: "Qanday ko'rinaman", body: <><b>Boshqalar ko'zida</b> qanday ko'rinaman: obro', tan olinish.</>, ex: 'Brend soat → nufuz' },
+  { key: 'emotsional', ic: '💗', h: 'Emotsional', short: 'Qanday his qilaman', body: <>O'zimni qanday <b>his qilaman</b>: xotirjamlik, hayajon, shinamlik.</>, ex: 'Issiq choy → shinam his' },
 ];
 const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [st, setSt] = useState(() => ({ opened: storedAnswer?.opened ? storedAnswer.opened.slice() : [false, false, false] }));
@@ -918,23 +943,36 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     if (opened.every(Boolean) && storedAnswer === undefined) onAnswer(screen, { opened, correct: true });
   };
   return (
-    <Stage eyebrow="Qoida" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? 'Davom etish' : 'Uch turni ham oching'} onClick={onNext} /></>}>
+    <Stage eyebrow="Qoida" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? 'Davom etish' : 'Uch kartani ham aylantiring'} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(14px,2.2vw,20px)' }}>
         <div className="head"><h2 className="title h-title fade-up">Odamlar aslida <span className="italic" style={{ color: T.accent }}>nimani</span> sotib oladi?</h2></div>
-        <Mentor>Qoida: odamlar mahsulotni emas, u bajaradigan <b style={{ color: T.ink }}>«ish»</b> bitishini sotib oladi (<b style={{ color: T.ink }}>Jobs-to-be-Done, JTBD</b>). «Odamlar drel emas, devordagi teshikni sotib oladi». Har «ish» uch xil bo'ladi — quyidagi kartalarni bosib oching.</Mentor>
-        <div className="jtype-grid fade-up delay-1">
+        <Mentor>Odamlar mahsulotning o'zini emas — u bajarib beradigan <b style={{ color: T.ink }}>ISH</b>ni sotib oladi (<b style={{ color: T.ink }}>Jobs-to-be-Done, JTBD</b>). Drel kerak emas — devordagi TESHIK kerak. Har ish uch xil — kartalarni bosib, aylantiring.</Mentor>
+        <div className="jdrill fade-up" aria-label="Drel emas — teshik kerak">
+          <span className="jdrill-tool" aria-hidden="true">🔩</span>
+          <span className="jdrill-arrow" aria-hidden="true">→</span>
+          <span className="jdrill-wall" aria-hidden="true"><i className="jdrill-hole" /></span>
+          <span className="jdrill-tag">TESHIK = ish</span>
+        </div>
+        <div className="jt3-grid fade-up delay-1">
           {JOB_TYPES.map((jt, i) => (
-            <button key={jt.key} className={`jtype ${jt.key} ${st.opened[i] ? 'open' : ''}`} onClick={() => openCard(i)} disabled={st.opened[i]}>
-              <span className="jtype-ic">{jt.ic}</span>
-              <span className="jtype-h">{jt.h}</span>
-              <span className="jtype-short">{jt.short}</span>
-              {st.opened[i]
-                ? <><span className="jtype-body">{jt.body}</span><span className="jtype-ex">🔎 {jt.ex}</span></>
-                : <span className="jtype-tap">bosib oching ▾</span>}
+            <button key={jt.key} className={`jt3 ${jt.key} ${st.opened[i] ? 'flip' : ''}`} onClick={() => openCard(i)} disabled={st.opened[i]}>
+              <span className="jt3-inner">
+                <span className="jt3-face jt3-front">
+                  <span className="jt3-ic" aria-hidden="true">{jt.ic}</span>
+                  <span className="jt3-h">{jt.h}</span>
+                  <span className="jt3-short">{jt.short}</span>
+                  <span className="jt3-q" aria-hidden="true">?</span>
+                </span>
+                <span className="jt3-face jt3-back">
+                  <span className="jt3-h">{jt.h}</span>
+                  <span className="jt3-body">{jt.body}</span>
+                  <span className="jt3-ex">🔎 {jt.ex}</span>
+                </span>
+              </span>
             </button>
           ))}
         </div>
-        {done && <div className="frame-soft fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Esingizdami? M3'dagi <b>milkshake</b> ham shu edi — uni «yo'lda zerikmaslik ishi»ga yollagan edik. Endi bir keysni birga ko'ramiz.</p></div>}
+        {done && <div className="frame-soft fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>M3'dagi <b>milkshake</b> ham shu edi — «yo'lda zerikmaslik» ishiga yollangan edik. Endi bir keysni birga ko'ramiz.</p></div>}
         <MentorNote>Qoidani SAVOLDAN OLDIN aytmang. K18'da raqam yo'q — raqam to'qimang. Har turga sinfdan bittadan misol so'rang.</MentorNote>
       </div>
     </Stage>
@@ -1016,12 +1054,29 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     writeMvp(data);
   };
   return (
-    <Stage eyebrow="Amaliyot · MVP" screen={screen} narrow navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!v.full} label={v.full ? 'Davom etish' : "Bosh-ishni to'ldiring"} onClick={onNext} /></>}>
+    <Stage eyebrow="Amaliyot · MVP" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!v.full} label={v.full ? 'Davom etish' : "Bosh-ishni to'ldiring"} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
         <div className="head"><h2 className="title h-title fade-up">O'z MVP'ingiz qaysi <span className="italic" style={{ color: T.accent }}>ish</span>ni bajaradi?</h2></div>
-        <Mentor>Shablon: <b style={{ color: T.ink }}>«Foydalanuvchim [mahsulotim]ni [ish] uchun yollaydi»</b>. MVP g'oyangizni yozing: u qaysi <b style={{ color: T.ink }}>ish</b>ni bajaradi va bu qaysi tur — pastdagi ranglar to'lganda bosh-ish tayyor.</Mentor>
-        <JobMiniEditor data={st} onChange={change} />
-        {v.full && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>✅ MVP bosh-ishi tayyor! Bu ustaxonada 4-karta (mos-yozuv) bo'lib yoningizda turadi.</p></div>}
+        <Mentor>Shablon: <b style={{ color: T.ink }}>«Foydalanuvchim [mahsulotim]ni [ish] uchun yollaydi»</b>. MVP g'oyangizni yozing — o'ngdagi yollash panelida uch chiroq yonganda bosh-ish tayyor.</Mentor>
+        <div className="split">
+          <Col>
+            <JobMiniEditor data={st} onChange={change} />
+          </Col>
+          <Col>
+            <div className="mvplamps fade-up delay-1">
+              <span className="card-lbl" style={{ color: T.accent }}>💡 Yollash paneli</span>
+              {[['kim', 'MAHSULOT', v.mahsulotOk], ['nima', 'ISH', v.ishOk], ['natija', 'TUR', v.turOk]].map(([k, lbl, on]) => (
+                <div key={k} className={`mvplamp ${k} ${on ? 'on' : ''}`}>
+                  <span className="mvplamp-dot" />
+                  <span className="mvplamp-lbl">{lbl}</span>
+                  <span className="mvplamp-st">{on ? 'yondi ✓' : 'kutilmoqda…'}</span>
+                </div>
+              ))}
+              {v.full && <span className="jhire-stamp" style={{ '--fd': '0.15s' }}>✓ YOLLANDI</span>}
+            </div>
+            {v.full && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>✅ MVP bosh-ishi tayyor! Bu ustaxonada 4-karta (mos-yozuv) bo'lib yoningizda turadi.</p></div>}
+          </Col>
+        </div>
       </div>
     </Stage>
   );
@@ -1083,16 +1138,17 @@ const ScreenJobWorkshop = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) =
     cards: initJobCards(storedAnswer),
     done: !!(storedAnswer && storedAnswer.solved),
     helpOpen: false,
+    starOpen: false,
   }));
-  const { cards, done, helpOpen } = st;
+  const { cards, done, helpOpen, starOpen } = st;
   const allFull = cards.every(c => validateJob(c.mahsulot, c.ish, c.tur).full);
   const turlar = new Set(cards.map(c => c.tur).filter(Boolean));
   const twoKinds = turlar.size >= 2;
   const realJob = allFull && cards.every(c => c.ish.trim().toLowerCase() !== c.mahsulot.trim().toLowerCase());
   const checks = [
-    { ok: allFull, label: "Har 3 karta to'liq (mahsulot + ish + tur)" },
-    { ok: twoKinds, label: "Kamida 2 xil ish-turi ishlatilgan" },
-    { ok: realJob, label: "Har «ish» — harakat-natija (mahsulot nomining takrori emas)" },
+    { ok: allFull, label: "3 karta to'liq" },
+    { ok: twoKinds, label: "2 xil tur bor" },
+    { ok: realJob, label: "Ish ≠ mahsulot nomi" },
   ];
   const passed = checks.every(c => c.ok);
   const setCard = (i, patch) => setSt(prev => { const cards = prev.cards.map((c, k) => k === i ? { ...c, ...patch } : c); writeJobs(cards); return { ...prev, cards }; });
@@ -1106,23 +1162,21 @@ const ScreenJobWorkshop = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) =
     <Stage eyebrow="Mustaqil ish · ustaxona ✍️" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? 'Davom etish' : 'Avval bajaring'} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
         <div className="head"><h2 className="title h-title fade-up">O'zingiz 3 ta <span className="italic" style={{ color: T.accent }}>JTBD-karta</span> yig'a olasizmi?</h2></div>
-        <Mentor>Hayotingizdagi 3 mahsulot uchun karta to'ldiring: <b style={{ color: T.ink }}>MAHSULOT → qaysi ISHga yollaysiz → ish TURI</b>. Kamida 2 xil tur bo'lsin. Har «ish» — harakat-natija bo'lsin (mahsulot nomining takrori emas). Tugagach «Bajardim»ni bosing.</Mentor>
+        <Mentor>3 mahsulotingizga karta to'ldiring: <b style={{ color: T.ink }}>mahsulot → u bajaradigan ish → ish turi</b>. Ro'yxat 3/3 bo'lsa, «Bajardim» ochiladi.</Mentor>
         {mvp && (mvp.mahsulot || mvp.ish) && (
-          <div className="mvp-ref fade-up">
-            <span className="mvp-ref-lbl">📌 MVP bosh-ishingiz (mos-yozuv)</span>
-            <span className="mvp-ref-sent">Foydalanuvchim <b>{mvp.mahsulot || '—'}</b>ni <b>{mvp.ish || '—'}</b> uchun yollaydi{mvp.tur ? <> · <i>{mvp.tur}</i></> : null}.</span>
-          </div>
+          <div className="mvp-chip fade-up"><span className="mvp-chip-lbl">📌 MVP</span><span className="mvp-chip-txt"><b>{mvp.mahsulot || '—'}</b> → {mvp.ish || '—'}{mvp.tur ? <> · <i>{mvp.tur}</i></> : null}</span></div>
         )}
         <div className="split">
           <Col>
             {cards.map((c, i) => {
               const v = validateJob(c.mahsulot, c.ish, c.tur);
+              const nOk = [v.mahsulotOk, v.ishOk, v.turOk].filter(Boolean).length;
               return (
                 <div key={i} className={`swcard ${v.full ? 'ok' : ''}`}>
-                  <div className="swcard-h"><span className="swcard-n">{i + 1}</span><span className="swcard-sent">Foydalanuvchi <b>{c.mahsulot || '[mahsulot]'}</b>ni <b>{c.ish || '[ish]'}</b> uchun yollaydi.</span></div>
+                  <div className="swcard-h"><span className="swcard-n">{i + 1}</span><span className="swcard-sent">Foydalanuvchi <b>{c.mahsulot || '[mahsulot]'}</b>ni <b>{c.ish || '[ish]'}</b> uchun yollaydi.</span>{v.full ? <span className="jhire-stamp mini">✓ YOLLANDI</span> : <span className="swcard-prog">{nOk}/3</span>}</div>
                   <div className="swcard-fields two">
-                    <label className={`smini-f kim ${v.mahsulotOk ? 'on' : ''}`}><span>MAHSULOT</span><input value={c.mahsulot} onChange={e => setCard(i, { mahsulot: e.target.value })} placeholder="masalan: Telegram" /></label>
-                    <label className={`smini-f nima ${v.ishOk ? 'on' : ''}`}><span>ISH</span><input value={c.ish} onChange={e => setCard(i, { ish: e.target.value })} placeholder="masalan: xabardor turish" /></label>
+                    <label className={`smini-f kim ${v.mahsulotOk ? 'on' : ''}`}><span>MAHSULOT</span><input value={c.mahsulot} onChange={e => setCard(i, { mahsulot: e.target.value })} placeholder="masalan: naushnik" /></label>
+                    <label className={`smini-f nima ${v.ishOk ? 'on' : ''}`}><span>ISH</span><input value={c.ish} onChange={e => setCard(i, { ish: e.target.value })} placeholder="masalan: yo'lda zerikmaslik" /></label>
                   </div>
                   <div className={`smini-f natija ${v.turOk ? 'on' : ''}`} style={{ display: 'flex', flexDirection: 'column', gap: 6 }}><span>ISH TURI</span><TurPicker value={c.tur} onPick={t => setCard(i, { tur: t })} /></div>
                   <label className="swcard-raqib"><span>⭐ RAQOBATCHI-ISH (yulduzcha)</span><input value={c.raqib} onChange={e => setCard(i, { raqib: e.target.value })} placeholder="shu ishni yana nima bajaradi?" /></label>
@@ -1135,23 +1189,26 @@ const ScreenJobWorkshop = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) =
               <div className="card-lbl" style={{ color: passed ? T.success : T.accent }}>📋 Ro'yxat — {checks.filter(c => c.ok).length}/3</div>
               {checks.map((c, i) => <StoryCheck key={i} ok={c.ok} label={c.label} />)}
             </div>
-            <div className={`yordam ${helpOpen ? 'open' : ''} fade-up`}>
-              <button className="yordam-toggle" onClick={() => setSt(prev => ({ ...prev, helpOpen: !prev.helpOpen }))}>💡 Yordam kerakmi? {helpOpen ? '▾' : '▸'}</button>
-              {helpOpen && <div className="yordam-body">
-                <p>Shu mahsulotni o'chirsangiz, o'rniga <b>NIMA</b> qilardingiz? O'sha «nima» — ish.</p>
-                <p>Uni bajarayotganda o'zingizni qanday <b>his qilasiz</b>? — turi shundan chiqadi.</p>
-                <p className="yordam-hint">Mahsulot — vosita, ish — maqsad.</p>
-              </div>}
-            </div>
-            <div className="star-task fade-up">
-              <span className="card-lbl" style={{ color: T.blue }}>⭐ Yulduzcha topshirig'i</span>
-              <p className="small" style={{ margin: 0, color: T.ink2 }}>Har karta uchun <b>RAQOBATCHI-ISH</b>ni yozing: shu ishni hozir yana nima bajaryapti? (velosipedga avtobus raqib bo'lgani kabi)</p>
+            <div className="wsx-row fade-up">
+              <div className={`wsx ${helpOpen ? 'open' : ''}`}>
+                <button className="wsx-toggle" onClick={() => setSt(prev => ({ ...prev, helpOpen: !prev.helpOpen }))}>💡 Yordam {helpOpen ? '▾' : '▸'}</button>
+                {helpOpen && <div className="wsx-body">
+                  <p>Mahsulot yo'qolsa, o'rniga <b>nima</b> qilardingiz? O'sha «nima» — ish.</p>
+                  <p>Ishni bajarayotganda qanday <b>his qilasiz</b>? — turi shundan chiqadi.</p>
+                </div>}
+              </div>
+              <div className={`wsx star ${starOpen ? 'open' : ''}`}>
+                <button className="wsx-toggle" onClick={() => setSt(prev => ({ ...prev, starOpen: !prev.starOpen }))}>⭐ Yulduzcha {starOpen ? '▾' : '▸'}</button>
+                {starOpen && <div className="wsx-body">
+                  <p>Har kartaga <b>RAQOBATCHI-ISH</b> yozing: shu ishni yana nima bajaradi? (velosipedga avtobus raqib)</p>
+                </div>}
+              </div>
             </div>
             <MentorPracticeStats live={live} screen={screen} label="✍️ Ustaxonani tugatganlar" />
             <button className={`lp-done-btn ${done ? 'is-done' : ''}`} disabled={done || !passed} onClick={complete}>
               {done ? '✓ Bajarildi — ustozni kuting' : passed ? '✅ Bajardim' : `Ro'yxat 3/3 bo'lsin (${checks.filter(c => c.ok).length}/3)`}
             </button>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Zo'r! 3 JTBD-kartangiz tayyor — bu sizning tayyor natijangiz. Ustoz tekshirib, keyingi qadamga o'tkazadi.</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Zo'r! 3 kartangiz ham «YOLLANDI» shtampini oldi. Ustoz tekshirib, keyingi qadamga o'tkazadi.</p></div>}
           </Col>
         </div>
         <MentorNote>3/3 = o'tdi · 2/3 = joyida to'ldiradi · kam = YORDAM savollari bilan qaytadan. Sinf bo'ylab yurib nuqtali yordam bering.</MentorNote>
@@ -1279,7 +1336,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     const dx = e.clientX - d.x0, dy = e.clientY - d.y0;
     if (!d.moved && (Math.abs(dx) > 5 || Math.abs(dy) > 5)) d.moved = true;
     if (d.moved) {
-      d.el.style.transform = `translate(${dx}px, ${dy}px) scale(1.04)`; d.el.style.zIndex = '60'; d.el.style.position = 'relative';
+      d.el.style.transform = `translate(${dx}px, ${dy}px) scale(1.05) rotate(2.5deg)`; d.el.style.zIndex = '60'; d.el.style.position = 'relative';
       const over = hitTarget(e.clientX, e.clientY);
       for (const t of MP_TARGET_ORDER) { const el = targetEls.current[t]; if (el) el.classList.toggle('dragover', t === over); }
     }
@@ -1304,10 +1361,11 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow="Tekshiruv · juftlash" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={navDisabled} label={navLabel} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(14px,2.4vw,22px)' }}>
         <div className="fade-up">
-          <QPrompt tag="TEST 3/3" lead="Endi 3 JTBD-karta yozdingiz." cue="Har mahsulotni o'z «ishi» bilan juftlang — chipni to'g'ri karta ustiga torting (yoki bosib tanlang, keyin kartani bosing)." />
+          <QPrompt tag="TEST 3/3" lead="3 JTBD-kartangiz tayyor — endi bilimingizni yangi 4 mahsulotda sinaymiz." cue="Har mahsulotni o'z «ishi» bilan juftlang — chipni to'g'ri karta ustiga torting (yoki bosib tanlang, keyin kartani bosing)." />
         </div>
         {oneShot && st.result === null && <p className="small mono fade-up" style={{ margin: '-8px 0 0', color: T.accent, fontWeight: 600 }}>⚡ Jonli dars — bitta urinish, o'ylab juftlang!</p>}
         <div className="mp-wrap fade-up delay-1">
+          <div className="mp-decor" aria-hidden="true">{['ISH?', 'JTBD', 'drel→teshik', 'funksional', 'ijtimoiy', 'emotsional'].map((t, k) => <span key={k} className={`mp-decor-t md${k}`}>{t}</span>)}</div>
           <div className="mp-targets">
             {MP_TARGET_ORDER.map(t => {
               const c = assign[t];
@@ -1323,6 +1381,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                     {isPlaced
                       ? <span className={`mp-chip placed ${revealed ? (correctHere ? 'ok' : 'bad') : ''}`}><span className="mp-chip-ic">{MP_PAIRS[c].ic}</span>{MP_PAIRS[c].chip}{revealed && (correctHere ? <span className="mp-mark ok">✓</span> : <span className="mp-mark bad">✕</span>)}</span>
                       : <span className="mp-slot-empty">bu yerga torting</span>}
+                    {revealed && correctHere && <span className="mp-burst" aria-hidden="true">{[0, 1, 2, 3, 4, 5].map(k => <span key={k} style={{ '--ba': `${k * 60}deg` }}>✦</span>)}</span>}
                   </div>
                 </div>
               );
@@ -1364,235 +1423,161 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   );
 };
 
-// ===== SCREEN 10 — KODING: REAL compiler-qobiq (jtbdKarta — 3 shart; new Function bilan xavfsiz ishga tushirish) =====
-const KODING_STARTER = `function jtbdKarta(mahsulot, ish, tur) {
-  // Karta-satr yig'ing: [mahsulot] → [ish] ([tur])
-  return '';
-}
-console.log(jtbdKarta('velosiped', 'maktabga tez yetib borish', 'funksional'));`;
-const KODING_CONDS = [
-  { id: 'c1', label: "Funksiya satr qaytaradi — bo'sh emas", hint: "return qatorini to'ldiring: hozir bo'sh matn ('') qaytmoqda." },
-  { id: 'c2', label: "Format to'g'ri: [mahsulot] → [ish] (tur)", hint: "Template literal: `${mahsulot} → ${ish} (${tur})`" },
-  { id: 'c3', label: "O'z 3 kartangiz chiqarildi (kamida 3 karta)", hint: "jtbdKarta'ni kamida 3 marta chaqirib, kartalaringizni console.log qiling." },
+// ===== SCREEN 10 — KODING: «3 kartangiz — React komponent» (VS Code'da o'z MVP loyihasiga) =====
+// M7 o'quvchisi React (M3) va o'z MVP loyihasini biladi — shu bois JS-kompilyator emas, REAL VS Code
+// topshirig'i: tayyor JtbdCard skeletini nusxalab, o'z loyihasida 3 kartasini komponent qilib chiqaradi.
+// WOW: kdJobs() — o'quvchining USTAXONADA yozgan real 3 kartasi (JOBS_KEY) preview-panelda komponent
+// ko'rinishida chiqadi; bo'sh bo'lsa namunaviy DEMO_JTBD ishlatiladi.
+// Ball-rels O'ZGARMAGAN: onAnswer({stage:'koding',...}) + live.submitAnswer(PRACTICE_BASE+screen,'koding',0,true,0).
+const KD_STEPS = [
+  "`src` ichida `JtbdCard.jsx` fayl yaratdim",
+  "Komponent props qabul qiladi: mahsulot · ish · tur",
+  "`App`da 3 kartamni chaqirdim",
+  "Brauzerda 3 karta ko'rindi",
 ];
-// ===== PM-KOMPILYATOR — Htmllesson1 (HtmlCompiler) tizimi PM-qobiqda (QOBIQ P0'dan, harness JTBD'niki) =====
-// INFRA-MANBA: src/compilator/HtmlCompiler.jsx (iframe sandbox="allow-scripts" + console-capture +
-//   runtime-harness → postMessage report). FAQAT dvijok ko'chirildi; JTBD topshiriq/shartlari o'zining.
-const HC_PREVIEW_CSS = `
-  *{box-sizing:border-box}
-  body{font-family:-apple-system,'Segoe UI',Roboto,sans-serif;margin:0;padding:16px;background:#FBFAFE;color:#1B1630}
-  #hcpm-out{display:flex;flex-direction:column;gap:9px}
-  .hcpm-empty{font-style:italic;color:#9C97B4;font-size:13px;margin:0}
-  .hcpm-err{font-family:monospace;font-size:13px;color:#E5484D;background:#FCE7E8;border-radius:9px;padding:10px 12px;margin:0;white-space:pre-wrap;word-break:break-word}
-  .hcpm-card{font-family:Georgia,serif;font-size:15px;line-height:1.5;color:#1B1630;background:#fff;border-radius:9px;padding:11px 13px;box-shadow:0 5px 14px -8px rgba(40,34,82,.25);border-left:3px solid #E7E3F4}
-  .hcpm-card.is-story{border-left-color:#5B3DE6}
-  .hcpm-badge{display:inline-block;font-family:'Manrope',system-ui,sans-serif;font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#5B3DE6;background:#EBE5FD;border-radius:99px;padding:3px 9px;margin-bottom:6px}
-  .hcpm-txt{display:block;white-space:pre-wrap;word-break:break-word}
-`;
-// Yashirin harness — iframe ichida o'quvchi kodidan KEYIN ishlaydi (alohida <script>, xato izolyatsiyalangan).
-// jtbdKarta'ni jimgina chaqirib return'ni tekshiradi + console.log lentasini kartalar qilib chizadi.
-const HC_HARNESS = (nonce) => `(function(){
-  var N=${JSON.stringify(nonce)};
-  var logs=window.__logs||[];
-  var probe=null,err=null;
-  try{probe=(typeof jtbdKarta==="function")?jtbdKarta("velosiped","maktabga tez yetib borish","funksional"):null;}catch(e){err=String(e&&e.message||e);}
-  var c1=typeof probe==="string"&&probe.trim().length>0;
-  var pl=c1?probe.toLowerCase():"";
-  var c2=c1&&probe.indexOf("\\u2192")!==-1&&probe.indexOf("(")!==-1&&probe.indexOf(")")!==-1&&pl.indexOf("velosiped")!==-1&&pl.indexOf("funksional")!==-1;
-  var cardLogs=logs.filter(function(l){var x=String(l);return x.indexOf("\\u2192")!==-1&&x.indexOf("(")!==-1&&x.indexOf(")")!==-1;});
-  var c3=cardLogs.length>=3;
-  var esc=function(s){return String(s).replace(/[&<>]/g,function(m){return m==="&"?"&amp;":m==="<"?"&lt;":"&gt;";});};
-  var isCard=function(l){var x=String(l);return x.indexOf("\\u2192")!==-1&&x.indexOf("(")!==-1&&x.indexOf(")")!==-1;};
-  var root=document.getElementById("hcpm-out");
-  if(root){
-    if(err){root.innerHTML='<p class="hcpm-err">Xato: '+esc(err)+'</p>';}
-    else if(!logs.length){root.innerHTML='<p class="hcpm-empty">Natija hali chiqmadi — funksiyani toldiring va kartalaringizni console.log qiling.</p>';}
-    else{root.innerHTML=logs.map(function(l){var card=isCard(l);return '<div class="hcpm-card '+(card?"is-story":"")+'">'+(card?'<span class="hcpm-badge">JTBD-karta</span>':"")+'<span class="hcpm-txt">'+esc(l)+'</span></div>';}).join("");}
-  }
-  try{parent.postMessage({__hcpmReport:true,nonce:N,c1:c1,c2:c2,c3:c3,err:err,count:cardLogs.length},"*");}catch(e){}
-})();`;
-// O'quvchi kodini jonli hujjatga o'raymiz: console.log ushlagich → o'quvchi kodi → harness.
-const HC_wrapDoc = (code, nonce) => `<!doctype html><html lang="uz"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>${HC_PREVIEW_CSS}</style>
-<script>window.__logs=[];(function(){var _l=console.log;console.log=function(){for(var i=0;i<arguments.length;i++){var a=arguments[i];try{window.__logs.push(typeof a==="object"?JSON.stringify(a):String(a));}catch(e){window.__logs.push(String(a));}}try{_l.apply(console,arguments);}catch(e){}};})();<\/script>
-</head><body><div id="hcpm-out"></div>
-<script>${code}<\/script>
-<script>${HC_HARNESS(nonce)}<\/script>
-</body></html>`;
-
-// To'liq-ekran praktika: tepada topshiriq + JONLI shart-chiplar, chapda kod-muharrir,
-// o'ngda jonli natija (iframe). Kod yozilgani sari shartlar O'ZI tekshiriladi (400ms debounce, ▶ ham bor).
-function PmCompiler({ initialCode, onContinue, onBack }) {
-  const [code, setCode] = useState(initialCode || KODING_STARTER);
-  const nonceRef = useRef(0);
-  const [doc, setDoc] = useState('');
-  const [st, setSt] = useState({ ran: false, err: null, conds: { c1: false, c2: false, c3: false } });
-  useEffect(() => {
-    const t = setTimeout(() => {
-      const nonce = ++nonceRef.current;
-      setDoc(HC_wrapDoc(code, nonce));
-    }, 400);
-    return () => clearTimeout(t);
-  }, [code]);
-  useEffect(() => {
-    const onMsg = (e) => {
-      const d = e.data;
-      if (d && d.__hcpmReport && d.nonce === nonceRef.current) {
-        setSt({ ran: true, err: d.err || null, conds: { c1: !!d.c1, c2: !!d.c2, c3: !!d.c3 } });
-      }
-    };
-    window.addEventListener('message', onMsg);
-    return () => window.removeEventListener('message', onMsg);
-  }, []);
-  const { conds, err } = st;
-  const passed = conds.c1 && conds.c2 && conds.c3;
-  const okN = KODING_CONDS.filter(c => conds[c.id]).length;
-  const firstHint = KODING_CONDS.find(c => !conds[c.id])?.hint;
-  const runNow = () => { const nonce = ++nonceRef.current; setDoc(HC_wrapDoc(code, nonce)); };
-  const reset = () => setCode(initialCode || KODING_STARTER);
-  const onKeyDown = (e) => {
-    if (e.key === 'Tab') {
-      e.preventDefault();
-      const el = e.target, s = el.selectionStart, en = el.selectionEnd;
-      const next = code.slice(0, s) + '  ' + code.slice(en);
-      setCode(next);
-      requestAnimationFrame(() => { el.selectionStart = el.selectionEnd = s + 2; });
-    }
-  };
+const kdJobs = () => {
+  const saved = readJobs();
+  const full = (saved || []).filter(c => (c.mahsulot || '').trim() && (c.ish || '').trim() && c.tur);
+  return full.length >= 3 ? full.slice(0, 3) : DEMO_JTBD; // sanoq-mosligi: doim aynan 3 karta
+};
+// Ko'chirib olsa bo'ladigan boshlang'ich kod — App-chaqiruvlar o'quvchining O'Z kartalaridan yig'iladi.
+const kdCode = (jobs) => `function JtbdCard({ mahsulot, ish, tur }) {
   return (
-    <div className="hcp-root">
-      <div className="hcp-wrap">
-        <header className="hcp-top">
-          <span className="hcp-eyebrow">Koding · praktika</span>
-          <h1 className="hcp-title">Mini-asbob: JTBD-karta yig'uvchi</h1>
-          <p className="hcp-brief"><span className="mono">jtbdKarta(mahsulot, ish, tur)</span> funksiyasini to'ldiring — u «[mahsulot] → [ish] ([tur])» ko'rinishida karta-satr qaytarsin, so'ng sinfda yozgan 3 kartangizni <span className="mono">console.log</span> bilan chiqaring. Yozgan zahoti o'ngda tekshiriladi.</p>
-          <div className="hcp-checklist">
-            <span className="hcp-count">{okN}/{KODING_CONDS.length}</span>
-            {KODING_CONDS.map((c, i) => (
-              <span key={c.id} className={`hcp-chip ${conds[c.id] ? 'ok' : ''}`} title={c.hint}>
-                <span className="hcp-dot">{conds[c.id] ? '✓' : i + 1}</span>{c.label}
-              </span>
-            ))}
-          </div>
-          {err
-            ? <p className="hcp-err">⚠ Kodda xato: {err}</p>
-            : (!passed && firstHint && <p className="hcp-hint">💡 {firstHint}</p>)}
-        </header>
-        <main className="hcp-split">
-          <section className="hcp-pane">
-            <div className="hcp-pane-bar dark">
-              <span className="bb-dots"><i /><i /><i /></span>
-              <span className="hcp-tab">jtbdKarta.js</span>
-              <button className="hcp-mini" onClick={runNow}>▶ Ishga tushirish</button>
-            </div>
-            <textarea className="hcp-code" value={code} spellCheck={false} autoCapitalize="off" autoCorrect="off" onChange={e => setCode(e.target.value)} onKeyDown={onKeyDown} placeholder="Kodingizni shu yerga yozing…" />
-          </section>
-          <section className="hcp-pane">
-            <div className="hcp-pane-bar">
-              <span className="hcp-pane-name">📺 Natija</span>
-              <span className="hcp-live">jonli</span>
-            </div>
-            {doc
-              ? <iframe key={nonceRef.current} className="hcp-frame" title="Jonli natija" sandbox="allow-scripts" srcDoc={doc} />
-              : <p className="code-out-empty" style={{ padding: 16, margin: 0 }}>Yozishni boshlang — kartalaringiz shu yerda jonli chiqadi.</p>}
-          </section>
-        </main>
-        <footer className="hcp-bottom">
-          <button className="hcp-ghost" onClick={onBack}>← Darsga qaytish</button>
-          <button className="hcp-ghost" onClick={reset}>Qaytadan</button>
-          <div className="hcp-status">
-            {passed
-              ? <span className="hcp-ok-msg">✓ Uchala shart bajarildi!</span>
-              : <span className="hcp-wait-msg">Shartlarni bajaring — natija o'ngda jonli ko'rinadi</span>}
-          </div>
-          <button className="hcp-next" disabled={!passed} onClick={() => passed && onContinue({ code })}>Davom etish →</button>
-        </footer>
-      </div>
+    <div className="jtbd-card">
+      <h3>{mahsulot}</h3>
+      <p>Ishi: {ish}</p>
+      <span className="tur">{tur}</span>
     </div>
   );
 }
+
+export default JtbdCard;
+
+// App.jsx ichida — sizning 3 kartangiz:
+${jobs.map(j => `// <JtbdCard mahsulot="${j.mahsulot}" ish="${j.ish}" tur="${j.tur}" />`).join('\n')}`;
+// Mini sintaksis-bo'yoq (VS Code-mockup uchun) — faqat ko'rinish, kod bajarilmaydi.
+const KD_TOKEN = /("[^"]*"|\/\/.*$|\b(?:function|return|export|default)\b|<\/?[A-Za-z][\w.]*|\{|\})/g;
+const kdHl = (ln) => ln.split(KD_TOKEN).filter(p => p !== undefined && p !== '').map((p, i) => {
+  if (p.startsWith('//')) return <span key={i} style={{ color: '#6A9955' }}>{p}</span>;
+  if (p.startsWith('"')) return <span key={i} style={{ color: '#CE9178' }}>{p}</span>;
+  if (/^(function|return|export|default)$/.test(p)) return <span key={i} style={{ color: '#C586C0' }}>{p}</span>;
+  if (/^<\/?[A-Z]/.test(p)) return <span key={i} style={{ color: '#4EC9B0' }}>{p}</span>;
+  if (/^<\/?[a-z]/.test(p)) return <span key={i} style={{ color: '#569CD6' }}>{p}</span>;
+  if (p === '{' || p === '}') return <span key={i} style={{ color: '#FFD70A' }}>{p}</span>;
+  return <span key={i}>{p}</span>;
+});
 
 const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const gate = useContext(LiveGateCtx) || {};
   const live = gate.live;
   const isMentor = !!(live && live.mode === 'mentor');
-  const [open, setOpen] = useState(false);
-  const [st, setSt] = useState(() => ({
-    code: storedAnswer?.code || KODING_STARTER,
-    done: !!(storedAnswer && storedAnswer.solved),
-  }));
-  const { code, done } = st;
-  // Kompilyatordan qaytish: kod saqlanadi, birinchi marta tugatilganda ball-signal ketadi
-  const finishPractice = ({ code: newCode }) => {
-    setOpen(false);
-    setSt({ code: newCode, done: true });
-    if (!done) {
-      onAnswer(screen, { stage: 'koding', screenIdx: screen, code: newCode, solved: true, correct: true });
-      if (live && live.mode === 'student') live.submitAnswer(PRACTICE_BASE + screen, 'koding', 0, true, 0);
-    }
+  const [jobs] = useState(() => kdJobs());
+  const [code] = useState(() => kdCode(jobs));
+  const isOwn = jobs !== DEMO_JTBD;
+  const [checked, setChecked] = useState(() => new Set(storedAnswer && storedAnswer.solved ? KD_STEPS.map((_, i) => i) : []));
+  const [done, setDone] = useState(!!(storedAnswer && storedAnswer.solved));
+  const [copied, setCopied] = useState(false);
+  const toggle = (i) => { if (done) return; setChecked(prev => { const s = new Set(prev); if (s.has(i)) s.delete(i); else s.add(i); return s; }); };
+  const allChecked = checked.size === KD_STEPS.length;
+  const copy = () => {
+    try { navigator.clipboard.writeText(code).then(() => { setCopied(true); setTimeout(() => setCopied(false), 2200); }).catch(() => {}); } catch {}
   };
+  // Birinchi marta tugatilganda ball-signal ketadi — AYNAN eski kompilyator-relsdagidek.
+  const complete = () => {
+    if (done || !allChecked) return;
+    setDone(true);
+    onAnswer(screen, { stage: 'koding', screenIdx: screen, solved: true, correct: true });
+    if (live && live.mode === 'student') live.submitAnswer(PRACTICE_BASE + screen, 'koding', 0, true, 0);
+  };
+  const lines = code.split('\n');
   return (
-    <Stage eyebrow="Koding · 🛠 kompilyator" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !isMentor} label={done || isMentor ? 'Davom etish' : 'Avval kompilyatorda bajaring'} onClick={onNext} /></>}>
+    <Stage eyebrow="Koding · ⚛️ React" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !isMentor} label={done || isMentor ? 'Davom etish' : 'Avval bajarib belgilang'} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">JTBD-kartani <span className="italic" style={{ color: T.accent }}>kod ham</span> yig'a oladimi?</h2></div>
-        <Mentor>Sinfda 3 kartani qo'lda yozdingiz — endi shu ishni kichkina kod-asbob qilib beradi. Kompilyatorni oching: <span className="mono">jtbdKarta</span> funksiyasini to'ldirasiz, kartalaringiz o'ngda jonli chiqadi. Uchala shart yashil bo'lsa, darsga qaytib davom etasiz.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">3 kartangizni <span className="italic" style={{ color: T.accent }}>React komponent</span> qila olasizmi?</h2></div>
+        <Mentor>Sinfda yozgan 3 kartangiz pastda komponent bo'lib turibdi — endi ularni <b style={{ color: T.ink }}>o'z MVP loyihangizga</b> qo'shasiz. VS Code'ni oching, tayyor kodni nusxalab boshlang.</Mentor>
+        <div className="jprev fade-up delay-1">
+          <div className="jprev-bar"><span className="bb-dots"><i /><i /><i /></span><span className="jprev-url">localhost:5173</span><span className="jprev-src">{isOwn ? '✓ sizning 3 kartangiz' : 'namunaviy 3 karta'}</span></div>
+          <div className="jprev-cards">
+            {jobs.map((j, i) => (
+              <div key={i} className="jprev-card">
+                <span className="jprev-name">{j.em ? `${j.em} ` : ''}{j.mahsulot}</span>
+                <span className="jprev-job">Ishi: <b>{j.ish}</b></span>
+                <span className={`jprev-tur ${j.tur}`}>{j.tur}</span>
+              </div>
+            ))}
+          </div>
+        </div>
         <div className="split">
           <Col>
-            <div className="hc-task fade-up">
-              <span className="card-lbl" style={{ color: T.accent }}>📋 Kompilyatorda sizni nima kutadi</span>
-              <div className="hc-conds">
-                {KODING_CONDS.map((c, i) => {
-                  const met = done;
-                  return (
-                    <div key={c.id} className={`hc-cond ${met ? 'ok' : ''}`}>
-                      <span className="hc-cond-box">{met ? '✓' : i + 1}</span>
-                      <div className="hc-cond-txt"><span className="hc-cond-label">{c.label}</span></div>
-                    </div>
-                  );
-                })}
+            <div className="vsc fade-up delay-2">
+              <div className="vsc-bar">
+                <span className="vsc-tab on"><span style={{ color: '#61DAFB' }}>⚛</span> JtbdCard.jsx</span>
+                <span className="vsc-tab">App.jsx</span>
+                <button className={`vsc-copy ${copied ? 'ok' : ''}`} onClick={copy}>{copied ? '✓ Nusxalandi' : '📋 Nusxalash'}</button>
+              </div>
+              <div className="vsc-body">
+                {lines.map((ln, i) => (
+                  <div key={i} className="vsc-line"><span className="vsc-ln">{i + 1}</span><span className="vsc-code">{ln ? kdHl(ln) : ' '}</span></div>
+                ))}
               </div>
             </div>
-            <div className="star-task"><span className="card-lbl" style={{ color: T.blue }}>⭐ Yulduzcha</span><p className="small" style={{ margin: 0, color: T.ink2 }}>3 kartani massivga solib, <span className="mono">filter</span> bilan faqat <b>EMOTSIONAL</b> ishlarni chiqaring (2-modul massiv-metodlari esga tushadi).</p></div>
-            <MentorPracticeStats live={live} screen={screen} label="🛠 Kodni yozib bo'lganlar" />
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>✅ Ishladi! Funksiya karta-satr qaytardi va 3 kartangiz jonli chiqdi.</p></div>}
           </Col>
           <Col>
-            <div className="kod-launch fade-up delay-1">
-              <div className="kod-launch-bar"><span className="bb-dots"><i /><i /><i /></span><span className="kod-launch-title">jtbdKarta.js</span></div>
-              <div className="kod-launch-body" aria-hidden="true">{code.split('\n').slice(0, 6).join('\n')}</div>
-              <div className="kod-launch-veil">
-                <button className="kod-launch-btn" onClick={() => setOpen(true)}>{done ? '↻ Kompilyatorni qayta ochish' : '🛠 Kompilyatorni ochish'}</button>
-                <span className="kod-launch-sub">{done ? "Bajarildi — xohlasangiz kodni yana sayqallang" : "To'liq ekranda yozasiz, tugatgach darsga qaytasiz"}</span>
-              </div>
+            <p className="flow-label">VS Code'da bajarib — belgilang</p>
+            <div className="kd-steps fade-up delay-2">
+              {KD_STEPS.map((s, i) => {
+                const on = checked.has(i);
+                return (
+                  <button key={i} className={`kd-step ${on ? 'on' : ''}`} onClick={() => toggle(i)}>
+                    <span className="kd-check">{on ? '✓' : i + 1}</span>
+                    <span className="kd-step-t">{fmtCode(s)}</span>
+                  </button>
+                );
+              })}
             </div>
+            <div className="star-task"><span className="card-lbl" style={{ color: T.blue }}>⭐ Yulduzcha</span><p className="small" style={{ margin: 0, color: T.ink2 }}>3 kartani massivga solib, <span className="mono">map</span> bilan chiqaring: <span className="mono">{'jobs.map(j => <JtbdCard ... />)'}</span></p></div>
+            <MentorPracticeStats live={live} screen={screen} label="⚛️ Komponentni qurganlar" />
+            <button className={`lp-done-btn ${done ? 'is-done' : ''}`} disabled={done || !allChecked} onClick={complete}>
+              {done ? '✓ Bajarildi — ustozni kuting' : allChecked ? '✅ Bajardim' : `4 qadamni belgilang (${checked.size}/4)`}
+            </button>
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>✅ JtbdCard komponentingiz MVP loyihangizda — 3 kartangiz endi kodda yashaydi!</p></div>}
           </Col>
         </div>
-        <MentorNote>10 daqiqada ulgurmagan o'quvchi kodni uyda tugatadi — unga UY VAZIFA qisqa versiyada beriladi. Xohlasangiz kompilyatorni ochib, proyektorda yechib ko'rsating.</MentorNote>
+        <MentorNote>Eng ko'p adashish — props nomlari va Katta harf (JtbdCard). Ulgurmagan o'quvchi uyda tugatadi (qisqa uy-vazifa). Xohlasangiz proyektorda o'z VS Code'ingizda jonli ko'rsating.</MentorNote>
       </div>
-      {open && <PmCompiler initialCode={code} onContinue={finishPractice} onBack={() => setOpen(false)} />}
     </Stage>
   );
 };
 
-// ===== SCREEN 11 — RECAP: juftlik-taymer + Reflection + 3 tez savol =====
+// ===== SCREEN 11 — RECAP: 3 qadam-karta (juftlik-taymer + Reflection + 3 tez savol) =====
 const REFLECT_KEY = 'pm-m7d2-reflection';
+// Juftlik-taymeri (P0 etalon): 60s = avval A gapiradi (30s), keyin B (30s) — kim gapirayotgani
+// doim ko'rinadi (🎙 puls), o'rta-marker progress, «✓ Vaqt tugadi» holati.
 function PairTimer() {
-  const [st, setSt] = useState({ running: false, left: 60 });
+  const [st, setSt] = useState({ running: false, left: 60, done: false });
   useEffect(() => {
     if (!st.running) return;
-    if (st.left <= 0) { setSt(p => ({ ...p, running: false })); return; }
+    if (st.left <= 0) { setSt({ running: false, left: 60, done: true }); return; }
     const t = setTimeout(() => setSt(p => ({ ...p, left: p.left - 1 })), 1000);
     return () => clearTimeout(t);
   }, [st.running, st.left]);
-  const role = st.left > 30 ? 'A' : 'B';
+  const isA = st.left > 30;
   return (
-    <div className="pair-timer fade-up">
-      <div className="pair-timer-top"><span className="pair-role">Navbat: <b>{st.running ? `${role}` : 'A'}</b></span><span className="pair-clock">{Math.floor(st.left / 60)}:{String(st.left % 60).padStart(2, '0')}</span></div>
-      <p className="small" style={{ margin: 0, color: T.ink2 }}>Juftlikda navbat bilan: «mening MVP'im [ish] uchun, chunki...». 30 soniyada rol almashadi.</p>
+    <div className="pair-timer">
+      {st.running ? (
+        <>
+          <div className="pair-timer-top">
+            <span className="pair-now"><span className="pair-mic" aria-hidden="true">🎙</span> Hozir <span className={`pair-who ${isA ? '' : 'b'}`}>{isA ? 'A' : 'B'}</span> gapiradi{isA ? ' — keyin B' : ''}</span>
+            <span className="pair-clock">{isA ? st.left - 30 : st.left}s</span>
+          </div>
+          <div className="pair-prog"><span className="pair-prog-fill" style={{ width: `${((60 - st.left) / 60) * 100}%` }} /><i className="pair-prog-mid" aria-hidden="true" /></div>
+        </>
+      ) : (
+        <p className="pair-now" style={{ margin: 0 }}>{st.done ? "✓ Vaqt tugadi — ikkalangiz ham aytdingizmi? Barakalla!" : "Har biringizga 30 soniyadan: avval A gapiradi, keyin B."}</p>
+      )}
       <div className="pair-timer-btns">
-        <button className="btn-soft" onClick={() => setSt({ running: true, left: 60 })}>▶ 1 daqiqa boshlash</button>
-        {st.running && <button className="btn-soft" onClick={() => setSt({ running: false, left: 60 })}>⏹ To'xtatish</button>}
+        {!st.running && <button className="btn-soft" onClick={() => setSt({ running: true, left: 60, done: false })}>{st.done ? '↻ Yana 1 daqiqa' : '▶ 1 daqiqani boshlash'}</button>}
+        {st.running && <button className="btn-soft" onClick={() => setSt({ running: false, left: 60, done: false })}>⏹ To'xtatish</button>}
       </div>
     </div>
   );
@@ -1600,22 +1585,32 @@ function PairTimer() {
 const Screen11 = ({ screen, onNext, onPrev }) => {
   const [text, setText] = useState(() => { try { return localStorage.getItem(REFLECT_KEY) || ''; } catch { return ''; } });
   const save = (v) => { setText(v); try { localStorage.setItem(REFLECT_KEY, v); } catch {} };
+  const written = text.trim().length >= 8;
   return (
     <Stage eyebrow="Mustahkamlash · 3 qadam" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext label="Davom etish" onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
         <div className="head"><h2 className="title h-title fade-up">MVP'ingiz qaysi <span className="italic" style={{ color: T.accent }}>ish</span>ga yollanadi — va nega?</h2></div>
-        <Mentor>Dars deyarli tugadi — endi o'rgangan narsangiz o'z og'zingizdan chiqsin. Pastdagi <b style={{ color: T.ink }}>uch qadamni</b> tartib bilan bajaring: avval juftlikda aytasiz, keyin bir qator yozasiz, oxirida butun sinf bilan tez savollarga javob berasiz.</Mentor>
-        <PairTimer />
-        <div className="reflect fade-up delay-1">
-          <span className="card-lbl" style={{ color: T.accent }}>✍️ Reflection — bir qator</span>
-          <input className="reflect-input" value={text} onChange={e => save(e.target.value)} placeholder="Mening MVP'im ... ishi uchun, chunki ..." maxLength={160} />
+        <Mentor>Dars deyarli tugadi — endi o'rganganingiz o'z og'zingizdan chiqsin. Uch qadam: avval juftlikda aytasiz, keyin bir qator yozasiz, oxirida sinf bilan tez savollarga javob berasiz.</Mentor>
+        <div className="rcp-flow">
+          <div className="rcp-step fade-up delay-1">
+            <div className="rcp-step-h"><span className="rcp-n">1</span><div><span className="rcp-t">🗣 Juftlikda ayting</span><span className="rcp-s">«Mening MVP'im [ish] uchun, chunki...» — 30 soniyada rol almashadi</span></div></div>
+            <PairTimer />
+          </div>
+          <div className="rcp-step fade-up delay-2">
+            <div className="rcp-step-h"><span className="rcp-n">2</span><div><span className="rcp-t">✍️ Bir qator yozing</span><span className="rcp-s">Hozirgina aytganingizni bitta gapga sig'diring</span></div></div>
+            <input className="reflect-input" value={text} onChange={e => save(e.target.value)} placeholder="Mening MVP'im ... ishi uchun, chunki ..." maxLength={160} />
+            {written && <p className="small" style={{ margin: 0, color: T.success, fontWeight: 700 }}>✓ Yozildi — custdev darsida shu gapdan boshlaymiz.</p>}
+          </div>
+          <div className="rcp-step wide fade-up delay-3">
+            <div className="rcp-step-h"><span className="rcp-n">3</span><div><span className="rcp-t">⚡ Sinf bilan — 3 tez savol</span><span className="rcp-s">Mentor o'qiydi, siz harakat bilan javob berasiz</span></div></div>
+            <div className="qa-cards">
+              <div className="qa-card"><span className="qa-ic">✋</span><p>Odamlar mahsulotni sotib oladimi yoki <b>ishni</b>? — qo'l ko'taring</p></div>
+              <div className="qa-card"><span className="qa-ic">🗳️</span><p>selfi-chiroq qaysi <b>tur</b> ishga yollanadi? — ovoz bering</p></div>
+              <div className="qa-card"><span className="qa-ic">📄</span><p>3/3 JTBD yozganlar — ekranini ko'tarsin</p></div>
+            </div>
+          </div>
         </div>
-        <div className="qa-cards fade-up delay-2">
-          <div className="qa-card"><span className="qa-ic">✋</span><p>Odamlar mahsulotni sotib oladimi yoki <b>ishni</b>? — qo'l ko'taring</p></div>
-          <div className="qa-card"><span className="qa-ic">🗳️</span><p>selfi-chiroq qaysi <b>tur</b> ishga yollanadi? — ovoz bering</p></div>
-          <div className="qa-card"><span className="qa-ic">📄</span><p>3/3 JTBD yozganlar — ekranini ko'tarsin</p></div>
-        </div>
-        <MentorNote>Soft: juftlikda «mening MVP'im qaysi ishga yollanadi» mini-pitch. Sinfning uchdan biri «ish»ni mahsulot ta'rifi bilan aralashtirsa — velosiped misolini qayta tushuntiring (keysni emas, sodda misolni).</MentorNote>
+        <MentorNote>Soft: juftlikda «mening MVP'im qaysi ishga yollanadi» mini-pitch. «Ish»ni mahsulot ta'rifi bilan aralashtirsalar — velosiped misolini qayta tushuntiring (keysni emas, sodda misolni).</MentorNote>
       </div>
     </Stage>
   );
@@ -1655,7 +1650,7 @@ const Screen12 = ({ screen, onNext, onPrev }) => {
           <div className="split">
             <div className="hw-card full fade-step">
               <span className="hw-badge">To'liq · ~20 daqiqa</span>
-              <p className="body" style={{ color: T.ink }}><b>{chosen}</b>dan so'rab, MVP'ingiz uchun <b>3 ta JTBD</b> yozing — har turdan bittadan (funksional, ijtimoiy, emotsional) — va <b>eng kuchlisini</b> belgilang. Custdev darsida intervyu savollarini shu «ish»lardan tuzamiz.</p>
+              <p className="body" style={{ color: T.ink }}><b>{chosen}</b>dan so'rab, MVP'ingiz uchun <b>3 ta JTBD</b> yozing — har turdan bittadan (funksional, ijtimoiy, emotsional) — va <b>eng kuchlisini</b> belgilang. Custdev (mijozni o'rganish) darsida intervyu savollarini shu «ish»lardan tuzamiz.</p>
             </div>
             <div className="hw-card short fade-step">
               <span className="hw-badge short">Qisqa · ~10 daqiqa</span>
@@ -1681,7 +1676,7 @@ const Screen12 = ({ screen, onNext, onPrev }) => {
 const ACHIEVEMENTS = {
   cardMaster: { icon: '🃏', name: 'Card Master!', desc: "Ustaxonada 3/3 JTBD-karta tuzdingiz" },
   jobHunter:  { icon: '🎯', name: 'Job Hunter!',  desc: "3 tekshiruvni ham to'g'ri yechdingiz" },
-  toolMaker:  { icon: '🛠️', name: 'Tool Maker!',  desc: "JTBD-karta yig'uvchini kod bilan qurdingiz" },
+  toolMaker:  { icon: '🛠️', name: 'Tool Maker!',  desc: "JtbdCard React-komponentini yasadingiz" },
   graduate:   { icon: '🎓', name: 'Level Up!',    desc: "Jobs-to-be-Done darsini yakunladingiz" },
 };
 // Ekran id → nishon (recordAnswer'da, faqat REAL solve bilan). jobHunter = 3/3 aggregat, graduate = summary.
@@ -1770,7 +1765,7 @@ const QUIZ_BANK = [
   { q: "Do'stlar Starbucks'da birga suratga tushib yuborishdi — bu qaysi tur ish?", opts: ["funksional", "emotsional", "ijtimoiy", "bu umuman ish emas"], correct: 2 },
   { q: "Velosipedning «maktabga tez yetish» ishida raqibi kim?", opts: ["boshqa velosiped", "velosiped do'koni", "velosiped narxi", "avtobus va piyoda yo'l"], correct: 3 },
   { q: "«Mahsulotni [ish] uchun yollaydi» — bu qatorda [ish] nima?", opts: ["mahsulotning rasmiy nomi", "foydalanuvchi bitiradigan vazifa", "mahsulotning bozor narxi", "mahsulotning tashqi rangi"], correct: 1 },
-  { q: "Nega custdev intervyu savollarini «ish»lardan tuzamiz?", opts: ["Chunki odam mahsulotni emas, ishni xohlaydi", "Chunki savol tuzish osonroq bo'ladi", "Chunki mijoz aynan shuni talab qiladi", "Tartib farq qilmaydi"], correct: 0 },
+  { q: "Nega custdev (mijozni o'rganish) intervyu savollarini «ish»lardan tuzamiz?", opts: ["Chunki odam mahsulotni emas, ishni xohlaydi", "Chunki savol tuzish osonroq bo'ladi", "Chunki mijoz aynan shuni talab qiladi", "Tartib farq qilmaydi"], correct: 0 },
 ];
 
 const CsNeonBolt = ({ flip }) => (
@@ -2304,7 +2299,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
         {arena && <QuizArena live={_live || { mode: 'self' }} startSolo={arenaSolo} onClose={() => setArena(false)} />}
         <div className="split">
           <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> Endi siz bilasiz</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{r}</span></li>))}</ul></div>
-          <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>📝 Uyga vazifa</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{hwTarget ? <>Shartnomangiz: <b style={{ color: T.accent }}>{hwTarget}</b>dan so'rab, MVP uchun 3 JTBD.</> : "MVP'ingiz uchun 3 JTBD — har turdan bittadan:"}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{h.b}</b> <span className="t">{h.t}</span></li>))}</ul><p className="hw-note">Keyingi custdev darsda intervyu savollarini aynan shu «ish»lardan tuzamiz! 🚀</p></div>
+          <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>📝 Uyga vazifa</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{hwTarget ? <>Shartnomangiz: <b style={{ color: T.accent }}>{hwTarget}</b>dan so'rab, MVP uchun 3 JTBD.</> : "MVP'ingiz uchun 3 JTBD — har turdan bittadan:"}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{h.b}</b> <span className="t">{h.t}</span></li>))}</ul><p className="hw-note">Keyingi custdev (mijozni o'rganish) darsida intervyu savollarini aynan shu «ish»lardan tuzamiz! 🚀</p></div>
         </div>
         <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>🏅 Nishonlaringiz — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
@@ -2551,29 +2546,49 @@ export default function PmJtbdLesson({ lang: langProp, onFinished }) {
         .bb-dots i { width: 9px; height: 9px; border-radius: 50%; }
         .bb-dots i:first-child { background: #ff5f57; } .bb-dots i:nth-child(2) { background: #febc2e; } .bb-dots i:nth-child(3) { background: #28c840; }
 
-        /* === 🃏 STORY-SILUET — ish stoli ustidagi indeks-kartalar (maqsad) === */
-        .story-silo { position: relative; display: flex; align-items: center; gap: 12px; background: linear-gradient(180deg, #fff, #FBFAFE); border-radius: 4px 12px 12px 4px; padding: 13px 16px 13px 22px; box-shadow: 0 6px 16px -7px rgba(${T.shadowBase},0.2); border-left: 4px solid ${T.accent}44; transition: transform 0.22s, box-shadow 0.22s; }
-        .story-silo::before { content: ""; position: absolute; left: 11px; top: 12px; width: 6px; height: 6px; border-radius: 50%; background: ${T.accent}33; box-shadow: 0 22px 0 ${T.accent}22; }
-        .story-silo:hover { transform: translateY(-2px); box-shadow: 0 12px 24px -8px rgba(${T.shadowBase},0.26); }
-        .story-silo-n { font-family: 'JetBrains Mono'; font-weight: 700; font-size: 13px; color: ${T.accent}; }
-        .story-silo-slots { display: flex; gap: 8px; flex: 1; flex-wrap: wrap; }
-        .silo-slot { font-family: 'Manrope'; font-weight: 800; font-size: 11px; letter-spacing: 0.06em; padding: 5px 11px; border-radius: 7px; border: 1.5px dashed ${T.ink3}; color: ${T.ink3}; }
-        .silo-slot.kim { border-color: ${T.blue}66; color: ${T.blue}; } .silo-slot.nima { border-color: #E8A13A88; color: #B77A16; } .silo-slot.natija { border-color: ${T.success}66; color: ${T.success}; }
-        .story-silo-dots { color: ${T.ink3}; letter-spacing: 3px; }
-        /* === MAQSAD-DEMO: kartalar ko'z oldida to'ladi (CSS-taymlayn) === */
-        .demo-card { opacity: 0; animation: silo-in 0.5s ease-out forwards; animation-delay: var(--cd, 0s); }
-        @keyframes silo-in { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
-        .demo-slot { display: inline-grid; align-items: center; justify-items: center; }
-        .demo-slot .silo-lbl { grid-area: 1 / 1; animation: silo-lbl-out 0.3s ease forwards; animation-delay: var(--fd, 1s); }
-        @keyframes silo-lbl-out { to { opacity: 0.18; transform: scale(0.92); } }
-        .demo-slot .silo-fill { grid-area: 1 / 1; width: 100%; display: flex; align-items: center; justify-content: center; padding: 0 2px; white-space: nowrap; font-weight: 700; letter-spacing: 0; text-transform: none; background: ${T.paper}; border-radius: 5px; opacity: 0; transform: scale(0.6); animation: silo-fill-pop 0.45s cubic-bezier(.3,1.5,.45,1) forwards; animation-delay: var(--fd, 1s); }
-        .silo-slot.kim .silo-fill { background: ${T.blueSoft}; } .silo-slot.nima .silo-fill { background: #FBEED6; } .silo-slot.natija .silo-fill { background: ${T.successSoft}; }
-        @keyframes silo-fill-pop { 0% { opacity: 0; transform: scale(0.6); } 60% { opacity: 1; transform: scale(1.08); } 100% { opacity: 1; transform: scale(1); } }
-        .silo-done { width: 22px; height: 22px; border-radius: 50%; background: ${T.success}; color: #fff; font-family: 'Manrope'; font-size: 12px; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; opacity: 0; transform: scale(0); animation: silo-fill-pop 0.4s cubic-bezier(.3,1.6,.45,1) forwards; animation-delay: var(--fd, 2s); box-shadow: 0 4px 10px -3px rgba(18,169,104,0.5); }
-        .silo-cap { margin: 0; font-family: 'Manrope'; font-weight: 600; font-size: clamp(12.5px,1.5vw,14px); color: ${T.accent}; text-align: center; opacity: 0; animation: fade-in-up 0.5s ease-out forwards; animation-delay: 4.9s; }
+        /* === 📇 «ISHGA QABUL» (maqsad s1) — vakansiya-karta CSS-taymlayn bilan to'ladi + YOLLANDI shtampi === */
+        .jhire-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: clamp(10px,1.8vw,16px); }
+        @media (max-width: 760px) { .jhire-grid { grid-template-columns: 1fr; } }
+        .jhire-card { position: relative; background: linear-gradient(180deg, #fff, #FBFAFE); border-radius: 14px; padding: 13px 15px 34px; box-shadow: 0 10px 24px -10px rgba(${T.shadowBase},0.22), inset 0 0 0 1.5px ${T.line}; overflow: hidden; opacity: 0; animation: jhire-in 0.5s ease-out forwards; animation-delay: var(--cd, 0s); }
+        .jhire-card::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, ${T.accent}, ${T.accentVivid}); }
+        @keyframes jhire-in { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+        .jhire-top { display: flex; align-items: center; gap: 8px; padding-bottom: 9px; border-bottom: 1.5px dashed ${T.line}; }
+        .jhire-em { font-size: clamp(20px,2.6vw,26px); line-height: 1; }
+        .jhire-nm { font-family: 'Source Serif 4', serif; font-weight: 600; font-size: clamp(13.5px,1.7vw,15.5px); color: ${T.ink}; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .jhire-doc { margin-left: auto; font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 8.5px; letter-spacing: 0.08em; text-transform: uppercase; color: ${T.ink3}; flex-shrink: 0; }
+        .jhire-rows { display: flex; flex-direction: column; gap: 7px; padding-top: 10px; }
+        .jhire-row { display: flex; align-items: center; gap: 8px; min-width: 0; }
+        .jhire-lbl { font-family: 'Manrope'; font-weight: 800; font-size: 9.5px; letter-spacing: 0.06em; width: 68px; flex-shrink: 0; color: ${T.ink3}; }
+        .jhire-row.kim .jhire-lbl { color: ${T.blue}; } .jhire-row.nima .jhire-lbl { color: #B77A16; } .jhire-row.natija .jhire-lbl { color: ${T.success}; }
+        /* qiymat «yozilib» to'ladi — steps() bilan mashinka-effekt */
+        .jhire-val { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: clamp(11px,1.4vw,12.5px); color: ${T.ink}; white-space: nowrap; overflow: hidden; max-width: 0; animation: jhire-type 0.5s steps(14, end) forwards; animation-delay: var(--fd, 1s); }
+        @keyframes jhire-type { from { max-width: 0; } to { max-width: 220px; } }
+        /* «✓ YOLLANDI» shtampi — indigo doira-oval, katta→kichik bosilish + qisqa silkinish */
+        .jhire-stamp { position: absolute; right: 10px; bottom: 8px; font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: 12px; letter-spacing: 0.1em; color: ${T.accent}; border: 3px solid ${T.accent}; border-radius: 999px; padding: 4px 12px; background: rgba(235,229,253,0.55); opacity: 0; transform: rotate(-8deg) scale(2.6); animation: jhire-stamp-in 0.55s cubic-bezier(.2,1.2,.3,1) forwards; animation-delay: var(--fd, 2s); pointer-events: none; }
+        @keyframes jhire-stamp-in { 0% { opacity: 0; transform: rotate(-8deg) scale(2.6); } 55% { opacity: 1; transform: rotate(-8deg) scale(0.94); } 70% { transform: rotate(-5.5deg) scale(1.06); } 84% { transform: rotate(-9deg) scale(0.99); } 100% { opacity: 1; transform: rotate(-8deg) scale(1); } }
+        .jhire-cap { margin: 0; font-family: 'Manrope'; font-weight: 600; font-size: clamp(12.5px,1.5vw,14px); color: ${T.accent}; text-align: center; opacity: 0; animation: fade-in-up 0.5s ease-out forwards; animation-delay: 5.6s; }
+        /* ustaxona mini-shtampi — s1 bilan bitta vizual til */
+        .jhire-stamp.mini { position: static; margin-left: auto; flex-shrink: 0; font-size: 9.5px; padding: 2px 8px; border-width: 2px; transform: rotate(-6deg); opacity: 1; animation: jhire-stamp-in 0.45s cubic-bezier(.2,1.2,.3,1); }
+
+        /* === MVP YOLLASH PANELI (s5 — 8-sahifa to'liq kenglik, 2026-07-22 feedback) === */
+        .mvplamps { position: relative; background: ${T.paper}; border-radius: 16px; padding: 16px 18px 18px; display: flex; flex-direction: column; gap: 10px; box-shadow: 0 8px 22px -8px rgba(${T.shadowBase},0.18); }
+        .mvplamp { display: flex; align-items: center; gap: 10px; background: ${T.bg}; border-radius: 11px; padding: 10px 13px; transition: background 0.3s, box-shadow 0.3s; }
+        .mvplamp-dot { width: 13px; height: 13px; border-radius: 50%; background: ${T.ink3}55; flex-shrink: 0; transition: background 0.3s, box-shadow 0.3s; }
+        .mvplamp-lbl { font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: 11.5px; letter-spacing: 0.07em; color: ${T.ink2}; }
+        .mvplamp-st { margin-left: auto; font-family: 'Manrope'; font-weight: 600; font-size: 12px; color: ${T.ink3}; font-style: italic; }
+        .mvplamp.on { background: ${T.paper}; box-shadow: inset 0 0 0 1.5px ${T.line}; }
+        .mvplamp.kim.on .mvplamp-dot { background: ${T.blue}; box-shadow: 0 0 10px 2px ${T.blue}66; animation: mvplamp-glow 1.6s ease-in-out infinite; }
+        .mvplamp.nima.on .mvplamp-dot { background: #E8A13A; box-shadow: 0 0 10px 2px #E8A13A66; animation: mvplamp-glow 1.6s ease-in-out infinite; }
+        .mvplamp.natija.on .mvplamp-dot { background: #E0559A; box-shadow: 0 0 10px 2px #E0559A66; animation: mvplamp-glow 1.6s ease-in-out infinite; }
+        .mvplamp.on .mvplamp-st { color: ${T.success}; font-style: normal; font-weight: 700; }
+        @keyframes mvplamp-glow { 0%,100% { filter: brightness(1); } 50% { filter: brightness(1.35); } }
+        .mvplamps .jhire-stamp { right: 14px; bottom: 12px; }
+        @media (prefers-reduced-motion: reduce) { .mvplamp.on .mvplamp-dot { animation: none; } }
+        .swcard-prog { margin-left: auto; flex-shrink: 0; font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: 11px; color: ${T.ink3}; background: ${T.bg}; border-radius: 99px; padding: 3px 9px; }
         @media (prefers-reduced-motion: reduce) {
-          .demo-card, .demo-slot .silo-lbl, .demo-slot .silo-fill, .silo-done, .silo-cap { animation: none; opacity: 1; transform: none; }
-          .demo-slot .silo-lbl { opacity: 0.35; }
+          .jhire-card, .jhire-val, .jhire-stamp, .jhire-cap { animation: none; opacity: 1; }
+          .jhire-card { transform: none; } .jhire-val { max-width: 220px; }
+          .jhire-stamp { transform: rotate(-8deg); } .jhire-stamp.mini { transform: rotate(-6deg); }
         }
 
         /* === PROYEKTOR SAVOL + MISOL (yadro) === */
@@ -2587,27 +2602,33 @@ export default function PmJtbdLesson({ lang: langProp, onFinished }) {
         .ex-card { background: ${T.successSoft}; border-radius: 14px; padding: clamp(14px,2.2vw,18px); display: flex; flex-direction: column; gap: 10px; }
         .ex-lbl { font-family: 'Manrope'; font-weight: 800; font-size: 11.5px; letter-spacing: 0.06em; text-transform: uppercase; color: ${T.success}; }
         .ex-body { font-size: clamp(15px,2vw,18px); color: ${T.ink}; margin: 0; line-height: 1.45; }
-        .ex-tags { display: flex; gap: 8px; flex-wrap: wrap; }
-        .ex-tag { font-family: 'Manrope'; font-weight: 700; font-size: 11.5px; padding: 5px 11px; border-radius: 99px; background: ${T.paper}; }
-        .ex-tag.kim { color: ${T.blue}; } .ex-tag.nima { color: #B77A16; } .ex-tag.natija { color: ${T.success}; }
-
-        /* === FORMULA KONSTRUKTOR (s3) === */
-        .formula-line { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; background: ${T.paper}; background-image: radial-gradient(rgba(${T.shadowBase},0.05) 1px, transparent 1.2px); background-size: 16px 16px; border-radius: 14px; padding: clamp(16px,2.5vw,22px); box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.14), inset 0 0 0 1.5px ${T.line}; font-size: clamp(15px,2.1vw,19px); }
-        .fw { color: ${T.ink2}; font-weight: 500; }
-        .fslot { font-family: 'Manrope'; font-weight: 800; font-size: clamp(12px,1.6vw,14px); letter-spacing: 0.04em; padding: 8px 14px; border-radius: 10px; border: 2px dashed ${T.ink3}; color: ${T.ink3}; min-width: 74px; text-align: center; transition: all 0.25s; }
-        .fslot.kim { border-color: ${T.blue}88; } .fslot.nima { border-color: #E8A13A; } .fslot.natija { border-color: ${T.success}88; }
-        .fslot.filled { border-style: solid; letter-spacing: 0; animation: fslot-snap 0.42s cubic-bezier(.34,1.65,.4,1); }
-        @keyframes fslot-snap { 0% { transform: scale(0.86); } 45% { transform: scale(1.12); } 70% { transform: scale(0.97); } 100% { transform: scale(1); } }
-        @media (prefers-reduced-motion: reduce) { .fslot.filled { animation: none; } }
-        .fslot.kim.filled { background: ${T.blueSoft}; color: ${T.blue}; border-color: ${T.blue}; }
-        .fslot.nima.filled { background: #FBEED6; color: #B77A16; border-color: #E8A13A; }
-        .fslot.natija.filled { background: ${T.successSoft}; color: ${T.success}; border-color: ${T.success}; }
-        .frag-pool { display: flex; flex-wrap: wrap; gap: 10px; }
-        .frag-chip { font-family: 'Manrope'; font-weight: 700; font-size: clamp(13px,1.7vw,15px); padding: 11px 16px; border-radius: 11px; border: none; background: ${T.paper}; color: ${T.ink}; cursor: pointer; box-shadow: 0 6px 16px -6px rgba(${T.shadowBase},0.2); transition: all 0.18s; box-shadow: 0 6px 16px -6px rgba(${T.shadowBase},0.2), inset 0 0 0 1.5px ${T.line}; }
-        .frag-chip:hover:not(:disabled) { transform: translateY(-3px) rotate(-1deg); box-shadow: 0 12px 22px -8px rgba(${T.shadowBase},0.3), inset 0 0 0 1.5px ${T.accent}44; }
-        .frag-chip:active:not(:disabled) { transform: translateY(-1px) scale(0.97); }
-        .frag-chip.kim { color: ${T.blue}; } .frag-chip.nima { color: #B77A16; } .frag-chip.natija { color: ${T.success}; }
-        .frag-chip.used { opacity: 0.35; cursor: default; }
+        /* === 📱 TELEFON EKRANI (s2) — ilova-ikonka 3D-flip: ortida ISHI === */
+        .jphone { position: relative; align-self: center; width: min(100%, 560px); background: linear-gradient(180deg, ${T.paper}, #F6F3FE); border-radius: 26px; padding: clamp(26px,3.4vw,32px) clamp(14px,2.4vw,22px) clamp(12px,1.8vw,16px); box-shadow: 0 14px 34px -14px rgba(${T.shadowBase},0.3), inset 0 0 0 2px ${T.line}; display: flex; flex-direction: column; gap: 12px; }
+        .jphone-notch { position: absolute; top: 9px; left: 50%; transform: translateX(-50%); width: 84px; height: 8px; border-radius: 99px; background: ${T.line}; }
+        .jphone-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: clamp(10px,1.8vw,14px); }
+        @media (max-width: 520px) { .jphone-grid { grid-template-columns: 1fr; } }
+        .japp { position: relative; background: none; border: none; padding: 0; cursor: pointer; perspective: 800px; min-height: clamp(112px,15vw,128px); }
+        .japp:disabled { cursor: default; }
+        .japp-inner { position: absolute; inset: 0; display: block; transform-style: preserve-3d; transition: transform 0.6s cubic-bezier(.3,1.35,.4,1); }
+        .japp.open .japp-inner { transform: rotateY(180deg); }
+        .japp:not(.open):hover .japp-inner { transform: rotateY(16deg); }
+        .japp-face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; border-radius: 16px; padding: 10px; }
+        .japp-front { background: ${T.paper}; box-shadow: 0 8px 20px -8px rgba(${T.shadowBase},0.22), inset 0 0 0 1.5px ${T.line}; }
+        .japp-back { transform: rotateY(180deg); background: ${T.accentSoft}; box-shadow: 0 10px 24px -8px rgba(91,61,230,0.3), inset 0 0 0 2px ${T.accent}; }
+        .japp-ic { font-size: clamp(30px,4.6vw,38px); line-height: 1; }
+        .japp-nm { font-family: 'Manrope'; font-weight: 700; font-size: clamp(11.5px,1.4vw,13px); color: ${T.ink2}; }
+        .japp-lbl { font-family: 'Manrope'; font-weight: 800; font-size: 9.5px; letter-spacing: 0.12em; color: ${T.accent}; }
+        .japp-job { font-family: 'Source Serif 4', serif; font-weight: 600; font-size: clamp(13px,1.7vw,15.5px); color: ${T.ink}; text-align: center; line-height: 1.3; }
+        /* bosilmagan ikonkada taphint-puls */
+        .japp.taphint .japp-front { animation: japp-hint 2.2s ease-in-out infinite; }
+        .japp.taphint:nth-child(2) .japp-front { animation-delay: 0.35s; } .japp.taphint:nth-child(3) .japp-front { animation-delay: 0.7s; }
+        @keyframes japp-hint { 0%,86%,100% { box-shadow: 0 8px 20px -8px rgba(${T.shadowBase},0.22), inset 0 0 0 1.5px ${T.line}; } 93% { box-shadow: 0 10px 24px -8px rgba(91,61,230,0.32), inset 0 0 0 2px ${T.accent}66; transform: translateY(-2px); } }
+        .jphone-cap { margin: 0; font-family: 'Manrope'; font-weight: 600; font-size: clamp(12px,1.4vw,13.5px); color: ${T.ink2}; text-align: center; }
+        @media (prefers-reduced-motion: reduce) {
+          .japp-inner { transition: none; }
+          .japp.taphint .japp-front { animation: none; }
+          .japp:not(.open):hover .japp-inner { transform: none; }
+        }
 
         /* === K18 SLAYD (s4) === */
         .k-slide { position: relative; background: ${T.paper}; border-radius: 18px; padding: clamp(24px,4vw,38px) clamp(20px,3.5vw,34px) clamp(20px,3.5vw,34px); display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px; box-shadow: 0 14px 34px -12px rgba(${T.shadowBase},0.24); overflow: hidden; }
@@ -2635,14 +2656,6 @@ export default function PmJtbdLesson({ lang: langProp, onFinished }) {
         .smini.ok, .swcard.ok { border-left-color: ${T.success}; box-shadow: 0 8px 20px -8px rgba(18,169,104,0.28); animation: card-fill-pop 0.42s cubic-bezier(.34,1.5,.4,1); }
         @keyframes card-fill-pop { 0% { transform: scale(1); } 40% { transform: scale(1.012) translateY(-2px); } 100% { transform: scale(1); } }
         @media (prefers-reduced-motion: reduce) { .smini.ok, .swcard.ok { animation: none; } }
-        /* karta-turi belgisi: ko'chgan (susaygan) vs yangi (indigo) */
-        .swcard-tag { align-self: flex-start; font-family: 'Manrope'; font-weight: 800; font-size: 10px; letter-spacing: 0.04em; padding: 3px 10px; border-radius: 99px; }
-        .swcard-tag.kept { color: ${T.ink3}; background: ${T.bg}; box-shadow: inset 0 0 0 1px ${T.line}; }
-        .swcard-tag.new { color: ${T.accent}; background: ${T.accentSoft}; }
-        /* yangi bo'sh karta = «bo'sh joy chaqiriq» — punktir indigo + yumshoq pulsatsiya (meni to'ldir) */
-        .swcard-new { border-left-style: dashed; border-left-color: ${T.accent}; animation: sw-new-pulse 2.4s ease-in-out infinite; }
-        @keyframes sw-new-pulse { 0%, 100% { box-shadow: 0 6px 16px -6px rgba(91,61,230,0.14), inset 0 0 0 1.5px ${T.accent}22; } 50% { box-shadow: 0 10px 22px -6px rgba(91,61,230,0.26), inset 0 0 0 1.5px ${T.accent}55; } }
-        @media (prefers-reduced-motion: reduce) { .swcard-new { animation: none; box-shadow: 0 6px 16px -6px rgba(91,61,230,0.16), inset 0 0 0 1.5px ${T.accent}33; } }
         .smini-h, .swcard-h { display: flex; align-items: flex-start; gap: 10px; }
         .smini-n, .swcard-n { font-family: 'JetBrains Mono'; font-weight: 700; font-size: 13px; color: ${T.accent}; flex-shrink: 0; }
         .smini-sent, .swcard-sent { font-size: clamp(13px,1.6vw,15px); color: ${T.ink2}; line-height: 1.4; min-width: 0; overflow-wrap: anywhere; word-break: break-word; } .smini-sent b, .swcard-sent b { color: ${T.ink}; }
@@ -2654,13 +2667,6 @@ export default function PmJtbdLesson({ lang: langProp, onFinished }) {
         .smini-f input { font-family: 'Manrope'; font-weight: 500; font-size: 14px; color: ${T.ink}; border: none; border-radius: 9px; padding: 9px 11px; background: ${T.bg}; box-shadow: inset 0 0 0 1.5px ${T.line}; outline: none; transition: box-shadow 0.18s; width: 100%; }
         .smini-f input:focus { box-shadow: inset 0 0 0 1.5px ${T.accent}; }
         .smini-f.on input { box-shadow: inset 0 0 0 1.5px ${T.success}66; background: ${T.paper}; }
-        .swcard-star { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
-        .swcard-star-lbl { font-family: 'Manrope'; font-weight: 700; font-size: 12px; color: ${T.ink2}; }
-        .star { background: none; border: none; cursor: pointer; font-size: 18px; color: ${T.ink3}; padding: 0 1px; transition: color 0.15s, transform 0.15s; }
-        .star.on { color: #F5A623; } .star:hover { transform: scale(1.2); }
-        .swcard-most { margin-left: auto; font-family: 'Manrope'; font-weight: 700; font-size: 11.5px; padding: 5px 12px; border-radius: 99px; border: none; background: ${T.bg}; color: ${T.ink2}; cursor: pointer; box-shadow: inset 0 0 0 1.5px ${T.line}; }
-        .swcard-most.on { background: ${T.accentSoft}; color: ${T.accent}; box-shadow: inset 0 0 0 1.5px ${T.accent}; }
-
         /* === RO'YXAT / CHECKLIST === */
         .checklist { background: ${T.paper}; border-radius: 14px; padding: 15px 17px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.14); display: flex; flex-direction: column; gap: 9px; }
         .stcheck { display: flex; align-items: center; gap: 10px; font-size: clamp(13px,1.5vw,14.5px); color: ${T.ink2}; font-weight: 500; }
@@ -2668,12 +2674,14 @@ export default function PmJtbdLesson({ lang: langProp, onFinished }) {
         .stcheck.on { color: ${T.ink}; } .stcheck.on .stcheck-box { background: ${T.success}; box-shadow: none; animation: lp-check-pop 0.34s cubic-bezier(.3,1.5,.5,1); }
         @keyframes lp-check-pop { 0% { transform: scale(0.7); } 45% { transform: scale(1.3); } 100% { transform: scale(1); } }
 
-        /* === YORDAM (ochiladigan) === */
-        .yordam { background: ${T.bg}; border: 1.5px dashed ${T.ink3}66; border-radius: 12px; overflow: hidden; }
-        .yordam-toggle { width: 100%; text-align: left; background: none; border: none; padding: 12px 15px; font-family: 'Manrope'; font-weight: 700; font-size: 13.5px; color: ${T.accent}; cursor: pointer; }
-        .yordam-body { padding: 0 15px 13px; display: flex; flex-direction: column; gap: 7px; }
-        .yordam-body p { font-size: 13.5px; color: ${T.ink2}; margin: 0; } .yordam-body b { color: ${T.ink}; }
-        .yordam-hint { color: ${T.accent} !important; font-weight: 700; }
+        /* === YORDAM + YULDUZCHA — bitta qatordagi 2 ixcham yig'ma-chip (ustaxona) === */
+        .wsx-row { display: flex; gap: 8px; flex-wrap: wrap; align-items: flex-start; }
+        .wsx { flex: 1; min-width: 170px; background: ${T.bg}; border: 1.5px dashed ${T.ink3}66; border-radius: 12px; overflow: hidden; }
+        .wsx.star { border-color: ${T.blue}66; }
+        .wsx-toggle { width: 100%; text-align: left; background: none; border: none; padding: 10px 13px; font-family: 'Manrope'; font-weight: 700; font-size: 13px; color: ${T.accent}; cursor: pointer; }
+        .wsx.star .wsx-toggle { color: ${T.blue}; }
+        .wsx-body { padding: 0 13px 11px; display: flex; flex-direction: column; gap: 6px; animation: fade-step 0.25s ease-out; }
+        .wsx-body p { font-size: 13px; color: ${T.ink2}; margin: 0; line-height: 1.45; } .wsx-body b { color: ${T.ink}; }
         .star-task { background: ${T.blueSoft}; border-radius: 12px; padding: 12px 15px; display: flex; flex-direction: column; gap: 5px; }
 
         /* === HOTSPOT (buzuq bo'laklar) === */
@@ -2691,90 +2699,73 @@ export default function PmJtbdLesson({ lang: langProp, onFinished }) {
         .hs-miss { background: ${T.errSoft} !important; color: ${T.err} !important; border-color: ${T.err} !important; opacity: 1 !important; text-decoration: line-through; box-shadow: 0 8px 22px -6px rgba(229,72,77,0.28) !important; }
         @media (prefers-reduced-motion: reduce) { .hs-broken { animation: none; } }
 
-        /* === KODING: kompilyator natija-panelining bo'sh holati === */
-        .code-out-empty { font-family: 'Manrope', sans-serif; font-size: 12.5px; color: ${T.ink3}; font-style: italic; margin: 0; }
+        /* === ⚛️ KODING (s10): VS Code-mockup + jonli JtbdCard-preview + qadam-checklist === */
+        .vsc { background: #1E1E1E; border-radius: 14px; overflow: hidden; box-shadow: 0 14px 30px -10px rgba(${T.shadowBase},0.35); }
+        .vsc-bar { background: #252526; display: flex; align-items: center; gap: 2px; padding-right: 8px; }
+        .vsc-tab { font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: #8B949E; background: #2D2D2D; padding: 9px 14px; display: inline-flex; align-items: center; gap: 6px; }
+        .vsc-tab.on { background: #1E1E1E; color: #E6EDF3; box-shadow: inset 0 2px 0 #007ACC; }
+        .vsc-copy { margin-left: auto; background: #0E639C; color: #fff; border: none; border-radius: 8px; padding: 6px 12px; font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 11.5px; cursor: pointer; transition: background 0.18s, transform 0.18s; flex-shrink: 0; }
+        .vsc-copy:hover { background: #1177BB; transform: translateY(-1px); }
+        .vsc-copy.ok { background: ${T.success}; }
+        .vsc-body { padding: 12px 14px 14px 6px; font-family: 'JetBrains Mono', monospace; font-size: clamp(11px,1.35vw,12.5px); color: #D4D4D4; line-height: 1.85; overflow-x: auto; }
+        .vsc-line { display: flex; align-items: baseline; min-width: max-content; }
+        .vsc-ln { color: #6E7681; min-width: 26px; text-align: right; margin-right: 14px; font-size: 10.5px; flex-shrink: 0; user-select: none; }
+        .vsc-code { white-space: pre; }
+        /* Jonli natija-preview — o'quvchining REAL 3 kartasi «brauzerda» ko'rinadi */
+        .jprev { background: ${T.paper}; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 26px -10px rgba(${T.shadowBase},0.2); }
+        .jprev-bar { display: flex; align-items: center; gap: 10px; padding: 10px 14px; background: #F7F5FD; border-bottom: 1px solid ${T.line}; }
+        .jprev-url { font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: ${T.ink3}; background: ${T.paper}; border-radius: 99px; padding: 4px 12px; box-shadow: inset 0 0 0 1px ${T.line}; }
+        .jprev-src { margin-left: auto; font-family: 'Manrope'; font-weight: 700; font-size: 10.5px; color: ${T.success}; background: ${T.successSoft}; border-radius: 99px; padding: 3px 10px; }
+        .jprev-cards { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: clamp(10px,1.6vw,14px); padding: clamp(12px,2vw,18px); }
+        @media (max-width: 700px) { .jprev-cards { grid-template-columns: 1fr; } }
+        .jprev-card { background: #FBFAFE; border-radius: 12px; border-left: 4px solid ${T.accent}; padding: 12px 14px; display: flex; flex-direction: column; gap: 5px; box-shadow: 0 6px 14px -8px rgba(${T.shadowBase},0.18); min-width: 0; animation: fade-step 0.4s ease-out both; }
+        .jprev-card:nth-child(2) { animation-delay: 0.12s; } .jprev-card:nth-child(3) { animation-delay: 0.24s; }
+        .jprev-name { font-family: 'Source Serif 4', serif; font-weight: 600; font-size: clamp(14px,1.8vw,16px); color: ${T.ink}; overflow-wrap: anywhere; }
+        .jprev-job { font-size: clamp(12.5px,1.5vw,13.5px); color: ${T.ink2}; overflow-wrap: anywhere; } .jprev-job b { color: ${T.ink}; }
+        .jprev-tur { align-self: flex-start; font-family: 'Manrope'; font-weight: 700; font-size: 10.5px; border-radius: 99px; padding: 3px 9px; color: ${T.accent}; background: ${T.accentSoft}; }
+        .jprev-tur.funksional { color: ${T.blue}; background: ${T.blueSoft}; } .jprev-tur.ijtimoiy { color: #B77A16; background: #FBEED6; } .jprev-tur.emotsional { color: #D23D82; background: #FBE3F0; }
+        /* VS Code qadamlari — o'quvchi o'zi belgilaydi */
+        .kd-steps { display: flex; flex-direction: column; gap: 8px; }
+        .kd-step { display: flex; align-items: flex-start; gap: 10px; text-align: left; width: 100%; background: ${T.paper}; border: none; border-radius: 12px; padding: 11px 13px; cursor: pointer; font-family: 'Manrope', sans-serif; font-weight: 600; font-size: clamp(13px,1.5vw,14.5px); color: ${T.ink2}; box-shadow: 0 5px 14px -6px rgba(${T.shadowBase},0.12), inset 0 0 0 1.5px ${T.line}; transition: all 0.18s; }
+        .kd-step:hover:not(.on) { transform: translateY(-1px); box-shadow: 0 8px 18px -6px rgba(${T.shadowBase},0.2), inset 0 0 0 1.5px ${T.accent}44; }
+        .kd-step.on { color: ${T.ink}; background: ${T.successSoft}; box-shadow: inset 0 0 0 1.5px ${T.success}55; }
+        .kd-check { width: 22px; height: 22px; border-radius: 7px; flex-shrink: 0; box-shadow: inset 0 0 0 2px ${T.ink3}55; display: inline-flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 800; color: ${T.ink3}; background: ${T.paper}; transition: all 0.2s; }
+        .kd-step.on .kd-check { background: ${T.success}; color: #fff; box-shadow: none; animation: lp-check-pop 0.34s cubic-bezier(.3,1.5,.5,1); }
+        .kd-step-t { min-width: 0; line-height: 1.4; }
+        @media (prefers-reduced-motion: reduce) { .kd-step.on .kd-check { animation: none; } .jprev-card { animation: none; } }
 
-        /* === KODING: launch-karta (darsdan kompilyatorga «boradi») === */
-        .kod-launch { position: relative; border-radius: 16px; overflow: hidden; background: ${CODE.bg}; box-shadow: 0 14px 34px -12px rgba(${T.shadowBase},0.35); }
-        .kod-launch-bar { background: #141C2B; padding: 10px 14px; display: flex; align-items: center; gap: 10px; }
-        .kod-launch-title { font-family: 'JetBrains Mono'; font-size: 11.5px; color: #7E92B4; }
-        .kod-launch-body { padding: 16px 18px; min-height: 190px; font-family: 'JetBrains Mono', monospace; font-size: 12.5px; line-height: 1.7; color: rgba(232,229,221,0.45); white-space: pre-wrap; word-break: break-word; }
-        .kod-launch-veil { position: absolute; inset: 42px 0 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; background: linear-gradient(180deg, rgba(26,36,54,0.45), rgba(26,36,54,0.85)); }
-        .kod-launch-btn { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: clamp(15px,1.9vw,17px); background: ${T.accent}; color: #fff; border: none; border-radius: 14px; padding: 14px 28px; cursor: pointer; box-shadow: 0 14px 30px -8px rgba(91,61,230,0.65); transition: transform 0.18s, box-shadow 0.18s; animation: kod-btn-pulse 2.2s ease-in-out infinite; }
-        .kod-launch-btn:hover { transform: translateY(-2px); box-shadow: 0 18px 36px -8px rgba(110,75,255,0.75); }
-        @keyframes kod-btn-pulse { 0%,100% { box-shadow: 0 14px 30px -8px rgba(91,61,230,0.65); } 50% { box-shadow: 0 14px 38px -4px rgba(110,75,255,0.85); } }
-        .kod-launch-sub { font-family: 'Manrope'; font-weight: 600; font-size: 12.5px; color: rgba(232,229,221,0.75); text-align: center; padding: 0 14px; }
-        @media (prefers-reduced-motion: reduce) { .kod-launch-btn { animation: none; } }
-
-        /* === PM-KOMPILYATOR (to'liq-ekran, Htmllesson1 relslari, PM palitra) === */
-        .hcp-root { position: fixed; inset: 0; z-index: 2100; background: radial-gradient(120% 80% at 50% -10%, ${T.accentSoft} 0%, rgba(235,229,253,0) 46%), ${T.bg}; overflow: hidden; animation: fade-step 0.3s ease-out; }
-        .hcp-wrap { width: 100%; max-width: 1160px; height: 100dvh; margin: 0 auto; display: flex; flex-direction: column; justify-content: center; gap: clamp(10px,1.6vw,16px); padding: clamp(14px,2.2vw,28px); }
-        .hcp-top { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 7px; }
-        .hcp-eyebrow { font-family: 'Manrope'; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 800; color: ${T.accent}; display: inline-flex; align-items: center; gap: 7px; }
-        .hcp-eyebrow::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: ${T.accent}; }
-        .hcp-title { font-family: 'Source Serif 4', serif; font-weight: 600; font-size: clamp(20px,2.8vw,30px); margin: 0; color: ${T.ink}; letter-spacing: -0.01em; line-height: 1.12; }
-        .hcp-brief { margin: 0; color: ${T.ink2}; font-size: clamp(13px,1.5vw,15px); line-height: 1.55; max-width: 64ch; }
-        .hcp-checklist { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 8px; margin-top: 5px; }
-        .hcp-count { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 12px; color: #fff; background: linear-gradient(135deg, ${T.accent}, ${T.accentVivid}); padding: 6px 11px; border-radius: 99px; box-shadow: 0 6px 16px -6px rgba(91,61,230,0.5); }
-        .hcp-chip { display: inline-flex; align-items: center; gap: 7px; font-family: 'Manrope'; font-size: 13px; font-weight: 500; color: ${T.ink2}; background: ${T.paper}; padding: 6px 14px 6px 7px; border-radius: 99px; border: 1px solid ${T.line}; transition: all 0.22s ease; cursor: default; }
-        .hcp-chip.ok { color: ${T.ink}; font-weight: 600; border-color: ${T.success}40; background: ${T.successSoft}; }
-        .hcp-dot { flex-shrink: 0; width: 21px; height: 21px; border-radius: 50%; background: ${T.bg}; color: ${T.ink3}; display: inline-flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; transition: all 0.25s; }
-        .hcp-chip.ok .hcp-dot { background: ${T.success}; color: #fff; box-shadow: 0 3px 8px -2px ${T.success}88; }
-        .hcp-hint { margin: 3px 0 0; font-family: 'Manrope'; font-size: 13px; color: ${T.accent}; background: ${T.accentSoft}; padding: 8px 15px; border-radius: 11px; max-width: 64ch; line-height: 1.5; min-width: 0; overflow-wrap: anywhere; word-break: break-word; }
-        .hcp-err { margin: 3px 0 0; font-family: 'JetBrains Mono', monospace; font-size: 12.5px; color: ${T.err}; background: ${T.errSoft}; padding: 7px 14px; border-radius: 10px; max-width: 74ch; line-height: 1.5; min-width: 0; overflow-wrap: anywhere; word-break: break-word; }
-        .hcp-split { flex: none; height: 58vh; min-height: 0; display: grid; grid-template-columns: 1fr 1fr; gap: clamp(12px,1.6vw,18px); }
-        .hcp-pane { display: flex; flex-direction: column; min-height: 0; border-radius: 18px; overflow: hidden; background: ${T.paper}; box-shadow: 0 1px 0 ${T.line}, 0 18px 40px -22px rgba(${T.shadowBase},0.35); }
-        .hcp-pane-bar { display: flex; align-items: center; gap: 10px; padding: 10px 15px; font-family: 'Manrope'; font-size: 12px; font-weight: 600; color: ${T.ink2}; border-bottom: 1px solid ${T.line}; }
-        .hcp-pane-bar.dark { background: ${CODE.bg}; color: #A7B6D6; border-bottom: 1px solid rgba(255,255,255,0.06); }
-        .hcp-tab { font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 600; color: #fff; background: rgba(255,255,255,0.14); padding: 5px 13px; border-radius: 9px; box-shadow: inset 0 -2px 0 ${T.accent}; }
-        .hcp-mini { margin-left: auto; background: ${T.accent}; color: #fff; border: none; border-radius: 9px; padding: 6px 13px; font-size: 11.5px; font-weight: 700; cursor: pointer; font-family: 'Manrope', sans-serif; transition: all 0.18s; flex-shrink: 0; box-shadow: 0 6px 14px -6px rgba(91,61,230,0.6); }
-        .hcp-mini:hover { transform: translateY(-1px); box-shadow: 0 9px 18px -6px rgba(91,61,230,0.7); }
-        .hcp-code { flex: 1; min-height: 0; resize: none; border: none; outline: none; background: ${CODE.bg}; color: ${CODE.text}; font-family: 'JetBrains Mono', monospace; font-size: 14px; line-height: 1.7; padding: 18px 20px; tab-size: 2; white-space: pre; overflow: auto; caret-color: ${T.accentVivid}; }
-        .hcp-code::placeholder { color: #5B6B86; }
-        .hcp-code::selection { background: ${T.accent}55; }
-        .hcp-pane-name { font-family: 'JetBrains Mono', monospace; font-weight: 700; }
-        .hcp-live { margin-left: auto; font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: ${T.success}; background: ${T.successSoft}; padding: 4px 9px; border-radius: 99px; font-weight: 800; display: inline-flex; align-items: center; gap: 6px; }
-        .hcp-live::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: ${T.success}; animation: hcp-pulse 1.8s infinite; }
-        @keyframes hcp-pulse { 0% { box-shadow: 0 0 0 0 ${T.success}66; } 70% { box-shadow: 0 0 0 6px ${T.success}00; } 100% { box-shadow: 0 0 0 0 ${T.success}00; } }
-        .hcp-frame { flex: 1; min-height: 0; width: 100%; border: none; background: #FBFAFE; }
-        .hcp-bottom { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
-        .hcp-ghost { background: transparent; border: 1px solid transparent; color: ${T.ink2}; font-family: 'Manrope', sans-serif; font-weight: 600; font-size: 14px; cursor: pointer; padding: 11px 17px; border-radius: 12px; transition: all 0.15s; }
-        .hcp-ghost:hover { background: ${T.paper}; color: ${T.ink}; border-color: ${T.line}; box-shadow: 0 6px 16px -10px rgba(${T.shadowBase},0.3); }
-        .hcp-status { margin-left: auto; }
-        .hcp-ok-msg { color: ${T.success}; font-family: 'Manrope'; font-weight: 700; font-size: 14px; }
-        .hcp-wait-msg { color: ${T.ink3}; font-family: 'Manrope'; font-size: 13px; }
-        .hcp-next { background: ${T.accent}; color: #fff; border: none; border-radius: 13px; font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 15px; cursor: pointer; padding: 13px 30px; box-shadow: 0 10px 24px -8px rgba(91,61,230,0.6); transition: all 0.2s; }
-        .hcp-next:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 16px 32px -8px rgba(110,75,255,0.7); }
-        .hcp-next:disabled { background: #D7D8DE; color: #fff; cursor: not-allowed; box-shadow: none; }
-        @media (max-width: 820px) { .hcp-split { grid-template-columns: 1fr; grid-template-rows: 1fr 1fr; } .hcp-checklist { width: 100%; } }
-        /* Compiler topshiriq-panel (JS-check shartlari — jonli ✓) */
-        /* Topshiriq-panel = «brief-hujjat» (chap-accent hoshiya, yumshoq qog'oz) */
-        .hc-task { background: linear-gradient(180deg, ${T.paper}, #FBFAFE); border-radius: 14px; border-left: 4px solid ${T.accent}; padding: 15px 17px 16px; display: flex; flex-direction: column; gap: 10px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.14); }
-        .hc-conds { display: flex; flex-direction: column; gap: 9px; }
-        .hc-cond { display: flex; align-items: flex-start; gap: 10px; background: ${T.bg}; border-radius: 11px; padding: 10px 12px; box-shadow: inset 0 0 0 1.5px ${T.line}; transition: box-shadow 0.25s, background 0.25s; }
-        .hc-cond.ok { background: ${T.successSoft}; box-shadow: inset 0 0 0 1.5px ${T.success}55; animation: hc-cond-pop 0.4s cubic-bezier(.34,1.5,.4,1); }
-        @keyframes hc-cond-pop { 0% { transform: scale(1); } 42% { transform: scale(1.015) translateY(-1px); } 100% { transform: scale(1); } }
-        @media (prefers-reduced-motion: reduce) { .hc-cond.ok { animation: none; } }
-        .hc-cond-box { width: 22px; height: 22px; border-radius: 7px; flex-shrink: 0; box-shadow: inset 0 0 0 2px ${T.ink3}55; display: inline-flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 800; color: ${T.ink3}; transition: all 0.2s; }
-        .hc-cond.ok .hc-cond-box { background: ${T.success}; color: #fff; box-shadow: none; animation: lp-check-pop 0.34s cubic-bezier(.3,1.5,.5,1); }
-        .hc-cond-txt { display: flex; flex-direction: column; gap: 5px; min-width: 0; }
-        .hc-cond-label { font-family: 'Manrope'; font-weight: 600; font-size: clamp(12.5px,1.5vw,14px); color: ${T.ink}; line-height: 1.35; }
-        /* hint = ochiladigan yumshoq indigo maslahat (xato-ogohlantirish EMAS) */
-        .hc-cond-hint { font-family: 'Manrope'; font-size: 12px; color: ${T.accent}; line-height: 1.4; background: ${T.accentSoft}; border-radius: 8px; padding: 6px 10px; align-self: flex-start; }
-
-        /* === RECAP (juftlik + reflection + savol) === */
-        .pair-timer { background: ${T.paper}; border-radius: 14px; padding: 15px 17px; display: flex; flex-direction: column; gap: 9px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.14); }
-        .pair-timer-top { display: flex; align-items: center; justify-content: space-between; }
-        .pair-role { font-family: 'Manrope'; font-weight: 700; font-size: 14px; color: ${T.ink2}; } .pair-role b { color: ${T.accent}; }
+        /* === RECAP (s11) — 3 raqamlangan qadam-karta + juftlik-taymer + reflection + savol === */
+        .rcp-flow { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: clamp(12px,2vw,18px); align-items: stretch; }
+        @media (max-width: 760px) { .rcp-flow { grid-template-columns: 1fr; } }
+        .rcp-step { background: ${T.paper}; border-radius: 16px; padding: 16px 18px; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.14); display: flex; flex-direction: column; gap: 12px; }
+        .rcp-step.wide { grid-column: 1 / -1; }
+        .rcp-step-h { display: flex; gap: 11px; align-items: flex-start; }
+        .rcp-n { width: 26px; height: 26px; border-radius: 50%; background: ${T.accent}; color: #fff; font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: 13px; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 5px 12px -5px rgba(91,61,230,0.5), 0 0 0 3px ${T.accentSoft}; }
+        .rcp-t { display: block; font-family: 'Manrope'; font-weight: 800; font-size: clamp(14px,1.7vw,16px); color: ${T.ink}; }
+        .rcp-s { display: block; font-family: 'Manrope'; font-size: 12.5px; color: ${T.ink2}; margin-top: 2px; line-height: 1.4; }
+        .pair-timer { background: ${T.bg}; border-radius: 12px; padding: 13px 15px; display: flex; flex-direction: column; gap: 10px; box-shadow: inset 0 0 0 1.5px ${T.line}; margin-top: auto; }
+        .pair-timer-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+        .pair-now { font-family: 'Manrope'; font-weight: 700; font-size: 14px; color: ${T.ink2}; line-height: 1.45; }
+        .pair-who { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: 8px; background: ${T.accent}; color: #fff; font-weight: 800; font-size: 13px; vertical-align: middle; }
+        .pair-who.b { background: ${T.success}; }
+        .pair-mic { display: inline-block; animation: pair-mic-pulse 1.1s ease-in-out infinite; }
+        @keyframes pair-mic-pulse { 0%,100% { transform: scale(1); opacity: 0.75; } 50% { transform: scale(1.25); opacity: 1; } }
         .pair-clock { font-family: 'JetBrains Mono'; font-weight: 700; font-size: 22px; color: ${T.ink}; font-variant-numeric: tabular-nums; }
+        .pair-prog { position: relative; height: 8px; background: rgba(${T.shadowBase},0.09); border-radius: 99px; }
+        .pair-prog-fill { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 99px; background: linear-gradient(90deg, ${T.accent}, ${T.accentVivid}); transition: width 1s linear; }
+        .pair-prog-mid { position: absolute; left: 50%; top: -3px; bottom: -3px; width: 2px; background: ${T.ink3}; border-radius: 2px; }
         .pair-timer-btns { display: flex; gap: 8px; }
-        .reflect { background: ${T.paper}; border-radius: 14px; padding: 15px 17px; display: flex; flex-direction: column; gap: 8px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.14); }
         .reflect-input { font-family: 'Manrope'; font-size: 15px; color: ${T.ink}; border: none; border-radius: 10px; padding: 12px 14px; background: ${T.bg}; box-shadow: inset 0 0 0 1.5px ${T.line}; outline: none; }
         .reflect-input:focus { box-shadow: inset 0 0 0 1.5px ${T.accent}; }
         .qa-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
         @media (max-width: 620px) { .qa-cards { grid-template-columns: 1fr; } }
-        .qa-card { background: ${T.paper}; border-radius: 12px; padding: 14px; display: flex; flex-direction: column; gap: 8px; box-shadow: 0 6px 16px -6px rgba(${T.shadowBase},0.14); }
-        .qa-ic { font-size: 24px; } .qa-card p { font-size: 13.5px; color: ${T.ink}; margin: 0; line-height: 1.4; } .qa-card b { color: ${T.accent}; }
+        .qa-card { background: ${T.bg}; border-radius: 12px; padding: 14px; display: flex; flex-direction: column; gap: 8px; box-shadow: inset 0 0 0 1.5px ${T.line}; transition: transform 0.18s, box-shadow 0.18s; }
+        .qa-card:hover { transform: translateY(-3px); box-shadow: inset 0 0 0 1.5px ${T.accent}44, 0 10px 22px -8px rgba(${T.shadowBase},0.2); }
+        .qa-ic { font-size: 24px; display: inline-block; width: fit-content; }
+        .qa-card:hover .qa-ic { animation: qa-wiggle 0.5s ease; }
+        @keyframes qa-wiggle { 0%,100% { transform: rotate(0); } 30% { transform: rotate(-14deg) scale(1.12); } 70% { transform: rotate(10deg); } }
+        .qa-card p { font-size: 13.5px; color: ${T.ink}; margin: 0; line-height: 1.4; } .qa-card b { color: ${T.accent}; }
+        @media (prefers-reduced-motion: reduce) { .pair-mic { animation: none; } .qa-card:hover .qa-ic { animation: none; } .qa-card:hover { transform: none; } }
 
         /* === UYGA VAZIFA kartalari === */
         .hw-card { border-radius: 14px; padding: clamp(15px,2.4vw,20px); display: flex; flex-direction: column; gap: 10px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.14); }
@@ -3146,37 +3137,41 @@ export default function PmJtbdLesson({ lang: langProp, onFinished }) {
         @media (prefers-reduced-motion: reduce) {
           .stcheck.on .stcheck-box, .lp-done-btn.is-done, .hook-cup { animation: none !important; }
         }
-        /* === 🃏 ISH-TURI KARTALARI (s3 qoida — bosib ochiladi) === */
-        .jtype-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(10px,1.6vw,14px); }
-        @media (max-width: 640px) { .jtype-grid { grid-template-columns: 1fr; } }
-        .jtype { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 6px; background: ${T.paper}; border: none; border-radius: 16px; padding: clamp(16px,2.4vw,22px) clamp(12px,1.8vw,16px); cursor: pointer; color: ${T.ink}; box-shadow: 0 8px 20px -8px rgba(${T.shadowBase},0.18), inset 0 0 0 1.5px ${T.line}; transition: transform 0.18s, box-shadow 0.18s; }
-        .jtype:hover:not(:disabled):not(.open) { transform: translateY(-3px); box-shadow: 0 14px 28px -10px rgba(${T.shadowBase},0.28), inset 0 0 0 1.5px ${T.accent}44; }
-        .jtype:disabled { cursor: default; }
-        /* har tur o'z rang-belgisiga ega: FUNKSIONAL=ko'k · IJTIMOIY=amber · EMOTSIONAL=yashil */
-        .jtype.funksional { border-top: 4px solid ${T.blue}; }
-        .jtype.ijtimoiy { border-top: 4px solid #E8A13A; }
-        .jtype.emotsional { border-top: 4px solid ${T.success}; }
-        .jtype.open { box-shadow: 0 12px 26px -10px rgba(91,61,230,0.26), inset 0 0 0 1.5px ${T.accent}55; animation: card-fill-pop 0.42s cubic-bezier(.34,1.5,.4,1); }
-        .jtype.funksional.open { box-shadow: 0 12px 26px -10px rgba(14,134,196,0.26), inset 0 0 0 1.5px ${T.blue}55; }
-        .jtype.ijtimoiy.open { box-shadow: 0 12px 26px -10px rgba(183,122,22,0.26), inset 0 0 0 1.5px #E8A13A88; }
-        .jtype.emotsional.open { box-shadow: 0 12px 26px -10px rgba(18,169,104,0.26), inset 0 0 0 1.5px ${T.success}55; }
-        .jtype-ic { font-size: clamp(24px,4.4vw,34px); line-height: 1; width: clamp(50px,8.6vw,62px); height: clamp(50px,8.6vw,62px); display: flex; align-items: center; justify-content: center; border-radius: 50%; }
-        .jtype.funksional .jtype-ic { background: ${T.blueSoft}; }
-        .jtype.ijtimoiy .jtype-ic { background: #FBEED6; }
-        .jtype.emotsional .jtype-ic { background: ${T.successSoft}; }
-        .jtype-h { font-family: 'Source Serif 4', serif; font-weight: 600; font-size: clamp(15px,2vw,19px); color: ${T.ink}; }
-        .jtype-short { font-family: 'Manrope'; font-weight: 700; font-size: 12px; color: ${T.ink2}; }
-        .jtype.funksional .jtype-short { color: ${T.blue}; }
-        .jtype.ijtimoiy .jtype-short { color: #B77A16; }
-        .jtype.emotsional .jtype-short { color: ${T.success}; }
-        .jtype-tap { font-family: 'Manrope'; font-weight: 700; font-size: 11.5px; color: ${T.accent}; background: ${T.accentSoft}; border-radius: 99px; padding: 4px 12px; margin-top: 4px; }
-        .jtype:not(.open) .jtype-tap { animation: jtype-tap-bob 2s ease-in-out infinite; }
-        @keyframes jtype-tap-bob { 0%,100% { transform: translateY(0); opacity: 0.82; } 50% { transform: translateY(2.5px); opacity: 1; } }
-        .jtype-body { font-size: clamp(12.5px,1.5vw,14px); color: ${T.ink2}; line-height: 1.45; margin-top: 2px; } .jtype-body b { color: ${T.ink}; }
-        .jtype-ex { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 11.5px; color: ${T.accent}; background: ${T.accentSoft}; border-radius: 8px; padding: 5px 10px; margin-top: 2px; }
-        .jtype.funksional .jtype-ex { color: ${T.blue}; background: ${T.blueSoft}; }
-        .jtype.ijtimoiy .jtype-ex { color: #B77A16; background: #FBEED6; }
-        .jtype.emotsional .jtype-ex { color: ${T.success}; background: ${T.successSoft}; }
+        /* === 🔩 DREL→TESHIK demo-lenta (s3) — drel g'ichirlaydi, devorda teshik ochiladi === */
+        .jdrill { align-self: center; display: flex; align-items: center; justify-content: center; gap: clamp(10px,2vw,18px); background: ${T.paper}; border-radius: 14px; padding: 11px 18px; box-shadow: 0 8px 20px -8px rgba(${T.shadowBase},0.16), inset 0 0 0 1.5px ${T.line}; }
+        .jdrill-tool { font-size: clamp(24px,3.4vw,30px); line-height: 1; display: inline-block; animation: jdrill-spin 3.6s ease-in-out infinite; }
+        @keyframes jdrill-spin { 0%,55%,100% { transform: rotate(0); } 14% { transform: rotate(-26deg); } 28% { transform: rotate(18deg); } 42% { transform: rotate(-10deg); } }
+        .jdrill-arrow { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: clamp(15px,2vw,19px); color: ${T.ink3}; }
+        .jdrill-wall { position: relative; width: clamp(46px,6.4vw,56px); height: clamp(34px,4.8vw,42px); border-radius: 8px; background: linear-gradient(180deg, #F6F3EC, #EDE7DB); box-shadow: inset 0 0 0 1.5px ${T.line}; display: inline-flex; align-items: center; justify-content: center; }
+        .jdrill-hole { width: 12px; height: 12px; border-radius: 50%; background: #4A4036; box-shadow: inset 0 2px 3px rgba(0,0,0,0.55); transform: scale(0); animation: jdrill-hole 3.6s ease-in-out infinite; }
+        @keyframes jdrill-hole { 0%,42% { transform: scale(0); } 54%,90% { transform: scale(1); } 100% { transform: scale(0); } }
+        .jdrill-tag { font-family: 'Manrope'; font-weight: 800; font-size: 11px; letter-spacing: 0.04em; color: ${T.accent}; background: ${T.accentSoft}; border-radius: 99px; padding: 5px 12px; }
+        @media (prefers-reduced-motion: reduce) { .jdrill-tool { animation: none; } .jdrill-hole { animation: none; transform: scale(1); } }
+
+        /* === 🃏 ISH-TURI 3D-FLIP KARTALARI (s3) — old: ikonka+nom+«?», orqa: ta'rif+misol === */
+        /* Tur-ranglar: funksional=ko'k · ijtimoiy=amber · emotsional=iliq-pushti (yashil=faqat muvaffaqiyat) */
+        .jt3-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: clamp(10px,1.6vw,14px); }
+        @media (max-width: 640px) { .jt3-grid { grid-template-columns: 1fr; } }
+        .jt3 { position: relative; background: none; border: none; padding: 0; cursor: pointer; perspective: 900px; min-height: clamp(188px,24vw,216px); }
+        .jt3:disabled { cursor: default; }
+        .jt3.funksional { --jc: ${T.blue}; --jcs: ${T.blueSoft}; --jct: ${T.blue}; }
+        .jt3.ijtimoiy { --jc: #E8A13A; --jcs: #FBEED6; --jct: #B77A16; }
+        .jt3.emotsional { --jc: #E0559A; --jcs: #FBE3F0; --jct: #D23D82; }
+        .jt3-inner { position: absolute; inset: 0; display: block; transform-style: preserve-3d; transition: transform 0.65s cubic-bezier(.3,1.25,.4,1); }
+        .jt3.flip .jt3-inner { transform: rotateY(180deg); }
+        .jt3:not(.flip):hover .jt3-inner { transform: rotateY(15deg); }
+        .jt3-face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 7px; border-radius: 16px; padding: 14px 12px; background: ${T.paper}; border-top: 4px solid var(--jc); box-shadow: 0 8px 20px -8px rgba(${T.shadowBase},0.18), inset 0 0 0 1.5px ${T.line}; }
+        .jt3-back { transform: rotateY(180deg); background: linear-gradient(180deg, #fff, #FBFAFE); box-shadow: 0 12px 26px -10px rgba(${T.shadowBase},0.24), inset 0 0 0 1.5px var(--jc); }
+        .jt3-ic { font-size: clamp(24px,4.2vw,32px); line-height: 1; width: clamp(50px,8.4vw,60px); height: clamp(50px,8.4vw,60px); display: flex; align-items: center; justify-content: center; border-radius: 50%; background: var(--jcs); animation: jt3-live 2.6s ease-in-out infinite; }
+        .jt3:nth-child(2) .jt3-ic { animation-delay: 0.4s; } .jt3:nth-child(3) .jt3-ic { animation-delay: 0.8s; }
+        @keyframes jt3-live { 0%,100% { transform: scale(1); } 50% { transform: scale(1.09) rotate(-3deg); } }
+        .jt3-h { font-family: 'Source Serif 4', serif; font-weight: 600; font-size: clamp(15px,2vw,18px); color: ${T.ink}; }
+        .jt3-short { font-family: 'Manrope'; font-weight: 700; font-size: 12px; color: var(--jct); }
+        .jt3-q { font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: 16px; color: var(--jct); background: var(--jcs); border-radius: 99px; width: 28px; height: 28px; display: inline-flex; align-items: center; justify-content: center; margin-top: 2px; animation: jt3-q-bob 2s ease-in-out infinite; }
+        @keyframes jt3-q-bob { 0%,100% { transform: translateY(0); opacity: 0.8; } 50% { transform: translateY(2.5px); opacity: 1; } }
+        .jt3-body { font-size: clamp(12.5px,1.5vw,14px); color: ${T.ink2}; line-height: 1.45; } .jt3-body b { color: ${T.ink}; }
+        .jt3-ex { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 11.5px; color: var(--jct); background: var(--jcs); border-radius: 8px; padding: 5px 10px; margin-top: 2px; }
+        @media (prefers-reduced-motion: reduce) { .jt3-inner { transition: none; } .jt3-ic, .jt3-q { animation: none; } .jt3:not(.flip):hover .jt3-inner { transform: none; } }
 
         /* === ISH-TUR TANLAGICH (MVP editori / ustaxona) === */
         .smini-fields.two, .swcard-fields.two { grid-template-columns: 1fr 1fr; }
@@ -3184,53 +3179,81 @@ export default function PmJtbdLesson({ lang: langProp, onFinished }) {
         .tur-pick { display: flex; gap: 8px; flex-wrap: wrap; }
         .tur-chip { font-family: 'Manrope'; font-weight: 700; font-size: 12.5px; padding: 7px 14px; border-radius: 99px; border: none; background: ${T.bg}; color: ${T.ink2}; cursor: pointer; box-shadow: inset 0 0 0 1.5px ${T.line}; transition: all 0.16s; }
         .tur-chip:hover:not(.on) { box-shadow: inset 0 0 0 1.5px ${T.accent}55; }
-        /* tanlangan chip o'z tur-rangida (jtype/mp-tur bilan izchil) */
+        /* tanlangan chip o'z tur-rangida (jt3/mp-tur bilan izchil) */
         .tur-chip.on { background: ${T.accentSoft}; color: ${T.accent}; box-shadow: inset 0 0 0 1.5px ${T.accent}; }
         .tur-chip.funksional.on { background: ${T.blueSoft}; color: ${T.blue}; box-shadow: inset 0 0 0 1.5px ${T.blue}; }
         .tur-chip.ijtimoiy.on { background: #FBEED6; color: #B77A16; box-shadow: inset 0 0 0 1.5px #E8A13A; }
-        .tur-chip.emotsional.on { background: ${T.successSoft}; color: ${T.success}; box-shadow: inset 0 0 0 1.5px ${T.success}; }
+        .tur-chip.emotsional.on { background: #FBE3F0; color: #D23D82; box-shadow: inset 0 0 0 1.5px #E0559A; }
         .swcard-raqib { display: flex; flex-direction: column; gap: 4px; }
         .swcard-raqib span { font-family: 'Manrope'; font-weight: 800; font-size: 10px; letter-spacing: 0.06em; color: #B77A16; }
         .swcard-raqib input { font-family: 'Manrope'; font-weight: 500; font-size: 14px; color: ${T.ink}; border: none; border-radius: 9px; padding: 9px 11px; background: ${T.bg}; box-shadow: inset 0 0 0 1.5px ${T.line}; outline: none; }
         .swcard-raqib input:focus { box-shadow: inset 0 0 0 1.5px #E8A13A; }
-        .mvp-ref { display: flex; flex-direction: column; gap: 3px; background: ${T.blueSoft}; border-left: 4px solid ${T.blue}; border-radius: 12px; padding: 11px 15px; }
-        .mvp-ref-lbl { font-family: 'Manrope'; font-weight: 800; font-size: 11px; letter-spacing: 0.05em; text-transform: uppercase; color: ${T.blue}; }
-        .mvp-ref-sent { font-size: clamp(13px,1.6vw,15px); color: ${T.ink2}; min-width: 0; overflow-wrap: anywhere; word-break: break-word; } .mvp-ref-sent b { color: ${T.ink}; } .mvp-ref-sent i { color: ${T.success}; font-style: normal; font-weight: 700; }
+        /* MVP mos-yozuv — ixcham bir qator chip */
+        .mvp-chip { display: inline-flex; align-items: center; gap: 9px; align-self: flex-start; max-width: 100%; background: ${T.blueSoft}; border-radius: 99px; padding: 7px 15px; box-shadow: inset 0 0 0 1.5px ${T.blue}44; }
+        .mvp-chip-lbl { font-family: 'Manrope'; font-weight: 800; font-size: 10.5px; letter-spacing: 0.06em; text-transform: uppercase; color: ${T.blue}; flex-shrink: 0; }
+        .mvp-chip-txt { font-size: clamp(12.5px,1.5vw,14px); color: ${T.ink2}; min-width: 0; overflow-wrap: anywhere; } .mvp-chip-txt b { color: ${T.ink}; } .mvp-chip-txt i { color: ${T.blue}; font-style: normal; font-weight: 700; }
 
-        /* === 🔗 MATCHPAIRS (s9 juftlash — YANGI PM PRIMITIV; pm-dizayn sayqallaydi) === */
-        .mp-wrap { display: flex; flex-direction: column; gap: clamp(14px,2.2vw,20px); }
-        .mp-targets { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(10px,1.8vw,16px); }
+        /* === 🔗 MATCHPAIRS (s9 juftlash) — FAQAT vizual boyitilgan: ball-mantiq o'zgarmagan === */
+        .mp-wrap { position: relative; display: flex; flex-direction: column; gap: clamp(14px,2.2vw,20px); }
+        /* fon-dekor: dars atamalaridan xira tokenlar (dekor o'qitadi) */
+        .mp-decor { position: absolute; inset: -10px; pointer-events: none; z-index: 0; overflow: hidden; }
+        .mp-decor-t { position: absolute; font-family: 'JetBrains Mono', monospace; font-weight: 800; color: rgba(91,61,230,0.065); user-select: none; white-space: nowrap; }
+        .mp-decor-t.md0 { left: 1%; top: 3%; font-size: 26px; transform: rotate(-9deg); }
+        .mp-decor-t.md1 { right: 3%; top: 8%; font-size: 30px; transform: rotate(6deg); }
+        .mp-decor-t.md2 { left: 38%; top: 46%; font-size: 22px; transform: rotate(-4deg); }
+        .mp-decor-t.md3 { left: 4%; bottom: 6%; font-size: 20px; transform: rotate(7deg); }
+        .mp-decor-t.md4 { right: 6%; bottom: 14%; font-size: 24px; transform: rotate(-6deg); }
+        .mp-decor-t.md5 { right: 30%; top: 30%; font-size: 18px; transform: rotate(4deg); }
+        .mp-targets { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 1fr; gap: clamp(10px,1.8vw,16px); }
         @media (max-width: 640px) { .mp-targets { grid-template-columns: 1fr; } }
-        .mp-target { display: flex; flex-direction: column; gap: 10px; background: ${T.paper}; border-radius: 14px; padding: 14px 15px; box-shadow: 0 8px 20px -8px rgba(${T.shadowBase},0.16), inset 0 0 0 1.5px ${T.line}; transition: box-shadow 0.2s, transform 0.15s; }
-        .mp-target.droppable { box-shadow: 0 10px 24px -8px rgba(91,61,230,0.28), inset 0 0 0 2px ${T.accent}; cursor: pointer; }
-        /* sudrash paytida chip ostidagi nishon yoritiladi (affordance) */
-        .mp-target.dragover { background: ${T.accentSoft}; box-shadow: 0 12px 28px -8px rgba(91,61,230,0.38), inset 0 0 0 2.5px ${T.accent}; transform: translateY(-2px); }
+        .mp-target { position: relative; display: flex; flex-direction: column; gap: 10px; background: ${T.paper}; border-radius: 14px; padding: 14px 15px; box-shadow: 0 8px 20px -8px rgba(${T.shadowBase},0.16), inset 0 0 0 1.5px ${T.line}; transition: box-shadow 0.2s, transform 0.15s; }
+        /* tanlangan/sudralayotgan chip uchun nishon puls-glow (indigo halo) */
+        .mp-target.droppable { box-shadow: 0 10px 24px -8px rgba(91,61,230,0.28), inset 0 0 0 2px ${T.accent}; cursor: pointer; animation: mp-halo 1.4s ease-in-out infinite; }
+        .mp-target.dragover { background: ${T.accentSoft}; box-shadow: 0 12px 28px -8px rgba(91,61,230,0.38), inset 0 0 0 2.5px ${T.accent}; transform: translateY(-2px); animation: mp-halo 0.9s ease-in-out infinite; }
+        @keyframes mp-halo { 0%,100% { box-shadow: 0 10px 24px -8px rgba(91,61,230,0.28), inset 0 0 0 2px ${T.accent}; } 50% { box-shadow: 0 12px 32px -6px rgba(110,75,255,0.5), inset 0 0 0 2.5px ${T.accentVivid}; } }
         .mp-target.dragover .mp-slot { border-color: ${T.accent}; }
         .mp-target.filled { box-shadow: 0 8px 20px -8px rgba(${T.shadowBase},0.2), inset 0 0 0 1.5px ${T.accent}44; }
-        .mp-target.ok { background: ${T.successSoft}; box-shadow: 0 8px 20px -8px rgba(18,169,104,0.3), inset 0 0 0 1.5px ${T.success}; }
+        /* to'g'ri juftlik ochilganda: yashil yonish + snap-pop */
+        .mp-target.ok { background: ${T.successSoft}; box-shadow: 0 8px 20px -8px rgba(18,169,104,0.3), inset 0 0 0 1.5px ${T.success}; animation: mp-okpop 0.5s cubic-bezier(.3,1.4,.4,1); }
+        @keyframes mp-okpop { 0% { transform: scale(0.97); } 45% { transform: scale(1.025); } 100% { transform: scale(1); } }
         .mp-target.bad { background: ${T.errSoft}; box-shadow: 0 8px 20px -8px rgba(229,72,77,0.28), inset 0 0 0 1.5px ${T.err}; }
         .mp-target-job { font-family: 'Source Serif 4', serif; font-size: clamp(14px,1.9vw,17px); color: ${T.ink}; line-height: 1.35; display: flex; flex-wrap: wrap; align-items: center; gap: 7px; }
         .mp-target-lbl { font-family: 'Manrope'; font-weight: 800; font-size: 9.5px; letter-spacing: 0.08em; color: ${T.ink3}; background: ${T.bg}; border-radius: 6px; padding: 3px 7px; }
         .mp-target-txt { flex: 1; min-width: 120px; }
         .mp-tur { font-family: 'Manrope'; font-weight: 700; font-size: 10.5px; padding: 3px 9px; border-radius: 99px; }
-        .mp-tur.funksional { color: ${T.blue}; background: ${T.blueSoft}; } .mp-tur.ijtimoiy { color: #B77A16; background: #FBEED6; } .mp-tur.emotsional { color: ${T.success}; background: ${T.successSoft}; }
-        .mp-slot { min-height: 44px; border-radius: 11px; border: 1.5px dashed ${T.ink3}66; display: flex; align-items: center; justify-content: center; padding: 6px; transition: border-color 0.2s; }
+        .mp-tur.funksional { color: ${T.blue}; background: ${T.blueSoft}; } .mp-tur.ijtimoiy { color: #B77A16; background: #FBEED6; } .mp-tur.emotsional { color: #D23D82; background: #FBE3F0; }
+        .mp-slot { position: relative; min-height: 48px; border-radius: 11px; border: 1.5px dashed ${T.ink3}66; display: flex; align-items: center; justify-content: center; padding: 6px; transition: border-color 0.2s; }
         .mp-target.ok .mp-slot, .mp-target.bad .mp-slot { border-color: transparent; }
         .mp-slot-empty { font-family: 'Manrope'; font-weight: 600; font-size: 12px; color: ${T.ink3}; font-style: italic; }
-        .mp-chip { position: relative; display: inline-flex; align-items: center; gap: 8px; font-family: 'Manrope'; font-weight: 700; font-size: clamp(13px,1.7vw,15px); padding: 10px 15px; border-radius: 11px; border: none; background: ${T.paper}; color: ${T.ink}; box-shadow: 0 6px 16px -6px rgba(${T.shadowBase},0.22), inset 0 0 0 1.5px ${T.line}; }
-        .mp-chip-ic { font-size: 17px; }
-        .mp-chip.pool { cursor: grab; user-select: none; transition: transform 0.12s, box-shadow 0.16s; }
-        .mp-chip.pool:hover { transform: translateY(-2px); box-shadow: 0 12px 22px -8px rgba(${T.shadowBase},0.3), inset 0 0 0 1.5px ${T.accent}55; }
+        /* chip — kattaroq, emoji + gradient-fon + soya; ushlaganda scale+tilt (JS transform) */
+        .mp-chip { position: relative; display: inline-flex; align-items: center; gap: 9px; font-family: 'Manrope'; font-weight: 700; font-size: clamp(14px,1.9vw,16px); padding: 12px 18px; border-radius: 13px; border: none; background: linear-gradient(180deg, #fff, #F5F2FE); color: ${T.ink}; box-shadow: 0 8px 18px -6px rgba(${T.shadowBase},0.26), inset 0 0 0 1.5px ${T.line}; }
+        .mp-chip-ic { font-size: 20px; }
+        .mp-chip.pool { cursor: grab; user-select: none; transition: transform 0.14s, box-shadow 0.18s; }
+        .mp-chip.pool:hover { transform: translateY(-2px) rotate(-1.5deg) scale(1.02); box-shadow: 0 14px 26px -8px rgba(${T.shadowBase},0.32), inset 0 0 0 1.5px ${T.accent}55; }
         .mp-chip.pool:active { cursor: grabbing; }
         .mp-chip.pool.sel { background: ${T.accentSoft}; color: ${T.accent}; box-shadow: 0 10px 22px -8px rgba(91,61,230,0.34), inset 0 0 0 2px ${T.accent}; }
-        .mp-chip.placed { box-shadow: none; background: transparent; }
-        .mp-chip.placed.ok { color: ${T.success}; } .mp-chip.placed.bad { color: ${T.err}; text-decoration: line-through; }
+        /* joylangan chip — karta ichiga «yopishgan» + snap-pop */
+        .mp-chip.placed { background: ${T.bg}; box-shadow: inset 0 0 0 1.5px ${T.line}; padding: 9px 14px; animation: mp-snap 0.38s cubic-bezier(.3,1.5,.4,1); }
+        @keyframes mp-snap { 0% { transform: scale(0.7); } 55% { transform: scale(1.12); } 100% { transform: scale(1); } }
+        .mp-chip.placed.ok { color: ${T.success}; background: transparent; box-shadow: none; }
+        .mp-chip.placed.bad { color: ${T.err}; text-decoration: line-through; background: transparent; box-shadow: none; }
         .mp-mark { width: 20px; height: 20px; border-radius: 50%; color: #fff; font-size: 11px; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; }
-        .mp-mark.ok { background: ${T.success}; } .mp-mark.bad { background: ${T.err}; }
-        .mp-pool { display: flex; flex-direction: column; gap: 8px; background: ${T.bg}; border-radius: 14px; padding: 13px 15px; box-shadow: inset 0 0 0 1.5px ${T.line}; }
-        .mp-pool-row { display: flex; flex-wrap: wrap; gap: 10px; min-height: 44px; align-items: center; }
+        /* ✓ — mini-shtamp uslubida (s1 YOLLANDI shtampi bilan bitta til) */
+        .mp-mark.ok { background: ${T.successSoft}; color: ${T.success}; border: 2px solid ${T.success}; box-sizing: border-box; transform: rotate(-8deg); font-family: 'JetBrains Mono', monospace; }
+        .mp-mark.bad { background: ${T.err}; }
+        /* to'g'ri tushganda mini yulduzcha-burst */
+        .mp-burst { position: absolute; top: 50%; left: 50%; width: 0; height: 0; pointer-events: none; z-index: 5; }
+        .mp-burst span { position: absolute; left: -6px; top: -6px; font-size: 12px; color: #F5A623; text-shadow: 0 0 8px rgba(245,166,35,0.7); opacity: 0; transform: rotate(var(--ba)) translateY(0) scale(0.4); animation: mp-burst-fly 0.8s ease-out 0.1s forwards; }
+        @keyframes mp-burst-fly { 0% { opacity: 0; transform: rotate(var(--ba)) translateY(0) scale(0.4); } 30% { opacity: 1; } 100% { opacity: 0; transform: rotate(var(--ba)) translateY(-46px) scale(1); } }
+        .mp-pool { position: relative; z-index: 1; display: flex; flex-direction: column; gap: 8px; background: ${T.bg}; border-radius: 14px; padding: 13px 15px; box-shadow: inset 0 0 0 1.5px ${T.line}; }
+        .mp-pool-row { display: flex; flex-wrap: wrap; gap: 10px; min-height: 48px; align-items: center; }
         .mp-pool-done { font-family: 'Manrope'; font-weight: 700; font-size: 13px; color: ${T.success}; }
-        @media (prefers-reduced-motion: reduce) { .jtype.open, .jtype .jtype-tap, .cofsh-fill, .cofsh-crown { animation: none; } }
+        @media (prefers-reduced-motion: reduce) {
+          .mp-target.droppable, .mp-target.dragover, .mp-target.ok, .mp-chip.placed { animation: none; }
+          .mp-burst { display: none; }
+          .mp-chip.pool:hover { transform: none; }
+          .cofsh-fill, .cofsh-crown { animation: none; }
+        }
 
       `}</style>
       <AchCtx.Provider value={earned}>
