@@ -388,6 +388,11 @@ export default function App() {
   const lesson = READY.find(l => l.key === key)
   const [q, setQ] = useState('')
   const [filter, setFilter] = useState('Hammasi')
+  // UZ-RU: global dars tili — localStorage'da saqlanadi, har darsga lang prop bo'lib uzatiladi
+  const [lang, setLang] = useState(() => {
+    try { return localStorage.getItem('cc_lang') === 'ru' ? 'ru' : 'uz' } catch { return 'uz' }
+  })
+  const pickLang = (l) => { setLang(l); try { localStorage.setItem('cc_lang', l) } catch {} }
 
   useEffect(() => { window.scrollTo(0, 0) }, [key])
 
@@ -407,7 +412,7 @@ export default function App() {
     const C = lesson.comp
     return (
       <Suspense fallback={<LessonLoading />}>
-        <C />
+        <C lang={lang} />
         <a href="#/" title="Bosh sahifa — boshqa darsni tanlash" aria-label="Bosh sahifa"
           style={{ position: 'fixed', bottom: 14, left: 14, zIndex: 950, width: 40, height: 40, borderRadius: 12, border: 'none', background: '#FFFFFF', color: '#5A5A60', fontSize: 19, lineHeight: '40px', textAlign: 'center', textDecoration: 'none', cursor: 'pointer', boxShadow: '0 6px 18px -6px rgba(58,53,48,0.35)', opacity: 0.55, transition: 'opacity 0.2s' }}
           onMouseEnter={e => { e.currentTarget.style.opacity = 1 }} onMouseLeave={e => { e.currentTarget.style.opacity = 0.55 }}>⌂</a>
@@ -450,6 +455,10 @@ export default function App() {
             <button key={f} className={`lz-pill${filter === f ? ' on' : ''}`} onClick={() => setFilter(f)}>{f}</button>
           ))}
           <input className="lz-in" placeholder="Dars qidirish…" value={q} onChange={e => setQ(e.target.value)} />
+          <span style={{ width: 1, height: 20, background: '#E2DED4', flexShrink: 0, margin: '0 4px' }} />
+          {['uz', 'ru'].map(l => (
+            <button key={l} className={`lz-pill${lang === l ? ' on' : ''}`} title={l === 'uz' ? "Dars tili: o'zbekcha" : 'Язык уроков: русский'} onClick={() => pickLang(l)}>{l.toUpperCase()}</button>
+          ))}
         </div>
       </nav>
 

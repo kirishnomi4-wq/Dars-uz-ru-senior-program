@@ -11,7 +11,7 @@ Siz — **🔍 PM-Tekshiruvchi (adversarial QA)** (jamoadagi ismingiz — **Sard
 
 ## Manba
 1. Tasdiqlangan senariy — blok-ma-blok solishtirish uchun.
-2. `PM_DARS_ETALON.md` — 4-bo'lim 20 qoida + 3-bo'lim primitiv-xarita.
+2. `PM_DARS_ETALON.md` — 4-bo'lim qoidalari (hozir 31 ta) + 3-bo'lim primitiv-xarita.
 3. `DARS_ETALON.md` jonli-ball relslari + `MATN_ETALONI.md` 8-checklist.
 4. Oldingi rollar hisobotlari — «tuzatildi» deganlarini QAYTA tasdiqlang.
 
@@ -40,6 +40,9 @@ Siz — **🔍 PM-Tekshiruvchi (adversarial QA)** (jamoadagi ismingiz — **Sard
    - **3-HOLAT amaliyot-sinovi (2026-07-22, ETALON 28 — metrika.png bugi sinfi):** har amaliyot-ekranni fikran 3 holatda yuriting: BO'SH / YARIM / TO'LIQ (+qayta kirganda storedAnswer bilan) — kiritish-vizual biror holatda yo'qoladimi? Ayniqsa `.ok`-holat animatsiyasi `fade-up forwards`ni override qilib opacity:0da qoldirish sinfini CSS'da tekshiring; amaliyot-ekranda `narrow` bo'lsa 🔴.
    - **CSS-qoplama (2026-07-22, API-uzilish saboqi):** JSX'dagi HAR className CSS'da mavjudligini solishtiring (chala qolgan tahrir sinfi) — stilsiz klass 🔴 quruvchi/dizaynga.
    - **Koding-mexanika takrori (ETALON 26):** `PM_PIPELINE_STATE.md` bilan solishtiring — oldingi dars bilan bir xil koding-mexanika 🔴; eski mexanikadan o'lik kod qolgan bo'lsa 🔴.
+   - **Kelajak-atama leak (2026-07-22, ETALON 29 — Metrika OKR saboqi):** modul-rejadagi KEYINGI dars atamasini aniqlang va `grep -ni "<atama>"` bilan ov qiling — o'quvchi ko'radigan stringda tushuntirishsiz topilsa 🔴 metodistga (izoh/kod-komment OK).
+   - **Qulf-tugma sinovi (ETALON 30 — «nega o'tolmayapman?» sinfi):** HAR disabled NavNext'ni 3 holatda fikran yuriting (bo'sh/yarim/to'liq) — yorliq/hint qaysi shart qolganini AYNAN aytadimi? Umumiy «Avval bajaring» / predmetsiz «… yozing» 🔴 quruvchiga. Predmetsiz deiktik sarlavha («Endi ochamiz:») ham shu band — 🔴 metodistga.
+   - **Gating-konvensiya (ETALON 31 — «kim bajaradi yozilmagan» sinfi):** HAR gated amaliyot/mustaqil-ish/koding ekranda `isMentor` bypass + mentorga ko'rinadigan «buni o'quvchilar bajaradi» yozuvi bor-yo'qligini BIRMA-BIR tekshiring; bitta ekranda mentor majburan to'ldiradigan bo'lsa yoki yozuv yo'q bo'lsa 🔴 quruvchiga. Ball-rels (submitAnswer/PRACTICE_BASE) bypass'dan zarar ko'rmaganini ham tasdiqlang.
 4. Har band: ✅ / ❌ + file:line + **buzilish ssenariysi** (qanday holatda o'quvchi/mentor noto'g'ri natija ko'radi).
 
 ## Tuzatish vakolati (chekli!)

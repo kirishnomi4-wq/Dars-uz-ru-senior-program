@@ -12,7 +12,7 @@ Siz — **🏗️ PM-Quruvchi** (jamoadagi ismingiz — **Bekzod**). Vazifangiz:
 
 ## Manba
 1. Tasdiqlangan senariy (`pm-senariylar/M<N>-D<K>-*.md`) — SIZNING yagona kontent-manbangiz. Senariydan chetlashish = nuqson (pm-tekshiruvchi ushlaydi).
-2. `PM_DARS_ETALON.md` — 2-bo'lim blok→ekran standarti (~15 ekran), 3-bo'lim P0 manba-xaritasi, 4-bo'lim 20 qoida.
+2. `PM_DARS_ETALON.md` — 2-bo'lim blok→ekran standarti (~15 ekran), 3-bo'lim P0 manba-xaritasi, 4-bo'lim qoidalari (hozir 31 ta).
 3. `PM_Prompt_v8.md` — 9 blok tayming/tuzilma ma'nosi.
 
 ## Qurilish qoidalari (PM_DARS_ETALON 4-bo'limdan sizga tegishlilari)
@@ -25,6 +25,8 @@ Siz — **🏗️ PM-Quruvchi** (jamoadagi ismingiz — **Bekzod**). Vazifangiz:
 - **🔴 MAQSAD-PREVIEW KLON TAQIQ (ETALON 23):** s1 preview NAQSHI (jonli to'lish) universal, KO'RINISHI har darsda O'Z metaforasidan (JTBD=«✓ YOLLANDI» shtamp, Metrika=«● JONLI» panel CountUp+sparkline). P0 `.story-silo`ni boshqa darsga aynan ko'chirish NUQSON.
 - **🔴 MUHOKAMA-EKRAN INTERAKTIV (ETALON 24):** statik savol-matn o'rniga kichik bosiladigan sahna (flip-ikonka, kun-katak...); bosh-misol ilovani `PM_PIPELINE_STATE.md` misol-jurnalidan tekshiring — boshqa darsda ishlatilgani TAQIQ.
 - **🔴 AMALIYOT-EKRANDA `narrow` TAQIQ (ETALON 28):** o'quvchi yozadigan ekran to'liq kenglik + split (chapda kiritish, o'ngda holat-panel: chiroq/progress/imzo-belgi). Kiritish-vizual BARCHA holatlarda ko'rinadi — `.ok`-holat animatsiyasi `fade-up`ning `forwards`ini override qilib elementni opacity:0da qoldirmasin (metrika.png bugi sinfi).
+- **🔴 QULF-TUGMA GAPIRADI (2026-07-22, ETALON 30 — Metrika 4.png saboqi):** har `disabled` NavNext yorlig'i (yoki yonidagi hint) AYNAN qaysi shart qolganini aytadi; validator bosqichli bo'lsa yorliq bosqichga qarab o'zgaradi («① Avval o'lchanadigan raqamni yozing» → «② "chunki …" deb sababini qo'shing»). Yozish-ekranida qadam-yo'riqnoma doim ko'rinadi, bajarilgan qadam YASHIL (`v.hasX ? T.success : T.ink` naqshi — PmMetricsLesson s5'dan ko'chiring). Umumiy «Avval bajaring» yorlig'i TAQIQ.
+- **🔴 AMALIYOT-GATING KONVENSIYASI (ETALON 31 — Metrika 5.png saboqi):** HAR gated amaliyot/mustaqil-ish/koding ekranda BIR XIL: `const isMentor = !!(live && live.mode === 'mentor')` → `disabled={!done && !isMentor}` + mentorga ko'rinadigan bir-qatorlik yozuv: «👨‍🏫 Jonli darsda bu amaliyotni o'quvchilar bajaradi — siz kuzatasiz; "Davom etish" siz uchun ochiq» (naqsh: PmMetricsLesson s5/ustaxona). Mentor HECH QAYSI amaliyotda majburan to'ldirmaydi; o'quvchiga self-rejimda majburiy. Ball-rels (`PRACTICE_BASE+screen`, submitAnswer) o'zgarmaydi.
 - **MentorPracticeStats** (praktika/koding ekranlarida) + **MentorNote proyektor-sir** (default yopiq `.mnote-chip`, bosish=toggle, ekran almashsa avto-yopiq).
 - **🔴 MentorNote FAQAT ZARUR EKRANDA (P0-ko'rik):** sir-saqlash (hook), baholash-mezoni (ustaxona), vaqt-qoidasi (koding), tekshirish-qoidasi (uyga vazifa) — shu toifadagi ekranlardagina. Har ekranga odatiy eslatma tiqish TAQIQ.
 - **🔴 OVERFLOW-HIMOYA (P0-ko'rik, 9-page bugi):** foydalanuvchi kiritmasi ko'rinadigan HAR konteynerga `min-width: 0` + `overflow-wrap: anywhere` — probelsiz uzun matn kartadan chiqib ketmasin. Yangi input-preview qursangiz shu himoyani birga yozing.

@@ -149,21 +149,21 @@ function useLiveSession(lessonId, answerKey) {
       tokenRef.current = row.token; setPin(row.pin); setMode('mentor'); setEnded(false);
       liveStore(lessonId, { mode: 'mentor', pin: row.pin, token: row.token });
       if (keyRef.current) liveRpc('set_quiz_keys', { p_lesson_id: lessonId, p_mentor_code: (mentorCode || '').trim(), p_keys: keyRef.current }).catch(() => {});
-    } catch { setJoinError("Mentor kodi noto'g'ri yoki ulanishda xato."); }
+    } catch { setJoinError(tr({ uz: "Mentor kodi noto'g'ri yoki ulanishda xato.", ru: 'Неверный код ментора или ошибка соединения.' })); }
     finally { setBusy(false); }
   }, [lessonId]);
 
   const joinStudent = useCallback(async (raw, rawNick) => {
     const p = (raw || '').replace(/\D/g, '');
     const nick = (rawNick || '').trim();
-    if (p.length < 4) { setJoinError("Kodni to'liq kiriting."); return; }
-    if (nick.length < 2) { setJoinError('Ismingizni kiriting (kamida 2 harf).'); return; }
+    if (p.length < 4) { setJoinError(tr({ uz: "Kodni to'liq kiriting.", ru: 'Введите код полностью.' })); return; }
+    if (nick.length < 2) { setJoinError(tr({ uz: 'Ismingizni kiriting (kamida 2 harf).', ru: 'Введите своё имя (минимум 2 буквы).' })); return; }
     setBusy(true); setJoinError('');
     try {
       const row = await liveGet(p);
-      if (!row) { setJoinError('Bunday kod topilmadi.'); setBusy(false); return; }
-      if (row.lesson_id && row.lesson_id !== lessonId) { setJoinError('Bu kod boshqa darsga tegishli.'); setBusy(false); return; }
-      if (row.status !== 'live') { setJoinError('Bu dars allaqachon yakunlangan.'); setBusy(false); return; }
+      if (!row) { setJoinError(tr({ uz: 'Bunday kod topilmadi.', ru: 'Такой код не найден.' })); setBusy(false); return; }
+      if (row.lesson_id && row.lesson_id !== lessonId) { setJoinError(tr({ uz: 'Bu kod boshqa darsga tegishli.', ru: 'Этот код от другого урока.' })); setBusy(false); return; }
+      if (row.status !== 'live') { setJoinError(tr({ uz: 'Bu dars allaqachon yakunlangan.', ru: 'Этот урок уже завершён.' })); setBusy(false); return; }
       const res = await liveRpc('join_session', { p_pin: p, p_nickname: nick });
       const player = Array.isArray(res) ? res[0] : res;
       if (!player?.player_id) throw new Error('no player');
@@ -175,7 +175,7 @@ function useLiveSession(lessonId, answerKey) {
     } catch (e) {
       // Serverdan kelgan o'zbekcha xabarlarni (ism band va h.k.) o'zini ko'rsatamiz
       const m = String(e?.message || '');
-      setJoinError(/ism|band|kod|dars|belgi/i.test(m) ? m : "Ulanib bo'lmadi. Internetni tekshiring.");
+      setJoinError(/ism|band|kod|dars|belgi/i.test(m) ? m : tr({ uz: "Ulanib bo'lmadi. Internetni tekshiring.", ru: 'Не удалось подключиться. Проверьте интернет.' }));
     }
     finally { setBusy(false); }
   }, [lessonId]);
@@ -225,10 +225,10 @@ function LiveBigCode({ pin, onClose }) {
   const box = { background: LT.paper, color: LT.ink, borderRadius: 'clamp(10px,1.6vw,18px)', fontFamily: 'monospace', fontWeight: 800, lineHeight: 1, fontSize: 'clamp(48px,13vw,150px)', padding: 'clamp(10px,2vw,28px) clamp(12px,2.2vw,30px)', boxShadow: '0 10px 40px -10px rgba(0,0,0,0.5)' };
   return (
     <div style={overlay}>
-      <div style={{ fontSize: 'clamp(13px,2vw,18px)', fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: LT.accent, marginBottom: 'clamp(14px,3vw,28px)' }}>Jonli darsga qo'shilish</div>
+      <div style={{ fontSize: 'clamp(13px,2vw,18px)', fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: LT.accent, marginBottom: 'clamp(14px,3vw,28px)' }}>{tr({ uz: "Jonli darsga qo'shilish", ru: 'Подключение к живому уроку' })}</div>
       <div style={{ display: 'flex', gap: 'clamp(6px,1.4vw,16px)', justifyContent: 'center', flexWrap: 'wrap' }}>{digits.map((d, i) => <span key={i} style={box}>{d}</span>)}</div>
-      <p style={{ color: '#fff', opacity: 0.85, fontSize: 'clamp(15px,2.2vw,22px)', maxWidth: 640, margin: 'clamp(20px,4vw,36px) 0 0', lineHeight: 1.5 }}>Shu darsni o'z qurilmangizda oching → <b style={{ color: '#fff' }}>«👨‍🎓 O'quvchiman»</b> → ushbu kodni kiriting.</p>
-      <button onClick={onClose} style={{ marginTop: 'clamp(22px,4vw,40px)', background: LT.accent, color: '#fff', border: 'none', borderRadius: 14, padding: 'clamp(12px,1.6vw,16px) clamp(24px,3vw,36px)', fontSize: 'clamp(15px,1.8vw,18px)', fontWeight: 700, cursor: 'pointer' }}>Darsni boshlash →</button>
+      <p style={{ color: '#fff', opacity: 0.85, fontSize: 'clamp(15px,2.2vw,22px)', maxWidth: 640, margin: 'clamp(20px,4vw,36px) 0 0', lineHeight: 1.5 }}>{tr({ uz: <>Shu darsni o'z qurilmangizda oching → <b style={{ color: '#fff' }}>«👨‍🎓 O'quvchiman»</b> → ushbu kodni kiriting.</>, ru: <>Откройте этот урок на своём устройстве → <b style={{ color: '#fff' }}>«👨‍🎓 Я ученик»</b> → введите этот код.</> })}</p>
+      <button onClick={onClose} style={{ marginTop: 'clamp(22px,4vw,40px)', background: LT.accent, color: '#fff', border: 'none', borderRadius: 14, padding: 'clamp(12px,1.6vw,16px) clamp(24px,3vw,36px)', fontSize: 'clamp(15px,1.8vw,18px)', fontWeight: 700, cursor: 'pointer' }}>{tr({ uz: 'Darsni boshlash →', ru: 'Начать урок →' })}</button>
     </div>
   );
 }
@@ -243,18 +243,18 @@ function LiveGate({ live, title = 'Jonli dars' }) {
   const link = { background: 'none', border: 'none', color: LT.ink3, fontSize: 13, cursor: 'pointer', alignSelf: 'center' };
   if (role === 'mentor') {
     return (<div style={wrap}><div style={card}>
-      <div style={{ textAlign: 'center' }}><h2 style={{ fontFamily: 'Georgia, serif', fontSize: 'clamp(22px,3vw,28px)', color: LT.ink, margin: '0 0 4px' }}>🧑‍🏫 Mentor kirishi</h2><p style={{ color: LT.ink2, fontSize: 14, margin: 0 }}>Mentor kodini kiriting.</p></div>
-      <input value={mentorCode} onChange={e => setMentorCode(e.target.value)} type="password" autoFocus placeholder="Mentor kodi" onKeyDown={e => { if (e.key === 'Enter') live.startMentor(mentorCode); }} style={{ width: '100%', padding: '14px', border: `2px solid ${LT.ink3}55`, borderRadius: 14, fontSize: 18, fontWeight: 600, textAlign: 'center', outline: 'none' }} />
-      <button onClick={() => live.startMentor(mentorCode)} disabled={live.busy} style={_liveBtnPri}>{live.busy ? 'Tekshirilmoqda…' : 'Kirish →'}</button>
+      <div style={{ textAlign: 'center' }}><h2 style={{ fontFamily: 'Georgia, serif', fontSize: 'clamp(22px,3vw,28px)', color: LT.ink, margin: '0 0 4px' }}>🧑‍🏫 {tr({ uz: 'Mentor kirishi', ru: 'Вход для ментора' })}</h2><p style={{ color: LT.ink2, fontSize: 14, margin: 0 }}>{tr({ uz: 'Mentor kodini kiriting.', ru: 'Введите код ментора.' })}</p></div>
+      <input value={mentorCode} onChange={e => setMentorCode(e.target.value)} type="password" autoFocus placeholder={tr({ uz: 'Mentor kodi', ru: 'Код ментора' })} onKeyDown={e => { if (e.key === 'Enter') live.startMentor(mentorCode); }} style={{ width: '100%', padding: '14px', border: `2px solid ${LT.ink3}55`, borderRadius: 14, fontSize: 18, fontWeight: 600, textAlign: 'center', outline: 'none' }} />
+      <button onClick={() => live.startMentor(mentorCode)} disabled={live.busy} style={_liveBtnPri}>{live.busy ? tr({ uz: 'Tekshirilmoqda…', ru: 'Проверяем…' }) : tr({ uz: 'Kirish →', ru: 'Войти →' })}</button>
       {live.joinError && <div style={{ color: LT.accent, fontSize: 13, textAlign: 'center' }}>{live.joinError}</div>}
-      <button onClick={() => { setRole('student'); setMentorCode(''); }} style={link}>← Orqaga</button>
+      <button onClick={() => { setRole('student'); setMentorCode(''); }} style={link}>{tr({ uz: '← Orqaga', ru: '← Назад' })}</button>
     </div></div>);
   }
   return (<div style={wrap}><div style={card}>
-    <div style={{ textAlign: 'center' }}><div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: LT.accent }}>{title}</div><h2 style={{ fontFamily: 'Georgia, serif', fontSize: 'clamp(22px,3vw,28px)', color: LT.ink, margin: '6px 0 4px' }}>Darsga qo'shilish</h2><p style={{ color: LT.ink2, fontSize: 14, margin: 0 }}>Mentor bergan kodni va ismingizni kiriting.</p></div>
+    <div style={{ textAlign: 'center' }}><div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: LT.accent }}>{title}</div><h2 style={{ fontFamily: 'Georgia, serif', fontSize: 'clamp(22px,3vw,28px)', color: LT.ink, margin: '6px 0 4px' }}>{tr({ uz: "Darsga qo'shilish", ru: 'Подключение к уроку' })}</h2><p style={{ color: LT.ink2, fontSize: 14, margin: 0 }}>{tr({ uz: 'Mentor bergan kodni va ismingizni kiriting.', ru: 'Введите код от ментора и своё имя.' })}</p></div>
     <input value={code} onChange={e => setCode(e.target.value)} inputMode="numeric" autoFocus placeholder="483 920" style={{ width: '100%', padding: '16px 14px', border: `2px solid ${LT.ink3}55`, borderRadius: 14, fontSize: 28, fontFamily: 'monospace', fontWeight: 700, letterSpacing: '0.12em', textAlign: 'center', outline: 'none' }} />
-    <input value={nick} onChange={e => setNick(e.target.value)} maxLength={24} placeholder="Ismingiz (masalan: Ali)" onKeyDown={e => { if (e.key === 'Enter') live.joinStudent(code, nick); }} style={{ width: '100%', padding: '13px 14px', border: `2px solid ${LT.ink3}55`, borderRadius: 14, fontSize: 17, fontWeight: 600, textAlign: 'center', outline: 'none' }} />
-    <button onClick={() => live.joinStudent(code, nick)} disabled={live.busy} style={_liveBtnPri}>{live.busy ? 'Ulanmoqda…' : 'Qo\'shilish →'}</button>
+    <input value={nick} onChange={e => setNick(e.target.value)} maxLength={24} placeholder={tr({ uz: 'Ismingiz (masalan: Ali)', ru: 'Ваше имя (например: Али)' })} onKeyDown={e => { if (e.key === 'Enter') live.joinStudent(code, nick); }} style={{ width: '100%', padding: '13px 14px', border: `2px solid ${LT.ink3}55`, borderRadius: 14, fontSize: 17, fontWeight: 600, textAlign: 'center', outline: 'none' }} />
+    <button onClick={() => live.joinStudent(code, nick)} disabled={live.busy} style={_liveBtnPri}>{live.busy ? tr({ uz: 'Ulanmoqda…', ru: 'Подключаемся…' }) : tr({ uz: "Qo'shilish →", ru: 'Присоединиться →' })}</button>
     {live.joinError && <div style={{ color: LT.accent, fontSize: 13, textAlign: 'center' }}>{live.joinError}</div>}
     <button onClick={() => { setRole('mentor'); setCode(''); }} title="Mentor" aria-label="Mentor" style={{ position: 'absolute', bottom: 10, right: 12, background: 'none', border: 'none', fontSize: 16, opacity: 0.3, cursor: 'pointer', lineHeight: 1, padding: 4 }}>🧑‍🏫</button>
   </div></div>);
@@ -275,22 +275,22 @@ function LiveBadge({ live, total }) {
     return () => { on = false; clearTimeout(t); };
   }, [live.mode, live.pin, live.ended]);
   if (live.mode === 'mentor') {
-    if (live.ended) return <div data-tour="live" className="live-badge" style={_liveBadgeS}><span style={_liveDot(LT.ink3)} /> 🔓 O'quvchilar erkin qilindi</div>;
+    if (live.ended) return <div data-tour="live" className="live-badge" style={_liveBadgeS}><span style={_liveDot(LT.ink3)} /> 🔓 {tr({ uz: "O'quvchilar erkin qilindi", ru: 'Ученики в свободном режиме' })}</div>;
     return (<>
       {bigOpen && <LiveBigCode pin={live.pin} onClose={() => setBigOpen(false)} />}
       <div data-tour="live" className="live-badge" style={_liveBadgeS}>
-        <span style={_liveDot(LT.success)} /> Kod: <b style={{ fontFamily: 'monospace', letterSpacing: '0.08em' }}>{fmtPin(live.pin)}</b>
+        <span style={_liveDot(LT.success)} /> {tr({ uz: 'Kod:', ru: 'Код:' })} <b style={{ fontFamily: 'monospace', letterSpacing: '0.08em' }}>{fmtPin(live.pin)}</b>
         {nPlayers !== null && <span style={{ color: LT.ink2 }}>👥 {nPlayers}</span>}
-        <button onClick={() => setBigOpen(true)} title="Kodni katta ko'rsatish" style={{ marginLeft: 6, background: LT.ink, color: '#fff', border: 'none', borderRadius: 99, padding: '4px 10px', fontSize: 12, fontWeight: 700, cursor: 'pointer', whiteSpace: 'nowrap' }}>📺 Ko'rsatish</button>
-        <button onClick={() => { if (window.confirm("O'quvchilarni ozod qilasizmi? Ular o'zlari erkin davom etadi.")) live.endSession(); }} style={{ background: LT.accentSoft, color: LT.accent, border: 'none', borderRadius: 99, padding: '4px 10px', fontSize: 12, fontWeight: 700, cursor: 'pointer', whiteSpace: 'nowrap' }}>🔓 Erkin qilish</button>
+        <button onClick={() => setBigOpen(true)} title={tr({ uz: "Kodni katta ko'rsatish", ru: 'Показать код крупно' })} style={{ marginLeft: 6, background: LT.ink, color: '#fff', border: 'none', borderRadius: 99, padding: '4px 10px', fontSize: 12, fontWeight: 700, cursor: 'pointer', whiteSpace: 'nowrap' }}>📺 {tr({ uz: "Ko'rsatish", ru: 'Показать' })}</button>
+        <button onClick={() => { if (window.confirm(tr({ uz: "O'quvchilarni ozod qilasizmi? Ular o'zlari erkin davom etadi.", ru: 'Отпустить учеников? Они продолжат урок самостоятельно.' }))) live.endSession(); }} style={{ background: LT.accentSoft, color: LT.accent, border: 'none', borderRadius: 99, padding: '4px 10px', fontSize: 12, fontWeight: 700, cursor: 'pointer', whiteSpace: 'nowrap' }}>🔓 {tr({ uz: 'Erkin qilish', ru: 'Отпустить' })}</button>
       </div>
     </>);
   }
   if (live.mode === 'student') {
-    if (live.status === 'ended') return <div data-tour="live" className="live-badge" style={_liveBadgeS}><span style={_liveDot(LT.success)} /> 🔓 Erkin rejim — o'zingiz davom eting</div>;
-    if (!live.mentorAlive) return <div data-tour="live" className="live-badge" style={_liveBadgeS}><span style={_liveDot(LT.ink3)} /> ⚠️ Mentor uzildi — erkin rejim</div>;
-    if (!live.connected) return <div data-tour="live" className="live-badge" style={_liveBadgeS}><span style={_liveDot('#FFD380')} /> 🔄 Qayta ulanmoqda…</div>;
-    return <div data-tour="live" className="live-badge" style={_liveBadgeS}><span style={_liveDot(LT.success)} /> 👨‍🏫 Mentor: {Math.min(live.mentorScreen + 1, total)} / {total}{live.nickname && <span style={{ color: LT.ink3 }}>· {live.nickname}</span>}</div>;
+    if (live.status === 'ended') return <div data-tour="live" className="live-badge" style={_liveBadgeS}><span style={_liveDot(LT.success)} /> 🔓 {tr({ uz: "Erkin rejim — o'zingiz davom eting", ru: 'Свободный режим — продолжайте сами' })}</div>;
+    if (!live.mentorAlive) return <div data-tour="live" className="live-badge" style={_liveBadgeS}><span style={_liveDot(LT.ink3)} /> ⚠️ {tr({ uz: 'Mentor uzildi — erkin rejim', ru: 'Ментор отключился — свободный режим' })}</div>;
+    if (!live.connected) return <div data-tour="live" className="live-badge" style={_liveBadgeS}><span style={_liveDot('#FFD380')} /> 🔄 {tr({ uz: 'Qayta ulanmoqda…', ru: 'Переподключаемся…' })}</div>;
+    return <div data-tour="live" className="live-badge" style={_liveBadgeS}><span style={_liveDot(LT.success)} /> 👨‍🏫 {tr({ uz: 'Mentor:', ru: 'Ментор:' })} {Math.min(live.mentorScreen + 1, total)} / {total}{live.nickname && <span style={{ color: LT.ink3 }}>· {live.nickname}</span>}</div>;
   }
   return null;
 }
@@ -299,6 +299,15 @@ const LangContext = createContext('uz');
 const MentorCtx = createContext(null); // mobil: yig'iladigan Mentor
 const AchCtx = createContext(null); // 🏅 olingan nishonlar (Set) — Stage hisoblagichi uchun
 const useLang = () => useContext(LangContext);
+// UZ-RU: modul-darajali tarjimon. Dars mount bo'lganda default export __lang'ni o'rnatadi;
+// barcha render-joylar tr({uz:'…', ru:'…'}) orqali joriy tildagi matnni oladi (string/JSX o'tkazib yuboriladi).
+let __lang = 'uz';
+const tr = (node) => {
+  if (node === null || node === undefined) return '';
+  if (typeof node === 'string') return node;
+  if (React.isValidElement(node)) return node;
+  return node[__lang] ?? node.uz ?? node.ru ?? '';
+};
 
 function useIsMobile(breakpoint = 640) {
   const [isMobile, setIsMobile] = useState(typeof window !== 'undefined' ? window.innerWidth < breakpoint : false);
@@ -428,18 +437,18 @@ const GitHubMark = ({ size = 30 }) => (
 // Kichik namuna-sayt (deploy/poddomen ekranlarida qayta ishlatiladi)
 const MiniSite = ({ name = 'Aziza' }) => (
   <div style={{ fontFamily: 'Georgia, serif' }}>
-    <h1 style={{ fontSize: 'clamp(18px,2.6vw,24px)', margin: '0 0 6px', color: T.ink }}>Salom, men {name}!</h1>
-    <p style={{ margin: '0 0 12px', color: T.ink2, fontSize: 'clamp(13px,1.7vw,15px)', lineHeight: 1.5 }}>Bu mening birinchi saytim. Web-dasturlashni endi o'rganyapman.</p>
-    <span style={{ display: 'inline-block', background: T.accent, color: '#fff', padding: '7px 15px', borderRadius: 8, fontFamily: "'Manrope', sans-serif", fontWeight: 700, fontSize: 13 }}>Obuna bo'lish</span>
+    <h1 style={{ fontSize: 'clamp(18px,2.6vw,24px)', margin: '0 0 6px', color: T.ink }}>{tr({ uz: 'Salom, men', ru: 'Привет, я' })} {name}!</h1>
+    <p style={{ margin: '0 0 12px', color: T.ink2, fontSize: 'clamp(13px,1.7vw,15px)', lineHeight: 1.5 }}>{tr({ uz: "Bu mening birinchi saytim. Web-dasturlashni endi o'rganyapman.", ru: 'Это мой первый сайт. Я только начинаю изучать веб-разработку.' })}</p>
+    <span style={{ display: 'inline-block', background: T.accent, color: '#fff', padding: '7px 15px', borderRadius: 8, fontFamily: "'Manrope', sans-serif", fontWeight: 700, fontSize: 13 }}>{tr({ uz: "Obuna bo'lish", ru: 'Подписаться' })}</span>
   </div>
 );
 
 // 🏅 NISHONLAR — 4 ta (uchtasi ma'noli triggerdan, bittasi yakundan). Nom inglizcha o'yin-uslubi, desc o'zbekcha siz-forma.
 const ACHIEVEMENTS = {
-  shipit:    { icon: '🚀', name: 'Ship It!',    desc: 'Saytni deploy qilib, internetga chiqarish nima ekanini bildingiz' },
-  hostpick:  { icon: '🌐', name: 'Host Pick!',  desc: 'Hosting sayt uchun nima qilishini to\'g\'ri aniqladingiz' },
-  golive:    { icon: '📡', name: 'Go Live!',    desc: 'Uchirish markazida saytni to\'g\'ri tartibda uchirdingiz' },
-  graduate:  { icon: '🏆', name: 'Level Up!',   desc: 'Deploy darsini yakunlab, saytingizni butun dunyoga ochdingiz' },
+  shipit:    { icon: '🚀', name: 'Ship It!',    desc: { uz: 'Saytni deploy qilib, internetga chiqarish nima ekanini bildingiz', ru: 'Вы задеплоили сайт и узнали, что значит выйти в интернет' } },
+  hostpick:  { icon: '🌐', name: 'Host Pick!',  desc: { uz: "Hosting sayt uchun nima qilishini to'g'ri aniqladingiz", ru: 'Вы верно определили, что хостинг делает для сайта' } },
+  golive:    { icon: '📡', name: 'Go Live!',    desc: { uz: "Uchirish markazida saytni to'g'ri tartibda uchirdingiz", ru: 'Вы запустили сайт в правильном порядке в центре управления' } },
+  graduate:  { icon: '🏆', name: 'Level Up!',   desc: { uz: 'Deploy darsini yakunlab, saytingizni butun dunyoga ochdingiz', ru: 'Вы завершили урок деплоя и открыли сайт всему миру' } },
 };
 // Ekran id → nishon (recordAnswer'da avtomatik beriladi). FAQAT scored test yoki uchirish-gate — tekin berilmaydi.
 // s4/s9 — scored testlar (correct=to'g'ri javob); s13 — uchirish gate (correct FAQAT worldwide fazasida).
@@ -514,13 +523,14 @@ const Stage = ({ children, eyebrow, screen, totalScreens = TOTAL_SCREENS, navCon
     </MentorCtx.Provider>
   );
 };
-const NavBack = ({ onPrev }) => <button className="btn-ghost" onClick={onPrev} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>Orqaga</button>;
-const NavNext = ({ disabled, label = 'Davom etish', onClick, optionalLive }) => {
+const NavBack = ({ onPrev }) => <button className="btn-ghost" onClick={onPrev} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Orqaga', ru: 'Назад' })}</button>;
+const NavNext = ({ disabled, label, onClick, optionalLive }) => {
   const gate = useContext(LiveGateCtx);
   const locked = !!(gate && gate.locked);
   const live = gate && gate.live;
   const freeRide = !!(optionalLive && live && live.mode === 'student' && live.status !== 'ended' && live.mentorAlive);
-  return <button data-tour="next" className="btn-white-accent" disabled={(freeRide ? false : disabled) || locked} onClick={onClick} title={locked ? 'Mentor hali bu sahifaga o\'tmadi' : undefined} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)', marginLeft: 'auto' }}>{locked ? '⏳ Mentorni kuting' : (freeRide && disabled ? 'Davom etish' : label)}</button>;
+  const lbl = label != null ? tr(label) : tr({ uz: 'Davom etish', ru: 'Продолжить' });
+  return <button data-tour="next" className="btn-white-accent" disabled={(freeRide ? false : disabled) || locked} onClick={onClick} title={locked ? tr({ uz: "Mentor hali bu sahifaga o'tmadi", ru: 'Ментор ещё не перешёл на эту страницу' }) : undefined} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)', marginLeft: 'auto' }}>{locked ? tr({ uz: '⏳ Mentorni kuting', ru: '⏳ Ждите ментора' }) : (freeRide && disabled ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : lbl)}</button>;
 };
 
 const FeedbackBlock = ({ show, isCorrect, neutral, children }) => {
@@ -549,66 +559,66 @@ const RECAP_MIN_ANSWERS = 3; // foizga ishonch uchun kamida shuncha javob kerak
 // ask (mentor sinfga og'zaki beradigan savol — jonli muloqot uchun).
 // ============================================================
 const RcFlow = ({ items, sep = '→' }) => (
-  <div className="rc-flow">{items.map((t, i) => <React.Fragment key={i}><span className="rc-chip">{t}</span>{sep && i < items.length - 1 && <span className="rc-arr">{sep}</span>}</React.Fragment>)}</div>
+  <div className="rc-flow">{items.map((t, i) => <React.Fragment key={i}><span className="rc-chip">{tr(t)}</span>{sep && i < items.length - 1 && <span className="rc-arr">{sep}</span>}</React.Fragment>)}</div>
 );
 // RECAPS kontenti — 4 ta baholanadigan test uchun qayta tushuntirish (idx 4/6/10/13).
 // Xato javob bergan o'quvchi mavzuni 3 ta qisqa kartada qayta ko'radi (deploy/hosting/raketa metaforalari).
 const RECAPS = {
   // idx 4 — s4: «Hosting asosan qanday vazifa bajaradi?» (nazariya: hosting)
   4: {
-    title: 'Hosting — saytning doimiy uyi', cards: [
-      { ic: '🏠', h: 'Hosting nima qiladi?',
-        body: <><b>Hosting</b> — saytingizni <b>doimo ishlab turadigan</b> serverda saqlaydi. Buni <b>24 soat ochiq do'kon</b> deb tasavvur qiling: eshigi hech qachon yopilmaydi, istalgan payt istalgan odam kirib ko'radi.</>,
-        vis: <RcFlow items={['📄 Sayt fayllari', '🖥️ Hosting serveri', "🌍 Har kim ko'radi"]} />,
-        ask: "Sizningcha, hosting bo'lmasa saytni kim ko'ra oladi?" },
-      { ic: '💻', h: 'localhost va hosting farqi',
-        body: <>Sayt faqat sizning kompyuteringizda ishlasa — bu <span className="mono">localhost</span>: kompyuter o'chsa, sayt ham yo'q, faqat siz ko'rasiz. Hostingda esa server <b>24/7</b> yonib turadi — dunyoning istalgan yeridan ochiladi.</>,
-        vis: <RcFlow items={['💻 localhost — faqat men', '🌍 hosting — hamma']} sep="·" /> },
-      { ic: '☝️', h: 'Adashtirmang!',
-        body: <>Hosting saytni <b>bezamaydi</b> (bu CSS ishi) va internetni <b>tezlashtirmaydi</b>. Uning yagona vazifasi — saytingizni serverda <b>doimo ochiq</b> saqlash, toki har kim manzildan ochsin.</>,
-        ask: "Sayt bezashini kim qiladi — hostingmi yoki CSS?" },
+    title: { uz: 'Hosting — saytning doimiy uyi', ru: 'Хостинг — постоянный дом сайта' }, cards: [
+      { ic: '🏠', h: { uz: 'Hosting nima qiladi?', ru: 'Что делает хостинг?' },
+        body: { uz: <><b>Hosting</b> — saytingizni <b>doimo ishlab turadigan</b> serverda saqlaydi. Buni <b>24 soat ochiq do'kon</b> deb tasavvur qiling: eshigi hech qachon yopilmaydi, istalgan payt istalgan odam kirib ko'radi.</>, ru: <><b>Хостинг</b> хранит ваш сайт на <b>постоянно работающем</b> сервере. Представьте <b>магазин, открытый 24 часа</b>: двери никогда не закрываются, зайти может любой в любой момент.</> },
+        vis: <RcFlow items={[{ uz: '📄 Sayt fayllari', ru: '📄 Файлы сайта' }, { uz: '🖥️ Hosting serveri', ru: '🖥️ Сервер хостинга' }, { uz: "🌍 Har kim ko'radi", ru: '🌍 Видят все' }]} />,
+        ask: { uz: "Sizningcha, hosting bo'lmasa saytni kim ko'ra oladi?", ru: 'Как вы думаете, кто увидит сайт без хостинга?' } },
+      { ic: '💻', h: { uz: 'localhost va hosting farqi', ru: 'Разница между localhost и хостингом' },
+        body: { uz: <>Sayt faqat sizning kompyuteringizda ishlasa — bu <span className="mono">localhost</span>: kompyuter o'chsa, sayt ham yo'q, faqat siz ko'rasiz. Hostingda esa server <b>24/7</b> yonib turadi — dunyoning istalgan yeridan ochiladi.</>, ru: <>Если сайт работает только на вашем компьютере — это <span className="mono">localhost</span>: выключили компьютер — сайта нет, и видите его только вы. А на хостинге сервер работает <b>24/7</b> — сайт открывается из любой точки мира.</> },
+        vis: <RcFlow items={[{ uz: '💻 localhost — faqat men', ru: '💻 localhost — только я' }, { uz: '🌍 hosting — hamma', ru: '🌍 хостинг — все' }]} sep="·" /> },
+      { ic: '☝️', h: { uz: 'Adashtirmang!', ru: 'Не путайте!' },
+        body: { uz: <>Hosting saytni <b>bezamaydi</b> (bu CSS ishi) va internetni <b>tezlashtirmaydi</b>. Uning yagona vazifasi — saytingizni serverda <b>doimo ochiq</b> saqlash, toki har kim manzildan ochsin.</>, ru: <>Хостинг сайт <b>не украшает</b> (это работа CSS) и интернет <b>не ускоряет</b>. Его единственная задача — держать сайт на сервере <b>всегда открытым</b>, чтобы каждый мог открыть его по адресу.</> },
+        ask: { uz: "Sayt bezashini kim qiladi — hostingmi yoki CSS?", ru: 'Кто украшает сайт — хостинг или CSS?' } },
     ]
   },
   // idx 6 — s5b: «Netlify nima?» (nazariya: hosting platformasi)
   6: {
-    title: 'Netlify — hosting platformasi', cards: [
-      { ic: '🌐', h: 'Netlify nima?',
-        body: <><b>Netlify</b> — saytlarni <b>bepul</b> va bir necha soniyada internetga chiqaradigan <b>hosting platformasi</b>. Ya'ni saytingizni serverga qo'yish ishini u siz uchun oson qilib beradi.</>,
-        vis: <RcFlow items={['📁 Sayt', '🌐 Netlify', "🌍 Internetda"]} /> },
-      { ic: '🔗', h: 'Ikki yo\'li bor',
-        body: <>Netlify'da saytni chiqarishning ikki usuli bor: papkani <b>sichqoncha bilan tortib tashlash</b>, yoki <b>GitHub'ni ulash</b>. Biz GitHub'ni ulaymiz — chunki kodimiz allaqachon o'sha yerda.</>,
-        vis: <RcFlow items={['📁 Papkani tortish', "🔗 GitHub'ni ulash"]} sep="·" /> },
-      { ic: '☝️', h: 'Adashtirmang!',
-        body: <>Netlify — <b>brauzer emas</b> (brauzer saytni ko'rsatadi, masalan Chrome) va <b>domen emas</b> (domen — saytning manzili). Netlify — saytni <b>joylaydigan</b> hosting platformasi.</>,
-        ask: "Netlify va Chrome — qaysi biri saytni ko'rsatadi?" },
+    title: { uz: 'Netlify — hosting platformasi', ru: 'Netlify — хостинг-платформа' }, cards: [
+      { ic: '🌐', h: { uz: 'Netlify nima?', ru: 'Что такое Netlify?' },
+        body: { uz: <><b>Netlify</b> — saytlarni <b>bepul</b> va bir necha soniyada internetga chiqaradigan <b>hosting platformasi</b>. Ya'ni saytingizni serverga qo'yish ishini u siz uchun oson qilib beradi.</>, ru: <><b>Netlify</b> — <b>хостинг-платформа</b>, которая публикует сайты <b>бесплатно</b> и за несколько секунд. Она берёт на себя всю работу по размещению сайта на сервере.</> },
+        vis: <RcFlow items={[{ uz: '📁 Sayt', ru: '📁 Сайт' }, '🌐 Netlify', { uz: '🌍 Internetda', ru: '🌍 В интернете' }]} /> },
+      { ic: '🔗', h: { uz: "Ikki yo'li bor", ru: 'Есть два пути' },
+        body: { uz: <>Netlify'da saytni chiqarishning ikki usuli bor: papkani <b>sichqoncha bilan tortib tashlash</b>, yoki <b>GitHub'ni ulash</b>. Biz GitHub'ni ulaymiz — chunki kodimiz allaqachon o'sha yerda.</>, ru: <>Опубликовать сайт на Netlify можно двумя способами: <b>перетащить папку</b> мышкой или <b>подключить GitHub</b>. Мы подключим GitHub — ведь наш код уже там.</> },
+        vis: <RcFlow items={[{ uz: '📁 Papkani tortish', ru: '📁 Перетащить папку' }, { uz: "🔗 GitHub'ni ulash", ru: '🔗 Подключить GitHub' }]} sep="·" /> },
+      { ic: '☝️', h: { uz: 'Adashtirmang!', ru: 'Не путайте!' },
+        body: { uz: <>Netlify — <b>brauzer emas</b> (brauzer saytni ko'rsatadi, masalan Chrome) va <b>domen emas</b> (domen — saytning manzili). Netlify — saytni <b>joylaydigan</b> hosting platformasi.</>, ru: <>Netlify — <b>не браузер</b> (браузер показывает сайт, например Chrome) и <b>не домен</b> (домен — это адрес сайта). Netlify — хостинг-платформа, которая сайт <b>размещает</b>.</> },
+        ask: { uz: "Netlify va Chrome — qaysi biri saytni ko'rsatadi?", ru: 'Netlify и Chrome — что из них показывает сайт?' } },
     ]
   },
   // idx 10 — s9: «Deploy qilgandan keyin uni kim ko'radi?» (nazariya: deploy)
   10: {
-    title: 'Deploy — saytni uchirish', cards: [
-      { ic: '🚀', h: 'Deploy nima?',
-        body: <><b>Deploy</b> — saytni serverga joylab, <b>internetga chiqarish</b>. Buni <b>raketani uchirish</b>ga o'xshating: shu paytgacha sayt yerda (kompyuteringizda) turardi, deploy uni <b>osmonga — internetga</b> olib chiqadi.</>,
-        vis: <RcFlow items={['💻 Kompyuterda', '🚀 Deploy', '🌍 Internetda']} /> },
-      { ic: '👀', h: 'Endi uni kim ko\'radi?',
-        body: <>Deploy qilingach sayt internetda ochiq bo'ladi — <b>manzilni bilgan har bir kishi</b> uni ochib ko'radi. Boshqa shahardagi do'stingiz ham, notanish odam ham.</>,
-        vis: <RcFlow items={['🧑 Do\'stingiz', '👩 Notanish', '🌍 Hamma']} sep="·" /> },
-      { ic: '☝️', h: 'localhost bilan adashtirmang!',
-        body: <>Deploydan <b>oldin</b> sayt <span className="mono">localhost</span>da edi — faqat siz ko'rardingiz. Deploy aynan shuni o'zgartiradi: saytni <b>hammaga</b> ochib beradi.</>,
-        ask: "Deploydan oldin saytni kim ko'ra olardi?" },
+    title: { uz: 'Deploy — saytni uchirish', ru: 'Деплой — запуск сайта' }, cards: [
+      { ic: '🚀', h: { uz: 'Deploy nima?', ru: 'Что такое деплой?' },
+        body: { uz: <><b>Deploy</b> — saytni serverga joylab, <b>internetga chiqarish</b>. Buni <b>raketani uchirish</b>ga o'xshating: shu paytgacha sayt yerda (kompyuteringizda) turardi, deploy uni <b>osmonga — internetga</b> olib chiqadi.</>, ru: <><b>Деплой</b> — разместить сайт на сервере и <b>вывести его в интернет</b>. Это как <b>запуск ракеты</b>: до этого сайт стоял на земле (на вашем компьютере), а деплой поднимает его <b>в небо — в интернет</b>.</> },
+        vis: <RcFlow items={[{ uz: '💻 Kompyuterda', ru: '💻 На компьютере' }, { uz: '🚀 Deploy', ru: '🚀 Деплой' }, { uz: '🌍 Internetda', ru: '🌍 В интернете' }]} /> },
+      { ic: '👀', h: { uz: "Endi uni kim ko'radi?", ru: 'Кто его теперь увидит?' },
+        body: { uz: <>Deploy qilingach sayt internetda ochiq bo'ladi — <b>manzilni bilgan har bir kishi</b> uni ochib ko'radi. Boshqa shahardagi do'stingiz ham, notanish odam ham.</>, ru: <>После деплоя сайт открыт в интернете — его откроет <b>каждый, кто знает адрес</b>. И друг из другого города, и совсем незнакомый человек.</> },
+        vis: <RcFlow items={[{ uz: "🧑 Do'stingiz", ru: '🧑 Ваш друг' }, { uz: '👩 Notanish', ru: '👩 Незнакомец' }, { uz: '🌍 Hamma', ru: '🌍 Все' }]} sep="·" /> },
+      { ic: '☝️', h: { uz: 'localhost bilan adashtirmang!', ru: 'Не путайте с localhost!' },
+        body: { uz: <>Deploydan <b>oldin</b> sayt <span className="mono">localhost</span>da edi — faqat siz ko'rardingiz. Deploy aynan shuni o'zgartiradi: saytni <b>hammaga</b> ochib beradi.</>, ru: <><b>До</b> деплоя сайт жил на <span className="mono">localhost</span> — видели его только вы. Деплой меняет именно это: он открывает сайт <b>всем</b>.</> },
+        ask: { uz: "Deploydan oldin saytni kim ko'ra olardi?", ru: 'Кто мог видеть сайт до деплоя?' } },
     ]
   },
   // idx 13 — s12: «aziza.maktab.uz — bu nima?» (nazariya: domen va poddomen)
   13: {
-    title: 'Domen va poddomen', cards: [
-      { ic: '🌐', h: 'Domen — saytning manzili',
-        body: <><b>Domen</b> — saytning internetdagi <b>asosiy manzili</b>, odam eslab qoladigan nom. Masalan <span className="mono">maktab.uz</span>. Uy manzili kabi — uni bilsangiz, saytni topasiz.</>,
-        vis: <RcFlow items={['🏫 maktab.uz', '= asosiy manzil']} sep="" /> },
-      { ic: '🏷️', h: 'Poddomen — oldiga qo\'shilgan nom',
-        body: <><b>Poddomen</b> — asosiy domen oldiga qo'shilgan <b>shaxsiy nom</b>. <span className="mono">aziza.maktab.uz</span> — bu <span className="mono">maktab.uz</span> domenining poddomeni. Bitta domen ostida <b>yuzlab</b> poddomen bo'ladi.</>,
+    title: { uz: 'Domen va poddomen', ru: 'Домен и поддомен' }, cards: [
+      { ic: '🌐', h: { uz: 'Domen — saytning manzili', ru: 'Домен — адрес сайта' },
+        body: { uz: <><b>Domen</b> — saytning internetdagi <b>asosiy manzili</b>, odam eslab qoladigan nom. Masalan <span className="mono">maktab.uz</span>. Uy manzili kabi — uni bilsangiz, saytni topasiz.</>, ru: <><b>Домен</b> — <b>основной адрес</b> сайта в интернете, имя, которое легко запомнить. Например <span className="mono">maktab.uz</span>. Как домашний адрес — зная его, вы найдёте сайт.</> },
+        vis: <RcFlow items={['🏫 maktab.uz', { uz: '= asosiy manzil', ru: '= основной адрес' }]} sep="" /> },
+      { ic: '🏷️', h: { uz: "Poddomen — oldiga qo'shilgan nom", ru: 'Поддомен — имя, добавленное впереди' },
+        body: { uz: <><b>Poddomen</b> — asosiy domen oldiga qo'shilgan <b>shaxsiy nom</b>. <span className="mono">aziza.maktab.uz</span> — bu <span className="mono">maktab.uz</span> domenining poddomeni. Bitta domen ostida <b>yuzlab</b> poddomen bo'ladi.</>, ru: <><b>Поддомен</b> — <b>личное имя</b>, добавленное перед основным доменом. <span className="mono">aziza.maktab.uz</span> — это поддомен домена <span className="mono">maktab.uz</span>. Под одним доменом бывают <b>сотни</b> поддоменов.</> },
         vis: <RcFlow items={['aziza.maktab.uz', 'ali.maktab.uz', 'dilnoza.maktab.uz']} sep="·" /> },
-      { ic: '🧩', h: 'Manzil qismlarga bo\'linadi',
-        body: <><span className="mono">aziza</span> — sizning nomingiz (poddomen), <span className="mono">maktab.uz</span> — maktab domeni. Birga qo'shilganda — <b>sizning shaxsiy manzilingiz</b>. Bu mustaqil sayt yoki parol emas — bu <b>manzil</b>.</>,
-        ask: "aziza.maktab.uz da qaysi qismi poddomen?" },
+      { ic: '🧩', h: { uz: "Manzil qismlarga bo'linadi", ru: 'Адрес делится на части' },
+        body: { uz: <><span className="mono">aziza</span> — sizning nomingiz (poddomen), <span className="mono">maktab.uz</span> — maktab domeni. Birga qo'shilganda — <b>sizning shaxsiy manzilingiz</b>. Bu mustaqil sayt yoki parol emas — bu <b>manzil</b>.</>, ru: <><span className="mono">aziza</span> — ваше имя (поддомен), <span className="mono">maktab.uz</span> — домен школы. Вместе — <b>ваш личный адрес</b>. Это не отдельный сайт и не пароль — это <b>адрес</b>.</> },
+        ask: { uz: 'aziza.maktab.uz da qaysi qismi poddomen?', ru: 'Какая часть в aziza.maktab.uz — поддомен?' } },
     ]
   },
 };
@@ -633,23 +643,23 @@ function RecapOverlay({ screenIdx, onClose }) {
   return (
     <div className="rc-overlay">
       <div className="rc-head">
-        <span className="rc-tag">📖 Qayta tushuntirish</span>
-        <span className="rc-title">{rc.title}</span>
-        <button className="rc-x" onClick={onClose} aria-label="Yopish">✕</button>
+        <span className="rc-tag">📖 {tr({ uz: 'Qayta tushuntirish', ru: 'Повторное объяснение' })}</span>
+        <span className="rc-title">{tr(rc.title)}</span>
+        <button className="rc-x" onClick={onClose} aria-label={tr({ uz: 'Yopish', ru: 'Закрыть' })}>✕</button>
       </div>
       <div className="rc-card" key={i}>
         <div className="rc-ic">{card.ic}</div>
-        <h2 className="rc-h">{card.h}</h2>
-        <p className="rc-body">{card.body}</p>
+        <h2 className="rc-h">{tr(card.h)}</h2>
+        <p className="rc-body">{tr(card.body)}</p>
         {card.vis && <div className="rc-vis">{card.vis}</div>}
-        {card.ask && <div className="rc-ask">🗣️ Sinfga savol: {card.ask}</div>}
+        {card.ask && <div className="rc-ask">🗣️ {tr({ uz: 'Sinfga savol:', ru: 'Вопрос классу:' })} {tr(card.ask)}</div>}
       </div>
       <div className="rc-nav">
-        <button className="rc-btn ghost" disabled={i === 0} onClick={() => setI(i - 1)}>← Oldingi</button>
-        <div className="rc-dots">{rc.cards.map((_, k) => <button key={k} className={`rc-dot ${k === i ? 'cur' : k < i ? 'fill' : ''}`} onClick={() => setI(k)} aria-label={`${k + 1}-karta`} />)}</div>
+        <button className="rc-btn ghost" disabled={i === 0} onClick={() => setI(i - 1)}>{tr({ uz: '← Oldingi', ru: '← Назад' })}</button>
+        <div className="rc-dots">{rc.cards.map((_, k) => <button key={k} className={`rc-dot ${k === i ? 'cur' : k < i ? 'fill' : ''}`} onClick={() => setI(k)} aria-label={tr({ uz: `${k + 1}-karta`, ru: `карточка ${k + 1}` })} />)}</div>
         {last
-          ? <button className="rc-btn done" onClick={onClose}>✓ Tushunarli — davom etamiz</button>
-          : <button className="rc-btn" onClick={() => setI(i + 1)}>Keyingisi →</button>}
+          ? <button className="rc-btn done" onClick={onClose}>✓ {tr({ uz: 'Tushunarli — davom etamiz', ru: 'Понятно — продолжаем' })}</button>
+          : <button className="rc-btn" onClick={() => setI(i + 1)}>{tr({ uz: 'Keyingisi →', ru: 'Дальше →' })}</button>}
       </div>
     </div>
   );
@@ -690,25 +700,25 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
   return (
     <div className="mstats fade-up">
       <div className="mstats-head">
-        <span className="mstats-lbl">📊 Jonli natija</span>
-        <span className="mstats-n">{allIn ? '✓ Hamma javob berdi' : <>Javob berdi: <b>{answered}</b> / {total}</>}</span>
-        {!reveal && onReveal && <button className={`mstats-reveal ${allIn ? 'ready' : ''}`} onClick={onReveal}>🔓 Natijani ochish</button>}
+        <span className="mstats-lbl">📊 {tr({ uz: 'Jonli natija', ru: 'Живой результат' })}</span>
+        <span className="mstats-n">{allIn ? tr({ uz: '✓ Hamma javob berdi', ru: '✓ Все ответили' }) : <>{tr({ uz: 'Javob berdi:', ru: 'Ответили:' })} <b>{answered}</b> / {total}</>}</span>
+        {!reveal && onReveal && <button className={`mstats-reveal ${allIn ? 'ready' : ''}`} onClick={onReveal}>🔓 {tr({ uz: 'Natijani ochish', ru: 'Открыть результат' })}</button>}
       </div>
       <div className="mstats-prog"><span className={`mstats-prog-fill ${allIn ? 'full' : ''}`} style={{ width: `${total ? Math.round((answered / total) * 100) : 0}%` }} /></div>
       {reveal ? (
         <div className="mstats-big">
-          <div className="mstats-chip okc"><span className="mstats-chip-n">{ok}</span><span className="mstats-chip-t">to'g'ri ✅</span></div>
-          <div className="mstats-chip badc"><span className="mstats-chip-n">{bad}</span><span className="mstats-chip-t">xato ❌</span></div>
-          <div className="mstats-chip waitc"><span className="mstats-chip-n">{total - answered}</span><span className="mstats-chip-t">kutilmoqda ⏳</span></div>
+          <div className="mstats-chip okc"><span className="mstats-chip-n">{ok}</span><span className="mstats-chip-t">{tr({ uz: "to'g'ri", ru: 'верно' })} ✅</span></div>
+          <div className="mstats-chip badc"><span className="mstats-chip-n">{bad}</span><span className="mstats-chip-t">{tr({ uz: 'xato', ru: 'ошибка' })} ❌</span></div>
+          <div className="mstats-chip waitc"><span className="mstats-chip-n">{total - answered}</span><span className="mstats-chip-t">{tr({ uz: 'kutilmoqda', ru: 'ожидаем' })} ⏳</span></div>
         </div>
       ) : (
         <div className="mstats-big">
-          <div className="mstats-chip ansc"><span className="mstats-chip-n">{answered}</span><span className="mstats-chip-t">javob berdi 📨</span></div>
-          <div className="mstats-chip waitc"><span className="mstats-chip-n">{total - answered}</span><span className="mstats-chip-t">kutilmoqda ⏳</span></div>
+          <div className="mstats-chip ansc"><span className="mstats-chip-n">{answered}</span><span className="mstats-chip-t">{tr({ uz: 'javob berdi', ru: 'ответили' })} 📨</span></div>
+          <div className="mstats-chip waitc"><span className="mstats-chip-n">{total - answered}</span><span className="mstats-chip-t">{tr({ uz: 'kutilmoqda', ru: 'ожидаем' })} ⏳</span></div>
         </div>
       )}
       {!reveal && answered > 0 && (
-        <p className="mstats-hidden">🙈 Kim nimani tanlagani va ✅/❌ soni yashirin — «Natijani ochish» bosilganda sizda ham, o'quvchilar ekranida ham birdan ochiladi.</p>
+        <p className="mstats-hidden">🙈 {tr({ uz: "Kim nimani tanlagani va ✅/❌ soni yashirin — «Natijani ochish» bosilganda sizda ham, o'quvchilar ekranida ham birdan ochiladi.", ru: 'Кто что выбрал и число ✅/❌ скрыты — после «Открыть результат» всё откроется сразу и у вас, и на экранах учеников.' })}</p>
       )}
       {reveal && <div className="mstats-bars">
         {options.map((opt, i) => {
@@ -720,7 +730,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
             <div key={i} className={`mstats-row ${reveal && !isC ? 'dimmed' : ''}`}>
               <span className="mstats-abc" style={{ background: col }}>{isC ? '✓' : String.fromCharCode(65 + i)}</span>
               <span className="mstats-track"><span className="mstats-fill" style={{ width: `${answered ? Math.round((n / maxN) * 100) : 0}%`, background: col }} /></span>
-              <span className="mono mstats-count" style={isC ? { color: T.success, fontWeight: 800 } : undefined}>{n > 0 ? `${n} o'quvchi · ${pct}%` : '—'}</span>
+              <span className="mono mstats-count" style={isC ? { color: T.success, fontWeight: 800 } : undefined}>{n > 0 ? `${n} ${tr({ uz: "o'quvchi", ru: 'уч.' })} · ${pct}%` : '—'}</span>
             </div>
           );
         })}
@@ -731,30 +741,30 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
         return (
           <div className={`mstats-verdict ${level}`}>
             {level === 'need' && <>
-              <p className="mstats-verdict-t">⚠️ Faqat <b>{pct}%</b> to'g'ri — bu mavzu sinfga tushunarsiz qolgan. Davom etishdan oldin qisqa takrorlash tavsiya etiladi.</p>
-              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>📖 Qayta tushuntirish — {RECAPS[screenIdx]?.title}</button>}
+              <p className="mstats-verdict-t">{tr({ uz: <>⚠️ Faqat <b>{pct}%</b> to'g'ri — bu mavzu sinfga tushunarsiz qolgan. Davom etishdan oldin qisqa takrorlash tavsiya etiladi.</>, ru: <>⚠️ Только <b>{pct}%</b> верно — класс не понял эту тему. Перед тем как идти дальше, рекомендуем короткое повторение.</> })}</p>
+              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>📖 {tr({ uz: 'Qayta tushuntirish', ru: 'Повторное объяснение' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
             {level === 'maybe' && <>
-              <p className="mstats-verdict-t">🟡 <b>{pct}%</b> to'g'ri — yomon emas. Xohlasangiz, davom etishdan oldin qisqa takrorlab oling.</p>
-              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>📖 Qisqa takrorlash</button>}
+              <p className="mstats-verdict-t">{tr({ uz: <>🟡 <b>{pct}%</b> to'g'ri — yomon emas. Xohlasangiz, davom etishdan oldin qisqa takrorlab oling.</>, ru: <>🟡 <b>{pct}%</b> верно — неплохо. Если хотите, коротко повторите тему перед продолжением.</> })}</p>
+              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>📖 {tr({ uz: 'Qisqa takrorlash', ru: 'Короткое повторение' })}</button>}
             </>}
-            {level === 'good' && <p className="mstats-verdict-t">✅ <b>{pct}%</b> to'g'ri — sinf mavzuni o'zlashtirdi. Bemalol davom eting!</p>}
+            {level === 'good' && <p className="mstats-verdict-t">{tr({ uz: <>✅ <b>{pct}%</b> to'g'ri — sinf mavzuni o'zlashtirdi. Bemalol davom eting!</>, ru: <>✅ <b>{pct}%</b> верно — класс усвоил тему. Смело продолжайте!</> })}</p>}
             {level === 'few' && <>
-              <p className="mstats-verdict-t">Javob berganlar kam ({answered} ta) — foiz bo'yicha xulosa chiqarish qiyin. O'zingiz baholang:</p>
-              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>📖 Qayta tushuntirish — {RECAPS[screenIdx]?.title}</button>}
+              <p className="mstats-verdict-t">{tr({ uz: <>Javob berganlar kam ({answered} ta) — foiz bo'yicha xulosa chiqarish qiyin. O'zingiz baholang:</>, ru: <>Ответивших мало ({answered}) — делать вывод по проценту сложно. Оцените сами:</> })}</p>
+              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>📖 {tr({ uz: 'Qayta tushuntirish', ru: 'Повторное объяснение' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
           </div>
         );
       })()}
       {waiting.length > 0 && answered > 0 && (
         <div className="mstats-waitrow">
-          <span className="mstats-wait-lbl">⏳ Kutilmoqda:</span>
+          <span className="mstats-wait-lbl">⏳ {tr({ uz: 'Kutilmoqda:', ru: 'Ожидаем:' })}</span>
           {waiting.slice(0, 8).map(p => <span key={p.id} className="mstats-wait-chip">{p.nickname}</span>)}
           {waiting.length > 8 && <span className="mstats-wait-chip more">+{waiting.length - 8}</span>}
         </div>
       )}
-      {reveal && struggling && <p className="mstats-warn">⚠️ Ko'pchilik xato qildi — bu mavzu tushunarsiz bo'lgan ko'rinadi. Qayta tushuntirish tavsiya etiladi.</p>}
-      {answered === 0 && <p className="mstats-wait">O'quvchilar javoblari shu yerda jonli ko'rinadi…</p>}
+      {reveal && struggling && <p className="mstats-warn">⚠️ {tr({ uz: "Ko'pchilik xato qildi — bu mavzu tushunarsiz bo'lgan ko'rinadi. Qayta tushuntirish tavsiya etiladi.", ru: 'Большинство ошиблось — похоже, тема осталась непонятной. Рекомендуем объяснить её ещё раз.' })}</p>}
+      {answered === 0 && <p className="mstats-wait">{tr({ uz: "O'quvchilar javoblari shu yerda jonli ko'rinadi…", ru: 'Ответы учеников появятся здесь в реальном времени…' })}</p>}
     </div>
   );
 }
@@ -785,7 +795,7 @@ function MentorWorkStats({ live, screenIdx, taskLabel }) {
     <div className="mstats fade-up">
       <div className="mstats-head">
         <span className="mstats-lbl">✍️ {taskLabel}</span>
-        <span className="mstats-n">{allIn ? '✓ Hamma tugatdi!' : <>Tugatdi: <b>{doneN}</b> / {total}</>}</span>
+        <span className="mstats-n">{allIn ? tr({ uz: '✓ Hamma tugatdi!', ru: '✓ Все закончили!' }) : <>{tr({ uz: 'Tugatdi:', ru: 'Закончили:' })} <b>{doneN}</b> / {total}</>}</span>
       </div>
       <div className="mstats-prog"><span className={`mstats-prog-fill ${allIn ? 'full' : ''}`} style={{ width: `${total ? Math.round((doneN / total) * 100) : 0}%` }} /></div>
       {total > 0 && (
@@ -793,7 +803,7 @@ function MentorWorkStats({ live, screenIdx, taskLabel }) {
           {data.players.map(p => <span key={p.id} className="mstats-wait-chip" style={doneIds.has(p.id) ? { background: T.successSoft, color: T.success, fontWeight: 700 } : undefined}>{doneIds.has(p.id) ? '✓ ' : '✏️ '}{p.nickname}</span>)}
         </div>
       )}
-      {doneN === 0 && <p className="mstats-wait">O'quvchilar yozib tugatishi bilan shu yerda ✓ belgisi chiqadi…</p>}
+      {doneN === 0 && <p className="mstats-wait">{tr({ uz: "O'quvchilar yozib tugatishi bilan shu yerda ✓ belgisi chiqadi…", ru: 'Как только ученик закончит писать, здесь появится ✓…' })}</p>}
     </div>
   );
 }
@@ -824,14 +834,15 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
     const isCorrect = i === correctIdx;
     setPicked(i);
     if (firstCorrectRef.current === null) firstCorrectRef.current = isCorrect; // ball: 1-urinishni qotirib qo'yamiz
+    const optTexts = options.map(o => tr(o)); // payload'ga doim string yoziladi ({uz,ru} obyekt emas)
     if (oneShot) {
       // Jonli dars: javob darhol qotadi (to'g'ri ham, xato ham) va serverga yoziladi
       setSolved(true);
-      onAnswer(screen, { stage: scope, screenIdx: screen, question: questionText, options, correctIndex: correctIdx, correctAnswer: options[correctIdx], picked: i, studentAnswerIndex: i, studentAnswer: options[i], correct: isCorrect, firstAttemptCorrect: isCorrect, solved: true, lastPicked: i });
+      onAnswer(screen, { stage: scope, screenIdx: screen, question: questionText, options: optTexts, correctIndex: correctIdx, correctAnswer: optTexts[correctIdx], picked: i, studentAnswerIndex: i, studentAnswer: optTexts[i], correct: isCorrect, firstAttemptCorrect: isCorrect, solved: true, lastPicked: i });
       live.submitAnswer(screen, SCREEN_META[screen]?.id || `s${screen}`, i, isCorrect, Date.now() - mountTs.current);
     } else {
       if (isCorrect) setSolved(true);
-      onAnswer(screen, { stage: scope, screenIdx: screen, question: questionText, options, correctIndex: correctIdx, correctAnswer: options[correctIdx], picked: i, studentAnswerIndex: i, studentAnswer: options[i], correct: firstCorrectRef.current, firstAttemptCorrect: firstCorrectRef.current, solved: isCorrect, lastPicked: i });
+      onAnswer(screen, { stage: scope, screenIdx: screen, question: questionText, options: optTexts, correctIndex: correctIdx, correctAnswer: optTexts[correctIdx], picked: i, studentAnswerIndex: i, studentAnswer: optTexts[i], correct: firstCorrectRef.current, firstAttemptCorrect: firstCorrectRef.current, solved: isCorrect, lastPicked: i });
     }
     if (audioText) { audio.triggerEvent('option_picked'); if (!audio.muted) setTimeout(() => { const e = getAudioEngine(); if (e && !audio.muted) e.pushOneOff(isCorrect ? (audioOk || "To'g'ri.") : (audioWrong || "Unchalik emas. Qaytadan urinib ko'ring.")); }, 300); }
   };
@@ -843,10 +854,10 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
   const revealed = !oneShot || !!(live && (live.revealScreen === screen || live.mentorScreen > screen || live.status === 'ended' || !live.mentorAlive));
   const waiting = oneShot && solved && !revealed; // javob qotdi — natija mentordan kutilmoqda
   return (
-    <Stage eyebrow={eyebrow} screen={screen} narrow audioState={audioText ? audio : undefined} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={isMentorLive ? !mReveal : !solved} label={isMentorLive ? (mReveal ? 'Davom etish' : 'Avval natijani oching') : solved ? 'Davom etish' : (oneShot ? 'Javob tanlang' : "To'g'ri javobni toping")} onClick={onNext} /></>}>
+    <Stage eyebrow={eyebrow} screen={screen} narrow audioState={audioText ? audio : undefined} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={isMentorLive ? !mReveal : !solved} label={isMentorLive ? (mReveal ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Avval natijani oching', ru: 'Сначала откройте результат' })) : solved ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : (oneShot ? tr({ uz: 'Javob tanlang', ru: 'Выберите ответ' }) : tr({ uz: "To'g'ri javobni toping", ru: 'Найдите верный ответ' }))} onClick={onNext} /></>}>
       <div className="screen" style={{ justifyContent: isMentorLive ? 'flex-start' : 'safe center', gap: 'clamp(16px,2.5vw,24px)' }}>
         <div className="fade-up">{question}</div>
-        {oneShot && !solved && <p className="small mono fade-up" style={{ margin: '-8px 0 0', color: T.accent, fontWeight: 600 }}>⚡ Jonli dars — bitta urinish, o'ylab bosing!</p>}
+        {oneShot && !solved && <p className="small mono fade-up" style={{ margin: '-8px 0 0', color: T.accent, fontWeight: 600 }}>⚡ {tr({ uz: "Jonli dars — bitta urinish, o'ylab bosing!", ru: 'Живой урок — одна попытка, думайте перед кликом!' })}</p>}
         <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
           {options.map((opt, i) => {
             let cls = 'option';
@@ -861,7 +872,7 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
             return (
               <button key={i} className={cls} disabled={solved || isMentorLive} onClick={() => pick(i)} style={{ padding: 'clamp(12px,1.8vw,16px) clamp(14px,2.2vw,20px)', fontSize: 'clamp(14px,1.7vw,16px)', display: 'flex', alignItems: 'center', gap: 12 }}>
                 <span className="mono small" style={{ minWidth: 20, color: showGreenLetter ? T.success : T.ink3 }}>{String.fromCharCode(65 + i)}</span>
-                <span style={{ flex: 1 }}>{fmtCode(opt)}</span>
+                <span style={{ flex: 1 }}>{fmtCode(tr(opt))}</span>
               </button>
             );
           })}
@@ -869,26 +880,26 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
         <FeedbackBlock show={isMentorLive ? mReveal : picked !== null} isCorrect={isMentorLive ? true : (solved && !wrongLocked)} neutral={waiting}>
           <p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
             {isMentorLive
-              ? fmtCode(`✓ To'g'ri javob: ${String.fromCharCode(65 + correctIdx)} — ${options[correctIdx]}`)
+              ? fmtCode(tr({ uz: `✓ To'g'ri javob: ${String.fromCharCode(65 + correctIdx)} — ${tr(options[correctIdx])}`, ru: `✓ Верный ответ: ${String.fromCharCode(65 + correctIdx)} — ${tr(options[correctIdx])}` }))
               : waiting
-                ? '📨 Javobingiz qabul qilindi'
+                ? tr({ uz: '📨 Javobingiz qabul qilindi', ru: '📨 Ваш ответ принят' })
                 : wrongLocked
-                  ? fmtCode(`To'g'ri javob: ${String.fromCharCode(65 + correctIdx)} — ${options[correctIdx]}`)
-                  : solved ? "To'g'ri" : "Qaytadan urinib ko'ring"}
+                  ? fmtCode(tr({ uz: `To'g'ri javob: ${String.fromCharCode(65 + correctIdx)} — ${tr(options[correctIdx])}`, ru: `Верный ответ: ${String.fromCharCode(65 + correctIdx)} — ${tr(options[correctIdx])}` }))
+                  : solved ? tr({ uz: "To'g'ri", ru: 'Верно' }) : tr({ uz: "Qaytadan urinib ko'ring", ru: 'Попробуйте ещё раз' })}
           </p>
           <p className="body" style={{ margin: 0 }}>
-            {isMentorLive
+            {fmtCode(tr(isMentorLive
               ? explainCorrect
               : waiting
-                ? "Hozir to'g'ri javobni bilib olasiz."
+                ? { uz: "Hozir to'g'ri javobni bilib olasiz.", ru: 'Сейчас вы узнаете верный ответ.' }
                 : wrongLocked
                   ? (explainWrong[picked] ?? explainWrong.default)
-                  : solved ? explainCorrect : (explainWrong[picked] ?? explainWrong.default)}
+                  : solved ? explainCorrect : (explainWrong[picked] ?? explainWrong.default)))}
           </p>
           {/* Xato qilgan o'quvchi mavzuni qisqa kartalarda qayta ko'radi (3-qadamda kontent keladi).
               Jonli darsda — javob sirini saqlash uchun faqat reveal'dan keyin chiqadi. */}
           {hasRecap && !isMentorLive && firstCorrectRef.current === false && (!oneShot || revealed) && (
-            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>📖 Qisqa takrorlash — mavzuni yana bir ko'rish</button>
+            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>📖 {tr({ uz: "Qisqa takrorlash — mavzuni yana bir ko'rish", ru: 'Короткое повторение — взглянуть на тему ещё раз' })}</button>
           )}
         </FeedbackBlock>
         {isMentorLive && <MentorTestStats live={live} screenIdx={screen} options={options} correctIdx={correctIdx} reveal={mReveal} onReveal={doReveal} onOpenRecap={hasRecap ? () => setRecapOpen(true) : null} />}
@@ -910,7 +921,7 @@ function ScoreRing({ correct, total }) {
         <circle cx="64" cy="64" r={R} fill="none" stroke={T.ink3 + '40'} strokeWidth={ST} />
         <circle cx="64" cy="64" r={R} fill="none" stroke={col} strokeWidth={ST} strokeLinecap="round" strokeDasharray={C} strokeDashoffset={off} transform="rotate(-90 64 64)" style={{ transition: 'stroke-dashoffset 1s cubic-bezier(.4,0,.2,1)' }} />
       </svg>
-      <div className="ring-center"><div className="ring-num"><span style={{ color: col }}>{correct}</span><span className="ring-den">/{total}</span></div><div className="ring-lbl">to'g'ri javob</div></div>
+      <div className="ring-center"><div className="ring-num"><span style={{ color: col }}>{correct}</span><span className="ring-den">/{total}</span></div><div className="ring-lbl">{tr({ uz: "to'g'ri javob", ru: 'верных ответов' })}</div></div>
     </div>
   );
 }
@@ -927,7 +938,7 @@ const Mentor = ({ children }) => {
         <img src={MENTOR_IMG} alt="" />
       </div>
       <div className="mentor-col">
-        <span className="mentor-name">Mentor{collapsed && <span className="mentor-cue"> · ko'rsatmani ochish ▾</span>}</span>
+        <span className="mentor-name">{tr({ uz: 'Mentor', ru: 'Ментор' })}{collapsed && <span className="mentor-cue"> · {tr({ uz: "ko'rsatmani ochish ▾", ru: 'открыть подсказку ▾' })}</span>}</span>
         <div className="mentor-msg body">{children}</div>
       </div>
     </div>
@@ -948,7 +959,7 @@ const Zoomable = ({ children }) => {
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
       <div className={`zoomable ${big ? 'zoom-on' : ''}`}>
-        <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? 'Kichraytirish' : 'Kattalashtirish'} title={big ? 'Kichraytirish' : 'Kattalashtirish'}>{big ? '✕' : '⛶'}</button>
+        <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>
         {children}
       </div>
     </>
@@ -961,22 +972,22 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
   const [picked, setPicked] = useState(storedAnswer?.picked ?? null);
   const [view, setView] = useState('me');
   const OPTS = [
-    { id: 'a', label: 'Faylni Telegram orqali yuboraman' },
-    { id: 'b', label: 'Saytni internetga joylashtirish kerak' },
-    { id: 'c', label: "Do'stim ham shu kompyuterga kelishi kerak" }
+    { id: 'a', label: { uz: 'Faylni Telegram orqali yuboraman', ru: 'Отправлю файл через Telegram' } },
+    { id: 'b', label: { uz: 'Saytni internetga joylashtirish kerak', ru: 'Нужно разместить сайт в интернете' } },
+    { id: 'c', label: { uz: "Do'stim ham shu kompyuterga kelishi kerak", ru: 'Друг должен прийти к этому компьютеру' } }
   ];
   const pick = (v) => { if (picked !== null) return; setPicked(v); onAnswer(screen, { stage: 'hook', screenIdx: screen, picked: v, correct: true }); audio.triggerEvent('option_picked'); };
   return (
-    <Stage eyebrow="Kirish" screen={screen} audioState={audio} navContent={<NavNext optionalLive disabled={picked === null} label="Davom etish" onClick={onNext} />}>
+    <Stage eyebrow={tr({ uz: 'Kirish', ru: 'Введение' })} screen={screen} audioState={audio} navContent={<NavNext optionalLive disabled={picked === null} label={tr({ uz: 'Davom etish', ru: 'Продолжить' })} onClick={onNext} />}>
       <div className="screen">
-        <h1 className="title h-title fade-up" style={{ maxWidth: 760 }}>Saytingizni <span className="italic" style={{ color: T.accent }}>butun dunyo</span> ko'ra oladimi?</h1>
-        <Mentor>Saytingiz tayyor — kompyuteringizda zo'r ishlayapti. Lekin <b style={{ color: T.ink }}>do'stingiz</b> boshqa shahardan uni ocholmayapti. Nega? <b style={{ color: T.ink }}>"Do'stim"</b> tugmasini bosib ko'ring.</Mentor>
+        <h1 className="title h-title fade-up" style={{ maxWidth: 760 }}>{tr({ uz: <>Saytingizni <span className="italic" style={{ color: T.accent }}>butun dunyo</span> ko'ra oladimi?</>, ru: <>Увидит ли <span className="italic" style={{ color: T.accent }}>весь мир</span> ваш сайт?</> })}</h1>
+        <Mentor>{tr({ uz: <>Saytingiz tayyor — kompyuteringizda zo'r ishlayapti. Lekin <b style={{ color: T.ink }}>do'stingiz</b> boshqa shahardan uni ocholmayapti. Nega? <b style={{ color: T.ink }}>"Do'stim"</b> tugmasini bosib ko'ring.</>, ru: <>Ваш сайт готов — на вашем компьютере он отлично работает. Но <b style={{ color: T.ink }}>ваш друг</b> из другого города не может его открыть. Почему? Нажмите кнопку <b style={{ color: T.ink }}>«Друг»</b>.</> })}</Mentor>
         <Zoomable>
         <Split>
           <Col>
             <div className="fade-up delay-1" style={{ display: 'flex', gap: 8 }}>
-              <button className={`chip ${view === 'me' ? 'chip-on' : ''}`} onClick={() => setView('me')}>💻 Mening kompyuterim</button>
-              <button className={`chip ${view === 'friend' ? 'chip-on' : ''}`} onClick={() => setView('friend')}>📱 Do'stim</button>
+              <button className={`chip ${view === 'me' ? 'chip-on' : ''}`} onClick={() => setView('me')}>💻 {tr({ uz: 'Mening kompyuterim', ru: 'Мой компьютер' })}</button>
+              <button className={`chip ${view === 'friend' ? 'chip-on' : ''}`} onClick={() => setView('friend')}>📱 {tr({ uz: "Do'stim", ru: 'Друг' })}</button>
             </div>
             <div className="demo-swap" key={view}>
               {view === 'me' ? (
@@ -987,28 +998,28 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
                 <Preview minH={158} title="???">
                   <div className="dl-shake" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', gap: 8, padding: '14px 0' }}>
                     <span style={{ fontSize: 38 }}>😕</span>
-                    <p style={{ fontFamily: 'Georgia, serif', fontWeight: 700, color: T.ink, margin: 0, fontSize: 'clamp(15px,2vw,18px)' }}>Bu sahifa ochilmadi</p>
-                    <p style={{ fontFamily: "'JetBrains Mono', monospace", color: T.ink3, margin: 0, fontSize: 12 }}>ERR — manzil topilmadi</p>
+                    <p style={{ fontFamily: 'Georgia, serif', fontWeight: 700, color: T.ink, margin: 0, fontSize: 'clamp(15px,2vw,18px)' }}>{tr({ uz: 'Bu sahifa ochilmadi', ru: 'Страница не открылась' })}</p>
+                    <p style={{ fontFamily: "'JetBrains Mono', monospace", color: T.ink3, margin: 0, fontSize: 12 }}>{tr({ uz: 'ERR — manzil topilmadi', ru: 'ERR — адрес не найден' })}</p>
                   </div>
                 </Preview>
               )}
             </div>
-            {view === 'friend' && <p className="mono small" style={{ color: T.ink3, marginTop: 2, textAlign: 'center' }}>↑ do'stingizda sayt yo'q — chunki u faqat sizning kompyuteringizda</p>}
+            {view === 'friend' && <p className="mono small" style={{ color: T.ink3, marginTop: 2, textAlign: 'center' }}>↑ {tr({ uz: "do'stingizda sayt yo'q — chunki u faqat sizning kompyuteringizda", ru: 'у друга сайта нет — он есть только на вашем компьютере' })}</p>}
           </Col>
           <Col>
-            <p className="eyebrow fade-up delay-2" style={{ color: T.ink2, margin: 0 }}>Sizningcha, do'st ham ko'rishi uchun nima qilish kerak?</p>
+            <p className="eyebrow fade-up delay-2" style={{ color: T.ink2, margin: 0 }}>{tr({ uz: "Sizningcha, do'st ham ko'rishi uchun nima qilish kerak?", ru: 'Как вы думаете, что нужно сделать, чтобы сайт увидел и друг?' })}</p>
             <div className="fade-up delay-3" style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
               {OPTS.map(o => {
                 const on = picked === o.id;
                 return (
                   <button key={o.id} className={`hook-option ${on ? 'on' : ''}`} disabled={picked !== null} onClick={() => pick(o.id)}>
                     <span className="radio">{on && <span className="radio-dot" />}</span>
-                    <span>{o.label}</span>
+                    <span>{tr(o.label)}</span>
                   </button>
                 );
               })}
             </div>
-            {picked !== null && <p className="hook-ack fade-step">To'g'ri yo'nalish! Saytni internetga <b>joylashtirish</b> — bugun shuni o'rganamiz.</p>}
+            {picked !== null && <p className="hook-ack fade-step">{tr({ uz: <>To'g'ri yo'nalish! Saytni internetga <b>joylashtirish</b> — bugun shuni o'rganamiz.</>, ru: <>Верное направление! <b>Разместить</b> сайт в интернете — этому мы сегодня и научимся.</> })}</p>}
           </Col>
         </Split>
         </Zoomable>
@@ -1021,48 +1032,48 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
 const Screen1 = ({ screen, onNext, onPrev }) => {
   const audio = useAudio([{ id: 's1', text: `Ishonasizmi — dars oxirida saytingiz internetda, haqiqiy manzil bilan ochiq bo'ladi — masalan, aziza nuqta maktab nuqta uz. Unga 5 ta qadamda yetib boramiz.`, trigger: 'on_mount', waits_for: null }]);
   const STEPS = [
-    { text: 'Hosting nima? — tushunamiz', tag: '' },
-    { text: 'Netlify bilan tanishamiz', tag: 'hosting' },
-    { text: "GitHub'dan kodni ulaymiz", tag: 'repo' },
-    { text: 'Deploy qilamiz — sayt jonlanadi', tag: 'deploy' },
-    { text: 'Maktab poddomeniga ulaymiz', tag: 'ism.maktab.uz' }
+    { text: { uz: 'Hosting nima? — tushunamiz', ru: 'Что такое хостинг? — разберёмся' }, tag: '' },
+    { text: { uz: 'Netlify bilan tanishamiz', ru: 'Познакомимся с Netlify' }, tag: 'hosting' },
+    { text: { uz: "GitHub'dan kodni ulaymiz", ru: 'Подключим код с GitHub' }, tag: 'repo' },
+    { text: { uz: 'Deploy qilamiz — sayt jonlanadi', ru: 'Сделаем деплой — сайт оживёт' }, tag: 'deploy' },
+    { text: { uz: 'Maktab poddomeniga ulaymiz', ru: 'Подключим школьный поддомен' }, tag: 'ism.maktab.uz' }
   ];
   const isNarrow = useIsMobile(768);
   const [showSteps, setShowSteps] = useState(false);
   const PreviewBlock = (
     <Col>
-      <p className="flow-label">Manzil — dars oxirida shunday bo'ladi</p>
+      <p className="flow-label">{tr({ uz: "Manzil — dars oxirida shunday bo'ladi", ru: 'Адрес — таким он будет в конце урока' })}</p>
       <Preview title="aziza.maktab.uz" minH={210}>
         <MiniSite name="Aziza" />
       </Preview>
-      <p className="mono small" style={{ color: T.success, margin: 0 }}><span className="dl-globe">🌍</span> internetda · har kim ochishi mumkin</p>
+      <p className="mono small" style={{ color: T.success, margin: 0 }}><span className="dl-globe">🌍</span> {tr({ uz: 'internetda · har kim ochishi mumkin', ru: 'в интернете · открыть может каждый' })}</p>
     </Col>
   );
   const StepsBlock = (
     <Col>
-      <p className="flow-label">5 qadam</p>
+      <p className="flow-label">{tr({ uz: '5 qadam', ru: '5 шагов' })}</p>
       <ol className="roadmap">
-        {STEPS.map((s, i) => (<li key={i} className="step-card fade-up" style={{ animationDelay: `${0.08 + i * 0.05}s` }}><span className="step-num">{String(i + 1).padStart(2, '0')}</span><span className="step-body"><span className="step-text">{s.text}</span>{s.tag && <span className="step-tag">{s.tag}</span>}</span></li>))}
+        {STEPS.map((s, i) => (<li key={i} className="step-card fade-up" style={{ animationDelay: `${0.08 + i * 0.05}s` }}><span className="step-num">{String(i + 1).padStart(2, '0')}</span><span className="step-body"><span className="step-text">{tr(s.text)}</span>{s.tag && <span className="step-tag">{s.tag}</span>}</span></li>))}
       </ol>
     </Col>
   );
   return (
-    <Stage eyebrow="Reja" screen={screen} audioState={audio} mentorStatic navContent={<><NavBack onPrev={onPrev} /><NavNext label="Boshlaymiz →" onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Reja', ru: 'План' })} screen={screen} audioState={audio} mentorStatic navContent={<><NavBack onPrev={onPrev} /><NavNext label={tr({ uz: 'Boshlaymiz →', ru: 'Начнём →' })} onClick={onNext} /></>}>
       <div className="screen">
         <div className="head">
-          <h2 className="title h-title fade-up"><span className="italic" style={{ color: T.accent }}>Bugun saytni butun dunyoga ochamiz!</span></h2>
+          <h2 className="title h-title fade-up"><span className="italic" style={{ color: T.accent }}>{tr({ uz: 'Bugun saytni butun dunyoga ochamiz!', ru: 'Сегодня откроем сайт всему миру!' })}</span></h2>
         </div>
-        <Mentor>Ishonasizmi — dars oxirida saytingiz <b style={{ color: T.ink }}>internetda</b>, haqiqiy manzil bilan ochiq bo'ladi — masalan <span className="mono">aziza.maktab.uz</span>. Unga <b style={{ color: T.ink }}>5 ta qadamda</b> yetib boramiz.</Mentor>
+        <Mentor>{tr({ uz: <>Ishonasizmi — dars oxirida saytingiz <b style={{ color: T.ink }}>internetda</b>, haqiqiy manzil bilan ochiq bo'ladi — masalan <span className="mono">aziza.maktab.uz</span>. Unga <b style={{ color: T.ink }}>5 ta qadamda</b> yetib boramiz.</>, ru: <>Представляете — в конце урока ваш сайт будет <b style={{ color: T.ink }}>в интернете</b>, с настоящим адресом — например <span className="mono">aziza.maktab.uz</span>. Дойдём до этого за <b style={{ color: T.ink }}>5 шагов</b>.</> })}</Mentor>
         {!isNarrow ? (
           <Zoomable><Split>{PreviewBlock}{StepsBlock}</Split></Zoomable>
         ) : !showSteps ? (
           <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px,2vw,16px)' }}>
             {PreviewBlock}
-            <button className="btn" style={{ alignSelf: 'flex-start' }} onClick={() => setShowSteps(true)}>📋 Bugungi 5 qadamni ko'rish</button>
+            <button className="btn" style={{ alignSelf: 'flex-start' }} onClick={() => setShowSteps(true)}>📋 {tr({ uz: "Bugungi 5 qadamni ko'rish", ru: 'Посмотреть 5 шагов на сегодня' })}</button>
           </div>
         ) : (
           <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px,2vw,16px)' }}>
-            <button className="btn-soft" style={{ alignSelf: 'flex-start' }} onClick={() => setShowSteps(false)}>↩ Natijani ko'rish</button>
+            <button className="btn-soft" style={{ alignSelf: 'flex-start' }} onClick={() => setShowSteps(false)}>↩ {tr({ uz: "Natijani ko'rish", ru: 'Посмотреть результат' })}</button>
             {StepsBlock}
           </div>
         )}
@@ -1081,30 +1092,30 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   const VISITORS = ['🧑', '👩', '👨', '👵', '🧒', '👧'];
   return (
-    <Stage eyebrow="Hosting" screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? 'Davom etish' : "Ikkalasini ko'ring"} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Hosting', ru: 'Хостинг' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "Ikkalasini ko'ring", ru: 'Посмотрите оба варианта' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Sayt internetda <span className="italic" style={{ color: T.accent }}>qayerda</span> yashaydi?</h2></div>
-        <Mentor>Saytingiz hozir faqat <b style={{ color: T.ink }}>sizning kompyuteringizda</b> yashayapti — buni <span className="mono">localhost</span> deyiladi. Uni hammaga ochish uchun doimo ishlab turadigan boshqa kompyuterga — <b style={{ color: T.ink }}>hosting serveriga</b> qo'yish kerak.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Sayt internetda <span className="italic" style={{ color: T.accent }}>qayerda</span> yashaydi?</>, ru: <>Где <span className="italic" style={{ color: T.accent }}>живёт</span> сайт в интернете?</> })}</h2></div>
+        <Mentor>{tr({ uz: <>Saytingiz hozir faqat <b style={{ color: T.ink }}>sizning kompyuteringizda</b> yashayapti — buni <span className="mono">localhost</span> deyiladi. Uni hammaga ochish uchun doimo ishlab turadigan boshqa kompyuterga — <b style={{ color: T.ink }}>hosting serveriga</b> qo'yish kerak.</>, ru: <>Сейчас ваш сайт живёт только <b style={{ color: T.ink }}>на вашем компьютере</b> — это называется <span className="mono">localhost</span>. Чтобы открыть его всем, нужно перенести его на другой, постоянно работающий компьютер — <b style={{ color: T.ink }}>хостинг-сервер</b>.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
             <div className="fade-up delay-1" style={{ display: 'flex', gap: 8 }}>
               <button className={`chip ${mode === 'local' ? 'chip-on' : ''}`} onClick={() => pick('local')}>💻 localhost</button>
-              <button className={`chip ${mode === 'host' ? 'chip-on' : ''}`} onClick={() => pick('host')}>🌍 Hosting</button>
+              <button className={`chip ${mode === 'host' ? 'chip-on' : ''}`} onClick={() => pick('host')}>🌍 {tr({ uz: 'Hosting', ru: 'Хостинг' })}</button>
             </div>
             <div className="demo-swap" key={mode} style={{ background: T.paper, borderRadius: 14, padding: '20px 18px', boxShadow: `0 8px 20px -6px rgba(${T.shadowBase},0.14)`, textAlign: 'center' }}>
               {mode === 'local' ? (
                 <>
                   <div style={{ fontSize: 40 }}>💻</div>
-                  <p style={{ fontFamily: 'Georgia, serif', fontWeight: 700, color: T.ink, margin: '8px 0 4px', fontSize: 'clamp(15px,2vw,18px)' }}>Faqat bitta odam ko'radi</p>
-                  <p className="body" style={{ margin: 0, color: T.ink2 }}>Sayt sizning kompyuteringizda. Kompyuter o'chsa — sayt ham yo'q.</p>
+                  <p style={{ fontFamily: 'Georgia, serif', fontWeight: 700, color: T.ink, margin: '8px 0 4px', fontSize: 'clamp(15px,2vw,18px)' }}>{tr({ uz: "Faqat bitta odam ko'radi", ru: 'Видит только один человек' })}</p>
+                  <p className="body" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: "Sayt sizning kompyuteringizda. Kompyuter o'chsa — sayt ham yo'q.", ru: 'Сайт на вашем компьютере. Выключили компьютер — сайта нет.' })}</p>
                   <div style={{ marginTop: 12, fontSize: 26 }}>🧑</div>
                 </>
               ) : (
                 <>
                   <div style={{ fontSize: 40 }}>🌍</div>
-                  <p style={{ fontFamily: 'Georgia, serif', fontWeight: 700, color: T.ink, margin: '8px 0 4px', fontSize: 'clamp(15px,2vw,18px)' }}>Butun dunyo ko'radi</p>
-                  <p className="body" style={{ margin: 0, color: T.ink2 }}>Sayt hosting serverida — 24/7 yonib turadi, har kim manzildan ochadi.</p>
+                  <p style={{ fontFamily: 'Georgia, serif', fontWeight: 700, color: T.ink, margin: '8px 0 4px', fontSize: 'clamp(15px,2vw,18px)' }}>{tr({ uz: "Butun dunyo ko'radi", ru: 'Видит весь мир' })}</p>
+                  <p className="body" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: 'Sayt hosting serverida — 24/7 yonib turadi, har kim manzildan ochadi.', ru: 'Сайт на хостинг-сервере — работает 24/7, и каждый открывает его по адресу.' })}</p>
                   <div style={{ marginTop: 12, fontSize: 22, display: 'flex', justifyContent: 'center', gap: 7 }}>{VISITORS.map((v, i) => (<span key={i} className="dl-visitor" style={{ animationDelay: `${i * 0.08}s` }}>{v}</span>))}</div>
                 </>
               )}
@@ -1115,12 +1126,12 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <div style={{ display: 'flex', alignItems: 'flex-start', gap: 12 }}>
                 <span style={{ fontSize: 26 }}>🏠</span>
                 <div>
-                  <p className="eyebrow" style={{ color: T.accent, margin: '0 0 4px' }}>Oddiy qilib aytganda</p>
-                  <p className="body" style={{ margin: 0, color: T.ink }}><b>Hosting</b> — saytingiz uchun internetda ijaraga olingan <b>doimiy uy</b>. U yerda fayllaringiz turadi va server ularni 24 soat har kimga ko'rsatib beradi.</p>
+                  <p className="eyebrow" style={{ color: T.accent, margin: '0 0 4px' }}>{tr({ uz: 'Oddiy qilib aytganda', ru: 'Проще говоря' })}</p>
+                  <p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <><b>Hosting</b> — saytingiz uchun internetda ijaraga olingan <b>doimiy uy</b>. U yerda fayllaringiz turadi va server ularni 24 soat har kimga ko'rsatib beradi.</>, ru: <><b>Хостинг</b> — это <b>постоянный дом</b>, арендованный для вашего сайта в интернете. Там лежат ваши файлы, и сервер показывает их всем 24 часа в сутки.</> })}</p>
                 </div>
               </div>
             </div>
-            <div className="frame-soft fade-up delay-3"><p className="body" style={{ margin: 0, color: T.ink }}>Esingizdami — Internet darsida <b>server</b> haqida gaplashgandik? Hosting — aynan saytingizni shunday serverga joylashtirishdir.</p></div>
+            <div className="frame-soft fade-up delay-3"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Esingizdami — Internet darsida <b>server</b> haqida gaplashgandik? Hosting — aynan saytingizni shunday serverga joylashtirishdir.</>, ru: <>Помните — на уроке про интернет мы говорили о <b>сервере</b>? Хостинг — это как раз размещение вашего сайта на таком сервере.</> })}</p></div>
           </Col>
         </div>
         </Zoomable>
@@ -1133,10 +1144,10 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const audio = useAudio([{ id: 's3', text: `Saytni hostingga qo'yganingizda nima bo'ladi? Fayllaringiz serverga ko'chiriladi, manzil oladi, va har bir tashrifchi brauzerda o'sha manzilni ochadi. "Boshlash" tugmasini bosib, yo'lni kuzating.`, trigger: 'on_mount', waits_for: { type: 'flow_done' } }]);
   const STEPS = [
-    { ic: '📄', h: 'Fayllaringiz', s: 'index.html, style.css' },
-    { ic: '⬆️', h: 'Serverga yuklanadi', s: 'hosting xotirasiga' },
-    { ic: '🌐', h: 'Manzil oladi', s: 'masalan: sayt.netlify.app' },
-    { ic: '👀', h: 'Tashrifchi ochadi', s: "brauzerda ko'radi" }
+    { ic: '📄', h: { uz: 'Fayllaringiz', ru: 'Ваши файлы' }, s: 'index.html, style.css' },
+    { ic: '⬆️', h: { uz: 'Serverga yuklanadi', ru: 'Загружаются на сервер' }, s: { uz: 'hosting xotirasiga', ru: 'в память хостинга' } },
+    { ic: '🌐', h: { uz: 'Manzil oladi', ru: 'Получает адрес' }, s: { uz: 'masalan: sayt.netlify.app', ru: 'например: sayt.netlify.app' } },
+    { ic: '👀', h: { uz: 'Tashrifchi ochadi', ru: 'Посетитель открывает' }, s: { uz: "brauzerda ko'radi", ru: 'видит в браузере' } }
   ];
   const [step, setStep] = useState(storedAnswer ? STEPS.length : 0);
   const [running, setRunning] = useState(false);
@@ -1151,10 +1162,10 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   };
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   return (
-    <Stage eyebrow="Hosting oqimi" screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? 'Davom etish' : "Avval oqimni ko'ring"} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Hosting oqimi', ru: 'Схема хостинга' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "Avval oqimni ko'ring", ru: 'Сначала посмотрите схему' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Saytni qo'ysangiz — <span className="italic" style={{ color: T.accent }}>nima bo'ladi?</span></h2></div>
-        <Mentor>Saytni hostingga qo'yganingizda: fayllaringiz <b style={{ color: T.ink }}>serverga ko'chiriladi</b>, <b style={{ color: T.ink }}>manzil</b> oladi, va har bir tashrifchi brauzerda o'sha manzilni ochadi. Tugmani bosib, yo'lni kuzating.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Saytni qo'ysangiz — <span className="italic" style={{ color: T.accent }}>nima bo'ladi?</span></>, ru: <>Вы загрузили сайт — <span className="italic" style={{ color: T.accent }}>что дальше?</span></> })}</h2></div>
+        <Mentor>{tr({ uz: <>Saytni hostingga qo'yganingizda: fayllaringiz <b style={{ color: T.ink }}>serverga ko'chiriladi</b>, <b style={{ color: T.ink }}>manzil</b> oladi, va har bir tashrifchi brauzerda o'sha manzilni ochadi. Tugmani bosib, yo'lni kuzating.</>, ru: <>Когда вы кладёте сайт на хостинг: файлы <b style={{ color: T.ink }}>переносятся на сервер</b>, получают <b style={{ color: T.ink }}>адрес</b>, и каждый посетитель открывает этот адрес в браузере. Нажмите кнопку и проследите путь.</> })}</Mentor>
         <Zoomable>
         <div className="frame-col">
         {!isNarrow ? (
@@ -1164,7 +1175,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <React.Fragment key={i}>
                 <div className={`pz-step ${step > i ? 'on' : ''} ${running && step === i + 1 ? 'active' : ''}`} style={{ minWidth: 104 }}>
                   <span style={{ fontSize: 26 }}>{step > i ? s.ic : '○'}</span>
-                  <span className="pz-lbl"><b style={{ color: step > i ? T.ink : T.ink2 }}>{s.h}</b><br />{s.s}</span>
+                  <span className="pz-lbl"><b style={{ color: step > i ? T.ink : T.ink2 }}>{tr(s.h)}</b><br />{tr(s.s)}</span>
                 </div>
                 {i < STEPS.length - 1 && <span className={`pz-arrow ${step > i + 1 ? 'on' : ''}`}>→</span>}
               </React.Fragment>
@@ -1176,7 +1187,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <React.Fragment key={i}>
                 <div className={`pz-rowstep ${step > i ? 'on' : ''} ${running && step === i + 1 ? 'active' : ''}`}>
                   <span className="pz-rowic">{step > i ? s.ic : '○'}</span>
-                  <span className="pz-rowtxt"><b>{s.h}</b><span>{s.s}</span></span>
+                  <span className="pz-rowtxt"><b>{tr(s.h)}</b><span>{tr(s.s)}</span></span>
                   {step > i && <span style={{ marginLeft: 'auto', color: T.success, fontSize: 15 }}>✓</span>}
                 </div>
                 {i < STEPS.length - 1 && <span className={`pz-varrow ${step > i + 1 ? 'on' : ''}`}>↓</span>}
@@ -1184,11 +1195,11 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             ))}
           </div>
         )}
-        <button className="btn" onClick={run} disabled={running} style={{ alignSelf: 'flex-start' }}>{running ? 'Bajarilmoqda…' : (done ? "↻ Yana ko'rsatish" : '▶ Boshlash')}</button>
+        <button className="btn" onClick={run} disabled={running} style={{ alignSelf: 'flex-start' }}>{running ? tr({ uz: 'Bajarilmoqda…', ru: 'Выполняется…' }) : (done ? tr({ uz: "↻ Yana ko'rsatish", ru: '↻ Показать ещё раз' }) : tr({ uz: '▶ Boshlash', ru: '▶ Старт' }))}</button>
         </div>
         </Zoomable>
         {done && (
-          <div className="frame-success fade-step"><p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: T.success, textTransform: 'uppercase', letterSpacing: '0.08em' }}>✓ Mana shu — hosting</p><p className="body" style={{ margin: 0, color: T.ink }}>Fayllaringiz serverda <b>doimo</b> turadi va manzil orqali ochiladi. Endi kerak — buni qiladigan <b>oson vosita</b>. Mana <b>Netlify</b> kiradi.</p></div>
+          <div className="frame-success fade-step"><p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: T.success, textTransform: 'uppercase', letterSpacing: '0.08em' }}>✓ {tr({ uz: 'Mana shu — hosting', ru: 'Вот это и есть хостинг' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Fayllaringiz serverda <b>doimo</b> turadi va manzil orqali ochiladi. Endi kerak — buni qiladigan <b>oson vosita</b>. Mana <b>Netlify</b> kiradi.</>, ru: <>Ваши файлы <b>всегда</b> лежат на сервере и открываются по адресу. Теперь нужен <b>простой инструмент</b>, который всё это сделает. Тут и появляется <b>Netlify</b>.</> })}</p></div>
         )}
       </div>
     </Stage>
@@ -1197,21 +1208,21 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 
 // ===== SCREEN 4 — TEST 1 =====
 const Screen4 = (props) => (
-  <QuestionScreen {...props} idx={4} scope="module-mikro" eyebrow="Mashq · 1-savol"
+  <QuestionScreen {...props} idx={4} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 1-savol', ru: 'Практика · вопрос 1' })}
     audioText="Hosting asosan qanday vazifa bajaradi? To'g'ri variantni tanlang."
     questionText="Hosting asosan qanday vazifa bajaradi?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>Hosting nima qiladi?</p><h2 className="title h-sub" style={{ marginTop: 8 }}>Hosting asosan qanday vazifa bajaradi?</h2></>}
-    options={['Saytni internetda doimo ochiq saqlaydi', 'Kodni chiroyli ranglar bilan bezaydi', 'Saytdagi rasmlarni tahrir qiladi', 'Internet ulanishini tezlashtiradi']} correctIdx={0}
-    explainCorrect="To'g'ri! Hosting saytingizni doimo ishlab turadigan serverda saqlaydi — xuddi 24 soat ochiq do'kon kabi: eshigi hech qachon yopilmaydi, istalgan payt har kim kirib ko'radi."
-    explainWrong={{ 1: "Yo'q — kodni bezash CSS ishi. Hosting esa saytni internetda ochiq saqlaydi.", 2: "Yo'q — rasm tahriri boshqa narsa. Hosting saytni serverda joylashtiradi.", 3: "Yo'q — hosting internetni tezlashtirmaydi, u saytingizni doimo ochiq saqlaydi.", default: 'Hosting saytni internetda doimo ochiq saqlaydi.' }} />
+    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: 'Hosting nima qiladi?', ru: 'Что делает хостинг?' })}</p><h2 className="title h-sub" style={{ marginTop: 8 }}>{tr({ uz: 'Hosting asosan qanday vazifa bajaradi?', ru: 'Какую основную задачу выполняет хостинг?' })}</h2></>}
+    options={[{ uz: 'Saytni internetda doimo ochiq saqlaydi', ru: 'Постоянно держит сайт открытым в интернете' }, { uz: 'Kodni chiroyli ranglar bilan bezaydi', ru: 'Красиво раскрашивает код' }, { uz: 'Saytdagi rasmlarni tahrir qiladi', ru: 'Редактирует картинки на сайте' }, { uz: 'Internet ulanishini tezlashtiradi', ru: 'Ускоряет интернет-соединение' }]} correctIdx={0}
+    explainCorrect={{ uz: "To'g'ri! Hosting saytingizni doimo ishlab turadigan serverda saqlaydi — xuddi 24 soat ochiq do'kon kabi: eshigi hech qachon yopilmaydi, istalgan payt har kim kirib ko'radi.", ru: 'Верно! Хостинг хранит ваш сайт на постоянно работающем сервере — как магазин, открытый 24 часа: двери никогда не закрываются, и зайти может каждый в любой момент.' }}
+    explainWrong={{ 1: { uz: "Yo'q — kodni bezash CSS ishi. Hosting esa saytni internetda ochiq saqlaydi.", ru: 'Нет — украшать код — работа CSS. А хостинг держит сайт открытым в интернете.' }, 2: { uz: "Yo'q — rasm tahriri boshqa narsa. Hosting saytni serverda joylashtiradi.", ru: 'Нет — редактирование картинок — это другое. Хостинг размещает сайт на сервере.' }, 3: { uz: "Yo'q — hosting internetni tezlashtirmaydi, u saytingizni doimo ochiq saqlaydi.", ru: 'Нет — хостинг не ускоряет интернет, он держит ваш сайт постоянно открытым.' }, default: { uz: 'Hosting saytni internetda doimo ochiq saqlaydi.', ru: 'Хостинг постоянно держит сайт открытым в интернете.' } }} />
 );
 
 // ===== SCREEN 5 — NETLIFY NIMA =====
 const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const audio = useAudio([{ id: 's5', text: `Netlify — saytingizni bir necha soniyada va bepul internetga chiqaradigan hosting platformasi. Ikki yo'li bor: papkani sichqoncha bilan tortib tashlash, yoki GitHub'ni ulash. Ikkala usulni bosib ko'ring.`, trigger: 'on_mount', waits_for: null }]);
   const WAYS = {
-    drag: { ic: '📁', title: 'Papkani tortib tashlash', body: "Sayt papkangizni Netlify oynasiga sichqoncha bilan tortib tashlaysiz — tamom, sayt internetda. Eng tez usul." },
-    github: { ic: '🔗', title: "GitHub'ni ulash", body: "Netlify GitHub repongizni kuzatadi. Siz push qilgan har bir o'zgarish avtomatik internetga chiqadi. Biz shu usulni o'rganamiz." }
+    drag: { ic: '📁', title: { uz: 'Papkani tortib tashlash', ru: 'Перетащить папку' }, body: { uz: "Sayt papkangizni Netlify oynasiga sichqoncha bilan tortib tashlaysiz — tamom, sayt internetda. Eng tez usul.", ru: 'Просто перетаскиваете папку сайта мышкой в окно Netlify — и всё, сайт в интернете. Самый быстрый способ.' } },
+    github: { ic: '🔗', title: { uz: "GitHub'ni ulash", ru: 'Подключить GitHub' }, body: { uz: "Netlify GitHub repongizni kuzatadi. Siz push qilgan har bir o'zgarish avtomatik internetga chiqadi. Biz shu usulni o'rganamiz.", ru: 'Netlify следит за вашим репозиторием GitHub. Каждое запушенное изменение автоматически попадает в интернет. Именно этот способ мы и изучим.' } }
   };
   const [active, setActive] = useState(null);
   const [seen, setSeen] = useState(new Set());
@@ -1220,10 +1231,10 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const tap = (k) => { setActive(k); setSeen(prev => { const n = new Set(prev); n.add(k); return n; }); };
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   return (
-    <Stage eyebrow="Netlify" screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? 'Davom etish' : `${seen.size}/2 usulni ko'ring`} onClick={onNext} /></>}>
+    <Stage eyebrow="Netlify" screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: `${seen.size}/2 usulni ko'ring`, ru: `Посмотрите оба способа (${seen.size}/2)` })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Saytni <span className="italic" style={{ color: T.accent }}>bir necha soniyada</span> chiqaramiz</h2></div>
-        <Mentor>Netlify — saytingizni <b style={{ color: T.ink }}>bepul</b> va tez internetga chiqaradigan hosting platformasi. Ikki yo'li bor — ikkalasini bosib ko'ring.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Saytni <span className="italic" style={{ color: T.accent }}>bir necha soniyada</span> chiqaramiz</>, ru: <>Опубликуем сайт <span className="italic" style={{ color: T.accent }}>за несколько секунд</span></> })}</h2></div>
+        <Mentor>{tr({ uz: <>Netlify — saytingizni <b style={{ color: T.ink }}>bepul</b> va tez internetga chiqaradigan hosting platformasi. Ikki yo'li bor — ikkalasini bosib ko'ring.</>, ru: <>Netlify — хостинг-платформа, которая <b style={{ color: T.ink }}>бесплатно</b> и быстро выводит сайт в интернет. Есть два пути — нажмите на оба.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
@@ -1233,12 +1244,12 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 <div style={{ display: 'flex', alignItems: 'center', gap: 9 }}>
                   <span style={{ width: 26, height: 26, borderRadius: 7, background: '#00C7B7', color: '#0e1726', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontWeight: 800, fontFamily: "'Manrope',sans-serif", fontSize: 14 }}>N</span>
                   <span style={{ color: '#fff', fontFamily: "'Manrope',sans-serif", fontWeight: 700, fontSize: 15 }}>Netlify</span>
-                  <span style={{ marginLeft: 'auto', color: '#7DD181', fontFamily: "'JetBrains Mono',monospace", fontSize: 11 }}>● bepul</span>
+                  <span style={{ marginLeft: 'auto', color: '#7DD181', fontFamily: "'JetBrains Mono',monospace", fontSize: 11 }}>● {tr({ uz: 'bepul', ru: 'бесплатно' })}</span>
                 </div>
                 {Object.keys(WAYS).map(k => (
                   <button key={k} onClick={() => tap(k)} style={{ textAlign: 'left', cursor: 'pointer', border: active === k ? `1.5px solid #00C7B7` : '1.5px solid #2a3a52', background: active === k ? 'rgba(0,199,183,0.12)' : 'transparent', borderRadius: 10, padding: '11px 13px', display: 'flex', alignItems: 'center', gap: 10, transition: 'all 0.18s' }}>
                     <span style={{ fontSize: 22 }}>{WAYS[k].ic}</span>
-                    <span style={{ color: '#E8E5DD', fontFamily: "'Manrope',sans-serif", fontWeight: 600, fontSize: 13.5 }}>{WAYS[k].title}</span>
+                    <span style={{ color: '#E8E5DD', fontFamily: "'Manrope',sans-serif", fontWeight: 600, fontSize: 13.5 }}>{tr(WAYS[k].title)}</span>
                     {seen.has(k) && <span style={{ marginLeft: 'auto', color: '#7DD181', fontSize: 13 }}>✓</span>}
                   </button>
                 ))}
@@ -1248,11 +1259,11 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <Col>
             {active ? (
               <div className="sk-info fade-step" key={active}>
-                <span className="sk-tagbig"><span className="dl-pop" style={{ fontSize: 24 }}>{WAYS[active].ic}</span><span className="sk-wordbadge">{WAYS[active].title}</span></span>
-                <p className="body" style={{ color: T.ink, margin: '11px 0 0' }}>{WAYS[active].body}</p>
+                <span className="sk-tagbig"><span className="dl-pop" style={{ fontSize: 24 }}>{WAYS[active].ic}</span><span className="sk-wordbadge">{tr(WAYS[active].title)}</span></span>
+                <p className="body" style={{ color: T.ink, margin: '11px 0 0' }}>{tr(WAYS[active].body)}</p>
               </div>
-            ) : (!isNarrow ? <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>Chapdan bir usulni bosing</p></div> : null)}
-            {done && <div className="frame-soft fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Biz <b>GitHub'ni ulash</b> usulidan foydalanamiz — chunki Git darsida kodimizni allaqachon GitHub'ga qo'ygan edik.</p></div>}
+            ) : (!isNarrow ? <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Chapdan bir usulni bosing', ru: 'Нажмите на один из способов слева' })}</p></div> : null)}
+            {done && <div className="frame-soft fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Biz <b>GitHub'ni ulash</b> usulidan foydalanamiz — chunki Git darsida kodimizni allaqachon GitHub'ga qo'ygan edik.</>, ru: <>Мы будем использовать способ <b>«Подключить GitHub»</b> — на уроке Git мы уже загрузили туда свой код.</> })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -1263,17 +1274,17 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 
 // ===== SCREEN 5b — TEST 2 =====
 const Screen5b = (props) => (
-  <QuestionScreen {...props} scope="module-mikro" eyebrow="Tekshiruv"
+  <QuestionScreen {...props} scope="module-mikro" eyebrow={tr({ uz: 'Tekshiruv', ru: 'Проверка' })}
     audioText="Netlify nima?"
     questionText="Netlify nima?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>Mustahkamlash</p><h2 className="title h-sub" style={{ marginTop: 8 }}>Netlify nima?</h2></>}
-    options={["Saytni ko'rsatadigan brauzer dasturi", "Onlayn o'ynaladigan qiziqarli o'yin", 'Saytlarni joylaydigan hosting platformasi', 'Saytning internetdagi domen manzili']} correctIdx={2}
-    explainCorrect="To'g'ri! Netlify — saytlarni bepul va tez internetga chiqaradigan hosting platformasi."
+    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: 'Mustahkamlash', ru: 'Закрепление' })}</p><h2 className="title h-sub" style={{ marginTop: 8 }}>{tr({ uz: 'Netlify nima?', ru: 'Что такое Netlify?' })}</h2></>}
+    options={[{ uz: "Saytni ko'rsatadigan brauzer dasturi", ru: 'Браузер — программа для просмотра сайтов' }, { uz: "Onlayn o'ynaladigan qiziqarli o'yin", ru: 'Увлекательная онлайн-игра' }, { uz: 'Saytlarni joylaydigan hosting platformasi', ru: 'Хостинг-платформа для размещения сайтов' }, { uz: 'Saytning internetdagi domen manzili', ru: 'Доменный адрес сайта в интернете' }]} correctIdx={2}
+    explainCorrect={{ uz: "To'g'ri! Netlify — saytlarni bepul va tez internetga chiqaradigan hosting platformasi.", ru: 'Верно! Netlify — хостинг-платформа, которая бесплатно и быстро публикует сайты в интернете.' }}
     explainWrong={{
-      0: "Brauzer — saytni ko'rsatadigan dastur (Chrome). Netlify esa saytni joylaydigan hosting.",
-      1: "Yo'q — Netlify o'yin emas, u hosting platformasi.",
-      3: 'Domen — saytning manzili (maktab.uz). Netlify esa saytni joylaydigan platforma.',
-      default: 'Netlify — saytlarni joylaydigan bepul hosting platformasi.'
+      0: { uz: "Brauzer — saytni ko'rsatadigan dastur (Chrome). Netlify esa saytni joylaydigan hosting.", ru: 'Браузер — программа, которая показывает сайт (Chrome). А Netlify — хостинг, который его размещает.' },
+      1: { uz: "Yo'q — Netlify o'yin emas, u hosting platformasi.", ru: 'Нет — Netlify не игра, это хостинг-платформа.' },
+      3: { uz: 'Domen — saytning manzili (maktab.uz). Netlify esa saytni joylaydigan platforma.', ru: 'Домен — адрес сайта (maktab.uz). А Netlify — платформа, которая размещает сайт.' },
+      default: { uz: 'Netlify — saytlarni joylaydigan bepul hosting platformasi.', ru: 'Netlify — бесплатная хостинг-платформа для размещения сайтов.' }
     }} />
 );
 
@@ -1287,14 +1298,14 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const connect = () => { if (!repo) return; setConnected(true); audio.triggerEvent('connected'); if (!audio.muted) setTimeout(() => { const e = getAudioEngine(); if (e && !audio.muted) e.pushOneOff(`Ulandi! Endi Netlify shu reponi kuzatadi.`); }, 300); };
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   return (
-    <Stage eyebrow="GitHub ulash" screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? 'Davom etish' : 'Reponi ulang'} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'GitHub ulash', ru: 'Подключение GitHub' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Reponi ulang', ru: 'Подключите репозиторий' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Netlify kodni <span className="italic" style={{ color: T.accent }}>qayerdan</span> oladi?</h2></div>
-        <Mentor>Netlify kodingizni <b style={{ color: T.ink }}>GitHub'dan</b> oladi. Git darsida push qilgan repongizni tanlaysiz — shundan keyin Netlify uni doimo kuzatib turadi.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Netlify kodni <span className="italic" style={{ color: T.accent }}>qayerdan</span> oladi?</>, ru: <>Откуда Netlify <span className="italic" style={{ color: T.accent }}>берёт</span> код?</> })}</h2></div>
+        <Mentor>{tr({ uz: <>Netlify kodingizni <b style={{ color: T.ink }}>GitHub'dan</b> oladi. Git darsida push qilgan repongizni tanlaysiz — shundan keyin Netlify uni doimo kuzatib turadi.</>, ru: <>Netlify берёт ваш код <b style={{ color: T.ink }}>с GitHub</b>. Вы выбираете репозиторий, который запушили на уроке Git, — и дальше Netlify постоянно за ним следит.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
-            <p className="flow-label">GitHub repolaringiz</p>
+            <p className="flow-label">{tr({ uz: 'GitHub repolaringiz', ru: 'Ваши репозитории GitHub' })}</p>
             <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
               {REPOS.map(r => (
                 <button key={r} onClick={() => !connected && setRepo(r)} disabled={connected} style={{ display: 'flex', alignItems: 'center', gap: 10, textAlign: 'left', cursor: connected ? 'default' : 'pointer', border: 'none', borderRadius: 12, padding: '12px 15px', background: T.paper, color: T.ink, boxShadow: repo === r ? `inset 0 0 0 2px ${T.accent}, 0 6px 16px -6px rgba(255,79,40,0.25)` : `0 6px 16px -6px rgba(${T.shadowBase},0.14)`, fontFamily: "'JetBrains Mono',monospace", fontSize: 14, fontWeight: 500, transition: 'all 0.18s' }}>
@@ -1304,7 +1315,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 </button>
               ))}
             </div>
-            {!connected && <button className="btn" onClick={connect} disabled={!repo} style={{ alignSelf: 'flex-start', marginTop: 4 }}>🔗 Netlify'ga ulash</button>}
+            {!connected && <button className="btn" onClick={connect} disabled={!repo} style={{ alignSelf: 'flex-start', marginTop: 4 }}>🔗 {tr({ uz: "Netlify'ga ulash", ru: 'Подключить к Netlify' })}</button>}
           </Col>
           <Col>
             {connected ? (
@@ -1315,10 +1326,10 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                   <span style={{ color: T.success, fontSize: 20 }}>🔗</span>
                   <div style={{ textAlign: 'center' }}><div style={{ height: 30, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 28 }}>🌍</div><span className="mono small" style={{ color: T.ink2, marginTop: 4, display: 'block' }}>Netlify</span></div>
                 </div>
-                <div className="frame-success"><p className="small mono" style={{ margin: '0 0 4px', fontWeight: 600, color: T.success, textTransform: 'uppercase', letterSpacing: '0.08em' }}>✓ Ulandi</p><p className="body" style={{ margin: 0, color: T.ink }}><b className="mono">{repo}</b> reposi Netlify'ga ulandi. Endi push qilingan kod avtomatik internetga chiqadi.</p></div>
+                <div className="frame-success"><p className="small mono" style={{ margin: '0 0 4px', fontWeight: 600, color: T.success, textTransform: 'uppercase', letterSpacing: '0.08em' }}>✓ {tr({ uz: 'Ulandi', ru: 'Подключено' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <><b className="mono">{repo}</b> reposi Netlify'ga ulandi. Endi push qilingan kod avtomatik internetga chiqadi.</>, ru: <>Репозиторий <b className="mono">{repo}</b> подключён к Netlify. Теперь запушенный код автоматически попадает в интернет.</> })}</p></div>
               </div>
             ) : (
-              <div className="frame-soft"><p className="body" style={{ margin: 0, color: T.ink }}><b>Eslatma:</b> kodingiz GitHub'da turibdi (Git darsidan). Netlify uni o'sha yerdan o'qiydi — qayta yuklash shart emas.</p></div>
+              <div className="frame-soft"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <><b>Eslatma:</b> kodingiz GitHub'da turibdi (Git darsidan). Netlify uni o'sha yerdan o'qiydi — qayta yuklash shart emas.</>, ru: <><b>Напоминание:</b> ваш код уже лежит на GitHub (с урока Git). Netlify читает его прямо оттуда — заново загружать не нужно.</> })}</p></div>
             )}
           </Col>
         </div>
@@ -1341,10 +1352,10 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   };
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   return (
-    <Stage eyebrow="Deploy" screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? 'Davom etish' : 'Saytni deploy qiling'} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Deploy', ru: 'Деплой' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Saytni deploy qiling', ru: 'Задеплойте сайт' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Sayt qanday <span className="italic" style={{ color: T.accent }}>jonlanadi?</span></h2></div>
-        <Mentor><b style={{ color: T.ink }}>Deploy</b> — fayllaringizni serverga joylab, saytni internetda ochiq qilish. Tugmani bosing va kuzating.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Sayt qanday <span className="italic" style={{ color: T.accent }}>jonlanadi?</span></>, ru: <>Как сайт <span className="italic" style={{ color: T.accent }}>оживает?</span></> })}</h2></div>
+        <Mentor>{tr({ uz: <><b style={{ color: T.ink }}>Deploy</b> — fayllaringizni serverga joylab, saytni internetda ochiq qilish. Tugmani bosing va kuzating.</>, ru: <><b style={{ color: T.ink }}>Деплой</b> — разместить файлы на сервере и открыть сайт в интернете. Нажмите кнопку и наблюдайте.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
@@ -1353,17 +1364,17 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <div className="bp-body" style={{ minHeight: 150, display: 'flex', flexDirection: 'column', gap: 12, alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>
                 {phase === 'idle' && (<>
                   <span style={{ fontSize: 40 }}>🚀</span>
-                  <p className="body" style={{ margin: 0, color: T.ink2 }}>Sayt deploy qilishga tayyor.</p>
-                  <button className="btn" onClick={deploy}>🚀 Deploy qilish</button>
+                  <p className="body" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: 'Sayt deploy qilishga tayyor.', ru: 'Сайт готов к деплою.' })}</p>
+                  <button className="btn" onClick={deploy}>🚀 {tr({ uz: 'Deploy qilish', ru: 'Задеплоить' })}</button>
                 </>)}
                 {phase === 'building' && (<>
                   <span className="dl-launch" style={{ fontSize: 38 }}>🚀</span>
-                  <p className="body" style={{ margin: 0, color: T.ink }}>Building… fayllar serverga yuklanyapti</p>
+                  <p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: 'Building… fayllar serverga yuklanyapti', ru: 'Building… файлы загружаются на сервер' })}</p>
                   <p className="mono small" style={{ color: T.ink3, margin: 0 }}>index.html · style.css</p>
                 </>)}
                 {phase === 'live' && (<>
                   <span className="dl-pop" style={{ fontSize: 40 }}>✅</span>
-                  <p style={{ fontFamily: 'Georgia, serif', fontWeight: 700, color: T.success, margin: 0, fontSize: 'clamp(16px,2.2vw,19px)' }}>Published! Sayt internetda</p>
+                  <p style={{ fontFamily: 'Georgia, serif', fontWeight: 700, color: T.success, margin: 0, fontSize: 'clamp(16px,2.2vw,19px)' }}>{tr({ uz: 'Published! Sayt internetda', ru: 'Published! Сайт в интернете' })}</p>
                   <span className="mono" style={{ fontSize: 13, color: T.link, textDecoration: 'underline' }}>mening-saytim.netlify.app</span>
                 </>)}
               </div>
@@ -1372,12 +1383,12 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <Col>
             {done ? (
               <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-                <p className="flow-label">Endi sayt shu manzilda ochiladi</p>
+                <p className="flow-label">{tr({ uz: 'Endi sayt shu manzilda ochiladi', ru: 'Теперь сайт открывается по этому адресу' })}</p>
                 <Preview title="mening-saytim.netlify.app" minH={150}><MiniSite name="Aziza" /></Preview>
-                <div className="frame-success"><p className="body" style={{ margin: 0, color: T.ink }}>✓ Bu manzilni istalgan odamga yuborsangiz — u brauzerda ochib, saytingizni ko'radi.</p></div>
+                <div className="frame-success"><p className="body" style={{ margin: 0, color: T.ink }}>✓ {tr({ uz: "Bu manzilni istalgan odamga yuborsangiz — u brauzerda ochib, saytingizni ko'radi.", ru: 'Отправьте этот адрес кому угодно — человек откроет его в браузере и увидит ваш сайт.' })}</p></div>
               </div>
             ) : (
-              <div className="frame-soft"><p className="body" style={{ margin: 0, color: T.ink }}>Netlify avtomatik manzil beradi: <span className="mono">tasodifiy-nom.netlify.app</span>. Keyinroq uni <b>maktab poddomeniga</b> almashtiramiz.</p></div>
+              <div className="frame-soft"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Netlify avtomatik manzil beradi: <span className="mono">tasodifiy-nom.netlify.app</span>. Keyinroq uni <b>maktab poddomeniga</b> almashtiramiz.</>, ru: <>Netlify выдаёт автоматический адрес: <span className="mono">tasodifiy-nom.netlify.app</span>. Позже мы заменим его на <b>школьный поддомен</b>.</> })}</p></div>
             )}
           </Col>
         </div>
@@ -1390,8 +1401,8 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // ===== SCREEN 8 — AVTO-DEPLOY (push -> auto) =====
 const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const audio = useAudio([{ id: 's8', text: `Eng qulay qismi: kodni o'zgartirib GitHub'ga push qilsangiz, Netlify GitHub'ni kuzatib turgani uchun o'zgarishni darrov sezadi va saytni avtomatik yangilaydi. Sinab ko'ring: sarlavhani o'zgartiring, keyin "push" qiling.`, trigger: 'on_mount', waits_for: { type: 'pushed' } }]);
-  const [text, setText] = useState('Salom, men Aziza!');
-  const [live, setLive] = useState('Salom, men Aziza!');
+  const [text, setText] = useState(() => tr({ uz: 'Salom, men Aziza!', ru: 'Привет, я Aziza!' }));
+  const [live, setLive] = useState(() => tr({ uz: 'Salom, men Aziza!', ru: 'Привет, я Aziza!' }));
   const [phase, setPhase] = useState('idle'); // idle | deploying
   const [pushed, setPushed] = useState(!!storedAnswer);
   const timer = useRef(null);
@@ -1405,30 +1416,30 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   };
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   return (
-    <Stage eyebrow="Avto-deploy" screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? 'Davom etish' : "O'zgartirib push qiling"} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Avto-deploy', ru: 'Авто-деплой' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "O'zgartirib push qiling", ru: 'Измените и запушьте' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Kodni o'zgartirsangiz <span className="italic" style={{ color: T.accent }}>nima bo'ladi?</span></h2></div>
-        <Mentor>Eng qulay qismi: kodni o'zgartirib GitHub'ga <b style={{ color: T.ink }}>push</b> qilsangiz, Netlify GitHub'ni kuzatib turgani uchun o'zgarishni sezadi va saytni <b style={{ color: T.ink }}>avtomatik</b> yangilaydi. Sinab ko'ring.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Kodni o'zgartirsangiz <span className="italic" style={{ color: T.accent }}>nima bo'ladi?</span></>, ru: <>Что будет, если <span className="italic" style={{ color: T.accent }}>изменить код?</span></> })}</h2></div>
+        <Mentor>{tr({ uz: <>Eng qulay qismi: kodni o'zgartirib GitHub'ga <b style={{ color: T.ink }}>push</b> qilsangiz, Netlify GitHub'ni kuzatib turgani uchun o'zgarishni sezadi va saytni <b style={{ color: T.ink }}>avtomatik</b> yangilaydi. Sinab ko'ring.</>, ru: <>Самое удобное: если изменить код и сделать <b style={{ color: T.ink }}>push</b> на GitHub, Netlify заметит изменение (он же следит за GitHub) и <b style={{ color: T.ink }}>автоматически</b> обновит сайт. Попробуйте.</> })}</Mentor>
         <div className="split">
           <Col>
-            <p className="flow-label">Kod (sarlavhani o'zgartiring)</p>
+            <p className="flow-label">{tr({ uz: "Kod (sarlavhani o'zgartiring)", ru: 'Код (измените заголовок)' })}</p>
             <div className="fade-up delay-1" style={{ background: CODE.bg, borderRadius: 12, padding: '13px 14px', boxShadow: `0 8px 22px -6px rgba(${T.shadowBase},0.2)`, fontFamily: "'JetBrains Mono',monospace", fontSize: 13.5 }}>
               <span style={{ color: CODE.tag }}>{'<h1>'}</span>
               <input value={text} onChange={e => setText(e.target.value)} maxLength={30} spellCheck={false} style={{ background: 'rgba(255,255,255,0.08)', border: 'none', borderRadius: 6, color: CODE.text, fontFamily: "'JetBrains Mono',monospace", fontSize: 13.5, padding: '3px 7px', margin: '0 3px', width: 'min(60%, 200px)', outline: 'none' }} />
               <span style={{ color: CODE.tag }}>{'</h1>'}</span>
             </div>
             <button className="btn" onClick={push} disabled={!dirty || phase === 'deploying'} style={{ alignSelf: 'flex-start' }}>{phase === 'deploying' ? 'Deploying…' : '⬆️ git push'}</button>
-            {dirty && phase === 'idle' && <p className="mono small" style={{ color: T.accent, margin: 0 }}>● o'zgarish push qilinmagan</p>}
+            {dirty && phase === 'idle' && <p className="mono small" style={{ color: T.accent, margin: 0 }}>● {tr({ uz: "o'zgarish push qilinmagan", ru: 'изменение не запушено' })}</p>}
           </Col>
           <Col>
-            <p className="flow-label">Internetdagi sayt {phase === 'deploying' && <span style={{ color: T.accent }}>· yangilanyapti…</span>}</p>
+            <p className="flow-label">{tr({ uz: 'Internetdagi sayt', ru: 'Сайт в интернете' })} {phase === 'deploying' && <span style={{ color: T.accent }}>· {tr({ uz: 'yangilanyapti…', ru: 'обновляется…' })}</span>}</p>
             <div style={{ position: 'relative' }}>
               <Preview title="mening-saytim.netlify.app" minH={130}>
-                <div key={live} className="fade-step"><MiniSite name={live.replace(/^Salom,?\s*men\s*/i, '').replace(/!$/, '') || live} /></div>
+                <div key={live} className="fade-step"><MiniSite name={live.replace(/^(?:Salom,?\s*men|Привет,?\s*я)\s*/i, '').replace(/!$/, '') || live} /></div>
               </Preview>
               {phase === 'deploying' && <div style={{ position: 'absolute', inset: 0, top: 32, background: 'rgba(246,244,239,0.7)', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '0 0 13px 13px' }}><div style={{ width: 28, height: 28, border: `3px solid ${T.accentSoft}`, borderTopColor: T.accent, borderRadius: '50%', animation: 'dl-spin 0.8s linear infinite' }} /></div>}
             </div>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>✓ <b>Continuous deployment</b>: push qilsangiz — sayt o'zi yangilanadi. Qo'lda hech narsa qilish shart emas!</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ <b>Continuous deployment</b>: push qilsangiz — sayt o'zi yangilanadi. Qo'lda hech narsa qilish shart emas!</>, ru: <>✓ <b>Continuous deployment</b>: сделали push — сайт обновился сам. Вручную ничего делать не нужно!</> })}</p></div>}
           </Col>
         </div>
       </div>
@@ -1438,13 +1449,13 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 
 // ===== SCREEN 9 — TEST 3 =====
 const Screen9 = (props) => (
-  <QuestionScreen {...props} idx={9} scope="module-mikro" eyebrow="Mashq · 2-savol"
+  <QuestionScreen {...props} idx={9} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 2-savol', ru: 'Практика · вопрос 2' })}
     audioText="Saytni deploy qilgandan keyin uni kim ko'ra oladi?"
     questionText="Saytni deploy qilgandan keyin uni kim ko'ra oladi?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-sub" style={{ marginTop: 8 }}>Saytni deploy qilgandan keyin uni kim ko'ra oladi?</h2></>}
-    options={["Faqat men — o'z kompyuterimda", 'Internetdagi har kim (manzil orqali)', "Bu saytni endi hech kim ko'rmaydi", 'Faqat GitHub kompaniyasi xodimlari']} correctIdx={1}
-    explainCorrect="To'g'ri! Deploy qilingach sayt internetda ochiq bo'ladi — manzilni bilgan har bir kishi uni ochib ko'radi."
-    explainWrong={{ 0: "Yo'q — bu localhost edi. Deploy qilingach sayt hamma uchun ochiq.", 2: "Yo'q — aksincha, deploy saytni hammaga ochib beradi.", 3: "Yo'q — manzilni bilgan istalgan odam ko'radi, faqat GitHub emas.", default: "Deploy qilingach saytni manzil orqali har kim ko'radi." }} />
+    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-sub" style={{ marginTop: 8 }}>{tr({ uz: "Saytni deploy qilgandan keyin uni kim ko'ra oladi?", ru: 'Кто сможет увидеть сайт после деплоя?' })}</h2></>}
+    options={[{ uz: "Faqat men — o'z kompyuterimda", ru: 'Только я — на своём компьютере' }, { uz: 'Internetdagi har kim (manzil orqali)', ru: 'Любой в интернете (по адресу)' }, { uz: "Bu saytni endi hech kim ko'rmaydi", ru: 'Теперь этот сайт никто не увидит' }, { uz: 'Faqat GitHub kompaniyasi xodimlari', ru: 'Только сотрудники компании GitHub' }]} correctIdx={1}
+    explainCorrect={{ uz: "To'g'ri! Deploy qilingach sayt internetda ochiq bo'ladi — manzilni bilgan har bir kishi uni ochib ko'radi.", ru: 'Верно! После деплоя сайт открыт в интернете — каждый, кто знает адрес, сможет его открыть.' }}
+    explainWrong={{ 0: { uz: "Yo'q — bu localhost edi. Deploy qilingach sayt hamma uchun ochiq.", ru: 'Нет — так было на localhost. После деплоя сайт открыт для всех.' }, 2: { uz: "Yo'q — aksincha, deploy saytni hammaga ochib beradi.", ru: 'Нет — наоборот, деплой открывает сайт всем.' }, 3: { uz: "Yo'q — manzilni bilgan istalgan odam ko'radi, faqat GitHub emas.", ru: 'Нет — сайт увидит любой, кто знает адрес, а не только GitHub.' }, default: { uz: "Deploy qilingach saytni manzil orqali har kim ko'radi.", ru: 'После деплоя сайт по адресу увидит каждый.' } }} />
 );
 
 // ===== SCREEN 10 — PODDOMEN NIMA =====
@@ -1457,43 +1468,43 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const choose = (n) => { setPick(n); setTouched(true); };
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   return (
-    <Stage eyebrow="Poddomen" screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? 'Davom etish' : 'Ismni bosing'} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Poddomen', ru: 'Поддомен' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Ismni bosing', ru: 'Нажмите на имя' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Maktabning <span className="italic" style={{ color: T.accent }}>poddomeni</span> nima?</h2></div>
-        <Mentor>Maktabimizning o'z domeni bor: <span className="mono">maktab.uz</span>. Har bir o'quvchiga uning oldidan o'z nomi qo'shiladi — bu <b style={{ color: T.ink }}>poddomen</b>. Masalan <span className="mono">aziza.maktab.uz</span>. Ismni bosib ko'ring.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Maktabning <span className="italic" style={{ color: T.accent }}>poddomeni</span> nima?</>, ru: <>Что такое школьный <span className="italic" style={{ color: T.accent }}>поддомен</span>?</> })}</h2></div>
+        <Mentor>{tr({ uz: <>Maktabimizning o'z domeni bor: <span className="mono">maktab.uz</span>. Har bir o'quvchiga uning oldidan o'z nomi qo'shiladi — bu <b style={{ color: T.ink }}>poddomen</b>. Masalan <span className="mono">aziza.maktab.uz</span>. Ismni bosib ko'ring.</>, ru: <>У нашей школы есть свой домен: <span className="mono">maktab.uz</span>. Каждому ученику перед ним добавляется его имя — это <b style={{ color: T.ink }}>поддомен</b>. Например <span className="mono">aziza.maktab.uz</span>. Нажмите на имя.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
-            <p className="flow-label">Bitta domen — ko'p poddomen</p>
+            <p className="flow-label">{tr({ uz: "Bitta domen — ko'p poddomen", ru: 'Один домен — много поддоменов' })}</p>
             <div className="fade-up delay-1" style={{ background: T.paper, borderRadius: 14, padding: '18px 16px', boxShadow: `0 8px 20px -6px rgba(${T.shadowBase},0.14)` }}>
               <div style={{ textAlign: 'center', marginBottom: 12 }}>
                 <span style={{ display: 'inline-block', background: T.ink, color: T.bg, fontFamily: "'JetBrains Mono',monospace", fontWeight: 700, fontSize: 15, padding: '8px 16px', borderRadius: 10 }}>🏫 maktab.uz</span>
-                <p className="mono small" style={{ color: T.ink3, margin: '5px 0 0' }}>domen (asosiy manzil)</p>
+                <p className="mono small" style={{ color: T.ink3, margin: '5px 0 0' }}>{tr({ uz: 'domen (asosiy manzil)', ru: 'домен (основной адрес)' })}</p>
               </div>
               <div style={{ display: 'flex', justifyContent: 'center', gap: 8, flexWrap: 'wrap' }}>
                 {NAMES.map(n => (
                   <button key={n} onClick={() => choose(n)} style={{ cursor: 'pointer', border: 'none', borderRadius: 9, padding: '8px 12px', fontFamily: "'JetBrains Mono',monospace", fontSize: 12.5, fontWeight: 600, background: pick === n ? T.accent : T.bg, color: pick === n ? '#fff' : T.ink, boxShadow: pick === n ? '0 6px 16px -5px rgba(255,79,40,0.4)' : 'none', transition: 'all 0.18s' }}>{n}.maktab.uz</button>
                 ))}
               </div>
-              <p className="mono small" style={{ color: T.ink3, margin: '8px 0 0', textAlign: 'center' }}>↑ poddomenlar (har o'quvchiga bittadan)</p>
+              <p className="mono small" style={{ color: T.ink3, margin: '8px 0 0', textAlign: 'center' }}>↑ {tr({ uz: "poddomenlar (har o'quvchiga bittadan)", ru: 'поддомены (по одному на ученика)' })}</p>
             </div>
           </Col>
           <Col>
             {pick ? (
               <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
                 <div className="sk-info">
-                  <p className="flow-label" style={{ marginBottom: 8 }}>Manzilning qismlari</p>
+                  <p className="flow-label" style={{ marginBottom: 8 }}>{tr({ uz: 'Manzilning qismlari', ru: 'Части адреса' })}</p>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 6, flexWrap: 'wrap', fontFamily: "'JetBrains Mono',monospace", fontSize: 'clamp(15px,2.2vw,19px)' }}>
                     <span key={pick} className="dl-assemble" style={{ background: T.accentSoft, color: T.accent, padding: '4px 8px', borderRadius: 6, fontWeight: 700 }}>{pick}</span>
                     <span style={{ color: T.ink3 }}>.</span>
                     <span style={{ background: T.bg, color: T.ink, padding: '4px 8px', borderRadius: 6, fontWeight: 700, boxShadow: `inset 0 0 0 1px ${T.ink3}55` }}>maktab.uz</span>
                   </div>
-                  <p className="body" style={{ margin: '11px 0 0', color: T.ink }}><b style={{ color: T.accent }}>{pick}</b> — sizning nomingiz (poddomen), <b>maktab.uz</b> — maktab domeni. Birga — sizning shaxsiy manzilingiz.</p>
+                  <p className="body" style={{ margin: '11px 0 0', color: T.ink }}>{tr({ uz: <><b style={{ color: T.accent }}>{pick}</b> — sizning nomingiz (poddomen), <b>maktab.uz</b> — maktab domeni. Birga — sizning shaxsiy manzilingiz.</>, ru: <><b style={{ color: T.accent }}>{pick}</b> — ваше имя (поддомен), <b>maktab.uz</b> — домен школы. Вместе — ваш личный адрес.</> })}</p>
                 </div>
                 <Preview title={`${pick}.maktab.uz`} minH={110}><MiniSite name={pick.charAt(0).toUpperCase() + pick.slice(1)} /></Preview>
               </div>
             ) : (
-              <div className="frame-soft"><p className="body" style={{ margin: 0, color: T.ink }}>Bitta maktab domeni ostida <b>yuzlab o'quvchi</b> o'z saytiga ega bo'ladi — har biri o'z poddomeni bilan. Tartibli va chiroyli!</p></div>
+              <div className="frame-soft"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Bitta maktab domeni ostida <b>yuzlab o'quvchi</b> o'z saytiga ega bo'ladi — har biri o'z poddomeni bilan. Tartibli va chiroyli!</>, ru: <>Под одним школьным доменом <b>сотни учеников</b> получают свой сайт — у каждого свой поддомен. Аккуратно и красиво!</> })}</p></div>
             )}
           </Col>
         </div>
@@ -1511,29 +1522,29 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const done = clean.length >= 2;
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true, name: clean }); }, [done]);
   return (
-    <Stage eyebrow="Poddomenga ulash" screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? 'Davom etish' : 'Ismingizni yozing'} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Poddomenga ulash', ru: 'Подключение поддомена' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Ismingizni yozing', ru: 'Введите своё имя' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Saytni <span className="italic" style={{ color: T.accent }}>maktab poddomeniga</span> ulaymiz</h2></div>
-        <Mentor>Netlify'da <b style={{ color: T.ink }}>"Add custom domain"</b> bo'limiga ismingizni yozasiz, maktab administratori uni tasdiqlaydi — va manzilingiz tayyor. Pastga ismingizni yozing.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Saytni <span className="italic" style={{ color: T.accent }}>maktab poddomeniga</span> ulaymiz</>, ru: <>Подключим сайт к <span className="italic" style={{ color: T.accent }}>школьному поддомену</span></> })}</h2></div>
+        <Mentor>{tr({ uz: <>Netlify'da <b style={{ color: T.ink }}>"Add custom domain"</b> bo'limiga ismingizni yozasiz, maktab administratori uni tasdiqlaydi — va manzilingiz tayyor. Pastga ismingizni yozing.</>, ru: <>В Netlify в разделе <b style={{ color: T.ink }}>"Add custom domain"</b> вы вводите своё имя, администратор школы подтверждает его — и адрес готов. Введите своё имя ниже.</> })}</Mentor>
         <div className="split">
           <Col>
             <p className="flow-label">Netlify · Add custom domain</p>
             <div className="fade-up delay-1" style={{ display: 'flex', alignItems: 'center', gap: 2, background: T.paper, borderRadius: 12, padding: '6px 8px', boxShadow: `0 6px 16px -6px rgba(${T.shadowBase},0.14)`, fontFamily: "'JetBrains Mono',monospace" }}>
-              <input value={name} onChange={e => setName(e.target.value)} maxLength={16} placeholder="ismingiz" spellCheck={false} autoCapitalize="off" autoCorrect="off" style={{ flex: 1, minWidth: 0, border: 'none', outline: 'none', background: 'transparent', fontFamily: "'JetBrains Mono',monospace", fontSize: 'clamp(14px,2vw,17px)', fontWeight: 700, color: T.accent, padding: '8px 6px' }} />
+              <input value={name} onChange={e => setName(e.target.value)} maxLength={16} placeholder={tr({ uz: 'ismingiz', ru: 'vashe-imya' })} spellCheck={false} autoCapitalize="off" autoCorrect="off" style={{ flex: 1, minWidth: 0, border: 'none', outline: 'none', background: 'transparent', fontFamily: "'JetBrains Mono',monospace", fontSize: 'clamp(14px,2vw,17px)', fontWeight: 700, color: T.accent, padding: '8px 6px' }} />
               <span style={{ color: T.ink2, fontSize: 'clamp(14px,2vw,17px)', fontWeight: 700, whiteSpace: 'nowrap' }}>.maktab.uz</span>
             </div>
             <div className="fade-up delay-2" style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
-              <span className="tagpill" style={{ opacity: clean.length >= 2 ? 1 : 0.4 }}>{clean.length >= 2 ? '✓' : '1'} ismingiz</span>
-              <span className="tagpill" style={{ opacity: clean.length >= 2 ? 1 : 0.4 }}>{clean.length >= 2 ? '✓' : '2'} .maktab.uz qo'shiladi</span>
+              <span className="tagpill" style={{ opacity: clean.length >= 2 ? 1 : 0.4 }}>{clean.length >= 2 ? '✓' : '1'} {tr({ uz: 'ismingiz', ru: 'ваше имя' })}</span>
+              <span className="tagpill" style={{ opacity: clean.length >= 2 ? 1 : 0.4 }}>{clean.length >= 2 ? '✓' : '2'} {tr({ uz: ".maktab.uz qo'shiladi", ru: '.maktab.uz добавится' })}</span>
             </div>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>✓ Tayyor! Sizning manzilingiz: <b className="mono">{clean}.maktab.uz</b></p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>✓ {tr({ uz: 'Tayyor! Sizning manzilingiz:', ru: 'Готово! Ваш адрес:' })} <b className="mono">{clean}.maktab.uz</b></p></div>}
           </Col>
           <Col>
-            <p className="flow-label">natija</p>
-            <Preview title={done ? `${clean}.maktab.uz` : 'manzil...'} minH={140}>
-              {done ? <MiniSite name={clean.charAt(0).toUpperCase() + clean.slice(1)} /> : <p style={{ fontFamily: 'Georgia, serif', color: T.ink3, fontStyle: 'italic', margin: 0, textAlign: 'center' }}>Ismingizni yozing — manzilingiz shu yerda paydo bo'ladi</p>}
+            <p className="flow-label">{tr({ uz: 'natija', ru: 'результат' })}</p>
+            <Preview title={done ? `${clean}.maktab.uz` : tr({ uz: 'manzil...', ru: 'адрес...' })} minH={140}>
+              {done ? <MiniSite name={clean.charAt(0).toUpperCase() + clean.slice(1)} /> : <p style={{ fontFamily: 'Georgia, serif', color: T.ink3, fontStyle: 'italic', margin: 0, textAlign: 'center' }}>{tr({ uz: "Ismingizni yozing — manzilingiz shu yerda paydo bo'ladi", ru: 'Введите имя — здесь появится ваш адрес' })}</p>}
             </Preview>
-            {done && <p className="mono small" style={{ color: T.success, margin: 0 }}>🌍 endi do'stlaringiz shu manzildan ochadi</p>}
+            {done && <p className="mono small" style={{ color: T.success, margin: 0 }}>🌍 {tr({ uz: "endi do'stlaringiz shu manzildan ochadi", ru: 'теперь друзья откроют сайт по этому адресу' })}</p>}
           </Col>
         </div>
       </div>
@@ -1543,17 +1554,17 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 
 // ===== SCREEN 12 — TEST 4 =====
 const Screen12 = (props) => (
-  <QuestionScreen {...props} idx={12} scope="module-mikro" eyebrow="Mashq · 3-savol"
+  <QuestionScreen {...props} idx={12} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 3-savol', ru: 'Практика · вопрос 3' })}
     audioText="aziza nuqta maktab nuqta uz — bu nima?"
     questionText="aziza.maktab.uz — bu nima?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-sub" style={{ marginTop: 8 }}><span className="mono" style={{ fontSize: '0.85em' }}>aziza.maktab.uz</span> — bu nima?</h2></>}
-    options={['Boshqa mustaqil sayt (domen)', 'Saytga kirish uchun maxfiy parol', 'Kompyuterdagi bir fayl nomi', 'maktab.uz domenining poddomeni']} correctIdx={3}
-    explainCorrect="To'g'ri! aziza.maktab.uz — bu maktab.uz domenining poddomeni. Asosiy domen oldiga qo'shilgan shaxsiy nom."
+    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-sub" style={{ marginTop: 8 }}><span className="mono" style={{ fontSize: '0.85em' }}>aziza.maktab.uz</span> — {tr({ uz: 'bu nima?', ru: 'что это?' })}</h2></>}
+    options={[{ uz: 'Boshqa mustaqil sayt (domen)', ru: 'Другой независимый сайт (домен)' }, { uz: 'Saytga kirish uchun maxfiy parol', ru: 'Секретный пароль для входа на сайт' }, { uz: 'Kompyuterdagi bir fayl nomi', ru: 'Имя файла на компьютере' }, { uz: 'maktab.uz domenining poddomeni', ru: 'Поддомен домена maktab.uz' }]} correctIdx={3}
+    explainCorrect={{ uz: "To'g'ri! aziza.maktab.uz — bu maktab.uz domenining poddomeni. Asosiy domen oldiga qo'shilgan shaxsiy nom.", ru: 'Верно! aziza.maktab.uz — это поддомен домена maktab.uz: личное имя, добавленное перед основным доменом.' }}
     explainWrong={{
-      0: "Yo'q — bu mustaqil domen emas, u maktab.uz ichidagi poddomen.",
-      1: "Yo'q — bu parol emas, bu saytning manzili (poddomen).",
-      2: "Yo'q — bu fayl emas, bu internet manzili — maktab.uz poddomeni.",
-      default: 'aziza.maktab.uz — maktab.uz domenining poddomeni.'
+      0: { uz: "Yo'q — bu mustaqil domen emas, u maktab.uz ichidagi poddomen.", ru: 'Нет — это не отдельный домен, а поддомен внутри maktab.uz.' },
+      1: { uz: "Yo'q — bu parol emas, bu saytning manzili (poddomen).", ru: 'Нет — это не пароль, это адрес сайта (поддомен).' },
+      2: { uz: "Yo'q — bu fayl emas, bu internet manzili — maktab.uz poddomeni.", ru: 'Нет — это не файл, это интернет-адрес — поддомен maktab.uz.' },
+      default: { uz: 'aziza.maktab.uz — maktab.uz domenining poddomeni.', ru: 'aziza.maktab.uz — поддомен домена maktab.uz.' }
     }} />
 );
 
@@ -1565,17 +1576,17 @@ const Screen12 = (props) => (
 const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const audio = useAudio([{ id: 's13', text: `Endi saytni o'zingiz uchirasiz. Uchirish markazida to'rt bosqich bor va ular aniq tartibda yonishi kerak: git push, Netlify'ga ulash, deploy, va manzil. Navbatni buzsangiz — uchirish to'xtaydi. Hammasi tayyor bo'lganda, katta UCHIRISH tugmasini bosing.`, trigger: 'on_mount', waits_for: null }]);
   const STAGES = [
-    { ic: '⬆️', label: 'git push', sub: "kodni GitHub'ga yuborish", log: "$ git push  →  kod GitHub'da ✓" },
-    { ic: '🔗', label: "Netlify'ga ulash", sub: 'repo → Netlify', log: 'Netlify  ←  mening-saytim repo ulandi ✓' },
-    { ic: '🚀', label: 'Deploy', sub: 'saytni chiqarish', log: 'Building… ✓ Published — netlify.app' },
-    { ic: '🌍', label: 'Manzil (poddomen)', sub: 'aziza.maktab.uz', log: 'Custom domain  →  aziza.maktab.uz ✓' },
+    { ic: '⬆️', label: 'git push', sub: { uz: "kodni GitHub'ga yuborish", ru: 'отправить код на GitHub' }, log: { uz: "$ git push  →  kod GitHub'da ✓", ru: '$ git push  →  код на GitHub ✓' } },
+    { ic: '🔗', label: { uz: "Netlify'ga ulash", ru: 'Подключить Netlify' }, sub: 'repo → Netlify', log: { uz: 'Netlify  ←  mening-saytim repo ulandi ✓', ru: 'Netlify  ←  репо mening-saytim подключён ✓' } },
+    { ic: '🚀', label: { uz: 'Deploy', ru: 'Деплой' }, sub: { uz: 'saytni chiqarish', ru: 'опубликовать сайт' }, log: 'Building… ✓ Published — netlify.app' },
+    { ic: '🌍', label: { uz: 'Manzil (poddomen)', ru: 'Адрес (поддомен)' }, sub: 'aziza.maktab.uz', log: 'Custom domain  →  aziza.maktab.uz ✓' },
   ];
   // Har bosqich navbatidan oldin bosilsa — nega uchirib bo'lmasligining HAQIQIY deploy sababi (armed = yetishmayotgan bosqich)
   const ABORT_REASONS = [
-    "raketaga yuklaydigan kod hali yo'q — avval kodni GitHub'ga push qiling",
-    "Netlify kodni qayerdan olishini hali bilmaydi — avval repongizni ulang",
-    "server hali bo'sh — internetga chiqariladigan sayt yo'q, avval deploy qiling",
-    "saytni topib bo'lmaydi — unga hali manzil (poddomen) berilmagan",
+    { uz: "raketaga yuklaydigan kod hali yo'q — avval kodni GitHub'ga push qiling", ru: 'кода для загрузки в ракету ещё нет — сначала запушьте код на GitHub' },
+    { uz: "Netlify kodni qayerdan olishini hali bilmaydi — avval repongizni ulang", ru: 'Netlify ещё не знает, откуда брать код — сначала подключите репозиторий' },
+    { uz: "server hali bo'sh — internetga chiqariladigan sayt yo'q, avval deploy qiling", ru: 'сервер пока пуст — публиковать нечего, сначала сделайте деплой' },
+    { uz: "saytni topib bo'lmaydi — unga hali manzil (poddomen) berilmagan", ru: 'сайт невозможно найти — у него ещё нет адреса (поддомена)' },
   ];
   const N = STAGES.length;
   const preDone = !!storedAnswer;
@@ -1611,25 +1622,25 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   }, [phase]); // eslint-disable-line
 
   const worldwide = phase === 'worldwide';
-  const navLabel = worldwide ? 'Davom etish'
+  const navLabel = worldwide ? tr({ uz: 'Davom etish', ru: 'Продолжить' })
     : phase === 'countdown' ? `T-${count}…`
-    : phase === 'liftoff' ? 'Uchmoqda…'
-    : launchArmed ? 'UCHIRING 🚀' : `${armed}/${N} tayyor`;
+    : phase === 'liftoff' ? tr({ uz: 'Uchmoqda…', ru: 'Летим…' })
+    : launchArmed ? tr({ uz: 'UCHIRING 🚀', ru: 'ЗАПУСКАЙТЕ 🚀' }) : `${armed}/${N} ${tr({ uz: 'tayyor', ru: 'готово' })}`;
   return (
-    <Stage eyebrow="Amaliyot · uchirish markazi" screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!worldwide} label={navLabel} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Amaliyot · uchirish markazi', ru: 'Практика · центр управления' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!worldwide} label={navLabel} onClick={onNext} /></>}>
       {worldwide && <Confetti />}
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Uchirish markazi — <span className="italic" style={{ color: T.accent }}>saytni uchiring</span></h2></div>
-        <Mentor>To'rt bosqichni aniq <b style={{ color: T.ink }}>tartibda</b> yoqing: push → ulash → deploy → manzil. <b style={{ color: T.ink }}>Navbatni buzsangiz</b> — uchirish to'xtaydi. Hammasi <b style={{ color: T.success }}>GO</b> bo'lgach, katta <b style={{ color: T.accent }}>UCHIRISH</b> tugmasini bosing.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Uchirish markazi — <span className="italic" style={{ color: T.accent }}>saytni uchiring</span></>, ru: <>Центр управления — <span className="italic" style={{ color: T.accent }}>запустите сайт</span></> })}</h2></div>
+        <Mentor>{tr({ uz: <>To'rt bosqichni aniq <b style={{ color: T.ink }}>tartibda</b> yoqing: push → ulash → deploy → manzil. <b style={{ color: T.ink }}>Navbatni buzsangiz</b> — uchirish to'xtaydi. Hammasi <b style={{ color: T.success }}>GO</b> bo'lgach, katta <b style={{ color: T.accent }}>UCHIRISH</b> tugmasini bosing.</>, ru: <>Включите четыре этапа строго <b style={{ color: T.ink }}>по порядку</b>: push → подключение → деплой → адрес. <b style={{ color: T.ink }}>Нарушите очередь</b> — запуск остановится. Когда всё будет <b style={{ color: T.success }}>GO</b>, нажмите большую кнопку <b style={{ color: T.accent }}>ЗАПУСК</b>.</> })}</Mentor>
         <div className="split">
           <Col>
-            <p className="flow-label">Uchirish ketma-ketligi</p>
+            <p className="flow-label">{tr({ uz: 'Uchirish ketma-ketligi', ru: 'Последовательность запуска' })}</p>
             <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
               {STAGES.map((s, i) => {
                 const go = i < armed;
                 const nextUp = phase === 'arm' && i === armed;
                 const badAbort = abort && abort.idx === i && phase === 'arm';
-                const stat = go ? 'GO' : nextUp ? 'bosing →' : 'HOLD';
+                const stat = go ? 'GO' : nextUp ? tr({ uz: 'bosing →', ru: 'нажмите →' }) : 'HOLD';
                 const statCol = go ? T.success : nextUp ? T.accent : T.ink3;
                 return (
                   <button key={i} onClick={() => press(i)} disabled={phase !== 'arm' || go}
@@ -1637,8 +1648,8 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                     style={{ display: 'flex', alignItems: 'center', gap: 12, textAlign: 'left', cursor: nextUp ? 'pointer' : 'default', border: 'none', borderRadius: 12, padding: '12px 15px', background: go ? T.successSoft : (nextUp ? T.paper : T.bg), boxShadow: nextUp ? `0 8px 20px -6px rgba(255,79,40,0.28), inset 0 0 0 1.5px ${T.accent}` : (badAbort ? `inset 0 0 0 1.5px ${T.accent}` : 'none'), opacity: go || nextUp || phase !== 'arm' ? 1 : 0.5, transition: 'all 0.2s' }}>
                     <span style={{ fontSize: 22 }}>{go ? '✅' : s.ic}</span>
                     <span style={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
-                      <span style={{ fontFamily: "'Manrope',sans-serif", fontWeight: 700, fontSize: 15, color: go ? T.success : T.ink }}>{i + 1}. {s.label}</span>
-                      <span className="mono" style={{ fontSize: 11.5, color: T.ink3 }}>{s.sub}</span>
+                      <span style={{ fontFamily: "'Manrope',sans-serif", fontWeight: 700, fontSize: 15, color: go ? T.success : T.ink }}>{i + 1}. {tr(s.label)}</span>
+                      <span className="mono" style={{ fontSize: 11.5, color: T.ink3 }}>{tr(s.sub)}</span>
                     </span>
                     <span className="mono" style={{ marginLeft: 'auto', display: 'inline-flex', alignItems: 'center', gap: 6, fontWeight: 800, fontSize: 11.5, letterSpacing: '0.06em', color: statCol, background: go ? `${T.success}1F` : nextUp ? `${T.accent}1A` : `${T.ink3}18`, borderRadius: 99, padding: '4px 10px' }}><span style={{ width: 8, height: 8, borderRadius: '50%', background: statCol, boxShadow: go ? `0 0 0 3px ${T.success}22` : 'none', flexShrink: 0 }} />{stat}</span>
                   </button>
@@ -1652,23 +1663,23 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <div key={abort.k} className="dl-shake" style={{ display: 'flex', alignItems: 'flex-start', gap: 10, borderRadius: 12, padding: '12px 14px', background: T.accentSoft, boxShadow: `inset 0 0 0 1.5px ${T.accent}55` }}>
                 <span style={{ fontSize: 20 }}>🛑</span>
                 <div>
-                  <p className="small mono" style={{ margin: '0 0 3px', fontWeight: 700, color: T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>HOLD — uchirish to'xtatildi</p>
-                  <p className="body" style={{ margin: 0, color: T.ink }}>«{STAGES[abort.idx].label}» hali erta. Avval <b>{armed + 1}-bosqich «{STAGES[armed].label}»</b> kerak — {ABORT_REASONS[armed]}.</p>
+                  <p className="small mono" style={{ margin: '0 0 3px', fontWeight: 700, color: T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>HOLD — {tr({ uz: "uchirish to'xtatildi", ru: 'запуск остановлен' })}</p>
+                  <p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>«{tr(STAGES[abort.idx].label)}» hali erta. Avval <b>{armed + 1}-bosqich «{tr(STAGES[armed].label)}»</b> kerak — {tr(ABORT_REASONS[armed])}.</>, ru: <>«{tr(STAGES[abort.idx].label)}» пока рано. Сначала нужен <b>этап {armed + 1} — «{tr(STAGES[armed].label)}»</b>: {tr(ABORT_REASONS[armed])}.</> })}</p>
                 </div>
               </div>
             )}
             <pre className="code-box" style={{ minHeight: 118 }}>
-              {STAGES.slice(0, armed).map((s, i) => (<React.Fragment key={i}><span style={{ color: CODE.str }}>{s.log}</span>{'\n'}</React.Fragment>))}
-              {armed === 0 && <span style={{ color: CODE.comment }}>{'// bosqichlarni tartib bilan yoqing…'}</span>}
+              {STAGES.slice(0, armed).map((s, i) => (<React.Fragment key={i}><span style={{ color: CODE.str }}>{tr(s.log)}</span>{'\n'}</React.Fragment>))}
+              {armed === 0 && <span style={{ color: CODE.comment }}>{tr({ uz: '// bosqichlarni tartib bilan yoqing…', ru: '// включайте этапы по порядку…' })}</span>}
               {phase === 'countdown' && <span style={{ color: CODE.attr }}>{`\nT-minus… ${count}`}</span>}
-              {phase === 'liftoff' && <span style={{ color: CODE.tag }}>{'\n🚀 Liftoff! Sayt internetga chiqmoqda…'}</span>}
-              {worldwide && <span style={{ color: CODE.str }}>{'\n✓ LIVE — aziza.maktab.uz butun dunyoda ochiq'}</span>}
+              {phase === 'liftoff' && <span style={{ color: CODE.tag }}>{'\n' + tr({ uz: '🚀 Liftoff! Sayt internetga chiqmoqda…', ru: '🚀 Liftoff! Сайт выходит в интернет…' })}</span>}
+              {worldwide && <span style={{ color: CODE.str }}>{'\n' + tr({ uz: '✓ LIVE — aziza.maktab.uz butun dunyoda ochiq', ru: '✓ LIVE — aziza.maktab.uz открыт всему миру' })}</span>}
             </pre>
             {phase === 'arm' && (
               <button onClick={launch} disabled={!launchArmed}
                 className={launchArmed ? 'dl-armed-btn' : ''}
                 style={{ marginTop: 4, padding: '15px 22px', borderRadius: 14, border: 'none', cursor: launchArmed ? 'pointer' : 'not-allowed', fontFamily: "'Manrope',sans-serif", fontWeight: 900, fontSize: 18, letterSpacing: '0.04em', color: '#fff', background: launchArmed ? T.accent : 'rgba(90,90,96,0.25)', boxShadow: launchArmed ? '0 12px 30px -8px rgba(255,79,40,0.7)' : 'none', transition: 'all 0.2s' }}>
-                {launchArmed ? '🚀 UCHIRISH' : `🔒 ${armed}/${N} bosqich GO`}
+                {launchArmed ? tr({ uz: '🚀 UCHIRISH', ru: '🚀 ЗАПУСК' }) : `🔒 ${armed}/${N} ${tr({ uz: 'bosqich GO', ru: 'этапов GO' })}`}
               </button>
             )}
             {phase === 'countdown' && (
@@ -1676,7 +1687,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 {/* raketa titraydi — count kamayganda tebranish kuchayadi (--amp) */}
                 <span className="dl-tremble" aria-hidden="true" style={{ fontSize: 46, '--amp': `${(4 - count) * 1.4 + 1.2}px` }}>🚀</span>
                 <span key={count} className="dl-countnum" style={{ fontSize: 64, fontFamily: "'Manrope',sans-serif", fontWeight: 900, color: T.accent, lineHeight: 1 }}>{count}</span>
-                <span className="mono small" style={{ color: T.ink3 }}>uchirishga tayyorgarlik…</span>
+                <span className="mono small" style={{ color: T.ink3 }}>{tr({ uz: 'uchirishga tayyorgarlik…', ru: 'подготовка к запуску…' })}</span>
               </div>
             )}
             {phase === 'liftoff' && (
@@ -1690,8 +1701,8 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             )}
             {worldwide && (
               <div className="frame-success fade-step">
-                <p className="small mono" style={{ margin: '0 0 6px', fontWeight: 700, color: T.success, textTransform: 'uppercase', letterSpacing: '0.08em' }}><span className="dl-globe">🌍</span> LIVE — butun dunyoda ochiq</p>
-                <p className="body" style={{ margin: '0 0 8px', color: T.ink }}>Saytingiz endi <b className="mono">aziza.maktab.uz</b> da jonli — dunyoning istalgan yeridan ochilmoqda. Mana, tashrifchilar kelyapti:</p>
+                <p className="small mono" style={{ margin: '0 0 6px', fontWeight: 700, color: T.success, textTransform: 'uppercase', letterSpacing: '0.08em' }}><span className="dl-globe">🌍</span> LIVE — {tr({ uz: 'butun dunyoda ochiq', ru: 'открыт всему миру' })}</p>
+                <p className="body" style={{ margin: '0 0 8px', color: T.ink }}>{tr({ uz: <>Saytingiz endi <b className="mono">aziza.maktab.uz</b> da jonli — dunyoning istalgan yeridan ochilmoqda. Mana, tashrifchilar kelyapti:</>, ru: <>Ваш сайт теперь живёт на <b className="mono">aziza.maktab.uz</b> — его открывают из любой точки мира. Смотрите, посетители уже идут:</> })}</p>
                 <div style={{ fontSize: 22, display: 'flex', gap: 7 }}>{['🧑', '👩', '👨', '👵', '🧒', '👧'].map((v, i) => (<span key={i} className="dl-visitor" style={{ animationDelay: `${i * 0.08}s` }}>{v}</span>))}</div>
               </div>
             )}
@@ -1713,35 +1724,35 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const fix = () => { setFixed(true); if (!audio.muted) setTimeout(() => { const e = getAudioEngine(); if (e && !audio.muted) e.pushOneOff(`Tuzatildi! index.html — endi sayt ochiladi.`); }, 300); };
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   return (
-    <Stage eyebrow="Debugging" screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? 'Davom etish' : (found ? 'Endi tuzating' : 'Xatoni toping')} onClick={onNext} /></>}>
+    <Stage eyebrow="Debugging" screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : (found ? tr({ uz: 'Endi tuzating', ru: 'Теперь исправьте' }) : tr({ uz: 'Xatoni toping', ru: 'Найдите ошибку' }))} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Sayt ochildi-yu, <span className="italic" style={{ color: T.accent }}>bo'm-bo'sh</span> — nega?</h2></div>
-        <Mentor>Deploy bo'ldi, lekin sayt <b style={{ color: T.ink }}>"404 — topilmadi"</b> chiqaryapti. Sabab: bosh sahifa fayli <span className="mono">index.html</span> bo'lishi shart. Fayllarni qarang — qaysi biri noto'g'ri nomlangan?</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Sayt ochildi-yu, <span className="italic" style={{ color: T.accent }}>bo'm-bo'sh</span> — nega?</>, ru: <>Сайт открылся, но <span className="italic" style={{ color: T.accent }}>пустой</span> — почему?</> })}</h2></div>
+        <Mentor>{tr({ uz: <>Deploy bo'ldi, lekin sayt <b style={{ color: T.ink }}>"404 — topilmadi"</b> chiqaryapti. Sabab: bosh sahifa fayli <span className="mono">index.html</span> bo'lishi shart. Fayllarni qarang — qaysi biri noto'g'ri nomlangan?</>, ru: <>Деплой прошёл, но сайт показывает <b style={{ color: T.ink }}>«404 — не найдено»</b>. Причина: файл главной страницы должен называться <span className="mono">index.html</span>. Посмотрите на файлы — какой из них назван неверно?</> })}</Mentor>
         <div className="split">
           <Col>
             <div className="ai-card fade-up delay-1">
-              <div className="ai-row"><span className="ai-badge">AI</span><span className="ai-bubble">Saytingiz fayllari deploy qilindi:</span></div>
+              <div className="ai-row"><span className="ai-badge">AI</span><span className="ai-bubble">{tr({ uz: 'Saytingiz fayllari deploy qilindi:', ru: 'Файлы вашего сайта задеплоены:' })}</span></div>
               <div className="ai-code">
-                <div className={`ai-line ${found ? (fixed ? 'ok' : 'bad') : ''}`} onClick={pickHome}>📄 {fixed ? 'index.html' : 'home.html'} <span style={{ color: CODE.comment }}>{fixed ? '✓ bosh sahifa' : '← bosh sahifa?'}</span></div>
+                <div className={`ai-line ${found ? (fixed ? 'ok' : 'bad') : ''}`} onClick={pickHome}>📄 {fixed ? 'index.html' : 'home.html'} <span style={{ color: CODE.comment }}>{fixed ? tr({ uz: '✓ bosh sahifa', ru: '✓ главная страница' }) : tr({ uz: '← bosh sahifa?', ru: '← главная страница?' })}</span></div>
                 <div className="ai-line" onClick={() => { if (!found) setPicked('css'); }}>🎨 style.css</div>
                 <div className="ai-line" onClick={() => { if (!found) setPicked('img'); }}>🖼️ rasm.jpg</div>
               </div>
-              {!found && <p className="ai-prompt">Qaysi fayl noto'g'ri nomlangan? Bosing.</p>}
-              {found && !fixed && (<button className="btn fade-step" style={{ alignSelf: 'flex-start' }} onClick={fix}>🔧 Faylni index.html deb nomlash</button>)}
-              {fixed && <p className="ai-prompt" style={{ color: T.success, fontStyle: 'normal', fontWeight: 600 }}>✓ Tuzatildi — endi sayt ochiladi!</p>}
+              {!found && <p className="ai-prompt">{tr({ uz: "Qaysi fayl noto'g'ri nomlangan? Bosing.", ru: 'Какой файл назван неверно? Нажмите на него.' })}</p>}
+              {found && !fixed && (<button className="btn fade-step" style={{ alignSelf: 'flex-start' }} onClick={fix}>🔧 {tr({ uz: 'Faylni index.html deb nomlash', ru: 'Переименовать файл в index.html' })}</button>)}
+              {fixed && <p className="ai-prompt" style={{ color: T.success, fontStyle: 'normal', fontWeight: 600 }}>✓ {tr({ uz: 'Tuzatildi — endi sayt ochiladi!', ru: 'Исправлено — теперь сайт откроется!' })}</p>}
             </div>
           </Col>
           <Col>
             {!found && (
               picked && picked !== 'home'
-                ? (<div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Bu fayl to'g'ri — {picked === 'css' ? 'style.css uslublar uchun' : 'rasm.jpg surat uchun'}. Yana qarang: <b>bosh sahifa</b> qanday nomlanishi kerak edi?</p></div>)
-                : (<div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>Hosting bosh sahifani <b style={{ color: T.ink }}>index.html</b> deb qidiradi. Topa olmasa — 404 chiqaradi. Qaysi fayl boshqacha nomlangan?</p></div>)
+                ? (<div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Bu fayl to'g'ri — {picked === 'css' ? 'style.css uslublar uchun' : 'rasm.jpg surat uchun'}. Yana qarang: <b>bosh sahifa</b> qanday nomlanishi kerak edi?</>, ru: <>Этот файл в порядке — {picked === 'css' ? 'style.css отвечает за стили' : 'rasm.jpg — это картинка'}. Посмотрите ещё раз: как должна называться <b>главная страница</b>?</> })}</p></div>)
+                : (<div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: <>Hosting bosh sahifani <b style={{ color: T.ink }}>index.html</b> deb qidiradi. Topa olmasa — 404 chiqaradi. Qaysi fayl boshqacha nomlangan?</>, ru: <>Хостинг ищет главную страницу с именем <b style={{ color: T.ink }}>index.html</b>. Не найдёт — покажет 404. Какой файл назван иначе?</> })}</p></div>)
             )}
-            {found && !fixed && (<div className="frame-warn fade-step"><p className="note-h" style={{ color: T.accent }}>✓ Topdingiz!</p><p className="body" style={{ margin: 0, color: T.ink }}>Bosh sahifa <span className="mono">home.html</span> deb nomlangan, lekin hosting <span className="mono">index.html</span> ni qidiradi. Chap tugmani bosib to'g'rilang →</p></div>)}
+            {found && !fixed && (<div className="frame-warn fade-step"><p className="note-h" style={{ color: T.accent }}>✓ {tr({ uz: 'Topdingiz!', ru: 'Нашли!' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Bosh sahifa <span className="mono">home.html</span> deb nomlangan, lekin hosting <span className="mono">index.html</span> ni qidiradi. Chap tugmani bosib to'g'rilang →</>, ru: <>Главная страница названа <span className="mono">home.html</span>, а хостинг ищет <span className="mono">index.html</span>. Исправьте кнопкой слева →</> })}</p></div>)}
             {fixed ? (<>
-              <p className="flow-label">Endi sayt to'g'ri ochiladi</p>
+              <p className="flow-label">{tr({ uz: "Endi sayt to'g'ri ochiladi", ru: 'Теперь сайт открывается правильно' })}</p>
               <Preview title="aziza.maktab.uz" minH={120}><MiniSite name="Aziza" /></Preview>
-              <div className="takeaway fade-step"><div className="ta-bulb">🛠️</div><p className="ta-h">Topdingiz va tuzatdingiz — bu debugging!</p><p className="ta-sub">Bosh sahifa doim index.html bo'ladi</p></div>
+              <div className="takeaway fade-step"><div className="ta-bulb">🛠️</div><p className="ta-h">{tr({ uz: 'Topdingiz va tuzatdingiz — bu debugging!', ru: 'Нашли и исправили — это и есть дебаггинг!' })}</p><p className="ta-sub">{tr({ uz: "Bosh sahifa doim index.html bo'ladi", ru: 'Главная страница — всегда index.html' })}</p></div>
             </>) : (
               <div className="bp-window"><div className="bp-bar"><span className="bb-dots"><i /><i /><i /></span><span className="bp-title">aziza.maktab.uz</span></div><div className="bp-body" style={{ minHeight: 96, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 6 }}><span style={{ fontSize: 30 }}>📭</span><p style={{ fontFamily: "'JetBrains Mono',monospace", color: T.accent, margin: 0, fontWeight: 700 }}>404 — Not Found</p></div></div>
             )}
@@ -1774,26 +1785,26 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     }
   }, [valid]);
   return (
-    <Stage eyebrow="Yakuniy · amaliy" screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={isMentorLive ? false : !passed} label={isMentorLive ? 'Davom etish' : (passed ? 'Davom etish' : 'Manzilni yozing')} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Yakuniy · amaliy', ru: 'Финал · практика' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={isMentorLive ? false : !passed} label={isMentorLive ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : (passed ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Manzilni yozing', ru: 'Введите адрес' }))} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Oxirgi qadam: <span className="italic" style={{ color: T.accent }}>manzilingizni</span> yozing.</h2></div>
-        <Mentor>O'z poddomen manzilingizni to'liq yozing: <b style={{ color: T.ink }}>ismingiz</b> + <span className="mono">.maktab.uz</span>. Masalan: <span className="mono">aziza.maktab.uz</span>.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Oxirgi qadam: <span className="italic" style={{ color: T.accent }}>manzilingizni</span> yozing.</>, ru: <>Последний шаг: введите <span className="italic" style={{ color: T.accent }}>свой адрес</span>.</> })}</h2></div>
+        <Mentor>{tr({ uz: <>O'z poddomen manzilingizni to'liq yozing: <b style={{ color: T.ink }}>ismingiz</b> + <span className="mono">.maktab.uz</span>. Masalan: <span className="mono">aziza.maktab.uz</span>.</>, ru: <>Введите свой полный адрес поддомена: <b style={{ color: T.ink }}>ваше имя</b> + <span className="mono">.maktab.uz</span>. Например: <span className="mono">aziza.maktab.uz</span>.</> })}</Mentor>
         <div className="split">
           <Col>
             <input className="fade-up delay-1" value={value} onChange={e => setValue(e.target.value)} placeholder="ismingiz.maktab.uz" spellCheck={false} autoCapitalize="off" autoCorrect="off" style={{ width: '100%', fontFamily: "'JetBrains Mono', monospace", fontSize: 16, padding: '14px 16px', borderRadius: 12, border: 'none', background: T.paper, color: T.ink, outline: 'none', transition: 'box-shadow 0.2s', boxShadow: valid ? `0 0 0 2px ${T.success}, 0 8px 20px -8px rgba(${T.shadowBase},0.2)` : `0 4px 14px -6px rgba(${T.shadowBase},0.16)` }} />
             <div className="fade-up delay-2" style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-              <span className="tagpill" style={{ opacity: hasName ? 1 : 0.4 }}>{hasName ? '✓' : '1'} ismingiz</span>
-              <span className="tagpill" style={{ opacity: hasDot ? 1 : 0.4 }}>{hasDot ? '✓' : '2'} nuqta bilan</span>
+              <span className="tagpill" style={{ opacity: hasName ? 1 : 0.4 }}>{hasName ? '✓' : '1'} {tr({ uz: 'ismingiz', ru: 'ваше имя' })}</span>
+              <span className="tagpill" style={{ opacity: hasDot ? 1 : 0.4 }}>{hasDot ? '✓' : '2'} {tr({ uz: 'nuqta bilan', ru: 'с точкой' })}</span>
               <span className="tagpill" style={{ opacity: endsMaktab ? 1 : 0.4 }}>{endsMaktab ? '✓' : '3'} .maktab.uz</span>
             </div>
             {passed
-              ? (<div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>✓ Zo'r! <b className="mono">{v}</b> — to'liq, to'g'ri poddomen manzili.</p></div>)
-              : (<p className="body" style={{ margin: 0, color: T.ink3, fontSize: 13 }}>Masalan: <span className="mono">ali.maktab.uz</span> · faqat lotin harf, raqam va tire.</p>)}
+              ? (<div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ Zo'r! <b className="mono">{v}</b> — to'liq, to'g'ri poddomen manzili.</>, ru: <>✓ Отлично! <b className="mono">{v}</b> — полный, правильный адрес поддомена.</> })}</p></div>)
+              : (<p className="body" style={{ margin: 0, color: T.ink3, fontSize: 13 }}>{tr({ uz: <>Masalan: <span className="mono">ali.maktab.uz</span> · faqat lotin harf, raqam va tire.</>, ru: <>Например: <span className="mono">ali.maktab.uz</span> · только латинские буквы, цифры и дефис.</> })}</p>)}
           </Col>
           <Col>
-            <p className="flow-label">natija</p>
-            <Preview title={valid ? v : 'manzil...'} minH={130}>
-              {valid ? <MiniSite name={namePart.charAt(0).toUpperCase() + namePart.slice(1)} /> : <p style={{ fontFamily: 'Georgia, serif', color: T.ink3, fontStyle: 'italic', margin: 0, textAlign: 'center' }}>To'liq manzilni yozing: ismingiz.maktab.uz</p>}
+            <p className="flow-label">{tr({ uz: 'natija', ru: 'результат' })}</p>
+            <Preview title={valid ? v : tr({ uz: 'manzil...', ru: 'адрес...' })} minH={130}>
+              {valid ? <MiniSite name={namePart.charAt(0).toUpperCase() + namePart.slice(1)} /> : <p style={{ fontFamily: 'Georgia, serif', color: T.ink3, fontStyle: 'italic', margin: 0, textAlign: 'center' }}>{tr({ uz: "To'liq manzilni yozing: ismingiz.maktab.uz", ru: 'Введите полный адрес: имя.maktab.uz' })}</p>}
             </Preview>
           </Col>
         </div>
@@ -1805,18 +1816,18 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // 🃏 Qayta ishlatiladigan FLASHCARDS — aktiv takrorlash (3D flip + o'z-o'zini baholash + spaced recall).
 // Deploy mavzusi bo'yicha 12 karta (front — savol/ta'rif, back — atama, note — hayotiy izoh/misol).
 const DEPLOY_FLASHCARDS = [
-  { front: 'Saytni doimo ochiq turadigan serverda saqlash', back: 'Hosting', note: "Saytingiz uchun internetda ijaraga olingan doimiy uy — 24 soat ochiq" },
-  { front: 'Saytlarni bepul va tez chiqaradigan platforma', back: 'Netlify', note: "Papkani tortib tashlaysiz yoki GitHub'ni ulaysiz — sayt internetda" },
-  { front: 'Saytni serverga joylab, internetga chiqarish', back: 'Deploy', note: "Deploydan keyin saytni manzil orqali har kim ko'radi" },
-  { front: 'Hosting qidiradigan bosh sahifa fayli nomi', back: 'index.html', note: "Bosh sahifa index.html bo'lmasa — 404 (topilmadi) chiqadi" },
-  { front: 'Saytning internetdagi asosiy manzili', back: 'Domen', note: "Masalan maktab.uz — odam eslab qoladigan nom" },
-  { front: 'Asosiy domen oldiga qo\'shilgan shaxsiy nom', back: 'Poddomen', note: "aziza.maktab.uz — bitta domen ostida yuzlab poddomen bo'ladi" },
-  { front: 'Kodni saqlaydigan va o\'zgarishlarni kuzatadigan joy', back: 'GitHub', note: "Git darsida push qilgan kodingiz shu yerda turadi" },
-  { front: 'Kodni GitHub reposiga yuborish buyrug\'i', back: 'push', note: "$ git push — kompyuteringizdagi kod GitHub'ga chiqadi" },
-  { front: 'Push qilinsa — sayt o\'zi yangilanishi', back: 'Avto-deploy', note: "Netlify GitHub'ni kuzatadi: har push avtomatik internetga chiqadi" },
-  { front: 'Bitta loyihaning kodi saqlanadigan papka (GitHub)', back: 'Repo', note: "Masalan mening-saytim — Netlify shu repoga ulanadi" },
-  { front: 'Sayt fayllari doimo yashaydigan kompyuter', back: 'Server', note: "Sizning kompyuteringiz o'chsa ham, server yonib turadi" },
-  { front: 'Saytga xavfsiz ulanish (manzilda qulf 🔒)', back: 'HTTPS', note: "Ma'lumot shifrlanib boradi — o'g'irlab bo'lmaydi" },
+  { front: { uz: 'Saytni doimo ochiq turadigan serverda saqlash', ru: 'Хранение сайта на постоянно работающем сервере' }, back: { uz: 'Hosting', ru: 'Хостинг' }, note: { uz: "Saytingiz uchun internetda ijaraga olingan doimiy uy — 24 soat ochiq", ru: 'Постоянный дом вашего сайта в интернете — открыт 24 часа' } },
+  { front: { uz: 'Saytlarni bepul va tez chiqaradigan platforma', ru: 'Платформа, которая публикует сайты бесплатно и быстро' }, back: 'Netlify', note: { uz: "Papkani tortib tashlaysiz yoki GitHub'ni ulaysiz — sayt internetda", ru: 'Перетащите папку или подключите GitHub — и сайт в интернете' } },
+  { front: { uz: 'Saytni serverga joylab, internetga chiqarish', ru: 'Разместить сайт на сервере и открыть его в интернете' }, back: { uz: 'Deploy', ru: 'Деплой' }, note: { uz: "Deploydan keyin saytni manzil orqali har kim ko'radi", ru: 'После деплоя сайт по адресу увидит каждый' } },
+  { front: { uz: 'Hosting qidiradigan bosh sahifa fayli nomi', ru: 'Имя файла главной страницы, который ищет хостинг' }, back: 'index.html', note: { uz: "Bosh sahifa index.html bo'lmasa — 404 (topilmadi) chiqadi", ru: 'Если главная страница не index.html — будет 404 (не найдено)' } },
+  { front: { uz: 'Saytning internetdagi asosiy manzili', ru: 'Основной адрес сайта в интернете' }, back: { uz: 'Domen', ru: 'Домен' }, note: { uz: "Masalan maktab.uz — odam eslab qoladigan nom", ru: 'Например maktab.uz — имя, которое легко запомнить' } },
+  { front: { uz: "Asosiy domen oldiga qo'shilgan shaxsiy nom", ru: 'Личное имя, добавленное перед основным доменом' }, back: { uz: 'Poddomen', ru: 'Поддомен' }, note: { uz: "aziza.maktab.uz — bitta domen ostida yuzlab poddomen bo'ladi", ru: 'aziza.maktab.uz — под одним доменом сотни поддоменов' } },
+  { front: { uz: "Kodni saqlaydigan va o'zgarishlarni kuzatadigan joy", ru: 'Место, где хранится код и отслеживаются изменения' }, back: 'GitHub', note: { uz: "Git darsida push qilgan kodingiz shu yerda turadi", ru: 'Код, который вы запушили на уроке Git, лежит именно там' } },
+  { front: { uz: "Kodni GitHub reposiga yuborish buyrug'i", ru: 'Команда отправки кода в репозиторий GitHub' }, back: 'push', note: { uz: "$ git push — kompyuteringizdagi kod GitHub'ga chiqadi", ru: '$ git push — код с вашего компьютера попадает на GitHub' } },
+  { front: { uz: "Push qilinsa — sayt o'zi yangilanishi", ru: 'Сайт обновляется сам после каждого push' }, back: { uz: 'Avto-deploy', ru: 'Авто-деплой' }, note: { uz: "Netlify GitHub'ni kuzatadi: har push avtomatik internetga chiqadi", ru: 'Netlify следит за GitHub: каждый push автоматически уходит в интернет' } },
+  { front: { uz: 'Bitta loyihaning kodi saqlanadigan papka (GitHub)', ru: 'Папка с кодом одного проекта (GitHub)' }, back: { uz: 'Repo', ru: 'Репозиторий' }, note: { uz: "Masalan mening-saytim — Netlify shu repoga ulanadi", ru: 'Например mening-saytim — Netlify подключается к этому репо' } },
+  { front: { uz: 'Sayt fayllari doimo yashaydigan kompyuter', ru: 'Компьютер, где постоянно живут файлы сайта' }, back: { uz: 'Server', ru: 'Сервер' }, note: { uz: "Sizning kompyuteringiz o'chsa ham, server yonib turadi", ru: 'Даже если ваш компьютер выключен, сервер продолжает работать' } },
+  { front: { uz: 'Saytga xavfsiz ulanish (manzilda qulf 🔒)', ru: 'Безопасное подключение к сайту (замочек 🔒 в адресе)' }, back: 'HTTPS', note: { uz: "Ma'lumot shifrlanib boradi — o'g'irlab bo'lmaydi", ru: 'Данные передаются в зашифрованном виде — их не украсть' } },
 ];
 function Flashcards({ cards }) {
   const [queue, setQueue] = useState(() => cards.map((_, i) => i));
@@ -1840,23 +1851,23 @@ function Flashcards({ cards }) {
   const again = () => advance(false);
   const restart = () => { setQueue(cards.map((_, i) => i)); setKnown(0); setFlipped(false); };
   if (!card) return (
-    <div className="fc-done fade-up"><span className="fc-done-emoji">🎉</span><p className="fc-done-h">Hammasini bilasiz!</p><p className="fc-done-s">{total}/{total} tushuncha yodlandi</p><button className="fc-btn ghost" onClick={restart}>↻ Qaytadan takrorlash</button></div>
+    <div className="fc-done fade-up"><span className="fc-done-emoji">🎉</span><p className="fc-done-h">{tr({ uz: 'Hammasini bilasiz!', ru: 'Вы знаете всё!' })}</p><p className="fc-done-s">{total}/{total} {tr({ uz: 'tushuncha yodlandi', ru: 'понятий выучено' })}</p><button className="fc-btn ghost" onClick={restart}>↻ {tr({ uz: 'Qaytadan takrorlash', ru: 'Повторить заново' })}</button></div>
   );
   return (
     <div className="fc fade-up">
-      <div className="fc-top"><span className="fc-pill learn" key={`l-${queue.length}-${swapRef.current}`}>↻ O'rganilmoqda · <b>{queue.length}</b></span><span className="fc-pill knew" key={`k-${known}`}>✓ Bildim · <b>{known}</b></span></div>
+      <div className="fc-top"><span className="fc-pill learn" key={`l-${queue.length}-${swapRef.current}`}>↻ {tr({ uz: "O'rganilmoqda", ru: 'Изучаю' })} · <b>{queue.length}</b></span><span className="fc-pill knew" key={`k-${known}`}>✓ {tr({ uz: 'Bildim', ru: 'Знаю' })} · <b>{known}</b></span></div>
       <div className="fc-bar"><span className="fc-bar-fill" style={{ width: `${(known / total) * 100}%` }} /></div>
       <div className="fc-cardwrap">
         <div className={`fc-fly ${exiting === 'knew' ? 'out-knew' : ''} ${exiting === 'again' ? 'out-again' : ''}`} key={swapRef.current}>
         <div className={`fc-card ${flipped ? 'flip' : ''}`} onClick={() => !flipped && !exiting && setFlipped(true)} role="button" tabIndex={0}>
-          <div className="fc-face fc-front"><span className="fc-q">{card.front}</span><span className="fc-cue">Qaysi tushuncha? 🤔 <span className="fc-tap">bosing</span></span></div>
-          <div className="fc-face fc-back"><span className="fc-tag">{card.back}</span>{card.note && <span className="fc-note">{card.note}</span>}</div>
+          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: 'Qaysi tushuncha?', ru: 'Какое это понятие?' })} 🤔 <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
+          <div className="fc-face fc-back"><span className="fc-tag">{tr(card.back)}</span>{card.note && <span className="fc-note">{tr(card.note)}</span>}</div>
         </div>
         </div>
       </div>
       {flipped
-        ? (<div className="fc-actions"><button className="fc-btn again" disabled={!!exiting} onClick={again}>✗ Takrorlash</button><button className="fc-btn knew" disabled={!!exiting} onClick={knew}>✓ Bildim</button></div>)
-        : (<p className="fc-hint">👆 Kartani bosing — javobni ko'rasiz</p>)}
+        ? (<div className="fc-actions"><button className="fc-btn again" disabled={!!exiting} onClick={again}>✗ {tr({ uz: 'Takrorlash', ru: 'Повторить' })}</button><button className="fc-btn knew" disabled={!!exiting} onClick={knew}>✓ {tr({ uz: 'Bildim', ru: 'Знаю' })}</button></div>)
+        : (<p className="fc-hint">👆 {tr({ uz: "Kartani bosing — javobni ko'rasiz", ru: 'Нажмите на карточку — увидите ответ' })}</p>)}
     </div>
   );
 }
@@ -1866,10 +1877,10 @@ const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) =>
   const audio = useAudio([{ id: 'sflash', text: `Darsni yakunlashdan oldin, bugun o'rgangan tushunchalarni tez takrorlaymiz. Har kartada bir vazifa — javobni o'ylang, keyin kartani bosib tekshiring.`, trigger: 'on_mount', waits_for: null }]);
   useEffect(() => { if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, []); // eslint-disable-line
   return (
-    <Stage eyebrow="Takrorlash" screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={false} label="Yakunlash →" onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Takrorlash', ru: 'Повторение' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={false} label={tr({ uz: 'Yakunlash →', ru: 'К финалу →' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Tushunchalarni <span className="italic" style={{ color: T.accent }}>tez takrorlaymiz</span>.</h2></div>
-        <Mentor>Darsni yakunlashdan oldin bugun o'rgangan tushunchalarni takrorlaymiz. Har kartada bir vazifa — <b style={{ color: T.ink }}>javobni</b> o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Tushunchalarni <span className="italic" style={{ color: T.accent }}>tez takrorlaymiz</span>.</>, ru: <>Быстро повторим <span className="italic" style={{ color: T.accent }}>понятия</span>.</> })}</h2></div>
+        <Mentor>{tr({ uz: <>Darsni yakunlashdan oldin bugun o'rgangan tushunchalarni takrorlaymiz. Har kartada bir vazifa — <b style={{ color: T.ink }}>javobni</b> o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</>, ru: <>Перед финалом повторим понятия, которые вы сегодня изучили. На каждой карточке задание — подумайте над <b style={{ color: T.ink }}>ответом</b>, потом нажмите на карточку и проверьте себя. Оценивайте кнопками <b style={{ color: T.ink }}>Знаю</b> или <b style={{ color: T.ink }}>Повторить</b>.</> })}</Mentor>
         <div className="fc-center"><Flashcards cards={DEPLOY_FLASHCARDS} /></div>
       </div>
     </Stage>
@@ -1894,37 +1905,37 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
     setArenaSolo(studentSolo); setArena(true);
   };
   const audio = useAudio([{ id: 's16', text: "Dars yakunlandi. Saytingizni internetga chiqardingiz! Asosiyni eslab qoling: hosting saytni serverda saqlaydi, Netlify uni bepul deploy qiladi, deploy qilingach sayt internetda ochiq, va poddomen — maktab domeni ostidagi shaxsiy manzilingiz.", trigger: 'on_mount', waits_for: null }]);
-  const RECAP = ['Hosting nima — saytning internetdagi uyi', "Netlify bilan saytni bepul deploy qilish", "GitHub'ni ulash va avto-deploy (push → yangilanadi)", 'Deploy — sayt internetda har kim uchun ochiq', 'Poddomen — ism.maktab.uz (shaxsiy manzil)'];
-  const HOMEWORK = [{ b: 'GitHub', t: '— saytingizni repoga push qiling' }, { b: 'Netlify', t: '— bepul account oching va reponi ulang' }, { b: 'Deploy', t: '— saytni internetga chiqaring' }, { b: 'Manzil', t: "— poddomenni do'stingizga yuboring" }];
+  const RECAP = [{ uz: 'Hosting nima — saytning internetdagi uyi', ru: 'Что такое хостинг — дом сайта в интернете' }, { uz: "Netlify bilan saytni bepul deploy qilish", ru: 'Бесплатный деплой сайта через Netlify' }, { uz: "GitHub'ni ulash va avto-deploy (push → yangilanadi)", ru: 'Подключение GitHub и авто-деплой (push → обновление)' }, { uz: 'Deploy — sayt internetda har kim uchun ochiq', ru: 'Деплой — сайт в интернете открыт каждому' }, { uz: 'Poddomen — ism.maktab.uz (shaxsiy manzil)', ru: 'Поддомен — imya.maktab.uz (личный адрес)' }];
+  const HOMEWORK = [{ b: 'GitHub', t: { uz: '— saytingizni repoga push qiling', ru: '— запушьте свой сайт в репозиторий' } }, { b: 'Netlify', t: { uz: '— bepul account oching va reponi ulang', ru: '— создайте бесплатный аккаунт и подключите репо' } }, { b: { uz: 'Deploy', ru: 'Деплой' }, t: { uz: '— saytni internetga chiqaring', ru: '— опубликуйте сайт в интернете' } }, { b: { uz: 'Manzil', ru: 'Адрес' }, t: { uz: "— poddomenni do'stingizga yuboring", ru: '— отправьте поддомен другу' } }];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
   const PASSED = (total ? correct / total : 0) >= 0.6;
   return (
-    <Stage eyebrow="Tayyor" screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>Qaytadan</button><button className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>Yakunlash ✓</button></>}>
+    <Stage eyebrow={tr({ uz: 'Tayyor', ru: 'Готово' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><button className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash ✓', ru: 'Завершить ✓' })}</button></>}>
       <div className="screen">
-        <div className="hero"><div className="hero-l"><span className="done-chip fade-up"><span className="tick">✓</span> Dars tugadi</span><h2 className="title h-title fade-up d1">Saytingizni <span className="italic" style={{ color: T.accent }}>internetga</span> chiqardingiz.</h2><p className="body h-sub fade-up d2">{PASSED ? "Tabriklaymiz! Endi saytingizni o'zingiz deploy qilib, maktab poddomeniga ulay olasiz." : "Yaxshi harakat! Bir-ikki joyni mustahkamlash uchun darsni qayta ko'ring."}</p></div><ScoreRing correct={correct} total={total} /></div>
+        <div className="hero"><div className="hero-l"><span className="done-chip fade-up"><span className="tick">✓</span> {tr({ uz: 'Dars tugadi', ru: 'Урок завершён' })}</span><h2 className="title h-title fade-up d1">{tr({ uz: <>Saytingizni <span className="italic" style={{ color: T.accent }}>internetga</span> chiqardingiz.</>, ru: <>Вы вывели свой сайт <span className="italic" style={{ color: T.accent }}>в интернет</span>.</> })}</h2><p className="body h-sub fade-up d2">{PASSED ? tr({ uz: "Tabriklaymiz! Endi saytingizni o'zingiz deploy qilib, maktab poddomeniga ulay olasiz.", ru: 'Поздравляем! Теперь вы сами можете задеплоить сайт и подключить школьный поддомен.' }) : tr({ uz: "Yaxshi harakat! Bir-ikki joyni mustahkamlash uchun darsni qayta ko'ring.", ru: 'Хорошая попытка! Пересмотрите урок, чтобы закрепить пару моментов.' })}</p></div><ScoreRing correct={correct} total={total} /></div>
         <div className={`qz-cta cs-cta fade-up d2 ${studentLive ? 'ready' : ''}`}>
           <CsWordmark
             stats={false}
             disabled={studentWait}
             liveOn={studentLive}
             onClick={studentWait ? undefined : openArena}
-            hint={studentWait ? '⏳ Mentorni kuting' : undefined}
+            hint={studentWait ? tr({ uz: '⏳ Mentorni kuting', ru: '⏳ Ждите ментора' }) : undefined}
           />
         </div>
         {arena && <QuizArena live={_live || { mode: 'self' }} startSolo={arenaSolo} onClose={() => setArena(false)} />}
         <div className="split">
-          <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> Endi siz bilasiz</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{r}</span></li>))}</ul></div>
-          <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>🚀 Uyga vazifa</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>O'z saytingizni internetga chiqaring:</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{h.b}</b> <span className="t">{h.t}</span></li>))}</ul><p className="hw-note">Saytingiz tayyor bo'lsa — manzilni mentor va do'stlaringizga yuboring. Bu sizning birinchi jonli loyihangiz!</p></div>
+          <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> {tr({ uz: 'Endi siz bilasiz', ru: 'Теперь вы знаете' })}</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{tr(r)}</span></li>))}</ul></div>
+          <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>🚀 {tr({ uz: 'Uyga vazifa', ru: 'Домашнее задание' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: "O'z saytingizni internetga chiqaring:", ru: 'Опубликуйте свой сайт в интернете:' })}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: "Saytingiz tayyor bo'lsa — manzilni mentor va do'stlaringizga yuboring. Bu sizning birinchi jonli loyihangiz!", ru: 'Когда сайт будет готов — отправьте адрес ментору и друзьям. Это ваш первый живой проект!' })}</p></div>
         </div>
         <div className="card ach-coll fade-up d3">
-          <div className="card-lbl" style={{ color: T.accent }}>🏅 Nishonlaringiz — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
+          <div className="card-lbl" style={{ color: T.accent }}>🏅 {tr({ uz: 'Nishonlaringiz', ru: 'Ваши награды' })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">
             {Object.entries(ACHIEVEMENTS).map(([id, a]) => { const got = !!(achievements && achievements.has(id)); return (
-              <div key={id} className={`ach-badge ${got ? 'got' : 'locked'}`} title={a.desc}>
+              <div key={id} className={`ach-badge ${got ? 'got' : 'locked'}`} title={tr(a.desc)}>
                 <span className="ach-badge-ic">{got ? a.icon : '🔒'}</span>
                 <span className="ach-badge-name">{a.name}</span>
-                {got && <span className="ach-badge-desc">{a.desc}</span>}
+                {got && <span className="ach-badge-desc">{tr(a.desc)}</span>}
               </div>
             ); })}
           </div>
@@ -1936,7 +1947,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
 
 // ============================================================ LESSON ROOT — ({ lang, onFinished })
 // Podium yorliqlari (scored indeks -> qisqa nom)
-const Q_LABELS = { 4: "Hosting vazifasi", 6: "Netlify nima", 10: "Deploy — kim ko'radi", 13: "Poddomen nima", 16: "Poddomen yozish (yakuniy)" };
+const Q_LABELS = { 4: { uz: "Hosting vazifasi", ru: 'Задача хостинга' }, 6: { uz: "Netlify nima", ru: 'Что такое Netlify' }, 10: { uz: "Deploy — kim ko'radi", ru: 'Деплой — кто увидит' }, 13: { uz: "Poddomen nima", ru: 'Что такое поддомен' }, 16: { uz: "Poddomen yozish (yakuniy)", ru: 'Ввод поддомена (финал)' } };
 
 const Confetti = () => {
   const COLORS = [T.accent, T.success, T.blue, '#FFD380', '#FF7755', '#7DD181'];
@@ -1999,18 +2010,18 @@ const ScreenPodium = ({ screen, answers, onNext, onPrev }) => {
   const selfCorrect = SCORED_IDX.filter(i => answers[i]?.correct).length;
 
   return (
-    <Stage eyebrow="Natijalar" screen={screen} narrow navContent={<><NavBack onPrev={onPrev} /><NavNext label="Davom etish" onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Natijalar', ru: 'Результаты' })} screen={screen} narrow navContent={<><NavBack onPrev={onPrev} /><NavNext label={tr({ uz: 'Davom etish', ru: 'Продолжить' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(14px,2.2vw,20px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Kim <span className="italic" style={{ color: T.accent }}>g'olib</span>?</h2></div>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Kim <span className="italic" style={{ color: T.accent }}>g'olib</span>?</>, ru: <>Кто <span className="italic" style={{ color: T.accent }}>победитель</span>?</> })}</h2></div>
         {!isLive ? (
           <div className="fade-up" style={{ display: 'flex', flexDirection: 'column', gap: 16, alignItems: 'center' }}>
             <ScoreRing correct={selfCorrect} total={totalQ} />
-            <div className="frame-soft" style={{ maxWidth: 480 }}><p className="body" style={{ margin: 0 }}>Siz mustaqil rejimdasiz. Jonli darsda bu yerda butun guruh reytingi — 🥇🥈🥉 podium chiqadi.</p></div>
+            <div className="frame-soft" style={{ maxWidth: 480 }}><p className="body" style={{ margin: 0 }}>{tr({ uz: 'Siz mustaqil rejimdasiz. Jonli darsda bu yerda butun guruh reytingi — 🥇🥈🥉 podium chiqadi.', ru: 'Вы в самостоятельном режиме. На живом уроке здесь появится рейтинг всей группы — подиум 🥇🥈🥉.' })}</p></div>
           </div>
         ) : !loaded ? (
-          <p className="mono small fade-up" style={{ color: T.ink2 }}>Natijalar yuklanmoqda…</p>
+          <p className="mono small fade-up" style={{ color: T.ink2 }}>{tr({ uz: 'Natijalar yuklanmoqda…', ru: 'Загружаем результаты…' })}</p>
         ) : board.length === 0 ? (
-          <div className="frame-soft fade-up"><p className="body" style={{ margin: 0 }}>Bu sessiyaga hali hech kim qo'shilmagan.</p></div>
+          <div className="frame-soft fade-up"><p className="body" style={{ margin: 0 }}>{tr({ uz: "Bu sessiyaga hali hech kim qo'shilmagan.", ru: 'К этой сессии пока никто не подключился.' })}</p></div>
         ) : (
           <>
             <Confetti />
@@ -2028,15 +2039,15 @@ const ScreenPodium = ({ screen, answers, onNext, onPrev }) => {
                 );
               })}
             </div>
-            {myIdx >= 0 && <p className="pod-my fade-up">Siz — <b>{myIdx + 1}-o'rin</b> ({board[myIdx].okCount}/{totalQ} to'g'ri)</p>}
+            {myIdx >= 0 && <p className="pod-my fade-up">{tr({ uz: <>Siz — <b>{myIdx + 1}-o'rin</b> ({board[myIdx].okCount}/{totalQ} to'g'ri)</>, ru: <>Вы — <b>{myIdx + 1}-е место</b> ({board[myIdx].okCount}/{totalQ} верно)</> })}</p>}
             <div className="card fade-up d1">
-              <div className="card-lbl" style={{ color: T.accent }}>🏆 To'liq reyting</div>
+              <div className="card-lbl" style={{ color: T.accent }}>🏆 {tr({ uz: "To'liq reyting", ru: 'Полный рейтинг' })}</div>
               <div className="pod-list">
                 {board.map((b, i) => (
                   <div key={b.id} className={`pod-row ${live.playerId === b.id ? 'me' : ''}`}>
                     <span className="mono pod-rank">{i + 1}</span>
                     <span className="pod-row-name">{b.nickname}</span>
-                    <span className="pod-row-dots">{SCORED_IDX.map(q => { const a = rows.find(r => r.player_id === b.id && r.screen_idx === q); return <span key={q} className={`pod-dot ${a ? (a.correct ? 'ok' : 'bad') : ''}`} title={Q_LABELS[q]} />; })}</span>
+                    <span className="pod-row-dots">{SCORED_IDX.map(q => { const a = rows.find(r => r.player_id === b.id && r.screen_idx === q); return <span key={q} className={`pod-dot ${a ? (a.correct ? 'ok' : 'bad') : ''}`} title={tr(Q_LABELS[q])} />; })}</span>
                     <span className="mono pod-row-score">{b.okCount}/{totalQ}</span>
                     <span className="mono pod-row-time">{fmtT(b.time)}</span>
                   </div>
@@ -2045,7 +2056,7 @@ const ScreenPodium = ({ screen, answers, onNext, onPrev }) => {
             </div>
             {/* Savollar bo'yicha — qaysi mavzu qiyin bo'ldi */}
             <div className="card fade-up d2">
-              <div className="card-lbl" style={{ color: T.blue }}>📊 Savollar bo'yicha</div>
+              <div className="card-lbl" style={{ color: T.blue }}>📊 {tr({ uz: "Savollar bo'yicha", ru: 'По вопросам' })}</div>
               <div className="pod-qstats">
                 {SCORED_IDX.map(q => {
                   const qa = rows.filter(r => r.screen_idx === q);
@@ -2054,14 +2065,14 @@ const ScreenPodium = ({ screen, answers, onNext, onPrev }) => {
                   const hard = qa.length >= 2 && pct < 50;
                   return (
                     <div key={q} className="qstat-row">
-                      <span className="qstat-lbl">{Q_LABELS[q] || `#${q}`}{hard && ' ⚠️'}</span>
+                      <span className="qstat-lbl">{tr(Q_LABELS[q]) || `#${q}`}{hard && ' ⚠️'}</span>
                       <span className="mstats-track"><span className="mstats-fill" style={{ width: `${pct}%`, background: hard ? T.accent : T.success }} /></span>
                       <span className="mono qstat-n">{okN}/{qa.length}</span>
                     </div>
                   );
                 })}
               </div>
-              {live.mode === 'mentor' && <p className="small" style={{ margin: '10px 0 0', color: T.ink2 }}>⚠️ belgili savollar — sinf qiynalgan mavzular. Qayta tushuntirish tavsiya etiladi.</p>}
+              {live.mode === 'mentor' && <p className="small" style={{ margin: '10px 0 0', color: T.ink2 }}>{tr({ uz: '⚠️ belgili savollar — sinf qiynalgan mavzular. Qayta tushuntirish tavsiya etiladi.', ru: 'Вопросы с ⚠️ — темы, где класс испытывал трудности. Рекомендуется объяснить их ещё раз.' })}</p>}
             </div>
           </>
         )}
@@ -2089,18 +2100,18 @@ const QZ_BG_SHAPES = [
   { ch: 'aziza.maktab.uz', l: 2, t: 46, s: 20, c: 'rgba(203,173,255,0.12)', d: 26, dl: 2.6 },
 ];
 const QUIZ_BANK = [
-  { q: "Hosting asosan qanday vazifa bajaradi?", opts: ["Saytni internetda doimo ochiq saqlaydi", "Kodni chiroyli ranglar bilan bezaydi", "Saytdagi rasmlarni tahrir qiladi", "Internet ulanishini tezlashtiradi"], correct: 0 },
-  { q: "Netlify nima?", opts: ["Saytni ko'rsatadigan brauzer dasturi", "Saytlarni joylaydigan hosting platformasi", "Onlayn o'ynaladigan qiziqarli o'yin", "Saytning internetdagi domen manzili"], correct: 1 },
-  { q: "Deploy qilgandan keyin saytni kim ko'radi?", opts: ["Faqat men — o'z kompyuterimda", "Endi buni hech kim ko'rmaydi", "Internetdagi har kim (manzil orqali)", "Faqat GitHub kompaniyasi xodimlari"], correct: 2 },
-  { q: "aziza.maktab.uz — bu nima?", opts: ["Mustaqil boshqa sayt (domen)", "Saytga kirish uchun maxfiy parol", "Kompyuterdagi bir fayl nomi", "maktab.uz domenining poddomeni"], correct: 3 },
-  { q: "Sayt faqat sizning kompyuteringizda ishlashi qanday ataladi?", opts: ["localhost", "hosting", "domen", "deploy"], correct: 0 },
-  { q: "Do'stingiz boshqa shahardan saytni ochish uchun nima kerak?", opts: ["Faylni Telegram orqali unga yuborish", "Saytni internetga joylashtirish (deploy)", "Do'st sizning uyingizga tashrif buyurishi", "Kompyuteringizni o'chirib qo'yish"], correct: 1 },
-  { q: "Deploy so'zi nimani anglatadi?", opts: ["Saytning kodini butunlay o'chirib tashlash", "Sayt uchun chiroyli rasm chizib berish", "Saytni serverga joylab, internetga chiqarish", "Saytga kirish uchun parol o'rnatish"], correct: 2 },
-  { q: "Domen nima?", opts: ["Kodni ranglaydigan usul", "Brauzer dasturining nomi", "Faylning kengaytmasi (.html)", "Saytning internetdagi manzili"], correct: 3 },
-  { q: "Netlify'da sayt uchun kod ko'pincha qayerdan olinadi?", opts: ["GitHub repozitoriysidan", "Telegram kanali orqali", "Bosma qog'oz varag'idan", "Oddiy pochta xati orqali"], correct: 0 },
-  { q: "aziza.maktab.uz da asosiy domen qaysi?", opts: ["aziza", "maktab.uz", "uz", "http"], correct: 1 },
-  { q: "Hosting serveri saytni qancha vaqt ochiq saqlaydi?", opts: ["Faqat kunduzi", "Faqat men ulanganda", "24/7 — doimo", "Bir soat"], correct: 2 },
-  { q: "To'g'ri poddomen manzili qaysi?", opts: ["maktab.uz.ismingiz", "ismingiz@maktab", "www ismingiz uz", "ismingiz.maktab.uz"], correct: 3 },
+  { q: { uz: "Hosting asosan qanday vazifa bajaradi?", ru: 'Какую основную задачу выполняет хостинг?' }, opts: [{ uz: "Saytni internetda doimo ochiq saqlaydi", ru: 'Постоянно держит сайт открытым в интернете' }, { uz: "Kodni chiroyli ranglar bilan bezaydi", ru: 'Красиво раскрашивает код' }, { uz: "Saytdagi rasmlarni tahrir qiladi", ru: 'Редактирует картинки на сайте' }, { uz: "Internet ulanishini tezlashtiradi", ru: 'Ускоряет интернет-соединение' }], correct: 0 },
+  { q: { uz: "Netlify nima?", ru: 'Что такое Netlify?' }, opts: [{ uz: "Saytni ko'rsatadigan brauzer dasturi", ru: 'Браузер — программа для просмотра сайтов' }, { uz: "Saytlarni joylaydigan hosting platformasi", ru: 'Хостинг-платформа для размещения сайтов' }, { uz: "Onlayn o'ynaladigan qiziqarli o'yin", ru: 'Увлекательная онлайн-игра' }, { uz: "Saytning internetdagi domen manzili", ru: 'Доменный адрес сайта в интернете' }], correct: 1 },
+  { q: { uz: "Deploy qilgandan keyin saytni kim ko'radi?", ru: 'Кто увидит сайт после деплоя?' }, opts: [{ uz: "Faqat men — o'z kompyuterimda", ru: 'Только я — на своём компьютере' }, { uz: "Endi buni hech kim ko'rmaydi", ru: 'Теперь его никто не увидит' }, { uz: "Internetdagi har kim (manzil orqali)", ru: 'Любой в интернете (по адресу)' }, { uz: "Faqat GitHub kompaniyasi xodimlari", ru: 'Только сотрудники компании GitHub' }], correct: 2 },
+  { q: { uz: "aziza.maktab.uz — bu nima?", ru: 'aziza.maktab.uz — что это?' }, opts: [{ uz: "Mustaqil boshqa sayt (domen)", ru: 'Другой независимый сайт (домен)' }, { uz: "Saytga kirish uchun maxfiy parol", ru: 'Секретный пароль для входа на сайт' }, { uz: "Kompyuterdagi bir fayl nomi", ru: 'Имя файла на компьютере' }, { uz: "maktab.uz domenining poddomeni", ru: 'Поддомен домена maktab.uz' }], correct: 3 },
+  { q: { uz: "Sayt faqat sizning kompyuteringizda ishlashi qanday ataladi?", ru: 'Как называется, когда сайт работает только на вашем компьютере?' }, opts: ["localhost", { uz: "hosting", ru: 'хостинг' }, { uz: "domen", ru: 'домен' }, { uz: "deploy", ru: 'деплой' }], correct: 0 },
+  { q: { uz: "Do'stingiz boshqa shahardan saytni ochish uchun nima kerak?", ru: 'Что нужно, чтобы друг из другого города открыл сайт?' }, opts: [{ uz: "Faylni Telegram orqali unga yuborish", ru: 'Отправить ему файл через Telegram' }, { uz: "Saytni internetga joylashtirish (deploy)", ru: 'Разместить сайт в интернете (деплой)' }, { uz: "Do'st sizning uyingizga tashrif buyurishi", ru: 'Друг должен приехать к вам домой' }, { uz: "Kompyuteringizni o'chirib qo'yish", ru: 'Выключить ваш компьютер' }], correct: 1 },
+  { q: { uz: "Deploy so'zi nimani anglatadi?", ru: 'Что означает слово «деплой»?' }, opts: [{ uz: "Saytning kodini butunlay o'chirib tashlash", ru: 'Полностью удалить код сайта' }, { uz: "Sayt uchun chiroyli rasm chizib berish", ru: 'Нарисовать красивую картинку для сайта' }, { uz: "Saytni serverga joylab, internetga chiqarish", ru: 'Разместить сайт на сервере и открыть в интернете' }, { uz: "Saytga kirish uchun parol o'rnatish", ru: 'Установить пароль для входа на сайт' }], correct: 2 },
+  { q: { uz: "Domen nima?", ru: 'Что такое домен?' }, opts: [{ uz: "Kodni ranglaydigan usul", ru: 'Способ раскрасить код' }, { uz: "Brauzer dasturining nomi", ru: 'Название браузера' }, { uz: "Faylning kengaytmasi (.html)", ru: 'Расширение файла (.html)' }, { uz: "Saytning internetdagi manzili", ru: 'Адрес сайта в интернете' }], correct: 3 },
+  { q: { uz: "Netlify'da sayt uchun kod ko'pincha qayerdan olinadi?", ru: 'Откуда Netlify чаще всего берёт код сайта?' }, opts: [{ uz: "GitHub repozitoriysidan", ru: 'Из репозитория GitHub' }, { uz: "Telegram kanali orqali", ru: 'Через Telegram-канал' }, { uz: "Bosma qog'oz varag'idan", ru: 'С печатного листа бумаги' }, { uz: "Oddiy pochta xati orqali", ru: 'Из обычного почтового письма' }], correct: 0 },
+  { q: { uz: "aziza.maktab.uz da asosiy domen qaysi?", ru: 'Какой основной домен в aziza.maktab.uz?' }, opts: ["aziza", "maktab.uz", "uz", "http"], correct: 1 },
+  { q: { uz: "Hosting serveri saytni qancha vaqt ochiq saqlaydi?", ru: 'Сколько времени хостинг-сервер держит сайт открытым?' }, opts: [{ uz: "Faqat kunduzi", ru: 'Только днём' }, { uz: "Faqat men ulanganda", ru: 'Только когда я в сети' }, { uz: "24/7 — doimo", ru: '24/7 — постоянно' }, { uz: "Bir soat", ru: 'Один час' }], correct: 2 },
+  { q: { uz: "To'g'ri poddomen manzili qaysi?", ru: 'Какой адрес поддомена написан правильно?' }, opts: ["maktab.uz.ismingiz", "ismingiz@maktab", "www ismingiz uz", "ismingiz.maktab.uz"], correct: 3 },
 ];
 const quizPts = (elapsedMs) => elapsedMs <= 500 ? 1000 : Math.max(0, Math.round(1000 * (1 - (Math.min(elapsedMs, QUIZ_MS) / QUIZ_MS) / 2)));
 // Bitta o'yinchining barcha javoblaridan yakuniy hisob (hamma klientda bir xil chiqadi)
@@ -2187,11 +2198,11 @@ const CsWordmark = ({ onClick, disabled, hint, stats = true, bolt = true, liveOn
       </div>
       {stats && (
         <div className="cs-hud">
-          <span className="cs-hud-i"><b>{QUIZ_BANK.length}</b> SAVOL</span>
+          <span className="cs-hud-i"><b>{QUIZ_BANK.length}</b> {tr({ uz: 'SAVOL', ru: 'ВОПРОСОВ' })}</span>
           <span className="cs-hud-dot">·</span>
-          <span className="cs-hud-i"><b>{QUIZ_MS / 1000}</b> SONIYA</span>
+          <span className="cs-hud-i"><b>{QUIZ_MS / 1000}</b> {tr({ uz: 'SONIYA', ru: 'СЕКУНД' })}</span>
           <span className="cs-hud-dot">·</span>
-          <span className="cs-hud-i">🏆 PODIUM</span>
+          <span className="cs-hud-i">🏆 {tr({ uz: 'PODIUM', ru: 'ПОДИУМ' })}</span>
         </div>
       )}
       {hint && <span className={`cs-enter ${disabled ? 'wait' : ''}`}>{hint}</span>}
@@ -2374,7 +2385,7 @@ function QuizArena({ live, onClose, startSolo }) {
   // Mentor test o'rtasida ✕ bossa — ogohlantiramiz: sinf arenada kutib qoladi.
   const closeArena = () => {
     if (isMentor && !solo && phase !== 'done') {
-      if (!window.confirm("Test hali yakunlanmadi — yopsangiz o'quvchilar arenada kutib qoladi.\nKeyin «⚔️ Davom ettirish» bilan aynan shu joydan qaytishingiz mumkin.\n\nBaribir yopilsinmi?")) return;
+      if (!window.confirm(tr({ uz: "Test hali yakunlanmadi — yopsangiz o'quvchilar arenada kutib qoladi.\nKeyin «⚔️ Davom ettirish» bilan aynan shu joydan qaytishingiz mumkin.\n\nBaribir yopilsinmi?", ru: 'Тест ещё не завершён — если закроете, ученики останутся ждать в арене.\nПотом можно вернуться в это же место через «⚔️ Продолжить».\n\nВсё равно закрыть?' }))) return;
     }
     onClose();
   };
@@ -2387,13 +2398,13 @@ function QuizArena({ live, onClose, startSolo }) {
         ))}
       </div>
       <QzFX />
-      <button className="qz-x" onClick={closeArena} aria-label="Yopish">✕</button>
+      <button className="qz-x" onClick={closeArena} aria-label={tr({ uz: 'Yopish', ru: 'Закрыть' })}>✕</button>
 
       {/* QUTQARUV: jonli dars tugadi — o'quvchi osilib qolmaydi, mashq rejimida davom etadi */}
       {classEnded && isStudent && !solo && phase !== 'done' && (
         <div className="qz-endnote fade-step">
-          <span>⚠️ Jonli dars yakunlandi — testni o'zingiz davom ettiring:</span>
-          <button className="qz-btn" onClick={startPractice}>📖 Mashq rejimida davom etish</button>
+          <span>⚠️ {tr({ uz: "Jonli dars yakunlandi — testni o'zingiz davom ettiring:", ru: 'Живой урок завершён — продолжите тест самостоятельно:' })}</span>
+          <button className="qz-btn" onClick={startPractice}>📖 {tr({ uz: 'Mashq rejimida davom etish', ru: 'Продолжить в режиме практики' })}</button>
         </div>
       )}
 
@@ -2401,16 +2412,16 @@ function QuizArena({ live, onClose, startSolo }) {
       {phase === 'lobby' && (
         <div className="qz-view fade-step">
           <CsWordmark />
-          <p className="qz-sub" style={{ marginTop: -4 }}>Tezroq to'g'ri bossangiz — ko'proq ball. Ketma-ket to'g'ri javoblar 🔥 bonus beradi!</p>
+          <p className="qz-sub" style={{ marginTop: -4 }}>{tr({ uz: "Tezroq to'g'ri bossangiz — ko'proq ball. Ketma-ket to'g'ri javoblar 🔥 bonus beradi!", ru: 'Чем быстрее верный ответ — тем больше баллов. Серия верных ответов даёт 🔥 бонус!' })}</p>
           {!solo && (
             <div className="qz-lobby-players">
               {players.map(p => <span key={p.id} className={`qz-pchip ${p.id === live.playerId ? 'me' : ''}`}>{p.nickname}</span>)}
-              {players.length === 0 && <span className="qz-dimtxt">O'quvchilar kutilmoqda…</span>}
+              {players.length === 0 && <span className="qz-dimtxt">{tr({ uz: "O'quvchilar kutilmoqda…", ru: 'Ждём учеников…' })}</span>}
             </div>
           )}
-          {isMentor && <button className="qz-btn big" disabled={players.length === 0} onClick={() => ctrl('q', 0)}>▶ Testni boshlash</button>}
-          {isStudent && !solo && <p className="qz-waitmsg">⏳ Mentor testni boshlashini kuting…</p>}
-          {solo && <button className="qz-btn big" onClick={() => soloStart(0)}>▶ Boshlash</button>}
+          {isMentor && <button className="qz-btn big" disabled={players.length === 0} onClick={() => ctrl('q', 0)}>▶ {tr({ uz: 'Testni boshlash', ru: 'Начать тест' })}</button>}
+          {isStudent && !solo && <p className="qz-waitmsg">⏳ {tr({ uz: 'Mentor testni boshlashini kuting…', ru: 'Подождите, пока ментор начнёт тест…' })}</p>}
+          {solo && <button className="qz-btn big" onClick={() => soloStart(0)}>▶ {tr({ uz: 'Boshlash', ru: 'Начать' })}</button>}
         </div>
       )}
 
@@ -2418,30 +2429,30 @@ function QuizArena({ live, onClose, startSolo }) {
       {phase === 'q' && Q && (
         <div className="qz-view qz-qview fade-step" key={`q${qi}`}>
           <div className="qz-top">
-            <span className="qz-count">Savol <b>{qi + 1}</b>/{QUIZ_BANK.length}</span>
+            <span className="qz-count">{tr({ uz: 'Savol', ru: 'Вопрос' })} <b>{qi + 1}</b>/{QUIZ_BANK.length}</span>
             <QzTimer remaining={remaining} />
             {isMentor
               ? <span className="qz-ansn">📨 {answeredN}/{players.length}</span>
               : <span className="qz-ansn">{streakUpTo(qi - 1) >= 2 ? `🔥 x${streakUpTo(qi - 1)}` : ' '}</span>}
           </div>
-          <h2 className="qz-q">{fmtCode(Q.q)}</h2>
+          <h2 className="qz-q">{fmtCode(tr(Q.q))}</h2>
           <div className="qz-grid">
             {Q.opts.map((o, i) => {
               const pickedThis = my && my.picked === i;
               return (
                 <button key={i} className={`qz-tile ${my ? (pickedThis ? 'picked' : 'faded') : ''}`} style={{ background: QUIZ_COLORS[i] }} disabled={isMentor || !!my} onClick={() => answer(i)}>
                   <span className="qz-shape">{QUIZ_SHAPES[i]}</span>
-                  <span className="qz-opt">{fmtCode(o)}</span>
+                  <span className="qz-opt">{fmtCode(tr(o))}</span>
                   {pickedThis && <span className="qz-pbadge">✔</span>}
                 </button>
               );
             })}
           </div>
-          {my && !isMentor && !solo && <p className="qz-waitmsg">✔ Javob qabul qilindi — natijani kuting…</p>}
+          {my && !isMentor && !solo && <p className="qz-waitmsg">✔ {tr({ uz: 'Javob qabul qilindi — natijani kuting…', ru: 'Ответ принят — ждите результат…' })}</p>}
           {isMentor && (
             <div className="qz-mrow">
-              {answeredN >= players.length && players.length > 0 && <span className="qz-allin">✓ Hamma javob berdi!</span>}
-              <button className="qz-btn" onClick={() => ctrl('r', qi)}>⏹ Natijani ochish</button>
+              {answeredN >= players.length && players.length > 0 && <span className="qz-allin">✓ {tr({ uz: 'Hamma javob berdi!', ru: 'Все ответили!' })}</span>}
+              <button className="qz-btn" onClick={() => ctrl('r', qi)}>⏹ {tr({ uz: 'Natijani ochish', ru: 'Открыть результат' })}</button>
             </div>
           )}
         </div>
@@ -2451,9 +2462,9 @@ function QuizArena({ live, onClose, startSolo }) {
       {phase === 'reveal' && Q && (
         <div className="qz-view qz-qview fade-step" key={`r${qi}`}>
           <div className="qz-top">
-            <span className="qz-count">Savol <b>{qi + 1}</b>/{QUIZ_BANK.length} — natija</span>
+            <span className="qz-count">{tr({ uz: 'Savol', ru: 'Вопрос' })} <b>{qi + 1}</b>/{QUIZ_BANK.length} — {tr({ uz: 'natija', ru: 'результат' })}</span>
           </div>
-          <h2 className="qz-q">{fmtCode(Q.q)}</h2>
+          <h2 className="qz-q">{fmtCode(tr(Q.q))}</h2>
           <div className="qz-grid">
             {Q.opts.map((o, i) => {
               const win = i === Q.correct;
@@ -2461,7 +2472,7 @@ function QuizArena({ live, onClose, startSolo }) {
               return (
                 <div key={i} className={`qz-tile rv ${win ? 'win' : 'lose'} ${pickedThis ? 'picked' : ''}`} style={{ background: QUIZ_COLORS[i] }}>
                   <span className="qz-shape">{QUIZ_SHAPES[i]}</span>
-                  <span className="qz-opt">{fmtCode(o)}</span>
+                  <span className="qz-opt">{fmtCode(tr(o))}</span>
                   <span className="qz-cnt">{win ? '✓ ' : ''}{counts[i]}</span>
                 </div>
               );
@@ -2470,9 +2481,9 @@ function QuizArena({ live, onClose, startSolo }) {
           {!isMentor && (
             <div className={`qz-res ${my?.correct ? 'good' : 'bad'}`}>
               {my?.correct
-                ? <><span className="qz-res-pts">+{myPtsFor(qi)}</span><span className="qz-res-t">ball{streakUpTo(qi) >= 2 ? ` · 🔥 x${streakUpTo(qi)} streak` : ''}</span></>
-                : <span className="qz-res-t">{my ? "Xato — 0 ball. Keyingisida olasiz! 💪" : "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱"}</span>}
-              {!solo && myRank >= 0 && <span className="qz-res-rank">Siz hozir: {myRank + 1}-o'rin</span>}
+                ? <><span className="qz-res-pts">+{myPtsFor(qi)}</span><span className="qz-res-t">{tr({ uz: 'ball', ru: 'баллов' })}{streakUpTo(qi) >= 2 ? ` · 🔥 x${streakUpTo(qi)} streak` : ''}</span></>
+                : <span className="qz-res-t">{my ? tr({ uz: "Xato — 0 ball. Keyingisida olasiz! 💪", ru: 'Ошибка — 0 баллов. Возьмёте на следующем! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Быстрее! ⏱' })}</span>}
+              {!solo && myRank >= 0 && <span className="qz-res-rank">{tr({ uz: `Siz hozir: ${myRank + 1}-o'rin`, ru: `Вы сейчас: ${myRank + 1}-е место` })}</span>}
             </div>
           )}
           {!solo && (
@@ -2487,8 +2498,8 @@ function QuizArena({ live, onClose, startSolo }) {
               ))}
             </div>
           )}
-          {isMentor && <button className="qz-btn big" onClick={() => lastQ ? ctrl('done', qi) : ctrl('q', qi + 1)}>{lastQ ? "🏁 G'oliblarni e'lon qilish" : 'Keyingi savol →'}</button>}
-          {solo && <button className="qz-btn big" onClick={soloNext}>{lastQ ? '🏁 Natijani ko\'rish' : 'Keyingi →'}</button>}
+          {isMentor && <button className="qz-btn big" onClick={() => lastQ ? ctrl('done', qi) : ctrl('q', qi + 1)}>{lastQ ? tr({ uz: "🏁 G'oliblarni e'lon qilish", ru: '🏁 Объявить победителей' }) : tr({ uz: 'Keyingi savol →', ru: 'Следующий вопрос →' })}</button>}
+          {solo && <button className="qz-btn big" onClick={soloNext}>{lastQ ? tr({ uz: "🏁 Natijani ko'rish", ru: '🏁 Посмотреть результат' }) : tr({ uz: 'Keyingi →', ru: 'Дальше →' })}</button>}
         </div>
       )}
 
@@ -2496,12 +2507,12 @@ function QuizArena({ live, onClose, startSolo }) {
       {phase === 'done' && (
         <div className="qz-view fade-step">
           <Confetti />
-          <h2 className="qz-h">🏆 Test yakunlandi!</h2>
+          <h2 className="qz-h">🏆 {tr({ uz: 'Test yakunlandi!', ru: 'Тест завершён!' })}</h2>
           {solo ? (
             <div className="qz-solo-res">
               <div className="qz-solo-pts">{soloScore.pts}</div>
-              <p className="qz-sub">ball · {soloScore.ok}/{QUIZ_BANK.length} to'g'ri{soloScore.maxStreak >= 2 ? ` · eng uzun streak 🔥x${soloScore.maxStreak}` : ''}</p>
-              <button className="qz-btn big" onClick={soloReplay}>↻ Qayta ishlash</button>
+              <p className="qz-sub">{tr({ uz: 'ball', ru: 'баллов' })} · {soloScore.ok}/{QUIZ_BANK.length} {tr({ uz: "to'g'ri", ru: 'верно' })}{soloScore.maxStreak >= 2 ? ` · ${tr({ uz: 'eng uzun streak', ru: 'лучшая серия' })} 🔥x${soloScore.maxStreak}` : ''}</p>
+              <button className="qz-btn big" onClick={soloReplay}>↻ {tr({ uz: 'Qayta ishlash', ru: 'Пройти ещё раз' })}</button>
             </div>
           ) : (
             <>
@@ -2513,13 +2524,13 @@ function QuizArena({ live, onClose, startSolo }) {
                       {rank === 0 && <span className="qz-crown">👑</span>}
                       <span className="qz-pod-medal">{['🥇', '🥈', '🥉'][rank]}</span>
                       <span className="qz-pod-name">{b ? b.nickname : '—'}</span>
-                      {b && <span className="qz-pod-pts">{b.pts} ball · {b.ok}/{QUIZ_BANK.length}</span>}
+                      {b && <span className="qz-pod-pts">{b.pts} {tr({ uz: 'ball', ru: 'баллов' })} · {b.ok}/{QUIZ_BANK.length}</span>}
                       <div className="qz-pod-bar" />
                     </div>
                   );
                 })}
               </div>
-              {myRank >= 0 && <p className="qz-mypl">Siz — <b>{myRank + 1}-o'rin</b> · {board[myRank].pts} ball</p>}
+              {myRank >= 0 && <p className="qz-mypl">{tr({ uz: <>Siz — <b>{myRank + 1}-o'rin</b> · {board[myRank].pts} ball</>, ru: <>Вы — <b>{myRank + 1}-е место</b> · {board[myRank].pts} баллов</> })}</p>}
               <div className="qz-board wide">
                 {board.map((b, i) => (
                   <div key={b.id} className={`qz-brow ${b.id === live.playerId ? 'me' : ''}`}>
@@ -2530,10 +2541,10 @@ function QuizArena({ live, onClose, startSolo }) {
                   </div>
                 ))}
               </div>
-              {isStudent && <button className="qz-btn" onClick={startPractice}>↻ Testni qayta ishlash — mashq (jadvalga yozilmaydi)</button>}
+              {isStudent && <button className="qz-btn" onClick={startPractice}>↻ {tr({ uz: 'Testni qayta ishlash — mashq (jadvalga yozilmaydi)', ru: 'Пройти тест ещё раз — практика (в таблицу не пишется)' })}</button>}
             </>
           )}
-          <button className="qz-btn ghost" onClick={closeArena}>Arenani yopish</button>
+          <button className="qz-btn ghost" onClick={closeArena}>{tr({ uz: 'Arenani yopish', ru: 'Закрыть арену' })}</button>
         </div>
       )}
     </div>
@@ -2544,7 +2555,7 @@ function QuizArena({ live, onClose, startSolo }) {
 function AchCelebrate({ ach, onDone }) {
   useEffect(() => { const t = setTimeout(onDone, 4000); return () => clearTimeout(t); }, []); // eslint-disable-line
   return (
-    <div className="acu-overlay" onClick={onDone} role="status" aria-label={`Yangi nishon: ${ach.name}`}>
+    <div className="acu-overlay" onClick={onDone} role="status" aria-label={tr({ uz: `Yangi nishon: ${ach.name}`, ru: `Новая награда: ${ach.name}` })}>
       <div className="acu-rays" aria-hidden="true" />
       <div className="acu-glow" aria-hidden="true" />
       <div className="acu-ring" aria-hidden="true" />
@@ -2557,11 +2568,11 @@ function AchCelebrate({ ach, onDone }) {
           ))}
         </div>
         <div className="acu-txt">
-          <span className="acu-eyebrow">🏅 Nishon ochildi!</span>
+          <span className="acu-eyebrow">🏅 {tr({ uz: 'Nishon ochildi!', ru: 'Награда открыта!' })}</span>
           <span className="acu-name">{ach.name}</span>
-          {ach.desc && <span className="acu-desc">{ach.desc}</span>}
+          {ach.desc && <span className="acu-desc">{tr(ach.desc)}</span>}
         </div>
-        <span className="acu-tap">bosib davom eting</span>
+        <span className="acu-tap">{tr({ uz: 'bosib davom eting', ru: 'нажмите, чтобы продолжить' })}</span>
       </div>
     </div>
   );
@@ -2577,15 +2588,15 @@ function AchToasts({ toasts, onDone }) {
 // ===== 👋 ONBOARDING — real "coach-mark" turi: har qadamda haqiqiy tugmaga spotlight + so'z (rolga qarab, bir marta) =====
 const TOUR = {
   learner: [
-    { sel: '[data-tour="next"]', ic: '▶', h: 'Oldinga o\'tish', body: <>Tayyor bo'lsangiz, <b>«Davom etish»</b> bilan keyingi qadamga o'tasiz. Yonidagi <b>«Orqaga»</b> bilan qaytasiz.</> },
-    { sel: '[data-tour="mentor"]', ic: '🧑‍🏫', h: 'Mentor yordami', body: <>Har ekranda mentor nima qilishni tushuntiradi — avval uni <b>o'qing</b>, keyin bajaring.</> },
-    { sel: '[data-tour="progress"]', ic: '📊', h: 'Progress chizig\'i', body: <>Bu chiziq dars <b>qancha qolganini</b> ko'rsatadi — to'lgani sari yakunlaysiz.</> },
-    { sel: '[data-tour="ach"]', ic: '🏅', h: 'Nishonlaringiz', body: <>Vazifalarni bajarib, shu yerda <b>nishon</b> yig'asiz. Bosib ro'yxatini ko'rasiz.</> },
+    { sel: '[data-tour="next"]', ic: '▶', h: { uz: "Oldinga o'tish", ru: 'Переход вперёд' }, body: { uz: <>Tayyor bo'lsangiz, <b>«Davom etish»</b> bilan keyingi qadamga o'tasiz. Yonidagi <b>«Orqaga»</b> bilan qaytasiz.</>, ru: <>Когда будете готовы, кнопка <b>«Продолжить»</b> ведёт к следующему шагу. Рядом <b>«Назад»</b> — вернуться.</> } },
+    { sel: '[data-tour="mentor"]', ic: '🧑‍🏫', h: { uz: 'Mentor yordami', ru: 'Помощь ментора' }, body: { uz: <>Har ekranda mentor nima qilishni tushuntiradi — avval uni <b>o'qing</b>, keyin bajaring.</>, ru: <>На каждом экране ментор объясняет, что делать — сначала <b>прочитайте</b>, потом выполняйте.</> } },
+    { sel: '[data-tour="progress"]', ic: '📊', h: { uz: "Progress chizig'i", ru: 'Полоса прогресса' }, body: { uz: <>Bu chiziq dars <b>qancha qolganini</b> ko'rsatadi — to'lgani sari yakunlaysiz.</>, ru: <>Эта полоса показывает, <b>сколько осталось</b> до конца урока.</> } },
+    { sel: '[data-tour="ach"]', ic: '🏅', h: { uz: 'Nishonlaringiz', ru: 'Ваши награды' }, body: { uz: <>Vazifalarni bajarib, shu yerda <b>nishon</b> yig'asiz. Bosib ro'yxatini ko'rasiz.</>, ru: <>Выполняйте задания и собирайте здесь <b>награды</b>. Нажмите — увидите список.</> } },
   ],
   mentor: [
-    { sel: '[data-tour="live"]', ic: '🔢', h: 'Qo\'shilish kodi', body: <>O'quvchilar shu <b>PIN kod</b> bilan qo'shiladi. Kim qo'shilganini shu yerda ko'rasiz.</> },
-    { sel: '[data-tour="next"]', ic: '▶', h: 'Siz boshqarasiz', body: <><b>«Davom etish»</b> bosganingizda, barcha o'quvchilar birga oldinga o'tadi.</> },
-    { sel: '[data-tour="progress"]', ic: '📊', h: 'Progress chizig\'i', body: <>Dars qaysi bosqichda ekanini shu chiziq ko'rsatadi.</> },
+    { sel: '[data-tour="live"]', ic: '🔢', h: { uz: "Qo'shilish kodi", ru: 'Код подключения' }, body: { uz: <>O'quvchilar shu <b>PIN kod</b> bilan qo'shiladi. Kim qo'shilganini shu yerda ko'rasiz.</>, ru: <>Ученики подключаются по этому <b>PIN-коду</b>. Здесь же видно, кто присоединился.</> } },
+    { sel: '[data-tour="next"]', ic: '▶', h: { uz: 'Siz boshqarasiz', ru: 'Вы управляете' }, body: { uz: <><b>«Davom etish»</b> bosganingizda, barcha o'quvchilar birga oldinga o'tadi.</>, ru: <>Когда вы нажимаете <b>«Продолжить»</b>, все ученики переходят вперёд вместе с вами.</> } },
+    { sel: '[data-tour="progress"]', ic: '📊', h: { uz: "Progress chizig'i", ru: 'Полоса прогресса' }, body: { uz: <>Dars qaysi bosqichda ekanini shu chiziq ko'rsatadi.</>, ru: <>Эта полоса показывает, на каком этапе урок.</> } },
   ],
 };
 function TourGuide({ role, onClose }) {
@@ -2624,13 +2635,13 @@ function TourGuide({ role, onClose }) {
         ? <div className="tg-hole" style={{ top: rect.top - 7, left: rect.left - 7, width: rect.width + 14, height: rect.height + 14 }} />
         : <div className="tg-dim" />}
       <div className="tg-call" style={callStyle}>
-        <div className="tg-head"><span className="tg-ic">{step.ic}</span><span className="tg-h">{step.h}</span><span className="tg-count">{i + 1}/{steps.length}</span></div>
-        <p className="tg-body">{step.body}</p>
+        <div className="tg-head"><span className="tg-ic">{step.ic}</span><span className="tg-h">{tr(step.h)}</span><span className="tg-count">{i + 1}/{steps.length}</span></div>
+        <p className="tg-body">{tr(step.body)}</p>
         <div className="tg-nav">
-          <button className="tg-skip" onClick={onClose}>O'tkazib yuborish</button>
+          <button className="tg-skip" onClick={onClose}>{tr({ uz: "O'tkazib yuborish", ru: 'Пропустить' })}</button>
           <div className="tg-navr">
-            {i > 0 && <button className="tg-btn ghost" onClick={() => setI(i - 1)} aria-label="Oldingi">←</button>}
-            <button className="tg-btn go" onClick={next}>{last ? 'Boshladik!' : 'Keyingisi →'}</button>
+            {i > 0 && <button className="tg-btn ghost" onClick={() => setI(i - 1)} aria-label={tr({ uz: 'Oldingi', ru: 'Назад' })}>←</button>}
+            <button className="tg-btn go" onClick={next}>{last ? tr({ uz: 'Boshladik!', ru: 'Начали!' }) : tr({ uz: 'Keyingisi →', ru: 'Дальше →' })}</button>
           </div>
         </div>
       </div>
@@ -2640,6 +2651,7 @@ function TourGuide({ role, onClose }) {
 
 export default function DeployLesson({ lang: langProp, onFinished }) {
   const lang = langProp || 'uz';
+  __lang = lang; // UZ-RU: tr() uchun joriy til (render'dan oldin o'rnatiladi)
   const [screen, setScreen] = useState(0);
   const [answers, setAnswers] = useState({});
   const startTimeRef = useRef(Date.now());
@@ -3491,7 +3503,7 @@ export default function DeployLesson({ lang: langProp, onFinished }) {
         <AchCtx.Provider value={earned}>
         <div className="lesson-root">
           {live.mode === 'choosing' ? (
-            <LiveGate live={live} title="1-Modul" />
+            <LiveGate live={live} title={tr({ uz: '1-Modul', ru: 'Модуль 1' })} />
           ) : (
             <>
               <Current screen={screen} storedAnswer={answers[screen]} answers={answers} achievements={earned} onAnswer={recordAnswer} onNext={next} onPrev={prev} onReset={reset} onFinish={finishLesson} />
