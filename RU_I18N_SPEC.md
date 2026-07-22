@@ -107,3 +107,10 @@ npx esbuild src/1-Modull/<Fayl>.jsx --loader:.jsx=jsx --outfile=C:\Users\ADMIN\A
 | `PracticeLesson2.jsx` | ✅ | ✅ | 656 juft, esbuild toza, kalitlar tekshirildi (2026-07-22) |
 | `PracticeLesson3.jsx` | ✅ | ✅ | 587 juft, esbuild toza, kalitlar tekshirildi (2026-07-22) |
 | `PracticeLesson4.jsx` | ✅ | ✅ | 587 ru:-juft, esbuild toza, kalitlar tekshirildi (2026-07-22) |
+
+### 1-Modul PM darslari (v2, PM pipeline)
+| Dars | Infra (tr/__lang) | Kontent RU | Izoh |
+|---|---|---|---|
+| `PmAudienceLesson.jsx` | ✅ | ✅ | 356 juft, esbuild+vite toza, kalitlar tekshirildi (2026-07-23). MAXSUS: kompilyator starter RU (`[КТО]/[ПРОБЛЕМА]/[РЕШЕНИЕ]`) + UNION-check (ikkala til placeholderi) — til almashganda saqlangan kod buzilmaydi; `AUD_MAVHUM` regex RU («все/всех») qamraydi |
+| `PmStructureLesson.jsx` | ⬜ | ⬜ | navbatda |
+| `PmPitchLesson.jsx` | ⬜ | ⬜ | navbatda |

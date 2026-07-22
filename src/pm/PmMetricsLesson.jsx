@@ -1018,13 +1018,13 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       <div className="screen" style={{ gap: 'clamp(14px,2.2vw,20px)' }}>
         <div className="head"><h2 className="title h-title fade-up">Loyihangiz yaxshi ishlayaptimi — buni qaysi <span className="italic" style={{ color: T.accent }}>raqam</span> ko'rsatadi?</h2></div>
         <Mentor>Metrika — mahsulotning holatini ko'rsatadigan <b style={{ color: T.ink }}>raqam</b>. To'rt asosiysini bosib aylantiring — bittasi <b style={{ color: T.ink }}>North Star</b>: butun jamoa qaraydigan yagona bosh raqam.</Mentor>
-        <div className="mlens fade-up" aria-label="O'lchasang — ko'rasan">
+        <div className="mlens fade-up" aria-label="O'lchasangiz — ko'rasiz">
           <span className="mlens-guess" aria-hidden="true">🤔 «yaxshi ketyapti…»</span>
           <span className="mlens-arrow" aria-hidden="true">→</span>
           <span className="mlens-chart" aria-hidden="true">
             <svg viewBox="0 0 60 24" preserveAspectRatio="none"><polyline className="mlens-line" points="2,20 14,16 26,18 38,10 50,12 58,4" /></svg>
           </span>
-          <span className="mlens-tag">O'LCHASANG — KO'RASAN</span>
+          <span className="mlens-tag">O'LCHASANGIZ — KO'RASIZ</span>
         </div>
         <div className="mx3-grid fade-up delay-1">
           {METRIC_DEFS.map((m, i) => {
@@ -1049,7 +1049,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           })}
         </div>
         {done && <div className="done-mini fade-step">✅ 4/4 ochildi <span className="dm-sub">— kelish (DAU) ≠ qaytish (retention), shu farq darsning yuragi</span></div>}
-        <MentorNote>Duolingo keysi keyin keladi (unda rasmiy raqam yo'q — raqam to'qimang). «North Star» so'zini birinchi aytganda ochib bering: butun jamoa qaraydigan bitta bosh raqam.</MentorNote>
+        <MentorNote>Duolingo keysi keyingi ekranda keladi. «North Star» so'zini birinchi aytganda ochib bering: butun jamoa qaraydigan bitta bosh raqam.</MentorNote>
       </div>
     </Stage>
   );
@@ -1079,7 +1079,7 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <p className="k-slide-body">{c.body}</p>
         </div>
         <div className="k-dots">{K5_SLIDES.map((_, k) => <button key={k} className={`k-dot ${k === i ? 'cur' : k < i ? 'fill' : ''}`} onClick={() => setI(k)} aria-label={`${k + 1}-bosqich`} />)}</div>
-        {last && <div className="frame-soft fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Sizning MVP'ingizda ham «odamni qaytaradigan» bitta mexanika bo'lishi mumkin. Uni topib, retention'ni o'lchab turasiz.</p></div>}
+        {last && <div className="frame-soft fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Sizning MVP'ingizda (mahsulotingizning ilk sodda versiyasida) ham «odamni qaytaradigan» bitta mexanika bo'lishi mumkin. Uni topib, retention'ni o'lchab turasiz.</p></div>}
         <MentorNote>Bu keysda rasmiy raqam yo'q — foydalanuvchi soni yoki foizini o'zingizdan to'qimang. «Streak» so'zini birinchi aytganda ochib bering (kunlar zanjiri).</MentorNote>
       </div>
     </Stage>
@@ -1406,8 +1406,8 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <div className="fade-up">
           <div className="proj-q">
             <span className="proj-q-lbl">🔎 Test 3 · juftlash</span>
-            <p className="broken-cue">Panel yig'dingiz.</p>
-            <p className="proj-q-body"><b>Endi 4 metrikani o'z savoliga juftlang — har chipni to'g'ri savol ustiga torting (yoki bosing).</b></p>
+            <p className="broken-cue">3 kartangiz tayyor.</p>
+            <p className="proj-q-body"><b>Endi 4 asosiy metrikani o'z savoliga juftlang — har chipni to'g'ri savol ustiga torting (yoki bosing).</b></p>
           </div>
         </div>
         {oneShot && !solved && <p className="small mono fade-up" style={{ margin: '-8px 0 0', color: T.accent, fontWeight: 600 }}>⚡ Jonli dars — bitta urinish, o'ylab juftlang!</p>}
@@ -1700,7 +1700,7 @@ const Screen12 = ({ screen, onNext, onPrev }) => {
     <Stage eyebrow="Uyga vazifa · shartnoma" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext label="Davom etish" onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
         <div className="head"><h2 className="title h-title fade-up">Qaysi metrikani <span className="italic" style={{ color: T.accent }}>birinchi</span> tekshirasiz?</h2></div>
-        <Mentor>Uyda MVP'ingiz <b style={{ color: T.ink }}>tahlil (analytics) panelidan</b> (M7'da ulagansiz) o'tgan hafta raqamlarini oching va 3 metrika-kartangizga <b style={{ color: T.ink }}>jonli raqam</b> yozing. Shu yerda birinchi tekshiradigan metrikani tanlang — vazifangiz shunga moslashadi.</Mentor>
+        <Mentor>Uyda MVP'ingiz <b style={{ color: T.ink }}>tahlil (analytics) panelidan</b> (oldingi modulda ulagansiz) o'tgan hafta raqamlarini oching va 3 metrika-kartangizga <b style={{ color: T.ink }}>jonli raqam</b> yozing. Shu yerda birinchi tekshiradigan metrikani tanlang — vazifangiz shunga moslashadi.</Mentor>
         <div className="hw-chips fade-up delay-1">
           {HW_TARGETS.map(t => (
             <button key={t} className={`hw-chip ${target === t && !customMode ? 'on' : ''}`} onClick={() => pick(t)}>{t}</button>
@@ -1730,7 +1730,7 @@ const Screen12 = ({ screen, onNext, onPrev }) => {
           <StoryCheck ok={false} label="North Star raqami alohida belgilangan" />
           <StoryCheck ok={false} label="Eng katta hayron qoldirgan raqam bir gap izoh bilan" />
         </div>
-        <MentorNote>Koding sinfda tugagan bo'lsa — to'liq versiya; uyga ketgan bo'lsa — qisqa versiya. Analytics'i ishlamayotgan o'quvchiga: avval M7-D8 ulanishini tiklash — bu ham vazifa.</MentorNote>
+        <MentorNote>Koding sinfda tugagan bo'lsa — to'liq versiya; uyga ketgan bo'lsa — qisqa versiya. Analytics'i ishlamayotgan o'quvchiga: avval oldingi moduldagi ulanishni tiklash — bu ham vazifa.</MentorNote>
       </div>
     </Stage>
   );
@@ -1739,7 +1739,7 @@ const Screen12 = ({ screen, onNext, onPrev }) => {
 // ===== 🏅 BADGES — REAL bosqichlar uchun (tekin emas) =====
 const ACHIEVEMENTS = {
   panelPro:   { icon: '📊', name: 'Panel Pro!',   desc: "Metrika-panelni 3/3 to'ldirdingiz" },
-  dataEye:    { icon: '👁️', name: 'Data Eye!',    desc: "3 scored testni ham to'g'ri yechdingiz" },
+  dataEye:    { icon: '👁️', name: 'Data Eye!',    desc: "3 testni ham to'g'ri yechdingiz" },
   calcMaster: { icon: '🛠️', name: 'Calc Master!', desc: "Retention foizini MetrikaPanel komponentida hisobladingiz" },
   graduate:   { icon: '🎓', name: 'Level Up!',    desc: "Metrika darsini yakunladingiz" },
 };
@@ -1825,7 +1825,7 @@ const QUIZ_BANK = [
   { q: "North Star nima?", opts: ["Real qiymatni ko'rsatuvchi yagona bosh raqam", "Eng ko'p pul olib keladigan reklama", "Kodning eng muhim fayli", "Ilovadagi eng chiroyli ekran"], correct: 0 },
   { q: "Duolingo streak nima?", opts: ["Bir martalik katta chegirma", "Do'stlar ro'yxati", "Uzluksiz kunlar zanjiri", "Ilova versiyasi raqami"], correct: 2 },
   { q: "Streak birinchi navbatda qaysi metrikani ko'taradi?", opts: ["Server narxini", "Yangi foydalanuvchilar oqimini", "Ekran o'lchamini", "Retention (qaytish)ni"], correct: 3 },
-  { q: "«MVP'ga bir haftada 100 kishi kirdi» — bu yaxshimi?", opts: ["Ha, chunki kirgan odam soni katta", "Aniq emas — qanchasi qaytganini ko'rish kerak", "Yo'q, har doim yomon", "Faqat serverning narxiga bog'liq"], correct: 1 },
+  { q: "«MVP'ga (mahsulotning ilk sodda versiyasiga) bir haftada 100 kishi kirdi» — bu yaxshimi?", opts: ["Ha, chunki kirgan odam soni katta", "Aniq emas — qanchasi qaytganini ko'rish kerak", "Yo'q, har doim yomon", "Faqat serverning narxiga bog'liq"], correct: 1 },
   { q: "Oshxonadagi yangi taom misolida haqiqiy baho nima?", opts: ["Ikkinchi haftada nechtasi YANA olishi", "Birinchi kuni hamma olib ko'rishi", "Taomning rangi", "Narxi qancha ekani"], correct: 0 },
   { q: "20 kishi keldi, 5 tasi qaytdi. Retention necha foiz?", opts: ["5%", "20%", "100%", "25%"], correct: 3 },
   { q: "DAU va MAU farqi nimada?", opts: ["DAU pul, MAU vaqt", "Ular bir xil narsa", "DAU — kunlik, MAU — oylik faol foydalanuvchi", "DAU — dizayn ko'rsatkichi, MAU — marketing"], correct: 2 },
@@ -2460,7 +2460,7 @@ export default function PmMetricsLesson({ lang: langProp, onFinished }) {
 
         @keyframes fade-in-up { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
         .fade-up { animation: fade-in-up 0.4s ease-out forwards; opacity: 0; }
-        .delay-1 { animation-delay: 0.12s; } .delay-2 { animation-delay: 0.24s; } .delay-3 { animation-delay: 0.36s; } .delay-4 { animation-delay: 0.48s; }
+        .delay-1 { animation-delay: 0.12s; } .delay-2 { animation-delay: 0.24s; } .delay-3 { animation-delay: 0.36s; }
         @keyframes fade-step { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
         .fade-step { animation: fade-step 0.3s ease-out; }
         .d1 { animation-delay: 0.12s; } .d2 { animation-delay: 0.24s; } .d3 { animation-delay: 0.36s; } .d4 { animation-delay: 0.48s; }
@@ -2652,6 +2652,8 @@ export default function PmMetricsLesson({ lang: langProp, onFinished }) {
         .match-hint { position: relative; z-index: 1; text-align: center; color: ${T.ink3}; min-height: 16px; }
         .match-targets { position: relative; z-index: 1; display: flex; flex-direction: column; gap: 10px; }
         .match-target { display: flex; align-items: center; gap: 12px; background: ${T.paper}; border-radius: 12px; padding: 12px 15px; box-shadow: 0 6px 16px -8px rgba(${T.shadowBase},0.16), inset 0 0 0 1.5px ${T.line}; cursor: pointer; transition: box-shadow 0.2s, background 0.2s, transform 0.16s; }
+        /* chip qo'yilgan nishon — nozik indigo halqa (JTBD .mp-target.filled bilan izchil) */
+        .match-target.filled { box-shadow: 0 8px 20px -8px rgba(${T.shadowBase},0.2), inset 0 0 0 1.5px ${T.accent}44; }
         /* tanlangan/sudralayotgan chip uchun drop-zona puls-halo (indigo glow) */
         .match-target.droppable { box-shadow: 0 8px 20px -8px rgba(91,61,230,0.28), inset 0 0 0 2px ${T.accent}66; animation: mmx-halo 1.4s ease-in-out infinite; }
         .match-target.droppable:hover { transform: translateY(-2px); background: ${T.accentSoft}; box-shadow: 0 12px 26px -8px rgba(91,61,230,0.36), inset 0 0 0 2px ${T.accent}; }
@@ -2791,16 +2793,7 @@ export default function PmMetricsLesson({ lang: langProp, onFinished }) {
         .proj-q { background: ${T.paper}; border-radius: 14px; padding: clamp(16px,2.5vw,22px); box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.16); display: flex; flex-direction: column; gap: 8px; border-left: 4px solid ${T.accent}; }
         .proj-q-lbl { font-family: 'Manrope'; font-weight: 800; font-size: 11.5px; letter-spacing: 0.08em; text-transform: uppercase; color: ${T.accent}; }
         .proj-q-body { font-size: clamp(16px,2.3vw,20px); font-weight: 500; color: ${T.ink}; line-height: 1.4; margin: 0; }
-        .proj-q.broken { border-left: none; background: repeating-linear-gradient(${T.paper}, ${T.paper} 33px, ${T.line}55 33px, ${T.line}55 34px); box-shadow: 0 12px 30px -12px rgba(${T.shadowBase},0.22), inset 0 0 0 1.5px ${T.line}; position: relative; }
-        .proj-q.broken::before { content: "📄"; position: absolute; top: 12px; right: 14px; font-size: 18px; opacity: 0.4; }
-        .broken-story { font-family: 'Source Serif 4', serif; font-size: clamp(18px,2.8vw,24px); color: ${T.ink}; margin: 0; line-height: 1.42; }
         .broken-cue { font-size: 13px; color: ${T.ink2}; margin: 0; font-weight: 600; }
-        .ex-card { background: ${T.successSoft}; border-radius: 14px; padding: clamp(14px,2.2vw,18px); display: flex; flex-direction: column; gap: 10px; }
-        .ex-lbl { font-family: 'Manrope'; font-weight: 800; font-size: 11.5px; letter-spacing: 0.06em; text-transform: uppercase; color: ${T.success}; }
-        .ex-body { font-size: clamp(15px,2vw,18px); color: ${T.ink}; margin: 0; line-height: 1.45; }
-        .ex-tags { display: flex; gap: 8px; flex-wrap: wrap; }
-        .ex-tag { font-family: 'Manrope'; font-weight: 700; font-size: 11.5px; padding: 5px 11px; border-radius: 99px; background: ${T.paper}; }
-        .ex-tag.kim { color: ${T.blue}; } .ex-tag.nima { color: #B77A16; } .ex-tag.natija { color: ${T.success}; }
 
         /* === K5 SLAYD (s4) === */
         .k-slide { position: relative; background: ${T.paper}; border-radius: 18px; padding: clamp(24px,4vw,38px) clamp(20px,3.5vw,34px) clamp(20px,3.5vw,34px); display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px; box-shadow: 0 14px 34px -12px rgba(${T.shadowBase},0.24); overflow: hidden; }

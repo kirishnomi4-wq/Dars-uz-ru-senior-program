@@ -892,7 +892,7 @@ const Screen1 = ({ screen, onNext, onPrev }) => (
   <Stage eyebrow="Maqsad" screen={screen} mentorStatic navContent={<><NavBack onPrev={onPrev} /><NavNext label="Boshlaymiz →" onClick={onNext} /></>}>
     <div className="screen" style={{ gap: 'clamp(14px,2.2vw,20px)' }}>
       <div className="head"><h2 className="title h-title fade-up">Mahsulot ham <span className="italic" style={{ color: T.accent }}>ishga olinadi</span> — ishonasizmi?</h2></div>
-      <Mentor>JTBD-karta — mahsulot qaysi <b style={{ color: T.ink }}>ISH</b>ga yollanishi yozilgan karta. Hozir 3 namuna ko'z oldingizda to'lib «YOLLANDI» shtampini oladi — dars oxirida 3 tasini o'zingiz yozasiz.</Mentor>
+      <Mentor>JTBD-karta (Jobs-to-be-Done — «bajarilishi kerak bo'lgan ish») — mahsulot qaysi <b style={{ color: T.ink }}>ISH</b>ga yollanishi yozilgan karta. Hozir 3 namuna ko'z oldingizda to'lib «YOLLANDI» shtampini oladi — dars oxirida 3 tasini o'zingiz yozasiz.</Mentor>
       <div className="jhire-grid">
         {DEMO_JTBD.map((s, i) => {
           const base = 0.3 + i * 1.7;
@@ -910,7 +910,7 @@ const Screen1 = ({ screen, onNext, onPrev }) => (
         })}
       </div>
       <p className="jhire-cap">✨ Dars oxirida sizning 3 kartangiz ham shu shtampni oladi.</p>
-      <div className="takeaway fade-up delay-2"><span className="ta-bulb">🎯</span><p className="ta-h">Bu 3 karta + MVP bosh-ishi keyingi custdev (mijozni o'rganish) darsida ishlatiladi.</p><p className="ta-sub">Tayyor natija = mijozni o'rganishning poydevori</p></div>
+      <div className="takeaway fade-up delay-2"><span className="ta-bulb">🎯</span><p className="ta-h">Bu 3 karta + MVP (mahsulotingizning ilk sodda versiyasi) bosh-ishi keyingi custdev (mijozni o'rganish) darsida ishlatiladi.</p><p className="ta-sub">Tayyor natija = mijozni o'rganishning poydevori</p></div>
     </div>
   </Stage>
 );
@@ -1648,7 +1648,7 @@ const Screen11 = ({ screen, onNext, onPrev }) => {
     <Stage eyebrow="Mustahkamlash · 3 qadam" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext label="Davom etish" onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
         <div className="head"><h2 className="title h-title fade-up">MVP'ingiz qaysi <span className="italic" style={{ color: T.accent }}>ish</span>ga yollanadi — va nega?</h2></div>
-        <Mentor>Dars deyarli tugadi — endi o'rganganingiz o'z og'zingizdan chiqsin: pastdagi uch qadamni birma-bir bajaring.</Mentor>
+        <Mentor>Dars deyarli tugadi — endi o'rganganingizni o'zingiz takrorlang: pastdagi uch qadamni birma-bir bajaring.</Mentor>
         <div className="rcp-flow">
           <div className="rcp-step fade-up delay-1">
             <div className="rcp-step-h"><span className="rcp-n">1</span><div><span className="rcp-t">🗣 Juftlikda ayting</span><span className="rcp-s">«Mening MVP'im [ish] uchun, chunki...» — 30 soniyada rol almashadi</span></div></div>
@@ -1694,7 +1694,7 @@ const Screen12 = ({ screen, onNext, onPrev }) => {
     <Stage eyebrow="Uyga vazifa · shartnoma" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext label="Davom etish" onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
         <div className="head"><h2 className="title h-title fade-up">MVP ishini <span className="italic" style={{ color: T.accent }}>kimdan</span> so'rab tekshirasiz?</h2></div>
-        <Mentor>Uyda MVP'ingiz uchun <b style={{ color: T.ink }}>3 ta JTBD</b> yozasiz — shartlar pastdagi 🎯 panelda. Avval tanlang: MVP ishini <b style={{ color: T.ink }}>kimdan</b> so'rab tekshirasiz?</Mentor>
+        <Mentor>Uyda MVP'ingiz uchun <b style={{ color: T.ink }}>3 ta JTBD</b> yozasiz — shartlar pastdagi 🎯 panelda.</Mentor>
         <div className="hw-chips fade-up delay-1">
           {HW_TARGETS.map(t => (
             <button key={t} className={`hw-chip ${target === t && !customMode ? 'on' : ''}`} onClick={() => pick(t)}>{t}</button>
@@ -1708,7 +1708,7 @@ const Screen12 = ({ screen, onNext, onPrev }) => {
           <div className="split">
             <div className="hw-card full fade-step">
               <span className="hw-badge">To'liq · ~20 daqiqa</span>
-              <p className="body" style={{ color: T.ink }}><b>{chosen}</b>dan so'rab, MVP'ingiz uchun <b>3 ta JTBD</b> yozing — har turdan bittadan (funksional, ijtimoiy, emotsional) — va <b>eng kuchlisini</b> belgilang. Custdev (mijozni o'rganish) darsida intervyu savollarini shu «ish»lardan tuzamiz.</p>
+              <p className="body" style={{ color: T.ink }}><b>{chosen}</b>dan so'rab <b>3 ta JTBD</b> yozing va <b>eng kuchlisini</b> belgilang — keyingi darsda intervyu savollarini shulardan tuzamiz.</p>
             </div>
             <div className="hw-card short fade-step">
               <span className="hw-badge short">Qisqa · ~10 daqiqa</span>

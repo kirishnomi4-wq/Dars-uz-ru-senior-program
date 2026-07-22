@@ -35,7 +35,7 @@
 ```
 s0 HOOK (keys-savol, ovoz-berish, vizual imzo-sahna) → s1 MAQSAD (JONLI natija-preview — kartalar ko'z oldida to'ladi)
 → TEORIYA-1 (savol+hayotiy misol → interaktiv qoida-konstruktor) → 🔴 TEST-1
-→ TEORIYA-2 (KEYS-SLAYD: «CASE STUDY» eyebrow, bosqichma-bosqich) → 🔴 TEST-2
+→ TEORIYA-2 (KEYS-SLAYD: «Keys …» eyebrow — o'zbekcha, K-kodsiz (P0: «Keys 🥤»), bosqichma-bosqich) → 🔴 TEST-2
 → AMALIYOT (o'z loyihasiga birinchi qadam, jonli validator) → USTAXONA (artefakt, 3-4 element)
 → 🔴 TEST-3 → KODING (compiler-qobiq) → RECAP (juftlik-taymer+Reflection+3 harakat-savol)
 → UYGA VAZIFA (SHARTNOMA harakat-ekrani) → PODIUM → CODESTRIKE ARENA → SUMMARY

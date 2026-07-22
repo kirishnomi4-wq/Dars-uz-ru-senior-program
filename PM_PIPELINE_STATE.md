@@ -57,6 +57,24 @@ Foydalanuvchi talabi: «matn bahaybatlashib ketgan — bola BIR QARASHDA tushuns
 
 Qonunlashtirildi: **PM_DARS_ETALON 32** (TaskSpec+ekran-diyeta, a-e bandlari) + 3-bo'lim xaritasiga TaskSpec anchor + rol-fayllar (dizayn=markaziy o'lchov «3 soniya testi», quruvchi=AYNAN ko'chirish, metodist=chip ≤4 so'z+pufak-diyeta, tekshiruvchi/auditor=a-e tekshiruv, qabulchi=28-band). UNCOMMITTED — foydalanuvchi brauzer-ko'rigi kutilmoqda (dev-server: localhost:5173).
 
+## P6 raund (2026-07-22) — 3-AUDIT + ETALON-TOZALASH (M1 partiyasidan oldin) — ✅ TUGADI
+3 parallel pm-auditor to'liq GAP-hisobot chiqardi (uchala darsda jonli-ball relslari 100% PASS, tuzilmaviy muammo yo'q); topilgan 8 🔴 + o'lik CSS yopildi:
+| Dars | Tuzatilgan |
+|---|---|
+| P0 UserStory | :890 grammatika («siz … erishasiz») · «keys (real voqea tahlili)» + «bublik (halqa non)» gloss (arena Q8 distraktorlari uzunlik-tell bilan qayta balans, correct joyida) · s7 cue halollashtirildi («qaysi bo'lak bu gapda umuman YO'Q?») · RECAPS[9]↔s9 namuna birlashdi · 32(b): s5/ustaxona pufaklari 1 gapga · hook qulf-yorlig'i dinamik («Avval ovoz bering») · o'lik CSS 5 topilma o'chdi |
+| M7-D2 JTBD | s1 MVP-gloss + JTBD-kengaytma («bajarilishi kerak bo'lgan ish») · «og'zingizdan chiqsin»→«o'zingiz takrorlang» · s12 diyeta: hw-karta 224→122 gr, pufak 1 gap — ekran 391≤400 |
+| M8-D1 Metrika | MVP-gloss (s4 + arena Q8 scored) · badge «scored»-jargoni ketdi · «O'LCHASANGIZ — KO'RASIZ» (siz-forma) · MentorNote s3/s4 takror bittaga · «M7»→«oldingi modulda» · s9 sanoq-o'tish «3 kartangiz tayyor — endi 4…» · o'lik CSS (ex-card oilasi, broken-story, proj-q.broken, delay-4) o'chdi · `.match-target.filled` CSS to'ldirildi (JTBD `.mp-target.filled` bilan izchil) |
+Hujjat: PM_DARS_ETALON 2-bo'lim keys-slayd eyebrow ta'rifi P0 realligiga moslandi («Keys …» o'zbekcha, K-kodsiz); 32(b) ziddiyati kod tomonidan yopildi (P0 pufaklari 1 gap). Uchala fayl esbuild ✅, kalitlar-diff bo'sh. UNCOMMITTED.
+
+## M1 partiyasi (2026-07-22 boshlandi) — eski PmLesson1-3 (texnik-pipeline v16/v18) O'RNIGA yangi qurilish
+> 2026-07-23 joylashuv-qarori (foydalanuvchi): 3 yangi M1 darsi `src/pm/` → **`src/1-Modull/`** ga ko'chirildi (modul-papka konvensiyasi); eski PmLesson1-3 → `.pm-backup/` arxiv (jonli-sinov o'tib COMMIT bo'lgach o'chirilishi mumkin). App.jsx import-yo'llari yangilandi, vite build ✅. Fayl-yo'llar quyida eskicha yozilgan bo'lsa — yangi manzil `src/1-Modull/`.
+Qaror (foydalanuvchi): avval etalon-tozalash ✅ → m1-02 to'liq gate'lar bilan → m1-05 + m1-12 parallel. RU i18n: hozircha faqat UZ (3 etalon kabi).
+| # | Dars | Fayl (reja) | Holat |
+|---|---|---|---|
+| 1 | M1-D2 «Kim mening foydalanuvchim?» (K8 Meta) | `src/pm/PmAudienceLesson.jsx` (`pm-m1d2-v1`) | 🚦 **FOYDALANUVCHI KO'RIGI** — to'liq zanjir ✅: senariy korrektura(15+ sayqal) · GATE S · quruvchi (3150 qator, 15 ekran, `.fbpoll` like-lenta + `.apass` sayt-pasporti imzo, PmCompiler matn-almashtirish) · dizayn (fbrow.top halo, apass-row-on, hs-scan, reduced-motion to'ldirildi) · jonli 11/11 (Q4/Q5 reorder — seq sikl sindirildi) · metodist (14 tuzatish, tell≤1.23, lug'at: tashxis→baho, slot→joyiga) · tekshiruvchi TAYYOR (4 mayda: K8 MentorNote, iframe overflow, o'lik CSS, MentorWatchLine matni; 0 qaytarish) · verifikator IMZO (esbuild+bundle+SSR+headless 15/15 ekran 0 xato) · **qabulchi 27/28→metodist-diyeta (koding 443→373, s12 504→396)→28/28 PASS** · App `m1-02` ULANDI · vite build ✅ · UNCOMMITTED · jonli-sinov qo'lda kutilmoqda (yangi PIN + 2 o'quvchi + MENTOR-2026, podium/arena ≠0) |
+| 2 | M1-D5 «Struktura = mahsulot qarori» (K19 Apple) | `src/pm/PmStructureLesson.jsx` (`pm-m1d5-v1`) | 🚦 **FOYDALANUVCHI KO'RIGI** — to'liq zanjir ✅ (2026-07-23): korrektura(20+zero-width) · GATE S · quruvchi (~3400 qator, ph-telefon-zaryad hook + splan uchib-tushish preview + mart supermarket-sahna + bmock validator; t3 DragDrop=JTBD MatchPairs kontrakti) · dizayn (🛒 aravacha-yurish, taphint-stagger) · jonli 8/8 (Q7-tell metodistga) · metodist (Q7 1.55→1.15, s1 472→398, 15 guruh) · tekshiruvchi TAYYOR 0-qaytarish (3 o'lik CSS o'zi) · metodist-2 (s12 581→389) · bosh-agent mikro (kodlashni, hw-chip-sub, hook-pufak 2 gap, pmtask-sub) · verifikator IMZO (headless 15/15, DragDrop tap-fallback, arena solo) · **qabulchi PASS 28/28** · App `m1-05` ULANDI · vite build ✅ · UNCOMMITTED · jonli-sinov qo'lda |
+| 3 | M1-D12 «Storytelling: pitch» (K12 Airbnb Pitch Deck) | `src/pm/PmPitchLesson.jsx` (`pm-m1d12-v1`) | 🚦 **FOYDALANUVCHI KO'RIGI** — to'liq zanjir ✅ (2026-07-23): korrektura(15) · GATE S · quruvchi (3345 qator, sahna-metafora: spot-shelf chiroqlar + pstage proyektor-preview + pflip + pmon/pscript) · dizayn (payoff-nur, chiroq-stagger, 6 asosli rang) · jonli 8/8 (0 tuzatish) · metodist («sotish»-ovi 5 joy, s0=382) · tekshiruvchi (🔴 s5 fade-up/.ok metrika.png-sinf bugini O'ZI tuzatdi + 3 o'lik CSS; Q3 qaytardi) · metodist-2 (Q3 aniq-yolg'on tell 1.08, s12=395, s1=396) · verifikator IMZO (headless 15/15, arena solo, havola negativ-sinov) · **qabulchi PASS 28/28** · App `m1-12` ULANDI · vite build ✅ · UNCOMMITTED · jonli-sinov qo'lda. 24-band eslatma: M2 birinchi koding-darsi placeholder-almashtirishdan BOSHQA mexanika olsin |
+
 ## Navbat
 | # | Dars (xaritadan) | Holat |
 |---|---|---|
@@ -65,6 +83,7 @@ Qonunlashtirildi: **PM_DARS_ETALON 32** (TaskSpec+ekran-diyeta, a-e bandlari) + 
 ## Modul-kontekst jurnal (senariy kirishlari uchun)
 | Modul | Ishlatilgan keyslar | Oldingi TEKSHIRUV mexanikasi |
 |---|---|---|
+| M1 | K8 (M1-D2) · K19 (M1-D5) · K12 (M1-D12) | Hotspot (M1-D2) → DragDrop-tartib (M1-D5) → MatchPairs (M1-D12) |
 | M3 | K11 (M3-D2) | Hotspot/xato-topish (M3-D2) |
 | M7 | K18 (M7-D2) | Juftlash MatchPairs (M7-D2) |
 | M8 | K5 (M8-D1) | Juftlash MatchPairs (M8-D1) |
@@ -72,6 +91,9 @@ Qonunlashtirildi: **PM_DARS_ETALON 32** (TaskSpec+ekran-diyeta, a-e bandlari) + 
 ## Kundalik-ilova misollari jurnali (PM_DARS_ETALON 24-qonun: darslar orasida TAKRORLANMAYDI)
 | Dars | Bosh-misol (muhokama/teoriya) | Yordamchi misollar |
 |---|---|---|
+| M1-D2 Auditoriya | Mahalla novvoyxonasi (kim kiradi? tap-mashq) | Facebook-Garvard (K8), velo-ustaxona (s1 namuna) |
+| M1-D5 Struktura | Supermarket-non (nega oxirida? tap-mashq) | Apple-iPhone (K19), repetitor-sayt (DragDrop test) |
+| M1-D12 Pitch | Sinfdosh o'yin maqtaydi (flip-mashq) | Airbnb pitch-deck (K12), galereya-sayt (s1 namuna), repetitor-sayt (MatchPairs — D5 testidan tanish) |
 | M3-D2 UserStory | Telegram (harakat/sabab tap-mashq) | YouTube, taksi (kechikayotgan o'quvchi) |
 | M7-D2 JTBD | Kalkulyator (2026-07-21 feedback: Telegram-takror o'rniga) | Kamera, Xarita (ikonka-flip sahna), velosiped/avtobus, Starbucks (K18) |
 | M8-D1 Metrika | Duolingo streak (K5) | maktab oshxonasi (retention analogiyasi) |
