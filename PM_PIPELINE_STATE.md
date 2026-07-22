@@ -47,6 +47,16 @@ Qonunlashtirildi: PM_DARS_ETALON 23-28 (klon-taqiq, misol-jurnal, matn-zichlik, 
 (1) OKR-atama 4 joydan olib tashlandi → «keyingi darsda … maqsad qo'yamiz» sodda-havola; (2) «ahvolini»→«holatini» (mentor s3 + test-variant + RECAP, indekslar tegilmagan); (3) «Endi ochamiz:»→«Duolingo sirini ochamiz:» (predmetli sarlavha); (4) s5 North Star: qulf-tugma endi qolgan qadamni AYNAN aytadi (①raqam/②chunki) + editor ostida yashil-yonar qadam-yo'riqnoma; (5) gating-konvensiya BIR XILLASHTIRILDI: s5+ustaxona `isMentor` bypass + mentorga «buni o'quvchilar bajaradi» yozuvi (avval mentor majburan to'ldirardi); (6) «og'zingizdan chiqsin»→«o'zingiz takrorlang».
 Qonunlashtirildi: **PM_DARS_ETALON 29-31** (kelajak-atama taqiq · qulf-tugma gapiradi+predmetli sarlavha · gating-konvensiya) + **MATN_ETALONI lug'at** (ahvol→holat, og'zingizdan-chiqsin, deiktik-sarlavha) + rol-fayllar: metodist (29/30/so'z-tanlov), quruvchi (30/31 qurilish-naqshi), tekshiruvchi (3 yangi bug-sinf), auditor (29-31 maxsus tekshiruv, 31-qoida), qabulchi (27-band, checklist 20→27). UNCOMMITTED.
 
+## P5 raund (2026-07-22) — 3 ETALON DARSGA UX-TINIQLIK (32-qonun) — ✅ UCHALASI TAYYOR
+Foydalanuvchi talabi: «matn bahaybatlashib ketgan — bola BIR QARASHDA tushunsin; shartlar boshqacha UI'da tursin».
+| Dars | Bajarilgan | Adversarial hukm |
+|---|---|---|
+| P0 UserStory | Bosh-agent qo'lda: **TaskSpec** (🎯 Topshiriq-panel: chip ≤4 so'z, ✓+pop, detail yopiq, sticky) + **MentorWatchLine** + **done-mini** primitivlari TUG'ILDI; s0 Eslatma interaktiv tepasiga; s2 mukofot-pattern (taksi-misol mashqdan keyin); mentor-diyeta; dinamik qulf-yorliqlar; 30/31-qonunlar qo'llandi; StoryCheck/checklist o'lik kodi o'chdi | esbuild+vite ✅, kalitlar-diff bo'sh |
+| M7-D2 JTBD | TaskSpec 4 joyda (s5/ustaxona/s12 + kd-steps koding); mvplamps/checklist/star-task → yangi primitivlar; mentor-diyeta 1 gap; «Yana N kartani» dinamik sanoq | **TAYYOR 10/10, nol nuqson** (CSS-qoplama 442 klass skript bilan) |
+| M8-D1 Metrika | TaskSpec s5+ustaxona (feedback-yo'riqnomalar panelga birlashdi); MentorWatchLine 3 ekranda; done-mini 5 ta; s11 qadam-recital o'chdi | **TAYYOR** (+1 mayda tuzatish: hook qulf-yorlig'i; 2 🟡 ixtiyoriy eslatma) |
+
+Qonunlashtirildi: **PM_DARS_ETALON 32** (TaskSpec+ekran-diyeta, a-e bandlari) + 3-bo'lim xaritasiga TaskSpec anchor + rol-fayllar (dizayn=markaziy o'lchov «3 soniya testi», quruvchi=AYNAN ko'chirish, metodist=chip ≤4 so'z+pufak-diyeta, tekshiruvchi/auditor=a-e tekshiruv, qabulchi=28-band). UNCOMMITTED — foydalanuvchi brauzer-ko'rigi kutilmoqda (dev-server: localhost:5173).
+
 ## Navbat
 | # | Dars (xaritadan) | Holat |
 |---|---|---|

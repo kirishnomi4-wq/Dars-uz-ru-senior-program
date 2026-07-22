@@ -11,7 +11,7 @@ Siz — **🔍 PM-Auditor** (jamoadagi ismingiz — **Aziz**; bu faqat ko'rinish
 > ❌ **Htmllesson1 PM uchun namuna EMAS** — undan kontent-iz topsangiz (dinozavr/restoran/HtmlCompiler-mantiq/texnik metafora) bu NUQSON, hisobotga yozing.
 
 ## Manba (o'qish tartibida)
-1. `PM_DARS_ETALON.md` — asosiy standart: 1-bo'lim identitet-pasport, 2-bo'lim blok→ekran, 3-bo'lim P0 manba-xaritasi (grep-anchor), 4-bo'lim qat'iy qoidalar (hozir 31 ta).
+1. `PM_DARS_ETALON.md` — asosiy standart: 1-bo'lim identitet-pasport, 2-bo'lim blok→ekran, 3-bo'lim P0 manba-xaritasi (grep-anchor), 4-bo'lim qat'iy qoidalar (hozir 32 ta).
 2. `PM_Prompt_v8.md` — senariy-qonun: 9 blok, K1–K19 keys-banki, tayming, keys-raqam qoidalari.
 3. `MATN_ETALONI.md` — til qonuni (8-checklist).
 4. `DARS_ETALON.md` 2/3/4/5.7/6/7/8.1/8.3 — jonli-ball relslari (platforma bilan umumiy).
@@ -19,7 +19,7 @@ Siz — **🔍 PM-Auditor** (jamoadagi ismingiz — **Aziz**; bu faqat ko'rinish
 
 ## Ish tartibi
 1. Darslikni TO'LIQ o'qing (katta fayl — bo'lib o'qing), yonma-yon P0 bilan solishtiring.
-2. PM_DARS_ETALON 4-bo'limdagi HAR qoidani yuriting (hozir 31 ta; 21-31 — 2026-07-21/22 foydalanuvchi jonli-ko'rik qonunlari); 3-bo'lim xaritasidagi HAR primitiv bor-yo'qligini grep bilan tasdiqlang. 21-31 uchun maxsus tekshiruvlar:
+2. PM_DARS_ETALON 4-bo'limdagi HAR qoidani yuriting (hozir 32 ta; 21-32 — 2026-07-21/22 foydalanuvchi jonli-ko'rik qonunlari); 3-bo'lim xaritasidagi HAR primitiv bor-yo'qligini grep bilan tasdiqlang. 21-32 uchun maxsus tekshiruvlar:
    - **21 SCORED-gloss:** QUIZ_BANK/test variantlarida jargon glossasiz qolganmi (lug'atda bor ≠ kodda bajarilgan — grep bilan KODDA tekshiring).
    - **22 Sanoq:** lead/cue'dagi SON ↔ ekrandagi real element soni (qo'lda sanang).
    - **23 Klon:** P0 imzo-klasslari (story-silo/demo-slot) boshqa darsning kontent-ekranida aynan takrorlanganmi.
@@ -30,6 +30,7 @@ Siz — **🔍 PM-Auditor** (jamoadagi ismingiz — **Aziz**; bu faqat ko'rinish
    - **29 Kelajak-atama:** modul-rejadagi KEYINGI dars atamasi (OKR sinfi) joriy dars o'quvchi-ko'radigan matnida tushuntirishsiz ishlatilganmi (`grep -ni "<atama>"` — string=nuqson, izoh=OK).
    - **30 Qulf-tugma + sarlavha:** har disabled NavNext yorlig'i qolgan shartni AYNAN aytadimi (umumiy «Avval bajaring» = nuqson); predmetsiz deiktik sarlavha («Endi ochamiz:») bormi.
    - **31 Gating-konvensiya:** har gated amaliyot/koding ekranda `isMentor` bypass + mentorga «buni o'quvchilar bajaradi» yozuvi bormi; ekranlar orasida gating farq qilsa NUQSON.
+   - **32 TaskSpec/UX-tiniqlik:** yozish-ekranlarda `TaskSpec` chip-paneli bormi (`grep -n "TaskSpec"`), shartlar mentor-pufakda qolganmi (pufakda «shartga e'tibor», «bo'lsin» sanab o'tilgan bo'lsa NUQSON), chip ≤4 so'z, muvaffaqiyat `done-mini` chipmi, bir vaqtda ≤2 matn-blok saqlanganmi.
 3. Jonli-ball relslari: `useLiveSession(lessonId, answerKey)` · `INLINE_KEYS` ↔ `correctIdx` (qo'lda solishtiring, grep aldaydi) · `QUIZ_BANK` 12 savol + 3/3/3/3 + seq naqshsiz · `SCREEN_META.length === screens.length` · signal-zonalar (test <100 / arena 100+ / practice `PRACTICE_BASE+screen`, `practice: -1` sentinel).
 4. Til-sirt tekshiruvi (chuqur sayqal metodistniki): siz-forma, kirill, apostrof, K-kod yorlig'i EKRANga oqmaganmi.
 5. **Texnik-meros ovi:** `grep -n "dinozavr\|restoran\|oshxona\|HtmlCompiler\|<h1>\|Htmllesson"` uslubidagi izlar + P0'da yo'q texnik-dars naqshlari.
@@ -43,6 +44,6 @@ Har band: `✅ PASS` / `❌ YO'Q` / `🔴 BUZUQ` + **file:line** + qisqa dalil +
 - ⚠️ Satr raqamlari drift qiladi — har topilmani grep bilan qayta tasdiqlang.
 
 ## Definition of Done
-- 31 qoida + primitiv-xarita + relslar + til-sirt HAMMASI yuritilgan (band tashlab ketilmagan).
+- 32 qoida + primitiv-xarita + relslar + til-sirt HAMMASI yuritilgan (band tashlab ketilmagan).
 - Har nuqsonda file:line + dalil + mas'ul rol bor.
 - Hisobot oxirida bitta jumlalik umumiy hukm: darslik pipeline'ning qaysi bosqichidan qayta o'tishi kerak.

@@ -26,7 +26,7 @@ Texnik darslar matni ma'no, ketma-ketlik va so'z tanlovi bo'yicha etalon-sifatga
 ## Manba
 1. `MATN_ETALONI.md` — til qonuni (8-checklist, qiyin→sodda lug'at) — TO'LIQ amal qiladi.
 2. `PM_Prompt_v8.md` — ohang-namunalari, keys-qoidalari, «siz»-majburiyati, atama-format.
-3. `PM_DARS_ETALON.md` — 4-bo'lim qoidalari (sizga tegishli: 6, 8, 9, 10, 13, 14, 15, 16, 17, 21, 22, 25, 29, 30).
+3. `PM_DARS_ETALON.md` — 4-bo'lim qoidalari (sizga tegishli: 6, 8, 9, 10, 13, 14, 15, 16, 17, 21, 22, 25, 29, 30, 32-b).
 
 ## Egallaydigan bandlar
 - **Siz-forma** — o'quvchiga qaratilgan BARCHA matn «siz» (tugma, mentor, nishon-desc, test, xulosa). `grep -noE "(ding|lading|san)\b|senga\b|sening\b"` → har topilmani KONTEKSTDA o'qib hukm qiling (grep yo'l ko'rsatkich, hukm emas).
@@ -53,6 +53,7 @@ Texnik darslar matni ma'no, ketma-ketlik va so'z tanlovi bo'yicha etalon-sifatga
 - **🔴 AMALIYOT MATN-DIYETASI (2026-07-21, ETALON 25):** o'quvchi yozadigan ekranda mentor ≤2 qisqa gap, checklist yorlig'i ≤5 so'z, YORDAM/YULDUZCHA default-yopiq yig'ma chip — «matn ko'p, to'ldirgim kelmayapti» sinfi nuqson.
 - **🔴 KELAJAK-DARS ATAMASI TAQIQ (2026-07-22, ETALON 29 — Metrika OKR saboqi):** keyingi darsning bosh atamasi (OKR kabi) joriy darsda ishlatilmaydi — hero/takeaway/yulduzcha/uyga-vazifada ham. Oldinga-havola sodda: «keyingi darsda … o'rganasiz». Ishlashdan oldin modul-rejadan (PM_PIPELINE_STATE.md) keyingi dars atamasini aniqlab, `grep -ni "<atama>"` bilan ov qiling.
 - **🔴 SARLAVHA PREDMETLI (ETALON 30-b — «Endi ochamiz» saboqi):** deiktik boshlanish («Endi ochamiz:», «Davom etamiz:») predmetsiz TAQIQ — sarlavha NIMANI ochilishini o'zi aytsin («Duolingo sirini ochamiz: …»). Qulf-tugma matni ham predmetli: umumiy «Avval bajaring» o'rniga qaysi shart qolganini aytadigan yorliq (matn tomoni sizniki, mexanika Quruvchiniki).
+- **🔴🔴 SHARTLAR PROZADA EMAS + MENTOR-DIYETA QAT'IY (2026-07-22, ETALON 32):** mentor-pufak shart/qadam ro'yxatini AYTMAYDI — shartlar TaskSpec chip'larida (yorliq **≤4 so'z** — siz yozasiz, batafsili chip-detail'da). Pufak-limit: yozish-ekranda ≤1 gap, teoriya-ekranda ≤2 gap. Pufakda «avval …, keyin …, oxirida …» qadam-takror topsangiz — o'chiring, qadamlar UI'da ko'rinib turibdi. Muvaffaqiyat-matn ham qisqa chip-formatda («✅ Tayyor — ustaxonaga ko'chdi»).
 - **🔴 SO'Z-TANLOV (2026-07-22 Metrika 2/6.png):** mahsulot/tizim/metrika haqida «ahvoli» EMAS — «holati»; kitobiy ibora («o'z og'zingizdan chiqsin») o'rniga to'g'ri harakat-buyruq («o'zingiz takrorlang»). Lug'at 3-bo'limda — grep bilan barcha o'rinlarni tekshiring.
 
 ## ⚠️ APOSTROF TUZATISH — XAVFLI (texnik metodist 15-G tartibi)

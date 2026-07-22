@@ -52,7 +52,8 @@ s0 HOOK (keys-savol, ovoz-berish, vizual imzo-sahna) → s1 MAQSAD (JONLI natija
 | Hook ovoz-sahna | `.mshake-` / `hook-mc` | ovoz plitkalar + natija-vizual (har darsda O'Z imzo-vizuali) |
 | Qoida-konstruktor | `.fslot` / `.frag-chip` | bo'lak-tap qoida yig'ish (magnit-doska) |
 | Keys-slayd | `K11_SLIDES` / `.k-slide` | CASE STUDY slayd-naqshi (yangi darsda K<N>_SLIDES) |
-| Jonli validator | `validateStory` / `StoryCheck` | artefakt formula-tekshiruvi |
+| Jonli validator | `validateStory` | artefakt formula-tekshiruvi |
+| 🎯 Topshiriq-panel | `const TaskSpec` / `.tspec` / `MentorWatchLine` / `.done-mini` | 32-qonun: yozish-ekranlarning YAGONA shart-tili (chip ≤4 so'z + sticky + kim-bajaradi yozuvi + muvaffaqiyat-chip) |
 | Ustaxona | `ScreenStoryWorkshop` / `STORIES_KEY` | artefakt-muharrir + storage (amaliyot↔ustaxona ko'chish) |
 | Maqsad-preview | `DEMO_STORIES` / `.demo-slot` / `.silo-fill` | s1 WOW: natija-kartalar CSS-taymlayn bilan o'zi to'ladi |
 | Scored hotspot | `renderMode="hotspot"` / `BrokenStory` / `.hs-broken` | bo'lak-bosish testi (topilgan=YASHIL ✓, noto'g'ri bosilgan=QIZIL); oddiy tashxis-test = `ctaLabel`/`revealPrefix` props (P0 s9) |
@@ -110,6 +111,16 @@ s0 HOOK (keys-savol, ovoz-berish, vizual imzo-sahna) → s1 MAQSAD (JONLI natija
 29. **KELAJAK-DARS ATAMASI JORIY DARSGA OQMAYDI (1.png OKR saboqi):** keyingi darsning bosh atamasi (OKR kabi) joriy darsda tushuntirishsiz ishlatilmaydi — na hero/takeaway'da, na yulduzcha-maslahatda, na uyga-vazifada. Oldinga-havola SODDA so'z bilan: ✅ «keyingi darsda shu raqamlar asosida maqsad qo'yishni o'rganasiz» · ❌ «keyingi darsda OKR'ga aylanadi». Atama faqat O'Z darsida birinchi marta (gloss bilan) ochiladi. Mas'ul: metodist yozadi; auditor/tekshiruvchi modul-rejadagi keyingi-dars atamasini grep bilan ov qiladi.
 30. **QULFLANGAN «DAVOM ETISH» JIM TURMAYDI (4.png «nega o'tolmayapman?» saboqi):** disabled tugma yorlig'i (yoki yonidagi hint) AYNAN qaysi shart qolganini aytadi — validator bosqichli bo'lsa yorliq bosqichga qarab o'zgaradi («① Avval o'lchanadigan raqamni yozing» → «② "chunki …" deb sababini qo'shing»); umumiy «Avval bajaring» / predmetsiz «… yozing» yetarli EMAS. Yozish-ekranida qadam-yo'riqnoma doim ko'rinadi, bajarilgan qadam YASHIL yonadi. Shu band ichida: sarlavha o'z-o'zidan tushunarli — predmetsiz deiktik boshlanish («Endi ochamiz: …») TAQIQ, nimani ochish aytiladi («Duolingo sirini ochamiz: …», 3.png saboqi).
 31. **AMALIYOT-GATING KONVENSIYASI — KIM BAJARADI, EKRANDA YOZILGAN (5.png saboqi):** platforma bo'ylab BIR XIL qoida: amaliyot/mustaqil-ish/koding'ni O'QUVCHI bajaradi (self-rejimda majburiy); MENTOR har doim ozod o'tadi (`isMentor` bypass: `disabled={!done && !isMentor}`) va unga ko'rinadigan bir-qatorlik yozuv chiqadi: «👨‍🏫 Jonli darsda bu amaliyotni o'quvchilar bajaradi — siz kuzatasiz ("Kim bajardi" paneli); "Davom etish" siz uchun ochiq». Bir dars ichida ham, darslar ORASIDA ham gating farq qilmaydi — «ba'zi darsda mentor ham majburan to'ldiradi» = NUQSON. Ball-rels (`PRACTICE_BASE+screen`, submitAnswer) o'zgarmaydi. Mas'ul: quruvchi quradi; tekshiruvchi HAR gated ekranda bypass+yozuv bir xilligini tekshiradi.
+
+**2026-07-22 UX-TINIQLIK QONUNI (32, P0 to'liq UX-qayta-ishlovda muhrlandi — foydalanuvchi: «matn bahaybatlashib ketgan, bola BIR QARASHDA tushunsin»):**
+
+32. **🎯 TOPSHIRIQ-PANEL (TaskSpec) + EKRAN-DIYETA — shartlarning YAGONA vizual tili:**
+    - **(a) Shartlar PROZADA YASHAMAYDI.** O'quvchi yozadigan/bajaradigan HAR ekranda shartlar `TaskSpec` chip-panelida: chip = raqam + **≤4 so'z**, bajarilganda YASHIL ✓ + pop; batafsil izoh chip bosilganda ochiladi (default yopiq); uzun ekranda panel `sticky`. Manba: `PmUserStoryLesson.jsx` → `TaskSpec` komponenti + `MentorWatchLine` + `.tspec`/`.mwatch`/`.done-mini` CSS — boshqa darslar AYNAN ko'chiradi, o'z variantini to'qimaydi.
+    - **(b) Mentor-diyeta qat'iy:** yozish-ekranda mentor-pufak **≤1 gap**, teoriya-ekranda **≤2 gap**; pufak shart/qadam RO'YXATINI HECH QACHON aytmaydi — ular TaskSpec/qadam-UI'da ko'rinib turibdi.
+    - **(c) Bir vaqtda ≤2 matn-blok:** sarlavha+mentor'dan tashqari ekranda bir paytda ko'rinadigan matn-karta ko'pi bilan 2 ta; qo'shimcha misol/izoh mashq BAJARILGACH chiqadi (mukofot-pattern, P0 s2 taksi-misoli) yoki default-yopiq chip.
+    - **(d) Muvaffaqiyat = chip:** bajarildi-xabari bitta-qatorlik `done-mini` chip («✅ Ikkalasi tayyor — ustaxonaga ko'chdi»), to'liq-en paragraf-ramka EMAS.
+    - **(e) Qulf-tugma 30-qonun bilan juft:** dinamik yorliq TaskSpec bosqichlariga mos («① 1-hikoyani to'ldiring» → «② 2 xil KIM kiriting»).
+    - Mas'ul: quruvchi TaskSpec'ni o'rnatadi; dizayn vizualni P0 bilan piksel-mos qiladi; metodist chip-yorliq ≤4 so'z va pufak-diyetani ta'minlaydi; tekshiruvchi har yozish-ekranda (a)–(e) ni BIRMA-BIR yuritadi.
 
 ## 5. ✅ QABUL-CHECKLIST
 `pm-qabulchi` 20-bandi (rol faylida) + rollar DoD. Yakuniy jonli-sinov QO'LDA: yangi PIN + 2 o'quvchi + MENTOR-2026 → podium/arena 0 EMAS.

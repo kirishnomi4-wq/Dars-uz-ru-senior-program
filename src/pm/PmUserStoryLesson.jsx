@@ -754,9 +754,42 @@ const validateStory = (kim, nima, natija) => {
   const has = (s) => (s || '').trim().length >= 2;
   return { kimOk: has(kim), nimaOk: has(nima), natijaOk: has(natija), full: has(kim) && has(nima) && has(natija) };
 };
-const StoryCheck = ({ ok, label }) => (
-  <span className={`stcheck ${ok ? 'on' : ''}`}><span className="stcheck-box">{ok ? '✓' : ''}</span>{label}</span>
-);
+// ===== 🎯 TOPSHIRIQ-PANEL (TaskSpec) — o'quvchi yozadigan HAR ekranning yagona shart-tili =====
+// UX-qonun: shartlar PROZAGA yozilmaydi — shu panelda chip bo'lib turadi. Chip = raqam + ≤4 so'z;
+// bajarilganda yashil ✓ + pop (kompilyator hc-cond bilan bitta vizual oila). Batafsil matn chip
+// ostida, DEFAULT YOPIQ (matn-diyeta). Ball-mantiqqa aloqasi yo'q — faqat ko'rinish qatlami.
+const TaskSpec = ({ items, sticky }) => {
+  const [openIdx, setOpenIdx] = useState(-1);
+  const doneN = items.filter(i => i.done).length;
+  const allDone = doneN === items.length;
+  return (
+    <div className={`tspec ${sticky ? 'sticky' : ''} ${allDone ? 'all' : ''} fade-up`}>
+      <div className="tspec-h">
+        <span className="tspec-ttl">🎯 Topshiriq</span>
+        <span className={`tspec-cnt ${allDone ? 'ok' : ''}`}>{doneN}/{items.length}</span>
+      </div>
+      <div className="tspec-chips">
+        {items.map((it, i) => (
+          <button key={i} type="button" className={`tspec-chip ${it.done ? 'on' : ''} ${openIdx === i ? 'open' : ''}`}
+            onClick={() => it.detail && setOpenIdx(openIdx === i ? -1 : i)} aria-expanded={openIdx === i}>
+            <span className="tspec-box">{it.done ? '✓' : i + 1}</span>
+            <span className="tspec-lbl">{it.label}</span>
+            {it.detail && <span className="tspec-car" aria-hidden="true">{openIdx === i ? '▾' : '▸'}</span>}
+          </button>
+        ))}
+      </div>
+      {openIdx >= 0 && items[openIdx] && items[openIdx].detail && <p className="tspec-detail fade-step">💡 {items[openIdx].detail}</p>}
+    </div>
+  );
+};
+
+// 31-qonun: jonli darsda amaliyotni KIM bajarishi EKRANDA yoziladi — faqat mentorga ko'rinadi.
+const MentorWatchLine = ({ children }) => {
+  const gate = useContext(LiveGateCtx) || {};
+  const live = gate.live;
+  if (!live || live.mode !== 'mentor') return null;
+  return <p className="mwatch fade-up">👨‍🏫 {children}</p>;
+};
 
 // ===== SCREEN 0 — HOOK: milkshake ovoz berish (jonli natija-diagramma) =====
 const HOOK_OPTS = [
@@ -798,7 +831,8 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
       <div className="screen" style={{ gap: 'clamp(14px,2.2vw,20px)' }}>
         <div className="hook-hero fade-up"><span className="hook-cup">🥤</span></div>
         <div className="head"><h2 className="title h-title fade-up" style={{ textAlign: 'center' }}>Nonushta payti kim <span className="italic" style={{ color: T.accent }}>milkshake</span> ichadi?!</h2></div>
-        <Mentor>McDonald's qiziq narsani payqadi: milkshake'lar eng ko'p <b style={{ color: T.ink }}>ertalab</b> sotilar ekan. Sizningcha, odamlar uni ertalab nima uchun sotib olishadi? Ovoz bering — to'g'ri javobni birozdan keyin birga bilib olamiz.</Mentor>
+        <Mentor>McDonald's qiziq narsani payqadi: milkshake'lar eng ko'p <b style={{ color: T.ink }}>ertalab</b> sotilar ekan. Sizningcha nima uchun? Ovoz bering — javobni birozdan keyin birga bilib olamiz.</Mentor>
+        <MentorNote>O'quvchilar ovoz berib belgilashadi — siz faqat kuzatasiz. To'g'ri javobni AYTMANG: «birozdan keyin birga bilib olamiz» deb qiziqishni saqlang. 2 daqiqadan oshirmang.</MentorNote>
         <div className="hook-menu fade-up delay-1">
           {HOOK_OPTS.map((o, i) => {
             const on = picked === i;
@@ -837,7 +871,6 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
             <p className="mshake-cap">{isMentor ? "Sinf ovozi — stakanlar to'lgani sari sabab aniqlashadi. To'g'ri javobni hali ochmang." : "Ovozingiz qabul qilindi! Haqiqiy sabab kutganingizdan boshqacharoq — birozdan keyin birga bilib olamiz. 😉"}</p>
           </div>
         )}
-        <MentorNote>Ovozdan keyin to'g'ri javobni AYTMANG — «birozdan keyin birga bilib olamiz» deb qiziqishni saqlang. Gapirish 2 daqiqadan oshmasin.</MentorNote>
       </div>
     </Stage>
   );
@@ -855,7 +888,7 @@ const Screen1 = ({ screen, onNext, onPrev }) => (
   <Stage eyebrow="Maqsad" screen={screen} mentorStatic navContent={<><NavBack onPrev={onPrev} /><NavNext label="Boshlaymiz →" onClick={onNext} /></>}>
     <div className="screen" style={{ gap: 'clamp(14px,2.2vw,20px)' }}>
       <div className="head"><h2 className="title h-title fade-up">Bugun dars oxirida sizda <span className="italic" style={{ color: T.accent }}>nimalarga</span> erishasiz?</h2></div>
-      <Mentor>Bugun o'z loyihangiz uchun 3 ta <b style={{ color: T.ink }}>User Story</b> — foydalanuvchi hikoyasi yozasiz. Hikoya — «kimga nima kerak va nima uchun»ni aytadigan bitta gap. Qarang: kartalar hozir ko'z oldingizda to'ladi — dars oxirida xuddi shunday uchtasini o'zingiz yozgan bo'lasiz.</Mentor>
+      <Mentor>Bugun loyihangizga 3 ta <b style={{ color: T.ink }}>User Story</b> — «kimga nima kerak va nima uchun»ni aytadigan bitta gap — yozasiz. Qarang, kartalar hozir ko'z oldingizda to'ladi.</Mentor>
       <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
         {DEMO_STORIES.map((s, i) => (
           <div key={i} className="story-silo demo-card" style={{ '--cd': `${0.2 + i * 0.18}s` }}>
@@ -872,8 +905,7 @@ const Screen1 = ({ screen, onNext, onPrev }) => (
           </div>
         ))}
       </div>
-      <p className="silo-cap">✨ Xuddi shunday — bugun sizning kartalaringiz ham birma-bir to'ladi.</p>
-      <div className="takeaway fade-up delay-2"><span className="ta-bulb">🎯</span><p className="ta-h">Bu 3 karta — bugungi darsning tayyor natijasi.</p><p className="ta-sub">Keyingi darsda har komponentni aynan shu hikoyalardan tanlaymiz</p></div>
+      <div className="takeaway fade-up delay-2"><span className="ta-bulb">🎯</span><p className="ta-h">Dars oxirida sizning 3 kartangiz ham xuddi shunday to'ladi.</p><p className="ta-sub">Keyingi darsda har komponentni aynan shu hikoyalardan tanlaymiz</p></div>
     </div>
   </Stage>
 );
@@ -898,9 +930,9 @@ const Screen2 = ({ screen, onNext, onPrev }) => {
       <div className="screen" style={{ gap: 'clamp(14px,2.2vw,20px)' }}>
         <div className="proj-q fade-up">
           <span className="proj-q-lbl">🗣️ Sinfga savol</span>
-          <p className="proj-q-body">Kecha ishlatgan bitta ilovangizni ayting — uni <b>nima uchun</b> ochdingiz? (harakatni emas, <b>sabab</b>ini)</p>
+          <p className="proj-q-body">Kecha ishlatgan bitta ilovangizni <b>nima uchun</b> ochdingiz? (harakatni emas, <b>sabab</b>ini ayting)</p>
         </div>
-        <Mentor>«Telegramni ochdim» — bu harakat; bizga <b style={{ color: T.ink }}>sabab</b> kerak: «do'stim bilan gaplashish uchun». Quyida o'zingiz mashq qiling.</Mentor>
+        <Mentor>«Telegramni ochdim» — harakat; bizga <b style={{ color: T.ink }}>sabab</b> kerak: «do'stim bilan gaplashish uchun».</Mentor>
         <div className="s2sort fade-up delay-1">
           <span className="flow-label">Har bo'lak — harakatmi yoki sabab?</span>
           {S2_FRAGS.map((f, i) => {
@@ -915,12 +947,16 @@ const Screen2 = ({ screen, onNext, onPrev }) => {
               </div>
             );
           })}
-          {allSorted && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>✅ Harakat — <b>nima qildingiz</b>; sabab — <b>nima uchun</b>. Hikoyaning yuragi — aynan sabab.</p></div>}
         </div>
-        <div className="ex-card fade-up delay-2">
-          <span className="ex-lbl">🚕 Mana to'liq hikoya</span>
-          <p className="ex-body">«Men <b>kechikayotgan o'quvchi</b> sifatida, <b>taksini oldindan chaqirish</b>ni xohlayman, <b>birinchi darsga ulgurish</b> uchun.»</p>
-        </div>
+        {allSorted && (
+          <>
+            <div className="done-mini fade-step">✅ Ajratdingiz! <span className="dm-sub">Hikoyaning yuragi — sabab</span></div>
+            <div className="ex-card fade-step">
+              <span className="ex-lbl">🚕 Sabab qo'shilsa, mana bunday TO'LIQ hikoya chiqadi</span>
+              <p className="ex-body">«Men <b>kechikayotgan o'quvchi</b> sifatida, <b>taksini oldindan chaqirish</b>ni xohlayman, <b>birinchi darsga ulgurish</b> uchun.»</p>
+            </div>
+          </>
+        )}
       </div>
     </Stage>
   );
@@ -967,7 +1003,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow="Retsept" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? 'Davom etish' : 'Uch bo\'lakni joylang'} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(14px,2.2vw,20px)' }}>
         <div className="head"><h2 className="title h-title fade-up">Hikoya retseptini o'zingiz <span className="italic" style={{ color: T.accent }}>tuza olasizmi</span>?</h2></div>
-        <Mentor>Har User Story bitta retsept bilan tayyorlanadi: uch masalliq — <b style={{ color: T.ink }}>«Men [KIM] sifatida, [NIMA]ni xohlayman, [NATIJA] uchun»</b>. Bittasi tushib qolsa, hikoya «xom» chiqadi. Pastdan bo'lakni tanlab, o'z joyiga bosing — mos kelmasa slot silkinadi, qayta urinasiz.</Mentor>
+        <Mentor>Har User Story bitta retsept: uch masalliq — <b style={{ color: T.ink }}>«Men [KIM] sifatida, [NIMA]ni xohlayman, [NATIJA] uchun»</b>. Bittasi tushib qolsa, hikoya «xom» chiqadi.</Mentor>
         <div className="formula-line fade-up delay-1">
           <span className="fw">Men</span>
           {SLOT_META.map((s, i) => (
@@ -989,7 +1025,12 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             return <button key={idx} className={`frag-chip ${used ? 'used' : ''} ${st.sel === idx ? 'sel' : ''}`} disabled={used} onClick={() => pickChip(idx)}>{f.txt}</button>;
           })}
         </div>
-        {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>✅ Retsept to'liq! Endi ko'rasiz: <b>NATIJA</b> — «taksi chaqirish» emas, «darsga ulgurish». Foyda harakatdan boshqa narsa.</p><button className="btn-soft" style={{ marginTop: 10 }} onClick={reset}>↻ Qaytadan</button></div>}
+        {done && (
+          <div className="fade-step" style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
+            <div className="done-mini">✅ Retsept to'liq! <span className="dm-sub">NATIJA — «darsga ulgurish», ya'ni foyda ≠ harakat</span></div>
+            <button className="btn-soft" onClick={reset}>↻ Qaytadan</button>
+          </div>
+        )}
       </div>
     </Stage>
   );
@@ -1040,12 +1081,15 @@ const StoryMiniEditor = ({ n, data, onChange }) => {
   );
 };
 const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
+  const gate5 = useContext(LiveGateCtx) || {};
+  const isMentor5 = !!(gate5.live && gate5.live.mode === 'mentor');
   const [st, setSt] = useState(() => {
     const saved = readStories();
     if (saved && saved.length >= 2) return saved.slice(0, 2).map(s => ({ kim: s.kim || '', nima: s.nima || '', natija: s.natija || '' }));
     return storedAnswer?.stories || [{ kim: '', nima: '', natija: '' }, { kim: '', nima: '', natija: '' }];
   });
-  const bothFull = st.every(s => validateStory(s.kim, s.nima, s.natija).full);
+  const fulls = st.map(s => validateStory(s.kim, s.nima, s.natija).full);
+  const bothFull = fulls.every(Boolean);
   const setStory = (idx, data) => {
     const next = st.map((s, i) => i === idx ? data : s);
     setSt(next);
@@ -1058,12 +1102,17 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     writeStories(merged);
   };
   return (
-    <Stage eyebrow="Amaliyot · o'z loyiham" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!bothFull} label={bothFull ? 'Davom etish' : '2 hikoyani to\'ldiring'} onClick={onNext} /></>}>
+    <Stage eyebrow="Amaliyot · o'z loyiham" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!bothFull && !isMentor5} label={bothFull || isMentor5 ? 'Davom etish' : !fulls[0] ? "① 1-hikoyani to'ldiring" : "② 2-hikoyani to'ldiring"} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
         <div className="head"><h2 className="title h-title fade-up">Loyihangizni birinchi bo'lib <span className="italic" style={{ color: T.accent }}>kim</span> ochadi?</h2></div>
-        <Mentor>O'ylab ko'ring: loyihangizni ochgan o'sha odam nima qilmoqchi bo'ladi va bundan qanday foyda oladi? Shu uch javob — bitta tayyor hikoya. Quyida dastlabki ikkitasini to'ldiring: uch maydon ham to'lganda karta o'zi yashil yonadi.</Mentor>
+        <Mentor>O'sha odam nima qilmoqchi — va bundan qanday foyda oladi? Shu javoblar bilan 2 kartani to'ldiring.</Mentor>
+        <MentorWatchLine>Bu amaliyotni <b>o'quvchilar</b> bajaradi — siz kuzatasiz; «Davom etish» siz uchun ochiq.</MentorWatchLine>
+        <TaskSpec items={[
+          { done: fulls[0], label: "1-hikoya to'liq", detail: "KIM + NIMA + NATIJA — uchala maydon to'lsa, karta yashil yonadi." },
+          { done: fulls[1], label: "2-hikoya to'liq", detail: "Boshqa foydalanuvchi turini o'ylang — masalan mehmon emas, mentor." },
+        ]} />
         {st.map((s, i) => <StoryMiniEditor key={i} n={i + 1} data={s} onChange={(d) => setStory(i, d)} />)}
-        {bothFull && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>✅ Ikkala hikoya to'liq! Bu 2 hikoya ustaxonaga ko'chadi — u yerda sayqallab, uchinchisini qo'shasiz.</p></div>}
+        {bothFull && <div className="done-mini fade-step">✅ Ikkalasi tayyor <span className="dm-sub">— ustaxonaga ko'chdi, u yerda uchinchisini qo'shasiz</span></div>}
       </div>
     </Stage>
   );
@@ -1139,12 +1188,20 @@ const ScreenStoryWorkshop = ({ screen, storedAnswer, onAnswer, onNext, onPrev })
   const kinds = new Set(cards.map(c => c.kim.trim().toLowerCase()).filter(Boolean));
   const twoKinds = kinds.size >= 2;
   const realResult = cards.every(c => { const v = validateStory(c.kim, c.nima, c.natija); return v.full ? c.natija.trim().toLowerCase() !== c.nima.trim().toLowerCase() : true; }) && allFull;
+  // TOPSHIRIQ-PANEL chiplari: yorliq ≤4 so'z, batafsili chip ichida (default yopiq)
   const checks = [
-    { ok: allFull, label: "Har 3 hikoya to'liq retseptda (KIM + NIMA + NATIJA)" },
-    { ok: twoKinds, label: "Kamida 2 xil foydalanuvchi turi" },
-    { ok: realResult, label: "Har NATIJA real foyda (harakatning takrori emas)" },
+    { ok: allFull, label: "3/3 hikoya to'liq", detail: "Har kartada KIM + NIMA + NATIJA — uchala maydon to'lgan bo'lsin." },
+    { ok: twoKinds, label: '2 xil KIM', detail: "Kamida ikki kartada foydalanuvchi turi har xil bo'lsin — masalan «mehmon» va «mentor»." },
+    { ok: realResult, label: 'NATIJA ≠ harakat', detail: "NATIJA — real foyda. ❌ «saytga kirish uchun» (takror) → ✅ «buyurtmamni tez topish uchun»." },
   ];
   const passed = checks.every(c => c.ok);
+  const isMentorW = !!(live && live.mode === 'mentor');
+  // 30-qonun: qulflangan tugma AYNAN qaysi shart qolganini aytadi
+  const navLabel = done || isMentorW ? 'Davom etish'
+    : !allFull ? "① Hikoyalarni to'ldiring"
+    : !twoKinds ? '② 2 xil KIM kiriting'
+    : !realResult ? '③ NATIJAni foydaga aylantiring'
+    : '«✅ Bajardim»ni bosing';
   const persist = (cards) => writeStories(cards);
   const setCard = (i, patch) => setSt(prev => { const cards = prev.cards.map((c, k) => k === i ? { ...c, ...patch } : c); persist(cards); return { ...prev, cards }; });
   const setStar = (i, star) => setSt(prev => { const cards = prev.cards.map((c, k) => k === i ? { ...c, star } : c); persist(cards); return { ...prev, cards }; });
@@ -1155,10 +1212,11 @@ const ScreenStoryWorkshop = ({ screen, storedAnswer, onAnswer, onNext, onPrev })
     if (live && live.mode === 'student') live.submitAnswer(PRACTICE_BASE + screen, 'practice', 0, true, 0);
   };
   return (
-    <Stage eyebrow="Mustaqil ish · ustaxona ✍️" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? 'Davom etish' : 'Avval bajaring'} onClick={onNext} /></>}>
+    <Stage eyebrow="Mustaqil ish · ustaxona ✍️" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !isMentorW} label={navLabel} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
         <div className="head"><h2 className="title h-title fade-up">3 hikoyangiz tekshiruvdan <span className="italic" style={{ color: T.accent }}>o'ta oladimi</span>?</h2></div>
-        <Mentor>Oldin yozgan 2 hikoyangiz shu yerga ko'chib keldi. Ularni bir ko'zdan kechiring-da, <b style={{ color: T.ink }}>uchinchi hikoyani</b> qo'shing. Ikkita shartga e'tibor bering: foydalanuvchi turlari har xil bo'lsin, NATIJA esa harakatning takrori emas — real foyda. O'ngdagi ro'yxat 3/3 bo'lsa, «Bajardim» ochiladi.</Mentor>
+        <Mentor>Oldingi 2 hikoyangiz shu yerga ko'chib keldi — sayqallang va <b style={{ color: T.ink }}>uchinchisini</b> qo'shing. Shartlar — o'ngdagi 🎯 panelda.</Mentor>
+        <MentorWatchLine>Bu mustaqil ishni <b>o'quvchilar</b> bajaradi — «✍️ yozib bo'lganlar» chiplarida kuzatasiz; «Davom etish» siz uchun ochiq.</MentorWatchLine>
         <div className="split">
           <Col>
             {cards.map((c, i) => {
@@ -1184,10 +1242,7 @@ const ScreenStoryWorkshop = ({ screen, storedAnswer, onAnswer, onNext, onPrev })
             })}
           </Col>
           <Col>
-            <div className="checklist fade-up">
-              <div className="card-lbl" style={{ color: passed ? T.success : T.accent }}>📋 Ro'yxat — {checks.filter(c => c.ok).length}/3</div>
-              {checks.map((c, i) => <StoryCheck key={i} ok={c.ok} label={c.label} />)}
-            </div>
+            <TaskSpec sticky items={checks.map(c => ({ done: c.ok, label: c.label, detail: c.detail }))} />
             <div className={`yordam ${helpOpen ? 'open' : ''} fade-up`}>
               <button className="yordam-toggle" onClick={() => setSt(prev => ({ ...prev, helpOpen: !prev.helpOpen }))}>💡 Yordam kerakmi? {helpOpen ? '▾' : '▸'}</button>
               {helpOpen && <div className="yordam-body">
@@ -1205,9 +1260,9 @@ const ScreenStoryWorkshop = ({ screen, storedAnswer, onAnswer, onNext, onPrev })
             </div>
             <MentorPracticeStats live={live} screen={screen} label="✍️ 3 hikoyani yozib bo'lganlar" />
             <button className={`lp-done-btn ${done ? 'is-done' : ''}`} disabled={done || !passed} onClick={complete}>
-              {done ? '✓ Bajarildi — ustozni kuting' : passed ? '✅ Bajardim' : `Ro'yxat 3/3 bo'lsin (${checks.filter(c => c.ok).length}/3)`}
+              {done ? '✓ Bajarildi — ustozni kuting' : passed ? '✅ Bajardim' : `🎯 Topshiriq: ${checks.filter(c => c.ok).length}/3`}
             </button>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Zo'r! 3 hikoyangiz tayyor — bu loyihangizning poydevori. Ustoz tekshirib, keyingi qadamga o'tkazadi.</p></div>}
+            {done && <div className="done-mini fade-step">✅ 3 hikoya tayyor <span className="dm-sub">— loyihangiz poydevori</span></div>}
           </Col>
         </div>
         <MentorNote>3/3 = o'tdi · 2/3 = joyida to'ldiradi · kam = YORDAM savollari bilan qaytadan. Sinf bo'ylab yurib nuqtali yordam bering.</MentorNote>
@@ -1228,7 +1283,7 @@ const BrokenStory = ({ text, tag, lead, cue }) => (
 const Screen7 = (props) => (
   <QuestionScreen {...props} eyebrow="Tekshiruv · hikoya 1" scope="module-mikro" renderMode="hotspot"
     question={<BrokenStory tag="Hikoya 1/3"
-      lead="Bir o'quvchi o'z loyihasiga shu hikoyani yozdi:"
+      lead="O'quvchi loyihasiga shu hikoyani yozdi:"
       text="Men foydalanuvchi sifatida, qizil tugma xohlayman"
       cue="Uch bo'lakdan qaysi biri buzuq? Ustiga bosing." />}
     questionText="Buzuq hikoya 1: qizil tugma"
@@ -1241,7 +1296,7 @@ const Screen7 = (props) => (
 const Screen8 = (props) => (
   <QuestionScreen {...props} eyebrow="Tekshiruv · hikoya 2" scope="module-mikro" renderMode="hotspot"
     question={<BrokenStory tag="Hikoya 2/3"
-      lead="Bu hikoyada uchala bo'lak ham joyida ko'rinadi. Lekin diqqat bilan o'qing:"
+      lead="Uchala bo'lak joyida ko'rinadi — lekin diqqat bilan o'qing:"
       text="Men mehmon sifatida, saytga kirishni xohlayman, saytga kirish uchun"
       cue="Bitta bo'lak oldingi gapni shunchaki takrorlayapti — yangi foyda aytmayapti. Qaysi biri? Ustiga bosing." />}
     questionText="Buzuq hikoya 2: saytga kirish"
@@ -1444,7 +1499,8 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow="Koding · 🛠 kompilyator" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !isMentor} label={done || isMentor ? 'Davom etish' : 'Avval kompilyatorda bajaring'} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
         <div className="head"><h2 className="title h-title fade-up">Retseptni kod ham <span className="italic" style={{ color: T.accent }}>tuza oladimi</span>?</h2></div>
-        <Mentor>Sinfda 3 hikoyani qo'lda yozdingiz — endi shu ishni kichkina kod-asbob qilib beradi. Kompilyatorni oching: <span className="mono">hikoyaYasa</span> funksiyasini to'ldirasiz, hikoyalaringiz o'ngda jonli chiqadi. Uchala shart yashil bo'lsa, darsga qaytib davom etasiz.</Mentor>
+        <Mentor>3 hikoyani qo'lda yozdingiz — endi shu ishni kod qiladi: kompilyatorda <span className="mono">hikoyaYasa</span> funksiyasini to'ldirasiz, hikoyalaringiz jonli chiqadi.</Mentor>
+        <MentorWatchLine>Kodni <b>o'quvchilar</b> yozadi — «🛠 yozib bo'lganlar»da kuzatasiz; «Davom etish» siz uchun ochiq.</MentorWatchLine>
         <div className="split">
           <Col>
             <div className="hc-task fade-up">
@@ -1462,7 +1518,7 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               </div>
             </div>
             <MentorPracticeStats live={live} screen={screen} label="🛠 Kodni yozib bo'lganlar" />
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>✅ Ishladi! Funksiyangiz retseptga solingan to'liq gap qaytardi va 3 hikoyangiz jonli chiqdi.</p></div>}
+            {done && <div className="done-mini fade-step">✅ Ishladi! <span className="dm-sub">— 3 hikoyangiz kod orqali jonli chiqdi</span></div>}
           </Col>
           <Col>
             <div className="kod-launch fade-up delay-1">
@@ -1475,7 +1531,7 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             </div>
           </Col>
         </div>
-        <MentorNote>10 daqiqada ulgurmagan o'quvchi kodni uyda tugatadi — unga UY VAZIFA qisqa versiyada beriladi. Xohlasangiz kompilyatorni ochib, proyektorda yechib ko'rsating.</MentorNote>
+        <MentorNote>10 daqiqada ulgurmagan o'quvchi kodni uyda tugatadi — unga uy-vazifa qisqa versiyada beriladi.</MentorNote>
       </div>
       {open && <PmCompiler initialCode={code} onContinue={finishPractice} onBack={() => setOpen(false)} />}
     </Stage>
@@ -1522,7 +1578,7 @@ const Screen11 = ({ screen, onNext, onPrev }) => {
     <Stage eyebrow="Mustahkamlash · 3 qadam" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext label="Davom etish" onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
         <div className="head"><h2 className="title h-title fade-up">Bugun nima qo'shdingiz — va <span className="italic" style={{ color: T.accent }}>nega</span>?</h2></div>
-        <Mentor>Dars deyarli tugadi — endi o'rgangan narsangiz o'z og'zingizdan chiqsin. Pastdagi uch qadamni tartib bilan bajaring: avval sherigingizga aytasiz, keyin bir qator yozasiz, oxirida butun sinf bilan javob berasiz.</Mentor>
+        <Mentor>Dars deyarli tugadi — endi o'rganganingizni <b style={{ color: T.ink }}>o'zingiz takrorlang</b>: pastdagi uch qadam, tartib bilan.</Mentor>
         <div className="rcp-flow">
           <div className="rcp-step fade-up delay-1">
             <div className="rcp-step-h"><span className="rcp-n">1</span><div><span className="rcp-t">🗣 Sherigingizga ayting</span><span className="rcp-s">«Bugun loyihamga ... qo'shdim, chunki ...» — shu qolipda gapiring</span></div></div>
@@ -2496,7 +2552,7 @@ export default function PmUserStoryLesson({ lang: langProp, onFinished }) {
         .proj-q-body { font-size: clamp(16px,2.3vw,20px); font-weight: 500; color: ${T.ink}; line-height: 1.4; margin: 0; }
         .proj-q.broken { border-left: none; background: repeating-linear-gradient(${T.paper}, ${T.paper} 33px, ${T.line}55 33px, ${T.line}55 34px); box-shadow: 0 12px 30px -12px rgba(${T.shadowBase},0.22), inset 0 0 0 1.5px ${T.line}; position: relative; }
         .proj-q.broken::before { content: "📄"; position: absolute; top: 12px; right: 14px; font-size: 18px; opacity: 0.4; }
-        .broken-story { font-family: 'Source Serif 4', serif; font-size: clamp(18px,2.8vw,24px); color: ${T.ink}; margin: 0; line-height: 1.42; }
+        .broken-story { font-family: 'Source Serif 4', serif; font-size: clamp(20px,3.2vw,27px); color: ${T.ink}; margin: 0; line-height: 1.42; }
         .broken-cue { font-size: 13px; color: ${T.ink2}; margin: 0; font-weight: 600; }
         .ex-card { background: ${T.successSoft}; border-radius: 14px; padding: clamp(14px,2.2vw,18px); display: flex; flex-direction: column; gap: 10px; }
         .ex-lbl { font-family: 'Manrope'; font-weight: 800; font-size: 11.5px; letter-spacing: 0.06em; text-transform: uppercase; color: ${T.success}; }
@@ -2592,11 +2648,6 @@ export default function PmUserStoryLesson({ lang: langProp, onFinished }) {
         .swcard-most { margin-left: auto; font-family: 'Manrope'; font-weight: 700; font-size: 11.5px; padding: 5px 12px; border-radius: 99px; border: none; background: ${T.bg}; color: ${T.ink2}; cursor: pointer; box-shadow: inset 0 0 0 1.5px ${T.line}; }
         .swcard-most.on { background: ${T.accentSoft}; color: ${T.accent}; box-shadow: inset 0 0 0 1.5px ${T.accent}; }
 
-        /* === RO'YXAT / CHECKLIST === */
-        .checklist { background: ${T.paper}; border-radius: 14px; padding: 15px 17px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.14); display: flex; flex-direction: column; gap: 9px; }
-        .stcheck { display: flex; align-items: center; gap: 10px; font-size: clamp(13px,1.5vw,14.5px); color: ${T.ink2}; font-weight: 500; }
-        .stcheck-box { width: 22px; height: 22px; border-radius: 7px; flex-shrink: 0; box-shadow: inset 0 0 0 2px ${T.ink3}55; display: inline-flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 800; color: #fff; transition: all 0.2s; }
-        .stcheck.on { color: ${T.ink}; } .stcheck.on .stcheck-box { background: ${T.success}; box-shadow: none; animation: lp-check-pop 0.34s cubic-bezier(.3,1.5,.5,1); }
         @keyframes lp-check-pop { 0% { transform: scale(0.7); } 45% { transform: scale(1.3); } 100% { transform: scale(1); } }
 
         /* === YORDAM (ochiladigan) === */
@@ -2605,6 +2656,34 @@ export default function PmUserStoryLesson({ lang: langProp, onFinished }) {
         .yordam-body { padding: 0 15px 13px; display: flex; flex-direction: column; gap: 7px; }
         .yordam-body p { font-size: 13.5px; color: ${T.ink2}; margin: 0; } .yordam-body b { color: ${T.ink}; }
         .yordam-hint { color: ${T.accent} !important; font-weight: 700; }
+
+        /* === 🎯 TOPSHIRIQ-PANEL (TaskSpec) — shartlarning yagona vizual tili === */
+        .tspec { background: ${T.paper}; border-radius: 14px; padding: 12px 14px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.14); display: flex; flex-direction: column; gap: 9px; border-left: 3px solid ${T.accent}; transition: border-color 0.3s; }
+        .tspec.all { border-left-color: ${T.success}; }
+        .tspec.sticky { position: sticky; top: 8px; z-index: 6; }
+        .tspec-h { display: flex; align-items: center; justify-content: space-between; }
+        .tspec-ttl { font-family: 'Manrope'; font-weight: 800; font-size: 11.5px; letter-spacing: 0.07em; text-transform: uppercase; color: ${T.accent}; }
+        .tspec-cnt { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 12.5px; color: ${T.ink3}; background: ${T.bg}; border-radius: 99px; padding: 2px 10px; transition: all 0.25s; }
+        .tspec-cnt.ok { color: #fff; background: ${T.success}; }
+        .tspec-chips { display: flex; flex-wrap: wrap; gap: 7px; }
+        .tspec-chip { display: inline-flex; align-items: center; gap: 7px; background: ${T.bg}; border: none; border-radius: 99px; padding: 6px 12px 6px 6px; box-shadow: inset 0 0 0 1.5px ${T.line}; cursor: pointer; transition: background 0.25s, box-shadow 0.25s; font-family: 'Manrope'; min-width: 0; }
+        .tspec-chip.open { box-shadow: inset 0 0 0 1.5px ${T.accent}66; }
+        .tspec-chip.on { background: ${T.successSoft}; box-shadow: inset 0 0 0 1.5px ${T.success}55; animation: hc-cond-pop 0.4s cubic-bezier(.34,1.5,.4,1); }
+        .tspec-box { width: 21px; height: 21px; border-radius: 50%; flex-shrink: 0; box-shadow: inset 0 0 0 2px ${T.ink3}55; display: inline-flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-size: 11.5px; font-weight: 800; color: ${T.ink3}; transition: all 0.2s; }
+        .tspec-chip.on .tspec-box { background: ${T.success}; color: #fff; box-shadow: none; animation: lp-check-pop 0.34s cubic-bezier(.3,1.5,.5,1); }
+        .tspec-lbl { font-weight: 700; font-size: clamp(12px,1.4vw,13.5px); color: ${T.ink2}; overflow-wrap: anywhere; }
+        .tspec-chip.on .tspec-lbl { color: ${T.ink}; }
+        .tspec-car { font-size: 10px; color: ${T.ink3}; flex-shrink: 0; }
+        .tspec-detail { margin: 0; font-size: 12.5px; line-height: 1.5; color: ${T.ink2}; background: ${T.accentSoft}; border-radius: 9px; padding: 8px 11px; overflow-wrap: anywhere; min-width: 0; }
+        @media (prefers-reduced-motion: reduce) { .tspec-chip.on, .tspec-chip.on .tspec-box { animation: none; } }
+
+        /* 31-qonun: «kim bajaradi» yozuvi (faqat mentor ko'radi) */
+        .mwatch { margin: 0; font-family: 'Manrope'; font-weight: 600; font-size: 12.5px; line-height: 1.5; color: ${T.ink2}; background: ${T.blueSoft}; border-left: 3px solid ${T.blue}; border-radius: 9px; padding: 8px 12px; align-self: flex-start; }
+        .mwatch b { color: ${T.ink}; }
+
+        /* muvaffaqiyat = ixcham chip (paragraf-ramka EMAS) */
+        .done-mini { display: inline-flex; align-items: center; gap: 7px; align-self: flex-start; background: ${T.successSoft}; color: ${T.success}; font-family: 'Manrope'; font-weight: 800; font-size: clamp(12.5px,1.5vw,14px); border-radius: 99px; padding: 8px 16px; box-shadow: inset 0 0 0 1.5px ${T.success}44; }
+        .done-mini .dm-sub { font-weight: 600; color: ${T.ink2}; }
 
         /* === HOTSPOT (buzuq bo'laklar) === */
         .hs-parts { justify-content: center; }
@@ -3102,7 +3181,7 @@ export default function PmUserStoryLesson({ lang: langProp, onFinished }) {
         .qz-fx { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
 
         @media (prefers-reduced-motion: reduce) {
-          .stcheck.on .stcheck-box, .lp-done-btn.is-done, .hook-cup { animation: none !important; }
+          .lp-done-btn.is-done, .hook-cup { animation: none !important; }
         }
       `}</style>
       <AchCtx.Provider value={earned}>
