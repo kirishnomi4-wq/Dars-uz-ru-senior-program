@@ -122,6 +122,25 @@ s0 HOOK (keys-savol, ovoz-berish, vizual imzo-sahna) → s1 MAQSAD (JONLI natija
     - **(e) Qulf-tugma 30-qonun bilan juft:** dinamik yorliq TaskSpec bosqichlariga mos («① 1-hikoyani to'ldiring» → «② 2 xil KIM kiriting»).
     - Mas'ul: quruvchi TaskSpec'ni o'rnatadi; dizayn vizualni P0 bilan piksel-mos qiladi; metodist chip-yorliq ≤4 so'z va pufak-diyetani ta'minlaydi; tekshiruvchi har yozish-ekranda (a)–(e) ni BIRMA-BIR yuritadi.
 
+**2026-07-23 UCH-ETALON CHUQUR-TAHLIL QONUNLARI (33–36, PmUserStory/PmJtbd/PmMetrics'da joriy):**
+
+33. **KEYS-SLAYD BASHORAT BILAN OCHILADI:** keys-slaydlar sof o'qish bo'lib qolmaydi — kamida 2 kalit-slayd oldidan mikro-bashorat («Sizningcha…?» 3-4 chip, tikish → slayd ochiladi). BALL YO'Q va bu ochiq yoziladi («Ball yo'q — taxmin qiling»); topmaganga QIZIL EMAS — neytral indigo («Sizning taxminingiz: X»), topganга yashil ✓. Qulf-yorliq 30-qonunga mos («Avval taxminingizni tanlang»); mentor bypass. Yakuniy slaydda **hook-payoff shaxsiylashadi**: s0 ovoz-tanlovi lesson-scoped localStorage'da (`pm-<mNdK>-hook-choice`) saqlanib, reveal'da qaytariladi («Dars boshida siz "X" degandingiz — asl sir esa…»; deyarli topganga maxsus maqtov); tanlov yo'q bo'lsa umumiy matn fallback. Namuna: P0 `kp-bet`/`HOOK_CHOICE_KEY`.
+34. **TEST-EKRAN REVEAL BILAN TUGAYDI (2026-07-23 jonli-ko'rikda BEKOR qilingan g'oya):** scored test-ekranga reveal'dan keyin qo'shimcha unscored «endi o'zingiz tuzating/hisoblang» qadami QO'SHILMAYDI — foydalanuvchi jonli sinovda rad etdi («testni yechsa nimadir chiqdi — olib tashlaymiz»). Test = savol → javob → izoh → davom; tuzatish-mashqlar faqat amaliyot/ustaxona ekranlarida yashaydi. (Koding-ekrandagi jonli hisob-vidjet bunga kirmaydi — u qoladi.)
+35. **ARTEFAKT-STRIP (to'planish doskasi):** dars metaforasidan kelib chiqqan ixcham (~40-50px, bosilsa ochiladigan) fixed-strip amaliyot/ustaxona/koding/recap/uy-vazifa ekranlarida artefakt-progressni jonli ko'rsatadi (mavjud storage'dan o'qiydi + write-joyda custom event; YANGI storage yo'q); test/arena/podiumда ko'rinmaydi, mentorda yashirin bo'lishi mumkin (proyektor tozaligi), overlay'lar (kompilyator/arena) undan baland z-index'da. Har darsda O'Z metafora-ko'rinishi (23-qonun ruhi): daftar/doska/pult — P0 klonlanmaydi. Koding-checklist va uy-vazifa ro'yxati REAL holatdan o'qiydi — qattiq `ok={false}` statik-yolg'on TAQIQ.
+36. **SOLO-REJIM O'LIK NUQTASIZ:** sinf-mexanika ekranlari (qo'l-ko'tarish savollari, podium) jonli-sessiyasiz inert qolmaydi — solo'da savollar o'z-o'zini tekshirish kartalariga aylanadi (savol → o'ylab bos → javob ochiladi; kamida bittasi o'quvchining REAL artefakt-holatini jonli o'qiydi), podium shaxsiy natija-ekraniga (ScoreRing + nishonlar + artefakt-holat). Jonli-rejim markup'i aynan saqlanadi. Koding-ekranda honor-checkbox yolg'iz yurmasin — kamida bitta band REAL mikro-signalga bog'lanadi (jonli hisob-vidjet, prop-ov topshirig'i) va avto-✓ bo'ladi; ball-rels o'zgarmaydi.
+
+**2026-07-23 JONLI-KO'RIK QONUNLARI (37–40, JTBD/UserStory/Metrics Vercel-sinov feedback'i):**
+
+37. **TIL-DIYETA (o'quvchi bir qarashda tushunsin):**
+    - **(a) «chip» so'zi o'quvchi-matnda TAQIQ** — «tugma» / «variant» / «karta» deyiladi (CSS-klass/kod-identifikatorga tegilmaydi).
+    - **(b) Bosh-atama charchatmaydi:** darsning markaziy atamasi (ish, hikoya, metrika…) HAR gapda takrorlanmaydi — birinchi kirishda sodda izoh, keyin sinonim-almashinuv (vazifa / natija / nima uchun kerak). «ish ish ish» saboqi: test-variantlar va karta-matnlarda atama faqat zarur joyda.
+    - **(c) Fe'l-kalka TAQIQ:** «o'zini … deb quradi» kabi g'aliz qurilmalar tabiiy o'zbekchaga yoziladi («aslida nima sotadi?», «qanday joy deb ko'rsatadi?»).
+    - **(d) Metafora-so'z o'zi tushunarsiz bo'lsa — hikoya bilan:** «TESHIK = ish» kabi quruq tenglama o'rniga sodda hayotiy gap («odamga drel emas — devorga rasm osish kerak»).
+    - **(e) Qo'shimchali ko'rsatmalar to'g'ri:** «…Dan deb yozing» emas — «sinfdoshingizdan», «ota-onangizdan» kabi to'g'ri qo'shimcha bilan.
+38. **BOSHQA DARSGA HAVOLA TAQIQ:** boshqa darsning keysi/metaforasi (milkshake, M3…) joriy dars matnida tilga olinmaydi — done-mini'da ham, MentorNote'da ham. Har dars o'z ichida to'liq.
+39. **ARTEFAKT-STRIP VAQTI va NOMI:** strip artefakt REAL yozila boshlanadigan ekrandan chiqadi (bo'sh 0/N holatda oldinroq ko'rinib chalg'itmaydi); nomi o'quvchiga sodda («Kartalarim», «Hikoyalarim» — ichki metafora-nom «Yollash doskasi» emas).
+40. **KODING-PREVIEW 3-HOLAT SINOVI + NISHON-HALOLLIK:** o'quvchi-ma'lumotidan render bo'ladigan har preview bo'sh/yarim/to'liq holatda tekshiriladi — bo'sh-singan karta (muammo.png saboqi) TAQIQ, storage bo'sh bo'lsa chiroyli namuna-fallback. Nishonlar: 4 nishonning HAR BIRI real bajariladigan harakat-triggerga ega («hammasini qildim — badge chiqmadi» = NUQSON); tekshiruvchi ACHIEVEMENTS↔ACH_TRIGGERS xaritasini sanaydi.
+
 ## 5. ✅ QABUL-CHECKLIST
 `pm-qabulchi` 20-bandi (rol faylida) + rollar DoD. Yakuniy jonli-sinov QO'LDA: yangi PIN + 2 o'quvchi + MENTOR-2026 → podium/arena 0 EMAS.
 

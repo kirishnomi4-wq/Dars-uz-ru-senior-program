@@ -24,3 +24,4 @@ dist-ssr
 *.sw?
 pipeline-live.js
 .claude/supabase/office-cloud.json
+dist-pm
