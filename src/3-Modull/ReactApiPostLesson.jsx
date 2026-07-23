@@ -2317,7 +2317,6 @@ function AchCelebrate({ ach, onDone }) {
           ))}
         </div>
         <div className="acu-txt">
-          <span className="acu-eyebrow">{tr({ uz: '🏅 Nishon ochildi!', ru: '🏅 Награда открыта!' })}</span>
           <span className="acu-name">{tr(ach.name)}</span>
           {ach.desc && <span className="acu-desc">{tr(ach.desc)}</span>}
         </div>

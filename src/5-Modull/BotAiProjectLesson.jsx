@@ -1500,7 +1500,6 @@ function AchCelebrate({ ach, onDone }) {
           ))}
         </div>
         <div className="acu-txt">
-          <span className="acu-eyebrow">🏅 Nishon ochildi!</span>
           <span className="acu-name">{ach.name}</span>
           {ach.desc && <span className="acu-desc">{ach.desc}</span>}
         </div>

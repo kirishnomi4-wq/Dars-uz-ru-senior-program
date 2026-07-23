@@ -1523,9 +1523,9 @@ const MentorPracticeStats = ({ live, screen }) => {
   const waiting = data.players ? data.players.filter(p => !data.doneIds.has(p.id)) : [];
   return (
     <div className="lp-mstats fade-up">
-      <div className="card-lbl" style={{ color: T.blue }}>👀 Kim bajardi — <b>{doers.length}</b>/{total}</div>
+      <div className="card-lbl" style={{ color: T.blue }}>{tr({ uz: '👀 Kim bajardi —', ru: '👀 Кто выполнил —' })} <b>{doers.length}</b>/{total}</div>
       {data.players === null ? (
-        <p className="small" style={{ color: T.ink3, margin: 0, fontStyle: 'italic' }}>Jonli darsda bajargan o'quvchilar shu yerda chiqadi.</p>
+        <p className="small" style={{ color: T.ink3, margin: 0, fontStyle: 'italic' }}>{tr({ uz: "Jonli darsda bajargan o'quvchilar shu yerda chiqadi.", ru: 'В живом уроке здесь появятся выполнившие ученики.' })}</p>
       ) : (
         <>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
@@ -1533,7 +1533,7 @@ const MentorPracticeStats = ({ live, screen }) => {
             {waiting.slice(0, 10).map(p => <span key={p.id} className="lp-doer">⏳ {p.nickname}</span>)}
             {waiting.length > 10 && <span className="lp-doer">+{waiting.length - 10}</span>}
           </div>
-          {total === 0 && <p className="small" style={{ color: T.ink3, margin: 0, fontStyle: 'italic' }}>O'quvchilar kutilmoqda…</p>}
+          {total === 0 && <p className="small" style={{ color: T.ink3, margin: 0, fontStyle: 'italic' }}>{tr({ uz: "O'quvchilar kutilmoqda…", ru: 'Ждём учеников…' })}</p>}
         </>
       )}
     </div>
@@ -1548,39 +1548,39 @@ function ScreenLivePractice({ title, task, checklist, screen, storedAnswer, onAn
   const complete = () => {
     if (done) return;
     setDone(true);
-    onAnswer(screen, { stage: 'practice', screenIdx: screen, practice: title, solved: true, correct: true, picked: true });
+    onAnswer(screen, { stage: 'practice', screenIdx: screen, practice: (title && title.uz) || title, solved: true, correct: true, picked: true }); // UZ-RU: payload'da doim UZ-etalon saqlanadi
     if (_live && _live.mode === 'student') _live.submitAnswer(PRACTICE_BASE + screen, 'practice', 0, true, 0);
   };
   return (
-    <Stage eyebrow="Amaliyot · VS Code" screen={screen} scrollSignal={done} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? 'Davom etish' : 'Avval bajaring'} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Amaliyot · VS Code', ru: 'Практика · VS Code' })} screen={screen} scrollSignal={done} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Avval bajaring', ru: 'Сначала выполните' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{title}</h2></div>
-        <Mentor>Bu topshiriqni <b style={{ color: T.ink }}>o'z kompyuteringizda</b> — VS Code'da bajaring. Har bosqichni bajarib, belgilab boring. Tugagach <b style={{ color: T.ink }}>«Bajardim»</b> tugmasini bosing — ustoz kuzatib turadi.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr(title)}</h2></div>
+        <Mentor>{tr({ uz: <>Bu topshiriqni <b style={{ color: T.ink }}>o'z kompyuteringizda</b> — VS Code'da bajaring. Har bosqichni bajarib, belgilab boring. Tugagach <b style={{ color: T.ink }}>«Bajardim»</b> tugmasini bosing — ustoz kuzatib turadi.</>, ru: <>Выполните это задание <b style={{ color: T.ink }}>на своём компьютере</b> — в VS Code. Отмечайте каждый шаг по мере выполнения. Когда закончите, нажмите <b style={{ color: T.ink }}>«Выполнил»</b> — наставник наблюдает.</> })}</Mentor>
         <div className="split">
           <Col>
             <div className="lp-task fade-up delay-1">
-              <div className="lp-task-h"><span className="lp-task-badge">TOPSHIRIQ</span></div>
-              <p className="body" style={{ margin: 0, color: T.ink }}>{task}</p>
+              <div className="lp-task-h"><span className="lp-task-badge">{tr({ uz: 'TOPSHIRIQ', ru: 'ЗАДАНИЕ' })}</span></div>
+              <p className="body" style={{ margin: 0, color: T.ink }}>{tr(task)}</p>
             </div>
             <MentorPracticeStats live={_live} screen={screen} />
           </Col>
           <Col>
-            <p className="flow-label">Bosqichlar — belgilab boring</p>
+            <p className="flow-label">{tr({ uz: 'Bosqichlar — belgilab boring', ru: 'Шаги — отмечайте по ходу' })}</p>
             <div className="lp-steps fade-up delay-2">
               {checklist.map((c, i) => {
                 const on = checked.has(i);
                 return (
                   <button key={i} className={`lp-step ${on ? 'on' : ''}`} onClick={() => toggle(i)}>
                     <span className="lp-check">{on ? '✓' : i + 1}</span>
-                    <span className="lp-step-t">{fmtCode(c)}</span>
+                    <span className="lp-step-t">{fmtCode(tr(c))}</span>
                   </button>
                 );
               })}
             </div>
             <button className={`lp-done-btn ${done ? 'is-done' : ''}`} disabled={done} onClick={complete}>
-              {done ? '✓ Bajarildi — ustozni kuting' : '✅ Bajardim'}
+              {done ? tr({ uz: '✓ Bajarildi — ustozni kuting', ru: '✓ Выполнено — дождитесь наставника' }) : tr({ uz: '✅ Bajardim', ru: '✅ Выполнил' })}
             </button>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Zo'r! Vazifani bajardingiz. Ustoz tekshirib, keyingi qadamga o'tkazadi.</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Zo'r! Vazifani bajardingiz. Ustoz tekshirib, keyingi qadamga o'tkazadi.", ru: 'Отлично! Задание выполнено. Наставник проверит и переведёт вас к следующему шагу.' })}</p></div>}
           </Col>
         </div>
       </div>
@@ -1591,40 +1591,40 @@ function ScreenLivePractice({ title, task, checklist, screen, storedAnswer, onAn
 // ===== JONLI PRAKTIKA — o'z loyihaga to'liq lentani ulash. Kod PLATFORMAGA KIRITILMAYDI. =====
 const ScreenFullPipelinePractice = (props) => (
   <ScreenLivePractice {...props}
-    title="O'z loyihangizga to'liq lentani ulang"
-    task="VS Code'da o'z repongizga to'liq beshta nuqtali lentani qo'shing: Yig'ish, Skaner, O'lcham ramkasi, O'rash, Uchirish. Push qiling, GitHub'da lenta yashil bo'lishini kuting, so'ng TABLONI README'ga qo'ying."
+    title={{ uz: "O'z loyihangizga to'liq lentani ulang", ru: 'Подключите полный конвейер к своему проекту' }}
+    task={{ uz: "VS Code'da o'z repongizga to'liq beshta nuqtali lentani qo'shing: Yig'ish, Skaner, O'lcham ramkasi, O'rash, Uchirish. Push qiling, GitHub'da lenta yashil bo'lishini kuting, so'ng TABLONI README'ga qo'ying.", ru: 'В VS Code добавьте в свой репозиторий конвейер из пяти точек: Сборка, Сканер, Габарит-рамка, Упаковка, Взлёт. Сделайте push, дождитесь на GitHub зелёного конвейера, затем повесьте ТАБЛО в README.' }}
     checklist={[
-      "`.github/workflows/ci.yml` faylini oching (yo'q bo'lsa yarating)",
-      "`on: push` va `runs-on: ubuntu-latest` yozilganini tekshiring",
-      "`steps:` ostiga 5 nuqtani ketma-ket yozing: install → test → lint (masalan `eslint .`) → build → deploy",
-      "Deploy nuqtasiga maxfiy kalitni `${{ secrets.NOM }}` orqali ulang",
-      "Push qiling, Actions bo'limida barcha nuqta yashil bo'lguncha kuzating, so'ng TABLONI README.md ga joylashtiring",
+      { uz: "`.github/workflows/ci.yml` faylini oching (yo'q bo'lsa yarating)", ru: 'Откройте файл `.github/workflows/ci.yml` (если его нет — создайте)' },
+      { uz: "`on: push` va `runs-on: ubuntu-latest` yozilganini tekshiring", ru: 'Проверьте, что записаны `on: push` и `runs-on: ubuntu-latest`' },
+      { uz: "`steps:` ostiga 5 nuqtani ketma-ket yozing: install → test → lint (masalan `eslint .`) → build → deploy", ru: 'Под `steps:` запишите 5 точек по порядку: install → test → lint (например `eslint .`) → build → deploy' },
+      { uz: "Deploy nuqtasiga maxfiy kalitni `${{ secrets.NOM }}` orqali ulang", ru: 'Подключите к точке deploy секретный ключ через `${{ secrets.NOM }}`' },
+      { uz: "Push qiling, Actions bo'limida barcha nuqta yashil bo'lguncha kuzating, so'ng TABLONI README.md ga joylashtiring", ru: 'Сделайте push, дождитесь в разделе Actions, пока все точки станут зелёными, затем поместите ТАБЛО в README.md' },
     ]} />
 );
 
 // 🃏 FLASHCARD KARTALARI — 5 darslik lug'atni takrorlash
 const PIPE_FLASHCARDS = [
-  { front: "Ishga tayyor holga yig'ilgan o'zgarishlar to'plami", back: 'Commit', note: "yig'ilgan chamadon" },
-  { front: 'Chamadonni umumiy lentaga qo\'yish', back: 'Push', note: "lentaga qo'yish" },
-  { front: "Har push'da avtomatik ishlaydigan butun jarayon", back: 'Pipeline', note: 'LENTA' },
-  { front: 'Lentadagi bitta tekshiruv bosqichi (masalan Skaner)', back: 'Stage / Job', note: 'NUQTA' },
-  { front: 'Nuqta ichidagi bitta aniq buyruq', back: 'Step', note: 'AMAL' },
-  { front: "Lenta qanday ishlashini yozib qo'yiladigan fayl", back: 'ci.yml', note: "YO'L XARITASI" },
-  { front: "Push bo'lganda lentani ishga tushiradigan buyruq", back: 'on: push', note: 'START SIGNALI' },
-  { front: 'Token/parolni xavfsiz saqlaydigan joy', back: 'Secrets', note: 'SEYF + MAXFIY KALIT' },
-  { front: 'Repo sahifasidagi lenta holatini ko\'rsatuvchi rasmcha', back: 'Status badge', note: 'TABLO' },
-  { front: "Haqiqiy yo'lovchisiz, xavfsiz sinov muhiti", back: 'Staging', note: 'sinov reysi' },
-  { front: 'Foydalanuvchi haqiqatan ishlatadigan muhit', back: 'Production', note: "yo'lovchi qo'lida" },
-  { front: 'Buzuq versiyadan oldingi yashil versiyaga qaytish', back: 'Rollback', note: 'ESKI YUKNI QAYTARISH' },
+  { front: { uz: "Ishga tayyor holga yig'ilgan o'zgarishlar to'plami", ru: 'Собранный набор изменений, готовый к работе' }, back: 'Commit', note: { uz: "yig'ilgan chamadon", ru: 'собранный чемодан' } },
+  { front: { uz: 'Chamadonni umumiy lentaga qo\'yish', ru: 'Положить чемодан на общий конвейер' }, back: 'Push', note: { uz: "lentaga qo'yish", ru: 'кладём на конвейер' } },
+  { front: { uz: "Har push'da avtomatik ishlaydigan butun jarayon", ru: 'Весь процесс, который сам запускается при каждом push' }, back: 'Pipeline', note: { uz: 'LENTA', ru: 'КОНВЕЙЕР' } },
+  { front: { uz: 'Lentadagi bitta tekshiruv bosqichi (masalan Skaner)', ru: 'Один проверочный этап конвейера (например, Сканер)' }, back: 'Stage / Job', note: { uz: 'NUQTA', ru: 'ТОЧКА' } },
+  { front: { uz: 'Nuqta ichidagi bitta aniq buyruq', ru: 'Одна конкретная команда внутри точки' }, back: 'Step', note: { uz: 'AMAL', ru: 'ШАГ' } },
+  { front: { uz: "Lenta qanday ishlashini yozib qo'yiladigan fayl", ru: 'Файл, где записано, как работает конвейер' }, back: 'ci.yml', note: { uz: "YO'L XARITASI", ru: 'КАРТА МАРШРУТА' } },
+  { front: { uz: "Push bo'lganda lentani ishga tushiradigan buyruq", ru: 'Команда, запускающая конвейер при push' }, back: 'on: push', note: { uz: 'START SIGNALI', ru: 'СТАРТ-СИГНАЛ' } },
+  { front: { uz: 'Token/parolni xavfsiz saqlaydigan joy', ru: 'Место, где безопасно хранят токены и пароли' }, back: 'Secrets', note: { uz: 'SEYF + MAXFIY KALIT', ru: 'СЕЙФ + СЕКРЕТНЫЙ КЛЮЧ' } },
+  { front: { uz: 'Repo sahifasidagi lenta holatini ko\'rsatuvchi rasmcha', ru: 'Картинка на странице репозитория, показывающая состояние конвейера' }, back: 'Status badge', note: { uz: 'TABLO', ru: 'ТАБЛО' } },
+  { front: { uz: "Haqiqiy yo'lovchisiz, xavfsiz sinov muhiti", ru: 'Безопасная тестовая среда без настоящих пассажиров' }, back: 'Staging', note: { uz: 'sinov reysi', ru: 'пробный рейс' } },
+  { front: { uz: 'Foydalanuvchi haqiqatan ishlatadigan muhit', ru: 'Среда, которой реально пользуется пользователь' }, back: 'Production', note: { uz: "yo'lovchi qo'lida", ru: 'у пассажира в руках' } },
+  { front: { uz: 'Buzuq versiyadan oldingi yashil versiyaga qaytish', ru: 'Возврат к зелёной версии, которая была до сломанной' }, back: 'Rollback', note: { uz: 'ESKI YUKNI QAYTARISH', ru: 'ВОЗВРАТ СТАРОГО БАГАЖА' } },
 ];
 
 const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, []); // eslint-disable-line
   return (
-    <Stage eyebrow="Takrorlash" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={false} label="Yakunlash →" onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Takrorlash', ru: 'Повторение' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={false} label={tr({ uz: 'Yakunlash →', ru: 'Завершить →' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Tushunchalarni <span className="italic" style={{ color: T.accent }}>tez takrorlaymiz</span>.</h2></div>
-        <Mentor>Darsni yakunlashdan oldin 5 darslik lug'atni takrorlaymiz. Har kartada bir izoh — <b style={{ color: T.ink }}>qaysi tushuncha</b> ekanini o'ylang, keyin kartani bosib tekshiring.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Tushunchalarni <span className="italic" style={{ color: T.accent }}>tez takrorlaymiz</span>.</>, ru: <>Быстро <span className="italic" style={{ color: T.accent }}>повторим понятия</span>.</> })}</h2></div>
+        <Mentor>{tr({ uz: <>Darsni yakunlashdan oldin 5 darslik lug'atni takrorlaymiz. Har kartada bir izoh — <b style={{ color: T.ink }}>qaysi tushuncha</b> ekanini o'ylang, keyin kartani bosib tekshiring.</>, ru: <>Перед финалом повторим словарь всех 5 уроков. На каждой карточке — описание: подумайте, <b style={{ color: T.ink }}>какое это понятие</b>, потом нажмите на карточку и проверьте себя.</> })}</Mentor>
         <div className="fc-center"><Flashcards cards={PIPE_FLASHCARDS} /></div>
       </div>
     </Stage>
@@ -1654,33 +1654,33 @@ function Flashcards({ cards }) {
   const again = () => advance(false);
   const restart = () => { setQueue(cards.map((_, i) => i)); setKnown(0); setFlipped(false); };
   if (!card) return (
-    <div className="fc-done fade-up"><span className="fc-done-emoji">🎉</span><p className="fc-done-h">Hammasini bilasiz!</p><p className="fc-done-s">{total}/{total} atama yodlandi</p><button className="fc-btn ghost" onClick={restart}>↻ Qaytadan takrorlash</button></div>
+    <div className="fc-done fade-up"><span className="fc-done-emoji">🎉</span><p className="fc-done-h">{tr({ uz: 'Hammasini bilasiz!', ru: 'Вы знаете всё!' })}</p><p className="fc-done-s">{total}/{total} {tr({ uz: 'atama yodlandi', ru: 'терминов выучено' })}</p><button className="fc-btn ghost" onClick={restart}>{tr({ uz: '↻ Qaytadan takrorlash', ru: '↻ Повторить заново' })}</button></div>
   );
   return (
     <div className="fc fade-up">
-      <div className="fc-top"><span className="fc-pill learn" key={`l-${queue.length}-${swapRef.current}`}>↻ O'rganilmoqda · <b>{queue.length}</b></span><span className="fc-pill knew" key={`k-${known}`}>✓ Bildim · <b>{known}</b></span></div>
+      <div className="fc-top"><span className="fc-pill learn" key={`l-${queue.length}-${swapRef.current}`}>{tr({ uz: "↻ O'rganilmoqda", ru: '↻ Учим' })} · <b>{queue.length}</b></span><span className="fc-pill knew" key={`k-${known}`}>{tr({ uz: '✓ Bildim', ru: '✓ Знаю' })} · <b>{known}</b></span></div>
       <div className="fc-bar"><span className="fc-bar-fill" style={{ width: `${(known / total) * 100}%` }} /></div>
       <div className="fc-cardwrap">
         <div className={`fc-fly ${exiting === 'knew' ? 'out-knew' : ''} ${exiting === 'again' ? 'out-again' : ''}`} key={swapRef.current}>
         <div className={`fc-card ${flipped ? 'flip' : ''}`} onClick={() => !flipped && !exiting && setFlipped(true)} role="button" tabIndex={0}>
-          <div className="fc-face fc-front"><span className="fc-q">{card.front}</span><span className="fc-cue">Qaysi tushuncha? 🤔 <span className="fc-tap">bosing</span></span></div>
-          <div className="fc-face fc-back"><span className="fc-tag">{card.back}</span>{card.note && <span className="fc-note">{card.note}</span>}</div>
+          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: 'Qaysi tushuncha?', ru: 'Какое это понятие?' })} 🤔 <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
+          <div className="fc-face fc-back"><span className="fc-tag">{card.back}</span>{card.note && <span className="fc-note">{tr(card.note)}</span>}</div>
         </div>
         </div>
       </div>
       {flipped
-        ? (<div className="fc-actions"><button className="fc-btn again" disabled={!!exiting} onClick={again}>✗ Takrorlash</button><button className="fc-btn knew" disabled={!!exiting} onClick={knew}>✓ Bildim</button></div>)
-        : (<p className="fc-hint">👆 Kartani bosing — javobni ko'rasiz</p>)}
+        ? (<div className="fc-actions"><button className="fc-btn again" disabled={!!exiting} onClick={again}>{tr({ uz: '✗ Takrorlash', ru: '✗ Повторить' })}</button><button className="fc-btn knew" disabled={!!exiting} onClick={knew}>{tr({ uz: '✓ Bildim', ru: '✓ Знаю' })}</button></div>)
+        : (<p className="fc-hint">{tr({ uz: "👆 Kartani bosing — javobni ko'rasiz", ru: '👆 Нажмите на карточку — увидите ответ' })}</p>)}
     </div>
   );
 }
 
 // ===== 🏅 ACHIEVEMENTS (nishonlar) — faqat REAL bosqichlar uchun (tekin emas) =====
 const ACHIEVEMENTS = {
-  blackBox:          { icon: '📼', name: 'Black Box',          desc: "LENTA JURNALIDAN qizil chiroq sababini topdingiz" },
-  pipelineArchitect:  { icon: '🏗️', name: 'Pipeline Architect', desc: "5 nuqtani to'g'ri tizib, to'liq lentani ishga tushirdingiz" },
-  safeReturn:         { icon: '↩️', name: 'Safe Return',        desc: "Oxirgi yashil versiyaga to'g'ri qaytardingiz" },
-  boardingComplete:   { icon: '🎫', name: 'Boarding Complete',  desc: "TABLO, sinov reysi va rollback bilimini yakuniy savolda tasdiqladingiz" },
+  blackBox:          { icon: '📼', name: 'Black Box',          desc: { uz: "LENTA JURNALIDAN qizil chiroq sababini topdingiz", ru: 'Вы нашли в ЖУРНАЛЕ КОНВЕЙЕРА причину красного сигнала' } },
+  pipelineArchitect:  { icon: '🏗️', name: 'Pipeline Architect', desc: { uz: "5 nuqtani to'g'ri tizib, to'liq lentani ishga tushirdingiz", ru: 'Вы выстроили 5 точек в правильном порядке и запустили полный конвейер' } },
+  safeReturn:         { icon: '↩️', name: 'Safe Return',        desc: { uz: "Oxirgi yashil versiyaga to'g'ri qaytardingiz", ru: 'Вы правильно откатились к последней зелёной версии' } },
+  boardingComplete:   { icon: '🎫', name: 'Boarding Complete',  desc: { uz: "TABLO, sinov reysi va rollback bilimini yakuniy savolda tasdiqladingiz", ru: 'Вы подтвердили знание ТАБЛО, пробного рейса и rollback в финальном вопросе' } },
 };
 // Ekran id → nishon. ❗ FAQAT ma'noli ekranlar: s3 (real debug) · s6 (markaziy — to'liq yashil push) ·
 // s10 (real rollback tanlovi) · s12 (SCORED yakuniy test). Exploration ekranlarga BOG'LANMAYDI.
@@ -1689,7 +1689,7 @@ const ACH_TRIGGERS = { s3: 'blackBox', s6: 'pipelineArchitect', s10: 'safeReturn
 function AchCelebrate({ ach, onDone }) {
   useEffect(() => { const t = setTimeout(onDone, 4000); return () => clearTimeout(t); }, []); // eslint-disable-line
   return (
-    <div className="acu-overlay" onClick={onDone} role="status" aria-label={`Yangi nishon: ${ach.name}`}>
+    <div className="acu-overlay" onClick={onDone} role="status" aria-label={`${tr({ uz: 'Yangi nishon:', ru: 'Новый значок:' })} ${ach.name}`}>
       <div className="acu-rays" aria-hidden="true" />
       <div className="acu-glow" aria-hidden="true" />
       <div className="acu-ring" aria-hidden="true" />
@@ -1702,11 +1702,10 @@ function AchCelebrate({ ach, onDone }) {
           ))}
         </div>
         <div className="acu-txt">
-          <span className="acu-eyebrow">🏅 Nishon ochildi!</span>
           <span className="acu-name">{ach.name}</span>
-          {ach.desc && <span className="acu-desc">{ach.desc}</span>}
+          {ach.desc && <span className="acu-desc">{tr(ach.desc)}</span>}
         </div>
-        <span className="acu-tap">bosib davom eting</span>
+        <span className="acu-tap">{tr({ uz: 'bosib davom eting', ru: 'нажмите, чтобы продолжить' })}</span>
       </div>
       <Confetti />
     </div>
@@ -1742,7 +1741,7 @@ const Confetti = () => {
 };
 
 // Podium savol yorliqlari (SCORED_IDX indekslariga mos: 2, 5, 7, 9, 12)
-const Q_LABELS = { 2: "1 — Nuqta tartibi", 5: "2 — Yo'l xaritasi", 7: "3 — O'lcham ramkasi", 9: "4 — Sinov vs haqiqiy reys", 12: "5 — Yakuniy" };
+const Q_LABELS = { 2: { uz: '1 — Nuqta tartibi', ru: '1 — Порядок точек' }, 5: { uz: "2 — Yo'l xaritasi", ru: '2 — Карта маршрута' }, 7: { uz: "3 — O'lcham ramkasi", ru: '3 — Габарит-рамка' }, 9: { uz: '4 — Sinov vs haqiqiy reys', ru: '4 — Пробный vs настоящий рейс' }, 12: { uz: '5 — Yakuniy', ru: '5 — Финальный' } };
 // ⚡ Server-baholash javob kaliti (mentor darsni ochganda avto-yuklanadi). SCORED_IDX ekranlari correctIdx'laridan 1:1.
 // practice: -1 — sentinel: «Bajardim» signali (500+ zonasi) hech qachon xato deb yozilmasin.
 const INLINE_KEYS = { s2: 1, s5: 3, s7: 0, s9: 2, s12: 1, practice: -1 };
@@ -1768,18 +1767,18 @@ const QZ_BG_SHAPES = [
 ];
 // JONLI: mustahkamlash-jang savollari — to'liq lenta qamrovi. To'g'ri javoblar 4 pozitsiyaga TENG (3/3/3/3), ARALASH tartibda.
 const QUIZ_BANK = [
-  { q: "To'liq lentada 5 nuqta qaysi tartibda ishlaydi?", opts: ["Uchirish, so'ng Yig'ish, Skaner, O'rash, O'lcham ramkasi", "Skaner, Yig'ish, O'rash, O'lcham ramkasi, Uchirish", "O'rash, Skaner, Yig'ish, Uchirish, O'lcham ramkasi", "Yig'ish, Skaner, O'lcham ramkasi, O'rash, Uchirish"], correct: 3 },
-  { q: "`on: push` yozuvi lentada nima vazifani bajaradi?", opts: ["Push bo'lganda lentani avtomatik ishga tushiradi", "Testlarni doimiy ravishda butunlay o'chirib qo'yadi", "Maxfiy kalitni doimiy saqlab turadi", "Faylni to'g'ridan-to'g'ri serverga nusxalaydi"], correct: 0 },
-  { q: "📐 O'lcham ramkasi nuqtasi lentadan olib tashlansa nima bo'ladi?", opts: ["Lenta hech qanday ogohlantirishsiz ishga tushmay qoladi", "Testlar ikki marta ketma-ket ishga tushib ketadi", "Kod qoidaga zid yozilsa ham hech kim tutmaydi", "Yuk hech qachon avtomatik ravishda o'ralmay qoladi"], correct: 2 },
-  { q: "Tartib teskari bo'lib, ✈️ Uchirish 🔍 Skanerdan OLDIN tursa nima bo'ladi?", opts: ["Hech narsa o'zgarmaydi, natija bir xil", "Tekshirilmagan buzuq yuk yo'lovchiga chiqib ketadi", "Lenta buyruqni o'zi to'g'irlab qo'yadi", "Faqat jurnalga ogohlantirish yoziladi-yu, deploy baribir bo'lmaydi"], correct: 1 },
-  { q: "Maxfiy kalitni ci.yml faylida qanday ishlatamiz?", opts: ["`${{ secrets.NOM }}` orqali SEYFdan xavfsiz olamiz", "Kodning o'zi ichiga doimiy o'zgaruvchi sifatida qo'shib qo'yamiz", "Har safar qo'lda terib, push oldidan yuboramiz", "To'g'ridan-to'g'ri ochiq matn sifatida yozamiz"], correct: 0 },
-  { q: "Sinov reysi (staging) nima uchun kerak?", opts: ["Yo'lovchilar sonini hisoblash uchun", "Lentani butunlay to'xtatish uchun", "Maxfiy kalitlarni doimiy ravishda ochiq ko'rsatish uchun", "Haqiqiy yo'lovchisiz, xatolarni oldindan sinash uchun"], correct: 3 },
-  { q: "Production (haqiqiy reys) sinov reysidan nimasi bilan farq qiladi?", opts: ["U yerda hech qanday kod ishlab turmaydi, hammasi o'chirilgan", "U yerda haqiqiy yo'lovchi (foydalanuvchi) bor", "U yerda test umuman o'tkazilmaydi", "U faqat mentor ekranida ko'rinadi"], correct: 1 },
-  { q: "Yangi versiya production'da xato chiqarsa, tezkor yechim nima?", opts: ["Butun repozitoriyni o'chirib tashlash", "Barcha o'quvchilarga xabar yuborish", "Eski yukni qaytarish (rollback)", "Lentani butunlay o'chirib qo'yish"], correct: 2 },
-  { q: "Eski yukni qaytarish (rollback) qachon eng to'g'ri qaror bo'ladi?", opts: ["Push hali amalga oshirilmagan paytda", "Lenta hali umuman ishga tushirilmagan holatda turgan paytda", "Test hali yashil ko'rinib turgan paytda", "Yangi versiya productionda muammo chiqarganda"], correct: 3 },
-  { q: "TABLO (status badge) repo sahifasida nimani ko'rsatadi?", opts: ["Lenta hozir yashilmi yoki qizilmi ekanini", "Loyihaning umumiy og'irligini", "Nechta o'quvchi ushbu darsni to'liq tugatib ulgurganini", "Serverning geografik joylashuvini"], correct: 0 },
-  { q: "LENTA JURNALIDA qizil chiroq ko'rinsa, birinchi navbatda nima qilinadi?", opts: ["Darhol butun lentani o'chirib tashlanadi", "Jurnal o'qilib, qaysi nuqta va nega to'xtaganini topiladi", "Kod hech qayerga tegilmasdan yana bir bor push qilib yuboriladi", "Mentordan yangi maxfiy kalit so'raladi"], correct: 1 },
-  { q: "Bitta yo'l xaritasida ikkita mustaqil nuqta parallel ishlasa, ular bir-biriga qanday ta'sir qiladi?", opts: ["Biri albatta ikkinchisini to'xtatadi", "Ular hech qachon parallel bo'lmaydi, doim navbat bilan ketma-ket ishlaydi", "Mustaqil — biri yiqilsa, ikkinchisi baribir davom etadi", "Faqat birinchisi natija beradi"], correct: 2 },
+  { q: { uz: "To'liq lentada 5 nuqta qaysi tartibda ishlaydi?", ru: 'В каком порядке работают 5 точек полного конвейера?' }, opts: [{ uz: "Uchirish, so'ng Yig'ish, Skaner, O'rash, O'lcham ramkasi", ru: 'Взлёт, затем Сборка, Сканер, Упаковка, Габарит-рамка' }, { uz: "Skaner, Yig'ish, O'rash, O'lcham ramkasi, Uchirish", ru: 'Сканер, Сборка, Упаковка, Габарит-рамка, Взлёт' }, { uz: "O'rash, Skaner, Yig'ish, Uchirish, O'lcham ramkasi", ru: 'Упаковка, Сканер, Сборка, Взлёт, Габарит-рамка' }, { uz: "Yig'ish, Skaner, O'lcham ramkasi, O'rash, Uchirish", ru: 'Сборка, Сканер, Габарит-рамка, Упаковка, Взлёт' }], correct: 3 },
+  { q: { uz: "`on: push` yozuvi lentada nima vazifani bajaradi?", ru: 'Что делает запись `on: push` в конвейере?' }, opts: [{ uz: "Push bo'lganda lentani avtomatik ishga tushiradi", ru: 'Автоматически запускает конвейер при push' }, { uz: "Testlarni doimiy ravishda butunlay o'chirib qo'yadi", ru: 'Навсегда полностью отключает тесты' }, { uz: 'Maxfiy kalitni doimiy saqlab turadi', ru: 'Постоянно хранит секретный ключ' }, { uz: "Faylni to'g'ridan-to'g'ri serverga nusxalaydi", ru: 'Копирует файл напрямую на сервер' }], correct: 0 },
+  { q: { uz: "📐 O'lcham ramkasi nuqtasi lentadan olib tashlansa nima bo'ladi?", ru: 'Что будет, если убрать с конвейера точку 📐 Габарит-рамка?' }, opts: [{ uz: 'Lenta hech qanday ogohlantirishsiz ishga tushmay qoladi', ru: 'Конвейер перестанет запускаться без всякого предупреждения' }, { uz: 'Testlar ikki marta ketma-ket ishga tushib ketadi', ru: 'Тесты начнут запускаться дважды подряд' }, { uz: 'Kod qoidaga zid yozilsa ham hech kim tutmaydi', ru: 'Даже если код нарушает правила, его никто не поймает' }, { uz: "Yuk hech qachon avtomatik ravishda o'ralmay qoladi", ru: 'Багаж больше никогда не будет упаковываться автоматически' }], correct: 2 },
+  { q: { uz: "Tartib teskari bo'lib, ✈️ Uchirish 🔍 Skanerdan OLDIN tursa nima bo'ladi?", ru: 'Что будет, если порядок перепутан и ✈️ Взлёт стоит ДО 🔍 Сканера?' }, opts: [{ uz: "Hech narsa o'zgarmaydi, natija bir xil", ru: 'Ничего не изменится, результат тот же' }, { uz: "Tekshirilmagan buzuq yuk yo'lovchiga chiqib ketadi", ru: 'Непроверенный сломанный багаж улетит к пассажиру' }, { uz: "Lenta buyruqni o'zi to'g'irlab qo'yadi", ru: 'Конвейер сам исправит команду' }, { uz: 'Faqat jurnalga ogohlantirish yoziladi-yu, deploy baribir bo\'lmaydi', ru: 'В журнал запишется предупреждение, но deploy всё равно не случится' }], correct: 1 },
+  { q: { uz: 'Maxfiy kalitni ci.yml faylida qanday ishlatamiz?', ru: 'Как мы используем секретный ключ в файле ci.yml?' }, opts: [{ uz: '`${{ secrets.NOM }}` orqali SEYFdan xavfsiz olamiz', ru: 'Безопасно берём из СЕЙФА через `${{ secrets.NOM }}`' }, { uz: "Kodning o'zi ichiga doimiy o'zgaruvchi sifatida qo'shib qo'yamiz", ru: 'Вписываем прямо в код как постоянную переменную' }, { uz: "Har safar qo'lda terib, push oldidan yuboramiz", ru: 'Каждый раз набираем вручную и отправляем перед push' }, { uz: "To'g'ridan-to'g'ri ochiq matn sifatida yozamiz", ru: 'Пишем открытым текстом напрямую' }], correct: 0 },
+  { q: { uz: 'Sinov reysi (staging) nima uchun kerak?', ru: 'Зачем нужен пробный рейс (staging)?' }, opts: [{ uz: "Yo'lovchilar sonini hisoblash uchun", ru: 'Чтобы считать количество пассажиров' }, { uz: "Lentani butunlay to'xtatish uchun", ru: 'Чтобы полностью остановить конвейер' }, { uz: "Maxfiy kalitlarni doimiy ravishda ochiq ko'rsatish uchun", ru: 'Чтобы постоянно показывать секретные ключи открыто' }, { uz: "Haqiqiy yo'lovchisiz, xatolarni oldindan sinash uchun", ru: 'Чтобы заранее проверять ошибки без настоящих пассажиров' }], correct: 3 },
+  { q: { uz: 'Production (haqiqiy reys) sinov reysidan nimasi bilan farq qiladi?', ru: 'Чем production (настоящий рейс) отличается от пробного?' }, opts: [{ uz: "U yerda hech qanday kod ishlab turmaydi, hammasi o'chirilgan", ru: 'Там никакой код не работает, всё отключено' }, { uz: "U yerda haqiqiy yo'lovchi (foydalanuvchi) bor", ru: 'Там есть настоящий пассажир (пользователь)' }, { uz: "U yerda test umuman o'tkazilmaydi", ru: 'Там вообще не проводятся тесты' }, { uz: "U faqat mentor ekranida ko'rinadi", ru: 'Он виден только на экране ментора' }], correct: 1 },
+  { q: { uz: "Yangi versiya production'da xato chiqarsa, tezkor yechim nima?", ru: 'Новая версия выдала ошибку в production — какое быстрое решение?' }, opts: [{ uz: "Butun repozitoriyni o'chirib tashlash", ru: 'Удалить весь репозиторий' }, { uz: "Barcha o'quvchilarga xabar yuborish", ru: 'Разослать сообщение всем ученикам' }, { uz: 'Eski yukni qaytarish (rollback)', ru: 'Вернуть старый багаж (rollback)' }, { uz: "Lentani butunlay o'chirib qo'yish", ru: 'Полностью выключить конвейер' }], correct: 2 },
+  { q: { uz: "Eski yukni qaytarish (rollback) qachon eng to'g'ri qaror bo'ladi?", ru: 'Когда возврат старого багажа (rollback) — самое верное решение?' }, opts: [{ uz: 'Push hali amalga oshirilmagan paytda', ru: 'Когда push ещё не сделан' }, { uz: 'Lenta hali umuman ishga tushirilmagan holatda turgan paytda', ru: 'Когда конвейер ещё вообще не запускался' }, { uz: "Test hali yashil ko'rinib turgan paytda", ru: 'Когда тесты ещё горят зелёным' }, { uz: 'Yangi versiya productionda muammo chiqarganda', ru: 'Когда новая версия создала проблему в production' }], correct: 3 },
+  { q: { uz: "TABLO (status badge) repo sahifasida nimani ko'rsatadi?", ru: 'Что показывает ТАБЛО (status badge) на странице репозитория?' }, opts: [{ uz: 'Lenta hozir yashilmi yoki qizilmi ekanini', ru: 'Зелёный сейчас конвейер или красный' }, { uz: "Loyihaning umumiy og'irligini", ru: 'Общий вес проекта' }, { uz: "Nechta o'quvchi ushbu darsni to'liq tugatib ulgurganini", ru: 'Сколько учеников успело полностью пройти этот урок' }, { uz: 'Serverning geografik joylashuvini', ru: 'Географическое расположение сервера' }], correct: 0 },
+  { q: { uz: "LENTA JURNALIDA qizil chiroq ko'rinsa, birinchi navbatda nima qilinadi?", ru: 'В ЖУРНАЛЕ КОНВЕЙЕРА виден красный сигнал — что делают в первую очередь?' }, opts: [{ uz: "Darhol butun lentani o'chirib tashlanadi", ru: 'Немедленно удаляют весь конвейер' }, { uz: "Jurnal o'qilib, qaysi nuqta va nega to'xtaganini topiladi", ru: 'Читают журнал и находят, какая точка и почему остановилась' }, { uz: 'Kod hech qayerga tegilmasdan yana bir bor push qilib yuboriladi', ru: 'Ничего не трогая, просто делают push ещё раз' }, { uz: "Mentordan yangi maxfiy kalit so'raladi", ru: 'Просят у ментора новый секретный ключ' }], correct: 1 },
+  { q: { uz: "Bitta yo'l xaritasida ikkita mustaqil nuqta parallel ishlasa, ular bir-biriga qanday ta'sir qiladi?", ru: 'Две независимые точки в одной карте маршрута работают параллельно — как они влияют друг на друга?' }, opts: [{ uz: "Biri albatta ikkinchisini to'xtatadi", ru: 'Одна обязательно остановит другую' }, { uz: "Ular hech qachon parallel bo'lmaydi, doim navbat bilan ketma-ket ishlaydi", ru: 'Они никогда не работают параллельно, всегда строго по очереди' }, { uz: 'Mustaqil — biri yiqilsa, ikkinchisi baribir davom etadi', ru: 'Они независимы — если одна упала, вторая всё равно продолжит' }, { uz: 'Faqat birinchisi natija beradi', ru: 'Результат даёт только первая' }], correct: 2 },
 ];
 
 const quizPts = (elapsedMs) => elapsedMs <= 500 ? 1000 : Math.max(0, Math.round(1000 * (1 - (Math.min(elapsedMs, QUIZ_MS) / QUIZ_MS) / 2)));
@@ -1836,9 +1835,9 @@ const CsWordmark = ({ onClick, disabled, hint, stats = true, bolt = true, liveOn
       </div>
       {stats && (
         <div className="cs-hud">
-          <span className="cs-hud-i"><b>{QUIZ_BANK.length}</b> SAVOL</span>
+          <span className="cs-hud-i"><b>{QUIZ_BANK.length}</b> {tr({ uz: 'SAVOL', ru: 'ВОПРОСОВ' })}</span>
           <span className="cs-hud-dot">·</span>
-          <span className="cs-hud-i"><b>{QUIZ_MS / 1000}</b> SONIYA</span>
+          <span className="cs-hud-i"><b>{QUIZ_MS / 1000}</b> {tr({ uz: 'SONIYA', ru: 'СЕКУНД' })}</span>
           <span className="cs-hud-dot">·</span>
           <span className="cs-hud-i">🏆 PODIUM</span>
         </div>
@@ -2021,7 +2020,7 @@ function QuizArena({ live, onClose, startSolo }) {
 
   const closeArena = () => {
     if (isMentor && !solo && phase !== 'done') {
-      if (!window.confirm("Test hali yakunlanmadi — yopsangiz o'quvchilar arenada kutib qoladi.\nKeyin «⚡ Davom ettirish» bilan aynan shu joydan qaytishingiz mumkin.\n\nBaribir yopilsinmi?")) return;
+      if (!window.confirm(tr({ uz: "Test hali yakunlanmadi — yopsangiz o'quvchilar arenada kutib qoladi.\nKeyin «⚡ Davom ettirish» bilan aynan shu joydan qaytishingiz mumkin.\n\nBaribir yopilsinmi?", ru: 'Тест ещё не завершён — если закроете, ученики останутся ждать на арене.\nПотом можно вернуться ровно к этому месту через «⚡ Продолжить».\n\nВсё равно закрыть?' }))) return;
     }
     onClose();
   };
@@ -2038,54 +2037,54 @@ function QuizArena({ live, onClose, startSolo }) {
 
       {classEnded && isStudent && !solo && phase !== 'done' && (
         <div className="qz-endnote fade-step">
-          <span>⚠️ Jonli dars yakunlandi — testni o'zingiz davom ettiring:</span>
-          <button className="qz-btn" onClick={startPractice}>📖 Mashq rejimida davom etish</button>
+          <span>{tr({ uz: "⚠️ Jonli dars yakunlandi — testni o'zingiz davom ettiring:", ru: '⚠️ Живой урок завершён — продолжите тест сами:' })}</span>
+          <button className="qz-btn" onClick={startPractice}>{tr({ uz: '📖 Mashq rejimida davom etish', ru: '📖 Продолжить в режиме тренировки' })}</button>
         </div>
       )}
 
       {phase === 'lobby' && (
         <div className="qz-view fade-step">
           <CsWordmark />
-          <p className="qz-sub" style={{ marginTop: -4 }}>Tezroq to'g'ri bossangiz — ko'proq ball. Ketma-ket to'g'ri javoblar 🔥 bonus beradi!</p>
+          <p className="qz-sub" style={{ marginTop: -4 }}>{tr({ uz: "Tezroq to'g'ri bossangiz — ko'proq ball. Ketma-ket to'g'ri javoblar 🔥 bonus beradi!", ru: 'Чем быстрее правильный ответ — тем больше баллов. Серия верных ответов подряд даёт 🔥 бонус!' })}</p>
           {!solo && (
             <div className="qz-lobby-players">
               {players.map(p => <span key={p.id} className={`qz-pchip ${p.id === live.playerId ? 'me' : ''}`}>{p.nickname}</span>)}
-              {players.length === 0 && <span className="qz-dimtxt">O'quvchilar kutilmoqda…</span>}
+              {players.length === 0 && <span className="qz-dimtxt">{tr({ uz: "O'quvchilar kutilmoqda…", ru: 'Ждём учеников…' })}</span>}
             </div>
           )}
-          {isMentor && <button className="qz-btn big" disabled={players.length === 0} onClick={() => ctrl('q', 0)}>▶ Testni boshlash</button>}
-          {isStudent && !solo && <p className="qz-waitmsg">⏳ Mentor testni boshlashini kuting…</p>}
-          {solo && <button className="qz-btn big" onClick={() => soloStart(0)}>▶ Boshlash</button>}
+          {isMentor && <button className="qz-btn big" disabled={players.length === 0} onClick={() => ctrl('q', 0)}>{tr({ uz: '▶ Testni boshlash', ru: '▶ Начать тест' })}</button>}
+          {isStudent && !solo && <p className="qz-waitmsg">{tr({ uz: '⏳ Mentor testni boshlashini kuting…', ru: '⏳ Дождитесь, пока ментор начнёт тест…' })}</p>}
+          {solo && <button className="qz-btn big" onClick={() => soloStart(0)}>{tr({ uz: '▶ Boshlash', ru: '▶ Начать' })}</button>}
         </div>
       )}
 
       {phase === 'q' && Q && (
         <div className="qz-view qz-qview fade-step" key={`q${qi}`}>
           <div className="qz-top">
-            <span className="qz-count">Savol <b>{qi + 1}</b>/{QUIZ_BANK.length}</span>
+            <span className="qz-count">{tr({ uz: 'Savol', ru: 'Вопрос' })} <b>{qi + 1}</b>/{QUIZ_BANK.length}</span>
             <QzTimer remaining={remaining} />
             {isMentor
               ? <span className="qz-ansn">📨 {answeredN}/{players.length}</span>
               : <span className="qz-ansn">{streakUpTo(qi - 1) >= 2 ? `🔥 x${streakUpTo(qi - 1)}` : ' '}</span>}
           </div>
-          <h2 className="qz-q">{fmtCode(Q.q)}</h2>
+          <h2 className="qz-q">{fmtCode(tr(Q.q))}</h2>
           <div className="qz-grid">
             {Q.opts.map((o, i) => {
               const pickedThis = my && my.picked === i;
               return (
                 <button key={i} className={`qz-tile ${my ? (pickedThis ? 'picked' : 'faded') : ''}`} style={{ background: QUIZ_COLORS[i] }} disabled={isMentor || !!my} onClick={() => answer(i)}>
                   <span className="qz-shape">{QUIZ_SHAPES[i]}</span>
-                  <span className="qz-opt">{fmtCode(o)}</span>
+                  <span className="qz-opt">{fmtCode(tr(o))}</span>
                   {pickedThis && <span className="qz-pbadge">✔</span>}
                 </button>
               );
             })}
           </div>
-          {my && !isMentor && !solo && <p className="qz-waitmsg">✔ Javob qabul qilindi — natijani kuting…</p>}
+          {my && !isMentor && !solo && <p className="qz-waitmsg">{tr({ uz: '✔ Javob qabul qilindi — natijani kuting…', ru: '✔ Ответ принят — ждите результат…' })}</p>}
           {isMentor && (
             <div className="qz-mrow">
-              {answeredN >= players.length && players.length > 0 && <span className="qz-allin">✓ Hamma javob berdi!</span>}
-              <button className="qz-btn" onClick={() => ctrl('r', qi)}>⏹ Natijani ochish</button>
+              {answeredN >= players.length && players.length > 0 && <span className="qz-allin">{tr({ uz: '✓ Hamma javob berdi!', ru: '✓ Все ответили!' })}</span>}
+              <button className="qz-btn" onClick={() => ctrl('r', qi)}>{tr({ uz: '⏹ Natijani ochish', ru: '⏹ Открыть результат' })}</button>
             </div>
           )}
         </div>
@@ -2094,9 +2093,9 @@ function QuizArena({ live, onClose, startSolo }) {
       {phase === 'reveal' && Q && (
         <div className="qz-view qz-qview fade-step" key={`r${qi}`}>
           <div className="qz-top">
-            <span className="qz-count">Savol <b>{qi + 1}</b>/{QUIZ_BANK.length} — natija</span>
+            <span className="qz-count">{tr({ uz: 'Savol', ru: 'Вопрос' })} <b>{qi + 1}</b>/{QUIZ_BANK.length} — {tr({ uz: 'natija', ru: 'результат' })}</span>
           </div>
-          <h2 className="qz-q">{fmtCode(Q.q)}</h2>
+          <h2 className="qz-q">{fmtCode(tr(Q.q))}</h2>
           <div className="qz-grid">
             {Q.opts.map((o, i) => {
               const win = i === Q.correct;
@@ -2104,7 +2103,7 @@ function QuizArena({ live, onClose, startSolo }) {
               return (
                 <div key={i} className={`qz-tile rv ${win ? 'win' : 'lose'} ${pickedThis ? 'picked' : ''}`} style={{ background: QUIZ_COLORS[i] }}>
                   <span className="qz-shape">{QUIZ_SHAPES[i]}</span>
-                  <span className="qz-opt">{fmtCode(o)}</span>
+                  <span className="qz-opt">{fmtCode(tr(o))}</span>
                   <span className="qz-cnt">{win ? '✓ ' : ''}{counts[i]}</span>
                 </div>
               );
@@ -2113,9 +2112,9 @@ function QuizArena({ live, onClose, startSolo }) {
           {!isMentor && (
             <div className={`qz-res ${my?.correct ? 'good' : 'bad'}`}>
               {my?.correct
-                ? <><span className="qz-res-pts">+{myPtsFor(qi)}</span><span className="qz-res-t">ball{streakUpTo(qi) >= 2 ? ` · 🔥 x${streakUpTo(qi)} streak` : ''}</span></>
-                : <span className="qz-res-t">{my ? "Xato — 0 ball. Keyingisida olasiz! 💪" : "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱"}</span>}
-              {!solo && myRank >= 0 && <span className="qz-res-rank">Siz hozir: {myRank + 1}-o'rin</span>}
+                ? <><span className="qz-res-pts">+{myPtsFor(qi)}</span><span className="qz-res-t">{tr({ uz: 'ball', ru: 'баллов' })}{streakUpTo(qi) >= 2 ? ` · 🔥 x${streakUpTo(qi)} streak` : ''}</span></>
+                : <span className="qz-res-t">{my ? tr({ uz: 'Xato — 0 ball. Keyingisida olasiz! 💪', ru: 'Мимо — 0 баллов. Возьмёте на следующем! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Побыстрее! ⏱' })}</span>}
+              {!solo && myRank >= 0 && <span className="qz-res-rank">{tr({ uz: 'Siz hozir:', ru: 'Вы сейчас:' })} {myRank + 1}{tr({ uz: "-o'rin", ru: '-е место' })}</span>}
             </div>
           )}
           {!solo && (
@@ -2130,20 +2129,20 @@ function QuizArena({ live, onClose, startSolo }) {
               ))}
             </div>
           )}
-          {isMentor && <button className="qz-btn big" onClick={() => lastQ ? ctrl('done', qi) : ctrl('q', qi + 1)}>{lastQ ? "🏁 G'oliblarni e'lon qilish" : 'Keyingi savol →'}</button>}
-          {solo && <button className="qz-btn big" onClick={soloNext}>{lastQ ? '🏁 Natijani ko\'rish' : 'Keyingi →'}</button>}
+          {isMentor && <button className="qz-btn big" onClick={() => lastQ ? ctrl('done', qi) : ctrl('q', qi + 1)}>{lastQ ? tr({ uz: "🏁 G'oliblarni e'lon qilish", ru: '🏁 Объявить победителей' }) : tr({ uz: 'Keyingi savol →', ru: 'Следующий вопрос →' })}</button>}
+          {solo && <button className="qz-btn big" onClick={soloNext}>{lastQ ? tr({ uz: "🏁 Natijani ko'rish", ru: '🏁 Посмотреть результат' }) : tr({ uz: 'Keyingi →', ru: 'Следующий →' })}</button>}
         </div>
       )}
 
       {phase === 'done' && (
         <div className="qz-view fade-step">
           <Confetti />
-          <h2 className="qz-h">🏆 Test yakunlandi!</h2>
+          <h2 className="qz-h">{tr({ uz: '🏆 Test yakunlandi!', ru: '🏆 Тест завершён!' })}</h2>
           {solo ? (
             <div className="qz-solo-res">
               <div className="qz-solo-pts">{soloScore.pts}</div>
-              <p className="qz-sub">ball · {soloScore.ok}/{QUIZ_BANK.length} to'g'ri{soloScore.maxStreak >= 2 ? ` · eng uzun streak 🔥x${soloScore.maxStreak}` : ''}</p>
-              <button className="qz-btn big" onClick={soloReplay}>↻ Qayta ishlash</button>
+              <p className="qz-sub">{tr({ uz: 'ball', ru: 'баллов' })} · {soloScore.ok}/{QUIZ_BANK.length} {tr({ uz: "to'g'ri", ru: 'верно' })}{soloScore.maxStreak >= 2 ? ` · ${tr({ uz: 'eng uzun streak', ru: 'лучшая серия' })} 🔥x${soloScore.maxStreak}` : ''}</p>
+              <button className="qz-btn big" onClick={soloReplay}>{tr({ uz: '↻ Qayta ishlash', ru: '↻ Пройти ещё раз' })}</button>
             </div>
           ) : (
             <>
@@ -2155,13 +2154,13 @@ function QuizArena({ live, onClose, startSolo }) {
                       {rank === 0 && <span className="qz-crown">👑</span>}
                       <span className="qz-pod-medal">{['🥇', '🥈', '🥉'][rank]}</span>
                       <span className="qz-pod-name">{b ? b.nickname : '—'}</span>
-                      {b && <span className="qz-pod-pts">{b.pts} ball · {b.ok}/{QUIZ_BANK.length}</span>}
+                      {b && <span className="qz-pod-pts">{b.pts} {tr({ uz: 'ball', ru: 'баллов' })} · {b.ok}/{QUIZ_BANK.length}</span>}
                       <div className="qz-pod-bar" />
                     </div>
                   );
                 })}
               </div>
-              {myRank >= 0 && <p className="qz-mypl">Siz — <b>{myRank + 1}-o'rin</b> · {board[myRank].pts} ball</p>}
+              {myRank >= 0 && <p className="qz-mypl">{tr({ uz: 'Siz —', ru: 'Вы —' })} <b>{myRank + 1}{tr({ uz: "-o'rin", ru: '-е место' })}</b> · {board[myRank].pts} {tr({ uz: 'ball', ru: 'баллов' })}</p>}
               <div className="qz-board wide">
                 {board.map((b, i) => (
                   <div key={b.id} className={`qz-brow ${b.id === live.playerId ? 'me' : ''}`}>
@@ -2172,10 +2171,10 @@ function QuizArena({ live, onClose, startSolo }) {
                   </div>
                 ))}
               </div>
-              {isStudent && <button className="qz-btn" onClick={startPractice}>↻ Testni qayta ishlash — mashq (jadvalga yozilmaydi)</button>}
+              {isStudent && <button className="qz-btn" onClick={startPractice}>{tr({ uz: '↻ Testni qayta ishlash — mashq (jadvalga yozilmaydi)', ru: '↻ Пройти тест ещё раз — тренировка (в таблицу не пишется)' })}</button>}
             </>
           )}
-          <button className="qz-btn ghost" onClick={closeArena}>Arenani yopish</button>
+          <button className="qz-btn ghost" onClick={closeArena}>{tr({ uz: 'Arenani yopish', ru: 'Закрыть арену' })}</button>
         </div>
       )}
     </div>
@@ -2218,18 +2217,18 @@ const ScreenPodium = ({ screen, answers, onNext, onPrev }) => {
   const selfCorrect = SCORED_IDX.filter(i => answers[i]?.correct).length;
 
   return (
-    <Stage eyebrow="Natijalar" screen={screen} narrow navContent={<><NavBack onPrev={onPrev} /><NavNext label="Davom etish" onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Natijalar', ru: 'Результаты' })} screen={screen} narrow navContent={<><NavBack onPrev={onPrev} /><NavNext label="Davom etish" onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(14px,2.2vw,20px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Kim <span className="italic" style={{ color: T.accent }}>g'olib</span>?</h2></div>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Kim <span className="italic" style={{ color: T.accent }}>g'olib</span>?</>, ru: <>Кто <span className="italic" style={{ color: T.accent }}>победитель</span>?</> })}</h2></div>
         {!isLive ? (
           <div className="fade-up" style={{ display: 'flex', flexDirection: 'column', gap: 16, alignItems: 'center' }}>
             <ScoreRing correct={selfCorrect} total={totalQ} />
-            <div className="frame-wait" style={{ maxWidth: 480 }}><p className="body" style={{ margin: 0 }}>Siz mustaqil rejimdasiz. Jonli darsda bu yerda butun guruh reytingi — 🥇🥈🥉 podium chiqadi.</p></div>
+            <div className="frame-wait" style={{ maxWidth: 480 }}><p className="body" style={{ margin: 0 }}>{tr({ uz: 'Siz mustaqil rejimdasiz. Jonli darsda bu yerda butun guruh reytingi — 🥇🥈🥉 podium chiqadi.', ru: 'Вы в самостоятельном режиме. В живом уроке здесь появляется рейтинг всей группы — подиум 🥇🥈🥉.' })}</p></div>
           </div>
         ) : !loaded ? (
-          <p className="mono small fade-up" style={{ color: T.ink2 }}>Natijalar yuklanmoqda…</p>
+          <p className="mono small fade-up" style={{ color: T.ink2 }}>{tr({ uz: 'Natijalar yuklanmoqda…', ru: 'Результаты загружаются…' })}</p>
         ) : board.length === 0 ? (
-          <div className="frame-wait fade-up"><p className="body" style={{ margin: 0 }}>Bu sessiyaga hali hech kim qo'shilmagan.</p></div>
+          <div className="frame-wait fade-up"><p className="body" style={{ margin: 0 }}>{tr({ uz: "Bu sessiyaga hali hech kim qo'shilmagan.", ru: 'К этой сессии пока никто не подключился.' })}</p></div>
         ) : (
           <>
             <Confetti />
@@ -2246,15 +2245,15 @@ const ScreenPodium = ({ screen, answers, onNext, onPrev }) => {
                 );
               })}
             </div>
-            {myIdx >= 0 && <p className="pod-my fade-up">Siz — <b>{myIdx + 1}-o'rin</b> ({board[myIdx].okCount}/{totalQ} to'g'ri)</p>}
+            {myIdx >= 0 && <p className="pod-my fade-up">{tr({ uz: 'Siz —', ru: 'Вы —' })} <b>{myIdx + 1}{tr({ uz: "-o'rin", ru: '-е место' })}</b> ({board[myIdx].okCount}/{totalQ} {tr({ uz: "to'g'ri", ru: 'верно' })})</p>}
             <div className="card fade-up d1">
-              <div className="card-lbl" style={{ color: T.accent }}>🏆 To'liq reyting</div>
+              <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: "🏆 To'liq reyting", ru: '🏆 Полный рейтинг' })}</div>
               <div className="pod-list">
                 {board.map((b, i) => (
                   <div key={b.id} className={`pod-row ${live.playerId === b.id ? 'me' : ''}`}>
                     <span className="mono pod-rank">{i + 1}</span>
                     <span className="pod-row-name">{b.nickname}</span>
-                    <span className="pod-row-dots">{SCORED_IDX.map(q => { const a = rows.find(r => r.player_id === b.id && r.screen_idx === q); return <span key={q} className={`pod-dot ${a ? (a.correct ? 'ok' : 'bad') : ''}`} title={Q_LABELS[q]} />; })}</span>
+                    <span className="pod-row-dots">{SCORED_IDX.map(q => { const a = rows.find(r => r.player_id === b.id && r.screen_idx === q); return <span key={q} className={`pod-dot ${a ? (a.correct ? 'ok' : 'bad') : ''}`} title={tr(Q_LABELS[q])} />; })}</span>
                     <span className="mono pod-row-score">{b.okCount}/{totalQ}</span>
                     <span className="mono pod-row-time">{fmtT(b.time)}</span>
                   </div>
@@ -2286,41 +2285,41 @@ const Screen14 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
     setArenaSolo(studentSolo); setArena(true);
   };
   const RECAP = [
-    "To'liq lentani 5 nuqtada qurdingiz: Yig'ish → Skaner → O'lcham ramkasi → O'rash → Uchirish",
-    "Tartib va START SIGNALI (on: push) nega muhimligini bilasiz",
-    "Maxfiy kalitni SEYFda saqlash va lentaga ulashni ko'rdingiz",
-    "Sinov reysi (staging) va haqiqiy reys (production) farqini ajratasiz",
-    "Muammo chiqsa — jurnalni o'qib, kerak bo'lsa eski yukni qaytarasiz",
-    "TABLONI repo sahifasiga qo'yishni bilasiz"
+    { uz: "To'liq lentani 5 nuqtada qurdingiz: Yig'ish → Skaner → O'lcham ramkasi → O'rash → Uchirish", ru: 'Вы построили полный конвейер из 5 точек: Сборка → Сканер → Габарит-рамка → Упаковка → Взлёт' },
+    { uz: "Tartib va START SIGNALI (on: push) nega muhimligini bilasiz", ru: 'Вы знаете, почему важны порядок и СТАРТ-СИГНАЛ (on: push)' },
+    { uz: "Maxfiy kalitni SEYFda saqlash va lentaga ulashni ko'rdingiz", ru: 'Вы видели, как хранить секретный ключ в СЕЙФЕ и подключать его к конвейеру' },
+    { uz: "Sinov reysi (staging) va haqiqiy reys (production) farqini ajratasiz", ru: 'Вы различаете пробный рейс (staging) и настоящий рейс (production)' },
+    { uz: "Muammo chiqsa — jurnalni o'qib, kerak bo'lsa eski yukni qaytarasiz", ru: 'Если что-то сломалось — читаете журнал и при необходимости возвращаете старый багаж' },
+    { uz: "TABLONI repo sahifasiga qo'yishni bilasiz", ru: 'Вы умеете вешать ТАБЛО на страницу репозитория' }
   ];
   const HOMEWORK = [
-    { b: 'Ulang', t: "— o'z loyihangizga to'liq 5-nuqtali lentani qo'shing va push qiling" },
-    { b: 'Kuzating', t: "— Actions bo'limida barcha nuqta yashil bo'lishini tasdiqlang" },
-    { b: "Ko'rsating", t: "— TABLONI README.md ga qo'yib, mentorga repo havolasini yuboring" }
+    { b: { uz: 'Ulang', ru: 'Подключите' }, t: { uz: "— o'z loyihangizga to'liq 5-nuqtali lentani qo'shing va push qiling", ru: '— добавьте в свой проект полный конвейер из 5 точек и сделайте push' } },
+    { b: { uz: 'Kuzating', ru: 'Проследите' }, t: { uz: "— Actions bo'limida barcha nuqta yashil bo'lishini tasdiqlang", ru: '— убедитесь в разделе Actions, что все точки зелёные' } },
+    { b: { uz: "Ko'rsating", ru: 'Покажите' }, t: { uz: "— TABLONI README.md ga qo'yib, mentorga repo havolasini yuboring", ru: '— повесьте ТАБЛО в README.md и отправьте ментору ссылку на репозиторий' } }
   ];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
   const PASSED = (total ? correct / total : 0) >= 0.6;
   return (
-    <Stage eyebrow="Tayyor" screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>Qaytadan</button><button className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>Modulni yakunlash ✓</button></>}>
+    <Stage eyebrow={tr({ uz: 'Tayyor', ru: 'Готово' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><button className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Modulni yakunlash ✓', ru: 'Завершить модуль ✓' })}</button></>}>
       <div className="screen">
-        <div className="hero"><div className="hero-l"><span className="done-chip fade-up"><span className="tick">✓</span> To'liq lentani qurdingiz</span><h2 className="title h-title fade-up d1">Loyihangiz endi <span className="italic" style={{ color: T.accent }}>o'zi uchadi</span>.</h2><p className="body h-sub fade-up d2">{PASSED ? "Tabriklaymiz! 5 nuqta, START SIGNALI, SEYF, sinov reysi/haqiqiy reys va rollback — hammasini o'zingiz qurdingiz va tushundingiz." : "Yaxshi harakat! Tartib, sinov reysi/haqiqiy reys va rollback mavzularini mustahkamlash uchun bir-ikki ekranni qayta ko'ring."}</p></div><ScoreRing correct={correct} total={total} /></div>
+        <div className="hero"><div className="hero-l"><span className="done-chip fade-up"><span className="tick">✓</span> {tr({ uz: "To'liq lentani qurdingiz", ru: 'Вы построили полный конвейер' })}</span><h2 className="title h-title fade-up d1">{tr({ uz: <>Loyihangiz endi <span className="italic" style={{ color: T.accent }}>o'zi uchadi</span>.</>, ru: <>Теперь ваш проект <span className="italic" style={{ color: T.accent }}>летает сам</span>.</> })}</h2><p className="body h-sub fade-up d2">{PASSED ? tr({ uz: "Tabriklaymiz! 5 nuqta, START SIGNALI, SEYF, sinov reysi/haqiqiy reys va rollback — hammasini o'zingiz qurdingiz va tushundingiz.", ru: 'Поздравляем! 5 точек, СТАРТ-СИГНАЛ, СЕЙФ, пробный/настоящий рейс и rollback — всё это вы построили и поняли сами.' }) : tr({ uz: "Yaxshi harakat! Tartib, sinov reysi/haqiqiy reys va rollback mavzularini mustahkamlash uchun bir-ikki ekranni qayta ko'ring.", ru: 'Хорошая работа! Чтобы закрепить порядок точек, пробный/настоящий рейс и rollback, пересмотрите пару экранов.' })}</p></div><ScoreRing correct={correct} total={total} /></div>
         <div className={`qz-cta cs-cta fade-up d2 ${studentLive ? 'ready' : ''}`}>
-          <CsWordmark stats={false} liveOn={studentLive} disabled={studentWait} onClick={studentWait ? undefined : openArena} hint={studentWait ? '⏳ Mentorni kuting' : undefined} />
+          <CsWordmark stats={false} liveOn={studentLive} disabled={studentWait} onClick={studentWait ? undefined : openArena} hint={studentWait ? tr({ uz: '⏳ Mentorni kuting', ru: '⏳ Дождитесь ментора' }) : undefined} />
         </div>
         {arena && <QuizArena live={_live || { mode: 'self' }} startSolo={arenaSolo} onClose={() => setArena(false)} />}
         <div className="split">
-          <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> Endi siz bilasiz</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{r}</span></li>))}</ul></div>
-          <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>📝 Uyga vazifa</div><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{h.b}</b> <span className="t">{h.t}</span></li>))}</ul><p className="hw-note">🚀 Endi siz istalgan loyihaga to'liq lentani o'zingiz ulay olasiz!</p></div>
+          <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> {tr({ uz: 'Endi siz bilasiz', ru: 'Теперь вы знаете' })}</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{tr(r)}</span></li>))}</ul></div>
+          <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: "🚀 Endi siz istalgan loyihaga to'liq lentani o'zingiz ulay olasiz!", ru: '🚀 Теперь вы сами можете подключить полный конвейер к любому проекту!' })}</p></div>
         </div>
         <div className="card ach-coll fade-up d3">
-          <div className="card-lbl" style={{ color: T.accent }}>🏅 Nishonlaringiz — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
+          <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🏅 Nishonlaringiz —', ru: '🏅 Ваши значки —' })} {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">
             {Object.entries(ACHIEVEMENTS).map(([id, a]) => { const got = !!(achievements && achievements.has(id)); return (
-              <div key={id} className={`ach-badge ${got ? 'got' : 'locked'}`} title={a.desc}>
+              <div key={id} className={`ach-badge ${got ? 'got' : 'locked'}`} title={tr(a.desc)}>
                 <span className="ach-badge-ic">{got ? a.icon : '🔒'}</span>
                 <span className="ach-badge-name">{a.name}</span>
-                {got && <span className="ach-badge-desc">{a.desc}</span>}
+                {got && <span className="ach-badge-desc">{tr(a.desc)}</span>}
               </div>
             ); })}
           </div>

@@ -137,6 +137,21 @@ npx esbuild src/1-Modull/<Fayl>.jsx --loader:.jsx=jsx --outfile=C:\Users\ADMIN\A
 | `PostgresCrudLesson.jsx` | ✅ | ✅ | 372 ru-juft (2026-07-23). SQL kalit-so'z/namunalar aslicha; S15 INSERT/VALUES parse-regex holicha |
 | `RoutingLesson.jsx` | ✅ | ✅ | 362 ru-juft (2026-07-23). URL-path/dekoratorlar aslicha; QuestionScreen `ou()` helper — payload options/javoblar UZ-etalon |
 
+### 4a/4b/4c-Modul (Nest/Test/CI-CD, PM'siz — 2026-07-23 yakunlandi: 10/10 ✅, ~5 200 ru-juft; yakuniy sweep: 10/10 esbuild toza, 10/10 kalit-qiymatlari ish-oldi baseline `4a135c8` bilan aynan (HEAD sessiya ichida siljigan), LivePractice payload 10/10 UZ-etalon formula)
+> Bu to'lqinda `ou()`/`ouz()` helper-konvensiya mustahkamlandi: QuestionScreen analytics-payload (`options`/`correctAnswer`/`studentAnswer`) doim UZ-etalon.
+| Dars | Infra (tr/__lang) | Kontent RU | Izoh |
+|---|---|---|---|
+| `4a/NestArchResourceLesson.jsx` | ✅ | ✅ | 417 ru-juft (2026-07-23). FLOW `key={i}` (obyekt-key xavfi); restoran-metafora RU'da to'liq |
+| `4a/NestArchPracticeLesson.jsx` | ✅ | ✅ | 621 ru-juft (2026-07-23). SHOP_FLOW `key={i}`; kitob nomlari RU o'rnashgan tarjimada |
+| `4a/NestArchAliveLesson.jsx` | ✅ | ✅ | 596 ru-maydon (2026-07-23). CSS bayt-aynan; s9 bekat-nomi ichma-ich tr bilan til-mustaqil |
+| `4b/EdgeCasesTestLesson.jsx` | ✅ | ✅ | 412 ru-juft (2026-07-23). Jest-terminal simulyatsiya/kod-literallar kod bilan sinxron holicha; DD id-asosli |
+| `4b/JestUnitTestLesson.jsx` | ✅ | ✅ | 534 ru-juft (2026-07-23). `it('...')` test-nomlari kod holicha; CARD_CORRECT aynan |
+| `4c/CiCdIntroLesson.jsx` | ✅ | ✅ | 570 ru-juft (2026-07-23). YAML aslicha; BELT_ITEMS label obyektga qayta qurilgan (DragDrop id-asosli) |
+| `4c/GithubActionsLesson.jsx` | ✅ | ✅ | 638 ru-juft (2026-07-23). MAXSUS: BeltRun `includes('UCHIRISH')` → `(s.label.uz||s.label).includes` (til-mustaqil); jurnal rang-heuristikasi emoji-asosli |
+| `4c/AiPipelineProjectLesson.jsx` | ✅ | ✅ | 589 ru-juft (2026-07-23). Simulyatsion LENTA JURNALI tarjima qilindi (check-bog'lanmagani tasdiqlangan); ci.yml aslicha |
+| `4c/FullProPipelineLesson.jsx` | ✅ | ✅ | 555 ru-juft (2026-07-23). Aeroport-metafora RU'da izchil (лента/чемодан/сейф) |
+| `4c/FullPipelineProjectLesson.jsx` | ✅ | ✅ | 546 ru-juft (2026-07-23). Metafora-lug'at GithubActions bilan sinxron (КОНВЕЙЕР/СТАРТ-СИГНАЛ); S13 validatorlari tegilmagan |
+
 ### 1-Modul PM darslari (v2, PM pipeline)
 | Dars | Infra (tr/__lang) | Kontent RU | Izoh |
 |---|---|---|---|
