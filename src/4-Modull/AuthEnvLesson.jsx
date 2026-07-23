@@ -23,6 +23,16 @@ const CODE = { bg: '#1A2436', text: '#E8E5DD', tag: '#FF7755', attr: '#FFD380', 
 const METHODS = { GET: T.success, POST: T.accent, PUT: T.blue, DELETE: '#C2410C' };
 const STAT = { 200: ['200 OK', T.success], 201: ['201 Created', T.success], 401: ['401 Unauthorized', T.danger], 403: ['403 Forbidden', T.danger], 404: ['404 Not Found', T.danger] };
 
+// UZ-RU: modul-darajali tarjimon. Dars mount bo'lganda default export __lang'ni o'rnatadi;
+// barcha render-joylar tr({uz:'…', ru:'…'}) orqali joriy tildagi matnni oladi (string/JSX o'tkazib yuboriladi).
+let __lang = 'uz';
+const tr = (node) => {
+  if (node === null || node === undefined) return '';
+  if (typeof node === 'string') return node;
+  if (React.isValidElement(node)) return node;
+  return node[__lang] ?? node.uz ?? node.ru ?? '';
+};
+
 // ============================================================
 // ⚡ JONLI QATLAM (Kahoot-uslub) — mentor sessiya ochadi, o'quvchilar kodda qo'shiladi
 // ============================================================
@@ -141,20 +151,20 @@ function useLiveSession(lessonId, answerKey) {
       tokenRef.current = row.token; setPin(row.pin); setMode('mentor'); setEnded(false);
       liveStore(lessonId, { mode: 'mentor', pin: row.pin, token: row.token });
       if (keyRef.current) liveRpc('set_quiz_keys', { p_lesson_id: lessonId, p_mentor_code: (mentorCode || '').trim(), p_keys: keyRef.current }).catch(() => {});
-    } catch { setJoinError("Mentor kodi noto'g'ri yoki ulanishda xato."); }
+    } catch { setJoinError(tr({ uz: "Mentor kodi noto'g'ri yoki ulanishda xato.", ru: 'Неверный код ментора или ошибка соединения.' })); }
     finally { setBusy(false); }
   }, [lessonId]);
   const joinStudent = useCallback(async (raw, rawNick) => {
     const p = (raw || '').replace(/\D/g, '');
     const nick = (rawNick || '').trim();
-    if (p.length < 4) { setJoinError("Kodni to'liq kiriting."); return; }
-    if (nick.length < 2) { setJoinError('Ismingizni kiriting (kamida 2 harf).'); return; }
+    if (p.length < 4) { setJoinError(tr({ uz: "Kodni to'liq kiriting.", ru: 'Введите код полностью.' })); return; }
+    if (nick.length < 2) { setJoinError(tr({ uz: 'Ismingizni kiriting (kamida 2 harf).', ru: 'Введите имя (минимум 2 буквы).' })); return; }
     setBusy(true); setJoinError('');
     try {
       const row = await liveGet(p);
-      if (!row) { setJoinError('Bunday kod topilmadi.'); setBusy(false); return; }
-      if (row.lesson_id && row.lesson_id !== lessonId) { setJoinError('Bu kod boshqa darsga tegishli.'); setBusy(false); return; }
-      if (row.status !== 'live') { setJoinError('Bu dars allaqachon yakunlangan.'); setBusy(false); return; }
+      if (!row) { setJoinError(tr({ uz: 'Bunday kod topilmadi.', ru: 'Такой код не найден.' })); setBusy(false); return; }
+      if (row.lesson_id && row.lesson_id !== lessonId) { setJoinError(tr({ uz: 'Bu kod boshqa darsga tegishli.', ru: 'Этот код от другого урока.' })); setBusy(false); return; }
+      if (row.status !== 'live') { setJoinError(tr({ uz: 'Bu dars allaqachon yakunlangan.', ru: 'Этот урок уже завершён.' })); setBusy(false); return; }
       const res = await liveRpc('join_session', { p_pin: p, p_nickname: nick });
       const player = Array.isArray(res) ? res[0] : res;
       if (!player?.player_id) throw new Error('no player');
@@ -165,7 +175,7 @@ function useLiveSession(lessonId, answerKey) {
       liveStore(lessonId, { mode: 'student', pin: p, lastScreen: row.max_screen, playerId: player.player_id, playerToken: player.token, nickname: nick });
     } catch (e) {
       const m = String(e?.message || '');
-      setJoinError(/ism|band|kod|dars|belgi/i.test(m) ? m : "Ulanib bo'lmadi. Internetni tekshiring.");
+      setJoinError(/ism|band|kod|dars|belgi/i.test(m) ? m : tr({ uz: "Ulanib bo'lmadi. Internetni tekshiring.", ru: 'Не удалось подключиться. Проверьте интернет.' }));
     }
     finally { setBusy(false); }
   }, [lessonId]);
@@ -205,15 +215,15 @@ function LiveBigCode({ pin, onClose }) {
   const box = { background: LT.paper, color: LT.ink, borderRadius: 'clamp(10px,1.6vw,18px)', fontFamily: 'monospace', fontWeight: 800, lineHeight: 1, fontSize: 'clamp(48px,13vw,150px)', padding: 'clamp(10px,2vw,28px) clamp(12px,2.2vw,30px)', boxShadow: '0 10px 40px -10px rgba(0,0,0,0.5)' };
   return (
     <div style={overlay}>
-      <div style={{ fontSize: 'clamp(13px,2vw,18px)', fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: LT.accent, marginBottom: 'clamp(14px,3vw,28px)' }}>Jonli darsga qo'shilish</div>
+      <div style={{ fontSize: 'clamp(13px,2vw,18px)', fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: LT.accent, marginBottom: 'clamp(14px,3vw,28px)' }}>{tr({ uz: "Jonli darsga qo'shilish", ru: 'Подключение к живому уроку' })}</div>
       <div style={{ display: 'flex', gap: 'clamp(6px,1.4vw,16px)', justifyContent: 'center', flexWrap: 'wrap' }}>{digits.map((d, i) => <span key={i} style={box}>{d}</span>)}</div>
-      <p style={{ color: '#fff', opacity: 0.85, fontSize: 'clamp(15px,2.2vw,22px)', maxWidth: 640, margin: 'clamp(20px,4vw,36px) 0 0', lineHeight: 1.5 }}>Shu darsni o'z qurilmangizda oching → <b style={{ color: '#fff' }}>«👨‍🎓 O'quvchiman»</b> → ushbu kodni kiriting.</p>
-      <button onClick={onClose} style={{ marginTop: 'clamp(22px,4vw,40px)', background: LT.accent, color: '#fff', border: 'none', borderRadius: 14, padding: 'clamp(12px,1.6vw,16px) clamp(24px,3vw,36px)', fontSize: 'clamp(15px,1.8vw,18px)', fontWeight: 700, cursor: 'pointer' }}>Darsni boshlash →</button>
+      <p style={{ color: '#fff', opacity: 0.85, fontSize: 'clamp(15px,2.2vw,22px)', maxWidth: 640, margin: 'clamp(20px,4vw,36px) 0 0', lineHeight: 1.5 }}>{tr({ uz: <>Shu darsni o'z qurilmangizda oching → <b style={{ color: '#fff' }}>«👨‍🎓 O'quvchiman»</b> → ushbu kodni kiriting.</>, ru: <>Откройте этот урок на своём устройстве → <b style={{ color: '#fff' }}>«👨‍🎓 Я ученик»</b> → введите этот код.</> })}</p>
+      <button onClick={onClose} style={{ marginTop: 'clamp(22px,4vw,40px)', background: LT.accent, color: '#fff', border: 'none', borderRadius: 14, padding: 'clamp(12px,1.6vw,16px) clamp(24px,3vw,36px)', fontSize: 'clamp(15px,1.8vw,18px)', fontWeight: 700, cursor: 'pointer' }}>{tr({ uz: 'Darsni boshlash →', ru: 'Начать урок →' })}</button>
     </div>
   );
 }
 
-function LiveGate({ live, title = 'Jonli dars' }) {
+function LiveGate({ live, title = { uz: 'Jonli dars', ru: 'Живой урок' } }) {
   const [code, setCode] = useState('');
   const [nick, setNick] = useState(() => nickRead());
   const [mentorCode, setMentorCode] = useState('');
@@ -223,18 +233,18 @@ function LiveGate({ live, title = 'Jonli dars' }) {
   const link = { background: 'none', border: 'none', color: LT.ink3, fontSize: 13, cursor: 'pointer', alignSelf: 'center' };
   if (role === 'mentor') {
     return (<div style={wrap}><div style={card}>
-      <div style={{ textAlign: 'center' }}><h2 style={{ fontFamily: 'Georgia, serif', fontSize: 'clamp(22px,3vw,28px)', color: LT.ink, margin: '0 0 4px' }}>🧑‍🏫 Mentor kirishi</h2><p style={{ color: LT.ink2, fontSize: 14, margin: 0 }}>Mentor kodini kiriting.</p></div>
-      <input value={mentorCode} onChange={e => setMentorCode(e.target.value)} type="password" autoFocus placeholder="Mentor kodi" onKeyDown={e => { if (e.key === 'Enter') live.startMentor(mentorCode); }} style={{ width: '100%', padding: '14px', border: `2px solid ${LT.ink3}55`, borderRadius: 14, fontSize: 18, fontWeight: 600, textAlign: 'center', outline: 'none' }} />
-      <button onClick={() => live.startMentor(mentorCode)} disabled={live.busy} style={_liveBtnPri}>{live.busy ? 'Tekshirilmoqda…' : 'Kirish →'}</button>
+      <div style={{ textAlign: 'center' }}><h2 style={{ fontFamily: 'Georgia, serif', fontSize: 'clamp(22px,3vw,28px)', color: LT.ink, margin: '0 0 4px' }}>{tr({ uz: '🧑‍🏫 Mentor kirishi', ru: '🧑‍🏫 Вход ментора' })}</h2><p style={{ color: LT.ink2, fontSize: 14, margin: 0 }}>{tr({ uz: 'Mentor kodini kiriting.', ru: 'Введите код ментора.' })}</p></div>
+      <input value={mentorCode} onChange={e => setMentorCode(e.target.value)} type="password" autoFocus placeholder={tr({ uz: 'Mentor kodi', ru: 'Код ментора' })} onKeyDown={e => { if (e.key === 'Enter') live.startMentor(mentorCode); }} style={{ width: '100%', padding: '14px', border: `2px solid ${LT.ink3}55`, borderRadius: 14, fontSize: 18, fontWeight: 600, textAlign: 'center', outline: 'none' }} />
+      <button onClick={() => live.startMentor(mentorCode)} disabled={live.busy} style={_liveBtnPri}>{live.busy ? tr({ uz: 'Tekshirilmoqda…', ru: 'Проверяем…' }) : tr({ uz: 'Kirish →', ru: 'Войти →' })}</button>
       {live.joinError && <div style={{ color: LT.accent, fontSize: 13, textAlign: 'center' }}>{live.joinError}</div>}
-      <button onClick={() => { setRole('student'); setMentorCode(''); }} style={link}>← Orqaga</button>
+      <button onClick={() => { setRole('student'); setMentorCode(''); }} style={link}>{tr({ uz: '← Orqaga', ru: '← Назад' })}</button>
     </div></div>);
   }
   return (<div style={wrap}><div style={card}>
-    <div style={{ textAlign: 'center' }}><div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: LT.accent }}>{title}</div><h2 style={{ fontFamily: 'Georgia, serif', fontSize: 'clamp(22px,3vw,28px)', color: LT.ink, margin: '6px 0 4px' }}>Darsga qo'shilish</h2><p style={{ color: LT.ink2, fontSize: 14, margin: 0 }}>Mentor bergan kodni va ismingizni kiriting.</p></div>
+    <div style={{ textAlign: 'center' }}><div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: LT.accent }}>{tr(title)}</div><h2 style={{ fontFamily: 'Georgia, serif', fontSize: 'clamp(22px,3vw,28px)', color: LT.ink, margin: '6px 0 4px' }}>{tr({ uz: "Darsga qo'shilish", ru: 'Подключение к уроку' })}</h2><p style={{ color: LT.ink2, fontSize: 14, margin: 0 }}>{tr({ uz: 'Mentor bergan kodni va ismingizni kiriting.', ru: 'Введите код от ментора и своё имя.' })}</p></div>
     <input value={code} onChange={e => setCode(e.target.value)} inputMode="numeric" autoFocus placeholder="483 920" style={{ width: '100%', padding: '16px 14px', border: `2px solid ${LT.ink3}55`, borderRadius: 14, fontSize: 28, fontFamily: 'monospace', fontWeight: 700, letterSpacing: '0.12em', textAlign: 'center', outline: 'none' }} />
-    <input value={nick} onChange={e => setNick(e.target.value)} maxLength={24} placeholder="Ismingiz (masalan: Ali)" onKeyDown={e => { if (e.key === 'Enter') live.joinStudent(code, nick); }} style={{ width: '100%', padding: '13px 14px', border: `2px solid ${LT.ink3}55`, borderRadius: 14, fontSize: 17, fontWeight: 600, textAlign: 'center', outline: 'none' }} />
-    <button onClick={() => live.joinStudent(code, nick)} disabled={live.busy} style={_liveBtnPri}>{live.busy ? 'Ulanmoqda…' : 'Qo\'shilish →'}</button>
+    <input value={nick} onChange={e => setNick(e.target.value)} maxLength={24} placeholder={tr({ uz: 'Ismingiz (masalan: Ali)', ru: 'Ваше имя (например: Али)' })} onKeyDown={e => { if (e.key === 'Enter') live.joinStudent(code, nick); }} style={{ width: '100%', padding: '13px 14px', border: `2px solid ${LT.ink3}55`, borderRadius: 14, fontSize: 17, fontWeight: 600, textAlign: 'center', outline: 'none' }} />
+    <button onClick={() => live.joinStudent(code, nick)} disabled={live.busy} style={_liveBtnPri}>{live.busy ? tr({ uz: 'Ulanmoqda…', ru: 'Подключаемся…' }) : tr({ uz: "Qo'shilish →", ru: 'Присоединиться →' })}</button>
     {live.joinError && <div style={{ color: LT.accent, fontSize: 13, textAlign: 'center' }}>{live.joinError}</div>}
     <button onClick={() => { setRole('mentor'); setCode(''); }} title="Mentor" aria-label="Mentor" style={{ position: 'absolute', bottom: 10, right: 12, background: 'none', border: 'none', fontSize: 16, opacity: 0.3, cursor: 'pointer', lineHeight: 1, padding: 4 }}>🧑‍🏫</button>
   </div></div>);
@@ -254,22 +264,22 @@ function LiveBadge({ live, total }) {
     return () => { on = false; clearTimeout(t); };
   }, [live.mode, live.pin, live.ended]);
   if (live.mode === 'mentor') {
-    if (live.ended) return <div className="live-badge" style={_liveBadgeS}><span style={_liveDot(LT.ink3)} /> 🔓 O'quvchilar erkin qilindi</div>;
+    if (live.ended) return <div className="live-badge" style={_liveBadgeS}><span style={_liveDot(LT.ink3)} /> {tr({ uz: "🔓 O'quvchilar erkin qilindi", ru: '🔓 Ученики отпущены — свободный режим' })}</div>;
     return (<>
       {bigOpen && <LiveBigCode pin={live.pin} onClose={() => setBigOpen(false)} />}
       <div className="live-badge" style={_liveBadgeS}>
-        <span style={_liveDot(LT.success)} /> Kod: <b style={{ fontFamily: 'monospace', letterSpacing: '0.08em' }}>{fmtPin(live.pin)}</b>
+        <span style={_liveDot(LT.success)} /> {tr({ uz: 'Kod:', ru: 'Код:' })} <b style={{ fontFamily: 'monospace', letterSpacing: '0.08em' }}>{fmtPin(live.pin)}</b>
         {nPlayers !== null && <span style={{ color: LT.ink2 }}>👥 {nPlayers}</span>}
-        <button onClick={() => setBigOpen(true)} title="Kodni katta ko'rsatish" style={{ marginLeft: 6, background: LT.ink, color: '#fff', border: 'none', borderRadius: 99, padding: '4px 10px', fontSize: 12, fontWeight: 700, cursor: 'pointer', whiteSpace: 'nowrap' }}>📺 Ko'rsatish</button>
-        <button onClick={() => { if (window.confirm("O'quvchilarni ozod qilasizmi? Ular o'zlari erkin davom etadi.")) live.endSession(); }} style={{ background: LT.accentSoft, color: LT.accent, border: 'none', borderRadius: 99, padding: '4px 10px', fontSize: 12, fontWeight: 700, cursor: 'pointer', whiteSpace: 'nowrap' }}>🔓 Erkin qilish</button>
+        <button onClick={() => setBigOpen(true)} title={tr({ uz: "Kodni katta ko'rsatish", ru: 'Показать код крупно' })} style={{ marginLeft: 6, background: LT.ink, color: '#fff', border: 'none', borderRadius: 99, padding: '4px 10px', fontSize: 12, fontWeight: 700, cursor: 'pointer', whiteSpace: 'nowrap' }}>{tr({ uz: "📺 Ko'rsatish", ru: '📺 Показать' })}</button>
+        <button onClick={() => { if (window.confirm(tr({ uz: "O'quvchilarni ozod qilasizmi? Ular o'zlari erkin davom etadi.", ru: 'Отпустить учеников? Дальше они продолжат сами.' }))) live.endSession(); }} style={{ background: LT.accentSoft, color: LT.accent, border: 'none', borderRadius: 99, padding: '4px 10px', fontSize: 12, fontWeight: 700, cursor: 'pointer', whiteSpace: 'nowrap' }}>{tr({ uz: '🔓 Erkin qilish', ru: '🔓 Отпустить' })}</button>
       </div>
     </>);
   }
   if (live.mode === 'student') {
-    if (live.status === 'ended') return <div className="live-badge" style={_liveBadgeS}><span style={_liveDot(LT.success)} /> 🔓 Erkin rejim — o'zingiz davom eting</div>;
-    if (!live.mentorAlive) return <div className="live-badge" style={_liveBadgeS}><span style={_liveDot(LT.ink3)} /> ⚠️ Mentor uzildi — erkin rejim</div>;
-    if (!live.connected) return <div className="live-badge" style={_liveBadgeS}><span style={_liveDot('#FFD380')} /> 🔄 Qayta ulanmoqda…</div>;
-    return <div className="live-badge" style={_liveBadgeS}><span style={_liveDot(LT.success)} /> 👨‍🏫 Mentor: {Math.min(live.mentorScreen + 1, total)} / {total}{live.nickname && <span style={{ color: LT.ink3 }}>· {live.nickname}</span>}</div>;
+    if (live.status === 'ended') return <div className="live-badge" style={_liveBadgeS}><span style={_liveDot(LT.success)} /> {tr({ uz: "🔓 Erkin rejim — o'zingiz davom eting", ru: '🔓 Свободный режим — продолжайте сами' })}</div>;
+    if (!live.mentorAlive) return <div className="live-badge" style={_liveBadgeS}><span style={_liveDot(LT.ink3)} /> {tr({ uz: '⚠️ Mentor uzildi — erkin rejim', ru: '⚠️ Ментор отключился — свободный режим' })}</div>;
+    if (!live.connected) return <div className="live-badge" style={_liveBadgeS}><span style={_liveDot('#FFD380')} /> {tr({ uz: '🔄 Qayta ulanmoqda…', ru: '🔄 Переподключаемся…' })}</div>;
+    return <div className="live-badge" style={_liveBadgeS}><span style={_liveDot(LT.success)} /> {tr({ uz: '👨‍🏫 Mentor:', ru: '👨‍🏫 Ментор:' })} {Math.min(live.mentorScreen + 1, total)} / {total}{live.nickname && <span style={{ color: LT.ink3 }}>· {live.nickname}</span>}</div>;
   }
   return null;
 }
@@ -399,13 +409,13 @@ const Stage = ({ children, eyebrow, screen, totalScreens = TOTAL_SCREENS, navCon
     </MentorCtx.Provider>
   );
 };
-const NavBack = ({ onPrev }) => <button className="btn-ghost" onClick={onPrev} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>Orqaga</button>;
-const NavNext = ({ disabled, label = 'Davom etish', onClick, optionalLive }) => {
+const NavBack = ({ onPrev }) => <button className="btn-ghost" onClick={onPrev} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Orqaga', ru: 'Назад' })}</button>;
+const NavNext = ({ disabled, label = { uz: 'Davom etish', ru: 'Продолжить' }, onClick, optionalLive }) => {
   const gate = useContext(LiveGateCtx);
   const locked = !!(gate && gate.locked);
   const live = gate && gate.live;
   const freeRide = !!(optionalLive && live && live.mode === 'student' && live.status !== 'ended' && live.mentorAlive);
-  return <button className="btn-white-accent" disabled={(freeRide ? false : disabled) || locked} onClick={onClick} title={locked ? "Mentor hali bu sahifaga o'tmadi" : undefined} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)', marginLeft: 'auto' }}>{locked ? '⏳ Mentorni kuting' : (freeRide && disabled ? 'Davom etish' : label)}</button>;
+  return <button className="btn-white-accent" disabled={(freeRide ? false : disabled) || locked} onClick={onClick} title={locked ? tr({ uz: "Mentor hali bu sahifaga o'tmadi", ru: 'Ментор ещё не перешёл на эту страницу' }) : undefined} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)', marginLeft: 'auto' }}>{locked ? tr({ uz: '⏳ Mentorni kuting', ru: '⏳ Ждите ментора' }) : (freeRide && disabled ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr(label))}</button>;
 };
 
 const FeedbackBlock = ({ show, isCorrect, neutral, children }) => {
@@ -435,33 +445,33 @@ const RECAPS = {
   4: {
     title: "Login → token",
     cards: [
-      { ic: "🎫", h: "Login → bilaguzuk", body: <>Email va parol to'g'ri bo'lsa, server <b>token (bilaguzuk)</b> beradi. Endi parol emas — shu token ishlatiladi.</> },
-      { ic: "🔁", h: "Parol bir marta", body: <>Parolni har safar yubormaysiz. Bir marta login → token → keyingi so'rovlar shu token bilan.</> },
-      { ic: "✍️", h: "jwt.sign yasaydi", body: <>Server <span className="mono">jwt.sign</span> bilan tokenni <b>userId + SECRET</b>dan yasaydi.</>, ask: "Login muvaffaqiyatli — server nima qaytaradi?" },
+      { ic: "🎫", h: { uz: "Login → bilaguzuk", ru: "Логин → браслет" }, body: { uz: <>Email va parol to'g'ri bo'lsa, server <b>token (bilaguzuk)</b> beradi. Endi parol emas — shu token ishlatiladi.</>, ru: <>Если email и пароль верны, сервер выдаёт <b>токен (браслет)</b>. Дальше работает не пароль, а этот токен.</> } },
+      { ic: "🔁", h: { uz: "Parol bir marta", ru: "Пароль — один раз" }, body: { uz: <>Parolni har safar yubormaysiz. Bir marta login → token → keyingi so'rovlar shu token bilan.</>, ru: <>Вы не отправляете пароль каждый раз. Один раз логин → токен → следующие запросы с этим токеном.</> } },
+      { ic: "✍️", h: { uz: "jwt.sign yasaydi", ru: "jwt.sign создаёт" }, body: { uz: <>Server <span className="mono">jwt.sign</span> bilan tokenni <b>userId + SECRET</b>dan yasaydi.</>, ru: <>Сервер создаёт токен через <span className="mono">jwt.sign</span> из <b>userId + SECRET</b>.</> }, ask: { uz: "Login muvaffaqiyatli — server nima qaytaradi?", ru: "Логин успешен — что возвращает сервер?" } },
     ]
   },
   6: {
-    title: "JWT tuzilishi — imzo himoyasi",
+    title: { uz: "JWT tuzilishi — imzo himoyasi", ru: "Структура JWT — защита подписью" },
     cards: [
-      { ic: "🧩", h: "header.payload.signature", body: <>JWT uch qism: <span className="mono">header</span>.<span className="mono">payload</span>.<span className="mono">signature</span> — nuqta bilan ajratilgan.</> },
-      { ic: "👁️", h: "Payload o'qiladi", body: <>Payload ichida userId turadi — o'qiladi, lekin <b>o'zgartirib bo'lmaydi</b>.</> },
-      { ic: "🔏", h: "Signature to'sadi", body: <>Imzo maxfiy kalit (<span className="mono">JWT_SECRET</span>) bilan yasaladi. Tokenni o'zgartirsangiz — imzo buziladi, server rad etadi.</>, ask: "Nega soxta token yasab bo'lmaydi?" },
+      { ic: "🧩", h: "header.payload.signature", body: { uz: <>JWT uch qism: <span className="mono">header</span>.<span className="mono">payload</span>.<span className="mono">signature</span> — nuqta bilan ajratilgan.</>, ru: <>JWT — три части: <span className="mono">header</span>.<span className="mono">payload</span>.<span className="mono">signature</span> — разделены точками.</> } },
+      { ic: "👁️", h: { uz: "Payload o'qiladi", ru: "Payload читается" }, body: { uz: <>Payload ichida userId turadi — o'qiladi, lekin <b>o'zgartirib bo'lmaydi</b>.</>, ru: <>Внутри payload лежит userId — он читается, но <b>изменить его нельзя</b>.</> } },
+      { ic: "🔏", h: { uz: "Signature to'sadi", ru: "Signature защищает" }, body: { uz: <>Imzo maxfiy kalit (<span className="mono">JWT_SECRET</span>) bilan yasaladi. Tokenni o'zgartirsangiz — imzo buziladi, server rad etadi.</>, ru: <>Подпись делается секретным ключом (<span className="mono">JWT_SECRET</span>). Измените токен — подпись сломается, сервер откажет.</> }, ask: { uz: "Nega soxta token yasab bo'lmaydi?", ru: "Почему нельзя сделать поддельный токен?" } },
     ]
   },
   10: {
     title: "Guard · 401 · Bearer",
     cards: [
-      { ic: "🎟️", h: "Bearer bilan yuborish", body: <>Har so'rovda token <span className="mono">Authorization: Bearer &lt;token&gt;</span> sarlavhasida ketadi.</> },
-      { ic: "🛡️", h: "Guard tekshiradi", body: <>Himoyalangan route oldida qo'riqchi <span className="mono">jwt.verify(token, SECRET)</span> bilan imzoni tekshiradi.</> },
-      { ic: "⛔", h: "Tokensiz → 401", body: <>Token yo'q yoki soxta bo'lsa — <b>401 Unauthorized</b>. Kira olmaysiz.</>, ask: "Tokensiz himoyalangan route — qaysi status?" },
+      { ic: "🎟️", h: { uz: "Bearer bilan yuborish", ru: "Отправка с Bearer" }, body: { uz: <>Har so'rovda token <span className="mono">Authorization: Bearer &lt;token&gt;</span> sarlavhasida ketadi.</>, ru: <>В каждом запросе токен едет в заголовке <span className="mono">Authorization: Bearer &lt;token&gt;</span>.</> } },
+      { ic: "🛡️", h: { uz: "Guard tekshiradi", ru: "Guard проверяет" }, body: { uz: <>Himoyalangan route oldida qo'riqchi <span className="mono">jwt.verify(token, SECRET)</span> bilan imzoni tekshiradi.</>, ru: <>Перед защищённым route охранник проверяет подпись через <span className="mono">jwt.verify(token, SECRET)</span>.</> } },
+      { ic: "⛔", h: { uz: "Tokensiz → 401", ru: "Без токена → 401" }, body: { uz: <>Token yo'q yoki soxta bo'lsa — <b>401 Unauthorized</b>. Kira olmaysiz.</>, ru: <>Токена нет или он поддельный — <b>401 Unauthorized</b>. Вход закрыт.</> }, ask: { uz: "Tokensiz himoyalangan route — qaysi status?", ru: "Защищённый route без токена — какой статус?" } },
     ]
   },
   13: {
-    title: "Maxfiy kalit · .env · process.env",
+    title: { uz: "Maxfiy kalit · .env · process.env", ru: "Секретный ключ · .env · process.env" },
     cards: [
-      { ic: "🔑", h: "JWT_SECRET — imzo muhri", body: <>Butun himoya <b>maxfiy kalit</b>ga bog'liq. U kodda ochiq tursa va GitHub'ga ketsa — hamma soxta bilaguzuk (token) yasay oladi.</> },
-      { ic: "🗄️", h: ".env — yashirin tortma", body: <>Maxfiy kalitlar <span className="mono">.env</span> faylida. Kod ularni <span className="mono">process.env</span> orqali o'qiydi.</> },
-      { ic: "🙈", h: ".gitignore saqlaydi", body: <><span className="mono">.gitignore</span>'ga <span className="mono">.env</span> qo'shiladi — u GitHub'ga hech qachon ketmaydi.</>, ask: "Maxfiy kalitlarni qayerda saqlaymiz?" },
+      { ic: "🔑", h: { uz: "JWT_SECRET — imzo muhri", ru: "JWT_SECRET — печать подписи" }, body: { uz: <>Butun himoya <b>maxfiy kalit</b>ga bog'liq. U kodda ochiq tursa va GitHub'ga ketsa — hamma soxta bilaguzuk (token) yasay oladi.</>, ru: <>Вся защита держится на <b>секретном ключе</b>. Если он открыт в коде и попадёт на GitHub — каждый сможет делать поддельные браслеты (токены).</> } },
+      { ic: "🗄️", h: { uz: ".env — yashirin tortma", ru: ".env — потайной ящик" }, body: { uz: <>Maxfiy kalitlar <span className="mono">.env</span> faylida. Kod ularni <span className="mono">process.env</span> orqali o'qiydi.</>, ru: <>Секретные ключи — в файле <span className="mono">.env</span>. Код читает их через <span className="mono">process.env</span>.</> } },
+      { ic: "🙈", h: { uz: ".gitignore saqlaydi", ru: ".gitignore бережёт" }, body: { uz: <><span className="mono">.gitignore</span>'ga <span className="mono">.env</span> qo'shiladi — u GitHub'ga hech qachon ketmaydi.</>, ru: <>В <span className="mono">.gitignore</span> добавляется <span className="mono">.env</span> — он никогда не попадёт на GitHub.</> }, ask: { uz: "Maxfiy kalitlarni qayerda saqlaymiz?", ru: "Где мы храним секретные ключи?" } },
     ]
   }
 };
@@ -484,23 +494,23 @@ function RecapOverlay({ screenIdx, onClose }) {
   return (
     <div className="rc-overlay">
       <div className="rc-head">
-        <span className="rc-tag">📖 Qayta tushuntirish</span>
-        <span className="rc-title">{rc.title}</span>
-        <button className="rc-x" onClick={onClose} aria-label="Yopish">✕</button>
+        <span className="rc-tag">{tr({ uz: '📖 Qayta tushuntirish', ru: '📖 Объяснение заново' })}</span>
+        <span className="rc-title">{tr(rc.title)}</span>
+        <button className="rc-x" onClick={onClose} aria-label={tr({ uz: 'Yopish', ru: 'Закрыть' })}>✕</button>
       </div>
       <div className="rc-card" key={i}>
         <div className="rc-ic">{card.ic}</div>
-        <h2 className="rc-h">{card.h}</h2>
-        <p className="rc-body">{card.body}</p>
+        <h2 className="rc-h">{tr(card.h)}</h2>
+        <p className="rc-body">{tr(card.body)}</p>
         {card.vis && <div className="rc-vis">{card.vis}</div>}
-        {card.ask && <div className="rc-ask">🗣️ Sinfga savol: {card.ask}</div>}
+        {card.ask && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
       </div>
       <div className="rc-nav">
-        <button className="rc-btn ghost" disabled={i === 0} onClick={() => setI(i - 1)}>← Oldingi</button>
-        <div className="rc-dots">{rc.cards.map((_, k) => <button key={k} className={`rc-dot ${k === i ? 'cur' : k < i ? 'fill' : ''}`} onClick={() => setI(k)} aria-label={`${k + 1}-karta`} />)}</div>
+        <button className="rc-btn ghost" disabled={i === 0} onClick={() => setI(i - 1)}>{tr({ uz: '← Oldingi', ru: '← Предыдущая' })}</button>
+        <div className="rc-dots">{rc.cards.map((_, k) => <button key={k} className={`rc-dot ${k === i ? 'cur' : k < i ? 'fill' : ''}`} onClick={() => setI(k)} aria-label={tr({ uz: `${k + 1}-karta`, ru: `карта ${k + 1}` })} />)}</div>
         {last
-          ? <button className="rc-btn done" onClick={onClose}>✓ Tushunarli — davom etamiz</button>
-          : <button className="rc-btn" onClick={() => setI(i + 1)}>Keyingisi →</button>}
+          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: '✓ Tushunarli — davom etamiz', ru: '✓ Понятно — продолжаем' })}</button>
+          : <button className="rc-btn" onClick={() => setI(i + 1)}>{tr({ uz: 'Keyingisi →', ru: 'Следующая →' })}</button>}
       </div>
     </div>
   );
@@ -533,25 +543,25 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
   return (
     <div className="mstats fade-up">
       <div className="mstats-head">
-        <span className="mstats-lbl">📊 Jonli natija</span>
-        <span className="mstats-n">{allIn ? '✓ Hamma javob berdi' : <>Javob berdi: <b>{answered}</b> / {total}</>}</span>
-        {!reveal && onReveal && <button className={`mstats-reveal ${allIn ? 'ready' : ''}`} onClick={onReveal}>🔓 Natijani ochish</button>}
+        <span className="mstats-lbl">{tr({ uz: '📊 Jonli natija', ru: '📊 Живой результат' })}</span>
+        <span className="mstats-n">{allIn ? tr({ uz: '✓ Hamma javob berdi', ru: '✓ Все ответили' }) : <>{tr({ uz: 'Javob berdi:', ru: 'Ответили:' })} <b>{answered}</b> / {total}</>}</span>
+        {!reveal && onReveal && <button className={`mstats-reveal ${allIn ? 'ready' : ''}`} onClick={onReveal}>{tr({ uz: '🔓 Natijani ochish', ru: '🔓 Открыть результат' })}</button>}
       </div>
       <div className="mstats-prog"><span className={`mstats-prog-fill ${allIn ? 'full' : ''}`} style={{ width: `${total ? Math.round((answered / total) * 100) : 0}%` }} /></div>
       {reveal ? (
         <div className="mstats-big">
-          <div className="mstats-chip okc"><span className="mstats-chip-n">{ok}</span><span className="mstats-chip-t">to'g'ri ✅</span></div>
-          <div className="mstats-chip badc"><span className="mstats-chip-n">{bad}</span><span className="mstats-chip-t">xato ❌</span></div>
-          <div className="mstats-chip waitc"><span className="mstats-chip-n">{total - answered}</span><span className="mstats-chip-t">kutilmoqda ⏳</span></div>
+          <div className="mstats-chip okc"><span className="mstats-chip-n">{ok}</span><span className="mstats-chip-t">{tr({ uz: "to'g'ri ✅", ru: 'верно ✅' })}</span></div>
+          <div className="mstats-chip badc"><span className="mstats-chip-n">{bad}</span><span className="mstats-chip-t">{tr({ uz: 'xato ❌', ru: 'ошибки ❌' })}</span></div>
+          <div className="mstats-chip waitc"><span className="mstats-chip-n">{total - answered}</span><span className="mstats-chip-t">{tr({ uz: 'kutilmoqda ⏳', ru: 'ждём ⏳' })}</span></div>
         </div>
       ) : (
         <div className="mstats-big">
-          <div className="mstats-chip ansc"><span className="mstats-chip-n">{answered}</span><span className="mstats-chip-t">javob berdi 📨</span></div>
-          <div className="mstats-chip waitc"><span className="mstats-chip-n">{total - answered}</span><span className="mstats-chip-t">kutilmoqda ⏳</span></div>
+          <div className="mstats-chip ansc"><span className="mstats-chip-n">{answered}</span><span className="mstats-chip-t">{tr({ uz: 'javob berdi 📨', ru: 'ответили 📨' })}</span></div>
+          <div className="mstats-chip waitc"><span className="mstats-chip-n">{total - answered}</span><span className="mstats-chip-t">{tr({ uz: 'kutilmoqda ⏳', ru: 'ждём ⏳' })}</span></div>
         </div>
       )}
       {!reveal && answered > 0 && (
-        <p className="mstats-hidden">🙈 Kim nimani tanlagani va ✅/❌ soni yashirin — «Natijani ochish» bosilganda sizda ham, o'quvchilar ekranida ham birdan ochiladi.</p>
+        <p className="mstats-hidden">{tr({ uz: "🙈 Kim nimani tanlagani va ✅/❌ soni yashirin — «Natijani ochish» bosilganda sizda ham, o'quvchilar ekranida ham birdan ochiladi.", ru: '🙈 Кто что выбрал и сколько ✅/❌ — скрыто. По нажатию «Открыть результат» всё откроется сразу и у вас, и на экранах учеников.' })}</p>
       )}
       {reveal && <div className="mstats-bars">
         {options.map((opt, i) => {
@@ -563,7 +573,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
             <div key={i} className={`mstats-row ${reveal && !isC ? 'dimmed' : ''}`}>
               <span className="mstats-abc" style={{ background: col }}>{isC ? '✓' : String.fromCharCode(65 + i)}</span>
               <span className="mstats-track"><span className="mstats-fill" style={{ width: `${answered ? Math.round((n / maxN) * 100) : 0}%`, background: col }} /></span>
-              <span className="mono mstats-count" style={isC ? { color: T.success, fontWeight: 800 } : undefined}>{n > 0 ? `${n} o'quvchi · ${pct}%` : '—'}</span>
+              <span className="mono mstats-count" style={isC ? { color: T.success, fontWeight: 800 } : undefined}>{n > 0 ? tr({ uz: `${n} o'quvchi · ${pct}%`, ru: `${n} уч. · ${pct}%` }) : '—'}</span>
             </div>
           );
         })}
@@ -573,23 +583,23 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
         const level = answered < RECAP_MIN_ANSWERS ? 'few' : pct < RECAP_NEED_PCT ? 'need' : pct < RECAP_GOOD_PCT ? 'maybe' : 'good';
         return (
           <div className={`mstats-verdict ${level}`}>
-            {level === 'need' && <p className="mstats-verdict-t">⚠️ Faqat <b>{pct}%</b> to'g'ri — bu mavzu sinfga tushunarsiz qolgan. Davom etishdan oldin qisqa takrorlash tavsiya etiladi.</p>}
-            {level === 'maybe' && <p className="mstats-verdict-t">🟡 <b>{pct}%</b> to'g'ri — yomon emas. Xohlasangiz, davom etishdan oldin qisqa takrorlab oling.</p>}
-            {level === 'good' && <p className="mstats-verdict-t">✅ <b>{pct}%</b> to'g'ri — sinf mavzuni o'zlashtirdi. Bemalol davom eting!</p>}
-            {level === 'few' && <p className="mstats-verdict-t">Javob berganlar kam ({answered} ta) — foiz bo'yicha xulosa chiqarish qiyin. O'zingiz baholang.</p>}
-            {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>📖 Qayta tushuntirish</button>}
+            {level === 'need' && <p className="mstats-verdict-t">{tr({ uz: <>⚠️ Faqat <b>{pct}%</b> to'g'ri — bu mavzu sinfga tushunarsiz qolgan. Davom etishdan oldin qisqa takrorlash tavsiya etiladi.</>, ru: <>⚠️ Только <b>{pct}%</b> верно — тема осталась классу непонятной. Перед продолжением рекомендуется короткое повторение.</> })}</p>}
+            {level === 'maybe' && <p className="mstats-verdict-t">{tr({ uz: <>🟡 <b>{pct}%</b> to'g'ri — yomon emas. Xohlasangiz, davom etishdan oldin qisqa takrorlab oling.</>, ru: <>🟡 <b>{pct}%</b> верно — неплохо. При желании коротко повторите тему перед продолжением.</> })}</p>}
+            {level === 'good' && <p className="mstats-verdict-t">{tr({ uz: <>✅ <b>{pct}%</b> to'g'ri — sinf mavzuni o'zlashtirdi. Bemalol davom eting!</>, ru: <>✅ <b>{pct}%</b> верно — класс усвоил тему. Смело продолжайте!</> })}</p>}
+            {level === 'few' && <p className="mstats-verdict-t">{tr({ uz: <>Javob berganlar kam ({answered} ta) — foiz bo'yicha xulosa chiqarish qiyin. O'zingiz baholang.</>, ru: <>Ответивших мало ({answered}) — судить по процентам сложно. Оцените сами.</> })}</p>}
+            {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>{tr({ uz: '📖 Qayta tushuntirish', ru: '📖 Объяснить заново' })}</button>}
           </div>
         );
       })()}
       {waiting.length > 0 && answered > 0 && (
         <div className="mstats-waitrow">
-          <span className="mstats-wait-lbl">⏳ Kutilmoqda:</span>
+          <span className="mstats-wait-lbl">{tr({ uz: '⏳ Kutilmoqda:', ru: '⏳ Ждём:' })}</span>
           {waiting.slice(0, 8).map(p => <span key={p.id} className="mstats-wait-chip">{p.nickname}</span>)}
           {waiting.length > 8 && <span className="mstats-wait-chip more">+{waiting.length - 8}</span>}
         </div>
       )}
-      {reveal && struggling && <p className="mstats-warn">⚠️ Ko'pchilik xato qildi — bu mavzu tushunarsiz bo'lgan ko'rinadi. Qayta tushuntirish tavsiya etiladi.</p>}
-      {answered === 0 && <p className="mstats-wait">O'quvchilar javoblari shu yerda jonli ko'rinadi…</p>}
+      {reveal && struggling && <p className="mstats-warn">{tr({ uz: "⚠️ Ko'pchilik xato qildi — bu mavzu tushunarsiz bo'lgan ko'rinadi. Qayta tushuntirish tavsiya etiladi.", ru: '⚠️ Большинство ошиблось — похоже, тема осталась непонятной. Рекомендуется объяснить заново.' })}</p>}
+      {answered === 0 && <p className="mstats-wait">{tr({ uz: "O'quvchilar javoblari shu yerda jonli ko'rinadi…", ru: 'Ответы учеников появятся здесь вживую…' })}</p>}
     </div>
   );
 }
@@ -628,10 +638,10 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
   const revealed = !oneShot || !!(live && (live.revealScreen === screen || live.mentorScreen > screen || live.status === 'ended' || !live.mentorAlive));
   const waiting = oneShot && solved && !revealed;
   return (
-    <Stage eyebrow={eyebrow} screen={screen} narrow audioState={audioText ? audio : undefined} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={isMentorLive ? !mReveal : !solved} label={isMentorLive ? (mReveal ? 'Davom etish' : 'Avval natijani oching') : solved ? 'Davom etish' : (oneShot ? 'Javob tanlang' : "To'g'ri javobni toping")} onClick={onNext} /></>}>
+    <Stage eyebrow={eyebrow} screen={screen} narrow audioState={audioText ? audio : undefined} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={isMentorLive ? !mReveal : !solved} label={isMentorLive ? (mReveal ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Avval natijani oching', ru: 'Сначала откройте результат' }) : solved ? { uz: 'Davom etish', ru: 'Продолжить' } : (oneShot ? { uz: 'Javob tanlang', ru: 'Выберите ответ' } : { uz: "To'g'ri javobni toping", ru: 'Найдите правильный ответ' })} onClick={onNext} /></>}>
       <div className="screen" style={{ justifyContent: isMentorLive ? 'flex-start' : 'center', gap: 'clamp(16px,2.5vw,24px)' }}>
         <div className="fade-up">{question}</div>
-        {oneShot && !solved && <p className="small mono fade-up" style={{ margin: '-8px 0 0', color: T.accent, fontWeight: 600 }}>⚡ Jonli dars — bitta urinish, o'ylab bosing!</p>}
+        {oneShot && !solved && <p className="small mono fade-up" style={{ margin: '-8px 0 0', color: T.accent, fontWeight: 600 }}>{tr({ uz: "⚡ Jonli dars — bitta urinish, o'ylab bosing!", ru: '⚡ Живой урок — одна попытка, подумайте перед нажатием!' })}</p>}
         <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
           {options.map((opt, i) => {
             let cls = 'option';
@@ -654,24 +664,24 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
         <FeedbackBlock show={isMentorLive ? mReveal : picked !== null} isCorrect={isMentorLive ? true : (solved && !wrongLocked)} neutral={waiting}>
           <p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
             {isMentorLive
-              ? <>✓ To'g'ri javob: {String.fromCharCode(65 + correctIdx)} — {fmtCode(options[correctIdx])}</>
+              ? <>{tr({ uz: "✓ To'g'ri javob:", ru: '✓ Правильный ответ:' })} {String.fromCharCode(65 + correctIdx)} — {fmtCode(options[correctIdx])}</>
               : waiting
-                ? '📨 Javobingiz qabul qilindi'
+                ? tr({ uz: '📨 Javobingiz qabul qilindi', ru: '📨 Ваш ответ принят' })
                 : wrongLocked
-                  ? <>To'g'ri javob: {String.fromCharCode(65 + correctIdx)} — {fmtCode(options[correctIdx])}</>
-                  : solved ? "To'g'ri" : "Qaytadan urinib ko'ring"}
+                  ? <>{tr({ uz: "To'g'ri javob:", ru: 'Правильный ответ:' })} {String.fromCharCode(65 + correctIdx)} — {fmtCode(options[correctIdx])}</>
+                  : solved ? tr({ uz: "To'g'ri", ru: 'Верно' }) : tr({ uz: "Qaytadan urinib ko'ring", ru: 'Попробуйте ещё раз' })}
           </p>
           <p className="body" style={{ margin: 0 }}>
             {isMentorLive
               ? fmtCode(explainCorrect)
               : waiting
-                ? "Hozir to'g'ri javobni bilib olasiz."
+                ? tr({ uz: "Hozir to'g'ri javobni bilib olasiz.", ru: 'Сейчас узнаете правильный ответ.' })
                 : wrongLocked
                   ? fmtCode(explainWrong[picked] ?? explainWrong.default)
                   : solved ? fmtCode(explainCorrect) : fmtCode(explainWrong[picked] ?? explainWrong.default)}
           </p>
           {hasRecap && !isMentorLive && firstCorrectRef.current === false && (!oneShot || revealed) && (
-            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>📖 Qisqa takrorlash — mavzuni yana bir ko'rish</button>
+            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: "📖 Qisqa takrorlash — mavzuni yana bir ko'rish", ru: '📖 Короткое повторение — ещё раз взглянуть на тему' })}</button>
           )}
         </FeedbackBlock>
         {isMentorLive && <MentorTestStats live={live} screenIdx={screen} options={options} correctIdx={correctIdx} reveal={mReveal} onReveal={doReveal} onOpenRecap={hasRecap ? () => setRecapOpen(true) : null} />}
@@ -693,7 +703,7 @@ function ScoreRing({ correct, total }) {
         <circle cx="64" cy="64" r={R} fill="none" stroke={T.ink3 + '40'} strokeWidth={ST} />
         <circle cx="64" cy="64" r={R} fill="none" stroke={col} strokeWidth={ST} strokeLinecap="round" strokeDasharray={C} strokeDashoffset={off} transform="rotate(-90 64 64)" style={{ transition: 'stroke-dashoffset 1s cubic-bezier(.4,0,.2,1)' }} />
       </svg>
-      <div className="ring-center"><div className="ring-num"><span style={{ color: col }}>{correct}</span><span className="ring-den">/{total}</span></div><div className="ring-lbl">to'g'ri javob</div></div>
+      <div className="ring-center"><div className="ring-num"><span style={{ color: col }}>{correct}</span><span className="ring-den">/{total}</span></div><div className="ring-lbl">{tr({ uz: "to'g'ri javob", ru: 'верных ответов' })}</div></div>
     </div>
   );
 }
@@ -711,7 +721,7 @@ const Zoomable = ({ children }) => {
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
       <div className={`zoomable ${big ? 'zoom-on' : ''}`}>
-        <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? 'Kichraytirish' : 'Kattalashtirish'} title={big ? 'Kichraytirish' : 'Kattalashtirish'}>{big ? '✕' : '⛶'}</button>
+        <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>
         {children}
       </div>
     </>
@@ -729,7 +739,7 @@ const Mentor = ({ children }) => {
         <img src={MENTOR_IMG} alt="" />
       </div>
       <div className="mentor-col">
-        <span className="mentor-name">Mentor{collapsed && <span className="mentor-cue"> · ko'rsatmani ochish ▾</span>}</span>
+        <span className="mentor-name">{tr({ uz: 'Mentor', ru: 'Ментор' })}{collapsed && <span className="mentor-cue">{tr({ uz: " · ko'rsatmani ochish ▾", ru: ' · открыть подсказку ▾' })}</span>}</span>
         <div className="mentor-msg body">{children}</div>
       </div>
     </div>
@@ -789,10 +799,10 @@ const Postman = ({ method, url, authRow, sending, sent, status, children, onSend
     </div>
     {authRow && <div className="pm-auth">{authRow}</div>}
     <div className="pm-resp">
-      <div className="pm-resp-h"><span className="pm-resp-lbl">Javob (Response)</span>{sent && status ? <StatusBadge code={status} /> : null}</div>
-      {sending ? <div className="pm-loading">📨 Yuborilmoqda…</div>
+      <div className="pm-resp-h"><span className="pm-resp-lbl">{tr({ uz: 'Javob (Response)', ru: 'Ответ (Response)' })}</span>{sent && status ? <StatusBadge code={status} /> : null}</div>
+      {sending ? <div className="pm-loading">{tr({ uz: '📨 Yuborilmoqda…', ru: '📨 Отправляем…' })}</div>
         : sent ? <div className="pm-respbody fade-step">{children}</div>
-        : <div className="pm-empty">▸ Send bosing — server javobi shu yerda chiqadi</div>}
+        : <div className="pm-empty">{tr({ uz: '▸ Send bosing — server javobi shu yerda chiqadi', ru: '▸ Нажмите Send — ответ сервера появится здесь' })}</div>}
     </div>
   </div>
 );
@@ -804,33 +814,33 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
   const tried = phase === 'done';
   const attack = () => { if (phase !== 'idle') return; setPhase('attack'); setTimeout(() => setPhase('done'), 1100); };
   const OPTS = [
-    { id: 'a', label: "Hech narsa — har kim mahsulot qo'sha va o'chira oladi" },
-    { id: 'b', label: "Login qo'shamiz — faqat kirgan (ruxsatli) odam o'zgartira oladi" },
-    { id: 'c', label: "Saytni butunlay yopib qo'yamiz" }
+    { id: 'a', label: tr({ uz: "Hech narsa — har kim mahsulot qo'sha va o'chira oladi", ru: 'Ничего — пусть каждый может добавлять и удалять товары' }) },
+    { id: 'b', label: tr({ uz: "Login qo'shamiz — faqat kirgan (ruxsatli) odam o'zgartira oladi", ru: 'Добавим логин — менять сможет только вошедший (авторизованный)' }) },
+    { id: 'c', label: tr({ uz: "Saytni butunlay yopib qo'yamiz", ru: 'Совсем закроем сайт' }) }
   ];
   const correct = 'b';
   const pick = (v) => { if (picked !== null || !tried) return; setPicked(v); onAnswer(screen, { stage: 'hook', screenIdx: screen, picked: v, correct: v === correct }); };
   return (
-    <Stage eyebrow="Kirish" screen={screen} navContent={<NavNext optionalLive disabled={picked === null} label="Davom etish" onClick={onNext} />}>
+    <Stage eyebrow={tr({ uz: 'Kirish', ru: 'Введение' })} screen={screen} navContent={<NavNext optionalLive disabled={picked === null} label={{ uz: 'Davom etish', ru: 'Продолжить' }} onClick={onNext} />}>
       <div className="screen">
-        <h1 className="title h-title fade-up" style={{ maxWidth: 880 }}>Do'koningizga <span className="italic" style={{ color: T.accent }}>begona</span> kirib, hammasini o'chirib tashlasa-chi?</h1>
-        <Mentor>O'tgan darsda <span className="mono">POST /api/products</span> bilan mahsulot qo'shdik — lekin buni <b style={{ color: T.danger }}>HAR KIM</b> qila oladi! Tugmani bosing: begona kelib mahsulotlarni o'chirib ketadi. Bunday bo'lmasligi uchun nima qilamiz?</Mentor>
+        <h1 className="title h-title fade-up" style={{ maxWidth: 880 }}>{tr({ uz: <>Do'koningizga <span className="italic" style={{ color: T.accent }}>begona</span> kirib, hammasini o'chirib tashlasa-chi?</>, ru: <>А если в ваш магазин зайдёт <span className="italic" style={{ color: T.accent }}>чужак</span> и всё удалит?</> })}</h1>
+        <Mentor>{tr({ uz: <>O'tgan darsda <span className="mono">POST /api/products</span> bilan mahsulot qo'shdik — lekin buni <b style={{ color: T.danger }}>HAR KIM</b> qila oladi! Tugmani bosing: begona kelib mahsulotlarni o'chirib ketadi. Bunday bo'lmasligi uchun nima qilamiz?</>, ru: <>На прошлом уроке мы добавляли товары через <span className="mono">POST /api/products</span> — но это может сделать <b style={{ color: T.danger }}>КТО УГОДНО</b>! Нажмите кнопку: чужак придёт и удалит товары. Что сделать, чтобы такого не случилось?</> })}</Mentor>
         <Zoomable>
         <Split>
           <Col>
-            <Win title="zakaz-shop.uz — himoyasiz" minH={150} hotTitle={phase === 'done'}>
+            <Win title={tr({ uz: 'zakaz-shop.uz — himoyasiz', ru: 'zakaz-shop.uz — без защиты' })} minH={150} hotTitle={phase === 'done'}>
               <div className="shopmock">
                 {phase === 'done'
-                  ? <div className="empty-shop fade-step">🗑️ Mahsulotlar o'chirib tashlandi!</div>
-                  : ['Klaviatura', 'Sichqoncha', 'Quloqchin'].map(n => <div key={n} className={`shop-card ${phase === 'attack' ? 'shaking' : ''}`}><div className="shop-name">{n}</div></div>)}
+                  ? <div className="empty-shop fade-step">{tr({ uz: "🗑️ Mahsulotlar o'chirib tashlandi!", ru: '🗑️ Товары удалены!' })}</div>
+                  : [tr({ uz: 'Klaviatura', ru: 'Клавиатура' }), tr({ uz: 'Sichqoncha', ru: 'Мышка' }), tr({ uz: 'Quloqchin', ru: 'Наушники' })].map(n => <div key={n} className={`shop-card ${phase === 'attack' ? 'shaking' : ''}`}><div className="shop-name">{n}</div></div>)}
               </div>
             </Win>
-            {phase === 'idle' && <button className="btn" style={{ alignSelf: 'flex-start', background: T.danger }} onClick={attack}>😈 Begona: DELETE /api/products</button>}
-            {phase === 'attack' && <p className="mono small" style={{ color: T.danger, margin: 0 }}>Begona o'chiryapti…</p>}
-            {phase === 'done' && <p className="mono small" style={{ color: T.danger, margin: 0 }}>✕ Hamma narsa o'chdi — chunki hech qanday himoya yo'q edi!</p>}
+            {phase === 'idle' && <button className="btn" style={{ alignSelf: 'flex-start', background: T.danger }} onClick={attack}>{tr({ uz: '😈 Begona: DELETE /api/products', ru: '😈 Чужак: DELETE /api/products' })}</button>}
+            {phase === 'attack' && <p className="mono small" style={{ color: T.danger, margin: 0 }}>{tr({ uz: "Begona o'chiryapti…", ru: 'Чужак удаляет…' })}</p>}
+            {phase === 'done' && <p className="mono small" style={{ color: T.danger, margin: 0 }}>{tr({ uz: "✕ Hamma narsa o'chdi — chunki hech qanday himoya yo'q edi!", ru: '✕ Всё стёрто — ведь никакой защиты не было!' })}</p>}
           </Col>
           <Col>
-            <p className="eyebrow fade-up delay-2" style={{ color: T.ink2, margin: 0 }}>Buning oldini qanday olamiz?</p>
+            <p className="eyebrow fade-up delay-2" style={{ color: T.ink2, margin: 0 }}>{tr({ uz: 'Buning oldini qanday olamiz?', ru: 'Как это предотвратить?' })}</p>
             <div className="fade-up delay-3" style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
               {OPTS.map(o => {
                 const on = picked === o.id;
@@ -842,8 +852,8 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
                 );
               })}
             </div>
-            {!tried && <p className="small" style={{ color: T.ink3, fontStyle: 'italic', margin: 0 }}>Avval hujumni ko'ring ←</p>}
-            {picked !== null && <p className="hook-ack fade-step">{picked === correct ? <>To'g'ri! <b>Autentifikatsiya</b> qo'shamiz: faqat login qilgan odam o'zgartira oladi. Login qilganga sayt maxsus bilaguzuk beradi — bugun shuni yasaymiz.</> : <>To'g'ri yo'l — <b>login (autentifikatsiya)</b> qo'shish: faqat login qilgan odam o'zgartira oladi. Bugun shuni o'rganamiz.</>}</p>}
+            {!tried && <p className="small" style={{ color: T.ink3, fontStyle: 'italic', margin: 0 }}>{tr({ uz: "Avval hujumni ko'ring ←", ru: 'Сначала посмотрите атаку ←' })}</p>}
+            {picked !== null && <p className="hook-ack fade-step">{picked === correct ? tr({ uz: <>To'g'ri! <b>Autentifikatsiya</b> qo'shamiz: faqat login qilgan odam o'zgartira oladi. Login qilganga sayt maxsus bilaguzuk beradi — bugun shuni yasaymiz.</>, ru: <>Верно! Добавим <b>аутентификацию</b>: изменять сможет только тот, кто вошёл. Вошедшему сайт выдаёт особый браслет — сегодня мы его и сделаем.</> }) : tr({ uz: <>To'g'ri yo'l — <b>login (autentifikatsiya)</b> qo'shish: faqat login qilgan odam o'zgartira oladi. Bugun shuni o'rganamiz.</>, ru: <>Правильный путь — добавить <b>логин (аутентификацию)</b>: изменять сможет только вошедший. Этому сегодня и научимся.</> })}</p>}
           </Col>
         </Split>
         </Zoomable>
@@ -855,48 +865,48 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
 // ===== SCREEN 1 — REJA =====
 const Screen1 = ({ screen, onNext, onPrev }) => {
   const STEPS = [
-    { text: "Autentifikatsiya — siz kimsiz?", tag: 'login' },
-    { text: "JWT token — raqamli bilaguzuk", tag: 'sign' },
-    { text: "Tokenni ko'rsatish — eshik (route) himoyasi", tag: 'Bearer · 401' },
-    { text: "Maxfiy kalit va .env", tag: 'JWT_SECRET' },
-    { text: "O'zingiz .env'ga ko'chirasiz", tag: 'process.env' }
+    { text: tr({ uz: "Autentifikatsiya — siz kimsiz?", ru: 'Аутентификация — кто вы?' }), tag: 'login' },
+    { text: tr({ uz: "JWT token — raqamli bilaguzuk", ru: 'JWT-токен — цифровой браслет' }), tag: 'sign' },
+    { text: tr({ uz: "Tokenni ko'rsatish — eshik (route) himoyasi", ru: 'Показ токена — защита двери (route)' }), tag: 'Bearer · 401' },
+    { text: tr({ uz: "Maxfiy kalit va .env", ru: 'Секретный ключ и .env' }), tag: 'JWT_SECRET' },
+    { text: tr({ uz: "O'zingiz .env'ga ko'chirasiz", ru: 'Сами переносите секрет в .env' }), tag: 'process.env' }
   ];
   const isNarrow = useIsMobile(768);
   const [showSteps, setShowSteps] = useState(false);
   const PreviewBlock = (
     <Col>
-      <p className="flow-label">Dars oxirida — siz login qo'shasiz va kalitni yashirasiz</p>
-      <Win title="himoyalangan sayt" minH={150}>
+      <p className="flow-label">{tr({ uz: "Dars oxirida — siz login qo'shasiz va kalitni yashirasiz", ru: 'К концу урока вы добавите логин и спрячете ключ' })}</p>
+      <Win title={tr({ uz: 'himoyalangan sayt', ru: 'защищённый сайт' })} minH={150}>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 10, alignItems: 'center' }}>
           <TokenCard small />
-          <p className="mono small" style={{ color: T.success, margin: 0 }}>✓ login → bilaguzuk (token) → himoyalangan route</p>
+          <p className="mono small" style={{ color: T.success, margin: 0 }}>{tr({ uz: '✓ login → bilaguzuk (token) → himoyalangan route', ru: '✓ логин → браслет (токен) → защищённый route' })}</p>
         </div>
       </Win>
     </Col>
   );
   const StepsBlock = (
     <Col>
-      <p className="flow-label">Bugungi 5 qadam</p>
+      <p className="flow-label">{tr({ uz: 'Bugungi 5 qadam', ru: '5 шагов на сегодня' })}</p>
       <ol className="roadmap">
         {STEPS.map((s, i) => (<li key={i} className="step-card fade-up" style={{ animationDelay: `${0.08 + i * 0.05}s` }}><span className="step-num">{String(i + 1).padStart(2, '0')}</span><span className="step-body"><span className="step-text">{s.text}</span>{s.tag && <span className="step-tag">{s.tag}</span>}</span></li>))}
       </ol>
     </Col>
   );
   return (
-    <Stage eyebrow="Reja" screen={screen} mentorStatic navContent={<><NavBack onPrev={onPrev} /><NavNext label="Boshlaymiz →" onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Reja', ru: 'План' })} screen={screen} mentorStatic navContent={<><NavBack onPrev={onPrev} /><NavNext label={{ uz: 'Boshlaymiz →', ru: 'Начинаем →' }} onClick={onNext} /></>}>
       <div className="screen">
-        <div className="head"><h2 className="title h-title fade-up">Saytni <span className="italic" style={{ color: T.accent }}>himoyalashni</span> o'rganamiz</h2></div>
-        <Mentor>Dars oxirida siz saytga <b style={{ color: T.ink }}>login</b> qo'sha olasiz va maxfiy kalitlarni <b style={{ color: T.ink }}>.env</b>'ga yashira olasiz — GitHub'da hech kim ko'rmaydi. Asosiy g'oya: <b style={{ color: T.accent }}>bilaguzuk (token)</b>.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Saytni <span className="italic" style={{ color: T.accent }}>himoyalashni</span> o'rganamiz</>, ru: <>Учимся <span className="italic" style={{ color: T.accent }}>защищать</span> сайт</> })}</h2></div>
+        <Mentor>{tr({ uz: <>Dars oxirida siz saytga <b style={{ color: T.ink }}>login</b> qo'sha olasiz va maxfiy kalitlarni <b style={{ color: T.ink }}>.env</b>'ga yashira olasiz — GitHub'da hech kim ko'rmaydi. Asosiy g'oya: <b style={{ color: T.accent }}>bilaguzuk (token)</b>.</>, ru: <>К концу урока вы сможете добавить на сайт <b style={{ color: T.ink }}>логин</b> и спрятать секретные ключи в <b style={{ color: T.ink }}>.env</b> — на GitHub их никто не увидит. Главная идея: <b style={{ color: T.accent }}>браслет (токен)</b>.</> })}</Mentor>
         {!isNarrow ? (
           <Zoomable><Split>{PreviewBlock}{StepsBlock}</Split></Zoomable>
         ) : !showSteps ? (
           <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px,2vw,16px)' }}>
             {PreviewBlock}
-            <button className="btn" style={{ alignSelf: 'flex-start' }} onClick={() => setShowSteps(true)}>Bugungi 5 qadamni ko'rish</button>
+            <button className="btn" style={{ alignSelf: 'flex-start' }} onClick={() => setShowSteps(true)}>{tr({ uz: "Bugungi 5 qadamni ko'rish", ru: 'Посмотреть 5 шагов на сегодня' })}</button>
           </div>
         ) : (
           <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px,2vw,16px)' }}>
-            <button className="btn-soft" style={{ alignSelf: 'flex-start' }} onClick={() => setShowSteps(false)}>↩ Natijani ko'rish</button>
+            <button className="btn-soft" style={{ alignSelf: 'flex-start' }} onClick={() => setShowSteps(false)}>{tr({ uz: "↩ Natijani ko'rish", ru: '↩ Посмотреть результат' })}</button>
             {StepsBlock}
           </div>
         )}
@@ -908,9 +918,9 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
 // ===== SCREEN 2 — AUTENTIFIKATSIYA NIMA (bilaguzuk) =====
 const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const PARTS = [
-    { k: 'hujjat', label: '1. Hujjat ko\'rsatish', desc: "Konsert kirishida hujjatingizni ko'rsatasiz. Saytda — email va parol. Bu — login." },
-    { k: 'bilaguzuk', label: '2. Bilaguzuk olish', desc: "Hujjat to'g'ri bo'lsa — bilaguzuk (token) berishadi. Endi har safar hujjat emas, bilaguzukni ko'rsatasiz." },
-    { k: 'zona', label: '3. Zonalarga kirish', desc: "Har eshikda bilaguzukni ko'rsatasiz. Qo'riqchi tekshiradi — haqiqiymi? Haqiqiy bo'lsa — kirasiz." }
+    { k: 'hujjat', label: tr({ uz: "1. Hujjat ko'rsatish", ru: '1. Показать документ' }), desc: tr({ uz: "Konsert kirishida hujjatingizni ko'rsatasiz. Saytda — email va parol. Bu — login.", ru: 'На входе на концерт вы показываете документ. На сайте — email и пароль. Это — логин.' }) },
+    { k: 'bilaguzuk', label: tr({ uz: '2. Bilaguzuk olish', ru: '2. Получить браслет' }), desc: tr({ uz: "Hujjat to'g'ri bo'lsa — bilaguzuk (token) berishadi. Endi har safar hujjat emas, bilaguzukni ko'rsatasiz.", ru: 'Если документ в порядке — вам выдают браслет (токен). Теперь каждый раз показываете не документ, а браслет.' }) },
+    { k: 'zona', label: tr({ uz: '3. Zonalarga kirish', ru: '3. Вход в зоны' }), desc: tr({ uz: "Har eshikda bilaguzukni ko'rsatasiz. Qo'riqchi tekshiradi — haqiqiymi? Haqiqiy bo'lsa — kirasiz.", ru: 'У каждой двери показываете браслет. Охранник проверяет — настоящий ли? Настоящий — проходите.' }) }
   ];
   const [seen, setSeen] = useState(storedAnswer ? new Set(['hujjat', 'bilaguzuk', 'zona']) : new Set());
   const [active, setActive] = useState(storedAnswer ? 'bilaguzuk' : null);
@@ -919,10 +929,10 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const tap = (k) => { setActive(k); setSeen(s => new Set(s).add(k)); };
   const cur = PARTS.find(p => p.k === active);
   return (
-    <Stage eyebrow="Autentifikatsiya" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? 'Davom etish' : `${seen.size}/3 qadamni ko'ring`} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Autentifikatsiya', ru: 'Аутентификация' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `${seen.size}/3 qadamni ko'ring`, ru: `Посмотрите шаги: ${seen.size}/3` }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Sayt sizni <span className="italic" style={{ color: T.accent }}>qanday tanidi?</span></h2></div>
-        <Mentor><b style={{ color: T.ink }}>Autentifikatsiya</b> = "siz kimsiz?" degan savolga javob. Xuddi konsertga kirish kabi: hujjat ko'rsatasiz → bilaguzuk olasiz → har joyda shuni ko'rsatasiz. (Eslatma: "kim NIMA qila oladi" — bu <b style={{ color: T.purple }}>avtorizatsiya</b>, keyingi modulda.) Qadamlarni bosib ko'ring.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Sayt sizni <span className="italic" style={{ color: T.accent }}>qanday tanidi?</span></>, ru: <>Как сайт вас <span className="italic" style={{ color: T.accent }}>узнал?</span></> })}</h2></div>
+        <Mentor>{tr({ uz: <><b style={{ color: T.ink }}>Autentifikatsiya</b> = "siz kimsiz?" degan savolga javob. Xuddi konsertga kirish kabi: hujjat ko'rsatasiz → bilaguzuk olasiz → har joyda shuni ko'rsatasiz. (Eslatma: "kim NIMA qila oladi" — bu <b style={{ color: T.purple }}>avtorizatsiya</b>, keyingi modulda.) Qadamlarni bosib ko'ring.</>, ru: <><b style={{ color: T.ink }}>Аутентификация</b> = ответ на вопрос «кто вы?». Как вход на концерт: показываете документ → получаете браслет → показываете его везде. (Заметка: «кто ЧТО может делать» — это <b style={{ color: T.purple }}>авторизация</b>, в следующем модуле.) Понажимайте на шаги.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
@@ -935,8 +945,8 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </Col>
           <Col>
             {done
-              ? <div className="takeaway fade-step"><div className="ta-bulb">🎫</div><p className="ta-h">Login → bilaguzuk → har joyda ko'rsatish</p><p className="ta-sub">Autentifikatsiya = "siz kimsiz?"</p></div>
-              : <div className="frame-dash" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: 130 }}><p className="small" style={{ color: T.ink3, fontStyle: 'italic', textAlign: 'center', margin: 0 }}>← Qadamlarni bosib o'rganing</p></div>}
+              ? <div className="takeaway fade-step"><div className="ta-bulb">🎫</div><p className="ta-h">{tr({ uz: "Login → bilaguzuk → har joyda ko'rsatish", ru: 'Логин → браслет → показывать везде' })}</p><p className="ta-sub">{tr({ uz: 'Autentifikatsiya = "siz kimsiz?"', ru: 'Аутентификация = «кто вы?»' })}</p></div>
+              : <div className="frame-dash" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: 130 }}><p className="small" style={{ color: T.ink3, fontStyle: 'italic', textAlign: 'center', margin: 0 }}>{tr({ uz: "← Qadamlarni bosib o'rganing", ru: '← Нажимайте на шаги и изучайте' })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -953,26 +963,26 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   const login = () => { if (done2 || sending) return; setSending(true); setTimeout(() => { setSending(false); setDone2(true); }, 950); };
   return (
-    <Stage eyebrow="Login · jwt.sign" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? 'Davom etish' : "Kirish bosing"} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Login · jwt.sign', ru: 'Логин · jwt.sign' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Kirish bosing', ru: 'Нажмите «Войти»' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Parolni <span className="italic" style={{ color: T.accent }}>har safar</span> yuborasizmi?</h2></div>
-        <Mentor>Yo'q — bir marta login qilasiz, server sizga <b style={{ color: T.accent }}>token (bilaguzuk)</b> beradi. So'rov: <span className="mono">POST /api/login</span> {'{ email, parol }'}. Server tekshiradi va <span className="mono">jwt.sign</span> bilan token yasab qaytaradi. Pastdagi formani to'ldirib, Kirish bosing.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Parolni <span className="italic" style={{ color: T.accent }}>har safar</span> yuborasizmi?</>, ru: <>Отправлять пароль <span className="italic" style={{ color: T.accent }}>каждый раз?</span></> })}</h2></div>
+        <Mentor>{tr({ uz: <>Yo'q — bir marta login qilasiz, server sizga <b style={{ color: T.accent }}>token (bilaguzuk)</b> beradi. So'rov: <span className="mono">POST /api/login</span> {'{ email, parol }'}. Server tekshiradi va <span className="mono">jwt.sign</span> bilan token yasab qaytaradi. Pastdagi formani to'ldirib, Kirish bosing.</>, ru: <>Нет — вы входите один раз, и сервер выдаёт вам <b style={{ color: T.accent }}>токен (браслет)</b>. Запрос: <span className="mono">POST /api/login</span> {'{ email, parol }'}. Сервер проверяет и возвращает токен, созданный через <span className="mono">jwt.sign</span>. Заполните форму внизу и нажмите «Войти».</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
             <div className="loginform fade-up">
               <span className="lf-lbl">Email</span>
               <div className="lf-field">ali@shop.uz</div>
-              <span className="lf-lbl">Parol</span>
+              <span className="lf-lbl">{tr({ uz: 'Parol', ru: 'Пароль' })}</span>
               <div className="lf-field">••••••••</div>
-              {!done2 && <button className="btn" style={{ marginTop: 4 }} onClick={login}>{sending ? '⏳ Tekshirilmoqda…' : '→ Kirish'}</button>}
-              {done2 && <div className="lf-token fade-step"><span className="mono small" style={{ color: T.success }}>✓ Token berildi:</span><TokenCard small /></div>}
+              {!done2 && <button className="btn" style={{ marginTop: 4 }} onClick={login}>{sending ? tr({ uz: '⏳ Tekshirilmoqda…', ru: '⏳ Проверяем…' }) : tr({ uz: '→ Kirish', ru: '→ Войти' })}</button>}
+              {done2 && <div className="lf-token fade-step"><span className="mono small" style={{ color: T.success }}>{tr({ uz: '✓ Token berildi:', ru: '✓ Токен выдан:' })}</span><TokenCard small /></div>}
             </div>
           </Col>
           <Col>
-            <p className="flow-label">Server kodi (login)</p>
-            <pre className="code-box">{`app.`}<Fn>post</Fn>{`(`}<St>'/api/login'</St>{`, (req, res) => {`}{'\n'}{`  `}<Cm>// email + parolni tekshir</Cm>{'\n'}{`  `}<Kw>const</Kw>{` token = `}<At>jwt</At>{`.`}<Fn>sign</Fn>{`(`}{'\n'}{`    { userId: `}<At>1</At>{` },        `}<Cm>// kim</Cm>{'\n'}{`    `}<At>JWT_SECRET</At>{`           `}<Cm>// maxfiy imzo</Cm>{'\n'}{`  )`}{'\n'}{`  res.`}<Fn>json</Fn>{`({ token })`}{'\n'}{`})`}</pre>
-            {done2 && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}><span className="mono">jwt.sign</span> ikki narsadan token yasaydi: <b>kim</b> (userId) + <b>maxfiy imzo</b> (SECRET). Endi parol kerak emas — token yetarli.</p></div>}
+            <p className="flow-label">{tr({ uz: 'Server kodi (login)', ru: 'Код сервера (логин)' })}</p>
+            <pre className="code-box">{`app.`}<Fn>post</Fn>{`(`}<St>'/api/login'</St>{`, (req, res) => {`}{'\n'}{`  `}<Cm>{tr({ uz: '// email + parolni tekshir', ru: '// проверить email + пароль' })}</Cm>{'\n'}{`  `}<Kw>const</Kw>{` token = `}<At>jwt</At>{`.`}<Fn>sign</Fn>{`(`}{'\n'}{`    { userId: `}<At>1</At>{` },        `}<Cm>{tr({ uz: '// kim', ru: '// кто' })}</Cm>{'\n'}{`    `}<At>JWT_SECRET</At>{`           `}<Cm>{tr({ uz: '// maxfiy imzo', ru: '// секретная подпись' })}</Cm>{'\n'}{`  )`}{'\n'}{`  res.`}<Fn>json</Fn>{`({ token })`}{'\n'}{`})`}</pre>
+            {done2 && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <><span className="mono">jwt.sign</span> ikki narsadan token yasaydi: <b>kim</b> (userId) + <b>maxfiy imzo</b> (SECRET). Endi parol kerak emas — token yetarli.</>, ru: <><span className="mono">jwt.sign</span> делает токен из двух вещей: <b>кто</b> (userId) + <b>секретная подпись</b> (SECRET). Пароль больше не нужен — токена достаточно.</> })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -983,25 +993,25 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 
 // ===== SCREEN 4 — TEST 1 =====
 const Screen4 = (props) => (
-  <QuestionScreen {...props} idx={4} scope="module-mikro" eyebrow="Mashq · 1-savol"
-    questionText="Login muvaffaqiyatli bo'lsa, server nima qaytaradi?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-sub" style={{ marginTop: 8 }}>Email va parol to'g'ri bo'lsa, server sizga <span className="italic" style={{ color: T.accent }}>nima beradi?</span></h2></>}
-    options={["Token (bilaguzuk) beradi — keyingi so'rovlar uchun", "Parolni qaytadan so'rab, kirishni butunlay bekor qiladi", "Hech narsa bermaydi — parolni har safar so'rayveradi", "Butun ma'lumotlar bazasini yuklab yuboradi"]} correctIdx={0}
-    explainCorrect="To'g'ri! Login muvaffaqiyatli bo'lsa, server JWT token (bilaguzuk) beradi. Endi har so'rovda shu tokenni ko'rsatasiz — parol kerak emas."
+  <QuestionScreen {...props} idx={4} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 1-savol', ru: 'Практика · вопрос 1' })}
+    questionText={tr({ uz: "Login muvaffaqiyatli bo'lsa, server nima qaytaradi?", ru: 'Если логин успешен, что возвращает сервер?' })}
+    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-sub" style={{ marginTop: 8 }}>{tr({ uz: <>Email va parol to'g'ri bo'lsa, server sizga <span className="italic" style={{ color: T.accent }}>nima beradi?</span></>, ru: <>Если email и пароль верны, что сервер вам <span className="italic" style={{ color: T.accent }}>выдаёт?</span></> })}</h2></>}
+    options={[tr({ uz: "Token (bilaguzuk) beradi — keyingi so'rovlar uchun", ru: 'Выдаёт токен (браслет) — для следующих запросов' }), tr({ uz: "Parolni qaytadan so'rab, kirishni butunlay bekor qiladi", ru: 'Снова спрашивает пароль и полностью отменяет вход' }), tr({ uz: "Hech narsa bermaydi — parolni har safar so'rayveradi", ru: 'Ничего не выдаёт — каждый раз спрашивает пароль' }), tr({ uz: "Butun ma'lumotlar bazasini yuklab yuboradi", ru: 'Отправляет всю базу данных' })]} correctIdx={0}
+    explainCorrect={tr({ uz: "To'g'ri! Login muvaffaqiyatli bo'lsa, server JWT token (bilaguzuk) beradi. Endi har so'rovda shu tokenni ko'rsatasiz — parol kerak emas.", ru: 'Верно! При успешном логине сервер выдаёт JWT-токен (браслет). Теперь в каждом запросе вы показываете этот токен — пароль не нужен.' })}
     explainWrong={{
-      1: "Parolni har safar so'ramaydi — bir marta login qilasiz, token olasiz.",
-      2: "Aksincha — token beradi, shu bilan kim ekanligingizni isbotlaysiz.",
-      3: "Yo'q — faqat token (bilaguzuk) qaytaradi, butun baza emas.",
-      default: "Login → token (bilaguzuk)."
+      1: tr({ uz: "Parolni har safar so'ramaydi — bir marta login qilasiz, token olasiz.", ru: 'Пароль не спрашивается каждый раз — вы входите один раз и получаете токен.' }),
+      2: tr({ uz: "Aksincha — token beradi, shu bilan kim ekanligingizni isbotlaysiz.", ru: 'Наоборот — сервер выдаёт токен, им вы доказываете, кто вы.' }),
+      3: tr({ uz: "Yo'q — faqat token (bilaguzuk) qaytaradi, butun baza emas.", ru: 'Нет — возвращается только токен (браслет), а не вся база.' }),
+      default: tr({ uz: "Login → token (bilaguzuk).", ru: 'Логин → токен (браслет).' })
     }} />
 );
 
 // ===== SCREEN 5 — JWT TOKEN (bilaguzuk anatomiyasi) =====
 const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const PARTS = {
-    h: "HEADER — bilaguzukning yorlig'i: bu JWT token ekanini va imzo qaysi usulda qo'yilganini aytadi.",
-    p: "PAYLOAD — bilaguzukka yozilgan ISM: ichida userId, email turadi. Buni o'qish mumkin (maxfiy emas!), lekin o'zgartirib bo'lmaydi.",
-    s: "SIGNATURE — MUHR (imzo): maxfiy kalit (JWT_SECRET) bilan bosiladi. Soxta bilaguzuk yasab bo'lmaydi — chunki bu kalit faqat serverda."
+    h: tr({ uz: "HEADER — bilaguzukning yorlig'i: bu JWT token ekanini va imzo qaysi usulda qo'yilganini aytadi.", ru: 'HEADER — этикетка браслета: говорит, что это JWT-токен и каким способом поставлена подпись.' }),
+    p: tr({ uz: "PAYLOAD — bilaguzukka yozilgan ISM: ichida userId, email turadi. Buni o'qish mumkin (maxfiy emas!), lekin o'zgartirib bo'lmaydi.", ru: 'PAYLOAD — ИМЯ, записанное на браслете: внутри userId, email. Его можно прочитать (не секрет!), но изменить нельзя.' }),
+    s: tr({ uz: "SIGNATURE — MUHR (imzo): maxfiy kalit (JWT_SECRET) bilan bosiladi. Soxta bilaguzuk yasab bo'lmaydi — chunki bu kalit faqat serverda.", ru: 'SIGNATURE — ПЕЧАТЬ (подпись): ставится секретным ключом (JWT_SECRET). Подделать браслет нельзя — ведь этот ключ только на сервере.' })
   };
   const [active, setActive] = useState(null);
   const [seen, setSeen] = useState(storedAnswer ? new Set(['h', 'p', 's']) : new Set());
@@ -1009,10 +1019,10 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   const tap = (k) => { setActive(k); setSeen(s => new Set(s).add(k)); };
   return (
-    <Stage eyebrow="JWT token" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? 'Davom etish' : `${seen.size}/3 qismni ko'ring`} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'JWT token', ru: 'JWT-токен' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `${seen.size}/3 qismni ko'ring`, ru: `Посмотрите части: ${seen.size}/3` }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Bilaguzuk (token) ichida <span className="italic" style={{ color: T.accent }}>nima bor?</span></h2></div>
-        <Mentor>JWT token uchta qismdan iborat, nuqta bilan ajratilgan: <span className="mono">header.payload.signature</span>. Eng muhimi — <b style={{ color: T.success }}>imzo (signature)</b>: u maxfiy kalit bilan yasaladi, shuning uchun soxta token yasab bo'lmaydi. Qismlarni bosib ko'ring.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Bilaguzuk (token) ichida <span className="italic" style={{ color: T.accent }}>nima bor?</span></>, ru: <>Что внутри <span className="italic" style={{ color: T.accent }}>браслета (токена)?</span></> })}</h2></div>
+        <Mentor>{tr({ uz: <>JWT token uchta qismdan iborat, nuqta bilan ajratilgan: <span className="mono">header.payload.signature</span>. Eng muhimi — <b style={{ color: T.success }}>imzo (signature)</b>: u maxfiy kalit bilan yasaladi, shuning uchun soxta token yasab bo'lmaydi. Qismlarni bosib ko'ring.</>, ru: <>JWT-токен состоит из трёх частей, разделённых точкой: <span className="mono">header.payload.signature</span>. Самое важное — <b style={{ color: T.success }}>подпись (signature)</b>: она создаётся секретным ключом, поэтому подделать токен нельзя. Понажимайте на части.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
@@ -1026,8 +1036,8 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <Col>
             {active
               ? <div className="sk-info fade-step" key={active}><p className="body" style={{ color: T.ink, margin: 0 }}>{PARTS[active]}</p></div>
-              : <div className="frame-dash" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: 130 }}><p className="small" style={{ color: T.ink3, fontStyle: 'italic', textAlign: 'center', margin: 0 }}>← Token qismlarini bosing</p></div>}
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Payload o'qiladi (kim), lekin imzo tufayli <b>o'zgartirib bo'lmaydi</b>. Birov "men adminman" deb yozsa — imzo buziladi, server rad etadi.</p></div>}
+              : <div className="frame-dash" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: 130 }}><p className="small" style={{ color: T.ink3, fontStyle: 'italic', textAlign: 'center', margin: 0 }}>{tr({ uz: '← Token qismlarini bosing', ru: '← Нажмите на части токена' })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Payload o'qiladi (kim), lekin imzo tufayli <b>o'zgartirib bo'lmaydi</b>. Birov "men adminman" deb yozsa — imzo buziladi, server rad etadi.</>, ru: <>Payload читается (кто), но из-за подписи его <b>нельзя изменить</b>. Напишет кто-то «я админ» — подпись сломается, сервер откажет.</> })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -1038,16 +1048,16 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 
 // ===== SCREEN 5b — TEST 2 =====
 const Screen5b = (props) => (
-  <QuestionScreen {...props} idx={6} scope="module-mikro" eyebrow="Mashq · 2-savol"
-    questionText="Nega birov soxta token yasab, o'zini boshqa odam qilib ko'rsata olmaydi?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-sub" style={{ marginTop: 8 }}>Tokenni o'zgartirsa, server buni <span className="italic" style={{ color: T.accent }}>qanday sezadi?</span></h2></>}
-    options={["Token juda uzun — uni to'liq ko'chirib yozib bo'lmaydi", "Imzo (signature) maxfiy kalit bilan yasaladi — kalitsiz to'g'ri imzo chiqmaydi", "Token ko'rinmaydi — uni umuman hech kim o'qiy olmaydi", "Server har bir berilgan tokenni bazasida eslab qolib, kelgan so'rov bilan solishtiradi"]} correctIdx={1}
-    explainCorrect="To'g'ri! Signature maxfiy kalit (JWT_SECRET) bilan yasaladi. Kalit faqat serverda. Tokenni o'zgartirsangiz — imzo mos kelmaydi, server rad etadi (401)."
+  <QuestionScreen {...props} idx={6} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 2-savol', ru: 'Практика · вопрос 2' })}
+    questionText={tr({ uz: "Nega birov soxta token yasab, o'zini boshqa odam qilib ko'rsata olmaydi?", ru: 'Почему нельзя сделать поддельный токен и выдать себя за другого?' })}
+    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-sub" style={{ marginTop: 8 }}>{tr({ uz: <>Tokenni o'zgartirsa, server buni <span className="italic" style={{ color: T.accent }}>qanday sezadi?</span></>, ru: <>Если токен изменить, как сервер это <span className="italic" style={{ color: T.accent }}>заметит?</span></> })}</h2></>}
+    options={[tr({ uz: "Token juda uzun — uni to'liq ko'chirib yozib bo'lmaydi", ru: 'Токен слишком длинный — его не переписать целиком' }), tr({ uz: "Imzo (signature) maxfiy kalit bilan yasaladi — kalitsiz to'g'ri imzo chiqmaydi", ru: 'Подпись (signature) делается секретным ключом — без ключа верная подпись не получится' }), tr({ uz: "Token ko'rinmaydi — uni umuman hech kim o'qiy olmaydi", ru: 'Токен невидим — его вообще никто не может прочитать' }), tr({ uz: "Server har bir berilgan tokenni bazasida eslab qolib, kelgan so'rov bilan solishtiradi", ru: 'Сервер запоминает каждый выданный токен в базе и сверяет с запросом' })]} correctIdx={1}
+    explainCorrect={tr({ uz: "To'g'ri! Signature maxfiy kalit (JWT_SECRET) bilan yasaladi. Kalit faqat serverda. Tokenni o'zgartirsangiz — imzo mos kelmaydi, server rad etadi (401).", ru: 'Верно! Signature создаётся секретным ключом (JWT_SECRET). Ключ только на сервере. Измените токен — подпись не совпадёт, сервер откажет (401).' })}
     explainWrong={{
-      0: "Uzunlik emas — gap imzoda. Imzo kalitsiz to'g'ri chiqmaydi.",
-      2: "Token ko'rinadi (payload o'qiladi), lekin imzo tufayli o'zgartirib bo'lmaydi.",
-      3: "Server odatda tokenni eslab qolmaydi — u imzoni tekshiradi.",
-      default: "Imzo (signature) + maxfiy kalit = soxta token mumkin emas."
+      0: tr({ uz: "Uzunlik emas — gap imzoda. Imzo kalitsiz to'g'ri chiqmaydi.", ru: 'Дело не в длине, а в подписи. Без ключа верную подпись не сделать.' }),
+      2: tr({ uz: "Token ko'rinadi (payload o'qiladi), lekin imzo tufayli o'zgartirib bo'lmaydi.", ru: 'Токен виден (payload читается), но из-за подписи его нельзя изменить.' }),
+      3: tr({ uz: "Server odatda tokenni eslab qolmaydi — u imzoni tekshiradi.", ru: 'Обычно сервер токены не запоминает — он проверяет подпись.' }),
+      default: tr({ uz: "Imzo (signature) + maxfiy kalit = soxta token mumkin emas.", ru: 'Подпись (signature) + секретный ключ = поддельный токен невозможен.' })
     }} />
 );
 
@@ -1066,10 +1076,10 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const sent = hasToken ? sentYes : sentNo;
   const status = hasToken ? 201 : 401;
   return (
-    <Stage eyebrow="Himoyalangan route" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? 'Davom etish' : "Token bilan yuboring"} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Himoyalangan route', ru: 'Защищённый route' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Token bilan yuboring', ru: 'Отправьте с токеном' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Mahsulot qo'shish uchun <span className="italic" style={{ color: T.accent }}>bilaguzuk kerak</span></h2></div>
-        <Mentor>Endi <span className="mono">POST /api/products</span> himoyalangan: bu <b style={{ color: T.ink }}>route</b> (server eshigi) oldida qo'riqchi turibdi. Har so'rovda bilaguzukni <b style={{ color: T.ink }}>Authorization: Bearer {'<token>'}</b> sarlavhasida yuborasiz. <b style={{ color: T.danger }}>Tokensiz</b> → 401. Avval tokensiz sinab ko'ring, keyin tokenni yoqib qayta yuboring.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Mahsulot qo'shish uchun <span className="italic" style={{ color: T.accent }}>bilaguzuk kerak</span></>, ru: <>Чтобы добавить товар, <span className="italic" style={{ color: T.accent }}>нужен браслет</span></> })}</h2></div>
+        <Mentor>{tr({ uz: <>Endi <span className="mono">POST /api/products</span> himoyalangan: bu <b style={{ color: T.ink }}>route</b> (server eshigi) oldida qo'riqchi turibdi. Har so'rovda bilaguzukni <b style={{ color: T.ink }}>Authorization: Bearer {'<token>'}</b> sarlavhasida yuborasiz. <b style={{ color: T.danger }}>Tokensiz</b> → 401. Avval tokensiz sinab ko'ring, keyin tokenni yoqib qayta yuboring.</>, ru: <>Теперь <span className="mono">POST /api/products</span> защищён: перед этим <b style={{ color: T.ink }}>route</b> (дверью сервера) стоит охранник. В каждом запросе вы отправляете браслет в заголовке <b style={{ color: T.ink }}>Authorization: Bearer {'<token>'}</b>. <b style={{ color: T.danger }}>Без токена</b> → 401. Сначала попробуйте без токена, потом включите токен и отправьте снова.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
@@ -1077,19 +1087,19 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               authRow={
                 <label className="authtoggle">
                   <input type="checkbox" checked={hasToken} onChange={e => { setHasToken(e.target.checked); setSentNo(false); }} />
-                  <span>Authorization: Bearer {hasToken ? <span className="mono" style={{ color: T.success }}>{TOKEN.h}.{TOKEN.p}…</span> : <span style={{ color: T.danger }}>(token yo'q)</span>}</span>
+                  <span>Authorization: Bearer {hasToken ? <span className="mono" style={{ color: T.success }}>{TOKEN.h}.{TOKEN.p}…</span> : <span style={{ color: T.danger }}>{tr({ uz: "(token yo'q)", ru: '(нет токена)' })}</span>}</span>
                 </label>
               }>
-              {hasToken ? <JsonBox data={{ id: 4, nom: 'Mikrofon', narx: 60000 }} /> : <JsonBox data={{ error: 'Unauthorized', message: 'Token kerak' }} />}
+              {hasToken ? <JsonBox data={{ id: 4, nom: tr({ uz: 'Mikrofon', ru: 'Микрофон' }), narx: 60000 }} /> : <JsonBox data={{ error: 'Unauthorized', message: tr({ uz: 'Token kerak', ru: 'Нужен токен' }) }} />}
             </Postman>
           </Col>
           <Col>
             <div className={`guarddoor ${sent ? (hasToken ? 'open' : 'block') : ''}`}>
               <span className="gd-ic">{sent ? (hasToken ? '🔓' : '⛔') : '🚪'}</span>
-              <span className="gd-lbl">{sent ? (hasToken ? 'Qo\'riqchi: bilaguzuk haqiqiy — kiring!' : 'Qo\'riqchi: bilaguzuk yo\'q — to\'xtang!') : 'Eshikda qo\'riqchi (guard) turibdi'}</span>
+              <span className="gd-lbl">{sent ? (hasToken ? tr({ uz: "Qo'riqchi: bilaguzuk haqiqiy — kiring!", ru: 'Охранник: браслет настоящий — проходите!' }) : tr({ uz: "Qo'riqchi: bilaguzuk yo'q — to'xtang!", ru: 'Охранник: браслета нет — стойте!' })) : tr({ uz: "Eshikda qo'riqchi (guard) turibdi", ru: 'У двери стоит охранник (guard)' })}</span>
             </div>
-            {sentNo && !hasToken && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}><b>401 Unauthorized</b> — tokensiz kira olmaysiz. Yuqoridagi katakchani belgilang (token qo'shing) va qayta yuboring.</p></div>}
-            {sentYes && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}><b>201 Created</b> — bilaguzuk haqiqiy, mahsulot qo'shildi! Endi begona hech narsa qila olmaydi.</p></div>}
+            {sentNo && !hasToken && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <><b>401 Unauthorized</b> — tokensiz kira olmaysiz. Yuqoridagi katakchani belgilang (token qo'shing) va qayta yuboring.</>, ru: <><b>401 Unauthorized</b> — без токена не войти. Отметьте галочку выше (добавьте токен) и отправьте снова.</> })}</p></div>}
+            {sentYes && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <><b>201 Created</b> — bilaguzuk haqiqiy, mahsulot qo'shildi! Endi begona hech narsa qila olmaydi.</>, ru: <><b>201 Created</b> — браслет настоящий, товар добавлен! Теперь чужак ничего не сможет сделать.</> })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -1100,21 +1110,21 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 
 // ===== SCREEN 7 — QO'RIQCHI SMENASI (jwt.verify o'yini) =====
 const GUARD_SHIFT = [
-  { id: 'v1', who: "Haqiqiy mehmon", sub: "imzo mos · muddat bor", ok: true, seg: { p: true, s: true }, line: 'ok',
-    good: "✓ 201 — eshik ochildi. jwt.verify imzoni tasdiqladi.",
-    bad: "Haqiqiy mehmonni qaytardingiz! Imzo mos, muddat joyida edi — kiritish kerak edi." },
-  { id: 'v2', who: "Bilaguzuksiz", sub: "token umuman yo'q", ok: false, seg: null, line: 'check',
-    good: "⛔ 401 — token yo'q. if(!token) darrov to'sdi.",
-    bad: "Tokensiz kirdi! Himoyalangan route tokensiz ochilmasligi shart." },
-  { id: 'v3', who: "Soxta imzo", sub: "SECRET'siz yasalgan imzo", ok: false, seg: { p: true, s: false }, line: 'verify',
-    good: "⛔ 401 — imzo soxta. jwt.verify(token, SECRET) rad etdi.",
-    bad: "Soxta imzoli tokenni kiritdingiz — SECRET faqat serverda, bu imzo mos kelmaydi." },
-  { id: 'v4', who: "Muddati o'tgan", sub: "exp vaqti tugagan", ok: false, seg: { p: true, s: true }, line: 'verify',
-    good: "⛔ 401 — muddati o'tgan. jwt.verify eskirgan tokenni rad etadi.",
-    bad: "Muddati o'tgan bilaguzukni kiritdingiz — u endi yaroqsiz." },
-  { id: 'v5', who: "«admin» deb o'zgartirilgan", sub: "payload buzilgan", ok: false, seg: { p: false, s: false }, line: 'verify',
-    good: "⛔ 401 — payload o'zgartirilgan, imzo buzildi. jwt.verify rad etdi.",
-    bad: "Payload'ni «admin»ga o'zgartirgan — imzo endi mos emas, kiritmaslik kerak." },
+  { id: 'v1', who: { uz: "Haqiqiy mehmon", ru: "Настоящий гость" }, sub: { uz: "imzo mos · muddat bor", ru: "подпись совпадает · срок в порядке" }, ok: true, seg: { p: true, s: true }, line: 'ok',
+    good: { uz: "✓ 201 — eshik ochildi. jwt.verify imzoni tasdiqladi.", ru: "✓ 201 — дверь открылась. jwt.verify подтвердил подпись." },
+    bad: { uz: "Haqiqiy mehmonni qaytardingiz! Imzo mos, muddat joyida edi — kiritish kerak edi.", ru: "Вы отказали настоящему гостю! Подпись совпадала, срок в порядке — надо было впустить." } },
+  { id: 'v2', who: { uz: "Bilaguzuksiz", ru: "Без браслета" }, sub: { uz: "token umuman yo'q", ru: "токена вообще нет" }, ok: false, seg: null, line: 'check',
+    good: { uz: "⛔ 401 — token yo'q. if(!token) darrov to'sdi.", ru: "⛔ 401 — токена нет. if(!token) сразу преградил путь." },
+    bad: { uz: "Tokensiz kirdi! Himoyalangan route tokensiz ochilmasligi shart.", ru: "Вошёл без токена! Защищённый route без токена открываться не должен." } },
+  { id: 'v3', who: { uz: "Soxta imzo", ru: "Поддельная подпись" }, sub: { uz: "SECRET'siz yasalgan imzo", ru: "подпись сделана без SECRET" }, ok: false, seg: { p: true, s: false }, line: 'verify',
+    good: { uz: "⛔ 401 — imzo soxta. jwt.verify(token, SECRET) rad etdi.", ru: "⛔ 401 — подпись поддельная. jwt.verify(token, SECRET) отказал." },
+    bad: { uz: "Soxta imzoli tokenni kiritdingiz — SECRET faqat serverda, bu imzo mos kelmaydi.", ru: "Вы впустили токен с поддельной подписью — SECRET только на сервере, эта подпись не совпадает." } },
+  { id: 'v4', who: { uz: "Muddati o'tgan", ru: "Просроченный" }, sub: { uz: "exp vaqti tugagan", ru: "время exp истекло" }, ok: false, seg: { p: true, s: true }, line: 'verify',
+    good: { uz: "⛔ 401 — muddati o'tgan. jwt.verify eskirgan tokenni rad etadi.", ru: "⛔ 401 — срок истёк. jwt.verify отклоняет устаревший токен." },
+    bad: { uz: "Muddati o'tgan bilaguzukni kiritdingiz — u endi yaroqsiz.", ru: "Вы впустили просроченный браслет — он уже недействителен." } },
+  { id: 'v5', who: { uz: "«admin» deb o'zgartirilgan", ru: "Изменён на «admin»" }, sub: { uz: "payload buzilgan", ru: "payload повреждён" }, ok: false, seg: { p: false, s: false }, line: 'verify',
+    good: { uz: "⛔ 401 — payload o'zgartirilgan, imzo buzildi. jwt.verify rad etdi.", ru: "⛔ 401 — payload изменён, подпись сломалась. jwt.verify отказал." },
+    bad: { uz: "Payload'ni «admin»ga o'zgartirgan — imzo endi mos emas, kiritmaslik kerak.", ru: "Payload изменён на «admin» — подпись больше не совпадает, впускать нельзя." } },
 ];
 const GUARD_CODE = [
   { k: 'check',  el: <>{'  '}<Kw>if</Kw>{` (!token) `}<Kw>return</Kw>{` res.`}<Fn>status</Fn>{`(`}<At>401</At>{`)`}</> },
@@ -1144,10 +1154,10 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const restart = () => { setI(0); setVerdict(null); setOkCount(0); setMistakes(0); savedRef.current = false; };
   const activeLine = verdict ? verdict.item.line : null;
   return (
-    <Stage eyebrow="Qo'riqchi smenasi · jwt.verify" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!doneAll} label={doneAll ? 'Davom etish' : `${okCount}/${total} hukm`} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: "Qo'riqchi smenasi · jwt.verify", ru: 'Смена охранника · jwt.verify' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!doneAll} label={doneAll ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `${okCount}/${total} hukm`, ru: `${okCount}/${total} вердиктов` }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Bugun <span className="italic" style={{ color: T.accent }}>qo'riqchi</span> — sizsiz. Har bilaguzukni hukm qiling.</h2></div>
-        <Mentor>Siz — <b style={{ color: T.ink }}>qo'riqchi (guard)</b>, ya'ni <span className="mono">jwt.verify</span>. Navbatda bilaguzuklar keladi: haqiqiy, soxta, muddati o'tgan... Har biriga <b style={{ color: T.success }}>KIRIT</b> yoki <b style={{ color: T.danger }}>RAD</b> qarorini bering. To'g'ri hukm — o'ngdagi kod qaysi qatori ishlaganini ko'rsatadi.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Bugun <span className="italic" style={{ color: T.accent }}>qo'riqchi</span> — sizsiz. Har bilaguzukni hukm qiling.</>, ru: <>Сегодня <span className="italic" style={{ color: T.accent }}>охранник</span> — это вы. Вынесите вердикт каждому браслету.</> })}</h2></div>
+        <Mentor>{tr({ uz: <>Siz — <b style={{ color: T.ink }}>qo'riqchi (guard)</b>, ya'ni <span className="mono">jwt.verify</span>. Navbatda bilaguzuklar keladi: haqiqiy, soxta, muddati o'tgan... Har biriga <b style={{ color: T.success }}>KIRIT</b> yoki <b style={{ color: T.danger }}>RAD</b> qarorini bering. To'g'ri hukm — o'ngdagi kod qaysi qatori ishlaganini ko'rsatadi.</>, ru: <>Вы — <b style={{ color: T.ink }}>охранник (guard)</b>, то есть <span className="mono">jwt.verify</span>. В очереди браслеты: настоящие, поддельные, просроченные... Каждому выносите решение <b style={{ color: T.success }}>ВПУСТИТЬ</b> или <b style={{ color: T.danger }}>ОТКАЗАТЬ</b>. Верный вердикт покажет, какая строка кода справа сработала.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
@@ -1157,10 +1167,10 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             </div>
             {cur ? (
               <div className={`gq-card ${verdict ? (verdict.correct ? 'gq-ok' : 'gq-bad') : ''} ${verdict ? `judged ${verdict.letIn ? 'gq-in' : 'gq-out'}` : ''}`} key={cur.id}>
-                <div className="gq-who"><span className="gq-ic">🎫</span><div><p className="gq-who-t">{cur.who}</p><p className="gq-who-s">{cur.sub}</p></div></div>
+                <div className="gq-who"><span className="gq-ic">🎫</span><div><p className="gq-who-t">{tr(cur.who)}</p><p className="gq-who-s">{tr(cur.sub)}</p></div></div>
                 {cur.seg
                   ? <div className="gq-seg"><span className="gq-s h">header</span><span className={`gq-s p ${cur.seg.p ? '' : 'x'}`}>payload</span><span className={`gq-s s ${cur.seg.s ? '' : 'x'}`}>signature</span></div>
-                  : <div className="gq-seg"><span className="gq-s none">— bilaguzuk yo'q —</span></div>}
+                  : <div className="gq-seg"><span className="gq-s none">{tr({ uz: "— bilaguzuk yo'q —", ru: '— браслета нет —' })}</span></div>}
                 {/* 🚧 qo'riqchi to'sig'i: KIRIT → ko'tariladi (201) · RAD → tushib to'sadi (401 zarbasi) */}
                 <div className={`gq-gate ${verdict ? (verdict.letIn ? 'lift' : 'drop') : ''}`} aria-hidden="true">
                   <span className="gq-post" />
@@ -1168,25 +1178,25 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                   <span className="gq-code">{verdict ? (verdict.letIn ? '201' : '401') : ''}</span>
                 </div>
                 {!verdict
-                  ? <div className="gq-choices"><button className="gq-btn rad" onClick={() => decide(false)}>⛔ RAD</button><button className="gq-btn kirit" onClick={() => decide(true)}>✓ KIRIT</button></div>
-                  : <div className={`gq-verdict ${verdict.correct ? 'ok' : 'bad'}`}><p className="body" style={{ margin: 0, color: T.ink }}>{verdict.correct ? cur.good : cur.bad}</p><button className="btn" style={{ alignSelf: 'flex-start', marginTop: 8 }} onClick={nextCard}>{i >= total - 1 ? 'Smenani yakunlash →' : 'Keyingi bilaguzuk →'}</button></div>}
+                  ? <div className="gq-choices"><button className="gq-btn rad" onClick={() => decide(false)}>{tr({ uz: '⛔ RAD', ru: '⛔ ОТКАЗАТЬ' })}</button><button className="gq-btn kirit" onClick={() => decide(true)}>{tr({ uz: '✓ KIRIT', ru: '✓ ВПУСТИТЬ' })}</button></div>
+                  : <div className={`gq-verdict ${verdict.correct ? 'ok' : 'bad'}`}><p className="body" style={{ margin: 0, color: T.ink }}>{tr(verdict.correct ? cur.good : cur.bad)}</p><button className="btn" style={{ alignSelf: 'flex-start', marginTop: 8 }} onClick={nextCard}>{i >= total - 1 ? tr({ uz: 'Smenani yakunlash →', ru: 'Завершить смену →' }) : tr({ uz: 'Keyingi bilaguzuk →', ru: 'Следующий браслет →' })}</button></div>}
               </div>
             ) : (
               <div className={`gq-final fade-step ${perfect ? 'perfect' : ''}`}>
                 <div className="gq-final-ic">{perfect ? '🛡️' : '📋'}</div>
-                <p className="gq-final-h">{perfect ? `Barakalla — ${total}/${total} to'g'ri hukm!` : `Smena tugadi: ${okCount}/${total} to'g'ri`}</p>
-                <p className="gq-final-s">{perfect ? "Aynan shunday jwt.verify har so'rovda bilaguzukni tekshiradi." : "Ba'zi hukmlar xato bo'ldi — soxta yoki eskirgan bilaguzuk RAD etilishi kerak."}</p>
-                {!perfect && <button className="btn-soft" onClick={restart}>↻ Smenani qaytadan</button>}
+                <p className="gq-final-h">{perfect ? tr({ uz: `Barakalla — ${total}/${total} to'g'ri hukm!`, ru: `Браво — ${total}/${total} верных вердиктов!` }) : tr({ uz: `Smena tugadi: ${okCount}/${total} to'g'ri`, ru: `Смена окончена: ${okCount}/${total} верно` })}</p>
+                <p className="gq-final-s">{perfect ? tr({ uz: "Aynan shunday jwt.verify har so'rovda bilaguzukni tekshiradi.", ru: 'Именно так jwt.verify проверяет браслет в каждом запросе.' }) : tr({ uz: "Ba'zi hukmlar xato bo'ldi — soxta yoki eskirgan bilaguzuk RAD etilishi kerak.", ru: 'Часть вердиктов была ошибочной — поддельный или просроченный браслет нужно ОТКЛОНЯТЬ.' })}</p>
+                {!perfect && <button className="btn-soft" onClick={restart}>{tr({ uz: '↻ Smenani qaytadan', ru: '↻ Смену заново' })}</button>}
               </div>
             )}
           </Col>
           <Col>
-            <p className="flow-label">Qo'riqchi kodi — qaysi qator ishladi?</p>
+            <p className="flow-label">{tr({ uz: "Qo'riqchi kodi — qaysi qator ishladi?", ru: 'Код охранника — какая строка сработала?' })}</p>
             <pre className="code-box clickable">
               {GUARD_CODE.map((l, k) => (<React.Fragment key={l.k}><span className={`cl-line ${activeLine === l.k ? 'on' : ''}`}>{l.el}</span>{k < GUARD_CODE.length - 1 ? '\n' : ''}</React.Fragment>))}
             </pre>
-            <p className="small" style={{ color: T.ink2, margin: 0 }}>Har hukm — koddagi bir qatorning ishlashi: token yo'q → <span className="mono">401</span>; imzo soxta/eskirgan → <span className="mono">jwt.verify</span> rad etadi; hammasi joyida → <span className="mono">userId</span> aniqlanadi.</p>
-            <p className="small" style={{ color: T.ink2, margin: 0 }}>Nest'da bu bitta qatorga aylanadi: <span className="mono" style={{ color: T.purple }}>@UseGuards(AuthGuard)</span> — keyingi modul.</p>
+            <p className="small" style={{ color: T.ink2, margin: 0 }}>{tr({ uz: <>Har hukm — koddagi bir qatorning ishlashi: token yo'q → <span className="mono">401</span>; imzo soxta/eskirgan → <span className="mono">jwt.verify</span> rad etadi; hammasi joyida → <span className="mono">userId</span> aniqlanadi.</>, ru: <>Каждый вердикт — работа одной строки кода: токена нет → <span className="mono">401</span>; подпись поддельная/просроченная → <span className="mono">jwt.verify</span> отказывает; всё в порядке → определяется <span className="mono">userId</span>.</> })}</p>
+            <p className="small" style={{ color: T.ink2, margin: 0 }}>{tr({ uz: <>Nest'da bu bitta qatorga aylanadi: <span className="mono" style={{ color: T.purple }}>@UseGuards(AuthGuard)</span> — keyingi modul.</>, ru: <>В Nest это превращается в одну строку: <span className="mono" style={{ color: T.purple }}>@UseGuards(AuthGuard)</span> — следующий модуль.</> })}</p>
           </Col>
         </div>
         </Zoomable>
@@ -1201,22 +1211,22 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const done = pushed;
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   return (
-    <Stage eyebrow="Maxfiy kalit · xavf" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? 'Davom etish' : "GitHub'ga yuklab ko'ring"} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Maxfiy kalit · xavf', ru: 'Секретный ключ · риск' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "GitHub'ga yuklab ko'ring", ru: 'Загрузите на GitHub' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Maxfiy kalit kodda tursa — <span className="italic" style={{ color: T.danger }}>nima bo'ladi?</span></h2></div>
-        <Mentor>Butun himoya <b style={{ color: T.ink }}>maxfiy kalit</b>ga (<span className="mono">JWT_SECRET</span>) bog'liq — u bilaguzukka muhr bosadigan asbob. Agar kalit kod ichida yozilgan bo'lsa va kodni <b style={{ color: T.danger }}>GitHub'ga</b> yuklasangiz — har kim muhrni ko'radi va o'ziga soxta bilaguzuk bosib oladi! Kodni GitHub'ga "push" qilib ko'ring.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Maxfiy kalit kodda tursa — <span className="italic" style={{ color: T.danger }}>nima bo'ladi?</span></>, ru: <>Если секретный ключ лежит в коде — <span className="italic" style={{ color: T.danger }}>что будет?</span></> })}</h2></div>
+        <Mentor>{tr({ uz: <>Butun himoya <b style={{ color: T.ink }}>maxfiy kalit</b>ga (<span className="mono">JWT_SECRET</span>) bog'liq — u bilaguzukka muhr bosadigan asbob. Agar kalit kod ichida yozilgan bo'lsa va kodni <b style={{ color: T.danger }}>GitHub'ga</b> yuklasangiz — har kim muhrni ko'radi va o'ziga soxta bilaguzuk bosib oladi! Kodni GitHub'ga "push" qilib ko'ring.</>, ru: <>Вся защита держится на <b style={{ color: T.ink }}>секретном ключе</b> (<span className="mono">JWT_SECRET</span>) — это инструмент, которым ставят печать на браслет. Если ключ записан прямо в коде, а код вы загрузите на <b style={{ color: T.danger }}>GitHub</b> — печать увидит каждый и наштампует себе поддельных браслетов! Попробуйте сделать «push» кода на GitHub.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
             <p className="flow-label">server.js</p>
-            <pre className="code-box">{`  `}<Kw>const</Kw>{` JWT_SECRET = `}<St>"super-secret-key-123"</St>{'\n'}{`  `}<Cm>// ⚠ kod ichida ochiq yozilgan!</Cm></pre>
-            {!pushed && <button className="btn" style={{ alignSelf: 'flex-start', background: T.danger }} onClick={() => setPushed(true)}>⬆ GitHub'ga push qilish</button>}
+            <pre className="code-box">{`  `}<Kw>const</Kw>{` JWT_SECRET = `}<St>"super-secret-key-123"</St>{'\n'}{`  `}<Cm>{tr({ uz: '// ⚠ kod ichida ochiq yozilgan!', ru: '// ⚠ открыто записан прямо в коде!' })}</Cm></pre>
+            {!pushed && <button className="btn" style={{ alignSelf: 'flex-start', background: T.danger }} onClick={() => setPushed(true)}>{tr({ uz: "⬆ GitHub'ga push qilish", ru: '⬆ Сделать push на GitHub' })}</button>}
           </Col>
           <Col>
             <p className="flow-label">github.com/siz/zakaz-shop</p>
             {pushed
-              ? <div className="ghub danger fade-step"><div className="gh-row"><span className="gh-eye">👁️</span><span className="mono small">JWT_SECRET = "super-secret-key-123"</span></div><p className="body" style={{ margin: '8px 0 0', color: T.ink }}><b style={{ color: T.danger }}>Hamma ko'rdi!</b> Muhr o'g'irlandi: endi istalgan odam shu kalit bilan o'ziga soxta "admin" bilaguzuk yasab, saytingizni egallashi mumkin. Kalitni yashirishimiz shart.</p></div>
-              : <div className="frame-dash" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: 110 }}><p className="small" style={{ color: T.ink3, fontStyle: 'italic', textAlign: 'center', margin: 0 }}>Push qiling — GitHub'da nima ko'rinishini ko'ring</p></div>}
+              ? <div className="ghub danger fade-step"><div className="gh-row"><span className="gh-eye">👁️</span><span className="mono small">JWT_SECRET = "super-secret-key-123"</span></div><p className="body" style={{ margin: '8px 0 0', color: T.ink }}>{tr({ uz: <><b style={{ color: T.danger }}>Hamma ko'rdi!</b> Muhr o'g'irlandi: endi istalgan odam shu kalit bilan o'ziga soxta "admin" bilaguzuk yasab, saytingizni egallashi mumkin. Kalitni yashirishimiz shart.</>, ru: <><b style={{ color: T.danger }}>Все увидели!</b> Печать украдена: теперь любой сделает себе этим ключом поддельный «admin»-браслет и захватит ваш сайт. Ключ обязательно нужно спрятать.</> })}</p></div>
+              : <div className="frame-dash" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: 110 }}><p className="small" style={{ color: T.ink3, fontStyle: 'italic', textAlign: 'center', margin: 0 }}>{tr({ uz: "Push qiling — GitHub'da nima ko'rinishini ko'ring", ru: 'Сделайте push — посмотрите, что видно на GitHub' })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -1227,25 +1237,25 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 
 // ===== SCREEN 9 — TEST 3 =====
 const Screen9 = (props) => (
-  <QuestionScreen {...props} idx={9} scope="module-mikro" eyebrow="Mashq · 3-savol"
-    questionText="Himoyalangan route'ga tokensiz so'rov yuborilsa, server qaysi status qaytaradi?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-sub" style={{ marginTop: 8 }}>Bilaguzuksiz himoyalangan eshikka kelsangiz, qo'riqchi <span className="italic" style={{ color: T.accent }}>nima deydi?</span></h2></>}
-    options={["200 OK — hammasi joyida, bemalol kiravering", "404 Not Found — bunday manzil serverda umuman topilmadi", "201 Created — mahsulot muvaffaqiyatli qo'shildi", "401 Unauthorized — token yo'q, kira olmaysiz"]} correctIdx={3}
-    explainCorrect="To'g'ri! Token bo'lmasa (yoki soxta bo'lsa) → 401 Unauthorized. Qo'riqchi sizni kiritmaydi."
+  <QuestionScreen {...props} idx={9} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 3-savol', ru: 'Практика · вопрос 3' })}
+    questionText={tr({ uz: "Himoyalangan route'ga tokensiz so'rov yuborilsa, server qaysi status qaytaradi?", ru: 'Если отправить запрос на защищённый route без токена, какой статус вернёт сервер?' })}
+    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-sub" style={{ marginTop: 8 }}>{tr({ uz: <>Bilaguzuksiz himoyalangan eshikka kelsangiz, qo'riqchi <span className="italic" style={{ color: T.accent }}>nima deydi?</span></>, ru: <>Если прийти к защищённой двери без браслета, что скажет <span className="italic" style={{ color: T.accent }}>охранник?</span></> })}</h2></>}
+    options={[tr({ uz: "200 OK — hammasi joyida, bemalol kiravering", ru: '200 OK — всё в порядке, спокойно заходите' }), tr({ uz: "404 Not Found — bunday manzil serverda umuman topilmadi", ru: '404 Not Found — такого адреса на сервере вообще нет' }), tr({ uz: "201 Created — mahsulot muvaffaqiyatli qo'shildi", ru: '201 Created — товар успешно добавлен' }), tr({ uz: "401 Unauthorized — token yo'q, kira olmaysiz", ru: '401 Unauthorized — токена нет, вход закрыт' })]} correctIdx={3}
+    explainCorrect={tr({ uz: "To'g'ri! Token bo'lmasa (yoki soxta bo'lsa) → 401 Unauthorized. Qo'riqchi sizni kiritmaydi.", ru: 'Верно! Нет токена (или он поддельный) → 401 Unauthorized. Охранник вас не впустит.' })}
     explainWrong={{
-      0: "200 — hammasi joyida degani. Tokensiz kira olmaysiz.",
-      1: "404 — manzil topilmadi degani. Bu yerda manzil bor, lekin token yo'q → 401.",
-      2: "201 — yangi narsa yaratildi. Lekin avval kirish kerak (token).",
-      default: "Tokensiz → 401 Unauthorized."
+      0: tr({ uz: "200 — hammasi joyida degani. Tokensiz kira olmaysiz.", ru: '200 значит «всё в порядке». Без токена не войти.' }),
+      1: tr({ uz: "404 — manzil topilmadi degani. Bu yerda manzil bor, lekin token yo'q → 401.", ru: '404 значит «адрес не найден». Здесь адрес есть, но нет токена → 401.' }),
+      2: tr({ uz: "201 — yangi narsa yaratildi. Lekin avval kirish kerak (token).", ru: '201 — создано что-то новое. Но сначала нужно войти (токен).' }),
+      default: tr({ uz: "Tokensiz → 401 Unauthorized.", ru: 'Без токена → 401 Unauthorized.' })
     }} />
 );
 
 // ===== SCREEN 10 — .env QANDAY ISHLAYDI =====
 const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const PARTS = [
-    { k: 'env', label: '.env fayli', desc: "Maxfiy kalitlar shu yashirin faylda saqlanadi: JWT_SECRET=... Bu fayl kompyuteringizda qoladi." },
-    { k: 'code', label: 'process.env', desc: "Kod kalitni to'g'ridan-to'g'ri emas, process.env.JWT_SECRET orqali o'qiydi. Kodda maxfiy kalitning o'zi ko'rinmaydi." },
-    { k: 'git', label: '.gitignore', desc: "Bu faylga .env qo'shiladi → .env hech qachon GitHub'ga ketmaydi. Maxfiy qoladi." }
+    { k: 'env', label: tr({ uz: '.env fayli', ru: 'файл .env' }), desc: tr({ uz: "Maxfiy kalitlar shu yashirin faylda saqlanadi: JWT_SECRET=... Bu fayl kompyuteringizda qoladi.", ru: 'Секретные ключи хранятся в этом скрытом файле: JWT_SECRET=... Файл остаётся на вашем компьютере.' }) },
+    { k: 'code', label: 'process.env', desc: tr({ uz: "Kod kalitni to'g'ridan-to'g'ri emas, process.env.JWT_SECRET orqali o'qiydi. Kodda maxfiy kalitning o'zi ko'rinmaydi.", ru: 'Код читает ключ не напрямую, а через process.env.JWT_SECRET. Сам секретный ключ в коде не виден.' }) },
+    { k: 'git', label: '.gitignore', desc: tr({ uz: "Bu faylga .env qo'shiladi → .env hech qachon GitHub'ga ketmaydi. Maxfiy qoladi.", ru: 'В этот файл добавляется .env → .env никогда не попадёт на GitHub. Останется секретным.' }) }
   ];
   const [seen, setSeen] = useState(storedAnswer ? new Set(['env', 'code', 'git']) : new Set());
   const [active, setActive] = useState(storedAnswer ? 'env' : null);
@@ -1254,14 +1264,14 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const tap = (k) => { setActive(k); setSeen(s => new Set(s).add(k)); };
   const cur = PARTS.find(p => p.k === active);
   return (
-    <Stage eyebrow=".env" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? 'Davom etish' : `${seen.size}/3 qismni ko'ring`} onClick={onNext} /></>}>
+    <Stage eyebrow=".env" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `${seen.size}/3 qismni ko'ring`, ru: `Посмотрите части: ${seen.size}/3` }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Maxfiy kalitni qayerda <span className="italic" style={{ color: T.success }}>yashiramiz?</span></h2></div>
-        <Mentor>Yechim — <b style={{ color: T.ink }}>.env</b> fayli: maxfiy kalitlar uchun yashirin tortma. Kod undan <span className="mono">process.env</span> orqali o'qiydi, fayl esa <span className="mono">.gitignore</span> tufayli GitHub'ga ketmaydi. Uch qismni bosib ko'ring.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Maxfiy kalitni qayerda <span className="italic" style={{ color: T.success }}>yashiramiz?</span></>, ru: <>Где <span className="italic" style={{ color: T.success }}>спрячем</span> секретный ключ?</> })}</h2></div>
+        <Mentor>{tr({ uz: <>Yechim — <b style={{ color: T.ink }}>.env</b> fayli: maxfiy kalitlar uchun yashirin tortma. Kod undan <span className="mono">process.env</span> orqali o'qiydi, fayl esa <span className="mono">.gitignore</span> tufayli GitHub'ga ketmaydi. Uch qismni bosib ko'ring.</>, ru: <>Решение — файл <b style={{ color: T.ink }}>.env</b>: потайной ящик для секретных ключей. Код читает из него через <span className="mono">process.env</span>, а сам файл благодаря <span className="mono">.gitignore</span> не попадает на GitHub. Понажимайте на три части.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
-            <p className="flow-label">.env (yashirin)</p>
+            <p className="flow-label">{tr({ uz: '.env (yashirin)', ru: '.env (скрытый)' })}</p>
             <pre className={`code-box envfile ${active === 'env' ? 'hi' : ''} ${!seen.has('env') ? 'tap-hint' : ''}`} onClick={() => tap('env')}><At>JWT_SECRET</At>{`=`}<St>super-secret-key-123</St></pre>
             <p className="flow-label">server.js</p>
             <pre className={`code-box envfile ${active === 'code' ? 'hi' : ''} ${!seen.has('code') ? 'tap-hint' : ''}`} onClick={() => tap('code')}>{`  `}<Kw>const</Kw>{` JWT_SECRET = `}<At>process</At>{`.`}<At>env</At>{`.`}<At>JWT_SECRET</At></pre>
@@ -1270,8 +1280,8 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <Col>
             {cur
               ? <div className="sk-info fade-step" key={cur.k}><span className="sk-tagbig"><span className="sk-wordbadge">{cur.label}</span></span><p className="body" style={{ color: T.ink, margin: '9px 0 0' }}>{cur.desc}</p></div>
-              : <div className="frame-dash" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: 130 }}><p className="small" style={{ color: T.ink3, fontStyle: 'italic', textAlign: 'center', margin: 0 }}>← Qismlarni bosing</p></div>}
-            {done && <div className="ghub safe fade-step"><div className="gh-row"><span className="gh-eye">🔒</span><span className="mono small">JWT_SECRET endi GitHub'da ko'rinmaydi</span></div></div>}
+              : <div className="frame-dash" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: 130 }}><p className="small" style={{ color: T.ink3, fontStyle: 'italic', textAlign: 'center', margin: 0 }}>{tr({ uz: '← Qismlarni bosing', ru: '← Нажмите на части' })}</p></div>}
+            {done && <div className="ghub safe fade-step"><div className="gh-row"><span className="gh-eye">🔒</span><span className="mono small">{tr({ uz: "JWT_SECRET endi GitHub'da ko'rinmaydi", ru: 'JWT_SECRET больше не виден на GitHub' })}</span></div></div>}
           </Col>
         </div>
         </Zoomable>
@@ -1282,12 +1292,12 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 
 // ===== SCREEN 11 — TO'LIQ AUTH OQIMI (animatsiya) =====
 const AFLOW = [
-  { ic: '📝', t: 'Login', note: 'Email + parol yuborasiz: POST /api/login' },
-  { ic: '🏭', t: 'Server', note: 'Server tekshiradi, jwt.sign(SECRET) → token yasaydi' },
-  { ic: '🎫', t: 'Token', note: 'Siz bilaguzuk (token) olasiz' },
-  { ic: '📨', t: 'So\'rov', note: 'POST /api/products + Authorization: Bearer token' },
-  { ic: '🛡️', t: 'Guard', note: 'Qo\'riqchi jwt.verify(SECRET) bilan imzoni tekshiradi' },
-  { ic: '✅', t: 'Ruxsat', note: 'Imzo to\'g\'ri → 201 Created. Mahsulot qo\'shildi!' }
+  { ic: '📝', t: { uz: 'Login', ru: 'Логин' }, note: { uz: 'Email + parol yuborasiz: POST /api/login', ru: 'Вы отправляете email + пароль: POST /api/login' } },
+  { ic: '🏭', t: { uz: 'Server', ru: 'Сервер' }, note: { uz: 'Server tekshiradi, jwt.sign(SECRET) → token yasaydi', ru: 'Сервер проверяет, jwt.sign(SECRET) → создаёт токен' } },
+  { ic: '🎫', t: { uz: 'Token', ru: 'Токен' }, note: { uz: 'Siz bilaguzuk (token) olasiz', ru: 'Вы получаете браслет (токен)' } },
+  { ic: '📨', t: { uz: "So'rov", ru: 'Запрос' }, note: 'POST /api/products + Authorization: Bearer token' },
+  { ic: '🛡️', t: 'Guard', note: { uz: "Qo'riqchi jwt.verify(SECRET) bilan imzoni tekshiradi", ru: 'Охранник проверяет подпись через jwt.verify(SECRET)' } },
+  { ic: '✅', t: { uz: 'Ruxsat', ru: 'Доступ' }, note: { uz: "Imzo to'g'ri → 201 Created. Mahsulot qo'shildi!", ru: 'Подпись верна → 201 Created. Товар добавлен!' } }
 ];
 const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [step, setStep] = useState(storedAnswer ? AFLOW.length - 1 : -1);
@@ -1302,25 +1312,25 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   };
   const cur = step >= 0 ? AFLOW[step] : null;
   return (
-    <Stage eyebrow="To'liq oqim" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? 'Davom etish' : "Oqimni ko'ring (▶)"} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: "To'liq oqim", ru: 'Полный поток' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "Oqimni ko'ring (▶)", ru: 'Посмотрите поток (▶)' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Login'dan himoyalangan so'rovgacha — <span className="italic" style={{ color: T.accent }}>to'liq yo'l</span></h2></div>
-        <Mentor>Hammasi birlashganda shunday bo'ladi: login → token → tokenni ko'rsatish → qo'riqchi tekshiradi (maxfiy kalit bilan) → ruxsat. <b style={{ color: T.accent }}>▶ tugmasini</b> bosib, butun oqimni kuzating.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Login'dan himoyalangan so'rovgacha — <span className="italic" style={{ color: T.accent }}>to'liq yo'l</span></>, ru: <>От логина до защищённого запроса — <span className="italic" style={{ color: T.accent }}>весь путь</span></> })}</h2></div>
+        <Mentor>{tr({ uz: <>Hammasi birlashganda shunday bo'ladi: login → token → tokenni ko'rsatish → qo'riqchi tekshiradi (maxfiy kalit bilan) → ruxsat. <b style={{ color: T.accent }}>▶ tugmasini</b> bosib, butun oqimni kuzating.</>, ru: <>Когда всё соединяется, получается так: логин → токен → показ токена → охранник проверяет (секретным ключом) → доступ. Нажмите <b style={{ color: T.accent }}>кнопку ▶</b> и наблюдайте весь поток.</> })}</Mentor>
         <div className="aflow">
           {AFLOW.map((n, i) => (
             <div key={i} className={`afnode ${step === i ? 'on' : ''} ${step > i ? 'past' : ''}`}>
               <span className="afnode-ic">{n.ic}</span>
-              <span className="afnode-lbl">{n.t}</span>
+              <span className="afnode-lbl">{tr(n.t)}</span>
             </div>
           ))}
         </div>
         <div className="jnote">
-          {cur ? <p className="body fade-step" key={step} style={{ margin: 0, color: T.ink }}><span className="mono" style={{ color: T.accent, fontWeight: 700 }}>{step + 1}/{AFLOW.length}</span> &nbsp;{cur.note}</p>
-            : <p className="small" style={{ margin: 0, color: T.ink3, fontStyle: 'italic' }}>▶ tugmasini bosing — himoya oqimini boshlang</p>}
+          {cur ? <p className="body fade-step" key={step} style={{ margin: 0, color: T.ink }}><span className="mono" style={{ color: T.accent, fontWeight: 700 }}>{step + 1}/{AFLOW.length}</span> &nbsp;{tr(cur.note)}</p>
+            : <p className="small" style={{ margin: 0, color: T.ink3, fontStyle: 'italic' }}>{tr({ uz: '▶ tugmasini bosing — himoya oqimini boshlang', ru: '▶ нажмите — запустите поток защиты' })}</p>}
         </div>
         <div style={{ display: 'flex', gap: 10 }}>
-          {!playing && <button className="btn" onClick={play}>{step < 0 ? '▶ Oqimni boshlash' : '↻ Qaytadan'}</button>}
-          {done && !playing && <span className="mono small" style={{ color: T.success, alignSelf: 'center' }}>✓ Ruxsat berildi — 201 Created</span>}
+          {!playing && <button className="btn" onClick={play}>{step < 0 ? tr({ uz: '▶ Oqimni boshlash', ru: '▶ Запустить поток' }) : tr({ uz: '↻ Qaytadan', ru: '↻ Заново' })}</button>}
+          {done && !playing && <span className="mono small" style={{ color: T.success, alignSelf: 'center' }}>{tr({ uz: '✓ Ruxsat berildi — 201 Created', ru: '✓ Доступ разрешён — 201 Created' })}</span>}
         </div>
       </div>
     </Stage>
@@ -1329,16 +1339,16 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 
 // ===== SCREEN 12 — TEST 4 =====
 const Screen12 = (props) => (
-  <QuestionScreen {...props} idx={12} scope="module-mikro" eyebrow="Mashq · 4-savol"
-    questionText="Maxfiy kalitlarni (JWT_SECRET) qayerda saqlash to'g'ri?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-sub" style={{ marginTop: 8 }}>JWT_SECRET kabi maxfiy kalitlarni <span className="italic" style={{ color: T.accent }}>qayerga yozamiz?</span></h2></>}
-    options={["To'g'ridan-to'g'ri kod ichiga yozamiz — bu eng qulay va ishonchli usul", "Saytning HTML sahifasiga — brauzer uni o'zi yashirib beradi", ".env fayliga — kod uni process.env orqali o'qiydi, GitHub'ga ketmaydi", "Hech qayerda saqlamaymiz — kalitsiz ham ishlayveradi"]} correctIdx={2}
-    explainCorrect="To'g'ri! Maxfiy kalitlar .env faylida saqlanadi. Kod ularni process.env orqali o'qiydi, .gitignore esa .env'ni GitHub'dan saqlaydi."
+  <QuestionScreen {...props} idx={12} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 4-savol', ru: 'Практика · вопрос 4' })}
+    questionText={tr({ uz: "Maxfiy kalitlarni (JWT_SECRET) qayerda saqlash to'g'ri?", ru: 'Где правильно хранить секретные ключи (JWT_SECRET)?' })}
+    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-sub" style={{ marginTop: 8 }}>{tr({ uz: <>JWT_SECRET kabi maxfiy kalitlarni <span className="italic" style={{ color: T.accent }}>qayerga yozamiz?</span></>, ru: <>Секретные ключи вроде JWT_SECRET — <span className="italic" style={{ color: T.accent }}>куда их писать?</span></> })}</h2></>}
+    options={[tr({ uz: "To'g'ridan-to'g'ri kod ichiga yozamiz — bu eng qulay va ishonchli usul", ru: 'Прямо в код — это самый удобный и надёжный способ' }), tr({ uz: "Saytning HTML sahifasiga — brauzer uni o'zi yashirib beradi", ru: 'В HTML-страницу сайта — браузер сам её спрячет' }), tr({ uz: ".env fayliga — kod uni process.env orqali o'qiydi, GitHub'ga ketmaydi", ru: 'В файл .env — код читает его через process.env, на GitHub он не попадает' }), tr({ uz: "Hech qayerda saqlamaymiz — kalitsiz ham ishlayveradi", ru: 'Нигде не хранить — и без ключа всё будет работать' })]} correctIdx={2}
+    explainCorrect={tr({ uz: "To'g'ri! Maxfiy kalitlar .env faylida saqlanadi. Kod ularni process.env orqali o'qiydi, .gitignore esa .env'ni GitHub'dan saqlaydi.", ru: 'Верно! Секретные ключи хранятся в файле .env. Код читает их через process.env, а .gitignore бережёт .env от GitHub.' })}
     explainWrong={{
-      0: "Kod ichida bo'lsa — GitHub'ga ketadi va hamma ko'radi. Xavfli!",
-      1: "HTML — bu eng ochiq joy, brauzerda hamma ko'radi. Eng xavflisi.",
-      3: "Kalit kerak (imzo uchun), faqat uni xavfsiz — .env'da saqlaymiz.",
-      default: "Maxfiy kalitlar → .env (process.env + .gitignore)."
+      0: tr({ uz: "Kod ichida bo'lsa — GitHub'ga ketadi va hamma ko'radi. Xavfli!", ru: 'В коде — значит попадёт на GitHub, и увидят все. Опасно!' }),
+      1: tr({ uz: "HTML — bu eng ochiq joy, brauzerda hamma ko'radi. Eng xavflisi.", ru: 'HTML — самое открытое место, в браузере видно всем. Самый опасный вариант.' }),
+      3: tr({ uz: "Kalit kerak (imzo uchun), faqat uni xavfsiz — .env'da saqlaymiz.", ru: 'Ключ нужен (для подписи), просто храним его безопасно — в .env.' }),
+      default: tr({ uz: "Maxfiy kalitlar → .env (process.env + .gitignore).", ru: 'Секретные ключи → .env (process.env + .gitignore).' })
     }} />
 );
 
@@ -1346,34 +1356,34 @@ const Screen12 = (props) => (
 // 3 qadam: har birida avval TO'G'RI qarorni tanlash shart (xato mumkin), keyin so'rov yuboriladi.
 const FLOW_STEPS = [
   {
-    id: 'f1', label: "1-qadam · POST /api/products — bilaguzuksiz",
-    ask: "Tokensiz so'rov yuboryapsiz. Qo'riqchi qanday javob qaytaradi?",
+    id: 'f1', label: { uz: "1-qadam · POST /api/products — bilaguzuksiz", ru: "Шаг 1 · POST /api/products — без браслета" },
+    ask: { uz: "Tokensiz so'rov yuboryapsiz. Qo'riqchi qanday javob qaytaradi?", ru: "Вы отправляете запрос без токена. Что ответит охранник?" },
     opts: [
-      { t: "201 Created — mahsulot qo'shildi", why: "Yo'q. Himoyalangan route avval bilaguzukni so'raydi — tokensiz hech narsa yaratilmaydi." },
-      { t: "401 Unauthorized — token yo'q", ok: true },
-      { t: "404 Not Found — bunday manzil yo'q", why: "Manzil bor, muammo manzilda emas — token yo'q. Javob 401 bo'ladi." }
+      { t: { uz: "201 Created — mahsulot qo'shildi", ru: "201 Created — товар добавлен" }, why: { uz: "Yo'q. Himoyalangan route avval bilaguzukni so'raydi — tokensiz hech narsa yaratilmaydi.", ru: "Нет. Защищённый route сначала спрашивает браслет — без токена ничего не создаётся." } },
+      { t: { uz: "401 Unauthorized — token yo'q", ru: "401 Unauthorized — токена нет" }, ok: true },
+      { t: { uz: "404 Not Found — bunday manzil yo'q", ru: "404 Not Found — такого адреса нет" }, why: { uz: "Manzil bor, muammo manzilda emas — token yo'q. Javob 401 bo'ladi.", ru: "Адрес есть, проблема не в адресе — нет токена. Ответ будет 401." } }
     ],
-    good: "✓ 401 Unauthorized. if (!token) return res.status(401) — qo'riqchi darrov to'sdi."
+    good: { uz: "✓ 401 Unauthorized. if (!token) return res.status(401) — qo'riqchi darrov to'sdi.", ru: "✓ 401 Unauthorized. if (!token) return res.status(401) — охранник сразу преградил путь." }
   },
   {
-    id: 'f2', label: "2-qadam · POST /api/login — email va parol",
-    ask: "Email va parol to'g'ri. Server javobida nima qaytaradi?",
+    id: 'f2', label: { uz: "2-qadam · POST /api/login — email va parol", ru: "Шаг 2 · POST /api/login — email и пароль" },
+    ask: { uz: "Email va parol to'g'ri. Server javobida nima qaytaradi?", ru: "Email и пароль верны. Что вернёт сервер в ответе?" },
     opts: [
-      { t: "Parolning o'zini — keyingi so'rovlarga qo'shamiz", why: "Parol hech qachon qaytarilmaydi va so'rovlarga qo'shilmaydi. Server imzolangan token beradi." },
-      { t: "`jwt.sign` bilan imzolangan token — bilaguzuk", ok: true },
-      { t: "Hech narsa — server sizni endi eslab qoladi", why: "Server hech kimni eslab qolmaydi (stateless). Login'ning maqsadi — token berish." }
+      { t: { uz: "Parolning o'zini — keyingi so'rovlarga qo'shamiz", ru: "Сам пароль — будем добавлять его в следующие запросы" }, why: { uz: "Parol hech qachon qaytarilmaydi va so'rovlarga qo'shilmaydi. Server imzolangan token beradi.", ru: "Пароль никогда не возвращается и в запросы не добавляется. Сервер выдаёт подписанный токен." } },
+      { t: { uz: "`jwt.sign` bilan imzolangan token — bilaguzuk", ru: "Токен, подписанный через `jwt.sign`, — браслет" }, ok: true },
+      { t: { uz: "Hech narsa — server sizni endi eslab qoladi", ru: "Ничего — сервер теперь вас запомнит" }, why: { uz: "Server hech kimni eslab qolmaydi (stateless). Login'ning maqsadi — token berish.", ru: "Сервер никого не запоминает (stateless). Цель логина — выдать токен." } }
     ],
-    good: "✓ jwt.sign(...) imzolangan token qaytardi. Mana shu — sizning bilaguzugingiz."
+    good: { uz: "✓ jwt.sign(...) imzolangan token qaytardi. Mana shu — sizning bilaguzugingiz.", ru: "✓ jwt.sign(...) вернул подписанный токен. Вот это — ваш браслет." }
   },
   {
-    id: 'f3', label: "3-qadam · POST /api/products — token bilan",
-    ask: "Tokenni so'rovning qayeriga qo'yasiz?",
+    id: 'f3', label: { uz: "3-qadam · POST /api/products — token bilan", ru: "Шаг 3 · POST /api/products — с токеном" },
+    ask: { uz: "Tokenni so'rovning qayeriga qo'yasiz?", ru: "Куда в запросе вы поместите токен?" },
     opts: [
-      { t: "URL oxiriga: /api/products?token=…", why: "URL brauzer tarixida va server loglarida qoladi — token sizib ketadi. To'g'ri joy: Authorization sarlavhasi." },
-      { t: "Authorization: Bearer <token> sarlavhasiga", ok: true },
-      { t: "Hech qayerga — token brauzerda saqlangan, yetarli", why: "Saqlangani yetmaydi: har so'rovda bilaguzukni o'zingiz ko'rsatishingiz kerak." }
+      { t: { uz: "URL oxiriga: /api/products?token=…", ru: "В конец URL: /api/products?token=…" }, why: { uz: "URL brauzer tarixida va server loglarida qoladi — token sizib ketadi. To'g'ri joy: Authorization sarlavhasi.", ru: "URL остаётся в истории браузера и логах сервера — токен утечёт. Правильное место: заголовок Authorization." } },
+      { t: { uz: "Authorization: Bearer <token> sarlavhasiga", ru: "В заголовок Authorization: Bearer <token>" }, ok: true },
+      { t: { uz: "Hech qayerga — token brauzerda saqlangan, yetarli", ru: "Никуда — токен сохранён в браузере, этого хватит" }, why: { uz: "Saqlangani yetmaydi: har so'rovda bilaguzukni o'zingiz ko'rsatishingiz kerak.", ru: "Того, что он сохранён, мало: в каждом запросе браслет нужно показывать самому." } }
     ],
-    good: "✓ 201 Created. Authorization: Bearer … → jwt.verify imzoni tasdiqladi, eshik ochildi."
+    good: { uz: "✓ 201 Created. Authorization: Bearer … → jwt.verify imzoni tasdiqladi, eshik ochildi.", ru: "✓ 201 Created. Authorization: Bearer … → jwt.verify подтвердил подпись, дверь открылась." }
   }
 ];
 const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
@@ -1404,53 +1414,53 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const restart = () => { setStep(0); setPhase('predict'); setWrong(null); setBusy(false); setMistakes(0); setDone(false); savedRef.current = false; };
   const perfect = done && mistakes === 0;
   return (
-    <Stage eyebrow="Amaliyot" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? 'Davom etish' : `${step + (sent ? 1 : 0)}/3 qadam`} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Amaliyot', ru: 'Практика' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `${step + (sent ? 1 : 0)}/3 qadam`, ru: `${step + (sent ? 1 : 0)}/3 шага` }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">To'liq yo'lni <span className="italic" style={{ color: T.accent }}>o'zingiz bosib o'ting</span></h2></div>
-        <Mentor>Har qadamda avval <b style={{ color: T.ink }}>qaror</b> qabul qilasiz — server nima qaytaradi, tokenni qayerga qo'yasiz. To'g'ri tanlasangiz so'rov yuboriladi. Xatosiz uchta qadam — tokensiz 401, login → token, token bilan 201.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>To'liq yo'lni <span className="italic" style={{ color: T.accent }}>o'zingiz bosib o'ting</span></>, ru: <>Пройдите <span className="italic" style={{ color: T.accent }}>весь путь сами</span></> })}</h2></div>
+        <Mentor>{tr({ uz: <>Har qadamda avval <b style={{ color: T.ink }}>qaror</b> qabul qilasiz — server nima qaytaradi, tokenni qayerga qo'yasiz. To'g'ri tanlasangiz so'rov yuboriladi. Xatosiz uchta qadam — tokensiz 401, login → token, token bilan 201.</>, ru: <>На каждом шаге вы сначала принимаете <b style={{ color: T.ink }}>решение</b> — что вернёт сервер, куда поместить токен. Выберете верно — запрос отправится. Три шага без ошибок: без токена 401, логин → токен, с токеном 201.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
             <div className="stepbar">
               {FLOW_STEPS.map((s, i) => <span key={s.id} className={`stepdot ${(i < step || (i === step && sent)) ? 'done' : ''} ${i === step && !sent ? 'cur' : ''}`}>{(i < step || (i === step && sent)) ? '✓' : i + 1}</span>)}
             </div>
-            {step === 0 && <Postman method="POST" url="/api/products" sent={sent} status={401} onSend={send} sending={busy} sendDisabled={phase !== 'ready'} sendLabel="Send" authRow={<span className="mono small" style={{ color: T.danger }}>Authorization: (token yo'q)</span>}><JsonBox data={{ error: 'Unauthorized' }} /></Postman>}
-            {step === 1 && <div className="loginform"><span className="lf-lbl">Email</span><div className="lf-field">ali@shop.uz</div><span className="lf-lbl">Parol</span><div className="lf-field">••••••••</div>{!sent ? <button className="btn" onClick={send} disabled={phase !== 'ready' || busy}>{busy ? '⏳…' : '→ Kirish'}</button> : <div className="lf-token"><span className="mono small" style={{ color: T.success }}>✓ Token olindi</span><TokenCard small /></div>}</div>}
-            {step === 2 && <Postman method="POST" url="/api/products" sent={sent} status={201} onSend={send} sending={busy} sendDisabled={phase !== 'ready'} sendLabel="Send" authRow={<span className="mono small" style={{ color: T.success }}>Authorization: Bearer {TOKEN.h}…</span>}><JsonBox data={{ id: 4, nom: 'Mikrofon' }} /></Postman>}
+            {step === 0 && <Postman method="POST" url="/api/products" sent={sent} status={401} onSend={send} sending={busy} sendDisabled={phase !== 'ready'} sendLabel="Send" authRow={<span className="mono small" style={{ color: T.danger }}>{tr({ uz: "Authorization: (token yo'q)", ru: 'Authorization: (нет токена)' })}</span>}><JsonBox data={{ error: 'Unauthorized' }} /></Postman>}
+            {step === 1 && <div className="loginform"><span className="lf-lbl">Email</span><div className="lf-field">ali@shop.uz</div><span className="lf-lbl">{tr({ uz: 'Parol', ru: 'Пароль' })}</span><div className="lf-field">••••••••</div>{!sent ? <button className="btn" onClick={send} disabled={phase !== 'ready' || busy}>{busy ? '⏳…' : tr({ uz: '→ Kirish', ru: '→ Войти' })}</button> : <div className="lf-token"><span className="mono small" style={{ color: T.success }}>{tr({ uz: '✓ Token olindi', ru: '✓ Токен получен' })}</span><TokenCard small /></div>}</div>}
+            {step === 2 && <Postman method="POST" url="/api/products" sent={sent} status={201} onSend={send} sending={busy} sendDisabled={phase !== 'ready'} sendLabel="Send" authRow={<span className="mono small" style={{ color: T.success }}>Authorization: Bearer {TOKEN.h}…</span>}><JsonBox data={{ id: 4, nom: tr({ uz: 'Mikrofon', ru: 'Микрофон' }) }} /></Postman>}
           </Col>
           <Col>
-            <p className="flow-label">{cur.label}</p>
+            <p className="flow-label">{tr(cur.label)}</p>
             {done ? (
               <div className={perfect ? 'frame-success fade-step' : 'frame-soft fade-step'}>
                 <p className="body" style={{ margin: 0, color: T.ink }}>
                   {perfect
-                    ? "🎉 Xatosiz! Tokensiz → 401, login → token, token bilan → 201. Mana shu — saytni himoyalashning to'liq yo'li."
-                    : `Yo'l bosib o'tildi, lekin ${mistakes} ta xato qaror bo'ldi. Qadamlarni qaytadan — xatosiz — o'tib ko'ring.`}
+                    ? tr({ uz: "🎉 Xatosiz! Tokensiz → 401, login → token, token bilan → 201. Mana shu — saytni himoyalashning to'liq yo'li.", ru: '🎉 Без ошибок! Без токена → 401, логин → токен, с токеном → 201. Вот он — полный путь защиты сайта.' })
+                    : tr({ uz: `Yo'l bosib o'tildi, lekin ${mistakes} ta xato qaror bo'ldi. Qadamlarni qaytadan — xatosiz — o'tib ko'ring.`, ru: `Путь пройден, но было ошибочных решений: ${mistakes}. Попробуйте пройти шаги заново — без ошибок.` })}
                 </p>
-                {!perfect && <button className="btn-soft" style={{ alignSelf: 'flex-start', marginTop: 10 }} onClick={restart}>↻ Qaytadan</button>}
+                {!perfect && <button className="btn-soft" style={{ alignSelf: 'flex-start', marginTop: 10 }} onClick={restart}>{tr({ uz: '↻ Qaytadan', ru: '↻ Заново' })}</button>}
               </div>
             ) : sent ? (
               <div className="frame-success fade-step">
-                <p className="body" style={{ margin: 0, color: T.ink }}>{fmtCode(cur.good)}</p>
-                <button className="btn" style={{ alignSelf: 'flex-start', marginTop: 10 }} onClick={nextStep}>Keyingi qadam →</button>
+                <p className="body" style={{ margin: 0, color: T.ink }}>{fmtCode(tr(cur.good))}</p>
+                <button className="btn" style={{ alignSelf: 'flex-start', marginTop: 10 }} onClick={nextStep}>{tr({ uz: 'Keyingi qadam →', ru: 'Следующий шаг →' })}</button>
               </div>
             ) : (
               <>
-                <p className="body" style={{ margin: 0, color: T.ink }}>{cur.ask}</p>
+                <p className="body" style={{ margin: 0, color: T.ink }}>{tr(cur.ask)}</p>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
                   {cur.opts.map((o, i) => (
                     <button key={i} className={`option ${phase === 'ready' && o.ok ? 'option-correct' : ''} ${wrong === i ? 'option-picked-wrong' : ''}`} disabled={phase !== 'predict'} onClick={() => choose(i)}
                       style={{ padding: 'clamp(10px,1.5vw,14px) clamp(12px,2vw,16px)', fontSize: 'clamp(13px,1.5vw,15px)', display: 'flex', alignItems: 'center', gap: 10 }}>
                       <span className="mono small" style={{ minWidth: 18, color: T.ink3 }}>{String.fromCharCode(65 + i)}</span>
-                      <span style={{ flex: 1 }}>{fmtCode(o.t)}</span>
+                      <span style={{ flex: 1 }}>{fmtCode(tr(o.t))}</span>
                     </button>
                   ))}
                 </div>
                 {phase === 'ready'
-                  ? <div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>To'g'ri qaror. Endi so'rovni yuboring — chapdagi <b style={{ color: T.ink }}>{step === 1 ? '→ Kirish' : 'Send'}</b> tugmasini bosing.</p></div>
+                  ? <div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: <>To'g'ri qaror. Endi so'rovni yuboring — chapdagi <b style={{ color: T.ink }}>{step === 1 ? tr({ uz: '→ Kirish', ru: '→ Войти' }) : 'Send'}</b> tugmasini bosing.</>, ru: <>Верное решение. Теперь отправьте запрос — нажмите слева кнопку <b style={{ color: T.ink }}>{step === 1 ? tr({ uz: '→ Kirish', ru: '→ Войти' }) : 'Send'}</b>.</> })}</p></div>
                   : wrong !== null
-                    ? <div className="frame-soft fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{fmtCode(cur.opts[wrong].why)}</p></div>
-                    : <div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>Avval qaror qiling — so'rov shundan keyin yuboriladi.</p></div>}
+                    ? <div className="frame-soft fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{fmtCode(tr(cur.opts[wrong].why))}</p></div>
+                    : <div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: "Avval qaror qiling — so'rov shundan keyin yuboriladi.", ru: 'Сначала примите решение — запрос отправится после этого.' })}</p></div>}
               </>
             )}
           </Col>
@@ -1473,10 +1483,10 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     { id: 'l3', el: <>{`app.`}<Fn>listen</Fn>{`(`}<At>3000</At>{`)`}</>, bug: false }
   ];
   return (
-    <Stage eyebrow="Tekshiruv · maxfiylik" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? 'Davom etish' : (found ? 'Tuzating' : 'Xatoni toping')} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Tekshiruv · maxfiylik', ru: 'Проверка · секретность' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : (found ? { uz: 'Tuzating', ru: 'Исправьте' } : { uz: 'Xatoni toping', ru: 'Найдите ошибку' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">AI kod yozdi — lekin bitta qator <span className="italic" style={{ color: T.danger }}>xavfli</span></h2></div>
-        <Mentor>AI server kodini yozdi va GitHub'ga yuklamoqchi. Lekin bir qatorda <b style={{ color: T.danger }}>maxfiy kalit ochiq</b> turibdi — bu GitHub'da hammaga ko'rinadi! Xavfli qatorni toping va tuzating.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>AI kod yozdi — lekin bitta qator <span className="italic" style={{ color: T.danger }}>xavfli</span></>, ru: <>ИИ написал код — но одна строка <span className="italic" style={{ color: T.danger }}>опасна</span></> })}</h2></div>
+        <Mentor>{tr({ uz: <>AI server kodini yozdi va GitHub'ga yuklamoqchi. Lekin bir qatorda <b style={{ color: T.danger }}>maxfiy kalit ochiq</b> turibdi — bu GitHub'da hammaga ko'rinadi! Xavfli qatorni toping va tuzating.</>, ru: <>ИИ написал код сервера и собирается загрузить его на GitHub. Но в одной строке <b style={{ color: T.danger }}>секретный ключ лежит открыто</b> — на GitHub его увидят все! Найдите опасную строку и исправьте.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
@@ -1488,16 +1498,16 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                   return <div key={l.id} className={`ai-line ${found && l.bug ? 'bad' : ''}`} onClick={() => { if (!found) setFound(l.bug); }}>{l.el}</div>;
                 })}
               </div>
-              {!found && <p className="ai-prompt">Qaysi qator maxfiylikni buzadi? Bosing.</p>}
-              {found && !fixed && <button className="btn fade-step" style={{ alignSelf: 'flex-start' }} onClick={() => setFixed(true)}>🔧 process.env.JWT_SECRET'ga o'zgartirish</button>}
+              {!found && <p className="ai-prompt">{tr({ uz: 'Qaysi qator maxfiylikni buzadi? Bosing.', ru: 'Какая строка нарушает секретность? Нажмите.' })}</p>}
+              {found && !fixed && <button className="btn fade-step" style={{ alignSelf: 'flex-start' }} onClick={() => setFixed(true)}>{tr({ uz: "🔧 process.env.JWT_SECRET'ga o'zgartirish", ru: '🔧 Заменить на process.env.JWT_SECRET' })}</button>}
             </div>
           </Col>
           <Col>
             {!found
-              ? <div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>Maslahat: kalit qiymati to'g'ridan-to'g'ri kodda yozilgan qatorni qidiring.</p></div>
+              ? <div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: "Maslahat: kalit qiymati to'g'ridan-to'g'ri kodda yozilgan qatorni qidiring.", ru: 'Подсказка: ищите строку, где значение ключа записано прямо в коде.' })}</p></div>
               : !fixed
-                ? <div className="frame-warn fade-step"><p className="note-h" style={{ color: T.danger }}>✓ Topdingiz!</p><p className="body" style={{ margin: 0, color: T.ink }}>Kalit kodda ochiq — GitHub'ga ketsa hamma ko'radi. Uni .env'ga ko'chirib, <span className="mono">process.env</span> orqali o'qiymiz. Chapdagi tugmani bosing →</p></div>
-                : <div className="takeaway fade-step"><div className="ta-bulb">🔒</div><p className="ta-h">Maxfiy kalit endi .env'da</p><p className="ta-sub">Kodda hech qachon maxfiy kalitni ochiq qoldirmang</p></div>}
+                ? <div className="frame-warn fade-step"><p className="note-h" style={{ color: T.danger }}>{tr({ uz: '✓ Topdingiz!', ru: '✓ Нашли!' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Kalit kodda ochiq — GitHub'ga ketsa hamma ko'radi. Uni .env'ga ko'chirib, <span className="mono">process.env</span> orqali o'qiymiz. Chapdagi tugmani bosing →</>, ru: <>Ключ открыт в коде — попадёт на GitHub, и увидят все. Перенесём его в .env и будем читать через <span className="mono">process.env</span>. Нажмите кнопку слева →</> })}</p></div>
+                : <div className="takeaway fade-step"><div className="ta-bulb">🔒</div><p className="ta-h">{tr({ uz: "Maxfiy kalit endi .env'da", ru: 'Секретный ключ теперь в .env' })}</p><p className="ta-sub">{tr({ uz: 'Kodda hech qachon maxfiy kalitni ochiq qoldirmang', ru: 'Никогда не оставляйте секретный ключ открытым в коде' })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -1514,14 +1524,14 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const hasKey = /JWT_SECRET\s*=\s*\S+/.test(v);
   const valid = hasKey;
   useEffect(() => {
-    if (valid && !passed) { setPassed(true); onAnswer(screen, { stage: 'final', screenIdx: screen, question: "Maxfiy kalitni .env'ga ko'chiring", studentAnswer: value, correct: true, firstAttemptCorrect: true, solved: true, picked: value }); }
+    if (valid && !passed) { setPassed(true); onAnswer(screen, { stage: 'final', screenIdx: screen, question: tr({ uz: "Maxfiy kalitni .env'ga ko'chiring", ru: 'Перенесите секретный ключ в .env' }), studentAnswer: value, correct: true, firstAttemptCorrect: true, solved: true, picked: value }); }
   }, [valid]);
-  const navLabel = passed ? 'Davom etish' : '.env qatorini yozing';
+  const navLabel = passed ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: '.env qatorini yozing', ru: 'Напишите строку .env' };
   return (
-    <Stage eyebrow="Yakuniy · amaliy" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!passed} label={navLabel} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Yakuniy · amaliy', ru: 'Финал · практика' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!passed} label={navLabel} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Maxfiy kalitni <span className="italic" style={{ color: T.success }}>.env'ga ko'chiring</span></h2></div>
-        <Mentor>Kodda <span className="mono">JWT_SECRET</span> ochiq turibdi (chapda). Uni xavfsiz qiling: <b style={{ color: T.ink }}>.env</b> fayliga <span className="mono">JWT_SECRET=super-secret-key-123</span> deb yozing. Yozishingiz bilan kod avtomatik <span className="mono">process.env</span> orqali o'qishga o'tadi.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Maxfiy kalitni <span className="italic" style={{ color: T.success }}>.env'ga ko'chiring</span></>, ru: <>Перенесите секретный ключ <span className="italic" style={{ color: T.success }}>в .env</span></> })}</h2></div>
+        <Mentor>{tr({ uz: <>Kodda <span className="mono">JWT_SECRET</span> ochiq turibdi (chapda). Uni xavfsiz qiling: <b style={{ color: T.ink }}>.env</b> fayliga <span className="mono">JWT_SECRET=super-secret-key-123</span> deb yozing. Yozishingiz bilan kod avtomatik <span className="mono">process.env</span> orqali o'qishga o'tadi.</>, ru: <>В коде <span className="mono">JWT_SECRET</span> лежит открыто (слева). Сделайте его безопасным: запишите в файл <b style={{ color: T.ink }}>.env</b> строку <span className="mono">JWT_SECRET=super-secret-key-123</span>. Как только напишете — код автоматически перейдёт на чтение через <span className="mono">process.env</span>.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
@@ -1531,7 +1541,7 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 <div className="vsc-line"><span className="vsc-ln">1</span><span style={{ whiteSpace: 'pre' }}><span style={{ color: '#C586C0' }}>const</span> JWT_SECRET = {valid ? <span className="vsc-swap" style={{ color: '#9CDCFE' }}>process.env.JWT_SECRET</span> : <span className="vsc-leak" style={{ color: '#CE9178', background: 'rgba(194,65,12,0.25)', borderRadius: 4, padding: '0 3px' }}>"super-secret-key-123"</span>}</span></div>
               </div>
             </div>
-            <p className="flow-label" style={{ marginTop: 2 }}>.env fayliga yozing</p>
+            <p className="flow-label" style={{ marginTop: 2 }}>{tr({ uz: '.env fayliga yozing', ru: 'Запишите в файл .env' })}</p>
             <div className="envinput-wrap">
               <span className="envinput-ic">🔒</span>
               <input className={`envinput ${valid ? 'ok' : ''}`} value={value} onChange={e => setValue(e.target.value)} placeholder="JWT_SECRET=super-secret-key-123" spellCheck={false} autoCapitalize="off" autoCorrect="off" />
@@ -1540,14 +1550,14 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <Col>
             <div className="fade-up delay-2" style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
               <span className="tagpill" style={{ opacity: hasKey ? 1 : 0.4 }}>{hasKey ? '✓' : '1'} JWT_SECRET=...</span>
-              <span className="tagpill" style={{ opacity: valid ? 1 : 0.4 }}>{valid ? '✓' : '2'} kod process.env'ga o'tdi</span>
+              <span className="tagpill" style={{ opacity: valid ? 1 : 0.4 }}>{valid ? '✓' : '2'} {tr({ uz: "kod process.env'ga o'tdi", ru: 'код перешёл на process.env' })}</span>
             </div>
             <div className={`ghub ${valid ? 'safe' : 'danger'}`}>
-              <div className="gh-row"><span className="gh-eye">{valid ? '🔒' : '👁️'}</span><span className="mono small">{valid ? "GitHub: maxfiy kalit ko'rinmaydi" : "GitHub: maxfiy kalit ochiq ko'rinadi!"}</span></div>
+              <div className="gh-row"><span className="gh-eye">{valid ? '🔒' : '👁️'}</span><span className="mono small">{valid ? tr({ uz: "GitHub: maxfiy kalit ko'rinmaydi", ru: 'GitHub: секретный ключ не виден' }) : tr({ uz: "GitHub: maxfiy kalit ochiq ko'rinadi!", ru: 'GitHub: секретный ключ виден всем!' })}</span></div>
             </div>
             {passed
-              ? <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>🎉 Tabriklaymiz! Kalit endi <b>.env</b>'da, kod <span className="mono">process.env</span> orqali o'qiydi. <span className="mono">.gitignore</span>'ga <b>.env</b> qo'shing — va u hech qachon GitHub'ga ketmaydi. Siz saytni himoyaladingiz!</p></div>
-              : <div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>.env qatorini yozing: <span className="mono">KALIT=qiymat</span> ko'rinishida. Masalan <span className="mono">JWT_SECRET=super-secret-key-123</span>.</p></div>}
+              ? <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>🎉 Tabriklaymiz! Kalit endi <b>.env</b>'da, kod <span className="mono">process.env</span> orqali o'qiydi. <span className="mono">.gitignore</span>'ga <b>.env</b> qo'shing — va u hech qachon GitHub'ga ketmaydi. Siz saytni himoyaladingiz!</>, ru: <>🎉 Поздравляем! Ключ теперь в <b>.env</b>, код читает его через <span className="mono">process.env</span>. Добавьте <b>.env</b> в <span className="mono">.gitignore</span> — и он никогда не попадёт на GitHub. Вы защитили сайт!</> })}</p></div>
+              : <div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: <>.env qatorini yozing: <span className="mono">KALIT=qiymat</span> ko'rinishida. Masalan <span className="mono">JWT_SECRET=super-secret-key-123</span>.</>, ru: <>Напишите строку .env в виде <span className="mono">КЛЮЧ=значение</span>. Например <span className="mono">JWT_SECRET=super-secret-key-123</span>.</> })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -1578,11 +1588,11 @@ const MentorPracticeStats = ({ live, screen }) => {
   const waiting = players.filter(p => !data.doneIds.has(p.id));
   return (
     <div className="lp-mstats fade-up">
-      <div className="card-lbl" style={{ color: T.blue }}>👀 Kim bajardi — {doers.length}/{players.length}</div>
+      <div className="card-lbl" style={{ color: T.blue }}>{tr({ uz: '👀 Kim bajardi', ru: '👀 Кто выполнил' })} — {doers.length}/{players.length}</div>
       {data.players === null ? (
-        <p className="small" style={{ color: T.ink3, margin: 0, fontStyle: 'italic' }}>Yuklanmoqda…</p>
+        <p className="small" style={{ color: T.ink3, margin: 0, fontStyle: 'italic' }}>{tr({ uz: 'Yuklanmoqda…', ru: 'Загрузка…' })}</p>
       ) : players.length === 0 ? (
-        <p className="small" style={{ color: T.ink3, margin: 0, fontStyle: 'italic' }}>Hali hech kim qo'shilmagan.</p>
+        <p className="small" style={{ color: T.ink3, margin: 0, fontStyle: 'italic' }}>{tr({ uz: "Hali hech kim qo'shilmagan.", ru: 'Пока никто не присоединился.' })}</p>
       ) : (
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
           {doers.map(p => <span key={p.id} className="mstats-wait-chip" style={{ background: T.successSoft, color: T.success }}>✓ {p.nickname}</span>)}
@@ -1601,40 +1611,40 @@ function ScreenLivePractice({ title, task, checklist, screen, storedAnswer, onAn
   const complete = () => {
     if (done) return;
     setDone(true);
-    onAnswer(screen, { stage: 'practice', screenIdx: screen, practice: title, solved: true, correct: true, picked: true });
+    onAnswer(screen, { stage: 'practice', screenIdx: screen, practice: (title && title.uz) || title, solved: true, correct: true, picked: true }); // payload — UZ-etalon
     if (_live && _live.mode === 'student') _live.submitAnswer(PRACTICE_BASE + screen, 'practice', 0, true, 0);
   };
   const audio = useAudio([{ id: `practice_s${screen}`, text: `Endi bilimni amalda sinaysiz. Bu topshiriqni o'z kompyuteringizda, VS Code'da bajaring. Har bosqichni bajarib belgilab boring. Tugagach, Bajardim tugmasini bosing — ustoz kuzatib turadi. Endi o'z saytingiz eshigida qo'riqchi turadi!`, trigger: 'on_mount', waits_for: null }]);
   return (
-    <Stage eyebrow="Amaliyot · VS Code" screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? 'Davom etish' : 'Avval bajaring'} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Amaliyot · VS Code', ru: 'Практика · VS Code' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Avval bajaring', ru: 'Сначала выполните' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{title}</h2></div>
-        <Mentor>Bu topshiriqni <b style={{ color: T.ink }}>o'z kompyuteringizda</b> — VS Code'da bajaring. Har bosqichni bajarib, belgilab boring. Tugagach <b style={{ color: T.ink }}>«Bajardim»</b> tugmasini bosing — ustoz kuzatib turadi. Endi o'z saytingiz eshigida qo'riqchi turadi!</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr(title)}</h2></div>
+        <Mentor>{tr({ uz: <>Bu topshiriqni <b style={{ color: T.ink }}>o'z kompyuteringizda</b> — VS Code'da bajaring. Har bosqichni bajarib, belgilab boring. Tugagach <b style={{ color: T.ink }}>«Bajardim»</b> tugmasini bosing — ustoz kuzatib turadi. Endi o'z saytingiz eshigida qo'riqchi turadi!</>, ru: <>Выполните это задание <b style={{ color: T.ink }}>на своём компьютере</b> — в VS Code. Выполняйте и отмечайте каждый этап. Когда закончите, нажмите <b style={{ color: T.ink }}>«Выполнил»</b> — наставник наблюдает. Теперь у двери вашего сайта будет стоять охранник!</> })}</Mentor>
         <div className="split">
           <Col>
             <div className="lp-task fade-up delay-1">
-              <div className="lp-task-h"><span className="lp-task-badge">TOPSHIRIQ</span></div>
-              <p className="body" style={{ margin: 0, color: T.ink }}>{task}</p>
+              <div className="lp-task-h"><span className="lp-task-badge">{tr({ uz: 'TOPSHIRIQ', ru: 'ЗАДАНИЕ' })}</span></div>
+              <p className="body" style={{ margin: 0, color: T.ink }}>{tr(task)}</p>
             </div>
             <MentorPracticeStats live={_live} screen={screen} />
           </Col>
           <Col>
-            <p className="flow-label">Bosqichlar — belgilab boring</p>
+            <p className="flow-label">{tr({ uz: 'Bosqichlar — belgilab boring', ru: 'Этапы — отмечайте по ходу' })}</p>
             <div className="lp-steps fade-up delay-2">
               {checklist.map((c, i) => {
                 const on = checked.has(i);
                 return (
                   <button key={i} className={`lp-step ${on ? 'on' : ''}`} onClick={() => toggle(i)}>
                     <span className="lp-check">{on ? '✓' : i + 1}</span>
-                    <span className="lp-step-t">{fmtCode(c)}</span>
+                    <span className="lp-step-t">{fmtCode(tr(c))}</span>
                   </button>
                 );
               })}
             </div>
             <button className={`lp-done-btn ${done ? 'is-done' : ''}`} disabled={done} onClick={complete}>
-              {done ? '✓ Bajarildi — ustozni kuting' : '✅ Bajardim'}
+              {done ? tr({ uz: '✓ Bajarildi — ustozni kuting', ru: '✓ Выполнено — ждите наставника' }) : tr({ uz: '✅ Bajardim', ru: '✅ Выполнил' })}
             </button>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Zo'r! Loyihangiz eshigiga qo'riqchi qo'ydingiz va muhrni yashirdingiz. Ustoz tekshirib, keyingi qadamga o'tkazadi.</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Zo'r! Loyihangiz eshigiga qo'riqchi qo'ydingiz va muhrni yashirdingiz. Ustoz tekshirib, keyingi qadamga o'tkazadi.", ru: 'Отлично! Вы поставили охранника у двери проекта и спрятали печать. Наставник проверит и переведёт вас на следующий шаг.' })}</p></div>}
           </Col>
         </div>
       </div>
@@ -1644,15 +1654,15 @@ function ScreenLivePractice({ title, task, checklist, screen, storedAnswer, onAn
 
 const ScreenAuthPractice = (props) => (
   <ScreenLivePractice {...props}
-    title="Loyihangizni himoyalang — .env + guard"
-    task="zakaz-shop loyihangizda maxfiy kalitni .env'ga ko'chiring va POST /api/products eshigini himoyalang: tokensiz → 401, token bilan → 201. Bularni o'z kompyuteringizda bajaring."
+    title={{ uz: 'Loyihangizni himoyalang — .env + guard', ru: 'Защитите свой проект — .env + guard' }}
+    task={{ uz: "zakaz-shop loyihangizda maxfiy kalitni .env'ga ko'chiring va POST /api/products eshigini himoyalang: tokensiz → 401, token bilan → 201. Bularni o'z kompyuteringizda bajaring.", ru: 'В своём проекте zakaz-shop перенесите секретный ключ в .env и защитите дверь POST /api/products: без токена → 401, с токеном → 201. Сделайте это на своём компьютере.' }}
     checklist={[
-      "VS Code'da loyiha ildizida `.env` faylini yarating",
-      "`.env` ichiga `JWT_SECRET=super-secret-key-123` deb yozing",
-      "Kodda kalitni `process.env.JWT_SECRET` orqali o'qing",
-      "`.env` ni `.gitignore` ga qo'shing — GitHub'ga ketmasin",
-      "`POST /api/products` ga qo'riqchi (guard) qo'ying: tokensiz → 401",
-      "Postman'da sinang: tokensiz → 401, token bilan → 201",
+      { uz: "VS Code'da loyiha ildizida `.env` faylini yarating", ru: 'В VS Code создайте файл `.env` в корне проекта' },
+      { uz: "`.env` ichiga `JWT_SECRET=super-secret-key-123` deb yozing", ru: 'Внутри `.env` запишите `JWT_SECRET=super-secret-key-123`' },
+      { uz: "Kodda kalitni `process.env.JWT_SECRET` orqali o'qing", ru: 'В коде читайте ключ через `process.env.JWT_SECRET`' },
+      { uz: "`.env` ni `.gitignore` ga qo'shing — GitHub'ga ketmasin", ru: 'Добавьте `.env` в `.gitignore` — чтобы не попал на GitHub' },
+      { uz: "`POST /api/products` ga qo'riqchi (guard) qo'ying: tokensiz → 401", ru: 'Поставьте охранника (guard) на `POST /api/products`: без токена → 401' },
+      { uz: "Postman'da sinang: tokensiz → 401, token bilan → 201", ru: 'Проверьте в Postman: без токена → 401, с токеном → 201' },
     ]} />
 );
 
@@ -1678,49 +1688,49 @@ function Flashcards({ cards }) {
   const again = () => advance(false);
   const restart = () => { setQueue(cards.map((_, i) => i)); setKnown(0); setFlipped(false); };
   if (!card) return (
-    <div className="fc-done fade-up"><span className="fc-done-emoji">🎉</span><p className="fc-done-h">Hammasini bilasiz!</p><p className="fc-done-s">{total}/{total} atama yodlandi</p><button className="fc-btn ghost" onClick={restart}>↻ Qaytadan takrorlash</button></div>
+    <div className="fc-done fade-up"><span className="fc-done-emoji">🎉</span><p className="fc-done-h">{tr({ uz: 'Hammasini bilasiz!', ru: 'Вы знаете всё!' })}</p><p className="fc-done-s">{total}/{total} {tr({ uz: 'atama yodlandi', ru: 'терминов выучено' })}</p><button className="fc-btn ghost" onClick={restart}>{tr({ uz: '↻ Qaytadan takrorlash', ru: '↻ Повторить заново' })}</button></div>
   );
   return (
     <div className="fc fade-up">
-      <div className="fc-top"><span className="fc-pill learn" key={`l-${queue.length}-${swapRef.current}`}>↻ O'rganilmoqda · <b>{queue.length}</b></span><span className="fc-pill knew" key={`k-${known}`}>✓ Bildim · <b>{known}</b></span></div>
+      <div className="fc-top"><span className="fc-pill learn" key={`l-${queue.length}-${swapRef.current}`}>{tr({ uz: "↻ O'rganilmoqda", ru: '↻ Учим' })} · <b>{queue.length}</b></span><span className="fc-pill knew" key={`k-${known}`}>{tr({ uz: '✓ Bildim', ru: '✓ Знаю' })} · <b>{known}</b></span></div>
       <div className="fc-bar"><span className="fc-bar-fill" style={{ width: `${(known / total) * 100}%` }} /></div>
       <div className="fc-cardwrap">
         <div className={`fc-fly ${exiting === 'knew' ? 'out-knew' : ''} ${exiting === 'again' ? 'out-again' : ''}`} key={swapRef.current}>
         <div className={`fc-card ${flipped ? 'flip' : ''}`} onClick={() => !flipped && !exiting && setFlipped(true)} role="button" tabIndex={0}>
-          <div className="fc-face fc-front"><span className="fc-q">{card.front}</span><span className="fc-cue">Qaysi tushuncha? 🤔 <span className="fc-tap">bosing</span></span></div>
-          <div className="fc-face fc-back"><span className="fc-tag">{card.back}</span>{card.note && <span className="fc-note">{card.note}</span>}</div>
+          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: <>Qaysi tushuncha? 🤔 <span className="fc-tap">bosing</span></>, ru: <>Какое понятие? 🤔 <span className="fc-tap">нажмите</span></> })}</span></div>
+          <div className="fc-face fc-back"><span className="fc-tag">{tr(card.back)}</span>{card.note && <span className="fc-note">{tr(card.note)}</span>}</div>
         </div>
         </div>
       </div>
       {flipped
-        ? (<div className="fc-actions"><button className="fc-btn again" disabled={!!exiting} onClick={again}>✗ Takrorlash</button><button className="fc-btn knew" disabled={!!exiting} onClick={knew}>✓ Bildim</button></div>)
-        : (<p className="fc-hint">👆 Kartani bosing — javobni ko'rasiz</p>)}
+        ? (<div className="fc-actions"><button className="fc-btn again" disabled={!!exiting} onClick={again}>{tr({ uz: '✗ Takrorlash', ru: '✗ Повторить' })}</button><button className="fc-btn knew" disabled={!!exiting} onClick={knew}>{tr({ uz: '✓ Bildim', ru: '✓ Знаю' })}</button></div>)
+        : (<p className="fc-hint">{tr({ uz: "👆 Kartani bosing — javobni ko'rasiz", ru: '👆 Нажмите на карту — увидите ответ' })}</p>)}
     </div>
   );
 }
 
 // AUTH FLASHCARD KARTALARI (front=izoh, back=tushuncha) — Metodist sayqallaydi
 const AUTH_FLASHCARDS = [
-  { front: "«Siz kimsiz?» — eshikda hujjat ko'rsatish", back: "Autentifikatsiya", note: "login" },
-  { front: "Email + parol yuborib bilaguzuk olish", back: "Login", note: "POST /api/login" },
-  { front: "Raqamli bilaguzuk: header.payload.signature", back: "JWT token", note: "3 qism" },
-  { front: "Bilaguzuk yorlig'i — imzo qaysi usulda qo'yilgan", back: "Header", note: "tokenning 1-qismi" },
-  { front: "Bilaguzukdagi ism — kim (userId)", back: "Payload", note: "o'qiladi, o'zgartirib bo'lmaydi" },
-  { front: "Maxfiy kalit muhri — soxta yasab bo'lmaydi", back: "Signature", note: "JWT_SECRET bilan bosiladi" },
-  { front: "Server bilaguzuk yasaydi", back: "jwt.sign", note: "login'da" },
-  { front: "Qo'riqchi imzoni tekshiradi, mos kelmasa 401", back: "jwt.verify", note: "guard" },
-  { front: "Har eshikda bilaguzukni ko'rsatish", back: "Bearer", note: "Authorization sarlavhasi" },
-  { front: "Bilaguzuksiz yoki soxta → qaytarish", back: "401", note: "Unauthorized" },
-  { front: "Muhr bosadigan asbob — faqat serverda", back: "JWT_SECRET", note: "maxfiy kalit" },
-  { front: "Yashirin tortma — GitHub'dan saqlaydi", back: ".env", note: "process.env · .gitignore" },
+  { front: { uz: "«Siz kimsiz?» — eshikda hujjat ko'rsatish", ru: "«Кто вы?» — показать документ у входа" }, back: { uz: "Autentifikatsiya", ru: "Аутентификация" }, note: { uz: "login", ru: "логин" } },
+  { front: { uz: "Email + parol yuborib bilaguzuk olish", ru: "Отправить email + пароль и получить браслет" }, back: { uz: "Login", ru: "Логин" }, note: "POST /api/login" },
+  { front: { uz: "Raqamli bilaguzuk: header.payload.signature", ru: "Цифровой браслет: header.payload.signature" }, back: { uz: "JWT token", ru: "JWT-токен" }, note: { uz: "3 qism", ru: "3 части" } },
+  { front: { uz: "Bilaguzuk yorlig'i — imzo qaysi usulda qo'yilgan", ru: "Этикетка браслета — каким способом поставлена подпись" }, back: "Header", note: { uz: "tokenning 1-qismi", ru: "1-я часть токена" } },
+  { front: { uz: "Bilaguzukdagi ism — kim (userId)", ru: "Имя на браслете — кто (userId)" }, back: "Payload", note: { uz: "o'qiladi, o'zgartirib bo'lmaydi", ru: "читается, но не меняется" } },
+  { front: { uz: "Maxfiy kalit muhri — soxta yasab bo'lmaydi", ru: "Печать секретным ключом — не подделать" }, back: "Signature", note: { uz: "JWT_SECRET bilan bosiladi", ru: "ставится ключом JWT_SECRET" } },
+  { front: { uz: "Server bilaguzuk yasaydi", ru: "Сервер создаёт браслет" }, back: "jwt.sign", note: { uz: "login'da", ru: "при логине" } },
+  { front: { uz: "Qo'riqchi imzoni tekshiradi, mos kelmasa 401", ru: "Охранник проверяет подпись, не совпала — 401" }, back: "jwt.verify", note: "guard" },
+  { front: { uz: "Har eshikda bilaguzukni ko'rsatish", ru: "Показывать браслет у каждой двери" }, back: "Bearer", note: { uz: "Authorization sarlavhasi", ru: "заголовок Authorization" } },
+  { front: { uz: "Bilaguzuksiz yoki soxta → qaytarish", ru: "Без браслета или поддельный → отказ" }, back: "401", note: "Unauthorized" },
+  { front: { uz: "Muhr bosadigan asbob — faqat serverda", ru: "Инструмент для печати — только на сервере" }, back: "JWT_SECRET", note: { uz: "maxfiy kalit", ru: "секретный ключ" } },
+  { front: { uz: "Yashirin tortma — GitHub'dan saqlaydi", ru: "Потайной ящик — бережёт от GitHub" }, back: ".env", note: "process.env · .gitignore" },
 ];
 const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, []); // eslint-disable-line
   return (
-    <Stage eyebrow="Takrorlash" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={false} label="Yakunlash →" onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Takrorlash', ru: 'Повторение' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={false} label={{ uz: 'Yakunlash →', ru: 'Завершить →' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Tushunchalarni <span className="italic" style={{ color: T.accent }}>tez takrorlaymiz</span>.</h2></div>
-        <Mentor>Darsni yakunlashdan oldin bugun o'rgangan tushunchalarni takrorlaymiz. Har kartada bir izoh — <b style={{ color: T.ink }}>qaysi tushuncha</b> ekanini o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Tushunchalarni <span className="italic" style={{ color: T.accent }}>tez takrorlaymiz</span>.</>, ru: <>Быстро <span className="italic" style={{ color: T.accent }}>повторим понятия</span>.</> })}</h2></div>
+        <Mentor>{tr({ uz: <>Darsni yakunlashdan oldin bugun o'rgangan tushunchalarni takrorlaymiz. Har kartada bir izoh — <b style={{ color: T.ink }}>qaysi tushuncha</b> ekanini o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</>, ru: <>Перед завершением урока повторим понятия, изученные сегодня. На каждой карте описание — подумайте, <b style={{ color: T.ink }}>какое это понятие</b>, потом нажмите на карту и проверьте. Оцените кнопками <b style={{ color: T.ink }}>Знаю</b> или <b style={{ color: T.ink }}>Повторить</b>.</> })}</Mentor>
         <div className="fc-center"><Flashcards cards={AUTH_FLASHCARDS} /></div>
       </div>
     </Stage>
@@ -1729,10 +1739,10 @@ const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) =>
 
 // ===== BADGES (nishonlar) — REAL bosqichlar uchun =====
 const ACHIEVEMENTS = {
-  gatekeeper:   { icon: '🛡️', name: 'Gatekeeper!',    desc: "Qo'riqchi smenasini to'liq to'g'ri o'tdingiz" },
-  tokenforged:  { icon: '🎫', name: 'Token Forged!',  desc: "Login → token → 201 yo'lini xatosiz bosib o'tdingiz" },
-  secretkeeper: { icon: '🔐', name: 'Secret Keeper!', desc: "Kodda ochiq qolgan maxfiy kalitni topib tuzatdingiz" },
-  vaultsealed:  { icon: '🔒', name: 'Vault Sealed!',  desc: "Maxfiy kalitni .env'ga muhrladingiz" },
+  gatekeeper:   { icon: '🛡️', name: 'Gatekeeper!',    desc: { uz: "Qo'riqchi smenasini to'liq to'g'ri o'tdingiz", ru: 'Вы прошли смену охранника без единой ошибки' } },
+  tokenforged:  { icon: '🎫', name: 'Token Forged!',  desc: { uz: "Login → token → 201 yo'lini xatosiz bosib o'tdingiz", ru: 'Вы прошли путь логин → токен → 201 без ошибок' } },
+  secretkeeper: { icon: '🔐', name: 'Secret Keeper!', desc: { uz: "Kodda ochiq qolgan maxfiy kalitni topib tuzatdingiz", ru: 'Вы нашли и исправили открытый секретный ключ в коде' } },
+  vaultsealed:  { icon: '🔒', name: 'Vault Sealed!',  desc: { uz: "Maxfiy kalitni .env'ga muhrladingiz", ru: 'Вы запечатали секретный ключ в .env' } },
 };
 // Ekran id -> nishon (recordAnswer'da, faqat REAL solve — xato qilish mumkin bo'lgan ekranlar):
 // s7 = hukm-o'yini (mistakes===0), s13 = 3 qarorli amaliyot-challenge (mistakes===0), s14 = debug, s15 = ballik final test.
@@ -1741,7 +1751,7 @@ const ACH_TRIGGERS = { s7: 'gatekeeper', s13: 'tokenforged', s14: 'secretkeeper'
 function AchCelebrate({ ach, onDone }) {
   useEffect(() => { const t = setTimeout(onDone, 4000); return () => clearTimeout(t); }, []); // eslint-disable-line
   return (
-    <div className="acu-overlay" onClick={onDone} role="status" aria-label={`Yangi nishon: ${ach.name}`}>
+    <div className="acu-overlay" onClick={onDone} role="status" aria-label={`${tr({ uz: 'Yangi nishon:', ru: 'Новый значок:' })} ${ach.name}`}>
       <div className="acu-rays" aria-hidden="true" />
       <div className="acu-glow" aria-hidden="true" />
       <div className="acu-ring" aria-hidden="true" />
@@ -1754,11 +1764,11 @@ function AchCelebrate({ ach, onDone }) {
           ))}
         </div>
         <div className="acu-txt">
-          <span className="acu-eyebrow">🏅 Nishon ochildi!</span>
+          <span className="acu-eyebrow">{tr({ uz: '🏅 Nishon ochildi!', ru: '🏅 Значок открыт!' })}</span>
           <span className="acu-name">{ach.name}</span>
-          {ach.desc && <span className="acu-desc">{ach.desc}</span>}
+          {ach.desc && <span className="acu-desc">{tr(ach.desc)}</span>}
         </div>
-        <span className="acu-tap">bosib davom eting</span>
+        <span className="acu-tap">{tr({ uz: 'bosib davom eting', ru: 'нажмите, чтобы продолжить' })}</span>
       </div>
     </div>
   );
@@ -1792,7 +1802,7 @@ const Confetti = () => {
 };
 
 // Podium savol yorliqlari (SCORED_IDX indekslariga mos)
-const Q_LABELS = { 4: "1 — login", 6: "2 — imzo", 10: "3 — 401", 13: "4 — .env", 16: "5 — final" };
+const Q_LABELS = { 4: { uz: "1 — login", ru: "1 — логин" }, 6: { uz: "2 — imzo", ru: "2 — подпись" }, 10: "3 — 401", 13: "4 — .env", 16: { uz: "5 — final", ru: "5 — финал" } };
 const QUIZ_MS = 15000;
 // Kapsula ichida suzuvchi tokenlar — darsning "DNK"si (auth)
 const QZ_BG_SHAPES = [
@@ -1809,18 +1819,18 @@ const QZ_BG_SHAPES = [
 ];
 // Mustahkamlash-jang savollari — auth. To'g'ri javoblar 4 pozitsiyaga TENG (12 savol: 3/3/3/3). Uzunlik balansi -> Metodist.
 const QUIZ_BANK = [
-  { q: "Login (email+parol) to'g'ri bo'lsa, server nima qaytaradi?", opts: ["token (bilaguzuk)", "yangi parol", "faqat xato xabari", "sahifani qayta yuklaydi"], correct: 0 },
-  { q: "Token har so'rovda qayerda yuboriladi?", opts: ["URL manzil ichida — brauzer tarixiga yozilib qoladi", "Authorization: Bearer sarlavhasida", "parol maydonida", "cookie nomida"], correct: 1 },
-  { q: "`jwt.sign` token yasashda nimalardan foydalanadi?", opts: ["brauzer nomi va operatsion tizim versiyasi", "IP manzil", "faqat parol", "userId va maxfiy kalit (`JWT_SECRET`)"], correct: 3 },
-  { q: "Himoyalangan route'ga tokensiz so'rov kelsa?", opts: ["200 OK", "yangi token beradi", "401 Unauthorized", "parolni so'raydi"], correct: 2 },
-  { q: "Guard tokenni qanday tekshiradi?", opts: ["har so'rovda bazadan qidirib solishtiradi", "`jwt.verify(token, SECRET)` bilan", "parolni so'raydi", "tekshirmaydi"], correct: 1 },
-  { q: "Nega soxta imzoli token rad etiladi?", opts: ["token juda uzun", "internet sekin", "brauzer soxta tokenlarni avtomatik bloklaydi", "SECRET faqat serverda — imzo mos kelmaydi"], correct: 3 },
-  { q: "JWT token necha qismdan iborat?", opts: ["1 ta", "2 ta", "3 ta (header.payload.signature)", "4 ta (header, payload, signature, maxfiy kalit)"], correct: 2 },
-  { q: "Nega JWT'ni soxta yasab bo'lmaydi?", opts: ["signature SECRET bilan yasaladi", "juda qisqa", "har kuni avtomatik ravishda o'zgarib turadi", "u ko'rinmaydi"], correct: 0 },
-  { q: "Payload ichida nima saqlanadi?", opts: ["server paroli", "parol", "maxfiy kalit va server sozlamalari", "userId (kim ekaningiz)"], correct: 3 },
-  { q: "`JWT_SECRET` qayerda saqlanishi kerak?", opts: ["kod ichida ochiq", ".env faylida", "HTML sahifada", "URL manzilida"], correct: 1 },
-  { q: "Kod `.env` qiymatini qanday o'qiydi?", opts: ["fetch bilan", "import qilib", "`process.env.JWT_SECRET` orqali", "console.log bilan faylni chop etib"], correct: 2 },
-  { q: "`.env`ni `.gitignore`ga qo'shmasa nima xavf?", opts: ["maxfiy kalit GitHub'ga chiqib, soxta token yasaladi", "kod ishlamaydi", "hech qanday xavf yo'q, hammasi joyida ishlayveradi", "sayt sekinlashadi"], correct: 0 },
+  { q: { uz: "Login (email+parol) to'g'ri bo'lsa, server nima qaytaradi?", ru: "Логин (email+пароль) верный — что вернёт сервер?" }, opts: [{ uz: "token (bilaguzuk)", ru: "токен (браслет)" }, { uz: "yangi parol", ru: "новый пароль" }, { uz: "faqat xato xabari", ru: "только сообщение об ошибке" }, { uz: "sahifani qayta yuklaydi", ru: "перезагрузит страницу" }], correct: 0 },
+  { q: { uz: "Token har so'rovda qayerda yuboriladi?", ru: "Где токен отправляется в каждом запросе?" }, opts: [{ uz: "URL manzil ichida — brauzer tarixiga yozilib qoladi", ru: "внутри URL — останется в истории браузера" }, { uz: "Authorization: Bearer sarlavhasida", ru: "в заголовке Authorization: Bearer" }, { uz: "parol maydonida", ru: "в поле пароля" }, { uz: "cookie nomida", ru: "в имени cookie" }], correct: 1 },
+  { q: { uz: "`jwt.sign` token yasashda nimalardan foydalanadi?", ru: "Что использует `jwt.sign` при создании токена?" }, opts: [{ uz: "brauzer nomi va operatsion tizim versiyasi", ru: "имя браузера и версию ОС" }, { uz: "IP manzil", ru: "IP-адрес" }, { uz: "faqat parol", ru: "только пароль" }, { uz: "userId va maxfiy kalit (`JWT_SECRET`)", ru: "userId и секретный ключ (`JWT_SECRET`)" }], correct: 3 },
+  { q: { uz: "Himoyalangan route'ga tokensiz so'rov kelsa?", ru: "Запрос на защищённый route без токена — что будет?" }, opts: ["200 OK", { uz: "yangi token beradi", ru: "выдаст новый токен" }, "401 Unauthorized", { uz: "parolni so'raydi", ru: "спросит пароль" }], correct: 2 },
+  { q: { uz: "Guard tokenni qanday tekshiradi?", ru: "Как guard проверяет токен?" }, opts: [{ uz: "har so'rovda bazadan qidirib solishtiradi", ru: "ищет в базе и сверяет при каждом запросе" }, { uz: "`jwt.verify(token, SECRET)` bilan", ru: "через `jwt.verify(token, SECRET)`" }, { uz: "parolni so'raydi", ru: "спрашивает пароль" }, { uz: "tekshirmaydi", ru: "никак не проверяет" }], correct: 1 },
+  { q: { uz: "Nega soxta imzoli token rad etiladi?", ru: "Почему токен с поддельной подписью отклоняется?" }, opts: [{ uz: "token juda uzun", ru: "токен слишком длинный" }, { uz: "internet sekin", ru: "интернет медленный" }, { uz: "brauzer soxta tokenlarni avtomatik bloklaydi", ru: "браузер сам блокирует поддельные токены" }, { uz: "SECRET faqat serverda — imzo mos kelmaydi", ru: "SECRET только на сервере — подпись не совпадёт" }], correct: 3 },
+  { q: { uz: "JWT token necha qismdan iborat?", ru: "Из скольких частей состоит JWT-токен?" }, opts: [{ uz: "1 ta", ru: "1" }, { uz: "2 ta", ru: "2" }, { uz: "3 ta (header.payload.signature)", ru: "3 (header.payload.signature)" }, { uz: "4 ta (header, payload, signature, maxfiy kalit)", ru: "4 (header, payload, signature, секретный ключ)" }], correct: 2 },
+  { q: { uz: "Nega JWT'ni soxta yasab bo'lmaydi?", ru: "Почему JWT нельзя подделать?" }, opts: [{ uz: "signature SECRET bilan yasaladi", ru: "signature создаётся с SECRET" }, { uz: "juda qisqa", ru: "слишком короткий" }, { uz: "har kuni avtomatik ravishda o'zgarib turadi", ru: "каждый день меняется автоматически" }, { uz: "u ko'rinmaydi", ru: "он невидим" }], correct: 0 },
+  { q: { uz: "Payload ichida nima saqlanadi?", ru: "Что хранится в payload?" }, opts: [{ uz: "server paroli", ru: "пароль сервера" }, { uz: "parol", ru: "пароль" }, { uz: "maxfiy kalit va server sozlamalari", ru: "секретный ключ и настройки сервера" }, { uz: "userId (kim ekaningiz)", ru: "userId (кто вы)" }], correct: 3 },
+  { q: { uz: "`JWT_SECRET` qayerda saqlanishi kerak?", ru: "Где должен храниться `JWT_SECRET`?" }, opts: [{ uz: "kod ichida ochiq", ru: "открыто в коде" }, { uz: ".env faylida", ru: "в файле .env" }, { uz: "HTML sahifada", ru: "на HTML-странице" }, { uz: "URL manzilida", ru: "в URL-адресе" }], correct: 1 },
+  { q: { uz: "Kod `.env` qiymatini qanday o'qiydi?", ru: "Как код читает значение из `.env`?" }, opts: [{ uz: "fetch bilan", ru: "через fetch" }, { uz: "import qilib", ru: "через import" }, { uz: "`process.env.JWT_SECRET` orqali", ru: "через `process.env.JWT_SECRET`" }, { uz: "console.log bilan faylni chop etib", ru: "печатая файл через console.log" }], correct: 2 },
+  { q: { uz: "`.env`ni `.gitignore`ga qo'shmasa nima xavf?", ru: "Чем опасно не добавить `.env` в `.gitignore`?" }, opts: [{ uz: "maxfiy kalit GitHub'ga chiqib, soxta token yasaladi", ru: "секретный ключ утечёт на GitHub — сделают поддельные токены" }, { uz: "kod ishlamaydi", ru: "код не заработает" }, { uz: "hech qanday xavf yo'q, hammasi joyida ishlayveradi", ru: "никакой опасности, всё продолжит работать" }, { uz: "sayt sekinlashadi", ru: "сайт станет медленнее" }], correct: 0 },
 ];
 
 const CsNeonBolt = ({ flip }) => (
@@ -1864,11 +1874,11 @@ const CsWordmark = ({ onClick, disabled, hint, stats = true, bolt = true, liveOn
       </div>
       {stats && (
         <div className="cs-hud">
-          <span className="cs-hud-i"><b>{QUIZ_BANK.length}</b> SAVOL</span>
+          <span className="cs-hud-i"><b>{QUIZ_BANK.length}</b> {tr({ uz: 'SAVOL', ru: 'ВОПРОСОВ' })}</span>
           <span className="cs-hud-dot">·</span>
-          <span className="cs-hud-i"><b>{QUIZ_MS / 1000}</b> SONIYA</span>
+          <span className="cs-hud-i"><b>{QUIZ_MS / 1000}</b> {tr({ uz: 'SONIYA', ru: 'СЕКУНД' })}</span>
           <span className="cs-hud-dot">·</span>
-          <span className="cs-hud-i">🏆 PODIUM</span>
+          <span className="cs-hud-i">{tr({ uz: '🏆 PODIUM', ru: '🏆 ПОДИУМ' })}</span>
         </div>
       )}
       {hint && <span className={`cs-enter ${disabled ? 'wait' : ''}`}>{hint}</span>}
@@ -2054,7 +2064,7 @@ function QuizArena({ live, onClose, startSolo }) {
   const my = qi >= 0 ? myAnswers[qi] : null;
   const closeArena = () => {
     if (isMentor && !solo && phase !== 'done') {
-      if (typeof window !== 'undefined' && !window.confirm("Test hali yakunlanmadi — yopsangiz o'quvchilar arenada kutib qoladi.\nBaribir yopilsinmi?")) return;
+      if (typeof window !== 'undefined' && !window.confirm(tr({ uz: "Test hali yakunlanmadi — yopsangiz o'quvchilar arenada kutib qoladi.\nBaribir yopilsinmi?", ru: 'Тест ещё не завершён — если закроете, ученики останутся ждать в арене.\nВсё равно закрыть?' }))) return;
     }
     onClose();
   };
@@ -2066,55 +2076,55 @@ function QuizArena({ live, onClose, startSolo }) {
         ))}
       </div>
       <QzFX />
-      <button className="qz-x" onClick={closeArena} aria-label="Yopish">✕</button>
+      <button className="qz-x" onClick={closeArena} aria-label={tr({ uz: 'Yopish', ru: 'Закрыть' })}>✕</button>
       {classEnded && isStudent && !solo && phase !== 'done' && (
         <div className="qz-endnote fade-step">
-          <span>⚠️ Jonli dars yakunlandi — testni o'zingiz davom ettiring:</span>
-          <button className="qz-btn" onClick={startPractice}>📖 Mashq rejimida davom etish</button>
+          <span>{tr({ uz: "⚠️ Jonli dars yakunlandi — testni o'zingiz davom ettiring:", ru: '⚠️ Живой урок завершён — продолжите тест сами:' })}</span>
+          <button className="qz-btn" onClick={startPractice}>{tr({ uz: '📖 Mashq rejimida davom etish', ru: '📖 Продолжить в режиме практики' })}</button>
         </div>
       )}
       {phase === 'lobby' && (
         <div className="qz-view fade-step">
           <CsWordmark />
-          <p className="qz-sub" style={{ marginTop: -4 }}>Tezroq to'g'ri bossangiz — ko'proq ball. Ketma-ket to'g'ri javoblar 🔥 bonus beradi!</p>
+          <p className="qz-sub" style={{ marginTop: -4 }}>{tr({ uz: "Tezroq to'g'ri bossangiz — ko'proq ball. Ketma-ket to'g'ri javoblar 🔥 bonus beradi!", ru: 'Чем быстрее верный ответ — тем больше баллов. Верные ответы подряд дают 🔥 бонус!' })}</p>
           {!solo && (
             <div className="qz-lobby-players">
               {players.map(p => <span key={p.id} className={`qz-pchip ${p.id === live.playerId ? 'me' : ''}`}>{p.nickname}</span>)}
-              {players.length === 0 && <span className="qz-dimtxt">O'quvchilar kutilmoqda…</span>}
+              {players.length === 0 && <span className="qz-dimtxt">{tr({ uz: "O'quvchilar kutilmoqda…", ru: 'Ждём учеников…' })}</span>}
             </div>
           )}
-          {isMentor && <button className="qz-btn big" disabled={players.length === 0} onClick={() => ctrl('q', 0)}>▶ Testni boshlash</button>}
-          {isStudent && !solo && <p className="qz-waitmsg">⏳ Mentor testni boshlashini kuting…</p>}
-          {solo && <button className="qz-btn big" onClick={() => soloStart(0)}>▶ Boshlash</button>}
+          {isMentor && <button className="qz-btn big" disabled={players.length === 0} onClick={() => ctrl('q', 0)}>{tr({ uz: '▶ Testni boshlash', ru: '▶ Начать тест' })}</button>}
+          {isStudent && !solo && <p className="qz-waitmsg">{tr({ uz: '⏳ Mentor testni boshlashini kuting…', ru: '⏳ Ждите, пока ментор начнёт тест…' })}</p>}
+          {solo && <button className="qz-btn big" onClick={() => soloStart(0)}>{tr({ uz: '▶ Boshlash', ru: '▶ Начать' })}</button>}
         </div>
       )}
       {phase === 'q' && Q && (
         <div className="qz-view qz-qview fade-step" key={`q${qi}`}>
           <div className="qz-top">
-            <span className="qz-count">Savol <b>{qi + 1}</b>/{QUIZ_BANK.length}</span>
+            <span className="qz-count">{tr({ uz: 'Savol', ru: 'Вопрос' })} <b>{qi + 1}</b>/{QUIZ_BANK.length}</span>
             <QzTimer remaining={remaining} />
             {isMentor
               ? <span className="qz-ansn">📨 {answeredN}/{players.length}</span>
               : <span className="qz-ansn">{streakUpTo(qi - 1) >= 2 ? `🔥 x${streakUpTo(qi - 1)}` : ' '}</span>}
           </div>
-          <h2 className="qz-q">{fmtCode(Q.q)}</h2>
+          <h2 className="qz-q">{fmtCode(tr(Q.q))}</h2>
           <div className="qz-grid">
             {Q.opts.map((o, i) => {
               const pickedThis = my && my.picked === i;
               return (
                 <button key={i} className={`qz-tile ${my ? (pickedThis ? 'picked' : 'faded') : ''}`} style={{ background: QUIZ_COLORS[i] }} disabled={isMentor || !!my} onClick={() => answer(i)}>
                   <span className="qz-shape">{QUIZ_SHAPES[i]}</span>
-                  <span className="qz-opt">{fmtCode(o)}</span>
+                  <span className="qz-opt">{fmtCode(tr(o))}</span>
                   {pickedThis && <span className="qz-pbadge">✔</span>}
                 </button>
               );
             })}
           </div>
-          {my && !isMentor && !solo && <p className="qz-waitmsg">✔ Javob qabul qilindi — natijani kuting…</p>}
+          {my && !isMentor && !solo && <p className="qz-waitmsg">{tr({ uz: '✔ Javob qabul qilindi — natijani kuting…', ru: '✔ Ответ принят — ждите результат…' })}</p>}
           {isMentor && (
             <div className="qz-mrow">
-              {answeredN >= players.length && players.length > 0 && <span className="qz-allin">✓ Hamma javob berdi!</span>}
-              <button className="qz-btn" onClick={() => ctrl('r', qi)}>⏹ Natijani ochish</button>
+              {answeredN >= players.length && players.length > 0 && <span className="qz-allin">{tr({ uz: '✓ Hamma javob berdi!', ru: '✓ Все ответили!' })}</span>}
+              <button className="qz-btn" onClick={() => ctrl('r', qi)}>{tr({ uz: '⏹ Natijani ochish', ru: '⏹ Открыть результат' })}</button>
             </div>
           )}
         </div>
@@ -2122,9 +2132,9 @@ function QuizArena({ live, onClose, startSolo }) {
       {phase === 'reveal' && Q && (
         <div className="qz-view qz-qview fade-step" key={`r${qi}`}>
           <div className="qz-top">
-            <span className="qz-count">Savol <b>{qi + 1}</b>/{QUIZ_BANK.length} — natija</span>
+            <span className="qz-count">{tr({ uz: 'Savol', ru: 'Вопрос' })} <b>{qi + 1}</b>/{QUIZ_BANK.length} — {tr({ uz: 'natija', ru: 'результат' })}</span>
           </div>
-          <h2 className="qz-q">{fmtCode(Q.q)}</h2>
+          <h2 className="qz-q">{fmtCode(tr(Q.q))}</h2>
           <div className="qz-grid">
             {Q.opts.map((o, i) => {
               const win = i === Q.correct;
@@ -2132,7 +2142,7 @@ function QuizArena({ live, onClose, startSolo }) {
               return (
                 <div key={i} className={`qz-tile rv ${win ? 'win' : 'lose'} ${pickedThis ? 'picked' : ''}`} style={{ background: QUIZ_COLORS[i] }}>
                   <span className="qz-shape">{QUIZ_SHAPES[i]}</span>
-                  <span className="qz-opt">{fmtCode(o)}</span>
+                  <span className="qz-opt">{fmtCode(tr(o))}</span>
                   <span className="qz-cnt">{win ? '✓ ' : ''}{counts[i]}</span>
                 </div>
               );
@@ -2141,9 +2151,9 @@ function QuizArena({ live, onClose, startSolo }) {
           {!isMentor && (
             <div className={`qz-res ${my?.correct ? 'good' : 'bad'}`}>
               {my?.correct
-                ? <><span className="qz-res-pts">+{myPtsFor(qi)}</span><span className="qz-res-t">ball{streakUpTo(qi) >= 2 ? ` · 🔥 x${streakUpTo(qi)} streak` : ''}</span></>
-                : <span className="qz-res-t">{my ? "Xato — 0 ball. Keyingisida olasiz! 💪" : "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱"}</span>}
-              {!solo && myRank >= 0 && <span className="qz-res-rank">Siz hozir: {myRank + 1}-o'rin</span>}
+                ? <><span className="qz-res-pts">+{myPtsFor(qi)}</span><span className="qz-res-t">{tr({ uz: 'ball', ru: 'баллов' })}{streakUpTo(qi) >= 2 ? ` · 🔥 x${streakUpTo(qi)} streak` : ''}</span></>
+                : <span className="qz-res-t">{my ? tr({ uz: 'Xato — 0 ball. Keyingisida olasiz! 💪', ru: 'Ошибка — 0 баллов. Возьмёте на следующем! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Побыстрее! ⏱' })}</span>}
+              {!solo && myRank >= 0 && <span className="qz-res-rank">{tr({ uz: `Siz hozir: ${myRank + 1}-o'rin`, ru: `Вы сейчас: место ${myRank + 1}` })}</span>}
             </div>
           )}
           {!solo && (
@@ -2158,19 +2168,19 @@ function QuizArena({ live, onClose, startSolo }) {
               ))}
             </div>
           )}
-          {isMentor && <button className="qz-btn big" onClick={() => lastQ ? ctrl('done', qi) : ctrl('q', qi + 1)}>{lastQ ? "🏁 G'oliblarni e'lon qilish" : 'Keyingi savol →'}</button>}
-          {solo && <button className="qz-btn big" onClick={soloNext}>{lastQ ? '🏁 Natijani ko\'rish' : 'Keyingi →'}</button>}
+          {isMentor && <button className="qz-btn big" onClick={() => lastQ ? ctrl('done', qi) : ctrl('q', qi + 1)}>{lastQ ? tr({ uz: "🏁 G'oliblarni e'lon qilish", ru: '🏁 Объявить победителей' }) : tr({ uz: 'Keyingi savol →', ru: 'Следующий вопрос →' })}</button>}
+          {solo && <button className="qz-btn big" onClick={soloNext}>{lastQ ? tr({ uz: "🏁 Natijani ko'rish", ru: '🏁 Посмотреть результат' }) : tr({ uz: 'Keyingi →', ru: 'Далее →' })}</button>}
         </div>
       )}
       {phase === 'done' && (
         <div className="qz-view fade-step">
           <Confetti />
-          <h2 className="qz-h">🏆 Test yakunlandi!</h2>
+          <h2 className="qz-h">{tr({ uz: '🏆 Test yakunlandi!', ru: '🏆 Тест завершён!' })}</h2>
           {solo ? (
             <div className="qz-solo-res">
               <div className="qz-solo-pts">{soloScore.pts}</div>
-              <p className="qz-sub">ball · {soloScore.ok}/{QUIZ_BANK.length} to'g'ri{soloScore.maxStreak >= 2 ? ` · eng uzun streak 🔥x${soloScore.maxStreak}` : ''}</p>
-              <button className="qz-btn big" onClick={soloReplay}>↻ Qayta ishlash</button>
+              <p className="qz-sub">{tr({ uz: 'ball', ru: 'баллов' })} · {soloScore.ok}/{QUIZ_BANK.length} {tr({ uz: "to'g'ri", ru: 'верно' })}{soloScore.maxStreak >= 2 ? tr({ uz: ` · eng uzun streak 🔥x${soloScore.maxStreak}`, ru: ` · лучший стрик 🔥x${soloScore.maxStreak}` }) : ''}</p>
+              <button className="qz-btn big" onClick={soloReplay}>{tr({ uz: '↻ Qayta ishlash', ru: '↻ Пройти ещё раз' })}</button>
             </div>
           ) : (
             <>
@@ -2182,13 +2192,13 @@ function QuizArena({ live, onClose, startSolo }) {
                       {rank === 0 && <span className="qz-crown">👑</span>}
                       <span className="qz-pod-medal">{['🥇', '🥈', '🥉'][rank]}</span>
                       <span className="qz-pod-name">{b ? b.nickname : '—'}</span>
-                      {b && <span className="qz-pod-pts">{b.pts} ball · {b.ok}/{QUIZ_BANK.length}</span>}
+                      {b && <span className="qz-pod-pts">{b.pts} {tr({ uz: 'ball', ru: 'баллов' })} · {b.ok}/{QUIZ_BANK.length}</span>}
                       <div className="qz-pod-bar" />
                     </div>
                   );
                 })}
               </div>
-              {myRank >= 0 && <p className="qz-mypl">Siz — <b>{myRank + 1}-o'rin</b> · {board[myRank].pts} ball</p>}
+              {myRank >= 0 && <p className="qz-mypl">{tr({ uz: <>Siz — <b>{myRank + 1}-o'rin</b> · {board[myRank].pts} ball</>, ru: <>Вы — <b>место {myRank + 1}</b> · {board[myRank].pts} баллов</> })}</p>}
               <div className="qz-board wide">
                 {board.map((b, i) => (
                   <div key={b.id} className={`qz-brow ${b.id === live.playerId ? 'me' : ''}`}>
@@ -2199,10 +2209,10 @@ function QuizArena({ live, onClose, startSolo }) {
                   </div>
                 ))}
               </div>
-              {isStudent && <button className="qz-btn" onClick={startPractice}>↻ Testni qayta ishlash — mashq (jadvalga yozilmaydi)</button>}
+              {isStudent && <button className="qz-btn" onClick={startPractice}>{tr({ uz: '↻ Testni qayta ishlash — mashq (jadvalga yozilmaydi)', ru: '↻ Пройти тест ещё раз — практика (в таблицу не идёт)' })}</button>}
             </>
           )}
-          <button className="qz-btn ghost" onClick={closeArena}>Arenani yopish</button>
+          <button className="qz-btn ghost" onClick={closeArena}>{tr({ uz: 'Arenani yopish', ru: 'Закрыть арену' })}</button>
         </div>
       )}
     </div>
@@ -2242,18 +2252,18 @@ const ScreenPodium = ({ screen, answers, onNext, onPrev }) => {
   const myIdx = live && live.playerId ? board.findIndex(b => b.id === live.playerId) : -1;
   const selfCorrect = SCORED_IDX.filter(i => answers[i]?.correct).length;
   return (
-    <Stage eyebrow="Natijalar" screen={screen} narrow navContent={<><NavBack onPrev={onPrev} /><NavNext label="Davom etish" onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Natijalar', ru: 'Результаты' })} screen={screen} narrow navContent={<><NavBack onPrev={onPrev} /><NavNext label={{ uz: 'Davom etish', ru: 'Продолжить' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(14px,2.2vw,20px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Kim <span className="italic" style={{ color: T.accent }}>g'olib</span>?</h2></div>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Kim <span className="italic" style={{ color: T.accent }}>g'olib</span>?</>, ru: <>Кто <span className="italic" style={{ color: T.accent }}>победитель</span>?</> })}</h2></div>
         {!isLive ? (
           <div className="fade-up" style={{ display: 'flex', flexDirection: 'column', gap: 16, alignItems: 'center' }}>
             <ScoreRing correct={selfCorrect} total={totalQ} />
-            <div className="frame-soft" style={{ maxWidth: 480 }}><p className="body" style={{ margin: 0 }}>Siz mustaqil rejimdasiz. Jonli darsda bu yerda butun guruh reytingi — 🥇🥈🥉 podium chiqadi.</p></div>
+            <div className="frame-soft" style={{ maxWidth: 480 }}><p className="body" style={{ margin: 0 }}>{tr({ uz: 'Siz mustaqil rejimdasiz. Jonli darsda bu yerda butun guruh reytingi — 🥇🥈🥉 podium chiqadi.', ru: 'Вы в самостоятельном режиме. В живом уроке здесь появится рейтинг всей группы — подиум 🥇🥈🥉.' })}</p></div>
           </div>
         ) : !loaded ? (
-          <p className="mono small fade-up" style={{ color: T.ink2 }}>Natijalar yuklanmoqda…</p>
+          <p className="mono small fade-up" style={{ color: T.ink2 }}>{tr({ uz: 'Natijalar yuklanmoqda…', ru: 'Результаты загружаются…' })}</p>
         ) : board.length === 0 ? (
-          <div className="frame-soft fade-up"><p className="body" style={{ margin: 0 }}>Bu sessiyaga hali hech kim qo'shilmagan.</p></div>
+          <div className="frame-soft fade-up"><p className="body" style={{ margin: 0 }}>{tr({ uz: "Bu sessiyaga hali hech kim qo'shilmagan.", ru: 'К этой сессии пока никто не присоединился.' })}</p></div>
         ) : (
           <>
             <Confetti />
@@ -2270,15 +2280,15 @@ const ScreenPodium = ({ screen, answers, onNext, onPrev }) => {
                 );
               })}
             </div>
-            {myIdx >= 0 && <p className="pod-my fade-up">Siz — <b>{myIdx + 1}-o'rin</b> ({board[myIdx].okCount}/{totalQ} to'g'ri)</p>}
+            {myIdx >= 0 && <p className="pod-my fade-up">{tr({ uz: <>Siz — <b>{myIdx + 1}-o'rin</b> ({board[myIdx].okCount}/{totalQ} to'g'ri)</>, ru: <>Вы — <b>место {myIdx + 1}</b> ({board[myIdx].okCount}/{totalQ} верно)</> })}</p>}
             <div className="card fade-up d1">
-              <div className="card-lbl" style={{ color: T.accent }}>🏆 To'liq reyting</div>
+              <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: "🏆 To'liq reyting", ru: '🏆 Полный рейтинг' })}</div>
               <div className="pod-list">
                 {board.map((b, i) => (
                   <div key={b.id} className={`pod-row ${live.playerId === b.id ? 'me' : ''}`}>
                     <span className="mono pod-rank">{i + 1}</span>
                     <span className="pod-row-name">{b.nickname}</span>
-                    <span className="pod-row-dots">{SCORED_IDX.map(q => { const a = rows.find(r => r.player_id === b.id && r.screen_idx === q); return <span key={q} className={`pod-dot ${a ? (a.correct ? 'ok' : 'bad') : ''}`} title={Q_LABELS[q]} />; })}</span>
+                    <span className="pod-row-dots">{SCORED_IDX.map(q => { const a = rows.find(r => r.player_id === b.id && r.screen_idx === q); return <span key={q} className={`pod-dot ${a ? (a.correct ? 'ok' : 'bad') : ''}`} title={tr(Q_LABELS[q])} />; })}</span>
                     <span className="mono pod-row-score">{b.okCount}/{totalQ}</span>
                     <span className="mono pod-row-time">{fmtT(b.time)}</span>
                   </div>
@@ -2310,40 +2320,40 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
     setArenaSolo(studentSolo); setArena(true);
   };
   const RECAP = [
-    "Autentifikatsiya = «siz kimsiz?» (login)",
-    "Login → JWT token (bilaguzuk): header.payload.signature",
-    "Har so'rovda: Authorization: Bearer <token>",
-    "Tokensiz himoyalangan route → 401; qo'riqchi (guard) jwt.verify bilan tekshiradi",
-    "Maxfiy kalitlar .env'da (process.env), GitHub'ga ketmaydi"
+    tr({ uz: "Autentifikatsiya = «siz kimsiz?» (login)", ru: 'Аутентификация = «кто вы?» (логин)' }),
+    tr({ uz: "Login → JWT token (bilaguzuk): header.payload.signature", ru: 'Логин → JWT-токен (браслет): header.payload.signature' }),
+    tr({ uz: "Har so'rovda: Authorization: Bearer <token>", ru: 'В каждом запросе: Authorization: Bearer <token>' }),
+    tr({ uz: "Tokensiz himoyalangan route → 401; qo'riqchi (guard) jwt.verify bilan tekshiradi", ru: 'Защищённый route без токена → 401; охранник (guard) проверяет через jwt.verify' }),
+    tr({ uz: "Maxfiy kalitlar .env'da (process.env), GitHub'ga ketmaydi", ru: 'Секретные ключи в .env (process.env), на GitHub не попадают' })
   ];
   const HOMEWORK = [
-    { b: "Login qo'shing", t: "— loyihangizga POST /api/login va token tekshiruvini qo'shing" },
-    { b: "Kalitlarni .env'ga", t: "— barcha maxfiy kalitlarni .env'ga ko'chiring" },
-    { b: ".gitignore", t: "— .env'ni .gitignore'ga qo'shing, hech qachon commit qilmang" }
+    { b: tr({ uz: "Login qo'shing", ru: 'Добавьте логин' }), t: tr({ uz: "— loyihangizga POST /api/login va token tekshiruvini qo'shing", ru: '— добавьте в проект POST /api/login и проверку токена' }) },
+    { b: tr({ uz: "Kalitlarni .env'ga", ru: 'Ключи в .env' }), t: tr({ uz: "— barcha maxfiy kalitlarni .env'ga ko'chiring", ru: '— перенесите все секретные ключи в .env' }) },
+    { b: ".gitignore", t: tr({ uz: "— .env'ni .gitignore'ga qo'shing, hech qachon commit qilmang", ru: '— добавьте .env в .gitignore и никогда не коммитьте' }) }
   ];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
   const PASSED = (total ? correct / total : 0) >= 0.6;
   return (
-    <Stage eyebrow="Tayyor" screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>Qaytadan</button><button className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>Yakunlash ✓</button></>}>
+    <Stage eyebrow={tr({ uz: 'Tayyor', ru: 'Готово' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><button className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash ✓', ru: 'Завершить ✓' })}</button></>}>
       <div className="screen">
-        <div className="hero"><div className="hero-l"><span className="done-chip fade-up"><span className="tick">✓</span> Dars tugadi</span><h2 className="title h-title fade-up d1">Endi saytingiz <span className="italic" style={{ color: T.accent }}>himoyalangan</span>.</h2><p className="body h-sub fade-up d2">{PASSED ? "Tabriklaymiz! Login, JWT token, route himoyasi va .env bilan maxfiy kalitlarni boshqarishni o'rgandingiz." : "Yaxshi harakat! Token va .env mavzularini mustahkamlash uchun bir-ikki ekranni qayta ko'ring."}</p></div><ScoreRing correct={correct} total={total} /></div>
+        <div className="hero"><div className="hero-l"><span className="done-chip fade-up"><span className="tick">✓</span> {tr({ uz: 'Dars tugadi', ru: 'Урок завершён' })}</span><h2 className="title h-title fade-up d1">{tr({ uz: <>Endi saytingiz <span className="italic" style={{ color: T.accent }}>himoyalangan</span>.</>, ru: <>Теперь ваш сайт <span className="italic" style={{ color: T.accent }}>защищён</span>.</> })}</h2><p className="body h-sub fade-up d2">{PASSED ? tr({ uz: "Tabriklaymiz! Login, JWT token, route himoyasi va .env bilan maxfiy kalitlarni boshqarishni o'rgandingiz.", ru: 'Поздравляем! Вы освоили логин, JWT-токен, защиту route и управление секретами через .env.' }) : tr({ uz: "Yaxshi harakat! Token va .env mavzularini mustahkamlash uchun bir-ikki ekranni qayta ko'ring.", ru: 'Хорошая работа! Чтобы закрепить темы токенов и .env, пересмотрите пару экранов.' })}</p></div><ScoreRing correct={correct} total={total} /></div>
         <div className={`qz-cta cs-cta fade-up d2 ${studentLive ? 'ready' : ''}`}>
-          <CsWordmark stats={false} liveOn={studentLive} disabled={studentWait} onClick={studentWait ? undefined : openArena} hint={studentWait ? '⏳ Mentorni kuting' : undefined} />
+          <CsWordmark stats={false} liveOn={studentLive} disabled={studentWait} onClick={studentWait ? undefined : openArena} hint={studentWait ? tr({ uz: '⏳ Mentorni kuting', ru: '⏳ Ждите ментора' }) : undefined} />
         </div>
         {arena && <QuizArena live={_live || { mode: 'self' }} startSolo={arenaSolo} onClose={() => setArena(false)} />}
         <div className="split">
-          <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> Endi siz bilasiz</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{r}</span></li>))}</ul></div>
-          <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>📝 Uyga vazifa</div><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{h.b}</b> <span className="t">{h.t}</span></li>))}</ul><p className="hw-note">Modul 5 (NestJS): @UseGuards, JWT strategy, role guard — autentifikatsiya va ruxsatlar professional, tartibli yoziladi! 🚀</p></div>
+          <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> {tr({ uz: 'Endi siz bilasiz', ru: 'Теперь вы знаете' })}</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{r}</span></li>))}</ul></div>
+          <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{h.b}</b> <span className="t">{h.t}</span></li>))}</ul><p className="hw-note">{tr({ uz: 'Modul 5 (NestJS): @UseGuards, JWT strategy, role guard — autentifikatsiya va ruxsatlar professional, tartibli yoziladi! 🚀', ru: 'Модуль 5 (NestJS): @UseGuards, JWT strategy, role guard — аутентификация и права пишутся профессионально и аккуратно! 🚀' })}</p></div>
         </div>
         <div className="card ach-coll fade-up d3">
-          <div className="card-lbl" style={{ color: T.accent }}>🏅 Nishonlaringiz — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
+          <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🏅 Nishonlaringiz', ru: '🏅 Ваши значки' })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">
             {Object.entries(ACHIEVEMENTS).map(([id, a]) => { const got = !!(achievements && achievements.has(id)); return (
-              <div key={id} className={`ach-badge ${got ? 'got' : 'locked'}`} title={a.desc}>
+              <div key={id} className={`ach-badge ${got ? 'got' : 'locked'}`} title={tr(a.desc)}>
                 <span className="ach-badge-ic">{got ? a.icon : '🔒'}</span>
                 <span className="ach-badge-name">{a.name}</span>
-                {got && <span className="ach-badge-desc">{a.desc}</span>}
+                {got && <span className="ach-badge-desc">{tr(a.desc)}</span>}
               </div>
             ); })}
           </div>
@@ -2356,6 +2366,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
 // ============================================================ LESSON ROOT — ({ lang, onFinished })
 export default function AuthEnvLesson({ lang: langProp, onFinished }) {
   const lang = langProp || 'uz';
+  __lang = lang; // UZ-RU: tr() uchun joriy til (render'dan oldin o'rnatiladi)
   const [screen, setScreen] = useState(0);
   const [answers, setAnswers] = useState({});
   const startTimeRef = useRef(Date.now());
@@ -3339,7 +3350,7 @@ export default function AuthEnvLesson({ lang: langProp, onFinished }) {
       <LiveGateCtx.Provider value={{ locked, live }}>
         <div className="lesson-root">
           {live.mode === 'choosing' ? (
-            <LiveGate live={live} title="Autentifikatsiya darsi" />
+            <LiveGate live={live} title={{ uz: 'Autentifikatsiya darsi', ru: 'Урок аутентификации' }} />
           ) : (
             <>
               <Current screen={screen} storedAnswer={answers[screen]} answers={answers} achievements={earned} onAnswer={recordAnswer} onNext={next} onPrev={prev} onReset={reset} onFinish={finishLesson} />

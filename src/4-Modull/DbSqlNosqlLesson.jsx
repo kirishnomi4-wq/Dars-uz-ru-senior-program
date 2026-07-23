@@ -26,6 +26,16 @@ const T = {
 };
 const CODE = { bg: '#1A2436', text: '#E8E5DD', tag: '#FF7755', attr: '#FFD380', str: '#7DD181', comment: '#6B7585', punct: '#9FB4D8' };
 
+// UZ-RU: modul-darajali tarjimon. Dars mount bo'lganda default export __lang'ni o'rnatadi;
+// barcha render-joylar tr({uz:'…', ru:'…'}) orqali joriy tildagi matnni oladi (string/JSX o'tkazib yuboriladi).
+let __lang = 'uz';
+const tr = (node) => {
+  if (node === null || node === undefined) return '';
+  if (typeof node === 'string') return node;
+  if (React.isValidElement(node)) return node;
+  return node[__lang] ?? node.uz ?? node.ru ?? '';
+};
+
 // ============================================================
 // JONLI SESSIYA INFRA — InternetLesson/ReactApiGet bilan bir xil (liveRpc/useLiveSession/LiveGate)
 // ============================================================
@@ -144,20 +154,20 @@ function useLiveSession(lessonId, answerKey) {
       tokenRef.current = row.token; setPin(row.pin); setMode('mentor'); setEnded(false);
       liveStore(lessonId, { mode: 'mentor', pin: row.pin, token: row.token });
       if (keyRef.current) liveRpc('set_quiz_keys', { p_lesson_id: lessonId, p_mentor_code: (mentorCode || '').trim(), p_keys: keyRef.current }).catch(() => {});
-    } catch { setJoinError("Mentor kodi noto'g'ri yoki ulanishda xato."); }
+    } catch { setJoinError(tr({ uz: "Mentor kodi noto'g'ri yoki ulanishda xato.", ru: 'Код ментора неверный или ошибка соединения.' })); }
     finally { setBusy(false); }
   }, [lessonId]);
   const joinStudent = useCallback(async (raw, rawNick) => {
     const p = (raw || '').replace(/\D/g, '');
     const nick = (rawNick || '').trim();
-    if (p.length < 4) { setJoinError("Kodni to'liq kiriting."); return; }
-    if (nick.length < 2) { setJoinError('Ismingizni kiriting (kamida 2 harf).'); return; }
+    if (p.length < 4) { setJoinError(tr({ uz: "Kodni to'liq kiriting.", ru: 'Введите код полностью.' })); return; }
+    if (nick.length < 2) { setJoinError(tr({ uz: 'Ismingizni kiriting (kamida 2 harf).', ru: 'Введите ваше имя (минимум 2 буквы).' })); return; }
     setBusy(true); setJoinError('');
     try {
       const row = await liveGet(p);
-      if (!row) { setJoinError('Bunday kod topilmadi.'); setBusy(false); return; }
-      if (row.lesson_id && row.lesson_id !== lessonId) { setJoinError('Bu kod boshqa darsga tegishli.'); setBusy(false); return; }
-      if (row.status !== 'live') { setJoinError('Bu dars allaqachon yakunlangan.'); setBusy(false); return; }
+      if (!row) { setJoinError(tr({ uz: 'Bunday kod topilmadi.', ru: 'Такой код не найден.' })); setBusy(false); return; }
+      if (row.lesson_id && row.lesson_id !== lessonId) { setJoinError(tr({ uz: 'Bu kod boshqa darsga tegishli.', ru: 'Этот код от другого урока.' })); setBusy(false); return; }
+      if (row.status !== 'live') { setJoinError(tr({ uz: 'Bu dars allaqachon yakunlangan.', ru: 'Этот урок уже завершён.' })); setBusy(false); return; }
       const res = await liveRpc('join_session', { p_pin: p, p_nickname: nick });
       const player = Array.isArray(res) ? res[0] : res;
       if (!player?.player_id) throw new Error('no player');
@@ -168,7 +178,7 @@ function useLiveSession(lessonId, answerKey) {
       liveStore(lessonId, { mode: 'student', pin: p, lastScreen: row.max_screen, playerId: player.player_id, playerToken: player.token, nickname: nick });
     } catch (e) {
       const m = String(e?.message || '');
-      setJoinError(/ism|band|kod|dars|belgi/i.test(m) ? m : "Ulanib bo'lmadi. Internetni tekshiring.");
+      setJoinError(/ism|band|kod|dars|belgi/i.test(m) ? m : tr({ uz: "Ulanib bo'lmadi. Internetni tekshiring.", ru: 'Не удалось подключиться. Проверьте интернет.' }));
     }
     finally { setBusy(false); }
   }, [lessonId]);
@@ -208,15 +218,16 @@ function LiveBigCode({ pin, onClose }) {
   const box = { background: LT.paper, color: LT.ink, borderRadius: 'clamp(10px,1.6vw,18px)', fontFamily: 'monospace', fontWeight: 800, lineHeight: 1, fontSize: 'clamp(48px,13vw,150px)', padding: 'clamp(10px,2vw,28px) clamp(12px,2.2vw,30px)', boxShadow: '0 10px 40px -10px rgba(0,0,0,0.5)' };
   return (
     <div style={overlay}>
-      <div style={{ fontSize: 'clamp(13px,2vw,18px)', fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: LT.accent, marginBottom: 'clamp(14px,3vw,28px)' }}>Jonli darsga qo'shilish</div>
+      <div style={{ fontSize: 'clamp(13px,2vw,18px)', fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: LT.accent, marginBottom: 'clamp(14px,3vw,28px)' }}>{tr({ uz: "Jonli darsga qo'shilish", ru: 'Присоединиться к живому уроку' })}</div>
       <div style={{ display: 'flex', gap: 'clamp(6px,1.4vw,16px)', justifyContent: 'center', flexWrap: 'wrap' }}>{digits.map((d, i) => <span key={i} style={box}>{d}</span>)}</div>
-      <p style={{ color: '#fff', opacity: 0.85, fontSize: 'clamp(15px,2.2vw,22px)', maxWidth: 640, margin: 'clamp(20px,4vw,36px) 0 0', lineHeight: 1.5 }}>Shu darsni o'z qurilmangizda oching → <b style={{ color: '#fff' }}>«👨‍🎓 O'quvchiman»</b> → ushbu kodni kiriting.</p>
-      <button onClick={onClose} style={{ marginTop: 'clamp(22px,4vw,40px)', background: LT.accent, color: '#fff', border: 'none', borderRadius: 14, padding: 'clamp(12px,1.6vw,16px) clamp(24px,3vw,36px)', fontSize: 'clamp(15px,1.8vw,18px)', fontWeight: 700, cursor: 'pointer' }}>Darsni boshlash →</button>
+      <p style={{ color: '#fff', opacity: 0.85, fontSize: 'clamp(15px,2.2vw,22px)', maxWidth: 640, margin: 'clamp(20px,4vw,36px) 0 0', lineHeight: 1.5 }}>{tr({ uz: <>Shu darsni o'z qurilmangizda oching → <b style={{ color: '#fff' }}>«👨‍🎓 O'quvchiman»</b> → ushbu kodni kiriting.</>, ru: <>Откройте этот урок на своём устройстве → <b style={{ color: '#fff' }}>«👨‍🎓 Я ученик»</b> → введите этот код.</> })}</p>
+      <button onClick={onClose} style={{ marginTop: 'clamp(22px,4vw,40px)', background: LT.accent, color: '#fff', border: 'none', borderRadius: 14, padding: 'clamp(12px,1.6vw,16px) clamp(24px,3vw,36px)', fontSize: 'clamp(15px,1.8vw,18px)', fontWeight: 700, cursor: 'pointer' }}>{tr({ uz: 'Darsni boshlash →', ru: 'Начать урок →' })}</button>
     </div>
   );
 }
 
-function LiveGate({ live, title = 'Jonli dars' }) {
+function LiveGate({ live, title }) {
+  title = title || tr({ uz: 'Jonli dars', ru: 'Живой урок' });
   const [code, setCode] = useState('');
   const [nick, setNick] = useState(() => nickRead());
   const [mentorCode, setMentorCode] = useState('');
@@ -226,18 +237,18 @@ function LiveGate({ live, title = 'Jonli dars' }) {
   const link = { background: 'none', border: 'none', color: LT.ink3, fontSize: 13, cursor: 'pointer', alignSelf: 'center' };
   if (role === 'mentor') {
     return (<div style={wrap}><div style={card}>
-      <div style={{ textAlign: 'center' }}><h2 style={{ fontFamily: 'Georgia, serif', fontSize: 'clamp(22px,3vw,28px)', color: LT.ink, margin: '0 0 4px' }}>🧑‍🏫 Mentor kirishi</h2><p style={{ color: LT.ink2, fontSize: 14, margin: 0 }}>Mentor kodini kiriting.</p></div>
-      <input value={mentorCode} onChange={e => setMentorCode(e.target.value)} type="password" autoFocus placeholder="Mentor kodi" onKeyDown={e => { if (e.key === 'Enter') live.startMentor(mentorCode); }} style={{ width: '100%', padding: '14px', border: `2px solid ${LT.ink3}55`, borderRadius: 14, fontSize: 18, fontWeight: 600, textAlign: 'center', outline: 'none' }} />
-      <button onClick={() => live.startMentor(mentorCode)} disabled={live.busy} style={_liveBtnPri}>{live.busy ? 'Tekshirilmoqda…' : 'Kirish →'}</button>
+      <div style={{ textAlign: 'center' }}><h2 style={{ fontFamily: 'Georgia, serif', fontSize: 'clamp(22px,3vw,28px)', color: LT.ink, margin: '0 0 4px' }}>{tr({ uz: '🧑‍🏫 Mentor kirishi', ru: '🧑‍🏫 Вход для ментора' })}</h2><p style={{ color: LT.ink2, fontSize: 14, margin: 0 }}>{tr({ uz: 'Mentor kodini kiriting.', ru: 'Введите код ментора.' })}</p></div>
+      <input value={mentorCode} onChange={e => setMentorCode(e.target.value)} type="password" autoFocus placeholder={tr({ uz: 'Mentor kodi', ru: 'Код ментора' })} onKeyDown={e => { if (e.key === 'Enter') live.startMentor(mentorCode); }} style={{ width: '100%', padding: '14px', border: `2px solid ${LT.ink3}55`, borderRadius: 14, fontSize: 18, fontWeight: 600, textAlign: 'center', outline: 'none' }} />
+      <button onClick={() => live.startMentor(mentorCode)} disabled={live.busy} style={_liveBtnPri}>{live.busy ? tr({ uz: 'Tekshirilmoqda…', ru: 'Проверяем…' }) : tr({ uz: 'Kirish →', ru: 'Войти →' })}</button>
       {live.joinError && <div style={{ color: LT.accent, fontSize: 13, textAlign: 'center' }}>{live.joinError}</div>}
-      <button onClick={() => { setRole('student'); setMentorCode(''); }} style={link}>← Orqaga</button>
+      <button onClick={() => { setRole('student'); setMentorCode(''); }} style={link}>{tr({ uz: '← Orqaga', ru: '← Назад' })}</button>
     </div></div>);
   }
   return (<div style={wrap}><div style={card}>
-    <div style={{ textAlign: 'center' }}><div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: LT.accent }}>{title}</div><h2 style={{ fontFamily: 'Georgia, serif', fontSize: 'clamp(22px,3vw,28px)', color: LT.ink, margin: '6px 0 4px' }}>Darsga qo'shilish</h2><p style={{ color: LT.ink2, fontSize: 14, margin: 0 }}>Mentor bergan kodni va ismingizni kiriting.</p></div>
+    <div style={{ textAlign: 'center' }}><div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: LT.accent }}>{title}</div><h2 style={{ fontFamily: 'Georgia, serif', fontSize: 'clamp(22px,3vw,28px)', color: LT.ink, margin: '6px 0 4px' }}>{tr({ uz: "Darsga qo'shilish", ru: 'Присоединиться к уроку' })}</h2><p style={{ color: LT.ink2, fontSize: 14, margin: 0 }}>{tr({ uz: 'Mentor bergan kodni va ismingizni kiriting.', ru: 'Введите код от ментора и своё имя.' })}</p></div>
     <input value={code} onChange={e => setCode(e.target.value)} inputMode="numeric" autoFocus placeholder="483 920" style={{ width: '100%', padding: '16px 14px', border: `2px solid ${LT.ink3}55`, borderRadius: 14, fontSize: 28, fontFamily: 'monospace', fontWeight: 700, letterSpacing: '0.12em', textAlign: 'center', outline: 'none' }} />
-    <input value={nick} onChange={e => setNick(e.target.value)} maxLength={24} placeholder="Ismingiz (masalan: Ali)" onKeyDown={e => { if (e.key === 'Enter') live.joinStudent(code, nick); }} style={{ width: '100%', padding: '13px 14px', border: `2px solid ${LT.ink3}55`, borderRadius: 14, fontSize: 17, fontWeight: 600, textAlign: 'center', outline: 'none' }} />
-    <button onClick={() => live.joinStudent(code, nick)} disabled={live.busy} style={_liveBtnPri}>{live.busy ? 'Ulanmoqda…' : 'Qo\'shilish →'}</button>
+    <input value={nick} onChange={e => setNick(e.target.value)} maxLength={24} placeholder={tr({ uz: 'Ismingiz (masalan: Ali)', ru: 'Ваше имя (например: Али)' })} onKeyDown={e => { if (e.key === 'Enter') live.joinStudent(code, nick); }} style={{ width: '100%', padding: '13px 14px', border: `2px solid ${LT.ink3}55`, borderRadius: 14, fontSize: 17, fontWeight: 600, textAlign: 'center', outline: 'none' }} />
+    <button onClick={() => live.joinStudent(code, nick)} disabled={live.busy} style={_liveBtnPri}>{live.busy ? tr({ uz: 'Ulanmoqda…', ru: 'Подключаемся…' }) : tr({ uz: "Qo'shilish →", ru: 'Присоединиться →' })}</button>
     {live.joinError && <div style={{ color: LT.accent, fontSize: 13, textAlign: 'center' }}>{live.joinError}</div>}
     <button onClick={() => { setRole('mentor'); setCode(''); }} title="Mentor" aria-label="Mentor" style={{ position: 'absolute', bottom: 10, right: 12, background: 'none', border: 'none', fontSize: 16, opacity: 0.3, cursor: 'pointer', lineHeight: 1, padding: 4 }}>🧑‍🏫</button>
   </div></div>);
@@ -257,22 +268,22 @@ function LiveBadge({ live, total }) {
     return () => { on = false; clearTimeout(t); };
   }, [live.mode, live.pin, live.ended]);
   if (live.mode === 'mentor') {
-    if (live.ended) return <div className="live-badge" style={_liveBadgeS}><span style={_liveDot(LT.ink3)} /> 🔓 O'quvchilar erkin qilindi</div>;
+    if (live.ended) return <div className="live-badge" style={_liveBadgeS}><span style={_liveDot(LT.ink3)} /> {tr({ uz: "🔓 O'quvchilar erkin qilindi", ru: '🔓 Ученики отпущены в свободный режим' })}</div>;
     return (<>
       {bigOpen && <LiveBigCode pin={live.pin} onClose={() => setBigOpen(false)} />}
       <div className="live-badge" style={_liveBadgeS}>
-        <span style={_liveDot(LT.success)} /> Kod: <b style={{ fontFamily: 'monospace', letterSpacing: '0.08em' }}>{fmtPin(live.pin)}</b>
+        <span style={_liveDot(LT.success)} /> {tr({ uz: 'Kod:', ru: 'Код:' })} <b style={{ fontFamily: 'monospace', letterSpacing: '0.08em' }}>{fmtPin(live.pin)}</b>
         {nPlayers !== null && <span style={{ color: LT.ink2 }}>👥 {nPlayers}</span>}
-        <button onClick={() => setBigOpen(true)} title="Kodni katta ko'rsatish" style={{ marginLeft: 6, background: LT.ink, color: '#fff', border: 'none', borderRadius: 99, padding: '4px 10px', fontSize: 12, fontWeight: 700, cursor: 'pointer', whiteSpace: 'nowrap' }}>📺 Ko'rsatish</button>
-        <button onClick={() => { if (window.confirm("O'quvchilarni ozod qilasizmi? Ular o'zlari erkin davom etadi.")) live.endSession(); }} style={{ background: LT.accentSoft, color: LT.accent, border: 'none', borderRadius: 99, padding: '4px 10px', fontSize: 12, fontWeight: 700, cursor: 'pointer', whiteSpace: 'nowrap' }}>🔓 Erkin qilish</button>
+        <button onClick={() => setBigOpen(true)} title={tr({ uz: "Kodni katta ko'rsatish", ru: 'Показать код крупно' })} style={{ marginLeft: 6, background: LT.ink, color: '#fff', border: 'none', borderRadius: 99, padding: '4px 10px', fontSize: 12, fontWeight: 700, cursor: 'pointer', whiteSpace: 'nowrap' }}>{tr({ uz: "📺 Ko'rsatish", ru: '📺 Показать' })}</button>
+        <button onClick={() => { if (window.confirm(tr({ uz: "O'quvchilarni ozod qilasizmi? Ular o'zlari erkin davom etadi.", ru: 'Отпустить учеников? Дальше они продолжат самостоятельно.' }))) live.endSession(); }} style={{ background: LT.accentSoft, color: LT.accent, border: 'none', borderRadius: 99, padding: '4px 10px', fontSize: 12, fontWeight: 700, cursor: 'pointer', whiteSpace: 'nowrap' }}>{tr({ uz: '🔓 Erkin qilish', ru: '🔓 Отпустить' })}</button>
       </div>
     </>);
   }
   if (live.mode === 'student') {
-    if (live.status === 'ended') return <div className="live-badge" style={_liveBadgeS}><span style={_liveDot(LT.success)} /> 🔓 Erkin rejim — o'zingiz davom eting</div>;
-    if (!live.mentorAlive) return <div className="live-badge" style={_liveBadgeS}><span style={_liveDot(LT.ink3)} /> ⚠️ Mentor uzildi — erkin rejim</div>;
-    if (!live.connected) return <div className="live-badge" style={_liveBadgeS}><span style={_liveDot('#FFD380')} /> 🔄 Qayta ulanmoqda…</div>;
-    return <div className="live-badge" style={_liveBadgeS}><span style={_liveDot(LT.success)} /> 👨‍🏫 Mentor: {Math.min(live.mentorScreen + 1, total)} / {total}{live.nickname && <span style={{ color: LT.ink3 }}>· {live.nickname}</span>}</div>;
+    if (live.status === 'ended') return <div className="live-badge" style={_liveBadgeS}><span style={_liveDot(LT.success)} /> {tr({ uz: "🔓 Erkin rejim — o'zingiz davom eting", ru: '🔓 Свободный режим — продолжайте сами' })}</div>;
+    if (!live.mentorAlive) return <div className="live-badge" style={_liveBadgeS}><span style={_liveDot(LT.ink3)} /> {tr({ uz: '⚠️ Mentor uzildi — erkin rejim', ru: '⚠️ Ментор отключился — свободный режим' })}</div>;
+    if (!live.connected) return <div className="live-badge" style={_liveBadgeS}><span style={_liveDot('#FFD380')} /> {tr({ uz: '🔄 Qayta ulanmoqda…', ru: '🔄 Переподключаемся…' })}</div>;
+    return <div className="live-badge" style={_liveBadgeS}><span style={_liveDot(LT.success)} /> {tr({ uz: '👨‍🏫 Mentor:', ru: '👨‍🏫 Ментор:' })} {Math.min(live.mentorScreen + 1, total)} / {total}{live.nickname && <span style={{ color: LT.ink3 }}>· {live.nickname}</span>}</div>;
   }
   return null;
 }
@@ -343,7 +354,7 @@ const Zoomable = ({ children }) => {
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
       <div className={`zoomable ${big ? 'zoom-on' : ''}`}>
-        <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? 'Kichraytirish' : 'Kattalashtirish'} title={big ? 'Kichraytirish' : 'Kattalashtirish'}>{big ? '✕' : '⛶'}</button>
+        <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>
         {children}
       </div>
     </>
@@ -421,13 +432,14 @@ const Stage = ({ children, eyebrow, screen, totalScreens = TOTAL_SCREENS, navCon
     </MentorCtx.Provider>
   );
 };
-const NavBack = ({ onPrev }) => <button className="btn-ghost" onClick={onPrev} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>Orqaga</button>;
-const NavNext = ({ disabled, label = 'Davom etish', onClick, optionalLive }) => {
+const NavBack = ({ onPrev }) => <button className="btn-ghost" onClick={onPrev} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Orqaga', ru: 'Назад' })}</button>;
+const NavNext = ({ disabled, label, onClick, optionalLive }) => {
+  const lbl = label || tr({ uz: 'Davom etish', ru: 'Продолжить' });
   const gate = useContext(LiveGateCtx);
   const locked = !!(gate && gate.locked);
   const live = gate && gate.live;
   const freeRide = !!(optionalLive && live && live.mode === 'student' && live.status !== 'ended' && live.mentorAlive);
-  return <button className="btn-white-accent" disabled={(freeRide ? false : disabled) || locked} onClick={onClick} title={locked ? "Mentor hali bu sahifaga o'tmadi" : undefined} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)', marginLeft: 'auto' }}>{locked ? '⏳ Mentorni kuting' : (freeRide && disabled ? 'Davom etish' : label)}</button>;
+  return <button className="btn-white-accent" disabled={(freeRide ? false : disabled) || locked} onClick={onClick} title={locked ? tr({ uz: "Mentor hali bu sahifaga o'tmadi", ru: 'Ментор ещё не перешёл на эту страницу' }) : undefined} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)', marginLeft: 'auto' }}>{locked ? tr({ uz: '⏳ Mentorni kuting', ru: '⏳ Ждите ментора' }) : (freeRide && disabled ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : lbl)}</button>;
 };
 
 const FeedbackBlock = ({ show, isCorrect, neutral, children }) => {
@@ -451,35 +463,35 @@ const RECAP_MIN_ANSWERS = 3;
 // 📖 QAYTA TUSHUNTIRISH — scored testlar (idx 4/6/10/13) uchun 3 kartadan. Matn/abrazetsni 🎓 Metodist sayqallaydi.
 const RECAPS = {
   4: {
-    title: "Shakl — qat'iy quti vs erkin paket",
+    title: { uz: "Shakl — qat'iy quti vs erkin paket", ru: 'Форма — жёсткая коробка vs свободный пакет' },
     cards: [
-      { ic: "📦", h: "SQL = uyachali qattiq quti", body: <>SQL jadvalida ustunlar <b>oldindan belgilangan</b> — har qator bir xil uyachalarga ega. Yangi maydon uchun butun qutini qayta yasash kerak.</> },
-      { ic: "🧾", h: "NoSQL = erkin { } paket", body: <>NoSQL hujjatiga <b>istalgan maydonni</b> bemalol qo'shasiz — paket kengayadi, boshqa hujjatlar o'zgarmaydi.</> },
-      { ic: "🎵", h: "«musiqa» qaysi qadoqqa oson?", body: <>Har yozuv har xil maydonga ega bo'lsa — <b>NoSQL</b> qulayroq. Shakli qat'iy bo'lsa — <b>SQL</b>.</>, ask: "Shakli tez-tez o'zgaradigan ma'lumot uchun qaysi oila egiluvchanroq?" },
+      { ic: "📦", h: { uz: "SQL = uyachali qattiq quti", ru: 'SQL = жёсткая коробка с ячейками' }, body: { uz: <>SQL jadvalida ustunlar <b>oldindan belgilangan</b> — har qator bir xil uyachalarga ega. Yangi maydon uchun butun qutini qayta yasash kerak.</>, ru: <>В SQL-таблице столбцы <b>заданы заранее</b> — у каждой строки одни и те же ячейки. Ради нового поля придётся пересобрать всю коробку.</> } },
+      { ic: "🧾", h: { uz: "NoSQL = erkin { } paket", ru: 'NoSQL = свободный { } пакет' }, body: { uz: <>NoSQL hujjatiga <b>istalgan maydonni</b> bemalol qo'shasiz — paket kengayadi, boshqa hujjatlar o'zgarmaydi.</>, ru: <>В NoSQL-документ спокойно добавите <b>любое поле</b> — пакет расширится, а остальные документы не изменятся.</> } },
+      { ic: "🎵", h: { uz: "«musiqa» qaysi qadoqqa oson?", ru: 'Куда легко положить «музыку»?' }, body: { uz: <>Har yozuv har xil maydonga ega bo'lsa — <b>NoSQL</b> qulayroq. Shakli qat'iy bo'lsa — <b>SQL</b>.</>, ru: <>Если у каждой записи свои поля — удобнее <b>NoSQL</b>. Если форма строгая — <b>SQL</b>.</> }, ask: { uz: "Shakli tez-tez o'zgaradigan ma'lumot uchun qaysi oila egiluvchanroq?", ru: 'Какое семейство гибче для данных, чья форма часто меняется?' } },
     ]
   },
   6: {
-    title: "SQL kuchi — JOIN va ishonchlilik",
+    title: { uz: "SQL kuchi — JOIN va ishonchlilik", ru: 'Сила SQL — JOIN и надёжность' },
     cards: [
-      { ic: "🔗", h: "JOIN — ikki qutini id ipi bilan ulaydi", body: <><b>JOIN</b> ikki jadvalni <span className="mono">user_id</span> orqali bir-biriga bog'laydi — bir so'rovda javob.</> },
-      { ic: "🔒", h: "Tranzaksiya — ikki marta sotilmaydi", body: <>SQL bir lahzada faqat bittasiga sotadi — pul va buyurtmada <b>ishonchlilik</b> shu.</> },
-      { ic: "🧩", h: "Bog'langan ma'lumot — SQL ishi", body: <>users↔posts↔comments bir-biriga bog'langan bo'lsa — <b>SQL (JOIN)</b> qulay.</>, ask: "Ko'p bog'langan jadvallar bilan qaysi oila qulayroq?" },
+      { ic: "🔗", h: { uz: "JOIN — ikki qutini id ipi bilan ulaydi", ru: 'JOIN — связывает две коробки нитью id' }, body: { uz: <><b>JOIN</b> ikki jadvalni <span className="mono">user_id</span> orqali bir-biriga bog'laydi — bir so'rovda javob.</>, ru: <><b>JOIN</b> соединяет две таблицы через <span className="mono">user_id</span> — ответ одним запросом.</> } },
+      { ic: "🔒", h: { uz: "Tranzaksiya — ikki marta sotilmaydi", ru: 'Транзакция — дважды не продастся' }, body: { uz: <>SQL bir lahzada faqat bittasiga sotadi — pul va buyurtmada <b>ishonchlilik</b> shu.</>, ru: <>SQL в один миг продаёт только одному — в деньгах и заказах это и есть <b>надёжность</b>.</> } },
+      { ic: "🧩", h: { uz: "Bog'langan ma'lumot — SQL ishi", ru: 'Связанные данные — работа SQL' }, body: { uz: <>users↔posts↔comments bir-biriga bog'langan bo'lsa — <b>SQL (JOIN)</b> qulay.</>, ru: <>Если users↔posts↔comments связаны между собой — удобен <b>SQL (JOIN)</b>.</> }, ask: { uz: "Ko'p bog'langan jadvallar bilan qaysi oila qulayroq?", ru: 'С множеством связанных таблиц какое семейство удобнее?' } },
     ]
   },
   10: {
-    title: "Qaror — qaysi loyihaga qaysi baza",
+    title: { uz: "Qaror — qaysi loyihaga qaysi baza", ru: 'Решение — какому проекту какая база' },
     cards: [
-      { ic: "🏦", h: "Bank = bog'langan + ishonchli", body: <>Pul, hisob, o'tkazma bog'langan va xato qimmatga tushadi → <b>SQL</b> (tranzaksiya).</> },
-      { ic: "🧭", h: "Modaga emas, vazifaga qarab", body: <>«Zamonaviyroq» — sabab emas. Tanlov <b>vazifaga</b> bog'liq: bog'lanish/shakl/ishonchlilik/miqyos.</> },
-      { ic: "💬", h: "Ulkan + oddiy oqim = NoSQL", body: <>Millionlab oddiy chat xabari, tezlik kerak, bog'lanish kam → <b>NoSQL</b>.</>, ask: "Bank ilovasi (pul, hisoblar) uchun qaysi DB to'g'riroq?" },
+      { ic: "🏦", h: { uz: "Bank = bog'langan + ishonchli", ru: 'Банк = связанно + надёжно' }, body: { uz: <>Pul, hisob, o'tkazma bog'langan va xato qimmatga tushadi → <b>SQL</b> (tranzaksiya).</>, ru: <>Деньги, счета и переводы связаны, а ошибка обходится дорого → <b>SQL</b> (транзакции).</> } },
+      { ic: "🧭", h: { uz: "Modaga emas, vazifaga qarab", ru: 'Не по моде, а по задаче' }, body: { uz: <>«Zamonaviyroq» — sabab emas. Tanlov <b>vazifaga</b> bog'liq: bog'lanish/shakl/ishonchlilik/miqyos.</>, ru: <>«Современнее» — не аргумент. Выбор зависит от <b>задачи</b>: связи/форма/надёжность/масштаб.</> } },
+      { ic: "💬", h: { uz: "Ulkan + oddiy oqim = NoSQL", ru: 'Огромный + простой поток = NoSQL' }, body: { uz: <>Millionlab oddiy chat xabari, tezlik kerak, bog'lanish kam → <b>NoSQL</b>.</>, ru: <>Миллионы простых чат-сообщений, нужна скорость, связей мало → <b>NoSQL</b>.</> }, ask: { uz: "Bank ilovasi (pul, hisoblar) uchun qaysi DB to'g'riroq?", ru: 'Какая БД правильнее для банковского приложения (деньги, счета)?' } },
     ]
   },
   13: {
-    title: "Nega aynan PostgreSQL",
+    title: { uz: "Nega aynan PostgreSQL", ru: 'Почему именно PostgreSQL' },
     cards: [
-      { ic: "🐘", h: "PostgreSQL — bizning SQL qutimiz", body: <>Relyatsion (JOIN), ishonchli (tranzaksiya), bepul/ochiq kodli.</> },
-      { ic: "🔀", h: "JSON ham saqlaydi", body: <>Kerak bo'lsa PostgreSQL <b>JSON</b> ham saqlay oladi — NoSQL egiluvchanligi ham bor.</> },
-      { ic: "🅿️", h: "Stackning «P»si", body: <>React + Node + Express bilan ajoyib ishlaydi — bizning to'plamimiz.</>, ask: "Nega bizning loyihalar uchun PostgreSQL tanlanadi?" },
+      { ic: "🐘", h: { uz: "PostgreSQL — bizning SQL qutimiz", ru: 'PostgreSQL — наша SQL-коробка' }, body: { uz: <>Relyatsion (JOIN), ishonchli (tranzaksiya), bepul/ochiq kodli.</>, ru: <>Реляционная (JOIN), надёжная (транзакции), бесплатная и с открытым кодом.</> } },
+      { ic: "🔀", h: { uz: "JSON ham saqlaydi", ru: 'Хранит и JSON' }, body: { uz: <>Kerak bo'lsa PostgreSQL <b>JSON</b> ham saqlay oladi — NoSQL egiluvchanligi ham bor.</>, ru: <>Если нужно, PostgreSQL хранит и <b>JSON</b> — гибкость NoSQL тоже на месте.</> } },
+      { ic: "🅿️", h: { uz: "Stackning «P»si", ru: '«P» нашего стека' }, body: { uz: <>React + Node + Express bilan ajoyib ishlaydi — bizning to'plamimiz.</>, ru: <>Отлично работает с React + Node + Express — это наш набор.</> }, ask: { uz: "Nega bizning loyihalar uchun PostgreSQL tanlanadi?", ru: 'Почему для наших проектов выбирают PostgreSQL?' } },
     ]
   }
 };
@@ -502,23 +514,23 @@ function RecapOverlay({ screenIdx, onClose }) {
   return (
     <div className="rc-overlay">
       <div className="rc-head">
-        <span className="rc-tag">📖 Qayta tushuntirish</span>
-        <span className="rc-title">{rc.title}</span>
-        <button className="rc-x" onClick={onClose} aria-label="Yopish">✕</button>
+        <span className="rc-tag">{tr({ uz: '📖 Qayta tushuntirish', ru: '📖 Повторное объяснение' })}</span>
+        <span className="rc-title">{tr(rc.title)}</span>
+        <button className="rc-x" onClick={onClose} aria-label={tr({ uz: 'Yopish', ru: 'Закрыть' })}>✕</button>
       </div>
       <div className="rc-card" key={i}>
         <div className="rc-ic">{card.ic}</div>
-        <h2 className="rc-h">{card.h}</h2>
-        <p className="rc-body">{card.body}</p>
+        <h2 className="rc-h">{tr(card.h)}</h2>
+        <p className="rc-body">{tr(card.body)}</p>
         {card.vis && <div className="rc-vis">{card.vis}</div>}
-        {card.ask && <div className="rc-ask">🗣️ Sinfga savol: {card.ask}</div>}
+        {card.ask && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
       </div>
       <div className="rc-nav">
-        <button className="rc-btn ghost" disabled={i === 0} onClick={() => setI(i - 1)}>← Oldingi</button>
-        <div className="rc-dots">{rc.cards.map((_, k) => <button key={k} className={`rc-dot ${k === i ? 'cur' : k < i ? 'fill' : ''}`} onClick={() => setI(k)} aria-label={`${k + 1}-karta`} />)}</div>
+        <button className="rc-btn ghost" disabled={i === 0} onClick={() => setI(i - 1)}>{tr({ uz: '← Oldingi', ru: '← Предыдущая' })}</button>
+        <div className="rc-dots">{rc.cards.map((_, k) => <button key={k} className={`rc-dot ${k === i ? 'cur' : k < i ? 'fill' : ''}`} onClick={() => setI(k)} aria-label={`${k + 1}${tr({ uz: '-karta', ru: '-я карта' })}`} />)}</div>
         {last
-          ? <button className="rc-btn done" onClick={onClose}>✓ Tushunarli — davom etamiz</button>
-          : <button className="rc-btn" onClick={() => setI(i + 1)}>Keyingisi →</button>}
+          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: '✓ Tushunarli — davom etamiz', ru: '✓ Понятно — продолжаем' })}</button>
+          : <button className="rc-btn" onClick={() => setI(i + 1)}>{tr({ uz: 'Keyingisi →', ru: 'Дальше →' })}</button>}
       </div>
     </div>
   );
@@ -552,25 +564,25 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
   return (
     <div className="mstats fade-up">
       <div className="mstats-head">
-        <span className="mstats-lbl">📊 Jonli natija</span>
-        <span className="mstats-n">{allIn ? '✓ Hamma javob berdi' : <>Javob berdi: <b>{answered}</b> / {total}</>}</span>
-        {!reveal && onReveal && <button className={`mstats-reveal ${allIn ? 'ready' : ''}`} onClick={onReveal}>🔓 Natijani ochish</button>}
+        <span className="mstats-lbl">{tr({ uz: '📊 Jonli natija', ru: '📊 Живой результат' })}</span>
+        <span className="mstats-n">{allIn ? tr({ uz: '✓ Hamma javob berdi', ru: '✓ Все ответили' }) : <>{tr({ uz: 'Javob berdi:', ru: 'Ответили:' })} <b>{answered}</b> / {total}</>}</span>
+        {!reveal && onReveal && <button className={`mstats-reveal ${allIn ? 'ready' : ''}`} onClick={onReveal}>{tr({ uz: '🔓 Natijani ochish', ru: '🔓 Открыть результат' })}</button>}
       </div>
       <div className="mstats-prog"><span className={`mstats-prog-fill ${allIn ? 'full' : ''}`} style={{ width: `${total ? Math.round((answered / total) * 100) : 0}%` }} /></div>
       {reveal ? (
         <div className="mstats-big">
-          <div className="mstats-chip okc"><span className="mstats-chip-n">{ok}</span><span className="mstats-chip-t">to'g'ri ✅</span></div>
-          <div className="mstats-chip badc"><span className="mstats-chip-n">{bad}</span><span className="mstats-chip-t">xato ❌</span></div>
-          <div className="mstats-chip waitc"><span className="mstats-chip-n">{total - answered}</span><span className="mstats-chip-t">kutilmoqda ⏳</span></div>
+          <div className="mstats-chip okc"><span className="mstats-chip-n">{ok}</span><span className="mstats-chip-t">{tr({ uz: "to'g'ri ✅", ru: 'верно ✅' })}</span></div>
+          <div className="mstats-chip badc"><span className="mstats-chip-n">{bad}</span><span className="mstats-chip-t">{tr({ uz: 'xato ❌', ru: 'неверно ❌' })}</span></div>
+          <div className="mstats-chip waitc"><span className="mstats-chip-n">{total - answered}</span><span className="mstats-chip-t">{tr({ uz: 'kutilmoqda ⏳', ru: 'ожидаем ⏳' })}</span></div>
         </div>
       ) : (
         <div className="mstats-big">
-          <div className="mstats-chip ansc"><span className="mstats-chip-n">{answered}</span><span className="mstats-chip-t">javob berdi 📨</span></div>
-          <div className="mstats-chip waitc"><span className="mstats-chip-n">{total - answered}</span><span className="mstats-chip-t">kutilmoqda ⏳</span></div>
+          <div className="mstats-chip ansc"><span className="mstats-chip-n">{answered}</span><span className="mstats-chip-t">{tr({ uz: 'javob berdi 📨', ru: 'ответили 📨' })}</span></div>
+          <div className="mstats-chip waitc"><span className="mstats-chip-n">{total - answered}</span><span className="mstats-chip-t">{tr({ uz: 'kutilmoqda ⏳', ru: 'ожидаем ⏳' })}</span></div>
         </div>
       )}
       {!reveal && answered > 0 && (
-        <p className="mstats-hidden">🙈 Kim nimani tanlagani va ✅/❌ soni yashirin — «Natijani ochish» bosilganda sizda ham, o'quvchilar ekranida ham birdan ochiladi.</p>
+        <p className="mstats-hidden">{tr({ uz: "🙈 Kim nimani tanlagani va ✅/❌ soni yashirin — «Natijani ochish» bosilganda sizda ham, o'quvchilar ekranida ham birdan ochiladi.", ru: '🙈 Кто что выбрал и число ✅/❌ скрыто — при нажатии «Открыть результат» всё появится сразу и у вас, и на экранах учеников.' })}</p>
       )}
       {reveal && <div className="mstats-bars">
         {options.map((opt, i) => {
@@ -582,7 +594,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
             <div key={i} className={`mstats-row ${reveal && !isC ? 'dimmed' : ''}`}>
               <span className="mstats-abc" style={{ background: col }}>{isC ? '✓' : String.fromCharCode(65 + i)}</span>
               <span className="mstats-track"><span className="mstats-fill" style={{ width: `${answered ? Math.round((n / maxN) * 100) : 0}%`, background: col }} /></span>
-              <span className="mono mstats-count" style={isC ? { color: T.success, fontWeight: 800 } : undefined}>{n > 0 ? `${n} o'quvchi · ${pct}%` : '—'}</span>
+              <span className="mono mstats-count" style={isC ? { color: T.success, fontWeight: 800 } : undefined}>{n > 0 ? `${n} ${tr({ uz: "o'quvchi", ru: 'уч.' })} · ${pct}%` : '—'}</span>
             </div>
           );
         })}
@@ -592,23 +604,23 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
         const level = answered < RECAP_MIN_ANSWERS ? 'few' : pct < RECAP_NEED_PCT ? 'need' : pct < RECAP_GOOD_PCT ? 'maybe' : 'good';
         return (
           <div className={`mstats-verdict ${level}`}>
-            {level === 'need' && <p className="mstats-verdict-t">⚠️ Faqat <b>{pct}%</b> to'g'ri — bu mavzu sinfga tushunarsiz qolgan. Davom etishdan oldin qisqa takrorlash tavsiya etiladi.</p>}
-            {level === 'maybe' && <p className="mstats-verdict-t">🟡 <b>{pct}%</b> to'g'ri — yomon emas. Xohlasangiz, davom etishdan oldin qisqa takrorlab oling.</p>}
-            {level === 'good' && <p className="mstats-verdict-t">✅ <b>{pct}%</b> to'g'ri — sinf mavzuni o'zlashtirdi. Bemalol davom eting!</p>}
-            {level === 'few' && <p className="mstats-verdict-t">Javob berganlar kam ({answered} ta) — foiz bo'yicha xulosa chiqarish qiyin. O'zingiz baholang.</p>}
-            {onOpenRecap && level !== 'good' && level !== 'few' && <button className="rc-open soft" onClick={onOpenRecap}>📖 Qayta tushuntirish</button>}
+            {level === 'need' && <p className="mstats-verdict-t">{tr({ uz: <>⚠️ Faqat <b>{pct}%</b> to'g'ri — bu mavzu sinfga tushunarsiz qolgan. Davom etishdan oldin qisqa takrorlash tavsiya etiladi.</>, ru: <>⚠️ Только <b>{pct}%</b> верных — тема осталась непонятной классу. Перед продолжением рекомендуем короткое повторение.</> })}</p>}
+            {level === 'maybe' && <p className="mstats-verdict-t">{tr({ uz: <>🟡 <b>{pct}%</b> to'g'ri — yomon emas. Xohlasangiz, davom etishdan oldin qisqa takrorlab oling.</>, ru: <>🟡 <b>{pct}%</b> верных — неплохо. При желании коротко повторите перед продолжением.</> })}</p>}
+            {level === 'good' && <p className="mstats-verdict-t">{tr({ uz: <>✅ <b>{pct}%</b> to'g'ri — sinf mavzuni o'zlashtirdi. Bemalol davom eting!</>, ru: <>✅ <b>{pct}%</b> верных — класс усвоил тему. Смело продолжайте!</> })}</p>}
+            {level === 'few' && <p className="mstats-verdict-t">{tr({ uz: <>Javob berganlar kam ({answered} ta) — foiz bo'yicha xulosa chiqarish qiyin. O'zingiz baholang.</>, ru: <>Ответивших мало ({answered}) — по процентам судить трудно. Оцените сами.</> })}</p>}
+            {onOpenRecap && level !== 'good' && level !== 'few' && <button className="rc-open soft" onClick={onOpenRecap}>{tr({ uz: '📖 Qayta tushuntirish', ru: '📖 Повторное объяснение' })}</button>}
           </div>
         );
       })()}
       {waiting.length > 0 && answered > 0 && (
         <div className="mstats-waitrow">
-          <span className="mstats-wait-lbl">⏳ Kutilmoqda:</span>
+          <span className="mstats-wait-lbl">{tr({ uz: '⏳ Kutilmoqda:', ru: '⏳ Ожидаем:' })}</span>
           {waiting.slice(0, 8).map(p => <span key={p.id} className="mstats-wait-chip">{p.nickname}</span>)}
           {waiting.length > 8 && <span className="mstats-wait-chip more">+{waiting.length - 8}</span>}
         </div>
       )}
-      {reveal && struggling && <p className="mstats-warn">⚠️ Ko'pchilik xato qildi — bu mavzu tushunarsiz bo'lgan ko'rinadi. Qayta tushuntirish tavsiya etiladi.</p>}
-      {answered === 0 && <p className="mstats-wait">O'quvchilar javoblari shu yerda jonli ko'rinadi…</p>}
+      {reveal && struggling && <p className="mstats-warn">{tr({ uz: "⚠️ Ko'pchilik xato qildi — bu mavzu tushunarsiz bo'lgan ko'rinadi. Qayta tushuntirish tavsiya etiladi.", ru: '⚠️ Большинство ошиблось — похоже, тема осталась непонятной. Рекомендуем объяснить ещё раз.' })}</p>}
+      {answered === 0 && <p className="mstats-wait">{tr({ uz: "O'quvchilar javoblari shu yerda jonli ko'rinadi…", ru: 'Ответы учеников появятся здесь в реальном времени…' })}</p>}
     </div>
   );
 }
@@ -648,10 +660,10 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
   const revealed = !oneShot || !!(live && (live.revealScreen === screen || live.mentorScreen > screen || live.status === 'ended' || !live.mentorAlive));
   const waiting = oneShot && solved && !revealed;
   return (
-    <Stage eyebrow={eyebrow} screen={screen} narrow audioState={audioText ? audio : undefined} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={isMentorLive ? !mReveal : !solved} label={isMentorLive ? (mReveal ? 'Davom etish' : 'Avval natijani oching') : solved ? 'Davom etish' : (oneShot ? 'Javob tanlang' : "To'g'ri javobni toping")} onClick={onNext} /></>}>
+    <Stage eyebrow={eyebrow} screen={screen} narrow audioState={audioText ? audio : undefined} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={isMentorLive ? !mReveal : !solved} label={isMentorLive ? (mReveal ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Avval natijani oching', ru: 'Сначала откройте результат' })) : solved ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : (oneShot ? tr({ uz: 'Javob tanlang', ru: 'Выберите ответ' }) : tr({ uz: "To'g'ri javobni toping", ru: 'Найдите верный ответ' }))} onClick={onNext} /></>}>
       <div className="screen" style={{ justifyContent: isMentorLive ? 'flex-start' : 'center', gap: 'clamp(16px,2.5vw,24px)' }}>
         <div className="fade-up">{question}</div>
-        {oneShot && !solved && <p className="small mono fade-up" style={{ margin: '-8px 0 0', color: T.accent, fontWeight: 600 }}>⚡ Jonli dars — bitta urinish, o'ylab bosing!</p>}
+        {oneShot && !solved && <p className="small mono fade-up" style={{ margin: '-8px 0 0', color: T.accent, fontWeight: 600 }}>{tr({ uz: "⚡ Jonli dars — bitta urinish, o'ylab bosing!", ru: '⚡ Живой урок — одна попытка, подумайте перед нажатием!' })}</p>}
         <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
           {options.map((opt, i) => {
             let cls = 'option';
@@ -674,24 +686,24 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
         <FeedbackBlock show={isMentorLive ? mReveal : picked !== null} isCorrect={isMentorLive ? true : (solved && !wrongLocked)} neutral={waiting}>
           <p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
             {isMentorLive
-              ? <>✓ To'g'ri javob: {String.fromCharCode(65 + correctIdx)} — {fmtCode(options[correctIdx])}</>
+              ? <>{tr({ uz: "✓ To'g'ri javob:", ru: '✓ Верный ответ:' })} {String.fromCharCode(65 + correctIdx)} — {fmtCode(options[correctIdx])}</>
               : waiting
-                ? '📨 Javobingiz qabul qilindi'
+                ? tr({ uz: '📨 Javobingiz qabul qilindi', ru: '📨 Ваш ответ принят' })
                 : wrongLocked
-                  ? <>To'g'ri javob: {String.fromCharCode(65 + correctIdx)} — {fmtCode(options[correctIdx])}</>
-                  : solved ? "To'g'ri" : "Qaytadan urinib ko'ring"}
+                  ? <>{tr({ uz: "To'g'ri javob:", ru: 'Верный ответ:' })} {String.fromCharCode(65 + correctIdx)} — {fmtCode(options[correctIdx])}</>
+                  : solved ? tr({ uz: "To'g'ri", ru: 'Верно' }) : tr({ uz: "Qaytadan urinib ko'ring", ru: 'Попробуйте ещё раз' })}
           </p>
           <p className="body" style={{ margin: 0 }}>
             {isMentorLive
               ? fmtCode(explainCorrect)
               : waiting
-                ? "Hozir to'g'ri javobni bilib olasiz."
+                ? tr({ uz: "Hozir to'g'ri javobni bilib olasiz.", ru: 'Сейчас узнаете верный ответ.' })
                 : wrongLocked
                   ? fmtCode(explainWrong[picked] ?? explainWrong.default)
                   : solved ? fmtCode(explainCorrect) : fmtCode(explainWrong[picked] ?? explainWrong.default)}
           </p>
           {hasRecap && !isMentorLive && firstCorrectRef.current === false && (!oneShot || revealed) && (
-            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>📖 Qisqa takrorlash — mavzuni yana bir ko'rish</button>
+            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: "📖 Qisqa takrorlash — mavzuni yana bir ko'rish", ru: '📖 Короткое повторение — взглянуть на тему ещё раз' })}</button>
           )}
         </FeedbackBlock>
         {isMentorLive && <MentorTestStats live={live} screenIdx={screen} options={options} correctIdx={correctIdx} reveal={mReveal} onReveal={doReveal} onOpenRecap={hasRecap ? () => setRecapOpen(true) : null} />}
@@ -713,7 +725,7 @@ function ScoreRing({ correct, total }) {
         <circle cx="64" cy="64" r={R} fill="none" stroke={T.ink3 + '40'} strokeWidth={ST} />
         <circle cx="64" cy="64" r={R} fill="none" stroke={col} strokeWidth={ST} strokeLinecap="round" strokeDasharray={C} strokeDashoffset={off} transform="rotate(-90 64 64)" style={{ transition: 'stroke-dashoffset 1s cubic-bezier(.4,0,.2,1)' }} />
       </svg>
-      <div className="ring-center"><div className="ring-num"><span style={{ color: col }}>{correct}</span><span className="ring-den">/{total}</span></div><div className="ring-lbl">to'g'ri javob</div></div>
+      <div className="ring-center"><div className="ring-num"><span style={{ color: col }}>{correct}</span><span className="ring-den">/{total}</span></div><div className="ring-lbl">{tr({ uz: "to'g'ri javob", ru: 'верных ответов' })}</div></div>
     </div>
   );
 }
@@ -730,7 +742,7 @@ const Mentor = ({ children }) => {
         <img src={MENTOR_IMG} alt="" />
       </div>
       <div className="mentor-col">
-        <span className="mentor-name">Mentor{collapsed && <span className="mentor-cue"> · ko'rsatmani ochish ▾</span>}</span>
+        <span className="mentor-name">{tr({ uz: 'Mentor', ru: 'Ментор' })}{collapsed && <span className="mentor-cue"> · {tr({ uz: "ko'rsatmani ochish ▾", ru: 'открыть подсказку ▾' })}</span>}</span>
         <div className="mentor-msg body">{children}</div>
       </div>
     </div>
@@ -848,32 +860,32 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
   const tried = seen.has('sql') && seen.has('nosql');
   const swap = (v) => { setView(v); setSeen(prev => { const s = new Set(prev); s.add(v); return s; }); };
   const OPTS = [
-    { id: 'a', label: "SQL ko'rinishi — chunki jadval har doim to'g'ri" },
-    { id: 'b', label: "NoSQL ko'rinishi — chunki u zamonaviyroq" },
-    { id: 'c', label: "Ikkalasi ham to'g'ri — qaysi birini ishlatish vazifaga bog'liq" }
+    { id: 'a', label: tr({ uz: "SQL ko'rinishi — chunki jadval har doim to'g'ri", ru: 'Вид SQL — потому что таблица всегда права' }) },
+    { id: 'b', label: tr({ uz: "NoSQL ko'rinishi — chunki u zamonaviyroq", ru: 'Вид NoSQL — потому что он современнее' }) },
+    { id: 'c', label: tr({ uz: "Ikkalasi ham to'g'ri — qaysi birini ishlatish vazifaga bog'liq", ru: 'Оба правильные — какой использовать, зависит от задачи' }) }
   ];
   const pick = (v) => { if (picked !== null || !tried) return; setPicked(v); onAnswer(screen, { stage: 'hook', screenIdx: screen, picked: v, correct: true }); };
   return (
-    <Stage eyebrow="Kirish" screen={screen} audioState={audio} navContent={<NavNext optionalLive disabled={picked === null} label="Davom etish" onClick={onNext} />}>
+    <Stage eyebrow={tr({ uz: 'Kirish', ru: 'Введение' })} screen={screen} audioState={audio} navContent={<NavNext optionalLive disabled={picked === null} label={tr({ uz: 'Davom etish', ru: 'Продолжить' })} onClick={onNext} />}>
       <div className="screen">
-        <h1 className="title h-title fade-up" style={{ maxWidth: 840 }}>Bir xil ma'lumotni saqlashning <span className="italic" style={{ color: T.accent }}>ikki yo'li</span> bor. Qaysi biri to'g'ri?</h1>
-        <Mentor>O'tgan darsda Instagram sxemasini chizdik. Endi savol: uni qayerda saqlaymiz? Aslida <b style={{ color: T.ink }}>ikkita butunlay boshqacha dunyo</b> bor — <b style={{ color: T.accent }}>SQL</b> (chiroyli jadvallar) va <b style={{ color: T.blue }}>NoSQL</b> (egiluvchan hujjatlar). Ikkala ko'rinishni ko'ring — bu <b style={{ color: T.ink }}>aynan bir xil ma'lumot</b>, faqat boshqacha qadoqlangan.</Mentor>
+        <h1 className="title h-title fade-up" style={{ maxWidth: 840 }}>{tr({ uz: <>Bir xil ma'lumotni saqlashning <span className="italic" style={{ color: T.accent }}>ikki yo'li</span> bor. Qaysi biri to'g'ri?</>, ru: <>Есть <span className="italic" style={{ color: T.accent }}>два способа</span> хранить одни и те же данные. Какой из них правильный?</> })}</h1>
+        <Mentor>{tr({ uz: <>O'tgan darsda Instagram sxemasini chizdik. Endi savol: uni qayerda saqlaymiz? Aslida <b style={{ color: T.ink }}>ikkita butunlay boshqacha dunyo</b> bor — <b style={{ color: T.accent }}>SQL</b> (chiroyli jadvallar) va <b style={{ color: T.blue }}>NoSQL</b> (egiluvchan hujjatlar). Ikkala ko'rinishni ko'ring — bu <b style={{ color: T.ink }}>aynan bir xil ma'lumot</b>, faqat boshqacha qadoqlangan.</>, ru: <>На прошлом уроке мы нарисовали схему Instagram. Теперь вопрос: где её хранить? На самом деле есть <b style={{ color: T.ink }}>два совершенно разных мира</b> — <b style={{ color: T.accent }}>SQL</b> (аккуратные таблицы) и <b style={{ color: T.blue }}>NoSQL</b> (гибкие документы). Посмотрите оба вида — это <b style={{ color: T.ink }}>одни и те же данные</b>, просто упакованы по-разному.</> })}</Mentor>
         <Zoomable>
         <Split>
           <Col>
             <div className="fade-up delay-1" style={{ display: 'flex', gap: 8 }}>
-              <button className={`chip ${view === 'sql' ? 'chip-on' : ''} ${!seen.has('sql') ? 'taphint' : ''}`} onClick={() => swap('sql')}>SQL jadval {seen.has('sql') ? '✓' : ''}</button>
-              <button className={`chip ${view === 'nosql' ? 'chip-on' : ''} ${!seen.has('nosql') ? 'taphint' : ''}`} onClick={() => swap('nosql')}>NoSQL hujjat {seen.has('nosql') ? '✓' : ''}</button>
+              <button className={`chip ${view === 'sql' ? 'chip-on' : ''} ${!seen.has('sql') ? 'taphint' : ''}`} onClick={() => swap('sql')}>{tr({ uz: 'SQL jadval', ru: 'SQL-таблица' })} {seen.has('sql') ? '✓' : ''}</button>
+              <button className={`chip ${view === 'nosql' ? 'chip-on' : ''} ${!seen.has('nosql') ? 'taphint' : ''}`} onClick={() => swap('nosql')}>{tr({ uz: 'NoSQL hujjat', ru: 'NoSQL-документ' })} {seen.has('nosql') ? '✓' : ''}</button>
             </div>
-            <Win title={view === 'sql' ? 'PostgreSQL — posts jadvali' : 'MongoDB — posts hujjati'} minH={150}>
+            <Win title={view === 'sql' ? tr({ uz: 'PostgreSQL — posts jadvali', ru: 'PostgreSQL — таблица posts' }) : tr({ uz: 'MongoDB — posts hujjati', ru: 'MongoDB — документ posts' })} minH={150}>
               {view === 'sql'
                 ? <div className="demo-swap"><DataTable cols={['id', 'user_id', 'rasm', 'izoh']} rows={POSTS.slice(0, 3)} fkCols={['user_id']} /></div>
                 : <div className="demo-swap" style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>{POSTS.slice(0, 2).map(p => <JsonView key={p.id} obj={{ id: p.id, user_id: p.user_id, izoh: p.izoh }} />)}</div>}
             </Win>
-            <p className="mono small" style={{ margin: 0, color: view === 'sql' ? T.accent : T.blue }}>{view === 'sql' ? 'qator-ustun — qat\'iy tartib' : '{ } hujjat — egiluvchan'}</p>
+            <p className="mono small" style={{ margin: 0, color: view === 'sql' ? T.accent : T.blue }}>{view === 'sql' ? tr({ uz: "qator-ustun — qat'iy tartib", ru: 'строки-столбцы — строгий порядок' }) : tr({ uz: '{ } hujjat — egiluvchan', ru: '{ } документ — гибкий' })}</p>
           </Col>
           <Col>
-            <p className="eyebrow fade-up delay-2" style={{ color: T.ink2, margin: 0 }}>Sizningcha, qaysi biri to'g'ri saqlash usuli?</p>
+            <p className="eyebrow fade-up delay-2" style={{ color: T.ink2, margin: 0 }}>{tr({ uz: "Sizningcha, qaysi biri to'g'ri saqlash usuli?", ru: 'Как вам кажется, какой способ хранения правильный?' })}</p>
             <div className="fade-up delay-3" style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
               {OPTS.map(o => {
                 const on = picked === o.id;
@@ -885,8 +897,8 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
                 );
               })}
             </div>
-            {!tried && <p className="small" style={{ color: T.ink3, fontStyle: 'italic', margin: 0 }}>Avval ikkala ko'rinishni bosib ko'ring ←</p>}
-            {picked !== null && <p className="hook-ack fade-step">Aynan! Hech biri "noto'g'ri" emas — <b>ikkalasi ham ishlaydi</b>. Savol shundaki: <b>qaysi vazifa uchun qaysi biri yaxshiroq?</b> Bugun shu tanlovni qilishni o'rganamiz — va nega bizning loyihalarga PostgreSQL mos kelishini ko'ramiz.</p>}
+            {!tried && <p className="small" style={{ color: T.ink3, fontStyle: 'italic', margin: 0 }}>{tr({ uz: "Avval ikkala ko'rinishni bosib ko'ring ←", ru: 'Сначала нажмите и посмотрите оба вида ←' })}</p>}
+            {picked !== null && <p className="hook-ack fade-step">{tr({ uz: <>Aynan! Hech biri "noto'g'ri" emas — <b>ikkalasi ham ishlaydi</b>. Savol shundaki: <b>qaysi vazifa uchun qaysi biri yaxshiroq?</b> Bugun shu tanlovni qilishni o'rganamiz — va nega bizning loyihalarga PostgreSQL mos kelishini ko'ramiz.</>, ru: <>Именно! Ни один не «неправильный» — <b>работают оба</b>. Вопрос в другом: <b>какой лучше для какой задачи?</b> Сегодня научимся делать этот выбор — и увидим, почему нашим проектам подходит PostgreSQL.</> })}</p>}
           </Col>
         </Split>
         </Zoomable>
@@ -899,46 +911,46 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
 const Screen1 = ({ screen, onNext, onPrev }) => {
   const audio = useAudio([{ id: 's1', text: "Bugun ikki dunyo orasidan to'g'ri tanlashni o'rganamiz. SQL — qattiq uyachali quti, NoSQL — erkin paket. Dars oxirida esa qaror kompasini ishlatib, loyihangizga qaysi biri mosligini o'zingiz aniqlaysiz.", trigger: 'on_mount', waits_for: null }]);
   const STEPS = [
-    { text: "Ikki oila — SQL va NoSQL", tag: 'PostgreSQL · MongoDB' },
-    { text: "Shakl — qat'iy jadval vs erkin hujjat", tag: 'shape' },
-    { text: "Har biri nimada kuchli", tag: 'bog\'lanish · tezlik' },
-    { text: "Qaror mezonlari — qachon qaysi biri", tag: '4 savol' },
-    { text: "Nega bizga PostgreSQL", tag: 'bog\'langan + ishonchli' }
+    { text: tr({ uz: "Ikki oila — SQL va NoSQL", ru: 'Два семейства — SQL и NoSQL' }), tag: 'PostgreSQL · MongoDB' },
+    { text: tr({ uz: "Shakl — qat'iy jadval vs erkin hujjat", ru: 'Форма — строгая таблица vs свободный документ' }), tag: 'shape' },
+    { text: tr({ uz: "Har biri nimada kuchli", ru: 'В чём сильно каждое' }), tag: tr({ uz: "bog'lanish · tezlik", ru: 'связи · скорость' }) },
+    { text: tr({ uz: "Qaror mezonlari — qachon qaysi biri", ru: 'Критерии решения — когда какое' }), tag: tr({ uz: '4 savol', ru: '4 вопроса' }) },
+    { text: tr({ uz: "Nega bizga PostgreSQL", ru: 'Почему нам PostgreSQL' }), tag: tr({ uz: "bog'langan + ishonchli", ru: 'связанно + надёжно' }) }
   ];
   const isNarrow = useIsMobile(768);
   const [showSteps, setShowSteps] = useState(false);
   const PreviewBlock = (
     <Col>
-      <p className="flow-label">Dars oxirida — siz ishlatadigan qaror kompasi</p>
-      <Win title="qaror kompasi" minH={172}>
+      <p className="flow-label">{tr({ uz: 'Dars oxirida — siz ishlatadigan qaror kompasi', ru: 'В конце урока — компас решений, которым воспользуетесь вы' })}</p>
+      <Win title={tr({ uz: 'qaror kompasi', ru: 'компас решений' })} minH={172}>
         <div className="fade-up delay-1" style={{ display: 'flex', justifyContent: 'center' }}><Compass lean={0.7} /></div>
       </Win>
-      <p className="mono small" style={{ color: T.accent, margin: 0 }}>→ loyihaga 4 savol berasiz, strelka to'g'ri DB'ni ko'rsatadi</p>
+      <p className="mono small" style={{ color: T.accent, margin: 0 }}>{tr({ uz: "→ loyihaga 4 savol berasiz, strelka to'g'ri DB'ni ko'rsatadi", ru: '→ зададите проекту 4 вопроса — стрелка укажет верную БД' })}</p>
     </Col>
   );
   const StepsBlock = (
     <Col>
-      <p className="flow-label">Bugungi 5 qadam</p>
+      <p className="flow-label">{tr({ uz: 'Bugungi 5 qadam', ru: 'Сегодняшние 5 шагов' })}</p>
       <ol className="roadmap">
         {STEPS.map((s, i) => (<li key={i} className="step-card fade-up" style={{ animationDelay: `${0.08 + i * 0.05}s` }}><span className="step-num">{String(i + 1).padStart(2, '0')}</span><span className="step-body"><span className="step-text">{s.text}</span>{s.tag && <span className="step-tag">{s.tag}</span>}</span></li>))}
       </ol>
     </Col>
   );
   return (
-    <Stage eyebrow="Reja" screen={screen} mentorStatic audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext label="Boshlaymiz →" onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Reja', ru: 'План' })} screen={screen} mentorStatic audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext label={tr({ uz: 'Boshlaymiz →', ru: 'Начинаем →' })} onClick={onNext} /></>}>
       <div className="screen">
-        <div className="head"><h2 className="title h-title fade-up">Ikki dunyo orasidan <span className="italic" style={{ color: T.accent }}>to'g'ri tanlash</span></h2></div>
-        <Mentor>Ishonasizmi — dars oxirida loyihangiz uchun <b style={{ color: T.ink }}>qaysi ma'lumotlar bazasi to'g'ri kelishini</b> o'zingiz aniqlay olasiz. SQL ham, NoSQL ham zo'r — gap ularni <b style={{ color: T.ink }}>qachon ishlatishni</b> bilishda. O'ngdagi kompas bizni shu qarorga olib boradi.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Ikki dunyo orasidan <span className="italic" style={{ color: T.accent }}>to'g'ri tanlash</span></>, ru: <>Сделать <span className="italic" style={{ color: T.accent }}>верный выбор</span> между двумя мирами</> })}</h2></div>
+        <Mentor>{tr({ uz: <>Ishonasizmi — dars oxirida loyihangiz uchun <b style={{ color: T.ink }}>qaysi ma'lumotlar bazasi to'g'ri kelishini</b> o'zingiz aniqlay olasiz. SQL ham, NoSQL ham zo'r — gap ularni <b style={{ color: T.ink }}>qachon ishlatishni</b> bilishda. O'ngdagi kompas bizni shu qarorga olib boradi.</>, ru: <>Поверите ли — к концу урока вы сами определите, <b style={{ color: T.ink }}>какая база данных подходит вашему проекту</b>. И SQL, и NoSQL хороши — вся суть в том, чтобы знать, <b style={{ color: T.ink }}>когда какую использовать</b>. Компас справа приведёт нас к этому решению.</> })}</Mentor>
         {!isNarrow ? (
           <Zoomable><Split>{PreviewBlock}{StepsBlock}</Split></Zoomable>
         ) : !showSteps ? (
           <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px,2vw,16px)' }}>
             {PreviewBlock}
-            <button className="btn" style={{ alignSelf: 'flex-start' }} onClick={() => setShowSteps(true)}>Bugungi 5 qadamni ko'rish</button>
+            <button className="btn" style={{ alignSelf: 'flex-start' }} onClick={() => setShowSteps(true)}>{tr({ uz: "Bugungi 5 qadamni ko'rish", ru: 'Посмотреть сегодняшние 5 шагов' })}</button>
           </div>
         ) : (
           <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px,2vw,16px)' }}>
-            <button className="btn-soft" style={{ alignSelf: 'flex-start' }} onClick={() => setShowSteps(false)}>↩ Natijani ko'rish</button>
+            <button className="btn-soft" style={{ alignSelf: 'flex-start' }} onClick={() => setShowSteps(false)}>{tr({ uz: "↩ Natijani ko'rish", ru: '↩ Посмотреть результат' })}</button>
             {StepsBlock}
           </div>
         )}
@@ -951,8 +963,8 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
 const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const audio = useAudio([{ id: 's2', text: "Dunyodagi barcha bazalar ikki oilaga bo'linadi. SQL — relyatsion, jadvalli qutilar oilasi: PostgreSQL, MySQL. NoSQL — erkin hujjatli paketlar oilasi: MongoDB, Firebase. Ikkalasini bosib, farqini ko'ring.", trigger: 'on_mount', waits_for: null }]);
   const FAM = {
-    sql: { name: 'SQL — relyatsion', members: 'PostgreSQL · MySQL · SQLite', store: 'Jadvallar (qator/ustun)', idea: "Ma'lumot qat'iy jadvallarda, hammasi bog'langan. Excel jadvaliga o'xshaydi — har qatorda bir xil ustunlar." },
-    nosql: { name: 'NoSQL — hujjatli', members: 'MongoDB · Firebase · Redis', store: 'Hujjatlar (JSON)', idea: "Ma'lumot erkin hujjatlarda. Har hujjat o'z shakliga ega bo'lishi mumkin — papkadagi turli qog'ozlar kabi." }
+    sql: { name: tr({ uz: 'SQL — relyatsion', ru: 'SQL — реляционные' }), members: 'PostgreSQL · MySQL · SQLite', store: tr({ uz: 'Jadvallar (qator/ustun)', ru: 'Таблицы (строки/столбцы)' }), idea: tr({ uz: "Ma'lumot qat'iy jadvallarda, hammasi bog'langan. Excel jadvaliga o'xshaydi — har qatorda bir xil ustunlar.", ru: 'Данные в строгих таблицах, всё связано. Похоже на таблицу Excel — в каждой строке одни и те же столбцы.' }) },
+    nosql: { name: tr({ uz: 'NoSQL — hujjatli', ru: 'NoSQL — документные' }), members: 'MongoDB · Firebase · Redis', store: tr({ uz: 'Hujjatlar (JSON)', ru: 'Документы (JSON)' }), idea: tr({ uz: "Ma'lumot erkin hujjatlarda. Har hujjat o'z shakliga ega bo'lishi mumkin — papkadagi turli qog'ozlar kabi.", ru: 'Данные в свободных документах. У каждого документа может быть своя форма — как разные бумаги в папке.' }) }
   };
   const [active, setActive] = useState('sql');
   const [seen, setSeen] = useState(storedAnswer ? new Set(['sql', 'nosql']) : new Set(['sql']));
@@ -961,10 +973,10 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const cur = FAM[active];
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   return (
-    <Stage eyebrow="Ikki oila" screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? 'Davom etish' : `${seen.size}/2 oila ko'rildi`} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Ikki oila', ru: 'Два семейства' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : `${seen.size}/2 ${tr({ uz: "oila ko'rildi", ru: 'семейства просмотрено' })}`} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Ma'lumotlar bazalari <span className="italic" style={{ color: T.accent }}>ikki oilaga</span> bo'linadi</h2></div>
-        <Mentor>Dunyodagi barcha bazalar ikki katta oilaga bo'linadi: <b style={{ color: T.accent }}>SQL</b> (relyatsion — jadvalli) va <b style={{ color: T.blue }}>NoSQL</b> (hujjatli). Har oilada ko'p a'zo bor. Ikkalasini bosib, farqini ko'ring.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Ma'lumotlar bazalari <span className="italic" style={{ color: T.accent }}>ikki oilaga</span> bo'linadi</>, ru: <>Базы данных делятся на <span className="italic" style={{ color: T.accent }}>два семейства</span></> })}</h2></div>
+        <Mentor>{tr({ uz: <>Dunyodagi barcha bazalar ikki katta oilaga bo'linadi: <b style={{ color: T.accent }}>SQL</b> (relyatsion — jadvalli) va <b style={{ color: T.blue }}>NoSQL</b> (hujjatli). Har oilada ko'p a'zo bor. Ikkalasini bosib, farqini ko'ring.</>, ru: <>Все базы мира делятся на два больших семейства: <b style={{ color: T.accent }}>SQL</b> (реляционные — табличные) и <b style={{ color: T.blue }}>NoSQL</b> (документные). В каждом семействе много членов. Нажмите на оба и посмотрите разницу.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
@@ -975,12 +987,12 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <div className="sk-info" key={active}>
               <span className="sk-tagbig"><span className="sk-wordbadge" style={{ background: active === 'sql' ? T.accentSoft : T.blueSoft, color: active === 'sql' ? T.accent : T.blue }}>{cur.name}</span></span>
               <p className="body" style={{ color: T.ink, margin: '11px 0 0' }}>{cur.idea}</p>
-              <p className="small" style={{ color: T.ink2, margin: '8px 0 0' }}>A'zolari: <span className="mono">{cur.members}</span></p>
+              <p className="small" style={{ color: T.ink2, margin: '8px 0 0' }}>{tr({ uz: "A'zolari:", ru: 'Члены семейства:' })} <span className="mono">{cur.members}</span></p>
             </div>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Ikki oila — ikki xil fikrlash. <b>SQL</b> = jadval va qoidalar. <b>NoSQL</b> = erkin hujjatlar. Endi asosiy farqni ko'ramiz: shakl.</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Ikki oila — ikki xil fikrlash. <b>SQL</b> = jadval va qoidalar. <b>NoSQL</b> = erkin hujjatlar. Endi asosiy farqni ko'ramiz: shakl.</>, ru: <>Два семейства — два образа мышления. <b>SQL</b> = таблицы и правила. <b>NoSQL</b> = свободные документы. Теперь посмотрим главное отличие: форму.</> })}</p></div>}
           </Col>
           <Col>
-            <p className="flow-label">{active === 'sql' ? 'Jadval ko\'rinishi' : 'Hujjat ko\'rinishi'}</p>
+            <p className="flow-label">{active === 'sql' ? tr({ uz: "Jadval ko'rinishi", ru: 'Вид таблицы' }) : tr({ uz: "Hujjat ko'rinishi", ru: 'Вид документа' })}</p>
             {active === 'sql'
               ? <DataTable cols={['id', 'username']} rows={USERS} />
               : <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>{USERS.slice(0, 2).map(u => <JsonView key={u.id} obj={{ id: u.id, username: u.username }} />)}</div>}
@@ -997,8 +1009,8 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const QX_CARDS = [
   { id: 'idc',   label: 'id · 10',       col: 'id',       icon: '🔢' },
   { id: 'user',  label: 'ali_dev',       col: 'user_id',  icon: '👤' },
-  { id: 'rasm',  label: "Tog' surati", col: 'rasm',  icon: '🖼' },
-  { id: 'izoh',  label: "Tog' sayohati", col: 'izoh', icon: '📝' },
+  { id: 'rasm',  label: { uz: "Tog' surati", ru: 'Фото гор' }, col: 'rasm',  icon: '🖼' },
+  { id: 'izoh',  label: { uz: "Tog' sayohati", ru: 'Поход в горы' }, col: 'izoh', icon: '📝' },
   { id: 'music', label: 'Lo-fi',         col: null,       icon: '🎵' },
 ];
 const QX_SLOTS = [
@@ -1044,7 +1056,7 @@ function Qadoqxona({ solvedInit, onSolved }) {
     window.addEventListener('pointermove', mv); window.addEventListener('pointerup', up);
   };
   const cardEl = (id, from) => (
-    <button key={id} className={`qx-card ${QX_BYID[id].col ? '' : 'weird'} ${reject === id ? 'reject' : ''}`} onPointerDown={(e) => down(e, id, from)}><span className="qx-ic">{QX_BYID[id].icon}</span>{QX_BYID[id].label}</button>
+    <button key={id} className={`qx-card ${QX_BYID[id].col ? '' : 'weird'} ${reject === id ? 'reject' : ''}`} onPointerDown={(e) => down(e, id, from)}><span className="qx-ic">{QX_BYID[id].icon}</span>{tr(QX_BYID[id].label)}</button>
   );
   const pool = QX_CARDS.filter(c => place[c.id] === 'pool').map(c => c.id);
   const nosqlCards = QX_CARDS.filter(c => place[c.id] === 'nosql').map(c => c.id);
@@ -1052,33 +1064,33 @@ function Qadoqxona({ solvedInit, onSolved }) {
     <div className="qx-wrap fade-up">
       <div className="qx-zones">
         <div ref={sqlRef} className="qx-zone sql">
-          <div className="qx-zone-h"><DbBadge kind="sql" /> <span>uyachali quti — har kartaga aniq uyacha</span></div>
+          <div className="qx-zone-h"><DbBadge kind="sql" /> <span>{tr({ uz: 'uyachali quti — har kartaga aniq uyacha', ru: 'коробка с ячейками — каждой карточке своя ячейка' })}</span></div>
           <div className="qx-slots">
             {QX_SLOTS.map(s => {
               const card = QX_CARDS.find(c => c.col === s.col && place[c.id] === 'sql');
               return (
                 <div key={s.col} className={`qx-slot ${card ? 'filled' : ''}`}>
                   <span className="qx-slot-lbl">{s.label}</span>
-                  {card ? cardEl(card.id, 'sql') : <span className="qx-slot-hint">bo'sh uyacha</span>}
+                  {card ? cardEl(card.id, 'sql') : <span className="qx-slot-hint">{tr({ uz: "bo'sh uyacha", ru: 'пустая ячейка' })}</span>}
                 </div>
               );
             })}
           </div>
         </div>
         <div ref={nosqlRef} className="qx-zone nosql">
-          <div className="qx-zone-h"><DbBadge kind="nosql" /> <span>erkin { '{ }' } paket — istalgan karta kengaytiradi</span></div>
+          <div className="qx-zone-h"><DbBadge kind="nosql" /> <span>{tr({ uz: <>erkin { '{ }' } paket — istalgan karta kengaytiradi</>, ru: <>свободный { '{ }' } пакет — любая карточка расширит его</> })}</span></div>
           <div className="qx-nos-body">
             <span className="qx-brace">{'{'}</span>
-            {nosqlCards.length === 0 && <span className="qx-nos-empty">bu yerga istalgan kartani — hatto 🎵 ni ham — tashlang</span>}
+            {nosqlCards.length === 0 && <span className="qx-nos-empty">{tr({ uz: 'bu yerga istalgan kartani — hatto 🎵 ni ham — tashlang', ru: 'бросайте сюда любую карточку — даже 🎵' })}</span>}
             {nosqlCards.map(id => cardEl(id, 'nosql'))}
             <span className="qx-brace">{'}'}</span>
           </div>
         </div>
       </div>
       <div className="qx-pool">
-        {pool.length === 0 ? <span className="qx-pool-empty">Hamma karta qadoqlandi</span> : pool.map(id => cardEl(id, 'pool'))}
+        {pool.length === 0 ? <span className="qx-pool-empty">{tr({ uz: 'Hamma karta qadoqlandi', ru: 'Все карточки упакованы' })}</span> : pool.map(id => cardEl(id, 'pool'))}
       </div>
-      {solved && <div className="qx-done">✓ Qadoqlandi! Oddiy maydonlar SQL qutida, 🎵 esa erkin NoSQL paketda — chunki SQL jadvalida bunday ustun yo'q.</div>}
+      {solved && <div className="qx-done">{tr({ uz: "✓ Qadoqlandi! Oddiy maydonlar SQL qutida, 🎵 esa erkin NoSQL paketda — chunki SQL jadvalida bunday ustun yo'q.", ru: '✓ Упаковано! Обычные поля — в SQL-коробке, а 🎵 — в свободном NoSQL-пакете, потому что в SQL-таблице такого столбца нет.' })}</div>}
     </div>
   );
 }
@@ -1090,10 +1102,10 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const done = packed;
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   return (
-    <Stage eyebrow="Shakl · qadoqxona" screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? 'Davom etish' : "Kartalarni qadoqlang"} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Shakl · qadoqxona', ru: 'Форма · упаковочная' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Kartalarni qadoqlang', ru: 'Упакуйте карточки' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Bir xil ma'lumot — <span className="italic" style={{ color: T.accent }}>ikki xil qadoq</span></h2></div>
-        <Mentor>Siz — qadoqlovchisiz. Instagram-post kartalarini ikki stansiyaga taqsimlang. <b style={{ color: T.accent }}>SQL quti</b>ning uyachalari oldindan belgilangan — har karta o'z uyachasiga tushadi. Lekin <b style={{ color: T.ink }}>🎵 musiqa</b> uchun uyacha yo'q! Uni <b style={{ color: T.blue }}>NoSQL paket</b>iga tashlang — u istalgan maydonni bemalol qabul qiladi. Kartani <b style={{ color: T.ink }}>sudrab</b> yoki <b style={{ color: T.ink }}>bosib</b> joylang.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Bir xil ma'lumot — <span className="italic" style={{ color: T.accent }}>ikki xil qadoq</span></>, ru: <>Одни данные — <span className="italic" style={{ color: T.accent }}>две разные упаковки</span></> })}</h2></div>
+        <Mentor>{tr({ uz: <>Siz — qadoqlovchisiz. Instagram-post kartalarini ikki stansiyaga taqsimlang. <b style={{ color: T.accent }}>SQL quti</b>ning uyachalari oldindan belgilangan — har karta o'z uyachasiga tushadi. Lekin <b style={{ color: T.ink }}>🎵 musiqa</b> uchun uyacha yo'q! Uni <b style={{ color: T.blue }}>NoSQL paket</b>iga tashlang — u istalgan maydonni bemalol qabul qiladi. Kartani <b style={{ color: T.ink }}>sudrab</b> yoki <b style={{ color: T.ink }}>bosib</b> joylang.</>, ru: <>Вы — упаковщик. Разложите карточки Instagram-поста по двум станциям. Ячейки <b style={{ color: T.accent }}>SQL-коробки</b> заданы заранее — каждая карточка ложится в свою ячейку. Но для <b style={{ color: T.ink }}>🎵 музыки</b> ячейки нет! Бросьте её в <b style={{ color: T.blue }}>NoSQL-пакет</b> — он спокойно примет любое поле. Карточку можно <b style={{ color: T.ink }}>перетащить</b> или <b style={{ color: T.ink }}>нажать</b>.</> })}</Mentor>
         <Qadoqxona solvedInit={!!storedAnswer} onSolved={() => setPacked(true)} />
       </div>
     </Stage>
@@ -1102,17 +1114,17 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 
 // ===== SCREEN 4 — TEST 1 (egiluvchanlik) =====
 const Screen4 = (props) => (
-  <QuestionScreen {...props} idx={4} scope="module-mikro" eyebrow="Mashq · 1-savol"
+  <QuestionScreen {...props} idx={4} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 1-savol', ru: 'Практика · вопрос 1' })}
     audioText="Bir yozuvga «musiqa» kabi g'alati maydon kerak bo'lsa — qaysi qadoq oson kengayadi? SQL qutining uyachalari oldindan qat'iy belgilangan, NoSQL paketi esa istalgan maydonni bemalol qabul qiladi. Javobni tanlang."
     questionText="Har element har xil maydonga ega bo'lishi mumkin bo'lsa, qaysi oila qulayroq?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-sub" style={{ marginTop: 8 }}>Shakli tez-tez o'zgaradigan, har xil ma'lumot uchun <span className="italic" style={{ color: T.accent }}>qaysi oila</span> egiluvchanroq?</h2></>}
-    options={["SQL — har qator bir xil ustun bo'lishi shart", "Ikkalasi ham bir xil darajada egiluvchan", "NoSQL — har hujjat o'z maydonlariga ega bo'la oladi", "Hech biri yangi maydon qo'sha olmaydi"]} correctIdx={2}
-    explainCorrect="To'g'ri! NoSQL hujjatlari erkin shaklga ega — har biriga turli maydon qo'shsa bo'ladi. SQL'da esa ustunlar oldindan qat'iy belgilangan."
+    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-sub" style={{ marginTop: 8 }}>{tr({ uz: <>Shakli tez-tez o'zgaradigan, har xil ma'lumot uchun <span className="italic" style={{ color: T.accent }}>qaysi oila</span> egiluvchanroq?</>, ru: <>Для разных данных с часто меняющейся формой <span className="italic" style={{ color: T.accent }}>какое семейство</span> гибче?</> })}</h2></>}
+    options={[tr({ uz: "SQL — har qator bir xil ustun bo'lishi shart", ru: 'SQL — в каждой строке должны быть одни и те же столбцы' }), tr({ uz: 'Ikkalasi ham bir xil darajada egiluvchan', ru: 'Оба одинаково гибкие' }), tr({ uz: "NoSQL — har hujjat o'z maydonlariga ega bo'la oladi", ru: 'NoSQL — у каждого документа могут быть свои поля' }), tr({ uz: "Hech biri yangi maydon qo'sha olmaydi", ru: 'Ни одно не может добавить новое поле' })]} correctIdx={2}
+    explainCorrect={tr({ uz: "To'g'ri! NoSQL hujjatlari erkin shaklga ega — har biriga turli maydon qo'shsa bo'ladi. SQL'da esa ustunlar oldindan qat'iy belgilangan.", ru: 'Верно! Документы NoSQL свободной формы — в каждый можно добавить разные поля. А в SQL столбцы жёстко заданы заранее.' })}
     explainWrong={{
-      0: "Aksincha — SQL qat'iy: har qator bir xil ustunga ega bo'lishi shart. Egiluvchanlik NoSQL'da.",
-      1: "Yo'q — farqi katta: SQL qat'iy, NoSQL erkin shaklli.",
-      3: "Yo'q — ikkalasi ham qo'sha oladi, lekin NoSQL buni osonroq qiladi (jadvalni qayta tuzmasdan).",
-      default: "Egiluvchan shakl — NoSQL'ning kuchi."
+      0: tr({ uz: "Aksincha — SQL qat'iy: har qator bir xil ustunga ega bo'lishi shart. Egiluvchanlik NoSQL'da.", ru: 'Наоборот — SQL строгий: у каждой строки должны быть одни и те же столбцы. Гибкость — у NoSQL.' }),
+      1: tr({ uz: "Yo'q — farqi katta: SQL qat'iy, NoSQL erkin shaklli.", ru: 'Нет — разница большая: SQL строгий, NoSQL свободной формы.' }),
+      3: tr({ uz: "Yo'q — ikkalasi ham qo'sha oladi, lekin NoSQL buni osonroq qiladi (jadvalni qayta tuzmasdan).", ru: 'Нет — добавить могут оба, но NoSQL делает это проще (без перестройки таблицы).' }),
+      default: tr({ uz: "Egiluvchan shakl — NoSQL'ning kuchi.", ru: 'Гибкая форма — сила NoSQL.' })
     }} />
 );
 
@@ -1145,10 +1157,10 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const clickFk = () => { if (joined) return; setArmed(true); };
   const clickPk = () => { if (joined || !armed) return; setJoined(true); setArmed(false); };
   return (
-    <Stage eyebrow="SQL kuchi · JOIN" screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? 'Davom etish' : "Ikki qutini id ipi bilan ulang"} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'SQL kuchi · JOIN', ru: 'Сила SQL · JOIN' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Ikki qutini id ipi bilan ulang', ru: 'Свяжите две коробки нитью id' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Ikki qutini <span className="italic" style={{ color: T.accent }}>id ipi bilan ulang</span> — bu SQL'ning kuchi</h2></div>
-        <Mentor>SQL'ning eng kuchli tomoni — <b style={{ color: T.ink }}>JOIN</b>: ikki qutini (jadvalni) <span className="mono">id</span> orqali bog'laydi. Avval <span className="mono">posts</span> qutisidagi <b style={{ color: T.accent }}>user_id</b> ipini bosing, keyin <span className="mono">users</span> qutisidagi <b style={{ color: T.blue }}>id</b> uyachasini bosing — ip ulanadi va har postga egasi qo'shiladi. Erkin NoSQL paketlarda bunday ip ulanmaydi.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Ikki qutini <span className="italic" style={{ color: T.accent }}>id ipi bilan ulang</span> — bu SQL'ning kuchi</>, ru: <>Свяжите две коробки <span className="italic" style={{ color: T.accent }}>нитью id</span> — это сила SQL</> })}</h2></div>
+        <Mentor>{tr({ uz: <>SQL'ning eng kuchli tomoni — <b style={{ color: T.ink }}>JOIN</b>: ikki qutini (jadvalni) <span className="mono">id</span> orqali bog'laydi. Avval <span className="mono">posts</span> qutisidagi <b style={{ color: T.accent }}>user_id</b> ipini bosing, keyin <span className="mono">users</span> qutisidagi <b style={{ color: T.blue }}>id</b> uyachasini bosing — ip ulanadi va har postga egasi qo'shiladi. Erkin NoSQL paketlarda bunday ip ulanmaydi.</>, ru: <>Самая сильная сторона SQL — <b style={{ color: T.ink }}>JOIN</b>: он связывает две коробки (таблицы) через <span className="mono">id</span>. Сначала нажмите нить <b style={{ color: T.accent }}>user_id</b> в коробке <span className="mono">posts</span>, затем ячейку <b style={{ color: T.blue }}>id</b> в коробке <span className="mono">users</span> — нить соединится, и к каждому посту добавится владелец. В свободных NoSQL-пакетах такая нить не протягивается.</> })}</Mentor>
         <Zoomable>
         <div className="jn-wrap">
           <div ref={boxesRef} className="jn-boxes">
@@ -1160,7 +1172,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             </div>
             <div className="jn-box">
               <div className="jn-box-h">users</div>
-              <div ref={pkRef} className={`jn-field link ${joined ? 'done' : ''} ${armed && !joined ? 'taphint' : ''}`} onClick={clickPk}><span className="jn-badge pk">PK</span> id · 1 {joined ? '🔗' : (armed ? '⟵ bosing' : '')}</div>
+              <div ref={pkRef} className={`jn-field link ${joined ? 'done' : ''} ${armed && !joined ? 'taphint' : ''}`} onClick={clickPk}><span className="jn-badge pk">PK</span> id · 1 {joined ? '🔗' : (armed ? tr({ uz: '⟵ bosing', ru: '⟵ нажмите' }) : '')}</div>
               <div className="jn-field">username · ali_dev</div>
             </div>
             {line && (
@@ -1171,10 +1183,10 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               </svg>
             )}
           </div>
-          {!joined && <p className="jn-hint">{armed ? "Endi users qutisidagi id uyachasini bosing" : "posts qutisidagi user_id ipini bosing"}</p>}
+          {!joined && <p className="jn-hint">{armed ? tr({ uz: 'Endi users qutisidagi id uyachasini bosing', ru: 'Теперь нажмите ячейку id в коробке users' }) : tr({ uz: "posts qutisidagi user_id ipini bosing", ru: 'Нажмите нить user_id в коробке posts' })}</p>}
           <SqlCode q={"SELECT users.username, posts.izoh\nFROM posts\nJOIN users ON posts.user_id = users.id"} />
           {joined && <><DataTable cols={['username', 'izoh']} rows={result} />
-            <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Mana SQL'ning kuchi: ip ulandi va ikkita jadval <b>bir qatorda</b> birlashdi. Ko'p bog'langan ma'lumot — aynan SQL uchun yaratilgan.</p></div></>}
+            <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Mana SQL'ning kuchi: ip ulandi va ikkita jadval <b>bir qatorda</b> birlashdi. Ko'p bog'langan ma'lumot — aynan SQL uchun yaratilgan.</>, ru: <>Вот сила SQL: нить соединилась, и две таблицы объединились <b>в одной строке</b>. Сильно связанные данные — именно то, для чего создан SQL.</> })}</p></div></>}
         </div>
         </Zoomable>
       </div>
@@ -1184,17 +1196,17 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 
 // ===== SCREEN 5b — TEST 2 (bog'langan ma'lumot) =====
 const Screen5b = (props) => (
-  <QuestionScreen {...props} scope="module-mikro" eyebrow="Tekshiruv"
+  <QuestionScreen {...props} scope="module-mikro" eyebrow={tr({ uz: 'Tekshiruv', ru: 'Проверка' })}
     audioText="users, posts va comments bir-biriga bog'langan bo'lsa — qaysi oila qulay? SQL bu qutilarni id ipi bilan, JOIN orqali ulaydi va bir so'rovda javob beradi. Javobni tanlang."
     questionText="Ko'p bog'langan ma'lumot (users, posts, comments) bilan qaysi oila qulayroq?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>Mustahkamlash</p><h2 className="title h-sub" style={{ marginTop: 8 }}>Ko'p <span className="italic" style={{ color: T.accent }}>bog'langan</span> jadvallar bilan ishlashda qaysi oila qulayroq?</h2></>}
-    options={["SQL — JOIN bilan jadvallarni oson bog'laydi", "NoSQL — har narsa alohida hujjatda saqlanadi", "Bog'lanish ikkalasida ham umuman yo'q", "Faqat qo'lda hisoblashga to'g'ri keladi"]} correctIdx={0}
-    explainCorrect="To'g'ri! SQL aynan bog'langan ma'lumot uchun yaratilgan — JOIN bilan jadvallarni bir-biriga ulab, murakkab savollarga bir so'rovda javob beradi."
+    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: 'Mustahkamlash', ru: 'Закрепление' })}</p><h2 className="title h-sub" style={{ marginTop: 8 }}>{tr({ uz: <>Ko'p <span className="italic" style={{ color: T.accent }}>bog'langan</span> jadvallar bilan ishlashda qaysi oila qulayroq?</>, ru: <>С множеством <span className="italic" style={{ color: T.accent }}>связанных</span> таблиц какое семейство удобнее?</> })}</h2></>}
+    options={[tr({ uz: "SQL — JOIN bilan jadvallarni oson bog'laydi", ru: 'SQL — легко связывает таблицы через JOIN' }), tr({ uz: 'NoSQL — har narsa alohida hujjatda saqlanadi', ru: 'NoSQL — всё хранится в отдельных документах' }), tr({ uz: "Bog'lanish ikkalasida ham umuman yo'q", ru: 'Связей нет ни в одном из них' }), tr({ uz: "Faqat qo'lda hisoblashga to'g'ri keladi", ru: 'Придётся считать только вручную' })]} correctIdx={0}
+    explainCorrect={tr({ uz: "To'g'ri! SQL aynan bog'langan ma'lumot uchun yaratilgan — JOIN bilan jadvallarni bir-biriga ulab, murakkab savollarga bir so'rovda javob beradi.", ru: 'Верно! SQL создан именно для связанных данных — соединяет таблицы через JOIN и отвечает на сложные вопросы одним запросом.' })}
     explainWrong={{
-      1: "NoSQL'da bog'lanish qiyinroq — ko'pincha ma'lumotni takrorlashga to'g'ri keladi.",
-      2: "Bog'lanish bor — SQL uni JOIN bilan, juda qulay qiladi.",
-      3: "Yo'q — SQL JOIN buni avtomatik bajaradi.",
-      default: "Bog'langan ma'lumot — SQL'ning kuchli tomoni (JOIN)."
+      1: tr({ uz: "NoSQL'da bog'lanish qiyinroq — ko'pincha ma'lumotni takrorlashga to'g'ri keladi.", ru: 'В NoSQL связи сложнее — часто приходится дублировать данные.' }),
+      2: tr({ uz: "Bog'lanish bor — SQL uni JOIN bilan, juda qulay qiladi.", ru: 'Связи есть — SQL делает их очень удобными через JOIN.' }),
+      3: tr({ uz: "Yo'q — SQL JOIN buni avtomatik bajaradi.", ru: 'Нет — SQL JOIN делает это автоматически.' }),
+      default: tr({ uz: "Bog'langan ma'lumot — SQL'ning kuchli tomoni (JOIN).", ru: 'Связанные данные — сильная сторона SQL (JOIN).' })
     }} />
 );
 
@@ -1205,33 +1217,33 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const done = ran;
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   return (
-    <Stage eyebrow="SQL kuchi · ishonchlilik" screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? 'Davom etish' : "Vaziyatni sinab ko'ring"} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'SQL kuchi · ishonchlilik', ru: 'Сила SQL · надёжность' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "Vaziyatni sinab ko'ring", ru: 'Испытайте ситуацию' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Oxirgi mahsulotni <span className="italic" style={{ color: T.accent }}>2 kishi bir vaqtda</span> sotib olsa-chi?</h2></div>
-        <Mentor>Do'konda <b style={{ color: T.ink }}>bitta</b> telefon qoldi. Ali va Vali aynan bir lahzada "Sotib olish" bosdi. Agar baza ehtiyot bo'lmasa — <b style={{ color: T.ink }}>ikkovi ham</b> sotib olib qo'yadi (xato!). SQL bu yerda <b style={{ color: T.accent }}>tranzaksiya</b> bilan himoya qiladi: faqat bittasiga sotadi. Pul va buyurtmada bunday <b style={{ color: T.ink }}>ishonchlilik</b> hayotiy muhim.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Oxirgi mahsulotni <span className="italic" style={{ color: T.accent }}>2 kishi bir vaqtda</span> sotib olsa-chi?</>, ru: <>А если последний товар купят <span className="italic" style={{ color: T.accent }}>2 человека одновременно</span>?</> })}</h2></div>
+        <Mentor>{tr({ uz: <>Do'konda <b style={{ color: T.ink }}>bitta</b> telefon qoldi. Ali va Vali aynan bir lahzada "Sotib olish" bosdi. Agar baza ehtiyot bo'lmasa — <b style={{ color: T.ink }}>ikkovi ham</b> sotib olib qo'yadi (xato!). SQL bu yerda <b style={{ color: T.accent }}>tranzaksiya</b> bilan himoya qiladi: faqat bittasiga sotadi. Pul va buyurtmada bunday <b style={{ color: T.ink }}>ishonchlilik</b> hayotiy muhim.</>, ru: <>В магазине остался <b style={{ color: T.ink }}>один</b> телефон. Али и Вали нажали «Купить» в один и тот же миг. Если база неосторожна — купят <b style={{ color: T.ink }}>оба</b> (ошибка!). SQL защищает здесь <b style={{ color: T.accent }}>транзакцией</b>: продаёт только одному. В деньгах и заказах такая <b style={{ color: T.ink }}>надёжность</b> жизненно важна.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
-            <Win title="do'kon — ombor" minH={120}>
+            <Win title={tr({ uz: "do'kon — ombor", ru: 'магазин — склад' })} minH={120}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
                 <div style={{ fontSize: 34 }}>📱</div>
                 <div>
                   <p className="body" style={{ margin: 0, color: T.ink, fontWeight: 700 }}>Telefon X</p>
-                  <p className="mono small" style={{ margin: '3px 0 0', color: ran ? T.accent : T.ink2 }}>omborda: {ran ? 0 : 1} dona</p>
+                  <p className="mono small" style={{ margin: '3px 0 0', color: ran ? T.accent : T.ink2 }}>{tr({ uz: 'omborda:', ru: 'на складе:' })} {ran ? 0 : 1} {tr({ uz: 'dona', ru: 'шт.' })}</p>
                 </div>
               </div>
             </Win>
-            {!ran && <button className="btn fade-up delay-1" style={{ alignSelf: 'flex-start' }} onClick={() => setRan(true)}>🛒 Ali va Vali bir vaqtda bosdi</button>}
+            {!ran && <button className="btn fade-up delay-1" style={{ alignSelf: 'flex-start' }} onClick={() => setRan(true)}>{tr({ uz: '🛒 Ali va Vali bir vaqtda bosdi', ru: '🛒 Али и Вали нажали одновременно' })}</button>}
           </Col>
           <Col>
-            <p className="flow-label">Natija — SQL nazorati</p>
+            <p className="flow-label">{tr({ uz: 'Natija — SQL nazorati', ru: 'Результат — контроль SQL' })}</p>
             {ran ? (
               <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-                <div className="frame-success" style={{ padding: '11px 14px' }}><p className="body" style={{ margin: 0, color: T.ink }}><b style={{ color: T.success }}>✓ Ali</b> sotib oldi — tranzaksiya birinchi unga yetib bordi.</p></div>
-                <div className="frame-warn" style={{ padding: '11px 14px' }}><p className="body" style={{ margin: 0, color: T.ink }}><b style={{ color: T.accent }}>✗ Vali</b> "Kechirasiz, mahsulot tugadi" xabarini oldi.</p></div>
-                <div className="sk-info"><p className="body" style={{ margin: 0, color: T.ink }}>SQL bir lahzada faqat bittasiga sotdi — <b>ikki marta sotilmadi</b>. Bank, to'lov, buyurtma kabi joylarda bu xususiyat — eng muhimi.</p></div>
+                <div className="frame-success" style={{ padding: '11px 14px' }}><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <><b style={{ color: T.success }}>✓ Ali</b> sotib oldi — tranzaksiya birinchi unga yetib bordi.</>, ru: <><b style={{ color: T.success }}>✓ Али</b> купил — транзакция первой дошла до него.</> })}</p></div>
+                <div className="frame-warn" style={{ padding: '11px 14px' }}><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <><b style={{ color: T.accent }}>✗ Vali</b> "Kechirasiz, mahsulot tugadi" xabarini oldi.</>, ru: <><b style={{ color: T.accent }}>✗ Вали</b> получил сообщение «Извините, товар закончился».</> })}</p></div>
+                <div className="sk-info"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>SQL bir lahzada faqat bittasiga sotdi — <b>ikki marta sotilmadi</b>. Bank, to'lov, buyurtma kabi joylarda bu xususiyat — eng muhimi.</>, ru: <>SQL за один миг продал только одному — <b>двойной продажи не случилось</b>. В банках, платежах и заказах это свойство — самое важное.</> })}</p></div>
               </div>
-            ) : <div className="frame-dash" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: 100 }}><p className="small" style={{ color: T.ink3, fontStyle: 'italic', textAlign: 'center', margin: 0 }}>← Tugmani bosing — SQL nima qilishini ko'ring</p></div>}
+            ) : <div className="frame-dash" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: 100 }}><p className="small" style={{ color: T.ink3, fontStyle: 'italic', textAlign: 'center', margin: 0 }}>{tr({ uz: "← Tugmani bosing — SQL nima qilishini ko'ring", ru: '← Нажмите кнопку — посмотрите, что сделает SQL' })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -1245,10 +1257,10 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const audio = useAudio([{ id: 's7', text: "Endi NoSQL paketining kuchini ko'ramiz. Chatda har soniyada minglab oddiy xabar keladi — kim, matn, vaqt, murakkab bog'lanish yo'q. Ulkan miqyos, tezlik va oddiy shakl uchun NoSQL paketi ideal. Tugmani bosib oqimni kuzating.", trigger: 'on_mount', waits_for: null }]);
   const [running, setRunning] = useState(false);
   const [count, setCount] = useState(storedAnswer ? 1240517 : 1240489);
-  const [msgs, setMsgs] = useState(storedAnswer ? ['Salom!', 'Qanaqasan?', 'Zo\'r 🔥'] : []);
+  const [msgs, setMsgs] = useState(storedAnswer ? [{ uz: 'Salom!', ru: 'Привет!' }, { uz: 'Qanaqasan?', ru: 'Как ты?' }, { uz: "Zo'r 🔥", ru: 'Класс 🔥' }] : []);
   const timer = useRef(null);
   const done = count >= 1240505 || !!storedAnswer;
-  const POOL = ['Salom!', 'Qanaqasan?', 'Bugun darsdamisan?', 'Zo\'r 🔥', 'Ha, keldim', '👍', 'Rahmat!', 'Kechqurun chiqamizmi?'];
+  const POOL = [{ uz: 'Salom!', ru: 'Привет!' }, { uz: 'Qanaqasan?', ru: 'Как ты?' }, { uz: 'Bugun darsdamisan?', ru: 'Ты сегодня на уроке?' }, { uz: "Zo'r 🔥", ru: 'Класс 🔥' }, { uz: 'Ha, keldim', ru: 'Да, пришёл' }, '👍', { uz: 'Rahmat!', ru: 'Спасибо!' }, { uz: 'Kechqurun chiqamizmi?', ru: 'Выйдем вечером?' }];
   useEffect(() => () => clearInterval(timer.current), []);
   const run = () => {
     if (running) return; setRunning(true);
@@ -1262,28 +1274,28 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   };
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   return (
-    <Stage eyebrow="NoSQL kuchi · miqyos" screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? 'Davom etish' : "Xabarlar oqimini ko'ring"} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'NoSQL kuchi · miqyos', ru: 'Сила NoSQL · масштаб' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "Xabarlar oqimini ko'ring", ru: 'Посмотрите поток сообщений' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Millionlab chat xabari — bu yerda <span className="italic" style={{ color: T.blue }}>NoSQL</span> porlaydi</h2></div>
-        <Mentor>Endi NoSQL kuchini ko'raylik. Telegram'simon chatda har soniyada <b style={{ color: T.ink }}>minglab xabar</b> keladi. Har xabar — oddiy hujjat (kim, matn, vaqt), murakkab bog'lanish yo'q. Bunday <b style={{ color: T.ink }}>ulkan miqyos + tezlik + oddiy shakl</b> uchun NoSQL ideal. Tugmani bosib, oqimni kuzating.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Millionlab chat xabari — bu yerda <span className="italic" style={{ color: T.blue }}>NoSQL</span> porlaydi</>, ru: <>Миллионы чат-сообщений — здесь <span className="italic" style={{ color: T.blue }}>NoSQL</span> сияет</> })}</h2></div>
+        <Mentor>{tr({ uz: <>Endi NoSQL kuchini ko'raylik. Telegram'simon chatda har soniyada <b style={{ color: T.ink }}>minglab xabar</b> keladi. Har xabar — oddiy hujjat (kim, matn, vaqt), murakkab bog'lanish yo'q. Bunday <b style={{ color: T.ink }}>ulkan miqyos + tezlik + oddiy shakl</b> uchun NoSQL ideal. Tugmani bosib, oqimni kuzating.</>, ru: <>Теперь посмотрим силу NoSQL. В чате вроде Telegram каждую секунду приходят <b style={{ color: T.ink }}>тысячи сообщений</b>. Каждое сообщение — простой документ (кто, текст, время), сложных связей нет. Для такого <b style={{ color: T.ink }}>огромного масштаба + скорости + простой формы</b> NoSQL идеален. Нажмите кнопку и наблюдайте за потоком.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
-            <Win title="chat.uz — jonli oqim" minH={150}>
+            <Win title={tr({ uz: 'chat.uz — jonli oqim', ru: 'chat.uz — живой поток' })} minH={150}>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
                 {msgs.length === 0
-                  ? <p style={{ color: T.ink3, fontStyle: 'italic', margin: 0, fontFamily: 'Georgia, serif', fontSize: 13 }}>Xabarlar shu yerda oqib o'tadi…</p>
-                  : msgs.map((m, i) => <div key={i} className="chatmsg el-in">{m}</div>)}
+                  ? <p style={{ color: T.ink3, fontStyle: 'italic', margin: 0, fontFamily: 'Georgia, serif', fontSize: 13 }}>{tr({ uz: "Xabarlar shu yerda oqib o'tadi…", ru: 'Сообщения будут проплывать здесь…' })}</p>
+                  : msgs.map((m, i) => <div key={i} className="chatmsg el-in">{tr(m)}</div>)}
               </div>
             </Win>
-            {!running && !done && <button className="btn fade-up delay-1" style={{ alignSelf: 'flex-start' }} onClick={run}>💬 Xabarlar oqimini boshlash</button>}
-            {running && <p className="mono small" style={{ color: T.blue, margin: 0 }}>oqim ketyapti…</p>}
+            {!running && !done && <button className="btn fade-up delay-1" style={{ alignSelf: 'flex-start' }} onClick={run}>{tr({ uz: '💬 Xabarlar oqimini boshlash', ru: '💬 Запустить поток сообщений' })}</button>}
+            {running && <p className="mono small" style={{ color: T.blue, margin: 0 }}>{tr({ uz: 'oqim ketyapti…', ru: 'поток идёт…' })}</p>}
           </Col>
           <Col>
-            <p className="flow-label">Jami xabarlar</p>
+            <p className="flow-label">{tr({ uz: 'Jami xabarlar', ru: 'Всего сообщений' })}</p>
             <div className="bigcount">{count.toLocaleString('en-US')}</div>
-            <p className="small" style={{ color: T.ink2, margin: 0 }}>Har xabar — oddiy hujjat: <span className="mono">{'{ kim, matn, vaqt }'}</span>. Bog'lanish kam, soni ulkan, tezlik shart.</p>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>NoSQL ulkan, oddiy va tez ma'lumot uchun zo'r. <span className="mono">(Masalan, o'yin inventari ham har o'yinchida har xil — NoSQL egiluvchanligi shu yerda ham qo'l keladi.)</span></p></div>}
+            <p className="small" style={{ color: T.ink2, margin: 0 }}>{tr({ uz: <>Har xabar — oddiy hujjat: <span className="mono">{'{ kim, matn, vaqt }'}</span>. Bog'lanish kam, soni ulkan, tezlik shart.</>, ru: <>Каждое сообщение — простой документ: <span className="mono">{'{ кто, текст, время }'}</span>. Связей мало, объём огромный, скорость обязательна.</> })}</p>
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>NoSQL ulkan, oddiy va tez ma'lumot uchun zo'r. <span className="mono">(Masalan, o'yin inventari ham har o'yinchida har xil — NoSQL egiluvchanligi shu yerda ham qo'l keladi.)</span></>, ru: <>NoSQL хорош для огромных, простых и быстрых данных. <span className="mono">(Например, игровой инвентарь у каждого игрока свой — гибкость NoSQL пригодится и здесь.)</span></> })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -1296,10 +1308,10 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const audio = useAudio([{ id: 's8', text: "Qaysi qadoqni tanlashni to'rt savol hal qiladi: ma'lumot bir-biriga bog'langanmi, shakli qat'iymi, xato qimmatga tushadimi, va ulkan-oddiy-tez kerakmi. Har savolni bosing — kompas strelkasi javobga qarab suriladi.", trigger: 'on_mount', waits_for: null }]);
   const CRIT = [
-    { id: 'rel', q: "Ma'lumotlar bir-biriga bog'langanmi?", side: 'sql', note: "Bog'langan bo'lsa → SQL (JOIN)" },
-    { id: 'shape', q: "Shakli qat'iy (hamma yozuv bir xil)mi?", side: 'sql', note: "Qat'iy shakl → SQL" },
-    { id: 'safe', q: "Xatolik pul/buyurtmaga zarar qiladimi?", side: 'sql', note: "Ishonchlilik shart → SQL" },
-    { id: 'scale', q: "Ulkan + juda oddiy + faqat tezlik kerakmi?", side: 'nosql', note: "Ulkan & oddiy → NoSQL" }
+    { id: 'rel', q: tr({ uz: "Ma'lumotlar bir-biriga bog'langanmi?", ru: 'Данные связаны между собой?' }), side: 'sql', note: tr({ uz: "Bog'langan bo'lsa → SQL (JOIN)", ru: 'Связаны → SQL (JOIN)' }) },
+    { id: 'shape', q: tr({ uz: "Shakli qat'iy (hamma yozuv bir xil)mi?", ru: 'Форма строгая (все записи одинаковые)?' }), side: 'sql', note: tr({ uz: "Qat'iy shakl → SQL", ru: 'Строгая форма → SQL' }) },
+    { id: 'safe', q: tr({ uz: "Xatolik pul/buyurtmaga zarar qiladimi?", ru: 'Ошибка навредит деньгам/заказам?' }), side: 'sql', note: tr({ uz: "Ishonchlilik shart → SQL", ru: 'Нужна надёжность → SQL' }) },
+    { id: 'scale', q: tr({ uz: "Ulkan + juda oddiy + faqat tezlik kerakmi?", ru: 'Огромно + очень просто + нужна только скорость?' }), side: 'nosql', note: tr({ uz: "Ulkan & oddiy → NoSQL", ru: 'Огромно и просто → NoSQL' }) }
   ];
   const [seen, setSeen] = useState(storedAnswer ? new Set(CRIT.map(c => c.id)) : new Set());
   const [active, setActive] = useState(null);
@@ -1310,10 +1322,10 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const lean = (sqlSeen - nosqlSeen) / CRIT.length;
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   return (
-    <Stage eyebrow="Qaror mezonlari" screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? 'Davom etish' : `${seen.size}/4 mezon ko'rildi`} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Qaror mezonlari', ru: 'Критерии решения' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : `${seen.size}/4 ${tr({ uz: "mezon ko'rildi", ru: 'критерия просмотрено' })}`} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Qaysi birini tanlash — <span className="italic" style={{ color: T.accent }}>4 savol</span> hal qiladi</h2></div>
-        <Mentor>Tanlovni 4 ta savol osonlashtiradi. Har birini bosing — u qaysi tomonni ko'rsatishini ko'ring. O'ngdagi kompas javoblarga qarab suriladi. Ko'pchilik oddiy loyihalarda javoblar <b style={{ color: T.accent }}>SQL</b> tomon og'adi.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Qaysi birini tanlash — <span className="italic" style={{ color: T.accent }}>4 savol</span> hal qiladi</>, ru: <>Что выбрать — решают <span className="italic" style={{ color: T.accent }}>4 вопроса</span></> })}</h2></div>
+        <Mentor>{tr({ uz: <>Tanlovni 4 ta savol osonlashtiradi. Har birini bosing — u qaysi tomonni ko'rsatishini ko'ring. O'ngdagi kompas javoblarga qarab suriladi. Ko'pchilik oddiy loyihalarda javoblar <b style={{ color: T.accent }}>SQL</b> tomon og'adi.</>, ru: <>Выбор упрощают 4 вопроса. Нажмите на каждый — посмотрите, в какую сторону он указывает. Компас справа сдвигается по вашим ответам. В большинстве простых проектов ответы склоняются к <b style={{ color: T.accent }}>SQL</b>.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
@@ -1328,11 +1340,11 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {active && <div className="hint fade-step"><p className="small" style={{ margin: 0, color: T.ink2 }}>{CRIT.find(c => c.id === active).note}</p></div>}
           </Col>
           <Col>
-            <p className="flow-label">Kompas — javoblarga qarab suriladi</p>
-            <Win title="qaror kompasi" minH={172}>
+            <p className="flow-label">{tr({ uz: 'Kompas — javoblarga qarab suriladi', ru: 'Компас — сдвигается по ответам' })}</p>
+            <Win title={tr({ uz: 'qaror kompasi', ru: 'компас решений' })} minH={172}>
               <div style={{ display: 'flex', justifyContent: 'center' }}><Compass lean={lean} /></div>
             </Win>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>4 mezondan 3 tasi <b>SQL</b> tomon, 1 tasi NoSQL tomon. Demak ko'p loyihalar uchun boshlang'ich tanlov — SQL. Endi nega aynan <b>PostgreSQL</b> ekanini ko'ramiz.</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>4 mezondan 3 tasi <b>SQL</b> tomon, 1 tasi NoSQL tomon. Demak ko'p loyihalar uchun boshlang'ich tanlov — SQL. Endi nega aynan <b>PostgreSQL</b> ekanini ko'ramiz.</>, ru: <>Из 4 критериев 3 указывают на <b>SQL</b>, 1 — на NoSQL. Значит, для многих проектов стартовый выбор — SQL. Теперь посмотрим, почему именно <b>PostgreSQL</b>.</> })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -1343,17 +1355,17 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 
 // ===== SCREEN 9 — TEST 3 (bank → SQL) =====
 const Screen9 = (props) => (
-  <QuestionScreen {...props} idx={9} scope="module-mikro" eyebrow="Mashq · 3-savol"
+  <QuestionScreen {...props} idx={9} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 3-savol', ru: 'Практика · вопрос 3' })}
     audioText="Bank ilovasida pul, hisoblar va o'tkazmalar bir-biriga bog'langan, bitta xato esa qimmatga tushadi. Ishonchli qattiq quti kerakmi, yoki tez erkin paket? Javobni tanlang."
     questionText="Bank ilovasi (pul, hisoblar, o'tkazmalar) uchun qaysi DB to'g'riroq?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-sub" style={{ marginTop: 8 }}>Bank ilovasi — pul, hisoblar, o'tkazmalar. <span className="italic" style={{ color: T.accent }}>Qaysi DB</span>?</h2></>}
-    options={["NoSQL — chunki u ancha tezroq ishlaydi", "Aslida ikkalasining ham farqi yo'q", "Bunga hech qanday DB kerak emas", "SQL — bog'langan + ishonchlilik shart"]} correctIdx={3}
-    explainCorrect="To'g'ri! Bankda ma'lumot bog'langan (hisob↔o'tkazma) va xato qimmatga tushadi — pul yo'qolmasligi kerak. Bu SQL'ning aynan kuchli tomoni (tranzaksiya, ishonchlilik)."
+    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-sub" style={{ marginTop: 8 }}>{tr({ uz: <>Bank ilovasi — pul, hisoblar, o'tkazmalar. <span className="italic" style={{ color: T.accent }}>Qaysi DB</span>?</>, ru: <>Банковское приложение — деньги, счета, переводы. <span className="italic" style={{ color: T.accent }}>Какая БД</span>?</> })}</h2></>}
+    options={[tr({ uz: 'NoSQL — chunki u ancha tezroq ishlaydi', ru: 'NoSQL — потому что работает заметно быстрее' }), tr({ uz: "Aslida ikkalasining ham farqi yo'q", ru: 'На самом деле разницы никакой' }), tr({ uz: 'Bunga hech qanday DB kerak emas', ru: 'Тут вообще не нужна никакая БД' }), tr({ uz: "SQL — bog'langan + ishonchlilik shart", ru: 'SQL — связанно + обязательна надёжность' })]} correctIdx={3}
+    explainCorrect={tr({ uz: "To'g'ri! Bankda ma'lumot bog'langan (hisob↔o'tkazma) va xato qimmatga tushadi — pul yo'qolmasligi kerak. Bu SQL'ning aynan kuchli tomoni (tranzaksiya, ishonchlilik).", ru: 'Верно! В банке данные связаны (счёт↔перевод), а ошибка обходится дорого — деньги не должны теряться. Это как раз сильная сторона SQL (транзакции, надёжность).' })}
     explainWrong={{
-      0: "Tezlik bu yerda asosiy emas — pulda xato bo'lmasligi muhimroq. Bu SQL.",
-      1: "Farqi katta: bankka ishonchlilik va bog'lanish kerak → SQL.",
-      2: "Albatta kerak — va bunday muhim ma'lumot uchun SQL (masalan PostgreSQL).",
-      default: "Bank = bog'langan + ishonchli → SQL."
+      0: tr({ uz: "Tezlik bu yerda asosiy emas — pulda xato bo'lmasligi muhimroq. Bu SQL.", ru: 'Скорость тут не главное — важнее, чтобы в деньгах не было ошибок. Это SQL.' }),
+      1: tr({ uz: "Farqi katta: bankka ishonchlilik va bog'lanish kerak → SQL.", ru: 'Разница большая: банку нужны надёжность и связи → SQL.' }),
+      2: tr({ uz: "Albatta kerak — va bunday muhim ma'lumot uchun SQL (masalan PostgreSQL).", ru: 'Конечно нужна — и для таких важных данных это SQL (например, PostgreSQL).' }),
+      default: tr({ uz: "Bank = bog'langan + ishonchli → SQL.", ru: 'Банк = связанно + надёжно → SQL.' })
     }} />
 );
 
@@ -1361,11 +1373,11 @@ const Screen9 = (props) => (
 const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const audio = useAudio([{ id: 's10', text: "SQL oilasida ko'p a'zo bor, biz esa PostgreSQL qutisini tanlaymiz. Chunki u bog'langan, ishonchli, bepul — va kerak bo'lsa JSON paketini ham saqlaydi, ya'ni NoSQL egiluvchanligi ham bor. Sabablarni bosib ko'ring.", trigger: 'on_mount', waits_for: null }]);
   const FEATS = [
-    { id: 'rel', t: 'Relyatsion (SQL)', d: "Jadvallar va JOIN — bog'langan ma'lumot bilan zo'r ishlaydi." },
-    { id: 'safe', t: 'Ishonchli', d: "Tranzaksiyalar — pul va buyurtmada xato bo'lmaydi." },
-    { id: 'free', t: 'Bepul + ochiq kodli', d: "Hech kim pul so'ramaydi, butun dunyo ishlatadi." },
-    { id: 'json', t: 'JSON ham saqlaydi', d: "Kerak bo'lsa, NoSQL kabi egiluvchan JSON ham saqlay oladi — ikki dunyodan eng yaxshisi!" },
-    { id: 'stack', t: 'PERN/PEAN stackning "P"si', d: "React + Node + Express bilan ajoyib ishlaydi — bizning to'plamimiz." }
+    { id: 'rel', t: tr({ uz: 'Relyatsion (SQL)', ru: 'Реляционная (SQL)' }), d: tr({ uz: "Jadvallar va JOIN — bog'langan ma'lumot bilan zo'r ishlaydi.", ru: 'Таблицы и JOIN — отлично работает со связанными данными.' }) },
+    { id: 'safe', t: tr({ uz: 'Ishonchli', ru: 'Надёжная' }), d: tr({ uz: "Tranzaksiyalar — pul va buyurtmada xato bo'lmaydi.", ru: 'Транзакции — в деньгах и заказах не будет ошибок.' }) },
+    { id: 'free', t: tr({ uz: 'Bepul + ochiq kodli', ru: 'Бесплатная + открытый код' }), d: tr({ uz: "Hech kim pul so'ramaydi, butun dunyo ishlatadi.", ru: 'Никто не просит денег, пользуется весь мир.' }) },
+    { id: 'json', t: tr({ uz: 'JSON ham saqlaydi', ru: 'Хранит и JSON' }), d: tr({ uz: "Kerak bo'lsa, NoSQL kabi egiluvchan JSON ham saqlay oladi — ikki dunyodan eng yaxshisi!", ru: 'При необходимости хранит и гибкий JSON, как NoSQL — лучшее из двух миров!' }) },
+    { id: 'stack', t: tr({ uz: 'PERN/PEAN stackning "P"si', ru: '«P» стека PERN/PEAN' }), d: tr({ uz: "React + Node + Express bilan ajoyib ishlaydi — bizning to'plamimiz.", ru: 'Отлично работает с React + Node + Express — это наш набор.' }) }
   ];
   const [seen, setSeen] = useState(storedAnswer ? new Set(FEATS.map(f => f.id)) : new Set());
   const [active, setActive] = useState(storedAnswer ? 'json' : null);
@@ -1374,30 +1386,30 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const cur = FEATS.find(f => f.id === active);
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   return (
-    <Stage eyebrow="Nega PostgreSQL" screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? 'Davom etish' : `${seen.size}/3 sabab ko'ring`} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Nega PostgreSQL', ru: 'Почему PostgreSQL' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : `${seen.size}/3 ${tr({ uz: "sabab ko'ring", ru: 'причины — изучите' })}`} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Nega bizning loyihalarga aynan <span className="italic" style={{ color: T.accent }}>PostgreSQL</span>?</h2></div>
-        <Mentor>SQL oilasida ko'p a'zo bor — nega aynan <b style={{ color: T.accent }}>PostgreSQL</b>? Chunki u bizning loyihalarga (Instagram, do'kon, planner) juda mos: bog'langan, ishonchli, bepul — va kerak bo'lsa <b style={{ color: T.ink }}>JSON</b> ham saqlay oladi (ya'ni NoSQL egiluvchanligi ham bor!). Sabablarni bosib ko'ring.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Nega bizning loyihalarga aynan <span className="italic" style={{ color: T.accent }}>PostgreSQL</span>?</>, ru: <>Почему нашим проектам именно <span className="italic" style={{ color: T.accent }}>PostgreSQL</span>?</> })}</h2></div>
+        <Mentor>{tr({ uz: <>SQL oilasida ko'p a'zo bor — nega aynan <b style={{ color: T.accent }}>PostgreSQL</b>? Chunki u bizning loyihalarga (Instagram, do'kon, planner) juda mos: bog'langan, ishonchli, bepul — va kerak bo'lsa <b style={{ color: T.ink }}>JSON</b> ham saqlay oladi (ya'ni NoSQL egiluvchanligi ham bor!). Sabablarni bosib ko'ring.</>, ru: <>В семействе SQL много членов — почему именно <b style={{ color: T.accent }}>PostgreSQL</b>? Потому что он очень подходит нашим проектам (Instagram, магазин, планировщик): связи, надёжность, бесплатность — а при необходимости хранит и <b style={{ color: T.ink }}>JSON</b> (то есть есть и гибкость NoSQL!). Нажмите на причины и посмотрите.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
             <div style={{ display: 'flex', alignItems: 'center', gap: 12 }} className="fade-up delay-1">
               <div className="pg-logo">🐘</div>
-              <div><p className="body" style={{ margin: 0, fontWeight: 700, color: T.ink }}>PostgreSQL</p><p className="small mono" style={{ margin: '2px 0 0', color: T.accent }}>relyatsion · ishonchli · bepul</p></div>
+              <div><p className="body" style={{ margin: 0, fontWeight: 700, color: T.ink }}>PostgreSQL</p><p className="small mono" style={{ margin: '2px 0 0', color: T.accent }}>{tr({ uz: 'relyatsion · ishonchli · bepul', ru: 'реляционная · надёжная · бесплатная' })}</p></div>
             </div>
             <div className="fade-up delay-2" style={{ display: 'flex', flexWrap: 'wrap', gap: 7 }}>
               {FEATS.map(f => <button key={f.id} className={`chip ${active === f.id ? 'chip-on' : ''}`} onClick={() => tap(f)}>{f.t} {seen.has(f.id) ? '✓' : ''}</button>)}
             </div>
             {cur ? <div className="sk-info" key={cur.id}><span className="sk-tagbig"><span className="sk-wordbadge">{cur.t}</span></span><p className="body" style={{ color: T.ink, margin: '10px 0 0' }}>{cur.d}</p></div>
-              : <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>Yuqoridan bir sababni bosing</p></div>}
+              : <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Yuqoridan bir sababni bosing', ru: 'Нажмите одну из причин выше' })}</p></div>}
           </Col>
           <Col>
-            <p className="flow-label">Taqqoslash</p>
+            <p className="flow-label">{tr({ uz: 'Taqqoslash', ru: 'Сравнение' })}</p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-              <div className="cmp-row"><DbBadge kind="sql" /><span className="small" style={{ color: T.ink }}>bog'langan + ishonchli + JSON ham — <b style={{ color: T.accent }}>bizga mos</b></span></div>
-              <div className="cmp-row"><DbBadge kind="nosql" /><span className="small" style={{ color: T.ink2 }}>ulkan oddiy oqim uchun zo'r, lekin bog'lanish qiyin</span></div>
+              <div className="cmp-row"><DbBadge kind="sql" /><span className="small" style={{ color: T.ink }}>{tr({ uz: <>bog'langan + ishonchli + JSON ham — <b style={{ color: T.accent }}>bizga mos</b></>, ru: <>связанно + надёжно + ещё и JSON — <b style={{ color: T.accent }}>подходит нам</b></> })}</span></div>
+              <div className="cmp-row"><DbBadge kind="nosql" /><span className="small" style={{ color: T.ink2 }}>{tr({ uz: "ulkan oddiy oqim uchun zo'r, lekin bog'lanish qiyin", ru: 'хорош для огромного простого потока, но связи даются трудно' })}</span></div>
             </div>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>PostgreSQL — SQL kuchini va NoSQL egiluvchanligini birlashtiradi. Shuning uchun bizning butun moduldagi tanlovimiz — <b>PostgreSQL</b>.</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>PostgreSQL — SQL kuchini va NoSQL egiluvchanligini birlashtiradi. Shuning uchun bizning butun moduldagi tanlovimiz — <b>PostgreSQL</b>.</>, ru: <>PostgreSQL объединяет силу SQL и гибкость NoSQL. Поэтому наш выбор на весь модуль — <b>PostgreSQL</b>.</> })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -1410,9 +1422,9 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const audio = useAudio([{ id: 's11', text: "Endi siz tanlov mantig'ini bilasiz. Loyihangizni ayting, AI baza tavsiya qiladi va sababini aytadi — siz esa tekshirasiz: sabab to'g'rimi? Bog'langanmi, ishonchlilik kerakmi, yoki ulkan-oddiy oqimmi? Boshliq — siz.", trigger: 'on_mount', waits_for: null }]);
   const APPS = [
-    { id: 'shop', label: 'Onlayn do\'kon yasamoqchiman', db: 'sql', why: "Buyurtma↔mahsulot↔to'lov bog'langan, pulda xato bo'lmasligi kerak → PostgreSQL." },
-    { id: 'chat', label: 'Oddiy chat ilovasi yasamoqchiman', db: 'nosql', why: "Millionlab oddiy xabar, tezlik kerak, bog'lanish kam → NoSQL (MongoDB)." },
-    { id: 'blog', label: 'Blog platformasi yasamoqchiman', db: 'sql', why: "Muallif↔maqola↔izoh bog'langan, qat'iy shakl → PostgreSQL." }
+    { id: 'shop', label: tr({ uz: "Onlayn do'kon yasamoqchiman", ru: 'Хочу сделать онлайн-магазин' }), db: 'sql', why: tr({ uz: "Buyurtma↔mahsulot↔to'lov bog'langan, pulda xato bo'lmasligi kerak → PostgreSQL.", ru: 'Заказ↔товар↔оплата связаны, в деньгах нельзя ошибаться → PostgreSQL.' }) },
+    { id: 'chat', label: tr({ uz: 'Oddiy chat ilovasi yasamoqchiman', ru: 'Хочу сделать простой чат' }), db: 'nosql', why: tr({ uz: "Millionlab oddiy xabar, tezlik kerak, bog'lanish kam → NoSQL (MongoDB).", ru: 'Миллионы простых сообщений, нужна скорость, связей мало → NoSQL (MongoDB).' }) },
+    { id: 'blog', label: tr({ uz: 'Blog platformasi yasamoqchiman', ru: 'Хочу сделать блог-платформу' }), db: 'sql', why: tr({ uz: "Muallif↔maqola↔izoh bog'langan, qat'iy shakl → PostgreSQL.", ru: 'Автор↔статья↔комментарий связаны, строгая форма → PostgreSQL.' }) }
   ];
   const [app, setApp] = useState(null);
   const [phase, setPhase] = useState(storedAnswer ? 'done' : 'idle');
@@ -1424,40 +1436,40 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const cur = APPS.find(a => a.id === app) || (storedAnswer ? APPS[0] : null);
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   return (
-    <Stage eyebrow="Keyingi qadam · AI" screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? 'Davom etish' : "AI'dan tavsiya so'rang"} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Keyingi qadam · AI', ru: 'Следующий шаг · AI' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "AI'dan tavsiya so'rang", ru: 'Спросите совета у AI' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Loyihangizga DB'ni <span className="italic" style={{ color: T.accent }}>AI tavsiya</span> qilsin — siz tekshiring</h2></div>
-        <Mentor>Endi siz tanlov mantig'ini bilasiz! Loyihangizni ayting, AI <b style={{ color: T.ink }}>DB tavsiya qiladi va sababini aytadi</b> — siz esa tekshirasiz: sabab to'g'rimi? Bog'langanmi, ishonchlilik kerakmi, yoki ulkan-oddiy oqimmi? Boshliq — siz.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Loyihangizga DB'ni <span className="italic" style={{ color: T.accent }}>AI tavsiya</span> qilsin — siz tekshiring</>, ru: <>Пусть <span className="italic" style={{ color: T.accent }}>AI посоветует</span> БД для проекта — а вы проверьте</> })}</h2></div>
+        <Mentor>{tr({ uz: <>Endi siz tanlov mantig'ini bilasiz! Loyihangizni ayting, AI <b style={{ color: T.ink }}>DB tavsiya qiladi va sababini aytadi</b> — siz esa tekshirasiz: sabab to'g'rimi? Bog'langanmi, ishonchlilik kerakmi, yoki ulkan-oddiy oqimmi? Boshliq — siz.</>, ru: <>Теперь вы знаете логику выбора! Назовите проект — AI <b style={{ color: T.ink }}>посоветует БД и объяснит причину</b>, а вы проверите: причина верна? Есть связи, нужна надёжность или это огромный простой поток? Начальник — вы.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
-            <p className="flow-label">1. AI'ga loyihangizni ayting</p>
+            <p className="flow-label">{tr({ uz: "1. AI'ga loyihangizni ayting", ru: '1. Расскажите AI о проекте' })}</p>
             <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
               {APPS.map(a => <button key={a.id} className={`chip ${app === a.id ? 'chip-on' : ''}`} onClick={() => choose(a.id)} style={{ justifyContent: 'flex-start', textAlign: 'left' }}>"{a.label}"</button>)}
             </div>
-            {!cur && <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>Yuqoridan bitta loyihani tanlang</p></div>}
+            {!cur && <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Yuqoridan bitta loyihani tanlang', ru: 'Выберите один проект выше' })}</p></div>}
             {cur && (
               <div className="ai-card fade-step" key={app || 'stored'}>
-                <div className="ai-row"><span className="ai-badge">AI</span><span className="ai-bubble">{phase === 'planned' ? 'Mana tahlilim — tasdiqlaysizmi?' : (phase === 'building' ? 'Tahlil qilyapman…' : 'Tavsiyam tayyor')}</span></div>
+                <div className="ai-row"><span className="ai-badge">AI</span><span className="ai-bubble">{phase === 'planned' ? tr({ uz: 'Mana tahlilim — tasdiqlaysizmi?', ru: 'Вот мой анализ — подтверждаете?' }) : (phase === 'building' ? tr({ uz: 'Tahlil qilyapman…', ru: 'Анализирую…' }) : tr({ uz: 'Tavsiyam tayyor', ru: 'Мой совет готов' }))}</span></div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
                   {phase !== 'planned' && <DbBadge kind={cur.db} />}
-                  <span className="small" style={{ color: T.ink }}>{phase === 'planned' ? 'Loyihani tahlil qildim.' : cur.why}</span>
+                  <span className="small" style={{ color: T.ink }}>{phase === 'planned' ? tr({ uz: 'Loyihani tahlil qildim.', ru: 'Я проанализировал проект.' }) : cur.why}</span>
                 </div>
-                {phase === 'planned' && <button className="btn fade-step" style={{ alignSelf: 'flex-start' }} onClick={approve}>Tahlilni ko'rsat</button>}
+                {phase === 'planned' && <button className="btn fade-step" style={{ alignSelf: 'flex-start' }} onClick={approve}>{tr({ uz: "Tahlilni ko'rsat", ru: 'Показать анализ' })}</button>}
               </div>
             )}
           </Col>
           <Col>
-            <p className="flow-label">2. Tavsiya natijasi</p>
-            <Win title={cur ? `${cur.id}-loyiha — DB tavsiyasi` : 'tavsiya'} minH={130}>
+            <p className="flow-label">{tr({ uz: '2. Tavsiya natijasi', ru: '2. Результат совета' })}</p>
+            <Win title={cur ? `${cur.id}${tr({ uz: '-loyiha — DB tavsiyasi', ru: '-проект — совет по БД' })}` : tr({ uz: 'tavsiya', ru: 'совет' })} minH={130}>
               {done && cur ? (
                 <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 10, alignItems: 'center' }}>
                   <DbBadge kind={cur.db} big />
-                  <p className="small" style={{ color: T.ink2, textAlign: 'center', margin: 0 }}>{cur.db === 'sql' ? 'PostgreSQL tavsiya etiladi' : 'MongoDB (NoSQL) tavsiya etiladi'}</p>
+                  <p className="small" style={{ color: T.ink2, textAlign: 'center', margin: 0 }}>{cur.db === 'sql' ? tr({ uz: 'PostgreSQL tavsiya etiladi', ru: 'Рекомендуется PostgreSQL' }) : tr({ uz: 'MongoDB (NoSQL) tavsiya etiladi', ru: 'Рекомендуется MongoDB (NoSQL)' })}</p>
                 </div>
-              ) : <p style={{ color: T.ink3, fontStyle: 'italic', margin: 0, fontFamily: 'Georgia, serif', fontSize: 13 }}>Loyihani tanlang va tahlilni tasdiqlang…</p>}
+              ) : <p style={{ color: T.ink3, fontStyle: 'italic', margin: 0, fontFamily: 'Georgia, serif', fontSize: 13 }}>{tr({ uz: 'Loyihani tanlang va tahlilni tasdiqlang…', ru: 'Выберите проект и подтвердите анализ…' })}</p>}
             </Win>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>AI tavsiya berdi, siz <b>sababini tekshirdingiz</b>. Do'kon va blog — bog'langan → SQL. Chat — ulkan oddiy oqim → NoSQL. Mantiq to'g'ri!</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>AI tavsiya berdi, siz <b>sababini tekshirdingiz</b>. Do'kon va blog — bog'langan → SQL. Chat — ulkan oddiy oqim → NoSQL. Mantiq to'g'ri!</>, ru: <>AI дал совет, а вы <b>проверили причину</b>. Магазин и блог — связаны → SQL. Чат — огромный простой поток → NoSQL. Логика верна!</> })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -1468,17 +1480,17 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 
 // ===== SCREEN 12 — TEST 4 (nega PostgreSQL) =====
 const Screen12 = (props) => (
-  <QuestionScreen {...props} idx={12} scope="module-mikro" eyebrow="Mashq · 4-savol"
+  <QuestionScreen {...props} idx={12} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 4-savol', ru: 'Практика · вопрос 4' })}
     audioText="Nega bizning loyihalar uchun aynan PostgreSQL — bizning qutimiz? Chunki u bog'langan, ishonchli, bepul, va kerak bo'lsa JSON paketini ham saqlaydi. Javobni tanlang."
     questionText="Nega bizning loyihalar uchun PostgreSQL tanlanadi?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-sub" style={{ marginTop: 8 }}>Nega bizning loyihalar uchun <span className="italic" style={{ color: T.accent }}>PostgreSQL</span>?</h2></>}
-    options={["Chunki u eng yangi va modaviy baza", "Bog'langan, ishonchli, bepul + JSON ham", "Chunki boshqa hech qanday baza yo'q", "Chunki u faqat kichik loyihalarga mos"]} correctIdx={1}
-    explainCorrect="To'g'ri! PostgreSQL relyatsion (bog'lanish), ishonchli (tranzaksiya), bepul/ochiq kodli, va hatto JSON ham saqlaydi — bizning loyihalarga ideal."
+    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-sub" style={{ marginTop: 8 }}>{tr({ uz: <>Nega bizning loyihalar uchun <span className="italic" style={{ color: T.accent }}>PostgreSQL</span>?</>, ru: <>Почему для наших проектов <span className="italic" style={{ color: T.accent }}>PostgreSQL</span>?</> })}</h2></>}
+    options={[tr({ uz: 'Chunki u eng yangi va modaviy baza', ru: 'Потому что это самая новая и модная база' }), tr({ uz: "Bog'langan, ishonchli, bepul + JSON ham", ru: 'Связи, надёжность, бесплатно + ещё и JSON' }), tr({ uz: "Chunki boshqa hech qanday baza yo'q", ru: 'Потому что других баз не существует' }), tr({ uz: 'Chunki u faqat kichik loyihalarga mos', ru: 'Потому что подходит только мелким проектам' })]} correctIdx={1}
+    explainCorrect={tr({ uz: "To'g'ri! PostgreSQL relyatsion (bog'lanish), ishonchli (tranzaksiya), bepul/ochiq kodli, va hatto JSON ham saqlaydi — bizning loyihalarga ideal.", ru: 'Верно! PostgreSQL реляционная (связи), надёжная (транзакции), бесплатная с открытым кодом, и даже JSON хранит — идеальна для наших проектов.' })}
     explainWrong={{
-      0: "Tanlov modaga emas, vazifaga bog'liq. PostgreSQL — bog'langan + ishonchli + bepul + JSON ham.",
-      2: "Bazalar ko'p (MySQL, MongoDB...). PostgreSQL aniq sabablarga ko'ra tanlanadi.",
-      3: "Aksincha — PostgreSQL ulkan loyihalarni ham ko'taradi.",
-      default: "PostgreSQL: bog'langan + ishonchli + bepul + JSON ham."
+      0: tr({ uz: "Tanlov modaga emas, vazifaga bog'liq. PostgreSQL — bog'langan + ishonchli + bepul + JSON ham.", ru: 'Выбор зависит не от моды, а от задачи. PostgreSQL — связи + надёжность + бесплатно + ещё и JSON.' }),
+      2: tr({ uz: "Bazalar ko'p (MySQL, MongoDB...). PostgreSQL aniq sabablarga ko'ra tanlanadi.", ru: 'Баз много (MySQL, MongoDB...). PostgreSQL выбирают по конкретным причинам.' }),
+      3: tr({ uz: "Aksincha — PostgreSQL ulkan loyihalarni ham ko'taradi.", ru: 'Наоборот — PostgreSQL тянет и огромные проекты.' }),
+      default: tr({ uz: "PostgreSQL: bog'langan + ishonchli + bepul + JSON ham.", ru: 'PostgreSQL: связи + надёжность + бесплатно + ещё и JSON.' })
     }} />
 );
 
@@ -1486,10 +1498,10 @@ const Screen12 = (props) => (
 const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const audio = useAudio([{ id: 's13', text: "Endi o'zingiz qaror qiling. Har loyiha uchun SQL quti yoki NoSQL paketini tanlang. O'ylang: bog'langanmi, ishonchlilik kerakmi, yoki ulkan-oddiy-tezmi? To'g'ri tanlasangiz — yashil bo'ladi.", trigger: 'on_mount', waits_for: null }]);
   const PROJECTS = [
-    { id: 'bank', label: 'Bank ilovasi', db: 'sql', why: "pul, bog'langan, ishonchlilik" },
-    { id: 'chat', label: 'Chat ilovasi', db: 'nosql', why: "millionlab oddiy xabar, tezlik" },
-    { id: 'shop', label: "Onlayn do'kon", db: 'sql', why: "buyurtma↔mahsulot, to'lov" },
-    { id: 'logs', label: 'Server loglari', db: 'nosql', why: "ulkan, oddiy, bog'lanishsiz" }
+    { id: 'bank', label: tr({ uz: 'Bank ilovasi', ru: 'Банковское приложение' }), db: 'sql', why: tr({ uz: "pul, bog'langan, ishonchlilik", ru: 'деньги, связи, надёжность' }) },
+    { id: 'chat', label: tr({ uz: 'Chat ilovasi', ru: 'Чат-приложение' }), db: 'nosql', why: tr({ uz: 'millionlab oddiy xabar, tezlik', ru: 'миллионы простых сообщений, скорость' }) },
+    { id: 'shop', label: tr({ uz: "Onlayn do'kon", ru: 'Онлайн-магазин' }), db: 'sql', why: tr({ uz: "buyurtma↔mahsulot, to'lov", ru: 'заказ↔товар, оплата' }) },
+    { id: 'logs', label: tr({ uz: 'Server loglari', ru: 'Логи сервера' }), db: 'nosql', why: tr({ uz: "ulkan, oddiy, bog'lanishsiz", ru: 'огромные, простые, без связей' }) }
   ];
   const [assign, setAssign] = useState(storedAnswer ? Object.fromEntries(PROJECTS.map(p => [p.id, p.db])) : {});
   const allRight = PROJECTS.every(p => assign[p.id] === p.db);
@@ -1498,10 +1510,10 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   const okCount = PROJECTS.filter(p => assign[p.id] === p.db).length;
   return (
-    <Stage eyebrow="Amaliyot · moslashtirish" screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? 'Davom etish' : `${okCount}/4 to'g'ri`} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Amaliyot · moslashtirish', ru: 'Практика · сопоставление' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : `${okCount}/4 ${tr({ uz: "to'g'ri", ru: 'верно' })}`} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Har loyihaga <span className="italic" style={{ color: T.accent }}>to'g'ri bazani</span> tanlang</h2></div>
-        <Mentor>Endi o'zingiz qaror qiling! Har bir loyiha uchun <b style={{ color: T.accent }}>SQL</b> yoki <b style={{ color: T.blue }}>NoSQL</b> tugmasini bosing. O'ylang: bog'langanmi? ishonchlilik kerakmi? yoki ulkan-oddiy-tezmi? To'g'ri tanlasangiz — yashil bo'ladi.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Har loyihaga <span className="italic" style={{ color: T.accent }}>to'g'ri bazani</span> tanlang</>, ru: <>Выберите <span className="italic" style={{ color: T.accent }}>верную базу</span> каждому проекту</> })}</h2></div>
+        <Mentor>{tr({ uz: <>Endi o'zingiz qaror qiling! Har bir loyiha uchun <b style={{ color: T.accent }}>SQL</b> yoki <b style={{ color: T.blue }}>NoSQL</b> tugmasini bosing. O'ylang: bog'langanmi? ishonchlilik kerakmi? yoki ulkan-oddiy-tezmi? To'g'ri tanlasangiz — yashil bo'ladi.</>, ru: <>Теперь решайте сами! Для каждого проекта нажмите кнопку <b style={{ color: T.accent }}>SQL</b> или <b style={{ color: T.blue }}>NoSQL</b>. Подумайте: есть связи? нужна надёжность? или огромно-просто-быстро? Выберете верно — станет зелёным.</> })}</Mentor>
         <Zoomable>
         <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 10, maxWidth: 640, margin: '0 auto', width: '100%' }}>
           {PROJECTS.map(p => {
@@ -1511,7 +1523,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <div key={p.id} className="matchrow">
                 <div style={{ flex: 1, minWidth: 0 }}>
                   <p className="body" style={{ margin: 0, fontWeight: 700, color: T.ink }}>{p.label}</p>
-                  {a && <p className="small" style={{ margin: '2px 0 0', color: correct ? T.success : T.accent }}>{correct ? `✓ ${p.why}` : 'qayta o\'ylang'}</p>}
+                  {a && <p className="small" style={{ margin: '2px 0 0', color: correct ? T.success : T.accent }}>{correct ? `✓ ${p.why}` : tr({ uz: "qayta o'ylang", ru: 'подумайте ещё' })}</p>}
                 </div>
                 <div className={!a ? 'taphint' : undefined} style={{ display: 'flex', gap: 7 }}>
                   <button className={`mbtn ${a === 'sql' ? (correct ? 'ok' : 'bad') : ''}`} onClick={() => choose(p.id, 'sql')}>📦 SQL</button>
@@ -1522,7 +1534,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           })}
         </div>
         </Zoomable>
-        {done && <div className="frame-success fade-step" style={{ maxWidth: 640, margin: '0 auto', width: '100%' }}><p className="body" style={{ margin: 0, color: T.ink }}>Hammasi to'g'ri! Bank va do'kon — bog'langan + ishonchli → <b>SQL</b>. Chat va loglar — ulkan + oddiy → <b>NoSQL</b>. Tanlov vazifaga bog'liq.</p></div>}
+        {done && <div className="frame-success fade-step" style={{ maxWidth: 640, margin: '0 auto', width: '100%' }}><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Hammasi to'g'ri! Bank va do'kon — bog'langan + ishonchli → <b>SQL</b>. Chat va loglar — ulkan + oddiy → <b>NoSQL</b>. Tanlov vazifaga bog'liq.</>, ru: <>Всё верно! Банк и магазин — связанно + надёжно → <b>SQL</b>. Чат и логи — огромно + просто → <b>NoSQL</b>. Выбор зависит от задачи.</> })}</p></div>}
       </div>
     </Stage>
   );
@@ -1536,38 +1548,38 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const found = picked === 'myth';
   const done = fixed;
   const CLAIMS = [
-    { id: 'c1', txt: "SQL bog'langan ma'lumot bilan zo'r ishlaydi", ok: true },
-    { id: 'myth', txt: "NoSQL zamonaviyroq, shuning uchun do'konga ham NoSQL kerak", ok: false },
-    { id: 'c3', txt: "Tanlov vazifaga bog'liq, modaga emas", ok: true }
+    { id: 'c1', txt: tr({ uz: "SQL bog'langan ma'lumot bilan zo'r ishlaydi", ru: 'SQL отлично работает со связанными данными' }), ok: true },
+    { id: 'myth', txt: tr({ uz: "NoSQL zamonaviyroq, shuning uchun do'konga ham NoSQL kerak", ru: 'NoSQL современнее, поэтому и магазину нужен NoSQL' }), ok: false },
+    { id: 'c3', txt: tr({ uz: "Tanlov vazifaga bog'liq, modaga emas", ru: 'Выбор зависит от задачи, а не от моды' }), ok: true }
   ];
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   return (
-    <Stage eyebrow="Mif-buster" screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? 'Davom etish' : (found ? 'Endi to\'g\'irlang' : "Noto'g'ri fikrni toping")} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Mif-buster', ru: 'Разрушитель мифов' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : (found ? tr({ uz: "Endi to'g'irlang", ru: 'Теперь исправьте' }) : tr({ uz: "Noto'g'ri fikrni toping", ru: 'Найдите неверное утверждение' }))} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Do'stingiz aytdi — bitta fikr <span className="italic" style={{ color: T.accent }}>noto'g'ri</span>. Toping.</h2></div>
-        <Mentor>Ko'p odam adashadi: "NoSQL yangi, demak har doim yaxshiroq". Bu — <b style={{ color: T.ink }}>mif</b>! Tanlov modaga emas, <b style={{ color: T.ink }}>vazifaga</b> bog'liq. Quyidagi fikrlardan noto'g'risini bosing.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Do'stingiz aytdi — bitta fikr <span className="italic" style={{ color: T.accent }}>noto'g'ri</span>. Toping.</>, ru: <>Друг сказал три вещи — одна <span className="italic" style={{ color: T.accent }}>неверна</span>. Найдите её.</> })}</h2></div>
+        <Mentor>{tr({ uz: <>Ko'p odam adashadi: "NoSQL yangi, demak har doim yaxshiroq". Bu — <b style={{ color: T.ink }}>mif</b>! Tanlov modaga emas, <b style={{ color: T.ink }}>vazifaga</b> bog'liq. Quyidagi fikrlardan noto'g'risini bosing.</>, ru: <>Многие ошибаются: «NoSQL новее, значит всегда лучше». Это — <b style={{ color: T.ink }}>миф</b>! Выбор зависит не от моды, а от <b style={{ color: T.ink }}>задачи</b>. Нажмите на неверное утверждение ниже.</> })}</Mentor>
         <div className="split">
           <Col>
             <div className="ai-card fade-up delay-1">
-              <div className="ai-row"><span className="ai-badge" style={{ background: T.ink }}>Do'st</span><span className="ai-bubble">Fikrlar:</span></div>
+              <div className="ai-row"><span className="ai-badge" style={{ background: T.ink }}>{tr({ uz: "Do'st", ru: 'Друг' })}</span><span className="ai-bubble">{tr({ uz: 'Fikrlar:', ru: 'Утверждения:' })}</span></div>
               <div className="ai-code">
                 {CLAIMS.map(c => {
                   const isMyth = c.id === 'myth';
-                  if (isMyth && fixed) return <div key={c.id} className="ai-line ok el-in" style={{ cursor: 'default' }}>Do'kon bog'langan + ishonchli kerak → <b style={{ color: CODE.str }}>SQL (PostgreSQL)</b> ✓</div>;
+                  if (isMyth && fixed) return <div key={c.id} className="ai-line ok el-in" style={{ cursor: 'default' }}>{tr({ uz: <>Do'kon bog'langan + ishonchli kerak → <b style={{ color: CODE.str }}>SQL (PostgreSQL)</b> ✓</>, ru: <>Магазину нужны связи + надёжность → <b style={{ color: CODE.str }}>SQL (PostgreSQL)</b> ✓</> })}</div>;
                   return <div key={c.id} className={`ai-line ${found && isMyth ? 'bad' : ''} ${!found && picked === c.id && !isMyth ? 'ok' : ''}`} onClick={() => { if (!found) setPicked(isMyth ? 'myth' : c.id); }}>{c.txt}</div>;
                 })}
               </div>
-              {!found && <p className="ai-prompt">Qaysi fikr noto'g'ri? Bosing.</p>}
-              {found && !fixed && <button className="btn fade-step" style={{ alignSelf: 'flex-start' }} onClick={() => setFixed(true)}>🔧 To'g'ri fikrga almashtirish</button>}
-              {fixed && <p className="ai-prompt" style={{ color: T.success, fontStyle: 'normal', fontWeight: 600 }}>✓ To'g'irlandi!</p>}
+              {!found && <p className="ai-prompt">{tr({ uz: "Qaysi fikr noto'g'ri? Bosing.", ru: 'Какое утверждение неверно? Нажмите.' })}</p>}
+              {found && !fixed && <button className="btn fade-step" style={{ alignSelf: 'flex-start' }} onClick={() => setFixed(true)}>{tr({ uz: "🔧 To'g'ri fikrga almashtirish", ru: '🔧 Заменить на верное утверждение' })}</button>}
+              {fixed && <p className="ai-prompt" style={{ color: T.success, fontStyle: 'normal', fontWeight: 600 }}>{tr({ uz: "✓ To'g'irlandi!", ru: '✓ Исправлено!' })}</p>}
             </div>
           </Col>
           <Col>
             {!found && ((picked && picked !== 'myth')
-              ? <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Bu fikr to'g'ri. Yana qarang: qaysi fikr DB'ni <b>modaga qarab</b> ("zamonaviyroq") tanlamoqda?</p></div>
-              : <div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>Maslahat: "zamonaviyroq" — bu sabab emas. Do'kon ma'lumoti bog'langan va ishonchli bo'lishi kerak.</p></div>)}
-            {found && !fixed && <div className="frame-warn fade-step"><p className="note-h" style={{ color: T.accent }}>✓ Topdingiz!</p><p className="body" style={{ margin: 0, color: T.ink }}>"Zamonaviyroq" — yaxshi sabab emas. Do'konda buyurtma, mahsulot va to'lov <b>bog'langan</b> hamda <b>ishonchlilik</b> shart — bu <b>SQL</b> (PostgreSQL) ishi. Chapdagi tugma bilan to'g'irlang →</p></div>}
-            {fixed && <div className="takeaway fade-step"><div className="ta-bulb">🧭</div><p className="ta-h">DB modaga emas, vazifaga qarab tanlanadi</p><p className="ta-sub">Bog'langan + ishonchli → SQL · ulkan + oddiy → NoSQL</p></div>}
+              ? <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Bu fikr to'g'ri. Yana qarang: qaysi fikr DB'ni <b>modaga qarab</b> ("zamonaviyroq") tanlamoqda?</>, ru: <>Это утверждение верно. Посмотрите ещё: какое выбирает БД <b>по моде</b> («современнее»)?</> })}</p></div>
+              : <div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: 'Maslahat: "zamonaviyroq" — bu sabab emas. Do\'kon ma\'lumoti bog\'langan va ishonchli bo\'lishi kerak.', ru: 'Подсказка: «современнее» — это не причина. Данные магазина должны быть связанными и надёжными.' })}</p></div>)}
+            {found && !fixed && <div className="frame-warn fade-step"><p className="note-h" style={{ color: T.accent }}>{tr({ uz: '✓ Topdingiz!', ru: '✓ Нашли!' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>"Zamonaviyroq" — yaxshi sabab emas. Do'konda buyurtma, mahsulot va to'lov <b>bog'langan</b> hamda <b>ishonchlilik</b> shart — bu <b>SQL</b> (PostgreSQL) ishi. Chapdagi tugma bilan to'g'irlang →</>, ru: <>«Современнее» — не аргумент. В магазине заказ, товар и оплата <b>связаны</b>, а <b>надёжность</b> обязательна — это работа <b>SQL</b> (PostgreSQL). Исправьте кнопкой слева →</> })}</p></div>}
+            {fixed && <div className="takeaway fade-step"><div className="ta-bulb">🧭</div><p className="ta-h">{tr({ uz: 'DB modaga emas, vazifaga qarab tanlanadi', ru: 'БД выбирают не по моде, а по задаче' })}</p><p className="ta-sub">{tr({ uz: "Bog'langan + ishonchli → SQL · ulkan + oddiy → NoSQL", ru: 'Связанно + надёжно → SQL · огромно + просто → NoSQL' })}</p></div>}
           </Col>
         </div>
       </div>
@@ -1577,10 +1589,10 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 
 // ===== SCREEN 15 — YAKUNIY: QAROR KOMPASI =====
 const FINAL_CRIT = [
-  { id: 'rel', q: "Buyurtma, mahsulot va xaridor bir-biriga bog'langanmi?", sql: 'ha' },
-  { id: 'shape', q: "Har buyurtmada bir xil maydonlar bo'ladimi (qat'iy shakl)?", sql: 'ha' },
-  { id: 'safe', q: "To'lovda xatolik qimmatga tushadimi?", sql: 'ha' },
-  { id: 'scale', q: "Ma'lumot ulkan + juda oddiy + faqat tezlik kerakmi?", sql: 'yoq' }
+  { id: 'rel', q: { uz: "Buyurtma, mahsulot va xaridor bir-biriga bog'langanmi?", ru: 'Заказ, товар и покупатель связаны между собой?' }, sql: 'ha' },
+  { id: 'shape', q: { uz: "Har buyurtmada bir xil maydonlar bo'ladimi (qat'iy shakl)?", ru: 'В каждом заказе одни и те же поля (строгая форма)?' }, sql: 'ha' },
+  { id: 'safe', q: { uz: "To'lovda xatolik qimmatga tushadimi?", ru: 'Ошибка в оплате обойдётся дорого?' }, sql: 'ha' },
+  { id: 'scale', q: { uz: "Ma'lumot ulkan + juda oddiy + faqat tezlik kerakmi?", ru: 'Данные огромные + очень простые + нужна только скорость?' }, sql: 'yoq' }
 ];
 const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const audio = useAudio([{ id: 's15', text: "Mana sizning loyihangiz — onlayn do'kon. To'rt savolga rostini javob bering, har javob kompas strelkasini suradi. To'g'ri fikrlasangiz, strelka PostgreSQL qutisi tomon to'xtaydi.", trigger: 'on_mount', waits_for: null }]);
@@ -1598,35 +1610,35 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const setA = (id, v) => setAns(a => ({ ...a, [id]: v }));
   const reset = () => setAns({});
   return (
-    <Stage eyebrow="Yakuniy · qaror kompasi" screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!passed} label={passed ? 'Davom etish' : `${answered}/4 javob`} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Yakuniy · qaror kompasi', ru: 'Финал · компас решений' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!passed} label={passed ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : `${answered}/4 ${tr({ uz: 'javob', ru: 'ответа' })}`} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(8px,1.4vw,14px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Oxirgi qadam: <span className="italic" style={{ color: T.accent }}>onlayn do'kon</span> uchun DB tanlang.</h2></div>
-        <Mentor>Mana sizning loyihangiz — <b style={{ color: T.ink }}>onlayn do'kon</b>. 4 ta savolga rostini javob bering. Har javob kompas strelkasini suradi. To'g'ri fikrlasangiz — strelka <b style={{ color: T.accent }}>PostgreSQL</b> tomon to'xtaydi.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Oxirgi qadam: <span className="italic" style={{ color: T.accent }}>onlayn do'kon</span> uchun DB tanlang.</>, ru: <>Последний шаг: выберите БД для <span className="italic" style={{ color: T.accent }}>онлайн-магазина</span>.</> })}</h2></div>
+        <Mentor>{tr({ uz: <>Mana sizning loyihangiz — <b style={{ color: T.ink }}>onlayn do'kon</b>. 4 ta savolga rostini javob bering. Har javob kompas strelkasini suradi. To'g'ri fikrlasangiz — strelka <b style={{ color: T.accent }}>PostgreSQL</b> tomon to'xtaydi.</>, ru: <>Вот ваш проект — <b style={{ color: T.ink }}>онлайн-магазин</b>. Честно ответьте на 4 вопроса. Каждый ответ сдвигает стрелку компаса. Будете рассуждать верно — стрелка остановится на <b style={{ color: T.accent }}>PostgreSQL</b>.</> })}</Mentor>
         <div className="split" style={{ gridTemplateColumns: 'minmax(0,1.15fr) minmax(0,1fr)', alignItems: 'start' }}>
           <Col>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
               {FINAL_CRIT.map(c => (
                 <div key={c.id} className="ynrow fade-up">
-                  <span className="ynq">{c.q}</span>
+                  <span className="ynq">{tr(c.q)}</span>
                   <div className="ynbtns">
-                    <button className={`ynbtn ${ans[c.id] === 'ha' ? 'on' : ''}`} onClick={() => setA(c.id, 'ha')}>Ha</button>
-                    <button className={`ynbtn ${ans[c.id] === 'yoq' ? 'on' : ''}`} onClick={() => setA(c.id, 'yoq')}>Yo'q</button>
+                    <button className={`ynbtn ${ans[c.id] === 'ha' ? 'on' : ''}`} onClick={() => setA(c.id, 'ha')}>{tr({ uz: 'Ha', ru: 'Да' })}</button>
+                    <button className={`ynbtn ${ans[c.id] === 'yoq' ? 'on' : ''}`} onClick={() => setA(c.id, 'yoq')}>{tr({ uz: "Yo'q", ru: 'Нет' })}</button>
                   </div>
                 </div>
               ))}
             </div>
-            {wrongLean && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Hmm — do'kon ma'lumotlari <b>bog'langan</b> va to'lov <b>ishonchli</b> bo'lishi kerak. Javoblarni qayta ko'rib chiqing.</p></div>}
+            {wrongLean && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Hmm — do'kon ma'lumotlari <b>bog'langan</b> va to'lov <b>ishonchli</b> bo'lishi kerak. Javoblarni qayta ko'rib chiqing.</>, ru: <>Хм — данные магазина <b>связаны</b>, а оплата должна быть <b>надёжной</b>. Пересмотрите ответы.</> })}</p></div>}
           </Col>
           <Col>
-            <Win title={passed ? 'natija: PostgreSQL ✓' : 'qaror kompasi'} minH={172} hotTitle={passed}>
+            <Win title={passed ? tr({ uz: 'natija: PostgreSQL ✓', ru: 'результат: PostgreSQL ✓' }) : tr({ uz: 'qaror kompasi', ru: 'компас решений' })} minH={172} hotTitle={passed}>
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6 }}>
                 <Compass lean={lean} />
                 {passed && <DbBadge kind="sql" big />}
               </div>
             </Win>
             {passed
-              ? <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>🎉 Mukammal! Strelka <b>PostgreSQL</b>'da to'xtadi. Siz loyiha uchun to'g'ri bazani — mezonlar asosida — o'zingiz tanladingiz!</p></div>
-              : <button className="btn-soft" style={{ alignSelf: 'flex-start' }} onClick={reset}>↻ Qaytadan</button>}
+              ? <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>🎉 Mukammal! Strelka <b>PostgreSQL</b>'da to'xtadi. Siz loyiha uchun to'g'ri bazani — mezonlar asosida — o'zingiz tanladingiz!</>, ru: <>🎉 Отлично! Стрелка остановилась на <b>PostgreSQL</b>. Вы сами — по критериям — выбрали проекту верную базу!</> })}</p></div>
+              : <button className="btn-soft" style={{ alignSelf: 'flex-start' }} onClick={reset}>{tr({ uz: '↻ Qaytadan', ru: '↻ Заново' })}</button>}
           </Col>
         </div>
       </div>
@@ -1658,11 +1670,11 @@ const MentorPracticeStats = ({ live, screen }) => {
   const waiting = players.filter(p => !data.doneIds.has(p.id));
   return (
     <div className="lp-mstats fade-up">
-      <div className="card-lbl" style={{ color: T.blue }}>👀 Kim bajardi — {doers.length}/{players.length}</div>
+      <div className="card-lbl" style={{ color: T.blue }}>{tr({ uz: '👀 Kim bajardi', ru: '👀 Кто выполнил' })} — {doers.length}/{players.length}</div>
       {data.players === null ? (
-        <p className="small" style={{ color: T.ink3, margin: 0, fontStyle: 'italic' }}>Yuklanmoqda…</p>
+        <p className="small" style={{ color: T.ink3, margin: 0, fontStyle: 'italic' }}>{tr({ uz: 'Yuklanmoqda…', ru: 'Загружается…' })}</p>
       ) : players.length === 0 ? (
-        <p className="small" style={{ color: T.ink3, margin: 0, fontStyle: 'italic' }}>Hali hech kim qo'shilmagan.</p>
+        <p className="small" style={{ color: T.ink3, margin: 0, fontStyle: 'italic' }}>{tr({ uz: "Hali hech kim qo'shilmagan.", ru: 'Пока никто не присоединился.' })}</p>
       ) : (
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
           {doers.map(p => <span key={p.id} className="mstats-wait-chip" style={{ background: T.successSoft, color: T.success }}>✓ {p.nickname}</span>)}
@@ -1682,39 +1694,39 @@ function ScreenLivePractice({ title, task, checklist, screen, storedAnswer, onAn
   const complete = () => {
     if (done) return;
     setDone(true);
-    onAnswer(screen, { stage: 'practice', screenIdx: screen, practice: title, solved: true, correct: true, picked: true });
+    onAnswer(screen, { stage: 'practice', screenIdx: screen, practice: (title && title.uz) || title, solved: true, correct: true, picked: true });
     if (_live && _live.mode === 'student') _live.submitAnswer(PRACTICE_BASE + screen, 'practice', 0, true, 0);
   };
   return (
-    <Stage eyebrow="Amaliyot · loyiha" screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? 'Davom etish' : 'Avval bajaring'} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Amaliyot · loyiha', ru: 'Практика · проект' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Avval bajaring', ru: 'Сначала выполните' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{title}</h2></div>
-        <Mentor>Bu topshiriqni <b style={{ color: T.ink }}>o'zingiz</b> bajaring. Har bosqichni belgilab boring. Tugagach <b style={{ color: T.ink }}>«Bajardim»</b> tugmasini bosing — ustoz kuzatib turadi.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr(title)}</h2></div>
+        <Mentor>{tr({ uz: <>Bu topshiriqni <b style={{ color: T.ink }}>o'zingiz</b> bajaring. Har bosqichni belgilab boring. Tugagach <b style={{ color: T.ink }}>«Bajardim»</b> tugmasini bosing — ustoz kuzatib turadi.</>, ru: <>Выполните это задание <b style={{ color: T.ink }}>самостоятельно</b>. Отмечайте каждый шаг по ходу. Закончите — нажмите <b style={{ color: T.ink }}>«Выполнил»</b> — наставник следит.</> })}</Mentor>
         <div className="split">
           <Col>
             <div className="lp-task fade-up delay-1">
-              <div className="lp-task-h"><span className="lp-task-badge">TOPSHIRIQ</span></div>
-              <p className="body" style={{ margin: 0, color: T.ink }}>{task}</p>
+              <div className="lp-task-h"><span className="lp-task-badge">{tr({ uz: 'TOPSHIRIQ', ru: 'ЗАДАНИЕ' })}</span></div>
+              <p className="body" style={{ margin: 0, color: T.ink }}>{tr(task)}</p>
             </div>
             <MentorPracticeStats live={_live} screen={screen} />
           </Col>
           <Col>
-            <p className="flow-label">Bosqichlar — belgilab boring</p>
+            <p className="flow-label">{tr({ uz: 'Bosqichlar — belgilab boring', ru: 'Шаги — отмечайте по ходу' })}</p>
             <div className="lp-steps fade-up delay-2">
               {checklist.map((c, i) => {
                 const on = checked.has(i);
                 return (
                   <button key={i} className={`lp-step ${on ? 'on' : ''}`} onClick={() => toggle(i)}>
                     <span className="lp-check">{on ? '✓' : i + 1}</span>
-                    <span className="lp-step-t">{fmtCode(c)}</span>
+                    <span className="lp-step-t">{fmtCode(tr(c))}</span>
                   </button>
                 );
               })}
             </div>
             <button className={`lp-done-btn ${done ? 'is-done' : ''}`} disabled={done} onClick={complete}>
-              {done ? '✓ Bajarildi — ustozni kuting' : '✅ Bajardim'}
+              {done ? tr({ uz: '✓ Bajarildi — ustozni kuting', ru: '✓ Выполнено — ждите наставника' }) : tr({ uz: '✅ Bajardim', ru: '✅ Выполнил' })}
             </button>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Zo'r! Vazifani bajardingiz. Ustoz tekshirib, keyingi qadamga o'tkazadi.</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Zo'r! Vazifani bajardingiz. Ustoz tekshirib, keyingi qadamga o'tkazadi.", ru: 'Отлично! Вы выполнили задание. Наставник проверит и переведёт на следующий шаг.' })}</p></div>}
           </Col>
         </div>
       </div>
@@ -1723,15 +1735,15 @@ function ScreenLivePractice({ title, task, checklist, screen, storedAnswer, onAn
 }
 const ScreenDbPractice = (props) => (
   <ScreenLivePractice {...props}
-    title="Loyihangizga bazani tanlang va sxemasini chizing"
-    task="O'z loyiha g'oyangizni oling. 4 mezon (bog'lanish / shakl / ishonchlilik / miqyos) bo'yicha SQL yoki NoSQL tanlab, bir jumla bilan asoslang. SQL bo'lsa — 2-3 ustunli jadval sxemasini yozing (namuna: Instagram — users(id, username)). Kod yozilmaydi — daftar yoki og'zaki bo'ladi."
+    title={{ uz: 'Loyihangizga bazani tanlang va sxemasini chizing', ru: 'Выберите базу для проекта и нарисуйте схему' }}
+    task={{ uz: "O'z loyiha g'oyangizni oling. 4 mezon (bog'lanish / shakl / ishonchlilik / miqyos) bo'yicha SQL yoki NoSQL tanlab, bir jumla bilan asoslang. SQL bo'lsa — 2-3 ustunli jadval sxemasini yozing (namuna: Instagram — users(id, username)). Kod yozilmaydi — daftar yoki og'zaki bo'ladi.", ru: 'Возьмите идею своего проекта. По 4 критериям (связи / форма / надёжность / масштаб) выберите SQL или NoSQL и обоснуйте одним предложением. Если SQL — напишите схему таблицы из 2-3 столбцов (пример: Instagram — users(id, username)). Код не пишется — в тетради или устно.' }}
     checklist={[
-      "Loyiha g'oyangizni bir jumlada yozing (masalan: onlayn do'kon)",
-      "Bog'lanish bormi? — `SQL` yoki `NoSQL` tanlang",
-      "Shakli qat'iymi? — javob bering",
-      "Ishonchlilik (pul/buyurtma) muhimmi? — javob bering",
-      "Ulkan + oddiy + tezlik kerakmi? — javob bering",
-      "Yakuniy tanlov + 2-3 ustunli jadval sxemasini yozing (SQL bo'lsa)",
+      { uz: "Loyiha g'oyangizni bir jumlada yozing (masalan: onlayn do'kon)", ru: 'Запишите идею проекта одним предложением (например: онлайн-магазин)' },
+      { uz: "Bog'lanish bormi? — `SQL` yoki `NoSQL` tanlang", ru: 'Есть связи? — выберите `SQL` или `NoSQL`' },
+      { uz: "Shakli qat'iymi? — javob bering", ru: 'Форма строгая? — ответьте' },
+      { uz: "Ishonchlilik (pul/buyurtma) muhimmi? — javob bering", ru: 'Надёжность (деньги/заказы) важна? — ответьте' },
+      { uz: "Ulkan + oddiy + tezlik kerakmi? — javob bering", ru: 'Огромно + просто + нужна скорость? — ответьте' },
+      { uz: "Yakuniy tanlov + 2-3 ustunli jadval sxemasini yozing (SQL bo'lsa)", ru: 'Финальный выбор + схема таблицы из 2-3 столбцов (если SQL)' },
     ]} />
 );
 
@@ -1758,49 +1770,49 @@ function Flashcards({ cards }) {
   const again = () => advance(false);
   const restart = () => { setQueue(cards.map((_, i) => i)); setKnown(0); setFlipped(false); };
   if (!card) return (
-    <div className="fc-done fade-up"><span className="fc-done-emoji">🎉</span><p className="fc-done-h">Hammasini bilasiz!</p><p className="fc-done-s">{total}/{total} atama yodlandi</p><button className="fc-btn ghost" onClick={restart}>↻ Qaytadan takrorlash</button></div>
+    <div className="fc-done fade-up"><span className="fc-done-emoji">🎉</span><p className="fc-done-h">{tr({ uz: 'Hammasini bilasiz!', ru: 'Вы знаете всё!' })}</p><p className="fc-done-s">{total}/{total} {tr({ uz: 'atama yodlandi', ru: 'терминов выучено' })}</p><button className="fc-btn ghost" onClick={restart}>{tr({ uz: '↻ Qaytadan takrorlash', ru: '↻ Повторить заново' })}</button></div>
   );
   return (
     <div className="fc fade-up">
-      <div className="fc-top"><span className="fc-pill learn" key={`l-${queue.length}-${swapRef.current}`}>↻ O'rganilmoqda · <b>{queue.length}</b></span><span className="fc-pill knew" key={`k-${known}`}>✓ Bildim · <b>{known}</b></span></div>
+      <div className="fc-top"><span className="fc-pill learn" key={`l-${queue.length}-${swapRef.current}`}>{tr({ uz: "↻ O'rganilmoqda", ru: '↻ Изучается' })} · <b>{queue.length}</b></span><span className="fc-pill knew" key={`k-${known}`}>{tr({ uz: '✓ Bildim', ru: '✓ Знаю' })} · <b>{known}</b></span></div>
       <div className="fc-bar"><span className="fc-bar-fill" style={{ width: `${(known / total) * 100}%` }} /></div>
       <div className="fc-cardwrap">
         <div className={`fc-fly ${exiting === 'knew' ? 'out-knew' : ''} ${exiting === 'again' ? 'out-again' : ''}`} key={swapRef.current}>
         <div className={`fc-card ${flipped ? 'flip' : ''}`} onClick={() => !flipped && !exiting && setFlipped(true)} role="button" tabIndex={0}>
-          <div className="fc-face fc-front"><span className="fc-q">{card.front}</span><span className="fc-cue">Qaysi tushuncha? 🤔 <span className="fc-tap">bosing</span></span></div>
-          <div className="fc-face fc-back"><span className="fc-tag">{card.back}</span>{card.note && <span className="fc-note">{card.note}</span>}</div>
+          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: 'Qaysi tushuncha? 🤔', ru: 'Какое понятие? 🤔' })} <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
+          <div className="fc-face fc-back"><span className="fc-tag">{tr(card.back)}</span>{card.note && <span className="fc-note">{tr(card.note)}</span>}</div>
         </div>
         </div>
       </div>
       {flipped
-        ? (<div className="fc-actions"><button className="fc-btn again" disabled={!!exiting} onClick={again}>✗ Takrorlash</button><button className="fc-btn knew" disabled={!!exiting} onClick={knew}>✓ Bildim</button></div>)
-        : (<p className="fc-hint">👆 Kartani bosing — javobni ko'rasiz</p>)}
+        ? (<div className="fc-actions"><button className="fc-btn again" disabled={!!exiting} onClick={again}>{tr({ uz: '✗ Takrorlash', ru: '✗ Повторить' })}</button><button className="fc-btn knew" disabled={!!exiting} onClick={knew}>{tr({ uz: '✓ Bildim', ru: '✓ Знаю' })}</button></div>)
+        : (<p className="fc-hint">{tr({ uz: "👆 Kartani bosing — javobni ko'rasiz", ru: '👆 Нажмите на карту — увидите ответ' })}</p>)}
     </div>
   );
 }
 // 🃏 SQL vs NoSQL FLASHCARD KARTALARI (front=izoh, back=tushuncha) — Metodist keyin sayqallaydi
 const DB_FLASHCARDS = [
-  { front: "Uyachali quti — bazalar tili", back: "SQL", note: "qat'iy jadval" },
-  { front: "Erkin { } paket — egiluvchan bazalar", back: "NoSQL", note: "hujjatli" },
-  { front: "Bizning SQL qutimiz 🐘", back: "PostgreSQL", note: "relyatsion · bepul" },
-  { front: "Mashhur NoSQL paketi", back: "MongoDB", note: "hujjatli" },
-  { front: "Bir xil ustunli qatorlar", back: "Jadval", note: "SQL saqlash usuli" },
-  { front: "O'z shakliga ega { } yozuv", back: "Hujjat", note: "NoSQL saqlash usuli" },
-  { front: "Ikki qutini id ipi bilan ulash", back: "JOIN", note: "SQL kuchi" },
-  { front: "Har qatorning yagona nomeri", back: "PK", note: "Primary Key" },
-  { front: "Boshqa qutiga ulanuvchi ip", back: "FK", note: "Foreign Key" },
-  { front: "«Ikki marta sotilmaydi» ishonchlilik", back: "Tranzaksiya", note: "SQL himoyasi" },
-  { front: "Qutining uyacha chizmasi", back: "Schema", note: "oldindan belgilangan" },
-  { front: "Millionlab oddiy paketni tez saqlash", back: "Miqyos", note: "NoSQL kuchi" },
+  { front: { uz: "Uyachali quti — bazalar tili", ru: 'Коробка с ячейками — язык баз данных' }, back: "SQL", note: { uz: "qat'iy jadval", ru: 'строгая таблица' } },
+  { front: { uz: "Erkin { } paket — egiluvchan bazalar", ru: 'Свободный { } пакет — гибкие базы' }, back: "NoSQL", note: { uz: "hujjatli", ru: 'документная' } },
+  { front: { uz: "Bizning SQL qutimiz 🐘", ru: 'Наша SQL-коробка 🐘' }, back: "PostgreSQL", note: { uz: "relyatsion · bepul", ru: 'реляционная · бесплатная' } },
+  { front: { uz: "Mashhur NoSQL paketi", ru: 'Известный NoSQL-пакет' }, back: "MongoDB", note: { uz: "hujjatli", ru: 'документная' } },
+  { front: { uz: "Bir xil ustunli qatorlar", ru: 'Строки с одинаковыми столбцами' }, back: { uz: "Jadval", ru: 'Таблица' }, note: { uz: "SQL saqlash usuli", ru: 'способ хранения SQL' } },
+  { front: { uz: "O'z shakliga ega { } yozuv", ru: 'Запись { } со своей формой' }, back: { uz: "Hujjat", ru: 'Документ' }, note: { uz: "NoSQL saqlash usuli", ru: 'способ хранения NoSQL' } },
+  { front: { uz: "Ikki qutini id ipi bilan ulash", ru: 'Связать две коробки нитью id' }, back: "JOIN", note: { uz: "SQL kuchi", ru: 'сила SQL' } },
+  { front: { uz: "Har qatorning yagona nomeri", ru: 'Уникальный номер каждой строки' }, back: "PK", note: "Primary Key" },
+  { front: { uz: "Boshqa qutiga ulanuvchi ip", ru: 'Нить, ведущая к другой коробке' }, back: "FK", note: "Foreign Key" },
+  { front: { uz: "«Ikki marta sotilmaydi» ishonchlilik", ru: 'Надёжность «дважды не продастся»' }, back: { uz: "Tranzaksiya", ru: 'Транзакция' }, note: { uz: "SQL himoyasi", ru: 'защита SQL' } },
+  { front: { uz: "Qutining uyacha chizmasi", ru: 'Чертёж ячеек коробки' }, back: "Schema", note: { uz: "oldindan belgilangan", ru: 'задана заранее' } },
+  { front: { uz: "Millionlab oddiy paketni tez saqlash", ru: 'Быстро хранить миллионы простых пакетов' }, back: { uz: "Miqyos", ru: 'Масштаб' }, note: { uz: "NoSQL kuchi", ru: 'сила NoSQL' } },
 ];
 const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const audio = useAudio([{ id: 'sflash', text: "Darsni yakunlashdan oldin bugungi tushunchalarni tez takrorlaymiz. Har kartada bir izoh — qaysi tushuncha ekanini o'ylang, keyin kartani bosib tekshiring.", trigger: 'on_mount', waits_for: null }]);
   useEffect(() => { if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, []); // eslint-disable-line
   return (
-    <Stage eyebrow="Takrorlash" screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={false} label="Yakunlash →" onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Takrorlash', ru: 'Повторение' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={false} label={tr({ uz: 'Yakunlash →', ru: 'Завершить →' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Tushunchalarni <span className="italic" style={{ color: T.accent }}>tez takrorlaymiz</span>.</h2></div>
-        <Mentor>Darsni yakunlashdan oldin bugun o'rgangan tushunchalarni takrorlaymiz. Har kartada bir izoh — <b style={{ color: T.ink }}>qaysi tushuncha</b> ekanini o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Tushunchalarni <span className="italic" style={{ color: T.accent }}>tez takrorlaymiz</span>.</>, ru: <>Быстро <span className="italic" style={{ color: T.accent }}>повторим понятия</span>.</> })}</h2></div>
+        <Mentor>{tr({ uz: <>Darsni yakunlashdan oldin bugun o'rgangan tushunchalarni takrorlaymiz. Har kartada bir izoh — <b style={{ color: T.ink }}>qaysi tushuncha</b> ekanini o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</>, ru: <>Перед завершением урока повторим сегодняшние понятия. На каждой карте описание — подумайте, <b style={{ color: T.ink }}>какое это понятие</b>, затем нажмите на карту и проверьте. Оцените кнопками <b style={{ color: T.ink }}>Знаю</b> или <b style={{ color: T.ink }}>Повторить</b>.</> })}</Mentor>
         <div className="fc-center"><Flashcards cards={DB_FLASHCARDS} /></div>
       </div>
     </Stage>
@@ -1809,17 +1821,17 @@ const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) =>
 
 // ===== 🏅 BADGES (nishonlar) — dars davomidagi REAL bosqichlar uchun (tekin emas) =====
 const ACHIEVEMENTS = {
-  packageMaster: { icon: '📦', name: 'Package Master', desc: "Qadoqxonada kartalarni to'g'ri qadoqladingiz" },
-  connector:     { icon: '🔗', name: 'The Connector', desc: "Ikki jadvalni id ipi bilan ulab JOIN qildingiz" },
-  mythBuster:    { icon: '💥', name: 'Myth Buster',   desc: "Noto'g'ri fikrni topib to'g'irladingiz" },
-  compassReader: { icon: '🧭', name: 'Compass Reader', desc: "Qaror kompasini o'qib to'g'ri bazani tanladingiz" },
+  packageMaster: { icon: '📦', name: 'Package Master', desc: { uz: "Qadoqxonada kartalarni to'g'ri qadoqladingiz", ru: 'Вы правильно упаковали карточки на упаковочной станции' } },
+  connector:     { icon: '🔗', name: 'The Connector', desc: { uz: "Ikki jadvalni id ipi bilan ulab JOIN qildingiz", ru: 'Вы связали две таблицы нитью id и сделали JOIN' } },
+  mythBuster:    { icon: '💥', name: 'Myth Buster',   desc: { uz: "Noto'g'ri fikrni topib to'g'irladingiz", ru: 'Вы нашли и исправили ошибочное утверждение' } },
+  compassReader: { icon: '🧭', name: 'Compass Reader', desc: { uz: "Qaror kompasini o'qib to'g'ri bazani tanladingiz", ru: 'Вы прочли компас решений и выбрали верную базу' } },
 };
 // Ekran id → nishon (recordAnswer'da, faqat REAL solve bilan: challenge/final)
 const ACH_TRIGGERS = { s3: 'packageMaster', s5: 'connector', s14: 'mythBuster', s15: 'compassReader' };
 function AchCelebrate({ ach, onDone }) {
   useEffect(() => { const t = setTimeout(onDone, 4000); return () => clearTimeout(t); }, []); // eslint-disable-line
   return (
-    <div className="acu-overlay" onClick={onDone} role="status" aria-label={`Yangi nishon: ${ach.name}`}>
+    <div className="acu-overlay" onClick={onDone} role="status" aria-label={`${tr({ uz: 'Yangi nishon', ru: 'Новый значок' })}: ${ach.name}`}>
       <div className="acu-rays" aria-hidden="true" />
       <div className="acu-glow" aria-hidden="true" />
       <div className="acu-ring" aria-hidden="true" />
@@ -1832,11 +1844,11 @@ function AchCelebrate({ ach, onDone }) {
           ))}
         </div>
         <div className="acu-txt">
-          <span className="acu-eyebrow">🏅 Nishon ochildi!</span>
+          <span className="acu-eyebrow">{tr({ uz: '🏅 Nishon ochildi!', ru: '🏅 Значок открыт!' })}</span>
           <span className="acu-name">{ach.name}</span>
-          {ach.desc && <span className="acu-desc">{ach.desc}</span>}
+          {ach.desc && <span className="acu-desc">{tr(ach.desc)}</span>}
         </div>
-        <span className="acu-tap">bosib davom eting</span>
+        <span className="acu-tap">{tr({ uz: 'bosib davom eting', ru: 'нажмите, чтобы продолжить' })}</span>
       </div>
     </div>
   );
@@ -1870,7 +1882,7 @@ const Confetti = () => {
 };
 
 // Podium savol yorliqlari (SCORED_IDX indekslariga mos)
-const Q_LABELS = { 4: "1 — shakl", 6: "2 — JOIN", 10: "3 — ishonchlilik", 13: "4 — PostgreSQL", 16: "5 — kompas" };
+const Q_LABELS = { 4: { uz: "1 — shakl", ru: '1 — форма' }, 6: "2 — JOIN", 10: { uz: "3 — ishonchlilik", ru: '3 — надёжность' }, 13: "4 — PostgreSQL", 16: { uz: "5 — kompas", ru: '5 — компас' } };
 const QUIZ_MS = 15000;
 // Kapsula ichida suzuvchi tokenlar — darsning "DNK"si (SELECT / { } / JOIN / PostgreSQL)
 const QZ_BG_SHAPES = [
@@ -1880,25 +1892,25 @@ const QZ_BG_SHAPES = [
   { ch: 'NoSQL',      l: 78, t: 68, s: 28, d: 21, dl: 2.2 },
   { ch: 'JOIN',       l: 44, t: 86, s: 30, d: 25, dl: 1.1 },
   { ch: 'PostgreSQL', l: 60, t: 26, s: 24, d: 17, dl: 0.4 },
-  { ch: 'jadval',     l: 26, t: 34, s: 26, d: 20, dl: 1.9 },
-  { ch: 'hujjat',     l: 55, t: 5,  s: 26, d: 22, dl: 0.6 },
+  { ch: { uz: 'jadval', ru: 'таблица' }, l: 26, t: 34, s: 26, d: 20, dl: 1.9 },
+  { ch: { uz: 'hujjat', ru: 'документ' }, l: 55, t: 5,  s: 26, d: 22, dl: 0.6 },
   { ch: '🐘',         l: 91, t: 42, s: 30, d: 24, dl: 1.3 },
   { ch: '🔑',         l: 2,  t: 45, s: 28, d: 26, dl: 2.6 },
 ];
 // ⚔️ Mustahkamlash-jang savollari (12: 3 shakl / 3 SQL kuchi / 3 NoSQL kuchi / 3 qaror) — 🎓 Metodist sayqallaydi.
 const QUIZ_BANK = [
-  { q: "G'alati «musiqa» maydonini qaysi qadoqqa qo'shish oson?", opts: [ "Ikkalasiga ham qo'shib bo'lmaydi", "SQL — jadval o'zi ustun qo'shadi","NoSQL — { } paket bemalol kengayadi", "Faqat qo'lda, birma-bir yoziladi"], correct: 2 },
-  { q: "SQL jadvaliga yangi ustun qo'shsa nima bo'ladi?", opts: [ "Faqat NoSQL'da mumkin", "Hech narsa — avtomatik qo'shiladi", "Baza o'chib qoladi","Jadval tuzilishini o'zgartirish kerak"], correct: 3 },
-  { q: "«Har yozuv har xil maydonga ega» — bu qaysi oila?", opts: [ "SQL (qat'iy jadval)","NoSQL (erkin { } hujjat)", "Ikkalasi bir xil", "Hech biri"], correct: 1 },
-  { q: "`JOIN` nima qiladi?", opts: [ "Ikki jadvalni id orqali ulaydi","Barcha fayllarni o'chirib tashlaydi", "Noldan yangi bo'sh baza yaratadi", "Sahifani qaytadan yuklab beradi"], correct: 0 },
-  { q: "Bank ilovasi (pul, hisoblar) uchun qaysi to'g'riroq?", opts: [ "SQL — bog'langan + ishonchli","NoSQL — javob tezroq keladi", "Ikkalasining ham farqi yo'q", "Bunga baza umuman kerak emas"], correct: 0 },
-  { q: "users↔posts bog'langan ma'lumot uchun qaysi qulay?", opts: ["NoSQL — takrorlab yozamiz", "Ikkalasi ham qiyin", "SQL — JOIN bilan ulaydi", "Faqat qo'lda"], correct: 2 },
-  { q: "Millionlab oddiy chat xabari uchun qaysi ideal?", opts: ["SQL — har xabar JOIN bilan", "NoSQL — ulkan, oddiy, tez", "Faqat qog'ozda", "Hech qanday"], correct: 1 },
-  { q: "«Ulkan + juda oddiy + faqat tezlik» — qaysi oila?", opts: ["SQL", "Ikkalasi teng", "Hech biri", "NoSQL"], correct: 3 },
-  { q: "Server loglari (ulkan, bog'lanishsiz) uchun qaysi?", opts: ["SQL — tranzaksiya kerak", "Faqat Excel", "DB kerak emas", "NoSQL — miqyos va tezlik"], correct: 3 },
-  { q: "Nega bizning loyihalar uchun PostgreSQL?", opts: [ "Bog'langan, ishonchli, bepul, JSON ham", "Boshqa hech qanday baza yo'qligidan", "Faqat kichik loyihalarga mosligidan","Eng modaviy va yangi bo'lgani uchun"], correct: 0 },
-  { q: "DB modaga qarab («zamonaviyroq») tanlanadimi?", opts: ["Ha, doim yangisi yaxshi", "Ha, NoSQL har doim ustun", "Yo'q — vazifaga qarab tanlanadi", "Faqat narxga qarab"], correct: 2 },
-  { q: "PostgreSQL JSON ham saqlay oladimi?", opts: ["Yo'q, faqat jadval", "Ha — kerak bo'lsa JSON ham", "Yo'q, umuman imkonsiz", "Faqat MongoDB saqlaydi"], correct: 1 },
+  { q: { uz: "G'alati «musiqa» maydonini qaysi qadoqqa qo'shish oson?", ru: 'В какую упаковку легко добавить странное поле «музыка»?' }, opts: [{ uz: "Ikkalasiga ham qo'shib bo'lmaydi", ru: 'Ни в одну не добавить' }, { uz: "SQL — jadval o'zi ustun qo'shadi", ru: 'SQL — таблица сама добавит столбец' }, { uz: "NoSQL — { } paket bemalol kengayadi", ru: 'NoSQL — пакет { } спокойно расширится' }, { uz: "Faqat qo'lda, birma-bir yoziladi", ru: 'Только вручную, по одной' }], correct: 2 },
+  { q: { uz: "SQL jadvaliga yangi ustun qo'shsa nima bo'ladi?", ru: 'Что будет, если добавить новый столбец в SQL-таблицу?' }, opts: [{ uz: "Faqat NoSQL'da mumkin", ru: 'Это возможно только в NoSQL' }, { uz: "Hech narsa — avtomatik qo'shiladi", ru: 'Ничего — добавится автоматически' }, { uz: "Baza o'chib qoladi", ru: 'База удалится' }, { uz: "Jadval tuzilishini o'zgartirish kerak", ru: 'Придётся изменить структуру таблицы' }], correct: 3 },
+  { q: { uz: "«Har yozuv har xil maydonga ega» — bu qaysi oila?", ru: '«У каждой записи свои поля» — какое это семейство?' }, opts: [{ uz: "SQL (qat'iy jadval)", ru: 'SQL (строгая таблица)' }, { uz: "NoSQL (erkin { } hujjat)", ru: 'NoSQL (свободный { } документ)' }, { uz: "Ikkalasi bir xil", ru: 'Оба одинаковы' }, { uz: "Hech biri", ru: 'Ни одно' }], correct: 1 },
+  { q: { uz: "`JOIN` nima qiladi?", ru: 'Что делает `JOIN`?' }, opts: [{ uz: "Ikki jadvalni id orqali ulaydi", ru: 'Связывает две таблицы через id' }, { uz: "Barcha fayllarni o'chirib tashlaydi", ru: 'Удаляет все файлы' }, { uz: "Noldan yangi bo'sh baza yaratadi", ru: 'Создаёт новую пустую базу с нуля' }, { uz: "Sahifani qaytadan yuklab beradi", ru: 'Перезагружает страницу' }], correct: 0 },
+  { q: { uz: "Bank ilovasi (pul, hisoblar) uchun qaysi to'g'riroq?", ru: 'Что правильнее для банковского приложения (деньги, счета)?' }, opts: [{ uz: "SQL — bog'langan + ishonchli", ru: 'SQL — связанно + надёжно' }, { uz: "NoSQL — javob tezroq keladi", ru: 'NoSQL — ответ приходит быстрее' }, { uz: "Ikkalasining ham farqi yo'q", ru: 'Разницы никакой' }, { uz: "Bunga baza umuman kerak emas", ru: 'База тут вообще не нужна' }], correct: 0 },
+  { q: { uz: "users↔posts bog'langan ma'lumot uchun qaysi qulay?", ru: 'Что удобнее для связанных данных users↔posts?' }, opts: [{ uz: "NoSQL — takrorlab yozamiz", ru: 'NoSQL — будем дублировать' }, { uz: "Ikkalasi ham qiyin", ru: 'Оба сложны' }, { uz: "SQL — JOIN bilan ulaydi", ru: 'SQL — свяжет через JOIN' }, { uz: "Faqat qo'lda", ru: 'Только вручную' }], correct: 2 },
+  { q: { uz: "Millionlab oddiy chat xabari uchun qaysi ideal?", ru: 'Что идеально для миллионов простых чат-сообщений?' }, opts: [{ uz: "SQL — har xabar JOIN bilan", ru: 'SQL — каждое сообщение через JOIN' }, { uz: "NoSQL — ulkan, oddiy, tez", ru: 'NoSQL — огромно, просто, быстро' }, { uz: "Faqat qog'ozda", ru: 'Только на бумаге' }, { uz: "Hech qanday", ru: 'Никакое' }], correct: 1 },
+  { q: { uz: "«Ulkan + juda oddiy + faqat tezlik» — qaysi oila?", ru: '«Огромно + очень просто + только скорость» — какое семейство?' }, opts: ["SQL", { uz: "Ikkalasi teng", ru: 'Оба поровну' }, { uz: "Hech biri", ru: 'Ни одно' }, "NoSQL"], correct: 3 },
+  { q: { uz: "Server loglari (ulkan, bog'lanishsiz) uchun qaysi?", ru: 'Что подходит для логов сервера (огромные, без связей)?' }, opts: [{ uz: "SQL — tranzaksiya kerak", ru: 'SQL — нужны транзакции' }, { uz: "Faqat Excel", ru: 'Только Excel' }, { uz: "DB kerak emas", ru: 'БД не нужна' }, { uz: "NoSQL — miqyos va tezlik", ru: 'NoSQL — масштаб и скорость' }], correct: 3 },
+  { q: { uz: "Nega bizning loyihalar uchun PostgreSQL?", ru: 'Почему для наших проектов PostgreSQL?' }, opts: [{ uz: "Bog'langan, ishonchli, bepul, JSON ham", ru: 'Связи, надёжность, бесплатно, плюс JSON' }, { uz: "Boshqa hech qanday baza yo'qligidan", ru: 'Потому что других баз не существует' }, { uz: "Faqat kichik loyihalarga mosligidan", ru: 'Потому что годится лишь для мелких проектов' }, { uz: "Eng modaviy va yangi bo'lgani uchun", ru: 'Потому что самая модная и новая' }], correct: 0 },
+  { q: { uz: "DB modaga qarab («zamonaviyroq») tanlanadimi?", ru: 'БД выбирают по моде («посовременнее»)?' }, opts: [{ uz: "Ha, doim yangisi yaxshi", ru: 'Да, новое всегда лучше' }, { uz: "Ha, NoSQL har doim ustun", ru: 'Да, NoSQL всегда впереди' }, { uz: "Yo'q — vazifaga qarab tanlanadi", ru: 'Нет — выбирают по задаче' }, { uz: "Faqat narxga qarab", ru: 'Только по цене' }], correct: 2 },
+  { q: { uz: "PostgreSQL JSON ham saqlay oladimi?", ru: 'PostgreSQL умеет хранить и JSON?' }, opts: [{ uz: "Yo'q, faqat jadval", ru: 'Нет, только таблицы' }, { uz: "Ha — kerak bo'lsa JSON ham", ru: 'Да — при необходимости и JSON' }, { uz: "Yo'q, umuman imkonsiz", ru: 'Нет, это вообще невозможно' }, { uz: "Faqat MongoDB saqlaydi", ru: 'Только MongoDB хранит' }], correct: 1 },
 ];
 const CsNeonBolt = ({ flip }) => (
   <span className={`csn-boltwrap ${flip ? 'flip' : ''}`} aria-hidden="true">
@@ -1926,7 +1938,7 @@ const CsWordmark = ({ onClick, disabled, hint, stats = true, bolt = true, liveOn
       <span className="cs-ring" aria-hidden="true" />
       <div className="cs-sky" aria-hidden="true">
         {QZ_BG_SHAPES.map((s, i) => (
-          <span key={i} className={`cs-tok ${i % 2 ? 'back' : 'front'}`} style={{ left: `${s.l}%`, top: `${s.t}%`, fontSize: `clamp(9px, ${Math.round(s.s * 0.4)}px, ${Math.round(s.s * 0.6)}px)`, '--d': `${s.d}s`, animationDelay: `-${s.dl * 3}s` }}>{s.ch}</span>
+          <span key={i} className={`cs-tok ${i % 2 ? 'back' : 'front'}`} style={{ left: `${s.l}%`, top: `${s.t}%`, fontSize: `clamp(9px, ${Math.round(s.s * 0.4)}px, ${Math.round(s.s * 0.6)}px)`, '--d': `${s.d}s`, animationDelay: `-${s.dl * 3}s` }}>{tr(s.ch)}</span>
         ))}
         {[[14, 30, 24], [38, 66, 15], [57, 20, 27], [76, 60, 18], [88, 36, 13]].map(([l, t, w], i) => (
           <i key={i} className="cs-dash" style={{ left: `${l}%`, top: `${t}%`, width: w, animationDelay: `-${i * 1.7}s` }} />
@@ -1940,9 +1952,9 @@ const CsWordmark = ({ onClick, disabled, hint, stats = true, bolt = true, liveOn
       </div>
       {stats && (
         <div className="cs-hud">
-          <span className="cs-hud-i"><b>{QUIZ_BANK.length}</b> SAVOL</span>
+          <span className="cs-hud-i"><b>{QUIZ_BANK.length}</b> {tr({ uz: 'SAVOL', ru: 'ВОПРОСОВ' })}</span>
           <span className="cs-hud-dot">·</span>
-          <span className="cs-hud-i"><b>{QUIZ_MS / 1000}</b> SONIYA</span>
+          <span className="cs-hud-i"><b>{QUIZ_MS / 1000}</b> {tr({ uz: 'SONIYA', ru: 'СЕКУНД' })}</span>
           <span className="cs-hud-dot">·</span>
           <span className="cs-hud-i">🏆 PODIUM</span>
         </div>
@@ -1994,7 +2006,7 @@ function QzFX() {
     let W = 1, H = 1, raf = 0;
     const size = () => { W = cv.width = Math.max(1, cv.offsetWidth * DPR); H = cv.height = Math.max(1, cv.offsetHeight * DPR); };
     size(); window.addEventListener('resize', size);
-    const TOK = ['SELECT', '{ }', 'id', 'NoSQL', 'JOIN', 'PostgreSQL', 'jadval', 'hujjat', '🐘', '🔑'];
+    const TOK = ['SELECT', '{ }', 'id', 'NoSQL', 'JOIN', 'PostgreSQL', tr({ uz: 'jadval', ru: 'таблица' }), tr({ uz: 'hujjat', ru: 'документ' }), '🐘', '🔑'];
     const em = [], toks = [];
     for (let i = 0; i < 26; i++) em.push({ x: Math.random() * W, y: Math.random() * H, z: .3 + Math.random() * .7, ph: Math.random() * 6.28, sw: .3 + Math.random() * .6 });
     for (let i = 0; i < 9; i++) toks.push({ x: Math.random() * W, y: Math.random() * H, z: .4 + Math.random() * .9, vx: (Math.random() - .5) * .16, t: TOK[i % TOK.length], r: (Math.random() - .5) * .5 });
@@ -2129,7 +2141,7 @@ function QuizArena({ live, onClose, startSolo }) {
   const my = qi >= 0 ? myAnswers[qi] : null;
   const closeArena = () => {
     if (isMentor && !solo && phase !== 'done') {
-      if (typeof window !== 'undefined' && !window.confirm("Test hali yakunlanmadi — yopsangiz o'quvchilar arenada kutib qoladi.\nBaribir yopilsinmi?")) return;
+      if (typeof window !== 'undefined' && !window.confirm(tr({ uz: "Test hali yakunlanmadi — yopsangiz o'quvchilar arenada kutib qoladi.\nBaribir yopilsinmi?", ru: 'Тест ещё не завершён — если закроете, ученики останутся ждать на арене.\nВсё равно закрыть?' }))) return;
     }
     onClose();
   };
@@ -2137,59 +2149,59 @@ function QuizArena({ live, onClose, startSolo }) {
     <div className="qz-arena">
       <div className="qz-bg" aria-hidden="true">
         {QZ_BG_SHAPES.map((s, i) => (
-          <span key={i} className="qz-shp" style={{ left: `${s.l}%`, top: `${s.t}%`, fontSize: s.s, animationDuration: `${s.d}s`, animationDelay: `${s.dl}s` }}>{s.ch}</span>
+          <span key={i} className="qz-shp" style={{ left: `${s.l}%`, top: `${s.t}%`, fontSize: s.s, animationDuration: `${s.d}s`, animationDelay: `${s.dl}s` }}>{tr(s.ch)}</span>
         ))}
       </div>
       <QzFX />
-      <button className="qz-x" onClick={closeArena} aria-label="Yopish">✕</button>
+      <button className="qz-x" onClick={closeArena} aria-label={tr({ uz: 'Yopish', ru: 'Закрыть' })}>✕</button>
       {classEnded && isStudent && !solo && phase !== 'done' && (
         <div className="qz-endnote fade-step">
-          <span>⚠️ Jonli dars yakunlandi — testni o'zingiz davom ettiring:</span>
-          <button className="qz-btn" onClick={startPractice}>📖 Mashq rejimida davom etish</button>
+          <span>{tr({ uz: "⚠️ Jonli dars yakunlandi — testni o'zingiz davom ettiring:", ru: '⚠️ Живой урок завершён — продолжите тест самостоятельно:' })}</span>
+          <button className="qz-btn" onClick={startPractice}>{tr({ uz: '📖 Mashq rejimida davom etish', ru: '📖 Продолжить в режиме практики' })}</button>
         </div>
       )}
       {phase === 'lobby' && (
         <div className="qz-view fade-step">
           <CsWordmark />
-          <p className="qz-sub" style={{ marginTop: -4 }}>Tezroq to'g'ri bossangiz — ko'proq ball. Ketma-ket to'g'ri javoblar 🔥 bonus beradi!</p>
+          <p className="qz-sub" style={{ marginTop: -4 }}>{tr({ uz: "Tezroq to'g'ri bossangiz — ko'proq ball. Ketma-ket to'g'ri javoblar 🔥 bonus beradi!", ru: 'Чем быстрее верный ответ — тем больше баллов. Верные ответы подряд дают 🔥 бонус!' })}</p>
           {!solo && (
             <div className="qz-lobby-players">
               {players.map(p => <span key={p.id} className={`qz-pchip ${p.id === live.playerId ? 'me' : ''}`}>{p.nickname}</span>)}
-              {players.length === 0 && <span className="qz-dimtxt">O'quvchilar kutilmoqda…</span>}
+              {players.length === 0 && <span className="qz-dimtxt">{tr({ uz: "O'quvchilar kutilmoqda…", ru: 'Ждём учеников…' })}</span>}
             </div>
           )}
-          {isMentor && <button className="qz-btn big" disabled={players.length === 0} onClick={() => ctrl('q', 0)}>▶ Testni boshlash</button>}
-          {isStudent && !solo && <p className="qz-waitmsg">⏳ Mentor testni boshlashini kuting…</p>}
-          {solo && <button className="qz-btn big" onClick={() => soloStart(0)}>▶ Boshlash</button>}
+          {isMentor && <button className="qz-btn big" disabled={players.length === 0} onClick={() => ctrl('q', 0)}>{tr({ uz: '▶ Testni boshlash', ru: '▶ Начать тест' })}</button>}
+          {isStudent && !solo && <p className="qz-waitmsg">{tr({ uz: '⏳ Mentor testni boshlashini kuting…', ru: '⏳ Ждите, пока ментор начнёт тест…' })}</p>}
+          {solo && <button className="qz-btn big" onClick={() => soloStart(0)}>{tr({ uz: '▶ Boshlash', ru: '▶ Начать' })}</button>}
         </div>
       )}
       {phase === 'q' && Q && (
         <div className="qz-view qz-qview fade-step" key={`q${qi}`}>
           <div className="qz-top">
-            <span className="qz-count">Savol <b>{qi + 1}</b>/{QUIZ_BANK.length}</span>
+            <span className="qz-count">{tr({ uz: 'Savol', ru: 'Вопрос' })} <b>{qi + 1}</b>/{QUIZ_BANK.length}</span>
             <QzTimer remaining={remaining} />
             {isMentor
               ? <span className="qz-ansn">📨 {answeredN}/{players.length}</span>
               : <span className="qz-ansn">{streakUpTo(qi - 1) >= 2 ? `🔥 x${streakUpTo(qi - 1)}` : ' '}</span>}
           </div>
-          <h2 className="qz-q">{fmtCode(Q.q)}</h2>
+          <h2 className="qz-q">{fmtCode(tr(Q.q))}</h2>
           <div className="qz-grid">
             {Q.opts.map((o, i) => {
               const pickedThis = my && my.picked === i;
               return (
                 <button key={i} className={`qz-tile ${my ? (pickedThis ? 'picked' : 'faded') : ''}`} style={{ background: QUIZ_COLORS[i] }} disabled={isMentor || !!my} onClick={() => answer(i)}>
                   <span className="qz-shape">{QUIZ_SHAPES[i]}</span>
-                  <span className="qz-opt">{fmtCode(o)}</span>
+                  <span className="qz-opt">{fmtCode(tr(o))}</span>
                   {pickedThis && <span className="qz-pbadge">✔</span>}
                 </button>
               );
             })}
           </div>
-          {my && !isMentor && !solo && <p className="qz-waitmsg">✔ Javob qabul qilindi — natijani kuting…</p>}
+          {my && !isMentor && !solo && <p className="qz-waitmsg">{tr({ uz: '✔ Javob qabul qilindi — natijani kuting…', ru: '✔ Ответ принят — ждите результат…' })}</p>}
           {isMentor && (
             <div className="qz-mrow">
-              {answeredN >= players.length && players.length > 0 && <span className="qz-allin">✓ Hamma javob berdi!</span>}
-              <button className="qz-btn" onClick={() => ctrl('r', qi)}>⏹ Natijani ochish</button>
+              {answeredN >= players.length && players.length > 0 && <span className="qz-allin">{tr({ uz: '✓ Hamma javob berdi!', ru: '✓ Все ответили!' })}</span>}
+              <button className="qz-btn" onClick={() => ctrl('r', qi)}>{tr({ uz: '⏹ Natijani ochish', ru: '⏹ Открыть результат' })}</button>
             </div>
           )}
         </div>
@@ -2197,9 +2209,9 @@ function QuizArena({ live, onClose, startSolo }) {
       {phase === 'reveal' && Q && (
         <div className="qz-view qz-qview fade-step" key={`r${qi}`}>
           <div className="qz-top">
-            <span className="qz-count">Savol <b>{qi + 1}</b>/{QUIZ_BANK.length} — natija</span>
+            <span className="qz-count">{tr({ uz: 'Savol', ru: 'Вопрос' })} <b>{qi + 1}</b>/{QUIZ_BANK.length} — {tr({ uz: 'natija', ru: 'результат' })}</span>
           </div>
-          <h2 className="qz-q">{fmtCode(Q.q)}</h2>
+          <h2 className="qz-q">{fmtCode(tr(Q.q))}</h2>
           <div className="qz-grid">
             {Q.opts.map((o, i) => {
               const win = i === Q.correct;
@@ -2207,7 +2219,7 @@ function QuizArena({ live, onClose, startSolo }) {
               return (
                 <div key={i} className={`qz-tile rv ${win ? 'win' : 'lose'} ${pickedThis ? 'picked' : ''}`} style={{ background: QUIZ_COLORS[i] }}>
                   <span className="qz-shape">{QUIZ_SHAPES[i]}</span>
-                  <span className="qz-opt">{fmtCode(o)}</span>
+                  <span className="qz-opt">{fmtCode(tr(o))}</span>
                   <span className="qz-cnt">{win ? '✓ ' : ''}{counts[i]}</span>
                 </div>
               );
@@ -2216,9 +2228,9 @@ function QuizArena({ live, onClose, startSolo }) {
           {!isMentor && (
             <div className={`qz-res ${my?.correct ? 'good' : 'bad'}`}>
               {my?.correct
-                ? <><span className="qz-res-pts">+{myPtsFor(qi)}</span><span className="qz-res-t">ball{streakUpTo(qi) >= 2 ? ` · 🔥 x${streakUpTo(qi)} streak` : ''}</span></>
-                : <span className="qz-res-t">{my ? "Xato — 0 ball. Keyingisida olasiz! 💪" : "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱"}</span>}
-              {!solo && myRank >= 0 && <span className="qz-res-rank">Siz hozir: {myRank + 1}-o'rin</span>}
+                ? <><span className="qz-res-pts">+{myPtsFor(qi)}</span><span className="qz-res-t">{tr({ uz: 'ball', ru: 'баллов' })}{streakUpTo(qi) >= 2 ? ` · 🔥 x${streakUpTo(qi)} streak` : ''}</span></>
+                : <span className="qz-res-t">{my ? tr({ uz: "Xato — 0 ball. Keyingisida olasiz! 💪", ru: 'Мимо — 0 баллов. Возьмёте на следующем! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Побыстрее! ⏱' })}</span>}
+              {!solo && myRank >= 0 && <span className="qz-res-rank">{tr({ uz: 'Siz hozir:', ru: 'Вы сейчас:' })} {myRank + 1}{tr({ uz: "-o'rin", ru: '-е место' })}</span>}
             </div>
           )}
           {!solo && (
@@ -2233,19 +2245,19 @@ function QuizArena({ live, onClose, startSolo }) {
               ))}
             </div>
           )}
-          {isMentor && <button className="qz-btn big" onClick={() => lastQ ? ctrl('done', qi) : ctrl('q', qi + 1)}>{lastQ ? "🏁 G'oliblarni e'lon qilish" : 'Keyingi savol →'}</button>}
-          {solo && <button className="qz-btn big" onClick={soloNext}>{lastQ ? '🏁 Natijani ko\'rish' : 'Keyingi →'}</button>}
+          {isMentor && <button className="qz-btn big" onClick={() => lastQ ? ctrl('done', qi) : ctrl('q', qi + 1)}>{lastQ ? tr({ uz: "🏁 G'oliblarni e'lon qilish", ru: '🏁 Объявить победителей' }) : tr({ uz: 'Keyingi savol →', ru: 'Следующий вопрос →' })}</button>}
+          {solo && <button className="qz-btn big" onClick={soloNext}>{lastQ ? tr({ uz: "🏁 Natijani ko'rish", ru: '🏁 Посмотреть результат' }) : tr({ uz: 'Keyingi →', ru: 'Дальше →' })}</button>}
         </div>
       )}
       {phase === 'done' && (
         <div className="qz-view fade-step">
           <Confetti />
-          <h2 className="qz-h">🏆 Test yakunlandi!</h2>
+          <h2 className="qz-h">{tr({ uz: '🏆 Test yakunlandi!', ru: '🏆 Тест завершён!' })}</h2>
           {solo ? (
             <div className="qz-solo-res">
               <div className="qz-solo-pts">{soloScore.pts}</div>
-              <p className="qz-sub">ball · {soloScore.ok}/{QUIZ_BANK.length} to'g'ri{soloScore.maxStreak >= 2 ? ` · eng uzun streak 🔥x${soloScore.maxStreak}` : ''}</p>
-              <button className="qz-btn big" onClick={soloReplay}>↻ Qayta ishlash</button>
+              <p className="qz-sub">{tr({ uz: 'ball', ru: 'баллов' })} · {soloScore.ok}/{QUIZ_BANK.length} {tr({ uz: "to'g'ri", ru: 'верно' })}{soloScore.maxStreak >= 2 ? ` · ${tr({ uz: 'eng uzun streak', ru: 'лучший стрик' })} 🔥x${soloScore.maxStreak}` : ''}</p>
+              <button className="qz-btn big" onClick={soloReplay}>{tr({ uz: '↻ Qayta ishlash', ru: '↻ Пройти заново' })}</button>
             </div>
           ) : (
             <>
@@ -2257,13 +2269,13 @@ function QuizArena({ live, onClose, startSolo }) {
                       {rank === 0 && <span className="qz-crown">👑</span>}
                       <span className="qz-pod-medal">{['🥇', '🥈', '🥉'][rank]}</span>
                       <span className="qz-pod-name">{b ? b.nickname : '—'}</span>
-                      {b && <span className="qz-pod-pts">{b.pts} ball · {b.ok}/{QUIZ_BANK.length}</span>}
+                      {b && <span className="qz-pod-pts">{b.pts} {tr({ uz: 'ball', ru: 'баллов' })} · {b.ok}/{QUIZ_BANK.length}</span>}
                       <div className="qz-pod-bar" />
                     </div>
                   );
                 })}
               </div>
-              {myRank >= 0 && <p className="qz-mypl">Siz — <b>{myRank + 1}-o'rin</b> · {board[myRank].pts} ball</p>}
+              {myRank >= 0 && <p className="qz-mypl">{tr({ uz: 'Siz', ru: 'Вы' })} — <b>{myRank + 1}{tr({ uz: "-o'rin", ru: '-е место' })}</b> · {board[myRank].pts} {tr({ uz: 'ball', ru: 'баллов' })}</p>}
               <div className="qz-board wide">
                 {board.map((b, i) => (
                   <div key={b.id} className={`qz-brow ${b.id === live.playerId ? 'me' : ''}`}>
@@ -2274,10 +2286,10 @@ function QuizArena({ live, onClose, startSolo }) {
                   </div>
                 ))}
               </div>
-              {isStudent && <button className="qz-btn" onClick={startPractice}>↻ Testni qayta ishlash — mashq (jadvalga yozilmaydi)</button>}
+              {isStudent && <button className="qz-btn" onClick={startPractice}>{tr({ uz: '↻ Testni qayta ishlash — mashq (jadvalga yozilmaydi)', ru: '↻ Пройти тест заново — практика (в таблицу не идёт)' })}</button>}
             </>
           )}
-          <button className="qz-btn ghost" onClick={closeArena}>Arenani yopish</button>
+          <button className="qz-btn ghost" onClick={closeArena}>{tr({ uz: 'Arenani yopish', ru: 'Закрыть арену' })}</button>
         </div>
       )}
     </div>
@@ -2318,18 +2330,18 @@ const ScreenPodium = ({ screen, answers, onNext, onPrev }) => {
   const myIdx = live && live.playerId ? board.findIndex(b => b.id === live.playerId) : -1;
   const selfCorrect = SCORED_IDX.filter(i => answers[i]?.correct).length;
   return (
-    <Stage eyebrow="Natijalar" screen={screen} narrow navContent={<><NavBack onPrev={onPrev} /><NavNext label="Davom etish" onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Natijalar', ru: 'Результаты' })} screen={screen} narrow navContent={<><NavBack onPrev={onPrev} /><NavNext label={tr({ uz: 'Davom etish', ru: 'Продолжить' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(14px,2.2vw,20px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Kim <span className="italic" style={{ color: T.accent }}>g'olib</span>?</h2></div>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Kim <span className="italic" style={{ color: T.accent }}>g'olib</span>?</>, ru: <>Кто <span className="italic" style={{ color: T.accent }}>победитель</span>?</> })}</h2></div>
         {!isLive ? (
           <div className="fade-up" style={{ display: 'flex', flexDirection: 'column', gap: 16, alignItems: 'center' }}>
             <ScoreRing correct={selfCorrect} total={totalQ} />
-            <div className="frame-soft" style={{ maxWidth: 480 }}><p className="body" style={{ margin: 0 }}>Siz mustaqil rejimdasiz. Jonli darsda bu yerda butun guruh reytingi — 🥇🥈🥉 podium chiqadi.</p></div>
+            <div className="frame-soft" style={{ maxWidth: 480 }}><p className="body" style={{ margin: 0 }}>{tr({ uz: 'Siz mustaqil rejimdasiz. Jonli darsda bu yerda butun guruh reytingi — 🥇🥈🥉 podium chiqadi.', ru: 'Вы в самостоятельном режиме. На живом уроке здесь появится рейтинг всей группы — подиум 🥇🥈🥉.' })}</p></div>
           </div>
         ) : !loaded ? (
-          <p className="mono small fade-up" style={{ color: T.ink2 }}>Natijalar yuklanmoqda…</p>
+          <p className="mono small fade-up" style={{ color: T.ink2 }}>{tr({ uz: 'Natijalar yuklanmoqda…', ru: 'Результаты загружаются…' })}</p>
         ) : board.length === 0 ? (
-          <div className="frame-soft fade-up"><p className="body" style={{ margin: 0 }}>Bu sessiyaga hali hech kim qo'shilmagan.</p></div>
+          <div className="frame-soft fade-up"><p className="body" style={{ margin: 0 }}>{tr({ uz: "Bu sessiyaga hali hech kim qo'shilmagan.", ru: 'К этой сессии пока никто не присоединился.' })}</p></div>
         ) : (
           <>
             <Confetti />
@@ -2346,15 +2358,15 @@ const ScreenPodium = ({ screen, answers, onNext, onPrev }) => {
                 );
               })}
             </div>
-            {myIdx >= 0 && <p className="pod-my fade-up">Siz — <b>{myIdx + 1}-o'rin</b> ({board[myIdx].okCount}/{totalQ} to'g'ri)</p>}
+            {myIdx >= 0 && <p className="pod-my fade-up">{tr({ uz: 'Siz', ru: 'Вы' })} — <b>{myIdx + 1}{tr({ uz: "-o'rin", ru: '-е место' })}</b> ({board[myIdx].okCount}/{totalQ} {tr({ uz: "to'g'ri", ru: 'верно' })})</p>}
             <div className="card fade-up d1">
-              <div className="card-lbl" style={{ color: T.accent }}>🏆 To'liq reyting</div>
+              <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: "🏆 To'liq reyting", ru: '🏆 Полный рейтинг' })}</div>
               <div className="pod-list">
                 {board.map((b, i) => (
                   <div key={b.id} className={`pod-row ${live.playerId === b.id ? 'me' : ''}`}>
                     <span className="mono pod-rank">{i + 1}</span>
                     <span className="pod-row-name">{b.nickname}</span>
-                    <span className="pod-row-dots">{SCORED_IDX.map(q => { const a = rows.find(r => r.player_id === b.id && r.screen_idx === q); return <span key={q} className={`pod-dot ${a ? (a.correct ? 'ok' : 'bad') : ''}`} title={Q_LABELS[q]} />; })}</span>
+                    <span className="pod-row-dots">{SCORED_IDX.map(q => { const a = rows.find(r => r.player_id === b.id && r.screen_idx === q); return <span key={q} className={`pod-dot ${a ? (a.correct ? 'ok' : 'bad') : ''}`} title={tr(Q_LABELS[q])} />; })}</span>
                     <span className="mono pod-row-score">{b.okCount}/{totalQ}</span>
                     <span className="mono pod-row-time">{fmtT(b.time)}</span>
                   </div>
@@ -2387,40 +2399,40 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
     setArenaSolo(studentSolo); setArena(true);
   };
   const RECAP = [
-    "Ikki oila: SQL (jadval) va NoSQL (hujjat)",
-    "SQL — qat'iy shakl, bog'lanish (JOIN), ishonchlilik",
-    "NoSQL — erkin shakl, ulkan miqyos, tezlik",
-    "Tanlov modaga emas, vazifaga bog'liq",
-    "Bizning loyihalarga — PostgreSQL (+ JSON ham qiladi)"
+    tr({ uz: "Ikki oila: SQL (jadval) va NoSQL (hujjat)", ru: 'Два семейства: SQL (таблицы) и NoSQL (документы)' }),
+    tr({ uz: "SQL — qat'iy shakl, bog'lanish (JOIN), ishonchlilik", ru: 'SQL — строгая форма, связи (JOIN), надёжность' }),
+    tr({ uz: "NoSQL — erkin shakl, ulkan miqyos, tezlik", ru: 'NoSQL — свободная форма, огромный масштаб, скорость' }),
+    tr({ uz: "Tanlov modaga emas, vazifaga bog'liq", ru: 'Выбор зависит от задачи, а не от моды' }),
+    tr({ uz: "Bizning loyihalarga — PostgreSQL (+ JSON ham qiladi)", ru: 'Нашим проектам — PostgreSQL (+ умеет и JSON)' })
   ];
   const HOMEWORK = [
-    { b: "Orzu ilovangiz", t: "— sevimli ilova g'oyangizni tanlang va unga SQL yoki NoSQL'ni 4 mezon bo'yicha tanlang" },
-    { b: "Sababini yozing", t: "— nega aynan shu DB? (bog'langanmi, ishonchlilikmi, yoki ulkan-oddiymi)" },
-    { b: "PostgreSQL'ni ko'ring", t: "— postgresql.org saytiga kiring va 🐘 logotipini toping" }
+    { b: tr({ uz: "Orzu ilovangiz", ru: 'Приложение мечты' }), t: tr({ uz: "— sevimli ilova g'oyangizni tanlang va unga SQL yoki NoSQL'ni 4 mezon bo'yicha tanlang", ru: '— возьмите идею любимого приложения и подберите ему SQL или NoSQL по 4 критериям' }) },
+    { b: tr({ uz: "Sababini yozing", ru: 'Запишите причину' }), t: tr({ uz: "— nega aynan shu DB? (bog'langanmi, ishonchlilikmi, yoki ulkan-oddiymi)", ru: '— почему именно эта БД? (связи, надёжность или огромно-просто)' }) },
+    { b: tr({ uz: "PostgreSQL'ni ko'ring", ru: 'Посмотрите PostgreSQL' }), t: tr({ uz: "— postgresql.org saytiga kiring va 🐘 logotipini toping", ru: '— зайдите на postgresql.org и найдите логотип 🐘' }) }
   ];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
   const PASSED = (total ? correct / total : 0) >= 0.6;
   return (
-    <Stage eyebrow="Tayyor" screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>Qaytadan</button><button className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>Yakunlash ✓</button></>}>
+    <Stage eyebrow={tr({ uz: 'Tayyor', ru: 'Готово' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><button className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash ✓', ru: 'Завершить ✓' })}</button></>}>
       <div className="screen">
-        <div className="hero"><div className="hero-l"><span className="done-chip fade-up"><span className="tick">✓</span> Dars tugadi</span><h2 className="title h-title fade-up d1">Endi siz <span className="italic" style={{ color: T.accent }}>to'g'ri bazani</span> tanlay olasiz.</h2><p className="body h-sub fade-up d2">{PASSED ? "Tabriklaymiz! SQL va NoSQL farqini va PostgreSQL nega bizga mosligini tushundingiz — har loyiha uchun ongli tanlov qila olasiz." : "Yaxshi harakat! Qaror mezonlarini mustahkamlash uchun bir-ikki ekranni qayta ko'ring."}</p></div><ScoreRing correct={correct} total={total} /></div>
+        <div className="hero"><div className="hero-l"><span className="done-chip fade-up"><span className="tick">✓</span> {tr({ uz: 'Dars tugadi', ru: 'Урок окончен' })}</span><h2 className="title h-title fade-up d1">{tr({ uz: <>Endi siz <span className="italic" style={{ color: T.accent }}>to'g'ri bazani</span> tanlay olasiz.</>, ru: <>Теперь вы умеете выбирать <span className="italic" style={{ color: T.accent }}>верную базу</span>.</> })}</h2><p className="body h-sub fade-up d2">{PASSED ? tr({ uz: "Tabriklaymiz! SQL va NoSQL farqini va PostgreSQL nega bizga mosligini tushundingiz — har loyiha uchun ongli tanlov qila olasiz.", ru: 'Поздравляем! Вы поняли разницу SQL и NoSQL и почему нам подходит PostgreSQL — теперь сможете делать осознанный выбор для каждого проекта.' }) : tr({ uz: "Yaxshi harakat! Qaror mezonlarini mustahkamlash uchun bir-ikki ekranni qayta ko'ring.", ru: 'Хорошая попытка! Чтобы закрепить критерии решения, пересмотрите пару экранов.' })}</p></div><ScoreRing correct={correct} total={total} /></div>
         <div className={`qz-cta cs-cta fade-up d2 ${studentLive ? 'ready' : ''}`}>
-          <CsWordmark stats={false} liveOn={studentLive} disabled={studentWait} onClick={studentWait ? undefined : openArena} hint={studentWait ? '⏳ Mentorni kuting' : undefined} />
+          <CsWordmark stats={false} liveOn={studentLive} disabled={studentWait} onClick={studentWait ? undefined : openArena} hint={studentWait ? tr({ uz: '⏳ Mentorni kuting', ru: '⏳ Ждите ментора' }) : undefined} />
         </div>
         {arena && <QuizArena live={_live || { mode: 'self' }} startSolo={arenaSolo} onClose={() => setArena(false)} />}
         <div className="split">
-          <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> Endi siz bilasiz</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{r}</span></li>))}</ul></div>
-          <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>📝 Uyga vazifa</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>O'z loyihangiz uchun DB tanlang:</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{h.b}</b> <span className="t">{h.t}</span></li>))}</ul><p className="hw-note">Keyingi darsda PostgreSQL'da haqiqiy jadval yaratamiz — CREATE TABLE! 🚀</p></div>
+          <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> {tr({ uz: 'Endi siz bilasiz', ru: 'Теперь вы знаете' })}</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{r}</span></li>))}</ul></div>
+          <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: "O'z loyihangiz uchun DB tanlang:", ru: 'Выберите БД для своего проекта:' })}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{h.b}</b> <span className="t">{h.t}</span></li>))}</ul><p className="hw-note">{tr({ uz: "Keyingi darsda PostgreSQL'da haqiqiy jadval yaratamiz — CREATE TABLE! 🚀", ru: 'На следующем уроке создадим настоящую таблицу в PostgreSQL — CREATE TABLE! 🚀' })}</p></div>
         </div>
         <div className="card ach-coll fade-up d3">
-          <div className="card-lbl" style={{ color: T.accent }}>🏅 Nishonlaringiz — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
+          <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🏅 Nishonlaringiz', ru: '🏅 Ваши значки' })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">
             {Object.entries(ACHIEVEMENTS).map(([id, a]) => { const got = !!(achievements && achievements.has(id)); return (
-              <div key={id} className={`ach-badge ${got ? 'got' : 'locked'}`} title={a.desc}>
+              <div key={id} className={`ach-badge ${got ? 'got' : 'locked'}`} title={tr(a.desc)}>
                 <span className="ach-badge-ic">{got ? a.icon : '🔒'}</span>
                 <span className="ach-badge-name">{a.name}</span>
-                {got && <span className="ach-badge-desc">{a.desc}</span>}
+                {got && <span className="ach-badge-desc">{tr(a.desc)}</span>}
               </div>
             ); })}
           </div>
@@ -2433,6 +2445,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
 // ============================================================ LESSON ROOT — ({ lang, onFinished })
 export default function DbSqlNosqlLesson({ lang: langProp, onFinished }) {
   const lang = langProp || 'uz';
+  __lang = lang; // UZ-RU: tr() uchun joriy til (render'dan oldin o'rnatiladi)
   const [screen, setScreen] = useState(0);
   const [answers, setAnswers] = useState({});
   const startTimeRef = useRef(Date.now());
@@ -3250,7 +3263,7 @@ export default function DbSqlNosqlLesson({ lang: langProp, onFinished }) {
       <LiveGateCtx.Provider value={{ locked, live }}>
         <div className="lesson-root">
           {live.mode === 'choosing' ? (
-            <LiveGate live={live} title="SQL vs NoSQL darsi" />
+            <LiveGate live={live} title={tr({ uz: 'SQL vs NoSQL darsi', ru: 'Урок SQL vs NoSQL' })} />
           ) : (
             <>
               <Current screen={screen} storedAnswer={answers[screen]} answers={answers} achievements={earned} onAnswer={recordAnswer} onNext={next} onPrev={prev} onReset={reset} onFinish={finishLesson} />

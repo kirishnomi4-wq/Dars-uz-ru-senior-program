@@ -152,21 +152,21 @@ function useLiveSession(lessonId, answerKey) {
       tokenRef.current = row.token; setPin(row.pin); setMode('mentor'); setEnded(false);
       liveStore(lessonId, { mode: 'mentor', pin: row.pin, token: row.token });
       if (keyRef.current) liveRpc('set_quiz_keys', { p_lesson_id: lessonId, p_mentor_code: (mentorCode || '').trim(), p_keys: keyRef.current }).catch(() => {});
-    } catch { setJoinError("Mentor kodi noto'g'ri yoki ulanishda xato."); }
+    } catch { setJoinError(tr({ uz: "Mentor kodi noto'g'ri yoki ulanishda xato.", ru: 'Неверный код ментора или ошибка соединения.' })); }
     finally { setBusy(false); }
   }, [lessonId]);
 
   const joinStudent = useCallback(async (raw, rawNick) => {
     const p = (raw || '').replace(/\D/g, '');
     const nick = (rawNick || '').trim();
-    if (p.length < 4) { setJoinError("Kodni to'liq kiriting."); return; }
-    if (nick.length < 2) { setJoinError('Ismingizni kiriting (kamida 2 harf).'); return; }
+    if (p.length < 4) { setJoinError(tr({ uz: "Kodni to'liq kiriting.", ru: 'Введите код полностью.' })); return; }
+    if (nick.length < 2) { setJoinError(tr({ uz: 'Ismingizni kiriting (kamida 2 harf).', ru: 'Введите ваше имя (минимум 2 буквы).' })); return; }
     setBusy(true); setJoinError('');
     try {
       const row = await liveGet(p);
-      if (!row) { setJoinError('Bunday kod topilmadi.'); setBusy(false); return; }
-      if (row.lesson_id && row.lesson_id !== lessonId) { setJoinError('Bu kod boshqa darsga tegishli.'); setBusy(false); return; }
-      if (row.status !== 'live') { setJoinError('Bu dars allaqachon yakunlangan.'); setBusy(false); return; }
+      if (!row) { setJoinError(tr({ uz: 'Bunday kod topilmadi.', ru: 'Такой код не найден.' })); setBusy(false); return; }
+      if (row.lesson_id && row.lesson_id !== lessonId) { setJoinError(tr({ uz: 'Bu kod boshqa darsga tegishli.', ru: 'Этот код от другого урока.' })); setBusy(false); return; }
+      if (row.status !== 'live') { setJoinError(tr({ uz: 'Bu dars allaqachon yakunlangan.', ru: 'Этот урок уже завершён.' })); setBusy(false); return; }
       const res = await liveRpc('join_session', { p_pin: p, p_nickname: nick });
       const player = Array.isArray(res) ? res[0] : res;
       if (!player?.player_id) throw new Error('no player');
@@ -178,7 +178,7 @@ function useLiveSession(lessonId, answerKey) {
     } catch (e) {
       // Serverdan kelgan o'zbekcha xabarlarni (ism band va h.k.) o'zini ko'rsatamiz
       const m = String(e?.message || '');
-      setJoinError(/ism|band|kod|dars|belgi/i.test(m) ? m : "Ulanib bo'lmadi. Internetni tekshiring.");
+      setJoinError(/ism|band|kod|dars|belgi/i.test(m) ? m : tr({ uz: "Ulanib bo'lmadi. Internetni tekshiring.", ru: 'Не удалось подключиться. Проверьте интернет.' }));
     }
     finally { setBusy(false); }
   }, [lessonId]);
@@ -228,10 +228,10 @@ function LiveBigCode({ pin, onClose }) {
   const box = { background: LT.paper, color: LT.ink, borderRadius: 'clamp(10px,1.6vw,18px)', fontFamily: 'monospace', fontWeight: 800, lineHeight: 1, fontSize: 'clamp(48px,13vw,150px)', padding: 'clamp(10px,2vw,28px) clamp(12px,2.2vw,30px)', boxShadow: '0 10px 40px -10px rgba(0,0,0,0.5)' };
   return (
     <div style={overlay}>
-      <div style={{ fontSize: 'clamp(13px,2vw,18px)', fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: LT.accent, marginBottom: 'clamp(14px,3vw,28px)' }}>Jonli darsga qo'shilish</div>
+      <div style={{ fontSize: 'clamp(13px,2vw,18px)', fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: LT.accent, marginBottom: 'clamp(14px,3vw,28px)' }}>{tr({ uz: "Jonli darsga qo'shilish", ru: 'Присоединиться к живому уроку' })}</div>
       <div style={{ display: 'flex', gap: 'clamp(6px,1.4vw,16px)', justifyContent: 'center', flexWrap: 'wrap' }}>{digits.map((d, i) => <span key={i} style={box}>{d}</span>)}</div>
-      <p style={{ color: '#fff', opacity: 0.85, fontSize: 'clamp(15px,2.2vw,22px)', maxWidth: 640, margin: 'clamp(20px,4vw,36px) 0 0', lineHeight: 1.5 }}>Shu darsni o'z qurilmangizda oching → <b style={{ color: '#fff' }}>«👨‍🎓 O'quvchiman»</b> → ushbu kodni kiriting.</p>
-      <button onClick={onClose} style={{ marginTop: 'clamp(22px,4vw,40px)', background: LT.accent, color: '#fff', border: 'none', borderRadius: 14, padding: 'clamp(12px,1.6vw,16px) clamp(24px,3vw,36px)', fontSize: 'clamp(15px,1.8vw,18px)', fontWeight: 700, cursor: 'pointer' }}>Darsni boshlash →</button>
+      <p style={{ color: '#fff', opacity: 0.85, fontSize: 'clamp(15px,2.2vw,22px)', maxWidth: 640, margin: 'clamp(20px,4vw,36px) 0 0', lineHeight: 1.5 }}>{tr({ uz: <>Shu darsni o'z qurilmangizda oching → <b style={{ color: '#fff' }}>«👨‍🎓 O'quvchiman»</b> → ushbu kodni kiriting.</>, ru: <>Откройте этот урок на своём устройстве → <b style={{ color: '#fff' }}>«👨‍🎓 Я ученик»</b> → введите этот код.</> })}</p>
+      <button onClick={onClose} style={{ marginTop: 'clamp(22px,4vw,40px)', background: LT.accent, color: '#fff', border: 'none', borderRadius: 14, padding: 'clamp(12px,1.6vw,16px) clamp(24px,3vw,36px)', fontSize: 'clamp(15px,1.8vw,18px)', fontWeight: 700, cursor: 'pointer' }}>{tr({ uz: 'Darsni boshlash →', ru: 'Начать урок →' })}</button>
     </div>
   );
 }
@@ -246,18 +246,18 @@ function LiveGate({ live, title = 'Jonli dars' }) {
   const link = { background: 'none', border: 'none', color: LT.ink3, fontSize: 13, cursor: 'pointer', alignSelf: 'center' };
   if (role === 'mentor') {
     return (<div style={wrap}><div style={card}>
-      <div style={{ textAlign: 'center' }}><h2 style={{ fontFamily: 'Georgia, serif', fontSize: 'clamp(22px,3vw,28px)', color: LT.ink, margin: '0 0 4px' }}>🧑‍🏫 Mentor kirishi</h2><p style={{ color: LT.ink2, fontSize: 14, margin: 0 }}>Mentor kodini kiriting.</p></div>
-      <input value={mentorCode} onChange={e => setMentorCode(e.target.value)} type="password" autoFocus placeholder="Mentor kodi" onKeyDown={e => { if (e.key === 'Enter') live.startMentor(mentorCode); }} style={{ width: '100%', padding: '14px', border: `2px solid ${LT.ink3}55`, borderRadius: 14, fontSize: 18, fontWeight: 600, textAlign: 'center', outline: 'none' }} />
-      <button onClick={() => live.startMentor(mentorCode)} disabled={live.busy} style={_liveBtnPri}>{live.busy ? 'Tekshirilmoqda…' : 'Kirish →'}</button>
+      <div style={{ textAlign: 'center' }}><h2 style={{ fontFamily: 'Georgia, serif', fontSize: 'clamp(22px,3vw,28px)', color: LT.ink, margin: '0 0 4px' }}>{tr({ uz: '🧑‍🏫 Mentor kirishi', ru: '🧑‍🏫 Вход для ментора' })}</h2><p style={{ color: LT.ink2, fontSize: 14, margin: 0 }}>{tr({ uz: 'Mentor kodini kiriting.', ru: 'Введите код ментора.' })}</p></div>
+      <input value={mentorCode} onChange={e => setMentorCode(e.target.value)} type="password" autoFocus placeholder={tr({ uz: 'Mentor kodi', ru: 'Код ментора' })} onKeyDown={e => { if (e.key === 'Enter') live.startMentor(mentorCode); }} style={{ width: '100%', padding: '14px', border: `2px solid ${LT.ink3}55`, borderRadius: 14, fontSize: 18, fontWeight: 600, textAlign: 'center', outline: 'none' }} />
+      <button onClick={() => live.startMentor(mentorCode)} disabled={live.busy} style={_liveBtnPri}>{live.busy ? tr({ uz: 'Tekshirilmoqda…', ru: 'Проверяем…' }) : tr({ uz: 'Kirish →', ru: 'Войти →' })}</button>
       {live.joinError && <div style={{ color: LT.accent, fontSize: 13, textAlign: 'center' }}>{live.joinError}</div>}
-      <button onClick={() => { setRole('student'); setMentorCode(''); }} style={link}>← Orqaga</button>
+      <button onClick={() => { setRole('student'); setMentorCode(''); }} style={link}>{tr({ uz: '← Orqaga', ru: '← Назад' })}</button>
     </div></div>);
   }
   return (<div style={wrap}><div style={card}>
-    <div style={{ textAlign: 'center' }}><div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: LT.accent }}>{title}</div><h2 style={{ fontFamily: 'Georgia, serif', fontSize: 'clamp(22px,3vw,28px)', color: LT.ink, margin: '6px 0 4px' }}>Darsga qo'shilish</h2><p style={{ color: LT.ink2, fontSize: 14, margin: 0 }}>Mentor bergan kodni va ismingizni kiriting.</p></div>
+    <div style={{ textAlign: 'center' }}><div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: LT.accent }}>{tr(title)}</div><h2 style={{ fontFamily: 'Georgia, serif', fontSize: 'clamp(22px,3vw,28px)', color: LT.ink, margin: '6px 0 4px' }}>{tr({ uz: "Darsga qo'shilish", ru: 'Присоединиться к уроку' })}</h2><p style={{ color: LT.ink2, fontSize: 14, margin: 0 }}>{tr({ uz: 'Mentor bergan kodni va ismingizni kiriting.', ru: 'Введите код от ментора и своё имя.' })}</p></div>
     <input value={code} onChange={e => setCode(e.target.value)} inputMode="numeric" autoFocus placeholder="483 920" style={{ width: '100%', padding: '16px 14px', border: `2px solid ${LT.ink3}55`, borderRadius: 14, fontSize: 28, fontFamily: 'monospace', fontWeight: 700, letterSpacing: '0.12em', textAlign: 'center', outline: 'none' }} />
-    <input value={nick} onChange={e => setNick(e.target.value)} maxLength={24} placeholder="Ismingiz (masalan: Ali)" onKeyDown={e => { if (e.key === 'Enter') live.joinStudent(code, nick); }} style={{ width: '100%', padding: '13px 14px', border: `2px solid ${LT.ink3}55`, borderRadius: 14, fontSize: 17, fontWeight: 600, textAlign: 'center', outline: 'none' }} />
-    <button onClick={() => live.joinStudent(code, nick)} disabled={live.busy} style={_liveBtnPri}>{live.busy ? 'Ulanmoqda…' : 'Qo\'shilish →'}</button>
+    <input value={nick} onChange={e => setNick(e.target.value)} maxLength={24} placeholder={tr({ uz: 'Ismingiz (masalan: Ali)', ru: 'Ваше имя (например: Али)' })} onKeyDown={e => { if (e.key === 'Enter') live.joinStudent(code, nick); }} style={{ width: '100%', padding: '13px 14px', border: `2px solid ${LT.ink3}55`, borderRadius: 14, fontSize: 17, fontWeight: 600, textAlign: 'center', outline: 'none' }} />
+    <button onClick={() => live.joinStudent(code, nick)} disabled={live.busy} style={_liveBtnPri}>{live.busy ? tr({ uz: 'Ulanmoqda…', ru: 'Подключаемся…' }) : tr({ uz: "Qo'shilish →", ru: 'Присоединиться →' })}</button>
     {live.joinError && <div style={{ color: LT.accent, fontSize: 13, textAlign: 'center' }}>{live.joinError}</div>}
     <button onClick={() => { setRole('mentor'); setCode(''); }} title="Mentor" aria-label="Mentor" style={{ position: 'absolute', bottom: 10, right: 12, background: 'none', border: 'none', fontSize: 16, opacity: 0.3, cursor: 'pointer', lineHeight: 1, padding: 4 }}>🧑‍🏫</button>
   </div></div>);
@@ -278,22 +278,22 @@ function LiveBadge({ live, total }) {
     return () => { on = false; clearTimeout(t); };
   }, [live.mode, live.pin, live.ended]);
   if (live.mode === 'mentor') {
-    if (live.ended) return <div className="live-badge" style={_liveBadgeS}><span style={_liveDot(LT.ink3)} /> 🔓 O'quvchilar erkin qilindi</div>;
+    if (live.ended) return <div className="live-badge" style={_liveBadgeS}><span style={_liveDot(LT.ink3)} /> {tr({ uz: "🔓 O'quvchilar erkin qilindi", ru: '🔓 Ученики работают свободно' })}</div>;
     return (<>
       {bigOpen && <LiveBigCode pin={live.pin} onClose={() => setBigOpen(false)} />}
       <div className="live-badge" style={_liveBadgeS}>
-        <span style={_liveDot(LT.success)} /> Kod: <b style={{ fontFamily: 'monospace', letterSpacing: '0.08em' }}>{fmtPin(live.pin)}</b>
+        <span style={_liveDot(LT.success)} /> {tr({ uz: 'Kod:', ru: 'Код:' })} <b style={{ fontFamily: 'monospace', letterSpacing: '0.08em' }}>{fmtPin(live.pin)}</b>
         {nPlayers !== null && <span style={{ color: LT.ink2 }}>👥 {nPlayers}</span>}
-        <button onClick={() => setBigOpen(true)} title="Kodni katta ko'rsatish" style={{ marginLeft: 6, background: LT.ink, color: '#fff', border: 'none', borderRadius: 99, padding: '4px 10px', fontSize: 12, fontWeight: 700, cursor: 'pointer', whiteSpace: 'nowrap' }}>📺 Ko'rsatish</button>
-        <button onClick={() => { if (window.confirm("O'quvchilarni ozod qilasizmi? Ular o'zlari erkin davom etadi.")) live.endSession(); }} style={{ background: LT.accentSoft, color: LT.accent, border: 'none', borderRadius: 99, padding: '4px 10px', fontSize: 12, fontWeight: 700, cursor: 'pointer', whiteSpace: 'nowrap' }}>🔓 Erkin qilish</button>
+        <button onClick={() => setBigOpen(true)} title={tr({ uz: "Kodni katta ko'rsatish", ru: 'Показать код крупно' })} style={{ marginLeft: 6, background: LT.ink, color: '#fff', border: 'none', borderRadius: 99, padding: '4px 10px', fontSize: 12, fontWeight: 700, cursor: 'pointer', whiteSpace: 'nowrap' }}>{tr({ uz: "📺 Ko'rsatish", ru: '📺 Показать' })}</button>
+        <button onClick={() => { if (window.confirm(tr({ uz: "O'quvchilarni ozod qilasizmi? Ular o'zlari erkin davom etadi.", ru: 'Отпустить учеников? Дальше они продолжат самостоятельно.' }))) live.endSession(); }} style={{ background: LT.accentSoft, color: LT.accent, border: 'none', borderRadius: 99, padding: '4px 10px', fontSize: 12, fontWeight: 700, cursor: 'pointer', whiteSpace: 'nowrap' }}>{tr({ uz: '🔓 Erkin qilish', ru: '🔓 Отпустить' })}</button>
       </div>
     </>);
   }
   if (live.mode === 'student') {
-    if (live.status === 'ended') return <div className="live-badge" style={_liveBadgeS}><span style={_liveDot(LT.success)} /> 🔓 Erkin rejim — o'zingiz davom eting</div>;
-    if (!live.mentorAlive) return <div className="live-badge" style={_liveBadgeS}><span style={_liveDot(LT.ink3)} /> ⚠️ Mentor uzildi — erkin rejim</div>;
-    if (!live.connected) return <div className="live-badge" style={_liveBadgeS}><span style={_liveDot('#FFD380')} /> 🔄 Qayta ulanmoqda…</div>;
-    return <div className="live-badge" style={_liveBadgeS}><span style={_liveDot(LT.success)} /> 👨‍🏫 Mentor: {Math.min(live.mentorScreen + 1, total)} / {total}{live.nickname && <span style={{ color: LT.ink3 }}>· {live.nickname}</span>}</div>;
+    if (live.status === 'ended') return <div className="live-badge" style={_liveBadgeS}><span style={_liveDot(LT.success)} /> {tr({ uz: "🔓 Erkin rejim — o'zingiz davom eting", ru: '🔓 Свободный режим — продолжайте сами' })}</div>;
+    if (!live.mentorAlive) return <div className="live-badge" style={_liveBadgeS}><span style={_liveDot(LT.ink3)} /> {tr({ uz: '⚠️ Mentor uzildi — erkin rejim', ru: '⚠️ Ментор отключился — свободный режим' })}</div>;
+    if (!live.connected) return <div className="live-badge" style={_liveBadgeS}><span style={_liveDot('#FFD380')} /> {tr({ uz: '🔄 Qayta ulanmoqda…', ru: '🔄 Переподключаемся…' })}</div>;
+    return <div className="live-badge" style={_liveBadgeS}><span style={_liveDot(LT.success)} /> {tr({ uz: '👨‍🏫 Mentor:', ru: '👨‍🏫 Ментор:' })} {Math.min(live.mentorScreen + 1, total)} / {total}{live.nickname && <span style={{ color: LT.ink3 }}>· {live.nickname}</span>}</div>;
   }
   return null;
 }
@@ -309,6 +309,18 @@ const fmtCode = (s) => (typeof s === 'string' && s.includes('`'))
 // AUDIOSIZ dars — useAudio/getAudioEngine zaglushkasi (imzo saqlanadi, TTS yo'q)
 const getAudioEngine = () => null;
 const useAudio = () => ({ muted: true, isPlaying: false, currentSegment: null, waitingFor: null, triggerEvent: () => {}, replay: () => {}, toggleMute: () => {} });
+
+// UZ-RU: modul-darajali tarjimon. Dars mount bo'lganda default export __lang'ni o'rnatadi;
+// barcha render-joylar tr({uz:'…', ru:'…'}) orqali joriy tildagi matnni oladi (string/JSX o'tkazib yuboriladi).
+let __lang = 'uz';
+const tr = (node) => {
+  if (node === null || node === undefined) return '';
+  if (typeof node === 'string') return node;
+  if (React.isValidElement(node)) return node;
+  return node[__lang] ?? node.uz ?? node.ru ?? '';
+};
+// Analytics-payload uchun UZ-etalon (options/javob matnlari serverga doim UZ ketadi)
+const ou = (o) => (o && o.uz) || o;
 
 function useIsMobile(breakpoint = 640) {
   const [isMobile, setIsMobile] = useState(typeof window !== 'undefined' ? window.innerWidth < breakpoint : false);
@@ -438,14 +450,14 @@ const Stage = ({ children, eyebrow, screen, totalScreens = TOTAL_SCREENS, navCon
     </MentorCtx.Provider>
   );
 };
-const NavBack = ({ onPrev }) => <button className="btn-ghost" onClick={onPrev} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>Orqaga</button>;
+const NavBack = ({ onPrev }) => <button className="btn-ghost" onClick={onPrev} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Orqaga', ru: 'Назад' })}</button>;
 // 5.5 — optionalLive: jonli darsda mentor oldinga o'tsa, o'quvchi gate'da qolib ketmaydi (freeRide). Testlarga BERILMAYDI.
-const NavNext = ({ disabled, label = 'Davom etish', onClick, optionalLive }) => {
+const NavNext = ({ disabled, label = { uz: 'Davom etish', ru: 'Продолжить' }, onClick, optionalLive }) => {
   const gate = useContext(LiveGateCtx);
   const locked = !!(gate && gate.locked);
   const live = gate && gate.live;
   const freeRide = !!(optionalLive && live && live.mode === 'student' && live.status !== 'ended' && live.mentorAlive);
-  return <button className="btn-white-accent" disabled={(freeRide ? false : disabled) || locked} onClick={onClick} title={locked ? "Mentor hali bu sahifaga o'tmadi" : undefined} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)', marginLeft: 'auto' }}>{locked ? '⏳ Mentorni kuting' : (freeRide && disabled ? 'Davom etish' : label)}</button>;
+  return <button className="btn-white-accent" disabled={(freeRide ? false : disabled) || locked} onClick={onClick} title={locked ? tr({ uz: "Mentor hali bu sahifaga o'tmadi", ru: 'Ментор ещё не перешёл на эту страницу' }) : undefined} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)', marginLeft: 'auto' }}>{locked ? tr({ uz: '⏳ Mentorni kuting', ru: '⏳ Подождите ментора' }) : (freeRide && disabled ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr(label))}</button>;
 };
 
 const FeedbackBlock = ({ show, isCorrect, neutral, children }) => {
@@ -468,39 +480,39 @@ const FeedbackBlock = ({ show, isCorrect, neutral, children }) => {
 // ============================================================
 
 const RcFlow = ({ items, sep = '→' }) => (
-  <div className="rc-flow">{items.map((t, i) => <React.Fragment key={i}><span className="rc-chip">{t}</span>{sep && i < items.length - 1 && <span className="rc-arr">{sep}</span>}</React.Fragment>)}</div>
+  <div className="rc-flow">{items.map((t, i) => <React.Fragment key={i}><span className="rc-chip">{tr(t)}</span>{sep && i < items.length - 1 && <span className="rc-arr">{sep}</span>}</React.Fragment>)}</div>
 );
 const RECAPS = {
   5: {
-    title: "Tekshiruvchi — AI yozgach nima qilamiz",
+    title: { uz: "Tekshiruvchi — AI yozgach nima qilamiz", ru: 'Проверяющий — что делать после кода от ИИ' },
     cards: [
-      { ic: "📋", h: "Uch ish: rejalashtir, yo'naltir, tekshir", body: <>Avval <b>reja</b> tuzasiz (qaysi resurs, qaysi ustun), keyin agentga <b>aniq buyruq</b> berasiz, so'ng natijani <b>tekshirasiz</b>. Uchinchisi tushib qolsa — xato sizniki bo'lib qoladi.</>, vis: <RcFlow items={["Rejalashtir", "Yo'naltir", "Tekshir"]} /> },
-      { ic: "🧾", h: "5 fayl — bitta resurs", body: <>Har resurs: <span className="mono">entity</span> (javon chizmasi), <span className="mono">dto</span> (anketa), <span className="mono">service</span> (omborchi), <span className="mono">controller</span> (sotuvchi), <span className="mono">module</span> (bo'lim). Beshtasi ham bormi — birinchi tekshiruv shu.</>, vis: <RcFlow items={["entity", "dto", "service", "controller", "module"]} sep="·" /> },
-      { ic: "🚪", h: "Kirish taxtasi — 404 sababi", body: <>Bo'lim <span className="mono">AppModule.imports</span> ga yozilmasa, u restoranning kirish taxtasida yo'q — <b>mijoz eshikni topa olmaydi</b> (<span className="mono">404</span>). Swagger'da ko'rinyaptimi — shuni tekshiring.</>, ask: "AI kod yozib berdi. Birinchi navbatda nimani tekshirasiz?" },
+      { ic: "📋", h: { uz: "Uch ish: rejalashtir, yo'naltir, tekshir", ru: 'Три дела: планируй, направляй, проверяй' }, body: { uz: <>Avval <b>reja</b> tuzasiz (qaysi resurs, qaysi ustun), keyin agentga <b>aniq buyruq</b> berasiz, so'ng natijani <b>tekshirasiz</b>. Uchinchisi tushib qolsa — xato sizniki bo'lib qoladi.</>, ru: <>Сначала вы составляете <b>план</b> (какой ресурс, какие колонки), затем даёте агенту <b>чёткую команду</b>, а после <b>проверяете</b> результат. Пропустите третий шаг — и ошибка станет вашей.</> }, vis: <RcFlow items={[{ uz: 'Rejalashtir', ru: 'Планируй' }, { uz: "Yo'naltir", ru: 'Направляй' }, { uz: 'Tekshir', ru: 'Проверяй' }]} /> },
+      { ic: "🧾", h: { uz: '5 fayl — bitta resurs', ru: '5 файлов — один ресурс' }, body: { uz: <>Har resurs: <span className="mono">entity</span> (javon chizmasi), <span className="mono">dto</span> (anketa), <span className="mono">service</span> (omborchi), <span className="mono">controller</span> (sotuvchi), <span className="mono">module</span> (bo'lim). Beshtasi ham bormi — birinchi tekshiruv shu.</>, ru: <>У каждого ресурса: <span className="mono">entity</span> (чертёж стеллажа), <span className="mono">dto</span> (анкета), <span className="mono">service</span> (кладовщик), <span className="mono">controller</span> (продавец), <span className="mono">module</span> (отдел). Все пять на месте? — это первая проверка.</> }, vis: <RcFlow items={["entity", "dto", "service", "controller", "module"]} sep="·" /> },
+      { ic: "🚪", h: { uz: 'Kirish taxtasi — 404 sababi', ru: 'Входная вывеска — причина 404' }, body: { uz: <>Bo'lim <span className="mono">AppModule.imports</span> ga yozilmasa, u restoranning kirish taxtasida yo'q — <b>mijoz eshikni topa olmaydi</b> (<span className="mono">404</span>). Swagger'da ko'rinyaptimi — shuni tekshiring.</>, ru: <>Если отдел не вписан в <span className="mono">AppModule.imports</span>, его нет на входной вывеске ресторана — <b>клиент не найдёт дверь</b> (<span className="mono">404</span>). Проверьте, виден ли он в Swagger.</> }, ask: { uz: "AI kod yozib berdi. Birinchi navbatda nimani tekshirasiz?", ru: 'ИИ написал код. Что вы проверите в первую очередь?' } },
     ]
   },
   8: {
-    title: "Eshik va qo'riqchi — public vs admin",
+    title: { uz: "Eshik va qo'riqchi — public vs admin", ru: 'Дверь и страж — public vs admin' },
     cards: [
-      { ic: "🛡️", h: "Qo'riqchi = @UseGuards", body: <><span className="mono">@UseGuards(AuthGuard, RolesGuard)</span> — eshikka qo'riqchi qo'yadi. <span className="mono">AuthGuard</span> tokenni tekshiradi, <span className="mono">RolesGuard</span> — rolni.</>, vis: <RcFlow items={["so'rov", "qo'riqchi", "controller"]} /> },
-      { ic: "🔑", h: "@Roles — qo'riqchining ro'yxati", body: <>🌐 <span className="mono">@Roles('public')</span> — hamma kiradi. 🔒 <span className="mono">@Roles(UserRole.ADMIN)</span> — faqat admin. Ro'yxatni <b>siz</b> yozasiz, qo'riqchi shuni bajaradi.</> },
-      { ic: "🚫", h: "403 — qo'riqchi rad etdi", body: <>Token yo'q bo'lsa — <span className="mono">401</span>. Token bor, lekin rol yetmasa — <span className="mono">403</span>. Ikkalasi ham «kirmaysiz» degani; server o'chmaydi.</>, ask: "Oddiy mijoz POST /book qilsa nima bo'ladi?" },
+      { ic: "🛡️", h: { uz: "Qo'riqchi = @UseGuards", ru: 'Страж = @UseGuards' }, body: { uz: <><span className="mono">@UseGuards(AuthGuard, RolesGuard)</span> — eshikka qo'riqchi qo'yadi. <span className="mono">AuthGuard</span> tokenni tekshiradi, <span className="mono">RolesGuard</span> — rolni.</>, ru: <><span className="mono">@UseGuards(AuthGuard, RolesGuard)</span> — ставит у двери стража. <span className="mono">AuthGuard</span> проверяет токен, <span className="mono">RolesGuard</span> — роль.</> }, vis: <RcFlow items={[{ uz: "so'rov", ru: 'запрос' }, { uz: "qo'riqchi", ru: 'страж' }, 'controller']} /> },
+      { ic: "🔑", h: { uz: "@Roles — qo'riqchining ro'yxati", ru: '@Roles — список у стража' }, body: { uz: <>🌐 <span className="mono">@Roles('public')</span> — hamma kiradi. 🔒 <span className="mono">@Roles(UserRole.ADMIN)</span> — faqat admin. Ro'yxatni <b>siz</b> yozasiz, qo'riqchi shuni bajaradi.</>, ru: <>🌐 <span className="mono">@Roles('public')</span> — входят все. 🔒 <span className="mono">@Roles(UserRole.ADMIN)</span> — только админ. Список пишете <b>вы</b>, а страж его исполняет.</> } },
+      { ic: "🚫", h: { uz: "403 — qo'riqchi rad etdi", ru: '403 — страж отказал' }, body: { uz: <>Token yo'q bo'lsa — <span className="mono">401</span>. Token bor, lekin rol yetmasa — <span className="mono">403</span>. Ikkalasi ham «kirmaysiz» degani; server o'chmaydi.</>, ru: <>Нет токена — <span className="mono">401</span>. Токен есть, но роли не хватает — <span className="mono">403</span>. Оба значат «вход закрыт»; сервер при этом не падает.</> }, ask: { uz: "Oddiy mijoz POST /book qilsa nima bo'ladi?", ru: 'Что будет, если обычный клиент сделает POST /book?' } },
     ]
   },
   12: {
-    title: "findAll + where — tayyor retsept kitobi",
+    title: { uz: 'findAll + where — tayyor retsept kitobi', ru: 'findAll + where — готовая книга рецептов' },
     cards: [
-      { ic: "📕", h: "BaseService — tayyor retsept kitobi", body: <>Service <span className="mono">BaseService</span> ni <b>meros oladi</b> (ya'ni tayyor retsept kitobini qo'liga oladi) — shu zahoti <span className="mono">create / findAll / update / remove</span> tekin keladi. Ularni qaytadan yozmaysiz.</>, vis: <RcFlow items={["BaseService", "findAll", "create"]} sep="·" /> },
-      { ic: "🔎", h: "where — shart", body: <>Maxsus endpoint uchun yangi CRUD yozmaysiz: <span className="mono">findAll({'{ where: { is_featured: true } }'})</span> — faqat shart berasiz.</> },
-      { ic: "🏷️", h: "relations — yorliqni ham olib kelish", body: <><span className="mono">findAll({'{ relations: { category: true } }'})</span> — kitob bilan birga uning yorlig'i (kategoriyasi) ham qaytadi.</>, ask: "Faqat top kitoblarni qanday qaytaramiz?" },
+      { ic: "📕", h: { uz: 'BaseService — tayyor retsept kitobi', ru: 'BaseService — готовая книга рецептов' }, body: { uz: <>Service <span className="mono">BaseService</span> ni <b>meros oladi</b> (ya'ni tayyor retsept kitobini qo'liga oladi) — shu zahoti <span className="mono">create / findAll / update / remove</span> tekin keladi. Ularni qaytadan yozmaysiz.</>, ru: <>Сервис <b>наследует</b> <span className="mono">BaseService</span> (то есть берёт в руки готовую книгу рецептов) — и сразу бесплатно получает <span className="mono">create / findAll / update / remove</span>. Заново их писать не нужно.</> }, vis: <RcFlow items={["BaseService", "findAll", "create"]} sep="·" /> },
+      { ic: "🔎", h: { uz: 'where — shart', ru: 'where — условие' }, body: { uz: <>Maxsus endpoint uchun yangi CRUD yozmaysiz: <span className="mono">findAll({'{ where: { is_featured: true } }'})</span> — faqat shart berasiz.</>, ru: <>Для особого эндпоинта новый CRUD не пишут: <span className="mono">findAll({'{ where: { is_featured: true } }'})</span> — вы лишь передаёте условие.</> } },
+      { ic: "🏷️", h: { uz: 'relations — yorliqni ham olib kelish', ru: 'relations — принести и ярлык' }, body: { uz: <><span className="mono">findAll({'{ relations: { category: true } }'})</span> — kitob bilan birga uning yorlig'i (kategoriyasi) ham qaytadi.</>, ru: <><span className="mono">findAll({'{ relations: { category: true } }'})</span> — вместе с книгой вернётся и её ярлык (категория).</> }, ask: { uz: 'Faqat top kitoblarni qanday qaytaramiz?', ru: 'Как вернуть только топ-книги?' } },
     ]
   },
   15: {
-    title: "Debug — qo'riqchiga noto'g'ri ro'yxat",
+    title: { uz: "Debug — qo'riqchiga noto'g'ri ro'yxat", ru: 'Дебаг — стражу дали не тот список' },
     cards: [
-      { ic: "🧍", h: "Mijozni o'z do'koningizga kiritmaslik", body: <>Agent <span className="mono">POST /order</span> ga <span className="mono">@Roles(ADMIN)</span> qo'yib ketgan. Natija: <b>mijoz buyurtma bera olmaydi</b> — 403. Ochilish kuni, buyurtma yo'q.</>, vis: <RcFlow items={["mijoz", "POST /order", "403"]} /> },
-      { ic: "🔍", h: "Dalil avval, kod keyin", body: <>Avval <b>ikki rolda</b> eshikni sinaysiz (🧍 mijoz / 🔑 admin), dalil jadvalini to'ldirasiz — <b>keyin</b> kodni ochasiz. Xato qatorni dalil ko'rsatadi.</> },
-      { ic: "🔧", h: "Faqat o'sha qator tuzatiladi", body: <>Guard'ni butunlay o'chirmaysiz (u holda admin eshiklari ham ochilib qoladi). Faqat <span className="mono">POST /order</span> ni <span className="mono">@Roles('public')</span> qilasiz.</>, ask: "Mijoz buyurtma berolsin desak, qatorni qanday tuzatamiz?" },
+      { ic: "🧍", h: { uz: "Mijozni o'z do'koningizga kiritmaslik", ru: 'Не пускать клиента в собственный магазин' }, body: { uz: <>Agent <span className="mono">POST /order</span> ga <span className="mono">@Roles(ADMIN)</span> qo'yib ketgan. Natija: <b>mijoz buyurtma bera olmaydi</b> — 403. Ochilish kuni, buyurtma yo'q.</>, ru: <>Агент оставил на <span className="mono">POST /order</span> декоратор <span className="mono">@Roles(ADMIN)</span>. Итог: <b>клиент не может оформить заказ</b> — 403. День открытия — а заказов нет.</> }, vis: <RcFlow items={[{ uz: 'mijoz', ru: 'клиент' }, "POST /order", "403"]} /> },
+      { ic: "🔍", h: { uz: 'Dalil avval, kod keyin', ru: 'Сначала улики, потом код' }, body: { uz: <>Avval <b>ikki rolda</b> eshikni sinaysiz (🧍 mijoz / 🔑 admin), dalil jadvalini to'ldirasiz — <b>keyin</b> kodni ochasiz. Xato qatorni dalil ko'rsatadi.</>, ru: <>Сначала вы пробуете дверь <b>в двух ролях</b> (🧍 клиент / 🔑 админ) и заполняете таблицу улик — и <b>только потом</b> открываете код. Улики сами укажут на строку с ошибкой.</> } },
+      { ic: "🔧", h: { uz: "Faqat o'sha qator tuzatiladi", ru: 'Правится только эта строка' }, body: { uz: <>Guard'ni butunlay o'chirmaysiz (u holda admin eshiklari ham ochilib qoladi). Faqat <span className="mono">POST /order</span> ni <span className="mono">@Roles('public')</span> qilasiz.</>, ru: <>Стража целиком не убирают (иначе распахнутся и админские двери). Вы лишь меняете <span className="mono">POST /order</span> на <span className="mono">@Roles('public')</span>.</> }, ask: { uz: 'Mijoz buyurtma berolsin desak, qatorni qanday tuzatamiz?', ru: 'Как исправить строку, чтобы клиент мог оформить заказ?' } },
     ]
   },
 };
@@ -524,23 +536,23 @@ function RecapOverlay({ screenIdx, onClose }) {
   return (
     <div className="rc-overlay">
       <div className="rc-head">
-        <span className="rc-tag">📖 Qayta tushuntirish</span>
-        <span className="rc-title">{rc.title}</span>
-        <button className="rc-x" onClick={onClose} aria-label="Yopish">✕</button>
+        <span className="rc-tag">{tr({ uz: '📖 Qayta tushuntirish', ru: '📖 Повторное объяснение' })}</span>
+        <span className="rc-title">{tr(rc.title)}</span>
+        <button className="rc-x" onClick={onClose} aria-label={tr({ uz: 'Yopish', ru: 'Закрыть' })}>✕</button>
       </div>
       <div className="rc-card" key={i}>
         <div className="rc-ic">{card.ic}</div>
-        <h2 className="rc-h">{card.h}</h2>
-        <p className="rc-body">{card.body}</p>
+        <h2 className="rc-h">{tr(card.h)}</h2>
+        <p className="rc-body">{tr(card.body)}</p>
         {card.vis && <div className="rc-vis">{card.vis}</div>}
-        {card.ask && <div className="rc-ask">🗣️ Sinfga savol: {card.ask}</div>}
+        {card.ask && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
       </div>
       <div className="rc-nav">
-        <button className="rc-btn ghost" disabled={i === 0} onClick={() => setI(i - 1)}>← Oldingi</button>
-        <div className="rc-dots">{rc.cards.map((_, k) => <button key={k} className={`rc-dot ${k === i ? 'cur' : k < i ? 'fill' : ''}`} onClick={() => setI(k)} aria-label={`${k + 1}-karta`} />)}</div>
+        <button className="rc-btn ghost" disabled={i === 0} onClick={() => setI(i - 1)}>{tr({ uz: '← Oldingi', ru: '← Назад' })}</button>
+        <div className="rc-dots">{rc.cards.map((_, k) => <button key={k} className={`rc-dot ${k === i ? 'cur' : k < i ? 'fill' : ''}`} onClick={() => setI(k)} aria-label={tr({ uz: `${k + 1}-karta`, ru: `карточка ${k + 1}` })} />)}</div>
         {last
-          ? <button className="rc-btn done" onClick={onClose}>✓ Tushunarli — davom etamiz</button>
-          : <button className="rc-btn" onClick={() => setI(i + 1)}>Keyingisi →</button>}
+          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: '✓ Tushunarli — davom etamiz', ru: '✓ Понятно — продолжаем' })}</button>
+          : <button className="rc-btn" onClick={() => setI(i + 1)}>{tr({ uz: 'Keyingisi →', ru: 'Дальше →' })}</button>}
       </div>
     </div>
   );
@@ -576,25 +588,25 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
   return (
     <div className="mstats fade-up">
       <div className="mstats-head">
-        <span className="mstats-lbl">📊 Jonli natija</span>
-        <span className="mstats-n">{allIn ? '✓ Hamma javob berdi' : <>Javob berdi: <b>{answered}</b> / {total}</>}</span>
-        {!reveal && onReveal && <button className={`mstats-reveal ${allIn ? 'ready' : ''}`} onClick={onReveal}>🔓 Natijani ochish</button>}
+        <span className="mstats-lbl">{tr({ uz: '📊 Jonli natija', ru: '📊 Живой результат' })}</span>
+        <span className="mstats-n">{allIn ? tr({ uz: '✓ Hamma javob berdi', ru: '✓ Все ответили' }) : <>{tr({ uz: 'Javob berdi:', ru: 'Ответили:' })} <b>{answered}</b> / {total}</>}</span>
+        {!reveal && onReveal && <button className={`mstats-reveal ${allIn ? 'ready' : ''}`} onClick={onReveal}>{tr({ uz: '🔓 Natijani ochish', ru: '🔓 Открыть результат' })}</button>}
       </div>
       <div className="mstats-prog"><span className={`mstats-prog-fill ${allIn ? 'full' : ''}`} style={{ width: `${total ? Math.round((answered / total) * 100) : 0}%` }} /></div>
       {reveal ? (
         <div className="mstats-big">
-          <div className="mstats-chip okc"><span className="mstats-chip-n">{ok}</span><span className="mstats-chip-t">to'g'ri ✅</span></div>
-          <div className="mstats-chip badc"><span className="mstats-chip-n">{bad}</span><span className="mstats-chip-t">xato ❌</span></div>
-          <div className="mstats-chip waitc"><span className="mstats-chip-n">{total - answered}</span><span className="mstats-chip-t">kutilmoqda ⏳</span></div>
+          <div className="mstats-chip okc"><span className="mstats-chip-n">{ok}</span><span className="mstats-chip-t">{tr({ uz: "to'g'ri ✅", ru: 'верно ✅' })}</span></div>
+          <div className="mstats-chip badc"><span className="mstats-chip-n">{bad}</span><span className="mstats-chip-t">{tr({ uz: 'xato ❌', ru: 'ошибка ❌' })}</span></div>
+          <div className="mstats-chip waitc"><span className="mstats-chip-n">{total - answered}</span><span className="mstats-chip-t">{tr({ uz: 'kutilmoqda ⏳', ru: 'ждём ⏳' })}</span></div>
         </div>
       ) : (
         <div className="mstats-big">
-          <div className="mstats-chip ansc"><span className="mstats-chip-n">{answered}</span><span className="mstats-chip-t">javob berdi 📨</span></div>
-          <div className="mstats-chip waitc"><span className="mstats-chip-n">{total - answered}</span><span className="mstats-chip-t">kutilmoqda ⏳</span></div>
+          <div className="mstats-chip ansc"><span className="mstats-chip-n">{answered}</span><span className="mstats-chip-t">{tr({ uz: 'javob berdi 📨', ru: 'ответили 📨' })}</span></div>
+          <div className="mstats-chip waitc"><span className="mstats-chip-n">{total - answered}</span><span className="mstats-chip-t">{tr({ uz: 'kutilmoqda ⏳', ru: 'ждём ⏳' })}</span></div>
         </div>
       )}
       {!reveal && answered > 0 && (
-        <p className="mstats-hidden">🙈 Kim nimani tanlagani va ✅/❌ soni yashirin — «Natijani ochish» bosilganda sizda ham, o'quvchilar ekranida ham birdan ochiladi.</p>
+        <p className="mstats-hidden">{tr({ uz: "🙈 Kim nimani tanlagani va ✅/❌ soni yashirin — «Natijani ochish» bosilganda sizda ham, o'quvchilar ekranida ham birdan ochiladi.", ru: '🙈 Кто что выбрал и число ✅/❌ скрыты — по кнопке «Открыть результат» всё появится сразу и у вас, и на экранах учеников.' })}</p>
       )}
       {reveal && <div className="mstats-bars">
         {options.map((opt, i) => {
@@ -606,7 +618,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
             <div key={i} className={`mstats-row ${!isC ? 'dimmed' : ''}`}>
               <span className="mstats-abc" style={{ background: col }}>{isC ? '✓' : String.fromCharCode(65 + i)}</span>
               <span className="mstats-track"><span className="mstats-fill" style={{ width: `${answered ? Math.round((n / maxN) * 100) : 0}%`, background: col }} /></span>
-              <span className="mono mstats-count" style={isC ? { color: T.success, fontWeight: 800 } : undefined}>{n > 0 ? `${n} o'quvchi · ${pct}%` : '—'}</span>
+              <span className="mono mstats-count" style={isC ? { color: T.success, fontWeight: 800 } : undefined}>{n > 0 ? `${n} ${tr({ uz: "o'quvchi", ru: 'уч.' })} · ${pct}%` : '—'}</span>
             </div>
           );
         })}
@@ -617,26 +629,26 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
         return (
           <div className={`mstats-verdict ${level}`}>
             {level === 'need' && <>
-              <p className="mstats-verdict-t">⚠️ Faqat <b>{pct}%</b> to'g'ri — bu mavzu sinfga tushunarsiz qolgan. Davom etishdan oldin qisqa takrorlash tavsiya etiladi.</p>
-              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>📖 Qayta tushuntirish — {RECAPS[screenIdx]?.title}</button>}
+              <p className="mstats-verdict-t">{tr({ uz: <>⚠️ Faqat <b>{pct}%</b> to'g'ri — bu mavzu sinfga tushunarsiz qolgan. Davom etishdan oldin qisqa takrorlash tavsiya etiladi.</>, ru: <>⚠️ Верно только у <b>{pct}%</b> — класс эту тему не понял. Перед тем как идти дальше, стоит коротко повторить.</> })}</p>
+              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>{tr({ uz: '📖 Qayta tushuntirish', ru: '📖 Повторное объяснение' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
             {level === 'maybe' && <>
-              <p className="mstats-verdict-t">🟡 <b>{pct}%</b> to'g'ri — yomon emas. Xohlasangiz, davom etishdan oldin qisqa takrorlab oling.</p>
-              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>📖 Qisqa takrorlash</button>}
+              <p className="mstats-verdict-t">{tr({ uz: <>🟡 <b>{pct}%</b> to'g'ri — yomon emas. Xohlasangiz, davom etishdan oldin qisqa takrorlab oling.</>, ru: <>🟡 <b>{pct}%</b> верных — неплохо. Если хотите, коротко повторите перед продолжением.</> })}</p>
+              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>{tr({ uz: '📖 Qisqa takrorlash', ru: '📖 Короткое повторение' })}</button>}
             </>}
-            {level === 'good' && <p className="mstats-verdict-t">✅ <b>{pct}%</b> to'g'ri — sinf mavzuni o'zlashtirdi. Bemalol davom eting!</p>}
+            {level === 'good' && <p className="mstats-verdict-t">{tr({ uz: <>✅ <b>{pct}%</b> to'g'ri — sinf mavzuni o'zlashtirdi. Bemalol davom eting!</>, ru: <>✅ <b>{pct}%</b> верных — класс освоил тему. Смело продолжайте!</> })}</p>}
           </div>
         );
       })()}
       {waiting.length > 0 && answered > 0 && (
         <div className="mstats-waitrow">
-          <span className="mstats-wait-lbl">⏳ Kutilmoqda:</span>
+          <span className="mstats-wait-lbl">{tr({ uz: '⏳ Kutilmoqda:', ru: '⏳ Ждём:' })}</span>
           {waiting.slice(0, 8).map(p => <span key={p.id} className="mstats-wait-chip">{p.nickname}</span>)}
           {waiting.length > 8 && <span className="mstats-wait-chip more">+{waiting.length - 8}</span>}
         </div>
       )}
-      {reveal && struggling && <p className="mstats-warn">⚠️ Ko'pchilik xato qildi — bu mavzu tushunarsiz bo'lgan ko'rinadi. Qayta tushuntirish tavsiya etiladi.</p>}
-      {answered === 0 && <p className="mstats-wait">O'quvchilar javoblari shu yerda jonli ko'rinadi…</p>}
+      {reveal && struggling && <p className="mstats-warn">{tr({ uz: "⚠️ Ko'pchilik xato qildi — bu mavzu tushunarsiz bo'lgan ko'rinadi. Qayta tushuntirish tavsiya etiladi.", ru: '⚠️ Большинство ошиблось — похоже, тема осталась непонятной. Стоит объяснить её ещё раз.' })}</p>}
+      {answered === 0 && <p className="mstats-wait">{tr({ uz: "O'quvchilar javoblari shu yerda jonli ko'rinadi…", ru: 'Ответы учеников появятся здесь вживую…' })}</p>}
     </div>
   );
 }
@@ -663,21 +675,21 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
     if (firstCorrectRef.current === null) firstCorrectRef.current = isCorrect;
     if (oneShot) {
       setSolved(true);
-      onAnswer(screen, { stage: scope, screenIdx: screen, question: questionText, options, correctIndex: correctIdx, correctAnswer: options[correctIdx], picked: i, studentAnswerIndex: i, studentAnswer: options[i], correct: isCorrect, firstAttemptCorrect: isCorrect, solved: true, lastPicked: i });
+      onAnswer(screen, { stage: scope, screenIdx: screen, question: questionText, options: options.map(ou), correctIndex: correctIdx, correctAnswer: ou(options[correctIdx]), picked: i, studentAnswerIndex: i, studentAnswer: ou(options[i]), correct: isCorrect, firstAttemptCorrect: isCorrect, solved: true, lastPicked: i });
       live.submitAnswer(screen, SCREEN_META[screen]?.id || `s${screen}`, i, isCorrect, Date.now() - mountTs.current);
     } else {
       if (isCorrect) setSolved(true);
-      onAnswer(screen, { stage: scope, screenIdx: screen, question: questionText, options, correctIndex: correctIdx, correctAnswer: options[correctIdx], picked: i, studentAnswerIndex: i, studentAnswer: options[i], correct: firstCorrectRef.current, firstAttemptCorrect: firstCorrectRef.current, solved: isCorrect, lastPicked: i });
+      onAnswer(screen, { stage: scope, screenIdx: screen, question: questionText, options: options.map(ou), correctIndex: correctIdx, correctAnswer: ou(options[correctIdx]), picked: i, studentAnswerIndex: i, studentAnswer: ou(options[i]), correct: firstCorrectRef.current, firstAttemptCorrect: firstCorrectRef.current, solved: isCorrect, lastPicked: i });
     }
   };
   const wrongLocked = oneShot && solved && picked !== correctIdx;
   const revealed = !oneShot || !!(live && (live.revealScreen === screen || live.mentorScreen > screen || live.status === 'ended' || !live.mentorAlive));
   const waiting = oneShot && solved && !revealed;
   return (
-    <Stage eyebrow={eyebrow} screen={screen} narrow navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={isMentorLive ? !mReveal : !solved} label={isMentorLive ? (mReveal ? 'Davom etish' : 'Avval natijani oching') : solved ? 'Davom etish' : (oneShot ? 'Javob tanlang' : "To'g'ri javobni toping")} onClick={onNext} /></>}>
+    <Stage eyebrow={eyebrow} screen={screen} narrow navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={isMentorLive ? !mReveal : !solved} label={isMentorLive ? (mReveal ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Avval natijani oching', ru: 'Сначала откройте результат' })) : solved ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : (oneShot ? tr({ uz: 'Javob tanlang', ru: 'Выберите ответ' }) : tr({ uz: "To'g'ri javobni toping", ru: 'Найдите правильный ответ' }))} onClick={onNext} /></>}>
       <div className="screen" style={{ justifyContent: isMentorLive ? 'flex-start' : 'center', gap: 'clamp(16px,2.5vw,24px)' }}>
         <div className="fade-up">{question}</div>
-        {oneShot && !solved && <p className="small mono fade-up" style={{ margin: '-8px 0 0', color: T.accent, fontWeight: 600 }}>⚡ Jonli dars — bitta urinish, o'ylab bosing!</p>}
+        {oneShot && !solved && <p className="small mono fade-up" style={{ margin: '-8px 0 0', color: T.accent, fontWeight: 600 }}>{tr({ uz: "⚡ Jonli dars — bitta urinish, o'ylab bosing!", ru: '⚡ Живой урок — одна попытка, подумайте перед нажатием!' })}</p>}
         <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
           {options.map((opt, i) => {
             let cls = 'option';
@@ -692,7 +704,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
             return (
               <button key={i} className={cls} disabled={solved || isMentorLive} onClick={() => pick(i)} style={{ padding: 'clamp(12px,1.8vw,16px) clamp(14px,2.2vw,20px)', fontSize: 'clamp(14px,1.7vw,16px)', display: 'flex', alignItems: 'center', gap: 12 }}>
                 <span className="mono small" style={{ minWidth: 20, color: showGreenLetter ? T.success : T.ink3 }}>{String.fromCharCode(65 + i)}</span>
-                <span style={{ flex: 1 }}>{fmtCode(opt)}</span>
+                <span style={{ flex: 1 }}>{fmtCode(tr(opt))}</span>
               </button>
             );
           })}
@@ -700,24 +712,24 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
         <FeedbackBlock show={isMentorLive ? mReveal : picked !== null} isCorrect={isMentorLive ? true : (solved && !wrongLocked)} neutral={waiting}>
           <p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
             {isMentorLive
-              ? <>✓ To'g'ri javob: {String.fromCharCode(65 + correctIdx)} — {fmtCode(options[correctIdx])}</>
+              ? <>{tr({ uz: "✓ To'g'ri javob:", ru: '✓ Правильный ответ:' })} {String.fromCharCode(65 + correctIdx)} — {fmtCode(tr(options[correctIdx]))}</>
               : waiting
-                ? '📨 Javobingiz qabul qilindi'
+                ? tr({ uz: '📨 Javobingiz qabul qilindi', ru: '📨 Ваш ответ принят' })
                 : wrongLocked
-                  ? <>To'g'ri javob: {String.fromCharCode(65 + correctIdx)} — {fmtCode(options[correctIdx])}</>
-                  : solved ? "To'g'ri" : "Qaytadan urinib ko'ring"}
+                  ? <>{tr({ uz: "To'g'ri javob:", ru: 'Правильный ответ:' })} {String.fromCharCode(65 + correctIdx)} — {fmtCode(tr(options[correctIdx]))}</>
+                  : solved ? tr({ uz: "To'g'ri", ru: 'Верно' }) : tr({ uz: "Qaytadan urinib ko'ring", ru: 'Попробуйте ещё раз' })}
           </p>
           <p className="body" style={{ margin: 0 }}>
             {isMentorLive
-              ? fmtCode(explainCorrect)
+              ? fmtCode(tr(explainCorrect))
               : waiting
-                ? "Hozir to'g'ri javobni bilib olasiz."
+                ? tr({ uz: "Hozir to'g'ri javobni bilib olasiz.", ru: 'Сейчас узнаете правильный ответ.' })
                 : wrongLocked
-                  ? fmtCode(explainWrong[picked] ?? explainWrong.default)
-                  : solved ? fmtCode(explainCorrect) : fmtCode(explainWrong[picked] ?? explainWrong.default)}
+                  ? fmtCode(tr(explainWrong[picked] ?? explainWrong.default))
+                  : solved ? fmtCode(tr(explainCorrect)) : fmtCode(tr(explainWrong[picked] ?? explainWrong.default))}
           </p>
           {hasRecap && !isMentorLive && firstCorrectRef.current === false && (!oneShot || revealed) && (
-            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>📖 Qisqa takrorlash — mavzuni yana bir ko'rish</button>
+            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: "📖 Qisqa takrorlash — mavzuni yana bir ko'rish", ru: '📖 Короткое повторение — взглянуть на тему ещё раз' })}</button>
           )}
         </FeedbackBlock>
         {isMentorLive && <MentorTestStats live={live} screenIdx={screen} options={options} correctIdx={correctIdx} reveal={mReveal} onReveal={doReveal} onOpenRecap={hasRecap ? () => setRecapOpen(true) : null} />}
@@ -739,7 +751,7 @@ function ScoreRing({ correct, total }) {
         <circle cx="64" cy="64" r={R} fill="none" stroke={T.ink3 + '40'} strokeWidth={ST} />
         <circle cx="64" cy="64" r={R} fill="none" stroke={col} strokeWidth={ST} strokeLinecap="round" strokeDasharray={C} strokeDashoffset={off} transform="rotate(-90 64 64)" style={{ transition: 'stroke-dashoffset 1s cubic-bezier(.4,0,.2,1)' }} />
       </svg>
-      <div className="ring-center"><div className="ring-num"><span style={{ color: col }}>{correct}</span><span className="ring-den">/{total}</span></div><div className="ring-lbl">to'g'ri javob</div></div>
+      <div className="ring-center"><div className="ring-num"><span style={{ color: col }}>{correct}</span><span className="ring-den">/{total}</span></div><div className="ring-lbl">{tr({ uz: "to'g'ri javob", ru: 'правильные ответы' })}</div></div>
     </div>
   );
 }
@@ -757,7 +769,7 @@ const Zoomable = ({ children }) => {
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
       <div className={`zoomable ${big ? 'zoom-on' : ''}`}>
-        <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? 'Kichraytirish' : 'Kattalashtirish'} title={big ? 'Kichraytirish' : 'Kattalashtirish'}>{big ? '✕' : '⛶'}</button>
+        <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>
         {children}
       </div>
     </>
@@ -774,7 +786,7 @@ const Mentor = ({ children }) => {
         <img src={MENTOR_IMG} alt="" />
       </div>
       <div className="mentor-col">
-        <span className="mentor-name">Mentor{collapsed && <span className="mentor-cue"> · ko'rsatmani ochish ▾</span>}</span>
+        <span className="mentor-name">{tr({ uz: 'Mentor', ru: 'Ментор' })}{collapsed && <span className="mentor-cue"> {tr({ uz: "· ko'rsatmani ochish ▾", ru: '· открыть подсказку ▾' })}</span>}</span>
         <div className="mentor-msg body">{children}</div>
       </div>
     </div>
@@ -791,19 +803,19 @@ const CodeFile = ({ name, children, minH }) => (
     <div className="editor-body" style={{ minHeight: minH }}><pre className="editor-code">{children}</pre></div>
   </div>
 );
-const AgentCard = ({ children, title = "💬 Agentni shunday yo'naltiring" }) => (
-  <div className="agent-card"><span className="agent-lbl">{title}</span><p className="agent-msg">{children}</p></div>
+const AgentCard = ({ children, title = { uz: "💬 Agentni shunday yo'naltiring", ru: '💬 Направьте агента так' } }) => (
+  <div className="agent-card"><span className="agent-lbl">{tr(title)}</span><p className="agent-msg">{children}</p></div>
 );
 // ===== MOCK SWAGGER (KitobShop, lock = faqat admin) =====
 const M_COLOR = { GET: T.blue, POST: T.success, PATCH: T.amber, DELETE: T.danger };
 const SHOP_EPS = [
-  { m: 'POST', path: '/category', lock: true, sum: 'Kategoriya qo\'shish', resp: '{ "statusCode": 201, "data": { "id": "ct1...", "name": "Detektiv" } }' },
-  { m: 'GET', path: '/category', lock: false, sum: 'Kategoriyalar', resp: '{ "statusCode": 200, "data": [ { "name": "Detektiv" }, { "name": "Ilmiy" } ] }' },
-  { m: 'POST', path: '/book', lock: true, sum: 'Kitob qo\'shish', resp: '{ "statusCode": 201, "data": { "title": "Sherlok Holms", "price": 45000 } }' },
-  { m: 'GET', path: '/book', lock: false, sum: 'Barcha kitoblar', resp: '{ "statusCode": 200, "data": [ { "title": "Sherlok Holms", "author": "Doyl", "price": 45000 } ] }' },
-  { m: 'GET', path: '/book/featured', lock: false, sum: '⭐ Top kitoblar', resp: '{ "statusCode": 200, "data": [ { "title": "Sherlok Holms", "is_featured": true } ] }' },
-  { m: 'POST', path: '/order', lock: false, sum: 'Buyurtma berish', resp: '{ "statusCode": 201, "data": { "bookId": "bk1...", "quantity": 2 } }' },
-  { m: 'GET', path: '/order', lock: true, sum: 'Buyurtmalar', resp: '{ "statusCode": 200, "data": [ { "customer_name": "Ali", "quantity": 2 } ] }' }
+  { m: 'POST', path: '/category', lock: true, sum: { uz: "Kategoriya qo'shish", ru: 'Добавить категорию' }, resp: '{ "statusCode": 201, "data": { "id": "ct1...", "name": "Detektiv" } }' },
+  { m: 'GET', path: '/category', lock: false, sum: { uz: 'Kategoriyalar', ru: 'Категории' }, resp: '{ "statusCode": 200, "data": [ { "name": "Detektiv" }, { "name": "Ilmiy" } ] }' },
+  { m: 'POST', path: '/book', lock: true, sum: { uz: "Kitob qo'shish", ru: 'Добавить книгу' }, resp: '{ "statusCode": 201, "data": { "title": "Sherlok Holms", "price": 45000 } }' },
+  { m: 'GET', path: '/book', lock: false, sum: { uz: 'Barcha kitoblar', ru: 'Все книги' }, resp: '{ "statusCode": 200, "data": [ { "title": "Sherlok Holms", "author": "Doyl", "price": 45000 } ] }' },
+  { m: 'GET', path: '/book/featured', lock: false, sum: { uz: '⭐ Top kitoblar', ru: '⭐ Топ-книги' }, resp: '{ "statusCode": 200, "data": [ { "title": "Sherlok Holms", "is_featured": true } ] }' },
+  { m: 'POST', path: '/order', lock: false, sum: { uz: 'Buyurtma berish', ru: 'Оформить заказ' }, resp: '{ "statusCode": 201, "data": { "bookId": "bk1...", "quantity": 2 } }' },
+  { m: 'GET', path: '/order', lock: true, sum: { uz: 'Buyurtmalar', ru: 'Заказы' }, resp: '{ "statusCode": 200, "data": [ { "customer_name": "Ali", "quantity": 2 } ] }' }
 ];
 const ShopSwagger = ({ eps = SHOP_EPS, openId, onToggle, triedIds, onTry }) => (
   <div className="swg">
@@ -817,9 +829,9 @@ const ShopSwagger = ({ eps = SHOP_EPS, openId, onToggle, triedIds, onTry }) => (
           <button className={`swg-head ${!tried && !open ? 'tap-hint' : ''}`} onClick={() => onToggle(id)}>
             <span className="swg-m" style={{ background: M_COLOR[e.m] }}>{e.m}</span>
             <span className="swg-path">{e.path}</span>
-            <span className="swg-sum">{e.sum}</span>
+            <span className="swg-sum">{tr(e.sum)}</span>
             <span style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 6 }}>
-              <span title={e.lock ? 'faqat admin' : 'ochiq'} style={{ fontSize: 12 }}>{e.lock ? '🔒' : '🌐'}</span>
+              <span title={e.lock ? tr({ uz: 'faqat admin', ru: 'только админ' }) : tr({ uz: 'ochiq', ru: 'открыто' })} style={{ fontSize: 12 }}>{e.lock ? '🔒' : '🌐'}</span>
               <span className="swg-chev">{open ? '▾' : '▸'}</span>
             </span>
           </button>
@@ -827,7 +839,7 @@ const ShopSwagger = ({ eps = SHOP_EPS, openId, onToggle, triedIds, onTry }) => (
             <div className="swg-detail el-in">
               {!tried
                 ? <button className="btn-soft" onClick={() => onTry(id)} style={{ alignSelf: 'flex-start' }}>▶ Try it out</button>
-                : <><div className="swg-code-lbl">Javob · <span style={{ color: T.success }}>{e.m === 'POST' ? '201' : '200'}</span></div><pre className="json">{e.resp}</pre></>}
+                : <><div className="swg-code-lbl">{tr({ uz: 'Javob', ru: 'Ответ' })} · <span style={{ color: T.success }}>{e.m === 'POST' ? '201' : '200'}</span></div><pre className="json">{e.resp}</pre></>}
             </div>
           )}
         </div>
@@ -858,14 +870,14 @@ const PickLines = ({ fileName, scaffoldTop, scaffoldBottom, candidates, agent, i
         <CodeFile name={fileName} minH={120}>
           {scaffoldTop}{'\n'}
           {pickedCorrect.length === 0
-            ? <span className="line-empty">{'  // qatorlarni o\'ng tomondan tanlang →'}</span>
+            ? <span className="line-empty">{'  ' + tr({ uz: "// qatorlarni o'ng tomondan tanlang →", ru: '// выберите строки справа →' })}</span>
             : pickedCorrect.map((c, i) => <React.Fragment key={c.id}>{i > 0 ? '\n' : ''}{'  '}{c.node}</React.Fragment>)}
           {'\n'}{scaffoldBottom}
         </CodeFile>
-        {agent && <AgentCard>{agent}</AgentCard>}
+        {agent && <AgentCard>{tr(agent)}</AgentCard>}
       </Col>
       <Col>
-        <p className="flow-label">{instruction || 'Shu faylga tegishli qatorlarni tanlang'}</p>
+        <p className="flow-label">{tr(instruction) || tr({ uz: 'Shu faylga tegishli qatorlarni tanlang', ru: 'Выберите строки, относящиеся к этому файлу' })}</p>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 7 }}>
           {candidates.map(c => (
             <button key={c.id} className={`pick-row ${picked.has(c.id) ? 'picked' : ''} ${shakeId === c.id ? 'shake' : ''}`} disabled={picked.has(c.id)} onClick={() => tap(c)}>
@@ -874,8 +886,8 @@ const PickLines = ({ fileName, scaffoldTop, scaffoldBottom, candidates, agent, i
             </button>
           ))}
         </div>
-        {why && !done && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{why}</p></div>}
-        {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>✓ Fayl tayyor — har qator o'z joyida.</p></div>}
+        {why && !done && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr(why)}</p></div>}
+        {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "✓ Fayl tayyor — har qator o'z joyida.", ru: '✓ Файл готов — каждая строка на своём месте.' })}</p></div>}
       </Col>
     </div>
     </Zoomable>
@@ -893,7 +905,7 @@ const FileGen = ({ files, running, n }) => (
         <div key={i} className={`gen-file ${ready ? 'ready' : ''} el-in`}>
           <span className="gen-ico" style={{ color: ready ? T.success : T.amber }}>{ready ? '✓' : '⏳'}</span>
           <span className="mono" style={{ flex: 1 }}>{file.f}</span>
-          <span className="gen-d">{ready ? file.d : 'yozilmoqda…'}</span>
+          <span className="gen-d">{ready ? tr(file.d) : tr({ uz: 'yozilmoqda…', ru: 'пишется…' })}</span>
         </div>
       );
     })}
@@ -927,8 +939,8 @@ const Checklist = ({ items, doneInit, onComplete }) => {
           <button key={i} className={`vcard ${on ? '' : 'tap-hint'}`} onClick={() => tap(i)} style={{ boxShadow: on ? `inset 0 0 0 1.5px ${T.success}, 0 5px 14px -6px rgba(${T.shadowBase},0.16)` : undefined, alignItems: 'flex-start' }}>
             <span className="vseen" style={{ marginLeft: 0, marginRight: 2, color: on ? T.success : T.ink3, minWidth: 18 }}>{on ? '✓' : '☐'}</span>
             <span style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 2, textAlign: 'left' }}>
-              <span className="vlbl" style={{ fontFamily: "'Manrope'", fontSize: 13 }}>{it.t}</span>
-              {on && <span className="role-r el-in">{it.ok}</span>}
+              <span className="vlbl" style={{ fontFamily: "'Manrope'", fontSize: 13 }}>{tr(it.t)}</span>
+              {on && <span className="role-r el-in">{tr(it.ok)}</span>}
             </span>
           </button>
         );
@@ -938,20 +950,20 @@ const Checklist = ({ items, doneInit, onComplete }) => {
 };
 // ===== SO'ROV YO'LI (Integration) =====
 const SHOP_FLOW = [
-  { k: 'Admin', icon: '🔒', r: 'POST /book', d: 'Admin token bilan yangi kitob qo\'shadi (guard ruxsat beradi).' },
-  { k: 'Mijoz', icon: '🌐', r: 'GET /book/featured', d: 'Mijoz top kitoblarni ko\'radi — token kerakmas (public).' },
-  { k: 'Buyurtma', icon: '🛒', r: 'POST /order', d: 'Mijoz bookId bilan buyurtma beradi (Order → Book bog\'lanishi).' },
-  { k: 'Tekshiruv', icon: '📋', r: 'GET /order', d: 'Admin kelgan buyurtmalarni ko\'radi (faqat admin).' },
-  { k: 'Tayyor', icon: '✅', r: 'KitobShop ishlaydi', d: 'Admin + mijoz oqimi to\'liq — real do\'kon backendi!' }
+  { k: { uz: 'Admin', ru: 'Админ' }, icon: '🔒', r: 'POST /book', d: { uz: "Admin token bilan yangi kitob qo'shadi (guard ruxsat beradi).", ru: 'Админ добавляет новую книгу с токеном (страж пропускает).' } },
+  { k: { uz: 'Mijoz', ru: 'Клиент' }, icon: '🌐', r: 'GET /book/featured', d: { uz: "Mijoz top kitoblarni ko'radi — token kerakmas (public).", ru: 'Клиент смотрит топ-книги — токен не нужен (public).' } },
+  { k: { uz: 'Buyurtma', ru: 'Заказ' }, icon: '🛒', r: 'POST /order', d: { uz: "Mijoz bookId bilan buyurtma beradi (Order → Book bog'lanishi).", ru: 'Клиент оформляет заказ с bookId (связь Order → Book).' } },
+  { k: { uz: 'Tekshiruv', ru: 'Проверка' }, icon: '📋', r: 'GET /order', d: { uz: "Admin kelgan buyurtmalarni ko'radi (faqat admin).", ru: 'Админ просматривает поступившие заказы (только админ).' } },
+  { k: { uz: 'Tayyor', ru: 'Готово' }, icon: '✅', r: { uz: 'KitobShop ishlaydi', ru: 'KitobShop работает' }, d: { uz: "Admin + mijoz oqimi to'liq — real do'kon backendi!", ru: 'Поток админа и клиента замкнулся — бэкенд настоящего магазина!' } }
 ];
 
 // ===== 🧵 BEAT 0 — MEROS TASMASI: restoran -> bitta bo'lim -> KitobShop (xodimlar bir xil) =====
 const LEGACY = [
-  { id: 'l1', ic: '🍽️', t: 'Restoran',      s: "1-dars — ko'rdingiz" },
-  { id: 'l2', ic: '🔧', t: "Bitta bo'lim",   s: "2-dars — ochdingiz" },
-  { id: 'l3', ic: '📚', t: 'KitobShop',      s: "bugun — 3 bo'lim, o'zingiz" }
+  { id: 'l1', ic: '🍽️', t: { uz: 'Restoran', ru: 'Ресторан' },      s: { uz: "1-dars — ko'rdingiz", ru: 'урок 1 — видели' } },
+  { id: 'l2', ic: '🔧', t: { uz: "Bitta bo'lim", ru: 'Один отдел' },   s: { uz: '2-dars — ochdingiz', ru: 'урок 2 — открыли' } },
+  { id: 'l3', ic: '📚', t: 'KitobShop',      s: { uz: "bugun — 3 bo'lim, o'zingiz", ru: 'сегодня — 3 отдела, сами' } }
 ];
-const STAFF = ["🛡️ qo'riqchi", '🧾 sotuvchi', '📋 anketa', '📦 omborchi', "🏷️ bo'lim"];
+const STAFF = [{ uz: "🛡️ qo'riqchi", ru: '🛡️ страж' }, { uz: '🧾 sotuvchi', ru: '🧾 продавец' }, { uz: '📋 anketa', ru: '📋 анкета' }, { uz: '📦 omborchi', ru: '📦 кладовщик' }, { uz: "🏷️ bo'lim", ru: '🏷️ отдел' }];
 const LegacyRail = ({ seen, onTap }) => (
   <div className="lg-rail fade-up delay-2">
     {LEGACY.map(l => {
@@ -959,9 +971,9 @@ const LegacyRail = ({ seen, onTap }) => (
       return (
         <button key={l.id} className={`lg-card ${on ? 'on' : ''} ${on ? '' : 'tap-hint'}`} onClick={() => onTap(l.id)}>
           <span className="lg-ic">{l.ic}</span>
-          <span className="lg-t">{l.t}</span>
-          <span className="lg-s">{l.s}</span>
-          <span className={`lg-staff ${on ? 'lit' : ''}`}>{STAFF.map((s, i) => <i key={i}>{s}</i>)}</span>
+          <span className="lg-t">{tr(l.t)}</span>
+          <span className="lg-s">{tr(l.s)}</span>
+          <span className={`lg-staff ${on ? 'lit' : ''}`}>{STAFF.map((s, i) => <i key={i}>{tr(s)}</i>)}</span>
         </button>
       );
     })}
@@ -977,40 +989,40 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
   const [sc, setSc] = useState(0);
   const triedOne = tried.size >= 1;
   const OPTS = [
-    { id: 'a', label: "Hammasini bitta ulkan faylga yozamiz" },
-    { id: 'b', label: "3 resurs — har biri 5 qadam, agent bilan tez quramiz" },
-    { id: 'c', label: "Bunday do'kon backendini faqat katta jamoa quradi" }
+    { id: 'a', label: { uz: 'Hammasini bitta ulkan faylga yozamiz', ru: 'Запишем всё в один огромный файл' } },
+    { id: 'b', label: { uz: '3 resurs — har biri 5 qadam, agent bilan tez quramiz', ru: '3 ресурса — по 5 шагов на каждый, быстро строим с агентом' } },
+    { id: 'c', label: { uz: "Bunday do'kon backendini faqat katta jamoa quradi", ru: 'Такой бэкенд магазина под силу только большой команде' } }
   ];
   const toggle = (id) => { setOpenId(o => o === id ? null : id); setSc(n => n + 1); };
   const onTry = (id) => { setTried(prev => { const s = new Set(prev); s.add(id); return s; }); setSc(n => n + 1); };
   const tapLegacy = (id) => { setLseen(prev => { const s = new Set(prev); s.add(id); return s; }); setSc(n => n + 1); };
   const pick = (v) => { if (picked !== null || !triedOne) return; setPicked(v); setSc(n => n + 1); onAnswer(screen, { stage: 'hook', screenIdx: screen, picked: v, correct: true }); };
   return (
-    <Stage eyebrow="Praktika · kirish" screen={screen} scrollSignal={sc} navContent={<NavNext optionalLive disabled={picked === null} label="Boshlaymiz" onClick={onNext} />}>
+    <Stage eyebrow={tr({ uz: 'Praktika · kirish', ru: 'Практика · введение' })} screen={screen} scrollSignal={sc} navContent={<NavNext optionalLive disabled={picked === null} label={tr({ uz: 'Boshlaymiz', ru: 'Начинаем' })} onClick={onNext} />}>
       <div className="screen">
-        <h1 className="title h-title fade-up" style={{ maxWidth: 880 }}>Mana siz quradigan narsa — haqiqiy <span className="italic" style={{ color: T.accent }}>onlayn kitob do'koni</span>.</h1>
-        <Mentor>Bu — <b style={{ color: T.ink }}>KitobShop</b>: admin kitob qo'shadi, mijozlar ko'radi, "Top kitoblar"ni ko'zdan kechiradi va buyurtma beradi. Ro'yxatdagi har qator — bitta <b style={{ color: T.ink }}>endpoint</b>, ya'ni <b style={{ color: T.ink }}>eshik</b>: mijoz shu manzilga so'rov yuboradi. 🔒 — faqat admin kiradi, 🌐 — hamma kiradi. Bitta eshikni ochib <b style={{ color: T.ink }}>"Try it out"</b> bilan sinab ko'ring.</Mentor>
+        <h1 className="title h-title fade-up" style={{ maxWidth: 880 }}>{tr({ uz: <>Mana siz quradigan narsa — haqiqiy <span className="italic" style={{ color: T.accent }}>onlayn kitob do'koni</span>.</>, ru: <>Вот что вы построите — настоящий <span className="italic" style={{ color: T.accent }}>онлайн-магазин книг</span>.</> })}</h1>
+        <Mentor>{tr({ uz: <>Bu — <b style={{ color: T.ink }}>KitobShop</b>: admin kitob qo'shadi, mijozlar ko'radi, "Top kitoblar"ni ko'zdan kechiradi va buyurtma beradi. Ro'yxatdagi har qator — bitta <b style={{ color: T.ink }}>endpoint</b>, ya'ni <b style={{ color: T.ink }}>eshik</b>: mijoz shu manzilga so'rov yuboradi. 🔒 — faqat admin kiradi, 🌐 — hamma kiradi. Bitta eshikni ochib <b style={{ color: T.ink }}>"Try it out"</b> bilan sinab ko'ring.</>, ru: <>Это — <b style={{ color: T.ink }}>KitobShop</b>: админ добавляет книги, клиенты их смотрят, листают «Топ-книги» и делают заказы. Каждая строка в списке — один <b style={{ color: T.ink }}>эндпоинт</b>, то есть <b style={{ color: T.ink }}>дверь</b>: клиент шлёт запрос на этот адрес. 🔒 — входит только админ, 🌐 — входят все. Откройте одну дверь и попробуйте её через <b style={{ color: T.ink }}>"Try it out"</b>.</> })}</Mentor>
         <Zoomable>
         <Split>
           <Col>
             <ShopSwagger openId={openId} onToggle={toggle} triedIds={tried} onTry={onTry} />
           </Col>
           <Col>
-            <p className="eyebrow fade-up delay-2" style={{ color: T.ink2, margin: 0 }}>Bunday backendni qanday quramiz?</p>
+            <p className="eyebrow fade-up delay-2" style={{ color: T.ink2, margin: 0 }}>{tr({ uz: 'Bunday backendni qanday quramiz?', ru: 'Как построить такой бэкенд?' })}</p>
             <div className="fade-up delay-3" style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
               {OPTS.map(o => {
                 const on = picked === o.id;
-                return (<button key={o.id} className={`hook-option ${on ? 'on' : ''}`} disabled={picked !== null || !triedOne} style={{ opacity: !triedOne ? 0.55 : 1 }} onClick={() => pick(o.id)}><span className="radio">{on && <span className="radio-dot" />}</span><span>{o.label}</span></button>);
+                return (<button key={o.id} className={`hook-option ${on ? 'on' : ''}`} disabled={picked !== null || !triedOne} style={{ opacity: !triedOne ? 0.55 : 1 }} onClick={() => pick(o.id)}><span className="radio">{on && <span className="radio-dot" />}</span><span>{tr(o.label)}</span></button>);
               })}
             </div>
-            {!triedOne && <p className="small" style={{ color: T.ink3, fontStyle: 'italic', margin: 0 }}>Avval bitta endpointni sinang ←</p>}
-            {picked !== null && <p className="hook-ack fade-step">Aynan! Har resurs — o'sha 5 qadam sikli. Bugun <b>3 resursni</b> (Kategoriya, Kitob, Buyurtma) <b>AI yordamchi bilan</b> qurasiz: siz <b>rejalashtirasiz</b>, AI'ni <b>yo'naltirasiz</b> va natijani <b>tekshirasiz</b>.</p>}
+            {!triedOne && <p className="small" style={{ color: T.ink3, fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Avval bitta endpointni sinang ←', ru: 'Сначала попробуйте один эндпоинт ←' })}</p>}
+            {picked !== null && <p className="hook-ack fade-step">{tr({ uz: <>Aynan! Har resurs — o'sha 5 qadam sikli. Bugun <b>3 resursni</b> (Kategoriya, Kitob, Buyurtma) <b>AI yordamchi bilan</b> qurasiz: siz <b>rejalashtirasiz</b>, AI'ni <b>yo'naltirasiz</b> va natijani <b>tekshirasiz</b>.</>, ru: <>Именно! Каждый ресурс — тот самый цикл из 5 шагов. Сегодня вы построите <b>3 ресурса</b> (Категория, Книга, Заказ) <b>с ИИ-помощником</b>: вы <b>планируете</b>, <b>направляете</b> ИИ и <b>проверяете</b> результат.</> })}</p>}
           </Col>
         </Split>
         </Zoomable>
-        <p className="flow-label" style={{ marginTop: 4 }}>Uch dars — bitta zanjir (har birini bosib ko'ring)</p>
+        <p className="flow-label" style={{ marginTop: 4 }}>{tr({ uz: "Uch dars — bitta zanjir (har birini bosib ko'ring)", ru: 'Три урока — одна цепочка (нажмите на каждый)' })}</p>
         <LegacyRail seen={lseen} onTap={tapLegacy} />
-        {lseen.size >= LEGACY.length && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Biznes boshqa — <b>xodimlar bir xil</b>. Restoranda ofitsiant, do'konda sotuvchi: ish bitta — so'rovni oladi, javobni qaytaradi. Kodda ikkalasi ham <span className="mono">Controller</span>. Aynan shuning uchun bu — <b>arxitektura</b>.</p></div>}
+        {lseen.size >= LEGACY.length && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Biznes boshqa — <b>xodimlar bir xil</b>. Restoranda ofitsiant, do'konda sotuvchi: ish bitta — so'rovni oladi, javobni qaytaradi. Kodda ikkalasi ham <span className="mono">Controller</span>. Aynan shuning uchun bu — <b>arxitektura</b>.</>, ru: <>Бизнес другой — <b>сотрудники те же</b>. В ресторане официант, в магазине продавец: работа одна — принять запрос, вернуть ответ. В коде оба — <span className="mono">Controller</span>. Именно поэтому это — <b>архитектура</b>.</> })}</p></div>}
       </div>
     </Stage>
   );
@@ -1019,9 +1031,9 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
 // ===== SCREEN 1 — RULE: bosh dasturchi 3 ishi =====
 const Screen1 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const HATS = [
-    { id: 'plan', icon: '📋', t: 'Rejalashtiruvchi', d: 'Rejalashtiradi: qaysi resurs, qaysi ustun, qanday bog\'lanish.' },
-    { id: 'guide', icon: '🤖', t: 'Yo\'naltiruvchi', d: 'AI yordamchiga aniq topshiriq beradi (playbook prompt).' },
-    { id: 'check', icon: '🔍', t: 'Tekshiruvchi', d: 'Natijani tekshiradi: to\'g\'ri qatlam? ulangan? himoyalangan?' }
+    { id: 'plan', icon: '📋', t: { uz: 'Rejalashtiruvchi', ru: 'Планировщик' }, d: { uz: "Rejalashtiradi: qaysi resurs, qaysi ustun, qanday bog'lanish.", ru: 'Планирует: какой ресурс, какие колонки, какие связи.' } },
+    { id: 'guide', icon: '🤖', t: { uz: "Yo'naltiruvchi", ru: 'Направляющий' }, d: { uz: 'AI yordamchiga aniq topshiriq beradi (playbook prompt).', ru: 'Даёт ИИ-помощнику чёткое задание (playbook-промпт).' } },
+    { id: 'check', icon: '🔍', t: { uz: 'Tekshiruvchi', ru: 'Проверяющий' }, d: { uz: "Natijani tekshiradi: to'g'ri qatlam? ulangan? himoyalangan?", ru: 'Проверяет результат: слой верный? подключено? защищено?' } }
   ];
   const [seen, setSeen] = useState(storedAnswer ? new Set(HATS.map(h => h.id)) : new Set());
   const [active, setActive] = useState(null);
@@ -1031,10 +1043,10 @@ const Screen1 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   const cur = HATS.find(h => h.id === active);
   return (
-    <Stage eyebrow="Qoida · 3 ish" screen={screen} scrollSignal={sc} mentorStatic navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? 'Boshlaymiz →' : `3 ishni ko'ring (${seen.size}/3)`} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Qoida · 3 ish', ru: 'Правило · 3 дела' })} screen={screen} scrollSignal={sc} mentorStatic navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Boshlaymiz →', ru: 'Начинаем →' }) : tr({ uz: `3 ishni ko'ring (${seen.size}/3)`, ru: `Посмотрите 3 дела (${seen.size}/3)` })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Bugun ko'p kod yozmaysiz — siz <span className="italic" style={{ color: T.accent }}>bosh dasturchisiz</span>.</h2></div>
-        <Mentor>AI yordamchingiz kodni soniyalarda yozadi — siz uni <b style={{ color: T.ink }}>yo'naltirasiz</b> va natijani <b style={{ color: T.ink }}>tekshirasiz</b>. Bosh dasturchi shu uchta ishni qiladi. Har birini bosib ko'ring.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Bugun ko'p kod yozmaysiz — siz <span className="italic" style={{ color: T.accent }}>bosh dasturchisiz</span>.</>, ru: <>Сегодня вы почти не пишете код — вы <span className="italic" style={{ color: T.accent }}>главный разработчик</span>.</> })}</h2></div>
+        <Mentor>{tr({ uz: <>AI yordamchingiz kodni soniyalarda yozadi — siz uni <b style={{ color: T.ink }}>yo'naltirasiz</b> va natijani <b style={{ color: T.ink }}>tekshirasiz</b>. Bosh dasturchi shu uchta ishni qiladi. Har birini bosib ko'ring.</>, ru: <>Ваш ИИ-помощник пишет код за секунды — вы его <b style={{ color: T.ink }}>направляете</b> и <b style={{ color: T.ink }}>проверяете</b> результат. Главный разработчик занимается этими тремя делами. Нажмите на каждое.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
@@ -1042,7 +1054,7 @@ const Screen1 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               {HATS.map(h => (
                 <button key={h.id} className={`vcard ${seen.has(h.id) ? '' : 'tap-hint'}`} onClick={() => tap(h.id)} style={{ boxShadow: active === h.id ? `inset 0 0 0 1.5px ${T.accent}, 0 8px 20px -6px rgba(${T.shadowBase},0.2)` : undefined }}>
                   <span className="role-ico">{h.icon}</span>
-                  <span className="vlbl mono">{h.t}</span>
+                  <span className="vlbl mono">{tr(h.t)}</span>
                   <span className="vseen" style={{ color: seen.has(h.id) ? T.success : T.ink3 }}>{seen.has(h.id) ? '✓' : ''}</span>
                 </button>
               ))}
@@ -1050,9 +1062,9 @@ const Screen1 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </Col>
           <Col>
             {cur
-              ? <div className="frame fade-step" key={active}><p className="note-h"><span style={{ fontSize: 22, marginRight: 6 }}>{cur.icon}</span><span className="mono" style={{ color: T.accent }}>{cur.t}</span></p><p className="body" style={{ margin: 0, color: T.ink }}>{cur.d}</p></div>
-              : <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>Rolni bosing ←</p></div>}
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Sikl: <b>Rejalashtir → Yo'naltir → Tekshir</b>. Har resurs uchun shu uch qadam. Boshlaymiz — avval reja.</p></div>}
+              ? <div className="frame fade-step" key={active}><p className="note-h"><span style={{ fontSize: 22, marginRight: 6 }}>{cur.icon}</span><span className="mono" style={{ color: T.accent }}>{tr(cur.t)}</span></p><p className="body" style={{ margin: 0, color: T.ink }}>{tr(cur.d)}</p></div>
+              : <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Rolni bosing ←', ru: 'Нажмите на роль ←' })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Sikl: <b>Rejalashtir → Yo'naltir → Tekshir</b>. Har resurs uchun shu uch qadam. Boshlaymiz — avval reja.</>, ru: <>Цикл: <b>Планируй → Направляй → Проверяй</b>. Три шага для каждого ресурса. Начинаем — сначала план.</> })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -1063,9 +1075,9 @@ const Screen1 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // ===== SCREEN 2 — REJALASHTIRUVCHI: ma'lumotlar rejasi =====
 const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const NODES = [
-    { id: 'cat', t: 'Category', cols: 'name', rel: null, d: 'Kitob turlari: Detektiv, Ilmiy, Bolalar...' },
-    { id: 'book', t: 'Book', cols: 'title · author · price · is_featured', rel: '→ Category (@ManyToOne)', d: 'Har kitob bitta kategoriyaga tegishli.' },
-    { id: 'order', t: 'Order', cols: 'customer_name · quantity', rel: '→ Book (@ManyToOne)', d: 'Har buyurtma bitta kitobga ishora qiladi.' }
+    { id: 'cat', t: 'Category', cols: 'name', rel: null, d: { uz: 'Kitob turlari: Detektiv, Ilmiy, Bolalar...', ru: 'Виды книг: детектив, научные, детские...' } },
+    { id: 'book', t: 'Book', cols: 'title · author · price · is_featured', rel: '→ Category (@ManyToOne)', d: { uz: 'Har kitob bitta kategoriyaga tegishli.', ru: 'Каждая книга относится к одной категории.' } },
+    { id: 'order', t: 'Order', cols: 'customer_name · quantity', rel: '→ Book (@ManyToOne)', d: { uz: 'Har buyurtma bitta kitobga ishora qiladi.', ru: 'Каждый заказ указывает на одну книгу.' } }
   ];
   const [seen, setSeen] = useState(storedAnswer ? new Set(NODES.map(n => n.id)) : new Set());
   const [active, setActive] = useState(null);
@@ -1075,10 +1087,10 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   const cur = NODES.find(n => n.id === active);
   return (
-    <Stage eyebrow="Reja · ma'lumotlar" screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? 'Davom etish' : `3 jadvalni ko'ring (${seen.size}/3)`} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: "Reja · ma'lumotlar", ru: 'План · данные' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: `3 jadvalni ko'ring (${seen.size}/3)`, ru: `Посмотрите 3 таблицы (${seen.size}/3)` })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Kitob do'koni qanday <span className="italic" style={{ color: T.accent }}>ma'lumotlarni</span> saqlaydi — va ular bir-biriga qanday <span className="italic" style={{ color: T.accent }}>ulanadi</span>?</h2></div>
-        <Mentor>AI'ga buyruq berishdan oldin <b style={{ color: T.ink }}>reja</b> tuzamiz: do'konda 3 turdagi ma'lumot bor — kategoriyalar, kitoblar va buyurtmalar. Ular bir-biriga bog'lanadi. Har birini bosib ko'ring.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Kitob do'koni qanday <span className="italic" style={{ color: T.accent }}>ma'lumotlarni</span> saqlaydi — va ular bir-biriga qanday <span className="italic" style={{ color: T.accent }}>ulanadi</span>?</>, ru: <>Какие <span className="italic" style={{ color: T.accent }}>данные</span> хранит книжный магазин — и как они <span className="italic" style={{ color: T.accent }}>связаны</span> между собой?</> })}</h2></div>
+        <Mentor>{tr({ uz: <>AI'ga buyruq berishdan oldin <b style={{ color: T.ink }}>reja</b> tuzamiz: do'konda 3 turdagi ma'lumot bor — kategoriyalar, kitoblar va buyurtmalar. Ular bir-biriga bog'lanadi. Har birini bosib ko'ring.</>, ru: <>Прежде чем командовать ИИ, составим <b style={{ color: T.ink }}>план</b>: в магазине 3 вида данных — категории, книги и заказы. Они связаны друг с другом. Нажмите на каждый.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
@@ -1096,9 +1108,9 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </Col>
           <Col>
             {cur
-              ? <div className="frame fade-step" key={active}><p className="note-h"><span className="mono" style={{ color: T.accent }}>📦 {cur.t}</span></p><p className="body" style={{ margin: '0 0 8px', color: T.ink }}>{cur.d}</p><div className="ent-row siz">{cur.cols} <span>← ustunlar</span></div>{cur.rel && <div className="ent-row free el-in">{cur.rel} <span>← bog'lanish</span></div>}</div>
-              : <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>Jadvalni bosing ←</p></div>}
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Reja tayyor: <b>Category ← Book ← Order</b>. Endi har birini agent bilan quramiz — Category'dan boshlaymiz.</p></div>}
+              ? <div className="frame fade-step" key={active}><p className="note-h"><span className="mono" style={{ color: T.accent }}>📦 {cur.t}</span></p><p className="body" style={{ margin: '0 0 8px', color: T.ink }}>{tr(cur.d)}</p><div className="ent-row siz">{cur.cols} <span>{tr({ uz: '← ustunlar', ru: '← колонки' })}</span></div>{cur.rel && <div className="ent-row free el-in">{cur.rel} <span>{tr({ uz: "← bog'lanish", ru: '← связь' })}</span></div>}</div>
+              : <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Jadvalni bosing ←', ru: 'Нажмите на таблицу ←' })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Reja tayyor: <b>Category ← Book ← Order</b>. Endi har birini agent bilan quramiz — Category'dan boshlaymiz.</>, ru: <>План готов: <b>Category ← Book ← Order</b>. Теперь построим каждый с агентом — начнём с Category.</> })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -1109,15 +1121,15 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 
 // ===== SCREEN 3 — 🎯 BEAT 1: agent AYNAN aytganingizni yozadi (3 neytral buyruq · oqibat = kirish taxtasi) =====
 const CMDS = [
-  { id: 'c1', label: '1-buyruq', text: '"kategoriya qil"', wired: false,
-    files: [{ f: 'category.ts', d: 'hammasi bitta faylda' }],
-    note: "Agent nima so'ralganini o'zi taxmin qildi — bitta chalkash fayl. Qaysi ustun? Qaysi qatlam? Noma'lum." },
-  { id: 'c2', label: '2-buyruq', text: '"category.entity.ts yoz: name ustuni."', wired: false,
+  { id: 'c1', label: { uz: '1-buyruq', ru: 'Команда 1' }, text: { uz: '"kategoriya qil"', ru: '«сделай категорию»' }, wired: false,
+    files: [{ f: 'category.ts', d: { uz: 'hammasi bitta faylda', ru: 'всё в одном файле' } }],
+    note: { uz: "Agent nima so'ralganini o'zi taxmin qildi — bitta chalkash fayl. Qaysi ustun? Qaysi qatlam? Noma'lum.", ru: 'Агент сам догадывался, что от него хотят — один запутанный файл. Какие колонки? Какой слой? Неизвестно.' } },
+  { id: 'c2', label: { uz: '2-buyruq', ru: 'Команда 2' }, text: { uz: '"category.entity.ts yoz: name ustuni."', ru: '«напиши category.entity.ts: колонка name»' }, wired: false,
     files: [{ f: 'category.entity.ts', d: 'name' }],
-    note: "Buyruq aniq — lekin TO'LIQ emas. Agent aynan so'ralganini yozdi: bitta fayl. DTO, service, controller, module va ulanish yo'q." },
-  { id: 'c3', label: '3-buyruq', text: '"Category resursini qo\'sh: Entity (name) -> DTO -> BaseService\'dan service -> CRUD controller -> module va AppModule\'ga ula."', wired: true,
-    files: [{ f: 'category.entity.ts', d: 'name' }, { f: 'create/update-category.dto.ts', d: 'anketa' }, { f: 'category.service.ts', d: 'BaseService' }, { f: 'category.controller.ts', d: 'CRUD' }, { f: 'category.module.ts', d: "bo'lim" }, { f: 'AppModule.imports += CategoryModule', d: 'kirish taxtasi' }],
-    note: "To'liq playbook: 5 fayl + bo'lim kirish taxtasiga yozildi. Endi /category tirik." }
+    note: { uz: "Buyruq aniq — lekin TO'LIQ emas. Agent aynan so'ralganini yozdi: bitta fayl. DTO, service, controller, module va ulanish yo'q.", ru: 'Команда чёткая — но НЕ полная. Агент написал ровно то, что просили: один файл. Ни DTO, ни service, ни controller, ни module, ни подключения.' } },
+  { id: 'c3', label: { uz: '3-buyruq', ru: 'Команда 3' }, text: { uz: '"Category resursini qo\'sh: Entity (name) -> DTO -> BaseService\'dan service -> CRUD controller -> module va AppModule\'ga ula."', ru: '«Добавь ресурс Category: Entity (name) -> DTO -> service от BaseService -> CRUD-controller -> module и подключи к AppModule»' }, wired: true,
+    files: [{ f: 'category.entity.ts', d: 'name' }, { f: 'create/update-category.dto.ts', d: { uz: 'anketa', ru: 'анкета' } }, { f: 'category.service.ts', d: 'BaseService' }, { f: 'category.controller.ts', d: 'CRUD' }, { f: 'category.module.ts', d: { uz: "bo'lim", ru: 'отдел' } }, { f: 'AppModule.imports += CategoryModule', d: { uz: 'kirish taxtasi', ru: 'входная вывеска' } }],
+    note: { uz: "To'liq playbook: 5 fayl + bo'lim kirish taxtasiga yozildi. Endi /category tirik.", ru: 'Полный плейбук: 5 файлов + отдел вписан на входную вывеску. Теперь /category живой.' } }
 ];
 function useAgentRun(files, initDone) {
   const total = files.length;
@@ -1143,40 +1155,40 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: 'c3' }); }, [done]); // eslint-disable-line
   const send = (id) => { if (done) return; setPickId(id); setSc(n => n + 1); gen.start(); };
   return (
-    <Stage eyebrow="Yo'naltirish · buyruq" screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? 'Davom etish' : "To'liq playbookni yuboring"} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: "Yo'naltirish · buyruq", ru: 'Направление · команда' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "To'liq playbookni yuboring", ru: 'Отправьте полный плейбук' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Agent <span className="italic" style={{ color: T.accent }}>aynan</span> aytganingizni yozadi — ko'proq emas.</h2></div>
-        <Mentor>Birinchi resurs — <b style={{ color: T.ink }}>Category</b>. Uchta buyruq bor, uchalasi ham ishonarli ko'rinadi. Bittasini yuboring va o'ngda <b style={{ color: T.ink }}>oqibatini</b> ko'ring: bo'lim <b style={{ color: T.ink }}>kirish taxtasiga</b> yozilmasa, mijoz eshikni topa olmaydi.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Agent <span className="italic" style={{ color: T.accent }}>aynan</span> aytganingizni yozadi — ko'proq emas.</>, ru: <>Агент пишет <span className="italic" style={{ color: T.accent }}>ровно</span> то, что вы сказали — и не больше.</> })}</h2></div>
+        <Mentor>{tr({ uz: <>Birinchi resurs — <b style={{ color: T.ink }}>Category</b>. Uchta buyruq bor, uchalasi ham ishonarli ko'rinadi. Bittasini yuboring va o'ngda <b style={{ color: T.ink }}>oqibatini</b> ko'ring: bo'lim <b style={{ color: T.ink }}>kirish taxtasiga</b> yozilmasa, mijoz eshikni topa olmaydi.</>, ru: <>Первый ресурс — <b style={{ color: T.ink }}>Category</b>. Есть три команды, и все три звучат убедительно. Отправьте одну и посмотрите справа на <b style={{ color: T.ink }}>последствия</b>: если отдел не вписан на <b style={{ color: T.ink }}>входную вывеску</b>, клиент не найдёт дверь.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
             {CMDS.map(c => (
               <button key={c.id} className={`vcard ${pickId === c.id ? 'on' : ''} ${pickId ? '' : 'tap-hint'}`} onClick={() => send(c.id)} disabled={done && c.id !== 'c3'} style={{ flexDirection: 'column', alignItems: 'flex-start', gap: 4, boxShadow: pickId === c.id ? `inset 0 0 0 1.5px ${T.accent}, 0 8px 20px -6px rgba(${T.shadowBase},0.2)` : undefined }}>
-                <span className="vlbl" style={{ fontFamily: "'Manrope'" }}>{c.label}</span>
-                <span className="agent-msg">{c.text}</span>
+                <span className="vlbl" style={{ fontFamily: "'Manrope'" }}>{tr(c.label)}</span>
+                <span className="agent-msg">{tr(c.text)}</span>
               </button>
             ))}
-            {shown && <div className={wired ? 'frame-success fade-step' : 'frame-warn fade-step'}><p className="body" style={{ margin: 0, color: T.ink }}>{cmd.note}</p></div>}
+            {shown && <div className={wired ? 'frame-success fade-step' : 'frame-warn fade-step'}><p className="body" style={{ margin: 0, color: T.ink }}>{tr(cmd.note)}</p></div>}
           </Col>
           <Col>
-            <p className="flow-label">Agent yaratayotgan fayllar</p>
+            <p className="flow-label">{tr({ uz: 'Agent yaratayotgan fayllar', ru: 'Файлы, которые создаёт агент' })}</p>
             {cmd
               ? <FileGen files={cmd.files} running={gen.running} n={gen.n} />
-              : <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>Buyruqni yuboring ←</p></div>}
+              : <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Buyruqni yuboring ←', ru: 'Отправьте команду ←' })}</p></div>}
             {shown && <>
-              <p className="flow-label" style={{ marginTop: 4 }}>🍽️ Restoran kirish taxtasi — AppModule.imports</p>
+              <p className="flow-label" style={{ marginTop: 4 }}>{tr({ uz: '🍽️ Restoran kirish taxtasi — AppModule.imports', ru: '🍽️ Входная вывеска ресторана — AppModule.imports' })}</p>
               <div className="frame" style={{ padding: 13 }}>
-                <div className="ent-row free">TypeOrmModule · AuthModule <span>bor</span></div>
+                <div className="ent-row free">TypeOrmModule · AuthModule <span>{tr({ uz: 'bor', ru: 'есть' })}</span></div>
                 {wired
-                  ? <div className="ent-row free el-in">CategoryModule <span>yozildi</span></div>
-                  : <div className="ent-row siz">CategoryModule <span>yo'q</span></div>}
+                  ? <div className="ent-row free el-in">CategoryModule <span>{tr({ uz: 'yozildi', ru: 'вписан' })}</span></div>
+                  : <div className="ent-row siz">CategoryModule <span>{tr({ uz: "yo'q", ru: 'нет' })}</span></div>}
                 <div className={`ev-row ${wired ? 'fixed' : 'hot'}`} style={{ marginTop: 8, marginBottom: 0 }}>
                   <span className="ev-m">GET</span><span style={{ flex: 1 }}>/category</span>
                   <b style={{ color: wired ? T.success : T.danger }}>{wired ? '200 ✓' : '404'}</b>
                 </div>
               </div>
-              {!wired && <div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>Bo'lim taxtada yo'q — mijoz uchun bu eshik <b>mavjud emas</b>. Boshqa buyruqni sinang.</p></div>}
-              {wired && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Category tirik! Farq "aniq/noaniq"da emas edi — <b>TO'LIQmi</b> shunda edi. Endi tekshiruvchi bo'lib ko'rib chiqamiz.</p></div>}
+              {!wired && <div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: <>Bo'lim taxtada yo'q — mijoz uchun bu eshik <b>mavjud emas</b>. Boshqa buyruqni sinang.</>, ru: <>Отдела нет на вывеске — для клиента этой двери <b>не существует</b>. Попробуйте другую команду.</> })}</p></div>}
+              {wired && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Category tirik! Farq "aniq/noaniq"da emas edi — <b>TO'LIQmi</b> shunda edi. Endi tekshiruvchi bo'lib ko'rib chiqamiz.</>, ru: <>Category живой! Дело было не в «чёткая/нечёткая» — а в том, <b>ПОЛНАЯ ли</b> команда. Теперь пройдёмся по ней как проверяющий.</> })}</p></div>}
             </>}
           </Col>
         </div>
@@ -1190,24 +1202,24 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [done, setDone] = useState(!!storedAnswer);
   const ITEMS = [
-    { t: '5 fayl yaratildimi? (entity, dto, service, controller, module)', ok: '✓ Hammasi bor.' },
-    { t: 'category.module.ts AppModule imports\'iga ulanganmi?', ok: '✓ Ulangan — usiz /category 404 bo\'lardi.' },
-    { t: 'Service BaseService\'ni meros olganmi? (meros = tayyor retsept kitobini oladi)', ok: '✓ Ha — create/findAll/update/remove tekin keldi, ularni yozmaymiz.' },
-    { t: 'Swagger\'da /category eshiklari (endpointlari) ko\'rinyaptimi?', ok: '✓ Ko\'rinyapti — Category tirik!' }
+    { t: { uz: '5 fayl yaratildimi? (entity, dto, service, controller, module)', ru: 'Созданы ли 5 файлов? (entity, dto, service, controller, module)' }, ok: { uz: '✓ Hammasi bor.', ru: '✓ Все на месте.' } },
+    { t: { uz: "category.module.ts AppModule imports'iga ulanganmi?", ru: 'Подключён ли category.module.ts к imports в AppModule?' }, ok: { uz: "✓ Ulangan — usiz /category 404 bo'lardi.", ru: '✓ Подключён — без этого /category вернул бы 404.' } },
+    { t: { uz: "Service BaseService'ni meros olganmi? (meros = tayyor retsept kitobini oladi)", ru: 'Наследует ли service BaseService? (наследство = готовая книга рецептов)' }, ok: { uz: '✓ Ha — create/findAll/update/remove tekin keldi, ularni yozmaymiz.', ru: '✓ Да — create/findAll/update/remove достались бесплатно, их не пишем.' } },
+    { t: { uz: "Swagger'da /category eshiklari (endpointlari) ko'rinyaptimi?", ru: 'Видны ли двери (эндпоинты) /category в Swagger?' }, ok: { uz: "✓ Ko'rinyapti — Category tirik!", ru: '✓ Видны — Category живой!' } }
   ];
   return (
-    <Stage eyebrow="Tekshiruv · checklist" screen={screen} scrollSignal={done ? 1 : 0} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? 'Davom etish' : 'Har bandni tekshiring'} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Tekshiruv · checklist', ru: 'Проверка · чек-лист' })} screen={screen} scrollSignal={done ? 1 : 0} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Har bandni tekshiring', ru: 'Проверьте каждый пункт' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">AI yozib berdi — endi uni qanday <span className="italic" style={{ color: T.accent }}>tekshiramiz</span>?</h2></div>
-        <Mentor>Natijani tekshirish — bosh dasturchining doimiy odati (AI yomon bo'lgani uchun emas, shunchaki professional ish shunaqa). Mana tekshiruv ro'yxati — har bandni bosib tasdiqlang.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>AI yozib berdi — endi uni qanday <span className="italic" style={{ color: T.accent }}>tekshiramiz</span>?</>, ru: <>ИИ написал код — как теперь его <span className="italic" style={{ color: T.accent }}>проверить</span>?</> })}</h2></div>
+        <Mentor>{tr({ uz: <>Natijani tekshirish — bosh dasturchining doimiy odati (AI yomon bo'lgani uchun emas, shunchaki professional ish shunaqa). Mana tekshiruv ro'yxati — har bandni bosib tasdiqlang.</>, ru: <>Проверять результат — постоянная привычка главного разработчика (не потому что ИИ плох, просто профессиональная работа устроена так). Вот чек-лист — нажимайте и подтверждайте каждый пункт.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
             <Checklist items={ITEMS} doneInit={!!storedAnswer} onComplete={() => { setDone(true); if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }} />
           </Col>
           <Col>
-            <AgentCard title="🔍 Tekshiruv qoidasi">Har resurs uchun shu 4 bandni ko'rib chiqing. AI tez yozadi — siz natija to'g'riligiga ishonch hosil qilasiz.</AgentCard>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Category ✓ tasdiqlandi. 1-resurs tayyor! Endi muhim savol: <b>har kim kitob qo'sha olishi kerakmi?</b></p></div>}
+            <AgentCard title={{ uz: '🔍 Tekshiruv qoidasi', ru: '🔍 Правило проверки' }}>{tr({ uz: "Har resurs uchun shu 4 bandni ko'rib chiqing. AI tez yozadi — siz natija to'g'riligiga ishonch hosil qilasiz.", ru: 'Проходите эти 4 пункта для каждого ресурса. ИИ пишет быстро — а вы убеждаетесь, что результат верный.' })}</AgentCard>
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Category ✓ tasdiqlandi. 1-resurs tayyor! Endi muhim savol: <b>har kim kitob qo'sha olishi kerakmi?</b></>, ru: <>Category ✓ подтверждён. Первый ресурс готов! Теперь важный вопрос: <b>должен ли каждый уметь добавлять книги?</b></> })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -1218,16 +1230,16 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 
 // ===== SCREEN 5 — TEST 1 (tekshiruv) =====
 const Screen5 = (props) => (
-  <QuestionScreen {...props} scope="module-mikro" eyebrow="Mashq · 1-savol"
+  <QuestionScreen {...props} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 1-savol', ru: 'Упражнение · вопрос 1' })}
     questionText="Bosh dasturchi sifatida AI kod yozgandan keyin eng muhim vazifangiz nima?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-sub" style={{ marginTop: 8 }}>AI yozgach, sizning eng muhim <span className="italic" style={{ color: T.accent }}>vazifangiz</span>?</h2></>}
-    options={['Natijani ko\'rmasdan keyingi ishga o\'tish', 'Kodni har safar o\'chirib qayta yozdirish', 'Natijani tekshirish — qatlam va ulanish', 'Xuddi shu vazifani boshqa AI\'ga berish']} correctIdx={2}
-    explainCorrect="To'g'ri! AI tez yozadi, siz esa natijani tekshirasiz: to'g'ri qatlam? bo'lim ulanganmi? eshik himoyalanganmi? Swagger'da ko'rinyaptimi? Bu — bosh dasturchining asosiy ishi."
+    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-sub" style={{ marginTop: 8 }}>{tr({ uz: <>AI yozgach, sizning eng muhim <span className="italic" style={{ color: T.accent }}>vazifangiz</span>?</>, ru: <>ИИ написал код — ваша самая важная <span className="italic" style={{ color: T.accent }}>задача</span>?</> })}</h2></>}
+    options={[{ uz: "Natijani ko'rmasdan keyingi ishga o'tish", ru: 'Перейти к следующей задаче, не глядя на результат' }, { uz: "Kodni har safar o'chirib qayta yozdirish", ru: 'Каждый раз стирать код и просить написать заново' }, { uz: 'Natijani tekshirish — qatlam va ulanish', ru: 'Проверить результат — слой и подключение' }, { uz: "Xuddi shu vazifani boshqa AI'ga berish", ru: 'Отдать ту же задачу другому ИИ' }]} correctIdx={2}
+    explainCorrect={{ uz: "To'g'ri! AI tez yozadi, siz esa natijani tekshirasiz: to'g'ri qatlam? bo'lim ulanganmi? eshik himoyalanganmi? Swagger'da ko'rinyaptimi? Bu — bosh dasturchining asosiy ishi.", ru: 'Верно! ИИ пишет быстро, а вы проверяете результат: слой верный? отдел подключён? дверь защищена? видно ли в Swagger? Это — главная работа ведущего разработчика.' }}
     explainWrong={{
-      0: "Ko'rmasdan o'tib ketish xavfli — mayda narsa o'tkazib yuborilishi mumkin. Tekshirish shart.",
-      1: "Har safar qayta yozdirish shart emas — avval tekshiring, kerak bo'lsa aniq tuzating.",
-      3: "Boshqa AI ham xato qilishi mumkin. Asosiysi — natijani siz tekshirasiz.",
-      default: "Eng muhimi — natijani tekshirish."
+      0: { uz: "Ko'rmasdan o'tib ketish xavfli — mayda narsa o'tkazib yuborilishi mumkin. Tekshirish shart.", ru: 'Идти дальше не глядя опасно — легко пропустить мелочь. Проверка обязательна.' },
+      1: { uz: "Har safar qayta yozdirish shart emas — avval tekshiring, kerak bo'lsa aniq tuzating.", ru: 'Переписывать каждый раз не нужно — сначала проверьте и, если надо, точечно поправьте.' },
+      3: { uz: 'Boshqa AI ham xato qilishi mumkin. Asosiysi — natijani siz tekshirasiz.', ru: 'Другой ИИ тоже может ошибиться. Главное — результат проверяете вы.' },
+      default: { uz: 'Eng muhimi — natijani tekshirish.', ru: 'Самое важное — проверить результат.' }
     }} />
 );
 
@@ -1241,30 +1253,30 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const tryHack = () => { setTried(true); setSc(n => n + 1); };
   const addGuard = () => { setGuard(true); setSc(n => n + 1); };
   return (
-    <Stage eyebrow="Yangi · Auth" screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? 'Davom etish' : 'Qo\'riqchini qo\'ying'} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Yangi · Auth', ru: 'Новое · Auth' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "Qo'riqchini qo'ying", ru: 'Поставьте стража' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Har kim kitob qo'sha olsa — do'kon <span className="italic" style={{ color: T.accent }}>nima bo'ladi</span>?</h2></div>
-        <Mentor>Kitob qo'shish — faqat <b style={{ color: T.ink }}>admin</b> ishi. Hozir himoya yo'q: istalgan odam <span className="mono">POST /book</span> qila oladi. Avval "hujum"ni sinab ko'ring, keyin qo'riqchi (<span className="mono">guard</span>) qo'ying.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Har kim kitob qo'sha olsa — do'kon <span className="italic" style={{ color: T.accent }}>nima bo'ladi</span>?</>, ru: <>Если книги может добавлять кто угодно — <span className="italic" style={{ color: T.accent }}>что станет</span> с магазином?</> })}</h2></div>
+        <Mentor>{tr({ uz: <>Kitob qo'shish — faqat <b style={{ color: T.ink }}>admin</b> ishi. Hozir himoya yo'q: istalgan odam <span className="mono">POST /book</span> qila oladi. Avval "hujum"ni sinab ko'ring, keyin qo'riqchi (<span className="mono">guard</span>) qo'ying.</>, ru: <>Добавлять книги — дело только <b style={{ color: T.ink }}>админа</b>. Сейчас защиты нет: <span className="mono">POST /book</span> может сделать кто угодно. Сначала попробуйте «атаку», затем поставьте стража (<span className="mono">guard</span>).</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
             <CodeFile name="book.controller.ts" minH={110}>
-              {guard ? <><At>@UseGuards</At>{'(AuthGuard, RolesGuard)'}{'\n'}</> : <Cm>{'// himoya yo\'q!'}{'\n'}</Cm>}
+              {guard ? <><At>@UseGuards</At>{'(AuthGuard, RolesGuard)'}{'\n'}</> : <Cm>{tr({ uz: "// himoya yo'q!", ru: '// защиты нет!' })}{'\n'}</Cm>}
               <At>@Controller</At>{"('book') {"}{'\n'}
-              {guard ? <span className="el-in" style={{ color: CODE.attr }}>{'  @Roles'}<span style={{ color: CODE.text }}>{'(UserRole.ADMIN)'}</span></span> : <span style={{ color: CODE.comment }}>{'  // hamma kira oladi'}</span>}{'\n'}
+              {guard ? <span className="el-in" style={{ color: CODE.attr }}>{'  @Roles'}<span style={{ color: CODE.text }}>{'(UserRole.ADMIN)'}</span></span> : <span style={{ color: CODE.comment }}>{'  ' + tr({ uz: '// hamma kira oladi', ru: '// входит кто угодно' })}</span>}{'\n'}
               {'  '}<At>@Post</At>{'()  create(dto) { ... }'}{'\n'}
               {'}'}
             </CodeFile>
             <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-              <button className="btn-soft" onClick={tryHack} disabled={guard}>🕵️ Begona odam: POST /book</button>
-              {!guard && <button className="btn" onClick={addGuard}>🛡️ Guard + @Roles qo'shish</button>}
+              <button className="btn-soft" onClick={tryHack} disabled={guard}>{tr({ uz: '🕵️ Begona odam: POST /book', ru: '🕵️ Посторонний: POST /book' })}</button>
+              {!guard && <button className="btn" onClick={addGuard}>{tr({ uz: "🛡️ Guard + @Roles qo'shish", ru: '🛡️ Добавить Guard + @Roles' })}</button>}
             </div>
           </Col>
           <Col>
-            <p className="flow-label">natija</p>
-            {!tried && <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>So'rovni sinang ←</p></div>}
-            {tried && !guard && <div className="frame-warn fade-step"><p className="note-h" style={{ color: T.danger }}>✗ 201 — har kim kitob qo'shdi!</p><p className="body" style={{ margin: 0, color: T.ink }}>Himoyasiz — begona odam ham do'konga kitob qo'shyapti. Bu xavfli.</p></div>}
-            {guard && <div className="frame-success fade-step"><p className="note-h" style={{ color: T.success }}>✓ Endi faqat admin</p><p className="body" style={{ margin: 0, color: T.ink }}><span className="mono">AuthGuard</span> tokenni tekshiradi, <span className="mono">@Roles(ADMIN)</span> rolni. Begona odam — 401/403. Bu — Dars 1'dagi "qo'riqchi"!</p></div>}
+            <p className="flow-label">{tr({ uz: 'natija', ru: 'результат' })}</p>
+            {!tried && <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: "So'rovni sinang ←", ru: 'Попробуйте запрос ←' })}</p></div>}
+            {tried && !guard && <div className="frame-warn fade-step"><p className="note-h" style={{ color: T.danger }}>{tr({ uz: "✗ 201 — har kim kitob qo'shdi!", ru: '✗ 201 — книгу добавил кто угодно!' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Himoyasiz — begona odam ham do'konga kitob qo'shyapti. Bu xavfli.", ru: 'Без защиты книги в ваш магазин добавляет даже посторонний. Это опасно.' })}</p></div>}
+            {guard && <div className="frame-success fade-step"><p className="note-h" style={{ color: T.success }}>{tr({ uz: '✓ Endi faqat admin', ru: '✓ Теперь только админ' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <><span className="mono">AuthGuard</span> tokenni tekshiradi, <span className="mono">@Roles(ADMIN)</span> rolni. Begona odam — 401/403. Bu — Dars 1'dagi "qo'riqchi"!</>, ru: <><span className="mono">AuthGuard</span> проверяет токен, <span className="mono">@Roles(ADMIN)</span> — роль. Постороннему — 401/403. Это тот самый «страж» из урока 1!</> })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -1275,12 +1287,12 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 
 // ===== SCREEN 7 — AUTH apply: qaysi eshik ochiq/admin =====
 const AUTH_ROWS = [
-  { id: 'getbook', label: 'GET /book', correct: 'public', hint: 'Kitoblarni hamma ko\'rishi kerak — ochiq (public).' },
-  { id: 'featured', label: 'GET /book/featured', correct: 'public', hint: 'Top kitoblar — vitrina, hamma ko\'radi (public).' },
-  { id: 'order', label: 'POST /order', correct: 'public', hint: 'Mijoz buyurtma beradi — ro\'yxatdan o\'tmasdan ham (public).' },
-  { id: 'postbook', label: 'POST /book', correct: 'admin', hint: 'Kitob qo\'shish — faqat admin.' },
-  { id: 'delbook', label: 'DELETE /book/:id', correct: 'admin', hint: 'O\'chirish — faqat admin.' },
-  { id: 'getorder', label: 'GET /order', correct: 'admin', hint: 'Buyurtmalarni ko\'rish — faqat admin.' }
+  { id: 'getbook', label: 'GET /book', correct: 'public', hint: { uz: "Kitoblarni hamma ko'rishi kerak — ochiq (public).", ru: 'Книги должны видеть все — открыто (public).' } },
+  { id: 'featured', label: 'GET /book/featured', correct: 'public', hint: { uz: "Top kitoblar — vitrina, hamma ko'radi (public).", ru: 'Топ-книги — витрина, её видят все (public).' } },
+  { id: 'order', label: 'POST /order', correct: 'public', hint: { uz: "Mijoz buyurtma beradi — ro'yxatdan o'tmasdan ham (public).", ru: 'Клиент делает заказ — даже без регистрации (public).' } },
+  { id: 'postbook', label: 'POST /book', correct: 'admin', hint: { uz: "Kitob qo'shish — faqat admin.", ru: 'Добавлять книги — только админ.' } },
+  { id: 'delbook', label: 'DELETE /book/:id', correct: 'admin', hint: { uz: "O'chirish — faqat admin.", ru: 'Удалять — только админ.' } },
+  { id: 'getorder', label: 'GET /order', correct: 'admin', hint: { uz: "Buyurtmalarni ko'rish — faqat admin.", ru: 'Смотреть заказы — только админ.' } }
 ];
 const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [chosen, setChosen] = useState(storedAnswer ? Object.fromEntries(AUTH_ROWS.map(r => [r.id, r.correct])) : {});
@@ -1295,10 +1307,10 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     else { setShakeId(row.id); setHint({ id: row.id, txt: row.hint }); setTimeout(() => setShakeId(x => (x === row.id ? null : x)), 450); }
   };
   return (
-    <Stage eyebrow="Auth · biriktirish" screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? 'Davom etish' : 'Har eshikni belgilang'} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Auth · biriktirish', ru: 'Auth · назначение' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Har eshikni belgilang', ru: 'Отметьте каждую дверь' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Qaysi eshik <span className="italic" style={{ color: T.accent }}>ochiq</span>, qaysi biri faqat <span className="italic" style={{ color: T.accent }}>admin</span> uchun?</h2></div>
-        <Mentor>Har endpoint uchun <span className="mono">@Roles</span> ni to'g'ri tanlang: 🌐 <b style={{ color: T.ink }}>public</b> (hamma) yoki 🔒 <b style={{ color: T.ink }}>admin</b>. O'ylang: bu amalni begona odam qila olsa, xavfli emasmi?</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Qaysi eshik <span className="italic" style={{ color: T.accent }}>ochiq</span>, qaysi biri faqat <span className="italic" style={{ color: T.accent }}>admin</span> uchun?</>, ru: <>Какая дверь <span className="italic" style={{ color: T.accent }}>открыта</span>, а какая — только для <span className="italic" style={{ color: T.accent }}>админа</span>?</> })}</h2></div>
+        <Mentor>{tr({ uz: <>Har endpoint uchun <span className="mono">@Roles</span> ni to'g'ri tanlang: 🌐 <b style={{ color: T.ink }}>public</b> (hamma) yoki 🔒 <b style={{ color: T.ink }}>admin</b>. O'ylang: bu amalni begona odam qila olsa, xavfli emasmi?</>, ru: <>Для каждого эндпоинта выберите верный <span className="mono">@Roles</span>: 🌐 <b style={{ color: T.ink }}>public</b> (все) или 🔒 <b style={{ color: T.ink }}>admin</b>. Подумайте: если это действие сможет сделать посторонний — не опасно ли?</> })}</Mentor>
         <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
           {AUTH_ROWS.map(r => {
             const val = chosen[r.id];
@@ -1312,8 +1324,8 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             );
           })}
         </div>
-        {hint && !done && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{hint.txt}</p></div>}
-        {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>✓ Mukammal! Ko'rish/buyurtma — ochiq, qo'shish/o'chirish/buyurtmalar ro'yxati — admin. <span className="mono">@Roles('public')</span> tokenni o'tkazib yuboradi, qolgani himoyalangan.</p></div>}
+        {hint && !done && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr(hint.txt)}</p></div>}
+        {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ Mukammal! Ko'rish/buyurtma — ochiq, qo'shish/o'chirish/buyurtmalar ro'yxati — admin. <span className="mono">@Roles('public')</span> tokenni o'tkazib yuboradi, qolgani himoyalangan.</>, ru: <>✓ Отлично! Просмотр и заказ — открыты, добавление/удаление/список заказов — админ. <span className="mono">@Roles('public')</span> пропускает без токена, остальное защищено.</> })}</p></div>}
       </div>
     </Stage>
   );
@@ -1321,33 +1333,33 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 
 // ===== SCREEN 8 — TEST 2 (auth) =====
 const Screen8 = (props) => (
-  <QuestionScreen {...props} scope="module-mikro" eyebrow="Mashq · 2-savol"
+  <QuestionScreen {...props} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 2-savol', ru: 'Упражнение · вопрос 2' })}
     questionText="Oddiy mijoz (admin emas) POST /book qilsa nima bo'ladi?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-sub" style={{ marginTop: 8 }}>Mijoz <span className="mono">POST /book</span> qilsa <span className="italic" style={{ color: T.accent }}>nima</span> bo'ladi?</h2></>}
-    options={['401/403 — qo\'riqchi rad etadi', '201 — kitob baribir qo\'shiladi', '200 — qo\'shiladi, lekin yashirin', '500 — server xato berib o\'chadi']} correctIdx={0}
-    explainCorrect="To'g'ri! `@Roles(UserRole.ADMIN)` tufayli qo'riqchi mijozni rad etadi — 403. Token umuman bo'lmasa — 401. Faqat admin kitob qo'sha oladi."
+    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-sub" style={{ marginTop: 8 }}>{tr({ uz: <>Mijoz <span className="mono">POST /book</span> qilsa <span className="italic" style={{ color: T.accent }}>nima</span> bo'ladi?</>, ru: <>Клиент делает <span className="mono">POST /book</span> — <span className="italic" style={{ color: T.accent }}>что</span> произойдёт?</> })}</h2></>}
+    options={[{ uz: "401/403 — qo'riqchi rad etadi", ru: '401/403 — страж откажет' }, { uz: '201 — kitob baribir qo\'shiladi', ru: '201 — книга всё равно добавится' }, { uz: "200 — qo'shiladi, lekin yashirin", ru: '200 — добавится, но скрыто' }, { uz: "500 — server xato berib o'chadi", ru: '500 — сервер упадёт с ошибкой' }]} correctIdx={0}
+    explainCorrect={{ uz: "To'g'ri! `@Roles(UserRole.ADMIN)` tufayli qo'riqchi mijozni rad etadi — 403. Token umuman bo'lmasa — 401. Faqat admin kitob qo'sha oladi.", ru: 'Верно! Из-за `@Roles(UserRole.ADMIN)` страж откажет клиенту — 403. Если токена нет вовсе — 401. Добавлять книги может только админ.' }}
     explainWrong={{
-      1: "Qo'shilmaydi — bu eshik faqat admin uchun. Mijoz 403 oladi.",
-      2: "Yashirin ham qo'shilmaydi — qo'riqchi so'rovni butunlay to'xtatadi.",
-      3: "Server o'chmaydi — qo'riqchi toza javob qaytaradi: 401 yoki 403.",
-      default: "Mijoz admin eshigiga kelsa — qo'riqchi rad etadi (401/403)."
+      1: { uz: "Qo'shilmaydi — bu eshik faqat admin uchun. Mijoz 403 oladi.", ru: 'Не добавится — эта дверь только для админа. Клиент получит 403.' },
+      2: { uz: "Yashirin ham qo'shilmaydi — qo'riqchi so'rovni butunlay to'xtatadi.", ru: 'И скрыто не добавится — страж останавливает запрос полностью.' },
+      3: { uz: "Server o'chmaydi — qo'riqchi toza javob qaytaradi: 401 yoki 403.", ru: 'Сервер не падает — страж возвращает чистый ответ: 401 или 403.' },
+      default: { uz: "Mijoz admin eshigiga kelsa — qo'riqchi rad etadi (401/403).", ru: 'Если клиент подходит к админской двери — страж отказывает (401/403).' }
     }} />
 );
 
 // ===== SCREEN 9 — 🏷️ BEAT 2: YORLIQ (@ManyToOne uchun hayotiy abrazets) =====
 // Yorliq KITOB MUQOVASIDA paydo bo'ladi -> shuning uchun @ManyToOne book.entity.ts da yoziladi.
 const SHELVES = [
-  { id: 'det', ic: '📗', t: 'Detektiv' },
-  { id: 'ilm', ic: '📘', t: 'Ilmiy' },
-  { id: 'bol', ic: '📙', t: 'Bolalar' }
+  { id: 'det', ic: '📗', t: { uz: 'Detektiv', ru: 'Детектив' } },
+  { id: 'ilm', ic: '📘', t: { uz: 'Ilmiy', ru: 'Научные' } },
+  { id: 'bol', ic: '📙', t: { uz: 'Bolalar', ru: 'Детские' } }
 ];
 const SH_BOOKS = [
-  { id: 'k1', t: 'Sherlok Holms', a: 'Doyl', cat: 'det', hint: "Sherlok Holms — tergov va jumboq. Bu detektiv rastasi." },
-  { id: 'k2', t: 'Sharqiy ekspress qotilligi', a: 'Kristi', cat: 'det', hint: "Kristi romani — tergov. Detektiv rastasiga." },
-  { id: 'k3', t: 'Koinot qisqacha tarixi', a: 'Xoking', cat: 'ilm', hint: "Xoking — fizika va koinot. Bu ilmiy rasta." },
-  { id: 'k4', t: 'Turlar kelib chiqishi', a: 'Darvin', cat: 'ilm', hint: "Darvin — tabiat ilmi. Ilmiy rastaga." },
-  { id: 'k5', t: 'Kichkina shahzoda', a: 'Sent-Ekzyuperi', cat: 'bol', hint: "Bu — bolalar uchun ertak-qissa." },
-  { id: 'k6', t: 'Alisa mo\'jizalar mamlakatida', a: 'Kerroll', cat: 'bol', hint: "Bolalar ertagi — bolalar rastasiga." }
+  { id: 'k1', t: { uz: 'Sherlok Holms', ru: 'Шерлок Холмс' }, a: { uz: 'Doyl', ru: 'Дойл' }, cat: 'det', hint: { uz: 'Sherlok Holms — tergov va jumboq. Bu detektiv rastasi.', ru: 'Шерлок Холмс — расследование и загадка. Это полка детективов.' } },
+  { id: 'k2', t: { uz: 'Sharqiy ekspress qotilligi', ru: 'Убийство в «Восточном экспрессе»' }, a: { uz: 'Kristi', ru: 'Кристи' }, cat: 'det', hint: { uz: 'Kristi romani — tergov. Detektiv rastasiga.', ru: 'Роман Кристи — расследование. На полку детективов.' } },
+  { id: 'k3', t: { uz: 'Koinot qisqacha tarixi', ru: 'Краткая история времени' }, a: { uz: 'Xoking', ru: 'Хокинг' }, cat: 'ilm', hint: { uz: 'Xoking — fizika va koinot. Bu ilmiy rasta.', ru: 'Хокинг — физика и космос. Это научная полка.' } },
+  { id: 'k4', t: { uz: 'Turlar kelib chiqishi', ru: 'Происхождение видов' }, a: { uz: 'Darvin', ru: 'Дарвин' }, cat: 'ilm', hint: { uz: 'Darvin — tabiat ilmi. Ilmiy rastaga.', ru: 'Дарвин — наука о природе. На научную полку.' } },
+  { id: 'k5', t: { uz: 'Kichkina shahzoda', ru: 'Маленький принц' }, a: { uz: 'Sent-Ekzyuperi', ru: 'Сент-Экзюпери' }, cat: 'bol', hint: { uz: 'Bu — bolalar uchun ertak-qissa.', ru: 'Это сказка-повесть для детей.' } },
+  { id: 'k6', t: { uz: "Alisa mo'jizalar mamlakatida", ru: 'Алиса в Стране чудес' }, a: { uz: 'Kerroll', ru: 'Кэрролл' }, cat: 'bol', hint: { uz: 'Bolalar ertagi — bolalar rastasiga.', ru: 'Детская сказка — на детскую полку.' } }
 ];
 const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [placed, setPlaced] = useState(() => storedAnswer ? Object.fromEntries(SH_BOOKS.map(b => [b.id, b.cat])) : {});
@@ -1366,7 +1378,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const shakeIt = (id) => { setShakeId(id); setTimeout(() => setShakeId(x => (x === id ? null : x)), 450); };
   const busyNote = (b) => {
     const sh = SHELVES.find(s => s.id === placed[b.id]);
-    setNote({ k: 'busy', txt: `Bu kitobda allaqachon yorliq bor: "${sh.t}". Bitta kitob — bitta yorliq. Ikkinchisini taqib bo'lmaydi.` });
+    setNote({ k: 'busy', txt: tr({ uz: `Bu kitobda allaqachon yorliq bor: "${tr(sh.t)}". Bitta kitob — bitta yorliq. Ikkinchisini taqib bo'lmaydi.`, ru: `На этой книге уже есть ярлык: «${tr(sh.t)}». Одна книга — один ярлык. Второй не приколоть.` }) });
     setSc(n => n + 1);
   };
   // yorliq taqildi — kitob muqovasida "muhrlanadi" (bk-stamp) + rasta ushlab oladi (sh-catch)
@@ -1375,7 +1387,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     setPlaced(p => ({ ...p, [b.id]: sid }));
     setSel(null);
     setCaught(sid); setTimeout(() => setCaught(x => (x === sid ? null : x)), 430);
-    setNote({ k: 'ok', txt: `Yorliq kitob MUQOVASIDA paydo bo'ldi: category: ${sh.t}. Rastada emas — kitobda!` });
+    setNote({ k: 'ok', txt: tr({ uz: `Yorliq kitob MUQOVASIDA paydo bo'ldi: category: ${tr(sh.t)}. Rastada emas — kitobda!`, ru: `Ярлык появился на ОБЛОЖКЕ книги: category: ${tr(sh.t)}. Не на полке — на книге!` }) });
     setSc(n => n + 1);
   };
   const tapBook = (b) => {
@@ -1384,13 +1396,13 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   };
   const tapShelf = (s) => {
     if (!sel) {
-      if (!done) { setNote({ k: 'pick', txt: 'Avval kitobni tanlang ←' }); return; }
+      if (!done) { setNote({ k: 'pick', txt: tr({ uz: 'Avval kitobni tanlang ←', ru: 'Сначала выберите книгу ←' }) }); return; }
       setLit(x => (x === s.id ? null : s.id));
-      setNote({ k: 'rel', txt: `Rastani bosdingiz — "${s.t}" yorlig'i taqilgan hamma kitob yondi.` });
+      setNote({ k: 'rel', txt: tr({ uz: `Rastani bosdingiz — "${tr(s.t)}" yorlig'i taqilgan hamma kitob yondi.`, ru: `Вы нажали на полку — подсветились все книги с ярлыком «${tr(s.t)}».` }) });
       setSc(n => n + 1); return;
     }
     const b = SH_BOOKS.find(x => x.id === sel);
-    if (b.cat !== s.id) { shakeIt(s.id); setNote({ k: 'wrong', txt: b.hint }); setSc(n => n + 1); return; }
+    if (b.cat !== s.id) { shakeIt(s.id); setNote({ k: 'wrong', txt: tr(b.hint) }); setSc(n => n + 1); return; }
     drop(b, s.id);
   };
   // 🖐️ SUDRASH — asl kitob elementi DOM transform bilan suriladi (state emas → pirillamaydi;
@@ -1429,20 +1441,20 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       const t = hit(e.clientX, e.clientY);
       if (placed[b.id]) { snapBack(300); busyNote(b); setTimeout(() => shakeIt(b.id), 320); return; } // ikkinchi yorliq → qaytib ketadi
       if (!t) { snapBack(300); setSel(null); return; }                                        // bo'sh joy → qaytadi
-      if (t !== b.cat) { snapBack(300); shakeIt(t); setNote({ k: 'wrong', txt: b.hint }); setSc(n => n + 1); return; } // xato rasta → qaytadi
+      if (t !== b.cat) { snapBack(300); shakeIt(t); setNote({ k: 'wrong', txt: tr(b.hint) }); setSc(n => n + 1); return; } // xato rasta → qaytadi
       snapBack(200); drop(b, t);                                                              // to'g'ri rasta → yorliq muqovada
     };
     window.addEventListener('pointermove', mv); window.addEventListener('pointerup', up); window.addEventListener('pointercancel', up);
   };
   return (
-    <Stage eyebrow="Yangi · Yorliq" screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? 'Davom etish' : `Yorliqlarni taqing (${nPlaced}/6)`} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Yangi · Yorliq', ru: 'Новое · Ярлык' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: `Yorliqlarni taqing (${nPlaced}/6)`, ru: `Прикрепите ярлыки (${nPlaced}/6)` })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Har kitobning muqovasida bitta <span className="italic" style={{ color: T.accent }}>yorliq</span> bor.</h2></div>
-        <Mentor>Ko'p kitob bitta yorliqni taqishi mumkin — lekin <b style={{ color: T.ink }}>bitta kitob ikkita yorliq taqa olmaydi</b>. Kitobni bosing, so'ng rastasini bosing. Menyuda ham shunday: har taomda bitta yorliq — "Salatlar".</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Har kitobning muqovasida bitta <span className="italic" style={{ color: T.accent }}>yorliq</span> bor.</>, ru: <>На обложке каждой книги — один <span className="italic" style={{ color: T.accent }}>ярлык</span>.</> })}</h2></div>
+        <Mentor>{tr({ uz: <>Ko'p kitob bitta yorliqni taqishi mumkin — lekin <b style={{ color: T.ink }}>bitta kitob ikkita yorliq taqa olmaydi</b>. Kitobni bosing, so'ng rastasini bosing. Menyuda ham shunday: har taomda bitta yorliq — "Salatlar".</>, ru: <>Один ярлык могут носить много книг — но <b style={{ color: T.ink }}>одна книга не может носить два ярлыка</b>. Нажмите на книгу, затем на её полку. В меню так же: у каждого блюда один ярлык — «Салаты».</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
-            <p className="flow-label">6 kitob — yorliqsiz</p>
+            <p className="flow-label">{tr({ uz: '6 kitob — yorliqsiz', ru: '6 книг — без ярлыков' })}</p>
             <div className="bk-grid">
               {SH_BOOKS.map(b => {
                 const at = placed[b.id];
@@ -1450,9 +1462,9 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 const isLit = lit && at === lit;
                 return (
                   <button key={b.id} className={`bk ${sel === b.id ? 'sel' : ''} ${at ? 'done' : ''} ${isLit ? 'lit' : ''} ${shakeId === b.id ? 'shake' : ''} ${!at && !sel ? 'tap-hint' : ''}`} onPointerDown={(e) => down(e, b)}>
-                    <span className="bk-t">{b.t}</span>
-                    <span className="bk-a">{b.a}</span>
-                    {sh && <span className="bk-tag">category: {sh.t}</span>}
+                    <span className="bk-t">{tr(b.t)}</span>
+                    <span className="bk-a">{tr(b.a)}</span>
+                    {sh && <span className="bk-tag">category: {tr(sh.t)}</span>}
                   </button>
                 );
               })}
@@ -1463,24 +1475,24 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               {'  '}<At>@Column</At>{'()  title: '}<St>string</St>{';'}{'\n'}
               {shown
                 ? <><span className="el-in" style={{ color: CODE.attr }}>{'  @ManyToOne'}<span style={{ color: CODE.text }}>{'(() => CategoryEntity)'}</span></span>{'\n'}<span className="el-in" style={{ color: CODE.text }}>{'  category: CategoryEntity;'}</span>{'\n'}</>
-                : <><Cm>{"  // yorliq hali yo'q"}</Cm>{'\n'}</>}
+                : <><Cm>{'  ' + tr({ uz: "// yorliq hali yo'q", ru: '// ярлыка пока нет' })}</Cm>{'\n'}</>}
               {'}'}
             </CodeFile>
           </Col>
           <Col>
-            <p className="flow-label">3 rasta — uch xil yorliq</p>
+            <p className="flow-label">{tr({ uz: '3 rasta — uch xil yorliq', ru: '3 полки — три разных ярлыка' })}</p>
             {SHELVES.map(s => {
               const mine = SH_BOOKS.filter(b => placed[b.id] === s.id);
               return (
                 <button key={s.id} ref={el => (shelfRefs.current[s.id] = el)} className={`sh ${lit === s.id ? 'on' : ''} ${over === s.id ? 'over' : ''} ${caught === s.id ? 'catch' : ''} ${shakeId === s.id ? 'shake' : ''}`} onClick={() => tapShelf(s)}>
-                  <span className="sh-h">{s.ic} {s.t}<span className="sh-n">{mine.length}/2</span></span>
-                  {mine.length > 0 && <span className="sh-b">{mine.map(b => b.t).join(' · ')}</span>}
+                  <span className="sh-h">{s.ic} {tr(s.t)}<span className="sh-n">{mine.length}/2</span></span>
+                  {mine.length > 0 && <span className="sh-b">{mine.map(b => tr(b.t)).join(' · ')}</span>}
                 </button>
               );
             })}
             {note && <div className={`${note.k === 'ok' || note.k === 'rel' ? 'frame-success' : note.k === 'pick' ? 'frame-wait' : 'frame-warn'} fade-step`}><p className="body" style={{ margin: 0, color: T.ink }}>{note.txt}</p></div>}
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Yorliq <b>kitobda</b> saqlanadi — rastada emas. Shuning uchun <span className="mono">@ManyToOne</span> aynan <span className="mono">book.entity.ts</span> ichida yoziladi, <span className="mono">category.entity.ts</span> da emas. Ko'p kitob → bitta yorliq.</p></div>}
-            {done && <div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>Rastani bosing — o'sha yorliq taqilgan hamma kitob yonadi. Kodda bu: <span className="mono">findAll({'{ relations: { category: true } }'})</span> — kitob bilan birga yorlig'i ham qaytadi.</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Yorliq <b>kitobda</b> saqlanadi — rastada emas. Shuning uchun <span className="mono">@ManyToOne</span> aynan <span className="mono">book.entity.ts</span> ichida yoziladi, <span className="mono">category.entity.ts</span> da emas. Ko'p kitob → bitta yorliq.</>, ru: <>Ярлык хранится <b>на книге</b> — не на полке. Поэтому <span className="mono">@ManyToOne</span> пишется именно внутри <span className="mono">book.entity.ts</span>, а не в <span className="mono">category.entity.ts</span>. Много книг → один ярлык.</> })}</p></div>}
+            {done && <div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: <>Rastani bosing — o'sha yorliq taqilgan hamma kitob yonadi. Kodda bu: <span className="mono">findAll({'{ relations: { category: true } }'})</span> — kitob bilan birga yorlig'i ham qaytadi.</>, ru: <>Нажмите на полку — подсветятся все книги с этим ярлыком. В коде это: <span className="mono">findAll({'{ relations: { category: true } }'})</span> — вместе с книгой вернётся и её ярлык.</> })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -1498,25 +1510,25 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     { id: 'price', correct: true, label: '@Column()  price: number;', node: <><At>@Column</At>{'()  price: '}<St>number</St>{';'}</> },
     { id: 'feat', correct: true, label: '@Column({ default: false })  is_featured: boolean;', node: <><At>@Column</At>{'({ default: '}<Jx>false</Jx>{' })  is_featured: '}<St>boolean</St>{';'}</> },
     { id: 'rel', correct: true, label: '@ManyToOne(() => CategoryEntity)  category: CategoryEntity;', node: <><At>@ManyToOne</At>{'(() => CategoryEntity)  category;'}</> },
-    { id: 'isstring', correct: false, label: '@IsString()  title: string;', why: "Bu DTO qatori (validatsiya). Entity'da @Column bo'ladi, @IsString emas." },
-    { id: 'roles', correct: false, label: '@Roles(UserRole.ADMIN)', why: "Bu controller qatori (himoya). Entity jadval shaklini belgilaydi, ruxsatni emas." }
+    { id: 'isstring', correct: false, label: '@IsString()  title: string;', why: { uz: "Bu DTO qatori (validatsiya). Entity'da @Column bo'ladi, @IsString emas.", ru: 'Это строка DTO (валидация). В Entity — @Column, а не @IsString.' } },
+    { id: 'roles', correct: false, label: '@Roles(UserRole.ADMIN)', why: { uz: 'Bu controller qatori (himoya). Entity jadval shaklini belgilaydi, ruxsatni emas.', ru: 'Это строка контроллера (защита). Entity описывает форму таблицы, а не права доступа.' } }
   ];
   return (
-    <Stage eyebrow="Book · Entity" screen={screen} scrollSignal={done ? 1 : 0} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? 'Davom etish' : 'Faylni yig\'ing'} onClick={onNext} /></>}>
+    <Stage eyebrow="Book · Entity" screen={screen} scrollSignal={done ? 1 : 0} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "Faylni yig'ing", ru: 'Соберите файл' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Kitob jadvalini yig'ing — qaysi qator <span className="italic" style={{ color: T.accent }}>Entity'ga</span> tegishli?</h2></div>
-        <Mentor>Agent xato qilmasin — siz Book entity'ni tekshirib yig'asiz. Ustunlar + bog'lanish (<span className="mono">@ManyToOne</span>) Entity'da. O'ngdagi begona qatorlar boshqa qatlamdan — faqat to'g'rilarini tanlang.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Kitob jadvalini yig'ing — qaysi qator <span className="italic" style={{ color: T.accent }}>Entity'ga</span> tegishli?</>, ru: <>Соберите таблицу книг — какие строки относятся к <span className="italic" style={{ color: T.accent }}>Entity</span>?</> })}</h2></div>
+        <Mentor>{tr({ uz: <>Agent xato qilmasin — siz Book entity'ni tekshirib yig'asiz. Ustunlar + bog'lanish (<span className="mono">@ManyToOne</span>) Entity'da. O'ngdagi begona qatorlar boshqa qatlamdan — faqat to'g'rilarini tanlang.</>, ru: <>Чтобы агент не ошибся — вы собираете Book entity сами, с проверкой. Колонки + связь (<span className="mono">@ManyToOne</span>) — в Entity. Лишние строки справа из других слоёв — выбирайте только подходящие.</> })}</Mentor>
         <PickLines
           fileName="src/core/entity/book.entity.ts"
           scaffoldTop={<><At>@Entity</At>{"('books')"}{'\n'}<Jx>export class</Jx>{' BookEntity '}<Jx>extends</Jx>{' BaseEntity {'}</>}
           scaffoldBottom={<>{'}'}</>}
           candidates={candidates}
-          agent={"book.entity.ts yoz: title, author, price, is_featured (default false) ustunlari + @ManyToOne bilan Category bog'lanishi."}
-          instruction="book.entity.ts ga qaysi qatorlar tegishli?"
+          agent={{ uz: "book.entity.ts yoz: title, author, price, is_featured (default false) ustunlari + @ManyToOne bilan Category bog'lanishi.", ru: 'Напиши book.entity.ts: колонки title, author, price, is_featured (default false) + связь с Category через @ManyToOne.' }}
+          instruction={{ uz: 'book.entity.ts ga qaysi qatorlar tegishli?', ru: 'Какие строки относятся к book.entity.ts?' }}
           completedInit={!!storedAnswer}
           onComplete={() => { setDone(true); if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }}
         />
-        {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Book entity tayyor — ustunlar + Category bog'lanishi bilan. Endi "Top kitoblar" bo'limini qo'shamiz.</p></div>}
+        {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Book entity tayyor — ustunlar + Category bog'lanishi bilan. Endi "Top kitoblar" bo'limini qo'shamiz.</>, ru: <>Book entity готов — колонки + связь с Category. Теперь добавим раздел «Топ-книги».</> })}</p></div>}
       </div>
     </Stage>
   );
@@ -1529,10 +1541,10 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const done = show;
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   return (
-    <Stage eyebrow="Book · Top kitoblar" screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? 'Davom etish' : 'Endpointni ko\'ring'} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Book · Top kitoblar', ru: 'Book · Топ-книги' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "Endpointni ko'ring", ru: 'Посмотрите эндпоинт' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">"Top kitoblar" bo'limi — yangi metod <span className="italic" style={{ color: T.accent }}>yozamizmi</span>?</h2></div>
-        <Mentor>Bosh sahifada faqat <span className="mono">is_featured: true</span> kitoblar chiqsin. Yangi CRUD yozmaymiz — controller'ga bitta maxsus eshik qo'shamiz va <b style={{ color: T.ink }}>BaseService'ning findAll</b>'iga shart beramiz. Tugmani bosing.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>"Top kitoblar" bo'limi — yangi metod <span className="italic" style={{ color: T.accent }}>yozamizmi</span>?</>, ru: <>Раздел «Топ-книги» — <span className="italic" style={{ color: T.accent }}>писать ли</span> новый метод?</> })}</h2></div>
+        <Mentor>{tr({ uz: <>Bosh sahifada faqat <span className="mono">is_featured: true</span> kitoblar chiqsin. Yangi CRUD yozmaymiz — controller'ga bitta maxsus eshik qo'shamiz va <b style={{ color: T.ink }}>BaseService'ning findAll</b>'iga shart beramiz. Tugmani bosing.</>, ru: <>Пусть на главной выходят только книги с <span className="mono">is_featured: true</span>. Новый CRUD не пишем — добавим контроллеру одну особую дверь и передадим условие в <b style={{ color: T.ink }}>findAll из BaseService</b>. Нажмите кнопку.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
@@ -1542,18 +1554,18 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               {'featured() {'}{'\n'}
               {show
                 ? <span className="el-in" style={{ color: CODE.text }}>{'  return this.bookService.findAll('}{'\n    { where: { is_featured: '}<span style={{ color: CODE.tag }}>true</span>{' } });'}</span>
-                : <Cm>{'  // top kitoblarni qaytarish...'}</Cm>}{'\n'}
+                : <Cm>{'  ' + tr({ uz: '// top kitoblarni qaytarish...', ru: '// вернуть топ-книги...' })}</Cm>}{'\n'}
               {'}'}
             </CodeFile>
-            <button className="btn-soft" style={{ alignSelf: 'flex-start' }} disabled={show} onClick={() => { setShow(true); setSc(n => n + 1); }}>{show ? '✓ Ko\'rdingiz' : '⭐ findAll bilan to\'ldirish'}</button>
-            <AgentCard>BookController'ga public GET /book/featured endpoint qo'sh: findAll({'{ where: { is_featured: true } }'}) qaytarsin.</AgentCard>
+            <button className="btn-soft" style={{ alignSelf: 'flex-start' }} disabled={show} onClick={() => { setShow(true); setSc(n => n + 1); }}>{show ? tr({ uz: "✓ Ko'rdingiz", ru: '✓ Посмотрели' }) : tr({ uz: "⭐ findAll bilan to'ldirish", ru: '⭐ Заполнить через findAll' })}</button>
+            <AgentCard>{tr({ uz: <>BookController'ga public GET /book/featured endpoint qo'sh: findAll({'{ where: { is_featured: true } }'}) qaytarsin.</>, ru: <>Добавь в BookController публичный эндпоинт GET /book/featured: пусть возвращает findAll({'{ where: { is_featured: true } }'}).</> })}</AgentCard>
           </Col>
           <Col>
             <p className="flow-label">GET /book/featured</p>
             {!show
-              ? <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>Endpointni to'ldiring ←</p></div>
+              ? <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: "Endpointni to'ldiring ←", ru: 'Заполните эндпоинт ←' })}</p></div>
               : <div className="frame fade-step"><p className="body mono" style={{ margin: 0, color: T.ink, fontSize: 12, lineHeight: 1.7 }}>[<br />&nbsp;&nbsp;{'{ title: "Sherlok Holms", is_featured: true }'},<br />&nbsp;&nbsp;{'{ title: "Hobbit", is_featured: true }'}<br />]</p></div>}
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Maxsus endpoint — lekin yangi CRUD kodi yo'q! <span className="mono">findAll</span> BaseService'dan, siz faqat <span className="mono">where</span> shartini berdingiz.</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Maxsus endpoint — lekin yangi CRUD kodi yo'q! <span className="mono">findAll</span> BaseService'dan, siz faqat <span className="mono">where</span> shartini berdingiz.</>, ru: <>Особый эндпоинт — а нового CRUD-кода нет! <span className="mono">findAll</span> — из BaseService, вы передали только условие <span className="mono">where</span>.</> })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -1564,42 +1576,42 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 
 // ===== SCREEN 12 — TEST 3 (featured / bog'lanish) =====
 const Screen12 = (props) => (
-  <QuestionScreen {...props} scope="module-mikro" eyebrow="Mashq · 3-savol"
+  <QuestionScreen {...props} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 3-savol', ru: 'Упражнение · вопрос 3' })}
     questionText="Top kitoblarni (is_featured) qaytaruvchi endpointni qanday yozamiz?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-sub" style={{ marginTop: 8 }}>Top kitoblarni <span className="italic" style={{ color: T.accent }}>qanday</span> qaytaramiz?</h2></>}
-    options={['Yangi `findFeatured` metodini yozib', 'Bazaga to\'g\'ridan-to\'g\'ri SQL yozib', 'Hammasini olib, frontend\'da filtrlab', 'Tayyor `findAll` ga `where` berib']} correctIdx={3}
-    explainCorrect="To'g'ri! Tayyor `findAll` shart qabul qiladi: `findAll({ where: { is_featured: true } })`. Yangi metod yozmaysiz — faqat shartni berasiz."
+    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-sub" style={{ marginTop: 8 }}>{tr({ uz: <>Top kitoblarni <span className="italic" style={{ color: T.accent }}>qanday</span> qaytaramiz?</>, ru: <>Топ-книги — <span className="italic" style={{ color: T.accent }}>как</span> их вернуть?</> })}</h2></>}
+    options={[{ uz: 'Yangi `findFeatured` metodini yozib', ru: 'Написав новый метод `findFeatured`' }, { uz: "Bazaga to'g'ridan-to'g'ri SQL yozib", ru: 'Написав SQL прямо в базу' }, { uz: "Hammasini olib, frontend'da filtrlab", ru: 'Забрав всё и отфильтровав на фронтенде' }, { uz: 'Tayyor `findAll` ga `where` berib', ru: 'Передав `where` в готовый `findAll`' }]} correctIdx={3}
+    explainCorrect={{ uz: "To'g'ri! Tayyor `findAll` shart qabul qiladi: `findAll({ where: { is_featured: true } })`. Yangi metod yozmaysiz — faqat shartni berasiz.", ru: 'Верно! Готовый `findAll` принимает условие: `findAll({ where: { is_featured: true } })`. Новый метод не нужен — вы лишь передаёте условие.' }}
     explainWrong={{
-      0: "Yangi metod yozish shart emas — tayyor `findAll` allaqachon `where` shartini qabul qiladi.",
-      1: "Xom SQL kerak emas — buni `findAll` va `where` hal qiladi.",
-      2: "Frontend'da filtrlash sekin: server barcha kitobni behuda yuboradi. Shartni serverda bering.",
-      default: "Top kitoblar = `findAll` ga `where` shartini berish."
+      0: { uz: 'Yangi metod yozish shart emas — tayyor `findAll` allaqachon `where` shartini qabul qiladi.', ru: 'Новый метод не нужен — готовый `findAll` уже принимает условие `where`.' },
+      1: { uz: 'Xom SQL kerak emas — buni `findAll` va `where` hal qiladi.', ru: 'Сырой SQL не нужен — это решают `findAll` и `where`.' },
+      2: { uz: "Frontend'da filtrlash sekin: server barcha kitobni behuda yuboradi. Shartni serverda bering.", ru: 'Фильтровать на фронтенде медленно: сервер зря отправит все книги. Передайте условие на сервере.' },
+      default: { uz: 'Top kitoblar = `findAll` ga `where` shartini berish.', ru: 'Топ-книги = передать `findAll` условие `where`.' }
     }} />
 );
 
 // ===== SCREEN 13 — Order: YO'NALTIRUVCHI + bog'lanish =====
 const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const FILES = [{ f: 'order.entity.ts', d: 'customer_name, quantity + @ManyToOne Book' }, { f: 'create/update-order.dto.ts', d: 'bookId, quantity qoidalari' }, { f: 'order.service.ts', d: 'BaseService' }, { f: 'order.controller.ts', d: 'POST public, GET admin' }, { f: 'order.module.ts → AppModule', d: 'ulash' }];
+  const FILES = [{ f: 'order.entity.ts', d: 'customer_name, quantity + @ManyToOne Book' }, { f: 'create/update-order.dto.ts', d: { uz: 'bookId, quantity qoidalari', ru: 'правила bookId, quantity' } }, { f: 'order.service.ts', d: 'BaseService' }, { f: 'order.controller.ts', d: 'POST public, GET admin' }, { f: 'order.module.ts → AppModule', d: { uz: 'ulash', ru: 'подключить' } }];
   const gen = useFileGen(FILES.length, storedAnswer);
   const [sc, setSc] = useState(0);
   const done = gen.done;
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   const run = () => { gen.run(); setSc(n => n + 1); };
   return (
-    <Stage eyebrow="Order · yo'naltirish" screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? 'Davom etish' : 'Playbookni yuboring'} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: "Order · yo'naltirish", ru: 'Order · направление' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Playbookni yuboring', ru: 'Отправьте плейбук' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Oxirgi resurs — <span className="italic" style={{ color: T.accent }}>Buyurtma</span>. Qaysi kitobga bog'lanadi?</h2></div>
-        <Mentor>Order <span className="mono">@ManyToOne</span> bilan Book'ga bog'lanadi (har buyurtma — bitta kitob). Buyurtma berish — <b style={{ color: T.ink }}>public</b> (mijoz), ko'rish — admin. Playbookni agentga yuboring.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Oxirgi resurs — <span className="italic" style={{ color: T.accent }}>Buyurtma</span>. Qaysi kitobga bog'lanadi?</>, ru: <>Последний ресурс — <span className="italic" style={{ color: T.accent }}>Заказ</span>. К какой книге он привязан?</> })}</h2></div>
+        <Mentor>{tr({ uz: <>Order <span className="mono">@ManyToOne</span> bilan Book'ga bog'lanadi (har buyurtma — bitta kitob). Buyurtma berish — <b style={{ color: T.ink }}>public</b> (mijoz), ko'rish — admin. Playbookni agentga yuboring.</>, ru: <>Order связывается с Book через <span className="mono">@ManyToOne</span> (каждый заказ — одна книга). Оформить заказ — <b style={{ color: T.ink }}>public</b> (клиент), смотреть — админ. Отправьте агенту плейбук.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
-            <div className="prompt-box fade-up delay-1"><span className="agent-lbl">💬 Agentga playbook</span><p className="agent-msg" style={{ marginBottom: 0 }}>"Order resursini qo'sh: Entity (customer_name, quantity + @ManyToOne Book) → DTO (bookId, quantity) → BaseService service → controller (POST public, GET admin) → module va AppModule'ga ula."</p></div>
-            <button className="btn" style={{ alignSelf: 'flex-start' }} disabled={gen.running || done} onClick={run}>{done ? '✓ Yozildi' : (gen.running ? '⏳ Agent yozyapti…' : '▶ Playbookni yuborish')}</button>
+            <div className="prompt-box fade-up delay-1"><span className="agent-lbl">{tr({ uz: '💬 Agentga playbook', ru: '💬 Плейбук для агента' })}</span><p className="agent-msg" style={{ marginBottom: 0 }}>{tr({ uz: `"Order resursini qo'sh: Entity (customer_name, quantity + @ManyToOne Book) → DTO (bookId, quantity) → BaseService service → controller (POST public, GET admin) → module va AppModule'ga ula."`, ru: '«Добавь ресурс Order: Entity (customer_name, quantity + @ManyToOne Book) → DTO (bookId, quantity) → service от BaseService → controller (POST public, GET admin) → module и подключи к AppModule.»' })}</p></div>
+            <button className="btn" style={{ alignSelf: 'flex-start' }} disabled={gen.running || done} onClick={run}>{done ? tr({ uz: '✓ Yozildi', ru: '✓ Написано' }) : (gen.running ? tr({ uz: '⏳ Agent yozyapti…', ru: '⏳ Агент пишет…' }) : tr({ uz: '▶ Playbookni yuborish', ru: '▶ Отправить плейбук' }))}</button>
           </Col>
           <Col>
-            <p className="flow-label">Agent yaratayotgan fayllar</p>
+            <p className="flow-label">{tr({ uz: 'Agent yaratayotgan fayllar', ru: 'Файлы, которые создаёт агент' })}</p>
             <FileGen files={FILES} running={gen.running} n={gen.n} />
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>AI Order'ni yozdi. Lekin... mijoz buyurtma bera olmayapti! Keyingi ekranda tekshiruvchi bo'lib sababini topamiz.</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>AI Order'ni yozdi. Lekin... mijoz buyurtma bera olmayapti! Keyingi ekranda tekshiruvchi bo'lib sababini topamiz.</>, ru: <>ИИ написал Order. Но... клиент не может оформить заказ! На следующем экране найдём причину — в роли проверяющего.</> })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -1609,7 +1621,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 };
 
 // ===== SCREEN 14 — 🚪 BEAT 3: ESHIK SINOVI (dalil avval, kod keyin — marker/tooltip YO'Q) =====
-const DOOR_ROLES = [{ id: 'guest', ic: '🧍', t: 'Mijoz' }, { id: 'admin', ic: '🔑', t: 'Admin' }];
+const DOOR_ROLES = [{ id: 'guest', ic: '🧍', t: { uz: 'Mijoz', ru: 'Клиент' } }, { id: 'admin', ic: '🔑', t: { uz: 'Admin', ru: 'Админ' } }];
 const DOORS = [
   { id: 'getbook',   m: 'GET',  p: '/book',   guest: '200', admin: '200', want: 'open' },
   { id: 'postorder', m: 'POST', p: '/order',  guest: '403', admin: '201', want: 'open' },
@@ -1617,11 +1629,11 @@ const DOORS = [
 ];
 const BAD_LINE = 'l2';
 const OC_LINES = [
-  { id: 'l1', why: "Bu qator faqat manzilni belgilaydi (/order). Uni olib tashlasak ham mijoz baribir 403 oladi — demak muammo bunda emas." },
+  { id: 'l1', why: { uz: 'Bu qator faqat manzilni belgilaydi (/order). Uni olib tashlasak ham mijoz baribir 403 oladi — demak muammo bunda emas.', ru: 'Эта строка лишь задаёт адрес (/order). Уберём её — клиент всё равно получит 403, значит дело не в ней.' } },
   { id: 'l2', why: '' },
-  { id: 'l3', why: "Bu qator buyurtmani qabul qiladi. U bo'lmasa 404 chiqardi, 403 emas — demak muammo bunda emas." },
-  { id: 'l4', why: "Bu qator buyurtmalar RO'YXATI uchun — uni admin ko'rishi to'g'ri. Uni o'zgartirsak ham mijoz POST'da baribir 403 oladi." },
-  { id: 'l5', why: "Bu — yopiluvchi qavs. Ruxsatga aloqasi yo'q." }
+  { id: 'l3', why: { uz: "Bu qator buyurtmani qabul qiladi. U bo'lmasa 404 chiqardi, 403 emas — demak muammo bunda emas.", ru: 'Эта строка принимает заказ. Без неё было бы 404, а не 403 — значит дело не в ней.' } },
+  { id: 'l4', why: { uz: "Bu qator buyurtmalar RO'YXATI uchun — uni admin ko'rishi to'g'ri. Uni o'zgartirsak ham mijoz POST'da baribir 403 oladi.", ru: 'Эта строка — для СПИСКА заказов, и его правильно видит админ. Поменяем её — клиент на POST всё равно получит 403.' } },
+  { id: 'l5', why: { uz: "Bu — yopiluvchi qavs. Ruxsatga aloqasi yo'q.", ru: 'Это закрывающая скобка. К правам отношения не имеет.' } }
 ];
 const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [tried, setTried] = useState(() => storedAnswer ? new Set(DOORS.flatMap(d => ['guest:' + d.id, 'admin:' + d.id])) : new Set());
@@ -1642,25 +1654,25 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const tapLine = (ln) => {
     if (!evidence || found) return;
     if (ln.id === BAD_LINE) { setFound(true); setWhy(null); setSc(n => n + 1); return; }
-    setShakeId(ln.id); setWhy(ln.why); setSc(n => n + 1);
+    setShakeId(ln.id); setWhy(tr(ln.why)); setSc(n => n + 1);
     setTimeout(() => setShakeId(x => (x === ln.id ? null : x)), 450);
   };
   const fix = () => { setFixed(true); setSc(n => n + 1); };
   const cellVal = (roleId, d) => (roleId === 'guest' ? (fixed && d.id === 'postorder' ? '201' : d.guest) : d.admin);
   const cellBad = (roleId, d) => roleId === 'guest' && d.want === 'open' && cellVal(roleId, d) === '403';
   return (
-    <Stage eyebrow="Debugging · mustaqil" screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? 'Davom etish' : (found ? 'Endi tuzating' : (evidence ? 'Xato qatorni toping' : 'Eshiklarni sinang'))} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Debugging · mustaqil', ru: 'Дебаггинг · самостоятельно' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : (found ? tr({ uz: 'Endi tuzating', ru: 'Теперь исправьте' }) : (evidence ? tr({ uz: 'Xato qatorni toping', ru: 'Найдите строку с ошибкой' }) : tr({ uz: 'Eshiklarni sinang', ru: 'Испытайте двери' })))} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Do'kon ochildi — lekin <span className="italic" style={{ color: T.accent }}>bironta buyurtma kelmayapti</span>.</h2></div>
-        <Mentor>Sabab aytilmaydi — <b style={{ color: T.ink }}>o'zingiz topasiz</b>. Avval mijoz bo'lib, keyin admin bo'lib eshiklarni taqillatib ko'ring: qaysi eshik kimga ochilyapti? Dalil yig'ilgach, kodni ochamiz.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Do'kon ochildi — lekin <span className="italic" style={{ color: T.accent }}>bironta buyurtma kelmayapti</span>.</>, ru: <>Магазин открылся — но <span className="italic" style={{ color: T.accent }}>не пришло ни одного заказа</span>.</> })}</h2></div>
+        <Mentor>{tr({ uz: <>Sabab aytilmaydi — <b style={{ color: T.ink }}>o'zingiz topasiz</b>. Avval mijoz bo'lib, keyin admin bo'lib eshiklarni taqillatib ko'ring: qaysi eshik kimga ochilyapti? Dalil yig'ilgach, kodni ochamiz.</>, ru: <>Причину вам не скажут — <b style={{ color: T.ink }}>вы найдёте её сами</b>. Постучитесь в двери сначала как клиент, потом как админ: какая дверь кому открывается? Соберёте улики — откроем код.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
-            <p className="flow-label">Eshik sinovi — ikki rolda taqillatib ko'ring</p>
+            <p className="flow-label">{tr({ uz: "Eshik sinovi — ikki rolda taqillatib ko'ring", ru: 'Испытание дверей — постучитесь в двух ролях' })}</p>
             <div className="dr-tbl fade-up delay-1">
               <div className="dr-head">
-                <span className="dr-ep">Eshik</span>
-                {DOOR_ROLES.map(r => <span key={r.id} className="dr-hc">{r.ic} {r.t}</span>)}
+                <span className="dr-ep">{tr({ uz: 'Eshik', ru: 'Дверь' })}</span>
+                {DOOR_ROLES.map(r => <span key={r.id} className="dr-hc">{r.ic} {tr(r.t)}</span>)}
               </div>
               {DOORS.map(d => (
                 <div key={d.id} className="dr-row">
@@ -1672,18 +1684,18 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                     const rej = on && /^4/.test(String(cellVal(r.id, d))); // 401/403 — qo'riqchi ORQAGA ITARADI (harakat bilan ko'rinadi)
                     return (
                       <button key={r.id} className={`dr-cell ${on ? (bad ? 'bad' : 'ok') : ''} ${rej ? 'rej' : ''} ${on ? '' : 'tap-hint'}`} disabled={on} onClick={() => knock(r.id, d)}>
-                        {on ? <>{r.ic} {cellVal(r.id, d)}{bad ? ' ❗' : ''}</> : <>{r.ic} sinash</>}
+                        {on ? <>{r.ic} {cellVal(r.id, d)}{bad ? ' ❗' : ''}</> : <>{r.ic} {tr({ uz: 'sinash', ru: 'пробовать' })}</>}
                       </button>
                     );
                   })}
                 </div>
               ))}
             </div>
-            {evidence && !found && <div className="frame-wait fade-step"><p className="note-h" style={{ color: T.blue }}>🔎 Dalil yig'ildi</p><p className="body" style={{ margin: 0, color: T.ink }}>Dalil: mijoz <span className="mono">POST /order</span> da <b>403</b> olyapti — bu eshik ochiq bo'lishi kerak edi. Admin esa 201 oladi. Demak muammo — <b>ruxsatda</b>. Endi kodni oching →</p></div>}
+            {evidence && !found && <div className="frame-wait fade-step"><p className="note-h" style={{ color: T.blue }}>{tr({ uz: "🔎 Dalil yig'ildi", ru: '🔎 Улики собраны' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Dalil: mijoz <span className="mono">POST /order</span> da <b>403</b> olyapti — bu eshik ochiq bo'lishi kerak edi. Admin esa 201 oladi. Demak muammo — <b>ruxsatda</b>. Endi kodni oching →</>, ru: <>Улика: клиент получает <b>403</b> на <span className="mono">POST /order</span> — а эта дверь должна быть открытой. Админ же получает 201. Значит, дело — <b>в правах</b>. Теперь откройте код →</> })}</p></div>}
           </Col>
           <Col>
             <div className="ai-card fade-up delay-1">
-              <div className="ai-row"><span className="ai-badge">AI</span><span className="ai-bubble">OrderController tayyor!</span></div>
+              <div className="ai-row"><span className="ai-badge">AI</span><span className="ai-bubble">{tr({ uz: 'OrderController tayyor!', ru: 'OrderController готов!' })}</span></div>
               <div className="ai-code" style={{ opacity: evidence ? 1 : 0.45 }}>
                 <div className="ai-code-h"><span className="bb-dots"><i /><i /><i /></span><span className="ai-code-t">order.controller.ts</span></div>
                 <div className={`ai-line ${shakeId === 'l1' ? 'shake' : ''}`} onClick={() => tapLine(OC_LINES[0])}><span style={{ color: CODE.attr }}>@Controller</span>{"('order') {"}</div>
@@ -1692,14 +1704,14 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 <div className={`ai-line ${shakeId === 'l4' ? 'shake' : ''}`} onClick={() => tapLine(OC_LINES[3])}><span style={{ color: CODE.attr }}>@Roles</span>{'(UserRole.ADMIN)  '}<span style={{ color: CODE.attr }}>@Get</span>{'()  findAll()'}</div>
                 <div className={`ai-line ${shakeId === 'l5' ? 'shake' : ''}`} onClick={() => tapLine(OC_LINES[4])}>{'}'}</div>
               </div>
-              {!evidence && <p className="ai-prompt">Avval dalil yig'ing — uch eshikni mijoz sifatida sinang ←</p>}
-              {evidence && !found && <p className="ai-prompt">Qaysi qator mijozni to'sib qo'ygan? Bosing.</p>}
-              {found && !fixed && <button className="btn fade-step" style={{ alignSelf: 'flex-start' }} onClick={fix}>🔧 POST'ni @Roles('public') ga o'zgartirish</button>}
-              {fixed && <p className="ai-prompt" style={{ color: T.success, fontStyle: 'normal', fontWeight: 600 }}>✓ Tuzatildi — buyurtma endi ochiq!</p>}
+              {!evidence && <p className="ai-prompt">{tr({ uz: "Avval dalil yig'ing — uch eshikni mijoz sifatida sinang ←", ru: 'Сначала соберите улики — попробуйте три двери как клиент ←' })}</p>}
+              {evidence && !found && <p className="ai-prompt">{tr({ uz: "Qaysi qator mijozni to'sib qo'ygan? Bosing.", ru: 'Какая строка не пускает клиента? Нажмите на неё.' })}</p>}
+              {found && !fixed && <button className="btn fade-step" style={{ alignSelf: 'flex-start' }} onClick={fix}>{tr({ uz: "🔧 POST'ni @Roles('public') ga o'zgartirish", ru: "🔧 Поменять POST на @Roles('public')" })}</button>}
+              {fixed && <p className="ai-prompt" style={{ color: T.success, fontStyle: 'normal', fontWeight: 600 }}>{tr({ uz: '✓ Tuzatildi — buyurtma endi ochiq!', ru: '✓ Исправлено — заказы снова открыты!' })}</p>}
             </div>
-            {why && !found && <div className="hint fade-step"><p className="body" style={{ margin: 0, color: T.ink2 }}>{why}</p></div>}
-            {found && !fixed && <div className="frame-success fade-step"><p className="note-h" style={{ color: T.success }}>✓ Topdingiz!</p><p className="body" style={{ margin: 0, color: T.ink }}><b>Qo'riqchiga noto'g'ri ro'yxat berilgan</b> — u sizning MIJOZINGIZNI do'koningizga kiritmayapti. To'g'risi: <span className="mono">@Roles('public')</span>. Chap tugma bilan tuzating →</p></div>}
-            {fixed && <div className="takeaway fade-step"><div className="ta-bulb">🔍</div><p className="ta-h">Dalil bilan topdingiz!</p><p className="ta-sub">Mijoz endi buyurtma bera oladi — 201</p></div>}
+            {why && !found && <div className="hint fade-step"><p className="body" style={{ margin: 0, color: T.ink2 }}>{tr(why)}</p></div>}
+            {found && !fixed && <div className="frame-success fade-step"><p className="note-h" style={{ color: T.success }}>{tr({ uz: '✓ Topdingiz!', ru: '✓ Нашли!' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <><b>Qo'riqchiga noto'g'ri ro'yxat berilgan</b> — u sizning MIJOZINGIZNI do'koningizga kiritmayapti. To'g'risi: <span className="mono">@Roles('public')</span>. Chap tugma bilan tuzating →</>, ru: <><b>Стражу дали не тот список</b> — он не пускает ВАШЕГО КЛИЕНТА в ваш же магазин. Правильно: <span className="mono">@Roles('public')</span>. Исправьте кнопкой слева →</> })}</p></div>}
+            {fixed && <div className="takeaway fade-step"><div className="ta-bulb">🔍</div><p className="ta-h">{tr({ uz: 'Dalil bilan topdingiz!', ru: 'Нашли по уликам!' })}</p><p className="ta-sub">{tr({ uz: 'Mijoz endi buyurtma bera oladi — 201', ru: 'Клиент снова может оформить заказ — 201' })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -1710,16 +1722,16 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 
 // ===== SCREEN 15 — TEST 4 (debug) =====
 const Screen15 = (props) => (
-  <QuestionScreen {...props} scope="module-mikro" eyebrow="Mashq · 4-savol"
+  <QuestionScreen {...props} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 4-savol', ru: 'Упражнение · вопрос 4' })}
     questionText="POST /order'ga xato bilan @Roles(ADMIN) qo'yilgan. To'g'ri tuzatish qaysi?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-sub" style={{ marginTop: 8 }}>Mijoz buyurtma berolsin desak, qatorni <span className="italic" style={{ color: T.accent }}>qanday</span> tuzatamiz?</h2></>}
-    options={["Qo'riqchini butunlay olib tashlaymiz", "`@Roles('public')` ga o'zgartiramiz", 'Har bir mijozni admin qilamiz', "Tugmani frontend'da yashiramiz"]} correctIdx={1}
-    explainCorrect="To'g'ri! `POST /order` hamma uchun ochiq bo'lishi kerak — `@Roles('public')`. Qolgan eshiklar (`GET /order`) admin'da qoladi. Faqat shu qator tuzatiladi."
+    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-sub" style={{ marginTop: 8 }}>{tr({ uz: <>Mijoz buyurtma berolsin desak, qatorni <span className="italic" style={{ color: T.accent }}>qanday</span> tuzatamiz?</>, ru: <>Чтобы клиент мог заказать — <span className="italic" style={{ color: T.accent }}>как</span> исправить строку?</> })}</h2></>}
+    options={[{ uz: "Qo'riqchini butunlay olib tashlaymiz", ru: 'Полностью убрать стража' }, { uz: "`@Roles('public')` ga o'zgartiramiz", ru: "Поменять на `@Roles('public')`" }, { uz: 'Har bir mijozni admin qilamiz', ru: 'Сделать каждого клиента админом' }, { uz: "Tugmani frontend'da yashiramiz", ru: 'Спрятать кнопку на фронтенде' }]} correctIdx={1}
+    explainCorrect={{ uz: "To'g'ri! `POST /order` hamma uchun ochiq bo'lishi kerak — `@Roles('public')`. Qolgan eshiklar (`GET /order`) admin'da qoladi. Faqat shu qator tuzatiladi.", ru: "Верно! `POST /order` должен быть открыт для всех — `@Roles('public')`. Остальные двери (`GET /order`) остаются админскими. Правится только эта строка." }}
     explainWrong={{
-      0: "Qo'riqchini olib tashlasak, admin eshiklari ham ochilib qoladi. Faqat shu qatorni public qilamiz.",
-      2: "Har mijozni admin qilish juda xavfli — u holda ular kitob ham qo'sha oladi.",
-      3: "Frontend himoya emas — server baribir 403 beradi. Ruxsat server tomonda tuzatiladi.",
-      default: "To'g'ri tuzatish — `POST /order` ni `@Roles('public')` qilish."
+      0: { uz: "Qo'riqchini olib tashlasak, admin eshiklari ham ochilib qoladi. Faqat shu qatorni public qilamiz.", ru: 'Уберём стража — распахнутся и админские двери. Делаем public только эту строку.' },
+      2: { uz: "Har mijozni admin qilish juda xavfli — u holda ular kitob ham qo'sha oladi.", ru: 'Делать каждого клиента админом очень опасно — тогда они смогут и книги добавлять.' },
+      3: { uz: 'Frontend himoya emas — server baribir 403 beradi. Ruxsat server tomonda tuzatiladi.', ru: 'Фронтенд — не защита: сервер всё равно вернёт 403. Права правятся на стороне сервера.' },
+      default: { uz: "To'g'ri tuzatish — `POST /order` ni `@Roles('public')` qilish.", ru: "Правильное исправление — сделать `POST /order` с `@Roles('public')`." }
     }} />
 );
 
@@ -1732,10 +1744,10 @@ const Screen16 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const adv = () => { setStep(s => Math.min(s + 1, SHOP_FLOW.length - 1)); setSc(n => n + 1); };
   const cur = step >= 0 ? SHOP_FLOW[Math.min(step, SHOP_FLOW.length - 1)] : null;
   return (
-    <Stage eyebrow="Integratsiya · stsenariy" screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? 'Davom etish' : 'Stsenariyni kuzating'} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Integratsiya · stsenariy', ru: 'Интеграция · сценарий' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Stsenariyni kuzating', ru: 'Проследите сценарий' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Hammasi birga: bitta haqiqiy <span className="italic" style={{ color: T.accent }}>xarid</span> qanday kechadi?</h2></div>
-        <Mentor>3 resurs, auth va bog'lanish — endi birga ishlaydi. Admin kitob qo'shadi, mijoz top kitoblarni ko'rib buyurtma beradi, admin buyurtmani ko'radi. Tugmani bosib kuzating.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Hammasi birga: bitta haqiqiy <span className="italic" style={{ color: T.accent }}>xarid</span> qanday kechadi?</>, ru: <>Всё вместе: как проходит одна настоящая <span className="italic" style={{ color: T.accent }}>покупка</span>?</> })}</h2></div>
+        <Mentor>{tr({ uz: <>3 resurs, auth va bog'lanish — endi birga ishlaydi. Admin kitob qo'shadi, mijoz top kitoblarni ko'rib buyurtma beradi, admin buyurtmani ko'radi. Tugmani bosib kuzating.</>, ru: <>3 ресурса, auth и связи — теперь работают вместе. Админ добавляет книгу, клиент смотрит топ-книги и делает заказ, админ видит заказ. Нажимайте кнопку и следите.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
@@ -1743,9 +1755,9 @@ const Screen16 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               {SHOP_FLOW.map((f, i) => {
                 const lit = step >= i;
                 return (
-                  <div key={f.k} className="flow-stop" style={{ opacity: lit ? 1 : 0.35 }}>
+                  <div key={i} className="flow-stop" style={{ opacity: lit ? 1 : 0.35 }}>
                     <span className="flow-ico" style={{ background: lit ? T.accent : T.paper, color: lit ? '#fff' : T.ink3 }}>{f.icon}</span>
-                    <span className="flow-k" style={{ color: lit ? T.ink : T.ink3 }}>{f.k}</span>
+                    <span className="flow-k" style={{ color: lit ? T.ink : T.ink3 }}>{tr(f.k)}</span>
                     {i < SHOP_FLOW.length - 1 && <span className="flow-down" style={{ color: step > i ? T.accent : T.ink3 + '66' }}>↓</span>}
                   </div>
                 );
@@ -1753,9 +1765,9 @@ const Screen16 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             </div>
           </Col>
           <Col>
-            <button className="btn" style={{ alignSelf: 'flex-start' }} disabled={done} onClick={adv}>{step < 0 ? '▶ Stsenariyni boshlash' : (done ? '✓ Tugadi' : 'Keyingi qadam →')}</button>
-            {cur && <div className="sk-info fade-step" key={step}><p className="note-h"><span style={{ fontSize: 20, marginRight: 6 }}>{cur.icon}</span><span className="mono" style={{ color: T.accent }}>{cur.r}</span> · {cur.k}</p><p className="body" style={{ margin: 0, color: T.ink }}>{cur.d}</p></div>}
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Mana to'liq do'kon oqimi! Auth, bog'lanish, maxsus endpoint — hammasi birga ishlayapti.</p></div>}
+            <button className="btn" style={{ alignSelf: 'flex-start' }} disabled={done} onClick={adv}>{step < 0 ? tr({ uz: '▶ Stsenariyni boshlash', ru: '▶ Начать сценарий' }) : (done ? tr({ uz: '✓ Tugadi', ru: '✓ Конец' }) : tr({ uz: 'Keyingi qadam →', ru: 'Следующий шаг →' }))}</button>
+            {cur && <div className="sk-info fade-step" key={step}><p className="note-h"><span style={{ fontSize: 20, marginRight: 6 }}>{cur.icon}</span><span className="mono" style={{ color: T.accent }}>{tr(cur.r)}</span> · {tr(cur.k)}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr(cur.d)}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Mana to'liq do'kon oqimi! Auth, bog'lanish, maxsus endpoint — hammasi birga ishlayapti.", ru: 'Вот полный поток магазина! Auth, связи, особый эндпоинт — всё работает вместе.' })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -1774,20 +1786,20 @@ const Screen17 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const toggle = (id) => { setOpenId(o => o === id ? null : id); setSc(n => n + 1); };
   const onTry = (id) => { setTried(prev => { const s = new Set(prev); s.add(id); return s; }); setSc(n => n + 1); };
   return (
-    <Stage eyebrow="Natija · Swagger" screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? 'Davom etish' : `2 endpoint sinang (${tried.size}/2)`} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Natija · Swagger', ru: 'Результат · Swagger' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: `2 endpoint sinang (${tried.size}/2)`, ru: `Попробуйте 2 эндпоинта (${tried.size}/2)` })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Sizning <span className="italic" style={{ color: T.accent }}>KitobShop</span>'ingiz — to'liq tirik!</h2></div>
-        <Mentor>3 resurs, 7 endpoint, auth himoyasi, bog'lanish — hammasi siz boshqarib qurildi. Kamida 2 ta endpointni <b style={{ color: T.ink }}>"Try it out"</b> bilan sinab ko'ring (🔒 admin, 🌐 ochiq).</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Sizning <span className="italic" style={{ color: T.accent }}>KitobShop</span>'ingiz — to'liq tirik!</>, ru: <>Ваш <span className="italic" style={{ color: T.accent }}>KitobShop</span> — полностью живой!</> })}</h2></div>
+        <Mentor>{tr({ uz: <>3 resurs, 7 endpoint, auth himoyasi, bog'lanish — hammasi siz boshqarib qurildi. Kamida 2 ta endpointni <b style={{ color: T.ink }}>"Try it out"</b> bilan sinab ko'ring (🔒 admin, 🌐 ochiq).</>, ru: <>3 ресурса, 7 эндпоинтов, защита auth, связи — всё построено под вашим управлением. Попробуйте минимум 2 эндпоинта через <b style={{ color: T.ink }}>"Try it out"</b> (🔒 админ, 🌐 открытые).</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
             <ShopSwagger openId={openId} onToggle={toggle} triedIds={tried} onTry={onTry} />
           </Col>
           <Col>
-            <div className="sk-info"><p className="body" style={{ margin: 0, color: T.ink }}>🌐 Mijoz: kitoblarni ko'radi, top kitoblar, buyurtma. 🔒 Admin: kitob/kategoriya qo'shadi, buyurtmalarni ko'radi.</p></div>
+            <div className="sk-info"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "🌐 Mijoz: kitoblarni ko'radi, top kitoblar, buyurtma. 🔒 Admin: kitob/kategoriya qo'shadi, buyurtmalarni ko'radi.", ru: '🌐 Клиент: смотрит книги, топ-книги, заказывает. 🔒 Админ: добавляет книги/категории, видит заказы.' })}</p></div>
             {done
-              ? <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>🎉 Tabriklaymiz! Siz haqiqiy, auth bilan himoyalangan, bog'langan backend qurdingiz — agentni boshqarib.</p></div>
-              : <div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>Endpointni oching → "Try it out" → javobni ko'ring.</p></div>}
+              ? <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "🎉 Tabriklaymiz! Siz haqiqiy, auth bilan himoyalangan, bog'langan backend qurdingiz — agentni boshqarib.", ru: '🎉 Поздравляем! Вы построили настоящий бэкенд — со связями и защитой auth — управляя агентом.' })}</p></div>
+              : <div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: `Endpointni oching → "Try it out" → javobni ko'ring.`, ru: 'Откройте эндпоинт → "Try it out" → посмотрите ответ.' })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -1805,11 +1817,11 @@ const DOORLIST = [
   { id: 'getorder',  m: 'GET',    p: '/order',     lock: true }
 ];
 const CLAIMS = [
-  { id: 'q1', ev: 'getbook',   ok: true,  t: "GET /book — hamma ko'radi (public)",        why: "Ro'yxatda: GET /book — 🌐 public. Da'vo to'g'ri, yolg'on emas." },
-  { id: 'q2', ev: 'postbook',  ok: true,  t: "POST /book — faqat admin",                  why: "Ro'yxatda: POST /book — 🔒 admin. Da'vo to'g'ri, yolg'on emas." },
-  { id: 'q3', ev: 'postorder', ok: true,  t: "POST /order — mijoz o'zi bera oladi",       why: "Ro'yxatda: POST /order — 🌐 public. Da'vo to'g'ri, yolg'on emas." },
-  { id: 'q4', ev: 'delbook',   ok: false, t: "DELETE /book — faqat admin",                why: "" },
-  { id: 'q5', ev: 'getorder',  ok: true,  t: "GET /order — buyurtmalarni faqat admin ko'radi", why: "Ro'yxatda: GET /order — 🔒 admin. Da'vo to'g'ri, yolg'on emas." }
+  { id: 'q1', ev: 'getbook',   ok: true,  t: { uz: "GET /book — hamma ko'radi (public)", ru: 'GET /book — видят все (public)' },        why: { uz: "Ro'yxatda: GET /book — 🌐 public. Da'vo to'g'ri, yolg'on emas.", ru: 'В списке: GET /book — 🌐 public. Утверждение верное, не ложь.' } },
+  { id: 'q2', ev: 'postbook',  ok: true,  t: { uz: 'POST /book — faqat admin', ru: 'POST /book — только админ' },                  why: { uz: "Ro'yxatda: POST /book — 🔒 admin. Da'vo to'g'ri, yolg'on emas.", ru: 'В списке: POST /book — 🔒 admin. Утверждение верное, не ложь.' } },
+  { id: 'q3', ev: 'postorder', ok: true,  t: { uz: "POST /order — mijoz o'zi bera oladi", ru: 'POST /order — клиент заказывает сам' },       why: { uz: "Ro'yxatda: POST /order — 🌐 public. Da'vo to'g'ri, yolg'on emas.", ru: 'В списке: POST /order — 🌐 public. Утверждение верное, не ложь.' } },
+  { id: 'q4', ev: 'delbook',   ok: false, t: { uz: 'DELETE /book — faqat admin', ru: 'DELETE /book — только админ' },                why: "" },
+  { id: 'q5', ev: 'getorder',  ok: true,  t: { uz: "GET /order — buyurtmalarni faqat admin ko'radi", ru: 'GET /order — заказы видит только админ' }, why: { uz: "Ro'yxatda: GET /order — 🔒 admin. Da'vo to'g'ri, yolg'on emas.", ru: 'В списке: GET /order — 🔒 admin. Утверждение верное, не ложь.' } }
 ];
 const Screen19 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [checked, setChecked] = useState(() => new Set());
@@ -1824,7 +1836,7 @@ const Screen19 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     if (found) return;
     if (c.ok) {
       setChecked(prev => { const s = new Set(prev); s.add(c.id); return s; });
-      setWhy(c.why); setShakeId(c.id); setSc(n => n + 1);
+      setWhy(tr(c.why)); setShakeId(c.id); setSc(n => n + 1);
       setTimeout(() => setShakeId(x => (x === c.id ? null : x)), 450);
       return;
     }
@@ -1833,26 +1845,26 @@ const Screen19 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const addGuard = () => { setGuarded(true); setSc(n => n + 1); };
   const lockOf = (d) => d.id === 'delbook' ? guarded : d.lock;
   return (
-    <Stage eyebrow="Tekshiruv · ochilish" screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? 'Yakunga →' : (found ? "Qo'riqchini qo'ying" : "Yolg'on da'voni toping")} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Tekshiruv · ochilish', ru: 'Проверка · открытие' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Yakunga →', ru: 'К финалу →' }) : (found ? tr({ uz: "Qo'riqchini qo'ying", ru: 'Поставьте стража' }) : tr({ uz: "Yolg'on da'voni toping", ru: 'Найдите ложное утверждение' }))} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Ochilishdan oldin: beshta da'vodan bittasi <span className="italic" style={{ color: T.accent }}>yolg'on</span>.</h2></div>
-        <Mentor>Bu — tasdiqlash emas, <b style={{ color: T.ink }}>tekshirish</b>. Har da'voni o'ngdagi <b style={{ color: T.ink }}>eshiklar ro'yxati</b> bilan solishtiring: 🌐 ochiq, 🔒 qulflangan. Ro'yxatga mos kelmaydigan da'voni bosing.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Ochilishdan oldin: beshta da'vodan bittasi <span className="italic" style={{ color: T.accent }}>yolg'on</span>.</>, ru: <>Перед открытием: одно из пяти утверждений — <span className="italic" style={{ color: T.accent }}>ложь</span>.</> })}</h2></div>
+        <Mentor>{tr({ uz: <>Bu — tasdiqlash emas, <b style={{ color: T.ink }}>tekshirish</b>. Har da'voni o'ngdagi <b style={{ color: T.ink }}>eshiklar ro'yxati</b> bilan solishtiring: 🌐 ochiq, 🔒 qulflangan. Ro'yxatga mos kelmaydigan da'voni bosing.</>, ru: <>Это не «подтвердить», а <b style={{ color: T.ink }}>проверить</b>. Сравните каждое утверждение со <b style={{ color: T.ink }}>списком дверей</b> справа: 🌐 открыта, 🔒 заперта. Нажмите на то, что не совпадает со списком.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
-            <p className="flow-label">5 da'vo — qaysi biri ro'yxatga mos emas?</p>
+            <p className="flow-label">{tr({ uz: "5 da'vo — qaysi biri ro'yxatga mos emas?", ru: '5 утверждений — какое не совпадает со списком?' })}</p>
             {CLAIMS.map((c, i) => (
               <button key={c.id} className={`cl-row ${checked.has(c.id) ? 'checked' : ''} ${found && !c.ok ? 'liar' : ''} ${shakeId === c.id ? 'shake' : ''} ${!found && !checked.has(c.id) ? 'tap-hint' : ''}`} disabled={found} onClick={() => tap(c)}>
                 <span className="cl-n">{i + 1}</span>
-                <span style={{ flex: 1 }}>{c.t}</span>
+                <span style={{ flex: 1 }}>{tr(c.t)}</span>
                 <span>{found && !c.ok ? '❗' : (checked.has(c.id) ? '✓' : '')}</span>
               </button>
             ))}
-            {why && !found && <div className="hint fade-step"><p className="body" style={{ margin: 0, color: T.ink2 }}>{why}</p></div>}
-            {found && !guarded && <div className="frame-warn fade-step"><p className="note-h" style={{ color: T.danger }}>❗ Yolg'on topildi</p><p className="body" style={{ margin: 0, color: T.ink }}>Ro'yxatda <span className="mono">DELETE /book/:id</span> — 🌐 <b>public</b>. Agent qo'riqchi qo'ymay ketgan: <b>har kim butun do'koningiz kitoblarini o'chirib tashlashi mumkin edi</b>.</p></div>}
+            {why && !found && <div className="hint fade-step"><p className="body" style={{ margin: 0, color: T.ink2 }}>{tr(why)}</p></div>}
+            {found && !guarded && <div className="frame-warn fade-step"><p className="note-h" style={{ color: T.danger }}>{tr({ uz: "❗ Yolg'on topildi", ru: '❗ Ложь найдена' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Ro'yxatda <span className="mono">DELETE /book/:id</span> — 🌐 <b>public</b>. Agent qo'riqchi qo'ymay ketgan: <b>har kim butun do'koningiz kitoblarini o'chirib tashlashi mumkin edi</b>.</>, ru: <>В списке <span className="mono">DELETE /book/:id</span> — 🌐 <b>public</b>. Агент забыл поставить стража: <b>любой мог удалить все книги вашего магазина</b>.</> })}</p></div>}
           </Col>
           <Col>
-            <p className="flow-label">Dalil — eshiklar ro'yxati</p>
+            <p className="flow-label">{tr({ uz: "Dalil — eshiklar ro'yxati", ru: 'Улики — список дверей' })}</p>
             <div className="frame" style={{ padding: 13 }}>
               {DOORLIST.map(d => {
                 const lk = lockOf(d);
@@ -1867,9 +1879,9 @@ const Screen19 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 );
               })}
             </div>
-            {found && !guarded && <button className="btn" style={{ alignSelf: 'flex-start' }} onClick={addGuard}>🛡️ DELETE /book ga @Roles(ADMIN) qo'yish</button>}
-            <div className={`shop-sign ${done ? 'open' : ''}`}>{done ? '🏪 KitobShop — OCHIQ' : '🏪 KitobShop — tekshiruvda'}</div>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Qo'riqchi ikki xil xato qiladi: <b>o'zinikini kiritmaydi</b> (403) va <b>begonani kiritadi</b> (o'chirib ketadi). Ikkalasini ham <b>siz</b> tekshirasiz — bugun ikkalasini ham topdingiz.</p></div>}
+            {found && !guarded && <button className="btn" style={{ alignSelf: 'flex-start' }} onClick={addGuard}>{tr({ uz: "🛡️ DELETE /book ga @Roles(ADMIN) qo'yish", ru: '🛡️ Поставить @Roles(ADMIN) на DELETE /book' })}</button>}
+            <div className={`shop-sign ${done ? 'open' : ''}`}>{done ? tr({ uz: '🏪 KitobShop — OCHIQ', ru: '🏪 KitobShop — ОТКРЫТ' }) : tr({ uz: '🏪 KitobShop — tekshiruvda', ru: '🏪 KitobShop — на проверке' })}</div>
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Qo'riqchi ikki xil xato qiladi: <b>o'zinikini kiritmaydi</b> (403) va <b>begonani kiritadi</b> (o'chirib ketadi). Ikkalasini ham <b>siz</b> tekshirasiz — bugun ikkalasini ham topdingiz.</>, ru: <>Страж ошибается двумя способами: <b>не пускает своих</b> (403) и <b>пускает чужих</b> (а те всё удаляют). Обе ошибки проверяете <b>вы</b> — и сегодня вы нашли обе.</> })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -2727,6 +2739,7 @@ const Screen20 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
 // ============================================================ LESSON ROOT
 export default function NestArchPracticeLesson({ lang: langProp, onFinished }) {
   const lang = langProp || 'uz';
+  __lang = lang; // UZ-RU: tr() uchun joriy til (render'dan oldin o'rnatiladi)
   const [screen, setScreen] = useState(0);
   const [answers, setAnswers] = useState({});
   const startTimeRef = useRef(Date.now());

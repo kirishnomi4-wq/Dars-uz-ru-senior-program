@@ -1,6 +1,16 @@
 import React, { useState, useEffect, useRef, createContext, useContext, useCallback } from 'react';
 const MENTOR_IMG = 'https://go.coddycamp.uz/uploads/media_library/c7b711619071c92bef604c7ad68380dd.png';
 
+// UZ-RU: modul-darajali tarjimon. Dars mount bo'lganda default export __lang'ni o'rnatadi;
+// barcha render-joylar tr({uz:'…', ru:'…'}) orqali joriy tildagi matnni oladi (string/JSX o'tkazib yuboriladi).
+let __lang = 'uz';
+const tr = (node) => {
+  if (node === null || node === undefined) return '';
+  if (typeof node === 'string') return node;
+  if (React.isValidElement(node)) return node;
+  return node[__lang] ?? node.uz ?? node.ru ?? '';
+};
+
 // ============================================================
 // BACKEND MODULI (4-MODUL) · 5-DARS — PostgreSQL SO'ROVLAR (CRUD) + AI BILAN ISHLASH — PLATFORM STANDARD v16 (AUDIOSIZ)
 // Mavzu: ma'lumotlar bazasi va jadval yaratish (CREATE TABLE), bitta `products` jadvali ustida to'liq CRUD —
@@ -152,21 +162,21 @@ function useLiveSession(lessonId, answerKey) {
       tokenRef.current = row.token; setPin(row.pin); setMode('mentor'); setEnded(false);
       liveStore(lessonId, { mode: 'mentor', pin: row.pin, token: row.token });
       if (keyRef.current) liveRpc('set_quiz_keys', { p_lesson_id: lessonId, p_mentor_code: (mentorCode || '').trim(), p_keys: keyRef.current }).catch(() => {});
-    } catch { setJoinError("Mentor kodi noto'g'ri yoki ulanishda xato."); }
+    } catch { setJoinError(tr({ uz: "Mentor kodi noto'g'ri yoki ulanishda xato.", ru: 'Код ментора неверный или ошибка соединения.' })); }
     finally { setBusy(false); }
   }, [lessonId]);
 
   const joinStudent = useCallback(async (raw, rawNick) => {
     const p = (raw || '').replace(/\D/g, '');
     const nick = (rawNick || '').trim();
-    if (p.length < 4) { setJoinError("Kodni to'liq kiriting."); return; }
-    if (nick.length < 2) { setJoinError('Ismingizni kiriting (kamida 2 harf).'); return; }
+    if (p.length < 4) { setJoinError(tr({ uz: "Kodni to'liq kiriting.", ru: 'Введите код полностью.' })); return; }
+    if (nick.length < 2) { setJoinError(tr({ uz: 'Ismingizni kiriting (kamida 2 harf).', ru: 'Введите ваше имя (минимум 2 буквы).' })); return; }
     setBusy(true); setJoinError('');
     try {
       const row = await liveGet(p);
-      if (!row) { setJoinError('Bunday kod topilmadi.'); setBusy(false); return; }
-      if (row.lesson_id && row.lesson_id !== lessonId) { setJoinError('Bu kod boshqa darsga tegishli.'); setBusy(false); return; }
-      if (row.status !== 'live') { setJoinError('Bu dars allaqachon yakunlangan.'); setBusy(false); return; }
+      if (!row) { setJoinError(tr({ uz: 'Bunday kod topilmadi.', ru: 'Такой код не найден.' })); setBusy(false); return; }
+      if (row.lesson_id && row.lesson_id !== lessonId) { setJoinError(tr({ uz: 'Bu kod boshqa darsga tegishli.', ru: 'Этот код от другого урока.' })); setBusy(false); return; }
+      if (row.status !== 'live') { setJoinError(tr({ uz: 'Bu dars allaqachon yakunlangan.', ru: 'Этот урок уже завершён.' })); setBusy(false); return; }
       const res = await liveRpc('join_session', { p_pin: p, p_nickname: nick });
       const player = Array.isArray(res) ? res[0] : res;
       if (!player?.player_id) throw new Error('no player');
@@ -178,7 +188,7 @@ function useLiveSession(lessonId, answerKey) {
     } catch (e) {
       // Serverdan kelgan o'zbekcha xabarlarni (ism band va h.k.) o'zini ko'rsatamiz
       const m = String(e?.message || '');
-      setJoinError(/ism|band|kod|dars|belgi/i.test(m) ? m : "Ulanib bo'lmadi. Internetni tekshiring.");
+      setJoinError(/ism|band|kod|dars|belgi/i.test(m) ? m : tr({ uz: "Ulanib bo'lmadi. Internetni tekshiring.", ru: 'Не удалось подключиться. Проверьте интернет.' }));
     }
     finally { setBusy(false); }
   }, [lessonId]);
@@ -228,15 +238,16 @@ function LiveBigCode({ pin, onClose }) {
   const box = { background: LT.paper, color: LT.ink, borderRadius: 'clamp(10px,1.6vw,18px)', fontFamily: 'monospace', fontWeight: 800, lineHeight: 1, fontSize: 'clamp(48px,13vw,150px)', padding: 'clamp(10px,2vw,28px) clamp(12px,2.2vw,30px)', boxShadow: '0 10px 40px -10px rgba(0,0,0,0.5)' };
   return (
     <div style={overlay}>
-      <div style={{ fontSize: 'clamp(13px,2vw,18px)', fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: LT.accent, marginBottom: 'clamp(14px,3vw,28px)' }}>Jonli darsga qo'shilish</div>
+      <div style={{ fontSize: 'clamp(13px,2vw,18px)', fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: LT.accent, marginBottom: 'clamp(14px,3vw,28px)' }}>{tr({ uz: "Jonli darsga qo'shilish", ru: 'Подключение к живому уроку' })}</div>
       <div style={{ display: 'flex', gap: 'clamp(6px,1.4vw,16px)', justifyContent: 'center', flexWrap: 'wrap' }}>{digits.map((d, i) => <span key={i} style={box}>{d}</span>)}</div>
-      <p style={{ color: '#fff', opacity: 0.85, fontSize: 'clamp(15px,2.2vw,22px)', maxWidth: 640, margin: 'clamp(20px,4vw,36px) 0 0', lineHeight: 1.5 }}>Shu darsni o'z qurilmangizda oching → <b style={{ color: '#fff' }}>«👨‍🎓 O'quvchiman»</b> → ushbu kodni kiriting.</p>
-      <button onClick={onClose} style={{ marginTop: 'clamp(22px,4vw,40px)', background: LT.accent, color: '#fff', border: 'none', borderRadius: 14, padding: 'clamp(12px,1.6vw,16px) clamp(24px,3vw,36px)', fontSize: 'clamp(15px,1.8vw,18px)', fontWeight: 700, cursor: 'pointer' }}>Darsni boshlash →</button>
+      <p style={{ color: '#fff', opacity: 0.85, fontSize: 'clamp(15px,2.2vw,22px)', maxWidth: 640, margin: 'clamp(20px,4vw,36px) 0 0', lineHeight: 1.5 }}>{tr({ uz: <>Shu darsni o'z qurilmangizda oching → <b style={{ color: '#fff' }}>«👨‍🎓 O'quvchiman»</b> → ushbu kodni kiriting.</>, ru: <>Откройте этот урок на своём устройстве → <b style={{ color: '#fff' }}>«👨‍🎓 Я ученик»</b> → введите этот код.</> })}</p>
+      <button onClick={onClose} style={{ marginTop: 'clamp(22px,4vw,40px)', background: LT.accent, color: '#fff', border: 'none', borderRadius: 14, padding: 'clamp(12px,1.6vw,16px) clamp(24px,3vw,36px)', fontSize: 'clamp(15px,1.8vw,18px)', fontWeight: 700, cursor: 'pointer' }}>{tr({ uz: 'Darsni boshlash →', ru: 'Начать урок →' })}</button>
     </div>
   );
 }
 
-function LiveGate({ live, title = 'Jonli dars' }) {
+function LiveGate({ live, title }) {
+  title = title || tr({ uz: 'Jonli dars', ru: 'Живой урок' });
   const [code, setCode] = useState('');
   const [nick, setNick] = useState(() => nickRead()); // oldingi darsda yozgan ismi tayyor chiqadi
   const [mentorCode, setMentorCode] = useState('');
@@ -246,18 +257,18 @@ function LiveGate({ live, title = 'Jonli dars' }) {
   const link = { background: 'none', border: 'none', color: LT.ink3, fontSize: 13, cursor: 'pointer', alignSelf: 'center' };
   if (role === 'mentor') {
     return (<div style={wrap}><div style={card}>
-      <div style={{ textAlign: 'center' }}><h2 style={{ fontFamily: 'Georgia, serif', fontSize: 'clamp(22px,3vw,28px)', color: LT.ink, margin: '0 0 4px' }}>🧑‍🏫 Mentor kirishi</h2><p style={{ color: LT.ink2, fontSize: 14, margin: 0 }}>Mentor kodini kiriting.</p></div>
-      <input value={mentorCode} onChange={e => setMentorCode(e.target.value)} type="password" autoFocus placeholder="Mentor kodi" onKeyDown={e => { if (e.key === 'Enter') live.startMentor(mentorCode); }} style={{ width: '100%', padding: '14px', border: `2px solid ${LT.ink3}55`, borderRadius: 14, fontSize: 18, fontWeight: 600, textAlign: 'center', outline: 'none' }} />
-      <button onClick={() => live.startMentor(mentorCode)} disabled={live.busy} style={_liveBtnPri}>{live.busy ? 'Tekshirilmoqda…' : 'Kirish →'}</button>
+      <div style={{ textAlign: 'center' }}><h2 style={{ fontFamily: 'Georgia, serif', fontSize: 'clamp(22px,3vw,28px)', color: LT.ink, margin: '0 0 4px' }}>{tr({ uz: '🧑‍🏫 Mentor kirishi', ru: '🧑‍🏫 Вход для ментора' })}</h2><p style={{ color: LT.ink2, fontSize: 14, margin: 0 }}>{tr({ uz: 'Mentor kodini kiriting.', ru: 'Введите код ментора.' })}</p></div>
+      <input value={mentorCode} onChange={e => setMentorCode(e.target.value)} type="password" autoFocus placeholder={tr({ uz: 'Mentor kodi', ru: 'Код ментора' })} onKeyDown={e => { if (e.key === 'Enter') live.startMentor(mentorCode); }} style={{ width: '100%', padding: '14px', border: `2px solid ${LT.ink3}55`, borderRadius: 14, fontSize: 18, fontWeight: 600, textAlign: 'center', outline: 'none' }} />
+      <button onClick={() => live.startMentor(mentorCode)} disabled={live.busy} style={_liveBtnPri}>{live.busy ? tr({ uz: 'Tekshirilmoqda…', ru: 'Проверяем…' }) : tr({ uz: 'Kirish →', ru: 'Войти →' })}</button>
       {live.joinError && <div style={{ color: LT.accent, fontSize: 13, textAlign: 'center' }}>{live.joinError}</div>}
-      <button onClick={() => { setRole('student'); setMentorCode(''); }} style={link}>← Orqaga</button>
+      <button onClick={() => { setRole('student'); setMentorCode(''); }} style={link}>{tr({ uz: '← Orqaga', ru: '← Назад' })}</button>
     </div></div>);
   }
   return (<div style={wrap}><div style={card}>
-    <div style={{ textAlign: 'center' }}><div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: LT.accent }}>{title}</div><h2 style={{ fontFamily: 'Georgia, serif', fontSize: 'clamp(22px,3vw,28px)', color: LT.ink, margin: '6px 0 4px' }}>Darsga qo'shilish</h2><p style={{ color: LT.ink2, fontSize: 14, margin: 0 }}>Mentor bergan kodni va ismingizni kiriting.</p></div>
+    <div style={{ textAlign: 'center' }}><div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: LT.accent }}>{title}</div><h2 style={{ fontFamily: 'Georgia, serif', fontSize: 'clamp(22px,3vw,28px)', color: LT.ink, margin: '6px 0 4px' }}>{tr({ uz: "Darsga qo'shilish", ru: 'Подключение к уроку' })}</h2><p style={{ color: LT.ink2, fontSize: 14, margin: 0 }}>{tr({ uz: 'Mentor bergan kodni va ismingizni kiriting.', ru: 'Введите код от ментора и ваше имя.' })}</p></div>
     <input value={code} onChange={e => setCode(e.target.value)} inputMode="numeric" autoFocus placeholder="483 920" style={{ width: '100%', padding: '16px 14px', border: `2px solid ${LT.ink3}55`, borderRadius: 14, fontSize: 28, fontFamily: 'monospace', fontWeight: 700, letterSpacing: '0.12em', textAlign: 'center', outline: 'none' }} />
-    <input value={nick} onChange={e => setNick(e.target.value)} maxLength={24} placeholder="Ismingiz (masalan: Ali)" onKeyDown={e => { if (e.key === 'Enter') live.joinStudent(code, nick); }} style={{ width: '100%', padding: '13px 14px', border: `2px solid ${LT.ink3}55`, borderRadius: 14, fontSize: 17, fontWeight: 600, textAlign: 'center', outline: 'none' }} />
-    <button onClick={() => live.joinStudent(code, nick)} disabled={live.busy} style={_liveBtnPri}>{live.busy ? 'Ulanmoqda…' : 'Qo\'shilish →'}</button>
+    <input value={nick} onChange={e => setNick(e.target.value)} maxLength={24} placeholder={tr({ uz: 'Ismingiz (masalan: Ali)', ru: 'Ваше имя (например: Али)' })} onKeyDown={e => { if (e.key === 'Enter') live.joinStudent(code, nick); }} style={{ width: '100%', padding: '13px 14px', border: `2px solid ${LT.ink3}55`, borderRadius: 14, fontSize: 17, fontWeight: 600, textAlign: 'center', outline: 'none' }} />
+    <button onClick={() => live.joinStudent(code, nick)} disabled={live.busy} style={_liveBtnPri}>{live.busy ? tr({ uz: 'Ulanmoqda…', ru: 'Подключаемся…' }) : tr({ uz: "Qo'shilish →", ru: 'Присоединиться →' })}</button>
     {live.joinError && <div style={{ color: LT.accent, fontSize: 13, textAlign: 'center' }}>{live.joinError}</div>}
     <button onClick={() => { setRole('mentor'); setCode(''); }} title="Mentor" aria-label="Mentor" style={{ position: 'absolute', bottom: 10, right: 12, background: 'none', border: 'none', fontSize: 16, opacity: 0.3, cursor: 'pointer', lineHeight: 1, padding: 4 }}>🧑‍🏫</button>
   </div></div>);
@@ -278,22 +289,22 @@ function LiveBadge({ live, total }) {
     return () => { on = false; clearTimeout(t); };
   }, [live.mode, live.pin, live.ended]);
   if (live.mode === 'mentor') {
-    if (live.ended) return <div className="live-badge" style={_liveBadgeS}><span style={_liveDot(LT.ink3)} /> 🔓 O'quvchilar erkin qilindi</div>;
+    if (live.ended) return <div className="live-badge" style={_liveBadgeS}><span style={_liveDot(LT.ink3)} /> {tr({ uz: "🔓 O'quvchilar erkin qilindi", ru: '🔓 Ученики отпущены в свободный режим' })}</div>;
     return (<>
       {bigOpen && <LiveBigCode pin={live.pin} onClose={() => setBigOpen(false)} />}
       <div className="live-badge" style={_liveBadgeS}>
-        <span style={_liveDot(LT.success)} /> Kod: <b style={{ fontFamily: 'monospace', letterSpacing: '0.08em' }}>{fmtPin(live.pin)}</b>
+        <span style={_liveDot(LT.success)} /> {tr({ uz: 'Kod:', ru: 'Код:' })} <b style={{ fontFamily: 'monospace', letterSpacing: '0.08em' }}>{fmtPin(live.pin)}</b>
         {nPlayers !== null && <span style={{ color: LT.ink2 }}>👥 {nPlayers}</span>}
-        <button onClick={() => setBigOpen(true)} title="Kodni katta ko'rsatish" style={{ marginLeft: 6, background: LT.ink, color: '#fff', border: 'none', borderRadius: 99, padding: '4px 10px', fontSize: 12, fontWeight: 700, cursor: 'pointer', whiteSpace: 'nowrap' }}>📺 Ko'rsatish</button>
-        <button onClick={() => { if (window.confirm("O'quvchilarni ozod qilasizmi? Ular o'zlari erkin davom etadi.")) live.endSession(); }} style={{ background: LT.accentSoft, color: LT.accent, border: 'none', borderRadius: 99, padding: '4px 10px', fontSize: 12, fontWeight: 700, cursor: 'pointer', whiteSpace: 'nowrap' }}>🔓 Erkin qilish</button>
+        <button onClick={() => setBigOpen(true)} title={tr({ uz: "Kodni katta ko'rsatish", ru: 'Показать код крупно' })} style={{ marginLeft: 6, background: LT.ink, color: '#fff', border: 'none', borderRadius: 99, padding: '4px 10px', fontSize: 12, fontWeight: 700, cursor: 'pointer', whiteSpace: 'nowrap' }}>{tr({ uz: "📺 Ko'rsatish", ru: '📺 Показать' })}</button>
+        <button onClick={() => { if (window.confirm(tr({ uz: "O'quvchilarni ozod qilasizmi? Ular o'zlari erkin davom etadi.", ru: 'Отпустить учеников? Они продолжат урок самостоятельно.' }))) live.endSession(); }} style={{ background: LT.accentSoft, color: LT.accent, border: 'none', borderRadius: 99, padding: '4px 10px', fontSize: 12, fontWeight: 700, cursor: 'pointer', whiteSpace: 'nowrap' }}>{tr({ uz: '🔓 Erkin qilish', ru: '🔓 Отпустить' })}</button>
       </div>
     </>);
   }
   if (live.mode === 'student') {
-    if (live.status === 'ended') return <div className="live-badge" style={_liveBadgeS}><span style={_liveDot(LT.success)} /> 🔓 Erkin rejim — o'zingiz davom eting</div>;
-    if (!live.mentorAlive) return <div className="live-badge" style={_liveBadgeS}><span style={_liveDot(LT.ink3)} /> ⚠️ Mentor uzildi — erkin rejim</div>;
-    if (!live.connected) return <div className="live-badge" style={_liveBadgeS}><span style={_liveDot('#FFD380')} /> 🔄 Qayta ulanmoqda…</div>;
-    return <div className="live-badge" style={_liveBadgeS}><span style={_liveDot(LT.success)} /> 👨‍🏫 Mentor: {Math.min(live.mentorScreen + 1, total)} / {total}{live.nickname && <span style={{ color: LT.ink3 }}>· {live.nickname}</span>}</div>;
+    if (live.status === 'ended') return <div className="live-badge" style={_liveBadgeS}><span style={_liveDot(LT.success)} /> {tr({ uz: "🔓 Erkin rejim — o'zingiz davom eting", ru: '🔓 Свободный режим — продолжайте сами' })}</div>;
+    if (!live.mentorAlive) return <div className="live-badge" style={_liveBadgeS}><span style={_liveDot(LT.ink3)} /> {tr({ uz: '⚠️ Mentor uzildi — erkin rejim', ru: '⚠️ Ментор отключился — свободный режим' })}</div>;
+    if (!live.connected) return <div className="live-badge" style={_liveBadgeS}><span style={_liveDot('#FFD380')} /> {tr({ uz: '🔄 Qayta ulanmoqda…', ru: '🔄 Переподключаемся…' })}</div>;
+    return <div className="live-badge" style={_liveBadgeS}><span style={_liveDot(LT.success)} /> {tr({ uz: '👨‍🏫 Mentor:', ru: '👨‍🏫 Ментор:' })} {Math.min(live.mentorScreen + 1, total)} / {total}{live.nickname && <span style={{ color: LT.ink3 }}>· {live.nickname}</span>}</div>;
   }
   return null;
 }
@@ -425,13 +436,14 @@ const Stage = ({ children, eyebrow, screen, totalScreens = TOTAL_SCREENS, navCon
     </MentorCtx.Provider>
   );
 };
-const NavBack = ({ onPrev }) => <button className="btn-ghost" onClick={onPrev} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>Orqaga</button>;
-const NavNext = ({ disabled, label = 'Davom etish', onClick, optionalLive }) => {
+const NavBack = ({ onPrev }) => <button className="btn-ghost" onClick={onPrev} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Orqaga', ru: 'Назад' })}</button>;
+const NavNext = ({ disabled, label, onClick, optionalLive }) => {
+  label = label || tr({ uz: 'Davom etish', ru: 'Продолжить' });
   const gate = useContext(LiveGateCtx);
   const locked = !!(gate && gate.locked);
   const live = gate && gate.live;
   const freeRide = !!(optionalLive && live && live.mode === 'student' && live.status !== 'ended' && live.mentorAlive);
-  return <button className="btn-white-accent" disabled={(freeRide ? false : disabled) || locked} onClick={onClick} title={locked ? "Mentor hali bu sahifaga o'tmadi" : undefined} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)', marginLeft: 'auto' }}>{locked ? '⏳ Mentorni kuting' : (freeRide && disabled ? 'Davom etish' : label)}</button>;
+  return <button className="btn-white-accent" disabled={(freeRide ? false : disabled) || locked} onClick={onClick} title={locked ? tr({ uz: "Mentor hali bu sahifaga o'tmadi", ru: 'Ментор ещё не перешёл на эту страницу' }) : undefined} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)', marginLeft: 'auto' }}>{locked ? tr({ uz: '⏳ Mentorni kuting', ru: '⏳ Ждите ментора' }) : (freeRide && disabled ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : label)}</button>;
 };
 
 const FeedbackBlock = ({ show, isCorrect, neutral, children }) => {
@@ -458,35 +470,35 @@ const RcFlow = ({ items, sep = '→' }) => (
 // 📖 Qayta tushuntirish kartalari — SCORED test ekranlari (index bo'yicha) uchun. Til/matn sayqali 🎓 Metodist roli.
 const RECAPS = {
   4: {
-    title: "INSERT — jadvalga yangi mahsulot qo'shish",
+    title: { uz: "INSERT — jadvalga yangi mahsulot qo'shish", ru: 'INSERT — добавление нового товара в таблицу' },
     cards: [
-      { ic: "🛒", h: "INSERT INTO products", body: <>Yangi qator qo'shish buyrug'i <span className="mono">INSERT INTO products (...)</span> bilan boshlanadi — qaysi jadval va qaysi ustunlarga.</> },
-      { ic: "🧾", h: "VALUES (...) — qiymatlar", body: <><span className="mono">VALUES ('Mishka', 50000, 10)</span> — kiritiladigan qiymatlar. Matn qo'shtirnoq ichida, son raqam bilan.</> },
-      { ic: "➕", h: "Yangi mahsulot = yangi qator", body: <>Har bir <span className="mono">INSERT</span> jadvalga bitta <b>yangi qator</b> (mahsulot) qo'shadi — mavjudini o'zgartirmaydi.</>, ask: "Jadvalga yangi ma'lumot qo'shadigan buyruq qaysi?" },
+      { ic: "🛒", h: "INSERT INTO products", body: { uz: <>Yangi qator qo'shish buyrug'i <span className="mono">INSERT INTO products (...)</span> bilan boshlanadi — qaysi jadval va qaysi ustunlarga.</>, ru: <>Команда добавления новой строки начинается с <span className="mono">INSERT INTO products (...)</span> — в какую таблицу и в какие столбцы.</> } },
+      { ic: "🧾", h: { uz: "VALUES (...) — qiymatlar", ru: 'VALUES (...) — значения' }, body: { uz: <><span className="mono">VALUES ('Mishka', 50000, 10)</span> — kiritiladigan qiymatlar. Matn qo'shtirnoq ichida, son raqam bilan.</>, ru: <><span className="mono">VALUES ('Mishka', 50000, 10)</span> — вводимые значения. Текст в кавычках, число цифрами.</> } },
+      { ic: "➕", h: { uz: "Yangi mahsulot = yangi qator", ru: 'Новый товар = новая строка' }, body: { uz: <>Har bir <span className="mono">INSERT</span> jadvalga bitta <b>yangi qator</b> (mahsulot) qo'shadi — mavjudini o'zgartirmaydi.</>, ru: <>Каждый <span className="mono">INSERT</span> добавляет в таблицу одну <b>новую строку</b> (товар) — существующие не меняет.</> }, ask: { uz: "Jadvalga yangi ma'lumot qo'shadigan buyruq qaysi?", ru: 'Какая команда добавляет в таблицу новые данные?' } },
     ]
   },
   6: {
-    title: "SELECT — bazadan o'qish",
+    title: { uz: "SELECT — bazadan o'qish", ru: 'SELECT — чтение из базы' },
     cards: [
-      { ic: "👁️", h: "SELECT faqat o'qiydi", body: <><span className="mono">SELECT</span> ma'lumotni <b>ko'rsatadi</b>, hech narsani o'chirmaydi yoki o'zgartirmaydi.</> },
-      { ic: "✳️", h: "* = hamma ustun", body: <><span className="mono">SELECT * FROM products</span> — yulduzcha <b>barcha ustunlarni</b> so'raydi.</> },
-      { ic: "📋", h: "Tanlab olish", body: <>Faqat keraklisini ham so'rash mumkin: <span className="mono">SELECT nom, narx FROM products</span>.</>, ask: "SELECT buyrug'i ma'lumot bilan nima qiladi?" },
+      { ic: "👁️", h: { uz: "SELECT faqat o'qiydi", ru: 'SELECT только читает' }, body: { uz: <><span className="mono">SELECT</span> ma'lumotni <b>ko'rsatadi</b>, hech narsani o'chirmaydi yoki o'zgartirmaydi.</>, ru: <><span className="mono">SELECT</span> <b>показывает</b> данные, ничего не удаляет и не изменяет.</> } },
+      { ic: "✳️", h: { uz: "* = hamma ustun", ru: '* = все столбцы' }, body: { uz: <><span className="mono">SELECT * FROM products</span> — yulduzcha <b>barcha ustunlarni</b> so'raydi.</>, ru: <><span className="mono">SELECT * FROM products</span> — звёздочка запрашивает <b>все столбцы</b>.</> } },
+      { ic: "📋", h: { uz: "Tanlab olish", ru: 'Выбрать нужное' }, body: { uz: <>Faqat keraklisini ham so'rash mumkin: <span className="mono">SELECT nom, narx FROM products</span>.</>, ru: <>Можно запросить и только нужное: <span className="mono">SELECT nom, narx FROM products</span>.</> }, ask: { uz: "SELECT buyrug'i ma'lumot bilan nima qiladi?", ru: 'Что команда SELECT делает с данными?' } },
     ]
   },
   10: {
-    title: "UPDATE — qatorni o'zgartirish",
+    title: { uz: "UPDATE — qatorni o'zgartirish", ru: 'UPDATE — изменение строки' },
     cards: [
-      { ic: "🏷️", h: "SET — yangi qiymat", body: <><span className="mono">UPDATE products SET narx = 99000</span> — qaysi ustunni qanday qiymatga o'zgartirishni aytadi.</> },
-      { ic: "🎯", h: "WHERE — qaysi qator", body: <><span className="mono">WHERE id = 1</span> — <b>qaysi qatorni</b> o'zgartirishni aniqlaydi.</> },
-      { ic: "⚠️", h: "WHERE'siz — hammasi!", body: <><span className="mono">WHERE</span> unutilsa — <b>BARCHA</b> qator o'zgaradi. Shuning uchun UPDATE'da WHERE deyarli doim kerak.</>, ask: "Mahsulot narxini o'zgartirish uchun qaysi buyruq?" },
+      { ic: "🏷️", h: { uz: "SET — yangi qiymat", ru: 'SET — новое значение' }, body: { uz: <><span className="mono">UPDATE products SET narx = 99000</span> — qaysi ustunni qanday qiymatga o'zgartirishni aytadi.</>, ru: <><span className="mono">UPDATE products SET narx = 99000</span> — говорит, какой столбец на какое значение поменять.</> } },
+      { ic: "🎯", h: { uz: "WHERE — qaysi qator", ru: 'WHERE — какая строка' }, body: { uz: <><span className="mono">WHERE id = 1</span> — <b>qaysi qatorni</b> o'zgartirishni aniqlaydi.</>, ru: <><span className="mono">WHERE id = 1</span> — определяет, <b>какую строку</b> изменить.</> } },
+      { ic: "⚠️", h: { uz: "WHERE'siz — hammasi!", ru: 'Без WHERE — все сразу!' }, body: { uz: <><span className="mono">WHERE</span> unutilsa — <b>BARCHA</b> qator o'zgaradi. Shuning uchun UPDATE'da WHERE deyarli doim kerak.</>, ru: <>Забыли <span className="mono">WHERE</span> — изменятся <b>ВСЕ</b> строки. Поэтому в UPDATE почти всегда нужен WHERE.</> }, ask: { uz: "Mahsulot narxini o'zgartirish uchun qaysi buyruq?", ru: 'Какой командой изменить цену товара?' } },
     ]
   },
   13: {
-    title: "AI bilan ishlash — siz arxitektsiz",
+    title: { uz: "AI bilan ishlash — siz arxitektsiz", ru: 'Работа с ИИ — вы архитектор' },
     cards: [
-      { ic: "🤖", h: "AI yozadi, siz tekshirasiz", body: <>AI SQL'ni bir zumda yozadi — lekin uni <b>o'qib, to'g'riligini tekshirib</b> ishlatasiz.</> },
-      { ic: "🐛", h: "AI ham adashadi", body: <>Bitta harf xato (<span className="mono">product</span> o'rniga <span className="mono">products</span>) butun so'rovni ishlamas qiladi.</> },
-      { ic: "🏗️", h: "Siz — arxitektsiz", body: <>SQL'ni yoddan bilish shart emas. Muhimi — <b>tushunish va tekshirish</b>: manzil to'g'rimi, WHERE bormi.</>, ask: "AI sizga SQL yozib berdi — endi nima qilasiz?" },
+      { ic: "🤖", h: { uz: "AI yozadi, siz tekshirasiz", ru: 'ИИ пишет, вы проверяете' }, body: { uz: <>AI SQL'ni bir zumda yozadi — lekin uni <b>o'qib, to'g'riligini tekshirib</b> ishlatasiz.</>, ru: <>ИИ пишет SQL мгновенно — но вы <b>читаете и проверяете</b> его перед запуском.</> } },
+      { ic: "🐛", h: { uz: "AI ham adashadi", ru: 'ИИ тоже ошибается' }, body: { uz: <>Bitta harf xato (<span className="mono">product</span> o'rniga <span className="mono">products</span>) butun so'rovni ishlamas qiladi.</>, ru: <>Одна буква (<span className="mono">product</span> вместо <span className="mono">products</span>) — и весь запрос не работает.</> } },
+      { ic: "🏗️", h: { uz: "Siz — arxitektsiz", ru: 'Вы — архитектор' }, body: { uz: <>SQL'ni yoddan bilish shart emas. Muhimi — <b>tushunish va tekshirish</b>: manzil to'g'rimi, WHERE bormi.</>, ru: <>Зубрить SQL не нужно. Главное — <b>понимать и проверять</b>: верный ли адрес, есть ли WHERE.</> }, ask: { uz: "AI sizga SQL yozib berdi — endi nima qilasiz?", ru: 'ИИ написал вам SQL — что делаете дальше?' } },
     ]
   }
 };
@@ -509,23 +521,23 @@ function RecapOverlay({ screenIdx, onClose }) {
   return (
     <div className="rc-overlay">
       <div className="rc-head">
-        <span className="rc-tag">📖 Qayta tushuntirish</span>
-        <span className="rc-title">{rc.title}</span>
-        <button className="rc-x" onClick={onClose} aria-label="Yopish">✕</button>
+        <span className="rc-tag">{tr({ uz: '📖 Qayta tushuntirish', ru: '📖 Повторное объяснение' })}</span>
+        <span className="rc-title">{tr(rc.title)}</span>
+        <button className="rc-x" onClick={onClose} aria-label={tr({ uz: 'Yopish', ru: 'Закрыть' })}>✕</button>
       </div>
       <div className="rc-card" key={i}>
         <div className="rc-ic">{card.ic}</div>
-        <h2 className="rc-h">{card.h}</h2>
-        <p className="rc-body">{card.body}</p>
+        <h2 className="rc-h">{tr(card.h)}</h2>
+        <p className="rc-body">{tr(card.body)}</p>
         {card.vis && <div className="rc-vis">{card.vis}</div>}
-        {card.ask && <div className="rc-ask">🗣️ Sinfga savol: {card.ask}</div>}
+        {card.ask && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
       </div>
       <div className="rc-nav">
-        <button className="rc-btn ghost" disabled={i === 0} onClick={() => setI(i - 1)}>← Oldingi</button>
-        <div className="rc-dots">{rc.cards.map((_, k) => <button key={k} className={`rc-dot ${k === i ? 'cur' : k < i ? 'fill' : ''}`} onClick={() => setI(k)} aria-label={`${k + 1}-karta`} />)}</div>
+        <button className="rc-btn ghost" disabled={i === 0} onClick={() => setI(i - 1)}>{tr({ uz: '← Oldingi', ru: '← Предыдущая' })}</button>
+        <div className="rc-dots">{rc.cards.map((_, k) => <button key={k} className={`rc-dot ${k === i ? 'cur' : k < i ? 'fill' : ''}`} onClick={() => setI(k)} aria-label={`${k + 1}${tr({ uz: '-karta', ru: '-я карточка' })}`} />)}</div>
         {last
-          ? <button className="rc-btn done" onClick={onClose}>✓ Tushunarli — davom etamiz</button>
-          : <button className="rc-btn" onClick={() => setI(i + 1)}>Keyingisi →</button>}
+          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: '✓ Tushunarli — davom etamiz', ru: '✓ Понятно — продолжаем' })}</button>
+          : <button className="rc-btn" onClick={() => setI(i + 1)}>{tr({ uz: 'Keyingisi →', ru: 'Следующая →' })}</button>}
       </div>
     </div>
   );
@@ -560,25 +572,25 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
   return (
     <div className="mstats fade-up">
       <div className="mstats-head">
-        <span className="mstats-lbl">📊 Jonli natija</span>
-        <span className="mstats-n">{allIn ? '✓ Hamma javob berdi' : <>Javob berdi: <b>{answered}</b> / {total}</>}</span>
-        {!reveal && onReveal && <button className={`mstats-reveal ${allIn ? 'ready' : ''}`} onClick={onReveal}>🔓 Natijani ochish</button>}
+        <span className="mstats-lbl">{tr({ uz: '📊 Jonli natija', ru: '📊 Живой результат' })}</span>
+        <span className="mstats-n">{allIn ? tr({ uz: '✓ Hamma javob berdi', ru: '✓ Все ответили' }) : <>{tr({ uz: 'Javob berdi:', ru: 'Ответили:' })} <b>{answered}</b> / {total}</>}</span>
+        {!reveal && onReveal && <button className={`mstats-reveal ${allIn ? 'ready' : ''}`} onClick={onReveal}>{tr({ uz: '🔓 Natijani ochish', ru: '🔓 Открыть результат' })}</button>}
       </div>
       <div className="mstats-prog"><span className={`mstats-prog-fill ${allIn ? 'full' : ''}`} style={{ width: `${total ? Math.round((answered / total) * 100) : 0}%` }} /></div>
       {reveal ? (
         <div className="mstats-big">
-          <div className="mstats-chip okc"><span className="mstats-chip-n">{ok}</span><span className="mstats-chip-t">to'g'ri ✅</span></div>
-          <div className="mstats-chip badc"><span className="mstats-chip-n">{bad}</span><span className="mstats-chip-t">xato ❌</span></div>
-          <div className="mstats-chip waitc"><span className="mstats-chip-n">{total - answered}</span><span className="mstats-chip-t">kutilmoqda ⏳</span></div>
+          <div className="mstats-chip okc"><span className="mstats-chip-n">{ok}</span><span className="mstats-chip-t">{tr({ uz: "to'g'ri ✅", ru: 'верно ✅' })}</span></div>
+          <div className="mstats-chip badc"><span className="mstats-chip-n">{bad}</span><span className="mstats-chip-t">{tr({ uz: 'xato ❌', ru: 'ошибка ❌' })}</span></div>
+          <div className="mstats-chip waitc"><span className="mstats-chip-n">{total - answered}</span><span className="mstats-chip-t">{tr({ uz: 'kutilmoqda ⏳', ru: 'ожидаем ⏳' })}</span></div>
         </div>
       ) : (
         <div className="mstats-big">
-          <div className="mstats-chip ansc"><span className="mstats-chip-n">{answered}</span><span className="mstats-chip-t">javob berdi 📨</span></div>
-          <div className="mstats-chip waitc"><span className="mstats-chip-n">{total - answered}</span><span className="mstats-chip-t">kutilmoqda ⏳</span></div>
+          <div className="mstats-chip ansc"><span className="mstats-chip-n">{answered}</span><span className="mstats-chip-t">{tr({ uz: 'javob berdi 📨', ru: 'ответили 📨' })}</span></div>
+          <div className="mstats-chip waitc"><span className="mstats-chip-n">{total - answered}</span><span className="mstats-chip-t">{tr({ uz: 'kutilmoqda ⏳', ru: 'ожидаем ⏳' })}</span></div>
         </div>
       )}
       {!reveal && answered > 0 && (
-        <p className="mstats-hidden">🙈 Kim nimani tanlagani va ✅/❌ soni yashirin — «Natijani ochish» bosilganda sizda ham, o'quvchilar ekranida ham birdan ochiladi.</p>
+        <p className="mstats-hidden">{tr({ uz: "🙈 Kim nimani tanlagani va ✅/❌ soni yashirin — «Natijani ochish» bosilganda sizda ham, o'quvchilar ekranida ham birdan ochiladi.", ru: '🙈 Кто что выбрал и число ✅/❌ скрыто — при нажатии «Открыть результат» откроется сразу и у вас, и на экранах учеников.' })}</p>
       )}
       {reveal && <div className="mstats-bars">
         {options.map((opt, i) => {
@@ -590,7 +602,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
             <div key={i} className={`mstats-row ${reveal && !isC ? 'dimmed' : ''}`}>
               <span className="mstats-abc" style={{ background: col }}>{isC ? '✓' : String.fromCharCode(65 + i)}</span>
               <span className="mstats-track"><span className="mstats-fill" style={{ width: `${answered ? Math.round((n / maxN) * 100) : 0}%`, background: col }} /></span>
-              <span className="mono mstats-count" style={isC ? { color: T.success, fontWeight: 800 } : undefined}>{n > 0 ? `${n} o'quvchi · ${pct}%` : '—'}</span>
+              <span className="mono mstats-count" style={isC ? { color: T.success, fontWeight: 800 } : undefined}>{n > 0 ? `${n} ${tr({ uz: "o'quvchi", ru: 'учен.' })} · ${pct}%` : '—'}</span>
             </div>
           );
         })}
@@ -600,22 +612,22 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
         const level = answered < RECAP_MIN_ANSWERS ? 'few' : pct < RECAP_NEED_PCT ? 'need' : pct < RECAP_GOOD_PCT ? 'maybe' : 'good';
         return (
           <div className={`mstats-verdict ${level}`}>
-            {level === 'need' && <p className="mstats-verdict-t">⚠️ Faqat <b>{pct}%</b> to'g'ri — bu mavzu sinfga tushunarsiz qolgan. Davom etishdan oldin qisqa takrorlash tavsiya etiladi.</p>}
-            {level === 'maybe' && <p className="mstats-verdict-t">🟡 <b>{pct}%</b> to'g'ri — yomon emas. Xohlasangiz, davom etishdan oldin qisqa takrorlab oling.</p>}
-            {level === 'good' && <p className="mstats-verdict-t">✅ <b>{pct}%</b> to'g'ri — sinf mavzuni o'zlashtirdi. Bemalol davom eting!</p>}
-            {level === 'few' && <p className="mstats-verdict-t">Javob berganlar kam ({answered} ta) — foiz bo'yicha xulosa chiqarish qiyin. O'zingiz baholang.</p>}
+            {level === 'need' && <p className="mstats-verdict-t">{tr({ uz: <>⚠️ Faqat <b>{pct}%</b> to'g'ri — bu mavzu sinfga tushunarsiz qolgan. Davom etishdan oldin qisqa takrorlash tavsiya etiladi.</>, ru: <>⚠️ Только <b>{pct}%</b> верно — эта тема осталась для класса непонятной. Перед продолжением рекомендуется короткое повторение.</> })}</p>}
+            {level === 'maybe' && <p className="mstats-verdict-t">{tr({ uz: <>🟡 <b>{pct}%</b> to'g'ri — yomon emas. Xohlasangiz, davom etishdan oldin qisqa takrorlab oling.</>, ru: <>🟡 <b>{pct}%</b> верно — неплохо. Если хотите, коротко повторите перед продолжением.</> })}</p>}
+            {level === 'good' && <p className="mstats-verdict-t">{tr({ uz: <>✅ <b>{pct}%</b> to'g'ri — sinf mavzuni o'zlashtirdi. Bemalol davom eting!</>, ru: <>✅ <b>{pct}%</b> верно — класс освоил тему. Смело продолжайте!</> })}</p>}
+            {level === 'few' && <p className="mstats-verdict-t">{tr({ uz: <>Javob berganlar kam ({answered} ta) — foiz bo'yicha xulosa chiqarish qiyin. O'zingiz baholang.</>, ru: <>Ответивших мало ({answered}) — по проценту сложно делать вывод. Оцените сами.</> })}</p>}
           </div>
         );
       })()}
       {waiting.length > 0 && answered > 0 && (
         <div className="mstats-waitrow">
-          <span className="mstats-wait-lbl">⏳ Kutilmoqda:</span>
+          <span className="mstats-wait-lbl">{tr({ uz: '⏳ Kutilmoqda:', ru: '⏳ Ожидаем:' })}</span>
           {waiting.slice(0, 8).map(p => <span key={p.id} className="mstats-wait-chip">{p.nickname}</span>)}
           {waiting.length > 8 && <span className="mstats-wait-chip more">+{waiting.length - 8}</span>}
         </div>
       )}
-      {reveal && struggling && <p className="mstats-warn">⚠️ Ko'pchilik xato qildi — bu mavzu tushunarsiz bo'lgan ko'rinadi. Qayta tushuntirish tavsiya etiladi.</p>}
-      {answered === 0 && <p className="mstats-wait">O'quvchilar javoblari shu yerda jonli ko'rinadi…</p>}
+      {reveal && struggling && <p className="mstats-warn">{tr({ uz: "⚠️ Ko'pchilik xato qildi — bu mavzu tushunarsiz bo'lgan ko'rinadi. Qayta tushuntirish tavsiya etiladi.", ru: '⚠️ Большинство ошиблось — похоже, тема осталась непонятной. Рекомендуется объяснить ещё раз.' })}</p>}
+      {answered === 0 && <p className="mstats-wait">{tr({ uz: "O'quvchilar javoblari shu yerda jonli ko'rinadi…", ru: 'Ответы учеников появятся здесь в реальном времени…' })}</p>}
     </div>
   );
 }
@@ -660,10 +672,10 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
   const revealed = !oneShot || !!(live && (live.revealScreen === screen || live.mentorScreen > screen || live.status === 'ended' || !live.mentorAlive));
   const waiting = oneShot && solved && !revealed; // javob qotdi — natija mentordan kutilmoqda
   return (
-    <Stage eyebrow={eyebrow} screen={screen} narrow audioState={audioText ? audio : undefined} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={isMentorLive ? !mReveal : !solved} label={isMentorLive ? (mReveal ? 'Davom etish' : 'Avval natijani oching') : solved ? 'Davom etish' : (oneShot ? 'Javob tanlang' : "To'g'ri javobni toping")} onClick={onNext} /></>}>
+    <Stage eyebrow={eyebrow} screen={screen} narrow audioState={audioText ? audio : undefined} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={isMentorLive ? !mReveal : !solved} label={isMentorLive ? (mReveal ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Avval natijani oching', ru: 'Сначала откройте результат' })) : solved ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : (oneShot ? tr({ uz: 'Javob tanlang', ru: 'Выберите ответ' }) : tr({ uz: "To'g'ri javobni toping", ru: 'Найдите верный ответ' }))} onClick={onNext} /></>}>
       <div className="screen" style={{ justifyContent: isMentorLive ? 'flex-start' : 'center', gap: 'clamp(16px,2.5vw,24px)' }}>
         <div className="fade-up">{question}</div>
-        {oneShot && !solved && <p className="small mono fade-up" style={{ margin: '-8px 0 0', color: T.accent, fontWeight: 600 }}>⚡ Jonli dars — bitta urinish, o'ylab bosing!</p>}
+        {oneShot && !solved && <p className="small mono fade-up" style={{ margin: '-8px 0 0', color: T.accent, fontWeight: 600 }}>{tr({ uz: "⚡ Jonli dars — bitta urinish, o'ylab bosing!", ru: '⚡ Живой урок — одна попытка, нажимайте подумав!' })}</p>}
         <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
           {options.map((opt, i) => {
             let cls = 'option';
@@ -678,7 +690,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
             return (
               <button key={i} className={cls} disabled={solved || isMentorLive} onClick={() => pick(i)} style={{ padding: 'clamp(12px,1.8vw,16px) clamp(14px,2.2vw,20px)', fontSize: 'clamp(14px,1.7vw,16px)', display: 'flex', alignItems: 'center', gap: 12 }}>
                 <span className="mono small" style={{ minWidth: 20, color: showGreenLetter ? T.success : T.ink3 }}>{String.fromCharCode(65 + i)}</span>
-                <span style={{ flex: 1 }}>{fmtCode(opt)}</span>
+                <span style={{ flex: 1 }}>{fmtCode(tr(opt))}</span>
               </button>
             );
           })}
@@ -686,26 +698,26 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
         <FeedbackBlock show={isMentorLive ? mReveal : picked !== null} isCorrect={isMentorLive ? true : (solved && !wrongLocked)} neutral={waiting}>
           <p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
             {isMentorLive
-              ? <>✓ To'g'ri javob: {String.fromCharCode(65 + correctIdx)} — {fmtCode(options[correctIdx])}</>
+              ? <>{tr({ uz: "✓ To'g'ri javob:", ru: '✓ Верный ответ:' })} {String.fromCharCode(65 + correctIdx)} — {fmtCode(tr(options[correctIdx]))}</>
               : waiting
-                ? '📨 Javobingiz qabul qilindi'
+                ? tr({ uz: '📨 Javobingiz qabul qilindi', ru: '📨 Ваш ответ принят' })
                 : wrongLocked
-                  ? <>To'g'ri javob: {String.fromCharCode(65 + correctIdx)} — {fmtCode(options[correctIdx])}</>
-                  : solved ? "To'g'ri" : "Qaytadan urinib ko'ring"}
+                  ? <>{tr({ uz: "To'g'ri javob:", ru: 'Верный ответ:' })} {String.fromCharCode(65 + correctIdx)} — {fmtCode(tr(options[correctIdx]))}</>
+                  : solved ? tr({ uz: "To'g'ri", ru: 'Верно' }) : tr({ uz: "Qaytadan urinib ko'ring", ru: 'Попробуйте ещё раз' })}
           </p>
           <p className="body" style={{ margin: 0 }}>
             {isMentorLive
-              ? fmtCode(explainCorrect)
+              ? fmtCode(tr(explainCorrect))
               : waiting
-                ? "Hozir to'g'ri javobni bilib olasiz."
+                ? tr({ uz: "Hozir to'g'ri javobni bilib olasiz.", ru: 'Сейчас вы узнаете верный ответ.' })
                 : wrongLocked
-                  ? fmtCode(explainWrong[picked] ?? explainWrong.default)
-                  : solved ? fmtCode(explainCorrect) : fmtCode(explainWrong[picked] ?? explainWrong.default)}
+                  ? fmtCode(tr(explainWrong[picked] ?? explainWrong.default))
+                  : solved ? fmtCode(tr(explainCorrect)) : fmtCode(tr(explainWrong[picked] ?? explainWrong.default))}
           </p>
           {/* Xato qilgan o'quvchi mavzuni qisqa kartalarda qayta ko'radi.
               Jonli darsda — javob sirini saqlash uchun faqat reveal'dan keyin chiqadi. */}
           {hasRecap && !isMentorLive && firstCorrectRef.current === false && (!oneShot || revealed) && (
-            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>📖 Qisqa takrorlash — mavzuni yana bir ko'rish</button>
+            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: "📖 Qisqa takrorlash — mavzuni yana bir ko'rish", ru: '📖 Короткое повторение — взглянуть на тему ещё раз' })}</button>
           )}
         </FeedbackBlock>
         {isMentorLive && <MentorTestStats live={live} screenIdx={screen} options={options} correctIdx={correctIdx} reveal={mReveal} onReveal={doReveal} onOpenRecap={hasRecap ? () => setRecapOpen(true) : null} />}
@@ -727,7 +739,7 @@ function ScoreRing({ correct, total }) {
         <circle cx="64" cy="64" r={R} fill="none" stroke={T.ink3 + '40'} strokeWidth={ST} />
         <circle cx="64" cy="64" r={R} fill="none" stroke={col} strokeWidth={ST} strokeLinecap="round" strokeDasharray={C} strokeDashoffset={off} transform="rotate(-90 64 64)" style={{ transition: 'stroke-dashoffset 1s cubic-bezier(.4,0,.2,1)' }} />
       </svg>
-      <div className="ring-center"><div className="ring-num"><span style={{ color: col }}>{correct}</span><span className="ring-den">/{total}</span></div><div className="ring-lbl">to'g'ri javob</div></div>
+      <div className="ring-center"><div className="ring-num"><span style={{ color: col }}>{correct}</span><span className="ring-den">/{total}</span></div><div className="ring-lbl">{tr({ uz: "to'g'ri javob", ru: 'верных ответов' })}</div></div>
     </div>
   );
 }
@@ -746,7 +758,7 @@ const Zoomable = ({ children }) => {
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
       <div className={`zoomable ${big ? 'zoom-on' : ''}`}>
-        <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? 'Kichraytirish' : 'Kattalashtirish'} title={big ? 'Kichraytirish' : 'Kattalashtirish'}>{big ? '✕' : '⛶'}</button>
+        <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>
         {children}
       </div>
     </>
@@ -764,7 +776,7 @@ const Mentor = ({ children }) => {
         <img src={MENTOR_IMG} alt="" />
       </div>
       <div className="mentor-col">
-        <span className="mentor-name">Mentor{collapsed && <span className="mentor-cue"> · ko'rsatmani ochish ▾</span>}</span>
+        <span className="mentor-name">{tr({ uz: 'Mentor', ru: 'Ментор' })}{collapsed && <span className="mentor-cue"> · {tr({ uz: "ko'rsatmani ochish ▾", ru: 'открыть подсказку ▾' })}</span>}</span>
         <div className="mentor-msg body">{children}</div>
       </div>
     </div>
@@ -807,7 +819,7 @@ const DataTable = ({ cols, rows, hiRow, hiCol, onCol, onRow, flashRi, flashCell,
       </thead>
       <tbody>
         {rows.length === 0
-          ? <tr><td colSpan={cols.length} style={{ color: T.ink3, fontStyle: 'italic', textAlign: 'center' }}>— jadval bo'sh (0 qator) —</td></tr>
+          ? <tr><td colSpan={cols.length} style={{ color: T.ink3, fontStyle: 'italic', textAlign: 'center' }}>{tr({ uz: "— jadval bo'sh (0 qator) —", ru: '— таблица пуста (0 строк) —' })}</td></tr>
           : rows.map((r, ri) => (
             <tr key={r.id ?? ri} className={`row-in ${hiRow === ri ? 'hi' : ''} ${flashRi === ri ? 'flash-green' : ''} ${exitRi === ri ? 'deleting' : ''} ${dimFn && dimFn(r) ? 'dimmed' : ''} ${onRow ? 'click' : ''}`} onClick={onRow ? () => onRow(ri) : undefined}>
               {cols.map(c => <td key={c} className={`${hiCol === c ? 'hi' : ''} ${(flashCell && flashCell.ri === ri && flashCell.col === c) ? 'num-flash' : ''}`}>{c === 'narx' ? fmtNarx(r[c]) : String(r[c])}</td>)}
@@ -829,11 +841,11 @@ const SqlCode = ({ q, mini }) => {
 
 // SQL KONSOLI — bu darsning markaziy widgeti. So'rovni ko'rsatadi + ▶ Run tugmasi.
 // Natijani (jadval yoki status) ekran o'zi joylashtiradi (children orqali yoki yonida).
-const SqlRunner = ({ query, ran, onRun, runLabel = '▶ Ishga tushirish', disabled }) => (
+const SqlRunner = ({ query, ran, onRun, runLabel, disabled }) => (
   <div className="srunner">
     <SqlCode q={query} />
-    {!ran && <button className="btn srun-btn" disabled={disabled} onClick={onRun}>{runLabel}</button>}
-    {ran && <div className="srun-done">✓ Bajarildi</div>}
+    {!ran && <button className="btn srun-btn" disabled={disabled} onClick={onRun}>{runLabel || tr({ uz: '▶ Ishga tushirish', ru: '▶ Запустить' })}</button>}
+    {ran && <div className="srun-done">{tr({ uz: '✓ Bajarildi', ru: '✓ Выполнено' })}</div>}
   </div>
 );
 
@@ -859,39 +871,39 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
   const tried = seen.has('sayt') && seen.has('baza');
   const swap = (v) => { setView(v); setSeen(prev => { const s = new Set(prev); s.add(v); return s; }); };
   const OPTS = [
-    { id: 'a', label: "Saytning HTML kodida — har mahsulot qo'lda yozilgan" },
-    { id: 'b', label: "Ma'lumotlar bazasida (PostgreSQL) — server o'qib chiqaradi" },
-    { id: 'c', label: "Brauzer xotirasida — saytni yopsangiz, yo'qoladi" }
+    { id: 'a', label: tr({ uz: "Saytning HTML kodida — har mahsulot qo'lda yozilgan", ru: 'В HTML-коде сайта — каждый товар вписан вручную' }) },
+    { id: 'b', label: tr({ uz: "Ma'lumotlar bazasida (PostgreSQL) — server o'qib chiqaradi", ru: 'В базе данных (PostgreSQL) — сервер читает её и отдаёт' }) },
+    { id: 'c', label: tr({ uz: "Brauzer xotirasida — saytni yopsangiz, yo'qoladi", ru: 'В памяти браузера — закроете сайт, и всё пропадёт' }) }
   ];
   const correct = 'b';
   const pick = (v) => { if (picked !== null || !tried) return; setPicked(v); onAnswer(screen, { stage: 'hook', screenIdx: screen, picked: v, correct: v === correct }); };
   return (
-    <Stage eyebrow="Kirish" screen={screen} audioState={audio} navContent={<NavNext optionalLive disabled={picked === null} label="Davom etish" onClick={onNext} />}>
+    <Stage eyebrow={tr({ uz: 'Kirish', ru: 'Введение' })} screen={screen} audioState={audio} navContent={<NavNext optionalLive disabled={picked === null} label={tr({ uz: 'Davom etish', ru: 'Продолжить' })} onClick={onNext} />}>
       <div className="screen">
-        <h1 className="title h-title fade-up" style={{ maxWidth: 860 }}>Do'kondagi <span className="italic" style={{ color: T.accent }}>minglab mahsulot</span> aslida qayerda saqlanadi?</h1>
-        <Mentor>O'tgan darsda server qurdik — u so'rovga javob beradi. Lekin mahsulotlar, narxlar, buyurtmalar <b style={{ color: T.ink }}>qayerda saqlanadi</b>? Saytni ko'ring, keyin <b style={{ color: T.accent }}>ortidagi bazani</b> oching — bir xil ma'lumot, ikki tomondan.</Mentor>
+        <h1 className="title h-title fade-up" style={{ maxWidth: 860 }}>{tr({ uz: <>Do'kondagi <span className="italic" style={{ color: T.accent }}>minglab mahsulot</span> aslida qayerda saqlanadi?</>, ru: <>Где на самом деле хранятся <span className="italic" style={{ color: T.accent }}>тысячи товаров</span> магазина?</> })}</h1>
+        <Mentor>{tr({ uz: <>O'tgan darsda server qurdik — u so'rovga javob beradi. Lekin mahsulotlar, narxlar, buyurtmalar <b style={{ color: T.ink }}>qayerda saqlanadi</b>? Saytni ko'ring, keyin <b style={{ color: T.accent }}>ortidagi bazani</b> oching — bir xil ma'lumot, ikki tomondan.</>, ru: <>На прошлом уроке мы собрали сервер — он отвечает на запросы. Но <b style={{ color: T.ink }}>где хранятся</b> товары, цены, заказы? Посмотрите на сайт, а потом откройте <b style={{ color: T.accent }}>базу за ним</b> — одни и те же данные с двух сторон.</> })}</Mentor>
         <Zoomable>
         <Split>
           <Col>
             <div className="fade-up delay-1" style={{ display: 'flex', gap: 8 }}>
-              <button className={`chip ${view === 'sayt' ? 'chip-on' : ''}`} onClick={() => swap('sayt')}>Sayt {seen.has('sayt') ? '✓' : ''}</button>
-              <button className={`chip ${view === 'baza' ? 'chip-on' : ''}`} onClick={() => swap('baza')}>Ortidagi baza {seen.has('baza') ? '✓' : ''}</button>
+              <button className={`chip ${view === 'sayt' ? 'chip-on' : ''}`} onClick={() => swap('sayt')}>{tr({ uz: 'Sayt', ru: 'Сайт' })} {seen.has('sayt') ? '✓' : ''}</button>
+              <button className={`chip ${view === 'baza' ? 'chip-on' : ''}`} onClick={() => swap('baza')}>{tr({ uz: 'Ortidagi baza', ru: 'База за ним' })} {seen.has('baza') ? '✓' : ''}</button>
             </div>
             {view === 'sayt'
-              ? <Win title="zakaz-shop.uz — onlayn do'kon" minH={172}>
+              ? <Win title={tr({ uz: "zakaz-shop.uz — onlayn do'kon", ru: 'zakaz-shop.uz — онлайн-магазин' })} minH={172}>
                   <div className="demo-swap shopmock">
                     {PRODUCTS.map(p => (
-                      <div key={p.id} className="shop-card"><div className="shop-name">{p.nom}</div><div className="shop-narx">{fmtNarx(p.narx)} so'm</div><button className="shop-buy">Savatga</button></div>
+                      <div key={p.id} className="shop-card"><div className="shop-name">{p.nom}</div><div className="shop-narx">{fmtNarx(p.narx)} {tr({ uz: "so'm", ru: 'сум' })}</div><button className="shop-buy">{tr({ uz: 'Savatga', ru: 'В корзину' })}</button></div>
                     ))}
                   </div>
                 </Win>
-              : <Win title="PostgreSQL — products jadvali" minH={172} hotTitle>
+              : <Win title={tr({ uz: 'PostgreSQL — products jadvali', ru: 'PostgreSQL — таблица products' })} minH={172} hotTitle>
                   <div className="demo-swap"><DataTable cols={PCOLS} rows={PRODUCTS} /></div>
                 </Win>}
-            <p className="mono small" style={{ margin: 0, color: view === 'sayt' ? T.ink2 : T.accent }}>{view === 'sayt' ? 'Foydalanuvchi ko\'radigan chiroyli tomon' : 'Ma\'lumot qator-ustun bo\'lib bazada yotadi'}</p>
+            <p className="mono small" style={{ margin: 0, color: view === 'sayt' ? T.ink2 : T.accent }}>{view === 'sayt' ? tr({ uz: "Foydalanuvchi ko'radigan chiroyli tomon", ru: 'Красивая сторона, которую видит пользователь' }) : tr({ uz: "Ma'lumot qator-ustun bo'lib bazada yotadi", ru: 'Данные лежат в базе строками и столбцами' })}</p>
           </Col>
           <Col>
-            <p className="eyebrow fade-up delay-2" style={{ color: T.ink2, margin: 0 }}>Sizningcha mahsulotlar asosan qayerda saqlanadi?</p>
+            <p className="eyebrow fade-up delay-2" style={{ color: T.ink2, margin: 0 }}>{tr({ uz: 'Sizningcha mahsulotlar asosan qayerda saqlanadi?', ru: 'Как вы думаете, где в основном хранятся товары?' })}</p>
             <div className="fade-up delay-3" style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
               {OPTS.map(o => {
                 const on = picked === o.id;
@@ -903,8 +915,8 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
                 );
               })}
             </div>
-            {!tried && <p className="small" style={{ color: T.ink3, fontStyle: 'italic', margin: 0 }}>Avval ikkala tomonni bosib ko'ring ←</p>}
-            {picked !== null && <p className="hook-ack fade-step">{picked === correct ? <>To'g'ri! Ma'lumot <b>bazada</b> (PostgreSQL) saqlanadi. Sayt va server undan o'qib chiqaradi.</> : <>Aslida ma'lumot <b>bazada</b> (PostgreSQL) yashaydi — sayt yopilsa ham yo'qolmaydi. Bugun o'sha bazani o'zimiz boshqarishni o'rganamiz.</>}</p>}
+            {!tried && <p className="small" style={{ color: T.ink3, fontStyle: 'italic', margin: 0 }}>{tr({ uz: "Avval ikkala tomonni bosib ko'ring ←", ru: 'Сначала нажмите на обе стороны ←' })}</p>}
+            {picked !== null && <p className="hook-ack fade-step">{picked === correct ? tr({ uz: <>To'g'ri! Ma'lumot <b>bazada</b> (PostgreSQL) saqlanadi. Sayt va server undan o'qib chiqaradi.</>, ru: <>Верно! Данные хранятся <b>в базе</b> (PostgreSQL). Сайт и сервер читают их оттуда.</> }) : tr({ uz: <>Aslida ma'lumot <b>bazada</b> (PostgreSQL) yashaydi — sayt yopilsa ham yo'qolmaydi. Bugun o'sha bazani o'zimiz boshqarishni o'rganamiz.</>, ru: <>На самом деле данные живут <b>в базе</b> (PostgreSQL) — даже если закрыть сайт, они не пропадут. Сегодня мы сами научимся управлять этой базой.</> })}</p>}
           </Col>
         </Split>
         </Zoomable>
@@ -916,47 +928,47 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
 // ===== SCREEN 1 — REJA =====
 const Screen1 = ({ screen, onNext, onPrev }) => {
   const STEPS = [
-    { text: "Jadval yaratamiz", tag: 'CREATE TABLE' },
-    { text: "Mahsulot qo'shamiz", tag: 'INSERT' },
-    { text: "Ko'ramiz va qidiramiz", tag: 'SELECT · WHERE' },
-    { text: "O'zgartiramiz va o'chiramiz", tag: 'UPDATE · DELETE' },
-    { text: "AI bilan ishlaymiz", tag: 'so\'ra · tekshir' }
+    { text: tr({ uz: 'Jadval yaratamiz', ru: 'Создаём таблицу' }), tag: 'CREATE TABLE' },
+    { text: tr({ uz: "Mahsulot qo'shamiz", ru: 'Добавляем товар' }), tag: 'INSERT' },
+    { text: tr({ uz: "Ko'ramiz va qidiramiz", ru: 'Смотрим и ищем' }), tag: 'SELECT · WHERE' },
+    { text: tr({ uz: "O'zgartiramiz va o'chiramiz", ru: 'Меняем и удаляем' }), tag: 'UPDATE · DELETE' },
+    { text: tr({ uz: 'AI bilan ishlaymiz', ru: 'Работаем с ИИ' }), tag: tr({ uz: "so'ra · tekshir", ru: 'попроси · проверь' }) }
   ];
   const audio = useAudio([{ id: 's1', text: "Bugun haqiqiy bazani o'zingiz boshqarasiz. Beshta qadam bor: jadval yaratamiz, mahsulot qo'shamiz, ko'ramiz va qidiramiz, o'zgartiramiz va o'chiramiz, oxirida esa AI bilan ishlaymiz.", trigger: 'on_mount', waits_for: null }]);
   const isNarrow = useIsMobile(768);
   const [showSteps, setShowSteps] = useState(false);
   const PreviewBlock = (
     <Col>
-      <p className="flow-label">Bugun shu jadval ustida ishlaymiz</p>
-      <Win title="PostgreSQL — products jadvali" minH={150}>
+      <p className="flow-label">{tr({ uz: 'Bugun shu jadval ustida ishlaymiz', ru: 'Сегодня работаем вот с этой таблицей' })}</p>
+      <Win title={tr({ uz: 'PostgreSQL — products jadvali', ru: 'PostgreSQL — таблица products' })} minH={150}>
         <DataTable cols={PCOLS} rows={PRODUCTS} />
       </Win>
-      <p className="mono small" style={{ color: T.accent, margin: 0 }}>→ qo'shamiz · ko'ramiz · o'zgartiramiz · o'chiramiz</p>
+      <p className="mono small" style={{ color: T.accent, margin: 0 }}>{tr({ uz: "→ qo'shamiz · ko'ramiz · o'zgartiramiz · o'chiramiz", ru: '→ добавим · посмотрим · изменим · удалим' })}</p>
     </Col>
   );
   const StepsBlock = (
     <Col>
-      <p className="flow-label">Bugungi 5 qadam</p>
+      <p className="flow-label">{tr({ uz: 'Bugungi 5 qadam', ru: '5 шагов на сегодня' })}</p>
       <ol className="roadmap">
         {STEPS.map((s, i) => (<li key={i} className="step-card fade-up" style={{ animationDelay: `${0.08 + i * 0.05}s` }}><span className="step-num">{String(i + 1).padStart(2, '0')}</span><span className="step-body"><span className="step-text">{s.text}</span>{s.tag && <span className="step-tag">{s.tag}</span>}</span></li>))}
       </ol>
     </Col>
   );
   return (
-    <Stage eyebrow="Reja" screen={screen} audioState={audio} mentorStatic navContent={<><NavBack onPrev={onPrev} /><NavNext label="Boshlaymiz →" onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Reja', ru: 'План' })} screen={screen} audioState={audio} mentorStatic navContent={<><NavBack onPrev={onPrev} /><NavNext label={tr({ uz: 'Boshlaymiz →', ru: 'Начинаем →' })} onClick={onNext} /></>}>
       <div className="screen">
-        <div className="head"><h2 className="title h-title fade-up">Bugun <span className="italic" style={{ color: T.accent }}>haqiqiy bazani</span> o'zimiz boshqaramiz</h2></div>
-        <Mentor>Ishonasizmi — dars oxirida siz bazaga <b style={{ color: T.ink }}>o'z mahsulotingizni</b> qo'sha olasiz. SQL — bu baza bilan gaplashish tili. Yoddan bilish shart emas — <b style={{ color: T.ink }}>tushunish va tekshirish</b> muhim, qolganiga AI yordam beradi.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Bugun <span className="italic" style={{ color: T.accent }}>haqiqiy bazani</span> o'zimiz boshqaramiz</>, ru: <>Сегодня мы сами управляем <span className="italic" style={{ color: T.accent }}>настоящей базой</span></> })}</h2></div>
+        <Mentor>{tr({ uz: <>Ishonasizmi — dars oxirida siz bazaga <b style={{ color: T.ink }}>o'z mahsulotingizni</b> qo'sha olasiz. SQL — bu baza bilan gaplashish tili. Yoddan bilish shart emas — <b style={{ color: T.ink }}>tushunish va tekshirish</b> muhim, qolganiga AI yordam beradi.</>, ru: <>Поверите ли — к концу урока вы добавите в базу <b style={{ color: T.ink }}>свой собственный товар</b>. SQL — это язык, на котором говорят с базой. Зубрить его не нужно — важно <b style={{ color: T.ink }}>понимать и проверять</b>, с остальным поможет ИИ.</> })}</Mentor>
         {!isNarrow ? (
           <Zoomable><Split>{PreviewBlock}{StepsBlock}</Split></Zoomable>
         ) : !showSteps ? (
           <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px,2vw,16px)' }}>
             {PreviewBlock}
-            <button className="btn" style={{ alignSelf: 'flex-start' }} onClick={() => setShowSteps(true)}>Bugungi 5 qadamni ko'rish</button>
+            <button className="btn" style={{ alignSelf: 'flex-start' }} onClick={() => setShowSteps(true)}>{tr({ uz: "Bugungi 5 qadamni ko'rish", ru: 'Посмотреть 5 шагов на сегодня' })}</button>
           </div>
         ) : (
           <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px,2vw,16px)' }}>
-            <button className="btn-soft" style={{ alignSelf: 'flex-start' }} onClick={() => setShowSteps(false)}>↩ Jadvalni ko'rish</button>
+            <button className="btn-soft" style={{ alignSelf: 'flex-start' }} onClick={() => setShowSteps(false)}>{tr({ uz: "↩ Jadvalni ko'rish", ru: '↩ Посмотреть таблицу' })}</button>
             {StepsBlock}
           </div>
         )}
@@ -972,22 +984,22 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [activeCol, setActiveCol] = useState(null);
   const done = ran;
   const FIELDS = [
-    { k: 'id', tip: 'SERIAL PRIMARY KEY', desc: "Har mahsulotning takrorlanmas raqami. Avtomatik o'sib boradi (1, 2, 3...) — PRIMARY KEY = asosiy kalit." },
-    { k: 'nom', tip: 'TEXT', desc: "Mahsulot nomi — matn (TEXT). Masalan: 'Klaviatura'." },
-    { k: 'narx', tip: 'INTEGER', desc: "Narx — butun son (INTEGER). Masalan: 120000." },
-    { k: 'soni', tip: 'INTEGER', desc: "Ombordagi soni — butun son (INTEGER)." }
+    { k: 'id', tip: 'SERIAL PRIMARY KEY', desc: tr({ uz: "Har mahsulotning takrorlanmas raqami. Avtomatik o'sib boradi (1, 2, 3...) — PRIMARY KEY = asosiy kalit.", ru: 'Уникальный номер каждого товара. Растёт автоматически (1, 2, 3...) — PRIMARY KEY = первичный ключ.' }) },
+    { k: 'nom', tip: 'TEXT', desc: tr({ uz: "Mahsulot nomi — matn (TEXT). Masalan: 'Klaviatura'.", ru: "Название товара — текст (TEXT). Например: 'Klaviatura'." }) },
+    { k: 'narx', tip: 'INTEGER', desc: tr({ uz: 'Narx — butun son (INTEGER). Masalan: 120000.', ru: 'Цена — целое число (INTEGER). Например: 120000.' }) },
+    { k: 'soni', tip: 'INTEGER', desc: tr({ uz: 'Ombordagi soni — butun son (INTEGER).', ru: 'Количество на складе — целое число (INTEGER).' }) }
   ];
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   const cur = FIELDS.find(f => f.k === activeCol);
   return (
-    <Stage eyebrow="Jadval yaratish" screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? 'Davom etish' : "Jadvalni yarating"} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Jadval yaratish', ru: 'Создание таблицы' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Jadvalni yarating', ru: 'Создайте таблицу' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Ma'lumotni saqlash uchun avval <span className="italic" style={{ color: T.accent }}>jadval</span> kerak</h2></div>
-        <Mentor>Baza — jadvallar saqlanadigan ombor. Jadval = <b style={{ color: T.ink }}>ustunlar</b> (xususiyatlar: nom, narx, soni) va <b style={{ color: T.ink }}>qatorlar</b> (har bir mahsulot). <span className="mono">CREATE TABLE</span> buyrug'i bo'sh jadval yasaydi. Ustunlarni bosib, har birining tipini ko'ring, keyin jadvalni yarating.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Ma'lumotni saqlash uchun avval <span className="italic" style={{ color: T.accent }}>jadval</span> kerak</>, ru: <>Чтобы хранить данные, сначала нужна <span className="italic" style={{ color: T.accent }}>таблица</span></> })}</h2></div>
+        <Mentor>{tr({ uz: <>Baza — jadvallar saqlanadigan ombor. Jadval = <b style={{ color: T.ink }}>ustunlar</b> (xususiyatlar: nom, narx, soni) va <b style={{ color: T.ink }}>qatorlar</b> (har bir mahsulot). <span className="mono">CREATE TABLE</span> buyrug'i bo'sh jadval yasaydi. Ustunlarni bosib, har birining tipini ko'ring, keyin jadvalni yarating.</>, ru: <>База — это склад, где хранятся таблицы. Таблица = <b style={{ color: T.ink }}>столбцы</b> (свойства: nom, narx, soni) и <b style={{ color: T.ink }}>строки</b> (каждый товар). Команда <span className="mono">CREATE TABLE</span> создаёт пустую таблицу. Нажимайте на столбцы, посмотрите тип каждого, потом создайте таблицу.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
-            <p className="flow-label">products jadvalining "chizmasi"</p>
+            <p className="flow-label">{tr({ uz: 'products jadvalining "chizmasi"', ru: '«чертёж» таблицы products' })}</p>
             <SqlCode q={"CREATE TABLE products (\n  id    SERIAL PRIMARY KEY,\n  nom   TEXT,\n  narx  INTEGER,\n  soni  INTEGER\n)"} />
             <div style={{ display: 'flex', gap: 7, flexWrap: 'wrap' }}>
               {FIELDS.map(f => <button key={f.k} className={`chip ${activeCol === f.k ? 'chip-on' : ''}`} onClick={() => setActiveCol(f.k)}>{f.k}</button>)}
@@ -995,12 +1007,12 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {cur && <div className="sk-info fade-step" key={cur.k}><span className="sk-tagbig"><span className="sk-wordbadge">{cur.k}</span> <span className="mono small" style={{ color: T.blue }}>{cur.tip}</span></span><p className="body" style={{ color: T.ink, margin: '9px 0 0' }}>{cur.desc}</p></div>}
           </Col>
           <Col>
-            <p className="flow-label">Natija</p>
+            <p className="flow-label">{tr({ uz: 'Natija', ru: 'Результат' })}</p>
             {!ran
-              ? <><div className="frame-dash" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: 110 }}><p className="small" style={{ color: T.ink3, fontStyle: 'italic', textAlign: 'center', margin: 0 }}>Hali jadval yo'q.<br />Tugmani bosing — bo'sh jadval tug'iladi.</p></div>
-                <button className="btn fade-up delay-1" style={{ alignSelf: 'flex-start' }} onClick={() => setRan(true)}>▶ Jadvalni yaratish</button></>
+              ? <><div className="frame-dash" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: 110 }}><p className="small" style={{ color: T.ink3, fontStyle: 'italic', textAlign: 'center', margin: 0 }}>{tr({ uz: <>Hali jadval yo'q.<br />Tugmani bosing — bo'sh jadval tug'iladi.</>, ru: <>Таблицы пока нет.<br />Нажмите кнопку — родится пустая таблица.</> })}</p></div>
+                <button className="btn fade-up delay-1" style={{ alignSelf: 'flex-start' }} onClick={() => setRan(true)}>{tr({ uz: '▶ Jadvalni yaratish', ru: '▶ Создать таблицу' })}</button></>
               : <><DataTable cols={PCOLS} rows={[]} />
-                <SqlStatus>Jadval tayyor! Ustunlar bor, lekin hali <b>0 qator</b>. Endi mahsulot qo'shamiz.</SqlStatus></>}
+                <SqlStatus>{tr({ uz: <>Jadval tayyor! Ustunlar bor, lekin hali <b>0 qator</b>. Endi mahsulot qo'shamiz.</>, ru: <>Таблица готова! Столбцы есть, но пока <b>0 строк</b>. Теперь добавим товары.</> })}</SqlStatus></>}
           </Col>
         </div>
         </Zoomable>
@@ -1019,28 +1031,28 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   const add = (p) => { if (added.has(p.id)) return; setRows(rs => [...rs, p]); setLastQ(p); };
   return (
-    <Stage eyebrow="INSERT · qo'shish" screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? 'Davom etish' : `Yana ${2 - rows.length} ta qo'shing`} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: "INSERT · qo'shish", ru: 'INSERT · добавление' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : `${tr({ uz: 'Yana', ru: 'Добавьте ещё' })} ${2 - rows.length} ${tr({ uz: "ta qo'shing", ru: 'шт.' })}`} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Jadvalga mahsulotni <span className="italic" style={{ color: T.accent }}>qanday qo'shamiz?</span></h2></div>
-        <Mentor>Yangi qator qo'shish — <span className="mono">INSERT INTO</span> buyrug'i. Qaysi ustunlarga, qanday qiymat: <span className="mono">VALUES (...)</span>. Pastdagi mahsulotlarni bosing — har bosishda bitta INSERT bajariladi va jadvalga yangi qator qo'shiladi.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Jadvalga mahsulotni <span className="italic" style={{ color: T.accent }}>qanday qo'shamiz?</span></>, ru: <>Как <span className="italic" style={{ color: T.accent }}>добавить товар</span> в таблицу?</> })}</h2></div>
+        <Mentor>{tr({ uz: <>Yangi qator qo'shish — <span className="mono">INSERT INTO</span> buyrug'i. Qaysi ustunlarga, qanday qiymat: <span className="mono">VALUES (...)</span>. Pastdagi mahsulotlarni bosing — har bosishda bitta INSERT bajariladi va jadvalga yangi qator qo'shiladi.</>, ru: <>Добавить новую строку — команда <span className="mono">INSERT INTO</span>. В какие столбцы и какие значения: <span className="mono">VALUES (...)</span>. Нажимайте на товары внизу — при каждом нажатии выполняется один INSERT, и в таблице появляется новая строка.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
-            <p className="flow-label">Qo'shiladigan mahsulotlar</p>
+            <p className="flow-label">{tr({ uz: "Qo'shiladigan mahsulotlar", ru: 'Товары для добавления' })}</p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
               {PRODUCTS.map(p => (
                 <button key={p.id} className={`pick-row ${added.has(p.id) ? 'on' : ''}`} disabled={added.has(p.id)} onClick={() => add(p)}>
                   <span className="pick-box">{added.has(p.id) ? '✓' : '+'}</span>
-                  <span><b>{p.nom}</b> <span className="mono small" style={{ color: T.ink2 }}>{fmtNarx(p.narx)} · {p.soni} dona</span></span>
+                  <span><b>{p.nom}</b> <span className="mono small" style={{ color: T.ink2 }}>{fmtNarx(p.narx)} · {p.soni} {tr({ uz: 'dona', ru: 'шт.' })}</span></span>
                 </button>
               ))}
             </div>
             {lastQ && <SqlCode mini q={`INSERT INTO products (nom, narx, soni)\nVALUES ('${lastQ.nom}', ${lastQ.narx}, ${lastQ.soni})`} />}
           </Col>
           <Col>
-            <p className="flow-label">products jadvali</p>
+            <p className="flow-label">{tr({ uz: 'products jadvali', ru: 'таблица products' })}</p>
             <DataTable cols={PCOLS} rows={rows} hiRow={rows.length - 1} />
-            {done && <SqlStatus><b>{rows.length} qator</b> qo'shildi. INSERT — bu jadvalga yangi ma'lumot QO'SHADI.</SqlStatus>}
+            {done && <SqlStatus>{tr({ uz: <><b>{rows.length} qator</b> qo'shildi. INSERT — bu jadvalga yangi ma'lumot QO'SHADI.</>, ru: <>Добавлено <b>{rows.length} строк(и)</b>. INSERT — это команда, которая ДОБАВЛЯЕТ в таблицу новые данные.</> })}</SqlStatus>}
           </Col>
         </div>
         </Zoomable>
@@ -1051,17 +1063,17 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 
 // ===== SCREEN 4 — TEST 1 =====
 const Screen4 = (props) => (
-  <QuestionScreen {...props} idx={4} scope="module-mikro" eyebrow="Mashq · 1-savol"
+  <QuestionScreen {...props} idx={4} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 1-savol', ru: 'Практика · вопрос 1' })}
     audioText="Do'konga yangi mahsulot keldi. Uni jadvalga yangi qator qilib qo'shish uchun qaysi buyruq kerak?"
     questionText="Jadvalga yangi ma'lumot qo'shadigan buyruq qaysi?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-sub" style={{ marginTop: 8 }}>Do'konga yangi mahsulot keldi. Jadvalga yangi qator qo'shish uchun <span className="italic" style={{ color: T.accent }}>qaysi buyruq</span>?</h2></>}
-    options={["INSERT INTO — yangi qator qo'shadi", "SELECT — mavjud ma'lumotni ko'rsatadi", "DELETE — mavjud qatorni o'chiradi", "UPDATE — mavjud qatorni o'zgartiradi"]} correctIdx={0}
-    explainCorrect="To'g'ri! INSERT INTO ... VALUES (...) jadvalga yangi qator (mahsulot) qo'shadi."
+    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-sub" style={{ marginTop: 8 }}>{tr({ uz: <>Do'konga yangi mahsulot keldi. Jadvalga yangi qator qo'shish uchun <span className="italic" style={{ color: T.accent }}>qaysi buyruq</span>?</>, ru: <>В магазин привезли новый товар. <span className="italic" style={{ color: T.accent }}>Какая команда</span> добавит в таблицу новую строку?</> })}</h2></>}
+    options={[{ uz: "INSERT INTO — yangi qator qo'shadi", ru: 'INSERT INTO — добавляет новую строку' }, { uz: "SELECT — mavjud ma'lumotni ko'rsatadi", ru: 'SELECT — показывает существующие данные' }, { uz: "DELETE — mavjud qatorni o'chiradi", ru: 'DELETE — удаляет существующую строку' }, { uz: "UPDATE — mavjud qatorni o'zgartiradi", ru: 'UPDATE — изменяет существующую строку' }]} correctIdx={0}
+    explainCorrect={{ uz: "To'g'ri! INSERT INTO ... VALUES (...) jadvalga yangi qator (mahsulot) qo'shadi.", ru: 'Верно! INSERT INTO ... VALUES (...) добавляет в таблицу новую строку (товар).' }}
     explainWrong={{
-      1: "SELECT faqat ko'rsatadi — yangi ma'lumot qo'shmaydi.",
-      2: "DELETE o'chiradi, qo'shmaydi.",
-      3: "UPDATE mavjud qatorni o'zgartiradi, yangi qo'shmaydi.",
-      default: "Qo'shish — bu INSERT INTO."
+      1: { uz: "SELECT faqat ko'rsatadi — yangi ma'lumot qo'shmaydi.", ru: 'SELECT только показывает — новых данных не добавляет.' },
+      2: { uz: "DELETE o'chiradi, qo'shmaydi.", ru: 'DELETE удаляет, а не добавляет.' },
+      3: { uz: "UPDATE mavjud qatorni o'zgartiradi, yangi qo'shmaydi.", ru: 'UPDATE изменяет существующую строку, новую не добавляет.' },
+      default: { uz: "Qo'shish — bu INSERT INTO.", ru: 'Добавление — это INSERT INTO.' }
     }} />
 );
 
@@ -1074,26 +1086,26 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const query = mode === 'cols' ? 'SELECT nom, narx FROM products' : 'SELECT * FROM products';
   const cols = mode === 'cols' ? ['nom', 'narx'] : PCOLS;
   return (
-    <Stage eyebrow="SELECT · ko'rish" screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? 'Davom etish' : "So'rovni ishga tushiring"} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: "SELECT · ko'rish", ru: 'SELECT · просмотр' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "So'rovni ishga tushiring", ru: 'Запустите запрос' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Bazadagi ma'lumotni <span className="italic" style={{ color: T.accent }}>qanday ko'ramiz?</span></h2></div>
-        <Mentor>Ma'lumotni o'qib olish — <span className="mono">SELECT</span> buyrug'i. <span className="mono">SELECT * FROM products</span> = "products jadvalidagi <b>hamma ustunni</b> ko'rsat" (yulduzcha <b>*</b> = barchasi). Faqat kerakli ustunlarni ham so'rash mumkin: <span className="mono">SELECT nom, narx</span>.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Bazadagi ma'lumotni <span className="italic" style={{ color: T.accent }}>qanday ko'ramiz?</span></>, ru: <>Как <span className="italic" style={{ color: T.accent }}>посмотреть данные</span> в базе?</> })}</h2></div>
+        <Mentor>{tr({ uz: <>Ma'lumotni o'qib olish — <span className="mono">SELECT</span> buyrug'i. <span className="mono">SELECT * FROM products</span> = "products jadvalidagi <b>hamma ustunni</b> ko'rsat" (yulduzcha <b>*</b> = barchasi). Faqat kerakli ustunlarni ham so'rash mumkin: <span className="mono">SELECT nom, narx</span>.</>, ru: <>Прочитать данные — команда <span className="mono">SELECT</span>. <span className="mono">SELECT * FROM products</span> = «покажи <b>все столбцы</b> таблицы products» (звёздочка <b>*</b> = всё). Можно запросить и только нужные столбцы: <span className="mono">SELECT nom, narx</span>.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
-            <p className="flow-label">So'rovni tanlang</p>
+            <p className="flow-label">{tr({ uz: "So'rovni tanlang", ru: 'Выберите запрос' })}</p>
             <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-              <button className={`chip ${mode === 'all' ? 'chip-on' : ''}`} onClick={() => setMode('all')}>SELECT * (hammasi)</button>
+              <button className={`chip ${mode === 'all' ? 'chip-on' : ''}`} onClick={() => setMode('all')}>{tr({ uz: 'SELECT * (hammasi)', ru: 'SELECT * (всё)' })}</button>
               <button className={`chip ${mode === 'cols' ? 'chip-on' : ''}`} onClick={() => setMode('cols')}>SELECT nom, narx</button>
             </div>
             <SqlCode q={mode ? query : 'SELECT * FROM products'} />
-            <p className="small" style={{ color: T.ink2, margin: 0 }}>O'qilishi: "{mode === 'cols' ? 'products jadvalidan faqat nom va narx ustunlarini' : 'products jadvalidan hamma narsani'} ko'rsat".</p>
+            <p className="small" style={{ color: T.ink2, margin: 0 }}>{tr({ uz: 'O\'qilishi:', ru: 'Читается так:' })} "{mode === 'cols' ? tr({ uz: 'products jadvalidan faqat nom va narx ustunlarini', ru: 'покажи из таблицы products только столбцы nom и narx' }) : tr({ uz: 'products jadvalidan hamma narsani', ru: 'покажи из таблицы products всё' })}{tr({ uz: ' ko\'rsat', ru: '' })}".</p>
           </Col>
           <Col>
-            <p className="flow-label">Natija</p>
+            <p className="flow-label">{tr({ uz: 'Natija', ru: 'Результат' })}</p>
             {done
-              ? <><DataTable key={mode} cols={cols} rows={PRODUCTS} /><SqlStatus>SELECT ma'lumotni <b>o'zgartirmaydi</b> — faqat ko'rsatadi (o'qiydi).</SqlStatus></>
-              : <div className="frame-dash" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: 110 }}><p className="small" style={{ color: T.ink3, fontStyle: 'italic', textAlign: 'center', margin: 0 }}>← So'rovni tanlang — natija jadval bo'lib chiqadi</p></div>}
+              ? <><DataTable key={mode} cols={cols} rows={PRODUCTS} /><SqlStatus>{tr({ uz: <>SELECT ma'lumotni <b>o'zgartirmaydi</b> — faqat ko'rsatadi (o'qiydi).</>, ru: <>SELECT данные <b>не изменяет</b> — только показывает (читает).</> })}</SqlStatus></>
+              : <div className="frame-dash" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: 110 }}><p className="small" style={{ color: T.ink3, fontStyle: 'italic', textAlign: 'center', margin: 0 }}>{tr({ uz: "← So'rovni tanlang — natija jadval bo'lib chiqadi", ru: '← Выберите запрос — результат появится таблицей' })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -1104,26 +1116,26 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 
 // ===== SCREEN 5b — TEST 2 =====
 const Screen5b = (props) => (
-  <QuestionScreen {...props} idx={6} scope="module-mikro" eyebrow="Mashq · 2-savol"
+  <QuestionScreen {...props} idx={6} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 2-savol', ru: 'Практика · вопрос 2' })}
     audioText="SELECT buyrug'i ma'lumot bilan nima qiladi? Yaxshi o'ylab, javobni tanlang."
     questionText="SELECT buyrug'i nima qiladi?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-sub" style={{ marginTop: 8 }}><span className="italic" style={{ color: T.accent }}>SELECT</span> buyrug'i ma'lumot bilan nima qiladi?</h2></>}
-    options={["Jadvalni butunlay o'chiradi", "Ustundagi narxlarni o'zgartiradi", "Ma'lumotni o'qib ko'rsatadi", "Yangi bo'sh jadval yaratadi"]} correctIdx={2}
-    explainCorrect="To'g'ri! SELECT — bu o'qish buyrug'i: jadvaldan ma'lumotni olib ko'rsatadi, hech narsani o'zgartirmaydi."
+    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-sub" style={{ marginTop: 8 }}>{tr({ uz: <><span className="italic" style={{ color: T.accent }}>SELECT</span> buyrug'i ma'lumot bilan nima qiladi?</>, ru: <>Что команда <span className="italic" style={{ color: T.accent }}>SELECT</span> делает с данными?</> })}</h2></>}
+    options={[{ uz: "Jadvalni butunlay o'chiradi", ru: 'Полностью удаляет таблицу' }, { uz: "Ustundagi narxlarni o'zgartiradi", ru: 'Изменяет цены в столбце' }, { uz: "Ma'lumotni o'qib ko'rsatadi", ru: 'Читает и показывает данные' }, { uz: "Yangi bo'sh jadval yaratadi", ru: 'Создаёт новую пустую таблицу' }]} correctIdx={2}
+    explainCorrect={{ uz: "To'g'ri! SELECT — bu o'qish buyrug'i: jadvaldan ma'lumotni olib ko'rsatadi, hech narsani o'zgartirmaydi.", ru: 'Верно! SELECT — команда чтения: берёт данные из таблицы и показывает их, ничего не меняя.' }}
     explainWrong={{
-      0: "O'chirish — DELETE/DROP. SELECT hech narsani o'chirmaydi.",
-      1: "O'zgartirish — UPDATE. SELECT faqat o'qiydi.",
-      3: "Jadval yaratish — CREATE TABLE. SELECT mavjud ma'lumotni ko'rsatadi.",
-      default: "SELECT = o'qish/ko'rish."
+      0: { uz: "O'chirish — DELETE/DROP. SELECT hech narsani o'chirmaydi.", ru: 'Удаление — это DELETE/DROP. SELECT ничего не удаляет.' },
+      1: { uz: "O'zgartirish — UPDATE. SELECT faqat o'qiydi.", ru: 'Изменение — это UPDATE. SELECT только читает.' },
+      3: { uz: "Jadval yaratish — CREATE TABLE. SELECT mavjud ma'lumotni ko'rsatadi.", ru: 'Создание таблицы — CREATE TABLE. SELECT показывает существующие данные.' },
+      default: { uz: "SELECT = o'qish/ko'rish.", ru: 'SELECT = чтение/просмотр.' }
     }} />
 );
 
 // ===== SCREEN 6 — WHERE (filtr) =====
 const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const CONDS = [
-    { id: 'cheap', sql: 'narx < 100000', label: 'Arzonlar: narx < 100000', test: r => r.narx < 100000 },
-    { id: 'low',   sql: 'soni < 6',      label: 'Tugayotgan: soni < 6',    test: r => r.soni < 6 },
-    { id: 'exp',   sql: 'narx > 100000', label: 'Qimmatlar: narx > 100000', test: r => r.narx > 100000 }
+    { id: 'cheap', sql: 'narx < 100000', label: tr({ uz: 'Arzonlar: narx < 100000', ru: 'Дешёвые: narx < 100000' }), test: r => r.narx < 100000 },
+    { id: 'low',   sql: 'soni < 6',      label: tr({ uz: 'Tugayotgan: soni < 6', ru: 'Заканчиваются: soni < 6' }),    test: r => r.soni < 6 },
+    { id: 'exp',   sql: 'narx > 100000', label: tr({ uz: 'Qimmatlar: narx > 100000', ru: 'Дорогие: narx > 100000' }), test: r => r.narx > 100000 }
   ];
   const audio = useAudio([{ id: 's6', text: "Minglab mahsulotdan faqat kerakligini topish — WHERE sharti. U jadvalga filtr qo'yadi. Bir shartni tanlang va jadval qanday filtrlanishini ko'ring.", trigger: 'on_mount', waits_for: null }]);
   const [sel, setSel] = useState(storedAnswer ? 'cheap' : null);
@@ -1132,23 +1144,23 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const cond = CONDS.find(c => c.id === sel);
   const rows = cond ? PRODUCTS.filter(cond.test) : PRODUCTS;
   return (
-    <Stage eyebrow="WHERE · filtr" screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? 'Davom etish' : "Bitta filtrni sinab ko'ring"} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'WHERE · filtr', ru: 'WHERE · фильтр' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "Bitta filtrni sinab ko'ring", ru: 'Попробуйте один фильтр' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Minglab mahsulotdan <span className="italic" style={{ color: T.accent }}>faqat kerakligini</span> qanday topamiz?</h2></div>
-        <Mentor>Bu yerda <span className="mono">WHERE</span> kuchga kiradi — u <b style={{ color: T.ink }}>shart</b> qo'yadi. <span className="mono">SELECT * FROM products WHERE narx &lt; 100000</span> = "faqat narxi 100 000 dan arzonlarini ko'rsat". Shartni tanlang — jadval jonli filtrlanadi.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Minglab mahsulotdan <span className="italic" style={{ color: T.accent }}>faqat kerakligini</span> qanday topamiz?</>, ru: <>Как из тысяч товаров найти <span className="italic" style={{ color: T.accent }}>только нужные</span>?</> })}</h2></div>
+        <Mentor>{tr({ uz: <>Bu yerda <span className="mono">WHERE</span> kuchga kiradi — u <b style={{ color: T.ink }}>shart</b> qo'yadi. <span className="mono">SELECT * FROM products WHERE narx &lt; 100000</span> = "faqat narxi 100 000 dan arzonlarini ko'rsat". Shartni tanlang — jadval jonli filtrlanadi.</>, ru: <>Здесь вступает в силу <span className="mono">WHERE</span> — он задаёт <b style={{ color: T.ink }}>условие</b>. <span className="mono">SELECT * FROM products WHERE narx &lt; 100000</span> = «покажи только те, что дешевле 100 000». Выберите условие — таблица отфильтруется вживую.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
-            <p className="flow-label">Shartni tanlang (WHERE)</p>
+            <p className="flow-label">{tr({ uz: 'Shartni tanlang (WHERE)', ru: 'Выберите условие (WHERE)' })}</p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
               {CONDS.map(c => <button key={c.id} className={`chip ${sel === c.id ? 'chip-on' : ''}`} style={{ justifyContent: 'flex-start' }} onClick={() => setSel(c.id)}>{c.label}</button>)}
             </div>
             <SqlCode q={`SELECT * FROM products\nWHERE ${cond ? cond.sql : 'narx < 100000'}`} />
           </Col>
           <Col>
-            <p className="flow-label">Natija {cond && <span className="mono" style={{ color: T.accent }}>({rows.length} ta topildi)</span>}</p>
+            <p className="flow-label">{tr({ uz: 'Natija', ru: 'Результат' })} {cond && <span className="mono" style={{ color: T.accent }}>({rows.length} {tr({ uz: 'ta topildi', ru: 'найдено' })})</span>}</p>
             <DataTable key={sel} cols={PCOLS} rows={rows} hiCol={cond ? (cond.id === 'low' ? 'soni' : 'narx') : null} />
-            {done && <SqlStatus>WHERE — bu <b>shart (filtr)</b>. U faqat mos qatorlarni qaytaradi.</SqlStatus>}
+            {done && <SqlStatus>{tr({ uz: <>WHERE — bu <b>shart (filtr)</b>. U faqat mos qatorlarni qaytaradi.</>, ru: <>WHERE — это <b>условие (фильтр)</b>. Он возвращает только подходящие строки.</> })}</SqlStatus>}
           </Col>
         </div>
         </Zoomable>
@@ -1168,22 +1180,22 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const audio = useAudio([{ id: 's7', text: "Klaviatura narxi tushdi. Mavjud qatorni o'zgartirish — UPDATE buyrug'i. SET bilan yangi qiymatni, WHERE bilan qaysi qatorni ko'rsatasiz. Diqqat: WHERE'ni unutsangiz, hamma qator o'zgaradi.", trigger: 'on_mount', waits_for: null }]);
   const run = () => { setRows(rs => rs.map(r => r.id === 1 ? { ...r, narx: 99000 } : r)); setRan(true); };
   return (
-    <Stage eyebrow="UPDATE · o'zgartirish" screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? 'Davom etish' : "So'rovni ishga tushiring"} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: "UPDATE · o'zgartirish", ru: 'UPDATE · изменение' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "So'rovni ishga tushiring", ru: 'Запустите запрос' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Klaviatura narxi tushdi — bazada <span className="italic" style={{ color: T.accent }}>qanday yangilaymiz?</span></h2></div>
-        <Mentor>Mavjud qatorni o'zgartirish — <span className="mono">UPDATE</span>. <span className="mono">SET</span> bilan yangi qiymatni, <span className="mono">WHERE</span> bilan <b style={{ color: T.ink }}>qaysi qatorni</b> ko'rsatamiz. <b style={{ color: T.accent }}>Diqqat:</b> WHERE'ni unutsangiz — HAMMA qator o'zgaradi!</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Klaviatura narxi tushdi — bazada <span className="italic" style={{ color: T.accent }}>qanday yangilaymiz?</span></>, ru: <>Клавиатура подешевела — <span className="italic" style={{ color: T.accent }}>как обновить цену</span> в базе?</> })}</h2></div>
+        <Mentor>{tr({ uz: <>Mavjud qatorni o'zgartirish — <span className="mono">UPDATE</span>. <span className="mono">SET</span> bilan yangi qiymatni, <span className="mono">WHERE</span> bilan <b style={{ color: T.ink }}>qaysi qatorni</b> ko'rsatamiz. <b style={{ color: T.accent }}>Diqqat:</b> WHERE'ni unutsangiz — HAMMA qator o'zgaradi!</>, ru: <>Изменить существующую строку — <span className="mono">UPDATE</span>. Через <span className="mono">SET</span> указываем новое значение, через <span className="mono">WHERE</span> — <b style={{ color: T.ink }}>какую строку</b>. <b style={{ color: T.accent }}>Внимание:</b> забудете WHERE — изменятся ВСЕ строки!</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
-            <p className="flow-label">So'rov: Klaviatura (id=1) narxini yangilash</p>
-            <SqlRunner ran={ran} onRun={run} runLabel="▶ Ishga tushirish" query={"UPDATE products\nSET narx = 99000\nWHERE id = 1"} />
-            <button className={`chip ${danger ? 'chip-on' : ''}`} style={{ alignSelf: 'flex-start' }} onClick={() => setDanger(d => !d)}>{danger ? '✕ Yashirish' : '⚠ WHERE\'siz nima bo\'ladi?'}</button>
-            {danger && <div className="frame-warn fade-step"><SqlCode mini q={"UPDATE products\nSET narx = 99000"} /><p className="body" style={{ margin: '8px 0 0', color: T.ink }}>WHERE yo'q → <b>BARCHA</b> mahsulot narxi 99000 bo'lib qoladi! Shuning uchun UPDATE'da WHERE deyarli doim kerak.</p></div>}
+            <p className="flow-label">{tr({ uz: "So'rov: Klaviatura (id=1) narxini yangilash", ru: 'Запрос: обновить цену Klaviatura (id=1)' })}</p>
+            <SqlRunner ran={ran} onRun={run} query={"UPDATE products\nSET narx = 99000\nWHERE id = 1"} />
+            <button className={`chip ${danger ? 'chip-on' : ''}`} style={{ alignSelf: 'flex-start' }} onClick={() => setDanger(d => !d)}>{danger ? tr({ uz: '✕ Yashirish', ru: '✕ Скрыть' }) : tr({ uz: "⚠ WHERE'siz nima bo'ladi?", ru: '⚠ А что будет без WHERE?' })}</button>
+            {danger && <div className="frame-warn fade-step"><SqlCode mini q={"UPDATE products\nSET narx = 99000"} /><p className="body" style={{ margin: '8px 0 0', color: T.ink }}>{tr({ uz: <>WHERE yo'q → <b>BARCHA</b> mahsulot narxi 99000 bo'lib qoladi! Shuning uchun UPDATE'da WHERE deyarli doim kerak.</>, ru: <>Нет WHERE → цена <b>ВСЕХ</b> товаров станет 99000! Поэтому в UPDATE почти всегда нужен WHERE.</> })}</p></div>}
           </Col>
           <Col>
-            <p className="flow-label">products jadvali</p>
+            <p className="flow-label">{tr({ uz: 'products jadvali', ru: 'таблица products' })}</p>
             <DataTable cols={PCOLS} rows={rows} hiRow={ran ? 0 : null} hiCol={ran ? 'narx' : null} />
-            {ran && <SqlStatus><b>1 qator yangilandi.</b> Klaviatura narxi 120 000 → 99 000 bo'ldi.</SqlStatus>}
+            {ran && <SqlStatus>{tr({ uz: <><b>1 qator yangilandi.</b> Klaviatura narxi 120 000 → 99 000 bo'ldi.</>, ru: <><b>Обновлена 1 строка.</b> Цена Klaviatura стала 120 000 → 99 000.</> })}</SqlStatus>}
           </Col>
         </div>
         </Zoomable>
@@ -1202,22 +1214,22 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const audio = useAudio([{ id: 's8', text: "Mahsulot sotuvdan chiqdi. Uni jadvaldan o'chirish — DELETE FROM buyrug'i. Yana WHERE bilan qaysi qatorni aniqlaysiz. WHERE'siz DELETE butun jadvalni tozalab yuboradi.", trigger: 'on_mount', waits_for: null }]);
   const run = () => { setRows(rs => rs.filter(r => r.id !== 3)); setRan(true); };
   return (
-    <Stage eyebrow="DELETE · o'chirish" screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? 'Davom etish' : "So'rovni ishga tushiring"} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: "DELETE · o'chirish", ru: 'DELETE · удаление' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "So'rovni ishga tushiring", ru: 'Запустите запрос' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Mahsulot sotuvdan chiqdi — uni <span className="italic" style={{ color: T.accent }}>qanday o'chiramiz?</span></h2></div>
-        <Mentor>Qatorni o'chirish — <span className="mono">DELETE FROM</span>. Yana <span className="mono">WHERE</span> bilan <b style={{ color: T.ink }}>qaysi qatorni</b> aniqlaymiz. Bu yerda Quloqchin (id=3) ni o'chiramiz. <b style={{ color: T.accent }}>WHERE'siz DELETE — butun jadvalni tozalab yuboradi!</b></Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Mahsulot sotuvdan chiqdi — uni <span className="italic" style={{ color: T.accent }}>qanday o'chiramiz?</span></>, ru: <>Товар сняли с продажи — <span className="italic" style={{ color: T.accent }}>как его удалить?</span></> })}</h2></div>
+        <Mentor>{tr({ uz: <>Qatorni o'chirish — <span className="mono">DELETE FROM</span>. Yana <span className="mono">WHERE</span> bilan <b style={{ color: T.ink }}>qaysi qatorni</b> aniqlaymiz. Bu yerda Quloqchin (id=3) ni o'chiramiz. <b style={{ color: T.accent }}>WHERE'siz DELETE — butun jadvalni tozalab yuboradi!</b></>, ru: <>Удалить строку — <span className="mono">DELETE FROM</span>. И снова через <span className="mono">WHERE</span> указываем, <b style={{ color: T.ink }}>какую строку</b>. Здесь удалим Quloqchin (id=3). <b style={{ color: T.accent }}>DELETE без WHERE вычистит всю таблицу!</b></> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
-            <p className="flow-label">So'rov: Quloqchin (id=3) ni o'chirish</p>
-            <SqlRunner ran={ran} onRun={run} runLabel="▶ Ishga tushirish" query={"DELETE FROM products\nWHERE id = 3"} />
-            <button className={`chip ${danger ? 'chip-on' : ''}`} style={{ alignSelf: 'flex-start' }} onClick={() => setDanger(d => !d)}>{danger ? '✕ Yashirish' : '⚠ WHERE\'siz nima bo\'ladi?'}</button>
-            {danger && <div className="frame-warn fade-step"><SqlCode mini q={"DELETE FROM products"} /><p className="body" style={{ margin: '8px 0 0', color: T.ink }}>WHERE yo'q → <b>HAMMA mahsulot</b> o'chib ketadi, jadval bo'shab qoladi! Shuning uchun DELETE'da WHERE juda muhim.</p></div>}
+            <p className="flow-label">{tr({ uz: "So'rov: Quloqchin (id=3) ni o'chirish", ru: 'Запрос: удалить Quloqchin (id=3)' })}</p>
+            <SqlRunner ran={ran} onRun={run} query={"DELETE FROM products\nWHERE id = 3"} />
+            <button className={`chip ${danger ? 'chip-on' : ''}`} style={{ alignSelf: 'flex-start' }} onClick={() => setDanger(d => !d)}>{danger ? tr({ uz: '✕ Yashirish', ru: '✕ Скрыть' }) : tr({ uz: "⚠ WHERE'siz nima bo'ladi?", ru: '⚠ А что будет без WHERE?' })}</button>
+            {danger && <div className="frame-warn fade-step"><SqlCode mini q={"DELETE FROM products"} /><p className="body" style={{ margin: '8px 0 0', color: T.ink }}>{tr({ uz: <>WHERE yo'q → <b>HAMMA mahsulot</b> o'chib ketadi, jadval bo'shab qoladi! Shuning uchun DELETE'da WHERE juda muhim.</>, ru: <>Нет WHERE → удалятся <b>ВСЕ товары</b>, таблица опустеет! Поэтому в DELETE условие WHERE особенно важно.</> })}</p></div>}
           </Col>
           <Col>
-            <p className="flow-label">products jadvali</p>
+            <p className="flow-label">{tr({ uz: 'products jadvali', ru: 'таблица products' })}</p>
             <DataTable cols={PCOLS} rows={rows} />
-            {ran && <SqlStatus><b>1 qator o'chirildi.</b> Quloqchin jadvaldan olib tashlandi.</SqlStatus>}
+            {ran && <SqlStatus>{tr({ uz: <><b>1 qator o'chirildi.</b> Quloqchin jadvaldan olib tashlandi.</>, ru: <><b>Удалена 1 строка.</b> Quloqchin убран из таблицы.</> })}</SqlStatus>}
           </Col>
         </div>
         </Zoomable>
@@ -1228,41 +1240,41 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 
 // ===== SCREEN 9 — TEST 3 =====
 const Screen9 = (props) => (
-  <QuestionScreen {...props} idx={9} scope="module-mikro" eyebrow="Mashq · 3-savol"
+  <QuestionScreen {...props} idx={9} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 3-savol', ru: 'Практика · вопрос 3' })}
     audioText="Sichqoncha narxini yangilamoqchisiz. Mavjud qatorni o'zgartirish uchun qaysi buyruq kerak?"
     questionText="Mahsulot narxini o'zgartirish uchun qaysi buyruq?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-sub" style={{ marginTop: 8 }}>Sichqoncha narxini yangilamoqchisiz. <span className="italic" style={{ color: T.accent }}>Qaysi buyruq</span> kerak?</h2></>}
-    options={["INSERT — yangi qator qo'shadi", "SELECT — faqat o'qib ko'rsatadi", "DELETE — qatorni o'chiradi", "UPDATE — qatorni o'zgartiradi"]} correctIdx={3}
-    explainCorrect="To'g'ri! UPDATE ... SET narx=... WHERE id=... mavjud qatorning qiymatini o'zgartiradi."
+    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-sub" style={{ marginTop: 8 }}>{tr({ uz: <>Sichqoncha narxini yangilamoqchisiz. <span className="italic" style={{ color: T.accent }}>Qaysi buyruq</span> kerak?</>, ru: <>Вы хотите обновить цену Sichqoncha. <span className="italic" style={{ color: T.accent }}>Какая команда</span> нужна?</> })}</h2></>}
+    options={[{ uz: "INSERT — yangi qator qo'shadi", ru: 'INSERT — добавляет новую строку' }, { uz: "SELECT — faqat o'qib ko'rsatadi", ru: 'SELECT — только читает и показывает' }, { uz: "DELETE — qatorni o'chiradi", ru: 'DELETE — удаляет строку' }, { uz: "UPDATE — qatorni o'zgartiradi", ru: 'UPDATE — изменяет строку' }]} correctIdx={3}
+    explainCorrect={{ uz: "To'g'ri! UPDATE ... SET narx=... WHERE id=... mavjud qatorning qiymatini o'zgartiradi.", ru: 'Верно! UPDATE ... SET narx=... WHERE id=... изменяет значение существующей строки.' }}
     explainWrong={{
-      0: "INSERT yangi qator qo'shadi — eski narxni o'zgartirmaydi.",
-      1: "SELECT faqat ko'rsatadi, o'zgartirmaydi.",
-      2: "DELETE o'chiradi — o'zgartirish uchun UPDATE kerak.",
-      default: "O'zgartirish — bu UPDATE."
+      0: { uz: "INSERT yangi qator qo'shadi — eski narxni o'zgartirmaydi.", ru: 'INSERT добавляет новую строку — старую цену не меняет.' },
+      1: { uz: "SELECT faqat ko'rsatadi, o'zgartirmaydi.", ru: 'SELECT только показывает, не меняет.' },
+      2: { uz: "DELETE o'chiradi — o'zgartirish uchun UPDATE kerak.", ru: 'DELETE удаляет — чтобы изменить, нужен UPDATE.' },
+      default: { uz: "O'zgartirish — bu UPDATE.", ru: 'Изменение — это UPDATE.' }
     }} />
 );
 
 // ===== SCREEN 10 — MENEJER NAVBATI (CRUD state-mashina) =====
 const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const EVENTS = [
-    { id: 'e1', icon: '🛒', title: "Yangi mahsulot keldi", desc: "Mishka o'yinchoq — 50 000 so'm, 10 dona. Uni jadvalga kiriting.", op: 'insert',
-      sql: "INSERT INTO products (nom, narx, soni)\nVALUES ('Mishka', 50000, 10)", okNote: "Yangi qator qo'shildi — Mishka jadvalga tushdi.",
-      wrongNote: { select: "SELECT faqat ko'radi — yangi mahsulot qo'shilmaydi.", update: "UPDATE mavjudini o'zgartiradi — yangi qo'shmaydi.", delete: "DELETE tanladingiz — Mishka jadvalga tushmasdi, aksincha o'chirardi!" } },
-    { id: 'e2', icon: '🔍', title: "Mijoz arzonlarini so'rayapti", desc: "Narxi 100 000 dan past mahsulotlarni ko'rsating (o'zgartirmang!).", op: 'select',
-      sql: "SELECT * FROM products\nWHERE narx < 100000", okNote: "Jadval filtrlandi — faqat arzonlari ko'rindi. Ma'lumot o'zgarmadi.",
-      wrongNote: { insert: "INSERT yangi qator qo'shadi — mijoz faqat ko'rmoqchi edi.", update: "UPDATE narxni buzadi — mijoz faqat ko'rmoqchi edi!", delete: "DELETE mahsulotni o'chiradi — mijoz ko'rmoqchi, o'chirmoqchi emas!" } },
-    { id: 'e3', icon: '🏷️', title: "Klaviatura chegirmada", desc: "Klaviatura narxini 99 000 so'mga tushiring.", op: 'update',
-      sql: "UPDATE products\nSET narx = 99000\nWHERE id = 1", okNote: "Klaviatura narxi 120 000 → 99 000 bo'ldi.",
-      wrongNote: { insert: "INSERT yangi qator qo'shadi — narx o'zgarmaydi.", select: "SELECT faqat ko'radi — narx o'zgarmaydi.", delete: "DELETE Klaviaturani butunlay o'chiradi — bu chegirma emas!" } },
-    { id: 'e4', icon: '📦', title: "Quloqchin sotuvdan chiqdi", desc: "Quloqchinni jadvaldan olib tashlang.", op: 'delete',
-      sql: "DELETE FROM products\nWHERE id = 3", okNote: "Quloqchin jadvaldan o'chirildi.",
-      wrongNote: { insert: "INSERT qo'shadi — o'chirmaydi.", select: "SELECT faqat ko'radi — o'chirmaydi.", update: "UPDATE o'zgartiradi — Quloqchin baribir jadvalda qolardi." } },
+    { id: 'e1', icon: '🛒', title: tr({ uz: 'Yangi mahsulot keldi', ru: 'Привезли новый товар' }), desc: tr({ uz: "Mishka o'yinchoq — 50 000 so'm, 10 dona. Uni jadvalga kiriting.", ru: 'Игрушка Mishka — 50 000 сум, 10 штук. Внесите её в таблицу.' }), op: 'insert',
+      sql: "INSERT INTO products (nom, narx, soni)\nVALUES ('Mishka', 50000, 10)", okNote: tr({ uz: "Yangi qator qo'shildi — Mishka jadvalga tushdi.", ru: 'Новая строка добавлена — Mishka попал в таблицу.' }),
+      wrongNote: { select: tr({ uz: "SELECT faqat ko'radi — yangi mahsulot qo'shilmaydi.", ru: 'SELECT только смотрит — новый товар не добавится.' }), update: tr({ uz: "UPDATE mavjudini o'zgartiradi — yangi qo'shmaydi.", ru: 'UPDATE меняет существующее — нового не добавляет.' }), delete: tr({ uz: "DELETE tanladingiz — Mishka jadvalga tushmasdi, aksincha o'chirardi!", ru: 'Вы выбрали DELETE — Mishka не попал бы в таблицу, наоборот, что-то удалилось бы!' }) } },
+    { id: 'e2', icon: '🔍', title: tr({ uz: "Mijoz arzonlarini so'rayapti", ru: 'Клиент просит что подешевле' }), desc: tr({ uz: "Narxi 100 000 dan past mahsulotlarni ko'rsating (o'zgartirmang!).", ru: 'Покажите товары дешевле 100 000 (ничего не меняя!).' }), op: 'select',
+      sql: "SELECT * FROM products\nWHERE narx < 100000", okNote: tr({ uz: "Jadval filtrlandi — faqat arzonlari ko'rindi. Ma'lumot o'zgarmadi.", ru: 'Таблица отфильтрована — видны только дешёвые. Данные не изменились.' }),
+      wrongNote: { insert: tr({ uz: "INSERT yangi qator qo'shadi — mijoz faqat ko'rmoqchi edi.", ru: 'INSERT добавит новую строку — а клиент хотел только посмотреть.' }), update: tr({ uz: "UPDATE narxni buzadi — mijoz faqat ko'rmoqchi edi!", ru: 'UPDATE испортит цену — клиент хотел только посмотреть!' }), delete: tr({ uz: "DELETE mahsulotni o'chiradi — mijoz ko'rmoqchi, o'chirmoqchi emas!", ru: 'DELETE удалит товар — клиент хотел посмотреть, а не удалять!' }) } },
+    { id: 'e3', icon: '🏷️', title: tr({ uz: 'Klaviatura chegirmada', ru: 'Скидка на Klaviatura' }), desc: tr({ uz: "Klaviatura narxini 99 000 so'mga tushiring.", ru: 'Снизьте цену Klaviatura до 99 000 сум.' }), op: 'update',
+      sql: "UPDATE products\nSET narx = 99000\nWHERE id = 1", okNote: tr({ uz: "Klaviatura narxi 120 000 → 99 000 bo'ldi.", ru: 'Цена Klaviatura стала 120 000 → 99 000.' }),
+      wrongNote: { insert: tr({ uz: "INSERT yangi qator qo'shadi — narx o'zgarmaydi.", ru: 'INSERT добавит новую строку — цена не изменится.' }), select: tr({ uz: "SELECT faqat ko'radi — narx o'zgarmaydi.", ru: 'SELECT только смотрит — цена не изменится.' }), delete: tr({ uz: "DELETE Klaviaturani butunlay o'chiradi — bu chegirma emas!", ru: 'DELETE удалит Klaviatura совсем — это не скидка!' }) } },
+    { id: 'e4', icon: '📦', title: tr({ uz: 'Quloqchin sotuvdan chiqdi', ru: 'Quloqchin сняли с продажи' }), desc: tr({ uz: 'Quloqchinni jadvaldan olib tashlang.', ru: 'Уберите Quloqchin из таблицы.' }), op: 'delete',
+      sql: "DELETE FROM products\nWHERE id = 3", okNote: tr({ uz: "Quloqchin jadvaldan o'chirildi.", ru: 'Quloqchin удалён из таблицы.' }),
+      wrongNote: { insert: tr({ uz: "INSERT qo'shadi — o'chirmaydi.", ru: 'INSERT добавляет — не удаляет.' }), select: tr({ uz: "SELECT faqat ko'radi — o'chirmaydi.", ru: 'SELECT только смотрит — не удаляет.' }), update: tr({ uz: "UPDATE o'zgartiradi — Quloqchin baribir jadvalda qolardi.", ru: 'UPDATE изменяет — Quloqchin всё равно остался бы в таблице.' }) } },
   ];
   const CHIPS = [
-    { op: 'insert', word: 'INSERT', uz: 'qo\'shish', col: T.success },
-    { op: 'select', word: 'SELECT', uz: 'ko\'rish', col: T.blue },
-    { op: 'update', word: 'UPDATE', uz: 'o\'zgartirish', col: T.accent },
-    { op: 'delete', word: 'DELETE', uz: 'o\'chirish', col: '#9333ea' },
+    { op: 'insert', word: 'INSERT', label: tr({ uz: "qo'shish", ru: 'добавить' }), col: T.success },
+    { op: 'select', word: 'SELECT', label: tr({ uz: "ko'rish", ru: 'посмотреть' }), col: T.blue },
+    { op: 'update', word: 'UPDATE', label: tr({ uz: "o'zgartirish", ru: 'изменить' }), col: T.accent },
+    { op: 'delete', word: 'DELETE', label: tr({ uz: "o'chirish", ru: 'удалить' }), col: '#9333ea' },
   ];
   const FINAL_ROWS = [{ id: 1, nom: 'Klaviatura', narx: 99000, soni: 8 }, { id: 2, nom: 'Sichqoncha', narx: 75000, soni: 15 }, { id: 4, nom: 'Mishka', narx: 50000, soni: 10 }];
   const [rows, setRows] = useState(() => storedAnswer ? FINAL_ROWS : PRODUCTS.map(p => ({ ...p })));
@@ -1300,31 +1312,31 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const exitRi = deleting && ev && ev.op === 'delete' ? idxId(3) : null;                    // o'chirilayotgan qator slide-out
   const hiCol = (resolved && ev && ev.op === 'update') ? 'narx' : (showFiltered ? 'narx' : null);
   return (
-    <Stage eyebrow="Menejer navbati" screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? 'Davom etish' : `${solvedCount}/4 hodisa`} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Menejer navbati', ru: 'Смена менеджера' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : `${solvedCount}/4 ${tr({ uz: 'hodisa', ru: 'событий' })}`} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Bugun siz — <span className="italic" style={{ color: T.accent }}>zakaz-shop.uz menejeri</span></h2></div>
-        <Mentor>Do'konda 4 ta hodisa yuz beradi — har biriga to'g'ri <b style={{ color: T.ink }}>CRUD amalini</b> tanlang. Noto'g'ri buyruq — do'konga zarar! To'g'risi esa jadvalni jonli o'zgartiradi. <b style={{ color: T.ink }}>Modul 5'da NestJS aynan shu 4 amalni</b> avtomatik bajaradi.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Bugun siz — <span className="italic" style={{ color: T.accent }}>zakaz-shop.uz menejeri</span></>, ru: <>Сегодня вы — <span className="italic" style={{ color: T.accent }}>менеджер zakaz-shop.uz</span></> })}</h2></div>
+        <Mentor>{tr({ uz: <>Do'konda 4 ta hodisa yuz beradi — har biriga to'g'ri <b style={{ color: T.ink }}>CRUD amalini</b> tanlang. Noto'g'ri buyruq — do'konga zarar! To'g'risi esa jadvalni jonli o'zgartiradi. <b style={{ color: T.ink }}>Modul 5'da NestJS aynan shu 4 amalni</b> avtomatik bajaradi.</>, ru: <>В магазине произойдут 4 события — для каждого выберите верное <b style={{ color: T.ink }}>действие CRUD</b>. Неверная команда — вред магазину! А верная изменит таблицу вживую. <b style={{ color: T.ink }}>В модуле 5 NestJS выполняет эти же 4 действия</b> автоматически.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
             {ev ? (
               <div className="mn-event" key={ev.id}>
-                <div className="mn-ev-h"><span className="mn-ev-ic">{ev.icon}</span><span className={`mn-ev-step ${resolved ? 'done' : ''}`}>Hodisa {step + 1}/4</span></div>
+                <div className="mn-ev-h"><span className="mn-ev-ic">{ev.icon}</span><span className={`mn-ev-step ${resolved ? 'done' : ''}`}>{tr({ uz: 'Hodisa', ru: 'Событие' })} {step + 1}/4</span></div>
                 <p className="mn-ev-title">{ev.title}</p>
                 <p className="mn-ev-desc">{ev.desc}</p>
               </div>
             ) : (
-              <div className="takeaway fade-step"><div className="ta-bulb">🗄️</div><p className="ta-h">Smena tugadi — CRUD = do'kon hayoti</p><p className="ta-sub">Create · Read · Update · Delete</p></div>
+              <div className="takeaway fade-step"><div className="ta-bulb">🗄️</div><p className="ta-h">{tr({ uz: "Smena tugadi — CRUD = do'kon hayoti", ru: 'Смена окончена — CRUD = жизнь магазина' })}</p><p className="ta-sub">Create · Read · Update · Delete</p></div>
             )}
             {ev && <>
-              <p className="flow-label">Qaysi amalni bajarasiz?</p>
+              <p className="flow-label">{tr({ uz: 'Qaysi amalni bajarasiz?', ru: 'Какое действие выполните?' })}</p>
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 9 }}>
                 {CHIPS.map((c, ci) => {
                   const isOk = resolved && pickedOp === c.op;
                   return (
                   <button key={c.op} className={`crud-card ${wrong && wrong.op === c.op ? 'shake' : ''} ${isOk ? 'ok' : ''} ${!resolved && !wrong ? 'tap-hint' : ''}`} disabled={resolved} onClick={() => pick(c.op)} style={{ boxShadow: isOk ? `inset 0 0 0 2px ${T.success}` : `inset 0 0 0 1.5px ${c.col}44`, animationDelay: (!resolved && !wrong) ? `${ci * 0.16}s` : undefined }}>
                     <span className="crud-word" style={{ color: isOk ? T.success : c.col }}>{c.word}</span>
-                    <span className="crud-uz">{isOk ? '✓ bajarildi' : c.uz}</span>
+                    <span className="crud-uz">{isOk ? tr({ uz: '✓ bajarildi', ru: '✓ выполнено' }) : c.label}</span>
                   </button>
                   );
                 })}
@@ -1334,10 +1346,10 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {resolved && ev && <div style={{ background: CODE.bg, borderRadius: 9, padding: '4px 6px' }} className="fade-step"><SqlCode mini q={ev.sql} /></div>}
           </Col>
           <Col>
-            <p className="flow-label">products jadvali {showFiltered && <span className="mono" style={{ color: T.accent }}>(filtrlangan)</span>}</p>
+            <p className="flow-label">{tr({ uz: 'products jadvali', ru: 'таблица products' })} {showFiltered && <span className="mono" style={{ color: T.accent }}>({tr({ uz: 'filtrlangan', ru: 'отфильтрована' })})</span>}</p>
             <DataTable key={`${step}-${resolved}`} cols={PCOLS} rows={displayRows} hiCol={hiCol} flashRi={flashRi} flashCell={flashCell} exitRi={exitRi} dimFn={dimFn} />
             {resolved && ev && <SqlStatus>{ev.okNote}</SqlStatus>}
-            {resolved && ev && <button className="btn fade-step" style={{ alignSelf: 'flex-start' }} onClick={nextEvent}>{lastEvent ? 'Smenani yakunlash ✓' : 'Keyingi hodisa →'}</button>}
+            {resolved && ev && <button className="btn fade-step" style={{ alignSelf: 'flex-start' }} onClick={nextEvent}>{lastEvent ? tr({ uz: 'Smenani yakunlash ✓', ru: 'Завершить смену ✓' }) : tr({ uz: 'Keyingi hodisa →', ru: 'Следующее событие →' })}</button>}
           </Col>
         </div>
         </Zoomable>
@@ -1349,8 +1361,8 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // ===== SCREEN 11 — AI BILAN #1 (vibecoding) =====
 const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const TASKS = [
-    { id: 't1', talab: "100 000 so'mdan arzon mahsulotlarni ko'rsat", sql: 'SELECT * FROM products\nWHERE narx < 100000', filter: r => r.narx < 100000 },
-    { id: 't2', talab: "soni 6 dan kam (tugayotgan) mahsulotlarni ko'rsat", sql: 'SELECT * FROM products\nWHERE soni < 6', filter: r => r.soni < 6 }
+    { id: 't1', talab: tr({ uz: "100 000 so'mdan arzon mahsulotlarni ko'rsat", ru: 'покажи товары дешевле 100 000 сум' }), sql: 'SELECT * FROM products\nWHERE narx < 100000', filter: r => r.narx < 100000 },
+    { id: 't2', talab: tr({ uz: "soni 6 dan kam (tugayotgan) mahsulotlarni ko'rsat", ru: 'покажи товары, которых меньше 6 штук (заканчиваются)' }), sql: 'SELECT * FROM products\nWHERE soni < 6', filter: r => r.soni < 6 }
   ];
   const audio = useAudio([{ id: 's11', text: "SQL'ni yoddan bilish shart emas. Oddiy tilda nima xohlashingizni aytasiz — AI SQL yozadi. Muhimi: AI yozgan kodni o'qib, tekshirib ishlatasiz. Bir vazifani tanlang.", trigger: 'on_mount', waits_for: null }]);
   const [task, setTask] = useState(null);
@@ -1362,28 +1374,28 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const rows = cur ? PRODUCTS.filter(cur.filter) : [];
   const choose = (t) => { setTask(t.id); setRan(false); };
   return (
-    <Stage eyebrow="AI bilan · 1" screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? 'Davom etish' : "Vazifa tanlab, so'rovni bajaring"} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'AI bilan · 1', ru: 'С ИИ · 1' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "Vazifa tanlab, so'rovni bajaring", ru: 'Выберите задачу и выполните запрос' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">SQL'ni yoddan bilish shartmi? <span className="italic" style={{ color: T.accent }}>Yo'q.</span></h2></div>
-        <Mentor>Zamonaviy usul: siz <b style={{ color: T.ink }}>oddiy tilda</b> nima xohlashingizni aytasiz — AI SQL yozadi. Lekin muhimi: AI yozgan kodni <b style={{ color: T.accent }}>o'qib, tekshirib</b> ishlatasiz. Bir vazifani tanlang, AI'ning so'rovini ko'ring va bajaring.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>SQL'ni yoddan bilish shartmi? <span className="italic" style={{ color: T.accent }}>Yo'q.</span></>, ru: <>Нужно ли знать SQL наизусть? <span className="italic" style={{ color: T.accent }}>Нет.</span></> })}</h2></div>
+        <Mentor>{tr({ uz: <>Zamonaviy usul: siz <b style={{ color: T.ink }}>oddiy tilda</b> nima xohlashingizni aytasiz — AI SQL yozadi. Lekin muhimi: AI yozgan kodni <b style={{ color: T.accent }}>o'qib, tekshirib</b> ishlatasiz. Bir vazifani tanlang, AI'ning so'rovini ko'ring va bajaring.</>, ru: <>Современный способ: вы <b style={{ color: T.ink }}>простыми словами</b> говорите, что хотите — ИИ пишет SQL. Но главное: код от ИИ вы <b style={{ color: T.accent }}>читаете и проверяете</b> перед запуском. Выберите задачу, посмотрите запрос ИИ и выполните его.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
-            <p className="flow-label">AI'ga vazifa bering (oddiy tilda)</p>
+            <p className="flow-label">{tr({ uz: "AI'ga vazifa bering (oddiy tilda)", ru: 'Дайте ИИ задачу (простыми словами)' })}</p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
               {TASKS.map(t => <button key={t.id} className={`pick-row ${task === t.id ? 'on' : ''}`} onClick={() => choose(t)}><span className="pick-box">{task === t.id ? '✓' : '?'}</span><span>"{t.talab}"</span></button>)}
             </div>
             {cur && <div className="ai-card fade-step" key={cur.id}>
-              <div className="ai-row"><span className="ai-badge">AI</span><span className="ai-bubble">Mana shu SQL'ni taklif qilaman:</span></div>
+              <div className="ai-row"><span className="ai-badge">AI</span><span className="ai-bubble">{tr({ uz: "Mana shu SQL'ni taklif qilaman:", ru: 'Предлагаю вот такой SQL:' })}</span></div>
               <div style={{ background: CODE.bg, borderRadius: 9, padding: '4px 6px' }}><SqlCode mini q={cur.sql} /></div>
-              {!ran && <button className="btn fade-step" style={{ alignSelf: 'flex-start' }} onClick={() => setRan(true)}>✓ To'g'ri ekan — ishga tushir</button>}
+              {!ran && <button className="btn fade-step" style={{ alignSelf: 'flex-start' }} onClick={() => setRan(true)}>{tr({ uz: "✓ To'g'ri ekan — ishga tushir", ru: '✓ Всё верно — запустить' })}</button>}
             </div>}
           </Col>
           <Col>
-            <p className="flow-label">Natija</p>
+            <p className="flow-label">{tr({ uz: 'Natija', ru: 'Результат' })}</p>
             {ran && cur
-              ? <><DataTable key={cur.id} cols={PCOLS} rows={rows} /><SqlStatus>AI to'g'ri yozdi — <b>{rows.length} ta</b> mos mahsulot topildi. Siz tekshirdingiz va ishlatdingiz.</SqlStatus></>
-              : <div className="frame-dash" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: 110 }}><p className="small" style={{ color: T.ink3, fontStyle: 'italic', textAlign: 'center', margin: 0 }}>Vazifa tanlang → AI SQL yozadi → tekshirib bajaring</p></div>}
+              ? <><DataTable key={cur.id} cols={PCOLS} rows={rows} /><SqlStatus>{tr({ uz: <>AI to'g'ri yozdi — <b>{rows.length} ta</b> mos mahsulot topildi. Siz tekshirdingiz va ishlatdingiz.</>, ru: <>ИИ написал верно — найдено <b>{rows.length}</b> подходящих товара(ов). Вы проверили и применили.</> })}</SqlStatus></>
+              : <div className="frame-dash" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: 110 }}><p className="small" style={{ color: T.ink3, fontStyle: 'italic', textAlign: 'center', margin: 0 }}>{tr({ uz: 'Vazifa tanlang → AI SQL yozadi → tekshirib bajaring', ru: 'Выберите задачу → ИИ напишет SQL → проверьте и выполните' })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -1394,17 +1406,17 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 
 // ===== SCREEN 12 — TEST 4 =====
 const Screen12 = (props) => (
-  <QuestionScreen {...props} idx={12} scope="module-mikro" eyebrow="Mashq · 4-savol"
+  <QuestionScreen {...props} idx={12} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 4-savol', ru: 'Практика · вопрос 4' })}
     audioText="AI sizga SQL so'rov yozib berdi. Endi eng to'g'ri yo'l qaysi? O'ylab tanlang."
     questionText="AI siz uchun SQL yozib bersa, eng to'g'ri yo'l qaysi?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-sub" style={{ marginTop: 8 }}>AI sizga SQL so'rov yozib berdi. <span className="italic" style={{ color: T.accent }}>Endi nima qilasiz?</span></h2></>}
-    options={["Ko'rmasdan darrov ishga tushiraman", "Kodni o'qib, tekshirib, keyin ishlataman", "AI har doim to'g'ri yozadi — tekshirish shart emas", "O'chirib, hammasini qo'lda qaytadan yozaman"]} correctIdx={1}
-    explainCorrect="To'g'ri! AI — kuchli yordamchi, lekin u ham adashadi. Siz arxitektorsiz: kodni o'qib, tekshirib, keyin ishlatasiz."
+    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-sub" style={{ marginTop: 8 }}>{tr({ uz: <>AI sizga SQL so'rov yozib berdi. <span className="italic" style={{ color: T.accent }}>Endi nima qilasiz?</span></>, ru: <>ИИ написал вам SQL-запрос. <span className="italic" style={{ color: T.accent }}>Что делаете дальше?</span></> })}</h2></>}
+    options={[{ uz: "Ko'rmasdan darrov ishga tushiraman", ru: 'Запущу сразу, не глядя' }, { uz: "Kodni o'qib, tekshirib, keyin ishlataman", ru: 'Прочитаю код, проверю, потом применю' }, { uz: "AI har doim to'g'ri yozadi — tekshirish shart emas", ru: 'ИИ всегда пишет верно — проверять не нужно' }, { uz: "O'chirib, hammasini qo'lda qaytadan yozaman", ru: 'Удалю и перепишу всё вручную' }]} correctIdx={1}
+    explainCorrect={{ uz: "To'g'ri! AI — kuchli yordamchi, lekin u ham adashadi. Siz arxitektorsiz: kodni o'qib, tekshirib, keyin ishlatasiz.", ru: 'Верно! ИИ — мощный помощник, но и он ошибается. Вы архитектор: читаете код, проверяете, потом применяете.' }}
     explainWrong={{
-      0: "Tekshirmasdan ishlatish xavfli — AI noto'g'ri jadval yoki WHERE yozsa, ma'lumot buziladi.",
-      2: "AI ham xato qiladi (keyingi ekranda ko'rasiz). Tekshirish shart.",
-      3: "Hammasini qo'lda yozish shart emas — AI vaqtni tejaydi. Faqat tekshiring.",
-      default: "AI yozadi — siz tekshirasiz."
+      0: { uz: "Tekshirmasdan ishlatish xavfli — AI noto'g'ri jadval yoki WHERE yozsa, ma'lumot buziladi.", ru: 'Запускать без проверки опасно — если ИИ напишет не ту таблицу или WHERE, данные испортятся.' },
+      2: { uz: "AI ham xato qiladi (keyingi ekranda ko'rasiz). Tekshirish shart.", ru: 'ИИ тоже ошибается (увидите на следующем экране). Проверка обязательна.' },
+      3: { uz: "Hammasini qo'lda yozish shart emas — AI vaqtni tejaydi. Faqat tekshiring.", ru: 'Писать всё вручную не нужно — ИИ экономит время. Просто проверяйте.' },
+      default: { uz: "AI yozadi — siz tekshirasiz.", ru: 'ИИ пишет — вы проверяете.' }
     }} />
 );
 
@@ -1416,29 +1428,29 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const done = phase === 'done';
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   return (
-    <Stage eyebrow="AI bilan · 2" screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? 'Davom etish' : "AI'dan natijani oling"} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'AI bilan · 2', ru: 'С ИИ · 2' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "AI'dan natijani oling", ru: 'Получите результат от ИИ' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Boshqa jadvalni ko'rmoqchimisiz? <span className="italic" style={{ color: T.accent }}>Shunchaki so'rang.</span></h2></div>
-        <Mentor>Bazada faqat products emas — <span className="mono">users</span> (xaridorlar) jadvali ham bor. Uni ko'rish uchun SQL'ni eslab o'tirmaysiz: <b style={{ color: T.ink }}>AI'ga oddiy tilda aytasiz</b>, u SQL yozadi va bajaradi. Siz esa natijani tekshirasiz.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Boshqa jadvalni ko'rmoqchimisiz? <span className="italic" style={{ color: T.accent }}>Shunchaki so'rang.</span></>, ru: <>Хотите посмотреть другую таблицу? <span className="italic" style={{ color: T.accent }}>Просто попросите.</span></> })}</h2></div>
+        <Mentor>{tr({ uz: <>Bazada faqat products emas — <span className="mono">users</span> (xaridorlar) jadvali ham bor. Uni ko'rish uchun SQL'ni eslab o'tirmaysiz: <b style={{ color: T.ink }}>AI'ga oddiy tilda aytasiz</b>, u SQL yozadi va bajaradi. Siz esa natijani tekshirasiz.</>, ru: <>В базе не только products — есть и таблица <span className="mono">users</span> (покупатели). Чтобы её посмотреть, не нужно вспоминать SQL: <b style={{ color: T.ink }}>скажите ИИ простыми словами</b>, он напишет SQL и выполнит. А вы проверите результат.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
-            <p className="flow-label">Sizning so'rovingiz</p>
+            <p className="flow-label">{tr({ uz: "Sizning so'rovingiz", ru: 'Ваш запрос' })}</p>
             <div className="ai-card">
-              <div className="ai-row"><span className="ai-badge" style={{ background: T.ink }}>Siz</span><span className="ai-bubble" style={{ color: T.ink, fontWeight: 600 }}>"users jadvalidagi hamma foydalanuvchini ko'rsat"</span></div>
-              {phase === 'idle' && <button className="btn fade-step" style={{ alignSelf: 'flex-start' }} onClick={() => setPhase('sent')}>↗ AI'ga yuborish</button>}
+              <div className="ai-row"><span className="ai-badge" style={{ background: T.ink }}>{tr({ uz: 'Siz', ru: 'Вы' })}</span><span className="ai-bubble" style={{ color: T.ink, fontWeight: 600 }}>{tr({ uz: '"users jadvalidagi hamma foydalanuvchini ko\'rsat"', ru: '«покажи всех пользователей из таблицы users»' })}</span></div>
+              {phase === 'idle' && <button className="btn fade-step" style={{ alignSelf: 'flex-start' }} onClick={() => setPhase('sent')}>{tr({ uz: "↗ AI'ga yuborish", ru: '↗ Отправить ИИ' })}</button>}
               {phase !== 'idle' && <>
-                <div className="ai-row"><span className="ai-badge">AI</span><span className="ai-bubble">Tushundim. Mana SQL:</span></div>
+                <div className="ai-row"><span className="ai-badge">AI</span><span className="ai-bubble">{tr({ uz: 'Tushundim. Mana SQL:', ru: 'Понял. Вот SQL:' })}</span></div>
                 <div style={{ background: CODE.bg, borderRadius: 9, padding: '4px 6px' }}><SqlCode mini q={'SELECT * FROM users'} /></div>
-                {phase === 'sent' && <button className="btn fade-step" style={{ alignSelf: 'flex-start' }} onClick={() => setPhase('done')}>✓ To'g'ri — bajar</button>}
+                {phase === 'sent' && <button className="btn fade-step" style={{ alignSelf: 'flex-start' }} onClick={() => setPhase('done')}>{tr({ uz: "✓ To'g'ri — bajar", ru: '✓ Верно — выполняй' })}</button>}
               </>}
             </div>
           </Col>
           <Col>
-            <p className="flow-label">Natija — users jadvali</p>
+            <p className="flow-label">{tr({ uz: 'Natija — users jadvali', ru: 'Результат — таблица users' })}</p>
             {done
-              ? <><DataTable cols={UCOLS} rows={USERS} /><SqlStatus>AI boshqa jadvalni ham bir zumda ochib berdi. Siz nima xohlashni bildingiz — u SQL'ni yozdi.</SqlStatus></>
-              : <div className="frame-dash" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: 110 }}><p className="small" style={{ color: T.ink3, fontStyle: 'italic', textAlign: 'center', margin: 0 }}>So'rovni AI'ga yuboring → SQL → natija</p></div>}
+              ? <><DataTable cols={UCOLS} rows={USERS} /><SqlStatus>{tr({ uz: <>AI boshqa jadvalni ham bir zumda ochib berdi. Siz nima xohlashni bildingiz — u SQL'ni yozdi.</>, ru: <>ИИ мгновенно открыл и другую таблицу. Вы знали, чего хотите, — он написал SQL.</> })}</SqlStatus></>
+              : <div className="frame-dash" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: 110 }}><p className="small" style={{ color: T.ink3, fontStyle: 'italic', textAlign: 'center', margin: 0 }}>{tr({ uz: "So'rovni AI'ga yuboring → SQL → natija", ru: 'Отправьте запрос ИИ → SQL → результат' })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -1466,13 +1478,13 @@ function DebugChallenge({ lines, fixed, explain, onSolved }) {
           <div key={i} className={`dbg-line ${solved && i === bugIdx ? 'fixed' : ''} ${wrongIdx === i ? 'wrong' : ''} ${!solved && wrongIdx !== i ? 'hint' : ''}`} onClick={() => click(i)} style={!solved && wrongIdx !== i ? { animationDelay: `${i * 0.24}s` } : undefined}>
             <span className="dbg-ln">{i + 1}</span>
             <span className="dbg-txt">{solved && i === bugIdx ? fixed : l.text}</span>
-            {solved && i === bugIdx && <span className="dbg-badge">✓ tuzatildi</span>}
+            {solved && i === bugIdx && <span className="dbg-badge">{tr({ uz: '✓ tuzatildi', ru: '✓ исправлено' })}</span>}
           </div>
         ))}
       </div>
       {!solved
-        ? <p className="dbg-hint">👆 Xato bor qatorni toping va bosing</p>
-        : <div className="dbg-ok">✓ Topdingiz! {explain}</div>}
+        ? <p className="dbg-hint">{tr({ uz: '👆 Xato bor qatorni toping va bosing', ru: '👆 Найдите строку с ошибкой и нажмите на неё' })}</p>
+        : <div className="dbg-ok">{tr({ uz: '✓ Topdingiz!', ru: '✓ Нашли!' })} {tr(explain)}</div>}
     </div>
   );
 }
@@ -1489,27 +1501,27 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     { text: 'WHERE narx < 100000', bug: false },
   ];
   return (
-    <Stage eyebrow="Tekshiruv · AI xatosini tut" screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? 'Davom etish' : 'Xatoni toping va tuzating'} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Tekshiruv · AI xatosini tut', ru: 'Проверка · поймайте ошибку ИИ' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Xatoni toping va tuzating', ru: 'Найдите и исправьте ошибку' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">AI doim to'g'ri yozadimi? <span className="italic" style={{ color: T.accent }}>Keling, tekshiramiz.</span></h2></div>
-        <Mentor>AI arzon mahsulotlarni so'radi, lekin so'rov <b style={{ color: T.accent }}>ishlamayapti</b> — baza "bunday jadval yo'q" deyapti. Jadval nomi <span className="mono">products</span> (ko'plik). Xato qatorni toping va bosing — u tuzatiladi, so'rov ishga tushadi.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>AI doim to'g'ri yozadimi? <span className="italic" style={{ color: T.accent }}>Keling, tekshiramiz.</span></>, ru: <>Всегда ли ИИ пишет верно? <span className="italic" style={{ color: T.accent }}>Давайте проверим.</span></> })}</h2></div>
+        <Mentor>{tr({ uz: <>AI arzon mahsulotlarni so'radi, lekin so'rov <b style={{ color: T.accent }}>ishlamayapti</b> — baza "bunday jadval yo'q" deyapti. Jadval nomi <span className="mono">products</span> (ko'plik). Xato qatorni toping va bosing — u tuzatiladi, so'rov ishga tushadi.</>, ru: <>ИИ запросил дешёвые товары, но запрос <b style={{ color: T.accent }}>не работает</b> — база говорит «такой таблицы нет». Имя таблицы — <span className="mono">products</span> (множественное). Найдите строку с ошибкой и нажмите — она исправится, запрос заработает.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
             <div className="ai-card fade-up delay-1">
-              <div className="ai-row"><span className="ai-badge">AI</span><span className="ai-bubble">Mana so'rov — lekin ishlamayapti:</span></div>
+              <div className="ai-row"><span className="ai-badge">AI</span><span className="ai-bubble">{tr({ uz: "Mana so'rov — lekin ishlamayapti:", ru: 'Вот запрос — но он не работает:' })}</span></div>
               <DebugChallenge
                 lines={LINES}
                 fixed={<><span className="sql-kw">FROM</span> products</>}
-                explain="Jadval nomi products (ko'plik) — bitta harf (s) butun so'rovni ishlatdi. AI yozadi — siz tekshirasiz."
+                explain={tr({ uz: "Jadval nomi products (ko'plik) — bitta harf (s) butun so'rovni ishlatdi. AI yozadi — siz tekshirasiz.", ru: 'Имя таблицы products (множественное) — одна буква (s) оживила весь запрос. ИИ пишет — вы проверяете.' })}
                 onSolved={() => setSolved(true)} />
             </div>
           </Col>
           <Col>
-            <p className="flow-label">Natija</p>
+            <p className="flow-label">{tr({ uz: 'Natija', ru: 'Результат' })}</p>
             {!solved
-              ? <div className="code-box" style={{ minHeight: 80 }}><span style={{ color: T.accent }}>✕ XATO:</span> <span style={{ color: CODE.text }}>relation "product" does not exist</span></div>
-              : <><DataTable cols={PCOLS} rows={PRODUCTS.filter(r => r.narx < 100000)} /><SqlStatus>Topdingiz va tuzatdingiz! Bitta harf (s) butun so'rovni ishlatdi. <b>AI yozadi — siz tekshirasiz.</b></SqlStatus></>}
+              ? <div className="code-box" style={{ minHeight: 80 }}><span style={{ color: T.accent }}>{tr({ uz: '✕ XATO:', ru: '✕ ОШИБКА:' })}</span> <span style={{ color: CODE.text }}>relation "product" does not exist</span></div>
+              : <><DataTable cols={PCOLS} rows={PRODUCTS.filter(r => r.narx < 100000)} /><SqlStatus>{tr({ uz: <>Topdingiz va tuzatdingiz! Bitta harf (s) butun so'rovni ishlatdi. <b>AI yozadi — siz tekshirasiz.</b></>, ru: <>Нашли и исправили! Одна буква (s) оживила весь запрос. <b>ИИ пишет — вы проверяете.</b></> })}</SqlStatus></>}
           </Col>
         </div>
         </Zoomable>
@@ -1535,19 +1547,19 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     if (valid && !passed) { setPassed(true); onAnswer(screen, { stage: 'final', screenIdx: screen, question: "products jadvaliga INSERT yozing", studentAnswer: value, correct: true, firstAttemptCorrect: true, solved: true, picked: value }); }
   }, [valid]);
   const audio = useAudio([{ id: 's15', text: "Endi bazaga o'z mahsulotingizni qo'shasiz. SQL muharririga INSERT INTO products qatorini yozing: nomni qo'shtirnoq ichida, narx va sonini raqam bilan. Yozib bo'lgach Run bosing.", trigger: 'on_mount', waits_for: null }]);
-  const navLabel = ran ? 'Davom etish' : (valid ? '▶ Run bosing' : 'INSERT qatorini yozing');
+  const navLabel = ran ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : (valid ? tr({ uz: '▶ Run bosing', ru: '▶ Нажмите Run' }) : tr({ uz: 'INSERT qatorini yozing', ru: 'Напишите строку INSERT' }));
   return (
-    <Stage eyebrow="Yakuniy · amaliy" screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={navLabel} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Yakuniy · amaliy', ru: 'Финал · практика' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={navLabel} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Bazaga <span className="italic" style={{ color: T.accent }}>o'z mahsulotingizni</span> qo'shing</h2></div>
-        <Mentor>Mana SQL muharriri. 2-qatorga <b style={{ color: T.ink }}>INSERT</b> yozing — masalan: <span className="mono">INSERT INTO products (nom, narx, soni) VALUES ('Mishka', 50000, 10)</span>. Nomni qo'shtirnoq ichida, narx va sonini raqam bilan yozing. Yozib bo'lgach <b style={{ color: T.ink }}>▶ Run</b> bosing.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Bazaga <span className="italic" style={{ color: T.accent }}>o'z mahsulotingizni</span> qo'shing</>, ru: <>Добавьте в базу <span className="italic" style={{ color: T.accent }}>свой собственный товар</span></> })}</h2></div>
+        <Mentor>{tr({ uz: <>Mana SQL muharriri. 2-qatorga <b style={{ color: T.ink }}>INSERT</b> yozing — masalan: <span className="mono">INSERT INTO products (nom, narx, soni) VALUES ('Mishka', 50000, 10)</span>. Nomni qo'shtirnoq ichida, narx va sonini raqam bilan yozing. Yozib bo'lgach <b style={{ color: T.ink }}>▶ Run</b> bosing.</>, ru: <>Вот SQL-редактор. Во 2-й строке напишите <b style={{ color: T.ink }}>INSERT</b> — например: <span className="mono">INSERT INTO products (nom, narx, soni) VALUES ('Mishka', 50000, 10)</span>. Название в кавычках, цену и количество цифрами. Когда допишете — нажмите <b style={{ color: T.ink }}>▶ Run</b>.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
             <div className="vsc fade-up delay-1">
               <div className="vsc-bar"><span className="vsc-tab on"><span style={{ color: '#3FA0DB' }}>🐘</span> shop.sql <span style={{ color: '#6E7681', marginLeft: 4 }}>×</span></span></div>
               <div className="vsc-body">
-                <div className="vsc-line"><span className="vsc-ln">1</span><span style={{ whiteSpace: 'pre', color: '#6A9955' }}>-- products jadvaliga yangi mahsulot qo'shing</span></div>
+                <div className="vsc-line"><span className="vsc-ln">1</span><span style={{ whiteSpace: 'pre', color: '#6A9955' }}>{tr({ uz: "-- products jadvaliga yangi mahsulot qo'shing", ru: '-- добавьте в таблицу products новый товар' })}</span></div>
                 <div className="vsc-line"><span className="vsc-ln">2</span><input className={`vsc-input ${valid ? 'ok' : ''}`} value={value} onChange={e => { setValue(e.target.value); setRan(false); }} placeholder="INSERT INTO products (nom, narx, soni) VALUES ('Mishka', 50000, 10)" spellCheck={false} autoCapitalize="off" autoCorrect="off" /></div>
               </div>
             </div>
@@ -1556,16 +1568,16 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <span className="tagpill" style={{ opacity: hasValues ? 1 : 0.4 }}>{hasValues ? '✓' : '2'} VALUES (...)</span>
               <span className="tagpill" style={{ opacity: hasThree ? 1 : 0.4 }}>{hasThree ? '✓' : '3'} 'nom', narx, soni</span>
             </div>
-            {valid && !ran && <button className="btn fade-step" style={{ alignSelf: 'flex-start' }} onClick={() => setRan(true)}>▶ Run — so'rovni bajarish</button>}
+            {valid && !ran && <button className="btn fade-step" style={{ alignSelf: 'flex-start' }} onClick={() => setRan(true)}>{tr({ uz: "▶ Run — so'rovni bajarish", ru: '▶ Run — выполнить запрос' })}</button>}
           </Col>
           <Col>
-            <p className="flow-label">Terminal</p>
-            <div className="code-box" style={{ minHeight: 40 }}>{ran ? <TLine out={<span style={{ color: CODE.str }}>✓ INSERT 0 1 — 1 qator qo'shildi</span>} /> : <span style={{ color: CODE.comment, fontFamily: "'JetBrains Mono'", fontSize: 12 }}>Run bosilmagan…</span>}</div>
-            <p className="flow-label" style={{ marginTop: 2 }}>products jadvali</p>
+            <p className="flow-label">{tr({ uz: 'Terminal', ru: 'Терминал' })}</p>
+            <div className="code-box" style={{ minHeight: 40 }}>{ran ? <TLine out={<span style={{ color: CODE.str }}>{tr({ uz: "✓ INSERT 0 1 — 1 qator qo'shildi", ru: '✓ INSERT 0 1 — добавлена 1 строка' })}</span>} /> : <span style={{ color: CODE.comment, fontFamily: "'JetBrains Mono'", fontSize: 12 }}>{tr({ uz: 'Run bosilmagan…', ru: 'Run ещё не нажат…' })}</span>}</div>
+            <p className="flow-label" style={{ marginTop: 2 }}>{tr({ uz: 'products jadvali', ru: 'таблица products' })}</p>
             {ran && newRow
               ? <DataTable cols={PCOLS} rows={[...PRODUCTS, newRow]} hiRow={PRODUCTS.length} />
-              : <div className="frame-dash" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: 80 }}><p className="small" style={{ color: T.ink3, fontStyle: 'italic', margin: 0 }}>{valid ? '▶ Run bosing — mahsulotingiz qo\'shiladi' : 'INSERT qatorini yozing…'}</p></div>}
-            {ran && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>🎉 Tabriklaymiz! Siz bazaga <b>"{newRow ? newRow.nom : ''}"</b> ni qo'shdingiz. Endi siz ma'lumotlar bazasini boshqara olasiz!</p></div>}
+              : <div className="frame-dash" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: 80 }}><p className="small" style={{ color: T.ink3, fontStyle: 'italic', margin: 0 }}>{valid ? tr({ uz: "▶ Run bosing — mahsulotingiz qo'shiladi", ru: '▶ Нажмите Run — ваш товар добавится' }) : tr({ uz: 'INSERT qatorini yozing…', ru: 'Напишите строку INSERT…' })}</p></div>}
+            {ran && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>🎉 Tabriklaymiz! Siz bazaga <b>"{newRow ? newRow.nom : ''}"</b> ni qo'shdingiz. Endi siz ma'lumotlar bazasini boshqara olasiz!</>, ru: <>🎉 Поздравляем! Вы добавили в базу <b>«{newRow ? newRow.nom : ''}»</b>. Теперь вы умеете управлять базой данных!</> })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -1597,50 +1609,50 @@ function Flashcards({ cards }) {
   const again = () => advance(false);
   const restart = () => { setQueue(cards.map((_, i) => i)); setKnown(0); setFlipped(false); };
   if (!card) return (
-    <div className="fc-done fade-up"><span className="fc-done-emoji">🎉</span><p className="fc-done-h">Hammasini bilasiz!</p><p className="fc-done-s">{total}/{total} atama yodlandi</p><button className="fc-btn ghost" onClick={restart}>↻ Qaytadan takrorlash</button></div>
+    <div className="fc-done fade-up"><span className="fc-done-emoji">🎉</span><p className="fc-done-h">{tr({ uz: 'Hammasini bilasiz!', ru: 'Вы знаете всё!' })}</p><p className="fc-done-s">{total}/{total} {tr({ uz: 'atama yodlandi', ru: 'терминов выучено' })}</p><button className="fc-btn ghost" onClick={restart}>{tr({ uz: '↻ Qaytadan takrorlash', ru: '↻ Повторить заново' })}</button></div>
   );
   return (
     <div className="fc fade-up">
-      <div className="fc-top"><span className="fc-pill learn" key={`l-${queue.length}-${swapRef.current}`}>↻ O'rganilmoqda · <b>{queue.length}</b></span><span className="fc-pill knew" key={`k-${known}`}>✓ Bildim · <b>{known}</b></span></div>
+      <div className="fc-top"><span className="fc-pill learn" key={`l-${queue.length}-${swapRef.current}`}>{tr({ uz: "↻ O'rganilmoqda", ru: '↻ Учится' })} · <b>{queue.length}</b></span><span className="fc-pill knew" key={`k-${known}`}>{tr({ uz: '✓ Bildim', ru: '✓ Знаю' })} · <b>{known}</b></span></div>
       <div className="fc-bar"><span className="fc-bar-fill" style={{ width: `${(known / total) * 100}%` }} /></div>
       <div className="fc-cardwrap">
         <div className={`fc-fly ${exiting === 'knew' ? 'out-knew' : ''} ${exiting === 'again' ? 'out-again' : ''}`} key={swapRef.current}>
         <div className={`fc-card ${flipped ? 'flip' : ''}`} onClick={() => !flipped && !exiting && setFlipped(true)} role="button" tabIndex={0}>
-          <div className="fc-face fc-front"><span className="fc-q">{card.front}</span><span className="fc-cue">Qaysi tushuncha? 🤔 <span className="fc-tap">bosing</span></span></div>
-          <div className="fc-face fc-back"><span className="fc-tag">{card.back}</span>{card.note && <span className="fc-note">{card.note}</span>}</div>
+          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: 'Qaysi tushuncha? 🤔', ru: 'Какое это понятие? 🤔' })} <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
+          <div className="fc-face fc-back"><span className="fc-tag">{tr(card.back)}</span>{card.note && <span className="fc-note">{tr(card.note)}</span>}</div>
         </div>
         </div>
       </div>
       {flipped
-        ? (<div className="fc-actions"><button className="fc-btn again" disabled={!!exiting} onClick={again}>✗ Takrorlash</button><button className="fc-btn knew" disabled={!!exiting} onClick={knew}>✓ Bildim</button></div>)
-        : (<p className="fc-hint">👆 Kartani bosing — javobni ko'rasiz</p>)}
+        ? (<div className="fc-actions"><button className="fc-btn again" disabled={!!exiting} onClick={again}>{tr({ uz: '✗ Takrorlash', ru: '✗ Повторить' })}</button><button className="fc-btn knew" disabled={!!exiting} onClick={knew}>{tr({ uz: '✓ Bildim', ru: '✓ Знаю' })}</button></div>)
+        : (<p className="fc-hint">{tr({ uz: "👆 Kartani bosing — javobni ko'rasiz", ru: '👆 Нажмите на карточку — увидите ответ' })}</p>)}
     </div>
   );
 }
 
 // 🃏 PostgreSQL CRUD FLASHCARD KARTALARI (front=izoh, back=tushuncha) — Metodist keyin sayqallaydi
 const CRUD_FLASHCARDS = [
-  { front: "Ma'lumot saqlanadigan do'kon ombori", back: "Baza", note: "PostgreSQL 🐘" },
-  { front: "Ustun va qatorlardan iborat — bitta ombor javoni", back: "Jadval", note: "products" },
-  { front: "Jadvaldagi bitta yozuv — bitta mahsulot", back: "Qator", note: "1 ta mahsulot" },
-  { front: "Mahsulotning bir xususiyati", back: "Ustun", note: "nom · narx · soni" },
-  { front: "Yangi mahsulot keldi — jadvalga qo'shadi", back: "INSERT", note: "qo'shish" },
-  { front: "Vitrinani ko'rish — ma'lumotni o'qiydi", back: "SELECT", note: "faqat ko'rsatadi" },
-  { front: "Faqat kerakligini topish — filtr/shart", back: "WHERE", note: "narx < 100000" },
-  { front: "Narx tushdi — mavjud qatorni o'zgartiradi", back: "UPDATE", note: "SET narx = ..." },
-  { front: "Mahsulot sotuvdan chiqdi — qatorni o'chiradi", back: "DELETE", note: "o'chirish" },
-  { front: "Bazaning 4 asosiy amali", back: "CRUD", note: "qo'sh · ko'r · o'zgartir · o'chir" },
-  { front: "INSERT'da kiritiladigan qiymatlar", back: "VALUES", note: "('Mishka', 50000, 10)" },
-  { front: "SQL'ni yozadi — siz tekshirasiz", back: "AI + tekshiruv", note: "siz arxitektsiz" },
+  { front: { uz: "Ma'lumot saqlanadigan do'kon ombori", ru: 'Склад магазина, где хранятся данные' }, back: { uz: 'Baza', ru: 'База' }, note: "PostgreSQL 🐘" },
+  { front: { uz: "Ustun va qatorlardan iborat — bitta ombor javoni", ru: 'Состоит из столбцов и строк — один стеллаж склада' }, back: { uz: 'Jadval', ru: 'Таблица' }, note: "products" },
+  { front: { uz: "Jadvaldagi bitta yozuv — bitta mahsulot", ru: 'Одна запись в таблице — один товар' }, back: { uz: 'Qator', ru: 'Строка' }, note: { uz: '1 ta mahsulot', ru: '1 товар' } },
+  { front: { uz: "Mahsulotning bir xususiyati", ru: 'Одно свойство товара' }, back: { uz: 'Ustun', ru: 'Столбец' }, note: "nom · narx · soni" },
+  { front: { uz: "Yangi mahsulot keldi — jadvalga qo'shadi", ru: 'Привезли новый товар — добавляет его в таблицу' }, back: "INSERT", note: { uz: "qo'shish", ru: 'добавление' } },
+  { front: { uz: "Vitrinani ko'rish — ma'lumotni o'qiydi", ru: 'Посмотреть витрину — читает данные' }, back: "SELECT", note: { uz: "faqat ko'rsatadi", ru: 'только показывает' } },
+  { front: { uz: "Faqat kerakligini topish — filtr/shart", ru: 'Найти только нужное — фильтр/условие' }, back: "WHERE", note: "narx < 100000" },
+  { front: { uz: "Narx tushdi — mavjud qatorni o'zgartiradi", ru: 'Цена упала — изменяет существующую строку' }, back: "UPDATE", note: "SET narx = ..." },
+  { front: { uz: "Mahsulot sotuvdan chiqdi — qatorni o'chiradi", ru: 'Товар сняли с продажи — удаляет строку' }, back: "DELETE", note: { uz: "o'chirish", ru: 'удаление' } },
+  { front: { uz: "Bazaning 4 asosiy amali", ru: '4 основных действия базы' }, back: "CRUD", note: { uz: "qo'sh · ko'r · o'zgartir · o'chir", ru: 'добавь · посмотри · измени · удали' } },
+  { front: { uz: "INSERT'da kiritiladigan qiymatlar", ru: 'Значения, которые вводят в INSERT' }, back: "VALUES", note: "('Mishka', 50000, 10)" },
+  { front: { uz: "SQL'ni yozadi — siz tekshirasiz", ru: 'Пишет SQL — а вы проверяете' }, back: { uz: 'AI + tekshiruv', ru: 'ИИ + проверка' }, note: { uz: 'siz arxitektsiz', ru: 'вы архитектор' } },
 ];
 const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const audio = useAudio([{ id: 'sflash', text: "Darsni yakunlashdan oldin bugun o'rgangan tushunchalarni tez takrorlaymiz. Har kartada bir izoh — qaysi tushuncha ekanini o'ylang, keyin kartani bosib tekshiring.", trigger: 'on_mount', waits_for: null }]);
   useEffect(() => { if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, []); // eslint-disable-line
   return (
-    <Stage eyebrow="Takrorlash" screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={false} label="Yakunlash →" onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Takrorlash', ru: 'Повторение' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={false} label={tr({ uz: 'Yakunlash →', ru: 'Завершить →' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Tushunchalarni <span className="italic" style={{ color: T.accent }}>tez takrorlaymiz</span>.</h2></div>
-        <Mentor>Darsni yakunlashdan oldin bugun o'rgangan tushunchalarni takrorlaymiz. Har kartada bir izoh — <b style={{ color: T.ink }}>qaysi tushuncha</b> ekanini o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Tushunchalarni <span className="italic" style={{ color: T.accent }}>tez takrorlaymiz</span>.</>, ru: <>Быстро <span className="italic" style={{ color: T.accent }}>повторим понятия</span>.</> })}</h2></div>
+        <Mentor>{tr({ uz: <>Darsni yakunlashdan oldin bugun o'rgangan tushunchalarni takrorlaymiz. Har kartada bir izoh — <b style={{ color: T.ink }}>qaysi tushuncha</b> ekanini o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</>, ru: <>Перед завершением урока повторим сегодняшние понятия. На каждой карточке описание — подумайте, <b style={{ color: T.ink }}>какое это понятие</b>, потом нажмите на карточку и проверьте себя. Оцените кнопками <b style={{ color: T.ink }}>Знаю</b> или <b style={{ color: T.ink }}>Повторить</b>.</> })}</Mentor>
         <div className="fc-center"><Flashcards cards={CRUD_FLASHCARDS} /></div>
       </div>
     </Stage>
@@ -1649,10 +1661,10 @@ const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) =>
 
 // ===== 🏅 BADGES (nishonlar) — dars davomidagi REAL bosqichlar uchun (tekin emas) =====
 const ACHIEVEMENTS = {
-  shopManager:   { icon: '🛒', name: 'Shop Manager',   desc: "Do'kon jadvaliga mahsulot qo'shishni bildingiz" },
-  crudMaster:    { icon: '⚡', name: 'CRUD Master',     desc: "Menejer navbatida 4 CRUD amalini boshqardingiz" },
-  bugHunter:     { icon: '🔎', name: 'Bug Hunter',      desc: "AI kodidagi xatoni topib tuzatdingiz" },
-  dataArchitect: { icon: '🏗️', name: 'Data Architect',  desc: "O'z INSERT so'rovingizni yozib bazaga qo'shdingiz" },
+  shopManager:   { icon: '🛒', name: 'Shop Manager',   desc: { uz: "Do'kon jadvaliga mahsulot qo'shishni bildingiz", ru: 'Вы научились добавлять товары в таблицу магазина' } },
+  crudMaster:    { icon: '⚡', name: 'CRUD Master',     desc: { uz: "Menejer navbatida 4 CRUD amalini boshqardingiz", ru: 'На смене менеджера вы справились с 4 действиями CRUD' } },
+  bugHunter:     { icon: '🔎', name: 'Bug Hunter',      desc: { uz: "AI kodidagi xatoni topib tuzatdingiz", ru: 'Вы нашли и исправили ошибку в коде ИИ' } },
+  dataArchitect: { icon: '🏗️', name: 'Data Architect',  desc: { uz: "O'z INSERT so'rovingizni yozib bazaga qo'shdingiz", ru: 'Вы написали свой INSERT и добавили запись в базу' } },
 };
 // Ekran id → nishon (recordAnswer'da, faqat REAL solve bilan: SCORED test / challenge)
 const ACH_TRIGGERS = { s4: 'shopManager', s10: 'crudMaster', s14: 'bugHunter', s15: 'dataArchitect' };
@@ -1660,7 +1672,7 @@ const ACH_TRIGGERS = { s4: 'shopManager', s10: 'crudMaster', s14: 'bugHunter', s
 function AchCelebrate({ ach, onDone }) {
   useEffect(() => { const t = setTimeout(onDone, 4000); return () => clearTimeout(t); }, []); // eslint-disable-line
   return (
-    <div className="acu-overlay" onClick={onDone} role="status" aria-label={`Yangi nishon: ${ach.name}`}>
+    <div className="acu-overlay" onClick={onDone} role="status" aria-label={`${tr({ uz: 'Yangi nishon:', ru: 'Новый значок:' })} ${ach.name}`}>
       <div className="acu-rays" aria-hidden="true" />
       <div className="acu-glow" aria-hidden="true" />
       <div className="acu-ring" aria-hidden="true" />
@@ -1673,11 +1685,11 @@ function AchCelebrate({ ach, onDone }) {
           ))}
         </div>
         <div className="acu-txt">
-          <span className="acu-eyebrow">🏅 Nishon ochildi!</span>
+          <span className="acu-eyebrow">{tr({ uz: '🏅 Nishon ochildi!', ru: '🏅 Значок открыт!' })}</span>
           <span className="acu-name">{ach.name}</span>
-          {ach.desc && <span className="acu-desc">{ach.desc}</span>}
+          {ach.desc && <span className="acu-desc">{tr(ach.desc)}</span>}
         </div>
-        <span className="acu-tap">bosib davom eting</span>
+        <span className="acu-tap">{tr({ uz: 'bosib davom eting', ru: 'нажмите, чтобы продолжить' })}</span>
       </div>
     </div>
   );
@@ -1712,7 +1724,7 @@ const Confetti = () => {
 };
 
 // Podium savol yorliqlari (SCORED_IDX indekslariga mos)
-const Q_LABELS = { 4: "1 — INSERT", 6: "2 — SELECT", 10: "3 — UPDATE", 13: "4 — AI", 16: "5 — Yozdim" };
+const Q_LABELS = { 4: "1 — INSERT", 6: "2 — SELECT", 10: "3 — UPDATE", 13: "4 — AI", 16: { uz: '5 — Yozdim', ru: '5 — Написал(а)' } };
 const QUIZ_MS = 15000;
 // Kapsula ichida suzuvchi tokenlar — darsning "DNK"si (CRUD + products + 🐘)
 const QZ_BG_SHAPES = [
@@ -1730,18 +1742,18 @@ const QZ_BG_SHAPES = [
 // ⚔️ Mustahkamlash-jang savollari — INSERT/SELECT/WHERE/UPDATE/DELETE/VALUES/products/CRUD.
 // To'g'ri javoblar 4 pozitsiyaga TENG taqsimlangan (12 savol: 3/3/3/3). Matn 🎓 Metodist sayqallaydi.
 const QUIZ_BANK = [
-  { q: "Do'konga yangi mahsulot keldi. Qaysi buyruq jadvalga yangi qator qo'shadi?", opts: ["`INSERT INTO`", "`SELECT`", "`UPDATE`", "`DELETE`"], correct: 0 },
-  { q: "`INSERT` so'rovida qiymatlar (`VALUES`) nimadan keyin yoziladi?", opts: ["`WHERE` shartidan keyin", "Ustunlar ro'yxatidan keyin", "`SET` dan keyin", "`FROM` dan keyin"], correct: 1 },
-  { q: "Bo'p-bo'sh jadvalga birinchi mahsulotni nima qo'shadi?", opts: ["`SELECT`", "`UPDATE`", "`INSERT INTO ... VALUES`", "`WHERE`"], correct: 2 },
-  { q: "`SELECT * FROM products` nima qiladi?", opts: ["Jadvalni butunlay o'chiradi", "Barcha narxni yangilaydi", "Yangi bo'sh jadval yasaydi", "Barcha ustunni ko'rsatadi"], correct: 3 },
-  { q: "Arzon mahsulotlarni (narx < 100000) ko'rish uchun qaysi kalit so'z qo'shiladi?", opts: [ "`VALUES`", "`SET`","`WHERE`", "`INTO`"], correct: 2 },
-  { q: "`SELECT` buyrug'i ma'lumotni o'zgartiradimi?", opts: [ "Yo'q — faqat o'qib ko'rsatadi","Ha, qatorlarni o'chiradi", "Ha, narxni yangilaydi", "Ha, jadval yaratadi"], correct: 0 },
-  { q: "Klaviatura narxi tushdi — mavjud qatorni qaysi buyruq o'zgartiradi?", opts: ["`INSERT`", "`SELECT`", "`DELETE`", "`UPDATE`"], correct: 3 },
-  { q: "`UPDATE` so'rovida `WHERE` yozilmasa nima bo'ladi?", opts: ["Xato beradi, hech narsa o'zgarmaydi", "BARCHA qator o'zgaradi", "Hech narsa bo'lmaydi", "Faqat birinchi qator o'zgaradi"], correct: 1 },
-  { q: "Mahsulotni jadvaldan butunlay olib tashlaydigan buyruq qaysi?", opts: [ "`SELECT`","`DELETE FROM`", "`UPDATE`", "`INSERT`"], correct: 1 },
-  { q: "AI sizga SQL so'rov yozib berdi. Eng to'g'ri yo'l qaysi?", opts: ["Ko'rmasdan darrov ishga tushiraman", "AI doim to'g'ri — tekshirmayman", "O'qib, tekshirib, keyin ishlataman", "O'chirib, qo'lda qaytadan yozaman"], correct: 2 },
-  { q: "Do'kon mahsulotlari asosan qayerda saqlanadi?", opts: ["Saytning HTML kodida", "Brauzer xotirasida", "Rasm papkasida", "Ma'lumotlar bazasida"], correct: 3 },
-  { q: "CRUD qaysi 4 amalni bildiradi?", opts: [ "Create · Read · Update · Delete", "Faqat qo'shish va o'chirish", "Create · Read · Undo · Delete","Faqat SELECT va UPDATE"], correct: 0 },
+  { q: { uz: "Do'konga yangi mahsulot keldi. Qaysi buyruq jadvalga yangi qator qo'shadi?", ru: 'В магазин привезли новый товар. Какая команда добавит в таблицу новую строку?' }, opts: ["`INSERT INTO`", "`SELECT`", "`UPDATE`", "`DELETE`"], correct: 0 },
+  { q: { uz: "`INSERT` so'rovida qiymatlar (`VALUES`) nimadan keyin yoziladi?", ru: 'После чего в запросе `INSERT` пишутся значения (`VALUES`)?' }, opts: [{ uz: "`WHERE` shartidan keyin", ru: 'После условия `WHERE`' }, { uz: "Ustunlar ro'yxatidan keyin", ru: 'После списка столбцов' }, { uz: "`SET` dan keyin", ru: 'После `SET`' }, { uz: "`FROM` dan keyin", ru: 'После `FROM`' }], correct: 1 },
+  { q: { uz: "Bo'p-bo'sh jadvalga birinchi mahsulotni nima qo'shadi?", ru: 'Что добавит первый товар в совершенно пустую таблицу?' }, opts: ["`SELECT`", "`UPDATE`", "`INSERT INTO ... VALUES`", "`WHERE`"], correct: 2 },
+  { q: { uz: "`SELECT * FROM products` nima qiladi?", ru: 'Что делает `SELECT * FROM products`?' }, opts: [{ uz: "Jadvalni butunlay o'chiradi", ru: 'Полностью удаляет таблицу' }, { uz: "Barcha narxni yangilaydi", ru: 'Обновляет все цены' }, { uz: "Yangi bo'sh jadval yasaydi", ru: 'Создаёт новую пустую таблицу' }, { uz: "Barcha ustunni ko'rsatadi", ru: 'Показывает все столбцы' }], correct: 3 },
+  { q: { uz: "Arzon mahsulotlarni (narx < 100000) ko'rish uchun qaysi kalit so'z qo'shiladi?", ru: 'Какое ключевое слово добавить, чтобы увидеть дешёвые товары (narx < 100000)?' }, opts: [ "`VALUES`", "`SET`","`WHERE`", "`INTO`"], correct: 2 },
+  { q: { uz: "`SELECT` buyrug'i ma'lumotni o'zgartiradimi?", ru: 'Изменяет ли команда `SELECT` данные?' }, opts: [ { uz: "Yo'q — faqat o'qib ko'rsatadi", ru: 'Нет — только читает и показывает' }, { uz: 'Ha, qatorlarni o\'chiradi', ru: 'Да, удаляет строки' }, { uz: 'Ha, narxni yangilaydi', ru: 'Да, обновляет цену' }, { uz: 'Ha, jadval yaratadi', ru: 'Да, создаёт таблицу' }], correct: 0 },
+  { q: { uz: "Klaviatura narxi tushdi — mavjud qatorni qaysi buyruq o'zgartiradi?", ru: 'Klaviatura подешевела — какая команда изменит существующую строку?' }, opts: ["`INSERT`", "`SELECT`", "`DELETE`", "`UPDATE`"], correct: 3 },
+  { q: { uz: "`UPDATE` so'rovida `WHERE` yozilmasa nima bo'ladi?", ru: 'Что будет, если в запросе `UPDATE` не написать `WHERE`?' }, opts: [{ uz: "Xato beradi, hech narsa o'zgarmaydi", ru: 'Выдаст ошибку, ничего не изменится' }, { uz: 'BARCHA qator o\'zgaradi', ru: 'Изменятся ВСЕ строки' }, { uz: "Hech narsa bo'lmaydi", ru: 'Ничего не произойдёт' }, { uz: 'Faqat birinchi qator o\'zgaradi', ru: 'Изменится только первая строка' }], correct: 1 },
+  { q: { uz: "Mahsulotni jadvaldan butunlay olib tashlaydigan buyruq qaysi?", ru: 'Какая команда полностью убирает товар из таблицы?' }, opts: [ "`SELECT`","`DELETE FROM`", "`UPDATE`", "`INSERT`"], correct: 1 },
+  { q: { uz: "AI sizga SQL so'rov yozib berdi. Eng to'g'ri yo'l qaysi?", ru: 'ИИ написал вам SQL-запрос. Какой путь самый верный?' }, opts: [{ uz: "Ko'rmasdan darrov ishga tushiraman", ru: 'Запущу сразу, не глядя' }, { uz: "AI doim to'g'ri — tekshirmayman", ru: 'ИИ всегда прав — не проверяю' }, { uz: "O'qib, tekshirib, keyin ishlataman", ru: 'Прочитаю, проверю, потом применю' }, { uz: "O'chirib, qo'lda qaytadan yozaman", ru: 'Удалю и перепишу вручную' }], correct: 2 },
+  { q: { uz: "Do'kon mahsulotlari asosan qayerda saqlanadi?", ru: 'Где в основном хранятся товары магазина?' }, opts: [{ uz: 'Saytning HTML kodida', ru: 'В HTML-коде сайта' }, { uz: 'Brauzer xotirasida', ru: 'В памяти браузера' }, { uz: 'Rasm papkasida', ru: 'В папке с картинками' }, { uz: "Ma'lumotlar bazasida", ru: 'В базе данных' }], correct: 3 },
+  { q: { uz: 'CRUD qaysi 4 amalni bildiradi?', ru: 'Какие 4 действия означает CRUD?' }, opts: [ 'Create · Read · Update · Delete', { uz: "Faqat qo'shish va o'chirish", ru: 'Только добавление и удаление' }, 'Create · Read · Undo · Delete', { uz: 'Faqat SELECT va UPDATE', ru: 'Только SELECT и UPDATE' }], correct: 0 },
 ];
 
 const CsNeonBolt = ({ flip }) => (
@@ -1784,9 +1796,9 @@ const CsWordmark = ({ onClick, disabled, hint, stats = true, bolt = true, liveOn
       </div>
       {stats && (
         <div className="cs-hud">
-          <span className="cs-hud-i"><b>{QUIZ_BANK.length}</b> SAVOL</span>
+          <span className="cs-hud-i"><b>{QUIZ_BANK.length}</b> {tr({ uz: 'SAVOL', ru: 'ВОПРОСОВ' })}</span>
           <span className="cs-hud-dot">·</span>
-          <span className="cs-hud-i"><b>{QUIZ_MS / 1000}</b> SONIYA</span>
+          <span className="cs-hud-i"><b>{QUIZ_MS / 1000}</b> {tr({ uz: 'SONIYA', ru: 'СЕКУНД' })}</span>
           <span className="cs-hud-dot">·</span>
           <span className="cs-hud-i">🏆 PODIUM</span>
         </div>
@@ -1991,7 +2003,7 @@ function QuizArena({ live, onClose, startSolo }) {
 
   const closeArena = () => {
     if (isMentor && !solo && phase !== 'done') {
-      if (typeof window !== 'undefined' && !window.confirm("Test hali yakunlanmadi — yopsangiz o'quvchilar arenada kutib qoladi.\nBaribir yopilsinmi?")) return;
+      if (typeof window !== 'undefined' && !window.confirm(tr({ uz: "Test hali yakunlanmadi — yopsangiz o'quvchilar arenada kutib qoladi.\nBaribir yopilsinmi?", ru: 'Тест ещё не завершён — если закроете, ученики останутся ждать на арене.\nВсё равно закрыть?' }))) return;
     }
     onClose();
   };
@@ -2004,58 +2016,58 @@ function QuizArena({ live, onClose, startSolo }) {
         ))}
       </div>
       <QzFX />
-      <button className="qz-x" onClick={closeArena} aria-label="Yopish">✕</button>
+      <button className="qz-x" onClick={closeArena} aria-label={tr({ uz: 'Yopish', ru: 'Закрыть' })}>✕</button>
 
       {classEnded && isStudent && !solo && phase !== 'done' && (
         <div className="qz-endnote fade-step">
-          <span>⚠️ Jonli dars yakunlandi — testni o'zingiz davom ettiring:</span>
-          <button className="qz-btn" onClick={startPractice}>📖 Mashq rejimida davom etish</button>
+          <span>{tr({ uz: "⚠️ Jonli dars yakunlandi — testni o'zingiz davom ettiring:", ru: '⚠️ Живой урок завершён — продолжите тест самостоятельно:' })}</span>
+          <button className="qz-btn" onClick={startPractice}>{tr({ uz: '📖 Mashq rejimida davom etish', ru: '📖 Продолжить в режиме тренировки' })}</button>
         </div>
       )}
 
       {phase === 'lobby' && (
         <div className="qz-view fade-step">
           <CsWordmark />
-          <p className="qz-sub" style={{ marginTop: -4 }}>Tezroq to'g'ri bossangiz — ko'proq ball. Ketma-ket to'g'ri javoblar 🔥 bonus beradi!</p>
+          <p className="qz-sub" style={{ marginTop: -4 }}>{tr({ uz: "Tezroq to'g'ri bossangiz — ko'proq ball. Ketma-ket to'g'ri javoblar 🔥 bonus beradi!", ru: 'Чем быстрее верный ответ — тем больше баллов. Верные ответы подряд дают 🔥 бонус!' })}</p>
           {!solo && (
             <div className="qz-lobby-players">
               {players.map(p => <span key={p.id} className={`qz-pchip ${p.id === live.playerId ? 'me' : ''}`}>{p.nickname}</span>)}
-              {players.length === 0 && <span className="qz-dimtxt">O'quvchilar kutilmoqda…</span>}
+              {players.length === 0 && <span className="qz-dimtxt">{tr({ uz: "O'quvchilar kutilmoqda…", ru: 'Ожидаем учеников…' })}</span>}
             </div>
           )}
-          {isMentor && <button className="qz-btn big" disabled={players.length === 0} onClick={() => ctrl('q', 0)}>▶ Testni boshlash</button>}
-          {isStudent && !solo && <p className="qz-waitmsg">⏳ Mentor testni boshlashini kuting…</p>}
-          {solo && <button className="qz-btn big" onClick={() => soloStart(0)}>▶ Boshlash</button>}
+          {isMentor && <button className="qz-btn big" disabled={players.length === 0} onClick={() => ctrl('q', 0)}>{tr({ uz: '▶ Testni boshlash', ru: '▶ Начать тест' })}</button>}
+          {isStudent && !solo && <p className="qz-waitmsg">{tr({ uz: '⏳ Mentor testni boshlashini kuting…', ru: '⏳ Ждите, пока ментор начнёт тест…' })}</p>}
+          {solo && <button className="qz-btn big" onClick={() => soloStart(0)}>{tr({ uz: '▶ Boshlash', ru: '▶ Начать' })}</button>}
         </div>
       )}
 
       {phase === 'q' && Q && (
         <div className="qz-view qz-qview fade-step" key={`q${qi}`}>
           <div className="qz-top">
-            <span className="qz-count">Savol <b>{qi + 1}</b>/{QUIZ_BANK.length}</span>
+            <span className="qz-count">{tr({ uz: 'Savol', ru: 'Вопрос' })} <b>{qi + 1}</b>/{QUIZ_BANK.length}</span>
             <QzTimer remaining={remaining} />
             {isMentor
               ? <span className="qz-ansn">📨 {answeredN}/{players.length}</span>
               : <span className="qz-ansn">{streakUpTo(qi - 1) >= 2 ? `🔥 x${streakUpTo(qi - 1)}` : ' '}</span>}
           </div>
-          <h2 className="qz-q">{fmtCode(Q.q)}</h2>
+          <h2 className="qz-q">{fmtCode(tr(Q.q))}</h2>
           <div className="qz-grid">
             {Q.opts.map((o, i) => {
               const pickedThis = my && my.picked === i;
               return (
                 <button key={i} className={`qz-tile ${my ? (pickedThis ? 'picked' : 'faded') : ''}`} style={{ background: QUIZ_COLORS[i] }} disabled={isMentor || !!my} onClick={() => answer(i)}>
                   <span className="qz-shape">{QUIZ_SHAPES[i]}</span>
-                  <span className="qz-opt">{fmtCode(o)}</span>
+                  <span className="qz-opt">{fmtCode(tr(o))}</span>
                   {pickedThis && <span className="qz-pbadge">✔</span>}
                 </button>
               );
             })}
           </div>
-          {my && !isMentor && !solo && <p className="qz-waitmsg">✔ Javob qabul qilindi — natijani kuting…</p>}
+          {my && !isMentor && !solo && <p className="qz-waitmsg">{tr({ uz: '✔ Javob qabul qilindi — natijani kuting…', ru: '✔ Ответ принят — ждите результат…' })}</p>}
           {isMentor && (
             <div className="qz-mrow">
-              {answeredN >= players.length && players.length > 0 && <span className="qz-allin">✓ Hamma javob berdi!</span>}
-              <button className="qz-btn" onClick={() => ctrl('r', qi)}>⏹ Natijani ochish</button>
+              {answeredN >= players.length && players.length > 0 && <span className="qz-allin">{tr({ uz: '✓ Hamma javob berdi!', ru: '✓ Все ответили!' })}</span>}
+              <button className="qz-btn" onClick={() => ctrl('r', qi)}>{tr({ uz: '⏹ Natijani ochish', ru: '⏹ Открыть результат' })}</button>
             </div>
           )}
         </div>
@@ -2064,9 +2076,9 @@ function QuizArena({ live, onClose, startSolo }) {
       {phase === 'reveal' && Q && (
         <div className="qz-view qz-qview fade-step" key={`r${qi}`}>
           <div className="qz-top">
-            <span className="qz-count">Savol <b>{qi + 1}</b>/{QUIZ_BANK.length} — natija</span>
+            <span className="qz-count">{tr({ uz: 'Savol', ru: 'Вопрос' })} <b>{qi + 1}</b>/{QUIZ_BANK.length} — {tr({ uz: 'natija', ru: 'результат' })}</span>
           </div>
-          <h2 className="qz-q">{fmtCode(Q.q)}</h2>
+          <h2 className="qz-q">{fmtCode(tr(Q.q))}</h2>
           <div className="qz-grid">
             {Q.opts.map((o, i) => {
               const win = i === Q.correct;
@@ -2074,7 +2086,7 @@ function QuizArena({ live, onClose, startSolo }) {
               return (
                 <div key={i} className={`qz-tile rv ${win ? 'win' : 'lose'} ${pickedThis ? 'picked' : ''}`} style={{ background: QUIZ_COLORS[i] }}>
                   <span className="qz-shape">{QUIZ_SHAPES[i]}</span>
-                  <span className="qz-opt">{fmtCode(o)}</span>
+                  <span className="qz-opt">{fmtCode(tr(o))}</span>
                   <span className="qz-cnt">{win ? '✓ ' : ''}{counts[i]}</span>
                 </div>
               );
@@ -2083,9 +2095,9 @@ function QuizArena({ live, onClose, startSolo }) {
           {!isMentor && (
             <div className={`qz-res ${my?.correct ? 'good' : 'bad'}`}>
               {my?.correct
-                ? <><span className="qz-res-pts">+{myPtsFor(qi)}</span><span className="qz-res-t">ball{streakUpTo(qi) >= 2 ? ` · 🔥 x${streakUpTo(qi)} streak` : ''}</span></>
-                : <span className="qz-res-t">{my ? "Xato — 0 ball. Keyingisida olasiz! 💪" : "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱"}</span>}
-              {!solo && myRank >= 0 && <span className="qz-res-rank">Siz hozir: {myRank + 1}-o'rin</span>}
+                ? <><span className="qz-res-pts">+{myPtsFor(qi)}</span><span className="qz-res-t">{tr({ uz: 'ball', ru: 'баллов' })}{streakUpTo(qi) >= 2 ? ` · 🔥 x${streakUpTo(qi)} ${tr({ uz: 'streak', ru: 'стрик' })}` : ''}</span></>
+                : <span className="qz-res-t">{my ? tr({ uz: "Xato — 0 ball. Keyingisida olasiz! 💪", ru: 'Ошибка — 0 баллов. Возьмёте на следующем! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Быстрее! ⏱' })}</span>}
+              {!solo && myRank >= 0 && <span className="qz-res-rank">{tr({ uz: 'Siz hozir:', ru: 'Вы сейчас:' })} {myRank + 1}{tr({ uz: "-o'rin", ru: '-е место' })}</span>}
             </div>
           )}
           {!solo && (
@@ -2100,20 +2112,20 @@ function QuizArena({ live, onClose, startSolo }) {
               ))}
             </div>
           )}
-          {isMentor && <button className="qz-btn big" onClick={() => lastQ ? ctrl('done', qi) : ctrl('q', qi + 1)}>{lastQ ? "🏁 G'oliblarni e'lon qilish" : 'Keyingi savol →'}</button>}
-          {solo && <button className="qz-btn big" onClick={soloNext}>{lastQ ? '🏁 Natijani ko\'rish' : 'Keyingi →'}</button>}
+          {isMentor && <button className="qz-btn big" onClick={() => lastQ ? ctrl('done', qi) : ctrl('q', qi + 1)}>{lastQ ? tr({ uz: "🏁 G'oliblarni e'lon qilish", ru: '🏁 Объявить победителей' }) : tr({ uz: 'Keyingi savol →', ru: 'Следующий вопрос →' })}</button>}
+          {solo && <button className="qz-btn big" onClick={soloNext}>{lastQ ? tr({ uz: "🏁 Natijani ko'rish", ru: '🏁 Посмотреть результат' }) : tr({ uz: 'Keyingi →', ru: 'Дальше →' })}</button>}
         </div>
       )}
 
       {phase === 'done' && (
         <div className="qz-view fade-step">
           <Confetti />
-          <h2 className="qz-h">🏆 Test yakunlandi!</h2>
+          <h2 className="qz-h">{tr({ uz: '🏆 Test yakunlandi!', ru: '🏆 Тест завершён!' })}</h2>
           {solo ? (
             <div className="qz-solo-res">
               <div className="qz-solo-pts">{soloScore.pts}</div>
-              <p className="qz-sub">ball · {soloScore.ok}/{QUIZ_BANK.length} to'g'ri{soloScore.maxStreak >= 2 ? ` · eng uzun streak 🔥x${soloScore.maxStreak}` : ''}</p>
-              <button className="qz-btn big" onClick={soloReplay}>↻ Qayta ishlash</button>
+              <p className="qz-sub">{tr({ uz: 'ball', ru: 'баллов' })} · {soloScore.ok}/{QUIZ_BANK.length} {tr({ uz: "to'g'ri", ru: 'верно' })}{soloScore.maxStreak >= 2 ? ` · ${tr({ uz: 'eng uzun streak', ru: 'лучший стрик' })} 🔥x${soloScore.maxStreak}` : ''}</p>
+              <button className="qz-btn big" onClick={soloReplay}>{tr({ uz: '↻ Qayta ishlash', ru: '↻ Пройти заново' })}</button>
             </div>
           ) : (
             <>
@@ -2125,13 +2137,13 @@ function QuizArena({ live, onClose, startSolo }) {
                       {rank === 0 && <span className="qz-crown">👑</span>}
                       <span className="qz-pod-medal">{['🥇', '🥈', '🥉'][rank]}</span>
                       <span className="qz-pod-name">{b ? b.nickname : '—'}</span>
-                      {b && <span className="qz-pod-pts">{b.pts} ball · {b.ok}/{QUIZ_BANK.length}</span>}
+                      {b && <span className="qz-pod-pts">{b.pts} {tr({ uz: 'ball', ru: 'баллов' })} · {b.ok}/{QUIZ_BANK.length}</span>}
                       <div className="qz-pod-bar" />
                     </div>
                   );
                 })}
               </div>
-              {myRank >= 0 && <p className="qz-mypl">Siz — <b>{myRank + 1}-o'rin</b> · {board[myRank].pts} ball</p>}
+              {myRank >= 0 && <p className="qz-mypl">{tr({ uz: <>Siz — <b>{myRank + 1}-o'rin</b> · {board[myRank].pts} ball</>, ru: <>Вы — <b>{myRank + 1}-е место</b> · {board[myRank].pts} баллов</> })}</p>}
               <div className="qz-board wide">
                 {board.map((b, i) => (
                   <div key={b.id} className={`qz-brow ${b.id === live.playerId ? 'me' : ''}`}>
@@ -2142,10 +2154,10 @@ function QuizArena({ live, onClose, startSolo }) {
                   </div>
                 ))}
               </div>
-              {isStudent && <button className="qz-btn" onClick={startPractice}>↻ Testni qayta ishlash — mashq (jadvalga yozilmaydi)</button>}
+              {isStudent && <button className="qz-btn" onClick={startPractice}>{tr({ uz: '↻ Testni qayta ishlash — mashq (jadvalga yozilmaydi)', ru: '↻ Пройти тест заново — тренировка (в таблицу не пишется)' })}</button>}
             </>
           )}
-          <button className="qz-btn ghost" onClick={closeArena}>Arenani yopish</button>
+          <button className="qz-btn ghost" onClick={closeArena}>{tr({ uz: 'Arenani yopish', ru: 'Закрыть арену' })}</button>
         </div>
       )}
     </div>
@@ -2187,18 +2199,18 @@ const ScreenPodium = ({ screen, answers, onNext, onPrev }) => {
   const selfCorrect = SCORED_IDX.filter(i => answers[i]?.correct).length;
 
   return (
-    <Stage eyebrow="Natijalar" screen={screen} narrow navContent={<><NavBack onPrev={onPrev} /><NavNext label="Davom etish" onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Natijalar', ru: 'Результаты' })} screen={screen} narrow navContent={<><NavBack onPrev={onPrev} /><NavNext label={tr({ uz: 'Davom etish', ru: 'Продолжить' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(14px,2.2vw,20px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Kim <span className="italic" style={{ color: T.accent }}>g'olib</span>?</h2></div>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Kim <span className="italic" style={{ color: T.accent }}>g'olib</span>?</>, ru: <>Кто <span className="italic" style={{ color: T.accent }}>победитель</span>?</> })}</h2></div>
         {!isLive ? (
           <div className="fade-up" style={{ display: 'flex', flexDirection: 'column', gap: 16, alignItems: 'center' }}>
             <ScoreRing correct={selfCorrect} total={totalQ} />
-            <div className="frame-soft" style={{ maxWidth: 480 }}><p className="body" style={{ margin: 0 }}>Siz mustaqil rejimdasiz. Jonli darsda bu yerda butun guruh reytingi — 🥇🥈🥉 podium chiqadi.</p></div>
+            <div className="frame-soft" style={{ maxWidth: 480 }}><p className="body" style={{ margin: 0 }}>{tr({ uz: 'Siz mustaqil rejimdasiz. Jonli darsda bu yerda butun guruh reytingi — 🥇🥈🥉 podium chiqadi.', ru: 'Вы в самостоятельном режиме. На живом уроке здесь появляется рейтинг всей группы — подиум 🥇🥈🥉.' })}</p></div>
           </div>
         ) : !loaded ? (
-          <p className="mono small fade-up" style={{ color: T.ink2 }}>Natijalar yuklanmoqda…</p>
+          <p className="mono small fade-up" style={{ color: T.ink2 }}>{tr({ uz: 'Natijalar yuklanmoqda…', ru: 'Результаты загружаются…' })}</p>
         ) : board.length === 0 ? (
-          <div className="frame-soft fade-up"><p className="body" style={{ margin: 0 }}>Bu sessiyaga hali hech kim qo'shilmagan.</p></div>
+          <div className="frame-soft fade-up"><p className="body" style={{ margin: 0 }}>{tr({ uz: "Bu sessiyaga hali hech kim qo'shilmagan.", ru: 'К этой сессии пока никто не подключился.' })}</p></div>
         ) : (
           <>
             <Confetti />
@@ -2215,15 +2227,15 @@ const ScreenPodium = ({ screen, answers, onNext, onPrev }) => {
                 );
               })}
             </div>
-            {myIdx >= 0 && <p className="pod-my fade-up">Siz — <b>{myIdx + 1}-o'rin</b> ({board[myIdx].okCount}/{totalQ} to'g'ri)</p>}
+            {myIdx >= 0 && <p className="pod-my fade-up">{tr({ uz: <>Siz — <b>{myIdx + 1}-o'rin</b> ({board[myIdx].okCount}/{totalQ} to'g'ri)</>, ru: <>Вы — <b>{myIdx + 1}-е место</b> ({board[myIdx].okCount}/{totalQ} верно)</> })}</p>}
             <div className="card fade-up d1">
-              <div className="card-lbl" style={{ color: T.accent }}>🏆 To'liq reyting</div>
+              <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: "🏆 To'liq reyting", ru: '🏆 Полный рейтинг' })}</div>
               <div className="pod-list">
                 {board.map((b, i) => (
                   <div key={b.id} className={`pod-row ${live.playerId === b.id ? 'me' : ''}`}>
                     <span className="mono pod-rank">{i + 1}</span>
                     <span className="pod-row-name">{b.nickname}</span>
-                    <span className="pod-row-dots">{SCORED_IDX.map(q => { const a = rows.find(r => r.player_id === b.id && r.screen_idx === q); return <span key={q} className={`pod-dot ${a ? (a.correct ? 'ok' : 'bad') : ''}`} title={Q_LABELS[q]} />; })}</span>
+                    <span className="pod-row-dots">{SCORED_IDX.map(q => { const a = rows.find(r => r.player_id === b.id && r.screen_idx === q); return <span key={q} className={`pod-dot ${a ? (a.correct ? 'ok' : 'bad') : ''}`} title={tr(Q_LABELS[q])} />; })}</span>
                     <span className="mono pod-row-score">{b.okCount}/{totalQ}</span>
                     <span className="mono pod-row-time">{fmtT(b.time)}</span>
                   </div>
@@ -2263,11 +2275,11 @@ const MentorPracticeStats = ({ live, screen }) => {
   const waiting = players.filter(p => !data.doneIds.has(p.id));
   return (
     <div className="lp-mstats fade-up">
-      <div className="card-lbl" style={{ color: T.blue }}>👀 Kim bajardi — {doers.length}/{players.length}</div>
+      <div className="card-lbl" style={{ color: T.blue }}>{tr({ uz: '👀 Kim bajardi', ru: '👀 Кто выполнил' })} — {doers.length}/{players.length}</div>
       {data.players === null ? (
-        <p className="small" style={{ color: T.ink3, margin: 0, fontStyle: 'italic' }}>Yuklanmoqda…</p>
+        <p className="small" style={{ color: T.ink3, margin: 0, fontStyle: 'italic' }}>{tr({ uz: 'Yuklanmoqda…', ru: 'Загружается…' })}</p>
       ) : players.length === 0 ? (
-        <p className="small" style={{ color: T.ink3, margin: 0, fontStyle: 'italic' }}>Hali hech kim qo'shilmagan.</p>
+        <p className="small" style={{ color: T.ink3, margin: 0, fontStyle: 'italic' }}>{tr({ uz: "Hali hech kim qo'shilmagan.", ru: 'Пока никто не подключился.' })}</p>
       ) : (
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
           {doers.map(p => <span key={p.id} className="mstats-wait-chip" style={{ background: T.successSoft, color: T.success }}>✓ {p.nickname}</span>)}
@@ -2286,42 +2298,42 @@ function ScreenLivePractice({ title, task, checklist, screen, storedAnswer, onAn
   const complete = () => {
     if (done) return;
     setDone(true);
-    onAnswer(screen, { stage: 'practice', screenIdx: screen, practice: title, solved: true, correct: true, picked: true });
+    onAnswer(screen, { stage: 'practice', screenIdx: screen, practice: (title && title.uz) || title, solved: true, correct: true, picked: true }); // payload — UZ-etalon
     // JONLI: praktika bajarilgani serverga yoziladi (500+ zona — reytingga aralashmaydi, faqat mentor ko'radi)
     if (_live && _live.mode === 'student') _live.submitAnswer(PRACTICE_BASE + screen, 'practice', 0, true, 0);
   };
   // JONLI: mentor keyingi sahifaga o'tmaguncha NavNext qulf bo'ladi (optionalLive + LiveGateCtx gate). Hozircha done bo'lsa ochiq.
   const audio = useAudio([{ id: `practice_${screen}`, text: `Endi navbat sizda — bu topshiriqni o'z kompyuteringizda, VS Code yoki psql'da bajarasiz. Har bosqichni bajarib, belgilab boring. Tugagach «Bajardim» tugmasini bosing — ustoz kuzatib turadi.`, trigger: 'on_mount', waits_for: null }]);
   return (
-    <Stage eyebrow="Amaliyot · VS Code" screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? 'Davom etish' : 'Avval bajaring'} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Amaliyot · VS Code', ru: 'Практика · VS Code' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Avval bajaring', ru: 'Сначала выполните' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{title}</h2></div>
-        <Mentor>Bu topshiriqni <b style={{ color: T.ink }}>o'z kompyuteringizda</b> — VS Code'da bajaring. Har bosqichni bajarib, belgilab boring. Tugagach <b style={{ color: T.ink }}>«Bajardim»</b> tugmasini bosing — ustoz kuzatib turadi.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr(title)}</h2></div>
+        <Mentor>{tr({ uz: <>Bu topshiriqni <b style={{ color: T.ink }}>o'z kompyuteringizda</b> — VS Code'da bajaring. Har bosqichni bajarib, belgilab boring. Tugagach <b style={{ color: T.ink }}>«Bajardim»</b> tugmasini bosing — ustoz kuzatib turadi.</>, ru: <>Выполните это задание <b style={{ color: T.ink }}>на своём компьютере</b> — в VS Code. Проходите шаги и отмечайте их. Когда закончите, нажмите <b style={{ color: T.ink }}>«Выполнил(а)»</b> — наставник следит за прогрессом.</> })}</Mentor>
         <div className="split">
           <Col>
             <div className="lp-task fade-up delay-1">
-              <div className="lp-task-h"><span className="lp-task-badge">TOPSHIRIQ</span></div>
-              <p className="body" style={{ margin: 0, color: T.ink }}>{task}</p>
+              <div className="lp-task-h"><span className="lp-task-badge">{tr({ uz: 'TOPSHIRIQ', ru: 'ЗАДАНИЕ' })}</span></div>
+              <p className="body" style={{ margin: 0, color: T.ink }}>{tr(task)}</p>
             </div>
             <MentorPracticeStats live={_live} screen={screen} />
           </Col>
           <Col>
-            <p className="flow-label">Bosqichlar — belgilab boring</p>
+            <p className="flow-label">{tr({ uz: 'Bosqichlar — belgilab boring', ru: 'Шаги — отмечайте по мере выполнения' })}</p>
             <div className="lp-steps fade-up delay-2">
               {checklist.map((c, i) => {
                 const on = checked.has(i);
                 return (
                   <button key={i} className={`lp-step ${on ? 'on' : ''}`} onClick={() => toggle(i)}>
                     <span className="lp-check">{on ? '✓' : i + 1}</span>
-                    <span className="lp-step-t">{fmtCode(c)}</span>
+                    <span className="lp-step-t">{fmtCode(tr(c))}</span>
                   </button>
                 );
               })}
             </div>
             <button className={`lp-done-btn ${done ? 'is-done' : ''}`} disabled={done} onClick={complete}>
-              {done ? '✓ Bajarildi — ustozni kuting' : '✅ Bajardim'}
+              {done ? tr({ uz: '✓ Bajarildi — ustozni kuting', ru: '✓ Выполнено — ждите наставника' }) : tr({ uz: '✅ Bajardim', ru: '✅ Выполнил(а)' })}
             </button>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Zo'r! Vazifani bajardingiz. Ustoz tekshirib, keyingi qadamga o'tkazadi.</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Zo'r! Vazifani bajardingiz. Ustoz tekshirib, keyingi qadamga o'tkazadi.", ru: 'Отлично! Вы выполнили задание. Наставник проверит и переведёт вас на следующий шаг.' })}</p></div>}
           </Col>
         </div>
       </div>
@@ -2331,13 +2343,13 @@ function ScreenLivePractice({ title, task, checklist, screen, storedAnswer, onAn
 
 const ScreenCrudPractice = (props) => (
   <ScreenLivePractice {...props}
-    title="O'z do'koningizni boshqaring"
-    task="VS Code yoki psql'da AI bilan birga O'Z do'koningiz uchun jadval yarating va uni CRUD amallari bilan boshqaring — AI SQL yozadi, siz tekshirib bajarasiz."
+    title={{ uz: "O'z do'koningizni boshqaring", ru: 'Управляйте собственным магазином' }}
+    task={{ uz: "VS Code yoki psql'da AI bilan birga O'Z do'koningiz uchun jadval yarating va uni CRUD amallari bilan boshqaring — AI SQL yozadi, siz tekshirib bajarasiz.", ru: 'В VS Code или psql вместе с ИИ создайте таблицу для СВОЕГО магазина и управляйте ею командами CRUD — ИИ пишет SQL, вы проверяете и выполняете.' }}
     checklist={[
-      "AI'dan so'rang: `CREATE TABLE` bilan o'z jadvalingizni yarating (masalan: kitoblar, kiyimlar)",
-      "`INSERT INTO ... VALUES` bilan 3 ta mahsulot qo'shing",
-      "AI'ga `SELECT ... WHERE` yozdiring — arzon yoki tugayotganlarni ko'ring, natijani tekshiring",
-      "`UPDATE` bilan bitta narxni o'zgartiring yoki `DELETE` bilan bitta qatorni o'chiring",
+      { uz: "AI'dan so'rang: `CREATE TABLE` bilan o'z jadvalingizni yarating (masalan: kitoblar, kiyimlar)", ru: 'Попросите ИИ: создайте свою таблицу через `CREATE TABLE` (например: книги, одежда)' },
+      { uz: "`INSERT INTO ... VALUES` bilan 3 ta mahsulot qo'shing", ru: 'Добавьте 3 товара через `INSERT INTO ... VALUES`' },
+      { uz: "AI'ga `SELECT ... WHERE` yozdiring — arzon yoki tugayotganlarni ko'ring, natijani tekshiring", ru: 'Пусть ИИ напишет `SELECT ... WHERE` — посмотрите дешёвые или заканчивающиеся товары, проверьте результат' },
+      { uz: "`UPDATE` bilan bitta narxni o'zgartiring yoki `DELETE` bilan bitta qatorni o'chiring", ru: 'Измените одну цену через `UPDATE` или удалите одну строку через `DELETE`' },
     ]} />
 );
 
@@ -2359,41 +2371,41 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
     setArenaSolo(studentSolo); setArena(true);
   };
   const RECAP = [
-    "Ma'lumot bazada (PostgreSQL) jadvallarda saqlanadi",
-    "Jadval = ustunlar (xususiyat) + qatorlar (yozuv)",
-    "CRUD: INSERT · SELECT(+WHERE) · UPDATE · DELETE",
-    "WHERE — shart; UPDATE/DELETE'da uni unutmang!",
-    "AI SQL yozadi — siz o'qib tekshirasiz"
+    tr({ uz: "Ma'lumot bazada (PostgreSQL) jadvallarda saqlanadi", ru: 'Данные хранятся в базе (PostgreSQL) в таблицах' }),
+    tr({ uz: 'Jadval = ustunlar (xususiyat) + qatorlar (yozuv)', ru: 'Таблица = столбцы (свойства) + строки (записи)' }),
+    'CRUD: INSERT · SELECT(+WHERE) · UPDATE · DELETE',
+    tr({ uz: "WHERE — shart; UPDATE/DELETE'da uni unutmang!", ru: 'WHERE — условие; не забывайте его в UPDATE/DELETE!' }),
+    tr({ uz: "AI SQL yozadi — siz o'qib tekshirasiz", ru: 'ИИ пишет SQL — вы читаете и проверяете' })
   ];
   const HOMEWORK = [
-    { b: "O'z jadvalingiz", t: "— AI bilan o'z do'koningiz uchun jadval loyihalang (qaysi ustunlar?)" },
-    { b: "3 mahsulot qo'shing", t: "— INSERT bilan jadvalga 3 ta mahsulot kiriting" },
-    { b: "Bitta so'rov", t: "— AI'dan 'arzon mahsulotlarni ko'rsat' degan SELECT'ni yozdiring va tekshiring" }
+    { b: tr({ uz: "O'z jadvalingiz", ru: 'Своя таблица' }), t: tr({ uz: "— AI bilan o'z do'koningiz uchun jadval loyihalang (qaysi ustunlar?)", ru: '— спроектируйте с ИИ таблицу для своего магазина (какие столбцы?)' }) },
+    { b: tr({ uz: "3 mahsulot qo'shing", ru: 'Добавьте 3 товара' }), t: tr({ uz: '— INSERT bilan jadvalga 3 ta mahsulot kiriting', ru: '— внесите в таблицу 3 товара через INSERT' }) },
+    { b: tr({ uz: "Bitta so'rov", ru: 'Один запрос' }), t: tr({ uz: "— AI'dan 'arzon mahsulotlarni ko'rsat' degan SELECT'ni yozdiring va tekshiring", ru: "— попросите ИИ написать SELECT «покажи дешёвые товары» и проверьте его" }) }
   ];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
   const PASSED = (total ? correct / total : 0) >= 0.6;
   const audio = useAudio([{ id: 's16', text: 'Tabriklaymiz — endi bazani boshqara olasiz.', trigger: 'on_mount', waits_for: null }]);
   return (
-    <Stage eyebrow="Tayyor" screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>Qaytadan</button><button className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>Yakunlash ✓</button></>}>
+    <Stage eyebrow={tr({ uz: 'Tayyor', ru: 'Готово' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><button className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash ✓', ru: 'Завершить ✓' })}</button></>}>
       <div className="screen">
-        <div className="hero"><div className="hero-l"><span className="done-chip fade-up"><span className="tick">✓</span> Dars tugadi</span><h2 className="title h-title fade-up d1">Endi siz <span className="italic" style={{ color: T.accent }}>bazani boshqara</span> olasiz.</h2><p className="body h-sub fade-up d2">{PASSED ? "Tabriklaymiz! Jadval yaratish va CRUD (qo'shish, ko'rish, o'zgartirish, o'chirish) — hammasini, AI yordamida ham, eplaysiz." : "Yaxshi harakat! CRUD buyruqlarini mustahkamlash uchun bir-ikki ekranni qayta ko'ring."}</p></div><ScoreRing correct={correct} total={total} /></div>
+        <div className="hero"><div className="hero-l"><span className="done-chip fade-up"><span className="tick">✓</span> {tr({ uz: 'Dars tugadi', ru: 'Урок пройден' })}</span><h2 className="title h-title fade-up d1">{tr({ uz: <>Endi siz <span className="italic" style={{ color: T.accent }}>bazani boshqara</span> olasiz.</>, ru: <>Теперь вы умеете <span className="italic" style={{ color: T.accent }}>управлять базой</span>.</> })}</h2><p className="body h-sub fade-up d2">{PASSED ? tr({ uz: "Tabriklaymiz! Jadval yaratish va CRUD (qo'shish, ko'rish, o'zgartirish, o'chirish) — hammasini, AI yordamida ham, eplaysiz.", ru: 'Поздравляем! Создание таблицы и CRUD (добавить, посмотреть, изменить, удалить) — всё это вам по силам, в том числе с помощью ИИ.' }) : tr({ uz: "Yaxshi harakat! CRUD buyruqlarini mustahkamlash uchun bir-ikki ekranni qayta ko'ring.", ru: 'Хорошая попытка! Чтобы закрепить команды CRUD, пересмотрите пару экранов.' })}</p></div><ScoreRing correct={correct} total={total} /></div>
         <div className={`qz-cta cs-cta fade-up d2 ${studentLive ? 'ready' : ''}`}>
-          <CsWordmark stats={false} liveOn={studentLive} disabled={studentWait} onClick={studentWait ? undefined : openArena} hint={studentWait ? '⏳ Mentorni kuting' : undefined} />
+          <CsWordmark stats={false} liveOn={studentLive} disabled={studentWait} onClick={studentWait ? undefined : openArena} hint={studentWait ? tr({ uz: '⏳ Mentorni kuting', ru: '⏳ Ждите ментора' }) : undefined} />
         </div>
         {arena && <QuizArena live={_live || { mode: 'self' }} startSolo={arenaSolo} onClose={() => setArena(false)} />}
         <div className="split">
-          <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> Endi siz bilasiz</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{r}</span></li>))}</ul></div>
-          <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>📝 Uyga vazifa</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>AI bilan o'z bazangizni quring:</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{h.b}</b> <span className="t">{h.t}</span></li>))}</ul><p className="hw-note">Modul 5'da: NestJS shu jadval bilan avtomatik ishlaydi — siz faqat so'raysiz! 🚀</p></div>
+          <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> {tr({ uz: 'Endi siz bilasiz', ru: 'Теперь вы знаете' })}</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{r}</span></li>))}</ul></div>
+          <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: "AI bilan o'z bazangizni quring:", ru: 'Постройте с ИИ свою базу:' })}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{h.b}</b> <span className="t">{h.t}</span></li>))}</ul><p className="hw-note">{tr({ uz: "Modul 5'da: NestJS shu jadval bilan avtomatik ishlaydi — siz faqat so'raysiz! 🚀", ru: 'В модуле 5: NestJS будет работать с этой таблицей автоматически — вы только просите! 🚀' })}</p></div>
         </div>
         <div className="card ach-coll fade-up d3">
-          <div className="card-lbl" style={{ color: T.accent }}>🏅 Nishonlaringiz — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
+          <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🏅 Nishonlaringiz', ru: '🏅 Ваши значки' })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">
             {Object.entries(ACHIEVEMENTS).map(([id, a]) => { const got = !!(achievements && achievements.has(id)); return (
-              <div key={id} className={`ach-badge ${got ? 'got' : 'locked'}`} title={a.desc}>
+              <div key={id} className={`ach-badge ${got ? 'got' : 'locked'}`} title={tr(a.desc)}>
                 <span className="ach-badge-ic">{got ? a.icon : '🔒'}</span>
                 <span className="ach-badge-name">{a.name}</span>
-                {got && <span className="ach-badge-desc">{a.desc}</span>}
+                {got && <span className="ach-badge-desc">{tr(a.desc)}</span>}
               </div>
             ); })}
           </div>
@@ -2406,6 +2418,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
 // ============================================================ LESSON ROOT — ({ lang, onFinished })
 export default function PostgresCrudLesson({ lang: langProp, onFinished }) {
   const lang = langProp || 'uz';
+  __lang = lang; // UZ-RU: tr() uchun joriy til (render'dan oldin o'rnatiladi)
   const [screen, setScreen] = useState(0);
   const [answers, setAnswers] = useState({});
   const startTimeRef = useRef(Date.now());
@@ -3200,7 +3213,7 @@ export default function PostgresCrudLesson({ lang: langProp, onFinished }) {
       <LiveGateCtx.Provider value={{ locked, live }}>
         <div className="lesson-root">
           {live.mode === 'choosing' ? (
-            <LiveGate live={live} title="PostgreSQL CRUD darsi" />
+            <LiveGate live={live} title={tr({ uz: 'PostgreSQL CRUD darsi', ru: 'Урок PostgreSQL CRUD' })} />
           ) : (
             <>
               <Current screen={screen} storedAnswer={answers[screen]} answers={answers} achievements={earned} onAnswer={recordAnswer} onNext={next} onPrev={prev} onReset={reset} onFinish={finishLesson} />

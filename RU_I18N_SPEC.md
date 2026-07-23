@@ -122,6 +122,21 @@ npx esbuild src/1-Modull/<Fayl>.jsx --loader:.jsx=jsx --outfile=C:\Users\ADMIN\A
 | `ReactBuildSiteLesson.jsx` | ✅ | ✅ | 398 ru-juft, esbuild toza, kalitlar tekshirildi (2026-07-23). MAXSUS: S2 SCREENS `{v,t}` (ichki qiymat UZ — chosen/valid-Set relslari), S13 JOURNEY barqaror `id` |
 | `ReactProjectDayLesson.jsx` | ✅ | ✅ | 423 ru-juft, esbuild toza, kalitlar tekshirildi (2026-07-23). LivePractice payload'da UZ-etalon (`title.uz`) |
 
+### 4-Modul (backend/fullstack, PM'siz — 2026-07-23 yakunlandi: 11/11 ✅, ~4 100 ru-juft; yakuniy sweep: 11/11 esbuild toza, 11/11 kalit-qiymatlari (INLINE_KEYS/correct/correctIdx) HEAD bilan aynan; LivePractice payload 11/11 UZ-etalonga birxillashtirildi)
+| Dars | Infra (tr/__lang) | Kontent RU | Izoh |
+|---|---|---|---|
+| `ApiPostmanLesson.jsx` | ✅ | ✅ | 361 ru-juft (2026-07-23). `produts→products` debug click-target va server xato-regex kod holicha |
+| `AuthEnvLesson.jsx` | ✅ | ✅ | 393 ru-juft (2026-07-23). S15 `JWT_SECRET=` regex/namuna til-mustaqil kod holicha |
+| `BackendCrudPracticeLesson.jsx` | ✅ | ✅ | 475 ru-juft (2026-07-23). JSON mock-javoblar kod bilan sinxron; CHAIN render `key={c}`→`key={i}` (obyekt-key xavfi) |
+| `DataIntroLesson.jsx` | ✅ | ✅ | 378 ru-juft (2026-07-23). USERS/POSTS simulyatsiya-datasi UZ holicha (DataTable xom chizadi); S11 jadval-nom extract til-mustaqil (`t.uz.split`) |
+| `DbSqlNosqlLesson.jsx` | ✅ | ✅ | 590 ru-juft (2026-07-23). SQL-namuna/DB-data sinxron holicha; `ynbtn` ichki `'ha'/'yoq'` kod, ko'rinadigan «Да/Нет» tarjima |
+| `FullstackConnectPracticeLesson.jsx` | ✅ | ✅ | 371 ru-juft (2026-07-23). MAXSUS: CIRCLE `includes('→')` → `c.uz.includes` (til-mustaqil); real CORS xato-satri inglizcha |
+| `FullstackFeedbackLesson.jsx` | ✅ | ✅ | 390 ru-juft (2026-07-23). PART_OPTS solishtiruv-kalitlari UZ, ko'rinadigan yorliq `PART_LABELS` render-xaritada; `confirm`-regex holicha |
+| `FullstackProjectDayLesson.jsx` | ✅ | ✅ | 559 ru-juft (2026-07-23). S16 yozma sinov SQL-regex/tagpill kod holicha |
+| `NodeServerLesson.jsx` | ✅ | ✅ | 555 ru-juft (2026-07-23). S15 `hasGet/hasPath/hasSend` regex va `'Salom, dunyo!'` kod-literallar holicha; UZ-regressiya unwrap-diff bilan tekshirildi |
+| `PostgresCrudLesson.jsx` | ✅ | ✅ | 372 ru-juft (2026-07-23). SQL kalit-so'z/namunalar aslicha; S15 INSERT/VALUES parse-regex holicha |
+| `RoutingLesson.jsx` | ✅ | ✅ | 362 ru-juft (2026-07-23). URL-path/dekoratorlar aslicha; QuestionScreen `ou()` helper — payload options/javoblar UZ-etalon |
+
 ### 1-Modul PM darslari (v2, PM pipeline)
 | Dars | Infra (tr/__lang) | Kontent RU | Izoh |
 |---|---|---|---|
