@@ -108,6 +108,20 @@ npx esbuild src/1-Modull/<Fayl>.jsx --loader:.jsx=jsx --outfile=C:\Users\ADMIN\A
 | `PracticeLesson3.jsx` | ✅ | ✅ | 587 juft, esbuild toza, kalitlar tekshirildi (2026-07-22) |
 | `PracticeLesson4.jsx` | ✅ | ✅ | 587 ru:-juft, esbuild toza, kalitlar tekshirildi (2026-07-22) |
 
+### 3-Modul (React, PM'siz — 2026-07-23 yakunlandi: 10/10 ✅, ~4 640 ru-juft; yakuniy sweep: 10/10 esbuild toza, 10/10 kalit-qiymatlari (INLINE_KEYS/correct/correctIdx) HEAD bilan aynan)
+| Dars | Infra (tr/__lang) | Kontent RU | Izoh |
+|---|---|---|---|
+| `ReactIntroLesson.jsx` | ✅ | ✅ | 575 ru-juft, esbuild toza, kalitlar diff'da o'zgarmagan (2026-07-23) |
+| `ReactFirstComponentLesson.jsx` | ✅ | ✅ | 566 ru-juft, esbuild toza, kalitlar tekshirildi (2026-07-23). S15 final-check regex/placeholder kod holicha |
+| `ReactPropsReuseLesson.jsx` | ✅ | ✅ | 545 ru-juft, esbuild toza, kalitlar diff'da o'zgarmagan (2026-07-23). S15 checks-regex va DragDrop/Debug kod-qatorlari UZ/kod holicha |
+| `ReactStateEffectLesson.jsx` | ✅ | ✅ | 383 ru-juft, esbuild toza, kalitlar tekshirildi (2026-07-23). S15 regex-checklar/placeholder kod holicha |
+| `ReactApiGetLesson.jsx` | ✅ | ✅ | 572 ru-juft, esbuild toza, kalitlar tekshirildi (2026-07-23) |
+| `ReactApiPostLesson.jsx` | ✅ | ✅ | 439 ru-juft, esbuild toza, kalitlar tekshirildi (2026-07-23). S16 compiler-check placeholder/regex kod holicha |
+| `ReactRouterPracticeLesson.jsx` | ✅ | ✅ | 553 ru-juft, esbuild toza, kalitlar tekshirildi (2026-07-23). MAXSUS: S11 `added.page` matn-taqqoslash → `added.path === '/about'` (til-mustaqil) |
+| `ReactCrudPracticeLesson.jsx` | ✅ | ✅ | 385 ru-juft, esbuild toza, kalitlar tekshirildi (2026-07-23). S14 setGames-regex/tagpill kod holicha |
+| `ReactBuildSiteLesson.jsx` | ✅ | ✅ | 398 ru-juft, esbuild toza, kalitlar tekshirildi (2026-07-23). MAXSUS: S2 SCREENS `{v,t}` (ichki qiymat UZ — chosen/valid-Set relslari), S13 JOURNEY barqaror `id` |
+| `ReactProjectDayLesson.jsx` | ✅ | ✅ | 423 ru-juft, esbuild toza, kalitlar tekshirildi (2026-07-23). LivePractice payload'da UZ-etalon (`title.uz`) |
+
 ### 1-Modul PM darslari (v2, PM pipeline)
 | Dars | Infra (tr/__lang) | Kontent RU | Izoh |
 |---|---|---|---|

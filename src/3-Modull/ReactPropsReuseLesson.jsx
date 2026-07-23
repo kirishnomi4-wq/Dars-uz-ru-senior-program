@@ -156,21 +156,21 @@ function useLiveSession(lessonId, answerKey) {
       tokenRef.current = row.token; setPin(row.pin); setMode('mentor'); setEnded(false);
       liveStore(lessonId, { mode: 'mentor', pin: row.pin, token: row.token });
       if (keyRef.current) liveRpc('set_quiz_keys', { p_lesson_id: lessonId, p_mentor_code: (mentorCode || '').trim(), p_keys: keyRef.current }).catch(() => {});
-    } catch { setJoinError("Mentor kodi noto'g'ri yoki ulanishda xato."); }
+    } catch { setJoinError(tr({ uz: "Mentor kodi noto'g'ri yoki ulanishda xato.", ru: 'Код ментора неверный или ошибка соединения.' })); }
     finally { setBusy(false); }
   }, [lessonId]);
 
   const joinStudent = useCallback(async (raw, rawNick) => {
     const p = (raw || '').replace(/\D/g, '');
     const nick = (rawNick || '').trim();
-    if (p.length < 4) { setJoinError("Kodni to'liq kiriting."); return; }
-    if (nick.length < 2) { setJoinError('Ismingizni kiriting (kamida 2 harf).'); return; }
+    if (p.length < 4) { setJoinError(tr({ uz: "Kodni to'liq kiriting.", ru: 'Введите код полностью.' })); return; }
+    if (nick.length < 2) { setJoinError(tr({ uz: 'Ismingizni kiriting (kamida 2 harf).', ru: 'Введите ваше имя (минимум 2 буквы).' })); return; }
     setBusy(true); setJoinError('');
     try {
       const row = await liveGet(p);
-      if (!row) { setJoinError('Bunday kod topilmadi.'); setBusy(false); return; }
-      if (row.lesson_id && row.lesson_id !== lessonId) { setJoinError('Bu kod boshqa darsga tegishli.'); setBusy(false); return; }
-      if (row.status !== 'live') { setJoinError('Bu dars allaqachon yakunlangan.'); setBusy(false); return; }
+      if (!row) { setJoinError(tr({ uz: 'Bunday kod topilmadi.', ru: 'Такой код не найден.' })); setBusy(false); return; }
+      if (row.lesson_id && row.lesson_id !== lessonId) { setJoinError(tr({ uz: 'Bu kod boshqa darsga tegishli.', ru: 'Этот код от другого урока.' })); setBusy(false); return; }
+      if (row.status !== 'live') { setJoinError(tr({ uz: 'Bu dars allaqachon yakunlangan.', ru: 'Этот урок уже завершён.' })); setBusy(false); return; }
       const res = await liveRpc('join_session', { p_pin: p, p_nickname: nick });
       const player = Array.isArray(res) ? res[0] : res;
       if (!player?.player_id) throw new Error('no player');
@@ -182,7 +182,7 @@ function useLiveSession(lessonId, answerKey) {
     } catch (e) {
       // Serverdan kelgan o'zbekcha xabarlarni (ism band va h.k.) o'zini ko'rsatamiz
       const m = String(e?.message || '');
-      setJoinError(/ism|band|kod|dars|belgi/i.test(m) ? m : "Ulanib bo'lmadi. Internetni tekshiring.");
+      setJoinError(/ism|band|kod|dars|belgi/i.test(m) ? m : tr({ uz: "Ulanib bo'lmadi. Internetni tekshiring.", ru: 'Не удалось подключиться. Проверьте интернет.' }));
     }
     finally { setBusy(false); }
   }, [lessonId]);
@@ -232,15 +232,16 @@ function LiveBigCode({ pin, onClose }) {
   const box = { background: LT.paper, color: LT.ink, borderRadius: 'clamp(10px,1.6vw,18px)', fontFamily: 'monospace', fontWeight: 800, lineHeight: 1, fontSize: 'clamp(48px,13vw,150px)', padding: 'clamp(10px,2vw,28px) clamp(12px,2.2vw,30px)', boxShadow: '0 10px 40px -10px rgba(0,0,0,0.5)' };
   return (
     <div style={overlay}>
-      <div style={{ fontSize: 'clamp(13px,2vw,18px)', fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: LT.accent, marginBottom: 'clamp(14px,3vw,28px)' }}>Jonli darsga qo'shilish</div>
+      <div style={{ fontSize: 'clamp(13px,2vw,18px)', fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: LT.accent, marginBottom: 'clamp(14px,3vw,28px)' }}>{tr({ uz: "Jonli darsga qo'shilish", ru: 'Подключение к живому уроку' })}</div>
       <div style={{ display: 'flex', gap: 'clamp(6px,1.4vw,16px)', justifyContent: 'center', flexWrap: 'wrap' }}>{digits.map((d, i) => <span key={i} style={box}>{d}</span>)}</div>
-      <p style={{ color: '#fff', opacity: 0.85, fontSize: 'clamp(15px,2.2vw,22px)', maxWidth: 640, margin: 'clamp(20px,4vw,36px) 0 0', lineHeight: 1.5 }}>Shu darsni o'z qurilmangizda oching → <b style={{ color: '#fff' }}>«👨‍🎓 O'quvchiman»</b> → ushbu kodni kiriting.</p>
-      <button onClick={onClose} style={{ marginTop: 'clamp(22px,4vw,40px)', background: LT.accent, color: '#fff', border: 'none', borderRadius: 14, padding: 'clamp(12px,1.6vw,16px) clamp(24px,3vw,36px)', fontSize: 'clamp(15px,1.8vw,18px)', fontWeight: 700, cursor: 'pointer' }}>Darsni boshlash →</button>
+      <p style={{ color: '#fff', opacity: 0.85, fontSize: 'clamp(15px,2.2vw,22px)', maxWidth: 640, margin: 'clamp(20px,4vw,36px) 0 0', lineHeight: 1.5 }}>{tr({ uz: <>Shu darsni o'z qurilmangizda oching → <b style={{ color: '#fff' }}>«👨‍🎓 O'quvchiman»</b> → ushbu kodni kiriting.</>, ru: <>Откройте этот урок на своём устройстве → <b style={{ color: '#fff' }}>«👨‍🎓 Я ученик»</b> → введите этот код.</> })}</p>
+      <button onClick={onClose} style={{ marginTop: 'clamp(22px,4vw,40px)', background: LT.accent, color: '#fff', border: 'none', borderRadius: 14, padding: 'clamp(12px,1.6vw,16px) clamp(24px,3vw,36px)', fontSize: 'clamp(15px,1.8vw,18px)', fontWeight: 700, cursor: 'pointer' }}>{tr({ uz: 'Darsni boshlash →', ru: 'Начать урок →' })}</button>
     </div>
   );
 }
 
-function LiveGate({ live, title = 'Jonli dars' }) {
+function LiveGate({ live, title }) {
+  const _title = title || tr({ uz: 'Jonli dars', ru: 'Живой урок' });
   const [code, setCode] = useState('');
   const [nick, setNick] = useState(() => nickRead()); // oldingi darsda yozgan ismi tayyor chiqadi
   const [mentorCode, setMentorCode] = useState('');
@@ -250,20 +251,20 @@ function LiveGate({ live, title = 'Jonli dars' }) {
   const link = { background: 'none', border: 'none', color: LT.ink3, fontSize: 13, cursor: 'pointer', alignSelf: 'center' };
   if (role === 'mentor') {
     return (<div style={wrap}><div style={card}>
-      <div style={{ textAlign: 'center' }}><h2 style={{ fontFamily: 'Georgia, serif', fontSize: 'clamp(22px,3vw,28px)', color: LT.ink, margin: '0 0 4px' }}>🧑‍🏫 Mentor kirishi</h2><p style={{ color: LT.ink2, fontSize: 14, margin: 0 }}>Mentor kodini kiriting.</p></div>
-      <input value={mentorCode} onChange={e => setMentorCode(e.target.value)} type="password" autoFocus placeholder="Mentor kodi" onKeyDown={e => { if (e.key === 'Enter') live.startMentor(mentorCode); }} style={{ width: '100%', padding: '14px', border: `2px solid ${LT.ink3}55`, borderRadius: 14, fontSize: 18, fontWeight: 600, textAlign: 'center', outline: 'none' }} />
-      <button onClick={() => live.startMentor(mentorCode)} disabled={live.busy} style={_liveBtnPri}>{live.busy ? 'Tekshirilmoqda…' : 'Kirish →'}</button>
+      <div style={{ textAlign: 'center' }}><h2 style={{ fontFamily: 'Georgia, serif', fontSize: 'clamp(22px,3vw,28px)', color: LT.ink, margin: '0 0 4px' }}>{tr({ uz: '🧑‍🏫 Mentor kirishi', ru: '🧑‍🏫 Вход для ментора' })}</h2><p style={{ color: LT.ink2, fontSize: 14, margin: 0 }}>{tr({ uz: 'Mentor kodini kiriting.', ru: 'Введите код ментора.' })}</p></div>
+      <input value={mentorCode} onChange={e => setMentorCode(e.target.value)} type="password" autoFocus placeholder={tr({ uz: 'Mentor kodi', ru: 'Код ментора' })} onKeyDown={e => { if (e.key === 'Enter') live.startMentor(mentorCode); }} style={{ width: '100%', padding: '14px', border: `2px solid ${LT.ink3}55`, borderRadius: 14, fontSize: 18, fontWeight: 600, textAlign: 'center', outline: 'none' }} />
+      <button onClick={() => live.startMentor(mentorCode)} disabled={live.busy} style={_liveBtnPri}>{live.busy ? tr({ uz: 'Tekshirilmoqda…', ru: 'Проверяем…' }) : tr({ uz: 'Kirish →', ru: 'Войти →' })}</button>
       {live.joinError && <div style={{ color: LT.accent, fontSize: 13, textAlign: 'center' }}>{live.joinError}</div>}
-      <button onClick={() => { setRole('student'); setMentorCode(''); }} style={link}>← Orqaga</button>
+      <button onClick={() => { setRole('student'); setMentorCode(''); }} style={link}>{tr({ uz: '← Orqaga', ru: '← Назад' })}</button>
     </div></div>);
   }
   return (<div style={wrap}><div style={card}>
-    <div style={{ textAlign: 'center' }}><div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: LT.accent }}>{title}</div><h2 style={{ fontFamily: 'Georgia, serif', fontSize: 'clamp(22px,3vw,28px)', color: LT.ink, margin: '6px 0 4px' }}>Darsga qo'shilish</h2><p style={{ color: LT.ink2, fontSize: 14, margin: 0 }}>Mentor bergan kodni va ismingizni kiriting.</p></div>
+    <div style={{ textAlign: 'center' }}><div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: LT.accent }}>{_title}</div><h2 style={{ fontFamily: 'Georgia, serif', fontSize: 'clamp(22px,3vw,28px)', color: LT.ink, margin: '6px 0 4px' }}>{tr({ uz: "Darsga qo'shilish", ru: 'Подключиться к уроку' })}</h2><p style={{ color: LT.ink2, fontSize: 14, margin: 0 }}>{tr({ uz: 'Mentor bergan kodni va ismingizni kiriting.', ru: 'Введите код от ментора и ваше имя.' })}</p></div>
     <input value={code} onChange={e => setCode(e.target.value)} inputMode="numeric" autoFocus placeholder="483 920" style={{ width: '100%', padding: '16px 14px', border: `2px solid ${LT.ink3}55`, borderRadius: 14, fontSize: 28, fontFamily: 'monospace', fontWeight: 700, letterSpacing: '0.12em', textAlign: 'center', outline: 'none' }} />
-    <input value={nick} onChange={e => setNick(e.target.value)} maxLength={24} placeholder="Ismingiz (masalan: Ali)" onKeyDown={e => { if (e.key === 'Enter') live.joinStudent(code, nick); }} style={{ width: '100%', padding: '13px 14px', border: `2px solid ${LT.ink3}55`, borderRadius: 14, fontSize: 17, fontWeight: 600, textAlign: 'center', outline: 'none' }} />
-    <button onClick={() => live.joinStudent(code, nick)} disabled={live.busy} style={_liveBtnPri}>{live.busy ? 'Ulanmoqda…' : 'Qo\'shilish →'}</button>
+    <input value={nick} onChange={e => setNick(e.target.value)} maxLength={24} placeholder={tr({ uz: 'Ismingiz (masalan: Ali)', ru: 'Ваше имя (например: Али)' })} onKeyDown={e => { if (e.key === 'Enter') live.joinStudent(code, nick); }} style={{ width: '100%', padding: '13px 14px', border: `2px solid ${LT.ink3}55`, borderRadius: 14, fontSize: 17, fontWeight: 600, textAlign: 'center', outline: 'none' }} />
+    <button onClick={() => live.joinStudent(code, nick)} disabled={live.busy} style={_liveBtnPri}>{live.busy ? tr({ uz: 'Ulanmoqda…', ru: 'Подключаемся…' }) : tr({ uz: "Qo'shilish →", ru: 'Присоединиться →' })}</button>
     {live.joinError && <div style={{ color: LT.accent, fontSize: 13, textAlign: 'center' }}>{live.joinError}</div>}
-    <button onClick={() => { setRole('mentor'); setCode(''); }} title="Mentor" aria-label="Mentor" style={{ position: 'absolute', bottom: 10, right: 12, background: 'none', border: 'none', fontSize: 16, opacity: 0.3, cursor: 'pointer', lineHeight: 1, padding: 4 }}>🧑‍🏫</button>
+    <button onClick={() => { setRole('mentor'); setCode(''); }} title={tr({ uz: 'Mentor', ru: 'Ментор' })} aria-label={tr({ uz: 'Mentor', ru: 'Ментор' })} style={{ position: 'absolute', bottom: 10, right: 12, background: 'none', border: 'none', fontSize: 16, opacity: 0.3, cursor: 'pointer', lineHeight: 1, padding: 4 }}>🧑‍🏫</button>
   </div></div>);
 }
 
@@ -282,22 +283,22 @@ function LiveBadge({ live, total }) {
     return () => { on = false; clearTimeout(t); };
   }, [live.mode, live.pin, live.ended]);
   if (live.mode === 'mentor') {
-    if (live.ended) return <div className="live-badge" style={_liveBadgeS}><span style={_liveDot(LT.ink3)} /> 🔓 O'quvchilar erkin qilindi</div>;
+    if (live.ended) return <div className="live-badge" style={_liveBadgeS}><span style={_liveDot(LT.ink3)} /> {tr({ uz: "🔓 O'quvchilar erkin qilindi", ru: '🔓 Ученики отпущены в свободный режим' })}</div>;
     return (<>
       {bigOpen && <LiveBigCode pin={live.pin} onClose={() => setBigOpen(false)} />}
       <div className="live-badge" style={_liveBadgeS}>
-        <span style={_liveDot(LT.success)} /> Kod: <b style={{ fontFamily: 'monospace', letterSpacing: '0.08em' }}>{fmtPin(live.pin)}</b>
+        <span style={_liveDot(LT.success)} /> {tr({ uz: 'Kod:', ru: 'Код:' })} <b style={{ fontFamily: 'monospace', letterSpacing: '0.08em' }}>{fmtPin(live.pin)}</b>
         {nPlayers !== null && <span style={{ color: LT.ink2 }}>👥 {nPlayers}</span>}
-        <button onClick={() => setBigOpen(true)} title="Kodni katta ko'rsatish" style={{ marginLeft: 6, background: LT.ink, color: '#fff', border: 'none', borderRadius: 99, padding: '4px 10px', fontSize: 12, fontWeight: 700, cursor: 'pointer', whiteSpace: 'nowrap' }}>📺 Ko'rsatish</button>
-        <button onClick={() => { if (window.confirm("O'quvchilarni ozod qilasizmi? Ular o'zlari erkin davom etadi.")) live.endSession(); }} style={{ background: LT.accentSoft, color: LT.accent, border: 'none', borderRadius: 99, padding: '4px 10px', fontSize: 12, fontWeight: 700, cursor: 'pointer', whiteSpace: 'nowrap' }}>🔓 Erkin qilish</button>
+        <button onClick={() => setBigOpen(true)} title={tr({ uz: "Kodni katta ko'rsatish", ru: 'Показать код крупно' })} style={{ marginLeft: 6, background: LT.ink, color: '#fff', border: 'none', borderRadius: 99, padding: '4px 10px', fontSize: 12, fontWeight: 700, cursor: 'pointer', whiteSpace: 'nowrap' }}>{tr({ uz: "📺 Ko'rsatish", ru: '📺 Показать' })}</button>
+        <button onClick={() => { if (window.confirm(tr({ uz: "O'quvchilarni ozod qilasizmi? Ular o'zlari erkin davom etadi.", ru: 'Отпустить учеников? Дальше они продолжат самостоятельно.' }))) live.endSession(); }} style={{ background: LT.accentSoft, color: LT.accent, border: 'none', borderRadius: 99, padding: '4px 10px', fontSize: 12, fontWeight: 700, cursor: 'pointer', whiteSpace: 'nowrap' }}>{tr({ uz: '🔓 Erkin qilish', ru: '🔓 Отпустить' })}</button>
       </div>
     </>);
   }
   if (live.mode === 'student') {
-    if (live.status === 'ended') return <div className="live-badge" style={_liveBadgeS}><span style={_liveDot(LT.success)} /> 🔓 Erkin rejim — o'zingiz davom eting</div>;
-    if (!live.mentorAlive) return <div className="live-badge" style={_liveBadgeS}><span style={_liveDot(LT.ink3)} /> ⚠️ Mentor uzildi — erkin rejim</div>;
-    if (!live.connected) return <div className="live-badge" style={_liveBadgeS}><span style={_liveDot('#FFD380')} /> 🔄 Qayta ulanmoqda…</div>;
-    return <div className="live-badge" style={_liveBadgeS}><span style={_liveDot(LT.success)} /> 👨‍🏫 Mentor: {Math.min(live.mentorScreen + 1, total)} / {total}{live.nickname && <span style={{ color: LT.ink3 }}>· {live.nickname}</span>}</div>;
+    if (live.status === 'ended') return <div className="live-badge" style={_liveBadgeS}><span style={_liveDot(LT.success)} /> {tr({ uz: "🔓 Erkin rejim — o'zingiz davom eting", ru: '🔓 Свободный режим — продолжайте сами' })}</div>;
+    if (!live.mentorAlive) return <div className="live-badge" style={_liveBadgeS}><span style={_liveDot(LT.ink3)} /> {tr({ uz: '⚠️ Mentor uzildi — erkin rejim', ru: '⚠️ Ментор отключился — свободный режим' })}</div>;
+    if (!live.connected) return <div className="live-badge" style={_liveBadgeS}><span style={_liveDot('#FFD380')} /> {tr({ uz: '🔄 Qayta ulanmoqda…', ru: '🔄 Переподключаемся…' })}</div>;
+    return <div className="live-badge" style={_liveBadgeS}><span style={_liveDot(LT.success)} /> {tr({ uz: '👨‍🏫 Mentor:', ru: '👨‍🏫 Ментор:' })} {Math.min(live.mentorScreen + 1, total)} / {total}{live.nickname && <span style={{ color: LT.ink3 }}>· {live.nickname}</span>}</div>;
   }
   return null;
 }
@@ -305,6 +306,16 @@ function LiveBadge({ live, total }) {
 const LangContext = createContext('uz');
 const MentorCtx = createContext(null); // mobil: yig'iladigan Mentor
 const AchCtx = createContext(null); // 🏅 olingan nishonlar (Set) — Stage hisoblagichi uchun
+
+// UZ-RU: modul-darajali tarjimon. Dars mount bo'lganda default export __lang'ni o'rnatadi;
+// barcha render-joylar tr({uz:'…', ru:'…'}) orqali joriy tildagi matnni oladi (string/JSX o'tkazib yuboriladi).
+let __lang = 'uz';
+const tr = (node) => {
+  if (node === null || node === undefined) return '';
+  if (typeof node === 'string') return node;
+  if (React.isValidElement(node)) return node;
+  return node[__lang] ?? node.uz ?? node.ru ?? '';
+};
 
 // Matn ichidagi `kod` bo'laklarini chip qilib ko'rsatadi (qcode)
 const fmtCode = (s) => (typeof s === 'string' && s.includes('`'))
@@ -367,7 +378,7 @@ const Zoomable = ({ children }) => {
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
       <div className={`zoomable ${big ? 'zoom-on' : ''}`}>
-        <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? 'Kichraytirish' : 'Kattalashtirish'} title={big ? 'Kichraytirish' : 'Kattalashtirish'}>{big ? '✕' : '⛶'}</button>
+        <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>
         {children}
       </div>
     </>
@@ -394,7 +405,7 @@ function AchCounter() {
       </button>
       {open && (
         <div className="ach-pop" onMouseLeave={() => setOpen(false)}>
-          <div className="ach-pop-h">🏅 Badges — {count}/{total}</div>
+          <div className="ach-pop-h">🏅 {tr({ uz: 'Badges', ru: 'Значки' })} — {count}/{total}</div>
           {Object.entries(ACHIEVEMENTS).map(([id, a]) => { const got = !!(earned && earned.has(id)); return (
             <div key={id} className={`ach-pop-row ${got ? 'got' : ''}`}><span className="ach-pop-ic">{got ? a.icon : '🔒'}</span><span className="ach-pop-nm">{a.name}</span></div>
           ); })}
@@ -445,13 +456,14 @@ const Stage = ({ children, eyebrow, screen, totalScreens = TOTAL_SCREENS, navCon
     </MentorCtx.Provider>
   );
 };
-const NavBack = ({ onPrev }) => <button className="btn-ghost" onClick={onPrev} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>Orqaga</button>;
-const NavNext = ({ disabled, label = 'Davom etish', onClick, optionalLive }) => {
+const NavBack = ({ onPrev }) => <button className="btn-ghost" onClick={onPrev} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Orqaga', ru: 'Назад' })}</button>;
+const NavNext = ({ disabled, label, onClick, optionalLive }) => {
+  const _label = label || tr({ uz: 'Davom etish', ru: 'Продолжить' });
   const gate = useContext(LiveGateCtx);
   const locked = !!(gate && gate.locked);
   const live = gate && gate.live;
   const freeRide = !!(optionalLive && live && live.mode === 'student' && live.status !== 'ended' && live.mentorAlive);
-  return <button className="btn-white-accent" disabled={(freeRide ? false : disabled) || locked} onClick={onClick} title={locked ? 'Mentor hali bu sahifaga o\'tmadi' : undefined} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)', marginLeft: 'auto' }}>{locked ? '⏳ Mentorni kuting' : (freeRide && disabled ? 'Davom etish' : label)}</button>;
+  return <button className="btn-white-accent" disabled={(freeRide ? false : disabled) || locked} onClick={onClick} title={locked ? tr({ uz: "Mentor hali bu sahifaga o'tmadi", ru: 'Ментор ещё не перешёл на эту страницу' }) : undefined} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)', marginLeft: 'auto' }}>{locked ? tr({ uz: '⏳ Mentorni kuting', ru: '⏳ Ждите ментора' }) : (freeRide && disabled ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : _label)}</button>;
 };
 
 const FeedbackBlock = ({ show, isCorrect, neutral, children }) => {
@@ -472,35 +484,35 @@ const RECAP_MIN_ANSWERS = 3; // foizga ishonch uchun kamida shuncha javob kerak
 // RECAPS — mentor «qayta tushuntirish» overlay kontenti (🎓 Metodist; RcFlow bu darsda yo'q — vis'siz).
 const RECAPS = {
   4: {
-    title: "Props — komponentga uzatiladigan ma'lumot",
+    title: { uz: "Props — komponentga uzatiladigan ma'lumot", ru: 'Props — данные, передаваемые компоненту' },
     cards: [
-      { ic: "🎁", h: "Props — kartochkaga solingan ma'lumot", body: <>Hamma <span className="mono">{'<GameCard />'}</span> bir xil skeletdan yasaladi — farqi faqat ichidagi <b style={{ color: T.ink }}>ma'lumotda</b>: nom, o'yinchilar soni, belgi. Kartochkaga solinadigan shu ma'lumot <b style={{ color: T.ink }}>props</b> deb ataladi. Xuddi posilka kabi: ichida nima borligini bergan odam belgilaydi.</> },
-      { ic: "🏷️", h: "Atribut yozasiz — props bo'lib yetib boradi", body: <>Props'ni <b style={{ color: T.ink }}>App</b> (ota komponent) uzatadi: chaqiruvda atribut yozadi — <span className="mono">name="Doors"</span>. O'sha yozuv <span className="mono">GameCard</span> ichiga <b style={{ color: T.ink }}>props bo'lib</b> yetib boradi. Ya'ni atribut — tashqaridan, props — komponentning ichida ko'ringan o'sha ma'lumot.</> },
-      { ic: "📦", h: "Bir nechta props — bir nechta atribut", body: <>Bitta kartochkaga bir nechta ma'lumot uzatsa bo'ladi: har biri alohida atribut, alohida props — <span className="mono">name</span>, <span className="mono">players</span>, <span className="mono">emoji</span>. Qancha kerak bo'lsa, shuncha yozasiz.</>, ask: "Sevimli o'yiningiz kartochkasiga qanday props'lar kerak bo'lardi?" },
+      { ic: "🎁", h: { uz: "Props — kartochkaga solingan ma'lumot", ru: 'Props — данные, вложенные в карточку' }, body: { uz: <>Hamma <span className="mono">{'<GameCard />'}</span> bir xil skeletdan yasaladi — farqi faqat ichidagi <b style={{ color: T.ink }}>ma'lumotda</b>: nom, o'yinchilar soni, belgi. Kartochkaga solinadigan shu ma'lumot <b style={{ color: T.ink }}>props</b> deb ataladi. Xuddi posilka kabi: ichida nima borligini bergan odam belgilaydi.</>, ru: <>Все <span className="mono">{'<GameCard />'}</span> собраны из одного скелета — отличаются только <b style={{ color: T.ink }}>данными</b> внутри: название, число игроков, значок. Эти вложенные в карточку данные и называются <b style={{ color: T.ink }}>props</b>. Как посылка: что внутри — решает тот, кто её отправил.</> } },
+      { ic: "🏷️", h: { uz: "Atribut yozasiz — props bo'lib yetib boradi", ru: 'Пишете атрибут — доходит как props' }, body: { uz: <>Props'ni <b style={{ color: T.ink }}>App</b> (ota komponent) uzatadi: chaqiruvda atribut yozadi — <span className="mono">name="Doors"</span>. O'sha yozuv <span className="mono">GameCard</span> ichiga <b style={{ color: T.ink }}>props bo'lib</b> yetib boradi. Ya'ni atribut — tashqaridan, props — komponentning ichida ko'ringan o'sha ma'lumot.</>, ru: <>Props передаёт <b style={{ color: T.ink }}>App</b> (родительский компонент): при вызове он пишет атрибут — <span className="mono">name="Doors"</span>. Эта запись доходит внутрь <span className="mono">GameCard</span> <b style={{ color: T.ink }}>уже как props</b>. То есть атрибут — снаружи, props — те же данные, видимые внутри компонента.</> } },
+      { ic: "📦", h: { uz: "Bir nechta props — bir nechta atribut", ru: 'Несколько props — несколько атрибутов' }, body: { uz: <>Bitta kartochkaga bir nechta ma'lumot uzatsa bo'ladi: har biri alohida atribut, alohida props — <span className="mono">name</span>, <span className="mono">players</span>, <span className="mono">emoji</span>. Qancha kerak bo'lsa, shuncha yozasiz.</>, ru: <>Одной карточке можно передать несколько данных: каждое — отдельный атрибут, отдельный props — <span className="mono">name</span>, <span className="mono">players</span>, <span className="mono">emoji</span>. Пишете столько, сколько нужно.</> }, ask: { uz: "Sevimli o'yiningiz kartochkasiga qanday props'lar kerak bo'lardi?", ru: 'Какие props понадобились бы карточке вашей любимой игры?' } },
     ]
   },
   6: {
-    title: "Props oqimi — faqat pastga",
+    title: { uz: "Props oqimi — faqat pastga", ru: 'Поток props — только вниз' },
     cards: [
-      { ic: "⬇️", h: "Otadan bolaga, yuqoridan pastga", body: <>Komponentlar oilaga o'xshaydi: yuqorida <b style={{ color: T.ink }}>App (ota)</b>, pastida <b style={{ color: T.ink }}>GameCard (bola)</b>. Ma'lumot (props) doim <b style={{ color: T.ink }}>yuqoridan pastga</b> oqadi — ota bolaga uzatadi.</> },
-      { ic: "🚫", h: "Bola otaga qaytara olmaydi", body: <>Oqim <b style={{ color: T.ink }}>bir tomonlama</b>: <span className="mono">GameCard</span> o'ziga kelgan props'ni <span className="mono">App</span>'ga qaytara olmaydi. Ma'lumot faqat pastga tushadi, orqaga ko'tarilmaydi.</> },
-      { ic: "🌊", h: "Nega bir tomonlama?", body: <>Ma'lumot bitta yo'nalishda oqsa — kim nimani yuborganini kuzatish oson bo'ladi. Har narsa istalgan tomonga oqsa, xatoni topib bo'lmasdi. Shuning uchun React'da props doim pastga oqadi.</>, ask: "Ma'lumot bir tomonlama oqishi nega chalkashlikni kamaytiradi?" },
+      { ic: "⬇️", h: { uz: "Otadan bolaga, yuqoridan pastga", ru: 'От родителя к ребёнку, сверху вниз' }, body: { uz: <>Komponentlar oilaga o'xshaydi: yuqorida <b style={{ color: T.ink }}>App (ota)</b>, pastida <b style={{ color: T.ink }}>GameCard (bola)</b>. Ma'lumot (props) doim <b style={{ color: T.ink }}>yuqoridan pastga</b> oqadi — ota bolaga uzatadi.</>, ru: <>Компоненты похожи на семью: сверху <b style={{ color: T.ink }}>App (родитель)</b>, под ним <b style={{ color: T.ink }}>GameCard (ребёнок)</b>. Данные (props) всегда текут <b style={{ color: T.ink }}>сверху вниз</b> — родитель передаёт ребёнку.</> } },
+      { ic: "🚫", h: { uz: "Bola otaga qaytara olmaydi", ru: 'Ребёнок не может вернуть родителю' }, body: { uz: <>Oqim <b style={{ color: T.ink }}>bir tomonlama</b>: <span className="mono">GameCard</span> o'ziga kelgan props'ni <span className="mono">App</span>'ga qaytara olmaydi. Ma'lumot faqat pastga tushadi, orqaga ko'tarilmaydi.</>, ru: <>Поток <b style={{ color: T.ink }}>односторонний</b>: <span className="mono">GameCard</span> не может вернуть пришедшие props обратно в <span className="mono">App</span>. Данные только спускаются вниз и не поднимаются обратно.</> } },
+      { ic: "🌊", h: { uz: "Nega bir tomonlama?", ru: 'Почему в одну сторону?' }, body: { uz: <>Ma'lumot bitta yo'nalishda oqsa — kim nimani yuborganini kuzatish oson bo'ladi. Har narsa istalgan tomonga oqsa, xatoni topib bo'lmasdi. Shuning uchun React'da props doim pastga oqadi.</>, ru: <>Когда данные текут в одном направлении — легко отследить, кто что отправил. Если бы всё текло куда угодно, ошибку было бы не найти. Поэтому в React props всегда текут вниз.</> }, ask: { uz: "Ma'lumot bir tomonlama oqishi nega chalkashlikni kamaytiradi?", ru: 'Почему односторонний поток данных уменьшает путаницу?' } },
     ]
   },
   10: {
-    title: "Ro'yxat + map — katalog o'zi chiziladi",
+    title: { uz: "Ro'yxat + map — katalog o'zi chiziladi", ru: 'Список + map — каталог рисуется сам' },
     cards: [
-      { ic: "📋", h: "Ma'lumot alohida ro'yxatda turadi", body: <>Katta saytlarning siri: o'yinlar ma'lumoti <b style={{ color: T.ink }}>kod ichiga yozilmaydi</b> — alohida <b style={{ color: T.ink }}>ro'yxatda (massivda)</b> turadi. Har qator — bitta o'yin, ichida props uchun hamma narsa tayyor.</> },
-      { ic: "⚙️", h: "map — konveyer kabi ishlaydi", body: <><span className="mono">games.map(…)</span> — konveyerga o'xshaydi: ro'yxatdagi <b style={{ color: T.ink }}>har bir o'yin uchun</b> bitta kartochka yasaydi. Qatorni oladi → props qilib uzatadi → kartochkani chizadi. Va shu ishni ro'yxat oxirigacha takrorlaydi.</> },
-      { ic: "➕", h: "Yangi o'yin qo'shsangiz — kartochka o'zi chiqadi", body: <>Ro'yxatga yangi o'yin qo'shsangiz, <span className="mono">map</span> qatoriga <b style={{ color: T.ink }}>tegmasangiz ham</b> kartochkasi o'zi paydo bo'ladi. Sayt ma'lumotga qarab o'zini chizadi — buni <b style={{ color: T.ink }}>data-driven</b> deymiz.</>, ask: "Katalogga 100 ta o'yin qo'shsangiz, kod necha qator o'zgaradi?" },
+      { ic: "📋", h: { uz: "Ma'lumot alohida ro'yxatda turadi", ru: 'Данные лежат в отдельном списке' }, body: { uz: <>Katta saytlarning siri: o'yinlar ma'lumoti <b style={{ color: T.ink }}>kod ichiga yozilmaydi</b> — alohida <b style={{ color: T.ink }}>ro'yxatda (massivda)</b> turadi. Har qator — bitta o'yin, ichida props uchun hamma narsa tayyor.</>, ru: <>Секрет больших сайтов: данные об играх <b style={{ color: T.ink }}>не пишутся прямо в код</b> — они лежат в отдельном <b style={{ color: T.ink }}>списке (массиве)</b>. Каждая строка — одна игра, внутри всё готово для props.</> } },
+      { ic: "⚙️", h: { uz: "map — konveyer kabi ishlaydi", ru: 'map работает как конвейер' }, body: { uz: <><span className="mono">games.map(…)</span> — konveyerga o'xshaydi: ro'yxatdagi <b style={{ color: T.ink }}>har bir o'yin uchun</b> bitta kartochka yasaydi. Qatorni oladi → props qilib uzatadi → kartochkani chizadi. Va shu ishni ro'yxat oxirigacha takrorlaydi.</>, ru: <><span className="mono">games.map(…)</span> — как конвейер: для <b style={{ color: T.ink }}>каждой игры</b> из списка делает одну карточку. Берёт строку → передаёт как props → рисует карточку. И повторяет это до конца списка.</> } },
+      { ic: "➕", h: { uz: "Yangi o'yin qo'shsangiz — kartochka o'zi chiqadi", ru: 'Добавили игру — карточка появится сама' }, body: { uz: <>Ro'yxatga yangi o'yin qo'shsangiz, <span className="mono">map</span> qatoriga <b style={{ color: T.ink }}>tegmasangiz ham</b> kartochkasi o'zi paydo bo'ladi. Sayt ma'lumotga qarab o'zini chizadi — buni <b style={{ color: T.ink }}>data-driven</b> deymiz.</>, ru: <>Добавите в список новую игру — её карточка появится сама, <b style={{ color: T.ink }}>даже если не трогать</b> строку с <span className="mono">map</span>. Сайт рисует себя по данным — это называется <b style={{ color: T.ink }}>data-driven</b>.</> }, ask: { uz: "Katalogga 100 ta o'yin qo'shsangiz, kod necha qator o'zgaradi?", ru: 'Если добавить в каталог 100 игр, сколько строк кода изменится?' } },
     ]
   },
   13: {
-    title: "Props read-only — faqat o'qiladi",
+    title: { uz: "Props read-only — faqat o'qiladi", ru: 'Props read-only — только для чтения' },
     cards: [
-      { ic: "🔒", h: "Komponent props'ni o'zgartira olmaydi", body: <>Kartochka o'ziga kelgan props'ni faqat <b style={{ color: T.ink }}>o'qiy oladi</b>, o'zgartira olmaydi. Bunga <b style={{ color: T.ink }}>read-only</b> (faqat o'qiladi) deyiladi. Xuddi muhrlangan xat kabi: o'qiysiz, lekin ichini qayta yozolmaysiz.</> },
-      { ic: "✏️", h: "O'zgaruvchan narsa uchun — state", body: <>Agar biror qiymat <b style={{ color: T.ink }}>o'zgarib turishi</b> kerak bo'lsa (masalan like soni), props emas — <b style={{ color: T.ink }}>state</b> ishlatiladi. Props tashqaridan keladi va qotib turadi; state komponentning o'zida o'zgaradi.</> },
-      { ic: "🛡️", h: "Nega props qotib turadi?", body: <>Props o'zgarmas bo'lgani uchun kod ishonchli bo'ladi: bola komponent otasi bergan ma'lumotni buzib yubormaydi. Shuning uchun har komponent props'ini o'zicha o'zgartirmaydi — faqat o'qiydi.</>, ask: "Nega props'ni o'zgartirmaslik xatolarni kamaytiradi?" },
+      { ic: "🔒", h: { uz: "Komponent props'ni o'zgartira olmaydi", ru: 'Компонент не может менять props' }, body: { uz: <>Kartochka o'ziga kelgan props'ni faqat <b style={{ color: T.ink }}>o'qiy oladi</b>, o'zgartira olmaydi. Bunga <b style={{ color: T.ink }}>read-only</b> (faqat o'qiladi) deyiladi. Xuddi muhrlangan xat kabi: o'qiysiz, lekin ichini qayta yozolmaysiz.</>, ru: <>Карточка может пришедшие props только <b style={{ color: T.ink }}>читать</b>, менять — нет. Это называется <b style={{ color: T.ink }}>read-only</b> (только для чтения). Как запечатанное письмо: прочитать можно, переписать — нельзя.</> } },
+      { ic: "✏️", h: { uz: "O'zgaruvchan narsa uchun — state", ru: 'Для изменяемого — state' }, body: { uz: <>Agar biror qiymat <b style={{ color: T.ink }}>o'zgarib turishi</b> kerak bo'lsa (masalan like soni), props emas — <b style={{ color: T.ink }}>state</b> ishlatiladi. Props tashqaridan keladi va qotib turadi; state komponentning o'zida o'zgaradi.</>, ru: <>Если значение должно <b style={{ color: T.ink }}>меняться</b> (например, число лайков), используется не props, а <b style={{ color: T.ink }}>state</b>. Props приходят снаружи и застывают; state меняется внутри самого компонента.</> } },
+      { ic: "🛡️", h: { uz: "Nega props qotib turadi?", ru: 'Почему props «застывают»?' }, body: { uz: <>Props o'zgarmas bo'lgani uchun kod ishonchli bo'ladi: bola komponent otasi bergan ma'lumotni buzib yubormaydi. Shuning uchun har komponent props'ini o'zicha o'zgartirmaydi — faqat o'qiydi.</>, ru: <>Раз props неизменны — код надёжен: дочерний компонент не испортит данные, которые дал родитель. Поэтому компонент не меняет свои props сам — только читает.</> }, ask: { uz: "Nega props'ni o'zgartirmaslik xatolarni kamaytiradi?", ru: 'Почему запрет менять props уменьшает число ошибок?' } },
     ]
   },
 };
@@ -524,23 +536,23 @@ function RecapOverlay({ screenIdx, onClose }) {
   return (
     <div className="rc-overlay">
       <div className="rc-head">
-        <span className="rc-tag">📖 Qayta tushuntirish</span>
-        <span className="rc-title">{rc.title}</span>
-        <button className="rc-x" onClick={onClose} aria-label="Yopish">✕</button>
+        <span className="rc-tag">{tr({ uz: '📖 Qayta tushuntirish', ru: '📖 Повторное объяснение' })}</span>
+        <span className="rc-title">{tr(rc.title)}</span>
+        <button className="rc-x" onClick={onClose} aria-label={tr({ uz: 'Yopish', ru: 'Закрыть' })}>✕</button>
       </div>
       <div className="rc-card" key={i}>
         <div className="rc-ic">{card.ic}</div>
-        <h2 className="rc-h">{card.h}</h2>
-        <p className="rc-body">{card.body}</p>
+        <h2 className="rc-h">{tr(card.h)}</h2>
+        <p className="rc-body">{tr(card.body)}</p>
         {card.vis && <div className="rc-vis">{card.vis}</div>}
-        {card.ask && <div className="rc-ask">🗣️ Sinfga savol: {card.ask}</div>}
+        {card.ask && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
       </div>
       <div className="rc-nav">
-        <button className="rc-btn ghost" disabled={i === 0} onClick={() => setI(i - 1)}>← Oldingi</button>
-        <div className="rc-dots">{rc.cards.map((_, k) => <button key={k} className={`rc-dot ${k === i ? 'cur' : k < i ? 'fill' : ''}`} onClick={() => setI(k)} aria-label={`${k + 1}-karta`} />)}</div>
+        <button className="rc-btn ghost" disabled={i === 0} onClick={() => setI(i - 1)}>{tr({ uz: '← Oldingi', ru: '← Предыдущая' })}</button>
+        <div className="rc-dots">{rc.cards.map((_, k) => <button key={k} className={`rc-dot ${k === i ? 'cur' : k < i ? 'fill' : ''}`} onClick={() => setI(k)} aria-label={tr({ uz: `${k + 1}-karta`, ru: `Карточка ${k + 1}` })} />)}</div>
         {last
-          ? <button className="rc-btn done" onClick={onClose}>✓ Tushunarli — davom etamiz</button>
-          : <button className="rc-btn" onClick={() => setI(i + 1)}>Keyingisi →</button>}
+          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: '✓ Tushunarli — davom etamiz', ru: '✓ Понятно — продолжаем' })}</button>
+          : <button className="rc-btn" onClick={() => setI(i + 1)}>{tr({ uz: 'Keyingisi →', ru: 'Дальше →' })}</button>}
       </div>
     </div>
   );
@@ -575,25 +587,25 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
   return (
     <div className="mstats fade-up">
       <div className="mstats-head">
-        <span className="mstats-lbl">📊 Jonli natija</span>
-        <span className="mstats-n">{allIn ? '✓ Hamma javob berdi' : <>Javob berdi: <b>{answered}</b> / {total}</>}</span>
-        {!reveal && onReveal && <button className={`mstats-reveal ${allIn ? 'ready' : ''}`} onClick={onReveal}>🔓 Natijani ochish</button>}
+        <span className="mstats-lbl">{tr({ uz: '📊 Jonli natija', ru: '📊 Живой результат' })}</span>
+        <span className="mstats-n">{allIn ? tr({ uz: '✓ Hamma javob berdi', ru: '✓ Все ответили' }) : tr({ uz: <>Javob berdi: <b>{answered}</b> / {total}</>, ru: <>Ответили: <b>{answered}</b> / {total}</> })}</span>
+        {!reveal && onReveal && <button className={`mstats-reveal ${allIn ? 'ready' : ''}`} onClick={onReveal}>{tr({ uz: '🔓 Natijani ochish', ru: '🔓 Открыть результат' })}</button>}
       </div>
       <div className="mstats-prog"><span className={`mstats-prog-fill ${allIn ? 'full' : ''}`} style={{ width: `${total ? Math.round((answered / total) * 100) : 0}%` }} /></div>
       {reveal ? (
         <div className="mstats-big">
-          <div className="mstats-chip okc"><span className="mstats-chip-n">{ok}</span><span className="mstats-chip-t">to'g'ri ✅</span></div>
-          <div className="mstats-chip badc"><span className="mstats-chip-n">{bad}</span><span className="mstats-chip-t">xato ❌</span></div>
-          <div className="mstats-chip waitc"><span className="mstats-chip-n">{total - answered}</span><span className="mstats-chip-t">kutilmoqda ⏳</span></div>
+          <div className="mstats-chip okc"><span className="mstats-chip-n">{ok}</span><span className="mstats-chip-t">{tr({ uz: "to'g'ri ✅", ru: 'верно ✅' })}</span></div>
+          <div className="mstats-chip badc"><span className="mstats-chip-n">{bad}</span><span className="mstats-chip-t">{tr({ uz: 'xato ❌', ru: 'ошибка ❌' })}</span></div>
+          <div className="mstats-chip waitc"><span className="mstats-chip-n">{total - answered}</span><span className="mstats-chip-t">{tr({ uz: 'kutilmoqda ⏳', ru: 'ожидаем ⏳' })}</span></div>
         </div>
       ) : (
         <div className="mstats-big">
-          <div className="mstats-chip ansc"><span className="mstats-chip-n">{answered}</span><span className="mstats-chip-t">javob berdi 📨</span></div>
-          <div className="mstats-chip waitc"><span className="mstats-chip-n">{total - answered}</span><span className="mstats-chip-t">kutilmoqda ⏳</span></div>
+          <div className="mstats-chip ansc"><span className="mstats-chip-n">{answered}</span><span className="mstats-chip-t">{tr({ uz: 'javob berdi 📨', ru: 'ответили 📨' })}</span></div>
+          <div className="mstats-chip waitc"><span className="mstats-chip-n">{total - answered}</span><span className="mstats-chip-t">{tr({ uz: 'kutilmoqda ⏳', ru: 'ожидаем ⏳' })}</span></div>
         </div>
       )}
       {!reveal && answered > 0 && (
-        <p className="mstats-hidden">🙈 Kim nimani tanlagani va ✅/❌ soni yashirin — «Natijani ochish» bosilganda sizda ham, o'quvchilar ekranida ham birdan ochiladi.</p>
+        <p className="mstats-hidden">{tr({ uz: "🙈 Kim nimani tanlagani va ✅/❌ soni yashirin — «Natijani ochish» bosilganda sizda ham, o'quvchilar ekranida ham birdan ochiladi.", ru: '🙈 Кто что выбрал и число ✅/❌ скрыты — при нажатии «Открыть результат» всё откроется сразу и у вас, и на экранах учеников.' })}</p>
       )}
       {reveal && <div className="mstats-bars">
         {options.map((opt, i) => {
@@ -605,7 +617,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
             <div key={i} className={`mstats-row ${reveal && !isC ? 'dimmed' : ''}`}>
               <span className="mstats-abc" style={{ background: col }}>{isC ? '✓' : String.fromCharCode(65 + i)}</span>
               <span className="mstats-track"><span className="mstats-fill" style={{ width: `${answered ? Math.round((n / maxN) * 100) : 0}%`, background: col }} /></span>
-              <span className="mono mstats-count" style={isC ? { color: T.success, fontWeight: 800 } : undefined}>{n > 0 ? `${n} o'quvchi · ${pct}%` : '—'}</span>
+              <span className="mono mstats-count" style={isC ? { color: T.success, fontWeight: 800 } : undefined}>{n > 0 ? tr({ uz: `${n} o'quvchi · ${pct}%`, ru: `${n} уч. · ${pct}%` }) : '—'}</span>
             </div>
           );
         })}
@@ -616,30 +628,30 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
         return (
           <div className={`mstats-verdict ${level}`}>
             {level === 'need' && <>
-              <p className="mstats-verdict-t">⚠️ Faqat <b>{pct}%</b> to'g'ri — bu mavzu sinfga tushunarsiz qolgan. Davom etishdan oldin qisqa takrorlash tavsiya etiladi.</p>
-              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>📖 Qayta tushuntirish — {RECAPS[screenIdx]?.title}</button>}
+              <p className="mstats-verdict-t">{tr({ uz: <>⚠️ Faqat <b>{pct}%</b> to'g'ri — bu mavzu sinfga tushunarsiz qolgan. Davom etishdan oldin qisqa takrorlash tavsiya etiladi.</>, ru: <>⚠️ Только <b>{pct}%</b> верных — тема осталась классу непонятной. Перед продолжением рекомендуем короткое повторение.</> })}</p>
+              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>{tr({ uz: '📖 Qayta tushuntirish', ru: '📖 Повторное объяснение' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
             {level === 'maybe' && <>
-              <p className="mstats-verdict-t">🟡 <b>{pct}%</b> to'g'ri — yomon emas. Xohlasangiz, davom etishdan oldin qisqa takrorlab oling.</p>
-              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>📖 Qisqa takrorlash</button>}
+              <p className="mstats-verdict-t">{tr({ uz: <>🟡 <b>{pct}%</b> to'g'ri — yomon emas. Xohlasangiz, davom etishdan oldin qisqa takrorlab oling.</>, ru: <>🟡 <b>{pct}%</b> верных — неплохо. Если хотите, коротко повторите перед продолжением.</> })}</p>
+              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>{tr({ uz: '📖 Qisqa takrorlash', ru: '📖 Короткое повторение' })}</button>}
             </>}
-            {level === 'good' && <p className="mstats-verdict-t">✅ <b>{pct}%</b> to'g'ri — sinf mavzuni o'zlashtirdi. Bemalol davom eting!</p>}
+            {level === 'good' && <p className="mstats-verdict-t">{tr({ uz: <>✅ <b>{pct}%</b> to'g'ri — sinf mavzuni o'zlashtirdi. Bemalol davom eting!</>, ru: <>✅ <b>{pct}%</b> верных — класс освоил тему. Смело продолжайте!</> })}</p>}
             {level === 'few' && <>
-              <p className="mstats-verdict-t">Javob berganlar kam ({answered} ta) — foiz bo'yicha xulosa chiqarish qiyin. O'zingiz baholang:</p>
-              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>📖 Qayta tushuntirish — {RECAPS[screenIdx]?.title}</button>}
+              <p className="mstats-verdict-t">{tr({ uz: <>Javob berganlar kam ({answered} ta) — foiz bo'yicha xulosa chiqarish qiyin. O'zingiz baholang:</>, ru: <>Ответивших мало ({answered}) — по проценту судить сложно. Оцените сами:</> })}</p>
+              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>{tr({ uz: '📖 Qayta tushuntirish', ru: '📖 Повторное объяснение' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
           </div>
         );
       })()}
       {waiting.length > 0 && answered > 0 && (
         <div className="mstats-waitrow">
-          <span className="mstats-wait-lbl">⏳ Kutilmoqda:</span>
+          <span className="mstats-wait-lbl">{tr({ uz: '⏳ Kutilmoqda:', ru: '⏳ Ожидаем:' })}</span>
           {waiting.slice(0, 8).map(p => <span key={p.id} className="mstats-wait-chip">{p.nickname}</span>)}
           {waiting.length > 8 && <span className="mstats-wait-chip more">+{waiting.length - 8}</span>}
         </div>
       )}
-      {reveal && struggling && <p className="mstats-warn">⚠️ Ko'pchilik xato qildi — bu mavzu tushunarsiz bo'lgan ko'rinadi. Qayta tushuntirish tavsiya etiladi.</p>}
-      {answered === 0 && <p className="mstats-wait">O'quvchilar javoblari shu yerda jonli ko'rinadi…</p>}
+      {reveal && struggling && <p className="mstats-warn">{tr({ uz: "⚠️ Ko'pchilik xato qildi — bu mavzu tushunarsiz bo'lgan ko'rinadi. Qayta tushuntirish tavsiya etiladi.", ru: '⚠️ Большинство ошиблось — похоже, тема осталась непонятной. Рекомендуем объяснить ещё раз.' })}</p>}
+      {answered === 0 && <p className="mstats-wait">{tr({ uz: "O'quvchilar javoblari shu yerda jonli ko'rinadi…", ru: 'Ответы учеников появятся здесь вживую…' })}</p>}
     </div>
   );
 }
@@ -689,10 +701,10 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
   const revealed = !oneShot || !!(live && (live.revealScreen === screen || live.mentorScreen > screen || live.status === 'ended' || !live.mentorAlive));
   const waiting = oneShot && solved && !revealed; // javob qotdi — natija mentordan kutilmoqda
   return (
-    <Stage eyebrow={eyebrow} screen={screen} narrow audioState={audioText ? audio : undefined} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={isMentorLive ? !mReveal : !solved} label={isMentorLive ? (mReveal ? 'Davom etish' : 'Avval natijani oching') : solved ? 'Davom etish' : (oneShot ? 'Javob tanlang' : "To'g'ri javobni toping")} onClick={onNext} /></>}>
+    <Stage eyebrow={eyebrow} screen={screen} narrow audioState={audioText ? audio : undefined} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={isMentorLive ? !mReveal : !solved} label={isMentorLive ? (mReveal ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Avval natijani oching', ru: 'Сначала откройте результат' })) : solved ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : (oneShot ? tr({ uz: 'Javob tanlang', ru: 'Выберите ответ' }) : tr({ uz: "To'g'ri javobni toping", ru: 'Найдите правильный ответ' }))} onClick={onNext} /></>}>
       <div className="screen" style={{ justifyContent: isMentorLive ? 'flex-start' : 'safe center', gap: 'clamp(16px,2.5vw,24px)' }}>
         <div className="fade-up">{question}</div>
-        {oneShot && !solved && <p className="small mono fade-up" style={{ margin: '-8px 0 0', color: T.accent, fontWeight: 600 }}>⚡ Jonli dars — bitta urinish, o'ylab bosing!</p>}
+        {oneShot && !solved && <p className="small mono fade-up" style={{ margin: '-8px 0 0', color: T.accent, fontWeight: 600 }}>{tr({ uz: "⚡ Jonli dars — bitta urinish, o'ylab bosing!", ru: '⚡ Живой урок — одна попытка, думайте перед нажатием!' })}</p>}
         <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
           {options.map((opt, i) => {
             let cls = 'option';
@@ -715,18 +727,18 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
         <FeedbackBlock show={isMentorLive ? mReveal : picked !== null} isCorrect={isMentorLive ? true : (solved && !wrongLocked)} neutral={waiting}>
           <p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
             {isMentorLive
-              ? <>✓ To'g'ri javob: {String.fromCharCode(65 + correctIdx)} — {fmtCode(options[correctIdx])}</>
+              ? <>{tr({ uz: "✓ To'g'ri javob:", ru: '✓ Правильный ответ:' })} {String.fromCharCode(65 + correctIdx)} — {fmtCode(options[correctIdx])}</>
               : waiting
-                ? '📨 Javobingiz qabul qilindi'
+                ? tr({ uz: '📨 Javobingiz qabul qilindi', ru: '📨 Ваш ответ принят' })
                 : wrongLocked
-                  ? <>To'g'ri javob: {String.fromCharCode(65 + correctIdx)} — {fmtCode(options[correctIdx])}</>
-                  : solved ? "To'g'ri" : "Qaytadan urinib ko'ring"}
+                  ? <>{tr({ uz: "To'g'ri javob:", ru: 'Правильный ответ:' })} {String.fromCharCode(65 + correctIdx)} — {fmtCode(options[correctIdx])}</>
+                  : solved ? tr({ uz: "To'g'ri", ru: 'Верно' }) : tr({ uz: "Qaytadan urinib ko'ring", ru: 'Попробуйте ещё раз' })}
           </p>
           <p className="body" style={{ margin: 0 }}>
             {isMentorLive
               ? fmtCode(explainCorrect)
               : waiting
-                ? "Hozir to'g'ri javobni bilib olasiz."
+                ? tr({ uz: "Hozir to'g'ri javobni bilib olasiz.", ru: 'Скоро узнаете правильный ответ.' })
                 : wrongLocked
                   ? fmtCode(explainWrong[picked] ?? explainWrong.default)
                   : solved ? fmtCode(explainCorrect) : fmtCode(explainWrong[picked] ?? explainWrong.default)}
@@ -734,7 +746,7 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
           {/* Xato qilgan o'quvchi mavzuni qisqa kartalarda qayta ko'radi (3-qadamda kontent keladi).
               Jonli darsda — javob sirini saqlash uchun faqat reveal'dan keyin chiqadi. */}
           {hasRecap && !isMentorLive && firstCorrectRef.current === false && (!oneShot || revealed) && (
-            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>📖 Qisqa takrorlash — mavzuni yana bir ko'rish</button>
+            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: "📖 Qisqa takrorlash — mavzuni yana bir ko'rish", ru: '📖 Короткое повторение — взглянуть на тему ещё раз' })}</button>
           )}
         </FeedbackBlock>
         {isMentorLive && <MentorTestStats live={live} screenIdx={screen} options={options} correctIdx={correctIdx} reveal={mReveal} onReveal={doReveal} onOpenRecap={hasRecap ? () => setRecapOpen(true) : null} />}
@@ -756,7 +768,7 @@ function ScoreRing({ correct, total }) {
         <circle cx="64" cy="64" r={R} fill="none" stroke={T.ink3 + '40'} strokeWidth={ST} />
         <circle cx="64" cy="64" r={R} fill="none" stroke={col} strokeWidth={ST} strokeLinecap="round" strokeDasharray={C} strokeDashoffset={off} transform="rotate(-90 64 64)" style={{ transition: 'stroke-dashoffset 1s cubic-bezier(.4,0,.2,1)' }} />
       </svg>
-      <div className="ring-center"><div className="ring-num"><span style={{ color: col }}>{correct}</span><span className="ring-den">/{total}</span></div><div className="ring-lbl">to'g'ri javob</div></div>
+      <div className="ring-center"><div className="ring-num"><span style={{ color: col }}>{correct}</span><span className="ring-den">/{total}</span></div><div className="ring-lbl">{tr({ uz: "to'g'ri javob", ru: 'верных ответов' })}</div></div>
     </div>
   );
 }
@@ -773,7 +785,7 @@ const Mentor = ({ children }) => {
         <img src={MENTOR_IMG} alt="" />
       </div>
       <div className="mentor-col">
-        <span className="mentor-name">Mentor{collapsed && <span className="mentor-cue"> · ko'rsatmani ochish ▾</span>}</span>
+        <span className="mentor-name">{tr({ uz: 'Mentor', ru: 'Ментор' })}{collapsed && <span className="mentor-cue"> {tr({ uz: "· ko'rsatmani ochish ▾", ru: '· открыть подсказку ▾' })}</span>}</span>
         <div className="mentor-msg body">{children}</div>
       </div>
     </div>
@@ -854,7 +866,7 @@ function CardFactory({
         draggable={mode === 'oneway' ? true : undefined}
         onDragStart={mode === 'oneway' ? (e) => { e.preventDefault(); onJam && onJam(); } : undefined}
         onClick={mode === 'oneway' && onJam ? onJam : undefined}
-        title={mode === 'oneway' ? "Teshikka qaytarib sudrab ko'ring" : undefined}
+        title={mode === 'oneway' ? tr({ uz: "Teshikka qaytarib sudrab ko'ring", ru: 'Попробуйте перетащить обратно в щель' }) : undefined}
       >
         <RoCard name={nm} players={extra.players} emoji={extra.emoji} />
         {sealed && isLast && <span className="cf-seal" aria-hidden>🔒</span>}
@@ -865,9 +877,9 @@ function CardFactory({
   return (
     <div className={`cf cf--${mode} ${humming ? 'cf-hum' : ''} ${jammed ? 'cf-jam' : ''}`}>
       <div className="cf-meter">
-        <span className="cf-meter-i">Mashina <b>1</b></span><span className="cf-dot">·</span>
-        <span className="cf-meter-i">Ishlatildi <b>{usedN}</b></span><span className="cf-dot">·</span>
-        <span className="cf-meter-i">Kartochka <b>{count}</b></span>
+        <span className="cf-meter-i">{tr({ uz: 'Mashina', ru: 'Машина' })} <b>1</b></span><span className="cf-dot">·</span>
+        <span className="cf-meter-i">{tr({ uz: 'Ishlatildi', ru: 'Запусков' })} <b>{usedN}</b></span><span className="cf-dot">·</span>
+        <span className="cf-meter-i">{tr({ uz: 'Kartochka', ru: 'Карточек' })} <b>{count}</b></span>
       </div>
       <div className="cf-top">
         {mode === 'feeder' && hopper.length > 0 && (
@@ -875,7 +887,7 @@ function CardFactory({
         )}
         <span className="cf-hole" />
         {slip && <div key={`slip-${feed}`} className={`cf-slip ${slipIn ? 'cf-slip-in' : ''} ${jammed ? 'cf-slip-jam' : ''}`}>{slip}</div>}
-        {jammed && <span className="cf-jam-note el-in">⛔ faqat yuqoridan pastga</span>}
+        {jammed && <span className="cf-jam-note el-in">{tr({ uz: '⛔ faqat yuqoridan pastga', ru: '⛔ только сверху вниз' })}</span>}
       </div>
       <div className="cf-body">
         <span className="cf-bolts" aria-hidden><i /><i /><i /><i /></span>
@@ -883,16 +895,16 @@ function CardFactory({
         <div className="cf-gears" aria-hidden><span className="cf-gear">⚙</span><span className="cf-gear cf-gear-b">⚙</span></div>
         <div className="cf-window">{humming ? <span className="cf-spark">✦ ✦ ✦</span> : <span className="cf-idle">▢ ▢</span>}</div>
         {mode === 'feeder' && (
-          <button type="button" className={`cf-lever ${leverPulled ? 'pulled' : ''}`} onClick={onLever} aria-label="Richagni torting">
+          <button type="button" className={`cf-lever ${leverPulled ? 'pulled' : ''}`} onClick={onLever} aria-label={tr({ uz: 'Richagni torting', ru: 'Потяните рычаг' })}>
             <span className="cf-lever-arm"><span className="cf-lever-knob" /></span>
-            <span className="cf-lever-lbl">{leverPulled ? '…' : 'TORT'}</span>
+            <span className="cf-lever-lbl">{leverPulled ? '…' : tr({ uz: 'TORT', ru: 'ТЯНИ' })}</span>
           </button>
         )}
       </div>
       <div className="cf-chute">
         <span className="cf-lip" />
         <div className="cf-tray">
-          {count === 0 ? <span className="cf-tray-empty">javon bo'sh…</span> : trayCards.map(renderSlot)}
+          {count === 0 ? <span className="cf-tray-empty">{tr({ uz: "javon bo'sh…", ru: 'полка пуста…' })}</span> : trayCards.map(renderSlot)}
         </div>
       </div>
     </div>
@@ -918,43 +930,43 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
   const [picked, setPicked] = useState(storedAnswer?.picked ?? null);
   const toggle = () => { setXray(v => !v); setXrayUsed(true); };
   const OPTS = [
-    { id: 'a', label: '6 ta — har kartochkaga alohida kod' },
-    { id: 'b', label: 'Bitta — qolgani faqat har xil MA\'LUMOT' },
-    { id: 'c', label: "3 ta — har ikkitasiga bittadan" }
+    { id: 'a', label: { uz: '6 ta — har kartochkaga alohida kod', ru: '6 — отдельный код для каждой карточки' } },
+    { id: 'b', label: { uz: "Bitta — qolgani faqat har xil MA'LUMOT", ru: 'Один — остальное лишь разные ДАННЫЕ' } },
+    { id: 'c', label: { uz: "3 ta — har ikkitasiga bittadan", ru: '3 — по одному на каждые две' } }
   ];
   const pick = (v) => { if (picked !== null || !xrayUsed) return; setPicked(v); onAnswer(screen, { stage: 'hook', screenIdx: screen, picked: v, correct: true }); };
   const audio = useAudio([{ id: 's0', text: `Mana robo-games katalogi — xuddi Roblox bosh sahifasiday. Oltita kartochka, hammasi har xil: nomlar, ranglar, o'yinchilar soni. Rentgen rejimini yoqib, kartochkalarning ichini ko'ring. Keyin ayting: bularning ortida nechta komponent kodi yozilgan deb o'ylaysiz?`, trigger: 'on_mount', waits_for: { type: 'option_picked' } }]);
   return (
-    <Stage eyebrow="Kirish" screen={screen} audioState={audio} navContent={<NavNext optionalLive disabled={picked === null} label="Davom etish" onClick={onNext} />}>
+    <Stage eyebrow={tr({ uz: 'Kirish', ru: 'Введение' })} screen={screen} audioState={audio} navContent={<NavNext optionalLive disabled={picked === null} label={tr({ uz: 'Davom etish', ru: 'Продолжить' })} onClick={onNext} />}>
       <div className="screen">
-        <h1 className="title h-title fade-up" style={{ maxWidth: 780 }}>6 ta har xil kartochka — <span className="italic" style={{ color: T.accent }}>nechta kod</span>?</h1>
-        <Mentor>Mana robo-games katalogi — xuddi Roblox bosh sahifasiday. Hammasi har xil: nomlar, ranglar, o'yinchilar. Endi <b style={{ color: T.ink }}>Rentgen rejimini</b> yoqing — kartochkalarning "ichini" ko'rasiz. Nimani sezdingiz?</Mentor>
+        <h1 className="title h-title fade-up" style={{ maxWidth: 780 }}>{tr({ uz: <>6 ta har xil kartochka — <span className="italic" style={{ color: T.accent }}>nechta kod</span>?</>, ru: <>6 разных карточек — <span className="italic" style={{ color: T.accent }}>сколько кода</span>?</> })}</h1>
+        <Mentor>{tr({ uz: <>Mana robo-games katalogi — xuddi Roblox bosh sahifasiday. Hammasi har xil: nomlar, ranglar, o'yinchilar. Endi <b style={{ color: T.ink }}>Rentgen rejimini</b> yoqing — kartochkalarning "ichini" ko'rasiz. Nimani sezdingiz?</>, ru: <>Вот каталог robo-games — прямо как главная страница Roblox. Всё разное: названия, цвета, игроки. Теперь включите <b style={{ color: T.ink }}>режим Рентгена</b> — увидите «внутренности» карточек. Что заметили?</> })}</Mentor>
         <Zoomable>
         <Split>
           <Col>
             <div className="fade-up delay-1" style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-              <button className={`chip ${xray ? 'chip-on' : ''}`} onClick={toggle}><ScanIcon /> Rentgen {xray ? 'yoqilgan' : 'rejimi'}</button>
-              {xray && <span className="mono small fade-step" style={{ color: T.accent }}>ichkarida — hammasi BIR XIL!</span>}
+              <button className={`chip ${xray ? 'chip-on' : ''}`} onClick={toggle}><ScanIcon /> {xray ? tr({ uz: 'Rentgen yoqilgan', ru: 'Рентген включён' }) : tr({ uz: 'Rentgen rejimi', ru: 'Режим Рентгена' })}</button>
+              {xray && <span className="mono small fade-step" style={{ color: T.accent }}>{tr({ uz: 'ichkarida — hammasi BIR XIL!', ru: 'внутри — всё ОДИНАКОВОЕ!' })}</span>}
             </div>
             <div className="fade-up delay-2" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 9 }}>
               {GAMES.map((g, i) => <RoCard key={g.name} name={g.name} players={g.players} xray={xray} />)}
             </div>
           </Col>
           <Col>
-            <p className="eyebrow fade-up delay-2" style={{ color: T.ink2, margin: 0 }}>Sizningcha, bunga nechta komponent kodi yozilgan?</p>
+            <p className="eyebrow fade-up delay-2" style={{ color: T.ink2, margin: 0 }}>{tr({ uz: 'Sizningcha, bunga nechta komponent kodi yozilgan?', ru: 'Как думаете, сколько кода компонентов за этим написано?' })}</p>
             <div className="fade-up delay-3" style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
               {OPTS.map(o => {
                 const on = picked === o.id;
                 return (
                   <button key={o.id} className={`hook-option ${on ? 'on' : ''}`} disabled={picked !== null || !xrayUsed} style={{ opacity: !xrayUsed ? 0.55 : 1 }} onClick={() => pick(o.id)}>
                     <span className="radio">{on && <span className="radio-dot" />}</span>
-                    <span>{o.label}</span>
+                    <span>{tr(o.label)}</span>
                   </button>
                 );
               })}
             </div>
-            {!xrayUsed && <p className="small" style={{ color: T.ink3, fontStyle: 'italic', margin: 0 }}>Avval Rentgenni yoqib ko'ring ←</p>}
-            {picked !== null && <p className="hook-ack fade-step">Aynan! Skelet — <b>bitta <span className="mono">{'<GameCard />'}</span></b>, farq esa faqat <b>ma'lumotda</b> (props). Bugun shu ma'lumotni komponentlarga <b>uzatish san'atini</b> o'rganamiz — va butun katalogni quramiz.</p>}
+            {!xrayUsed && <p className="small" style={{ color: T.ink3, fontStyle: 'italic', margin: 0 }}>{tr({ uz: "Avval Rentgenni yoqib ko'ring ←", ru: 'Сначала включите Рентген ←' })}</p>}
+            {picked !== null && <p className="hook-ack fade-step">{tr({ uz: <>Aynan! Skelet — <b>bitta <span className="mono">{'<GameCard />'}</span></b>, farq esa faqat <b>ma'lumotda</b> (props). Bugun shu ma'lumotni komponentlarga <b>uzatish san'atini</b> o'rganamiz — va butun katalogni quramiz.</>, ru: <>Именно! Скелет — <b>один <span className="mono">{'<GameCard />'}</span></b>, а разница только в <b>данных</b> (props). Сегодня освоим <b>искусство передачи</b> этих данных компонентам — и соберём весь каталог.</> })}</p>}
           </Col>
         </Split>
         </Zoomable>
@@ -966,17 +978,17 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
 // ===== SCREEN 1 — REJA (va'da + bugungi 5 qadam) =====
 const Screen1 = ({ screen, onNext, onPrev }) => {
   const STEPS = [
-    { text: 'Ma\'lumotni uzatish — posilka', tag: '<GameCard name="…" />' },
-    { text: 'Bir nechta props', tag: 'name · players · emoji' },
-    { text: "Ma'lumot daryosi — faqat pastga", tag: 'App → Card → Button' },
-    { text: "Props faqat o'qiladi", tag: 'read-only' },
-    { text: "Ro'yxat → katalog", tag: 'games.map(…)' }
+    { text: { uz: "Ma'lumotni uzatish — posilka", ru: 'Передача данных — посылка' }, tag: '<GameCard name="…" />' },
+    { text: { uz: 'Bir nechta props', ru: 'Несколько props' }, tag: 'name · players · emoji' },
+    { text: { uz: "Ma'lumot daryosi — faqat pastga", ru: 'Река данных — только вниз' }, tag: 'App → Card → Button' },
+    { text: { uz: "Props faqat o'qiladi", ru: 'Props только читаются' }, tag: 'read-only' },
+    { text: { uz: "Ro'yxat → katalog", ru: 'Список → каталог' }, tag: 'games.map(…)' }
   ];
   const isNarrow = useIsMobile(768);
   const [showSteps, setShowSteps] = useState(false);
   const PreviewBlock = (
     <Col>
-      <p className="flow-label">Dars oxirida — sizning natijangiz</p>
+      <p className="flow-label">{tr({ uz: 'Dars oxirida — sizning natijangiz', ru: 'В конце урока — ваш результат' })}</p>
       <Win title="robo-games — localhost:5173" minH={100}>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 8 }}>
           <RoCard name="Adopt Me!" top />
@@ -985,35 +997,35 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
         </div>
       </Win>
       <pre className="code-box" style={{ padding: '10px 14px' }}>{'{games.map(g => '}<Jx>{'<GameCard '}</Jx><At>name</At>{'={g}'}<Jx>{' />'}</Jx>{')}'}</pre>
-      <p className="mono small" style={{ color: T.accent, margin: 0 }}>→ butun katalog — bitta qator kod bilan</p>
+      <p className="mono small" style={{ color: T.accent, margin: 0 }}>{tr({ uz: '→ butun katalog — bitta qator kod bilan', ru: '→ весь каталог — одной строкой кода' })}</p>
     </Col>
   );
   const StepsBlock = (
     <Col>
-      <p className="flow-label">Bugungi 5 qadam</p>
+      <p className="flow-label">{tr({ uz: 'Bugungi 5 qadam', ru: 'Сегодняшние 5 шагов' })}</p>
       <ol className="roadmap">
-        {STEPS.map((s, i) => (<li key={i} className="step-card fade-up" style={{ animationDelay: `${0.08 + i * 0.05}s` }}><span className="step-num">{String(i + 1).padStart(2, '0')}</span><span className="step-body"><span className="step-text">{s.text}</span>{s.tag && <span className="step-tag">{s.tag}</span>}</span></li>))}
+        {STEPS.map((s, i) => (<li key={i} className="step-card fade-up" style={{ animationDelay: `${0.08 + i * 0.05}s` }}><span className="step-num">{String(i + 1).padStart(2, '0')}</span><span className="step-body"><span className="step-text">{tr(s.text)}</span>{s.tag && <span className="step-tag">{s.tag}</span>}</span></li>))}
       </ol>
     </Col>
   );
   const audio = useAudio([{ id: 's1', text: `Ishonasizmi — dars oxirida Roblox'dagiday to'liq katalog qurasiz. Ro'yxatga yangi o'yin qo'shsangiz, kartochkasi o'zi paydo bo'ladi. Buning kaliti bitta: ma'lumotni komponentlarga to'g'ri uzatish. Bugun shuni besh qadamda o'rganamiz.`, trigger: 'on_mount', waits_for: null }]);
   return (
-    <Stage eyebrow="Reja" screen={screen} audioState={audio} mentorStatic navContent={<><NavBack onPrev={onPrev} /><NavNext label="Boshlaymiz →" onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Reja', ru: 'План' })} screen={screen} audioState={audio} mentorStatic navContent={<><NavBack onPrev={onPrev} /><NavNext label={tr({ uz: 'Boshlaymiz →', ru: 'Начинаем →' })} onClick={onNext} /></>}>
       <div className="screen">
         <div className="head">
-          <h2 className="title h-title fade-up">Butun katalogni <span className="italic" style={{ color: T.accent }}>bitta qator kod</span> bilan chiza olamizmi?</h2>
+          <h2 className="title h-title fade-up">{tr({ uz: <>Butun katalogni <span className="italic" style={{ color: T.accent }}>bitta qator kod</span> bilan chiza olamizmi?</>, ru: <>Сможем нарисовать весь каталог <span className="italic" style={{ color: T.accent }}>одной строкой кода</span>?</> })}</h2>
         </div>
-        <Mentor>Ishonasizmi — dars oxirida <b style={{ color: T.ink }}>Roblox'dagiday to'liq katalog</b> qurasiz — ro'yxatga yangi o'yin qo'shsangiz, kartochkasi <b style={{ color: T.ink }}>o'zi paydo bo'ladi</b>. Buning kaliti: ma'lumotni komponentlarga to'g'ri uzatish.</Mentor>
+        <Mentor>{tr({ uz: <>Ishonasizmi — dars oxirida <b style={{ color: T.ink }}>Roblox'dagiday to'liq katalog</b> qurasiz — ro'yxatga yangi o'yin qo'shsangiz, kartochkasi <b style={{ color: T.ink }}>o'zi paydo bo'ladi</b>. Buning kaliti: ma'lumotni komponentlarga to'g'ri uzatish.</>, ru: <>Поверите ли — к концу урока соберёте <b style={{ color: T.ink }}>полный каталог как в Roblox</b>: добавите в список новую игру — её карточка <b style={{ color: T.ink }}>появится сама</b>. Ключ к этому: правильно передавать данные компонентам.</> })}</Mentor>
         {!isNarrow ? (
           <Zoomable><Split>{PreviewBlock}{StepsBlock}</Split></Zoomable>
         ) : !showSteps ? (
           <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px,2vw,16px)' }}>
             {PreviewBlock}
-            <button className="btn" style={{ alignSelf: 'flex-start' }} onClick={() => setShowSteps(true)}>Bugungi 5 qadamni ko'rish</button>
+            <button className="btn" style={{ alignSelf: 'flex-start' }} onClick={() => setShowSteps(true)}>{tr({ uz: "Bugungi 5 qadamni ko'rish", ru: 'Посмотреть 5 шагов на сегодня' })}</button>
           </div>
         ) : (
           <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px,2vw,16px)' }}>
-            <button className="btn-soft" style={{ alignSelf: 'flex-start' }} onClick={() => setShowSteps(false)}>↩ Natijani ko'rish</button>
+            <button className="btn-soft" style={{ alignSelf: 'flex-start' }} onClick={() => setShowSteps(false)}>{tr({ uz: "↩ Natijani ko'rish", ru: '↩ Посмотреть результат' })}</button>
             {StepsBlock}
           </div>
         )}
@@ -1040,35 +1052,35 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   const audio = useAudio([{ id: 's2', text: `App ma'lumotni GameCard'ga qanday yetkazadi? Xuddi Roblox'dagi trade kabi: bir o'yinchi ikkinchisiga buyum uzatadi. Bizda App posilka jo'natadi — atribut yozadi. GameCard esa uni props orqali qabul qiladi. Posilkani yuborib, yo'lini kuzating.`, trigger: 'on_mount', waits_for: null }]);
   return (
-    <Stage eyebrow="Uzatish" screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? 'Davom etish' : 'Posilkani yuboring'} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Uzatish', ru: 'Передача' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Posilkani yuboring', ru: 'Отправьте посылку' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">App ma'lumotni GameCard'ga <span className="italic" style={{ color: T.accent }}>qanday yetkazadi</span>?</h2></div>
-        <Mentor>Xuddi Roblox'dagi <b style={{ color: T.ink }}>trade</b> kabi: bir o'yinchi ikkinchisiga buyum uzatadi. Bizda: <b style={{ color: T.ink }}>App jo'natadi</b> (atribut yozadi), <b style={{ color: T.ink }}>GameCard qabul qiladi</b> (props orqali). Posilkani yuborib, yo'lini kuzating.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>App ma'lumotni GameCard'ga <span className="italic" style={{ color: T.accent }}>qanday yetkazadi</span>?</>, ru: <>Как App <span className="italic" style={{ color: T.accent }}>доставляет данные</span> в GameCard?</> })}</h2></div>
+        <Mentor>{tr({ uz: <>Xuddi Roblox'dagi <b style={{ color: T.ink }}>trade</b> kabi: bir o'yinchi ikkinchisiga buyum uzatadi. Bizda: <b style={{ color: T.ink }}>App jo'natadi</b> (atribut yozadi), <b style={{ color: T.ink }}>GameCard qabul qiladi</b> (props orqali). Posilkani yuborib, yo'lini kuzating.</>, ru: <>Как <b style={{ color: T.ink }}>trade</b> в Roblox: один игрок передаёт вещь другому. У нас: <b style={{ color: T.ink }}>App отправляет</b> (пишет атрибут), <b style={{ color: T.ink }}>GameCard принимает</b> (через props). Отправьте посылку и проследите её путь.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
-            <p className="flow-label">App — jo'natuvchi</p>
+            <p className="flow-label">{tr({ uz: "App — jo'natuvchi", ru: 'App — отправитель' })}</p>
             <pre className="code-box fade-up delay-1" style={{ lineHeight: 2 }}>
-              <Cm>{'// App ichida:'}</Cm>{'\n'}
+              <Cm>{tr({ uz: '// App ichida:', ru: '// внутри App:' })}</Cm>{'\n'}
               <span style={{ borderRadius: 6, padding: '2px 5px', background: phase === 1 ? 'rgba(255,79,40,0.22)' : 'transparent', boxShadow: phase === 1 ? `inset 0 0 0 1px ${T.accent}` : 'none', transition: 'all 0.3s' }}>
                 <Jx>{'<GameCard '}</Jx><At>name</At>=<St>"Doors"</St> <At>players</At>=<St>"310K"</St><Jx>{' />'}</Jx>
               </span>
             </pre>
-            <button className="btn fade-up delay-2" style={{ alignSelf: 'flex-start' }} onClick={send} disabled={running}>{running ? 'Yo\'lda…' : (done ? '📦 Yana yuborish' : '📦 Posilkani yuborish')}</button>
+            <button className="btn fade-up delay-2" style={{ alignSelf: 'flex-start' }} onClick={send} disabled={running}>{running ? tr({ uz: "Yo'lda…", ru: 'В пути…' }) : (done ? tr({ uz: '📦 Yana yuborish', ru: '📦 Отправить ещё раз' }) : tr({ uz: '📦 Posilkani yuborish', ru: '📦 Отправить посылку' }))}</button>
           </Col>
           <Col>
-            <p className="flow-label">GameCard — qabul qiluvchi</p>
+            <p className="flow-label">{tr({ uz: 'GameCard — qabul qiluvchi', ru: 'GameCard — получатель' })}</p>
             <div className="code-box fade-up delay-2" style={{ padding: '11px 14px', position: 'relative', minHeight: 104, overflow: 'hidden' }}>
               {phase === 1 && <div className="parcel2"><span className="parcel2-box">📦</span><span className="parcel2-lbl">name="Doors", players="310K"</span></div>}
               <TLine out={<span><Jx>{'function'}</Jx> GameCard(<At>props</At>) {'{'}</span>} />
               <TLine out={<span style={{ paddingLeft: 14, display: 'inline-block' }}>props = {'{'} name: {phase >= 2 ? <span className="slot-pop"><St>"Doors"</St></span> : <span style={{ color: CODE.comment }}>?</span>}, players: {phase >= 2 ? <span className="slot-pop"><St>"310K"</St></span> : <span style={{ color: CODE.comment }}>?</span>} {'}'}</span>} />
               <TLine out={<span>{'}'}</span>} />
             </div>
-            <p className="flow-label" style={{ marginTop: 2 }}>Fabrika — GameCard-3000</p>
+            <p className="flow-label" style={{ marginTop: 2 }}>{tr({ uz: 'Fabrika — GameCard-3000', ru: 'Фабрика — GameCard-3000' })}</p>
             <CardFactory mode="debut" humming={running} slipIn={phase === 1}
               slip={phase < 3 ? <><span className="cf-slip-k">name</span>="Doors" · <span className="cf-slip-k">players</span>="310K"</> : null}
               trayCards={phase >= 3 ? [{ name: 'Doors', players: '310K' }] : []} used={phase >= 3 ? 1 : 0} feed={phase} />
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Yo'l: <b>atribut yozildi → props'ga tushdi → kartochka chizildi</b>. Atribut nomi = props ichidagi nom: <span className="mono">name</span> → <span className="mono">props.name</span>.</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Yo'l: <b>atribut yozildi → props'ga tushdi → kartochka chizildi</b>. Atribut nomi = props ichidagi nom: <span className="mono">name</span> → <span className="mono">props.name</span>.</>, ru: <>Путь: <b>написан атрибут → попал в props → нарисована карточка</b>. Имя атрибута = имя внутри props: <span className="mono">name</span> → <span className="mono">props.name</span>.</> })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -1089,22 +1101,22 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const EMOJIS = ['🐝', '🚪', '🐶'];
   const audio = useAudio([{ id: 's3', text: `Bitta kartochkaga nechta ma'lumot uzatsa bo'ladi? Istalgancha! Har atribut alohida props bo'ladi: name, players, emoji. Uchalasini tanlab, kartochkani to'liq ma'lumot bilan jihozlang. Kod qanday o'sishini kuzating.`, trigger: 'on_mount', waits_for: null }]);
   return (
-    <Stage eyebrow="Bir nechta props" screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? 'Davom etish' : "3 ta props'ni to'ldiring"} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Bir nechta props', ru: 'Несколько props' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "3 ta props'ni to'ldiring", ru: 'Заполните 3 props' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(8px,1.2vw,12px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Bitta kartochkaga <span className="italic" style={{ color: T.accent }}>nechta ma'lumot</span> uzatsa bo'ladi?</h2></div>
-        <Mentor>Istalgancha! Har atribut — alohida props: <span className="mono">name</span>, <span className="mono">players</span>, <span className="mono">emoji</span>… Uchalasini tanlab, kartochkani <b style={{ color: T.ink }}>to'liq ma'lumot bilan</b> jihozlang. Kod qanday o'sishini kuzating.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Bitta kartochkaga <span className="italic" style={{ color: T.accent }}>nechta ma'lumot</span> uzatsa bo'ladi?</>, ru: <>Сколько <span className="italic" style={{ color: T.accent }}>данных</span> можно передать одной карточке?</> })}</h2></div>
+        <Mentor>{tr({ uz: <>Istalgancha! Har atribut — alohida props: <span className="mono">name</span>, <span className="mono">players</span>, <span className="mono">emoji</span>… Uchalasini tanlab, kartochkani <b style={{ color: T.ink }}>to'liq ma'lumot bilan</b> jihozlang. Kod qanday o'sishini kuzating.</>, ru: <>Сколько угодно! Каждый атрибут — отдельный props: <span className="mono">name</span>, <span className="mono">players</span>, <span className="mono">emoji</span>… Выберите все три и снарядите карточку <b style={{ color: T.ink }}>полными данными</b>. Следите, как растёт код.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
-            <p className="flow-label">name <span className="propchip-tag">matn props</span></p>
+            <p className="flow-label">name <span className="propchip-tag">{tr({ uz: 'matn props', ru: 'текстовый props' })}</span></p>
             <div className="fade-up delay-1" style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
               {NAMES.map(v => <button key={v} className={`propchip ${name === v ? 'sel' : ''}`} onClick={() => setName(v)}>{name === v && <span className="propchip-tick">✓</span>}{v}</button>)}
             </div>
-            <p className="flow-label" style={{ marginTop: 2 }}>players <span className="propchip-tag">son props</span></p>
+            <p className="flow-label" style={{ marginTop: 2 }}>players <span className="propchip-tag">{tr({ uz: 'son props', ru: 'числовой props' })}</span></p>
             <div className="fade-up delay-2" style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
               {PLAYERS.map(v => <button key={v} className={`propchip ${players === v ? 'sel' : ''}`} onClick={() => setPlayers(v)}>{players === v && <span className="propchip-tick">✓</span>}👥 {v}</button>)}
             </div>
-            <p className="flow-label" style={{ marginTop: 2 }}>emoji <span className="propchip-tag">belgi props</span></p>
+            <p className="flow-label" style={{ marginTop: 2 }}>emoji <span className="propchip-tag">{tr({ uz: 'belgi props', ru: 'props-значок' })}</span></p>
             <div className="fade-up delay-2" style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
               {EMOJIS.map(v => <button key={v} className={`propchip propchip-emoji ${emoji === v ? 'sel' : ''}`} onClick={() => setEmoji(v)}>{v}</button>)}
             </div>
@@ -1117,7 +1129,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               {'  '}<At>emoji</At>={emoji ? <St>"{emoji}"</St> : <Cm>?</Cm>}{'\n'}
               <Jx>{'/>'}</Jx>
             </pre>
-            <p className="flow-label">Fabrika — slip → kartochka</p>
+            <p className="flow-label">{tr({ uz: 'Fabrika — slip → kartochka', ru: 'Фабрика — слип → карточка' })}</p>
             <CardFactory mode="fields" slipIn={done} feed={done ? 1 : 0}
               slip={<span className="cf-slip-fields">
                 <span className={`cf-slip-f ${name ? 'on' : ''}`}>name{name ? `="${name}"` : '=?'}</span>
@@ -1125,7 +1137,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 <span className={`cf-slip-f ${emoji ? 'on' : ''}`}>emoji{emoji ? `="${emoji}"` : '=?'}</span>
               </span>}
               trayCards={done ? [{ name, players, emoji }] : []} />
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>3 ta props — 3 ta atribut. Komponent ularni <span className="mono">props.name</span>, <span className="mono">props.players</span>, <span className="mono">props.emoji</span> deb o'qiydi.</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>3 ta props — 3 ta atribut. Komponent ularni <span className="mono">props.name</span>, <span className="mono">props.players</span>, <span className="mono">props.emoji</span> deb o'qiydi.</>, ru: <>3 props — 3 атрибута. Компонент читает их как <span className="mono">props.name</span>, <span className="mono">props.players</span>, <span className="mono">props.emoji</span>.</> })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -1136,19 +1148,19 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 
 // ===== SCREEN 4 — TEST 1 (qanday uzatiladi?) =====
 const Screen4 = (props) => (
-  <QuestionScreen {...props} idx={4} scope="module-mikro" eyebrow="Mashq · 1-savol"
+  <QuestionScreen {...props} idx={4} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 1-savol', ru: 'Упражнение · вопрос 1' })}
     audioText="App ma'lumotni GameCard'ga qanday uzatadi? To'g'ri javobni tanlang."
     audioOk="To'g'ri! Chaqiruvda atribut yoziladi, komponent ichida esa u props bo'lib keladi."
     audioWrong="Unchalik emas. Eslang: atribut yoziladi, u props bo'lib keladi. Qaytadan urinib ko'ring."
-    questionText="App komponenti GameCard'ga ma'lumotni qanday uzatadi?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-sub" style={{ marginTop: 8 }}>App ma'lumotni GameCard'ga <span className="italic" style={{ color: T.accent }}>qanday uzatadi</span>?</h2></>}
-    options={["Atribut orqali: name=\"Doors\"", 'Internet orqali yuboradi', 'Fayl orqali saqlab beradi', "GameCard o'zi App'dan olib ketadi"]} correctIdx={0}
-    explainCorrect="To'g'ri! Chaqiruvda atribut yoziladi, komponent ichida esa o'sha ma'lumot props bo'lib keladi: name → props.name."
+    questionText={tr({ uz: "App komponenti GameCard'ga ma'lumotni qanday uzatadi?", ru: 'Как компонент App передаёт данные в GameCard?' })}
+    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-sub" style={{ marginTop: 8 }}>{tr({ uz: <>App ma'lumotni GameCard'ga <span className="italic" style={{ color: T.accent }}>qanday uzatadi</span>?</>, ru: <>Как App <span className="italic" style={{ color: T.accent }}>передаёт данные</span> в GameCard?</> })}</h2></>}
+    options={[tr({ uz: "Atribut orqali: name=\"Doors\"", ru: 'Через атрибут: name="Doors"' }), tr({ uz: 'Internet orqali yuboradi', ru: 'Отправляет через интернет' }), tr({ uz: 'Fayl orqali saqlab beradi', ru: 'Сохраняет в файл' }), tr({ uz: "GameCard o'zi App'dan olib ketadi", ru: 'GameCard сам забирает из App' })]} correctIdx={0}
+    explainCorrect={tr({ uz: "To'g'ri! Chaqiruvda atribut yoziladi, komponent ichida esa o'sha ma'lumot props bo'lib keladi: name → props.name.", ru: 'Верно! При вызове пишется атрибут, а внутри компонента эти данные приходят как props: name → props.name.' })}
     explainWrong={{
-      1: "Yo'q — internet kerak emas. Bu kod ichidagi uzatish: atribut → props.",
-      2: "Yo'q — fayl ham kerak emas. Atributning o'zi yetadi: <GameCard name=\"…\" />.",
-      3: "Yo'q — komponent o'zi 'olib keta olmaydi'. Ota (App) jo'natadi, bola (GameCard) qabul qiladi.",
-      default: "Atribut orqali: <GameCard name=\"…\" /> → props.name."
+      1: tr({ uz: "Yo'q — internet kerak emas. Bu kod ichidagi uzatish: atribut → props.", ru: 'Нет — интернет не нужен. Это передача внутри кода: атрибут → props.' }),
+      2: tr({ uz: "Yo'q — fayl ham kerak emas. Atributning o'zi yetadi: <GameCard name=\"…\" />.", ru: 'Нет — и файл не нужен. Достаточно атрибута: <GameCard name="…" />.' }),
+      3: tr({ uz: "Yo'q — komponent o'zi 'olib keta olmaydi'. Ota (App) jo'natadi, bola (GameCard) qabul qiladi.", ru: 'Нет — компонент не может «забрать сам». Родитель (App) отправляет, ребёнок (GameCard) принимает.' }),
+      default: tr({ uz: "Atribut orqali: <GameCard name=\"…\" /> → props.name.", ru: 'Через атрибут: <GameCard name="…" /> → props.name.' })
     }} />
 );
 
@@ -1176,30 +1188,30 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   const audio = useAudio([{ id: 's5', text: `Bola komponent otasiga ma'lumot yubora oladimi? Tasavvur qiling: tepada App — ota, pastida uchta bola kartochka. Ota har bolaga props'ni sharik kabi tashlaydi — yuqoridan pastga. Avval pastga tugmasini, keyin teskarisini sinab ko'ring.`, trigger: 'on_mount', waits_for: null }]);
   return (
-    <Stage eyebrow="Ma'lumot daryosi" screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? 'Davom etish' : "Ikkala yo'nalishni sinang"} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: "Ma'lumot daryosi", ru: 'Река данных' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "Ikkala yo'nalishni sinang", ru: 'Проверьте оба направления' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Bola komponent otasiga ma'lumot <span className="italic" style={{ color: T.accent }}>yubora oladimi</span>?</h2></div>
-        <Mentor>Tasavvur qiling: tepada <b style={{ color: T.ink }}>App (ota)</b>, pastida <b style={{ color: T.ink }}>3 ta bola kartochka</b>. Ota har bolaga ma'lumot (props) <b style={{ color: T.ink }}>sharik kabi tashlaydi</b> — yuqoridan pastga. <b style={{ color: T.ink }}>Pastga</b> tugmasini, keyin <b style={{ color: T.ink }}>teskarisini</b> sinab ko'ring.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Bola komponent otasiga ma'lumot <span className="italic" style={{ color: T.accent }}>yubora oladimi</span>?</>, ru: <>Может ли дочерний компонент <span className="italic" style={{ color: T.accent }}>отправить данные</span> родителю?</> })}</h2></div>
+        <Mentor>{tr({ uz: <>Tasavvur qiling: tepada <b style={{ color: T.ink }}>App (ota)</b>, pastida <b style={{ color: T.ink }}>3 ta bola kartochka</b>. Ota har bolaga ma'lumot (props) <b style={{ color: T.ink }}>sharik kabi tashlaydi</b> — yuqoridan pastga. <b style={{ color: T.ink }}>Pastga</b> tugmasini, keyin <b style={{ color: T.ink }}>teskarisini</b> sinab ko'ring.</>, ru: <>Представьте: сверху <b style={{ color: T.ink }}>App (родитель)</b>, под ним <b style={{ color: T.ink }}>3 дочерние карточки</b>. Родитель <b style={{ color: T.ink }}>бросает как шарик</b> данные (props) каждому ребёнку — сверху вниз. Нажмите кнопку <b style={{ color: T.ink }}>Вниз</b>, потом попробуйте <b style={{ color: T.ink }}>наоборот</b>.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
             <div className="fade-up delay-1">
               <CardFactory mode="oneway" humming={running} slipIn={flow === 1} feed={flow}
                 jammed={reversed} onJam={sendUp}
-                slip={flow < 2 ? <><span className="cf-slip-k">App</span> → props (⬇ pastga)</> : null}
+                slip={flow < 2 ? tr({ uz: <><span className="cf-slip-k">App</span> → props (⬇ pastga)</>, ru: <><span className="cf-slip-k">App</span> → props (⬇ вниз)</> }) : null}
                 trayCards={flow >= 2 ? KIDS.map(g => g.name) : []} used={flow >= 2 ? KIDS.length : 0} />
-              {upTick > 0 && <span key={upTick} className="tree-upball">🚫 tepaga yo'l yo'q</span>}
+              {upTick > 0 && <span key={upTick} className="tree-upball">{tr({ uz: "🚫 tepaga yo'l yo'q", ru: '🚫 наверх пути нет' })}</span>}
             </div>
           </Col>
           <Col>
-            <p className="flow-label">Ma'lumotni yuborib ko'ring</p>
+            <p className="flow-label">{tr({ uz: "Ma'lumotni yuborib ko'ring", ru: 'Попробуйте отправить данные' })}</p>
             <div className="fade-up delay-2" style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
-              <button className="btn" style={{ alignSelf: 'flex-start' }} onClick={sendDown} disabled={running}>⬇ App'dan bolalarga yuborish {flow >= 2 ? '✓' : ''}</button>
-              <button className="btn-soft" style={{ alignSelf: 'flex-start' }} onClick={sendUp}>⬆ Boladan otaga yuborib ko'rish {reversed ? '✓' : ''}</button>
+              <button className="btn" style={{ alignSelf: 'flex-start' }} onClick={sendDown} disabled={running}>{tr({ uz: "⬇ App'dan bolalarga yuborish", ru: '⬇ Отправить от App детям' })} {flow >= 2 ? '✓' : ''}</button>
+              <button className="btn-soft" style={{ alignSelf: 'flex-start' }} onClick={sendUp}>{tr({ uz: "⬆ Boladan otaga yuborib ko'rish", ru: '⬆ Попробовать от ребёнка родителю' })} {reversed ? '✓' : ''}</button>
             </div>
-            {flow >= 2 && !reversed && <div className="hint fade-step"><p className="body" style={{ margin: 0, color: T.ink2 }}>Sharik pastga tushdi: App → 3 ta bola, har biri o'z props'ini oldi. Endi <b style={{ color: T.ink }}>teskarisini</b> sinang ↑</p></div>}
-            {reversed && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>❌ Yo'l yo'q! Bola otaga props uzata <b>olmaydi</b> — sharik tepaga ketmaydi. Bu React'ning qat'iy qoidasi: ma'lumot <b>faqat yuqoridan pastga</b>. Shuning uchun xatoni topish oson — ma'lumot qayerdan kelganini doim bilasiz.</p></div>}
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Bir tomonlama oqim: <span className="mono">App → bola kartochkalar</span>. Har bola faqat <b>o'z otasidan</b> oladi, hech qachon aksincha emas.</p></div>}
+            {flow >= 2 && !reversed && <div className="hint fade-step"><p className="body" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: <>Sharik pastga tushdi: App → 3 ta bola, har biri o'z props'ini oldi. Endi <b style={{ color: T.ink }}>teskarisini</b> sinang ↑</>, ru: <>Шарик упал вниз: App → 3 ребёнка, каждый получил свои props. Теперь попробуйте <b style={{ color: T.ink }}>наоборот</b> ↑</> })}</p></div>}
+            {reversed && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>❌ Yo'l yo'q! Bola otaga props uzata <b>olmaydi</b> — sharik tepaga ketmaydi. Bu React'ning qat'iy qoidasi: ma'lumot <b>faqat yuqoridan pastga</b>. Shuning uchun xatoni topish oson — ma'lumot qayerdan kelganini doim bilasiz.</>, ru: <>❌ Пути нет! Ребёнок <b>не может</b> передать props родителю — шарик не летит вверх. Это строгое правило React: данные <b>только сверху вниз</b>. Поэтому ошибку легко найти — вы всегда знаете, откуда пришли данные.</> })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Bir tomonlama oqim: <span className="mono">App → bola kartochkalar</span>. Har bola faqat <b>o'z otasidan</b> oladi, hech qachon aksincha emas.</>, ru: <>Односторонний поток: <span className="mono">App → дочерние карточки</span>. Каждый ребёнок получает только <b>от своего родителя</b>, и никогда наоборот.</> })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -1210,19 +1222,19 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 
 // ===== SCREEN 5b — TEST 2 (oqim yo'nalishi) =====
 const Screen5b = (props) => (
-  <QuestionScreen {...props} scope="module-mikro" eyebrow="Tekshiruv"
+  <QuestionScreen {...props} scope="module-mikro" eyebrow={tr({ uz: 'Tekshiruv', ru: 'Проверка' })}
     audioText="Props qaysi yo'nalishda oqadi? To'g'ri javobni tanlang."
     audioOk="To'g'ri! Daryo kabi — faqat pastga: otadan bolaga."
     audioWrong="Unchalik emas. Teskari yuborishda yo'l yo'q edi — bola otaga uzata olmaydi. Qaytadan o'ylab ko'ring."
-    questionText="Props qaysi yo'nalishda oqadi?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>Mustahkamlash</p><h2 className="title h-sub" style={{ marginTop: 8 }}>Props qaysi <span className="italic" style={{ color: T.accent }}>yo'nalishda</span> oqadi?</h2></>}
-    options={['Pastdan yuqoriga — boladan otaga', 'Istalgan tomonga — yuqoriga ham, pastga ham', "Faqat yuqoridan pastga — otadan bolaga", 'Props umuman oqmaydi — bir joyda turadi']} correctIdx={2}
-    explainCorrect="To'g'ri! Daryo kabi — faqat pastga: App → GameCard → LikeButton. Bola otaga props uzata olmaydi."
+    questionText={tr({ uz: "Props qaysi yo'nalishda oqadi?", ru: 'В каком направлении текут props?' })}
+    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: 'Mustahkamlash', ru: 'Закрепление' })}</p><h2 className="title h-sub" style={{ marginTop: 8 }}>{tr({ uz: <>Props qaysi <span className="italic" style={{ color: T.accent }}>yo'nalishda</span> oqadi?</>, ru: <>В каком <span className="italic" style={{ color: T.accent }}>направлении</span> текут props?</> })}</h2></>}
+    options={[tr({ uz: 'Pastdan yuqoriga — boladan otaga', ru: 'Снизу вверх — от ребёнка к родителю' }), tr({ uz: 'Istalgan tomonga — yuqoriga ham, pastga ham', ru: 'В любую сторону — и вверх, и вниз' }), tr({ uz: "Faqat yuqoridan pastga — otadan bolaga", ru: 'Только сверху вниз — от родителя к ребёнку' }), tr({ uz: 'Props umuman oqmaydi — bir joyda turadi', ru: 'Props вообще не текут — стоят на месте' })]} correctIdx={2}
+    explainCorrect={tr({ uz: "To'g'ri! Daryo kabi — faqat pastga: App → GameCard → LikeButton. Bola otaga props uzata olmaydi.", ru: 'Верно! Как река — только вниз: App → GameCard → LikeButton. Ребёнок не может передать props родителю.' })}
     explainWrong={{
-      0: "Teskari yuborishda nima bo'lgandi? ❌ Yo'l yo'q — bola otaga uzata olmaydi.",
-      1: "Yo'q — React'da qat'iy tartib bor: faqat yuqoridan pastga. Shu tufayli kod tushunarli qoladi.",
-      3: "Oqadi — atribut yozilgan zahoti pastga: name → props.name.",
-      default: "Faqat yuqoridan pastga: otadan bolaga."
+      0: tr({ uz: "Teskari yuborishda nima bo'lgandi? ❌ Yo'l yo'q — bola otaga uzata olmaydi.", ru: 'Помните, что было при отправке наверх? ❌ Пути нет — ребёнок не может передать родителю.' }),
+      1: tr({ uz: "Yo'q — React'da qat'iy tartib bor: faqat yuqoridan pastga. Shu tufayli kod tushunarli qoladi.", ru: 'Нет — в React строгий порядок: только сверху вниз. Благодаря этому код остаётся понятным.' }),
+      3: tr({ uz: "Oqadi — atribut yozilgan zahoti pastga: name → props.name.", ru: 'Текут — как только написан атрибут, данные идут вниз: name → props.name.' }),
+      default: tr({ uz: "Faqat yuqoridan pastga: otadan bolaga.", ru: 'Только сверху вниз: от родителя к ребёнку.' })
     }} />
 );
 
@@ -1250,31 +1262,31 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   const audio = useAudio([{ id: 's6', text: `Komponent o'ziga kelgan props'ni o'zgartira oladimi? Ikki tugmani sinang. Birinchisi: kartochka ichkaridan o'z nomini o'zgartirmoqchi. Ikkinchisi: App yangi nom yuboradi. Qaysi biri ishlaydi — ko'ramiz.`, trigger: 'on_mount', waits_for: null }]);
   return (
-    <Stage eyebrow="Faqat o'qish" screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? 'Davom etish' : "Ikkala usulni sinang"} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: "Faqat o'qish", ru: 'Только чтение' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Ikkala usulni sinang', ru: 'Проверьте оба способа' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Komponent o'ziga kelgan props'ni <span className="italic" style={{ color: T.accent }}>o'zgartira oladimi</span>?</h2></div>
-        <Mentor>Sinab ko'raylik! 1-tugma: kartochka <b style={{ color: T.ink }}>ichkaridan</b> o'z nomini o'zgartirmoqchi. 2-tugma: <b style={{ color: T.ink }}>App (ota)</b> yangi nom yuboradi. Qaysi biri ishlaydi?</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Komponent o'ziga kelgan props'ni <span className="italic" style={{ color: T.accent }}>o'zgartira oladimi</span>?</>, ru: <>Может ли компонент <span className="italic" style={{ color: T.accent }}>изменить</span> пришедшие props?</> })}</h2></div>
+        <Mentor>{tr({ uz: <>Sinab ko'raylik! 1-tugma: kartochka <b style={{ color: T.ink }}>ichkaridan</b> o'z nomini o'zgartirmoqchi. 2-tugma: <b style={{ color: T.ink }}>App (ota)</b> yangi nom yuboradi. Qaysi biri ishlaydi?</>, ru: <>Проверим! Кнопка 1: карточка хочет <b style={{ color: T.ink }}>изнутри</b> поменять своё имя. Кнопка 2: <b style={{ color: T.ink }}>App (родитель)</b> отправляет новое имя. Какая сработает?</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
             <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
-              <button className="btn-soft" style={{ alignSelf: 'flex-start' }} onClick={mutate}>1 · Ichkaridan: props.name = "Yangi" {triedMutate ? '✓' : ''}</button>
-              <button className="btn" style={{ alignSelf: 'flex-start' }} onClick={fromParent}>2 · App'dan yangi name yuborish {parentSent ? '✓' : ''}</button>
+              <button className="btn-soft" style={{ alignSelf: 'flex-start' }} onClick={mutate}>{tr({ uz: '1 · Ichkaridan: props.name = "Yangi"', ru: '1 · Изнутри: props.name = "Новое"' })} {triedMutate ? '✓' : ''}</button>
+              <button className="btn" style={{ alignSelf: 'flex-start' }} onClick={fromParent}>{tr({ uz: "2 · App'dan yangi name yuborish", ru: '2 · Отправить новый name из App' })} {parentSent ? '✓' : ''}</button>
             </div>
-            <p className="flow-label" style={{ margin: 0 }}>Konsol</p>
+            <p className="flow-label" style={{ margin: 0 }}>{tr({ uz: 'Konsol', ru: 'Консоль' })}</p>
             <div className="code-box" style={{ padding: '9px 13px', minHeight: 64 }}>
-              {!triedMutate && !parentSent && <TLine out={<span style={{ color: CODE.comment }}>tugmalarni sinab ko'ring…</span>} />}
-              {triedMutate && <TLine out={<span style={{ color: CODE.tag }}>❌ TypeError: props faqat o'qish uchun!</span>} />}
-              {parentSent && <TLine out={<span style={{ color: CODE.str }}>✓ App yangi props yubordi → kartochka qayta chizildi</span>} />}
+              {!triedMutate && !parentSent && <TLine out={<span style={{ color: CODE.comment }}>{tr({ uz: "tugmalarni sinab ko'ring…", ru: 'попробуйте кнопки…' })}</span>} />}
+              {triedMutate && <TLine out={<span style={{ color: CODE.tag }}>{tr({ uz: "❌ TypeError: props faqat o'qish uchun!", ru: '❌ TypeError: props только для чтения!' })}</span>} />}
+              {parentSent && <TLine out={<span style={{ color: CODE.str }}>{tr({ uz: '✓ App yangi props yubordi → kartochka qayta chizildi', ru: '✓ App отправил новые props → карточка перерисована' })}</span>} />}
             </div>
           </Col>
           <Col>
-            <p className="flow-label">Fabrika — muhrlangan kartochka</p>
+            <p className="flow-label">{tr({ uz: 'Fabrika — muhrlangan kartochka', ru: 'Фабрика — запечатанная карточка' })}</p>
             <CardFactory mode="sealed" sealed shaking={shaking} humming={dropping} slipIn={dropping} feed={dropTick}
               slip={<><span className="cf-slip-k">App</span> → name="{parentName === 'Adopt Me!' ? 'Bee Swarm' : 'Adopt Me!'}"</>}
               trayCards={[{ name: parentName }]} used={1} />
-            {triedMutate && !parentSent && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Ichkaridan bo'lmadi! Props — <b>sovg'a kabi</b>: olasiz, ishlatasiz, lekin o'zgartira olmaysiz. Endi 2-tugmani sinang.</p></div>}
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Qoida: props — <b>faqat o'qish uchun</b>. O'zgartirishni faqat <b>ota</b> qiladi (yangi qiymat yuboradi). Komponent o'zida nimanidir o'zgartirmoqchi bo'lsa — buning uchun <b>state</b> bor (o'tgan dars!).</p></div>}
+            {triedMutate && !parentSent && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Ichkaridan bo'lmadi! Props — <b>sovg'a kabi</b>: olasiz, ishlatasiz, lekin o'zgartira olmaysiz. Endi 2-tugmani sinang.</>, ru: <>Изнутри не вышло! Props — <b>как подарок</b>: получаете, пользуетесь, но менять нельзя. Теперь попробуйте кнопку 2.</> })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Qoida: props — <b>faqat o'qish uchun</b>. O'zgartirishni faqat <b>ota</b> qiladi (yangi qiymat yuboradi). Komponent o'zida nimanidir o'zgartirmoqchi bo'lsa — buning uchun <b>state</b> bor (o'tgan dars!).</>, ru: <>Правило: props — <b>только для чтения</b>. Менять может только <b>родитель</b> (отправив новое значение). А если компоненту нужно менять что-то своё — для этого есть <b>state</b> (прошлый урок!).</> })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -1293,14 +1305,14 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   const audio = useAudio([{ id: 's7', text: `Roblox'dagi barcha o'yinlar ma'lumoti qayerda saqlanadi? Katta saytlarning siri shu: ma'lumot kod ichiga yozilmaydi — alohida ro'yxatda, massivda turadi. Har qator bitta o'yin. Qatorlarni bosib, ular qanday kartochka bo'lishini ko'ring.`, trigger: 'on_mount', waits_for: null }]);
   return (
-    <Stage eyebrow="Ma'lumotlar ro'yxati" screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? 'Davom etish' : `${seen.size}/3 qatorni ko'ring`} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: "Ma'lumotlar ro'yxati", ru: 'Список данных' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: `${seen.size}/3 qatorni ko'ring`, ru: `Посмотрите строки: ${seen.size}/3` })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Roblox'dagi barcha o'yinlar ma'lumoti <span className="italic" style={{ color: T.accent }}>qayerda saqlanadi</span>?</h2></div>
-        <Mentor>Katta saytlarning siri: ma'lumot <b style={{ color: T.ink }}>kod ichiga yozilmaydi</b> — alohida <b style={{ color: T.ink }}>ro'yxatda (massivda)</b> turadi. Har qator — bitta o'yin, ichida props uchun hamma narsa tayyor. Qatorlarni bosib ko'ring.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Roblox'dagi barcha o'yinlar ma'lumoti <span className="italic" style={{ color: T.accent }}>qayerda saqlanadi</span>?</>, ru: <>Где <span className="italic" style={{ color: T.accent }}>хранятся</span> данные всех игр Roblox?</> })}</h2></div>
+        <Mentor>{tr({ uz: <>Katta saytlarning siri: ma'lumot <b style={{ color: T.ink }}>kod ichiga yozilmaydi</b> — alohida <b style={{ color: T.ink }}>ro'yxatda (massivda)</b> turadi. Har qator — bitta o'yin, ichida props uchun hamma narsa tayyor. Qatorlarni bosib ko'ring.</>, ru: <>Секрет больших сайтов: данные <b style={{ color: T.ink }}>не пишутся прямо в код</b> — они лежат в отдельном <b style={{ color: T.ink }}>списке (массиве)</b>. Каждая строка — одна игра, внутри всё готово для props. Понажимайте на строки.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
-            <p className="flow-label">games — ma'lumotlar massivi</p>
+            <p className="flow-label">{tr({ uz: "games — ma'lumotlar massivi", ru: 'games — массив данных' })}</p>
             <pre className="code-box fade-up delay-1" style={{ lineHeight: 1.9 }}>
               <Jx>{'const'}</Jx>{' games = ['}{'\n'}
               {LIST.map((g, i) => (
@@ -1315,7 +1327,7 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </Col>
           <Col>
             <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between' }}>
-              <p className="flow-label" style={{ margin: 0 }}>Bu qator qanday kartochka bo'ladi?</p>
+              <p className="flow-label" style={{ margin: 0 }}>{tr({ uz: "Bu qator qanday kartochka bo'ladi?", ru: 'Какой карточкой станет эта строка?' })}</p>
               <span className="small mono" style={{ color: done ? T.success : T.ink3 }}>{seen.size} / 3</span>
             </div>
             {active ? (
@@ -1323,9 +1335,9 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 <RoCard name={active} players={gameByName(active)?.players} />
               </div>
             ) : (
-              <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>Chapdan qatorni bosing</p></div>
+              <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Chapdan qatorni bosing', ru: 'Нажмите строку слева' })}</p></div>
             )}
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Har qator — bitta kartochkaning <b>xom ashyosi</b>. Endi savol: 3 ta qatorni 3 ta kartochkaga <b>kim aylantiradi</b>? Keyingi ekranda!</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Har qator — bitta kartochkaning <b>xom ashyosi</b>. Endi savol: 3 ta qatorni 3 ta kartochkaga <b>kim aylantiradi</b>? Keyingi ekranda!</>, ru: <>Каждая строка — <b>сырьё</b> для одной карточки. Теперь вопрос: <b>кто превратит</b> 3 строки в 3 карточки? На следующем экране!</> })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -1354,14 +1366,14 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   const audio = useAudio([{ id: 's8', text: `Ro'yxatdan katalogga o'tish uchun bitta map qatori yetadimi? Yetadi! games.map ro'yxatdagi har o'yin uchun bitta kartochka yasaydi: qatorni oladi, props qilib uzatadi, kartochka chizadi. Tugmani bosib, konveyerni kuzating.`, trigger: 'on_mount', waits_for: null }]);
   return (
-    <Stage eyebrow="Katalog" screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? 'Davom etish' : 'Katalogni chizing'} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Katalog', ru: 'Каталог' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Katalogni chizing', ru: 'Нарисуйте каталог' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Ro'yxatdan katalogga — <span className="italic" style={{ color: T.accent }}>bitta map qatori</span> yetadimi?</h2></div>
-        <Mentor>Yetadi! <span className="mono">games.map(…)</span> — ro'yxatdagi <b style={{ color: T.ink }}>har bir o'yin uchun</b> bitta kartochka yasaydi: qatorni oladi → props qilib uzatadi → kartochka chizadi. Tugmani bosib, konveyerni kuzating.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Ro'yxatdan katalogga — <span className="italic" style={{ color: T.accent }}>bitta map qatori</span> yetadimi?</>, ru: <>От списка к каталогу — хватит <span className="italic" style={{ color: T.accent }}>одной строки map</span>?</> })}</h2></div>
+        <Mentor>{tr({ uz: <>Yetadi! <span className="mono">games.map(…)</span> — ro'yxatdagi <b style={{ color: T.ink }}>har bir o'yin uchun</b> bitta kartochka yasaydi: qatorni oladi → props qilib uzatadi → kartochka chizadi. Tugmani bosib, konveyerni kuzating.</>, ru: <>Хватит! <span className="mono">games.map(…)</span> делает по карточке <b style={{ color: T.ink }}>для каждой игры</b> из списка: берёт строку → передаёт как props → рисует карточку. Нажмите кнопку и следите за конвейером.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
-            <button className="btn fade-up delay-1" style={{ alignSelf: 'flex-start' }} onClick={run} disabled={running}>{running ? 'Chizilmoqda…' : (done ? '↻ Yana chizish' : '▶ Katalogni chizish')}</button>
+            <button className="btn fade-up delay-1" style={{ alignSelf: 'flex-start' }} onClick={run} disabled={running}>{running ? tr({ uz: 'Chizilmoqda…', ru: 'Рисуем…' }) : (done ? tr({ uz: '↻ Yana chizish', ru: '↻ Нарисовать ещё раз' }) : tr({ uz: '▶ Katalogni chizish', ru: '▶ Нарисовать каталог' }))}</button>
             <pre className="code-box fade-up delay-2" style={{ lineHeight: 1.9 }}>
               {LIST.map((g, i) => (
                 <React.Fragment key={g.name}>
@@ -1371,17 +1383,17 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 </React.Fragment>
               ))}
               {'\n'}
-              <Cm>{'// konveyer — har qatorga bitta kartochka:'}</Cm>{'\n'}
+              <Cm>{tr({ uz: '// konveyer — har qatorga bitta kartochka:', ru: '// конвейер — по карточке на каждую строку:' })}</Cm>{'\n'}
               {'{games.map(g => '}<Jx>{'<GameCard '}</Jx><At>name</At>{'={g.name}'}<Jx>{' />'}</Jx>{')}'}
             </pre>
           </Col>
           <Col>
-            <p className="flow-label">Fabrika — avto-feeder (map)</p>
+            <p className="flow-label">{tr({ uz: 'Fabrika — avto-feeder (map)', ru: 'Фабрика — авто-фидер (map)' })}</p>
             <CardFactory mode="feeder" humming={running} leverPulled={running} onLever={run}
               hopper={LIST.slice(shown).map(g => g.name.split(' ')[0])}
               trayCards={LIST.slice(0, shown).map(g => g.name)} used={shown} />
-            {done && <span className="tagpill fade-step" style={{ color: T.success }}>✓ 3 qator ma'lumot → 3 kartochka · kod: 1 qator</span>}
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>E'tibor bering: <span className="mono">name={'{g.name}'}</span> — <b>jingalak qavs</b>! Chunki qiymat qo'shtirnoqdagi matn emas, <b>ro'yxatdan kelyapti</b>.</p></div>}
+            {done && <span className="tagpill fade-step" style={{ color: T.success }}>{tr({ uz: "✓ 3 qator ma'lumot → 3 kartochka · kod: 1 qator", ru: '✓ 3 строки данных → 3 карточки · код: 1 строка' })}</span>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>E'tibor bering: <span className="mono">name={'{g.name}'}</span> — <b>jingalak qavs</b>! Chunki qiymat qo'shtirnoqdagi matn emas, <b>ro'yxatdan kelyapti</b>.</>, ru: <>Обратите внимание: <span className="mono">name={'{g.name}'}</span> — <b>фигурные скобки</b>! Потому что значение не текст в кавычках, а <b>приходит из списка</b>.</> })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -1392,19 +1404,19 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 
 // ===== SCREEN 9 — TEST 3 (ro'yxatga qo'shilsa?) =====
 const Screen9 = (props) => (
-  <QuestionScreen {...props} idx={9} scope="module-mikro" eyebrow="Mashq · 3-savol"
+  <QuestionScreen {...props} idx={9} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 3-savol', ru: 'Упражнение · вопрос 3' })}
     audioText="games ro'yxatiga yangi o'yin qo'shilsa nima bo'ladi? To'g'ri javobni tanlang."
     audioOk="To'g'ri! map har element uchun ishlaydi — qator qo'shildi, kartochka o'zi paydo bo'ladi."
     audioWrong="Unchalik emas. map butun ro'yxatga ishlaydi — yangi qatorni ham ko'radi. Qaytadan urinib ko'ring."
-    questionText="Ro'yxatga yangi o'yin qo'shilsa nima bo'ladi?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-sub" style={{ marginTop: 8 }}>games ro'yxatiga <span className="italic" style={{ color: T.accent }}>yangi o'yin qo'shilsa</span> nima bo'ladi?</h2></>}
-    options={["Katalog kodini ham qayta yozish kerak", "Hech narsa — sayt eski holatda qoladi", 'Butun katalog buzilib qoladi', "React yangi kartochkani o'zi chizadi"]} correctIdx={3}
-    explainCorrect="To'g'ri! map ro'yxatdagi HAR BIR element uchun ishlaydi — qator qo'shildi, kartochka o'zi paydo bo'ladi. Kod bir qator bo'lib qolaveradi."
+    questionText={tr({ uz: "Ro'yxatga yangi o'yin qo'shilsa nima bo'ladi?", ru: 'Что будет, если добавить в список новую игру?' })}
+    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-sub" style={{ marginTop: 8 }}>{tr({ uz: <>games ro'yxatiga <span className="italic" style={{ color: T.accent }}>yangi o'yin qo'shilsa</span> nima bo'ladi?</>, ru: <>Что будет, если в список games <span className="italic" style={{ color: T.accent }}>добавить новую игру</span>?</> })}</h2></>}
+    options={[tr({ uz: "Katalog kodini ham qayta yozish kerak", ru: 'Придётся переписать и код каталога' }), tr({ uz: "Hech narsa — sayt eski holatda qoladi", ru: 'Ничего — сайт останется прежним' }), tr({ uz: 'Butun katalog buzilib qoladi', ru: 'Весь каталог сломается' }), tr({ uz: "React yangi kartochkani o'zi chizadi", ru: 'React сам нарисует новую карточку' })]} correctIdx={3}
+    explainCorrect={tr({ uz: "To'g'ri! map ro'yxatdagi HAR BIR element uchun ishlaydi — qator qo'shildi, kartochka o'zi paydo bo'ladi. Kod bir qator bo'lib qolaveradi.", ru: 'Верно! map работает для КАЖДОГО элемента списка — строка добавилась, карточка появится сама. Код так и останется одной строкой.' })}
     explainWrong={{
-      0: "Yo'q — bu eski usul edi. map bilan kod o'zgarmaydi: u ro'yxatning hammasiga ishlaydi.",
-      1: "Aksincha — map yangi qatorni ham ko'radi va kartochkasini chizadi.",
-      2: "Yo'q — buzilmaydi. map nechta qator bo'lsa, shuncha kartochka yasayveradi.",
-      default: "map ro'yxatga qarab ishlaydi: yangi qator → yangi kartochka, kod o'zgarmaydi."
+      0: tr({ uz: "Yo'q — bu eski usul edi. map bilan kod o'zgarmaydi: u ro'yxatning hammasiga ishlaydi.", ru: 'Нет — так было раньше. С map код не меняется: он работает со всем списком.' }),
+      1: tr({ uz: "Aksincha — map yangi qatorni ham ko'radi va kartochkasini chizadi.", ru: 'Наоборот — map увидит и новую строку и нарисует её карточку.' }),
+      2: tr({ uz: "Yo'q — buzilmaydi. map nechta qator bo'lsa, shuncha kartochka yasayveradi.", ru: 'Нет — не сломается. Сколько строк, столько карточек map и сделает.' }),
+      default: tr({ uz: "map ro'yxatga qarab ishlaydi: yangi qator → yangi kartochka, kod o'zgarmaydi.", ru: 'map работает по списку: новая строка → новая карточка, код не меняется.' })
     }} />
 );
 
@@ -1418,10 +1430,10 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   const audio = useAudio([{ id: 's10', text: `Katalogga yangi o'yin qo'shish uchun kod kerakmi? Sinab ko'ring! Yangi o'yinni bosing — u faqat ro'yxatga qo'shiladi. Katalog kodiga, map qatoriga, tegmaymiz. Kartochka qayerdan paydo bo'larkin?`, trigger: 'on_mount', waits_for: null }]);
   return (
-    <Stage eyebrow="Yangi o'yin" screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? 'Davom etish' : `Kamida 2 ta qo'shing (${added.length}/2)`} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: "Yangi o'yin", ru: 'Новая игра' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: `Kamida 2 ta qo'shing (${added.length}/2)`, ru: `Добавьте минимум 2 (${added.length}/2)` })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Katalogga yangi o'yin qo'shish uchun <span className="italic" style={{ color: T.accent }}>kod kerakmi</span>?</h2></div>
-        <Mentor>Sinab ko'ring! Yangi o'yinni bosing — u faqat <b style={{ color: T.ink }}>ro'yxatga</b> qo'shiladi. Katalog kodiga (<span className="mono">map</span> qatoriga) <b style={{ color: T.ink }}>tegmaymiz</b>. Kartochka qayerdan paydo bo'larkin?</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Katalogga yangi o'yin qo'shish uchun <span className="italic" style={{ color: T.accent }}>kod kerakmi</span>?</>, ru: <>Нужен ли <span className="italic" style={{ color: T.accent }}>код</span>, чтобы добавить в каталог новую игру?</> })}</h2></div>
+        <Mentor>{tr({ uz: <>Sinab ko'ring! Yangi o'yinni bosing — u faqat <b style={{ color: T.ink }}>ro'yxatga</b> qo'shiladi. Katalog kodiga (<span className="mono">map</span> qatoriga) <b style={{ color: T.ink }}>tegmaymiz</b>. Kartochka qayerdan paydo bo'larkin?</>, ru: <>Проверьте! Нажмите новую игру — она добавится только <b style={{ color: T.ink }}>в список</b>. Код каталога (строку <span className="mono">map</span>) <b style={{ color: T.ink }}>не трогаем</b>. Откуда же появится карточка?</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
@@ -1431,16 +1443,16 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <pre className="code-box fade-up delay-2" style={{ lineHeight: 1.8 }}>
               <Jx>{'const'}</Jx>{' games = ['}{'\n'}
               {BASE.map(g => <React.Fragment key={g.name}>{'  { name: '}<St>"{g.name}"</St>{' },'}{'\n'}</React.Fragment>)}
-              {added.map(nm => <span key={nm} className="el-in" style={{ display: 'inline-block', background: 'rgba(31,122,77,0.13)', borderRadius: 6, padding: '1px 5px' }}>{'  { name: '}<St>"{nm}"</St>{' },  '}<Cm>{'// + yangi'}</Cm>{'\n'}</span>)}
+              {added.map(nm => <span key={nm} className="el-in" style={{ display: 'inline-block', background: 'rgba(31,122,77,0.13)', borderRadius: 6, padding: '1px 5px' }}>{'  { name: '}<St>"{nm}"</St>{' },  '}<Cm>{tr({ uz: '// + yangi', ru: '// + новая' })}</Cm>{'\n'}</span>)}
               {'];'}{'\n\n'}
-              <Cm>{"// katalog kodi O'ZGARMADI:"}</Cm>{'\n'}
+              <Cm>{tr({ uz: "// katalog kodi O'ZGARMADI:", ru: '// код каталога НЕ ИЗМЕНИЛСЯ:' })}</Cm>{'\n'}
               {'{games.map(g => '}<Jx>{'<GameCard '}</Jx><At>name</At>{'={g.name}'}<Jx>{' />'}</Jx>{')}'}
             </pre>
           </Col>
           <Col>
-            <p className="flow-label">Fabrika — javon o'sadi</p>
+            <p className="flow-label">{tr({ uz: "Fabrika — javon o'sadi", ru: 'Фабрика — полка растёт' })}</p>
             <CardFactory mode="shelf" trayCards={all} used={all.length} feed={added.length} />
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Ko'rdingizmi? <b>Faqat ma'lumot o'zgardi</b> — kartochkalar o'zi paydo bo'ldi. Buning nomi <b>data-driven sayt</b>: sayt ro'yxatga qarab o'zini chizadi. Roblox ham shunday ishlaydi!</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Ko'rdingizmi? <b>Faqat ma'lumot o'zgardi</b> — kartochkalar o'zi paydo bo'ldi. Buning nomi <b>data-driven sayt</b>: sayt ro'yxatga qarab o'zini chizadi. Roblox ham shunday ishlaydi!</>, ru: <>Видели? <b>Изменились только данные</b> — карточки появились сами. Это называется <b>data-driven сайт</b>: сайт рисует себя по списку. Roblox работает так же!</> })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -1452,9 +1464,9 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // ===== SCREEN 11 — VIBECODING (katalogga buyurtmalar) =====
 const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const TASKS = [
-    { id: 't1', label: "Har kartochkaga o'yinchilar sonini chiqar", plan: ["Ro'yxatdagi players'ni map ichida uzataman", "GameCard'da {props.players} chiqaraman"], code: <>{'games.map(g => '}<Jx>{'<GameCard '}</Jx><At>name</At>{'={g.name} '}<At>players</At>{'={g.players}'}<Jx>{' />'}</Jx>{')'}</> },
-    { id: 't2', label: "Eng mashhur o'yinga 🔥 TOP belgisi qo'y", plan: ["GameCard'ga top degan props qo'shaman", "top kelganda 🔥 TOP belgisini ko'rsataman"], code: <><Jx>{'<GameCard '}</Jx><At>name</At>=<St>"Blox Fruits"</St> <At>top</At>{'={true}'}<Jx>{' />'}</Jx></> },
-    { id: 't3', label: "Katalog tepasiga sarlavha qo'y: nechta o'yin borligi yozilsin", plan: ['Header komponentiga count props uzataman', "Ichida {props.count} ta o'yin deb chiqaraman"], code: <><Jx>{'<Header '}</Jx><At>count</At>{'={games.length}'}<Jx>{' />'}</Jx></> }
+    { id: 't1', label: { uz: "Har kartochkaga o'yinchilar sonini chiqar", ru: 'Выведи на каждой карточке число игроков' }, plan: [{ uz: "Ro'yxatdagi players'ni map ichida uzataman", ru: 'Передам players из списка внутри map' }, { uz: "GameCard'da {props.players} chiqaraman", ru: 'Выведу {props.players} в GameCard' }], code: <>{'games.map(g => '}<Jx>{'<GameCard '}</Jx><At>name</At>{'={g.name} '}<At>players</At>{'={g.players}'}<Jx>{' />'}</Jx>{')'}</> },
+    { id: 't2', label: { uz: "Eng mashhur o'yinga 🔥 TOP belgisi qo'y", ru: 'Поставь значок 🔥 TOP самой популярной игре' }, plan: [{ uz: "GameCard'ga top degan props qo'shaman", ru: 'Добавлю в GameCard props с именем top' }, { uz: "top kelganda 🔥 TOP belgisini ko'rsataman", ru: 'Когда top пришёл — покажу значок 🔥 TOP' }], code: <><Jx>{'<GameCard '}</Jx><At>name</At>=<St>"Blox Fruits"</St> <At>top</At>{'={true}'}<Jx>{' />'}</Jx></> },
+    { id: 't3', label: { uz: "Katalog tepasiga sarlavha qo'y: nechta o'yin borligi yozilsin", ru: 'Добавь заголовок над каталогом: пусть пишет, сколько игр' }, plan: [{ uz: 'Header komponentiga count props uzataman', ru: 'Передам компоненту Header props count' }, { uz: "Ichida {props.count} ta o'yin deb chiqaraman", ru: 'Внутри выведу «{props.count} игр»' }], code: <><Jx>{'<Header '}</Jx><At>count</At>{'={games.length}'}<Jx>{' />'}</Jx></> }
   ];
   const [task, setTask] = useState(null);
   const [phase, setPhase] = useState(storedAnswer ? 'done' : 'idle'); // idle | planned | building | done
@@ -1467,36 +1479,36 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   const audio = useAudio([{ id: 's11', text: `Endi siz props oqimini bilasiz — shuning uchun agent kodini tekshira olasiz: ma'lumot ro'yxatdan kelyaptimi, jingalak qavs to'g'rimi, props pastga oqyaptimi. Agentga buyruq bering, rejasini tasdiqlang, natijani sinang.`, trigger: 'on_mount', waits_for: null }]);
   return (
-    <Stage eyebrow="Keyingi qadam · AI" screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? 'Davom etish' : "Agent bilan ishlab ko'ring"} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Keyingi qadam · AI', ru: 'Следующий шаг · AI' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "Agent bilan ishlab ko'ring", ru: 'Поработайте с агентом' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Katalogni <span className="italic" style={{ color: T.accent }}>AI bilan</span> boyitsak-chi?</h2></div>
-        <Mentor>Endi siz props oqimini bilasiz — agent kodini <b style={{ color: T.ink }}>tekshira olasiz</b>: ma'lumot ro'yxatdan kelyaptimi, jingalak qavs to'g'rimi, props pastga oqyaptimi. Buyruq bering, rejani <b style={{ color: T.ink }}>tasdiqlang</b>, natijani sinang.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Katalogni <span className="italic" style={{ color: T.accent }}>AI bilan</span> boyitsak-chi?</>, ru: <>Обогатим каталог <span className="italic" style={{ color: T.accent }}>с помощью AI</span>?</> })}</h2></div>
+        <Mentor>{tr({ uz: <>Endi siz props oqimini bilasiz — agent kodini <b style={{ color: T.ink }}>tekshira olasiz</b>: ma'lumot ro'yxatdan kelyaptimi, jingalak qavs to'g'rimi, props pastga oqyaptimi. Buyruq bering, rejani <b style={{ color: T.ink }}>tasdiqlang</b>, natijani sinang.</>, ru: <>Теперь вы знаете поток props — значит, <b style={{ color: T.ink }}>можете проверять</b> код агента: данные идут из списка? фигурные скобки верные? props текут вниз? Дайте команду, <b style={{ color: T.ink }}>подтвердите</b> план, проверьте результат.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
-            <p className="flow-label">1. Agentga so'z bilan ayting</p>
+            <p className="flow-label">{tr({ uz: "1. Agentga so'z bilan ayting", ru: '1. Скажите агенту словами' })}</p>
             <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-              {TASKS.map(t => <button key={t.id} className={`chip ${task === t.id ? 'chip-on' : ''}`} onClick={() => choose(t.id)} style={{ justifyContent: 'flex-start', textAlign: 'left' }}>"{t.label}"</button>)}
+              {TASKS.map(t => <button key={t.id} className={`chip ${task === t.id ? 'chip-on' : ''}`} onClick={() => choose(t.id)} style={{ justifyContent: 'flex-start', textAlign: 'left' }}>"{tr(t.label)}"</button>)}
             </div>
-            {!cur && <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>Yuqoridan bitta buyruqni tanlang</p></div>}
+            {!cur && <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Yuqoridan bitta buyruqni tanlang', ru: 'Выберите одну команду выше' })}</p></div>}
             {cur && (
               <div className="ai-card fade-step" key={task || 'stored'}>
-                <div className="ai-row"><span className="ai-badge" style={{ background: T.ink }}>Agent</span><span className="ai-bubble">{phase === 'planned' ? 'Mana rejam — tasdiqlaysizmi?' : (phase === 'building' ? 'Yozyapman…' : 'Bajardim — kodni tekshiring')}</span></div>
+                <div className="ai-row"><span className="ai-badge" style={{ background: T.ink }}>{tr({ uz: 'Agent', ru: 'Агент' })}</span><span className="ai-bubble">{phase === 'planned' ? tr({ uz: 'Mana rejam — tasdiqlaysizmi?', ru: 'Вот мой план — подтверждаете?' }) : (phase === 'building' ? tr({ uz: 'Yozyapman…', ru: 'Пишу…' }) : tr({ uz: 'Bajardim — kodni tekshiring', ru: 'Готово — проверьте код' }))}</span></div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-                  {cur.plan.map((p, i) => <div key={i} style={{ display: 'flex', gap: 8, alignItems: 'center', fontSize: 13 }}><span style={{ color: phase === 'planned' ? T.ink3 : T.success }}>{phase === 'planned' ? '○' : '✓'}</span><span style={{ color: T.ink }}>{p}</span></div>)}
+                  {cur.plan.map((p, i) => <div key={i} style={{ display: 'flex', gap: 8, alignItems: 'center', fontSize: 13 }}><span style={{ color: phase === 'planned' ? T.ink3 : T.success }}>{phase === 'planned' ? '○' : '✓'}</span><span style={{ color: T.ink }}>{tr(p)}</span></div>)}
                 </div>
-                {phase === 'planned' && <button className="btn fade-step" style={{ alignSelf: 'flex-start' }} onClick={approve}>Rejani tasdiqlash</button>}
-                {phase === 'building' && <p className="ai-prompt" style={{ color: T.accent }}>Kod yozilyapti…</p>}
+                {phase === 'planned' && <button className="btn fade-step" style={{ alignSelf: 'flex-start' }} onClick={approve}>{tr({ uz: 'Rejani tasdiqlash', ru: 'Подтвердить план' })}</button>}
+                {phase === 'building' && <p className="ai-prompt" style={{ color: T.accent }}>{tr({ uz: 'Kod yozilyapti…', ru: 'Код пишется…' })}</p>}
                 {phase === 'done' && <div className="ai-code fade-step"><div className="ai-line ok" style={{ cursor: 'default' }}>{cur.code}</div></div>}
               </div>
             )}
           </Col>
           <Col>
-            <p className="flow-label">2. Natija — localhost:5173</p>
+            <p className="flow-label">{tr({ uz: '2. Natija — localhost:5173', ru: '2. Результат — localhost:5173' })}</p>
             <Win title="robo-games — localhost:5173" minH={130}>
               {done && cur ? (
                 <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-                  {cur.id === 't3' && <p style={{ fontFamily: "'Manrope',sans-serif", fontWeight: 800, fontSize: 13.5, color: T.ink, margin: 0 }}>🎮 Robo Games — 3 ta o'yin <span className="mono small" style={{ color: T.success, fontWeight: 700 }}>+ count</span></p>}
+                  {cur.id === 't3' && <p style={{ fontFamily: "'Manrope',sans-serif", fontWeight: 800, fontSize: 13.5, color: T.ink, margin: 0 }}>{tr({ uz: "🎮 Robo Games — 3 ta o'yin", ru: '🎮 Robo Games — 3 игры' })} <span className="mono small" style={{ color: T.success, fontWeight: 700 }}>+ count</span></p>}
                   <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 8 }}>
                     <RoCard name="Adopt Me!" players={cur.id === 't1' ? '402K' : undefined} />
                     <RoCard name="Blox Fruits" players={cur.id === 't1' ? '750K' : undefined} top={cur.id === 't2'} />
@@ -1504,12 +1516,12 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                   </div>
                 </div>
               ) : (
-                <p style={{ color: T.ink3, fontStyle: 'italic', margin: 0, fontFamily: 'Georgia, serif', fontSize: 13 }}>Buyruq bering va rejani tasdiqlang…</p>
+                <p style={{ color: T.ink3, fontStyle: 'italic', margin: 0, fontFamily: 'Georgia, serif', fontSize: 13 }}>{tr({ uz: 'Buyruq bering va rejani tasdiqlang…', ru: 'Дайте команду и подтвердите план…' })}</p>
               )}
             </Win>
             {done
-              ? <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Kodni o'qing: ma'lumot <b>ro'yxatdan</b> kelyapti, props <b>pastga</b> oqyapti, jingalak qavs joyida. Agent ishini <b>isbot bilan</b> qabul qildingiz.</p></div>
-              : <p className="body" style={{ margin: 0, color: T.ink3, fontSize: 13 }}>Natija shu yerda paydo bo'ladi — keyin uni o'zingiz tekshirasiz.</p>}
+              ? <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Kodni o'qing: ma'lumot <b>ro'yxatdan</b> kelyapti, props <b>pastga</b> oqyapti, jingalak qavs joyida. Agent ishini <b>isbot bilan</b> qabul qildingiz.</>, ru: <>Прочитайте код: данные приходят <b>из списка</b>, props текут <b>вниз</b>, фигурные скобки на месте. Вы приняли работу агента <b>с доказательствами</b>.</> })}</p></div>
+              : <p className="body" style={{ margin: 0, color: T.ink3, fontSize: 13 }}>{tr({ uz: "Natija shu yerda paydo bo'ladi — keyin uni o'zingiz tekshirasiz.", ru: 'Результат появится здесь — потом вы сами его проверите.' })}</p>}
           </Col>
         </div>
         </Zoomable>
@@ -1520,19 +1532,19 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 
 // ===== SCREEN 12 — TEST 4 (read-only mustahkamlash) =====
 const Screen12 = (props) => (
-  <QuestionScreen {...props} idx={12} scope="module-mikro" eyebrow="Mashq · 4-savol"
+  <QuestionScreen {...props} idx={12} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 4-savol', ru: 'Упражнение · вопрос 4' })}
     audioText="GameCard o'ziga kelgan props.name'ni o'zgartira oladimi? To'g'ri javobni tanlang."
     audioOk="To'g'ri! Props — otadan kelgan sovg'a: faqat o'qiladi."
     audioWrong="Unchalik emas. Eslang konsol xatosini: props faqat o'qish uchun. Qaytadan urinib ko'ring."
-    questionText="GameCard o'ziga kelgan props.name'ni o'zgartira oladimi?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-sub" style={{ marginTop: 8 }}>GameCard o'ziga kelgan <span className="mono" style={{ color: T.accent }}>props.name</span>'ni o'zgartira oladimi?</h2></>}
-    options={['Ha — xohlagancha o\'zgartiradi', "Yo'q — props faqat o'qiladi", 'Faqat kichik harf bilan yozsa bo\'ladi', 'Faqat kechasi o\'zgartiradi']} correctIdx={1}
-    explainCorrect="To'g'ri! Props — otadan kelgan sovg'a: faqat o'qiladi. O'zgartirishni ota qiladi (yangi props yuboradi), komponentning o'z o'zgaruvchan narsasi esa state'da yashaydi."
+    questionText={tr({ uz: "GameCard o'ziga kelgan props.name'ni o'zgartira oladimi?", ru: 'Может ли GameCard изменить пришедший ему props.name?' })}
+    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-sub" style={{ marginTop: 8 }}>{tr({ uz: <>GameCard o'ziga kelgan <span className="mono" style={{ color: T.accent }}>props.name</span>'ni o'zgartira oladimi?</>, ru: <>Может ли GameCard изменить пришедший ему <span className="mono" style={{ color: T.accent }}>props.name</span>?</> })}</h2></>}
+    options={[tr({ uz: "Ha — xohlagancha o'zgartiradi", ru: 'Да — меняет сколько угодно' }), tr({ uz: "Yo'q — props faqat o'qiladi", ru: 'Нет — props только читаются' }), tr({ uz: "Faqat kichik harf bilan yozsa bo'ladi", ru: 'Можно, только строчными буквами' }), tr({ uz: "Faqat kechasi o'zgartiradi", ru: 'Меняет только по ночам' })]} correctIdx={1}
+    explainCorrect={tr({ uz: "To'g'ri! Props — otadan kelgan sovg'a: faqat o'qiladi. O'zgartirishni ota qiladi (yangi props yuboradi), komponentning o'z o'zgaruvchan narsasi esa state'da yashaydi.", ru: 'Верно! Props — подарок от родителя: только читается. Меняет родитель (отправляя новые props), а собственное изменяемое компонента живёт в state.' })}
     explainWrong={{
-      0: "Esingizdami konsol xatosi? ❌ TypeError — props faqat o'qish uchun.",
-      2: "Yo'q — harfga bog'liq emas. Props har qanday holatda read-only.",
-      3: "Yo'q — vaqtga ham bog'liq emas. Props hech qachon ichkaridan o'zgarmaydi.",
-      default: "Props — read-only. O'zgartirish kerakmi? Ota yangi props yuboradi yoki state ishlatiladi."
+      0: tr({ uz: "Esingizdami konsol xatosi? ❌ TypeError — props faqat o'qish uchun.", ru: 'Помните ошибку в консоли? ❌ TypeError — props только для чтения.' }),
+      2: tr({ uz: "Yo'q — harfga bog'liq emas. Props har qanday holatda read-only.", ru: 'Нет — дело не в буквах. Props в любом случае read-only.' }),
+      3: tr({ uz: "Yo'q — vaqtga ham bog'liq emas. Props hech qachon ichkaridan o'zgarmaydi.", ru: 'Нет — и время ни при чём. Props никогда не меняются изнутри.' }),
+      default: tr({ uz: "Props — read-only. O'zgartirish kerakmi? Ota yangi props yuboradi yoki state ishlatiladi.", ru: 'Props — read-only. Нужно изменить? Родитель отправляет новые props или используется state.' })
     }} />
 );
 
@@ -1551,34 +1563,34 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   const audio = useAudio([{ id: 's13', text: `Endi o'zingiz! Sevimli o'yinlaringizdan kamida uchtasini ro'yxatga qo'shing — kartochkalar o'zi chiziladi. Keyin bittasining kartochkasini bosib, TOP qilib belgilang. Bu ham bitta props — top props.`, trigger: 'on_mount', waits_for: null }]);
   return (
-    <Stage eyebrow="Amaliyot · katalog" screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? 'Davom etish' : (mine.length < 3 ? `O'yin tanlang (${mine.length}/3)` : 'TOP belgilang')} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Amaliyot · katalog', ru: 'Практика · каталог' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : (mine.length < 3 ? tr({ uz: `O'yin tanlang (${mine.length}/3)`, ru: `Выберите игры (${mine.length}/3)` }) : tr({ uz: 'TOP belgilang', ru: 'Отметьте TOP' }))} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(8px,1.2vw,12px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">O'z katalogingizni <span className="italic" style={{ color: T.accent }}>yig'a olasizmi</span>?</h2></div>
-        <Mentor>Endi o'zingiz! Sevimli o'yinlaringizdan <b style={{ color: T.ink }}>kamida 3 tasini</b> ro'yxatga qo'shing — kartochkalar o'zi chiziladi. Keyin bittasini <b style={{ color: T.ink }}>kartochkasini bosib</b> 🔥 TOP qilib belgilang (top props!).</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>O'z katalogingizni <span className="italic" style={{ color: T.accent }}>yig'a olasizmi</span>?</>, ru: <>Соберёте <span className="italic" style={{ color: T.accent }}>свой каталог</span>?</> })}</h2></div>
+        <Mentor>{tr({ uz: <>Endi o'zingiz! Sevimli o'yinlaringizdan <b style={{ color: T.ink }}>kamida 3 tasini</b> ro'yxatga qo'shing — kartochkalar o'zi chiziladi. Keyin bittasini <b style={{ color: T.ink }}>kartochkasini bosib</b> 🔥 TOP qilib belgilang (top props!).</>, ru: <>Теперь сами! Добавьте в список <b style={{ color: T.ink }}>минимум 3</b> любимые игры — карточки нарисуются сами. Потом <b style={{ color: T.ink }}>нажмите на карточку</b> одной из них и отметьте 🔥 TOP (props top!).</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
-            <p className="flow-label">Ro'yxatga qo'shing</p>
+            <p className="flow-label">{tr({ uz: "Ro'yxatga qo'shing", ru: 'Добавьте в список' })}</p>
             <div className="fade-up delay-1" style={{ display: 'flex', flexWrap: 'wrap', gap: 7 }}>
               {POOL.map(g => <button key={g.name} className={`gchip ${mine.includes(g.name) ? '' : ''}`} style={mine.includes(g.name) ? { background: T.accent, color: '#fff' } : undefined} onClick={() => toggle(g.name)}>{g.emoji} {g.name}</button>)}
             </div>
             <pre className="code-box fade-up delay-2" style={{ lineHeight: 1.8 }}>
               <Jx>{'const'}</Jx>{' mening = ['}{'\n'}
-              {mine.length === 0 ? <Cm>{"  // o'yinlarni tanlang…"}{'\n'}</Cm> : mine.map(nm => <React.Fragment key={nm}>{'  { name: '}<St>"{nm}"</St>{topName === nm ? <>, top: <At>true</At></> : ''}{' },'}{'\n'}</React.Fragment>)}
+              {mine.length === 0 ? <Cm>{tr({ uz: "  // o'yinlarni tanlang…", ru: '  // выберите игры…' })}{'\n'}</Cm> : mine.map(nm => <React.Fragment key={nm}>{'  { name: '}<St>"{nm}"</St>{topName === nm ? <>, top: <At>true</At></> : ''}{' },'}{'\n'}</React.Fragment>)}
               {'];'}{'\n\n'}
               {'{mening.map(g => '}<Jx>{'<GameCard '}</Jx><At>name</At>{'={g.name} '}<At>top</At>{'={g.top}'}<Jx>{' />'}</Jx>{')}'}
             </pre>
           </Col>
           <Col>
-            <p className="flow-label">Katalogingiz {mine.length >= 3 && !topName ? '— kartochkani bosib TOP belgilang' : ''}</p>
+            <p className="flow-label">{tr({ uz: 'Katalogingiz', ru: 'Ваш каталог' })} {mine.length >= 3 && !topName ? tr({ uz: '— kartochkani bosib TOP belgilang', ru: '— нажмите карточку и отметьте TOP' }) : ''}</p>
             <Win title="mening-katalogim — localhost:5173" minH={120}>
               {mine.length === 0
-                ? <p style={{ color: T.ink3, fontStyle: 'italic', margin: 0, fontFamily: 'Georgia, serif', fontSize: 13 }}>Bo'sh — ro'yxatga o'yin qo'shing…</p>
+                ? <p style={{ color: T.ink3, fontStyle: 'italic', margin: 0, fontFamily: 'Georgia, serif', fontSize: 13 }}>{tr({ uz: "Bo'sh — ro'yxatga o'yin qo'shing…", ru: 'Пусто — добавьте игры в список…' })}</p>
                 : <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8 }}>
                     {mine.map(nm => <RoCard key={nm} name={nm} top={topName === nm} onClick={() => setTopName(nm)} />)}
                   </div>}
             </Win>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Katalogingiz tayyor: ro'yxat + map + props (<span className="mono">name</span>, <span className="mono">top</span>). Siz endi <b>ma'lumot bilan boshqaradigan</b> dasturchisiz.</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Katalogingiz tayyor: ro'yxat + map + props (<span className="mono">name</span>, <span className="mono">top</span>). Siz endi <b>ma'lumot bilan boshqaradigan</b> dasturchisiz.</>, ru: <>Ваш каталог готов: список + map + props (<span className="mono">name</span>, <span className="mono">top</span>). Теперь вы разработчик, который <b>управляет данными</b>.</> })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -1599,26 +1611,26 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   ];
   const solve = () => { if (done) return; setDone(true); onAnswer(screen, { correct: true, picked: true }); };
   return (
-    <Stage eyebrow="Debugging" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? 'Davom etish' : 'Xatoni toping'} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Debugging', ru: 'Дебаггинг' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Xatoni toping', ru: 'Найдите ошибку' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">AI yordam beradi — siz esa <span className="italic" style={{ color: T.accent }}>tekshirasiz</span>.</h2></div>
-        <Mentor>AI kod yozishda <b style={{ color: T.ink }}>zo'r yordamchi</b> — katalogni bir zumda yozib berdi. Lekin <b style={{ color: T.ink }}>odamlar ham, AI ham</b> ba'zan kichik xato qiladi. Katalog chizildi, lekin kartochkalar <b style={{ color: T.ink }}>nomsiz</b> — ma'lumot qayerdadir yo'qoldi. Qaysi qator qoidaga zid?</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>AI yordam beradi — siz esa <span className="italic" style={{ color: T.accent }}>tekshirasiz</span>.</>, ru: <>AI помогает — а вы <span className="italic" style={{ color: T.accent }}>проверяете</span>.</> })}</h2></div>
+        <Mentor>{tr({ uz: <>AI kod yozishda <b style={{ color: T.ink }}>zo'r yordamchi</b> — katalogni bir zumda yozib berdi. Lekin <b style={{ color: T.ink }}>odamlar ham, AI ham</b> ba'zan kichik xato qiladi. Katalog chizildi, lekin kartochkalar <b style={{ color: T.ink }}>nomsiz</b> — ma'lumot qayerdadir yo'qoldi. Qaysi qator qoidaga zid?</>, ru: <>AI — <b style={{ color: T.ink }}>отличный помощник</b> в написании кода: каталог написал мгновенно. Но <b style={{ color: T.ink }}>и люди, и AI</b> иногда допускают мелкие ошибки. Каталог нарисован, но карточки <b style={{ color: T.ink }}>без имён</b> — данные где-то потерялись. Какая строка нарушает правило?</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
-            <div className="ai-row"><span className="ai-badge">AI</span><span className="ai-bubble">Katalog kodini yozdim:</span></div>
+            <div className="ai-row"><span className="ai-badge">AI</span><span className="ai-bubble">{tr({ uz: 'Katalog kodini yozdim:', ru: 'Я написал код каталога:' })}</span></div>
             <DebugChallenge
               lines={LINES}
               fixed={"  <GameCard name={g} />"}
-              explain={"Konveyer aylandi, lekin <GameCard /> posilkasiz chaqirilgan — g qo'lda turibdi-yu, uzatilmagan. name={g} qo'shilsa, ma'lumot kartochkalarga oqadi."}
+              explain={tr({ uz: "Konveyer aylandi, lekin <GameCard /> posilkasiz chaqirilgan — g qo'lda turibdi-yu, uzatilmagan. name={g} qo'shilsa, ma'lumot kartochkalarga oqadi.", ru: 'Конвейер крутился, но <GameCard /> вызван без посылки — g в руках, а не передан. Добавьте name={g} — и данные потекут в карточки.' })}
               onSolved={solve}
             />
           </Col>
           <Col>
             {!done
-              ? <div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>Kartochkalar nomsiz va kulrang — demak ularga <b style={{ color: T.ink }}>props yetib bormagan</b>. Posilka qaysi qatorda jo'natilmay qolgan?</p></div>
+              ? <div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: <>Kartochkalar nomsiz va kulrang — demak ularga <b style={{ color: T.ink }}>props yetib bormagan</b>. Posilka qaysi qatorda jo'natilmay qolgan?</>, ru: <>Карточки без имён и серые — значит, <b style={{ color: T.ink }}>props до них не дошли</b>. В какой строке посылка так и не была отправлена?</> })}</p></div>
               : (<>
-                  <div className="takeaway fade-step"><div className="ta-bulb">🛠️</div><p className="ta-h">Topdingiz va tuzatdingiz — bu debugging!</p><p className="ta-sub">AI tez yozadi, siz tekshirib tuzatasiz — zo'r jamoa</p></div>
+                  <div className="takeaway fade-step"><div className="ta-bulb">🛠️</div><p className="ta-h">{tr({ uz: 'Topdingiz va tuzatdingiz — bu debugging!', ru: 'Нашли и исправили — это дебаггинг!' })}</p><p className="ta-sub">{tr({ uz: "AI tez yozadi, siz tekshirib tuzatasiz — zo'r jamoa", ru: 'AI пишет быстро, вы проверяете и чините — отличная команда' })}</p></div>
                   <Win title="robo-games — localhost:5173"><div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 8 }}>{LIST.map(g => <RoCard key={g.name} name={g.name} />)}</div></Win>
                 </>)}
           </Col>
@@ -1643,17 +1655,17 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => {
     if (valid && !passed) {
       setPassed(true);
-      onAnswer(screen, { stage: 'final', screenIdx: screen, question: "map ichida <GameCard name={g} /> ni yozing", studentAnswer: value, correct: true, firstAttemptCorrect: true, solved: true, picked: value });
+      onAnswer(screen, { stage: 'final', screenIdx: screen, question: tr({ uz: "map ichida <GameCard name={g} /> ni yozing", ru: 'Напишите <GameCard name={g} /> внутри map' }), studentAnswer: value, correct: true, firstAttemptCorrect: true, solved: true, picked: value });
     }
   }, [valid]);
   const Ln = ({ n, children }) => (
     <div className="vsc-line"><span className="vsc-ln">{n}</span><span style={{ whiteSpace: 'pre' }}>{children}</span></div>
   );
   return (
-    <Stage eyebrow="Yakuniy · amaliy" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!passed} label={passed ? 'Davom etish' : 'Konveyer qatorini yozing'} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Yakuniy · amaliy', ru: 'Финал · практика' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!passed} label={passed ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Konveyer qatorini yozing', ru: 'Напишите строку конвейера' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Oxirgi qadam: katalogni <span className="italic" style={{ color: T.accent }}>o'zingiz</span> ishga tushiring.</h2></div>
-        <Mentor>VS Code'da <span className="mono">App.jsx</span> ochiq: ro'yxat tayyor, konveyer (<span className="mono">map</span>) aylanyapti — faqat <b style={{ color: T.ink }}>6-qator bo'sh</b>! Yozing: <b style={{ color: T.ink }}>{'<GameCard'}</b> + <b style={{ color: T.ink }}>name={'{g}'}</b> (jingalak qavs — ma'lumot ro'yxatdan!) + <b style={{ color: T.ink }}>{'/>'}</b>.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Oxirgi qadam: katalogni <span className="italic" style={{ color: T.accent }}>o'zingiz</span> ishga tushiring.</>, ru: <>Последний шаг: запустите каталог <span className="italic" style={{ color: T.accent }}>сами</span>.</> })}</h2></div>
+        <Mentor>{tr({ uz: <>VS Code'da <span className="mono">App.jsx</span> ochiq: ro'yxat tayyor, konveyer (<span className="mono">map</span>) aylanyapti — faqat <b style={{ color: T.ink }}>6-qator bo'sh</b>! Yozing: <b style={{ color: T.ink }}>{'<GameCard'}</b> + <b style={{ color: T.ink }}>name={'{g}'}</b> (jingalak qavs — ma'lumot ro'yxatdan!) + <b style={{ color: T.ink }}>{'/>'}</b>.</>, ru: <>В VS Code открыт <span className="mono">App.jsx</span>: список готов, конвейер (<span className="mono">map</span>) крутится — пуста только <b style={{ color: T.ink }}>строка 6</b>! Напишите: <b style={{ color: T.ink }}>{'<GameCard'}</b> + <b style={{ color: T.ink }}>name={'{g}'}</b> (фигурные скобки — данные из списка!) + <b style={{ color: T.ink }}>{'/>'}</b>.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
@@ -1680,23 +1692,23 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               </div>
             </div>
             <div className="fade-up delay-2" style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-              <span className="tagpill" style={{ opacity: hasComp ? 1 : 0.4 }}>{hasComp ? '✓' : '1'} {'<GameCard'} — Katta harf</span>
-              <span className="tagpill" style={{ opacity: hasDyn ? 1 : 0.4 }}>{hasDyn ? '✓' : '2'} name={'{g}'} — jingalak qavs</span>
-              <span className="tagpill" style={{ opacity: hasClose ? 1 : 0.4 }}>{hasClose ? '✓' : '3'} {'/>'} yopilishi</span>
+              <span className="tagpill" style={{ opacity: hasComp ? 1 : 0.4 }}>{hasComp ? '✓' : '1'} {'<GameCard'} {tr({ uz: '— Katta harf', ru: '— с Большой буквы' })}</span>
+              <span className="tagpill" style={{ opacity: hasDyn ? 1 : 0.4 }}>{hasDyn ? '✓' : '2'} name={'{g}'} {tr({ uz: '— jingalak qavs', ru: '— фигурные скобки' })}</span>
+              <span className="tagpill" style={{ opacity: hasClose ? 1 : 0.4 }}>{hasClose ? '✓' : '3'} {'/>'} {tr({ uz: 'yopilishi', ru: '— закрытие' })}</span>
             </div>
-            {hasLowerComp && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Esingizdami? Komponent nomi <b>Katta harf</b> bilan: <span className="mono">GameCard</span>.</p></div>}
-            {quoted && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Deyarli! <span className="mono">name="g"</span> — bu shunchaki "g" degan matn bo'lib qoladi. Ma'lumot <b>ro'yxatdan kelishi</b> uchun jingalak qavs kerak: <span className="mono">name={'{g}'}</span></p></div>}
-            {passed && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>✓ Mukammal! Konveyer ishladi: har o'yinga bitta kartochka. Data-driven katalog — sizning qo'lingizda.</p></div>}
+            {hasLowerComp && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Esingizdami? Komponent nomi <b>Katta harf</b> bilan: <span className="mono">GameCard</span>.</>, ru: <>Помните? Имя компонента — <b>с Большой буквы</b>: <span className="mono">GameCard</span>.</> })}</p></div>}
+            {quoted && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Deyarli! <span className="mono">name="g"</span> — bu shunchaki "g" degan matn bo'lib qoladi. Ma'lumot <b>ro'yxatdan kelishi</b> uchun jingalak qavs kerak: <span className="mono">name={'{g}'}</span></>, ru: <>Почти! <span className="mono">name="g"</span> — это просто текст «g». Чтобы данные <b>пришли из списка</b>, нужны фигурные скобки: <span className="mono">name={'{g}'}</span></> })}</p></div>}
+            {passed && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "✓ Mukammal! Konveyer ishladi: har o'yinga bitta kartochka. Data-driven katalog — sizning qo'lingizda.", ru: '✓ Отлично! Конвейер заработал: по карточке на каждую игру. Data-driven каталог — в ваших руках.' })}</p></div>}
           </Col>
           <Col>
-            <p className="flow-label">natija — localhost:5173</p>
+            <p className="flow-label">{tr({ uz: 'natija — localhost:5173', ru: 'результат — localhost:5173' })}</p>
             <Win title="robo-games — localhost:5173" minH={130}>
               {valid
                 ? <div className="fade-step" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 9 }}>
                     <RoCard name="Adopt Me!" />
                     <RoCard name="Doors" />
                   </div>
-                : <p style={{ fontFamily: 'Georgia, serif', color: T.ink3, fontStyle: 'italic', margin: 0, textAlign: 'center', lineHeight: 1.5 }}>6-qator yozilmaguncha katalog bo'sh: <span className="mono" style={{ fontStyle: 'normal' }}>{'<GameCard'}</span> + <span className="mono" style={{ fontStyle: 'normal' }}>name={'{g}'}</span> + <span className="mono" style={{ fontStyle: 'normal' }}>{'/>'}</span></p>}
+                : <p style={{ fontFamily: 'Georgia, serif', color: T.ink3, fontStyle: 'italic', margin: 0, textAlign: 'center', lineHeight: 1.5 }}>{tr({ uz: <>6-qator yozilmaguncha katalog bo'sh: <span className="mono" style={{ fontStyle: 'normal' }}>{'<GameCard'}</span> + <span className="mono" style={{ fontStyle: 'normal' }}>name={'{g}'}</span> + <span className="mono" style={{ fontStyle: 'normal' }}>{'/>'}</span></>, ru: <>Пока строка 6 не написана, каталог пуст: <span className="mono" style={{ fontStyle: 'normal' }}>{'<GameCard'}</span> + <span className="mono" style={{ fontStyle: 'normal' }}>name={'{g}'}</span> + <span className="mono" style={{ fontStyle: 'normal' }}>{'/>'}</span></> })}</p>}
             </Win>
           </Col>
         </div>
@@ -1725,13 +1737,13 @@ function DebugChallenge({ lines, fixed, explain, onSolved }) {
           <div key={i} className={`dbg-line ${solved && i === bugIdx ? 'fixed' : ''} ${wrongIdx === i ? 'wrong' : ''}`} onClick={() => click(i)}>
             <span className="dbg-ln">{i + 1}</span>
             <span className="dbg-txt">{solved && i === bugIdx ? fixed : l.text}</span>
-            {solved && i === bugIdx && <span className="dbg-badge">✓ tuzatildi</span>}
+            {solved && i === bugIdx && <span className="dbg-badge">{tr({ uz: '✓ tuzatildi', ru: '✓ исправлено' })}</span>}
           </div>
         ))}
       </div>
       {!solved
-        ? <p className="dbg-hint">👆 Xato bor qatorni toping va bosing</p>
-        : <div className="dbg-ok">✓ Topdingiz! {explain}</div>}
+        ? <p className="dbg-hint">{tr({ uz: '👆 Xato bor qatorni toping va bosing', ru: '👆 Найдите строку с ошибкой и нажмите её' })}</p>
+        : <div className="dbg-ok">{tr({ uz: '✓ Topdingiz!', ru: '✓ Нашли!' })} {explain}</div>}
     </div>
   );
 }
@@ -1760,23 +1772,23 @@ function Flashcards({ cards }) {
   const again = () => advance(false);
   const restart = () => { setQueue(cards.map((_, i) => i)); setKnown(0); setFlipped(false); };
   if (!card) return (
-    <div className="fc-done fade-up"><span className="fc-done-emoji">🎉</span><p className="fc-done-h">Hammasini bilasiz!</p><p className="fc-done-s">{total}/{total} atama yodlandi</p><button className="fc-btn ghost" onClick={restart}>↻ Qaytadan takrorlash</button></div>
+    <div className="fc-done fade-up"><span className="fc-done-emoji">🎉</span><p className="fc-done-h">{tr({ uz: 'Hammasini bilasiz!', ru: 'Вы знаете всё!' })}</p><p className="fc-done-s">{total}/{total} {tr({ uz: 'atama yodlandi', ru: 'терминов выучено' })}</p><button className="fc-btn ghost" onClick={restart}>{tr({ uz: '↻ Qaytadan takrorlash', ru: '↻ Повторить заново' })}</button></div>
   );
   return (
     <div className="fc fade-up">
-      <div className="fc-top"><span className="fc-pill learn" key={`l-${queue.length}-${swapRef.current}`}>↻ O'rganilmoqda · <b>{queue.length}</b></span><span className="fc-pill knew" key={`k-${known}`}>✓ Bildim · <b>{known}</b></span></div>
+      <div className="fc-top"><span className="fc-pill learn" key={`l-${queue.length}-${swapRef.current}`}>{tr({ uz: "↻ O'rganilmoqda ·", ru: '↻ Учу ·' })} <b>{queue.length}</b></span><span className="fc-pill knew" key={`k-${known}`}>{tr({ uz: '✓ Bildim ·', ru: '✓ Знаю ·' })} <b>{known}</b></span></div>
       <div className="fc-bar"><span className="fc-bar-fill" style={{ width: `${(known / total) * 100}%` }} /></div>
       <div className="fc-cardwrap">
         <div className={`fc-fly ${exiting === 'knew' ? 'out-knew' : ''} ${exiting === 'again' ? 'out-again' : ''}`} key={swapRef.current}>
         <div className={`fc-card ${flipped ? 'flip' : ''}`} onClick={() => !flipped && !exiting && setFlipped(true)} role="button" tabIndex={0}>
-          <div className="fc-face fc-front"><span className="fc-q">{card.front}</span><span className="fc-cue">Qaysi tushuncha? 🤔 <span className="fc-tap">bosing</span></span></div>
-          <div className="fc-face fc-back"><span className="fc-tag">{card.back}</span>{card.note && <span className="fc-note">{card.note}</span>}</div>
+          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: 'Qaysi tushuncha? 🤔', ru: 'Какое понятие? 🤔' })} <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
+          <div className="fc-face fc-back"><span className="fc-tag">{tr(card.back)}</span>{card.note && <span className="fc-note">{tr(card.note)}</span>}</div>
         </div>
         </div>
       </div>
       {flipped
-        ? (<div className="fc-actions"><button className="fc-btn again" disabled={!!exiting} onClick={again}>✗ Takrorlash</button><button className="fc-btn knew" disabled={!!exiting} onClick={knew}>✓ Bildim</button></div>)
-        : (<p className="fc-hint">👆 Kartani bosing — javobni ko'rasiz</p>)}
+        ? (<div className="fc-actions"><button className="fc-btn again" disabled={!!exiting} onClick={again}>{tr({ uz: '✗ Takrorlash', ru: '✗ Повторить' })}</button><button className="fc-btn knew" disabled={!!exiting} onClick={knew}>{tr({ uz: '✓ Bildim', ru: '✓ Знаю' })}</button></div>)
+        : (<p className="fc-hint">{tr({ uz: "👆 Kartani bosing — javobni ko'rasiz", ru: '👆 Нажмите карту — увидите ответ' })}</p>)}
     </div>
   );
 }
@@ -1809,11 +1821,11 @@ const MentorPracticeStats = ({ live, screen }) => {
   const waiting = (data.players || []).filter(p => !doneIds.has(p.id));
   return (
     <div className="lp-mstats fade-up">
-      <div className="card-lbl" style={{ color: T.blue }}>👀 Kim bajardi — <b>{doers.length}</b>{total ? ` / ${total}` : ''}</div>
+      <div className="card-lbl" style={{ color: T.blue }}>{tr({ uz: '👀 Kim bajardi —', ru: '👀 Кто выполнил —' })} <b>{doers.length}</b>{total ? ` / ${total}` : ''}</div>
       {data.players === null ? (
-        <p className="small" style={{ color: T.ink3, margin: 0, fontStyle: 'italic' }}>Yuklanmoqda…</p>
+        <p className="small" style={{ color: T.ink3, margin: 0, fontStyle: 'italic' }}>{tr({ uz: 'Yuklanmoqda…', ru: 'Загрузка…' })}</p>
       ) : doers.length === 0 && waiting.length === 0 ? (
-        <p className="small" style={{ color: T.ink3, margin: 0, fontStyle: 'italic' }}>Jonli darsda bajargan o'quvchilar shu yerda chiqadi.</p>
+        <p className="small" style={{ color: T.ink3, margin: 0, fontStyle: 'italic' }}>{tr({ uz: "Jonli darsda bajargan o'quvchilar shu yerda chiqadi.", ru: 'На живом уроке здесь появятся выполнившие ученики.' })}</p>
       ) : (
         <div className="mstats-waitrow">
           {doers.slice(0, 12).map(p => <span key={p.id} className="mstats-wait-chip" style={{ color: T.success, background: T.successSoft }}>✓ {p.nickname}</span>)}
@@ -1833,41 +1845,41 @@ function ScreenLivePractice({ title, task, checklist, screen, storedAnswer, onAn
   const complete = () => {
     if (done) return;
     setDone(true);
-    onAnswer(screen, { stage: 'practice', screenIdx: screen, practice: title, solved: true, correct: true, picked: true });
+    onAnswer(screen, { stage: 'practice', screenIdx: screen, practice: tr(title), solved: true, correct: true, picked: true });
     // JONLI: o'quvchi «Bajardim» → ishtirok-ball 500+ zonaga yoziladi (podium/arena'ga aralashmaydi)
     if (_live && _live.mode === 'student') _live.submitAnswer(PRACTICE_BASE + screen, 'practice', 0, true, 0);
   };
   // JONLI: mentor keyingi sahifaga o'tmaguncha NavNext qulf bo'ladi (optionalLive + LiveGateCtx gate). Hozircha done bo'lsa ochiq.
   return (
-    <Stage eyebrow="Amaliyot · VS Code" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? 'Davom etish' : 'Avval bajaring'} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Amaliyot · VS Code', ru: 'Практика · VS Code' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Avval bajaring', ru: 'Сначала выполните' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{title}</h2></div>
-        <Mentor>Bu topshiriqni <b style={{ color: T.ink }}>o'z kompyuteringizda</b> — VS Code'da bajaring. Har bosqichni bajarib, belgilab boring. Tugagach <b style={{ color: T.ink }}>«Bajardim»</b> tugmasini bosing — ustoz kuzatib turadi.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr(title)}</h2></div>
+        <Mentor>{tr({ uz: <>Bu topshiriqni <b style={{ color: T.ink }}>o'z kompyuteringizda</b> — VS Code'da bajaring. Har bosqichni bajarib, belgilab boring. Tugagach <b style={{ color: T.ink }}>«Bajardim»</b> tugmasini bosing — ustoz kuzatib turadi.</>, ru: <>Выполните это задание <b style={{ color: T.ink }}>на своём компьютере</b> — в VS Code. Отмечайте каждый шаг по мере выполнения. Когда закончите, нажмите <b style={{ color: T.ink }}>«Выполнил»</b> — наставник наблюдает.</> })}</Mentor>
         <div className="split">
           <Col>
             <div className="lp-task fade-up delay-1">
-              <div className="lp-task-h"><span className="lp-task-badge">TOPSHIRIQ</span></div>
-              <p className="body" style={{ margin: 0, color: T.ink }}>{task}</p>
+              <div className="lp-task-h"><span className="lp-task-badge">{tr({ uz: 'TOPSHIRIQ', ru: 'ЗАДАНИЕ' })}</span></div>
+              <p className="body" style={{ margin: 0, color: T.ink }}>{tr(task)}</p>
             </div>
             <MentorPracticeStats live={_live} screen={screen} />
           </Col>
           <Col>
-            <p className="flow-label">Bosqichlar — belgilab boring</p>
+            <p className="flow-label">{tr({ uz: 'Bosqichlar — belgilab boring', ru: 'Шаги — отмечайте по ходу' })}</p>
             <div className="lp-steps fade-up delay-2">
               {checklist.map((c, i) => {
                 const on = checked.has(i);
                 return (
                   <button key={i} className={`lp-step ${on ? 'on' : ''}`} onClick={() => toggle(i)}>
                     <span className="lp-check">{on ? '✓' : i + 1}</span>
-                    <span className="lp-step-t">{fmtCode(c)}</span>
+                    <span className="lp-step-t">{fmtCode(tr(c))}</span>
                   </button>
                 );
               })}
             </div>
             <button className={`lp-done-btn ${done ? 'is-done' : ''}`} disabled={done} onClick={complete}>
-              {done ? '✓ Bajarildi — ustozni kuting' : '✅ Bajardim'}
+              {done ? tr({ uz: '✓ Bajarildi — ustozni kuting', ru: '✓ Выполнено — ждите наставника' }) : tr({ uz: '✅ Bajardim', ru: '✅ Выполнил' })}
             </button>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Zo'r! Vazifani bajardingiz. Ustoz tekshirib, keyingi qadamga o'tkazadi.</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Zo'r! Vazifani bajardingiz. Ustoz tekshirib, keyingi qadamga o'tkazadi.", ru: 'Отлично! Задание выполнено. Наставник проверит и переведёт к следующему шагу.' })}</p></div>}
           </Col>
         </div>
       </div>
@@ -1876,38 +1888,38 @@ function ScreenLivePractice({ title, task, checklist, screen, storedAnswer, onAn
 }
 const ScreenPractice1 = (props) => (
   <ScreenLivePractice {...props}
-    title="O'z katalogingizni quring"
-    task="VS Code'da App.jsx faylini ochib, sevimli o'yinlaringizdan ro'yxat tuzing va map bilan katalog chizing. Kamida 3 ta o'yin bo'lsin, bittasiga top belgisi qo'ying."
+    title={{ uz: "O'z katalogingizni quring", ru: 'Соберите свой каталог' }}
+    task={{ uz: "VS Code'da App.jsx faylini ochib, sevimli o'yinlaringizdan ro'yxat tuzing va map bilan katalog chizing. Kamida 3 ta o'yin bo'lsin, bittasiga top belgisi qo'ying.", ru: 'Откройте файл App.jsx в VS Code, составьте список любимых игр и нарисуйте каталог через map. Минимум 3 игры, одной поставьте пометку top.' }}
     checklist={[
-      "App.jsx ichida `const mening = [...]` ro'yxatini yozing (kamida 3 o'yin)",
-      "Har element `{ name: \"...\", top: false }` ko'rinishida — bittasiga `top: true`",
-      "`{mening.map(g => <GameCard name={g.name} top={g.top} />)}` yozing",
-      "Saqlang — localhost:5173 da 3 kartochka, bittasida 🔥 TOP chiqdimi?",
+      { uz: "App.jsx ichida `const mening = [...]` ro'yxatini yozing (kamida 3 o'yin)", ru: 'Внутри App.jsx напишите список `const mening = [...]` (минимум 3 игры)' },
+      { uz: "Har element `{ name: \"...\", top: false }` ko'rinishida — bittasiga `top: true`", ru: 'Каждый элемент в виде `{ name: "...", top: false }` — одному поставьте `top: true`' },
+      { uz: "`{mening.map(g => <GameCard name={g.name} top={g.top} />)}` yozing", ru: 'Напишите `{mening.map(g => <GameCard name={g.name} top={g.top} />)}`' },
+      { uz: "Saqlang — localhost:5173 da 3 kartochka, bittasida 🔥 TOP chiqdimi?", ru: 'Сохраните — на localhost:5173 появились 3 карточки и 🔥 TOP на одной?' },
     ]} />
 );
 
 // 🃏 FLASHCARD KARTALARI (front=izoh, back=tushuncha) — Metodist keyin sayqallaydi
 const REACT_FLASHCARDS = [
-  { front: "Otadan bolaga uzatiladigan ma'lumot", back: "Props", note: "name=\"Doors\"" },
-  { front: "Chaqiruvdagi yozuv: name=\"...\"", back: "Atribut", note: "props'ga aylanadi" },
-  { front: "Qiymat o'zgaruvchidan kelsa qanday qavs?", back: "Jingalak qavs { }", note: "name={g}" },
-  { front: "Props qaysi yo'nalishda oqadi?", back: "Faqat pastga", note: "otadan bolaga" },
-  { front: "Komponent props'ni o'zgartira oladimi?", back: "Yo'q — read-only", note: "faqat o'qiladi" },
-  { front: "O'zgaruvchan narsa uchun nima ishlatiladi?", back: "State", note: "props emas" },
-  { front: "Ro'yxatning har elementiga kartochka yasovchi", back: "map", note: "games.map(...)" },
-  { front: "Sayt ma'lumotga qarab o'zini chizadi", back: "Data-driven", note: "ro'yxat → katalog" },
-  { front: "O'yinlar ma'lumoti qayerda saqlanadi?", back: "Massiv (ro'yxat)", note: "const games = [...]" },
-  { front: "Bitta kartochka bir nechta props oladimi?", back: "Ha", note: "name · players · emoji" },
-  { front: "Ma'lumotni uzatuvchi (ota) komponent", back: "App", note: "props yuboradi" },
-  { front: "Ma'lumotni qabul qiluvchi (bola) komponent", back: "GameCard", note: "props oladi" },
+  { front: { uz: "Otadan bolaga uzatiladigan ma'lumot", ru: 'Данные, передаваемые от родителя к ребёнку' }, back: "Props", note: "name=\"Doors\"" },
+  { front: { uz: "Chaqiruvdagi yozuv: name=\"...\"", ru: 'Запись при вызове: name="..."' }, back: { uz: "Atribut", ru: 'Атрибут' }, note: { uz: "props'ga aylanadi", ru: 'превращается в props' } },
+  { front: { uz: "Qiymat o'zgaruvchidan kelsa qanday qavs?", ru: 'Какие скобки, если значение из переменной?' }, back: { uz: "Jingalak qavs { }", ru: 'Фигурные скобки { }' }, note: "name={g}" },
+  { front: { uz: "Props qaysi yo'nalishda oqadi?", ru: 'В каком направлении текут props?' }, back: { uz: "Faqat pastga", ru: 'Только вниз' }, note: { uz: "otadan bolaga", ru: 'от родителя к ребёнку' } },
+  { front: { uz: "Komponent props'ni o'zgartira oladimi?", ru: 'Может ли компонент менять props?' }, back: { uz: "Yo'q — read-only", ru: 'Нет — read-only' }, note: { uz: "faqat o'qiladi", ru: 'только чтение' } },
+  { front: { uz: "O'zgaruvchan narsa uchun nima ishlatiladi?", ru: 'Что используется для изменяемого?' }, back: "State", note: { uz: "props emas", ru: 'не props' } },
+  { front: { uz: "Ro'yxatning har elementiga kartochka yasovchi", ru: 'Делает карточку для каждого элемента списка' }, back: "map", note: "games.map(...)" },
+  { front: { uz: "Sayt ma'lumotga qarab o'zini chizadi", ru: 'Сайт рисует себя по данным' }, back: "Data-driven", note: { uz: "ro'yxat → katalog", ru: 'список → каталог' } },
+  { front: { uz: "O'yinlar ma'lumoti qayerda saqlanadi?", ru: 'Где хранятся данные игр?' }, back: { uz: "Massiv (ro'yxat)", ru: 'Массив (список)' }, note: "const games = [...]" },
+  { front: { uz: "Bitta kartochka bir nechta props oladimi?", ru: 'Может ли одна карточка получить несколько props?' }, back: { uz: "Ha", ru: 'Да' }, note: "name · players · emoji" },
+  { front: { uz: "Ma'lumotni uzatuvchi (ota) komponent", ru: 'Компонент-отправитель данных (родитель)' }, back: "App", note: { uz: "props yuboradi", ru: 'отправляет props' } },
+  { front: { uz: "Ma'lumotni qabul qiluvchi (bola) komponent", ru: 'Компонент-получатель данных (ребёнок)' }, back: "GameCard", note: { uz: "props oladi", ru: 'получает props' } },
 ];
 const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, []); // eslint-disable-line
   return (
-    <Stage eyebrow="Takrorlash" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={false} label="Yakunlash →" onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Takrorlash', ru: 'Повторение' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={false} label={tr({ uz: 'Yakunlash →', ru: 'Завершить →' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Tushunchalarni <span className="italic" style={{ color: T.accent }}>tez takrorlaymiz</span>.</h2></div>
-        <Mentor>Darsni yakunlashdan oldin bugun o'rgangan tushunchalarni takrorlaymiz. Har kartada bir izoh — <b style={{ color: T.ink }}>qaysi tushuncha</b> ekanini o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Tushunchalarni <span className="italic" style={{ color: T.accent }}>tez takrorlaymiz</span>.</>, ru: <>Быстро <span className="italic" style={{ color: T.accent }}>повторим</span> понятия.</> })}</h2></div>
+        <Mentor>{tr({ uz: <>Darsni yakunlashdan oldin bugun o'rgangan tushunchalarni takrorlaymiz. Har kartada bir izoh — <b style={{ color: T.ink }}>qaysi tushuncha</b> ekanini o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</>, ru: <>Перед завершением урока повторим сегодняшние понятия. На каждой карте — описание: подумайте, <b style={{ color: T.ink }}>какое это понятие</b>, потом нажмите карту и проверьте. Оцените кнопками <b style={{ color: T.ink }}>Знаю</b> или <b style={{ color: T.ink }}>Повторить</b>.</> })}</Mentor>
         <div className="fc-center"><Flashcards cards={REACT_FLASHCARDS} /></div>
       </div>
     </Stage>
@@ -1916,10 +1928,10 @@ const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) =>
 
 // ===== 🏅 ACHIEVEMENTS (nishonlar) — dars davomidagi REAL bosqichlar uchun (tekin emas) =====
 const ACHIEVEMENTS = {
-  sharp:    { icon: '⚡', name: 'Props Master!',   desc: "Props read-only qoidasi testidan o'tdingiz" },
-  debugger: { icon: '🐞', name: 'Nice Catch!',     desc: "map ichida yo'qolgan name={g} xatosini tuzatdingiz" },
-  builder:  { icon: '🧱', name: 'Catalog Builder!', desc: "Konveyer qatorini o'zingiz yozib katalogni ishga tushirdingiz" },
-  graduate: { icon: '🏆', name: 'Level Up!',       desc: "Props va qayta ishlatish darsini to'liq yakunladingiz" },
+  sharp:    { icon: '⚡', name: 'Props Master!',   desc: { uz: "Props read-only qoidasi testidan o'tdingiz", ru: 'Вы прошли тест на правило props read-only' } },
+  debugger: { icon: '🐞', name: 'Nice Catch!',     desc: { uz: "map ichida yo'qolgan name={g} xatosini tuzatdingiz", ru: 'Вы исправили потерянный name={g} внутри map' } },
+  builder:  { icon: '🧱', name: 'Catalog Builder!', desc: { uz: "Konveyer qatorini o'zingiz yozib katalogni ishga tushirdingiz", ru: 'Вы сами написали строку конвейера и запустили каталог' } },
+  graduate: { icon: '🏆', name: 'Level Up!',       desc: { uz: "Props va qayta ishlatish darsini to'liq yakunladingiz", ru: 'Вы полностью завершили урок «Props и переиспользование»' } },
 };
 // Ekran id → nishon (recordAnswer'da, faqat REAL solve bilan: SCORED test / debug challenge / final)
 const ACH_TRIGGERS = { s12: 'sharp', s14: 'debugger', s15: 'builder' };
@@ -1927,7 +1939,7 @@ const ACH_TRIGGERS = { s12: 'sharp', s14: 'debugger', s15: 'builder' };
 function AchCelebrate({ ach, onDone }) {
   useEffect(() => { const t = setTimeout(onDone, 4000); return () => clearTimeout(t); }, []); // eslint-disable-line
   return (
-    <div className="acu-overlay" onClick={onDone} role="status" aria-label={`Yangi nishon: ${ach.name}`}>
+    <div className="acu-overlay" onClick={onDone} role="status" aria-label={tr({ uz: `Yangi nishon: ${ach.name}`, ru: `Новый значок: ${ach.name}` })}>
       <div className="acu-rays" aria-hidden="true" />
       <div className="acu-glow" aria-hidden="true" />
       <div className="acu-ring" aria-hidden="true" />
@@ -1940,11 +1952,11 @@ function AchCelebrate({ ach, onDone }) {
           ))}
         </div>
         <div className="acu-txt">
-          <span className="acu-eyebrow">🏅 Nishon ochildi!</span>
+          <span className="acu-eyebrow">{tr({ uz: '🏅 Nishon ochildi!', ru: '🏅 Значок открыт!' })}</span>
           <span className="acu-name">{ach.name}</span>
-          {ach.desc && <span className="acu-desc">{ach.desc}</span>}
+          {ach.desc && <span className="acu-desc">{tr(ach.desc)}</span>}
         </div>
-        <span className="acu-tap">bosib davom eting</span>
+        <span className="acu-tap">{tr({ uz: 'bosib davom eting', ru: 'нажмите, чтобы продолжить' })}</span>
       </div>
     </div>
   );
@@ -1979,7 +1991,7 @@ const Confetti = () => {
 };
 
 // Podium savol yorliqlari (SCORED_IDX indekslariga mos)
-const Q_LABELS = { 4: "1 — Uzatish usuli", 6: "2 — Oqim yo'nalishi", 10: "3 — Ro'yxat + map", 13: "4 — Read-only", 17: "5 — Yakuniy amaliy" };
+const Q_LABELS = { 4: { uz: "1 — Uzatish usuli", ru: '1 — Способ передачи' }, 6: { uz: "2 — Oqim yo'nalishi", ru: '2 — Направление потока' }, 10: { uz: "3 — Ro'yxat + map", ru: '3 — Список + map' }, 13: "4 — Read-only", 17: { uz: "5 — Yakuniy amaliy", ru: '5 — Финальное практическое' } };
 
 // Server-baholash javob kaliti (mentor darsni ochganda avto-yuklanadi).
 // scored MCScreen'lar correctIdx'idan qo'lda: s4=0, s5b=2, s9=3, s12=1. s15 = -1 (yakuniy amaliy — yozma).
@@ -2001,18 +2013,18 @@ const QZ_BG_SHAPES = [
   { ch: 'data-driven', l: 2,  t: 45, s: 22, d: 26, dl: 2.6 },
 ];
 const QUIZ_BANK = [
-  { q: "Props nima?", opts: ["Komponentga uzatiladigan ma'lumot", "Komponentning ichki rangi", "Internetni tezlashtiruvchi sozlama", "Brauzerga qo'shiladigan kengaytma"], correct: 0 },
-  { q: "App ma'lumotni GameCard'ga qanday uzatadi?", opts: ["Faylga saqlab qo'yib", "Atribut orqali: name=\"...\"", "Internet orqali yuborib", "GameCard o'zi App'dan olib ketadi"], correct: 1 },
-  { q: "Props qaysi yo'nalishda oqadi?", opts: ["Pastdan yuqoriga — boladan otaga", "Istalgan tomonga — yuqoriga ham, pastga ham", "Faqat yuqoridan pastga — otadan bolaga", "Props umuman oqmaydi — bir joyda turadi"], correct: 2 },
-  { q: "Komponent o'ziga kelgan props'ni o'zgartira oladimi?", opts: ["Ha, xohlagancha o'zgartiradi", "Faqat bir marta o'zgartiradi", "Faqat kichik props'ni o'zgartiradi", "Yo'q, props faqat o'qiladi"], correct: 3 },
-  { q: "Ro'yxatdan kartochkalar katalogini nima yasaydi?", opts: ["map metodi", "push metodi", "className", "state"], correct: 0 },
-  { q: "O'zgarib turadigan narsa uchun props o'rniga nima ishlatiladi?", opts: ["Yana props", "State", "Atribut", "map"], correct: 1 },
-  { q: "name={g} yozuvidagi jingalak qavs { } nima uchun?", opts: ["Oddiy matn satrini yozish uchun", "Kodga izoh qoldirish uchun", "O'zgaruvchi qiymatini uzatish uchun", "Komponent tegini yopish uchun"], correct: 2 },
-  { q: "Bitta GameCard bir nechta props (name, players, emoji) ola oladimi?", opts: ["Yo'q, faqat bittasini", "Faqat name'ni", "Faqat ikkitasini", "Ha, xohlagancha ko'p"], correct: 3 },
-  { q: "Katalog ro'yxatiga yangi o'yin qo'shsangiz nima bo'ladi?", opts: ["React yangi kartochkani o'zi chizadi", "Butun katalog buzilib qoladi", "Hech narsa — sayt eski holatda qoladi", "Butun katalog kodini qayta yozasiz"], correct: 0 },
-  { q: "Bir komponentni har xil ma'lumot bilan ko'p marta ishlatish nima deyiladi?", opts: ["Qayta yuklash (reload)", "Qayta ishlatish (reuse)", "Butunlay o'chirish (delete)", "Boshqa tilga tarjima (translate)"], correct: 1 },
-  { q: "<GameCard name=\"Doors\" /> da \"Doors\" GameCard ichiga qanday yetib boradi?", opts: ["State orqali", "Internet orqali", "props orqali", "Alohida fayl orqali"], correct: 2 },
-  { q: "O'yinlar ma'lumoti ro'yxati odatda nimada saqlanadi?", opts: ["Bitta son o'zgaruvchida", "className ichida", "Faqat brauzer xotirasida", "Massiv (ro'yxat)da"], correct: 3 },
+  { q: { uz: "Props nima?", ru: 'Что такое props?' }, opts: [{ uz: "Komponentga uzatiladigan ma'lumot", ru: 'Данные, передаваемые компоненту' }, { uz: "Komponentning ichki rangi", ru: 'Внутренний цвет компонента' }, { uz: "Internetni tezlashtiruvchi sozlama", ru: 'Настройка, ускоряющая интернет' }, { uz: "Brauzerga qo'shiladigan kengaytma", ru: 'Расширение для браузера' }], correct: 0 },
+  { q: { uz: "App ma'lumotni GameCard'ga qanday uzatadi?", ru: 'Как App передаёт данные в GameCard?' }, opts: [{ uz: "Faylga saqlab qo'yib", ru: 'Сохранив в файл' }, { uz: "Atribut orqali: name=\"...\"", ru: 'Через атрибут: name="..."' }, { uz: "Internet orqali yuborib", ru: 'Отправив через интернет' }, { uz: "GameCard o'zi App'dan olib ketadi", ru: 'GameCard сам забирает из App' }], correct: 1 },
+  { q: { uz: "Props qaysi yo'nalishda oqadi?", ru: 'В каком направлении текут props?' }, opts: [{ uz: "Pastdan yuqoriga — boladan otaga", ru: 'Снизу вверх — от ребёнка к родителю' }, { uz: "Istalgan tomonga — yuqoriga ham, pastga ham", ru: 'В любую сторону — и вверх, и вниз' }, { uz: "Faqat yuqoridan pastga — otadan bolaga", ru: 'Только сверху вниз — от родителя к ребёнку' }, { uz: "Props umuman oqmaydi — bir joyda turadi", ru: 'Props вообще не текут — стоят на месте' }], correct: 2 },
+  { q: { uz: "Komponent o'ziga kelgan props'ni o'zgartira oladimi?", ru: 'Может ли компонент изменить пришедшие props?' }, opts: [{ uz: "Ha, xohlagancha o'zgartiradi", ru: 'Да, меняет сколько угодно' }, { uz: "Faqat bir marta o'zgartiradi", ru: 'Меняет только один раз' }, { uz: "Faqat kichik props'ni o'zgartiradi", ru: 'Меняет только маленькие props' }, { uz: "Yo'q, props faqat o'qiladi", ru: 'Нет, props только читаются' }], correct: 3 },
+  { q: { uz: "Ro'yxatdan kartochkalar katalogini nima yasaydi?", ru: 'Что делает из списка каталог карточек?' }, opts: [{ uz: "map metodi", ru: 'Метод map' }, { uz: "push metodi", ru: 'Метод push' }, "className", "state"], correct: 0 },
+  { q: { uz: "O'zgarib turadigan narsa uchun props o'rniga nima ishlatiladi?", ru: 'Что используется вместо props для изменяемых значений?' }, opts: [{ uz: "Yana props", ru: 'Снова props' }, "State", { uz: "Atribut", ru: 'Атрибут' }, "map"], correct: 1 },
+  { q: { uz: "name={g} yozuvidagi jingalak qavs { } nima uchun?", ru: 'Зачем фигурные скобки { } в записи name={g}?' }, opts: [{ uz: "Oddiy matn satrini yozish uchun", ru: 'Чтобы написать обычную строку текста' }, { uz: "Kodga izoh qoldirish uchun", ru: 'Чтобы оставить комментарий в коде' }, { uz: "O'zgaruvchi qiymatini uzatish uchun", ru: 'Чтобы передать значение переменной' }, { uz: "Komponent tegini yopish uchun", ru: 'Чтобы закрыть тег компонента' }], correct: 2 },
+  { q: { uz: "Bitta GameCard bir nechta props (name, players, emoji) ola oladimi?", ru: 'Может ли один GameCard получить несколько props (name, players, emoji)?' }, opts: [{ uz: "Yo'q, faqat bittasini", ru: 'Нет, только один' }, { uz: "Faqat name'ni", ru: 'Только name' }, { uz: "Faqat ikkitasini", ru: 'Только два' }, { uz: "Ha, xohlagancha ko'p", ru: 'Да, сколько угодно' }], correct: 3 },
+  { q: { uz: "Katalog ro'yxatiga yangi o'yin qo'shsangiz nima bo'ladi?", ru: 'Что будет, если добавить в список каталога новую игру?' }, opts: [{ uz: "React yangi kartochkani o'zi chizadi", ru: 'React сам нарисует новую карточку' }, { uz: "Butun katalog buzilib qoladi", ru: 'Весь каталог сломается' }, { uz: "Hech narsa — sayt eski holatda qoladi", ru: 'Ничего — сайт останется прежним' }, { uz: "Butun katalog kodini qayta yozasiz", ru: 'Перепишете весь код каталога' }], correct: 0 },
+  { q: { uz: "Bir komponentni har xil ma'lumot bilan ko'p marta ishlatish nima deyiladi?", ru: 'Как называется многократное использование компонента с разными данными?' }, opts: [{ uz: "Qayta yuklash (reload)", ru: 'Перезагрузка (reload)' }, { uz: "Qayta ishlatish (reuse)", ru: 'Переиспользование (reuse)' }, { uz: "Butunlay o'chirish (delete)", ru: 'Полное удаление (delete)' }, { uz: "Boshqa tilga tarjima (translate)", ru: 'Перевод на другой язык (translate)' }], correct: 1 },
+  { q: { uz: "<GameCard name=\"Doors\" /> da \"Doors\" GameCard ichiga qanday yetib boradi?", ru: 'Как "Doors" из <GameCard name="Doors" /> попадает внутрь GameCard?' }, opts: [{ uz: "State orqali", ru: 'Через state' }, { uz: "Internet orqali", ru: 'Через интернет' }, { uz: "props orqali", ru: 'Через props' }, { uz: "Alohida fayl orqali", ru: 'Через отдельный файл' }], correct: 2 },
+  { q: { uz: "O'yinlar ma'lumoti ro'yxati odatda nimada saqlanadi?", ru: 'В чём обычно хранится список данных об играх?' }, opts: [{ uz: "Bitta son o'zgaruvchida", ru: 'В одной числовой переменной' }, { uz: "className ichida", ru: 'Внутри className' }, { uz: "Faqat brauzer xotirasida", ru: 'Только в памяти браузера' }, { uz: "Massiv (ro'yxat)da", ru: 'В массиве (списке)' }], correct: 3 },
 ];
 const CsNeonBolt = ({ flip }) => (
   <span className={`csn-boltwrap ${flip ? 'flip' : ''}`} aria-hidden="true">
@@ -2054,11 +2066,11 @@ const CsWordmark = ({ onClick, disabled, hint, stats = true, bolt = true, liveOn
       </div>
       {stats && (
         <div className="cs-hud">
-          <span className="cs-hud-i"><b>{QUIZ_BANK.length}</b> SAVOL</span>
+          <span className="cs-hud-i"><b>{QUIZ_BANK.length}</b> {tr({ uz: 'SAVOL', ru: 'ВОПРОСОВ' })}</span>
           <span className="cs-hud-dot">·</span>
-          <span className="cs-hud-i"><b>{QUIZ_MS / 1000}</b> SONIYA</span>
+          <span className="cs-hud-i"><b>{QUIZ_MS / 1000}</b> {tr({ uz: 'SONIYA', ru: 'СЕКУНД' })}</span>
           <span className="cs-hud-dot">·</span>
-          <span className="cs-hud-i">🏆 PODIUM</span>
+          <span className="cs-hud-i">{tr({ uz: '🏆 PODIUM', ru: '🏆 ПОДИУМ' })}</span>
         </div>
       )}
       {hint && <span className={`cs-enter ${disabled ? 'wait' : ''}`}>{hint}</span>}
@@ -2272,7 +2284,7 @@ function QuizArena({ live, onClose, startSolo }) {
   // Mentor test o'rtasida ✕ bossa — ogohlantiramiz: sinf arenada kutib qoladi.
   const closeArena = () => {
     if (isMentor && !solo && phase !== 'done') {
-      if (!window.confirm("Test hali yakunlanmadi — yopsangiz o'quvchilar arenada kutib qoladi.\nKeyin «⚡ Davom ettirish» bilan aynan shu joydan qaytishingiz mumkin.\n\nBaribir yopilsinmi?")) return;
+      if (!window.confirm(tr({ uz: "Test hali yakunlanmadi — yopsangiz o'quvchilar arenada kutib qoladi.\nKeyin «⚡ Davom ettirish» bilan aynan shu joydan qaytishingiz mumkin.\n\nBaribir yopilsinmi?", ru: 'Тест ещё не завершён — если закроете, ученики останутся ждать на арене.\nПотом можно вернуться в это же место через «⚡ Продолжить».\n\nВсё равно закрыть?' }))) return;
     }
     onClose();
   };
@@ -2285,13 +2297,13 @@ function QuizArena({ live, onClose, startSolo }) {
         ))}
       </div>
       <QzFX />
-      <button className="qz-x" onClick={closeArena} aria-label="Yopish">✕</button>
+      <button className="qz-x" onClick={closeArena} aria-label={tr({ uz: 'Yopish', ru: 'Закрыть' })}>✕</button>
 
       {/* QUTQARUV: jonli dars tugadi — o'quvchi osilib qolmaydi, mashq rejimida davom etadi */}
       {classEnded && isStudent && !solo && phase !== 'done' && (
         <div className="qz-endnote fade-step">
-          <span>⚠️ Jonli dars yakunlandi — testni o'zingiz davom ettiring:</span>
-          <button className="qz-btn" onClick={startPractice}>📖 Mashq rejimida davom etish</button>
+          <span>{tr({ uz: "⚠️ Jonli dars yakunlandi — testni o'zingiz davom ettiring:", ru: '⚠️ Живой урок завершён — продолжайте тест сами:' })}</span>
+          <button className="qz-btn" onClick={startPractice}>{tr({ uz: '📖 Mashq rejimida davom etish', ru: '📖 Продолжить в режиме тренировки' })}</button>
         </div>
       )}
 
@@ -2299,16 +2311,16 @@ function QuizArena({ live, onClose, startSolo }) {
       {phase === 'lobby' && (
         <div className="qz-view fade-step">
           <CsWordmark />
-          <p className="qz-sub" style={{ marginTop: -4 }}>Tezroq to'g'ri bossangiz — ko'proq ball. Ketma-ket to'g'ri javoblar 🔥 bonus beradi!</p>
+          <p className="qz-sub" style={{ marginTop: -4 }}>{tr({ uz: "Tezroq to'g'ri bossangiz — ko'proq ball. Ketma-ket to'g'ri javoblar 🔥 bonus beradi!", ru: 'Чем быстрее верный ответ — тем больше баллов. Серия верных ответов даёт 🔥 бонус!' })}</p>
           {!solo && (
             <div className="qz-lobby-players">
               {players.map(p => <span key={p.id} className={`qz-pchip ${p.id === live.playerId ? 'me' : ''}`}>{p.nickname}</span>)}
-              {players.length === 0 && <span className="qz-dimtxt">O'quvchilar kutilmoqda…</span>}
+              {players.length === 0 && <span className="qz-dimtxt">{tr({ uz: "O'quvchilar kutilmoqda…", ru: 'Ждём учеников…' })}</span>}
             </div>
           )}
-          {isMentor && <button className="qz-btn big" disabled={players.length === 0} onClick={() => ctrl('q', 0)}>▶ Testni boshlash</button>}
-          {isStudent && !solo && <p className="qz-waitmsg">⏳ Mentor testni boshlashini kuting…</p>}
-          {solo && <button className="qz-btn big" onClick={() => soloStart(0)}>▶ Boshlash</button>}
+          {isMentor && <button className="qz-btn big" disabled={players.length === 0} onClick={() => ctrl('q', 0)}>{tr({ uz: '▶ Testni boshlash', ru: '▶ Начать тест' })}</button>}
+          {isStudent && !solo && <p className="qz-waitmsg">{tr({ uz: '⏳ Mentor testni boshlashini kuting…', ru: '⏳ Ждите, пока ментор начнёт тест…' })}</p>}
+          {solo && <button className="qz-btn big" onClick={() => soloStart(0)}>{tr({ uz: '▶ Boshlash', ru: '▶ Начать' })}</button>}
         </div>
       )}
 
@@ -2316,30 +2328,30 @@ function QuizArena({ live, onClose, startSolo }) {
       {phase === 'q' && Q && (
         <div className="qz-view qz-qview fade-step" key={`q${qi}`}>
           <div className="qz-top">
-            <span className="qz-count">Savol <b>{qi + 1}</b>/{QUIZ_BANK.length}</span>
+            <span className="qz-count">{tr({ uz: 'Savol', ru: 'Вопрос' })} <b>{qi + 1}</b>/{QUIZ_BANK.length}</span>
             <QzTimer remaining={remaining} />
             {isMentor
               ? <span className="qz-ansn">📨 {answeredN}/{players.length}</span>
               : <span className="qz-ansn">{streakUpTo(qi - 1) >= 2 ? `🔥 x${streakUpTo(qi - 1)}` : ' '}</span>}
           </div>
-          <h2 className="qz-q">{fmtCode(Q.q)}</h2>
+          <h2 className="qz-q">{fmtCode(tr(Q.q))}</h2>
           <div className="qz-grid">
             {Q.opts.map((o, i) => {
               const pickedThis = my && my.picked === i;
               return (
                 <button key={i} className={`qz-tile ${my ? (pickedThis ? 'picked' : 'faded') : ''}`} style={{ background: QUIZ_COLORS[i] }} disabled={isMentor || !!my} onClick={() => answer(i)}>
                   <span className="qz-shape">{QUIZ_SHAPES[i]}</span>
-                  <span className="qz-opt">{fmtCode(o)}</span>
+                  <span className="qz-opt">{fmtCode(tr(o))}</span>
                   {pickedThis && <span className="qz-pbadge">✔</span>}
                 </button>
               );
             })}
           </div>
-          {my && !isMentor && !solo && <p className="qz-waitmsg">✔ Javob qabul qilindi — natijani kuting…</p>}
+          {my && !isMentor && !solo && <p className="qz-waitmsg">{tr({ uz: '✔ Javob qabul qilindi — natijani kuting…', ru: '✔ Ответ принят — ждите результат…' })}</p>}
           {isMentor && (
             <div className="qz-mrow">
-              {answeredN >= players.length && players.length > 0 && <span className="qz-allin">✓ Hamma javob berdi!</span>}
-              <button className="qz-btn" onClick={() => ctrl('r', qi)}>⏹ Natijani ochish</button>
+              {answeredN >= players.length && players.length > 0 && <span className="qz-allin">{tr({ uz: '✓ Hamma javob berdi!', ru: '✓ Все ответили!' })}</span>}
+              <button className="qz-btn" onClick={() => ctrl('r', qi)}>{tr({ uz: '⏹ Natijani ochish', ru: '⏹ Открыть результат' })}</button>
             </div>
           )}
         </div>
@@ -2349,9 +2361,9 @@ function QuizArena({ live, onClose, startSolo }) {
       {phase === 'reveal' && Q && (
         <div className="qz-view qz-qview fade-step" key={`r${qi}`}>
           <div className="qz-top">
-            <span className="qz-count">Savol <b>{qi + 1}</b>/{QUIZ_BANK.length} — natija</span>
+            <span className="qz-count">{tr({ uz: 'Savol', ru: 'Вопрос' })} <b>{qi + 1}</b>/{QUIZ_BANK.length} — {tr({ uz: 'natija', ru: 'результат' })}</span>
           </div>
-          <h2 className="qz-q">{fmtCode(Q.q)}</h2>
+          <h2 className="qz-q">{fmtCode(tr(Q.q))}</h2>
           <div className="qz-grid">
             {Q.opts.map((o, i) => {
               const win = i === Q.correct;
@@ -2359,7 +2371,7 @@ function QuizArena({ live, onClose, startSolo }) {
               return (
                 <div key={i} className={`qz-tile rv ${win ? 'win' : 'lose'} ${pickedThis ? 'picked' : ''}`} style={{ background: QUIZ_COLORS[i] }}>
                   <span className="qz-shape">{QUIZ_SHAPES[i]}</span>
-                  <span className="qz-opt">{fmtCode(o)}</span>
+                  <span className="qz-opt">{fmtCode(tr(o))}</span>
                   <span className="qz-cnt">{win ? '✓ ' : ''}{counts[i]}</span>
                 </div>
               );
@@ -2368,9 +2380,9 @@ function QuizArena({ live, onClose, startSolo }) {
           {!isMentor && (
             <div className={`qz-res ${my?.correct ? 'good' : 'bad'}`}>
               {my?.correct
-                ? <><span className="qz-res-pts">+{myPtsFor(qi)}</span><span className="qz-res-t">ball{streakUpTo(qi) >= 2 ? ` · 🔥 x${streakUpTo(qi)} streak` : ''}</span></>
-                : <span className="qz-res-t">{my ? "Xato — 0 ball. Keyingisida olasiz! 💪" : "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱"}</span>}
-              {!solo && myRank >= 0 && <span className="qz-res-rank">Siz hozir: {myRank + 1}-o'rin</span>}
+                ? <><span className="qz-res-pts">+{myPtsFor(qi)}</span><span className="qz-res-t">{tr({ uz: 'ball', ru: 'баллов' })}{streakUpTo(qi) >= 2 ? tr({ uz: ` · 🔥 x${streakUpTo(qi)} streak`, ru: ` · 🔥 x${streakUpTo(qi)} стрик` }) : ''}</span></>
+                : <span className="qz-res-t">{my ? tr({ uz: "Xato — 0 ball. Keyingisida olasiz! 💪", ru: 'Ошибка — 0 баллов. Возьмёте на следующем! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Быстрее! ⏱' })}</span>}
+              {!solo && myRank >= 0 && <span className="qz-res-rank">{tr({ uz: `Siz hozir: ${myRank + 1}-o'rin`, ru: `Вы сейчас: ${myRank + 1}-е место` })}</span>}
             </div>
           )}
           {!solo && (
@@ -2385,8 +2397,8 @@ function QuizArena({ live, onClose, startSolo }) {
               ))}
             </div>
           )}
-          {isMentor && <button className="qz-btn big" onClick={() => lastQ ? ctrl('done', qi) : ctrl('q', qi + 1)}>{lastQ ? "🏁 G'oliblarni e'lon qilish" : 'Keyingi savol →'}</button>}
-          {solo && <button className="qz-btn big" onClick={soloNext}>{lastQ ? '🏁 Natijani ko\'rish' : 'Keyingi →'}</button>}
+          {isMentor && <button className="qz-btn big" onClick={() => lastQ ? ctrl('done', qi) : ctrl('q', qi + 1)}>{lastQ ? tr({ uz: "🏁 G'oliblarni e'lon qilish", ru: '🏁 Объявить победителей' }) : tr({ uz: 'Keyingi savol →', ru: 'Следующий вопрос →' })}</button>}
+          {solo && <button className="qz-btn big" onClick={soloNext}>{lastQ ? tr({ uz: "🏁 Natijani ko'rish", ru: '🏁 Посмотреть результат' }) : tr({ uz: 'Keyingi →', ru: 'Дальше →' })}</button>}
         </div>
       )}
 
@@ -2394,12 +2406,12 @@ function QuizArena({ live, onClose, startSolo }) {
       {phase === 'done' && (
         <div className="qz-view fade-step">
           <Confetti />
-          <h2 className="qz-h">🏆 Test yakunlandi!</h2>
+          <h2 className="qz-h">{tr({ uz: '🏆 Test yakunlandi!', ru: '🏆 Тест завершён!' })}</h2>
           {solo ? (
             <div className="qz-solo-res">
               <div className="qz-solo-pts">{soloScore.pts}</div>
-              <p className="qz-sub">ball · {soloScore.ok}/{QUIZ_BANK.length} to'g'ri{soloScore.maxStreak >= 2 ? ` · eng uzun streak 🔥x${soloScore.maxStreak}` : ''}</p>
-              <button className="qz-btn big" onClick={soloReplay}>↻ Qayta ishlash</button>
+              <p className="qz-sub">{tr({ uz: `ball · ${soloScore.ok}/${QUIZ_BANK.length} to'g'ri${soloScore.maxStreak >= 2 ? ` · eng uzun streak 🔥x${soloScore.maxStreak}` : ''}`, ru: `баллов · ${soloScore.ok}/${QUIZ_BANK.length} верных${soloScore.maxStreak >= 2 ? ` · самый длинный стрик 🔥x${soloScore.maxStreak}` : ''}` })}</p>
+              <button className="qz-btn big" onClick={soloReplay}>{tr({ uz: '↻ Qayta ishlash', ru: '↻ Пройти заново' })}</button>
             </div>
           ) : (
             <>
@@ -2411,13 +2423,13 @@ function QuizArena({ live, onClose, startSolo }) {
                       {rank === 0 && <span className="qz-crown">👑</span>}
                       <span className="qz-pod-medal">{['🥇', '🥈', '🥉'][rank]}</span>
                       <span className="qz-pod-name">{b ? b.nickname : '—'}</span>
-                      {b && <span className="qz-pod-pts">{b.pts} ball · {b.ok}/{QUIZ_BANK.length}</span>}
+                      {b && <span className="qz-pod-pts">{b.pts} {tr({ uz: 'ball', ru: 'баллов' })} · {b.ok}/{QUIZ_BANK.length}</span>}
                       <div className="qz-pod-bar" />
                     </div>
                   );
                 })}
               </div>
-              {myRank >= 0 && <p className="qz-mypl">Siz — <b>{myRank + 1}-o'rin</b> · {board[myRank].pts} ball</p>}
+              {myRank >= 0 && <p className="qz-mypl">{tr({ uz: <>Siz — <b>{myRank + 1}-o'rin</b> · {board[myRank].pts} ball</>, ru: <>Вы — <b>{myRank + 1}-е место</b> · {board[myRank].pts} баллов</> })}</p>}
               <div className="qz-board wide">
                 {board.map((b, i) => (
                   <div key={b.id} className={`qz-brow ${b.id === live.playerId ? 'me' : ''}`}>
@@ -2428,10 +2440,10 @@ function QuizArena({ live, onClose, startSolo }) {
                   </div>
                 ))}
               </div>
-              {isStudent && <button className="qz-btn" onClick={startPractice}>↻ Testni qayta ishlash — mashq (jadvalga yozilmaydi)</button>}
+              {isStudent && <button className="qz-btn" onClick={startPractice}>{tr({ uz: '↻ Testni qayta ishlash — mashq (jadvalga yozilmaydi)', ru: '↻ Пройти тест заново — тренировка (в таблицу не пишется)' })}</button>}
             </>
           )}
-          <button className="qz-btn ghost" onClick={closeArena}>Arenani yopish</button>
+          <button className="qz-btn ghost" onClick={closeArena}>{tr({ uz: 'Arenani yopish', ru: 'Закрыть арену' })}</button>
         </div>
       )}
     </div>
@@ -2475,18 +2487,18 @@ const ScreenPodium = ({ screen, answers, onNext, onPrev }) => {
   const selfCorrect = SCORED_IDX.filter(i => answers[i]?.correct).length;
 
   return (
-    <Stage eyebrow="Natijalar" screen={screen} narrow navContent={<><NavBack onPrev={onPrev} /><NavNext label="Davom etish" onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Natijalar', ru: 'Результаты' })} screen={screen} narrow navContent={<><NavBack onPrev={onPrev} /><NavNext label={tr({ uz: 'Davom etish', ru: 'Продолжить' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(14px,2.2vw,20px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Kim <span className="italic" style={{ color: T.accent }}>g'olib</span>?</h2></div>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Kim <span className="italic" style={{ color: T.accent }}>g'olib</span>?</>, ru: <>Кто <span className="italic" style={{ color: T.accent }}>победитель</span>?</> })}</h2></div>
         {!isLive ? (
           <div className="fade-up" style={{ display: 'flex', flexDirection: 'column', gap: 16, alignItems: 'center' }}>
             <ScoreRing correct={selfCorrect} total={totalQ} />
-            <div className="frame-soft" style={{ maxWidth: 480 }}><p className="body" style={{ margin: 0 }}>Siz mustaqil rejimdasiz. Jonli darsda bu yerda butun guruh reytingi — 🥇🥈🥉 podium chiqadi.</p></div>
+            <div className="frame-soft" style={{ maxWidth: 480 }}><p className="body" style={{ margin: 0 }}>{tr({ uz: 'Siz mustaqil rejimdasiz. Jonli darsda bu yerda butun guruh reytingi — 🥇🥈🥉 podium chiqadi.', ru: 'Вы в самостоятельном режиме. На живом уроке здесь будет рейтинг всей группы — подиум 🥇🥈🥉.' })}</p></div>
           </div>
         ) : !loaded ? (
-          <p className="mono small fade-up" style={{ color: T.ink2 }}>Natijalar yuklanmoqda…</p>
+          <p className="mono small fade-up" style={{ color: T.ink2 }}>{tr({ uz: 'Natijalar yuklanmoqda…', ru: 'Результаты загружаются…' })}</p>
         ) : board.length === 0 ? (
-          <div className="frame-soft fade-up"><p className="body" style={{ margin: 0 }}>Bu sessiyaga hali hech kim qo'shilmagan.</p></div>
+          <div className="frame-soft fade-up"><p className="body" style={{ margin: 0 }}>{tr({ uz: "Bu sessiyaga hali hech kim qo'shilmagan.", ru: 'К этой сессии пока никто не присоединился.' })}</p></div>
         ) : (
           <>
             <Confetti />
@@ -2503,15 +2515,15 @@ const ScreenPodium = ({ screen, answers, onNext, onPrev }) => {
                 );
               })}
             </div>
-            {myIdx >= 0 && <p className="pod-my fade-up">Siz — <b>{myIdx + 1}-o'rin</b> ({board[myIdx].okCount}/{totalQ} to'g'ri)</p>}
+            {myIdx >= 0 && <p className="pod-my fade-up">{tr({ uz: <>Siz — <b>{myIdx + 1}-o'rin</b> ({board[myIdx].okCount}/{totalQ} to'g'ri)</>, ru: <>Вы — <b>{myIdx + 1}-е место</b> ({board[myIdx].okCount}/{totalQ} верных)</> })}</p>}
             <div className="card fade-up d1">
-              <div className="card-lbl" style={{ color: T.accent }}>🏆 To'liq reyting</div>
+              <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: "🏆 To'liq reyting", ru: '🏆 Полный рейтинг' })}</div>
               <div className="pod-list">
                 {board.map((b, i) => (
                   <div key={b.id} className={`pod-row ${live.playerId === b.id ? 'me' : ''}`}>
                     <span className="mono pod-rank">{i + 1}</span>
                     <span className="pod-row-name">{b.nickname}</span>
-                    <span className="pod-row-dots">{SCORED_IDX.map(q => { const a = rows.find(r => r.player_id === b.id && r.screen_idx === q); return <span key={q} className={`pod-dot ${a ? (a.correct ? 'ok' : 'bad') : ''}`} title={Q_LABELS[q]} />; })}</span>
+                    <span className="pod-row-dots">{SCORED_IDX.map(q => { const a = rows.find(r => r.player_id === b.id && r.screen_idx === q); return <span key={q} className={`pod-dot ${a ? (a.correct ? 'ok' : 'bad') : ''}`} title={tr(Q_LABELS[q])} />; })}</span>
                     <span className="mono pod-row-score">{b.okCount}/{totalQ}</span>
                     <span className="mono pod-row-time">{fmtT(b.time)}</span>
                   </div>
@@ -2528,16 +2540,16 @@ const ScreenPodium = ({ screen, answers, onNext, onPrev }) => {
 // ===== SCREEN 16 — YAKUN =====
 const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) => {
   const RECAP = [
-    "Ma'lumot atribut orqali uzatiladi: <GameCard name=\"…\" /> → props",
-    "Bir nechta props: name, players, emoji — har biri alohida",
-    "Oqim faqat yuqoridan pastga: otadan bolaga",
-    "Props faqat o'qiladi — o'zgaruvchan narsa uchun state",
-    "Ro'yxat + map = katalog: name={g} jingalak qavs bilan"
+    { uz: "Ma'lumot atribut orqali uzatiladi: <GameCard name=\"…\" /> → props", ru: 'Данные передаются через атрибут: <GameCard name="…" /> → props' },
+    { uz: "Bir nechta props: name, players, emoji — har biri alohida", ru: 'Несколько props: name, players, emoji — каждый отдельно' },
+    { uz: "Oqim faqat yuqoridan pastga: otadan bolaga", ru: 'Поток только сверху вниз: от родителя к ребёнку' },
+    { uz: "Props faqat o'qiladi — o'zgaruvchan narsa uchun state", ru: 'Props только читаются — для изменяемого есть state' },
+    { uz: "Ro'yxat + map = katalog: name={g} jingalak qavs bilan", ru: 'Список + map = каталог: name={g} с фигурными скобками' }
   ];
   const HOMEWORK = [
-    { b: 'Katalog', t: "— robo-games loyihangizda 5 ta sevimli o'yindan ro'yxat tuzib, map bilan katalog chizing" },
-    { b: 'Boy kartochka', t: "— har o'yinga players va emoji props'larini ham uzating" },
-    { b: 'TOP belgisi', t: "— eng sevimli o'yiningizga top={true} uzatib, 🔥 belgi chiqaring" }
+    { b: { uz: 'Katalog', ru: 'Каталог' }, t: { uz: "— robo-games loyihangizda 5 ta sevimli o'yindan ro'yxat tuzib, map bilan katalog chizing", ru: '— в проекте robo-games составьте список из 5 любимых игр и нарисуйте каталог через map' } },
+    { b: { uz: 'Boy kartochka', ru: 'Богатая карточка' }, t: { uz: "— har o'yinga players va emoji props'larini ham uzating", ru: '— передайте каждой игре ещё props players и emoji' } },
+    { b: { uz: 'TOP belgisi', ru: 'Значок TOP' }, t: { uz: "— eng sevimli o'yiningizga top={true} uzatib, 🔥 belgi chiqaring", ru: '— передайте top={true} самой любимой игре и выведите значок 🔥' } }
   ];
   const _gate = useContext(LiveGateCtx) || {};
   const _live = _gate.live;
@@ -2559,25 +2571,25 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
   const PASSED = (total ? correct / total : 0) >= 0.6;
   const audio = useAudio([{ id: 's16', text: `Tabriklaymiz — katalogingiz tayyor! Esda saqlang: ma'lumot atribut orqali props bo'lib uzatiladi, oqim faqat yuqoridan pastga, props faqat o'qiladi. Ro'yxat va map esa butun katalogni bitta qator kod bilan chizadi. Keyingi darsda o'yinlar ro'yxatini internetdagi serverdan olamiz.`, trigger: 'on_mount', waits_for: null }]);
   return (
-    <Stage eyebrow="Tayyor" screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>Qaytadan</button><button className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>Yakunlash ✓</button></>}>
+    <Stage eyebrow={tr({ uz: 'Tayyor', ru: 'Готово' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><button className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash ✓', ru: 'Завершить ✓' })}</button></>}>
       <div className="screen">
-        <div className="hero"><div className="hero-l"><span className="done-chip fade-up"><span className="tick">✓</span> Dars tugadi</span><h2 className="title h-title fade-up d1">Katalogingiz <span className="italic" style={{ color: T.accent }}>tayyor</span>.</h2><p className="body h-sub fade-up d2">{PASSED ? "Tabriklaymiz! Endi ma'lumot komponentlar orasida sizning xohishingiz bilan oqadi — Roblox'dagiday katalog qurdingiz." : "Yaxshi harakat! Props oqimi va map'ni mustahkamlash uchun bir-ikki ekranni qayta ko'ring."}</p></div><ScoreRing correct={correct} total={total} /></div>
+        <div className="hero"><div className="hero-l"><span className="done-chip fade-up"><span className="tick">✓</span> {tr({ uz: 'Dars tugadi', ru: 'Урок завершён' })}</span><h2 className="title h-title fade-up d1">{tr({ uz: <>Katalogingiz <span className="italic" style={{ color: T.accent }}>tayyor</span>.</>, ru: <>Ваш каталог <span className="italic" style={{ color: T.accent }}>готов</span>.</> })}</h2><p className="body h-sub fade-up d2">{PASSED ? tr({ uz: "Tabriklaymiz! Endi ma'lumot komponentlar orasida sizning xohishingiz bilan oqadi — Roblox'dagiday katalog qurdingiz.", ru: 'Поздравляем! Теперь данные текут между компонентами по вашей воле — вы собрали каталог как в Roblox.' }) : tr({ uz: "Yaxshi harakat! Props oqimi va map'ni mustahkamlash uchun bir-ikki ekranni qayta ko'ring.", ru: 'Хорошая работа! Чтобы закрепить поток props и map, пересмотрите пару экранов.' })}</p></div><ScoreRing correct={correct} total={total} /></div>
         <div className={`qz-cta cs-cta fade-up d2 ${studentLive ? 'ready' : ''}`}>
-          <CsWordmark stats={false} liveOn={studentLive} disabled={studentWait} onClick={studentWait ? undefined : openArena} hint={studentWait ? '⏳ Mentorni kuting' : undefined} />
+          <CsWordmark stats={false} liveOn={studentLive} disabled={studentWait} onClick={studentWait ? undefined : openArena} hint={studentWait ? tr({ uz: '⏳ Mentorni kuting', ru: '⏳ Ждите ментора' }) : undefined} />
         </div>
         {arena && <QuizArena live={_live || { mode: 'self' }} startSolo={arenaSolo} onClose={() => setArena(false)} />}
         <div className="split">
-          <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> Endi siz bilasiz</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{r}</span></li>))}</ul></div>
-          <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>📝 Uyga vazifa</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>Antigravity bilan o'z loyihangizda sinang:</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{h.b}</b> <span className="t">{h.t}</span></li>))}</ul><p className="hw-note">Keyingi darsda katta sirni ochamiz: o'yinlar ro'yxati kod ichidan chiqib ketadi — uni internetdagi serverdan olamiz! 🚀</p></div>
+          <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> {tr({ uz: 'Endi siz bilasiz', ru: 'Теперь вы знаете' })}</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{tr(r)}</span></li>))}</ul></div>
+          <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: "Antigravity bilan o'z loyihangizda sinang:", ru: 'Попробуйте в своём проекте с Antigravity:' })}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: "Keyingi darsda katta sirni ochamiz: o'yinlar ro'yxati kod ichidan chiqib ketadi — uni internetdagi serverdan olamiz! 🚀", ru: 'На следующем уроке раскроем большой секрет: список игр покинет код — мы получим его с сервера в интернете! 🚀' })}</p></div>
         </div>
         <div className="card ach-coll fade-up d3">
-          <div className="card-lbl" style={{ color: T.accent }}>🏅 Nishonlaringiz — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
+          <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🏅 Nishonlaringiz —', ru: '🏅 Ваши значки —' })} {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">
             {Object.entries(ACHIEVEMENTS).map(([id, a]) => { const got = !!(achievements && achievements.has(id)); return (
-              <div key={id} className={`ach-badge ${got ? 'got' : 'locked'}`} title={a.desc}>
+              <div key={id} className={`ach-badge ${got ? 'got' : 'locked'}`} title={tr(a.desc)}>
                 <span className="ach-badge-ic">{got ? a.icon : '🔒'}</span>
                 <span className="ach-badge-name">{a.name}</span>
-                {got && <span className="ach-badge-desc">{a.desc}</span>}
+                {got && <span className="ach-badge-desc">{tr(a.desc)}</span>}
               </div>
             ); })}
           </div>
@@ -2590,6 +2602,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
 // ============================================================ LESSON ROOT — ({ lang, onFinished })
 export default function ReactPropsReuseLesson({ lang: langProp, onFinished }) {
   const lang = langProp || 'uz';
+  __lang = lang; // UZ-RU: tr() uchun joriy til (render'dan oldin o'rnatiladi)
   const [screen, setScreen] = useState(0);
   const [answers, setAnswers] = useState({});
   const startTimeRef = useRef(Date.now());
@@ -3402,7 +3415,7 @@ export default function ReactPropsReuseLesson({ lang: langProp, onFinished }) {
       <LiveGateCtx.Provider value={{ locked, live }}>
         <div className="lesson-root">
           {live.mode === 'choosing' ? (
-            <LiveGate live={live} title="React darsi" />
+            <LiveGate live={live} title={tr({ uz: 'React darsi', ru: 'Урок React' })} />
           ) : (
             <>
               <Current screen={screen} storedAnswer={answers[screen]} answers={answers} achievements={earned} onAnswer={recordAnswer} onNext={next} onPrev={prev} onReset={reset} onFinish={finishLesson} />
