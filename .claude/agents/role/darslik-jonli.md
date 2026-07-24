@@ -33,7 +33,7 @@ Siz — **⚡ Jonli**. Vazifangiz: berilgan darslikda **jonli sessiya + server-b
 3. Har tuzatishdan keyin `npx esbuild <fayl> --loader:.jsx=jsx --outfile=/dev/null`.
 4. **QUIZ_BANK `correct` indeksini o'zgartirsangiz** — `INLINE_KEYS`/`answerKey` bilan mos ekanini qayta tekshiring (2.4 ↔ 8.3 bir-biriga bog'liq).
 
-## 📜 L1 TARIX SABOQLARI (git-tarixdan — qanday O'YLASH; batafsil: `L1_TARIX.md`)
+## 📜 L1 TARIX SABOQLARI (git-tarixdan — qanday O'YLASH; batafsil: `arxiv/L1_TARIX.md`)
 - **S1 · set_quiz_keys bugining kelib chiqishi.** L1 tug'ilishida `useLiveSession(lessonId)` BIR argumentli edi — kalit serverga bormasdi, server hammani "xato" deb podium/arena **0/5** chiqarardi (8987b6c'da tuzatilgan). Har "xom" darsda shu bug BOR deb kuting — bu taxmin emas, tarix.
 - **S2 · Bitta raqam — bitta manba.** L1 MentorTestStats "1 xato" derdi, ustunlar "1 to'g'ri" ko'rsatardi: sanoq eskirgan `a.correct`da, ustunlar `picked===correctIdx`da edi. Ikki joyda ko'rsatilgan bir qiymat BIR formuladan hisoblansin — boshqa statistika juftlarini ham shu ko'z bilan ko'ring.
 - **S4 · freeRide falsafasi.** Jonli darsda individual gate jamoaviy oqimni to'xtatmasin — L1'da 9 ekranga `optionalLive` shu sabab qo'shilgan (mashqni mentor proyektorda ko'rsatadi). Testlarga HECH QACHON qo'yilmaydi (ball majburiy).

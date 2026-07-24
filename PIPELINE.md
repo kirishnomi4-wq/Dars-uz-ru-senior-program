@@ -6,7 +6,7 @@
 >
 > **Etalon holati:** to'liq namuna = `Htmllesson1.jsx`, `Htmllesson2.jsx`, `CssLesson1.jsx`. Qolganlari shu uchtaga qarab quriladi.
 >
-> 📜 **`L1_TARIX.md`** — L1'ning 16-commitlik evolyutsiya saboqlari (nuqson→yechim→prinsip, M1–M8 meta-prinsiplar + S1–S42 saboqlar, rol-indeksi bilan). Har rol faylida o'z "L1 TARIX SABOQLARI" bo'limi bor; chuqurroq kontekst kerak bo'lsa rol shu fayldan o'qiydi.
+> 📜 **`arxiv/L1_TARIX.md`** — L1'ning 16-commitlik evolyutsiya saboqlari (nuqson→yechim→prinsip, M1–M8 meta-prinsiplar + S1–S42 saboqlar, rol-indeksi bilan). Har rol faylida o'z "L1 TARIX SABOQLARI" bo'limi bor; chuqurroq kontekst kerak bo'lsa rol shu fayldan o'qiydi.
 >
 > 🏆 **NAMUNAVIY DARS = `src/1-Modull/Htmllesson1.jsx`** (eng zo'r, oltin — YAGONA birlamchi namuna). ⚠️ `Htmllesson2.jsx`/`CssLesson1.jsx` — IKKINCHI DARAJALI (ba'zi joyda ESKIRGAN: masalan L2 nishon-nomlari o'zbekcha + popover "Nishonlar"). Farq bo'lsa — **HAR DOIM Htmllesson1 g'olib.** **Umumiy qoida (har rol uchun):** qanday qilish yoki qaysi logikani ishlatish noaniq bo'lsa — o'zidan yangi yo'l TO'QIMAsin; Htmllesson1'dan **aynan o'sha yo'lni** ko'rib takrorlasin (joyni `DARS_ETALON.md` **15-I MANBA XARITASI**dan topadi). Har rolning promptida ham shu yozilgan. Natijada barcha dars **bir xil, sinovdan o'tgan** yo'l bilan quriladi.
 
@@ -23,8 +23,9 @@
 | 3 | ✨ **Animatsiya** | `role/darslik-animatsiya.md` | Harakat: DragDrop, flip, bayram, tap-hint | ✅ Edit |
 | 4 | ⚡ **Jonli** | `role/darslik-jonli.md` | Ball/server-baholash to'g'riligi | ✅ Edit |
 | 5 | 🎓 **Metodist** «Zarina» | `role/darslik-metodist.md` | Til + abrazets (MATN_ETALONI, 4.1) | ✅ Edit |
+| 4.5 | 👦 **O'quvchi** | `role/darslik-oquvchi.md` | 13-yosh simulyator: tushunish-hisobot (Jonli'dan keyin + Metodist'dan keyin 2-o'qish) | ❌ yo'q (o'qish) |
 | 6 | 🔍 **Tekshiruvchi** | `role/darslik-tekshiruvchi.md` | Adversarial QA (14+8 checklist) | ✅ faqat mayda |
-| 7 | ✅ **Verifikator** | `role/darslik-verifikator.md` | esbuild + render imzo | ❌ yo'q |
+| 7 | ✅ **Verifikator** | `role/darslik-verifikator.md` | esbuild + render imzo (+2x RAD bayroqlari) | ❌ yo'q |
 
 **Sifat lensalari (grep tutmaydigan — har biri o'z o'lchovini "his qilib" baholaydi):** 💡 Ijodkor = idea · 🎨 Dizayn = ko'rinish · ✨ Animatsiya = harakat · 🎓 Metodist = ma'no/abrazets. Bular pipeline'ni "checklist"dan "did"ga ko'taradi.
 
@@ -39,11 +40,14 @@
    └─ [🚦 GATE 1 — SIZ] GAP-reja + Ijodkor kerakmi (idea zaif/yo'qmi) — tasdiqlang
 💡 Ijodkor  (FAQAT kerak bo'lsa — idea zaif/yo'q)  → konsept-brief
    └─ [🚦 GATE 1.5 — SIZ] Ijodiy ideani tasdiqlang (agar Ijodkor ishlagan bo'lsa — ta'm hakami)
-🏗️ Quruvchi    → esbuild darvoza   (tuzilma/wiring)
+🏗️ Quruvchi    → esbuild darvoza   (tuzilma/wiring + SCREEN_INTENTS — har ekranga 1 gaplik niyat)
 🎨 Dizayn       → esbuild darvoza   (vizual)
 ✨ Animatsiya    → esbuild darvoza   (harakat)
 ⚡ Jonli         → esbuild darvoza   (ball)
-🎓 Metodist      → esbuild darvoza   (til + abrazets)
+👦 O'quvchi (1-o'qish) → hisobot     (13-yosh simulyator, TUZATMAYDI — spec: OQUVCHI_DARVOZA.md)
+🎓 Metodist      → esbuild darvoza   (til + abrazets + 👦-hisobotga TUZATILDI/OQLANDI/RAD qarori)
+👦 O'quvchi (2-o'qish) → o'tish: «bilmadim» 0 · oqlanmagan so'z 0 · gloss-tartib 0 ·
+   niyat-moslik ≥13/15 · qayta-o'qilgan gap ≤2 (maks 2 aylanish; 2x RAD → inson-bayroq)
    └─ [🚦 GATE 2 — SIZ] Matn/pedagogika + umumiy ko'rinish/his — tasdiqlang (ta'm hakami)
 🔍 Tekshiruvchi  → esbuild darvoza
    └─ nuqson bo'lsa → mas'ul rolga QAYTAR (maks 2 aylanish) → keyin [🚦 SIZ]ga eskalatsiya
@@ -70,7 +74,7 @@
 6. **Human-gate — muhim nuqtalarda.** GATE 1 (Audit-reja), GATE 1.5 (ijodiy idea — agar Ijodkor ishlasa), GATE 2 (matn/dizayn/animatsiya — umumiy his), GATE 3 (yakuniy imzo). Foydalanuvchi — ta'm/nafislik hakami.
 7. **Holat manifesti.** `PIPELINE_STATE.md` — qaysi dars qaysi bosqichda. Tugagan bosqich qayta yurmaydi; bosqich o'tkazib yuborilmaydi.
 8. **Commit faqat buyruq bilan.** Foydalanuvchi aytmaguncha hech qachon commit yo'q. O'zgarishlar uncommitted qoladi.
-9. **Prompt-gigiena (2026-07-10 saboq).** Ko'rsatma o'z standartiga o'zi bo'ysunadi: rol/etalon/pipeline hujjatlari darslardan talab qilgan grep'lardan O'ZI ham o'tishi shart (kirill `grep -nP '[\x{0400}-\x{04FF}]'`, apostrof...). Sabab: AI ko'rsatmadagi uslubni takrorlaydi — xato yozilgan prompt xatoni dars matniga olib kiradi. Bu hujjatlarni tahrirlagan har kim yakunda shu grep'ni yuritadi (istisno: ataylab qo'yilgan namunalar — S31 misollari, `ru:` namuna, harflar ro'yxati). Qo'shimcha: hujjatlardagi satr raqamlari TAXMINIY — rollarga doim grep-anchor bering.
+9. **Prompt-gigiena (2026-07-10 saboq · 2026-07-24 F-0724-01 asbob bilan kuchaytirildi).** Ko'rsatma o'z standartiga o'zi bo'ysunadi: rol/etalon/pipeline hujjatlari darslardan talab qilgan grep'lardan O'ZI ham o'tishi shart. Sabab: AI ko'rsatmadagi uslubni takrorlaydi — xato yozilgan prompt xatoni dars matniga olib kiradi. **Asbob: `npm run lint:prompt`** (`prompt-lint.mjs`) — rol+qonun+jarayon MD'larda ARALASH-YOZUV so'zlarni (bir bo'lakda lotin+kirill homoglif) tutadi va `--fix` bilan tuzatadi; sof-kirill `ru:` namunalar, ruscha defis-birikmalar («PM-уроков») va jurnal-misollar («xatoWord»→«tuzatilgan» qaydlari) AVTO-ISTISNO. Bu hujjatlarni tahrirlagan har kim yakunda shu asbobni yuritadi — 0 topilma shart. Qo'shimcha: hujjatlardagi satr raqamlari TAXMINIY — rollarga doim grep-anchor bering.
 
 ---
 

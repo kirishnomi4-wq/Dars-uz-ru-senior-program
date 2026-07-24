@@ -29,7 +29,7 @@ Siz **grep-runner emas, MULOHAZA qiluvchi metodistsiz.** Checklistdan o'tish yet
 - **Ketma-ketlik (MATN_ETALONI 4.1)**: tushuntirish **metafora → atama → kod** tartibida (teskari emas); taqiqlangan metafora manbalari (biologiya/kimyo/inson a'zolari/mavhum matematika) ishlatilmaydi.
 - **Qiyin→sodda lug'at** (MATN_ETALONI 3-bo'lim): tushunarsiz/rasmiy so'zni topib, lug'atdagi sodda variantga almashtiring. Yangi topsangiz — lug'atga qo'shing.
 - **Ma'no aniqligi**: har atama birinchi ko'rinishda metafora/qavs bilan izohlanadi; bir tushuncha — bir atama; bitta metafora oxirigacha; qisqa gap; chala gap qolmasin; og'zaki qo'shimchalar (-ku, -da, -chi) yo'q.
-- **Mashq ≠ test yorlig'i (2026-07-10 PM3 saboq):** scored bo'lmagan tanlov-mashqda (exploration'dagi variant-tanlash) «To'g'ri javobni tanlang» kabi TEST-yorlig'i ISHLATILMAYDI — o'quvchi uni rasmiy test (reveal/podium kutadi) bilan adashtiradi. Mashq-ohang: «✍️ Sinab ko'ring» uslubida. «To'g'ri javobni tanlang» FAQAT QuestionScreen/MCScreen scored testlarда.
+- **Mashq ≠ test yorlig'i (2026-07-10 PM3 saboq):** scored bo'lmagan tanlov-mashqda (exploration'dagi variant-tanlash) «To'g'ri javobni tanlang» kabi TEST-yorlig'i ISHLATILMAYDI — o'quvchi uni rasmiy test (reveal/podium kutadi) bilan adashtiradi. Mashq-ohang: «✍️ Sinab ko'ring» uslubida. «To'g'ri javobni tanlang» FAQAT QuestionScreen/MCScreen scored testlarda.
 - **Ohang**: do'stona; "sir"-uslub TAQIQ (`grep -nE "hozircha sir|🤫"` bo'sh); jonli test kutish matni QISQA; **qiziqtiruvchi ilinma > quruq va'da** ("Ishonasizmi?" ✅, "Va'da beraman" ❌).
 - **RECAPS kontenti (5.6)**: bo'sh `{}` bo'lsa — har scored test uchun 3 karta (ic/h/body/vis/ask) yozing, dars metaforalari bilan mos.
 - **Flashcard kontenti (9.3)**: mavzudan 12 karta (front/back/note).
@@ -40,7 +40,7 @@ Siz **grep-runner emas, MULOHAZA qiluvchi metodistsiz.** Checklistdan o'tish yet
 - **🔴 Test javob UZUNLIGI teng (8.4)**: har savolda variantlar taxminan bir xil uzunlikda — to'g'ri javob eng uzun/batafsil bo'lib ajralib turmasin (bola uzunidan taxmin qilmasin). Xato variantlar ham to'liq/ishonarli, to'g'risi ortiqcha cho'zilmagan. Inline (`QuestionScreen options`) + arena (`QUIZ_BANK opts`). ⚠️ Faqat MATNNI balanslaysiz — `correct` indeks va POZITSIYAga TEGMANG (u ⚡ Jonliniki, 8.3 taqsimot buzilmasin).
 - **🔗 HAR tahrirda parallel matnlar BIRGA yuradi:** Audio matn ↔ Mentor matn ↔ tugma nomi — birini o'zgartirsangiz qolganlarini ham SHU ZAHOTI yangilang (S30 bilan bir oila). Bu apostrofga emas, HAR QANDAY matn-tahrirga tegishli umumiy qoida.
 
-## 📜 L1 TARIX SABOQLARI (git-tarixdan — qanday O'YLASH; batafsil: `L1_TARIX.md`)
+## 📜 L1 TARIX SABOQLARI (git-tarixdan — qanday O'YLASH; batafsil: `arxiv/L1_TARIX.md`)
 L1 matni 4 to'lqinda sayqallangan — har to'lqin sizga fikrlash namunasi:
 - **S24 · Metafora FUNKSIONAL mos bo'lsin.** "yuz ko'rinadi / miya ichkarida ISHLAYDI" soxta edi (`head` ishlamaydi — sozlama saqlaydi) → "restoran: ZALni mehmon ko'radi / OSHXONAda tayyorlanadi". Har metafora bo'lagini tushuncha vazifasiga ulab tekshiring.
 - **S25 · Hint javob emas — MAZMUN.** DragDrop hintlari "eng boshi / hujjat / ichida / oxiri" (quruq joylashuv) → "eng boshida / butun sahifa qobig'i / ko'rinmas qism / ko'rinadigan qism" (vazifa, metaforaga mos). Har hint o'rganilayotgan tushunchani takrorlasin.

@@ -33,7 +33,7 @@ __lang = lang; // UZ-RU: tr() uchun joriy til (render'dan oldin o'rnatiladi)
 | JSX ichidagi oddiy matn | `<p>Matn</p>` → `<p>{tr({ uz: 'Matn', ru: 'Текст' })}</p>` |
 | Atribut (placeholder, title, label, aria-label) | `placeholder={tr({ uz: '…', ru: '…' })}` |
 | Ichida `<b>`/`<span>` bor boy matn | `tr({ uz: <>… <b>x</b> …</>, ru: <>… <b>х</b> …</> })` — tr JSX'ni ham qaytaradi |
-| Modul-darajali data (QUIZ_BANK, RECAPS, FLASHCARDS, STEPS, OPTS, BADGES…) | Maydon qiymati `{ uz: '…', ru: '…' }` obyekt bo'lib SAQLANADI; **tr() faqat render-joyда** chaqiriladi: `{tr(item.label)}` |
+| Modul-darajali data (QUIZ_BANK, RECAPS, FLASHCARDS, STEPS, OPTS, BADGES…) | Maydon qiymati `{ uz: '…', ru: '…' }` obyekt bo'lib SAQLANADI; **tr() faqat render-joyda** chaqiriladi: `{tr(item.label)}` |
 | Shablon-string ichida matn | Bo'lib chiqarish: `` `${tr({uz:'Savol',ru:'Вопрос'})} ${n}` `` |
 | lessonTitle | Allaqachon `{uz,ru}` — render joyida `tr(LESSON_META.lessonTitle)` |
 

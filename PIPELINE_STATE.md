@@ -153,3 +153,6 @@ Restoran=NestJS ilova · bo'lim=Module · ofitsiant/sotuvchi=Controller · oshpa
 - 4/4 fayl `import mentorImg from '../../assets/common/mentor.png'` qiladi — **bu papka mavjud emas** → **esbuild 4/4 xato**. Bu ma'lum runtime-xato sinfi → `MENTOR_IMG` URL-const.
 - App.jsx'ga ulanmagan (0 havola). Yakunda `MODULES[4]` (m4a-01..03) bo'lib qo'shiladi.
 - M4-P2'ning 4 tizimli bug'i (javob-naqshi · practice:-1 · optionalLive · tekin nishonlar) har rol promptiga oldindan kiritildi.
+
+## F-0724-01 (2026-07-24) — PROMPT-GIGIENA: rol/qonun-hujjatlarda homoglif — ✅ YOPILDI
+Manba: feedback/METODIST-prompt-fidbek.md (tashqi-chat tahlili) + bosh-agent o'z xabarlarida 3 marta homoglif chiqargani (jonli dalil). Yechim: **prompt-lint.mjs** yaratildi (aralash-yozuv so'z detektori: bir defissiz bo'lakda lotin+kirill; avto-istisno — sof-kirill ru-namunalar, ruscha defis-birikmalar, jurnal-misol «xato»→«tuzatilgan» qaydlari; --fix = o'zbek-lotin transliteratsiya). 26 MD skan → 8 haqiqiy xato tuzatildi: darslik-metodist(1) · darslik-tekshiruvchi(4) · PM_DARS_ETALON(2) · RU_I18N_SPEC(1). Fidbekning 5 mayda bandi tekshirildi — barchasi promptda allaqachon bor ekan. Darvoza: `npm run lint:prompt` (package.json + CLAUDE.md 4-tamoyil + PIPELINE 9-qoida yangilandi). Verify: 0 topilma.

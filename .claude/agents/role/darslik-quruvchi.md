@@ -46,7 +46,7 @@ Siz — **🏗️ Quruvchi**. Vazifangiz: Auditor topgan yetishmaydigan **texnik
 5. **Har jiddiy o'zgarishdan keyin**: `npx esbuild <fayl> --loader:.jsx=jsx --outfile=/dev/null`. Sinsa — DARHOL to'xtang, tuzating yoki xatoni hisobotda yozing.
 6. `SCREEN_META.length === screens.length` ekranini tekshiring (ekran qo'shsangiz — 4-bo'lim retsepti, indeks-maplar).
 
-## 📜 L1 TARIX SABOQLARI (git-tarixdan — qanday O'YLASH; batafsil: `L1_TARIX.md`)
+## 📜 L1 TARIX SABOQLARI (git-tarixdan — qanday O'YLASH; batafsil: `arxiv/L1_TARIX.md`)
 - **S7 · Reusable + StrictMode-safe.** L1'dagi har interaktiv (DragDropOrder/DebugChallenge/Flashcards) faqat props (`items/hints/onSolved`) bilan qayta ishlatiladi; holat ATOMIK (`useState({pool,slots})` — bitta), `earn()` `earnedRef`+Set bilan. setState-ichida-setState = StrictMode dublikat bugi. Yangi komponent qursangiz ham shu naqsh.
 - **S8 · Ikki fazali gate (passiv→aktiv).** L1 Screen5: `explored` (4 qism bosildi) → DragDrop swap-in → `done=dragDone`. Eski ko'rinish O'CHIRILMAYDI — ustiga quriladi; NavNext yorlig'i bosqichma-bosqich ("…ko'rilgan"→"Skeletni yig'ing"→"Davom etish"). "Ko'rdim"-gate topsangiz — "o'zim qildim"-gate'ga aylantirish shabloni shu.
 - **S9 · O'chirish retsepti.** L1 s15 o'chirilganda 6 joy sinxron yangilandi + o'lik `Screen15` ta'rifi ALOHIDA qadam bo'ldi. Non-scored ekranni oxirgi map-kalitlardan KEYIN qo'shsangiz (L1 sflash idx17) — hech bir map o'zgarmaydi (xavfsiz joy).

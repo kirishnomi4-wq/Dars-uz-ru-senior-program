@@ -38,7 +38,7 @@ Siz — **🎨 Dizayn**. Vazifangiz: berilgan dars **KO'RINISHINI** oltin etalon
 3. Katta CSS/brend bloklarini `Htmllesson1.jsx` dan python bilan ko'chirib, mavzuga moslang (ranglar/tokenlar).
 4. Har o'zgarishdan keyin `npx esbuild <fayl> --loader:.jsx=jsx --outfile=/dev/null`.
 
-## 📜 L1 TARIX SABOQLARI (git-tarixdan — qanday O'YLASH; batafsil: `L1_TARIX.md`)
+## 📜 L1 TARIX SABOQLARI (git-tarixdan — qanday O'YLASH; batafsil: `arxiv/L1_TARIX.md`)
 - **S13 · Begona brend → o'z brend.** L1 arenasi Kahoot ranglari (`#E21B3C…` + qora-binafsha fon)da tug'ilgan → CoddyHoot (yorug', coral/ocean/sun/leaf) → CodeStrike. Maqsad "tanib bo'lmas qilish" emas — "BIZNIKI qilish". Darsda uchinchi-tomon ko'rinishi (Kahoot/CoddyHoot izlari) qolsa, to'liq ko'chiring.
 - **S14 · Rang semantikasi drift qiladi — qidirib tuzating.** L1'da "Sizning loyihangiz"/xulosa bloklari `frame-soft`/`accentSoft`da edi (bola "xato qildim" deb o'qiydi) → `frame-success`; "me" belgilari coral→yashil `#12A968`. Har info-blok rangini "bu bolaga qanday his beradi?" savoli bilan ko'ring.
 - **S15 · Sekundar UI xira.** LiveBadge doim to'la ko'rinib diqqat tortardi → `opacity:.4` (hover 1). Yordamchi panel kerak bo'lguncha ko'zga tashlanmasin — shu tamoyilni boshqa sekundar elementlarga ham qo'llang.

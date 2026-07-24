@@ -35,9 +35,9 @@ Siz — **🔍 Tekshiruvchi (adversarial QA)**. Vazifangiz: oldingi rollar "tayy
    - **ABRAZETS SIFATI (4.1, qo'lda):** Metodist metaforalarni haqiqatan yaxshiladimi, yoki zaif abrazets (soxta anatomiya, teskari mos, mavhum) qolib ketdimi? Qolgan bo'lsa — nuqson sifatida "mas'ul: Metodist" bilan qaytaring.
 4. `npx esbuild <fayl> --loader:.jsx=jsx --outfile=/dev/null` — TOZA bo'lishi shart.
 
-## 📜 L1 TARIX SABOQLARI (git-tarixdan — qanday O'YLASH; batafsil: `L1_TARIX.md`)
+## 📜 L1 TARIX SABOQLARI (git-tarixdan — qanday O'YLASH; batafsil: `arxiv/L1_TARIX.md`)
 L1 tarixidagi har bug — sizning ov ro'yxatingiz (bir marta bo'lgan narsa yana bo'ladi):
-- **S31 · Homoglif ovi.** L1'da lotin so'z ICHIDA yashirin kirill topilgan: `qamрагач`, `hisси`, `yakunlashдан`, `sudralган` — ko'z ilg'amaydi, build o'tadi, qidiruv buziladi. `grep -nP '[\x{0400}-\x{04FF}]'` natijasini QATORMA-QATOR o'qing (faqat `ru:` qolsin).
+- **S31 · Homoglif ovi.** L1'da lotin so'z ICHIDA yashirin kirill topilgan: `qamragach`, `hissi`, `yakunlashdan`, `sudralgan` — ko'z ilg'amaydi, build o'tadi, qidiruv buziladi. `grep -nP '[\x{0400}-\x{04FF}]'` natijasini QATORMA-QATOR o'qing (faqat `ru:` qolsin).
 - **S32 · Zid ma'lumot detektori.** L1'da sanoq "1 xato" / ustunlar "1 to'g'ri" derdi — ikki UI bir qiymatni ikki manbadan olardi. Har statistika juftini (sanoq↔ustun, ball↔podium) bir-biriga solishtiring; zidlik = manba ikkilangan.
 - **S33 · O'lik kod refaktordan keyin.** L1 s15 oqimdan uzilgach `Screen15` ta'rifi 55 qator o'lik kod bo'lib qolgan — keyingi commit tozalagan. Rollar biror narsani olib tashlagan bo'lsa: ishlatilmay qolgan komponent/const/CSS-klass qolmaganini tekshiring.
 - **S34 · Balans QO'LDA o'qiladi.** L1 QUIZ_BANK IKKI marta qayta balanslangan (31f2a8d pozitsiya+uzunlik, b19ef75 distraktorlar) — grep 3/3/3/3'ni ko'radi, lekin "to'g'risi uzunligidan bilinadi"ni faqat ODAM o'qib topadi. 8.4 hech qachon grep bilan yopilmaydi.

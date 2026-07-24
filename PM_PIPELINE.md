@@ -35,10 +35,17 @@
 🎓 PM-Metodist (SENARIY-KORREKTURA rejimi) — til/kollokatsiya/kalka tekshiruvi,
    foydalanuvchi XOM matn ko'rmaydi (2026-07-15 «shirinlik ichadi» saboqi)
    └─ [🚦 GATE S — SIZ] senariyni tasdiqlaysiz (keys tanlovi, artefakt, ohang)
-🏗️ PM-Quruvchi   → esbuild darvoza   (senariy -> ekranlar + primitivlar)
+🏗️ PM-Quruvchi   → esbuild darvoza   (senariy -> ekranlar + primitivlar + SCREEN_INTENTS —
+   har ekranga 1 gaplik niyat: «bola nima QILADI/BILADI»)
 🎨 PM-Dizayn     → esbuild darvoza   (identitet + harakat)
 ⚡ Jonli          → esbuild darvoza   (relslar: set_quiz_keys, kalitlar, arena)
-🎓 PM-Metodist   → esbuild darvoza   (til + ohang + keys-sadoqat)
+👦 O'quvchi (1-o'qish) → hisobot      (13-yosh simulyator: 4 savol + niyat-solishtiruv;
+   TUZATMAYDI — spec: OQUVCHI_DARVOZA.md, agent: darslik-oquvchi)
+🎓 PM-Metodist   → esbuild darvoza   (til + ohang + keys-sadoqat + 👦-hisobotga
+   TUZATILDI/OQLANDI/RAD qaror-jadvali — sababsiz RAD taqiq)
+👦 O'quvchi (2-o'qish) → o'tish-shartlari: «bilmadim» 0 · oqlanmagan gloss'siz so'z 0 ·
+   gloss-tartib xatosi 0 · niyat-moslik ≥13/15 (17 ekranda ≥15/17) · qayta-o'qilgan gap ≤2
+   (maks 2 aylanish; 2x RAD topilma → inson-bayroq)
    └─ [🚦 GATE 2 — SIZ] matn/ko'rinish/umumiy his
 🔍 PM-Tekshiruvchi → nuqson bo'lsa mas'ul rolga QAYTAR (maks 2 aylanish)
 ✅ Verifikator    → esbuild + render
@@ -57,8 +64,9 @@
 > **Token-tejash (partiya rejimida):** PM-Qabulchi checklisti asosan mexanik — partiyalarda
 > bosh-agent uni skript bilan o'zi yuritishi mumkin (6-Modul qa.mjs naqshi). P0 va etalon-
 > darslarda esa to'liq rol sifatida chaqiriladi.
-> **Eslatma:** texnik pipeline'ning `darslik-qabulchi.md` (repo ildizida) hali aktivlashtirilmagan —
-> xohlasa `.claude/agents/role/`ga ko'chirilib texnik darslarga ham shu geyt qo'yiladi.
+> **Eslatma (2026-07-24 yangilandi):** texnik pipeline'ning `darslik-qabulchi.md` endi
+> `.claude/agents/role/`da turadi (uy-tartibi ko'chirishi) — texnik darslarga geyt sifatida
+> ulash hali ixtiyoriy, PIPELINE.md oqimiga kiritilmagan.
 
 Bosh-agent har rol-o'tishdan keyin O'ZI dasturiy tekshiradi (QOIDA 10): correct ketma-ketligi, practice:-1, EKRAN<=400, grapheme-tell, esbuild. PM-Auditor alohida bosqich sifatida faqat MAVJUD faylni qayta ishlashda yoki partiya-kirishda chaqiriladi.
 

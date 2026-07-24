@@ -30,15 +30,16 @@
 - **Dekor o'qitadi (M7):** fon/arena tokenlari (`QZ_BG_SHAPES`/`TOK`) shu dars atamalaridan; ma'nosiz shakl yo'q. Arena CodeStrike brendi O'ZGARMAYDI (platforma mahsuloti).
 - Universal: layout 1100px+`--lz`+padH60 · `MENTOR_IMG`+`PHOTO_SET` hostlangan · xira LiveBadge · o'z-ball yashil · `prefers-reduced-motion` har og'ir animatsiyada.
 
-## 2. 🔴 BLOK→EKRAN STANDARTI (P0 naqshi, ~15 ekran)
+## 2. 🔴 BLOK→EKRAN STANDARTI (P0 V4 naqshi, ~17 ekran — 2026-07-24)
 
 ```
-s0 HOOK (keys-savol, ovoz-berish, vizual imzo-sahna) → s1 MAQSAD (JONLI natija-preview — kartalar ko'z oldida to'ladi)
+s0 HOOK (keys-savol, ovoz-berish, vizual imzo-sahna) → s1 MAQSAD (JONLI natija-preview — kartalar o'z-o'zidan yozilib chiqadi)
 → TEORIYA-1 (savol+hayotiy misol → interaktiv qoida-konstruktor) → 🔴 TEST-1
 → TEORIYA-2 (KEYS-SLAYD: «Keys …» eyebrow — o'zbekcha, K-kodsiz (P0: «Keys 🥤»), bosqichma-bosqich) → 🔴 TEST-2
-→ AMALIYOT (o'z loyihasiga birinchi qadam, jonli validator) → USTAXONA (artefakt, 3-4 element)
-→ 🔴 TEST-3 → KODING (compiler-qobiq) → RECAP (juftlik-taymer+Reflection+3 harakat-savol)
-→ UYGA VAZIFA (SHARTNOMA harakat-ekrani) → PODIUM → CODESTRIKE ARENA → SUMMARY
+→ USTAXONA (artefakt BITTALAB yoziladi — 48-qonun; eski «AMALIYOT + USTAXONA» juftligi TAQIQ)
+→ 🔍 SHERIK-TEKSHIRUV (✓/✕ hukm) → 🔴 TEST-3 → 🩺 KLINIKA (tuzoq-chipli tuzatish-konstruktor)
+→ KODING (aylantirish-vizual → compiler-qobiq) → 🔥 PRIORITET-DOSKA (Hozir=1)
+→ RECAP (juftlik-halqa-taymer+Reflection) → UYGA VAZIFA (SHARTNOMA) → PODIUM → CODESTRIKE ARENA → SUMMARY
 ```
 
 🔴 **TEST-TAQSIMOT:** scored testlar HECH QACHON ketma-ket blok emas — har biri o'z teoriyasidan keyin; RECAP kartalari (RECAPS) aynan o'z teoriyasini qayta tushuntiradi. CodeStrike = yakuniy «real test».
@@ -53,11 +54,14 @@ s0 HOOK (keys-savol, ovoz-berish, vizual imzo-sahna) → s1 MAQSAD (JONLI natija
 | Qoida-konstruktor | `.fslot` / `.frag-chip` | bo'lak-tap qoida yig'ish (magnit-doska) |
 | Keys-slayd | `K11_SLIDES` / `.k-slide` | CASE STUDY slayd-naqshi (yangi darsda K<N>_SLIDES) |
 | Jonli validator | `validateStory` | artefakt formula-tekshiruvi |
-| 🎯 Topshiriq-panel | `const TaskSpec` / `.tspec` / `MentorWatchLine` / `.done-mini` | 32-qonun: yozish-ekranlarning YAGONA shart-tili (chip ≤4 so'z + sticky + kim-bajaradi yozuvi + muvaffaqiyat-chip) |
-| Ustaxona | `ScreenStoryWorkshop` / `STORIES_KEY` | artefakt-muharrir + storage (amaliyot↔ustaxona ko'chish) |
-| Maqsad-preview | `DEMO_STORIES` / `.demo-slot` / `.silo-fill` | s1 WOW: natija-kartalar CSS-taymlayn bilan o'zi to'ladi |
-| Scored hotspot | `renderMode="hotspot"` / `BrokenStory` / `.hs-broken` | bo'lak-bosish testi (topilgan=YASHIL ✓, noto'g'ri bosilgan=QIZIL); oddiy tashxis-test = `ctaLabel`/`revealPrefix` props (P0 s9) |
-| Kompilyator | `PmCompiler` / `.hcp-root` / `.kod-launch` | TO'LIQ-EKRAN: launch-karta → topshiriq+jonli shart-chiplar+debounce avto-tekshiruv+editor\|natija+«Davom etish» |
+| Muvaffaqiyat-chip | `.done-mini` | yozish-ekranlarning muvaffaqiyat-belgisi (TaskSpec/MentorWatchLine 2026-07-24 BEKOR — 48/51-qonunlar: shartlar saqlash-hintda, mentor-info Eslatmada) |
+| Ustaxona (bittalab) | `ScreenStoryWorkshop` / `.swed` / `.svd` / `STORIES_KEY` / `readFullStories` | 48-qonun: bitta karta-muharrir + saqlanganlar-daftari + saqlash-shart-hintlar |
+| Maqsad-preview | `DEMO_STORIES` / `.demo-slot` / `.silo-fill` | s1 WOW: natija-kartalar CSS-taymlayn bilan o'z-o'zidan yozilib chiqadi |
+| Scored test (TestQ) | `const TestQ` / `.tq-ask` / `.opt-abc` | 49-qonun: savol-sarlavha + toza kartochka + doira-harf variantlar (hotspot BEKOR) |
+| Kompilyator | `PmCompiler` / `.hcp-root` / `.kdx` | 50-qonun: aylantirish-vizual (kod-chip ➜ o'z kartalari) + bitta CTA → TO'LIQ-EKRAN compiler (topshiriq+jonli shart-chiplar+debounce+editor\|natija) |
+| Sherik-tekshiruv | `ScreenPeer` / `PEER_CHECKS` / `.peer-v` | 52-qonun: 3 hikoya × 3 savol, ✓/✕ hukm-tugmalar |
+| Klinika | `ScreenClinic` / `CLINIC_POOL` / `.clinic-trap` / `.frag-chip.burned` | 52-qonun: tuzoq-chipli tuzatish-konstruktor |
+| Prioritet-doska | `ScreenPriority` / `PD_COLS` / `PRIORITY_KEY` / `.pd-col` | 52-qonun: Hozir(1)/Keyin/Keyinroq tanla-bos doska, keyingi darsga ko'prik |
 | Juftlik-taymer | `PairTimer` | RECAP soft-mexanika |
 | SHARTNOMA | `HW_KEY` / `.hw-chip` | uyga-vazifa tanlov-ekrani (summary o'qiydi) |
 | Mentor jonli chiplar | `MentorPracticeStats` | «✏️ Ism»→«✓ Ism», 3s polling, `PRACTICE_BASE+screen` |
@@ -124,9 +128,9 @@ s0 HOOK (keys-savol, ovoz-berish, vizual imzo-sahna) → s1 MAQSAD (JONLI natija
 
 **2026-07-23 UCH-ETALON CHUQUR-TAHLIL QONUNLARI (33–36, PmUserStory/PmJtbd/PmMetrics'da joriy):**
 
-33. **KEYS-SLAYD BASHORAT BILAN OCHILADI:** keys-slaydlar sof o'qish bo'lib qolmaydi — kamida 2 kalit-slayd oldidan mikro-bashorat («Sizningcha…?» 3-4 chip, tikish → slayd ochiladi). BALL YO'Q va bu ochiq yoziladi («Ball yo'q — taxmin qiling»); topmaganga QIZIL EMAS — neytral indigo («Sizning taxminingiz: X»), topganга yashil ✓. Qulf-yorliq 30-qonunga mos («Avval taxminingizni tanlang»); mentor bypass. Yakuniy slaydda **hook-payoff shaxsiylashadi**: s0 ovoz-tanlovi lesson-scoped localStorage'da (`pm-<mNdK>-hook-choice`) saqlanib, reveal'da qaytariladi («Dars boshida siz "X" degandingiz — asl sir esa…»; deyarli topganga maxsus maqtov); tanlov yo'q bo'lsa umumiy matn fallback. Namuna: P0 `kp-bet`/`HOOK_CHOICE_KEY`.
+33. **KEYS-SLAYD BASHORAT BILAN OCHILADI:** keys-slaydlar sof o'qish bo'lib qolmaydi — kamida 2 kalit-slayd oldidan mikro-bashorat («Sizningcha…?» 3-4 chip, tikish → slayd ochiladi). BALL YO'Q va bu ochiq yoziladi («Ball yo'q — taxmin qiling»); topmaganga QIZIL EMAS — neytral indigo («Sizning taxminingiz: X»), topganga yashil ✓. Qulf-yorliq 30-qonunga mos («Avval taxminingizni tanlang»); mentor bypass. Yakuniy slaydda **hook-payoff shaxsiylashadi**: s0 ovoz-tanlovi lesson-scoped localStorage'da (`pm-<mNdK>-hook-choice`) saqlanib, reveal'da qaytariladi («Dars boshida siz "X" degandingiz — asl sir esa…»; deyarli topganga maxsus maqtov); tanlov yo'q bo'lsa umumiy matn fallback. Namuna: P0 `kp-bet`/`HOOK_CHOICE_KEY`.
 34. **TEST-EKRAN REVEAL BILAN TUGAYDI (2026-07-23 jonli-ko'rikda BEKOR qilingan g'oya):** scored test-ekranga reveal'dan keyin qo'shimcha unscored «endi o'zingiz tuzating/hisoblang» qadami QO'SHILMAYDI — foydalanuvchi jonli sinovda rad etdi («testni yechsa nimadir chiqdi — olib tashlaymiz»). Test = savol → javob → izoh → davom; tuzatish-mashqlar faqat amaliyot/ustaxona ekranlarida yashaydi. (Koding-ekrandagi jonli hisob-vidjet bunga kirmaydi — u qoladi.)
-35. **ARTEFAKT-STRIP (to'planish doskasi):** dars metaforasidan kelib chiqqan ixcham (~40-50px, bosilsa ochiladigan) fixed-strip amaliyot/ustaxona/koding/recap/uy-vazifa ekranlarida artefakt-progressni jonli ko'rsatadi (mavjud storage'dan o'qiydi + write-joyda custom event; YANGI storage yo'q); test/arena/podiumда ko'rinmaydi, mentorda yashirin bo'lishi mumkin (proyektor tozaligi), overlay'lar (kompilyator/arena) undan baland z-index'da. Har darsda O'Z metafora-ko'rinishi (23-qonun ruhi): daftar/doska/pult — P0 klonlanmaydi. Koding-checklist va uy-vazifa ro'yxati REAL holatdan o'qiydi — qattiq `ok={false}` statik-yolg'on TAQIQ.
+35. **ARTEFAKT-STRIP (to'planish doskasi):** dars metaforasidan kelib chiqqan ixcham (~40-50px, bosilsa ochiladigan) fixed-strip amaliyot/ustaxona/koding/recap/uy-vazifa ekranlarida artefakt-progressni jonli ko'rsatadi (mavjud storage'dan o'qiydi + write-joyda custom event; YANGI storage yo'q); test/arena/podiumda ko'rinmaydi, mentorda yashirin bo'lishi mumkin (proyektor tozaligi), overlay'lar (kompilyator/arena) undan baland z-index'da. Har darsda O'Z metafora-ko'rinishi (23-qonun ruhi): daftar/doska/pult — P0 klonlanmaydi. Koding-checklist va uy-vazifa ro'yxati REAL holatdan o'qiydi — qattiq `ok={false}` statik-yolg'on TAQIQ.
 36. **SOLO-REJIM O'LIK NUQTASIZ:** sinf-mexanika ekranlari (qo'l-ko'tarish savollari, podium) jonli-sessiyasiz inert qolmaydi — solo'da savollar o'z-o'zini tekshirish kartalariga aylanadi (savol → o'ylab bos → javob ochiladi; kamida bittasi o'quvchining REAL artefakt-holatini jonli o'qiydi), podium shaxsiy natija-ekraniga (ScoreRing + nishonlar + artefakt-holat). Jonli-rejim markup'i aynan saqlanadi. Koding-ekranda honor-checkbox yolg'iz yurmasin — kamida bitta band REAL mikro-signalga bog'lanadi (jonli hisob-vidjet, prop-ov topshirig'i) va avto-✓ bo'ladi; ball-rels o'zgarmaydi.
 
 **2026-07-23 JONLI-KO'RIK QONUNLARI (37–40, JTBD/UserStory/Metrics Vercel-sinov feedback'i):**
@@ -159,7 +163,24 @@ s0 HOOK (keys-savol, ovoz-berish, vizual imzo-sahna) → s1 MAQSAD (JONLI natija
 
 **2026-07-24 QAT'IY EKRAN-UX STANDARTI (47, Senior Methodologist prompti — M1-D12 Pitch'da joriy):**
 
-47. **TOPSHIRIQ·YO'RIQNOMA·KARTOCHKA·VARIANTLAR — har interaktiv ekranning majburiy tartibi (to'liq standart: `MATN_ETALONI.md` 7-B):** ekran boshi savol-sarlavha EMAS — TOPSHIRIQ (buyruq, 3–6 so'z: «Ortiqcha bo'lakni toping.») + YO'RIQNOMA (qaysi qoida, ≤20 so'z), keyin KARTOCHKA (faqat tahlil-material, ichida yo'riq YO'Q) va qisqa VARIANTLAR. Bir ekran = bitta vazifa. Taqiq-so'zlar (buzuq/g'alati/chalkash/shunchaki/foydasiz) o'quvchi matnida yo'q — «ortiqcha/xato/noto'g'ri» ishlatiladi. Namuna: M1-D12 `TaskHead` komponenti (10 ekranda). Tekshiruv: `grep -nE '\?</h2>' <fayl>` — bo'sh chiqsin.
+47. **TOPSHIRIQ·YO'RIQNOMA·KARTOCHKA·VARIANTLAR — har interaktiv ekranning majburiy tartibi (to'liq standart: `MATN_ETALONI.md` 7-B):** ekran boshi savol-sarlavha EMAS — TOPSHIRIQ (buyruq, 3–6 so'z: «Ortiqcha bo'lakni toping.») + YO'RIQNOMA (qaysi qoida, ≤20 so'z), keyin KARTOCHKA (faqat tahlil-material, ichida yo'riq YO'Q) va qisqa VARIANTLAR. Bir ekran = bitta vazifa. Taqiq-so'zlar (buzuq/g'alati/chalkash/chala/shunchaki/foydasiz) o'quvchi matnida yo'q — «ortiqcha/xato/noto'g'ri/to'liq emas» ishlatiladi. Namuna: M1-D12 `TaskHead` komponenti (10 ekranda). Tekshiruv: `grep -nE '\?</h2>' <fayl>` — bo'sh chiqsin. ⚠️ **49-qonun istisnosi:** scored TEST-ekran sarlavhasi savol-shaklda bo'lishi MUMKIN (foydalanuvchi 2026-07-24 UserStory ko'rigida shu shaklni tanladi).
+
+**2026-07-24 USERSTORY V4 QONUNLARI (48–53, P0 kechki qayta-qurish — 10-nuqta feedback + image.png/idea_oll.png annotatsiyalar):**
+
+48. **USTAXONA = BITTALAB-YOZISH (ikkita ketma-ket yozish-ekrani TAQIQ):** artefakt-yozish ekranlari ikkiga bo'linmaydi («2 hikoya» + «3 hikoya» ketma-ketligi bekor) — BITTA ustaxona-ekran, hikoyalar BITTALAB yoziladi:
+    - **Chapda BITTA karta-muharrir** («✨ N-hikoya» yorlig'i): jonli gap-preview + 3 maydon. Gap-preview slotlari s3-konstruktor RANGLARIDA (KIM=ko'k, NIMA=amber, NATIJA=yashil); bo'sh slot xira-punktir-kursiv, to'lgani o'z rangida yonadi (`ss-slot` naqshi).
+    - **«✓ Saqlash» tugmasi DOIM qisqa va o'zgarmas matnli** — disabled holatda ham «Uchala maydonni to'ldiring» kabi uzun matnga aylanmaydi (inputga o'xshab UI buzadi); to'lmagan holat yonidagi kichik «N/3 maydon to'ldi» hisobchida.
+    - **Saqlash → hikoya O'NGDAGI 📒 daftarga ko'chadi** (yashil karta: ✓ raqam + to'liq gap + ⭐1–5 + ✎ tahrirlash) va chapga yangi bo'sh karta keladi; bo'sh o'rinlar «hali yozilmagan» punktir-slot.
+    - **Sifat-shartlar SAQLASH PAYTIDA** yumshoq hint bilan (alohida checklist-panel YO'Q): to'liq emas → hisobchi; NATIJA==NIMA → «NATIJA harakatni takrorlamasin»; KIM avvalgi kartada bor → «Bu KIM allaqachon daftarda bor».
+    - **3-saqlashda ekran O'ZI bajarildi** (honor-tugma yo'q — real signal, PRACTICE_BASE'ga ketadi). Namuna: P0 `swed`/`svd`.
+49. **TEST-EKRAN «TestQ» DIZAYNI (idea_oll.png tartibi):** scored test = katta SAVOL-SARLAVHA (Manrope 800, clamp 16.5–21px — h2 EMAS, `\?</h2>` grep'iga ilinmaydi) → toza KARTOCHKA (FAQAT tahlil-hikoya, serif kattaroq, chap-accent hoshiya) → VARIANTLAR. Variant-harflar DOIRA-BADGE (`opt-abc`): binafsha-yumshoq default; reveal'da to'g'risi yashil ✓, bosilgan xatosi qizil ✗, qolganlari xira. Hotspot (bo'lakni bosish) rejimi bekor — hamma test oddiy variantli. Savol-shakl sarlavha RUXSAT (47-istisno).
+50. **KODING-LAUNCH = «AYLANTIRISH-VIZUAL» (murakkab launch-karta TAQIQ):** kompilyatorga o'tish ekrani split/checklist/xira-kod-parda bilan TO'LDIRILMAYDI — bitta markaziy transformatsiya-qator: chap mini kod-chip `funksiya(kim, nima, natija)` (parametrlar slot-ranglarda) ➜ puls-strelka ➜ o'quvchining O'Z artefakt-kartalari (daftardan o'qiladi, «📒 Bular — o'z hikoyalaringiz» yozuvi; bo'sh bo'lsa namuna-fallback, 40-qonun). Ostida BITTA katta CTA + bir qator izoh. Ekran KENG (narrow EMAS); artefakt-strip bu ekranda KO'RINMAYDI (vizual o'zi daftardan o'qiydi — takror bo'lmasin). Namuna: P0 `kdx`.
+51. **MENTORGA MA'LUMOT FAQAT ESLATMA-CHIPDA (MentorWatchLine BEKOR):** «bu ishni o'quvchilar bajaradi / panelda kuzatasiz» kabi mentor-ko'rsatmalar EKRANDA ochiq satr bo'lib turmaydi — MentorNote (📋 Eslatma, default-yopiq, bosilganda ochiladigan) chipiga kiradi; 31-qonunning «ekranda yoziladi» talabi shu chip orqali bajariladi (proyektor toza).
+52. **YAKUN-EKRAN TRIO — peer/clinic/priority (dars kamayib qolmasin, unscored, ball-rels tegilmaydi):** yozish-amaliyotidan keyingi bilim-mustahkamlash uch YANGI ekran-turi bilan quriladi, har biri PRACTICE_BASE signal + MentorPracticeStats + demo-fallback + mentor-bypass bilan:
+    - **🔍 SHERIK-TEKSHIRUV (ustaxonadan keyin):** jonlida ekran almashib sherik hikoyalarini baholash, soloda o'z-o'zini; har hikoya ostida 3 SAVOL («mezon» so'zi TAQIQ — 53-qonun), har savolga ✓/✕ hukm-tugma (almashtirsa bo'ladi); hamma hukm berilgach ochiladi; ✕ chiqsa yumshoq taklif: «"Orqaga" bilan qaytib ✎ orqali tuzating — yoki shundoq davom eting» (majburlamaydi).
+    - **🩺 HIKOYA-KLINIKA (imkoniyat-so'rovi testidan keyin darhol qo'llash):** mijozning to'liq bo'lmagan talabi («Saytim tez ochilsin!») → s3-konstruktor mexanikasi bilan to'liq hikoyaga yig'ish + **2 TUZOQ-CHIP** (mavhum KIM «hamma foydalanuvchi», takror NATIJA «sahifa tez ochilishi») — tuzoqqa bosilsa chip «kuyadi» (chizilgan, disabled) va sababi sariq-kartada ochiladi; tuzoqqa tushish xato emas — darsning o'zi (mentor muhokama qiladi).
+    - **🔥 PRIORITET-DOSKA (kodingdan keyin):** o'z hikoyalarini «Hozir / Keyin / Keyinroq» ustunlariga tanla-bos bilan joylash, «Hozir» sig'imi = 1 (majburiy tanlov — PM-ko'nikma); tanlov localStorage'da keyingi darsga ko'prik; yakunda «keyingi darsda "X"dan boshlaymiz 🚀».
+53. **TIL: «chala» va «mezon» TAQIQ (2026-07-24 qat'iy):** «chala» — 7-B.3 taqiq-oilasiga kirdi (→ «to'liq emas / to'liq bo'lmay qoladi»); «mezon» — kattalar-rasmiy so'z (→ «savol»); ekranga havola matnida ekran-NOMI emas, harakat-tili («"Orqaga" bilan qaytib»). Podium jonli-sarlavha: «Bugungi g'oliblarimiz» (birlik-egalik — sinfni birlashtiradi). Uy-vazifa kartasi pastki matni TIQILMAYDI — raqam-doirali 3 alohida qadam-qator (`pmtask-steps`).
 
 ## 5. ✅ QABUL-CHECKLIST
 `pm-qabulchi` 20-bandi (rol faylida) + rollar DoD. Yakuniy jonli-sinov QO'LDA: yangi PIN + 2 o'quvchi + MENTOR-2026 → podium/arena 0 EMAS.

@@ -54,7 +54,7 @@ esbuild: TOZA / SINGAN (xato matni)
 - ❌ Boshqa darsliklarga tegmang — faqat berilgan fayl.
 - ❌ Taxmin qilmang: har bandga file:line yoki grep natijasi bilan DALIL keltiring. Dalil yo'q bo'lsa "tekshirilmadi" deb yozing.
 
-## 📜 L1 TARIX SABOQLARI (git-tarixdan — qanday O'YLASH; batafsil: `L1_TARIX.md`)
+## 📜 L1 TARIX SABOQLARI (git-tarixdan — qanday O'YLASH; batafsil: `arxiv/L1_TARIX.md`)
 L1 16 commitda xomdan oltinga aylangan — siz shu evolyutsiyani BILGAN holda audit qilasiz:
 - **S38 · "Xom dars" profili:** qolgan darslar ≈ L1 tug'ilish holati (`63ab1b0`): jonli infra/arena/praktika BOR, lekin odatda YO'Q — to'liq set_quiz_keys zanjiri, Badges, Flashcards sahifasi, DragDrop/Debug, CodeStrike, onboarding, fmtCode, MentorPracticeOverlay, RECAPS kontenti. GAP-hisobotni shu kutish bilan boshlang.
 - **S39 · "Bu bo'g'in nima qo'shyapti?"** — L1'da s15 ekrani yakuniy praktika bilan TAKROR bo'lgani uchun O'CHIRILGAN. Har ekranga qiymat-savolini bering; takror/qiymatsiz bo'g'in topsangiz "o'chirish" ish-buyrug'ini yozing (M8: 6 joy sinxron — SCREEN_META/screens/Q_LABELS/INLINE_KEYS/PRACTICE_AFTER + o'lik kod).

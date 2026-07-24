@@ -149,7 +149,10 @@ Har dars tekshirilganda topilgan tushunarsiz/rasmiy so'z shu jadvalga qo'shiladi
 | kartalar to'ladi (matn yozilishi haqida) | kartalar o'z-o'zidan yozilib chiqadi / yozilgan bo'ladi | «to'ladi» suv/idishni eslatadi — fe'l ekrandagi jismoniy jarayonga mos bo'lsin (ETALON 42-qonun; PM M3-D2 s1, 2026-07-24) |
 | X sifatida olmayapti (inkor-qurilma) | X uchun olmayotgan ekan | «shirinlik sifatida olmayapti» g'aliz — «shirinlik yeyish uchun olmayotgan ekan» tabiiy shakl (PM M3-D2 K11, 2026-07-24) |
 | foyda ≠ harakat (belgi-formula o'quvchi-matnda) | bu «nima qilaman» emas, «menga nima foyda» degan javob | ≠/=/→ belgilari o'quvchi izohida TAQIQ — to'liq sodda gap bilan aytiladi (ETALON 43a; PM M3-D2 s3 done-mini, 2026-07-24) |
-| xom (hikoya haqida, retsept-metafora qoldig'i) | chala | «xom» oshxona-metaforaga bog'liq edi — metafora ketgach u ham «chala»ga almashdi (bir metafora — bir til) (PM M3-D2, 2026-07-24) |
+| xom (hikoya haqida, retsept-metafora qoldig'i) | to'liq emas / to'liq bo'lmagan | «xom» oshxona-metaforaga bog'liq edi; avval «chala»ga almashgan edi, 2026-07-24 kechki qarorda «chala» ham TAQIQ bo'ldi (pastdagi qatorga qarang) — endi «to'liq emas» (PM M3-D2) |
+| chala (hikoya/talab/ish haqida) | to'liq emas / to'liq bo'lmagan / to'liq chiqmaydi | 🔴 QAT'IY TAQIQ (2026-07-24 foydalanuvchi qarori: «chala so'zini ishlatmaymiz deb qat'iy kelishganmiz»): «chala» salbiy-baholovchi ohang, 7-B.3 taqiq-oilasi (buzuq/g'alati) bilan bir qatorda. ❌ «Chala talabni davolaymiz» → ✅ «Mijoz talabini davolaymiz»; ❌ «hikoya chala chiqadi» → ✅ «hikoya to'liq bo'lmay qoladi» (PM M3-D2 klinika/RECAPS/s3) |
+| mezon (baholash-mexanikada) | savol | «mezon» — kattalar-rasmiy so'z (baholash mezoni); o'smir uchun tekshiruv-bandlari oddiy «savol»: «har hikoya ostida 3 savol bor — ✓ yoki ✕ bosing» (PM M3-D2 sherik-tekshiruv, 2026-07-24) |
+| ustaxona (ekranga havola sifatida matnda) | «Orqaga» tugmasi bilan qaytib / hikoya yozgan ekranda | ekran-nomi («ustaxona») eyebrow'da yashaydi, lekin YO'NALTIRISH-matnida o'quvchi qaysi ekran ekanini eslamasligi mumkin — harakat-tili bilan: «"Orqaga" bilan qaytib, ✎ orqali tuzating» (PM M3-D2 peer-hint, 2026-07-24) |
 | bosh-ish (sun'iy qo'shma so'z) | asosiy vazifa / asosiy ish | defis bilan yasalgan sun'iy birikma o'quvchiga notanish — tabiiy ikki so'z bilan; bosh-atama («ish») zichligi ham kamayadi (37b sinonim-almashinuv) (PM M7-D2 s1/s5, 2026-07-24) |
 | «keyingi custdev darsida ishlatiladi» (kelajak-atama ko'prikda) | «keyingi darsda mijozlar bilan suhbatlashishda ishlatiladi» | 29-qonun tatbiqi: ko'prik-va'da QOLADI, kelajak-dars atamasi KETADI — atama o'z darsida gloss bilan ochiladi; scored savolda ham («custdev intervyu» → «mijoz bilan suhbat savollari») (PM M7-D2, 2026-07-24) |
 | drel (izohsiz) | drel — devor teshadigan asbob | klassik JTBD-misol QOLADI, lekin so'zning o'zi hamma o'smirga tanish emas — birinchi ko'rinishda (mentor + RECAPS + scored test) mini-gloss (PM M7-D2 s3, 2026-07-24) |
@@ -157,6 +160,11 @@ Har dars tekshirilganda topilgan tushunarsiz/rasmiy so'z shu jadvalga qo'shiladi
 | zanjir (streak tarjimasi) | ketma-ket (dars qilingan) kunlar soni / hisob | «kunlar zanjiri» metafora-tarjima o'smirga ochilmaydi — streak aslida SON/HISOB: «har kuni kirsangiz son o'sadi, o'tkazib yuborsangiz hisob nolga tushadi»; qisqa muloqotda «hisob» (PM M8-D1 K-keys 5 karta + hook + quiz kaskadi, 2026-07-24) |
 | bosh muammo / bosh-ko'rsatkich («bosh» sifat sifatida) | eng katta muammo / asosiy muammo | «bosh» o'smirda tana a'zosi bilan adashadi (bosh-tana-oyoq); «eng katta / asosiy» aniq (PM M8-D1 K-karta1, 2026-07-24; M7-D2 «bosh-ish» qatori bilan oila) |
 | loyiha «pulsi» (tibbiyot-metafora) | loyiha holati | «puls» — yurak urishini bilmagan o'quvchiga ochilmaydigan tibbiyot-so'z; «holat» qatori (134) bilan bir oila: mahsulot haqida DOIM «holat» (PM M8-D1 s1-sarlavha, 2026-07-24) |
+| sinchi (tekshiruvchi ma'nosida) | tekshiruvchi | «sinchi» — eskirgan-adabiy so'z, o'smir bilmaydi (👦 O'quvchi-sinov: «taxminan tushundim») (PM M3-D2 peer, 2026-07-24) |
+| milkshake (izohsiz) | milkshake (sutli kokteyl) | brend-taom nomi hammaga tanish emas — birinchi ko'rinishda qavs-gloss (👦 O'quvchi-sinov topilmasi; PM M3-D2 s0, 2026-07-24) |
+| kompilyator (izohsiz) | kompilyator (kod yozib, natijasini darhol ko'rsatadigan oyna) | texnik atama — PM-darsda birinchi ko'rinishda qavs-gloss (👦 O'quvchi-sinov; PM M3-D2 koding, 2026-07-24) |
+| prioritet (izohsiz) | avval nimani qilishni tanlash (bu prioritet deyiladi) | lotin-jargon — fe'l-ibora bilan ochiladi, keyin atama ishlatiladi (130-qator bilan oila; PM M3-D2 priority-ekran, 2026-07-24) |
+| dark mode (izohsiz) | dark mode (qorong'i rejim) | inglizcha; scored-test hikoyasida ham qavs-gloss — bola so'zni bilmagani uchun ball yo'qotmasin (PM M3-D2 s9, 2026-07-24) |
 
 > **Qo'shish tartibi:** darsda tushunarsiz so'z topilsa → shu jadvalga (qiyin, sodda, izoh) yoz → kodda grep bilan barcha o'rinlarini tuzat → audio/mentor matni ham birga yangilanadi.
 
@@ -270,9 +278,10 @@ Har dars tekshirilganda topilgan tushunarsiz/rasmiy so'z shu jadvalga qo'shiladi
 | to'g'ri · noto'g'ri · xato · ortiqcha · mos | buzuq · buzilgan · noto'g'ri ishlagan |
 | tanlang · belgilang · yozing · ulang · joylashtiring | shunchaki · foydasiz · foyda bermaydi |
 | ketma-ketlik · javob · qism · ma'no | g'alati · chalkash |
+| to'liq emas · to'liq bo'lmagan (2026-07-24) | chala |
 
 ```
-grep -nE "buzuq|buzilgan|g'alati|g‘alati|chalkash|shunchaki|foydasiz" <fayl>   # o'quvchi matnida bo'sh chiqsin (kod-izohlar mustasno)
+grep -nE "buzuq|buzilgan|g'alati|g‘alati|chalkash|chala|shunchaki|foydasiz" <fayl>   # o'quvchi matnida bo'sh chiqsin (kod-izohlar mustasno; «uchala» so'zi istisno — u boshqa so'z)
 ```
 
 ### 7-B.4 Yakuniy tekshiruv (har ekran uchun)

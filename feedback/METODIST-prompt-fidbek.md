@@ -1,3 +1,10 @@
+# F-0724-01 · STATUS: ✅ YOPILDI (2026-07-24)
+# 🔴 Homoglif: prompt-lint.mjs yaratildi (aralash-yozuv detektor + --fix), 8 xato tuzatildi
+#    (metodist 1 · tekshiruvchi 4 · PM_DARS_ETALON 2 · RU_I18N_SPEC 1), darvoza: npm run lint:prompt.
+# 🟡 5 mayda kamchilik: tekshirildi — BARCHASI allaqachon promptda tuzatilgan ekan
+#    (grep-ko'rsatkich :26 · audio↔mentor umumiy :41 · 9.4-mezon :37 · taxminiy-raqam :20 · apostrof-double-quote :55).
+# Jurnal: PIPELINE_STATE.md F-0724-01 yozuvi.
+
 darslik-metodist prompti bo'yicha fidbek
 Prompt umuman kuchli yozilgan: rollar aniq ajratilgan, taqiqlar va Definition of Done joyida. Lekin bitta jiddiy muammo va beshta mayda kamchilik bor.
 🔴 Asosiy muammo: prompt o'zi o'z standartini buzadi
