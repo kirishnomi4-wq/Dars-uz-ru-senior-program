@@ -26,3 +26,7 @@ pipeline-live.js
 .claude/supabase/office-cloud.json
 dist-pm
 dist-m1
+
+# Katta backup arxivlar — git tarixiga kirmaydi
+.claude/claude_backup.tar.gz
+*.tar.gz
