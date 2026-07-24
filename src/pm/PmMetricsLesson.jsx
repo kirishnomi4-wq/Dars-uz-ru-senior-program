@@ -461,7 +461,7 @@ const RECAPS = {
   6: {
     title: "Streak retention'ni ko'taradi",
     cards: [
-      { ic: "🔥", h: "Streak = qaytish mexanikasi", body: <>Duolingo streak — uzluksiz kunlar zanjiri. Zanjir uzilishidan qo'rquv odamni <b>qayta-qayta qaytaradi</b>. O'yinlardagi kunlik bonus ham shu usul.</> },
+      { ic: "🔥", h: "Streak = qaytish mexanikasi", body: <>Duolingo streak — ketma-ket dars qilingan kunlar soni. Hisobni yo'qotishdan qo'rquv odamni <b>qayta-qayta kirgizadi</b>. O'yinlardagi kunlik bonus ham shu usul.</> },
       { ic: "↩️", h: "Retention nimani o'lchaydi", body: <>Retention — kirganlarning <b>qaytish ulushi</b>. Streak birinchi navbatda aynan shu metrikani ko'taradi.</> },
       { ic: "🚫", h: "Yangi oqim emas", body: <>Streak <b>yangi foydalanuvchilar oqimini</b> yoki server tezligini o'zgartirmaydi — u faqat mavjudlarni qaytaradi.</>, ask: "Streak qaysi metrikaga eng kuchli ta'sir qiladi?" },
     ]
@@ -470,8 +470,8 @@ const RECAPS = {
     title: "Har metrika — o'z savoliga javob",
     cards: [
       { ic: "📅", h: "DAU → kelish", body: <>DAU savoli: <b>«Bugun nechta odam kirdi?»</b> — mahsulotga kelishni sanaydi.</> },
-      { ic: "↩️", h: "retention → qaytish · churn → ketish", body: <>Retention: <b>«kelganlarning qanchasi qaytdi?»</b>. Churn: <b>«qanchasi butunlay ketdi?»</b> — ikkisi bir tanganing ikki tomoni.</> },
-      { ic: "⭐", h: "North Star → qiymat", body: <>North Star savoli: <b>«mahsulot haqiqiy qiymat beryaptimi?»</b> — bosh yulduz-ko'rsatkich.</>, ask: "«Kelganlarning qanchasi qaytdi?» — bu qaysi metrika?" },
+      { ic: "↩️", h: "retention → qaytish · churn → ketish", body: <>Retention: <b>«kelganlardan necha kishi YANA kirdi?»</b>. Churn: <b>«necha kishi butunlay ketdi?»</b> — ikkisi bir tanganing ikki tomoni.</> },
+      { ic: "⭐", h: "North Star → qiymat", body: <>North Star savoli: <b>«mahsulot haqiqiy qiymat beryaptimi?»</b> — bosh yulduz-ko'rsatkich.</>, ask: "«Kelganlardan necha kishi yana kirdi?» — bu qaysi metrika?" },
     ]
   }
 };
@@ -876,7 +876,7 @@ function MiniPult() {
 // ===== SCREEN 0 — HOOK: Duolingo streak ovoz berish (jonli natija — o'sib boradigan alanga zanjiri) =====
 const HOOK_OPTS = [
   "Yangi so'zlar qiziqarli",
-  "STREAK (kunlar zanjiri) uzilib qolishidan qo'rqish",
+  "STREAK (ketma-ket kunlar soni) nolga tushib qolishidan qo'rqish",
   "Eslatma-bildirishnomalar",
   "Do'stlar bilan musobaqa",
 ];
@@ -934,7 +934,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
           })}
         </div>
         {revealViz && (
-          <div className="streak-shelf fade-step" aria-label="Ovoz natijalari — streak-alanga zanjirlari">
+          <div className="streak-shelf fade-step" aria-label="Ovoz natijalari — streak-alanga qatorlari">
             <div className="streak-rows">
               {HOOK_OPTS.map((o, i) => {
                 const n = shown[i];
@@ -953,7 +953,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
                 );
               })}
             </div>
-            <p className="streak-cap">{isMentor ? "Sinf ovozi — zanjir uzun bo'lgani sari sabab aniqlashadi. To'g'ri javobni hali ochmang." : "Ovozingiz qabul qilindi. Haqiqiy sababni birozdan keyin ochamiz: bu RETENTION (ertasiga yana kirish) mexanikasi bilan bog'liq. 😉"}</p>
+            <p className="streak-cap">{isMentor ? "Sinf ovozi — alanga qatori uzaygani sari sabab aniqlashadi. To'g'ri javobni hali ochmang." : "Ovozingiz qabul qilindi. Haqiqiy sababni birozdan keyin ochamiz: bu RETENTION (ertasiga yana kirish) mexanikasi bilan bog'liq. 😉"}</p>
           </div>
         )}
       </div>
@@ -991,7 +991,7 @@ const DEMO_METRICS = [
 const Screen1 = ({ screen, onNext, onPrev }) => (
   <Stage eyebrow="Maqsad" screen={screen} mentorStatic navContent={<><NavBack onPrev={onPrev} /><NavNext label="Boshlaymiz →" onClick={onNext} /></>}>
     <div className="screen" style={{ gap: 'clamp(14px,2.2vw,20px)' }}>
-      <div className="head"><h2 className="title h-title fade-up">Loyihangiz «pulsi»ni bitta <span className="italic" style={{ color: T.accent }}>jonli panelda</span> ko'rsangiz-chi?</h2></div>
+      <div className="head"><h2 className="title h-title fade-up">Loyihangiz holatini bitta <span className="italic" style={{ color: T.accent }}>jonli panelda</span> ko'rib tursangiz-chi?</h2></div>
       <Mentor>Dars oxirida sizda <b style={{ color: T.ink }}>boshqaruv paneli</b> bo'ladi: <b style={{ color: T.ink }}>North Star</b> (bosh yulduz-ko'rsatkich) va 3 metrika-karta — metrika bu mahsulot holatini ko'rsatadigan raqam. Qarang — namunaviy panel hozir jonlanadi.</Mentor>
       <div className="mdash-grid">
         {DEMO_METRICS.map((m, i) => (
@@ -1010,7 +1010,7 @@ const Screen1 = ({ screen, onNext, onPrev }) => (
         ))}
       </div>
       <p className="mdash-cap">✨ Dars oxirida o'z panelingiz xuddi shunday jonlanadi.</p>
-      <div className="takeaway fade-up delay-2"><span className="ta-bulb">🎯</span><p className="ta-h">Bu panel bugun to'ladi — keyingi darsda shu raqamlar asosida maqsad qo'yishni o'rganasiz.</p><p className="ta-sub">Tayyor natija = loyihangizning o'lchov tizimi</p></div>
+      <div className="takeaway fade-up delay-2"><span className="ta-bulb">🎯</span><p className="ta-h">Bu panel bugun jonlanadi — keyingi darsda shu raqamlar asosida maqsad qo'yishni o'rganasiz.</p><p className="ta-sub">Tayyor natija = loyihangizning o'lchov tizimi</p></div>
     </div>
   </Stage>
 );
@@ -1145,7 +1145,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             })}
           </div>
         </div>
-        {done && <div className="done-mini fade-step">✅ 4/4 joylandi <span className="dm-sub">— kelish (DAU) ≠ qaytish (retention), bugungi darsning bosh g'oyasi shu</span></div>}
+        {done && <div className="done-mini fade-step">✅ 4/4 joylandi <span className="dm-sub">— kelish (DAU) bilan qaytish (retention) bir narsa emas, bugungi darsning bosh g'oyasi shu</span></div>}
         <MentorNote>Duolingo keysi keyingi ekranda keladi. «North Star» so'zini birinchi aytganda ochib bering: butun jamoa qaraydigan bitta bosh raqam. Xato joylangan karta havzaga qaytadi — jazo yo'q.</MentorNote>
       </div>
     </Stage>
@@ -1154,18 +1154,18 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 
 // ===== SCREEN 4 — KEYS K5: Duolingo streak mexanikasi bosqichma-bosqich (RAQAMSIZ) =====
 const K5_SLIDES = [
-  { ic: "🦉", h: "Duolingo — har kuni qaytish", body: <>Duolingo'ning bosh muammosi: odamlar ilovani yuklab, keyin <b>tashlab ketmasin</b>. Til o'rganish — uzoq safar, har kun kerak.</> },
-  { ic: "🔥", h: "Streak nima", body: <>Streak — <b>uzluksiz kunlar zanjiri</b>: har kuni dars qilsangiz, zanjir uzunlashadi. Bir kun o'tkazib yuborsangiz — zanjir uziladi.</> },
-  { ic: "😰", h: "Qo'rquv + odat", body: <>Uzun zanjirni <b>yo'qotishdan qo'rquv</b> odamni charchagan kunda ham qaytaradi. Asta-sekin bu <b>odatga</b> aylanadi.</> },
-  { ic: "🧊", h: "Muzlatish va eslatmalar", body: <>Atrofida yordamchi mexanika: zanjirni <b>«muzlatish»</b> (bir kun o'tkazib yuborsangiz saqlanadi) va kunlik <b>eslatmalar</b>.</> },
-  { ic: "↩️", h: "Xulosa: retention", body: <>Streak — tasodifiy bezak emas, atayin o'ylab qilingan mahsulot-qarori. U <b>retention'ni (qaytishni) ko'taradi</b> va har kuni o'lchab boriladi.</> },
+  { ic: "🦉", h: "Duolingo — har kuni kirish", body: <>Duolingo'ning eng katta muammosi: odamlar ilovani yuklab oladi-yu, bir-ikki kundan keyin <b>ochmay qo'yadi</b>. Til esa har kuni shug'ullansagina o'rganiladi.</> },
+  { ic: "🔥", h: "Streak nima", body: <>Streak — <b>ketma-ket dars qilingan kunlar soni</b>: har kuni kirsangiz, son o'sib boradi. Bir kun o'tkazib yuborsangiz — hisob nolga tushadi.</> },
+  { ic: "😰", h: "Qo'rquv + odat", body: <>Shuncha kun to'plagan hisobni <b>yo'qotishdan qo'rquv</b> odamni charchagan kunda ham kirgizadi. Asta-sekin bu <b>odatga</b> aylanadi.</> },
+  { ic: "🧊", h: "Muzlatish va eslatmalar", body: <>Yordamchi usullar ham bor: hisobni <b>«muzlatish»</b> (bir kun kirmasangiz ham son saqlanib qoladi) va kunlik <b>eslatmalar</b>.</> },
+  { ic: "↩️", h: "Xulosa: retention", body: <>Streak — shunchaki chiroyli belgi emas, odam <b>har kuni yana kirishi uchun</b> atayin o'ylab qilingan mahsulot-qarori. U <b>retention'ni (yana kirishni) oshiradi</b> va jamoa buni har kuni o'lchab boradi.</> },
 ];
 // 🎲 Mikro-bashorat stavkalari — 2 kalit-slayd OLDIDAN o'quvchi taxmin tikadi, slayd javobni ochadi.
 // Unscored: ball yo'q, to'g'ri kelmasa NEYTRAL indigo (qizil EMAS). Tanlov localStorage'da (qaytib kirsa saqlanadi).
 const K5_BETS_KEY = 'pm-m8d1-k5bets';
 const K5_BETS = {
-  2: { q: "Sizningcha, zanjir uzilay deganda odam nima qiladi?", opts: [{ ic: '😴', t: "Tashlab qo'yadi" }, { ic: '😰', t: 'Kirib dars qiladi' }, { ic: '🤷', t: 'Sezmaydi ham' }], ans: 1 },
-  3: { q: "Bir kun o'tkazib yuborsangiz-chi — Duolingo nima qiladi?", opts: [{ ic: '🎁', t: "Sovg'a beradi" }, { ic: '😤', t: 'Zanjir noldan boshlanadi' }, { ic: '🧊', t: '«Muzlatish» saqlab qoladi' }], ans: 2 },
+  2: { q: "Sizningcha, hisob nolga tushay deb qolsa, odam nima qiladi?", opts: [{ ic: '😴', t: "Tashlab qo'yadi" }, { ic: '😰', t: 'Kirib dars qiladi' }, { ic: '🤷', t: 'Sezmaydi ham' }], ans: 1 },
+  3: { q: "Bir kun o'tkazib yuborsangiz-chi — Duolingo nima qiladi?", opts: [{ ic: '🎁', t: "Sovg'a beradi" }, { ic: '😤', t: 'Hisob noldan boshlanadi' }, { ic: '🧊', t: '«Muzlatish» saqlab qoladi' }], ans: 2 },
 };
 const readK5Bets = () => { try { const o = JSON.parse(localStorage.getItem(K5_BETS_KEY) || '{}'); return (o && typeof o === 'object') ? o : {}; } catch { return {}; } };
 const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
@@ -1188,7 +1188,7 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return (
     <Stage eyebrow="Keys 🔥" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={betPending} label={betPending ? '🎲 Avval taxminingizni tanlang' : last ? 'Davom etish' : `Keyingi bosqich (${i + 1}/${K5_SLIDES.length})`} onClick={last ? onNext : () => setI(i + 1)} /></>}>
       <div className="screen" style={{ gap: 'clamp(14px,2.2vw,20px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Duolingo sirini ochamiz: nima odamni <span className="italic" style={{ color: T.accent }}>har kuni</span> qaytaradi?</h2></div>
+        <div className="head"><h2 className="title h-title fade-up">Duolingo usulini ochamiz: nima odamni <span className="italic" style={{ color: T.accent }}>har kuni</span> yana kirgizadi?</h2></div>
         {betPending ? (
           <div className="kbet fade-step" key={`bet${i}`}>
             <span className="k-slide-eyebrow">🎲 Bashorat · {i + 1}-bosqich oldidan</span>
@@ -1222,7 +1222,7 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           {hookVote === 1 && <><b style={{ color: T.accent }}>Buni darsning boshidayoq sezgandingiz — «streak-qo'rquv» deb ovoz bergandingiz!</b>{' '}</>}
           {hookVote != null && hookVote !== 1 && HOOK_SHORT[hookVote] && <><b style={{ color: T.accent }}>Dars boshida siz «{HOOK_SHORT[hookVote]}» degandingiz — Duolingo'ning bosh siri esa streak ekan.</b>{' '}</>}
           Sizning MVP'ingizda (mahsulotingizning ilk sodda versiyasida) ham «odamni qaytaradigan» bitta mexanika bo'lishi mumkin. Uni topib, retention'ni o'lchab turasiz.</p></div>}
-        <MentorNote>Bu keysda rasmiy raqam yo'q — foydalanuvchi soni yoki foizini o'zingizdan to'qimang. «Streak» so'zini birinchi aytganda ochib bering (kunlar zanjiri). Bashorat-bosqichda avval sinfdan taxmin so'rang — o'quvchilar ekranida taxmin-variantlari chiqadi.</MentorNote>
+        <MentorNote>Bu keysda rasmiy raqam yo'q — foydalanuvchi soni yoki foizini o'zingizdan to'qimang. «Streak» so'zini birinchi aytganda ochib bering (ketma-ket kunlar soni). Bashorat-bosqichda avval sinfdan taxmin so'rang — o'quvchilar ekranida taxmin-variantlari chiqadi.</MentorNote>
       </div>
     </Stage>
   );
@@ -1321,6 +1321,33 @@ const MentorPracticeStats = ({ live, screen, label = "👀 Kim bajardi" }) => {
           {waiting.map(p => <span key={p.id} className="mstats-wait-chip" style={{ background: T.accentSoft, color: T.accent, fontWeight: 700 }}>✏️ {p.nickname}</span>)}
         </div>
       )}
+    </div>
+  );
+};
+
+// O'QUVCHI ko'radigan sinf-pulsi (ETALON 45): koding-ekranda «nechta sinfdosh bajardi / bajarmoqda» jonli hisobi.
+// Faqat jonli student-rejimda; MentorPracticeStats bilan bir xil signal-zonadan (PRACTICE_BASE+screen) o'qiydi,
+// ball-relsga yozmaydi — sof o'qish. 3 soniyalik polling (mentor-panel bilan bir xil). Naqsh: PmJtbdLesson.
+const StudentPracticePulse = ({ live, screen }) => {
+  const [data, setData] = useState(null); // { total, done }
+  useEffect(() => {
+    if (!live || live.mode !== 'student' || !live.pin) return;
+    let on = true, t = null;
+    const tick = async () => {
+      try {
+        const [players, rows] = await Promise.all([livePlayers(live.pin), liveAnswers(live.pin, PRACTICE_BASE + screen)]);
+        if (on) setData({ total: players.length, done: new Set(rows.map(r => r.player_id)).size });
+      } catch {}
+      if (on) t = setTimeout(tick, 3000);
+    };
+    tick();
+    return () => { on = false; clearTimeout(t); };
+  }, [live && live.pin, screen]);
+  if (!live || live.mode !== 'student' || !data || data.total === 0) return null;
+  const doing = Math.max(0, data.total - data.done);
+  return (
+    <div className="done-mini fade-up" style={{ alignSelf: 'flex-start' }}>
+      👥 Sinfda: <b>{data.done}</b> bajardi{doing > 0 && <span className="dm-sub">· ✏️ {doing} hali bajarmoqda</span>}
     </div>
   );
 };
@@ -1775,6 +1802,7 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <button className={`lp-done-btn ${done ? 'is-done' : ''}`} disabled={done || !allChecked} onClick={complete}>
               {done ? '✓ Bajarildi' : allChecked ? '✅ Bajardim' : `4 qadamni belgilang (${checked.size}/4)`}
             </button>
+            <StudentPracticePulse live={live} screen={screen} />
             {done && <div className="done-mini fade-step">✅ MetrikaPanel loyihangizda <span className="dm-sub">— retention endi kodda hisoblanadi</span></div>}
           </Col>
         </div>
@@ -2029,7 +2057,7 @@ const QUIZ_BANK = [
   { q: "Retention nimani o'lchaydi?", opts: ["Bir kunda kirganlar soni", "Kelganlarning keyin qaytish ulushi", "Yangi foydalanuvchilar oqimi", "Ilova hajmi"], correct: 1 },
   { q: "Churn nima?", opts: ["Qaytganlar ulushi", "Kunlik faol foydalanuvchi", "Bosh yulduz-ko'rsatkich", "Butunlay tashlab ketganlar ulushi"], correct: 3 },
   { q: "North Star nima?", opts: ["Real qiymatni ko'rsatuvchi yagona bosh raqam", "Eng ko'p pul olib keladigan reklama", "Kodning eng muhim fayli", "Ilovadagi eng chiroyli ekran"], correct: 0 },
-  { q: "Duolingo streak nima?", opts: ["Bir martalik katta chegirma", "Do'stlar ro'yxati", "Uzluksiz kunlar zanjiri", "Ilova versiyasi raqami"], correct: 2 },
+  { q: "Duolingo streak nima?", opts: ["Bir martalik katta chegirma", "Do'stlar ro'yxati", "Ketma-ket kunlar soni", "Ilova versiyasi raqami"], correct: 2 },
   { q: "Streak birinchi navbatda qaysi metrikani ko'taradi?", opts: ["Server narxini", "Yangi foydalanuvchilar oqimini", "Ekran o'lchamini", "Retention (qaytish)ni"], correct: 3 },
   { q: "«MVP'ga (mahsulotning ilk sodda versiyasiga) bir haftada 100 kishi kirdi» — bu yaxshimi?", opts: ["Ha, chunki kirgan odam soni katta", "Aniq emas — qanchasi qaytganini ko'rish kerak", "Yo'q, har doim yomon", "Faqat serverning narxiga bog'liq"], correct: 1 },
   { q: "Oshxonadagi yangi taom misolida haqiqiy baho nima?", opts: ["Ikkinchi haftada nechtasi YANA olishi", "Birinchi kuni hamma olib ko'rishi", "Taomning rangi", "Narxi qancha ekani"], correct: 0 },

@@ -1068,7 +1068,7 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return (
     <Stage eyebrow={tr({ uz: 'Keys (real voqea tahlili) 🎓', ru: 'Кейс (разбор реальной истории) 🎓' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive label={last ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : `${tr({ uz: 'Keyingi bosqich', ru: 'Следующий шаг' })} (${i + 1}/${K8_SLIDES.length})`} onClick={last ? onNext : () => setI(i + 1)} /></>}>
       <div className="screen" style={{ gap: 'clamp(14px,2.2vw,20px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Facebook sirini ochamiz: nega faqat <span className="italic" style={{ color: T.accent }}>bitta universitet</span>?</>, ru: <>Раскрываем секрет Facebook: почему только <span className="italic" style={{ color: T.accent }}>один университет</span>?</> })}</h2></div>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Facebook usulini ochamiz: nega faqat <span className="italic" style={{ color: T.accent }}>bitta universitet</span>?</>, ru: <>Раскрываем метод Facebook: почему только <span className="italic" style={{ color: T.accent }}>один университет</span>?</> })}</h2></div>
         <MentorNote>{tr({ uz: "Frontal tushuntirish jami 10 daqiqadan oshmasin — qolgani o'quvchi harakati va muhokama.", ru: 'Фронтальное объяснение — не дольше 10 минут суммарно; остальное — действия учеников и обсуждение.' })}</MentorNote>
         <div className="k-slide fade-step" key={i}>
           <span className="k-slide-eyebrow">📘 {tr({ uz: 'Facebook keysi', ru: 'Кейс Facebook' })} · {i + 1} / {K8_SLIDES.length}</span>

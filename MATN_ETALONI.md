@@ -130,10 +130,10 @@ Har dars tekshirilganda topilgan tushunarsiz/rasmiy so'z shu jadvalga qo'shiladi
 | prioritizatsiya (izohsiz) | muhimini birinchi qilib tartiblash / eng muhimini tanlash | lotin-ildizli jargon; o'smir bilmaydi — o'rniga sodda «qaysi hikoyadan boshlashni tanlash» kabi fe'l-ibora (PM M3-D2 ustaxona yulduzcha-topshirig'i) |
 | vague prompt | loyqa prompt | inglizcha aralash so'z; darsda «loyqa» atamasi bir joyda ishlatilgan — hamma o'rinda shu tanlanadi (bir tushuncha — bir so'z) (PracticeLesson2 explainWrong) |
 | prompt anatomiyasi | buyruqning 4 ingredienti | «anatomiya» — inson a'zolari (4.1 TAQIQ manba); darsning o'z metaforasi «4 ingredient» (pitsa buyurtmasi) bilan izchil (PracticeLesson2 s16 fail-matn) |
-| «ish» bitishini sotib oladi | u bajarib beradigan ISHNI sotib oladi | «bitishini» qo'shimchali qurilma o'smirga g'aliz — sodda tuslovchisiz shakl + «Drel kerak emas — devordagi TESHIK kerak» misoli birga (PM M7-D2 s3, 2026-07-21 jonli-ko'rik) |
+| «ish» bitishini sotib oladi | u bajarib beradigan ISHNI sotib oladi | «bitishini» qo'shimchali qurilma o'smirga g'aliz — sodda tuslovchisiz shakl + «Drel kerak emas — devordagi TESHIK kerak» misoli birga (PM M7-D2 s3, 2026-07-21 jonli-ko'rik) · ⚠️ 2026-07-24: «ish» shakli FAQAT JTBD darsining o'zida (u yerda bosh-atama) — boshqa darslarda pastdagi «natija» qatori amal qiladi |
 | mahsulot salomatligi / mahsulot ahvoli | mahsulotning HOLATI / loyihangiz qanday yashayapti | «salomatlik» — tibbiyot-kalka; «ahvol» ham chiqarildi — kayfiyat-ottenkali («ahvoling qalay?»), texnik ta'rifda noaniq. Mahsulot/tizim/metrika haqida DOIM «holat» (2026-07-22 Metrika 2.png foydalanuvchi-tuzatmasi: «ahvolini emas, holatini») |
 | o'z og'zingizdan chiqsin (kitobiy ibora) | o'zingiz takrorlang | dabdabali-kitobiy ibora o'rniga to'g'ridan-to'g'ri harakat-buyruq — o'quvchi nima qilishini darrov tushunadi (2026-07-22 Metrika 6.png foydalanuvchi-tuzatmasi) |
-| «Endi ochamiz: …» (predmetsiz deiktik sarlavha) | «Duolingo sirini ochamiz: …» | sarlavha NIMANI ochilishini o'zi aytsin — kontekstsiz «endi ochamiz» birinchi o'qishda tushunarsiz (2026-07-22 Metrika 3.png; ETALON 30-qonun) |
+| «Endi ochamiz: …» (predmetsiz deiktik sarlavha) | «Duolingo usulini ochamiz: …» | sarlavha NIMANI ochilishini o'zi aytsin — kontekstsiz «endi ochamiz» birinchi o'qishda tushunarsiz (2026-07-22 Metrika 3.png; ETALON 30-qonun) · ⚠️ 2026-07-24: eski misoldagi «sirini» ham almashdi — pastdagi «sir» qatoriga qarang |
 | qanchasi qaytdi / nima qaytdi (kontekstsiz) | necha kishi ERTASIGA yana kirdi | «qaytdi» yolg'iz turganda mavhum — KIM qaytgani (odam) va QACHON (ertasiga/keyingi hafta) aniq aytilsin; retention doim «yana kirish/yana kelish» fe'li bilan (PM M8-D1 s2, 2026-07-22 jonli-ko'rik) |
 | o'rinbosar (placeholder ma'nosida) | vaqtincha yozib qo'yilgan so'z / [KIM] deb yozib qo'yilgan joy | «o'rinbosar» o'smir uchun lavozim («direktor o'rinbosari»); placeholder ma'nosini bilmaydi — belgining o'zi ko'rsatilib sodda ta'riflanadi (PM M1-D2 senariy-korrektura, 2026-07-22) |
 | sotib beradigan / sotuv-nutq (pitch haqida) | ishontiradigan / qisqa ishontiruvchi nutq | «sotish» o'smirga tom ma'noda («saytni sotish») yoki salbiy o'qiladi; pitch = tinglovchini ISHONTIRISH (PM M1-D12 senariy-korrektura, 2026-07-22) |
@@ -144,6 +144,19 @@ Har dars tekshirilganda topilgan tushunarsiz/rasmiy so'z shu jadvalga qo'shiladi
 | slot (UI-yorliqda) | joyiga / bo'sh joy | «slot» — ingliz jargoni, o'smir bilmaydi; «keyin joyiga bosing» (PM M1-D2 s3 qoida-konstruktor darslik-sayqal) |
 | D11 / D2 (ichki dars-kodi ekranda) | 11-darsda / 2-darsda | «D11» — jamoa-ichki qisqartma, o'quvchi «11-dars» deb biladi; ekranda/hintda doim to'liq shakl (PM M1-D12 koding c3-hint, 2026-07-22) |
 | general / «Demo Day generali» (repetitsiya ma'nosida) | repetitsiya / ertangi sahnaning repetitsiyasi | «генеральная репетиция» rus-kalka bo'lagi; o'zbekchada «general» — harbiy unvon, ma'no adashadi (PM M1-D12 s11 mentor-eslatma, 2026-07-22) |
+| retsept + masalliq (User Story metaforasi) | 1 hikoya — 3 bo'lak | oshxona metaforasi ish bermadi — «masalliq» so'zining O'ZI o'smirga notanish (metafora-so'z gloss talab qilsa, metafora yaroqsiz); darsda avvaldan bor «bo'lak» so'zidan qurildi, KASKAD bilan (testlar, tekshiruv, RECAP, koding, uy-vazifa) (PM M3-D2 P0, 2026-07-24 qo'lda-ko'rik; ETALON 41-qonun) |
+| «ish»ni sotib oladi (JTBD tarjimasi, boshqa darsda) | (foydali) natijani sotib oladi | «ish» ko'p ma'noli (ish joyi? yumush?) — JTBD darsidan TASHQARIDA «natija/foyda» so'zi ishlatiladi; atama «Jobs-to-be-Done (JTBD)» originalda qoladi, tushuntirish «mahsulot odamga beradigan foydali natija» (PM M3-D2 K11, 2026-07-24) |
+| kartalar to'ladi (matn yozilishi haqida) | kartalar o'z-o'zidan yozilib chiqadi / yozilgan bo'ladi | «to'ladi» suv/idishni eslatadi — fe'l ekrandagi jismoniy jarayonga mos bo'lsin (ETALON 42-qonun; PM M3-D2 s1, 2026-07-24) |
+| X sifatida olmayapti (inkor-qurilma) | X uchun olmayotgan ekan | «shirinlik sifatida olmayapti» g'aliz — «shirinlik yeyish uchun olmayotgan ekan» tabiiy shakl (PM M3-D2 K11, 2026-07-24) |
+| foyda ≠ harakat (belgi-formula o'quvchi-matnda) | bu «nima qilaman» emas, «menga nima foyda» degan javob | ≠/=/→ belgilari o'quvchi izohida TAQIQ — to'liq sodda gap bilan aytiladi (ETALON 43a; PM M3-D2 s3 done-mini, 2026-07-24) |
+| xom (hikoya haqida, retsept-metafora qoldig'i) | chala | «xom» oshxona-metaforaga bog'liq edi — metafora ketgach u ham «chala»ga almashdi (bir metafora — bir til) (PM M3-D2, 2026-07-24) |
+| bosh-ish (sun'iy qo'shma so'z) | asosiy vazifa / asosiy ish | defis bilan yasalgan sun'iy birikma o'quvchiga notanish — tabiiy ikki so'z bilan; bosh-atama («ish») zichligi ham kamayadi (37b sinonim-almashinuv) (PM M7-D2 s1/s5, 2026-07-24) |
+| «keyingi custdev darsida ishlatiladi» (kelajak-atama ko'prikda) | «keyingi darsda mijozlar bilan suhbatlashishda ishlatiladi» | 29-qonun tatbiqi: ko'prik-va'da QOLADI, kelajak-dars atamasi KETADI — atama o'z darsida gloss bilan ochiladi; scored savolda ham («custdev intervyu» → «mijoz bilan suhbat savollari») (PM M7-D2, 2026-07-24) |
+| drel (izohsiz) | drel — devor teshadigan asbob | klassik JTBD-misol QOLADI, lekin so'zning o'zi hamma o'smirga tanish emas — birinchi ko'rinishda (mentor + RECAPS + scored test) mini-gloss (PM M7-D2 s3, 2026-07-24) |
+| «X sirini ochamiz» (sarlavhada) | «X usulini ochamiz» | «sir» mavhum-intriga so'zi — sarlavha aniq bo'lsin: nima ochilayotgani USUL ekani aytiladi (PM M8-D1 s4-sarlavha, 2026-07-24) · ✅ butun src/ bo'ylab tozalandi: Airbnb (Pitch), Facebook (Audience, ru: «метод»), iPhone (Structure) — «sirini ochamiz» = 0 |
+| zanjir (streak tarjimasi) | ketma-ket (dars qilingan) kunlar soni / hisob | «kunlar zanjiri» metafora-tarjima o'smirga ochilmaydi — streak aslida SON/HISOB: «har kuni kirsangiz son o'sadi, o'tkazib yuborsangiz hisob nolga tushadi»; qisqa muloqotda «hisob» (PM M8-D1 K-keys 5 karta + hook + quiz kaskadi, 2026-07-24) |
+| bosh muammo / bosh-ko'rsatkich («bosh» sifat sifatida) | eng katta muammo / asosiy muammo | «bosh» o'smirda tana a'zosi bilan adashadi (bosh-tana-oyoq); «eng katta / asosiy» aniq (PM M8-D1 K-karta1, 2026-07-24; M7-D2 «bosh-ish» qatori bilan oila) |
+| loyiha «pulsi» (tibbiyot-metafora) | loyiha holati | «puls» — yurak urishini bilmagan o'quvchiga ochilmaydigan tibbiyot-so'z; «holat» qatori (134) bilan bir oila: mahsulot haqida DOIM «holat» (PM M8-D1 s1-sarlavha, 2026-07-24) |
 
 > **Qo'shish tartibi:** darsda tushunarsiz so'z topilsa → shu jadvalga (qiyin, sodda, izoh) yoz → kodda grep bilan barcha o'rinlarini tuzat → audio/mentor matni ham birga yangilanadi.
 
@@ -222,6 +235,59 @@ Har dars tekshirilganda topilgan tushunarsiz/rasmiy so'z shu jadvalga qo'shiladi
 
 ---
 
+## 7-B. 🔴 QAT'IY EKRAN-UX STANDARTI (Topshiriq · Yo'riqnoma · Kartochka · Variantlar)
+
+> Manba: Senior Methodologist qat'iy prompti (2026-07-24, avval `src/1-Modull/qatiy.prompt.md`).
+> Birinchi qo'llanilgan dars: `src/1-Modull/PmPitchLesson.jsx` (`TaskHead` komponenti — tayyor namuna).
+> Maqsad: har ekran o'quvchi tomonidan **3–5 soniyada** tushunilsin — nima qilish, qaysi qoida, qayerda javob.
+
+### 7-B.1 Har interaktiv ekranning MAJBURIY tuzilishi (tartib o'zgarmaydi)
+
+```
+1. TOPSHIRIQ   — buyruq, 3–6 so'z
+2. YO'RIQNOMA  — qaysi qoida bo'yicha, 1–2 gap, ≤20 so'z
+3. KARTOCHKA   — och-fon karta: FAQAT tahlil material (User Story/kod/matn/jadval/rasm)
+4. VARIANTLAR  — alohida, katta, qisqa tugmalar
+```
+
+- **TOPSHIRIQ** — faqat amal: «Ortiqcha bo'lakni toping.» / «To'g'ri javobni tanlang.» / «Mos juftliklarni ulang.» / «Gapni to'ldiring.» / «Xatoni toping.» / «To'g'ri ketma-ketlikni joylashtiring.» Qoida: 3–6 so'z, buyruq shaklida, **savol yozilmaydi**, murakkab gap yo'q.
+- **YO'RIQNOMA** — bitta savolga javob: *qanday qoida bo'yicha bajariladi?* («Faqat bitta javob to'g'ri.» / «Uni olib tashlasak ham ma'no o'zgarmaydi.»). ≤20 so'z, ortiqcha izohsiz.
+- **KARTOCHKA** — ichida qo'shimcha tushuntirish YOZILMAYDI; faqat o'quvchi tahlil qiladigan material.
+- **VARIANTLAR** — bosishga qulay, ortiqcha matnsiz; barcha variantlar taxminan bir uzunlikda.
+
+### 7-B.2 Pedagogik va kognitiv qoidalar
+
+- Bir ekran = **bitta vazifa**, bitta ko'nikma, bitta qoida. Ikkita vazifa berilmaydi.
+- Kuch **vazifani bajarishga** sarflansin, instruksiyani tushunishga emas: qisqa gaplar, oddiy so'zlar, bitta fikr = bitta gap.
+- Uzunlik: Topshiriq 3–6 so'z · Yo'riqnoma ≤20 so'z · abzats ≤2 qator.
+- Uslub: zamonaviy adabiy o'zbek tili — akademik-metodik, lekin reklama emas, ilmiy maqola emas, bolalarcha ham emas.
+- Barcha kurslar **bitta metodist yozganday** ko'rinsin: bir xil struktura, uslub, terminologiya.
+
+### 7-B.3 So'z tanlash standarti
+
+| ✅ Ishlatiladi | ❌ Ishlatilmaydi |
+|---|---|
+| to'g'ri · noto'g'ri · xato · ortiqcha · mos | buzuq · buzilgan · noto'g'ri ishlagan |
+| tanlang · belgilang · yozing · ulang · joylashtiring | shunchaki · foydasiz · foyda bermaydi |
+| ketma-ketlik · javob · qism · ma'no | g'alati · chalkash |
+
+```
+grep -nE "buzuq|buzilgan|g'alati|g‘alati|chalkash|shunchaki|foydasiz" <fayl>   # o'quvchi matnida bo'sh chiqsin (kod-izohlar mustasno)
+```
+
+### 7-B.4 Yakuniy tekshiruv (har ekran uchun)
+
+```
+[ ] 11 yoshli o'quvchi BIR o'qishda tushunadimi?
+[ ] Topshiriq buyruqmi (savol emasmi)? grep -nE '\?</h2>|task="[^"]*\?"' — bo'sh chiqsin
+[ ] Yo'riqnoma ≤20 so'zmi, faqat qoida haqidami?
+[ ] Kartochkada faqat materialmi (yo'riq/savol ko'chirilganmi)?
+[ ] Tartib to'g'rimi: Topshiriq → Yo'riqnoma → Kartochka → Variantlar?
+Bitta «yo'q» = matn qayta yoziladi.
+```
+
+---
+
 ## 8. ✅ HAR DARS UCHUN MATN TEKSHIRUV RO'YXATI
 
 ```
@@ -240,6 +306,7 @@ Har dars tekshirilganda topilgan tushunarsiz/rasmiy so'z shu jadvalga qo'shiladi
 [ ] 5  apostrof: grep "[‘’ʻ]" — bo'sh
 [ ] 6  tugma nomlari neytral; matn ↔ UI ↔ audio mos
 [ ] 7  "sir"-uslub yo'q: grep "hozircha sir|🤫" — bo'sh; ohang do'stona
+[ ] 7-B har interaktiv ekran: TOPSHIRIQ(buyruq 3–6 so'z, savol EMAS) → YO'RIQNOMA(≤20 so'z) → KARTOCHKA(faqat material) → VARIANTLAR(qisqa); taqiq-so'zlar grep bo'sh
 ```
 
 ---
@@ -250,6 +317,9 @@ Har dars matn-auditidan o'tganda shu yerga qisqa yozuv (sana + nima tuzatilgani)
 
 | Dars | Sana | Topilgan/tuzatilgan |
 |---|---|---|
+| PmMetricsLesson (PM M8-D1 «Metrika» · etalon) | 2026-07-24 | Foydalanuvchi QO'LDA-KO'RIK feedback'i: **(1) s1 sarlavha:** «Loyihangiz "pulsi"ni» (tibbiyot-metafora) → «Loyihangiz holatini … ko'rib tursangiz-chi?» (lug'at «holat» oilasi). **(2) K-keys sarlavha:** «Duolingo sirini ochamiz: nima odamni har kuni qaytaradi?» → «Duolingo usulini ochamiz: nima odamni har kuni yana kirgizadi?» («sir» mavhum; «qaytaradi» → retention-qoidasiga mos «yana kirgizadi»; 30-qonun namunasi 3 MD'da ham yangilandi). **(3) K-keys 5 karta TO'LIQ qayta yozildi:** karta1 «bosh muammosi / tashlab ketmasin / uzoq safar» → «eng katta muammosi / ochmay qo'yadi / til har kuni shug'ullansagina o'rganiladi»; karta2-4 «zanjir» metaforasi BEKOR → «ketma-ket dars qilingan kunlar soni / hisob nolga tushadi» (kaskad: bashorat-savol/chip, hook-variant, RECAPS-464, MentorNote-gloss, quiz «Uzluksiz kunlar zanjiri»→«Ketma-ket kunlar soni» — correct indeks tegilmadi); karta5 «tasodifiy bezak emas» → «shunchaki chiroyli belgi emas, odam har kuni yana kirishi uchun atayin o'ylab qilingan mahsulot-qarori». **(4) s10 koding:** `StudentPracticePulse` sinf-pulsi qo'shildi (45-qonun, JTBD naqshi). esbuild toza. Lug'atga 4 qator (sir/zanjir/bosh/puls). |
+| PmJtbdLesson (PM M7-D2 «Jobs-to-be-Done» · etalon) | 2026-07-24 | Foydalanuvchi QO'LDA-KO'RIK feedback'i (6 nuqta): **(1) s1:** «bosh-ishi» sun'iy qo'shma → «asosiy vazifasi» (s1/s5/K18-frame, done-mini ham); custdev ko'prigi 29-qonunga keltirildi — «keyingi darsda mijozlar bilan suhbatlashishda» (966/1391/1860/uy-vazifa hw-note + scored savol 2048 «custdev intervyu»→«mijoz bilan suhbat savollari»). **(2) s2 toggle-flip:** ilova-ikonkalar endi qayta bosilsa yopilib-ochiladi (`opened`/`seen` juftligi — 3/3 darvoza buzilmaydi, 46-qonun). **(3) s3 drel:** metafora QOLDI + mini-gloss «devor teshadigan asbob» (mentor/RECAPS/scored test). **(4) K18 4-karta:** «uchta ishni… (o'tirib ishlash)» ish-zichlik → «uch xil vazifani» (RECAPS-460 ham); frame «bitta asosiy "ish"ni… bosh-ishini (eng asosiy "ish"ini)» → vazifa-sinonim, atama 1 marta. **(5) s9 MatchPairs BUG:** mentor-panelda javob-kalit reveal'dan OLDIN ko'rinib turardi → reveal'gacha slotlar bo'sh «🙈» (44-qonun). **(6) s10 koding:** `StudentPracticePulse` — o'quvchi ham «👥 Sinfda: N bajardi · M bajarmoqda»ni ko'radi (45-qonun; ball-relsga yozmaydi). ⚠️ correct indeks/pozitsiya TEGILMADI. esbuild toza. Qonunlashtirildi: ETALON 44-46 + lug'atga 3 qator. |
+| PmUserStoryLesson (PM M3-D2 «User Story» · P0 etalon) | 2026-07-24 | Foydalanuvchi QO'LDA-KO'RIK feedback'i (4 sahifa): **(1) s1 fe'l-moslik:** «kartalar ko'z oldingizda to'ladi» (suvni eslatadi) → «3 karta ekranda o'z-o'zidan yozilib chiqadi» + takeaway «xuddi shunday yozilgan bo'ladi». **(2) s3 metafora-almashinuv:** «retsept + masalliq» (oshxona, «masalliq» notanish) → «**1 hikoya — 3 bo'lak**» (darsda avvaldan bor so'z); «xom» → «chala»; done-mini «foyda ≠ harakat» (belgi-formula) → «bu "nima qilaman" emas, "menga nima foyda" degan javob»; eyebrow/sarlavha mos. **KASKAD:** RECAPS-452, tekshiruv cue/explain (1367/1399), koding (qolip so'ziga), uy-vazifa, QUIZ 3 savol, yakun — residue-grep bo'sh. **(3) K11 keysi:** «shirinlik sifatida olmayapti» → «shirinlik yeyish uchun olmayotgan ekan»; «odam "ish"ni sotib oladi» → «odam natijani sotib oladi» (JTBD originalda qoldi, «ish» darsdan chiqarildi — testlar/RECAP ham). **(4) s5 mentor konkret:** «o'ylab, 2 kartani to'ldiring» → «Pastda 2 bo'sh karta bor. Har biriga yozing: KIM / NIMA / FOYDA». ⚠️ correct indeks/pozitsiya TEGILMADI. esbuild toza. Qonunlashtirildi: PM_DARS_ETALON 41-43 + lug'atga 6 qator + pm-metodist/pm-tekshiruvchi bandlari. |
 | PmPitchLesson (PM M1-D12 «Storytelling: pitch») | 2026-07-22 | Darslik-sayqal (pm-metodist): kirill/apostrof/«sir»-uslub = 0. **Sen-forma (grep tutmagan):** s2 flip-karta «o'rnatging ham kelmadi» → «o'rnatgingiz ham kelmadi». **«sotish» ovi (lug'at 139-qator):** s2 sarlavha «qanday "sotdi"?» → «sizni o'yinga qanday ishontirdi?»; QUIZ Q10 savoli mos yangilandi; s8 explainCorrect + RECAPS[6] «sotish emas» → «majburlash emas, ishontirish»; Q5 distraktor «chop etib sotish» → «chop etib tarqatish» (correct indeks/pozitsiya TEGILMADI). **Predmetli sarlavha (30-b):** s4 «Endi javobni ochamiz:» → «Airbnb sirini ochamiz:». **Parallel-yorliq:** s7 hotspot revealPrefix/ctaLabel «Buzuq bo'lak» → «Kuchsiz bo'lak» (cue «KUCHSIZLANTIRYAPTI» bilan mos). **Ichki-qisqartma:** koding c3-hint «D11'da» → «11-darsda» (lug'atga qo'shildi). **Kalka:** s11 mentor-eslatma «Demo Day generali» → «ertangi sahnaning repetitsiyasi» (lug'atga qo'shildi). **Gloss:** s10 mentor «kompilyator» → «tanish kod maydonida (kompilyatorda)»; pitch/investor/ilgak glosslari joyida tasdiqlandi. **Chip ≤4 so'z:** koding c2 «MUAMMO va YECHIM gaplari joyida» → «MUAMMO va YECHIM joyida». **Grapheme-diyeta (P0-kalibr):** hook mentor 3→2 gap + spot-note dedup (435→382), s10 koding 403→390, s12 uy-karta «1 REAL tinglovchi + 1 savolga javob»→«oila a'zosi + 1 savol», qadamlar ixchamlandi (486→437 ≈ P0-parity 435), kompilyator-brief 564→532 (P0 ~548 dan past); summary hw-eslatma «REAL tinglovchi»→«oila a'zosi» (s12 bilan parallel). Tell-balans: inline s7 0.71 / s8 1.10, arena 12/12 ≤1.33 — o'zgartirilmadi. RECAPS {4,6,9}×3 to'la, nishonlar 4/4 inglizcha ✅. esbuild TOZA. |
 | PmAudienceLesson (PM M1-D2 «Kim mening foydalanuvchim?») | 2026-07-22 | Darslik-sayqal (pm-metodist): kirill/apostrof/sen-forma/«sir» = 0. Ichki-jargon: k8-slaydda «Hook savolining javobi» → «Dars boshidagi savolning javobi»; «slot» → «joyiga» (s3 flow-label). SCORED-gloss: t1 «tashxis» → «baho» (cue/ctaLabel/questionText parallel). Bir tushuncha-bir atama: s2 «real ehtiyoj» → «real foyda» (qoida atamasi bilan birlashtirildi). Lug'at: RECAPS-9 «mavhum» → «noaniq gap»; summary «mashqini» → «tekshiruvini», «qoida o'rnashadi» → «esda qoladi». Gloss: «Demo Day (loyiha ko'rsatish kuni)» s1, «kompilyator (kod bilan ishlash oynasi)» koding-mentor. Grapheme: s1 468→399 (mentor-enumeratsiya qisqartirildi, karta o'zi ko'rsatadi), kompilyator-brief 458→362 (3-gap chip-hintlarda takror edi). QUIZ_BANK uzunlik-tell: Q1/Q3/Q4/Q5/Q6/Q8/Q9/Q12 distraktorlari boyitildi — barcha tell ≤1.39, correct indeks/pozitsiya TEGILMADI (3/3/3/3 saqlandi). Practice h2 «tekshiruvdan» → «✓ ANIQ muhrini» (test-eyebrow to'qnashuvi). esbuild toza. |
 | PmJtbdLesson (PM M7-D2 «Jobs-to-be-Done») | 2026-07-21 | To'liq 2-qatlam audit (pm-auditor, etalonga solishtirib): **texnik 20/20 PASS** (INLINE_KEYS↔correctIdx s7=1/s8=2/s9=0 · QUIZ 12 savol 3/3/3/3 · signal-zonalar · Kahoot-reveal · badges real-solve — nol nuqson). Matn tuzatishlari: **«custdev» glossiz 4 joyda** — jumladan SCORED arena Q12 o'zagida (lug'atdagi qoida kodda bajarilmagan ekan) → hammasiga «custdev (mijozni o'rganish)»; **«MVP»** s1 mentor birinchi ko'rinishda izohsiz → «(mahsulotingizning ilk sodda versiyasi)»; **MatchPairs sanoq-tell:** lead «Endi 3 JTBD-karta yozdingiz» + ekranda 4 YANGI chip → «3 JTBD-kartangiz tayyor — endi bilimingizni yangi 4 mahsulotda sinaymiz». esbuild toza. Saboqlar qonunlashtirildi: 4-bo'lim «Sanoq-mosligi» + «SCORED matnda jargon TAQIQ» qoidalari, PM_DARS_ETALON 21-22. |

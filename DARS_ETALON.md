@@ -31,6 +31,10 @@
 > **📖 Batafsil: `MATN_ETALONI.md`** — til/matn sifatining to'liq standarti (siz-forma, «qiyin so'z → sodda so'z»
 > lug'ati, ma'no aniqligi, ohang, darslar bo'yicha matn-audit tarixi). Quyida — qisqa xulosa. Matnni chuqur
 > tekshirish/tuzatish o'sha faylning tekshiruv ro'yxati bo'yicha qilinadi.
+>
+> **🎯 QAT'IY EKRAN-UX STANDARTI — `MATN_ETALONI.md` 7-B bo'lim:** har interaktiv ekran boshi
+> TOPSHIRIQ (buyruq, 3–6 so'z, savol EMAS) → YO'RIQNOMA (≤20 so'z) → KARTOCHKA (faqat material) →
+> VARIANTLAR (qisqa tugmalar). Namuna: `PmPitchLesson.jsx` dagi `TaskHead` komponenti.
 
 - **Faqat lotin o'zbek.** Tasodifiy kirill harflarga yo'l qo'yilmaydi (`а е о с р х у к н г д л ...` lotin ko'rinadi, lekin boshqa belgi). Tekshiruv:
   ```

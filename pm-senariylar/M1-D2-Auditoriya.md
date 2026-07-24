@@ -1,3 +1,6 @@
+
+
+
 # M1-D2 — Kim mening foydalanuvchim? (SENARIY, PM_Prompt_v8)
 
 > Holat: KORREKTURA O'TDI (pm-metodist Nilufar, 2026-07-22) → [GATE S] kutilmoqda.

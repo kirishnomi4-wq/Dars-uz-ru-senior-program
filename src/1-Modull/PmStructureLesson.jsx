@@ -1064,7 +1064,7 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return (
     <Stage eyebrow="Keys (real voqea tahlili) 📱" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive label={last ? 'Davom etish' : `Keyingi bosqich (${i + 1}/${K19_SLIDES.length})`} onClick={last ? onNext : () => setI(i + 1)} /></>}>
       <div className="screen" style={{ gap: 'clamp(14px,2.2vw,20px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">iPhone sirini ochamiz: Apple <span className="italic" style={{ color: T.accent }}>nima qildi</span>?</h2></div>
+        <div className="head"><h2 className="title h-title fade-up">iPhone usulini ochamiz: Apple <span className="italic" style={{ color: T.accent }}>nima qildi</span>?</h2></div>
         <div className="k-slide fade-step" key={i}>
           <span className="k-slide-eyebrow">📱 Apple-iPhone keysi · {i + 1} / {K19_SLIDES.length}</span>
           <div className="k-slide-ic">{c.ic}</div>

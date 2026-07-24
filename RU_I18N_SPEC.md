@@ -85,6 +85,7 @@ npx esbuild src/1-Modull/<Fayl>.jsx --loader:.jsx=jsx --outfile=C:\Users\ADMIN\A
 | Dars | Infra (tr/__lang) | Kontent RU | Izoh |
 |---|---|---|---|
 | `Htmllesson1.jsx` | ✅ | ✅ | pilot — 540+ juft, esbuild toza |
+| `InternetLesson.jsx` | ✅ | ✅ | 434 ru-juft, esbuild toza, kalitlar HEAD bilan aynan (2026-07-24). MAXSUS: infra oldindan bor edi (`useLang`/`useT` kontekst) — ustiga spec `tr()`/`__lang` qo'yildi; RECAPS/QUIZ_BANK/Flashcards/DragDrop/Podium/arena/TourGuide notekis qolgan edi — to'ldirildi. 3 ta yashirin CRASH tuzatildi: `Q_LABELS[q]`, `a.desc`, `ach.desc` render'da `tr()` siz obyekt edi |
 | `Htmllesson2.jsx` | ✅ | ✅ | 446 juft, esbuild toza, kalitlar tekshirildi (2026-07-22) |
 | `CssLesson1.jsx` | ✅ | ✅ | 469 juft, esbuild toza, kalitlar tekshirildi (2026-07-22) |
 | `CssLesson2.jsx` | ✅ | ✅ | 418 juft, esbuild toza, kalitlar tekshirildi (2026-07-22) |

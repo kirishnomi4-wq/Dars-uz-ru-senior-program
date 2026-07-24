@@ -448,7 +448,7 @@ const RECAPS = {
     title: "«Ish» — mahsulot emas",
     cards: [
       { ic: "🎯", h: "Ish = bitiriladigan natija", body: <>Odamlar mahsulotni emas, u beradigan <b>«ish»</b>ni — natijani oladi. «Formada bo'lish» — ish; poyabzal, ilova, soat — o'sha ishga yollanadigan mahsulotlar.</> },
-      { ic: "🪛", h: "Drel va rasm", body: <>Hech kim drelni drelning o'zi uchun olmaydi — maqsad <b>devorga rasm osish</b>. Mahsulot — vosita, odam esa natijani sotib oladi.</> },
+      { ic: "🪛", h: "Drel va rasm", body: <>Drel (devor teshadigan asbob)ni hech kim asbob uchun olmaydi — maqsad <b>devorga rasm osish</b>. Mahsulot — vosita, odam esa natijani sotib oladi.</> },
       { ic: "🧩", h: "Uch tur ish", body: <>Har ish <b>funksional</b> (vazifa bitsin), <b>ijtimoiy</b> (qanday ko'rinaman) yoki <b>emotsional</b> (qanday his qilaman) bo'ladi.</>, ask: "«formada bo'lish» qaysi turga yaqin?" },
     ]
   },
@@ -457,7 +457,7 @@ const RECAPS = {
     cards: [
       { ic: "🛋", h: "Uchinchi joy", body: <>Starbucks o'zini oddiy qahvaxona emas, <b>«uchinchi joy»</b> deb ko'rsatadi — u yerda o'tirish, ishlash, uchrashish mumkin. Odam joy va muhitga to'laydi.</> },
       { ic: "👥", h: "Ijtimoiy tur", body: <>«Boshqalar ko'zida qanday ko'rinaman» — bu <b>ijtimoiy</b> ish. Do'stlar bilan suratga tushib yuborish — ijtimoiy.</> },
-      { ic: "🧠", h: "Bir mahsulot — bir necha tur", body: <>Starbucks bir vaqtda <b>funksional</b> (ishlash) + <b>ijtimoiy</b> (ko'rinish) + <b>emotsional</b> (shinam his) ishlarni bajaradi.</>, ask: "Starbucks'ning emotsional ishi qaysi?" },
+      { ic: "🧠", h: "Bir mahsulot — bir necha tur", body: <>Starbucks bir vaqtda <b>funksional</b> (o'tirib ishlash) + <b>ijtimoiy</b> (ko'rinish) + <b>emotsional</b> (shinam his) vazifalarni birga bajaradi.</>, ask: "Starbucks'ning emotsional ishi qaysi?" },
     ]
   },
   9: {
@@ -945,7 +945,7 @@ const Screen1 = ({ screen, onNext, onPrev }) => (
   <Stage eyebrow="Maqsad" screen={screen} mentorStatic navContent={<><NavBack onPrev={onPrev} /><NavNext label="Boshlaymiz →" onClick={onNext} /></>}>
     <div className="screen" style={{ gap: 'clamp(14px,2.2vw,20px)' }}>
       <div className="head"><h2 className="title h-title fade-up">Mahsulot ham <span className="italic" style={{ color: T.accent }}>ishga olinadi</span> — ishonasizmi?</h2></div>
-      <Mentor>JTBD-karta (Jobs-to-be-Done — «bajarilishi kerak bo'lgan ish») — mahsulot qaysi <b style={{ color: T.ink }}>ISH</b>ga yollangani yozilgan karta. Hozir 3 ta namuna ko'z oldingizda to'ladi va «YOLLANDI» shtampini oladi — dars oxirida shunday 3 kartani o'zingiz yozasiz.</Mentor>
+      <Mentor>JTBD-karta (Jobs-to-be-Done — «bajarilishi kerak bo'lgan ish») — mahsulot qaysi <b style={{ color: T.ink }}>ISH</b>ga yollangani yozilgan karta. Hozir 3 ta namuna ko'z oldingizda yozilib chiqadi va «YOLLANDI» shtampini oladi — dars oxirida shunday 3 kartani o'zingiz yozasiz.</Mentor>
       <div className="jhire-grid">
         {DEMO_JTBD.map((s, i) => {
           const base = 0.3 + i * 1.7;
@@ -963,7 +963,7 @@ const Screen1 = ({ screen, onNext, onPrev }) => (
         })}
       </div>
       <p className="jhire-cap">✨ Dars oxirida sizning 3 kartangiz ham shu shtampni oladi.</p>
-      <div className="takeaway fade-up delay-2"><span className="ta-bulb">🎯</span><p className="ta-h">Bu 3 karta va MVP'ingizning bosh-ishi (MVP — mahsulotingizning ilk sodda versiyasi) keyingi custdev (mijozni o'rganish) darsida ishlatiladi.</p><p className="ta-sub">Tayyor natija = mijozni o'rganishning poydevori</p></div>
+      <div className="takeaway fade-up delay-2"><span className="ta-bulb">🎯</span><p className="ta-h">Bu 3 karta va MVP'ingizning asosiy vazifasi (MVP — mahsulotingizning ilk sodda versiyasi) keyingi darsda — mijozlar bilan suhbatlashishda — ishlatiladi.</p><p className="ta-sub">Tayyor natija = mijozni o'rganishning poydevori</p></div>
     </div>
   </Stage>
 );
@@ -976,9 +976,15 @@ const JAPPS = [
   { ic: '🗺️', name: 'Xarita', job: 'adashmay yetib borish' },
 ];
 const Screen2 = ({ screen, onNext, onPrev }) => {
+  // opened — hozirgi flip-holat (qayta bosilsa yopiladi/ochiladi — yodlash uchun toggle);
+  // seen — kamida bir marta ochilganlar (3/3 darvozasi shu bilan, yopilsa ham yo'qolmaydi).
   const [opened, setOpened] = useState([false, false, false]);
-  const allOpen = opened.every(Boolean);
-  const openApp = (i) => setOpened(prev => (prev[i] ? prev : prev.map((v, k) => (k === i ? true : v))));
+  const [seen, setSeen] = useState([false, false, false]);
+  const allOpen = seen.every(Boolean);
+  const openApp = (i) => {
+    setOpened(prev => prev.map((v, k) => (k === i ? !v : v)));
+    setSeen(prev => (prev[i] ? prev : prev.map((v, k) => (k === i ? true : v))));
+  };
   return (
     <Stage eyebrow="Muhokama · savol" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive label="Davom etish" onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(14px,2.2vw,20px)' }}>
@@ -991,7 +997,7 @@ const Screen2 = ({ screen, onNext, onPrev }) => {
           <span className="jphone-notch" aria-hidden="true" />
           <div className="jphone-grid">
             {JAPPS.map((a, i) => (
-              <button key={i} className={`japp ${opened[i] ? 'open' : 'taphint'}`} onClick={() => openApp(i)} disabled={opened[i]} aria-label={a.name}>
+              <button key={i} className={`japp ${opened[i] ? 'open' : 'taphint'}`} onClick={() => openApp(i)} aria-label={a.name}>
                 <span className="japp-inner">
                   <span className="japp-face japp-front"><span className="japp-ic" aria-hidden="true">{a.ic}</span><span className="japp-nm">{a.name}</span></span>
                   <span className="japp-face japp-back"><span className="japp-lbl">ISHI</span><span className="japp-job">{a.job}</span></span>
@@ -1060,7 +1066,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow="Qoida" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? 'Davom etish' : st.sel === null ? `Yana ${leftN} misolni biriktiring` : '👆 Endi tur-ustunini bosing'} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(14px,2.2vw,20px)' }}>
         <div className="head"><h2 className="title h-title fade-up">Odamlar aslida <span className="italic" style={{ color: T.accent }}>nimani</span> sotib oladi?</h2></div>
-        <Mentor>Hech kim drelni drelning o'zi uchun sotib olmaydi — odamga devorga rasm osish kerak: mahsulot — vosita, odam esa <b style={{ color: T.ink }}>NATIJA</b>ni sotib oladi (bu natija <b style={{ color: T.ink }}>«ish»</b> deyiladi — Jobs-to-be-Done, JTBD). Har misol-kartani bosib, mos tur-ustuniga biriktiring.</Mentor>
+        <Mentor>Drel — devor teshadigan asbob; lekin uni hech kim asbobning o'zi uchun olmaydi — odamga devorga rasm osish kerak. Mahsulot — vosita, odam esa <b style={{ color: T.ink }}>NATIJA</b>ni sotib oladi (bu natija <b style={{ color: T.ink }}>«ish»</b> deyiladi — Jobs-to-be-Done, JTBD). Har misol-kartani bosib, mos tur-ustuniga biriktiring.</Mentor>
         <div className="jdrill fade-up" aria-label="Drel — vosita, natija — devordagi rasm">
           <span className="jdrill-tool" aria-hidden="true">🔩</span>
           <span className="jdrill-arrow" aria-hidden="true">→</span>
@@ -1110,7 +1116,7 @@ const K18_SLIDES = [
   { ic: "☕", h: "Starbucks — oddiy qahvaxonami?", body: <>Starbucks o'zini oddiy qahvaxona deb hisoblamaydi. O'ylab ko'ring: nega odamlar u yerda soatlab o'tiradi?</> },
   { ic: "🛋️", h: "«Uchinchi joy»", body: <>Starbucks o'zini <b>«uchinchi joy»</b> deb ataydi — uy bilan ish/maktab orasidagi makon: o'tirish, ishlash, uchrashish mumkin bo'lgan joy.</>, diagram: [{ ic: '🏠', l: 'Uy' }, { ic: '☕', l: 'Uchinchi joy', mid: true }, { ic: '🏫', l: 'Ish / maktab' }] },
   { ic: "💳", h: "Aslida nima sotiladi?", body: <>Odamlar pulni <b>ichimlikka emas</b>, JOY va MUHITga to'laydi: qulay stol, Wi-Fi, musiqa, «o'zimniki» degan his.</> },
-  { ic: "🧩", h: "Uch ish birga", body: <>Starbucks bir vaqtda uchta ishni bajaradi: <b>funksional</b> (o'tirib ishlash) + <b>ijtimoiy</b> (do'stlar bilan ko'rinish) + <b>emotsional</b> (shinam his).</> },
+  { ic: "🧩", h: "Uch vazifa birga", body: <>Starbucks bir yo'la uch xil vazifani bajaradi: <b>funksional</b> (o'tirib ishlaydigan joy) + <b>ijtimoiy</b> (do'stlar ichida ko'rinish) + <b>emotsional</b> (shinam his).</> },
   { ic: "🎯", h: "Xulosa: JTBD", body: <>Har mahsulot odamga bitta asosiy natija beradi. Starbucks kofe emas — <b>«uchinchi joy»</b>ni sotadi (bu — <b>Jobs-to-be-Done</b> g'oyasi).</> },
 ];
 // 🎲 BASHORAT-STAVKA (unscored ko'rinish qatlami): 2 kalit-slayd oldidan mikro-taxmin.
@@ -1180,7 +1186,7 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         {last && hookPick !== null && (hookHit
           ? <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>🎉 Dars boshida siz «<b>{HOOK_OPTS[hookPick]}</b>» degandingiz — aynan topgan ekansiz: Starbucks xuddi shu «uchinchi joy»ni sotadi!</p></div>
           : <div className="frame-soft fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Dars boshida siz «<b>{HOOK_OPTS[hookPick]}</b>» degandingiz — javob esa boshqacha chiqdi: odamlar joy va muhitga to'laydi.</p></div>)}
-        {last && <div className="frame-soft fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Xuddi Starbucks kabi — sizning MVP'ingiz ham foydalanuvchiga bitta asosiy «ish»ni bajarib beradi. Endi o'z MVP'ingizning bosh-ishini (eng asosiy «ish»ini) yozamiz.</p></div>}
+        {last && <div className="frame-soft fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Xuddi Starbucks kabi — sizning MVP'ingiz ham foydalanuvchi uchun bitta asosiy vazifani bajaradi. Endi o'sha vazifani — MVP'ingizning asosiy «ish»ini — o'zingiz yozasiz.</p></div>}
         <MentorNote>Keysni sodda tilda ayting. Raqam to'qimang — bu keysda rasmiy raqam yo'q. Taxmin-bosqichda sinfdan ovoz so'rang, keyin slaydni oching.</MentorNote>
       </div>
     </Stage>
@@ -1231,7 +1237,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow="Amaliyot · MVP" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!v.full && !isMentor5} label={navLabel} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
         <div className="head"><h2 className="title h-title fade-up">O'z MVP'ingiz qaysi <span className="italic" style={{ color: T.accent }}>ish</span>ni bajaradi?</h2></div>
-        <Mentor>MVP g'oyangizning bosh-ishini yozing — bajarilgan qadam 🎯 panelda yashil yonadi.</Mentor>
+        <Mentor>MVP'ingizning asosiy vazifasini yozing — bajarilgan qadam 🎯 panelda yashil yonadi.</Mentor>
         <MentorWatchLine>Bu amaliyotni <b>o'quvchilar</b> bajaradi — siz kuzatasiz; «Davom etish» siz uchun ochiq.</MentorWatchLine>
         <div className="split">
           <Col>
@@ -1246,7 +1252,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {v.full && (
               <div className="fade-step" style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
                 <span className="jhire-stamp mini" style={{ margin: 0 }}>✓ YOLLANDI</span>
-                <div className="done-mini">✅ Bosh-ish tayyor <span className="dm-sub">— ustaxonada mos-yozuv bo'lib yoningizda turadi</span></div>
+                <div className="done-mini">✅ Asosiy vazifa tayyor <span className="dm-sub">— ustaxonada mos-yozuv bo'lib yoningizda turadi</span></div>
               </div>
             )}
           </Col>
@@ -1294,6 +1300,33 @@ const MentorPracticeStats = ({ live, screen, label = "👀 Kim bajardi" }) => {
   );
 };
 
+// O'QUVCHI ko'radigan sinf-pulsi: koding-ekranda «nechta sinfdosh bajardi / bajarmoqda» jonli hisobi.
+// Faqat jonli student-rejimda; MentorPracticeStats bilan bir xil signal-zonadan (PRACTICE_BASE+screen) o'qiydi,
+// ball-relsga yozmaydi — sof o'qish. 3 soniyalik polling (mentor-panel bilan bir xil).
+const StudentPracticePulse = ({ live, screen }) => {
+  const [data, setData] = useState(null); // { total, done }
+  useEffect(() => {
+    if (!live || live.mode !== 'student' || !live.pin) return;
+    let on = true, t = null;
+    const tick = async () => {
+      try {
+        const [players, rows] = await Promise.all([livePlayers(live.pin), liveAnswers(live.pin, PRACTICE_BASE + screen)]);
+        if (on) setData({ total: players.length, done: new Set(rows.map(r => r.player_id)).size });
+      } catch {}
+      if (on) t = setTimeout(tick, 3000);
+    };
+    tick();
+    return () => { on = false; clearTimeout(t); };
+  }, [live && live.pin, screen]);
+  if (!live || live.mode !== 'student' || !data || data.total === 0) return null;
+  const doing = Math.max(0, data.total - data.done);
+  return (
+    <div className="done-mini fade-up" style={{ alignSelf: 'flex-start' }}>
+      👥 Sinfda: <b>{data.done}</b> bajardi{doing > 0 && <span className="dm-sub">· ✏️ {doing} hali bajarmoqda</span>}
+    </div>
+  );
+};
+
 // ===== SCREEN 6 (practice) — JTBD-USTAXONA: 3 karta (mahsulot→ish→tur) + RO'YXAT + YULDUZCHA + YORDAM =====
 // s5 MVP bosh-ishi (MVP_KEY) 4-karta (mos-yozuv) bo'lib tepada ko'rinadi; 3 karta JOBS_KEY'ga saqlanadi.
 const emptyJob = () => ({ mahsulot: '', ish: '', tur: '', raqib: '' });
@@ -1323,7 +1356,7 @@ const ScreenJobWorkshop = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) =
   const checks = [
     { ok: allFull, label: "3 karta to'liq", detail: "Har kartada mahsulot + ish + tur — uchalasi to'lgan bo'lsin." },
     { ok: twoKinds, label: '2 xil tur', detail: "Kamida ikki kartada TUR har xil bo'lsin — masalan, birida funksional, boshqasida ijtimoiy." },
-    { ok: realJob, label: 'Ish ≠ mahsulot nomi', detail: "ISH maydoniga mahsulot nomini takrorlamang — natijani yozing: ❌ «naushnik» → ✅ «yo'lda zerikmaslik»." },
+    { ok: realJob, label: 'Ish — mahsulot nomi emas', detail: "ISH maydoniga mahsulot nomini takrorlamang — natijani yozing: ❌ «naushnik» → ✅ «yo'lda zerikmaslik»." },
   ];
   const passed = checks.every(c => c.ok);
   const isMentorW = !!(live && live.mode === 'mentor');
@@ -1388,7 +1421,7 @@ const ScreenJobWorkshop = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) =
             <button className={`lp-done-btn ${done ? 'is-done' : ''}`} disabled={done || !passed} onClick={complete}>
               {done ? '✓ Bajarildi — ustozni kuting' : passed ? '✅ Bajardim' : `🎯 Topshiriq: ${checks.filter(c => c.ok).length}/3`}
             </button>
-            {done && <div className="done-mini fade-step">✅ 3 karta YOLLANDI <span className="dm-sub">— custdev (mijozni o'rganish) darsining poydevori</span></div>}
+            {done && <div className="done-mini fade-step">✅ 3 karta YOLLANDI <span className="dm-sub">— keyingi darsda mijozlar bilan suhbatda ishlatiladi</span></div>}
           </Col>
         </div>
         <MentorNote>3/3 = o'tdi · 2/3 = joyida to'ldiradi · kam = YORDAM savollari bilan qaytadan. Sinf bo'ylab yurib nuqtali yordam bering.</MentorNote>
@@ -1462,7 +1495,9 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const liveRevealScreen = live ? live.revealScreen : -1;
   useEffect(() => { if (isMentorLive && liveRevealScreen === screen) setMReveal(true); }, [isMentorLive, liveRevealScreen, screen]);
 
-  const assign = isMentorLive ? [0, 1, 2, 3] : st.assign; // mentor: javob kaliti (identity)
+  // Mentor (proyektor): javob kaliti FAQAT «Natijani ochish»dan keyin ko'rinadi (Kahoot-reveal) —
+  // reveal'gacha kartalar bo'sh turadi, aks holda to'g'ri juftlik ekranda oldindan ochilib qoladi.
+  const assign = isMentorLive ? (mReveal ? [0, 1, 2, 3] : [null, null, null, null]) : st.assign;
   const filledAll = assign.every(c => c !== null);
   const allCorrect = filledAll && assign.every((c, t) => c === t);
   const revealed = isMentorLive ? mReveal
@@ -1560,7 +1595,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                   <div className="mp-slot">
                     {isPlaced
                       ? <span className={`mp-chip placed ${revealed ? (correctHere ? 'ok' : 'bad') : ''}`}><span className="mp-chip-ic">{MP_PAIRS[c].ic}</span>{MP_PAIRS[c].chip}{revealed && (correctHere ? <span className="mp-mark ok">✓</span> : <span className="mp-mark bad">✕</span>)}</span>
-                      : <span className="mp-slot-empty">bu yerga torting</span>}
+                      : <span className="mp-slot-empty">{isMentorLive ? '🙈 «Natijani ochish»da ko\'rinadi' : 'bu yerga torting'}</span>}
                     {revealed && correctHere && <span className="mp-burst" aria-hidden="true">{[0, 1, 2, 3, 4, 5].map(k => <span key={k} style={{ '--ba': `${k * 60}deg` }}>✦</span>)}</span>}
                   </div>
                 </div>
@@ -1786,6 +1821,7 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <button className={`lp-done-btn ${done ? 'is-done' : ''}`} disabled={done || !allChecked} onClick={complete}>
               {done ? '✓ Bajarildi — ustozni kuting' : allChecked ? '✅ Bajardim' : `4 qadamni belgilang (${checked.size}/4)`}
             </button>
+            <StudentPracticePulse live={live} screen={screen} />
             {done && <div className="done-mini fade-step">✅ JtbdCard tayyor <span className="dm-sub">— 3 kartangiz endi saytingizda komponent bo'lib turibdi</span></div>}
           </Col>
         </div>
@@ -1857,7 +1893,7 @@ const Screen11 = ({ screen, onNext, onPrev }) => {
           <div className="rcp-step fade-up delay-2">
             <div className="rcp-step-h"><span className="rcp-n">2</span><div><span className="rcp-t">✍️ Bir qator yozing</span><span className="rcp-s">Hozirgina aytganingizni bitta gapga sig'diring</span></div></div>
             <input className="reflect-input" value={text} onChange={e => save(e.target.value)} placeholder="Mening MVP'im ... ishi uchun, chunki ..." maxLength={160} />
-            {written && <p className="small" style={{ margin: 0, color: T.success, fontWeight: 700 }}>✓ Yozildi — custdev darsida shu gapdan boshlaymiz.</p>}
+            {written && <p className="small" style={{ margin: 0, color: T.success, fontWeight: 700 }}>✓ Yozildi — keyingi darsda mijoz bilan suhbatni shu gapdan boshlaymiz.</p>}
           </div>
           <div className="rcp-step wide fade-up delay-3">
             {isSolo ? (
@@ -2035,7 +2071,7 @@ const QZ_BG_SHAPES = [
 // ⚔️ CodeStrike savollari — to'g'ri javoblar 4 pozitsiyaga TENG (12 savol: 3/3/3/3). darslik-jonli TASDIQLAYDI.
 const QUIZ_BANK = [
   { q: "Jobs-to-be-Done (JTBD) g'oyasi nima?", opts: ["Ko'proq imkoniyat qo'shsa mahsulot yaxshi bo'ladi", "Mahsulotni doim arzonlashtirish kerak", "Har foydalanuvchiga alohida ilova kerak", "Odamlar mahsulotni emas, u bajaradigan «ish»ni sotib oladi"], correct: 3 },
-  { q: "«Hech kim drelni drelning o'zi uchun olmaydi» — odam aslida nimani sotib oladi?", opts: ["yangi drel qutisini", "natijani — devorga osilgan rasmni", "drel batareyasini", "drel reklamasini"], correct: 1 },
+  { q: "«Hech kim drelni (devor teshadigan asbobni) o'zi uchun olmaydi» — odam aslida nimani sotib oladi?", opts: ["yangi drel qutisini", "natijani — devorga osilgan rasmni", "drel batareyasini", "drel reklamasini"], correct: 1 },
   { q: "Quyidagilardan qaysi biri MAHSULOT emas, «ish»?", opts: ["formada bo'lish", "yugurish poyabzali", "fitnes-ilova", "sport soati"], correct: 0 },
   { q: "«Vazifa bitsin» (masalan, manzilga yetib borish) — bu qaysi tur ish?", opts: ["ijtimoiy", "emotsional", "funksional", "hech qanday tur"], correct: 2 },
   { q: "«Boshqalar ko'zida qanday ko'rinaman» — bu qaysi tur ish?", opts: ["ijtimoiy", "funksional", "emotsional", "texnik"], correct: 0 },
@@ -2045,7 +2081,7 @@ const QUIZ_BANK = [
   { q: "Do'stlar Starbucks'da birga suratga tushib yuborishdi — bu qaysi tur ish?", opts: ["funksional", "emotsional", "ijtimoiy", "bu umuman ish emas"], correct: 2 },
   { q: "Velosipedning «maktabga tez yetish» ishida raqibi kim?", opts: ["boshqa velosiped", "velosiped do'koni", "velosiped narxi", "avtobus va piyoda yo'l"], correct: 3 },
   { q: "«Mahsulotni [ish] uchun yollaydi» — bu qatorda [ish] nima?", opts: ["mahsulotning rasmiy nomi", "foydalanuvchi bitiradigan vazifa", "mahsulotning bozor narxi", "mahsulotning tashqi rangi"], correct: 1 },
-  { q: "Nega custdev (mijozni o'rganish) intervyu savollarini «ish»lardan tuzamiz?", opts: ["Chunki odam mahsulotni emas, ishni xohlaydi", "Chunki savol tuzish osonroq bo'ladi", "Chunki mijoz aynan shuni talab qiladi", "Tartib farq qilmaydi"], correct: 0 },
+  { q: "Nega mijoz bilan suhbat savollarini «ish»lardan tuzamiz?", opts: ["Chunki odam mahsulotni emas, ishni xohlaydi", "Chunki savol tuzish osonroq bo'ladi", "Chunki mijoz aynan shuni talab qiladi", "Tartib farq qilmaydi"], correct: 0 },
 ];
 
 const CsNeonBolt = ({ flip }) => (
@@ -2591,7 +2627,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
         {arena && <QuizArena live={_live || { mode: 'self' }} startSolo={arenaSolo} onClose={() => setArena(false)} />}
         <div className="split">
           <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> Endi siz bilasiz</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{r}</span></li>))}</ul></div>
-          <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>📝 Uyga vazifa</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{hwTarget ? <>Shartnomangiz: <b style={{ color: T.accent }}>{hwTarget}</b>dan so'rab, MVP uchun 3 JTBD.</> : "MVP'ingiz uchun 3 JTBD — har turdan bittadan:"}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{h.b}</b> <span className="t">{h.t}</span></li>))}</ul><p className="hw-note">Keyingi custdev (mijozni o'rganish) darsida intervyu savollarini aynan shu «ish»lardan tuzamiz! 🚀</p></div>
+          <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>📝 Uyga vazifa</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{hwTarget ? <>Shartnomangiz: <b style={{ color: T.accent }}>{hwTarget}</b>dan so'rab, MVP uchun 3 JTBD.</> : "MVP'ingiz uchun 3 JTBD — har turdan bittadan:"}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{h.b}</b> <span className="t">{h.t}</span></li>))}</ul><p className="hw-note">Keyingi darsda mijozlar bilan suhbat savollarini aynan shu «ish»lardan tuzamiz! 🚀</p></div>
         </div>
         <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>🏅 Nishonlaringiz — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>

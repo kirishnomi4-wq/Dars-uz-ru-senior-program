@@ -449,7 +449,7 @@ const RECAPS = {
     cards: [
       { ic: "🎯", h: "NATIJA — real foyda", body: <>Har User Story oxirida <b>[NATIJA]</b> bo'ladi: foydalanuvchi oladigan real foyda, tugma nomi emas.</> },
       { ic: "🙋", h: "KIM aniq bo'lsin", body: <>«foydalanuvchi» — juda mavhum. <b>Aniq turi</b> aytilsin: yangi mehmon, qaytgan mijoz, mentor.</> },
-      { ic: "🧩", h: "Uch masalliq to'liq", body: <>Retseptda uch masalliq — <b>KIM + NIMA + NATIJA</b> — bittasi ham tushib qolmasin, aks holda hikoya «xom» chiqadi.</>, ask: "«qizil tugma xohlayman» — bu hikoyada NATIJA bormi?" },
+      { ic: "🧩", h: "Uch bo'lak to'liq", body: <>Hikoyada uch bo'lak — <b>KIM + NIMA + NATIJA</b> — bittasi ham tushib qolmasin, aks holda hikoya chala chiqadi.</>, ask: "«qizil tugma xohlayman» — bu hikoyada NATIJA bormi?" },
     ]
   },
   6: {
@@ -461,7 +461,7 @@ const RECAPS = {
     ]
   },
   9: {
-    title: "Hikoya ≠ imkoniyat-so'rovi",
+    title: "Hikoya — imkoniyat-so'rovi emas",
     cards: [
       { ic: "🚫", h: "Feature request", body: <>«Saytda dark mode bo'lsin» — bu <b>imkoniyat-so'rovi</b> (feature request), User Story emas.</> },
       { ic: "❓", h: "KIM va NATIJA yo'q", body: <>Unda <b>kim</b> va <b>nima uchun</b> yo'q — shuning uchun u hali hikoya emas.</> },
@@ -930,7 +930,7 @@ const Screen1 = ({ screen, onNext, onPrev }) => (
   <Stage eyebrow="Maqsad" screen={screen} mentorStatic navContent={<><NavBack onPrev={onPrev} /><NavNext label="Boshlaymiz →" onClick={onNext} /></>}>
     <div className="screen" style={{ gap: 'clamp(14px,2.2vw,20px)' }}>
       <div className="head"><h2 className="title h-title fade-up">Bugun dars oxirida siz <span className="italic" style={{ color: T.accent }}>nimalarga</span> erishasiz?</h2></div>
-      <Mentor>Bugun loyihangizga 3 ta <b style={{ color: T.ink }}>User Story</b> yozasiz — har biri «kimga nima kerak va nima uchun»ni aytadigan bittadan gap. Qarang, kartalar hozir ko'z oldingizda to'ladi.</Mentor>
+      <Mentor>Bugun loyihangizga 3 ta <b style={{ color: T.ink }}>User Story</b> yozasiz — har biri «kimga nima kerak va nima uchun»ni aytadigan bittadan gap. Qarang — 3 karta hozir ekranda o'z-o'zidan yozilib chiqadi.</Mentor>
       <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
         {DEMO_STORIES.map((s, i) => (
           <div key={i} className="story-silo demo-card" style={{ '--cd': `${0.2 + i * 0.18}s` }}>
@@ -947,7 +947,7 @@ const Screen1 = ({ screen, onNext, onPrev }) => (
           </div>
         ))}
       </div>
-      <div className="takeaway fade-up delay-2"><span className="ta-bulb">🎯</span><p className="ta-h">Dars oxirida sizning 3 kartangiz ham xuddi shunday to'ladi.</p><p className="ta-sub">Keyingi darsda komponentlarni aynan shu hikoyalar asosida tanlaymiz</p></div>
+      <div className="takeaway fade-up delay-2"><span className="ta-bulb">🎯</span><p className="ta-h">Dars oxirida sizning 3 kartangiz ham xuddi shunday yozilgan bo'ladi.</p><p className="ta-sub">Keyingi darsda komponentlarni aynan shu hikoyalar asosida tanlaymiz</p></div>
     </div>
   </Stage>
 );
@@ -1042,10 +1042,10 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const reset = () => setSt({ placed: [null, null, null], sel: -1, shake: -1 });
   const selActive = st.sel >= 0;
   return (
-    <Stage eyebrow="Retsept" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? 'Davom etish' : 'Uch bo\'lakni joylang'} onClick={onNext} /></>}>
+    <Stage eyebrow="1 hikoya — 3 bo'lak" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? 'Davom etish' : 'Uch bo\'lakni joylang'} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(14px,2.2vw,20px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Hikoya retseptini o'zingiz <span className="italic" style={{ color: T.accent }}>tuza olasizmi</span>?</h2></div>
-        <Mentor>Har User Story bitta retsept: uch masalliq — <b style={{ color: T.ink }}>«Men [KIM] sifatida, [NIMA]ni xohlayman, [NATIJA] uchun»</b>. Bittasi tushib qolsa, hikoya «xom» chiqadi.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">Hikoyani 3 bo'lakdan o'zingiz <span className="italic" style={{ color: T.accent }}>tuza olasizmi</span>?</h2></div>
+        <Mentor>Har User Story — 1 hikoya, ichida 3 bo'lak: <b style={{ color: T.ink }}>«Men [KIM] sifatida, [NIMA]ni xohlayman, [NATIJA] uchun»</b>. Bitta bo'lagi tushib qolsa, hikoya chala chiqadi.</Mentor>
         <div className="formula-line fade-up delay-1">
           <span className="fw">Men</span>
           {SLOT_META.map((s, i) => (
@@ -1069,7 +1069,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         </div>
         {done && (
           <div className="fade-step" style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
-            <div className="done-mini">✅ Retsept to'liq! <span className="dm-sub">NATIJA — «darsga ulgurish», ya'ni foyda ≠ harakat</span></div>
+            <div className="done-mini">✅ Hikoya to'liq! <span className="dm-sub">NATIJA — «darsga ulgurish»: bu «nima qilaman» emas, «menga nima foyda» degan javob</span></div>
             <button className="btn-soft" onClick={reset}>↻ Qaytadan</button>
           </div>
         )}
@@ -1082,12 +1082,12 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // predict = mikro-taxmin (BALL EMAS — sof o'yin): slayd ochilishidan oldin o'quvchi tikadi,
 // chip bosilgach slayd ochilib javob chiqadi; xato taxmin QIZIL emas — neytral indigo.
 const K11_SLIDES = [
-  { ic: "🌅", h: "Hammasi raqamlardan boshlandi", body: <>McDonald's sotuvlarni tekshirdi: milkshake'lar eng ko'p <b>ertalab</b> sotilyapti. Kutilmagan holat — axir ertalab kim shirinlik ichadi?</> },
-  { ic: "🕵️", h: "Xaridorlardan so'rashdi", body: <>Kuzatuvchilar ertalabki xaridorlar bilan gaplashib chiqdi. Ma'lum bo'ldi: ular milkshake'ni <b>shirinlik sifatida olmayapti</b>.</> },
+  { ic: "🌅", h: "Hammasi raqamlardan boshlandi", body: <>McDonald's sotuvlarni tekshirdi: milkshake'lar eng ko'p <b>ertalab</b> sotilyapti. Kutilmagan holat — axir ertalab kim milkshake ichadi?</> },
+  { ic: "🕵️", h: "Xaridorlardan so'rashdi", body: <>Kuzatuvchilar ertalabki xaridorlar bilan gaplashib chiqdi. Ma'lum bo'ldi: ular milkshake'ni <b>shirinlik yeyish uchun olmayotgan ekan</b> — sababi butunlay boshqa.</> },
   { ic: "🚗", h: "Sabab — uzoq yo'l", body: <>Bu odamlar har kuni mashinada ishga uzoq yo'l bosadi. Milkshake yo'lda juda qulay: bir qo'lda ushlanadi, sekin ichiladi va <b>tushlikkacha to'q</b> yuradi.</> },
   { ic: "🍌", h: "Asl raqibi kim ekan?", body: <>Demak milkshake boshqa ichimlik bilan emas — yo'lda yeb ketiladigan <b>banan va bublik</b> (halqa non) bilan bellashar ekan. Ular esa yo'lda noqulay.</>,
     predict: { ask: "Sizningcha, milkshakening asl raqibi kim?", chips: [{ ic: '🥤', t: 'kola' }, { ic: '☕', t: 'kofe' }, { ic: '🍌', t: 'banan' }, { ic: '🍩', t: 'shirinlik' }], ans: 2 } },
-  { ic: "🎯", h: "Xulosa: odam «ish»ni sotib oladi", body: <>Odam milkshake'ni emas, «yo'lda zerikmay, to'q yurish» <b>natijasini</b> sotib olyapti. Bu g'oya <b>Jobs-to-be-Done (JTBD)</b> deb ataladi — mahsulot bajarib beradigan «ish».</>,
+  { ic: "🎯", h: "Xulosa: odam natijani sotib oladi", body: <>Odam milkshake'ning o'zini emas, u beradigan <b>natijani</b> — «yo'lda zerikmay, tushlikkacha to'q yurish»ni sotib olyapti. Bu g'oya <b>Jobs-to-be-Done (JTBD)</b> deb ataladi: mahsulot odamga beradigan foydali natija.</>,
     predict: { ask: "Odam aslida nimani sotib oladi?", chips: [{ ic: '🥤', t: "ta'mni" }, { ic: '🎯', t: 'foydali natijani' }, { ic: '💸', t: 'arzon narxni' }], ans: 1 } },
 ];
 const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
@@ -1138,7 +1138,7 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 : <>Dars boshida siz «{HOOK_OPTS[hookChoice]}» deb ovoz bergandingiz — asl sabab boshqacha bo'lib chiqdi: har kungi uzoq yo'l.</>}
             </p>
           )}
-          <p className="body" style={{ margin: 0, color: T.ink }}>Xuddi milkshake kabi — sizning loyihangiz ham foydalanuvchiga bir «ish»ni bajarib beradi. User Story ana shu ishni bitta gapda yozib beradi.</p>
+          <p className="body" style={{ margin: 0, color: T.ink }}>Xuddi milkshake kabi — sizning loyihangiz ham foydalanuvchiga bitta aniq natija berib beradi. User Story ana shu natijani bitta gapda yozib beradi.</p>
         </div>}
       </div>
     </Stage>
@@ -1184,7 +1184,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow="Amaliyot · o'z loyiham" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!bothFull && !isMentor5} label={bothFull || isMentor5 ? 'Davom etish' : !fulls[0] ? "① 1-hikoyani to'ldiring" : "② 2-hikoyani to'ldiring"} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
         <div className="head"><h2 className="title h-title fade-up">Loyihangizni birinchi bo'lib <span className="italic" style={{ color: T.accent }}>kim</span> ochadi?</h2></div>
-        <Mentor>O'sha odam nima qilmoqchi va bundan qanday foyda olishini o'ylab, 2 kartani to'ldiring.</Mentor>
+        <Mentor>Pastda 2 bo'sh karta bor. Har biriga yozing: bu odam <b style={{ color: T.ink }}>KIM</b>, u <b style={{ color: T.ink }}>NIMA</b> qilmoqchi va bundan qanday <b style={{ color: T.ink }}>FOYDA</b> oladi.</Mentor>
         <MentorWatchLine>Bu amaliyotni <b>o'quvchilar</b> bajaradi — siz kuzatasiz; «Davom etish» siz uchun ochiq.</MentorWatchLine>
         <TaskSpec items={[
           { done: fulls[0], label: "1-hikoya to'liq", detail: "KIM + NIMA + NATIJA — uchala maydon to'lsa, karta yashil yonadi." },
@@ -1271,7 +1271,7 @@ const ScreenStoryWorkshop = ({ screen, storedAnswer, onAnswer, onNext, onPrev })
   const checks = [
     { ok: allFull, label: "3/3 hikoya to'liq", detail: "Har kartada KIM + NIMA + NATIJA — uchala maydon to'lgan bo'lsin." },
     { ok: twoKinds, label: '2 xil KIM', detail: "Kamida ikki kartada foydalanuvchi turi har xil bo'lsin — masalan «mehmon» va «mentor»." },
-    { ok: realResult, label: 'NATIJA ≠ harakat', detail: "NATIJA — real foyda. ❌ «saytga kirish uchun» (takror) → ✅ «buyurtmamni tez topish uchun»." },
+    { ok: realResult, label: 'NATIJA harakatni takrorlamaydi', detail: "NATIJA — real foyda. ❌ «saytga kirish uchun» (takror) → ✅ «buyurtmamni tez topish uchun»." },
   ];
   const passed = checks.every(c => c.ok);
   const isMentorW = !!(live && live.mode === 'mentor');
@@ -1364,7 +1364,7 @@ const Screen7 = (props) => (
     question={<BrokenStory tag="Hikoya 1/3"
       lead="O'quvchi loyihasiga shu hikoyani yozdi:"
       text="Men foydalanuvchi sifatida, qizil tugma xohlayman"
-      cue="Retseptdagi qaysi bo'lak bu gapda umuman YO'Q? Ustiga bosing." />}
+      cue="Hikoyaning qaysi bo'lagi bu gapda umuman YO'Q? Ustiga bosing." />}
     questionText="Buzuq hikoya 1: qizil tugma"
     options={["Men foydalanuvchi sifatida", "qizil tugma xohlayman", "… NATIJA yo'q …"]}
     correctIdx={2}
@@ -1392,11 +1392,11 @@ const Screen9 = (props) => (
       lead="Bir o'quvchi «hikoya» deb shuni yozibdi:"
       text="Saytda dark mode bo'lsin"
       cue="Bu gap aslida nima? To'g'ri javobni tanlang." />}
-    questionText="Dark mode gapi: tashxis"
-    options={["Tayyor User Story — o'zgartirish shart emas", "Imkoniyat-so'rovi (feature request) — hali hikoya emas", "JTBD keysi — milkshake'dagi kabi «ish»"]}
+    questionText="Dark mode gapi: baho"
+    options={["Tayyor User Story — o'zgartirish shart emas", "Imkoniyat-so'rovi (feature request) — hali hikoya emas", "JTBD keysi — milkshake'dagi kabi «natija»"]}
     correctIdx={1}
     explainCorrect="To'g'ri! Bu — imkoniyat-so'rovi: faqat «nima kerak» aytilgan, KIM va NATIJA yo'q. Hikoyaga aylantirish: «Men kechqurun o'qiydigan o'quvchi sifatida, qorong'i rejimni xohlayman, ko'zim charchamasligi uchun»."
-    explainWrong={{ 0: "Tayyor emas: retseptda KIM ham, NATIJA ham yo'q — faqat «nima kerak» aytilgan. Bu imkoniyat-so'rovi (feature request).", 2: "JTBD — odam mahsulotdan kutadigan «ish» haqidagi g'oya. Bu gap esa shunchaki imkoniyat-so'rovi: KIM va NATIJA'siz talab.", default: "Bu imkoniyat-so'rovi (feature request) — KIM va NATIJA'siz talab, hali hikoya emas." }}
+    explainWrong={{ 0: "Tayyor emas: hikoyada KIM ham, NATIJA ham yo'q — faqat «nima kerak» aytilgan. Bu imkoniyat-so'rovi (feature request).", 2: "JTBD — odam mahsulotdan kutadigan natija haqidagi g'oya. Bu gap esa shunchaki imkoniyat-so'rovi: KIM va NATIJA'siz talab.", default: "Bu imkoniyat-so'rovi (feature request) — KIM va NATIJA'siz talab, hali hikoya emas." }}
   />
 );
 
@@ -1449,14 +1449,14 @@ const HC_wrapDoc = (code, nonce) => `<!doctype html><html lang="uz"><head><meta 
 </body></html>`;
 
 const KODING_STARTER = `function hikoyaYasa(kim, nima, natija) {
-  // Retsept: Men [kim] sifatida, [nima]ni xohlayman, [natija] uchun.
+  // Hikoya qolipi: Men [kim] sifatida, [nima]ni xohlayman, [natija] uchun.
   return '';
 }
 console.log(hikoyaYasa('yangi mehmon', 'loyihalarni bitta ekranda korish', 'meni tez tanish'));`;
 // Kompilyator-qobiq shartlari (JS-check: funksiya to'ldirilgan + gap formulada + 3 hikoya chiqarilgan).
 const KODING_CONDS = [
   { id: 'c1', label: "Funksiya to'ldirilgan — bo'sh emas, gap qaytadi", hint: "return qatorini to'ldiring: hozir bo'sh matn ('') qaytmoqda." },
-  { id: 'c2', label: "Gap retseptda — «sifatida» · «xohlayman» · «uchun» joyida", hint: "Qolip (orqa-qo'shtirnoq ` ichida): return `Men ${kim} sifatida, ${nima}ni xohlayman, ${natija} uchun.`" },
+  { id: 'c2', label: "Gap to'g'ri qolipda — «sifatida» · «xohlayman» · «uchun» joyida", hint: "Qolip (orqa-qo'shtirnoq ` ichida): return `Men ${kim} sifatida, ${nima}ni xohlayman, ${natija} uchun.`" },
   { id: 'c3', label: "O'z 3 hikoyangiz chiqarildi (kamida 3 gap)", hint: "hikoyaYasa'ni kamida 3 marta chaqirib, o'z hikoyalaringizni console.log qiling." },
 ];
 // ===== PM-KOMPILYATOR — Htmllesson1 (HtmlCompiler) tizimi PM-qobiqda =====
@@ -1508,7 +1508,7 @@ function PmCompiler({ initialCode, onContinue, onBack }) {
         <header className="hcp-top">
           <span className="hcp-eyebrow">Koding · praktika</span>
           <h1 className="hcp-title">Mini-asbob: User Story yig'uvchi</h1>
-          <p className="hcp-brief"><span className="mono">hikoyaYasa(kim, nima, natija)</span> funksiyasini to'ldiring — u retseptga solingan tayyor gap qaytarsin, so'ng sinfda yozgan 3 hikoyangizni <span className="mono">console.log</span> bilan chiqaring. Yozgan zahoti o'ngda tekshiriladi.</p>
+          <p className="hcp-brief"><span className="mono">hikoyaYasa(kim, nima, natija)</span> funksiyasini to'ldiring — u qolipga solingan tayyor gap qaytarsin, so'ng sinfda yozgan 3 hikoyangizni <span className="mono">console.log</span> bilan chiqaring. Yozgan zahoti o'ngda tekshiriladi.</p>
           <div className="hcp-checklist">
             <span className="hcp-count">{okN}/{KODING_CONDS.length}</span>
             {KODING_CONDS.map((c, i) => (
@@ -1577,7 +1577,7 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return (
     <Stage eyebrow="Koding · 🛠 kompilyator" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !isMentor} label={done || isMentor ? 'Davom etish' : 'Avval kompilyatorda bajaring'} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Retseptni kod ham <span className="italic" style={{ color: T.accent }}>tuza oladimi</span>?</h2></div>
+        <div className="head"><h2 className="title h-title fade-up">Hikoyani kod ham <span className="italic" style={{ color: T.accent }}>tuza oladimi</span>?</h2></div>
         <Mentor>3 hikoyani qo'lda yozdingiz — endi xuddi shu ishni kod bajaradi: kompilyatorda <span className="mono">hikoyaYasa</span> funksiyasini to'ldirasiz, hikoyalaringiz jonli chiqadi.</Mentor>
         <MentorWatchLine>Kodni <b>o'quvchilar</b> yozadi — «🛠 Kodni yozib bo'lganlar» panelida kuzatasiz; «Davom etish» siz uchun ochiq.</MentorWatchLine>
         <div className="split">
@@ -1755,7 +1755,7 @@ const Screen12 = ({ screen, onNext, onPrev }) => {
               <span className="card-lbl" style={{ color: T.accent }}>📍 Uyda shu 3 qadam</span>
               <ol className="pmsteps-ol">
                 <li><b>{chosen}</b> kim ekanini bir gapda aniqlang.</li>
-                <li>Unga <b>2 ta yangi hikoya</b> yozing — to'liq retseptda.</li>
+                <li>Unga <b>2 ta yangi hikoya</b> yozing — uchala bo'lagi to'liq bo'lsin.</li>
                 <li>5 hikoyadan <b>eng muhim 3 tasini</b> belgilang.</li>
               </ol>
             </div>
@@ -1763,7 +1763,7 @@ const Screen12 = ({ screen, onNext, onPrev }) => {
         ) : (
           <div className="frame-soft fade-up delay-2"><p className="body" style={{ margin: 0, color: T.ink }}>👆 Avval foydalanuvchi turini tanlang — topshiriq-karta shunga moslashadi.</p></div>
         )}
-        <MentorNote>Kodni sinfda tugatgan o'quvchi uyda 2 hikoya yozadi; ulgurmagani avval kodni tugatib, 1 hikoya yozsa yetadi. Tekshirishda har hikoyaning retsept to'liqligini (uchta masalliq) so'rang.</MentorNote>
+        <MentorNote>Kodni sinfda tugatgan o'quvchi uyda 2 hikoya yozadi; ulgurmagani avval kodni tugatib, 1 hikoya yozsa yetadi. Tekshirishda har hikoyada uchala bo'lak (KIM + NIMA + NATIJA) borligini so'rang.</MentorNote>
       </div>
     </Stage>
   );
@@ -1850,17 +1850,17 @@ const QZ_BG_SHAPES = [
 ];
 // ⚔️ CodeStrike savollari — to'g'ri javoblar 4 pozitsiyaga TENG (12 savol: 3/3/3/3). darslik-jonli TASDIQLAYDI.
 const QUIZ_BANK = [
-  { q: "User Story retsepti qaysi?", opts: ["Men tugmani bosganimda yangi sahifa ochilib, ma'lumot chiqadi", "Agar [shart] bo'lsa, [natija] qil", "Men [KIM] sifatida, [NIMA]ni xohlayman, [NATIJA] uchun", "[Sana] — [vazifa] — [mas'ul]"], correct: 2 },
-  { q: "Retseptdagi [KIM] nimani bildiradi?", opts: ["Foydalanuvchi turi", "Tugmaning rangi", "Dasturchi ismi", "Sahifaning to'liq manzili"], correct: 0 },
+  { q: "To'g'ri yozilgan User Story qaysi?", opts: ["Men tugmani bosganimda yangi sahifa ochilib, ma'lumot chiqadi", "Agar [shart] bo'lsa, [natija] qil", "Men [KIM] sifatida, [NIMA]ni xohlayman, [NATIJA] uchun", "[Sana] — [vazifa] — [mas'ul]"], correct: 2 },
+  { q: "Hikoyadagi [KIM] bo'lagi nimani bildiradi?", opts: ["Foydalanuvchi turi", "Tugmaning rangi", "Dasturchi ismi", "Sahifaning to'liq manzili"], correct: 0 },
   { q: "User Story qachon yoziladi?", opts: ["Loyiha topshirilgandan keyin", "Kod yozishdan OLDIN", "Kod yozib bo'lingach, hujjat sifatida", "Faqat xato chiqqanda"], correct: 1 },
   { q: "[NATIJA] qismi qanday bo'lishi kerak?", opts: ["Yozilgan kod qatorlarining umumiy soni", "Tugmaning nomi", "Sahifaning fon rangi", "Foydalanuvchi oladigan real foyda"], correct: 3 },
   { q: "«Men foydalanuvchi sifatida, qizil tugma xohlayman» — nimasi yetishmayapti?", opts: ["NATIJA (real foyda)", "KIM", "NIMA", "Hech nima — hikoya to'liq"], correct: 0 },
-  { q: "Jobs-to-be-Done (JTBD) g'oyasi nima?", opts: ["Ko'proq tugma qo'shish kerak", "Kodni tezroq yozish kerak", "Har bir foydalanuvchiga alohida ilova yozib chiqish kerak", "Odamlar mahsulotni emas, u bajaradigan «ish»ni sotib oladi"], correct: 3 },
-  { q: "Milkshake misolida u xaridorga qanday «ish» bajarib berardi?", opts: ["Arzon bo'lgani uchun", "Uzoq yo'lda zerikmay, tushlikkacha to'q yurish uchun", "Sovg'a bilan berilgani uchun", "Reklamada juda chiroyli ko'rsatilib, ko'zga tashlangani uchun"], correct: 1 },
+  { q: "Jobs-to-be-Done (JTBD) g'oyasi nima?", opts: ["Ko'proq tugma qo'shish kerak", "Kodni tezroq yozish kerak", "Har bir foydalanuvchiga alohida ilova yozib chiqish kerak", "Odamlar mahsulotning o'zini emas, u beradigan foydali natijani sotib oladi"], correct: 3 },
+  { q: "Milkshake misolida u xaridorga qanday foydali natija berardi?", opts: ["Arzon bo'lgani uchun", "Uzoq yo'lda zerikmay, tushlikkacha to'q yurish uchun", "Sovg'a bilan berilgani uchun", "Reklamada juda chiroyli ko'rsatilib, ko'zga tashlangani uchun"], correct: 1 },
   { q: "Milkshake misolida uning haqiqiy raqibi kim?", opts: ["Ertalabki choy va kofe", "Boshqa muzqaymoqlar", "Banan va bublik (halqa non)", "Gazli ichimliklar (kola kabi)"], correct: 2 },
   { q: "«Saytda dark mode bo'lsin» — bu nima?", opts: ["To'liq va tugallangan User Story hikoyasi", "Foydalanuvchi turi", "Jobs-to-be-Done (JTBD)", "Imkoniyat-so'rovi (feature request)"], correct: 3 },
   { q: "Agar NATIJA harakatni takrorlasa, nima bo'ladi?", opts: ["Foyda ko'rinmaydi — hikoya to'liq emas", "Kod tezroq ishlaydi", "Hikoya kuchliroq bo'ladi", "Foydalanuvchi turi o'z-o'zidan aniqlashadi"], correct: 0 },
-  { q: "Retseptdagi [NIMA] qismi nimani bildiradi?", opts: ["Foydalanuvchi oxir-oqibat oladigan real foyda", "Foydalanuvchi turi", "Foydalanuvchi bajarmoqchi bo'lgan harakat", "Loyiha muddati"], correct: 2 },
+  { q: "Hikoyadagi [NIMA] bo'lagi nimani bildiradi?", opts: ["Foydalanuvchi oxir-oqibat oladigan real foyda", "Foydalanuvchi turi", "Foydalanuvchi bajarmoqchi bo'lgan harakat", "Loyiha muddati"], correct: 2 },
   { q: "Nega avval User Story, keyin kod?", opts: ["Chunki kod yozish qiyin", "Avval «kimga nima kerak»ni bilish, keyin qurish uchun", "Chunki mijoz shuni talab qiladi", "Buning umuman ahamiyati yo'q, tartib mutlaqo farq qilmaydi"], correct: 1 },
 ];
 
@@ -2226,7 +2226,7 @@ function QuizArena({ live, onClose, startSolo }) {
           {solo ? (
             <div className="qz-solo-res">
               <div className="qz-solo-pts">{soloScore.pts}</div>
-              <p className="qz-sub">ball · {soloScore.ok}/{QUIZ_BANK.length} to'g'ri{soloScore.maxStreak >= 2 ? ` · eng uzun zanjir 🔥x${soloScore.maxStreak}` : ''}</p>
+              <p className="qz-sub">ball · {soloScore.ok}/{QUIZ_BANK.length} to'g'ri{soloScore.maxStreak >= 2 ? ` · ketma-ket to'g'ri 🔥x${soloScore.maxStreak}` : ''}</p>
               <button className="qz-btn big" onClick={soloReplay}>↻ Qayta ishlash</button>
             </div>
           ) : (
@@ -2388,7 +2388,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
     "User Story: «Men [KIM] sifatida, [NIMA]ni xohlayman, [NATIJA] uchun»",
     "KIM — foydalanuvchi turi · NIMA — harakat · NATIJA — real foyda",
     "User Story kod yozishdan OLDIN yoziladi",
-    "JTBD: odamlar mahsulotni emas, u bajaradigan «ish»ni sotib oladi",
+    "JTBD: odamlar mahsulotning o'zini emas, u beradigan natijani sotib oladi",
     "NATIJA harakatni takrorlamasin · «feature request» — hikoya emas"
   ];
   const hwTarget = (() => { try { return localStorage.getItem(HW_KEY) || ''; } catch { return ''; } })();
@@ -2398,7 +2398,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
   return (
     <Stage eyebrow="Tayyor" screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>Qaytadan</button><button className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>Yakunlash ✓</button></>}>
       <div className="screen">
-        <div className="hero"><div className="hero-l"><span className="done-chip fade-up"><span className="tick">✓</span> Dars tugadi</span><h2 className="title h-title fade-up d1">Birinchi 3 <span className="italic" style={{ color: T.accent }}>hikoyangiz</span> tayyor.</h2><p className="body h-sub fade-up d2">{PASSED ? "Tabriklaymiz! Endi siz har komponentni «kimga nima kerak»dan boshlab qura olasiz — bu mahsulot fikrlashning poydevori." : "Yaxshi harakat! Buzuq hikoyalar mashqini bir-ikki qayta ko'ring — retsept tez o'rnashadi."}</p></div><ScoreRing correct={correct} total={total} /></div>
+        <div className="hero"><div className="hero-l"><span className="done-chip fade-up"><span className="tick">✓</span> Dars tugadi</span><h2 className="title h-title fade-up d1">Birinchi 3 <span className="italic" style={{ color: T.accent }}>hikoyangiz</span> tayyor.</h2><p className="body h-sub fade-up d2">{PASSED ? "Tabriklaymiz! Endi siz har komponentni «kimga nima kerak»dan boshlab qura olasiz — bu mahsulot fikrlashning poydevori." : "Yaxshi harakat! Buzuq hikoyalar mashqini bir-ikki qayta ko'ring — uch bo'lak esda tez o'rnashadi."}</p></div><ScoreRing correct={correct} total={total} /></div>
         <div className={`qz-cta cs-cta fade-up d2 ${studentLive ? 'ready' : ''}`}>
           <CsWordmark stats={false} liveOn={studentLive} disabled={studentWait} onClick={studentWait ? undefined : openArena} hint={studentWait ? '⏳ Mentorni kuting' : undefined} />
         </div>
