@@ -153,21 +153,21 @@ function useLiveSession(lessonId, answerKey) {
       tokenRef.current = row.token; setPin(row.pin); setMode('mentor'); setEnded(false);
       liveStore(lessonId, { mode: 'mentor', pin: row.pin, token: row.token });
       if (keyRef.current) liveRpc('set_quiz_keys', { p_lesson_id: lessonId, p_mentor_code: (mentorCode || '').trim(), p_keys: keyRef.current }).catch(() => {});
-    } catch { setJoinError("Mentor kodi noto'g'ri yoki ulanishda xato."); }
+    } catch { setJoinError(tr({ uz: "Mentor kodi noto'g'ri yoki ulanishda xato.", ru: 'Код ментора неверный или ошибка соединения.' })); }
     finally { setBusy(false); }
   }, [lessonId]);
 
   const joinStudent = useCallback(async (raw, rawNick) => {
     const p = (raw || '').replace(/\D/g, '');
     const nick = (rawNick || '').trim();
-    if (p.length < 4) { setJoinError("Kodni to'liq kiriting."); return; }
-    if (nick.length < 2) { setJoinError('Ismingizni kiriting (kamida 2 harf).'); return; }
+    if (p.length < 4) { setJoinError(tr({ uz: "Kodni to'liq kiriting.", ru: 'Введите код полностью.' })); return; }
+    if (nick.length < 2) { setJoinError(tr({ uz: 'Ismingizni kiriting (kamida 2 harf).', ru: 'Введите своё имя (минимум 2 буквы).' })); return; }
     setBusy(true); setJoinError('');
     try {
       const row = await liveGet(p);
-      if (!row) { setJoinError('Bunday kod topilmadi.'); setBusy(false); return; }
-      if (row.lesson_id && row.lesson_id !== lessonId) { setJoinError('Bu kod boshqa darsga tegishli.'); setBusy(false); return; }
-      if (row.status !== 'live') { setJoinError('Bu dars allaqachon yakunlangan.'); setBusy(false); return; }
+      if (!row) { setJoinError(tr({ uz: 'Bunday kod topilmadi.', ru: 'Такой код не найден.' })); setBusy(false); return; }
+      if (row.lesson_id && row.lesson_id !== lessonId) { setJoinError(tr({ uz: 'Bu kod boshqa darsga tegishli.', ru: 'Этот код относится к другому уроку.' })); setBusy(false); return; }
+      if (row.status !== 'live') { setJoinError(tr({ uz: 'Bu dars allaqachon yakunlangan.', ru: 'Этот урок уже завершён.' })); setBusy(false); return; }
       const res = await liveRpc('join_session', { p_pin: p, p_nickname: nick });
       const player = Array.isArray(res) ? res[0] : res;
       if (!player?.player_id) throw new Error('no player');
@@ -179,7 +179,7 @@ function useLiveSession(lessonId, answerKey) {
     } catch (e) {
       // Serverdan kelgan o'zbekcha xabarlarni (ism band va h.k.) o'zini ko'rsatamiz
       const m = String(e?.message || '');
-      setJoinError(/ism|band|kod|dars|belgi/i.test(m) ? m : "Ulanib bo'lmadi. Internetni tekshiring.");
+      setJoinError(/ism|band|kod|dars|belgi/i.test(m) ? m : tr({ uz: "Ulanib bo'lmadi. Internetni tekshiring.", ru: 'Не удалось подключиться. Проверьте интернет.' }));
     }
     finally { setBusy(false); }
   }, [lessonId]);
@@ -229,15 +229,15 @@ function LiveBigCode({ pin, onClose }) {
   const box = { background: LT.paper, color: LT.ink, borderRadius: 'clamp(10px,1.6vw,18px)', fontFamily: 'monospace', fontWeight: 800, lineHeight: 1, fontSize: 'clamp(48px,13vw,150px)', padding: 'clamp(10px,2vw,28px) clamp(12px,2.2vw,30px)', boxShadow: '0 10px 40px -10px rgba(0,0,0,0.5)' };
   return (
     <div style={overlay}>
-      <div style={{ fontSize: 'clamp(13px,2vw,18px)', fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: LT.accent, marginBottom: 'clamp(14px,3vw,28px)' }}>Jonli darsga qo'shilish</div>
+      <div style={{ fontSize: 'clamp(13px,2vw,18px)', fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: LT.accent, marginBottom: 'clamp(14px,3vw,28px)' }}>{tr({ uz: "Jonli darsga qo'shilish", ru: 'Подключиться к живому уроку' })}</div>
       <div style={{ display: 'flex', gap: 'clamp(6px,1.4vw,16px)', justifyContent: 'center', flexWrap: 'wrap' }}>{digits.map((d, i) => <span key={i} style={box}>{d}</span>)}</div>
-      <p style={{ color: '#fff', opacity: 0.85, fontSize: 'clamp(15px,2.2vw,22px)', maxWidth: 640, margin: 'clamp(20px,4vw,36px) 0 0', lineHeight: 1.5 }}>Shu darsni o'z qurilmangizda oching → <b style={{ color: '#fff' }}>«👨‍🎓 O'quvchiman»</b> → ushbu kodni kiriting.</p>
-      <button onClick={onClose} style={{ marginTop: 'clamp(22px,4vw,40px)', background: LT.accent, color: '#fff', border: 'none', borderRadius: 14, padding: 'clamp(12px,1.6vw,16px) clamp(24px,3vw,36px)', fontSize: 'clamp(15px,1.8vw,18px)', fontWeight: 700, cursor: 'pointer' }}>Darsni boshlash →</button>
+      <p style={{ color: '#fff', opacity: 0.85, fontSize: 'clamp(15px,2.2vw,22px)', maxWidth: 640, margin: 'clamp(20px,4vw,36px) 0 0', lineHeight: 1.5 }}>{tr({ uz: <>Shu darsni o'z qurilmangizda oching → <b style={{ color: '#fff' }}>«👨‍🎓 O'quvchiman»</b> → ushbu kodni kiriting.</>, ru: <>Откройте этот урок на своём устройстве → <b style={{ color: '#fff' }}>«👨‍🎓 Я ученик»</b> → введите этот код.</> })}</p>
+      <button onClick={onClose} style={{ marginTop: 'clamp(22px,4vw,40px)', background: LT.accent, color: '#fff', border: 'none', borderRadius: 14, padding: 'clamp(12px,1.6vw,16px) clamp(24px,3vw,36px)', fontSize: 'clamp(15px,1.8vw,18px)', fontWeight: 700, cursor: 'pointer' }}>{tr({ uz: 'Darsni boshlash →', ru: 'Начать урок →' })}</button>
     </div>
   );
 }
 
-function LiveGate({ live, title = 'Jonli dars' }) {
+function LiveGate({ live, title = { uz: 'Jonli dars', ru: 'Живой урок' } }) {
   const [code, setCode] = useState('');
   const [nick, setNick] = useState(() => nickRead()); // oldingi darsda yozgan ismi tayyor chiqadi
   const [mentorCode, setMentorCode] = useState('');
@@ -247,18 +247,18 @@ function LiveGate({ live, title = 'Jonli dars' }) {
   const link = { background: 'none', border: 'none', color: LT.ink3, fontSize: 13, cursor: 'pointer', alignSelf: 'center' };
   if (role === 'mentor') {
     return (<div style={wrap}><div style={card}>
-      <div style={{ textAlign: 'center' }}><h2 style={{ fontFamily: 'Georgia, serif', fontSize: 'clamp(22px,3vw,28px)', color: LT.ink, margin: '0 0 4px' }}>🧑‍🏫 Mentor kirishi</h2><p style={{ color: LT.ink2, fontSize: 14, margin: 0 }}>Mentor kodini kiriting.</p></div>
-      <input value={mentorCode} onChange={e => setMentorCode(e.target.value)} type="password" autoFocus placeholder="Mentor kodi" onKeyDown={e => { if (e.key === 'Enter') live.startMentor(mentorCode); }} style={{ width: '100%', padding: '14px', border: `2px solid ${LT.ink3}55`, borderRadius: 14, fontSize: 18, fontWeight: 600, textAlign: 'center', outline: 'none' }} />
-      <button onClick={() => live.startMentor(mentorCode)} disabled={live.busy} style={_liveBtnPri}>{live.busy ? 'Tekshirilmoqda…' : 'Kirish →'}</button>
+      <div style={{ textAlign: 'center' }}><h2 style={{ fontFamily: 'Georgia, serif', fontSize: 'clamp(22px,3vw,28px)', color: LT.ink, margin: '0 0 4px' }}>{tr({ uz: '🧑‍🏫 Mentor kirishi', ru: '🧑‍🏫 Вход для ментора' })}</h2><p style={{ color: LT.ink2, fontSize: 14, margin: 0 }}>{tr({ uz: 'Mentor kodini kiriting.', ru: 'Введите код ментора.' })}</p></div>
+      <input value={mentorCode} onChange={e => setMentorCode(e.target.value)} type="password" autoFocus placeholder={tr({ uz: 'Mentor kodi', ru: 'Код ментора' })} onKeyDown={e => { if (e.key === 'Enter') live.startMentor(mentorCode); }} style={{ width: '100%', padding: '14px', border: `2px solid ${LT.ink3}55`, borderRadius: 14, fontSize: 18, fontWeight: 600, textAlign: 'center', outline: 'none' }} />
+      <button onClick={() => live.startMentor(mentorCode)} disabled={live.busy} style={_liveBtnPri}>{live.busy ? tr({ uz: 'Tekshirilmoqda…', ru: 'Проверяем…' }) : tr({ uz: 'Kirish →', ru: 'Войти →' })}</button>
       {live.joinError && <div style={{ color: LT.accent, fontSize: 13, textAlign: 'center' }}>{live.joinError}</div>}
-      <button onClick={() => { setRole('student'); setMentorCode(''); }} style={link}>← Orqaga</button>
+      <button onClick={() => { setRole('student'); setMentorCode(''); }} style={link}>{tr({ uz: '← Orqaga', ru: '← Назад' })}</button>
     </div></div>);
   }
   return (<div style={wrap}><div style={card}>
-    <div style={{ textAlign: 'center' }}><div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: LT.accent }}>{title}</div><h2 style={{ fontFamily: 'Georgia, serif', fontSize: 'clamp(22px,3vw,28px)', color: LT.ink, margin: '6px 0 4px' }}>Darsga qo'shilish</h2><p style={{ color: LT.ink2, fontSize: 14, margin: 0 }}>Mentor bergan kodni va ismingizni kiriting.</p></div>
+    <div style={{ textAlign: 'center' }}><div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: LT.accent }}>{tr(title)}</div><h2 style={{ fontFamily: 'Georgia, serif', fontSize: 'clamp(22px,3vw,28px)', color: LT.ink, margin: '6px 0 4px' }}>{tr({ uz: 'Darsga qo\'shilish', ru: 'Подключиться к уроку' })}</h2><p style={{ color: LT.ink2, fontSize: 14, margin: 0 }}>{tr({ uz: 'Mentor bergan kodni va ismingizni kiriting.', ru: 'Введите код от ментора и своё имя.' })}</p></div>
     <input value={code} onChange={e => setCode(e.target.value)} inputMode="numeric" autoFocus placeholder="483 920" style={{ width: '100%', padding: '16px 14px', border: `2px solid ${LT.ink3}55`, borderRadius: 14, fontSize: 28, fontFamily: 'monospace', fontWeight: 700, letterSpacing: '0.12em', textAlign: 'center', outline: 'none' }} />
-    <input value={nick} onChange={e => setNick(e.target.value)} maxLength={24} placeholder="Ismingiz (masalan: Ali)" onKeyDown={e => { if (e.key === 'Enter') live.joinStudent(code, nick); }} style={{ width: '100%', padding: '13px 14px', border: `2px solid ${LT.ink3}55`, borderRadius: 14, fontSize: 17, fontWeight: 600, textAlign: 'center', outline: 'none' }} />
-    <button onClick={() => live.joinStudent(code, nick)} disabled={live.busy} style={_liveBtnPri}>{live.busy ? 'Ulanmoqda…' : 'Qo\'shilish →'}</button>
+    <input value={nick} onChange={e => setNick(e.target.value)} maxLength={24} placeholder={tr({ uz: 'Ismingiz (masalan: Ali)', ru: 'Ваше имя (например: Али)' })} onKeyDown={e => { if (e.key === 'Enter') live.joinStudent(code, nick); }} style={{ width: '100%', padding: '13px 14px', border: `2px solid ${LT.ink3}55`, borderRadius: 14, fontSize: 17, fontWeight: 600, textAlign: 'center', outline: 'none' }} />
+    <button onClick={() => live.joinStudent(code, nick)} disabled={live.busy} style={_liveBtnPri}>{live.busy ? tr({ uz: 'Ulanmoqda…', ru: 'Подключаемся…' }) : tr({ uz: 'Qo\'shilish →', ru: 'Присоединиться →' })}</button>
     {live.joinError && <div style={{ color: LT.accent, fontSize: 13, textAlign: 'center' }}>{live.joinError}</div>}
     <button onClick={() => { setRole('mentor'); setCode(''); }} title="Mentor" aria-label="Mentor" style={{ position: 'absolute', bottom: 10, right: 12, background: 'none', border: 'none', fontSize: 16, opacity: 0.3, cursor: 'pointer', lineHeight: 1, padding: 4 }}>🧑‍🏫</button>
   </div></div>);
@@ -279,22 +279,22 @@ function LiveBadge({ live, total }) {
     return () => { on = false; clearTimeout(t); };
   }, [live.mode, live.pin, live.ended]);
   if (live.mode === 'mentor') {
-    if (live.ended) return <div className="live-badge" style={_liveBadgeS}><span style={_liveDot(LT.ink3)} /> 🔓 O'quvchilar erkin qilindi</div>;
+    if (live.ended) return <div className="live-badge" style={_liveBadgeS}><span style={_liveDot(LT.ink3)} /> {tr({ uz: "🔓 O'quvchilar erkin qilindi", ru: '🔓 Ученики переведены в свободный режим' })}</div>;
     return (<>
       {bigOpen && <LiveBigCode pin={live.pin} onClose={() => setBigOpen(false)} />}
       <div className="live-badge" style={_liveBadgeS}>
-        <span style={_liveDot(LT.success)} /> Kod: <b style={{ fontFamily: 'monospace', letterSpacing: '0.08em' }}>{fmtPin(live.pin)}</b>
+        <span style={_liveDot(LT.success)} /> {tr({ uz: 'Kod:', ru: 'Код:' })} <b style={{ fontFamily: 'monospace', letterSpacing: '0.08em' }}>{fmtPin(live.pin)}</b>
         {nPlayers !== null && <span style={{ color: LT.ink2 }}>👥 {nPlayers}</span>}
-        <button onClick={() => setBigOpen(true)} title="Kodni katta ko'rsatish" style={{ marginLeft: 6, background: LT.ink, color: '#fff', border: 'none', borderRadius: 99, padding: '4px 10px', fontSize: 12, fontWeight: 700, cursor: 'pointer', whiteSpace: 'nowrap' }}>📺 Ko'rsatish</button>
-        <button onClick={() => { if (window.confirm("O'quvchilarni ozod qilasizmi? Ular o'zlari erkin davom etadi.")) live.endSession(); }} style={{ background: LT.accentSoft, color: LT.accent, border: 'none', borderRadius: 99, padding: '4px 10px', fontSize: 12, fontWeight: 700, cursor: 'pointer', whiteSpace: 'nowrap' }}>🔓 Erkin qilish</button>
+        <button onClick={() => setBigOpen(true)} title={tr({ uz: "Kodni katta ko'rsatish", ru: 'Показать код крупно' })} style={{ marginLeft: 6, background: LT.ink, color: '#fff', border: 'none', borderRadius: 99, padding: '4px 10px', fontSize: 12, fontWeight: 700, cursor: 'pointer', whiteSpace: 'nowrap' }}>{tr({ uz: "📺 Ko'rsatish", ru: '📺 Показать' })}</button>
+        <button onClick={() => { if (window.confirm(tr({ uz: "O'quvchilarni ozod qilasizmi? Ular o'zlari erkin davom etadi.", ru: 'Отпустить учеников? Они продолжат урок самостоятельно.' }))) live.endSession(); }} style={{ background: LT.accentSoft, color: LT.accent, border: 'none', borderRadius: 99, padding: '4px 10px', fontSize: 12, fontWeight: 700, cursor: 'pointer', whiteSpace: 'nowrap' }}>{tr({ uz: '🔓 Erkin qilish', ru: '🔓 Свободный режим' })}</button>
       </div>
     </>);
   }
   if (live.mode === 'student') {
-    if (live.status === 'ended') return <div className="live-badge" style={_liveBadgeS}><span style={_liveDot(LT.success)} /> 🔓 Erkin rejim — o'zingiz davom eting</div>;
-    if (!live.mentorAlive) return <div className="live-badge" style={_liveBadgeS}><span style={_liveDot(LT.ink3)} /> ⚠️ Mentor uzildi — erkin rejim</div>;
-    if (!live.connected) return <div className="live-badge" style={_liveBadgeS}><span style={_liveDot('#FFD380')} /> 🔄 Qayta ulanmoqda…</div>;
-    return <div className="live-badge" style={_liveBadgeS}><span style={_liveDot(LT.success)} /> 👨‍🏫 Mentor: {Math.min(live.mentorScreen + 1, total)} / {total}{live.nickname && <span style={{ color: LT.ink3 }}>· {live.nickname}</span>}</div>;
+    if (live.status === 'ended') return <div className="live-badge" style={_liveBadgeS}><span style={_liveDot(LT.success)} /> {tr({ uz: "🔓 Erkin rejim — o'zingiz davom eting", ru: '🔓 Свободный режим — продолжайте сами' })}</div>;
+    if (!live.mentorAlive) return <div className="live-badge" style={_liveBadgeS}><span style={_liveDot(LT.ink3)} /> {tr({ uz: '⚠️ Mentor uzildi — erkin rejim', ru: '⚠️ Ментор отключился — свободный режим' })}</div>;
+    if (!live.connected) return <div className="live-badge" style={_liveBadgeS}><span style={_liveDot('#FFD380')} /> {tr({ uz: '🔄 Qayta ulanmoqda…', ru: '🔄 Переподключаемся…' })}</div>;
+    return <div className="live-badge" style={_liveBadgeS}><span style={_liveDot(LT.success)} /> {tr({ uz: '👨‍🏫 Mentor:', ru: '👨‍🏫 Ментор:' })} {Math.min(live.mentorScreen + 1, total)} / {total}{live.nickname && <span style={{ color: LT.ink3 }}>· {live.nickname}</span>}</div>;
   }
   return null;
 }
@@ -303,6 +303,23 @@ const LangContext = createContext('uz');
 const MentorCtx = createContext(null); // mobil: yig'iladigan Mentor
 const AchCtx = createContext(null); // 🏅 olingan nishonlar (Set) — Stage hisoblagichi uchun
 const LiveGateCtx = createContext(null); // JONLI: mentor-gate + live obyekti (Jonli roli Provider bilan ulaydi)
+
+// UZ-RU: modul-darajali tarjimon. Dars mount bo'lganda default export __lang'ni o'rnatadi;
+// barcha render-joylar tr({uz:'…', ru:'…'}) orqali joriy tildagi matnni oladi (string/JSX o'tkazib yuboriladi).
+let __lang = 'uz';
+const tr = (node) => {
+  if (node === null || node === undefined) return '';
+  if (typeof node === 'string') return node;
+  if (React.isValidElement(node)) return node;
+  return node[__lang] ?? node.uz ?? node.ru ?? '';
+};
+// Analitika-payload uchun UZ-etalon (4-Modul konvensiyasi): jonli/statistika doim UZ matn ko'radi.
+const ou = (node) => {
+  if (node === null || node === undefined) return '';
+  if (typeof node === 'string') return node;
+  if (React.isValidElement(node)) return node;
+  return node.uz ?? node.ru ?? '';
+};
 
 // Matn ichidagi `kod` bo'laklarini chip qilib ko'rsatadi (qcode)
 const fmtCode = (s) => (typeof s === 'string' && s.includes('`'))
@@ -366,7 +383,7 @@ const Zoomable = ({ children }) => {
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
       <div className={`zoomable ${big ? 'zoom-on' : ''}`}>
-        <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? 'Kichraytirish' : 'Kattalashtirish'} title={big ? 'Kichraytirish' : 'Kattalashtirish'}>{big ? '✕' : '⛶'}</button>
+        <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={tr(big ? { uz: 'Kichraytirish', ru: 'Уменьшить' } : { uz: 'Kattalashtirish', ru: 'Увеличить' })} title={tr(big ? { uz: 'Kichraytirish', ru: 'Уменьшить' } : { uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>
         {children}
       </div>
     </>
@@ -396,7 +413,7 @@ function AchCounter() {
         <div className="ach-pop" onMouseLeave={() => setOpen(false)}>
           <div className="ach-pop-h">🏅 Badges — {count}/{total}</div>
           {Object.entries(ACHIEVEMENTS).map(([id, a]) => { const got = !!(earned && earned.has(id)); return (
-            <div key={id} className={`ach-pop-row ${got ? 'got' : ''}`}><span className="ach-pop-ic">{got ? a.icon : '🔒'}</span><span className="ach-pop-nm">{a.name}</span></div>
+            <div key={id} className={`ach-pop-row ${got ? 'got' : ''}`}><span className="ach-pop-ic">{got ? a.icon : '🔒'}</span><span className="ach-pop-nm">{tr(a.name)}</span></div>
           ); })}
         </div>
       )}
@@ -453,13 +470,13 @@ const Stage = ({ children, eyebrow, screen, totalScreens = TOTAL_SCREENS, navCon
     </MentorCtx.Provider>
   );
 };
-const NavBack = ({ onPrev }) => <button className="btn-ghost" onClick={onPrev} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>Orqaga</button>;
-const NavNext = ({ disabled, label = 'Davom etish', onClick, optionalLive }) => {
+const NavBack = ({ onPrev }) => <button className="btn-ghost" onClick={onPrev} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Orqaga', ru: 'Назад' })}</button>;
+const NavNext = ({ disabled, label = { uz: 'Davom etish', ru: 'Продолжить' }, onClick, optionalLive }) => {
   const gate = useContext(LiveGateCtx);
   const locked = !!(gate && gate.locked);
   const live = gate && gate.live;
   const freeRide = !!(optionalLive && live && live.mode === 'student' && live.status !== 'ended' && live.mentorAlive);
-  return <button className="btn-white-accent" disabled={(freeRide ? false : disabled) || locked} onClick={onClick} title={locked ? "Mentor hali bu sahifaga o'tmadi" : undefined} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)', marginLeft: 'auto' }}>{locked ? '⏳ Mentorni kuting' : (freeRide && disabled ? 'Davom etish' : label)}</button>;
+  return <button className="btn-white-accent" disabled={(freeRide ? false : disabled) || locked} onClick={onClick} title={locked ? tr({ uz: "Mentor hali bu sahifaga o'tmadi", ru: 'Ментор ещё не перешёл на эту страницу' }) : undefined} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)', marginLeft: 'auto' }}>{locked ? tr({ uz: '⏳ Mentorni kuting', ru: '⏳ Подождите ментора' }) : (freeRide && disabled ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr(label))}</button>;
 };
 
 const FeedbackBlock = ({ show, isCorrect, neutral, children }) => {
@@ -490,43 +507,43 @@ const INLINE_KEYS = { s4: 1, s8: 2, s10: 0, s14: 3, s15: 0, practice: -1 };
 // 📖 RECAPS — har SCORED test uchun 3 karta (kalit = ekran INDEKSI). Matn 🎓 Metodist tomonidan sayqallanadi.
 const RECAPS = {
   4: {
-    title: 'Fikr turlari — har biri boshqa signal',
+    title: { uz: 'Fikr turlari — har biri boshqa signal', ru: 'Виды отзывов — каждый свой сигнал' },
     cards: [
-      { ic: '🐞', h: 'Buzuq — darhol tuzat', body: <>«Bot manzilimni qayta so'radi» — bu <b>buzuq xatti-harakat</b>, Botjon kutilgan ishni bajarmayapti.</> },
-      { ic: '💡', h: 'Taklif — qaror qilinadi', body: <>Hozir yo'q narsa so'ralsa — bu <b>taklif</b>, direktor uni birdan qo'shmaydi, o'ylab qaror qiladi.</> },
-      { ic: '👍', h: 'Maqtov — saqlanadi', body: <>Maqtov nima yaxshi ishlayotganini ko'rsatadi — tuzatishda uni <b>buzib qo'ymaslik</b> kerak.</>, ask: "«Bot manzilimni 2 marta so'radi» qanday signal?" },
+      { ic: '🐞', h: { uz: 'Buzuq — darhol tuzat', ru: 'Баг — чиним сразу' }, body: { uz: <>«Bot manzilimni qayta so'radi» — bu <b>buzuq xatti-harakat</b>, Botjon kutilgan ishni bajarmayapti.</>, ru: <>«Бот снова спросил мой адрес» — это <b>сломанное поведение</b>, Ботжон не делает то, что от него ждут.</> } },
+      { ic: '💡', h: { uz: 'Taklif — qaror qilinadi', ru: 'Предложение — по нему решают' }, body: { uz: <>Hozir yo'q narsa so'ralsa — bu <b>taklif</b>, direktor uni birdan qo'shmaydi, o'ylab qaror qiladi.</>, ru: <>Просят то, чего пока нет — это <b>предложение</b>, директор не добавляет его сразу, а взвешивает.</> } },
+      { ic: '👍', h: { uz: 'Maqtov — saqlanadi', ru: 'Похвала — её берегут' }, body: { uz: <>Maqtov nima yaxshi ishlayotganini ko'rsatadi — tuzatishda uni <b>buzib qo'ymaslik</b> kerak.</>, ru: <>Похвала показывает, что работает хорошо — при правках это <b>нельзя сломать</b>.</> }, ask: { uz: "«Bot manzilimni 2 marta so'radi» qanday signal?", ru: '«Бот дважды спросил мой адрес» — какой это сигнал?' } },
     ]
   },
   8: {
-    title: "Ustuvorlik — chastota × ta'sir",
+    title: { uz: "Ustuvorlik — chastota × ta'sir", ru: 'Приоритет — частота × влияние' },
     cards: [
-      { ic: '📊', h: 'Bitta shikoyat — tasodif', body: <>Bitta odam aytgan narsaga darrov ergashmang — bu <b>pattern</b> emas, tasodif bo'lishi mumkin.</> },
-      { ic: '🎯', h: 'Ko\'pchilik + og\'riq = birinchi', body: <>Eng ko'p odam aytgan <b>va</b> eng ko'p og'ritgan narsa — birinchi tuzatiladigan narsa.</> },
-      { ic: '🛑', h: '«Yo\'q» deyish ham qaror', body: <>Vaqt cheklangan — kam ta'sirli fikrga <b>«hozir emas»</b> deyish e'tiborsizlik emas, fokusni saqlash.</>, ask: "Nega hamma fikrni birdan qila olmaymiz?" },
+      { ic: '📊', h: { uz: 'Bitta shikoyat — tasodif', ru: 'Одна жалоба — случайность' }, body: { uz: <>Bitta odam aytgan narsaga darrov ergashmang — bu <b>pattern</b> emas, tasodif bo'lishi mumkin.</>, ru: <>Не бегите сразу за словами одного человека — это не <b>паттерн</b>, а возможно случайность.</> } },
+      { ic: '🎯', h: { uz: 'Ko\'pchilik + og\'riq = birinchi', ru: 'Многие + боль = первым' }, body: { uz: <>Eng ko'p odam aytgan <b>va</b> eng ko'p og'ritgan narsa — birinchi tuzatiladigan narsa.</>, ru: <>То, о чём говорят чаще всего <b>и</b> что болит сильнее всего, чинят первым.</> } },
+      { ic: '🛑', h: { uz: '«Yo\'q» deyish ham qaror', ru: 'Сказать «нет» — тоже решение' }, body: { uz: <>Vaqt cheklangan — kam ta'sirli fikrga <b>«hozir emas»</b> deyish e'tiborsizlik emas, fokusni saqlash.</>, ru: <>Время ограничено — сказать малозначимой идее <b>«не сейчас»</b> не грубость, а сохранение фокуса.</> }, ask: { uz: "Nega hamma fikrni birdan qila olmaymiz?", ru: 'Почему нельзя сделать все идеи сразу?' } },
     ]
   },
   10: {
-    title: 'Fokus — kimga foyda beradi',
+    title: { uz: 'Fokus — kimga foyda beradi', ru: 'Фокус — кому это полезно' },
     cards: [
-      { ic: '🙋', h: 'Bitta odam ≠ hammaning ovozi', body: <>Bitta o'ziga xos so'rov — <b>kamdan-kam</b> ko'pchilikka foyda beradi.</> },
-      { ic: '📦', h: 'Scope shishmasin', body: <>Har taklifni qo'shsangiz — bot <b>chalkashadi va og'irlashadi</b>. Asosiy ishda qoling.</> },
-      { ic: '✅', h: 'Ko\'pchilikka foyda — ustuvor', body: <>Cheklangan vaqtni <b>ko'pchilikka ta'sir qiladigan</b> ishga sarflaysiz.</>, ask: "100 dan 1 tasi tor so'rov aytsa — nima qilamiz?" },
+      { ic: '🙋', h: { uz: 'Bitta odam ≠ hammaning ovozi', ru: 'Один человек ≠ голос всех' }, body: { uz: <>Bitta o'ziga xos so'rov — <b>kamdan-kam</b> ko'pchilikka foyda beradi.</>, ru: <>Один очень частный запрос <b>редко</b> приносит пользу большинству.</> } },
+      { ic: '📦', h: { uz: 'Scope shishmasin', ru: 'Пусть scope не раздувается' }, body: { uz: <>Har taklifni qo'shsangiz — bot <b>chalkashadi va og'irlashadi</b>. Asosiy ishda qoling.</>, ru: <>Добавите каждое предложение — бот <b>запутается и потяжелеет</b>. Держитесь главного.</> } },
+      { ic: '✅', h: { uz: 'Ko\'pchilikka foyda — ustuvor', ru: 'Польза большинству — в приоритете' }, body: { uz: <>Cheklangan vaqtni <b>ko'pchilikka ta'sir qiladigan</b> ishga sarflaysiz.</>, ru: <>Ограниченное время тратят на то, что <b>влияет на большинство</b>.</> }, ask: { uz: "100 dan 1 tasi tor so'rov aytsa — nima qilamiz?", ru: 'Если 1 из 100 просит что-то очень узкое — что делаем?' } },
     ]
   },
   14: {
-    title: 'Iteratsiya — hech qachon tayyor emas',
+    title: { uz: 'Iteratsiya — hech qachon tayyor emas', ru: 'Итерация — «готово» не бывает' },
     cards: [
-      { ic: '🔧', h: 'Tuzatish — taxmin', body: <>Har tuzatish — bu <b>taxmin</b>. Ishladimi yo'qmi, buni faqat yangi fikr ko'rsatadi.</> },
-      { ic: '📈', h: 'Qayta o\'lchaysiz', body: <>Versiya chiqargach, o'sha shikoyat <b>kamaydimi</b> — tekshirasiz, ko'r-ko'rona ishonmaysiz.</> },
-      { ic: '↻', h: 'Sikl davom etadi', body: <>Tuzatgandan keyin ham tinglashni <b>to'xtatmaysiz</b> — mahsulot doim yaxshilanadi.</>, ask: "Eng katta shikoyatni tuzatdingiz — endi nima?" },
+      { ic: '🔧', h: { uz: 'Tuzatish — taxmin', ru: 'Правка — это гипотеза' }, body: { uz: <>Har tuzatish — bu <b>taxmin</b>. Ishladimi yo'qmi, buni faqat yangi fikr ko'rsatadi.</>, ru: <>Каждая правка — это <b>гипотеза</b>. Сработала или нет, покажут только новые отзывы.</> } },
+      { ic: '📈', h: { uz: 'Qayta o\'lchaysiz', ru: 'Измеряете заново' }, body: { uz: <>Versiya chiqargach, o'sha shikoyat <b>kamaydimi</b> — tekshirasiz, ko'r-ko'rona ishonmaysiz.</>, ru: <>После выпуска версии проверяете, <b>стало ли меньше</b> той жалобы, а не верите вслепую.</> } },
+      { ic: '↻', h: { uz: 'Sikl davom etadi', ru: 'Цикл продолжается' }, body: { uz: <>Tuzatgandan keyin ham tinglashni <b>to'xtatmaysiz</b> — mahsulot doim yaxshilanadi.</>, ru: <>Даже после правки вы <b>не перестаёте слушать</b> — продукт улучшается всегда.</> }, ask: { uz: "Eng katta shikoyatni tuzatdingiz — endi nima?", ru: 'Вы починили самую большую жалобу — что дальше?' } },
     ]
   },
   15: {
-    title: 'Yaxshilash aylanasi — tartib muhim',
+    title: { uz: 'Yaxshilash aylanasi — tartib muhim', ru: 'Круг улучшений — порядок важен' },
     cards: [
-      { ic: '👂', h: 'Avval — tingla', body: <>Birinchi qadam — mijozlar fikrini <b>yig'ish</b>, hali hech narsani tuzatmaysiz.</> },
-      { ic: '🗂️', h: 'Guruhla, keyin tanla', body: <>Bir xil fikrlarni <b>birlashtirasiz</b>, so'ng chastota × ta'sir bo'yicha <b>tanlaysiz</b>.</> },
-      { ic: '🔧', h: 'Tuzat va qayta tingla', body: <>Tuzatgandan so'ng yana <b>tinglaysiz</b> — aylana shu yerdan yana boshlanadi.</>, vis: <RcFlow items={['👂 Tingla', '🗂️ Guruhla', '🎯 Tanla', '🔧 Tuzat', '🔁 Qayta tingla']} />, ask: "Nega «tuzat» eng oxirgi qadam emas?" },
+      { ic: '👂', h: { uz: 'Avval — tingla', ru: 'Сначала — слушай' }, body: { uz: <>Birinchi qadam — mijozlar fikrini <b>yig'ish</b>, hali hech narsani tuzatmaysiz.</>, ru: <>Первый шаг — <b>собрать</b> отзывы клиентов, пока ничего не чиним.</> } },
+      { ic: '🗂️', h: { uz: 'Guruhla, keyin tanla', ru: 'Сгруппируй, потом выбирай' }, body: { uz: <>Bir xil fikrlarni <b>birlashtirasiz</b>, so'ng chastota × ta'sir bo'yicha <b>tanlaysiz</b>.</>, ru: <>Одинаковые отзывы <b>объединяете</b>, затем <b>выбираете</b> по формуле частота × влияние.</> } },
+      { ic: '🔧', h: { uz: 'Tuzat va qayta tingla', ru: 'Почини и слушай снова' }, body: { uz: <>Tuzatgandan so'ng yana <b>tinglaysiz</b> — aylana shu yerdan yana boshlanadi.</>, ru: <>После правки вы снова <b>слушаете</b> — отсюда круг начинается заново.</> }, vis: { uz: <RcFlow items={['👂 Tingla', '🗂️ Guruhla', '🎯 Tanla', '🔧 Tuzat', '🔁 Qayta tingla']} />, ru: <RcFlow items={['👂 Слушай', '🗂️ Группируй', '🎯 Выбирай', '🔧 Чини', '🔁 Слушай снова']} /> }, ask: { uz: "Nega «tuzat» eng oxirgi qadam emas?", ru: 'Почему «почини» — не последний шаг?' } },
     ]
   }
 };
@@ -549,23 +566,23 @@ function RecapOverlay({ screenIdx, onClose }) {
   return (
     <div className="rc-overlay">
       <div className="rc-head">
-        <span className="rc-tag">📖 Qayta tushuntirish</span>
-        <span className="rc-title">{rc.title}</span>
-        <button className="rc-x" onClick={onClose} aria-label="Yopish">✕</button>
+        <span className="rc-tag">{tr({ uz: '📖 Qayta tushuntirish', ru: '📖 Объясняем заново' })}</span>
+        <span className="rc-title">{tr(rc.title)}</span>
+        <button className="rc-x" onClick={onClose} aria-label={tr({ uz: 'Yopish', ru: 'Закрыть' })}>✕</button>
       </div>
       <div className="rc-card" key={i}>
         <div className="rc-ic">{card.ic}</div>
-        <h2 className="rc-h">{card.h}</h2>
-        <p className="rc-body">{card.body}</p>
-        {card.vis && <div className="rc-vis">{card.vis}</div>}
-        {card.ask && <div className="rc-ask">🗣️ Sinfga savol: {card.ask}</div>}
+        <h2 className="rc-h">{tr(card.h)}</h2>
+        <p className="rc-body">{tr(card.body)}</p>
+        {card.vis && <div className="rc-vis">{tr(card.vis)}</div>}
+        {card.ask && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol:', ru: '🗣️ Вопрос классу:' })} {tr(card.ask)}</div>}
       </div>
       <div className="rc-nav">
-        <button className="rc-btn ghost" disabled={i === 0} onClick={() => setI(i - 1)}>← Oldingi</button>
-        <div className="rc-dots">{rc.cards.map((_, k) => <button key={k} className={`rc-dot ${k === i ? 'cur' : k < i ? 'fill' : ''}`} onClick={() => setI(k)} aria-label={`${k + 1}-karta`} />)}</div>
+        <button className="rc-btn ghost" disabled={i === 0} onClick={() => setI(i - 1)}>{tr({ uz: '← Oldingi', ru: '← Предыдущая' })}</button>
+        <div className="rc-dots">{rc.cards.map((_, k) => <button key={k} className={`rc-dot ${k === i ? 'cur' : k < i ? 'fill' : ''}`} onClick={() => setI(k)} aria-label={tr({ uz: `${k + 1}-karta`, ru: `Карточка ${k + 1}` })} />)}</div>
         {last
-          ? <button className="rc-btn done" onClick={onClose}>✓ Tushunarli — davom etamiz</button>
-          : <button className="rc-btn" onClick={() => setI(i + 1)}>Keyingisi →</button>}
+          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: '✓ Tushunarli — davom etamiz', ru: '✓ Понятно — продолжаем' })}</button>
+          : <button className="rc-btn" onClick={() => setI(i + 1)}>{tr({ uz: 'Keyingisi →', ru: 'Дальше →' })}</button>}
       </div>
     </div>
   );
@@ -599,25 +616,25 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
   return (
     <div className="mstats fade-up">
       <div className="mstats-head">
-        <span className="mstats-lbl">📊 Jonli natija</span>
-        <span className="mstats-n">{allIn ? '✓ Hamma javob berdi' : <>Javob berdi: <b>{answered}</b> / {total}</>}</span>
-        {!reveal && onReveal && <button className={`mstats-reveal ${allIn ? 'ready' : ''}`} onClick={onReveal}>🔓 Natijani ochish</button>}
+        <span className="mstats-lbl">{tr({ uz: '📊 Jonli natija', ru: '📊 Живой результат' })}</span>
+        <span className="mstats-n">{allIn ? tr({ uz: '✓ Hamma javob berdi', ru: '✓ Все ответили' }) : <>{tr({ uz: 'Javob berdi:', ru: 'Ответили:' })} <b>{answered}</b> / {total}</>}</span>
+        {!reveal && onReveal && <button className={`mstats-reveal ${allIn ? 'ready' : ''}`} onClick={onReveal}>{tr({ uz: '🔓 Natijani ochish', ru: '🔓 Открыть результат' })}</button>}
       </div>
       <div className="mstats-prog"><span className={`mstats-prog-fill ${allIn ? 'full' : ''}`} style={{ width: `${total ? Math.round((answered / total) * 100) : 0}%` }} /></div>
       {reveal ? (
         <div className="mstats-big">
-          <div className="mstats-chip okc"><span className="mstats-chip-n">{ok}</span><span className="mstats-chip-t">to'g'ri ✅</span></div>
-          <div className="mstats-chip badc"><span className="mstats-chip-n">{bad}</span><span className="mstats-chip-t">xato ❌</span></div>
-          <div className="mstats-chip waitc"><span className="mstats-chip-n">{total - answered}</span><span className="mstats-chip-t">kutilmoqda ⏳</span></div>
+          <div className="mstats-chip okc"><span className="mstats-chip-n">{ok}</span><span className="mstats-chip-t">{tr({ uz: "to'g'ri ✅", ru: 'верно ✅' })}</span></div>
+          <div className="mstats-chip badc"><span className="mstats-chip-n">{bad}</span><span className="mstats-chip-t">{tr({ uz: 'xato ❌', ru: 'неверно ❌' })}</span></div>
+          <div className="mstats-chip waitc"><span className="mstats-chip-n">{total - answered}</span><span className="mstats-chip-t">{tr({ uz: 'kutilmoqda ⏳', ru: 'ожидаем ⏳' })}</span></div>
         </div>
       ) : (
         <div className="mstats-big">
-          <div className="mstats-chip ansc"><span className="mstats-chip-n">{answered}</span><span className="mstats-chip-t">javob berdi 📨</span></div>
-          <div className="mstats-chip waitc"><span className="mstats-chip-n">{total - answered}</span><span className="mstats-chip-t">kutilmoqda ⏳</span></div>
+          <div className="mstats-chip ansc"><span className="mstats-chip-n">{answered}</span><span className="mstats-chip-t">{tr({ uz: 'javob berdi 📨', ru: 'ответили 📨' })}</span></div>
+          <div className="mstats-chip waitc"><span className="mstats-chip-n">{total - answered}</span><span className="mstats-chip-t">{tr({ uz: 'kutilmoqda ⏳', ru: 'ожидаем ⏳' })}</span></div>
         </div>
       )}
       {!reveal && answered > 0 && (
-        <p className="mstats-hidden">🙈 Kim nimani tanlagani va ✅/❌ soni yashirin — «Natijani ochish» bosilganda sizda ham, o'quvchilar ekranida ham birdan ochiladi.</p>
+        <p className="mstats-hidden">{tr({ uz: "🙈 Kim nimani tanlagani va ✅/❌ soni yashirin — «Natijani ochish» bosilganda sizda ham, o'quvchilar ekranida ham birdan ochiladi.", ru: '🙈 Кто что выбрал и сколько ✅/❌ — пока скрыто. По кнопке «Открыть результат» всё откроется сразу и у вас, и на экранах учеников.' })}</p>
       )}
       {reveal && <div className="mstats-bars">
         {options.map((opt, i) => {
@@ -629,7 +646,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
             <div key={i} className={`mstats-row ${reveal && !isC ? 'dimmed' : ''}`}>
               <span className="mstats-abc" style={{ background: col }}>{isC ? '✓' : String.fromCharCode(65 + i)}</span>
               <span className="mstats-track"><span className="mstats-fill" style={{ width: `${answered ? Math.round((n / maxN) * 100) : 0}%`, background: col }} /></span>
-              <span className="mono mstats-count" style={isC ? { color: T.success, fontWeight: 800 } : undefined}>{n > 0 ? `${n} o'quvchi · ${pct}%` : '—'}</span>
+              <span className="mono mstats-count" style={isC ? { color: T.success, fontWeight: 800 } : undefined}>{n > 0 ? `${n} ${tr({ uz: "o'quvchi", ru: 'учеников' })} · ${pct}%` : '—'}</span>
             </div>
           );
         })}
@@ -640,27 +657,27 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
         return (
           <div className={`mstats-verdict ${level}`}>
             {level === 'need' && <>
-              <p className="mstats-verdict-t">⚠️ Faqat <b>{pct}%</b> to'g'ri — bu mavzu sinfga tushunarsiz qolgan. Davom etishdan oldin qisqa takrorlash tavsiya etiladi.</p>
-              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>📖 Qayta tushuntirish — {RECAPS[screenIdx]?.title}</button>}
+              <p className="mstats-verdict-t">{tr({ uz: <>⚠️ Faqat <b>{pct}%</b> to'g'ri — bu mavzu sinfga tushunarsiz qolgan. Davom etishdan oldin qisqa takrorlash tavsiya etiladi.</>, ru: <>⚠️ Верно только <b>{pct}%</b> — тема классу не зашла. Перед продолжением стоит быстро её повторить.</> })}</p>
+              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>{tr({ uz: '📖 Qayta tushuntirish —', ru: '📖 Объяснить заново —' })} {tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
             {level === 'maybe' && <>
-              <p className="mstats-verdict-t">🟡 <b>{pct}%</b> to'g'ri — yomon emas. Xohlasangiz, davom etishdan oldin qisqa takrorlab oling.</p>
-              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>📖 Qisqa takrorlash</button>}
+              <p className="mstats-verdict-t">{tr({ uz: <>🟡 <b>{pct}%</b> to'g'ri — yomon emas. Xohlasangiz, davom etishdan oldin qisqa takrorlab oling.</>, ru: <>🟡 Верно <b>{pct}%</b> — неплохо. При желании повторите тему перед продолжением.</> })}</p>
+              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>{tr({ uz: '📖 Qisqa takrorlash', ru: '📖 Быстрое повторение' })}</button>}
             </>}
-            {level === 'good' && <p className="mstats-verdict-t">✅ <b>{pct}%</b> to'g'ri — sinf mavzuni o'zlashtirdi. Bemalol davom eting!</p>}
-            {level === 'few' && <p className="mstats-verdict-t">Javob berganlar kam ({answered} ta) — foiz bo'yicha xulosa chiqarish qiyin. O'zingiz baholang.</p>}
+            {level === 'good' && <p className="mstats-verdict-t">{tr({ uz: <>✅ <b>{pct}%</b> to'g'ri — sinf mavzuni o'zlashtirdi. Bemalol davom eting!</>, ru: <>✅ Верно <b>{pct}%</b> — класс освоил тему. Спокойно продолжайте!</> })}</p>}
+            {level === 'few' && <p className="mstats-verdict-t">{tr({ uz: `Javob berganlar kam (${answered} ta) — foiz bo'yicha xulosa chiqarish qiyin. O'zingiz baholang.`, ru: `Ответивших мало (${answered}) — по процентам судить трудно. Оцените сами.` })}</p>}
           </div>
         );
       })()}
       {waiting.length > 0 && answered > 0 && (
         <div className="mstats-waitrow">
-          <span className="mstats-wait-lbl">⏳ Kutilmoqda:</span>
+          <span className="mstats-wait-lbl">{tr({ uz: '⏳ Kutilmoqda:', ru: '⏳ Ожидаем:' })}</span>
           {waiting.slice(0, 8).map(p => <span key={p.id} className="mstats-wait-chip">{p.nickname}</span>)}
           {waiting.length > 8 && <span className="mstats-wait-chip more">+{waiting.length - 8}</span>}
         </div>
       )}
-      {reveal && struggling && <p className="mstats-warn">⚠️ Ko'pchilik xato qildi — bu mavzu tushunarsiz bo'lgan ko'rinadi. Qayta tushuntirish tavsiya etiladi.</p>}
-      {answered === 0 && <p className="mstats-wait">O'quvchilar javoblari shu yerda jonli ko'rinadi…</p>}
+      {reveal && struggling && <p className="mstats-warn">{tr({ uz: "⚠️ Ko'pchilik xato qildi — bu mavzu tushunarsiz bo'lgan ko'rinadi. Qayta tushuntirish tavsiya etiladi.", ru: '⚠️ Большинство ошиблось — похоже, тема осталась непонятной. Стоит объяснить заново.' })}</p>}
+      {answered === 0 && <p className="mstats-wait">{tr({ uz: "O'quvchilar javoblari shu yerda jonli ko'rinadi…", ru: 'Ответы учеников появятся здесь в реальном времени…' })}</p>}
     </div>
   );
 }
@@ -691,11 +708,11 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
     if (oneShot) {
       // Jonli dars: javob darhol qotadi (to'g'ri ham, xato ham) va serverga yoziladi
       setSolved(true);
-      onAnswer(screen, { stage: scope, screenIdx: screen, question: questionText, options, correctIndex: correctIdx, correctAnswer: options[correctIdx], picked: i, studentAnswerIndex: i, studentAnswer: options[i], correct: isCorrect, firstAttemptCorrect: isCorrect, solved: true, lastPicked: i });
+      onAnswer(screen, { stage: scope, screenIdx: screen, question: questionText, options: options.map(ou), correctIndex: correctIdx, correctAnswer: ou(options[correctIdx]), picked: i, studentAnswerIndex: i, studentAnswer: ou(options[i]), correct: isCorrect, firstAttemptCorrect: isCorrect, solved: true, lastPicked: i });
       live.submitAnswer(screen, SCREEN_META[screen]?.id || `s${screen}`, i, isCorrect, Date.now() - mountTs.current);
     } else {
       if (isCorrect) setSolved(true);
-      onAnswer(screen, { stage: scope, screenIdx: screen, question: questionText, options, correctIndex: correctIdx, correctAnswer: options[correctIdx], picked: i, studentAnswerIndex: i, studentAnswer: options[i], correct: firstCorrectRef.current, firstAttemptCorrect: firstCorrectRef.current, solved: isCorrect, lastPicked: i });
+      onAnswer(screen, { stage: scope, screenIdx: screen, question: questionText, options: options.map(ou), correctIndex: correctIdx, correctAnswer: ou(options[correctIdx]), picked: i, studentAnswerIndex: i, studentAnswer: ou(options[i]), correct: firstCorrectRef.current, firstAttemptCorrect: firstCorrectRef.current, solved: isCorrect, lastPicked: i });
     }
     if (audioText) { audio.triggerEvent('option_picked'); if (!audio.muted) setTimeout(() => { const e = getAudioEngine(); if (e && !audio.muted) e.pushOneOff(isCorrect ? (audioOk || "To'g'ri.") : (audioWrong || "Unchalik emas. Qaytadan urinib ko'ring.")); }, 300); }
   };
@@ -705,10 +722,10 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
   const revealed = !oneShot || !!(live && (live.revealScreen === screen || live.mentorScreen > screen || live.status === 'ended' || !live.mentorAlive));
   const waiting = oneShot && solved && !revealed; // javob qotdi — natija mentordan kutilmoqda
   return (
-    <Stage eyebrow={eyebrow} screen={screen} narrow audioState={audioText ? audio : undefined} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={isMentorLive ? !mReveal : !solved} label={isMentorLive ? (mReveal ? 'Davom etish' : 'Avval natijani oching') : solved ? 'Davom etish' : (oneShot ? 'Javob tanlang' : "To'g'ri javobni toping")} onClick={onNext} /></>}>
+    <Stage eyebrow={tr(eyebrow)} screen={screen} narrow audioState={audioText ? audio : undefined} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={isMentorLive ? !mReveal : !solved} label={isMentorLive ? (mReveal ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Avval natijani oching', ru: 'Сначала откройте результат' }) : solved ? { uz: 'Davom etish', ru: 'Продолжить' } : (oneShot ? { uz: 'Javob tanlang', ru: 'Выберите ответ' } : { uz: "To'g'ri javobni toping", ru: 'Найдите верный ответ' })} onClick={onNext} /></>}>
       <div className="screen" style={{ justifyContent: isMentorLive ? 'flex-start' : 'center', gap: 'clamp(16px,2.5vw,24px)' }}>
-        <div className="fade-up">{question}</div>
-        {oneShot && !solved && <p className="small mono fade-up" style={{ margin: '-8px 0 0', color: T.accent, fontWeight: 600 }}>⚡ Jonli dars — bitta urinish, o'ylab bosing!</p>}
+        <div className="fade-up">{tr(question)}</div>
+        {oneShot && !solved && <p className="small mono fade-up" style={{ margin: '-8px 0 0', color: T.accent, fontWeight: 600 }}>{tr({ uz: "⚡ Jonli dars — bitta urinish, o'ylab bosing!", ru: '⚡ Живой урок — одна попытка, подумайте перед нажатием!' })}</p>}
         <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
           {options.map((opt, i) => {
             let cls = 'option';
@@ -723,7 +740,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
             return (
               <button key={i} className={cls} disabled={solved || isMentorLive} onClick={() => pick(i)} style={{ padding: 'clamp(12px,1.8vw,16px) clamp(14px,2.2vw,20px)', fontSize: 'clamp(14px,1.7vw,16px)', display: 'flex', alignItems: 'center', gap: 12 }}>
                 <span className="mono small" style={{ minWidth: 20, color: showGreenLetter ? T.success : T.ink3 }}>{String.fromCharCode(65 + i)}</span>
-                <span style={{ flex: 1 }}>{fmtCode(opt)}</span>
+                <span style={{ flex: 1 }}>{fmtCode(tr(opt))}</span>
               </button>
             );
           })}
@@ -731,26 +748,26 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
         <FeedbackBlock show={isMentorLive ? mReveal : picked !== null} isCorrect={isMentorLive ? true : (solved && !wrongLocked)} neutral={waiting}>
           <p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: waiting ? T.blue : (isMentorLive || (solved && !wrongLocked)) ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
             {isMentorLive
-              ? <>✓ To'g'ri javob: {String.fromCharCode(65 + correctIdx)} — {fmtCode(options[correctIdx])}</>
+              ? <>{tr({ uz: "✓ To'g'ri javob:", ru: '✓ Верный ответ:' })} {String.fromCharCode(65 + correctIdx)} — {fmtCode(tr(options[correctIdx]))}</>
               : waiting
-                ? '📨 Javobingiz qabul qilindi'
+                ? tr({ uz: '📨 Javobingiz qabul qilindi', ru: '📨 Ваш ответ принят' })
                 : wrongLocked
-                  ? <>To'g'ri javob: {String.fromCharCode(65 + correctIdx)} — {fmtCode(options[correctIdx])}</>
-                  : solved ? "To'g'ri" : "Qaytadan urinib ko'ring"}
+                  ? <>{tr({ uz: "To'g'ri javob:", ru: 'Верный ответ:' })} {String.fromCharCode(65 + correctIdx)} — {fmtCode(tr(options[correctIdx]))}</>
+                  : solved ? tr({ uz: "To'g'ri", ru: 'Верно' }) : tr({ uz: "Qaytadan urinib ko'ring", ru: 'Попробуйте ещё раз' })}
           </p>
           <p className="body" style={{ margin: 0 }}>
             {isMentorLive
-              ? fmtCode(explainCorrect)
+              ? fmtCode(tr(explainCorrect))
               : waiting
-                ? "Hozir to'g'ri javobni bilib olasiz."
+                ? tr({ uz: "Hozir to'g'ri javobni bilib olasiz.", ru: 'Сейчас узнаете верный ответ.' })
                 : wrongLocked
-                  ? fmtCode(explainWrong[picked] ?? explainWrong.default)
-                  : solved ? fmtCode(explainCorrect) : fmtCode(explainWrong[picked] ?? explainWrong.default)}
+                  ? fmtCode(tr(explainWrong[picked] ?? explainWrong.default))
+                  : solved ? fmtCode(tr(explainCorrect)) : fmtCode(tr(explainWrong[picked] ?? explainWrong.default))}
           </p>
           {/* Xato qilgan o'quvchi mavzuni qisqa kartalarda qayta ko'radi.
               Jonli darsda — javob sirini saqlash uchun faqat reveal'dan keyin chiqadi. */}
           {hasRecap && !isMentorLive && firstCorrectRef.current === false && (!oneShot || revealed) && (
-            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>📖 Qisqa takrorlash — mavzuni yana bir ko'rish</button>
+            <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: "📖 Qisqa takrorlash — mavzuni yana bir ko'rish", ru: '📖 Быстрое повторение — посмотреть тему ещё раз' })}</button>
           )}
         </FeedbackBlock>
         {isMentorLive && <MentorTestStats live={live} screenIdx={screen} options={options} correctIdx={correctIdx} reveal={mReveal} onReveal={doReveal} onOpenRecap={hasRecap ? () => setRecapOpen(true) : null} />}
@@ -772,7 +789,7 @@ function ScoreRing({ correct, total }) {
         <circle cx="64" cy="64" r={R} fill="none" stroke={T.ink3 + '40'} strokeWidth={ST} />
         <circle cx="64" cy="64" r={R} fill="none" stroke={col} strokeWidth={ST} strokeLinecap="round" strokeDasharray={C} strokeDashoffset={off} transform="rotate(-90 64 64)" style={{ transition: 'stroke-dashoffset 1s cubic-bezier(.4,0,.2,1)' }} />
       </svg>
-      <div className="ring-center"><div className="ring-num"><span style={{ color: col }}>{correct}</span><span className="ring-den">/{total}</span></div><div className="ring-lbl">to'g'ri javob</div></div>
+      <div className="ring-center"><div className="ring-num"><span style={{ color: col }}>{correct}</span><span className="ring-den">/{total}</span></div><div className="ring-lbl">{tr({ uz: "to'g'ri javob", ru: 'верных ответов' })}</div></div>
     </div>
   );
 }
@@ -789,7 +806,7 @@ const Mentor = ({ children }) => {
         <img src={MENTOR_IMG} alt="" />
       </div>
       <div className="mentor-col">
-        <span className="mentor-name">Mentor{collapsed && <span className="mentor-cue"> · ko'rsatmani ochish ▾</span>}</span>
+        <span className="mentor-name">{tr({ uz: 'Mentor', ru: 'Ментор' })}{collapsed && <span className="mentor-cue">{tr({ uz: " · ko'rsatmani ochish ▾", ru: ' · раскрыть подсказку ▾' })}</span>}</span>
         <div className="mentor-msg body">{children}</div>
       </div>
     </div>
@@ -812,7 +829,7 @@ const TLine = ({ cmd, out, col }) => (
 // ===== 📱 TELEGRAM CHAT (jonli ko'rinish) =====
 const TgChat = ({ title = 'Botjon', children, minH }) => (
   <div className="tg">
-    <div className="tg-head"><span className="tg-ava">🤖</span><span className="tg-name">{title}<span className="tg-status">bot · onlayn</span></span></div>
+    <div className="tg-head"><span className="tg-ava">🤖</span><span className="tg-name">{tr(title)}<span className="tg-status">{tr({ uz: 'bot · onlayn', ru: 'бот · онлайн' })}</span></span></div>
     <div className="tg-body" style={{ minHeight: minH }}>{children}</div>
   </div>
 );
@@ -842,21 +859,21 @@ const SignalFlow = ({ sig, sIco, act, aIco, playKey }) => {
 
 // ===== 🎒 JIHOZLAR PANELI (butun 5-modulda qayta ishlatiladi, 8 uyacha) =====
 const GEAR_SLOTS = [
-  { id: 'g1', ico: '🔑📋', label: "Kalit va qoidalar varag'i" },
-  { id: 'g2', ico: '🔘✉️', label: 'Tugmalar va konvert' },
-  { id: 'g3', ico: '📓',   label: 'Holat daftari' },
-  { id: 'g4', ico: '🧭📜', label: "Yo'l-yo'riq va yo'riqnoma" },
-  { id: 'g5', ico: '🧰',   label: 'Vositalar' },
-  { id: 'g6', ico: '📔',   label: 'Tilaklar daftari' },
-  { id: 'g7', ico: '🏠',   label: 'Loyiha' },
-  { id: 'g8', ico: '⭐',   label: 'AI yordamchi' }
+  { id: 'g1', ico: '🔑📋', label: { uz: "Kalit va qoidalar varag'i", ru: 'Ключ и лист правил' } },
+  { id: 'g2', ico: '🔘✉️', label: { uz: 'Tugmalar va konvert', ru: 'Кнопки и конверт' } },
+  { id: 'g3', ico: '📓',   label: { uz: 'Holat daftari', ru: 'Тетрадь состояния' } },
+  { id: 'g4', ico: '🧭📜', label: { uz: "Yo'l-yo'riq va yo'riqnoma", ru: 'Ориентир и инструкция' } },
+  { id: 'g5', ico: '🧰',   label: { uz: 'Vositalar', ru: 'Инструменты' } },
+  { id: 'g6', ico: '📔',   label: { uz: 'Tilaklar daftari', ru: 'Книга пожеланий' } },
+  { id: 'g7', ico: '🏠',   label: { uz: 'Loyiha', ru: 'Проект' } },
+  { id: 'g8', ico: '⭐',   label: { uz: 'AI yordamchi', ru: 'AI-помощник' } }
 ];
 const GearPanel = ({ active = [] }) => (
   <div className="gear-panel">
     {GEAR_SLOTS.map(g => (
       <div key={g.id} className={`gear-slot ${active.includes(g.id) ? 'on' : ''}`}>
         <span className="gear-ico">{g.ico}</span>
-        <span className="gear-lbl">{g.label}</span>
+        <span className="gear-lbl">{tr(g.label)}</span>
       </div>
     ))}
   </div>
@@ -924,60 +941,60 @@ function DragDropOrder({ items, hints, onSolved, doneText, onChange }) {
         {slots.map((sid, i) => (
           <div key={i} ref={el => (slotRefs.current[i] = el)} className={`dd-slot ${sid ? 'filled' : ''} ${solved && sid ? 'ok' : ''} ${wrong && sid && sid !== order[i] ? 'bad' : ''}`}>
             <span className="dd-slotn">{i + 1}</span>
-            {sid ? <button key={sid} className="dd-chip in" onPointerDown={(e) => down(e, sid, i)}>{byId[sid].label}</button> : <span className="dd-hint">{hints ? hints[i] : 'bu yerga joylang'}</span>}
+            {sid ? <button key={sid} className="dd-chip in" onPointerDown={(e) => down(e, sid, i)}>{tr(byId[sid].label)}</button> : <span className="dd-hint">{hints ? tr(hints[i]) : tr({ uz: 'bu yerga joylang', ru: 'поместите сюда' })}</span>}
           </div>
         ))}
       </div>
       <div className="dd-pool">
-        {pool.length === 0 && !solved && <span className="dd-pool-empty">Tartib xato — bo'lakni bosib qaytaring va qayta joylang</span>}
-        {pool.map(id => <button key={id} className="dd-chip" onPointerDown={(e) => down(e, id, 'pool')}>{byId[id].label}</button>)}
+        {pool.length === 0 && !solved && <span className="dd-pool-empty">{tr({ uz: "Tartib xato — bo'lakni bosib qaytaring va qayta joylang", ru: 'Порядок неверный — нажмите на блок, чтобы вернуть его, и разложите заново' })}</span>}
+        {pool.map(id => <button key={id} className="dd-chip" onPointerDown={(e) => down(e, id, 'pool')}>{tr(byId[id].label)}</button>)}
       </div>
-      {solved && <div className="dd-done">✓ {doneText || "To'g'ri tartib!"}</div>}
-      {wrong && !solved && <div className="dd-wrong">⚠️ Tartib xato — qayta joylang.</div>}
+      {solved && <div className="dd-done">✓ {tr(doneText) || tr({ uz: "To'g'ri tartib!", ru: 'Верный порядок!' })}</div>}
+      {wrong && !solved && <div className="dd-wrong">{tr({ uz: '⚠️ Tartib xato — qayta joylang.', ru: '⚠️ Порядок неверный — разложите заново.' })}</div>}
     </div>
   );
 }
 
 // ===== TILAKLAR DAFTARI — mijozlar fikri =====
 const FEEDBACK_SOURCES = [
-  { id: 'direct', ico: '💬', label: "To'g'ridan xabar", desc: "Foydalanuvchi botga to'g'ridan-to'g'ri shikoyat yoki taklif yozadi — eng aniq signal." },
-  { id: 'drop', ico: '🚪', label: 'Tiqilib qolish', desc: "Ko'p odam suhbatning bir joyida to'xtab, ketib qoladi (drop-off). Demak o'sha qadam chalkash." },
-  { id: 'repeat', ico: '🔁', label: 'Takror savollar', desc: "Bir xil savol qayta-qayta berilsa — bot biror narsani aniq ko'rsatmayapti." },
-  { id: 'error', ico: '⚠️', label: 'Xatolar / loglar', desc: "Serverdagi xato yozuvlari — qayerda bot buzilayotganini ko'rsatadi (texnik signal)." }
+  { id: 'direct', ico: '💬', label: { uz: "To'g'ridan xabar", ru: 'Прямое сообщение' }, desc: { uz: "Foydalanuvchi botga to'g'ridan-to'g'ri shikoyat yoki taklif yozadi — eng aniq signal.", ru: 'Пользователь пишет боту жалобу или предложение напрямую — самый точный сигнал.' } },
+  { id: 'drop', ico: '🚪', label: { uz: 'Tiqilib qolish', ru: 'Застревание' }, desc: { uz: "Ko'p odam suhbatning bir joyida to'xtab, ketib qoladi (drop-off). Demak o'sha qadam chalkash.", ru: 'Многие останавливаются в одном и том же месте диалога и уходят (drop-off). Значит, этот шаг запутанный.' } },
+  { id: 'repeat', ico: '🔁', label: { uz: 'Takror savollar', ru: 'Повторные вопросы' }, desc: { uz: "Bir xil savol qayta-qayta berilsa — bot biror narsani aniq ko'rsatmayapti.", ru: 'Если один и тот же вопрос задают снова и снова — бот что-то показывает непонятно.' } },
+  { id: 'error', ico: '⚠️', label: { uz: 'Xatolar / loglar', ru: 'Ошибки / логи' }, desc: { uz: "Serverdagi xato yozuvlari — qayerda bot buzilayotganini ko'rsatadi (texnik signal).", ru: 'Записи об ошибках на сервере показывают, где бот ломается (технический сигнал).' } }
 ];
 
 // ===== YAXSHI FIKR SO'RASH vs YOMON FIKR SO'RASH =====
 const ASK_MODES = [
-  { id: 'bad', ico: '😐', label: '«Yoqdimi?»', d: "Umumiy savol — odatda umumiy javob keladi: «yaxshi», «zo'r». Bu javobda tuzatish uchun hech qanday aniq ma'lumot yo'q." },
-  { id: 'good', ico: '🎯', label: '«Qayerda qiynaldingiz?»', d: "Aniq savol — aniq javob keladi: «menyu tugmasini topolmadim». Bu javobni to'g'ridan-to'g'ri tuzatish uchun ishlatsa bo'ladi." }
+  { id: 'bad', ico: '😐', label: { uz: '«Yoqdimi?»', ru: '«Понравилось?»' }, d: { uz: "Umumiy savol — odatda umumiy javob keladi: «yaxshi», «zo'r». Bu javobda tuzatish uchun hech qanday aniq ma'lumot yo'q.", ru: 'Общий вопрос — и ответ обычно общий: «хорошо», «супер». В таком ответе нет ни одной конкретной детали для правки.' } },
+  { id: 'good', ico: '🎯', label: { uz: '«Qayerda qiynaldingiz?»', ru: '«Где было сложно?»' }, d: { uz: "Aniq savol — aniq javob keladi: «menyu tugmasini topolmadim». Bu javobni to'g'ridan-to'g'ri tuzatish uchun ishlatsa bo'ladi.", ru: 'Точный вопрос — точный ответ: «не нашёл кнопку меню». Такой ответ можно сразу превратить в правку.' } }
 ];
 
 // ===== BITTA SHIKOYAT vs PATTERN (chastota) =====
 const COMPLAINTS_5 = [
-  { id: 'addr', label: "Manzilni qayta so'raydi", n: 18 },
-  { id: 'price', label: "Narx ko'rinmaydi", n: 12 },
-  { id: 'long', label: "Javoblar juda uzun", n: 5 },
-  { id: 'gluten', label: "Glutensiz yo'q", n: 3 }
+  { id: 'addr', label: { uz: "Manzilni qayta so'raydi", ru: 'Снова спрашивает адрес' }, n: 18 },
+  { id: 'price', label: { uz: "Narx ko'rinmaydi", ru: 'Не видно цены' }, n: 12 },
+  { id: 'long', label: { uz: "Javoblar juda uzun", ru: 'Ответы слишком длинные' }, n: 5 },
+  { id: 'gluten', label: { uz: "Glutensiz yo'q", ru: 'Нет безглютеновой' }, n: 3 }
 ];
 const COMPLAINTS_MAX = 18;
 
 // ===== NOANIQ → ANIQ =====
 const VAGUE_PAIRS = [
-  { id: 'p1', vague: "«Menyu chalkash»", concrete: "Har pizza yoniga narx va 2-3 so'z tavsif qo'sh." },
-  { id: 'p2', vague: "«Bot meni tushunmaydi»", concrete: "Yo'riqnomaga: noaniq savolda aniqlovchi savol ber." },
-  { id: 'p3', vague: "«Sekin javob beradi»", concrete: "Oddiy savollarni tugma bilan, AI'siz tez javob ber." }
+  { id: 'p1', vague: { uz: "«Menyu chalkash»", ru: '«Меню запутанное»' }, concrete: { uz: "Har pizza yoniga narx va 2-3 so'z tavsif qo'sh.", ru: 'Рядом с каждой пиццей добавь цену и описание в 2–3 слова.' } },
+  { id: 'p2', vague: { uz: "«Bot meni tushunmaydi»", ru: '«Бот меня не понимает»' }, concrete: { uz: "Yo'riqnomaga: noaniq savolda aniqlovchi savol ber.", ru: 'В инструкцию: при неясном вопросе задавай уточняющий вопрос.' } },
+  { id: 'p3', vague: { uz: "«Sekin javob beradi»", ru: '«Отвечает медленно»' }, concrete: { uz: "Oddiy savollarni tugma bilan, AI'siz tez javob ber.", ru: 'На простые вопросы отвечай быстро кнопками, без AI.' } }
 ];
 
 // ===== MARKAZIY: TILAKLAR DAFTARINI O'QING (saralash + voronka + ustuvorlik + oqibat + aylana) =====
 const DAFTAR_CARDS = [
-  { id: 'c1', txt: 'Yaxshi bot 👍', valuable: false, why: "Umumiy maqtov — qaysi qism yaxshi ekani aniq emas, tuzatish uchun ishlatib bo'lmaydi." },
-  { id: 'c2', txt: "Menyu tugmasini topolmadim, /start bosdim, hech narsa chiqmadi", valuable: true, why: "Aniq muammo (menyu tugmasi) va aniq joy (/start dan keyin) ko'rsatilgan — tuzatish mumkin." },
-  { id: 'c3', txt: 'Buyurtma berdim, javob 5 daqiqada keldi', valuable: true, why: "Aniq muammo (sekinlik) va o'lchov (5 daqiqa) bor — tuzatish mumkin." },
-  { id: 'c4', txt: 'Bot ahmoq', valuable: false, why: "Hissiyot, dalilsiz — qaysi qism yoqmagani noma'lum, tuzatishga yaramaydi." },
-  { id: 'c5', txt: "Manzilni yozdim, lekin bot uni eslamadi, qaytadan so'radi", valuable: true, why: "Aniq bug — bot holatni eslab qolmagan, qayerda buzilgani aniq." },
-  { id: 'c6', txt: "Narxni so'radim, boshqa narx aytdi", valuable: true, why: "Aniq bug — maslahatchi (AI) narxni o'ylab topgan, qayerda xato ekani aniq." },
-  { id: 'c7', txt: "Zo'r, hammasi judayam yoqdi ✨", valuable: false, why: "Umumiy hayajon — aniq joy yoki muammo ko'rsatilmagan." },
-  { id: 'c8', txt: "Bot ba'zan tushunarsiz javob beradi", valuable: false, why: "«Ba'zan» — qachon, qayerda ekani noaniq, tuzatishga yetarli emas." }
+  { id: 'c1', txt: { uz: 'Yaxshi bot 👍', ru: 'Хороший бот 👍' }, valuable: false, why: { uz: "Umumiy maqtov — qaysi qism yaxshi ekani aniq emas, tuzatish uchun ishlatib bo'lmaydi.", ru: 'Общая похвала — непонятно, что именно хорошо, для правки не пригодится.' } },
+  { id: 'c2', txt: { uz: "Menyu tugmasini topolmadim, /start bosdim, hech narsa chiqmadi", ru: 'Не нашёл кнопку меню, нажал /start — ничего не появилось' }, valuable: true, why: { uz: "Aniq muammo (menyu tugmasi) va aniq joy (/start dan keyin) ko'rsatilgan — tuzatish mumkin.", ru: 'Названа конкретная проблема (кнопка меню) и конкретное место (после /start) — можно чинить.' } },
+  { id: 'c3', txt: { uz: 'Buyurtma berdim, javob 5 daqiqada keldi', ru: 'Сделал заказ, ответ пришёл через 5 минут' }, valuable: true, why: { uz: "Aniq muammo (sekinlik) va o'lchov (5 daqiqa) bor — tuzatish mumkin.", ru: 'Есть конкретная проблема (медленно) и измерение (5 минут) — можно чинить.' } },
+  { id: 'c4', txt: { uz: 'Bot ahmoq', ru: 'Бот тупой' }, valuable: false, why: { uz: "Hissiyot, dalilsiz — qaysi qism yoqmagani noma'lum, tuzatishga yaramaydi.", ru: 'Эмоция без фактов — неизвестно, что именно не понравилось, чинить нечего.' } },
+  { id: 'c5', txt: { uz: "Manzilni yozdim, lekin bot uni eslamadi, qaytadan so'radi", ru: 'Написал адрес, но бот его не запомнил и спросил снова' }, valuable: true, why: { uz: "Aniq bug — bot holatni eslab qolmagan, qayerda buzilgani aniq.", ru: 'Явный баг — бот не запомнил состояние, место поломки понятно.' } },
+  { id: 'c6', txt: { uz: "Narxni so'radim, boshqa narx aytdi", ru: 'Спросил цену — назвал другую' }, valuable: true, why: { uz: "Aniq bug — maslahatchi (AI) narxni o'ylab topgan, qayerda xato ekani aniq.", ru: 'Явный баг — советник (AI) выдумал цену, понятно, где ошибка.' } },
+  { id: 'c7', txt: { uz: "Zo'r, hammasi judayam yoqdi ✨", ru: 'Супер, всё очень понравилось ✨' }, valuable: false, why: { uz: "Umumiy hayajon — aniq joy yoki muammo ko'rsatilmagan.", ru: 'Общий восторг — ни места, ни проблемы не названо.' } },
+  { id: 'c8', txt: { uz: "Bot ba'zan tushunarsiz javob beradi", ru: 'Бот иногда отвечает непонятно' }, valuable: false, why: { uz: "«Ba'zan» — qachon, qayerda ekani noaniq, tuzatishga yetarli emas.", ru: '«Иногда» — когда и где, неясно, для правки этого мало.' } }
 ];
 
 // 🧺 Ikki savatga saralash — pointer-drag (DragDropOrder motoridagi kabi), noto'g'ri savatga tashlansa qaytib chiqadi + tushuntirish
@@ -1024,30 +1041,30 @@ function FeedbackSort({ items, onSolved }) {
   };
   return (
     <div className="fs fade-up">
-      <p className="small mono" style={{ margin: '0 0 8px', color: T.ink2 }}>👆 Kartani sudrab savatga tashlang (yoki bosib, tez tanlang) — {total - state.pool.length}/{total}</p>
+      <p className="small mono" style={{ margin: '0 0 8px', color: T.ink2 }}>{tr({ uz: '👆 Kartani sudrab savatga tashlang (yoki bosib, tez tanlang) —', ru: '👆 Перетащите карточку в корзину (или нажмите и выберите быстро) —' })} {total - state.pool.length}/{total}</p>
       <div className="fs-pool">
-        {state.pool.length === 0 && <span className="fs-pool-done">✓ Hammasi saralandi</span>}
+        {state.pool.length === 0 && <span className="fs-pool-done">{tr({ uz: '✓ Hammasi saralandi', ru: '✓ Всё разобрано' })}</span>}
         {state.pool.map(id => (
           <div key={id} className="fs-chip-wrap">
-            <button className={`fs-chip ${wrongId === id ? 'shake' : ''} tap-hint`} onPointerDown={(e) => down(e, id)}>{byId[id].txt}</button>
+            <button className={`fs-chip ${wrongId === id ? 'shake' : ''} tap-hint`} onPointerDown={(e) => down(e, id)}>{tr(byId[id].txt)}</button>
             {pick === id && (
               <div className="fs-quick">
-                <button className="fs-quick-btn green" onClick={() => place(id, 'green')}>🟢 Qimmatli</button>
-                <button className="fs-quick-btn gray" onClick={() => place(id, 'gray')}>⚪ Foydasiz</button>
+                <button className="fs-quick-btn green" onClick={() => place(id, 'green')}>{tr({ uz: '🟢 Qimmatli', ru: '🟢 Ценный' })}</button>
+                <button className="fs-quick-btn gray" onClick={() => place(id, 'gray')}>{tr({ uz: '⚪ Foydasiz', ru: '⚪ Бесполезный' })}</button>
               </div>
             )}
-            {wrongId === id && <p className="fs-wrong-why">{wrongWhy}</p>}
+            {wrongId === id && <p className="fs-wrong-why">{tr(wrongWhy)}</p>}
           </div>
         ))}
       </div>
       <div className="fs-baskets">
         <div ref={greenRef} className="fs-basket green">
-          <span className="fs-basket-h">🟢 Qimmatli — aniq muammo + qayerda</span>
-          <div className="fs-basket-body">{state.green.map(id => <span key={id} className="fs-placed">{byId[id].txt}</span>)}</div>
+          <span className="fs-basket-h">{tr({ uz: '🟢 Qimmatli — aniq muammo + qayerda', ru: '🟢 Ценный — конкретная проблема + где' })}</span>
+          <div className="fs-basket-body">{state.green.map(id => <span key={id} className="fs-placed">{tr(byId[id].txt)}</span>)}</div>
         </div>
         <div ref={grayRef} className="fs-basket gray">
-          <span className="fs-basket-h">⚪ Foydasiz — hissiyot, dalilsiz</span>
-          <div className="fs-basket-body">{state.gray.map(id => <span key={id} className="fs-placed">{byId[id].txt}</span>)}</div>
+          <span className="fs-basket-h">{tr({ uz: '⚪ Foydasiz — hissiyot, dalilsiz', ru: '⚪ Бесполезный — эмоция без фактов' })}</span>
+          <div className="fs-basket-body">{state.gray.map(id => <span key={id} className="fs-placed">{tr(byId[id].txt)}</span>)}</div>
         </div>
       </div>
     </div>
@@ -1056,14 +1073,14 @@ function FeedbackSort({ items, onSolved }) {
 
 // Voronka: bosqichma-bosqich torayadigan mijozlar yo'li
 const FUNNEL_STEPS = [
-  { id: 'start', label: '/start bosdi', n: 100 },
-  { id: 'menu', label: 'Menyuni ochdi', n: 40 },
-  { id: 'order', label: 'Buyurtma berdi', n: 35 }
+  { id: 'start', label: { uz: '/start bosdi', ru: 'Нажал /start' }, n: 100 },
+  { id: 'menu', label: { uz: 'Menyuni ochdi', ru: 'Открыл меню' }, n: 40 },
+  { id: 'order', label: { uz: 'Buyurtma berdi', ru: 'Сделал заказ' }, n: 35 }
 ];
 // Ustuvorlik tanlovi — real oqibat bilan
 const FIX_CHOICES = [
-  { id: 'menu', label: 'Menyu tugmasini tuzatish', ico: '🔘', d: "18+ kishi shikoyat qilgan aniq bug, va aynan shu qadamda voronka eng ko'p toraygan." },
-  { id: 'rude', label: '«Bot ahmoq» sharhiga javob yozish', ico: '💬', d: "Hissiyot, dalilsiz — qaysi qismni tuzatish kerakligi noma'lum." }
+  { id: 'menu', label: { uz: 'Menyu tugmasini tuzatish', ru: 'Починить кнопку меню' }, ico: '🔘', d: { uz: "18+ kishi shikoyat qilgan aniq bug, va aynan shu qadamda voronka eng ko'p toraygan.", ru: 'Явный баг, на который жаловались 18+ человек, и именно на этом шаге воронка сужается сильнее всего.' } },
+  { id: 'rude', label: { uz: '«Bot ahmoq» sharhiga javob yozish', ru: 'Ответить на отзыв «Бот тупой»' }, ico: '💬', d: { uz: "Hissiyot, dalilsiz — qaysi qismni tuzatish kerakligi noma'lum.", ru: 'Эмоция без фактов — непонятно, какую часть чинить.' } }
 ];
 
 const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
@@ -1071,39 +1088,39 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
   const [picked, setPicked] = useState(storedAnswer?.picked ?? null);
   const [sc, setSc] = useState(0);
   const OPTS = [
-    { id: 'a', label: "Hech narsa — bot ishlayapti, shikoyat normal holat" },
-    { id: 'b', label: "Fikrlarni tinglab, eng ko'p og'ritganini tuzataman va yana so'rayman" },
-    { id: 'c', label: "Hammasini darrov noldan qayta yozaman" }
+    { id: 'a', label: { uz: "Hech narsa — bot ishlayapti, shikoyat normal holat", ru: 'Ничего — бот работает, жалобы это нормально' } },
+    { id: 'b', label: { uz: "Fikrlarni tinglab, eng ko'p og'ritganini tuzataman va yana so'rayman", ru: 'Выслушаю отзывы, починю то, что болит сильнее всего, и спрошу снова' } },
+    { id: 'c', label: { uz: "Hammasini darrov noldan qayta yozaman", ru: 'Сразу перепишу всё с нуля' } }
   ];
   const poke = () => { setTried(true); setSc(n => n + 1); };
   const pick = (v) => { if (picked !== null || !tried) return; setPicked(v); setSc(n => n + 1); onAnswer(screen, { stage: 'hook', screenIdx: screen, picked: v, correct: true }); };
   return (
-    <Stage eyebrow="Loyiha · kirish" screen={screen} scrollSignal={sc} navContent={<NavNext optionalLive disabled={picked === null} label="Davom etish" onClick={onNext} />}>
+    <Stage eyebrow={tr({ uz: 'Loyiha · kirish', ru: 'Проект · вход' })} screen={screen} scrollSignal={sc} navContent={<NavNext optionalLive disabled={picked === null} label={{ uz: 'Davom etish', ru: 'Продолжить' }} onClick={onNext} />}>
       <div className="screen">
-        <h1 className="title h-title fade-up" style={{ maxWidth: 880 }}>Botingiz jonli, mijozlar foydalanyapti. Endi <span className="italic" style={{ color: T.accent }}>fikr</span> kela boshladi. Nima qilasiz?</h1>
-        <Mentor>Eng yaxshi mahsulot ham birinchi versiyada mukammal emas. Foydalanuvchilar uni siz ko'rmagan tomondan ishlatadi. Tugmani bosib, kelgan fikrlarni ko'ring.</Mentor>
+        <h1 className="title h-title fade-up" style={{ maxWidth: 880 }}>{tr({ uz: <>Botingiz jonli, mijozlar foydalanyapti. Endi <span className="italic" style={{ color: T.accent }}>fikr</span> kela boshladi. Nima qilasiz?</>, ru: <>Ваш бот живой, клиенты им пользуются. И вот пошли <span className="italic" style={{ color: T.accent }}>отзывы</span>. Что будете делать?</> })}</h1>
+        <Mentor>{tr({ uz: "Eng yaxshi mahsulot ham birinchi versiyada mukammal emas. Foydalanuvchilar uni siz ko'rmagan tomondan ishlatadi. Tugmani bosib, kelgan fikrlarni ko'ring.", ru: 'Даже лучший продукт в первой версии не идеален. Пользователи применяют его так, как вы и не думали. Нажмите кнопку и посмотрите пришедшие отзывы.' })}</Mentor>
         <Zoomable><Split>
           <Col>
             <TgChat title="AvtoPizza" minH={140}>
-              <Bubble from="user">Manzilimni 2 marta so'radi 😤</Bubble>
+              <Bubble from="user">{tr({ uz: "Manzilimni 2 marta so'radi 😤", ru: 'Дважды спросил мой адрес 😤' })}</Bubble>
               {tried && <>
-                <Bubble from="user">Narxni ko'rsatmaydi, noqulay</Bubble>
-                <Bubble from="user">Glutensiz pizza qo'shing!</Bubble>
-                <Bubble from="user">Tez va qulay, rahmat! 🍕</Bubble>
+                <Bubble from="user">{tr({ uz: "Narxni ko'rsatmaydi, noqulay", ru: 'Не показывает цену, неудобно' })}</Bubble>
+                <Bubble from="user">{tr({ uz: 'Glutensiz pizza qo\'shing!', ru: 'Добавьте безглютеновую пиццу!' })}</Bubble>
+                <Bubble from="user">{tr({ uz: 'Tez va qulay, rahmat! 🍕', ru: 'Быстро и удобно, спасибо! 🍕' })}</Bubble>
               </>}
             </TgChat>
-            <button className={`btn-soft ${tried ? '' : 'tap-hint'}`} style={{ alignSelf: 'flex-start' }} onClick={poke} disabled={tried}>{tried ? '✓ Fikrlar keldi' : "▶ Mijozlar nima dedi?"}</button>
+            <button className={`btn-soft ${tried ? '' : 'tap-hint'}`} style={{ alignSelf: 'flex-start' }} onClick={poke} disabled={tried}>{tried ? tr({ uz: '✓ Fikrlar keldi', ru: '✓ Отзывы пришли' }) : tr({ uz: "▶ Mijozlar nima dedi?", ru: '▶ Что сказали клиенты?' })}</button>
           </Col>
           <Col>
-            <p className="eyebrow fade-up delay-2" style={{ color: T.ink2, margin: 0 }}>Eng to'g'ri qadam qaysi?</p>
+            <p className="eyebrow fade-up delay-2" style={{ color: T.ink2, margin: 0 }}>{tr({ uz: "Eng to'g'ri qadam qaysi?", ru: 'Какой шаг самый верный?' })}</p>
             <div className="fade-up delay-3" style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
               {OPTS.map(o => {
                 const on = picked === o.id;
-                return (<button key={o.id} className={`hook-option ${on ? 'on' : ''}`} disabled={picked !== null || !tried} style={{ opacity: !tried ? 0.55 : 1 }} onClick={() => pick(o.id)}><span className="radio">{on && <span className="radio-dot" />}</span><span>{o.label}</span></button>);
+                return (<button key={o.id} className={`hook-option ${on ? 'on' : ''}`} disabled={picked !== null || !tried} style={{ opacity: !tried ? 0.55 : 1 }} onClick={() => pick(o.id)}><span className="radio">{on && <span className="radio-dot" />}</span><span>{tr(o.label)}</span></button>);
               })}
             </div>
-            {!tried && <p className="small" style={{ color: T.ink3, fontStyle: 'italic', margin: 0 }}>Avval chap tomondagi tugmani bosing ←</p>}
-            {picked !== null && <p className="hook-ack fade-step">Aynan! Mahsulot hech qachon «tayyor» bo'lmaydi — u <b>iteratsiya</b> qiladi. Bugun fikrni tinglab, saralab, eng muhimini tuzatib, yana tinglashni o'rganamiz.</p>}
+            {!tried && <p className="small" style={{ color: T.ink3, fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Avval chap tomondagi tugmani bosing ←', ru: 'Сначала нажмите кнопку слева ←' })}</p>}
+            {picked !== null && <p className="hook-ack fade-step">{tr({ uz: <>Aynan! Mahsulot hech qachon «tayyor» bo'lmaydi — u <b>iteratsiya</b> qiladi. Bugun fikrni tinglab, saralab, eng muhimini tuzatib, yana tinglashni o'rganamiz.</>, ru: <>Именно! Продукт никогда не бывает «готов» — он идёт <b>итерациями</b>. Сегодня учимся слушать отзывы, разбирать их, чинить самое важное и слушать снова.</> })}</p>}
           </Col>
         </Split></Zoomable>
       </div>
@@ -1113,39 +1130,39 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
 
 const Screen1 = ({ screen, onNext, onPrev }) => {
   const STEPS = [
-    { text: 'Fikrni tinglash va turlarga ajratish (triaj)', tag: 'tingla' },
-    { text: "Guruhlab, ustuvorlik qo'yish (chastota × ta'sir)", tag: 'tanla' },
-    { text: "Noaniq fikrni aniq o'zgarishga aylantirish", tag: 'tuzat' },
-    { text: 'Qayta tinglash — yaxshilash aylanasi', tag: 'sikl' }
+    { text: { uz: 'Fikrni tinglash va turlarga ajratish (triaj)', ru: 'Слушать отзывы и разделять их по типам (триаж)' }, tag: { uz: 'tingla', ru: 'слушай' } },
+    { text: { uz: "Guruhlab, ustuvorlik qo'yish (chastota × ta'sir)", ru: 'Сгруппировать и расставить приоритеты (частота × влияние)' }, tag: { uz: 'tanla', ru: 'выбирай' } },
+    { text: { uz: "Noaniq fikrni aniq o'zgarishga aylantirish", ru: 'Превратить размытый отзыв в конкретное изменение' }, tag: { uz: 'tuzat', ru: 'чини' } },
+    { text: { uz: 'Qayta tinglash — yaxshilash aylanasi', ru: 'Слушать снова — круг улучшений' }, tag: { uz: 'sikl', ru: 'цикл' } }
   ];
   const isNarrow = useIsMobile(768);
   const [showSteps, setShowSteps] = useState(false);
   const Preview = (
     <Col>
-      <p className="flow-label">dars oxirida — yaxshilangan bot</p>
+      <p className="flow-label">{tr({ uz: 'dars oxirida — yaxshilangan bot', ru: 'в конце урока — улучшенный бот' })}</p>
       <TgChat title="AvtoPizza" minH={0}>
-        <Bubble from="user">Margarita, Chilonzor 5</Bubble>
-        <Bubble from="bot">Qabul qilindi ✅ Margarita (45 000 so'm) · Chilonzor 5 📍 — manzilni qayta so'ramayman 😊</Bubble>
+        <Bubble from="user">{tr({ uz: 'Margarita, Chilonzor 5', ru: 'Маргарита, Чиланзар 5' })}</Bubble>
+        <Bubble from="bot">{tr({ uz: "Qabul qilindi ✅ Margarita (45 000 so'm) · Chilonzor 5 📍 — manzilni qayta so'ramayman 😊", ru: 'Принято ✅ Маргарита (45 000 сум) · Чиланзар 5 📍 — адрес больше не переспрашиваю 😊' })}</Bubble>
       </TgChat>
-      <div className="sk-info"><p className="body" style={{ margin: 0, color: T.ink }}>Mijozlar shikoyat qilgan narsalar tuzatildi: manzil bir marta so'raladi, narx ko'rinadi. Mahsulot yaxshilandi.</p></div>
+      <div className="sk-info"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Mijozlar shikoyat qilgan narsalar tuzatildi: manzil bir marta so'raladi, narx ko'rinadi. Mahsulot yaxshilandi.", ru: 'То, на что жаловались клиенты, починено: адрес спрашивают один раз, цена видна. Продукт стал лучше.' })}</p></div>
     </Col>
   );
   const StepsB = (
     <Col>
-      <p className="flow-label">Bugungi 4 qadam</p>
-      <ol className="roadmap">{STEPS.map((s, i) => (<li key={i} className="step-card fade-up" style={{ animationDelay: `${0.08 + i * 0.05}s` }}><span className="step-num">{String(i + 1).padStart(2, '0')}</span><span className="step-body"><span className="step-text">{s.text}</span><span className="step-tag">{s.tag}</span></span></li>))}</ol>
-      <p className="flow-label" style={{ marginTop: 4 }}>Jihozlar paneli — bugun 📔 yangi uyacha yonadi</p>
+      <p className="flow-label">{tr({ uz: 'Bugungi 4 qadam', ru: '4 шага на сегодня' })}</p>
+      <ol className="roadmap">{STEPS.map((s, i) => (<li key={i} className="step-card fade-up" style={{ animationDelay: `${0.08 + i * 0.05}s` }}><span className="step-num">{String(i + 1).padStart(2, '0')}</span><span className="step-body"><span className="step-text">{tr(s.text)}</span><span className="step-tag">{tr(s.tag)}</span></span></li>))}</ol>
+      <p className="flow-label" style={{ marginTop: 4 }}>{tr({ uz: 'Jihozlar paneli — bugun 📔 yangi uyacha yonadi', ru: 'Панель снаряжения — сегодня загорается новая ячейка 📔' })}</p>
       <GearPanel active={['g1', 'g2', 'g3', 'g4', 'g5', 'g6']} />
     </Col>
   );
   return (
-    <Stage eyebrow="Reja" screen={screen} mentorStatic scrollSignal={showSteps} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive label="Boshlaymiz →" onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Reja', ru: 'План' })} screen={screen} mentorStatic scrollSignal={showSteps} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive label={{ uz: 'Boshlaymiz →', ru: 'Начинаем →' }} onClick={onNext} /></>}>
       <div className="screen">
-        <div className="head"><h2 className="title h-title fade-up">Siz — <span className="italic" style={{ color: T.accent }}>restoran egasisiz</span>, 📔 fikr — mehmonlar kitobi.</h2></div>
-        <Mentor>Eslang: siz o'zingiz test qilib bug topardingiz (oldingi darslar). Bugun boshqacha — <b style={{ color: T.ink }}>foydalanuvchilar</b> muammoni aytadi, siz saralab, eng muhimini tuzatasiz. Yangi mahorat: chalkash fikrni aniq vazifaga aylantirish.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Siz — <span className="italic" style={{ color: T.accent }}>restoran egasisiz</span>, 📔 fikr — mehmonlar kitobi.</>, ru: <>Вы — <span className="italic" style={{ color: T.accent }}>владелец ресторана</span>, а 📔 отзывы — книга гостей.</> })}</h2></div>
+        <Mentor>{tr({ uz: <>Eslang: siz o'zingiz test qilib bug topardingiz (oldingi darslar). Bugun boshqacha — <b style={{ color: T.ink }}>foydalanuvchilar</b> muammoni aytadi, siz saralab, eng muhimini tuzatasiz. Yangi mahorat: chalkash fikrni aniq vazifaga aylantirish.</>, ru: <>Вспомните: раньше вы сами тестировали и находили баги (прошлые уроки). Сегодня иначе — о проблеме говорят <b style={{ color: T.ink }}>пользователи</b>, а вы разбираете и чините самое важное. Новый навык: превращать путаный отзыв в чёткую задачу.</> })}</Mentor>
         {!isNarrow ? (<Zoomable><Split>{Preview}{StepsB}</Split></Zoomable>)
-          : !showSteps ? <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px,2vw,16px)' }}>{Preview}<button className="btn" style={{ alignSelf: 'flex-start' }} onClick={() => setShowSteps(true)}>4 qadamni ko'rish</button></div>
-            : <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px,2vw,16px)' }}><button className="btn-soft" style={{ alignSelf: 'flex-start' }} onClick={() => setShowSteps(false)}>↩ Natijani ko'rish</button>{StepsB}</div>}
+          : !showSteps ? <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px,2vw,16px)' }}>{Preview}<button className="btn" style={{ alignSelf: 'flex-start' }} onClick={() => setShowSteps(true)}>{tr({ uz: "4 qadamni ko'rish", ru: 'Посмотреть 4 шага' })}</button></div>
+            : <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px,2vw,16px)' }}><button className="btn-soft" style={{ alignSelf: 'flex-start' }} onClick={() => setShowSteps(false)}>{tr({ uz: "↩ Natijani ko'rish", ru: '↩ Посмотреть результат' })}</button>{StepsB}</div>}
       </div>
     </Stage>
   );
@@ -1160,21 +1177,21 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]); // eslint-disable-line
   const cur = FEEDBACK_SOURCES.find(s => s.id === active);
   return (
-    <Stage eyebrow="Tushuncha · manba" screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? 'Davom etish' : `4 manbani ko'ring (${seen.size}/4)`} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Tushuncha · manba', ru: 'Понятие · источник' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `4 manbani ko'ring (${seen.size}/4)`, ru: `Посмотрите 4 источника (${seen.size}/4)` }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Fikr faqat <span className="italic" style={{ color: T.accent }}>shikoyatda</span> emas — 4 manbadan keladi.</h2></div>
-        <Mentor>Foydalanuvchi har doim ham «menga bu yoqmadi» deb yozmaydi. Ko'pincha fikr <b style={{ color: T.ink }}>xatti-harakatda</b> ko'rinadi — qayerda to'xtaydi, nimani qayta so'raydi. Har manbani bosing.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Fikr faqat <span className="italic" style={{ color: T.accent }}>shikoyatda</span> emas — 4 manbadan keladi.</>, ru: <>Отзыв — это не только <span className="italic" style={{ color: T.accent }}>жалоба</span>: он приходит из 4 источников.</> })}</h2></div>
+        <Mentor>{tr({ uz: <>Foydalanuvchi har doim ham «menga bu yoqmadi» deb yozmaydi. Ko'pincha fikr <b style={{ color: T.ink }}>xatti-harakatda</b> ko'rinadi — qayerda to'xtaydi, nimani qayta so'raydi. Har manbani bosing.</>, ru: <>Пользователь не всегда пишет «мне это не понравилось». Чаще отзыв виден в <b style={{ color: T.ink }}>поведении</b> — где он останавливается, что переспрашивает. Нажмите на каждый источник.</> })}</Mentor>
         <Zoomable><div className="split">
           <Col>
             <div className="fade-up delay-1" style={{ display: 'flex', flexWrap: 'wrap', gap: 7 }}>
-              {FEEDBACK_SOURCES.map(s => <button key={s.id} className="gchip" onClick={() => tap(s.id)} style={seen.has(s.id) ? { boxShadow: `inset 0 0 0 1.5px ${T.success}`, color: T.success } : undefined}>{seen.has(s.id) ? '✓ ' : ''}{s.ico} {s.label}</button>)}
+              {FEEDBACK_SOURCES.map(s => <button key={s.id} className="gchip" onClick={() => tap(s.id)} style={seen.has(s.id) ? { boxShadow: `inset 0 0 0 1.5px ${T.success}`, color: T.success } : undefined}>{seen.has(s.id) ? '✓ ' : ''}{s.ico} {tr(s.label)}</button>)}
             </div>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>To'g'ridan xabar — eng aniq, lekin kam. Xatti-harakat (drop-off, takror) — ko'p va yashirin. Yaxshi direktor ikkalasini ham o'qiydi.</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "To'g'ridan xabar — eng aniq, lekin kam. Xatti-harakat (drop-off, takror) — ko'p va yashirin. Yaxshi direktor ikkalasini ham o'qiydi.", ru: 'Прямое сообщение — самое точное, но редкое. Поведение (drop-off, повторы) — частое и скрытое. Хороший директор читает и то, и другое.' })}</p></div>}
           </Col>
           <Col>
             {cur
-              ? <div className="sk-info fade-step" key={active}><p className="note-h"><span style={{ fontSize: 18, marginRight: 6 }}>{cur.ico}</span>{cur.label}</p><p className="body" style={{ margin: 0, color: T.ink }}>{cur.desc}</p></div>
-              : <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>Manbani bosing ←</p></div>}
+              ? <div className="sk-info fade-step" key={active}><p className="note-h"><span style={{ fontSize: 18, marginRight: 6 }}>{cur.ico}</span>{tr(cur.label)}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr(cur.desc)}</p></div>
+              : <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Manbani bosing ←', ru: 'Нажмите на источник ←' })}</p></div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -1191,17 +1208,17 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]); // eslint-disable-line
   const cur = ASK_MODES.find(m => m.id === active);
   return (
-    <Stage eyebrow="Tushuncha · savol berish" screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? 'Davom etish' : 'Ikkala savolni sinang'} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Tushuncha · savol berish', ru: 'Понятие · как спрашивать' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Ikkala savolni sinang', ru: 'Попробуйте оба вопроса' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Qanday <span className="italic" style={{ color: T.accent }}>so'rasangiz</span> — shunday javob olasiz.</h2></div>
-        <Mentor>Botjon mijozdan fikr so'rashi mumkin. Lekin savolning shakli javob sifatini belgilaydi. Ikkalasini sinab ko'ring.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Qanday <span className="italic" style={{ color: T.accent }}>so'rasangiz</span> — shunday javob olasiz.</>, ru: <>Как <span className="italic" style={{ color: T.accent }}>спросите</span> — такой ответ и получите.</> })}</h2></div>
+        <Mentor>{tr({ uz: 'Botjon mijozdan fikr so\'rashi mumkin. Lekin savolning shakli javob sifatini belgilaydi. Ikkalasini sinab ko\'ring.', ru: 'Ботжон может сам спросить у клиента мнение. Но форма вопроса определяет качество ответа. Попробуйте оба варианта.' })}</Mentor>
         <Zoomable><div className="split">
           <Col>
             <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
               {ASK_MODES.map(m => (
                 <button key={m.id} className="vcard" onClick={() => tap(m.id)} style={{ boxShadow: active === m.id ? `inset 0 0 0 1.5px ${T.accent}, 0 8px 20px -6px rgba(${T.shadowBase},0.2)` : undefined }}>
                   <span className="role-ico">{m.ico}</span>
-                  <span className="vlbl">{m.label}</span>
+                  <span className="vlbl">{tr(m.label)}</span>
                   <span className="vseen" style={{ color: seen.has(m.id) ? T.success : T.ink3 }}>{seen.has(m.id) ? '✓' : ''}</span>
                 </button>
               ))}
@@ -1209,9 +1226,9 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </Col>
           <Col>
             {cur
-              ? <div className="sk-info fade-step" key={active}><p className="body" style={{ margin: 0, color: T.ink }}>{cur.d}</p></div>
-              : <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>Savolni bosing ←</p></div>}
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Aniq savol — aniq javob. Botjonga fikr so'ratganda ham, o'zingiz o'qiganda ham shu qoida ishlaydi.</p></div>}
+              ? <div className="sk-info fade-step" key={active}><p className="body" style={{ margin: 0, color: T.ink }}>{tr(cur.d)}</p></div>
+              : <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Savolni bosing ←', ru: 'Нажмите на вопрос ←' })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Aniq savol — aniq javob. Botjonga fikr so'ratganda ham, o'zingiz o'qiganda ham shu qoida ishlaydi.", ru: 'Точный вопрос — точный ответ. Это правило работает и когда спрашивает Ботжон, и когда вы читаете отзывы сами.' })}</p></div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -1220,16 +1237,21 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 };
 
 const Screen4 = (props) => (
-  <QuestionScreen {...props} idx={4} scope="module-mikro" eyebrow="Mashq · 1-savol"
+  <QuestionScreen {...props} idx={4} scope="module-mikro" eyebrow={{ uz: 'Mashq · 1-savol', ru: 'Практика · вопрос 1' }}
     questionText="Foydalanuvchi 'bot manzilimni 2 marta so'radi' dedi. Bu qanday signal?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-sub" style={{ marginTop: 8 }}>«Bot manzilimni <span className="italic" style={{ color: T.accent }}>2 marta</span> so'radi» — bu qanday fikr?</h2></>}
-    options={["Taklif — hozir yo'q narsa so'ralgan, direktor buni qaror qiladi", "Buzuq (bug) — Botjon holatni eslamagan, tuzatish kerak", "Maqtov — mijoz botdan mamnun ekanini bildiradi", "Ahamiyatsiz shovqin — e'tibor berilmasligi kerak"]} correctIdx={1}
-    explainCorrect="To'g'ri! Bu bug — Botjon kutilgan ishni bajarmayapti (holatni eslamayapti). Har fikr boshqa harakat talab qiladi: bug → tuzat, taklif → qaror qil, maqtov → saqla. Turini to'g'ri aniqlash — birinchi qadam."
+    question={{ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-sub" style={{ marginTop: 8 }}>«Bot manzilimni <span className="italic" style={{ color: T.accent }}>2 marta</span> so'radi» — bu qanday fikr?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите верный ответ</p><h2 className="title h-sub" style={{ marginTop: 8 }}>«Бот <span className="italic" style={{ color: T.accent }}>дважды</span> спросил мой адрес» — что это за отзыв?</h2></> }}
+    options={[
+      { uz: "Taklif — hozir yo'q narsa so'ralgan, direktor buni qaror qiladi", ru: 'Предложение — просят то, чего пока нет, директор это решает' },
+      { uz: "Buzuq (bug) — Botjon holatni eslamagan, tuzatish kerak", ru: 'Баг — Ботжон не запомнил состояние, надо чинить' },
+      { uz: "Maqtov — mijoz botdan mamnun ekanini bildiradi", ru: 'Похвала — клиент говорит, что доволен ботом' },
+      { uz: "Ahamiyatsiz shovqin — e'tibor berilmasligi kerak", ru: 'Незначимый шум — не стоит внимания' }
+    ]} correctIdx={1}
+    explainCorrect={{ uz: "To'g'ri! Bu bug — Botjon kutilgan ishni bajarmayapti (holatni eslamayapti). Har fikr boshqa harakat talab qiladi: bug → tuzat, taklif → qaror qil, maqtov → saqla. Turini to'g'ri aniqlash — birinchi qadam.", ru: 'Верно! Это баг — Ботжон не делает того, что от него ждут (не помнит состояние). Каждый тип отзыва требует своего действия: баг → чини, предложение → решай, похвала → береги. Правильно определить тип — первый шаг.' }}
     explainWrong={{
-      0: "Taklif — bu hozir yo'q narsani so'rash. Bu yerda mavjud narsa noto'g'ri ishlayapti — demak bug.",
-      2: "Maqtov ijobiy fikr. «So'radi 😤» — bu norozilik, ya'ni buzuq xatti-harakat (bug).",
-      3: "Aksincha — bu aniq signal: ko'p odam shunday desa, jiddiy bug. E'tibor berish kerak.",
-      default: "Bu bug — Botjon kerakli ishni qilmayapti."
+      0: { uz: "Taklif — bu hozir yo'q narsani so'rash. Bu yerda mavjud narsa noto'g'ri ishlayapti — demak bug.", ru: 'Предложение — это просьба о том, чего пока нет. Здесь же существующее работает неправильно — значит, баг.' },
+      2: { uz: "Maqtov ijobiy fikr. «So'radi 😤» — bu norozilik, ya'ni buzuq xatti-harakat (bug).", ru: 'Похвала — это положительный отзыв. «Спросил 😤» — это недовольство, то есть сломанное поведение (баг).' },
+      3: { uz: "Aksincha — bu aniq signal: ko'p odam shunday desa, jiddiy bug. E'tibor berish kerak.", ru: 'Наоборот — это чёткий сигнал: если так говорят многие, баг серьёзный. На него надо реагировать.' },
+      default: { uz: "Bu bug — Botjon kerakli ishni qilmayapti.", ru: 'Это баг — Ботжон не делает нужную работу.' }
     }} />
 );
 
@@ -1240,17 +1262,17 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]); // eslint-disable-line
   const sorted = [...COMPLAINTS_5].sort((a, b) => b.n - a.n);
   return (
-    <Stage eyebrow="Pattern · chastota" screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? 'Davom etish' : 'Fikrlarni guruhlang'} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Pattern · chastota', ru: 'Паттерн · частота' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Fikrlarni guruhlang', ru: 'Сгруппируйте отзывы' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Bitta shikoyat — tasodif. <span className="italic" style={{ color: T.accent }}>Ko'pchilik</span> aytsa — pattern.</h2></div>
-        <Mentor>Har bir fikrga alohida ergashsangiz — adashasiz. Bir xil shikoyatlarni <b style={{ color: T.ink }}>guruhlang</b> va sanang: nechta odam shu narsadan shikoyat qildi? Tugmani bosing.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Bitta shikoyat — tasodif. <span className="italic" style={{ color: T.accent }}>Ko'pchilik</span> aytsa — pattern.</>, ru: <>Одна жалоба — случайность. Если говорят <span className="italic" style={{ color: T.accent }}>многие</span> — это паттерн.</> })}</h2></div>
+        <Mentor>{tr({ uz: <>Har bir fikrga alohida ergashsangiz — adashasiz. Bir xil shikoyatlarni <b style={{ color: T.ink }}>guruhlang</b> va sanang: nechta odam shu narsadan shikoyat qildi? Tugmani bosing.</>, ru: <>Если бежать за каждым отзывом по отдельности — заблудитесь. Одинаковые жалобы <b style={{ color: T.ink }}>группируйте</b> и считайте: сколько человек пожаловались на одно и то же? Нажмите кнопку.</> })}</Mentor>
         <Zoomable><div className="split">
           <Col>
-            <button className={`btn ${shown ? '' : 'tap-hint'}`} style={{ alignSelf: 'flex-start' }} disabled={shown} onClick={() => { setShown(true); setSc(n => n + 1); }}>{shown ? '✓ Guruhlandi' : '📊 Fikrlarni guruhlash'}</button>
+            <button className={`btn ${shown ? '' : 'tap-hint'}`} style={{ alignSelf: 'flex-start' }} disabled={shown} onClick={() => { setShown(true); setSc(n => n + 1); }}>{shown ? tr({ uz: '✓ Guruhlandi', ru: '✓ Сгруппировано' }) : tr({ uz: '📊 Fikrlarni guruhlash', ru: '📊 Сгруппировать отзывы' })}</button>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginTop: 4 }}>
               {sorted.map((c, i) => (
                 <div key={c.id} className="fn-row">
-                  <span className="fn-lbl">{c.label}</span>
+                  <span className="fn-lbl">{tr(c.label)}</span>
                   <div className="fn-track"><div className={`fn-fill ${shown && i === 0 ? 'top' : ''}`} style={{ width: shown ? `${(c.n / COMPLAINTS_MAX) * 100}%` : '0%' }}>{shown ? c.n : ''}</div></div>
                 </div>
               ))}
@@ -1258,9 +1280,9 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </Col>
           <Col>
             {shown
-              ? <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Pattern aniq: <b>«manzilni qayta so'raydi»</b> — 18 kishi. Bu eng ko'p og'ritgan narsa. Eng baland ustun yo'lni ko'rsatadi.</p></div>
-              : <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>Tugmani bosing — ustunlar to'ladi ←</p></div>}
-            {done && <div className="sk-info fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Faqat son emas — keyinroq <b>ta'sir</b>ni ham qo'shamiz. Ba'zan kam, lekin og'riqli shikoyat ham muhim.</p></div>}
+              ? <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Pattern aniq: <b>«manzilni qayta so'raydi»</b> — 18 kishi. Bu eng ko'p og'ritgan narsa. Eng baland ustun yo'lni ko'rsatadi.</>, ru: <>Паттерн виден: <b>«снова спрашивает адрес»</b> — 18 человек. Это болит сильнее всего. Самый высокий столбик показывает путь.</> })}</p></div>
+              : <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: "Tugmani bosing — ustunlar to'ladi ←", ru: 'Нажмите кнопку — столбики заполнятся ←' })}</p></div>}
+            {done && <div className="sk-info fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Faqat son emas — keyinroq <b>ta'sir</b>ni ham qo'shamiz. Ba'zan kam, lekin og'riqli shikoyat ham muhim.</>, ru: <>Дело не только в количестве — чуть позже добавим <b>влияние</b>. Иногда редкая, но очень болезненная жалоба тоже важна.</> })}</p></div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -1277,24 +1299,24 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]); // eslint-disable-line
   const cur = VAGUE_PAIRS.find(p => p.id === active);
   return (
-    <Stage eyebrow="Tarjima · aniqlik" screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? 'Davom etish' : `3 fikrni tarjima qiling (${seen.size}/3)`} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Tarjima · aniqlik', ru: 'Перевод · конкретика' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `3 fikrni tarjima qiling (${seen.size}/3)`, ru: `Переведите 3 отзыва (${seen.size}/3)` }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Foydalanuvchi <span className="italic" style={{ color: T.accent }}>noaniq</span> gapiradi — siz <span className="italic" style={{ color: T.accent }}>aniq</span> vazifaga aylantirasiz.</h2></div>
-        <Mentor>«Menyu chalkash» — bu shikoyat, vazifa emas. Maslahatchi (AI) bunga to'g'ri kod yoza olmaydi. Direktor sifatida uni aniq o'zgarishga aylantirasiz. Har noaniq fikrni bosing.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Foydalanuvchi <span className="italic" style={{ color: T.accent }}>noaniq</span> gapiradi — siz <span className="italic" style={{ color: T.accent }}>aniq</span> vazifaga aylantirasiz.</>, ru: <>Пользователь говорит <span className="italic" style={{ color: T.accent }}>размыто</span> — вы превращаете это в <span className="italic" style={{ color: T.accent }}>чёткую</span> задачу.</> })}</h2></div>
+        <Mentor>{tr({ uz: "«Menyu chalkash» — bu shikoyat, vazifa emas. Maslahatchi (AI) bunga to'g'ri kod yoza olmaydi. Direktor sifatida uni aniq o'zgarishga aylantirasiz. Har noaniq fikrni bosing.", ru: '«Меню запутанное» — это жалоба, а не задача. Советник (AI) по ней правильный код не напишет. Как директор вы превращаете её в конкретное изменение. Нажмите на каждый размытый отзыв.' })}</Mentor>
         <Zoomable><div className="split">
           <Col>
             <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
-              {VAGUE_PAIRS.map(p => <button key={p.id} className={`pick-row ${active === p.id ? 'sel' : ''} ${seen.has(p.id) ? 'done-row' : ''}`} onClick={() => tap(p.id)}><span style={{ flex: 1 }}>{p.vague}</span><span className="pick-plus">{seen.has(p.id) ? '✓' : '→'}</span></button>)}
+              {VAGUE_PAIRS.map(p => <button key={p.id} className={`pick-row ${active === p.id ? 'sel' : ''} ${seen.has(p.id) ? 'done-row' : ''}`} onClick={() => tap(p.id)}><span style={{ flex: 1 }}>{tr(p.vague)}</span><span className="pick-plus">{seen.has(p.id) ? '✓' : '→'}</span></button>)}
             </div>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Har noaniq shikoyat ortida aniq o'zgarish bor. Uni siz topasiz — Maslahatchi (AI) esa shu aniq vazifani bajaradi.</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Har noaniq shikoyat ortida aniq o'zgarish bor. Uni siz topasiz — Maslahatchi (AI) esa shu aniq vazifani bajaradi.", ru: 'За каждой размытой жалобой стоит конкретное изменение. Находите его вы — а Советник (AI) выполняет уже чёткую задачу.' })}</p></div>}
           </Col>
           <Col>
             {cur
               ? <div className="fade-step" key={active} style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-                  <div className="frame" style={{ borderLeft: `4px solid ${T.ink3}` }}><p className="note-h" style={{ color: T.ink2 }}>🗣 Foydalanuvchi (noaniq)</p><p className="body" style={{ margin: 0, color: T.ink }}>{cur.vague}</p></div>
-                  <div className="agent-card" style={{ borderLeftColor: T.success }}><span className="agent-lbl" style={{ color: T.success }}>🎯 ANIQ O'ZGARISH</span><p className="agent-msg">{cur.concrete}</p></div>
+                  <div className="frame" style={{ borderLeft: `4px solid ${T.ink3}` }}><p className="note-h" style={{ color: T.ink2 }}>{tr({ uz: '🗣 Foydalanuvchi (noaniq)', ru: '🗣 Пользователь (размыто)' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr(cur.vague)}</p></div>
+                  <div className="agent-card" style={{ borderLeftColor: T.success }}><span className="agent-lbl" style={{ color: T.success }}>{tr({ uz: "🎯 ANIQ O'ZGARISH", ru: '🎯 КОНКРЕТНОЕ ИЗМЕНЕНИЕ' })}</span><p className="agent-msg">{tr(cur.concrete)}</p></div>
                 </div>
-              : <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>Noaniq fikrni bosing ←</p></div>}
+              : <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Noaniq fikrni bosing ←', ru: 'Нажмите на размытый отзыв ←' })}</p></div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -1342,55 +1364,55 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     { id: 'menu-order', n: FUNNEL_STEPS[1].n - FUNNEL_STEPS[2].n, from: FUNNEL_STEPS[1].label, to: FUNNEL_STEPS[2].label }
   ];
   return (
-    <Stage eyebrow="Markaziy · tilaklar daftari" screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? 'Davom etish' : "Daftarni oxirigacha o'qing"} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Markaziy · tilaklar daftari', ru: 'Главное · книга пожеланий' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "Daftarni oxirigacha o'qing", ru: 'Дочитайте книгу до конца' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">📔 <span className="italic" style={{ color: T.accent }}>Tilaklar daftarini</span> o'qing — u eng qimmatli buyumingiz.</h2></div>
-        <Mentor>Botingiz bir hafta ishladi. Mijozlar 📔 tilaklar daftariga fikr yozib qoldirdi. Avval saralaymiz, keyin qayerda eng ko'p odam ketib qolganini topamiz, so'ng nimani birinchi tuzatishni tanlaymiz.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>📔 <span className="italic" style={{ color: T.accent }}>Tilaklar daftarini</span> o'qing — u eng qimmatli buyumingiz.</>, ru: <>📔 Прочитайте <span className="italic" style={{ color: T.accent }}>книгу пожеланий</span> — это ваша самая ценная вещь.</> })}</h2></div>
+        <Mentor>{tr({ uz: "Botingiz bir hafta ishladi. Mijozlar 📔 tilaklar daftariga fikr yozib qoldirdi. Avval saralaymiz, keyin qayerda eng ko'p odam ketib qolganini topamiz, so'ng nimani birinchi tuzatishni tanlaymiz.", ru: 'Ваш бот проработал неделю. Клиенты оставили отзывы в 📔 книге пожеланий. Сначала разберём их, затем найдём, где уходит больше всего людей, и выберем, что чинить первым.' })}</Mentor>
 
         {stage === 'intro' && (
           <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-            <p className="flow-label">📔 Tilaklar daftari — 8 ta yozuv</p>
-            <div className="fs-preview">{DAFTAR_CARDS.map(c => <span key={c.id} className="fs-preview-chip">{c.txt}</span>)}</div>
-            <button className="btn tap-hint" style={{ alignSelf: 'flex-start' }} onClick={() => { setStage('sort'); bump(); }}>▶ Saralashni boshlash</button>
+            <p className="flow-label">{tr({ uz: '📔 Tilaklar daftari — 8 ta yozuv', ru: '📔 Книга пожеланий — 8 записей' })}</p>
+            <div className="fs-preview">{DAFTAR_CARDS.map(c => <span key={c.id} className="fs-preview-chip">{tr(c.txt)}</span>)}</div>
+            <button className="btn tap-hint" style={{ alignSelf: 'flex-start' }} onClick={() => { setStage('sort'); bump(); }}>{tr({ uz: '▶ Saralashni boshlash', ru: '▶ Начать разбор' })}</button>
           </div>
         )}
         {stage === 'sort' && (
           <div className="fade-step">
-            <p className="flow-label">🟢 Qimmatli / ⚪ Foydasiz — har kartani savatga joylang</p>
+            <p className="flow-label">{tr({ uz: '🟢 Qimmatli / ⚪ Foydasiz — har kartani savatga joylang', ru: '🟢 Ценный / ⚪ Бесполезный — разложите карточки по корзинам' })}</p>
             <FeedbackSort items={DAFTAR_CARDS} onSolved={onSortSolved} />
           </div>
         )}
         {stage === 'funnel' && (
           <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-            <div className="frame-success"><p className="body" style={{ margin: 0, color: T.ink }}>Saraladingiz! Endi hisob-kitobga qaraymiz — mijozlar qayerda ko'p ketib qoladi?</p></div>
-            <p className="flow-label">📊 Hisob-kitob (voronka)</p>
+            <div className="frame-success"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Saraladingiz! Endi hisob-kitobga qaraymiz — mijozlar qayerda ko'p ketib qoladi?", ru: 'Разобрали! Теперь посмотрим на подсчёты — где клиенты уходят чаще всего?' })}</p></div>
+            <p className="flow-label">{tr({ uz: '📊 Hisob-kitob (voronka)', ru: '📊 Подсчёты (воронка)' })}</p>
             <div className="fn-funnel">
               {FUNNEL_STEPS.map((s) => (
                 <div key={s.id} className="fn-step" style={{ width: `${40 + (s.n / FUNNEL_STEPS[0].n) * 60}%` }}>
-                  <span className="fn-step-n">{s.n}</span><span className="fn-step-l">{s.label}</span>
+                  <span className="fn-step-n">{s.n}</span><span className="fn-step-l">{tr(s.label)}</span>
                 </div>
               ))}
             </div>
-            <p className="flow-label">Qaysi qadamda eng ko'p odam yo'qoldi?</p>
+            <p className="flow-label">{tr({ uz: "Qaysi qadamda eng ko'p odam yo'qoldi?", ru: 'На каком шаге потеряли больше всего людей?' })}</p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
               {gaps.map(g => (
                 <button key={g.id} className={`vcard ${funnelWrong && funnelPick !== g.id ? 'shake' : ''}`} onClick={() => pickFunnel(g.id)}>
                   <span className="role-ico">😳</span>
-                  <span className="vlbl">{g.from} → {g.to} <span style={{ color: T.ink2, fontWeight: 500 }}>· {g.n} kishi</span></span>
+                  <span className="vlbl">{tr(g.from)} → {tr(g.to)} <span style={{ color: T.ink2, fontWeight: 500 }}>· {g.n} {tr({ uz: 'kishi', ru: 'чел.' })}</span></span>
                 </button>
               ))}
             </div>
-            {funnelWrong && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Bu yerda kam odam yo'qolgan. Ustunlarni solishtirib, eng katta farqni toping.</p></div>}
+            {funnelWrong && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Bu yerda kam odam yo'qolgan. Ustunlarni solishtirib, eng katta farqni toping.", ru: 'Здесь потеряно мало людей. Сравните столбики и найдите самую большую разницу.' })}</p></div>}
           </div>
         )}
         {stage === 'priority' && (
           <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-            <div className="frame-success"><p className="body" style={{ margin: 0, color: T.ink }}>Topdingiz — <b>60 kishi</b> menyuni ochgandan keyin ketib qolgan. Qimmatli fikrlar ko'p, vaqt oz. Qaysi birini birinchi tuzatasiz?</p></div>
+            <div className="frame-success"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Topdingiz — <b>60 kishi</b> menyuni ochgandan keyin ketib qolgan. Qimmatli fikrlar ko'p, vaqt oz. Qaysi birini birinchi tuzatasiz?</>, ru: <>Нашли — <b>60 человек</b> ушли после открытия меню. Ценных отзывов много, времени мало. Что почините первым?</> })}</p></div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
               {FIX_CHOICES.map(f => (
                 <button key={f.id} className="vcard" onClick={() => pickFix(f.id)}>
                   <span className="role-ico">{f.ico}</span>
-                  <span className="vlbl">{f.label}</span>
+                  <span className="vlbl">{tr(f.label)}</span>
                 </button>
               ))}
             </div>
@@ -1399,51 +1421,56 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         {stage === 'consequence' && (
           <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
             {fixPick === 'menu' ? (
-              <div className="frame-success"><p className="note-h" style={{ color: T.success }}>✅ Menyu tugmasi tuzatildi</p><p className="body" style={{ margin: 0, color: T.ink }}>Yangi versiya chiqdi. Voronkada 60 kishidan endi faqat <b>15 tasi</b> ketib qolyapti. Aniq oqibat!</p></div>
+              <div className="frame-success"><p className="note-h" style={{ color: T.success }}>{tr({ uz: '✅ Menyu tugmasi tuzatildi', ru: '✅ Кнопку меню починили' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Yangi versiya chiqdi. Voronkada 60 kishidan endi faqat <b>15 tasi</b> ketib qolyapti. Aniq oqibat!</>, ru: <>Вышла новая версия. В воронке из 60 человек теперь уходят только <b>15</b>. Чёткий результат!</> })}</p></div>
             ) : (
-              <div className="frame-warn"><p className="note-h" style={{ color: T.danger }}>❌ «Bot ahmoq» ga javob yozildi</p><p className="body" style={{ margin: 0, color: T.ink }}>Voronka o'zgarmadi — hali ham 60 kishi menyudan keyin ketib qolyapti. Bu fikr aniq muammo ko'rsatmagan edi.</p></div>
+              <div className="frame-warn"><p className="note-h" style={{ color: T.danger }}>{tr({ uz: '❌ «Bot ahmoq» ga javob yozildi', ru: '❌ Написали ответ на «Бот тупой»' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Voronka o'zgarmadi — hali ham 60 kishi menyudan keyin ketib qolyapti. Bu fikr aniq muammo ko'rsatmagan edi.", ru: 'Воронка не изменилась — после меню по-прежнему уходят 60 человек. Этот отзыв не указывал на конкретную проблему.' })}</p></div>
             )}
             {fixPick !== 'menu'
-              ? <button className="btn" style={{ alignSelf: 'flex-start' }} onClick={() => setStage('priority')}>↩ Qaytadan tanlash</button>
-              : <button className="btn tap-hint" style={{ alignSelf: 'flex-start' }} onClick={() => { setStage('loop'); bump(); }}>Aylanani yopish →</button>}
+              ? <button className="btn" style={{ alignSelf: 'flex-start' }} onClick={() => setStage('priority')}>{tr({ uz: '↩ Qaytadan tanlash', ru: '↩ Выбрать заново' })}</button>
+              : <button className="btn tap-hint" style={{ alignSelf: 'flex-start' }} onClick={() => { setStage('loop'); bump(); }}>{tr({ uz: 'Aylanani yopish →', ru: 'Замкнуть круг →' })}</button>}
           </div>
         )}
         {stage === 'loop' && (
           <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-            <p className="flow-label">📔 Tilaklar daftariga yangi yozuv keldi</p>
-            <TgChat title="Tilaklar daftari" minH={0} input={false}>
-              <Bubble from="user">Endi menyu topildi, rahmat! 🎉</Bubble>
+            <p className="flow-label">{tr({ uz: '📔 Tilaklar daftariga yangi yozuv keldi', ru: '📔 В книге пожеланий новая запись' })}</p>
+            <TgChat title={{ uz: 'Tilaklar daftari', ru: 'Книга пожеланий' }} minH={0} input={false}>
+              <Bubble from="user">{tr({ uz: 'Endi menyu topildi, rahmat! 🎉', ru: 'Теперь меню нашлось, спасибо! 🎉' })}</Bubble>
             </TgChat>
-            <div className="frame-success"><p className="body" style={{ margin: 0, color: T.ink }}>Aylana yopildi — lekin yangi fikr baribir keladi. Yaxshilash — bir marta emas, <b>AYLANA</b>: tingla → guruhla → tanla → tuzat → yana tingla.</p></div>
-            <button className="btn tap-hint" style={{ alignSelf: 'flex-start' }} onClick={closeLoop}>✓ Tushunarli</button>
+            <div className="frame-success"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Aylana yopildi — lekin yangi fikr baribir keladi. Yaxshilash — bir marta emas, <b>AYLANA</b>: tingla → guruhla → tanla → tuzat → yana tingla.</>, ru: <>Круг замкнулся — но новые отзывы всё равно придут. Улучшение — не разовое дело, а <b>КРУГ</b>: слушай → группируй → выбирай → чини → слушай снова.</> })}</p></div>
+            <button className="btn tap-hint" style={{ alignSelf: 'flex-start' }} onClick={closeLoop}>{tr({ uz: '✓ Tushunarli', ru: '✓ Понятно' })}</button>
           </div>
         )}
-        {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Butun yo'lni bosib o'tdingiz: saraladingiz, voronkani topdingiz, eng ta'sirlisini tuzatdingiz — va aylana yana boshlandi.</p></div>}
+        {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Butun yo'lni bosib o'tdingiz: saraladingiz, voronkani topdingiz, eng ta'sirlisini tuzatdingiz — va aylana yana boshlandi.", ru: 'Вы прошли весь путь: разобрали отзывы, нашли воронку, починили самое влиятельное — и круг начался заново.' })}</p></div>}
       </div>
     </Stage>
   );
 };
 
 const Screen8 = (props) => (
-  <QuestionScreen {...props} idx={8} scope="module-mikro" eyebrow="Mashq · 2-savol"
+  <QuestionScreen {...props} idx={8} scope="module-mikro" eyebrow={{ uz: 'Mashq · 2-savol', ru: 'Практика · вопрос 2' }}
     questionText="Vaqtingiz cheklangan. 18 kishi 'manzilni qayta so'raydi' (bug), 3 kishi 'glutensiz qo'shing' (taklif) dedi. Birinchi nima?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-sub" style={{ marginTop: 8 }}>Vaqtingiz cheklangan. <span className="mono">18</span> kishi manzil bug'idan, <span className="mono">3</span> kishi glutensiz taklifidan gapirdi. <span className="italic" style={{ color: T.accent }}>Birinchi</span> nima?</h2></>}
-    options={["Glutensiz pizzani — yangi narsa har doim qiziqroq va e'tirof keltiradi", "Ikkalasini bir vaqtda — hech narsani kechiktirmaslik kerak", "Manzil bug'ini — ko'p kishi va kuchli og'riq (chastota × ta'sir eng yuqori)", "Hech narsani — fikrlar shunchaki shikoyat, jiddiy emas"]} correctIdx={2}
-    explainCorrect="To'g'ri! Cheklangan resursda eng katta ta'sir beradigan ishni tanlaysiz: ko'p odam (18) + kuchli og'riq = manzil bug'i. Glutensiz taklif kutadi. Bu — har mahsulotda ishlaydigan ustuvorlik qoidasi."
+    question={{ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-sub" style={{ marginTop: 8 }}>Vaqtingiz cheklangan. <span className="mono">18</span> kishi manzil bug'idan, <span className="mono">3</span> kishi glutensiz taklifidan gapirdi. <span className="italic" style={{ color: T.accent }}>Birinchi</span> nima?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите верный ответ</p><h2 className="title h-sub" style={{ marginTop: 8 }}>Времени мало. <span className="mono">18</span> человек сказали про баг с адресом, <span className="mono">3</span> — про безглютеновую пиццу. Что <span className="italic" style={{ color: T.accent }}>первым</span>?</h2></> }}
+    options={[
+      { uz: "Glutensiz pizzani — yangi narsa har doim qiziqroq va e'tirof keltiradi", ru: 'Безглютеновую пиццу — новое всегда интереснее и вызывает отклик' },
+      { uz: "Ikkalasini bir vaqtda — hech narsani kechiktirmaslik kerak", ru: 'Оба сразу — ничего нельзя откладывать' },
+      { uz: "Manzil bug'ini — ko'p kishi va kuchli og'riq (chastota × ta'sir eng yuqori)", ru: 'Баг с адресом — много людей и сильная боль (частота × влияние выше всего)' },
+      { uz: "Hech narsani — fikrlar shunchaki shikoyat, jiddiy emas", ru: 'Ничего — отзывы это просто жалобы, несерьёзно' }
+    ]} correctIdx={2}
+    explainCorrect={{ uz: "To'g'ri! Cheklangan resursda eng katta ta'sir beradigan ishni tanlaysiz: ko'p odam (18) + kuchli og'riq = manzil bug'i. Glutensiz taklif kutadi. Bu — har mahsulotda ishlaydigan ustuvorlik qoidasi.", ru: 'Верно! При ограниченных ресурсах выбирают то, что даёт наибольший эффект: много людей (18) + сильная боль = баг с адресом. Безглютеновая пицца подождёт. Это правило приоритета работает в любом продукте.' }}
     explainWrong={{
-      0: "«Qiziqroq» — bu sizning hissingiz, foydalanuvchi og'rig'i emas. 18 kishilik bug 3 kishilik taklifdan ustun.",
-      1: "Cheklangan vaqtda hammasini birdan qilsangiz — hech biri sifatli chiqmaydi. Avval eng kattasini.",
-      3: "Aksincha — 18 kishilik takroriy shikoyat juda jiddiy signal. Uni birinchi tuzatasiz.",
-      default: "Eng ko'p + eng og'riqlisini birinchi: manzil bug'i."
+      0: { uz: "«Qiziqroq» — bu sizning hissingiz, foydalanuvchi og'rig'i emas. 18 kishilik bug 3 kishilik taklifdan ustun.", ru: '«Интереснее» — это ваше ощущение, а не боль пользователя. Баг на 18 человек важнее предложения на 3.' },
+      1: { uz: "Cheklangan vaqtda hammasini birdan qilsangiz — hech biri sifatli chiqmaydi. Avval eng kattasini.", ru: 'Если при нехватке времени делать всё сразу — ничего не выйдет качественно. Сначала самое крупное.' },
+      3: { uz: "Aksincha — 18 kishilik takroriy shikoyat juda jiddiy signal. Uni birinchi tuzatasiz.", ru: 'Наоборот — повторяющаяся жалоба от 18 человек это очень серьёзный сигнал. Её чинят первой.' },
+      default: { uz: "Eng ko'p + eng og'riqlisini birinchi: manzil bug'i.", ru: 'Первым — самое частое и самое болезненное: баг с адресом.' }
     }} />
 );
 
 const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const STAGES = [
-    { lbl: '👂 Tingla', tone: 'info', txt: "18 kishi: «manzilni qayta so'raydi». Eng ko'p shikoyat — bu birinchi." },
-    { lbl: '🎯 Tanla', tone: 'info', txt: "Chastota yuqori + og'riq kuchli → ustuvor #1. Glutensiz taklif kutadi." },
-    { lbl: '🔧 Tuzat', tone: 'ok', txt: "Maslahatchiga (AI) aniq buyruq: manzilni bir marta so'ra, holatni TAYYOR qil, narxni ko'rsat. v2 chiqdi." },
-    { lbl: '🔁 Qayta tingla', tone: 'ok', txt: "Yangi fikr: shikoyat 18 → 1. Ishladi! Endi «narx» tepaga chiqdi — keyingi aylana." }
+    { lbl: { uz: '👂 Tingla', ru: '👂 Слушай' }, tone: 'info', txt: { uz: "18 kishi: «manzilni qayta so'raydi». Eng ko'p shikoyat — bu birinchi.", ru: '18 человек: «снова спрашивает адрес». Самая частая жалоба — она и первая.' } },
+    { lbl: { uz: '🎯 Tanla', ru: '🎯 Выбирай' }, tone: 'info', txt: { uz: "Chastota yuqori + og'riq kuchli → ustuvor #1. Glutensiz taklif kutadi.", ru: 'Частота высокая + боль сильная → приоритет №1. Безглютеновая пицца подождёт.' } },
+    { lbl: { uz: '🔧 Tuzat', ru: '🔧 Чини' }, tone: 'ok', txt: { uz: "Maslahatchiga (AI) aniq buyruq: manzilni bir marta so'ra, holatni TAYYOR qil, narxni ko'rsat. v2 chiqdi.", ru: 'Чёткая команда Советнику (AI): спрашивай адрес один раз, ставь состояние ГОТОВО, показывай цену. Вышла v2.' } },
+    { lbl: { uz: '🔁 Qayta tingla', ru: '🔁 Слушай снова' }, tone: 'ok', txt: { uz: "Yangi fikr: shikoyat 18 → 1. Ishladi! Endi «narx» tepaga chiqdi — keyingi aylana.", ru: 'Новые отзывы: жалоб было 18, стало 1. Сработало! Теперь наверх вышла «цена» — следующий круг.' } }
   ];
   const [step, setStep] = useState(storedAnswer ? STAGES.length : 0);
   const [sc, setSc] = useState(0);
@@ -1451,29 +1478,29 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]); // eslint-disable-line
   const advance = () => { if (!done) { setStep(n => n + 1); setSc(n => n + 1); } };
   return (
-    <Stage eyebrow="Hayotiy · yaxshilash aylanasi" screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? 'Davom etish' : `Aylanani yuriting (${step}/${STAGES.length})`} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Hayotiy · yaxshilash aylanasi', ru: 'Из жизни · круг улучшений' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `Aylanani yuriting (${step}/${STAGES.length})`, ru: `Пройдите круг (${step}/${STAGES.length})` }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">AvtoPizza — bitta to'liq <span className="italic" style={{ color: T.accent }}>aylana</span>.</h2></div>
-        <Mentor>Mana hammasi birga: chalkash fikrdan yaxshilangan mahsulotgacha. Tugmani bosib, aylanani boshidan oxirigacha yuring.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>AvtoPizza — bitta to'liq <span className="italic" style={{ color: T.accent }}>aylana</span>.</>, ru: <>AvtoPizza — один полный <span className="italic" style={{ color: T.accent }}>круг</span>.</> })}</h2></div>
+        <Mentor>{tr({ uz: "Mana hammasi birga: chalkash fikrdan yaxshilangan mahsulotgacha. Tugmani bosib, aylanani boshidan oxirigacha yuring.", ru: 'Вот всё вместе: от путаного отзыва до улучшенного продукта. Нажимайте кнопку и пройдите круг от начала до конца.' })}</Mentor>
         <Zoomable><div className="split">
           <Col>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
               {STAGES.slice(0, step).map((s, i) => (
                 <div key={i} className={s.tone === 'ok' ? 'frame-success fade-step' : 'sk-info fade-step'}>
-                  <p className="note-h" style={{ margin: '0 0 4px' }}>{s.lbl}</p>
-                  <p className="body" style={{ margin: 0, color: T.ink }}>{s.txt}</p>
+                  <p className="note-h" style={{ margin: '0 0 4px' }}>{tr(s.lbl)}</p>
+                  <p className="body" style={{ margin: 0, color: T.ink }}>{tr(s.txt)}</p>
                 </div>
               ))}
-              {step === 0 && <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>Tugmani bosing — aylana boshlanadi.</p></div>}
+              {step === 0 && <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Tugmani bosing — aylana boshlanadi.', ru: 'Нажмите кнопку — круг начнётся.' })}</p></div>}
             </div>
-            <button className={`btn ${step === 0 && !done ? 'tap-hint' : ''}`} style={{ alignSelf: 'flex-start' }} disabled={done} onClick={advance}>{done ? '✓ Aylana tugadi' : step === 0 ? '▶ Tinglashni boshlash' : 'Keyingi qadam →'}</button>
+            <button className={`btn ${step === 0 && !done ? 'tap-hint' : ''}`} style={{ alignSelf: 'flex-start' }} disabled={done} onClick={advance}>{done ? tr({ uz: '✓ Aylana tugadi', ru: '✓ Круг пройден' }) : step === 0 ? tr({ uz: '▶ Tinglashni boshlash', ru: '▶ Начать слушать' }) : tr({ uz: 'Keyingi qadam →', ru: 'Следующий шаг →' })}</button>
           </Col>
           <Col>
-            <div className="sk-info"><p className="note-h">🍕 Mijoz tomonidan</p>{done
-              ? <TgChat title="AvtoPizza" minH={0}><Bubble from="user">Margarita, Chilonzor 5</Bubble><Bubble from="bot">Qabul qilindi ✅ Margarita (45 000) · Chilonzor 5 📍</Bubble></TgChat>
-              : <TgChat title="AvtoPizza" minH={0}><Bubble from="user">Margarita, Chilonzor 5</Bubble><Bubble from="bot">Manzilingizni yuboring 📍</Bubble><Bubble from="user">Aytdim-ku, Chilonzor 5 😤</Bubble></TgChat>}
+            <div className="sk-info"><p className="note-h">{tr({ uz: '🍕 Mijoz tomonidan', ru: '🍕 Со стороны клиента' })}</p>{done
+              ? <TgChat title="AvtoPizza" minH={0}><Bubble from="user">{tr({ uz: 'Margarita, Chilonzor 5', ru: 'Маргарита, Чиланзар 5' })}</Bubble><Bubble from="bot">{tr({ uz: 'Qabul qilindi ✅ Margarita (45 000) · Chilonzor 5 📍', ru: 'Принято ✅ Маргарита (45 000) · Чиланзар 5 📍' })}</Bubble></TgChat>
+              : <TgChat title="AvtoPizza" minH={0}><Bubble from="user">{tr({ uz: 'Margarita, Chilonzor 5', ru: 'Маргарита, Чиланзар 5' })}</Bubble><Bubble from="bot">{tr({ uz: 'Manzilingizni yuboring 📍', ru: 'Отправьте ваш адрес 📍' })}</Bubble><Bubble from="user">{tr({ uz: 'Aytdim-ku, Chilonzor 5 😤', ru: 'Я же сказал — Чиланзар 5 😤' })}</Bubble></TgChat>}
             </div>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>v1 da bot manzilni qayta so'radi; v2 da — bir marta, narx bilan. Bitta aylana mahsulotni sezilarli yaxshiladi.</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "v1 da bot manzilni qayta so'radi; v2 da — bir marta, narx bilan. Bitta aylana mahsulotni sezilarli yaxshiladi.", ru: 'В v1 бот переспрашивал адрес; в v2 — спрашивает один раз и показывает цену. Один круг заметно улучшил продукт.' })}</p></div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -1482,24 +1509,29 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 };
 
 const Screen10 = (props) => (
-  <QuestionScreen {...props} idx={10} scope="module-mikro" eyebrow="Mashq · 3-savol"
+  <QuestionScreen {...props} idx={10} scope="module-mikro" eyebrow={{ uz: 'Mashq · 3-savol', ru: 'Практика · вопрос 3' }}
     questionText="100 foydalanuvchidan 1 tasi juda o'ziga xos, faqat unga kerakli narsa so'radi. Nima qilasiz?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-sub" style={{ marginTop: 8 }}>100 foydalanuvchidan <span className="mono">1</span> tasi juda <span className="italic" style={{ color: T.accent }}>o'ziga xos</span> narsa so'radi (faqat unga kerak). Nima qilasiz?</h2></>}
-    options={["Ko'pchilikka foyda beradigan fikrlarga e'tibor beraman; bitta tor so'rovga «hozir emas» deyish ham qaror", "Darrov qo'shaman — har bir foydalanuvchining so'rovi bajarilishi shart", "O'sha foydalanuvchini bloklayman — u xalaqit beradi", "Hamma so'rovni navbat bilan, istisnosiz qo'shaman"]} correctIdx={0}
-    explainCorrect="To'g'ri! Cheklangan vaqtni ko'pchilikka ta'sir qiladigan ishlarga sarflaysiz. Bitta tor so'rovga «yo'q» yoki «hozir emas» deyish — e'tiborsizlik emas, balki mahsulot fokusini saqlash. Bu — har joyda kerakli qaror."
+    question={{ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-sub" style={{ marginTop: 8 }}>100 foydalanuvchidan <span className="mono">1</span> tasi juda <span className="italic" style={{ color: T.accent }}>o'ziga xos</span> narsa so'radi (faqat unga kerak). Nima qilasiz?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите верный ответ</p><h2 className="title h-sub" style={{ marginTop: 8 }}>1 пользователь из 100 просит очень <span className="italic" style={{ color: T.accent }}>особенную</span> вещь (нужную только ему). Что сделаете?</h2></> }}
+    options={[
+      { uz: "Ko'pchilikka foyda beradigan fikrlarga e'tibor beraman; bitta tor so'rovga «hozir emas» deyish ham qaror", ru: 'Займусь тем, что полезно большинству; сказать узкой просьбе «не сейчас» — тоже решение' },
+      { uz: "Darrov qo'shaman — har bir foydalanuvchining so'rovi bajarilishi shart", ru: 'Добавлю сразу — просьба каждого пользователя должна быть выполнена' },
+      { uz: "O'sha foydalanuvchini bloklayman — u xalaqit beradi", ru: 'Заблокирую этого пользователя — он мешает' },
+      { uz: "Hamma so'rovni navbat bilan, istisnosiz qo'shaman", ru: 'Добавлю все просьбы по очереди, без исключений' }
+    ]} correctIdx={0}
+    explainCorrect={{ uz: "To'g'ri! Cheklangan vaqtni ko'pchilikka ta'sir qiladigan ishlarga sarflaysiz. Bitta tor so'rovga «yo'q» yoki «hozir emas» deyish — e'tiborsizlik emas, balki mahsulot fokusini saqlash. Bu — har joyda kerakli qaror.", ru: 'Верно! Ограниченное время тратят на то, что влияет на большинство. Сказать одной узкой просьбе «нет» или «не сейчас» — не пренебрежение, а сохранение фокуса продукта. Это решение нужно везде.' }}
     explainWrong={{
-      1: "Har so'rovni qo'shsangiz — bot chalkashadi va ko'pchilik uchun yomonlashadi. Fokus muhim.",
-      2: "Foydalanuvchini bloklash — fikrdan qochish. To'g'ri yo'l — xushmuomala «hozir emas» deyish.",
-      3: "Istisnosiz qo'shish — scope shishishi. Direktor tanlaydi, hammasini emas.",
-      default: "Ko'pchilikka foydani ustun qo'yib, tor so'rovga «hozir emas» deysiz."
+      1: { uz: "Har so'rovni qo'shsangiz — bot chalkashadi va ko'pchilik uchun yomonlashadi. Fokus muhim.", ru: 'Если добавлять каждую просьбу — бот запутается и станет хуже для большинства. Фокус важен.' },
+      2: { uz: "Foydalanuvchini bloklash — fikrdan qochish. To'g'ri yo'l — xushmuomala «hozir emas» deyish.", ru: 'Заблокировать пользователя — значит убежать от отзыва. Правильный путь — вежливо сказать «не сейчас».' },
+      3: { uz: "Istisnosiz qo'shish — scope shishishi. Direktor tanlaydi, hammasini emas.", ru: 'Добавлять всё без исключений — это раздувание scope. Директор выбирает, а не берёт всё.' },
+      default: { uz: "Ko'pchilikka foydani ustun qo'yib, tor so'rovga «hozir emas» deysiz.", ru: 'Ставите в приоритет пользу большинству, а узкой просьбе говорите «не сейчас».' }
     }} />
 );
 
 const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const TRAPS = [
-    { id: 't1', ico: '🙋', label: 'Bitta odam = hammasi', desc: "Bir kishi so'radi deb darrov qo'shmang. Pattern (ko'pchilik) qidiring." },
-    { id: 't2', ico: '📦', label: 'Scope shishishi', desc: "Har taklifni qo'shsangiz — bot og'irlashadi, chalkashadi. Asosiy ishda qoling." },
-    { id: 't3', ico: '🔇', label: "Maqtovni e'tiborsiz", desc: "Maqtov — nima ishlayotganini aytadi. Tuzatishda o'shani buzib qo'ymang." }
+    { id: 't1', ico: '🙋', label: { uz: 'Bitta odam = hammasi', ru: 'Один человек = все' }, desc: { uz: "Bir kishi so'radi deb darrov qo'shmang. Pattern (ko'pchilik) qidiring.", ru: 'Не добавляйте сразу только потому, что попросил один. Ищите паттерн (большинство).' } },
+    { id: 't2', ico: '📦', label: { uz: 'Scope shishishi', ru: 'Раздувание scope' }, desc: { uz: "Har taklifni qo'shsangiz — bot og'irlashadi, chalkashadi. Asosiy ishda qoling.", ru: 'Добавите каждое предложение — бот потяжелеет и запутается. Держитесь основной работы.' } },
+    { id: 't3', ico: '🔇', label: { uz: "Maqtovni e'tiborsiz", ru: 'Игнорировать похвалу' }, desc: { uz: "Maqtov — nima ishlayotganini aytadi. Tuzatishda o'shani buzib qo'ymang.", ru: 'Похвала говорит, что уже работает. При правках не сломайте именно это.' } }
   ];
   const [seen, setSeen] = useState(storedAnswer ? new Set(TRAPS.map(t => t.id)) : new Set());
   const [active, setActive] = useState(null);
@@ -1509,21 +1541,21 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]); // eslint-disable-line
   const cur = TRAPS.find(t => t.id === active);
   return (
-    <Stage eyebrow="Ehtiyot · tuzoqlar" screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? 'Davom etish' : `3 tuzoqni ko'ring (${seen.size}/3)`} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Ehtiyot · tuzoqlar', ru: 'Осторожно · ловушки' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `3 tuzoqni ko'ring (${seen.size}/3)`, ru: `Посмотрите 3 ловушки (${seen.size}/3)` }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Fikrni qo'llashning <span className="italic" style={{ color: T.accent }}>3 tuzog'i</span>.</h2></div>
-        <Mentor>Fikrni tinglash yaxshi — lekin uni noto'g'ri qo'llash mahsulotni buzadi. Mana 3 ta keng tarqalgan xato. Har birini bosing.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Fikrni qo'llashning <span className="italic" style={{ color: T.accent }}>3 tuzog'i</span>.</>, ru: <><span className="italic" style={{ color: T.accent }}>3 ловушки</span> при работе с отзывами.</> })}</h2></div>
+        <Mentor>{tr({ uz: "Fikrni tinglash yaxshi — lekin uni noto'g'ri qo'llash mahsulotni buzadi. Mana 3 ta keng tarqalgan xato. Har birini bosing.", ru: 'Слушать отзывы хорошо — но применять их неправильно значит ломать продукт. Вот 3 частые ошибки. Нажмите на каждую.' })}</Mentor>
         <Zoomable><div className="split">
           <Col>
             <div className="fade-up delay-1" style={{ display: 'flex', flexWrap: 'wrap', gap: 7 }}>
-              {TRAPS.map(t => <button key={t.id} className="gchip" onClick={() => tap(t.id)} style={seen.has(t.id) ? { boxShadow: `inset 0 0 0 1.5px ${T.success}`, color: T.success } : undefined}>{seen.has(t.id) ? '✓ ' : ''}{t.ico} {t.label}</button>)}
+              {TRAPS.map(t => <button key={t.id} className="gchip" onClick={() => tap(t.id)} style={seen.has(t.id) ? { boxShadow: `inset 0 0 0 1.5px ${T.success}`, color: T.success } : undefined}>{seen.has(t.id) ? '✓ ' : ''}{t.ico} {tr(t.label)}</button>)}
             </div>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Fikr — yo'l-yo'riq, buyruq emas. Direktor uni saralab, o'lchab, sifatni saqlab qo'llaydi.</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Fikr — yo'l-yo'riq, buyruq emas. Direktor uni saralab, o'lchab, sifatni saqlab qo'llaydi.", ru: 'Отзыв — это ориентир, а не приказ. Директор применяет его, разобрав, измерив и сохранив качество.' })}</p></div>}
           </Col>
           <Col>
             {cur
-              ? <div className="frame-warn fade-step" key={active}><p className="note-h" style={{ margin: '0 0 4px' }}>{cur.ico} {cur.label}</p><p className="body" style={{ margin: 0, color: T.ink }}>{cur.desc}</p></div>
-              : <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>Tuzoqni bosing ←</p></div>}
+              ? <div className="frame-warn fade-step" key={active}><p className="note-h" style={{ margin: '0 0 4px' }}>{cur.ico} {tr(cur.label)}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr(cur.desc)}</p></div>
+              : <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Tuzoqni bosing ←', ru: 'Нажмите на ловушку ←' })}</p></div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -1537,23 +1569,23 @@ const Screen12 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const done = show;
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]); // eslint-disable-line
   return (
-    <Stage eyebrow="O'lchash · natija" screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? 'Davom etish' : 'Natijani tekshiring'} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: "O'lchash · natija", ru: 'Измерение · результат' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Natijani tekshiring', ru: 'Проверьте результат' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Tuzatdingiz — lekin <span className="italic" style={{ color: T.accent }}>ishladimi</span>? Qayta o'lchaysiz.</h2></div>
-        <Mentor>Tuzatish — taxmin. U haqiqatan yordam berdimi, buni faqat <b style={{ color: T.ink }}>yangi fikr</b> aytadi. Versiya chiqargach, o'sha shikoyat kamaydimi — tekshirasiz. Tugmani bosing.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Tuzatdingiz — lekin <span className="italic" style={{ color: T.accent }}>ishladimi</span>? Qayta o'lchaysiz.</>, ru: <>Починили — а <span className="italic" style={{ color: T.accent }}>сработало</span> ли? Измеряете заново.</> })}</h2></div>
+        <Mentor>{tr({ uz: <>Tuzatish — taxmin. U haqiqatan yordam berdimi, buni faqat <b style={{ color: T.ink }}>yangi fikr</b> aytadi. Versiya chiqargach, o'sha shikoyat kamaydimi — tekshirasiz. Tugmani bosing.</>, ru: <>Правка — это гипотеза. Помогла ли она на самом деле, скажут только <b style={{ color: T.ink }}>новые отзывы</b>. После выпуска версии проверяете, стало ли меньше той жалобы. Нажмите кнопку.</> })}</Mentor>
         <Zoomable><div className="split">
           <Col>
-            <div className="sk-info"><p className="note-h">📊 «Manzilni qayta so'raydi» shikoyati</p><div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginTop: 8 }}>
-              <div className="fn-row"><span className="fn-lbl">v1 (oldin)</span><div className="fn-track"><div className="fn-fill top" style={{ width: '90%' }}>18</div></div></div>
-              <div className="fn-row"><span className="fn-lbl">v2 (keyin)</span><div className="fn-track"><div className="fn-fill" style={{ width: show ? '8%' : '90%', background: show ? T.success : T.danger }}>{show ? '1' : '18'}</div></div></div>
+            <div className="sk-info"><p className="note-h">{tr({ uz: '📊 «Manzilni qayta so\'raydi» shikoyati', ru: '📊 Жалоба «снова спрашивает адрес»' })}</p><div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginTop: 8 }}>
+              <div className="fn-row"><span className="fn-lbl">{tr({ uz: 'v1 (oldin)', ru: 'v1 (до)' })}</span><div className="fn-track"><div className="fn-fill top" style={{ width: '90%' }}>18</div></div></div>
+              <div className="fn-row"><span className="fn-lbl">{tr({ uz: 'v2 (keyin)', ru: 'v2 (после)' })}</span><div className="fn-track"><div className="fn-fill" style={{ width: show ? '8%' : '90%', background: show ? T.success : T.danger }}>{show ? '1' : '18'}</div></div></div>
             </div></div>
-            <button className={`btn ${show ? '' : 'tap-hint'}`} style={{ alignSelf: 'flex-start' }} disabled={show} onClick={() => { setShow(true); setSc(n => n + 1); }}>{show ? "✓ O'lchandi" : "▶ Yangi fikrlarni o'lchash"}</button>
+            <button className={`btn ${show ? '' : 'tap-hint'}`} style={{ alignSelf: 'flex-start' }} disabled={show} onClick={() => { setShow(true); setSc(n => n + 1); }}>{show ? tr({ uz: "✓ O'lchandi", ru: '✓ Измерено' }) : tr({ uz: "▶ Yangi fikrlarni o'lchash", ru: '▶ Измерить новые отзывы' })}</button>
           </Col>
           <Col>
             {show
-              ? <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Shikoyat 18 dan 1 ga tushdi — fix <b>ishladi</b>. Agar tushmaganida, boshqa sabab izlardik. O'lchamasangiz — tuzatish ko'r-ko'rona bo'ladi.</p></div>
-              : <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>Tugmani bosing ←</p></div>}
-            {done && <div className="agent-card fade-step"><span className="agent-lbl">🔁 AYLANA DAVOM ETADI</span><p className="agent-msg">Endi yangi ro'yxatda <b>«narx ko'rinmaydi»</b> tepaga chiqdi. Demak keyingi aylana — o'sha. Yaxshilash hech qachon tugamaydi.</p></div>}
+              ? <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Shikoyat 18 dan 1 ga tushdi — fix <b>ishladi</b>. Agar tushmaganida, boshqa sabab izlardik. O'lchamasangiz — tuzatish ko'r-ko'rona bo'ladi.</>, ru: <>Жалоб стало 1 вместо 18 — правка <b>сработала</b>. Если бы не упало, искали бы другую причину. Без измерения починка вслепую.</> })}</p></div>
+              : <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Tugmani bosing ←', ru: 'Нажмите кнопку ←' })}</p></div>}
+            {done && <div className="agent-card fade-step"><span className="agent-lbl">{tr({ uz: '🔁 AYLANA DAVOM ETADI', ru: '🔁 КРУГ ПРОДОЛЖАЕТСЯ' })}</span><p className="agent-msg">{tr({ uz: <>Endi yangi ro'yxatda <b>«narx ko'rinmaydi»</b> tepaga chiqdi. Demak keyingi aylana — o'sha. Yaxshilash hech qachon tugamaydi.</>, ru: <>Теперь в новом списке наверх вышло <b>«не видно цены»</b>. Значит, следующий круг — про это. Улучшение не заканчивается никогда.</> })}</p></div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -1562,7 +1594,7 @@ const Screen12 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 };
 
 const PromptCard = ({ children }) => (
-  <div className="prompt-card live"><span className="prompt-who">📝 tuzatish prompti</span><p className="prompt-text">{children}</p></div>
+  <div className="prompt-card live"><span className="prompt-who">{tr({ uz: '📝 tuzatish prompti', ru: '📝 промпт для правки' })}</span><p className="prompt-text">{children}</p></div>
 );
 
 // ===== SCREEN 13 — BUILDER: NOANIQ FIKRNI AI PROMPTIGA AYLANTIRISH =====
@@ -1572,27 +1604,27 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const done = show;
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { stage: 'builder', screenIdx: screen, correct: true, solved: true, picked: true }); }, [done]); // eslint-disable-line
   return (
-    <Stage eyebrow="Amaliyot · buyruq bering" screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? 'Davom etish' : 'Maslahatchiga buyuring'} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Amaliyot · buyruq bering', ru: 'Практика · дайте команду' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Maslahatchiga buyuring', ru: 'Дайте команду Советнику' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">«Narx ko'rinmaydi» fikrini <span className="italic" style={{ color: T.accent }}>AI promptiga</span> aylantiring.</h2></div>
-        <Mentor>«Narx» endi navbatdagi ustuvor fikr. Sababi (siz topasiz): buyurtma tasdiqlanganda narx umuman ko'rinmaydi. Endi buni Maslahatchiga (AI) aniq buyruq qilib beramiz. Tugmani bosing.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>«Narx ko'rinmaydi» fikrini <span className="italic" style={{ color: T.accent }}>AI promptiga</span> aylantiring.</>, ru: <>Превратите отзыв «не видно цены» в <span className="italic" style={{ color: T.accent }}>промпт для AI</span>.</> })}</h2></div>
+        <Mentor>{tr({ uz: "«Narx» endi navbatdagi ustuvor fikr. Sababi (siz topasiz): buyurtma tasdiqlanganda narx umuman ko'rinmaydi. Endi buni Maslahatchiga (AI) aniq buyruq qilib beramiz. Tugmani bosing.", ru: '«Цена» — теперь следующий приоритет. Причину находите вы: при подтверждении заказа цена вообще не показывается. Превратим это в чёткую команду Советнику (AI). Нажмите кнопку.' })}</Mentor>
         <Zoomable><div className="split">
           <Col>
-            <div className="sk-info"><p className="note-h">🎯 Aniq o'zgarish</p><p className="body" style={{ margin: 0, color: T.ink }}>Buyurtma tasdiqlanganda tasdiq xabariga taom nomini va narxini ham qo'sh.</p></div>
-            <PromptCard>Botda kamchilik bor: buyurtma tasdiqlanganda narx ko'rsatilmaydi. Tasdiq xabarida taom nomi, narxi va manzilni ko'rsat.</PromptCard>
-            <button className={`btn ${show ? '' : 'tap-hint'}`} style={{ alignSelf: 'flex-start' }} disabled={show} onClick={() => { setShow(true); setSc(n => n + 1); }}>{show ? '✓ Tuzatildi' : "▶ Maslahatchi tuzatdi — natijani ko'r"}</button>
+            <div className="sk-info"><p className="note-h">{tr({ uz: "🎯 Aniq o'zgarish", ru: '🎯 Конкретное изменение' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Buyurtma tasdiqlanganda tasdiq xabariga taom nomini va narxini ham qo'sh.", ru: 'При подтверждении заказа добавь в сообщение название блюда и его цену.' })}</p></div>
+            <PromptCard>{tr({ uz: "Botda kamchilik bor: buyurtma tasdiqlanganda narx ko'rsatilmaydi. Tasdiq xabarida taom nomi, narxi va manzilni ko'rsat.", ru: 'В боте есть недочёт: при подтверждении заказа не показывается цена. В сообщении подтверждения покажи название блюда, цену и адрес.' })}</PromptCard>
+            <button className={`btn ${show ? '' : 'tap-hint'}`} style={{ alignSelf: 'flex-start' }} disabled={show} onClick={() => { setShow(true); setSc(n => n + 1); }}>{show ? tr({ uz: '✓ Tuzatildi', ru: '✓ Починено' }) : tr({ uz: "▶ Maslahatchi tuzatdi — natijani ko'r", ru: '▶ Советник починил — смотрим результат' })}</button>
           </Col>
           <Col>
             {show
               ? <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-                  <p className="flow-label" style={{ color: T.success }}>✓ tuzatilgandan keyin (v3)</p>
+                  <p className="flow-label" style={{ color: T.success }}>{tr({ uz: '✓ tuzatilgandan keyin (v3)', ru: '✓ после правки (v3)' })}</p>
                   <TgChat title="AvtoPizza" minH={0}>
-                    <Bubble from="user">Margarita, Chilonzor 5</Bubble>
-                    <Bubble from="bot">Qabul qilindi ✅ Margarita (45 000 so'm) · Chilonzor 5 📍</Bubble>
+                    <Bubble from="user">{tr({ uz: 'Margarita, Chilonzor 5', ru: 'Маргарита, Чиланзар 5' })}</Bubble>
+                    <Bubble from="bot">{tr({ uz: "Qabul qilindi ✅ Margarita (45 000 so'm) · Chilonzor 5 📍", ru: 'Принято ✅ Маргарита (45 000 сум) · Чиланзар 5 📍' })}</Bubble>
                   </TgChat>
                 </div>
-              : <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>Tugmani bosing ←</p></div>}
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Endi narx ham ko'rinadi. Aniq fikr → aniq prompt → aniq tuzatish — bu ko'nikma har fikr uchun ishlaydi.</p></div>}
+              : <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Tugmani bosing ←', ru: 'Нажмите кнопку ←' })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Endi narx ham ko'rinadi. Aniq fikr → aniq prompt → aniq tuzatish — bu ko'nikma har fikr uchun ishlaydi.", ru: 'Теперь видна и цена. Чёткий отзыв → чёткий промпт → чёткая правка — этот навык работает с любым отзывом.' })}</p></div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -1601,28 +1633,34 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 };
 
 const Screen14 = (props) => (
-  <QuestionScreen {...props} idx={14} scope="module-mikro" eyebrow="Mashq · 4-savol"
+  <QuestionScreen {...props} idx={14} scope="module-mikro" eyebrow={{ uz: 'Mashq · 4-savol', ru: 'Практика · вопрос 4' }}
     questionText="Eng katta shikoyatni tuzatib, yangi versiyani chiqardingiz. Endi nima qilasiz?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-sub" style={{ marginTop: 8 }}>Eng katta shikoyatni tuzatib, yangi versiyani chiqardingiz. <span className="italic" style={{ color: T.accent }}>Endi</span> nima?</h2></>}
-    options={["Loyiha tugadi — bot endi mukammal, fikr kerak emas", "Qolgan hamma narsani ham birdan qayta yozaman", "Foydalanuvchilarni tinglashni to'xtataman — ortiqcha shovqin", "Qayta tinglayman: fix ishladimi tekshiraman va yangi fikrlarni yig'aman — aylana davom etadi"]} correctIdx={3}
-    explainCorrect="To'g'ri! Mahsulot hech qachon «tayyor» bo'lmaydi. Har tuzatishdan keyin qayta tinglaysiz: ishladimi va keyin nima muhim. Tingla → tuzat → qayta tingla — bu doimiy aylana, har muvaffaqiyatli mahsulotda shunday."
+    question={{ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-sub" style={{ marginTop: 8 }}>Eng katta shikoyatni tuzatib, yangi versiyani chiqardingiz. <span className="italic" style={{ color: T.accent }}>Endi</span> nima?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите верный ответ</p><h2 className="title h-sub" style={{ marginTop: 8 }}>Вы починили самую большую жалобу и выпустили новую версию. Что <span className="italic" style={{ color: T.accent }}>теперь</span>?</h2></> }}
+    options={[
+      { uz: "Loyiha tugadi — bot endi mukammal, fikr kerak emas", ru: 'Проект закончен — бот теперь идеален, отзывы не нужны' },
+      { uz: "Qolgan hamma narsani ham birdan qayta yozaman", ru: 'Перепишу всё остальное сразу' },
+      { uz: "Foydalanuvchilarni tinglashni to'xtataman — ortiqcha shovqin", ru: 'Перестану слушать пользователей — это лишний шум' },
+      { uz: "Qayta tinglayman: fix ishladimi tekshiraman va yangi fikrlarni yig'aman — aylana davom etadi", ru: 'Слушаю снова: проверю, сработала ли правка, и соберу новые отзывы — круг продолжается' }
+    ]} correctIdx={3}
+    explainCorrect={{ uz: "To'g'ri! Mahsulot hech qachon «tayyor» bo'lmaydi. Har tuzatishdan keyin qayta tinglaysiz: ishladimi va keyin nima muhim. Tingla → tuzat → qayta tingla — bu doimiy aylana, har muvaffaqiyatli mahsulotda shunday.", ru: 'Верно! Продукт никогда не бывает «готов». После каждой правки слушаете снова: сработало ли и что важно дальше. Слушай → чини → слушай снова — это постоянный круг любого успешного продукта.' }}
     explainWrong={{
-      0: "Hech bir mahsulot «mukammal» emas — ehtiyojlar o'zgaradi, yangi muammolar chiqadi. Tinglashni davom ettiring.",
-      1: "Hammasini birdan qayta yozish — xavfli va keraksiz. Yaxshilash bittadan, o'lchab boriladi.",
-      2: "Tinglashni to'xtatsangiz — mahsulot foydalanuvchidan uzoqlashadi. Fikr — eng qimmatli manba.",
-      default: "Qayta tinglaysiz — aylana davom etadi."
+      0: { uz: "Hech bir mahsulot «mukammal» emas — ehtiyojlar o'zgaradi, yangi muammolar chiqadi. Tinglashni davom ettiring.", ru: 'Ни один продукт не «идеален» — потребности меняются, появляются новые проблемы. Продолжайте слушать.' },
+      1: { uz: "Hammasini birdan qayta yozish — xavfli va keraksiz. Yaxshilash bittadan, o'lchab boriladi.", ru: 'Переписывать всё сразу — рискованно и незачем. Улучшают по одному, с измерением.' },
+      2: { uz: "Tinglashni to'xtatsangiz — mahsulot foydalanuvchidan uzoqlashadi. Fikr — eng qimmatli manba.", ru: 'Перестанете слушать — продукт отдалится от пользователя. Отзывы — самый ценный источник.' },
+      default: { uz: "Qayta tinglaysiz — aylana davom etadi.", ru: 'Слушаете снова — круг продолжается.' }
     }} />
 );
 
 // ===== SCREEN 15 — YAKUNIY: YAXSHILASH AYLANASINI TO'G'RI TARTIBDA YIG'ISH =====
 const FEEDBACK_CYCLE = [
-  { id: 'listen', ico: '👂', label: 'Tingla' },
-  { id: 'group', ico: '🗂️', label: 'Guruhla' },
-  { id: 'pick', ico: '🎯', label: 'Tanla' },
-  { id: 'fix', ico: '🔧', label: 'Tuzat' },
-  { id: 'relisten', ico: '🔁', label: 'Qayta tingla' }
+  { id: 'listen', ico: '👂', label: { uz: 'Tingla', ru: 'Слушай' } },
+  { id: 'group', ico: '🗂️', label: { uz: 'Guruhla', ru: 'Группируй' } },
+  { id: 'pick', ico: '🎯', label: { uz: 'Tanla', ru: 'Выбирай' } },
+  { id: 'fix', ico: '🔧', label: { uz: 'Tuzat', ru: 'Чини' } },
+  { id: 'relisten', ico: '🔁', label: { uz: 'Qayta tingla', ru: 'Слушай снова' } }
 ];
-const FEEDBACK_CYCLE_ITEMS = FEEDBACK_CYCLE.map(c => ({ id: c.id, label: `${c.ico} ${c.label}` }));
+// Yorliq {uz,ru} bo'lib saqlanadi — DragDropOrder render'da tr() qiladi; tartib-tekshiruv id bo'yicha (til-mustaqil).
+const FEEDBACK_CYCLE_ITEMS = FEEDBACK_CYCLE.map(c => ({ id: c.id, label: { uz: `${c.ico} ${c.label.uz}`, ru: `${c.ico} ${c.label.ru}` } }));
 const FEEDBACK_CYCLE_ORDER = FEEDBACK_CYCLE.map(c => c.id);
 const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [done, setDone] = useState(!!storedAnswer);
@@ -1644,18 +1682,24 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     if (!solved) hadWrongRef.current = true;
   };
   return (
-    <Stage eyebrow="Yakuniy · amaliy" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? 'Davom etish' : "Aylanani yig'ing"} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Yakuniy · amaliy', ru: 'Итог · практика' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "Aylanani yig'ing", ru: 'Соберите круг' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Oxirgi qadam: yaxshilash aylanasini <span className="italic" style={{ color: T.accent }}>to'g'ri tartibda</span> yig'ing.</h2></div>
-        <Mentor>Fikrdan yaxshilangan mahsulotgacha yo'l: tinglaysiz, guruhlaysiz, ustuvor tanlaysiz, tuzatasiz — va yana tinglaysiz. Bo'laklarni sudrab to'g'ri tartibga joylang.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Oxirgi qadam: yaxshilash aylanasini <span className="italic" style={{ color: T.accent }}>to'g'ri tartibda</span> yig'ing.</>, ru: <>Последний шаг: соберите круг улучшений <span className="italic" style={{ color: T.accent }}>в верном порядке</span>.</> })}</h2></div>
+        <Mentor>{tr({ uz: "Fikrdan yaxshilangan mahsulotgacha yo'l: tinglaysiz, guruhlaysiz, ustuvor tanlaysiz, tuzatasiz — va yana tinglaysiz. Bo'laklarni sudrab to'g'ri tartibga joylang.", ru: 'Путь от отзыва до улучшенного продукта: слушаете, группируете, выбираете приоритет, чините — и слушаете снова. Перетащите блоки в верном порядке.' })}</Mentor>
         <DragDropOrder
           items={FEEDBACK_CYCLE_ITEMS}
-          hints={["birinchi nima qilinadi", "keyin nima qilinadi", "keyin nima qilinadi", "keyin nima qilinadi", "eng oxiri nima qilinadi"]}
-          doneText="To'g'ri: Tingla → Guruhla → Tanla → Tuzat → Qayta tingla."
+          hints={[
+            { uz: 'birinchi nima qilinadi', ru: 'что делают первым' },
+            { uz: 'keyin nima qilinadi', ru: 'что делают потом' },
+            { uz: 'keyin nima qilinadi', ru: 'что делают потом' },
+            { uz: 'keyin nima qilinadi', ru: 'что делают потом' },
+            { uz: 'eng oxiri nima qilinadi', ru: 'что делают в самом конце' }
+          ]}
+          doneText={{ uz: "To'g'ri: Tingla → Guruhla → Tanla → Tuzat → Qayta tingla.", ru: 'Верно: Слушай → Группируй → Выбирай → Чини → Слушай снова.' }}
           onSolved={onSolved}
           onChange={onChange} />
-        {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>✓ Aylana tayyor: <b>Tingla → Guruhla → Tanla → Tuzat → Qayta tingla</b> → va yana boshlanadi ↻. Mahsulot doim yaxshilanadi.</p>
-          {hadWrongRef.current && <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>📖 Qisqa takrorlash — mavzuni yana bir ko'rish</button>}
+        {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ Aylana tayyor: <b>Tingla → Guruhla → Tanla → Tuzat → Qayta tingla</b> → va yana boshlanadi ↻. Mahsulot doim yaxshilanadi.</>, ru: <>✓ Круг готов: <b>Слушай → Группируй → Выбирай → Чини → Слушай снова</b> → и всё начинается заново ↻. Продукт улучшается постоянно.</> })}</p>
+          {hadWrongRef.current && <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: "📖 Qisqa takrorlash — mavzuni yana bir ko'rish", ru: '📖 Быстрое повторение — посмотреть тему ещё раз' })}</button>}
         </div>}
         {recapOpen && RECAPS[screen] && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} />}
       </div>
@@ -1665,10 +1709,10 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 
 // ===== 🏅 BADGES (nishonlar) — faqat REAL bosqichlar uchun (tekin emas) =====
 const ACHIEVEMENTS = {
-  signalFinder:  { icon: '📡', name: 'Signal Finder',   desc: "Qimmatli va foydasiz fikrlarni to'g'ri saraladingiz" },
-  funnelReader:  { icon: '🔻', name: 'Funnel Reader',   desc: "Voronkada eng katta yo'qotish qayerda ekanini topdingiz" },
-  rightFixFirst: { icon: '🎯', name: 'Right Fix First', desc: "Eng ta'sirli tuzatishni birinchi tanladingiz" },
-  loopCloser:    { icon: '🔁', name: 'Loop Closer',     desc: "Aylanani yopib, yangi versiyani chiqardingiz" },
+  signalFinder:  { icon: '📡', name: 'Signal Finder',   desc: { uz: "Qimmatli va foydasiz fikrlarni to'g'ri saraladingiz", ru: 'Вы верно разобрали ценные и бесполезные отзывы' } },
+  funnelReader:  { icon: '🔻', name: 'Funnel Reader',   desc: { uz: "Voronkada eng katta yo'qotish qayerda ekanini topdingiz", ru: 'Вы нашли, где в воронке самая большая потеря' } },
+  rightFixFirst: { icon: '🎯', name: 'Right Fix First', desc: { uz: "Eng ta'sirli tuzatishni birinchi tanladingiz", ru: 'Вы первым выбрали самое влиятельное исправление' } },
+  loopCloser:    { icon: '🔁', name: 'Loop Closer',     desc: { uz: "Aylanani yopib, yangi versiyani chiqardingiz", ru: 'Вы замкнули круг и выпустили новую версию' } },
 };
 // Ekran id → nishon. ❗ FAQAT ma'noli ekranlar: s7 (markaziy — saralash/voronka/ustuvorlik, har biri REAL xato imkoni bilan)
 // · s15 (final — DragDropOrder, 1-urinishda to'g'ri tartib). «Signal Finder»/«Funnel Reader»/«Right Fix First» — hammasi
@@ -1678,7 +1722,7 @@ const ACH_TRIGGERS = { s15: 'loopCloser' };
 function AchCelebrate({ ach, onDone }) {
   useEffect(() => { const t = setTimeout(onDone, 4000); return () => clearTimeout(t); }, []); // eslint-disable-line
   return (
-    <div className="acu-overlay" onClick={onDone} role="status" aria-label={`Yangi nishon: ${ach.name}`}>
+    <div className="acu-overlay" onClick={onDone} role="status" aria-label={tr({ uz: `Yangi nishon: ${ach.name}`, ru: `Новый значок: ${ach.name}` })}>
       <div className="acu-rays" aria-hidden="true" />
       <div className="acu-glow" aria-hidden="true" />
       <div className="acu-ring" aria-hidden="true" />
@@ -1691,10 +1735,10 @@ function AchCelebrate({ ach, onDone }) {
           ))}
         </div>
         <div className="acu-txt">
-          <span className="acu-name">{ach.name}</span>
-          {ach.desc && <span className="acu-desc">{ach.desc}</span>}
+          <span className="acu-name">{tr(ach.name)}</span>
+          {ach.desc && <span className="acu-desc">{tr(ach.desc)}</span>}
         </div>
-        <span className="acu-tap">bosib davom eting</span>
+        <span className="acu-tap">{tr({ uz: 'bosib davom eting', ru: 'нажмите, чтобы продолжить' })}</span>
       </div>
     </div>
   );
@@ -1730,7 +1774,13 @@ const Confetti = () => {
 
 
 // Podium savol yorliqlari (SCORED_IDX indekslariga mos: 4, 8, 10, 14, 15)
-const Q_LABELS = { 4: '1 — Fikr turi', 8: '2 — Ustuvorlik', 10: '3 — Fokus', 14: '4 — Iteratsiya', 15: '5 — Aylana tartibi' };
+const Q_LABELS = {
+  4: { uz: '1 — Fikr turi', ru: '1 — Тип отзыва' },
+  8: { uz: '2 — Ustuvorlik', ru: '2 — Приоритет' },
+  10: { uz: '3 — Fokus', ru: '3 — Фокус' },
+  14: { uz: '4 — Iteratsiya', ru: '4 — Итерация' },
+  15: { uz: '5 — Aylana tartibi', ru: '5 — Порядок круга' }
+};
 const QUIZ_MS = 15000;
 // Kapsula ichida suzuvchi tokenlar — darsning "DNK"si (fikr va iteratsiya atamalari)
 const QZ_BG_SHAPES = [
@@ -1752,18 +1802,18 @@ const QZ_BG_SHAPES = [
 // ⚡ Mustahkamlash-jang savollari — to'g'ri javoblar 4 pozitsiyaga TENG (12 savol: 3/3/3/3, mexanik ketma-ketlik yo'q).
 // 🎓 Metodist: savol matni va variant uzunliklari sayqallanadi · ⚡ Jonli: `correct` qiymatlari INLINE_KEYS bilan sinxron tekshiriladi.
 const QUIZ_BANK = [
-  { q: "Foydalanuvchi «menyu tugmasini topolmadim» dedi. Bu qanday fikr?", opts: ["Maqtov — botdan mamnunligini bildiradi", "Buzuq (bug) yoki chalkashlik — aniq joy va muammo ko'rsatilgan", "Taklif — hozir yo'q narsa so'ralgan", "Ahamiyatsiz shovqin — e'tibor berish shart emas"], correct: 1 },
-  { q: "«Yaxshi bot 👍» degan fikr nega kam foydali?", opts: ["Chunki u salbiy fikr hisoblanadi", "Chunki juda uzun yozilgan", "Chunki botni yomon ko'rsatadi", "Chunki aniq muammo yoki joy ko'rsatilmagan"], correct: 3 },
-  { q: "18 kishi bitta shikoyat qildi, 1 kishi boshqasini aytdi. Qaysi biri ko'proq pattern?", opts: ["18 kishilik shikoyat — ko'pchilik aytgan, pattern kuchli", "1 kishilik shikoyat — kamdan-kam, demak muhimroq", "Ikkalasi teng ahamiyatga ega", "Sonlar ahamiyatsiz, faqat hissiyot muhim"], correct: 0 },
-  { q: "Ustuvorlik (prioritet) formulasi qanday hisoblanadi?", opts: ["Faqat chastota — ko'p aytilgani birinchi", "Faqat ta'sir — kam aytilsa ham og'riqli bo'lsa birinchi", "Chastota × ta'sir — ikkalasi birga hisoblanadi", "Fikr kelgan tartib bo'yicha — birinchi kelgan birinchi"], correct: 2 },
-  { q: "Voronkada (funnel) eng katta yo'qotish qayerda ko'rinadi?", opts: ["Foydalanuvchi soni eng ko'p bo'lgan qadamda", "Bir qadamdan ikkinchisiga o'tishda odam soni eng ko'p kamaygan joyda", "Botning javob tezligi eng past bo'lgan joyda", "Eng ko'p maqtov kelgan qadamda"], correct: 1 },
-  { q: "Menyu tugmasi tuzatilgach, 60 kishidan 15 tasi ketib qoldi. Bu nimani bildiradi?", opts: ["Tuzatish ishlamadi — hali ham hammasi ketib qolyapti", "Sonlar tasodifiy — hech narsa xulosa qilib bo'lmaydi", "Endi yana yangi bug paydo bo'ldi", "Tuzatish ishladi — muammo sezilarli kamaydi"], correct: 3 },
-  { q: "«Bot ahmoq» sharhiga alohida javob yozish nega eng ta'sirli tuzatish emas?", opts: ["Chunki aniq muammo ko'rsatilmagan — nimani tuzatishni bilib bo'lmaydi", "Chunki bu sharh juda uzun", "Chunki foydalanuvchi noto'g'ri yozgan", "Chunki bunday sharh hech qachon kelmaydi"], correct: 0 },
-  { q: "100 dan 1 tasi juda o'ziga xos, faqat unga kerakli narsa so'radi. Nima qilish kerak?", opts: ["Darrov qo'shish — har so'rov bajarilishi shart", "Foydalanuvchini bloklash", "Ko'pchilikka foyda beradiganga ustuvorlik berib, tor so'rovga «hozir emas» deyish", "Hech qanday tartibsiz, navbat bilan qo'shish"], correct: 2 },
-  { q: "Tuzatishdan keyin nima qilish kerak?", opts: ["Hech narsa — tuzatish har doim ishlaydi deb ishonish kerak", "Qayta o'lchash — o'sha shikoyat kamaydimi tekshirish", "Darhol yana boshqa katta o'zgarish qilish", "Fikr yig'ishni to'xtatish, chunki hammasi tuzatildi"], correct: 1 },
-  { q: "Mahsulot qachon «tayyor» bo'ladi?", opts: ["Hech qachon — u doim yaxshilanadi (iteratsiya)", "Birinchi versiyada — keyin o'zgartirish shart emas", "Faqat testlar 100% o'tganda", "Mijozlar hech qachon shikoyat qilmaganda"], correct: 0 },
-  { q: "Noaniq fikr («menyu chalkash») bilan aniq o'zgarish o'rtasidagi farq nima?", opts: ["Farqi yo'q, ikkalasi ham bir xil ishlatiladi", "Noaniq fikr har doim yolg'on bo'ladi", "Aniq o'zgarish faqat dasturchiga kerak, fikr kerak emas", "Aniq o'zgarish AI bajara oladigan konkret vazifa, noaniq fikr esa shunchaki shikoyat"], correct: 3 },
-  { q: "Maqtovni («tez va qulay, rahmat!») nima uchun e'tiborsiz qoldirmaslik kerak?", opts: ["Chunki maqtovni har doim tuzatish kerak", "Chunki maqtov ko'pchilik uchun muhim emas", "Chunki u nima yaxshi ishlayotganini ko'rsatadi — tuzatishda uni buzib qo'ymaslik kerak", "Chunki maqtov har doim yolg'on bo'ladi"], correct: 2 },
+  { q: { uz: "Foydalanuvchi «menyu tugmasini topolmadim» dedi. Bu qanday fikr?", ru: 'Пользователь сказал «не нашёл кнопку меню». Что это за отзыв?' }, opts: [{ uz: "Maqtov — botdan mamnunligini bildiradi", ru: 'Похвала — говорит, что доволен ботом' }, { uz: "Buzuq (bug) yoki chalkashlik — aniq joy va muammo ko'rsatilgan", ru: 'Баг или путаница — названы конкретное место и проблема' }, { uz: "Taklif — hozir yo'q narsa so'ralgan", ru: 'Предложение — просят то, чего пока нет' }, { uz: "Ahamiyatsiz shovqin — e'tibor berish shart emas", ru: 'Незначимый шум — можно не обращать внимания' }], correct: 1 },
+  { q: { uz: "«Yaxshi bot 👍» degan fikr nega kam foydali?", ru: 'Почему отзыв «Хороший бот 👍» мало полезен?' }, opts: [{ uz: "Chunki u salbiy fikr hisoblanadi", ru: 'Потому что он считается негативным' }, { uz: "Chunki juda uzun yozilgan", ru: 'Потому что он слишком длинный' }, { uz: "Chunki botni yomon ko'rsatadi", ru: 'Потому что он выставляет бота плохо' }, { uz: "Chunki aniq muammo yoki joy ko'rsatilmagan", ru: 'Потому что не названы ни конкретная проблема, ни место' }], correct: 3 },
+  { q: { uz: "18 kishi bitta shikoyat qildi, 1 kishi boshqasini aytdi. Qaysi biri ko'proq pattern?", ru: '18 человек пожаловались на одно, 1 человек — на другое. Что больше похоже на паттерн?' }, opts: [{ uz: "18 kishilik shikoyat — ko'pchilik aytgan, pattern kuchli", ru: 'Жалоба от 18 человек — говорит большинство, паттерн сильный' }, { uz: "1 kishilik shikoyat — kamdan-kam, demak muhimroq", ru: 'Жалоба от 1 человека — редкая, значит важнее' }, { uz: "Ikkalasi teng ahamiyatga ega", ru: 'Обе одинаково важны' }, { uz: "Sonlar ahamiyatsiz, faqat hissiyot muhim", ru: 'Цифры не важны, важны только эмоции' }], correct: 0 },
+  { q: { uz: "Ustuvorlik (prioritet) formulasi qanday hisoblanadi?", ru: 'Как считается формула приоритета?' }, opts: [{ uz: "Faqat chastota — ko'p aytilgani birinchi", ru: 'Только частота — что чаще называют, то и первым' }, { uz: "Faqat ta'sir — kam aytilsa ham og'riqli bo'lsa birinchi", ru: 'Только влияние — если больно, то первым, даже если редко' }, { uz: "Chastota × ta'sir — ikkalasi birga hisoblanadi", ru: 'Частота × влияние — считают оба вместе' }, { uz: "Fikr kelgan tartib bo'yicha — birinchi kelgan birinchi", ru: 'По порядку поступления — что пришло первым, то и первое' }], correct: 2 },
+  { q: { uz: "Voronkada (funnel) eng katta yo'qotish qayerda ko'rinadi?", ru: 'Где в воронке видна самая большая потеря?' }, opts: [{ uz: "Foydalanuvchi soni eng ko'p bo'lgan qadamda", ru: 'На шаге, где больше всего пользователей' }, { uz: "Bir qadamdan ikkinchisiga o'tishda odam soni eng ko'p kamaygan joyda", ru: 'Там, где при переходе с шага на шаг число людей падает сильнее всего' }, { uz: "Botning javob tezligi eng past bo'lgan joyda", ru: 'Там, где бот отвечает медленнее всего' }, { uz: "Eng ko'p maqtov kelgan qadamda", ru: 'На шаге, где больше всего похвалы' }], correct: 1 },
+  { q: { uz: "Menyu tugmasi tuzatilgach, 60 kishidan 15 tasi ketib qoldi. Bu nimani bildiradi?", ru: 'После починки кнопки меню из 60 человек ушли 15. О чём это говорит?' }, opts: [{ uz: "Tuzatish ishlamadi — hali ham hammasi ketib qolyapti", ru: 'Правка не сработала — уходят по-прежнему все' }, { uz: "Sonlar tasodifiy — hech narsa xulosa qilib bo'lmaydi", ru: 'Цифры случайны — никаких выводов сделать нельзя' }, { uz: "Endi yana yangi bug paydo bo'ldi", ru: 'Появился ещё один новый баг' }, { uz: "Tuzatish ishladi — muammo sezilarli kamaydi", ru: 'Правка сработала — проблема заметно уменьшилась' }], correct: 3 },
+  { q: { uz: "«Bot ahmoq» sharhiga alohida javob yozish nega eng ta'sirli tuzatish emas?", ru: 'Почему ответ на отзыв «Бот тупой» — не самая влиятельная правка?' }, opts: [{ uz: "Chunki aniq muammo ko'rsatilmagan — nimani tuzatishni bilib bo'lmaydi", ru: 'Потому что конкретная проблема не названа — непонятно, что чинить' }, { uz: "Chunki bu sharh juda uzun", ru: 'Потому что отзыв слишком длинный' }, { uz: "Chunki foydalanuvchi noto'g'ri yozgan", ru: 'Потому что пользователь написал неправильно' }, { uz: "Chunki bunday sharh hech qachon kelmaydi", ru: 'Потому что таких отзывов не бывает' }], correct: 0 },
+  { q: { uz: "100 dan 1 tasi juda o'ziga xos, faqat unga kerakli narsa so'radi. Nima qilish kerak?", ru: '1 из 100 просит очень особенное, нужное только ему. Что делать?' }, opts: [{ uz: "Darrov qo'shish — har so'rov bajarilishi shart", ru: 'Добавить сразу — каждая просьба должна быть выполнена' }, { uz: "Foydalanuvchini bloklash", ru: 'Заблокировать пользователя' }, { uz: "Ko'pchilikka foyda beradiganga ustuvorlik berib, tor so'rovga «hozir emas» deyish", ru: 'Отдать приоритет пользе большинства, а узкой просьбе сказать «не сейчас»' }, { uz: "Hech qanday tartibsiz, navbat bilan qo'shish", ru: 'Добавлять всё подряд по очереди, без разбора' }], correct: 2 },
+  { q: { uz: "Tuzatishdan keyin nima qilish kerak?", ru: 'Что нужно сделать после правки?' }, opts: [{ uz: "Hech narsa — tuzatish har doim ishlaydi deb ishonish kerak", ru: 'Ничего — надо верить, что правка всегда работает' }, { uz: "Qayta o'lchash — o'sha shikoyat kamaydimi tekshirish", ru: 'Измерить заново — проверить, стало ли меньше той жалобы' }, { uz: "Darhol yana boshqa katta o'zgarish qilish", ru: 'Сразу вносить ещё одно большое изменение' }, { uz: "Fikr yig'ishni to'xtatish, chunki hammasi tuzatildi", ru: 'Перестать собирать отзывы, ведь всё починено' }], correct: 1 },
+  { q: { uz: "Mahsulot qachon «tayyor» bo'ladi?", ru: 'Когда продукт становится «готовым»?' }, opts: [{ uz: "Hech qachon — u doim yaxshilanadi (iteratsiya)", ru: 'Никогда — он улучшается постоянно (итерация)' }, { uz: "Birinchi versiyada — keyin o'zgartirish shart emas", ru: 'В первой версии — дальше менять не нужно' }, { uz: "Faqat testlar 100% o'tganda", ru: 'Только когда все тесты пройдены на 100%' }, { uz: "Mijozlar hech qachon shikoyat qilmaganda", ru: 'Когда клиенты вообще перестанут жаловаться' }], correct: 0 },
+  { q: { uz: "Noaniq fikr («menyu chalkash») bilan aniq o'zgarish o'rtasidagi farq nima?", ru: 'В чём разница между размытым отзывом («меню запутанное») и конкретным изменением?' }, opts: [{ uz: "Farqi yo'q, ikkalasi ham bir xil ishlatiladi", ru: 'Разницы нет, применяются одинаково' }, { uz: "Noaniq fikr har doim yolg'on bo'ladi", ru: 'Размытый отзыв всегда неправда' }, { uz: "Aniq o'zgarish faqat dasturchiga kerak, fikr kerak emas", ru: 'Конкретное изменение нужно только программисту, а отзыв не нужен' }, { uz: "Aniq o'zgarish AI bajara oladigan konkret vazifa, noaniq fikr esa shunchaki shikoyat", ru: 'Конкретное изменение — задача, которую AI может выполнить, а размытый отзыв — просто жалоба' }], correct: 3 },
+  { q: { uz: "Maqtovni («tez va qulay, rahmat!») nima uchun e'tiborsiz qoldirmaslik kerak?", ru: 'Почему нельзя игнорировать похвалу («быстро и удобно, спасибо!»)?' }, opts: [{ uz: "Chunki maqtovni har doim tuzatish kerak", ru: 'Потому что похвалу всегда нужно чинить' }, { uz: "Chunki maqtov ko'pchilik uchun muhim emas", ru: 'Потому что похвала не важна большинству' }, { uz: "Chunki u nima yaxshi ishlayotganini ko'rsatadi — tuzatishda uni buzib qo'ymaslik kerak", ru: 'Потому что она показывает, что работает хорошо — при правках это нельзя сломать' }, { uz: "Chunki maqtov har doim yolg'on bo'ladi", ru: 'Потому что похвала всегда неискренняя' }], correct: 2 },
 ];
 
 const CsNeonBolt = ({ flip }) => (
@@ -1806,9 +1856,9 @@ const CsWordmark = ({ onClick, disabled, hint, stats = true, bolt = true, liveOn
       </div>
       {stats && (
         <div className="cs-hud">
-          <span className="cs-hud-i"><b>{QUIZ_BANK.length}</b> SAVOL</span>
+          <span className="cs-hud-i"><b>{QUIZ_BANK.length}</b> {tr({ uz: 'SAVOL', ru: 'ВОПРОСОВ' })}</span>
           <span className="cs-hud-dot">·</span>
-          <span className="cs-hud-i"><b>{QUIZ_MS / 1000}</b> SONIYA</span>
+          <span className="cs-hud-i"><b>{QUIZ_MS / 1000}</b> {tr({ uz: 'SONIYA', ru: 'СЕКУНД' })}</span>
           <span className="cs-hud-dot">·</span>
           <span className="cs-hud-i">🏆 PODIUM</span>
         </div>
@@ -2014,7 +2064,7 @@ function QuizArena({ live, onClose, startSolo }) {
 
   const closeArena = () => {
     if (isMentor && !solo && phase !== 'done') {
-      if (typeof window !== 'undefined' && !window.confirm("Test hali yakunlanmadi — yopsangiz o'quvchilar arenada kutib qoladi.\nBaribir yopilsinmi?")) return;
+      if (typeof window !== 'undefined' && !window.confirm(tr({ uz: "Test hali yakunlanmadi — yopsangiz o'quvchilar arenada kutib qoladi.\nBaribir yopilsinmi?", ru: 'Тест ещё не завершён — если закрыть, ученики останутся ждать на арене.\nВсё равно закрыть?' }))) return;
     }
     onClose();
   };
@@ -2027,58 +2077,58 @@ function QuizArena({ live, onClose, startSolo }) {
         ))}
       </div>
       <QzFX />
-      <button className="qz-x" onClick={closeArena} aria-label="Yopish">✕</button>
+      <button className="qz-x" onClick={closeArena} aria-label={tr({ uz: 'Yopish', ru: 'Закрыть' })}>✕</button>
 
       {classEnded && isStudent && !solo && phase !== 'done' && (
         <div className="qz-endnote fade-step">
-          <span>⚠️ Jonli dars yakunlandi — testni o'zingiz davom ettiring:</span>
-          <button className="qz-btn" onClick={startPractice}>📖 Mashq rejimida davom etish</button>
+          <span>{tr({ uz: "⚠️ Jonli dars yakunlandi — testni o'zingiz davom ettiring:", ru: '⚠️ Живой урок завершён — продолжите тест самостоятельно:' })}</span>
+          <button className="qz-btn" onClick={startPractice}>{tr({ uz: '📖 Mashq rejimida davom etish', ru: '📖 Продолжить в режиме тренировки' })}</button>
         </div>
       )}
 
       {phase === 'lobby' && (
         <div className="qz-view fade-step">
           <CsWordmark />
-          <p className="qz-sub" style={{ marginTop: -4 }}>Tezroq to'g'ri bossangiz — ko'proq ball. Ketma-ket to'g'ri javoblar 🔥 bonus beradi!</p>
+          <p className="qz-sub" style={{ marginTop: -4 }}>{tr({ uz: "Tezroq to'g'ri bossangiz — ko'proq ball. Ketma-ket to'g'ri javoblar 🔥 bonus beradi!", ru: 'Чем быстрее верный ответ — тем больше баллов. Ответы подряд дают 🔥 бонус!' })}</p>
           {!solo && (
             <div className="qz-lobby-players">
               {players.map(p => <span key={p.id} className={`qz-pchip ${p.id === live.playerId ? 'me' : ''}`}>{p.nickname}</span>)}
-              {players.length === 0 && <span className="qz-dimtxt">O'quvchilar kutilmoqda…</span>}
+              {players.length === 0 && <span className="qz-dimtxt">{tr({ uz: "O'quvchilar kutilmoqda…", ru: 'Ждём учеников…' })}</span>}
             </div>
           )}
-          {isMentor && <button className="qz-btn big" disabled={players.length === 0} onClick={() => ctrl('q', 0)}>▶ Testni boshlash</button>}
-          {isStudent && !solo && <p className="qz-waitmsg">⏳ Mentor testni boshlashini kuting…</p>}
-          {solo && <button className="qz-btn big" onClick={() => soloStart(0)}>▶ Boshlash</button>}
+          {isMentor && <button className="qz-btn big" disabled={players.length === 0} onClick={() => ctrl('q', 0)}>{tr({ uz: '▶ Testni boshlash', ru: '▶ Начать тест' })}</button>}
+          {isStudent && !solo && <p className="qz-waitmsg">{tr({ uz: '⏳ Mentor testni boshlashini kuting…', ru: '⏳ Дождитесь, пока ментор начнёт тест…' })}</p>}
+          {solo && <button className="qz-btn big" onClick={() => soloStart(0)}>{tr({ uz: '▶ Boshlash', ru: '▶ Начать' })}</button>}
         </div>
       )}
 
       {phase === 'q' && Q && (
         <div className="qz-view qz-qview fade-step" key={`q${qi}`}>
           <div className="qz-top">
-            <span className="qz-count">Savol <b>{qi + 1}</b>/{QUIZ_BANK.length}</span>
+            <span className="qz-count">{tr({ uz: 'Savol', ru: 'Вопрос' })} <b>{qi + 1}</b>/{QUIZ_BANK.length}</span>
             <QzTimer remaining={remaining} />
             {isMentor
               ? <span className="qz-ansn">📨 {answeredN}/{players.length}</span>
               : <span className="qz-ansn">{streakUpTo(qi - 1) >= 2 ? `🔥 x${streakUpTo(qi - 1)}` : ' '}</span>}
           </div>
-          <h2 className="qz-q">{fmtCode(Q.q)}</h2>
+          <h2 className="qz-q">{fmtCode(tr(Q.q))}</h2>
           <div className="qz-grid">
             {Q.opts.map((o, i) => {
               const pickedThis = my && my.picked === i;
               return (
                 <button key={i} className={`qz-tile ${my ? (pickedThis ? 'picked' : 'faded') : ''}`} style={{ background: QUIZ_COLORS[i] }} disabled={isMentor || !!my} onClick={() => answer(i)}>
                   <span className="qz-shape">{QUIZ_SHAPES[i]}</span>
-                  <span className="qz-opt">{fmtCode(o)}</span>
+                  <span className="qz-opt">{fmtCode(tr(o))}</span>
                   {pickedThis && <span className="qz-pbadge">✔</span>}
                 </button>
               );
             })}
           </div>
-          {my && !isMentor && !solo && <p className="qz-waitmsg">✔ Javob qabul qilindi — natijani kuting…</p>}
+          {my && !isMentor && !solo && <p className="qz-waitmsg">{tr({ uz: '✔ Javob qabul qilindi — natijani kuting…', ru: '✔ Ответ принят — ждите результат…' })}</p>}
           {isMentor && (
             <div className="qz-mrow">
-              {answeredN >= players.length && players.length > 0 && <span className="qz-allin">✓ Hamma javob berdi!</span>}
-              <button className="qz-btn" onClick={() => ctrl('r', qi)}>⏹ Natijani ochish</button>
+              {answeredN >= players.length && players.length > 0 && <span className="qz-allin">{tr({ uz: '✓ Hamma javob berdi!', ru: '✓ Все ответили!' })}</span>}
+              <button className="qz-btn" onClick={() => ctrl('r', qi)}>{tr({ uz: '⏹ Natijani ochish', ru: '⏹ Открыть результат' })}</button>
             </div>
           )}
         </div>
@@ -2087,9 +2137,9 @@ function QuizArena({ live, onClose, startSolo }) {
       {phase === 'reveal' && Q && (
         <div className="qz-view qz-qview fade-step" key={`r${qi}`}>
           <div className="qz-top">
-            <span className="qz-count">Savol <b>{qi + 1}</b>/{QUIZ_BANK.length} — natija</span>
+            <span className="qz-count">{tr({ uz: 'Savol', ru: 'Вопрос' })} <b>{qi + 1}</b>/{QUIZ_BANK.length} — {tr({ uz: 'natija', ru: 'результат' })}</span>
           </div>
-          <h2 className="qz-q">{fmtCode(Q.q)}</h2>
+          <h2 className="qz-q">{fmtCode(tr(Q.q))}</h2>
           <div className="qz-grid">
             {Q.opts.map((o, i) => {
               const win = i === Q.correct;
@@ -2097,7 +2147,7 @@ function QuizArena({ live, onClose, startSolo }) {
               return (
                 <div key={i} className={`qz-tile rv ${win ? 'win' : 'lose'} ${pickedThis ? 'picked' : ''}`} style={{ background: QUIZ_COLORS[i] }}>
                   <span className="qz-shape">{QUIZ_SHAPES[i]}</span>
-                  <span className="qz-opt">{fmtCode(o)}</span>
+                  <span className="qz-opt">{fmtCode(tr(o))}</span>
                   <span className="qz-cnt">{win ? '✓ ' : ''}{counts[i]}</span>
                 </div>
               );
@@ -2106,9 +2156,9 @@ function QuizArena({ live, onClose, startSolo }) {
           {!isMentor && (
             <div className={`qz-res ${my?.correct ? 'good' : 'bad'}`}>
               {my?.correct
-                ? <><span className="qz-res-pts">+{myPtsFor(qi)}</span><span className="qz-res-t">ball{streakUpTo(qi) >= 2 ? ` · 🔥 x${streakUpTo(qi)} streak` : ''}</span></>
-                : <span className="qz-res-t">{my ? "Xato — 0 ball. Keyingisida olasiz! 💪" : "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱"}</span>}
-              {!solo && myRank >= 0 && <span className="qz-res-rank">Siz hozir: {myRank + 1}-o'rin</span>}
+                ? <><span className="qz-res-pts">+{myPtsFor(qi)}</span><span className="qz-res-t">{tr({ uz: 'ball', ru: 'баллов' })}{streakUpTo(qi) >= 2 ? ` · 🔥 x${streakUpTo(qi)} streak` : ''}</span></>
+                : <span className="qz-res-t">{my ? tr({ uz: "Xato — 0 ball. Keyingisida olasiz! 💪", ru: 'Неверно — 0 баллов. В следующий раз получится! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Будьте быстрее! ⏱' })}</span>}
+              {!solo && myRank >= 0 && <span className="qz-res-rank">{tr({ uz: `Siz hozir: ${myRank + 1}-o'rin`, ru: `Вы сейчас: ${myRank + 1}-е место` })}</span>}
             </div>
           )}
           {!solo && (
@@ -2123,20 +2173,20 @@ function QuizArena({ live, onClose, startSolo }) {
               ))}
             </div>
           )}
-          {isMentor && <button className="qz-btn big" onClick={() => lastQ ? ctrl('done', qi) : ctrl('q', qi + 1)}>{lastQ ? "🏁 G'oliblarni e'lon qilish" : 'Keyingi savol →'}</button>}
-          {solo && <button className="qz-btn big" onClick={soloNext}>{lastQ ? '🏁 Natijani ko\'rish' : 'Keyingi →'}</button>}
+          {isMentor && <button className="qz-btn big" onClick={() => lastQ ? ctrl('done', qi) : ctrl('q', qi + 1)}>{lastQ ? tr({ uz: "🏁 G'oliblarni e'lon qilish", ru: '🏁 Объявить победителей' }) : tr({ uz: 'Keyingi savol →', ru: 'Следующий вопрос →' })}</button>}
+          {solo && <button className="qz-btn big" onClick={soloNext}>{lastQ ? tr({ uz: '🏁 Natijani ko\'rish', ru: '🏁 Посмотреть результат' }) : tr({ uz: 'Keyingi →', ru: 'Дальше →' })}</button>}
         </div>
       )}
 
       {phase === 'done' && (
         <div className="qz-view fade-step">
           <Confetti />
-          <h2 className="qz-h">🏆 Test yakunlandi!</h2>
+          <h2 className="qz-h">{tr({ uz: '🏆 Test yakunlandi!', ru: '🏆 Тест завершён!' })}</h2>
           {solo ? (
             <div className="qz-solo-res">
               <div className="qz-solo-pts">{soloScore.pts}</div>
-              <p className="qz-sub">ball · {soloScore.ok}/{QUIZ_BANK.length} to'g'ri{soloScore.maxStreak >= 2 ? ` · eng uzun streak 🔥x${soloScore.maxStreak}` : ''}</p>
-              <button className="qz-btn big" onClick={soloReplay}>↻ Qayta ishlash</button>
+              <p className="qz-sub">{tr({ uz: 'ball', ru: 'баллов' })} · {soloScore.ok}/{QUIZ_BANK.length} {tr({ uz: "to'g'ri", ru: 'верно' })}{soloScore.maxStreak >= 2 ? ` · ${tr({ uz: 'eng uzun streak', ru: 'самая длинная серия' })} 🔥x${soloScore.maxStreak}` : ''}</p>
+              <button className="qz-btn big" onClick={soloReplay}>{tr({ uz: '↻ Qayta ishlash', ru: '↻ Пройти заново' })}</button>
             </div>
           ) : (
             <>
@@ -2148,13 +2198,13 @@ function QuizArena({ live, onClose, startSolo }) {
                       {rank === 0 && <span className="qz-crown">👑</span>}
                       <span className="qz-pod-medal">{['🥇', '🥈', '🥉'][rank]}</span>
                       <span className="qz-pod-name">{b ? b.nickname : '—'}</span>
-                      {b && <span className="qz-pod-pts">{b.pts} ball · {b.ok}/{QUIZ_BANK.length}</span>}
+                      {b && <span className="qz-pod-pts">{b.pts} {tr({ uz: 'ball', ru: 'баллов' })} · {b.ok}/{QUIZ_BANK.length}</span>}
                       <div className="qz-pod-bar" />
                     </div>
                   );
                 })}
               </div>
-              {myRank >= 0 && <p className="qz-mypl">Siz — <b>{myRank + 1}-o'rin</b> · {board[myRank].pts} ball</p>}
+              {myRank >= 0 && <p className="qz-mypl">{tr({ uz: <>Siz — <b>{myRank + 1}-o'rin</b> · {board[myRank].pts} ball</>, ru: <>Вы — <b>{myRank + 1}-е место</b> · {board[myRank].pts} баллов</> })}</p>}
               <div className="qz-board wide">
                 {board.map((b, i) => (
                   <div key={b.id} className={`qz-brow ${b.id === live.playerId ? 'me' : ''}`}>
@@ -2165,10 +2215,10 @@ function QuizArena({ live, onClose, startSolo }) {
                   </div>
                 ))}
               </div>
-              {isStudent && <button className="qz-btn" onClick={startPractice}>↻ Testni qayta ishlash — mashq (jadvalga yozilmaydi)</button>}
+              {isStudent && <button className="qz-btn" onClick={startPractice}>{tr({ uz: '↻ Testni qayta ishlash — mashq (jadvalga yozilmaydi)', ru: '↻ Пройти тест заново — тренировка (в таблицу не идёт)' })}</button>}
             </>
           )}
-          <button className="qz-btn ghost" onClick={closeArena}>Arenani yopish</button>
+          <button className="qz-btn ghost" onClick={closeArena}>{tr({ uz: 'Arenani yopish', ru: 'Закрыть арену' })}</button>
         </div>
       )}
     </div>
@@ -2211,18 +2261,18 @@ const ScreenPodium = ({ screen, answers, onNext, onPrev }) => {
   const selfCorrect = SCORED_IDX.filter(i => answers[i]?.correct).length;
 
   return (
-    <Stage eyebrow="Natijalar" screen={screen} narrow navContent={<><NavBack onPrev={onPrev} /><NavNext label="Davom etish" onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Natijalar', ru: 'Результаты' })} screen={screen} narrow navContent={<><NavBack onPrev={onPrev} /><NavNext label={{ uz: 'Davom etish', ru: 'Продолжить' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(14px,2.2vw,20px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Kim <span className="italic" style={{ color: T.accent }}>g'olib</span>?</h2></div>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Kim <span className="italic" style={{ color: T.accent }}>g'olib</span>?</>, ru: <>Кто <span className="italic" style={{ color: T.accent }}>победил</span>?</> })}</h2></div>
         {!isLive ? (
           <div className="fade-up" style={{ display: 'flex', flexDirection: 'column', gap: 16, alignItems: 'center' }}>
             <ScoreRing correct={selfCorrect} total={totalQ} />
-            <div className="frame-soft" style={{ maxWidth: 480 }}><p className="body" style={{ margin: 0 }}>Siz mustaqil rejimdasiz. Jonli darsda bu yerda butun guruh reytingi — 🥇🥈🥉 podium chiqadi.</p></div>
+            <div className="frame-soft" style={{ maxWidth: 480 }}><p className="body" style={{ margin: 0 }}>{tr({ uz: 'Siz mustaqil rejimdasiz. Jonli darsda bu yerda butun guruh reytingi — 🥇🥈🥉 podium chiqadi.', ru: 'Вы в самостоятельном режиме. На живом уроке здесь появляется рейтинг всей группы — подиум 🥇🥈🥉.' })}</p></div>
           </div>
         ) : !loaded ? (
-          <p className="mono small fade-up" style={{ color: T.ink2 }}>Natijalar yuklanmoqda…</p>
+          <p className="mono small fade-up" style={{ color: T.ink2 }}>{tr({ uz: 'Natijalar yuklanmoqda…', ru: 'Загружаем результаты…' })}</p>
         ) : board.length === 0 ? (
-          <div className="frame-soft fade-up"><p className="body" style={{ margin: 0 }}>Bu sessiyaga hali hech kim qo'shilmagan.</p></div>
+          <div className="frame-soft fade-up"><p className="body" style={{ margin: 0 }}>{tr({ uz: "Bu sessiyaga hali hech kim qo'shilmagan.", ru: 'К этой сессии пока никто не присоединился.' })}</p></div>
         ) : (
           <>
             <Confetti />
@@ -2239,15 +2289,15 @@ const ScreenPodium = ({ screen, answers, onNext, onPrev }) => {
                 );
               })}
             </div>
-            {myIdx >= 0 && <p className="pod-my fade-up">Siz — <b>{myIdx + 1}-o'rin</b> ({board[myIdx].okCount}/{totalQ} to'g'ri)</p>}
+            {myIdx >= 0 && <p className="pod-my fade-up">{tr({ uz: <>Siz — <b>{myIdx + 1}-o'rin</b> ({board[myIdx].okCount}/{totalQ} to'g'ri)</>, ru: <>Вы — <b>{myIdx + 1}-е место</b> ({board[myIdx].okCount}/{totalQ} верно)</> })}</p>}
             <div className="card fade-up d1">
-              <div className="card-lbl" style={{ color: T.accent }}>🏆 To'liq reyting</div>
+              <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: "🏆 To'liq reyting", ru: '🏆 Полный рейтинг' })}</div>
               <div className="pod-list">
                 {board.map((b, i) => (
                   <div key={b.id} className={`pod-row ${live.playerId === b.id ? 'me' : ''}`}>
                     <span className="mono pod-rank">{i + 1}</span>
                     <span className="pod-row-name">{b.nickname}</span>
-                    <span className="pod-row-dots">{SCORED_IDX.map(q => { const a = rows.find(r => r.player_id === b.id && r.screen_idx === q); return <span key={q} className={`pod-dot ${a ? (a.correct ? 'ok' : 'bad') : ''}`} title={Q_LABELS[q]} />; })}</span>
+                    <span className="pod-row-dots">{SCORED_IDX.map(q => { const a = rows.find(r => r.player_id === b.id && r.screen_idx === q); return <span key={q} className={`pod-dot ${a ? (a.correct ? 'ok' : 'bad') : ''}`} title={tr(Q_LABELS[q])} />; })}</span>
                     <span className="mono pod-row-score">{b.okCount}/{totalQ}</span>
                     <span className="mono pod-row-time">{fmtT(b.time)}</span>
                   </div>
@@ -2287,11 +2337,11 @@ const MentorPracticeStats = ({ live, screen }) => {
   const waiting = players.filter(p => !data.doneIds.has(p.id));
   return (
     <div className="lp-mstats fade-up">
-      <div className="card-lbl" style={{ color: T.blue }}>👀 Kim bajardi — {doers.length}/{players.length}</div>
+      <div className="card-lbl" style={{ color: T.blue }}>{tr({ uz: '👀 Kim bajardi —', ru: '👀 Кто выполнил —' })} {doers.length}/{players.length}</div>
       {data.players === null ? (
-        <p className="small" style={{ color: T.ink3, margin: 0, fontStyle: 'italic' }}>Yuklanmoqda…</p>
+        <p className="small" style={{ color: T.ink3, margin: 0, fontStyle: 'italic' }}>{tr({ uz: 'Yuklanmoqda…', ru: 'Загружаем…' })}</p>
       ) : players.length === 0 ? (
-        <p className="small" style={{ color: T.ink3, margin: 0, fontStyle: 'italic' }}>Hali hech kim qo'shilmagan.</p>
+        <p className="small" style={{ color: T.ink3, margin: 0, fontStyle: 'italic' }}>{tr({ uz: "Hali hech kim qo'shilmagan.", ru: 'Пока никто не присоединился.' })}</p>
       ) : (
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
           {doers.map(p => <span key={p.id} className="mstats-wait-chip" style={{ background: T.successSoft, color: T.success }}>✓ {p.nickname}</span>)}
@@ -2301,7 +2351,7 @@ const MentorPracticeStats = ({ live, screen }) => {
     </div>
   );
 };
-function ScreenLivePractice({ title, task, checklist, screen, storedAnswer, onAnswer, onNext, onPrev, live, eyebrow, place = 'kompyuteringizda' }) {
+function ScreenLivePractice({ title, task, checklist, screen, storedAnswer, onAnswer, onNext, onPrev, live, eyebrow, place = { uz: 'kompyuteringizda', ru: 'на своём компьютере' } }) {
   const _gate = useContext(LiveGateCtx) || {};
   const _live = live || _gate.live;
   const [checked, setChecked] = useState(() => new Set());
@@ -2310,42 +2360,42 @@ function ScreenLivePractice({ title, task, checklist, screen, storedAnswer, onAn
   const complete = () => {
     if (done) return;
     setDone(true);
-    onAnswer(screen, { stage: 'practice', screenIdx: screen, practice: title, solved: true, correct: true, picked: true });
+    onAnswer(screen, { stage: 'practice', screenIdx: screen, practice: ou(title), solved: true, correct: true, picked: true });
     // JONLI: praktika bajarilgani serverga yoziladi (500+ zona — reytingga aralashmaydi, faqat mentor ko'radi)
     if (_live && _live.mode === 'student') _live.submitAnswer(PRACTICE_BASE + screen, 'practice', 0, true, 0);
   };
   // JONLI: mentor keyingi sahifaga o'tmaguncha NavNext qulf bo'ladi (optionalLive + LiveGateCtx gate). Hozircha done bo'lsa ochiq.
-  const audio = useAudio([{ id: `practice_${screen}`, text: `Endi navbat sizda — bu topshiriqni o'z ${place} bajarasiz. Har bosqichni bajarib, belgilab boring. Tugagach «Bajardim» tugmasini bosing — ustoz kuzatib turadi.`, trigger: 'on_mount', waits_for: null }]);
+  const audio = useAudio([{ id: `practice_${screen}`, text: `Endi navbat sizda — bu topshiriqni o'z ${ou(place)} bajarasiz. Har bosqichni bajarib, belgilab boring. Tugagach «Bajardim» tugmasini bosing — ustoz kuzatib turadi.`, trigger: 'on_mount', waits_for: null }]);
   return (
-    <Stage eyebrow={eyebrow || 'Amaliyot · VS Code'} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? 'Davom etish' : 'Avval bajaring'} onClick={onNext} /></>}>
+    <Stage eyebrow={tr(eyebrow) || tr({ uz: 'Amaliyot · VS Code', ru: 'Практика · VS Code' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Avval bajaring', ru: 'Сначала выполните' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{title}</h2></div>
-        <Mentor>Bu topshiriqni <b style={{ color: T.ink }}>o'z {place}</b> bajaring. Har bosqichni bajarib, belgilab boring. Tugagach <b style={{ color: T.ink }}>«Bajardim»</b> tugmasini bosing — ustoz kuzatib turadi.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr(title)}</h2></div>
+        <Mentor>{tr({ uz: <>Bu topshiriqni <b style={{ color: T.ink }}>o'z {tr(place)}</b> bajaring. Har bosqichni bajarib, belgilab boring. Tugagach <b style={{ color: T.ink }}>«Bajardim»</b> tugmasini bosing — ustoz kuzatib turadi.</>, ru: <>Выполните это задание <b style={{ color: T.ink }}>{tr(place)}</b>. Отмечайте каждый шаг по мере выполнения. В конце нажмите <b style={{ color: T.ink }}>«Выполнил»</b> — учитель следит.</> })}</Mentor>
         <div className="split">
           <Col>
             <div className="lp-task fade-up delay-1">
-              <div className="lp-task-h"><span className="lp-task-badge">TOPSHIRIQ</span></div>
-              <p className="body" style={{ margin: 0, color: T.ink }}>{task}</p>
+              <div className="lp-task-h"><span className="lp-task-badge">{tr({ uz: 'TOPSHIRIQ', ru: 'ЗАДАНИЕ' })}</span></div>
+              <p className="body" style={{ margin: 0, color: T.ink }}>{tr(task)}</p>
             </div>
             <MentorPracticeStats live={_live} screen={screen} />
           </Col>
           <Col>
-            <p className="flow-label">Bosqichlar — belgilab boring</p>
+            <p className="flow-label">{tr({ uz: 'Bosqichlar — belgilab boring', ru: 'Шаги — отмечайте по ходу' })}</p>
             <div className="lp-steps fade-up delay-2">
               {checklist.map((c, i) => {
                 const on = checked.has(i);
                 return (
                   <button key={i} className={`lp-step ${on ? 'on' : ''}`} onClick={() => toggle(i)}>
                     <span className="lp-check">{on ? '✓' : i + 1}</span>
-                    <span className="lp-step-t">{fmtCode(c)}</span>
+                    <span className="lp-step-t">{fmtCode(tr(c))}</span>
                   </button>
                 );
               })}
             </div>
             <button className={`lp-done-btn ${done ? 'is-done' : ''}`} disabled={done} onClick={complete}>
-              {done ? '✓ Bajarildi — ustozni kuting' : '✅ Bajardim'}
+              {done ? tr({ uz: '✓ Bajarildi — ustozni kuting', ru: '✓ Выполнено — ждите учителя' }) : tr({ uz: '✅ Bajardim', ru: '✅ Выполнил' })}
             </button>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Zo'r! Vazifani bajardingiz. Ustoz tekshirib, keyingi qadamga o'tkazadi.</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Zo'r! Vazifani bajardingiz. Ustoz tekshirib, keyingi qadamga o'tkazadi.", ru: 'Отлично! Задание выполнено. Учитель проверит и переведёт на следующий шаг.' })}</p></div>}
           </Col>
         </div>
       </div>
@@ -2375,63 +2425,63 @@ function Flashcards({ cards }) {
   const again = () => advance(false);
   const restart = () => { setQueue(cards.map((_, i) => i)); setKnown(0); setFlipped(false); };
   if (!card) return (
-    <div className="fc-done fade-up"><span className="fc-done-emoji">🎉</span><p className="fc-done-h">Hammasini bilasiz!</p><p className="fc-done-s">{total}/{total} atama yodlandi</p><button className="fc-btn ghost" onClick={restart}>↻ Qaytadan takrorlash</button></div>
+    <div className="fc-done fade-up"><span className="fc-done-emoji">🎉</span><p className="fc-done-h">{tr({ uz: 'Hammasini bilasiz!', ru: 'Вы знаете всё!' })}</p><p className="fc-done-s">{total}/{total} {tr({ uz: 'atama yodlandi', ru: 'терминов выучено' })}</p><button className="fc-btn ghost" onClick={restart}>{tr({ uz: '↻ Qaytadan takrorlash', ru: '↻ Повторить заново' })}</button></div>
   );
   return (
     <div className="fc fade-up">
-      <div className="fc-top"><span className="fc-pill learn" key={`l-${queue.length}-${swapRef.current}`}>↻ O'rganilmoqda · <b>{queue.length}</b></span><span className="fc-pill knew" key={`k-${known}`}>✓ Bildim · <b>{known}</b></span></div>
+      <div className="fc-top"><span className="fc-pill learn" key={`l-${queue.length}-${swapRef.current}`}>{tr({ uz: "↻ O'rganilmoqda ·", ru: '↻ Учу ·' })} <b>{queue.length}</b></span><span className="fc-pill knew" key={`k-${known}`}>{tr({ uz: '✓ Bildim ·', ru: '✓ Знаю ·' })} <b>{known}</b></span></div>
       <div className="fc-bar"><span className="fc-bar-fill" style={{ width: `${(known / total) * 100}%` }} /></div>
       <div className="fc-cardwrap">
         <div className={`fc-fly ${exiting === 'knew' ? 'out-knew' : ''} ${exiting === 'again' ? 'out-again' : ''}`} key={swapRef.current}>
         <div className={`fc-card ${flipped ? 'flip' : ''}`} onClick={() => !flipped && !exiting && setFlipped(true)} role="button" tabIndex={0}>
-          <div className="fc-face fc-front"><span className="fc-q">{card.front}</span><span className="fc-cue">Qaysi tushuncha? 🤔 <span className="fc-tap">bosing</span></span></div>
-          <div className="fc-face fc-back"><span className="fc-tag">{card.back}</span>{card.note && <span className="fc-note">{card.note}</span>}</div>
+          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: 'Qaysi tushuncha? 🤔', ru: 'Какое это понятие? 🤔' })} <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
+          <div className="fc-face fc-back"><span className="fc-tag">{tr(card.back)}</span>{card.note && <span className="fc-note">{tr(card.note)}</span>}</div>
         </div>
         </div>
       </div>
       {flipped
-        ? (<div className="fc-actions"><button className="fc-btn again" disabled={!!exiting} onClick={again}>✗ Takrorlash</button><button className="fc-btn knew" disabled={!!exiting} onClick={knew}>✓ Bildim</button></div>)
-        : (<p className="fc-hint">👆 Kartani bosing — javobni ko'rasiz</p>)}
+        ? (<div className="fc-actions"><button className="fc-btn again" disabled={!!exiting} onClick={again}>{tr({ uz: '✗ Takrorlash', ru: '✗ Повторить' })}</button><button className="fc-btn knew" disabled={!!exiting} onClick={knew}>{tr({ uz: '✓ Bildim', ru: '✓ Знаю' })}</button></div>)
+        : (<p className="fc-hint">{tr({ uz: "👆 Kartani bosing — javobni ko'rasiz", ru: '👆 Нажмите на карточку — увидите ответ' })}</p>)}
     </div>
   );
 }
 
 // 🛠️ PRAKTIKA — o'quvchi o'z 📔 tilaklar daftarini tuzadi (mentor-gate, kod kiritilmaydi)
 const ScreenBotPractice = (props) => (
-  <ScreenLivePractice {...props} eyebrow="Amaliyot · tilaklar daftari" place="daftaringizda"
-    title="O'z botingiz uchun tilaklar daftarini tuzing"
-    task="5 ta xayoliy foydalanuvchi fikrini o'ylab yozing, ularni 🟢 qimmatli / ⚪ foydasiz deb saralang va chastota × ta'sir bo'yicha qaysi birini birinchi tuzatishni tanlang. Hali kod yozmaysiz — faqat fikrni tahlil qilasiz."
+  <ScreenLivePractice {...props} eyebrow={{ uz: 'Amaliyot · tilaklar daftari', ru: 'Практика · книга пожеланий' }} place={{ uz: 'daftaringizda', ru: 'в своей тетради' }}
+    title={{ uz: "O'z botingiz uchun tilaklar daftarini tuzing", ru: 'Составьте книгу пожеланий для своего бота' }}
+    task={{ uz: "5 ta xayoliy foydalanuvchi fikrini o'ylab yozing, ularni 🟢 qimmatli / ⚪ foydasiz deb saralang va chastota × ta'sir bo'yicha qaysi birini birinchi tuzatishni tanlang. Hali kod yozmaysiz — faqat fikrni tahlil qilasiz.", ru: 'Придумайте и запишите 5 отзывов вымышленных пользователей, разложите их на 🟢 ценные / ⚪ бесполезные и выберите по формуле частота × влияние, что чинить первым. Код пока не пишете — только разбираете отзывы.' }}
     checklist={[
-      '5 ta xayoliy foydalanuvchi fikrini yozing (masalan: «tugma ishlamadi», «rahmat, zo\'r»)',
-      'Har fikrni 🟢 qimmatli yoki ⚪ foydasiz deb saralang',
-      'Qimmatli fikrlar orasida qaysi biri eng ko\'p (chastota) va eng og\'riqli (ta\'sir) ekanini toping',
-      'Eng ustuvor fikrni bitta aniq o\'zgarishga aylantiring',
-      'Aniq o\'zgarishni bir gapda AI promptiga yozing',
+      { uz: '5 ta xayoliy foydalanuvchi fikrini yozing (masalan: «tugma ishlamadi», «rahmat, zo\'r»)', ru: 'Запишите 5 отзывов вымышленных пользователей (например: «кнопка не работала», «спасибо, супер»)' },
+      { uz: 'Har fikrni 🟢 qimmatli yoki ⚪ foydasiz deb saralang', ru: 'Отнесите каждый отзыв к 🟢 ценным или ⚪ бесполезным' },
+      { uz: 'Qimmatli fikrlar orasida qaysi biri eng ko\'p (chastota) va eng og\'riqli (ta\'sir) ekanini toping', ru: 'Среди ценных найдите самый частый (частота) и самый болезненный (влияние)' },
+      { uz: 'Eng ustuvor fikrni bitta aniq o\'zgarishga aylantiring', ru: 'Превратите самый приоритетный отзыв в одно конкретное изменение' },
+      { uz: 'Aniq o\'zgarishni bir gapda AI promptiga yozing', ru: 'Запишите это изменение одним предложением как промпт для AI' },
     ]} />
 );
 
 // 🃏 FLASHCARD KARTALARI — 12 atama (fikr va iteratsiya tili)
 const FEEDBACK_FLASHCARDS = [
-  { front: "Mahsulotni qayta-qayta yaxshilash jarayoni", back: 'Iteratsiya', note: 'hech qachon tugamaydi' },
-  { front: "Fikrni turlarga (bug/taklif/maqtov) ajratish", back: 'Triaj', note: 'saralash' },
-  { front: "Qaysi tuzatishni birinchi qilishni tanlash qoidasi", back: 'Prioritet', note: "chastota × ta'sir" },
-  { front: "Nechta odam bir xil narsani aytgani", back: 'Chastota', note: 'pattern' },
-  { front: "Muammo qanchalik og'ritganini ko'rsatadi", back: "Ta'sir", note: 'impact' },
-  { front: "Foydalanuvchilar suhbatning bir joyida to'xtab ketishi", back: 'Drop-off', note: 'voronka' },
-  { front: "Bosqichma-bosqich torayadigan mijozlar yo'li", back: 'Voronka', note: 'funnel' },
-  { front: "Noaniq shikoyatni AI bajara oladigan vazifaga aylantirish", back: "Aniq o'zgarish", note: 'vague → concrete' },
-  { front: "Ba'zi so'rovni rad etish qarori", back: "«Yo'q» deyish", note: 'fokusni saqlash' },
-  { front: "Loyiha qamrovi — nima kiradi, nima kirmaydi", back: 'Scope', note: 'chegara' },
-  { front: "Tuzatgandan keyin natijani tekshirish", back: "Qayta o'lchash", note: 'ishladimi?' },
-  { front: "Foydalanuvchi eng qimmatli fikrni yozadigan joy", back: 'Tilaklar daftari', note: 'feedback' },
+  { front: { uz: "Mahsulotni qayta-qayta yaxshilash jarayoni", ru: 'Процесс постоянного улучшения продукта' }, back: { uz: 'Iteratsiya', ru: 'Итерация' }, note: { uz: 'hech qachon tugamaydi', ru: 'никогда не заканчивается' } },
+  { front: { uz: "Fikrni turlarga (bug/taklif/maqtov) ajratish", ru: 'Разделение отзывов по типам (баг/предложение/похвала)' }, back: { uz: 'Triaj', ru: 'Триаж' }, note: { uz: 'saralash', ru: 'сортировка' } },
+  { front: { uz: "Qaysi tuzatishni birinchi qilishni tanlash qoidasi", ru: 'Правило выбора, что чинить первым' }, back: { uz: 'Prioritet', ru: 'Приоритет' }, note: { uz: "chastota × ta'sir", ru: 'частота × влияние' } },
+  { front: { uz: "Nechta odam bir xil narsani aytgani", ru: 'Сколько человек сказали об одном и том же' }, back: { uz: 'Chastota', ru: 'Частота' }, note: { uz: 'pattern', ru: 'паттерн' } },
+  { front: { uz: "Muammo qanchalik og'ritganini ko'rsatadi", ru: 'Показывает, насколько сильно болит проблема' }, back: { uz: "Ta'sir", ru: 'Влияние' }, note: { uz: 'impact', ru: 'impact' } },
+  { front: { uz: "Foydalanuvchilar suhbatning bir joyida to'xtab ketishi", ru: 'Пользователи останавливаются в одном месте диалога и уходят' }, back: { uz: 'Drop-off', ru: 'Drop-off' }, note: { uz: 'voronka', ru: 'воронка' } },
+  { front: { uz: "Bosqichma-bosqich torayadigan mijozlar yo'li", ru: 'Путь клиентов, сужающийся от шага к шагу' }, back: { uz: 'Voronka', ru: 'Воронка' }, note: { uz: 'funnel', ru: 'funnel' } },
+  { front: { uz: "Noaniq shikoyatni AI bajara oladigan vazifaga aylantirish", ru: 'Превращение размытой жалобы в задачу, выполнимую для AI' }, back: { uz: "Aniq o'zgarish", ru: 'Конкретное изменение' }, note: { uz: 'vague → concrete', ru: 'vague → concrete' } },
+  { front: { uz: "Ba'zi so'rovni rad etish qarori", ru: 'Решение отклонить часть просьб' }, back: { uz: "«Yo'q» deyish", ru: 'Сказать «нет»' }, note: { uz: 'fokusni saqlash', ru: 'сохранение фокуса' } },
+  { front: { uz: "Loyiha qamrovi — nima kiradi, nima kirmaydi", ru: 'Охват проекта — что входит, а что нет' }, back: { uz: 'Scope', ru: 'Scope' }, note: { uz: 'chegara', ru: 'граница' } },
+  { front: { uz: "Tuzatgandan keyin natijani tekshirish", ru: 'Проверка результата после правки' }, back: { uz: "Qayta o'lchash", ru: 'Повторное измерение' }, note: { uz: 'ishladimi?', ru: 'сработало?' } },
+  { front: { uz: "Foydalanuvchi eng qimmatli fikrni yozadigan joy", ru: 'Место, где пользователь оставляет самый ценный отзыв' }, back: { uz: 'Tilaklar daftari', ru: 'Книга пожеланий' }, note: { uz: 'feedback', ru: 'feedback' } },
 ];
 const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, []); // eslint-disable-line
   return (
-    <Stage eyebrow="Takrorlash" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={false} label="Yakunlash →" onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Takrorlash', ru: 'Повторение' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={false} label={{ uz: 'Yakunlash →', ru: 'Завершить →' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Fikr va iteratsiya atamalarini <span className="italic" style={{ color: T.accent }}>tez takrorlaymiz</span>.</h2></div>
-        <Mentor>Darsni yakunlashdan oldin bugungi atamalarni takrorlaymiz. Har kartada bir topishmoq — <b style={{ color: T.ink }}>qaysi atama</b> ekanini o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Fikr va iteratsiya atamalarini <span className="italic" style={{ color: T.accent }}>tez takrorlaymiz</span>.</>, ru: <><span className="italic" style={{ color: T.accent }}>Быстро повторим</span> термины про отзывы и итерации.</> })}</h2></div>
+        <Mentor>{tr({ uz: <>Darsni yakunlashdan oldin bugungi atamalarni takrorlaymiz. Har kartada bir topishmoq — <b style={{ color: T.ink }}>qaysi atama</b> ekanini o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</>, ru: <>Перед завершением урока повторим сегодняшние термины. На каждой карточке загадка — подумайте, <b style={{ color: T.ink }}>какой это термин</b>, затем нажмите на карточку и проверьте. Оцените себя кнопками <b style={{ color: T.ink }}>Знаю</b> или <b style={{ color: T.ink }}>Повторить</b>.</> })}</Mentor>
         <div className="fc-center"><Flashcards cards={FEEDBACK_FLASHCARDS} /></div>
       </div>
     </Stage>
@@ -2456,40 +2506,40 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
     setArenaSolo(studentSolo); setArena(true);
   };
   const RECAP = [
-    "Mahsulot hech qachon «tayyor» emas — u iteratsiya qiladi",
-    "Fikrni saralash (triaj): qimmatli fikrda aniq muammo va joy bor, foydasiz fikr — hissiyot, dalilsiz",
-    "Ustuvorlik = chastota × ta'sir; «hozir emas» deyish ham qaror",
-    "Voronkada eng katta yo'qotish qayerda ekanini topib, o'sha qadamni birinchi tuzatasiz",
-    "Tuzatgandan keyin qayta o'lchaysiz — aylana: tingla → tuzat → qayta tingla"
+    { uz: "Mahsulot hech qachon «tayyor» emas — u iteratsiya qiladi", ru: 'Продукт никогда не бывает «готов» — он идёт итерациями' },
+    { uz: "Fikrni saralash (triaj): qimmatli fikrda aniq muammo va joy bor, foydasiz fikr — hissiyot, dalilsiz", ru: 'Разбор отзывов (триаж): в ценном отзыве есть конкретная проблема и место, в бесполезном — эмоция без фактов' },
+    { uz: "Ustuvorlik = chastota × ta'sir; «hozir emas» deyish ham qaror", ru: 'Приоритет = частота × влияние; сказать «не сейчас» — тоже решение' },
+    { uz: "Voronkada eng katta yo'qotish qayerda ekanini topib, o'sha qadamni birinchi tuzatasiz", ru: 'Находите в воронке самую большую потерю и чините этот шаг первым' },
+    { uz: "Tuzatgandan keyin qayta o'lchaysiz — aylana: tingla → tuzat → qayta tingla", ru: 'После правки измеряете заново — круг: слушай → чини → слушай снова' }
   ];
   const HOMEWORK = [
-    { b: "Yig'ing", t: "— botingiz uchun 5 ta xayoliy foydalanuvchi fikrini yozing va ularni 🟢 qimmatli / ⚪ foydasiz deb saralang" },
-    { b: 'Tanlang', t: "— chastota × ta'sir bo'yicha qaysi birini birinchi tuzatishni belgilang" },
-    { b: 'Aylantiring', t: "— eng muhim fikrni aniq AI promptiga aylantiring" }
+    { b: { uz: "Yig'ing", ru: 'Соберите' }, t: { uz: "— botingiz uchun 5 ta xayoliy foydalanuvchi fikrini yozing va ularni 🟢 qimmatli / ⚪ foydasiz deb saralang", ru: '— запишите для своего бота 5 отзывов вымышленных пользователей и разложите их на 🟢 ценные / ⚪ бесполезные' } },
+    { b: { uz: 'Tanlang', ru: 'Выберите' }, t: { uz: "— chastota × ta'sir bo'yicha qaysi birini birinchi tuzatishni belgilang", ru: '— по формуле частота × влияние определите, что чинить первым' } },
+    { b: { uz: 'Aylantiring', ru: 'Превратите' }, t: { uz: "— eng muhim fikrni aniq AI promptiga aylantiring", ru: '— самый важный отзыв в чёткий промпт для AI' } }
   ];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
   const PASSED = (total ? correct / total : 0) >= 0.6;
   return (
-    <Stage eyebrow="Tayyor" screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>Qaytadan</button><button className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>Yakunlash ✓</button></>}>
+    <Stage eyebrow={tr({ uz: 'Tayyor', ru: 'Готово' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><button className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash ✓', ru: 'Завершить ✓' })}</button></>}>
       <div className="screen">
-        <div className="hero"><div className="hero-l"><span className="done-chip fade-up"><span className="tick">✓</span> Mahsulotni yaxshiladingiz</span><h2 className="title h-title fade-up d1">Endi botingiz <span className="italic" style={{ color: T.accent }}>foydalanuvchi bilan birga</span> o'sadi.</h2><p className="body h-sub fade-up d2">{PASSED ? "Tabriklaymiz! Fikrni saralash, ustuvorlik (chastota × ta'sir) va yaxshilash aylanasini o'rgandingiz." : "Yaxshi harakat! Ustuvorlik (chastota × ta'sir) va yaxshilash aylanasi bo'limlarini qayta ko'ring."}</p></div><ScoreRing correct={correct} total={total} /></div>
+        <div className="hero"><div className="hero-l"><span className="done-chip fade-up"><span className="tick">✓</span> {tr({ uz: 'Mahsulotni yaxshiladingiz', ru: 'Вы улучшили продукт' })}</span><h2 className="title h-title fade-up d1">{tr({ uz: <>Endi botingiz <span className="italic" style={{ color: T.accent }}>foydalanuvchi bilan birga</span> o'sadi.</>, ru: <>Теперь ваш бот растёт <span className="italic" style={{ color: T.accent }}>вместе с пользователем</span>.</> })}</h2><p className="body h-sub fade-up d2">{PASSED ? tr({ uz: "Tabriklaymiz! Fikrni saralash, ustuvorlik (chastota × ta'sir) va yaxshilash aylanasini o'rgandingiz.", ru: 'Поздравляем! Вы освоили разбор отзывов, приоритет (частота × влияние) и круг улучшений.' }) : tr({ uz: "Yaxshi harakat! Ustuvorlik (chastota × ta'sir) va yaxshilash aylanasi bo'limlarini qayta ko'ring.", ru: 'Хорошая попытка! Пересмотрите разделы про приоритет (частота × влияние) и круг улучшений.' })}</p></div><ScoreRing correct={correct} total={total} /></div>
         <div className={`qz-cta cs-cta fade-up d2 ${studentLive ? 'ready' : ''}`}>
-          <CsWordmark stats={false} liveOn={studentLive} disabled={studentWait} onClick={studentWait ? undefined : openArena} hint={studentWait ? '⏳ Mentorni kuting' : undefined} />
+          <CsWordmark stats={false} liveOn={studentLive} disabled={studentWait} onClick={studentWait ? undefined : openArena} hint={studentWait ? tr({ uz: '⏳ Mentorni kuting', ru: '⏳ Подождите ментора' }) : undefined} />
         </div>
         {arena && <QuizArena live={_live || { mode: 'self' }} startSolo={arenaSolo} onClose={() => setArena(false)} />}
         <div className="split">
-          <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> Endi siz bilasiz</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{r}</span></li>))}</ul></div>
-          <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>📝 Uyga vazifa</div><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{h.b}</b> <span className="t">{h.t}</span></li>))}</ul><p className="hw-note">🚀 Keyingi dars — AI-agent: bu yaxshilash aylanasini endi botning O'ZIga beramiz.</p></div>
+          <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> {tr({ uz: 'Endi siz bilasiz', ru: 'Теперь вы знаете' })}</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{tr(r)}</span></li>))}</ul></div>
+          <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: "🚀 Keyingi dars — AI-agent: bu yaxshilash aylanasini endi botning O'ZIga beramiz.", ru: '🚀 Следующий урок — AI-агент: круг улучшений теперь передадим САМОМУ боту.' })}</p></div>
         </div>
         <div className="card ach-coll fade-up d3">
-          <div className="card-lbl" style={{ color: T.accent }}>🏅 Nishonlaringiz — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
+          <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🏅 Nishonlaringiz —', ru: '🏅 Ваши значки —' })} {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">
             {Object.entries(ACHIEVEMENTS).map(([id, a]) => { const got = !!(achievements && achievements.has(id)); return (
-              <div key={id} className={`ach-badge ${got ? 'got' : 'locked'}`} title={a.desc}>
+              <div key={id} className={`ach-badge ${got ? 'got' : 'locked'}`} title={tr(a.desc)}>
                 <span className="ach-badge-ic">{got ? a.icon : '🔒'}</span>
-                <span className="ach-badge-name">{a.name}</span>
-                {got && <span className="ach-badge-desc">{a.desc}</span>}
+                <span className="ach-badge-name">{tr(a.name)}</span>
+                {got && <span className="ach-badge-desc">{tr(a.desc)}</span>}
               </div>
             ); })}
           </div>
@@ -2503,6 +2553,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
 // ============================================================ LESSON ROOT — ({ lang, onFinished })
 export default function BotIntroLesson({ lang: langProp, onFinished }) {
   const lang = langProp || 'uz';
+  __lang = lang; // UZ-RU: tr() uchun joriy til (render'dan oldin o'rnatiladi)
   const [screen, setScreen] = useState(0);
   const [answers, setAnswers] = useState({});
   const startTimeRef = useRef(Date.now());
@@ -3360,7 +3411,7 @@ export default function BotIntroLesson({ lang: langProp, onFinished }) {
       <LiveGateCtx.Provider value={{ locked, live }}>
         <div className="lesson-root">
           {live.mode === 'choosing' ? (
-            <LiveGate live={live} title="Botjon darsi" />
+            <LiveGate live={live} title={{ uz: 'Botjon darsi', ru: 'Урок про Ботжона' }} />
           ) : (
             <>
               <Current screen={screen} storedAnswer={answers[screen]} answers={answers} achievements={earned} onAnswer={recordAnswer} onNext={next} onPrev={prev} onReset={reset} onFinish={finishLesson} live={live} />
