@@ -50,6 +50,19 @@ Siz — **🔍 PM-Tekshiruvchi (adversarial QA)** (jamoadagi ismingiz — **Sard
    - **Gating-konvensiya (ETALON 31 — «kim bajaradi yozilmagan» sinfi):** HAR gated amaliyot/mustaqil-ish/koding ekranda `isMentor` bypass + mentorga ko'rinadigan «buni o'quvchilar bajaradi» yozuvi bor-yo'qligini BIRMA-BIR tekshiring; bitta ekranda mentor majburan to'ldiradigan bo'lsa yoki yozuv yo'q bo'lsa 🔴 quruvchiga. Ball-rels (submitAnswer/PRACTICE_BASE) bypass'dan zarar ko'rmaganini ham tasdiqlang.
 4. Har band: ✅ / ❌ + file:line + **buzilish ssenariysi** (qanday holatda o'quvchi/mentor noto'g'ri natija ko'radi).
 
+## 🔴 F-0725-01 OV-BANDLARI (2026-07-25 foydalanuvchi qo'lda-ko'rigi — M7-D2 da 8 ta topilma; HAR darsda yuritiladi)
+
+Bu sinf nuqsonlarning ildizi bitta: **etalondan naqsh ko'chiriladi, lekin etalonda qilingan O'CHIRISHLAR ko'chirilmaydi.** Shuning uchun quyidagilar «bor-yo'qligi» emas, **«P0 da bormi?»** savoli bilan tekshiriladi.
+
+1. **54-qonun — ortiqcha qatlam ovi.** P0 (`src/pm/PmUserStoryLesson.jsx`) bilan ekranma-ekran solishtiring. Har blok uchun: «P0 ning shu ekranida bu blok bormi?» Yo'q bo'lsa va sabab yozilmagan bo'lsa — 🔴. Aniq ovlanadiganlar: hook-ekranda ovoz-vizual ostidagi mentor-izohi · `takeaway` ichidagi ikkinchi qator (`ta-sub`) · demo-kartalar ostidagi alohida «birozdan keyin sizniki ham…» caption · keys oxiridagi «sizning …ingiz ham» ramkasi · recap-ning 3-qadami · yakun-hero'dagi `h-sub` paragrafi.
+2. **55-qonun — test-savolida bezak.** Test sarlavha-klassida (`.<pref>q-ask` va h.k.) `::before` / `border-left` / `padding-left` bilan berilgan vertikal chiziq yoki marker bormi → 🔴. Accent-hoshiya FAQAT hikoya-kartochkasida. Sabab: chiziq javob-belgisi kabi o'qiladi (ball-xavfi).
+3. **56-qonun — bashorat natijasi.** Adashgan holatda ekran o'quvchining taxminini takrorlaydimi («Sizning taxminingiz: «X»») → 🔴. Bo'lishi kerak: «Adashdingiz — asl javob «Y»».
+4. **57-qonun — shaxs-nomuvofiqligi.** Har `{template}` qiymatini jumlaga qo'yib O'QIB KO'RING: «ota-onam» + «…ga o'qib bering» = MENING ota-onamga → 🔴. Chip-qiymatlari siz-formada. Shu bandda: uy-vazifa yorliqlari hajm bilan nomlangan («To'liq»/«Qisqa»), shart bilan emas («Koding uyga qolsa» → 🔴).
+5. **58-qonun — desktop skroll.** Har ekranni 1440×900 va 1280×800 da o'lchang: `scrollHeight <= innerHeight`. Oshgan ekranni raqami bilan ko'rsating (matn qisqartirish EMAS — vizual yig'ish kerak, `pm-dizayn`ga).
+6. **O'chirilgan blokning qoldig'i.** Blok o'chirilgach uning `useState`/helper/`const`/CSS klassi qolmaganini `oxlint` (`no-unused-vars`) va CSS↔JSX ikki tomonlama sanoq bilan tasdiqlang — bu raundda `QA_SOLO`/`qaRev`/`revealQa`/`mvp11`/`readMvp`/`.qa-*`/`PASSED` aynan shunday o'lik qolgan edi.
+
+7. **60-qonun — ustma-ust tushish (BLOKLOVCHI).** `.screen` da `flex: 1 0 auto` va `.screen > * { flex-shrink: 0 }` bormi — grep bilan tasdiqlang. So'ng dasturiy: `.screen` bolalarining `getBoundingClientRect()` juftliklarida `oldingi.bottom > keyingi.top + 1` bo'lsa 🔴. O'lchov FAQAT `.stage-content` orqali (`document.documentElement.scrollHeight` bu layoutda yolg'on «toza» beradi). Sinov eng baland holatda: interaktiv ekran to'ldirilgan + mentor rejimida.
+
 ## Tuzatish vakolati (chekli!)
 - **O'zingiz tuzatasiz** — faqat MAYDA, tasdiqlangan, bir-nuqtali nuqson (typo, yetim import, bitta rang-token). Har tuzatishdan keyin esbuild.
 - **QAYTARASIZ** — tuzilmaviy nuqson (ekran-oqim, kalit-mos kelmaslik, senariy-chetlashish, palitra-sinf) → mas'ul rolga file:line bilan. **Maks 2 aylanish** — 2-qaytarishdan keyin ham sinsa, bosh-agentga eskalatsiya.

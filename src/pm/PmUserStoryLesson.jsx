@@ -332,7 +332,7 @@ const SCREEN_META = [
   { id: 's4',       type: 'case',        template: 'custom',   scored: false, scope: null },          // 5 · K11 keys
   { id: 's8',       type: 'test',        template: 'custom',   scored: true,  scope: 'module-mikro' }, // 6 · TEST-2 (natija=takror)
   { id: 'practice', type: 'practice',    template: 'custom',   scored: false, scope: null },          // 7 · ustaxona (3 hikoya bittalab)
-  { id: 'peer',     type: 'exploration', template: 'custom',   scored: false, scope: null },          // 8 · sherik-tekshiruv
+  { id: 'peer',     type: 'exploration', template: 'custom',   scored: false, scope: null },          // 8 · tekshiruvchi stoli
   { id: 's9',       type: 'test',        template: 'custom',   scored: true,  scope: 'module-mikro' }, // 9 · TEST-3 (dark mode)
   { id: 'clinic',   type: 'practice',    template: 'custom',   scored: false, scope: null },          // 10 · hikoya-klinika
   { id: 's10',      type: 'koding',      template: 'custom',   scored: false, scope: null },          // 11 · koding (compiler)
@@ -356,7 +356,7 @@ export const SCREEN_INTENTS = {
   s4: "Bola milkshake keysidan odam mahsulotni emas, natijani sotib olishini biladi",
   s8: "Bola NATIJA harakatni takrorlamasligi kerakligini topadi",
   practice: "Bola o'z loyihasi uchun 3 hikoyani bittalab yozib, daftarga saqlaydi",
-  peer: "Bola hikoyalarni 3 savol bilan tekshiruvchi ko'zi bilan baholaydi (✓/✕)",
+  peer: "Bola tayyor 3 namuna-kartaga bittalab hukm chiqarib, kamchilikni o'zi nomlaydi",
   s9: "Bola KIM va NATIJA'siz gap imkoniyat-so'rovi ekanini, hikoya emasligini aniqlaydi",
   clinic: "Bola to'liq bo'lmagan mijoz-talabini to'liq hikoyaga yig'adi va 2 tuzoqni fosh qiladi",
   s10: "Bola hikoyaYasa funksiyasini to'ldirib, 3 hikoyasini kod orqali chiqaradi",
@@ -1094,7 +1094,7 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return (
     <Stage eyebrow="Keys (real voqea tahlili) 🥤" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={betPending && !isMentorK} label={betPending && !isMentorK ? 'Avval taxminingizni tanlang' : last ? 'Davom etish' : `Keyingi bosqich (${i + 1}/${K11_SLIDES.length})`} onClick={last ? onNext : () => setI(i + 1)} /></>}>
       <div className="screen" style={{ gap: 'clamp(14px,2.2vw,20px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Milkshake javobini ochamiz: nega aynan <span className="italic" style={{ color: T.accent }}>ertalab</span>?</h2></div>
+        <div className="head"><h2 className="title h-title fade-up">Milkshake javobi: nega aynan <span className="italic" style={{ color: T.accent }}>ertalab</span>?</h2></div>
         {c.predict ? (
           <>
             <div className="kp-bet fade-step" key={`b${i}`}>
@@ -1182,6 +1182,33 @@ const MentorPracticeStats = ({ live, screen, label = "👀 Kim bajardi" }) => {
           {waiting.map(p => <span key={p.id} className="mstats-wait-chip" style={{ background: T.accentSoft, color: T.accent, fontWeight: 700 }}>✏️ {p.nickname}</span>)}
         </div>
       )}
+    </div>
+  );
+};
+
+// O'QUVCHI ko'radigan sinf-pulsi (45-qonun): «nechta sinfdosh bajardi / bajarmoqda» jonli hisobi.
+// Faqat jonli student-rejimda; MentorPracticeStats bilan BIR XIL signal-zonadan (PRACTICE_BASE+screen)
+// sof O'QISH — ball-relsga yozmaydi. Ismlar yo'q (ismlar mentor-panelda).
+const StudentPracticePulse = ({ live, screen }) => {
+  const [data, setData] = useState(null); // { total, done }
+  useEffect(() => {
+    if (!live || live.mode !== 'student' || !live.pin) return;
+    let on = true, t = null;
+    const tick = async () => {
+      try {
+        const [players, rows] = await Promise.all([livePlayers(live.pin), liveAnswers(live.pin, PRACTICE_BASE + screen)]);
+        if (on) setData({ total: players.length, done: new Set(rows.map(r => r.player_id)).size });
+      } catch {}
+      if (on) t = setTimeout(tick, 3000);
+    };
+    tick();
+    return () => { on = false; clearTimeout(t); };
+  }, [live && live.pin, screen]);
+  if (!live || live.mode !== 'student' || !data || data.total === 0) return null;
+  const doing = Math.max(0, data.total - data.done);
+  return (
+    <div className="done-mini fade-up" style={{ alignSelf: 'flex-start' }}>
+      👥 Sinfda: <b>{data.done}</b> bajardi{doing > 0 && <span className="dm-sub">· ✏️ {doing} hali bajarmoqda</span>}
     </div>
   );
 };
@@ -1292,72 +1319,119 @@ const ScreenStoryWorkshop = ({ screen, storedAnswer, onAnswer, onNext, onPrev })
 // To'liq (validatordan o'tgan) hikoyalar — peer/koding/priority ekranlari o'qiydi; bo'sh bo'lsa namuna-fallback (40-qonun).
 const readFullStories = () => (readStories() || []).filter(c => c && validateStory(c.kim, c.nima, c.natija).full).slice(0, 3);
 
-// ===== SHERIK-TEKSHIRUV (peer) — yozilgan 3 hikoyani tekshiruvchi ko'zi bilan baholash =====
-// Jonli: sherik bilan EKRAN ALMASHIB tekshiriladi; solo: o'z-o'zini tekshirish. Har hikoyaga 3 savol,
-// har savolga ✓/✕ hukm (qayta bosib almashtirsa bo'ladi — 46-qonun ruhi). Hamma hukm berilgach ekran ochiladi.
-const PEER_CHECKS = [
-  { key: 'kim', ic: '🙋', t: 'KIM aniq turmi?', sub: "«foydalanuvchi» — juda mavhum" },
-  { key: 'foyda', ic: '🎯', t: 'NATIJA real foydami?', sub: 'tugma nomi emas, hayotdagi o\'zgarish' },
-  { key: 'takror', ic: '🔁', t: 'NATIJA takror emasmi?', sub: 'NIMA bilan bir xil bo\'lmasin' },
+// ===== TEKSHIRUVCHI STOLI (peer) — 3 tayyor namuna-kartaga bittalab hukm =====
+// Nega qayta qurildi: «sherik bilan ekran almashish» real ishlamaydi (har o'quvchi o'z qurilmasida,
+// server esa faqat raqam tashiydi) — o'quvchi o'z kartasiga o'zi ✕ qo'yishga majbur bo'lardi.
+// Yangi naqsh: TAYYOR 3 karta beriladi (ikkitasida atayin kamchilik, bittasi to'liq). Bittalab
+// o'tiladi, oxirida uchtasi bir qatorda taqqoslanadi. Ball yo'q, jazo yo'q: noto'g'ri hukmda ham
+// qizil emas — kamchilik neytral aytiladi va keyingi kartaga o'tiladi (bloklamaydi).
+const PEER_REASONS = [
+  { key: 'kim', t: 'KIM mavhum' },
+  { key: 'takror', t: 'NATIJA takror' },
+  { key: 'foyda', t: 'NATIJA foyda emas' } // distraktor: bu uch kartada javob emas
 ];
+// Tartib aralash: to'g'ri karta o'rtada turadi (oxirida turmasin — naqsh sezilmasin)
+const PEER_CARDS = [
+  { nom: "Qorong'i rejim", kim: 'foydalanuvchi', nima: "qorong'i rejim", natija: "kechqurun ko'zim charchamasligi",
+    ok: false, flaw: 'kim', why: "KIM «foydalanuvchi» — qaysi odam ekani aytilmagan." },
+  { nom: 'Qidiruv qatori', kim: 'birinchi marta kirgan mehmon', nima: 'qidiruv qatori', natija: 'kerakli darsni tez topishim',
+    ok: true, flaw: null, why: 'KIM aniq, NATIJA esa yangi foyda beradi.' },
+  { nom: 'Eslatma tugmasi', kim: "9-sinf o'quvchisi", nima: 'eslatma tugmasi', natija: "eslatma tugmasi bo'lishi",
+    ok: false, flaw: 'takror', why: "NATIJA NIMAni takrorlaydi — yangi foyda ko'rinmayapti." }
+];
+// Bitta qatorlik izoh: to'g'ri hukm — yashil tasdiq; boshqa holatda neytral (jazo emas, o'rgatish)
+const peerLine = (card, v) => {
+  if (card.ok) return v.ok ? { good: true, t: `Ha, ishlaydi: ${card.why}` } : { good: false, t: `Bu karta ishlaydi: ${card.why}` };
+  if (v.ok) return { good: false, t: `Bu karta tuzatish kutadi: ${card.why}` };
+  if (v.reason === card.flaw) return { good: true, t: `To'g'ri: ${card.why}` };
+  return { good: false, t: `Kamchilik boshqa joyda: ${card.why}` };
+};
 const ScreenPeer = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const gate = useContext(LiveGateCtx) || {};
   const live = gate.live;
   const isMentorP = !!(live && live.mode === 'mentor');
-  const soloP = !live || live.mode === 'self';
-  const [stories] = useState(() => { const s = readFullStories(); return s.length ? s : DEMO_STORIES; });
-  const [isDemo] = useState(() => readFullStories().length === 0);
-  const [st, setSt] = useState(() => ({ verdicts: storedAnswer?.verdicts || {}, done: !!(storedAnswer && storedAnswer.solved) }));
-  const { verdicts, done } = st;
-  const total = stories.length * PEER_CHECKS.length;
-  const answered = Object.values(verdicts).filter(v => v !== undefined).length;
-  const badN = Object.values(verdicts).filter(v => v === false).length;
-  const setV = (i, key, val) => {
-    const k = `${i}-${key}`;
-    if (verdicts[k] === val) return;
-    const next = { ...verdicts, [k]: val };
-    const nowDone = Object.values(next).filter(v => v !== undefined).length >= total;
-    if (nowDone && !done) {
-      onAnswer(screen, { stage: 'peer', screenIdx: screen, verdicts: next, solved: true, correct: true });
+  const [st, setSt] = useState(() => {
+    const v = (storedAnswer && Array.isArray(storedAnswer.verdicts)) ? storedAnswer.verdicts : [];
+    const fin = !!(storedAnswer && storedAnswer.solved);
+    return { idx: fin ? PEER_CARDS.length : v.length, verdicts: v, done: fin, asking: false };
+  });
+  const { idx, verdicts, done, asking } = st;
+  const card = done ? null : PEER_CARDS[idx];
+  const cur = verdicts[idx] || null; // shu kartaga berilgan hukm (berilgan bo'lsa — izoh ochiq)
+  const left = PEER_CARDS.length - verdicts.filter(Boolean).length;
+  const commit = (v) => setSt(prev => {
+    const next = prev.verdicts.slice(); next[prev.idx] = v;
+    return { ...prev, verdicts: next, asking: false };
+  });
+  const choose = (ok) => {
+    if (cur) return;
+    if (ok) commit({ ok: true, reason: null });
+    else setSt(prev => ({ ...prev, asking: true }));
+  };
+  const goNext = () => {
+    const n = idx + 1;
+    if (n < PEER_CARDS.length) { setSt(prev => ({ ...prev, idx: n, asking: false })); return; }
+    if (!done) {
+      onAnswer(screen, { stage: 'peer', screenIdx: screen, verdicts, solved: true, correct: true });
       if (live && live.mode === 'student') live.submitAnswer(PRACTICE_BASE + screen, 'peer', 0, true, 0);
     }
-    setSt({ verdicts: next, done: done || nowDone });
+    setSt(prev => ({ ...prev, idx: n, done: true, asking: false }));
   };
+  const fb = card && cur ? peerLine(card, cur) : null;
   return (
-    <Stage eyebrow="Sherik-tekshiruv · 🔍" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !isMentorP} label={done || isMentorP ? 'Davom etish' : `🔍 ${answered}/${total} baholandi`} onClick={onNext} /></>}>
-      <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Endi siz — <span className="italic" style={{ color: T.accent }}>tekshiruvchisiz</span></h2></div>
-        <Mentor>{soloP
-          ? <>Yozgan hikoyalaringizni endi o'zingiz tekshirasiz. Har hikoya ostida 3 savol bor: javobingizga qarab <b style={{ color: T.ink }}>✓ yoki ✕</b> bosing.</>
-          : <>Sherigingiz bilan <b style={{ color: T.ink }}>ekran almashing</b> — uning har hikoyasi ostidagi 3 savolga <b style={{ color: T.ink }}>✓ yoki ✕</b> bosing. So'ng ekranni qaytarib bering.</>}</Mentor>
-        {isDemo && <p className="small fade-up" style={{ margin: 0, color: T.ink3, fontStyle: 'italic' }}>Namuna hikoyalar — ustaxonada yozilganlar shu yerda chiqadi.</p>}
-        <div className="peer-grid fade-up delay-1">
-          {stories.map((c, i) => (
-            <div key={i} className="peer-card">
-              <p className="svd-sent" style={{ fontSize: 'clamp(13.5px,1.7vw,15.5px)' }}>Men <b style={{ color: T.blue }}>{c.kim}</b> sifatida, <b style={{ color: '#B77A16' }}>{c.nima}</b>ni xohlayman, <b style={{ color: T.success }}>{c.natija}</b> uchun.</p>
-              <div className="peer-checks">
-                {PEER_CHECKS.map(ch => {
-                  const k = `${i}-${ch.key}`;
-                  const v = verdicts[k];
-                  return (
-                    <div key={ch.key} className="peer-row">
-                      <span className="peer-q">{ch.ic} {ch.t}<i className="peer-sub">{ch.sub}</i></span>
-                      <span className="peer-btns">
-                        <button className={`peer-v yes ${v === true ? 'on' : ''}`} onClick={() => setV(i, ch.key, true)} aria-label="Ha">✓</button>
-                        <button className={`peer-v no ${v === false ? 'on' : ''}`} onClick={() => setV(i, ch.key, false)} aria-label="Yo'q">✕</button>
-                      </span>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          ))}
+    <Stage eyebrow="Tekshiruvchi stoli · 🔍" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !isMentorP} label={done || isMentorP ? 'Davom etish' : `Yana ${left} kartani baholang`} onClick={onNext} /></>}>
+      <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
+        <div className="peer-top">
+          <h2 className="title h-title fade-up" style={{ margin: 0 }}>Uch kartani <span className="italic" style={{ color: T.accent }}>tekshiring</span>.</h2>
+          {!done && <span className="peer-prog fade-up"><span className="peer-dots">{PEER_CARDS.map((_, i) => <i key={i} className={`peer-dot ${i <= idx ? 'on' : ''}`} />)}</span>{idx + 1}/{PEER_CARDS.length}</span>}
         </div>
-        {done && (badN > 0
-          ? <div className="frame-soft fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>🔧 <b>{badN} ta</b> savolga ✕ chiqdi. Xohlasangiz, «Orqaga» tugmasi bilan qaytib, hikoyani ✎ orqali tuzating — yoki shundoq davom eting.</p></div>
-          : <div className="done-mini fade-step">✅ Hamma savolga ✓ <span className="dm-sub">— hikoyalar tekshiruvdan o'tdi!</span></div>)}
-        <MentorPracticeStats live={live} screen={screen} label="🔍 Baholab bo'lganlar" />
-        <MentorNote>Juftliklarga 1-2 daqiqa bering. Maqsad — tanqid emas, tekshiruvchi-ko'nikma: o'quvchi boshqa hikoyada xatoni ko'rsa, o'zinikida ham ko'ra boshlaydi.</MentorNote>
+        <Mentor>{done ? <>Mana, uchala hukmingiz yonma-yon.</> : <>Har kartaga bitta hukm bering: ishlaydimi yoki tuzatish kerakmi?</>}</Mentor>
+        {card && (
+          <>
+            <div key={idx} className="peer-big fade-step">
+              <span className="peer-nom">{card.nom}</span>
+              <p className="peer-sent">Men <b style={{ color: T.blue }}>{card.kim}</b> sifatida, <b style={{ color: '#B77A16' }}>{card.nima}</b>ni xohlayman, <b style={{ color: T.success }}>{card.natija}</b> uchun.</p>
+            </div>
+            <div className="peer-acts">
+              <button type="button" className={`peer-vbtn yes ${cur && cur.ok ? 'on' : ''}`} onClick={() => choose(true)} disabled={!!cur}>✓ ishlaydi</button>
+              <button type="button" className={`peer-vbtn no ${cur && !cur.ok ? 'on' : ''} ${asking ? 'armed' : ''}`} onClick={() => choose(false)} disabled={!!cur}>✕ tuzatish kerak</button>
+            </div>
+            {asking && !cur && (
+              <div className="peer-why fade-step">
+                <span className="peer-why-l">Nimasi?</span>
+                {PEER_REASONS.map(r => <button key={r.key} type="button" className="peer-chip" onClick={() => commit({ ok: false, reason: r.key })}>{r.t}</button>)}
+              </div>
+            )}
+            {cur && fb && (
+              <div className="peer-fb fade-step">
+                <p className={`peer-fb-t ${fb.good ? 'good' : ''}`}>{fb.good ? '✅' : '💡'} {fb.t}</p>
+                <button type="button" className="btn-soft peer-go" onClick={goNext}>{idx + 1 < PEER_CARDS.length ? 'Keyingisi ▸' : 'Xulosa ▸'}</button>
+              </div>
+            )}
+          </>
+        )}
+        {done && (
+          <div className="peer-sum fade-step">
+            {PEER_CARDS.map((c, i) => {
+              const v = verdicts[i];
+              if (!v) return null;
+              const exact = c.ok ? v.ok : (!v.ok && v.reason === c.flaw);
+              const rr = v.ok ? null : PEER_REASONS.find(r => r.key === v.reason);
+              return (
+                <div key={i} className="peer-srow">
+                  <span className="peer-snom">{c.nom}</span>
+                  <span className="peer-sv">{v.ok ? '✓ ishlaydi' : `✕ ${rr ? rr.t : 'tuzatish kerak'}`}</span>
+                  <span className="peer-sm">{exact ? '✅' : '•'}</span>
+                </div>
+              );
+            })}
+            {/* F-0725-02: «shu ko'z bilan qarang» ko'chma ma'nosi olib tashlandi — harakat-tili (42-qonun): nima qilish + nimani qidirish. */}
+            <p className="peer-close">Endi o'z hikoyangizda ham shu kamchiliklarni qidiring.</p>
+          </div>
+        )}
+        <StudentPracticePulse live={live} screen={screen} />
+        <MentorPracticeStats live={live} screen={screen} label="🔍 Uch kartani baholaganlar" />
+        <MentorNote>Har hukmdan keyin bitta savol bering: «Nega shunday baholadingiz?» — javob hukmning o'zidan qimmatroq. To'liq karta — o'rtadagi «Qidiruv qatori», qolgan ikkitasida kamchilik bor.</MentorNote>
       </div>
     </Stage>
   );
@@ -1411,9 +1485,9 @@ const ScreenClinic = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     }
   };
   return (
-    <Stage eyebrow="Klinika · hikoyani davolash 🩺" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !isMentorC} label={done || isMentorC ? 'Davom etish' : "🩺 Talabni hikoyaga aylantiring"} onClick={onNext} /></>}>
+    <Stage eyebrow="Klinika · talabni to'ldirish 🩺" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !isMentorC} label={done || isMentorC ? 'Davom etish' : "🩺 Talabni hikoyaga aylantiring"} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(14px,2.2vw,20px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Mijoz talabini <span className="italic" style={{ color: T.accent }}>davolaymiz</span></h2></div>
+        <div className="head"><h2 className="title h-title fade-up">Mijoz talabini <span className="italic" style={{ color: T.accent }}>to'liq hikoyaga</span> aylantiramiz</h2></div>
         <div className="clinic-quote fade-up">
           <span className="clinic-quote-who">💬 Mijoz yozdi:</span>
           <p className="clinic-quote-txt">«Saytim tez ochilsin!»</p>
@@ -1442,9 +1516,19 @@ const ScreenClinic = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           })}
         </div>}
         {done && (
-          <div className="done-mini fade-step">✅ Hikoya sog'aydi! <span className="dm-sub">— endi unda KIM ham, real FOYDA ham bor{burned.length > 0 ? ` (${burned.length} tuzoqni fosh qildingiz)` : ' (bitta tuzoqqa ham tushmadingiz! 👏)'}</span></div>
+          <div className="done-mini fade-step">✅ Hikoya to'liq bo'ldi! <span className="dm-sub">— endi unda KIM ham, real FOYDA ham bor{burned.length > 0 ? ` (${burned.length} ta tuzoq yo'lda chiqdi — endi tanib olasiz)` : ' (bitta tuzoqqa ham tushmadingiz! 👏)'}</span></div>
         )}
-        <MentorPracticeStats live={live} screen={screen} label="🩺 Davolab bo'lganlar" />
+        {/* F-0725-02 (👦 topilmasi): tuzoqqa TUSHMAGAN o'quvchi ham ularni ko'rsin — aks holda ekran-niyati
+            («ikki tuzoqni tanib oladi») faqat adashgan bolada bajariladi. */}
+        {done && (
+          <div className="clinic-traps fade-step">
+            <span className="ct-lbl">🪤 Bu ikkitasi tuzoq edi</span>
+            {CLINIC_POOL.filter(f => f.trap).map((f, i) => (
+              <p key={i} className="ct-row"><b>«{f.txt}»</b> — {f.trap}</p>
+            ))}
+          </div>
+        )}
+        <MentorPracticeStats live={live} screen={screen} label="🩺 Hikoyani yig'ib bo'lganlar" />
         <MentorNote>Tuzoqlar ataylab: «hamma foydalanuvchi» (mavhum KIM) va «sahifa tez ochilishi» (takror NATIJA). Tuzoqqa tushish — xato emas, darsning o'zi: sinfda kim tushganini so'rab, sababini muhokama qiling.</MentorNote>
       </div>
     </Stage>
@@ -1768,8 +1852,8 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return (
     <Stage eyebrow="Koding · 🛠 kompilyator" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !isMentor} label={done || isMentor ? 'Davom etish' : 'Avval kompilyatorda bajaring'} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(14px,2.2vw,20px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Endi hikoyalarni <span className="italic" style={{ color: T.accent }}>kod</span> yozib beradi</h2></div>
-        <Mentor>Siz <span className="mono">hikoyaYasa</span> funksiyasini to'ldirasiz — u har hikoyangizni mana shunday tayyor kartaga aylantiradi. Buni kompilyatorda (kod yozib, natijasini darhol ko'rsatadigan oynada) qilasiz.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">Endi hikoyani <span className="italic" style={{ color: T.accent }}>kartaga</span> kod aylantiradi</h2></div>
+        <Mentor>Siz <span className="mono">hikoyaYasa</span> funksiyasini to'ldirasiz — u har hikoyangizni mana shunday tayyor kartaga aylantiradi. Buni kompilyatorda — kod yozadigan va natijani darhol ko'rsatadigan oynada — qilasiz.</Mentor>
         <div className="kdx fade-up delay-1">
           <div className="kdx-fn">
             <span className="kdx-fn-bar"><span className="bb-dots"><i /><i /><i /></span>hikoyaYasa.js</span>
@@ -1790,7 +1874,7 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <button className="kod-launch-btn" onClick={() => setOpen(true)}>{done ? '↻ Kompilyatorni qayta ochish' : '🛠 Kompilyatorni ochish'}</button>
           <span className="kdx-cta-sub">{done ? "Bajarildi — xohlasangiz kodni yana sayqallang" : "To'liq ekranda yozasiz, tugatgach darsga qaytasiz"}</span>
         </div>
-        {done && <div className="done-mini fade-step" style={{ alignSelf: 'center' }}>✅ Ishladi! <span className="dm-sub">— 3 hikoyangiz kod orqali jonli chiqdi</span></div>}
+        {done && <div className="done-mini fade-step" style={{ alignSelf: 'center' }}>✅ Ishladi! <span className="dm-sub">— 3 hikoyangiz koddan karta bo'lib chiqdi</span></div>}
         <MentorPracticeStats live={live} screen={screen} label="🛠 Kodni yozib bo'lganlar" />
         <MentorNote>Kodni o'quvchilar yozadi — «🛠 Kodni yozib bo'lganlar» panelida kuzatasiz; «Davom etish» siz uchun ochiq. 10 daqiqada ulgurmagan o'quvchi kodni uyda tugatadi — unga uy-vazifa qisqa versiyada beriladi.</MentorNote>
       </div>
@@ -2542,11 +2626,10 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
   const hwTarget = (() => { try { return localStorage.getItem(HW_KEY) || ''; } catch { return ''; } })();
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
-  const PASSED = (total ? correct / total : 0) >= 0.6;
   return (
     <Stage eyebrow="Tayyor" screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>Qaytadan</button><button className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>Yakunlash ✓</button></>}>
       <div className="screen">
-        <div className="hero"><div className="hero-l"><span className="done-chip fade-up"><span className="tick">✓</span> Dars tugadi</span><h2 className="title h-title fade-up d1">Birinchi 3 <span className="italic" style={{ color: T.accent }}>hikoyangiz</span> tayyor.</h2><p className="body h-sub fade-up d2">{isMentorL ? "Sinf User Story yozishni o'rgandi — endi har komponentni «kimga nima kerak»dan boshlaydi." : PASSED ? "Tabriklaymiz! Endi siz har komponentni «kimga nima kerak»dan boshlab qura olasiz — bu mahsulot fikrlashning poydevori." : "Yaxshi harakat! Uch bo'lak — KIM, NIMA, NATIJA — tez esda qoladi."}</p></div>{!isMentorL && <ScoreRing correct={correct} total={total} />}</div>
+        <div className="hero"><div className="hero-l"><span className="done-chip fade-up"><span className="tick">✓</span> Dars tugadi</span><h2 className="title h-title fade-up d1">Birinchi 3 <span className="italic" style={{ color: T.accent }}>hikoyangiz</span> tayyor.</h2>{/* F-0725-01 · 54-qonun: yakun-hero'ning h-sub qatori o'chirildi (foydalanuvchi qarori — sarlavha o'zi yetadi, pastda «Endi siz bilasiz» ro'yxati bor). */}</div>{!isMentorL && <ScoreRing correct={correct} total={total} />}</div>
         <div className={`qz-cta cs-cta fade-up d2 ${studentLive ? 'ready' : ''}`}>
           <CsWordmark stats={false} liveOn={studentLive} disabled={studentWait} onClick={studentWait ? undefined : openArena} hint={studentWait ? '⏳ Mentorni kuting' : undefined} />
         </div>
@@ -2589,7 +2672,7 @@ export default function PmUserStoryLesson({ lang: langProp, onFinished }) {
     setAchToasts(t => [...t, { id, k: ++achKeyRef.current }]);
   }, []);
   useEffect(() => {
-    const upd = () => { const z = Math.min(1.5, Math.max(1, window.innerWidth / 1920)); document.documentElement.style.setProperty('--lz', String(Math.round(z * 1000) / 1000)); };
+    const upd = () => { const z = Math.min(1.5, Math.max(1, Math.min(window.innerWidth / 1920, window.innerHeight / 1000))); document.documentElement.style.setProperty('--lz', String(Math.round(z * 1000) / 1000)); }; // F-0725-04: balandlik ham hisobda — past ekranda zum kattalashtirib vertikal joyni yemasin
     upd(); window.addEventListener('resize', upd); return () => window.removeEventListener('resize', upd);
   }, []);
   const answerKey = { ...INLINE_KEYS, ...Object.fromEntries(QUIZ_BANK.map((q, i) => [`quiz-${i}`, q.correct])) };
@@ -2766,7 +2849,10 @@ export default function PmUserStoryLesson({ lang: langProp, onFinished }) {
         .frame-wait { background: ${T.blueSoft}; border-left: 4px solid ${T.blue}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -8px rgba(1,154,203,0.22); }
 
         /* === LAYOUT === */
-        .screen { flex: 1; min-height: 0; display: flex; flex-direction: column; gap: clamp(14px,2vw,20px); }
+        .screen { flex: 1 0 auto; min-height: 0; display: flex; flex-direction: column; gap: clamp(14px,2vw,20px); }
+        /* F-0725-04 · 60-qonun: kontent sig'masa ekran-bloklari SIQILMAYDI — stage-content skroll beradi.
+           Standart flex-shrink tufayli bloklar bir-birining ustiga chiqib ketardi (klinika 11/17 dalili). */
+        .screen > * { flex-shrink: 0; }
         .head { display: flex; flex-direction: column; gap: 6px; }
         .split { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: clamp(18px,3vw,36px); align-items: start; }
         .col { display: flex; flex-direction: column; gap: clamp(12px,2vw,16px); min-width: 0; }
@@ -2961,23 +3047,47 @@ export default function PmUserStoryLesson({ lang: langProp, onFinished }) {
         .svd-sent { font-size: 13.5px; color: ${T.ink2}; line-height: 1.45; margin: 0; overflow-wrap: anywhere; }
         .svd-sent b { color: ${T.ink}; font-weight: 600; }
         .svd-foot { margin: 2px 0 0; font-family: 'Manrope'; font-weight: 500; font-size: 12px; line-height: 1.45; color: ${T.ink3}; }
-        /* === SHERIK-TEKSHIRUV: hikoya-karta + 3 savol, har biriga ✓/✕ hukm === */
-        .peer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; align-items: start; }
-        @media (max-width: 900px) { .peer-grid { grid-template-columns: 1fr; } }
-        .peer-card { background: ${T.paper}; border-radius: 14px; padding: 14px 15px; display: flex; flex-direction: column; gap: 11px; box-shadow: 0 8px 22px -8px rgba(${T.shadowBase},0.16); border-top: 4px solid ${T.accentSoft}; }
-        .peer-checks { display: flex; flex-direction: column; gap: 7px; }
-        .peer-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; background: ${T.bg}; border-radius: 10px; padding: 7px 10px; }
-        .peer-q { font-family: 'Manrope'; font-weight: 600; font-size: 12.5px; color: ${T.ink2}; line-height: 1.3; }
-        .peer-sub { display: block; font-style: normal; font-weight: 500; font-size: 11px; color: ${T.ink3}; margin-top: 2px; }
-        .peer-btns { display: inline-flex; gap: 5px; flex-shrink: 0; }
-        .peer-v { width: 30px; height: 30px; border-radius: 9px; border: none; cursor: pointer; font-weight: 900; font-size: 14px; background: ${T.paper}; color: ${T.ink3}; box-shadow: inset 0 0 0 1.5px ${T.line}; transition: all 0.15s; }
-        .peer-v:hover { transform: scale(1.08); }
-        .peer-v.yes.on { background: ${T.success}; color: #fff; box-shadow: none; }
-        .peer-v.no.on { background: ${T.err}; color: #fff; box-shadow: none; }
+        /* === TEKSHIRUVCHI STOLI: bitta katta namuna-karta → hukm → sabab-chip → xulosa-strip === */
+        .peer-top { display: flex; align-items: baseline; justify-content: space-between; gap: 14px; flex-wrap: wrap; }
+        .peer-prog { display: inline-flex; align-items: center; gap: 8px; font-family: 'Manrope'; font-weight: 800; font-size: 13px; color: ${T.ink3}; font-variant-numeric: tabular-nums; }
+        .peer-dots { display: inline-flex; gap: 5px; }
+        .peer-dot { width: 9px; height: 9px; border-radius: 50%; background: ${T.line}; transition: background 0.2s; }
+        .peer-dot.on { background: ${T.accent}; }
+        .peer-big { background: ${T.paper}; border-radius: 16px; border-left: 5px solid ${T.accentSoft}; padding: clamp(14px,2.2vw,22px) clamp(16px,2.4vw,26px); display: flex; flex-direction: column; gap: 7px; min-width: 0; box-shadow: 0 12px 30px -14px rgba(${T.shadowBase},0.28); }
+        .peer-nom { font-family: 'Manrope'; font-weight: 800; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: ${T.ink3}; }
+        .peer-sent { font-family: 'Source Serif 4', serif; font-weight: 500; font-size: clamp(16px,2.2vw,22px); line-height: 1.45; color: ${T.ink2}; margin: 0; min-width: 0; overflow-wrap: anywhere; }
+        .peer-sent b { font-weight: 600; }
+        .peer-acts { display: flex; gap: clamp(8px,1.4vw,14px); flex-wrap: wrap; }
+        .peer-vbtn { flex: 1 1 200px; min-width: 0; background: ${T.paper}; border: none; border-radius: 13px; padding: clamp(11px,1.6vw,15px) 16px; font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(14px,1.7vw,16px); color: ${T.ink}; cursor: pointer; box-shadow: 0 7px 18px -8px rgba(${T.shadowBase},0.22), inset 0 0 0 1.5px ${T.line}; transition: transform 0.15s, box-shadow 0.15s, background 0.2s, color 0.2s; }
+        .peer-vbtn:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 10px 22px -8px rgba(${T.shadowBase},0.3), inset 0 0 0 1.5px ${T.accent}55; }
+        .peer-vbtn:disabled { cursor: default; opacity: 0.5; }
+        .peer-vbtn.no.armed { box-shadow: 0 0 0 2.5px ${T.accent}, 0 10px 22px -8px rgba(91,61,230,0.35); }
+        /* tanlangan hukm = tanlov rangi (yashil emas: to'g'ri-noto'g'ri faqat izoh qatorida aytiladi) */
+        .peer-vbtn.on { background: ${T.accentSoft}; color: ${T.accent}; opacity: 1; box-shadow: inset 0 0 0 2px ${T.accent}; }
+        .peer-why { display: flex; align-items: center; gap: 9px; flex-wrap: wrap; }
+        .peer-why-l { font-family: 'Manrope'; font-weight: 800; font-size: 12.5px; color: ${T.ink2}; }
+        .peer-chip { background: ${T.paper}; border: none; border-radius: 99px; padding: 9px 16px; font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(12.5px,1.5vw,14px); color: ${T.ink}; cursor: pointer; box-shadow: 0 6px 15px -7px rgba(${T.shadowBase},0.25), inset 0 0 0 1.5px ${T.line}; transition: transform 0.15s, box-shadow 0.15s; }
+        .peer-chip:hover { transform: translateY(-2px); box-shadow: 0 9px 18px -7px rgba(91,61,230,0.32), inset 0 0 0 1.5px ${T.accent}66; }
+        .peer-fb { display: flex; align-items: center; gap: clamp(10px,1.6vw,16px); flex-wrap: wrap; }
+        .peer-fb-t { margin: 0; flex: 1 1 260px; min-width: 0; font-family: 'Manrope', sans-serif; font-weight: 600; font-size: clamp(13.5px,1.6vw,15px); line-height: 1.45; color: ${T.ink2}; overflow-wrap: anywhere; }
+        .peer-fb-t.good { color: ${T.success}; }
+        .peer-go { flex-shrink: 0; font-weight: 700; }
+        .peer-sum { display: flex; flex-direction: column; gap: 8px; }
+        .peer-srow { display: flex; align-items: center; gap: 10px; min-width: 0; background: ${T.paper}; border-radius: 12px; padding: 10px 15px; box-shadow: 0 6px 16px -9px rgba(${T.shadowBase},0.2); }
+        .peer-snom { flex: 1 1 auto; min-width: 0; font-family: 'Manrope'; font-weight: 700; font-size: clamp(13px,1.5vw,14.5px); color: ${T.ink}; overflow-wrap: anywhere; }
+        .peer-sv { flex-shrink: 0; font-family: 'Manrope'; font-weight: 800; font-size: 12px; border-radius: 99px; padding: 4px 12px; background: ${T.bg}; color: ${T.ink2}; }
+        .peer-sm { flex-shrink: 0; width: 20px; text-align: center; font-size: 13px; color: ${T.ink3}; }
+        .peer-close { margin: 4px 0 0; font-family: 'Source Serif 4', serif; font-size: clamp(15px,1.9vw,18px); color: ${T.ink}; }
+        @media (prefers-reduced-motion: reduce) { .peer-vbtn, .peer-vbtn:hover, .peer-chip, .peer-chip:hover { transition: none; transform: none; } .peer-big.fade-step, .peer-why.fade-step, .peer-fb.fade-step, .peer-sum.fade-step { animation: none; } }
         /* === HIKOYA-KLINIKA: mijoz-so'rov + tuzoq-chiplar === */
         .clinic-quote { align-self: flex-start; background: ${T.paper}; border-radius: 4px 18px 18px 18px; padding: 13px 20px; box-shadow: 0 10px 26px -10px rgba(${T.shadowBase},0.22); display: flex; flex-direction: column; gap: 4px; }
         .clinic-quote-who { font-family: 'Manrope'; font-weight: 800; font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: ${T.ink3}; }
         .clinic-quote-txt { font-family: Georgia, serif; font-style: italic; font-size: clamp(17px,2.4vw,23px); color: ${T.ink}; margin: 0; }
+        /* F-0725-02: yakuniy tuzoq-ochilishi — tuzoqqa tushmagan o'quvchi ham ikkalasini ko'radi */
+        .clinic-traps { align-self: stretch; display: flex; flex-direction: column; gap: 6px; background: ${T.bg}; border-radius: 12px; padding: 12px 14px; box-shadow: inset 0 0 0 1.5px ${T.line}; min-width: 0; }
+        .ct-lbl { font-family: 'Manrope'; font-weight: 800; font-size: 11.5px; letter-spacing: 0.04em; text-transform: uppercase; color: ${T.ink3}; }
+        .ct-row { margin: 0; font-family: 'Manrope'; font-weight: 600; font-size: clamp(12.5px,1.5vw,13.5px); line-height: 1.5; color: ${T.ink2}; overflow-wrap: anywhere; }
+        .ct-row b { color: ${T.ink}; }
         .clinic-trap { align-self: flex-start; font-family: 'Manrope'; font-weight: 700; font-size: clamp(13px,1.6vw,14.5px); line-height: 1.45; color: #8A5A00; background: #FFF3D6; border-radius: 12px; padding: 11px 15px; box-shadow: inset 0 0 0 1.5px #E8A13A55; }
         .frag-chip.burned { opacity: 0.45; text-decoration: line-through; cursor: not-allowed; background: ${T.bg}; }
         /* === PRIORITET-DOSKA: 3 ustun (Hozir=1 joy) + tanla-bos kartalar === */
@@ -3000,7 +3110,7 @@ export default function PmUserStoryLesson({ lang: langProp, onFinished }) {
         .pd-col .pd-card.placed { box-shadow: 0 5px 14px -7px rgba(${T.shadowBase},0.28); animation: card-fill-pop 0.42s cubic-bezier(.34,1.5,.4,1); }
         .pd-col .pd-card.placed.sel { box-shadow: 0 0 0 2.5px ${T.accent}; }
         .pd-empty { border: 1.5px dashed ${T.ink3}55; border-radius: 10px; padding: 10px; text-align: center; font-family: 'Manrope'; font-weight: 600; font-size: 11.5px; color: ${T.ink3}; font-style: italic; }
-        @media (prefers-reduced-motion: reduce) { .pd-col.shake, .pd-col .pd-card.placed { animation: none; } .peer-v:hover, .pd-card:hover { transform: none; } }
+        @media (prefers-reduced-motion: reduce) { .pd-col.shake, .pd-col .pd-card.placed { animation: none; } .pd-card:hover { transform: none; } }
 
         @keyframes lp-check-pop { 0% { transform: scale(0.7); } 45% { transform: scale(1.3); } 100% { transform: scale(1); } }
 

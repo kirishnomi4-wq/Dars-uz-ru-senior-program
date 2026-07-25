@@ -165,6 +165,41 @@ Har dars tekshirilganda topilgan tushunarsiz/rasmiy so'z shu jadvalga qo'shiladi
 | kompilyator (izohsiz) | kompilyator (kod yozib, natijasini darhol ko'rsatadigan oyna) | texnik atama — PM-darsda birinchi ko'rinishda qavs-gloss (👦 O'quvchi-sinov; PM M3-D2 koding, 2026-07-24) |
 | prioritet (izohsiz) | avval nimani qilishni tanlash (bu prioritet deyiladi) | lotin-jargon — fe'l-ibora bilan ochiladi, keyin atama ishlatiladi (130-qator bilan oila; PM M3-D2 priority-ekran, 2026-07-24) |
 | dark mode (izohsiz) | dark mode (qorong'i rejim) | inglizcha; scored-test hikoyasida ham qavs-gloss — bola so'zni bilmagani uchun ball yo'qotmasin (PM M3-D2 s9, 2026-07-24) |
+| davolaymiz / davolab bo'lganlar (talab-hikoya haqida) | to'liq hikoyaga aylantiramiz / hikoyani yig'ib bo'lganlar | «davolash» tibbiyot-fe'li: talab kasal EMAS, u to'liq emas — o'quvchi «kasal→sog'lom» bog'lanishini qura olmaydi. Klinika-dekori (🩺 emoji, eyebrow, tuzoq-chip) QOLADI, lekin harakat-fe'l ekranda AYNAN nima bo'layotganini aytadi (162-qator «puls» bilan bir oila: tibbiyot-metafora fe'lga chiqmaydi) (PM M3-D2 s11, F-0724-01) |
+| hikoya sog'aydi / sog'aymoq | hikoya to'liq bo'ldi | «sog'aymoq» o'smir faol lug'atida yo'q + yuqoridagi «davolash» oilasidan; natija-xabari o'lchanadigan holatni aytsin: bo'laklar to'ldimi (PM M3-D2 s11 done-mini, F-0724-01) |
+| «hikoyalarni kod yozib beradi» (sub'ekt chalkash) | «hikoyani kartaga kod aylantiradi» | hikoyani O'QUVCHI yozadi, kod esa uni tayyor KARTAGA aylantiradi — fe'l kimning ishini bajarayotganini adashtirmasin (42-qonun: fe'l ekrandagi real jarayonga mos); done-xabari ham: «koddan karta bo'lib chiqdi» (PM M3-D2 s12, F-0724-01) |
+
+| Case study / «Keys» (ekran yorlig'ida) | Haqiqiy misol | inglizcha atama o'quvchi matnida TAQIQ (14-qonun); keys-slayd eyebrow'i ham sof o'zbekcha: «📊 Haqiqiy misol · Starbucks» (PM M7-D2, 👦 1-o'qish, 2026-07-25) |
+| prop / props (izohsiz) | kartaga uzatiladigan ma'lumot (prop) | React atamasi PM-darsda birinchi ko'rinishda vazifasi bilan ochiladi: «Kartaga uzatiladigan 3 ma'lumotdan bittasi kodda yo'q» (PM M7-D2 koding, 👦 1-o'qish, 2026-07-25) |
+| VS Code (izohsiz) | VS Code (kod yoziladigan dastur) | «bu ekran ichidami yoki boshqa dasturmi?» — koding-topshiriqda birinchi ko'rinishda qavs-gloss + «kompyuteringizdagi» (PM M7-D2 s10, 2026-07-25) |
+| komponent (izohsiz) | bir marta yozilib, har karta uchun qayta ishlatiladigan tayyor shakl | preview ostidagi bir qatorlik gloss — atama qoladi, vazifasi ochiladi (PM M7-D2 s10, 2026-07-25) |
+| mijoz (foydalanuvchi ma'nosida) | foydalanuvchi | bir tushuncha — bir atama: dars bo'ylab «Foydalanuvchi mahsulotni … uchun yollaydi» formulasi yashaydi, «mijoz» ikkinchi nom bo'lib chalkashtiradi (arena savoli ham) (PM M7-D2, 2026-07-25) |
+| raqobatchi | raqib (o'sha natijani beradigan boshqa yo'l) | uzun rasmiy shakl o'rniga qisqa «raqib» + birinchi ko'rinishda vazifa-glossi (PM M7-D2 s2/ustaxona, 2026-07-25) |
+| shtamp | muhr | rus-kalka; «muhr» maktabdan tanish (PM M7-D2 s1, 2026-07-25) |
+| shartnoma / ish shartnomasi (metafora) | ishga qabul | «shartnoma» o'smirga ochilmagan huquqiy so'z; kartadagi yorliq va uy-vazifa eyebrow'i sodda so'z bilan (PM M7-D2 s1/s12, 2026-07-25) |
+| intervyu | suhbat | chet so'z; darsda allaqachon «foydalanuvchi bilan suhbat» ishlatiladi (PM M7-D2 s12, 2026-07-25) |
+| tur-ustuni (sun'iy birikma) | mos ustun | defisli birikma o'quvchiga notanish — harakat-tili: «Misolni bosing, so'ng mos ustunga qo'ying» (PM M7-D2 s3, 2026-07-25) |
+| makon | joy | kitobiy so'z; «uchinchi joy» atamasining o'zi bilan bir tilda bo'lsin (PM M7-D2 K18 slayd, 2026-07-25) |
+| «o'z MVP'ingiz» (kimning MVP'i — noaniq) | sizning g'oyangiz (MVP) | o'quvchi «mening MVP'im bormi?» deb to'xtab qoladi — karta-yorlig'i va placeholder o'z g'oyasini yozishga ochiq taklif qiladi (PM M7-D2 ustaxona, 👦 1-o'qish, 2026-07-25) |
+| selfi-chiroq (test-misolida) | rangli telefon g'ilofi | scored testdagi mahsulot HAR o'quvchiga tanish bo'lsin — «selfi-chiroq»ni bilmagan bola ball yo'qotadi (21-qonun) (PM M7-D2 s9, 2026-07-25) |
+| fosh qildingiz (tuzoq haqida) | tanib olasiz / tanib oldingiz | «fosh» — kitobiy so'z, 👦 o'quvchi «taxminan tushundim» dedi; qo'shimcha xato: o'quvchi tuzoqni fosh qilmagan, unga TUSHGAN — natija-gapi ekrandagi haqiqatga mos bo'lsin (PM M7-D2 klinika done-mini, 2026-07-25) |
+
+| server / server narxi / server tezligi (SCORED variantda) | ilova / ilovaning ochilish tezligi | «server» dars davomida umuman ochilmagan, lekin ballli test DISTRAKTORIDA turgan: «izohsiz «server» ballli testda turishi menga adolatsiz tuyuldi» — 21-qonun buzilishi. Muqobil: o'smirga tanish «ilova» (PM M8-D1 s7/s8 + arena, 👦 1-o'qish, 2026-07-25) |
+| oqim (foydalanuvchilar oqimi) | birinchi marta kelganlar soni | «oqim» suvni eslatadi («suv oqadimi?»); PM ma'nosi — yangi kelayotgan odamlar. Fe'l-aniqlik: KIM va QACHON aytiladi (PM M8-D1 s8/RECAPS/arena, 2026-07-25) |
+| faol foydalanuvchi (izohsiz) | bir kunda ilovani ochib ishlatgan odam | «faol» — har kunmi yoki bir marta kirganmi noaniq; DAU ta'rifi shu so'zga tayangani uchun birinchi ko'rinishda ochiladi yoki sodda shakl bilan almashadi (PM M8-D1 s3/s7, 2026-07-25) |
+| ulush (izohsiz) | ulushi — yuzta odamdan nechtasi | «ulush» foizmi yoki sonmi — o'smir farqlay olmaydi; birinchi ko'rinishda «yuztadan nechtasi» bilan ochiladi (PM M8-D1 s3, 2026-07-25) |
+| qiymat (North Star ta'rifida) | foyda | 👦 o'quvchi «qiymat»ni PUL deb o'qidi — North Star ta'rifi buzildi; dars bo'ylab «mahsulot odamga qanday FOYDA beryapti» (PM M8-D1 s3/s9/RECAPS/arena, 2026-07-25) |
+| jonli raqam (uy-vazifada) | haqiqiy raqam | «jonli» bu darsda panel-animatsiyaning belgisi («● JONLI») — uy-vazifada boshqa ma'noda ishlatilsa ikki rasm qoladi (PM M8-D1 s12/s16, 2026-07-25) |
+| mexanika / mahsulot-qarori | usul / jamoa ataylab o'ylab topgan usul | «mexanika» — o'yin-sohasi jargoni, «mahsulot-qarori» sun'iy birikma; ikkalasi ham sodda «usul» bilan (PM M8-D1 s0/s4/RECAPS, 2026-07-25) |
+| sessiya | dars | ichki server-atamasi o'quvchi matniga oqib chiqqan (PM M8-D1 podium, 2026-07-25) |
+| shartnoma (uy-vazifa yorlig'ida) | «Uyga vazifa» (metafora-yorliqsiz) | ochilmagan metafora yorliq bo'lib turadi — 41-qonun: metafora-so'zning o'zi gloss talab qilsa, u yaroqsiz; yakun-kartada ham «Shartnomangiz:» → «Siz tanladingiz:» (PM M8-D1 s12/s16, 2026-07-25) |
+| massiv · map · `src` · `.jsx` · Math.round · localhost:5173 (izohsiz) | 💡 Yordam ichida qavs-gloss | PM koding-ekranida bitta ham izohlanmagan edi; JTBD yechimi ko'chirildi — jargon sodda ibora bilan almashadi, qolgani default-yopiq «💡 Yordam — bu so'zlar nima?» chipida ochiladi (PM M8-D1 s10, 2026-07-25) |
+| «⭐ Taxmin — ixtiyoriy» + «…qilsak, bu raqam o'sadi» | «⭐ Bu raqamni nima o'stiradi? — ixtiyoriy» + to'liq namunali placeholder | yorliq NIMA yozilishini aytmasa, maydon bo'sh qoladi: yorliq savol-shaklda, placeholder esa tugallangan namuna bo'lsin (PM M8-D1 ustaxona, 👦 1-o'qish, 2026-07-25) |
+| ustun-yorliqlari farqsiz («shu oyda kuzataman» / «kutib tursa ham bo'ladi») | vaqt-shkalasi bo'yicha: har kuni · haftada bir marta · keyingi oy | prioritet-doskada ikki ustun amalda bir xil ma'no bergani uchun o'quvchi tasodifiy joylashtiradi — ustunlar BIR shkalada (vaqt) ajratiladi (PM M8-D1 prioritet, 2026-07-25) |
+
+| shu ko'z bilan qarang / tekshiruvchi ko'zi (ko'chma ma'no) | o'z ishingizda ham shu kamchiliklarni qidiring | «ko'z» ko'chma ma'noda — o'smir «qanaqa ko'z?» degan savolga tushadi; yopilish-gapi HARAKAT aytsin: nima qilish + nimani qidirish (42-qonun). Manba: foydalanuvchi tuzatmasi F-0725-02, PM peer-ekrani (59-qonun), 2026-07-25 |
+
+| «X usulini/javobini ochamiz» (sarlavhada) | «X usuli: …» / «X javobi: …» | 2026-07-24 da «sirini ochamiz» shu shaklga almashtirilgan edi, ammo fe'lning O'ZI g'aliz: sarlavha «biz nima qilamiz» emas, NIMA HAQIDA ekanini aytadi; ikkinchi yarmi allaqachon savol bo'lgani uchun fe'l ortiqcha. Butun `src/` tozalandi: Duolingo (Metrika), Milkshake (P0), Facebook (Audience, ru: «Метод Facebook: …»), iPhone (Structure) (foydalanuvchi tuzatmasi F-0725-03, 2026-07-25) |
 
 > **Qo'shish tartibi:** darsda tushunarsiz so'z topilsa → shu jadvalga (qiyin, sodda, izoh) yoz → kodda grep bilan barcha o'rinlarini tuzat → audio/mentor matni ham birga yangilanadi.
 
