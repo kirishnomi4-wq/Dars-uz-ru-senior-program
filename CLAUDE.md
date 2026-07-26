@@ -8,7 +8,7 @@
 
 | Tur | Fayllar | Qoida |
 |---|---|---|
-| **QONUN** (qanday bo'lishi kerak) | `DARS_ETALON.md` (texnik) · `PM_DARS_ETALON.md` (PM, qonun 1–53) · `MATN_ETALONI.md` (til, umumiy) · `PM_Prompt_v8.md` (senariy-qonun) · `RU_I18N_SPEC.md` (ru-mexanizm) | Faqat raqamlangan qonun/lug'at. Yangi qonun = yangi raqam, eski raqam o'zgarmaydi |
+| **QONUN** (qanday bo'lishi kerak) | `DARS_ETALON.md` (texnik) · `PM_DARS_ETALON.md` (PM, qonun 1–67) · `MATN_ETALONI.md` (til, umumiy) · **`MATN_KORPUS.md` (oltin-namunalar — matn YOZISHDAN OLDIN o'qiladi, qonunlar tekshiruvga)** · `PM_Prompt_v8.md` (senariy-qonun) · `RU_I18N_SPEC.md` (ru-mexanizm) | Faqat raqamlangan qonun/lug'at. Yangi qonun = yangi raqam, eski raqam o'zgarmaydi |
 | **JARAYON** (qaysi tartibda) | `PIPELINE.md` (texnik zanjir) · `PM_PIPELINE.md` (PM zanjir) · `OQUVCHI_DARVOZA.md` (👦 simulyator-spec) | Zanjir/darvoza/o'tish-shartlari. Rol-mazmuni bu yerda YO'Q — u agent-faylda |
 | **HOLAT** (nima bo'ldi) | `PIPELINE_STATE.md` · `PM_PIPELINE_STATE.md` | Faqat raund-yozuvlar (sana + nima qilindi + hukm). Har feedback F-ID bilan (quyida) |
 | **ROLLAR** | `.claude/agents/role/*` (texnik + umumiy: jonli, verifikator, o'quvchi, qabulchi) · `.claude/agents/pm/*` (PM) | Har rol o'z scope-fence bilan. `.claude/` da FAQAT agentlar+sozlamalar turadi |
@@ -39,8 +39,9 @@ Yordamchi joylar: `arxiv/` (eski tarix — L1_TARIX, AVTOPILOT_CHECKPOINT, eski 
 1. **ID ber:** `F-MMDD-NN` (masalan F-0724-01). Rasm bo'lsa → `feedback/`ga (public/ EMAS — u sayt-papka).
 2. **Tashxis AVVAL:** muammoni aniqlab AYT, yechim taklif qil — foydalanuvchi tasdig'ini kut (yechimni so'ramasdan qilma).
 3. **Tuzat** (tasdiqdan keyin) → esbuild + tegishli residue-grep.
-4. **Qonunlashtirish-marshruti** (har topilma AYNAN bitta joyga):
-   - so'z/atama muammosi → `MATN_ETALONI.md` LUG'AT (qiyin·sodda·izoh·manba-sana)
+4. **Qonunlashtirish-marshruti** (har topilma AYNAN bitta joyga; MATN-topilma esa IKKI joyga — avval korpus):
+   - matn/ohang/ifoda topilmasi → **AVVAL `MATN_KORPUS.md`ga juftlik** (❌ eski → ✅ yangi + sabab + F-ID), keyin kerak bo'lsa qonun/lug'at
+   - so'z/atama muammosi → `MATN_ETALONI.md` LUG'AT (qiyin·sodda·izoh·manba-sana) + grep-lanadigan bo'lsa `til-lint-rules.json`ga qoida
    - UX/tuzilma/dizayn qoidasi → tegishli `*_DARS_ETALON.md`ga YANGI raqamli qonun
    - takror bug-sinf → tekshiruvchi rol-fayliga ov-bandi
    - jarayon-o'zgarish → `PIPELINE*/OQUVCHI_DARVOZA.md`
@@ -58,6 +59,9 @@ Yordamchi joylar: `arxiv/` (eski tarix — L1_TARIX, AVTOPILOT_CHECKPOINT, eski 
 ## 4. O'zgarmas tamoyillar (qisqa eslatma — to'liqlari PIPELINE.md 3-bo'lim)
 - Commit/push faqat buyruq bilan · Tashxis avval, yechim keyin · Bir fayl — bir muharrir ·
   esbuild har tahrirdan keyin · maks 2 QA-aylanish, keyin foydalanuvchiga eskalatsiya ·
+  **Matn-darvozalari:** dars-matn yozishdan OLDIN `MATN_KORPUS.md` o'qiladi (taqlid-manba);
+  matn tegilgan har darsdan keyin `npm run lint:til <fayl>` — 0 error bo'lmaguncha keyingi
+  bosqichga o'tilmaydi (qoidalar: `til-lint-rules.json`, lug'at bilan juft o'sadi) ·
   **Prompt-gigiena darvozasi:** rol/qonun/jarayon MD tahrirlangan har seans yakunida
   `npm run lint:prompt` (aralash-yozuv homoglif detektori; jurnal-misollar va ruscha
   defis-birikmalar avto-istisno) — 0 topilma bo'lishi shart ·

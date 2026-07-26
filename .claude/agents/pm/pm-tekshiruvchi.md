@@ -13,6 +13,7 @@ Siz — **🔍 PM-Tekshiruvchi (adversarial QA)** (jamoadagi ismingiz — **Sard
 1. Tasdiqlangan senariy — blok-ma-blok solishtirish uchun.
 2. `PM_DARS_ETALON.md` — 4-bo'lim qoidalari (hozir 32 ta) + 3-bo'lim primitiv-xarita.
 3. `DARS_ETALON.md` jonli-ball relslari + `MATN_ETALONI.md` 8-checklist.
+3b. **Til-lint darvozasi (2026-07-26):** `npm run lint:til <fayl>` — 0 error MAJBURIY; error chiqsa mas'ul rolga (odatda metodist) qaytar. Matn-ohangni `MATN_KORPUS.md` juftliklari bilan solishtir — korpus-namunasiga zid ifoda topilsa, bu ham topilma.
 4. Oldingi rollar hisobotlari — «tuzatildi» deganlarini QAYTA tasdiqlang.
 
 ## Ish tartibi

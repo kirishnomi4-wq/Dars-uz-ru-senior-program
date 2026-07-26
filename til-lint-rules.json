@@ -1,44 +1,360 @@
 {
   "_izoh": "TIL-LINT qoidalari — MATN_ETALONI.md lug'ati + PM_DARS_ETALON qonunlaridan distillangan. Yangi feedback kelganda: (1) MATN_ETALONI lug'atiga qator, (2) SHU YERGA qoida. Har qoida: pattern (JS regex), severity (error=aniq taqiq / warn=ko'rib chiqish), suggest (nima deyish), law (manba), except (shu regex mos kelgan qator o'tkaziladi), allowFiles (shu fayllarda ruxsat).",
   "rules": [
-    { "id": "masalliq", "pattern": "masalliq", "flags": "i", "severity": "error", "suggest": "«bo'lak» — oshxona metaforasi taqiq", "law": "ETALON 41 / lug'at retsept-qatori" },
-    { "id": "retsept", "pattern": "\\bretsept", "flags": "i", "severity": "warn", "suggest": "PM darsda taqiq («1 hikoya — 3 bo'lak»); texnik darsda metafora o'rinliligini ko'rib chiqing", "law": "ETALON 41" },
-    { "id": "zanjir-streak", "pattern": "zanjir", "flags": "i", "severity": "warn", "suggest": "streak haqida bo'lsa: «ketma-ket kunlar soni / hisob»", "law": "lug'at zanjir-qatori (2026-07-24)" },
-    { "id": "sirini-ochamiz", "pattern": "sir(i|imiz|ingiz)?ni ochamiz|sirini", "flags": "i", "severity": "error", "suggest": "«usulini ochamiz»", "law": "lug'at sir-qatori (2026-07-24)" },
-    { "id": "hozircha-sir", "pattern": "hozircha sir", "flags": "i", "severity": "error", "suggest": "«Mentor 'Natijani ochish'ni bosganda ... birdan ko'rinadi» (neytral)", "law": "lug'at «sir»-uslub" },
-    { "id": "puls", "pattern": "\\bpuls(i|ini|ida|ni)?\\b", "flags": "i", "severity": "warn", "suggest": "mahsulot/loyiha haqida: «holati»", "law": "lug'at puls-qatori (2026-07-24)" },
-    { "id": "bosh-ish", "pattern": "bosh-ish", "flags": "i", "severity": "error", "suggest": "«asosiy vazifa / asosiy ish»", "law": "lug'at bosh-ish qatori (2026-07-24)" },
-    { "id": "bosh-muammo", "pattern": "bosh muammo", "flags": "i", "severity": "error", "suggest": "«eng katta muammo / asosiy muammo»", "law": "lug'at bosh-qatori (2026-07-24)" },
-    { "id": "ishni-sotib", "pattern": "«ish»ni sotib|ishni sotib oladi", "flags": "i", "severity": "warn", "suggest": "JTBD darsidan tashqarida: «natijani sotib oladi»", "law": "lug'at ish-qatori (2026-07-24)", "allowFiles": ["PmJtbdLesson"] },
-    { "id": "uzoq-safar", "pattern": "uzoq safar", "flags": "i", "severity": "warn", "suggest": "mavhum metafora — to'g'ridan-to'g'ri tasvir («har kuni shug'ullansagina o'rganiladi»)", "law": "M8-D1 K-karta1 (2026-07-24)" },
-    { "id": "belgi-formula", "pattern": "≠", "flags": "", "severity": "error", "suggest": "belgi-formula o'quvchi-matnda taqiq — to'liq gap bilan", "law": "ETALON 43a" },
-    { "id": "sifatida-olmayapti", "pattern": "sifatida olmayapti|sifatida olmay", "flags": "i", "severity": "error", "suggest": "«... uchun olmayotgan ekan»", "law": "ETALON 43c" },
-    { "id": "toladi-fe'l", "pattern": "to'ladi\\b", "flags": "i", "severity": "warn", "suggest": "matn/karta haqida bo'lsa «to'ladi» suvni eslatadi — «yozilib chiqadi / yozilgan bo'ladi» (42-qonun: fe'l↔ekran)", "law": "ETALON 42" },
-    { "id": "chip-uz", "pattern": "«chip»|chipni\\b|chiplar\\b|chipga\\b|chipcha", "flags": "i", "severity": "error", "suggest": "«tugma / variant / karta» (CSS-klassga tegilmaydi)", "law": "ETALON 37a" },
-    { "id": "slot-uz", "pattern": "«slot»|slotga\\b|slotlar\\b|slotni\\b", "flags": "i", "severity": "error", "suggest": "«joyiga / bo'sh joy»", "law": "lug'at slot-qatori" },
-    { "id": "tashxis", "pattern": "tashxis", "flags": "i", "severity": "warn", "suggest": "test/scored matnda: «baho»", "law": "lug'at tashxis-qatori" },
-    { "id": "ahvol-salomatlik", "pattern": "ahvol|salomatlig", "flags": "i", "severity": "error", "suggest": "mahsulot/tizim/metrika haqida DOIM «holat»", "law": "lug'at holat-qatori" },
-    { "id": "orinbosar", "pattern": "o'rinbosar", "flags": "i", "severity": "error", "suggest": "«vaqtincha yozib qo'yilgan so'z / [KIM] deb yozib qo'yilgan joy»", "law": "lug'at o'rinbosar-qatori" },
-    { "id": "sotuv-nutq", "pattern": "sotuv-nutq|sotib beradigan", "flags": "i", "severity": "warn", "suggest": "pitch haqida: «ishontiradigan / qisqa ishontiruvchi nutq»", "law": "lug'at sotish-qatori" },
-    { "id": "zachyot", "pattern": "zachyot|zachot", "flags": "i", "severity": "error", "suggest": "«qabul / qabul qilinadi»", "law": "lug'at zachyot-qatori" },
-    { "id": "general-repetitsiya", "pattern": "generali\\b|general(i)?\\s*\\(repetitsiya", "flags": "i", "severity": "warn", "suggest": "«repetitsiya»", "law": "lug'at general-qatori" },
-    { "id": "sayyoradagi", "pattern": "sayyoradagi", "flags": "i", "severity": "error", "suggest": "«dunyodagi»", "law": "lug'at sayyora-qatori" },
-    { "id": "katta-qavs", "pattern": "katta qavs", "flags": "i", "severity": "error", "suggest": "«kvadrat qavs [ ]»", "law": "lug'at qavs-qatori" },
-    { "id": "endi-ochamiz", "pattern": "Endi ochamiz:|Endi javobni ochamiz", "flags": "i", "severity": "error", "suggest": "predmetli sarlavha: «X usulini ochamiz: …»", "law": "ETALON 30-b" },
-    { "id": "custdev-glossiz", "pattern": "custdev(?!\\s*\\()", "flags": "i", "severity": "warn", "suggest": "birinchi ko'rinishda «custdev (mijozni o'rganish)»; kelajak-dars bo'lsa atama umuman ketadi (29-qonun)", "law": "lug'at custdev-qatori + ETALON 29" },
-    { "id": "anatomiya", "pattern": "anatomiya", "flags": "i", "severity": "error", "suggest": "a'zo-metafora taqiq — darsning o'z metaforasi bilan", "law": "lug'at anatomiya-qatori / 4.1" },
-    { "id": "over-engineering", "pattern": "over-engineering", "flags": "i", "severity": "error", "suggest": "«ortiqcha murakkablashtirmang»", "law": "lug'at qatori" },
-    { "id": "vague", "pattern": "\\bvague\\b", "flags": "i", "severity": "error", "suggest": "«loyqa»", "law": "lug'at vague-qatori", "except": "useState|===|\\bmode\\b|\\?\\s*'|setMode|Mode\\(" },
-    { "id": "tsikl", "pattern": "tsikl", "flags": "i", "severity": "error", "suggest": "«sikl»", "law": "lug'at tsikl-qatori" },
-    { "id": "tipoviy", "pattern": "tipoviy", "flags": "i", "severity": "error", "suggest": "«tayyor»", "law": "lug'at tipoviy-qatori" },
-    { "id": "ichki-darskod", "pattern": "\\bD\\d{1,2}['’ʼ]?(da|ga)\\b", "flags": "", "severity": "warn", "suggest": "«11-darsda» — ichki kod ekranga oqmasin", "law": "lug'at D-kod qatori" },
-    { "id": "shirinlik-ichadi", "pattern": "shirinlik ich", "flags": "i", "severity": "error", "suggest": "ichimlik ICHILADI, taom YEYILADI", "law": "lug'at kollokatsiya-qatori" },
-    { "id": "qiyshiq-apostrof", "pattern": "[‘’ʻ]", "flags": "", "severity": "error", "suggest": "to'g'ri apostrof ' (15-G tartibi bilan tuzatiladi)", "law": "MATN_ETALONI apostrof" },
-    { "id": "kirill-lotin-matnda", "pattern": "[\\u0400-\\u04FF]", "flags": "", "severity": "warn", "suggest": "lotin matnda kirill harf (homoglif) — faqat ru: maydonlarida ruxsat", "law": "MATN_ETALONI kirill", "except": "ru\\s*:|Раскрываем|«мет" },
-    { "id": "sen-forma", "pattern": "\\b(sen|senga|seni|sening|sendan)\\b", "flags": "i", "severity": "warn", "suggest": "siz-forma majburiy (kontekstda tekshiring)", "law": "MATN_ETALONI siz-forma" },
-    { "id": "yadro-jargon", "pattern": "YADRO", "flags": "", "severity": "warn", "suggest": "ichki blok-nom ekranga oqmasin («Muhokama»)", "law": "pm-metodist ichki-jargon" },
-    { "id": "kelajak-okr", "pattern": "\\bOKR\\b", "flags": "", "severity": "warn", "suggest": "kelajak-dars atamasi joriy darsda taqiq — «keyingi darsda maqsad qo'yishni o'rganasiz»", "law": "ETALON 29", "allowFiles": ["PmOkr"] },
-    { "id": "ozingdan-chiqsin", "pattern": "og'zingizdan chiqsin|og'zingdan chiqsin", "flags": "i", "severity": "error", "suggest": "«o'zingiz takrorlang»", "law": "lug'at kitobiy-ibora qatori" },
-    { "id": "qanchasi-qaytdi", "pattern": "qanchasi qaytdi|nima qaytdi", "flags": "i", "severity": "warn", "suggest": "«necha kishi ERTASIGA yana kirdi» — retention doim «yana kirish» fe'li bilan", "law": "lug'at qaytdi-qatori" }
+    {
+      "id": "masalliq",
+      "pattern": "masalliq",
+      "flags": "i",
+      "severity": "error",
+      "suggest": "«bo'lak» — oshxona metaforasi taqiq",
+      "law": "ETALON 41 / lug'at retsept-qatori"
+    },
+    {
+      "id": "retsept",
+      "pattern": "\\bretsept",
+      "flags": "i",
+      "severity": "warn",
+      "suggest": "PM darsda taqiq («1 hikoya — 3 bo'lak»); texnik darsda metafora o'rinliligini ko'rib chiqing",
+      "law": "ETALON 41"
+    },
+    {
+      "id": "zanjir-streak",
+      "pattern": "zanjir",
+      "flags": "i",
+      "severity": "warn",
+      "suggest": "streak haqida bo'lsa: «ketma-ket kunlar soni / hisob»",
+      "law": "lug'at zanjir-qatori (2026-07-24)"
+    },
+    {
+      "id": "sirini-ochamiz",
+      "pattern": "sir(i|imiz|ingiz)?ni ochamiz|sirini",
+      "flags": "i",
+      "severity": "error",
+      "suggest": "«usulini ochamiz»",
+      "law": "lug'at sir-qatori (2026-07-24)"
+    },
+    {
+      "id": "hozircha-sir",
+      "pattern": "hozircha sir",
+      "flags": "i",
+      "severity": "error",
+      "suggest": "«Mentor 'Natijani ochish'ni bosganda ... birdan ko'rinadi» (neytral)",
+      "law": "lug'at «sir»-uslub"
+    },
+    {
+      "id": "puls",
+      "pattern": "\\bpuls(i|ini|ida|ni)?\\b",
+      "flags": "i",
+      "severity": "warn",
+      "suggest": "mahsulot/loyiha haqida: «holati»",
+      "law": "lug'at puls-qatori (2026-07-24)"
+    },
+    {
+      "id": "bosh-ish",
+      "pattern": "bosh-ish",
+      "flags": "i",
+      "severity": "error",
+      "suggest": "«asosiy vazifa / asosiy ish»",
+      "law": "lug'at bosh-ish qatori (2026-07-24)"
+    },
+    {
+      "id": "bosh-muammo",
+      "pattern": "bosh muammo",
+      "flags": "i",
+      "severity": "error",
+      "suggest": "«eng katta muammo / asosiy muammo»",
+      "law": "lug'at bosh-qatori (2026-07-24)"
+    },
+    {
+      "id": "ishni-sotib",
+      "pattern": "«ish»ni sotib|ishni sotib oladi",
+      "flags": "i",
+      "severity": "warn",
+      "suggest": "JTBD darsidan tashqarida: «natijani sotib oladi»",
+      "law": "lug'at ish-qatori (2026-07-24)",
+      "allowFiles": [
+        "PmJtbdLesson"
+      ]
+    },
+    {
+      "id": "uzoq-safar",
+      "pattern": "uzoq safar",
+      "flags": "i",
+      "severity": "warn",
+      "suggest": "mavhum metafora — to'g'ridan-to'g'ri tasvir («har kuni shug'ullansagina o'rganiladi»)",
+      "law": "M8-D1 K-karta1 (2026-07-24)"
+    },
+    {
+      "id": "belgi-formula",
+      "pattern": "≠",
+      "flags": "",
+      "severity": "error",
+      "suggest": "belgi-formula o'quvchi-matnda taqiq — to'liq gap bilan",
+      "law": "ETALON 43a"
+    },
+    {
+      "id": "sifatida-olmayapti",
+      "pattern": "sifatida olmayapti|sifatida olmay",
+      "flags": "i",
+      "severity": "error",
+      "suggest": "«... uchun olmayotgan ekan»",
+      "law": "ETALON 43c"
+    },
+    {
+      "id": "toladi-fe'l",
+      "pattern": "to'ladi\\b",
+      "flags": "i",
+      "severity": "warn",
+      "suggest": "matn/karta haqida bo'lsa «to'ladi» suvni eslatadi — «yozilib chiqadi / yozilgan bo'ladi» (42-qonun: fe'l↔ekran)",
+      "law": "ETALON 42"
+    },
+    {
+      "id": "chip-uz",
+      "pattern": "«chip»|chipni\\b|chiplar\\b|chipga\\b|chipcha",
+      "flags": "i",
+      "severity": "error",
+      "suggest": "«tugma / variant / karta» (CSS-klassga tegilmaydi)",
+      "law": "ETALON 37a"
+    },
+    {
+      "id": "slot-uz",
+      "pattern": "«slot»|slotga\\b|slotlar\\b|slotni\\b",
+      "flags": "i",
+      "severity": "error",
+      "suggest": "«joyiga / bo'sh joy»",
+      "law": "lug'at slot-qatori"
+    },
+    {
+      "id": "tashxis",
+      "pattern": "tashxis",
+      "flags": "i",
+      "severity": "warn",
+      "suggest": "test/scored matnda: «baho»",
+      "law": "lug'at tashxis-qatori"
+    },
+    {
+      "id": "ahvol-salomatlik",
+      "pattern": "ahvol|salomatlig",
+      "flags": "i",
+      "severity": "error",
+      "suggest": "mahsulot/tizim/metrika haqida DOIM «holat»",
+      "law": "lug'at holat-qatori"
+    },
+    {
+      "id": "orinbosar",
+      "pattern": "o'rinbosar",
+      "flags": "i",
+      "severity": "error",
+      "suggest": "«vaqtincha yozib qo'yilgan so'z / [KIM] deb yozib qo'yilgan joy»",
+      "law": "lug'at o'rinbosar-qatori"
+    },
+    {
+      "id": "sotuv-nutq",
+      "pattern": "sotuv-nutq|sotib beradigan",
+      "flags": "i",
+      "severity": "warn",
+      "suggest": "pitch haqida: «ishontiradigan / qisqa ishontiruvchi nutq»",
+      "law": "lug'at sotish-qatori"
+    },
+    {
+      "id": "zachyot",
+      "pattern": "zachyot|zachot",
+      "flags": "i",
+      "severity": "error",
+      "suggest": "«qabul / qabul qilinadi»",
+      "law": "lug'at zachyot-qatori"
+    },
+    {
+      "id": "general-repetitsiya",
+      "pattern": "generali\\b|general(i)?\\s*\\(repetitsiya",
+      "flags": "i",
+      "severity": "warn",
+      "suggest": "«repetitsiya»",
+      "law": "lug'at general-qatori"
+    },
+    {
+      "id": "sayyoradagi",
+      "pattern": "sayyoradagi",
+      "flags": "i",
+      "severity": "error",
+      "suggest": "«dunyodagi»",
+      "law": "lug'at sayyora-qatori"
+    },
+    {
+      "id": "katta-qavs",
+      "pattern": "katta qavs",
+      "flags": "i",
+      "severity": "error",
+      "suggest": "«kvadrat qavs [ ]»",
+      "law": "lug'at qavs-qatori"
+    },
+    {
+      "id": "endi-ochamiz",
+      "pattern": "Endi ochamiz:|Endi javobni ochamiz",
+      "flags": "i",
+      "severity": "error",
+      "suggest": "predmetli sarlavha: «X usulini ochamiz: …»",
+      "law": "ETALON 30-b"
+    },
+    {
+      "id": "custdev-glossiz",
+      "pattern": "custdev(?!\\s*\\()",
+      "flags": "i",
+      "severity": "warn",
+      "suggest": "birinchi ko'rinishda «custdev (mijozni o'rganish)»; kelajak-dars bo'lsa atama umuman ketadi (29-qonun)",
+      "law": "lug'at custdev-qatori + ETALON 29"
+    },
+    {
+      "id": "anatomiya",
+      "pattern": "anatomiya",
+      "flags": "i",
+      "severity": "error",
+      "suggest": "a'zo-metafora taqiq — darsning o'z metaforasi bilan",
+      "law": "lug'at anatomiya-qatori / 4.1"
+    },
+    {
+      "id": "over-engineering",
+      "pattern": "over-engineering",
+      "flags": "i",
+      "severity": "error",
+      "suggest": "«ortiqcha murakkablashtirmang»",
+      "law": "lug'at qatori"
+    },
+    {
+      "id": "vague",
+      "pattern": "\\bvague\\b",
+      "flags": "i",
+      "severity": "error",
+      "suggest": "«loyqa»",
+      "law": "lug'at vague-qatori",
+      "except": "useState|===|\\bmode\\b|\\?\\s*'|setMode|Mode\\("
+    },
+    {
+      "id": "tsikl",
+      "pattern": "tsikl",
+      "flags": "i",
+      "severity": "error",
+      "suggest": "«sikl»",
+      "law": "lug'at tsikl-qatori"
+    },
+    {
+      "id": "tipoviy",
+      "pattern": "tipoviy",
+      "flags": "i",
+      "severity": "error",
+      "suggest": "«tayyor»",
+      "law": "lug'at tipoviy-qatori"
+    },
+    {
+      "id": "ichki-darskod",
+      "pattern": "\\bD\\d{1,2}['’ʼ]?(da|ga)\\b",
+      "flags": "",
+      "severity": "warn",
+      "suggest": "«11-darsda» — ichki kod ekranga oqmasin",
+      "law": "lug'at D-kod qatori"
+    },
+    {
+      "id": "shirinlik-ichadi",
+      "pattern": "shirinlik ich",
+      "flags": "i",
+      "severity": "error",
+      "suggest": "ichimlik ICHILADI, taom YEYILADI",
+      "law": "lug'at kollokatsiya-qatori"
+    },
+    {
+      "id": "qiyshiq-apostrof",
+      "pattern": "[‘’ʻ]",
+      "flags": "",
+      "severity": "error",
+      "suggest": "to'g'ri apostrof ' (15-G tartibi bilan tuzatiladi)",
+      "law": "MATN_ETALONI apostrof"
+    },
+    {
+      "id": "kirill-lotin-matnda",
+      "pattern": "[\\u0400-\\u04FF]",
+      "flags": "",
+      "severity": "warn",
+      "suggest": "lotin matnda kirill harf (homoglif) — faqat ru: maydonlarida ruxsat",
+      "law": "MATN_ETALONI kirill",
+      "except": "ru\\s*:|Раскрываем|«мет"
+    },
+    {
+      "id": "sen-forma",
+      "pattern": "\\b(sen|senga|seni|sening|sendan)\\b",
+      "flags": "i",
+      "severity": "warn",
+      "suggest": "siz-forma majburiy (kontekstda tekshiring)",
+      "law": "MATN_ETALONI siz-forma"
+    },
+    {
+      "id": "yadro-jargon",
+      "pattern": "YADRO",
+      "flags": "",
+      "severity": "warn",
+      "suggest": "ichki blok-nom ekranga oqmasin («Muhokama»)",
+      "law": "pm-metodist ichki-jargon"
+    },
+    {
+      "id": "kelajak-okr",
+      "pattern": "\\bOKR\\b",
+      "flags": "",
+      "severity": "warn",
+      "suggest": "kelajak-dars atamasi joriy darsda taqiq — «keyingi darsda maqsad qo'yishni o'rganasiz»",
+      "law": "ETALON 29",
+      "allowFiles": [
+        "PmOkr"
+      ]
+    },
+    {
+      "id": "ozingdan-chiqsin",
+      "pattern": "og'zingizdan chiqsin|og'zingdan chiqsin",
+      "flags": "i",
+      "severity": "error",
+      "suggest": "«o'zingiz takrorlang»",
+      "law": "lug'at kitobiy-ibora qatori"
+    },
+    {
+      "id": "qanchasi-qaytdi",
+      "pattern": "qanchasi qaytdi|nima qaytdi",
+      "flags": "i",
+      "severity": "warn",
+      "suggest": "«necha kishi ERTASIGA yana kirdi» — retention doim «yana kirish» fe'li bilan",
+      "law": "lug'at qaytdi-qatori"
+    },
+    {
+      "id": "xato-ball",
+      "severity": "error",
+      "pattern": "Xatos*[—–-]s*0 ball",
+      "suggest": "«Adashdingiz — 0 ball» — «xato» bolani nomlaydi, «adashdingiz» harakatni (66-qonun)",
+      "law": "PM_ETALON 66 · F-0726-01"
+    },
+    {
+      "id": "kodda-xato",
+      "severity": "error",
+      "pattern": "Kodda xato",
+      "suggest": "«Kod ishlamadi» (66-qonun)",
+      "law": "PM_ETALON 66 · F-0726-01"
+    },
+    {
+      "id": "ishlaydi-hukm",
+      "severity": "warn",
+      "pattern": "[✓✔]s*ishlaydi",
+      "suggest": "hukm-tugmasi «✓ To'g'ri / ✕ Noto'g'ri» — «ishlaydi» dasturchi tili (61-qonun)",
+      "law": "PM_ETALON 61 · F-0726-01"
+    },
+    {
+      "id": "toq-yuradi",
+      "severity": "error",
+      "pattern": "to'q yur",
+      "suggest": "fe'l-ot mosligi: «och qoldirmaydi / to'q tutadi» (MATN_ETALONI lug'at)",
+      "law": "F-0726-01"
+    },
+    {
+      "id": "bublik",
+      "severity": "error",
+      "pattern": "bublik",
+      "suggest": "rus realiyasi — «bulochka (shirin non)» (MATN_ETALONI lug'at)",
+      "law": "F-0726-01"
+    }
   ]
 }

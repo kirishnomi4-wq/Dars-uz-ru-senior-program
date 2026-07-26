@@ -39,7 +39,9 @@ const T = {
 const LIVE_SUPABASE_URL = 'https://dwoubexcexzsinogojiu.supabase.co';
 const LIVE_SUPABASE_KEY = 'sb_publishable_cijLMhCDDdo6dlXs05thyw__oH-YgKX';
 const LIVE_ENABLED = !!(LIVE_SUPABASE_URL && LIVE_SUPABASE_KEY);
-const LIVE_POLL_MS = 2500, LIVE_POLL_MAX_MS = 15000, LIVE_HEARTBEAT_MS = 10000, LIVE_STALE_MS = 60000;
+// LIVE_STALE_MS = 180s (60s EMAS): Chrome fon-tabda setInterval'ni ~1 daqiqagacha bo'g'adi —
+// mentor boshqa oynaga o'tsa 60s oynada «o'lik» deb topilib, butun sinf-darvoza ochilib ketardi (F-0726-02).
+const LIVE_POLL_MS = 2500, LIVE_POLL_MAX_MS = 15000, LIVE_HEARTBEAT_MS = 10000, LIVE_STALE_MS = 180000;
 const LT = { bg: '#F2F0FA', ink: '#1B1630', ink2: '#565073', ink3: '#9C97B4', paper: '#FFFFFF', accent: '#5B3DE6', accentSoft: '#EBE5FD', success: '#12A968' };
 const _liveHdr = { apikey: LIVE_SUPABASE_KEY, Authorization: `Bearer ${LIVE_SUPABASE_KEY}` };
 async function liveRpc(fn, body) {
@@ -52,7 +54,9 @@ async function liveRpc(fn, body) {
   const t = await r.text(); return t ? JSON.parse(t) : null;
 }
 async function liveGet(pin) {
-  const r = await fetch(`${LIVE_SUPABASE_URL}/rest/v1/live_sessions?pin=eq.${encodeURIComponent(pin)}&select=lesson_id,max_screen,status,updated_at,quiz_state,quiz_q,quiz_started_at,reveal_screen`, { headers: _liveHdr });
+  // select=* — cur_screen (phase11) migratsiyasi hali bajarilmagan bazada ham sinmasin
+  // (live_sessions'da sir YO'Q: token session_secrets'da, kalitlar quiz_keys'da).
+  const r = await fetch(`${LIVE_SUPABASE_URL}/rest/v1/live_sessions?pin=eq.${encodeURIComponent(pin)}&select=*`, { headers: _liveHdr });
   if (!r.ok) throw new Error(`get: ${r.status}`);
   const rows = await r.json(); return (rows && rows[0]) || null;
 }
@@ -93,6 +97,10 @@ function useLiveSession(lessonId, answerKey) {
   const playerRef = useRef(init?.playerId ? { id: init.playerId, token: init.playerToken } : null);
   const nickRef = useRef(init?.nickname || '');
   const [mentorScreen, setMentorScreen] = useState(init?.lastScreen || 0);
+  // mentorMax — sinf ENG UZOQ borgan nuqta (faqat o'sadi). DARVOZA mentorScreen (cur) bilan,
+  // TEST-JAVOBINI OCHISH esa mentorMax bilan ishlaydi: mentor orqaga qaytsa allaqachon
+  // ochilgan javob qayta yashirinib qolmasin (F-0726-02).
+  const [mentorMax, setMentorMax] = useState(init?.maxScreen ?? init?.lastScreen ?? 0);
   const [status, setStatus] = useState('live');
   const [mentorAlive, setMentorAlive] = useState(true);
   const [connected, setConnected] = useState(true);
@@ -103,6 +111,8 @@ function useLiveSession(lessonId, answerKey) {
   const [revealScreen, setRevealScreen] = useState(-1);
   const lastSeenRef = useRef(Date.now());
   const lastUpdatedRef = useRef(null);
+  // Darvoza mentorning HOZIRGI ekraniga qaraydi (phase11 cur_screen); eski bazada max_screen'ga tushadi.
+  const mentorScreenOf = (row) => (typeof row.cur_screen === 'number' ? row.cur_screen : row.max_screen);
   const syncQuiz = useCallback((row) => {
     const qs = row?.quiz_state || 'off', qq = row?.quiz_q ?? -1;
     setQuiz(p => (p.state === qs && p.q === qq) ? p : { state: qs, q: qq });
@@ -121,10 +131,13 @@ function useLiveSession(lessonId, answerKey) {
         if (!on) return;
         delay = LIVE_POLL_MS; setConnected(true);
         if (!row) { setStatus(p => p === 'ended' ? p : 'ended'); schedule(); return; }
-        setMentorScreen(p => p === row.max_screen ? p : row.max_screen);
+        const mScr = mentorScreenOf(row);
+        const mMax = Math.max(row.max_screen ?? 0, mScr);
+        setMentorScreen(p => p === mScr ? p : mScr);
+        setMentorMax(p => (mMax > p ? mMax : p)); // klient tomonda ham monoton — hech qachon kamaymaydi
         setStatus(p => p === row.status ? p : row.status);
         syncQuiz(row);
-        if (row.updated_at !== lastUpdatedRef.current) { lastUpdatedRef.current = row.updated_at; lastSeenRef.current = Date.now(); liveStore(lessonId, { mode: 'student', pin, lastScreen: row.max_screen, playerId: playerRef.current?.id, playerToken: playerRef.current?.token, nickname: nickRef.current }); }
+        if (row.updated_at !== lastUpdatedRef.current) { lastUpdatedRef.current = row.updated_at; lastSeenRef.current = Date.now(); liveStore(lessonId, { mode: 'student', pin, lastScreen: mScr, maxScreen: mMax, playerId: playerRef.current?.id, playerToken: playerRef.current?.token, nickname: nickRef.current }); }
         const alive = Date.now() - lastSeenRef.current < LIVE_STALE_MS;
         setMentorAlive(p => p === alive ? p : alive);
       } catch { if (!on) return; setConnected(false); delay = Math.min(delay * 2, LIVE_POLL_MAX_MS); }
@@ -144,8 +157,13 @@ function useLiveSession(lessonId, answerKey) {
       if (!row || row.status === 'ended') { liveClear(lessonId); setPin(null); tokenRef.current = null; setMode('choosing'); setEnded(false); return; }
       syncQuiz(row);
     }).catch(() => {});
-    const id = setInterval(() => { liveRpc('session_heartbeat', { p_pin: pin, p_token: tokenRef.current }).catch(() => {}); }, LIVE_HEARTBEAT_MS);
-    return () => { on = false; clearInterval(id); };
+    const beat = () => { liveRpc('session_heartbeat', { p_pin: pin, p_token: tokenRef.current }).catch(() => {}); };
+    beat(); // darhol — o'quvchilar 10s kutmasin
+    const id = setInterval(beat, LIVE_HEARTBEAT_MS);
+    // Fon-tabdan qaytganda darhol urish: Chrome fon-taymerlarni bo'g'adi (LIVE_STALE_MS izohi)
+    const onVis = () => { if (typeof document !== 'undefined' && !document.hidden) beat(); };
+    if (typeof document !== 'undefined') document.addEventListener('visibilitychange', onVis);
+    return () => { on = false; clearInterval(id); if (typeof document !== 'undefined') document.removeEventListener('visibilitychange', onVis); };
   }, [mode, pin, lessonId]); // eslint-disable-line
 
   const startMentor = useCallback(async (mentorCode) => {
@@ -178,8 +196,9 @@ function useLiveSession(lessonId, answerKey) {
       playerRef.current = { id: player.player_id, token: player.token };
       nickRef.current = nick; nickStore(nick);
       lastUpdatedRef.current = row.updated_at; lastSeenRef.current = Date.now();
-      setPin(p); setMentorScreen(row.max_screen); setStatus(row.status); setMode('student');
-      liveStore(lessonId, { mode: 'student', pin: p, lastScreen: row.max_screen, playerId: player.player_id, playerToken: player.token, nickname: nick });
+      const jScr = mentorScreenOf(row), jMax = Math.max(row.max_screen ?? 0, jScr);
+      setPin(p); setMentorScreen(jScr); setMentorMax(jMax); setStatus(row.status); setMode('student');
+      liveStore(lessonId, { mode: 'student', pin: p, lastScreen: jScr, maxScreen: jMax, playerId: player.player_id, playerToken: player.token, nickname: nick });
     } catch (e) {
       const m = String(e?.message || '');
       setJoinError(/ism|band|kod|dars|belgi/i.test(m) ? m : "Ulanib bo'lmadi. Internetni tekshiring.");
@@ -214,7 +233,7 @@ function useLiveSession(lessonId, answerKey) {
     liveRpc('reveal_screen', { p_pin: pin, p_token: tokenRef.current, p_screen: screenIdx }).catch(() => {});
   }, [mode, pin]);
 
-  return { mode, pin, mentorScreen, status, mentorAlive, connected, ended, joinError, busy, startMentor, joinStudent, selfStudy, reportScreen, endSession, submitAnswer, quiz, quizControl, revealScreen, mentorReveal, playerId: playerRef.current?.id || null, nickname: nickRef.current };
+  return { mode, pin, mentorScreen, mentorMax, status, mentorAlive, connected, ended, joinError, busy, startMentor, joinStudent, selfStudy, reportScreen, endSession, submitAnswer, quiz, quizControl, revealScreen, mentorReveal, playerId: playerRef.current?.id || null, nickname: nickRef.current };
 }
 
 const _liveBtnPri = { background: LT.accent, color: '#fff', border: 'none', borderRadius: 12, padding: '14px 20px', fontSize: 16, fontWeight: 700, cursor: 'pointer' };
@@ -445,7 +464,9 @@ const NavNext = ({ disabled, label = 'Davom etish', onClick, optionalLive }) => 
   const locked = !!(gate && gate.locked);
   const live = gate && gate.live;
   const freeRide = !!(optionalLive && live && live.mode === 'student' && live.status !== 'ended' && live.mentorAlive);
-  return <button className="btn-white-accent" disabled={(freeRide ? false : disabled) || locked} onClick={onClick} title={locked ? "Mentor hali bu sahifaga o'tmadi" : undefined} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)', marginLeft: 'auto' }}>{locked ? '⏳ Mentorni kuting' : (freeRide && disabled ? 'Davom etish' : label)}</button>;
+  // freeRide: jonli darsda tugma OCHIQ qoladi (sekin o'quvchi sinfni bloklamasin), LEKIN yorliq
+  // topshiriq-matnini ko'rsatib turadi — o'quvchi nimani o'tkazayotganini biladi (F-0726-02).
+  return <button className="btn-white-accent" disabled={(freeRide ? false : disabled) || locked} onClick={onClick} title={locked ? "Mentor hali bu sahifaga o'tmadi" : (freeRide && disabled ? "Jonli dars: bajarmasdan ham o'tishingiz mumkin" : undefined)} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)', marginLeft: 'auto' }}>{locked ? '⏳ Mentorni kuting' : label}</button>;
 };
 
 const FeedbackBlock = ({ show, isCorrect, neutral, children }) => {
@@ -658,7 +679,9 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
     }
   };
   const wrongLocked = oneShot && solved && picked !== correctIdx;
-  const revealed = !oneShot || !!(live && (live.revealScreen === screen || live.mentorScreen > screen || live.status === 'ended' || !live.mentorAlive));
+  // mentorMax (cur EMAS): sinf bu savoldan o'tib ketgan bo'lsa javob ochiq qoladi — mentor
+  // orqaga qaytib tushuntirsa ham o'quvchida javob qayta yashirinmaydi (F-0726-02).
+  const revealed = !oneShot || !!(live && (live.revealScreen === screen || (live.mentorMax ?? live.mentorScreen) > screen || live.status === 'ended' || !live.mentorAlive));
   const waiting = oneShot && solved && !revealed;
   return (
     <Stage eyebrow={eyebrow} screen={screen} narrow navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={isMentorLive ? !mReveal : !solved} label={isMentorLive ? (mReveal ? 'Davom etish' : 'Avval natijani oching') : solved ? 'Davom etish' : (ctaLabel || 'Javobni tanlang')} onClick={onNext} /></>}>
@@ -1292,6 +1315,15 @@ const ScreenJobWorkshop = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) =
     return { saved, draft: emptyJob(), editIdx: -1, done: !!(storedAnswer && storedAnswer.solved) || saved.length >= 3 };
   });
   const { saved, draft, editIdx, done } = st;
+  // Reload-tuzatish (F-0726-02): F5 dan keyin kartalar localStorage'dan tiklanadi va done=true
+  // bo'ladi, LEKIN onAnswer/submitAnswer otilmay qolardi — o'quvchi mentor-panelda «bajarmagan»
+  // ko'rinardi, nishon ham berilmasdi. Bir marta qayta yuboramiz.
+  useEffect(() => {
+    if (done && storedAnswer === undefined && saved.length >= 3) {
+      onAnswer(screen, { stage: 'practice', screenIdx: screen, practice: 'job-workshop', cards: saved, solved: true, correct: true, picked: true });
+      if (live && live.mode === 'student') live.submitAnswer(PRACTICE_BASE + screen, 'practice', 0, true, 0);
+    }
+  }, []); // eslint-disable-line
   const v = validateJob(draft.mahsulot, draft.ish, draft.tur);
   const editing = editIdx >= 0;
   const allSaved = saved.length >= 3;
@@ -1639,9 +1671,19 @@ const ScreenPriority = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [st, setSt] = useState(() => {
     let saved = storedAnswer?.assign;
     if (!saved) { try { saved = JSON.parse(localStorage.getItem(PRIORITY_KEY) || 'null'); } catch { saved = null; } }
-    return { assign: saved || {}, sel: -1, shakeCol: null, done: !!(storedAnswer && storedAnswer.solved) };
+    const assign = saved || {};
+    // Reload-tuzatish (F-0726-02): doska localStorage'dan to'liq tiklansa done ham true —
+    // aks holda o'quvchi kartani qo'zg'atmaguncha «Davom etish» qulflanib qolardi.
+    const restored = cards.every((_, i) => assign[i]);
+    return { assign, sel: -1, shakeCol: null, done: !!(storedAnswer && storedAnswer.solved) || restored };
   });
   const { assign, sel, shakeCol, done } = st;
+  useEffect(() => {
+    if (done && storedAnswer === undefined) {
+      onAnswer(screen, { stage: 'priority', screenIdx: screen, assign: st.assign, solved: true, correct: true });
+      if (live && live.mode === 'student') live.submitAnswer(PRACTICE_BASE + screen, 'priority', 0, true, 0);
+    }
+  }, []); // eslint-disable-line
   const allPlaced = cards.every((_, i) => assign[i]);
   const colItems = (k) => cards.map((_, i) => i).filter(i => assign[i] === k);
   const pickCard = (i) => setSt(prev => ({ ...prev, sel: prev.sel === i ? -1 : i, shakeCol: null }));
@@ -1792,7 +1834,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const filledAll = assign.every(c => c !== null);
   const allCorrect = filledAll && assign.every((c, t) => c === t);
   const revealed = isMentorLive ? mReveal
-    : oneShot ? !!(live && (live.revealScreen === screen || live.mentorScreen > screen || live.status === 'ended' || !live.mentorAlive))
+    : oneShot ? !!(live && (live.revealScreen === screen || (live.mentorMax ?? live.mentorScreen) > screen || live.status === 'ended' || !live.mentorAlive))
     : st.result !== null;
   const waiting = oneShot && st.result !== null && !revealed;
   const solved = isMentorLive ? true : allCorrect;

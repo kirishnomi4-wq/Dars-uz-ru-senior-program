@@ -55,6 +55,15 @@ javob sifatida faylda qoladi va o'lchov-kaliti bo'ladi.
 **Aylanish-cheklovi:** maksimum 2 aylanish (o'qish → tuzatish → o'qish → tuzatish).
 Ikkinchi aylanishdan keyin ham o'tmasa — inson-ko'rikka chiqadi, agent aylanmaydi.
 
+**Hisobot-aniqlik talabi (2026-07-26, F-0726 «shafof matn» qarori).** «Niyat 16/17»
+kabi dag'al son YETARLI EMAS — hisobotda majburiy ikki jadval:
+1. **Ikki-o'qish jadvali:** qayta o'qishga to'g'ri kelgan HAR gap SO'ZMA-SO'Z
+   ko'chiriladi (file:line) + «nimasi qoqiltirdi» bir qatorda (qaysi so'z/qaysi burilish).
+2. **Begona-so'z jadvali:** «bu so'zni bilmayman / boshqacha tushundim» ro'yxati —
+   har biri kontekst-gapi bilan.
+Bu jadvallar Metodistning kirish-materiali: u gapni emas, AYNAN qoqilgan joyni
+tuzatadi, va TUZATILDI bo'lgan har juftlik `MATN_KORPUS.md`ga (❌→✅) muhrlanadi.
+
 ---
 
 ## Oqlash / rad etish mexanizmi (aylanish-tuzog'iga qarshi)

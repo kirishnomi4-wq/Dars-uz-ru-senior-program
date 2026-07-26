@@ -103,6 +103,9 @@ Ekranda ko'rinadigan so'zlar orasidan. Avto-oqlangan so'zlar bundan mustasno.
 ### 3. Qaysi gapni ikki marta o'qidim?
 
 Birinchi o'qishda tushunmagan gaplar. Sabab: uzunmi, so'zi qiyinmi, tuzilishi g'alizmi.
+**Majburiy shakl (2026-07-26):** gapni SO'ZMA-SO'Z ko'chir (file:line bilan) + «aynan
+qaysi so'z/burilish qoqiltirdi» bir qatorda. «Bir-ikki gap qiyin edi» kabi umumiy
+jumla QABUL QILINMAYDI — Metodist aynan qoqilgan nuqtani tuzatishi kerak.
 
 ### 4. Nima qilaman deb o'ylayman?
 

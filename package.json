@@ -8,7 +8,8 @@
     "build": "vite build",
     "lint": "oxlint",
     "preview": "vite preview",
-    "lint:prompt": "node prompt-lint.mjs"
+    "lint:prompt": "node prompt-lint.mjs",
+    "lint:til": "node til-lint.mjs"
   },
   "dependencies": {
     "react": "^19.2.7",

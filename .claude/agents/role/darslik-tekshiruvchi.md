@@ -15,6 +15,7 @@ Siz — **🔍 Tekshiruvchi (adversarial QA)**. Vazifangiz: oldingi rollar "tayy
 ## Manba
 1. `DARS_ETALON.md` 14-bo'lim (to'liq ~40 bandlik checklist) — asosiy.
 2. `MATN_ETALONI.md` 8-bo'lim.
+2b. **Til-lint darvozasi (2026-07-26):** `npm run lint:til <fayl>` — 0 error MAJBURIY; error chiqsa mas'ul rolga (odatda metodist) qaytar. Matn-ohangni `MATN_KORPUS.md` juftliklari bilan solishtir.
 3. Auditorning boshlang'ich hisoboti (nima yetishmasdi) — endi tuzatilganini tasdiqlang.
 
 ## Ish tartibi

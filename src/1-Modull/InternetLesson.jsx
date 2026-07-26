@@ -1422,7 +1422,8 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const firstRef = useRef(true);
   // Bosqichma-bosqich oldinga yuradi; pauza qilsa to'xtaydi, davom etsa yana yuradi
   useEffect(() => {
-    if (!playing || paused) return;
+    if (!playing || paused) return
+    
     if (step >= PIPE.length - 1) {
       setPlaying(false); setFinished(true);
       if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true });
