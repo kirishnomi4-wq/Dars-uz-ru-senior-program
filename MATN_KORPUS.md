@@ -174,11 +174,17 @@ Shuning uchun ular darsning o'z qonuniga 100% bo'ysunadi va tanish, real mahsulo
 
 ✅ Bitta real mahsulot (YouTube) + 3 xil foydalanuvchi, har NATIJA aynan o'sha odamning foydasi:
    «Men **imtihonga tayyorlanayotgan o'quvchi** sifatida, videoni 2 barobar tez ko'rishni
-   xohlayman, **bir kechada ko'proq mavzu ulgurishim** uchun.»
+   xohlayman, **bir kechada ko'proq mavzuga ulgurish** uchun.»
    «Men **yo'lda ketayotgan tomoshabin** sifatida, videoni oldindan yuklab qo'yishni xohlayman,
-   **internet yo'q joyda ham ko'ra olishim** uchun.»
-   «Men **yangi kanal egasi** sifatida, videomni kim ko'rganini bilishni xohlayman, **kimga mos
-   video yasashni tushunishim** uchun.» *(UserStory · s1 · F-0727-01)*
+   **internet yo'q joyda ham ko'ra olish** uchun.»
+   «Men **yangi kanal egasi** sifatida, videoni kim ko'rganini bilishni xohlayman, **kimga mos
+   video yasashni tushunish** uchun.» *(UserStory · s1 · F-0727-01, F-0727-42 da sayqallandi)*
+
+✅ Bo'lak-qiymat YAKKA chipda ham o'qiladi — shuning uchun EGALIKSIZ masdar shaklida yoziladi:
+   «bir kechada ko'proq mavzuga ulgurish» (chip yolg'iz ham, «… uchun» formulada ham toza).
+❌ «ulgurishim» / «videomni» / «ko'ra olishim» chip-qiymat sifatida — kartada bo'lak yakka
+   ko'ringanida «-im/-m» havoda qoladi, o'quvchi «kimniki? nega -im?» deb qoqiladi
+   (F-0727-42, foydalanuvchi rasm-dalili).
 
 ❌ «Men **yangi mehmon** sifatida, **ishlarimni** bitta ekranda ko'rishni xohlayman, **meni** tez
    tanib olish uchun.» — shaxs sinadi: gap mehmon tilidan, «ishlarim/meni» esa sayt egasiniki.
@@ -241,6 +247,23 @@ Shuning uchun ular darsning o'z qonuniga 100% bo'ysunadi va tanish, real mahsulo
 ✅ Tepa-yorliq «🎲 Avval o'zingiz belgilab ko'ring» + izoh «Bu ball emas — bemalol belgilang,
    javob hozir ochiladi.» *(F-0727-15/29)*
 ❌ «Slayd ochilishidan oldin — taxmin qiling» / «bemalol taxmin qiling» — buyruq-ohang.
+
+## 19. KODING-EKRAN TILI — «…digan KOD yozamiz» oilasi (82-qonun)
+
+✅ Sarlavha oilasi (uchala darsda bir qolip): «Hikoyangizni kartaga aylantiradigan *kod* yozamiz.» ·
+   «3 kartangizni ekranga chiqaradigan *kod* yozamiz.» · «Retention foizini hisoblab beradigan
+   *kod* yozamiz.» *(F-0727-41/55 — harakat oldinda, ega «kod» urg'uda)*
+❌ «3 kartangizni React komponenti qiling.» — atama sarlavhaga suyanadi (u eyebrow'da qoladi).
+❌ «Endi hikoyani kartaga kod aylantiradi» — ega gap oxirida, «kim nimani qiladi?» yig'ilmaydi.
+
+✅ Nusxa-taqiq mentor-gapi: «Kodni VS Code'da (kod yoziladigan dastur) o'zingiz terib yozasiz —
+   nusxalab bo'lmaydi: qo'lda yozganda o'rganiladi.» *(F-0727-48 — taqiq SABABI bilan aytiladi)*
+❌ «Pastdagi kodni nusxalab … qo'ying» — nusxa-tugma bilan birga o'chirildi (82-qonun).
+
+✅ Bitta halol tugma: «✅ Bajardim — kod yozildi, kartalarim ko'rindi» (nima qilingani tugmaning
+   o'zida) · qulf-holat: «🔒 Avval kod-savolini yeching — bosing, ko'rsataman» *(F-0727-51/52)*
+❌ 4-bandlik honor-checklist («VS Code'da ochdim / yaratdim / …») — o'quvchi baribir belgilab
+   chiqadi, signal yolg'on; darvoza = darsning O'Z mini-mashg'i.
 
 ---
 

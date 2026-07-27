@@ -413,6 +413,20 @@
       "law": "F-0727-03"
     },
     {
+      "id": "nusxalash-tugma",
+      "severity": "error",
+      "pattern": "Nusxalash</button>|\ud83d\udccb Nusxalash",
+      "suggest": "koding-ekranda nusxa-tugma taqiq — «\ud83d\udd12 qo'lda yoziladi» (82-qonun)",
+      "law": "PM_ETALON 82 \u00b7 F-0727-48"
+    },
+    {
+      "id": "yana-kirish",
+      "severity": "warn",
+      "pattern": "yana kir",
+      "suggest": "«qayta kirish» (MATN_ETALONI lug'at, F-0727-57)",
+      "law": "F-0727-57"
+    },
+    {
       "id": "bublik",
       "severity": "error",
       "pattern": "bublik",

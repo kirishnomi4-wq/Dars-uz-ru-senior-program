@@ -102,6 +102,9 @@ Har dars tekshirilganda topilgan tushunarsiz/rasmiy so'z shu jadvalga qo'shiladi
 | o'z so'zingiz bilan (topshiriqda) | ekranga qaramasdan, yoddan | niyat — yodaki qayta aytish; «o'z so'zingiz» nima qilishni aytmaydi (F-0727-09, 76-qonun) |
 | kimligini bir gapda aniqlang | qanday odam ekanini bir gapda yozing | «kimligini aniqlang» — grammatik sinadi, ayniqsa egalikli qiymat qo'yilganda (F-0727-10) |
 | ochmay qo'yadi (ilovani) | esidan chiqarib, boshqa kirmaydi | inkor-shakl o'rniga voqea to'liq aytiladi (PmMetrics, F-0727-29) |
+| ulush (metrika ta'rifida) | foiz | «yana kelganlar ulushi» o'quvchiga hech narsa demaydi; «qayta kirganlar foizi» aniq. Sanoq-raqam esa birligi bilan: «57 ta» (PmMetrics, F-0727-56) |
+| yana kirish (retention haqida) | qayta kirish | «yana» bog'lam-so'zday o'qiladi; «qayta kirish» aniq harakat (PmMetrics, F-0727-57). Taom-kontekstda «yana oldi» qoladi |
+| joylaysiz / joylang (yolg'iz fe'l) | hikoyani yig'asiz / o'z joyiga qo'yasiz | «joylash» nimaGA joylash aytilmasa bo'sh fe'l; natija yoki manzil bilan aytiladi (F-0727-59) |
 | mavhum (buyruq haqida) | noaniq | darsda «aniq buyruq» juftligi bor — antonimi «noaniq» tabiiy va sodda; «mavhum» kitobiy (BackendCrudPractice REJISSYOR) |
 | resurs (izohsiz) | yozuv (mahsulot/narsa) | «resurs» — kattalar jargoni; bazada u aslida bitta **yozuv** (qator) (ApiPostman POST/201) |
 | bevosita | to'g'ridan-to'g'ri | kitobiy so'z; darsda «to'g'ridan-to'g'ri» allaqachon ishlatilgan — bir tushuncha, bir atama (ApiPostman s10) |

@@ -377,7 +377,7 @@ export const SCREEN_INTENTS = {
   practice: "Bola o'z loyihasi uchun 3 hikoyani bittalab yozib, daftarga saqlaydi",
   peer: "Bola tayyor 3 namuna-kartaga bittalab hukm chiqarib, kamchilikni o'zi nomlaydi",
   s9: "Bola KIM va NATIJA'siz gap imkoniyat-so'rovi ekanini, hikoya emasligini aniqlaydi",
-  clinic: "Bola to'liq bo'lmagan mijoz-talabini to'liq hikoyaga yig'adi va 2 tuzoqni fosh qiladi",
+  clinic: "Bola to'liq bo'lmagan mijoz-istagini to'liq hikoyaga yig'adi va mavhum-NATIJA tuzog'ini fosh qiladi",
   s10: "Bola hikoyaYasa funksiyasini to'ldirib, 3 hikoyasini kod orqali chiqaradi",
   priority: "Bola 3 hikoyasidan eng muhimini «Hozir» ustuniga tanlab qo'yadi",
   s11: "Bola bugun o'rganganini sherigiga aytib, bir gapda yozib qoldiradi",
@@ -938,9 +938,9 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
 // Namuna-mahsulot = YouTube (2-ekrandagi YouTube misoli bilan bir ip). Uch xil odam — uch xil foyda.
 // QOIDA: har NATIJA aynan o'sha KIM'ning foydasi va harakatni takrorlamaydi (dars 6-ekranda shuni tekshiradi).
 const DEMO_STORIES = [
-  { kim: "imtihonga tayyorlanayotgan o'quvchi", nima: "videoni 2 barobar tez ko'rish", natija: "bir kechada ko'proq mavzu ulgurishim" },
-  { kim: "yo'lda ketayotgan tomoshabin", nima: "videoni oldindan yuklab qo'yish", natija: "internet yo'q joyda ham ko'ra olishim" },
-  { kim: 'yangi kanal egasi', nima: "videomni kim ko'rganini bilish", natija: "kimga mos video yasashni tushunishim" },
+  { kim: "imtihonga tayyorlanayotgan o'quvchi", nima: "videoni 2 barobar tez ko'rish", natija: "bir kechada ko'proq mavzuga ulgurish" },
+  { kim: "yo'lda ketayotgan tomoshabin", nima: "videoni oldindan yuklab qo'yish", natija: "internet yo'q joyda ham ko'ra olish" },
+  { kim: 'yangi kanal egasi', nima: "videoni kim ko'rganini bilish", natija: "kimga mos video yasashni tushunish" },
 ];
 const Screen1 = ({ screen, onNext, onPrev }) => (
   <Stage eyebrow="Maqsad" screen={screen} mentorStatic navContent={<><NavBack onPrev={onPrev} /><NavNext label="Boshlaymiz →" onClick={onNext} /></>}>
@@ -1039,7 +1039,7 @@ const Screen2 = ({ screen, onNext, onPrev }) => {
                 <span className="gpl nima">🏃 harakat</span>
                 <span className="gpl natija">💡 sabab</span>
               </div>
-              <p className="grow-next">Keyingi ekranda mana shu 3 bo'lakni o'zingiz joylaysiz.</p>
+              <p className="grow-next">Keyingi ekranda mana shu 3 bo'lakdan hikoyani o'zingiz yig'asiz.</p>
             </div>
           </>
         )}
@@ -1329,40 +1329,48 @@ const ScreenStoryWorkshop = ({ screen, storedAnswer, onAnswer, onNext, onPrev })
     <Stage eyebrow="Amaliyot · hikoya-ustaxona ✍️" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !isMentorW} label={navLabel} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
         <div className="head"><h2 className="title h-title fade-up">Loyihangizning foydalanuvchisi — <span className="italic" style={{ color: T.accent }}>kim</span>?</h2></div>
-        <Mentor>Hikoyalar <b style={{ color: T.ink }}>bittalab</b> yoziladi: kartani to'ldiring → <b style={{ color: T.ink }}>Saqlash</b> → hikoya o'ngdagi daftarga ko'chadi va yangi karta keladi. Jami 3 hikoya.</Mentor>
-        <div className="split">
-          <Col>
-            {showEditor ? (
-              <div className="swed fade-up" key={editing ? `e${editIdx}` : `n${saved.length}`}>
-                <span className="swed-tag">{editing ? `✎ ${editIdx + 1}-hikoyani tahrirlash` : `✨ ${saved.length + 1}-hikoya`}</span>
-                <p className="swed-sent">Men <b className={`ss-slot kim ${draft.kim ? 'on' : ''}`}>{draft.kim || 'kim'}</b> sifatida, <b className={`ss-slot nima ${draft.nima ? 'on' : ''}`}>{draft.nima || 'nima'}</b>ni xohlayman, <b className={`ss-slot natija ${draft.natija ? 'on' : ''}`}>{draft.natija || 'natija'}</b> uchun.</p>
-                <div className="swcard-fields">
-                  <label className={`smini-f kim ${v.kimOk ? 'on' : ''}`}><span>KIM</span><input value={draft.kim} onChange={e => setD({ kim: e.target.value })} placeholder="foydalanuvchi turi — masalan: yo'lda ketayotgan tomoshabin" /></label>
-                  <label className={`smini-f nima ${v.nimaOk ? 'on' : ''}`}><span>NIMA</span><input value={draft.nima} onChange={e => setD({ nima: e.target.value })} placeholder="harakat — masalan: videoni yuklab qo'yish" /></label>
-                  <label className={`smini-f natija ${v.natijaOk ? 'on' : ''}`}><span>NATIJA</span><input value={draft.natija} onChange={e => setD({ natija: e.target.value })} placeholder="real foyda — masalan: internetsiz ham ko'ra olishim" /></label>
-                </div>
-                {saveHint && <p className="swed-hint">💡 {saveHint}</p>}
-                <div className="swed-btns">
-                  {editing && <button className="btn-ghost" onClick={() => setSt(prev => ({ ...prev, draft: emptyCard(), editIdx: -1 }))}>Bekor qilish</button>}
-                  {!v.full && <span className="swed-cnt">{[draft.kim, draft.nima, draft.natija].filter(x => (x || '').trim().length >= 2).length}/3 maydon to'ldi</span>}
-                  <button className="swed-save" disabled={!canSave} onClick={saveDraft}>✓ Saqlash</button>
-                </div>
-              </div>
-            ) : (
-              <div className="done-mini fade-step">✅ Uchta hikoya tayyor <span className="dm-sub">— tahrirlash uchun qalamcha (✎) belgisidan foydalaning</span></div>
-            )}
-          </Col>
-          <Col>
-            <div className="svd fade-up delay-1">
-              <div className="svd-head"><span className="card-lbl" style={{ color: T.accent, margin: 0 }}>📒 Hikoya-daftar</span><b className={`svd-n ${allSaved ? 'ok' : ''}`}>{saved.length}/3</b></div>
+        <Mentor>Kartani to'ldiring va <b style={{ color: T.ink }}>Saqlash</b> bosing — tepadagi chiroq yonadi va yangi karta keladi. Jami <b style={{ color: T.ink }}>3 hikoya</b>.</Mentor>
+        {/* F-0727-58: JTBD-ustaxona naqshi porti — havodagi 1-2-3 indikator + yagona muharrir-karta;
+            yozilgan hikoyalar yozish paytida ko'rinmaydi, 3/3 da daftar (yulduzlar bilan) ochiladi. */}
+        <div className="jw-steps fade-up" aria-label={`${saved.length}/3 hikoya yozildi`}>
+          {[0, 1, 2].map(i => (
+            <React.Fragment key={i}>
+              {i > 0 && <span className={`jws-line ${saved.length >= i ? 'on' : ''}`} aria-hidden="true" />}
+              <span className={`jws ${saved[i] ? 'on' : (i === saved.length && showEditor) ? 'cur' : ''}`}>
+                <i className="jws-n">{saved[i] ? '✓' : i + 1}</i>
+                <em className="jws-t">{saved[i] ? saved[i].kim : `${i + 1}-hikoya`}</em>
+              </span>
+            </React.Fragment>
+          ))}
+        </div>
+        {showEditor ? (
+          <div className="swed fade-up" key={editing ? `e${editIdx}` : `n${saved.length}`}>
+            {editing && <span className="swed-tag">✎ {editIdx + 1}-hikoyani tahrirlash</span>}
+            <p className="swed-sent">Men <b className={`ss-slot kim ${draft.kim ? 'on' : ''}`}>{draft.kim || 'kim'}</b> sifatida, <b className={`ss-slot nima ${draft.nima ? 'on' : ''}`}>{draft.nima || 'nima'}</b>ni xohlayman, <b className={`ss-slot natija ${draft.natija ? 'on' : ''}`}>{draft.natija || 'natija'}</b> uchun.</p>
+            <div className="swcard-fields">
+              <label className={`smini-f kim ${v.kimOk ? 'on' : ''}`}><span>KIM</span><input value={draft.kim} onChange={e => setD({ kim: e.target.value })} placeholder="foydalanuvchi turi — masalan: yo'lda ketayotgan tomoshabin" /></label>
+              <label className={`smini-f nima ${v.nimaOk ? 'on' : ''}`}><span>NIMA</span><input value={draft.nima} onChange={e => setD({ nima: e.target.value })} placeholder="harakat — masalan: videoni yuklab qo'yish" /></label>
+              <label className={`smini-f natija ${v.natijaOk ? 'on' : ''}`}><span>NATIJA</span><input value={draft.natija} onChange={e => setD({ natija: e.target.value })} placeholder="real foyda — masalan: internetsiz ham ko'ra olish" /></label>
+            </div>
+            {saveHint && <p className="swed-hint">💡 {saveHint}</p>}
+            <div className="swed-btns">
+              {editing && <button className="btn-ghost" onClick={() => setSt(prev => ({ ...prev, draft: emptyCard(), editIdx: -1 }))}>Bekor qilish</button>}
+              {!v.full && <span className="swed-cnt">{[draft.kim, draft.nima, draft.natija].filter(x => (x || '').trim().length >= 2).length}/3 maydon to'ldi</span>}
+              <button className="swed-save" disabled={!canSave} onClick={saveDraft}>✓ Saqlash</button>
+            </div>
+          </div>
+        ) : (
+          <>
+            <div className="done-mini fade-step">✅ Uchta hikoya tayyor <span className="dm-sub">— tahrirlash uchun qalamcha (✎) belgisidan foydalaning</span></div>
+            <div className="svd full fade-step">
               {[0, 1, 2].map(i => {
                 const c = saved[i];
-                if (!c) return <div key={i} className="svd-slot"><span className="svd-slot-n">{i + 1}</span>hali yozilmagan</div>;
+                if (!c) return null;
                 return (
                   <div key={i} className={`svd-card ${editIdx === i ? 'editing' : ''}`}>
                     <div className="svd-top">
                       <span className="svd-num">✓ {i + 1}</span>
-                      <span className="svd-stars">{[1, 2, 3, 4, 5].map(s => <button key={s} className={`star ${c.star >= s ? 'on' : ''}`} onClick={() => setStar(i, s)} aria-label={`Muhimligi: ${s} yulduz`} title={`Muhimligi: ${s} yulduz`}>★</button>)}</span>
+                      <span className="svd-stars">{[1, 2, 3, 4, 5].map(st2 => <button key={st2} className={`star ${c.star >= st2 ? 'on' : ''}`} onClick={() => setStar(i, st2)} aria-label={`Muhimligi: ${st2} yulduz`} title={`Muhimligi: ${st2} yulduz`}>★</button>)}</span>
                       <button className="svd-edit" onClick={() => editCard(i)} aria-label={`${i + 1}-hikoyani tahrirlash`}>✎ Tahrirlash</button>
                     </div>
                     <p className="svd-sent">Men <b style={{ color: T.blue }}>{c.kim}</b> sifatida, <b style={{ color: '#B77A16' }}>{c.nima}</b>ni xohlayman, <b style={{ color: T.success }}>{c.natija}</b> uchun.</p>
@@ -1371,10 +1379,9 @@ const ScreenStoryWorkshop = ({ screen, storedAnswer, onAnswer, onNext, onPrev })
               })}
               <p className="svd-foot">⭐ Har hikoyangizga yulduz qo'ying: bu hikoya siz uchun qanchalik muhim?</p>
             </div>
-            <StudentPracticePulse live={live} screen={screen} />
-            <MentorPracticeStats live={live} screen={screen} label="✍️ 3 hikoyani yozib bo'lganlar" />
-          </Col>
-        </div>
+          </>
+        )}
+        <MentorPracticeStats live={live} screen={screen} label="✍️ 3 hikoyani yozib bo'lganlar" />
         <MentorNote>Bu amaliyotni o'quvchilar bajaradi — «✍️ 3 hikoyani yozib bo'lganlar» panelida kuzatasiz; «Davom etish» siz uchun ochiq. Qiynalganga 3 savol bering: loyihangizdan KIM foydalanadi? U birinchi NIMANI qiladi? Keyin hayotida NIMA o'zgaradi? Shu 3 javob = 1 hikoya.</MentorNote>
       </div>
     </Stage>
@@ -1510,12 +1517,11 @@ const CLINIC_POOL = [
   { txt: 'sekin internetli mehmon', slot: 0 },
   { txt: 'sahifani tez ochish', slot: 1 },
   { txt: "kutmasdan o'qishni boshlash", slot: 2 },
-  { txt: 'hamma foydalanuvchi', slot: 0, trap: "«hamma» — juda mavhum. Qaysi turi aynan qiynalyapti?" },
   // F-0727-07: takror-NATIJA tuzog'i («saytning tez ishlashi») to'g'ri NIMA-chipga o'xshab ketardi —
   // tuzoq-turi MAVHUM-FOYDAga almashtirildi: endi ikki tuzoq bitta xato-sinf (mavhumlik) haqida.
   { txt: 'sayt hammaga yoqishi', slot: 2, trap: "«Yoqishi» — aniq foyda emas, umumiy gap. Sayt tez ochilgach, mehmon aynan nima qila oladi? O'shani tanlang." },
 ];
-const CLINIC_ORDER = [3, 0, 4, 1, 2]; // barqaror aralash tartib (StrictMode-safe)
+const CLINIC_ORDER = [0, 3, 2, 1]; // 4 chip — desktopda bitta qatorga sig'adi (F-0727-59)
 const ScreenClinic = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const gate = useContext(LiveGateCtx) || {};
   const live = gate.live;
@@ -1559,7 +1565,7 @@ const ScreenClinic = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <span className="clinic-quote-who">💬 Mijoz yozdi:</span>
           <p className="clinic-quote-txt">«Saytim tez ochilsin!»</p>
         </div>
-        <Mentor>Mijoz faqat tilagini aytdi: «tez ochilsin». Bu gapda <b style={{ color: T.ink }}>KIM</b> ham, <b style={{ color: T.ink }}>NATIJA</b> ham yo'q — shuning uchun u hali hikoya emas. Pastdagi bo'laklardan to'liq hikoya yig'ing. Diqqat: orasida <b style={{ color: T.ink }}>2 ta tuzoq</b> bor!</Mentor>
+        <Mentor>Mijoz faqat tilagini aytdi: «tez ochilsin». Bu gapda <b style={{ color: T.ink }}>KIM</b> ham, <b style={{ color: T.ink }}>NATIJA</b> ham yo'q — shuning uchun u hali hikoya emas. Pastdagi bo'laklardan to'liq hikoya yig'ing. Diqqat: orasida <b style={{ color: T.ink }}>1 ta tuzoq</b> bor!</Mentor>
         <div className="formula-line fade-up delay-1">
           <span className="fw">Men</span>
           {SLOT_META.map((s, i) => (
@@ -1583,13 +1589,13 @@ const ScreenClinic = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           })}
         </div>}
         {done && (
-          <div className="done-mini fade-step">✅ Hikoya to'liq bo'ldi! <span className="dm-sub">— endi unda KIM ham, real FOYDA ham bor{burned.length > 0 ? ` (${burned.length} ta tuzoq yo'lda chiqdi — endi tanib olasiz)` : ' (bitta tuzoqqa ham tushmadingiz! 👏)'}</span></div>
+          <div className="done-mini fade-step">✅ Hikoya to'liq bo'ldi! <span className="dm-sub">— endi unda KIM ham, real FOYDA ham bor{burned.length > 0 ? ' (tuzoqqa tushib ko\'rdingiz — endi uni darrov taniysiz)' : ' (tuzoqqa tushmadingiz! 👏)'}</span></div>
         )}
-        {/* F-0725-02 (👦 topilmasi): tuzoqqa TUSHMAGAN o'quvchi ham ularni ko'rsin — aks holda ekran-niyati
-            («ikki tuzoqni tanib oladi») faqat adashgan bolada bajariladi. */}
+        {/* F-0725-02 (👦 topilmasi): tuzoqqa TUSHMAGAN o'quvchi ham uni ko'rsin — aks holda ekran-niyati
+            («tuzoqni tanib oladi») faqat adashgan bolada bajariladi. */}
         {done && (
           <div className="clinic-traps fade-step">
-            <span className="ct-lbl">🪤 Bu ikkitasi tuzoq edi</span>
+            <span className="ct-lbl">🪤 Bu bo'lak tuzoq edi</span>
             {CLINIC_POOL.filter(f => f.trap).map((f, i) => (
               <p key={i} className="ct-row"><b>«{f.txt}»</b> — {f.trap}</p>
             ))}
@@ -1597,7 +1603,7 @@ const ScreenClinic = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         )}
         <StudentPracticePulse live={live} screen={screen} />
         <MentorPracticeStats live={live} screen={screen} label="🩺 Hikoyani yig'ib bo'lganlar" />
-        <MentorNote>Tuzoqlar ataylab va ikkalasi bitta xato-sinf — mavhumlik: «hamma foydalanuvchi» (mavhum KIM) va «sayt hammaga yoqishi» (mavhum NATIJA). Tuzoqqa tushish — xato emas, darsning o'zi: sinfda kim tushganini so'rab, sababini muhokama qiling.</MentorNote>
+        <MentorNote>Tuzoq ataylab qo'yilgan: «sayt hammaga yoqishi» — mavhum NATIJA (aniq foyda emas). Tuzoqqa tushish — xato emas, darsning o'zi: sinfda kim tushganini so'rab, sababini muhokama qiling.</MentorNote>
       </div>
     </Stage>
   );
@@ -1952,7 +1958,7 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return (
     <Stage eyebrow="Koding · 🛠 kompilyator" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !isMentor} label={done || isMentor ? 'Davom etish' : 'Avval kompilyatorda bajaring'} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(14px,2.2vw,20px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Endi hikoyani <span className="italic" style={{ color: T.accent }}>kartaga</span> kod aylantiradi</h2></div>
+        <div className="head"><h2 className="title h-title fade-up">Hikoyangizni kartaga aylantiradigan <span className="italic" style={{ color: T.accent }}>kod</span> yozamiz</h2></div>
         <Mentor>Diqqat qiling: hikoyalarni allaqachon yozib qo'ydik — <b style={{ color: T.ink }}>kod esa endi yoziladi</b>. Ish har doim shu tartibda: avval kimga nima kerakligini bilamiz, keyin qura boshlaymiz. Endi <span className="mono">hikoyaYasa</span> funksiyasini to'ldirasiz — u har hikoyangizni tayyor kartaga aylantiradi.</Mentor>
         <div className="kdx fade-up delay-1">
           <div className="kdx-fn">
@@ -1967,7 +1973,6 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 Men <b>{s.kim}</b> sifatida, <b>{s.nima}</b>ni xohlayman, <b>{s.natija}</b> uchun.
               </div>
             ))}
-            <p className="kdx-out-note">{myStories.length ? "📒 Bular — daftardan olingan o'z hikoyalaringiz" : 'Namuna — kompilyatorda o\'z hikoyalaringiz chiqadi'}</p>
           </div>
         </div>
         <div className="kdx-cta fade-up delay-2">
@@ -1978,7 +1983,6 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         {done && <div className="done-mini fade-step" style={{ alignSelf: 'center' }}>✅ Ishladi! <span className="dm-sub">— 3 hikoyangiz koddan karta bo'lib chiqdi</span></div>}
         <StudentPracticePulse live={live} screen={screen} />
         <MentorPracticeStats live={live} screen={screen} label="🛠 Kodni yozib bo'lganlar" />
-        <MentorNote>Kodni o'quvchilar yozadi — «🛠 Kodni yozib bo'lganlar» panelida kuzatasiz; «Davom etish» siz uchun ochiq. 10 daqiqada ulgurmagan o'quvchi kodni uyda tugatadi — unga uy-vazifa qisqa versiyada beriladi.</MentorNote>
       </div>
       {open && <PmCompiler initialCode={code} onContinue={finishPractice} onBack={() => setOpen(false)} />}
     </Stage>
@@ -2019,7 +2023,7 @@ function PairTimer() {
         <p className="pair-now" style={{ margin: 0 }}>{st.done ? "✓ Vaqt tugadi — ikkalangiz ham aytdingizmi? Barakalla!" : "Har biringizga 30 soniyadan: avval A gapiradi, keyin B."}</p>
       )}
       <div className="pair-timer-btns">
-        {!st.running && <button className="btn-soft" onClick={() => setSt({ running: true, left: 60, done: false })}>{st.done ? '↻ Yana 1 daqiqa' : '▶ 1 daqiqani boshlash'}</button>}
+        {!st.running && <button className={st.done ? 'btn-soft' : 'pair-start'} onClick={() => setSt({ running: true, left: 60, done: false })}>{st.done ? '↻ Yana 1 daqiqa' : '▶ 1 daqiqani boshlash'}</button>}
         {st.running && <button className="btn-soft" onClick={() => setSt({ running: false, left: 60, done: false })}>⏹ To'xtatish</button>}
       </div>
     </div>
@@ -2099,7 +2103,6 @@ const Screen12 = ({ screen, onNext, onPrev }) => {
         ) : (
           <div className="frame-soft fade-up delay-2"><p className="body" style={{ margin: 0, color: T.ink }}>👆 Avval foydalanuvchi turini tanlang — topshiriq-karta shunga moslashadi.</p></div>
         )}
-        <MentorNote>Kodni sinfda tugatgan o'quvchi uyda 2 hikoya yozadi; ulgurmagani avval kodni tugatib, 1 hikoya yozsa yetadi. Tekshirishda har hikoyada uchala bo'lak (KIM + NIMA + NATIJA) borligini so'rang.</MentorNote>
       </div>
     </Stage>
   );
@@ -3135,6 +3138,29 @@ export default function PmUserStoryLesson({ lang: langProp, onFinished }) {
         .star { background: none; border: none; cursor: pointer; font-size: 18px; color: ${T.ink3}; padding: 0 1px; transition: color 0.15s, transform 0.15s; }
         .star.on { color: #F5A623; } .star:hover { transform: scale(1.2); }
         /* === USTAXONA v3: bittalab-muharrir (swed) + saqlanganlar-daftari (svd) === */
+        /* JTBD-portlar (F-0727-58): havodagi 1-2-3 indikator + rangli inputlar */
+        .jw-steps { display: flex; align-items: flex-start; justify-content: center; gap: 12px; padding: 2px 0 4px; }
+        .jws { display: inline-flex; flex-direction: column; align-items: center; gap: 5px; min-width: 80px; }
+        .jws-n { width: clamp(38px,4.6vw,44px); height: clamp(38px,4.6vw,44px); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: clamp(15px,1.8vw,18px); font-style: normal; color: ${T.ink3}; border: 2px dashed ${T.ink3}55; background: ${T.paper}; transition: all 0.3s; box-shadow: 0 4px 12px -5px rgba(${T.shadowBase},0.18); }
+        .jws-t { font-family: 'Manrope'; font-weight: 700; font-size: clamp(10.5px,1.3vw,12px); font-style: normal; color: ${T.ink3}; max-width: 110px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .jws.cur .jws-n { border-style: solid; border-color: ${T.accent}; color: ${T.accent}; background: ${T.accentSoft}; animation: jws-pulse 1.6s ease-in-out infinite; }
+        .jws.cur .jws-t { color: ${T.accent}; }
+        @keyframes jws-pulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(110,75,255,0.4); } 50% { box-shadow: 0 0 0 9px rgba(110,75,255,0); } }
+        .jws.on .jws-n { border-style: solid; border-color: ${T.success}; background: ${T.success}; color: #fff; }
+        .jws.on .jws-t { color: ${T.success}; }
+        .jws-line { flex: 0 1 110px; height: 3px; border-radius: 99px; background: ${T.line}; margin-top: clamp(18px,2.2vw,21px); transition: background 0.4s; }
+        .jws-line.on { background: ${T.success}; }
+        .svd.full { width: 100%; display: flex; flex-direction: column; gap: 10px; }
+        .smini-f.kim input { box-shadow: inset 0 0 0 1.5px ${T.blue}55; }
+        .smini-f.nima input { box-shadow: inset 0 0 0 1.5px #E8A13A66; }
+        .smini-f.natija input { box-shadow: inset 0 0 0 1.5px ${T.success}55; }
+        .smini-f.kim input:focus { box-shadow: inset 0 0 0 2px ${T.blue}; }
+        .smini-f.nima input:focus { box-shadow: inset 0 0 0 2px #E8A13A; }
+        .smini-f.natija input:focus { box-shadow: inset 0 0 0 2px ${T.success}; }
+        .smini-f.kim.on input { box-shadow: inset 0 0 0 1.5px ${T.blue}; }
+        .smini-f.nima.on input { box-shadow: inset 0 0 0 1.5px #E8A13A; }
+        .smini-f.natija.on input { box-shadow: inset 0 0 0 1.5px ${T.success}; }
+        @media (prefers-reduced-motion: reduce) { .jws.cur .jws-n { animation: none; } }
         .swed { background: ${T.paper}; border-radius: 16px; padding: clamp(16px,2.4vw,22px); display: flex; flex-direction: column; gap: 13px; box-shadow: 0 12px 30px -10px rgba(${T.shadowBase},0.2); border-left: 5px solid ${T.accent}; }
         .swed-tag { align-self: flex-start; font-family: 'Manrope'; font-weight: 800; font-size: 11px; letter-spacing: 0.05em; padding: 4px 12px; border-radius: 99px; color: ${T.accent}; background: ${T.accentSoft}; }
         .swed-sent { font-family: Georgia, serif; font-size: clamp(15px,2vw,18px); color: ${T.ink2}; line-height: 1.6; margin: 0; overflow-wrap: anywhere; }
@@ -3151,11 +3177,8 @@ export default function PmUserStoryLesson({ lang: langProp, onFinished }) {
         .swed-save:hover:not(:disabled) { background: ${T.accentVivid}; transform: translateY(-1px); }
         .swed-save:disabled { background: ${T.accentSoft}; color: ${T.accent}; opacity: 0.55; box-shadow: none; cursor: not-allowed; transform: none; }
         .svd { background: linear-gradient(180deg, ${T.paper}, #FBFAFE); border-radius: 16px; padding: 15px 16px; display: flex; flex-direction: column; gap: 10px; box-shadow: 0 8px 22px -8px rgba(${T.shadowBase},0.16); }
-        .svd-head { display: flex; align-items: center; justify-content: space-between; }
         .svd-n { font-family: 'JetBrains Mono', monospace; font-size: 14px; color: ${T.ink3}; }
         .svd-n.ok { color: ${T.success}; }
-        .svd-slot { display: flex; align-items: center; gap: 10px; border: 1.5px dashed ${T.ink3}55; border-radius: 12px; padding: 12px 14px; font-family: 'Manrope'; font-weight: 600; font-size: 13px; color: ${T.ink3}; font-style: italic; }
-        .svd-slot-n { width: 22px; height: 22px; border-radius: 7px; flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 800; font-style: normal; color: ${T.ink3}; box-shadow: inset 0 0 0 1.5px ${T.ink3}44; }
         .svd-card { background: ${T.successSoft}; border-radius: 12px; padding: 11px 13px; display: flex; flex-direction: column; gap: 6px; box-shadow: inset 0 0 0 1.5px ${T.success}44; animation: card-fill-pop 0.42s cubic-bezier(.34,1.5,.4,1); }
         .svd-card.editing { box-shadow: inset 0 0 0 2px ${T.accent}; background: ${T.accentSoft}; }
         @media (prefers-reduced-motion: reduce) { .svd-card { animation: none; } }
@@ -3288,7 +3311,6 @@ export default function PmUserStoryLesson({ lang: langProp, onFinished }) {
         .kdx-card { font-family: Georgia, serif; font-size: clamp(14px,1.8vw,16.5px); line-height: 1.55; color: ${T.ink}; background: ${T.paper}; border-radius: 12px; padding: clamp(12px,1.8vw,16px) clamp(14px,2vw,18px); box-shadow: 0 6px 16px -8px rgba(${T.shadowBase},0.25); border-left: 3px solid ${T.accent}; overflow-wrap: anywhere; opacity: 0; animation: fade-step 0.45s ease-out forwards; animation-delay: var(--kd, 0.5s); }
         .kdx-card b { font-weight: 700; }
         .kdx-card .hc-prev-badge { margin-right: 8px; vertical-align: middle; }
-        .kdx-out-note { margin: 0; font-family: 'Manrope', sans-serif; font-weight: 600; font-size: 12px; color: ${T.ink3}; }
         .kdx-cta { display: flex; flex-direction: column; align-items: center; gap: 8px; }
         .kdx-cta-sub { font-family: 'Manrope', sans-serif; font-weight: 600; font-size: 12.5px; color: ${T.ink3}; text-align: center; }
         @media (prefers-reduced-motion: reduce) { .kdx-arrow { animation: none; } .kdx-card { opacity: 1; animation: none; } }
@@ -3372,6 +3394,11 @@ export default function PmUserStoryLesson({ lang: langProp, onFinished }) {
         .pair-live-txt { display: flex; flex-direction: column; gap: 3px; }
         .pair-next { font-family: 'Manrope'; font-weight: 600; font-size: 12.5px; color: ${T.ink3}; }
         .pair-timer-btns { display: flex; gap: 8px; }
+        /* F-0727-43: boshlash-tugmasi pulsli CTA — o'quvchi uni sezmasdan o'tib ketmasin */
+        .pair-start { font-family: 'Manrope'; font-weight: 800; font-size: clamp(14px,1.8vw,16px); cursor: pointer; border: none; border-radius: 12px; padding: 12px 22px; background: linear-gradient(135deg, ${T.accent}, ${T.accentVivid}); color: #fff; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 10px 24px -8px rgba(91,61,230,0.5); animation: pair-start-pulse 1.6s ease-in-out infinite; transition: transform 0.15s; }
+        .pair-start:hover { transform: translateY(-2px); }
+        @keyframes pair-start-pulse { 0%, 100% { box-shadow: 0 10px 24px -8px rgba(91,61,230,0.5), 0 0 0 0 rgba(110,75,255,0.45); } 50% { box-shadow: 0 12px 28px -8px rgba(91,61,230,0.6), 0 0 0 12px rgba(110,75,255,0); } }
+        @media (prefers-reduced-motion: reduce) { .pair-start { animation: none; } }
         .reflect-input { font-family: 'Manrope'; font-size: 15px; color: ${T.ink}; border: none; border-radius: 10px; padding: 12px 14px; background: ${T.bg}; box-shadow: inset 0 0 0 1.5px ${T.line}; outline: none; }
         .reflect-input:focus { box-shadow: inset 0 0 0 1.5px ${T.accent}; }
         .qa-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }

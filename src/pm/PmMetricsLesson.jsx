@@ -373,7 +373,7 @@ const SCORED_IDX = SCREEN_META.map((m, i) => (m.scored ? i : null)).filter(i => 
 // SCREEN_INTENTS — har ekran nima uchun mavjud: 1 gaplik niyat (Quruvchi yozadi, 👦 O'quvchi-simulyator
 // tekshiradi). Render qilinmaydi; niyat = bola nima QILADI yoki nima BILADI.
 export const SCREEN_INTENTS = {
-  s0: "Bola Duolingo savoliga ovoz berib, «nega odam har kuni yana kiradi?» degan qiziqish bilan qoladi",
+  s0: "Bola Duolingo savoliga ovoz berib, «nega odam har kuni qayta kiradi?» degan qiziqish bilan qoladi",
   s1: "Bola dars oxirida o'z paneli xuddi shunday jonlanishini oldindan ko'radi",
   s2: "Bola kun-kataklarni ochib, birinchi kun emas — keyingi kunlar javob berishini o'zi topadi",
   s3: "Bola to'rt vaziyatni to'rt metrikaga o'zi biriktirib, ularning ta'rifini ochadi",
@@ -502,14 +502,14 @@ const RECAPS = {
     cards: [
       { ic: "📅", h: "DAU nimani sanaydi", body: <>DAU (Daily Active Users) — bir kunda ilovani ochib ishlatgan <b>odamlar soni</b>. Odam har kuni kirsa, avvalo shu raqam o'sadi.</> },
       { ic: "📊", h: "DAU va MAU farqi", body: <>Bular ikki alohida raqam: DAU — bir <b>kunda</b> kirganlar, MAU — bir <b>oyda</b> kirganlar soni. Ikkisini solishtirsangiz, odamlar qanchalik tez-tez qaytayotgani ko'rinadi.</> },
-      { ic: "🔀", h: "Churn — aksincha", body: <>Churn (ketish) esa kamayadi: odamlar qaytib kirsa, ketganlar ulushi tushadi. DAU o'sadi, churn kamayadi — ikkisi qarama-qarshi tomonga qaraydi.</>, ask: "Ilovaga har kuni odam kirsa — DAU o'sadimi yoki churn?" },
+      { ic: "🔀", h: "Churn — aksincha", body: <>Churn (ketish) esa kamayadi: odamlar qaytib kirsa, ketganlar foizi tushadi. DAU o'sadi, churn kamayadi — ikkisi qarama-qarshi tomonga qaraydi.</>, ask: "Ilovaga har kuni odam kirsa — DAU o'sadimi yoki churn?" },
     ]
   },
   6: {
     title: "Streak retention'ni oshiradi",
     cards: [
       { ic: "🔥", h: "Streak odamni qaytaradi", body: <>Duolingo streak — ketma-ket dars qilingan kunlar soni. Hisobni yo'qotishdan qo'rquv odamni <b>qayta-qayta kirgizadi</b>. O'yinlardagi kunlik bonus ham shu usul.</> },
-      { ic: "↩️", h: "Retention nimani o'lchaydi", body: <>Retention — kirganlardan <b>necha kishi yana kirgani</b> (yuzta odamdan nechtasi). Streak birinchi navbatda aynan shu raqamni oshiradi.</> },
+      { ic: "↩️", h: "Retention nimani o'lchaydi", body: <>Retention — kirganlardan <b>necha kishi qayta kirgani</b> (yuzta odamdan nechtasi). Streak birinchi navbatda aynan shu raqamni oshiradi.</> },
       { ic: "🚫", h: "Yangi odam keltirmaydi", body: <>Streak <b>yangi odamlar kelishini</b> yoki ilovaning tezligini o'zgartirmaydi — u faqat allaqachon kelganlarni qaytaradi.</>, ask: "Streak qaysi metrikaga eng kuchli ta'sir qiladi?" },
     ]
   },
@@ -518,7 +518,7 @@ const RECAPS = {
     cards: [
       { ic: "📅", h: "DAU — kelishni sanaydi", body: <>DAU savoli: <b>«Bugun nechta odam kirdi?»</b> — mahsulotga kelishni sanaydi.</> },
       { ic: "↩️", h: "Retention — qaytish, churn — ketish", body: <>Retention: <b>«kelganlardan necha kishi YANA kirdi?»</b>. Churn: <b>«necha kishi butunlay ketdi?»</b> — ikkisi bir tanganing ikki tomoni.</> },
-      { ic: "⭐", h: "North Star — foydani ko'rsatadi", body: <>North Star savoli: <b>«mahsulot odamga haqiqiy foyda beryaptimi?»</b> — panelning eng asosiy raqami.</>, ask: "«Kelganlardan necha kishi yana kirdi?» — bu qaysi metrika?" },
+      { ic: "⭐", h: "North Star — foydani ko'rsatadi", body: <>North Star savoli: <b>«mahsulot odamga haqiqiy foyda beryaptimi?»</b> — panelning eng asosiy raqami.</>, ask: "«Kelganlardan necha kishi qayta kirdi?» — bu qaysi metrika?" },
     ]
   }
 };
@@ -1003,8 +1003,8 @@ function CountUp({ to, dur = 1100, delay = 0, suffix = '' }) {
 // mini-sparkline chizig'i chiziladi (SVG stroke-dashoffset), karta to'lgach yashil «● JONLI» puls yonadi.
 const DEMO_METRICS = [
   { ic: '📅', name: 'DAU', what: 'kunlik kirganlar', num: 128, suffix: '', pts: '0,26 14,22 28,24 42,16 56,18 70,10 84,12 98,4' },
-  { ic: '↩️', name: 'Retention', what: 'yana kelganlar ulushi', num: 42, suffix: '%', pts: '0,24 14,25 28,20 42,21 56,15 70,16 84,10 98,7' },
-  { ic: '⭐', name: 'North Star', what: 'haftada 3+ qaytganlar', num: 57, suffix: '', pts: '0,27 14,24 28,25 42,19 56,13 70,14 84,8 98,5' },
+  { ic: '↩️', name: 'Retention', what: 'qayta kirganlar foizi', num: 42, suffix: '%', pts: '0,24 14,25 28,20 42,21 56,15 70,16 84,10 98,7' },
+  { ic: '⭐', name: 'North Star', what: "haftasiga 3 martadan ko'p kirganlar soni", num: 57, suffix: ' ta', pts: '0,27 14,24 28,25 42,19 56,13 70,14 84,8 98,5' },
 ];
 const Screen1 = ({ screen, onNext, onPrev }) => (
   <Stage eyebrow="Maqsad" screen={screen} mentorStatic navContent={<><NavBack onPrev={onPrev} /><NavNext label="Boshlaymiz →" onClick={onNext} /></>}>
@@ -1096,8 +1096,8 @@ const Screen2 = ({ screen, onNext, onPrev }) => {
 // Rang-semantika: DAU=ko'k · Retention=indigo · Churn=amber · North Star=oltin (yashil FAQAT muvaffaqiyat).
 const METRIC_DEFS = [
   { key: 'dau',  ic: '📅', name: 'DAU va MAU', short: 'kunlik va oylik kirganlar', def: <>Bular ikki alohida raqam: <b>DAU — bir kunda</b>, MAU — bir oyda ilovani ochib ishlatgan odamlar soni. «Bugun nechta odam kirdi?» degan savolga javob beradi.</> },
-  { key: 'ret',  ic: '↩️', name: 'Retention', short: 'yana kelganlar ulushi', def: <>Kirganlardan <b>necha kishi keyin YANA kiradi</b> — ulushi, ya'ni yuzta odamdan nechtasi. O'yinlardagi «har kuni kirsang — bonus» ham shu qaytish usuli.</> },
-  { key: 'churn',ic: '📉', name: 'Churn',      short: 'ketganlar ulushi', def: <>Retention'ning aksi: <b>yuzta odamdan nechtasi butunlay ketib qoldi</b>. Churn o'ssa — odamlar mahsulotni tashlab ketmoqda degani.</> },
+  { key: 'ret',  ic: '↩️', name: 'Retention', short: 'qayta kirganlar foizi', def: <>Kirganlardan <b>necha foizi keyin QAYTA kiradi</b> — yuzta odamdan nechtasi qaytgani. O'yinlardagi «har kuni kirsang — bonus» ham shu qaytish usuli.</> },
+  { key: 'churn',ic: '📉', name: 'Churn',      short: 'butunlay ketganlar foizi', def: <>Retention'ning aksi: <b>yuzta odamdan nechtasi butunlay ketib qoldi</b>. Churn o'ssa — odamlar mahsulotni tashlab ketmoqda degani.</> },
   { key: 'ns',   ic: '⭐', name: 'North Star', short: 'eng asosiy raqam', def: <>Mahsulotingiz odamga <b>haqiqiy foyda berayotganini</b> eng yaxshi ko'rsatadigan YAGONA raqam. Butun jamoa shunga qaraydi.</> },
 ];
 // Vaziyat-kartalar — id = mos metrika-ustun kaliti. Tartib ustunlardan farqli (aralashtirilgan, barqaror).
@@ -1184,7 +1184,7 @@ const K5_SLIDES = [
   { ic: "🔥", h: "Streak nima", body: <>Streak — <b>ketma-ket dars qilingan kunlar soni</b>: har kuni kirsangiz, son o'sib boradi. Bir kun o'tkazib yuborsangiz — hisob nolga tushadi.</> },
   { ic: "🧲", h: "Qo'rquv + odat", body: <>Shuncha kun yig'ilgan streak 🔥ni <b>yo'qotishdan qo'rquv</b> odamni vaqti yo'q kunda ham kirgizadi. Asta-sekin bu <b>odatga</b> aylanadi.</> },
   { ic: "🧊", h: "Muzlatish va eslatmalar", body: <>Yordamchi usullar ham bor: hisobni <b>«muzlatish»</b> (bir kun kirmasangiz ham son saqlanib qoladi) va kunlik <b>eslatmalar</b>.</> },
-  { ic: "↩️", h: "Xulosa: retention", body: <>Streak — oddiy chiroyli belgi emas: jamoa uni odam <b>har kuni qaytib kirishi uchun</b> atayin o'ylab topgan. U <b>retention'ni (yana kirishni) oshiradi</b> va jamoa buni har kuni o'lchab boradi.</> },
+  { ic: "↩️", h: "Xulosa: retention", body: <>Streak — oddiy chiroyli belgi emas: jamoa uni odam <b>har kuni qaytib kirishi uchun</b> atayin o'ylab topgan. U <b>retention'ni (qayta kirishni) oshiradi</b> va jamoa buni har kuni o'lchab boradi.</> },
 ];
 // 🎲 Mikro-bashorat stavkalari — 2 kalit-slayd OLDIDAN o'quvchi taxmin tikadi, slayd javobni ochadi.
 // Unscored: ball yo'q, to'g'ri kelmasa NEYTRAL indigo (qizil EMAS). Tanlov localStorage'da (qaytib kirsa saqlanadi).
@@ -1338,9 +1338,16 @@ const savedMetricCards = () => (readMetrics()?.cards || [])
   .slice(0, 3)
   .map(c => ({ nom: c.nom, what: c.what, why: c.why, ask: c.ask, hyp: c.hyp || '' }));
 const MW_PLACE = [
-  { n: 'masalan: DAU', w: 'kunlik kirganlar soni', y: "kim umuman kirayotganini bildiradi" },
-  { n: 'masalan: retention', w: 'yana kelganlar ulushi', y: "odam foyda ko'rayotganini bildiradi" },
-  { n: 'masalan: darsni tugatganlar', w: 'oxirigacha yetganlar soni', y: 'real natija shu yerda' },
+  { n: 'qisqa nom', w: 'nimani sanaydi?', y: 'qanday foydani bildiradi?' },
+  { n: 'qisqa nom', w: 'nimani sanaydi?', y: 'qanday foydani bildiradi?' },
+  { n: 'qisqa nom', w: 'nimani sanaydi?', y: 'qanday foydani bildiradi?' },
+];
+// 📋 NAMUNA paneli (F-0727-61): har bosqichda O'Z namunasi ochiladi — placeholder'da misol turmaydi
+const MW_SAMPLE = [
+  { t: '⭐ North Star namunasi', rows: [['Raqam', 'haftasiga 3 marta qayta kirganlar soni']] },
+  { t: '1-karta namunasi', rows: [['NOMI', 'DAU'], ['NIMANI sanaydi', 'kunlik kirganlar soni'], ['NEGA muhim', "kim umuman kirayotganini bildiradi"]] },
+  { t: '2-karta namunasi', rows: [['NOMI', 'retention'], ['NIMANI sanaydi', 'qayta kirganlar foizi'], ['NEGA muhim', "odam foyda ko'rayotganini bildiradi"]] },
+  { t: '3-karta namunasi', rows: [['NOMI', 'darsni tugatganlar'], ['NIMANI sanaydi', 'oxirigacha yetganlar soni'], ['NEGA muhim', 'real natija shu yerda']] },
 ];
 const ScreenMetricWorkshop = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const gate = useContext(LiveGateCtx) || {};
@@ -1408,16 +1415,6 @@ const ScreenMetricWorkshop = ({ screen, storedAnswer, onAnswer, onNext, onPrev }
   const editCard = (i) => setSt(prev => ({ ...prev, draft: { ...prev.saved[i] }, editIdx: i }));
   const editNs = () => setSt(prev => ({ ...prev, editIdx: -2, draft: emptyMetric() }));
   const litN = (ns ? 1 : 0) + saved.length;
-  // Qadam-progressi (sof vizual): ⭐ North Star + 3 karta = 4 nuqta; hozirgi qadam pulsda, bajarilgani yashil.
-  const mwStep = nsMode ? 0 : (editingCard ? editIdx + 1 : Math.min(saved.length + 1, 3));
-  const mwSteps = (
-    <span className="mw-steps" aria-hidden="true">
-      {[0, 1, 2, 3].map(k => {
-        const isDone = k === 0 ? !!ns : !!saved[k - 1];
-        return <i key={k} className={`mw-stepdot ${isDone ? 'done' : ''} ${k === mwStep ? 'cur' : ''} ${k === 0 ? 'ns' : ''}`} />;
-      })}
-    </span>
-  );
   // 30/22-qonun: qulflangan tugma AYNAN nima qolganini aytadi — sanoq DINAMIK
   const navLabel = done || isMentor ? 'Davom etish'
     : nsMode ? "⭐ North Star'ni yozib saqlang"
@@ -1426,67 +1423,64 @@ const ScreenMetricWorkshop = ({ screen, storedAnswer, onAnswer, onNext, onPrev }
     <Stage eyebrow="Ustaxona · metrika-panel ✍️" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !isMentor} label={navLabel} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
         <div className="head"><h2 className="title h-title fade-up">O'z loyihangiz uchun <span className="italic" style={{ color: T.accent }}>metrika-panel</span> yig'ing.</h2></div>
-        <Mentor>Loyihangiz (MVP — ilk sodda versiyangiz) uchun avval <b style={{ color: T.ink }}>⭐ North Star</b>, keyin 3 karta yozing. Har «✓ Saqlash»da yozuvingiz o'ngdagi <b style={{ color: T.ink }}>«Mening panelim»</b>ga ko'chadi va chirog'i yonadi.</Mentor>
-        <div className="split">
-          <Col>
-            {nsMode ? (
-              <div className="mw-ed ns fade-up" key="nsed">
-                <span className="mw-tag">⭐ North Star — panelning eng asosiy raqami</span>
-                {mwSteps}
-                <p className="mw-sent">Mening North Star'im — <b className={`mw-part nom ${nsV.hasNumber ? 'on' : ''}`}>sanaladigan raqam</b>, chunki u <b className={`mw-part why ${nsV.hasReason ? 'on' : ''}`}>qanday foyda berayotganini</b> bildiradi.</p>
-                <textarea className="nstar-input" value={nsDraft} spellCheck={false} rows={3} onChange={e => setSt(prev => ({ ...prev, nsDraft: e.target.value }))} placeholder="masalan: haftada uch martadan ko'p yana kirgan foydalanuvchilar soni, chunki u odam mahsulotdan real foyda olayotganini bildiradi" />
-                {!nsV.full && <p className="mw-hint">💡 Sanaladigan raqamni yozing: masalan «… soni» yoki «… ulushi».</p>}
-                {nsV.full && !nsV.hasReason && <p className="mw-hint">💡 Xohlasangiz, «chunki …» deb sababini ham qo'shing — shart emas.</p>}
-                <div className="mw-btns">
-                  {editIdx === -2 && ns && <button className="btn-ghost" onClick={() => setSt(prev => ({ ...prev, nsDraft: prev.ns, editIdx: -1 }))}>Bekor qilish</button>}
-                  <button className="mw-save" disabled={!nsV.full} onClick={saveNs}>✓ Saqlash</button>
-                </div>
-              </div>
-            ) : showCardEditor ? (
-              <div className="mw-ed fade-up" key={editingCard ? `e${editIdx}` : `n${saved.length}`}>
-                <span className="mw-tag">{editingCard ? `✎ ${editIdx + 1}-kartani tahrirlash` : `✨ ${slotN + 1}-karta — yangi raqam`}</span>
-                {mwSteps}
-                <p className="mw-sent"><b className={`mw-part nom ${draft.nom ? 'on' : ''}`}>{draft.nom || 'raqam nomi'}</b> — <b className={`mw-part what ${draft.what ? 'on' : ''}`}>{draft.what || "nimani o'lchaydi"}</b>. Nega kerak: <b className={`mw-part why ${draft.why ? 'on' : ''}`}>{draft.why || 'qanday foydani bildiradi'}</b>.</p>
-                <div className="mw-fields">
-                  <label className={`mw-f kim ${v.nomOk ? 'on' : ''}`}><span>NOMI</span><input value={draft.nom} onChange={e => setD({ nom: e.target.value })} placeholder={ph.n} /></label>
-                  <label className={`mw-f nima ${v.whatOk ? 'on' : ''}`}><span>NIMANI o'lchaydi</span><input value={draft.what} onChange={e => setD({ what: e.target.value })} placeholder={ph.w} /></label>
-                  <label className={`mw-f natija ${v.whyOk ? 'on' : ''}`}><span>NEGA muhim</span><input value={draft.why} onChange={e => setD({ why: e.target.value })} placeholder={ph.y} /></label>
-                </div>
-                <label className={`mwcard-ask ${draft.ask ? 'on' : ''}`}>
-                  <span>{slotN === 2 && !editingCard ? 'Qaysi savolga javob? — qolgan savolni tanlang' : 'Qaysi savolga javob?'}</span>
-                  <select value={draft.ask} onChange={e => setD({ ask: e.target.value })}>
-                    <option value="">— tanlang —</option>
-                    {METRIC_ASKS.map(a => <option key={a.k} value={a.k}>{a.label}</option>)}
-                  </select>
-                </label>
-                {saveHint && <p className="mw-hint">💡 {saveHint}</p>}
-                <div className="mw-btns">
-                  {editingCard && <button className="btn-ghost" onClick={() => setSt(prev => ({ ...prev, draft: emptyMetric(), editIdx: -1 }))}>Bekor qilish</button>}
-                  {!v.full && <span className="mw-cnt">{!v.nomOk ? '«NOMI» bo\'sh' : !v.whatOk ? '«NIMANI o\'lchaydi» bo\'sh' : !v.whyOk ? '«NEGA muhim» bo\'sh' : 'savolni tanlang'} · {nFilled}/4</span>}
-                  <button className="mw-save" disabled={!canSave} onClick={saveDraft}>✓ Saqlash</button>
-                </div>
-              </div>
-            ) : (
-              /* 28-qonun: muharrir o'rni bo'sh qolmaydi — to'rt chirog'i yongan «panel yoqildi» varag'i */
-              <div className="mw-done fade-step">
-                <span className="mw-done-lamps" aria-hidden="true">
-                  {[0, 1, 2, 3].map(k => <span key={k} className="mlive mini" style={{ animationDelay: `${0.1 + k * 0.14}s` }}>● JONLI</span>)}
+        <Mentor>Loyihangiz (MVP — ilk sodda versiyangiz) uchun avval <b style={{ color: T.ink }}>⭐ North Star</b>, keyin 3 karta yozing. Har «✓ Saqlash»da tepadagi chiroq yonadi. Jami <b style={{ color: T.ink }}>4 yozuv</b>.</Mentor>
+        {/* F-0727-58: JTBD-ustaxona naqshi porti — havodagi ⭐-1-2-3 indikator + yagona muharrir-karta;
+            panel (Mening panelim) yozish paytida ko'rinmaydi, 4/4 da to'liq enda ochiladi. */}
+        <div className="jw-steps fade-up" aria-label={`${litN}/4 yozuv tayyor`}>
+          {[0, 1, 2, 3].map(i => {
+            const isDone = i === 0 ? !!ns : !!saved[i - 1];
+            const isCur = nsMode ? i === 0 : (showCardEditor && i === (editingCard ? editIdx + 1 : saved.length + 1));
+            const label = i === 0 ? (ns ? 'North Star' : '⭐ North Star') : (saved[i - 1] ? saved[i - 1].nom : `${i}-karta`);
+            return (
+              <React.Fragment key={i}>
+                {i > 0 && <span className={`jws-line ${isDone || (i === 1 ? !!ns : !!saved[i - 2]) ? 'on' : ''}`} aria-hidden="true" />}
+                <span className={`jws ${isDone ? 'on' : isCur ? 'cur' : ''}`}>
+                  <i className="jws-n">{isDone ? '✓' : i === 0 ? '⭐' : i}</i>
+                  <em className="jws-t">{label}</em>
                 </span>
-                <div className="done-mini">✅ Panelingiz to'liq yondi <span className="dm-sub">— tahrirlash uchun qalamcha (✎) belgisidan foydalaning</span></div>
-              </div>
-            )}
-            <div className={`wsx ${helpOpen ? 'open' : ''}`}>
-              <button className="wsx-toggle" onClick={() => setSt(prev => ({ ...prev, helpOpen: !prev.helpOpen }))}>💡 Yordam {helpOpen ? '▾' : '▸'}</button>
-              {helpOpen && <div className="wsx-body">
-                <p><b>⭐ North Star qanday topiladi?</b> O'zingizdan so'rang: foydalanuvchi mahsulotimdan qachon ROSTDAN foyda oladi? O'sha paytni sanaydigan raqam — North Star.</p>
-                <p><b>3 karta</b> uch savolga javob beradi: nechta odam KELDI? nechtasi QAYTDI? nechtasi FOYDA oldi?</p>
-              </div>}
+              </React.Fragment>
+            );
+          })}
+        </div>
+        {nsMode ? (
+          <div className="mw-ed ns fade-up" key="nsed">
+            <span className="mw-tag">⭐ North Star — panelning eng asosiy raqami</span>
+            <textarea className="nstar-input" value={nsDraft} spellCheck={false} rows={2} onChange={e => setSt(prev => ({ ...prev, nsDraft: e.target.value }))} placeholder="o'z raqamingizni yozing" />
+            {!nsV.full && <p className="mw-hint">💡 Sanaladigan raqamni yozing: masalan «… soni» yoki «… foizi».</p>}
+            {nsV.full && !nsV.hasReason && <p className="mw-hint">💡 Xohlasangiz, «chunki …» deb sababini ham qo'shing — shart emas.</p>}
+            <div className="mw-btns">
+              {editIdx === -2 && ns && <button className="btn-ghost" onClick={() => setSt(prev => ({ ...prev, nsDraft: prev.ns, editIdx: -1 }))}>Bekor qilish</button>}
+              <button className="mw-save" disabled={!nsV.full} onClick={saveNs}>✓ Saqlash</button>
             </div>
-          </Col>
-          <Col>
-            <div className="mboard fade-up delay-1">
-              <div className="mboard-head"><span className="card-lbl" style={{ color: T.accent, margin: 0 }}>📟 Mening panelim</span><b className={`mboard-n ${litN === 4 ? 'ok' : ''}`}>{litN}/4</b></div>
-              {ns ? (
+          </div>
+        ) : showCardEditor ? (
+          <div className="mw-ed fade-up" key={editingCard ? `e${editIdx}` : `n${saved.length}`}>
+            {editingCard && <span className="mw-tag">✎ {editIdx + 1}-kartani tahrirlash</span>}
+            <p className="mw-sent"><b className={`mw-part nom ${draft.nom ? 'on' : ''}`}>{draft.nom || 'raqam nomi'}</b> — <b className={`mw-part what ${draft.what ? 'on' : ''}`}>{draft.what || "nimani o'lchaydi"}</b>. Nega kerak: <b className={`mw-part why ${draft.why ? 'on' : ''}`}>{draft.why || 'qanday foydani bildiradi'}</b>.</p>
+            <div className="mw-fields">
+              <label className={`mw-f kim ${v.nomOk ? 'on' : ''}`}><span>NOMI</span><input value={draft.nom} onChange={e => setD({ nom: e.target.value })} placeholder={ph.n} /></label>
+              <label className={`mw-f nima ${v.whatOk ? 'on' : ''}`}><span>NIMANI o'lchaydi</span><input value={draft.what} onChange={e => setD({ what: e.target.value })} placeholder={ph.w} /></label>
+              <label className={`mw-f natija ${v.whyOk ? 'on' : ''}`}><span>NEGA muhim</span><input value={draft.why} onChange={e => setD({ why: e.target.value })} placeholder={ph.y} /></label>
+            </div>
+            <label className={`mwcard-ask ${draft.ask ? 'on' : ''}`}>
+              <span>{slotN === 2 && !editingCard ? 'Qaysi savolga javob? — qolgan savolni tanlang' : 'Qaysi savolga javob?'}</span>
+              <select value={draft.ask} onChange={e => setD({ ask: e.target.value })}>
+                <option value="">— tanlang —</option>
+                {METRIC_ASKS.map(a => <option key={a.k} value={a.k}>{a.label}</option>)}
+              </select>
+            </label>
+            {saveHint && <p className="mw-hint">💡 {saveHint}</p>}
+            <div className="mw-btns">
+              {editingCard && <button className="btn-ghost" onClick={() => setSt(prev => ({ ...prev, draft: emptyMetric(), editIdx: -1 }))}>Bekor qilish</button>}
+              {!v.full && <span className="mw-cnt">{!v.nomOk ? '«NOMI» bo\'sh' : !v.whatOk ? '«NIMANI o\'lchaydi» bo\'sh' : !v.whyOk ? '«NEGA muhim» bo\'sh' : 'savolni tanlang'} · {nFilled}/4</span>}
+              <button className="mw-save" disabled={!canSave} onClick={saveDraft}>✓ Saqlash</button>
+            </div>
+          </div>
+        ) : (
+          <>
+            <div className="done-mini fade-step">✅ Panelingiz to'liq yondi <span className="dm-sub">— tahrirlash uchun qalamcha (✎) belgisidan foydalaning</span></div>
+            <div className="mboard full fade-step">
+              {ns && (
                 <div className={`mboard-card ns ${editIdx === -2 ? 'editing' : ''}`}>
                   <div className="mboard-top">
                     <span className="mboard-ic" aria-hidden="true">⭐</span>
@@ -1496,10 +1490,10 @@ const ScreenMetricWorkshop = ({ screen, storedAnswer, onAnswer, onNext, onPrev }
                   </div>
                   <p className="mboard-txt">{ns}</p>
                 </div>
-              ) : <div className="mboard-slot"><span className="mboard-slot-ic">⭐</span>North Star hali yozilmagan</div>}
+              )}
               {[0, 1, 2].map(i => {
                 const c = saved[i];
-                if (!c) return <div key={i} className="mboard-slot"><span className="mboard-slot-ic">{i + 1}</span>hali yozilmagan</div>;
+                if (!c) return null;
                 return (
                   <div key={i} className={`mboard-card ${editIdx === i ? 'editing' : ''}`}>
                     <div className="mboard-top">
@@ -1514,11 +1508,23 @@ const ScreenMetricWorkshop = ({ screen, storedAnswer, onAnswer, onNext, onPrev }
                 );
               })}
             </div>
-            <MentorPracticeStats live={live} screen={screen} label="✍️ Panelni yig'ib bo'lganlar" />
-            <StudentPracticePulse live={live} screen={screen} />
-          </Col>
-        </div>
-        <MentorNote>Bu ishni o'quvchilar bajaradi — «✍️ Panelni yig'ib bo'lganlar» ro'yxatida kuzatasiz; «Davom etish» siz uchun ochiq. Baholash: 4/4 chiroq = o'tdi · 3/4 = joyida to'ldiradi · undan kam = Yordam bilan qaytadan. «Hammasi DAU bo'lsin» tuzog'ini tekshiring: uch karta uch xil savolga javob bersin.</MentorNote>
+          </>
+        )}
+        {/* 📋 NAMUNA (F-0727-61): Yordam o'rnida — bosqichga qarab O'Z namunasi; yopiq holatda bitta ingichka qator */}
+        {(nsMode || showCardEditor) && (() => {
+          const smp = MW_SAMPLE[nsMode ? 0 : Math.min((editingCard ? editIdx : saved.length) + 1, 3)];
+          return (
+            <div className={`wsx sample ${helpOpen ? 'open' : ''}`}>
+              <button className="wsx-toggle" onClick={() => setSt(prev => ({ ...prev, helpOpen: !prev.helpOpen }))}>📋 Namuna — {smp.t} {helpOpen ? '▾' : '▸'}</button>
+              {helpOpen && <div className="wsx-body">
+                {smp.rows.map(([k, val]) => (
+                  <p key={k} className="smp-row"><span className="smp-k">{k}</span><span className="smp-v">{val}</span></p>
+                ))}
+              </div>}
+            </div>
+          );
+        })()}
+        <MentorPracticeStats live={live} screen={screen} label="✍️ Panelni yig'ib bo'lganlar" />
       </div>
     </Stage>
   );
@@ -1528,7 +1534,7 @@ const ScreenMetricWorkshop = ({ screen, storedAnswer, onAnswer, onNext, onPrev }
 // Namuna-kartalar (40-qonun fallback): o'quvchi ustaxonani to'ldirmagan bo'lsa shular ishlatiladi.
 const DEMO_METRIC_CARDS = [
   { nom: 'DAU', what: 'kunlik kirganlar soni', why: 'kim umuman kirayotganini bildiradi', ask: 'kelish' },
-  { nom: 'retention', what: 'yana kelganlar ulushi', why: "odam foyda ko'rayotganini bildiradi", ask: 'qaytish' },
+  { nom: 'retention', what: 'qayta kirganlar foizi', why: "odam foyda ko'rayotganini bildiradi", ask: 'qaytish' },
   { nom: 'darsni tugatganlar', what: 'oxirigacha yetganlar soni', why: 'real natija shu yerda', ask: 'qiymat' },
 ];
 
@@ -1558,7 +1564,7 @@ const MPEER_CARDS = [
     tag: 'ishlaydi',
   },
   {
-    id: 'B', nom: 'Retention', olchov: 'yuz odamdan nechtasi ertasiga yana kirdi', nega: 'chunki yana kirganlar sonini bildiradi',
+    id: 'B', nom: 'Retention', olchov: 'yuz odamdan nechtasi ertasiga qayta kirdi', nega: 'chunki qayta kirganlar sonini bildiradi',
     ok: false, reason: 'takror',
     hit: "To'g'ri: «NEGA muhim» maydonida o'sha o'lchovning o'zi qayta aytilgan.",
     miss: "Bu kartada «NEGA muhim» maydonida o'sha o'lchovning o'zi qayta aytilgan — foydasi aytilmagan.",
@@ -1679,7 +1685,7 @@ const MFIX_SLOTS = [
   { key: 'foyda', label: 'qanday foydani' },
 ];
 const MFIX_POOL = [
-  { txt: 'yana kirgan foydalanuvchilar sonini', slot: 0 },
+  { txt: 'qayta kirgan foydalanuvchilar sonini', slot: 0 },
   { txt: 'foizda (yuztadan nechtasi)', slot: 1 },
   { txt: 'odamlar mahsulotdan foyda olayotganini', slot: 2 },
   { txt: 'yaxshi ketayotganini', slot: 0, trap: "«Yaxshi ketyapti» — bu fikr, raqam emas. Sanasa bo'ladigan narsani tanlang." },
@@ -1765,7 +1771,6 @@ const ScreenClinic = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         )}
         <MentorPracticeStats live={live} screen={screen} label="📟 Qatorni yig'ib bo'lganlar" />
         <StudentPracticePulse live={live} screen={screen} />
-        <MentorNote>Bu ishni o'quvchilar bajaradi — «📟 Qatorni yig'ib bo'lganlar» ro'yxatida kuzatasiz; «Davom etish» siz uchun ochiq. Tuzoqlar ataylab qo'yilgan: «yaxshi ketayotganini» (baho) va «loyiha yaxshi ketayotganini» (o'sha gapning takrori). Tuzoqqa tushish xato emas — kim tushganini so'rab, sababini muhokama qiling.</MentorNote>
       </div>
     </Stage>
   );
@@ -1894,7 +1899,7 @@ const Screen7 = (props) => (
     question={<TestQ ask="Bu holatni qaysi metrika ko'rsatadi? Tanlang."
       story="Ilovangizga odamlar har kuni kirib turibdi — dushanba ham, seshanba ham, chorshanba ham." />}
     questionText="Har kuni kirishni qaysi metrika ko'rsatadi?"
-    options={["DAU — bir kunda kirganlar soni", "Churn — butunlay ketganlar ulushi", "Sahifa dizayniga qo'yilgan baho", "Ilova hajmi — necha megabayt"]}
+    options={["DAU — bir kunda kirganlar soni", "Churn — butunlay ketganlar foizi", "Sahifa dizayniga qo'yilgan baho", "Ilova hajmi — necha megabayt"]}
     correctIdx={0}
     explainCorrect="To'g'ri — har kuni kirishni DAU ko'rsatadi: u bir kunda ilovani ochganlar sonini sanaydi."
     explainWrong={{ 1: "Churn ketishni ko'rsatadi — bu yerda esa odamlar kirib turibdi. To'g'ri javob — DAU.", 2: "Dizaynga qo'yilgan baho — har kimning fikri, sanaladigan raqam emas. To'g'ri javob — DAU.", 3: "Ilova hajmi odamlar kirishidan o'zgarmaydi. To'g'ri javob — DAU.", default: "Har kuni kirishni DAU ko'rsatadi." }}
@@ -1906,9 +1911,9 @@ const Screen8 = (props) => (
     question={<TestQ ask="Streak qaysi metrikani oshiradi? Tanlang."
       story="Duolingo foydalanuvchisi vaqti yo'q kuni ham ilovani ochib, kichik dars qildi — streak 🔥 hisobi uzilmasin deb." />}
     questionText="Streak qaysi metrikani oshiradi?"
-    options={["Birinchi marta kelganlar soni", "Ilovaning ochilish tezligi", "Retention — yana kirganlar ulushi", "Bitta xariddagi o'rtacha pul"]}
+    options={["Birinchi marta kelganlar soni", "Ilovaning ochilish tezligi", "Retention — qayta kirganlar foizi", "Bitta xariddagi o'rtacha pul"]}
     correctIdx={2}
-    explainCorrect="To'g'ri — streak odamni qayta-qayta qaytaradi, demak retention (yana kirganlar ulushi) oshadi."
+    explainCorrect="To'g'ri — streak odamni qayta-qayta qaytaradi, demak retention (qayta kirganlar foizi) oshadi."
     explainWrong={{ 0: "Birinchi marta kelganlar — bular hali ilovani endi ochgan odamlar. Streak esa faqat allaqachon kelganlarni qaytaradi. To'g'ri javob — retention.", 1: "Ilovaning ochilish tezligi — texnik ko'rsatkich, streak'ga bog'liq emas. To'g'ri javob — retention.", 3: "Bitta xariddagi o'rtacha pul («o'rtacha chek») — bu daromad metrikasi. Streak avvalo qaytishni oshiradi. To'g'ri javob — retention.", default: "Streak odamni qaytaradi — demak avvalo retention o'sadi." }}
   />
 );
@@ -2052,7 +2057,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // `ask` — faqat RANG-SEMANTIKASI uchun (kelish=ko'k · qaytish=indigo · qiymat=oltin), ball-mantiqqa aloqasi yo'q.
 const MK_DEMO_CARDS = [
   { nom: 'DAU', what: 'kunlik kirganlar', ask: 'kelish' },
-  { nom: 'retention', what: 'yana kelganlar ulushi', ask: 'qaytish' },
+  { nom: 'retention', what: 'qayta kirganlar foizi', ask: 'qaytish' },
   { nom: 'North Star', what: 'haftada 3+ qaytganlar', ask: 'qiymat' },
 ];
 const mkPanel = () => {
@@ -2062,12 +2067,6 @@ const mkPanel = () => {
   return { cards: own ? cards : MK_DEMO_CARDS, ns: ((saved?.northStar) || '').trim(), own };
 };
 // ⚠️ 1-indeks («foiz») onCalc tomonidan avto-belgilanadi — bu bandning O'RNI o'zgarmaydi.
-const MK_STEPS = [
-  "Loyihamni VS Code'da ochdim",
-  "Foiz o'zi hisoblanishini pastda sinab ko'rdim",
-  "`src` papkasida `MetrikaPanel.jsx` faylini yaratdim",
-  "Brauzerda panel va retention foizi ko'rindi",
-];
 // Nusxalanadigan boshlang'ich kod — KARTALAR massivi o'quvchining O'Z panel-kartalaridan yig'iladi.
 const mkCode = (cards) => `const KARTALAR = [
 ${cards.map(c => `  { nom: "${c.nom}", olchov: "${c.what}" },`).join('\n')}
@@ -2107,9 +2106,7 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const isMentor = !!(live && live.mode === 'mentor');
   const [panel] = useState(() => mkPanel());
   const [code] = useState(() => mkCode(panel.cards));
-  const [checked, setChecked] = useState(() => new Set(storedAnswer && storedAnswer.solved ? MK_STEPS.map((_, i) => i) : []));
   const [done, setDone] = useState(!!(storedAnswer && storedAnswer.solved));
-  const [copied, setCopied] = useState(false);
   const [helpOpen, setHelpOpen] = useState(false); // 💡 Yordam — kod so'zlarining izohi (default yopiq, 25-qonun)
   const [starOpen, setStarOpen] = useState(false); // ⭐ Yulduzcha vazifa — F-0727-35: default yopiq, UI'ni buzmasin
   // 🧮 Jonli hisob — honor-checklistga REAL qatlam: o'quvchi raqam kiritsa, kod-qator foizni o'zi
@@ -2122,70 +2119,36 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     const nx = { ...calc, ...p };
     setCalc(nx);
     const k = parseInt(nx.keldi, 10), q = parseInt(nx.qaytdi, 10);
-    if (!done && Number.isFinite(k) && k > 0 && Number.isFinite(q)) setChecked(prev => prev.has(1) ? prev : new Set([...prev, 1]));
   };
-  const toggle = (i) => { if (done) return; setChecked(prev => { const s = new Set(prev); if (s.has(i)) s.delete(i); else s.add(i); return s; }); };
-  const allChecked = checked.size === MK_STEPS.length;
-  const copy = () => {
-    try { navigator.clipboard.writeText(code).then(() => { setCopied(true); setTimeout(() => setCopied(false), 2200); }).catch(() => {}); } catch {}
+  const calcOk = (storedAnswer && storedAnswer.solved) || (calcReady && kN > 0);
+  const calcRef = useRef(null);              // F-0727-58: qulf-tugma jonli sinovga olib boradi
+  const [calcFlash, setCalcFlash] = useState(false);
+  const cfTimer = useRef(null);
+  useEffect(() => () => clearTimeout(cfTimer.current), []);
+  const goToCalc = () => {
+    if (calcRef.current) calcRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    setCalcFlash(true);
+    clearTimeout(cfTimer.current);
+    cfTimer.current = setTimeout(() => setCalcFlash(false), 1300);
   };
   // Birinchi marta tugatilganda ball-signal ketadi — AYNAN eski kompilyator-relsdagidek.
   const complete = () => {
-    if (done || !allChecked) return;
+    if (done || !calcOk) return;
     setDone(true);
     onAnswer(screen, { stage: 'koding', screenIdx: screen, solved: true, correct: true });
     if (live && live.mode === 'student') live.submitAnswer(PRACTICE_BASE + screen, 'koding', 0, true, 0);
   };
   const lines = code.split('\n');
   return (
-    <Stage eyebrow="Koding · ⚛️ React" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !isMentor} label={done || isMentor ? 'Davom etish' : allChecked ? '«✅ Bajardim»ni bosing' : `Qadamlarni belgilang (${checked.size}/4)`} onClick={onNext} /></>}>
+    <Stage eyebrow="Koding · ⚛️ React" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !isMentor} label={done || isMentor ? 'Davom etish' : calcOk ? '«✅ Bajardim»ni bosing' : '🧮 Jonli sinovni ishlating'} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Retention foizini endi <span className="italic" style={{ color: T.accent }}>kodda</span> hisoblatamiz.</h2></div>
-        <Mentor>Pastdagi kodni nusxalab, kompyuteringizdagi <b style={{ color: T.ink }}>VS Code</b>'da (kod yoziladigan dastur) loyihangizga qo'ying — endi retention foizini qo'lda emas, <b style={{ color: T.ink }}>kod hisoblab beradi</b>.</Mentor>
-        <div className="mxprev fade-up delay-1">
-          <div className="mxprev-bar"><span className="bb-dots"><i /><i /><i /></span><span className="mxprev-url">localhost:5173</span><span className="mxprev-src">{panel.own ? '✓ sizning panelingiz' : 'namunaviy panel'}</span></div>
-          <div className="mxprev-body">
-            <div className="mxprev-head">
-              <span className="mxprev-foiz mono"><CountUp to={25} suffix="%" /></span>
-              <div className="mxprev-head-t"><span className="mxprev-lbl">Retention</span><span className="mxprev-calc mono">Math.round(5 / 20 * 100)</span></div>
-              {panel.ns && <span className="mxprev-ns" title={panel.ns}>⭐ {panel.ns}</span>}
-            </div>
-            <div className="mxprev-cards">
-              {panel.cards.map((c, i) => (
-                <div key={i} className={`mxprev-card ${c.ask || ''}`}><span className="mlive mini">●</span><span className="mxprev-card-nm">{c.nom}</span><span className="mxprev-card-what">{c.what}</span></div>
-              ))}
-            </div>
-          </div>
-        </div>
+        <div className="head"><h2 className="title h-title fade-up">Retention foizini hisoblab beradigan <span className="italic" style={{ color: T.accent }}>kod</span> yozamiz.</h2></div>
+        <Mentor>Kodni <b style={{ color: T.ink }}>VS Code</b>'da (kod yoziladigan dastur) <b style={{ color: T.ink }}>o'zingiz terib yozasiz</b> — nusxalab bo'lmaydi: qo'lda yozganda o'rganiladi. Retention foizini esa kod o'zi hisoblab beradi.</Mentor>
         <div className="split">
           <Col>
-            <div className="vsc fade-up delay-2">
-              <div className="vsc-bar">
-                <span className="vsc-tab on"><span style={{ color: '#61DAFB' }}>⚛</span> MetrikaPanel.jsx</span>
-                <span className="vsc-tab">App.jsx</span>
-                <button className={`vsc-copy ${copied ? 'ok' : ''}`} onClick={copy}>{copied ? '✓ Nusxalandi' : '📋 Nusxalash'}</button>
-              </div>
-              <div className="vsc-body">
-                {lines.map((ln, i) => (
-                  <div key={i} className="vsc-line"><span className="vsc-ln">{i + 1}</span><span className="vsc-code">{ln ? mkHl(ln) : ' '}</span></div>
-                ))}
-              </div>
-            </div>
-          </Col>
-          <Col>
-            <div className="card-lbl" style={{ color: T.accent, marginBottom: 0 }}>VS Code'da bajarib — belgilang</div>
-            <div className="kd-steps fade-up delay-2">
-              {MK_STEPS.map((s, i) => {
-                const on = checked.has(i);
-                return (
-                  <button key={i} className={`kd-step ${on ? 'on' : ''}`} onClick={() => toggle(i)}>
-                    <span className="kd-check">{on ? '✓' : i + 1}</span>
-                    <span className="kd-step-t">{fmtCode(s)}</span>
-                  </button>
-                );
-              })}
-            </div>
-            <div className="calcw fade-up delay-2">
+            {/* F-0727-58: checklist O'CHDI — jonli sinov (retention-hisob) darvoza, bitta Bajardim */}
+            <p className="flow-label">Kodni terib bo'lgach, jonli sinovda o'z raqamlaringizni kiriting — keyin tasdiqlang</p>
+            <div ref={calcRef} className={`calcw ${!calcOk ? 'hunt' : ''} ${calcFlash ? 'flash' : ''}`}>
               <span className="card-lbl" style={{ color: T.accent, marginBottom: 0 }}>🧮 Jonli sinov — raqam kiriting</span>
               <div className="calcw-row">
                 <label className="calcw-f"><span>keldi</span><input className="mono" value={calc.keldi} onChange={e => onCalc({ keldi: e.target.value.replace(/\D/g, '').slice(0, 5) })} inputMode="numeric" placeholder="100" /></label>
@@ -2215,11 +2178,24 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               {starOpen && <div className="wsx-body"><p>MAU kartasini qo'shib, <span className="mono">DAU/MAU</span> nisbatini (bo'linmasini) chiqaring — «qanchalik tez-tez qaytishadi» ko'rsatkichi.</p></div>}
             </div>
             <MentorPracticeStats live={live} screen={screen} label="⚛️ Panelni kodlaganlar" />
-            <button className={`lp-done-btn ${done ? 'is-done' : ''}`} disabled={done || !allChecked} onClick={complete}>
-              {done ? '✓ Bajarildi' : allChecked ? '✅ Bajardim' : `4 qadamni belgilang (${checked.size}/4)`}
+            <button className={`lp-done-btn ${done ? 'is-done' : ''} ${!calcOk && !done ? 'locked' : ''}`} disabled={done} onClick={done ? undefined : calcOk ? complete : goToCalc}>
+              {done ? '✓ Bajarildi' : calcOk ? "✅ Bajardim — kod yozildi, foiz chiqdi" : "🔒 Avval jonli sinovni ishlating — bosing, ko'rsataman"}
             </button>
-            <StudentPracticePulse live={live} screen={screen} />
             {done && <div className="done-mini fade-step">✅ MetrikaPanel loyihangizda <span className="dm-sub">— retention endi kodda hisoblanadi</span></div>}
+          </Col>
+          <Col>
+            <div className="vsc no-copy fade-up delay-2" onCopy={e => e.preventDefault()} onCut={e => e.preventDefault()} onContextMenu={e => e.preventDefault()}>
+              <div className="vsc-bar">
+                <span className="vsc-tab on"><span style={{ color: '#61DAFB' }}>⚛</span> MetrikaPanel.jsx</span>
+                <span className="vsc-tab">App.jsx</span>
+                <span className="vsc-lock" title="Kod nusxalanmaydi — o'zingiz terib yozasiz">🔒 qo'lda yoziladi</span>
+              </div>
+              <div className="vsc-body">
+                {lines.map((ln, i) => (
+                  <div key={i} className="vsc-line"><span className="vsc-ln">{i + 1}</span><span className="vsc-code">{ln ? mkHl(ln) : ' '}</span></div>
+                ))}
+              </div>
+            </div>
           </Col>
         </div>
         <MentorNote>Kodni o'quvchilar yozadi — «⚛️ Panelni kodlaganlar» ro'yxatida kuzatasiz; «Davom etish» siz uchun ochiq. Vaqt: 8-10 daqiqa, ulgurmagan uyda tugatadi. Eng ko'p adashish — qavslar va katta harf (MetrikaPanel). Sinfga savol: keldi 0 bo'lsa nima bo'ladi?</MentorNote>
@@ -2255,7 +2231,7 @@ function PairTimer() {
         <p className="pair-now" style={{ margin: 0 }}>{st.done ? "✓ Vaqt tugadi — ikkalangiz ham aytdingizmi? Barakalla!" : "Har biringizga 30 soniyadan: avval A gapiradi, keyin B."}</p>
       )}
       <div className="pair-timer-btns">
-        {!st.running && <button className="btn-soft" onClick={() => setSt({ running: true, left: 60, done: false })}>{st.done ? '↻ Yana 1 daqiqa' : '▶ 1 daqiqani boshlash'}</button>}
+        {!st.running && <button className={st.done ? 'btn-soft' : 'pair-start'} onClick={() => setSt({ running: true, left: 60, done: false })}>{st.done ? '↻ Yana 1 daqiqa' : '▶ 1 daqiqani boshlash'}</button>}
         {st.running && <button className="btn-soft" onClick={() => setSt({ running: false, left: 60, done: false })}>⏹ To'xtatish</button>}
       </div>
     </div>
@@ -2444,8 +2420,8 @@ const QZ_BG_SHAPES = [
 const QUIZ_BANK = [
   { q: "Metrika nima?", opts: ["Ilova yuklab olingan qurilma modeli", "Kodda nechta funksiya borligi", "Mahsulot holatini ko'rsatadigan raqam", "Dizayn ranglari to'plami"], correct: 2 },
   { q: "DAU nimani sanaydi?", opts: ["Bir kunda kirgan odamlar soni", "Oyiga to'langan pul", "Sahifadagi tugmalar soni", "Ilovaning ochilish tezligi"], correct: 0 },
-  { q: "Retention nimani o'lchaydi?", opts: ["Bir kunda kirganlar soni", "Kelganlardan nechtasi yana kirgani", "Birinchi marta kelganlar soni", "Ilova hajmi"], correct: 1 },
-  { q: "Churn nima?", opts: ["Qaytganlar ulushi", "Bir kunda kirganlar soni", "Eng asosiy raqam (North Star)", "Butunlay tashlab ketganlar ulushi"], correct: 3 },
+  { q: "Retention nimani o'lchaydi?", opts: ["Bir kunda kirganlar soni", "Kelganlardan nechtasi qayta kirgani", "Birinchi marta kelganlar soni", "Ilova hajmi"], correct: 1 },
+  { q: "Churn nima?", opts: ["Qayta kirganlar foizi", "Bir kunda kirganlar soni", "Eng asosiy raqam (North Star)", "Butunlay tashlab ketganlar foizi"], correct: 3 },
   { q: "North Star nima?", opts: ["Haqiqiy foydani ko'rsatuvchi yagona asosiy raqam", "Eng ko'p pul olib keladigan reklama", "Kodning eng muhim fayli", "Ilovadagi eng chiroyli ekran"], correct: 0 },
   { q: "Duolingo streak nima?", opts: ["Bir martalik katta chegirma", "Do'stlar ro'yxati", "Ketma-ket kunlar soni", "Ilova versiyasi raqami"], correct: 2 },
   { q: "Streak birinchi navbatda qaysi metrikani oshiradi?", opts: ["Ilova narxini", "Birinchi marta kelganlar sonini", "Ekran o'lchamini", "Retention (qaytish)ni"], correct: 3 },
@@ -3553,19 +3529,56 @@ export default function PmMetricsLesson({ lang: langProp, onFinished }) {
 
         /* === ✍️ USTAXONA-MUHARRIRI (48-qonun): bitta karta yoziladi → panelga ko'chadi ===
            IMZO-VIZUAL: o'ng yuqorida «● JONLI» chirog'i — maydonlar to'lguncha xira-punktir, to'lganda yonadi. */
+        /* JTBD-portlar (F-0727-58): havodagi ⭐-1-2-3 indikator + rangli inputlar */
+        .jw-steps { display: flex; align-items: flex-start; justify-content: center; gap: 12px; padding: 2px 0 4px; }
+        .jws { display: inline-flex; flex-direction: column; align-items: center; gap: 5px; min-width: 80px; }
+        .jws-n { width: clamp(38px,4.6vw,44px); height: clamp(38px,4.6vw,44px); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: clamp(15px,1.8vw,18px); font-style: normal; color: ${T.ink3}; border: 2px dashed ${T.ink3}55; background: ${T.paper}; transition: all 0.3s; box-shadow: 0 4px 12px -5px rgba(${T.shadowBase},0.18); }
+        .jws-t { font-family: 'Manrope'; font-weight: 700; font-size: clamp(10.5px,1.3vw,12px); font-style: normal; color: ${T.ink3}; max-width: 110px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .jws.cur .jws-n { border-style: solid; border-color: ${T.accent}; color: ${T.accent}; background: ${T.accentSoft}; animation: jws-pulse 1.6s ease-in-out infinite; }
+        .jws.cur .jws-t { color: ${T.accent}; }
+        @keyframes jws-pulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(110,75,255,0.4); } 50% { box-shadow: 0 0 0 9px rgba(110,75,255,0); } }
+        .jws.on .jws-n { border-style: solid; border-color: ${T.success}; background: ${T.success}; color: #fff; }
+        .jws.on .jws-t { color: ${T.success}; }
+        .jws-line { flex: 0 1 90px; height: 3px; border-radius: 99px; background: ${T.line}; margin-top: clamp(18px,2.2vw,21px); transition: background 0.4s; }
+        .jws-line.on { background: ${T.success}; }
+        .mboard.full { width: 100%; display: flex; flex-direction: column; gap: 10px; }
+        /* F-0727-61: bo'sh maydon borderi PULSDA — o'quvchi qayerga yozishni darrov ko'radi (bosilganda to'xtaydi) */
+        .mw-f.kim { --fc: ${T.blue}; } .mw-f.nima { --fc: #E8A13A; } .mw-f.natija { --fc: ${T.success}; }
+        .mw-f input:placeholder-shown:not(:focus) { animation: fld-attn 1.9s ease-in-out infinite; }
+        .mw-f.nima input:placeholder-shown:not(:focus) { animation-delay: 0.25s; }
+        .mw-f.natija input:placeholder-shown:not(:focus) { animation-delay: 0.5s; }
+        @keyframes fld-attn {
+          0%, 100% { box-shadow: inset 0 0 0 1.5px var(--fc), 0 0 0 0 rgba(110,75,255,0.30); }
+          50% { box-shadow: inset 0 0 0 2px var(--fc), 0 0 0 6px rgba(110,75,255,0); }
+        }
+        .nstar-input:placeholder-shown:not(:focus) { animation: ns-attn 1.9s ease-in-out infinite; }
+        @keyframes ns-attn {
+          0%, 100% { box-shadow: inset 0 0 0 1.5px ${T.accent}66, 0 0 0 0 rgba(110,75,255,0.30); }
+          50% { box-shadow: inset 0 0 0 2px ${T.accent}, 0 0 0 6px rgba(110,75,255,0); }
+        }
+        /* 📋 Namuna paneli — yopiqda ingichka qator, ochilganda maydon-qiymat juftliklari */
+        .wsx.sample { align-self: stretch; border-style: solid; border-color: ${T.line}; background: ${T.paper}; }
+        .wsx.sample .wsx-toggle { color: ${T.ink2}; font-size: 12.5px; }
+        .smp-row { display: flex; gap: 10px; align-items: baseline; margin: 0; }
+        .smp-k { flex: 0 0 clamp(88px,11vw,120px); font-family: 'Manrope'; font-weight: 800; font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; color: ${T.ink3}; }
+        .smp-v { font-family: 'Manrope'; font-weight: 600; font-size: 13.5px; color: ${T.ink}; }
+        @media (prefers-reduced-motion: reduce) { .mw-f input, .nstar-input { animation: none !important; } }
+        .mw-f.kim input { box-shadow: inset 0 0 0 1.5px ${T.blue}55; }
+        .mw-f.nima input { box-shadow: inset 0 0 0 1.5px #E8A13A66; }
+        .mw-f.natija input { box-shadow: inset 0 0 0 1.5px ${T.success}55; }
+        .mw-f.kim input:focus { box-shadow: inset 0 0 0 2px ${T.blue}; }
+        .mw-f.nima input:focus { box-shadow: inset 0 0 0 2px #E8A13A; }
+        .mw-f.natija input:focus { box-shadow: inset 0 0 0 2px ${T.success}; }
+        .mw-f.kim.on input { box-shadow: inset 0 0 0 1.5px ${T.blue}; }
+        .mw-f.nima.on input { box-shadow: inset 0 0 0 1.5px #E8A13A; }
+        .mw-f.natija.on input { box-shadow: inset 0 0 0 1.5px ${T.success}; }
+        @media (prefers-reduced-motion: reduce) { .jws.cur .jws-n { animation: none; } }
         .mw-ed { position: relative; background: ${T.paper}; border-radius: 16px; padding: clamp(16px,2.4vw,22px); display: flex; flex-direction: column; gap: 12px; box-shadow: 0 12px 30px -10px rgba(${T.shadowBase},0.2); border-left: 5px solid ${T.accent}; min-width: 0; }
         .mw-ed::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 4px; border-radius: 0 16px 0 0; background: linear-gradient(90deg, ${T.accent}, ${T.accentVivid}); opacity: 0.85; }
         .mw-ed.ns { border-left-color: #F5A623; }
         .mw-tag { align-self: flex-start; font-family: 'Manrope'; font-weight: 800; font-size: 11px; letter-spacing: 0.05em; padding: 4px 12px; border-radius: 99px; color: ${T.accent}; background: ${T.accentSoft}; }
         .mw-ed.ns .mw-tag { color: #B7770D; background: #FFF3DA; }
         /* 4 qadam: ⭐ North Star + 3 karta — bajarilgani yashil, hozirgisi indigo pulsda */
-        .mw-steps { display: inline-flex; align-items: center; gap: 6px; align-self: flex-start; margin-top: -4px; }
-        .mw-stepdot { width: 22px; height: 6px; border-radius: 99px; background: ${T.line}; transition: background 0.3s, width 0.3s, box-shadow 0.3s; }
-        .mw-stepdot.ns { width: 12px; height: 12px; border-radius: 50%; background: #F5E4C0; }
-        .mw-stepdot.done { background: ${T.success}; }
-        .mw-stepdot.ns.done { background: #F5A623; box-shadow: 0 0 8px rgba(245,166,35,0.5); }
-        .mw-stepdot.cur { background: ${T.accent}; width: 30px; animation: mw-step-pulse 1.7s ease-in-out infinite; }
-        .mw-stepdot.ns.cur { width: 12px; background: ${T.accent}; }
         @keyframes mw-step-pulse { 0%,100% { box-shadow: 0 0 0 0 rgba(91,61,230,0.3); } 55% { box-shadow: 0 0 0 6px rgba(91,61,230,0); } }
         .mw-lampzone { position: absolute; right: clamp(12px,2vw,18px); top: clamp(12px,2vw,16px); font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: 9.5px; letter-spacing: 0.1em; padding: 3px 10px; border-radius: 999px; border: 2px dashed ${T.ink3}66; color: ${T.ink3}; background: transparent; opacity: 0.45; transition: all 0.3s cubic-bezier(.3,1.3,.5,1); pointer-events: none; }
         .mw-lampzone.ready { border-style: solid; border-color: ${T.success}; color: ${T.success}; background: ${T.successSoft}; opacity: 1; animation: mw-lamp-ready 1.6s ease-in-out infinite; }
@@ -3584,17 +3597,11 @@ export default function PmMetricsLesson({ lang: langProp, onFinished }) {
         @keyframes mw-save-call { 0%,100% { box-shadow: 0 10px 24px -8px rgba(91,61,230,0.55), 0 0 0 0 rgba(18,169,104,0.34); } 55% { box-shadow: 0 10px 24px -8px rgba(91,61,230,0.55), 0 0 0 9px rgba(18,169,104,0); } }
         .mw-save:hover:not(:disabled) { background: ${T.accentVivid}; transform: translateY(-1px); animation: none; }
         .mw-save:disabled { background: ${T.accentSoft}; color: ${T.accent}; opacity: 0.55; box-shadow: none; cursor: not-allowed; transform: none; }
-        .mw-done { background: ${T.paper}; border-radius: 16px; border-left: 5px solid ${T.success}; padding: clamp(16px,2.4vw,22px); display: flex; flex-direction: column; align-items: flex-start; gap: 14px; box-shadow: 0 12px 30px -12px rgba(18,169,104,0.3); min-width: 0; }
-        .mw-done-lamps { display: flex; flex-wrap: wrap; gap: 8px; }
-        .mw-done .mlive.mini { font-size: 10px; padding: 4px 12px; margin-left: 0; }
 
         /* === 📟 PANEL-DOSKASI (o'ngdagi «Mening panelim») === */
         .mboard { position: relative; background: linear-gradient(180deg, ${T.paper}, #FBFAFE); border-radius: 16px; padding: 15px 16px; display: flex; flex-direction: column; gap: 10px; box-shadow: 0 8px 22px -8px rgba(${T.shadowBase},0.16); min-width: 0; }
-        .mboard-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding-bottom: 9px; border-bottom: 1.5px dashed ${T.line}; }
         .mboard-n { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 14px; color: ${T.ink3}; background: ${T.bg}; border-radius: 99px; padding: 3px 11px; transition: all 0.25s; }
         .mboard-n.ok { color: ${T.success}; background: ${T.successSoft}; }
-        .mboard-slot { display: flex; align-items: center; gap: 10px; border: 1.5px dashed ${T.ink3}55; border-radius: 12px; padding: 12px 14px; font-family: 'Manrope'; font-weight: 600; font-size: 13px; color: ${T.ink3}; font-style: italic; }
-        .mboard-slot-ic { width: 22px; height: 22px; border-radius: 7px; flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 800; font-style: normal; color: ${T.ink3}; box-shadow: inset 0 0 0 1.5px ${T.ink3}44; }
         .mboard-card { position: relative; background: ${T.successSoft}; border-radius: 12px; padding: 11px 13px 12px; display: flex; flex-direction: column; gap: 6px; min-width: 0; box-shadow: inset 0 0 0 1.5px ${T.success}44; animation: mboard-land 0.5s cubic-bezier(.22,1.15,.34,1) both; }
         @keyframes mboard-land { 0% { opacity: 0; transform: translateX(-26px) translateY(6px) scale(0.94); } 62% { opacity: 1; transform: translateX(2px) translateY(0) scale(1.015); } 100% { opacity: 1; transform: none; } }
         .mboard-card.ns { background: #FFF8E9; box-shadow: inset 0 0 0 1.5px #F5A62355; }
@@ -3760,41 +3767,28 @@ export default function PmMetricsLesson({ lang: langProp, onFinished }) {
         .vsc-bar { background: #252526; display: flex; align-items: center; gap: 2px; padding-right: 8px; }
         .vsc-tab { font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: #8B949E; background: #2D2D2D; padding: 9px 14px; display: inline-flex; align-items: center; gap: 6px; }
         .vsc-tab.on { background: #1E1E1E; color: #E6EDF3; box-shadow: inset 0 2px 0 #007ACC; }
-        .vsc-copy { margin-left: auto; background: #0E639C; color: #fff; border: none; border-radius: 8px; padding: 6px 12px; font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 11.5px; cursor: pointer; transition: background 0.18s, transform 0.18s; flex-shrink: 0; }
-        .vsc-copy:hover { background: #1177BB; transform: translateY(-1px); }
-        .vsc-copy.ok { background: ${T.success}; }
+        .vsc-lock { margin-left: auto; font-family: 'Manrope'; font-weight: 700; font-size: 11px; letter-spacing: 0.04em; color: #B9A8E6; background: rgba(255,255,255,0.07); border-radius: 8px; padding: 5px 11px; }
+        .vsc.no-copy .vsc-body { user-select: none; -webkit-user-select: none; }
+        .calcw.hunt { animation: calcw-hunt 1.7s ease-in-out infinite; }
+        @keyframes calcw-hunt {
+          0%, 100% { box-shadow: 0 6px 16px -6px rgba(${T.shadowBase},0.14), 0 0 0 0 rgba(110,75,255,0.45); }
+          50% { box-shadow: 0 6px 16px -6px rgba(${T.shadowBase},0.14), 0 0 0 10px rgba(110,75,255,0); }
+        }
+        .calcw.flash { animation: calcw-flash 0.6s ease-in-out 3; }
+        @keyframes calcw-flash {
+          0%, 100% { box-shadow: 0 0 0 3px ${T.accent}, 0 0 26px 6px rgba(110,75,255,0.5); transform: translateX(0); }
+          20% { transform: translateX(-8px); } 40% { transform: translateX(7px); }
+          60% { box-shadow: 0 0 0 6px ${T.accentVivid}, 0 0 34px 10px rgba(110,75,255,0.6); transform: translateX(-5px); }
+          80% { transform: translateX(4px); }
+        }
+        .lp-done-btn.locked { cursor: pointer; opacity: 1; }
+        @media (prefers-reduced-motion: reduce) { .calcw.hunt, .calcw.flash { animation: none; } }
         .vsc-body { padding: 12px 14px 14px 6px; font-family: 'JetBrains Mono', monospace; font-size: clamp(11px,1.35vw,12.5px); color: #D4D4D4; line-height: 1.85; overflow-x: auto; }
         .vsc-line { display: flex; align-items: baseline; min-width: max-content; }
         .vsc-ln { color: #6E7681; min-width: 26px; text-align: right; margin-right: 14px; font-size: 10.5px; flex-shrink: 0; user-select: none; }
         .vsc-code { white-space: pre; }
         /* Jonli natija-preview — o'quvchining REAL panel-kartalari «brauzerda», foiz CountUp bilan jonlanadi */
-        .mxprev { background: ${T.paper}; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 26px -10px rgba(${T.shadowBase},0.2); }
-        .mxprev-bar { display: flex; align-items: center; gap: 10px; padding: 10px 14px; background: #F7F5FD; border-bottom: 1px solid ${T.line}; }
-        .mxprev-url { font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: ${T.ink3}; background: ${T.paper}; border-radius: 99px; padding: 4px 12px; box-shadow: inset 0 0 0 1px ${T.line}; }
-        .mxprev-src { margin-left: auto; font-family: 'Manrope'; font-weight: 700; font-size: 10.5px; color: ${T.success}; background: ${T.successSoft}; border-radius: 99px; padding: 3px 10px; }
-        .mxprev-body { display: flex; flex-direction: column; gap: 10px; padding: clamp(12px,2vw,18px); }
-        .mxprev-head { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
-        .mxprev-foiz { font-size: clamp(30px,4.4vw,40px); font-weight: 700; line-height: 1; color: ${T.accent}; font-variant-numeric: tabular-nums; }
-        .mxprev-head-t { display: flex; flex-direction: column; gap: 2px; }
-        .mxprev-lbl { font-family: 'Manrope'; font-weight: 800; font-size: 12px; letter-spacing: 0.05em; color: ${T.ink2}; }
-        .mxprev-calc { font-size: 10.5px; color: ${T.ink3}; }
-        .mxprev-ns { margin-left: auto; max-width: 46%; font-family: 'Manrope'; font-weight: 700; font-size: 11px; color: #B7770D; background: #FFF3DA; border-radius: 99px; padding: 4px 12px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-        .mxprev-cards { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: clamp(8px,1.4vw,12px); }
-        @media (max-width: 700px) { .mxprev-cards { grid-template-columns: 1fr; } .mxprev-ns { max-width: 100%; margin-left: 0; } }
-        .mxprev-card { display: flex; flex-direction: column; gap: 3px; background: #FBFAFE; border-radius: 12px; border-left: 4px solid var(--mty, ${T.accent}); padding: 10px 12px; box-shadow: 0 6px 14px -8px rgba(${T.shadowBase},0.18); min-width: 0; animation: fade-step 0.4s ease-out both; }
-        .mxprev-card:nth-child(2) { animation-delay: 0.12s; } .mxprev-card:nth-child(3) { animation-delay: 0.24s; }
-        .mxprev-card .mlive.mini { margin-left: 0; align-self: flex-start; }
-        .mxprev-card-nm { font-family: 'Source Serif 4', serif; font-weight: 600; font-size: clamp(13.5px,1.7vw,15.5px); color: ${T.ink}; overflow-wrap: anywhere; }
-        .mxprev-card-what { font-size: clamp(12px,1.4vw,13px); color: ${T.ink2}; overflow-wrap: anywhere; }
         /* VS Code qadamlari — o'quvchi o'zi belgilaydi */
-        .kd-steps { display: flex; flex-direction: column; gap: 8px; }
-        .kd-step { display: flex; align-items: flex-start; gap: 10px; text-align: left; width: 100%; background: ${T.paper}; border: none; border-radius: 12px; padding: 11px 13px; cursor: pointer; font-family: 'Manrope', sans-serif; font-weight: 600; font-size: clamp(13px,1.5vw,14.5px); color: ${T.ink2}; box-shadow: 0 5px 14px -6px rgba(${T.shadowBase},0.12), inset 0 0 0 1.5px ${T.line}; transition: all 0.18s; }
-        .kd-step:hover:not(.on) { transform: translateY(-1px); box-shadow: 0 8px 18px -6px rgba(${T.shadowBase},0.2), inset 0 0 0 1.5px ${T.accent}44; }
-        .kd-step.on { color: ${T.ink}; background: ${T.successSoft}; box-shadow: inset 0 0 0 1.5px ${T.success}55; }
-        .kd-check { width: 22px; height: 22px; border-radius: 7px; flex-shrink: 0; box-shadow: inset 0 0 0 2px ${T.ink3}55; display: inline-flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 800; color: ${T.ink3}; background: ${T.paper}; transition: all 0.2s; }
-        .kd-step.on .kd-check { background: ${T.success}; color: #fff; box-shadow: none; animation: lp-check-pop 0.34s cubic-bezier(.3,1.5,.5,1); }
-        .kd-step-t { min-width: 0; line-height: 1.4; }
-        @media (prefers-reduced-motion: reduce) { .kd-step.on .kd-check { animation: none; } .mxprev-card { animation: none; } }
 
         /* === RECAP (s11) — 3 raqamlangan qadam-karta (slide-in) + P0-etalon juftlik-taymer + reflection + savol === */
         .rcp-flow { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: clamp(12px,2vw,18px); align-items: stretch; }
@@ -3817,6 +3811,11 @@ export default function PmMetricsLesson({ lang: langProp, onFinished }) {
         .pair-prog-fill { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 99px; background: linear-gradient(90deg, ${T.accent}, ${T.accentVivid}); transition: width 1s linear; }
         .pair-prog-mid { position: absolute; left: 50%; top: -3px; bottom: -3px; width: 2px; background: ${T.ink3}; border-radius: 2px; }
         .pair-timer-btns { display: flex; gap: 8px; }
+        /* F-0727-43: boshlash-tugmasi pulsli CTA — o'quvchi uni sezmasdan o'tib ketmasin */
+        .pair-start { font-family: 'Manrope'; font-weight: 800; font-size: clamp(14px,1.8vw,16px); cursor: pointer; border: none; border-radius: 12px; padding: 12px 22px; background: linear-gradient(135deg, ${T.accent}, ${T.accentVivid}); color: #fff; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 10px 24px -8px rgba(91,61,230,0.5); animation: pair-start-pulse 1.6s ease-in-out infinite; transition: transform 0.15s; }
+        .pair-start:hover { transform: translateY(-2px); }
+        @keyframes pair-start-pulse { 0%, 100% { box-shadow: 0 10px 24px -8px rgba(91,61,230,0.5), 0 0 0 0 rgba(110,75,255,0.45); } 50% { box-shadow: 0 12px 28px -8px rgba(91,61,230,0.6), 0 0 0 12px rgba(110,75,255,0); } }
+        @media (prefers-reduced-motion: reduce) { .pair-start { animation: none; } }
         .reflect-input { font-family: 'Manrope'; font-size: 15px; color: ${T.ink}; border: none; border-radius: 10px; padding: 12px 14px; background: ${T.bg}; box-shadow: inset 0 0 0 1.5px ${T.line}; outline: none; }
         .reflect-input:focus { box-shadow: inset 0 0 0 1.5px ${T.accent}; }
         @media (prefers-reduced-motion: reduce) { .pair-mic { animation: none; } }

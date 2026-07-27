@@ -454,3 +454,151 @@ Yangi agent `role/darslik-oquvchi.md` + spec `OQUVCHI_DARVOZA.md` (4 teshik yama
 5. **pm-tekshiruvchi +5 ov-band (8–12):** animatsiya-to'qnashuv (fade-up vs shorthand) · bo'sh shartli-blok · matn-sig'im (max-width kesilish) · 73–79 sweep · lint-qoida regress-sinovi.
 6. **Kod-qoldiqlar tozalandi (73-qonun tatbig'i):** US-prioritet done-mini + US/JTBD «✓ Yozildi — keyingi darsda…» → «✓ Yozildi!».
 **Tekshiruv:** esbuild 3/3 toza · lint:til 3 dars ✓ TOZA (53 qoida) · lint:prompt ✓. UNCOMMITTED (P57–P58 o'zgarishlari deploydan keyin).
+
+## P59 raund (2026-07-27) — F-0727-41: USERSTORY KODING-SARLAVHA GAP-TARTIBI TUZALDI — ✅
+**Foydalanuvchi feedbacki:** 12-sahifa sarlavhasi «Endi hikoyani kartaga kod aylantiradi» tushunarsiz (praktikaga o'tish qismi).
+**Tashxis:** gap-tartibi teskari — ega («kod») gap oxirida, o'quvchi «kim nimani qiladi?»ni yig'olmaydi.
+**Qilingan ish (foydalanuvchi V1 tanladi):** sarlavha «Hikoyangizni kartaga aylantiradigan *kod* yozamiz.» — harakat oldinda, ega urg'uda; mentor gapi tegilmadi (tushunarli edi).
+**Tekshiruv:** esbuild toza · lint:til ✓. UNCOMMITTED.
+
+## P60 raund (2026-07-27) — F-0727-42: DEMO-CHIP QO'SHIMCHALARI — EGALIKSIZ MASDAR SHAKLI — ✅
+**Foydalanuvchi feedbacki (rasm: feedback/F-0727-42-demo-suffix.png):** UserStory 2-sahifa kartalarida «ulgurishim», «videomni», «ko'ra olishim» — «-im/-m» qo'shimchalari chip yakka ko'ringanida g'alati o'qiladi; abrazets tushunarli bo'lsin.
+**Tashxis:** chip-qiymatlar kartada YAKKA holda turadi (formula-gap ichida emas) — birinchi-shaxs qo'shimchasi bog'lamsiz havoda qoladi.
+**Qilingan ish:** DEMO_STORIES bo'laklari egaliksiz masdar shakliga: «bir kechada ko'proq mavzuga ulgurish» · «internet yo'q joyda ham ko'ra olish» · «videoni kim ko'rganini bilish» · «kimga mos video yasashni tushunish»; ustaxona placeholder'i ham («internetsiz ham ko'ra olish»). Formulada ham toza o'qiladi («… uchun» ✓).
+**Muhrlandi:** 68-qonunga (d)-band — bo'lak-qiymat yakka chipda ham o'qiladi, egaliksiz masdar; korpus 13-bo'lim gaplari yangilandi + yangi ✅/❌ juftlik (rasm-dalil bilan).
+**Tekshiruv:** esbuild toza · lint:til ✓ · «-im» qoldiq demo/placeholder'da 0. UNCOMMITTED.
+
+## P61 raund (2026-07-27) — F-0727-43: SPITCH-TAYMER «▶ 1 DAQIQA» PULSLI CTA BO'LDI (3 DARSDA) — ✅
+**Foydalanuvchi feedbacki:** 1-daqiqalik gapirish sahifasida o'quvchi «▶ 1 daqiqani boshlash» tugmasini sezmaydi/bosishni his qilmaydi — yonib tursin, UXga kirganda mazza qilsin.
+**Qilingan ish:** kulrang mayda `btn-soft` o'rniga yangi `.pair-start` CTA — indigo gradient-fon, oq matn, kattaroq (12px/22px padding), atrofga 1.6s siklda halqa-to'lqin tarqatadi (box-shadow spread→transparent, «meni bos» signali), hover'da ko'tariladi; bosilib bo'lgach «↻ Yana 1 daqiqa» oddiy btn-soft holida qoladi (puls o'chadi — signal ishini bajardi); `prefers-reduced-motion`da pulssiz. UCHALA darsga bir xil kiritildi (US/JTBD/Metrics PairTimer).
+**Tekshiruv:** esbuild 3/3 toza · lint:til 3 dars ✓. Brauzer-skrin: 14-sahifagacha avto-yurish uzilgani uchun olinmadi — deploydan keyin jonli ko'rik tavsiya. UNCOMMITTED.
+
+## P62 raund (2026-07-27) — F-0727-44: JTBD USTAXONAGA QADAM-YO'LAKCHA (1→2→3) — ✅
+**Foydalanuvchi feedbacki (rasm: feedback/F-0727-44-flow-sketch.png):** 8-sahifada o'quvchi ko'zi qayerdan boshlashni bilmaydi — 1-2-3 oqim ko'rsatilsin, e'tibor tepadan pastga oqsin.
+**Qilingan ish:** mentor ostida jonli qadam-yo'lakcha: «1 · Kartani to'ldiring → 2 · ✓ Saqlashni bosing → 3 · "Kartalarim"da ko'ring». Holatga bog'liq: maydonlar to'lmagunча 1-chip indigo PULSDA, uchala maydon to'lgach puls 2-chipga o'tadi (Saqlash), 3/3 saqlangач 3-chip; o'tilgan qadamlar yashil. Mentor-rejimda ko'rinmaydi; reduced-motion'da pulssiz.
+**Tekshiruv:** esbuild toza · lint:til ✓ · uslub-render brauzerda tasdiqlandi (in'ektsiya-usul; to'liq yurish-skript test-ekranda tiqilgani uchun holat-almashinuvi kod-ko'rikda tasdiqlandi — ternary oddiy). Hozircha faqat JTBD'da — foydalanuvchi ma'qullasa US-ustaxona va Metrika-ustaxonaga ham tarqatiladi. UNCOMMITTED.
+
+## P63 raund (2026-07-27) — F-0727-45: JTBD USTAXONA — «HALI YOZILMAGAN» QATORLARI GORIZONTAL STRIPGA — ✅
+**Foydalanuvchi chizmasi (feedback/F-0727-45-panel-sketch.png):** o'ngdagi 3 ta vertikal «hali yozilmagan» qatori butunlay olib tashlansin, tepada gorizontal ixcham bo'lsin; e'tibor inputga qaratilsin.
+**Qilingan ish:** (a) «Kartalarim» panelida bo'sh o'rinlar endi vertikal ro'yxat EMAS — sarlavha ostida ixcham gorizontal strip: 3 doira (yozilgani yashil ✓, navbatdagisi indigo yumshoq pulsda, qolgani kulrang punktir) + «yana N ta qoldi» yozuvi; pastda faqat REAL yozilgan kartalar chiqadi; (b) muharrir e'tibor-markazi bo'ldi — atrofiga doimiy indigo halqa-soya (`0 0 0 2px accent33` + chuqurroq soya); (c) o'lik `.jbook-slot*` CSS o'chirildi.
+**Tekshiruv:** esbuild toza · lint:til ✓ · vizual replica-render tasdiqlandi (1/3 holat: ✓ yashil, 2-doira pulsda). Hozircha JTBD'da — ma'qullansa US («Hikoya-daftar») va Metrika («Mening panelim»)ga tarqatiladi. UNCOMMITTED.
+
+## P64 raund (2026-07-27) — F-0727-46: JTBD USTAXONA TO'LIQ VERTIKAL OQIMGA QAYTA QURILDI — ✅ (foydalanuvchi ko'rigi kutilmoqda)
+**Foydalanuvchi g'oyasi (rasm: feedback/F-0727-45-panel-sketch.png + og'zaki):** yarim-yarim (chap muharrir / o'ng ro'yxat) layout BEKOR — tepada to'liq enli katta 1-2-3 chiroqlar, ostida to'liq enli input; yozgan kartalari yozish paytida KO'RINMASIN, faqat chiroq yonib borsin (1 yonsin → 2 yonsin → 3 yonsin); «✨ 3-karta — hayotdagi mahsulot» yorlig'i o'chirilsin.
+**Qilingan ish:** (a) `split` ikki-ustun BEKOR — vertikal oqim: `.jw-steps` (to'liq enli panel: 3 katta doira + orasida bog'lam-chiziq; yozilgani yashil ✓ + ostida mahsulot nomi, joriysi indigo pulsda, kelgusi kulrang punktir; chiziq yashillanib boradi) → to'liq enli `.jw-ed` muharrir; (b) yozish paytida kartalar RO'YXATI yo'q — faqat chiroqlar; 3/3 bo'lgach done-mini + kartalar to'liq enda ochiladi (✎ tahrir shu yerda; tahrirda muharrir qaytadi, kichik «✎ N-kartani tahrirlash» yorlig'i bilan); (c) «✨ N-karta …» yangi-karta yorlig'i o'chirildi (chiroqning o'zi aytadi); mentor gapi yangi mexanikaga moslandi («tepadagi chiroq yonadi va yangi karta keladi»); (d) o'lik CSS tozalandi (jbook-mini/jbm oilasi, jbook-head).
+**Tekshiruv:** esbuild toza · lint:til ✓ · replica-render tasdiqlandi (✓-yashil + nom, 2-pulsda, chiziq yashil). Reload-restore/ball-signal mantiqiga TEGILMAGAN. UNCOMMITTED.
+
+## P65 raund (2026-07-27) — F-0727-47: JTBD USTAXONA — VERTIKAL REYKA-SHELL + TEPADAGI CHIZIQ O'CHDI — ✅
+**Foydalanuvchi chizmasi (feedback/F-0727-47-rail-sketch.png):** chiroqlar chap qirg'oqda VERTIKAL (1-2-3), input bilan BITTA katta karta ichida; jonli ko'rikda: gap tepasidagi to'q-indigo chiziq olib tashlansin.
+**Qilingan ish:** (a) `.jw-shell` — yagona karta: chapda `.jw-rail` (vertikal chiroqlar: ✓ yashil / joriy indigo-puls / kelgusi punktir, orasida vertikal bog'lam-chiziq yashillanib boradi, title=mahsulot nomi), o'ngda `.jw-main` (muharrir yoki 3/3 da kartalar); muharrir shell ichida o'z karta-bezagini yechadi (`.jw-ed.in-shell`); (b) `.jw-ed::before` 4px gradient-chiziq BUTUNLAY o'chirildi (foydalanuvchi jonli topilmasi); (c) F-0727-46 gorizontal jw-steps CSS/JSX almashtirildi, o'lik qoldiq 0.
+**Tekshiruv:** esbuild toza · lint:til ✓ · replica-render: reyka + kontent bitta kartada, holatlar to'g'ri. UNCOMMITTED.
+
+## P66 raund (2026-07-27) — F-0727-48: JTBD KODING-EKRAN DEKLATTER + NUSXALASH-TAQIQ — ✅
+**Foydalanuvchi feedbacki (chizma: feedback/F-0727-46-koding-sketch.png + og'zaki):** koding-sahifa UI juda to'lib yotibdi — ixcham qilinsin; preview-kartalar (❌ belgilangan) ketsin; checklist qisqarib kod bilan joy almashsin; kod UMUMAN nusxalanmasin (tugma ham, belgilab Ctrl+C ham) — o'quvchi qo'lda tersin.
+**Qilingan ish:**
+1. **Preview-strip (jprev) butunlay o'chirildi** — 3 karta + localhost-bar + izoh (CSS oilasi bilan, qoldiq 0). «Brauzerda 3 kartam ko'rindi» qadami bor — preview shart emas edi.
+2. **Ustunlar joy almashdi:** checklist (Kompyuterda bajarib belgilang) endi CHAPDA, kod O'NGDA.
+3. **Nusxalash-taqiq:** «📋 Nusxalash» tugmasi o'rniga passiv «🔒 qo'lda yoziladi» belgisi; kod-blokda `user-select: none` + onCopy/onCut/onContextMenu bloklangan; mentor: «Kodni VS Code'da o'zingiz terib yozasiz — nusxalab bo'lmaydi: qo'lda yozganda o'rganiladi.» (copy-holat/funksiya kodi o'chirildi).
+4. **Tugma-yorliqlar qisqardi:** «Qadamlarni belgilang» → «N/4 qadam»; «✓ Bajarildi — ustozni kuting» → «✓ Bajarildi».
+**Tekshiruv:** esbuild toza · lint:til ✓ · jprev/vsc-copy qoldiq 0. Prop-ov (tur-topish) mexanikasi va ball-signal TEGILMAGAN. UNCOMMITTED.
+
+## P67 raund (2026-07-27) — F-0727-49/50: USTAXONA «ADELNA-ADELNA» + RANGLI INPUT-BORDERLAR — ✅
+**Feedback (boshliq ko'rigi):** F-0727-47 shell'da reyka+input bitta kartada qorishib ketgan — alohida-alohida ajratilsin; keyin: inputlar o'z ma'nosiga mos rang-borderda bo'lsin.
+**Qilingan ish:**
+1. **F-0727-49 — ajratildi:** progress endi KARTA EMAS — fonsiz, havoda turuvchi 3 doira-indikator (yashil ✓ + nom / joriy indigo-puls / kelgusi punktir, orasidagi gorizontal chiziq yashillanadi); muharrir esa ekrandagi YAGONA karta (o'z aksent-halqasi bilan). Shell/in-shell CSS to'liq olib tashlandi, qoldiq 0.
+2. **F-0727-50 — rangli inputlar (71-qonun semantikasi):** MAHSULOT-input ko'k, VAZIFA-input sariq-amber, TUR yashilligicha; bo'sh holat xira rang-border, fokus to'liq rang (2px), to'lgan holat rang-border + yumshoq rang-fon. Qizil ISHLATILMADI — qizil faqat xato-rang (71-qonun buzilmasin).
+**Tekshiruv:** esbuild toza · lint:til ✓ · replica-render: indikator havoda, karta alohida. UNCOMMITTED.
+
+## P68 raund (2026-07-27) — F-0727-51: JTBD KODING — 4-BANDLIK CHECKLIST → BITTA «BAJARDIM» — ✅
+**Foydalanuvchi feedbacki:** «VS Code'ni ochdim / u qildim / bu qildim» bandlari kerakmas — o'quvchi bitta «Bajardim»ni bosishi kifoya (maqsad — mentor statistikani ko'rishi).
+**Qilingan ish:** KD_STEPS checklist + progress-bar + sanoq BUTUNLAY o'chdi (const, holat, toggle, CSS oilasi — qoldiq 0). Panel endi: bitta yo'riq-qator («Kodni VS Code'da terib, brauzerda 3 kartangizni ko'ring — keyin tasdiqlang») + 💡 Yordam (yig'iladigan) + bitta katta tugma: 🔒 tur-topilmagunча qulf → «✅ Bajardim — kod yozildi, kartalarim ko'rindi» → «✓ Bajarildi». Ball-signal (submitAnswer) va mentor-statistika oqimi o'zgarmagan; tur-topish darvozasi qoldi.
+**Tekshiruv:** esbuild toza · lint:til ✓. UNCOMMITTED.
+
+## P69 raund (2026-07-27) — F-0727-52: KODING — QULF-TUGMA TESTGA OLIB BORADI + YORDAM-OVERFLOW TUZALDI — ✅
+**Foydalanuvchi feedbacki:** «Bajardim» to'g'ridan bosilmasligi (test-darvoza) zo'r, LEKIN ishni qilib bo'lgach testni qidirib qolinadi — fokus berilsin; Yordam ochilganda UI buzilib chala bo'lib qoladi.
+**Qilingan ish:**
+1. **Fokus-oqim:** tur-topish testi (kdq) topilmagunча yumshoq indigo-pulsda turadi («meni yech» signali); qulf-tugma endi disabled EMAS — bosilsa «🔒 Avval kod-savolini yeching — bosing, ko'rsataman» va bosishda sahifa testga silliq scroll qilib, testni 2 marta kuchli chaqnatadi (kdq-flash). Test yechilgach puls o'chadi, tugma «✅ Bajardim…»ga aylanadi.
+2. **Yordam-buzilish:** sabab — ichidagi uzun kod-satr (`jobs.map(j => <JtbdCard ... />)`) panelni yorib yuborayotgan edi; `.wsx-body p`ga `overflow-wrap:anywhere` + `.mono`ga `white-space:normal` — endi o'raladi.
+**Tekshiruv:** esbuild toza · lint:til ✓ · reduced-motion'da puls/chaqnash o'chirilgan. UNCOMMITTED.
+
+## P70 raund (2026-07-27) — F-0727-53: KODING — SINF-PULS O'QUVCHIDAN OLINDI, CHAQNASH SEZILARLI BO'LDI — ✅
+**Foydalanuvchi feedbacki:** (1) «👥 Sinfda: 1 bajardi · ✏️ 2 hali bajarmoqda» koding-sahifada o'quvchiga ko'rinishi kerakmas; (2) «Avval kod-savolini yeching — bosing, ko'rsataman» bosilganda hech qanday o'zgarish sezilmadi.
+**Qilingan ish:** (a) jkd-paneldagi `StudentPracticePulse` olib tashlandi (mentor-statistika MentorPracticeStats'da qoladi — mentor baribir ko'radi); (b) chaqnash endi ko'rmaslik ILOJI YO'Q: test-blok 3 marta gorizontal SILKINADI + yorqin ring (0.6s×3), hunt-puls bazasi ham kuchaytirildi (0.30→0.45, 8→10px). Eslatma: 45-qonun (sinf-puls) amaliyot-ekranlariga tegishli — koding-ekranda o'quvchi uchun istisno qilindi, foydalanuvchi qarori.
+**Tekshiruv:** esbuild toza · lint:til ✓. UNCOMMITTED.
+
+## P71 raund (2026-07-27) — F-0727-54: YORDAM-POPOVER ILDIZ-BUGI — CHAPGA-QALQISH O'CHDI — ✅
+**Foydalanuvchi rasmi (feedback/F-0727-54-yordam-popover.png):** koding-sahifada oq karta mentor ustiga chiqib turibdi.
+**Ildiz-sabab:** `.jkd-panel .wsx.open .wsx-body`da eski POPOVER qoidasi (`position:absolute; right:calc(100%+14px)`) — panel O'NG ustunda turgan davrda yordam chapdagi bo'shliqqa qalqib chiqardi. F-0727-48 da panel CHAPGA ko'chgach popover ekrandan tashqariga/mentor ustiga uchadigan bo'lgan (F-0727-52 dagi «Yordam buzilib chala» ham shu ildiz — overflow-wrap simptom-yamoq edi).
+**Yechim:** popover-qoidalar o'chirildi — Yordam endi oddiy akkordeon: panel ichida, o'z chegarasida ochiladi (ko'k border urg'usi qoldi). Replica-render: body panel ichida, mono-kod o'ralgan, mentor toza.
+**Saboq (72-oilaga):** ustun joyi almashganda unga BOG'LANGAN absolute-popoverlar ham ko'rikdan o'tishi shart — pm-tekshiruvchi 8-bandiga qo'shimcha sinf.
+**Tekshiruv:** esbuild toza · lint:til ✓. UNCOMMITTED.
+
+## P72 raund (2026-07-27) — F-0727-55: KODING-SARLAVHALAR BIR OILAGA KELDI («…digan KOD yozamiz») — ✅
+**Foydalanuvchi feedbacki:** JTBD «3 kartangizni React komponenti qiling» global tushunarsiz; Metrika ham UserStory'dagidek (F-0727-41 naqshi) qilinsin.
+**Qilingan ish:** uchala dars endi bitta sarlavha-qolipida: US «Hikoyangizni kartaga aylantiradigan *kod* yozamiz.» · JTBD «3 kartangizni ekranga chiqaradigan *kod* yozamiz.» (React-atama sarlavhadan ketdi — u eyebrow «Koding · ⚛️ React»da qoladi) · Metrika «Retention foizini hisoblab beradigan *kod* yozamiz.»
+**Tekshiruv:** esbuild 2/2 toza · lint:til ✓. UNCOMMITTED.
+
+## P73 raund (2026-07-27) — F-0727-56: METRIKA — «ULUSH» BUTUNLAY «FOIZ»GA, NORTH STAR 57 ANIQLASHDI — ✅
+**Foydalanuvchi feedbacki:** 2-sahifada Retention ta'rifi tushunarsiz — «yana kelganlar ulushi» nima degani? «qayta kirganlar foizi» to'g'ri; «3+ qaytganlar» va yalang'och «57» chalkash (odammi, foizmi? nega o'rtadagi kartada % oxirgisida son?); «ulush» so'zi testlarda ham bor — barchasi tuzatilsin.
+**Qilingan ish (13 almashinuv):** «ulush» barcha o'quvchi-matnlardan chiqarildi: demo-karta «qayta kirganlar foizi», METRIC_DEFS (ret short+def «necha foizi keyin YANA kiradi — yuzta odamdan nechtasi qaytgani», churn «butunlay ketganlar foizi»), recap-karta, ustaxona placeholder + NS-hint («… foizi»), demo-fallback kartalar (2 joy), TEST-1/2 variantlari va izohi, arena Churn-savoli (2 variant). North Star demo-karta: «haftasiga 3 martadan ko'p kirganlar soni» + qiymat birligi bilan «57 ta» (% bilan adashmaydi). Validator so'z-ro'yxatidagi «ulush» qoldi (o'quvchi o'zi yozsa qabul qilinadi — cheklov emas).
+**Muhrlandi:** lug'at: «ulush (metrika ta'rifida) → foiz» + sanoq birligi qoidasi.
+**Tekshiruv:** esbuild toza (1 sintaksis-xato yo'lda tuzatildi) · lint:til ✓ · «ulush» o'quvchi-matnda 0 (JTBD/US da ham 0). UNCOMMITTED.
+
+## P74 raund (2026-07-27) — F-0727-57: METRIKA — «YANA KIRISH» → «QAYTA KIRISH» (GLOBAL) — ✅
+**Foydalanuvchi feedbacki:** 6-sahifa 5-kartada «yana kirish emas, qayta kirish».
+**Qilingan ish:** kirish-kontekstidagi barcha «yana kir…» → «qayta kir…» (8 joy): K5 xulosa «retention'ni (qayta kirishni) oshiradi», recap-karta, metrika-ta'rif («necha foizi keyin QAYTA kiradi»), NS placeholder, peer-karta o'lchovi, klinika-chipi, arena-varianti, hook-intent. Oshxona «taomni YANA olganlar» ataylab qoldi — u boshqa kontekst (taom), «yana olish» tabiiy.
+**Tekshiruv:** esbuild toza · lint:til ✓ · «yana kir» qoldiq 0. UNCOMMITTED.
+
+## P75 raund (2026-07-27) — F-0727-58: JTBD-NAQSHLAR US VA METRIKAGA TO'LIQ TARQATILDI (PARITY-SWEEP) — ✅
+**Foydalanuvchi topshirig'i:** Metrika 8-sahifadagi uzun placeholder-musor ketsin; UserStory/JTBD'da qilingan barcha yechimlar 3 dars bo'ylab to'liq qilinganini tekshirib, qolganini qilish.
+**Qilingan ish:**
+1. **US-ustaxona (F-0727-49/50 porti):** split-layout bekor — havodagi 1-2-3 indikator (yashil ✓+KIM nomi / joriy puls / kelgusi punktir) + yagona muharrir-karta; yozish paytida daftar ko'rinmaydi, 3/3 da yulduzli daftar to'liq enda ochiladi; «✨ N-hikoya» yorlig'i o'chdi; KIM/NIMA/NATIJA inputlari o'z rangida (ko'k/sariq/yashil); o'lik svd-slot/svd-head CSS tozalandi.
+2. **Metrika-ustaxona (port):** ⭐-1-2-3 to'rt-qadamli indikator (NS birinchi doira); yagona muharrir; «Mening panelim» 4/4 da to'liq enda; «✨ N-karta — yangi raqam» yorlig'i o'chdi; NOMI/NIMANI/NEGA inputlari rangli; **NS placeholder qisqardi**: «masalan: haftasiga 3 marta qayta kirganlar soni» (eski 2-qatorli musor o'rniga); mw-steps mini-dots/mw-done/mboard-slot o'lik kodi tozalandi.
+3. **Metrika-koding (F-0727-48/51/52 porti):** MK_STEPS checklist o'chdi — darvoza endi 🧮 JONLI SINOV (retention-hisob: real raqam kiritilsa foiz chiqadi) — bitta «✅ Bajardim — kod yozildi, foiz chiqdi»; qulf-holatda tugma jonli sinovga scroll+silkinish-chaqnash bilan olib boradi; «📋 Nusxalash» o'chdi → «🔒 qo'lda yoziladi» + user-select none + onCopy/Cut/ContextMenu bloklangan; mentor «o'zingiz terib yozasiz»; ustunlar joy almashdi (panel chap, kod o'ng).
+**Tekshiruv:** esbuild 3/3 toza · lint:til 3 dars ✓ · o'lik-kod qoldiqlari 0 (MK_STEPS/kd-step/copied/mwSteps/svd-slot). Ball-signal/reload-restore mantiqlariga TEGILMAGAN. UNCOMMITTED. Jonli qo'lda-ko'rik tavsiya (uch darsning 8- va 12-sahifalari).
+
+## P76 raund (2026-07-27) — F-0727-59: US 3-EKRAN KO'PRIK-GAPI + KLINIKA 5→4 CHIP — ✅
+**Foydalanuvchi feedbacki:** (1) 3-sahifada «Keyingi ekranda mana shu 3 bo'lakni o'zingiz joylaysiz» — «joylaysiz» tushunarsiz; (2) 11-sahifada 5 chipdan 4-si pastga tushib ketgan — desktopda bitta qatorda tursin, 4 ta bo'lsin.
+**Qilingan ish:** (a) ko'prik-gap (foydalanuvchi tanladi): «Keyingi ekranda mana shu 3 bo'lakdan **hikoyani o'zingiz yig'asiz**» — 4-ekran sarlavhasi («Hikoyani 3 bo'lakdan o'zingiz tuza olasizmi?») bilan bir tilda; (b) klinika 5→4 chip: KIM-tuzog'i («hamma foydalanuvchi») olib tashlandi, **NATIJA-tuzog'i qoldi** — sabab: shunda tanlov ekranning CHO'QQISIDA (3-slot) bo'ladi, o'quvchi avval ikki qadamni bemalol bosib keladi; ikkala tuzoq ham bitta xato-sinf (mavhumlik) edi, dars-qamrov yo'qolmadi. Bog'liq matnlar tuzatildi: mentor «1 ta tuzoq», done-mini, yakun-ro'yxat sarlavhasi («Bu bo'lak tuzoq edi»), MentorNote, SCREEN_INTENTS.
+**Tekshiruv:** esbuild toza · lint:til ✓ · dasturiy o'lchov (1280px): 4 chip — ROWS=1, pool balandligi 43px (bitta qator). UNCOMMITTED.
+**⚠️ Eslatma:** JTBD (FIX_POOL) va Metrika (MFIX_POOL) klinikalarida ham 5 chip — foydalanuvchi qaroriga qo'yildi (o'sha ekranlarda ham 4 ga tushiriladimi).
+
+## P77 raund (2026-07-27) — F-0727-60: US 12- VA 15-SAHIFA DEKLATTER — ✅
+**Foydalanuvchi feedbacki:** 12-sahifada «📒 Bular — daftardan olingan o'z hikoyalaringiz» qatori musor; o'sha sahifadagi mentor-eslatma ham kerakmas; 15-sahifadagi eslatma ham.
+**Qilingan ish:** (a) `kdx-out-note` qatori + CSS o'chirildi (preview-kartalarning o'zi ko'rinib turibdi); (b) koding-sahifa MentorNote o'chirildi; (c) uy-vazifa (15) MentorNote o'chirildi. Qolgan MentorNote'lar (hook, ustaxona, peer, klinika, prioritet) — 5 ta, ular real mentor-yo'riqnomasi (o'quvchida ko'rinmaydi, faqat mentor-rejimda) va foydalanuvchi ular haqida shikoyat qilmagan.
+**Tekshiruv:** esbuild toza · lint:til ✓ · o'lik CSS 0. UNCOMMITTED.
+
+## P78 raund (2026-07-27) — F-0727-61: METRIKA USTAXONA — NAMUNA-PANEL + PULSLI BO'SH MAYDONLAR — ✅
+**Foydalanuvchi feedbacki (8-sahifa):** «Mening North Star'im — sanaladigan raqam, chunki…» statik gapi olib tashlansin; input-border bosilmaguncha yonib tursin; placeholder'dagi misollar Yordam o'rniga «Namuna» bo'lib ko'chsin va HAR BOSQICHDA o'zgarsin; mentor-eslatma keraksiz.
+**Qilingan ish:** (a) NS muharriridagi statik `mw-sent` qatori o'chdi (karta-muharriridagi jonli preview qoldi — u yozilgani sari to'ladi); (b) **bo'sh maydon pulsda**: har input bo'sh va fokusda emas ekan, o'z rangida (ko'k/sariq/yashil) yumshoq border-puls + tashqi halqa (0.25s stagger bilan); yozila boshlashi/fokus bilan darhol to'xtaydi; NS-textarea ham (accent rangida); reduced-motion'da o'chiq; (c) **📋 Namuna paneli** (Yordam o'rnida): yopiqda bitta ingichka qator, sarlavhasi bosqichga qarab o'zgaradi («⭐ North Star namunasi» / «1-karta namunasi» / …), ichida maydon→qiymat juftliklari; placeholder'lar generikga o'tdi («qisqa nom», «nimani sanaydi?», «qanday foydani bildiradi?») — misol endi faqat Namunada; (d) ustaxona MentorNote o'chirildi.
+**Tekshiruv:** esbuild toza · lint:til ✓ · replica-render: pulsli rangli maydonlar + Namuna paneli. UNCOMMITTED.
+
+## P79 raund (2026-07-27) — F-0727-62: METRIKA 11-SAHIFA (KLINIKA) ESLATMASI O'CHDI — ✅
+**Foydalanuvchi feedbacki:** 11-sahifada eslatma keraksiz.
+**Qilingan ish:** Metrika klinika-ekranidagi MentorNote o'chirildi (tuzoq-izohlari o'quvchi-matnida allaqachon bor — takror edi).
+**Tekshiruv:** esbuild toza · lint:til ✓. UNCOMMITTED.
+
+## P80 raund (2026-07-27) — F-0727-63: 🔴 CALCW KO'RINMASLIK BUGI (fade-up to'qnashuvi) + METRIKA PREVIEW O'CHDI — ✅
+**Foydalanuvchi rasmi (feedback/F-0727-63-calcw-invisible.png):** 12-sahifadagi preview-panel (localhost:5173 mock — 25% Retention + 3 karta) kerakmas; «tugmani bosaman, test ochilmayapti».
+**🔴 ILDIZ-SABAB (o'zim kiritgan regressiya, F-0727-08 xato-sinfining TAKRORI):** P75 portida `calcw`ga `fade-up delay-2` klassi bilan BIRGA `hunt` animatsiyasi berilgan edi. `.fade-up { opacity: 0; animation: fade-in-up … forwards }` — `.calcw.hunt`ning `animation:` e'loni uni BOSIB ketgan → element abadiy `opacity: 0` da qolgan, ya'ni jonli sinov bloki UMUMAN KO'RINMAGAN. Shu sabab qulf-tugma bosilganda «hech narsa ochilmagan» (scroll ko'rinmas elementga ketgan).
+**Yechim:** `fade-up delay-2` klassi olib tashlandi; hunt/flash keyframe'lariga kartaning O'Z soyasi qo'shildi (animatsiya paytida soya yo'qolmasin). Dasturiy tasdiq: `opacity: 1`, balandlik 152px, `visible: true`.
+**Qo'shimcha:** `mxprev` preview-paneli (JSX + 21 qatorlik CSS oilasi) butunlay o'chirildi — JTBD'dagi jprev bilan bir qatorda (F-0727-48).
+**Saboq:** 72-oila bandiga yozilgan «fade-up ↔ animation shorthand» tekshiruvi PORT paytida ham yuritilishi shart — men uni JTBD→Metrika ko'chirishda o'tkazib yuborganman. pm-tekshiruvchi 8-bandi allaqachon qamraydi.
+**Tekshiruv:** esbuild toza · lint:til ✓ · mxprev qoldiq 0 · 3 darsda boshqa fade-up+animation to'qnashuvi grep bilan qidirildi — yo'q. UNCOMMITTED.
+
+## P81 raund (2026-07-27) — F-0727-64: METRIKA KODING — SINF-PULS O'QUVCHIDAN OLINDI — ✅
+**Foydalanuvchi feedbacki:** 12-sahifada «👥 Sinfda: 0 bajardi · ✏️ 1 hali bajarmoqda» o'quvchiga ko'rinmasligi kerak.
+**Qilingan ish:** Metrika koding-ekranidan `StudentPracticePulse` olib tashlandi — JTBD'da bu F-0727-53 da qilingan edi, port paytida Metrikada qolib ketgan (parity-qoldiq). Mentor statistikasi `MentorPracticeStats` («⚛️ Panelni kodlaganlar»)da qoladi.
+**Tekshiruv:** esbuild toza · lint:til ✓. UNCOMMITTED.
+
+## P82 raund (2026-07-27) — KECHKI TO'LQIN MUHRLASH: F-0727-40…64 TO'LIQ QONUNLASHTIRILDI — ✅
+**Topshiriq:** kunning ikkinchi yarmi (25 feedback: so'z+dizayn+UI-musor+ko'rinmas-bug'lar) to'liq tahlil qilinib, mexanizm bo'yicha MDlarga muhrlansin — yangi dars shularning barchasiga rioya qilsin.
+**Tahlil-xulosa:** 25 feedback 6 katta sinfga yig'ildi: (1) ustaxona-qolip evolyutsiyasi (4 iteratsiya→yakuniy: havodagi indikator+yagona karta), (2) koding-qolip (nusxa-taqiq, halol-signal), (3) diqqat-boshqaruv (qulf-yo'l, pulslar), (4) namuna-joylashuvi, (5) ekran-musor, (6) 2 ta ko'rinmas-bug (popover, fade-up) — ikkalasi ham «layout o'zgarganda eski absolute/animation qoidalarning yashirin to'qnashuvi» ildizidan.
+**Muhrlandi:**
+1. **PM_DARS_ETALON 80–86** (7 yangi qonun — yuqorida to'liq).
+2. **MATN_KORPUS §19** — koding-ekran tili juftliklari (sarlavha-oila, nusxa-taqiq gapi, halol-tugma).
+3. **Lug'at +2:** yana kirish→qayta kirish · joylaysiz→hikoyani yig'asiz.
+4. **til-lint 53→55:** `nusxalash-tugma` (error) + `yana-kirish` (warn) — band-12 bo'yicha regress-sinovdan o'tkazildi (ikkalasi USHLADI ✓), 3 dars TOZA.
+5. **pm-tekshiruvchi band-13:** port-sweep (naqsh ko'chirilganda 8-12 bandlar + 80-86 sweep qayta yuritiladi).
+6. **Xotira yangilandi** (pm-etalon-yaxshilash).
+**Kun-yakuni statistikasi:** jami 64 feedback (F-0727-01…64), 82 raund, qonun 68–86 (19 yangi), korpus 13–19-bo'limlar, lug'at +12 qator, lint 44→55 qoida, tekshiruvchi +6 ov-band. UNCOMMITTED (P76–P82).

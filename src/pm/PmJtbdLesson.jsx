@@ -1357,43 +1357,44 @@ const ScreenJobWorkshop = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) =
     <Stage eyebrow="Ustaxona · kartalar ✍️" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !isMentorW} label={navLabel} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
         <div className="head"><h2 className="title h-title fade-up">Endi 3 ta <span className="italic" style={{ color: T.accent }}>JTBD-karta</span> yozasiz.</h2></div>
-        <Mentor>Kartani to'ldiring va <b style={{ color: T.ink }}>Saqlash</b> bosing — u o'ngdagi <b style={{ color: T.ink }}>«Kartalarim»</b> ro'yxatiga ko'chadi, o'rniga yangi karta keladi.</Mentor>
-        <div className="split">
-          <Col>
-            {showEditor ? (
-              <div className="jw-ed fade-up" key={editing ? `e${editIdx}` : `n${saved.length}`}>
-                <span className="jw-tag">{editing ? `✎ ${editIdx + 1}-kartani tahrirlash` : slotN === 0 ? "✨ 1-karta — sizning g'oyangiz (MVP)" : `✨ ${slotN + 1}-karta — hayotdagi mahsulot`}</span>
-                {/* imzo-vizual: shtamp-o'rni — karta to'lguncha xira-punktir, uchala maydon to'lganda yonadi */}
-                <span className={`jw-stampzone ${canSave ? 'ready' : ''}`} aria-hidden="true">✓ YOLLANDI</span>
-                <p className="jw-sent">Foydalanuvchi <b className={`jw-part mahsulot ${draft.mahsulot ? 'on' : ''}`}>{draft.mahsulot || 'mahsulot'}</b>ni <b className={`jw-part ish ${draft.ish ? 'on' : ''}`}>{draft.ish || 'ish'}</b> uchun yollaydi. Turi: <b className={`jw-part tur ${draft.tur ? 'on' : ''}`}>{draft.tur || 'tur'}</b>.</p>
-                <div className="swcard-fields two">
-                  <label className={`smini-f kim ${v.mahsulotOk ? 'on' : ''}`}><span>MAHSULOT</span><input value={draft.mahsulot} onChange={e => setD({ mahsulot: e.target.value })} placeholder={ph.m} /></label>
-                  <label className={`smini-f nima ${v.ishOk ? 'on' : ''}`}><span>VAZIFA</span><input value={draft.ish} onChange={e => setD({ ish: e.target.value })} placeholder={ph.i} /></label>
-                </div>
-                <div className={`smini-f natija ${v.turOk ? 'on' : ''}`} style={{ display: 'flex', flexDirection: 'column', gap: 6 }}><span>{slotN === 2 && !editing ? "VAZIFA TURI — uchchalasi bir xil bo'lmasin" : 'VAZIFA TURI'}</span><TurPicker value={draft.tur} onPick={t => setD({ tur: t })} /></div>
-                {saveHint && <p className="jw-hint">💡 {saveHint}</p>}
-                <div className="jw-btns">
-                  {editing && <button className="btn-ghost" onClick={() => setSt(prev => ({ ...prev, draft: emptyJob(), editIdx: -1 }))}>Bekor qilish</button>}
-                  {!v.full && <span className="jw-cnt">{nFilled}/3 asosiy maydon to'ldi</span>}
-                  <button className="jw-save" disabled={!canSave} onClick={saveDraft}>✓ Saqlash</button>
-                </div>
-              </div>
-            ) : (
-              /* 28-qonun: muharrir o'rni bo'sh qolmaydi — uchala shtamp bosilgan «yakunlangan varaq» */
-              <div className="jw-done fade-step">
-                <span className="jw-done-stamps" aria-hidden="true">
-                  {[0, 1, 2].map(k => <span key={k} className="jhire-stamp mini jb" style={{ '--sd': `${0.1 + k * 0.16}s` }}>✓ YOLLANDI</span>)}
-                </span>
-                <div className="done-mini">✅ Uchta karta tayyor <span className="dm-sub">— tahrirlash uchun qalamcha (✎) belgisidan foydalaning</span></div>
-              </div>
-            )}
-          </Col>
-          <Col>
-            <div className="jbook fade-up delay-1">
-              <div className="jbook-head"><span className="card-lbl" style={{ color: T.accent, margin: 0 }}>📒 Kartalarim</span><b className={`jbook-n ${allSaved ? 'ok' : ''}`}>{saved.length}/3</b></div>
+        <Mentor>Kartani to'ldiring va <b style={{ color: T.ink }}>Saqlash</b> bosing — tepadagi chiroq yonadi va yangi karta keladi. Jami <b style={{ color: T.ink }}>3 karta</b>.</Mentor>
+        {/* F-0727-49: ADELNA-ADELNA — progress endi KARTA EMAS, yengil havodagi indikator (fonsiz);
+            muharrir esa ekrandagi YAGONA karta. Oqim baribir tepadan pastga: chiroq yonadi → yozadi. */}
+        <div className="jw-steps fade-up" aria-label={`${saved.length}/3 karta yozildi`}>
+          {[0, 1, 2].map(i => (
+            <React.Fragment key={i}>
+              {i > 0 && <span className={`jws-line ${saved.length >= i ? 'on' : ''}`} aria-hidden="true" />}
+              <span className={`jws ${saved[i] ? 'on' : (i === saved.length && showEditor) ? 'cur' : ''}`}>
+                <i className="jws-n">{saved[i] ? '✓' : i + 1}</i>
+                <em className="jws-t">{saved[i] ? (saved[i].mahsulot || `${i + 1}-karta`) : `${i + 1}-karta`}</em>
+              </span>
+            </React.Fragment>
+          ))}
+        </div>
+        {showEditor ? (
+          <div className="jw-ed fade-up" key={editing ? `e${editIdx}` : `n${saved.length}`}>
+            {editing && <span className="jw-tag">✎ {editIdx + 1}-kartani tahrirlash</span>}
+            <span className={`jw-stampzone ${canSave ? 'ready' : ''}`} aria-hidden="true">✓ YOLLANDI</span>
+            <p className="jw-sent">Foydalanuvchi <b className={`jw-part mahsulot ${draft.mahsulot ? 'on' : ''}`}>{draft.mahsulot || 'mahsulot'}</b>ni <b className={`jw-part ish ${draft.ish ? 'on' : ''}`}>{draft.ish || 'ish'}</b> uchun yollaydi. Turi: <b className={`jw-part tur ${draft.tur ? 'on' : ''}`}>{draft.tur || 'tur'}</b>.</p>
+            <div className="swcard-fields two">
+              <label className={`smini-f kim ${v.mahsulotOk ? 'on' : ''}`}><span>MAHSULOT</span><input value={draft.mahsulot} onChange={e => setD({ mahsulot: e.target.value })} placeholder={ph.m} /></label>
+              <label className={`smini-f nima ${v.ishOk ? 'on' : ''}`}><span>VAZIFA</span><input value={draft.ish} onChange={e => setD({ ish: e.target.value })} placeholder={ph.i} /></label>
+            </div>
+            <div className={`smini-f natija ${v.turOk ? 'on' : ''}`} style={{ display: 'flex', flexDirection: 'column', gap: 6 }}><span>{slotN === 2 && !editing ? "VAZIFA TURI — uchchalasi bir xil bo'lmasin" : 'VAZIFA TURI'}</span><TurPicker value={draft.tur} onPick={t => setD({ tur: t })} /></div>
+            {saveHint && <p className="jw-hint">💡 {saveHint}</p>}
+            <div className="jw-btns">
+              {editing && <button className="btn-ghost" onClick={() => setSt(prev => ({ ...prev, draft: emptyJob(), editIdx: -1 }))}>Bekor qilish</button>}
+              {!v.full && <span className="jw-cnt">{nFilled}/3 asosiy maydon to'ldi</span>}
+              <button className="jw-save" disabled={!canSave} onClick={saveDraft}>✓ Saqlash</button>
+            </div>
+          </div>
+        ) : (
+          <>
+            <div className="done-mini fade-step">✅ Uchta karta tayyor <span className="dm-sub">— tahrirlash uchun qalamcha (✎) belgisidan foydalaning</span></div>
+            <div className="jbook full fade-step">
               {[0, 1, 2].map(i => {
                 const c = saved[i];
-                if (!c) return <div key={i} className="jbook-slot"><span className="jbook-slot-n">{i + 1}</span>hali yozilmagan</div>;
+                if (!c) return null;
                 return (
                   <div key={i} className={`jbook-card ${editIdx === i ? 'editing' : ''}`}>
                     <div className="jbook-top">
@@ -1407,10 +1408,10 @@ const ScreenJobWorkshop = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) =
                 );
               })}
             </div>
-            <MentorPracticeStats live={live} screen={screen} label="✍️ 3 kartani yozib bo'lganlar" />
-            <StudentPracticePulse live={live} screen={screen} />
-          </Col>
-        </div>
+          </>
+        )}
+        <MentorPracticeStats live={live} screen={screen} label="✍️ 3 kartani yozib bo'lganlar" />
+        <StudentPracticePulse live={live} screen={screen} />
         <MentorNote>Bu ishni o'quvchilar bajaradi — «✍️ 3 kartani yozib bo'lganlar» panelida kuzatasiz; «Davom etish» siz uchun ochiq. Qiynalganga 2 savol bering: bu mahsulotni nima uchun ishlataman? Undan keyin hayotimda nima yaxshilanadi?</MentorNote>
       </div>
     </Stage>
@@ -1976,12 +1977,6 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // WOW: kdJobs() — o'quvchining USTAXONADA yozgan real 3 kartasi (JOBS_KEY) preview-panelda komponent
 // ko'rinishida chiqadi; bo'sh bo'lsa namunaviy DEMO_JTBD ishlatiladi.
 // Ball-rels O'ZGARMAGAN: onAnswer({stage:'koding',...}) + live.submitAnswer(PRACTICE_BASE+screen,'koding',0,true,0).
-const KD_STEPS = [
-  "Loyihamni VS Code'da ochdim",
-  "`src` papkasida `JtbdCard.jsx` yaratdim",
-  "Karta 3 ma'lumot oladi",
-  "Brauzerda 3 kartam ko'rindi",
-];
 const kdJobs = () => {
   const saved = readJobs();
   // Buzuq/yarim yozuvlar (null, bo'sh maydon) o'tkazilmaydi — 3 TO'LIQ karta bo'lsagina o'quvchiniki,
@@ -2040,9 +2035,7 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const isMentor = !!(live && live.mode === 'mentor');
   const [jobs] = useState(() => kdJobs());
   const isOwn = jobs !== DEMO_JTBD;
-  const [checked, setChecked] = useState(() => new Set(storedAnswer && storedAnswer.solved ? KD_STEPS.map((_, i) => i) : []));
   const [done, setDone] = useState(!!(storedAnswer && storedAnswer.solved));
-  const [copied, setCopied] = useState(false);
   const [starOpen, setStarOpen] = useState(false);
   // 🔎 Prop-ov: found=true bo'lguncha kod BUZUQ variantda (tur yashirin); MENTOR darhol to'liq ko'radi.
   const [found, setFound] = useState(() => {
@@ -2050,6 +2043,16 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     try { return localStorage.getItem(KD_PROP_KEY) === '1'; } catch { return false; }
   });
   const [justFound, setJustFound] = useState(false);
+  const kdqRef = useRef(null);              // F-0727-52: qulf-tugma testga olib boradi
+  const [kdqFlash, setKdqFlash] = useState(false);
+  const flashTimer = useRef(null);
+  useEffect(() => () => clearTimeout(flashTimer.current), []);
+  const goToQuiz = () => {
+    if (kdqRef.current) kdqRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    setKdqFlash(true);
+    clearTimeout(flashTimer.current);
+    flashTimer.current = setTimeout(() => setKdqFlash(false), 1300);
+  };
   const [wrongProp, setWrongProp] = useState(null);
   const wrongTimer = useRef(null);
   useEffect(() => () => clearTimeout(wrongTimer.current), []);
@@ -2060,51 +2063,50 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     if (k === KD_MISSING_IDX) {
       setFound(true); setJustFound(true);
       try { localStorage.setItem(KD_PROP_KEY, '1'); } catch {}
-      setChecked(prev => { const s = new Set(prev); s.add(2); return s; }); // «Karta 3 ma'lumot oladi» bandi avto-✓
     } else {
       setWrongProp(k);
       clearTimeout(wrongTimer.current);
       wrongTimer.current = setTimeout(() => setWrongProp(null), 650);
     }
   };
-  const toggle = (i) => { if (done) return; setChecked(prev => { const s = new Set(prev); if (s.has(i)) s.delete(i); else s.add(i); return s; }); };
-  const allChecked = checked.size === KD_STEPS.length;
-  const copy = () => {
-    if (!showFull) return;
-    try { navigator.clipboard.writeText(code).then(() => { setCopied(true); setTimeout(() => setCopied(false), 2200); }).catch(() => {}); } catch {}
-  };
   // Birinchi marta tugatilganda ball-signal ketadi — AYNAN eski kompilyator-relsdagidek.
   const complete = () => {
-    if (done || !allChecked) return;
+    if (done || !found) return;
     setDone(true);
     onAnswer(screen, { stage: 'koding', screenIdx: screen, solved: true, correct: true });
     if (live && live.mode === 'student') live.submitAnswer(PRACTICE_BASE + screen, 'koding', 0, true, 0);
   };
   const lines = code.split('\n');
   return (
-    <Stage eyebrow="Koding · ⚛️ React" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !isMentor} label={done || isMentor ? 'Davom etish' : allChecked ? '«✅ Bajardim»ni bosing' : !found ? '① Yetishmaganini toping' : `Qadamlarni belgilang (${checked.size}/${KD_STEPS.length})`} onClick={onNext} /></>}>
+    <Stage eyebrow="Koding · ⚛️ React" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !isMentor} label={done || isMentor ? 'Davom etish' : !found ? '① Yetishmaganini toping' : '«✅ Bajardim»ni bosing'} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.3vw,13px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">3 kartangizni <span className="italic" style={{ color: T.accent }}>React komponenti</span> qiling.</h2></div>
-        <Mentor>Pastdagi kodni nusxalab, <b style={{ color: T.ink }}>VS Code</b>'da (kod yoziladigan dastur) loyihangizga qo'ying.</Mentor>
-        <div className="jprev fade-up delay-1">
-          <div className="jprev-bar"><span className="bb-dots"><i /><i /><i /></span><span className="jprev-url">localhost:5173 — loyihangiz brauzerda</span><span className="jprev-note">Komponent — bir marta yoziladi, har kartada ishlaydi.</span><span className={`jprev-src ${isOwn ? 'own' : 'demo'}`}>{isOwn ? '✓ sizning 3 kartangiz' : 'namunaviy 3 karta'}</span></div>
-          <div className="jprev-cards">
-            {jobs.map((j, i) => (
-              <div key={i} className="jprev-card">
-                <span className="jprev-top">
-                  <span className="jprev-name">{j.em ? `${j.em} ` : ''}{j.mahsulot}</span>
-                  <span className={`jprev-tur ${j.tur}`}>{j.tur}</span>
-                </span>
-                <span className="jprev-job">Ishi: <b>{j.ish}</b></span>
-              </div>
-            ))}
-          </div>
-        </div>
+        <div className="head"><h2 className="title h-title fade-up">3 kartangizni ekranga chiqaradigan <span className="italic" style={{ color: T.accent }}>kod</span> yozamiz.</h2></div>
+        <Mentor>Kodni <b style={{ color: T.ink }}>VS Code</b>'da (kod yoziladigan dastur) <b style={{ color: T.ink }}>o'zingiz terib yozasiz</b> — nusxalab bo'lmaydi: qo'lda yozganda o'rganiladi.</Mentor>
         <div className="split">
+          <Col>
+            {/* 32c: o'ng ustun BITTA holat-panelga yig'ildi — sarlavha + progress + qadamlar + tugma */}
+            <div className={`jkd-panel fade-up delay-2 ${done ? 'is-done' : ''}`}>
+              {/* F-0727-51: 4-bandlik checklist O'CHDI — bitta halol «Bajardim» tugmasi (mentor-statistika signali shu tugmadan) */}
+              <p className="flow-label">Kodni VS Code'da terib, brauzerda 3 kartangizni ko'ring — keyin tasdiqlang</p>
+              <div className={`wsx star ${starOpen ? 'open' : ''}`}>
+                <button className="wsx-toggle" onClick={() => setStarOpen(o => !o)}>💡 Yordam {starOpen ? '▾' : '▸'}</button>
+                {starOpen && <div className="wsx-body">
+                  <p><code className="qcode">src</code> — loyihangizdagi kod fayllari turadigan papka; yangi fayl ham shu yerga yaratiladi.</p>
+                  <p>Loyihangiz hali yo'qmi? VS Code'da yangi papka oching — fayllarni shunga yozing.</p>
+                  <p>⭐ Qo'shimcha: 3 kartani <b>map</b> bilan birdaniga chiqaring: <span className="mono">{'jobs.map(j => <JtbdCard ... />)'}</span></p>
+                </div>}
+              </div>
+              <button className={`lp-done-btn ${done ? 'is-done' : ''} ${!found && !done ? 'locked' : ''}`} disabled={done} onClick={done ? undefined : found ? complete : goToQuiz}>
+                {done ? '✓ Bajarildi' : found ? "✅ Bajardim — kod yozildi, kartalarim ko'rindi" : "🔒 Avval kod-savolini yeching — bosing, ko'rsataman"}
+              </button>
+              {done && <div className="done-mini fade-step">✅ JtbdCard tayyor <span className="dm-sub">— {isOwn ? '3 kartangiz' : 'namunaviy 3 karta'} endi loyihangizda</span></div>}
+            </div>
+            <MentorPracticeStats live={live} screen={screen} label="⚛️ Komponentni qurganlar" />
+          </Col>
           <Col>
             {/* 32c: prop-ov + muharrir BITTA blok bo'lib ko'rinadi — ekranda alohida karta ko'paymaydi */}
             <div className="jkd-code fade-up delay-1">
-            <div className={`kdq ${showFull ? 'ok' : ''}`}>
+            <div ref={kdqRef} className={`kdq ${showFull ? 'ok' : 'hunt'} ${kdqFlash ? 'flash' : ''}`}>
               {isMentor ? (
                 <span className="kdq-done">✓ To'liq kod — o'quvchida avval <code className="qcode">tur</code> ma'lumoti yashiringan bo'ladi</span>
               ) : found ? (
@@ -2121,11 +2123,11 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 </>
               )}
             </div>
-            <div className={`vsc ${justFound ? 'reveal-glow' : ''}`}>
+            <div className={`vsc no-copy ${justFound ? 'reveal-glow' : ''}`} onCopy={e => e.preventDefault()} onCut={e => e.preventDefault()} onContextMenu={e => e.preventDefault()}>
               <div className="vsc-bar">
                 <span className="vsc-tab on"><span style={{ color: '#61DAFB' }}>⚛</span> JtbdCard.jsx</span>
                 <span className="vsc-tab">App.jsx</span>
-                <button className={`vsc-copy ${copied ? 'ok' : ''}`} disabled={!showFull} onClick={copy}>{copied ? '✓ Nusxalandi' : showFull ? '📋 Nusxalash' : '🔒 Avval toping'}</button>
+                <span className="vsc-lock" title="Kod nusxalanmaydi — o'zingiz terib yozasiz">🔒 qo'lda yoziladi</span>
               </div>
               <div className="vsc-body">
                 {lines.map((ln, i) => (
@@ -2134,41 +2136,6 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               </div>
             </div>
             </div>
-          </Col>
-          <Col>
-            {/* 32c: o'ng ustun BITTA holat-panelga yig'ildi — sarlavha + progress + qadamlar + tugma */}
-            <div className={`jkd-panel fade-up delay-2 ${done ? 'is-done' : ''}`}>
-              <div className="jkd-phead">
-                <p className="flow-label">Kompyuterda bajarib belgilang</p>
-                <span className={`jkd-pcnt ${allChecked ? 'ok' : ''}`}>{checked.size}/{KD_STEPS.length}</span>
-              </div>
-              <div className="jkd-pbar"><i style={{ width: `${(checked.size / KD_STEPS.length) * 100}%` }} /></div>
-              <div className="kd-steps">
-                {KD_STEPS.map((s, i) => {
-                  const on = checked.has(i);
-                  return (
-                    <button key={i} className={`kd-step ${on ? 'on' : ''}`} onClick={() => toggle(i)}>
-                      <span className="kd-check">{on ? '✓' : i + 1}</span>
-                      <span className="kd-step-t">{fmtCode(s)}</span>
-                    </button>
-                  );
-                })}
-              </div>
-              <div className={`wsx star ${starOpen ? 'open' : ''}`}>
-                <button className="wsx-toggle" onClick={() => setStarOpen(o => !o)}>💡 Yordam {starOpen ? '▾' : '▸'}</button>
-                {starOpen && <div className="wsx-body">
-                  <p><code className="qcode">src</code> — loyihangizdagi kod fayllari turadigan papka; yangi fayl ham shu yerga yaratiladi.</p>
-                  <p>Loyihangiz hali yo'qmi? VS Code'da yangi papka oching — fayllarni shunga yozing.</p>
-                  <p>⭐ Qo'shimcha: 3 kartani <b>map</b> bilan birdaniga chiqaring: <span className="mono">{'jobs.map(j => <JtbdCard ... />)'}</span></p>
-                </div>}
-              </div>
-              <button className={`lp-done-btn ${done ? 'is-done' : ''}`} disabled={done || !allChecked} onClick={complete}>
-                {done ? '✓ Bajarildi — ustozni kuting' : allChecked ? '✅ Bajardim' : 'Qadamlarni belgilang'}
-              </button>
-              <StudentPracticePulse live={live} screen={screen} />
-              {done && <div className="done-mini fade-step">✅ JtbdCard tayyor <span className="dm-sub">— {isOwn ? '3 kartangiz' : 'namunaviy 3 karta'} endi loyihangizda</span></div>}
-            </div>
-            <MentorPracticeStats live={live} screen={screen} label="⚛️ Komponentni qurganlar" />
           </Col>
         </div>
         <MentorNote>Bu kodingni o'quvchilar bajaradi — «⚛️ Komponentni qurganlar» panelida kuzatasiz; «Davom etish» siz uchun ochiq. Eng ko'p adashish — ma'lumot nomlari va Katta harf (JtbdCard). Ulgurmagan o'quvchi uyda tugatadi (qisqa uy-vazifa). Xohlasangiz proyektorda o'z VS Code'ingizda jonli ko'rsating.</MentorNote>
@@ -2204,7 +2171,7 @@ function PairTimer({ solo }) {
         <p className="pair-now" style={{ margin: 0 }}>{st.done ? (solo ? "✓ Vaqt tugadi — aytib bo'ldingizmi? Barakalla!" : "✓ Vaqt tugadi — ikkalangiz ham aytdingizmi? Barakalla!") : (solo ? "Gapni ovoz chiqarib o'zingizga ayting." :"Har biringizga 30 soniyadan: avval A gapiradi, keyin B.")}</p>
       )}
       <div className="pair-timer-btns">
-        {!st.running && <button className="btn-soft" onClick={() => setSt({ running: true, left: 60, done: false })}>{st.done ? '↻ Yana 1 daqiqa' : '▶ 1 daqiqani boshlash'}</button>}
+        {!st.running && <button className={st.done ? 'btn-soft' : 'pair-start'} onClick={() => setSt({ running: true, left: 60, done: false })}>{st.done ? '↻ Yana 1 daqiqa' : '▶ 1 daqiqani boshlash'}</button>}
         {st.running && <button className="btn-soft" onClick={() => setSt({ running: false, left: 60, done: false })}>⏹ To'xtatish</button>}
       </div>
     </div>
@@ -3296,8 +3263,18 @@ export default function PmJtbdLesson({ lang: langProp, onFinished }) {
         .smini-f span { font-family: 'Manrope'; font-weight: 800; font-size: 10px; letter-spacing: 0.06em; color: ${T.ink3}; }
         .smini-f.kim span { color: ${T.blue}; } .smini-f.nima span { color: #B77A16; } .smini-f.natija span { color: ${T.success}; }
         .smini-f input { font-family: 'Manrope'; font-weight: 500; font-size: 14px; color: ${T.ink}; border: none; border-radius: 9px; padding: 9px 11px; background: ${T.bg}; box-shadow: inset 0 0 0 1.5px ${T.line}; outline: none; transition: box-shadow 0.18s; width: 100%; }
-        .smini-f input:focus { box-shadow: inset 0 0 0 1.5px ${T.accent}; }
-        .smini-f.on input { box-shadow: inset 0 0 0 1.5px ${T.success}66; background: ${T.paper}; }
+        /* F-0727-50: input-borderlar maydon MA'NOSI rangida (71-qonun semantikasi) — bo'sh: xira, fokus/to'lgan: to'liq rang */
+        .smini-f.kim input { box-shadow: inset 0 0 0 1.5px ${T.blue}55; }
+        .smini-f.nima input { box-shadow: inset 0 0 0 1.5px #E8A13A66; }
+        .smini-f.natija input { box-shadow: inset 0 0 0 1.5px ${T.success}55; }
+        .smini-f.kim input:focus { box-shadow: inset 0 0 0 2px ${T.blue}; }
+        .smini-f.nima input:focus { box-shadow: inset 0 0 0 2px #E8A13A; }
+        .smini-f.natija input:focus { box-shadow: inset 0 0 0 2px ${T.success}; }
+        .smini-f.kim.on input { box-shadow: inset 0 0 0 1.5px ${T.blue}; background: ${T.blueSoft}44; }
+        .smini-f.nima.on input { box-shadow: inset 0 0 0 1.5px #E8A13A; background: #FBEED644; }
+        .smini-f.natija.on input { box-shadow: inset 0 0 0 1.5px ${T.success}; background: ${T.successSoft}44; }
+        .smini-f input:focus { outline: none; }
+        .smini-f.on input { background: ${T.paper}; }
         @keyframes hc-cond-pop { 0% { transform: scale(1); } 42% { transform: scale(1.015) translateY(-1px); } 100% { transform: scale(1); } }
         @keyframes lp-check-pop { 0% { transform: scale(0.7); } 45% { transform: scale(1.3); } 100% { transform: scale(1); } }
         @keyframes jfix-shake { 0%,100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 55% { transform: translateX(5px); } 80% { transform: translateX(-2px); } }
@@ -3322,8 +3299,7 @@ export default function PmJtbdLesson({ lang: langProp, onFinished }) {
         /* === ✍️ USTAXONA (48-qonun): bitta karta-muharrir + «Kartalarim» doskasi ===
            IMZO-VIZUAL: muharrir — to'ldirilayotgan «ish shartnomasi» varag'i; uchala maydon to'lganda
            shtamp-o'rni yonadi, «Saqlash» bosilgach karta o'ngdagi doskaga UCHIB o'tadi va shtamp bosiladi. */
-        .jw-ed { position: relative; background: ${T.paper}; border-radius: 16px; padding: clamp(16px,2.4vw,22px); display: flex; flex-direction: column; gap: 12px; box-shadow: 0 12px 30px -10px rgba(${T.shadowBase},0.2); border-left: 5px solid ${T.accent}; min-width: 0; }
-        .jw-ed::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 4px; border-radius: 0 16px 0 0; background: linear-gradient(90deg, ${T.accent}, ${T.accentVivid}); opacity: 0.85; }
+        .jw-ed { position: relative; background: ${T.paper}; border-radius: 16px; padding: clamp(16px,2.4vw,22px); display: flex; flex-direction: column; gap: 12px; box-shadow: 0 0 0 2px ${T.accent}33, 0 14px 32px -10px rgba(91,61,230,0.28); border-left: 5px solid ${T.accent}; min-width: 0; }
         .jw-tag { align-self: flex-start; font-family: 'Manrope'; font-weight: 800; font-size: 11px; letter-spacing: 0.05em; padding: 4px 12px; border-radius: 99px; color: ${T.accent}; background: ${T.accentSoft}; }
         /* shtamp-o'rni: bo'sh kartada xira-punktir «kutmoqda», to'lganda accent'da yonadi (tap-hint: endi saqlasa bo'ladi) */
         .jw-stampzone { position: absolute; right: clamp(12px,2vw,18px); top: clamp(12px,2vw,16px); font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: 9.5px; letter-spacing: 0.1em; padding: 3px 9px; border-radius: 999px; border: 2px dashed ${T.ink3}66; color: ${T.ink3}; background: transparent; opacity: 0.45; transform: rotate(-6deg); transition: all 0.3s cubic-bezier(.3,1.3,.5,1); pointer-events: none; }
@@ -3342,18 +3318,29 @@ export default function PmJtbdLesson({ lang: langProp, onFinished }) {
         .jw-save:disabled { background: ${T.accentSoft}; color: ${T.accent}; opacity: 0.55; box-shadow: none; cursor: not-allowed; transform: none; }
         /* 📒 Kartalarim doskasi — «yollash daftari»: bo'sh o'rinlar punktir, to'lgani yashil + YOLLANDI shtampi */
         .jbook { position: relative; background: linear-gradient(180deg, ${T.paper}, #FBFAFE); border-radius: 16px; padding: 15px 16px; display: flex; flex-direction: column; gap: 10px; box-shadow: 0 8px 22px -8px rgba(${T.shadowBase},0.16); min-width: 0; }
-        .jbook-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding-bottom: 9px; border-bottom: 1.5px dashed ${T.line}; }
+        /* YENGIL PROGRESS-INDIKATOR (F-0727-49): karta EMAS — fonsiz, havoda; muharrir yagona karta */
+        .jw-steps { display: flex; align-items: flex-start; justify-content: center; gap: 12px; padding: 2px 0 4px; }
+        .jws { display: inline-flex; flex-direction: column; align-items: center; gap: 5px; min-width: 80px; }
+        .jws-n { width: clamp(38px,4.6vw,44px); height: clamp(38px,4.6vw,44px); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: clamp(15px,1.8vw,18px); font-style: normal; color: ${T.ink3}; border: 2px dashed ${T.ink3}55; background: ${T.paper}; transition: all 0.3s; box-shadow: 0 4px 12px -5px rgba(${T.shadowBase},0.18); }
+        .jws-t { font-family: 'Manrope'; font-weight: 700; font-size: clamp(10.5px,1.3vw,12px); font-style: normal; color: ${T.ink3}; max-width: 110px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .jws.cur .jws-n { border-style: solid; border-color: ${T.accent}; color: ${T.accent}; background: ${T.accentSoft}; animation: jws-pulse 1.6s ease-in-out infinite; }
+        .jws.cur .jws-t { color: ${T.accent}; }
+        @keyframes jws-pulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(110,75,255,0.4); } 50% { box-shadow: 0 0 0 9px rgba(110,75,255,0); } }
+        .jws.on .jws-n { border-style: solid; border-color: ${T.success}; background: ${T.success}; color: #fff; }
+        .jws.on .jws-t { color: ${T.success}; }
+        .jws-line { flex: 0 1 110px; height: 3px; border-radius: 99px; background: ${T.line}; margin-top: clamp(18px,2.2vw,21px); transition: background 0.4s; }
+        .jws-line.on { background: ${T.success}; }
+        .jbook.full { width: 100%; }
+        @media (prefers-reduced-motion: reduce) { .jws.cur .jws-n { animation: none; } }
         .jbook-n { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 14px; color: ${T.ink3}; background: ${T.bg}; border-radius: 99px; padding: 3px 11px; transition: all 0.25s; }
         .jbook-n.ok { color: ${T.success}; background: ${T.successSoft}; }
-        .jbook-slot { display: flex; align-items: center; gap: 10px; border: 1.5px dashed ${T.ink3}55; border-radius: 12px; padding: 12px 14px; font-family: 'Manrope'; font-weight: 600; font-size: 13px; color: ${T.ink3}; font-style: italic; }
-        .jbook-slot-n { width: 22px; height: 22px; border-radius: 7px; flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 800; font-style: normal; color: ${T.ink3}; box-shadow: inset 0 0 0 1.5px ${T.ink3}44; }
         /* saqlangan karta CHAPDAN uchib keladi — «muharrirdan doskaga ko'chdi» hissi */
         .jbook-card { position: relative; background: ${T.successSoft}; border-radius: 12px; padding: 11px 13px 12px; display: flex; flex-direction: column; gap: 6px; min-width: 0; box-shadow: inset 0 0 0 1.5px ${T.success}44; animation: jbook-land 0.5s cubic-bezier(.22,1.15,.34,1) both; }
         @keyframes jbook-land { 0% { opacity: 0; transform: translateX(-26px) translateY(6px) scale(0.94); } 62% { opacity: 1; transform: translateX(2px) translateY(0) scale(1.015); } 100% { opacity: 1; transform: none; } }
         .jbook-card.editing { box-shadow: inset 0 0 0 2px ${T.accent}; background: ${T.accentSoft}; animation: none; }
         .jbook-top { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; min-width: 0; }
         .jbook-num { width: 20px; height: 20px; border-radius: 50%; flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: 11px; color: #fff; background: ${T.success}; }
-        /* ISH-TURI rangi — dars bo'ylab YAGONA semantika (tur-chip · mp-tur · jprev-tur bilan bir xil) */
+        /* ISH-TURI rangi — dars bo'ylab YAGONA semantika (tur-chip · mp-tur bilan bir xil) */
         .jbook-tur { font-family: 'Manrope'; font-weight: 800; font-size: 10px; letter-spacing: 0.05em; border-radius: 99px; padding: 3px 9px; background: ${T.bg}; color: ${T.ink2}; flex-shrink: 0; }
         .jbook-tur.funksional { background: ${T.blueSoft}; color: ${T.blue}; }
         .jbook-tur.ijtimoiy { background: #FBEED6; color: #B77A16; }
@@ -3523,7 +3510,8 @@ export default function PmJtbdLesson({ lang: langProp, onFinished }) {
         .wsx-toggle { width: 100%; text-align: left; background: none; border: none; padding: 10px 13px; font-family: 'Manrope'; font-weight: 700; font-size: 13px; color: ${T.accent}; cursor: pointer; }
         .wsx.star .wsx-toggle { color: ${T.blue}; }
         .wsx-body { padding: 0 13px 11px; display: flex; flex-direction: column; gap: 6px; animation: fade-step 0.25s ease-out; }
-        .wsx-body p { font-size: 13px; color: ${T.ink2}; margin: 0; line-height: 1.45; } .wsx-body b { color: ${T.ink}; }
+        .wsx-body p { font-size: 13px; color: ${T.ink2}; margin: 0; line-height: 1.45; overflow-wrap: anywhere; } .wsx-body b { color: ${T.ink}; }
+        .wsx-body .mono { white-space: normal; overflow-wrap: anywhere; }
 
         /* === ⚛️ KODING (s10): VS Code-mockup + jonli JtbdCard-preview + qadam-checklist ===
            32c EKRAN-DIYETA: chapda BITTA blok (prop-ov savoli muharrirning «peshtoqi» bo'lib ulanadi),
@@ -3533,25 +3521,16 @@ export default function PmJtbdLesson({ lang: langProp, onFinished }) {
         .jkd-code .vsc { border-radius: 0; box-shadow: none; border-left: 4px solid #2D2D2D; }
         .jkd-panel { position: relative; background: ${T.paper}; border-radius: 16px; padding: 11px 14px 10px; display: flex; flex-direction: column; gap: 7px; box-shadow: 0 10px 26px -10px rgba(${T.shadowBase},0.18); border-left: 5px solid ${T.accent}; min-width: 0; transition: border-color 0.3s; }
         .jkd-panel.is-done { border-left-color: ${T.success}; }
-        .jkd-phead { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
-        .jkd-pcnt { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 12px; color: ${T.ink3}; background: ${T.bg}; border-radius: 99px; padding: 3px 10px; transition: all 0.25s; }
-        .jkd-pcnt.ok { color: ${T.success}; background: ${T.successSoft}; }
-        .jkd-pbar { position: relative; height: 6px; border-radius: 99px; background: rgba(${T.shadowBase},0.08); overflow: hidden; }
-        .jkd-pbar i { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 99px; background: linear-gradient(90deg, ${T.accent}, ${T.accentVivid}); transition: width 0.45s cubic-bezier(.3,1,.4,1); }
         .jkd-panel.is-done .jkd-pbar i { background: linear-gradient(90deg, ${T.success}, #2BD97C); }
         .jkd-panel .wsx { flex: 0 0 auto; }
         /* Panel ichidagi ikkilamchi qatlamlar ixchamlashadi — matn o'zgarmaydi, faqat zichlik */
         .jkd-panel .wsx-toggle { padding: 7px 12px; }
         .jkd-panel .lp-done-btn { margin-top: 0; padding: 10px 18px; }
         .jkd-panel .done-mini { padding: 5px 13px; }
-        /* 💡 Yordam desktopda QALQIB chiqadi (panel ustidagi suzuvchi kartacha) — ochilganda panel
-           balandligi o'zgarmaydi, ya'ni ekran skrolga tushmaydi. Mobil (≤620px) — odatdagi ochilish. */
+        /* F-0727-54: eski CHAPGA-qalqish popover o'chirildi — panel endi chap ustunda, popover ekrandan
+           tashqariga (mentor ustiga) uchardi. Yordam oddiy akkordeon bo'lib panel ichida ochiladi. */
         .jkd-panel .wsx-body { padding: 11px 13px; }
-        @media (min-width: 761px) {
-          .jkd-panel .wsx.open { position: relative; overflow: visible; border-color: ${T.blue}; }
-          /* qalqib chiqadi CHAPGA — qadam-ro'yxati yopilmaydi, o'quvchi yordamni o'qib turib belgilay oladi */
-          .jkd-panel .wsx.open .wsx-body { position: absolute; right: calc(100% + 14px); bottom: -4px; width: min(330px, 34vw); z-index: 6; background: ${T.paper}; border-radius: 13px; box-shadow: 0 20px 44px -14px rgba(${T.shadowBase},0.45), inset 0 0 0 1.5px ${T.blue}55; }
-        }
+        .jkd-panel .wsx.open { border-color: ${T.blue}; }
         @media (prefers-reduced-motion: reduce) { .jkd-pbar i { transition: none; } }
         .vsc { position: relative; background: #1E1E1E; border-radius: 14px; overflow: hidden; box-shadow: 0 14px 30px -10px rgba(${T.shadowBase},0.35); }
         /* «davomi bor» ishorasi — kod ichida skroll borligini ko'rsatuvchi yumshoq soya (matnsiz affordance) */
@@ -3560,10 +3539,9 @@ export default function PmJtbdLesson({ lang: langProp, onFinished }) {
         .vsc-bar { background: #252526; display: flex; align-items: center; gap: 2px; padding-right: 8px; }
         .vsc-tab { font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: #8B949E; background: #2D2D2D; padding: 9px 14px; display: inline-flex; align-items: center; gap: 6px; }
         .vsc-tab.on { background: #1E1E1E; color: #E6EDF3; box-shadow: inset 0 2px 0 #007ACC; }
-        .vsc-copy { margin-left: auto; background: #0E639C; color: #fff; border: none; border-radius: 8px; padding: 6px 12px; font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 11.5px; cursor: pointer; transition: background 0.18s, transform 0.18s; flex-shrink: 0; }
-        .vsc-copy:hover { background: #1177BB; transform: translateY(-1px); }
-        .vsc-copy.ok { background: ${T.success}; }
         /* Kod-oynasi o'zi skroll bo'ladi — butun sahifa emas (desktopda ekran skrolsiz sig'sin) */
+        .vsc-lock { margin-left: auto; font-family: 'Manrope'; font-weight: 700; font-size: 11px; letter-spacing: 0.04em; color: #B9A8E6; background: rgba(255,255,255,0.07); border-radius: 8px; padding: 5px 11px; }
+        .vsc.no-copy .vsc-body { user-select: none; -webkit-user-select: none; }
         .vsc-body { padding: 10px 14px 12px 6px; font-family: 'JetBrains Mono', monospace; font-size: clamp(11px,1.35vw,12.5px); color: #D4D4D4; line-height: 1.62; overflow: auto; max-height: clamp(170px, 27vh, 300px); scrollbar-width: thin; scrollbar-color: #4A4A4A #1E1E1E; }
         .vsc-body::-webkit-scrollbar { width: 9px; height: 9px; }
         .vsc-body::-webkit-scrollbar-thumb { background: #4A4A4A; border-radius: 99px; }
@@ -3577,36 +3555,13 @@ export default function PmJtbdLesson({ lang: langProp, onFinished }) {
         /* Jonli natija-preview — o'quvchining REAL 3 kartasi «brauzerda» ko'rinadi.
            flex-shrink: 0 SHART: .screen fiks-balandlik flex-ustun, overflow:hidden'li element aks holda
            siqilib «bo'sh karta» bo'lib qoladi (muammo.png bugi — kartalardan faqat chekka chiziq ko'ringan). */
-        .jprev { background: ${T.paper}; border-radius: 16px; overflow: hidden; flex-shrink: 0; box-shadow: 0 10px 26px -10px rgba(${T.shadowBase},0.2); }
-        .jprev-bar { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 10px; padding: 7px 13px; background: #F7F5FD; border-bottom: 1px solid ${T.line}; }
         /* «Komponent — bir marta yoziladi…» izohi brauzer-panelining o'ziga ko'chdi: alohida qator emas (balandlik tejaladi) */
-        .jprev-note { font-family: 'Manrope'; font-weight: 600; font-size: 11.5px; color: ${T.ink3}; }
-        .jprev-url { font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: ${T.ink3}; background: ${T.paper}; border-radius: 99px; padding: 4px 12px; box-shadow: inset 0 0 0 1px ${T.line}; }
         /* yashil = o'quvchining REAL kartalari; namuna-fallback neytral indigo (40-qonun: yolg'on «✓» bo'lmasin) */
-        .jprev-src { margin-left: auto; font-family: 'Manrope'; font-weight: 700; font-size: 10.5px; border-radius: 99px; padding: 3px 10px; color: ${T.ink2}; background: ${T.bg}; }
-        .jprev-src.own { color: ${T.success}; background: ${T.successSoft}; }
-        .jprev-src.demo { color: ${T.accent}; background: ${T.accentSoft}; }
-        .jprev-cards { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: clamp(9px,1.3vw,12px); padding: clamp(9px,1.1vw,10px); }
-        @media (max-width: 700px) { .jprev-cards { grid-template-columns: 1fr; } }
-        .jprev-card { background: #FBFAFE; border-radius: 12px; border-left: 4px solid ${T.accent}; padding: 9px 12px; display: flex; flex-direction: column; gap: 3px; box-shadow: 0 6px 14px -8px rgba(${T.shadowBase},0.18); min-width: 0; animation: fade-step 0.4s ease-out both; }
-        .jprev-card:nth-child(2) { animation-delay: 0.12s; } .jprev-card:nth-child(3) { animation-delay: 0.24s; }
         /* nom + tur BITTA qatorda — karta 3 qator emas, 2 qator bo'ldi */
-        .jprev-top { display: flex; align-items: center; gap: 8px; min-width: 0; }
-        .jprev-name { flex: 1; min-width: 0; font-family: 'Source Serif 4', serif; font-weight: 600; font-size: clamp(13.5px,1.6vw,15px); color: ${T.ink}; overflow-wrap: anywhere; }
-        .jprev-job { font-size: clamp(12px,1.4vw,13px); line-height: 1.35; color: ${T.ink2}; overflow-wrap: anywhere; } .jprev-job b { color: ${T.ink}; }
-        .jprev-tur { flex-shrink: 0; font-family: 'Manrope'; font-weight: 700; font-size: 10.5px; border-radius: 99px; padding: 3px 9px; color: ${T.accent}; background: ${T.accentSoft}; }
-        .jprev-tur.funksional { color: ${T.blue}; background: ${T.blueSoft}; } .jprev-tur.ijtimoiy { color: #B77A16; background: #FBEED6; } .jprev-tur.emotsional { color: #D23D82; background: #FBE3F0; }
         /* VS Code qadamlari — o'quvchi o'zi belgilaydi */
-        .kd-steps { display: flex; flex-direction: column; gap: 5px; }
         /* past ekranli noutbuklar (≤790px) — panel yana bir pog'ona zichlashadi */
-        @media (min-width: 761px) and (max-height: 790px) { .kd-step { padding: 6px 11px; } .jkd-panel { gap: 6px; } .jprev-card { padding: 7px 11px; } .jprev-bar { padding: 5px 12px; } }
-        .kd-step { display: flex; align-items: center; gap: 10px; text-align: left; width: 100%; background: ${T.paper}; border: none; border-radius: 11px; padding: 8px 12px; cursor: pointer; font-family: 'Manrope', sans-serif; font-weight: 600; font-size: clamp(13px,1.5vw,14.5px); color: ${T.ink2}; box-shadow: 0 5px 14px -6px rgba(${T.shadowBase},0.12), inset 0 0 0 1.5px ${T.line}; transition: all 0.18s; }
-        .kd-step:hover:not(.on) { transform: translateY(-1px); box-shadow: 0 8px 18px -6px rgba(${T.shadowBase},0.2), inset 0 0 0 1.5px ${T.accent}44; }
-        .kd-step.on { color: ${T.ink}; background: ${T.successSoft}; box-shadow: inset 0 0 0 1.5px ${T.success}55; }
-        .kd-check { width: 22px; height: 22px; border-radius: 7px; flex-shrink: 0; box-shadow: inset 0 0 0 2px ${T.ink3}55; display: inline-flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 800; color: ${T.ink3}; background: ${T.paper}; transition: all 0.2s; }
-        .kd-step.on .kd-check { background: ${T.success}; color: #fff; box-shadow: none; animation: lp-check-pop 0.34s cubic-bezier(.3,1.5,.5,1); }
-        .kd-step-t { min-width: 0; line-height: 1.4; }
-        @media (prefers-reduced-motion: reduce) { .kd-step.on .kd-check { animation: none; } .jprev-card { animation: none; } }
+        @media (min-width: 761px) and (max-height: 790px) { .jkd-panel { gap: 6px; } }
+        @media (prefers-reduced-motion: reduce) { }
 
         /* === RECAP (s11) — 3 raqamlangan qadam-karta + juftlik-taymer + reflection + savol === */
         .rcp-flow { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: clamp(12px,2vw,18px); align-items: stretch; }
@@ -3629,6 +3584,11 @@ export default function PmJtbdLesson({ lang: langProp, onFinished }) {
         .pair-prog-fill { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 99px; background: linear-gradient(90deg, ${T.accent}, ${T.accentVivid}); transition: width 1s linear; }
         .pair-prog-mid { position: absolute; left: 50%; top: -3px; bottom: -3px; width: 2px; background: ${T.ink3}; border-radius: 2px; }
         .pair-timer-btns { display: flex; gap: 8px; }
+        /* F-0727-43: boshlash-tugmasi pulsli CTA — o'quvchi uni sezmasdan o'tib ketmasin */
+        .pair-start { font-family: 'Manrope'; font-weight: 800; font-size: clamp(14px,1.8vw,16px); cursor: pointer; border: none; border-radius: 12px; padding: 12px 22px; background: linear-gradient(135deg, ${T.accent}, ${T.accentVivid}); color: #fff; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 10px 24px -8px rgba(91,61,230,0.5); animation: pair-start-pulse 1.6s ease-in-out infinite; transition: transform 0.15s; }
+        .pair-start:hover { transform: translateY(-2px); }
+        @keyframes pair-start-pulse { 0%, 100% { box-shadow: 0 10px 24px -8px rgba(91,61,230,0.5), 0 0 0 0 rgba(110,75,255,0.45); } 50% { box-shadow: 0 12px 28px -8px rgba(91,61,230,0.6), 0 0 0 12px rgba(110,75,255,0); } }
+        @media (prefers-reduced-motion: reduce) { .pair-start { animation: none; } }
         .reflect-input { font-family: 'Manrope'; font-size: 15px; color: ${T.ink}; border: none; border-radius: 10px; padding: 12px 14px; background: ${T.bg}; box-shadow: inset 0 0 0 1.5px ${T.line}; outline: none; }
         .reflect-input:focus { box-shadow: inset 0 0 0 1.5px ${T.accent}; }
         @media (prefers-reduced-motion: reduce) { .pair-mic { animation: none; } }
@@ -4174,6 +4134,18 @@ export default function PmJtbdLesson({ lang: langProp, onFinished }) {
 
         /* === 🔎 KODING PROP-OV (s10) — yetishmagan propni topish mikro-mashqi === */
         .kdq { background: ${T.paper}; border-radius: 13px; border-left: 4px solid ${T.accent}; padding: 12px 14px; display: flex; flex-direction: column; gap: 9px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.14); transition: border-color 0.3s; }
+        /* F-0727-52: test topilmagunча yumshoq puls («meni yech»); qulf-tugma bosilsa kuchli chaqnash */
+        .kdq.hunt { animation: kdq-hunt 1.7s ease-in-out infinite; }
+        @keyframes kdq-hunt { 0%, 100% { box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.14), 0 0 0 0 rgba(110,75,255,0.45); } 50% { box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.14), 0 0 0 10px rgba(110,75,255,0); } }
+        .kdq.flash { animation: kdq-flash 0.6s ease-in-out 3; }
+        @keyframes kdq-flash {
+          0%, 100% { box-shadow: 0 0 0 3px ${T.accent}, 0 0 26px 6px rgba(110,75,255,0.5); transform: translateX(0); }
+          20% { transform: translateX(-8px); } 40% { transform: translateX(7px); }
+          60% { box-shadow: 0 0 0 6px ${T.accentVivid}, 0 0 34px 10px rgba(110,75,255,0.6); transform: translateX(-5px); }
+          80% { transform: translateX(4px); }
+        }
+        .lp-done-btn.locked { cursor: pointer; opacity: 1; }
+        @media (prefers-reduced-motion: reduce) { .kdq.hunt, .kdq.flash { animation: none; } .kdq.flash { box-shadow: 0 0 0 3px ${T.accent}; } }
         .kdq.ok { border-left-color: ${T.success}; }
         .kdq-lbl { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: clamp(12.5px,1.5vw,14px); color: ${T.ink}; }
         .kdq-chips { display: flex; gap: 8px; flex-wrap: wrap; }
@@ -4184,7 +4156,6 @@ export default function PmJtbdLesson({ lang: langProp, onFinished }) {
         .kdq-chip.miss { background: ${T.errSoft}; box-shadow: inset 0 0 0 2px ${T.err}; animation: jta-shake 0.4s ease; }
         .kdq-chip.miss .qcode { color: ${T.err}; background: transparent; }
         .kdq-done { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(12.5px,1.5vw,14px); color: ${T.success}; animation: fade-step 0.3s ease-out; }
-        .vsc-copy:disabled { opacity: 0.55; cursor: not-allowed; background: #3A3A3D; }
         @media (prefers-reduced-motion: reduce) { .kdq-chip.miss, .kdq-done { animation: none; } .kdq-chip:hover, .kdq-chip:active { transform: none; } }
 
         /* === ⚡ SOLO O'Z-TEKSHIRUV KARTALARI (s11 3-qadam) + PODIUM solo-chiplar === */
