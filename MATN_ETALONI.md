@@ -92,6 +92,16 @@ Har dars tekshirilganda topilgan tushunarsiz/rasmiy so'z shu jadvalga qo'shiladi
 | tolov (o'zbekcha prozada) | to'lov | `tolov` — FAQAT baza ustuni nomi (kod, ASCII, apostrofsiz). Mentor/RECAPS/flashcard matnida o'zbekcha so'z apostrof bilan: «to'lov». Bir tushuncha, ikki ko'rinish: kod=`tolov`, matn=to'lov (FullstackProjectDay) |
 | secret (o'zbek gap ichida yolg'iz) | maxfiy kalit | tarjimasiz qolgan ingliz so'zi. KOD nomi `JWT_SECRET` o'z holicha qoladi, lekin prozada/nishon/uy-vazifada doim «maxfiy kalit» — bir tushuncha, bir atama (AuthEnv s10/s14/s15) |
 | auth (qisqartma) | autentifikatsiya / himoya | qisqartma bolaga hech narsa demaydi; to'liq atama yoki oddiy «himoya» (AuthEnv s11 «auth oqimi»→«himoya oqimi») |
+| ish (JTBD «job» tarjimasi sifatida) | vazifa | «ish» o'smir uchun kattalar-ishi bilan adashadi va mavhum; «vazifa» maktabdan tanish (uy vazifasi). JTBD glossi: «bajarilishi kerak bo'lgan vazifa»; slot VAZIFA/VAZIFASI. Yollash-metafora («ishga qabul», «✓ YOLLANDI») saqlanadi — u ish-faoliyat ma'nosida, atama emas (PmJtbd, F-0727-12) |
+| sir / mohiyat (sarlavhada) | javob ochildi / endi bilib olamiz | ikkalasi ham o'smirga og'ir-mavhum; sarlavha savol+va'da shaklida ochiladi (PmUserStory keys, F-0727-03) |
+| hukm bering / hukm chiqaring | ✓ To'g'ri yoki ✕ Noto'g'riga ajrating | «hukm» — sud tili; tugma-nomlari gapning o'zida bo'lsa dum-savol ham kerak emas (peer-ekranlar, F-0727-05) |
+| o'lchanadigan (raqam) | sanaladigan | «sanash» o'smirga tanish harakat, «o'lchash» mavhum (PmMetrics, F-0727-34) |
+| kuzatadigan raqam / metrikani ko'taradi | ochib ko'radigan raqam / metrikani oshiradi | «kuzatish» va «ko'tarish» bu kontekstda mavhum-noto'g'ri fe'llar (PmMetrics, F-0727-30/36/38) |
+| talab (mijoz gapi haqida) | istak | «talab» rasmiy-idoraviy; mijoz «istak» aytadi (JTBD klinika, F-0727-20) |
+| charchagan kuni | vaqti yo'q kuni | o'smir har kuni his qiladigan holat; «charchagan» kattalar-ohangi (PmMetrics Duolingo, F-0727-24/29) |
+| o'z so'zingiz bilan (topshiriqda) | ekranga qaramasdan, yoddan | niyat — yodaki qayta aytish; «o'z so'zingiz» nima qilishni aytmaydi (F-0727-09, 76-qonun) |
+| kimligini bir gapda aniqlang | qanday odam ekanini bir gapda yozing | «kimligini aniqlang» — grammatik sinadi, ayniqsa egalikli qiymat qo'yilganda (F-0727-10) |
+| ochmay qo'yadi (ilovani) | esidan chiqarib, boshqa kirmaydi | inkor-shakl o'rniga voqea to'liq aytiladi (PmMetrics, F-0727-29) |
 | mavhum (buyruq haqida) | noaniq | darsda «aniq buyruq» juftligi bor — antonimi «noaniq» tabiiy va sodda; «mavhum» kitobiy (BackendCrudPractice REJISSYOR) |
 | resurs (izohsiz) | yozuv (mahsulot/narsa) | «resurs» — kattalar jargoni; bazada u aslida bitta **yozuv** (qator) (ApiPostman POST/201) |
 | bevosita | to'g'ridan-to'g'ri | kitobiy so'z; darsda «to'g'ridan-to'g'ri» allaqachon ishlatilgan — bir tushuncha, bir atama (ApiPostman s10) |

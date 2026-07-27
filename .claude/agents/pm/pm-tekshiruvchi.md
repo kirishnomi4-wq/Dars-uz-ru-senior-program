@@ -64,6 +64,12 @@ Bu sinf nuqsonlarning ildizi bitta: **etalondan naqsh ko'chiriladi, lekin etalon
 
 7. **60-qonun — ustma-ust tushish (BLOKLOVCHI).** `.screen` da `flex: 1 0 auto` va `.screen > * { flex-shrink: 0 }` bormi — grep bilan tasdiqlang. So'ng dasturiy: `.screen` bolalarining `getBoundingClientRect()` juftliklarida `oldingi.bottom > keyingi.top + 1` bo'lsa 🔴. O'lchov FAQAT `.stage-content` orqali (`document.documentElement.scrollHeight` bu layoutda yolg'on «toza» beradi). Sinov eng baland holatda: interaktiv ekran to'ldirilgan + mentor rejimida.
 
+8. **Animatsiya-to'qnashuv (F-0727-08 bug-sinfi).** `animation:` shorthand yozilgan har elementda `.fade-up`/boshqa kirish-klass ham bor-yo'qligini tekshiring — shorthand kirish-animatsiyani BOSIB, element `opacity:0` da ko'rinmay qoladi. Yechim-naqsh: kirish o'z keyframe'ida vergul-zanjirda (`animation: x-in 0.5s, x-pulse 1.5s 0.5s infinite`), fade-up klassisiz.
+9. **Bo'sh shartli-blok (F-0727-29 bug-sinfi).** Ichi kontekstga qarab bo'sh qolishi mumkin bo'lgan har `{cond && <div className="frame-soft/done-mini/...">}` blokni ikkala rejimda (o'quvchi/mentor, ovoz bor/yo'q) sinang — kontent-sharti tashqi shartga kirmagan bo'lsa BO'SH quti ochiladi. Shart: konteyner faqat ichida matn borida render bo'lsin.
+10. **Matn-sig'im (F-0727-12 bug-sinfi).** `max-width`/`white-space: nowrap` + `overflow: hidden` bor har matn-katakka eng UZUN real qiymatni qo'yib o'lchang — kesilsa (…eshi) matn qisqartiriladi yoki width oshiriladi. Ayniqsa demo-kartalar va typing-animatsiyali qatorlar.
+11. **73–79-qonunlar sweep'i.** Har darsda grep: «keyingi darsda» (73) · test-savollari 74-qolipda (ta'rif-so'z + grammatik variantlar + qisqa reveal) · «bosing.*bosing» yo'riqlar (75) · mustahkamlash-ekrani «yoddan» qolipida (76) · yakun-avto-scroll bor (77) · proyektor-yakun «birgalikda» (78) · «taxmin qiling» (79 — lint ham ushlaydi).
+12. **Lint-qoida regress-sinovi.** `til-lint-rules.json`ga yangi qoida qo'shilganda pattern JS-regex sifatida SINOVDAN o'tkaziladi: qasddan buzuq misol-satr yozib, qoida uni ushlashini tasdiqlang (F-0727-11: `\s` o'rniga `s` yozilib, 2 qoida bir kun ishlamay yotgan).
+
 ## Tuzatish vakolati (chekli!)
 - **O'zingiz tuzatasiz** — faqat MAYDA, tasdiqlangan, bir-nuqtali nuqson (typo, yetim import, bitta rang-token). Har tuzatishdan keyin esbuild.
 - **QAYTARASIZ** — tuzilmaviy nuqson (ekran-oqim, kalit-mos kelmaslik, senariy-chetlashish, palitra-sinf) → mas'ul rolga file:line bilan. **Maks 2 aylanish** — 2-qaytarishdan keyin ham sinsa, bosh-agentga eskalatsiya.

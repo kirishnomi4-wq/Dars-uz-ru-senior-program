@@ -192,3 +192,265 @@ Yangi agent `role/darslik-oquvchi.md` + spec `OQUVCHI_DARVOZA.md` (4 teshik yama
 5. **Rol-fayllar:** pm-metodist + darslik-metodist («ishni korpusdan boshla» sarlavha-bandi), pm-tekshiruvchi + darslik-tekshiruvchi (lint:til 0-error darvoza-bandi).
 **Kutilayotgan natija:** har darsda 14 topilma → 2-3 topilma; foydalanuvchi feedbacki endi «shu darsni tuzatish» emas, «korpusni boyitish» — har biri barcha kelgusi darsga ishlaydi.
 **Keyingi qadam (foydalanuvchi tanlaydi):** sinov-pilot — bitta darsning matnini korpus-usulda qayta yozib taqqoslash. UNCOMMITTED.
+
+## P18 raund (2026-07-27) — F-0727-01: USERSTORY 2-EKRAN NAMUNA-KARTALARI ETALON ABRAZETSGA O'TDI — ✅
+**Foydalanuvchi feedbacki:** «2-pageda "yangi mehmon" va hokazo 3 ta misol umuman to'g'ri kelmaydi» → keyin: «uchtasi ham to'g'ri bo'lsin, lekin o'quvchi hayotidan emas — yaxshiroq **abrazets** qilaylik».
+**Tashxis (3 tizimli nuqson, `PmUserStoryLesson.jsx:938-942`):**
+1. **Namuna darsning o'z qonunini buzardi.** 3-karta: «Men mentorim sifatida, topshirig'imni tez topishni xohlayman, **bahosini qo'yish** uchun» — NATIJA yana bitta harakat, ya'ni aynan TEST-2 (s8, idx 6) «xato» deb o'rgatadigan naqsh. O'quvchi birinchi ko'rgan namunaga taqlid qiladi → noto'g'ri naqshni o'zimiz o'rgatardik.
+2. **Shaxs sinardi.** «Men yangi mehmon sifatida, **ishlarimni** bitta ekranda ko'rishni xohlayman, **meni** tez tanib olish uchun» — gap mehmon tilidan, egalik qo'shimchalari esa sayt egasiniki. «sinfdoshim»/«mentorim» ham KIM emas, egalik shakli.
+3. **3 karta 3 xil mahsulotdan** (portfolio + o'yin + maktab tizimi), holbuki mentor «**loyihangiz** uchun 3 hikoya» deydi va ustaxona `kimTakror` bilan bitta loyihaga 3 xil KIM talab qiladi → «3 hikoya = 3 loyiha» degan noto'g'ri model.
+**Qaror (foydalanuvchi tanladi):** namuna-mahsulot = **YouTube** (2-ekrandagi YouTube misoli bilan bir ip), 3 xil foydalanuvchi: imtihonga tayyorlanayotgan o'quvchi (2 barobar tez ko'rish → bir kechada ko'proq mavzu ulgurishim) · yo'lda ketayotgan tomoshabin (oldindan yuklab qo'yish → internet yo'q joyda ham ko'ra olishim) · yangi kanal egasi (kim ko'rganini bilish → kimga mos video yasashni tushunishim).
+**Qilingan ish:** `DEMO_STORIES` qayta yozildi + mentor gapi («mana YouTube uchun yozilgan 3 hikoya: uch xil odam, uch xil foyda») + manba-yorlig'i `.demo-src` («▶️ YouTube jamoasi shunday yozadi») qo'shildi; ustaxona 3 placeholder'i ham shu abrazetsga moslandi (eski buzuq «ishlarimni ko'rish»/«meni tez tanib olish» ipuchalari olib tashlandi).
+**Tekshiruv:** esbuild toza (359.5 kb) · `lint:til` ✓ TOZA (44 qoida) · qiyshiq-apostrof grep 0 · brauzer-ko'rik (playwright, 1280 va 900 px): 3 karta ham bir qatorga sig'di, o'ralish yo'q · eski misol qoldig'i grep: 0.
+**Muhrlandi:** `MATN_KORPUS.md` 13-bo'lim «NAMUNA-KARTA (abrazets)» (3 ✅ + 4 ❌ juftlik) · `PM_DARS_ETALON.md` **68-qonun** (tanish real mahsulot + izchil shaxs + dars qonuniga bo'ysunish + placeholder bir dunyodan).
+**⚠️ QOLDI:** xuddi shu tekshiruv JTBD va Metrika namuna-kartalariga ham qilinishi kerak (68-qonun bo'yicha). UNCOMMITTED, deploy qilinmagan.
+
+## P19 raund (2026-07-27) — F-0727-02: USERSTORY 3-EKRAN YAKUNI VA MISOLI QAYTA QURILDI — ✅
+**Foydalanuvchi feedbacki:** «3-pageda "Ajratdingiz" va "hikoya yuragi sabab" degani tushunarsiz, to'liq yaxshi formatda qilaylik; yashildagi "Men kechikayotgan o'quvchi sifatida…" misoli ham biroz tushunarsiz».
+**Tashxis (`PmUserStoryLesson.jsx:1010-1018`):**
+1. **Yakun maqtov edi, xulosa emas.** «✅ Ajratdingiz!» — o'quvchi nima **bosganini** aytadi; «Hikoyaning yuragi — sabab» — ochilmagan metafora, ustiga bu ekranda «hikoya» so'zi umuman ishlatilmagan (javob bor, savol yo'q). Darsning kalit g'oyasi status-chiziqcha (`done-mini`) ichida — vizual og'irligi «✓ bajarildi» belgisiniki.
+2. **Misol boshqa dunyodan, ko'priksiz.** Butun ekran telefon-ilovalari haqida (Telegram/YouTube) → birdan **taksi**. Ustiga formula-qolipi («Men […] sifatida…») faqat KEYINGI ekranda o'rgatiladi → o'quvchi kalitsiz shaklni ko'radi. Bo'laklar belgilanmagan: ekran aynan «harakat/sabab»ni o'rgatdi, misolda esa qaysi qism qaysiligi ko'rinmaydi. Yashirin takror: shu gap keyingi ekranda yig'iladi, lekin aytilmagan.
+3. **🔴 RANG-ZIDDIYATI (ko'rikda topildi, feedbackda yo'q edi).** `.s2tag.harakat` = **ko'k**, holbuki darsning qolgan qismida ko'k = **KIM** (`.fslot.kim.filled`, `.silo-slot.kim`), harakat/NIMA esa sariq. Ya'ni o'quvchi 3-ekranda «ko'k = harakat» deb o'rganib, 4-ekranda ko'kni KIM ustida ko'rardi — yangi qurilgan ma'no-bog'i uzilardi.
+**Qaror (foydalanuvchi tanladi):** misol o'quvchining O'Z ishidan o'stiriladi (taksi olib tashlandi).
+**Qilingan ish:** (a) `done-mini` o'rniga **xulosa-karta** («Sabab — eng qimmatli qism» + 3 gaplik ochiq izoh, yangi `.ta-b`); (b) **o'stirish-karta** (`.grow-card`): o'quvchi ajratgan 2 bo'lak → ↓ → to'liq hikoya, bo'laklar rangli + legenda (🙋 kim · 🏃 harakat · 💡 sabab) + ko'prik-gap «Keyingi ekranda mana shu 3 bo'lakni o'zingiz joylaysiz»; (c) 4-ekran `FRAG_POOL` shu hikoyaga o'tdi (matematika/YouTube) — bir dunyo, ikki qadam; done-mini izohi ham yangilandi; (d) **rang-semantikasi bir xillashtirildi**: `.s2tag.harakat` ko'k→sariq (ko'k faqat KIM'da qoldi).
+**Tekshiruv:** esbuild toza (363.4 kb) · `lint:til` ✓ TOZA · `lint:prompt` toza · brauzer-ko'rik (playwright 1280px): 3-ekran yakuni va 4-ekran konstruktori yangi bo'laklar bilan ishlaydi, chip↔slot mosligi buzilmagan · «taksi/kechikayotgan/darsga ulgurish» qoldiq grep: 0.
+**Muhrlandi:** `PM_DARS_ETALON.md` **69-qonun** (mashq yakuni — maqtov emas, xulosa), **70-qonun** (metafora ochiladi; misol o'z ishidan o'sadi yoki ko'prik qo'yiladi + bo'laklar belgilanadi + keyingi ekranga ishorat), **71-qonun** (rang ma'nosi butun dars bo'ylab bitta) · `MATN_KORPUS.md` 14- va 15-bo'limlar.
+**⚠️ QOLDI:** 71-qonun bo'yicha JTBD va Metrika darslarida rang-xaritasi tekshirilmagan. UNCOMMITTED, deploy qilinmagan.
+
+## P20 raund (2026-07-27) — F-0727-03: MILKSHAKE KEYSI (6-EKRAN) TILI TUSHUNARLI QILINDI — ✅
+**Foydalanuvchi feedbacki (3 nuqta + 2 taqiq):** sarlavha «Milkshake javobi» g'alati; 3-slayd «qo'l keladi» va «och qoldirmaydi» yaxshilansin; 4-slayd «quyuqroq / uzoqroq yetadi / kirish yonidagi avtomat» tushunarsiz. Muhokamada taqiqlar: «sir» so'zi ishlatilmaydi, «qorin» ham; «sekin-sekin ichiladi» va «ayni mos» ham rad etildi.
+**Tanlangan matnlar (foydalanuvchi variantlab tasdiqladi):**
+- Sarlavha: «Nega milkshake aynan ertalab ko'p olinadi? Endi bilib olamiz» (savol + va'da, og'ir so'zsiz).
+- 3-slayd: «…Milkshake ana shu yo'lda **uchta foyda** berarkan: bir qo'lda bemalol ushlanadi; tez tugamaydi — yo'l oxirigacha yetadi; va to'yimli — odamni tushlikkacha to'q saqlaydi.» «Uchta foyda» — darsning o'z so'zi (2-ekran «sabab=foyda»ni endigina o'rgatgan) + keyingi slaydga ko'prik (McDonald's shu foydalarni kuchaytiradi).
+- 4-slayd: har qaror + NEGA + odamga foydasi: «yanada quyuq qildi — quyuq ichimlik uzoq ichiladi, endi u yo'l oxirigacha tugab qolmaydi»; «kassadan eshik oldiga ko'chirdi — mijoz o'zi quyib oladigan maxsus apparat qo'ydi, shoshayotgan haydovchi navbatda turmasdan olib ketaveradi».
+**Izchillik-sweep (65-qonun):** 5-slayd xulosasi «och qolmaslik»→«to'q qolish»; taxmin-chip «quyuqroq qildi»→«yanada quyuq qildi»; «Sirni bilgach»→«Buni bilgach» (2 joy); QUIZ_BANK 2 savoli yangilandi («och qolmaslik»→«to'q qolish»; «Quyuqroq qilib, kirishdagi avtomatga»→«Yanada quyuq qilib, eshik oldidagi apparatga»; savol-matni «Sirni bilgach»→«Haqiqiy sababni bilgach»).
+**MUHIM — korpus-presedent:** 9-bo'limdagi eski ✅ (F-0726-01 «qo'l keladi… sekin-sekin… och qoldirmaydi») foydalanuvchi tomonidan QAYTA KO'RILIB BEKOR qilindi → korpusda ❌ ga ko'chirildi (sabablari bilan), yangi ✅ = uchta-foyda varianti. Oltin-namuna ham muzlatilgan emas — foydalanuvchi hukmi ustun.
+**Til-lint boyidi (+2 qoida, jami 46):** `och-qoldir` (inkor-shakl → «to'q saqlaydi»), `qol-keladi` (eskicha ibora); `toq-yuradi` suggest'i yangilandi. 3 PM dars ham yangi qoidalar bilan ✓ TOZA.
+**Tekshiruv:** esbuild toza · lint:til ✓ (46 qoida) · residue-grep («och qol/qo'l keladi/sekin-sekin ichiladi/quyuqroq/avtomat/Sirni bilgach») = 0 · brauzer-ko'rik (playwright): 1-, 3-, 4-slaydlar + taxmin-o'yin «yanada quyuq qildi» chipi bilan to'g'ri ishlaydi.
+**Muhrlandi:** `MATN_KORPUS.md` 9-bo'lim qayta yozildi (yangi ✅/❌ juftliklar + sarlavha-jufti) · `til-lint-rules.json` +2 qoida. Yangi etalon-qonun kerak emas (69-70-qonunlar allaqachon qamraydi). UNCOMMITTED.
+
+## P21 raund (2026-07-27) — F-0727-04: TEST-2 IZOHI QISQARDI + USTAXONA YO'RIQLARI SODDALASHDI — ✅
+**Foydalanuvchi feedbacki:** (1) 7-ekranda to'g'ri javob izohi juda uzun — qisqa va tushunarli bo'lsin; (2) 8-ekranda «3 hikoya tayyor — o'zgartirmoqchi bo'lsangiz…» → «Uchta hikoya tayyor — tahrirlash uchun qalamcha ikonchasidan foydalaning» (kichkina tursin); (3) yulduz-izohdagi «1 yulduz — unchalik muhim emas, 5 yulduz — eng muhimi» olib tashlansin — savol-gap o'zi yetadi.
+**Qilingan ish:** (a) Screen8 `explainCorrect` 27→14 so'z: «To'g'ri — "saytga kirish uchun" harakatning takrori, foyda aytilmagan. To'g'risi masalan: "buyurtmamni tez topish uchun".»; (b) done-mini: «✅ Uchta hikoya tayyor — tahrirlash uchun qalamcha (✎) belgisidan foydalaning»; (c) svd-foot: «⭐ Har hikoyangizga yulduz qo'ying: bu hikoya siz uchun qanchalik muhim?» (shkala-sanoq va «keyingi darsda…» gapi olib tashlandi — prioritet-ekran o'zi tushuntiradi).
+**Qonun-moslash:** 67-qonun aniqlashtirildi — savol-gap o'lchovni o'zi aytsa, «1 yulduz — …» sanog'i SHART EMAS; yo'riq-gap ikonkani nomlasa («qalamcha (✎)»), tugma-matni talabi qondirilgan hisoblanadi. Korpus 10-bo'lim yangilandi (eski ✅ → yangi ✅, F-0727-04).
+**Tekshiruv:** esbuild toza · lint:til ✓ (46 qoida) · residue-grep («1 yulduz/unchalik muhim/o'zgartirmoqchi») = 0 · brauzer-ko'rik: TEST-2 reveal yangi qisqa izoh bilan, ustaxona-daftar yangi yo'riqlar bilan render bo'ldi. UNCOMMITTED.
+
+## P22 raund (2026-07-27) — F-0727-05: PEER-EKRAN «HUKM» TILI VA KARTA-YORLIG'I OLIB TASHLANDI — ✅
+**Foydalanuvchi feedbacki:** (1) 9-ekranda «Har kartaga hukm bering» — «hukm» so'zi emas, «To'g'ri/Noto'g'riga ajrating» kabi tushunarli bo'lsin, shunda «bu hikoya to'g'rimi noto'g'rimi?» dum-savoli ham kerak bo'lmaydi; (2) karta tepasidagi «QIDIRUV QATORI» yorlig'i muhim emas — olib tashlansin.
+**Qilingan ish:** (a) Mentor: «Har kartani o'qing va **✓ To'g'ri** yoki **✕ Noto'g'ri**ga ajrating.» — tugma-nomlari gapning o'zida (61-qonun: bir tushuncha — bir nom); (b) «hukm» barcha o'quvchi/mentor matnlaridan chiqarildi: yakun «uchala javobingiz yonma-yon», MentorNote «Har javobdan keyin… Nega shunday ajratdingiz?»; (c) `nom` maydoni PEER_CARDS'dan o'chirildi, karta-tepa yorlig'i yo'q, yakun-jadval «1-karta/2-karta/3-karta», o'lik `.peer-nom` CSS o'chirildi.
+**Tekshiruv:** esbuild toza · lint:til ✓ · brauzer-ko'rik: peer 1-karta yangi mentor-gap bilan, to'liq sikl (✕+sabab → ✓ → ✕+sabab) o'tildi, yakun-jadval raqamli yorliqlar bilan chiqdi. UNCOMMITTED.
+
+## P23 raund (2026-07-27) — F-0727-06: TEST-3 SAVOLI ANIQLASHDI, IZOHI QISQARDI — ✅
+**Foydalanuvchi feedbacki:** 10-ekranda (1) «Bu gap aslida nima?» — «aslida nima» tushunarsiz; (2) to'g'ri-javob izohi juda uzun, o'quvchi o'qimaydi — qisqa: hikoya emasligi + KIM/NATIJA yo'qligi yetadi.
+**Qilingan ish:** (a) savol: «Bu gap User Story'mi? Javobni tanlang.» — variantlar shu savolga to'g'ridan javob beradi; (b) izoh 43→16 so'z: «To'g'ri — bu hali hikoya emas, shunchaki so'rov: unda KIM ham, NATIJA ham yo'q, faqat NIMA aytilgan.» To'liq tuzatish-namunasi RECAPS[9] «Hikoyaga aylantiring» kartasida saqlanadi — ma'lumot yo'qolmadi, faqat joyi to'g'irlandi (reveal = qisqa hukm, recap = to'liq misol).
+**Tekshiruv:** esbuild toza · lint:til ✓ · brauzer-ko'rik: TEST-3 reveal yangi savol va qisqa izoh bilan chiqdi. UNCOMMITTED.
+
+## P24 raund (2026-07-27) — F-0727-07: KLINIKA TUZOG'I MAVHUM-FOYDAGA ALMASHDI + MENTOR GAPI SODDALASHDI — ✅
+**Foydalanuvchi feedbacki:** 11-ekranda (1) «bu kimga kerakligi ham, unga qanday foyda berishi ham yo'q» — og'ir, soddalashtirish kerak; (2) «sahifani tez ochish» (to'g'ri NIMA) va «saytning tez ishlashi» (tuzoq) ajratib bo'lmaydi — «buyam xato», bittasini yoki abrazetsni o'zgartirish kerak.
+**Tashxis:** takror-NATIJA tuzog'i o'z TABIATIGA ko'ra NIMA'ga o'xshaydi — 64-qonunning «ma'nodosh, ammo boshqa so'zlar» ruxsati amalda yiqildi (boshqa so'zlar bilan yozilgan bo'lsa ham o'quvchi ajratolmadi). Takror-NATIJA darsi TEST-2 va ustaxona saqlash-shartida allaqachon o'rgatiladi.
+**Qaror (foydalanuvchi V1 tanladi):** tuzoq-turi almashdi — «saytning tez ishlashi» (takror) → «sayt hammaga yoqishi» (mavhum foyda), kuyish-izohi: «"Yoqishi" — aniq foyda emas, umumiy gap. Sayt tez ochilgach, mehmon aynan nima qila oladi? O'shani tanlang.» Endi ikki tuzoq bitta xato-sinf (mavhumlik): mavhum KIM + mavhum NATIJA.
+**Qilingan ish:** CLINIC_POOL tuzoq-chip + izoh; mentor gapi «Bu gapda KIM ham, NATIJA ham yo'q — shuning uchun u hali hikoya emas» (TEST-3 reveal bilan so'zma-so'z bir xil — mustahkamlash); MentorNote yangilandi.
+**Muhrlandi:** **64-qonun KUCHAYTIRILDI** — tuzoq to'g'ri chipdan ma'no jihatdan ham uzoq turadi; bir mashq tuzoqlari bitta xato-sinf atrofida; takror-NATIJA tanlov-mashqda o'rgatilmaydi. Korpus 8-bo'lim: yangi ✅ (yoqishi-izoh) + yangi ❌ (ma'nodosh-tuzoq dalili), eski takror-izoh ✅ olib tashlandi.
+**Tekshiruv:** esbuild toza · lint:til ✓ · residue («saytning tez ishlashi»/«kimga kerakligi») faqat kod-kommentda · brauzer-ko'rik: klinika yangi chiplar bilan, tuzoqqa atay tushib izoh tekshirildi. UNCOMMITTED.
+
+## P25 raund (2026-07-27) — F-0727-08: PRIORITET-DOSKA — «BARCHA ISHNI» + KARTA-LAGANCHA (UX) — ✅
+**Foydalanuvchi feedbacki:** 13-ekranda (1) «Hamma ishni» → «Barcha ishni» («hamma» noaniq); (2) 3 hikoya-karta mentor gapidan keyin darhol yopishib turibdi — pastroqda tursin va qizil yonib turadigan border bilan «bularni joylashtirish kerak» darrov bilinadigan bo'lsin, UX maksimal yaxshilansin.
+**Qilingan ish:** (a) mentor gapi «Barcha ishni birdaniga qilib bo'lmaydi…»; (b) yangi **lagancha** (`.pd-tray`): kartalar issiq-fonli idishga o'raldi, tepasida buyruq-yorliq «✋ Bu 3 hikoyangizni pastdagi ustunlarga joylashtiring ↓» (strelka o'zi silkinib turadi), border qizil pulsda yonadi (`tray-pulse`); o'quvchi karta tanlagach/joylagach `calm` — puls tinchiydi, ingichka statik border qoladi; `prefers-reduced-motion`da puls yo'q, statik qizil border. Margin bilan mentor-gapdan ajratildi.
+**Yo'lda topilgan bug:** `.fade-up` klassi bilan yangi `animation` to'qnashdi — lagancha opacity:0 da qolib butunlay KO'RINMAY qolgan edi (birinchi screenshot fosh qildi). Yechim: fade-up olib tashlanib, kirish o'z keyframe'ida (`tray-in`) puls bilan vergul-zanjirda birlashtirildi.
+**Muhrlandi:** PM_DARS_ETALON **72-qonun** — ko'chiriladigan elementlar alohida laganchada, harakat-chorlovi + diqqat-pulsi + birinchi harakatdan keyin tinchish.
+**Tekshiruv:** esbuild toza · lint:til ✓ · brauzer-ko'rik 2 holat: puls-holat (kartalar laganchada, yorliq qizil) va calm-holat (1-karta «Hozir»da, lagancha tinch). UNCOMMITTED.
+
+## P26 raund (2026-07-27) — F-0727-09: MUSTAHKAMLASH-EKRAN TILI DARS LUG'ATIGA QAYTARILDI — ✅
+**Foydalanuvchi feedbacki:** 14-ekranda «va u kimga kerak?» (sarlavha), «o'z so'zingiz bilan» va «unga qanday foyda beradi» (mentor) — uchchalasi tushunarsiz.
+**Tashxis:** ekran-matni dars lug'atidan chetlashgan; «o'z so'zingiz bilan»ning niyati — yodaki qayta aytish — ochiq aytilmagan.
+**Qilingan ish:** sarlavha «Eng muhim hikoyangizni *yoddan* aytib bera olasizmi?» (4-ekran «tuza olasizmi?» bilan bir ohang — challenge-savol); mentor: «…ekranga qaramasdan, yoddan aytib bering: KIM uchun yozdingiz va u odam qanday foyda oladi?» — dars atamalari (KIM/foyda) bilan.
+**Tekshiruv:** esbuild toza · lint:til ✓ · residue («o'z so'zingiz»/«kimga kerak») 0. UNCOMMITTED.
+
+## P27 raund (2026-07-27) — F-0727-10: UYGA-VAZIFA TUR-NOMLARI EGALIKSIZ + QADAM-GAP TUZILDI — ✅
+**Foydalanuvchi feedbacki:** 15-ekranda (1) «o'zingiznikini yozing» tushunarsiz; (2) «mentorim» chipi — «-im» qo'shimchasi xato: «mentorim kimligini bir gapda aniqlang» noto'g'ri gap-tuzilma; (3) 17-ekran uy-vazifa eslatmasida ham xuddi shu («Uyda mentorim uchun 2 ta yangi hikoya…»).
+**Tashxis:** F-0727-01 xato-sinfining qoldig'i — chip QIYMATI gap ichiga qo'yiladi, egalik qo'shimchasi bilan gap sinadi.
+**Qilingan ish:** (a) `HW_TARGETS` egaliksiz: «do'st / mentor / birinchi mehmon» (17-ekran eslatmasi shu qiymatdan o'zi tuzatiladi); (b) qadam-gap: «kimligini bir gapda aniqlang» → «qanday odam ekanini bir gapda yozing» (topshiriq-karta + summary, 2 joy); (c) mentor: «pastdan tanlang yoki o'zingiznikini yozing» → «pastdagi ro'yxatdan bittasini tanlang yoki "➕ o'zim yozaman"ni bosing» (tugma o'z nomi bilan); (d) placeholder «ota-onam» → «ota-ona».
+**Eslatma:** 3-ekrandagi «do'stim bilan gaplashish uchun» tegilmadi — u o'quvchining o'z gapi (sabab-bo'lak), tur-nomi emas.
+**Tekshiruv:** esbuild toza · lint:til ✓ · residue («mentorim/do'stim/kimligini/o'zingiznikini» tur-nomi sifatida) 0. UNCOMMITTED.
+
+## P28 raund (2026-07-27) — F-0727-11: ARENA «XATO…💪» QOLDIG'I 2 DARSDA TOPILDI + LINT-PATTERN BUGI — ✅
+**Foydalanuvchi feedbacki:** CodeStrike arenada (1) darsda o'tilmagan savol so'ralmasin — bankni ko'rib chiq; (2) xato javobda «Xato» demasin («Adashdingiz»/«noto'g'ri» bo'lsin — «xato» agressiv); (3) oxiridagi 💪 emoji olib tashlansin.
+**Tashxis:** UserStory arenasi ALLAQACHON to'g'ri edi (F-0726-01, 66-qonun) — «Xato — 0 ball… 💪» qoldig'i **JTBD va Metrics** arenalarida turgan ekan. Ustiga BONUS-BUG: `til-lint-rules.json`dagi `xato-ball` va `ishlaydi-hukm` qoidalari patternida `\s` o'rniga `s` yozilgan — qoidalar HECH QACHON ishlamagan, shu sabab bu ikki dars lintdan «toza» o'tib kelgan.
+**Qilingan ish:** (a) lint-pattern tuzatildi (`Xato\s*[—–-]\s*0 ball`, `[✓✔]\s*ishlaydi`) — tuzatilgach lint darhol 2 darsda 🔴 topdi (qoida endi ishlashining isboti); (b) JTBD+Metrics arena: «Adashdingiz — 0 ball. Keyingisida olasiz.» / «Vaqt tugadi — 0 ball. Tezroq bo'ling.» (💪 va ⏱ olib tashlandi); (c) 61-qonun tarqatildi: peer hukm-tugmalari «✓ ishlaydi / ✕ tuzatish kerak» → «✓ To'g'ri / ✕ Noto'g'ri» (tugma + xulosa-jadval, 2 darsda); (d) F-0727-05 tarqatildi: «hukm chiqaring» mentor-gaplari «✓ To'g'ri yoki ✕ Noto'g'riga ajrating»ga (2 darsda); mentor-proyektor yorlig'i «Xato bo'ldi» → «Adashdi» (2 darsda).
+**Savol-qoplama auditi (65-qonun):** UserStory 12/12 ✓ (har savolga aytgan-ekran bor: formula s3-4, KIM/NIMA/NATIJA slotlar, OLDIN-takeaway koding, keys 3-5 slayd, TEST-1/2/3) · JTBD 12/12 ✓ (drel/formada/Starbucks/uchinchi joy/surat/velosiped-avtobus/suhbat — hammasi darsda bor) · Metrics 12/12 ✓ (Churn/MAU/streak/taom/foiz — bor; Q12 «kelish≠qaytish» 1170-qator done-mini'da ochiq aytilgan). O'chiriladigan savol topilmadi.
+**Tekshiruv:** esbuild 3/3 toza · lint:til 3 dars ✓ TOZA (tuzatilgan 46 qoida bilan) · lint:prompt ✓. UNCOMMITTED.
+
+## P29 raund (2026-07-27) — F-0727-12: JTBD DARSI «ISH»→«VAZIFA» + RAQIB OLIB TASHLANDI + NAMUNALAR YANGILANDI — ✅
+**Foydalanuvchi feedbacki (JTBD, 2-sahifa va bog'liq):** (1) «ish» atamasi o'quvchiga tushunarsiz — «vazifa» ishlatilsin (global); (2) mentor gapida «o'z-o'zidan» ortiqcha; (3) demo-kartada «qahva — ish oldidan jonlanish» tushunarsiz, haqiqiy misollar kerak; (4) «brend krossovka» misoli butunlay almashtirilsin; (5) «3/3 natijasi uchun ochiladi» sun'iy; (6) raqib (velosiped-avtobus) umuman olib tashlansin — o'quvchiga foydasi yo'q.
+**Qilingan ish (63+6 almashinuv, skript bilan):**
+1. **Atama:** «ish»→«vazifa» butun dars bo'ylab — gloss («bajarilishi kerak bo'lgan vazifa»), slotlar (ISH→VAZIFA, ISHI→VAZIFASI, ISH TURI→VAZIFA TURI), RECAPS 3 ta, testlar (savol+izohlar), MatchPairs, ustaxona-hintlar, peer-sabablari, koding, summary, uy-vazifa, QUIZ_BANK 8 savol, SCREEN_INTENTS, fon-chiplar. Yollash-metafora («ishga qabul», «✓ YOLLANDI») ataylab saqlandi — u atama emas. Funksional tur tavsifi «Vazifa bitsin»→«Amalda bajarilsin» (atama bilan aylanma bo'lib qolmasin), mos test-savol va izohlar ham.
+2. **Demo-kartalar:** 🎧 quloqchin — «sevimli musiqani eshitish» (emotsional) · 🚲 velosiped — «maktabga tez yetib olish» (funksional) · 📱 yangi telefon — «davrada zamonaviy ko'rinish» (ijtimoiy). Ustaxona placeholder'i ham telefon-misolga o'tdi. Ko'rikda tutildi: birinchi variant («yo'lda sevimli musiqani eshitish») karta max-width 220px dan uzun — matn kesilardi, qisqartirildi.
+3. **Mentor gapi** «o'z-o'zidan»siz: «Qarang, mana 3 ta namuna hozir to'lib boradi».
+4. **3-sahifa:** «har biri qaysi vazifa uchun turganini ko'rasiz» / «✓ 3/3 — har ilova o'z vazifasi uchun turibdi» / «ilovani chiroyi uchun emas, vazifasini bajarishi uchun ochamiz».
+5. **Raqib to'liq o'chirildi (5 joy):** yashil ex-card, RECAPS «Raqib ham bor» kartasi, ustaxona «⭐ RAQIB» maydoni (+o'lik CSS), summary-ro'yxat qatori, fon-chip/TOK. Arena savoli «Velosipedning raqibi kim?» → «Mahsulotni nimaga "yollaymiz"? — vazifani bajarishi uchun» (s1/s2 da qoplangan, 65-qonun).
+**Muhrlandi:** MATN_ETALONI LUG'AT: «ish (JTBD) → vazifa» qatori (yollash-metafora istisnosi bilan).
+**Tekshiruv:** esbuild toza · lint:til ✓ · residue-grep («ish» atama sifatida, ISH/ISHI slotlar, raqib UI) = 0 (faqat kod-ichki maydon nomlari qoldi — localStorage moslik) · brauzer-ko'rik: s1 (3 yangi karta, VAZIFA sloti) + s2 (VAZIFASI flip, yangi yakun, raqib-karta yo'q). UNCOMMITTED.
+
+## P30 raund (2026-07-27) — F-0727-13: JTBD 4-SAHIFA — DREL VOQEA BO'LDI, BOLT-EMOJI KETDI — ✅
+**Foydalanuvchi feedbacki:** (1) mentor gapi drel haqida to'liq emas — birinchi o'qigan o'quvchi tushunishi qiyin; (2) 🔩 bolt-emoji «drel» sifatida kulguli — boshqa narsa qo'yilsin; (3) «✅ 3/3 har misol o'z turini topdi» — «har/turi» keraksiz.
+**Qilingan ish:** (a) mentor gapi VOQEA shakliga o'tdi: «Otangiz devorga rasm osmoqchi va do'kondan drel (devor teshadigan asbob) sotib oldi. Unga drelning o'zi kerakmidi? Yo'q — unga devorga osilgan rasm kerak edi…» — savol-javob ritmi bilan, atama oxirida; (b) vizual qayta qurildi: aylanadigan 🔩 o'rniga ikki YOZUVLI karta «DO'KONDAN OLINDI: 🛠️ drel» → «ASLIDA KERAK EDI: 🖼️ devordagi rasm» (yashil urg'u kerak-tomonda; emoji taxminiy bo'lsa ham yorliq aniq aytadi) + o'lik CSS (jdrill-tool/wall/pic, spin-keyframes) o'chirildi; (c) done-mini: «✅ 3/3 — hammasi o'z joyida!» (izoh-qism olib tashlandi — ustunlarning o'zi darsni beradi).
+**Tekshiruv:** esbuild toza · lint:til ✓ · brauzer-ko'rik: mentor-voqea + ikki karta + 3 misol joylangan holat. UNCOMMITTED.
+
+## P31 raund (2026-07-27) — F-0727-14: JTBD TEST-1 TO'LIQ GAPLARGA O'TDI, IZOH QISQARDI — ✅
+**Foydalanuvchi feedbacki:** 5-sahifada test-hikoya bo'lak-bo'lak gaplardan tuzilgan («…yugurish poyabzali oldi, fitnes-ilova yukladi…»), javob-variantlar ham chala; to'g'ri-javob izohi juda uzun — o'quvchi o'qimaydi.
+**Qilingan ish:** (a) hikoya 2 to'liq gap: «Ali formada bo'lishni xohlaydi. Shuning uchun u yugurish poyabzali sotib oldi, fitnes-ilova yuklab oldi va sport soati taqdi.»; (b) savol soddalashdi: «Ali aslida nimani xohlaydi?»; (c) variantlar savolga grammatik javob beradigan TO'LIQ shaklda: «Yangi yugurish poyabzaliga ega bo'lishni / Formada bo'lishni / Fitnes-ilovadan foydalanishni / Sport soati taqib yurishni»; (d) izohlar qisqardi (correct: «To'g'ri — Alining asl maqsadi "formada bo'lish". Qolgan uchtasi shunchaki shu maqsadga olib boradigan mahsulotlar.»; wrong-izohlar bir naqshda: «X — mahsulot, maqsad emas…»); (e) qoldiq atama: eyebrow «Tekshiruv · ish 1/2» → «vazifa 1/2».
+**Tekshiruv:** esbuild toza · lint:til ✓. UNCOMMITTED.
+
+## P32 raund (2026-07-27) — F-0727-15: JTBD STARBUCKS KEYSI TILI — «UCHINCHI JOY» OCHILDI — ✅
+**Foydalanuvchi feedbacki:** 6-sahifada (1) «bemalol taxmin qiling» → «bemalol belgilang» (buyruq-ohang «taxmin qil» bo'lmasin); (2) 2-slayd «uchinchi joy» — «joy» so'zi nimaligini o'quvchi payqamasligi mumkin, to'liq nazariya-so'zlar bilan ochilsin; (3) 3-slayd «"o'zimniki" degan his» yaxshilansin; (4) 5-slayd (xulosa)da ham «uchinchi joy» yalang'och.
+**Qilingan ish:** (a) taxmin-yorliqlari: tag «🎲 Avval o'zingiz belgilab ko'ring» + cap «Bu ball emas — bemalol belgilang, javob hozir ochiladi»; (b) 2-slayd: «Kuningiz asosan ikki joyda o'tadi: uy va maktab. Starbucks esa: "biz — sizning uchinchi joyingizmiz" deydi. Ya'ni uydan ham, maktabdan ham tashqari — kelib bemalol o'tiradigan, do'stlar bilan uchrashadigan yana bitta qulay makon.»; (c) 3-slayd: «…qulay stol, Wi-Fi, musiqa — va o'zini xuddi uyidagidek erkin his qilish»; (d) 5-slayd: «…kelib bemalol o'tiriladigan qulay makonni, ya'ni "uchinchi joy"ni sotadi»; (e) RECAP-kartadagi «uchinchi joy» ham shu tilga tortildi (test-recap arena savoli bilan mos qoladi).
+**Tekshiruv:** esbuild toza · lint:til ✓ · «taxmin qiling» qoldiq 0. UNCOMMITTED.
+
+## P33 raund (2026-07-27) — F-0727-16: JTBD TEST-2 SAVOLI TO'LIQ GAPGA O'TDI — ✅
+**Foydalanuvchi feedbacki:** 7-sahifa testida «Bu qaysi tur vazifa?» — savol chala va tushunarsiz; qolgani yaxshi.
+**Qilingan ish:** savol «Do'stlarning bu vazifasi qaysi turga kiradi? Tanlang.» (hikoyaga bog'langan to'liq gap); jonli-panel yorlig'i ham «Suratga tushib yuborish qaysi turga kiradi?». Variantlar/izohlar/kalit tegilmadi.
+**Tekshiruv:** esbuild toza · lint:til ✓. UNCOMMITTED.
+
+## P34 raund (2026-07-27) — F-0727-17: JTBD USTAXONA — «DAFTAR» PANEL NOMIGA MOSLANDI, ORTIQCHA FOOTER KETDI — ✅
+**Foydalanuvchi feedbacki:** 8-sahifada (1) «o'ngdagi daftarga» — panel aslida «Kartalarim», «jadval» yoki boshqa nom kerakmi? (2) «kerak bo'lsa … tahrirlang» — UserStory'dagi yechim (F-0727-04 qalamcha-yo'rig'i) bunga ham; (3) ro'yxat ostidagi «Keyingi darsda foydalanuvchilar bilan…» qatori ortiqcha — olib tashlansin.
+**Qaror:** «daftar»/«jadval» o'rniga panelning O'Z nomi (61-qonun): «"Kartalarim" ro'yxatiga ko'chadi».
+**Qilingan ish:** mentor-gap «Kartalarim» ro'yxati bilan; done-mini «✅ Uchta karta tayyor — tahrirlash uchun qalamcha (✎) belgisidan foydalaning» (F-0727-04 naqshi); saqlash-hint «daftarda»→«ro'yxatda»; `jbook-foot` qatori + CSS o'chirildi.
+**Tekshiruv:** esbuild toza · lint:til ✓ · «daftar» qoldiq 0. UNCOMMITTED.
+
+## P35 raund (2026-07-27) — F-0727-18: JTBD PEER-EKRAN USERSTORY NAQSHIGA TO'LIQ TENGLASHDI — ✅
+**Foydalanuvchi feedbacki:** 9-sahifa (tekshiruvchi stoli) UserStory'dagi yechimlarga (F-0727-05) moslansin; mentor gapidagi «hukm» ham o'sha yechim bilan ketsin.
+**Holat:** «hukm» va tugmalar P28 da allaqachon tuzalgan edi; qolgan farqlar yopildi: (a) karta qatoridagi kichik yorliq «ish» → «vazifa» (F-0727-12 ning ko'zdan qochgan qoldig'i); (b) yakun-holatda mentor endi UserStory'dagidek gapiradi: «Mana, uchala javobingiz yonma-yon.» (avval yakunda ham boshlang'ich yo'riq qotib turardi).
+**Tekshiruv:** esbuild toza · lint:til ✓ · «hukm» o'quvchi-matnlarda 0 (faqat agent-spec kommentida). UNCOMMITTED.
+
+## P36 raund (2026-07-27) — F-0727-19: JTBD JUFTLASH-EKRANI — «ISHI» QOLDIQLARI + ORTIQCHA KIRISH-GAP + UZUN IZOH — ✅
+**Foydalanuvchi feedbacki:** 10-sahifada (1) «o'z ishi bilan juftlang» — yana «ish» (savol-qatorda «vazifasi» edi, note-qatorida «ishi» qolgan); (2) «3 kartangiz tayyor — endi bilimingizni…» kirish-gapi ortiqcha, UI'ni buzib turibdi; (3) to'g'ri-juftlik izohi juda uzun.
+**Qilingan ish:** (a) note qisqardi: «Mahsulot nomini o'z vazifasi ustiga torting yoki nomni bosib tanlang, so'ng kartani bosing.» («3 kartangiz tayyor…» o'chirildi); (b) mentor-reveal izohi 24→14 so'z: «Har mahsulot o'z vazifasiga yollanadi: budilnik — uyg'onish, velosiped — tez yetish, ilova — odat, g'ilof — ajralib turish.»; (c) o'quvchi-yakuni: «Zo'r! Har mahsulot o'z vazifasi bilan juftlandi.» («ishi» qoldig'i ketdi).
+**Tekshiruv:** esbuild toza · lint:til ✓ · «ishi» o'quvchi-matnda 0 (faqat kod-komment). UNCOMMITTED.
+
+## P37 raund (2026-07-27) — F-0727-20: JTBD KLINIKA — «TALAB»→«ISTAK», YO'RIQ ANIQLASHDI, YANA 3 «ISH» QOLDIG'I — ✅
+**Foydalanuvchi feedbacki:** 11-sahifa UserStory-klinika yechimlariga tortilsin; «talab» so'zi tushunarsiz (global); «bo'lakni bosing, joyiga bosing» yaxshilansin; «karta to'liq bo'ldi» + tuzoq-gap yaxshilansin (yomon emas, sayqal).
+**Qilingan ish:** (a) «talab» → «istak» (eyebrow «Foydalanuvchi istagi», sarlavha «Bu istakni to'liq kartaga aylantiring», nav «Istakni kartaga aylantiring»); (b) mentor UserStory-naqshda, dars atamasi bilan: «U faqat mahsulot nomini aytdi — quloqchin unga qanday VAZIFA uchun kerakligi aytilmagan. Pastdagi bo'laklardan to'liq karta yig'ing: avval bo'lakni tanlang, so'ng mos katakni bosing. Diqqat: orasida 2 ta tuzoq bor!»; (c) done-mini: «✅ Karta yig'ildi! — endi unda vazifasi ham, turi ham yozilgan (N ta tuzoqqa tushib ko'rdingiz — endi ularni darrov taniysiz)»; (d) yana 3 «ish» qoldig'i: slot-yorlig'i `label: 'ish'`→'vazifa', 2 tuzoq-izohidagi «O'sha javob — ish» / «Ish esa mahsulot beradigan natija» → vazifa.
+**Tekshiruv:** esbuild toza · lint:til ✓ · «talab» o'quvchi-matnda 0 (faqat agent-spec/arena-distraktor). UNCOMMITTED.
+
+## P38 raund (2026-07-27) — F-0727-21: JTBD PRIORITET-DOSKA — LAGANCHA PORTI, PM'SIZ MENTOR, «KEYINGI DARSDA» KETDI — ✅
+**Foydalanuvchi feedbacki:** 13-sahifa UserStory yechimidan (F-0727-08) moslab yaxshilansin; «PM» so'zi ishlatilmasin; done-mini'dagi «keyingi darsda …» qismi keraksiz.
+**Qilingan ish:** (a) **lagancha porti** (72-qonun): kartalar `.pd-tray`ga o'raldi — «✋ Bu kartalarni pastdagi ustunlarga joylashtiring ↓» + qizil puls + birinchi harakatda calm; CSS UserStory'dan ko'chirildi (P25 dagi fade-up-to'qnashuv saboqli — tray o'z `tray-in` kirishi bilan, fade-up klassisiz); (b) mentor PM'siz va UserStory-ohangda: «Barcha ishni birdaniga qilib bo'lmaydi: bittasini yaxshi bajarish — uchtasini yarim qoldirishdan afzal. Kartani bosib tanlang, so'ng ustunga bosing. Diqqat: "Hozir"ga faqat bitta karta sig'adi!»; (c) done-mini: «✅ Tanlov qilindi! — eng muhimingiz: "X" 🚀» («keyingi darsda» olib tashlandi); (d) yana «ish» qoldiqlari: sarlavha «Qaysi vazifadan boshlashni tanlang», shake-hint «bitta karta sig'adi», MentorNote «qaysi vazifa foydalanuvchiga…».
+**Tekshiruv:** esbuild toza · lint:til ✓. UNCOMMITTED.
+
+## P39 raund (2026-07-27) — F-0727-22: JTBD MUSTAHKAMLASH-EKRANI USERSTORY-NAQSHGA O'TDI — ✅
+**Foydalanuvchi feedbacki:** 14-sahifada «qaysi vazifaga yollanadi — va nega?» sarlavhasi tushunarsiz («yollanadi» + «va nega»); mentor gapi UserStory misolidan (F-0727-09) olinsin.
+**Qilingan ish:** (a) sarlavha challenge-savolga: «MVP'ingiz nima uchun kerakligini *yoddan* ayta olasizmi?»; (b) mentor F-0727-09 naqshida, dars atamalari bilan: «Dars deyarli tugadi. Endi MVP'ingiz haqida ekranga qaramasdan, yoddan ayting: u odamga qanday VAZIFAni bajarib beradi va bu vazifa unga qanday foyda keltiradi? Avval sherigingizga ayting, keyin bir qatorda yozing.»; (c) qolip-gap va placeholder'dagi «… ishi uchun kerak» → «… vazifasi uchun kerak» (2 ta «ish» qoldig'i).
+**Tekshiruv:** esbuild toza · lint:til ✓. UNCOMMITTED.
+
+## P40 raund (2026-07-27) — F-0727-23: JTBD UY-VAZIFA EKRANI + BUTUN-DARS YAKUNIY SUPURGI — ✅
+**Foydalanuvchi feedbacki:** 15-sahifada «MVP ishini kimdan …» tushunarsiz, UserStory yechimi (F-0727-10) qo'llansin; «Kod uyga qolgan bo'lsa» to'liq yaxshilansin; qolgan sahifalarni ham o'zim ko'rib, taqiqlangan/tushunarsiz so'zlarni tozalashim so'raldi — dars UserStory darajasida bo'lsin.
+**Qilingan ish (15-sahifa):** (a) sarlavha: «MVP'ingiz haqida *kimdan* so'rab ko'rasiz?»; (b) mentor tugma-nomi bilan: «…pastdagi ro'yxatdan birini tanlang yoki "➕ o'zim yozaman"ni bosing»; (c) qisqa-karta: «Kodni sinfda tugatolmagan bo'lsangiz — avval uyda kodni tugating, keyin bitta karta yozib {kishi}ga o'qib bering»; (d) 2-qadam «har kartada ish natija bo'lsin» → «har kartaning vazifasi natija bo'lsin — mahsulot nomi emas». HW-chiplar («sinfdoshingiz/ota-onangiz/do'stingiz») tekshirildi — bu yerda -ingiz to'g'ri (so'raladigan ODAM, tur-nomi emas; gapga qo'shilganda grammatika buzilmaydi).
+**Yakuniy supurgi (butun fayl):** taqiq-ro'yxat bo'yicha grep (hukm/taxmin qil/sir/o'z so'zingiz/kimligini/o'zingiznikini/mohiyat/qorin/och qol/qo'l kel + «ish» atama-shakllari) — 2 qoldiq topilib tuzatildi: RECAP-ask «Starbucks'ning emotsional ishi» → «vazifasi»; summary-ro'yxat «"uchinchi joy" ishini sotadi — joy va muhit» → «Starbucks kofe emas, "uchinchi joy"ni sotadi — makon va muhit». Qolgan barcha uchrashlar faqat kod-kommentlarda.
+**Tekshiruv:** esbuild toza · lint:til ✓ · lint:prompt ✓. UNCOMMITTED. JTBD darsi bo'yicha F-0727-12…23 seriyasi yakunlandi — dars UserStory bilan bir tilda.
+
+## P41 raund (2026-07-27) — F-0727-24: METRIKA HOOK — «ERTASIGA OCHISH», «MINGLAB», «CHARCHAGAN» KETDI — ✅
+**Foydalanuvchi feedbacki (Metrika darsi boshlandi):** 1-sahifada «ertasiga yana ochishga» iborasi o'quvchiga tushunarsiz; mentor gapidagi «minglab» va «charchagan» so'zlari g'alati tuyuladi.
+**Qilingan ish:** (a) sarlavha: «Odamlar Duolingo'ni nega *har kuni* ochaveradi?»; (b) mentor: «Duolingo'dagi odamlar hatto vaqti yo'q kunlarda ham ilovani ochib, kichik dars qilib qo'yadi — sizningcha, ularni nima majbur qiladi? Ovoz bering…»; (c) izchillik-sweep — o'sha ibora-sinf boshqa joylarda ham: ovoz-cap «ertasiga YANA kirgizadigan usul»→«har kuni qaytarib olib keladigan usul», keys-karta va TEST-hikoyasidagi «charchagan kun»→«vaqti yo'q kun» (2 joy).
+**Tekshiruv:** esbuild toza · lint:til ✓ · «minglab/charchagan» qoldiq 0. UNCOMMITTED.
+
+## P42 raund (2026-07-27) — F-0727-25: METRIKA 2-SAHIFA — «JONLI BELGI» IZOHI O'CHDI, TAKEAWAY ANIQLASHDI — ✅
+**Foydalanuvchi feedbacki:** 2-sahifada (1) «Yashil "● JONLI" belgisi — raqam o'z-o'zidan yangilanib turibdi» izohi tushunarsiz — olib tashlansin; (2) «maqsad qo'yishni o'rganasiz» tushunchasi yaxshilansin.
+**Qilingan ish:** (a) izoh-qator butunlay o'chirildi (+`.mdash-cap` CSS) — «● JONLI» pulsning o'zi ko'rsatib turibdi, izoh ortiqcha edi; (b) takeaway: «Bu panel bugun jonlanadi — keyingi darsda shu raqamlar asosida maqsad qo'yishni o'rganasiz» → «Dars oxirida sizning panelingiz ham xuddi shunday jonlanadi.» (UserStory s1 va'da-naqshi; «keyingi darsda…» ibora-sinfi ham ketdi).
+**Tekshiruv:** esbuild toza · lint:til ✓. UNCOMMITTED.
+
+## P43 raund (2026-07-27) — F-0727-26: METRIKA OSHXONA-EKRANI — TAOM-BOG'LIQ TIL + DIQQAT-ANIMATSIYA — ✅
+**Foydalanuvchi feedbacki:** 3-sahifada (1) «taom zo'rmi» — o'ylab qaror qilinsin; (2) mentor «yana oldi» taom bilan yaqqol bog'lansin; (3) raqam-ochilish oddiy tuyuladi — diqqatni chorlaydigan animatsiya kerak; (4) «Haqiqiy baho — ertasiga YANA olganlar» — «olganlar» nimani olgani noaniq.
+**Qilingan ish (matn):** «taom zo'rmi» → «taom hammaga yoqdimi» (savol taomga bog'landi — yoqqan taom yana olinadi); mentor «necha kishi o'sha taomni yana oldi?»; cap «taomni YANA OLGANLAR kamayib ketdi»; done-mini «Haqiqiy baho — ertasi kuni taomni YANA olganlar» — endi «olganlar» hamma joyda ob'ekti bilan.
+**Qilingan ish (animatsiya):** (a) taphint kuchaytirildi: katak 1.7s siklda ko'tarilib indigo-glow oladi (avval 2.4s siklning 7%ida xira edi), «?» belgisi ham pulsda kattayib-akssent bo'ladi; (b) ochilishda orqa-yuz bir martalik yorqin chaqnash (`oshx-reveal`), qaytish-raqami esa pop bilan sakrab chiqadi (`oshx-pop`) — endi reveal voqea bo'lib tuyuladi; reduced-motion'da hammasi o'chadi.
+**Tekshiruv:** esbuild toza · lint:til ✓ · brauzer-ko'rik: 5/5 ochilgan holat, yangi matnlar joyida. UNCOMMITTED.
+
+## P44 raund (2026-07-27) — F-0727-27: METRIKA SARALASH-EKRANI — MENTOR ANIQLASHDI + LAGANCHA PORTI — ✅
+**Foydalanuvchi feedbacki:** 4-sahifada «to'g'ri tushsa ta'rifi ochiladi» tushunarsiz; UserStory'dagi lagancha-yechim (pastroqda, qizil yonib turadigan, «buni bosish kerak» hissini beradigan) bu yerda ham bo'lsin.
+**Qilingan ish:** (a) mentor qadam-ketma-ket: «Pastdagi 4 kartani mos ustunga joylang: kartani bosib tanlang, so'ng ustunni bosing. To'g'ri joylasangiz — o'sha metrikaning izohi ochiladi.»; (b) lagancha porti (72-qonun): kartalar `.pd-tray`da — «✋ Bu 4 kartani pastdagi ustunlarga joylashtiring ↓», qizil puls, tanlov/joylashdan keyin calm, reduced-motion'da statik.
+**Tekshiruv:** esbuild toza · lint:til ✓ · brauzer-ko'rik: lagancha 4 karta bilan puls-holatda, mentor yangi gapi bilan render. UNCOMMITTED.
+
+## P45 raund (2026-07-27) — F-0727-28: METRIKA TEST-1 SAVOLI ANIQLASHDI — ✅
+**Foydalanuvchi feedbacki:** 5-sahifa testida savolni o'qib qanday javob topishni anglab bo'lmaydi — savol ham, so'z ham tushunarsiz; javoblar ham savolga moslashsin.
+**Tashxis:** «Qaysi raqam birinchi o'sadi?» — «birinchi o'sadi» mavhum (nimadan birinchi? qachon?); dars esa «metrika = holatni ko'rsatadigan raqam» deb o'rgatgan — savol shu qolipda bo'lishi kerak.
+**Qilingan ish:** savol «Bu holatni qaysi metrika ko'rsatadi? Tanlang.» (dars ta'rifiga to'g'ridan bog'langan); hikoya-gap silliqlashdi («kirib turibdi — dushanba ham…»); variantlar o'z izohi bilan qoldi (endi savolga mos: DAU — ko'rsatadi, churn — teskarisi, baho/hajm — umuman metrika emas); izohlar qisqardi (correct 20→13 so'z, wrong-izohlar bir naqshda); jonli-panel yorlig'i «Har kuni kirishni qaysi metrika ko'rsatadi?».
+**Tekshiruv:** esbuild toza · lint:til ✓. UNCOMMITTED.
+
+## P46 raund (2026-07-27) — F-0727-29: METRIKA DUOLINGO-KEYSI — SARLAVHA, SLAYD-TILI, BO'SH PANEL BUGI — ✅
+**Foydalanuvchi feedbacki (6-sahifa + feedback/5-card.png dalili):** (1) «Duolingo usulini» — «g'oya» yoki yaxshiroq yechim topilsin; «har kuni yana kirgizadi» global tushunarsiz; (2) 1-slayd «ochmay qo'yadi» tushunarsiz; (3) 3-slayd 😰 emoji yoqimsiz; «to'plagan hisobni» emas «to'plagan streak 🔥ni»; «charchagan» so'zi ko'rib chiqilsin; (4) 5-slayddan keyin bo'sh havorang panel ochilib qolgan — yechilsin yoki o'chirilsin.
+**Qilingan ish:** (a) sarlavha: «Duolingo'ning yechimi: odamni *har kuni* qaytarib olib keladigan usul» («usul» qoldi — hook-savolga javob ekani ko'rinadi, «qaytarib olib keladigan» P41 iborasi bilan izchil); (b) 1-slayd: «…bir-ikki kundan keyin esidan chiqarib, boshqa kirmaydi»; (c) 3-slayd: 😰→🧲 (magnit — tortib qaytaradi), «Shuncha kun yig'ilgan streak 🔥ni yo'qotishdan qo'rquv…»; «charchagan» allaqachon P41 da «vaqti yo'q kunda»ga almashgan — tasdiqlandi; (d) 5-slayd «har kuni yana kirishi»→«har kuni qaytib kirishi»; (e) **BUG:** yakun-slayddagi hook-payoff `frame-soft` paneli hook-ovoz bo'lmaganda (masalan mentor-rejim) BO'SH ochilardi — endi faqat kontent borida render bo'ladi.
+**Tekshiruv:** esbuild toza · lint:til ✓. UNCOMMITTED.
+
+## P47 raund (2026-07-27) — F-0727-30: METRIKA TEST-2 — «KO'TARADI» → «OSHIRADI», SAVOL ANIQLASHDI — ✅
+**Foydalanuvchi feedbacki:** 7-sahifa test savoli tushunarsiz, «ko'taradi» so'zi xato.
+**Qilingan ish:** savol «Streak qaysi metrikani oshiradi? Tanlang.» (TEST-1 bilan bir qolip — «qaysi metrika…»); hikoya «ketma-ket kunlar hisobi» → «streak 🔥 hisobi» (keys-slayd tili bilan mos); izoh qisqardi: «To'g'ri — streak odamni qayta-qayta qaytaradi, demak retention (yana kirganlar ulushi) oshadi.» «Ko'taradi» BARCHA joyda «oshiradi»ga almashdi: recap-title, recap-karta, arena savoli (65-qonun: test darsda aytilgan so'z bilan so'raydi — keys 5-slaydda «oshiradi» deyilgan edi).
+**Tekshiruv:** esbuild toza · lint:til ✓ · «ko'taradi» qoldiq 0. UNCOMMITTED.
+
+## P48 raund (2026-07-27) — F-0727-31: METRIKA USTAXONA — VALIDATOR YUMSHADI, UI DEKLATTER, «MAQSAD» KETDI — ✅
+**Foydalanuvchi feedbacki:** 8-sahifa yozuvi juda tushunarsiz, UI buzuqroq; «chunki …» kabi qat'iy talablar bo'lmasin (aytsak bo'ladi, qistov emas); «keyingi darsda … maqsad qo'yamiz» ketsin; Yordam aniq bo'lsin, keraksizsiz; UserStory'dan naqsh olib UI+logika zo'r qilinsin.
+**Qilingan ish:**
+1. **Validator yumshadi:** North Star endi «chunki…» siz ham saqlanadi (o'lchanadigan raqam + 8 belgi yetadi); sabab yozilmagan bo'lsa yumshoq tavsiya-hint: «Xohlasangiz, "chunki …" deb sababini ham qo'shing — shart emas.»
+2. **UI deklatter:** muharrirdagi 2 ta takror «● JONLI» lampzone o'chirildi (panelda bor); ixtiyoriy «⭐ Bu raqamni nima o'stiradi?» maydoni o'chirildi (hech qayerda ishlatilmasdi — sof yuk); panel-osti «Keyingi darsda aynan shu raqamlardan maqsad qo'yamiz» qatori o'chirildi (+CSS); summary hw-note «maqsadlar qo'yamiz» → «Muddat — keyingi darsgacha».
+3. **UserStory-naqshlar:** mentor panel o'z nomi bilan («har "✓ Saqlash"da yozuvingiz o'ngdagi "Mening panelim"ga ko'chadi»); done-mini qalamcha-yo'rig'i (F-0727-04).
+4. **Yordam aniqlashdi:** «⭐ North Star qanday topiladi? O'zingizdan so'rang: foydalanuvchi mahsulotimdan qachon ROSTDAN foyda oladi? O'sha paytni sanaydigan raqam — North Star.» + «3 karta uch savolga javob beradi: nechta odam KELDI? nechtasi QAYTDI? nechtasi FOYDA oldi?»
+**Tekshiruv:** esbuild toza · lint:til ✓ · brauzer-ko'rik: NS «chunki»siz saqlanib panelga tushdi (JONLI yondi), muharrir toza 4-maydonli holatda. UNCOMMITTED.
+
+## P49 raund (2026-07-27) — F-0727-32: METRIKA PEER-EKRAN USERSTORY-NAQSHGA TO'LIQ TENGLASHDI — ✅
+**Foydalanuvchi feedbacki:** 9-sahifa UserStory yechimlaridek bo'lsin, «hukm» ham ketsin.
+**Holat:** tugmalar/mentor-gap/«Adashdi» P28 da tuzalgan edi. Qolgan farqlar yopildi: (a) yakun-holatda mentor «Mana, uchala javobingiz yonma-yon.» (avval yakunda ham boshlang'ich yo'riq qotib turardi); (b) sabab-so'rovi «Nimasini tuzatish kerak?» → «Nimasi noto'g'ri?» (tugma-nomi bilan bir til); (c) «hukm» oxirgi ko'rinadigan joyi SCREEN_INTENTS spec-matni ham yangilandi.
+**Tekshiruv:** esbuild toza · lint:til ✓ · «hukm» faqat kod-kommentda. UNCOMMITTED.
+
+## P50 raund (2026-07-27) — F-0727-33: METRIKA JUFTLASH-EKRANI SAVOLI ANIQLASHDI — ✅
+**Foydalanuvchi feedbacki:** 10-sahifada «juftlang» so'zi tushunarsiz; ostidagi «Panelingiz tayyor — endi …» kichik yozuvi foydasiz — olib tashlanib, o'rniga savolning o'zi tushunarli qilinsin.
+**Qilingan ish:** savol «Har metrika qaysi savolga javob beradi? Nomini o'sha savol ustiga qo'ying.» («juftlang» yo'q — harakat o'z so'zi bilan aytilgan); note faqat mexanika: «Metrika nomini savol ustiga torting yoki nomni bosib tanlang, so'ng savol-kartani bosing.» (JTBD P36 naqshi — kirish-gap olib tashlandi).
+**Tekshiruv:** esbuild toza · lint:til ✓. UNCOMMITTED.
+
+## P51 raund (2026-07-27) — F-0727-34: METRIKA KLINIKA — «SANALADIGAN» TIL + USERSTORY-NAQSH — ✅
+**Foydalanuvchi feedbacki:** 11-sahifa abgor — UserStory'dan o'rganib to'liq yechim: «o'lchanadigan» global tushunarsiz; mentor «bo'lakni bosing yoki joyiga bosing» — bosing-bosing bo'lib ketgan; «orasida tuzoq…» va tuzoq-izohlari («bu baho, raqam emas», «ulushi foizi») sodda bo'lsin; «Endi buni o'lchab bo'ladi» tushunarsiz; juda uzun bo'lmasin.
+**Qilingan ish:**
+1. **«o'lchanadigan» → «sanaladigan»** (o'quvchi ko'radigan 5 joy: klinika sarlavhasi, ustaxona NS-gap + hint, TEST-1 izohi, SCREEN_INTENTS) — «sanash» o'quvchiga tanish harakat.
+2. **Mentor UserStory-naqshda:** «Rahbar faqat o'z fikrini aytdi — bu gapda RAQAM yo'q, uni tekshirib bo'lmaydi. Pastdagi bo'laklardan to'liq gap yig'ing: avval bo'lakni tanlang, so'ng mos katakni bosing. Diqqat: orasida 2 ta tuzoq bor!»
+3. **Tuzoq-izohlar sodda:** «"Yaxshi ketyapti" — bu fikr, raqam emas. Sanasa bo'ladigan narsani tanlang.» · «Bu — rahbar gapining takrori, yangilik yo'q. Raqam qanday foydani bildirishini tanlang.» Kuyish-prefiksi ham UserStory'dagidek qisqa: «🪤 Tuzoq edi! …» (avval «ball yo'qolmadi, bu bo'lak endi kerak emas» deb cho'zilardi).
+4. **Done-mini:** «✅ Gap raqamli bo'ldi! — endi uni tekshirsa bo'ladi (N ta tuzoqqa tushib ko'rdingiz — endi ularni darrov taniysiz)».
+**Qaror:** «tuzoq» atamasining o'zi saqlandi — UserStory/JTBD bilan bir atama (izohlari soddalashdi).
+**Tekshiruv:** esbuild toza · lint:til ✓ · «o'lchanadigan» o'quvchi-matnda 0. UNCOMMITTED.
+
+## P52 raund (2026-07-27) — F-0727-35: METRIKA KODING — «KODDA HISOBLATAMIZ» + YULDUZCHA YIG'ILADIGAN BO'LDI — ✅
+**Foydalanuvchi feedbacki:** 12-sahifada «kodning o'zi hisoblasin» tushunarsiz — «kodda hisoblatamiz» kabi bo'lsin; «⭐ Yulduzcha» bloki UI'ni buzib turibdi — ochilib-yopiladigan qilinsin.
+**Qilingan ish:** (a) sarlavha «Retention foizini endi *kodda* hisoblatamiz.»; mentor «…endi retention foizini qo'lda emas, kod hisoblab beradi»; (b) ⭐ Yulduzcha endi Yordam kabi yig'iladigan (`wsx` naqshi): default yopiq, «⭐ Yulduzcha vazifa — kuchlilar uchun ▸» tugmasi bilan ochiladi; eski doimiy-ochiq `star-task` bloki + CSS o'chirildi.
+**Tekshiruv:** esbuild toza · lint:til ✓. UNCOMMITTED.
+
+## P53 raund (2026-07-27) — F-0727-36: METRIKA PRIORITET-DOSKA — SARLAVHA, MENTOR, LAGANCHA, YAKUN — ✅
+**Foydalanuvchi feedbacki:** 13-sahifada «Birinchi kuzatadigan raqamni tanlang» — «kuzatadigan» tushunarsiz; dizayn UserStory'dan olinsin; mentor gapi ham tekshirilib yaxshilansin («hozir ustuniga bosing, so'ng…» chalkash).
+**Qilingan ish:** (a) sarlavha «Qaysi raqamdan *boshlaymiz*?» (UserStory «Qaysi hikoyadan boshlaymiz?» naqshi); (b) mentor sodda va o'gitli: «Barcha raqamga birdaniga qarab bo'lmaydi — har kuni bittasiga qarasangiz, o'sgani yoki tushgani darrov ko'rinadi. Kartani bosib tanlang, so'ng ustunga bosing. Diqqat: "Hozir"ga faqat bitta karta sig'adi!»; (c) lagancha porti (72-qonun) — kartalar `.pd-tray`da, «✋ Bu kartalarni pastdagi ustunlarga joylashtiring ↓», qizil puls + calm (CSS P44 dan mavjud — qayta qo'shilmadi); (d) done-mini «keyingi darsda … boshlaymiz» → «eng muhimingiz: "X" 🚀» (P38 naqshi).
+**Tekshiruv:** esbuild toza · lint:til ✓. UNCOMMITTED. Lagancha endi 4 joyda: US-prioritet, JTBD-prioritet, Metrika-saralash, Metrika-prioritet.
+
+## P54 raund (2026-07-27) — F-0727-37: METRIKA MUSTAHKAMLASH-EKRANI USERSTORY-NAQSHGA O'TDI — ✅
+**Foydalanuvchi feedbacki:** 14-sahifa UserStory'dagidek bo'lsin (F-0727-09 naqshi).
+**Qilingan ish:** sarlavha challenge-savol: «North Star'ingizni *yoddan* ayta olasizmi?»; mentor: «Dars deyarli tugadi. Endi North Star'ingizni ekranga qaramasdan, yoddan aytib bering: qaysi raqamni tanladingiz va u qanday foydani ko'rsatadi? Avval sherigingizga ayting, keyin bir qatorda yozing.»; yozildi-tasdig'i «keyingi darsda shu raqamdan boshlaymiz»siz — «✓ Yozildi!».
+**Tekshiruv:** esbuild toza · lint:til ✓. UNCOMMITTED.
+
+## P55 raund (2026-07-27) — F-0727-38: METRIKA UY-VAZIFA EKRANI USERSTORY-NAQSHGA TORTILDI — ✅
+**Foydalanuvchi feedbacki:** 15-sahifa so'zlari va dizayni UserStory'dagidek tushunarli bo'lsin; «Yo'lga tayyorgarlik» — «yo'lga» tushunarsiz; global «tekshiradigan raqam» tushunarsiz.
+**Qilingan ish:** (a) sarlavha «Uyda qaysi raqamni *birinchi* ochib ko'rasiz?» («tekshiradigan raqam» yo'q); (b) mentor F-0727-10 naqshida tugma-nomi bilan: «…Avval qaysi raqamdan boshlashni tanlang: pastdagi ro'yxatdan birini tanlang yoki "➕ o'zim yozaman"ni bosing.»; (c) «📋 Yo'lga tayyorlik (3 band)» → «📋 Tayyorgarlik — 3 band». Dizayn-tuzilma (chiplar + 2 karta + 3 qadam + checklist) UserStory bilan allaqachon bir naqshda edi — matn-qatlami tenglashtirildi.
+**Tekshiruv:** esbuild toza · lint:til ✓. UNCOMMITTED.
+
+## P56 raund (2026-07-27) — F-0727-39: METRIKA YAKUN-EKRANI — «SINF YIG'DI» → «BIRGALIKDA O'RGANDIK» — ✅
+**Foydalanuvchi feedbacki:** 17-sahifada mentor-variant sarlavhasi «Sinf metrika-panelini yig'di» — «sinf» deganda o'quvchi xayoli sinf-xonaga ketadi, o'zi qilganini eslamaydi; «birgalikda … o'rgandik» shakli bo'lsin. CodeStrike xato/emoji ham UserStory'dagidek bo'lsin.
+**Qilingan ish:** (a) proyektor-sarlavha: «Bugun birgalikda *metrika-panel* yig'ishni o'rgandik.» (o'quvchi-variant «Sizning metrika-panelingiz tayyor» o'zgarmadi); (b) CodeStrike arena tekshirildi — «Adashdingiz — 0 ball. Keyingisida olasiz.» (emojisiz) P28 da allaqachon tuzalgan ekan, qoldiq yo'q; mentor-eslatmadagi «Xato joylangan karta» → «Noto'g'ri joylangan karta» (oxirgi qoldiq).
+**Tekshiruv:** esbuild toza · lint:til ✓ · «Xato/💪» o'quvchi-matnda 0. UNCOMMITTED.
+
+## P57 raund (2026-07-27) — F-0727-40: USERSTORY 3-EKRAN — XULOSA QISQARDI + AVTO-SCROLL — ✅
+**Foydalanuvchi feedbacki:** «Sabab — eng qimmatli qism» xulosasi qisqa tushunarli gapcha bo'lsin (o'chirilmasin); o'stirish-karta («Sizning gapingizdan to'liq hikoya chiqadi») zo'r — qoladi; yakun ochilganda avto-scroll qo'shilsin.
+**Qilingan ish:** (a) xulosa-matn 3 gapdan 2 qisqa gapga: «Ilovani ochganingizni hamma ko'radi — nima uchun ochganingizni faqat siz bilasiz. Mahsulot yasovchiga ana shu sabab kerak.»; (b) 4/4 ajratilgach 400ms dan keyin xulosa-kartaga silliq avto-scroll (`scrollIntoView smooth`) — brauzerda tekshirildi (scrollTop 0→408, xulosa+o'stirish-karta bir ekranda).
+**Tekshiruv:** esbuild toza · lint:til ✓. UNCOMMITTED (deploydan keyingi birinchi yangi o'zgarish).
+
+## P58 raund (2026-07-27) — KUN-YAKUNI MUHRLASH: F-0727-01…40 TO'LIQ QONUNLASHTIRILDI — ✅
+**Topshiriq:** «Bugungi barcha feedbacklarni yig'ib, yechim-ko'rinishi UserStory'dan olinadigan qilib to'liq muhrla — kelgusi darslar shu xatolarsiz qurilsin.»
+**Muhrlangan qatlamlar:**
+1. **PM_DARS_ETALON — 7 yangi qonun (73–79):** 73 «keyingi darsda» va'da-qatorlari taqiqi · 74 test-qolipi (ta'rif-so'zli savol + grammatik variantlar + to'liq-gap hikoya + qisqa reveal) · 75 mexanika-yo'rig'i («avval … tanlang, so'ng … bosing» + panel o'z nomi bilan) · 76 mustahkamlash-qolipi (challenge-sarlavha + «ekranga qaramasdan, yoddan») · 77 yakun-avto-scroll · 78 proyektor-yakun «birgalikda o'rgandik» · 79 taxmin-o'yin buyruqsiz. (68–72 kun davomida muhrlangan edi.)
+2. **MATN_KORPUS — 16–18-bo'limlar:** mexanika-yo'riq juftlari, yakun/va'da juftlari, taxmin-chorlov juftlari (13–15 kun davomida yozilgan).
+3. **MATN_ETALONI lug'at +9 qator:** sir/mohiyat · hukm · o'lchanadigan→sanaladigan · kuzatadigan/ko'taradi → ochib ko'radigan/oshiradi · talab→istak · charchagan→vaqti yo'q · o'z so'zingiz→yoddan · kimligini aniqlang→qanday odam ekanini yozing · ochmay qo'yadi→boshqa kirmaydi.
+4. **til-lint +7 qoida (jami 53):** keyingi-darsda-vada (warn) · hukm-buyruq · taxmin-qiling · olchanadigan · oz-sozingiz · kimligini-aniqlang · mohiyat. Yangi qoida darhol 1 real qoldiq tutdi (Metrika kbet-sub «bemalol taxmin qiling» → «bemalol belgilang») — regress-isbot.
+5. **pm-tekshiruvchi +5 ov-band (8–12):** animatsiya-to'qnashuv (fade-up vs shorthand) · bo'sh shartli-blok · matn-sig'im (max-width kesilish) · 73–79 sweep · lint-qoida regress-sinovi.
+6. **Kod-qoldiqlar tozalandi (73-qonun tatbig'i):** US-prioritet done-mini + US/JTBD «✓ Yozildi — keyingi darsda…» → «✓ Yozildi!».
+**Tekshiruv:** esbuild 3/3 toza · lint:til 3 dars ✓ TOZA (53 qoida) · lint:prompt ✓. UNCOMMITTED (P57–P58 o'zgarishlari deploydan keyin).

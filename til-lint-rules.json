@@ -324,7 +324,7 @@
     {
       "id": "xato-ball",
       "severity": "error",
-      "pattern": "Xatos*[—–-]s*0 ball",
+      "pattern": "Xato\\s*[—–-]\\s*0 ball",
       "suggest": "«Adashdingiz — 0 ball» — «xato» bolani nomlaydi, «adashdingiz» harakatni (66-qonun)",
       "law": "PM_ETALON 66 · F-0726-01"
     },
@@ -338,7 +338,7 @@
     {
       "id": "ishlaydi-hukm",
       "severity": "warn",
-      "pattern": "[✓✔]s*ishlaydi",
+      "pattern": "[✓✔]\\s*ishlaydi",
       "suggest": "hukm-tugmasi «✓ To'g'ri / ✕ Noto'g'ri» — «ishlaydi» dasturchi tili (61-qonun)",
       "law": "PM_ETALON 61 · F-0726-01"
     },
@@ -346,8 +346,71 @@
       "id": "toq-yuradi",
       "severity": "error",
       "pattern": "to'q yur",
-      "suggest": "fe'l-ot mosligi: «och qoldirmaydi / to'q tutadi» (MATN_ETALONI lug'at)",
-      "law": "F-0726-01"
+      "suggest": "fe'l-ot mosligi: «to'q saqlaydi» (F-0727-03 — «och qoldirmaydi» ham bekor)",
+      "law": "F-0726-01 · F-0727-03"
+    },
+    {
+      "id": "och-qoldir",
+      "severity": "error",
+      "pattern": "och qoldirma|och qolmaslik",
+      "suggest": "inkor-shakl o'rniga to'g'ridan: «to'q saqlaydi / to'q qolish» (foydalanuvchi F-0727-03)",
+      "law": "F-0727-03"
+    },
+    {
+      "id": "qol-keladi",
+      "severity": "error",
+      "pattern": "qo'l kel",
+      "suggest": "«qo'l keladi» eskicha ibora — foydani konkret ayting yoki «juda mos tushadi» (F-0727-03)",
+      "law": "F-0727-03"
+    },
+    {
+      "id": "keyingi-darsda-vada",
+      "severity": "warn",
+      "pattern": "keyingi darsda",
+      "suggest": "va'da-qator ekranda turmaydi (73-qonun) — faqat uy-vazifa MUDDAT bandida joiz",
+      "law": "PM_ETALON 73 · F-0727-40"
+    },
+    {
+      "id": "hukm-buyruq",
+      "severity": "error",
+      "pattern": "hukm bering|hukm chiqaring|hukmingiz",
+      "suggest": "«✓ To'g'ri yoki ✕ Noto'g'riga ajrating» / «javobingiz» (F-0727-05)",
+      "law": "F-0727-05"
+    },
+    {
+      "id": "taxmin-qiling",
+      "severity": "error",
+      "pattern": "taxmin qiling",
+      "suggest": "buyruqsiz chorlov: «bemalol belgilang» / «avval o'zingiz belgilab ko'ring» (79-qonun)",
+      "law": "PM_ETALON 79 · F-0727-15"
+    },
+    {
+      "id": "olchanadigan",
+      "severity": "error",
+      "pattern": "o'lchanadigan",
+      "suggest": "«sanaladigan» — sanash o'smirga tanish (MATN_ETALONI lug'at, F-0727-34)",
+      "law": "F-0727-34"
+    },
+    {
+      "id": "oz-sozingiz",
+      "severity": "error",
+      "pattern": "o'z so'zingiz bilan",
+      "suggest": "«ekranga qaramasdan, yoddan» (76-qonun)",
+      "law": "PM_ETALON 76 · F-0727-09"
+    },
+    {
+      "id": "kimligini-aniqlang",
+      "severity": "error",
+      "pattern": "kimligini bir gapda aniqlang",
+      "suggest": "«qanday odam ekanini bir gapda yozing» (F-0727-10)",
+      "law": "F-0727-10"
+    },
+    {
+      "id": "mohiyat",
+      "severity": "error",
+      "pattern": "mohiyat",
+      "suggest": "og'ir so'z — hodisani ochiq ayting (F-0727-03)",
+      "law": "F-0727-03"
     },
     {
       "id": "bublik",

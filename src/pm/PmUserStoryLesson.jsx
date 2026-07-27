@@ -935,16 +935,19 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
 // ===== SCREEN 1 — MAQSAD: jonli natija-preview (kartalar ko'z oldida birma-bir to'ladi) =====
 // WOW-moment: o'quvchi dars natijasini OLDINDAN ko'radi — bo'sh slotlar namunaviy hikoyalar
 // bilan o'z-o'zidan to'lib boradi (CSS-taymlayn, reduced-motion'da darhol to'liq holat).
+// Namuna-mahsulot = YouTube (2-ekrandagi YouTube misoli bilan bir ip). Uch xil odam — uch xil foyda.
+// QOIDA: har NATIJA aynan o'sha KIM'ning foydasi va harakatni takrorlamaydi (dars 6-ekranda shuni tekshiradi).
 const DEMO_STORIES = [
-  { kim: 'yangi mehmon', nima: "ishlarimni bitta ekranda ko'rish", natija: 'meni tez tanib olish' },
-  { kim: 'sinfdoshim', nima: "o'yinimni telefonida ochish", natija: "tanaffusda birga o'ynash" },
-  { kim: 'mentorim', nima: "topshirig'imni tez topish", natija: 'bahosini qo\'yish' },
+  { kim: "imtihonga tayyorlanayotgan o'quvchi", nima: "videoni 2 barobar tez ko'rish", natija: "bir kechada ko'proq mavzu ulgurishim" },
+  { kim: "yo'lda ketayotgan tomoshabin", nima: "videoni oldindan yuklab qo'yish", natija: "internet yo'q joyda ham ko'ra olishim" },
+  { kim: 'yangi kanal egasi', nima: "videomni kim ko'rganini bilish", natija: "kimga mos video yasashni tushunishim" },
 ];
 const Screen1 = ({ screen, onNext, onPrev }) => (
   <Stage eyebrow="Maqsad" screen={screen} mentorStatic navContent={<><NavBack onPrev={onPrev} /><NavNext label="Boshlaymiz →" onClick={onNext} /></>}>
     <div className="screen" style={{ gap: 'clamp(14px,2.2vw,20px)' }}>
       <div className="head"><h2 className="title h-title fade-up">Bugun dars oxirida siz <span className="italic" style={{ color: T.accent }}>nimalarga</span> erishasiz?</h2></div>
-      <Mentor>Bugun loyihangiz uchun 3 ta <b style={{ color: T.ink }}>User Story</b> yozasiz. User Story — bir gapdan iborat kichkina hikoya. Qarang, mana shu 3 karta hozir ko'z oldingizda to'lib boradi.</Mentor>
+      <Mentor>Bugun loyihangiz uchun 3 ta <b style={{ color: T.ink }}>User Story</b> yozasiz. User Story — bir gapdan iborat kichkina hikoya. Qarang, mana YouTube uchun yozilgan 3 hikoya: uch xil odam, uch xil foyda.</Mentor>
+      <div className="demo-src fade-up delay-1"><span className="demo-src-ic">▶️</span> YouTube jamoasi shunday yozadi</div>
       <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
         {DEMO_STORIES.map((s, i) => (
           <div key={i} className="story-silo demo-card" style={{ '--cd': `${0.2 + i * 0.18}s` }}>
@@ -966,7 +969,7 @@ const Screen1 = ({ screen, onNext, onPrev }) => (
   </Stage>
 );
 
-// ===== SCREEN 2 — YADRO: savol-ekran (sinf muhokamasi + taksi misoli + yengil harakat/sabab tap) =====
+// ===== SCREEN 2 — YADRO: savol-ekran (sinf muhokamasi + harakat/sabab tap + o'stirish-karta) =====
 // Yengil tap-mashq (UNSCORED): bo'laklarni «harakat» yoki «sabab»ga ajratish; xato = yumshoq indigo hint (qizil EMAS).
 const S2_FRAGS = [
   { txt: "Telegramni ochdim", cat: 'harakat' },
@@ -981,6 +984,14 @@ const Screen2 = ({ screen, onNext, onPrev }) => {
     else { setSt(p => ({ ...p, hint: i })); setTimeout(() => setSt(p => (p.hint === i ? { ...p, hint: -1 } : p)), 2200); }
   };
   const allSorted = S2_FRAGS.every((_, i) => st.picks[i]);
+  // F-0727-40: yakun ochilganda avto-scroll — o'quvchi xulosa+o'stirish-kartani izlamasin
+  const doneRef = useRef(null);
+  useEffect(() => {
+    if (allSorted && doneRef.current) {
+      const t = setTimeout(() => doneRef.current && doneRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' }), 400);
+      return () => clearTimeout(t);
+    }
+  }, [allSorted]);
   return (
     <Stage eyebrow="Muhokama · savol" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive label="Davom etish" onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(14px,2.2vw,20px)' }}>
@@ -1004,12 +1015,31 @@ const Screen2 = ({ screen, onNext, onPrev }) => {
             );
           })}
         </div>
+        {/* Yakun (F-0727-02): xulosa AVVAL so'z bilan ochiladi, keyin o'quvchining O'Z gapi to'liq
+            hikoyaga o'stiriladi — bo'laklar «kim/harakat/sabab» deb belgilanadi (formula-nomlari
+            keyingi ekranda keladi: induktiv tartib). Ko'prik-gap keyingi ekranga ishorat qiladi. */}
         {allSorted && (
           <>
-            <div className="done-mini fade-step">✅ Ajratdingiz! <span className="dm-sub">Hikoyaning yuragi — sabab</span></div>
-            <div className="ex-card fade-step">
-              <span className="ex-lbl">🚕 Sabab qo'shilsa, mana bunday TO'LIQ hikoya chiqadi</span>
-              <p className="ex-body">«Men <b>kechikayotgan o'quvchi</b> sifatida, <b>taksini oldindan chaqirish</b>ni xohlayman, <b>birinchi darsga ulgurish</b> uchun.»</p>
+            <div className="takeaway fade-step" ref={doneRef}>
+              <span className="ta-bulb">💡</span>
+              <p className="ta-h">Sabab — eng qimmatli qism</p>
+              <p className="ta-b">Ilovani ochganingizni hamma ko'radi — <b>nima uchun</b> ochganingizni faqat siz bilasiz. Mahsulot yasovchiga ana shu sabab kerak.</p>
+            </div>
+            <div className="grow-card fade-step">
+              <span className="ex-lbl">🌱 Sizning gapingizdan to'liq hikoya chiqadi</span>
+              <div className="grow-from">
+                <span className="gf-chip harakat">🏃 «YouTube'ni ochdim»</span>
+                <span className="gf-plus">+</span>
+                <span className="gf-chip sabab">💡 «matematikani tushunish uchun»</span>
+              </div>
+              <span className="grow-arrow" aria-hidden="true">↓</span>
+              <p className="ex-body">Men <b className="gp kim">matematikadan qiynalayotgan o'quvchi</b> sifatida, <b className="gp nima">darsni YouTube'da qayta ko'rish</b>ni xohlayman, <b className="gp natija">masalani o'zim yecha olishim</b> uchun.</p>
+              <div className="gp-legend">
+                <span className="gpl kim">🙋 kim</span>
+                <span className="gpl nima">🏃 harakat</span>
+                <span className="gpl natija">💡 sabab</span>
+              </div>
+              <p className="grow-next">Keyingi ekranda mana shu 3 bo'lakni o'zingiz joylaysiz.</p>
             </div>
           </>
         )}
@@ -1019,10 +1049,12 @@ const Screen2 = ({ screen, onNext, onPrev }) => {
 };
 
 // ===== SCREEN 3 — FORMULA KONSTRUKTOR: bo'laklarni slotlarga bosib joylash =====
+// Bo'laklar = oldingi ekranda o'stirilgan hikoya (F-0727-02) — o'quvchi tanish gapni endi
+// formula-nomlari (KIM/NIMA/NATIJA) bilan qayta yig'adi: bir dunyo, ikki qadam.
 const FRAG_POOL = [
-  { txt: "kechikayotgan o'quvchi", slot: 0 },
-  { txt: "taksini oldindan chaqirish", slot: 1 },
-  { txt: "birinchi darsga ulgurish", slot: 2 },
+  { txt: "matematikadan qiynalayotgan o'quvchi", slot: 0 },
+  { txt: "darsni YouTube'da qayta ko'rish", slot: 1 },
+  { txt: "masalani o'zim yecha olishim", slot: 2 },
 ];
 const SLOT_META = [
   { key: 'kim', label: 'KIM', hint: 'foydalanuvchi turi' },
@@ -1082,7 +1114,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         </div>}
         {done && (
           <div className="fade-step" style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
-            <div className="done-mini">✅ Hikoya to'liq! <span className="dm-sub">NATIJA — «darsga ulgurish»: bu «nima qilaman» emas, «menga nima foyda» degan javob</span></div>
+            <div className="done-mini">✅ Hikoya to'liq! <span className="dm-sub">NATIJA — «masalani o'zim yecha olishim»: bu «nima qilaman» emas, «menga nima foyda» degan javob</span></div>
             <button className="btn-soft" onClick={reset}>↻ Qaytadan</button>
           </div>
         )}
@@ -1097,10 +1129,10 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const K11_SLIDES = [
   { ic: "🌅", h: "Hammasi raqamlardan boshlandi", body: <>McDonald's sotuvlarni tekshirdi: milkshake'lar eng ko'p <b>ertalab</b> sotilyapti. Kutilmagan holat — axir ertalab kim milkshake ichadi?</> },
   { ic: "🕵️", h: "Xaridorlardan so'rashdi", body: <>Kuzatuvchilar ertalabki xaridorlar bilan gaplashib chiqdi. Ma'lum bo'ldi: ular milkshake'ni <b>shirinlik yeyish uchun olmayotgan ekan</b> — sababi butunlay boshqa.</> },
-  { ic: "🚗", h: "Sabab — uzoq yo'l", body: <>Bu odamlar har kuni mashinada ishga uzoq yo'l yuradi va yo'lda zerikadi. Milkshake esa qo'l keladi: bitta qo'lda ushlab turasiz, sekin-sekin ichiladi va odamni <b>tushlikkacha och qoldirmaydi</b>.</> },
-  { ic: "🔧", h: "Sirni bilgach, nima o'zgardi?", body: <>McDonald's ikkita qaror qabul qildi: milkshake'ni <b>quyuqroq</b> qildi — endi u yo'lda uzoqroq yetadi; va uni <b>kirish yonidagi avtomatga</b> qo'ydi — shoshayotgan haydovchi navbatda turmaydi. Ertalabki sotuv o'sdi.</>,
-    predict: { ask: "Sizningcha, sirni bilgach McDonald's nima qildi?", chips: [{ ic: '💸', t: 'narxni tushirdi' }, { ic: '📺', t: 'reklama qildi' }, { ic: '🥤', t: 'quyuqroq qildi' }, { ic: '🕐', t: 'kechqurun sotdi' }], ans: 2 } },
-  { ic: "🎯", h: "Xulosa: odam natijani sotib oladi", body: <>Odam milkshake'ning o'zini emas, u beradigan <b>natijani</b> — «yo'lda zerikmaslik va tushlikkacha och qolmaslik»ni sotib olyapti. Bu g'oya <b>Jobs-to-be-Done (JTBD)</b> deb ataladi: mahsulot odamga beradigan foydali natija.</>,
+  { ic: "🚗", h: "Sabab — uzoq yo'l", body: <>Bu odamlar har kuni ertalab mashinada uzoq yo'l yurib boradi — va yo'l zerikarli o'tadi. Milkshake ana shu yo'lda <b>uchta foyda</b> berarkan: bir qo'lda bemalol ushlanadi; tez tugamaydi — yo'l oxirigacha yetadi; va to'yimli — odamni <b>tushlikkacha to'q saqlaydi</b>.</> },
+  { ic: "🔧", h: "Buni bilgach, nima o'zgardi?", body: <>McDonald's ikkita qaror qildi. <b>Birinchisi:</b> milkshake'ni yanada quyuq qildi — quyuq ichimlik uzoq ichiladi, endi u yo'l oxirigacha tugab qolmaydi. <b>Ikkinchisi:</b> uni kassadan eshik oldiga ko'chirdi — mijoz <b>o'zi quyib oladigan maxsus apparat</b> qo'ydi, shoshayotgan haydovchi navbatda turmasdan olib ketaveradi. Natija: ertalabki sotuv o'sdi.</>,
+    predict: { ask: "Sizningcha, buni bilgach McDonald's nima qildi?", chips: [{ ic: '💸', t: 'narxni tushirdi' }, { ic: '📺', t: 'reklama qildi' }, { ic: '🥤', t: 'yanada quyuq qildi' }, { ic: '🕐', t: 'kechqurun sotdi' }], ans: 2 } },
+  { ic: "🎯", h: "Xulosa: odam natijani sotib oladi", body: <>Odam milkshake'ning o'zini emas, u beradigan <b>natijani</b> — «yo'lda zerikmaslik va tushlikkacha to'q qolish»ni sotib olyapti. Bu g'oya <b>Jobs-to-be-Done (JTBD)</b> deb ataladi: mahsulot odamga beradigan foydali natija.</>,
     predict: { ask: "Odam aslida nimani sotib oladi?", chips: [{ ic: '🥤', t: "ta'mni" }, { ic: '🎯', t: 'foydali natijani' }, { ic: '💸', t: 'arzon narxni' }], ans: 1 } },
 ];
 const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
@@ -1117,7 +1149,7 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return (
     <Stage eyebrow="Keys (real voqea tahlili) 🥤" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={betPending && !isMentorK} label={betPending && !isMentorK ? 'Avval taxminingizni tanlang' : last ? 'Davom etish' : `Keyingi bosqich (${i + 1}/${K11_SLIDES.length})`} onClick={last ? onNext : () => setI(i + 1)} /></>}>
       <div className="screen" style={{ gap: 'clamp(14px,2.2vw,20px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Milkshake javobi: nega aynan <span className="italic" style={{ color: T.accent }}>ertalab</span>?</h2></div>
+        <div className="head"><h2 className="title h-title fade-up">Nega milkshake aynan <span className="italic" style={{ color: T.accent }}>ertalab</span> ko'p olinadi? Endi bilib olamiz</h2></div>
         {c.predict ? (
           <>
             <div className="kp-bet fade-step" key={`b${i}`}>
@@ -1305,9 +1337,9 @@ const ScreenStoryWorkshop = ({ screen, storedAnswer, onAnswer, onNext, onPrev })
                 <span className="swed-tag">{editing ? `✎ ${editIdx + 1}-hikoyani tahrirlash` : `✨ ${saved.length + 1}-hikoya`}</span>
                 <p className="swed-sent">Men <b className={`ss-slot kim ${draft.kim ? 'on' : ''}`}>{draft.kim || 'kim'}</b> sifatida, <b className={`ss-slot nima ${draft.nima ? 'on' : ''}`}>{draft.nima || 'nima'}</b>ni xohlayman, <b className={`ss-slot natija ${draft.natija ? 'on' : ''}`}>{draft.natija || 'natija'}</b> uchun.</p>
                 <div className="swcard-fields">
-                  <label className={`smini-f kim ${v.kimOk ? 'on' : ''}`}><span>KIM</span><input value={draft.kim} onChange={e => setD({ kim: e.target.value })} placeholder="foydalanuvchi turi — masalan: yangi mehmon" /></label>
-                  <label className={`smini-f nima ${v.nimaOk ? 'on' : ''}`}><span>NIMA</span><input value={draft.nima} onChange={e => setD({ nima: e.target.value })} placeholder="harakat — masalan: ishlarimni ko'rish" /></label>
-                  <label className={`smini-f natija ${v.natijaOk ? 'on' : ''}`}><span>NATIJA</span><input value={draft.natija} onChange={e => setD({ natija: e.target.value })} placeholder="real foyda — masalan: meni tez tanib olish" /></label>
+                  <label className={`smini-f kim ${v.kimOk ? 'on' : ''}`}><span>KIM</span><input value={draft.kim} onChange={e => setD({ kim: e.target.value })} placeholder="foydalanuvchi turi — masalan: yo'lda ketayotgan tomoshabin" /></label>
+                  <label className={`smini-f nima ${v.nimaOk ? 'on' : ''}`}><span>NIMA</span><input value={draft.nima} onChange={e => setD({ nima: e.target.value })} placeholder="harakat — masalan: videoni yuklab qo'yish" /></label>
+                  <label className={`smini-f natija ${v.natijaOk ? 'on' : ''}`}><span>NATIJA</span><input value={draft.natija} onChange={e => setD({ natija: e.target.value })} placeholder="real foyda — masalan: internetsiz ham ko'ra olishim" /></label>
                 </div>
                 {saveHint && <p className="swed-hint">💡 {saveHint}</p>}
                 <div className="swed-btns">
@@ -1317,7 +1349,7 @@ const ScreenStoryWorkshop = ({ screen, storedAnswer, onAnswer, onNext, onPrev })
                 </div>
               </div>
             ) : (
-              <div className="done-mini fade-step">✅ 3 hikoya tayyor <span className="dm-sub">— o'zgartirmoqchi bo'lsangiz, daftardagi hikoyaning «✎ Tahrirlash» tugmasini bosing</span></div>
+              <div className="done-mini fade-step">✅ Uchta hikoya tayyor <span className="dm-sub">— tahrirlash uchun qalamcha (✎) belgisidan foydalaning</span></div>
             )}
           </Col>
           <Col>
@@ -1337,7 +1369,7 @@ const ScreenStoryWorkshop = ({ screen, storedAnswer, onAnswer, onNext, onPrev })
                   </div>
                 );
               })}
-              <p className="svd-foot">⭐ Har hikoyaga yulduz qo'ying: bu hikoya siz uchun qanchalik muhim? 1 yulduz — unchalik muhim emas, 5 yulduz — eng muhimi. Keyingi darsda eng ko'p yulduz olgan hikoyadan boshlaymiz.</p>
+              <p className="svd-foot">⭐ Har hikoyangizga yulduz qo'ying: bu hikoya siz uchun qanchalik muhim?</p>
             </div>
             <StudentPracticePulse live={live} screen={screen} />
             <MentorPracticeStats live={live} screen={screen} label="✍️ 3 hikoyani yozib bo'lganlar" />
@@ -1364,12 +1396,13 @@ const PEER_REASONS = [
   { key: 'foyda', t: 'NATIJA foyda emas' } // distraktor: bu uch kartada javob emas
 ];
 // Tartib aralash: to'g'ri karta o'rtada turadi (oxirida turmasin — naqsh sezilmasin)
+// F-0727-05: karta-tepa yorlig'i (nom) olib tashlandi — foydasiz shovqin edi; kartalar raqam bilan yuritiladi.
 const PEER_CARDS = [
-  { nom: "Qorong'i rejim", kim: 'foydalanuvchi', nima: "qorong'i rejim", natija: "kechqurun ko'zim charchamasligi",
+  { kim: 'foydalanuvchi', nima: "qorong'i rejim", natija: "kechqurun ko'zim charchamasligi",
     ok: false, flaw: 'kim', why: "KIM «foydalanuvchi» — qaysi odam ekani aytilmagan." },
-  { nom: 'Qidiruv qatori', kim: 'birinchi marta kirgan mehmon', nima: 'qidiruv qatori', natija: 'kerakli darsni tez topishim',
+  { kim: 'birinchi marta kirgan mehmon', nima: 'qidiruv qatori', natija: 'kerakli darsni tez topishim',
     ok: true, flaw: null, why: 'KIM aniq, NATIJA esa yangi foyda beradi.' },
-  { nom: 'Eslatma tugmasi', kim: "9-sinf o'quvchisi", nima: 'eslatma tugmasi', natija: "eslatma tugmasi bo'lishi",
+  { kim: "9-sinf o'quvchisi", nima: 'eslatma tugmasi', natija: "eslatma tugmasi bo'lishi",
     ok: false, flaw: 'takror', why: "NATIJA NIMAni takrorlaydi — yangi foyda ko'rinmayapti." }
 ];
 // Bitta qatorlik izoh: to'g'ri hukm — yashil tasdiq; boshqa holatda neytral (jazo emas, o'rgatish)
@@ -1418,11 +1451,10 @@ const ScreenPeer = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <h2 className="title h-title fade-up" style={{ margin: 0 }}>Uch kartani <span className="italic" style={{ color: T.accent }}>tekshiring</span>.</h2>
           {!done && <span className="peer-prog fade-up"><span className="peer-dots">{PEER_CARDS.map((_, i) => <i key={i} className={`peer-dot ${i <= idx ? 'on' : ''}`} />)}</span>{idx + 1}/{PEER_CARDS.length}</span>}
         </div>
-        <Mentor>{done ? <>Mana, uchala hukmingiz yonma-yon.</> : <>Har kartaga bitta hukm bering: bu hikoya <b style={{ color: T.ink }}>to'g'ri</b> yozilganmi yoki <b style={{ color: T.ink }}>noto'g'ri</b>mi?</>}</Mentor>
+        <Mentor>{done ? <>Mana, uchala javobingiz yonma-yon.</> : <>Har kartani o'qing va <b style={{ color: T.ink }}>✓ To'g'ri</b> yoki <b style={{ color: T.ink }}>✕ Noto'g'ri</b>ga ajrating.</>}</Mentor>
         {card && (
           <>
             <div key={idx} className="peer-big fade-step">
-              <span className="peer-nom">{card.nom}</span>
               <p className="peer-sent">Men <b style={{ color: T.blue }}>{card.kim}</b> sifatida, <b style={{ color: '#B77A16' }}>{card.nima}</b>ni xohlayman, <b style={{ color: T.success }}>{card.natija}</b> uchun.</p>
             </div>
             <div className="peer-acts">
@@ -1452,7 +1484,7 @@ const ScreenPeer = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               const rr = v.ok ? null : PEER_REASONS.find(r => r.key === v.reason);
               return (
                 <div key={i} className="peer-srow">
-                  <span className="peer-snom">{c.nom}</span>
+                  <span className="peer-snom">{i + 1}-karta</span>
                   <span className="peer-sv">{v.ok ? "✓ to'g'ri" : `✕ noto'g'ri — ${rr ? rr.t : 'tuzatish kerak'}`}</span>
                   <span className="peer-sm">{exact ? '✅' : '•'}</span>
                 </div>
@@ -1464,7 +1496,7 @@ const ScreenPeer = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         )}
         <StudentPracticePulse live={live} screen={screen} />
         <MentorPracticeStats live={live} screen={screen} label="🔍 Uch kartani baholaganlar" />
-        <MentorNote>Har hukmdan keyin bitta savol bering: «Nega shunday baholadingiz?» — javob hukmning o'zidan qimmatroq. To'liq karta — o'rtadagi «Qidiruv qatori», qolgan ikkitasida kamchilik bor.</MentorNote>
+        <MentorNote>Har javobdan keyin bitta savol bering: «Nega shunday ajratdingiz?» — sabab javobning o'zidan qimmatroq. To'liq karta — o'rtadagi 2-karta (qidiruv qatori hikoyasi), qolgan ikkitasida kamchilik bor.</MentorNote>
       </div>
     </Stage>
   );
@@ -1479,7 +1511,9 @@ const CLINIC_POOL = [
   { txt: 'sahifani tez ochish', slot: 1 },
   { txt: "kutmasdan o'qishni boshlash", slot: 2 },
   { txt: 'hamma foydalanuvchi', slot: 0, trap: "«hamma» — juda mavhum. Qaysi turi aynan qiynalyapti?" },
-  { txt: 'saytning tez ishlashi', slot: 2, trap: "Bu ham o'sha harakatning takrori — foyda emas. Sayt tez ochilgandan keyin odam nima qila oladi?" },
+  // F-0727-07: takror-NATIJA tuzog'i («saytning tez ishlashi») to'g'ri NIMA-chipga o'xshab ketardi —
+  // tuzoq-turi MAVHUM-FOYDAga almashtirildi: endi ikki tuzoq bitta xato-sinf (mavhumlik) haqida.
+  { txt: 'sayt hammaga yoqishi', slot: 2, trap: "«Yoqishi» — aniq foyda emas, umumiy gap. Sayt tez ochilgach, mehmon aynan nima qila oladi? O'shani tanlang." },
 ];
 const CLINIC_ORDER = [3, 0, 4, 1, 2]; // barqaror aralash tartib (StrictMode-safe)
 const ScreenClinic = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
@@ -1525,7 +1559,7 @@ const ScreenClinic = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <span className="clinic-quote-who">💬 Mijoz yozdi:</span>
           <p className="clinic-quote-txt">«Saytim tez ochilsin!»</p>
         </div>
-        <Mentor>Mijoz faqat tilagini aytdi: «tez ochilsin». Lekin bu kimga kerakligi ham, unga qanday foyda berishi ham yo'q — shuning uchun bu hali hikoya emas. Pastdagi bo'laklardan to'liq hikoya yig'ing. Diqqat: orasida <b style={{ color: T.ink }}>2 ta tuzoq</b> bor!</Mentor>
+        <Mentor>Mijoz faqat tilagini aytdi: «tez ochilsin». Bu gapda <b style={{ color: T.ink }}>KIM</b> ham, <b style={{ color: T.ink }}>NATIJA</b> ham yo'q — shuning uchun u hali hikoya emas. Pastdagi bo'laklardan to'liq hikoya yig'ing. Diqqat: orasida <b style={{ color: T.ink }}>2 ta tuzoq</b> bor!</Mentor>
         <div className="formula-line fade-up delay-1">
           <span className="fw">Men</span>
           {SLOT_META.map((s, i) => (
@@ -1563,7 +1597,7 @@ const ScreenClinic = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         )}
         <StudentPracticePulse live={live} screen={screen} />
         <MentorPracticeStats live={live} screen={screen} label="🩺 Hikoyani yig'ib bo'lganlar" />
-        <MentorNote>Tuzoqlar ataylab: «hamma foydalanuvchi» (mavhum KIM) va «saytning tez ishlashi» (takror NATIJA). Tuzoqqa tushish — xato emas, darsning o'zi: sinfda kim tushganini so'rab, sababini muhokama qiling.</MentorNote>
+        <MentorNote>Tuzoqlar ataylab va ikkalasi bitta xato-sinf — mavhumlik: «hamma foydalanuvchi» (mavhum KIM) va «sayt hammaga yoqishi» (mavhum NATIJA). Tuzoqqa tushish — xato emas, darsning o'zi: sinfda kim tushganini so'rab, sababini muhokama qiling.</MentorNote>
       </div>
     </Stage>
   );
@@ -1626,16 +1660,21 @@ const ScreenPriority = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow="Prioritet-doska · 🔥" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !isMentorPr} label={done || isMentorPr ? 'Davom etish' : '🔥 3 hikoyani joylang'} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
         <div className="head"><h2 className="title h-title fade-up">Qaysi hikoyadan <span className="italic" style={{ color: T.accent }}>boshlaymiz</span>?</h2></div>
-        <Mentor>Hamma ishni birdaniga qilib bo'lmaydi — shuning uchun avval qaysi biridan boshlashni tanlaymiz. Buni <b style={{ color: T.ink }}>navbat belgilash</b> (prioritet) deyiladi. Hikoyani bosib tanlang, so'ng ustunga bosing. Diqqat: «Hozir»ga faqat <b style={{ color: T.ink }}>bitta</b> hikoya sig'adi!</Mentor>
+        <Mentor>Barcha ishni birdaniga qilib bo'lmaydi — shuning uchun avval qaysi biridan boshlashni tanlaymiz. Buni <b style={{ color: T.ink }}>navbat belgilash</b> (prioritet) deyiladi. Hikoyani bosib tanlang, so'ng ustunga bosing. Diqqat: «Hozir»ga faqat <b style={{ color: T.ink }}>bitta</b> hikoya sig'adi!</Mentor>
         {isDemo && <p className="small fade-up" style={{ margin: 0, color: T.ink3, fontStyle: 'italic' }}>Namuna hikoyalar — ustaxonada yozilganlar shu yerda chiqadi.</p>}
+        {/* F-0727-08: kartalar mentor-gapga yopishib turmasin — belgi-yorliqli LAGANCHA: qizil puls-border
+            «bularni joylashtirish kerak» signalini beradi; birinchi karta joylashgach tinchlanadi. */}
         {stories.some((_, i) => !assign[i]) && (
-          <div className="pd-pool fade-up delay-1">
-            {stories.map((c, i) => assign[i] ? null : (
-              <button key={i} className={`pd-card ${sel === i ? 'sel' : ''}`} onClick={() => pickStory(i)}>
-                <span className="pd-card-n">{i + 1}</span>
-                <span className="pd-card-txt"><b style={{ color: T.blue }}>{c.kim}</b> — {c.nima}</span>
-              </button>
-            ))}
+          <div className={`pd-tray ${sel >= 0 || stories.some((_, i) => assign[i]) ? 'calm' : ''}`}>
+            <span className="pd-tray-lbl">✋ Bu 3 hikoyangizni pastdagi ustunlarga joylashtiring <span className="pd-tray-arrow">↓</span></span>
+            <div className="pd-pool">
+              {stories.map((c, i) => assign[i] ? null : (
+                <button key={i} className={`pd-card ${sel === i ? 'sel' : ''}`} onClick={() => pickStory(i)}>
+                  <span className="pd-card-n">{i + 1}</span>
+                  <span className="pd-card-txt"><b style={{ color: T.blue }}>{c.kim}</b> — {c.nima}</span>
+                </button>
+              ))}
+            </div>
           </div>
         )}
         <div className="pd-board fade-up delay-2">
@@ -1657,7 +1696,7 @@ const ScreenPriority = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           })}
         </div>
         {allPlaced && hozirIdx !== undefined && (
-          <div className="done-mini fade-step">✅ Tanlov qilindi! <span className="dm-sub">— keyingi darsda «{stories[hozirIdx].nima}» hikoyasidan boshlaymiz 🚀</span></div>
+          <div className="done-mini fade-step">✅ Tanlov qilindi! <span className="dm-sub">— eng muhimingiz: «{stories[hozirIdx].nima}» 🚀</span></div>
         )}
         <StudentPracticePulse live={live} screen={screen} />
         <MentorPracticeStats live={live} screen={screen} label="🔥 Joylashtirib bo'lganlar" />
@@ -1695,19 +1734,19 @@ const Screen8 = (props) => (
     questionText="Hikoya 2: saytga kirish"
     options={["Men mehmon sifatida", "saytga kirishni xohlayman", "saytga kirish uchun"]}
     correctIdx={2}
-    explainCorrect="NATIJA harakatni takrorlaydi: «saytga kirish uchun» = «saytga kirishni xohlayman». Foyda ko'rinmaydi. To'g'risi: «...buyurtmalarimni tez topish uchun» kabi real o'zgarish."
+    explainCorrect="To'g'ri — «saytga kirish uchun» harakatning takrori, foyda aytilmagan. To'g'risi masalan: «buyurtmamni tez topish uchun»."
     explainWrong={{ 0: "KIM aniq («mehmon») — bu joyi to'g'ri. Xato NATIJA'da: u harakatni takrorlaydi. Oxirgi variantni tanlang.", 1: "NIMA to'g'ri yozilgan. Muammo — NATIJA harakatni takrorlaydi. Oxirgi variantni tanlang.", default: "NATIJA harakatni takrorlaydi (foyda yo'q) — oxirgi variantni tanlang." }}
   />
 );
 const Screen9 = (props) => (
   <QuestionScreen {...props} eyebrow="Tekshiruv · hikoya 3" scope="module-mikro"
     ctaLabel="Javobni tanlang" revealPrefix="To'g'ri javob"
-    question={<TestQ ask="Bu gap aslida nima? To'g'ri javobni tanlang."
+    question={<TestQ ask="Bu gap User Story'mi? Javobni tanlang."
       story="Saytda dark mode (qorong'i rejim) bo'lsin." />}
     questionText="Dark mode gapi: baho"
     options={["Tayyor User Story — o'zgartirish shart emas", "Imkoniyat-so'rovi (feature request) — hali hikoya emas", "JTBD keysi — milkshake'dagi kabi «natija»"]}
     correctIdx={1}
-    explainCorrect="To'g'ri! Bu gapda faqat NIMA kerakligi aytilgan. Kimga kerakligi — KIM — yozilmagan, undan nima foyda bo'lishi — NATIJA — ham yozilmagan. Shuning uchun u hali hikoya emas, shunchaki so'rov. To'liq hikoya mana bunday bo'ladi: «Men kechqurun o'qiydigan o'quvchi sifatida, qorong'i rejimni xohlayman, ko'zim charchamasligi uchun»."
+    explainCorrect="To'g'ri — bu hali hikoya emas, shunchaki so'rov: unda KIM ham, NATIJA ham yo'q, faqat NIMA aytilgan."
     explainWrong={{ 0: "Hali tayyor emas: gapda KIM ham, NATIJA ham yo'q — faqat NIMA kerakligi aytilgan. Bunday gapni imkoniyat-so'rovi deymiz.", 2: "JTBD — odam mahsulotdan kutadigan foydali natija haqidagi g'oya. Bu gap esa oddiy so'rov: unda na KIM bor, na NATIJA.", default: "Bu — imkoniyat-so'rovi: faqat NIMA kerakligi aytilgan, KIM ham, NATIJA ham yo'q. Hali hikoya emas." }}
   />
 );
@@ -1993,8 +2032,8 @@ const Screen11 = ({ screen, onNext, onPrev }) => {
   return (
     <Stage eyebrow="Mustahkamlash · 2 qadam" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext label="Davom etish" onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Bugun qanday hikoya yozdingiz — va u <span className="italic" style={{ color: T.accent }}>kimga</span> kerak?</h2></div>
-        <Mentor>Dars deyarli tugadi. Endi eng muhim hikoyangizni oling va uni <b style={{ color: T.ink }}>o'z so'zingiz bilan</b> aytib bering: kim uchun yozdingiz va unga qanday foyda beradi? Avval sherigingizga ayting, keyin bir qatorda yozing.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">Eng muhim hikoyangizni <span className="italic" style={{ color: T.accent }}>yoddan</span> aytib bera olasizmi?</h2></div>
+        <Mentor>Dars deyarli tugadi. Endi eng muhim hikoyangizni ekranga qaramasdan, yoddan aytib bering: <b style={{ color: T.ink }}>KIM</b> uchun yozdingiz va u odam qanday <b style={{ color: T.ink }}>foyda</b> oladi? Avval sherigingizga ayting, keyin bir qatorda yozing.</Mentor>
         <div className="rcp-flow">
           <div className="rcp-step fade-up delay-1">
             <div className="rcp-step-h"><span className="rcp-n">1</span><div><span className="rcp-t">🗣 Sherigingizga ayting: kim uchun, qanday foyda uchun</span></div></div>
@@ -2003,7 +2042,7 @@ const Screen11 = ({ screen, onNext, onPrev }) => {
           <div className="rcp-step fade-up delay-2">
             <div className="rcp-step-h"><span className="rcp-n">2</span><div><span className="rcp-t">✍️ Endi bir qator yozing</span></div></div>
             <input className="reflect-input" value={text} onChange={e => save(e.target.value)} placeholder="Men ... uchun hikoya yozdim, chunki unga ... kerak edi" maxLength={160} />
-            {written && <p className="small" style={{ margin: 0, color: T.success, fontWeight: 700 }}>✓ Yozildi — bu gap keyingi darsda boshlash nuqtangiz bo'ladi.</p>}
+            {written && <p className="small" style={{ margin: 0, color: T.success, fontWeight: 700 }}>✓ Yozildi!</p>}
           </div>
         </div>
       </div>
@@ -2014,7 +2053,9 @@ const Screen11 = ({ screen, onNext, onPrev }) => {
 // ===== SCREEN 12 — UYGA VAZIFA «SHARTNOMA»: yangi foydalanuvchi turini SHU YERDA tanlash/yozish =====
 // Tanlov localStorage'ga (HW_KEY) yoziladi — summary va keyingi dars o'qishi mumkin.
 const HW_KEY = 'pm-m3d2-hw-target';
-const HW_TARGETS = ["do'stim", "mentorim", "birinchi mehmon"];
+// F-0727-10: tur-nomlari EGALIKSIZ («do'stim» emas «do'st») — chip qiymati gap ichiga qo'yiladi,
+// egalik qo'shimchasi bilan gap sinadi («mentorim kimligini aniqlang»).
+const HW_TARGETS = ["do'st", "mentor", "birinchi mehmon"];
 const readHwTarget = () => { try { return localStorage.getItem(HW_KEY) || ''; } catch { return ''; } };
 const Screen12 = ({ screen, onNext, onPrev }) => {
   const [st, setSt] = useState(() => {
@@ -2031,7 +2072,7 @@ const Screen12 = ({ screen, onNext, onPrev }) => {
     <Stage eyebrow="Uyga vazifa · shartnoma" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext label="Davom etish" onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
         <div className="head"><h2 className="title h-title fade-up">Uyda <span className="italic" style={{ color: T.accent }}>kim</span> uchun hikoya yozasiz?</h2></div>
-        <Mentor>Uyda yangi <b style={{ color: T.ink }}>foydalanuvchi turi</b> uchun hikoya yozasiz — pastdan tanlang yoki o'zingiznikini yozing.</Mentor>
+        <Mentor>Uyda yangi <b style={{ color: T.ink }}>foydalanuvchi turi</b> uchun hikoya yozasiz — pastdagi ro'yxatdan bittasini tanlang yoki «➕ o'zim yozaman»ni bosing.</Mentor>
         <div className="hw-chips fade-up delay-1">
           {HW_TARGETS.map(t => (
             <button key={t} className={`hw-chip ${target === t && !customMode ? 'on' : ''}`} onClick={() => pick(t)}>{t}</button>
@@ -2039,7 +2080,7 @@ const Screen12 = ({ screen, onNext, onPrev }) => {
           <button className={`hw-chip add ${customMode ? 'on' : ''}`} onClick={openCustom}>➕ o'zim yozaman</button>
         </div>
         {customMode && (
-          <input className="reflect-input fade-step" value={custom} onChange={e => setCustom(e.target.value)} placeholder="masalan: o'qituvchi, ota-onam, ilk mijoz…" maxLength={40} autoFocus />
+          <input className="reflect-input fade-step" value={custom} onChange={e => setCustom(e.target.value)} placeholder="masalan: o'qituvchi, ota-ona, ilk mijoz…" maxLength={40} autoFocus />
         )}
         {chosen ? (
           <div className="pmtask fade-step">
@@ -2050,7 +2091,7 @@ const Screen12 = ({ screen, onNext, onPrev }) => {
               <div className="pmtask-row"><span className="pmtask-k">Muddat</span><span className="pmtask-v">keyingi darsgacha</span></div>
             </div>
             <div className="pmtask-steps">
-              <span className="pmtask-step"><i>1</i><b>{chosen}</b> kimligini bir gapda aniqlang</span>
+              <span className="pmtask-step"><i>1</i><b>{chosen}</b> qanday odam ekanini bir gapda yozing</span>
               <span className="pmtask-step"><i>2</i>unga 2 ta to'liq hikoya yozing</span>
               <span className="pmtask-step"><i>3</i>5 hikoyadan eng muhim 3 tasini belgilang</span>
             </div>
@@ -2151,8 +2192,8 @@ const QUIZ_BANK = [
   { q: "[NATIJA] qismi qanday bo'lishi kerak?", opts: ["Yozilgan kod qatorlarining umumiy soni", "Tugmaning nomi", "Sahifaning fon rangi", "Foydalanuvchi oladigan real foyda"], correct: 3 },
   { q: "«Men foydalanuvchi sifatida, qizil tugma xohlayman» — nimasi yetishmayapti?", opts: ["NATIJA (real foyda)", "KIM", "NIMA", "Hech nima — hikoya to'liq"], correct: 0 },
   { q: "Jobs-to-be-Done (JTBD) g'oyasi nima?", opts: ["Ko'proq tugma qo'shish kerak", "Kodni tezroq yozish kerak", "Har bir foydalanuvchiga alohida ilova yozib chiqish kerak", "Odamlar mahsulotning o'zini emas, u beradigan foydali natijani sotib oladi"], correct: 3 },
-  { q: "Milkshake misolida u xaridorga qanday foydali natija berardi?", opts: ["Arzon bo'lgani uchun", "Uzoq yo'lda zerikmaslik va tushlikkacha och qolmaslik uchun", "Sovg'a bilan berilgani uchun", "Reklamada juda chiroyli ko'rsatilib, ko'zga tashlangani uchun"], correct: 1 },
-  { q: "Sirni bilgach, McDonald's milkshake bilan nima qildi?", opts: ["Narxini tushirib, reklamada ko'proq ko'rsatdi", "Sotuvini faqat kechki payt ochiq qoldirdi", "Quyuqroq qilib, kirishdagi avtomatga qo'ydi", "O'rniga yo'lga qulay banan sota boshladi"], correct: 2 },
+  { q: "Milkshake misolida u xaridorga qanday foydali natija berardi?", opts: ["Arzon bo'lgani uchun", "Uzoq yo'lda zerikmaslik va tushlikkacha to'q qolish uchun", "Sovg'a bilan berilgani uchun", "Reklamada juda chiroyli ko'rsatilib, ko'zga tashlangani uchun"], correct: 1 },
+  { q: "Haqiqiy sababni bilgach, McDonald's milkshake bilan nima qildi?", opts: ["Narxini tushirib, reklamada ko'proq ko'rsatdi", "Sotuvini faqat kechki payt ochiq qoldirdi", "Yanada quyuq qilib, eshik oldidagi apparatga qo'ydi", "O'rniga yo'lga qulay banan sota boshladi"], correct: 2 },
   { q: "«Saytda dark mode bo'lsin» — bu nima?", opts: ["To'liq va tugallangan User Story hikoyasi", "Foydalanuvchi turi", "Jobs-to-be-Done (JTBD)", "Imkoniyat-so'rovi (feature request)"], correct: 3 },
   { q: "Agar NATIJA harakatni takrorlasa, nima bo'ladi?", opts: ["Foyda ko'rinmaydi — hikoya to'liq emas", "Kod tezroq ishlaydi", "Hikoya kuchliroq bo'ladi", "Foydalanuvchi turi o'z-o'zidan aniqlashadi"], correct: 0 },
   { q: "Hikoyadagi [NIMA] bo'lagi nimani bildiradi?", opts: ["Foydalanuvchi oxir-oqibat oladigan real foyda", "Foydalanuvchi turi", "Foydalanuvchi bajarmoqchi bo'lgan harakat", "Loyiha muddati"], correct: 2 },
@@ -2699,7 +2740,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
         {arena && <QuizArena live={_live || { mode: 'self' }} startSolo={arenaSolo} onClose={() => setArena(false)} />}
         <div className="split">
           <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> Endi siz bilasiz</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{r}</span></li>))}</ul></div>
-          <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>📝 Uyga vazifa — eslatma</div><p className="body" style={{ margin: 0, color: T.ink }}>{hwTarget ? <>Uyda <b style={{ color: T.accent }}>{hwTarget}</b> uchun <b>2 ta yangi hikoya</b> yozasiz.</> : <>Uyda <b>yangi foydalanuvchi turi</b> tanlab, unga <b>2 ta yangi hikoya</b> yozasiz.</>}</p><ul className="recap" style={{ marginTop: 8 }}><li><span className="ck">1</span><span>{hwTarget ? <><b>{hwTarget}</b> kimligini bir gapda aniqlang</> : <>Foydalanuvchi turini tanlab, kimligini bir gapda aniqlang</>}</span></li><li><span className="ck">2</span><span>Unga 2 ta to'liq hikoya yozing (KIM + NIMA + NATIJA)</span></li><li><span className="ck">3</span><span>5 hikoyadan eng muhim 3 tasini belgilang</span></li></ul><p className="hw-note">Muddat — keyingi darsgacha. Keyingi darsda aynan shu hikoyalardan komponent tanlaymiz! 🚀</p></div>
+          <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>📝 Uyga vazifa — eslatma</div><p className="body" style={{ margin: 0, color: T.ink }}>{hwTarget ? <>Uyda <b style={{ color: T.accent }}>{hwTarget}</b> uchun <b>2 ta yangi hikoya</b> yozasiz.</> : <>Uyda <b>yangi foydalanuvchi turi</b> tanlab, unga <b>2 ta yangi hikoya</b> yozasiz.</>}</p><ul className="recap" style={{ marginTop: 8 }}><li><span className="ck">1</span><span>{hwTarget ? <><b>{hwTarget}</b> qanday odam ekanini bir gapda yozing</> : <>Foydalanuvchi turini tanlang va u qanday odam ekanini bir gapda yozing</>}</span></li><li><span className="ck">2</span><span>Unga 2 ta to'liq hikoya yozing (KIM + NIMA + NATIJA)</span></li><li><span className="ck">3</span><span>5 hikoyadan eng muhim 3 tasini belgilang</span></li></ul><p className="hw-note">Muddat — keyingi darsgacha. Keyingi darsda aynan shu hikoyalardan komponent tanlaymiz! 🚀</p></div>
         </div>
         <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>🏅 Nishonlaringiz — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
@@ -2922,7 +2963,7 @@ export default function PmUserStoryLesson({ lang: langProp, onFinished }) {
         @media (max-width: 760px) { .split { grid-template-columns: 1fr !important; gap: clamp(14px,3vw,20px); } }
 
         /* === TAKEAWAY === */
-        .takeaway { background: ${T.accentSoft}; border-radius: 14px; padding: 20px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 5px; } .ta-bulb { font-size: 34px; } .ta-h { font-family: 'Source Serif 4', serif; font-weight: 600; font-size: clamp(16px,2.2vw,20px); color: ${T.ink}; margin: 0; } .ta-sub { color: ${T.accent}; font-weight: 600; font-size: 13px; margin: 0; }
+        .takeaway { background: ${T.accentSoft}; border-radius: 14px; padding: 20px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 5px; } .ta-bulb { font-size: 34px; } .ta-h { font-family: 'Source Serif 4', serif; font-weight: 600; font-size: clamp(16px,2.2vw,20px); color: ${T.ink}; margin: 0; } .ta-sub { color: ${T.accent}; font-weight: 600; font-size: 13px; margin: 0; } .ta-b { font-size: clamp(13.5px,1.7vw,15.5px); color: ${T.ink2}; line-height: 1.55; margin: 4px 0 0; max-width: 62ch; }
 
         /* === YAKUN === */
         .hero { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
@@ -2942,6 +2983,8 @@ export default function PmUserStoryLesson({ lang: langProp, onFinished }) {
         .bb-dots i:first-child { background: #ff5f57; } .bb-dots i:nth-child(2) { background: #febc2e; } .bb-dots i:nth-child(3) { background: #28c840; }
 
         /* === 🃏 STORY-SILUET — ish stoli ustidagi indeks-kartalar (maqsad) === */
+        .demo-src { display: inline-flex; align-items: center; gap: 7px; align-self: flex-start; font-family: 'Manrope'; font-weight: 800; font-size: 12px; letter-spacing: 0.04em; color: ${T.ink3}; background: ${T.accentSoft}; border-radius: 999px; padding: 5px 13px; }
+        .demo-src-ic { font-size: 13px; }
         .story-silo { position: relative; display: flex; align-items: center; gap: 12px; background: linear-gradient(180deg, #fff, #FBFAFE); border-radius: 4px 12px 12px 4px; padding: 13px 16px 13px 22px; box-shadow: 0 6px 16px -7px rgba(${T.shadowBase},0.2); border-left: 4px solid ${T.accent}44; transition: transform 0.22s, box-shadow 0.22s; }
         .story-silo::before { content: ""; position: absolute; left: 11px; top: 12px; width: 6px; height: 6px; border-radius: 50%; background: ${T.accent}33; box-shadow: 0 22px 0 ${T.accent}22; }
         .story-silo:hover { transform: translateY(-2px); box-shadow: 0 12px 24px -8px rgba(${T.shadowBase},0.26); }
@@ -2973,6 +3016,19 @@ export default function PmUserStoryLesson({ lang: langProp, onFinished }) {
         .broken-story { font-family: 'Source Serif 4', serif; font-size: clamp(20px,3.2vw,27px); color: ${T.ink}; margin: 0; line-height: 1.42; }
         .broken-cue { font-size: 13px; color: ${T.ink2}; margin: 0; font-weight: 600; }
         .ex-card { background: ${T.successSoft}; border-radius: 14px; padding: clamp(14px,2.2vw,18px); display: flex; flex-direction: column; gap: 10px; }
+        /* O'STIRISH-KARTA (F-0727-02): o'quvchining o'z 2 bo'lagi → to'liq hikoya, bo'laklar belgilangan */
+        .grow-card { background: ${T.paper}; border: 1.5px solid ${T.success}33; border-radius: 14px; padding: clamp(14px,2.2vw,18px); display: flex; flex-direction: column; align-items: center; text-align: center; gap: 9px; box-shadow: 0 8px 20px -12px rgba(${T.shadowBase},0.25); }
+        .grow-from { display: flex; align-items: center; gap: 9px; flex-wrap: wrap; justify-content: center; }
+        .gf-chip { font-family: 'Manrope'; font-weight: 700; font-size: clamp(12px,1.5vw,13.5px); border-radius: 99px; padding: 6px 13px; }
+        .gf-chip.harakat { background: #FBEED6; color: #B77A16; } .gf-chip.sabab { background: ${T.successSoft}; color: ${T.success}; }
+        .gf-plus { font-family: 'Manrope'; font-weight: 800; color: ${T.ink3}; }
+        .grow-arrow { font-size: 20px; color: ${T.success}; line-height: 1; }
+        .gp { padding: 1px 4px; border-radius: 5px; border-bottom: 2.5px solid; }
+        .gp.kim { background: ${T.blueSoft}; border-color: ${T.blue}; } .gp.nima { background: #FBEED6; border-color: #E8A13A; } .gp.natija { background: ${T.successSoft}; border-color: ${T.success}; }
+        .gp-legend { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
+        .gpl { font-family: 'Manrope'; font-weight: 800; font-size: 11px; letter-spacing: 0.04em; text-transform: uppercase; border-radius: 6px; padding: 3px 9px; }
+        .gpl.kim { background: ${T.blueSoft}; color: ${T.blue}; } .gpl.nima { background: #FBEED6; color: #B77A16; } .gpl.natija { background: ${T.successSoft}; color: ${T.success}; }
+        .grow-next { font-family: 'Manrope'; font-weight: 600; font-size: clamp(12.5px,1.5vw,14px); color: ${T.ink3}; margin: 4px 0 0; }
         .ex-lbl { font-family: 'Manrope'; font-weight: 800; font-size: 11.5px; letter-spacing: 0.06em; text-transform: uppercase; color: ${T.success}; }
         .ex-body { font-size: clamp(15px,2vw,18px); color: ${T.ink}; margin: 0; line-height: 1.45; }
 
@@ -2987,7 +3043,9 @@ export default function PmUserStoryLesson({ lang: langProp, onFinished }) {
         /* tap affordance — bosilishi bilinsin: bosilganda ichkariga cho'kadi */
         .s2btn:active { transform: translateY(0) scale(0.95); box-shadow: inset 0 0 0 1.5px ${T.accent}, inset 0 3px 7px -3px rgba(${T.shadowBase},0.25); color: ${T.accent}; }
         .s2tag { font-family: 'Manrope'; font-weight: 800; font-size: 12px; letter-spacing: 0.03em; padding: 6px 12px; border-radius: 99px; }
-        .s2tag.harakat { color: ${T.blue}; background: ${T.blueSoft}; } .s2tag.sabab { color: ${T.success}; background: ${T.successSoft}; }
+        /* Rang-semantikasi butun darsda bitta (F-0727-02): ko'k = KIM · sariq = harakat/NIMA · yashil = sabab/NATIJA.
+           Ilgari «harakat» shu ekranda ko'k edi — keyingi ekranda ko'k KIM'ga o'tib, ma'no ko'chib ketardi. */
+        .s2tag.harakat { color: #B77A16; background: #FBEED6; } .s2tag.sabab { color: ${T.success}; background: ${T.successSoft}; }
         /* hint = yumshoq indigo maslahat (accentSoft) — XATO-ogohlantirish EMAS; kirish silliq fade */
         .s2hint { flex-basis: 100%; font-family: 'Manrope'; font-size: 12.5px; color: ${T.accent}; background: ${T.accentSoft}; border-radius: 8px; padding: 7px 11px; animation: story-drop 0.34s ease both; }
         @media (prefers-reduced-motion: reduce) { .s2hint { animation: none; } }
@@ -3117,7 +3175,6 @@ export default function PmUserStoryLesson({ lang: langProp, onFinished }) {
         .peer-dot { width: 9px; height: 9px; border-radius: 50%; background: ${T.line}; transition: background 0.2s; }
         .peer-dot.on { background: ${T.accent}; }
         .peer-big { background: ${T.paper}; border-radius: 16px; border-left: 5px solid ${T.accentSoft}; padding: clamp(14px,2.2vw,22px) clamp(16px,2.4vw,26px); display: flex; flex-direction: column; gap: 7px; min-width: 0; box-shadow: 0 12px 30px -14px rgba(${T.shadowBase},0.28); }
-        .peer-nom { font-family: 'Manrope'; font-weight: 800; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: ${T.ink3}; }
         .peer-sent { font-family: 'Source Serif 4', serif; font-weight: 500; font-size: clamp(16px,2.2vw,22px); line-height: 1.45; color: ${T.ink2}; margin: 0; min-width: 0; overflow-wrap: anywhere; }
         .peer-sent b { font-weight: 600; }
         .peer-acts { display: flex; gap: clamp(8px,1.4vw,14px); flex-wrap: wrap; }
@@ -3154,6 +3211,19 @@ export default function PmUserStoryLesson({ lang: langProp, onFinished }) {
         .clinic-trap { align-self: flex-start; font-family: 'Manrope'; font-weight: 700; font-size: clamp(13px,1.6vw,14.5px); line-height: 1.45; color: #8A5A00; background: #FFF3D6; border-radius: 12px; padding: 11px 15px; box-shadow: inset 0 0 0 1.5px #E8A13A55; }
         .frag-chip.burned { opacity: 0.45; text-decoration: line-through; cursor: not-allowed; background: ${T.bg}; }
         /* === PRIORITET-DOSKA: 3 ustun (Hozir=1 joy) + tanla-bos kartalar === */
+        /* LAGANCHA (F-0727-08): joylashtirilmagan kartalar alohida idishda — qizil puls «meni joyla» signali */
+        .pd-tray { display: flex; flex-direction: column; gap: 9px; margin-top: clamp(8px,1.6vw,14px); background: #FFF8F7; border-radius: 14px; padding: 12px 14px 13px; animation: tray-in 0.5s ease-out, tray-pulse 1.5s ease-in-out 0.5s infinite; }
+        @keyframes tray-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+        @keyframes tray-pulse {
+          0%, 100% { box-shadow: 0 0 0 2px ${T.err}44, 0 0 0 0 rgba(229,72,77,0); }
+          50% { box-shadow: 0 0 0 2.5px ${T.err}, 0 0 20px 3px rgba(229,72,77,0.30); }
+        }
+        .pd-tray.calm { animation: none; box-shadow: 0 0 0 1.5px ${T.err}55; }
+        .pd-tray-lbl { font-family: 'Manrope'; font-weight: 800; font-size: clamp(12px,1.5vw,13.5px); color: #C2362F; display: inline-flex; align-items: center; gap: 6px; }
+        .pd-tray-arrow { display: inline-block; animation: tray-arrow 1.5s ease-in-out infinite; }
+        @keyframes tray-arrow { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(3px); } }
+        .pd-tray.calm .pd-tray-arrow { animation: none; }
+        @media (prefers-reduced-motion: reduce) { .pd-tray, .pd-tray-arrow { animation: none; } .pd-tray { box-shadow: 0 0 0 2px ${T.err}88; } }
         .pd-pool { display: flex; flex-wrap: wrap; gap: 9px; }
         .pd-card { display: inline-flex; align-items: center; gap: 8px; text-align: left; background: ${T.paper}; border: none; border-radius: 11px; padding: 9px 13px; cursor: pointer; box-shadow: 0 6px 16px -7px rgba(${T.shadowBase},0.22); transition: transform 0.15s, box-shadow 0.15s; max-width: 100%; }
         .pd-card:hover { transform: translateY(-2px); }
