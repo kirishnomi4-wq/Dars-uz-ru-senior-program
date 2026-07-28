@@ -413,6 +413,23 @@ const runPractice = (entry, fromScreen) => {
 - `reset()` da `setMentorPractice(null)` ham tozalanadi. CSS: `mp-*` klasslar (overlay, card, flow, demo/next tugmalar).
 - ❌ Xato: `runPractice(entry)` fromScreen'siz (signal yo'q → mentor panel bo'sh) yoki mentor uchun ham overlay ochish.
 
+#### 9.4-A 🔴 PRAKTIKA-DARVOZASI FAQAT BIR MARTA YOPILADI — takrorlash bepul (2026-07-28, PM 89-qonun bilan bir xil)
+
+> **Muammo (hozirgi holat — TUZATILISHI KERAK):** `next()` izohida ochiq yozilgan: «*agar shu ekrandan keyin praktika bo'lsa — **har safar** compilatorni ochadi (orqaga qaytib qayta bossa ham)*», va bajarilganlik **hech qayerda saqlanmaydi**. Natija: o'quvchi uyda darsni takrorlamoqchi bo'lsa, **uchala praktikani qaytadan** bajarmaguncha oldinga o'tolmaydi. Texnik darsda 3 praktika bo'lgani uchun bu PM darsdan ham og'irroq.
+
+**Talab:**
+1. 🔴 **Bajarilganlik saqlanadi.** Har praktika uchun dars-doirasidagi kalit: `localStorage['<lessonId>-practice-<fromScreen>'] = { done: true }` (kod ham saqlansa yanada yaxshi). Kalit **dars-doirasida** bo'lsin (11-qonun formati) — aks holda darslar bir-birining holatini o'qiydi.
+2. 🔴 **Qayta kirganda majburlamaydi.** `next()` da: praktika allaqachon bajarilgan bo'lsa — overlay **ochilmaydi**, to'g'ridan-to'g'ri `advance()`. Xohlasa o'zi qayta ochishi mumkin (ixtiyoriy tugma), lekin bu **darvoza emas**.
+3. 🔴 **Takrorlash-yo'li** (boshqa qurilma holati): bola sinfda maktab kompyuterida bajargan bo'lsa, dastur buni **BILA OLMAYDI** (login yo'q, PIN dars tugagach yopiladi). Shu YAGONA holat uchun **faqat erkin (self) rejimda** xira **matn-havola** qo'yiladi:
+   - matni **umumiy**: «✓ Bu mashqni sinfda bajarganman — davom etish →» (❌ «uy vazifasiga o'tish» — darsda bir nechta praktika bor, keyin nima kelishi har xil);
+   - savol-shaklda YOZILMAYDI («bajarganmisiz?» tugmasi nima bo'lishini aytmaydi);
+   - **tugma emas, xira havola** — asosiy harakat bilan raqobatlashmasin;
+   - 🔴 u **FAQAT eshikni ochadi**: nishon bermaydi · «bajarildi» deb yozmaydi · serverga signal yubormaydi · xotiraga saqlanmaydi (keyingi seansda yana so'raladi — ataylab, aks holda soxta «bajarildi» belgisiga aylanadi);
+   - jonli darsda va mentor ekranida **ko'rinmaydi**; bajarilgan bo'lsa ham ko'rinmaydi (darvoza allaqachon ochiq).
+4. **Sabab-tamoyil:** jonli darsda o'quvchi praktikani allaqachon o'tkazib yubora oladi (`optionalLive`/freeRide, 5.5) — demak **erkin rejim jonlidan QATTIQROQ bo'lib qolmasligi kerak**.
+
+Namuna-tatbiq: `src/1-Modull/PmLesson2.jsx` → `ScreenCoding` + `.stq-skip`.
+
 ---
 
 ## 10. 🏅 BADGES (nishonlar) tizimi
@@ -441,6 +458,49 @@ const AchCtx = createContext(null); // earned Set — Stage hisoblagichi o'qiydi
 - `earn` **`earnedRef` bilan StrictMode-safe** (setState ichida setState emas).
 - `AchCtx.Provider value={earned}` root'da; `<Current ... achievements={earned} />`; `<AchToasts .../>` root'da.
 - Boshqa darsga: `ACHIEVEMENTS` + `ACH_TRIGGERS` o'sha darsning bosqichlariga moslanadi.
+
+### 10.1 🔴 NISHONLAR MENTOR EKRANIDA (2026-07-28 — 3 qatlamning IKKITASI o'chadi)
+
+> **Sabab:** nishon — **qurilmaga xos, shaxsiy** narsa. Mentor rejimida mentor testga javob **berolmaydi** (`if (solved || isMentorLive) return;`), shuning uchun proyektordagi hisob mentorning **o'z bosishlarini** sanaydi, sinf ishini emas → **yolg'on son**.
+
+| Qatlam | Mentor (proyektor) | O'quvchi |
+|---|---|---|
+| 1. 🎉 To'liq-ekran bayram (`AchCelebrate`) | ✅ **QOLADI** | ✅ bor |
+| 2. Hisoblagich (tepadagi 🏅 N/M) | ❌ **YO'Q** | ✅ bor |
+| 3. Kolleksiya (yakuniy ekranda ro'yxat) | ❌ **YO'Q** | ✅ bor |
+
+- Bayram **nega qoladi:** u **lahza**, hisob emas — mentor sinf bilan birga mashqni bajarganda o'sha moment haqiqatan umumiy va proyektorda chiroyli.
+- **Tatbiq:** hisoblagich komponentining O'ZI qaror qiladi (`if (gate?.live?.mode === 'mentor') return null` — **barcha hooklardan KEYIN**, React qoidasi), shunda bitta tuzatish hamma ekranga tarqaladi. Kolleksiya esa yakuniy ekranda `{!isMentorL && ...}` qorovuli ostida.
+- 📌 Qisqa qoida: **mentor ekrani = SAHNA (lahzalar) · o'quvchi qurilmasi = DAFTAR (hisob)** — batafsil 10-B bo'limda.
+
+---
+
+## 10-B. 🖥 MENTOR EKRANI (proyektor) — QAT'IY KO'RINISH (2026-07-28)
+
+> **Nima uchun qat'iy:** mentor ekrani — bu **proyektor**, uni butun sinf ko'radi. U o'quvchi ko'rinishining nusxasi EMAS. Yangi dars qurilganda yoki tekshirilganda quyidagi jadval **band-ma-band** solishtiriladi.
+
+**Ikki tayanch tamoyil:**
+1. 🔴 **SHAXSIY narsa proyektorda chiqmaydi** — shaxsiy nishon hisobi, shaxsiy ball. Mentorda ular yolg'on son (10.1 ga qarang).
+2. 🔴 **MAG'LUBIYAT-TABLOSI chiqmaydi** — butun sinf oldida «0/4 to'g'ri» ko'rsatish kamsitadi. Mentor bu ma'lumotni **YO'QOTMAYDI**: u dars **PAYTIDA**, aynan test ekranida `MentorTestStats` orqali oladi (6-bo'lim) — o'z joyida va o'z vaqtida.
+
+| Element | Mentor | O'quvchi | Sabab |
+|---|---|---|---|
+| Nishon-hisoblagichi (🏅 N/M) | ❌ YO'Q | ✅ bor | shaxsiy hisob |
+| Yakuniy nishon-kolleksiyasi | ❌ YO'Q | ✅ bor | shaxsiy hisob |
+| To'liq-ekran nishon-bayrami | ✅ **BOR** | ✅ bor | **lahza**, hisob emas |
+| Podiumda «📊 Savollar bo'yicha» (`N/M` per savol) | ❌ **YO'Q** — karta butunlay olib tashlanadi | ❌ yo'q | mag'lubiyat-tablosi |
+| Shaxsiy ball-aylanasi (`ScoreRing`) | ❌ YO'Q | ✅ bor (mustaqil rejimda) | shaxsiy hisob |
+| Podium reytingi (g'oliblar) | ✅ BOR | ✅ bor | sinf yutug'i — bayram, jazo emas |
+| `MentorTestStats` (test paytida) | ✅ **BOR** | ❌ yo'q | mentorning ASOSIY asbobi |
+| `MentorPracticeOverlay` / praktika-paneli | ✅ **BOR** | ❌ yo'q | kim tugatdi — mentorga kerak |
+| Sinf-pulsi (o'quvchiga «N bajardi») | ❌ yo'q | ✅ bor | mentorda o'rniga to'liq panel |
+| Mentor-eslatmalari («faqat sizga») | ✅ BOR (ixcham chip) | ❌ yo'q | yo'riq faqat mentorga |
+| Takrorlash-yo'li (9.4-A) | ❌ yo'q | ✅ faqat erkin rejimda | jonli darsda kerak emas |
+| Test javobi reveal'gacha | ❌ yashirin | ❌ yashirin | 5.7 Kahoot-reveal |
+
+🔴 **Tekshirish:** dars mentor rejimida ochilib, 12 band ko'z bilan (yoki `live.mode === 'mentor'` qorovullarini grep bilan) tasdiqlanadi. Karta olib tashlanganda uning **CSS'i ham o'lik qolmasin** (`pod-qstats`/`qstat-*` kabi) — residue-grep majburiy. Bittasi mos kelmasa — dars etalon emas.
+
+Namuna-tatbiq: `src/pm/PmUserStoryLesson.jsx` (qstats allaqachon yo'q) · `src/1-Modull/PmLesson2.jsx`.
 
 ---
 
@@ -479,6 +539,7 @@ const AchCtx = createContext(null); // earned Set — Stage hisoblagichi o'qiydi
 
 | Bug | Belgi | Sabab | Tuzatish |
 |---|---|---|---|
+| 🔴 **`<style>` ichida ortiqcha backtick** (2026-07-28) | IDE **yuzlab** xato ko'rsatadi («'}' expected», «Did you mean `{'}'}`»), esbuild esa BITTA xato beradi | `<style>{` … `}</style>` bloki JS **shablon-satri**; uning ichiga (odatda CSS izohiga) yozilgan backtick satrni **erta yopadi** va undan keyingi butun CSS+JSX kod deb o'qiladi | CSS izohlarida backtick ISHLATMANG. 🔴 **Diagnostika:** IDE ro'yxatiga qaramang — **esbuild**ning BIRINCHI xatosiga qarang, ildiz doim bitta. ⚠️ Grep bilan ovlash ishonchsiz (ko'p qatorli izohda backtick 2-3-qatorda bo'lishi mumkin, `{/* … */}` JSX-izohlari esa yolg'on-signal beradi — ular shablon-satridan TASHQARIDA va zararsiz). To'g'ri usul: `<style>{\`` va `` \`}</style> `` orasidagi matnni ajratib, undagi backticklarni sanash — 0 bo'lishi shart |
 | **Kalit yuklanmaydi** | Podium 0/5, arena 0 0 0 0 | `useLiveSession(lessonId)` `answerKey`ni tashlaydi; `set_quiz_keys` yo'q | 2.1 + 2.2 |
 | **Mentor stats "1 xato"** | To'g'ri javob "xato" sanaladi (ustunga zid) | Sanoq eskirgan `a.correct`ga tayanadi | 6-bo'lim (`picked === correctIdx`) |
 | **DragDrop dublikat** | Chiplar o'nlab ko'payib ketadi | setState ichida setState (StrictMode 2x) | 9.1 (yagona atomik holat) |
@@ -586,6 +647,15 @@ INTERAKTIV / DIZAYN (🟢 to'liq etalon uchun)
 [ ] 10   Badges — AYNAN 4 nishon (3 bosqich + graduate), hammasi real olinadigan; hisoblagich + kolleksiya; ko'rinadigan yorliq "Badges" (❌ "Achievements")
 [ ] 10   nishon nomi QISQA INGLIZCHA o'yin-nom ("Built It!", "Nice Catch!", "Level Up!") + o'zbekcha desc
 [ ] 10   TO'LIQ-EKRAN bayram (AchCelebrate, .acu-*) — kichik toast EMAS; navbatda bittalab
+
+PRAKTIKA-DARVOZASI VA MENTOR EKRANI (2026-07-28)
+[ ] 9.4-A praktika bajarilganligi SAQLANADI (dars-doirasidagi localStorage kaliti) — qayta kirganda majburlamaydi
+[ ] 9.4-A takrorlash-yo'li: FAQAT erkin rejimda, xira matn-havola, matni UMUMIY («davom etish», ❌ «uy vazifasiga»)
+[ ] 9.4-A havola FAQAT eshikni ochadi — nishon yo'q, «bajarildi» yozuvi yo'q, server-signal yo'q, saqlanmaydi
+[ ] 10.1  mentor ekranida: nishon-hisoblagichi YO'Q · kolleksiya YO'Q · to'liq-ekran bayram BOR
+[ ] 10.1  hisoblagich qorovuli komponentning O'ZIDA (return null — barcha hooklardan KEYIN)
+[ ] 10-B  podiumda «📊 Savollar bo'yicha» (0/4 kabi) kartasi YO'Q + CSS qoldig'i ham yo'q (pod-qstats/qstat-*)
+[ ] 10-B  shaxsiy ScoreRing mentorda YO'Q · MentorTestStats/praktika-paneli BOR · javob reveal'gacha yashirin
 [ ] 11   UI qoidalari (emoji, pv-h1, li:empty, base target)
 [ ] 11.14 onboarding: coach-mark spotlight tur (TourGuide .tg-*, data-tour), bir marta; katta PIN AUTO-ochilmaydi (faqat «Ko'rsatish» — aks holda tur bilan to'qnashadi)
 [ ] 11.15 LiveBadge xira (.live-badge opacity 0.4) → hover'da tiniq

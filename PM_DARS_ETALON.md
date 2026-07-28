@@ -30,6 +30,118 @@
 - **Dekor o'qitadi (M7):** fon/arena tokenlari (`QZ_BG_SHAPES`/`TOK`) shu dars atamalaridan; ma'nosiz shakl yo'q. Arena CodeStrike brendi O'ZGARMAYDI (platforma mahsuloti).
 - Universal: layout 1100px+`--lz`+padH60 · `MENTOR_IMG`+`PHOTO_SET` hostlangan · xira LiveBadge · o'z-ball yashil · `prefers-reduced-motion` har og'ir animatsiyada.
 
+## 1-B. 🔀 PM DARSLARNING IKKI TURI (boshliq-qarori, 2026-07-28)
+
+> **Sabab:** PM darslar bir xil emas. Bir qismi texnikaga yaqin (UX/UI, struktura) — mavzu **ko'rinadigan interfeys** orqali ochiladi; bir qismi sof PM (User Story, JTBD) — mavzu **odam va keys** orqali ochiladi. Ikkalasini bitta qolipga solish har ikkalasini ham buzadi.
+> **Qoida:** yangi PM dars qurishdan OLDIN uning **turi aniqlanadi**; blok-standart (2-bo'lim) shu turga qarab o'qiladi.
+
+**Ikkala turda ham AYNAN bir xil (bularda farq YO'Q):** 1-bo'lim identitet-pasporti (rang/shrift/karta/soya) · jonli-ball relslari (`useLiveSession` · `INLINE_KEYS`↔`correctIdx` · `QUIZ_BANK` 3/3/3/3 · `PRACTICE_BASE` · podium · CodeStrike arena) · matn qonunlari (EKRAN ≤400 grapheme · mentor ≤2 gap, interaktivda ≤1 · atama hodisadan KEYIN · slot-sanog'i taqiq · siz-forma) · ekran-ritmi (ilinma → nazariya → test; testlar ketma-ket EMAS) · mentor-blok · xira LiveBadge.
+
+| | **1-TUR — texnikaga yaqin** | **2-TUR — sof PM** |
+|---|---|---|
+| **Etalon-fayl** | `src/1-Modull/PmLesson2.jsx` (Struktura) | `src/pm/PmUserStoryLesson.jsx` (P0) |
+| **Mavzu nima orqali ochiladi** | real saytlar/interfeys — o'quvchi **ko'radi** | odamlar va keyslar — o'quvchi **tasavvur qiladi** |
+| **Nazariya-bloki** | interfeys-namunalar (tap-to-reveal, solishtiruv) | **KEYS-SLAYD** (K1–K19, bashorat bilan) |
+| **O'quvchining asosiy harakati** | joylashtiradi · tartiblaydi · moslaydi · tuzatadi | **yozadi** (o'z artefaktini) |
+| **Artefakt** | to'g'ri qurilgan **tuzilma** | **matn** — keyingi darsga o'tadi |
+| **USTAXONA (48/80-qonun)** | 🔴 **majburiy EMAS** — yozma artefakt bu turga tegishli emas | 🔴 majburiy (bittalab-yozish qolipi) |
+| **Koding-ekran** | tuzilmani **kod bilan quradi** | o'z **matnini** koddan o'tkazadi |
+| **Misol darslar** | UX/UI · struktura · prototip · dizayn-tizim | User Story · JTBD · Metrika · Pitch · Demo Day |
+
+**ARALASH DARS:** mavzu ikkala tomonga ham tegsa — nazariya-blokini bir turdan, amaliyot-blokini boshqasidan oladi. Qaysi qismi qaysi turdan olingani senariyda (GATE S) yozib qo'yiladi.
+
+🔴 **KLON-TAQIQ (23-qonun kengaytmasi):** ikki etalon **bir-birini takrorlamaydi**. Umumiy tizim (rang/shrift/karta/rels) bir xil, lekin ekran-vizuallari, mexanikalari va CSS-klass oilalari har turda O'ZINIKI. «Etalonda shunday edi» — vizualni ko'chirishga asos EMAS.
+
+## 1-C. 🔔 NAVBAT-PULSI — UNIVERSAL YECHIM (qaror-tartibi, 2026-07-28)
+
+> **Nima uchun bor:** boshlang'ich tur (onboarding) hamma narsani OLDINDAN aytadi — o'quvchi kerak bo'lganda unutgan bo'ladi. Puls esa AYNAN KERAK BO'LGAN LAHZADA aytadi. Shuning uchun tur olib tashlanadi, o'rniga puls qo'yiladi.
+> **Bu bo'lim nima uchun bor:** har ekranda «pulsni qayerga qo'ysam?» deb o'ylab o'tirmaslik uchun. Quyidagi tartib bo'yicha yurilsa, javob o'z-o'zidan chiqadi. Normativ taqiqlar — 88-qonunda.
+
+### 1-C.1 Puls bitta savolga javob beradi
+**«Bu ekran hozir mendan nimani kutyapti?»** — puls bezak emas, ekranning HOZIRGI talabi. Shundan kelib chiqib, u faqat bitta joyda bo'lishi mumkin.
+
+### 1-C.2 Qadam 1 — HARAKAT-ZANJIRINI yozing
+Ekran tugashi uchun nima, qaysi tartibda bo'lishi kerak? Zanjir **dars mantig'i** bo'yicha yoziladi — ekrandagi joylashuv yoki DOM tartibi bo'yicha EMAS. Namunalar (PmLesson2 = 1-tur etaloni):
+
+| Ekran turi | Harakat-zanjiri |
+|---|---|
+| Ilinma (ovoz berish) | ko'rilmagan holatni ko'rish → ovoz berish → o'tish |
+| Juftlik-solishtiruv | ko'rilmagan holatni ko'rish → o'tish |
+| Ro'yxat («hammasini ko'r») | har elementni ochish → o'tish |
+| Animatsiya/stepper | boshlash → o'tish |
+| Juftlik-mashqi | chap ustundan tanlash → o'ng ustundan tanlash (×N) → o'tish |
+| Koding | kompilyatorni ochish → bajarish → o'tish |
+
+### 1-C.3 Qadam 2 — navbat kimda?
+Zanjirdagi **birinchi bajarilmagan halqa** — navbat o'shanda. Puls faqat shu yerda. Halqa bajarilishi bilan puls **darhol** o'chadi va navbat keyingisiga o'tadi. Oxirgi halqa doim «o'tish» bo'ladi — uni `NavNext` o'zi bajaradi.
+
+### 1-C.4 Qadam 3 — naqshni halqaning SHAKLI belgilaydi
+| Halqa shakli | Naqsh | Vosita |
+|---|---|---|
+| Bitta aniq element bosilishi kerak | tinch nafas | `useTurnHint(shart)` → `turn-ring` |
+| Bir nechtasining **hammasi** ko'rilishi kerak | **yurish** — faqat bajarilmaganlar aylanadi | `useTurnWalk(pending)` → `turn-ring turn-step` |
+| Bir nechtasidan **bittasi** tanlanadi | **to'lqin** — hammasi teng, cheklangan | `turn-ring turn-wave w1/w2/w3` |
+| «Keyingi ekranga o'tish» | avtomatik | `NavNext` — **qo'shimcha ish YO'Q** |
+
+🔴 **Yurish tartibi** darsning o'z ketma-ketligiga ergashadi (`ORDER`, `PAIRS` kabi) — alifbo yoki DOM tartibiga emas.
+
+### 1-C.5 Sukut-holati tuzog'i (eng ko'p qilinadigan xato)
+Element sukut bo'yicha ochiq/tanlangan turgan bo'lsa — **u yonmaydi**. **Ko'rilmagani** yonadi. *(PmLesson2: «Tartibli» ochiq turadi → «Chalkash» yonadi; «To'g'ri tartib» ochiq → «Aralash» yonadi.)*
+
+### 1-C.6 Puls QO'YILMAYDIGAN joylar
+- ballanadigan test variantlari — **javob berilgunga qadar** (17-qonun: test halolligi);
+- qulflangan / mentorni kutayotgan tugma (83-qonun qulf-yo'lini beradi);
+- ikkinchi darajali boshqaruvlar: «Orqaga», «Qaytadan», zoom, til-almashtirgich;
+- **teng bo'lmagan variantlardan bittasi** — bittasini yoritish javobga undash bo'ladi; bu holda **to'lqin** ishlatiladi;
+- navbat boshqa zonaga o'tgan bo'lsa — *(juftlik-mashqida chap ustundan tanlangach o'ng ustun YONMAYDI: u javobni aytib qo'yardi)*;
+- mentor-boshqaruvlari o'quvchi ko'rinishida.
+
+### 1-C.7 Tekshirish — majburiy 5 band
+1. **Sekundomer:** puls ~2.6s dan OLDIN chiqmasin (darhol chiqsa — shart noto'g'ri ulangan).
+2. **Bir lahzada nechta yonyapti?** — MAKS **1**. Yurish/to'lqinda ham shu.
+3. Harakatdan keyin **darhol** o'chdimi?
+4. Test ekranida javobgacha yonmasligi.
+5. `prefers-reduced-motion` da butunlay o'chishi.
+
+> ⚠️ **SINOV TUZOG'I (bir marta tushilgan):** `getComputedStyle(el, '::after').opacity` — `::after` mavjud bo'lmasa ham **1** qaytaradi. Shuning uchun avval **klass borligini** tekshiring, keyingina ko'rinishini. Aks holda «ekranda hamma element yonyapti» degan YOLG'ON natija olasiz.
+
+### 1-C.8 Kod-shartnomasi (ko'chiriladi, qayta ixtiro qilinmaydi)
+- Vaqtlar: `TURN_HINT_MS = 2600` · `TURN_STEP_MS = 1300` · `TURN_PAUSE_MS = 3200`.
+- `useTurnHint(active)` → `bool`; `active` yolg'onga o'tsa darhol o'chadi.
+- `useTurnWalk(pending, enabled)` → hozir yonayotgan kalit yoki `null`; `pending` bo'sh bo'lsa — o'chiq; bitta qolsa — tinch yonadi (yurishning ma'nosi qolmaydi).
+- `turnCls(lit, key, walking)` → klass qo'shimchasi.
+- CSS: `.turn-ring` (geometriya + tinch nafas; halqa `::after` da — layoutni surmaydi) · `.turn-step` (yurish qadami) · `.turn-wave` + `w1/w2/w3` (to'lqin).
+- **O'lcham hech qachon o'zgarmaydi** — faqat halqa nafas oladi (UI sakramaydi).
+- Manba-fayl: `src/1-Modull/PmLesson2.jsx` (1-tur etaloni).
+
+## 1-D. 🖥 MENTOR EKRANI (proyektor) — QAT'IY KO'RINISH (2026-07-28)
+
+> **Nima uchun qat'iy:** mentor ekrani — bu **proyektor**, uni butun sinf ko'radi. Shuning uchun u o'quvchi qurilmasidan boshqa qonunlarga bo'ysunadi. Yangi dars qurilganda yoki tekshirilganda quyidagi jadval **band-ma-band** solishtiriladi.
+
+**Ikki tayanch tamoyil:**
+1. 🔴 **SHAXSIY narsa proyektorda chiqmaydi.** Nishon, shaxsiy ball — bular QURILMAGA xos. Mentor rejimida ular mentorning o'z bosishlarini sanaydi, sinf ishini emas → proyektorda **yolg'on hisob** bo'ladi.
+2. 🔴 **MAG'LUBIYAT-TABLOSI proyektorda chiqmaydi.** Butun sinf oldida «0/4 to'g'ri» ko'rsatish — kamsitish. Mentorga bu ma'lumot dars **PAYTIDA**, o'z joyida beriladi (test ekranidagi panel), yakuniy ekranda EMAS.
+
+> 📌 Qisqa qoida: **mentor ekrani = SAHNA (lahzalar) · o'quvchi qurilmasi = DAFTAR (hisob).**
+
+| Element | Mentor (proyektor) | O'quvchi | Sabab |
+|---|---|---|---|
+| Nishon-hisoblagichi (tepadagi kichik 🏅 N/M) | ❌ **YO'Q** | ✅ bor | shaxsiy hisob; mentorda yolg'on son |
+| Yakuniy ekrandagi nishon-ro'yxati | ❌ **YO'Q** | ✅ bor | shaxsiy hisob |
+| To'liq-ekran nishon-bayrami (`AchCelebrate`) | ✅ **BOR** | ✅ bor | bu **lahza**, hisob emas — sinf bilan birga nishonlanadi |
+| Podiumda «📊 Savollar bo'yicha» (`N/M` per savol) | ❌ **YO'Q** — butunlay olib tashlanadi | ❌ yo'q | mag'lubiyat-tablosi (2-tamoyil) |
+| Shaxsiy ball-aylanasi (`ScoreRing`) | ❌ **YO'Q** | ✅ bor (faqat mustaqil rejimda) | shaxsiy hisob |
+| Podium reytingi (g'oliblar, sinf natijasi) | ✅ **BOR** | ✅ bor | sinf yutug'i — bayram, jazo emas |
+| Test-paneli (`MentorTestStats`) | ✅ **BOR** | ❌ yo'q | mentorning ASOSIY asbobi — aynan shu yerda «sinf qiynaldi» ko'rinadi |
+| Praktika-paneli (`MentorPracticeStats`) | ✅ **BOR** | ❌ yo'q | kim bajardi — mentorga kerak |
+| Sinf-pulsi (`StudentPracticePulse`) | ❌ yo'q | ✅ bor | mentorda uning o'rnida to'liq panel turadi |
+| Mentor-eslatmalari («Eslatma — faqat sizga») | ✅ **BOR** (ixcham chip) | ❌ yo'q | yo'riq faqat mentorga |
+| Takrorlash-yo'li (89-qonun) | ❌ yo'q | ✅ faqat erkin rejimda | jonli darsda kerak emas |
+| Navbat-pulsi (88-qonun) | ✅ bor | ✅ bor | qulflangan tugma ikkalasida ham yonmaydi |
+| Test javobi reveal'gacha | ❌ **yashirin** | ❌ yashirin | 44-qonun: proyektorda javob oshkor bo'lmaydi |
+
+🔴 **Tekshirish usuli:** dars mentor rejimida ochilib, yuqoridagi 13 band ko'z bilan (yoki `live.mode === 'mentor'` qorovullarini grep bilan) tasdiqlanadi. Bittasi ham mos kelmasa — dars etalon emas.
+
 ## 2. 🔴 BLOK→EKRAN STANDARTI (P0 V4 naqshi, ~17 ekran — 2026-07-24)
 
 ```
@@ -278,8 +390,28 @@ s0 HOOK (keys-savol, ovoz-berish, vizual imzo-sahna) → s1 MAQSAD (JONLI natija
 
 86. 🔴 **EKRAN-MUSOR TAQIQI.** **(a)** tanlov-chiplar desktopda BITTA qatorga sig'adi (odatda ≤4 — 5-chip ikkinchi qatorga tushsa, bittasi olib tashlanadi; qaysi biri: tanlov ekranning CHO'QQISIDA qolsin); **(b)** izoh-qator faqat YANGI ma'no bersagina turadi (❌ «Bular — daftardan olingan o'z hikoyalaringiz» — kartalar o'zi ko'rinib turibdi); **(c)** MentorNote faqat ekran mexanikasida YO'Q yo'riq uchun — o'quvchi-matnda mavjud narsani takrorlasa o'chiriladi. Tekshiruv: har qatorga «bu qator olib tashlansa nima yo'qoladi?» savoli — javob «hech nima» bo'lsa, o'chiriladi. Mas'ul: `pm-metodist` + `pm-tekshiruvchi`. *(F-0727-59/60/62)*
 
+**2026-07-28 BOSHLIQ-QARORI (87) — ikki-tur arxitekturasi bilan birga muhrlandi:**
+
+87. 🔴 **KODING QISMI OLDINGI TEXNIK DARSLARDAN O'SADI (ikkala turda ham).** PM darsning koding-ekrani mustaqil topshiriq EMAS — u o'quvchi **allaqachon o'rgangan** texnik bilimni ishlatib ko'radigan joy, va u **qiziqarli qilib** shu darsning mavzusiga ulanadi. Shuning uchun koding loyihalashdan OLDIN majburiy savol: **«bu darsgacha bola texnikadan aynan nimani o'rgangan?»** — dastur tartibidagi oldingi texnik darslar (`src/App.jsx` `MODULES`) grep bilan tekshiriladi, va topshiriq FAQAT o'sha o'tilgan material ustiga quriladi (9.4-qonun). **(a)** o'tilmagan teg/atama/sintaksis topshiriqqa kiritilmaydi — hatto «oson» tuyulsa ham; **(b)** eng kuchli koding — texnik darsning o'zi **qoldirgan bo'shliqni** yopadigani (masalan nazariy o'rgatilib, praktikasi qilinmagan mavzu); **(c)** topshiriq PM-mavzu bilan texnik-material o'rtasidagi bog'lanishni **halol** ko'rsatadi — PM atamasi (hero, CTA, JTBD) HTML/JS tegi kabi ko'rsatilmaydi va aksincha; **(d)** kompilyator har faylda **o'zida** yoziladi (import YO'Q — LMS uchun o'zi-yetarli), dvijok manbasi `src/compilator/HtmlCompiler.jsx` yoki P0 `PmCompiler`, lekin qobiq va shartlar shu darsniki. Mas'ul: `pm-quruvchi`. *(2026-07-28 foydalanuvchi qarori; birinchi tatbiq — PmLesson2 HTML-struktura kompilyatori, manba-bo'shliq: `Htmllesson2.jsx:2562` «Struktura praktikasi olib tashlandi»)*
+
+**2026-07-28 NAVBAT-PULSI (88) — onboarding-tur o'rniga:**
+
+88. 🔴 **NAVBAT-PULSI — «hozir navbat kimda» signali (onboarding-tur O'RNIGA).** 📘 **Amaliy qaror-tartibi: 1-C bo'lim** (harakat-zanjiri → navbat → naqsh → tekshiruv). Quyidagi bandlar — normativ taqiqlar. Boshlang'ich tur (coach-mark onboarding) hamma narsani oldindan aytadi, o'quvchi esa kerak bo'lganda unutgan bo'ladi — shuning uchun u olib tashlanadi va o'rniga **lahzali affordans** qo'yiladi: bosilishi kerak bo'lgan element o'zi yonib, «navbat menda» deb turadi. Qat'iy 4 shart: **(a)** ekranda istalgan lahzada **FAQAT BITTA** element yonadi — navbat kimda bo'lsa, o'sha; harakat bajarilishi bilan puls darhol o'chadi va navbat keyingisiga (odatda «Davom etish»ga) o'tadi. **Ko'p variantli ro'yxatda — TO'LQIN:** variantlar birma-bir yonadi (kechikish ~0.7s, har biri ~0.4s), ya'ni lahzada baribir bittasi. 🔴 Bittasini ajratib yoritish **TAQIQ** — variantlar teng emas (biri to'g'ri, biri noto'g'ri), shuning uchun bittasini yoritish javobga undash bo'ladi; to'lqin esa hammasiga teng munosabatda. To'lqin **cheklangan** (~4 aylanish) — sekin o'qiyotgan o'quvchi cheksiz peripheral harakatdan charchamasin; **(a1)** 🔴 **IKKI NAQSH — vazifaga qarab tanlanadi:** **TO'LQIN** = ro'yxatdan BITTASI tanlanadi (ovoz, javob) — hammasi teng, birma-bir, cheklangan; **YURISH** = ro'yxatdagi HAMMASI ko'rilishi kerak (kartalar, bo'limlar, juftliklar) — puls faqat **bajarilmaganlar** bo'ylab aylanadi (~1.3s har biri, aylanish oxirida ~3s tanaffus va qaytadan), bajarilgani navbatdan **chiqadi**; masalan 5 tadan 1,2,5 ochilgan bo'lsa — 3 va 4 navbatlashadi. Yurish tartibi darsning o'z ketma-ketligiga ergashadi (`ORDER`/`PAIRS`), alifbo yoki DOM tartibiga emas. Yurish elementning boshqa navbatga o'tishi bilan **to'xtaydi** (masalan juftlik-mashqda bo'lim tanlangach — endi navbat vazifada, uni yoritish javobni aytib qo'yish bo'lardi); **(a2)** 🔴 **NAVBAT DARS MANTIG'IGA ERGASHADI, ekran tartibiga emas:** ekranda ikki qadam bo'lsa (avval solishtir, keyin javob ber), puls ham shu tartibda yuradi — birinchi qadam bajarilmaguncha ikkinchisi yonmaydi. Sukut bo'yicha ochiq turgan variant emas, **ko'rilmagani** yonadi; **(b)** puls **darhol emas**, ~2.6s harakatsizlikdan keyin chiqadi — o'zi bilgan o'quvchi darhol bosadi va pulsni **umuman ko'rmaydi** (yordam faqat ikkilanganga boradi); **(c)** 🔴 **ballanadigan testda javob berilgunga qadar puls YO'Q** — yonayotgan element maslahat kabi o'qilishi yoki o'quvchini shoshiltirishi mumkin (17-qonun, test halolligi); amalda bu o'z-o'zidan bajariladi, chunki test ekranida «Davom etish» javobgacha `disabled`; **(d)** **qulflangan/kutish holatidagi tugma yonmaydi** — jonli darsda mentorni kutayotgan o'quvchini bosib bo'lmaydigan tugmaga chorlash mumkin emas (83-qonun qulf-yo'lini beradi). **Ko'rinish:** o'lcham O'ZGARMAYDI — faqat yumshoq indigo halqa nafas oladi (UI sakramaydi, ixchamligicha qoladi); tugmada asosiy soya saqlanadi, boshqa elementlarda halqa alohida qatlamda (`::after`) chiziladi va layout'ni surmaydi; `prefers-reduced-motion` da butunlay o'chadi. **Yon-foyda:** «nima bosish» vazifasi pulsga o'tgani uchun **mentor gapi yo'riqnomadan ozod bo'ladi** va o'qitishga qaytadi (mentor — ekskursiya-yo'lboshchi emas). Mas'ul: `pm-quruvchi` + `pm-dizayn`. *(2026-07-28 foydalanuvchi g'oyasi va qarori; birinchi tatbiq — PmLesson2: `useTurnHint` + `.turn-hint`/`.turn-ring`)*
+
+**2026-07-28 TAKRORLASH-YO'LI (89):**
+
+89. 🔴 **PRAKTIKA-DARVOZASI FAQAT BIR MARTA YOPILADI — takrorlash bepul.** O'quvchi darsni uyda qayta ko'rganda praktikani QAYTA bajarishga majbur bo'lmaydi. **(a)** Bajarilganlik `localStorage` ga yoziladi (`{code, done:true}`) va ekran ochilganda holat TIKLANADI — o'sha brauzerda darvoza o'zi ochiq, kod ham saqlangan; **(b)** 🔴 **boshqa qurilma muammosi:** bola sinfda maktab kompyuterida bajargan bo'lsa, dastur buni **BILA OLMAYDI** — login yo'q, PIN esa dars tugagach yopiladi. Shu YAGONA holat uchun **takrorlash-yo'li** qo'yiladi: **(c)** u **matn-havola**, tugma EMAS va xira — asosiy harakat bilan raqobatlashmasin; **(d)** matni shartni ham, natijani ham aytadi: «✓ Bu mashqni sinfda bajarganman — davom etish →» (savol-shaklda YOZILMAYDI: «bajarganmisiz?» tugmasi nima bo'lishini aytmaydi — korpus §10); **(e)** 🔴 u **FAQAT eshikni ochadi**: nishon bermaydi · «bajarildi» deb yozmaydi · serverga signal yubormaydi · xotiraga saqlanmaydi (ya'ni keyingi seansda yana so'raladi — ataylab, aks holda u soxta «bajarildi» belgisiga aylanardi); **(f)** **faqat erkin (self) rejimda** ko'rinadi — jonli darsda va mentor ekranida YO'Q; bajarilgan bo'lsa ham ko'rinmaydi (darvoza allaqachon ochiq); **(g)** matn **umumiy** bo'ladi («davom etish»), «uy vazifasiga o'tish» EMAS — bir darsda bir nechta praktika bo'lishi mumkin va keyin nima kelishi har xil. **Sabab-tamoyil:** jonli darsda o'quvchi praktikani allaqachon o'tkazib yubora oladi (`optionalLive`) — demak erkin rejim jonlidan QATTIQROQ bo'lib qolmasligi kerak edi. Mas'ul: `pm-quruvchi`. 📌 **Texnik darslarga ham tegishli** (u yerda 3 praktika bor) — `DARS_ETALON.md` ga ko'chirilsin. *(2026-07-28 foydalanuvchi g'oyasi; birinchi tatbiq — PmLesson2 `ScreenCoding` `.stq-skip`)*
+
+**2026-07-28 MENTOR EKRANI (90):**
+
+90. 🔴 **MENTOR EKRANI — PROYEKTOR QONUNI.** Mentor ko'rinishi o'quvchi ko'rinishining nusxasi EMAS; u butun sinf ko'radigan sahna. 📘 **To'liq band-ma-band jadval: 1-D bo'lim** (13 element × mentor/o'quvchi × sabab). Ikki tayanch: **(a)** 🔴 **shaxsiy narsa proyektorda chiqmaydi** — nishon-hisoblagichi, yakuniy nishon-ro'yxati, shaxsiy ball-aylanasi; mentor rejimida ular mentorning O'Z bosishlarini sanaydi (u testga javob berolmaydi — `if (solved || isMentorLive) return;`), ya'ni proyektorda yolg'on son; **(b)** 🔴 **mag'lubiyat-tablosi chiqmaydi** — podiumdagi «📊 Savollar bo'yicha» (`0/4` kabi) kartasi **butunlay olib tashlanadi**, chunki butun sinf oldida ko'rsatish kamsitadi; mentorga bu ma'lumot dars PAYTIDA `MentorTestStats` orqali, o'z joyida beriladi. **(c)** Saqlanadi: to'liq-ekran nishon-bayrami (bu **lahza**, hisob emas), podium reytingi (sinf yutug'i), mentor-panellari, mentor-eslatmalari. **(d)** Qisqa qoida: **mentor ekrani = SAHNA (lahzalar) · o'quvchi qurilmasi = DAFTAR (hisob)**. Mas'ul: `pm-quruvchi` + `pm-dizayn`; tekshiruv: `pm-tekshiruvchi` 15-ov-bandi. 📌 Texnik darslarga ham tegishli — `DARS_ETALON.md` ga ko'chirilsin. *(2026-07-28 foydalanuvchi qarori; etalon-manba: `src/pm/PmUserStoryLesson.jsx` — u yerda qstats allaqachon yo'q; tatbiq: PmLesson2)*
+
 ## 5. ✅ QABUL-CHECKLIST
 `pm-qabulchi` 20-bandi (rol faylida) + rollar DoD. Yakuniy jonli-sinov QO'LDA: yangi PIN + 2 o'quvchi + MENTOR-2026 → podium/arena 0 EMAS.
+
+🖥 **Mentor ekrani darvozasi (90-qonun · 1-D bo'lim):** dars **mentor rejimida** ochilib, 1-D jadvalining 13 bandi tasdiqlanadi. Qisqa nazorat: nishon-hisoblagichi YO'Q · yakuniy nishon-ro'yxati YO'Q · «📊 Savollar bo'yicha» kartasi YO'Q (+ CSS qoldig'i ham) · shaxsiy `ScoreRing` YO'Q · to'liq-ekran nishon-bayrami BOR · `MentorTestStats`/`MentorPracticeStats` BOR · test javobi reveal'gacha yashirin.
+
+🔔 **Navbat-pulsi darvozasi (88-qonun · 1-C bo'lim) — har interaktiv ekranda:** harakat-zanjiri yozilgan · navbat birinchi bajarilmagan halqada · sukut bo'yicha ochiq element YONMAYDI (ko'rilmagani yonadi) · bir lahzada MAKS 1 · ~2.6s kechikish · ballanadigan testda javobgacha yo'q · qulflangan tugma yonmaydi · `prefers-reduced-motion` da o'chiq. Dasturiy o'lchashda `::after` opacity tuzog'iga tushmang (1-C.7).
 
 ## 6. 🏭 YANGI DARS RETSEPTI
 1) Kirish-ma'lumot (`PM_PIPELINE_STATE.md` jurnalidan: ishlatilgan keyslar + oldingi mexanika) → senariy (PM_Prompt_v8) → pm-metodist KORREKTURA → [GATE S].

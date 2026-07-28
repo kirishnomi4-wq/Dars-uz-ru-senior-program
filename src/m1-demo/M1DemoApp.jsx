@@ -23,7 +23,7 @@ const LESSONS = [
   { key: 'm1-03', n: 3,  type: 'Kod',     emoji: '📄', title: "HTML qo'lda — 1",                 sub: "teg, sarlavha, ro'yxat, havola", comp: Htmllesson1 },
   { key: 'm1-04', n: 4,  type: 'Kod',     emoji: '🖼️', title: "HTML qo'lda — 2",                 sub: "rasm, forma, struktura, DevTools", comp: Htmllesson2 },
   { key: 'm1-14', n: 5,  type: 'Kod',     emoji: '🛠️', title: "Takrorlash: HTML ustaxonasi",     sub: "birinchi mijozlar — 5 buyurtma, debug, imtihon", comp: HtmlTakrorlashLesson, isNew: true },
-  { key: 'm1-05', n: 6,  type: 'PM',      emoji: '🗺️', title: "Struktura = mahsulot qarori",     sub: "bo'limlar tartibi kimga qarab tuziladi", comp: PmLesson2 },
+  { key: 'm1-05', n: 6,  type: 'PM',      emoji: '🗺️', title: "Struktura — mahsulot qarori",     sub: "bo'limlar tartibi kimga qarab tuziladi", comp: PmLesson2 },
   { key: 'm1-06', n: 7,  type: 'Kod',     emoji: '🎨', title: "CSS qo'lda — 1",                  sub: "rang, shrift, bo'shliqlar", comp: CssLesson1 },
   { key: 'm1-07', n: 8,  type: 'Kod',     emoji: '📐', title: "CSS qo'lda — 2",                  sub: "layout, flexbox, DevTools", comp: CssLesson2 },
   { key: 'm1-08', n: 9,  type: 'Proyekt', emoji: '🧱', title: "Praktika: portfolio strukturasi", sub: "saytni bo'laklaymiz, HTML skelet", comp: HtmlPractice },
@@ -31,7 +31,7 @@ const LESSONS = [
   { key: 'm1-10', n: 11, type: 'Proyekt', emoji: '💅', title: "Praktika: bezash va yakunlash",   sub: "CSS + kontent + AI bilan tugma", comp: CssPractice },
   { key: 'm1-09', n: 12, type: 'Kod',     emoji: '🔀', title: "Git va GitHub",                   sub: "commit, push — kod uchun vaqt mashinasi", comp: GitLesson },
   { key: 'm1-11', n: 13, type: 'Kod',     emoji: '🚀', title: "Netlify va deploy",               sub: "hosting, maktab poddomeni", comp: DeployLesson },
-  { key: 'm1-12', n: 14, type: 'PM',      emoji: '🎤', title: "Storytelling: mahsulotni so'zlab berish", sub: "2 daqiqalik pitch: muammo → yechim → demo", comp: PmLesson3 },
+  { key: 'm1-12', n: 14, type: 'PM',      emoji: '🎤', title: "Storytelling: mahsulotni so'zlab berish", sub: "2 daqiqalik taqdimot: avval muammo, keyin yechim, oxirida demo", comp: PmLesson3 },
   { key: 'm1-13', n: 15, type: 'Demo',    emoji: '🎤', title: "Demo Day 1",                      sub: "ota-onalar oldida ochiq himoya" },
 ]
 

@@ -221,6 +221,11 @@ Har dars tekshirilganda topilgan tushunarsiz/rasmiy so'z shu jadvalga qo'shiladi
 
 | «X usulini/javobini ochamiz» (sarlavhada) | «X usuli: …» / «X javobi: …» | 2026-07-24 da «sirini ochamiz» shu shaklga almashtirilgan edi, ammo fe'lning O'ZI g'aliz: sarlavha «biz nima qilamiz» emas, NIMA HAQIDA ekanini aytadi; ikkinchi yarmi allaqachon savol bo'lgani uchun fe'l ortiqcha. Butun `src/` tozalandi: Duolingo (Metrika), Milkshake (P0), Facebook (Audience, ru: «Метод Facebook: …»), iPhone (Structure) (foydalanuvchi tuzatmasi F-0725-03, 2026-07-25) |
 
+| UX qaror (markaziy atama sifatida) | foydalanuvchi uchun qilingan qaror / odam uchun qilingan tanlov | «UX» — izohsiz inglizcha qisqartma; qavsdagi tarjima yamoq bo'lib qoladi. Atama DARSNING MARKAZIY tushunchasi bo'lsa gloss yetmaydi — o'zbekcha ibora uning O'RNINI oladi (dars nomi, RECAPS, flashcard, QUIZ_BANK birga) (PM M1-D6 Struktura, F-0728-01) |
+| hero (ikki xil ta'riflangan) | birinchi blok (hero) — katta sarlavha va bir qatorlik izoh | bir joyda «sarlavha», boshqa joyda «butun tepa blok» bo'lib qolgan edi: bir tushuncha — bir ta'rif, u SECDATA/flashcard/RECAPS/testda AYNAN bir xil takrorlanadi (PM M1-D6, F-0728-01) |
+| footer = «aloqa qismi» | sahifaning eng pastki qismi: havolalar va aloqa | ta'rif juda tor edi — o'quvchi footer'da faqat telefon raqami bo'ladi deb tushunadi (PM M1-D6, F-0728-01) |
+| sinov mijozi (izohsiz) | sinov mijozi — sahifangizga birinchi marta kirgan odam | mashq-personaji birinchi ko'rinishda bir ibora bilan ochiladi (PM M1-D6 s11, F-0728-01) |
+
 > **Qo'shish tartibi:** darsda tushunarsiz so'z topilsa → shu jadvalga (qiyin, sodda, izoh) yoz → kodda grep bilan barcha o'rinlarini tuzat → audio/mentor matni ham birga yangilanadi.
 
 ---

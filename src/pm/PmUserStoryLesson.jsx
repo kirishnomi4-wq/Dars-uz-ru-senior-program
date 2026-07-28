@@ -458,14 +458,74 @@ const Stage = ({ children, eyebrow, screen, totalScreens = TOTAL_SCREENS, navCon
   );
 };
 const NavBack = ({ onPrev }) => <button className="btn-ghost" onClick={onPrev} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>Orqaga</button>;
-const NavNext = ({ disabled, label = 'Davom etish', onClick, optionalLive }) => {
+// 🔔 NAVBAT-PULSI (88-qonun · 1-C bo'lim) — «hozir navbat shu elementda» signali.
+// Ekranda ISTALGAN LAHZADA faqat BITTA element yonadi. Puls DARHOL emas, harakatsizlikdan
+// keyin chiqadi: o'zi bilgan o'quvchi darhol bosadi va pulsni UMUMAN ko'rmaydi — yordam
+// faqat ikkilanganga boradi. `active` yolg'onga o'tsa (bosildi/qulflandi) — darhol o'chadi.
+const TURN_HINT_MS = 2600;
+function useTurnHint(active) {
+  const [on, setOn] = useState(false);
+  useEffect(() => {
+    if (!active) { setOn(false); return; }
+    setOn(false);
+    const t = setTimeout(() => setOn(true), TURN_HINT_MS);
+    return () => clearTimeout(t);
+  }, [active]);
+  return on;
+}
+
+// 🔔 NAVBAT YURISHI (88-qonun) — «hammasini to'ldirish / hammasini ko'rish» ekranlari uchun.
+// Puls BAJARILMAGAN elementlar bo'ylab navbat bilan yuradi: istalgan lahzada faqat BITTASI
+// yonadi, bajarilgani (to'lgan maydon, ochilgan karta) navbatdan CHIQADI, har harakatdan keyin
+// kutish qaytadan boshlanadi. Bitta element qolsa — yurishning ma'nosi qolmaydi, u tinch yonadi.
+const TURN_STEP_MS = 1300;   // bitta elementning navbati
+const TURN_PAUSE_MS = 3200;  // aylanish tugagach tanaffus (keyin qaytadan)
+function useTurnWalk(pending, enabled = true) {
+  const key = pending.join('');
+  const [lit, setLit] = useState(null);
+  useEffect(() => {
+    setLit(null);
+    if (!enabled || pending.length === 0) return;
+    let on = true, t = null, i = 0;
+    if (pending.length === 1) {
+      t = setTimeout(() => { if (on) setLit(pending[0]); }, TURN_HINT_MS);
+      return () => { on = false; clearTimeout(t); };
+    }
+    const stepIn = () => {
+      if (!on) return;
+      setLit(pending[i]);
+      t = setTimeout(() => {
+        if (!on) return;
+        setLit(null);
+        i = (i + 1) % pending.length;
+        t = setTimeout(stepIn, i === 0 ? TURN_PAUSE_MS : 140);
+      }, TURN_STEP_MS);
+    };
+    t = setTimeout(stepIn, TURN_HINT_MS);
+    return () => { on = false; clearTimeout(t); };
+  }, [key, enabled]); // eslint-disable-line
+  return lit;
+}
+// Yurish-holatida qisqa «paydo bo'l — turib tur — so'n», yolg'iz qolganda tinch nafas.
+const turnCls = (lit, k, walking) => (lit === k ? (walking ? ' turn-ring turn-step' : ' turn-ring') : '');
+// To'lqin-yorliq: teng variantlar birma-bir yonadi (w1…w4). 4 variantli qatorda aylanish
+// uzunroq bo'lishi kerak — `wv4` shu uchun: lahzada baribir BITTASI ko'rinadi.
+const waveCls = (on, i, n) => (on ? ` turn-ring turn-wave${n > 3 ? ' wv4' : ''} w${i + 1}` : '');
+
+const NavNext = ({ disabled, label = 'Davom etish', onClick, optionalLive, turnBusy }) => {
   const gate = useContext(LiveGateCtx);
   const locked = !!(gate && gate.locked);
   const live = gate && gate.live;
   const freeRide = !!(optionalLive && live && live.mode === 'student' && live.status !== 'ended' && live.mentorAlive);
   // freeRide: jonli darsda tugma OCHIQ qoladi (sekin o'quvchi sinfni bloklamasin), LEKIN yorliq
   // topshiriq-matnini («✍️ 1/3 …») ko'rsatib turadi — o'quvchi nimani o'tkazayotganini biladi (F-0726-01).
-  return <button className="btn-white-accent" disabled={(freeRide ? false : disabled) || locked} onClick={onClick} title={locked ? "Mentor hali bu sahifaga o'tmadi" : (freeRide && disabled ? "Jonli dars: bajarmasdan ham o'tishingiz mumkin" : undefined)} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)', marginLeft: 'auto' }}>{locked ? '⏳ Mentorni kuting' : label}</button>;
+  const isOff = (freeRide ? false : disabled) || locked;
+  // Navbat tugmada FAQAT u bosiladigan holatda bo'ladi. Shundan ikki shart o'z-o'zidan bajariladi:
+  // (a) ballanadigan testda tugma javob berilgunga qadar `disabled` — puls yo'q; (b) mentorni
+  // kutayotgan qulflangan tugma ham yonmaydi (83-qonun). `turnBusy` — navbat hali EKRAN ichida
+  // (maydon to'ldirilmagan, karta joylanmagan): tugma ochiq bo'lsa ham yonmaydi.
+  const hint = useTurnHint(!isOff && !turnBusy);
+  return <button className={`btn-white-accent${hint ? ' turn-hint' : ''}`} disabled={isOff} onClick={onClick} title={locked ? "Mentor hali bu sahifaga o'tmadi" : (freeRide && disabled ? "Jonli dars: bajarmasdan ham o'tishingiz mumkin" : undefined)} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)', marginLeft: 'auto' }}>{locked ? '⏳ Mentorni kuting' : label}</button>;
 };
 
 const FeedbackBlock = ({ show, isCorrect, neutral, children }) => {
@@ -880,6 +940,10 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
   const isMentor = live && live.mode === 'mentor';
   const shown = counts || (picked !== null ? HOOK_OPTS.map((_, i) => (i === picked ? 1 : 0)) : null);
   const totalVotes = shown ? shown.reduce((a, b) => a + b, 0) : 0;
+  // Navbat (1-C): zanjir = ovoz berish → o'tish. Variantlar TENG EMAS emas, lekin bittasi
+  // tanlanadi — shuning uchun bittasini ajratmasdan, mavjud «taphint» to'lqini ishlatiladi;
+  // u endi darhol emas, ~2.6s ikkilanishdan keyin chiqadi va ovoz berilishi bilan o'chadi.
+  const voteHint = useTurnHint(picked === null && !isMentor);
   const revealViz = shown && (picked !== null || isMentor);
   const topIdx = revealViz ? shown.indexOf(Math.max(...shown)) : -1;
   return (
@@ -894,7 +958,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
             const on = picked === i;
             const locked = picked !== null || isMentor;
             return (
-              <button key={i} className={`hook-mc ${on ? 'on' : ''} ${!locked ? 'taphint' : ''}`} disabled={locked} onClick={() => pick(i)}>
+              <button key={i} className={`hook-mc ${on ? 'on' : ''} ${!locked && voteHint ? 'taphint' : ''}`} disabled={locked} onClick={() => pick(i)}>
                 <span className="hook-mc-abc">{String.fromCharCode(65 + i)}</span>
                 <span className="hook-mc-txt">{o}</span>
                 <span className="hook-mc-cup" aria-hidden="true">🥤</span>
@@ -984,6 +1048,11 @@ const Screen2 = ({ screen, onNext, onPrev }) => {
     else { setSt(p => ({ ...p, hint: i })); setTimeout(() => setSt(p => (p.hint === i ? { ...p, hint: -1 } : p)), 2200); }
   };
   const allSorted = S2_FRAGS.every((_, i) => st.picks[i]);
+  // Navbat (1-C): zanjir = har bo'lakni ajratish (×4) → o'tish. Puls hali ajratilmagan QATORDA
+  // yuradi (dars tartibida), tugmalarida emas: «harakat»/«sabab» teng emas — bittasini yoritish
+  // javobni aytib qo'yardi (1-C.6). Ajratilgan qator navbatdan chiqadi.
+  const pendRows = S2_FRAGS.map((_, i) => String(i)).filter(k => !st.picks[k]);
+  const litRow = useTurnWalk(pendRows);
   // F-0727-40: yakun ochilganda avto-scroll — o'quvchi xulosa+o'stirish-kartani izlamasin
   const doneRef = useRef(null);
   useEffect(() => {
@@ -993,7 +1062,7 @@ const Screen2 = ({ screen, onNext, onPrev }) => {
     }
   }, [allSorted]);
   return (
-    <Stage eyebrow="Muhokama · savol" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive label="Davom etish" onClick={onNext} /></>}>
+    <Stage eyebrow="Muhokama · savol" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive turnBusy={!allSorted} label="Davom etish" onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(14px,2.2vw,20px)' }}>
         <div className="proj-q fade-up">
           <span className="proj-q-lbl">🗣️ Sinfga savol</span>
@@ -1005,7 +1074,7 @@ const Screen2 = ({ screen, onNext, onPrev }) => {
           {S2_FRAGS.map((f, i) => {
             const pick = st.picks[i];
             return (
-              <div key={i} className={`s2row ${pick ? 'done' : ''}`}>
+              <div key={i} className={`s2row ${pick ? 'done' : ''}${turnCls(litRow, String(i), pendRows.length > 1)}`}>
                 <span className="s2txt">{pick === 'harakat' ? '🏃 ' : pick === 'sabab' ? '💡 ' : ''}«{f.txt}»</span>
                 {pick
                   ? <span className={`s2tag ${pick}`}>{pick === 'harakat' ? 'harakat' : 'sabab'} ✓</span>
@@ -1087,6 +1156,11 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   };
   const reset = () => setSt({ placed: [null, null, null], sel: -1, shake: -1 });
   const selActive = st.sel >= 0;
+  // Navbat (1-C): zanjir = bo'lakni tanlash → slotga qo'yish (×3) → o'tish. Puls hali
+  // joylanmagan BO'LAKLAR bo'ylab yuradi (ekran tartibida). Bo'lak tanlangach navbat slotlarga
+  // o'tadi, ammo u yerda puls YO'Q: to'g'ri slotni yoritish javobni aytib qo'yardi (1-C.6).
+  const pendFrags = FRAG_ORDER.filter(idx => st.placed[FRAG_POOL[idx].slot] !== FRAG_POOL[idx].txt).map(String);
+  const litFrag = useTurnWalk(pendFrags, !selActive && !done);
   return (
     <Stage eyebrow="1 hikoya — 3 bo'lak" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? 'Davom etish' : 'Uch bo\'lakni joylang'} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(14px,2.2vw,20px)' }}>
@@ -1109,7 +1183,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           {FRAG_ORDER.map((idx) => {
             const f = FRAG_POOL[idx];
             if (st.placed[f.slot] === f.txt) return null;
-            return <button key={idx} className={`frag-chip ${st.sel === idx ? 'sel' : ''}`} onClick={() => pickChip(idx)}>{f.txt}</button>;
+            return <button key={idx} className={`frag-chip ${st.sel === idx ? 'sel' : ''}${turnCls(litFrag, String(idx), pendFrags.length > 1)}`} onClick={() => pickChip(idx)}>{f.txt}</button>;
           })}
         </div>}
         {done && (
@@ -1146,6 +1220,9 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const c = K11_SLIDES[i];
   const bet = c.predict ? bets[i] : undefined;
   const betPending = !!(c.predict && bet === undefined);
+  // Navbat (1-C): zanjir = taxminni tanlash → slaydni o'qish → keyingi bosqich. Taxmin-chiplar
+  // TENG EMAS (biri to'g'ri) — shuning uchun bittasi emas, TO'LQIN: hammasi birma-bir yonadi.
+  const betHint = useTurnHint(betPending && !isMentorK);
   return (
     <Stage eyebrow="Keys (real voqea tahlili) 🥤" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={betPending && !isMentorK} label={betPending && !isMentorK ? 'Avval taxminingizni tanlang' : last ? 'Davom etish' : `Keyingi bosqich (${i + 1}/${K11_SLIDES.length})`} onClick={last ? onNext : () => setI(i + 1)} /></>}>
       <div className="screen" style={{ gap: 'clamp(14px,2.2vw,20px)' }}>
@@ -1161,6 +1238,7 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                   const isAns = k === c.predict.ans;
                   let cls = 'kp-chip';
                   if (locked) { cls += ' locked'; if (isAns) cls += ' correct'; else if (bet === k) cls += ' wrong'; }
+                  else cls += waveCls(betHint, k, c.predict.chips.length);
                   return (
                     <button key={k} className={cls} disabled={locked} onClick={() => setBets(p => ({ ...p, [i]: k }))}>
                       <span className="kp-ic">{ch.ic}</span>{ch.t}
@@ -1325,14 +1403,27 @@ const ScreenStoryWorkshop = ({ screen, storedAnswer, onAnswer, onNext, onPrev })
   });
   const setD = (patch) => setSt(prev => ({ ...prev, draft: { ...prev.draft, ...patch } }));
   const navLabel = done || isMentorW ? 'Davom etish' : `✍️ ${saved.length}/3 — hikoyani yozib saqlang`;
+  // Navbat (1-C): zanjir = KIM → NIMA → NATIJA to'ldirish → Saqlash (×3) → o'tish.
+  // Puls faqat BO'SH maydonlar bo'ylab yuradi (dars tartibida — DOM tartibida emas), to'lgani
+  // navbatdan chiqadi; kursor maydonga tushishi bilan butun yurish darhol to'xtaydi.
+  const [fieldFocus, setFieldFocus] = useState(false);
+  const pendFields = ['kim', 'nima', 'natija'].filter(k => !(draft[k] || '').trim());
+  const litField = useTurnWalk(pendFields, showEditor && !fieldFocus && !isMentorW);
+  // Uch maydon to'lgach navbat «Saqlash»ga o'tadi (yolg'iz element — tinch halqa).
+  const saveTurn = useTurnHint(showEditor && canSave && !isMentorW);
+  const turnBusyW = showEditor && !isMentorW && (pendFields.length > 0 || canSave);
+  // Qadam-indikatori butun yurish DAVOMIDA tinch turadi (qadamlar orasidagi tanaffusda ham
+  // yonib-o'chib bezovta qilmasin); o'quvchi yozayotganda esa u yana «shu kartadasiz» deb turadi.
+  const turnQuietW = (showEditor && !isMentorW && !fieldFocus && pendFields.length > 0) || saveTurn;
   return (
-    <Stage eyebrow="Amaliyot · hikoya-ustaxona ✍️" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !isMentorW} label={navLabel} onClick={onNext} /></>}>
+    <Stage eyebrow="Amaliyot · hikoya-ustaxona ✍️" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive turnBusy={turnBusyW} disabled={!done && !isMentorW} label={navLabel} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
         <div className="head"><h2 className="title h-title fade-up">Loyihangizning foydalanuvchisi — <span className="italic" style={{ color: T.accent }}>kim</span>?</h2></div>
         <Mentor>Kartani to'ldiring va <b style={{ color: T.ink }}>Saqlash</b> bosing — tepadagi chiroq yonadi va yangi karta keladi. Jami <b style={{ color: T.ink }}>3 hikoya</b>.</Mentor>
         {/* F-0727-58: JTBD-ustaxona naqshi porti — havodagi 1-2-3 indikator + yagona muharrir-karta;
             yozilgan hikoyalar yozish paytida ko'rinmaydi, 3/3 da daftar (yulduzlar bilan) ochiladi. */}
-        <div className="jw-steps fade-up" aria-label={`${saved.length}/3 hikoya yozildi`}>
+        {/* Qadam-indikatori navbat maydonlarda yurayotganda tinchlanadi — lahzada bitta puls (88-qonun (a)) */}
+        <div className={`jw-steps fade-up ${turnQuietW ? 'turn-quiet' : ''}`} aria-label={`${saved.length}/3 hikoya yozildi`}>
           {[0, 1, 2].map(i => (
             <React.Fragment key={i}>
               {i > 0 && <span className={`jws-line ${saved.length >= i ? 'on' : ''}`} aria-hidden="true" />}
@@ -1348,15 +1439,15 @@ const ScreenStoryWorkshop = ({ screen, storedAnswer, onAnswer, onNext, onPrev })
             {editing && <span className="swed-tag">✎ {editIdx + 1}-hikoyani tahrirlash</span>}
             <p className="swed-sent">Men <b className={`ss-slot kim ${draft.kim ? 'on' : ''}`}>{draft.kim || 'kim'}</b> sifatida, <b className={`ss-slot nima ${draft.nima ? 'on' : ''}`}>{draft.nima || 'nima'}</b>ni xohlayman, <b className={`ss-slot natija ${draft.natija ? 'on' : ''}`}>{draft.natija || 'natija'}</b> uchun.</p>
             <div className="swcard-fields">
-              <label className={`smini-f kim ${v.kimOk ? 'on' : ''}`}><span>KIM</span><input value={draft.kim} onChange={e => setD({ kim: e.target.value })} placeholder="foydalanuvchi turi — masalan: yo'lda ketayotgan tomoshabin" /></label>
-              <label className={`smini-f nima ${v.nimaOk ? 'on' : ''}`}><span>NIMA</span><input value={draft.nima} onChange={e => setD({ nima: e.target.value })} placeholder="harakat — masalan: videoni yuklab qo'yish" /></label>
-              <label className={`smini-f natija ${v.natijaOk ? 'on' : ''}`}><span>NATIJA</span><input value={draft.natija} onChange={e => setD({ natija: e.target.value })} placeholder="real foyda — masalan: internetsiz ham ko'ra olish" /></label>
+              <label className={`smini-f kim ${v.kimOk ? 'on' : ''}${turnCls(litField, 'kim', pendFields.length > 1)}`}><span>KIM</span><input value={draft.kim} onChange={e => setD({ kim: e.target.value })} onFocus={() => setFieldFocus(true)} onBlur={() => setFieldFocus(false)} placeholder="foydalanuvchi turi — masalan: yo'lda ketayotgan tomoshabin" /></label>
+              <label className={`smini-f nima ${v.nimaOk ? 'on' : ''}${turnCls(litField, 'nima', pendFields.length > 1)}`}><span>NIMA</span><input value={draft.nima} onChange={e => setD({ nima: e.target.value })} onFocus={() => setFieldFocus(true)} onBlur={() => setFieldFocus(false)} placeholder="harakat — masalan: videoni yuklab qo'yish" /></label>
+              <label className={`smini-f natija ${v.natijaOk ? 'on' : ''}${turnCls(litField, 'natija', pendFields.length > 1)}`}><span>NATIJA</span><input value={draft.natija} onChange={e => setD({ natija: e.target.value })} onFocus={() => setFieldFocus(true)} onBlur={() => setFieldFocus(false)} placeholder="real foyda — masalan: internetsiz ham ko'ra olish" /></label>
             </div>
             {saveHint && <p className="swed-hint">💡 {saveHint}</p>}
             <div className="swed-btns">
               {editing && <button className="btn-ghost" onClick={() => setSt(prev => ({ ...prev, draft: emptyCard(), editIdx: -1 }))}>Bekor qilish</button>}
               {!v.full && <span className="swed-cnt">{[draft.kim, draft.nima, draft.natija].filter(x => (x || '').trim().length >= 2).length}/3 maydon to'ldi</span>}
-              <button className="swed-save" disabled={!canSave} onClick={saveDraft}>✓ Saqlash</button>
+              <button className={`swed-save${saveTurn ? ' turn-ring' : ''}`} disabled={!canSave} onClick={saveDraft}>✓ Saqlash</button>
             </div>
           </div>
         ) : (
@@ -1451,6 +1542,12 @@ const ScreenPeer = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     setSt(prev => ({ ...prev, idx: n, done: true, asking: false }));
   };
   const fb = card && cur ? peerLine(card, cur) : null;
+  // Navbat (1-C): zanjir = kartani o'qish → hukm (✓/✕) → (✕ bo'lsa) kamchilikni tanlash →
+  // «Keyingisi» (×3) → o'tish. Hukm-tugmalari va kamchilik-chiplari TENG EMAS (biri to'g'ri) —
+  // shuning uchun TO'LQIN: hech biri ajratilmaydi, hammasi birma-bir yonadi.
+  const verdictHint = useTurnHint(!!card && !cur && !asking && !isMentorP);
+  const reasonHint = useTurnHint(!!card && !cur && asking && !isMentorP);
+  const goHint = useTurnHint(!!(card && cur) && !isMentorP);
   return (
     <Stage eyebrow="Tekshiruvchi stoli · 🔍" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !isMentorP} label={done || isMentorP ? 'Davom etish' : `Yana ${left} kartani baholang`} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
@@ -1465,19 +1562,19 @@ const ScreenPeer = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <p className="peer-sent">Men <b style={{ color: T.blue }}>{card.kim}</b> sifatida, <b style={{ color: '#B77A16' }}>{card.nima}</b>ni xohlayman, <b style={{ color: T.success }}>{card.natija}</b> uchun.</p>
             </div>
             <div className="peer-acts">
-              <button type="button" className={`peer-vbtn yes ${cur && cur.ok ? 'on' : ''}`} onClick={() => choose(true)} disabled={!!cur}>✓ To'g'ri</button>
-              <button type="button" className={`peer-vbtn no ${cur && !cur.ok ? 'on' : ''} ${asking ? 'armed' : ''}`} onClick={() => choose(false)} disabled={!!cur}>✕ Noto'g'ri</button>
+              <button type="button" className={`peer-vbtn yes ${cur && cur.ok ? 'on' : ''}${waveCls(verdictHint, 0, 2)}`} onClick={() => choose(true)} disabled={!!cur}>✓ To'g'ri</button>
+              <button type="button" className={`peer-vbtn no ${cur && !cur.ok ? 'on' : ''} ${asking ? 'armed' : ''}${waveCls(verdictHint, 1, 2)}`} onClick={() => choose(false)} disabled={!!cur}>✕ Noto'g'ri</button>
             </div>
             {asking && !cur && (
               <div className="peer-why fade-step">
                 <span className="peer-why-l">Nimasi?</span>
-                {PEER_REASONS.map(r => <button key={r.key} type="button" className="peer-chip" onClick={() => commit({ ok: false, reason: r.key })}>{r.t}</button>)}
+                {PEER_REASONS.map((r, ri) => <button key={r.key} type="button" className={`peer-chip${waveCls(reasonHint, ri, PEER_REASONS.length)}`} onClick={() => commit({ ok: false, reason: r.key })}>{r.t}</button>)}
               </div>
             )}
             {cur && fb && (
               <div className="peer-fb fade-step">
                 <p className={`peer-fb-t ${fb.good ? 'good' : ''}`}>{fb.good ? '✅' : '💡'} {fb.t}</p>
-                <button type="button" className="btn-soft peer-go" onClick={goNext}>{idx + 1 < PEER_CARDS.length ? 'Keyingisi ▸' : 'Xulosa ▸'}</button>
+                <button type="button" className={`btn-soft peer-go${goHint ? ' turn-ring' : ''}`} onClick={goNext}>{idx + 1 < PEER_CARDS.length ? 'Keyingisi ▸' : 'Xulosa ▸'}</button>
               </div>
             )}
           </>
@@ -1557,6 +1654,11 @@ const ScreenClinic = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       setTimeout(() => setSt(prev => (prev.shake === slotIdx ? { ...prev, shake: -1 } : prev)), 480);
     }
   };
+  // Navbat (1-C): zanjir = bo'lakni tanlash → slotga qo'yish (×3) → o'tish. Bu yerda bo'laklar
+  // TENG EMAS — orasida tuzoq bor, demak yurish (hammasini joylash) yaramaydi: TO'LQIN ishlatiladi,
+  // hech bir bo'lak ajratilmaydi. Bo'lak tanlangach slotlarda puls yo'q (javobni aytib qo'yardi).
+  const chipHint = useTurnHint(sel < 0 && !done && !isMentorC);
+  const visChips = CLINIC_ORDER.filter(idx => placed[CLINIC_POOL[idx].slot] !== CLINIC_POOL[idx].txt);
   return (
     <Stage eyebrow="Klinika · talabni to'ldirish 🩺" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !isMentorC} label={done || isMentorC ? 'Davom etish' : "🩺 Talabni hikoyaga aylantiring"} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(14px,2.2vw,20px)' }}>
@@ -1581,11 +1683,10 @@ const ScreenClinic = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         </div>
         {trapMsg && <div className="clinic-trap fade-step">🪤 Tuzoq edi! {trapMsg}</div>}
         {!done && <div className="frag-pool fade-up delay-2">
-          {CLINIC_ORDER.map((idx) => {
+          {visChips.map((idx, pos) => {
             const f = CLINIC_POOL[idx];
-            if (placed[f.slot] === f.txt) return null;
             const isBurned = burned.includes(idx);
-            return <button key={idx} className={`frag-chip ${sel === idx ? 'sel' : ''} ${isBurned ? 'burned' : ''}`} disabled={isBurned} onClick={() => pickChip(idx)}>{isBurned ? '🪤 ' : ''}{f.txt}</button>;
+            return <button key={idx} className={`frag-chip ${sel === idx ? 'sel' : ''} ${isBurned ? 'burned' : ''}${isBurned ? '' : waveCls(chipHint, pos, visChips.length)}`} disabled={isBurned} onClick={() => pickChip(idx)}>{isBurned ? '🪤 ' : ''}{f.txt}</button>;
           })}
         </div>}
         {done && (
@@ -1662,6 +1763,12 @@ const ScreenPriority = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     setSt(prev => ({ ...prev, assign: next, sel: -1, done: prev.done || nowDone }));
   };
   const hozirIdx = colItems('hozir')[0];
+  // Navbat (1-C): zanjir = hikoyani tanlash → ustunga qo'yish (×3) → o'tish. Birinchi halqada
+  // laganchaning O'Z signali bor — yangi halqa qo'shilmaydi, mavjudi navbat-shartiga bo'ysunadi
+  // (~2.6s dan keyin, kartalar tugagach tinch). Karta tanlangach navbat ustunlarga o'tadi:
+  // ustunlar TENG (to'g'ri javob yo'q — tanlov o'quvchiniki), shuning uchun TO'LQIN.
+  const trayTurn = useTurnHint(sel < 0 && !allPlaced && !isMentorPr);
+  const colTurn = useTurnHint(sel >= 0 && !isMentorPr);
   return (
     <Stage eyebrow="Prioritet-doska · 🔥" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !isMentorPr} label={done || isMentorPr ? 'Davom etish' : '🔥 3 hikoyani joylang'} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
@@ -1671,7 +1778,7 @@ const ScreenPriority = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         {/* F-0727-08: kartalar mentor-gapga yopishib turmasin — belgi-yorliqli LAGANCHA: qizil puls-border
             «bularni joylashtirish kerak» signalini beradi; birinchi karta joylashgach tinchlanadi. */}
         {stories.some((_, i) => !assign[i]) && (
-          <div className={`pd-tray ${sel >= 0 || stories.some((_, i) => assign[i]) ? 'calm' : ''}`}>
+          <div className={`pd-tray ${trayTurn ? '' : 'calm'}`}>
             <span className="pd-tray-lbl">✋ Bu 3 hikoyangizni pastdagi ustunlarga joylashtiring <span className="pd-tray-arrow">↓</span></span>
             <div className="pd-pool">
               {stories.map((c, i) => assign[i] ? null : (
@@ -1684,11 +1791,11 @@ const ScreenPriority = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </div>
         )}
         <div className="pd-board fade-up delay-2">
-          {PD_COLS.map(col => {
+          {PD_COLS.map((col, ci) => {
             const items = colItems(col.k);
             const full = items.length >= col.cap;
             return (
-              <div key={col.k} className={`pd-col ${col.k} ${shakeCol === col.k ? 'shake' : ''} ${sel >= 0 && !full ? 'targetable' : ''}`} onClick={() => tryCol(col.k)} role="button" tabIndex={0} onKeyDown={e => { if (e.key === 'Enter') tryCol(col.k); }}>
+              <div key={col.k} className={`pd-col ${col.k} ${shakeCol === col.k ? 'shake' : ''} ${sel >= 0 && !full ? 'targetable' : ''}${waveCls(colTurn && !full, ci, PD_COLS.length)}`} onClick={() => tryCol(col.k)} role="button" tabIndex={0} onKeyDown={e => { if (e.key === 'Enter') tryCol(col.k); }}>
                 <div className="pd-col-h"><span className="pd-col-t">{col.t}</span><span className="pd-col-sub">{col.sub}</span></div>
                 {items.map(i => (
                   <button key={i} className={`pd-card placed ${sel === i ? 'sel' : ''}`} onClick={e => { e.stopPropagation(); pickStory(i); }}>
@@ -1856,6 +1963,13 @@ function PmCompiler({ initialCode, onContinue, onBack }) {
   const firstHint = KODING_CONDS.find(c => !conds[c.id])?.hint;
   const runNow = () => { const nonce = ++nonceRef.current; setDoc(HC_wrapDoc(code, nonce)); };
   const reset = () => setCode('');
+  // Navbat (1-C): zanjir = kod yozish → shartlarni bajarish → «Davom etish». Bo'sh muharrir
+  // yolg'iz halqa oladi (kiritish maydoni ::after qabul qilmaydi — halqa o'rovchi qatlamda);
+  // kursor tushishi yoki birinchi belgi bilan darhol o'chadi. Shartlar bajarilgach navbat
+  // «Davom etish»ga o'tadi. «Qaytadan» va «Darsga qaytish» hech qachon yonmaydi (1-C.6).
+  const [codeFocus, setCodeFocus] = useState(false);
+  const codeTurn = useTurnHint(!code.trim() && !codeFocus);
+  const nextTurn = useTurnHint(passed);
   // Tab tugmasi 2 bo'sh joy qo'shsin (Htmllesson1 bilan bir xil)
   const onKeyDown = (e) => {
     if (e.key === 'Tab') {
@@ -1892,7 +2006,9 @@ function PmCompiler({ initialCode, onContinue, onBack }) {
               <span className="hcp-tab">hikoyaYasa.js</span>
               <button className="hcp-mini" onClick={runNow}>▶ Ishga tushirish</button>
             </div>
-            <textarea className="hcp-code" value={code} spellCheck={false} autoCapitalize="off" autoCorrect="off" onChange={e => setCode(e.target.value)} onKeyDown={onKeyDown} placeholder={KODING_PLACEHOLDER} />
+            <div className={`hcp-code-wrap${codeTurn ? ' turn-ring' : ''}`}>
+              <textarea className="hcp-code" value={code} spellCheck={false} autoCapitalize="off" autoCorrect="off" onChange={e => setCode(e.target.value)} onKeyDown={onKeyDown} onFocus={() => setCodeFocus(true)} onBlur={() => setCodeFocus(false)} placeholder={KODING_PLACEHOLDER} />
+            </div>
           </section>
           <section className="hcp-pane">
             <div className="hcp-pane-bar">
@@ -1912,7 +2028,7 @@ function PmCompiler({ initialCode, onContinue, onBack }) {
               ? <span className="hcp-ok-msg">✓ Uchala shart bajarildi!</span>
               : <span className="hcp-wait-msg">Shartlarni bajaring — natija o'ngda jonli ko'rinadi</span>}
           </div>
-          <button className="hcp-next" disabled={!passed} onClick={() => passed && onContinue({ code })}>Davom etish →</button>
+          <button className={`hcp-next${nextTurn ? ' turn-ring' : ''}`} disabled={!passed} onClick={() => passed && onContinue({ code })}>Davom etish →</button>
         </footer>
       </div>
     </div>
@@ -1926,6 +2042,8 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const gate = useContext(LiveGateCtx) || {};
   const live = gate.live;
   const isMentor = !!(live && live.mode === 'mentor');
+  // Erkin (mustaqil) rejim — jonli sessiya yo'q. Takrorlash-yo'li faqat shu yerda ko'rinadi.
+  const isSelf = !live || live.mode === 'self';
   const [open, setOpen] = useState(false);
   const [st, setSt] = useState(() => {
     const saved = readKoding();
@@ -1956,6 +2074,10 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   // Bitta karta yetadi — ikkitasi oynani band qilib UI'ni og'irlashtirardi (F-0728).
   const myStories = readFullStories().slice(0, 1);
   const previewStories = myStories.length ? myStories : DEMO_STORIES.slice(0, 1);
+  // Navbat (1-C): zanjir = kompilyatorni ochish → bajarish → o'tish. Tugmaning O'Z pulsi bor,
+  // shuning uchun yangi halqa qo'shilmaydi — mavjudi navbat-shartiga bo'ysundiriladi: u endi
+  // ~2.6s ikkilanishdan keyin yonadi va bajarilgach (navbat «Davom etish»ga o'tgach) tinchiydi.
+  const launchTurn = useTurnHint(!done && !open && !isMentor);
   return (
     <Stage eyebrow="Koding · 🛠 kompilyator" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !isMentor} label={done || isMentor ? 'Davom etish' : 'Avval kompilyatorda bajaring'} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(14px,2.2vw,20px)' }}>
@@ -1977,8 +2099,19 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </div>
         </div>
         <div className="kdx-cta fade-up delay-2">
-          <button className="kod-launch-btn" onClick={() => setOpen(true)}>{done ? '↻ Kompilyatorni qayta ochish' : '🛠 Kompilyatorni ochish'}</button>
+          <button className={`kod-launch-btn${launchTurn ? '' : ' calm'}`} onClick={() => setOpen(true)}>{done ? '↻ Kompilyatorni qayta ochish' : '🛠 Kompilyatorni ochish'}</button>
           <span className="kdx-cta-sub">{done ? "Bajarildi — xohlasangiz kodni yana sayqallang" : "To'liq ekranda yozasiz, tugatgach darsga qaytasiz"}</span>
+          {/* 🔓 TAKRORLASH-YO'LI (89-qonun) — FAQAT erkin rejimda va FAQAT bajarilmagan holatda.
+              Nima uchun: bajarilgan praktika brauzer xotirasiga yoziladi va qaytib kelganda darvoza
+              o'zi ochiq bo'ladi. Lekin bola sinfda BOSHQA qurilmada bajargan bo'lsa, buni dastur
+              BILA OLMAYDI (login yo'q, PIN esa dars tugagach yopiladi) — bu darsda hikoyalari ham
+              o'sha qurilmada qolgan bo'ladi. O'sha yagona holat uchun — o'zidan so'raymiz.
+              🔴 Bu havola FAQAT eshikni ochadi: nishon bermaydi, «bajarildi» deb yozmaydi,
+              serverga signal yubormaydi, xotiraga saqlamaydi. Jonli darsda ko'rinmaydi.
+              Puls ham olmaydi — navbat «Kompilyatorni ochish» tugmasida (88-qonun (a)). */}
+          {!done && isSelf && (
+            <button className="kdx-skip" onClick={onNext}>✓ Bu mashqni sinfda bajarganman — davom etish →</button>
+          )}
         </div>
         <div className="takeaway fade-up delay-2"><span className="ta-bulb">📌</span><p className="ta-h">Qoida: User Story kod yozishdan OLDIN yoziladi — avval «kimga nima kerak»ni bilamiz, keyin quramiz.</p></div>
         {done && <div className="done-mini fade-step" style={{ alignSelf: 'center' }}>✅ Ishladi! <span className="dm-sub">— 3 hikoyangiz koddan karta bo'lib chiqdi</span></div>}
@@ -1993,8 +2126,14 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // ===== SCREEN 11 — YAKUNIY SO'Z (3 qadam): sherikka aytish → bir qator yozish → sinf bilan 3 tez savol =====
 const REFLECT_KEY = 'pm-m3d2-reflection';
 // Juftlik-taymeri: 60s = avval A gapiradi (30s), keyin B (30s) — kim gapirayotgani doim ko'rinib turadi.
-function PairTimer() {
+function PairTimer({ onStage, muted }) {
   const [st, setSt] = useState({ running: false, left: 60, done: false });
+  // Navbat (1-C): shu qadamning halqasi — «boshlash» tugmasi (yolg'iz element). Tugmaning O'Z
+  // pulsi bor, shuning uchun u navbat-shartiga bo'ysundiriladi: ~2.6s dan keyin yonadi, taymer
+  // ketayotganda va tugagach o'chadi. `muted` — navbat allaqachon boshqa qadamda.
+  const stage = st.running ? 'running' : (st.done ? 'done' : 'idle');
+  useEffect(() => { if (onStage) onStage(stage); }, [stage]); // eslint-disable-line
+  const startTurn = useTurnHint(!st.running && !st.done && !muted);
   useEffect(() => {
     if (!st.running) return;
     if (st.left <= 0) { setSt({ running: false, left: 60, done: true }); return; }
@@ -2024,7 +2163,7 @@ function PairTimer() {
         <p className="pair-now" style={{ margin: 0 }}>{st.done ? "✓ Vaqt tugadi — ikkalangiz ham aytdingizmi? Barakalla!" : "Har biringizga 30 soniyadan: avval A gapiradi, keyin B."}</p>
       )}
       <div className="pair-timer-btns">
-        {!st.running && <button className={st.done ? 'btn-soft' : 'pair-start'} onClick={() => setSt({ running: true, left: 60, done: false })}>{st.done ? '↻ Yana 1 daqiqa' : '▶ 1 daqiqani boshlash'}</button>}
+        {!st.running && <button className={st.done ? 'btn-soft' : `pair-start${startTurn ? '' : ' calm'}`} onClick={() => setSt({ running: true, left: 60, done: false })}>{st.done ? '↻ Yana 1 daqiqa' : '▶ 1 daqiqani boshlash'}</button>}
         {st.running && <button className="btn-soft" onClick={() => setSt({ running: false, left: 60, done: false })}>⏹ To'xtatish</button>}
       </div>
     </div>
@@ -2034,19 +2173,26 @@ const Screen11 = ({ screen, onNext, onPrev }) => {
   const [text, setText] = useState(() => { try { return localStorage.getItem(REFLECT_KEY) || ''; } catch { return ''; } });
   const save = (v) => { setText(v); try { localStorage.setItem(REFLECT_KEY, v); } catch {} };
   const written = text.trim().length >= 8;
+  // Navbat (1-C): zanjir = sherikka aytish (taymer) → bir qator yozish → o'tish. Yolg'iz maydon —
+  // yurish emas, tinch halqa; kursor tushishi yoki birinchi belgi bilan darhol o'chadi.
+  const [pairStage, setPairStage] = useState('idle');
+  const [reflFocus, setReflFocus] = useState(false);
+  const inputTurn = useTurnHint(pairStage === 'done' && !written && !reflFocus);
   return (
-    <Stage eyebrow="Mustahkamlash · 2 qadam" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext label="Davom etish" onClick={onNext} /></>}>
+    <Stage eyebrow="Mustahkamlash · 2 qadam" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext turnBusy={!written} label="Davom etish" onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
         <div className="head"><h2 className="title h-title fade-up">Eng muhim hikoyangizni <span className="italic" style={{ color: T.accent }}>yoddan</span> aytib bera olasizmi?</h2></div>
         <Mentor>Dars deyarli tugadi. Endi eng muhim hikoyangizni ekranga qaramasdan, yoddan aytib bering: <b style={{ color: T.ink }}>KIM</b> uchun yozdingiz va u odam qanday <b style={{ color: T.ink }}>foyda</b> oladi? Avval sherigingizga ayting, keyin bir qatorda yozing.</Mentor>
         <div className="rcp-flow">
           <div className="rcp-step fade-up delay-1">
             <div className="rcp-step-h"><span className="rcp-n">1</span><div><span className="rcp-t">🗣 Sherigingizga ayting: kim uchun, qanday foyda uchun</span></div></div>
-            <PairTimer />
+            <PairTimer onStage={setPairStage} muted={written} />
           </div>
           <div className="rcp-step fade-up delay-2">
             <div className="rcp-step-h"><span className="rcp-n">2</span><div><span className="rcp-t">✍️ Endi bir qator yozing</span></div></div>
-            <input className="reflect-input" value={text} onChange={e => save(e.target.value)} placeholder="Men ... uchun hikoya yozdim, chunki unga ... kerak edi" maxLength={160} />
+            <span className={`turn-wrap${inputTurn ? ' turn-ring' : ''}`}>
+              <input className="reflect-input" value={text} onChange={e => save(e.target.value)} onFocus={() => setReflFocus(true)} onBlur={() => setReflFocus(false)} placeholder="Men ... uchun hikoya yozdim, chunki unga ... kerak edi" maxLength={160} />
+            </span>
             {written && <p className="small" style={{ margin: 0, color: T.success, fontWeight: 700 }}>✓ Yozildi!</p>}
           </div>
         </div>
@@ -2073,16 +2219,20 @@ const Screen12 = ({ screen, onNext, onPrev }) => {
   const setCustom = (v) => { setSt(prev => ({ ...prev, custom: v, target: v.trim(), customMode: true })); try { localStorage.setItem(HW_KEY, v.trim()); } catch {} };
   const openCustom = () => setSt(prev => ({ ...prev, customMode: true, target: prev.custom.trim() }));
   const chosen = target && target.trim();
+  // Navbat (1-C): zanjir = foydalanuvchi turini tanlash → o'tish. To'rt yo'ldan BITTASI
+  // tanlanadi — hech biri ajratilmaydi, TO'LQIN: hammasi birma-bir yonadi. Tanlangach o'chadi.
+  // «O'zim yozaman» maydonida puls yo'q: u ochilganda kursor o'zi tushadi.
+  const pickTurn = useTurnHint(!chosen);
   return (
-    <Stage eyebrow="Uyga vazifa · shartnoma" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext label="Davom etish" onClick={onNext} /></>}>
+    <Stage eyebrow="Uyga vazifa · shartnoma" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext turnBusy={!chosen} label="Davom etish" onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
         <div className="head"><h2 className="title h-title fade-up">Uyda <span className="italic" style={{ color: T.accent }}>kim</span> uchun hikoya yozasiz?</h2></div>
         <Mentor>Uyda yangi <b style={{ color: T.ink }}>foydalanuvchi turi</b> uchun hikoya yozasiz — pastdagi ro'yxatdan bittasini tanlang yoki «➕ o'zim yozaman»ni bosing.</Mentor>
         <div className="hw-chips fade-up delay-1">
-          {HW_TARGETS.map(t => (
-            <button key={t} className={`hw-chip ${target === t && !customMode ? 'on' : ''}`} onClick={() => pick(t)}>{t}</button>
+          {HW_TARGETS.map((t, ti) => (
+            <button key={t} className={`hw-chip ${target === t && !customMode ? 'on' : ''}${waveCls(pickTurn, ti, HW_TARGETS.length + 1)}`} onClick={() => pick(t)}>{t}</button>
           ))}
-          <button className={`hw-chip add ${customMode ? 'on' : ''}`} onClick={openCustom}>➕ o'zim yozaman</button>
+          <button className={`hw-chip add ${customMode ? 'on' : ''}${waveCls(pickTurn, HW_TARGETS.length, HW_TARGETS.length + 1)}`} onClick={openCustom}>➕ o'zim yozaman</button>
         </div>
         {customMode && (
           <input className="reflect-input fade-step" value={custom} onChange={e => setCustom(e.target.value)} placeholder="masalan: o'qituvchi, ota-ona, ilk mijoz…" maxLength={40} autoFocus />
@@ -2857,6 +3007,40 @@ export default function PmUserStoryLesson({ lang: langProp, onFinished }) {
         .btn-white-accent { font-family: 'Manrope', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.paper}; color: ${T.accent}; border: none; border-radius: 12px; letter-spacing: 0.01em; box-shadow: 0 8px 22px -4px rgba(91,61,230,0.35), 0 0 0 1px rgba(91,61,230,0.12); }
         .btn-white-accent:hover:not(:disabled) { background: ${T.accent}; color: #fff; box-shadow: 0 12px 28px -6px rgba(91,61,230,0.55); }
         .btn-white-accent:disabled { opacity: 0.45; cursor: not-allowed; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.14); }
+        /* 🔔 NAVBAT-PULSI (88-qonun · 1-C): navbat shu elementda. O'LCHAM O'ZGARMAYDI — faqat halqa
+           nafas oladi, shuning uchun UI sakramaydi va ixchamligicha qoladi. Asosiy soya saqlanadi. */
+        @keyframes turn-hint {
+          0%, 100% { box-shadow: 0 8px 22px -4px rgba(91,61,230,0.35), 0 0 0 1px rgba(91,61,230,0.12), 0 0 0 0 rgba(91,61,230,0.40); }
+          50%      { box-shadow: 0 8px 22px -4px rgba(91,61,230,0.35), 0 0 0 1px rgba(91,61,230,0.12), 0 0 0 8px rgba(91,61,230,0); }
+        }
+        .turn-hint { animation: turn-hint 1.9s ease-in-out infinite; }
+        /* Tugmadan boshqa elementlar uchun (chip, karta, zona, kiritish maydoni): halqa ALOHIDA
+           qatlamda chiziladi — elementning o'z chegarasi/soyasiga tegmaydi va layout'ni surmaydi. */
+        .turn-ring { position: relative; }
+        .turn-ring::after {
+          content: ''; position: absolute; inset: -3px; border-radius: inherit; pointer-events: none;
+          border: 2px solid ${T.accent}; opacity: 0; animation: turn-ring 1.9s ease-in-out infinite;
+        }
+        @keyframes turn-ring { 0%, 100% { opacity: 0; } 50% { opacity: 0.65; } }
+        /* Navbat TO'LQINI: bir guruh teng variant birma-bir yonadi. Kechikishlar shunday tanlanganki,
+           istalgan lahzada FAQAT BITTASI ko'rinadi. Cheklangan (4 aylanish) — sekin o'qiydigan
+           o'quvchi peripheral harakatdan charchamasin. wv4 sinfi — to'rt variantli qator uchun. */
+        .turn-wave::after { animation-name: turn-wave; animation-duration: 2.1s; animation-iteration-count: 4; }
+        @keyframes turn-wave { 0%, 100% { opacity: 0; } 12% { opacity: 0.7; } 30% { opacity: 0; } }
+        .turn-wave.w2::after { animation-delay: 0.7s; }
+        .turn-wave.w3::after { animation-delay: 1.4s; }
+        .turn-wave.wv4::after { animation-duration: 2.8s; }
+        .turn-wave.wv4.w4::after { animation-delay: 2.1s; }
+        /* Navbat YURISHI: bitta qadam — paydo bo'ladi, turadi, so'nadi (bir marta). */
+        .turn-step::after { animation-name: turn-step; animation-duration: 1.3s; animation-iteration-count: 1; }
+        @keyframes turn-step { 0% { opacity: 0; } 20% { opacity: 0.68; } 78% { opacity: 0.68; } 100% { opacity: 0; } }
+        /* Kiritish maydoni ::after qabul qilmaydi — halqa o'rovchi qatlamga qo'yiladi (layout o'zgarmaydi). */
+        .turn-wrap { display: block; position: relative; }
+        .turn-wrap > .reflect-input { width: 100%; }
+        .smini-f.turn-ring::after { inset: -4px; border-radius: 12px; }
+        .hcp-code-wrap { flex: 1; min-height: 0; display: flex; }
+        .hcp-code-wrap > .hcp-code { flex: 1; width: 100%; }
+        @media (prefers-reduced-motion: reduce) { .turn-hint, .turn-ring::after { animation: none; } .turn-ring::after { opacity: 0; } }
         .btn-ghost { font-family: 'Manrope', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.2s; background: transparent; color: ${T.ink}; border: none; border-radius: 12px; box-shadow: none; }
         .btn-ghost:hover:not(:disabled) { background: ${T.paper}; box-shadow: 0 6px 18px -6px rgba(${T.shadowBase},0.18); }
         .btn-ghost:disabled { opacity: 0.4; cursor: not-allowed; }
@@ -3147,6 +3331,8 @@ export default function PmUserStoryLesson({ lang: langProp, onFinished }) {
         .jws.cur .jws-n { border-style: solid; border-color: ${T.accent}; color: ${T.accent}; background: ${T.accentSoft}; animation: jws-pulse 1.6s ease-in-out infinite; }
         .jws.cur .jws-t { color: ${T.accent}; }
         @keyframes jws-pulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(110,75,255,0.4); } 50% { box-shadow: 0 0 0 9px rgba(110,75,255,0); } }
+        /* Navbat maydonlarda yurayotganda qadam-indikatori tinch turadi (88-qonun (a): lahzada bitta) */
+        .jw-steps.turn-quiet .jws.cur .jws-n { animation: none; }
         .jws.on .jws-n { border-style: solid; border-color: ${T.success}; background: ${T.success}; color: #fff; }
         .jws.on .jws-t { color: ${T.success}; }
         .jws-line { flex: 0 1 110px; height: 3px; border-radius: 99px; background: ${T.line}; margin-top: clamp(18px,2.2vw,21px); transition: background 0.4s; }
@@ -3317,6 +3503,11 @@ export default function PmUserStoryLesson({ lang: langProp, onFinished }) {
         @media (prefers-reduced-motion: reduce) { .kdx-arrow { animation: none; } .kdx-card { opacity: 1; animation: none; } }
         .kod-launch-btn { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: clamp(15px,1.9vw,17px); background: ${T.accent}; color: #fff; border: none; border-radius: 14px; padding: 15px 34px; cursor: pointer; box-shadow: 0 14px 30px -8px rgba(91,61,230,0.65); transition: transform 0.18s, box-shadow 0.18s; animation: kod-btn-pulse 2.2s ease-in-out infinite; }
         .kod-launch-btn:hover { transform: translateY(-2px); box-shadow: 0 18px 36px -8px rgba(110,75,255,0.75); }
+        /* Navbat-sharti: tugma faqat navbat unda bo'lganda nafas oladi (88-qonun (a)) */
+        .kod-launch-btn.calm { animation: none; }
+        /* Takrorlash-yo'li (89-qonun): asosiy harakat bilan raqobatlashmaydigan xira matn-havola */
+        .kdx-skip { margin-top: 2px; background: none; border: none; cursor: pointer; font-family: 'Manrope', sans-serif; font-weight: 600; font-size: 12.5px; color: ${T.ink3}; text-decoration: underline; text-underline-offset: 3px; padding: 4px 6px; border-radius: 8px; transition: color 0.15s; }
+        .kdx-skip:hover { color: ${T.accent}; }
         @keyframes kod-btn-pulse { 0%,100% { box-shadow: 0 14px 30px -8px rgba(91,61,230,0.65); } 50% { box-shadow: 0 14px 38px -4px rgba(110,75,255,0.85); } }
         @media (prefers-reduced-motion: reduce) { .kod-launch-btn { animation: none; } }
         .code-out-empty { font-family: 'Manrope', sans-serif; font-size: 12.5px; color: ${T.ink3}; font-style: italic; margin: 0; }
@@ -3399,6 +3590,7 @@ export default function PmUserStoryLesson({ lang: langProp, onFinished }) {
         .pair-start { font-family: 'Manrope'; font-weight: 800; font-size: clamp(14px,1.8vw,16px); cursor: pointer; border: none; border-radius: 12px; padding: 12px 22px; background: linear-gradient(135deg, ${T.accent}, ${T.accentVivid}); color: #fff; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 10px 24px -8px rgba(91,61,230,0.5); animation: pair-start-pulse 1.6s ease-in-out infinite; transition: transform 0.15s; }
         .pair-start:hover { transform: translateY(-2px); }
         @keyframes pair-start-pulse { 0%, 100% { box-shadow: 0 10px 24px -8px rgba(91,61,230,0.5), 0 0 0 0 rgba(110,75,255,0.45); } 50% { box-shadow: 0 12px 28px -8px rgba(91,61,230,0.6), 0 0 0 12px rgba(110,75,255,0); } }
+        .pair-start.calm { animation: none; }
         @media (prefers-reduced-motion: reduce) { .pair-start { animation: none; } }
         .reflect-input { font-family: 'Manrope'; font-size: 15px; color: ${T.ink}; border: none; border-radius: 10px; padding: 12px 14px; background: ${T.bg}; box-shadow: inset 0 0 0 1.5px ${T.line}; outline: none; }
         .reflect-input:focus { box-shadow: inset 0 0 0 1.5px ${T.accent}; }

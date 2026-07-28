@@ -44,6 +44,13 @@ L1 tarixidagi har bug — sizning ov ro'yxatingiz (bir marta bo'lgan narsa yana 
 - **S34 · Balans QO'LDA o'qiladi.** L1 QUIZ_BANK IKKI marta qayta balanslangan (31f2a8d pozitsiya+uzunlik, b19ef75 distraktorlar) — grep 3/3/3/3'ni ko'radi, lekin "to'g'risi uzunligidan bilinadi"ni faqat ODAM o'qib topadi. 8.4 hech qachon grep bilan yopilmaydi.
 - **QUIZ_MS=15000** ekanini ham tekshiring (L1 standarti; 20000 qolgan bo'lsa — Jonliga qaytaring).
 
+## 🖥 MENTOR EKRANI VA PRAKTIKA-DARVOZASI (2026-07-28 — `DARS_ETALON.md` 9.4-A · 10.1 · 10-B)
+
+Bu ikki sinf **har darsda** yuritiladi — ular ko'z bilan sezilmaydi, chunki odatda dars **o'quvchi** rejimida ko'riladi.
+
+1. **Mentor ekrani (10-B jadvali, 12 band).** Darsni `live.mode === 'mentor'` holatida tekshiring (yoki qorovullarni grep bilan). Eng ko'p buzilishlar: **(a)** nishon-hisoblagichi (🏅 N/M) proyektorda ko'rinyapti → 🔴; **(b)** yakuniy nishon-kolleksiyasi mentorga chiqyapti → 🔴; **(c)** podiumda «📊 Savollar bo'yicha» (`0/4` kabi) kartasi bor → 🔴 **butunlay olib tashlanadi** — bu mag'lubiyat-tablosi, mentor bu ma'lumotni dars PAYTIDA `MentorTestStats` dan oladi; **(d)** shaxsiy `ScoreRing` mentorda chiqyapti → 🔴; **(e)** aksincha — to'liq-ekran bayram o'chirilgan → 🔴, u **lahza**, qolishi kerak. Karta olib tashlangan bo'lsa CSS'i ham o'lik qolmasin (`pod-qstats`/`qstat-*`) — **residue-grep majburiy** (S33 saboqi bilan bir oila).
+2. **Praktika-darvozasi (9.4-A).** `next()` da praktika **har safar** ochilyaptimi va bajarilganlik **saqlanmayaptimi** → 🔴: uyda takrorlayotgan bola uchala praktikani qaytadan qilishga majbur bo'ladi. Tekshiring: dars-doirasidagi `localStorage` kaliti bormi · qayta kirganda majburlamaydimi · erkin rejimdagi takrorlash-yo'li matni **umumiy**mi («davom etish», ❌ «uy vazifasiga») · havola **faqat** eshikni ochadimi (nishon/yozuv/server-signal bermasligi).
+
 ## Nuqsonni hal qilish (CHEKLI — loop yo'q)
 - **Mayda, aniq, xavfsiz** nuqson (bitta apostrof, bitta siz-forma, bitta yorliq) — **o'zingiz Edit qiling**, keyin esbuild.
 - **Tuzilmaviy** nuqson (yetishmagan qatlam, noto'g'ri `correct` indeks, indeks-map siljishi) — **o'zingiz tuzatmang**. Uni hisobotda "mas'ul rol: X" bilan qaytaring. Asosiy agent uni bir marta o'sha rolga yuboradi (maksimum 2 aylanish, keyin foydalanuvchiga eskalatsiya).

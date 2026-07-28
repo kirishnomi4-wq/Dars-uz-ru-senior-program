@@ -265,6 +265,43 @@ Shuning uchun ular darsning o'z qonuniga 100% bo'ysunadi va tanish, real mahsulo
 ❌ 4-bandlik honor-checklist («VS Code'da ochdim / yaratdim / …») — o'quvchi baribir belgilab
    chiqadi, signal yolg'on; darvoza = darsning O'Z mini-mashg'i.
 
+## 20. QISQARTMA-ATAMA MARKAZIY BO'LSA — UMUMAN OLINADI (F-0728-01, Struktura darsi)
+
+✅ «Bo'limlarni qanday joylash — bu **foydalanuvchi uchun qilingan qaror**. Chiroylilik uchun emas —
+   foydalanuvchi **adashmasligi** uchun.» *(PmLesson2 RECAPS · F-0728-01)*
+❌ «Bo'limlarni qanday joylash — bu **UX qaror** (foydalanuvchi qulayligi uchun qilingan qaror).»
+   — izohsiz inglizcha qisqartma + qavsdagi tarjima yamoq. Atama darsning MARKAZIY tushunchasi bo'lsa,
+   qavs-gloss yetmaydi: o'zbekcha ibora ATAMANING O'RNINI oladi (dars nomi, testlar, kartalar birga).
+
+✅ Bir tushuncha — bir ta'rif: **birinchi blok (hero)** = «katta sarlavha va bir qatorlik izoh».
+   Shu ta'rif `SECDATA`, flashcard, RECAPS, testlarda AYNAN bir xil takrorlanadi. *(F-0728-01)*
+❌ Bir ekranda «hero — sarlavha», boshqasida «hero — butun tepa blok» — o'quvchi ikki xil narsa deb o'ylaydi.
+
+✅ `footer` — «sahifaning eng pastki qismi: havolalar va aloqa». ❌ «aloqa qismi» — juda tor ta'rif.
+
+## 21. TEST-DISTRAKTORI — ISHONARLI, LEKIN NOTO'G'RI (F-0728-01)
+
+✅ «Foydalanuvchi kerakli bo'limni o'zi topib oladi» · «Qidiruvda yuqoriroq chiqib turish uchun» ·
+   «Menyuda, havolalar orasida» — hayotda uchraydigan, o'ylantiradigan variantlar.
+❌ «Farqi yo'q, bari bir xil» · «Hech qanday muammo yuzaga kelmaydi» · «Shunchaki chiroyli bezak —
+   mazmunsiz» · «Tasodifan, farqsiz» — o'zini fosh qiladi: bola mazmunni bilmasdan ham chiqarib tashlaydi.
+
+✅ Fikr-so'rovi (hook) variantlari TENG og'irlikda: «Ranglari chiroyliroq» · «Bo'limlari boshqa
+   tartibda» · «Matni ko'proq yozilgan» + tanlovdan keyingi xolis izoh: «Farq — bo'limlar tartibida…»
+❌ Hook variantlari orasida «Farqi yo'q, ikkalasi bir xil» turishi — bu javob emas, tashlab ketish tugmasi.
+
+## 22. MENTOR — YO'LBOSHCHI EMAS, O'QITUVCHI: NEGA + CHORLOV (F-0728-01)
+
+✅ «Bekorga turgan bo'lim foydalanuvchini charchatadi — shuning uchun har bo'limga aniq vazifa
+   beriladi. Beshtasini birma-bir bosib chiqing.» *(NEGA + aniq harakat)*
+❌ «Yaxshi sahifada har bir bo'lim o'z vazifasini bajaradi. Har birini bosib, vazifasini bilib oling.»
+   — quruq ta'rif + yo'riq; sababni aytmaydi.
+
+✅ «Ha — chunki hikoyada har qadam keyingisiga tayyorlaydi, foydalanuvchi ham xuddi shunday
+   bosqichma-bosqich ishonadi. «Hikoyani qurish»ni bosing — tartib ko'z oldingizda yig'iladi.»
+❌ «Avval muammosini eslatamiz, keyin yechimni, isbot bilan ishontiramiz va oxirida harakatga
+   chaqiramiz. Tugmani bosing.» — bo'lak-sanog'i (63) + «tugmani bosing» qaysi tugma ekani noaniq.
+
 ---
 
-*Korpus F-ID bilan o'sadi. Oxirgi yangilanish: 2026-07-27 (F-0727-01…40 kun-yakuni: 13–18-bo'limlar).*
+*Korpus F-ID bilan o'sadi. Oxirgi yangilanish: 2026-07-28 (F-0728-01 — Struktura darsi: 20–22-bo'limlar).*
