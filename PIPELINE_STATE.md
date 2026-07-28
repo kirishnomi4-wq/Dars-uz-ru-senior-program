@@ -156,3 +156,9 @@ Restoran=NestJS ilova · bo'lim=Module · ofitsiant/sotuvchi=Controller · oshpa
 
 ## F-0724-01 (2026-07-24) — PROMPT-GIGIENA: rol/qonun-hujjatlarda homoglif — ✅ YOPILDI
 Manba: feedback/METODIST-prompt-fidbek.md (tashqi-chat tahlili) + bosh-agent o'z xabarlarida 3 marta homoglif chiqargani (jonli dalil). Yechim: **prompt-lint.mjs** yaratildi (aralash-yozuv so'z detektori: bir defissiz bo'lakda lotin+kirill; avto-istisno — sof-kirill ru-namunalar, ruscha defis-birikmalar, jurnal-misol «xato»→«tuzatilgan» qaydlari; --fix = o'zbek-lotin transliteratsiya). 26 MD skan → 8 haqiqiy xato tuzatildi: darslik-metodist(1) · darslik-tekshiruvchi(4) · PM_DARS_ETALON(2) · RU_I18N_SPEC(1). Fidbekning 5 mayda bandi tekshirildi — barchasi promptda allaqachon bor ekan. Darvoza: `npm run lint:prompt` (package.json + CLAUDE.md 4-tamoyil + PIPELINE 9-qoida yangilandi). Verify: 0 topilma.
+
+## JONLI-YADRO TARQATISH (2026-07-28) — 6 etalon-tuzatish 76 darsga — ✅
+**Kontekst:** phase11 tuzatishlari (stale-180s F-0726-01 · cur_screen darvoza · mentorMax F-0726-02 · select=* · heartbeat-vis · reload-maxScreen) faqat 3 etalon PM darsda (src/pm/) edi; 76 darsda (70 texnik + PmLesson1-6) eski yadro: 60s stale-oyna, darvoza max_screen'ga qarardi.
+**Usul:** langar-naqsh tekshiruvi (8 naqsh × 76 fayl = 100% bir xillik tasdiqlandi) → codemod-skript (har naqsh faylda aynan 1 marta bo'lishi shart, aks holda fayl butun o'tkaziladi — partial edit yo'q; CRLF/LF avto-moslashuv). Pilot: Htmllesson1 + PmLesson4 (diff + esbuild) → so'ng 74/74 OK.
+**Tekshiruv:** residue-grep 0 (60000/select-ro'yxat/mentorScreen>screen) · yangi yadro 79/79 faylda (3 etalon + 76) · vite build toza · M1Demo/Solishtir esbuild toza. Har faylda ~41 qator, faqat jonli-yadro qatlami (kontent/ball-kalitlar tegilmagan).
+**Eslatma:** server-migratsiya (cur_screen) oldin bajarilgan; mentorScreenOf eski bazaga ham chidamli. UNCOMMITTED.

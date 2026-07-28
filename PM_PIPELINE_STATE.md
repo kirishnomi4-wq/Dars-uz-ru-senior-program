@@ -602,3 +602,9 @@ Yangi agent `role/darslik-oquvchi.md` + spec `OQUVCHI_DARVOZA.md` (4 teshik yama
 5. **pm-tekshiruvchi band-13:** port-sweep (naqsh ko'chirilganda 8-12 bandlar + 80-86 sweep qayta yuritiladi).
 6. **Xotira yangilandi** (pm-etalon-yaxshilash).
 **Kun-yakuni statistikasi:** jami 64 feedback (F-0727-01…64), 82 raund, qonun 68–86 (19 yangi), korpus 13–19-bo'limlar, lug'at +12 qator, lint 44→55 qoida, tekshiruvchi +6 ov-band. UNCOMMITTED (P76–P82).
+
+## P83 raund (2026-07-28) — M1 v2-DARSLAR OLIB TASHLANDI: PmAudience/PmStructure/PmPitch → PmLesson1/2/3 — ✅
+**Foydalanuvchi buyrug'i:** uchala v2 dars (PmStructureLesson, PmPitchLesson, PmAudienceLesson) o'chirilsin; o'rniga keyinroq PmLesson1/2/3 yaxshilab optimalga keltiriladi.
+**Qilingan ish:** `src/1-Modull/`dan uchala .jsx o'chirildi. Slotlar qaytarildi: App.jsx (m1-02→PmLesson1, m1-05→PmLesson2, m1-12→PmLesson3), M1DemoApp.jsx (xuddi shu), SolishtirApp.jsx (2-juftlik PmLesson2↔PmStructure olib tashlandi, faqat 1-juftlik qoldi). PmStructure uchun qurilgan scratch-skrinshot rigi (_m.html/_m.jsx/_shot.mjs/_s3.png/_t1.png) ham o'chirildi.
+**Tekshiruv:** esbuild (App/M1Demo/Solishtir) toza · vite build toza · residue-grep — src'da faqat tarix-izohlar qoldi.
+**Keyingi ish:** PmLesson1/2/3 ni PM_DARS_ETALON (qonun 1–86) + MATN_KORPUS bo'yicha optimallash (retsept C). UNCOMMITTED.

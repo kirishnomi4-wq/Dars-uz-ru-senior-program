@@ -1952,9 +1952,10 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       if (live && live.mode === 'student') live.submitAnswer(PRACTICE_BASE + screen, 'koding', 0, true, 0);
     }
   };
-  // O'quvchining O'Z hikoyalari vizualda chiqadi (40-qonun: bo'sh bo'lsa namuna-fallback)
-  const myStories = readFullStories().slice(0, 2);
-  const previewStories = myStories.length ? myStories : DEMO_STORIES.slice(0, 2);
+  // O'quvchining O'Z hikoyasi vizualda chiqadi (40-qonun: bo'sh bo'lsa namuna-fallback).
+  // Bitta karta yetadi — ikkitasi oynani band qilib UI'ni og'irlashtirardi (F-0728).
+  const myStories = readFullStories().slice(0, 1);
+  const previewStories = myStories.length ? myStories : DEMO_STORIES.slice(0, 1);
   return (
     <Stage eyebrow="Koding · 🛠 kompilyator" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !isMentor} label={done || isMentor ? 'Davom etish' : 'Avval kompilyatorda bajaring'} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(14px,2.2vw,20px)' }}>

@@ -188,9 +188,13 @@ npx esbuild src/1-Modull/<Fayl>.jsx --loader:.jsx=jsx --outfile=C:\Users\ADMIN\A
 ### 6-Modul yurishida tasdiqlangan YANGI bug-sinf (keyingi promptlarga majburiy band)
 **Shablon-string konkatenatsiyasi.** Modul-darajali data'da yorliq `` `${x.ico} ${x.label}` `` ko'rinishida yig'ilsa, `label` `{uz,ru}` obyektga aylangan zahoti natija literal `[object Object]` bo'ladi — esbuild ham, oddiy SSR-mount ham buni TUTMAYDI (faqat o'sha ekran render qilinganda ko'rinadi). 5-Modulda 3, 6-Modulda 5 faylda uchradi (DragDrop `*_ITEMS`, `hints`, xato-maslahat matnlari). Yechim: shablonni har til uchun alohida yig'ib `{uz: \`${ico} ${label.uz}\`, ru: …}` qilish (modul-darajada `tr()` chaqirmasdan).
 
-### 1-Modul PM darslari (v2, PM pipeline)
+### 1-Modul PM darslari
+> 2026-07-28 (P83): v2-darslar (PmAudience/PmStructure/PmPitch) o'chirildi — slotlarda PmLesson1/2/3.
+> PmAudience'ning RU-mexanika topilmalari (kompilyator starter RU + UNION-check, regex RU-qamrov)
+> PmLesson1/2/3 ruslashtirilganda qayta qo'llanadi (tarix: git, P83 gacha).
+
 | Dars | Infra (tr/__lang) | Kontent RU | Izoh |
 |---|---|---|---|
-| `PmAudienceLesson.jsx` | ✅ | ✅ | 356 juft, esbuild+vite toza, kalitlar tekshirildi (2026-07-23). MAXSUS: kompilyator starter RU (`[КТО]/[ПРОБЛЕМА]/[РЕШЕНИЕ]`) + UNION-check (ikkala til placeholderi) — til almashganda saqlangan kod buzilmaydi; `AUD_MAVHUM` regex RU («все/всех») qamraydi |
-| `PmStructureLesson.jsx` | ⬜ | ⬜ | navbatda |
-| `PmPitchLesson.jsx` | ⬜ | ⬜ | navbatda |
+| `PmLesson1.jsx` | ⬜ | ⬜ | navbatda (optimallashdan keyin) |
+| `PmLesson2.jsx` | ⬜ | ⬜ | navbatda |
+| `PmLesson3.jsx` | ⬜ | ⬜ | navbatda |

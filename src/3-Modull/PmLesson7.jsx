@@ -41,7 +41,10 @@ import mentorImg from '../assets/common/mentor.png';
 // Qolip: "[foydalanuvchi] sifatida, men [harakat]ni xohlayman, [natija] uchun".
 // Jobs-to-be-Done: odam parmani emas — teshikni xohlaydi (mahsulotni ishni bajarish uchun "yollaydi").
 // React bog'lanish: har user story → bitta komponent/feature.
-// Hero keys: mentor tugmasi (og'zaki jarayon cho'ziladi → tugma qo'shamiz).
+// Yuguruvchi abrazets (MATN_KORPUS §13 — bitta real mahsulot, o'smir hayotidan KIM):
+//   "Imtihonga tayyorlanayotgan o'quvchi sifatida, men videoni 2 barobar tez ko'rishni
+//    xohlayman, bir kechada ko'proq mavzuga ulgurish uchun."
+// Shu namuna darsning HAMMA ekranida bir xil ushlanadi — o'quvchi bitta naqshga taqlid qiladi.
 // AUDIOSIZ — ovoz yo'q, faqat matn va animatsiya.
 // PRODUCTION: <style> ichidagi @import OLIB TASHLANADI — shriftlarni LMS yuklaydi.
 // ============================================================
@@ -124,9 +127,9 @@ const SCORED_IDX = SCREEN_META.map((m, i) => (m.scored ? i : null)).filter(i => 
 // ===== KONSEPT LEKSIKONI =====
 // User Story 3 bo'lagi
 const PARTS = [
-  { key: 'kim', label: 'KIM', color: T.honey, ic: Ico.user(18), job: 'Foydalanuvchi roli — kim bu ishni qiladi.', ex: 'Mentor sifatida' },
-  { key: 'harakat', label: 'HARAKAT', color: T.blue, ic: p7.cursor(18), job: 'Foydalanuvchi nima qilmoqchi.', ex: 'men bir tugma bilan ustozga savol yo\'llashni xohlayman' },
-  { key: 'natija', label: 'NATIJA (nima uchun)', color: T.grape, ic: p7.target(18), job: 'ASL maqsad — bu ish unga nima beradi.', ex: 'jarayon og\'zaki cho\'zilmasligi uchun' }
+  { key: 'kim', label: 'KIM', color: T.honey, ic: Ico.user(18), job: 'Foydalanuvchi roli — bu odam qanday holatda? "Foydalanuvchi" emas, aniq odam.', ex: 'Imtihonga tayyorlanayotgan o\'quvchi sifatida' },
+  { key: 'harakat', label: 'HARAKAT', color: T.blue, ic: p7.cursor(18), job: 'U ilovada aynan nima qilmoqchi — bitta aniq harakat.', ex: 'men videoni 2 barobar tez ko\'rishni xohlayman' },
+  { key: 'natija', label: 'NATIJA (nima uchun)', color: T.grape, ic: p7.target(18), job: 'Shu harakatdan keyin uning hayotida nima o\'zgaradi.', ex: 'bir kechada ko\'proq mavzuga ulgurish uchun' }
 ];
 const PMETA = {}; PARTS.forEach(p => { PMETA[p.key] = p; });
 
@@ -137,6 +140,15 @@ const APPS = {
   market: { ic: Ico.market(26), name: 'Bozor', role: 'Sotuvchi', job: 'ortiqcha narsasini tez sotib, pul ishlamoqchi.' },
   telegram: { ic: Ico.telegram(26), name: 'Telegram', role: 'Do\'st', job: 'uzoqdagi yaqini bilan bir zumda, bepul gaplashmoqchi.' }
 };
+
+// Darsning yuguruvchi namunasi — bitta joyda turadi, hamma ekran shundan oziqlanadi
+const HERO = {
+  noaniq: 'Videoni tezlashtiraylik.',
+  kim: 'Imtihonga tayyorlanayotgan o\'quvchi',
+  harakat: 'videoni 2 barobar tez ko\'rish',
+  natija: 'bir kechada ko\'proq mavzuga ulgurish'
+};
+const HERO_LINE = `${HERO.kim} sifatida, men ${HERO.harakat}ni xohlayman, ${HERO.natija} uchun.`;
 
 const Split = ({ children, refEl }) => <div className="split" ref={refEl}>{children}</div>;
 const Col = ({ children, gap }) => <div className="col" style={gap ? { gap } : undefined}>{children}</div>;
@@ -344,8 +356,8 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
   return (
     <Stage eyebrow="Kirish" screen={screen} navContent={<NavNext disabled={picked === null} label="Davom etish" onClick={onNext} />}>
       <div className="screen">
-        <h1 className="title h-title fade-up" style={{ maxWidth: 840 }}>Bir buyruq berdingiz — dasturchi <span className="italic" style={{ color: T.accent }}>to'g'ri</span> narsani quradimi?</h1>
-        <Mentor>Mentor "tugma kerak" dedi. Ikki xil buyruq — birini bosing va dasturchi <b style={{ color: T.ink }}>nimani</b> qurganini ko'ring.</Mentor>
+        <h1 className="title h-title fade-up" style={{ maxWidth: 840 }}>Bir buyruq berdingiz — <span className="italic" style={{ color: T.accent }}>to'g'ri</span> narsa qilinadimi?</h1>
+        <Mentor>Jamoada kimdir "videoni tezlashtiraylik" dedi. Ikki xil buyruq bor — birini bosing va <b style={{ color: T.ink }}>nima</b> qurilganini ko'ring.</Mentor>
         <Zoomable>
         <Split>
           <Col>
@@ -356,20 +368,20 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
             <div key={mode} className="demo-swap" style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
               <div style={{ background: T.bg, borderRadius: 10, padding: '10px 13px', border: `1px dashed ${T.ink3}` }}>
                 <span className="mono small" style={{ color: T.ink3 }}>BUYRUQ</span>
-                <p style={{ fontFamily: G, fontSize: 'clamp(13px,1.7vw,15px)', color: T.ink, margin: '3px 0 0' }}>{mode === 'vague' ? '"Tugma qo\'sh."' : '"Mentor sifatida, men bir tugma bilan ustozga savol yo\'llashni xohlayman — jarayon og\'zaki cho\'zilmasligi uchun."'}</p>
+                <p style={{ fontFamily: G, fontSize: 'clamp(13px,1.7vw,15px)', color: T.ink, margin: '3px 0 0' }}>{mode === 'vague' ? `"${HERO.noaniq}"` : `"${HERO_LINE}"`}</p>
               </div>
               <div style={{ display: 'flex', justifyContent: 'center', color: T.ink3, transform: 'rotate(90deg)' }}>{Ico.arrow(16)}</div>
               <div style={{ background: T.paper, borderRadius: 12, padding: '14px', boxShadow: `0 8px 20px -8px rgba(${T.shadowBase},0.16)`, borderLeft: `4px solid ${mode === 'story' ? T.success : T.accent}` }}>
-                <span className="mono small" style={{ color: mode === 'story' ? T.success : T.accent }}>DASTURCHI QURDI</span>
+                <span className="mono small" style={{ color: mode === 'story' ? T.success : T.accent }}>NIMA QURILDI</span>
                 {mode === 'vague' ? (
                   <div style={{ marginTop: 8, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6 }}>
-                    <span style={{ background: T.accent, color: '#fff', fontWeight: 800, fontSize: 15, padding: '12px 26px', borderRadius: 8, transform: 'rotate(-4deg)' }}>TUGMA</span>
-                    <p className="small" style={{ color: T.accent, margin: '4px 0 0', fontStyle: 'italic', textAlign: 'center' }}>Qaysi tugma? Qayerga? Nega? — noto'g'ri narsa chiqdi.</p>
+                    <span style={{ background: T.accent, color: '#fff', fontWeight: 800, fontSize: 14.5, padding: '12px 22px', borderRadius: 8, transform: 'rotate(-4deg)' }}>YUKLASH TEZLIGI</span>
+                    <p className="small" style={{ color: T.accent, margin: '4px 0 0', fontStyle: 'italic', textAlign: 'center' }}>Video tez yuklanadigan bo'ldi — ammo o'quvchi buni so'ramagan edi.</p>
                   </div>
                 ) : (
                   <div style={{ marginTop: 8 }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: 8, background: T.bg, borderRadius: 8, padding: '8px 11px' }}><span style={{ color: T.grape, display: 'inline-flex' }}>{Ico.user(16)}</span><span style={{ fontFamily: G, fontSize: 13, color: T.ink2 }}>Mentor paneli</span><span style={{ marginLeft: 'auto', background: T.success, color: '#fff', fontFamily: "'Manrope'", fontWeight: 700, fontSize: 11.5, padding: '6px 11px', borderRadius: 7, display: 'inline-flex', alignItems: 'center', gap: 5 }}>{p7.cursor(12)} Ustozga savol</span></div>
-                    <p className="small" style={{ color: T.success, margin: '6px 0 0', fontStyle: 'italic' }}>Aniq joyda, aniq tugma — to'g'ri narsa chiqdi.</p>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 8, background: T.bg, borderRadius: 8, padding: '8px 11px' }}><span style={{ display: 'inline-flex' }}>{Ico.youtube(18)}</span><span style={{ fontFamily: G, fontSize: 13, color: T.ink2 }}>Video sahifasi</span><span style={{ marginLeft: 'auto', background: T.success, color: '#fff', fontFamily: "'Manrope'", fontWeight: 700, fontSize: 11.5, padding: '6px 11px', borderRadius: 7, display: 'inline-flex', alignItems: 'center', gap: 5 }}>{p7.cursor(12)} 2× tezlik</span></div>
+                    <p className="small" style={{ color: T.success, margin: '6px 0 0', fontStyle: 'italic' }}>Aynan o'sha o'quvchiga kerak bo'lgan narsa chiqdi.</p>
                   </div>
                 )}
               </div>
@@ -380,7 +392,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
             <div className="fade-up delay-3" style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
               {OPTS.map(o => { const on = picked === o.id; return (<button key={o.id} className={`hook-option ${on ? 'on' : ''}`} disabled={picked !== null} onClick={() => pick(o.id)}><span className="radio">{on && <span className="radio-dot" />}</span><span>{o.label}</span></button>); })}
             </div>
-            {picked !== null && <p className="hook-ack fade-step">Noaniq buyruq → noto'g'ri narsa. <b>Kim · nima · nima uchun</b> aytilsa — dasturchi aynan kerakli narsani quradi. Buni <b>User Story</b> deyiladi.</p>}
+            {picked !== null && <p className="hook-ack fade-step">Noaniq buyruq → noto'g'ri narsa. <b>Kim · nima · nima uchun</b> aytilsa — aynan kerakli narsa qilinadi. Buni <b>User Story</b> deyiladi.</p>}
           </Col>
         </Split>
         </Zoomable>
@@ -471,28 +483,28 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const done = seen.size >= 2;
   const set = (x) => { setV(x); setSeen(prev => { const n = new Set(prev); n.add(x); return n; }); };
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
-  const GUESSES = ['Qizil tugma?', 'Menyu tugmasi?', 'Yuklash tugmasi?'];
+  const GUESSES = ['Video tez yuklansinmi?', 'Ko\'rish tezligi tugmasimi?', 'Internet tezlashsinmi?'];
   return (
     <Stage eyebrow="Noaniqlik" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? 'Davom etish' : 'Ikkalasini ko\'ring'} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">Noaniq so'rovni har kim <span className="italic" style={{ color: T.accent }}>boshqacha</span> tushunadi</h2></div>
-        <Mentor>"Tugma qo'sh" desangiz — 3 dasturchi 3 xil narsa quradi. User Story bo'lsa — hammasi <b style={{ color: T.ink }}>bir xil to'g'ri</b> narsani quradi. Solishtiring.</Mentor>
+        <Mentor>"Videoni tezlashtiraylik" desangiz — uch kishi uchta boshqa narsani tasavvur qiladi. User Story bo'lsa — hammasi <b style={{ color: T.ink }}>bir xil</b> narsani tushunadi. Ikkalasini bosib solishtiring.</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
             <div className="fade-up delay-1" style={{ display: 'flex', gap: 8 }}>
-              <button className={`chip ${v === 'vague' ? 'chip-on' : ''}`} onClick={() => set('vague')}>"Tugma qo'sh"</button>
+              <button className={`chip ${v === 'vague' ? 'chip-on' : ''}`} onClick={() => set('vague')}>"Videoni tezlashtiraylik"</button>
               <button className={`chip ${v === 'clear' ? 'chip-on' : ''}`} onClick={() => set('clear')}>User Story</button>
             </div>
             {v === 'vague'
-              ? <div key="v" className="demo-swap" style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>{GUESSES.map((g, i) => (<div key={i} style={{ display: 'flex', alignItems: 'center', gap: 9, background: T.paper, borderRadius: 11, padding: '10px 13px', borderLeft: `3px solid ${T.accent}`, boxShadow: `0 5px 14px -8px rgba(${T.shadowBase},0.16)` }}><span style={{ color: T.ink3, display: 'inline-flex' }}>{Ico.user(16)}</span><span style={{ fontFamily: "'Manrope'", fontSize: 13, color: T.ink2 }}>Dasturchi {i + 1}:</span><span style={{ fontFamily: G, fontStyle: 'italic', color: T.accent, fontSize: 13.5 }}>{g}</span></div>))}</div>
-              : <div key="c" className="demo-swap"><StoryCard kim="Mentor" harakat="ustozga savol yo'llash" natija="vaqtni tejash" minH={120} /></div>}
+              ? <div key="v" className="demo-swap" style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>{GUESSES.map((g, i) => (<div key={i} style={{ display: 'flex', alignItems: 'center', gap: 9, background: T.paper, borderRadius: 11, padding: '10px 13px', borderLeft: `3px solid ${T.accent}`, boxShadow: `0 5px 14px -8px rgba(${T.shadowBase},0.16)` }}><span style={{ color: T.ink3, display: 'inline-flex' }}>{Ico.user(16)}</span><span style={{ fontFamily: "'Manrope'", fontSize: 13, color: T.ink2 }}>{i + 1}-kishi:</span><span style={{ fontFamily: G, fontStyle: 'italic', color: T.accent, fontSize: 13.5 }}>{g}</span></div>))}</div>
+              : <div key="c" className="demo-swap"><StoryCard kim={HERO.kim} harakat={HERO.harakat} natija={HERO.natija} minH={130} /></div>}
           </Col>
           <Col>
             {v === 'vague'
-              ? <div className="frame-warn fade-step" key="w"><p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>3 xil natija</p><p className="body" style={{ margin: 0, color: T.ink }}>Har kim o'zicha tasavvur qiladi — kim haq? Hech kim. Noto'g'ri narsa qurilishi mumkin.</p></div>
-              : <div className="frame-success fade-step" key="s"><p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: T.success, textTransform: 'uppercase', letterSpacing: '0.08em' }}>1 aniq natija</p><p className="body" style={{ margin: 0, color: T.ink }}>Kim, nima va nima uchun aniq — hamma bir xil, to'g'ri narsani quradi.</p></div>}
-            {done && <div className="frame-soft fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>User Story — noaniqlikni o'ldiradi. <b>Aniqlik = to'g'ri mahsulot.</b></p></div>}
+              ? <div className="frame-warn fade-step" key="w"><p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>3 xil tushunish</p><p className="body" style={{ margin: 0, color: T.ink }}>Uchtasi ham "tez" so'zini eshitdi, lekin uchtasi uch xil ishni tasavvur qildi. Kim haq? Hech kim — so'rovning o'zi noaniq.</p></div>
+              : <div className="frame-success fade-step" key="s"><p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: T.success, textTransform: 'uppercase', letterSpacing: '0.08em' }}>1 aniq tushunish</p><p className="body" style={{ margin: 0, color: T.ink }}>Kim aytayotgani, nima so'rayotgani va nima uchun so'rayotgani yozilgan — endi taxmin qiladigan joy qolmadi.</p></div>}
+            {done && <div className="frame-soft fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Bir gapga uchta savolning javobi sig'ib ketdi — va noaniqlik yo'qoldi. <b>Aniqlik = to'g'ri mahsulot.</b></p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -508,7 +520,7 @@ const Screen4 = (props) => (
     question={<><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-sub" style={{ marginTop: 8 }}>User Story <span className="italic" style={{ color: T.accent }}>nimadan</span> iborat?</h2></>}
     options={['Rang, shrift va o\'lcham', 'Kim · harakat · natija (nima uchun)', 'Faqat tugma nomi', 'Qaysi texnologiyada qilinishi']} correctIdx={1}
     explainCorrect="To'g'ri! User Story = kim (rol) + harakat (nima xohlaydi) + natija (nima uchun). Uchchovi birga — to'liq, aniq buyruq."
-    explainWrong={{ 0: 'Rang/shrift — dizayn. User Story esa kim, nima va nima uchunni aytadi.', 2: 'Faqat nom yetarli emas — kim va nima uchun ham kerak.', 3: 'Texnologiya — dasturchining ishi. User Story foydalanuvchi ishini aytadi.', default: 'User Story = kim · harakat · natija.' }} />
+    explainWrong={{ 0: 'Rang/shrift — dizayn. User Story esa kim, nima va nima uchunni aytadi.', 2: 'Faqat nom yetarli emas — kim va nima uchun ham kerak.', 3: 'Texnologiya — ilova ichida qanday qilinishi. User Story esa odamga nima kerakligini aytadi.', default: 'User Story = kim · harakat · natija.' }} />
 );
 
 // ===== SCREEN 5 — 3 BO'LAK (tap → vazifa) =====
@@ -523,18 +535,18 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow="3 bo'lak" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? 'Davom etish' : `${seen.size}/3 bo'lakni oching`} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">User Story qaysi <span className="italic" style={{ color: T.accent }}>3 bo'lak</span>dan iborat?</h2></div>
-        <Mentor>Har birini bosing: <b style={{ color: T.honey }}>KIM</b> · <b style={{ color: T.blue }}>HARAKAT</b> · <b style={{ color: T.grape }}>NATIJA</b>. Mentor misolida ko'ring.</Mentor>
+        <Mentor>Har birini bosing: <b style={{ color: T.honey }}>KIM</b> · <b style={{ color: T.blue }}>HARAKAT</b> · <b style={{ color: T.grape }}>NATIJA</b>. Bitta YouTube misolida ko'rasiz — pastdagi karta bosgan sari to'lib boradi.</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
             <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
               {PARTS.map(s => (<button key={s.key} onClick={() => tap(s.key)} style={{ display: 'flex', alignItems: 'center', gap: 11, textAlign: 'left', cursor: 'pointer', border: 'none', borderRadius: 12, padding: '12px 14px', background: T.paper, boxShadow: active === s.key ? `inset 0 0 0 2px ${s.color}, 0 8px 20px -8px ${s.color}44` : `0 6px 16px -8px rgba(${T.shadowBase},0.16)`, transition: 'all 0.18s' }}><span style={{ color: s.color, display: 'inline-flex' }}>{s.ic}</span><span style={{ fontFamily: "'Manrope',sans-serif", fontWeight: 700, fontSize: 13.5, color: s.color }}>{s.label}</span>{seen.has(s.key) && <span style={{ marginLeft: 'auto', color: T.success, display: 'inline-flex' }}>{Ico.check(14)}</span>}</button>))}
             </div>
-            <div className="fade-up delay-2"><StoryCard kim={seen.has('kim') ? 'Mentor' : ''} harakat={seen.has('harakat') ? 'ustozga savol yo\'llash' : ''} natija={seen.has('natija') ? 'vaqtni tejash' : ''} minH={110} /></div>
+            <div className="fade-up delay-2"><StoryCard kim={seen.has('kim') ? HERO.kim : ''} harakat={seen.has('harakat') ? HERO.harakat : ''} natija={seen.has('natija') ? HERO.natija : ''} minH={130} /></div>
           </Col>
           <Col>
             {active ? (<div className="sk-info fade-step" key={active}><span className="sk-tagbig"><span style={{ color: PMETA[active].color, display: 'inline-flex' }}>{PMETA[active].ic}</span><span className="sk-wordbadge" style={{ color: PMETA[active].color, background: PMETA[active].color + '1c' }}>{PMETA[active].label}</span></span><p className="body" style={{ color: T.ink, margin: '12px 0 0' }}>{PMETA[active].job}</p><p style={{ fontFamily: G, fontStyle: 'italic', color: T.ink2, margin: '9px 0 0', fontSize: 13.5, lineHeight: 1.5 }}>"{PMETA[active].ex}"</p></div>) : (!isNarrow ? <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>Bir bo'lakni bosing</p></div> : null)}
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Uchchovi birga — to'liq User Story. Endi har bo'lakni bog'laymiz.</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Uchchovi birga turgandagina gap to'liq bo'ldi. Bittasini olib tashlang — darrov taxmin qiladigan joy paydo bo'ladi.</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -549,16 +561,16 @@ const Screen5b = (props) => (
     questionText="User Story'da '...uchun' (natija) qismi nega kerak?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>Mustahkamlash</p><h2 className="title h-sub" style={{ marginTop: 8 }}>"...uchun" (natija) qismi <span className="italic" style={{ color: T.accent }}>nega</span> kerak?</h2></>}
     options={['Jumlani uzaytirish uchun', 'Foydalanuvchining ASL maqsadini (job) ko\'rsatadi', 'Texnologiyani tanlash uchun', 'Rangni belgilash uchun']} correctIdx={1}
-    explainCorrect="To'g'ri! 'Natija' — ASL maqsad (job). U bo'lsa, dasturchi to'g'ri yechimni tanlaydi: 'vaqtni tejash' uchun bo'lsa, eng tez yo'lni quradi."
-    explainWrong={{ 0: 'Maqsad uzaytirish emas. Natija — foydalanuvchining ASL maqsadini ochadi.', 2: 'Texnologiya — boshqa narsa. Natija foydalanuvchi nimaga erishishini aytadi.', 3: 'Rang — dizayn. Natija esa ASL maqsadni (job) ko\'rsatadi.', default: 'Natija — foydalanuvchining ASL maqsadini (job) ko\'rsatadi.' }} />
+    explainCorrect="To'g'ri! Natija — harakatdan keyin odamning hayotida nima o'zgarishini aytadi. 'Bir kechada ko'proq mavzuga ulgurish' deyilgani uchun tezlik tugmasi qo'yildi; agar 'internetsiz ham ko'rish' deyilganda — butunlay boshqa narsa qilingan bo'lardi."
+    explainWrong={{ 0: 'Maqsad uzaytirish emas. Natija — odamning hayotida nima o\'zgarishini aytadi.', 2: 'Texnologiya — boshqa narsa. Natija foydalanuvchi nimaga erishishini aytadi.', 3: 'Rang — dizayn. Natija esa harakatdan keyingi foydani ko\'rsatadi.', default: 'Natija — harakatdan keyin odamning hayotida nima o\'zgarishini ko\'rsatadi.' }} />
 );
 
 // ===== SCREEN 6 — USER STORY TUG'ILADI (stepper) =====
 const BIRTH = [
-  { key: 'soz', label: 'NOANIQ SO\'ROV', color: T.ink3, ic: Ico.problem(18), text: 'Tugma qo\'sh.' },
-  { key: 'kim', label: 'KIM?', color: T.honey, ic: Ico.user(18), text: 'Mentor sifatida' },
-  { key: 'harakat', label: 'HARAKAT?', color: T.blue, ic: p7.cursor(18), text: 'men ustozga savol yo\'llashni xohlayman' },
-  { key: 'natija', label: 'NATIJA?', color: T.grape, ic: p7.target(18), text: 'vaqtni tejash uchun' }
+  { key: 'soz', label: 'NOANIQ SO\'ROV', color: T.ink3, ic: Ico.problem(18), text: HERO.noaniq },
+  { key: 'kim', label: 'KIM buni so\'rayapti?', color: T.honey, ic: Ico.user(18), text: `${HERO.kim} sifatida` },
+  { key: 'harakat', label: 'U aynan NIMA qilmoqchi?', color: T.blue, ic: p7.cursor(18), text: `men ${HERO.harakat}ni xohlayman` },
+  { key: 'natija', label: 'Bundan unga NIMA foyda?', color: T.grape, ic: p7.target(18), text: `${HERO.natija} uchun` }
 ];
 const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [step, setStep] = useState(storedAnswer ? BIRTH.length : 0);
@@ -573,14 +585,14 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow="User Story tug'iladi" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? 'Davom etish' : 'Avval kuzating'} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(8px,1.4vw,13px)' }}>
         <div className="head"><h2 className="title h-title fade-up">Noaniq so'rovdan User Story <span className="italic" style={{ color: T.accent }}>qanday</span> tug'iladi?</h2></div>
-        <Mentor>3 savol berib, noaniq so'rovni aniq User Story'ga aylantiramiz: <b style={{ color: T.ink }}>kim? → nima? → nima uchun?</b> Tugmani bosing.</Mentor>
+        <Mentor>Noaniq so'rovga uchta savol beramiz — javoblari yig'ilib, gap o'zi to'liq bo'lib qoladi. Tugmani bosing va kuzating.</Mentor>
         <Zoomable>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
           {BIRTH.map((s, i) => { const on = step > i; return (<React.Fragment key={s.key}><div style={{ display: 'flex', alignItems: 'center', gap: 11, background: T.paper, borderRadius: 11, padding: '9px 13px', opacity: on ? 1 : 0.4, boxShadow: on ? `0 7px 18px -10px rgba(${T.shadowBase},0.18)` : 'none', transition: 'all 0.45s' }}><IcoChip color={on ? s.color : T.ink3} soft={on ? s.color + '1c' : '#ECEAE5'} size={31}>{s.ic}</IcoChip><div style={{ minWidth: 0, flex: 1 }}><p style={{ fontFamily: "'Manrope',sans-serif", fontWeight: 700, fontSize: 12.5, letterSpacing: '0.04em', color: on ? s.color : T.ink3, margin: 0 }}>{s.label}</p>{on && <p style={{ fontFamily: G, fontStyle: 'italic', fontSize: 13, color: T.ink2, margin: '1px 0 0', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: isMobile ? 'normal' : 'nowrap' }}>"{s.text}"</p>}</div>{on && i > 0 && <span style={{ color: T.success }}>{Ico.check(15)}</span>}</div>{i < BIRTH.length - 1 && <div style={{ display: 'flex', justifyContent: 'center', color: step > i + 1 ? T.success : T.ink3, transform: 'rotate(90deg)', lineHeight: 1, transition: 'color 0.3s' }}>{Ico.arrow(12)}</div>}</React.Fragment>); })}
         </div>
         <button className="btn" onClick={run} disabled={running} style={{ alignSelf: 'flex-start' }}>{running ? 'Tug\'ilmoqda…' : (done ? '↻ Yana ko\'rish' : 'User Story\'ni tug\'dirish')}</button>
-        {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Mana: <b>"Mentor sifatida, men ustozga savol yo'llashni xohlayman, vaqtni tejash uchun."</b> Endi dasturchi aniq biladi.</p></div>}
+        {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Mana: <b>"{HERO_LINE}"</b> Bir gapda uchta savolning javobi turibdi — endi taxmin qiladigan joy yo'q.</p></div>}
         </div>
         </Zoomable>
       </div>
@@ -598,8 +610,8 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return (
     <Stage eyebrow="Kuchli vs zaif" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? 'Davom etish' : 'Ikkalasini ko\'ring'} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Qaysi User Story dasturchiga <span className="italic" style={{ color: T.accent }}>yordam</span> beradi?</h2></div>
-        <Mentor>Ikki User Story — biri aniq, biri noaniq. Ikkalasini bosib solishtiring.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">Qaysi hikoyani o'qib, nima qilish kerakligi <span className="italic" style={{ color: T.accent }}>darrov</span> tushuniladi?</h2></div>
+        <Mentor>Ikki hikoya — biri aniq, biri noaniq. Ikkalasini bosing va o'zingizdan so'rang: gapdagi odamni ko'z oldingizga keltira olyapsizmi?</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
@@ -608,14 +620,14 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <button className={`chip ${v === 'weak' ? 'chip-on' : ''}`} onClick={() => set('weak')}>Zaif</button>
             </div>
             <div key={v}>{v === 'strong'
-              ? <StoryCard kim="Xaridor" harakat="savatdagi tovarlarni ko'rish" natija="nima sotib olishini eslab qolish" minH={130} />
-              : <StoryCard kim="Foydalanuvchi" harakat="yangi tugma" natija="chiroyli ko'rinish" minH={130} />}</div>
+              ? <StoryCard kim={HERO.kim} harakat={HERO.harakat} natija={HERO.natija} minH={140} />
+              : <StoryCard kim="Foydalanuvchi" harakat="yangi tugma" natija="qulay bo'lishi" minH={140} />}</div>
           </Col>
           <Col>
             {v === 'strong'
-              ? <div className="frame-success fade-step" key="s"><p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: T.success, textTransform: 'uppercase', letterSpacing: '0.08em' }}>Aniq</p><p className="body" style={{ margin: 0, color: T.ink }}>Aniq rol (xaridor), aniq harakat va aniq maqsad. Dasturchi to'g'ri "Savat" komponentini quradi.</p></div>
-              : <div className="frame-warn fade-step" key="w"><p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>Noaniq</p><p className="body" style={{ margin: 0, color: T.ink }}>"Foydalanuvchi", "yangi tugma", "chiroyli" — hammasi mavhum. Hech qanday aniq ish yo'q.</p></div>}
-            {done && <div className="frame-soft fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Kuchli User Story: <b>aniq rol + aniq harakat + haqiqiy maqsad.</b></p></div>}
+              ? <div className="frame-success fade-step" key="s"><p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: T.success, textTransform: 'uppercase', letterSpacing: '0.08em' }}>Aniq</p><p className="body" style={{ margin: 0, color: T.ink }}>Bu odamni ko'z oldingizga keltira olasiz: kechasi imtihonga tayyorlanyapti, vaqti kam. Shuning uchun aynan tezlik tugmasi kerakligi o'z-o'zidan kelib chiqadi.</p></div>
+              : <div className="frame-warn fade-step" key="w"><p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>Noaniq</p><p className="body" style={{ margin: 0, color: T.ink }}>Bu odamni ko'z oldingizga keltira olmaysiz. "Foydalanuvchi" — hamma va hech kim; "qulay bo'lishi" esa hech qanday o'zgarishni ko'rsatmaydi.</p></div>}
+            {done && <div className="frame-soft fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Farqni sinash oson: <b>gapdagi odamni ko'z oldingizga keltira oldingizmi?</b> Keltira olsangiz — hikoya kuchli.</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -679,9 +691,9 @@ const Screen9 = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow="Mashq · 2-savol"
     questionText="Qaysi User Story to'g'ri yozilgan?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-sub" style={{ marginTop: 8 }}>Qaysi User Story <span className="italic" style={{ color: T.accent }}>to'g'ri</span> yozilgan?</h2></>}
-    options={['Tugma qizil bo\'lsin', 'Mentor sifatida, ustozga tez savol yo\'llashni xohlayman, vaqt tejash uchun', 'Saytga JavaScript qo\'shamiz', 'Foydalanuvchiga yoqsin']} correctIdx={1}
-    explainCorrect="To'g'ri! Aniq rol (mentor) + aniq harakat (savol yo'llash) + aniq natija (vaqt tejash). To'liq User Story."
-    explainWrong={{ 0: '"Qizil bo\'lsin" — dizayn detali, kim va nima uchun yo\'q.', 2: 'Bu — texnik vazifa, foydalanuvchi ishi emas.', 3: '"Yoqsin" — juda mavhum. Kim, qanday harakat, qanday natija?', default: 'To\'g\'ri User Story: kim + harakat + natija (mentor misoli).' }} />
+    options={['Tugma qizil bo\'lsin', `${HERO.kim} sifatida, men ${HERO.harakat}ni xohlayman, ${HERO.natija} uchun`, 'Saytga JavaScript qo\'shamiz', 'Foydalanuvchiga yoqsin']} correctIdx={1}
+    explainCorrect="To'g'ri! Bu gapda uchchala savolning javobi ham bor: kim so'rayapti, u nima qilmoqchi va bundan unga qanday foyda."
+    explainWrong={{ 0: '"Qizil bo\'lsin" — rang haqida. Kim so\'rayapti va bundan unga nima foyda — ikkalasi ham yo\'q.', 2: 'Bu — texnik vazifa. Unda foydalanuvchi ham, uning foydasi ham yo\'q.', 3: '"Yoqsin" — hech qanday o\'zgarishni ko\'rsatmaydi. Kim? Qanday harakat? Undan keyin nima o\'zgaradi?', default: 'To\'liq hikoyada uchchala javob bo\'ladi: kim · nima qilmoqchi · undan qanday foyda.' }} />
 );
 
 // ===== SCREEN 10 — NATIJASIZ STORY'NI TUZATISH (debug) =====
@@ -689,11 +701,11 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [found, setFound] = useState(!!storedAnswer);
   const [fixed, setFixed] = useState(!!storedAnswer);
   const done = fixed;
-  const WEAK_NATIJA = 'shunchaki kerak bo\'lgani';
-  const GOOD_NATIJA = 'jarayonni tezlashtirish';
+  const WEAK_NATIJA = 'shunchaki qulay bo\'lgani';
+  const GOOD_NATIJA = HERO.natija;
   const lines = [
-    { key: 'kim', label: 'KIM', color: T.honey, text: 'Mentor sifatida' },
-    { key: 'harakat', label: 'HARAKAT', color: T.blue, text: 'men ustozga savol yo\'llashni xohlayman' },
+    { key: 'kim', label: 'KIM', color: T.honey, text: `${HERO.kim} sifatida` },
+    { key: 'harakat', label: 'HARAKAT', color: T.blue, text: `men ${HERO.harakat}ni xohlayman` },
     { key: 'natija', label: 'NATIJA', color: T.grape, text: '' }
   ];
   const clickLine = (k) => { if (found || fixed) return; if (k === 'natija') setFound(true); };
@@ -703,7 +715,7 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow="Tuzatish" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? 'Davom etish' : (found ? 'Endi tuzating' : 'Zaif bo\'lakni toping')} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">Bu User Story'da qaysi bo'lak <span className="italic" style={{ color: T.accent }}>zaif</span>?</h2></div>
-        <Mentor>User Story yozilgan, lekin bitta bo'lak <b style={{ color: T.ink }}>ASL maqsadni ko'rsatmaydi</b>. Qaysi bo'lak? O'sha qatorni bosing.</Mentor>
+        <Mentor>Hikoya yozilgan, lekin bitta qatori <b style={{ color: T.ink }}>hech narsa aytmayapti</b>. Qaysi biri? O'sha qatorni bosing.</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
@@ -716,9 +728,9 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             </div>
           </Col>
           <Col>
-            {!found && <div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>Eslang: natija <b>ASL maqsadni</b> (job) ko'rsatishi kerak. Qaysi qator "shunchaki kerak" deb, hech narsa aytmayapti?</p></div>}
-            {found && !fixed && <div className="frame-warn fade-step"><p className="note-h" style={{ color: T.accent }}>Topdingiz!</p><p className="body" style={{ margin: 0, color: T.ink }}>"shunchaki kerak bo'lgani uchun" — bu ASL maqsad emas. Nega kerak? Masalan: "jarayonni tezlashtirish uchun". Almashtiring.</p></div>}
-            {fixed && <div className="takeaway fade-step"><div className="ta-bulb" style={{ color: T.grape, display: 'inline-flex' }}>{p7.target(34)}</div><p className="ta-h">Natija — ASL maqsadni ko'rsatsin</p><p className="ta-sub">"shunchaki kerak" emas, aniq foyda</p></div>}
+            {!found && <div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>Uchala qatorni o'qing. Ikkitasi aniq narsa aytadi. Bittasi esa o'qib bo'lgach ham savol qoldiradi: "xo'sh, keyin nima o'zgaradi?" — o'sha qatorni bosing.</p></div>}
+            {found && !fixed && <div className="frame-warn fade-step"><p className="note-h" style={{ color: T.accent }}>Topdingiz!</p><p className="body" style={{ margin: 0, color: T.ink }}>"shunchaki qulay bo'lgani uchun" deganda hayotda hech narsa o'zgarmaydi. Videoni tez ko'rgan o'quvchi aynan nimaga ulguradi? Almashtirib ko'ring.</p></div>}
+            {fixed && <div className="takeaway fade-step"><div className="ta-bulb" style={{ color: T.grape, display: 'inline-flex' }}>{p7.target(34)}</div><p className="ta-h">Natija — hayotdagi o'zgarish</p><p className="ta-sub">"qulay bo'lsin" emas, "bir kechada ko'proq mavzuga ulguraman"</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -730,9 +742,9 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // ===== SCREEN 11 — USER STORY YIG'ISH (build) =====
 const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const POOL = {
-    kim: { label: 'KIM', color: T.honey, a: 'Foydalanuvchi', b: 'Mentor' },
-    harakat: { label: 'HARAKAT', color: T.blue, a: 'yangi tugma', b: 'ustozga savol yo\'llash' },
-    natija: { label: 'NATIJA', color: T.grape, a: 'chiroyli ko\'rinish', b: 'vaqtni tejash' }
+    kim: { label: 'KIM', color: T.honey, a: 'Foydalanuvchi', b: HERO.kim },
+    harakat: { label: 'HARAKAT', color: T.blue, a: 'yaxshiroq video ko\'rish', b: HERO.harakat },
+    natija: { label: 'NATIJA', color: T.grape, a: 'qulay bo\'lishi', b: HERO.natija }
   };
   const KEYS = ['kim', 'harakat', 'natija'];
   const [pick, setPick] = useState(storedAnswer?.pick || {});
@@ -749,7 +761,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow="User Story yig'ish" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!allGood} label={allGood ? 'Davom etish' : (allPicked ? 'Eng aniq variantni tanlang' : 'Har bo\'lakdan tanlang')} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">Har bo'lak uchun <span className="italic" style={{ color: T.accent }}>aniqroq</span> variantni tanlang</h2></div>
-        <Mentor>Har bo'lak uchun ikkita variant — <b style={{ color: T.ink }}>aniq</b> bo'lganini tanlang. O'ngda User Story jonli yig'iladi.</Mentor>
+        <Mentor>Har qator uchun ikkita variant bor: biri mavhum, biri aniq. <b style={{ color: T.ink }}>Aniq</b> bo'lganini tanlang — o'ngdagi karta shu zahoti to'lib boradi.</Mentor>
         <MentorCollapseScroll targetRef={workRef} />
         <Zoomable>
         <div className="split" ref={workRef}>
@@ -759,7 +771,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <Col>
             <p className="flow-label">Sizning User Story</p>
             <StoryCard kim={pick.kim ? POOL.kim[pick.kim] : ''} harakat={pick.harakat ? POOL.harakat[pick.harakat] : ''} natija={pick.natija ? POOL.natija[pick.natija] : ''} minH={150} />
-            {allGood && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Mana — aniq User Story! Endi dasturchi aynan kerakli komponentni quradi.</p></div>}
+            {allGood && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Uchchala aniq variantni topdingiz. Chapdagi mavhum variantlarni yana o'qib ko'ring — ular ham "to'g'ri"dek tuyulardi, lekin hech kimni ko'z oldingizga keltirmasdi.</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -773,16 +785,16 @@ const Screen12 = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow="Mashq · 3-savol"
     questionText="User Story nega kerak?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-sub" style={{ marginTop: 8 }}>User Story <span className="italic" style={{ color: T.accent }}>nega</span> kerak?</h2></>}
-    options={['Hujjat chiroyli ko\'rinishi uchun', 'Dasturchi aynan kerakli narsani qursin — vaqt behuda ketmasin', 'Kodni tezlashtirish uchun', 'Ko\'proq tugma qo\'shish uchun']} correctIdx={1}
-    explainCorrect="To'g'ri! Aniq User Story → dasturchi to'g'ri narsani quradi. Noaniq bo'lsa — noto'g'ri qurib, vaqt va kuch behuda ketadi."
-    explainWrong={{ 0: 'Maqsad chiroyli hujjat emas. Aniqlik — to\'g\'ri mahsulot demak.', 2: 'Kod tezligi — boshqa narsa. User Story nima qurishni aniqlaydi.', 3: 'Tugma soni emas — to\'g\'ri ishni qurish muhim.', default: 'User Story — dasturchi to\'g\'ri narsani qursin, vaqt ketmasin.' }} />
+    options={['Hujjat chiroyli ko\'rinishi uchun', 'Hamma aynan bir xil narsani tushunsin — behuda ish qilinmasin', 'Ilova tezroq ishlashi uchun', 'Ko\'proq tugma qo\'shish uchun']} correctIdx={1}
+    explainCorrect="To'g'ri! Hikoya aniq bo'lsa — hamma bir xil narsani tushunadi. Noaniq bo'lsa, har kim o'zicha tasavvur qiladi va oxirida kerakmas narsa chiqadi: vaqt ham, kuch ham behuda ketadi."
+    explainWrong={{ 0: 'Maqsad chiroyli hujjat emas. Hikoya nima qilinishi kerakligini aniqlaydi.', 2: 'Ilova tezligi — butunlay boshqa narsa. Hikoya nima qilinishini aytadi, qanchalik tez ishlashini emas.', 3: 'Gap tugma sonida emas — kerakli narsaning o\'zi qilinishida.', default: 'Hikoya kerak — hamma bir xil narsani tushunsin va behuda ish qilinmasin.' }} />
 );
 
 // ===== SCREEN 13 — NAMUNA: 3 user story =====
 const CASE_STORIES = [
-  { kim: 'Xaridor', harakat: 'savatdagi tovarlarni ko\'rish', natija: 'nima sotib olishini eslab qolish', why: 'Aniq rol, aniq harakat va haqiqiy maqsad. Dasturchi to\'g\'ri "Savat" komponentini quradi.' },
-  { kim: 'Sotuvchi', harakat: 'mahsulot rasmini yuklash', natija: 'xaridor ko\'rib ishonishi', why: 'Natija ("ishonish") asosiy — shuning uchun rasm yuklash kerak. Maqsad yechimni belgilaydi.' },
-  { kim: 'Yangi mehmon', harakat: 'ro\'yxatdan o\'tmasdan ko\'rish', natija: 'tez sinab ko\'rish', why: 'Rol "yangi mehmon" — uning ishi tez sinash. Demak ro\'yxatdan o\'tishni majburlamaymiz.' }
+  { kim: HERO.kim, harakat: HERO.harakat, natija: HERO.natija, why: 'Bu odamning holati aytilgan: imtihonga tayyorlanyapti, ya\'ni vaqti kam. Shuning uchun unga aynan tezlik tugmasi kerak — boshqa hech narsa emas.' },
+  { kim: 'Yo\'lda ketayotgan tomoshabin', harakat: 'videoni oldindan yuklab qo\'yish', natija: 'internet yo\'q joyda ham ko\'ra olish', why: 'Xuddi shu YouTube, lekin boshqa odam — va butunlay boshqa narsa kerak bo\'lib qoldi. Uni tezlik emas, internetsizlik qiynayapti.' },
+  { kim: 'Yangi kanal egasi', harakat: 'videoni kim ko\'rganini bilish', natija: 'kimga mos video yasashni tushunish', why: 'Bu odam video ko\'rgani kelmagan — u video yasaydi. Ilova bitta, lekin uchinchi odamning ishi ham butunlay boshqa.' }
 ];
 const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [seen, setSeen] = useState(storedAnswer ? new Set([0, 1, 2]) : new Set());
@@ -795,8 +807,8 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return (
     <Stage eyebrow="Namuna" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? 'Endi navbat sizga →' : `${seen.size}/3 storyni oching`} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">3 ta tayyor User Story — har biri <span className="italic" style={{ color: T.accent }}>nega</span> kuchli?</h2></div>
-        <Mentor>Mana 3 ta User Story. Har birini bosib, nega aynan shunday yozilganini ko'ring.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">Bitta YouTube — <span className="italic" style={{ color: T.accent }}>uch xil</span> odam, uch xil hikoya</h2></div>
+        <Mentor>Uchala hikoya ham bitta ilova haqida. Har birini bosing va nega uchtasiga uch xil narsa kerakligini ko'ring.</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
@@ -806,7 +818,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </Col>
           <Col>
             {cur ? (<div className="sk-info fade-step" key={active}><span className="sk-tagbig"><span className="sk-wordbadge">{active + 1}-User Story</span></span><p className="body" style={{ color: T.ink, margin: '12px 0 0' }}>{cur.why}</p></div>) : (!isNarrow ? <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>Bir storyni bosing</p></div> : null)}
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Har birida aniq rol, harakat va maqsad bor. Endi o'zingiznikini yozasiz.</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Ilova bitta bo'lsa ham, KIM o'zgargani hamon boshqa narsa kerak bo'lib qoldi. Shuning uchun hikoya doim aniq bir odam tilidan yoziladi.</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -820,7 +832,7 @@ const Screen14 = ({ screen, onNext, onPrev }) => (
   <Stage eyebrow="Qoida" screen={screen} mentorStatic navContent={<><NavBack onPrev={onPrev} /><NavNext label="Yakuniy ishga →" onClick={onNext} /></>}>
     <div className="screen">
       <div className="head"><h2 className="title h-title fade-up">Fychani emas — <span className="italic" style={{ color: T.accent }}>ASL ishni</span> yoz</h2></div>
-      <Mentor>Komponent qurishdan oldin User Story yoz: <b style={{ color: T.ink }}>kim, nima va nima uchun</b>. Shunda dasturchi to'g'ri narsani quradi va vaqt behuda ketmaydi.</Mentor>
+      <Mentor>Biror narsa qilishdan oldin hikoyani yozing: <b style={{ color: T.ink }}>kim, nima va nima uchun</b>. Shunda hamma bir xil narsani tushunadi va vaqt behuda ketmaydi.</Mentor>
       <Zoomable>
       <div className="split">
         <Col>
@@ -862,12 +874,12 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow="Yakuniy ish" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!passed} label={passed ? 'Davom etish' : `Yozing (${filled}/3)`} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">O'z loyihangiz uchun <span className="italic" style={{ color: T.accent }}>5 User Story</span> yozing</h2></div>
-        <Mentor>Qolip: <b style={{ color: T.honey }}>[kim]</b> sifatida, men <b style={{ color: T.blue }}>[harakat]</b>ni xohlayman, <b style={{ color: T.grape }}>[natija]</b> uchun. Kamida 3 tasi to'lsa — davom etasiz (5 ta yozsangiz — a'lo!).</Mentor>
+        <Mentor>Endi navbat sizga. YouTube misolidagidek yozing: <b style={{ color: T.honey }}>kim</b> sifatida, men <b style={{ color: T.blue }}>nima qilishni</b> xohlayman, <b style={{ color: T.grape }}>nima o'zgarishi</b> uchun. Kamida 3 tasi to'lsa — davom etasiz.</Mentor>
         <MentorCollapseScroll targetRef={workRef} />
         <Zoomable>
         <div className="split" ref={workRef}>
           <Col>
-            {rows.map((x, i) => { const ok = x.trim().length >= 15; return (<div key={i} style={{ background: T.paper, borderRadius: 12, padding: '10px 12px', boxShadow: ok ? `inset 0 0 0 1.5px ${T.success}, 0 6px 16px -9px rgba(31,122,77,0.16)` : `0 6px 16px -9px rgba(${T.shadowBase},0.16)`, transition: 'box-shadow 0.2s' }}><div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 }}><span style={{ color: ok ? T.success : T.ink3, display: 'inline-flex' }}>{ok ? Ico.check(15) : <span className="mono" style={{ fontSize: 12, fontWeight: 700, color: T.ink3 }}>{i + 1}</span>}</span><span className="mono" style={{ fontSize: 10.5, fontWeight: 700, color: T.ink, textTransform: 'uppercase' }}>User Story {i + 1}</span></div><textarea value={x} onChange={e => upd(i, e.target.value)} placeholder="[kim] sifatida, men [harakat]ni xohlayman, [natija] uchun" rows={2} style={{ width: '100%', fontFamily: G, fontSize: 13.5, color: T.ink, background: T.bg, border: 'none', borderRadius: 9, padding: '8px 11px', resize: 'vertical', minHeight: 36, outline: 'none', lineHeight: 1.45, boxSizing: 'border-box' }} /></div>); })}
+            {rows.map((x, i) => { const ok = x.trim().length >= 15; return (<div key={i} style={{ background: T.paper, borderRadius: 12, padding: '10px 12px', boxShadow: ok ? `inset 0 0 0 1.5px ${T.success}, 0 6px 16px -9px rgba(31,122,77,0.16)` : `0 6px 16px -9px rgba(${T.shadowBase},0.16)`, transition: 'box-shadow 0.2s' }}><div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 }}><span style={{ color: ok ? T.success : T.ink3, display: 'inline-flex' }}>{ok ? Ico.check(15) : <span className="mono" style={{ fontSize: 12, fontWeight: 700, color: T.ink3 }}>{i + 1}</span>}</span><span className="mono" style={{ fontSize: 10.5, fontWeight: 700, color: T.ink, textTransform: 'uppercase' }}>User Story {i + 1}</span></div><textarea value={x} onChange={e => upd(i, e.target.value)} placeholder="masalan: yo'lda ketayotgan tomoshabin sifatida, men videoni oldindan yuklab qo'yishni xohlayman, internet yo'q joyda ham ko'ra olish uchun" rows={2} style={{ width: '100%', fontFamily: G, fontSize: 13.5, color: T.ink, background: T.bg, border: 'none', borderRadius: 9, padding: '8px 11px', resize: 'vertical', minHeight: 36, outline: 'none', lineHeight: 1.45, boxSizing: 'border-box' }} /></div>); })}
           </Col>
           <Col>
             <p className="flow-label">Sizning User Story'laringiz</p>
@@ -884,7 +896,7 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // ===== SCREEN 16 — YAKUN =====
 const Screen16 = ({ screen, answers, onReset, onPrev, onFinish }) => {
   const RECAP = ['User Story = kim · harakat · natija', 'Jobs-to-be-Done: parma emas — teshik kerak', 'Noaniq so\'rov → noto\'g\'ri mahsulot', 'Har User Story → bitta React komponent'];
-  const HOMEWORK = [{ b: 'Sevimli ilovangizni oching', t: '— 3 ta fychani User Story qilib yozing' }, { b: 'Loyihangizni to\'ldiring', t: '— bugungi 5 tani sayqallang yoki yana qo\'shing' }, { b: 'Mentor sifatida', t: '— o\'zingiz xohlagan tugma uchun User Story yozing' }];
+  const HOMEWORK = [{ b: 'Sevimli ilovangizni oching', t: '— eng ko\'p ishlatadigan 2 ta ishini hikoya qilib yozing' }, { b: 'Bitta ilova — uch xil odam', t: '— o\'sha ilovaga 3 xil KIM tilidan hikoya yozing' }, { b: 'Loyihangizni to\'ldiring', t: '— bugungi 5 tani sayqallang yoki yana qo\'shing' }];
   const GLOSSARY = [{ b: 'User Story', t: '— foydalanuvchi ehtiyojining qisqa yozuvi' }, { b: 'Rol', t: '— kim (mentor, xaridor, mehmon...)' }, { b: 'Natija (job)', t: '— foydalanuvchining ASL maqsadi' }, { b: 'Jobs-to-be-Done', t: '— odam mahsulotni ish bajarish uchun "yollaydi"' }];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
