@@ -4564,7 +4564,7 @@ export default function HtmlLesson({ lang: langProp, onFinished }) {
               <Current screen={screen} storedAnswer={answers[screen]} answers={answers} achievements={earned} onAnswer={recordAnswer} onNext={next} onPrev={prev} onReset={reset} onFinish={finishLesson} />
               <LiveBadge live={live} total={TOTAL_SCREENS} />
               {onboard && <TourGuide role={onboardRole} onClose={closeOnboard} />}
-              <AchToasts toasts={achToasts} onDone={(k) => setAchToasts(t => t.filter(x => x.k !== k))} />
+              {live.mode !== 'mentor' && <AchToasts toasts={achToasts} onDone={(k) => setAchToasts(t => t.filter(x => x.k !== k))} />}
             </>
           )}
         </div>

@@ -33,3 +33,4 @@ dist-m1
 
 .vercel
 .env*
+dist-etalon

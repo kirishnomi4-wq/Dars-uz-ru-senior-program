@@ -459,18 +459,18 @@ const AchCtx = createContext(null); // earned Set — Stage hisoblagichi o'qiydi
 - `AchCtx.Provider value={earned}` root'da; `<Current ... achievements={earned} />`; `<AchToasts .../>` root'da.
 - Boshqa darsga: `ACHIEVEMENTS` + `ACH_TRIGGERS` o'sha darsning bosqichlariga moslanadi.
 
-### 10.1 🔴 NISHONLAR MENTOR EKRANIDA (2026-07-28 — 3 qatlamning IKKITASI o'chadi)
+### 10.1 🔴 NISHONLAR MENTOR EKRANIDA (2026-07-29, F-0729-06 — UCHALA qatlam ham o'chadi)
 
-> **Sabab:** nishon — **qurilmaga xos, shaxsiy** narsa. Mentor rejimida mentor testga javob **berolmaydi** (`if (solved || isMentorLive) return;`), shuning uchun proyektordagi hisob mentorning **o'z bosishlarini** sanaydi, sinf ishini emas → **yolg'on son**.
+> **Sabab:** nishon — **qurilmaga xos, shaxsiy** narsa. Mentor rejimida mentor testga javob **berolmaydi** (`if (solved || isMentorLive) return;`), shuning uchun proyektordagi hisob mentorning **o'z bosishlarini** sanaydi, sinf ishini emas → **yolg'on son**. To'liq-ekran bayram ham dars oqimini to'xtatib ekranni «yoritib» yuboradi — proyektorda keraksiz (F-0729-06).
 
 | Qatlam | Mentor (proyektor) | O'quvchi |
 |---|---|---|
-| 1. 🎉 To'liq-ekran bayram (`AchCelebrate`) | ✅ **QOLADI** | ✅ bor |
+| 1. 🎉 To'liq-ekran bayram (`AchCelebrate`) | ❌ **YO'Q** (2026-07-29 gacha «qoladi» edi — BEKOR) | ✅ bor |
 | 2. Hisoblagich (tepadagi 🏅 N/M) | ❌ **YO'Q** | ✅ bor |
 | 3. Kolleksiya (yakuniy ekranda ro'yxat) | ❌ **YO'Q** | ✅ bor |
 
-- Bayram **nega qoladi:** u **lahza**, hisob emas — mentor sinf bilan birga mashqni bajarganda o'sha moment haqiqatan umumiy va proyektorda chiroyli.
-- **Tatbiq:** hisoblagich komponentining O'ZI qaror qiladi (`if (gate?.live?.mode === 'mentor') return null` — **barcha hooklardan KEYIN**, React qoidasi), shunda bitta tuzatish hamma ekranga tarqaladi. Kolleksiya esa yakuniy ekranda `{!isMentorL && ...}` qorovuli ostida.
+- 📌 Qisqa xulosa: **mentor ekranida badges hech qanday ko'rinishda chiqmaydi** — texnik darsda ham, PM darsda ham.
+- **Tatbiq:** hisoblagich komponentining O'ZI qaror qiladi (`if (gate?.live?.mode === 'mentor') return null` — **barcha hooklardan KEYIN**, React qoidasi), shunda bitta tuzatish hamma ekranga tarqaladi. Kolleksiya yakuniy ekranda `{!isMentorL && ...}` qorovuli ostida. Bayram esa root'da: `{live.mode !== 'mentor' && <AchToasts .../>}` (namuna: `src/1-Modull/PmLesson2.jsx`).
 - 📌 Qisqa qoida: **mentor ekrani = SAHNA (lahzalar) · o'quvchi qurilmasi = DAFTAR (hisob)** — batafsil 10-B bo'limda.
 
 ---
@@ -487,7 +487,7 @@ const AchCtx = createContext(null); // earned Set — Stage hisoblagichi o'qiydi
 |---|---|---|---|
 | Nishon-hisoblagichi (🏅 N/M) | ❌ YO'Q | ✅ bor | shaxsiy hisob |
 | Yakuniy nishon-kolleksiyasi | ❌ YO'Q | ✅ bor | shaxsiy hisob |
-| To'liq-ekran nishon-bayrami | ✅ **BOR** | ✅ bor | **lahza**, hisob emas |
+| To'liq-ekran nishon-bayrami | ❌ **YO'Q** (F-0729-06) | ✅ bor | mentorda badges umuman chiqmaydi (10.1) |
 | Podiumda «📊 Savollar bo'yicha» (`N/M` per savol) | ❌ **YO'Q** — karta butunlay olib tashlanadi | ❌ yo'q | mag'lubiyat-tablosi |
 | Shaxsiy ball-aylanasi (`ScoreRing`) | ❌ YO'Q | ✅ bor (mustaqil rejimda) | shaxsiy hisob |
 | Podium reytingi (g'oliblar) | ✅ BOR | ✅ bor | sinf yutug'i — bayram, jazo emas |

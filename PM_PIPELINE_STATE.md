@@ -608,3 +608,45 @@ Yangi agent `role/darslik-oquvchi.md` + spec `OQUVCHI_DARVOZA.md` (4 teshik yama
 **Qilingan ish:** `src/1-Modull/`dan uchala .jsx o'chirildi. Slotlar qaytarildi: App.jsx (m1-02→PmLesson1, m1-05→PmLesson2, m1-12→PmLesson3), M1DemoApp.jsx (xuddi shu), SolishtirApp.jsx (2-juftlik PmLesson2↔PmStructure olib tashlandi, faqat 1-juftlik qoldi). PmStructure uchun qurilgan scratch-skrinshot rigi (_m.html/_m.jsx/_shot.mjs/_s3.png/_t1.png) ham o'chirildi.
 **Tekshiruv:** esbuild (App/M1Demo/Solishtir) toza · vite build toza · residue-grep — src'da faqat tarix-izohlar qoldi.
 **Keyingi ish:** PmLesson1/2/3 ni PM_DARS_ETALON (qonun 1–86) + MATN_KORPUS bo'yicha optimallash (retsept C). UNCOMMITTED.
+
+## PmLesson2 MATN-KO'RIK + MENTOR-BADGES QONUNI (2026-07-29) — ✅
+**Retsept B, foydalanuvchi bilan jonli ko'rik (F-0729-01…06):**
+- **F-0729-01** s6 Mentor: «ishsiz bo'lim» → «ishlamaydigan bo'lim».
+- **F-0729-02** s9 Mentor: «juftlik yashil belgilanadi» → «juftlik yashil rangga o'zgaradi».
+- **F-0729-03** s11 sinov-simulyator: «sinov mijozi»/«mijoz» → «foydalanuvchi» (sarlavha, mentor, yorliq, natija-xabarlar); tugma-holatlar: «Sahifani sinab ko'rish» / «Foydalanuvchi sahifani ko'rmoqda…» / «↻ Yana(Qayta) sinab ko'rish». 674-qator konversiya-izohidagi «mijoz» ATAYLAB qoldi (haqiqiy xaridor ma'nosi).
+- **F-0729-04** markaziy formula «foydalanuvchi uchun qilingan qaror» → «qulaylik» — 9 joyda (dars-sarlavha uz/ru, nazariya-karta, flashcard, quiz-izoh, s13 mentor+lavha, RECAP, test-javob; correct-index o'zgarmadi).
+- **F-0729-05** flashcard-deck qayta qurildi: 8→7 karta, «Konversiya» olib tashlandi, «ta'rif→atama» qolipi o'rniga to'g'ridan-to'g'ri savollar; 2-iteratsiyada «tanish qiyinchilik» chiqarildi, «nima vazifani bajaradi?» qolipi, «qayerda?»ga joy-javob.
+- **F-0729-06** mentor rejimida badges TO'LIQ o'chirildi — AchCelebrate to'liq-ekran bayram ham (`{live.mode !== 'mentor' && <AchToasts/>}`). **Muhrlandi:** PM_DARS_ETALON 1-D jadval (AchCelebrate: BOR→YO'Q) + DARS_ETALON 10.1 (uchala qatlam o'chadi) va 10-B jadval. **Platforma-sweep:** barcha 79 dars .jsx fayliga bir xil qorovul qo'yildi (skript, PmLesson2 double-wrap qo'lda tuzatildi), 79/79 esbuild toza.
+**Tekshiruv:** har qadamda esbuild + lint:til (55 qoida) 0 topilma. UNCOMMITTED.
+
+## UserStory MATN-AUDIT (22 topilma) + YAKUN-SAHIFA QAYTA YOZILDI + DEPLOY (2026-07-29) — ✅
+**F-0729-08 — to'liq matn-audit (foydalanuvchi: «hech narsa tahrirlamasdan hisobot»), so'ng «barchasini yaxshila» tasdig'i bilan 22 tuzatish:**
+🔴 jiddiy: «gap o'z-o'zidan o'qiladi»→«to'liq gap hosil bo'ladi» · «Bonus:»→«Yana bir kamchilik:» · «mavhum» 3 joyda →«aniq emas» · «milkshake uslubi»→«milkshake keysi» (sarlavha «Biznesdagi mashhur voqea») · ustaxona «chiroq yonadi»→«qadam-belgisi ✓» · koding namuna-natija «meni tez tanish»→«meni tez tanib olishlari» (starter+harness) · PairTimer «aytdingizmi? Barakalla!» mantiqsizligi tuzatildi · «Muddat: keyingi darsgacha» 2 joydan olib tashlandi (PmLesson2 F-0729-07 bilan izchil) · «komponent tanlaymiz»→«qaysi birini birinchi qurishni tanlaymiz» · RECAP qo'sh-fikrli band ikkiga bo'lindi.
+🟡/⚪: sinf-savol gap-tuzilishi · «To'g'risi masalan»→«To'g'ri varianti, masalan» · «Nimasi?»→«Kamchiligi nimada?» · peer-jadval «•»→«💡»+title · recap «NIMA'dan boshqa gapmi»→«takrorlamayaptimi» · «shoshmasa bo'ladi»→«shoshilinch emas» · eyebrow «shartnoma»→«topshiriq» · «sayqallang»→«yaxshilang» · s1 mentor ravonlashtirildi · «Bugun dars oxirida»→«Dars oxirida» · PairTimer'ga yakka-rejim izohi · arena «qayta ishlash»→«qayta yechish» (2 joy).
+**F-0729-09 — yakun-sahifa PmLesson2 (F-0729-07) mantiqida qayta yozildi:** RECAP 5 band (feature-request bandi olib tashlandi, takror-band ixchamlashdi); Uyga vazifa: «Bugun o'rganganingizni sinab ko'ring:» + 3 band (sevimli ilova-tahlil · hwTarget-shaxslashgan tur-tavsifi · **LMS'dagi topshiriq** — 2 to'liq hikoya); muddat-qatori yo'q.
+**Tekshiruv/deploy:** esbuild + lint:til (55) toza · etalon-bundle qayta build · https://coddycamp-etalon-test.vercel.app ga prod-deploy (yangi chunk jonli tekshirildi). UNCOMMITTED.
+
+## UserStory kechki to'lqin: F-0729-10…13 (2026-07-29) — ✅
+- **F-0729-10** s3 (harakat/sabab) «Sizning gapingizdan to'liq hikoya chiqadi» kartasiga ⛶ kattalashtirish (PracticeLesson4 `Zoomable` porti: butun-ekran, ✕/fon/Escape yopadi; `.zoom-*` CSS ko'chirildi).
+- **F-0729-11** Yakun: «Endi siz bilasiz» 4 sodda bandga qayta yozildi (qavs-formula va «·» tiqilmalar chiqdi); uyga vazifadan «Keyingi darsda … tanlaymiz! 🚀» qatori + o'lik `.hw-note` CSS o'chirildi.
+- **F-0729-12** Ustaxona (8-sahifa) input-soyalari qisqartirildi: «foydalanuvchi turi» · «harakat» · «real foyda» (uzun «masalan:…» qismlari UI'ni bulg'ayotgan edi).
+- **F-0729-13** Soya-joylarda «real foyda»→«natija» (placeholder + SLOT_META hint). Ta'rif-joylar (RECAP/test/quiz «NATIJA — real foyda») ATAYLAB qoldi — «NATIJA — natija» tavtologiya bo'lardi.
+Har qadamda esbuild + lint:til toza; har tuzatishdan keyin coddycamp-etalon-test.vercel.app ga prod-deploy. UNCOMMITTED.
+
+## Kechki mayda-to'lqin: F-0729-14…18 (2026-07-29) — ✅
+- **F-0729-14** UserStory s0 mentor aniq yo'naltiradi («1-mijoz»/«2-mijoz» tugmalarini nomlab); puls ikkala qatlamda avvaldan bor edi (chip-yurish + variant-to'lqin) — tegilmadi.
+- **F-0729-15** PmLesson2 flashcard-sahifasidan Mentor bloki (avatar+gap) butunlay olib tashlandi; layout flex-gap hisobiga buzilmadi.
+- **F-0729-16** PmLesson2 13-sahifa sarlavhasi: «darrov ishongingiz keladi» → «Nega ba'zi saytlar bir qarashda ishonch uyg'otadi?» (foydalanuvchi tanlovi).
+- **F-0729-17** «LMS'dagi topshiriq — … yuklanadi …» bandi ikkala darsda «Amaliy vazifa — …» qolipiga o'tdi; bir necha iteratsiyadan keyin yakuniy fe'l: «bajaring» (PmLesson2), UserStory'da «yozing».
+- **F-0729-18** PmLesson2 RECAP 4-band evolyutsiyasi: «foydalanuvchi ishongandan keyin» → «avval sabab, keyin tugma» → izohsiz → yakuniy: «Sahifani kodda to'g'ri bo'limlar bilan qura olasiz» (koding-yutuqqa ishora).
+Har qadamda esbuild + lint:til toza, har tuzatish coddycamp-etalon-test.vercel.app ga deploy qilindi. UNCOMMITTED.
+
+## YAKUN-SAHIFA REDIZAYN: «UYGA VAZIFA» NEON-KAPSULA (2026-07-29, F-0729-20…22) — ✅
+**PmLesson2 (rasm-brif bo'yicha, bir necha iteratsiya):** vazifa-ro'yxat butunlay olib tashlandi; «Endi siz bilasiz» to'liq kenglikda; ostida BITTA katta «Uyga vazifa / Amaliy topshiriqni boshlash →» kapsula-tugma. Dizayn-evolyutsiya: indigo→amber→yashil→to'q siyoh→teal jonli solishtirildi; YAKUNIY: **CODE STRIKE bilan bir xil fon** (qorong'i-binafsha radial + neon-hoshiya + inset-nur) + tashqi aura + suzuvchi dars-tokenlari (hero/muammo/yechim/…) + shine + bosilganda zaryad-effekt. Bug tuzatildi: fade-up klassi hw-fire bilan to'qnashib tugma abadiy shaffof qolgan edi (animatsiyalar zanjirga birlashtirildi, keyin wrapperga ko'chdi). Tugma hozircha LMS-izoh chiqaradi — kompilyator-ulanish keyin kelishiladi. Yozuv rangi: foydalanuvchi keyin aytadi.
+**UserStory'ga port:** xuddi shu kapsula (tokenlari o'ziniki: KIM/NIMA/NATIJA/story/JTBD/sifatida/uchun), izoh hwTarget bilan shaxslashadi; eski 3-bandli vazifa-kartasi va o'lik .hw CSS olib tashlandi. Yakun-vazifa bandlari ham tekislangan edi (F-0729-19).
+esbuild + lint toza, deploy jonli. UNCOMMITTED.
+
+## UserStory s2 (3-sahifa) — «SINFGA SAVOL» EKRANDAN KETDI (2026-07-29, F-0729-23) — ✅
+**Tashxis:** ekran birdan «Sinfga savol» quti bilan boshlanardi — majburiy-imtihon ohangi, sarlavha yo'q edi.
+**Yechim (foydalanuvchi tasdig'i bilan, bir necha matn-iteratsiya):** sarlavha «Hikoya nimadan yasaladi?»; mentor (emojisiz, yakuniy): «Hikoya uch bo'lakdan yasaladi: KIM, harakat va sabab. Avval harakat bilan sababni ajratishni o'rganamiz — pastdagi gaplarni belgilab ko'ring. Barchasini to'g'ri belgilagach, to'liq hikoya quramiz.» (butun rasm → aniq vazifa → hikoyaga ishora; KIM'ni «yedirish» = induktiv). Og'zaki sinf-muhokama MentorNote'ga ko'chdi (proyektor-sirlik saqlanadi); o'lik .proj-q CSS o'chirildi.
+esbuild + lint toza, deploy jonli. UNCOMMITTED.

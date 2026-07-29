@@ -302,6 +302,29 @@ Shuning uchun ular darsning o'z qonuniga 100% bo'ysunadi va tanish, real mahsulo
 ❌ «Avval muammosini eslatamiz, keyin yechimni, isbot bilan ishontiramiz va oxirida harakatga
    chaqiramiz. Tugmani bosing.» — bo'lak-sanog'i (63) + «tugmani bosing» qaysi tugma ekani noaniq.
 
+## 23. «TUSHUNISH OSON» EMAS — «TUSHUNARLI» (F-0729-01)
+
+✅ «Ikki mijoz yordam so'radi — qaysi biri tushunarli?» · «Sizningcha, qaysi xabar tushunarli?»
+❌ «...qaysi birini tushunish oson?» · «...qaysi xabarni tushunish oson?» — «tushunish oson»
+   qurilmasi o'quvchiga g'aliz; bitta sodda sifat «tushunarli» yetadi. Savol va variantlar
+   bir tilda bo'lsin (variant allaqachon «bir xil tushunarli» edi).
+
+## 24. GAP REFERENTDAN BOSHLANADI — «HAMMASINI» EMAS (F-0729-02)
+
+✅ «Siz 3 ta hikoya yozdingiz — lekin uchalasini birdaniga qurib bo'lmaydi, shuning uchun
+   eng muhimi birinchi qilinadi.» *(avval NIMA haqida gap ketayotgani aytiladi, keyin xulosa;
+   «daftaringizda» EMAS — «daftar» so'zi o'quvchi-matnda taqiq, F-0729-04)*
+❌ «Hammasini birdaniga qilib bo'lmaydi — shuning uchun...» — o'quvchida darhol «hammasini?
+   nimasini?» degan savol tug'iladi. Mentor gapi ko'rsatkich-so'z (hammasi, bu, shu, u) bilan
+   BOSHLANMAYDI — avval predmet nomlanadi.
+
+## 25. «PAST/YUQORI MUHIMLIK» KALKASI EMAS — KUNDALIK SO'Z (F-0729-03)
+
+✅ Daraja-yorliqlar: «🔥 Eng muhim — birinchi qilinadi» · «⚡ Keyingisi — navbatda» ·
+   «🌱 Keyinroq — shoshilinch emas» *(atama «muhimlik darajasi» mentor gapida qoladi)*
+❌ «Yuqori muhimlik / O'rta muhimlik / Past muhimlik» — High/Medium/Low'ning so'zma-so'z
+   kalkasi; «past muhimlik» o'zbekchada g'aliz, o'quvchi tushunmaydi.
+
 ---
 
-*Korpus F-ID bilan o'sadi. Oxirgi yangilanish: 2026-07-28 (F-0728-01 — Struktura darsi: 20–22-bo'limlar).*
+*Korpus F-ID bilan o'sadi. Oxirgi yangilanish: 2026-07-29 (F-0729-03 — UserStory 13-sahifa: 24–25-bo'limlar).*

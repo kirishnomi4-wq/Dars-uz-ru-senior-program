@@ -305,3 +305,34 @@ Manba: feedback/METODIST-prompt-fidbek.md (tashqi-chat tahlili) + bosh-agent o'z
 📌 Uchala saboq ham bitta oilaga tegishli: *o'lchov vositasi noto'g'ri bo'lsa, sog'lom kod «buzuq» bo'lib ko'rinadi.* 1-C.7 dagi `::after` opacity tuzog'i bilan bir qatorga qo'yilsin.
 
 **Qolgan:** mentor-proyektor rejimida puls ko'rinmasligini real sessiyada tasdiqlash (kodda `!isMentor*` shartlari bor, brauzer-sinov self-rejimda o'tkazildi) · `wv4` tezligi va `.kdx-skip` ohangini dizayn-ko'rikdan o'tkazish. UNCOMMITTED.
+
+## PmLesson2 — 9-SAHIFA OLIB TASHLANDI (2026-07-29, foydalanuvchi ko'rigi davomida) — ✅
+**Topilma (foydalanuvchi):** 9-sahifa (Screen7 «To'g'ri vs aralash» toggle) 3-sahifa bilan bir xil bo'lib qolgan; aslida 1-sahifa (hook, Tartibli/Aralash solishtiruv) bilan ham deyarli aynan. **18 → 17 ekran** (etalon soni bilan teng).
+**Indeks-siljish to'g'ri bajarildi:** RECAPS {4,6,10,12}→{4,6,9,11} · Q_LABELS ham · scored [4,6,9,11] bilan MOS (dasturiy tasdiqlandi). INLINE_KEYS/ACH_TRIGGERS id-ga bog'langani uchun tegilmadi. Screen7/s7/lit7/pend7 qoldig'i 0.
+**Jarayon-qaydi:** birinchi urinishda skript Screen7 ni topolmay to'xtadi (CRLF vs \n regex) — yozishdan OLDIN to'xtagani uchun fayl buzilmadi (atomar naqsh o'zini oqladi); qator-asosida qayta bajarildi. esbuild + vite build + lint:til toza. UNCOMMITTED.
+
+## UserStory (2-tur etalon) — NISHONLAR 90-QONUNGA KELTIRILDI (2026-07-29) — ✅
+**Avval to'liq audit (foydalanuvchi so'rovi bo'yicha, 3 yo'nalish):** (1) nishonlar — 2 kamchilik topildi; (2) takrorlash-yo'li (89-qonun) — ✅ allaqachon bor (kechagi navbat-pulsi topshirig'ida qo'shilgan: `kdx-skip` + `isSelf` + faqat `onNext`); (3) kompilyator — ✅ saqlash/darvoza allaqachon to'g'ri (`KODING_KEY` + `readKoding` + `disabled={!done && !isMentor}`); podium qstats ham yo'q edi.
+**Tuzatildi (PmLesson2 logikasi aynan):** `AchCounter` ga mentor-qorovuli (`return null` — hooklardan KEYIN, sahna↔daftar izohi bilan) · yakun-ekran nishon-kolleksiyasi `{!isMentorL && ...}` ostiga olindi. `AchToasts`/bayram TEGILMADI.
+**Tekshiruv:** 1-D bo'yicha 7 band ✅ · `INLINE_KEYS`/`QUIZ_BANK` HEAD bilan identik · esbuild + vite build + lint:til + aralash-yozuv toza. (IDE 2919-diagnostikasi — `</div>}` naqshiga TS-parser injiqligi, esbuild 0 xato; PmLesson2'da ham xuddi shunday bo'lgan.) UNCOMMITTED.
+
+## IKKI ETALON TEST-DEPLOY (2026-07-29) — ✅
+**URL:** https://coddycamp-etalon-test.vercel.app (Vercel: azizbek10/coddycamp-etalon-test, prod-alias).
+**Tarkib:** test-katalog (yangi `src/etalon-demo/` + `etalon.html` + `vite.etalon.config.js`, chiqish `dist-etalon/`): 1-TUR PmLesson2 «Struktura» (#/struktura) · 2-TUR PmUserStoryLesson P0 (#/userstory). Hash-routing, ⌂ bilan qaytish, lang=uz.
+**Tekshirildi:** index 200 · uchala JS-chunk 200. Deploy usuli: dist scratchpad-katalogga ko'chirilib `npx vercel deploy --prod --yes` (kirishnomi4-6915 auth allaqachon bor edi; CLI o'rnatilmagan — npx orqali).
+**Seans-yakuni konteksti:** shu seansda UserStory qo'lda-ko'rikdan o'tdi (foydalanuvchi bilan ekranma-ekran): s1 mentor (uch-xil-odam ochildi) · s2 takeaway + kelajak-va'da o'chirildi (+o'lik CSS) · s3 mentor-yo'naltirish + NATIJA-izoh misol bilan · ustaxona ✎-yorlig'i · klinika (tilagini ketdi, tuzoq→ALDAMCHI BO'LAK 5 joyda) · koding cta-sub olib tashlandi · prioritet (sarlavha «Hikoyalaringizni qachon qilishni belgilang» + mentor moslandi + Diqqat-ogohlantirish o'chirildi + «eng muhim vazifangiz») · recap mentori (ekranga-qaramasdan ketdi, taymer-tugmaga yo'naltirish). Xotira yangilandi: «Har …» bilan boshlash TAQIQ (2 marta rad etilgan) + telegraf-ibora/Diqqat-ogohlantirish qoidalari. UNCOMMITTED.
+
+## MENTOR EKRANIDA BADGES TO'LIQ O'CHIRILDI — PLATFORMA-SWEEP (2026-07-29, F-0729-06) — ✅
+**Qonun:** mentor (proyektor) rejimida badges HECH QANDAY ko'rinishda chiqmaydi — hisoblagich, kolleksiya VA endi to'liq-ekran bayram (AchCelebrate) ham. DARS_ETALON 10.1 yangilandi (eski «bayram qoladi» BEKOR) + 10-B jadval; PM_DARS_ETALON 1-D ham.
+**Tatbiq:** barcha 79 dars .jsx da `<AchToasts …/>` → `{live.mode !== 'mentor' && <AchToasts …/>}` (skript bilan; PmLesson2'da avvaldan bor edi — double-wrap qo'lda tuzatildi). 79/79 esbuild toza. UNCOMMITTED.
+
+## UserStory TO'LIQ QAYTA QURILDI: BITTA MISOL-IP (2026-07-29) — ✅ + DEPLOY YANGILANDI
+**Foydalanuvchi tashxisi:** dars bir-biriga bog'liqmas — milkshake→YouTube/Telegram→yana milkshake («misol-zoopark»); ildiz: senariy-prompt blok-blok yozdirardi. Reja foydalanuvchi bilan kelishildi (A+B qo'shma + klinika o'rniga yangi mexanika).
+**1. HOOK qayta qurildi (bosh urg'u):** milkshake-ovoz → «IKKI MIJOZ SO'ROVI» solishtiruvi: «Tezroq ishlasin!» ↔ to'liq hikoya, 3-variantli ovoz (jonli sinf-diagramma MEXANIKASI saqlandi — mshake-stakanlar o'rniga yangi `.hvote` bar-diagramma), payoff DARHOL (KIM+NEGA → «Bu User Story»). Hook obyekti = dars obyekti. `HOOK_CHOICE_KEY`/`hookChoice` payoff-zanjiri olib tashlandi; `.mshake-*`/`.hook-cup` CSS to'liq tozalandi.
+**2. KLINIKA → 🆕 DASTURCHI-SINOVI:** komponent/id/indekslar saqlanib (`ScreenClinic`, id `clinic`) ICHKI to'liq almashdi: 3 so'rov-karta (quruq/yarim/to'liq) → «Dasturchiga yuborish» → dasturchi KIM→NIMA→NATIJA bo'ylab o'qiydi; bo'lak yetishmasa taxmin + NOTO'G'RI mahsulot (quruq: «TEZLIK tugmasi», yarim: «qidiruv chetga tushib qoldi»), to'liq: aynan kerakli mahsulot + Confetti. Gate: quruq VA to'liq sinalsin. Yozish YO'Q (foydalanuvchi: ustaxona bor). Aldamchi-bo'lak mexanikasi klinika bilan ketdi.
+**3. KEYS freymlandi:** sarlavha «Biznes olamidan mashhur voqea: milkshake uslubi» (foydalanuvchi so'zi bilan) + yakunida hookka ko'prik («ikki mijozni eslang — odam nima emas, NEGA olayotgani muhim»).
+**4. Ip-tozalash:** s1 mentor hookka ulandi · s2 Telegram-jufti YouTube olamiga + «Har» taqiq-buzilishi tuzatildi (label + s3 mentor boshi) · s3 mentorga ikkinchi-mijoz ko'prigi.
+**Sinov (playwright, dev-nusxa orqali — ASL FAYL TEGILMAY, nusxada useState(10)):** hook: kartalar+3 variant render, ovozgacha diagramma 0, ovozdan keyin diagramma+payoff+o'tish ✅ · dasturchi-sinovi: quruq→KIM qizil+taxmin+warn, yarim→NATIJA qizil, to'liq→3 yashil+success+gate ochildi ✅ · 0 console-xato. Yo'lda 2 xato ushlandi: apostrof JS-satrda va mavjud bo'lmagan `Zoomable` (esbuild ushlamaydi — runtime'da chiqdi).
+**Qonun:** 91 («BITTA MISOL-IP») PM_DARS_ETALON'ga + PM_Prompt_v8'ga ruscha eslatma (ildiz o'sha promptda edi).
+**Relslar:** INLINE_KEYS/QUIZ_BANK/SCREEN_META git-HEAD bilan IDENTIK. Barcha lint/build toza.
+**Deploy:** https://coddycamp-etalon-test.vercel.app yangilandi (yangi chunk'da «Ikki mijoz» hooki bor — curl bilan tasdiqlandi). UNCOMMITTED.

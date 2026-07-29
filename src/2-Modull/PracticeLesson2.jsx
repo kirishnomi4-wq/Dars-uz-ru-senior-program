@@ -3527,7 +3527,7 @@ export default function PracticeLesson2({ lang: langProp, onFinished }) {
             <>
               <Current screen={screen} storedAnswer={answers[screen]} answers={answers} achievements={earned} onAnswer={recordAnswer} onPracticeDone={practiceDone} onNext={next} onPrev={prev} onReset={reset} onFinish={finishLesson} />
               <LiveBadge live={live} total={TOTAL_SCREENS} />
-              <AchToasts toasts={achToasts} onDone={(k) => setAchToasts(t => t.filter(x => x.k !== k))} />
+              {live.mode !== 'mentor' && <AchToasts toasts={achToasts} onDone={(k) => setAchToasts(t => t.filter(x => x.k !== k))} />}
               {mentorPractice && <MentorPracticeOverlay entry={mentorPractice} live={live} onClose={() => { setMentorPractice(null); next(); }} />}
             </>
           )}

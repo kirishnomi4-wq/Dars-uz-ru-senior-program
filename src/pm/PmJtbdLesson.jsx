@@ -4174,7 +4174,7 @@ export default function PmJtbdLesson({ lang: langProp, onFinished }) {
               <Current screen={screen} storedAnswer={answers[screen]} answers={answers} achievements={earned} onAnswer={recordAnswer} onNext={next} onPrev={prev} onReset={reset} onFinish={finishLesson} />
               {BOARD_SCREEN_IDS.has(SCREEN_META[screen].id) && live.mode !== 'mentor' && <HireBoard screen={screen} />}
               <LiveBadge live={live} total={TOTAL_SCREENS} />
-              <AchToasts toasts={achToasts} onDone={(k) => setAchToasts(t => t.filter(x => x.k !== k))} />
+              {live.mode !== 'mentor' && <AchToasts toasts={achToasts} onDone={(k) => setAchToasts(t => t.filter(x => x.k !== k))} />}
             </>
           )}
         </div>

@@ -368,7 +368,7 @@ const Ico = {
   taxi: (s = 26) => (<svg viewBox="0 0 24 24" width={s} height={s}><path d="M4 16.2l1.5-4.9A2.5 2.5 0 0 1 7.9 9.6h8.2a2.5 2.5 0 0 1 2.4 1.7l1.5 4.9v3a.8.8 0 0 1-.8.8h-1.5a.8.8 0 0 1-.8-.8V19H6.6v.2a.8.8 0 0 1-.8.8H4.3a.8.8 0 0 1-.8-.8z" fill="#E8A13A" /><rect x="9" y="6.4" width="6" height="2.6" rx="0.5" fill="#222" /><circle cx="7.6" cy="16.4" r="1.15" fill="#222" /><circle cx="16.4" cy="16.4" r="1.15" fill="#222" /></svg>)
 };
 
-const LESSON_META = { lessonId: 'pm-m1d6-v1', lessonTitle: { uz: 'Struktura — foydalanuvchi uchun qilingan qaror', ru: 'Структура — решение ради пользователя' } };
+const LESSON_META = { lessonId: 'pm-m1d6-v1', lessonTitle: { uz: 'Struktura — foydalanuvchi uchun qilingan qulaylik', ru: 'Структура — удобство для пользователя' } };
 const SCREEN_META = [
   { id: 's0',  type: 'hook',        template: 'custom',   scored: false, scope: 'hook' },
   { id: 's1',  type: 'rule',        template: 'custom',   scored: false, scope: null },
@@ -378,7 +378,6 @@ const SCREEN_META = [
   { id: 's5',  type: 'exploration', template: 'custom',   scored: false, scope: null },
   { id: 's5b', type: 'test',        template: 'MCScreen', scored: true,  scope: 'module-mikro' },
   { id: 's6',  type: 'exploration', template: 'custom',   scored: false, scope: null },
-  { id: 's7',  type: 'exploration', template: 'custom',   scored: false, scope: null },
   { id: 's8',  type: 'exploration', template: 'custom',   scored: false, scope: null },
   { id: 's9',  type: 'test',        template: 'MCScreen', scored: true,  scope: 'module-mikro' },
   { id: 's11', type: 'exploration', template: 'custom',   scored: false, scope: null },
@@ -446,7 +445,7 @@ function AchToasts({ toasts, onDone }) {
 // 🔴 MENTOR EKRANIDA KO'RSATILMAYDI: nishon — QURILMAGA xos, shaxsiy hisob. Proyektorda u
 // mentorning o'z bosishlarini sanaydi, sinf ishini emas — ya'ni yolg'on hisob bo'lardi.
 // Tamoyil: mentor ekrani = SAHNA (lahzalar), o'quvchi qurilmasi = DAFTAR (hisob).
-// To'liq-ekran bayram (AchCelebrate) esa lahza bo'lgani uchun proyektorda QOLADI.
+// F-0729-06: to'liq-ekran bayram (AchCelebrate) ham mentorda O'CHIRILGAN — mentor ekranida badges umuman chiqmaydi.
 function AchCounter() {
   const earned = useContext(AchCtx);
   const gate = useContext(LiveGateCtx);
@@ -648,13 +647,13 @@ const RECAPS = {
     ]
   },
   // idx 10 — s9: «Bo'limlar tartibi nega muhim?» (nazariya: tartib — foydalanuvchi uchun qaror)
-  10: {
-    title: 'Tartib — foydalanuvchi uchun qaror', cards: [
+  9: {
+    title: 'Tartib — foydalanuvchi uchun qulaylik', cards: [
       { ic: '🧭', h: 'Tartib foydalanuvchini yetaklaydi',
         body: <>Bo'limlar tartibi tasodifiy emas. U foydalanuvchini <b>qadam-baqadam</b> yetaklaydi: muammodan yechimga, yechimdan ishonchga, ishonchdan harakatga.</>,
         vis: <RcFlow items={['❓ Muammo', '💡 Yechim', '🖱️ Harakat']} /> },
-      { ic: '🎯', h: 'Bezak emas — odam uchun qaror',
-        body: <>Bo'limlarni qanday joylash — bu <b>foydalanuvchi uchun qilingan qaror</b>. Chiroylilik uchun emas — foydalanuvchi <b>adashmasligi</b> uchun.</>,
+      { ic: '🎯', h: 'Bezak emas — odam uchun qulaylik',
+        body: <>Bo'limlarni qanday joylash — bu <b>foydalanuvchi uchun qilingan qulaylik</b>. Chiroylilik uchun emas — foydalanuvchi <b>adashmasligi</b> uchun.</>,
         vis: <RcFlow items={["🎨 Bezak — yo'q", '🎯 Odam uchun — ha']} sep="·" /> },
       { ic: '🔀', h: 'Aralash tartib — foydalanuvchi adashadi',
         body: <>Bo'limlar aralashsa, foydalanuvchi <b>nima qilishini</b> tushunmaydi va ketadi. To'g'ri tartib esa uni <b>maqsadga</b> olib boradi.</>,
@@ -663,7 +662,7 @@ const RECAPS = {
     ]
   },
   // idx 13 — s12: «Eng mantiqiy tartib qaysi?» (nazariya: sahifa = hikoya)
-  12: {
+  11: {
     title: 'Sahifa tartibi — hikoya', cards: [
       { ic: '📖', h: 'Sahifa — bu hikoya',
         body: <>Yaxshi sahifa hikoyadek o'qiladi: <b>birinchi blok</b> (nima), <b>muammo</b> (nega), <b>yechim</b> (qanday), <b>isbot</b> (ishonch), <b>tugma</b> (harakat).</>,
@@ -1064,7 +1063,7 @@ const AMBER = '#E8A13A', AMBER_SOFT = 'rgba(232,161,58,0.14)', AMBER_INK = '#8F5
 const SEC_AMBER = AMBER, SEC_ROSE = '#E0559A';
 const SECDATA = {
   hero: { label: 'Birinchi blok (hero)', ic: sIco.star(18), color: SEC_AMBER, job: 'Katta sarlavha va bir qatorlik izoh: bir jumlada sayt nima taklif qilishini aytadi.', snip: '"Ortiqcha buyumingizni soting"' },
-  muammo: { label: 'Muammo', ic: Ico.problem(18), color: SEC_ROSE, job: 'Odam o\'zi duch kelgan qiyinchilikni eslatadi: «ha, bu menga tanish».', snip: '"Sotish qiyin edi"' },
+  muammo: { label: 'Muammo', ic: Ico.problem(18), color: SEC_ROSE, job: 'Foydalanuvchi o\'zi duch kelgan qiyinchilikni eslatadi — o\'qiganda xayoliga «ha, bu menga tanish» degan fikr keladi.', snip: '"Sotish qiyin edi"' },
   yechim: { label: 'Qanday ishlaydi', ic: Ico.solution(18), color: T.blue, job: 'Sayt shu qiyinchilikni qanday yengib berishini qadamma-qadam ko\'rsatadi.', snip: '"3 daqiqada e\'lon"' },
   isbot: { label: 'Isbot', ic: sIco.shield(18), color: T.success, job: 'Boshqalar allaqachon foydalanayotganini ko\'rsatadi — shundan ishonch tug\'iladi.', snip: 'Velosiped · Telefon' },
   harakat: { label: 'Harakat tugmasi', ic: sIco.cursor(18), color: T.accent, job: 'Aniq keyingi qadamni beradi: «E\'lon berish». Uni CTA ham deyishadi.', snip: '[ E\'lon berish ]' }
@@ -1118,6 +1117,8 @@ function DragDropOrder({ items, hints, onSolved, onOrder }) {
     const ns = slots.slice(); ns[slotIdx] = null;
     return { pool: [...pool, id], slots: ns };
   });
+  // Hammasini laganchaga qaytarish — xato yig'ilganda bola bir bosishda qayta boshlaydi
+  const resetAll = () => setSt(({ pool, slots }) => ({ pool: [...pool, ...slots.filter(Boolean)], slots: order.map(() => null) }));
   const tap = (id) => setSt(({ pool, slots }) => {
     const e = slots.findIndex(s => s === null); if (e < 0) return { pool, slots };
     const ns = slots.slice(); ns[e] = id;
@@ -1157,11 +1158,10 @@ function DragDropOrder({ items, hints, onSolved, onOrder }) {
         ))}
       </div>
       <div className="dd-pool">
-        {pool.length === 0 && !solved && <span className="dd-pool-empty">Tartib noto'g'ri — bo'lakni bosib qaytaring va qayta joylang</span>}
         {pool.map(id => <button key={id} className={`dd-chip ${fresh ? 'hint' : ''}`} onPointerDown={(e) => down(e, id, 'pool')}>{byId[id].label}</button>)}
       </div>
       {solved && <div className="dd-done">✓ To'g'ri! Sahifa aynan shu tartibda.</div>}
-      {wrong && !solved && <div className="dd-wrong">⚠️ Tartib noto'g'ri — qayta joylang.</div>}
+      {wrong && !solved && <div className="dd-wrong">⚠️ Tartib noto'g'ri.<button className="dd-retry" onClick={resetAll}>↻ Qayta joylash</button></div>}
     </div>
   );
 }
@@ -1195,7 +1195,7 @@ function CustomerRun({ order, correct }) {
   const rows = ready ? order : correct;
   return (
     <div className="cr">
-      <p className="flow-label">Sinov mijozi — sahifangizga birinchi marta kirgan odam</p>
+      <p className="flow-label">Foydalanuvchi — sahifangizni birinchi marta ochib ko'rayotgan odam</p>
       <div className="cr-page">
         {rows.map((k, i) => {
           const here = step === i && (walking || state === 'bounce');
@@ -1216,10 +1216,10 @@ function CustomerRun({ order, correct }) {
         <span className="cr-conf-n mono">{confidence}/{correct.length}</span>
       </div>
       {state === 'convert' && <Confetti />}
-      {state === 'convert' && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Mijoz ishondi va tugmani bosdi — bu <b>konversiya</b> (tashrifchi mijozga aylandi). To'g'ri tartib uni yechimga olib bordi.</p></div>}
-      {state === 'bounce' && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Mijoz shu bo'limda adashdi va sahifadan chiqib ketdi. Bu bo'lim noto'g'ri o'rinda turibdi — tartibni tuzating va qayta yuboring.</p></div>}
+      {state === 'convert' && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Foydalanuvchi ishonch bilan tugmani bosdi — bu <b>konversiya</b>: u siz kutgan harakatni bajardi. To'g'ri tartib uni oxirigacha yetaklab bordi.</p></div>}
+      {state === 'bounce' && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Foydalanuvchi shu bo'limga kelganda adashdi va sahifadan chiqib ketdi — bu bo'lim o'z o'rnida emas. Tartibni tuzatib, yana sinab ko'ring.</p></div>}
       <button className={`btn ${state === 'convert' ? 'cr-cta-fire' : ''}`} onClick={send} disabled={!ready || walking} style={{ alignSelf: 'flex-start' }}>
-        {walking ? 'Mijoz ko\'rmoqda…' : state === 'convert' ? '↻ Yana yuborish' : state === 'bounce' ? '↻ Qayta yuborish' : 'Mijozni yuborish'}
+        {walking ? 'Foydalanuvchi sahifani ko\'rmoqda…' : state === 'convert' ? '↻ Yana sinab ko\'rish' : state === 'bounce' ? '↻ Qayta sinab ko\'rish' : 'Sahifani sinab ko\'rish'}
       </button>
     </div>
   );
@@ -1228,14 +1228,13 @@ function CustomerRun({ order, correct }) {
 // 🃏 Qayta ishlatiladigan FLASHCARDS (9.3) — aktiv takrorlash (3D flip + o'z-o'zini baholash).
 // Boshqa darsga: faqat `cards` ({ front, back, note }) almashtiriladi.
 const PM_FLASHCARDS = [
-  { front: "Sahifaning eng tepasidagi birinchi qism", back: 'Birinchi blok (hero)', note: "katta sarlavha va bir qatorlik izoh" },
-  { front: "Keyingi qadamga chorlaydigan tugma", back: 'Harakat tugmasi (CTA)', note: "sababdan keyin qo'yiladi" },
-  { front: "Boshqalar foydalanayotganini ko'rsatuvchi bo'lim", back: 'Isbot', note: "ishonch uyg'otadi" },
-  { front: "Tanish qiyinchilikni eslatuvchi bo'lim", back: 'Muammo', note: "nega kerak — sababi" },
-  { front: "Muammoni qanday hal qilishini aytuvchi bo'lim", back: 'Yechim', note: "qanday ishlaydi" },
-  { front: "Bo'limlar tartibi — bezak emas, bu...", back: 'Foydalanuvchi uchun qaror', note: "foydalanuvchi yo'lini boshqaradi" },
-  { front: "Tashrifchi siz kutgan harakatni bajarishi", back: 'Konversiya', note: "e'lon berish, ro'yxatdan o'tish, sotib olish" },
-  { front: "Yaxshi sahifa nimadek o'qiladi?", back: 'Hikoya', note: "bo'limlar — hikoya bo'laklari" },
+  { front: "Sahifaning eng tepasida qaysi bo'lim turadi?", back: 'Birinchi blok (hero)', note: "katta sarlavha va bir qatorlik izoh" },
+  { front: "Muammo bo'limi nima vazifani bajaradi?", back: "Foydalanuvchining muammosini aytib beradi", note: "«nega bu sayt kerak?» — sababi shu yerda" },
+  { front: "Yechim bo'limi nima vazifani bajaradi?", back: "Sayt muammoni qanday hal qilishini ko'rsatadi", note: "muammodan keyin keladi" },
+  { front: "Isbot bo'limi nima vazifani bajaradi?", back: "Ishonch uyg'otadi", note: "boshqalar ham foydalanayotganini ko'rsatadi" },
+  { front: "Harakat tugmasi qayerda turadi?", back: "Sahifaning oxirida", note: "foydalanuvchi ishongandan keyin bosiladi" },
+  { front: "Bo'limlar tartibi kim uchun tuziladi?", back: 'Foydalanuvchi uchun', note: "bezak emas — qulaylik" },
+  { front: "Yaxshi sahifa qanday o'qiladi?", back: 'Hikoyadek, boshdan oxirigacha', note: "muammo → yechim → isbot → tugma" },
 ];
 function Flashcards({ cards }) {
   const [queue, setQueue] = useState(() => cards.map((_, i) => i));
@@ -1324,8 +1323,8 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
   return (
     <Stage eyebrow="Kirish" screen={screen} navContent={<NavNext optionalLive disabled={picked === null} label="Davom etish" onClick={onNext} />}>
       <div className="screen">
-        <h1 className="title h-title fade-up" style={{ maxWidth: 780 }}>Bir xil sayt — nega biri <span className="italic" style={{ color: T.accent }}>tushunarli</span>?</h1>
-        <Mentor>So'zlar ikkalasida bir xil — farq faqat <b style={{ color: T.ink }}>tartibda</b>. «Tartibli» va «Aralash»ni bosib solishtiring, so'ng sababini tanlang.</Mentor>
+        <h1 className="title h-title fade-up" style={{ maxWidth: 780 }}>Ikkala sahifada so'zlar bir xil, ammo nega birida kerakli narsa <span className="italic" style={{ color: T.accent }}>darrov topiladi</span>?</h1>
+        <Mentor>Mana sizga tanish savdo sayti — OLX: pastdagi <b style={{ color: T.ink }}>«Tartibli»</b> va <b style={{ color: T.ink }}>«Aralash»</b> tugmalarini bosib, ikki ko'rinishni solishtiring. So'ng savolga javobingizni variantlardan belgilang.</Mentor>
         <Zoomable>
         <Split>
           <Col>
@@ -1336,7 +1335,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
             <div key={v}><PagePreview order={v === 'good' ? goodOrder : badOrder} minH={232} /></div>
           </Col>
           <Col>
-            <p className="eyebrow fade-up delay-2" style={{ color: T.ink2, margin: 0 }}>Sizningcha, nega biri tushunarli?</p>
+            <p className="eyebrow fade-up delay-2" style={{ color: T.ink2, margin: 0 }}>Sizningcha, ikkalasining farqi nimada?</p>
             <div className="fade-up delay-3" style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
               {/* Navbat to'lqini: variantlar BIRMA-BIR yonadi (istalgan lahzada faqat bittasi —
                   88-qonun (a) buzilmaydi). Bittasini ajratib ko'rsatmaymiz: variantlar teng emas
@@ -1345,7 +1344,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
                   o'quvchi cheksiz harakatdan charchamasin. */}
               {OPTS.map((o, oi) => { const on = picked === o.id; return (<button key={o.id} className={`hook-option ${on ? 'on' : ''}${voteHint ? ` turn-ring turn-wave w${oi + 1}` : ''}`} disabled={picked !== null} onClick={() => pick(o.id)}><span className="radio">{on && <span className="radio-dot" />}</span><span>{o.label}</span></button>); })}
             </div>
-            {picked !== null && <p className="hook-ack fade-step">Farq — bo'limlar <b>tartibida</b>. Tartib boshqacha bo'lgani uchun biri tushunarli chiqdi. Nega shundayligini birga ochamiz.</p>}
+            {picked !== null && <p className="hook-ack fade-step">Farq — bo'limlarning <b>tartibida</b>: so'zlar bir xil bo'lsa ham, biri to'g'ri tartibda turgani uchun kerakli narsa darrov topiladi. Bugun aynan shu tartibni qurishni o'rganasiz.</p>}
           </Col>
         </Split>
         </Zoomable>
@@ -1370,8 +1369,8 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
     <Col>
       <p className="flow-label">Asosiy g'oya</p>
       <div className="fade-up" style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-        <Idea ic={sIco.star(22)} c={SEC_AMBER} h="STRUKTURA — ODAM UCHUN QAROR" t="Tartib tasodifan tanlanmaydi" />
-        <Idea ic={Ico.arrow(22)} c={T.accent} h="TO'G'RI YO'L" t="Muammo, yechim, harakat" />
+        <Idea ic={sIco.star(22)} c={SEC_AMBER} h="TARTIB — O'YLAB QILINGAN TANLOV" t="Har bo'limning o'rni foydalanuvchiga qarab hal qilinadi" />
+        <Idea ic={Ico.arrow(22)} c={T.accent} h="SAHIFA — KICHIK HIKOYA" t="U odamni qadam-baqadam kerakli ishgacha yetaklab boradi" />
       </div>
     </Col>
   );
@@ -1379,8 +1378,8 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
   return (
     <Stage eyebrow="Reja" screen={screen} mentorStatic navContent={<><NavBack onPrev={onPrev} /><NavNext label="Boshlaymiz →" onClick={onNext} /></>}>
       <div className="screen">
-        <div className="head"><h2 className="title h-title fade-up"><span className="italic" style={{ color: T.accent }}>Sayt qaysi tartibda tuzilsa, tushunarli bo'ladi?</span></h2></div>
-        <Mentor>Bir xil bo'limlarni turlicha joylash mumkin — foydalanuvchi esa faqat bittasida adashmaydi. O'sha <b style={{ color: T.ink }}>tartibni</b> topamiz: 5 qadamga qarang.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">Saytni <span className="italic" style={{ color: T.accent }}>qaysi tartibda</span> tuzsak tushunarli bo'ladi?</h2></div>
+        <Mentor>Yaxshi sayt bo'limlarni to'g'ri tartibda joylashtiradi — bugun siz ham shu <b style={{ color: T.ink }}>tartibni</b> o'rganasiz. Yo'limiz — 5 qadam: ro'yxatga ko'z tashlang, so'ng boshlaymiz.</Mentor>
         {!isNarrow ? (<Zoomable><Split>{PreviewBlock}{StepsBlock}</Split></Zoomable>) : !showSteps ? (<div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px,2vw,16px)' }}>{PreviewBlock}<button className="btn" style={{ alignSelf: 'flex-start' }} onClick={() => setShowSteps(true)}>5 qadamni ko'rish</button></div>) : (<div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px,2vw,16px)' }}><button className="btn-soft" style={{ alignSelf: 'flex-start' }} onClick={() => setShowSteps(false)}>↩ G'oyani ko'rish</button>{StepsBlock}</div>)}
       </div>
     </Stage>
@@ -1401,8 +1400,8 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return (
     <Stage eyebrow="Birinchi ekran" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? 'Davom etish' : 'Ikkalasini ko\'ring'} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Foydalanuvchi avval <span className="italic" style={{ color: T.accent }}>nimani</span> ko'radi?</h2></div>
-        <Mentor>Foydalanuvchi pastga aylantirmay turib faqat sahifa <b style={{ color: T.ink }}>tepasini</b> ko'radi — taassurot shu yerda tug'iladi. Tepaga avval birinchi blokni, so'ng tugmani qo'yib ko'ring.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">Saytga kirgan foydalanuvchi avval <span className="italic" style={{ color: T.accent }}>nimani</span> ko'radi?</h2></div>
+        <Mentor>Saytga kirgan foydalanuvchi dastlab faqat sahifaning <b style={{ color: T.ink }}>yuqori qismini</b> ko'radi — qolish yoki ketish shu yerda hal bo'ladi. Pastdagi ikki tugmani bosib, farqni o'zingiz ko'ring.</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
@@ -1414,7 +1413,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </Col>
           <Col>
             {top === 'hero'
-              ? <div className="frame-success fade-step" key="h"><p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: T.success, textTransform: 'uppercase', letterSpacing: '0.08em' }}>Tushunarli</p><p className="body" style={{ margin: 0, color: T.ink }}>Birinchi qarashda <b>sayt nima taklif qilishi</b> ma'lum — foydalanuvchi qoladi.</p></div>
+              ? <div className="frame-success fade-step" key="h"><p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: T.success, textTransform: 'uppercase', letterSpacing: '0.08em' }}>Tushunarli</p><p className="body" style={{ margin: 0, color: T.ink }}><b>Sayt nima taklif qilayotgani</b> birinchi qarashdayoq ko'rinib turibdi — foydalanuvchi qiziqib, pastga davom etadi.</p></div>
               : <div className="frame-warn fade-step" key="c"><p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: AMBER_INK, textTransform: 'uppercase', letterSpacing: '0.08em' }}>Tushunarsiz</p><p className="body" style={{ margin: 0, color: T.ink }}>Tepada <b>tugma</b>, lekin nega bosish kerakligi noma'lum. Foydalanuvchi tushunmay ketib qoladi.</p></div>}
             {done && <div className="frame-soft fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Shuning uchun eng tepaga <b>birinchi blok (hero)</b> qo'yiladi: katta sarlavha va izoh.</p></div>}
           </Col>
@@ -1445,7 +1444,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow="Real saytlar" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? 'Davom etish' : `${seen.size}/3 ko'ring`} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">Uchta mashhur saytni bosib, <span className="italic" style={{ color: T.accent }}>tuzilishini</span> solishtiring</h2></div>
-        <Mentor>Uchalasi bir xil mantiqqa amal qiladi: avval <b style={{ color: T.ink }}>eng muhimi</b>, oxirida <b style={{ color: T.ink }}>harakat</b>. Har birini bosib, bo'limlar tartibini ko'ring.</Mentor>
+        <Mentor>Mashhur saytlar ham shu qoidaga amal qiladi. Pastdagi uchta saytni <b style={{ color: T.ink }}>birma-bir bosing</b> — har birida bo'limlar qaysi tartibda turgani ochiladi.</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
@@ -1455,7 +1454,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </Col>
           <Col>
             {active ? (<div className="sk-info fade-step" key={active}><span className="sk-tagbig"><span style={{ display: 'inline-flex' }}>{SITES[active].ic}</span><span className="sk-wordbadge">{SITES[active].name}</span></span><div style={{ display: 'flex', flexDirection: 'column', gap: 6, marginTop: 12 }}>{SITES[active].rows.map((r, i) => (<div key={i} style={{ display: 'flex', alignItems: 'center', gap: 9 }}><span className="mono" style={{ fontSize: 11, fontWeight: 700, color: T.accent, minWidth: 14 }}>{i + 1}</span><span className="body" style={{ margin: 0, color: T.ink }}>{r}</span></div>))}</div></div>) : (!isNarrow ? <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>Bir saytni bosing</p></div> : null)}
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Uchalasida ham <b>eng muhimi tepada</b> turadi. Taqdimot sahifalarida esa harakat tugmasi sababdan keyin keladi.</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Ko'rdingizmi — uchalasida ham <b>eng muhim narsa birinchi blokda</b> turibdi. Tugma esa shoshilmaydi: u sabab ko'rsatilgandan keyin keladi.</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -1467,10 +1466,10 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // ===== SCREEN 4 — TEST 1 =====
 const Screen4 = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow="Mashq · 1-savol"
-    questionText="Foydalanuvchi saytga kirganda birinchi nimani ko'rishi kerak?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-sub" style={{ marginTop: 8 }}>Saytga kirgan odam birinchi <span className="italic" style={{ color: T.accent }}>nimani</span> ko'rishi kerak?</h2></>}
-    options={['Birinchi blokni — sayt nima taklif qilishini', 'Eng pastdagi `footer`ni — havolalar va aloqani', 'Harakat tugmasini, sababini bilmay turib', 'Mahsulotlar ro\'yxatini — narxlari bilan']} correctIdx={0}
-    explainCorrect="To'g'ri! Birinchi ekranda birinchi blok (`hero`) turadi — katta sarlavha bir jumlada sayt nimaligini aytadi. Shundan keyingina foydalanuvchi qoladi."
+    questionText="Saytga kirgan foydalanuvchi birinchi nimani ko'rishi kerak?"
+    question={<><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-sub" style={{ marginTop: 8 }}>Saytga kirgan foydalanuvchi birinchi <span className="italic" style={{ color: T.accent }}>nimani</span> ko'rishi kerak?</h2></>}
+    options={['Birinchi blokni — sayt nima taklif qilishini', 'Eng pastdagi `footer`ni — havolalar va aloqani', 'Harakat tugmasini — darrov bosib qo\'yishi uchun', 'Mahsulotlar ro\'yxatini — narxlari bilan']} correctIdx={0}
+    explainCorrect="To'g'ri! Eng birinchi bo'lib birinchi blok (`hero`) ko'rinadi — katta sarlavha bir jumlada sayt nima taklif qilishini aytadi. Shuni tushungan foydalanuvchi qiziqib, pastga davom etadi."
     explainWrong={{ 1: '`footer` — sahifaning eng pastki qismi: havolalar va aloqa. Birinchi ko\'rinishda esa birinchi blok turadi.', 2: 'Tugmani sababsiz ko\'rsatsa, foydalanuvchi nega bosishini tushunmaydi. Avval birinchi blok.', 3: 'Ro\'yxat foydalanuvchi nima taklif qilinayotganini tushungach kerak bo\'ladi. Avval birinchi blok.', default: 'Birinchi — birinchi blok (sayt nima taklif qiladi).' }} />
 );
 
@@ -1489,8 +1488,8 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return (
     <Stage eyebrow="Bo'lim vazifasi" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? 'Davom etish' : `${seen.size}/5 bo'limni oching`} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Har bo'limni bosib, <span className="italic" style={{ color: T.accent }}>vazifasini</span> bilib oling</h2></div>
-        <Mentor>Har bo'limga aniq <b style={{ color: T.ink }}>vazifa</b> beriladi — bekorga turgani foydalanuvchini charchatadi. Beshtasini birma-bir bosib chiqing.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">Sahifadagi beshta bo'lim qanday <span className="italic" style={{ color: T.accent }}>vazifalarni</span> bajaradi?</h2></div>
+        <Mentor>Yaxshi sahifada ishlamaydigan bo'lim bo'lmaydi — hammasining aniq <b style={{ color: T.ink }}>vazifasi</b> bor. Pastdagi beshta bo'limni birma-bir bosing: bosganingizda uning vazifasi ochiladi.</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
@@ -1500,7 +1499,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </Col>
           <Col>
             {active ? (<div className="sk-info fade-step" key={active}><span className="sk-tagbig"><span style={{ color: SECDATA[active].color, display: 'inline-flex' }}>{SECDATA[active].ic}</span><span className="sk-wordbadge" style={{ color: SECDATA[active].color, background: SECDATA[active].color + '1c' }}>{SECDATA[active].label}</span></span><p className="body" style={{ color: T.ink, margin: '12px 0 0' }}>{SECDATA[active].job}</p></div>) : (!isNarrow ? <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>Bir bo'limni bosing</p></div> : null)}
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Beshta bo'lim — beshta aniq vazifa. Endi ularni <b>to'g'ri tartibga</b> qo'yish qoldi.</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Endi beshala bo'limning vazifasini bilasiz. Keyingi qadam — ularni <b>to'g'ri tartibda</b> joylashtirishni o'rganish.</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -1512,11 +1511,11 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // ===== SCREEN 5b — TEST 2 =====
 const Screen5b = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow="Mashq · 2-savol"
-    questionText="Harakat tugmasi sahifaning qayerida turishi mantiqiy?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-sub" style={{ marginTop: 8 }}>Harakat tugmasi (CTA) <span className="italic" style={{ color: T.accent }}>qayerda</span> turishi mantiqiy?</h2></>}
-    options={['Eng tepada, hammadan ham oldin', 'Sahifa o\'rtasida, muammodan oldin', 'Foydani tushungach, sahifa oxirida', 'Menyuda, boshqa havolalar orasida']} correctIdx={2}
-    explainCorrect="To'g'ri! Avval foydalanuvchi muammoni, yechimni va isbotni ko'radi — ishonadi. Shundan keyin harakat tugmasi bosiladi."
-    explainWrong={{ 0: 'Tepada bo\'lsa, foydalanuvchi nega bosishini hali bilmaydi. Avval ishontirish kerak.', 1: 'Muammodan oldin erta — foydalanuvchi hali ishonmagan. Tugma oxirida.', 3: 'Havolalar orasida tugma ko\'zga tashlanmaydi. U foyda tushuntirilgach, alohida turishi kerak.', default: 'Tugma — foydalanuvchi nega bosishini tushungandan keyin.' }} />
+    questionText="Harakat tugmasi sahifaning qayerida turishi kerak?"
+    question={<><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-sub" style={{ marginTop: 8 }}>Harakat tugmasi (CTA) sahifaning <span className="italic" style={{ color: T.accent }}>qayerida</span> turishi kerak?</h2></>}
+    options={['Eng tepada, hammadan ham oldin', 'Sahifa o\'rtasida, muammodan oldin', 'Sabab ko\'rsatilgandan keyin, oxirroqda', 'Menyuda, boshqa havolalar orasida']} correctIdx={2}
+    explainCorrect="To'g'ri! Avval foydalanuvchi muammo, yechim va isbotni ko'rib ishonch hosil qiladi — endi tugmani bosishga sababi bor."
+    explainWrong={{ 0: 'Tepada bo\'lsa, foydalanuvchi nega bosishini hali bilmaydi. Avval ishontirish kerak.', 1: 'Muammodan oldin hali erta — foydalanuvchi bu yerda hali ishonmagan. Tugma sabab ko\'rsatilgandan keyin keladi.', 3: 'Havolalar orasida tugma ko\'zga tashlanmaydi. U foyda tushuntirilgach, alohida turishi kerak.', default: 'Tugma — foydalanuvchi nega bosishini tushungandan keyin.' }} />
 );
 
 // ===== SCREEN 6 — TARTIB = HIKOYA (stepper) =====
@@ -1535,15 +1534,15 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return (
     <Stage eyebrow="Tartib — hikoya" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? 'Davom etish' : 'Avval kuzating'} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(8px,1.4vw,13px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Yaxshi sahifa — bu <span className="italic" style={{ color: T.accent }}>hikoya</span>mi?</h2></div>
-        <Mentor>Ha — chunki hikoyada har qadam keyingisiga tayyorlaydi, foydalanuvchi ham xuddi shunday <b style={{ color: T.ink }}>bosqichma-bosqich</b> ishonadi. «Hikoyani qurish»ni bosing — tartib ko'z oldingizda yig'iladi.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">Sahifa qanday qilib <span className="italic" style={{ color: T.accent }}>hikoyaga</span> aylanadi?</h2></div>
+        <Mentor>Yaxshi sahifa hikoyaga o'xshaydi: bitta bo'limni o'qigan foydalanuvchi <b style={{ color: T.ink }}>keyingisini ham</b> o'qigisi keladi. Pastdagi «Hikoyani qurish» tugmasini bosing — beshta bo'lim ko'z oldingizda birma-bir joylashib boradi.</Mentor>
         <Zoomable>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
           {ORDER.map((k, i) => { const s = SECDATA[k]; const on = step > i; return (<React.Fragment key={k}><div style={{ display: 'flex', alignItems: 'center', gap: 11, background: T.paper, borderRadius: 11, padding: '7px 13px', opacity: on ? 1 : 0.4, boxShadow: on ? `0 7px 18px -10px rgba(${T.shadowBase},0.18)` : 'none', transition: 'all 0.4s' }}><IcoChip color={on ? s.color : T.ink3} soft={on ? s.color + '1c' : T.line} size={31}>{s.ic}</IcoChip><div style={{ minWidth: 0 }}><p style={{ fontFamily: "'Manrope',sans-serif", fontWeight: 700, fontSize: 13.5, color: on ? T.ink : T.ink3, margin: 0 }}>{s.label}</p></div>{!isMobile && <span style={{ marginLeft: 'auto', fontFamily: G, fontSize: 12.5, fontStyle: 'italic', color: on ? T.ink2 : T.ink3, whiteSpace: 'nowrap' }}>{s.snip}</span>}{on && <span style={{ marginLeft: isMobile ? 'auto' : 10, color: T.success }}>{Ico.check(15)}</span>}</div>{i < ORDER.length - 1 && <div style={{ display: 'flex', justifyContent: 'center', color: step > i + 1 ? T.success : T.ink3, transform: 'rotate(90deg)', lineHeight: 1, transition: 'color 0.3s' }}>{Ico.arrow(12)}</div>}</React.Fragment>); })}
         </div>
         <button className={`btn${runHint ? ' turn-ring' : ''}`} onClick={run} disabled={running} style={{ alignSelf: 'flex-start' }}>{running ? 'Qurilmoqda…' : (done ? '↻ Yana ko\'rish' : 'Hikoyani qurish')}</button>
-        {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Mana to'g'ri tartib: <b>birinchi blok, muammo, yechim, isbot, harakat tugmasi</b>. Foydalanuvchi qadam-baqadam ishonadi.</p></div>}
+        {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Mana to'g'ri tartib: <b>birinchi blok, muammo, yechim, isbot, harakat tugmasi</b>. Shu tartibda o'qigan foydalanuvchi oxiriga yetganda tugmani ishonch bilan bosadi.</p></div>}
         </div>
         </Zoomable>
       </div>
@@ -1551,43 +1550,6 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   );
 };
 
-// ===== SCREEN 7 — TO'G'RI vs ARALASH (toggle) =====
-const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const [v, setV] = useState('good');
-  const [seen, setSeen] = useState(new Set(['good']));
-  // Navbat: «To'g'ri tartib» sukut bo'yicha ochiq — demak ko'rilmagani «Aralash».
-  const pend7 = ['good', 'bad'].filter(k => !seen.has(k));
-  const lit7 = useTurnWalk(pend7);
-  const done = seen.size >= 2;
-  const set = (x) => { setV(x); setSeen(prev => { const n = new Set(prev); n.add(x); return n; }); };
-  const bad = ['isbot', 'harakat', 'hero', 'muammo', 'yechim'];
-  useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
-  return (
-    <Stage eyebrow="To'g'ri va aralash tartib" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? 'Davom etish' : 'Ikkalasini ko\'ring'} onClick={onNext} /></>}>
-      <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Bir xil bo'limlar, ikki xil <span className="italic" style={{ color: T.accent }}>joylashuv</span> — solishtiring</h2></div>
-        <Mentor>Bo'limlar aynan bir xil, faqat o'rinlari almashgan — demak farqni faqat <b style={{ color: T.ink }}>tartib</b> qiladi. Ikkala tugmani bosib ko'ring.</Mentor>
-        <Zoomable>
-        <div className="split">
-          <Col>
-            <div className="fade-up delay-1" style={{ display: 'flex', gap: 8 }}>
-              <button className={`chip ${v === 'good' ? 'chip-on' : ''}${turnCls(lit7, 'good', pend7.length > 1)}`} onClick={() => set('good')}>To'g'ri tartib</button>
-              <button className={`chip ${v === 'bad' ? 'chip-on' : ''}${turnCls(lit7, 'bad', pend7.length > 1)}`} onClick={() => set('bad')}>Aralash</button>
-            </div>
-            <div key={v}><PagePreview order={v === 'good' ? ORDER : bad} minH={224} /></div>
-          </Col>
-          <Col>
-            {v === 'good'
-              ? <div className="frame-success fade-step" key="g"><p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: T.success, textTransform: 'uppercase', letterSpacing: '0.08em' }}>Mantiqiy</p><p className="body" style={{ margin: 0, color: T.ink }}>Hikoya kabi o'qiladi: birinchi blok, muammo, yechim, isbot, tugma. Har qadam keyingisiga tayyorlaydi.</p></div>
-              : <div className="frame-warn fade-step" key="b"><p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: AMBER_INK, textTransform: 'uppercase', letterSpacing: '0.08em' }}>Aralash</p><p className="body" style={{ margin: 0, color: T.ink }}>Isbot va tugma boshida — lekin nimaga ishonish kerakligi hali noma'lum. Foydalanuvchi adashadi.</p></div>}
-            {done && <div className="frame-soft fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Xulosa: bo'limlar bir xil, <b>tartib</b> esa hammasini hal qiladi — u foydalanuvchi uchun qilingan qaror.</p></div>}
-          </Col>
-        </div>
-        </Zoomable>
-      </div>
-    </Stage>
-  );
-};
 
 // ===== SCREEN 8 — MOSLASH: bo'lim ↔ vazifa =====
 const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
@@ -1613,8 +1575,8 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return (
     <Stage eyebrow="Amaliyot" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? 'Davom etish' : `${Object.keys(matched).length}/4 moslang`} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Har bir bo'limni <span className="italic" style={{ color: T.accent }}>vazifasi</span> bilan ulang</h2></div>
-        <Mentor>Har bo'lim bitta vazifani bajaradi: avval chapdan <b style={{ color: T.ink }}>bo'limni</b> tanlang, so'ng o'ngdan uning <b style={{ color: T.ink }}>vazifasini</b> bosing.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">Qaysi bo'lim qaysi ishni bajaradi — <span className="italic" style={{ color: T.accent }}>topa olasizmi</span>?</h2></div>
+        <Mentor>Chapdagi bo'limlardan bittasini tanlang, so'ng o'ng tomondan uning <b style={{ color: T.ink }}>vazifasini</b> toping — to'g'ri topsangiz, juftlik yashil rangga o'zgaradi.</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
@@ -1626,10 +1588,10 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <Col>
             <p className="flow-label">Vazifalar</p>
             <div className="fade-up delay-2" style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
-              {NEEDS.map(n => { const m = matched[n.id]; const isWrong = wrong === n.id; return (<button key={n.id} onClick={() => pickN(n.id)} disabled={m || !sel} style={cardBtn({ cursor: (m || !sel) ? 'default' : 'pointer', opacity: m ? 0.5 : (!sel ? 0.65 : 1), background: m ? T.successSoft : (isWrong ? T.accentSoft : T.paper), boxShadow: `0 6px 16px -8px rgba(${T.shadowBase},0.16)` })}><span style={{ flex: 1 }}>{n.text}</span>{m && <span style={{ color: T.success, display: 'inline-flex' }}>{Ico.check(16)}</span>}</button>); })}
+              {NEEDS.map(n => { const m = matched[n.id]; const isWrong = wrong === n.id; return (<button key={n.id} onClick={() => pickN(n.id)} disabled={m || !sel} style={cardBtn({ cursor: (m || !sel) ? 'default' : 'pointer', opacity: m ? 0.55 : 1, color: !sel && !m ? T.ink2 : T.ink, background: m ? T.successSoft : (isWrong ? T.errSoft : T.paper), boxShadow: m ? 'none' : !sel ? `inset 0 0 0 1.5px ${T.line}` : isWrong ? `inset 0 0 0 1.5px ${T.err}66, 0 6px 16px -8px rgba(${T.shadowBase},0.16)` : `inset 0 0 0 1.5px ${T.accent}44, 0 10px 22px -8px rgba(91,61,230,0.28)` })}><span style={{ flex: 1 }}>{n.text}</span>{m && <span style={{ color: T.success, display: 'inline-flex' }}>{Ico.check(16)}</span>}</button>); })}
             </div>
-            {wrong && !done && <p className="small" style={{ color: T.accent, margin: 0 }}>Bu boshqa bo'limning vazifasi — chapdagi bo'lim nima qilishini bir eslang.</p>}
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Zo'r! To'rtta bo'lim — to'rtta boshqa-boshqa vazifa. Shuning uchun ularni almashtirib bo'lmaydi.</p></div>}
+            {wrong && !done && <p className="small" style={{ color: T.err, margin: 0 }}>Bu boshqa bo'limning vazifasi — chapdagi bo'lim nima qilishini bir eslang.</p>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Zo'r, hammasini to'g'ri uladingiz! Ko'rdingizmi — to'rtta bo'lim to'rt xil ish bajaradi. Shuning uchun birining o'rnini boshqasi bosa olmaydi.</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -1641,11 +1603,11 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // ===== SCREEN 9 — TEST 3 =====
 const Screen9 = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow="Mashq · 3-savol"
-    questionText="Sahifa bo'limlarining tartibi nima uchun muhim?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-sub" style={{ marginTop: 8 }}>Bo'limlar <span className="italic" style={{ color: T.accent }}>tartibi</span> nega muhim?</h2></>}
-    options={['Sahifaga chiroyli ko\'rinish berish uchun', 'Foydalanuvchini muammodan yechimga yetaklaydi', 'Sahifani uzunroq va to\'liqroq qilish uchun', 'Qidiruvda yuqoriroq chiqib turish uchun']} correctIdx={1}
-    explainCorrect="To'g'ri! Tartib — bu yo'l: foydalanuvchini muammodan yechimga, keyin harakatga olib boradi. Bu foydalanuvchi uchun qilingan qaror."
-    explainWrong={{ 0: 'Chiroylilik emas — tartib foydalanuvchini yetaklash uchun. Bu foydalanuvchi uchun qilingan qaror.', 2: 'Uzunlik maqsad emas. Tartib — foydalanuvchini to\'g\'ri yo\'ldan olib borish uchun.', 3: 'Qidiruvdagi o\'rin boshqa narsalarga bog\'liq. Tartib esa odamni yechimga olib borish uchun.', default: 'Tartib foydalanuvchini muammodan yechimga olib boradi.' }} />
+    questionText="Bo'limlarni to'g'ri tartibda joylashdan maqsad nima?"
+    question={<><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-sub" style={{ marginTop: 8 }}>Bo'limlarni to'g'ri tartibda joylashdan <span className="italic" style={{ color: T.accent }}>maqsad</span> nima?</h2></>}
+    options={['Sahifaga chiroyli ko\'rinish berish uchun', 'Foydalanuvchini muammodan yechimga yetaklash uchun', 'Sahifani uzunroq va to\'liqroq qilish uchun', 'Qidiruvda yuqoriroq chiqib turish uchun']} correctIdx={1}
+    explainCorrect="To'g'ri! Tartib — bu yo'l: foydalanuvchini muammodan yechimga, keyin harakatga olib boradi. Bu foydalanuvchi uchun qilingan qulaylik."
+    explainWrong={{ 0: 'Chiroyli ko\'rinish — bezashning ishi, u keyingi darslarda. Tartibning vazifasi esa foydalanuvchini yetaklash.', 2: 'Uzunlik maqsad emas. Tartib — foydalanuvchini to\'g\'ri yo\'ldan olib borish uchun.', 3: 'Qidiruvdagi o\'rin boshqa narsalarga bog\'liq. Tartib esa odamni yechimga olib borish uchun.', default: 'Tartib foydalanuvchini muammodan yechimga olib boradi.' }} />
 );
 
 // ===== SCREEN 11 — REORDER WARM-UP (3 bo'lim) =====
@@ -1661,8 +1623,8 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       {/* Mentor gapi bilan ish maydoni orasi biroz kengaytirildi — ular ustma-ust tiqilib
           qolmasin; lekin ekran pastga cho'zilib ketmasligi uchun o'sish jilovlangan. */}
       <div className="screen" style={{ gap: 'clamp(14px,2vw,22px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Bu uchta bo'limni <span className="italic" style={{ color: T.accent }}>to'g'ri tartibga</span> qo'ying</h2></div>
-        <Mentor>Avval uchta bo'lakni to'g'ri tartibga joylang, so'ng <b style={{ color: T.ink }}>«Mijozni yuborish»</b>ni bosing — sahifangizni birinchi marta ko'rgan odam uni tepadan pastga o'qib chiqadi.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">Siz tuzgan sahifadan foydalanuvchi <span className="italic" style={{ color: T.accent }}>oxirigacha</span> o'ta oladimi?</h2></div>
+        <Mentor>Uchta bo'lakni to'g'ri tartibga joylang, so'ng <b style={{ color: T.ink }}>«Sahifani sinab ko'rish»</b> tugmasini bosing — foydalanuvchi sahifangizni tepadan pastgacha o'qib chiqadi.</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
@@ -1696,20 +1658,20 @@ const Screen14 = ({ screen, onNext, onPrev }) => {
   return (
     <Stage eyebrow="Qoida" screen={screen} mentorStatic navContent={<><NavBack onPrev={onPrev} /><NavNext label="Yakuniy ishga →" onClick={onNext} /></>}>
       <div className="screen">
-        <div className="head"><h2 className="title h-title fade-up">Chiroyli sayt bilan <span className="italic" style={{ color: T.accent }}>ishonchli</span> sayt — farqi nimada?</h2></div>
-        <Mentor>Ko'pincha farq <b style={{ color: T.ink }}>tartibda</b> bo'ladi: yaxshi struktura foydalanuvchini muammodan yechimga, keyin harakatga olib boradi. Shuning uchun bu bezak emas — <b style={{ color: T.ink }}>foydalanuvchi uchun qilingan qaror</b>.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">Nega ba'zi saytlar <span className="italic" style={{ color: T.accent }}>bir qarashda</span> ishonch uyg'otadi?</h2></div>
+        <Mentor>Ishonch chiroydan emas, <b style={{ color: T.ink }}>tartibdan</b> tug'iladi: to'g'ri tuzilgan sahifa foydalanuvchini muammodan yechimga, so'ng harakatga yetaklaydi. Shuning uchun tartib — <b style={{ color: T.ink }}>foydalanuvchi uchun qilingan qulaylik</b>.</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
             <div className="frame fade-up" style={{ display: 'flex', alignItems: 'center', gap: 16, padding: 'clamp(18px,2.6vw,26px)' }}>
               <IcoChip size={54} color={SEC_AMBER} soft={SEC_AMBER + '1c'}>{sIco.star(28)}</IcoChip>
-              <div><p style={{ fontFamily: "'Source Serif 4',serif", fontWeight: 600, margin: 0, color: T.ink, fontSize: 'clamp(18px,2.4vw,22px)' }}>Struktura — odam uchun qaror</p><p className="body" style={{ margin: '3px 0 0', color: T.ink2 }}>Bo'limlar tartibi foydalanuvchini yechimga olib boradi.</p></div>
+              <div><p style={{ fontFamily: "'Source Serif 4',serif", fontWeight: 600, margin: 0, color: T.ink, fontSize: 'clamp(18px,2.4vw,22px)' }}>Tartib — foydalanuvchi uchun qilingan qulaylik</p><p className="body" style={{ margin: '3px 0 0', color: T.ink2 }}>Har bo'lim o'z o'rnida turibdi — shunda foydalanuvchi adashmay yechimga yetadi.</p></div>
             </div>
           </Col>
           <Col>
             <p className="flow-label">Ishlaydigan tartib</p>
             <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-              {ORDER.map((k, i) => { const s = SECDATA[k]; return (<React.Fragment key={k}><div style={{ display: 'flex', alignItems: 'center', gap: 11, background: T.paper, borderRadius: 11, padding: '10px 13px', boxShadow: `0 5px 14px -8px rgba(${T.shadowBase},0.16)` }}><span style={{ color: s.color, display: 'inline-flex' }}>{s.ic}</span><span style={{ fontFamily: "'Manrope',sans-serif", fontWeight: 600, color: T.ink, fontSize: 13.5 }}>{s.label}</span></div>{i < ORDER.length - 1 && <span style={{ color: T.ink3, textAlign: 'center', fontSize: 11 }}>↓</span>}</React.Fragment>); })}
+              {ORDER.map((k, i) => { const s = SECDATA[k]; return (<React.Fragment key={k}><div className="rl-step" style={{ display: 'flex', alignItems: 'center', gap: 11, background: T.paper, borderRadius: 11, padding: '10px 13px', boxShadow: `0 5px 14px -8px rgba(${T.shadowBase},0.16)`, animationDelay: `${i * 0.9}s` }}><span style={{ color: s.color, display: 'inline-flex' }}>{s.ic}</span><span style={{ fontFamily: "'Manrope',sans-serif", fontWeight: 600, color: T.ink, fontSize: 13.5 }}>{s.label}</span></div>{i < ORDER.length - 1 && <span className="rl-arrow" style={{ color: T.ink3, textAlign: 'center', fontSize: 11, animationDelay: `${i * 0.9 + 0.45}s` }}>↓</span>}</React.Fragment>); })}
             </div>
           </Col>
         </div>
@@ -2046,8 +2008,8 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return (
     <Stage eyebrow="Yakuniy ish · 🛠 kompilyator" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !isMentor} label={done || isMentor ? 'Davom etish' : 'Avval kompilyatorda yozing'} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Shu tuzilishni quradigan <span className="italic" style={{ color: T.accent }}>kod</span> yozamiz</h2></div>
-        <Mentor>Sahifani uchta teg tutib turadi: <b style={{ color: T.ink }}>header</b> (tepa qism), <b style={{ color: T.ink }}>main</b> (asosiy qism) va <b style={{ color: T.ink }}>footer</b> (eng past: havolalar va aloqa). Bugungi bo'limlaringiz main ichida yashaydi — kompilyatorni ochib yozing.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">Sahifa tuzilishini quradigan <span className="italic" style={{ color: T.accent }}>kod</span> yozamiz</h2></div>
+        <Mentor>Tartibni o'rgandingiz — endi uni haqiqiy kodda qurasiz. Pastdagi <b style={{ color: T.ink }}>«Kompilyatorni ochish»</b> tugmasini bosing: nima yozishni o'sha yerda ko'rsatamiz.</Mentor>
         <MentorCollapseScroll targetRef={workRef} />
         <div className="stq fade-up delay-1" ref={workRef}>
           <div className="stq-code">
@@ -2077,7 +2039,7 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         </div>
         <div className="stq-cta fade-up delay-2">
           <button className={`kod-launch-btn${openHint ? ' turn-ring' : ''}`} onClick={() => setOpen(true)}>{done ? '↻ Kompilyatorni qayta ochish' : '🛠 Kompilyatorni ochish'}</button>
-          <span className="stq-cta-sub">{done ? "Bajarildi — xohlasangiz kodni yana sayqallang" : "To'liq ekranda yozasiz, tugatgach darsga qaytasiz"}</span>
+          {done && <span className="stq-cta-sub">Bajarildi — xohlasangiz kodni yana sayqallang</span>}
           {/* 🔓 TAKRORLASH-YO'LI — FAQAT erkin rejimda va FAQAT bajarilmagan holatda.
               Nima uchun: praktika bajarilganda brauzer xotirasiga yoziladi va qaytib kelganda
               darvoza o'zi ochiq bo'ladi. Lekin bola sinfda BOSHQA qurilmada bajargan bo'lsa,
@@ -2089,9 +2051,8 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <button className="stq-skip" onClick={onNext}>✓ Bu mashqni sinfda bajarganman — davom etish →</button>
           )}
         </div>
-        <div className="takeaway fade-up delay-2"><span className="ta-bulb">📌</span><p className="ta-h">Bo'lim — teg emas: bo'limlar <span className="mono">main</span> ichida yashaydi.</p></div>
         {done && <div className="done-mini fade-step" style={{ alignSelf: 'center' }}>✅ Ishladi! <span className="dm-sub">— sahifangiz to'g'ri tuzilishda yig'ildi</span></div>}
-        {isMentor && <p className="stq-mnote">👨‍🏫 <b>Eslatma — faqat sizga:</b> topshiriqni o'quvchilar bajaradi, siz kuzatasiz. «Davom etish» siz uchun ochiq.</p>}
+        {isMentor && <details className="stq-mnote-d"><summary>👨‍🏫 Eslatma — faqat sizga</summary><p>Topshiriqni o'quvchilar bajaradi, siz kuzatasiz. «Davom etish» siz uchun ochiq.</p></details>}
         <StudentPracticePulse live={live} screen={screen} />
         <MentorPracticeStats live={live} screen={screen} label="🛠 Tuzilishni yozib bo'lganlar" />
       </div>
@@ -2099,6 +2060,17 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     </Stage>
   );
 };
+
+// 💻 Uyga-vazifa kapsulasi fonida suzuvchi xira so'z-tokenlar — dars DNK'si (CodeStrike cs-sky oilasi)
+const HW_TOKENS = [
+  { t: 'hero',      l: 5,  tp: 16, s: 12, d: 6.5 },
+  { t: 'muammo',    l: 80, tp: 12, s: 11, d: 7.5 },
+  { t: 'yechim',    l: 12, tp: 70, s: 11, d: 8 },
+  { t: 'isbot',     l: 68, tp: 76, s: 12, d: 6 },
+  { t: '<section>', l: 86, tp: 52, s: 10, d: 9 },
+  { t: 'tartib',    l: 36, tp: 8,  s: 10, d: 7 },
+  { t: '</>',       l: 3,  tp: 44, s: 13, d: 8.5 },
+];
 
 // ===== SCREEN 16 — YAKUN =====
 const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) => {
@@ -2117,15 +2089,22 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
     if (isMentorL && quizSt === 'off') { try { await _live.quizControl('lobby', -1); } catch { return; } }
     setArenaSolo(studentSolo); setArena(true);
   };
-  const RECAP = ['Struktura — bezak emas, odam uchun qaror', 'Birinchi ekranda birinchi blok (hero) turadi', 'Tartib — hikoya: birinchi blok, muammo, yechim, isbot, tugma', 'Harakat tugmasi — foyda tushunilgandan keyin'];
-  const HOMEWORK = [{ b: 'Sevimli saytni oching', t: '— bo\'limlari qaysi tartibda joylashganini yozing' }, { b: 'Birinchi blokka qarang', t: '— u yerda nima yozilgan va nega aynan shu?' }, { b: 'O\'z g\'oyangiz', t: '— sahifa bo\'limlarini tartib bilan yozib chiqing' }];
+  const RECAP = ['Sahifa bo\'limlari — odam uchun qulaylik', 'Sahifaning eng tepasida birinchi blok (hero) turadi', 'Tartib: birinchi blok → muammo → yechim → isbot → tugma', 'Sahifani kodda to\'g\'ri bo\'limlar bilan qura olasiz'];
+  // 💻 Amaliy topshiriq tugmasi — LMS kompilyatoriga olib kiradi (ulanish keyin kelishiladi; hozircha dizayn-qatlam)
+  const [hwNote, setHwNote] = useState(false);
+  // Zaryad-effekt (CodeStrike fire() naqshi): bosilganda kapsula yorishadi, so'ng harakat davom etadi
+  const [hwCharge, setHwCharge] = useState(false);
+  const fireHw = () => {
+    if (hwCharge) return;
+    setHwCharge(true);
+    setTimeout(() => { setHwNote(true); setHwCharge(false); }, 500);
+  };
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
-  const PASSED = (total ? correct / total : 0) >= 0.6;
   return (
     <Stage eyebrow="Tayyor" screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>Qaytadan</button><button className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>Yakunlash</button></>}>
       <div className="screen">
-        <div className="hero"><div className="hero-l"><span className="done-chip fade-up"><span className="tick">{Ico.check(11)}</span> Dars tugadi</span><h2 className="title h-title fade-up d1">Endi siz <span className="italic" style={{ color: T.accent }}>strukturani</span> qura olasiz.</h2><p className="body h-sub fade-up d2">{PASSED ? 'Tabriklaymiz! Tartib — foydalanuvchi uchun qilingan qaror ekanini tushundingiz.' : 'Yaxshi harakat! Bir-ikki joyni mustahkamlash uchun darsni qayta ko\'ring.'}</p></div><ScoreRing correct={correct} total={total} /></div>
+        <div className="hero"><div className="hero-l"><span className="done-chip fade-up"><span className="tick">{Ico.check(11)}</span> Dars tugadi</span><h2 className="title h-title fade-up d1">Endi siz <span className="italic" style={{ color: T.accent }}>sahifani</span> qura olasiz.</h2>{/* 54-qonun (UserStory qarori bilan bir xil): h-sub qatori YO'Q — sarlavha o'zi yetadi. */}</div>{!isMentorL && <ScoreRing correct={correct} total={total} />}</div>
         <div className={`qz-cta cs-cta fade-up d2 ${studentLive ? 'ready' : ''}`}>
           <CsWordmark
             stats={false}
@@ -2136,10 +2115,18 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
           />
         </div>
         {arena && <QuizArena live={_live || { mode: 'self' }} startSolo={arenaSolo} onClose={() => setArena(false)} />}
-        <div className="split">
-          <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span style={{ color: T.success, display: 'inline-flex' }}>{Ico.check(15)}</span> Endi siz bilasiz</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck" style={{ display: 'inline-flex' }}>{Ico.check(15)}</span><span>{r}</span></li>))}</ul></div>
-          <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>Uyga vazifa</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>Daftaringizga yozib boring:</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{h.b}</b> <span className="t">{h.t}</span></li>))}</ul><p className="hw-note">Muddat: keyingi darsgacha.</p></div>
+        <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span style={{ color: T.success, display: 'inline-flex' }}>{Ico.check(15)}</span> Endi siz bilasiz</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck" style={{ display: 'inline-flex' }}>{Ico.check(15)}</span><span>{r}</span></li>))}</ul></div>
+        <div className="hw-big-wrap fade-up d4">
+          <button className={`hw-big ${hwCharge ? 'charging' : ''}`} onClick={fireHw}>
+            <span className="hw-sky" aria-hidden="true">
+              {HW_TOKENS.map((k, i) => <span key={i} className="hw-tok" style={{ left: `${k.l}%`, top: `${k.tp}%`, fontSize: k.s, '--d': `${k.d}s` }}>{k.t}</span>)}
+            </span>
+            <span className="hw-big-shine" aria-hidden="true" />
+            <span className="hw-big-t">Uyga vazifa</span>
+            <span className="hw-big-s">Amaliy topshiriqni boshlash →</span>
+          </button>
         </div>
+        {hwNote && <p className="hw-cta-note fade-step" style={{ textAlign: 'center' }}>Topshiriq LMS kompilyatorida ochiladi — o'z sahifangizni bugun o'rgangan tartibda bajarasiz.</p>}
         {/* Nishon-ro'yxati — SHAXSIY hisob, mentor proyektorida ko'rsatilmaydi (yuqoridagi
             AchCounter izohi: sahna ↔ daftar tamoyili). O'quvchida esa o'z joyida qoladi. */}
         {!isMentorL && <div className="card ach-coll fade-up d4">
@@ -2166,7 +2153,6 @@ const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) =>
     <Stage eyebrow="Takrorlash" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={false} label="Yakunlashga →" onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">Bo'limlarni <span className="italic" style={{ color: T.accent }}>tez takrorlaymiz</span>.</h2></div>
-        <Mentor>Yodda qolishi uchun eng yaxshi yo'l — javobni ko'rishdan oldin o'zingiz aytib ko'rish. Har kartada bir tavsif bor: <b style={{ color: T.ink }}>qaysi bo'lim</b> ekanini ayting, so'ng kartani bosib tekshiring.</Mentor>
         <div className="fc-center"><Flashcards cards={PM_FLASHCARDS} /></div>
       </div>
     </Stage>
@@ -2175,7 +2161,7 @@ const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) =>
 
 // ============================================================ LESSON ROOT
 // Podium yorliqlari (scored indeks -> qisqa nom)
-const Q_LABELS = { 4: "Birinchi nima ko'rinadi", 6: "Tugma qayerda turadi", 10: "Tartib nega muhim", 12: "Mantiqiy tartib" };
+const Q_LABELS = { 4: "Birinchi nima ko'rinadi", 6: "Tugma qayerda turadi", 9: "Tartib nega muhim", 11: "Mantiqiy tartib" };
 
 const Confetti = () => {
   const COLORS = [T.accent, T.success, T.blue, '#FFD380', '#FF7755', '#7DD181'];
@@ -2241,7 +2227,7 @@ const ScreenPodium = ({ screen, answers, onNext, onPrev }) => {
   return (
     <Stage eyebrow="Natijalar" screen={screen} narrow navContent={<><NavBack onPrev={onPrev} /><NavNext label="Davom etish" onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(14px,2.2vw,20px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Kim <span className="italic" style={{ color: T.accent }}>g'olib</span>?</h2></div>
+        <div className="head"><h2 className="title h-title fade-up">{isLive ? <>Bugungi <span className="italic" style={{ color: T.accent }}>g'oliblarimiz</span></> : <>Bugungi <span className="italic" style={{ color: T.accent }}>natijangiz</span></>}</h2></div>
         {!isLive ? (
           <div className="fade-up" style={{ display: 'flex', flexDirection: 'column', gap: 16, alignItems: 'center' }}>
             <ScoreRing correct={selfCorrect} total={totalQ} />
@@ -2311,7 +2297,7 @@ const QZ_BG_SHAPES = [
   { ch: '{ }',       l: 2,  t: 46, s: 24, c: 'rgba(203,173,255,0.10)', d: 26, dl: 2.6 },
 ];
 const QUIZ_BANK = [
-  { q: "Sayt strukturasi (bo'limlar tartibi) aslida nima?", opts: ["Foydalanuvchi uchun qilingan qaror", "Sahifani chiroyli ko'rsatuvchi bezak", "Dizayner o'z didiga qarab tanlagan shakl", "Hamma sayt uchun bir xil tayyor andoza"], correct: 0 },
+  { q: "Sayt strukturasi (bo'limlar tartibi) aslida nima?", opts: ["Foydalanuvchi uchun qilingan qulaylik", "Sahifani chiroyli ko'rsatuvchi bezak", "Dizayner o'z didiga qarab tanlagan shakl", "Hamma sayt uchun bir xil tayyor andoza"], correct: 0 },
   { q: "Foydalanuvchi saytni ochganda birinchi nimani ko'radi?", opts: ["Sahifa oxiridagi havolalar qismini", "Birinchi blokni — sarlavha va izohni", "Yon tarafdagi reklama bannerini", "Menyu va qidiruv qatorini"], correct: 1 },
   { q: "Harakat tugmasi (CTA) qayerda turishi mantiqiy?", opts: ["Eng tepada, hammadan oldin", "Menyuda, havolalar orasida", "Foydalanuvchi ishongandan keyin", "Yon tomonda, matndan ajratib"], correct: 2 },
   { q: "Bo'limlarning eng mantiqiy tartibi qaysi?", opts: ["Tugma, isbot, birinchi blok, muammo, yechim", "Isbot, tugma, muammo, yechim, birinchi blok", "Muammo, tugma, birinchi blok, yechim, isbot", "Birinchi blok, muammo, yechim, isbot, tugma"], correct: 3 },
@@ -2826,7 +2812,7 @@ export default function PmLesson2({ lang: langProp, onFinished }) {
     if (typeof onFinished === 'function') onFinished(payload);
   };
 
-  const screens = [Screen0, Screen1, Screen2, Screen3, Screen4, Screen5, Screen5b, Screen6, Screen7, Screen8, Screen9, Screen11, Screen12, Screen14, ScreenCoding, ScreenPodium, ScreenFlashcards, Screen16];
+  const screens = [Screen0, Screen1, Screen2, Screen3, Screen4, Screen5, Screen5b, Screen6, Screen8, Screen9, Screen11, Screen12, Screen14, ScreenCoding, ScreenPodium, ScreenFlashcards, Screen16];
   const Current = screens[screen];
   return (
     <LangContext.Provider value={lang}>
@@ -3034,7 +3020,29 @@ export default function PmLesson2({ lang: langProp, onFinished }) {
         .card { background: ${T.paper}; border-radius: 16px; padding: 18px 20px; box-shadow: 0 8px 22px -7px rgba(${T.shadowBase},0.14); }
         .card-lbl { display: flex; align-items: center; gap: 8px; font-family: 'Manrope'; font-weight: 700; font-size: 13px; margin-bottom: 11px; }
         .recap { display: flex; flex-direction: column; gap: 8px; list-style: none; } .recap li { display: flex; align-items: flex-start; gap: 10px; font-size: clamp(13px,1.6vw,15px); color: ${T.ink}; animation: fade-in-up 0.4s ease-out forwards; opacity: 0; } .recap .ck { color: ${T.success}; flex-shrink: 0; margin-top: 1px; }
-        .hw ul { display: flex; flex-direction: column; gap: 6px; list-style: none; } .hw li { font-size: clamp(13px,1.6vw,15px); color: ${T.ink}; } .hw li b { color: ${T.accent}; } .hw .t { color: ${T.ink2}; } .hw-note { margin: 11px 0 0; font-size: 12px; color: ${T.accent}; font-weight: 600; }
+        /* 💻 UYGA VAZIFA — bitta katta chorlab turuvchi tugma (CodeStrike kapsulasi ruhida):
+           indigo-gradient + nafas oluvchi nur-halqa + suzib o'tuvchi shine. LMS kompilyatoriga eshik. */
+        .hw-big-wrap { position: relative; align-self: center; width: min(560px, 100%); }
+        /* 1) Tashqi aura — kapsula orqasidagi nafas oluvchi binafsha nur-gardish */
+        .hw-big-wrap::before { content: ''; position: absolute; inset: -16px; border-radius: 34px; background: radial-gradient(ellipse at center, rgba(124,58,237,0.45), rgba(124,58,237,0) 70%); filter: blur(18px); z-index: 0; pointer-events: none; animation: hw-aura 2.6s ease-in-out infinite; }
+        @keyframes hw-aura { 0%, 100% { opacity: 0.5; } 50% { opacity: 0.9; } }
+        .hw-big { position: relative; z-index: 1; overflow: hidden; display: flex; flex-direction: column; align-items: center; gap: 7px; width: 100%; padding: clamp(20px,2.8vw,30px) clamp(26px,3.4vw,44px); border: 1.5px solid rgba(186,140,255,0.72); border-radius: 22px; cursor: pointer; background: radial-gradient(130% 170% at 50% 120%, #3D1F86 0%, #2A1560 44%, #1B0F3F 100%); color: #fff; box-shadow: 0 0 0 1px rgba(90,40,180,.45), 0 0 26px rgba(124,58,237,.5), 0 0 68px rgba(124,58,237,.28), inset 0 0 48px rgba(124,58,237,.32); animation: hw-fire 1.7s ease-in-out 0.9s infinite; transition: transform 0.2s; }
+        .hw-big:hover { transform: translateY(-3px) scale(1.02); }
+        /* 2) Suzuvchi xira tokenlar — dars so'zlari kapsula osmonida */
+        .hw-sky { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+        .hw-tok { position: absolute; font-family: 'JetBrains Mono', monospace; font-weight: 700; color: rgba(255,255,255,0.15); animation: hw-float var(--d, 7s) ease-in-out infinite alternate; }
+        @keyframes hw-float { from { transform: translateY(4px); } to { transform: translateY(-7px); } }
+        /* 3) Zaryad-effekt — bosilganda kapsula yorishib "otiladi" */
+        .hw-big.charging { animation: hw-fire 1.7s ease-in-out 0.9s infinite, hw-charge 0.5s ease; }
+        @keyframes hw-charge { 0% { filter: brightness(1); } 45% { filter: brightness(1.7) saturate(1.25); transform: scale(1.05); } 100% { filter: brightness(1); transform: scale(1); } }
+        .hw-big-t { font-family: 'Manrope'; font-weight: 800; font-size: clamp(25px,3.6vw,34px); letter-spacing: 0.02em; text-shadow: 0 2px 12px rgba(0,0,0,0.25); }
+        .hw-big-s { font-family: 'Manrope'; font-weight: 700; font-size: clamp(14px,1.9vw,17px); opacity: 0.94; }
+        .hw-big-shine { position: absolute; top: -40%; left: -60%; width: 45%; height: 180%; background: linear-gradient(100deg, transparent, rgba(255,255,255,0.28), transparent); transform: skewX(-18deg); animation: hw-shine 3.2s ease-in-out infinite; pointer-events: none; }
+        @keyframes hw-fire { 0%,100% { box-shadow: 0 0 0 1px rgba(90,40,180,.45), 0 0 26px rgba(124,58,237,.5), 0 0 68px rgba(124,58,237,.28), inset 0 0 48px rgba(124,58,237,.32), 0 0 0 0 rgba(124,58,237,.35); } 50% { box-shadow: 0 0 0 1px rgba(90,40,180,.45), 0 0 34px rgba(124,58,237,.68), 0 0 84px rgba(124,58,237,.4), inset 0 0 48px rgba(124,58,237,.32), 0 0 0 11px rgba(124,58,237,0); } }
+        @keyframes hw-shine { 0% { left: -60%; } 55%, 100% { left: 130%; } }
+        @media (prefers-reduced-motion: reduce) { .hw-big, .hw-big-shine, .hw-big-wrap::before, .hw-tok, .hw-big.charging { animation: none; } .hw-big-wrap::before { opacity: 0.55; } }
+        .hw-cta-note { margin: 9px 0 0; font-family: 'Manrope'; font-weight: 600; font-size: 12.5px; color: ${T.ink2}; }
+        .hw ul { display: flex; flex-direction: column; gap: 6px; list-style: none; } .hw li { font-size: clamp(13px,1.6vw,15px); color: ${T.ink}; } .hw li b { color: ${T.accent}; } .hw .t { color: ${T.ink2}; }
 
         /* MOBIL: yig'iladigan Mentor */
         .mentor-mob .mentor-msg { overflow: hidden; max-height: 360px; transition: max-height 0.38s cubic-bezier(.4,0,.2,1), opacity 0.25s ease, padding 0.38s ease, box-shadow 0.3s ease; }
@@ -3101,7 +3109,12 @@ export default function PmLesson2({ lang: langProp, onFinished }) {
            bo'lganga ko'rinsin. Hoverda aniqlashadi. */
         .stq-skip { margin-top: 2px; background: none; border: none; cursor: pointer; font-family: 'Manrope', sans-serif; font-weight: 600; font-size: 12.5px; color: ${T.ink3}; text-decoration: underline; text-underline-offset: 3px; padding: 4px 6px; border-radius: 8px; transition: color 0.15s; }
         .stq-skip:hover { color: ${T.accent}; }
-        .stq-mnote { margin: 0; font-family: 'Manrope', sans-serif; font-size: 12.5px; font-weight: 600; color: ${T.blue}; background: ${T.blueSoft}; border-radius: 11px; padding: 8px 13px; min-width: 0; overflow-wrap: anywhere; }
+        .stq-mnote-d { align-self: flex-start; min-width: 0; }
+        .stq-mnote-d summary { cursor: pointer; list-style: none; display: inline-flex; align-items: center; gap: 6px; font-family: 'Manrope', sans-serif; font-size: 12px; font-weight: 700; color: ${T.blue}; background: ${T.blueSoft}; border-radius: 99px; padding: 6px 13px; user-select: none; transition: box-shadow 0.15s; }
+        .stq-mnote-d summary::-webkit-details-marker { display: none; }
+        .stq-mnote-d summary:hover { box-shadow: 0 4px 12px -6px rgba(14,134,196,0.4); }
+        .stq-mnote-d[open] summary { border-bottom-left-radius: 0; border-bottom-right-radius: 0; }
+        .stq-mnote-d p { margin: 0; font-family: 'Manrope', sans-serif; font-size: 12.5px; font-weight: 600; color: ${T.blue}; background: ${T.blueSoft}; border-radius: 0 11px 11px 11px; padding: 9px 13px; max-width: 430px; overflow-wrap: anywhere; }
 
         /* Aylantirish-vizual: teg-skelet ➜ yig'ilgan sahifa (bu darsning O'Z ko'rinishi) */
         .stq { display: flex; align-items: center; gap: clamp(10px,1.8vw,18px); }
@@ -3514,7 +3527,17 @@ export default function PmLesson2({ lang: langProp, onFinished }) {
         .dd-slots, .dd-pool { position: relative; }
         .dd-pool { z-index: 1; }
         .dd-done { font-weight: 700; color: ${T.success}; font-size: 14.5px; }
-        .dd-wrong { font-weight: 700; color: ${T.err}; font-size: 13.5px; }
+        .dd-wrong { font-weight: 700; color: ${T.err}; font-size: 13.5px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+        .dd-retry { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 12.5px; cursor: pointer; border: none; border-radius: 9px; padding: 7px 13px; background: ${T.errSoft}; color: ${T.err}; transition: all 0.15s; }
+        .dd-retry:hover { background: ${T.err}; color: #fff; }
+        /* «Ishlaydigan tartib» (Qoida ekrani) — yo'l JONLANADI: bloklar birma-bir yumshoq yonib,
+           foydalanuvchining tepadan pastga yurishini ko'rsatadi. Yonish oynalari ustma-ust
+           TUSHMAYDI (0.4s oyna, 0.9s kechikish) — lahzada bittasi. Dekorativ oqim, affordance emas. */
+        .rl-step { animation: rl-step 4.5s ease-in-out infinite; }
+        @keyframes rl-step { 0%, 14%, 100% { transform: none; } 6% { transform: translateY(-2px); box-shadow: 0 10px 22px -8px rgba(91,61,230,0.3), inset 0 0 0 1.5px ${T.accent}44; } }
+        .rl-arrow { animation: rl-arrow 4.5s ease-in-out infinite; opacity: 0.55; }
+        @keyframes rl-arrow { 0%, 26%, 100% { opacity: 0.55; transform: none; } 15% { opacity: 1; color: ${T.accent}; transform: translateY(2px); } }
+        @media (prefers-reduced-motion: reduce) { .rl-step, .rl-arrow { animation: none; } }
 
         /* === 🧍 SINOV MIJOZI (customer-run) === */
         .cr { display: flex; flex-direction: column; gap: 11px; }
@@ -3669,7 +3692,7 @@ export default function PmLesson2({ lang: langProp, onFinished }) {
             <>
               <Current screen={screen} storedAnswer={answers[screen]} answers={answers} achievements={earned} onAnswer={recordAnswer} onNext={next} onPrev={prev} onReset={reset} onFinish={finishLesson} />
               <LiveBadge live={live} total={TOTAL_SCREENS} />
-              <AchToasts toasts={achToasts} onDone={(k) => setAchToasts(t => t.filter(x => x.k !== k))} />
+              {live.mode !== 'mentor' && <AchToasts toasts={achToasts} onDone={(k) => setAchToasts(t => t.filter(x => x.k !== k))} />}
             </>
           )}
         </div>
