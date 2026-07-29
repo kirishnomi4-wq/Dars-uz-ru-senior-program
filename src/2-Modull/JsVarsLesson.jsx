@@ -458,6 +458,7 @@ const VarBox = ({ name, value, valColor = T.accent, small, pulse }) => (
 
 function AchCounter() {
   const earned = useContext(AchCtx);
+  const gate = useContext(LiveGateCtx);
   const count = earned ? earned.size : 0;
   const total = Object.keys(ACHIEVEMENTS).length;
   const prevRef = useRef(count);
@@ -467,6 +468,7 @@ function AchCounter() {
     if (count > prevRef.current) { setBump(true); const t = setTimeout(() => setBump(false), 800); prevRef.current = count; return () => clearTimeout(t); }
     prevRef.current = count;
   }, [count]);
+  if (gate && gate.live && gate.live.mode === 'mentor') return null; // 🔴 mentor proyektorida nishon YO'Q (hooklardan KEYIN)
   return (
     <div className="ach-cnt-wrap">
       <button className={`ach-counter ${bump ? 'bump' : ''} ${count > 0 ? 'has' : ''}`} onClick={() => setOpen(o => !o)} aria-label="Badges" title="Badges">
@@ -1741,16 +1743,18 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 
 // ===== 🃏 FLASHCARDS (o'zgaruvchilar mavzusi — 3D flip takrorlash) =====
 const JS_FLASHCARDS = [
-  { front: { uz: 'Qiymat saqlaydigan nomlangan quti', ru: 'Коробка с именем, где хранится значение' }, back: { uz: "o'zgaruvchi", ru: 'переменная' }, note: { uz: 'kod ichidagi qutilar', ru: 'коробки внутри кода' } },
-  { front: { uz: "O'zgarib turadigan qutini ochish", ru: 'Создать меняющуюся коробку' }, back: 'let', note: { uz: "qiymatini keyin almashtirsa bo'ladi", ru: 'значение потом можно заменить' } },
-  { front: { uz: "O'zgarmas (qulflangan) qutini ochish", ru: 'Создать неизменную (запертую) коробку' }, back: 'const', note: { uz: "qiymati o'zgarmaydi", ru: 'значение не меняется' } },
-  { front: { uz: 'Qutiga qiymat solish belgisi', ru: 'Знак «положить значение в коробку»' }, back: '=', note: { uz: '"o\'zlashtir" — teng emas', ru: '«присвой» — а не «равно»' } },
-  { front: { uz: "Matn (so'z, gap) turi", ru: 'Тип для текста (слов, фраз)' }, back: 'string', note: { uz: 'qo\'shtirnoqda: "Aziza"', ru: 'в кавычках: "Aziza"' } },
-  { front: { uz: 'Raqam turi', ru: 'Тип для чисел' }, back: 'number', note: { uz: "qo'shtirnoqsiz: 14, 3.14", ru: 'без кавычек: 14, 3.14' } },
-  { front: { uz: "Ha / yo'q (rost / yolg'on) turi", ru: 'Тип «да / нет» (истина / ложь)' }, back: 'boolean', note: { uz: 'true yoki false', ru: 'true или false' } },
-  { front: { uz: '"14" — qo\'shtirnoqdagi qiymat turi', ru: '"14" — тип значения в кавычках' }, back: 'string', note: { uz: "raqamga o'xshasa ham — matn", ru: 'похоже на число, но это текст' } },
-  { front: { uz: 'Bugun ishlatilmaydigan eski usul', ru: 'Старый способ, который уже не используют' }, back: 'var', note: { uz: "o'rniga let / const", ru: 'вместо него — let / const' } },
-  { front: { uz: "Nom bo'sh joysiz, raqam bilan boshlanmasin", ru: 'Имя без пробелов и не с цифры' }, back: { uz: 'nomlash qoidasi', ru: 'правило имён' }, note: { uz: "ism, tugilgan_yil — to'g'ri", ru: 'ism, tugilgan_yil — правильно' } },
+  { front: { uz: "Qiymatni saqlab turadigan nomlangan «quti» qanday ataladi?", ru: 'Как называется «коробка» с именем, которая хранит значение?' }, back: { uz: "o'zgaruvchi", ru: 'переменная' }, note: { uz: "quti + nom + ichidagi qiymat", ru: 'коробка + имя + значение внутри' } },
+  { front: { uz: "Qiymati keyin o'zgaradigan qutini qaysi so'z bilan ochamiz?", ru: 'Каким словом создаём коробку, значение которой потом меняется?' }, back: 'let', note: { uz: "let ball = 10, keyin ball = 25", ru: 'let ball = 10, потом ball = 25' } },
+  { front: { uz: "Qiymati hech qachon o'zgarmaydigan qutini qaysi so'z ochadi?", ru: 'Какое слово создаёт коробку, значение которой никогда не меняется?' }, back: 'const', note: { uz: "const yil = 2011 — quti qulflangan", ru: 'const yil = 2011 — коробка заперта' } },
+  { front: { uz: "Qutiga qiymat solish uchun qaysi belgi ishlatiladi?", ru: 'Каким знаком кладут значение в коробку?' }, back: '=', note: { uz: "u \"sol\" degani — \"teng\" degani emas", ru: 'он значит «положи», а не «равно»' } },
+  { front: { uz: "Matn (so'z, gap) turi qanday ataladi?", ru: 'Как называется тип для текста (слов, фраз)?' }, back: 'string', note: { uz: 'qo\'shtirnoq ichida yoziladi: "Aziza"', ru: 'пишется в кавычках: "Aziza"' } },
+  { front: { uz: "Raqam turi qanday ataladi?", ru: 'Как называется тип для чисел?' }, back: 'number', note: { uz: "qo'shtirnoqsiz yoziladi: 14, 3.14", ru: 'пишется без кавычек: 14, 3.14' } },
+  { front: { uz: "true va false qaysi turga kiradi?", ru: 'К какому типу относятся true и false?' }, back: 'boolean', note: { uz: "faqat ikki qiymat: rost yoki yolg'on", ru: 'всего два значения: истина или ложь' } },
+  { front: { uz: "«14» qo'shtirnoq ichida yozilsa, qaysi tur bo'ladi?", ru: 'Если «14» написано в кавычках, какой это тип?' }, back: 'string', note: { uz: "raqamga o'xshaydi, lekin bu matn", ru: 'похоже на число, но это текст' } },
+  { front: { uz: "Bugun ishlatilmaydigan eski so'z qaysi?", ru: 'Какое старое слово сегодня уже не используют?' }, back: 'var', note: { uz: "o'rniga let yoki const yozing", ru: 'вместо него пишите let или const' } },
+  { front: { uz: "let bilan const orasidagi asosiy farq nima?", ru: 'В чём главная разница между let и const?' }, back: { uz: "let o'zgaradi, const o'zgarmaydi", ru: 'let меняется, const — нет' }, note: { uz: "o'yin bali — let, tug'ilgan yil — const", ru: 'счёт в игре — let, год рождения — const' } },
+  { front: { uz: "O'zgaruvchi nomi raqam bilan boshlansa bo'ladimi?", ru: 'Может ли имя переменной начинаться с цифры?' }, back: { uz: "Yo'q, bo'lmaydi", ru: 'Нет, нельзя' }, note: { uz: "bo'sh joy ham bo'lmaydi: tugilgan_yil", ru: 'пробелов тоже нельзя: tugilgan_yil' } },
+  { front: { uz: "const PI = 3.14 dan keyin PI = 3 yozsangiz nima bo'ladi?", ru: 'Что будет, если после const PI = 3.14 написать PI = 3?' }, back: { uz: 'Xato beradi', ru: 'Будет ошибка' }, note: { uz: "const qutisi bir marta to'ldiriladi", ru: 'коробка const заполняется один раз' } },
 ];
 function Flashcards({ cards }) {
   const [queue, setQueue] = useState(() => cards.map((_, i) => i));
@@ -1783,7 +1787,7 @@ function Flashcards({ cards }) {
       <div className="fc-cardwrap">
         <div className={`fc-fly ${exiting === 'knew' ? 'out-knew' : ''} ${exiting === 'again' ? 'out-again' : ''}`} key={swapRef.current}>
         <div className={`fc-card ${flipped ? 'flip' : ''}`} onClick={() => !flipped && !exiting && setFlipped(true)} role="button" tabIndex={0}>
-          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: "Qaysi so'z?", ru: 'Какое это слово?' })} 🤔 <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
+          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: "Javobni o'ylang", ru: 'Подумайте над ответом' })} 🤔 <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
           <div className="fc-face fc-back"><span className="fc-tag">{tr(card.back)}</span>{card.note && <span className="fc-note">{tr(card.note)}</span>}</div>
         </div>
         </div>
@@ -1795,13 +1799,13 @@ function Flashcards({ cards }) {
   );
 }
 const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const audio = useAudio([{ id: 'sflash', text: `Darsni yakunlashdan oldin, bugun o'rgangan so'zlarni tez takrorlaymiz. Har kartada bir tushuncha — qaysi so'z ekanini o'ylang, keyin kartani bosib tekshiring.`, trigger: 'on_mount', waits_for: null }]);
+  const audio = useAudio([{ id: 'sflash', text: `Darsni yakunlashdan oldin, bugun o'rgangan so'zlarni tez takrorlaymiz. Har kartada bir savol — javobini o'ylang, keyin kartani bosib tekshiring.`, trigger: 'on_mount', waits_for: null }]);
   useEffect(() => { if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, []); // eslint-disable-line
   return (
     <Stage eyebrow={tr({ uz: 'Takrorlash', ru: 'Повторение' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={false} label={tr({ uz: 'Yakunlash →', ru: 'Завершить →' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>So'zlarni <span className="italic" style={{ color: T.accent }}>tez takrorlaymiz</span>.</>, ru: <>Быстро <span className="italic" style={{ color: T.accent }}>повторим слова</span>.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Darsni yakunlashdan oldin bugun o'rgangan so'zlarni takrorlaymiz. Har kartada bir tushuncha — <b style={{ color: T.ink }}>qaysi so'z</b> ekanini o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</>, ru: <>Перед завершением урока повторим сегодняшние слова. На каждой карточке — одно понятие: подумайте, <b style={{ color: T.ink }}>какое это слово</b>, затем нажмите на карточку и проверьте себя. Оцените кнопками <b style={{ color: T.ink }}>Знаю</b> или <b style={{ color: T.ink }}>Повторить</b>.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Darsni yakunlashdan oldin bugun o'rgangan so'zlarni takrorlaymiz. Har kartada bir tushuncha — <b style={{ color: T.ink }}>qaysi so'z</b> ekanini o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</>, ru: <>Перед завершением урока повторим сегодняшние слова. На каждой карточке — вопрос: подумайте, <b style={{ color: T.ink }}>каким будет ответ</b>, затем нажмите на карточку и проверьте себя. Оцените кнопками <b style={{ color: T.ink }}>Знаю</b> или <b style={{ color: T.ink }}>Повторить</b>.</> })}</Mentor>
         <div className="fc-center"><Flashcards cards={JS_FLASHCARDS} /></div>
       </div>
     </Stage>
@@ -1849,7 +1853,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
           <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> {tr({ uz: 'Endi siz bilasiz', ru: 'Теперь вы знаете' })}</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{tr(r)}</span></li>))}</ul></div>
           <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: 'Uyga vazifa', ru: 'Домашнее задание' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: "O'zingiz haqingizda 3 ta o'zgaruvchi yozing:", ru: 'Напишите 3 переменные о себе:' })}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b className="mono">{h.b}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: "Avval qo'lda yozing, keyin to'g'ri-noto'g'risini tekshiring. Keyingi darsda ularni ekranga chiqaramiz! 🚀", ru: 'Сначала напишите сами, потом проверьте, всё ли верно. На следующем уроке выведем их на экран! 🚀' })}</p></div>
         </div>
-        <div className="card ach-coll fade-up d3">
+        {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>🏅 {tr({ uz: 'Nishonlaringiz', ru: 'Ваши значки' })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">
             {Object.entries(ACHIEVEMENTS).map(([id, a]) => { const got = !!(achievements && achievements.has(id)); return (
@@ -1860,7 +1864,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
               </div>
             ); })}
           </div>
-        </div>
+        </div>}
       </div>
     </Stage>
   );
@@ -2401,7 +2405,7 @@ function QuizArena({ live, onClose, startSolo }) {
             <div className={`qz-res ${my?.correct ? 'good' : 'bad'}`}>
               {my?.correct
                 ? <><span className="qz-res-pts">+{myPtsFor(qi)}</span><span className="qz-res-t">{tr({ uz: 'ball', ru: 'баллов' })}{streakUpTo(qi) >= 2 ? ` · 🔥 x${streakUpTo(qi)} streak` : ''}</span></>
-                : <span className="qz-res-t">{my ? tr({ uz: 'Xato — 0 ball. Keyingisida olasiz! 💪', ru: 'Ошибка — 0 баллов. Возьмёте своё на следующем! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Будьте быстрее! ⏱' })}</span>}
+                : <span className="qz-res-t">{my ? tr({ uz: 'Adashdingiz — 0 ball. Keyingisida olasiz! 💪', ru: 'Ошибка — 0 баллов. Возьмёте своё на следующем! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Будьте быстрее! ⏱' })}</span>}
               {!solo && myRank >= 0 && <span className="qz-res-rank">{tr({ uz: 'Siz hozir:', ru: 'Вы сейчас:' })} {myRank + 1}-{tr({ uz: "o'rin", ru: 'место' })}</span>}
             </div>
           )}

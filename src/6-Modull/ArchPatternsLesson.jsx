@@ -412,6 +412,7 @@ const ACH_TRIGGERS = { s6: 'cityPlanner', s12: 'oneTowerVsDistrict', s14: 'split
 // 🏅 Yuqori paneldagi nishon hisoblagichi (Stage chrome)
 function AchCounter() {
   const earned = useContext(AchCtx);
+  const gate = useContext(LiveGateCtx);
   const count = earned ? earned.size : 0;
   const total = Object.keys(ACHIEVEMENTS).length;
   const prevRef = useRef(count);
@@ -421,6 +422,7 @@ function AchCounter() {
     if (count > prevRef.current) { setBump(true); const t = setTimeout(() => setBump(false), 800); prevRef.current = count; return () => clearTimeout(t); }
     prevRef.current = count;
   }, [count]);
+  if (gate && gate.live && gate.live.mode === 'mentor') return null; // 🔴 mentor proyektorida nishon YO'Q (hooklardan KEYIN)
   return (
     <div className="ach-cnt-wrap">
       <button className={`ach-counter ${bump ? 'bump' : ''} ${count > 0 ? 'has' : ''}`} onClick={() => setOpen(o => !o)} aria-label="Badges" title="Badges">
@@ -1942,7 +1944,7 @@ function QuizArena({ live, onClose, startSolo }) {
             <div className={`qz-res ${my?.correct ? 'good' : 'bad'}`}>
               {my?.correct
                 ? <><span className="qz-res-pts">+{myPtsFor(qi)}</span><span className="qz-res-t">{tr({ uz: 'ball', ru: 'баллов' })}{streakUpTo(qi) >= 2 ? ` · 🔥 x${streakUpTo(qi)} streak` : ''}</span></>
-                : <span className="qz-res-t">{my ? tr({ uz: 'Xato — 0 ball. Keyingisida olasiz! 💪', ru: 'Мимо — 0 баллов. В следующий раз получится! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Будьте быстрее! ⏱' })}</span>}
+                : <span className="qz-res-t">{my ? tr({ uz: 'Adashdingiz — 0 ball. Keyingisida olasiz! 💪', ru: 'Мимо — 0 баллов. В следующий раз получится! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Будьте быстрее! ⏱' })}</span>}
               {!solo && myRank >= 0 && <span className="qz-res-rank">{tr({ uz: 'Siz hozir:', ru: 'Вы сейчас:' })} {tr({ uz: `${myRank + 1}-o'rin`, ru: `${myRank + 1}-е место` })}</span>}
             </div>
           )}
@@ -2220,7 +2222,7 @@ function Flashcards({ cards }) {
       <div className="fc-cardwrap">
         <div className={`fc-fly ${exiting === 'knew' ? 'out-knew' : ''} ${exiting === 'again' ? 'out-again' : ''}`} key={swapRef.current}>
         <div className={`fc-card ${flipped ? 'flip' : ''}`} onClick={() => !flipped && !exiting && setFlipped(true)} role="button" tabIndex={0}>
-          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: 'Qaysi tushuncha? 🤔', ru: 'Какое это понятие? 🤔' })} <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
+          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: "Javobni o'ylang", ru: 'Подумайте над ответом' })} 🤔 <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
           <div className="fc-face fc-back"><span className="fc-tag">{tr(card.back)}</span>{card.note && <span className="fc-note">{tr(card.note)}</span>}</div>
         </div>
         </div>
@@ -2247,18 +2249,18 @@ const ScreenCityPractice = (props) => (
 
 // 🃏 FLASHCARD KARTALARI — 12 atama (arxitektura tili)
 const CITY_FLASHCARDS = [
-  { front: { uz: "Kodni tashkil qilishning sinab ko'rilgan tayyor andozasi", ru: 'Проверенный готовый образец организации кода' }, back: { uz: 'Pattern', ru: 'Паттерн' }, note: { uz: 'tayyor yechim', ru: 'готовое решение' } },
-  { front: { uz: 'Model-View-Controller — 3 rolli arxitektura patterni', ru: 'Model-View-Controller — паттерн архитектуры из 3 ролей' }, back: { uz: 'MVC', ru: 'MVC' }, note: { uz: '3 rol', ru: '3 роли' } },
-  { front: { uz: "Foydalanuvchi ko'radigan qism — sahifa, tugmalar (Peshtoq)", ru: 'То, что видит пользователь — страница, кнопки (Витрина)' }, back: { uz: 'View', ru: 'View' }, note: { uz: "ko'rinish", ru: 'представление' } },
-  { front: { uz: "So'rovni qabul qilib yo'naltiruvchi markaz (Dispetcher)", ru: 'Центр, который принимает запрос и направляет его (Диспетчер)' }, back: { uz: 'Controller', ru: 'Controller' }, note: { uz: 'boshqaruvchi', ru: 'управляющий' } },
-  { front: { uz: "Ma'lumot va qoidalar saqlanadigan joy (Arxiv)", ru: 'Место, где хранятся данные и правила (Архив)' }, back: { uz: 'Model', ru: 'Model' }, note: { uz: "ma'lumot", ru: 'данные' } },
-  { front: { uz: 'Hammasi bitta binoda — bitta katta ilova', ru: 'Всё в одном здании — одно большое приложение' }, back: { uz: 'Monolit', ru: 'Монолит' }, note: { uz: 'bitta bino', ru: 'одно здание' } },
-  { front: { uz: "Ko'p mustaqil kichik xizmat — idoralar mahallasi", ru: 'Много самостоятельных маленьких сервисов — квартал ведомств' }, back: { uz: 'Mikroservis', ru: 'Микросервисы' }, note: { uz: 'mustaqil idoralar', ru: 'самостоятельные ведомства' } },
-  { front: { uz: "Band xizmatga qo'shimcha nusxa qo'shish — filial ochish", ru: 'Добавить загруженному сервису ещё одну копию — открыть филиал' }, back: { uz: 'Scaling', ru: 'Scaling' }, note: { uz: 'miqyoslash', ru: 'масштабирование' } },
-  { front: { uz: 'Frontend (React) qaysi MVC roli?', ru: 'Frontend (React) — какая роль MVC?' }, back: { uz: 'View', ru: 'View' }, note: { uz: 'Peshtoq', ru: 'Витрина' } },
-  { front: { uz: 'Backend (Nest) qaysi MVC roli?', ru: 'Backend (Nest) — какая роль MVC?' }, back: { uz: 'Controller', ru: 'Controller' }, note: { uz: 'Dispetcher', ru: 'Диспетчер' } },
-  { front: { uz: "Ma'lumotlar bazasi (PostgreSQL) qaysi rol?", ru: 'База данных (PostgreSQL) — какая роль?' }, back: { uz: 'Model', ru: 'Model' }, note: { uz: 'Arxiv', ru: 'Архив' } },
-  { front: { uz: 'Tizimni bir jumlada nomlash imkonini beruvchi umumiy til', ru: 'Общий язык, позволяющий назвать систему одной фразой' }, back: { uz: 'Arxitektura tili', ru: 'Язык архитектуры' }, note: { uz: 'pattern nomi', ru: 'имя паттерна' } },
+  { front: { uz: 'Pattern nima?', ru: 'Что такое паттерн?' }, back: { uz: 'Tayyor andoza', ru: 'Готовый образец' }, note: { uz: "Ko'p marta sinab ko'rilgan kod tartibi", ru: 'Многократно проверенный порядок кода' } },
+  { front: { uz: "MVC qaysi uchta so'zdan tuzilgan?", ru: 'Из каких трёх слов состоит MVC?' }, back: 'Model, View, Controller', note: { uz: 'Uchta rol: Arxiv, Peshtoq, Dispetcher', ru: 'Три роли: Архив, Витрина, Диспетчер' } },
+  { front: { uz: "Foydalanuvchi ko'radigan qism qaysi MVC roli?", ru: 'Какая роль MVC отвечает за то, что видит пользователь?' }, back: 'View', note: { uz: 'Peshtoq — sahifa, tugmalar, rasmlar', ru: 'Витрина — страница, кнопки, картинки' } },
+  { front: { uz: "So'rovni qabul qilib yo'naltiradigan rol qaysi?", ru: 'Какая роль принимает запрос и направляет его?' }, back: 'Controller', note: { uz: 'Dispetcher — markazda turadi', ru: 'Диспетчер — стоит в центре' } },
+  { front: { uz: "Ma'lumot va qoidalar qaysi rolda saqlanadi?", ru: 'В какой роли хранятся данные и правила?' }, back: 'Model', note: { uz: 'Arxiv — masalan PostgreSQL bazasi', ru: 'Архив — например база PostgreSQL' } },
+  { front: { uz: "MVC'da so'rov avval qayerga boradi?", ru: 'Куда в MVC запрос попадает сначала?' }, back: { uz: "Controller'ga", ru: 'В Controller' }, note: { uz: "Keyin Modeldan ma'lumot olib, Viewda ko'rsatadi", ru: 'Потом берёт данные из Model и показывает во View' } },
+  { front: { uz: 'View qaror qiladimi?', ru: 'Принимает ли View решения?' }, back: { uz: "Yo'q", ru: 'Нет' }, note: { uz: "U faqat tayyor natijani ko'rsatadi", ru: 'Он только показывает готовый результат' } },
+  { front: { uz: 'Hammasi bitta binodagi ilova qanday ataladi?', ru: 'Как называется приложение, где всё в одном здании?' }, back: { uz: 'Monolit', ru: 'Монолит' }, note: { uz: 'Bitta katta ilova — sodda, tez va arzon', ru: 'Одно большое приложение — просто, быстро и дёшево' } },
+  { front: { uz: "Ko'p mustaqil kichik xizmatdan tuzilgan tizim qanday ataladi?", ru: 'Как называется система из многих самостоятельных маленьких сервисов?' }, back: { uz: 'Mikroservis', ru: 'Микросервисы' }, note: { uz: 'Har xizmat alohida ishlaydi va alohida joylashtiriladi', ru: 'Каждый сервис работает и деплоится отдельно' } },
+  { front: { uz: "Yangi kichik loyihaga qaysi pattern to'g'ri keladi?", ru: 'Какой паттерн подходит новому небольшому проекту?' }, back: { uz: 'Monolit', ru: 'Монолит' }, note: { uz: "Soddadan boshlang — keyin bo'lish mumkin", ru: 'Начните с простого — разделить можно потом' } },
+  { front: { uz: "Band xizmatga qo'shimcha nusxa qo'shish nima deyiladi?", ru: 'Как называется добавление загруженному сервису ещё одной копии?' }, back: 'Scaling', note: { uz: "Miqyoslash — filial ochishga o'xshaydi", ru: 'Масштабирование — похоже на открытие филиала' } },
+  { front: { uz: "Mikroservisda bitta xizmat xato bersa nima bo'ladi?", ru: 'Что будет, если в микросервисах один сервис даст ошибку?' }, back: { uz: "Faqat o'sha xizmat to'xtaydi", ru: 'Остановится только этот сервис' }, note: { uz: 'Qolgan xizmatlar ishlashda davom etadi', ru: 'Остальные сервисы продолжают работать' } },
 ];
 const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, []); // eslint-disable-line
@@ -2266,7 +2268,7 @@ const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) =>
     <Stage eyebrow={tr({ uz: 'Takrorlash', ru: 'Повторение' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={false} label={{ uz: 'Yakunlash →', ru: 'Завершить →' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Arxitektura atamalarini <span className="italic" style={{ color: T.accent }}>tez takrorlaymiz</span>.</>, ru: <><span className="italic" style={{ color: T.accent }}>Быстро повторим</span> термины архитектуры.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Darsni yakunlashdan oldin bugungi atamalarni takrorlaymiz. Har kartada bir topishmoq — <b style={{ color: T.ink }}>qaysi atama</b> ekanini o'ylang, keyin kartani bosib tekshiring.</>, ru: <>Перед концом урока повторим сегодняшние термины. На каждой карточке загадка — подумайте, <b style={{ color: T.ink }}>какой это термин</b>, а потом нажмите на карточку и проверьте.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Darsni yakunlashdan oldin bugungi atamalarni takrorlaymiz. Har kartada bir savol — <b style={{ color: T.ink }}>javobini</b> o'ylang, keyin kartani bosib tekshiring.</>, ru: <>Перед концом урока повторим сегодняшние термины. На каждой карточке вопрос — подумайте, <b style={{ color: T.ink }}>каким будет ответ</b>, а потом нажмите на карточку и проверьте.</> })}</Mentor>
         <div className="fc-center"><Flashcards cards={CITY_FLASHCARDS} /></div>
       </div>
     </Stage>
@@ -2317,7 +2319,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
           <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> {tr({ uz: 'Endi siz bilasiz', ru: 'Теперь вы знаете' })}</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{tr(r)}</span></li>))}</ul></div>
           <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: '🚀 Keyingi dars — AI-agent: u ham tizimning bir komponenti. Arxitekturada qayerda turadi?', ru: '🚀 Следующий урок — ИИ-агент: он тоже компонент системы. Где он стоит в архитектуре?' })}</p></div>
         </div>
-        <div className="card ach-coll fade-up d3">
+        {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🏅 Nishonlaringiz —', ru: '🏅 Ваши значки —' })} {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">
             {Object.entries(ACHIEVEMENTS).map(([id, a]) => { const got = !!(achievements && achievements.has(id)); return (
@@ -2328,7 +2330,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
               </div>
             ); })}
           </div>
-        </div>
+        </div>}
       </div>
     </Stage>
   );

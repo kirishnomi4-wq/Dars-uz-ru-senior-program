@@ -412,6 +412,7 @@ const Col = ({ children, gap }) => <div className="col" style={gap ? { gap } : u
 // 🏅 Yuqori paneldagi nishon hisoblagichi (Stage chrome)
 function AchCounter() {
   const earned = useContext(AchCtx);
+  const gate = useContext(LiveGateCtx);
   const count = earned ? earned.size : 0;
   const total = Object.keys(ACHIEVEMENTS).length;
   const prevRef = useRef(count);
@@ -421,6 +422,7 @@ function AchCounter() {
     if (count > prevRef.current) { setBump(true); const t = setTimeout(() => setBump(false), 800); prevRef.current = count; return () => clearTimeout(t); }
     prevRef.current = count;
   }, [count]);
+  if (gate && gate.live && gate.live.mode === 'mentor') return null; // 🔴 mentor proyektorida nishon YO'Q (hooklardan KEYIN)
   return (
     <div className="ach-cnt-wrap">
       <button className={`ach-counter ${bump ? 'bump' : ''} ${count > 0 ? 'has' : ''}`} onClick={() => setOpen(o => !o)} aria-label="Badges" title="Badges">
@@ -2245,7 +2247,7 @@ function QuizArena({ live, onClose, startSolo }) {
             <div className={`qz-res ${my?.correct ? 'good' : 'bad'}`}>
               {my?.correct
                 ? <><span className="qz-res-pts">+{myPtsFor(qi)}</span><span className="qz-res-t">{tr({ uz: 'ball', ru: 'баллов' })}{streakUpTo(qi) >= 2 ? ` · 🔥 x${streakUpTo(qi)} ${tr({ uz: 'streak', ru: 'стрик' })}` : ''}</span></>
-                : <span className="qz-res-t">{my ? tr({ uz: "Xato — 0 ball. Keyingisida olasiz! 💪", ru: 'Ошибка — 0 баллов. Возьмёте на следующем! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Быстрее! ⏱' })}</span>}
+                : <span className="qz-res-t">{my ? tr({ uz: "Adashdingiz — 0 ball. Keyingisida olasiz! 💪", ru: 'Ошибка — 0 баллов. Возьмёте на следующем! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Быстрее! ⏱' })}</span>}
               {!solo && myRank >= 0 && <span className="qz-res-rank">{tr({ uz: 'Siz hozir:', ru: 'Вы сейчас:' })} {myRank + 1}{tr({ uz: "-o'rin", ru: '-е место' })}</span>}
             </div>
           )}
@@ -2535,7 +2537,7 @@ function Flashcards({ cards }) {
       <div className="fc-cardwrap">
         <div className={`fc-fly ${exiting === 'knew' ? 'out-knew' : ''} ${exiting === 'again' ? 'out-again' : ''}`} key={swapRef.current}>
         <div className={`fc-card ${flipped ? 'flip' : ''}`} onClick={() => !flipped && !exiting && setFlipped(true)} role="button" tabIndex={0}>
-          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: 'Qaysi tushuncha? 🤔', ru: 'Какое понятие? 🤔' })} <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
+          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: "Javobni o'ylang", ru: 'Подумайте над ответом' })} 🤔 <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
           <div className="fc-face fc-back"><span className="fc-tag">{tr(card.back)}</span>{card.note && <span className="fc-note">{tr(card.note)}</span>}</div>
         </div>
         </div>
@@ -2546,20 +2548,20 @@ function Flashcards({ cards }) {
     </div>
   );
 }
-// 🃏 DATA-INTRO FLASHCARD KARTALARI (front=topishmoq, back=atama, note=metafora)
+// 🃏 DATA-INTRO FLASHCARD KARTALARI (front=savol, back=qisqa javob, note=bir qatorlik misol)
 const DATA_FLASHCARDS = [
-  { front: { uz: "Tartibli saqlangan axborot", ru: 'Информация, хранящаяся по порядку' }, back: { uz: "Ma'lumot", ru: 'Данные' }, note: { uz: "aralash matn emas", ru: 'не перемешанный текст' } },
-  { front: { uz: "{kalit: qiymat} ko'rinishidagi bitta yozuv", ru: 'Одна запись вида {ключ: значение}' }, back: "JSON", note: { uz: "server tili", ru: 'язык сервера' } },
-  { front: { uz: "Kalit va uning qiymati — bir juftlik", ru: 'Ключ и его значение — одна пара' }, back: { uz: "kalit: qiymat", ru: 'ключ: значение' }, note: { uz: "JSON qatori", ru: 'строка JSON' } },
-  { front: { uz: "Qator × ustundan iborat quti", ru: 'Коробка из строк × столбцов' }, back: { uz: "Jadval", ru: 'Таблица' }, note: { uz: "Excel kabi", ru: 'как Excel' } },
-  { front: { uz: "Jadvaldagi bitta to'liq yozuv", ru: 'Одна целая запись таблицы' }, back: { uz: "Qator (row)", ru: 'Строка (row)' }, note: { uz: "bitta post", ru: 'один пост' } },
-  { front: { uz: "Jadvaldagi bitta maydon", ru: 'Одно поле таблицы' }, back: { uz: "Ustun (column)", ru: 'Столбец (column)' }, note: { uz: "hamma izohlar", ru: 'все подписи' } },
-  { front: { uz: "Yozuvning yagona raqami — rozetka", ru: 'Уникальный номер записи — розетка' }, back: "id (PK)", note: { uz: "pasport raqami", ru: 'номер паспорта' } },
-  { front: { uz: "Boshqa jadvalga boradigan _id — vilka", ru: '_id, ведущий в другую таблицу, — вилка' }, back: { uz: "Bog'lovchi (FK)", ru: 'Связующий (FK)' }, note: "user_id" },
-  { front: { uz: "Bitta → ko'p turidagi munosabat", ru: 'Отношение вида «один → много»' }, back: { uz: "Bog'lanish (one-to-many)", ru: 'Связь (one-to-many)' }, note: "user → posts" },
-  { front: { uz: "Ilovaning butun ma'lumot xaritasi", ru: 'Карта всех данных приложения' }, back: { uz: "Sxema", ru: 'Схема' }, note: { uz: "jadvallar + chiziqlar", ru: 'таблицы + линии' } },
-  { front: { uz: "Server o'chsa ham saqlaydigan joy", ru: 'Место, где всё цело даже после выключения сервера' }, back: { uz: "Ma'lumotlar bazasi", ru: 'База данных' }, note: { uz: "diskda", ru: 'на диске' } },
-  { front: { uz: "post_id qaysi jadvalga ulanadi?", ru: 'К какой таблице подключается post_id?' }, back: "posts.id", note: { uz: "nom o'zi aytadi", ru: 'имя говорит само' } },
+  { front: { uz: "Bitta post kompyuterda qaysi ko'rinishda yoziladi?", ru: 'В каком виде записывается один пост на компьютере?' }, back: "JSON", note: { uz: "{ } qavslar ichida bitta narsa", ru: 'одна вещь внутри скобок { }' } },
+  { front: { uz: "JSON'dagi har qator qaysi ikki bo'lakdan iborat?", ru: 'Из каких двух частей состоит каждая строка JSON?' }, back: { uz: "kalit: qiymat", ru: 'ключ: значение' }, note: { uz: "kalit — nomi, qiymat — o'zi", ru: 'ключ — имя, значение — сама величина' } },
+  { front: { uz: "JSON'da matn qiymat qanday yoziladi?", ru: 'Как записывается текстовое значение в JSON?' }, back: { uz: "Qo'shtirnoq ichida", ru: 'В кавычках' }, note: { uz: "raqam esa qo'shtirnoqsiz yoziladi", ru: 'а число — без кавычек' } },
+  { front: { uz: "Ko'p yozuvni saqlashda qaysi ko'rinish qulay?", ru: 'В каком виде удобно хранить много записей?' }, back: { uz: "Jadval", ru: 'Таблица' }, note: { uz: "qator × ustun — Excel kabi", ru: 'строка × столбец — как в Excel' } },
+  { front: { uz: "Jadvaldagi bitta qator (row) nima?", ru: 'Что такое одна строка (row) в таблице?' }, back: { uz: "Bitta to'liq yozuv", ru: 'Одна целая запись' }, note: { uz: "bitta post — bitta qator", ru: 'один пост — одна строка' } },
+  { front: { uz: "Jadvaldagi bitta ustun (column) nima?", ru: 'Что такое один столбец (column) в таблице?' }, back: { uz: "Bitta maydon", ru: 'Одно поле' }, note: { uz: "masalan hamma postlarning izohi", ru: 'например, подписи всех постов' } },
+  { front: { uz: "Har yozuvning takrorlanmas raqami qanday ataladi?", ru: 'Как называется неповторимый номер каждой записи?' }, back: "id (PK)", note: { uz: "ulanish uchun rozetka", ru: 'розетка для подключения' } },
+  { front: { uz: "Boshqa jadvalga ishora qiladigan ustun qanday ataladi?", ru: 'Как называется столбец, указывающий на другую таблицу?' }, back: { uz: "Bog'lovchi ustun (FK)", ru: 'Связующий столбец (FK)' }, note: { uz: "vilka: masalan posts.user_id", ru: 'вилка: например posts.user_id' } },
+  { front: { uz: "posts.user_id qaysi ustunga ulanadi?", ru: 'К какому столбцу подключается posts.user_id?' }, back: "users.id", note: { uz: "nomining o'zi qayerga ulanishini aytadi", ru: 'само имя говорит, куда подключаться' } },
+  { front: { uz: "Bitta foydalanuvchi va uning postlari qanday bog'langan?", ru: 'Как связаны пользователь и его посты?' }, back: { uz: "Bitta → ko'p", ru: 'Один → много' }, note: "one-to-many" },
+  { front: { uz: "Jadvallar va bog'lanishlar xaritasi qanday ataladi?", ru: 'Как называется карта таблиц и связей?' }, back: { uz: "Sxema", ru: 'Схема' }, note: { uz: "jadvallar va ular orasidagi chiziqlar", ru: 'таблицы и линии между ними' } },
+  { front: { uz: "Server o'chsa, postlar qayerda saqlanib qoladi?", ru: 'Если сервер выключится, где сохранятся посты?' }, back: { uz: "Ma'lumotlar bazasida", ru: 'В базе данных' }, note: { uz: "diskda yozilgan, RAM esa o'chadi", ru: 'записаны на диске, а RAM очищается' } },
 ];
 const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, []); // eslint-disable-line
@@ -2567,7 +2569,7 @@ const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) =>
     <Stage eyebrow={tr({ uz: 'Takrorlash', ru: 'Повторение' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={false} label={tr({ uz: 'Yakunlash →', ru: 'Завершить →' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Atamalarni <span className="italic" style={{ color: T.accent }}>tez takrorlaymiz</span>.</>, ru: <>Быстро <span className="italic" style={{ color: T.accent }}>повторим термины</span>.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Darsni yakunlashdan oldin bugungi atamalarni takrorlaymiz. Har kartada bir topishmoq — <b style={{ color: T.ink }}>qaysi atama</b> ekanini o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</>, ru: <>Перед завершением урока повторим сегодняшние термины. На каждой карточке загадка — подумайте, <b style={{ color: T.ink }}>какой это термин</b>, потом нажмите на карточку и проверьте. Оцените себя: <b style={{ color: T.ink }}>Знаю</b> или <b style={{ color: T.ink }}>Повторить</b>.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Darsni yakunlashdan oldin bugungi atamalarni takrorlaymiz. Har kartada bir savol — <b style={{ color: T.ink }}>javobini</b> o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</>, ru: <>Перед завершением урока повторим сегодняшние термины. На каждой карточке вопрос — подумайте, <b style={{ color: T.ink }}>каким будет ответ</b>, потом нажмите на карточку и проверьте. Оцените себя: <b style={{ color: T.ink }}>Знаю</b> или <b style={{ color: T.ink }}>Повторить</b>.</> })}</Mentor>
         <div className="fc-center"><Flashcards cards={DATA_FLASHCARDS} /></div>
       </div>
     </Stage>
@@ -2619,7 +2621,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
           <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> {tr({ uz: 'Endi siz bilasiz', ru: 'Теперь вы знаете' })}</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{tr(r)}</span></li>))}</ul></div>
           <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: "O'z ilovangiz sxemasini chizib ko'ring:", ru: 'Попробуйте нарисовать схему своего приложения:' })}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: "Keyingi darsda bu jadvallarni haqiqiy bazada — PostgreSQL'da quramiz! 🚀", ru: 'На следующем уроке мы построим эти таблицы в настоящей базе — в PostgreSQL! 🚀' })}</p></div>
         </div>
-        <div className="card ach-coll fade-up d3">
+        {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🏅 Nishonlaringiz', ru: '🏅 Ваши награды' })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">
             {Object.entries(ACHIEVEMENTS).map(([id, a]) => { const got = !!(achievements && achievements.has(id)); return (
@@ -2630,7 +2632,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
               </div>
             ); })}
           </div>
-        </div>
+        </div>}
       </div>
     </Stage>
   );

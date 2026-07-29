@@ -475,6 +475,7 @@ const ACH_TRIGGERS = { s4: 'hostpick', s9: 'shipit', s13: 'golive' };
 
 function AchCounter() {
   const earned = useContext(AchCtx);
+  const gate = useContext(LiveGateCtx);
   const count = earned ? earned.size : 0;
   const total = Object.keys(ACHIEVEMENTS).length;
   const prevRef = useRef(count);
@@ -484,6 +485,7 @@ function AchCounter() {
     if (count > prevRef.current) { setBump(true); const t = setTimeout(() => setBump(false), 800); prevRef.current = count; return () => clearTimeout(t); }
     prevRef.current = count;
   }, [count]);
+  if (gate && gate.live && gate.live.mode === 'mentor') return null; // 🔴 mentor proyektorida nishon YO'Q (hooklardan KEYIN)
   return (
     <div className="ach-cnt-wrap">
       <button className={`ach-counter ${bump ? 'bump' : ''} ${count > 0 ? 'has' : ''}`} onClick={() => setOpen(o => !o)} aria-label="Badges" title="Badges">
@@ -1837,18 +1839,18 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // 🃏 Qayta ishlatiladigan FLASHCARDS — aktiv takrorlash (3D flip + o'z-o'zini baholash + spaced recall).
 // Deploy mavzusi bo'yicha 12 karta (front — savol/ta'rif, back — atama, note — hayotiy izoh/misol).
 const DEPLOY_FLASHCARDS = [
-  { front: { uz: 'Saytni doimo ochiq turadigan serverda saqlash', ru: 'Хранение сайта на постоянно работающем сервере' }, back: { uz: 'Hosting', ru: 'Хостинг' }, note: { uz: "Saytingiz uchun internetda ijaraga olingan doimiy uy — 24 soat ochiq", ru: 'Постоянный дом вашего сайта в интернете — открыт 24 часа' } },
-  { front: { uz: 'Saytlarni bepul va tez chiqaradigan platforma', ru: 'Платформа, которая публикует сайты бесплатно и быстро' }, back: 'Netlify', note: { uz: "Papkani tortib tashlaysiz yoki GitHub'ni ulaysiz — sayt internetda", ru: 'Перетащите папку или подключите GitHub — и сайт в интернете' } },
-  { front: { uz: 'Saytni serverga joylab, internetga chiqarish', ru: 'Разместить сайт на сервере и открыть его в интернете' }, back: { uz: 'Deploy', ru: 'Деплой' }, note: { uz: "Deploydan keyin saytni manzil orqali har kim ko'radi", ru: 'После деплоя сайт по адресу увидит каждый' } },
-  { front: { uz: 'Hosting qidiradigan bosh sahifa fayli nomi', ru: 'Имя файла главной страницы, который ищет хостинг' }, back: 'index.html', note: { uz: "Bosh sahifa index.html bo'lmasa — 404 (topilmadi) chiqadi", ru: 'Если главная страница не index.html — будет 404 (не найдено)' } },
-  { front: { uz: 'Saytning internetdagi asosiy manzili', ru: 'Основной адрес сайта в интернете' }, back: { uz: 'Domen', ru: 'Домен' }, note: { uz: "Masalan maktab.uz — odam eslab qoladigan nom", ru: 'Например maktab.uz — имя, которое легко запомнить' } },
-  { front: { uz: "Asosiy domen oldiga qo'shilgan shaxsiy nom", ru: 'Личное имя, добавленное перед основным доменом' }, back: { uz: 'Poddomen', ru: 'Поддомен' }, note: { uz: "aziza.maktab.uz — bitta domen ostida yuzlab poddomen bo'ladi", ru: 'aziza.maktab.uz — под одним доменом сотни поддоменов' } },
-  { front: { uz: "Kodni saqlaydigan va o'zgarishlarni kuzatadigan joy", ru: 'Место, где хранится код и отслеживаются изменения' }, back: 'GitHub', note: { uz: "Git darsida push qilgan kodingiz shu yerda turadi", ru: 'Код, который вы запушили на уроке Git, лежит именно там' } },
-  { front: { uz: "Kodni GitHub reposiga yuborish buyrug'i", ru: 'Команда отправки кода в репозиторий GitHub' }, back: 'push', note: { uz: "$ git push — kompyuteringizdagi kod GitHub'ga chiqadi", ru: '$ git push — код с вашего компьютера попадает на GitHub' } },
-  { front: { uz: "Push qilinsa — sayt o'zi yangilanishi", ru: 'Сайт обновляется сам после каждого push' }, back: { uz: 'Avto-deploy', ru: 'Авто-деплой' }, note: { uz: "Netlify GitHub'ni kuzatadi: har push avtomatik internetga chiqadi", ru: 'Netlify следит за GitHub: каждый push автоматически уходит в интернет' } },
-  { front: { uz: 'Bitta loyihaning kodi saqlanadigan papka (GitHub)', ru: 'Папка с кодом одного проекта (GitHub)' }, back: { uz: 'Repo', ru: 'Репозиторий' }, note: { uz: "Masalan mening-saytim — Netlify shu repoga ulanadi", ru: 'Например mening-saytim — Netlify подключается к этому репо' } },
-  { front: { uz: 'Sayt fayllari doimo yashaydigan kompyuter', ru: 'Компьютер, где постоянно живут файлы сайта' }, back: { uz: 'Server', ru: 'Сервер' }, note: { uz: "Sizning kompyuteringiz o'chsa ham, server yonib turadi", ru: 'Даже если ваш компьютер выключен, сервер продолжает работать' } },
-  { front: { uz: 'Saytga xavfsiz ulanish (manzilda qulf 🔒)', ru: 'Безопасное подключение к сайту (замочек 🔒 в адресе)' }, back: 'HTTPS', note: { uz: "Ma'lumot shifrlanib boradi — o'g'irlab bo'lmaydi", ru: 'Данные передаются в зашифрованном виде — их не украсть' } },
+  { front: { uz: "Saytni doimo ishlab turadigan serverda saqlash xizmati qanday ataladi?", ru: 'Как называется услуга хранения сайта на постоянно работающем сервере?' }, back: { uz: 'Hosting', ru: 'Хостинг' }, note: { uz: "24 soat ochiq do'kon kabi — istalgan payt kirib ko'rasiz", ru: 'Как магазин, открытый 24 часа — зайти можно в любой момент' } },
+  { front: { uz: "Sayt faqat sizning kompyuteringizda ishlasa, u qayerda turadi?", ru: 'Где находится сайт, если он работает только на вашем компьютере?' }, back: 'localhost', note: { uz: "Kompyuter o'chsa — sayt ham yo'q, uni faqat siz ko'rasiz", ru: 'Выключили компьютер — сайта нет, видите его только вы' } },
+  { front: { uz: "Saytni serverga joylab internetga chiqarish qanday ataladi?", ru: 'Как называется размещение сайта на сервере и вывод его в интернет?' }, back: { uz: 'Deploy', ru: 'Деплой' }, note: { uz: "Raketa uchgandek: sayt kompyuterdan internetga chiqadi", ru: 'Как запуск ракеты: сайт уходит с компьютера в интернет' } },
+  { front: { uz: "Saytni bepul va bir necha soniyada chiqaradigan platforma qaysi?", ru: 'Какая платформа публикует сайт бесплатно и за несколько секунд?' }, back: 'Netlify', note: { uz: "Netlify saytni joylaydi, Chrome esa uni ko'rsatadi", ru: 'Netlify размещает сайт, а Chrome его показывает' } },
+  { front: { uz: "Netlify'da saytni chiqarishning qanday ikki yo'li bor?", ru: 'Какими двумя способами можно опубликовать сайт на Netlify?' }, back: { uz: "Papkani tortish yoki GitHub'ni ulash", ru: 'Перетащить папку или подключить GitHub' }, note: { uz: "Biz GitHub'ni ulaymiz — kod allaqachon o'sha yerda", ru: 'Мы подключаем GitHub — код уже там' } },
+  { front: { uz: "Hosting bosh sahifa deb qaysi fayl nomini qidiradi?", ru: 'Файл с каким именем хостинг ищет как главную страницу?' }, back: 'index.html', note: { uz: "Bosh sahifa doim shu nom bilan bo'ladi", ru: 'Главная страница всегда с этим именем' } },
+  { front: { uz: "Bosh sahifa boshqacha nomlansa, brauzerda qanday xato chiqadi?", ru: 'Какая ошибка появится в браузере, если главная страница названа иначе?' }, back: '404', note: { uz: "404 — sahifa topilmadi degani", ru: '404 — значит страница не найдена' } },
+  { front: { uz: "Saytning internetdagi asosiy manzili qanday ataladi?", ru: 'Как называется основной адрес сайта в интернете?' }, back: { uz: 'Domen', ru: 'Домен' }, note: { uz: "Masalan maktab.uz — odam eslab qoladigan nom", ru: 'Например maktab.uz — имя, которое легко запомнить' } },
+  { front: { uz: "aziza.maktab.uz manzilida qaysi qismi poddomen?", ru: 'Какая часть в адресе aziza.maktab.uz — поддомен?' }, back: 'aziza', note: { uz: "Bitta domen ostida yuzlab poddomen bo'ladi", ru: 'Под одним доменом бывают сотни поддоменов' } },
+  { front: { uz: "Kodingiz saqlanadigan bulutdagi joy qaysi?", ru: 'Что за место в облаке, где хранится ваш код?' }, back: 'GitHub', note: { uz: "Git darsida push qilgan kodingiz shu yerda turadi", ru: 'Код, который вы запушили на уроке Git, лежит там' } },
+  { front: { uz: "Bitta loyiha kodi saqlanadigan GitHub papkasi qanday ataladi?", ru: 'Как называется папка на GitHub с кодом одного проекта?' }, back: { uz: 'Repo', ru: 'Репозиторий' }, note: { uz: "Netlify aynan shu repoga ulanadi", ru: 'Netlify подключается именно к этому репо' } },
+  { front: { uz: "Har push qilganda saytning o'zi yangilanishi qanday ataladi?", ru: 'Как называется самообновление сайта после каждого push?' }, back: { uz: 'Avto-deploy', ru: 'Авто-деплой' }, note: { uz: "Netlify GitHub'ni kuzatadi va o'zgarishni o'zi oladi", ru: 'Netlify следит за GitHub и сам забирает изменения' } },
 ];
 function Flashcards({ cards }) {
   const [queue, setQueue] = useState(() => cards.map((_, i) => i));
@@ -1881,7 +1883,7 @@ function Flashcards({ cards }) {
       <div className="fc-cardwrap">
         <div className={`fc-fly ${exiting === 'knew' ? 'out-knew' : ''} ${exiting === 'again' ? 'out-again' : ''}`} key={swapRef.current}>
         <div className={`fc-card ${flipped ? 'flip' : ''}`} onClick={() => !flipped && !exiting && setFlipped(true)} role="button" tabIndex={0}>
-          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: 'Qaysi tushuncha?', ru: 'Какое это понятие?' })} 🤔 <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
+          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: "Javobni o'ylang", ru: 'Подумайте над ответом' })} 🤔 <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
           <div className="fc-face fc-back"><span className="fc-tag">{tr(card.back)}</span>{card.note && <span className="fc-note">{tr(card.note)}</span>}</div>
         </div>
         </div>
@@ -1949,7 +1951,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
           <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> {tr({ uz: 'Endi siz bilasiz', ru: 'Теперь вы знаете' })}</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{tr(r)}</span></li>))}</ul></div>
           <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>🚀 {tr({ uz: 'Uyga vazifa', ru: 'Домашнее задание' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: "O'z saytingizni internetga chiqaring:", ru: 'Опубликуйте свой сайт в интернете:' })}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: "Saytingiz tayyor bo'lsa — manzilni mentor va do'stlaringizga yuboring. Bu sizning birinchi jonli loyihangiz!", ru: 'Когда сайт будет готов — отправьте адрес ментору и друзьям. Это ваш первый живой проект!' })}</p></div>
         </div>
-        <div className="card ach-coll fade-up d3">
+        {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>🏅 {tr({ uz: 'Nishonlaringiz', ru: 'Ваши награды' })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">
             {Object.entries(ACHIEVEMENTS).map(([id, a]) => { const got = !!(achievements && achievements.has(id)); return (
@@ -1960,7 +1962,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
               </div>
             ); })}
           </div>
-        </div>
+        </div>}
       </div>
     </Stage>
   );
@@ -2503,7 +2505,7 @@ function QuizArena({ live, onClose, startSolo }) {
             <div className={`qz-res ${my?.correct ? 'good' : 'bad'}`}>
               {my?.correct
                 ? <><span className="qz-res-pts">+{myPtsFor(qi)}</span><span className="qz-res-t">{tr({ uz: 'ball', ru: 'баллов' })}{streakUpTo(qi) >= 2 ? ` · 🔥 x${streakUpTo(qi)} streak` : ''}</span></>
-                : <span className="qz-res-t">{my ? tr({ uz: "Xato — 0 ball. Keyingisida olasiz! 💪", ru: 'Ошибка — 0 баллов. Возьмёте на следующем! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Быстрее! ⏱' })}</span>}
+                : <span className="qz-res-t">{my ? tr({ uz: "Adashdingiz — 0 ball. Keyingisida olasiz! 💪", ru: 'Ошибка — 0 баллов. Возьмёте на следующем! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Быстрее! ⏱' })}</span>}
               {!solo && myRank >= 0 && <span className="qz-res-rank">{tr({ uz: `Siz hozir: ${myRank + 1}-o'rin`, ru: `Вы сейчас: ${myRank + 1}-е место` })}</span>}
             </div>
           )}

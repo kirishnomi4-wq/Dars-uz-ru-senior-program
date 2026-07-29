@@ -406,6 +406,7 @@ const Col = ({ children, gap }) => <div className="col" style={gap ? { gap } : u
 // 🏅 Yuqori paneldagi nishon hisoblagichi (Stage chrome)
 function AchCounter() {
   const earned = useContext(AchCtx);
+  const gate = useContext(LiveGateCtx);
   const count = earned ? earned.size : 0;
   const total = Object.keys(ACHIEVEMENTS).length;
   const prevRef = useRef(count);
@@ -415,6 +416,7 @@ function AchCounter() {
     if (count > prevRef.current) { setBump(true); const t = setTimeout(() => setBump(false), 800); prevRef.current = count; return () => clearTimeout(t); }
     prevRef.current = count;
   }, [count]);
+  if (gate && gate.live && gate.live.mode === 'mentor') return null; // 🔴 mentor proyektorida nishon YO'Q (hooklardan KEYIN)
   return (
     <div className="ach-cnt-wrap">
       <button className={`ach-counter ${bump ? 'bump' : ''} ${count > 0 ? 'has' : ''}`} onClick={() => setOpen(o => !o)} aria-label="Badges" title="Badges">
@@ -2023,7 +2025,7 @@ function QuizArena({ live, onClose, startSolo }) {
             <div className={`qz-res ${my?.correct ? 'good' : 'bad'}`}>
               {my?.correct
                 ? <><span className="qz-res-pts">+{myPtsFor(qi)}</span><span className="qz-res-t">{tr({ uz: 'ball', ru: 'баллов' })}{streakUpTo(qi) >= 2 ? ` · 🔥 x${streakUpTo(qi)} streak` : ''}</span></>
-                : <span className="qz-res-t">{my ? tr({ uz: 'Xato — 0 ball. Keyingisida olasiz! 💪', ru: 'Ошибка — 0 баллов. В следующем получится! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Будьте быстрее! ⏱' })}</span>}
+                : <span className="qz-res-t">{my ? tr({ uz: 'Adashdingiz — 0 ball. Keyingisida olasiz! 💪', ru: 'Ошибка — 0 баллов. В следующем получится! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Будьте быстрее! ⏱' })}</span>}
               {!solo && myRank >= 0 && <span className="qz-res-rank">{tr({ uz: 'Siz hozir:', ru: 'Вы сейчас:' })} {myRank + 1}{tr({ uz: "-o'rin", ru: '-е место' })}</span>}
             </div>
           )}
@@ -2303,7 +2305,7 @@ function Flashcards({ cards }) {
       <div className="fc-cardwrap">
         <div className={`fc-fly ${exiting === 'knew' ? 'out-knew' : ''} ${exiting === 'again' ? 'out-again' : ''}`} key={swapRef.current}>
         <div className={`fc-card ${flipped ? 'flip' : ''}`} onClick={() => !flipped && !exiting && setFlipped(true)} role="button" tabIndex={0}>
-          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: 'Qaysi tushuncha? 🤔', ru: 'Что за понятие? 🤔' })} <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
+          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: "Javobni o'ylang", ru: 'Подумайте над ответом' })} 🤔 <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
           <div className="fc-face fc-back"><span className="fc-tag">{tr(card.back)}</span>{card.note && <span className="fc-note">{tr(card.note)}</span>}</div>
         </div>
         </div>
@@ -2332,18 +2334,18 @@ const ScreenDbPractice = (props) => (
 
 // 🃏 FLASHCARD KARTALARI — 12 atama (daftar/holat tili)
 const MEMORY_FLASHCARDS = [
-  { front: { uz: "Bot har xabarni alohida, mustaqil hodisa deb qabul qiladi", ru: 'Бот воспринимает каждое сообщение как отдельное событие' }, back: { uz: 'Daftarsiz', ru: 'Без блокнота' }, note: 'stateless' },
-  { front: { uz: "Suhbat hozir qaysi bosqichda ekanini bildiruvchi ma'lumot", ru: 'Данные о том, на каком этапе сейчас диалог' }, back: { uz: 'Holat', ru: 'Состояние' }, note: 'state' },
-  { front: { uz: "Suhbat holatini eslab qoladigan bot mantig'i", ru: 'Логика бота, которая помнит состояние диалога' }, back: 'Stateful', note: { uz: 'daftarli', ru: 'с блокнотом' } },
-  { front: { uz: "Har mijozning o'z alohida daftar sahifasi", ru: 'Отдельная страница блокнота для каждого клиента' }, back: { uz: 'Sessiya', ru: 'Сессия' }, note: { uz: 'bitta mijoz — bitta sahifa', ru: 'один клиент — одна страница' } },
-  { front: { uz: "Server o'chsa yo'qoladigan, cho'ntakdagi vaqtinchalik xotira", ru: 'Временная память в кармане, которая пропадает при выключении сервера' }, back: 'In-memory', note: { uz: "RAM · cho'ntak", ru: 'RAM · карман' } },
-  { front: { uz: "Server o'chib-yonsa ham saqlanib qoladigan doimiy daftar", ru: 'Постоянный блокнот, который переживает перезапуск сервера' }, back: 'PostgreSQL', note: { uz: 'javon', ru: 'шкаф' } },
-  { front: { uz: "Bazaga yangi qator qo'shadigan buyruq", ru: 'Команда, добавляющая в базу новую строку' }, back: 'INSERT', note: { uz: 'yangi mijoz', ru: 'новый клиент' } },
-  { front: { uz: "Bazadan qatorni o'qiydigan buyruq", ru: 'Команда, читающая строку из базы' }, back: 'SELECT', note: { uz: 'eslash', ru: 'вспомнить' } },
-  { front: { uz: "Bazadagi mavjud qatorni o'zgartiradigan buyruq", ru: 'Команда, изменяющая существующую строку в базе' }, back: 'UPDATE', note: { uz: 'saqlash', ru: 'сохранить' } },
-  { front: { uz: "Bitta umumiy sahifa ishlatilganda ikki mijoz orasida yuz beradigan xato", ru: 'Ошибка между двумя клиентами при одной общей странице' }, back: { uz: 'Aralashib ketish', ru: 'Перепутывание' }, note: 'session mix-up' },
-  { front: { uz: "Har mijozga alohida sahifa berish orqali oldini olinadigan muammo", ru: 'Проблема, которую решает отдельная страница для каждого клиента' }, back: { uz: 'Mijozlar aralashuvi', ru: 'Путаница клиентов' }, note: { uz: 'alohida sessiya — yechim', ru: 'отдельная сессия — решение' } },
-  { front: { uz: "Xabar kelganda bot bajaradigan to'rt qadam: o'qi → tekshir → bajar → yoz", ru: 'Четыре шага бота при приходе сообщения: прочитай → проверь → выполни → запиши' }, back: { uz: 'Stateful oqim', ru: 'Stateful-поток' }, note: { uz: 'SELECT → tekshir → amal → UPDATE', ru: 'SELECT → проверка → действие → UPDATE' } },
+  { front: { uz: "Bot bir necha xabardan keyin nega adashib qoladi?", ru: 'Почему бот путается уже через несколько сообщений?' }, back: { uz: 'Chunki eslamaydi', ru: 'Потому что не помнит' }, note: { uz: "Har xabarni alohida hodisa deb oladi — bu daftarsiz (stateless) bot", ru: 'Каждое сообщение он считает отдельным событием — это бот без блокнота (stateless)' } },
+  { front: { uz: "Suhbat hozir qaysi bosqichda ekanini saqlaydigan yozuv nima deyiladi?", ru: 'Как называется запись о том, на каком этапе сейчас диалог?' }, back: { uz: 'Holat (state)', ru: 'Состояние (state)' }, note: { uz: "Masalan: mijoz menyuni tanlab bo'ldi, endi manzil kutilmoqda", ru: 'Например: клиент уже выбрал меню, теперь ждём адрес' } },
+  { front: { uz: "Suhbat holatini eslab qoladigan botni qanday ataymiz?", ru: 'Как называют бота, который помнит состояние диалога?' }, back: 'Stateful', note: { uz: "Daftarli bot — qayerda to'xtaganini biladi", ru: 'Бот с блокнотом — он знает, где остановился' } },
+  { front: { uz: "Har mijozga alohida daftar sahifasi berilishi nima deb ataladi?", ru: 'Как называется отдельная страница блокнота для каждого клиента?' }, back: { uz: 'Sessiya', ru: 'Сессия' }, note: { uz: "Bitta mijoz — bitta sahifa, ular bir-biriga tegmaydi", ru: 'Один клиент — одна страница, они не пересекаются' } },
+  { front: { uz: "Hamma mijoz bitta umumiy sahifaga yozsa nima bo'ladi?", ru: 'Что будет, если все клиенты пишут на одну общую страницу?' }, back: { uz: 'Buyurtmalar aralashadi', ru: 'Заказы перепутаются' }, note: { uz: "Oxirgi yozuv avvalgisini bosib yuboradi", ru: 'Последняя запись затирает предыдущую' } },
+  { front: { uz: "Kod ichidagi oddiy obyektda saqlangan holat server qayta ishga tushsa nima bo'ladi?", ru: 'Что станет с состоянием в обычном объекте кода, если сервер перезапустится?' }, back: { uz: "Yo'qoladi", ru: 'Пропадёт' }, note: { uz: "Cho'ntak xotira (RAM) tez ishlaydi, lekin vaqtinchalik", ru: 'Карманная память (RAM) работает быстро, но она временная' } },
+  { front: { uz: "Server o'chib-yonsa ham holat saqlanib qolishi uchun uni qayerga yozasiz?", ru: 'Куда записать состояние, чтобы оно пережило перезапуск сервера?' }, back: 'PostgreSQL', note: { uz: "Javon: yozuv diskda turadi, restart unga ta'sir qilmaydi", ru: 'Шкаф: запись лежит на диске, перезапуск на неё не влияет' } },
+  { front: { uz: "Botning mijozlari haqidagi yozuvlar qaysi jadvalda turadi?", ru: 'В какой таблице лежат записи о клиентах бота?' }, back: 'users', note: { uz: "Ustunlari: id, telegram_id, ism, holat", ru: 'Колонки: id, telegram_id, ism, holat' } },
+  { front: { uz: "Yangi mijoz birinchi marta /start bosganda qaysi SQL buyrug'i ishlatiladi?", ru: 'Какая SQL-команда используется, когда новый клиент впервые нажал /start?' }, back: 'INSERT', note: { uz: "Jadvalga yangi qator qo'shiladi", ru: 'В таблицу добавляется новая строка' } },
+  { front: { uz: "Mijozning holatini bazadan o'qish uchun qaysi buyruq kerak?", ru: 'Какая команда нужна, чтобы прочитать состояние клиента из базы?' }, back: 'SELECT', note: { uz: "SELECT users jadvalidan mijozni telegram_id bo'yicha topadi", ru: 'SELECT находит клиента в таблице users по telegram_id' } },
+  { front: { uz: "Holat o'zgarganda mavjud qatorni qaysi buyruq yangilaydi?", ru: 'Какая команда обновляет существующую строку, когда состояние изменилось?' }, back: 'UPDATE', note: { uz: "Yangi qator qo'shilmaydi — bori yangilanadi", ru: 'Новая строка не добавляется — обновляется имеющаяся' } },
+  { front: { uz: "Xabar kelganda bot birinchi navbatda nima qiladi?", ru: 'Что бот делает в первую очередь, когда приходит сообщение?' }, back: { uz: "Daftardan o'qiydi (SELECT)", ru: 'Читает из блокнота (SELECT)' }, note: { uz: "Keyin holatni tekshiradi, amalni bajaradi va oxirida yangi holatni yozadi (UPDATE)", ru: 'Потом проверяет состояние, выполняет действие и в конце записывает новое состояние (UPDATE)' } },
 ];
 const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, []); // eslint-disable-line
@@ -2351,7 +2353,7 @@ const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) =>
     <Stage eyebrow={tr({ uz: 'Takrorlash', ru: 'Повторение' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={false} label={{ uz: 'Yakunlash →', ru: 'Завершить →' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Daftar atamalarini <span className="italic" style={{ color: T.accent }}>tez takrorlaymiz</span>.</>, ru: <><span className="italic" style={{ color: T.accent }}>Быстро повторим</span> термины про блокнот.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Darsni yakunlashdan oldin bugungi atamalarni takrorlaymiz. Har kartada bir topishmoq — <b style={{ color: T.ink }}>qaysi atama</b> ekanini o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</>, ru: <>Перед завершением урока повторим сегодняшние термины. На каждой карточке — загадка: подумайте, <b style={{ color: T.ink }}>какой это термин</b>, а потом нажмите на карточку и проверьте. Оцените себя: <b style={{ color: T.ink }}>Знаю</b> или <b style={{ color: T.ink }}>Повторить</b>.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Darsni yakunlashdan oldin bugungi atamalarni takrorlaymiz. Har kartada bir savol — <b style={{ color: T.ink }}>javobini</b> o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</>, ru: <>Перед завершением урока повторим сегодняшние термины. На каждой карточке — вопрос: подумайте, <b style={{ color: T.ink }}>каким будет ответ</b>, а потом нажмите на карточку и проверьте. Оцените себя: <b style={{ color: T.ink }}>Знаю</b> или <b style={{ color: T.ink }}>Повторить</b>.</> })}</Mentor>
         <div className="fc-center"><Flashcards cards={MEMORY_FLASHCARDS} /></div>
       </div>
     </Stage>
@@ -2402,7 +2404,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
           <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> {tr({ uz: 'Endi siz bilasiz', ru: 'Теперь Вы знаете' })}</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{tr(r)}</span></li>))}</ul></div>
           <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: '🚀 Keyingi dars — Botjon bilimlaringizni yanada chuqurlashtiramiz!', ru: '🚀 На следующем уроке ещё глубже разберём Ботжона!' })}</p></div>
         </div>
-        <div className="card ach-coll fade-up d3">
+        {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🏅 Nishonlaringiz', ru: '🏅 Ваши значки' })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">
             {Object.entries(ACHIEVEMENTS).map(([id, a]) => { const got = !!(achievements && achievements.has(id)); return (
@@ -2413,7 +2415,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
               </div>
             ); })}
           </div>
-        </div>
+        </div>}
       </div>
     </Stage>
   );

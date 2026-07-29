@@ -391,6 +391,7 @@ const Col = ({ children, gap }) => <div className="col" style={gap ? { gap } : u
 
 function AchCounter() {
   const earned = useContext(AchCtx);
+  const gate = useContext(LiveGateCtx);
   const count = earned ? earned.size : 0;
   const total = Object.keys(ACHIEVEMENTS).length;
   const prevRef = useRef(count);
@@ -400,6 +401,7 @@ function AchCounter() {
     if (count > prevRef.current) { setBump(true); const t = setTimeout(() => setBump(false), 800); prevRef.current = count; return () => clearTimeout(t); }
     prevRef.current = count;
   }, [count]);
+  if (gate && gate.live && gate.live.mode === 'mentor') return null; // 🔴 mentor proyektorida nishon YO'Q (hooklardan KEYIN)
   return (
     <div className="ach-cnt-wrap">
       <button className={`ach-counter ${bump ? 'bump' : ''} ${count > 0 ? 'has' : ''}`} onClick={() => setOpen(o => !o)} aria-label="Badges" title="Badges">
@@ -2140,7 +2142,7 @@ function QuizArena({ live, onClose, startSolo }) {
             <div className={`qz-res ${my?.correct ? 'good' : 'bad'}`}>
               {my?.correct
                 ? <><span className="qz-res-pts">+{myPtsFor(qi)}</span><span className="qz-res-t">{tr({ uz: 'ball', ru: 'баллов' })}{streakUpTo(qi) >= 2 ? ` · 🔥 x${streakUpTo(qi)} streak` : ''}</span></>
-                : <span className="qz-res-t">{my ? tr({ uz: 'Xato — 0 ball. Keyingisida olasiz! 💪', ru: 'Ошибка — 0 баллов. В следующий раз получится! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Будьте быстрее! ⏱' })}</span>}
+                : <span className="qz-res-t">{my ? tr({ uz: 'Adashdingiz — 0 ball. Keyingisida olasiz! 💪', ru: 'Ошибка — 0 баллов. В следующий раз получится! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Будьте быстрее! ⏱' })}</span>}
               {!solo && myRank >= 0 && <span className="qz-res-rank">{tr({ uz: `Siz hozir: ${myRank + 1}-o'rin`, ru: `Вы сейчас: ${myRank + 1}-е место` })}</span>}
             </div>
           )}
@@ -2424,7 +2426,7 @@ function Flashcards({ cards }) {
       <div className="fc-cardwrap">
         <div className={`fc-fly ${exiting === 'knew' ? 'out-knew' : ''} ${exiting === 'again' ? 'out-again' : ''}`} key={swapRef.current}>
         <div className={`fc-card ${flipped ? 'flip' : ''}`} onClick={() => !flipped && !exiting && setFlipped(true)} role="button" tabIndex={0}>
-          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: 'Qaysi tushuncha? 🤔', ru: 'Какое это понятие? 🤔' })} <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
+          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: "Javobni o'ylang", ru: 'Подумайте над ответом' })} 🤔 <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
           <div className="fc-face fc-back"><span className="fc-tag">{tr(card.back)}</span>{card.note && <span className="fc-note">{tr(card.note)}</span>}</div>
         </div>
         </div>
@@ -2438,18 +2440,18 @@ function Flashcards({ cards }) {
 
 // 🃏 FLASHCARD KARTALARI — 12 atama (Botjon muloqoti tili)
 const BOT_FLASHCARDS = [
-  { front: { uz: "BotFather'dan olingan maxfiy kalit", ru: 'Секретный ключ, полученный у BotFather' }, back: 'Token', note: '🔑' },
-  { front: { uz: 'Tokenni saqlaydigan qulfli tortma', ru: 'Запертый ящик, в котором хранится токен' }, back: '.env', note: { uz: "git'ga tushmaydi", ru: 'в git не попадает' } },
-  { front: { uz: 'Xizmat oynasi bilan gaplashadigan Node.js kutubxonasi', ru: 'Библиотека Node.js, которая говорит со служебным окном' }, back: 'Telegraf', note: '📦' },
-  { front: { uz: 'Har xabar bilan keladigan konvert', ru: 'Конверт, приходящий с каждым сообщением' }, back: 'ctx', note: { uz: 'kim yozdi, qayerga javob berish', ru: 'кто написал, куда отвечать' } },
-  { front: { uz: "/start chaqiruv so'zini ushlaydigan qator", ru: 'Строка, которая ловит слово-вызов /start' }, back: 'bot.start', note: '📋' },
-  { front: { uz: 'Xabar ustidagi tugma turi', ru: 'Вид кнопки под сообщением' }, back: 'Inline', note: '🔘' },
-  { front: { uz: 'Pastdagi tugmalar taxtasi', ru: 'Нижняя панель кнопок' }, back: 'Reply', note: '⌨️' },
-  { front: { uz: 'Xabar ustidagi tugma bosilganda ketadigan yashirin signal', ru: 'Скрытый сигнал при нажатии кнопки под сообщением' }, back: 'Callback', note: { uz: 'matn yozilmaydi', ru: 'текст не пишется' } },
-  { front: { uz: 'Callback signalini ushlaydigan qator', ru: 'Строка, которая ловит сигнал callback' }, back: 'bot.action', note: '🔘 → 📋' },
-  { front: { uz: 'Reply tugma matnini ushlaydigan qator', ru: 'Строка, которая ловит текст reply-кнопки' }, back: 'bot.hears', note: '⌨️ → 📋' },
-  { front: { uz: 'Hech qanday qatorga mos kelmagan xabarga javob beradigan oxirgi qator', ru: 'Последняя строка, отвечающая на сообщение, под которое не подошла ни одна строка' }, back: 'Fallback', note: { uz: '🔕 jim qolmaslik', ru: '🔕 чтобы не молчать' } },
-  { front: { uz: 'Botjonni ishga tushiradigan buyruq', ru: 'Команда, запускающая Ботика' }, back: 'bot.launch()', note: '🚀' },
+  { front: { uz: "Xizmat oynasi bilan gaplashishni siz o'rniga qaysi Node.js kutubxonasi bajaradi?", ru: 'Какая библиотека Node.js общается со служебным окном вместо вас?' }, back: 'Telegraf', note: { uz: "Siz kalitni berasiz — u o'zi ulanadi", ru: 'Вы даёте ключ — она подключается сама' } },
+  { front: { uz: "Botjonning kalitini kodga ochiq yozmasdan qaysi fayldan olasiz?", ru: 'Из какого файла берётся ключ Ботика, чтобы не писать его открыто в коде?' }, back: '.env', note: { uz: "Kodda faqat process.env.BOT_TOKEN turadi, kalit git'ga tushmaydi", ru: 'В коде стоит только process.env.BOT_TOKEN, ключ не попадает в git' } },
+  { front: { uz: "Har kelgan xabar bilan birga keladigan konvert kodda qanday yoziladi?", ru: 'Как в коде пишется конверт, который приходит с каждым сообщением?' }, back: 'ctx', note: { uz: "Ichida kim yozgani (ctx.from), matn (ctx.message.text) va javob yo'li bor", ru: 'Внутри — кто написал (ctx.from), текст (ctx.message.text) и путь для ответа' } },
+  { front: { uz: "Mijozga javob xabarini qaysi buyruq yuboradi?", ru: 'Какая команда отправляет клиенту ответное сообщение?' }, back: 'ctx.reply(...)', note: { uz: "Bu — 1-darsdan tanish amal", ru: 'Это знакомое по 1-му уроку действие' } },
+  { front: { uz: "/start chaqiruv so'zini qaysi qator ushlaydi?", ru: 'Какая строка ловит слово-вызов /start?' }, back: 'bot.start(...)', note: { uz: "Mijoz botni birinchi marta ochganda shu qator ishlaydi", ru: 'Эта строка срабатывает, когда клиент впервые открывает бота' } },
+  { front: { uz: "Chaqiruv so'zlari qaysi belgi bilan boshlanadi?", ru: 'С какого знака начинаются слова-вызовы?' }, back: { uz: 'Qiyshiq chiziq (/)', ru: 'Косая черта (/)' }, note: { uz: "Telegram bunday so'zlarni buyruqlar ro'yxatida ko'rsatadi", ru: 'Такие слова Telegram показывает в списке команд' } },
+  { front: { uz: "Xabarning ustiga yopishib turadigan tugma qanday ataladi?", ru: 'Как называется кнопка, которая прилипает к сообщению?' }, back: { uz: 'Inline tugma', ru: 'Inline-кнопка' }, note: { uz: "Bosilganda suhbatga hech qanday matn yozilmaydi", ru: 'При нажатии в чат не пишется никакой текст' } },
+  { front: { uz: "Klaviatura o'rnida turadigan tugmalar taxtasi qanday ataladi?", ru: 'Как называется панель кнопок, которая стоит на месте клавиатуры?' }, back: { uz: 'Reply tugmalar', ru: 'Reply-кнопки' }, note: { uz: "Bosilsa, matn xuddi o'zingiz yozgandek yuboriladi", ru: 'При нажатии текст уходит так, будто вы написали его сами' } },
+  { front: { uz: "Xabar ustidagi tugma bosilganda ketadigan yashirin signal nima deyiladi?", ru: 'Как называется скрытый сигнал при нажатии кнопки под сообщением?' }, back: 'Callback', note: { uz: "Jim signal — suhbatda ko'rinmaydi", ru: 'Тихий сигнал — в чате его не видно' } },
+  { front: { uz: "Callback signalini qaysi qator ushlaydi?", ru: 'Какая строка ловит сигнал callback?' }, back: 'bot.action(...)', note: { uz: "Reply tugma matnini esa bot.hears(...) ushlaydi", ru: 'А текст reply-кнопки ловит bot.hears(...)' } },
+  { front: { uz: "Hech qaysi qatorga mos kelmagan xabarga kim javob beradi?", ru: 'Кто отвечает на сообщение, под которое не подошла ни одна строка?' }, back: { uz: 'Fallback qatori', ru: 'Строка fallback' }, note: { uz: "U bo'lmasa, Botjon jim qoladi", ru: 'Без неё Ботик промолчит' } },
+  { front: { uz: "Botjonni ishga tushiradigan va faylning eng oxirida turadigan buyruq qaysi?", ru: 'Какая команда запускает Ботика и стоит в самом конце файла?' }, back: 'bot.launch()', note: { uz: "Avval hamma qoidalar yoziladi, keyin bot ishga tushadi", ru: 'Сначала пишутся все правила, потом бот запускается' } },
 ];
 const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, []); // eslint-disable-line
@@ -2457,7 +2459,7 @@ const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) =>
     <Stage eyebrow={tr({ uz: 'Takrorlash', ru: 'Повторение' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={false} label={{ uz: 'Yakunlash →', ru: 'Завершить →' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Muloqot atamalarini <span className="italic" style={{ color: T.accent }}>tez takrorlaymiz</span>.</>, ru: <><span className="italic" style={{ color: T.accent }}>Быстро повторим</span> термины общения.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Darsni yakunlashdan oldin bugungi atamalarni takrorlaymiz. Har kartada bir topishmoq — <b style={{ color: T.ink }}>qaysi atama</b> ekanini o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</>, ru: <>Перед тем как завершить урок, повторим сегодняшние термины. На каждой карточке загадка — подумайте, <b style={{ color: T.ink }}>какой это термин</b>, потом нажмите на карточку и проверьте. Оцените себя кнопкой <b style={{ color: T.ink }}>Знаю</b> или <b style={{ color: T.ink }}>Повторить</b>.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Darsni yakunlashdan oldin bugungi atamalarni takrorlaymiz. Har kartada bir savol — <b style={{ color: T.ink }}>javobini</b> o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</>, ru: <>Перед тем как завершить урок, повторим сегодняшние термины. На каждой карточке вопрос — подумайте, <b style={{ color: T.ink }}>каким будет ответ</b>, потом нажмите на карточку и проверьте. Оцените себя кнопкой <b style={{ color: T.ink }}>Знаю</b> или <b style={{ color: T.ink }}>Повторить</b>.</> })}</Mentor>
         <div className="fc-center"><Flashcards cards={BOT_FLASHCARDS} /></div>
       </div>
     </Stage>
@@ -2526,7 +2528,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
           <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> {tr({ uz: 'Endi siz bilasiz', ru: 'Теперь вы знаете' })}</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{tr(r)}</span></li>))}</ul></div>
           <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: '🚀 Keyingi dars — Stateful logika + PostgreSQL: Botjonga 📓 xotira beramiz, mijoz va suhbat holatini saqlaymiz!', ru: '🚀 Следующий урок — stateful-логика + PostgreSQL: дадим Ботику 📓 память и будем хранить состояние клиента и разговора!' })}</p></div>
         </div>
-        <div className="card ach-coll fade-up d3">
+        {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🏅 Nishonlaringiz —', ru: '🏅 Ваши значки —' })} {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">
             {Object.entries(ACHIEVEMENTS).map(([id, a]) => { const got = !!(achievements && achievements.has(id)); return (
@@ -2537,7 +2539,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
               </div>
             ); })}
           </div>
-        </div>
+        </div>}
         <div ref={glossRef} className="gloss fade-up d4" style={{ scrollMarginBottom: 16 }}><div className="gloss-head" onClick={toggleGloss}><span className="lbl">{tr({ uz: "💡 Kalit so'zlar (takrorlash)", ru: '💡 Ключевые слова (повторение)' })}</span><span className="gloss-toggle">{open ? '−' : '+'}</span></div>{open && (<div className="gloss-body">{GLOSSARY.map((g, i) => (<span key={i}><b>{g.b}</b> {tr(g.t)}{i < GLOSSARY.length - 1 ? ' · ' : ''}</span>))}</div>)}</div>
       </div>
     </Stage>

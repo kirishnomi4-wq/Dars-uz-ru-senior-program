@@ -258,6 +258,21 @@ Jonli darsda o'quvchi javob bosgach, to'g'ri/xato ekani DARHOL ko'rsatilmaydi �
 - **MentorTestStats reveal'gacha:** faqat «javob berdi N/M» ko'rinadi — ✅/❌ soni va ustunlar yashirin
   («Natijani ochish»dan keyin chiqadi). Erkin/self rejimda reveal YO'Q — natija darhol ko'rinadi.
 
+### 5.8 🔴 PERSONAJ-ROL TAQIQI — vazifani MENTOR beradi (2026-07-29, foydalanuvchi qarori · F-0729-27)
+
+Darsda o'ylab topilgan personaj (buyurtmachi-do'st, chat-pufakli qahramon: «Diyor» kabi)
+ISHLATILMAYDI — na sahifa-matnda, na testlarda, na audio-matnda. Yagona ovoz — **Mentor**:
+u yo'nalish beradi va tushuntiradi.
+
+- Bosqich-topshiriq personaj xabari emas, **vazifa-karta** bilan beriladi (HtmlTakrorlash
+  etaloni: `TaskCard` — 🎯 belgisi + «Vazifa» yorlig'i + accent chap-chiziq).
+- Kod-misollardagi odam ismlari faqat **kontent-ma'lumot** sifatida qoladi (ro'yxat bandi,
+  forma qiymati) — ular «gapirmaydi», reaksiya-pufak yozmaydi.
+- Sabab: rol-o'yin bolani chalg'itadi, matnni cho'zadi va etalon-darslarda (Htmllesson1)
+  bunday qatlam yo'q — vazifa Mentordan kelsa, ohang bir xil qoladi.
+- Tekshiruv-grep: dars matnida personaj ismi bilan imzolangan chat-pufak (`dy-msg`,
+  `DChat` uslubidagi komponent) bo'lmasin.
+
 ## 6. 🟡 `MentorTestStats` — «to'g'ri» sanog'i ustunlar bilan bir manbadan
 
 Serverdagi (eskirishi mumkin) `a.correct`ga tayanmang — ustunlar bilan **bir xil mantiqdan**:
@@ -337,6 +352,13 @@ Har biri **kontentdan ajratilgan** — boshqa darsga faqat ma'lumot almashtirila
 
 ### 9.3 🃏 `Flashcards` — aktiv takrorlash (3D flip + spaced recall)
 - Props: `cards` [{front, back, note}].
+- 🔴 **KARTA-MAZMUNI: TO'G'RIDAN-TO'G'RI SAVOL (2026-07-29, F-0729-26 — butun platformada muhrlandi).**
+  «Ta'rif → atamani top» topishmoq-qolipi **TAQIQ**: bola nima so'ralayotganini tushunmaydi, faqat taxmin qiladi.
+  - `front` = to'liq savol, **`?` bilan tugaydi** (uz ham, ru ham). ❌ «Eng katta sarlavha» → ✅ «Eng katta sarlavhani qaysi teg yozadi?»
+  - `back` = qisqa javob (1–4 so'z yoki kod). `note` = bir qatorlik izoh/misol.
+  - Kartalar soni: **10–12**. Savollar FAQAT o'sha darsda o'tilgan mavzudan — darsda izohlanmagan atamani kartaga chiqarish taqiq (audit paytida `DOM`, `HTTP`, `URL`, `Primary Key`, `onclick` kabi «o'rgatilmagan» kartalar topilib olib tashlangan).
+  - 🔴 **Parallel-matn:** karta-qolipi o'zgarsa, flashcard-ekranining Mentor va audio matni ham birga o'zgaradi («Har kartada bir **savol** — javobini o'ylang»), va old-tomon ishorasi savolni **takrorlamaydi** (❌ «Qaysi teg?» ustiga «Qaysi teg?» — ✅ «Javobni o'ylang»).
+  - 🔴 **`tr(card.back)`** majburiy — aks holda javobni ikki tilda yozib bo'lmaydi (11 darsda shu yetishmayotgan edi).
 - 3D flip (`transform-style: preserve-3d; rotateY(180deg)`), "Bildim"/"Takrorlash" (takrorlash kartasi navbat oxiriga → spaced recall), progress bar, yakun ("🎉 Hammasini bilasiz!").
 - **Quizlet uslubidagi baholash (majburiy ko'rinish):**
   - Tugmalar: `✗ Takrorlash` — qizil (accent hoshiya/matn), `✓ Bildim` — yashil to'ldirilgan;
@@ -364,6 +386,27 @@ Har biri **kontentdan ajratilgan** — boshqa darsga faqat ma'lumot almashtirila
 - **Flashcardga nishon berilmaydi** — ekran jonli o'quvchidan yashirin, unga bog'langan nishonni jonli o'quvchi dars davomida ololmaydi (10-bo'limdagi taqiq).
 
 ### 9.4 ✍️ PRAKTIKA — HtmlCompiler qatlami (student/self/mentor oqimlari)
+
+#### 9.4-B 🔒 KOD NUSXALASH TAQIQI (2026-07-29, foydalanuvchi qarori · F-0729-07)
+
+**Qoida (qat'iy):** dars ekranda ko'rsatgan HAR QANDAY TAYYOR KOD nusxalanmaydi —
+o'quvchi uni **qo'lda yozib** o'rganadi. Amalda uchta qulf birga qo'yiladi:
+
+1. **Belgilab bo'lmaydi** — kod ko'rsatiladigan blokka `nocopy` sinfi (`user-select: none`):
+   kod-namunalar (`CodeBox`), buzuq-kod ekrani (`.dbg-code`), kompilyatorning shart-paneli
+   (`.hc-checklist` — hint'lar ichida tayyor kod bo'ladi).
+2. **Ctrl+C ishlamaydi** — o'sha bloklarda `onCopy` / `onCut` / `onDragStart` bloklangan
+   (`const noCopy = {...}` yagona obyekt sifatida bir joyda e'lon qilinadi).
+3. **Kod maydoniga tashqaridan tayyor kod qo'yib bo'lmaydi** — `<textarea onPaste>` tekshiradi:
+   matnda qator-ko'chirish yoki `<teg>` bo'lsa — `preventDefault()`.
+
+**ISTISNO — kod bo'lmagan uzun qiymat.** Rasm manzili (URL), PIN-kod kabi qiymatlar uchun
+«Nusxalash» tugmasi QOLADI va bir qatorli matn paste'i ochiq: bu kod emas, uni qo'lda terish
+o'rganishga hech narsa qo'shmaydi, faqat xato tug'diradi (HtmlTakrorlash 4-bosqich, rasm manzili).
+
+**Tekshiruv (verifikator):** kompilyator ochiq ekranda `getComputedStyle('.hc-checklist').userSelect`
+= `none`; ko'p qatorli matn paste'ida hodisa `defaultPrevented === true`; bir qatorli URL paste'i o'tadi.
+
 
 > 🔴 **SONI: AYNAN 3 praktika-compiler** (2026-07-09 qaror). 4–5 ta EMAS — dars mavzusining eng kerakli/muhim **3 tasi** olinadi (`PRACTICE_AFTER` uch kalit). Ko'p praktika darsni cho'zadi va charchatadi. Har biri boshqacha ko'nikmani mustahkamlasin (takror emas). Tekshiruv: `sed -n '/const PRACTICE_AFTER = {/,/};/p' <fayl> | grep -cE "^\s*[0-9]+:"` → **3**. (✅ 2026-07-09: L1=Sarlavha+Havola+Yakuniy, L2=Rasm+Forma+Yakuniy, CssLesson1=3 — hammasi 3.)
 
@@ -470,6 +513,7 @@ const AchCtx = createContext(null); // earned Set — Stage hisoblagichi o'qiydi
 | 3. Kolleksiya (yakuniy ekranda ro'yxat) | ❌ **YO'Q** | ✅ bor |
 
 - 📌 Qisqa xulosa: **mentor ekranida badges hech qanday ko'rinishda chiqmaydi** — texnik darsda ham, PM darsda ham.
+- ✅ **Platforma bo'ylab bajarilgan (2026-07-29, F-0729-24):** uchala qatlam **79/79 dars faylida** qorovul ostida. Yangi dars qurilganda bu uch qorovul MAJBURIY, aks holda qabulchi qaytaradi.
 - **Tatbiq:** hisoblagich komponentining O'ZI qaror qiladi (`if (gate?.live?.mode === 'mentor') return null` — **barcha hooklardan KEYIN**, React qoidasi), shunda bitta tuzatish hamma ekranga tarqaladi. Kolleksiya yakuniy ekranda `{!isMentorL && ...}` qorovuli ostida. Bayram esa root'da: `{live.mode !== 'mentor' && <AchToasts .../>}` (namuna: `src/1-Modull/PmLesson2.jsx`).
 - 📌 Qisqa qoida: **mentor ekrani = SAHNA (lahzalar) · o'quvchi qurilmasi = DAFTAR (hisob)** — batafsil 10-B bo'limda.
 

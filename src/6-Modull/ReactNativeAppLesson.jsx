@@ -386,6 +386,7 @@ const Zoomable = ({ children }) => {
 
 function AchCounter() {
   const earned = useContext(AchCtx);
+  const gate = useContext(LiveGateCtx);
   const count = earned ? earned.size : 0;
   const total = Object.keys(ACHIEVEMENTS).length;
   const prevRef = useRef(count);
@@ -395,6 +396,7 @@ function AchCounter() {
     if (count > prevRef.current) { setBump(true); const t = setTimeout(() => setBump(false), 800); prevRef.current = count; return () => clearTimeout(t); }
     prevRef.current = count;
   }, [count]);
+  if (gate && gate.live && gate.live.mode === 'mentor') return null; // 🔴 mentor proyektorida nishon YO'Q (hooklardan KEYIN)
   return (
     <div className="ach-cnt-wrap">
       <button className={`ach-counter ${bump ? 'bump' : ''} ${count > 0 ? 'has' : ''}`} onClick={() => setOpen(o => !o)} aria-label="Badges" title="Badges">
@@ -1842,7 +1844,7 @@ function QuizArena({ live, onClose, startSolo }) {
             <div className={`qz-res ${my?.correct ? 'good' : 'bad'}`}>
               {my?.correct
                 ? <><span className="qz-res-pts">+{myPtsFor(qi)}</span><span className="qz-res-t">{tr({ uz: 'ball', ru: 'баллов' })}{streakUpTo(qi) >= 2 ? ` · 🔥 x${streakUpTo(qi)} streak` : ''}</span></>
-                : <span className="qz-res-t">{my ? tr({ uz: "Xato — 0 ball. Keyingisida olasiz! 💪", ru: 'Мимо — 0 баллов. Возьмёте на следующем! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Побыстрее! ⏱' })}</span>}
+                : <span className="qz-res-t">{my ? tr({ uz: "Adashdingiz — 0 ball. Keyingisida olasiz! 💪", ru: 'Мимо — 0 баллов. Возьмёте на следующем! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Побыстрее! ⏱' })}</span>}
               {!solo && myRank >= 0 && <span className="qz-res-rank">{tr({ uz: 'Siz hozir:', ru: 'Вы сейчас:' })} {myRank + 1}{tr({ uz: "-o'rin", ru: '-е место' })}</span>}
             </div>
           )}
@@ -2127,7 +2129,7 @@ function Flashcards({ cards }) {
       <div className="fc-cardwrap">
         <div className={`fc-fly ${exiting === 'knew' ? 'out-knew' : ''} ${exiting === 'again' ? 'out-again' : ''}`} key={swapRef.current}>
         <div className={`fc-card ${flipped ? 'flip' : ''}`} onClick={() => !flipped && !exiting && setFlipped(true)} role="button" tabIndex={0}>
-          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: 'Qaysi tushuncha? 🤔', ru: 'Какое понятие? 🤔' })} <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
+          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: "Javobni o'ylang", ru: 'Подумайте над ответом' })} 🤔 <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
           <div className="fc-face fc-back"><span className="fc-tag">{tr(card.back)}</span>{card.note && <span className="fc-note">{tr(card.note)}</span>}</div>
         </div>
         </div>
@@ -2141,18 +2143,18 @@ function Flashcards({ cards }) {
 
 // 🃏 FLASHCARD KARTALARI — RN atamalari
 const RN_FLASHCARDS = [
-  { front: { uz: "Ma'lumot massividan ro'yxat chizadigan komponent", ru: 'Компонент, который рисует список из массива данных' }, back: 'FlatList', note: { uz: "ro'yxat", ru: 'список' } },
-  { front: { uz: "Bosiladigan element — web'dagi tugma/onClick", ru: 'Нажимаемый элемент — кнопка/onClick из веба' }, back: 'Pressable', note: { uz: "onPress", ru: 'onPress' } },
-  { front: { uz: "Rasm ko'rsatadigan komponent — web'dagi <img>", ru: 'Компонент для картинки — аналог <img>' }, back: 'Image', note: { uz: "rasm", ru: 'картинка' } },
-  { front: { uz: "Matn kiritish maydoni — web'dagi <input>", ru: 'Поле ввода текста — аналог <input>' }, back: 'TextInput', note: { uz: "kiritish", ru: 'ввод' } },
-  { front: { uz: "Aylantiriladigan konteyner — uzun kontent uchun", ru: 'Прокручиваемый контейнер — для длинного содержимого' }, back: 'ScrollView', note: { uz: "aylantirish", ru: 'прокрутка' } },
-  { front: { uz: "Ko'p ekranni karta dastasi kabi boshqaradi", ru: 'Управляет многими экранами как колодой карт' }, back: 'Stack Navigator', note: { uz: "navigatsiya", ru: 'навигация' } },
-  { front: { uz: "Boshqa ekranga o'tish uchun chaqiriladi", ru: 'Вызывается для перехода на другой экран' }, back: 'navigation.navigate', note: { uz: "cue", ru: 'cue' } },
-  { front: { uz: "Ekran qo'shish / olib tashlash", ru: 'Добавить / убрать экран' }, back: 'push / pop', note: { uz: "stack", ru: 'stack' } },
-  { front: { uz: "Backend API'dan ma'lumot oladi", ru: 'Берёт данные с backend API' }, back: 'fetch', note: { uz: "backstage", ru: 'backstage' } },
-  { front: { uz: "Ilova ochilganda bir marta ishlaydi (bo'sh massiv)", ru: 'Срабатывает один раз при открытии приложения (пустой массив)' }, back: 'useEffect([])', note: { uz: "yuklash", ru: 'загрузка' } },
-  { front: { uz: "Telefonning o'zida ma'lumot saqlaydi", ru: 'Хранит данные в самом телефоне' }, back: 'AsyncStorage', note: { uz: "grim shkaf", ru: 'гримёрный шкаф' } },
-  { front: { uz: "Web, bot va mobil — bittaga ulanadi", ru: 'Сайт, бот и мобильное — подключаются к одному' }, back: { uz: 'backend (bitta tizim)', ru: 'бэкенд (одна система)' }, note: { uz: "ko'p mijoz", ru: 'много клиентов' } },
+  { front: { uz: "Massivdagi ro'yxatni ekranda ko'rsatish uchun qaysi komponent kerak?", ru: 'Какой компонент нужен, чтобы показать на экране список из массива?' }, back: 'FlatList', note: { uz: "Har element uchun bitta qatorni o'zi chizadi", ru: 'Строку для каждого элемента он рисует сам' } },
+  { front: { uz: "Bosiladigan tugma kerak bo'lsa qaysi komponent yoziladi?", ru: 'Какой компонент пишется, если нужна нажимаемая кнопка?' }, back: 'Pressable', note: { uz: "Bosilganda onPress ichidagi kod ishlaydi", ru: 'При нажатии срабатывает код внутри onPress' } },
+  { front: { uz: "Ilovada rasm ko'rsatish uchun qaysi komponent ishlatiladi?", ru: 'Какой компонент используют, чтобы показать картинку в приложении?' }, back: 'Image', note: { uz: "Web'dagi img tegining mobil varianti", ru: 'Мобильный вариант веб-овского тега img' } },
+  { front: { uz: "Foydalanuvchi matn yozadigan maydon qaysi komponent?", ru: 'Какой компонент — поле, куда пользователь пишет текст?' }, back: 'TextInput', note: { uz: "Web'dagi input tegining mobil varianti", ru: 'Мобильный вариант веб-овского тега input' } },
+  { front: { uz: "Uzun kontentni aylantirib ko'rish uchun nima ishlatiladi?", ru: 'Что используют, чтобы прокручивать длинное содержимое?' }, back: 'ScrollView', note: { uz: "Ekranga sig'magan qismi barmoq bilan suriladi", ru: 'Не влезшая часть листается пальцем' } },
+  { front: { uz: "Ko'p ekranni boshqaradigan tizim qanday nomlanadi?", ru: 'Как называется система, которая управляет многими экранами?' }, back: 'Stack Navigator', note: { uz: "Ekranlar karta dastasidek ustma-ust turadi", ru: 'Экраны лежат друг на друге, как колода карт' } },
+  { front: { uz: "Boshqa ekranga o'tish uchun qaysi buyruq yoziladi?", ru: 'Какая команда пишется для перехода на другой экран?' }, back: 'navigation.navigate', note: { uz: "Yangi ekran dastaning ustiga qo'yiladi", ru: 'Новый экран кладётся сверху колоды' } },
+  { front: { uz: "«Orqaga» bosilganda ekranlar dastasida nima bo'ladi?", ru: 'Что происходит с колодой экранов при нажатии «Назад»?' }, back: { uz: 'Ustki ekran olinadi', ru: 'Верхний экран убирается' }, note: { uz: "Qo'shish push, olib tashlash pop deyiladi", ru: 'Добавление называется push, снятие — pop' } },
+  { front: { uz: "Real mahsulotlar ro'yxati backenddan qanday olinadi?", ru: 'Как берётся с бэкенда список настоящих товаров?' }, back: 'fetch', note: { uz: "Ilova serverga so'rov yuborib javobini oladi", ru: 'Приложение шлёт запрос на сервер и получает ответ' } },
+  { front: { uz: "Ma'lumot ilova ochilganda bir marta yuklanishi uchun nima yoziladi?", ru: 'Что пишут, чтобы данные загрузились один раз при открытии приложения?' }, back: 'useEffect([])', note: { uz: "Bo'sh massiv «faqat bir marta» degani", ru: 'Пустой массив означает «только один раз»' } },
+  { front: { uz: "Savatni telefonning o'zida saqlash uchun nima ishlatiladi?", ru: 'Чем сохранить корзину в самом телефоне?' }, back: 'AsyncStorage', note: { uz: "Mobil uchun localStorage, ilova yopilsa ham qoladi", ru: 'localStorage для мобильного: остаётся и после закрытия' } },
+  { front: { uz: "Mobil ilova uchun yangi backend yozish kerakmi?", ru: 'Нужно ли писать новый бэкенд ради мобильного приложения?' }, back: { uz: "Yo'q, o'sha backend", ru: 'Нет, тот же бэкенд' }, note: { uz: "Web, bot va mobil bitta serverga ulanadi", ru: 'Сайт, бот и мобильное подключаются к одному серверу' } },
 ];
 const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, []); // eslint-disable-line
@@ -2160,7 +2162,7 @@ const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) =>
     <Stage eyebrow={{ uz: 'Takrorlash', ru: 'Повторение' }} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={false} label={{ uz: 'Yakunlash →', ru: 'Завершить →' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>RN atamalarini <span className="italic" style={{ color: T.accent }}>tez takrorlaymiz</span>.</>, ru: <><span className="italic" style={{ color: T.accent }}>Быстро повторим</span> термины RN.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Darsni yakunlashdan oldin bugungi atamalarni takrorlaymiz. Har kartada bir topishmoq — <b style={{ color: T.ink }}>qaysi atama</b> ekanini o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</>, ru: <>Перед завершением урока повторим сегодняшние термины. На каждой карте загадка — подумайте, <b style={{ color: T.ink }}>какой это термин</b>, потом нажмите карту и проверьте. Оцените себя кнопкой <b style={{ color: T.ink }}>Знаю</b> или <b style={{ color: T.ink }}>Повторить</b>.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Darsni yakunlashdan oldin bugungi atamalarni takrorlaymiz. Har kartada bir savol — <b style={{ color: T.ink }}>javobini</b> o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</>, ru: <>Перед завершением урока повторим сегодняшние термины. На каждой карте вопрос — подумайте, <b style={{ color: T.ink }}>каким будет ответ</b>, потом нажмите карту и проверьте. Оцените себя кнопкой <b style={{ color: T.ink }}>Знаю</b> или <b style={{ color: T.ink }}>Повторить</b>.</> })}</Mentor>
         <div className="fc-center"><Flashcards cards={RN_FLASHCARDS} /></div>
       </div>
     </Stage>
@@ -2211,7 +2213,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
           <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> {tr({ uz: 'Endi siz bilasiz', ru: 'Теперь вы знаете' })}</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{tr(r)}</span></li>))}</ul></div>
           <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: "🚀 Keyingi — P1: mini-do'kon mobil ilovasini amalda qurish (praktika).", ru: '🚀 Дальше — P1: собрать мобильное приложение мини-магазина на практике.' })}</p></div>
         </div>
-        <div className="card ach-coll fade-up d3">
+        {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🏅 Nishonlaringiz —', ru: '🏅 Ваши значки —' })} {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">
             {Object.entries(ACHIEVEMENTS).map(([id, a]) => { const got = !!(achievements && achievements.has(id)); return (
@@ -2222,7 +2224,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
               </div>
             ); })}
           </div>
-        </div>
+        </div>}
       </div>
     </Stage>
   );

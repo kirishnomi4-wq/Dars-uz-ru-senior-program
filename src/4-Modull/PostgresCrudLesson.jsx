@@ -388,6 +388,7 @@ const Col = ({ children, gap }) => <div className="col" style={gap ? { gap } : u
 
 function AchCounter() {
   const earned = useContext(AchCtx);
+  const gate = useContext(LiveGateCtx);
   const count = earned ? earned.size : 0;
   const total = Object.keys(ACHIEVEMENTS).length;
   const prevRef = useRef(count);
@@ -397,6 +398,7 @@ function AchCounter() {
     if (count > prevRef.current) { setBump(true); const t = setTimeout(() => setBump(false), 800); prevRef.current = count; return () => clearTimeout(t); }
     prevRef.current = count;
   }, [count]);
+  if (gate && gate.live && gate.live.mode === 'mentor') return null; // 🔴 mentor proyektorida nishon YO'Q (hooklardan KEYIN)
   return (
     <div className="ach-cnt-wrap">
       <button className={`ach-counter ${bump ? 'bump' : ''} ${count > 0 ? 'has' : ''}`} onClick={() => setOpen(o => !o)} aria-label="Badges" title="Badges">
@@ -1556,7 +1558,7 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [value, setValue] = useState(storedAnswer?.picked || '');
   const [passed, setPassed] = useState(!!storedAnswer?.correct);
   const [ran, setRan] = useState(false);
-  const v = value.replace(/[‘’ʻ]/g, "'").replace(/[“”]/g, '"');
+  const v = value.replace(/[\u2018\u2019\u02BB]/g, "'").replace(/[\u201C\u201D]/g, '"');
   const hasInsert = /insert\s+into\s+products/i.test(v);
   const hasValues = /values\s*\(/i.test(v);
   const m = v.match(/values\s*\(\s*'([^']+)'\s*,\s*(\d+)\s*,\s*(\d+)\s*\)/i);
@@ -1639,7 +1641,7 @@ function Flashcards({ cards }) {
       <div className="fc-cardwrap">
         <div className={`fc-fly ${exiting === 'knew' ? 'out-knew' : ''} ${exiting === 'again' ? 'out-again' : ''}`} key={swapRef.current}>
         <div className={`fc-card ${flipped ? 'flip' : ''}`} onClick={() => !flipped && !exiting && setFlipped(true)} role="button" tabIndex={0}>
-          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: 'Qaysi tushuncha? 🤔', ru: 'Какое это понятие? 🤔' })} <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
+          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: "Javobni o'ylang", ru: 'Подумайте над ответом' })} 🤔 <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
           <div className="fc-face fc-back"><span className="fc-tag">{tr(card.back)}</span>{card.note && <span className="fc-note">{tr(card.note)}</span>}</div>
         </div>
         </div>
@@ -1651,29 +1653,29 @@ function Flashcards({ cards }) {
   );
 }
 
-// 🃏 PostgreSQL CRUD FLASHCARD KARTALARI (front=izoh, back=tushuncha) — Metodist keyin sayqallaydi
+// 🃏 PostgreSQL CRUD FLASHCARD KARTALARI (front=savol, back=qisqa javob)
 const CRUD_FLASHCARDS = [
-  { front: { uz: "Ma'lumot saqlanadigan do'kon ombori", ru: 'Склад магазина, где хранятся данные' }, back: { uz: 'Baza', ru: 'База' }, note: "PostgreSQL 🐘" },
-  { front: { uz: "Ustun va qatorlardan iborat — bitta ombor javoni", ru: 'Состоит из столбцов и строк — один стеллаж склада' }, back: { uz: 'Jadval', ru: 'Таблица' }, note: "products" },
-  { front: { uz: "Jadvaldagi bitta yozuv — bitta mahsulot", ru: 'Одна запись в таблице — один товар' }, back: { uz: 'Qator', ru: 'Строка' }, note: { uz: '1 ta mahsulot', ru: '1 товар' } },
-  { front: { uz: "Mahsulotning bir xususiyati", ru: 'Одно свойство товара' }, back: { uz: 'Ustun', ru: 'Столбец' }, note: "nom · narx · soni" },
-  { front: { uz: "Yangi mahsulot keldi — jadvalga qo'shadi", ru: 'Привезли новый товар — добавляет его в таблицу' }, back: "INSERT", note: { uz: "qo'shish", ru: 'добавление' } },
-  { front: { uz: "Vitrinani ko'rish — ma'lumotni o'qiydi", ru: 'Посмотреть витрину — читает данные' }, back: "SELECT", note: { uz: "faqat ko'rsatadi", ru: 'только показывает' } },
-  { front: { uz: "Faqat kerakligini topish — filtr/shart", ru: 'Найти только нужное — фильтр/условие' }, back: "WHERE", note: "narx < 100000" },
-  { front: { uz: "Narx tushdi — mavjud qatorni o'zgartiradi", ru: 'Цена упала — изменяет существующую строку' }, back: "UPDATE", note: "SET narx = ..." },
-  { front: { uz: "Mahsulot sotuvdan chiqdi — qatorni o'chiradi", ru: 'Товар сняли с продажи — удаляет строку' }, back: "DELETE", note: { uz: "o'chirish", ru: 'удаление' } },
-  { front: { uz: "Bazaning 4 asosiy amali", ru: '4 основных действия базы' }, back: "CRUD", note: { uz: "qo'sh · ko'r · o'zgartir · o'chir", ru: 'добавь · посмотри · измени · удали' } },
-  { front: { uz: "INSERT'da kiritiladigan qiymatlar", ru: 'Значения, которые вводят в INSERT' }, back: "VALUES", note: "('Mishka', 50000, 10)" },
-  { front: { uz: "SQL'ni yozadi — siz tekshirasiz", ru: 'Пишет SQL — а вы проверяете' }, back: { uz: 'AI + tekshiruv', ru: 'ИИ + проверка' }, note: { uz: 'siz arxitektsiz', ru: 'вы архитектор' } },
+  { front: { uz: "Bazada ma'lumot ustun va qatorlar bilan qayerda saqlanadi?", ru: 'Где в базе данные хранятся столбцами и строками?' }, back: { uz: 'Jadval', ru: 'Таблица' }, note: { uz: "do'konimizda u — products jadvali", ru: 'в нашем магазине это таблица products' } },
+  { front: { uz: "products jadvalidagi bitta qator nimani bildiradi?", ru: 'Что означает одна строка в таблице products?' }, back: { uz: 'Bitta mahsulot', ru: 'Один товар' }, note: { uz: "ustunlar esa uning xususiyatlari: nom, narx, soni", ru: 'а столбцы — его свойства: nom, narx, soni' } },
+  { front: { uz: "Yangi jadval yaratadigan buyruq qaysi?", ru: 'Какая команда создаёт новую таблицу?' }, back: "CREATE TABLE", note: "CREATE TABLE products (...)" },
+  { front: { uz: "Jadvalga yangi mahsulot qo'shadigan buyruq qaysi?", ru: 'Какая команда добавляет в таблицу новый товар?' }, back: "INSERT INTO", note: { uz: "har INSERT bitta yangi qator qo'shadi", ru: 'каждый INSERT добавляет одну новую строку' } },
+  { front: { uz: "INSERT'da kiritiladigan qiymatlar qaysi so'zdan keyin yoziladi?", ru: 'После какого слова в INSERT пишутся вводимые значения?' }, back: "VALUES", note: "VALUES ('Mishka', 50000, 10)" },
+  { front: { uz: "Bazadagi ma'lumotni ko'rish uchun qaysi buyruqni yozasiz?", ru: 'Какую команду Вы пишете, чтобы посмотреть данные в базе?' }, back: "SELECT * FROM products", note: { uz: "yulduzcha — barcha ustunlar", ru: 'звёздочка — все столбцы' } },
+  { front: { uz: "Minglab qatordan faqat keraklisini topish uchun nima qo'shasiz?", ru: 'Что Вы добавляете, чтобы найти из тысяч строк только нужные?' }, back: "WHERE", note: "WHERE narx < 100000" },
+  { front: { uz: "Mahsulot narxini o'zgartirish uchun qaysi buyruq kerak?", ru: 'Какая команда нужна, чтобы изменить цену товара?' }, back: "UPDATE ... SET", note: "UPDATE products SET narx = 99000 WHERE id = 1" },
+  { front: { uz: "Mahsulotni jadvaldan o'chiradigan buyruq qaysi?", ru: 'Какая команда удаляет товар из таблицы?' }, back: "DELETE FROM", note: "DELETE FROM products WHERE id = 3" },
+  { front: { uz: "UPDATE yoki DELETE'da WHERE unutilsa nima bo'ladi?", ru: 'Что будет, если в UPDATE или DELETE забыть WHERE?' }, back: { uz: "Barcha qator o'zgaradi", ru: 'Изменятся все строки' }, note: { uz: "shuning uchun WHERE deyarli doim kerak", ru: 'поэтому WHERE нужен почти всегда' } },
+  { front: { uz: "Bazaning to'rt asosiy amali qanday nomlanadi?", ru: 'Как называются четыре основных действия базы?' }, back: "CRUD", note: { uz: "qo'shish · ko'rish · o'zgartirish · o'chirish", ru: 'добавить · посмотреть · изменить · удалить' } },
+  { front: { uz: "AI sizga SQL yozib berdi — endi nima qilasiz?", ru: 'ИИ написал Вам SQL — что делаете дальше?' }, back: { uz: "O'qib tekshiraman", ru: 'Читаю и проверяю' }, note: { uz: "jadval nomi to'g'rimi, WHERE bormi", ru: 'верно ли имя таблицы, есть ли WHERE' } },
 ];
 const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const audio = useAudio([{ id: 'sflash', text: "Darsni yakunlashdan oldin bugun o'rgangan tushunchalarni tez takrorlaymiz. Har kartada bir izoh — qaysi tushuncha ekanini o'ylang, keyin kartani bosib tekshiring.", trigger: 'on_mount', waits_for: null }]);
+  const audio = useAudio([{ id: 'sflash', text: "Darsni yakunlashdan oldin bugun o'rgangan tushunchalarni tez takrorlaymiz. Har kartada bir savol — javobini o'ylang, keyin kartani bosib tekshiring.", trigger: 'on_mount', waits_for: null }]);
   useEffect(() => { if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, []); // eslint-disable-line
   return (
     <Stage eyebrow={tr({ uz: 'Takrorlash', ru: 'Повторение' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={false} label={tr({ uz: 'Yakunlash →', ru: 'Завершить →' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Tushunchalarni <span className="italic" style={{ color: T.accent }}>tez takrorlaymiz</span>.</>, ru: <>Быстро <span className="italic" style={{ color: T.accent }}>повторим понятия</span>.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Darsni yakunlashdan oldin bugun o'rgangan tushunchalarni takrorlaymiz. Har kartada bir izoh — <b style={{ color: T.ink }}>qaysi tushuncha</b> ekanini o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</>, ru: <>Перед завершением урока повторим сегодняшние понятия. На каждой карточке описание — подумайте, <b style={{ color: T.ink }}>какое это понятие</b>, потом нажмите на карточку и проверьте себя. Оцените кнопками <b style={{ color: T.ink }}>Знаю</b> или <b style={{ color: T.ink }}>Повторить</b>.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Darsni yakunlashdan oldin bugun o'rgangan tushunchalarni takrorlaymiz. Har kartada bir savol — <b style={{ color: T.ink }}>javobini</b> o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</>, ru: <>Перед завершением урока повторим сегодняшние понятия. На каждой карточке вопрос — подумайте, <b style={{ color: T.ink }}>каким будет ответ</b>, потом нажмите на карточку и проверьте себя. Оцените кнопками <b style={{ color: T.ink }}>Знаю</b> или <b style={{ color: T.ink }}>Повторить</b>.</> })}</Mentor>
         <div className="fc-center"><Flashcards cards={CRUD_FLASHCARDS} /></div>
       </div>
     </Stage>
@@ -2116,7 +2118,7 @@ function QuizArena({ live, onClose, startSolo }) {
             <div className={`qz-res ${my?.correct ? 'good' : 'bad'}`}>
               {my?.correct
                 ? <><span className="qz-res-pts">+{myPtsFor(qi)}</span><span className="qz-res-t">{tr({ uz: 'ball', ru: 'баллов' })}{streakUpTo(qi) >= 2 ? ` · 🔥 x${streakUpTo(qi)} ${tr({ uz: 'streak', ru: 'стрик' })}` : ''}</span></>
-                : <span className="qz-res-t">{my ? tr({ uz: "Xato — 0 ball. Keyingisida olasiz! 💪", ru: 'Ошибка — 0 баллов. Возьмёте на следующем! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Быстрее! ⏱' })}</span>}
+                : <span className="qz-res-t">{my ? tr({ uz: "Adashdingiz — 0 ball. Keyingisida olasiz! 💪", ru: 'Ошибка — 0 баллов. Возьмёте на следующем! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Быстрее! ⏱' })}</span>}
               {!solo && myRank >= 0 && <span className="qz-res-rank">{tr({ uz: 'Siz hozir:', ru: 'Вы сейчас:' })} {myRank + 1}{tr({ uz: "-o'rin", ru: '-е место' })}</span>}
             </div>
           )}
@@ -2418,7 +2420,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
           <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> {tr({ uz: 'Endi siz bilasiz', ru: 'Теперь вы знаете' })}</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{r}</span></li>))}</ul></div>
           <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: "AI bilan o'z bazangizni quring:", ru: 'Постройте с ИИ свою базу:' })}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{h.b}</b> <span className="t">{h.t}</span></li>))}</ul><p className="hw-note">{tr({ uz: "Modul 5'da: NestJS shu jadval bilan avtomatik ishlaydi — siz faqat so'raysiz! 🚀", ru: 'В модуле 5: NestJS будет работать с этой таблицей автоматически — вы только просите! 🚀' })}</p></div>
         </div>
-        <div className="card ach-coll fade-up d3">
+        {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🏅 Nishonlaringiz', ru: '🏅 Ваши значки' })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">
             {Object.entries(ACHIEVEMENTS).map(([id, a]) => { const got = !!(achievements && achievements.has(id)); return (
@@ -2429,7 +2431,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
               </div>
             ); })}
           </div>
-        </div>
+        </div>}
       </div>
     </Stage>
   );

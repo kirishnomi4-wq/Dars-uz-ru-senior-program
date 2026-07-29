@@ -384,6 +384,7 @@ const Col = ({ children, gap }) => <div className="col" style={gap ? { gap } : u
 // 🏅 Yuqori paneldagi nishon hisoblagichi (Stage chrome)
 function AchCounter() {
   const earned = useContext(AchCtx);
+  const gate = useContext(LiveGateCtx);
   const count = earned ? earned.size : 0;
   const total = Object.keys(ACHIEVEMENTS).length;
   const prevRef = useRef(count);
@@ -393,6 +394,7 @@ function AchCounter() {
     if (count > prevRef.current) { setBump(true); const t = setTimeout(() => setBump(false), 800); prevRef.current = count; return () => clearTimeout(t); }
     prevRef.current = count;
   }, [count]);
+  if (gate && gate.live && gate.live.mode === 'mentor') return null; // 🔴 mentor proyektorida nishon YO'Q (hooklardan KEYIN)
   return (
     <div className="ach-cnt-wrap">
       <button className={`ach-counter ${bump ? 'bump' : ''} ${count > 0 ? 'has' : ''}`} onClick={() => setOpen(o => !o)} aria-label="Badges" title="Badges">
@@ -1316,7 +1318,7 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <p className="flow-label">{tr({ uz: 'Jami xabarlar', ru: 'Всего сообщений' })}</p>
             <div className="bigcount">{count.toLocaleString('en-US')}</div>
             <p className="small" style={{ color: T.ink2, margin: 0 }}>{tr({ uz: <>Har xabar — oddiy hujjat: <span className="mono">{'{ kim, matn, vaqt }'}</span>. Bog'lanish kam, soni ulkan, tezlik shart.</>, ru: <>Каждое сообщение — простой документ: <span className="mono">{'{ кто, текст, время }'}</span>. Связей мало, объём огромный, скорость обязательна.</> })}</p>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>NoSQL ulkan, oddiy va tez ma'lumot uchun zo'r. <span className="mono">(Masalan, o'yin inventari ham har o'yinchida har xil — NoSQL egiluvchanligi shu yerda ham qo'l keladi.)</span></>, ru: <>NoSQL хорош для огромных, простых и быстрых данных. <span className="mono">(Например, игровой инвентарь у каждого игрока свой — гибкость NoSQL пригодится и здесь.)</span></> })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>NoSQL ulkan, oddiy va tez ma'lumot uchun zo'r. <span className="mono">(Masalan, o'yin inventari ham har o'yinchida har xil — NoSQL egiluvchanligi shu yerda ham yordam beradi.)</span></>, ru: <>NoSQL хорош для огромных, простых и быстрых данных. <span className="mono">(Например, игровой инвентарь у каждого игрока свой — гибкость NoSQL пригодится и здесь.)</span></> })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -1800,7 +1802,7 @@ function Flashcards({ cards }) {
       <div className="fc-cardwrap">
         <div className={`fc-fly ${exiting === 'knew' ? 'out-knew' : ''} ${exiting === 'again' ? 'out-again' : ''}`} key={swapRef.current}>
         <div className={`fc-card ${flipped ? 'flip' : ''}`} onClick={() => !flipped && !exiting && setFlipped(true)} role="button" tabIndex={0}>
-          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: 'Qaysi tushuncha? 🤔', ru: 'Какое понятие? 🤔' })} <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
+          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: "Javobni o'ylang", ru: 'Подумайте над ответом' })} 🤔 <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
           <div className="fc-face fc-back"><span className="fc-tag">{tr(card.back)}</span>{card.note && <span className="fc-note">{tr(card.note)}</span>}</div>
         </div>
         </div>
@@ -1811,29 +1813,29 @@ function Flashcards({ cards }) {
     </div>
   );
 }
-// 🃏 SQL vs NoSQL FLASHCARD KARTALARI (front=izoh, back=tushuncha) — Metodist keyin sayqallaydi
+// 🃏 SQL vs NoSQL FLASHCARD KARTALARI (front=savol, back=qisqa javob)
 const DB_FLASHCARDS = [
-  { front: { uz: "Uyachali quti — bazalar tili", ru: 'Коробка с ячейками — язык баз данных' }, back: "SQL", note: { uz: "qat'iy jadval", ru: 'строгая таблица' } },
-  { front: { uz: "Erkin { } paket — egiluvchan bazalar", ru: 'Свободный { } пакет — гибкие базы' }, back: "NoSQL", note: { uz: "hujjatli", ru: 'документная' } },
-  { front: { uz: "Bizning SQL qutimiz 🐘", ru: 'Наша SQL-коробка 🐘' }, back: "PostgreSQL", note: { uz: "relyatsion · bepul", ru: 'реляционная · бесплатная' } },
-  { front: { uz: "Mashhur NoSQL paketi", ru: 'Известный NoSQL-пакет' }, back: "MongoDB", note: { uz: "hujjatli", ru: 'документная' } },
-  { front: { uz: "Bir xil ustunli qatorlar", ru: 'Строки с одинаковыми столбцами' }, back: { uz: "Jadval", ru: 'Таблица' }, note: { uz: "SQL saqlash usuli", ru: 'способ хранения SQL' } },
-  { front: { uz: "O'z shakliga ega { } yozuv", ru: 'Запись { } со своей формой' }, back: { uz: "Hujjat", ru: 'Документ' }, note: { uz: "NoSQL saqlash usuli", ru: 'способ хранения NoSQL' } },
-  { front: { uz: "Ikki qutini id ipi bilan ulash", ru: 'Связать две коробки нитью id' }, back: "JOIN", note: { uz: "SQL kuchi", ru: 'сила SQL' } },
-  { front: { uz: "Har qatorning yagona nomeri", ru: 'Уникальный номер каждой строки' }, back: "PK", note: "Primary Key" },
-  { front: { uz: "Boshqa qutiga ulanuvchi ip", ru: 'Нить, ведущая к другой коробке' }, back: "FK", note: "Foreign Key" },
-  { front: { uz: "«Ikki marta sotilmaydi» ishonchlilik", ru: 'Надёжность «дважды не продастся»' }, back: { uz: "Tranzaksiya", ru: 'Транзакция' }, note: { uz: "SQL himoyasi", ru: 'защита SQL' } },
-  { front: { uz: "Qutining uyacha chizmasi", ru: 'Чертёж ячеек коробки' }, back: "Schema", note: { uz: "oldindan belgilangan", ru: 'задана заранее' } },
-  { front: { uz: "Millionlab oddiy paketni tez saqlash", ru: 'Быстро хранить миллионы простых пакетов' }, back: { uz: "Miqyos", ru: 'Масштаб' }, note: { uz: "NoSQL kuchi", ru: 'сила NoSQL' } },
+  { front: { uz: "Ma'lumotni ustunli jadvalda saqlaydigan bazalar oilasi qaysi?", ru: 'Какое семейство баз хранит данные в таблице со столбцами?' }, back: "SQL", note: { uz: "qattiq uyachali quti: PostgreSQL, MySQL", ru: 'жёсткая коробка с ячейками: PostgreSQL, MySQL' } },
+  { front: { uz: "Ma'lumotni erkin { } hujjatda saqlaydigan oila qaysi?", ru: 'Какое семейство хранит данные в свободном документе { }?' }, back: "NoSQL", note: { uz: "erkin paket: MongoDB, Firebase", ru: 'свободный пакет: MongoDB, Firebase' } },
+  { front: { uz: "Biz o'z loyihalarimizga qaysi SQL bazani tanlaymiz?", ru: 'Какую SQL-базу мы выбираем для своих проектов?' }, back: "PostgreSQL 🐘", note: { uz: "bog'langan, ishonchli va bepul", ru: 'связанная, надёжная и бесплатная' } },
+  { front: { uz: "Eng mashhur NoSQL bazasi qaysi?", ru: 'Какая NoSQL-база самая известная?' }, back: "MongoDB", note: { uz: "har yozuvni { } hujjat qilib saqlaydi", ru: 'хранит каждую запись как документ { }' } },
+  { front: { uz: "SQL jadvalidagi bitta yozuv nima deb ataladi?", ru: 'Как называется одна запись в SQL-таблице?' }, back: { uz: "Qator", ru: 'Строка' }, note: { uz: "har qatorda bir xil ustunlar bor", ru: 'в каждой строке одни и те же столбцы' } },
+  { front: { uz: "Ikki jadvalni id orqali bitta so'rovda birlashtiradigan amal qaysi?", ru: 'Какое действие соединяет две таблицы через id в одном запросе?' }, back: "JOIN", note: "posts.user_id ↔ users.id" },
+  { front: { uz: "Oxirgi telefon ikki xaridorga sotilmasligini nima kafolatlaydi?", ru: 'Что не даёт продать последний телефон сразу двум покупателям?' }, back: { uz: "Tranzaksiya", ru: 'Транзакция' }, note: { uz: "SQL bir lahzada faqat bittasiga sotadi", ru: 'SQL в один миг продаёт только одному' } },
+  { front: { uz: "Har soniyada minglab oddiy chat xabari uchun qaysi oila qulay?", ru: 'Какое семейство удобно для тысяч простых сообщений в секунду?' }, back: "NoSQL", note: { uz: "ulkan miqyos va tezlik uning kuchi", ru: 'огромный масштаб и скорость — его сила' } },
+  { front: { uz: "Bank ilovasi — pul va hisoblar uchun qaysi oila to'g'ri keladi?", ru: 'Какое семейство подходит банковскому приложению — деньгам и счетам?' }, back: "SQL", note: { uz: "hammasi bog'langan, xato qimmatga tushadi", ru: 'всё связано, а ошибка обходится дорого' } },
+  { front: { uz: "Baza tanlashda qaysi to'rt savolga javob berasiz?", ru: 'На какие четыре вопроса Вы отвечаете при выборе базы?' }, back: { uz: "Bog'lanish · shakl · ishonchlilik · miqyos", ru: 'Связи · форма · надёжность · масштаб' }, note: { uz: "qaror kompasining to'rt savoli", ru: 'четыре вопроса компаса решения' } },
+  { front: { uz: "PostgreSQL SQL bo'lsa ham qanday erkin ma'lumotni saqlay oladi?", ru: 'Какие свободные данные умеет хранить PostgreSQL, хоть он и SQL?' }, back: "JSON", note: { uz: "kerak bo'lsa egiluvchanligi ham bor", ru: 'при необходимости он тоже гибкий' } },
+  { front: { uz: "«NoSQL yangiroq, demak doim yaxshiroq» — bu to'g'rimi?", ru: '«NoSQL новее, значит всегда лучше» — это верно?' }, back: { uz: "Yo'q, bu mif", ru: 'Нет, это миф' }, note: { uz: "tanlov modaga emas, vazifaga bog'liq", ru: 'выбор зависит не от моды, а от задачи' } },
 ];
 const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const audio = useAudio([{ id: 'sflash', text: "Darsni yakunlashdan oldin bugungi tushunchalarni tez takrorlaymiz. Har kartada bir izoh — qaysi tushuncha ekanini o'ylang, keyin kartani bosib tekshiring.", trigger: 'on_mount', waits_for: null }]);
+  const audio = useAudio([{ id: 'sflash', text: "Darsni yakunlashdan oldin bugungi tushunchalarni tez takrorlaymiz. Har kartada bir savol — javobini o'ylang, keyin kartani bosib tekshiring.", trigger: 'on_mount', waits_for: null }]);
   useEffect(() => { if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, []); // eslint-disable-line
   return (
     <Stage eyebrow={tr({ uz: 'Takrorlash', ru: 'Повторение' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={false} label={tr({ uz: 'Yakunlash →', ru: 'Завершить →' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Tushunchalarni <span className="italic" style={{ color: T.accent }}>tez takrorlaymiz</span>.</>, ru: <>Быстро <span className="italic" style={{ color: T.accent }}>повторим понятия</span>.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Darsni yakunlashdan oldin bugun o'rgangan tushunchalarni takrorlaymiz. Har kartada bir izoh — <b style={{ color: T.ink }}>qaysi tushuncha</b> ekanini o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</>, ru: <>Перед завершением урока повторим сегодняшние понятия. На каждой карте описание — подумайте, <b style={{ color: T.ink }}>какое это понятие</b>, затем нажмите на карту и проверьте. Оцените кнопками <b style={{ color: T.ink }}>Знаю</b> или <b style={{ color: T.ink }}>Повторить</b>.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Darsni yakunlashdan oldin bugun o'rgangan tushunchalarni takrorlaymiz. Har kartada bir savol — <b style={{ color: T.ink }}>javobini</b> o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</>, ru: <>Перед завершением урока повторим сегодняшние понятия. На каждой карточке — вопрос: подумайте, <b style={{ color: T.ink }}>каким будет ответ</b>, затем нажмите на карту и проверьте. Оцените кнопками <b style={{ color: T.ink }}>Знаю</b> или <b style={{ color: T.ink }}>Повторить</b>.</> })}</Mentor>
         <div className="fc-center"><Flashcards cards={DB_FLASHCARDS} /></div>
       </div>
     </Stage>
@@ -2249,7 +2251,7 @@ function QuizArena({ live, onClose, startSolo }) {
             <div className={`qz-res ${my?.correct ? 'good' : 'bad'}`}>
               {my?.correct
                 ? <><span className="qz-res-pts">+{myPtsFor(qi)}</span><span className="qz-res-t">{tr({ uz: 'ball', ru: 'баллов' })}{streakUpTo(qi) >= 2 ? ` · 🔥 x${streakUpTo(qi)} streak` : ''}</span></>
-                : <span className="qz-res-t">{my ? tr({ uz: "Xato — 0 ball. Keyingisida olasiz! 💪", ru: 'Мимо — 0 баллов. Возьмёте на следующем! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Побыстрее! ⏱' })}</span>}
+                : <span className="qz-res-t">{my ? tr({ uz: "Adashdingiz — 0 ball. Keyingisida olasiz! 💪", ru: 'Мимо — 0 баллов. Возьмёте на следующем! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Побыстрее! ⏱' })}</span>}
               {!solo && myRank >= 0 && <span className="qz-res-rank">{tr({ uz: 'Siz hozir:', ru: 'Вы сейчас:' })} {myRank + 1}{tr({ uz: "-o'rin", ru: '-е место' })}</span>}
             </div>
           )}
@@ -2445,7 +2447,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
           <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> {tr({ uz: 'Endi siz bilasiz', ru: 'Теперь вы знаете' })}</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{r}</span></li>))}</ul></div>
           <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: "O'z loyihangiz uchun DB tanlang:", ru: 'Выберите БД для своего проекта:' })}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{h.b}</b> <span className="t">{h.t}</span></li>))}</ul><p className="hw-note">{tr({ uz: "Keyingi darsda PostgreSQL'da haqiqiy jadval yaratamiz — CREATE TABLE! 🚀", ru: 'На следующем уроке создадим настоящую таблицу в PostgreSQL — CREATE TABLE! 🚀' })}</p></div>
         </div>
-        <div className="card ach-coll fade-up d3">
+        {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🏅 Nishonlaringiz', ru: '🏅 Ваши значки' })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">
             {Object.entries(ACHIEVEMENTS).map(([id, a]) => { const got = !!(achievements && achievements.has(id)); return (
@@ -2456,7 +2458,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
               </div>
             ); })}
           </div>
-        </div>
+        </div>}
       </div>
     </Stage>
   );

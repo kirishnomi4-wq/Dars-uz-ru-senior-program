@@ -403,6 +403,7 @@ const Col = ({ children, gap }) => <div className="col" style={gap ? { gap } : u
 // 🏅 Yuqori paneldagi nishon hisoblagichi (Stage chrome)
 function AchCounter() {
   const earned = useContext(AchCtx);
+  const gate = useContext(LiveGateCtx);
   const count = earned ? earned.size : 0;
   const total = Object.keys(ACHIEVEMENTS).length;
   const prevRef = useRef(count);
@@ -412,6 +413,7 @@ function AchCounter() {
     if (count > prevRef.current) { setBump(true); const t = setTimeout(() => setBump(false), 800); prevRef.current = count; return () => clearTimeout(t); }
     prevRef.current = count;
   }, [count]);
+  if (gate && gate.live && gate.live.mode === 'mentor') return null; // 🔴 mentor proyektorida nishon YO'Q (hooklardan KEYIN)
   return (
     <div className="ach-cnt-wrap">
       <button className={`ach-counter ${bump ? 'bump' : ''} ${count > 0 ? 'has' : ''}`} onClick={() => setOpen(o => !o)} aria-label="Badges" title="Badges">
@@ -1677,20 +1679,20 @@ const ScreenFinalPractice = (props) => (
     ]} />
 );
 
-// 🃏 FLASHCARD KARTALARI (front=izoh, back=tushuncha) — Metodist keyin sayqallaydi
+// 🃏 FLASHCARD KARTALARI (front = savol, back = qisqa javob, note = bir qatorlik misol)
 const BACKEND_FLASHCARDS = [
-  { front: { uz: "Express va PostgreSQL orasidagi ko'prik", ru: 'Мост между Express и PostgreSQL' }, back: "pool.query", note: { uz: "SQL'ni bazaga olib boradi", ru: 'доставляет SQL в базу' } },
-  { front: { uz: "Har mashinaga avtomatik takrorlanmas raqam beruvchi ustun", ru: 'Столбец, автоматически дающий каждой машине уникальный номер' }, back: "id SERIAL PRIMARY KEY", note: "1, 2, 3…" },
-  { front: { uz: "Bazaga yangi qator qo'shish (Create)", ru: 'Добавить в базу новую строку (Create)' }, back: "INSERT", note: "POST → INSERT" },
-  { front: { uz: "Bazadan o'qish (Read)", ru: 'Чтение из базы (Read)' }, back: "SELECT", note: "GET → SELECT" },
-  { front: { uz: "Mavjud qatorni o'zgartirish (Update)", ru: 'Изменить существующую строку (Update)' }, back: "UPDATE", note: "PUT · WHERE id = $1" },
-  { front: { uz: "Qatorni olib tashlash (Delete)", ru: 'Убрать строку (Delete)' }, back: "DELETE", note: "DELETE FROM ... WHERE id" },
-  { front: { uz: "Manzildagi o'zgaruvchi (masalan /api/cars/2)", ru: 'Переменная в адресе (например /api/cars/2)' }, back: ":id", note: "req.params.id" },
-  { front: { uz: "Qiymatlar uchun xavfsiz o'rin — matn kod bo'lmaydi", ru: 'Безопасное место для значений — текст не станет кодом' }, back: "$1, $2", note: { uz: "massivda beriladi", ru: 'передаются массивом' } },
-  { front: { uz: "Ilovaning 4 asosiy amali", ru: '4 основных действия приложения' }, back: "CRUD", note: "Create · Read · Update · Delete" },
-  { front: { uz: "Qo'shish so'rovi va uning SQL juftligi", ru: 'Запрос добавления и его SQL-пара' }, back: "POST → INSERT", note: { uz: "body'da ma'lumot", ru: 'данные в body' } },
-  { front: { uz: "Jadvaldagi bir bo'lak ma'lumot (nom, narx, yil…)", ru: 'Один кусочек данных в таблице (nom, narx, yil…)' }, back: { uz: "Ustun", ru: 'Столбец' }, note: { uz: "har biri bitta narsa", ru: 'каждый — одна вещь' } },
-  { front: { uz: "POST bilan yuborilgan ma'lumot serverda qayerga keladi", ru: 'Куда на сервере приходят данные, отправленные через POST' }, back: "req.body", note: "{ nom, narx, yil }" },
+  { front: { uz: "Jadvaldagi bitta ustun nimani saqlaydi?", ru: 'Что хранит один столбец таблицы?' }, back: { uz: "Bitta xususiyatni", ru: 'Одно свойство' }, note: "nom · narx · yil · bandmi" },
+  { front: { uz: "Har mashinaga takrorlanmas raqamni qaysi ustun beradi?", ru: 'Какой столбец даёт каждой машине неповторимый номер?' }, back: "id SERIAL PRIMARY KEY", note: { uz: "Raqam avtomatik o'sadi: 1, 2, 3…", ru: 'Номер растёт сам: 1, 2, 3…' } },
+  { front: { uz: "Barcha mashinalarni o'qish uchun qaysi juftlik kerak?", ru: 'Какая пара нужна, чтобы прочитать все машины?' }, back: "GET → SELECT", note: { uz: "Bazada hech narsa o'zgarmaydi", ru: 'В базе ничего не меняется' } },
+  { front: { uz: "Bazaga yangi mashina qo'shish uchun qaysi juftlik kerak?", ru: 'Какая пара нужна, чтобы добавить в базу новую машину?' }, back: "POST → INSERT", note: { uz: "Ma'lumot req.body ichida keladi", ru: 'Данные приходят внутри req.body' } },
+  { front: { uz: "Bitta mashina narxini o'zgartirish uchun qaysi juftlik kerak?", ru: 'Какая пара нужна, чтобы изменить цену одной машины?' }, back: "PUT → UPDATE", note: "UPDATE cars SET narx = $1 WHERE id = $2" },
+  { front: { uz: "Mashinani ro'yxatdan olib tashlash uchun qaysi juftlik kerak?", ru: 'Какая пара нужна, чтобы убрать машину из списка?' }, back: "DELETE → DELETE", note: "DELETE FROM cars WHERE id = $1" },
+  { front: { uz: "CRUD harflari qaysi to'rt amalni bildiradi?", ru: 'Какие четыре действия означают буквы CRUD?' }, back: "Create · Read · Update · Delete", note: { uz: "Qo'shish · o'qish · o'zgartirish · o'chirish", ru: 'Добавить · прочитать · изменить · удалить' } },
+  { front: { uz: "Express'dan bazaga SQL'ni nima olib boradi?", ru: 'Что доставляет SQL из Express в базу?' }, back: "pool.query('...')", note: { uz: "Express bilan PostgreSQL orasidagi ko'prik", ru: 'Мост между Express и PostgreSQL' } },
+  { front: { uz: "SQL ichiga qiymatni yopishtirish o'rniga nima qo'yasiz?", ru: 'Что вы ставите вместо вклеивания значения прямо в SQL?' }, back: "$1, $2", note: { uz: "Qiymatlar massivda beriladi — matn kod bo'lib qolmaydi", ru: 'Значения передаются массивом — текст не станет кодом' } },
+  { front: { uz: "Manzildagi :id qiymatini kodda qayerdan olasiz?", ru: 'Откуда в коде вы берёте значение :id из адреса?' }, back: "req.params.id", note: { uz: "/api/cars/2 kelsa, id = 2", ru: 'Пришёл /api/cars/2 — id = 2' } },
+  { front: { uz: "Bazadan olingan natijani frontga nima qaytaradi?", ru: 'Что возвращает фронту результат, взятый из базы?' }, back: "res.json(...)", note: { uz: "Javob JSON ko'rinishida ketadi", ru: 'Ответ уходит в виде JSON' } },
+  { front: { uz: "Muvaffaqiyatli POST qaysi status kodni qaytaradi?", ru: 'Какой статус-код возвращает успешный POST?' }, back: "201 Created", note: { uz: "Yangi yozuv qo'shildi degani", ru: 'Значит, новая запись добавлена' } },
 ];
 
 const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
@@ -1699,7 +1701,7 @@ const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) =>
     <Stage eyebrow={{ uz: 'Takrorlash', ru: 'Повторение' }} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={false} label={{ uz: 'Yakunlash →', ru: 'Завершить →' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Tushunchalarni <span className="italic" style={{ color: T.accent }}>tez takrorlaymiz</span>.</>, ru: <>Быстро <span className="italic" style={{ color: T.accent }}>повторим понятия</span>.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Darsni yakunlashdan oldin bugun o'rgangan tushunchalarni takrorlaymiz. Har kartada bir izoh — <b style={{ color: T.ink }}>qaysi tushuncha</b> ekanini o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</>, ru: <>Перед завершением урока повторим сегодняшние понятия. На каждой карточке — описание: подумайте, <b style={{ color: T.ink }}>какое это понятие</b>, затем нажмите на карточку и проверьте. Оцените себя: <b style={{ color: T.ink }}>Знаю</b> или <b style={{ color: T.ink }}>Повторить</b>.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Darsni yakunlashdan oldin bugun o'rgangan tushunchalarni takrorlaymiz. Har kartada bir savol — <b style={{ color: T.ink }}>javobini</b> o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</>, ru: <>Перед завершением урока повторим сегодняшние понятия. На каждой карточке — вопрос: подумайте, <b style={{ color: T.ink }}>каким будет ответ</b>, затем нажмите на карточку и проверьте. Оцените себя: <b style={{ color: T.ink }}>Знаю</b> или <b style={{ color: T.ink }}>Повторить</b>.</> })}</Mentor>
         <div className="fc-center"><Flashcards cards={BACKEND_FLASHCARDS} /></div>
       </div>
     </Stage>
@@ -1738,7 +1740,7 @@ function Flashcards({ cards }) {
       <div className="fc-cardwrap">
         <div className={`fc-fly ${exiting === 'knew' ? 'out-knew' : ''} ${exiting === 'again' ? 'out-again' : ''}`} key={swapRef.current}>
         <div className={`fc-card ${flipped ? 'flip' : ''}`} onClick={() => !flipped && !exiting && setFlipped(true)} role="button" tabIndex={0}>
-          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: 'Qaysi tushuncha? 🤔', ru: 'Какое понятие? 🤔' })} <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
+          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: "Javobni o'ylang", ru: 'Подумайте над ответом' })} 🤔 <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
           <div className="fc-face fc-back"><span className="fc-tag">{tr(card.back)}</span>{card.note && <span className="fc-note">{tr(card.note)}</span>}</div>
         </div>
         </div>
@@ -2192,7 +2194,7 @@ function QuizArena({ live, onClose, startSolo }) {
             <div className={`qz-res ${my?.correct ? 'good' : 'bad'}`}>
               {my?.correct
                 ? <><span className="qz-res-pts">+{myPtsFor(qi)}</span><span className="qz-res-t">{tr({ uz: 'ball', ru: 'баллов' })}{streakUpTo(qi) >= 2 ? ` · 🔥 x${streakUpTo(qi)} ${tr({ uz: 'streak', ru: 'серия' })}` : ''}</span></>
-                : <span className="qz-res-t">{my ? tr({ uz: 'Xato — 0 ball. Keyingisida olasiz! 💪', ru: 'Ошибка — 0 баллов. Возьмёте на следующем! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Быстрее! ⏱' })}</span>}
+                : <span className="qz-res-t">{my ? tr({ uz: 'Adashdingiz — 0 ball. Keyingisida olasiz! 💪', ru: 'Ошибка — 0 баллов. Возьмёте на следующем! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Быстрее! ⏱' })}</span>}
               {!solo && myRank >= 0 && <span className="qz-res-rank">{tr({ uz: 'Siz hozir:', ru: 'Вы сейчас:' })} {myRank + 1}{tr({ uz: "-o'rin", ru: '-е место' })}</span>}
             </div>
           )}
@@ -2391,7 +2393,7 @@ const Screen15 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
           <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> {tr({ uz: 'Endi siz bilasiz', ru: 'Теперь вы знаете' })}</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{tr(r)}</span></li>))}</ul></div>
           <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: "Antigravity bilan o'z backend'ingizda sinang:", ru: 'Проверьте на своём backend вместе с Antigravity:' })}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: "🚀 Backend tayyor, lekin u hozircha yolg'iz. Keyingi praktikada Modul 3'dagi React frontni aynan shu serverga ulaymiz — to'liq fullstack!", ru: '🚀 Backend готов, но пока он одинок. На следующей практике подключим React-фронт из Модуля 3 именно к этому серверу — полный fullstack!' })}</p></div>
         </div>
-        <div className="card ach-coll fade-up d3">
+        {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🏅 Nishonlaringiz — ', ru: '🏅 Ваши значки — ' })}{(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">
             {Object.entries(ACHIEVEMENTS).map(([id, a]) => { const got = !!(achievements && achievements.has(id)); return (
@@ -2402,7 +2404,7 @@ const Screen15 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
               </div>
             ); })}
           </div>
-        </div>
+        </div>}
       </div>
     </Stage>
   );

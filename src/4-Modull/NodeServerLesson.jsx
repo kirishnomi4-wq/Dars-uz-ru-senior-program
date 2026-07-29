@@ -408,6 +408,7 @@ const Col = ({ children, gap }) => <div className="col" style={gap ? { gap } : u
 // 🏅 Yuqori paneldagi nishon hisoblagichi (Stage chrome)
 function AchCounter() {
   const earned = useContext(AchCtx);
+  const gate = useContext(LiveGateCtx);
   const count = earned ? earned.size : 0;
   const total = Object.keys(ACHIEVEMENTS).length;
   const prevRef = useRef(count);
@@ -417,6 +418,7 @@ function AchCounter() {
     if (count > prevRef.current) { setBump(true); const t = setTimeout(() => setBump(false), 800); prevRef.current = count; return () => clearTimeout(t); }
     prevRef.current = count;
   }, [count]);
+  if (gate && gate.live && gate.live.mode === 'mentor') return null; // 🔴 mentor proyektorida nishon YO'Q (hooklardan KEYIN)
   return (
     <div className="ach-cnt-wrap">
       <button className={`ach-counter ${bump ? 'bump' : ''} ${count > 0 ? 'has' : ''}`} onClick={() => setOpen(o => !o)} aria-label="Badges" title="Badges">
@@ -1497,7 +1499,7 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [value, setValue] = useState(storedAnswer?.picked || '');
   const [passed, setPassed] = useState(!!storedAnswer?.correct);
   const [ran, setRan] = useState(false);
-  const v = value.replace(/[‘’ʻ]/g, "'").replace(/[“”]/g, '"');
+  const v = value.replace(/[\u2018\u2019\u02BB]/g, "'").replace(/[\u201C\u201D]/g, '"');
   const hasGet = /app\s*\.\s*get\s*\(/.test(v);
   const hasPath = /['"]\/salom['"]/.test(v);
   const hasSend = /res\s*\.\s*send\s*\(\s*['"].+['"]/.test(v);
@@ -1598,7 +1600,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
           <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> {tr({ uz: 'Endi siz bilasiz', ru: 'Теперь Вы знаете' })}</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{tr(r)}</span></li>))}</ul></div>
           <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: "O'z serveringizni quring:", ru: 'Постройте свой сервер:' })}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: "Keyingi darsda serverni PostgreSQL bazaga ulab, haqiqiy ma'lumot qaytaramiz! 🚀", ru: 'На следующем уроке подключим сервер к базе PostgreSQL и вернём настоящие данные! 🚀' })}</p></div>
         </div>
-        <div className="card ach-coll fade-up d3">
+        {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🏅 Nishonlaringiz — ', ru: '🏅 Ваши бейджи — ' })}{(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">
             {Object.entries(ACHIEVEMENTS).map(([id, a]) => { const got = !!(achievements && achievements.has(id)); return (
@@ -1609,7 +1611,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
               </div>
             ); })}
           </div>
-        </div>
+        </div>}
       </div>
     </Stage>
   );
@@ -1751,7 +1753,7 @@ function Flashcards({ cards }) {
       <div className="fc-cardwrap">
         <div className={`fc-fly ${exiting === 'knew' ? 'out-knew' : ''} ${exiting === 'again' ? 'out-again' : ''}`} key={swapRef.current}>
         <div className={`fc-card ${flipped ? 'flip' : ''}`} onClick={() => !flipped && !exiting && setFlipped(true)} role="button" tabIndex={0}>
-          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: 'Qaysi tushuncha? 🤔', ru: 'Какое понятие? 🤔' })} <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
+          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: "Javobni o'ylang", ru: 'Подумайте над ответом' })} 🤔 <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
           <div className="fc-face fc-back"><span className="fc-tag">{tr(card.back)}</span>{card.note && <span className="fc-note">{tr(card.note)}</span>}</div>
         </div>
         </div>
@@ -1763,20 +1765,20 @@ function Flashcards({ cards }) {
   );
 }
 
-// 🃏 NODE.JS FLASHCARD KARTALARI (front=izoh, back=tushuncha) — Metodist keyin sayqallaydi
+// 🃏 NODE.JS FLASHCARD KARTALARI (front=savol, back=qisqa javob)
 const NODE_FLASHCARDS = [
-  { front: { uz: "So'rovga javob beradigan, doim ishlab turadigan dastur", ru: 'Программа, которая работает всегда и отвечает на запросы' }, back: { uz: "Server", ru: 'Сервер' }, note: { uz: "eshigi ochiq do'kon", ru: 'магазин с открытой дверью' } },
-  { front: { uz: "JavaScript'ni serverda ham ishlatadi", ru: 'Запускает JavaScript и на сервере' }, back: "Node.js", note: { uz: "bir til, ikki dunyo", ru: 'один язык, два мира' } },
-  { front: { uz: "Tayyor asboblar do'koni — paket o'rnatadi", ru: 'Магазин готовых инструментов — ставит пакеты' }, back: "npm", note: "npm install express" },
-  { front: { uz: "Serverni 5 qatorda quradigan yordamchi", ru: 'Помощник, строящий сервер в 5 строк' }, back: "Express", note: { uz: "oson server", ru: 'простой сервер' } },
-  { front: { uz: "Express'ning tartibli, professional akasi", ru: 'Организованный, профессиональный старший брат Express' }, back: "NestJS", note: { uz: "katta loyihalar", ru: 'большие проекты' } },
-  { front: { uz: "Serverning aniq eshigi / manzili", ru: 'Точная дверь / адрес сервера' }, back: { uz: "Endpoint", ru: 'Endpoint' }, note: "/salom, /vaqt" },
-  { front: { uz: "So'rovga tovarni (javobni) uzatadi", ru: 'Передаёт товар (ответ) на запрос' }, back: "res.send", note: { uz: "javob qaytaradi", ru: 'возвращает ответ' } },
-  { front: { uz: "OCHIQ tablosi — portda so'rov kutadi", ru: 'Табло ОТКРЫТО — ждёт запросы на порту' }, back: "app.listen", note: "app.listen(3000)" },
-  { front: { uz: "O'z kompyuteringizdagi server manzili", ru: 'Адрес сервера на Вашем компьютере' }, back: "localhost:3000", note: { uz: "o'zingizdagi do'kon", ru: 'магазин у Вас дома' } },
-  { front: { uz: "O'rnatgan asbobni kodga chaqiradi", ru: 'Подключает установленный инструмент в код' }, back: "require('express')", note: { uz: "javondan olish", ru: 'взять с полки' } },
-  { front: { uz: "Do'kon yopiq — ulanib bo'lmadi", ru: 'Магазин закрыт — не удалось подключиться' }, back: "ECONNREFUSED", note: { uz: "server o'chiq", ru: 'сервер выключен' } },
-  { front: { uz: "O'rnatilgan asboblar ro'yxati", ru: 'Список установленных инструментов' }, back: "package.json", note: { uz: "paketlar ro'yxati", ru: 'список пакетов' } },
+  { front: { uz: "So'rovlarga javob berib, doim ishlab turadigan dastur qanday ataladi?", ru: 'Как называется программа, которая всё время работает и отвечает на запросы?' }, back: { uz: "Server", ru: 'Сервер' }, note: { uz: "eshigi ochiq do'kon: kim kelsa — javob oladi", ru: 'магазин с открытой дверью: кто придёт — получит ответ' } },
+  { front: { uz: "JavaScript'ni brauzerdan tashqarida, serverda nima ishga tushiradi?", ru: 'Что запускает JavaScript вне браузера, на сервере?' }, back: "Node.js", note: { uz: "bir til, ikki dunyo: frontend ham, backend ham", ru: 'один язык, два мира: и фронтенд, и бэкенд' } },
+  { front: { uz: "express paketini qaysi buyruq bilan o'rnatasiz?", ru: 'Какой командой Вы устанавливаете пакет express?' }, back: "npm install express", note: { uz: "npm — tayyor paketlar do'koni", ru: 'npm — магазин готовых пакетов' } },
+  { front: { uz: "O'rnatgan paketlaringiz ro'yxati qaysi faylda turadi?", ru: 'В каком файле лежит список установленных пакетов?' }, back: "package.json", note: { uz: "nima ishlatganingiz shu yerda ko'rinadi", ru: 'здесь видно, чем Вы пользуетесь' } },
+  { front: { uz: "Serverni bir necha qatorda yozishga qaysi paket yordam beradi?", ru: 'Какой пакет помогает написать сервер в несколько строк?' }, back: "Express", note: { uz: "boshlash uchun eng oson yo'l", ru: 'самый простой способ начать' } },
+  { front: { uz: "Yirik loyihalarda Express o'rniga qaysi asbob ishlatiladi?", ru: 'Какой инструмент берут вместо Express в крупных проектах?' }, back: "NestJS", note: { uz: "Express ustiga qurilgan, tartibliroq", ru: 'построен поверх Express, более организован' } },
+  { front: { uz: "Serverning /salom kabi aniq manzili qanday ataladi?", ru: 'Как называется точный адрес сервера, например /salom?' }, back: "Endpoint", note: { uz: "har eshik bitta ishni qiladi", ru: 'каждая дверь делает одно дело' } },
+  { front: { uz: "Kodda yangi eshikni (endpoint) qaysi qator ochadi?", ru: 'Какая строка в коде открывает новую дверь (endpoint)?' }, back: "app.get('/salom', ...)", note: { uz: "manzil + javob beruvchi funksiya", ru: 'адрес + функция, которая отвечает' } },
+  { front: { uz: "Mijozga javob matnini qaysi buyruq yuboradi?", ru: 'Какая команда отправляет клиенту текст ответа?' }, back: "res.send('Salom')", note: { uz: "res — javob, send — yubor", ru: 'res — ответ, send — отправь' } },
+  { front: { uz: "Serverni yoqib, portda so'rov kutishni qaysi qator buyuradi?", ru: 'Какая строка включает сервер и заставляет ждать запросы на порту?' }, back: "app.listen(3000)", note: { uz: "eshikdagi OCHIQ tablosi yonadi", ru: 'на двери загорается табло ОТКРЫТО' } },
+  { front: { uz: "Yozgan serveringizni qaysi buyruq bilan ishga tushirasiz?", ru: 'Какой командой Вы запускаете написанный сервер?' }, back: "node server.js", note: { uz: "keyin brauzerda localhost:3000 ni oching", ru: 'потом откройте в браузере localhost:3000' } },
+  { front: { uz: "Brauzer serverga ulana olmasa, qanday xato yozuvi chiqadi?", ru: 'Какая ошибка появляется, если браузер не может подключиться к серверу?' }, back: "ECONNREFUSED", note: { uz: "server o'chiq: ko'pincha app.listen yo'q", ru: 'сервер выключен: чаще всего нет app.listen' } },
 ];
 const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, []); // eslint-disable-line
@@ -1784,7 +1786,7 @@ const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) =>
     <Stage eyebrow={tr({ uz: 'Takrorlash', ru: 'Повторение' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={false} label={tr({ uz: 'Yakunlash →', ru: 'Завершить →' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Tushunchalarni <span className="italic" style={{ color: T.accent }}>tez takrorlaymiz</span>.</>, ru: <>Быстро <span className="italic" style={{ color: T.accent }}>повторим понятия</span>.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Darsni yakunlashdan oldin bugun o'rgangan tushunchalarni takrorlaymiz. Har kartada bir izoh — <b style={{ color: T.ink }}>qaysi tushuncha</b> ekanini o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</>, ru: <>Перед завершением урока повторим изученные сегодня понятия. На каждой карточке описание — подумайте, <b style={{ color: T.ink }}>какое это понятие</b>, затем нажмите на карточку и проверьте. Оцените кнопками <b style={{ color: T.ink }}>Знаю</b> или <b style={{ color: T.ink }}>Повторить</b>.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Darsni yakunlashdan oldin bugun o'rgangan tushunchalarni takrorlaymiz. Har kartada bir savol — <b style={{ color: T.ink }}>javobini</b> o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</>, ru: <>Перед завершением урока повторим изученные сегодня понятия. На каждой карточке вопрос — подумайте, <b style={{ color: T.ink }}>каким будет ответ</b>, затем нажмите на карточку и проверьте. Оцените кнопками <b style={{ color: T.ink }}>Знаю</b> или <b style={{ color: T.ink }}>Повторить</b>.</> })}</Mentor>
         <div className="fc-center"><Flashcards cards={NODE_FLASHCARDS} /></div>
       </div>
     </Stage>
@@ -2231,7 +2233,7 @@ function QuizArena({ live, onClose, startSolo }) {
             <div className={`qz-res ${my?.correct ? 'good' : 'bad'}`}>
               {my?.correct
                 ? <><span className="qz-res-pts">+{myPtsFor(qi)}</span><span className="qz-res-t">{tr({ uz: 'ball', ru: 'баллов' })}{streakUpTo(qi) >= 2 ? ` · 🔥 x${streakUpTo(qi)} streak` : ''}</span></>
-                : <span className="qz-res-t">{my ? tr({ uz: "Xato — 0 ball. Keyingisida olasiz! 💪", ru: 'Мимо — 0 баллов. Возьмёте на следующем! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Побыстрее! ⏱' })}</span>}
+                : <span className="qz-res-t">{my ? tr({ uz: "Adashdingiz — 0 ball. Keyingisida olasiz! 💪", ru: 'Мимо — 0 баллов. Возьмёте на следующем! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Побыстрее! ⏱' })}</span>}
               {!solo && myRank >= 0 && <span className="qz-res-rank">{tr({ uz: 'Siz hozir:', ru: 'Вы сейчас:' })} {myRank + 1}{tr({ uz: "-o'rin", ru: '-е место' })}</span>}
             </div>
           )}

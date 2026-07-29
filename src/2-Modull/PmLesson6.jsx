@@ -1598,18 +1598,18 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 
 // ===== 🃏 FLASHCARDS — Demo Day / pitch leksikonini takrorlash (3D flip) =====
 const PITCH_FLASHCARDS = [
-  { front: 'Mahsulotni jonli ko\'rsatish', back: 'Demo', note: "gapirma — bosib ko'rsat" },
-  { front: '"Aytma — ko\'rsat" tamoyili', back: "Show, don't tell", note: "ishlayotganini ko'rgan ishonadi" },
-  { front: 'Tanish narsa bilan tushuntirish', back: 'Analogiya', note: 'skelet · teri · harakat' },
-  { front: 'Oldingizda o\'tirgan odamlar', back: 'Auditoriya', note: 'ularga "ha" oldiring' },
-  { front: 'Saytingizni taqdim qilish kuni', back: 'Demo Day', note: "jonli ko'rsatasiz" },
-  { front: 'Sahifa skeleti (tuzilma)', back: 'HTML', note: 'nima bor' },
-  { front: 'Ko\'rinish, rang, joylashuv', back: 'CSS', note: "qanday ko'rinadi" },
-  { front: 'Harakat — tugma bosilganda ish', back: 'JS', note: 'nima qiladi' },
-  { front: 'Pitchning 1-qismi — diqqat tortish', back: 'Ochilish', note: 'tanish muammodan' },
-  { front: 'Pitch qancha davom etishi kerak', back: '2 daqiqa', note: 'qisqa va aniq' },
-  { front: 'Jargonsiz, sodda til bilan', back: 'Sodda texnika', note: 'hamma tushunsin' },
-  { front: 'Pitchning oxirgi qismi', back: 'Yakun', note: 'xulosa + taklif' },
+  { front: "Demo Day taqdimoti qaysi 4 qismdan iborat?", back: "Ochilish, jonli demo, sodda texnika, yakun", note: "aynan shu tartibda" },
+  { front: "Mahsulotni gapirmasdan bosib ko'rsatish qanday ataladi?", back: "Demo", note: "eng kuchli dalil" },
+  { front: "«Aytma — ko'rsat» tamoyili inglizchada qanday aytiladi?", back: "Show, don't tell", note: "ishlayotganini ko'rgan odam ishonadi" },
+  { front: "Ochilishni nimadan boshlasangiz auditoriya «ha, menda ham shunday» deydi?", back: "Tanish muammodan", note: "texnik tafsilotdan emas" },
+  { front: "Oldingizda o'tirib eshitayotgan odamlar qanday ataladi?", back: "Auditoriya", note: "ular tushunsa — taqdimot ishladi" },
+  { front: "Tanish narsa bilan tushuntirish usuli qanday ataladi?", back: "Analogiya", note: "skelet, teri, harakat" },
+  { front: "Saytda HTML qaysi vazifani bajaradi?", back: "Skelet bo'ladi", note: "sarlavha, rasm, tugma qayerda turishi" },
+  { front: "CSS saytga nima beradi?", back: "Ko'rinish: rang, shrift, dizayn", note: "teri va kiyim kabi" },
+  { front: "JS sayt bilan nima qiladi?", back: "Uni harakatga keltiradi", note: "tugma bosilganda like soni ortadi" },
+  { front: "Demo Day taqdimoti qancha davom etadi?", back: "2 daqiqa", note: "qisqa va aniq bo'lsin" },
+  { front: "2 daqiqada eng ko'p vaqtni nimaga ajratasiz?", back: "Muammoni aytish va saytni jonli ko'rsatishga", note: "texnologiyalar ro'yxati zeriktiradi" },
+  { front: "Taqdimotning oxirgi qismida nima qilasiz?", back: "Qisqa yakunlab, savollarga tayyor turasiz", note: "bu ishonch belgisi" },
 ];
 function Flashcards({ cards }) {
   const [queue, setQueue] = useState(() => cards.map((_, i) => i));
@@ -1642,7 +1642,7 @@ function Flashcards({ cards }) {
       <div className="fc-cardwrap">
         <div className={`fc-fly ${exiting === 'knew' ? 'out-knew' : ''} ${exiting === 'again' ? 'out-again' : ''}`} key={swapRef.current}>
         <div className={`fc-card ${flipped ? 'flip' : ''}`} onClick={() => !flipped && !exiting && setFlipped(true)} role="button" tabIndex={0}>
-          <div className="fc-face fc-front"><span className="fc-q">{card.front}</span><span className="fc-cue">Qaysi atama? 🤔 <span className="fc-tap">bosing</span></span></div>
+          <div className="fc-face fc-front"><span className="fc-q">{card.front}</span><span className="fc-cue">Javobni o'ylang 🤔 <span className="fc-tap">bosing</span></span></div>
           <div className="fc-face fc-back"><span className="fc-tag">{card.back}</span>{card.note && <span className="fc-note">{card.note}</span>}</div>
         </div>
         </div>
@@ -1654,13 +1654,13 @@ function Flashcards({ cards }) {
   );
 }
 const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const audio = useAudio([{ id: 'sflash', text: "Darsni yakunlashdan oldin, bugun o'rgangan pitch atamalarini tez takrorlaymiz. Har kartada bir izoh — qaysi atama ekanini o'ylang, keyin kartani bosib tekshiring.", trigger: 'on_mount', waits_for: null }]);
+  const audio = useAudio([{ id: 'sflash', text: "Darsni yakunlashdan oldin, bugun o'rgangan pitch atamalarini tez takrorlaymiz. Har kartada bir savol — javobini o'ylang, keyin kartani bosib tekshiring.", trigger: 'on_mount', waits_for: null }]);
   useEffect(() => { if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, []); // eslint-disable-line
   return (
     <Stage eyebrow="Takrorlash" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={false} label="Yakunlash →" onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">Pitch atamalarini <span className="italic" style={{ color: T.accent }}>tez takrorlaymiz</span>.</h2></div>
-        <Mentor>Darsni yakunlashdan oldin bugun o'rgangan atamalarni takrorlaymiz. Har kartada bir izoh — <b style={{ color: T.ink }}>qaysi atama</b> ekanini o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</Mentor>
+        <Mentor>Darsni yakunlashdan oldin bugun o'rgangan atamalarni takrorlaymiz. Har kartada bir savol — <b style={{ color: T.ink }}>javobini</b> o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</Mentor>
         <div className="fc-center"><Flashcards cards={PITCH_FLASHCARDS} /></div>
       </div>
     </Stage>
@@ -1714,7 +1714,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
           <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>Demo Day — oxirgi tayyorgarlik</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>Chiqishdan oldin:</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{h.b}</b> <span className="t">{h.t}</span></li>))}</ul><p className="hw-note">Saytingizni qurdingiz, fikrlashni o'rgandingiz — endi dunyoga ko'rsating! 🎬🚀</p></div>
         </div>
         </Zoomable>
-        <div className="card ach-coll fade-up d3">
+        {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>🏅 Nishonlaringiz — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">
             {Object.entries(ACHIEVEMENTS).map(([id, a]) => { const got = !!(achievements && achievements.has(id)); return (
@@ -1725,7 +1725,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
               </div>
             ); })}
           </div>
-        </div>
+        </div>}
         <div ref={glossRef} className="gloss fade-up d4" style={{ scrollMarginBottom: 16 }}><div className="gloss-head" onClick={toggleGloss}><span className="lbl">Kalit so'zlar (takrorlash)</span><span className="gloss-toggle">{open ? '−' : '+'}</span></div>{open && (<div className="gloss-body">{GLOSSARY.map((g, i) => (<span key={i}><b>{g.b}</b> {g.t}{i < GLOSSARY.length - 1 ? ' · ' : ''}</span>))}</div>)}</div>
       </div>
     </Stage>
@@ -1801,6 +1801,7 @@ function AchToasts({ toasts, onDone }) {
 // Yuqori paneldagi nishon hisoblagichi (Stage chrome)
 function AchCounter() {
   const earned = useContext(AchCtx);
+  const gate = useContext(LiveGateCtx);
   const count = earned ? earned.size : 0;
   const total = Object.keys(ACHIEVEMENTS).length;
   const prevRef = useRef(count);
@@ -1810,6 +1811,7 @@ function AchCounter() {
     if (count > prevRef.current) { setBump(true); const t = setTimeout(() => setBump(false), 800); prevRef.current = count; return () => clearTimeout(t); }
     prevRef.current = count;
   }, [count]);
+  if (gate && gate.live && gate.live.mode === 'mentor') return null; // 🔴 mentor proyektorida nishon YO'Q (hooklardan KEYIN)
   return (
     <div className="ach-cnt-wrap">
       <button className={`ach-counter ${bump ? 'bump' : ''} ${count > 0 ? 'has' : ''}`} onClick={() => setOpen(o => !o)} aria-label="Badges" title="Badges">
@@ -2339,7 +2341,7 @@ function QuizArena({ live, onClose, startSolo }) {
             <div className={`qz-res ${my?.correct ? 'good' : 'bad'}`}>
               {my?.correct
                 ? <><span className="qz-res-pts">+{myPtsFor(qi)}</span><span className="qz-res-t">ball{streakUpTo(qi) >= 2 ? ` · 🔥 x${streakUpTo(qi)} streak` : ''}</span></>
-                : <span className="qz-res-t">{my ? "Xato — 0 ball. Keyingisida olasiz! 💪" : "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱"}</span>}
+                : <span className="qz-res-t">{my ? "Adashdingiz — 0 ball. Keyingisida olasiz! 💪" : "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱"}</span>}
               {!solo && myRank >= 0 && <span className="qz-res-rank">Siz hozir: {myRank + 1}-o'rin</span>}
             </div>
           )}

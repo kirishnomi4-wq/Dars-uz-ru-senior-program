@@ -431,6 +431,7 @@ const Col = ({ children, gap }) => <div className="col" style={gap ? { gap } : u
 
 function AchCounter() {
   const earned = useContext(AchCtx);
+  const gate = useContext(LiveGateCtx);
   const count = earned ? earned.size : 0;
   const total = Object.keys(ACHIEVEMENTS).length;
   const prevRef = useRef(count);
@@ -440,6 +441,7 @@ function AchCounter() {
     if (count > prevRef.current) { setBump(true); const t = setTimeout(() => setBump(false), 800); prevRef.current = count; return () => clearTimeout(t); }
     prevRef.current = count;
   }, [count]);
+  if (gate && gate.live && gate.live.mode === 'mentor') return null; // 🔴 mentor proyektorida nishon YO'Q (hooklardan KEYIN)
   return (
     <div className="ach-cnt-wrap">
       <button className={`ach-counter ${bump ? 'bump' : ''} ${count > 0 ? 'has' : ''}`} onClick={() => setOpen(o => !o)} aria-label="Badges" title="Badges">
@@ -1636,7 +1638,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
           <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>Demo Day'ga tayyorgarlik</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>Og'riq → yechim ko'nikmangizni mashq qiling:</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{h.b}</b> <span className="t">{h.t}</span></li>))}</ul><p className="hw-note">Demo Day — ko'pchilikning og'rig'iga yechim qurib taqdim qilasiz! 💊</p></div>
         </div>
         </Zoomable>
-        <div className="card ach-coll fade-up d3">
+        {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>🏅 Nishonlaringiz — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">
             {Object.entries(ACHIEVEMENTS).map(([id, a]) => { const got = !!(achievements && achievements.has(id)); return (
@@ -1647,7 +1649,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
               </div>
             ); })}
           </div>
-        </div>
+        </div>}
       </div>
     </Stage>
   );
@@ -1792,18 +1794,18 @@ const ScreenPodium = ({ screen, answers, onNext, onPrev }) => {
 // 🃏 Qayta ishlatiladigan FLASHCARDS — aktiv takrorlash (3D flip + o'z-o'zini baholash + spaced recall).
 // Boshqa darsga: faqat `cards` ({ front, back, note }) almashtiriladi. Matnni Metodist sayqallaydi.
 const PM_FLASHCARDS = [
-  { front: "Foydalanuvchining haqiqiy muammosi", back: "Og'riq (pain)", note: 'yopilishi kerak' },
-  { front: "Og'riqni yopadigan funksiya", back: 'Feature', note: 'masalan: rasm yuklash' },
-  { front: "Og'riqni yopadigan KERAKLI feature", back: 'Dori (painkiller)', note: 'muhim, ishlatiladi' },
-  { front: "Chiroyli, lekin og'riqsiz bezak", back: 'Shirinlik (vitamin)', note: 'behuda, o\'tkazsa bo\'ladi' },
-  { front: 'Feature qo\'shishdan oldingi asosiy savol', back: "Qaysi og'riqni yopadi?", note: 'chiroylimi emas' },
-  { front: "Og'riq → savol → feature → ...", back: 'Natija', note: 'feature tug\'ilish tartibi' },
-  { front: "Og'riq butunlay yo'qolsa, feature...", back: 'Keraksiz bo\'ladi', note: 'og\'riqsiz = behuda' },
-  { front: 'Xaridor "ko\'rmasdan ishonmayman" og\'rig\'ining dorisi', back: 'Rasm yuklash', note: 'ko\'rib ishonadi' },
-  { front: '"Xabarim yetdimi?" og\'rig\'ining dorisi', back: '"O\'qildi" belgisi', note: '✓✓' },
-  { front: 'Logoni 3D aylantirish — bu...', back: 'Shirinlik', note: 'og\'riq yopmaydi' },
-  { front: 'Mahsulot taqdim etiladigan kun', back: 'Demo Day', note: 'mahsulot ko\'rsatiladi' },
-  { front: 'Muammosiz yechim (og\'riqsiz feature)', back: 'Behuda mehnat', note: 'hech kim ishlatmaydi' },
+  { front: "Foydalanuvchi his qiladigan haqiqiy muammo qanday ataladi?", back: "Og'riq (pain)", note: "mahsulot uni yopishi kerak" },
+  { front: "Mahsulotning bitta imkoniyati qanday ataladi?", back: "Feature (funksiya)", note: "masalan: rasm yuklash" },
+  { front: "Haqiqiy og'riqni yopadigan feature nima deb ataladi?", back: "Dori", note: "kerakli feature — har kuni ishlatiladi" },
+  { front: "Chiroyli, lekin hech qanday og'riqni yopmaydigan feature-chi?", back: "Shirinlik", note: "faqat bezak — bo'lmasa ham bo'ladi" },
+  { front: "Yangi feature qurishdan oldin o'zingizga qanday savol berasiz?", back: "«Bu kimning qaysi og'rig'ini yopadi?»", note: "«chiroylimi?» degan savol emas" },
+  { front: "Feature qanday tartibda tug'iladi?", back: "Avval og'riq, keyin savol, keyin feature, keyin natija", note: "bezakdan emas — og'riqdan boshlanadi" },
+  { front: "Og'riq butunlay yo'qolsa, feature nima bo'ladi?", back: "Keraksiz bo'lib qoladi", note: "endi uni hech kim ochmaydi" },
+  { front: "Xaridor «ko'rmasdan ishonmayman» deydi — qaysi feature yordam beradi?", back: "Mahsulot rasmini yuklash", note: "ko'rgan xaridor ishonadi" },
+  { front: "«Xabarim yetib bordimi?» degan tashvishni qaysi feature yopadi?", back: "«O'qildi» belgisi", note: "ikki chizgi ko'rinsa — xotirjam bo'ladi" },
+  { front: "Logoni 3D aylantirish — dorimi yoki shirinlikmi?", back: "Shirinlik", note: "hech kimning og'rig'ini yopmaydi" },
+  { front: "Og'riqni yopmaydigan feature'ni qurish nimaga olib keladi?", back: "Behuda mehnatga", note: "qurasiz, lekin hech kim ishlatmaydi" },
+  { front: "Har feature uchun qaysi uch savolga javob topasiz?", back: "Kim? Qanday og'riq? Feature uni qanday yopadi?", note: "uchalasi ham aniq bo'lsin" },
 ];
 function Flashcards({ cards }) {
   const [queue, setQueue] = useState(() => cards.map((_, i) => i));
@@ -1836,7 +1838,7 @@ function Flashcards({ cards }) {
       <div className="fc-cardwrap">
         <div className={`fc-fly ${exiting === 'knew' ? 'out-knew' : ''} ${exiting === 'again' ? 'out-again' : ''}`} key={swapRef.current}>
         <div className={`fc-card ${flipped ? 'flip' : ''}`} onClick={() => !flipped && !exiting && setFlipped(true)} role="button" tabIndex={0}>
-          <div className="fc-face fc-front"><span className="fc-q">{card.front}</span><span className="fc-cue">Qaysi atama? 🤔 <span className="fc-tap">bosing</span></span></div>
+          <div className="fc-face fc-front"><span className="fc-q">{card.front}</span><span className="fc-cue">Javobni o'ylang 🤔 <span className="fc-tap">bosing</span></span></div>
           <div className="fc-face fc-back"><span className="fc-tag">{card.back}</span>{card.note && <span className="fc-note">{card.note}</span>}</div>
         </div>
         </div>
@@ -1855,7 +1857,7 @@ const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) =>
     <Stage eyebrow="Takrorlash" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={false} label="Yakunlash →" onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">Atamalarni <span className="italic" style={{ color: T.accent }}>tez takrorlaymiz</span>.</h2></div>
-        <Mentor>Darsni yakunlashdan oldin bugun o'rgangan atamalarni takrorlaymiz. Har kartada bir vazifa — <b style={{ color: T.ink }}>qaysi atama</b> ekanini o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</Mentor>
+        <Mentor>Darsni yakunlashdan oldin bugun o'rgangan atamalarni takrorlaymiz. Har kartada bir savol — <b style={{ color: T.ink }}>javobini</b> o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</Mentor>
         <div className="fc-center"><Flashcards cards={PM_FLASHCARDS} /></div>
       </div>
     </Stage>
@@ -2296,7 +2298,7 @@ function QuizArena({ live, onClose, startSolo }) {
             <div className={`qz-res ${my?.correct ? 'good' : 'bad'}`}>
               {my?.correct
                 ? <><span className="qz-res-pts">+{myPtsFor(qi)}</span><span className="qz-res-t">ball{streakUpTo(qi) >= 2 ? ` · 🔥 x${streakUpTo(qi)} streak` : ''}</span></>
-                : <span className="qz-res-t">{my ? "Xato — 0 ball. Keyingisida olasiz! 💪" : "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱"}</span>}
+                : <span className="qz-res-t">{my ? "Adashdingiz — 0 ball. Keyingisida olasiz! 💪" : "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱"}</span>}
               {!solo && myRank >= 0 && <span className="qz-res-rank">Siz hozir: {myRank + 1}-o'rin</span>}
             </div>
           )}

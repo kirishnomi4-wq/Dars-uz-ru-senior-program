@@ -408,6 +408,7 @@ const Col = ({ children, gap }) => <div className="col" style={gap ? { gap } : u
 // 🏅 Yuqori paneldagi nishon hisoblagichi (Stage chrome)
 function AchCounter() {
   const earned = useContext(AchCtx);
+  const gate = useContext(LiveGateCtx);
   const count = earned ? earned.size : 0;
   const total = Object.keys(ACHIEVEMENTS).length;
   const prevRef = useRef(count);
@@ -417,6 +418,7 @@ function AchCounter() {
     if (count > prevRef.current) { setBump(true); const t = setTimeout(() => setBump(false), 800); prevRef.current = count; return () => clearTimeout(t); }
     prevRef.current = count;
   }, [count]);
+  if (gate && gate.live && gate.live.mode === 'mentor') return null; // 🔴 mentor proyektorida nishon YO'Q (hooklardan KEYIN)
   return (
     <div className="ach-cnt-wrap">
       <button className={`ach-counter ${bump ? 'bump' : ''} ${count > 0 ? 'has' : ''}`} onClick={() => setOpen(o => !o)} aria-label="Badges" title="Badges">
@@ -1630,7 +1632,7 @@ function Flashcards({ cards }) {
       <div className="fc-cardwrap">
         <div className={`fc-fly ${exiting === 'knew' ? 'out-knew' : ''} ${exiting === 'again' ? 'out-again' : ''}`} key={swapRef.current}>
         <div className={`fc-card ${flipped ? 'flip' : ''}`} onClick={() => !flipped && !exiting && setFlipped(true)} role="button" tabIndex={0}>
-          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: 'Qaysi tushuncha?', ru: 'Какое понятие?' })} 🤔 <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
+          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: "Javobni o'ylang", ru: 'Подумайте над ответом' })} 🤔 <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
           <div className="fc-face fc-back"><span className="fc-tag">{tr(card.back)}</span>{card.note && <span className="fc-note">{tr(card.note)}</span>}</div>
         </div>
         </div>
@@ -1641,30 +1643,30 @@ function Flashcards({ cards }) {
     </div>
   );
 }
-// 🃏 API/POSTMAN FLASHCARD KARTALARI (front=izoh, back=tushuncha) — Metodist sayqallaydi
+// 🃏 API/POSTMAN FLASHCARD KARTALARI (front=savol, back=qisqa javob, note=bir qatorlik misol)
 const API_FLASHCARDS = [
-  { front: { uz: "Ikki dastur gaplashadigan til va qoidalar", ru: 'Язык и правила, на которых общаются две программы' }, back: "API", note: { uz: "pochta tizimi", ru: 'почтовая система' } },
-  { front: { uz: "Serverga yuboriladigan «konvert» (request)", ru: 'Отправляемый серверу «конверт» (request)' }, back: { uz: "So'rov", ru: 'Запрос' }, note: "METHOD + URL + BODY" },
-  { front: { uz: "Serverdan qaytgan «konvert» (response)", ru: 'Вернувшийся от сервера «конверт» (response)' }, back: { uz: "Javob", ru: 'Ответ' }, note: "STATUS + DATA" },
-  { front: { uz: "Ma'lumotni faqat o'qib oladigan method", ru: 'Метод, который только читает данные' }, back: "GET", note: "SELECT" },
-  { front: { uz: "Yangi ma'lumot qo'shadigan method", ru: 'Метод, который добавляет новые данные' }, back: "POST", note: "INSERT" },
-  { front: { uz: "Mavjud ma'lumotni o'zgartiradigan method", ru: 'Метод, который изменяет существующие данные' }, back: "PUT", note: "UPDATE" },
-  { front: { uz: "Ma'lumotni o'chiradigan method", ru: 'Метод, который удаляет данные' }, back: "DELETE", note: "DELETE FROM" },
-  { front: { uz: "Frontend yozmasdan API'ni sinaydigan «postachi»", ru: '«Почтальон», который тестирует API без фронтенда' }, back: "Postman", note: { uz: "sinov stoli", ru: 'стенд для проверки' } },
-  { front: { uz: "Javobning «shtampi» — ish o'tdimi?", ru: '«Штамп» ответа — получилось ли?' }, back: "Status", note: "200 / 201 / 404" },
-  { front: { uz: "So'rov «manzili» — qaysi ma'lumot?", ru: '«Адрес» запроса — какие данные?' }, back: "URL", note: "/api/products" },
-  { front: { uz: "Konvert ichidagi ma'lumot (qo'shish/o'zgartirish)", ru: 'Содержимое конверта (при добавлении/изменении)' }, back: "BODY", note: "JSON" },
-  { front: { uz: "Kompyuterlar ma'lumot almashadigan format", ru: 'Формат, в котором компьютеры обмениваются данными' }, back: "JSON", note: { uz: "{ kalit: qiymat }", ru: '{ ключ: значение }' } },
+  { front: { uz: "Sayt server bilan nima orqali gaplashadi?", ru: 'Через что сайт общается с сервером?' }, back: "API", note: { uz: "pochta kabi: xat boradi, javob qaytadi", ru: 'как почта: письмо ушло — ответ вернулся' } },
+  { front: { uz: "So'rov (request) qaysi qismlardan yig'iladi?", ru: 'Из каких частей собирается запрос (request)?' }, back: "METHOD + URL (+ BODY)", note: { uz: "niyat + manzil + ichidagi ma'lumot", ru: 'намерение + адрес + содержимое' } },
+  { front: { uz: "Javob (response) qaysi ikki qismdan iborat?", ru: 'Из каких двух частей состоит ответ (response)?' }, back: "STATUS + DATA", note: { uz: "shtamp va JSON ma'lumot", ru: 'штамп и данные в JSON' } },
+  { front: { uz: "Ma'lumotni o'qib olish uchun qaysi method?", ru: 'Каким методом прочитать данные?' }, back: "GET", note: { uz: "hech narsani o'zgartirmaydi", ru: 'ничего не меняет' } },
+  { front: { uz: "Yangi ma'lumot qo'shish uchun qaysi method?", ru: 'Каким методом добавить новые данные?' }, back: "POST", note: { uz: "yangi ma'lumot BODY'da ketadi", ru: 'новые данные едут в BODY' } },
+  { front: { uz: "Mavjud narxni yangilash uchun qaysi method?", ru: 'Каким методом обновить существующую цену?' }, back: "PUT", note: { uz: "yozuv o'chmaydi, ichi yangilanadi", ru: 'запись не исчезает — обновляется' } },
+  { front: { uz: "Yozuvni o'chirish uchun qaysi method?", ru: 'Каким методом удалить запись?' }, back: "DELETE", note: "DELETE /api/products/3" },
+  { front: { uz: "GET bazadagi qaysi amalga to'g'ri keladi?", ru: 'Какой операции в базе соответствует GET?' }, back: "SELECT", note: { uz: "POST → INSERT, PUT → UPDATE", ru: 'POST → INSERT, PUT → UPDATE' } },
+  { front: { uz: "200 va 201 shtamplari nimani bildiradi?", ru: 'Что означают штампы 200 и 201?' }, back: { uz: "Hammasi joyida", ru: 'Всё в порядке' }, note: { uz: "200 — o'qildi, 201 — yangi yozuv yaratildi", ru: '200 — прочитано, 201 — создана новая запись' } },
+  { front: { uz: "404 shtampi nimani aytadi?", ru: 'О чём говорит штамп 404?' }, back: { uz: "Manzil topilmadi", ru: 'Адрес не найден' }, note: { uz: "URL'ni tekshiring — harf xato bo'lishi mumkin", ru: 'проверьте URL — возможна опечатка' } },
+  { front: { uz: "Sayt yozmasdan API'ni qaysi dasturda sinaysiz?", ru: 'В какой программе испытать API, не написав сайт?' }, back: "Postman", note: { uz: "so'rovni o'zingiz yig'ib jo'natasiz", ru: 'запрос собираете и отправляете сами' } },
+  { front: { uz: "Konvert ichidagi ma'lumot qaysi formatda yoziladi?", ru: 'В каком формате пишутся данные внутри конверта?' }, back: "JSON", note: { uz: "kalit: qiymat juftliklari", ru: 'пары ключ: значение' } },
 ];
 
 const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, []); // eslint-disable-line
-  const audio = useAudio([{ id: `s${screen}_intro`, text: "Bugungi tushunchalarni tez takrorlaymiz. Har kartada bitta izoh turadi — qaysi tushuncha ekanini o'ylang, keyin kartani bosib tekshiring. Bildim yoki Takrorlash bilan o'zingizni baholang.", trigger: 'on_mount', waits_for: null }]);
+  const audio = useAudio([{ id: `s${screen}_intro`, text: "Bugungi tushunchalarni tez takrorlaymiz. Har kartada bitta savol turadi — javobini o'ylang, keyin kartani bosib tekshiring. Bildim yoki Takrorlash bilan o'zingizni baholang.", trigger: 'on_mount', waits_for: null }]);
   return (
     <Stage eyebrow={tr({ uz: 'Takrorlash', ru: 'Повторение' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={false} label={tr({ uz: 'Yakunlash →', ru: 'Завершить →' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Tushunchalarni <span className="italic" style={{ color: T.accent }}>tez takrorlaymiz</span>.</>, ru: <>Быстро повторим <span className="italic" style={{ color: T.accent }}>понятия</span>.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Darsni yakunlashdan oldin bugun o'rgangan tushunchalarni takrorlaymiz. Har kartada bir izoh — <b style={{ color: T.ink }}>qaysi tushuncha</b> ekanini o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</>, ru: <>Перед тем как завершить урок, повторим сегодняшние понятия. На каждой карточке — описание: подумайте, <b style={{ color: T.ink }}>какое это понятие</b>, потом нажмите на карточку и проверьте себя. Оцените себя кнопками <b style={{ color: T.ink }}>Знаю</b> и <b style={{ color: T.ink }}>Повторить</b>.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Darsni yakunlashdan oldin bugun o'rgangan tushunchalarni takrorlaymiz. Har kartada bir savol — <b style={{ color: T.ink }}>javobini</b> o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</>, ru: <>Перед тем как завершить урок, повторим сегодняшние понятия. На каждой карточке — вопрос: подумайте, <b style={{ color: T.ink }}>каким будет ответ</b>, потом нажмите на карточку и проверьте себя. Оцените себя кнопками <b style={{ color: T.ink }}>Знаю</b> и <b style={{ color: T.ink }}>Повторить</b>.</> })}</Mentor>
         <div className="fc-center"><Flashcards cards={API_FLASHCARDS} /></div>
       </div>
     </Stage>
@@ -2108,7 +2110,7 @@ function QuizArena({ live, onClose, startSolo }) {
             <div className={`qz-res ${my?.correct ? 'good' : 'bad'}`}>
               {my?.correct
                 ? <><span className="qz-res-pts">+{myPtsFor(qi)}</span><span className="qz-res-t">{tr({ uz: 'ball', ru: 'баллов' })}{streakUpTo(qi) >= 2 ? ` · 🔥 x${streakUpTo(qi)} streak` : ''}</span></>
-                : <span className="qz-res-t">{my ? tr({ uz: 'Xato — 0 ball. Keyingisida olasiz! 💪', ru: 'Ошибка — 0 баллов. Возьмёте на следующем! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Будьте быстрее! ⏱' })}</span>}
+                : <span className="qz-res-t">{my ? tr({ uz: 'Adashdingiz — 0 ball. Keyingisida olasiz! 💪', ru: 'Ошибка — 0 баллов. Возьмёте на следующем! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Будьте быстрее! ⏱' })}</span>}
               {!solo && myRank >= 0 && <span className="qz-res-rank">{tr({ uz: `Siz hozir: ${myRank + 1}-o'rin`, ru: `Вы сейчас на ${myRank + 1}-м месте` })}</span>}
             </div>
           )}
@@ -2409,7 +2411,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
           <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> {tr({ uz: 'Endi siz bilasiz', ru: 'Теперь вы знаете' })}</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{tr(r)}</span></li>))}</ul></div>
           <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: "Keyingi: Backend praktika — o'z CRUD loyihangiz. Keyin NestJS bilan API'ni professional yozamiz! 🚀", ru: 'Дальше: практика по бэкенду — ваш собственный CRUD-проект. А потом напишем API профессионально на NestJS! 🚀' })}</p></div>
         </div>
-        <div className="card ach-coll fade-up d3">
+        {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🏅 Nishonlaringiz —', ru: '🏅 Ваши значки —' })} {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">
             {Object.entries(ACHIEVEMENTS).map(([id, a]) => { const got = !!(achievements && achievements.has(id)); return (
@@ -2420,7 +2422,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
               </div>
             ); })}
           </div>
-        </div>
+        </div>}
       </div>
     </Stage>
   );

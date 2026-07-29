@@ -361,6 +361,7 @@ const Col = ({ children, gap }) => <div className="col" style={gap ? { gap } : u
 // 🏅 Yuqori paneldagi nishon hisoblagichi (Stage chrome)
 function AchCounter() {
   const earned = useContext(AchCtx);
+  const gate = useContext(LiveGateCtx);
   const count = earned ? earned.size : 0;
   const total = Object.keys(ACHIEVEMENTS).length;
   const prevRef = useRef(count);
@@ -370,6 +371,7 @@ function AchCounter() {
     if (count > prevRef.current) { setBump(true); const t = setTimeout(() => setBump(false), 800); prevRef.current = count; return () => clearTimeout(t); }
     prevRef.current = count;
   }, [count]);
+  if (gate && gate.live && gate.live.mode === 'mentor') return null; // 🔴 mentor proyektorida nishon YO'Q (hooklardan KEYIN)
   return (
     <div className="ach-cnt-wrap">
       <button className={`ach-counter ${bump ? 'bump' : ''} ${count > 0 ? 'has' : ''}`} onClick={() => setOpen(o => !o)} aria-label="Badges" title="Badges">
@@ -1027,7 +1029,7 @@ const Screen4 = (props) => (
     }} />
 );
 
-// ===== SCREEN 5 — JWT TOKEN (bilaguzuk anatomiyasi) =====
+// ===== SCREEN 5 — JWT TOKEN (bilaguzuk tuzilishi) =====
 const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const PARTS = {
     h: tr({ uz: "HEADER — bilaguzukning yorlig'i: bu JWT token ekanini va imzo qaysi usulda qo'yilganini aytadi.", ru: 'HEADER — этикетка браслета: говорит, что это JWT-токен и каким способом поставлена подпись.' }),
@@ -1541,7 +1543,7 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [value, setValue] = useState(storedAnswer?.picked || '');
   const [passed, setPassed] = useState(!!storedAnswer?.correct);
-  const v = value.replace(/[‘’ʻ]/g, "'").replace(/[“”]/g, '"');
+  const v = value.replace(/[\u2018\u2019\u02BB]/g, "'").replace(/[\u201C\u201D]/g, '"');
   const hasKey = /JWT_SECRET\s*=\s*\S+/.test(v);
   const valid = hasKey;
   useEffect(() => {
@@ -1718,7 +1720,7 @@ function Flashcards({ cards }) {
       <div className="fc-cardwrap">
         <div className={`fc-fly ${exiting === 'knew' ? 'out-knew' : ''} ${exiting === 'again' ? 'out-again' : ''}`} key={swapRef.current}>
         <div className={`fc-card ${flipped ? 'flip' : ''}`} onClick={() => !flipped && !exiting && setFlipped(true)} role="button" tabIndex={0}>
-          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: <>Qaysi tushuncha? 🤔 <span className="fc-tap">bosing</span></>, ru: <>Какое понятие? 🤔 <span className="fc-tap">нажмите</span></> })}</span></div>
+          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: <>Javobni o'ylang 🤔 <span className="fc-tap">bosing</span></>, ru: <>Подумайте над ответом 🤔 <span className="fc-tap">нажмите</span></> })}</span></div>
           <div className="fc-face fc-back"><span className="fc-tag">{tr(card.back)}</span>{card.note && <span className="fc-note">{tr(card.note)}</span>}</div>
         </div>
         </div>
@@ -1730,20 +1732,20 @@ function Flashcards({ cards }) {
   );
 }
 
-// AUTH FLASHCARD KARTALARI (front=izoh, back=tushuncha) — Metodist sayqallaydi
+// AUTH FLASHCARD KARTALARI (front = savol, back = qisqa javob, note = bir qatorlik misol)
 const AUTH_FLASHCARDS = [
-  { front: { uz: "«Siz kimsiz?» — eshikda hujjat ko'rsatish", ru: "«Кто вы?» — показать документ у входа" }, back: { uz: "Autentifikatsiya", ru: "Аутентификация" }, note: { uz: "login", ru: "логин" } },
-  { front: { uz: "Email + parol yuborib bilaguzuk olish", ru: "Отправить email + пароль и получить браслет" }, back: { uz: "Login", ru: "Логин" }, note: "POST /api/login" },
-  { front: { uz: "Raqamli bilaguzuk: header.payload.signature", ru: "Цифровой браслет: header.payload.signature" }, back: { uz: "JWT token", ru: "JWT-токен" }, note: { uz: "3 qism", ru: "3 части" } },
-  { front: { uz: "Bilaguzuk yorlig'i — imzo qaysi usulda qo'yilgan", ru: "Этикетка браслета — каким способом поставлена подпись" }, back: "Header", note: { uz: "tokenning 1-qismi", ru: "1-я часть токена" } },
-  { front: { uz: "Bilaguzukdagi ism — kim (userId)", ru: "Имя на браслете — кто (userId)" }, back: "Payload", note: { uz: "o'qiladi, o'zgartirib bo'lmaydi", ru: "читается, но не меняется" } },
-  { front: { uz: "Maxfiy kalit muhri — soxta yasab bo'lmaydi", ru: "Печать секретным ключом — не подделать" }, back: "Signature", note: { uz: "JWT_SECRET bilan bosiladi", ru: "ставится ключом JWT_SECRET" } },
-  { front: { uz: "Server bilaguzuk yasaydi", ru: "Сервер создаёт браслет" }, back: "jwt.sign", note: { uz: "login'da", ru: "при логине" } },
-  { front: { uz: "Qo'riqchi imzoni tekshiradi, mos kelmasa 401", ru: "Охранник проверяет подпись, не совпала — 401" }, back: "jwt.verify", note: "guard" },
-  { front: { uz: "Har eshikda bilaguzukni ko'rsatish", ru: "Показывать браслет у каждой двери" }, back: "Bearer", note: { uz: "Authorization sarlavhasi", ru: "заголовок Authorization" } },
-  { front: { uz: "Bilaguzuksiz yoki soxta → qaytarish", ru: "Без браслета или поддельный → отказ" }, back: "401", note: "Unauthorized" },
-  { front: { uz: "Muhr bosadigan asbob — faqat serverda", ru: "Инструмент для печати — только на сервере" }, back: "JWT_SECRET", note: { uz: "maxfiy kalit", ru: "секретный ключ" } },
-  { front: { uz: "Yashirin tortma — GitHub'dan saqlaydi", ru: "Потайной ящик — бережёт от GitHub" }, back: ".env", note: "process.env · .gitignore" },
+  { front: { uz: "Email va parol to'g'ri bo'lsa, server sizga nima beradi?", ru: "Что даёт вам сервер, если email и пароль верны?" }, back: { uz: "Token (bilaguzuk)", ru: "Токен (браслет)" }, note: { uz: "Keyingi so'rovlarda parol emas, shu token ishlaydi", ru: "В следующих запросах работает не пароль, а этот токен" } },
+  { front: { uz: "Login uchun qaysi manzilga qaysi so'rov yuboriladi?", ru: "Какой запрос и на какой адрес отправляется для логина?" }, back: "POST /api/login", note: { uz: "Ichida email va parol ketadi", ru: "Внутри едут email и пароль" } },
+  { front: { uz: "JWT token necha qismdan iborat?", ru: "Из скольких частей состоит JWT-токен?" }, back: { uz: "3 qism", ru: "3 части" }, note: "header.payload.signature" },
+  { front: { uz: "Tokenning qaysi qismida kim ekaningiz yozilgan?", ru: "В какой части токена записано, кто вы?" }, back: "Payload", note: { uz: "userId shu yerda: o'qiladi, lekin o'zgartirib bo'lmaydi", ru: "Здесь лежит userId: читается, но изменить нельзя" } },
+  { front: { uz: "Tokenning qaysi qismi uni soxta yasashga yo'l qo'ymaydi?", ru: "Какая часть токена не даёт его подделать?" }, back: "Signature", note: { uz: "Imzo maxfiy kalit bilan qo'yiladi", ru: "Подпись ставится секретным ключом" } },
+  { front: { uz: "Server tokenni qaysi buyruq bilan yasaydi?", ru: "Какой командой сервер создаёт токен?" }, back: "jwt.sign", note: { uz: "userId va maxfiy kalitdan yasaydi", ru: "Создаёт из userId и секретного ключа" } },
+  { front: { uz: "Qo'riqchi (guard) tokenni qaysi buyruq bilan tekshiradi?", ru: "Какой командой охранник (guard) проверяет токен?" }, back: "jwt.verify(token, SECRET)", note: { uz: "Imzo mos kelmasa — ichkariga kiritmaydi", ru: "Подпись не совпала — внутрь не пустит" } },
+  { front: { uz: "Har so'rovda token qaysi sarlavhada yuboriladi?", ru: "В каком заголовке токен едет в каждом запросе?" }, back: "Authorization: Bearer", note: { uz: "So'rov sarlavhasida, manzilda emas", ru: "В заголовке запроса, а не в адресе" } },
+  { front: { uz: "Himoyalangan route'ga tokensiz kirsangiz qaysi status keladi?", ru: "Какой статус придёт, если войти на защищённый route без токена?" }, back: "401 Unauthorized", note: { uz: "Token yo'q yoki soxta — kira olmaysiz", ru: "Токена нет или он поддельный — вход закрыт" } },
+  { front: { uz: "Imzo qo'yiladigan maxfiy kalit qanday nomlanadi?", ru: "Как называется секретный ключ, которым ставится подпись?" }, back: "JWT_SECRET", note: { uz: "Faqat serverda turadi, hech kimga ko'rsatilmaydi", ru: "Хранится только на сервере, никому не показывается" } },
+  { front: { uz: "Maxfiy kalitlarni qaysi faylda saqlaysiz?", ru: "В каком файле вы храните секретные ключи?" }, back: ".env", note: { uz: "Kod ularni process.env orqali o'qiydi", ru: "Код читает их через process.env" } },
+  { front: { uz: ".env fayli GitHub'ga chiqmasligi uchun uni qayerga yozasiz?", ru: "Куда вписать .env, чтобы он не попал на GitHub?" }, back: ".gitignore", note: { uz: "Ro'yxatdagi fayl GitHub'ga hech qachon yuklanmaydi", ru: "Файл из этого списка никогда не уходит на GitHub" } },
 ];
 const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, []); // eslint-disable-line
@@ -1751,7 +1753,7 @@ const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) =>
     <Stage eyebrow={tr({ uz: 'Takrorlash', ru: 'Повторение' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={false} label={{ uz: 'Yakunlash →', ru: 'Завершить →' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Tushunchalarni <span className="italic" style={{ color: T.accent }}>tez takrorlaymiz</span>.</>, ru: <>Быстро <span className="italic" style={{ color: T.accent }}>повторим понятия</span>.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Darsni yakunlashdan oldin bugun o'rgangan tushunchalarni takrorlaymiz. Har kartada bir izoh — <b style={{ color: T.ink }}>qaysi tushuncha</b> ekanini o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</>, ru: <>Перед завершением урока повторим понятия, изученные сегодня. На каждой карте описание — подумайте, <b style={{ color: T.ink }}>какое это понятие</b>, потом нажмите на карту и проверьте. Оцените кнопками <b style={{ color: T.ink }}>Знаю</b> или <b style={{ color: T.ink }}>Повторить</b>.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Darsni yakunlashdan oldin bugun o'rgangan tushunchalarni takrorlaymiz. Har kartada bir savol — <b style={{ color: T.ink }}>javobini</b> o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</>, ru: <>Перед завершением урока повторим понятия, изученные сегодня. На каждой карточке — вопрос: подумайте, <b style={{ color: T.ink }}>каким будет ответ</b>, потом нажмите на карту и проверьте. Оцените кнопками <b style={{ color: T.ink }}>Знаю</b> или <b style={{ color: T.ink }}>Повторить</b>.</> })}</Mentor>
         <div className="fc-center"><Flashcards cards={AUTH_FLASHCARDS} /></div>
       </div>
     </Stage>
@@ -2172,7 +2174,7 @@ function QuizArena({ live, onClose, startSolo }) {
             <div className={`qz-res ${my?.correct ? 'good' : 'bad'}`}>
               {my?.correct
                 ? <><span className="qz-res-pts">+{myPtsFor(qi)}</span><span className="qz-res-t">{tr({ uz: 'ball', ru: 'баллов' })}{streakUpTo(qi) >= 2 ? ` · 🔥 x${streakUpTo(qi)} streak` : ''}</span></>
-                : <span className="qz-res-t">{my ? tr({ uz: 'Xato — 0 ball. Keyingisida olasiz! 💪', ru: 'Ошибка — 0 баллов. Возьмёте на следующем! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Побыстрее! ⏱' })}</span>}
+                : <span className="qz-res-t">{my ? tr({ uz: 'Adashdingiz — 0 ball. Keyingisida olasiz! 💪', ru: 'Ошибка — 0 баллов. Возьмёте на следующем! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Побыстрее! ⏱' })}</span>}
               {!solo && myRank >= 0 && <span className="qz-res-rank">{tr({ uz: `Siz hozir: ${myRank + 1}-o'rin`, ru: `Вы сейчас: место ${myRank + 1}` })}</span>}
             </div>
           )}
@@ -2366,7 +2368,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
           <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> {tr({ uz: 'Endi siz bilasiz', ru: 'Теперь вы знаете' })}</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{r}</span></li>))}</ul></div>
           <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{h.b}</b> <span className="t">{h.t}</span></li>))}</ul><p className="hw-note">{tr({ uz: 'Modul 5 (NestJS): @UseGuards, JWT strategy, role guard — autentifikatsiya va ruxsatlar professional, tartibli yoziladi! 🚀', ru: 'Модуль 5 (NestJS): @UseGuards, JWT strategy, role guard — аутентификация и права пишутся профессионально и аккуратно! 🚀' })}</p></div>
         </div>
-        <div className="card ach-coll fade-up d3">
+        {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🏅 Nishonlaringiz', ru: '🏅 Ваши значки' })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">
             {Object.entries(ACHIEVEMENTS).map(([id, a]) => { const got = !!(achievements && achievements.has(id)); return (
@@ -2377,7 +2379,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
               </div>
             ); })}
           </div>
-        </div>
+        </div>}
       </div>
     </Stage>
   );

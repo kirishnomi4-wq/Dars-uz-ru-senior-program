@@ -405,6 +405,7 @@ const Col = ({ children, gap }) => <div className="col" style={gap ? { gap } : u
 // 🏅 Yuqori paneldagi nishon hisoblagichi (Stage chrome)
 function AchCounter() {
   const earned = useContext(AchCtx);
+  const gate = useContext(LiveGateCtx);
   const count = earned ? earned.size : 0;
   const total = Object.keys(ACHIEVEMENTS).length;
   const prevRef = useRef(count);
@@ -414,6 +415,7 @@ function AchCounter() {
     if (count > prevRef.current) { setBump(true); const t = setTimeout(() => setBump(false), 800); prevRef.current = count; return () => clearTimeout(t); }
     prevRef.current = count;
   }, [count]);
+  if (gate && gate.live && gate.live.mode === 'mentor') return null; // 🔴 mentor proyektorida nishon YO'Q (hooklardan KEYIN)
   return (
     <div className="ach-cnt-wrap">
       <button className={`ach-counter ${bump ? 'bump' : ''} ${count > 0 ? 'has' : ''}`} onClick={() => setOpen(o => !o)} aria-label="Badges" title="Badges">
@@ -1749,7 +1751,7 @@ function Flashcards({ cards }) {
       <div className="fc-cardwrap">
         <div className={`fc-fly ${exiting === 'knew' ? 'out-knew' : ''} ${exiting === 'again' ? 'out-again' : ''}`} key={swapRef.current}>
         <div className={`fc-card ${flipped ? 'flip' : ''}`} onClick={() => !flipped && !exiting && setFlipped(true)} role="button" tabIndex={0}>
-          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: 'Qaysi tushuncha? 🤔', ru: 'Какое понятие? 🤔' })} <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
+          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: "Javobni o'ylang", ru: 'Подумайте над ответом' })} 🤔 <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
           <div className="fc-face fc-back"><span className="fc-tag">{tr(card.back)}</span>{card.note && <span className="fc-note">{tr(card.note)}</span>}</div>
         </div>
         </div>
@@ -1882,20 +1884,20 @@ const ScreenPracticeFinal = (props) => (
     ]} />
 );
 
-// 🃏 FLASHCARD KARTALARI (front=izoh, back=tushuncha) — Metodist keyin sayqallaydi
+// 🃏 FLASHCARD KARTALARI (front=savol, back=qisqa javob)
 const REACT_FLASHCARDS = [
-  { front: { uz: "Manzil va sahifani bog'laydigan ro'yxat qatori", ru: 'Строка списка, связывающая адрес и страницу' }, back: "Route", note: "<Route path element />" },
-  { front: { uz: "URL'ga qarab to'g'ri sahifani tanlaydigan o'ram", ru: 'Обёртка, выбирающая нужную страницу по URL' }, back: "<Routes>", note: { uz: "ichida Route'lar", ru: 'внутри — Route' } },
-  { front: { uz: "Route'da qaysi manzilda ishlashini bildiradi", ru: 'В Route указывает, на каком адресе работать' }, back: "path", note: 'path="/add"' },
-  { front: { uz: "Route'da qaysi sahifa ko'rsatilishini bildiradi", ru: 'В Route указывает, какую страницу показать' }, back: "element", note: "element={<AddPage />}" },
-  { front: { uz: 'Qayta yuklamaydigan Router havolasi', ru: 'Ссылка Router без перезагрузки' }, back: "<Link to>", note: { uz: 'SPA navigatsiya', ru: 'SPA-навигация' } },
-  { front: { uz: 'Butun sahifani qayta yuklaydigan oddiy havola', ru: 'Обычная ссылка, перезагружающая всю страницу' }, back: "<a href>", note: { uz: "Router'da ishlatilmaydi", ru: 'в Router не используется' } },
-  { front: { uz: "Manzildagi o'zgaruvchan joy (bo'sh katak)", ru: 'Переменное место в адресе (пустая ячейка)' }, back: "/game/:id", note: { uz: ":id — o'yin raqami", ru: ':id — номер игры' } },
-  { front: { uz: 'Manzildagi :id ni o\'qiydigan hook', ru: 'Хук, читающий :id из адреса' }, back: "useParams()", note: "const { id } = useParams()" },
-  { front: { uz: 'Kod orqali sahifa almashtiruvchi hook', ru: 'Хук, меняющий страницу через код' }, back: "useNavigate()", note: "navigate('/')" },
-  { front: { uz: 'Bir sahifali ilova — qayta yuklanmaydi', ru: 'Одностраничное приложение — без перезагрузки' }, back: "SPA", note: "Single Page App" },
-  { front: { uz: 'Ilovani Router bilan o\'raydigan teg', ru: 'Тег, оборачивающий приложение в Router' }, back: "<BrowserRouter>", note: { uz: 'main.jsx da eng tashqarida', ru: 'в main.jsx — самый внешний' } },
-  { front: { uz: "Routerni o'rnatuvchi buyruq", ru: 'Команда, устанавливающая Router' }, back: "npm i react-router-dom", note: { uz: 'kutubxonani yuklaydi', ru: 'скачивает библиотеку' } },
+  { front: { uz: "Qaysi manzilda qaysi sahifa ochilishini nima belgilaydi?", ru: 'Что задаёт, какая страница откроется по какому адресу?' }, back: "<Route>", note: { uz: "ichida path va element bor", ru: 'внутри — path и element' } },
+  { front: { uz: "Route qatorida manzil qaysi xossaga yoziladi?", ru: 'В какое свойство строки Route пишется адрес?' }, back: "path", note: 'path="/add"' },
+  { front: { uz: "Route qatorida ko'rsatiladigan sahifa qaysi xossaga yoziladi?", ru: 'В какое свойство Route пишется показываемая страница?' }, back: "element", note: "element={<AddPage />}" },
+  { front: { uz: "Barcha Route qatorlari qaysi tegning ichida turadi?", ru: 'Внутри какого тега стоят все строки Route?' }, back: "<Routes>", note: { uz: "manzilga mos kelganini tanlaydi", ru: 'выбирает подходящую под адрес' } },
+  { front: { uz: "React'da bir sahifadan boshqasiga o'tish uchun qaysi teg ishlatiladi?", ru: 'Каким тегом в React переходят с одной страницы на другую?' }, back: "<Link to=\"/add\">", note: { uz: 'sahifa qayta yuklanmaydi — tez', ru: 'страница не перезагружается — быстро' } },
+  { front: { uz: "Oddiy <a href> havolasi nega Router'da ishlatilmaydi?", ru: 'Почему обычную ссылку <a href> не используют в Router?' }, back: { uz: "Sahifani qayta yuklaydi", ru: 'Она перезагружает страницу' }, note: { uz: 'butun sahifa qaytadan yig\'iladi — sekin', ru: 'вся страница собирается заново — медленно' } },
+  { front: { uz: "/game/:id manzilidagi :id nimani bildiradi?", ru: 'Что означает :id в адресе /game/:id?' }, back: { uz: "O'zgaruvchan joy", ru: 'Переменное место' }, note: "/game/1, /game/4, /game/7 …" },
+  { front: { uz: "Manzildagi :id qiymatini sahifa qanday o'qiydi?", ru: 'Как страница читает значение :id из адреса?' }, back: "useParams()", note: "const { id } = useParams()" },
+  { front: { uz: "1000 ta o'yin uchun nechta O'yin sahifasi yoziladi?", ru: 'Сколько страниц Игры пишется для 1000 игр?' }, back: { uz: 'Bittasi', ru: 'Одна' }, note: { uz: ":id har o'yinni o'sha sahifada ko'rsatadi", ru: ':id показывает любую игру на той же странице' } },
+  { front: { uz: "Saqlagandan keyin kod o'zi Bosh sahifaga o'tsin — nima ishlatasiz?", ru: 'Что вы используете, чтобы код сам перешёл на Главную после сохранения?' }, back: "useNavigate()", note: "const navigate = useNavigate(); navigate('/')" },
+  { front: { uz: "Butun ilovani qaysi teg bilan o'raysiz?", ru: 'Каким тегом вы оборачиваете всё приложение?' }, back: "<BrowserRouter>", note: { uz: "main.jsx da eng tashqi teg", ru: 'в main.jsx — самый внешний тег' } },
+  { front: { uz: "Router kutubxonasini qaysi buyruq o'rnatadi?", ru: 'Какая команда устанавливает библиотеку Router?' }, back: "npm i react-router-dom", note: { uz: "terminalda bir marta yoziladi", ru: 'пишется в терминале один раз' } },
 ];
 const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, []); // eslint-disable-line
@@ -1903,7 +1905,7 @@ const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) =>
     <Stage eyebrow={tr({ uz: 'Takrorlash', ru: 'Повторение' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={false} label={tr({ uz: 'Yakunlash →', ru: 'Завершить →' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Tushunchalarni <span className="italic" style={{ color: T.accent }}>tez takrorlaymiz</span>.</>, ru: <>Быстро <span className="italic" style={{ color: T.accent }}>повторим понятия</span>.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Darsni yakunlashdan oldin bugun o'rgangan tushunchalarni takrorlaymiz. Har kartada bir izoh — <b style={{ color: T.ink }}>qaysi tushuncha</b> ekanini o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</>, ru: <>Перед завершением урока повторим сегодняшние понятия. На каждой карточке — описание: подумайте, <b style={{ color: T.ink }}>какое это понятие</b>, затем нажмите на карточку и проверьте себя. Оцените кнопками <b style={{ color: T.ink }}>Знаю</b> или <b style={{ color: T.ink }}>Повторить</b>.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Darsni yakunlashdan oldin bugun o'rgangan tushunchalarni takrorlaymiz. Har kartada bir savol — <b style={{ color: T.ink }}>javobini</b> o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</>, ru: <>Перед завершением урока повторим сегодняшние понятия. На каждой карточке — вопрос: подумайте, <b style={{ color: T.ink }}>каким будет ответ</b>, затем нажмите на карточку и проверьте себя. Оцените кнопками <b style={{ color: T.ink }}>Знаю</b> или <b style={{ color: T.ink }}>Повторить</b>.</> })}</Mentor>
         <div className="fc-center"><Flashcards cards={REACT_FLASHCARDS} /></div>
       </div>
     </Stage>
@@ -2363,7 +2365,7 @@ function QuizArena({ live, onClose, startSolo }) {
             <div className={`qz-res ${my?.correct ? 'good' : 'bad'}`}>
               {my?.correct
                 ? <><span className="qz-res-pts">+{myPtsFor(qi)}</span><span className="qz-res-t">{tr({ uz: 'ball', ru: 'баллов' })}{streakUpTo(qi) >= 2 ? ` · 🔥 x${streakUpTo(qi)} streak` : ''}</span></>
-                : <span className="qz-res-t">{my ? tr({ uz: 'Xato — 0 ball. Keyingisida olasiz! 💪', ru: 'Ошибка — 0 баллов. Возьмёте на следующем! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Будьте быстрее! ⏱' })}</span>}
+                : <span className="qz-res-t">{my ? tr({ uz: 'Adashdingiz — 0 ball. Keyingisida olasiz! 💪', ru: 'Ошибка — 0 баллов. Возьмёте на следующем! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Будьте быстрее! ⏱' })}</span>}
               {!solo && myRank >= 0 && <span className="qz-res-rank">{tr({ uz: 'Siz hozir:', ru: 'Вы сейчас:' })} {myRank + 1}{tr({ uz: "-o'rin", ru: '-е место' })}</span>}
             </div>
           )}
@@ -2589,6 +2591,7 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const Screen15 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) => {
   const _gate = useContext(LiveGateCtx) || {};
   const _live = _gate.live;
+  const isMentorL = _live && _live.mode === 'mentor';
   const [arena, setArena] = useState(false);
   const isStudentL = _live && _live.mode === 'student';
   const quizSt = (_live && _live.quiz && _live.quiz.state) || 'off';
@@ -2623,7 +2626,7 @@ const Screen15 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
           <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> {tr({ uz: 'Endi siz bilasiz', ru: 'Теперь вы знаете' })}</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{r}</span></li>))}</ul></div>
           <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: "Antigravity bilan o'z loyihangizda sinang:", ru: 'Попробуйте в своём проекте с Antigravity:' })}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{h.b}</b> <span className="t">{h.t}</span></li>))}</ul><p className="hw-note">{tr({ uz: "Keyingi qadam — loyiha kuni: React + API + CRUD + Router'ni birlashtirib, o'z ilovangizni boshidan oxirigacha qurasiz! 🚀", ru: 'Следующий шаг — день проекта: объедините React + API + CRUD + Router и постройте своё приложение от начала до конца! 🚀' })}</p></div>
         </div>
-        <div className="card ach-coll fade-up d3">
+        {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🏅 Nishonlaringiz —', ru: '🏅 Ваши значки —' })} {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">
             {Object.entries(ACHIEVEMENTS).map(([id, a]) => { const got = !!(achievements && achievements.has(id)); return (
@@ -2634,7 +2637,7 @@ const Screen15 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
               </div>
             ); })}
           </div>
-        </div>
+        </div>}
       </div>
     </Stage>
   );

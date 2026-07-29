@@ -406,6 +406,7 @@ const Col = ({ children, gap }) => <div className="col" style={gap ? { gap } : u
 // 🏅 Yuqori paneldagi nishon hisoblagichi (Stage chrome)
 function AchCounter() {
   const earned = useContext(AchCtx);
+  const gate = useContext(LiveGateCtx);
   const count = earned ? earned.size : 0;
   const total = Object.keys(ACHIEVEMENTS).length;
   const prevRef = useRef(count);
@@ -415,6 +416,7 @@ function AchCounter() {
     if (count > prevRef.current) { setBump(true); const t = setTimeout(() => setBump(false), 800); prevRef.current = count; return () => clearTimeout(t); }
     prevRef.current = count;
   }, [count]);
+  if (gate && gate.live && gate.live.mode === 'mentor') return null; // 🔴 mentor proyektorida nishon YO'Q (hooklardan KEYIN)
   return (
     <div className="ach-cnt-wrap">
       <button className={`ach-counter ${bump ? 'bump' : ''} ${count > 0 ? 'has' : ''}`} onClick={() => setOpen(o => !o)} aria-label="Badges" title="Badges">
@@ -1918,7 +1920,7 @@ function QuizArena({ live, onClose, startSolo }) {
             <div className={`qz-res ${my?.correct ? 'good' : 'bad'}`}>
               {my?.correct
                 ? <><span className="qz-res-pts">+{myPtsFor(qi)}</span><span className="qz-res-t">{tr({ uz: 'ball', ru: 'очков' })}{streakUpTo(qi) >= 2 ? ` · 🔥 x${streakUpTo(qi)} streak` : ''}</span></>
-                : <span className="qz-res-t">{my ? tr({ uz: "Xato — 0 ball. Keyingisida olasiz! 💪", ru: 'Ошибка — 0 очков. В следующий раз получится! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 очков. Будьте быстрее! ⏱' })}</span>}
+                : <span className="qz-res-t">{my ? tr({ uz: "Adashdingiz — 0 ball. Keyingisida olasiz! 💪", ru: 'Ошибка — 0 очков. В следующий раз получится! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 очков. Будьте быстрее! ⏱' })}</span>}
               {!solo && myRank >= 0 && <span className="qz-res-rank">{tr({ uz: `Siz hozir: ${myRank + 1}-o'rin`, ru: `Вы сейчас: ${myRank + 1}-е место` })}</span>}
             </div>
           )}
@@ -2195,7 +2197,7 @@ function Flashcards({ cards }) {
       <div className="fc-cardwrap">
         <div className={`fc-fly ${exiting === 'knew' ? 'out-knew' : ''} ${exiting === 'again' ? 'out-again' : ''}`} key={swapRef.current}>
         <div className={`fc-card ${flipped ? 'flip' : ''}`} onClick={() => !flipped && !exiting && setFlipped(true)} role="button" tabIndex={0}>
-          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: 'Qaysi tushuncha? 🤔', ru: 'Какое это понятие? 🤔' })} <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
+          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: "Javobni o'ylang", ru: 'Подумайте над ответом' })} 🤔 <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
           <div className="fc-face fc-back"><span className="fc-tag">{tr(card.back)}</span>{card.note && <span className="fc-note">{tr(card.note)}</span>}</div>
         </div>
         </div>
@@ -2223,18 +2225,18 @@ const ScreenRnPractice = (props) => (
 
 // 🃏 FLASHCARD KARTALARI — 12 atama (RN / GASTROL tili)
 const RN_FLASHCARDS = [
-  { front: { uz: "React bilimi bilan haqiqiy mobil ilova yasash", ru: 'Создание настоящего мобильного приложения на знаниях React' }, back: 'React Native', note: { uz: "gastrol jamoasi", ru: 'гастрольная команда' } },
-  { front: { uz: "Web'dagi div o'rniga keladigan sahna-karkas", ru: 'Каркас сцены, который приходит вместо веб-овского div' }, back: '<View>', note: { uz: "konteyner", ru: 'контейнер' } },
-  { front: { uz: "Web'dagi p/span o'rniga keladigan aktyor replikasi", ru: 'Реплика актёра вместо веб-овских p/span' }, back: '<Text>', note: { uz: "matn", ru: 'текст' } },
-  { front: { uz: "RN'da har qanday matn shu ichida bo'lishi shart", ru: 'В RN любой текст обязан быть внутри этого' }, back: '<Text>', note: { uz: "eng muhim qoida", ru: 'самое важное правило' } },
-  { front: { uz: "Stillar yoziladigan JS obyekt (CSS fayl emas)", ru: 'JS-объект, в котором пишут стили (не CSS-файл)' }, back: 'StyleSheet', note: { uz: "kostyum + yorug'lik", ru: 'костюм + свет' } },
-  { front: { uz: "background-color RN'da qanday yoziladi", ru: 'Как пишется background-color в RN' }, back: 'backgroundColor', note: "camelCase" },
-  { front: { uz: "RN loyihasini osonlashtiruvchi ko'chma sahna to'plami", ru: 'Набор переносной сцены, упрощающий проект на RN' }, back: 'Expo', note: { uz: "gastrol furgoni", ru: 'гастрольный фургон' } },
-  { front: { uz: "Telefonda QR-chipta orqali ilovani ko'rsatadi", ru: 'Показывает приложение на телефоне по QR-билету' }, back: 'Expo Go', note: { uz: "QR = chipta", ru: 'QR = билет' } },
-  { front: { uz: "RN bitta kod bilan qaysi ikki platformaga chiqadi", ru: 'На какие две платформы RN выходит одним кодом' }, back: 'iOS + Android', note: { uz: "bitta ssenariy", ru: 'один сценарий' } },
-  { front: { uz: "RN'da ham o'sha ishlaydigan React uchligi", ru: 'Троица React, которая и в RN работает так же' }, back: { uz: 'Komponent · props · state', ru: 'Компонент · props · state' }, note: { uz: "React ssenariysi", ru: 'сценарий React' } },
-  { front: { uz: "Web = shisha ortida, mobil = ...", ru: 'Веб = за стеклом, мобильное = ...' }, back: { uz: 'Tirik sahna', ru: 'Живая сцена' }, note: "native" },
-  { front: { uz: "Web JSX sintaksisi RN'da qanday", ru: 'Каков синтаксис веб-JSX в RN' }, back: { uz: "O'sha — o'zgarmaydi", ru: 'Тот же — не меняется' }, note: "JSX" },
+  { front: { uz: "React bilimingiz bilan haqiqiy mobil ilova yasaydigan vosita qanday nomlanadi?", ru: 'Как называется инструмент, который делает настоящее мобильное приложение на ваших знаниях React?' }, back: 'React Native', note: { uz: "Bitta kod bilan telefon ilovasi yoziladi", ru: 'Одним кодом пишется приложение для телефона' } },
+  { front: { uz: "Web'dagi div o'rniga React Native'da qaysi komponent yoziladi?", ru: 'Какой компонент в React Native пишется вместо веб-овского div?' }, back: '<View>', note: { uz: "View — quti: ichiga boshqa qismlar joylashadi", ru: 'View — коробка: внутрь кладутся другие части' } },
+  { front: { uz: "Web'dagi p o'rniga React Native'da qaysi komponent yoziladi?", ru: 'Какой компонент в React Native пишется вместо веб-овского p?' }, back: '<Text>', note: { uz: "Text — ekrandagi matn bo'lagi", ru: 'Text — кусочек текста на экране' } },
+  { front: { uz: "React Native'da matnni qayerga yozish shart?", ru: 'Куда обязательно писать текст в React Native?' }, back: { uz: 'Text ichiga', ru: 'Внутрь Text' }, note: { uz: "To'g'ridan View ichiga yozsangiz, ilova xato beradi", ru: 'Если написать прямо внутрь View, приложение выдаст ошибку' } },
+  { front: { uz: "React Native'da stillar qayerda yoziladi?", ru: 'Где в React Native пишутся стили?' }, back: 'StyleSheet', note: { uz: "Alohida CSS fayl emas, JS obyekt ichida", ru: 'Не в отдельном CSS-файле, а внутри JS-объекта' } },
+  { front: { uz: "CSS'dagi background-color React Native'da qanday yoziladi?", ru: 'Как в React Native пишется CSS-овский background-color?' }, back: 'backgroundColor', note: { uz: "Ikki so'z qo'shiladi, ikkinchisi bosh harf bilan (camelCase)", ru: 'Два слова сливаются, второе с большой буквы (camelCase)' } },
+  { front: { uz: "Mobil loyihani tez boshlashga yordam beradigan to'plam qanday nomlanadi?", ru: 'Как называется набор, который помогает быстро начать мобильный проект?' }, back: 'Expo', note: { uz: "Murakkab o'rnatishni o'zi bajaradi, siz kod yozasiz", ru: 'Сложную установку берёт на себя, вы только пишете код' } },
+  { front: { uz: "Ilovani o'z telefoningizda ko'rish uchun qaysi ilova kerak?", ru: 'Какое приложение нужно, чтобы увидеть свою программу на телефоне?' }, back: 'Expo Go', note: { uz: "QR kodni skanerlaysiz va ilova telefonda ochiladi", ru: 'Сканируете QR-код, и приложение открывается на телефоне' } },
+  { front: { uz: "Bitta React Native kodi qaysi ikki turdagi telefonda ishlaydi?", ru: 'На телефонах каких двух видов работает один и тот же код React Native?' }, back: 'iOS + Android', note: { uz: "Ikki marta alohida yozish kerak emas", ru: 'Писать два раза отдельно не нужно' } },
+  { front: { uz: "React Native'da ham web'dagidek ishlaydigan uchta asosiy tushuncha qaysi?", ru: 'Какие три главных понятия в React Native работают так же, как в вебе?' }, back: { uz: 'Komponent, props, state', ru: 'Компонент, props, state' }, note: { uz: "React bilimingiz shundoq ishlayveradi", ru: 'Ваши знания React работают как есть' } },
+  { front: { uz: "React Native'da JSX yozilishi o'zgaradimi?", ru: 'Меняется ли в React Native способ записи JSX?' }, back: { uz: "Yo'q, o'sha-o'sha", ru: 'Нет, тот же самый' }, note: { uz: "Faqat teg nomlari boshqacha: View, Text", ru: 'Другие только названия тегов: View, Text' } },
+  { front: { uz: "Kodni o'zgartirsangiz telefondagi ilova nima qiladi?", ru: 'Что делает приложение на телефоне, когда вы меняете код?' }, back: { uz: 'Darrov yangilanadi', ru: 'Сразу обновляется' }, note: { uz: "Expo o'zgarishni telefonga o'zi yetkazadi", ru: 'Expo сам доставляет изменение на телефон' } },
 ];
 const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, []); // eslint-disable-line
@@ -2242,7 +2244,7 @@ const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) =>
     <Stage eyebrow={tr({ uz: 'Takrorlash', ru: 'Повторение' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={false} label={{ uz: 'Yakunlash →', ru: 'Завершить →' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>RN atamalarini <span className="italic" style={{ color: T.accent }}>tez takrorlaymiz</span>.</>, ru: <><span className="italic" style={{ color: T.accent }}>Быстро повторим</span> термины RN.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Darsni yakunlashdan oldin bugungi atamalarni takrorlaymiz. Har kartada bir topishmoq — <b style={{ color: T.ink }}>qaysi atama</b> ekanini o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</>, ru: <>Перед завершением урока повторим сегодняшние термины. На каждой карте загадка — подумайте, <b style={{ color: T.ink }}>какой это термин</b>, затем нажмите на карту и проверьте. Оцените себя кнопкой <b style={{ color: T.ink }}>Знаю</b> или <b style={{ color: T.ink }}>Повторить</b>.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Darsni yakunlashdan oldin bugungi atamalarni takrorlaymiz. Har kartada bir savol — <b style={{ color: T.ink }}>javobini</b> o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</>, ru: <>Перед завершением урока повторим сегодняшние термины. На каждой карте вопрос — подумайте, <b style={{ color: T.ink }}>каким будет ответ</b>, затем нажмите на карту и проверьте. Оцените себя кнопкой <b style={{ color: T.ink }}>Знаю</b> или <b style={{ color: T.ink }}>Повторить</b>.</> })}</Mentor>
         <div className="fc-center"><Flashcards cards={RN_FLASHCARDS} /></div>
       </div>
     </Stage>
@@ -2293,7 +2295,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
           <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> {tr({ uz: 'Endi siz bilasiz', ru: 'Теперь вы знаете' })}</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{tr(r)}</span></li>))}</ul></div>
           <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: "🚀 Keyingi dars — RN'da ko'p ekranli ilova: navigatsiya (Stack Navigator), API'dan ma'lumot va AsyncStorage.", ru: '🚀 Следующий урок — приложение из нескольких экранов на RN: навигация (Stack Navigator), данные из API и AsyncStorage.' })}</p></div>
         </div>
-        <div className="card ach-coll fade-up d3">
+        {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🏅 Nishonlaringiz', ru: '🏅 Ваши значки' })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">
             {Object.entries(ACHIEVEMENTS).map(([id, a]) => { const got = !!(achievements && achievements.has(id)); return (
@@ -2304,7 +2306,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
               </div>
             ); })}
           </div>
-        </div>
+        </div>}
       </div>
     </Stage>
   );

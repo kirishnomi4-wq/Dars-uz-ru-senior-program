@@ -1835,7 +1835,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
           <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> {tr({ uz: 'Endi siz bilasiz', ru: 'Теперь вы знаете' })}</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{tr(r)}</span></li>))}</ul></div>
           <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>📝 {tr({ uz: 'Uyga vazifa', ru: 'Домашнее задание' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: 'Sikllar bilan mashq qiling:', ru: 'Потренируйтесь с циклами:' })}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: "Sikllar — eng ko'p ishlatiladigan vosita. Mashq qilsangiz, qo'lingizga o'tirib qoladi! 🚀", ru: 'Циклы — самый используемый инструмент. Потренируетесь — и рука набьётся! 🚀' })}</p></div>
         </div>
-        <div className="card ach-coll fade-up d3">
+        {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>🏅 {tr({ uz: 'Nishonlaringiz', ru: 'Ваши награды' })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">
             {Object.entries(ACHIEVEMENTS).map(([id, a]) => { const got = !!(achievements && achievements.has(id)); return (
@@ -1846,7 +1846,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
               </div>
             ); })}
           </div>
-        </div>
+        </div>}
       </div>
     </Stage>
   );
@@ -2387,7 +2387,7 @@ function QuizArena({ live, onClose, startSolo }) {
             <div className={`qz-res ${my?.correct ? 'good' : 'bad'}`}>
               {my?.correct
                 ? <><span className="qz-res-pts">+{myPtsFor(qi)}</span><span className="qz-res-t">{tr({ uz: 'ball', ru: 'баллов' })}{streakUpTo(qi) >= 2 ? ` · 🔥 x${streakUpTo(qi)} streak` : ''}</span></>
-                : <span className="qz-res-t">{my ? tr({ uz: 'Xato — 0 ball. Keyingisida olasiz! 💪', ru: 'Ошибка — 0 баллов. Возьмёте на следующем! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Побыстрее! ⏱' })}</span>}
+                : <span className="qz-res-t">{my ? tr({ uz: 'Adashdingiz — 0 ball. Keyingisida olasiz! 💪', ru: 'Ошибка — 0 баллов. Возьмёте на следующем! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Побыстрее! ⏱' })}</span>}
               {!solo && myRank >= 0 && <span className="qz-res-rank">{tr({ uz: `Siz hozir: ${myRank + 1}-o'rin`, ru: `Вы сейчас: ${myRank + 1}-е место` })}</span>}
             </div>
           )}
@@ -2500,6 +2500,7 @@ function AchToasts({ toasts, onDone }) {
 // 🏅 Yuqori paneldagi nishon hisoblagichi — doim ko'rinadi, yangi olinganda pulslaydi, bosilsa ro'yxat chiqadi
 function AchCounter() {
   const earned = useContext(AchCtx);
+  const gate = useContext(LiveGateCtx);
   const count = earned ? earned.size : 0;
   const total = Object.keys(ACHIEVEMENTS).length;
   const prevRef = useRef(count);
@@ -2509,6 +2510,7 @@ function AchCounter() {
     if (count > prevRef.current) { setBump(true); const t = setTimeout(() => setBump(false), 800); prevRef.current = count; return () => clearTimeout(t); }
     prevRef.current = count;
   }, [count]);
+  if (gate && gate.live && gate.live.mode === 'mentor') return null; // 🔴 mentor proyektorida nishon YO'Q (hooklardan KEYIN)
   return (
     <div className="ach-cnt-wrap">
       <button className={`ach-counter ${bump ? 'bump' : ''} ${count > 0 ? 'has' : ''}`} onClick={() => setOpen(o => !o)} aria-label="Badges" title="Badges">
@@ -2528,18 +2530,18 @@ function AchCounter() {
 
 // ===== 🃏 FLASHCARDS (reusable, 3D flip — Quizlet uslubi) =====
 const JS_LOOPS_FLASHCARDS = [
-  { front: { uz: 'Amalni bir necha marta takrorlaydigan vosita', ru: 'Инструмент, повторяющий действие несколько раз' }, back: { uz: 'Sikl', ru: 'Цикл' }, note: 'for · while' },
-  { front: { uz: "Sanab bo'ladigan sikl (3 qism)", ru: 'Цикл со счётом (3 части)' }, back: 'for', note: { uz: 'boshlanish; shart; qadam', ru: 'старт; условие; шаг' } },
-  { front: { uz: "Shartga bog'liq sikl", ru: 'Цикл, зависящий от условия' }, back: 'while', note: { uz: "shart true bo'lguncha", ru: 'пока условие true' } },
-  { front: { uz: 'Sikl boshida qiymat beriladi', ru: 'Значение задаётся в начале цикла' }, back: 'i = 1', note: { uz: 'boshlanish', ru: 'старт' } },
-  { front: { uz: 'Sikl davom etish sharti', ru: 'Условие продолжения цикла' }, back: 'i <= 5', note: { uz: "true bo'lsa aylanadi", ru: 'крутится, пока true' } },
-  { front: { uz: 'Har aylanishda i ni 1 ga oshiradi', ru: 'Увеличивает i на 1 за итерацию' }, back: 'i++', note: { uz: 'qadam', ru: 'шаг' } },
-  { front: { uz: "Sikl qachon to'xtaydi", ru: 'Когда цикл останавливается' }, back: { uz: "Shart false bo'lganda", ru: 'Когда условие false' }, note: { uz: 'shart buzilsa', ru: 'условие нарушилось' } },
-  { front: { uz: "Hech to'xtamaydigan sikl", ru: 'Цикл, который не останавливается' }, back: { uz: 'Cheksiz sikl', ru: 'Бесконечный цикл' }, note: { uz: 'qadam shartga yaqinlashmasa', ru: 'шаг не приближает к условию' } },
-  { front: { uz: "Qiymatlar ro'yxati", ru: 'Список значений' }, back: { uz: 'Massiv', ru: 'Массив' }, note: "['a','b','c']" },
-  { front: { uz: 'Element raqami (0 dan boshlanadi)', ru: 'Номер элемента (начинается с 0)' }, back: { uz: 'Indeks', ru: 'Индекс' }, note: 'massiv[0]' },
-  { front: { uz: 'Massivdagi elementlar soni', ru: 'Число элементов в массиве' }, back: 'massiv.length', note: { uz: "3 ta bo'lsa → 3", ru: 'если их 3 → 3' } },
-  { front: { uz: "Massivning har elementini ko'rib chiqish", ru: 'Просмотр каждого элемента массива' }, back: { uz: 'Aylanib chiqish', ru: 'Обход' }, note: 'for + massiv.length' },
+  { front: { uz: "Bir ishni ko'p marta takrorlash uchun nima ishlatiladi?", ru: 'Что используют, чтобы повторить одно действие много раз?' }, back: { uz: 'sikl (for)', ru: 'цикл (for)' }, note: { uz: 'ikki xili bor: for va while', ru: 'есть два вида: for и while' } },
+  { front: { uz: 'Necha marta takrorlashni oldindan bilsangiz, qaysi sikl qulay?', ru: 'Если Вы заранее знаете число повторов — какой цикл удобнее?' }, back: 'for', note: { uz: 'uch qismi bor: boshlanish, shart, qadam', ru: 'три части: старт, условие, шаг' } },
+  { front: { uz: "Necha marta takrorlash noma'lum bo'lsa, qaysi sikl ishlatiladi?", ru: 'Какой цикл берут, если число повторов неизвестно?' }, back: 'while', note: { uz: 'shart rost turgan ekan aylanaveradi', ru: 'крутится, пока условие истинно' } },
+  { front: { uz: 'for siklida sanoq qaysi sondan boshlanishi qayerda yoziladi?', ru: 'Где в цикле for пишут, с какого числа начинается счёт?' }, back: 'let i = 1', note: { uz: 'birinchi qism — boshlanish', ru: 'первая часть — старт' } },
+  { front: { uz: 'Sikl yana aylanishini nima hal qiladi?', ru: 'Что решает, будет ли цикл крутиться дальше?' }, back: { uz: 'shart (i <= 5)', ru: 'условие (i <= 5)' }, note: { uz: "shart rost bo'lsa — yana aylanadi", ru: 'условие истинно — крутится снова' } },
+  { front: { uz: 'i++ har aylanishdan keyin nima qiladi?', ru: 'Что делает i++ после каждого оборота?' }, back: { uz: 'i ni 1 ga oshiradi', ru: 'увеличивает i на 1' }, note: { uz: 'uchinchi qism — qadam', ru: 'третья часть — шаг' } },
+  { front: { uz: "Sikl qachon to'xtaydi?", ru: 'Когда цикл останавливается?' }, back: { uz: "shart yolg'on bo'lganda", ru: 'когда условие ложно' }, note: { uz: "masalan i = 6 bo'lsa, i <= 5 endi bajarilmaydi", ru: 'например при i = 6 условие i <= 5 уже не выполняется' } },
+  { front: { uz: "Hech to'xtamaydigan sikl qanday ataladi?", ru: 'Как называется цикл, который никогда не останавливается?' }, back: { uz: 'cheksiz sikl', ru: 'бесконечный цикл' }, note: { uz: "qadam shartga yaqinlashtirmasa shunday bo'ladi", ru: 'так бывает, если шаг не приближает к условию' } },
+  { front: { uz: 'Bir nechta qiymatni bitta joyda saqlash uchun nima ishlatiladi?', ru: 'Что используют, чтобы хранить несколько значений в одном месте?' }, back: { uz: 'massiv', ru: 'массив' }, note: "['olma', 'anor', 'uzum']" },
+  { front: { uz: 'Massivning birinchi elementini qanday olasiz?', ru: 'Как взять первый элемент массива?' }, back: 'massiv[0]', note: { uz: 'sanoq 0 dan boshlanadi', ru: 'счёт начинается с 0' } },
+  { front: { uz: 'Massivda nechta element borligini nima aytadi?', ru: 'Что подскажет, сколько элементов в массиве?' }, back: 'massiv.length', note: { uz: "3 ta element bo'lsa → 3", ru: 'если элементов 3 → 3' } },
+  { front: { uz: 'Massivning har bir elementini birma-bir ishlatish uchun nima yoziladi?', ru: 'Что пишут, чтобы использовать каждый элемент массива по одному?' }, back: 'for + massiv.length', note: { uz: 'i = 0 dan massiv.length gacha', ru: 'от i = 0 до massiv.length' } },
 ];
 function Flashcards({ cards }) {
   const [queue, setQueue] = useState(() => cards.map((_, i) => i));
@@ -2572,7 +2574,7 @@ function Flashcards({ cards }) {
       <div className="fc-cardwrap">
         <div className={`fc-fly ${exiting === 'knew' ? 'out-knew' : ''} ${exiting === 'again' ? 'out-again' : ''}`} key={swapRef.current}>
         <div className={`fc-card ${flipped ? 'flip' : ''}`} onClick={() => !flipped && !exiting && setFlipped(true)} role="button" tabIndex={0}>
-          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: 'Javob nima?', ru: 'Какой ответ?' })} 🤔 <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
+          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: "Javobni o'ylang", ru: 'Подумайте над ответом' })} 🤔 <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
           <div className="fc-face fc-back"><span className="fc-tag">{tr(card.back)}</span>{card.note && <span className="fc-note">{tr(card.note)}</span>}</div>
         </div>
         </div>

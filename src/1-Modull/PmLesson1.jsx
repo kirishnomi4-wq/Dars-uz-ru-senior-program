@@ -461,6 +461,7 @@ const Col = ({ children, gap }) => <div className="col" style={gap ? { gap } : u
 // 🏅 Nishon hisoblagichi — Stage tepasida; bosilganda olingan/qulflangan ro'yxatni ochadi
 function AchCounter() {
   const earned = useContext(AchCtx);
+  const gate = useContext(LiveGateCtx);
   const count = earned ? earned.size : 0;
   const total = Object.keys(ACHIEVEMENTS).length;
   const prevRef = useRef(count);
@@ -470,6 +471,7 @@ function AchCounter() {
     if (count > prevRef.current) { setBump(true); const t = setTimeout(() => setBump(false), 800); prevRef.current = count; return () => clearTimeout(t); }
     prevRef.current = count;
   }, [count]);
+  if (gate && gate.live && gate.live.mode === 'mentor') return null; // 🔴 mentor proyektorida nishon YO'Q (hooklardan KEYIN)
   return (
     <div className="ach-cnt-wrap">
       <button data-tour="ach" className={`ach-counter ${bump ? 'bump' : ''} ${count > 0 ? 'has' : ''}`} onClick={() => setOpen(o => !o)} aria-label="Badges" title="Badges">
@@ -1036,7 +1038,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
     <Stage eyebrow="Kirish" screen={screen} audioState={audio} navContent={<NavNext optionalLive disabled={picked === null} label="Davom etish" onClick={onNext} />}>
       <div className="screen">
         <h1 className="title h-title fade-up">Nega ba'zi ilovalarni har kuni ochasiz, ba'zilarini esa <span className="italic" style={{ color: T.accent }}>umuman ochmaysiz</span>?</h1>
-        <Mentor>Telefoningizda o'nlab ilova bor. Ulardan ba'zilarini <b style={{ color: T.ink }}>har kuni</b> ochasiz, ba'zilarini esa o'rnatib qo'yganingiz bilan <b style={{ color: T.ink }}>umuman ishlatmaysiz</b>. Sizningcha, nega shunday? Avval o'zingiz taxmin qiling — o'ngdagi javoblardan birini tanlang.</Mentor>
+        <Mentor>Telefoningizda o'nlab ilova bor. Ulardan ba'zilarini <b style={{ color: T.ink }}>har kuni</b> ochasiz, ba'zilarini esa o'rnatib qo'yganingiz bilan <b style={{ color: T.ink }}>umuman ishlatmaysiz</b>. Sizningcha, nega shunday? Avval o'zingiz o'ylab ko'ring — o'ngdagi javoblardan birini tanlang.</Mentor>
         <Split>
           <Col>
             <p className="flow-label">Har kuni ochadiganlaringiz</p>
@@ -1293,12 +1295,12 @@ const Screen4 = (props) => (
 // ===== SCREEN 5 — MUAMMO ANIQ KIMNIKI? (toggle) =====
 const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const audio = useAudio([{ id: 's5', text: `Endi eng muhim savol: bu muammo aniq kimniki? Mening saytim hamma uchun, deyish oson. Lekin aslida bu hech kim uchun degani. Bitta g'oyaning ikki ko'rinishini solishtiring: avval noaniq, keyin aniq — farqni o'zingiz sezasiz.`, trigger: 'on_mount', waits_for: null }]);
-  const [mode, setMode] = useState('vague');
-  const [seen, setSeen] = useState(new Set(['vague']));
+  const [mode, setMode] = useState('noaniq');
+  const [seen, setSeen] = useState(new Set(['noaniq']));
   const done = seen.size >= 2;
   const set = (m) => { setMode(m); setSeen(prev => { const n = new Set(prev); n.add(m); return n; }); };
   const V = {
-    vague: { title: 'Hamma uchun ichimliklar sayti', note: 'Kim ichadi? Qachon? Qayerda? Hech narsa aniq emas. Issiq choy istagan buviga ham, muzdek kola istagan bolaga ham bir xil gapirasiz — natijada hech kimni qiziqtira olmaysiz.' },
+    noaniq: { title: 'Hamma uchun ichimliklar sayti', note: 'Kim ichadi? Qachon? Qayerda? Hech narsa aniq emas. Issiq choy istagan buviga ham, muzdek kola istagan bolaga ham bir xil gapirasiz — natijada hech kimni qiziqtira olmaysiz.' },
     specific: { title: 'Issiq kunda chanqagan o\'tkinchilar uchun — park yonida muzdek limonad', note: 'Aniq odam (issiqda chanqagan o\'tkinchi), aniq vaqt (issiq kun), aniq joy (park yoni). Endi saytda nima yozishni ham aniq bilasiz: qayerda, nechpul va qanchalik muzdek.' }
   };
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
@@ -1311,7 +1313,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <div className="split">
           <Col>
             <div className="fade-up delay-1" style={{ display: 'flex', gap: 8 }}>
-              <button className={`chip ${mode === 'vague' ? 'chip-on' : ''}`} onClick={() => set('vague')}>Noaniq</button>
+              <button className={`chip ${mode === 'noaniq' ? 'chip-on' : ''}`} onClick={() => set('noaniq')}>Noaniq</button>
               <button className={`chip ${mode === 'specific' ? 'chip-on' : ''}`} onClick={() => set('specific')}>Aniq odam</button>
             </div>
             <div className="demo-swap pm-pop" key={mode} style={{ background: T.paper, borderRadius: 14, padding: '20px 18px', boxShadow: `0 8px 20px -7px rgba(${T.shadowBase},0.16)`, borderLeft: `4px solid ${mode === 'specific' ? T.success : T.ink3}` }}>
@@ -2579,7 +2581,7 @@ function QuizArena({ live, onClose, startSolo }) {
             <div className={`qz-res ${my?.correct ? 'good' : 'bad'}`}>
               {my?.correct
                 ? <><span className="qz-res-pts">+{myPtsFor(qi)}</span><span className="qz-res-t">ball{streakUpTo(qi) >= 2 ? ` · 🔥 x${streakUpTo(qi)} streak` : ''}</span></>
-                : <span className="qz-res-t">{my ? "Xato — 0 ball. Keyingisida olasiz! 💪" : "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱"}</span>}
+                : <span className="qz-res-t">{my ? "Adashdingiz — 0 ball. Keyingisida olasiz! 💪" : "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱"}</span>}
               {!solo && myRank >= 0 && <span className="qz-res-rank">Siz hozir: {myRank + 1}-o'rin</span>}
             </div>
           )}
@@ -2653,18 +2655,18 @@ function QuizArena({ live, onClose, startSolo }) {
 // 🃏 Qayta ishlatiladigan FLASHCARDS (9.3) — aktiv takrorlash (3D flip + o'z-o'zini baholash).
 // Boshqa darsga: faqat `cards` ({ front, back, note }) almashtiriladi. Matn — Metodist sayqallaydi.
 const PM_FLASHCARDS = [
-  { front: "Saytni ishlatadigan aniq odam", back: 'Foydalanuvchi', note: "aniq kishi — hamma emas" },
-  { front: "Odam his qiladigan real qiyinchilik", back: 'Muammo', note: "sabab — nega sayt kerak" },
-  { front: "Sayt muammoni qanday osonlashtiradi", back: 'Yechim', note: "sayt aynan nima qiladi" },
-  { front: "Kim, qanday muammo, qanday yechim ekanini hal qiladigan kishi", back: 'Mahsulot menejeri (PM)', note: "qaror qabul qiladi" },
-  { front: "«Hamma uchun» sayt aslida kim uchun?", back: 'Hech kim uchun', note: "aniq odam kerak" },
-  { front: "To'liq g'oyaning uch bo'lagi", back: 'Kim + Muammo + Yechim', note: "uchtasi ham bo'lsin" },
-  { front: "Sayt qurishdan oldin birinchi nimani aniqlaymiz?", back: 'Foydalanuvchini', note: "avval kim" },
-  { front: "Har bir sayt aslida nima?", back: 'Kimgadir yechim', note: "muammoga javob" },
-  { front: "Yechimdan oldin nimani bilishimiz shart?", back: 'Muammo', note: "muammosiz yechim yo'q" },
-  { front: "Foydalanuvchini tanlashda eng keng tarqalgan xato", back: 'Hamma uchun', note: "hech kimga to'g'ri kelmaydi" },
-  { front: "KIM → MUAMMO → YECHIM bir-birini ochib boradigan tartib", back: "G'oya zanjiri", note: "har javob keyingi savolni ochadi" },
-  { front: "PM eng avval beradigan savol", back: 'Kim mening foydalanuvchim?', note: "hammasi shundan boshlanadi" },
+  { front: "Har bir sayt aslida nima uchun yaratiladi?", back: 'Muammoni yechish uchun', note: "YouTube — zerikish, taksi ilovasi — mashina kutish muammosini yechadi" },
+  { front: "Saytni ishlatadigan odamni bir so'z bilan qanday ataymiz?", back: 'Foydalanuvchi', note: "aniq bitta odam — «hamma» emas" },
+  { front: "Odam his qiladigan qiyinchilikni qanday ataymiz?", back: 'Muammo', note: "muammo — saytning o'zagi, sabab" },
+  { front: "Sayt muammoni yengillashtiradigan usul qanday ataladi?", back: 'Yechim', note: "sayt aynan nima qilib berishi" },
+  { front: "Kim uchun, qaysi muammoga sayt qurishni kim hal qiladi?", back: 'Mahsulot menejeri (PM)', note: "dizayn va nomdan oldin shu qarorlar qabul qilinadi" },
+  { front: "«Hamma uchun» sayt aslida kim uchun bo'lib qoladi?", back: 'Hech kim uchun', note: "buviga issiq choy, bolaga muzdek kola kerak — bir xil gap ikkisiga ham to'g'ri kelmaydi" },
+  { front: "To'liq g'oya qaysi uch bo'lakdan yig'iladi?", back: 'KIM + MUAMMO + YECHIM', note: "bittasi yetishsa — g'oya chala hisoblanadi" },
+  { front: "Sayt qurishdan oldin eng birinchi nimani aniqlaysiz?", back: 'Foydalanuvchini (KIM)', note: "avval kim, keyin muammo, eng oxirida yechim" },
+  { front: "Yechimni o'ylashdan oldin nimani bilish shart?", back: 'Muammoni', note: "muammosiz yechim hech kimga kerak bo'lmaydi" },
+  { front: "PM «sayt qilmoqchiman» degan odamga birinchi qanday savol beradi?", back: 'Kim sizning foydalanuvchingiz?', note: "hamma ish shu savoldan boshlanadi" },
+  { front: "Sayt mashhur bo'lishi va pul topishi — sababmi yoki natijami?", back: 'Natija', note: "avval muammo yechiladi → odamlar keladi → keyin mashhurlik" },
+  { front: "Buvi misolida g'oya zanjiri qanday bo'ldi?", back: 'Buvi → xaridor yo\'q → buyurtma sayti', note: "har javob keyingi savolni ochib boradi" },
 ];
 function Flashcards({ cards }) {
   const [queue, setQueue] = useState(() => cards.map((_, i) => i));
@@ -2697,7 +2699,7 @@ function Flashcards({ cards }) {
       <div className="fc-cardwrap">
         <div className={`fc-fly ${exiting === 'knew' ? 'out-knew' : ''} ${exiting === 'again' ? 'out-again' : ''}`} key={swapRef.current}>
         <div className={`fc-card ${flipped ? 'flip' : ''}`} onClick={() => !flipped && !exiting && setFlipped(true)} role="button" tabIndex={0}>
-          <div className="fc-face fc-front"><span className="fc-q">{card.front}</span><span className="fc-cue">Qaysi atama? 🤔 <span className="fc-tap">bosing</span></span></div>
+          <div className="fc-face fc-front"><span className="fc-q">{card.front}</span><span className="fc-cue">Javobni o'ylang 🤔 <span className="fc-tap">bosing</span></span></div>
           <div className="fc-face fc-back"><span className="fc-tag">{card.back}</span>{card.note && <span className="fc-note">{card.note}</span>}</div>
         </div>
         </div>
@@ -2711,13 +2713,13 @@ function Flashcards({ cards }) {
 
 // ===== SCREEN FLASHCARDS — yakuniy takrorlash (podiumdan keyin, summarydan oldin) =====
 const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const audio = useAudio([{ id: 'sflash', text: `Darsni yakunlashdan oldin, bugun o'rgangan asosiy atamalarni tez takrorlaymiz. Har kartada bir ta'rif — qaysi atama ekanini o'ylang, keyin kartani bosib tekshiring.`, trigger: 'on_mount', waits_for: null }]);
+  const audio = useAudio([{ id: 'sflash', text: `Darsni yakunlashdan oldin, bugun o'rgangan asosiy atamalarni tez takrorlaymiz. Har kartada bir savol — javobini o'ylang, keyin kartani bosib tekshiring.`, trigger: 'on_mount', waits_for: null }]);
   useEffect(() => { if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, []); // eslint-disable-line
   return (
     <Stage eyebrow="Takrorlash" screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={false} label="Yakunlash →" onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">Atamalarni <span className="italic" style={{ color: T.accent }}>tez takrorlaymiz</span>.</h2></div>
-        <Mentor>Darsni yakunlashdan oldin bugun o'rgangan atamalarni takrorlaymiz. Har kartada bir ta'rif — <b style={{ color: T.ink }}>qaysi atama</b> ekanini o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</Mentor>
+        <Mentor>Darsni yakunlashdan oldin bugun o'rgangan atamalarni takrorlaymiz. Har kartada bir savol — <b style={{ color: T.ink }}>javobini</b> o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</Mentor>
         <div className="fc-center"><Flashcards cards={PM_FLASHCARDS} /></div>
       </div>
     </Stage>
@@ -2773,7 +2775,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
           <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span style={{ color: T.success, display: 'inline-flex' }}>{Ico.check(15)}</span> Endi siz bilasiz</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck" style={{ display: 'inline-flex' }}>{Ico.check(15)}</span><span>{r}</span></li>))}</ul></div>
           <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>Uyga vazifa</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>Bitta yangi g'oyani topib keling:</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{h.b}</b> <span className="t">{h.t}</span></li>))}</ul><p className="hw-note">Keyingi darsda HTML bilan shu yechimni qurishni boshlaymiz.</p></div>
         </div>
-        <div className="card ach-coll fade-up d3">
+        {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>🏅 Nishonlaringiz — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">
             {Object.entries(ACHIEVEMENTS).map(([id, a]) => { const got = !!(achievements && achievements.has(id)); return (
@@ -2784,7 +2786,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
               </div>
             ); })}
           </div>
-        </div>
+        </div>}
       </div>
       {arena && <QuizArena live={live || { mode: 'self' }} startSolo={arenaSolo} onClose={() => setArena(false)} />}
     </Stage>

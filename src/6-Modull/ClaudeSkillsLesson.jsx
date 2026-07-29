@@ -404,6 +404,7 @@ const Col = ({ children, gap }) => <div className="col" style={gap ? { gap } : u
 // 🏅 Yuqori paneldagi nishon hisoblagichi (Stage chrome)
 function AchCounter() {
   const earned = useContext(AchCtx);
+  const gate = useContext(LiveGateCtx);
   const count = earned ? earned.size : 0;
   const total = Object.keys(ACHIEVEMENTS).length;
   const prevRef = useRef(count);
@@ -413,6 +414,7 @@ function AchCounter() {
     if (count > prevRef.current) { setBump(true); const t = setTimeout(() => setBump(false), 800); prevRef.current = count; return () => clearTimeout(t); }
     prevRef.current = count;
   }, [count]);
+  if (gate && gate.live && gate.live.mode === 'mentor') return null; // 🔴 mentor proyektorida nishon YO'Q (hooklardan KEYIN)
   return (
     <div className="ach-cnt-wrap">
       <button className={`ach-counter ${bump ? 'bump' : ''} ${count > 0 ? 'has' : ''}`} onClick={() => setOpen(o => !o)} aria-label="Badges" title="Badges">
@@ -2027,7 +2029,7 @@ function QuizArena({ live, onClose, startSolo }) {
             <div className={`qz-res ${my?.correct ? 'good' : 'bad'}`}>
               {my?.correct
                 ? <><span className="qz-res-pts">+{myPtsFor(qi)}</span><span className="qz-res-t">{tr({ uz: 'ball', ru: 'очков' })}{streakUpTo(qi) >= 2 ? ` · 🔥 x${streakUpTo(qi)} streak` : ''}</span></>
-                : <span className="qz-res-t">{my ? tr({ uz: 'Xato — 0 ball. Keyingisida olasiz! 💪', ru: 'Ошибка — 0 очков. В следующем возьмёте! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 очков. Будьте быстрее! ⏱' })}</span>}
+                : <span className="qz-res-t">{my ? tr({ uz: 'Adashdingiz — 0 ball. Keyingisida olasiz! 💪', ru: 'Ошибка — 0 очков. В следующем возьмёте! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 очков. Будьте быстрее! ⏱' })}</span>}
               {!solo && myRank >= 0 && <span className="qz-res-rank">{tr({ uz: `Siz hozir: ${myRank + 1}-o'rin`, ru: `Вы сейчас: ${myRank + 1}-е место` })}</span>}
             </div>
           )}
@@ -2303,7 +2305,7 @@ function Flashcards({ cards }) {
       <div className="fc-cardwrap">
         <div className={`fc-fly ${exiting === 'knew' ? 'out-knew' : ''} ${exiting === 'again' ? 'out-again' : ''}`} key={swapRef.current}>
         <div className={`fc-card ${flipped ? 'flip' : ''}`} onClick={() => !flipped && !exiting && setFlipped(true)} role="button" tabIndex={0}>
-          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: 'Qaysi tushuncha? 🤔', ru: 'Какое это понятие? 🤔' })} <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
+          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: "Javobni o'ylang", ru: 'Подумайте над ответом' })} 🤔 <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
           <div className="fc-face fc-back"><span className="fc-tag">{tr(card.back)}</span>{card.note && <span className="fc-note">{tr(card.note)}</span>}</div>
         </div>
         </div>
@@ -2330,20 +2332,20 @@ const ScreenSkillsPractice = (props) => (
     ]} />
 );
 
-// 🃏 FLASHCARD KARTALARI — 12 atama (super-kuch kartasi tili)
+// 🃏 FLASHCARD KARTALARI — 12 savol (super-kuch kartasi tili)
 const SKILLS_FLASHCARDS = [
-  { front: { uz: "AI uchun yozma, qayta ishlatiladigan yo'riqnoma", ru: 'Письменная, многоразовая инструкция для ИИ' }, back: { uz: 'Skill', ru: 'Skill' }, note: { uz: 'super-kuch kartasi', ru: 'карта суперсилы' } },
-  { front: { uz: 'Skill yozilgan fayl (YAML + Markdown)', ru: 'Файл, в котором записан скилл (YAML + Markdown)' }, back: { uz: 'SKILL.md', ru: 'SKILL.md' }, note: { uz: "kartaning o'zi", ru: 'сама карта' } },
-  { front: { uz: '--- orasidagi name va description qismi', ru: 'Часть с name и description между ---' }, back: { uz: 'frontmatter', ru: 'frontmatter' }, note: { uz: 'karta pasporti', ru: 'паспорт карты' } },
-  { front: { uz: 'Karta NIMA qiladi va QACHON yonadi', ru: 'ЧТО делает карта и КОГДА срабатывает' }, back: { uz: 'description', ru: 'description' }, note: { uz: 'eng muhim qator', ru: 'самая важная строка' } },
-  { front: { uz: 'AI bajaradigan aniq qadamlar va misol', ru: 'Точные шаги и пример, которые выполняет ИИ' }, back: { uz: 'body', ru: 'body' }, note: { uz: 'kartaning kuchi', ru: 'сила карты' } },
-  { front: { uz: 'Kuch qaysi vaziyatda yonishi', ru: 'В какой ситуации срабатывает сила' }, back: { uz: 'Trigger', ru: 'Trigger' }, note: { uz: 'description mosligi', ru: 'совпадение с description' } },
-  { front: { uz: 'Body faqat vazifa mos kelganda ochilishi', ru: 'Body открывается только при совпадении задачи' }, back: { uz: 'Progressive disclosure', ru: 'Progressive disclosure' }, note: { uz: 'kerakli paytda', ru: 'в нужный момент' } },
-  { front: { uz: "AI-ni to'g'ri paytda kartani ishlatadigan qilib yozish", ru: 'Написать так, чтобы ИИ применял карту в нужный момент' }, back: { uz: 'Kontekst-injiniring', ru: 'Контекст-инжиниринг' }, note: { uz: 'aniq description', ru: 'точный description' } },
-  { front: { uz: "Bir marta yoz — ko'p marta ishlat", ru: 'Напиши один раз — используй много раз' }, back: { uz: 'Qayta ishlatish', ru: 'Переиспользование' }, note: { uz: 'reuse', ru: 'reuse' } },
-  { front: { uz: 'Har safar bir xil sifat va uslub', ru: 'Каждый раз одинаковое качество и стиль' }, back: { uz: 'Izchillik', ru: 'Стабильность' }, note: { uz: 'consistency', ru: 'consistency' } },
-  { front: { uz: 'Kartasiz umumiy javob ↔ karta bilan aniq harakat', ru: 'Общий ответ без карты ↔ точное действие с картой' }, back: { uz: 'Before/After', ru: 'Before/After' }, note: { uz: "skill ta'siri", ru: 'влияние скилла' } },
-  { front: { uz: 'Doimiy shaxs (kim u) — har javobda yoqiq', ru: 'Постоянная личность (кто он) — включена в каждом ответе' }, back: { uz: 'System prompt', ru: 'System prompt' }, note: { uz: 'skilldan farqi', ru: 'отличие от скилла' } },
+  { front: { uz: "Claude Skill nima?", ru: 'Что такое Claude Skill?' }, back: { uz: "AI uchun yozma yo'riqnoma", ru: 'Письменная инструкция для ИИ' }, note: { uz: "AI'ga beriladigan super-kuch kartasi", ru: 'Карта суперсилы, которую дают ИИ' } },
+  { front: { uz: "Skill qaysi faylga yoziladi?", ru: 'В какой файл записывается скилл?' }, back: 'SKILL.md', note: { uz: "Oddiy matn fayli — lekin kuchli", ru: 'Обычный текстовый файл — но мощный' } },
+  { front: { uz: "SKILL.md qaysi ikki qismdan iborat?", ru: 'Из каких двух частей состоит SKILL.md?' }, back: { uz: "Frontmatter va body", ru: 'Frontmatter и body' }, note: { uz: "Frontmatter — pasport, body — yo'riqnoma", ru: 'Frontmatter — паспорт, body — инструкция' } },
+  { front: { uz: "Frontmatter faylning qayerida turadi?", ru: 'Где в файле находится frontmatter?' }, back: { uz: "Eng yuqorida, uchta chiziq orasida", ru: 'В самом верху, между тремя чёрточками' }, note: { uz: "Ichida name va description bo'ladi", ru: 'Внутри лежат name и description' } },
+  { front: { uz: "Claude har doim nimani ko'rib turadi?", ru: 'Что Claude видит всегда?' }, back: { uz: "Skill nomi va description", ru: 'Имя скилла и description' }, note: { uz: "Bu arzon: ikki qator, xolos", ru: 'Это дёшево: всего две строки' } },
+  { front: { uz: "Karta qachon yonishini qaysi qator aytadi?", ru: 'Какая строка говорит, когда сработает карта?' }, back: 'description', note: { uz: "Skillning eng muhim qatori", ru: 'Самая важная строка скилла' } },
+  { front: { uz: "Body ichida nima yozilgan bo'ladi?", ru: 'Что написано внутри body?' }, back: { uz: "Aniq qadamlar va bitta misol", ru: 'Точные шаги и один пример' }, note: { uz: "Misol — AI taqlid qiladigan namuna", ru: 'Пример — образец, которому подражает ИИ' } },
+  { front: { uz: "To'liq body qachon yuklanadi?", ru: 'Когда загружается полный body?' }, back: { uz: "Vazifa description'ga mos kelganda", ru: 'Когда задача совпала с description' }, note: { uz: "Qolgan kartalar yopiq qoladi", ru: 'Остальные карты остаются закрытыми' } },
+  { front: { uz: "Faqat kerakli skill ochilishi qanday ataladi?", ru: 'Как называется, когда открывается только нужный скилл?' }, back: 'Progressive disclosure', note: { uz: "Bosqichma-bosqich ochilish — tez va arzon", ru: 'Пошаговое раскрытие — быстро и дёшево' } },
+  { front: { uz: "Skill oddiy so'rovdan nimasi bilan farq qiladi?", ru: 'Чем скилл отличается от обычного запроса?' }, back: { uz: "Saqlanadi va qayta ishlatiladi", ru: 'Сохраняется и используется повторно' }, note: { uz: "So'rov — bir martalik gap", ru: 'Запрос — одноразовая реплика' } },
+  { front: { uz: "System prompt nima?", ru: 'Что такое system prompt?' }, back: { uz: "Botning doimiy shaxsi", ru: 'Постоянная личность бота' }, note: { uz: "Har javobda yoqiq turadi, skill esa kerak bo'lganda", ru: 'Включён в каждом ответе, а скилл — при необходимости' } },
+  { front: { uz: "Qanday vazifa Skill uchun eng mos?", ru: 'Какая задача лучше всего подходит для скилла?' }, back: { uz: "Takrorlanuvchi vazifa", ru: 'Повторяющаяся задача' }, note: { uz: "Bir marta yozasiz, har safar ishlatasiz", ru: 'Пишете один раз, используете каждый раз' } },
 ];
 const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, []); // eslint-disable-line
@@ -2351,7 +2353,7 @@ const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) =>
     <Stage eyebrow={{ uz: 'Takrorlash', ru: 'Повторение' }} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={false} label={{ uz: 'Yakunlash →', ru: 'Завершить →' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Skill atamalarini <span className="italic" style={{ color: T.accent }}>tez takrorlaymiz</span>.</>, ru: <><span className="italic" style={{ color: T.accent }}>Быстро повторим</span> термины Skill.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Darsni yakunlashdan oldin bugungi atamalarni takrorlaymiz. Har kartada bir topishmoq — <b style={{ color: T.ink }}>qaysi atama</b> ekanini o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</>, ru: <>Перед завершением урока повторим сегодняшние термины. На каждой карте — загадка: подумайте, <b style={{ color: T.ink }}>какой это термин</b>, затем нажмите на карту и проверьте. Оцените себя кнопкой <b style={{ color: T.ink }}>Знаю</b> или <b style={{ color: T.ink }}>Повторить</b>.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Darsni yakunlashdan oldin bugungi atamalarni takrorlaymiz. Har kartada bir savol — <b style={{ color: T.ink }}>javobini</b> o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</>, ru: <>Перед завершением урока повторим сегодняшние термины. На каждой карточке — вопрос: подумайте, <b style={{ color: T.ink }}>каким будет ответ</b>, затем нажмите на карту и проверьте. Оцените себя кнопкой <b style={{ color: T.ink }}>Знаю</b> или <b style={{ color: T.ink }}>Повторить</b>.</> })}</Mentor>
         <div className="fc-center"><Flashcards cards={SKILLS_FLASHCARDS} /></div>
       </div>
     </Stage>
@@ -2402,7 +2404,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
           <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> {tr({ uz: 'Endi siz bilasiz', ru: 'Теперь вы знаете' })}</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{tr(r)}</span></li>))}</ul></div>
           <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: "🚀 Keyingi dars — o'z Skill'ingizni yozasiz: struktura, test va kontekst-injiniring bilan yaxshilash.", ru: '🚀 Следующий урок — вы напишете свой Skill: структура, тест и улучшение через контекст-инжиниринг.' })}</p></div>
         </div>
-        <div className="card ach-coll fade-up d3">
+        {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🏅 Nishonlaringiz —', ru: '🏅 Ваши значки —' })} {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">
             {Object.entries(ACHIEVEMENTS).map(([id, a]) => { const got = !!(achievements && achievements.has(id)); return (
@@ -2413,7 +2415,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
               </div>
             ); })}
           </div>
-        </div>
+        </div>}
       </div>
     </Stage>
   );

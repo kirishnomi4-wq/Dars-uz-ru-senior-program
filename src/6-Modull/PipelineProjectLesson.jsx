@@ -448,6 +448,7 @@ const Zoomable = ({ children }) => {
 // 🏅 Yuqori paneldagi nishon hisoblagichi (Stage chrome)
 function AchCounter() {
   const earned = useContext(AchCtx);
+  const gate = useContext(LiveGateCtx);
   const count = earned ? earned.size : 0;
   const total = Object.keys(ACHIEVEMENTS).length;
   const prevRef = useRef(count);
@@ -457,6 +458,7 @@ function AchCounter() {
     if (count > prevRef.current) { setBump(true); const t = setTimeout(() => setBump(false), 800); prevRef.current = count; return () => clearTimeout(t); }
     prevRef.current = count;
   }, [count]);
+  if (gate && gate.live && gate.live.mode === 'mentor') return null; // 🔴 mentor proyektorida nishon YO'Q (hooklardan KEYIN)
   return (
     <div className="ach-cnt-wrap">
       <button className={`ach-counter ${bump ? 'bump' : ''} ${count > 0 ? 'has' : ''}`} onClick={() => setOpen(o => !o)} aria-label="Badges" title="Badges">
@@ -1886,7 +1888,7 @@ function QuizArena({ live, onClose, startSolo }) {
             <div className={`qz-res ${my?.correct ? 'good' : 'bad'}`}>
               {my?.correct
                 ? <><span className="qz-res-pts">+{myPtsFor(qi)}</span><span className="qz-res-t">{tr({ uz: 'ball', ru: 'очков' })}{streakUpTo(qi) >= 2 ? ` · 🔥 x${streakUpTo(qi)} streak` : ''}</span></>
-                : <span className="qz-res-t">{my ? tr({ uz: "Xato — 0 ball. Keyingisida olasiz! 💪", ru: 'Ошибка — 0 очков. В следующий раз получится! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 очков. Будьте быстрее! ⏱' })}</span>}
+                : <span className="qz-res-t">{my ? tr({ uz: "Adashdingiz — 0 ball. Keyingisida olasiz! 💪", ru: 'Ошибка — 0 очков. В следующий раз получится! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 очков. Будьте быстрее! ⏱' })}</span>}
               {!solo && myRank >= 0 && <span className="qz-res-rank">{tr({ uz: `Siz hozir: ${myRank + 1}-o'rin`, ru: `Вы сейчас: ${myRank + 1}-е место` })}</span>}
             </div>
           )}
@@ -2175,7 +2177,7 @@ function Flashcards({ cards }) {
       <div className="fc-cardwrap">
         <div className={`fc-fly ${exiting === 'knew' ? 'out-knew' : ''} ${exiting === 'again' ? 'out-again' : ''}`} key={swapRef.current}>
         <div className={`fc-card ${flipped ? 'flip' : ''}`} onClick={() => !flipped && !exiting && setFlipped(true)} role="button" tabIndex={0}>
-          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: 'Qaysi tushuncha? 🤔', ru: 'Какое это понятие? 🤔' })} <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
+          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: "Javobni o'ylang", ru: 'Подумайте над ответом' })} 🤔 <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
           <div className="fc-face fc-back"><span className="fc-tag">{tr(card.back)}</span>{card.note && <span className="fc-note">{tr(card.note)}</span>}</div>
         </div>
         </div>
@@ -2186,20 +2188,20 @@ function Flashcards({ cards }) {
     </div>
   );
 }
-// 🃏 FLASHCARD KARTALARI — 12 atama (pipeline tili)
+// 🃏 FLASHCARD KARTALARI — 12 savol (pipeline tili)
 const PIPE_FLASHCARDS = [
-  { front: { uz: "5 komponent bog'lanib, ma'lumot oqadigan yagona tizim", ru: 'Единая система из 5 связанных компонентов, по которым текут данные' }, back: 'Pipeline', note: { uz: 'tizim', ru: 'система' } },
-  { front: { uz: "AI-promptlar bilan kod yozdirish (siz direktor)", ru: 'Написание кода промптами к ИИ (режиссёр — вы)' }, back: { uz: 'Vibecoding', ru: 'Вайбкодинг' }, note: { uz: 'prompt->kod->test', ru: 'промпт->код->тест' } },
-  { front: { uz: "Mijoz ko'radigan sahifa — «Buyurtma» tugmasi", ru: 'Страница, которую видит клиент, — кнопка «Заказать»' }, back: 'Frontend', note: { uz: 'React · peshtoq', ru: 'React · фасад' } },
-  { front: { uz: "So'rovlarni qabul qilib boshqaradigan markaz", ru: 'Центр, который принимает запросы и управляет ими' }, back: 'Backend', note: { uz: 'Node · hokimlik', ru: 'Node · мэрия' } },
-  { front: { uz: "Ma'lumot saqlanadigan jadvallar ombori", ru: 'Хранилище таблиц, где лежат данные' }, back: 'PostgreSQL', note: { uz: 'arxiv/reyestr', ru: 'архив/реестр' } },
-  { front: { uz: "Yangi buyurtmada adminga xabar yuboradigan darvoza", ru: 'Ворота, которые при новом заказе шлют сообщение админу' }, back: { uz: 'Telegram bot', ru: 'Telegram-бот' }, note: { uz: 'ikkinchi darvoza', ru: 'вторые ворота' } },
-  { front: { uz: "Savolga javob va tavsif yozadigan aql", ru: 'Ум, который отвечает на вопрос и пишет описание' }, back: { uz: 'AI', ru: 'ИИ' }, note: { uz: 'ekspert-byuro', ru: 'бюро экспертов' } },
-  { front: { uz: "Backend manzili saqlanadigan qulfli fayl", ru: 'Закрытый файл, где хранится адрес backend' }, back: '.env', note: 'API_URL' },
-  { front: { uz: "Butun oqimni boshidan oxirigacha sinash", ru: 'Проверка всего потока от начала до конца' }, back: { uz: 'End-to-end test', ru: 'End-to-end тест' }, note: { uz: 'integratsiya', ru: 'интеграция' } },
-  { front: { uz: "Qismlar ulanmay qolganda chiqadigan xato", ru: 'Ошибка, которая вылезает, когда части не связались' }, back: { uz: "Integratsiya bug'i", ru: 'Баг интеграции' }, note: 'URL/.env' },
-  { front: { uz: "AI'ga aniq, texnik buyruq berish", ru: 'Точная техническая команда для ИИ' }, back: { uz: 'Aniq prompt', ru: 'Точный промпт' }, note: { uz: 'nima·qayer·format', ru: 'что·где·формат' } },
-  { front: { uz: "Bitta amal butun zanjirni harakatga keltirishi", ru: 'Когда одно действие приводит в движение всю цепочку' }, back: { uz: "So'rov oqimi", ru: 'Поток запроса' }, note: 'request' },
+  { front: { uz: "Pipeline nima degani?", ru: 'Что значит «pipeline»?' }, back: { uz: "Bog'langan komponentlar tizimi", ru: 'Система связанных компонентов' }, note: { uz: "Ma'lumot ular orasida ketma-ket oqadi", ru: 'Данные текут между ними по порядку' } },
+  { front: { uz: "Bizning pipeline nechta qismdan yig'ilgan?", ru: 'Из скольких частей собран наш pipeline?' }, back: { uz: "5 ta", ru: '5' }, note: { uz: "React, Node.js, PostgreSQL, Telegram bot, AI", ru: 'React, Node.js, PostgreSQL, Telegram-бот, ИИ' } },
+  { front: { uz: "Mijoz ko'radigan sahifani nima chizadi?", ru: 'Что рисует страницу, которую видит клиент?' }, back: 'React', note: { uz: "Frontend: mahsulotlar va «Buyurtma» tugmasi", ru: 'Frontend: товары и кнопка «Заказать»' } },
+  { front: { uz: "So'rovlarni qabul qilib boshqaradigan markaz qaysi?", ru: 'Какой центр принимает запросы и управляет ими?' }, back: 'Node.js', note: { uz: "Backend: barcha so'rov u orqali oqadi", ru: 'Backend: все запросы текут через него' } },
+  { front: { uz: "Buyurtmalar qayerda saqlanadi?", ru: 'Где хранятся заказы?' }, back: 'PostgreSQL', note: { uz: "Ma'lumotlar bazasi: products va orders jadvallari", ru: 'База данных: таблицы products и orders' } },
+  { front: { uz: "Yangi buyurtmada adminga kim xabar yuboradi?", ru: 'Кто отправляет админу сообщение при новом заказе?' }, back: { uz: "Telegram bot", ru: 'Telegram-бот' }, note: { uz: "Xabarni Node.js unga uzatadi", ru: 'Сообщение ему передаёт Node.js' } },
+  { front: { uz: "Mijoz savoliga kim javob yozadi?", ru: 'Кто пишет ответ на вопрос клиента?' }, back: { uz: "AI (Claude)", ru: 'ИИ (Claude)' }, note: { uz: "Mahsulot tavsifini ham u yozadi", ru: 'Описание товара пишет тоже он' } },
+  { front: { uz: "Vibecoding nima?", ru: 'Что такое вайбкодинг?' }, back: { uz: "AI'ga buyruq berib kod yozdirish", ru: 'Писать код командами к ИИ' }, note: { uz: "Siz direktorsiz, AI esa ishchi", ru: 'Вы режиссёр, а ИИ — рабочий' } },
+  { front: { uz: "AI yozgan kodni nima qilish kerak?", ru: 'Что нужно сделать с кодом, который написал ИИ?' }, back: { uz: "O'qib tushunish", ru: 'Прочитать и понять' }, note: { uz: "Ko'r-ko'rona ishonsangiz, AI xatosi sizniki bo'ladi", ru: 'Поверите вслепую — ошибка ИИ станет вашей' } },
+  { front: { uz: "Aniq prompt nimalarni aytadi?", ru: 'Что говорит точный промпт?' }, back: { uz: "Nima, qayerda, qanday formatda", ru: 'Что, где и в каком формате' }, note: { uz: "«Sayt qil» emas, «POST /orders yoz»", ru: 'Не «сделай сайт», а «напиши POST /orders»' } },
+  { front: { uz: "Backend manzili qaysi faylda saqlanadi?", ru: 'В каком файле хранится адрес backend?' }, back: '.env', note: { uz: "Ichida API_URL yoziladi", ru: 'Внутри записывается API_URL' } },
+  { front: { uz: "Konsolda «Failed to fetch» chiqsa, avval nimani tekshirasiz?", ru: 'В консоли «Failed to fetch» — что проверите первым?' }, back: { uz: ".env ichidagi API_URL", ru: 'API_URL внутри .env' }, note: { uz: "Eng ko'p uchraydigan integratsiya bug'i", ru: 'Самый частый баг интеграции' } },
 ];
 const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, []); // eslint-disable-line
@@ -2207,7 +2209,7 @@ const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) =>
     <Stage eyebrow={{ uz: 'Takrorlash', ru: 'Повторение' }} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={false} label={{ uz: 'Yakunlash →', ru: 'Завершить →' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Pipeline atamalarini <span className="italic" style={{ color: T.accent }}>tez takrorlaymiz</span>.</>, ru: <><span className="italic" style={{ color: T.accent }}>Быстро повторим</span> термины pipeline.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Darsni yakunlashdan oldin bugungi atamalarni takrorlaymiz. Har kartada bir topishmoq — <b style={{ color: T.ink }}>qaysi atama</b> ekanini o'ylang, keyin kartani bosib tekshiring.</>, ru: <>Перед концом урока повторим сегодняшние термины. На каждой карточке загадка — подумайте, <b style={{ color: T.ink }}>какой это термин</b>, а потом нажмите на карточку и проверьте.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Darsni yakunlashdan oldin bugungi atamalarni takrorlaymiz. Har kartada bir savol — <b style={{ color: T.ink }}>javobini</b> o'ylang, keyin kartani bosib tekshiring.</>, ru: <>Перед концом урока повторим сегодняшние термины. На каждой карточке вопрос — подумайте, <b style={{ color: T.ink }}>каким будет ответ</b>, а потом нажмите на карточку и проверьте.</> })}</Mentor>
         <div className="fc-center"><Flashcards cards={PIPE_FLASHCARDS} /></div>
       </div>
     </Stage>
@@ -2257,7 +2259,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
           <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> {tr({ uz: 'Endi siz bilasiz', ru: 'Теперь вы знаете' })}</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{tr(r)}</span></li>))}</ul></div>
           <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: "📱 Keyingi dars — React Native: pipeline'ingizga «ko'chma darvoza» (mobil ilova) qo'shamiz!", ru: '📱 Следующий урок — React Native: добавим вашему pipeline «переносные ворота» (мобильное приложение)!' })}</p></div>
         </div>
-        <div className="card ach-coll fade-up d3">
+        {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🏅 Nishonlaringiz', ru: '🏅 Ваши значки' })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">
             {Object.entries(ACHIEVEMENTS).map(([id, a]) => { const got = !!(achievements && achievements.has(id)); return (
@@ -2268,7 +2270,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
               </div>
             ); })}
           </div>
-        </div>
+        </div>}
       </div>
     </Stage>
   );

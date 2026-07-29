@@ -414,6 +414,7 @@ const Zoomable = ({ children }) => {
 // 🏅 Yuqori paneldagi nishon hisoblagichi (Stage chrome)
 function AchCounter() {
   const earned = useContext(AchCtx);
+  const gate = useContext(LiveGateCtx);
   const count = earned ? earned.size : 0;
   const total = Object.keys(ACHIEVEMENTS).length;
   const prevRef = useRef(count);
@@ -423,6 +424,7 @@ function AchCounter() {
     if (count > prevRef.current) { setBump(true); const t = setTimeout(() => setBump(false), 800); prevRef.current = count; return () => clearTimeout(t); }
     prevRef.current = count;
   }, [count]);
+  if (gate && gate.live && gate.live.mode === 'mentor') return null; // 🔴 mentor proyektorida nishon YO'Q (hooklardan KEYIN)
   return (
     <div className="ach-cnt-wrap">
       <button className={`ach-counter ${bump ? 'bump' : ''} ${count > 0 ? 'has' : ''}`} onClick={() => setOpen(o => !o)} aria-label="Badges" title="Badges">
@@ -961,7 +963,7 @@ function Flashcards({ cards }) {
       <div className="fc-cardwrap">
         <div className={`fc-fly ${exiting === 'knew' ? 'out-knew' : ''} ${exiting === 'again' ? 'out-again' : ''}`} key={swapRef.current}>
         <div className={`fc-card ${flipped ? 'flip' : ''}`} onClick={() => !flipped && !exiting && setFlipped(true)} role="button" tabIndex={0}>
-          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: 'Qaysi tushuncha? 🤔', ru: 'Что это за понятие? 🤔' })} <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
+          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: "Javobni o'ylang", ru: 'Подумайте над ответом' })} 🤔 <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
           <div className="fc-face fc-back"><span className="fc-tag">{tr(card.back)}</span>{card.note && <span className="fc-note">{tr(card.note)}</span>}</div>
         </div>
         </div>
@@ -2005,7 +2007,7 @@ const Screen16 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [loaded, setLoaded] = useState(!!storedAnswer);
   const timer = useRef(null);
   const nameOk = gname.trim().length >= 2;
-  const normQ = value.replace(/[‘’“”]/g, "'").replace(/"/g, "'");
+  const normQ = value.replace(/[\u2018\u2019\u201C\u201D]/g, "'").replace(/"/g, "'");
   const norm = normQ.replace(/\s+/g, '');
   const lineOk = /^method:'POST',$/.test(norm);
   const valid = lineOk && nameOk;
@@ -2222,18 +2224,18 @@ const ScreenPractice2 = (props) => (
 );
 
 const REACT_FLASHCARDS = [
-  { front: { uz: "Server nima qilishini shundan biladi", ru: 'По нему сервер понимает, что делать' }, back: { uz: "Method (fe'l)", ru: 'Method (глагол)' }, note: { uz: "jo'natish buyrug'i", ru: 'команда отправки' } },
-  { front: { uz: "Yangi yozuv yaratadi (201)", ru: 'Создаёт новую запись (201)' }, back: "POST", note: { uz: "katalogga qo'shadi 📦", ru: 'добавляет в каталог 📦' } },
-  { front: { uz: "Mavjud yozuvni almashtiradi", ru: 'Заменяет существующую запись' }, back: "PUT", note: { uz: "ID kerak: /games/2", ru: 'нужен ID: /games/2' } },
-  { front: { uz: "Yozuvni butunlay olib tashlaydi", ru: 'Полностью убирает запись' }, back: "DELETE", note: { uz: "qaytarilmaydi!", ru: 'не вернуть!' } },
-  { front: { uz: "Faqat o'qiydi, o'zgartirmaydi", ru: 'Только читает, не меняет' }, back: "GET", note: { uz: "posilkani olib keladi", ru: 'приносит посылку' } },
-  { front: { uz: "Posilka yuki — yuborilgan ma'lumot", ru: 'Груз посылки — отправленные данные' }, back: "body", note: { uz: "teskari uchadi (siz→server)", ru: 'летит наоборот (Вы→сервер)' } },
-  { front: { uz: "Obyektni JSON matnga qadoqlaydi", ru: 'Упаковывает объект в JSON-текст' }, back: "JSON.stringify", note: { uz: ".json()ning teskarisi", ru: 'обратная операция .json()' } },
-  { front: { uz: "fetch'ning ikkinchi qismi", ru: 'Вторая часть fetch' }, back: { uz: "Sozlamalar qutisi", ru: 'Коробка настроек' }, note: "{ method, body }" },
-  { front: { uz: "Yozuvning aniq raqami", ru: 'Точный номер записи' }, back: "ID", note: { uz: "PUT/DELETE shusiz xavfli", ru: 'PUT/DELETE без него опасны' } },
-  { front: { uz: "«Yangi yozuv yaratildi» javobi", ru: 'Ответ «новая запись создана»' }, back: "201 Created", note: { uz: "POST muvaffaqiyati", ru: 'успех POST' } },
-  { front: { uz: "O'chirishdan oldin so'rash", ru: 'Спросить перед удалением' }, back: { uz: "Tasdiqlash", ru: 'Подтверждение' }, note: "confirm" },
-  { front: "Create · Read · Update · Delete", back: "CRUD", note: { uz: "4 amal", ru: '4 действия' } },
+  { front: { uz: "Server nima qilishini so'rovning qaysi qismidan biladi?", ru: 'По какой части запроса сервер понимает, что делать?' }, back: { uz: "Fe'l (method)", ru: 'Глагол (method)' }, note: { uz: "GET, POST, PUT, DELETE", ru: 'GET, POST, PUT, DELETE' } },
+  { front: { uz: "Katalogga yangi o'yin qo'shish uchun qaysi fe'l kerak?", ru: 'Какой глагол нужен, чтобы добавить в каталог новую игру?' }, back: "POST", note: { uz: "server yangi yozuv yaratadi", ru: 'сервер создаёт новую запись' } },
+  { front: { uz: "Mavjud yozuvni almashtirish uchun qaysi fe'l kerak?", ru: 'Какой глагол нужен, чтобы заменить существующую запись?' }, back: "PUT", note: { uz: "doim ID bilan: /games/2", ru: 'всегда с ID: /games/2' } },
+  { front: { uz: "Yozuvni butunlay olib tashlash uchun qaysi fe'l kerak?", ru: 'Какой глагол нужен, чтобы полностью убрать запись?' }, back: "DELETE", note: { uz: "manzil va ID yetarli, body kerak emas", ru: 'хватит адреса и ID, body не нужен' } },
+  { front: { uz: "Qaysi fe'l faqat o'qiydi va hech narsani o'zgartirmaydi?", ru: 'Какой глагол только читает и ничего не меняет?' }, back: "GET", note: { uz: "o'tgan darsdan tanish: olib keladi", ru: 'знаком с прошлого урока: приносит' } },
+  { front: { uz: "Fe'lni fetch'ning qaysi qismiga yozasiz?", ru: 'В какую часть fetch вы пишете глагол?' }, back: { uz: "Sozlamalar qutisiga", ru: 'В коробку настроек' }, note: "fetch(url, { method: 'POST' })" },
+  { front: { uz: "Serverga yuborilayotgan ma'lumot qayerda turadi?", ru: 'Где находятся данные, отправляемые на сервер?' }, back: "body", note: { uz: "bu safar posilkani siz jo'natasiz", ru: 'на этот раз посылку отправляете Вы' } },
+  { front: { uz: "Obyektni JSON matnga nima aylantiradi?", ru: 'Что превращает объект в JSON-текст?' }, back: "JSON.stringify()", note: { uz: ".json()ning teskarisi", ru: 'обратная операция .json()' } },
+  { front: { uz: "PUT va DELETE ishlashi uchun yana nima kerak?", ru: 'Что ещё нужно, чтобы PUT и DELETE сработали?' }, back: "ID", note: { uz: "aks holda server qaysi yozuv ekanini bilmaydi", ru: 'иначе сервер не поймёт, какая это запись' } },
+  { front: { uz: "/games va /games/2 nimasi bilan farq qiladi?", ru: 'Чем отличаются /games и /games/2?' }, back: { uz: "Butun ro'yxat va bitta yozuv", ru: 'Весь список и одна запись' }, note: { uz: "/games/2 — 2-raqamli yozuv", ru: '/games/2 — запись под номером 2' } },
+  { front: { uz: "201 Created javobi nimani bildiradi?", ru: 'Что означает ответ 201 Created?' }, back: { uz: "Yangi yozuv yaratildi", ru: 'Новая запись создана' }, note: { uz: "POST muvaffaqiyatli o'tdi", ru: 'POST прошёл успешно' } },
+  { front: { uz: "To'rt fe'lning umumiy nomi qanday?", ru: 'Каково общее имя четырёх глаголов?' }, back: "CRUD", note: { uz: "Create · Read · Update · Delete", ru: 'Create · Read · Update · Delete' } },
 ];
 const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, []); // eslint-disable-line
@@ -2241,7 +2243,7 @@ const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) =>
     <Stage eyebrow={tr({ uz: 'Takrorlash', ru: 'Повторение' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={false} label={{ uz: 'Yakunlash →', ru: 'Завершить →' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Fe'llarni <span className="italic" style={{ color: T.accent }}>tez takrorlaymiz</span>.</>, ru: <>Быстро <span className="italic" style={{ color: T.accent }}>повторим глаголы</span>.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Yakunlashdan oldin bugungi tushunchalarni takrorlaymiz. Har kartada bir izoh — <b style={{ color: T.ink }}>qaysi tushuncha</b> ekanini o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</>, ru: <>Перед финалом повторим сегодняшние понятия. На каждой карточке — описание: подумайте, <b style={{ color: T.ink }}>что это за понятие</b>, затем нажмите на карточку и проверьте себя. Оцените кнопками <b style={{ color: T.ink }}>Знаю</b> или <b style={{ color: T.ink }}>Повторить</b>.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Yakunlashdan oldin bugungi tushunchalarni takrorlaymiz. Har kartada bir savol — <b style={{ color: T.ink }}>javobini</b> o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</>, ru: <>Перед финалом повторим сегодняшние понятия. На каждой карточке — вопрос: подумайте, <b style={{ color: T.ink }}>каким будет ответ</b>, затем нажмите на карточку и проверьте себя. Оцените кнопками <b style={{ color: T.ink }}>Знаю</b> или <b style={{ color: T.ink }}>Повторить</b>.</> })}</Mentor>
         <div className="fc-center"><Flashcards cards={REACT_FLASHCARDS} /></div>
       </div>
     </Stage>
@@ -2294,7 +2296,7 @@ const Screen17 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
           <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> {tr({ uz: 'Endi siz bilasiz', ru: 'Теперь Вы знаете' })}</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{r}</span></li>))}</ul></div>
           <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: "Antigravity bilan o'z loyihangizda sinang:", ru: 'Попробуйте с Antigravity в своём проекте:' })}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{h.b}</b> <span className="t">{h.t}</span></li>))}</ul><p className="hw-note">{tr({ uz: "Sizda endi to'liq quvvat bor: React + server + 4 fe'l. Keyingi qadam — hammasini birlashtirib, o'ZINGIZNING ilovangizni qurish! 🚀", ru: 'У Вас теперь полная мощность: React + сервер + 4 глагола. Следующий шаг — соединить всё и построить СВОЁ приложение! 🚀' })}</p></div>
         </div>
-        <div className="card ach-coll fade-up d3">
+        {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🏅 Nishonlaringiz', ru: '🏅 Ваши награды' })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">
             {Object.entries(ACHIEVEMENTS).map(([id, a]) => { const got = !!(achievements && achievements.has(id)); return (
@@ -2305,7 +2307,7 @@ const Screen17 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
               </div>
             ); })}
           </div>
-        </div>
+        </div>}
       </div>
     </Stage>
   );
@@ -2889,7 +2891,7 @@ function QuizArena({ live, onClose, startSolo }) {
             <div className={`qz-res ${my?.correct ? 'good' : 'bad'}`}>
               {my?.correct
                 ? <><span className="qz-res-pts">+{myPtsFor(qi)}</span><span className="qz-res-t">{tr({ uz: 'ball', ru: 'баллов' })}{streakUpTo(qi) >= 2 ? ` · 🔥 x${streakUpTo(qi)} streak` : ''}</span></>
-                : <span className="qz-res-t">{my ? tr({ uz: "Xato — 0 ball. Keyingisida olasiz! 💪", ru: 'Ошибка — 0 баллов. Возьмёте на следующем! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Будьте быстрее! ⏱' })}</span>}
+                : <span className="qz-res-t">{my ? tr({ uz: "Adashdingiz — 0 ball. Keyingisida olasiz! 💪", ru: 'Ошибка — 0 баллов. Возьмёте на следующем! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Будьте быстрее! ⏱' })}</span>}
               {!solo && myRank >= 0 && <span className="qz-res-rank">{tr({ uz: 'Siz hozir:', ru: 'Вы сейчас:' })} {myRank + 1}{tr({ uz: "-o'rin", ru: '-е место' })}</span>}
             </div>
           )}

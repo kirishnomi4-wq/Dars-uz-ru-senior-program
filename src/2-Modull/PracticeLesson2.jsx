@@ -1021,7 +1021,7 @@ const AcceptanceReport = ({ checks, onRedo, redoLabel, done }) => {
 };
 
 // Jonli promo-sahifa preview
-const LandingPreview = ({ topic, style: styleIn, color: colorIn, sections = {}, vague = false, draft = false }) => {
+const LandingPreview = ({ topic, style: styleIn, color: colorIn, sections = {}, noaniq = false, draft = false }) => {
   // DRAFT rejim: tanlanmagan ingredientni Ustabot so'zma-so'z (kulgili) to'ldiradi.
   // FAQAT ko'rinish — tanlov/gating'ga ta'sir qilmaydi. Chip tanlanganda o'sha qism darhol silliqqa almashadi.
   if (draft) {
@@ -1068,7 +1068,7 @@ const LandingPreview = ({ topic, style: styleIn, color: colorIn, sections = {}, 
   }
   const style = styleIn || 'zamonaviy';
   const color = colorIn || 'kok';
-  if (vague || !topic) {
+  if (noaniq || !topic) {
     return (
       <div style={{ textAlign: 'center', padding: '26px 16px' }}>
         <div style={{ width: 40, height: 40, borderRadius: 8, background: '#E6E1D8', margin: '0 auto 10px' }} />
@@ -1216,7 +1216,7 @@ const Zoomable = ({ children }) => {
   );
 };
 
-// ===== SCREEN 0 — HOOK (vague prompt -> bo'sh natija) =====
+// ===== SCREEN 0 — HOOK (noaniq prompt -> bo'sh natija) =====
 const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
   useAudio([{ id: 's0', text: "AI'ga shunchaki «sayt yasab ber» desangiz — nima chiqadi? Noaniq buyruqni yuboring va o'ngdagi natijaga qarang: kutganingizday chiqmaydi, chunki AI miyangizni o'qiy olmaydi.", trigger: 'on_mount', waits_for: null }]);
   const [phase, setPhase] = useState(storedAnswer ? 'built' : 'idle');
@@ -1824,18 +1824,18 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // ===== SCREEN 16 — YAKUN =====
 // ===== 🃏 FLASHCARDS (Quizlet-uslub takrorlash) — kalit so'zlar kartalarda =====
 const AI_FLASHCARDS = [
-  { front: { uz: "AI'ga beriladigan buyruq", ru: 'Команда, которую дают AI' }, back: { uz: 'Prompt', ru: 'Промпт' }, note: { uz: "aniq bo'lsa — aniq natija", ru: 'точная — точный результат' } },
-  { front: { uz: "So'z bilan tasvirlab, AI bilan qurish", ru: 'Строить с AI, описывая словами' }, back: 'Vibecoding', note: { uz: 'kod yozmasdan yasash', ru: 'создавать без кода' } },
-  { front: { uz: 'Yaxshi promptning 4 ingredienti', ru: '4 ингредиента хорошего промпта' }, back: { uz: 'Mavzu · Uslub · Rang · Qismlar', ru: 'Тема · Стиль · Цвет · Части' }, note: { uz: 'aniqlikning kaliti', ru: 'ключ к точности' } },
-  { front: { uz: "Qayta so'rab natijani yaxshilash", ru: 'Улучшать результат повторным запросом' }, back: { uz: 'Iteratsiya', ru: 'Итерация' }, note: { uz: "«rangni ko'kroq qil»", ru: '«сделай цвет синее»' } },
-  { front: { uz: 'Mustaqil quradigan AI', ru: 'AI, который строит сам' }, back: { uz: 'Agent', ru: 'Агент' }, note: { uz: 'butun sahifani yasaydi', ru: 'делает целую страницу' } },
-  { front: { uz: 'Saytni internetga chiqarish', ru: 'Вывести сайт в интернет' }, back: 'Deploy', note: { uz: 'havolani ulashish', ru: 'поделиться ссылкой' } },
-  { front: { uz: 'Aniq emas, umumiy buyruq', ru: 'Неточная, общая команда' }, back: { uz: 'Loyqa prompt', ru: 'Размытый промпт' }, note: { uz: "bo'sh yoki tasodifiy natija", ru: 'пустой или случайный результат' } },
-  { front: { uz: 'Reklama-tanishtiruv sahifasi', ru: 'Рекламно-презентационная страница' }, back: { uz: 'Promo landing', ru: 'Промо-лендинг' }, note: { uz: 'sarlavha, tugma, kartalar', ru: 'заголовок, кнопка, карточки' } },
-  { front: { uz: 'AI beradigan narsa', ru: 'То, что даёт AI' }, back: { uz: 'Tezlik', ru: 'Скорость' }, note: { uz: 'bir necha soniyada yasaydi', ru: 'делает за несколько секунд' } },
-  { front: { uz: "Siz ta'minlaydigan narsa", ru: 'То, что обеспечиваете вы' }, back: { uz: 'Sifat', ru: 'Качество' }, note: { uz: "tekshirasiz va to'g'rilaysiz", ru: 'проверяете и исправляете' } },
-  { front: { uz: 'Natijani buyruq bilan solishtirish', ru: 'Сравнить результат с командой' }, back: { uz: 'Tekshirish', ru: 'Проверка' }, note: { uz: "mos kelmasa — qayta so'rang", ru: 'не совпало — попросите снова' } },
-  { front: { uz: 'Uyda ishlaydigan haqiqiy AI-muhit', ru: 'Настоящая AI-среда для дома' }, back: 'Antigravity', note: { uz: 'loyiha asbobi', ru: 'инструмент проекта' } },
+  { front: { uz: "AI'ga beriladigan buyruq nima deyiladi?", ru: 'Как называется команда, которую дают AI?' }, back: { uz: 'Prompt', ru: 'Промпт' }, note: { uz: "buyruq qanchalik aniq — natija shunchalik aniq", ru: 'насколько точна команда — настолько точен результат' } },
+  { front: { uz: "Kod yozmasdan, so'z bilan tasvirlab sayt qurish nima deyiladi?", ru: 'Как называется создание сайта словами, без написания кода?' }, back: 'Vibecoding', note: { uz: 'siz aytasiz — AI quradi', ru: 'вы говорите — AI строит' } },
+  { front: { uz: 'Yaxshi promptning 4 ingredienti qaysilar?', ru: 'Какие 4 ингредиента у хорошего промпта?' }, back: { uz: 'Mavzu · Uslub · Rang · Qismlar', ru: 'Тема · Стиль · Цвет · Части' }, note: { uz: "to'rttasi bor — buyruq aniq", ru: 'есть все четыре — команда точная' } },
+  { front: { uz: "Promptdagi «uslub» ingredienti nimani belgilaydi?", ru: 'Что задаёт ингредиент «стиль» в промпте?' }, back: { uz: "Sahifa ko'rinishini", ru: 'Внешний вид страницы' }, note: { uz: "zamonaviy, o'ynoqi yoki minimal", ru: 'современный, игривый или минималистичный' } },
+  { front: { uz: "«Menga sayt yasab ber» — bu qanaqa prompt?", ru: '«Сделай мне сайт» — какой это промпт?' }, back: { uz: 'Loyqa prompt', ru: 'Размытый промпт' }, note: { uz: "aniq emas — natija ham tasodifiy chiqadi", ru: 'команда неточная — и результат случайный' } },
+  { front: { uz: "Natija yoqmasa, qayta va aniqroq so'rash nima deyiladi?", ru: 'Как называется повторный, более точный запрос, если результат не понравился?' }, back: { uz: 'Iteratsiya', ru: 'Итерация' }, note: { uz: "«rangni yashilga o'zgartir», «banner qo'sh»", ru: '«поменяй цвет на зелёный», «добавь баннер»' } },
+  { front: { uz: 'AI sahifani yasab bergach, birinchi navbatda nima qilasiz?', ru: 'AI сделал страницу — что вы делаете в первую очередь?' }, back: { uz: 'Tekshiraman', ru: 'Проверяю' }, note: { uz: "natijani buyruq bilan solishtirasiz: rang, mavzu, tugma mosmi?", ru: 'сверяете результат с командой: цвет, тема, кнопка совпали?' } },
+  { front: { uz: "AI'dan nimani olasiz, o'zingiz nimani ta'minlaysiz?", ru: 'Что вы получаете от AI, а что обеспечиваете сами?' }, back: { uz: 'AI — tezlik, siz — sifat', ru: 'AI — скорость, вы — качество' }, note: { uz: "birga ishlaganda natija eng zo'r chiqadi", ru: 'вместе получается лучший результат' } },
+  { front: { uz: 'Reja tuzib, sahifani mustaqil quradigan AI yordamchisi nima deyiladi?', ru: 'Как называется AI-помощник, который сам составляет план и строит страницу?' }, back: { uz: 'Agent', ru: 'Агент' }, note: { uz: "avval rejani ko'rsatadi, siz tasdiqlaysiz", ru: 'сначала показывает план, вы подтверждаете' } },
+  { front: { uz: 'Bitta sahifadan iborat reklama sayti nima deyiladi?', ru: 'Как называется рекламный сайт из одной страницы?' }, back: { uz: 'Promo-landing', ru: 'Промо-лендинг' }, note: { uz: 'sarlavha, tavsif, tugma va kartalar', ru: 'заголовок, описание, кнопка и карточки' } },
+  { front: { uz: 'Tayyor saytni internetga chiqarish nima deyiladi?', ru: 'Как называется публикация готового сайта в интернете?' }, back: { uz: 'Deploy (nashr qilish)', ru: 'Deploy (публикация)' }, note: { uz: "shundan keyin havolani do'stlaringizga yuborasiz", ru: 'после этого можно отправить ссылку друзьям' } },
+  { front: { uz: 'Uyda shu usulda ishlaydigan haqiqiy AI-muhit qaysi?', ru: 'В какой настоящей AI-среде можно так работать дома?' }, back: 'Antigravity', note: { uz: 'siz yozasiz, agent reja tuzadi va quradi', ru: 'вы пишете, агент составляет план и строит' } },
 ];
 function Flashcards({ cards }) {
   const [queue, setQueue] = useState(() => cards.map((_, i) => i));
@@ -1868,7 +1868,7 @@ function Flashcards({ cards }) {
       <div className="fc-cardwrap">
         <div className={`fc-fly ${exiting === 'knew' ? 'out-knew' : ''} ${exiting === 'again' ? 'out-again' : ''}`} key={swapRef.current}>
         <div className={`fc-card ${flipped ? 'flip' : ''}`} onClick={() => !flipped && !exiting && setFlipped(true)} role="button" tabIndex={0}>
-          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: <>Bu qaysi tushuncha? 🤔 <span className="fc-tap">bosing</span></>, ru: <>Какое это понятие? 🤔 <span className="fc-tap">нажмите</span></> })}</span></div>
+          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: <>Javobni o'ylang 🤔 <span className="fc-tap">bosing</span></>, ru: <>Подумайте над ответом 🤔 <span className="fc-tap">нажмите</span></> })}</span></div>
           <div className="fc-face fc-back"><span className="fc-tag">{tr(card.back)}</span>{card.note && <span className="fc-note">{tr(card.note)}</span>}</div>
         </div>
         </div>
@@ -1882,13 +1882,13 @@ function Flashcards({ cards }) {
 
 // ===== ScreenFlashcards — kalit so'zlarni tez takrorlash (summarydan ko'chirilgan glossariy) =====
 const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  useAudio([{ id: 'sflash', text: "Yakunlashdan oldin bugungi kalit so'zlarni tez takrorlaymiz. Har kartada bir ta'rif — qaysi tushuncha ekanini o'ylang, keyin kartani bosib tekshiring.", trigger: 'on_mount', waits_for: null }]);
+  useAudio([{ id: 'sflash', text: "Yakunlashdan oldin bugungi kalit so'zlarni tez takrorlaymiz. Har kartada bir savol — javobini o'ylang, keyin kartani bosib tekshiring.", trigger: 'on_mount', waits_for: null }]);
   useEffect(() => { if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, []); // eslint-disable-line
   return (
     <Stage eyebrow={{ uz: 'Takrorlash', ru: 'Повторение' }} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={false} label={{ uz: 'Yakunlash →', ru: 'Завершить →' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Kalit so'zlarni <span className="italic" style={{ color: T.accent }}>tez takrorlaymiz</span>.</>, ru: <>Быстро повторим <span className="italic" style={{ color: T.accent }}>ключевые слова</span>.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Yakunlashdan oldin bugun o'rgangan tushunchalarni takrorlaymiz. Har kartada bir ta'rif — <b style={{ color: T.ink }}>qaysi tushuncha</b> ekanini o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</>, ru: <>Перед финалом повторим понятия, которые выучили сегодня. На каждой карточке — определение: подумайте, <b style={{ color: T.ink }}>какое это понятие</b>, потом нажмите на карточку и проверьте. Оцените кнопками <b style={{ color: T.ink }}>Знаю</b> или <b style={{ color: T.ink }}>Повторить</b>.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Yakunlashdan oldin bugun o'rgangan tushunchalarni takrorlaymiz. Har kartada bir savol — <b style={{ color: T.ink }}>javobini</b> o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</>, ru: <>Перед финалом повторим понятия, которые выучили сегодня. На каждой карточке — вопрос: подумайте, <b style={{ color: T.ink }}>каким будет ответ</b>, потом нажмите на карточку и проверьте. Оцените кнопками <b style={{ color: T.ink }}>Знаю</b> или <b style={{ color: T.ink }}>Повторить</b>.</> })}</Mentor>
         <div className="fc-center"><Flashcards cards={AI_FLASHCARDS} /></div>
       </div>
     </Stage>
@@ -1928,7 +1928,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
           <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> {tr({ uz: 'Endi siz bilasiz', ru: 'Теперь вы знаете' })}</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{r}</span></li>))}</ul></div>
           <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: 'Uyga vazifa', ru: 'Домашнее задание' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: 'Antigravity bilan mashq qiling:', ru: 'Потренируйтесь с Antigravity:' })}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{h.b}</b> <span className="t">{h.t}</span></li>))}</ul><p className="hw-note">{tr({ uz: "Esda tuting: AI tezlik beradi — sifatni siz ta'minlaysiz.", ru: 'Помните: AI даёт скорость — качество обеспечиваете вы.' })}</p></div>
         </div>
-        <div className="card ach-coll fade-up d3">
+        {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>🏅 {tr({ uz: 'Nishonlaringiz', ru: 'Ваши награды' })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">
             {Object.entries(ACHIEVEMENTS).map(([id, a]) => { const got = !!(achievements && achievements.has(id)); return (
@@ -1939,7 +1939,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
               </div>
             ); })}
           </div>
-        </div>
+        </div>}
       </div>
     </Stage>
   );
@@ -2128,6 +2128,7 @@ function AchToasts({ toasts, onDone }) {
 
 function AchCounter() {
   const earned = useContext(AchCtx);
+  const gate = useContext(LiveGateCtx);
   const count = earned ? earned.size : 0;
   const total = Object.keys(ACHIEVEMENTS).length;
   const prevRef = useRef(count);
@@ -2137,6 +2138,7 @@ function AchCounter() {
     if (count > prevRef.current) { setBump(true); const t = setTimeout(() => setBump(false), 800); prevRef.current = count; return () => clearTimeout(t); }
     prevRef.current = count;
   }, [count]);
+  if (gate && gate.live && gate.live.mode === 'mentor') return null; // 🔴 mentor proyektorida nishon YO'Q (hooklardan KEYIN)
   return (
     <div className="ach-cnt-wrap">
       <button className={`ach-counter ${bump ? 'bump' : ''} ${count > 0 ? 'has' : ''}`} onClick={() => setOpen(o => !o)} aria-label="Badges" title="Badges">
@@ -2555,7 +2557,7 @@ function QuizArena({ live, onClose, startSolo }) {
             <div className={`qz-res ${my?.correct ? 'good' : 'bad'}`}>
               {my?.correct
                 ? <><span className="qz-res-pts">+{myPtsFor(qi)}</span><span className="qz-res-t">{tr({ uz: 'ball', ru: 'баллов' })}{streakUpTo(qi) >= 2 ? ` · 🔥 x${streakUpTo(qi)} streak` : ''}</span></>
-                : <span className="qz-res-t">{my ? tr({ uz: 'Xato — 0 ball. Keyingisida olasiz! 💪', ru: 'Ошибка — 0 баллов. Возьмёте на следующем! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Быстрее! ⏱' })}</span>}
+                : <span className="qz-res-t">{my ? tr({ uz: 'Adashdingiz — 0 ball. Keyingisida olasiz! 💪', ru: 'Ошибка — 0 баллов. Возьмёте на следующем! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Быстрее! ⏱' })}</span>}
               {!solo && myRank >= 0 && <span className="qz-res-rank">{tr({ uz: `Siz hozir: ${myRank + 1}-o'rin`, ru: `Вы сейчас: ${myRank + 1}-е место` })}</span>}
             </div>
           )}

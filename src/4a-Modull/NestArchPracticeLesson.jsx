@@ -388,6 +388,7 @@ const Col = ({ children, gap }) => <div className="col" style={gap ? { gap } : u
 // 🏅 Yuqori paneldagi nishon hisoblagichi (Stage chrome)
 function AchCounter() {
   const earned = useContext(AchCtx);
+  const gate = useContext(LiveGateCtx);
   const count = earned ? earned.size : 0;
   const total = Object.keys(ACHIEVEMENTS).length;
   const prevRef = useRef(count);
@@ -397,6 +398,7 @@ function AchCounter() {
     if (count > prevRef.current) { setBump(true); const t = setTimeout(() => setBump(false), 800); prevRef.current = count; return () => clearTimeout(t); }
     prevRef.current = count;
   }, [count]);
+  if (gate && gate.live && gate.live.mode === 'mentor') return null; // 🔴 mentor proyektorida nishon YO'Q (hooklardan KEYIN)
   return (
     <div className="ach-cnt-wrap">
       <button className={`ach-counter ${bump ? 'bump' : ''} ${count > 0 ? 'has' : ''}`} onClick={() => setOpen(o => !o)} aria-label="Badges" title="Badges">
@@ -2019,18 +2021,18 @@ const ScreenKitobShopPractice = (props) => (
 
 // 🃏 FLASHCARD KARTALARI (front=izoh, back=atama, note=metafora/kod) — 🎓 Metodist sayqallaydi
 const KITOB_FLASHCARDS = [
-  { front: { uz: "Bir tur ma'lumot uchun kerak bo'ladigan 5 fayl to'plami", ru: 'Набор из 5 файлов для одного вида данных' }, back: { uz: 'Resurs', ru: 'Ресурс' }, note: "Entity · DTO · Service · Controller · Module" },
-  { front: { uz: 'Jadval qanday ustunlardan iboratligini belgilaydigan fayl', ru: 'Файл, задающий, из каких колонок состоит таблица' }, back: "Entity", note: { uz: 'javon chizmasi', ru: 'чертёж стеллажа' } },
-  { front: { uz: "Ma'lumot aslida shu yerda yotadi", ru: 'Данные на самом деле лежат здесь' }, back: "PostgreSQL", note: { uz: 'ombor', ru: 'склад' } },
-  { front: { uz: "Kiruvchi so'rov qoidalari — qaysi maydon majburiy", ru: 'Правила входящего запроса — какие поля обязательны' }, back: "DTO", note: { uz: 'anketa (PartialType = qisman anketa)', ru: 'анкета (PartialType = частичная анкета)' } },
-  { front: { uz: 'Ishni bajaradigan qatlam', ru: 'Слой, который выполняет работу' }, back: "Service", note: { uz: 'oshpaz / omborchi', ru: 'повар / кладовщик' } },
-  { front: { uz: 'create, findAll, update, remove metodlari tekin keladigan tayyor sinf', ru: 'Готовый класс, от которого бесплатно достаются create, findAll, update, remove' }, back: "BaseService", note: { uz: 'tayyor retsept kitobi', ru: 'готовая книга рецептов' } },
-  { front: { uz: "So'rovni oladi, javobni qaytaradi", ru: 'Принимает запрос, возвращает ответ' }, back: "Controller", note: { uz: "restoranda ofitsiant — do'konda sotuvchi", ru: 'в ресторане официант — в магазине продавец' } },
-  { front: { uz: "Bu yerga yozilmagan bo'lim = 404", ru: 'Отдел, не вписанный сюда, = 404' }, back: "AppModule.imports", note: { uz: 'restoran kirish taxtasi', ru: 'входная вывеска ресторана' } },
-  { front: { uz: "Eshikka qo'riqchi qo'yadigan dekorator", ru: 'Декоратор, ставящий стража у двери' }, back: "@UseGuards", note: "AuthGuard + RolesGuard" },
-  { front: { uz: "Qo'riqchining ro'yxati: kim kira oladi", ru: 'Список у стража: кто может войти' }, back: "@Roles", note: { uz: '🌐 public (hamma) / 🔒 admin', ru: '🌐 public (все) / 🔒 admin' } },
-  { front: { uz: "Ko'p kitob — bitta yorliq. Yorliq kitobda saqlanadi", ru: 'Много книг — один ярлык. Ярлык хранится на книге' }, back: "@ManyToOne", note: { uz: 'shuning uchun book.entity.ts da yoziladi', ru: 'поэтому пишется в book.entity.ts' } },
-  { front: { uz: "Qo'shildi / qo'riqchi rad etdi / bunday eshik yo'q", ru: 'Добавлено / страж отказал / такой двери нет' }, back: "201 / 403 / 404", note: { uz: 'status kodlar', ru: 'статус-коды' } },
+  { front: { uz: "Bosh dasturchi AI bilan ishlaganda qaysi uch ishni qiladi?", ru: "Какие три дела делает главный разработчик, работая с ИИ?" }, back: { uz: "Rejalashtiradi, yo'naltiradi, tekshiradi", ru: "Планирует, направляет, проверяет" }, note: { uz: "Uchinchisi tushib qolsa, xato sizniki bo'lib qoladi", ru: "Пропустите третье — ошибка станет вашей" } },
+  { front: { uz: "Yangi resurs uchun nechta fayl kerak bo'ladi?", ru: "Сколько файлов нужно для нового ресурса?" }, back: "5", note: "entity · dto · service · controller · module" },
+  { front: { uz: "Bo'lim AppModule.imports'ga yozilmasa, mijoz nima ko'radi?", ru: "Что увидит клиент, если отдел не вписан в AppModule.imports?" }, back: "404", note: { uz: "🚪 kirish taxtasida yo'q — eshik topilmaydi", ru: "🚪 нет на входной вывеске — дверь не найти" } },
+  { front: { uz: "Eshikka qo'riqchi qo'yadigan dekorator qaysi?", ru: "Какой декоратор ставит стража у двери?" }, back: "@UseGuards()", note: { uz: "AuthGuard (token) + RolesGuard (rol)", ru: "AuthGuard (токен) + RolesGuard (роль)" } },
+  { front: { uz: "Eshikka kim kira olishini qaysi dekorator aytadi?", ru: "Какой декоратор говорит, кто может войти в дверь?" }, back: "@Roles()", note: { uz: "🌐 public — hamma · 🔒 admin — faqat admin", ru: "🌐 public — все · 🔒 admin — только админ" } },
+  { front: { uz: "Token bor, lekin rol yetmasa server nima qaytaradi?", ru: "Токен есть, но роли не хватает — что вернёт сервер?" }, back: "403", note: { uz: "Token umuman yo'q bo'lsa — 401", ru: "Если токена нет совсем — 401" } },
+  { front: { uz: "Kitobni kategoriyaga qaysi dekorator bog'laydi?", ru: "Какой декоратор связывает книгу с категорией?" }, back: "@ManyToOne()", note: { uz: "Ko'p kitob — bitta yorliq", ru: "Много книг — один ярлык" } },
+  { front: { uz: "@ManyToOne qaysi faylga yoziladi?", ru: "В какой файл пишется @ManyToOne?" }, back: "book.entity.ts", note: { uz: "Yorliq kitobda saqlanadi, rastada emas", ru: "Ярлык хранится на книге, а не на полке" } },
+  { front: { uz: "Faqat top kitoblarni qanday qaytarasiz?", ru: "Как вернуть только топ-книги?" }, back: "findAll({ where: { is_featured: true } })", note: { uz: "Yangi CRUD yozilmaydi — shart beriladi", ru: "Новый CRUD не пишут — передают условие" } },
+  { front: { uz: "Kitob bilan birga uning kategoriyasi ham kelsin desangiz?", ru: "Хотите, чтобы вместе с книгой пришла и её категория?" }, back: "relations: { category: true }", note: { uz: "findAll ichiga beriladi", ru: "Передаётся внутрь findAll" } },
+  { front: { uz: "Muvaffaqiyatli POST qanday status kod qaytaradi?", ru: "Какой статус-код возвращает успешный POST?" }, back: "201", note: { uz: "Qo'shildi · 403 — rad etildi · 404 — eshik yo'q", ru: "Создано · 403 — отказано · 404 — двери нет" } },
+  { front: { uz: "Kitoblar va buyurtmalar oxir-oqibat qayerda yotadi?", ru: "Где в итоге лежат книги и заказы?" }, back: "PostgreSQL", note: { uz: "🗄️ ombor — Service ma'lumotni shu yerga qo'yadi", ru: "🗄️ склад — Service кладёт данные туда" } },
 ];
 
 const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
@@ -2039,7 +2041,7 @@ const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) =>
     <Stage eyebrow={tr({ uz: 'Takrorlash', ru: 'Повторение' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={false} label={tr({ uz: 'Yakunlash →', ru: 'Завершить →' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Tushunchalarni <span className="italic" style={{ color: T.accent }}>tez takrorlaymiz</span>.</>, ru: <>Быстро <span className="italic" style={{ color: T.accent }}>повторим понятия</span>.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Darsni yakunlashdan oldin bugun o'rgangan tushunchalarni takrorlaymiz. Har kartada bir izoh — <b style={{ color: T.ink }}>qaysi tushuncha</b> ekanini o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</>, ru: <>Перед завершением урока повторим сегодняшние понятия. На каждой карточке — описание: подумайте, <b style={{ color: T.ink }}>какое это понятие</b>, затем нажмите на карточку и проверьте себя. Оцените кнопками <b style={{ color: T.ink }}>Знаю</b> или <b style={{ color: T.ink }}>Повторить</b>.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Darsni yakunlashdan oldin bugun o'rgangan tushunchalarni takrorlaymiz. Har kartada bir savol — <b style={{ color: T.ink }}>javobini</b> o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</>, ru: <>Перед завершением урока повторим сегодняшние понятия. На каждой карточке — вопрос: подумайте, <b style={{ color: T.ink }}>каким будет ответ</b>, затем нажмите на карточку и проверьте себя. Оцените кнопками <b style={{ color: T.ink }}>Знаю</b> или <b style={{ color: T.ink }}>Повторить</b>.</> })}</Mentor>
         <div className="fc-center"><Flashcards cards={KITOB_FLASHCARDS} /></div>
       </div>
     </Stage>
@@ -2079,7 +2081,7 @@ function Flashcards({ cards }) {
       <div className="fc-cardwrap">
         <div className={`fc-fly ${exiting === 'knew' ? 'out-knew' : ''} ${exiting === 'again' ? 'out-again' : ''}`} key={swapRef.current}>
         <div className={`fc-card ${flipped ? 'flip' : ''}`} onClick={() => !flipped && !exiting && setFlipped(true)} role="button" tabIndex={0}>
-          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: 'Qaysi tushuncha?', ru: 'Какое понятие?' })} 🤔 <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
+          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: "Javobni o'ylang", ru: 'Подумайте над ответом' })} 🤔 <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
           <div className="fc-face fc-back"><span className="fc-tag">{tr(card.back)}</span>{card.note && <span className="fc-note">{tr(card.note)}</span>}</div>
         </div>
         </div>
@@ -2538,7 +2540,7 @@ function QuizArena({ live, onClose, startSolo }) {
             <div className={`qz-res ${my?.correct ? 'good' : 'bad'}`}>
               {my?.correct
                 ? <><span className="qz-res-pts">+{myPtsFor(qi)}</span><span className="qz-res-t">{tr({ uz: 'ball', ru: 'баллов' })}{streakUpTo(qi) >= 2 ? ` · 🔥 x${streakUpTo(qi)} streak` : ''}</span></>
-                : <span className="qz-res-t">{my ? tr({ uz: 'Xato — 0 ball. Keyingisida olasiz! 💪', ru: 'Ошибка — 0 баллов. Возьмёте на следующем! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Побыстрее! ⏱' })}</span>}
+                : <span className="qz-res-t">{my ? tr({ uz: 'Adashdingiz — 0 ball. Keyingisida olasiz! 💪', ru: 'Ошибка — 0 баллов. Возьмёте на следующем! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Побыстрее! ⏱' })}</span>}
               {!solo && myRank >= 0 && <span className="qz-res-rank">{tr({ uz: `Siz hozir: ${myRank + 1}-o'rin`, ru: `Вы сейчас: ${myRank + 1}-е место` })}</span>}
             </div>
           )}
@@ -2738,7 +2740,7 @@ const Screen20 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
           <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> {tr({ uz: 'Endi siz bilasiz', ru: 'Теперь вы знаете' })}</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{tr(r)}</span></li>))}</ul></div>
           <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: "🚀 Siz endi istalgan g'oyani backendga aylantira olasiz — agentni boshqarib, har eshikni tekshirib!", ru: '🚀 Теперь вы можете превратить любую идею в бэкенд — управляя агентом и проверяя каждую дверь!' })}</p></div>
         </div>
-        <div className="card ach-coll fade-up d3">
+        {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🏅 Nishonlaringiz', ru: '🏅 Ваши значки' })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">
             {Object.entries(ACHIEVEMENTS).map(([id, a]) => { const got = !!(achievements && achievements.has(id)); return (
@@ -2749,7 +2751,7 @@ const Screen20 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
               </div>
             ); })}
           </div>
-        </div>
+        </div>}
       </div>
     </Stage>
   );

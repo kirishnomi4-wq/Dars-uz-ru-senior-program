@@ -408,6 +408,7 @@ const Col = ({ children, gap }) => <div className="col" style={gap ? { gap } : u
 // 🏅 Yuqori paneldagi nishon hisoblagichi (Stage chrome)
 function AchCounter() {
   const earned = useContext(AchCtx);
+  const gate = useContext(LiveGateCtx);
   const count = earned ? earned.size : 0;
   const total = Object.keys(ACHIEVEMENTS).length;
   const prevRef = useRef(count);
@@ -417,6 +418,7 @@ function AchCounter() {
     if (count > prevRef.current) { setBump(true); const t = setTimeout(() => setBump(false), 800); prevRef.current = count; return () => clearTimeout(t); }
     prevRef.current = count;
   }, [count]);
+  if (gate && gate.live && gate.live.mode === 'mentor') return null; // 🔴 mentor proyektorida nishon YO'Q (hooklardan KEYIN)
   return (
     <div className="ach-cnt-wrap">
       <button className={`ach-counter ${bump ? 'bump' : ''} ${count > 0 ? 'has' : ''}`} onClick={() => setOpen(o => !o)} aria-label="Badges" title="Badges">
@@ -1986,7 +1988,7 @@ function QuizArena({ live, onClose, startSolo }) {
             <div className={`qz-res ${my?.correct ? 'good' : 'bad'}`}>
               {my?.correct
                 ? <><span className="qz-res-pts">+{myPtsFor(qi)}</span><span className="qz-res-t">{tr({ uz: 'ball', ru: 'баллов' })}{streakUpTo(qi) >= 2 ? ` · 🔥 x${streakUpTo(qi)} streak` : ''}</span></>
-                : <span className="qz-res-t">{my ? tr({ uz: 'Xato — 0 ball. Keyingisida olasiz! 💪', ru: 'Ошибка — 0 баллов. Возьмёте своё на следующем! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Побыстрее! ⏱' })}</span>}
+                : <span className="qz-res-t">{my ? tr({ uz: 'Adashdingiz — 0 ball. Keyingisida olasiz! 💪', ru: 'Ошибка — 0 баллов. Возьмёте своё на следующем! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Побыстрее! ⏱' })}</span>}
               {!solo && myRank >= 0 && <span className="qz-res-rank">{tr({ uz: <>Siz hozir: {myRank + 1}-o'rin</>, ru: <>Вы сейчас на {myRank + 1}-м месте</> })}</span>}
             </div>
           )}
@@ -2263,7 +2265,7 @@ function Flashcards({ cards }) {
       <div className="fc-cardwrap">
         <div className={`fc-fly ${exiting === 'knew' ? 'out-knew' : ''} ${exiting === 'again' ? 'out-again' : ''}`} key={swapRef.current}>
         <div className={`fc-card ${flipped ? 'flip' : ''}`} onClick={() => !flipped && !exiting && setFlipped(true)} role="button" tabIndex={0}>
-          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: 'Qaysi tushuncha?', ru: 'Какое это понятие?' })} 🤔 <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
+          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: "Javobni o'ylang", ru: 'Подумайте над ответом' })} 🤔 <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
           <div className="fc-face fc-back"><span className="fc-tag">{tr(card.back)}</span>{card.note && <span className="fc-note">{tr(card.note)}</span>}</div>
         </div>
         </div>
@@ -2291,18 +2293,18 @@ const ScreenProPractice = (props) => (
 
 // 🃏 FLASHCARD KARTALARI — 12 atama (professional lenta tili)
 const PRO_FLASHCARDS = [
-  { front: { uz: "Bitta kodni bir nechta muhitda (Node 18/20/22) bir vaqtda tekshirish", ru: 'Проверка одного кода в нескольких средах (Node 18/20/22) одновременно' }, back: 'Matrix', note: { uz: 'parallel lentalar', ru: 'параллельные ленты' } },
-  { front: { uz: "Avvalgi reysda yuklangan paketlarni saqlab, keyingi reysni tezlashtirish", ru: 'Сохранение пакетов с прошлого рейса, чтобы ускорить следующий' }, back: 'Cache', note: { uz: 'yaqin javon', ru: 'ближняя полка' } },
-  { front: { uz: "Maxfiy kalitlar saqlanadigan xavfsiz joy", ru: 'Безопасное место для хранения секретных ключей' }, back: 'Secret', note: { uz: 'seyf', ru: 'сейф' } },
-  { front: { uz: "Haqiqiy reysdan oldin yo'lovchisiz sinab ko'rish muhiti", ru: 'Среда для проверки без пассажиров перед настоящим рейсом' }, back: 'Staging', note: { uz: 'sinov reysi', ru: 'тестовый рейс' } },
-  { front: { uz: "Yo'lovchi (foydalanuvchi) qo'lidagi haqiqiy muhit", ru: 'Настоящая среда в руках пассажира (пользователя)' }, back: 'Production', note: { uz: 'haqiqiy reys', ru: 'настоящий рейс' } },
-  { front: { uz: "Productionda muammo chiqsa oldingi versiyaga darhol qaytish", ru: 'Мгновенный возврат к прежней версии при проблеме в продакшене' }, back: 'Rollback', note: { uz: "eski yukni qaytarish", ru: 'возврат старого багажа' } },
-  { front: { uz: "ci.yml'da bir nechta muhitni sanab beruvchi kalit so'z", ru: 'Ключевое слово, перечисляющее несколько сред в ci.yml' }, back: 'strategy: matrix', note: { uz: 'YAML kaliti', ru: 'ключ YAML' } },
-  { front: { uz: "Maxfiy kalitni ishlatish sintaksisi", ru: 'Синтаксис использования секретного ключа' }, back: '${{ secrets.API_KEY }}', note: { uz: 'seyfdan chaqirish', ru: 'вызов из сейфа' } },
-  { front: { uz: "Kesh saqlanadigan joy nomi (odatda)", ru: 'Что обычно кешируется (название папки)' }, back: 'node_modules', note: { uz: 'paketlar papkasi', ru: 'папка пакетов' } },
-  { front: { uz: "Bitta muhitda yashil, boshqasida qizil bo'lishi — buni nima ko'rsatadi", ru: 'В одной среде зелёный, в другой красный — что это показывает' }, back: { uz: 'Matrix natijasi', ru: 'Результат matrix' }, note: { uz: "muhitga bog'liq xato", ru: 'ошибка, зависящая от среды' } },
-  { front: { uz: "Sinov reysida (staging) kim yo'q?", ru: 'Кого нет на тестовом рейсе (staging)?' }, back: { uz: "Yo'lovchi (real foydalanuvchi)", ru: 'Пассажира (реального пользователя)' }, note: { uz: 'xavfsiz test muhiti', ru: 'безопасная тестовая среда' } },
-  { front: { uz: "Rollback qanchalik tez bo'lsa, foydalanuvchi muammoni...", ru: 'Чем быстрее rollback, тем пользователь проблему...' }, back: { uz: 'Kamroq sezadi', ru: 'Меньше замечает' }, note: { uz: 'tezkorlik = ishonch', ru: 'скорость = доверие' } },
+  { front: { uz: 'Bitta kodni bir nechta Node versiyasida birdan tekshirish nima deb ataladi?', ru: 'Как называется проверка одного кода сразу в нескольких версиях Node?' }, back: 'matrix', note: { uz: 'Parallel lentalar: Node 18, 20 va 22 bir vaqtda tekshiriladi', ru: 'Параллельные ленты: Node 18, 20 и 22 проверяются одновременно' } },
+  { front: { uz: 'ci.yml faylida bir nechta muhitni qaysi kalit sanab beradi?', ru: 'Какой ключ перечисляет несколько сред в файле ci.yml?' }, back: 'strategy: matrix', note: { uz: "Muhitlar ro'yxati aynan shu kalit ostiga yoziladi", ru: 'Список сред пишется именно под этим ключом' } },
+  { front: { uz: "Matrixda uchta muhitdan biri qizil bo'lsa, qolganlari nima qiladi?", ru: 'Одна из трёх сред в matrix покраснела — что делают остальные?' }, back: { uz: 'Ishlashda davom etadi', ru: 'Продолжают работать' }, note: { uz: "Shuning uchun aynan qaysi sharoitda singani aniq ko'rinadi", ru: 'Именно поэтому сразу видно, в каких условиях всё сломалось' } },
+  { front: { uz: 'Paketlarni qayta yuklamay lentani tezlashtiruvchi vosita qanday ataladi?', ru: 'Как называется то, что ускоряет ленту, не качая пакеты заново?' }, back: 'cache', note: { uz: "Yaqin javon: 40 soniya o'rniga 8 soniya", ru: 'Ближняя полка: 8 секунд вместо 40' } },
+  { front: { uz: 'Odatda qaysi papka yaqin javonda saqlanadi?', ru: 'Какую папку обычно держат на ближней полке?' }, back: 'node_modules', note: { uz: "O'zgarmagan paketlarni qayta yuklash shart emas", ru: 'Пакеты, которые не менялись, качать заново незачем' } },
+  { front: { uz: 'Maxfiy kalit qayerda saqlanishi kerak?', ru: 'Где должен храниться секретный ключ?' }, back: { uz: 'Seyfda (secrets)', ru: 'В сейфе (secrets)' }, note: { uz: "Yo'l xaritasida ochiq yozilsa, uni hamma o'qiy oladi", ru: 'Если записать открыто в карте маршрута, его прочитает кто угодно' } },
+  { front: { uz: 'Kodda maxfiy kalitni qanday chaqirasiz?', ru: 'Как вы вызываете секретный ключ в коде?' }, back: '${{ secrets.API_KEY }}', note: { uz: 'Kalitning qiymati lenta jurnalida yulduzcha bilan yashiriladi', ru: 'Значение ключа в журнале ленты закрывается звёздочками' } },
+  { front: { uz: "Yo'lovchisiz sinab ko'riladigan muhit qanday ataladi?", ru: 'Как называется среда, где проверяют без пассажиров?' }, back: 'staging', note: { uz: "Sinov reysi: xato chiqsa ham hech kim zarar ko'rmaydi", ru: 'Пробный рейс: даже если вылезет ошибка, никто не пострадает' } },
+  { front: { uz: 'Foydalanuvchi ishlatadigan haqiqiy muhit qanday ataladi?', ru: 'Как называется настоящая среда, которой пользуется пользователь?' }, back: 'production', note: { uz: "Haqiqiy reys: yuk endi yo'lovchi qo'lida", ru: 'Настоящий рейс: багаж уже в руках пассажира' } },
+  { front: { uz: 'Sinov reysi bilan haqiqiy reys qaysi tartibda boradi?', ru: 'В каком порядке идут пробный и настоящий рейсы?' }, back: { uz: 'Avval staging, keyin production', ru: 'Сначала staging, потом production' }, note: { uz: "Sinov reysi yashil bo'lgach, xuddi shu yuk haqiqiy reysga chiqadi", ru: 'Как только пробный рейс зелёный, тот же груз выходит на настоящий' } },
+  { front: { uz: 'Productionda buzuq versiya chiqsa, eng tez yechim qanday ataladi?', ru: 'В production вышла сломанная версия — как называется самое быстрое решение?' }, back: 'rollback', note: { uz: 'Eski yukni qaytarish: oldingi ishlaydigan versiyaga qaytasiz', ru: 'Возврат старого багажа: вы возвращаетесь к прежней рабочей версии' } },
+  { front: { uz: 'Rollback tez qilinsa, foydalanuvchi muammoni qanchalik sezadi?', ru: 'Если откатиться быстро, насколько пользователь заметит проблему?' }, back: { uz: 'Deyarli sezmaydi', ru: 'Почти не заметит' }, note: { uz: "Tezlik foydalanuvchi ishonchini saqlab qoladi", ru: 'Скорость сохраняет доверие пользователя' } },
 ];
 const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, []); // eslint-disable-line
@@ -2310,7 +2312,7 @@ const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) =>
     <Stage eyebrow={tr({ uz: 'Takrorlash', ru: 'Повторение' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={false} label={tr({ uz: 'Yakunlash →', ru: 'Завершить →' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Professional lenta atamalarini <span className="italic" style={{ color: T.accent }}>tez takrorlaymiz</span>.</>, ru: <>Быстро повторим <span className="italic" style={{ color: T.accent }}>термины профессиональной ленты</span>.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Darsni yakunlashdan oldin bugungi atamalarni takrorlaymiz. Har kartada bir topishmoq — <b style={{ color: T.ink }}>qaysi atama</b> ekanini o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</>, ru: <>Перед завершением урока повторим сегодняшние термины. На каждой карточке — загадка: подумайте, <b style={{ color: T.ink }}>какой это термин</b>, потом нажмите на карточку и проверьте себя. Оцените кнопками <b style={{ color: T.ink }}>Знаю</b> или <b style={{ color: T.ink }}>Повторить</b>.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Darsni yakunlashdan oldin bugungi atamalarni takrorlaymiz. Har kartada bir savol — <b style={{ color: T.ink }}>javobini</b> o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</>, ru: <>Перед завершением урока повторим сегодняшние термины. На каждой карточке — вопрос: подумайте, <b style={{ color: T.ink }}>каким будет ответ</b>, потом нажмите на карточку и проверьте себя. Оцените кнопками <b style={{ color: T.ink }}>Знаю</b> или <b style={{ color: T.ink }}>Повторить</b>.</> })}</Mentor>
         <div className="fc-center"><Flashcards cards={PRO_FLASHCARDS} /></div>
       </div>
     </Stage>
@@ -2361,7 +2363,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
           <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> {tr({ uz: 'Endi siz bilasiz', ru: 'Теперь вы знаете' })}</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{tr(r)}</span></li>))}</ul></div>
           <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: "🚀 Loyiha kuni davom etadi — endi bu professional lentani o'z bitiruv loyihangizga qo'llaysiz!", ru: '🚀 Проектный день продолжается — теперь примените эту профессиональную ленту в своём выпускном проекте!' })}</p></div>
         </div>
-        <div className="card ach-coll fade-up d3">
+        {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>🏅 {tr({ uz: 'Nishonlaringiz', ru: 'Ваши значки' })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">
             {Object.entries(ACHIEVEMENTS).map(([id, a]) => { const got = !!(achievements && achievements.has(id)); return (
@@ -2372,7 +2374,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
               </div>
             ); })}
           </div>
-        </div>
+        </div>}
       </div>
     </Stage>
   );

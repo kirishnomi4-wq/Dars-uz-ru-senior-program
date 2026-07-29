@@ -411,6 +411,7 @@ const Col = ({ children, gap }) => <div className="col" style={gap ? { gap } : u
 // 🏅 Yuqori paneldagi nishon hisoblagichi (Stage chrome)
 function AchCounter() {
   const earned = useContext(AchCtx);
+  const gate = useContext(LiveGateCtx);
   const count = earned ? earned.size : 0;
   const total = Object.keys(ACHIEVEMENTS).length;
   const prevRef = useRef(count);
@@ -420,6 +421,7 @@ function AchCounter() {
     if (count > prevRef.current) { setBump(true); const t = setTimeout(() => setBump(false), 800); prevRef.current = count; return () => clearTimeout(t); }
     prevRef.current = count;
   }, [count]);
+  if (gate && gate.live && gate.live.mode === 'mentor') return null; // 🔴 mentor proyektorida nishon YO'Q (hooklardan KEYIN)
   return (
     <div className="ach-cnt-wrap">
       <button className={`ach-counter ${bump ? 'bump' : ''} ${count > 0 ? 'has' : ''}`} onClick={() => setOpen(o => !o)} aria-label="Badges" title="Badges">
@@ -2063,7 +2065,7 @@ function QuizArena({ live, onClose, startSolo }) {
             <div className={`qz-res ${my?.correct ? 'good' : 'bad'}`}>
               {my?.correct
                 ? <><span className="qz-res-pts">+{myPtsFor(qi)}</span><span className="qz-res-t">{tr({ uz: 'ball', ru: 'баллов' })}{streakUpTo(qi) >= 2 ? ` · 🔥 x${streakUpTo(qi)} ${tr({ uz: 'streak', ru: 'серия' })}` : ''}</span></>
-                : <span className="qz-res-t">{my ? tr({ uz: "Xato — 0 ball. Keyingisida olasiz! 💪", ru: 'Ошибка — 0 баллов. Возьмёте на следующем! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Быстрее! ⏱' })}</span>}
+                : <span className="qz-res-t">{my ? tr({ uz: "Adashdingiz — 0 ball. Keyingisida olasiz! 💪", ru: 'Ошибка — 0 баллов. Возьмёте на следующем! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Быстрее! ⏱' })}</span>}
               {!solo && myRank >= 0 && <span className="qz-res-rank">{tr({ uz: `Siz hozir: ${myRank + 1}-o'rin`, ru: `Вы сейчас на ${myRank + 1}-м месте` })}</span>}
             </div>
           )}
@@ -2337,7 +2339,7 @@ function Flashcards({ cards }) {
       <div className="fc-cardwrap">
         <div className={`fc-fly ${exiting === 'knew' ? 'out-knew' : ''} ${exiting === 'again' ? 'out-again' : ''}`} key={swapRef.current}>
         <div className={`fc-card ${flipped ? 'flip' : ''}`} onClick={() => !flipped && !exiting && setFlipped(true)} role="button" tabIndex={0}>
-          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: 'Qaysi tushuncha? 🤔', ru: 'Какое это понятие? 🤔' })} <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
+          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: "Javobni o'ylang", ru: 'Подумайте над ответом' })} 🤔 <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
           <div className="fc-face fc-back"><span className="fc-tag">{tr(card.back)}</span>{card.note && <span className="fc-note">{tr(card.note)}</span>}</div>
         </div>
         </div>
@@ -2365,18 +2367,18 @@ const ScreenAiPractice = (props) => (
 
 // 🃏 FLASHCARD KARTALARI — 12 atama (usta bilan ishlash tili)
 const AI_PIPELINE_FLASHCARDS = [
-  { front: { uz: "Lenta qizil bo'lganda sababni ko'rsatuvchi yozuvlar to'plami", ru: 'Набор записей, где видна причина, когда лента красная' }, back: { uz: 'Jurnal', ru: 'Журнал' }, note: 'log' },
-  { front: { uz: "Qizil chiroq yonganda yordam beradigan AI yordamchi", ru: 'AI-помощник, который выручает при красном свете' }, back: { uz: 'Usta', ru: 'Мастер' }, note: { uz: 'AI mentor', ru: 'AI-наставник' } },
-  { front: { uz: "Ustaga aniq dalil bilan berilgan murojaat", ru: 'Обращение к Мастеру с точной уликой' }, back: { uz: "So'rov", ru: 'Запрос' }, note: 'prompt' },
-  { front: { uz: "Ustaning taklifini jurnaldagi haqiqiy sabab bilan solishtirish", ru: 'Сверка предложения Мастера с настоящей причиной из журнала' }, back: { uz: 'Tekshirish', ru: 'Проверка' }, note: 'verify' },
-  { front: { uz: "Usta noto'g'ri aytgan sabab", ru: 'Причина, которую Мастер назвал неверно' }, back: { uz: "Noto'g'ri tashxis", ru: 'Неверный диагноз' }, note: { uz: 'AI ham adashadi', ru: 'AI тоже ошибается' } },
-  { front: { uz: "Xatoning haqiqiy, asosiy sababi", ru: 'Настоящая, корневая причина ошибки' }, back: 'Root cause', note: { uz: 'asl sabab', ru: 'корень проблемы' } },
-  { front: { uz: "Birinchi taklif yetarli bo'lmasa beriladigan aniqroq so'rov", ru: 'Более точный запрос, когда первого предложения мало' }, back: 'Follow-up', note: { uz: "qayta so'rov", ru: 'уточняющий запрос' } },
-  { front: { uz: "Jurnaldagi \"kutildi… keldi…\" qatorlari nimani ko'rsatadi", ru: 'Что показывают строки «ожидалось… получено…» в журнале' }, back: { uz: 'Farqni', ru: 'Разницу' }, note: 'expected vs actual' },
-  { front: { uz: "Xato qaysi faylda va qatorda ekanini ko'rsatuvchi ma'lumot", ru: 'Данные о том, в каком файле и строке ошибка' }, back: { uz: 'Fayl + qator', ru: 'Файл + строка' }, note: 'location' },
-  { front: { uz: "Tuzatishni qabul qilish yoki qilmaslik haqidagi yakuniy qaror", ru: 'Финальное решение — принимать исправление или нет' }, back: { uz: 'Sizniki', ru: 'За вами' }, note: { uz: "mas'uliyat sizda", ru: 'ответственность на вас' } },
-  { front: { uz: "Tuzatilgan kodni qayta lentaga yuborish", ru: 'Отправка починенного кода снова на ленту' }, back: 'Push', note: { uz: 'qayta yuborish', ru: 'повторная отправка' } },
-  { front: { uz: "Hammasi yashil bo'lgach ko'tariladigan narsa", ru: 'То, что взлетает, когда всё зелёное' }, back: { uz: 'Samolyot', ru: 'Самолёт' }, note: { uz: "✈️ uchirish", ru: '✈️ взлёт' } }
+  { front: { uz: "Lenta qizil bo'lganda birinchi qayerni ochasiz?", ru: 'Лента покраснела — что вы откроете первым делом?' }, back: { uz: 'Lenta jurnalini', ru: 'Журнал ленты' }, note: { uz: "Jurnal eng tepada qaysi nuqtada to'xtaganini ko'rsatadi", ru: 'В самом верху журнала видно, на какой точке всё встало' } },
+  { front: { uz: 'Jurnaldagi qaysi ikki dalil xatoni eng tez topishga yordam beradi?', ru: 'Какие две улики из журнала быстрее всего приводят к ошибке?' }, back: { uz: 'Fayl nomi va qator raqami', ru: 'Имя файла и номер строки' }, note: { uz: 'Ular xato aynan qayerda yozilganini aytadi', ru: 'Они говорят, где именно написана ошибка' } },
+  { front: { uz: "Jurnaldagi kutilgan va kelgan qiymat qatorlari nimani ko'rsatadi?", ru: 'Что показывают строки журнала с ожидаемым и полученным значением?' }, back: { uz: 'Ikkisining farqini', ru: 'Разницу между ними' }, note: { uz: 'Test nimani kutgan va aslida nima chiqqan', ru: 'Чего ждал тест и что вышло на самом деле' } },
+  { front: { uz: 'Qizil chiroq yonganda yordam beradigan AI yordamchi qanday ataladi?', ru: 'Как называется AI-помощник, который выручает при красном свете?' }, back: { uz: 'Lenta Ustasi', ru: 'Мастер ленты' }, note: { uz: 'U tez maslahat beradi, lekin hakam emas', ru: 'Он быстро подсказывает, но он не судья' } },
+  { front: { uz: "Ustaga qanday so'rov eng foydali javob beradi?", ru: 'Какой запрос Мастеру даст самый полезный ответ?' }, back: { uz: "Dalil qo'shilgan aniq so'rov", ru: 'Точный запрос с уликой' }, note: { uz: 'Qator raqamini, kutilgan va kelgan qiymatni ayting', ru: 'Назовите номер строки, ожидаемое и полученное значение' } },
+  { front: { uz: 'Ustaning taklifi tayyor haqiqatmi?', ru: 'Предложение Мастера — это готовая истина?' }, back: { uz: "Yo'q, bu taxmin", ru: 'Нет, это гипотеза' }, note: { uz: 'Har taklif jurnaldagi sabab bilan solishtiriladi', ru: 'Каждое предложение сверяют с причиной из журнала' } },
+  { front: { uz: 'Ustaning taklifini nima bilan tekshirasiz?', ru: 'Чем вы проверяете предложение Мастера?' }, back: { uz: 'Jurnaldagi dalillar bilan', ru: 'Уликами из журнала' }, note: { uz: 'Taklif dalilga mos kelmasa, uni qabul qilmaysiz', ru: 'Если предложение не сходится с уликой, вы его не принимаете' } },
+  { front: { uz: "Usta noto'g'ri sabab aytishi mumkinmi?", ru: 'Может ли Мастер назвать неверную причину?' }, back: { uz: 'Ha, mumkin', ru: 'Да, может' }, note: { uz: 'Aynan shuning uchun har taklif tekshiriladi', ru: 'Именно поэтому каждое предложение проверяют' } },
+  { front: { uz: 'Xatoning asl, chuqur sababi qanday ataladi?', ru: 'Как называется настоящая, глубинная причина ошибки?' }, back: 'root cause', note: { uz: "Ustki belgi emas, muammoning ildizi", ru: 'Не внешний признак, а корень проблемы' } },
+  { front: { uz: 'Birinchi taklif yordam bermasa, nima qilasiz?', ru: 'Первое предложение не помогло — что вы сделаете?' }, back: 'follow-up', note: { uz: "Yangi dalil qo'shib, aniqroq qilib qayta so'raysiz", ru: 'Спросите снова, добавив новую улику и больше точности' } },
+  { front: { uz: 'Tuzatishni qabul qilish yoki qilmaslikni kim hal qiladi?', ru: 'Кто решает, принимать исправление или нет?' }, back: { uz: 'Siz', ru: 'Вы' }, note: { uz: "Push tugmasi ham, mas'uliyat ham sizda qoladi", ru: 'И кнопка push, и ответственность остаются за вами' } },
+  { front: { uz: "Usta bilan tuzatishning to'g'ri tartibi qanday?", ru: 'Каков правильный порядок починки с Мастером?' }, back: { uz: "Jurnal, so'rov, tekshirish, tuzatish, push", ru: 'Журнал, запрос, проверка, починка, push' }, note: { uz: 'Push eng oxirida: avval tekshirasiz, keyin yuborasiz', ru: 'Push в самом конце: сначала проверка, потом отправка' } }
 ];
 const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, []); // eslint-disable-line
@@ -2384,7 +2386,7 @@ const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) =>
     <Stage eyebrow={tr({ uz: 'Takrorlash', ru: 'Повторение' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={false} label={{ uz: 'Yakunlash →', ru: 'Завершить →' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Usta bilan ishlash atamalarini <span className="italic" style={{ color: T.accent }}>tez takrorlaymiz</span>.</>, ru: <>Быстро <span className="italic" style={{ color: T.accent }}>повторим</span> термины работы с Мастером.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Darsni yakunlashdan oldin bugungi atamalarni takrorlaymiz. Har kartada bir topishmoq — <b style={{ color: T.ink }}>qaysi atama</b> ekanini o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</>, ru: <>Перед финалом урока повторим сегодняшние термины. На каждой карточке загадка — подумайте, <b style={{ color: T.ink }}>какой это термин</b>, затем нажмите на карточку и проверьте себя. Оцените кнопками <b style={{ color: T.ink }}>Знаю</b> или <b style={{ color: T.ink }}>Повторить</b>.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Darsni yakunlashdan oldin bugungi atamalarni takrorlaymiz. Har kartada bir savol — <b style={{ color: T.ink }}>javobini</b> o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</>, ru: <>Перед финалом урока повторим сегодняшние термины. На каждой карточке вопрос — подумайте, <b style={{ color: T.ink }}>каким будет ответ</b>, затем нажмите на карточку и проверьте себя. Оцените кнопками <b style={{ color: T.ink }}>Знаю</b> или <b style={{ color: T.ink }}>Повторить</b>.</> })}</Mentor>
         <div className="fc-center"><Flashcards cards={AI_PIPELINE_FLASHCARDS} /></div>
       </div>
     </Stage>
@@ -2435,7 +2437,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
           <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> {tr({ uz: 'Endi siz bilasiz', ru: 'Теперь вы знаете' })}</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{tr(r)}</span></li>))}</ul></div>
           <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>📝 {tr({ uz: 'Uyga vazifa', ru: 'Домашнее задание' })}</div><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: "🎉 4c-modulni yakunladingiz — CI/CD, deploy va endi AI yordamchi bilan ishlash. Loyihalaringizda shu ko'nikmalarni birga qo'llang!", ru: '🎉 Вы завершили модуль 4c — CI/CD, деплой и теперь работа с AI-помощником. Применяйте эти навыки в своих проектах вместе!' })}</p></div>
         </div>
-        <div className="card ach-coll fade-up d3">
+        {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>🏅 {tr({ uz: 'Nishonlaringiz', ru: 'Ваши значки' })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">
             {Object.entries(ACHIEVEMENTS).map(([id, a]) => { const got = !!(achievements && achievements.has(id)); return (
@@ -2446,7 +2448,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
               </div>
             ); })}
           </div>
-        </div>
+        </div>}
       </div>
     </Stage>
   );

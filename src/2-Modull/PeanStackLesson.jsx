@@ -384,6 +384,7 @@ const Col = ({ children, gap }) => <div className="col" style={gap ? { gap } : u
 // 🏅 Yuqori paneldagi nishon hisoblagichi — doim ko'rinadi, yangi olinganda pulslaydi, bosilsa ro'yxat chiqadi
 function AchCounter() {
   const earned = useContext(AchCtx);
+  const gate = useContext(LiveGateCtx);
   const count = earned ? earned.size : 0;
   const total = Object.keys(ACHIEVEMENTS).length;
   const prevRef = useRef(count);
@@ -393,6 +394,7 @@ function AchCounter() {
     if (count > prevRef.current) { setBump(true); const t = setTimeout(() => setBump(false), 800); prevRef.current = count; return () => clearTimeout(t); }
     prevRef.current = count;
   }, [count]);
+  if (gate && gate.live && gate.live.mode === 'mentor') return null; // 🔴 mentor proyektorida nishon YO'Q (hooklardan KEYIN)
   return (
     <div className="ach-cnt-wrap">
       <button className={`ach-counter ${bump ? 'bump' : ''} ${count > 0 ? 'has' : ''}`} onClick={() => setOpen(o => !o)} aria-label="Badges" title="Badges">
@@ -1047,18 +1049,18 @@ function DragDropOrder({ items, hints, onSolved, onWrong, doneText }) {
 // 🃏 Qayta ishlatiladigan FLASHCARDS — aktiv takrorlash (3D flip + o'z-o'zini baholash + spaced recall).
 // Boshqa darsga: faqat `cards` ({ front, back, note }) almashtiriladi.
 const PERN_FLASHCARDS = [
-  { front: { uz: "Saytning ko'rinadigan qismi", ru: 'Видимая часть сайта' }, back: 'Frontend', note: { uz: 'restoranda — zal', ru: 'в ресторане — зал' } },
-  { front: { uz: "Saytning ko'rinmas qismi", ru: 'Невидимая часть сайта' }, back: 'Backend', note: { uz: 'restoranda — oshxona', ru: 'в ресторане — кухня' } },
-  { front: { uz: "Ko'rinishni bloklardan yig'adigan kutubxona", ru: 'Библиотека, собирающая вид из блоков' }, back: 'React', note: 'frontend' },
-  { front: { uz: "JavaScript'ni serverda ishlatadigan dvigatel", ru: 'Двигатель, запускающий JavaScript на сервере' }, back: 'Node.js', note: { uz: 'JS endi oshxonada', ru: 'JS теперь на кухне' } },
-  { front: { uz: "So'rov yo'llarini boshqaradigan «ofitsiant»", ru: '«Официант», управляющий маршрутами запросов' }, back: 'Express', note: { uz: "har manzil — bitta yo'l", ru: 'каждый адрес — свой маршрут' } },
-  { front: { uz: "Ma'lumotni doimiy saqlaydigan baza", ru: 'База, которая хранит данные постоянно' }, back: 'PostgreSQL', note: { uz: 'restoranda — ombor', ru: 'в ресторане — склад' } },
-  { front: { uz: '4 texnologiya jamoasining nomi', ru: 'Название команды из 4 технологий' }, back: 'PERN', note: 'Postgres · Express · React · Node' },
-  { front: { uz: "Tugma bosilganda so'rov yo'lining to'g'ri tartibi", ru: 'Правильный путь запроса при нажатии кнопки' }, back: 'R → E → P', note: 'React → Express → PostgreSQL' },
-  { front: { uz: 'Saytga kecha-kunduz xizmat qiladigan kompyuter', ru: 'Компьютер, обслуживающий сайт круглые сутки' }, back: { uz: 'server', ru: 'сервер' }, note: { uz: 'backend shu yerda ishlaydi', ru: 'здесь работает backend' } },
-  { front: { uz: 'Like va izohlar saqlanadigan doimiy joy', ru: 'Постоянное место для лайков и комментариев' }, back: { uz: 'baza', ru: 'база' }, note: { uz: 'brauzer emas!', ru: 'не браузер!' } },
-  { front: { uz: "Bir-birini to'ldiruvchi texnologiyalar to'plami", ru: 'Набор технологий, дополняющих друг друга' }, back: { uz: 'stack', ru: 'стек' }, note: { uz: 'jamoa', ru: 'команда' } },
-  { front: { uz: "Frontenddan backendga boradigan «xat»", ru: '«Письмо» от frontend к backend' }, back: { uz: "so'rov", ru: 'запрос' }, note: 'request' },
+  { front: { uz: "Saytning siz ko'rib, bosib turadigan qismi qanday ataladi?", ru: 'Как называется часть сайта, которую Вы видите и нажимаете?' }, back: 'Frontend', note: { uz: 'restoranda — zal', ru: 'в ресторане — зал' } },
+  { front: { uz: "Saytning ko'rinmaydigan, ichkarida ishlaydigan qismi qanday ataladi?", ru: 'Как называется невидимая часть сайта, которая работает внутри?' }, back: 'Backend', note: { uz: 'restoranda — oshxona', ru: 'в ресторане — кухня' } },
+  { front: { uz: "Sayt ko'rinishini tayyor bloklardan yig'ish uchun nima ishlatiladi?", ru: 'С помощью чего собирают вид сайта из готовых блоков?' }, back: 'React', note: { uz: 'frontend vositasi', ru: 'инструмент frontend' } },
+  { front: { uz: 'JavaScript serverda ham ishlashi uchun nima kerak?', ru: 'Что нужно, чтобы JavaScript работал и на сервере?' }, back: 'Node.js', note: { uz: 'JS endi oshxonada ham ishlaydi', ru: 'JS теперь работает и на кухне' } },
+  { front: { uz: "So'rov qaysi manzilga borishini nima hal qiladi?", ru: 'Что решает, по какому адресу пойдёт запрос?' }, back: 'Express', note: { uz: "har manzil uchun alohida yo'l", ru: 'для каждого адреса свой маршрут' } },
+  { front: { uz: "Yozilgan ma'lumot yillar davomida qayerda saqlanadi?", ru: 'Где записанные данные хранятся годами?' }, back: 'PostgreSQL', note: { uz: 'baza — restorandagi ombor', ru: 'база — как склад в ресторане' } },
+  { front: { uz: "PERN qaysi to'rt texnologiyaning qisqartmasi?", ru: 'Сокращением каких четырёх технологий является PERN?' }, back: 'Postgres · Express · React · Node', note: { uz: 'birga ishlaydigan jamoa', ru: 'команда, работающая вместе' } },
+  { front: { uz: "Tugma bosilganda so'rov qayerlardan o'tadi?", ru: 'Через что проходит запрос, когда нажали кнопку?' }, back: 'React → Express → PostgreSQL', note: { uz: 'zaldan oshxonaga, keyin omborga', ru: 'из зала на кухню, потом на склад' } },
+  { front: { uz: 'Saytga kecha-kunduz xizmat qiladigan kompyuter qanday ataladi?', ru: 'Как называется компьютер, который обслуживает сайт круглые сутки?' }, back: { uz: 'server', ru: 'сервер' }, note: { uz: 'backend shu yerda ishlaydi', ru: 'здесь работает backend' } },
+  { front: { uz: "Sahifa yopilsa ham izohlar yo'qolmasligi uchun ular qayerga yoziladi?", ru: 'Куда записывают комментарии, чтобы они не пропали после закрытия страницы?' }, back: { uz: 'bazaga', ru: 'в базу' }, note: { uz: 'brauzerga emas', ru: 'не в браузер' } },
+  { front: { uz: "Bir loyihada birga ishlaydigan texnologiyalar to'plami qanday ataladi?", ru: 'Как называется набор технологий, работающих вместе в одном проекте?' }, back: { uz: 'stack', ru: 'стек' }, note: { uz: 'PERN ham — stack', ru: 'PERN — тоже стек' } },
+  { front: { uz: 'Frontend backendga nima yuboradi?', ru: 'Что frontend отправляет в backend?' }, back: { uz: "so'rov (request)", ru: 'запрос (request)' }, note: { uz: 'ofitsiantga aytilgan buyurtma kabi', ru: 'как заказ, переданный официанту' } },
 ];
 function Flashcards({ cards }) {
   const [queue, setQueue] = useState(() => cards.map((_, i) => i));
@@ -1091,7 +1093,7 @@ function Flashcards({ cards }) {
       <div className="fc-cardwrap">
         <div className={`fc-fly ${exiting === 'knew' ? 'out-knew' : ''} ${exiting === 'again' ? 'out-again' : ''}`} key={swapRef.current}>
         <div className={`fc-card ${flipped ? 'flip' : ''}`} onClick={() => !flipped && !exiting && setFlipped(true)} role="button" tabIndex={0}>
-          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: 'Qaysi atama? 🤔', ru: 'Какой это термин? 🤔' })} <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
+          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: "Javobni o'ylang", ru: 'Подумайте над ответом' })} 🤔 <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
           <div className="fc-face fc-back"><span className="fc-tag">{tr(card.back)}</span>{card.note && <span className="fc-note">{tr(card.note)}</span>}</div>
         </div>
         </div>
@@ -1972,7 +1974,7 @@ const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) =>
     <Stage eyebrow={tr({ uz: 'Takrorlash', ru: 'Повторение' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={false} label={tr({ uz: 'Yakunlash →', ru: 'Завершить →' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Atamalarni <span className="italic" style={{ color: T.accent }}>tez takrorlaymiz</span>.</>, ru: <>Быстро <span className="italic" style={{ color: T.accent }}>повторим</span> термины.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Darsni yakunlashdan oldin bugungi jamoani takrorlaymiz. Har kartada bir vazifa — <b style={{ color: T.ink }}>qaysi atama</b> ekanini o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</>, ru: <>Перед завершением урока повторим сегодняшнюю команду. На каждой карточке — задача: подумайте, <b style={{ color: T.ink }}>какой это термин</b>, потом нажмите на карточку и проверьте себя. Оцените кнопками <b style={{ color: T.ink }}>Знаю</b> или <b style={{ color: T.ink }}>Повторить</b>.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Darsni yakunlashdan oldin bugungi jamoani takrorlaymiz. Har kartada bir savol — <b style={{ color: T.ink }}>javobini</b> o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</>, ru: <>Перед завершением урока повторим сегодняшнюю команду. На каждой карточке — вопрос: подумайте, <b style={{ color: T.ink }}>каким будет ответ</b>, потом нажмите на карточку и проверьте себя. Оцените кнопками <b style={{ color: T.ink }}>Знаю</b> или <b style={{ color: T.ink }}>Повторить</b>.</> })}</Mentor>
         <div className="fc-center"><Flashcards cards={PERN_FLASHCARDS} /></div>
       </div>
     </Stage>
@@ -2030,7 +2032,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
           <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> {tr({ uz: 'Endi siz bilasiz', ru: 'Теперь Вы знаете' })}</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{r}</span></li>))}</ul></div>
           <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: "Uyga vazifa — detektiv bo'ling", ru: 'Домашнее задание — побудьте детективом' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: '3 ta tanish ilovani "ichidan" tahlil qiling:', ru: 'Разберите «изнутри» 3 знакомых приложения:' })}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{h.b}</b> <span className="t">{h.t}</span></li>))}</ul><p className="hw-note">{tr({ uz: "Oldinda: avval mini-do'kon praktikasi, so'ng React moduli (frontend) va Node.js + Express + NestJS moduli (backend). Xarita qo'lingizda!", ru: 'Впереди: сначала практика мини-магазина, затем модуль React (frontend) и модуль Node.js + Express + NestJS (backend). Карта у Вас в руках!' })}</p></div>
         </div>
-        <div className="card ach-coll fade-up d3">
+        {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>🏅 {tr({ uz: 'Nishonlaringiz', ru: 'Ваши значки' })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">
             {Object.entries(ACHIEVEMENTS).map(([id, a]) => { const got = !!(achievements && achievements.has(id)); return (
@@ -2041,7 +2043,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
               </div>
             ); })}
           </div>
-        </div>
+        </div>}
       </div>
     </Stage>
   );
@@ -2588,7 +2590,7 @@ function QuizArena({ live, onClose, startSolo }) {
             <div className={`qz-res ${my?.correct ? 'good' : 'bad'}`}>
               {my?.correct
                 ? <><span className="qz-res-pts">+{myPtsFor(qi)}</span><span className="qz-res-t">{tr({ uz: 'ball', ru: 'баллов' })}{streakUpTo(qi) >= 2 ? ` · 🔥 x${streakUpTo(qi)} streak` : ''}</span></>
-                : <span className="qz-res-t">{my ? tr({ uz: 'Xato — 0 ball. Keyingisida olasiz! 💪', ru: 'Ошибка — 0 баллов. Возьмёте своё на следующем! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Быстрее! ⏱' })}</span>}
+                : <span className="qz-res-t">{my ? tr({ uz: 'Adashdingiz — 0 ball. Keyingisida olasiz! 💪', ru: 'Ошибка — 0 баллов. Возьмёте своё на следующем! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Быстрее! ⏱' })}</span>}
               {!solo && myRank >= 0 && <span className="qz-res-rank">{tr({ uz: 'Siz hozir:', ru: 'Вы сейчас:' })} {myRank + 1}-{tr({ uz: "o'rin", ru: 'место' })}</span>}
             </div>
           )}

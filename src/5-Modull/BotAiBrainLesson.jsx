@@ -14,7 +14,7 @@ const MENTOR_IMG = 'https://go.coddycamp.uz/uploads/media_library/c7b711619071c9
 // INTERAKTIV BEAT'lar: s3 «Yomon topshiriq vs yaxshi topshiriq» · s5 MARKAZIY #1: «Yo'riqnomani o'zi yozadi»
 //   (Rule Writer) · s6 «Ikki xabar — Maslahatchi eslamaydi» · s7 MARKAZIY #2: «Stol usti sinovi» (Table Manager) ·
 //   s9 MARKAZIY #3: «Erkinlik murvati» (Dial Master) · s11 MARKAZIY #4: «Fact Checker — o'ylab topilgan pitsa» ·
-//   s15 FINAL: xavfsiz ishlash tsikli tartibi (DragDropOrder).
+//   s15 FINAL: xavfsiz ishlash sikli tartibi (DragDropOrder).
 // JONLI: useLiveSession + INLINE_KEYS + CodeStrike arena + Podium (ball to'g'riligi — ⚡ Jonli roli).
 // PRODUCTION: <style> ichidagi @import OLIB TASHLANADI — shriftlarni LMS yuklaydi.
 // ============================================================
@@ -407,6 +407,7 @@ const Col = ({ children, gap }) => <div className="col" style={gap ? { gap } : u
 // 🏅 Yuqori paneldagi nishon hisoblagichi (Stage chrome)
 function AchCounter() {
   const earned = useContext(AchCtx);
+  const gate = useContext(LiveGateCtx);
   const count = earned ? earned.size : 0;
   const total = Object.keys(ACHIEVEMENTS).length;
   const prevRef = useRef(count);
@@ -416,6 +417,7 @@ function AchCounter() {
     if (count > prevRef.current) { setBump(true); const t = setTimeout(() => setBump(false), 800); prevRef.current = count; return () => clearTimeout(t); }
     prevRef.current = count;
   }, [count]);
+  if (gate && gate.live && gate.live.mode === 'mentor') return null; // 🔴 mentor proyektorida nishon YO'Q (hooklardan KEYIN)
   return (
     <div className="ach-cnt-wrap">
       <button className={`ach-counter ${bump ? 'bump' : ''} ${count > 0 ? 'has' : ''}`} onClick={() => setOpen(o => !o)} aria-label="Badges" title="Badges">
@@ -551,7 +553,7 @@ const RECAPS = {
     ]
   },
   15: {
-    title: { uz: "Xavfsiz ishlash tsikli", ru: 'Цикл безопасной работы' },
+    title: { uz: "Xavfsiz ishlash sikli", ru: 'Цикл безопасной работы' },
     cards: [
       { ic: "📜", h: { uz: "Avval — yo'riqnoma", ru: 'Сначала — инструкция' }, body: { uz: <>Birinchi qadam — Maslahatchiga <b>aniq vazifa</b> berish (kim, qanday, chegara).</>, ru: <>Первый шаг — дать Советчику <b>чёткую задачу</b> (кто он, как говорит, где границы).</> } },
       { ic: "🎚️", h: { uz: "Keyin — murvat va javob", ru: 'Потом — ручка и ответ' }, body: { uz: <>Vaziyatga mos murvat tanlanadi, so'ng Maslahatchidan <b>javob</b> olinadi.</>, ru: <>Выбираем подходящую ручку, затем получаем от Советчика <b>ответ</b>.</> } },
@@ -1518,20 +1520,20 @@ const SAFE_CYCLE_ORDER = SAFE_CYCLE.map(c => c.id);
 const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [solved, setSolved] = useState(!!storedAnswer);
   const fired = useRef(!!storedAnswer);
-  const onSolved = () => { if (!fired.current) { fired.current = true; setSolved(true); onAnswer(screen, { stage: 'final', screenIdx: screen, question: "Xavfsiz ishlash tsiklini to'g'ri tartibda joylang", correct: true, firstAttemptCorrect: true, solved: true, picked: 0 }); } };
+  const onSolved = () => { if (!fired.current) { fired.current = true; setSolved(true); onAnswer(screen, { stage: 'final', screenIdx: screen, question: "Xavfsiz ishlash siklini to'g'ri tartibda joylang", correct: true, firstAttemptCorrect: true, solved: true, picked: 0 }); } };
   const [recapOpen, setRecapOpen] = useState(false);
   return (
-    <Stage eyebrow={{ uz: 'Yakuniy · amaliy', ru: 'Финал · практика' }} screen={screen} scrollSignal={solved ? 1 : 0} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!solved} label={solved ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "Tsiklni yig'ing", ru: 'Соберите цикл' }} onClick={onNext} /></>}>
+    <Stage eyebrow={{ uz: 'Yakuniy · amaliy', ru: 'Финал · практика' }} screen={screen} scrollSignal={solved ? 1 : 0} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!solved} label={solved ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "Siklni yig'ing", ru: 'Соберите цикл' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Oxirgi qadam: <span className="italic" style={{ color: T.accent }}>xavfsiz ishlash tsiklini</span> yig'ing.</>, ru: <>Последний шаг: соберите <span className="italic" style={{ color: T.accent }}>цикл безопасной работы</span>.</> })}</h2></div>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Oxirgi qadam: <span className="italic" style={{ color: T.accent }}>xavfsiz ishlash siklini</span> yig'ing.</>, ru: <>Последний шаг: соберите <span className="italic" style={{ color: T.accent }}>цикл безопасной работы</span>.</> })}</h2></div>
         <Mentor>{tr({ uz: "Maslahatchidan foydalanishning to'g'ri tartibini eslang: avval nima yoziladi, so'ng nima sozlanadi, oxirida nima tekshiriladi?", ru: 'Вспомните правильный порядок работы с Советчиком: что пишем сначала, что настраиваем потом, что проверяем в конце?' })}</Mentor>
         <DragDropOrder
           items={SAFE_CYCLE_ITEMS}
           hints={[{ uz: "1-qadam", ru: 'Шаг 1' }, { uz: "2-qadam", ru: 'Шаг 2' }, { uz: "3-qadam", ru: 'Шаг 3' }, { uz: "4-qadam", ru: 'Шаг 4' }, { uz: "5-qadam", ru: 'Шаг 5' }]}
           onSolved={onSolved}
-          doneText={{ uz: "Xavfsiz ishlash tsikli tayyor!", ru: 'Цикл безопасной работы готов!' }}
+          doneText={{ uz: "Xavfsiz ishlash sikli tayyor!", ru: 'Цикл безопасной работы готов!' }}
         />
-        {solved && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ Tartib: <b>Yo'riqnoma → Murvat → Javob → Tekshirish → Daftar</b>. Shu tsikl bilan Maslahatchi ishonchli yordamchiga aylanadi.</>, ru: <>✓ Порядок: <b>Инструкция → Ручка → Ответ → Проверка → Тетрадь</b>. С этим циклом Советчик становится надёжным помощником.</> })}</p></div>}
+        {solved && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ Tartib: <b>Yo'riqnoma → Murvat → Javob → Tekshirish → Daftar</b>. Shu sikl bilan Maslahatchi ishonchli yordamchiga aylanadi.</>, ru: <>✓ Порядок: <b>Инструкция → Ручка → Ответ → Проверка → Тетрадь</b>. С этим циклом Советчик становится надёжным помощником.</> })}</p></div>}
         {recapOpen && RECAPS[screen] && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} />}
       </div>
     </Stage>
@@ -1606,7 +1608,7 @@ const Confetti = () => {
 
 
 // Podium savol yorliqlari (SCORED_IDX indekslariga mos: 4, 8, 10, 14, 15)
-const Q_LABELS = { 4: { uz: "1 — Yo'riqnoma", ru: '1 — Инструкция' }, 8: { uz: '2 — Stol usti', ru: '2 — Стол' }, 10: { uz: '3 — Erkinlik murvati', ru: '3 — Ручка свободы' }, 14: { uz: '4 — Faktlarni tekshirish', ru: '4 — Проверка фактов' }, 15: { uz: '5 — Xavfsiz tsikl', ru: '5 — Безопасный цикл' } };
+const Q_LABELS = { 4: { uz: "1 — Yo'riqnoma", ru: '1 — Инструкция' }, 8: { uz: '2 — Stol usti', ru: '2 — Стол' }, 10: { uz: '3 — Erkinlik murvati', ru: '3 — Ручка свободы' }, 14: { uz: '4 — Faktlarni tekshirish', ru: '4 — Проверка фактов' }, 15: { uz: '5 — Xavfsiz sikl', ru: '5 — Безопасный цикл' } };
 const QUIZ_MS = 15000;
 // Kapsula ichida suzuvchi tokenlar — darsning "DNK"si (Maslahatchi atamalari)
 const QZ_BG_SHAPES = [
@@ -1983,7 +1985,7 @@ function QuizArena({ live, onClose, startSolo }) {
             <div className={`qz-res ${my?.correct ? 'good' : 'bad'}`}>
               {my?.correct
                 ? <><span className="qz-res-pts">+{myPtsFor(qi)}</span><span className="qz-res-t">{tr({ uz: 'ball', ru: 'баллов' })}{streakUpTo(qi) >= 2 ? ` · 🔥 x${streakUpTo(qi)} streak` : ''}</span></>
-                : <span className="qz-res-t">{my ? tr({ uz: "Xato — 0 ball. Keyingisida olasiz! 💪", ru: 'Ошибка — 0 баллов. В следующий раз получится! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Будьте быстрее! ⏱' })}</span>}
+                : <span className="qz-res-t">{my ? tr({ uz: "Adashdingiz — 0 ball. Keyingisida olasiz! 💪", ru: 'Ошибка — 0 баллов. В следующий раз получится! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Будьте быстрее! ⏱' })}</span>}
               {!solo && myRank >= 0 && <span className="qz-res-rank">{tr({ uz: `Siz hozir: ${myRank + 1}-o'rin`, ru: `Вы сейчас: ${myRank + 1}-е место` })}</span>}
             </div>
           )}
@@ -2260,7 +2262,7 @@ function Flashcards({ cards }) {
       <div className="fc-cardwrap">
         <div className={`fc-fly ${exiting === 'knew' ? 'out-knew' : ''} ${exiting === 'again' ? 'out-again' : ''}`} key={swapRef.current}>
         <div className={`fc-card ${flipped ? 'flip' : ''}`} onClick={() => !flipped && !exiting && setFlipped(true)} role="button" tabIndex={0}>
-          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: 'Qaysi tushuncha? 🤔 ', ru: 'Какое это понятие? 🤔 ' })}<span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
+          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: "Javobni o'ylang", ru: 'Подумайте над ответом' })} 🤔 <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
           <div className="fc-face fc-back"><span className="fc-tag">{tr(card.back)}</span>{card.note && <span className="fc-note">{tr(card.note)}</span>}</div>
         </div>
         </div>
@@ -2288,18 +2290,18 @@ const ScreenBotPractice = (props) => (
 
 // 🃏 FLASHCARD KARTALARI — 12 atama (Maslahatchi tili)
 const BOT_FLASHCARDS = [
-  { front: { uz: "Juda ko'p o'qigan, lekin sizni eslamaydigan yordamchi", ru: 'Помощник, который очень много прочитал, но Вас не помнит' }, back: { uz: 'Maslahatchi', ru: 'Советчик' }, note: 'LLM / AI model' },
-  { front: { uz: "Foydalanuvchi Maslahatchiga yuborgan savol", ru: 'Вопрос, который пользователь отправил Советчику' }, back: { uz: 'Topshiriq', ru: 'Задание' }, note: 'prompt' },
-  { front: { uz: "Doimiy qoida: kim, qanday, qaysi chegarada gapirsin", ru: 'Постоянное правило: кто он, как и в каких рамках говорит' }, back: { uz: "Yo'riqnoma", ru: 'Инструкция' }, note: 'system prompt' },
-  { front: { uz: "Suhbat uchun ajratilgan, joyi cheklangan joy", ru: 'Отведённое под разговор место, где мало места' }, back: { uz: 'Stol usti', ru: 'Поверхность стола' }, note: { uz: 'kontekst oynasi', ru: 'окно контекста' } },
-  { front: { uz: "Stol to'lganda tushib ketadigan narsa", ru: 'То, что падает, когда стол заполнен' }, back: { uz: 'Eng eski varaq', ru: 'Самый старый листок' }, note: { uz: 'eski xabar', ru: 'старое сообщение' } },
-  { front: { uz: "Muhim ma'lumot yo'qolmasligi uchun yoziladigan joy", ru: 'Куда записывают важное, чтобы оно не потерялось' }, back: { uz: 'Daftar', ru: 'Тетрадь' }, note: { uz: 'yodda saqlash', ru: 'сохранение в памяти' } },
-  { front: { uz: "Javobni qat'iy/bir xil yoki erkin/xilma-xil qiladigan sozlama", ru: 'Настройка, делающая ответ строгим/одинаковым или свободным/разным' }, back: { uz: 'Erkinlik murvati', ru: 'Ручка свободы' }, note: 'temperature' },
-  { front: { uz: "Murvat past bo'lganda javob qanday bo'ladi", ru: 'Каким будет ответ при низкой ручке' }, back: { uz: "Qat'iy, bir xil", ru: 'Строгим, одинаковым' }, note: { uz: 'temperature past', ru: 'temperature низкая' } },
-  { front: { uz: "Murvat baland bo'lganda javob qanday bo'ladi", ru: 'Каким будет ответ при высокой ручке' }, back: { uz: 'Erkin, xilma-xil', ru: 'Свободным, разным' }, note: { uz: 'temperature baland', ru: 'temperature высокая' } },
-  { front: { uz: "Maslahatchining o'zi o'ylab topgan, haqiqatga to'g'ri kelmaydigan javobi", ru: 'Ответ Советчика, который он выдумал сам и который не соответствует правде' }, back: { uz: 'Hallutsinatsiya', ru: 'Галлюцинация' }, note: { uz: "o'ylab topish", ru: 'выдумка' } },
-  { front: { uz: "Maslahatchi javobini haqiqat bilan solishtirib ko'rish", ru: 'Сверить ответ Советчика с действительностью' }, back: { uz: 'Tekshirish', ru: 'Проверка' }, note: 'fact-check' },
-  { front: { uz: "AI API kaliti qayerda saqlanadi", ru: 'Где хранится AI API-ключ' }, back: { uz: '.env faylda', ru: 'В файле .env' }, note: { uz: 'maxfiy', ru: 'секретно' } },
+  { front: { uz: "Juda ko'p o'qigan, lekin sizni eslamaydigan yordamchini nima deb ataymiz?", ru: 'Как мы называем помощника, который очень много прочитал, но Вас не помнит?' }, back: { uz: 'Maslahatchi', ru: 'Советчик' }, note: { uz: 'LLM — har suhbatni noldan boshlaydi', ru: 'LLM — каждый разговор начинает с нуля' } },
+  { front: { uz: "Maslahatchiga yuborgan savolingiz nima deb ataladi?", ru: 'Как называется вопрос, который Вы отправили Советчику?' }, back: { uz: 'Topshiriq', ru: 'Задание' }, note: { uz: "prompt — bir savol, bir topshiriq", ru: 'промпт — один вопрос, одно задание' } },
+  { front: { uz: "Maslahatchi kim ekanini va qanday gapirishini nima belgilaydi?", ru: 'Что задаёт, кто такой Советчик и как он говорит?' }, back: { uz: "Yo'riqnoma", ru: 'Инструкция' }, note: { uz: 'system prompt: kim, qanday ohangda, qaysi chegarada', ru: 'system prompt: кто он, каким тоном, в каких рамках' } },
+  { front: { uz: "Suhbat sig'adigan, joyi cheklangan maydonni nima deb ataymiz?", ru: 'Как мы называем ограниченную площадку, куда помещается разговор?' }, back: { uz: 'Stol usti', ru: 'Поверхность стола' }, note: { uz: 'kontekst oynasi — faqat oxirgi bir necha xabar sig\'adi', ru: 'окно контекста — помещается лишь несколько последних сообщений' } },
+  { front: { uz: "Stol usti to'lganda qaysi xabar tushib ketadi?", ru: 'Какое сообщение падает, когда стол заполнен?' }, back: { uz: 'Eng eski xabar', ru: 'Самое старое сообщение' }, note: { uz: 'Maslahatchi uni butunlay unutadi', ru: 'Советчик забывает его полностью' } },
+  { front: { uz: "Muhim ma'lumot yo'qolmasligi uchun qayerga yoziladi?", ru: 'Куда записывают важное, чтобы оно не потерялось?' }, back: { uz: 'Daftarga', ru: 'В тетрадь' }, note: { uz: 'ism va buyurtma daftarda saqlanadi', ru: 'имя и заказ хранятся в тетради' } },
+  { front: { uz: "Javob qat'iy yoki erkin bo'lishini qaysi sozlama belgilaydi?", ru: 'Какая настройка задаёт, будет ответ строгим или свободным?' }, back: { uz: 'Erkinlik murvati', ru: 'Ручка свободы' }, note: { uz: 'temperature — past yoki baland qilinadi', ru: 'temperature — ставится низко или высоко' } },
+  { front: { uz: "Murvat past bo'lganda javob qanday bo'ladi?", ru: 'Каким получается ответ при низкой ручке?' }, back: { uz: "Qat'iy va bir xil", ru: 'Строгим и одинаковым' }, note: { uz: 'menyu narxini aytishga shu mos', ru: 'подходит, чтобы называть цены из меню' } },
+  { front: { uz: "Murvat baland bo'lganda javob qanday bo'ladi?", ru: 'Каким получается ответ при высокой ручке?' }, back: { uz: 'Erkin va har safar boshqacha', ru: 'Свободным и каждый раз разным' }, note: { uz: 'ijodiy matn uchun qulay', ru: 'удобно для творческого текста' } },
+  { front: { uz: "Maslahatchi o'ylab topgan, haqiqatga to'g'ri kelmaydigan javob nima deyiladi?", ru: 'Как называется ответ, который Советчик выдумал и который не совпадает с правдой?' }, back: { uz: 'Hallutsinatsiya', ru: 'Галлюцинация' }, note: { uz: 'masalan menyuda yo\'q «ananasli pitsa»', ru: 'например «пицца с ананасом», которой нет в меню' } },
+  { front: { uz: "Maslahatchi aytgan narxni qanday ishonchli qilasiz?", ru: 'Как Вы делаете названную Советчиком цену надёжной?' }, back: { uz: 'Menyu bilan solishtiraman', ru: 'Сверяю с меню' }, note: { uz: 'javobni haqiqiy manba bilan tekshirish', ru: 'проверка ответа по настоящему источнику' } },
+  { front: { uz: "AI kaliti qaysi faylda saqlanadi?", ru: 'В каком файле хранится ключ AI?' }, back: '.env', note: { uz: 'kalit maxfiy, kodga ochiq yozilmaydi', ru: 'ключ секретный, в код открыто не пишется' } },
 ];
 const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, []); // eslint-disable-line
@@ -2307,7 +2309,7 @@ const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) =>
     <Stage eyebrow={{ uz: 'Takrorlash', ru: 'Повторение' }} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={false} label={{ uz: 'Yakunlash →', ru: 'Завершить →' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Maslahatchi atamalarini <span className="italic" style={{ color: T.accent }}>tez takrorlaymiz</span>.</>, ru: <><span className="italic" style={{ color: T.accent }}>Быстро повторим</span> термины Советчика.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Darsni yakunlashdan oldin bugungi atamalarni takrorlaymiz. Har kartada bir topishmoq — <b style={{ color: T.ink }}>qaysi atama</b> ekanini o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</>, ru: <>Перед завершением урока повторим сегодняшние термины. На каждой карточке загадка — подумайте, <b style={{ color: T.ink }}>какой это термин</b>, затем нажмите на карточку и проверьте. Оцените себя: <b style={{ color: T.ink }}>Знаю</b> или <b style={{ color: T.ink }}>Повторить</b>.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Darsni yakunlashdan oldin bugungi atamalarni takrorlaymiz. Har kartada bir savol — <b style={{ color: T.ink }}>javobini</b> o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</>, ru: <>Перед завершением урока повторим сегодняшние термины. На каждой карточке вопрос — подумайте, <b style={{ color: T.ink }}>каким будет ответ</b>, затем нажмите на карточку и проверьте. Оцените себя: <b style={{ color: T.ink }}>Знаю</b> или <b style={{ color: T.ink }}>Повторить</b>.</> })}</Mentor>
         <div className="fc-center"><Flashcards cards={BOT_FLASHCARDS} /></div>
       </div>
     </Stage>
@@ -2358,7 +2360,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
           <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> {tr({ uz: 'Endi siz bilasiz', ru: 'Теперь Вы знаете' })}</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{tr(r)}</span></li>))}</ul></div>
           <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: "🚀 Keyingi dars — Botjon o'z javobidan fikr-mulohaza (fidbek) asosida o'zini yaxshilashni o'rganadi!", ru: '🚀 Следующий урок — Ботик научится улучшать себя на основе отклика (фидбека) о своих ответах!' })}</p></div>
         </div>
-        <div className="card ach-coll fade-up d3">
+        {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🏅 Nishonlaringiz — ', ru: '🏅 Ваши значки — ' })}{(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">
             {Object.entries(ACHIEVEMENTS).map(([id, a]) => { const got = !!(achievements && achievements.has(id)); return (
@@ -2369,7 +2371,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
               </div>
             ); })}
           </div>
-        </div>
+        </div>}
       </div>
     </Stage>
   );

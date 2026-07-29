@@ -394,6 +394,7 @@ const Col = ({ children, gap }) => <div className="col" style={gap ? { gap } : u
 // 🏅 Yuqori paneldagi nishon hisoblagichi (Stage chrome)
 function AchCounter() {
   const earned = useContext(AchCtx);
+  const gate = useContext(LiveGateCtx);
   const count = earned ? earned.size : 0;
   const total = Object.keys(ACHIEVEMENTS).length;
   const prevRef = useRef(count);
@@ -403,6 +404,7 @@ function AchCounter() {
     if (count > prevRef.current) { setBump(true); const t = setTimeout(() => setBump(false), 800); prevRef.current = count; return () => clearTimeout(t); }
     prevRef.current = count;
   }, [count]);
+  if (gate && gate.live && gate.live.mode === 'mentor') return null; // 🔴 mentor proyektorida nishon YO'Q (hooklardan KEYIN)
   return (
     <div className="ach-cnt-wrap">
       <button className={`ach-counter ${bump ? 'bump' : ''} ${count > 0 ? 'has' : ''}`} onClick={() => setOpen(o => !o)} aria-label="Badges" title="Badges">
@@ -1007,7 +1009,7 @@ function Flashcards({ cards }) {
       <div className="fc-cardwrap">
         <div className={`fc-fly ${exiting === 'knew' ? 'out-knew' : ''} ${exiting === 'again' ? 'out-again' : ''}`} key={swapRef.current}>
         <div className={`fc-card ${flipped ? 'flip' : ''}`} onClick={() => !flipped && !exiting && setFlipped(true)} role="button" tabIndex={0}>
-          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: 'Qaysi tushuncha? 🤔', ru: 'Какое это понятие? 🤔' })} <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
+          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: "Javobni o'ylang", ru: 'Подумайте над ответом' })} 🤔 <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
           <div className="fc-face fc-back"><span className="fc-tag">{tr(card.back)}</span>{card.note && <span className="fc-note">{tr(card.note)}</span>}</div>
         </div>
         </div>
@@ -1018,20 +1020,20 @@ function Flashcards({ cards }) {
     </div>
   );
 }
-// 🃏 FLASHCARD KARTALARI (front=izoh, back=tushuncha) — «Yetkaz» mavzusidan (Metodist sayqallaydi)
+// 🃏 FLASHCARD KARTALARI (front=savol, back=qisqa javob) — «Yetkaz» mavzusidan
 const BUILD_FLASHCARDS = [
-  { front: { uz: "Katta saytni kichik bo'laklarga ajratish", ru: 'Разбить большой сайт на маленькие блоки' }, back: { uz: "Bo'laklash", ru: 'Декомпозиция' }, note: { uz: 'dekompozitsiya', ru: 'разбиение на блоки' } },
-  { front: { uz: 'Saytning alohida sahifalari', ru: 'Отдельные страницы сайта' }, back: 'Router / <Route>', note: { uz: 'har sahifa — bitta Route', ru: 'каждая страница — один Route' } },
-  { front: { uz: "Sahifaning qayta ishlatiladigan bo'limi", ru: 'Переиспользуемая секция страницы' }, back: { uz: 'Komponent', ru: 'Компонент' }, note: '<Hero/>, <Footer/>' },
-  { front: { uz: 'Gridda takrorlanuvchi taom kartasi', ru: 'Повторяющаяся карточка блюда в сетке' }, back: '<TaomCard />', note: { uz: '1 kod → N karta', ru: '1 код → N карточек' } },
-  { front: { uz: 'Har kartaga har xil nom, narx uzatish', ru: 'Передать каждой карточке своё название и цену' }, back: 'Props', note: 'taom={t}' },
-  { front: { uz: "Ro'yxatdagi har taom uchun karta chizish", ru: 'Нарисовать карточку для каждого блюда списка' }, back: 'map()', note: 'taomlar.map(t => …)' },
-  { front: { uz: "AI'ga aniq aytilgan buyruq matni", ru: 'Точно сформулированная команда для ИИ' }, back: { uz: 'Aniq prompt', ru: 'Точный промпт' }, note: { uz: "bo'lim + mazmun + ma'lumot", ru: 'секции + содержание + данные' } },
-  { front: { uz: "Robot to'g'ri qurishi uchun formula", ru: 'Формула, чтобы робот построил правильно' }, back: { uz: 'Qaysi + Nima + Manba', ru: 'Какие + Что + Источник' }, note: { uz: '3 aniqlik', ru: '3 уточнения' } },
-  { front: { uz: "AI chala qildi — qo'shimcha buyruq", ru: 'ИИ сделал сыро — дополнительная команда' }, back: 'Follow-up prompt', note: { uz: 'faqat kerakligini yama', ru: 'чините только нужное' } },
-  { front: { uz: 'Hamma kod bitta ulkan komponentda', ru: 'Весь код в одном огромном компоненте' }, back: { uz: 'Monolit', ru: 'Монолит' }, note: { uz: "yomon — bo'laklash kerak", ru: 'плохо — нужно разбить' } },
-  { front: { uz: "Taomlar ro'yxati serverdan", ru: 'Список блюд приходит с сервера' }, back: 'API (fetch)', note: { uz: "ma'lumot manbai", ru: 'источник данных' } },
-  { front: { uz: "g'oya → bo'laklash → prompt → qur → tekshir → tuzat", ru: 'идея → декомпозиция → промпт → построй → проверь → почини' }, back: { uz: 'Qurish formulasi', ru: 'Формула сборки' }, note: { uz: 'istalgan saytga', ru: 'для любого сайта' } },
+  { front: { uz: "Katta saytni qurishni nimadan boshlaysiz?", ru: 'С чего вы начинаете сборку большого сайта?' }, back: { uz: "Bo'laklashdan", ru: 'С разбиения на блоки' }, note: { uz: "avval sahifalar, keyin har sahifaning bo'limlari", ru: 'сначала страницы, потом секции каждой страницы' } },
+  { front: { uz: "Saytning har bir sahifasi uchun nima yoziladi?", ru: 'Что пишется для каждой страницы сайта?' }, back: '<Route>', note: { uz: "har sahifa — bitta Route qatori", ru: 'каждая страница — одна строка Route' } },
+  { front: { uz: "Sahifaning qayta ishlatiladigan bo'limi nima deyiladi?", ru: 'Как называется переиспользуемая секция страницы?' }, back: { uz: 'Komponent', ru: 'Компонент' }, note: '<Hero />, <Footer />' },
+  { front: { uz: "Gridda 12 ta bir xil taom kartasi kerak — nechta komponent yozasiz?", ru: 'В сетке нужны 12 одинаковых карточек блюд — сколько компонентов вы напишете?' }, back: { uz: 'Bittasini', ru: 'Один' }, note: { uz: "bitta <TaomCard /> — qolganini map chizadi", ru: 'один <TaomCard /> — остальное рисует map' } },
+  { front: { uz: "Har kartaga o'z nomi va narxini qanday uzatasiz?", ru: 'Как вы передаёте каждой карточке своё название и цену?' }, back: 'props', note: 'taom={t}' },
+  { front: { uz: "Ro'yxatdagi har taom uchun karta chizadigan buyruq qaysi?", ru: 'Какая команда рисует карточку для каждого блюда списка?' }, back: 'map()', note: 'taomlar.map(t => <TaomCard taom={t} />)' },
+  { front: { uz: "Aniq promptning formulasi qanday?", ru: 'Какая формула у точного промпта?' }, back: { uz: 'Qaysi + Nima + Manba', ru: 'Какие + Что + Источник' }, note: { uz: "qaysi bo'limlar · nima ko'rsatadi · ma'lumot qayerdan", ru: 'какие секции · что показывают · откуда данные' } },
+  { front: { uz: "AI ishni chala qilsa, nima yozasiz?", ru: 'Что вы пишете, если ИИ сделал работу сыро?' }, back: 'Follow-up prompt', note: { uz: "faqat kerakli joyni tuzatishni so'raysiz", ru: 'просите починить только нужное место' } },
+  { front: { uz: "Hamma kod bitta ulkan komponentda bo'lsa, bu nima deyiladi?", ru: 'Как называется код, целиком уместившийся в один огромный компонент?' }, back: { uz: 'Monolit', ru: 'Монолит' }, note: { uz: "uni kichik komponentlarga bo'lish kerak", ru: 'его нужно разбить на маленькие компоненты' } },
+  { front: { uz: "React komponentining nomi qanday harf bilan boshlanadi?", ru: 'С какой буквы начинается имя React-компонента?' }, back: { uz: 'Katta harf bilan', ru: 'С заглавной буквы' }, note: { uz: 'TaomCard — komponent, taomCard — oddiy funksiya', ru: 'TaomCard — компонент, taomCard — обычная функция' } },
+  { front: { uz: "Taomlar ro'yxati serverdan kelsa, qaysi vosita ishlatiladi?", ru: 'Что используется, если список блюд приходит с сервера?' }, back: 'fetch (API)', note: { uz: "server — ma'lumot manbai", ru: 'сервер — источник данных' } },
+  { front: { uz: "Sayt qurish yo'li qanday qadamlardan iborat?", ru: 'Из каких шагов состоит путь сборки сайта?' }, back: { uz: "G'oya → bo'laklash → prompt → tekshirish", ru: 'Идея → разбиение → промпт → проверка' }, note: { uz: 'istalgan saytga yaraydigan tartib', ru: 'порядок, который подходит любому сайту' } },
 ];
 const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, []); // eslint-disable-line
@@ -1039,7 +1041,7 @@ const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) =>
     <Stage eyebrow={tr({ uz: 'Takrorlash', ru: 'Повторение' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={false} label={tr({ uz: 'Yakunlash →', ru: 'Завершить →' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Tushunchalarni <span className="italic" style={{ color: T.accent }}>tez takrorlaymiz</span>.</>, ru: <>Быстро <span className="italic" style={{ color: T.accent }}>повторим понятия</span>.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Darsni yakunlashdan oldin bugun o'rgangan tushunchalarni takrorlaymiz. Har kartada bir izoh — <b style={{ color: T.ink }}>qaysi tushuncha</b> ekanini o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</>, ru: <>Перед завершением урока повторим сегодняшние понятия. На каждой карточке описание — подумайте, <b style={{ color: T.ink }}>какое это понятие</b>, затем нажмите и проверьте. Оцените кнопками <b style={{ color: T.ink }}>Знаю</b> или <b style={{ color: T.ink }}>Повторить</b>.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Darsni yakunlashdan oldin bugun o'rgangan tushunchalarni takrorlaymiz. Har kartada bir savol — <b style={{ color: T.ink }}>javobini</b> o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</>, ru: <>Перед завершением урока повторим сегодняшние понятия. На каждой карточке вопрос — подумайте, <b style={{ color: T.ink }}>каким будет ответ</b>, затем нажмите и проверьте. Оцените кнопками <b style={{ color: T.ink }}>Знаю</b> или <b style={{ color: T.ink }}>Повторить</b>.</> })}</Mentor>
         <div className="fc-center"><Flashcards cards={BUILD_FLASHCARDS} /></div>
       </div>
     </Stage>
@@ -1596,7 +1598,7 @@ function QuizArena({ live, onClose, startSolo }) {
             <div className={`qz-res ${my?.correct ? 'good' : 'bad'}`}>
               {my?.correct
                 ? <><span className="qz-res-pts">+{myPtsFor(qi)}</span><span className="qz-res-t">{tr({ uz: 'ball', ru: 'баллов' })}{streakUpTo(qi) >= 2 ? ` · 🔥 x${streakUpTo(qi)} streak` : ''}</span></>
-                : <span className="qz-res-t">{my ? tr({ uz: 'Xato — 0 ball. Keyingisida olasiz! 💪', ru: 'Ошибка — 0 баллов. Возьмёте на следующем! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Быстрее! ⏱' })}</span>}
+                : <span className="qz-res-t">{my ? tr({ uz: 'Adashdingiz — 0 ball. Keyingisida olasiz! 💪', ru: 'Ошибка — 0 баллов. Возьмёте на следующем! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Быстрее! ⏱' })}</span>}
               {!solo && myRank >= 0 && <span className="qz-res-rank">{tr({ uz: `Siz hozir: ${myRank + 1}-o'rin`, ru: `Вы сейчас: ${myRank + 1}-е место` })}</span>}
             </div>
           )}
@@ -2511,7 +2513,7 @@ const Screen15 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
           <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> {tr({ uz: 'Endi siz bilasiz', ru: 'Теперь вы знаете' })}</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{r}</span></li>))}</ul></div>
           <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🎓 Bitiruv vazifasi', ru: '🎓 Выпускное задание' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: "Endi o'z saytingizni quring:", ru: 'Теперь соберите свой сайт:' })}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{h.b}</b> <span className="t">{h.t}</span></li>))}</ul><p className="hw-note">{tr({ uz: "Modul tugadi — lekin sizning yo'lingiz endi boshlanyapti. G'oyangiz bormi? Bugun boshlang! 🚀", ru: 'Модуль завершён — но ваш путь только начинается. Есть идея? Начните сегодня! 🚀' })}</p></div>
         </div>
-        <div className="card ach-coll fade-up d3">
+        {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🏅 Nishonlaringiz —', ru: '🏅 Ваши значки —' })} {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">
             {Object.entries(ACHIEVEMENTS).map(([id, a]) => { const got = !!(achievements && achievements.has(id)); return (
@@ -2522,7 +2524,7 @@ const Screen15 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
               </div>
             ); })}
           </div>
-        </div>
+        </div>}
       </div>
     </Stage>
   );

@@ -385,6 +385,7 @@ const Col = ({ children, gap }) => <div className="col" style={gap ? { gap } : u
 // 🏅 Yuqori paneldagi nishon hisoblagichi (Stage chrome)
 function AchCounter() {
   const earned = useContext(AchCtx);
+  const gate = useContext(LiveGateCtx);
   const count = earned ? earned.size : 0;
   const total = Object.keys(ACHIEVEMENTS).length;
   const prevRef = useRef(count);
@@ -394,6 +395,7 @@ function AchCounter() {
     if (count > prevRef.current) { setBump(true); const t = setTimeout(() => setBump(false), 800); prevRef.current = count; return () => clearTimeout(t); }
     prevRef.current = count;
   }, [count]);
+  if (gate && gate.live && gate.live.mode === 'mentor') return null; // 🔴 mentor proyektorida nishon YO'Q (hooklardan KEYIN)
   return (
     <div className="ach-cnt-wrap">
       <button className={`ach-counter ${bump ? 'bump' : ''} ${count > 0 ? 'has' : ''}`} onClick={() => setOpen(o => !o)} aria-label="Badges" title="Badges">
@@ -2148,7 +2150,7 @@ function QuizArena({ live, onClose, startSolo }) {
             <div className={`qz-res ${my?.correct ? 'good' : 'bad'}`}>
               {my?.correct
                 ? <><span className="qz-res-pts">+{myPtsFor(qi)}</span><span className="qz-res-t">{tr({ uz: 'ball', ru: 'баллов' })}{streakUpTo(qi) >= 2 ? ` · 🔥 x${streakUpTo(qi)} streak` : ''}</span></>
-                : <span className="qz-res-t">{my ? tr({ uz: 'Xato — 0 ball. Keyingisida olasiz! 💪', ru: 'Мимо — 0 баллов. Возьмёте на следующем! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Быстрее! ⏱' })}</span>}
+                : <span className="qz-res-t">{my ? tr({ uz: 'Adashdingiz — 0 ball. Keyingisida olasiz! 💪', ru: 'Мимо — 0 баллов. Возьмёте на следующем! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Быстрее! ⏱' })}</span>}
               {!solo && myRank >= 0 && <span className="qz-res-rank">{tr({ uz: `Siz hozir: ${myRank + 1}-o'rin`, ru: `Вы сейчас: ${myRank + 1}-е место` })}</span>}
             </div>
           )}
@@ -2441,7 +2443,7 @@ function Flashcards({ cards }) {
       <div className="fc-cardwrap">
         <div className={`fc-fly ${exiting === 'knew' ? 'out-knew' : ''} ${exiting === 'again' ? 'out-again' : ''}`} key={swapRef.current}>
         <div className={`fc-card ${flipped ? 'flip' : ''}`} onClick={() => !flipped && !exiting && setFlipped(true)} role="button" tabIndex={0}>
-          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: 'Qaysi tushuncha?', ru: 'Какое это понятие?' })} 🤔 <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
+          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: "Javobni o'ylang", ru: 'Подумайте над ответом' })} 🤔 <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
           <div className="fc-face fc-back"><span className="fc-tag">{tr(card.back)}</span>{card.note && <span className="fc-note">{tr(card.note)}</span>}</div>
         </div>
         </div>
@@ -2454,20 +2456,20 @@ function Flashcards({ cards }) {
 }
 
 
-// 🃏 JEST FLASHCARD KARTALARI (front=topishmoq, back=atama, note=metafora) — matnni 🎓 Metodist sayqallaydi
+// 🃏 JEST FLASHCARD KARTALARI (front=savol, back=qisqa javob, note=bir qatorlik izoh) — matnni 🎓 Metodist sayqallaydi
 const JEST_FLASHCARDS = [
-  { front: { uz: "Bitta funksiyani avtomatik sinaydigan test", ru: 'Тест, который автоматически испытывает одну функцию' }, back: { uz: 'Unit-test', ru: 'Юнит-тест' }, note: { uz: 'mashinani sinash', ru: 'испытание машины' } },
-  { front: { uz: "Testlarni ishga tushiruvchi asbob", ru: 'Инструмент, который запускает тесты' }, back: 'Jest', note: { uz: 'robot-sinovchi', ru: 'робот-испытатель' } },
-  { front: { uz: "Bitta mashinaning barcha sinovlari yig'ilgan guruh", ru: 'Группа всех испытаний одной машины' }, back: 'describe', note: { uz: 'robot papkasi', ru: 'папка робота' } },
-  { front: { uz: 'Bitta xatti-harakatni tekshiruvchi bitta sinov', ru: 'Одно испытание, проверяющее одно поведение' }, back: 'it', note: { uz: 'sinov varaqasi', ru: 'бланк испытания' } },
-  { front: { uz: "Kutilgan qiymatni robotga beruvchi tasdiq", ru: 'Утверждение, которое даёт роботу ожидаемое значение' }, back: 'expect', note: { uz: 'etalon kartochkasi', ru: 'карточка-эталон' } },
-  { front: { uz: "Natijani kutilgan qiymat bilan solishtiruvchi buyruq", ru: 'Команда, сравнивающая результат с ожидаемым' }, back: 'toBe', note: { uz: 'aynan tengmi', ru: 'ровно ли равно' } },
-  { front: { uz: 'Yashil lampa — hammasi mos keldi', ru: 'Зелёная лампа — всё совпало' }, back: 'PASS', note: { uz: "test o'tdi", ru: 'тест прошёл' } },
-  { front: { uz: 'Qizil lampa — natija etalonga mos kelmadi', ru: 'Красная лампа — результат не совпал с эталоном' }, back: 'FAIL', note: { uz: 'sirena', ru: 'сирена' } },
-  { front: { uz: 'FAIL paytida chiqadigan ikki kartochka', ru: 'Две карточки, которые появляются при FAIL' }, back: 'Expected / Received', note: { uz: 'kutilgan / kelgan', ru: 'ожидали / получили' } },
-  { front: { uz: 'Jest topadigan test fayl nomi', ru: 'Имя файла теста, которое находит Jest' }, back: '.spec.ts', note: { uz: 'topshiriq varaqasi', ru: 'бланк задания' } },
-  { front: { uz: 'Tayyorla → Chaqir → Tekshir tartibi', ru: 'Порядок «Подготовь → Вызови → Проверь»' }, back: 'AAA (Arrange-Act-Assert)', note: { uz: 'robot protokoli', ru: 'протокол робота' } },
-  { front: { uz: "expect'siz test — doim yashil beradi", ru: 'Тест без expect — всегда даёт зелёный' }, back: { uz: "Yolg'on test", ru: 'Ложный тест' }, note: { uz: '0 ta tasdiq', ru: '0 утверждений' } },
+  { front: { uz: "Bitta funksiyani avtomatik sinaydigan test qanday ataladi?", ru: 'Как называется тест, который автоматически испытывает одну функцию?' }, back: { uz: 'Unit-test', ru: 'Юнит-тест' }, note: { uz: "bitta mashina-funksiyani sinaydi", ru: 'испытывает одну машину-функцию' } },
+  { front: { uz: "Testlarni ishga tushiradigan asbob qanday ataladi?", ru: 'Как называется инструмент, который запускает тесты?' }, back: 'Jest', note: { uz: 'robot-sinovchi', ru: 'робот-испытатель' } },
+  { front: { uz: "Jestni loyihangizga qaysi buyruq bilan o'rnatasiz?", ru: 'Какой командой вы устанавливаете Jest в свой проект?' }, back: 'npm i -D jest', note: { uz: "package.json ichida test buyrug'i ham yoziladi", ru: 'в package.json также прописывается команда test' } },
+  { front: { uz: "Testlarni qaysi buyruq bilan ishga tushirasiz?", ru: 'Какой командой вы запускаете тесты?' }, back: 'npm test', note: { uz: "yashil PASS yoki qizil FAIL chiqadi", ru: 'появится зелёный PASS или красный FAIL' } },
+  { front: { uz: "Bitta mashinaning barcha sinovlarini qaysi so'z bir guruhga yig'adi?", ru: 'Какое слово собирает все испытания одной машины в одну группу?' }, back: 'describe', note: { uz: 'robot papkasi', ru: 'папка робота' } },
+  { front: { uz: "Bitta xatti-harakat sinovi qaysi so'z bilan yoziladi?", ru: 'Каким словом пишется испытание одного поведения?' }, back: 'it', note: { uz: 'bitta sinov varaqasi', ru: 'один бланк испытания' } },
+  { front: { uz: "Kutilgan qiymatni robotga qanday berasiz?", ru: 'Как вы даёте роботу ожидаемое значение?' }, back: 'expect(...).toBe(...)', note: { uz: "etalon kartochkasi: natijani kutilgan son bilan solishtiradi", ru: 'карточка-эталон: сверяет результат с ожидаемым числом' } },
+  { front: { uz: "Test muvaffaqiyatli o'tsa, ekranda qaysi so'z chiqadi?", ru: 'Какое слово появляется, когда тест прошёл?' }, back: 'PASS', note: { uz: "yashil lampa — natija etalonga mos keldi", ru: 'зелёная лампа — результат совпал с эталоном' } },
+  { front: { uz: "Natija etalonga mos kelmasa, qaysi so'z chiqadi?", ru: 'Какое слово появляется, если результат не совпал с эталоном?' }, back: 'FAIL', note: { uz: 'qizil lampa — sirena', ru: 'красная лампа — сирена' } },
+  { front: { uz: "FAIL paytida Jest ko'rsatadigan ikki kartochka qanday ataladi?", ru: 'Как называются две карточки, которые Jest показывает при FAIL?' }, back: 'Expected / Received', note: { uz: "Expected — siz kutgan qiymat, Received — mashina qaytargani", ru: 'Expected — то, что ждали вы; Received — то, что вернула машина' } },
+  { front: { uz: "Testni qanday tartibda yozasiz?", ru: 'В каком порядке вы пишете тест?' }, back: { uz: 'Tayyorla, chaqir, tekshir', ru: 'Подготовь, вызови, проверь' }, note: { uz: 'AAA — robot protokoli', ru: 'AAA — протокол робота' } },
+  { front: { uz: "Ichida expect yo'q test nega ishonchsiz?", ru: 'Почему тест без expect ненадёжен?' }, back: { uz: 'Doim yashil beradi', ru: 'Всегда даёт зелёный' }, note: { uz: "hech narsani tekshirmaydi — yolg'on test", ru: 'он ничего не проверяет — ложный тест' } },
 ];
 const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, []); // eslint-disable-line
@@ -2475,7 +2477,7 @@ const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) =>
     <Stage eyebrow={tr({ uz: 'Takrorlash', ru: 'Повторение' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={false} label={{ uz: 'Yakunlash →', ru: 'Завершить →' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Atamalarni <span className="italic" style={{ color: T.accent }}>tez takrorlaymiz</span>.</>, ru: <>Быстро <span className="italic" style={{ color: T.accent }}>повторим термины</span>.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Har kartada bir topishmoq — <b style={{ color: T.ink }}>qaysi atama</b> ekanini o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</>, ru: <>На каждой карточке — загадка: подумайте, <b style={{ color: T.ink }}>какой это термин</b>, затем нажмите на карточку и проверьте себя. Оцените кнопками <b style={{ color: T.ink }}>Знаю</b> или <b style={{ color: T.ink }}>Повторить</b>.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Har kartada bir savol — <b style={{ color: T.ink }}>javobini</b> o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</>, ru: <>На каждой карточке — вопрос: подумайте, <b style={{ color: T.ink }}>каким будет ответ</b>, затем нажмите на карточку и проверьте себя. Оцените кнопками <b style={{ color: T.ink }}>Знаю</b> или <b style={{ color: T.ink }}>Повторить</b>.</> })}</Mentor>
         <div className="fc-center"><Flashcards cards={JEST_FLASHCARDS} /></div>
       </div>
     </Stage>
@@ -2528,7 +2530,7 @@ const Screen17 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
           <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> {tr({ uz: 'Endi siz bilasiz', ru: 'Теперь вы знаете' })}</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{tr(r)}</span></li>))}</ul></div>
           <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>📝 {tr({ uz: 'Uyga vazifa', ru: 'Домашнее задание' })}</div><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: "🚀 Keyingi dars — Jestbotning og'ir rejimi: 0 dona, manfiy narx, bo'sh matn (edge cases).", ru: '🚀 Следующий урок — тяжёлый режим Джестбота: 0 штук, отрицательная цена, пустая строка (edge cases).' })}</p></div>
         </div>
-        <div className="card ach-coll fade-up d3">
+        {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>🏅 {tr({ uz: 'Nishonlaringiz', ru: 'Ваши значки' })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">
             {Object.entries(ACHIEVEMENTS).map(([id, a]) => { const got = !!(achievements && achievements.has(id)); return (
@@ -2539,7 +2541,7 @@ const Screen17 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
               </div>
             ); })}
           </div>
-        </div>
+        </div>}
       </div>
     </Stage>
   );

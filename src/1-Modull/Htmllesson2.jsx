@@ -1391,6 +1391,7 @@ const ZoomFrame = ({ children, label }) => {
 // 🏅 Yuqori paneldagi nishon hisoblagichi — doim ko'rinadi, yangi olinganda pulslaydi, bosilsa ro'yxat chiqadi
 function AchCounter() {
   const earned = useContext(AchCtx);
+  const gate = useContext(LiveGateCtx);
   const count = earned ? earned.size : 0;
   const total = Object.keys(ACHIEVEMENTS).length;
   const prevRef = useRef(count);
@@ -1400,6 +1401,7 @@ function AchCounter() {
     if (count > prevRef.current) { setBump(true); const t = setTimeout(() => setBump(false), 800); prevRef.current = count; return () => clearTimeout(t); }
     prevRef.current = count;
   }, [count]);
+  if (gate && gate.live && gate.live.mode === 'mentor') return null; // 🔴 mentor proyektorida nishon YO'Q (hooklardan KEYIN)
   return (
     <div className="ach-cnt-wrap">
       <button className={`ach-counter ${bump ? 'bump' : ''} ${count > 0 ? 'has' : ''}`} onClick={() => setOpen(o => !o)} aria-label="Badges" title="Badges">
@@ -3141,7 +3143,7 @@ function QuizArena({ live, onClose, startSolo }) {
             <div className={`qz-res ${my?.correct ? 'good' : 'bad'}`}>
               {my?.correct
                 ? <><span className="qz-res-pts">+{myPtsFor(qi)}</span><span className="qz-res-t">{tr({ uz: 'ball', ru: 'баллов' })}{streakUpTo(qi) >= 2 ? ` · 🔥 x${streakUpTo(qi)} streak` : ''}</span></>
-                : <span className="qz-res-t">{my ? tr({ uz: "Xato — 0 ball. Keyingisida olasiz! 💪", ru: 'Ошибка — 0 баллов. Возьмёте на следующем! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Побыстрее! ⏱' })}</span>}
+                : <span className="qz-res-t">{my ? tr({ uz: "Adashdingiz — 0 ball. Keyingisida olasiz! 💪", ru: 'Ошибка — 0 баллов. Возьмёте на следующем! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Побыстрее! ⏱' })}</span>}
               {!solo && myRank >= 0 && <span className="qz-res-rank">{tr({ uz: `Siz hozir: ${myRank + 1}-o'rin`, ru: `Вы сейчас: ${myRank + 1}-е место` })}</span>}
             </div>
           )}
@@ -3214,18 +3216,18 @@ function QuizArena({ live, onClose, startSolo }) {
 // 🃏 Qayta ishlatiladigan FLASHCARDS — aktiv takrorlash (3D flip + o'z-o'zini baholash + spaced recall).
 // Boshqa darsga: faqat `cards` ({ front, back, note }) almashtiriladi.
 const HTML2_FLASHCARDS = [
-  { front: { uz: "Sahifaga rasm qo'shish", ru: 'Добавить картинку на страницу' }, back: '<img>', note: { uz: 'yopuvchi teg kerak emas', ru: 'закрывающий тег не нужен' } },
-  { front: { uz: 'Rasm faylining manzili', ru: 'Адрес файла картинки' }, back: 'src', note: '<img src="rasm.jpg">' },
-  { front: { uz: 'Rasm yuklanmasa chiqadigan matn', ru: 'Текст, если картинка не загрузилась' }, back: 'alt', note: { uz: "ko'zi ojiz odamlarga ham o'qiladi", ru: 'читается и незрячим людям' } },
-  { front: { uz: 'Sahifaning tepasi (logo, menyu)', ru: 'Верх страницы (лого, меню)' }, back: '<header>', note: { uz: 'tepa qism', ru: 'верхняя часть' } },
-  { front: { uz: 'Sahifaning asosiy mazmuni', ru: 'Основное содержимое страницы' }, back: '<main>', note: { uz: "o'rta qism", ru: 'средняя часть' } },
-  { front: { uz: 'Sahifa etagi (©, aloqa)', ru: 'Подвал страницы (©, контакты)' }, back: '<footer>', note: { uz: 'past qism', ru: 'нижняя часть' } },
-  { front: { uz: 'Elementlarni guruhlovchi quti', ru: 'Коробка, группирующая элементы' }, back: '<div>', note: { uz: 'bir nechta elementni jamlaydi', ru: 'собирает несколько элементов' } },
-  { front: { uz: "Butun formani o'rab turadi", ru: 'Оборачивает всю форму' }, back: '<form>', note: { uz: "anketa qobig'i", ru: 'оболочка анкеты' } },
-  { front: { uz: 'Foydalanuvchi yozadigan maydon', ru: 'Поле, где пишет пользователь' }, back: '<input>', note: { uz: 'matn, email, parol…', ru: 'текст, email, пароль…' } },
-  { front: { uz: 'Maydon oldidagi yozuv', ru: 'Подпись перед полем' }, back: '<label>', note: { uz: '«Ismingiz:» kabi', ru: 'вроде «Ваше имя:»' } },
-  { front: { uz: 'Parolni yashiradigan input turi', ru: 'Тип input, прячущий пароль' }, back: 'type="password"', note: { uz: 'nuqtalar bilan yoziladi', ru: 'печатается точками' } },
-  { front: { uz: 'Brauzerda kodni ochish (DevTools)', ru: 'Открыть код в браузере (DevTools)' }, back: 'F12', note: { uz: "o'ng tugma → Inspect ham bo'ladi", ru: 'можно и правой кнопкой → Inspect' } },
+  { front: { uz: "Sahifaga rasm qo'yish uchun qaysi teg kerak?", ru: 'Какой тег нужен, чтобы вставить картинку на страницу?' }, back: '<img>', note: { uz: "yopuvchi tegi yo'q — yolg'iz yoziladi", ru: 'закрывающего тега нет — пишется один' } },
+  { front: { uz: 'Rasm faylining manzili qaysi atributga yoziladi?', ru: 'В какой атрибут пишется адрес файла картинки?' }, back: 'src', note: '<img src="mushuk.jpg">' },
+  { front: { uz: 'Rasm yuklanmasa, uning joyida qaysi atribut matni chiqadi?', ru: 'Текст какого атрибута появится, если картинка не загрузилась?' }, back: 'alt', note: { uz: "shu matnni ko'zi ojiz odamlarning dasturi ham o'qib beradi", ru: 'этот текст читает и программа незрячих людей' } },
+  { front: { uz: 'Logotip va menyu sahifaning qaysi bo\'limida turadi?', ru: 'В каком разделе страницы стоят логотип и меню?' }, back: '<header>', note: { uz: 'uy shifti kabi — eng tepada', ru: 'как потолок в доме — на самом верху' } },
+  { front: { uz: "Sahifaning eng muhim mazmuni qaysi bo'limga yoziladi?", ru: 'В какой раздел пишется самое важное содержимое страницы?' }, back: '<main>', note: { uz: 'uy xonalari kabi — o\'rtada: matn va rasmlar', ru: 'как комнаты в доме — посередине: текст и картинки' } },
+  { front: { uz: "Aloqa va mualliflik belgisi (©) qaysi bo'limda bo'ladi?", ru: 'В каком разделе находятся контакты и знак авторства (©)?' }, back: '<footer>', note: { uz: 'uy poli kabi — eng pastda', ru: 'как пол в доме — в самом низу' } },
+  { front: { uz: 'Bir nechta elementni bitta qutiga yig\'ish uchun qaysi teg kerak?', ru: 'Какой тег нужен, чтобы собрать несколько элементов в одну коробку?' }, back: '<div>', note: { uz: 'ichidagilarni birga saqlaydigan quti', ru: 'коробка, которая держит содержимое вместе' } },
+  { front: { uz: "Ro'yxatdan o'tish anketasini qaysi teg butunlay o'rab turadi?", ru: 'Какой тег полностью оборачивает анкету регистрации?' }, back: '<form>', note: { uz: 'ichida maydonlar va yuborish tugmasi turadi', ru: 'внутри стоят поля и кнопка отправки' } },
+  { front: { uz: 'Foydalanuvchi matn yozadigan maydonni qaysi teg yasaydi?', ru: 'Какой тег делает поле, куда пользователь пишет текст?' }, back: '<input>', note: { uz: 'turi type bilan belgilanadi: matn, email, parol', ru: 'тип задаётся через type: текст, email, пароль' } },
+  { front: { uz: "Maydon oldidagi yozuv («Ismingiz:») qaysi teg bilan yoziladi?", ru: 'Каким тегом пишется надпись перед полем («Ваше имя:»)?' }, back: '<label>', note: { uz: 'label — savol, input — javob', ru: 'label — вопрос, input — ответ' } },
+  { front: { uz: 'Parol yoziladigan maydon uchun qaysi type yoziladi?', ru: 'Какой type пишется для поля с паролем?' }, back: 'type="password"', note: { uz: 'yozgan harflaringiz nuqta bo\'lib ko\'rinadi', ru: 'написанные буквы показываются точками' } },
+  { front: { uz: 'Istalgan saytning HTML kodini ochish uchun qaysi tugma bosiladi?', ru: 'Какую клавишу нажать, чтобы открыть HTML-код любого сайта?' }, back: 'F12', note: { uz: "o'ng tugma → Inspect ham shu oynani ochadi", ru: 'правая кнопка → Inspect открывает то же окно' } },
 ];
 function Flashcards({ cards }) {
   const [queue, setQueue] = useState(() => cards.map((_, i) => i));
@@ -3258,8 +3260,8 @@ function Flashcards({ cards }) {
       <div className="fc-cardwrap">
         <div className={`fc-fly ${exiting === 'knew' ? 'out-knew' : ''} ${exiting === 'again' ? 'out-again' : ''}`} key={swapRef.current}>
         <div className={`fc-card ${flipped ? 'flip' : ''}`} onClick={() => !flipped && !exiting && setFlipped(true)} role="button" tabIndex={0}>
-          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: 'Qaysi teg yoki atribut?', ru: 'Какой тег или атрибут?' })} 🤔 <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
-          <div className="fc-face fc-back"><span className="fc-tag">{card.back}</span>{card.note && <span className="fc-note">{tr(card.note)}</span>}</div>
+          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: "Javobni o'ylang", ru: 'Подумайте над ответом' })} 🤔 <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
+          <div className="fc-face fc-back"><span className="fc-tag">{tr(card.back)}</span>{card.note && <span className="fc-note">{tr(card.note)}</span>}</div>
         </div>
         </div>
       </div>
@@ -3278,7 +3280,7 @@ const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) =>
     <Stage eyebrow={tr({ uz: 'Takrorlash', ru: 'Повторение' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={false} label={tr({ uz: 'Yakunlash →', ru: 'Завершить →' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Teg va atributlarni <span className="italic" style={{ color: T.accent }}>tez takrorlaymiz</span>.</>, ru: <>Быстро <span className="italic" style={{ color: T.accent }}>повторим</span> теги и атрибуты.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Darsni yakunlashdan oldin bugun o'rgangan teg va atributlarni takrorlaymiz. Har kartada bir vazifa — <b style={{ color: T.ink }}>javobi nima</b> ekanini o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</>, ru: <>Перед завершением урока повторим выученные сегодня теги и атрибуты. На каждой карточке — задание: подумайте, <b style={{ color: T.ink }}>какой ответ</b>, потом нажмите на карточку и проверьте. Оцените себя кнопками <b style={{ color: T.ink }}>Знаю</b> или <b style={{ color: T.ink }}>Повторить</b>.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Darsni yakunlashdan oldin bugun o'rgangan teg va atributlarni takrorlaymiz. Har kartada bir vazifa — <b style={{ color: T.ink }}>javobi nima</b> ekanini o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</>, ru: <>Перед завершением урока повторим выученные сегодня теги и атрибуты. На каждой карточке — вопрос: подумайте, <b style={{ color: T.ink }}>каким будет ответ</b>, потом нажмите на карточку и проверьте. Оцените себя кнопками <b style={{ color: T.ink }}>Знаю</b> или <b style={{ color: T.ink }}>Повторить</b>.</> })}</Mentor>
         <div className="fc-center"><Flashcards cards={HTML2_FLASHCARDS} /></div>
       </div>
     </Stage>
@@ -3286,7 +3288,7 @@ const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) =>
 };
 
 // ===== SCREEN 16 — YAKUN =====
-const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) => {
+const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish, onHomework }) => {
   const _gate = useContext(LiveGateCtx) || {};
   const _live = _gate.live;
   const [arena, setArena] = useState(false);
@@ -3328,7 +3330,18 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
           <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> {tr({ uz: 'Endi siz bilasiz', ru: 'Теперь вы знаете' })}</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{tr(r)}</span></li>))}</ul></div>
           <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>📝 {tr({ uz: 'Uyga vazifa', ru: 'Домашнее задание' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: '1-darsdagi saytingizni boyiting:', ru: 'Обогатите свой сайт из 1-го урока:' })}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: "Avval o'z qo'lingiz bilan yozing, keyin DevTools bilan tekshiring. Tayyor bo'lsa platformaga yuklang.", ru: 'Сначала напишите своими руками, потом проверьте через DevTools. Когда готово — загрузите на платформу.' })}</p></div>
         </div>
-        <div className="card ach-coll fade-up d3">
+        {/* 🏠 UYGA VAZIFA — amaliy topshiriq kompilyatorda bajariladi. Mentor proyektorida
+            KO'RSATILMAYDI: uy ishi shaxsiy (sahna ↔ daftar tamoyili). */}
+        {!isMentorL && onHomework && (
+          <div className="hw-big-wrap fade-up d4">
+            <button className="hw-big" onClick={onHomework}>
+              <span className="hw-big-shine" aria-hidden="true" />
+              <span className="hw-big-t">{tr({ uz: 'Uyga vazifa', ru: 'Домашнее задание' })}</span>
+              <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni boshlash →', ru: 'Начать практическое задание →' })}</span>
+            </button>
+          </div>
+        )}
+        {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>🏅 {tr({ uz: 'Nishonlaringiz', ru: 'Ваши значки' })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">
             {Object.entries(ACHIEVEMENTS).map(([id, a]) => { const got = !!(achievements && achievements.has(id)); return (
@@ -3339,7 +3352,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
               </div>
             ); })}
           </div>
-        </div>
+        </div>}
         <div className="gloss fade-up d4"><div className="gloss-head" onClick={() => setOpen(o => !o)}><span className="lbl">💡 {tr({ uz: "Kalit so'zlar (takrorlash)", ru: 'Ключевые слова (повторение)' })}</span><span className="gloss-toggle">{open ? '−' : '+'}</span></div>{open && (<div className="gloss-body">{GLOSSARY.map((g, i) => (<span key={i}><b>{g.b}</b> {tr(g.t)}{i < GLOSSARY.length - 1 ? ' · ' : ''}</span>))}</div>)}</div>
       </div>
     </Stage>
@@ -3458,9 +3471,22 @@ export default function HtmlLesson({ lang: langProp, onFinished, onPractice }) {
 
   // "Praktika →" bosilganda: agar shu ekrandan keyin praktika bo'lsa — har safar
   // compilatorni ochadi (orqaga qaytib qayta bossa ham), bajarilgach keyingi ekranga o'tadi.
+  // 🏠 UYGA VAZIFA PRAKTIKASI (yakun-sahifadagi tugma) — yakuniy topshiriq.
+  // Dars-ichi mashqidan farqi: keyingi ekranga O'TKAZMAYDI (oxirgi sahifa) va serverga
+  // «bajardim» signali YUBORMAYDI — bu uy ishi, sinf ishi emas.
+  const openHomeworkPractice = () => {
+    const entry = { task: TASK_FINAL, starter: STARTER_FINAL };
+    if (typeof onPractice === 'function') Promise.resolve(onPractice(entry.task)).catch(() => {});
+    else setPractice({ ...entry, done: () => setPractice(null) });
+  };
   const next = () => {
     const entry = PRACTICE_AFTER[screen];
     if (!entry) { advance(); return; }
+    // 🔴 DARS-ICHI PRAKTIKASI FAQAT JONLI DARSDA (2026-07-29): mashq faqat o'quvchi mentorga
+    // ULANGAN va sessiya davom etayotganda ochiladi. Mentor «Erkin qilish»ni bossa, uzilib qolsa
+    // yoki bola mustaqil o'qiyotgan bo'lsa — mashq OCHILMAYDI, u yakun-sahifadagi «Uyga vazifa»
+    // tugmasi orqali bajaradi.
+    if (!(live && (live.mode === 'mentor' || (live.mode === 'student' && live.status !== 'ended' && live.mentorAlive)))) { advance(); return; }
     if (live && live.mode === 'mentor') {
       // Jonli mentor: avval o'quvchilarni OCHAMIZ (advance → ular praktikani o'z
       // qurilmasida yozadi), so'ng mentor panelida kim tugatganini kuzatadi va
@@ -3819,6 +3845,18 @@ export default function HtmlLesson({ lang: langProp, onFinished, onPractice }) {
         .card-lbl { display: flex; align-items: center; gap: 8px; font-family: 'Manrope'; font-weight: 700; font-size: 13px; margin-bottom: 11px; }
         .recap { display: flex; flex-direction: column; gap: 8px; list-style: none; } .recap li { display: flex; align-items: flex-start; gap: 10px; font-size: clamp(13px,1.6vw,15px); color: ${T.ink}; animation: fade-in-up 0.4s ease-out forwards; opacity: 0; } .recap .ck { color: ${T.success}; font-weight: 700; flex-shrink: 0; background: none; padding: 0; }
         .hw ul { display: flex; flex-direction: column; gap: 6px; list-style: none; } .hw li { font-size: clamp(13px,1.6vw,15px); color: ${T.ink}; } .hw li b { color: ${T.accent}; } .hw .t { color: ${T.ink2}; } .hw-note { margin: 11px 0 0; font-size: 12px; color: ${T.accent}; font-weight: 600; }
+        /* 🏠 UYGA VAZIFA — amaliy topshiriqqa chorlaydigan kapsula (darsning O'Z rangida) */
+        .hw-big-wrap { position: relative; align-self: center; width: min(560px, 100%); }
+        .hw-big-wrap::before { content: ''; position: absolute; inset: -16px; border-radius: 34px; background: radial-gradient(ellipse at center, ${T.accent}66, ${T.accent}00 70%); filter: blur(18px); z-index: 0; pointer-events: none; animation: hw-aura 2.6s ease-in-out infinite; }
+        @keyframes hw-aura { 0%, 100% { opacity: 0.5; } 50% { opacity: 0.9; } }
+        .hw-big { position: relative; z-index: 1; overflow: hidden; display: flex; flex-direction: column; align-items: center; gap: 7px; width: 100%; padding: clamp(20px,2.8vw,30px) clamp(26px,3.4vw,44px); border: none; border-radius: 22px; cursor: pointer; background: linear-gradient(160deg, ${T.accent} 0%, ${T.accent} 52%, ${T.ink} 100%); color: #fff; animation: hw-fire 1.7s ease-in-out 0.9s infinite; transition: transform 0.2s; }
+        .hw-big:hover { transform: translateY(-3px) scale(1.02); }
+        .hw-big-t { font-family: 'Manrope'; font-weight: 800; font-size: clamp(25px,3.6vw,34px); letter-spacing: 0.02em; text-shadow: 0 2px 12px rgba(0,0,0,0.25); }
+        .hw-big-s { font-family: 'Manrope'; font-weight: 700; font-size: clamp(14px,1.9vw,17px); opacity: 0.94; }
+        .hw-big-shine { position: absolute; top: -40%; left: -60%; width: 45%; height: 180%; background: linear-gradient(100deg, transparent, rgba(255,255,255,0.28), transparent); transform: skewX(-18deg); animation: hw-shine 3.2s ease-in-out infinite; pointer-events: none; }
+        @keyframes hw-fire { 0%,100% { box-shadow: 0 18px 40px -14px ${T.accent}99, 0 0 0 0 ${T.accent}59; } 50% { box-shadow: 0 20px 48px -14px ${T.accent}bb, 0 0 0 11px ${T.accent}00; } }
+        @keyframes hw-shine { 0% { left: -60%; } 55%, 100% { left: 130%; } }
+        @media (prefers-reduced-motion: reduce) { .hw-big, .hw-big-shine, .hw-big-wrap::before { animation: none; } .hw-big-wrap::before { opacity: 0.55; } }
         .gloss { background: ${T.paper}; border-radius: 12px; box-shadow: 0 6px 16px -6px rgba(${T.shadowBase},0.12); overflow: hidden; }
         .gloss-head { display: flex; align-items: center; justify-content: space-between; padding: 13px 17px; cursor: pointer; } .gloss-head .lbl { font-family: 'Manrope'; font-weight: 700; font-size: 13px; color: ${T.ink}; } .gloss-toggle { font-size: 18px; color: ${T.ink2}; }
         .gloss-body { padding: 0 17px 15px; font-size: clamp(12.5px,1.5vw,14px); color: ${T.ink2}; line-height: 1.7; animation: fade-step 0.3s; } .gloss-body b { color: ${T.ink}; }
@@ -4474,7 +4512,7 @@ export default function HtmlLesson({ lang: langProp, onFinished, onPractice }) {
             <LiveGate live={live} title={{ uz: '1-Modul · HTML-2', ru: 'Модуль 1 · HTML-2' }} />
           ) : (
             <>
-              <Current screen={screen} storedAnswer={answers[screen]} answers={answers} achievements={earned} onAnswer={recordAnswer} onNext={next} onPrev={prev} onReset={reset} onFinish={finishLesson} />
+              <Current screen={screen} storedAnswer={answers[screen]} answers={answers} achievements={earned} onAnswer={recordAnswer} onNext={next} onPrev={prev} onReset={reset} onFinish={finishLesson} onHomework={openHomeworkPractice} />
               {live.mode !== 'mentor' && <AchToasts toasts={achToasts} onDone={(k) => setAchToasts(t => t.filter(x => x.k !== k))} />}
               <LiveBadge live={live} total={TOTAL_SCREENS} />
             </>

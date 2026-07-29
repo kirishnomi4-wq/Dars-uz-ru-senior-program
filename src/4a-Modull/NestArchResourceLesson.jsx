@@ -383,7 +383,7 @@ const RECAPS = {
     cards: [
       { ic: "📐", h: { uz: "Entity — jadval shakli", ru: 'Entity — форма таблицы' }, body: { uz: <><b>Entity</b> bazadagi jadval qanday ko'rinishini belgilaydi: qaysi ustunlar bor (<span className="mono">brand</span>, <span className="mono">price</span>...).</>, ru: <><b>Entity</b> задаёт, как выглядит таблица в базе: какие в ней столбцы (<span className="mono">brand</span>, <span className="mono">price</span>...).</> } },
       { ic: "🎁", h: { uz: "BaseEntity — tayyor tokchalar", ru: 'BaseEntity — готовые полки' }, body: { uz: <><span className="mono">id</span>, <span className="mono">created_at</span>, <span className="mono">updated_at</span> — <b>BaseEntity</b>'dan meros orqali tekin keladi, o'zingiz yozmaysiz.</>, ru: <><span className="mono">id</span>, <span className="mono">created_at</span>, <span className="mono">updated_at</span> — достаются бесплатно по наследству от <b>BaseEntity</b>, сами их не пишете.</> } },
-      { ic: "🚫", h: { uz: "Entity ≠ boshqa qatlam", ru: 'Entity ≠ другой слой' }, body: { uz: <>So'rovni <b>Controller</b> qabul qiladi, qoidani <b>DTO</b> tekshiradi. Entity faqat jadval shakli — javob bermaydi, buyruq bajarmaydi.</>, ru: <>Запрос принимает <b>Controller</b>, правила проверяет <b>DTO</b>. Entity — только форма таблицы: не отвечает и не выполняет команд.</> }, ask: { uz: "Entity nima uchun so'rovga javob qaytara olmaydi?", ru: 'Почему Entity не может ответить на запрос?' } },
+      { ic: "🚫", h: { uz: "Entity boshqa qatlam emas", ru: 'Entity — не другой слой' }, body: { uz: <>So'rovni <b>Controller</b> qabul qiladi, qoidani <b>DTO</b> tekshiradi. Entity faqat jadval shakli — javob bermaydi, buyruq bajarmaydi.</>, ru: <>Запрос принимает <b>Controller</b>, правила проверяет <b>DTO</b>. Entity — только форма таблицы: не отвечает и не выполняет команд.</> }, ask: { uz: "Entity nima uchun so'rovga javob qaytara olmaydi?", ru: 'Почему Entity не может ответить на запрос?' } },
     ]
   },
   7: {
@@ -407,7 +407,7 @@ const RECAPS = {
     cards: [
       { ic: "🤵", h: { uz: "Controller — ofitsiant", ru: 'Controller — официант' }, body: { uz: <><b>Controller</b> so'rovni qabul qiladi va Service'ning mos metodini chaqiradi. Ishni o'zi bajarmaydi.</>, ru: <><b>Controller</b> принимает запрос и вызывает нужный метод Service. Сам работу не делает.</> } },
       { ic: "🚪", h: { uz: "Har dekorator — bir eshik", ru: 'Каждый декоратор — своя дверь' }, body: { uz: <><span className="mono">@Post</span> qo'shish, <span className="mono">@Get</span> o'qish, <span className="mono">@Patch</span> o'zgartirish, <span className="mono">@Delete</span> o'chirish uchun.</>, ru: <><span className="mono">@Post</span> — добавить, <span className="mono">@Get</span> — читать, <span className="mono">@Patch</span> — изменить, <span className="mono">@Delete</span> — удалить.</> } },
-      { ic: "🧭", h: { uz: "Controller ≠ Service", ru: 'Controller ≠ Service' }, body: { uz: <>Controller faqat chaqiradi — asosiy ishni <b>Service</b> (BaseService orqali) bajaradi.</>, ru: <>Controller только вызывает — основную работу делает <b>Service</b> (через BaseService).</> }, ask: { uz: "Yangi mashina qo'shish uchun qaysi eshik (dekorator) ochiladi?", ru: 'Какая дверь (декоратор) откроется, чтобы добавить новую машину?' } },
+      { ic: "🧭", h: { uz: "Controller va Service — boshqa-boshqa", ru: 'Controller и Service — разные' }, body: { uz: <>Controller faqat chaqiradi — asosiy ishni <b>Service</b> (BaseService orqali) bajaradi.</>, ru: <>Controller только вызывает — основную работу делает <b>Service</b> (через BaseService).</> }, ask: { uz: "Yangi mashina qo'shish uchun qaysi eshik (dekorator) ochiladi?", ru: 'Какая дверь (декоратор) откроется, чтобы добавить новую машину?' } },
     ]
   },
   14: {
@@ -434,6 +434,7 @@ const Col = ({ children, gap }) => <div className="col" style={gap ? { gap } : u
 // 🏅 Yuqori paneldagi nishon hisoblagichi (Stage chrome)
 function AchCounter() {
   const earned = useContext(AchCtx);
+  const gate = useContext(LiveGateCtx);
   const count = earned ? earned.size : 0;
   const total = Object.keys(ACHIEVEMENTS).length;
   const prevRef = useRef(count);
@@ -443,6 +444,7 @@ function AchCounter() {
     if (count > prevRef.current) { setBump(true); const t = setTimeout(() => setBump(false), 800); prevRef.current = count; return () => clearTimeout(t); }
     prevRef.current = count;
   }, [count]);
+  if (gate && gate.live && gate.live.mode === 'mentor') return null; // 🔴 mentor proyektorida nishon YO'Q (hooklardan KEYIN)
   return (
     <div className="ach-cnt-wrap">
       <button className={`ach-counter ${bump ? 'bump' : ''} ${count > 0 ? 'has' : ''}`} onClick={() => setOpen(o => !o)} aria-label="Badges" title="Badges">
@@ -2175,7 +2177,7 @@ function QuizArena({ live, onClose, startSolo }) {
             <div className={`qz-res ${my?.correct ? 'good' : 'bad'}`}>
               {my?.correct
                 ? <><span className="qz-res-pts">+{myPtsFor(qi)}</span><span className="qz-res-t">{tr({ uz: 'ball', ru: 'баллов' })}{streakUpTo(qi) >= 2 ? tr({ uz: ` · 🔥 x${streakUpTo(qi)} streak`, ru: ` · 🔥 серия x${streakUpTo(qi)}` }) : ''}</span></>
-                : <span className="qz-res-t">{my ? tr({ uz: 'Xato — 0 ball. Keyingisida olasiz! 💪', ru: 'Ошибка — 0 баллов. Возьмёте на следующем! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Быстрее! ⏱' })}</span>}
+                : <span className="qz-res-t">{my ? tr({ uz: 'Adashdingiz — 0 ball. Keyingisida olasiz! 💪', ru: 'Ошибка — 0 баллов. Возьмёте на следующем! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Быстрее! ⏱' })}</span>}
               {!solo && myRank >= 0 && <span className="qz-res-rank">{tr({ uz: `Siz hozir: ${myRank + 1}-o'rin`, ru: `Вы сейчас: ${myRank + 1}-е место` })}</span>}
             </div>
           )}
@@ -2463,7 +2465,7 @@ function Flashcards({ cards }) {
       <div className="fc-cardwrap">
         <div className={`fc-fly ${exiting === 'knew' ? 'out-knew' : ''} ${exiting === 'again' ? 'out-again' : ''}`} key={swapRef.current}>
         <div className={`fc-card ${flipped ? 'flip' : ''}`} onClick={() => !flipped && !exiting && setFlipped(true)} role="button" tabIndex={0}>
-          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: 'Qaysi tushuncha? 🤔', ru: 'Что за понятие? 🤔' })} <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
+          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: "Javobni o'ylang", ru: 'Подумайте над ответом' })} 🤔 <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
           <div className="fc-face fc-back"><span className="fc-tag">{tr(card.back)}</span>{card.note && <span className="fc-note">{tr(card.note)}</span>}</div>
         </div>
         </div>
@@ -2476,18 +2478,18 @@ function Flashcards({ cards }) {
 }
 // 🃏 12 KARTA (front=topishmoq, back=atama, note=restoran tili) — eski GLOSSARY shu yerga ko'chdi
 const CAR_FLASHCARDS = [
-  { front: { uz: "Ilova boshqaradigan bir tur ma'lumot", ru: 'Один тип данных, которым управляет приложение' }, back: { uz: 'Resurs', ru: 'Ресурс' }, note: { uz: 'mashina, mijoz, buyurtma', ru: 'машина, клиент, заказ' } },
-  { front: { uz: 'Bazadagi jadval shakli — qaysi ustunlar bor', ru: 'Форма таблицы в базе — какие в ней столбцы' }, back: "Entity", note: { uz: 'javon chizmasi', ru: 'чертёж стеллажа' } },
-  { front: { uz: 'id, created_at, updated_at — tekin keladi', ru: 'id, created_at, updated_at — приходят бесплатно' }, back: "BaseEntity", note: { uz: 'tayyor tokchalar', ru: 'готовые полки' } },
-  { front: { uz: "Kelgan ma'lumot qoidalari", ru: 'Правила входящих данных' }, back: "DTO", note: { uz: 'buyurtma anketasi', ru: 'анкета заказа' } },
-  { front: { uz: 'Create anketasining hamma katakchasini ixtiyoriy qiladi', ru: 'Делает все поля анкеты create необязательными' }, back: "PartialType", note: { uz: 'anketa nusxasi', ru: 'копия анкеты' } },
-  { front: { uz: 'CRUD metodlari tekin keladigan ota-klass', ru: 'Родительский класс, от которого CRUD приходит бесплатно' }, back: "BaseService", note: { uz: 'tayyor retsept kitobi', ru: 'готовая книга рецептов' } },
-  { front: { uz: "So'rovni qabul qilib, service metodini chaqiradi", ru: 'Принимает запрос и вызывает метод service' }, back: "Controller", note: { uz: 'ofitsiant', ru: 'официант' } },
-  { front: { uz: "Bo'lim qismlarini ro'yxatga oladi", ru: 'Вносит части отдела в список' }, back: "Module", note: { uz: 'shtat jadvali', ru: 'штатное расписание' } },
-  { front: { uz: "Bo'lim shu ro'yxatda bo'lmasa — ko'rinmaydi", ru: 'Отдела нет в этом списке — он невидим' }, back: "AppModule imports", note: { uz: 'kirish taxtasi', ru: 'вывеска у входа' } },
-  { front: { uz: "Bunday eshik yo'q — manzil topilmadi", ru: 'Такой двери нет — адрес не найден' }, back: "404", note: { uz: 'taxtada yozilmagan', ru: 'не написан на вывеске' } },
-  { front: { uz: 'Anketa qoidasi buzilsa 400 qaytaradi', ru: 'Возвращает 400, если нарушено правило анкеты' }, back: "ValidationPipe", note: { uz: 'nazoratchi', ru: 'контролёр' } },
-  { front: { uz: "NestJS qismlarni o'zi tanishtirib ulaydi", ru: 'NestJS сам знакомит и соединяет части' }, back: "DI", note: { uz: 'xodimlarni tanishtirish', ru: 'знакомство сотрудников' } }
+  { front: { uz: "Bir turdagi ma'lumot uchun yoziladigan 5 fayl qanday ataladi?", ru: "Как называются 5 файлов, написанных для одного типа данных?" }, back: { uz: "Resurs", ru: "Ресурс" }, note: { uz: "mashina, mijoz, buyurtma — har biri alohida resurs", ru: "машина, клиент, заказ — каждый отдельный ресурс" } },
+  { front: { uz: "Bazadagi jadvalda qaysi ustunlar borligini nima belgilaydi?", ru: "Что задаёт, какие столбцы есть в таблице базы?" }, back: "Entity", note: { uz: "📐 javon chizmasi: brand, price...", ru: "📐 чертёж стеллажа: brand, price..." } },
+  { front: { uz: "id, created_at va updated_at ustunlari qayerdan tekin keladi?", ru: "Откуда бесплатно приходят столбцы id, created_at и updated_at?" }, back: "BaseEntity", note: { uz: "Meros orqali — o'zingiz yozmaysiz", ru: "По наследству — сами их не пишете" } },
+  { front: { uz: "Kelgan ma'lumot qoidalarini qaysi fayl yozadi?", ru: "В каком файле записаны правила входящих данных?" }, back: "DTO", note: { uz: "📋 anketa: brand — matn, price — raqam", ru: "📋 анкета: brand — текст, price — число" } },
+  { front: { uz: "Anketa qoidasi buzilsa, so'rov qanday javob oladi?", ru: "Какой ответ получит запрос, если нарушено правило анкеты?" }, back: "400", note: { uz: "🧐 nazoratchi to'xtatadi — Service'gacha bormaydi", ru: "🧐 контролёр останавливает — до Service не дойдёт" } },
+  { front: { uz: "Tahrirlash anketasining har katakchasini nima ixtiyoriy qiladi?", ru: "Что делает каждое поле анкеты редактирования необязательным?" }, back: "PartialType", note: { uz: "PartialType(CreateCarDto) — kod ikki marta yozilmaydi", ru: "PartialType(CreateCarDto) — код не пишется дважды" } },
+  { front: { uz: "create, findAll, update, remove metodlari qayerdan meros keladi?", ru: "Откуда наследуются методы create, findAll, update, remove?" }, back: "BaseService", note: { uz: "📖 tayyor retsept kitobi", ru: "📖 готовая книга рецептов" } },
+  { front: { uz: "super(carRepo) qatori nima uchun yoziladi?", ru: "Зачем пишется строка super(carRepo)?" }, back: { uz: "Qaysi jadval bilan ishlashini aytadi", ru: "Говорит, с какой таблицей работать" }, note: { uz: "Shu sababli CarService'da 4 qator yetadi", ru: "Поэтому в CarService хватает 4 строк" } },
+  { front: { uz: "Yangi mashina qo'shish uchun qaysi eshik ochiladi?", ru: "Какая дверь открывается, чтобы добавить новую машину?" }, back: "@Post", note: { uz: "@Get o'qish · @Patch o'zgartirish · @Delete o'chirish", ru: "@Get читать · @Patch изменить · @Delete удалить" } },
+  { front: { uz: "Bo'limning jadvali, eshigi va oshxonasi qayerda ro'yxatga olinadi?", ru: "Где вносят в список таблицу, дверь и кухню отдела?" }, back: "Module", note: "forFeature · controllers · providers" },
+  { front: { uz: "CarModule AppModule imports'ida bo'lmasa, /car nima qaytaradi?", ru: "Что вернёт /car, если CarModule нет в imports у AppModule?" }, back: "404", note: { uz: "Kirish taxtasida yozilmagan bo'lim ko'rinmaydi", ru: "Отдел, которого нет на вывеске, невидим" } },
+  { front: { uz: "Yozgan qismlaringizni bir-biriga kim ulaydi?", ru: "Кто соединяет написанные вами части друг с другом?" }, back: "DI", note: { uz: "NestJS o'zi tanishtiradi — siz faqat ro'yxatga qo'shasiz", ru: "NestJS знакомит их сам — вы только добавляете в список" } },
 ];
 const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, []); // eslint-disable-line
@@ -2495,7 +2497,7 @@ const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) =>
     <Stage eyebrow={tr({ uz: 'Takrorlash', ru: 'Повторение' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={false} label={tr({ uz: 'Yakunlash →', ru: 'Завершить →' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Atamalarni <span className="italic" style={{ color: T.accent }}>tez takrorlaymiz</span>.</>, ru: <>Быстро <span className="italic" style={{ color: T.accent }}>повторим термины</span>.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Darsni yakunlashdan oldin bugungi atamalarni takrorlaymiz. Har kartada bir topishmoq — <b style={{ color: T.ink }}>qaysi atama</b> ekanini o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</>, ru: <>Перед завершением урока повторим сегодняшние термины. На каждой карточке загадка — подумайте, <b style={{ color: T.ink }}>какой это термин</b>, потом нажмите на карточку и проверьте. Оцените кнопками <b style={{ color: T.ink }}>Знаю</b> или <b style={{ color: T.ink }}>Повторить</b>.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Darsni yakunlashdan oldin bugungi atamalarni takrorlaymiz. Har kartada bir savol — <b style={{ color: T.ink }}>javobini</b> o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</>, ru: <>Перед завершением урока повторим сегодняшние термины. На каждой карточке — вопрос: подумайте, <b style={{ color: T.ink }}>каким будет ответ</b>, потом нажмите на карточку и проверьте. Оцените кнопками <b style={{ color: T.ink }}>Знаю</b> или <b style={{ color: T.ink }}>Повторить</b>.</> })}</Mentor>
         <div className="fc-center"><Flashcards cards={CAR_FLASHCARDS} /></div>
       </div>
     </Stage>
@@ -2547,7 +2549,7 @@ const Screen19 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
           <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> {tr({ uz: 'Endi siz bilasiz', ru: 'Теперь вы знаете' })}</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{r}</span></li>))}</ul></div>
           <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{h.b}</b> <span className="t">{h.t}</span></li>))}</ul><p className="hw-note">{tr({ uz: "🚀 Keyingi — PRAKTIKA: o'z mini-loyihangiz uchun 2–3 resurs quring (Avtosalon / Kutubxona / Do'kon), agentni shu playbook bilan boshqarib!", ru: '🚀 Дальше — ПРАКТИКА: постройте 2–3 ресурса для своего мини-проекта (Автосалон / Библиотека / Магазин), управляя агентом по этому playbook!' })}</p></div>
         </div>
-        <div className="card ach-coll fade-up d3">
+        {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🏅 Nishonlaringiz —', ru: '🏅 Ваши значки —' })} {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">
             {Object.entries(ACHIEVEMENTS).map(([id, a]) => { const got = !!(achievements && achievements.has(id)); return (
@@ -2558,7 +2560,7 @@ const Screen19 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
               </div>
             ); })}
           </div>
-        </div>
+        </div>}
       </div>
     </Stage>
   );

@@ -408,6 +408,7 @@ const Col = ({ children, gap }) => <div className="col" style={gap ? { gap } : u
 // 🏅 Yuqori paneldagi nishon hisoblagichi (Stage chrome)
 function AchCounter() {
   const earned = useContext(AchCtx);
+  const gate = useContext(LiveGateCtx);
   const count = earned ? earned.size : 0;
   const total = Object.keys(ACHIEVEMENTS).length;
   const prevRef = useRef(count);
@@ -417,6 +418,7 @@ function AchCounter() {
     if (count > prevRef.current) { setBump(true); const t = setTimeout(() => setBump(false), 800); prevRef.current = count; return () => clearTimeout(t); }
     prevRef.current = count;
   }, [count]);
+  if (gate && gate.live && gate.live.mode === 'mentor') return null; // 🔴 mentor proyektorida nishon YO'Q (hooklardan KEYIN)
   return (
     <div className="ach-cnt-wrap">
       <button className={`ach-counter ${bump ? 'bump' : ''} ${count > 0 ? 'has' : ''}`} onClick={() => setOpen(o => !o)} aria-label="Badges" title="Badges">
@@ -1769,20 +1771,20 @@ const ScreenPractice3 = (props) => (
     ]} />
 );
 
-// 🃏 FLASHCARD KARTALARI (front=izoh, back=tushuncha) — Metodist keyin sayqallaydi
+// 🃏 FLASHCARD KARTALARI (front=savol, back=qisqa javob)
 const REACT_FLASHCARDS = [
-  { front: { uz: "Ilovaning 4 asosiy amali", ru: '4 основных действия приложения' }, back: "CRUD", note: "Create · Read · Update · Delete" },
-  { front: { uz: "Ro'yxatga yangi element qo'shish amali", ru: 'Действие добавления нового элемента в список' }, back: "Create", note: "[...games, yangi]" },
-  { front: { uz: "Ro'yxatni ekranga chiqarish amali", ru: 'Действие вывода списка на экран' }, back: "Read", note: "games.map(...)" },
-  { front: { uz: "Mavjud elementni o'zgartirish amali", ru: 'Действие изменения существующего элемента' }, back: "Update", note: "map(... ? {...g} : g)" },
-  { front: { uz: "Elementni ro'yxatdan olib tashlash amali", ru: 'Действие удаления элемента из списка' }, back: "Delete", note: "games.filter(...)" },
-  { front: { uz: "«Eski ro'yxatning hammasini ko'chir» belgisi", ru: 'Знак «скопируй всё из старого списка»' }, back: "...games (spread)", note: { uz: "uch nuqta", ru: 'три точки' } },
-  { front: { uz: "Qo'shishning to'liq kodi", ru: 'Полный код добавления' }, back: "setGames([...games, yangi])", note: { uz: "eski hammasi + yangisi", ru: 'всё старое + новая' } },
-  { front: { uz: "Shartga mos kelganlarni saqlaydigan «elak»", ru: '«Сито», сохраняющее подходящее под условие' }, back: "filter", note: "g.id !== id" },
-  { front: { uz: "Bitta elementni o'zgartirib, qolganini saqlaydigan amal", ru: 'Действие, меняющее один элемент и сохраняющее остальные' }, back: "map", note: { uz: "har biridan o'tadi", ru: 'проходит по каждому' } },
-  { front: { uz: "«O'yinni ko'chir, faqat top'ini o'zgartir»", ru: '«Скопируй игру, поменяй только top»' }, back: "{ ...g, top: !g.top }", note: { uz: "spread + o'zgarish", ru: 'spread + изменение' } },
-  { front: { uz: "Ro'yxatni buzadigan, React ko'rmaydigan xato", ru: 'Ошибка, ломающая список, которую React не видит' }, back: { uz: "Mutatsiya (push)", ru: 'Мутация (push)' }, note: { uz: "games.push — ishlamaydi", ru: 'games.push — не работает' } },
-  { front: { uz: "O'chirishdan oldin so'raladigan himoya", ru: 'Защита-вопрос перед удалением' }, back: { uz: "Tasdiq (confirm)", ru: 'Подтверждение (confirm)' }, note: { uz: "qaytarib bo'lmaydi", ru: 'нельзя отменить' } },
+  { front: { uz: "CRUD — qaysi 4 amalning qisqartmasi?", ru: 'Сокращением каких 4 действий является CRUD?' }, back: "Create · Read · Update · Delete", note: { uz: "qo'shish · ko'rsatish · o'zgartirish · o'chirish", ru: 'добавить · показать · изменить · удалить' } },
+  { front: { uz: "Ro'yxatga yangi o'yin qo'shish qaysi amal?", ru: 'Какое это действие — добавить новую игру в список?' }, back: "Create", note: "setGames([...games, yangi])" },
+  { front: { uz: "Ro'yxatni ekranga chiqarish qaysi amal?", ru: 'Какое это действие — вывести список на экран?' }, back: "Read", note: "games.map(g => <GameCard game={g} />)" },
+  { front: { uz: "Like sonini oshirish qaysi amal?", ru: 'Какое это действие — увеличить число лайков?' }, back: "Update", note: { uz: "o'yin o'sha o'yin, faqat bir xossasi o'zgardi", ru: 'игра та же, изменилось лишь одно свойство' } },
+  { front: { uz: "O'yinni ro'yxatdan olib tashlash qaysi amal?", ru: 'Какое это действие — убрать игру из списка?' }, back: "Delete", note: "games.filter(g => g.id !== id)" },
+  { front: { uz: "Uch nuqta (...) nimani anglatadi?", ru: 'Что означают три точки (...)?' }, back: { uz: "Hammasini ko'chir", ru: 'Скопируй всё' }, note: { uz: "spread: eski ro'yxat butunlay ko'chiriladi", ru: 'spread: старый список копируется целиком' } },
+  { front: { uz: "Yangi o'yinni qo'shish kodi qanday yoziladi?", ru: 'Как пишется код добавления новой игры?' }, back: "setGames([...games, yangi])", note: { uz: "eski hammasi + yangisi", ru: 'всё старое + новая' } },
+  { front: { uz: "games = yangi desangiz nima bo'ladi?", ru: 'Что будет, если написать games = yangi?' }, back: { uz: "Eski o'yinlar yo'qoladi", ru: 'Старые игры пропадут' }, note: { uz: "shuning uchun [...games, yangi] yoziladi", ru: 'поэтому пишут [...games, yangi]' } },
+  { front: { uz: "O'chirish uchun qaysi buyruq ishlatiladi?", ru: 'Какая команда используется для удаления?' }, back: "filter", note: { uz: "o'chiriladiganidan boshqa hammasini saqlaydi", ru: 'сохраняет все, кроме удаляемой' } },
+  { front: { uz: "Bitta o'yinni o'zgartirish uchun qaysi buyruq ishlatiladi?", ru: 'Какая команда используется, чтобы изменить одну игру?' }, back: "map", note: "g.id === id ? { ...g, likes: g.likes + 1 } : g" },
+  { front: { uz: "«O'yinni ko'chir, faqat top'ini almashtir» kodi qanday?", ru: 'Как выглядит код «скопируй игру, поменяй только top»?' }, back: "{ ...g, top: !g.top }", note: { uz: "spread + bitta o'zgarish", ru: 'spread + одно изменение' } },
+  { front: { uz: "games.push(yangi) nega ishlamaydi?", ru: 'Почему games.push(yangi) не работает?' }, back: { uz: "React o'zgarishni ko'rmaydi", ru: 'React не видит изменение' }, note: { uz: "bu mutatsiya — eski ro'yxat buziladi", ru: 'это мутация — старый список ломается' } },
 ];
 
 // ===== 🃏 FLASHCARDS (reusable, 3D flip) — HARAKAT ✨ Animatsiya, KONTENT 🎓 Metodist =====
@@ -1817,7 +1819,7 @@ function Flashcards({ cards }) {
       <div className="fc-cardwrap">
         <div className={`fc-fly ${exiting === 'knew' ? 'out-knew' : ''} ${exiting === 'again' ? 'out-again' : ''}`} key={swapRef.current}>
         <div className={`fc-card ${flipped ? 'flip' : ''}`} onClick={() => !flipped && !exiting && setFlipped(true)} role="button" tabIndex={0}>
-          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: 'Qaysi tushuncha? 🤔 ', ru: 'Какое это понятие? 🤔 ' })}<span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
+          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: "Javobni o'ylang", ru: 'Подумайте над ответом' })} 🤔 <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
           <div className="fc-face fc-back"><span className="fc-tag">{tr(card.back)}</span>{card.note && <span className="fc-note">{tr(card.note)}</span>}</div>
         </div>
         </div>
@@ -1834,7 +1836,7 @@ const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) =>
     <Stage eyebrow={tr({ uz: 'Takrorlash', ru: 'Повторение' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={false} label={tr({ uz: 'Yakunlash →', ru: 'Завершить →' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Tushunchalarni <span className="italic" style={{ color: T.accent }}>tez takrorlaymiz</span>.</>, ru: <><span className="italic" style={{ color: T.accent }}>Быстро повторим</span> понятия.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Darsni yakunlashdan oldin bugun o'rgangan tushunchalarni takrorlaymiz. Har kartada bir izoh — <b style={{ color: T.ink }}>qaysi tushuncha</b> ekanini o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</>, ru: <>Перед завершением урока повторим сегодняшние понятия. На каждой карте — описание. Подумайте, <b style={{ color: T.ink }}>какое это понятие</b>, потом нажмите на карту и проверьте себя. Оцените кнопками <b style={{ color: T.ink }}>Знаю</b> или <b style={{ color: T.ink }}>Повторить</b>.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Darsni yakunlashdan oldin bugun o'rgangan tushunchalarni takrorlaymiz. Har kartada bir savol — <b style={{ color: T.ink }}>javobini</b> o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</>, ru: <>Перед завершением урока повторим сегодняшние понятия. На каждой карточке — вопрос: подумайте, <b style={{ color: T.ink }}>каким будет ответ</b>, потом нажмите на карту и проверьте себя. Оцените кнопками <b style={{ color: T.ink }}>Знаю</b> или <b style={{ color: T.ink }}>Повторить</b>.</> })}</Mentor>
         <div className="fc-center"><Flashcards cards={REACT_FLASHCARDS} /></div>
       </div>
     </Stage>
@@ -2279,7 +2281,7 @@ function QuizArena({ live, onClose, startSolo }) {
             <div className={`qz-res ${my?.correct ? 'good' : 'bad'}`}>
               {my?.correct
                 ? <><span className="qz-res-pts">+{myPtsFor(qi)}</span><span className="qz-res-t">{tr({ uz: 'ball', ru: 'баллов' })}{streakUpTo(qi) >= 2 ? tr({ uz: ` · 🔥 x${streakUpTo(qi)} streak`, ru: ` · 🔥 x${streakUpTo(qi)} серия` }) : ''}</span></>
-                : <span className="qz-res-t">{my ? tr({ uz: 'Xato — 0 ball. Keyingisida olasiz! 💪', ru: 'Ошибка — 0 баллов. Возьмёте на следующем! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Быстрее! ⏱' })}</span>}
+                : <span className="qz-res-t">{my ? tr({ uz: 'Adashdingiz — 0 ball. Keyingisida olasiz! 💪', ru: 'Ошибка — 0 баллов. Возьмёте на следующем! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Быстрее! ⏱' })}</span>}
               {!solo && myRank >= 0 && <span className="qz-res-rank">{tr({ uz: `Siz hozir: ${myRank + 1}-o'rin`, ru: `Вы сейчас: ${myRank + 1}-е место` })}</span>}
             </div>
           )}
@@ -2479,7 +2481,7 @@ const Screen15 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
           <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> {tr({ uz: 'Endi siz bilasiz', ru: 'Теперь вы знаете' })}</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{r}</span></li>))}</ul></div>
           <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: "Antigravity bilan o'z loyihangizda sinang:", ru: 'Попробуйте в своём проекте с Antigravity:' })}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{h.b}</b> <span className="t">{h.t}</span></li>))}</ul><p className="hw-note">{tr({ uz: "⚠️ Lekin sahifani yangilang — ro'yxatingiz YO'QOLADI! Chunki hammasi faqat xotirada. Keyingi darsda buni hal qilamiz: server — ma'lumot abadiy saqlanadigan joy. 🚀", ru: '⚠️ Но обновите страницу — и ваш список ПРОПАДЁТ! Ведь всё живёт только в памяти. На следующем уроке решим это: сервер — место, где данные хранятся вечно. 🚀' })}</p></div>
         </div>
-        <div className="card ach-coll fade-up d3">
+        {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🏅 Nishonlaringiz — ', ru: '🏅 Ваши значки — ' })}{(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">
             {Object.entries(ACHIEVEMENTS).map(([id, a]) => { const got = !!(achievements && achievements.has(id)); return (
@@ -2490,7 +2492,7 @@ const Screen15 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
               </div>
             ); })}
           </div>
-        </div>
+        </div>}
       </div>
     </Stage>
   );

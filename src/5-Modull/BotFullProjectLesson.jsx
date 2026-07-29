@@ -408,6 +408,7 @@ const Col = ({ children, gap }) => <div className="col" style={gap ? { gap } : u
 // 🏅 Yuqori paneldagi nishon hisoblagichi (Stage chrome)
 function AchCounter() {
   const earned = useContext(AchCtx);
+  const gate = useContext(LiveGateCtx);
   const count = earned ? earned.size : 0;
   const total = Object.keys(ACHIEVEMENTS).length;
   const prevRef = useRef(count);
@@ -417,6 +418,7 @@ function AchCounter() {
     if (count > prevRef.current) { setBump(true); const t = setTimeout(() => setBump(false), 800); prevRef.current = count; return () => clearTimeout(t); }
     prevRef.current = count;
   }, [count]);
+  if (gate && gate.live && gate.live.mode === 'mentor') return null; // 🔴 mentor proyektorida nishon YO'Q (hooklardan KEYIN)
   return (
     <div className="ach-cnt-wrap">
       <button className={`ach-counter ${bump ? 'bump' : ''} ${count > 0 ? 'has' : ''}`} onClick={() => setOpen(o => !o)} aria-label="Badges" title="Badges">
@@ -1978,7 +1980,7 @@ function QuizArena({ live, onClose, startSolo }) {
             <div className={`qz-res ${my?.correct ? 'good' : 'bad'}`}>
               {my?.correct
                 ? <><span className="qz-res-pts">+{myPtsFor(qi)}</span><span className="qz-res-t">{tr({ uz: 'ball', ru: 'очков' })}{streakUpTo(qi) >= 2 ? ` · 🔥 x${streakUpTo(qi)} streak` : ''}</span></>
-                : <span className="qz-res-t">{my ? tr({ uz: "Xato — 0 ball. Keyingisida olasiz! 💪", ru: 'Ошибка — 0 очков. В следующий раз получится! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 очков. Будьте быстрее! ⏱' })}</span>}
+                : <span className="qz-res-t">{my ? tr({ uz: "Adashdingiz — 0 ball. Keyingisida olasiz! 💪", ru: 'Ошибка — 0 очков. В следующий раз получится! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 очков. Будьте быстрее! ⏱' })}</span>}
               {!solo && myRank >= 0 && <span className="qz-res-rank">{tr({ uz: `Siz hozir: ${myRank + 1}-o'rin`, ru: `Вы сейчас: ${myRank + 1}-е место` })}</span>}
             </div>
           )}
@@ -2255,7 +2257,7 @@ function Flashcards({ cards }) {
       <div className="fc-cardwrap">
         <div className={`fc-fly ${exiting === 'knew' ? 'out-knew' : ''} ${exiting === 'again' ? 'out-again' : ''}`} key={swapRef.current}>
         <div className={`fc-card ${flipped ? 'flip' : ''}`} onClick={() => !flipped && !exiting && setFlipped(true)} role="button" tabIndex={0}>
-          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: 'Qaysi tushuncha? 🤔', ru: 'Какое это понятие? 🤔' })} <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
+          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: "Javobni o'ylang", ru: 'Подумайте над ответом' })} 🤔 <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
           <div className="fc-face fc-back"><span className="fc-tag">{tr(card.back)}</span>{card.note && <span className="fc-note">{tr(card.note)}</span>}</div>
         </div>
         </div>
@@ -2283,18 +2285,18 @@ const ScreenBotPractice = (props) => (
 
 // 🃏 FLASHCARD KARTALARI — 12 atama (loyiha kuni: to'liq bot + doimiy joy)
 const BOT_FLASHCARDS = [
-  { front: { uz: "To'liq Botjonning 4 buyumi qaysilar?", ru: 'Какие 4 предмета у полного Ботжона?' }, back: { uz: '🔑 kalit · 📋 varaq · 📓 daftar · 🧭 maslahatchi', ru: '🔑 ключ · 📋 лист · 📓 тетрадь · 🧭 советчик' }, note: { uz: 'to\'liq bot', ru: 'полный бот' } },
-  { front: { uz: "Kodni doimiy joyga (serverga) qo'yish", ru: 'Положить код на постоянное место (сервер)' }, back: { uz: "Ko'chirish", ru: 'Перенос' }, note: 'deploy' },
-  { front: { uz: "Doim yoqilgan kompyuter — o'chmaydi, Botjon shu yerda 24/7 yashaydi", ru: 'Всегда включённый компьютер — не выключается, Ботжон живёт тут 24/7' }, back: { uz: 'Doimiy joy', ru: 'Постоянное место' }, note: 'server / hosting' },
-  { front: { uz: "Botjon yopilsa jim bo'ladigan vaqtinchalik joy", ru: 'Временное место: закрыли — и Ботжон замолчал' }, back: { uz: 'Laptop', ru: 'Ноутбук' }, note: { uz: 'lokal', ru: 'локально' } },
-  { front: { uz: "Botjon Telegram'dan tinmay «yangi xabar bormi?» deb so'raydigan usul", ru: 'Способ, при котором Ботжон без остановки спрашивает у Telegram: «есть новое сообщение?»' }, back: { uz: "O'zi-so'rab-turish", ru: 'Сам спрашивает' }, note: 'polling' },
-  { front: { uz: "Telegram yangi xabarni Botjonga o'zi bildiradigan usul", ru: 'Способ, при котором Telegram сам извещает Ботжона о новом сообщении' }, back: { uz: "Qo'ng'iroq", ru: 'Звонок' }, note: 'webhook' },
-  { front: { uz: "🔑 kalit maxfiy saqlanadigan qulfli tortma", ru: 'Запертый ящик, где секретно хранится 🔑 ключ' }, back: { uz: '.env fayl', ru: 'файл .env' }, note: { uz: 'maxfiy sozlama', ru: 'секретная настройка' } },
-  { front: { uz: "Kichik bot uchun soddaroq aloqa usuli", ru: 'Более простой способ связи для маленького бота' }, back: { uz: "O'zi-so'rab-turish (polling)", ru: 'Сам спрашивает (polling)' }, note: { uz: 'oddiy', ru: 'просто' } },
-  { front: { uz: "Botjon xatoga uchrasa ham jim qolmasligi uchun tayyorlanadigan qator", ru: 'Строка, которую готовят, чтобы Ботжон не молчал даже при ошибке' }, back: { uz: "Oxirgi qator (fallback)", ru: 'Последняя строка (запасной ответ)' }, note: { uz: 'yiqilmaslik qoidasi', ru: 'правило «не падать»' } },
-  { front: { uz: "Kodni doimiy joyga ko'chirishdan oldin nima qilinadi?", ru: 'Что делают перед переносом кода на постоянное место?' }, back: { uz: 'Laptopda sinaladi', ru: 'Проверяют на ноутбуке' }, note: { uz: 'lokal test', ru: 'локальный тест' } },
-  { front: { uz: "Botjon doimiy joyda qancha vaqt jonli turadi?", ru: 'Сколько Ботжон живой на постоянном месте?' }, back: { uz: '24/7 — tunu-kun', ru: '24/7 — днём и ночью' }, note: { uz: "uxlamaydi", ru: 'не спит' } },
-  { front: { uz: "Ko'chirish tartibi qanday?", ru: 'Каков порядок переноса?' }, back: { uz: "Qur → Test → .env → Ko'chir → Jonli", ru: 'Собери → Тест → .env → Перенеси → Живой' }, note: { uz: 'deploy oqimi', ru: 'поток деплоя' } },
+  { front: { uz: "To'liq Botjonning 4 buyumi qaysilar?", ru: 'Какие 4 предмета у полного Ботжона?' }, back: { uz: '🔑 kalit, 📋 varaq, 📓 daftar, 🧭 maslahatchi', ru: '🔑 ключ, 📋 лист, 📓 тетрадь, 🧭 советчик' }, note: { uz: 'har buyum bitta ishni bajaradi', ru: 'каждый предмет делает одно дело' } },
+  { front: { uz: "Buyurtmani ertaga ham eslab qolish qaysi buyumning ishi?", ru: 'Помнить заказ и завтра — дело какого предмета?' }, back: { uz: '📓 daftar', ru: '📓 тетрадь' }, note: { uz: 'daftar (DB) ma\'lumotni doimiy saqlaydi', ru: 'тетрадь (БД) хранит данные постоянно' } },
+  { front: { uz: "Erkin savolga o'ylab javob berish qaysi buyumning ishi?", ru: 'Обдуманно ответить на свободный вопрос — дело какого предмета?' }, back: { uz: '🧭 maslahatchi', ru: '🧭 советчик' }, note: { uz: 'oddiy buyruqqa esa 📋 varaq javob beradi', ru: 'а на простую команду отвечает 📋 лист' } },
+  { front: { uz: "Botjon laptopda yashasa, laptopni yopganingizda nima bo'ladi?", ru: 'Если Ботжон живёт на ноутбуке, что будет, когда Вы закроете ноутбук?' }, back: { uz: 'Botjon jim qoladi', ru: 'Ботжон замолчит' }, note: { uz: 'laptop — vaqtinchalik joy', ru: 'ноутбук — временное место' } },
+  { front: { uz: "Doim yoqilgan, o'chmaydigan kompyuter qanday ataladi?", ru: 'Как называется всегда включённый компьютер, который не выключается?' }, back: { uz: 'Doimiy joy', ru: 'Постоянное место' }, note: { uz: 'server: Botjon u yerda tunu-kun ishlaydi', ru: 'сервер: Ботжон работает там днём и ночью' } },
+  { front: { uz: "Kodni laptopdan doimiy joyga qo'yish nima deyiladi?", ru: 'Как называется перенос кода с ноутбука на постоянное место?' }, back: { uz: "Ko'chirish", ru: 'Перенос' }, note: { uz: 'deploy — shundan keyin bot 24/7 jonli', ru: 'deploy — после него бот живой 24/7' } },
+  { front: { uz: "Botjon Telegram'dan tinmay «yangi xabar bormi?» deb so'rasa, bu qaysi usul?", ru: 'Если Ботжон без остановки спрашивает у Telegram «есть новое сообщение?», это какой способ?' }, back: { uz: "O'zi-so'rab-turish", ru: 'Сам спрашивает' }, note: { uz: 'polling — sodda, kichik bot uchun', ru: 'polling — просто, для маленького бота' } },
+  { front: { uz: "Telegram yangi xabarni Botjonga o'zi bildirsa, bu qaysi usul?", ru: 'Если Telegram сам извещает Ботжона о новом сообщении, это какой способ?' }, back: { uz: "Qo'ng'iroq", ru: 'Звонок' }, note: { uz: 'webhook — tezroq, foydalanuvchi ko\'p bo\'lganda', ru: 'webhook — быстрее, когда пользователей много' } },
+  { front: { uz: "Kichik Botjon uchun qaysi aloqa usuli soddaroq?", ru: 'Какой способ связи проще для маленького Ботжона?' }, back: { uz: "O'zi-so'rab-turish", ru: 'Сам спрашивает' }, note: { uz: 'foydalanuvchi ko\'paysa, qo\'ng\'iroqqa o\'tasiz', ru: 'станет больше пользователей — перейдёте на звонок' } },
+  { front: { uz: "Doimiy joyda 🔑 kalit qayerda saqlanadi?", ru: 'Где на постоянном месте хранится 🔑 ключ?' }, back: { uz: '.env faylda', ru: 'В файле .env' }, note: { uz: 'bu qulfli tortma: kalit ochiq yotmaydi', ru: 'это запертый ящик: ключ не лежит открыто' } },
+  { front: { uz: "Xato bo'lganda ham Botjon jim qolmasligi uchun nima qo'shiladi?", ru: 'Что добавляют, чтобы Ботжон не молчал даже при ошибке?' }, back: { uz: 'Yiqilmaslik qatori', ru: 'Строка «не падать»' }, note: { uz: 'fallback — zaxira javob har doim chiqadi', ru: 'fallback — запасной ответ выходит всегда' } },
+  { front: { uz: "Kodni ko'chirishdan oldin oxirgi qadam qaysi?", ru: 'Какой шаг последний перед переносом кода?' }, back: { uz: 'Laptopda sinash', ru: 'Проверка на ноутбуке' }, note: { uz: 'lokal test: xatolar shu yerda topiladi', ru: 'локальный тест: ошибки находятся здесь' } },
 ];
 const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, []); // eslint-disable-line
@@ -2302,7 +2304,7 @@ const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) =>
     <Stage eyebrow={{ uz: 'Takrorlash', ru: 'Повторение' }} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={false} label={{ uz: 'Yakunlash →', ru: 'Завершить →' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Loyiha kuni atamalarini <span className="italic" style={{ color: T.accent }}>tez takrorlaymiz</span>.</>, ru: <>Быстро <span className="italic" style={{ color: T.accent }}>повторим</span> термины проектного дня.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Darsni yakunlashdan oldin bugungi atamalarni takrorlaymiz. Har kartada bir topishmoq — <b style={{ color: T.ink }}>qaysi tushuncha</b> ekanini o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</>, ru: <>Перед завершением урока повторим сегодняшние термины. На каждой карточке загадка — подумайте, <b style={{ color: T.ink }}>какое это понятие</b>, потом нажмите на карточку и проверьте. Оцените себя кнопкой <b style={{ color: T.ink }}>Знаю</b> или <b style={{ color: T.ink }}>Повторить</b>.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Darsni yakunlashdan oldin bugungi atamalarni takrorlaymiz. Har kartada bir savol — <b style={{ color: T.ink }}>javobini</b> o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</>, ru: <>Перед завершением урока повторим сегодняшние термины. На каждой карточке вопрос — подумайте, <b style={{ color: T.ink }}>каким будет ответ</b>, потом нажмите на карточку и проверьте. Оцените себя кнопкой <b style={{ color: T.ink }}>Знаю</b> или <b style={{ color: T.ink }}>Повторить</b>.</> })}</Mentor>
         <div className="fc-center"><Flashcards cards={BOT_FLASHCARDS} /></div>
       </div>
     </Stage>
@@ -2353,7 +2355,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
           <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> {tr({ uz: 'Endi siz bilasiz', ru: 'Теперь вы знаете' })}</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{tr(r)}</span></li>))}</ul></div>
           <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: "🚀 Keyingi dars — Botjon to'liq jihozlanadi: barcha buyumlar bilan yakuniy AI-loyihani boshdan-oxir quramiz! ⭐", ru: '🚀 Следующий урок — Ботжон снаряжается полностью: со всеми предметами строим финальный ИИ-проект от начала до конца! ⭐' })}</p></div>
         </div>
-        <div className="card ach-coll fade-up d3">
+        {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🏅 Nishonlaringiz', ru: '🏅 Ваши значки' })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">
             {Object.entries(ACHIEVEMENTS).map(([id, a]) => { const got = !!(achievements && achievements.has(id)); return (
@@ -2364,7 +2366,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
               </div>
             ); })}
           </div>
-        </div>
+        </div>}
       </div>
     </Stage>
   );

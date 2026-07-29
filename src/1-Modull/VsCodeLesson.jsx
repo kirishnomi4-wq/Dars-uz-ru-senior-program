@@ -1369,6 +1369,7 @@ const Col = ({ children, gap }) => <div className="col" style={gap ? { gap } : u
 // 🏅 Yuqori paneldagi nishon hisoblagichi — doim ko'rinadi, yangi olinganda pulslaydi, bosilsa ro'yxat chiqadi
 function AchCounter() {
   const earned = useContext(AchCtx);
+  const gate = useContext(LiveGateCtx);
   const count = earned ? earned.size : 0;
   const total = Object.keys(ACHIEVEMENTS).length;
   const prevRef = useRef(count);
@@ -1378,6 +1379,7 @@ function AchCounter() {
     if (count > prevRef.current) { setBump(true); const t = setTimeout(() => setBump(false), 800); prevRef.current = count; return () => clearTimeout(t); }
     prevRef.current = count;
   }, [count]);
+  if (gate && gate.live && gate.live.mode === 'mentor') return null; // 🔴 mentor proyektorida nishon YO'Q (hooklardan KEYIN)
   return (
     <div className="ach-cnt-wrap">
       <button data-tour="ach" className={`ach-counter ${bump ? 'bump' : ''} ${count > 0 ? 'has' : ''}`} onClick={() => setOpen(o => !o)} aria-label="Badges" title="Badges">
@@ -2089,18 +2091,18 @@ function DragDropOrder({ items, hints, onSolved }) {
 // 🃏 Qayta ishlatiladigan FLASHCARDS — aktiv takrorlash (3D flip + o'z-o'zini baholash + spaced recall).
 // Boshqa darsga: faqat `cards` ({ front, back, note }) almashtiriladi.
 const VSCODE_FLASHCARDS = [
-  { front: { uz: 'Professionallarning kod-muharriri', ru: 'Редактор кода профессионалов' }, back: 'VS Code', note: 'code.visualstudio.com' },
-  { front: { uz: "Fayllar ro'yxati turadigan chap panel", ru: 'Левая панель со списком файлов' }, back: 'Explorer', note: { uz: 'fayl bossangiz — ochiladi', ru: 'нажмёте на файл — откроется' } },
-  { front: { uz: "VS Code'ga imkoniyat qo'shadigan mini-dastur", ru: 'Мини-программа, добавляющая возможности VS Code' }, back: 'Extension', note: { uz: 'kengaytma', ru: 'расширение' } },
-  { front: { uz: 'Sahifani jonli serverda ochadigan kengaytma', ru: 'Расширение, открывающее страницу на живом сервере' }, back: 'Live Server', note: { uz: 'Go Live tugmasi', ru: 'кнопка Go Live' } },
-  { front: { uz: '«Mening kompyuterim» degan manzil', ru: 'Адрес, означающий «мой компьютер»' }, back: '127.0.0.1', note: { uz: ':5500 — port (eshik raqami)', ru: ':5500 — порт (номер двери)' } },
-  { front: { uz: "Bo'sh faylda tayyor shablon chiqaradigan sehr", ru: 'Магия, выдающая готовый шаблон в пустом файле' }, back: '! + Tab', note: { uz: 'Emmet yordamchisi', ru: 'помощник Emmet' } },
-  { front: { uz: 'Faylni saqlaydigan tugmalar', ru: 'Клавиши, сохраняющие файл' }, back: 'Ctrl + S', note: { uz: 'Live Server darhol yangilaydi', ru: 'Live Server сразу обновит' } },
-  { front: { uz: 'Oxirgi harakatni bekor qiladigan tugmalar', ru: 'Клавиши, отменяющие последнее действие' }, back: 'Ctrl + Z', note: { uz: "xatodan qo'rqmang", ru: 'не бойтесь ошибок' } },
-  { front: { uz: 'Kodni chiroyli tekislab beradigan birikma', ru: 'Сочетание, красиво выравнивающее код' }, back: 'Alt + Shift + F', note: { uz: 'format — tartib', ru: 'формат — порядок' } },
-  { front: { uz: 'Brauzer birinchi ochadigan asosiy fayl', ru: 'Главный файл, который браузер открывает первым' }, back: 'index.html', note: { uz: 'har loyihada bitta', ru: 'один в каждом проекте' } },
-  { front: { uz: 'Bezaklar (ranglar, o\'lchamlar) yoziladigan fayl', ru: 'Файл, где пишется оформление (цвета, размеры)' }, back: 'style.css', note: { uz: '<link> bilan ulanadi', ru: 'подключается через <link>' } },
-  { front: { uz: 'CSS faylni sahifaga ulaydigan teg', ru: 'Тег, подключающий CSS-файл к странице' }, back: '<link>', note: 'rel="stylesheet" href="style.css"' },
+  { front: { uz: 'Kodni qaysi dasturda yozamiz?', ru: 'В какой программе мы пишем код?' }, back: 'VS Code', note: { uz: 'bepul, code.visualstudio.com saytidan olinadi', ru: 'бесплатный, берётся с сайта code.visualstudio.com' } },
+  { front: { uz: "Fayllar ro'yxatini qaysi panelda ko'rasiz?", ru: 'В какой панели вы видите список файлов?' }, back: 'Explorer', note: { uz: 'chapda turadi; fayl bossangiz — ochiladi', ru: 'слева; нажмёте на файл — он откроется' } },
+  { front: { uz: "VS Code'ga yangi imkoniyat qo'shadigan mini-dastur qanday ataladi?", ru: 'Как называется мини-программа, добавляющая VS Code новые возможности?' }, back: { uz: 'Extension (kengaytma)', ru: 'Extension (расширение)' }, note: { uz: 'kubiklar belgisidagi Extensions bo\'limidan o\'rnatiladi', ru: 'ставится из раздела Extensions со значком кубиков' } },
+  { front: { uz: 'Sahifani brauzerda jonli ochadigan kengaytma qaysi?', ru: 'Какое расширение живо открывает страницу в браузере?' }, back: 'Live Server', note: { uz: "pastki ko'k chiziqdagi Go Live tugmasi bilan ishga tushadi", ru: 'запускается кнопкой Go Live на нижней синей полосе' } },
+  { front: { uz: 'Qaysi manzil «mening kompyuterim» degani?', ru: 'Какой адрес означает «мой компьютер»?' }, back: '127.0.0.1', note: { uz: 'sahifani hozircha faqat siz ko\'rasiz — bu internet emas', ru: 'страницу пока видите только вы — это не интернет' } },
+  { front: { uz: '127.0.0.1:5500 manzilidagi 5500 raqami nima?', ru: 'Что такое число 5500 в адресе 127.0.0.1:5500?' }, back: { uz: 'Port', ru: 'Порт' }, note: { uz: 'server ishlatadigan eshik raqami', ru: 'номер двери, через которую работает сервер' } },
+  { front: { uz: "Bo'sh HTML faylda tayyor skeletni nima bilan chiqarasiz?", ru: 'Чем вы выводите готовый скелет в пустом HTML-файле?' }, back: '! + Tab', note: { uz: "Emmet yordamchisi butun shablonni o'zi yozadi", ru: 'помощник Emmet сам пишет весь шаблон' } },
+  { front: { uz: 'Faylni saqlash uchun qaysi tugmalarni bosasiz?', ru: 'Какие клавиши вы нажимаете, чтобы сохранить файл?' }, back: 'Ctrl + S', note: { uz: "saqlaganingizdan keyin brauzer o'zi yangilanadi", ru: 'после сохранения браузер обновляется сам' } },
+  { front: { uz: 'Xato yozib qo\'ysangiz, orqaga qaytadigan tugmalar qaysi?', ru: 'Какие клавиши возвращают назад, если вы ошиблись?' }, back: 'Ctrl + Z', note: { uz: "oxirgi harakatni bekor qiladi — xatodan qo'rqmang", ru: 'отменяет последнее действие — не бойтесь ошибок' } },
+  { front: { uz: 'Brauzer loyihadan birinchi qaysi faylni ochadi?', ru: 'Какой файл проекта браузер открывает первым?' }, back: 'index.html', note: { uz: 'har loyihada shunday bitta asosiy fayl bo\'ladi', ru: 'в каждом проекте один такой главный файл' } },
+  { front: { uz: 'Ranglar va bezaklar qaysi faylga yoziladi?', ru: 'В какой файл пишутся цвета и оформление?' }, back: 'style.css', note: { uz: "HTML'ga <link> qatori bilan ulanadi", ru: 'подключается к HTML строкой <link>' } },
+  { front: { uz: "CSS faylni sahifaga qaysi teg ulaydi?", ru: 'Какой тег подключает CSS-файл к странице?' }, back: '<link>', note: { uz: 'head ichiga yoziladi: rel="stylesheet" href="style.css"', ru: 'пишется внутрь head: rel="stylesheet" href="style.css"' } },
 ];
 function Flashcards({ cards }) {
   const [queue, setQueue] = useState(() => cards.map((_, i) => i));
@@ -2133,8 +2135,8 @@ function Flashcards({ cards }) {
       <div className="fc-cardwrap">
         <div className={`fc-fly ${exiting === 'knew' ? 'out-knew' : ''} ${exiting === 'again' ? 'out-again' : ''}`} key={swapRef.current}>
         <div className={`fc-card ${flipped ? 'flip' : ''}`} onClick={() => !flipped && !exiting && setFlipped(true)} role="button" tabIndex={0}>
-          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: 'Nima bu?', ru: 'Что это?' })} 🤔 <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
-          <div className="fc-face fc-back"><span className="fc-tag">{card.back}</span>{card.note && <span className="fc-note">{tr(card.note)}</span>}</div>
+          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: "Javobni o'ylang", ru: 'Подумайте над ответом' })} 🤔 <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
+          <div className="fc-face fc-back"><span className="fc-tag">{tr(card.back)}</span>{card.note && <span className="fc-note">{tr(card.note)}</span>}</div>
         </div>
         </div>
       </div>
@@ -2319,7 +2321,7 @@ const ScreenHook = ({ screen, storedAnswer, onAnswer, onNext }) => {
     <Stage eyebrow={tr({ uz: 'Kirish', ru: 'Введение' })} screen={screen} audioState={audio} navContent={<NavNext optionalLive disabled={picked === null} label={tr({ uz: 'Davom etish', ru: 'Продолжить' })} onClick={onNext} />}>
       <div className="screen">
         <h1 className="title h-title fade-up" style={{ maxWidth: 780 }}>{tr({ uz: <>Professionallar kodni <span className="italic" style={{ color: T.accent }}>qayerda</span> yozadi?</>, ru: <>Где профессионалы <span className="italic" style={{ color: T.accent }}>пишут</span> код?</> })}</h1>
-        <Mentor>{tr({ uz: <>Shu paytgacha kodni <b style={{ color: T.ink }}>dars ichidagi maydonchada</b> yozdik — bu o'quv velosipedi edi. Bugun haqiqiy mashinaga o'tiramiz. Avval bir taxmin qiling: haqiqiy dasturchilar kodni qayerda yozadi?</>, ru: <>До этого мы писали код <b style={{ color: T.ink }}>в поле внутри урока</b> — это был учебный велосипед. Сегодня пересаживаемся на настоящую машину. Сначала предположите: где пишут код настоящие разработчики?</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Shu paytgacha kodni <b style={{ color: T.ink }}>dars ichidagi maydonchada</b> yozdik — bu o'quv velosipedi edi. Bugun haqiqiy mashinaga o'tiramiz. Avval o'zingiz o'ylab ko'ring: haqiqiy dasturchilar kodni qayerda yozadi?</>, ru: <>До этого мы писали код <b style={{ color: T.ink }}>в поле внутри урока</b> — это был учебный велосипед. Сегодня пересаживаемся на настоящую машину. Сначала подумайте сами: где пишут код настоящие разработчики?</> })}</Mentor>
         <Split>
           <Col>
             <p className="eyebrow fade-up delay-1" style={{ color: T.ink2, margin: 0 }}>{tr({ uz: 'Sizningcha qaysi biri?', ru: 'Как вы думаете, где?' })}</p>
@@ -3174,7 +3176,7 @@ const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) =>
 };
 
 // ===== EKRAN — YAKUN (summary) =====
-const ScreenSummary = ({ screen, answers, achievements, onReset, onPrev, onFinish }) => {
+const ScreenSummary = ({ screen, answers, achievements, onReset, onPrev, onFinish, onHomework }) => {
   const _gate = useContext(LiveGateCtx) || {};
   const _live = _gate.live;
   const [arena, setArena] = useState(false);
@@ -3225,7 +3227,18 @@ const ScreenSummary = ({ screen, answers, achievements, onReset, onPrev, onFinis
           <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> {tr({ uz: 'Endi siz bilasiz', ru: 'Теперь вы умеете' })}</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{r}</span></li>))}</ul></div>
           <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>📝 {tr({ uz: 'Uyga vazifa', ru: 'Домашнее задание' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: "Cardingizni VS Code'da boyiting:", ru: 'Обогатите свою карточку в VS Code:' })}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{h.b}</b> <span className="t">{fmtCode(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: "Har o'zgarishdan keyin Ctrl+S bosing — brauzer o'zi yangilanadi. Tayyor bo'lsa keyingi darsga cardingiz bilan keling — mentor jonli ko'radi.", ru: 'После каждого изменения нажимайте Ctrl+S — браузер обновится сам. Когда будет готово, приходите на следующий урок со своей карточкой — ментор посмотрит вживую.' })}</p></div>
         </div>
-        <div className="card ach-coll fade-up d3">
+        {/* 🏠 UYGA VAZIFA — amaliy topshiriq kompilyatorda bajariladi. Mentor proyektorida
+            KO'RSATILMAYDI: uy ishi shaxsiy (sahna ↔ daftar tamoyili). */}
+        {!isMentorL && onHomework && (
+          <div className="hw-big-wrap fade-up d4">
+            <button className="hw-big" onClick={onHomework}>
+              <span className="hw-big-shine" aria-hidden="true" />
+              <span className="hw-big-t">{tr({ uz: 'Uyga vazifa', ru: 'Домашнее задание' })}</span>
+              <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni boshlash →', ru: 'Начать практическое задание →' })}</span>
+            </button>
+          </div>
+        )}
+        {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>🏅 {tr({ uz: 'Nishonlaringiz', ru: 'Ваши значки' })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">
             {Object.entries(ACHIEVEMENTS).map(([id, a]) => { const got = !!(achievements && achievements.has(id)); return (
@@ -3236,7 +3249,7 @@ const ScreenSummary = ({ screen, answers, achievements, onReset, onPrev, onFinis
               </div>
             ); })}
           </div>
-        </div>
+        </div>}
       </div>
     </Stage>
   );
@@ -3780,7 +3793,7 @@ function QuizArena({ live, onClose, startSolo }) {
             <div className={`qz-res ${my?.correct ? 'good' : 'bad'}`}>
               {my?.correct
                 ? <><span className="qz-res-pts">+{myPtsFor(qi)}</span><span className="qz-res-t">{tr({ uz: 'ball', ru: 'баллов' })}{streakUpTo(qi) >= 2 ? ` · 🔥 x${streakUpTo(qi)} streak` : ''}</span></>
-                : <span className="qz-res-t">{my ? tr({ uz: 'Xato — 0 ball. Keyingisida olasiz! 💪', ru: 'Ошибка — 0 баллов. Возьмёте на следующем! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Побыстрее! ⏱' })}</span>}
+                : <span className="qz-res-t">{my ? tr({ uz: 'Adashdingiz — 0 ball. Keyingisida olasiz! 💪', ru: 'Ошибка — 0 баллов. Возьмёте на следующем! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Побыстрее! ⏱' })}</span>}
               {!solo && myRank >= 0 && <span className="qz-res-rank">{tr({ uz: `Siz hozir: ${myRank + 1}-o'rin`, ru: `Вы сейчас: ${myRank + 1}-е место` })}</span>}
             </div>
           )}
@@ -4068,9 +4081,22 @@ export default function VsCodeLesson({ lang: langProp, onFinished, onPractice })
   };
   // "Davom etish" bosilganda: shu ekrandan keyin praktika bo'lsa — compilatorni ochadi,
   // bajarilgach keyingi ekranga o'tadi. Aks holda oddiy o'tadi.
+  // 🏠 UYGA VAZIFA PRAKTIKASI (yakun-sahifadagi tugma) — yakuniy topshiriq.
+  // Dars-ichi mashqidan farqi: keyingi ekranga O'TKAZMAYDI (oxirgi sahifa) va serverga
+  // «bajardim» signali YUBORMAYDI — bu uy ishi, sinf ishi emas.
+  const openHomeworkPractice = () => {
+    const entry = { task: TASK_STYLE, starter: null };
+    if (typeof onPractice === 'function') Promise.resolve(onPractice(entry.task)).catch(() => {});
+    else setPractice({ ...entry, done: () => setPractice(null) });
+  };
   const next = () => {
     const entry = PRACTICE_AFTER[screen];
     if (!entry) { advance(); return; }
+    // 🔴 DARS-ICHI PRAKTIKASI FAQAT JONLI DARSDA (2026-07-29): mashq faqat o'quvchi mentorga
+    // ULANGAN va sessiya davom etayotganda ochiladi. Mentor «Erkin qilish»ni bossa, uzilib qolsa
+    // yoki bola mustaqil o'qiyotgan bo'lsa — mashq OCHILMAYDI, u yakun-sahifadagi «Uyga vazifa»
+    // tugmasi orqali bajaradi.
+    if (!(live && (live.mode === 'mentor' || (live.mode === 'student' && live.status !== 'ended' && live.mentorAlive)))) { advance(); return; }
     if (live && live.mode === 'mentor') {
       // Jonli mentor: avval o'quvchilarni OCHAMIZ (advance → ular praktikani o'z
       // qurilmasida yozadi), so'ng mentor panelida kim tugatganini kuzatadi va
@@ -4733,6 +4759,18 @@ export default function VsCodeLesson({ lang: langProp, onFinished, onPractice })
         .card-lbl { display: flex; align-items: center; gap: 8px; font-family: 'Manrope'; font-weight: 700; font-size: 13px; margin-bottom: 11px; }
         .recap { display: flex; flex-direction: column; gap: 8px; list-style: none; } .recap li { display: flex; align-items: flex-start; gap: 10px; font-size: clamp(13px,1.6vw,15px); color: ${T.ink}; animation: fade-in-up 0.4s ease-out forwards; opacity: 0; } .recap .ck { color: ${T.success}; font-weight: 700; flex-shrink: 0; background: none; padding: 0; }
         .hw ul { display: flex; flex-direction: column; gap: 6px; list-style: none; } .hw li { font-size: clamp(13px,1.6vw,15px); color: ${T.ink}; } .hw li b { color: ${T.accent}; } .hw .t { color: ${T.ink2}; } .hw-note { margin: 11px 0 0; font-size: 12px; color: ${T.accent}; font-weight: 600; }
+        /* 🏠 UYGA VAZIFA — amaliy topshiriqqa chorlaydigan kapsula (darsning O'Z rangida) */
+        .hw-big-wrap { position: relative; align-self: center; width: min(560px, 100%); }
+        .hw-big-wrap::before { content: ''; position: absolute; inset: -16px; border-radius: 34px; background: radial-gradient(ellipse at center, ${T.accent}66, ${T.accent}00 70%); filter: blur(18px); z-index: 0; pointer-events: none; animation: hw-aura 2.6s ease-in-out infinite; }
+        @keyframes hw-aura { 0%, 100% { opacity: 0.5; } 50% { opacity: 0.9; } }
+        .hw-big { position: relative; z-index: 1; overflow: hidden; display: flex; flex-direction: column; align-items: center; gap: 7px; width: 100%; padding: clamp(20px,2.8vw,30px) clamp(26px,3.4vw,44px); border: none; border-radius: 22px; cursor: pointer; background: linear-gradient(160deg, ${T.accent} 0%, ${T.accent} 52%, ${T.ink} 100%); color: #fff; animation: hw-fire 1.7s ease-in-out 0.9s infinite; transition: transform 0.2s; }
+        .hw-big:hover { transform: translateY(-3px) scale(1.02); }
+        .hw-big-t { font-family: 'Manrope'; font-weight: 800; font-size: clamp(25px,3.6vw,34px); letter-spacing: 0.02em; text-shadow: 0 2px 12px rgba(0,0,0,0.25); }
+        .hw-big-s { font-family: 'Manrope'; font-weight: 700; font-size: clamp(14px,1.9vw,17px); opacity: 0.94; }
+        .hw-big-shine { position: absolute; top: -40%; left: -60%; width: 45%; height: 180%; background: linear-gradient(100deg, transparent, rgba(255,255,255,0.28), transparent); transform: skewX(-18deg); animation: hw-shine 3.2s ease-in-out infinite; pointer-events: none; }
+        @keyframes hw-fire { 0%,100% { box-shadow: 0 18px 40px -14px ${T.accent}99, 0 0 0 0 ${T.accent}59; } 50% { box-shadow: 0 20px 48px -14px ${T.accent}bb, 0 0 0 11px ${T.accent}00; } }
+        @keyframes hw-shine { 0% { left: -60%; } 55%, 100% { left: 130%; } }
+        @media (prefers-reduced-motion: reduce) { .hw-big, .hw-big-shine, .hw-big-wrap::before { animation: none; } .hw-big-wrap::before { opacity: 0.55; } }
         .gloss { background: ${T.paper}; border-radius: 12px; box-shadow: 0 6px 16px -6px rgba(${T.shadowBase},0.12); overflow: hidden; }
         .gloss-head { display: flex; align-items: center; justify-content: space-between; padding: 13px 17px; cursor: pointer; } .gloss-head .lbl { font-family: 'Manrope'; font-weight: 700; font-size: 13px; color: ${T.ink}; } .gloss-toggle { font-size: 18px; color: ${T.ink2}; }
         .gloss-body { padding: 0 17px 15px; font-size: clamp(12.5px,1.5vw,14px); color: ${T.ink2}; line-height: 1.7; animation: fade-step 0.3s; } .gloss-body b { color: ${T.ink}; }
@@ -5420,7 +5458,7 @@ export default function VsCodeLesson({ lang: langProp, onFinished, onPractice })
             <LiveGate live={live} title={tr({ uz: '1-Modul', ru: 'Модуль 1' })} />
           ) : (
             <>
-              <Current screen={screen} storedAnswer={answers[screen]} answers={answers} achievements={earned} onAnswer={recordAnswer} onNext={next} onPrev={prev} onReset={reset} onFinish={finishLesson} />
+              <Current screen={screen} storedAnswer={answers[screen]} answers={answers} achievements={earned} onAnswer={recordAnswer} onNext={next} onPrev={prev} onReset={reset} onFinish={finishLesson} onHomework={openHomeworkPractice} />
               {live.mode !== 'mentor' && <AchToasts toasts={achToasts} onDone={(k) => setAchToasts(t => t.filter(x => x.k !== k))} />}
               <LiveBadge live={live} total={TOTAL_SCREENS} />
             </>

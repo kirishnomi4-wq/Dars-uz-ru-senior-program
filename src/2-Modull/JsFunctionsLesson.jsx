@@ -385,6 +385,7 @@ const Col = ({ children, gap }) => <div className="col" style={gap ? { gap } : u
 // 🏅 Yuqori paneldagi nishon hisoblagichi — doim ko'rinadi, yangi olinganda pulslaydi, bosilsa ro'yxat chiqadi
 function AchCounter() {
   const earned = useContext(AchCtx);
+  const gate = useContext(LiveGateCtx);
   const count = earned ? earned.size : 0;
   const total = Object.keys(ACHIEVEMENTS).length;
   const prevRef = useRef(count);
@@ -394,6 +395,7 @@ function AchCounter() {
     if (count > prevRef.current) { setBump(true); const t = setTimeout(() => setBump(false), 800); prevRef.current = count; return () => clearTimeout(t); }
     prevRef.current = count;
   }, [count]);
+  if (gate && gate.live && gate.live.mode === 'mentor') return null; // 🔴 mentor proyektorida nishon YO'Q (hooklardan KEYIN)
   return (
     <div className="ach-cnt-wrap">
       <button className={`ach-counter ${bump ? 'bump' : ''} ${count > 0 ? 'has' : ''}`} onClick={() => setOpen(o => !o)} aria-label="Badges" title="Badges">
@@ -1036,17 +1038,18 @@ function DragDropOrder({ items, hints, onSolved }) {
 // 🃏 Qayta ishlatiladigan FLASHCARDS — aktiv takrorlash (3D flip + o'z-o'zini baholash + spaced recall).
 // Boshqa darsga: faqat `cards` ({ front, back, note }) almashtiriladi.
 const JS_FLASHCARDS = [
-  { front: { uz: "Funksiya e'lon qilish kaliti", ru: 'Ключевое слово объявления функции' }, back: 'function', note: 'function salomBer() { ... }' },
-  { front: { uz: 'Funksiyani ishga tushirish (chaqirish)', ru: 'Запуск функции (вызов)' }, back: 'salomBer()', note: { uz: 'nom + () — call', ru: 'имя + () — call' } },
-  { front: { uz: 'Funksiyaga beriladigan kirish (input)', ru: 'Вход, который передают функции (input)' }, back: 'parametr', note: { uz: 'salomBer(ism) — qavs ichida', ru: 'salomBer(ism) — внутри скобок' } },
-  { front: { uz: 'Chaqiruvda beriladigan haqiqiy qiymat', ru: 'Настоящее значение при вызове' }, back: 'argument', note: 'salomBer("Ali") — "Ali"' },
-  { front: { uz: 'Natijani tashqariga qaytaradi', ru: 'Возвращает результат наружу' }, back: 'return', note: { uz: 'qaytaradi — saqlash mumkin', ru: 'возвращает — можно сохранить' } },
-  { front: { uz: "Natijani ekranga chiqarib ko'rsatadi", ru: 'Показывает результат на экране' }, back: 'console.log', note: { uz: "ko'z uchun — saqlanmaydi", ru: 'для глаз — не сохраняется' } },
-  { front: { uz: "return bo'lmasa funksiya nima qaytaradi?", ru: 'Что вернёт функция без return?' }, back: 'undefined', note: { uz: '"hech narsa"', ru: '«ничего»' } },
-  { front: { uz: 'Qaytgan qiymatni qutiga saqlash', ru: 'Сохранить возвращённое значение в коробку' }, back: 'let x = ...', note: 'let x = kvadrat(4)' },
-  { front: { uz: 'Ikki parametr qanday ajratiladi?', ru: 'Чем разделяют два параметра?' }, back: { uz: 'vergul ,', ru: 'запятая ,' }, note: { uz: 'qoshish(a, b) — tartib muhim', ru: 'qoshish(a, b) — порядок важен' } },
-  { front: { uz: 'Funksiya tanasi qayerga yoziladi?', ru: 'Куда пишут тело функции?' }, back: '{ }', note: { uz: 'jingalak qavslar ichiga', ru: 'внутрь фигурных скобок' } },
-  { front: { uz: 'Funksiyaning qisqa (zamonaviy) yozuvi', ru: 'Короткая (современная) запись функции' }, back: '=>', note: 'const kv = (n) => n * n' },
+  { front: { uz: "Bir xil kodni qayta-qayta yozmaslik uchun nima yasaysiz?", ru: 'Что создают, чтобы не писать один и тот же код много раз?' }, back: { uz: 'funksiya', ru: 'функция' }, note: { uz: 'bir marta yoziladi, keyin nomi bilan chaqiriladi', ru: 'пишут один раз, потом вызывают по имени' } },
+  { front: { uz: "Funksiya yozishni qaysi so'z bilan boshlaysiz?", ru: 'С какого слова начинают запись функции?' }, back: 'function', note: 'function salomBer() { ... }' },
+  { front: { uz: "Funksiyani ishga tushirish uchun nomidan keyin nima qo'yiladi?", ru: 'Что ставят после имени, чтобы запустить функцию?' }, back: 'salomBer()', note: { uz: 'qavs — «boshla» tugmasi kabi', ru: 'скобки — как кнопка «старт»' } },
+  { front: { uz: 'Funksiyaning ish tartibi qayerga yoziladi?', ru: 'Куда пишут порядок действий функции?' }, back: '{ }', note: { uz: 'jingalak qavslar ichiga', ru: 'внутрь фигурных скобок' } },
+  { front: { uz: 'Funksiyaga tashqaridan qiymat berish uchun qavs ichiga nima yoziladi?', ru: 'Что пишут в скобках, чтобы передать функции значение снаружи?' }, back: { uz: 'parametr', ru: 'параметр' }, note: 'function salomBer(ism) { ... }' },
+  { front: { uz: "Chaqirganda parametr o'rniga qo'yiladigan haqiqiy qiymat qanday ataladi?", ru: 'Как называется настоящее значение, которое подставляют вместо параметра при вызове?' }, back: { uz: 'argument', ru: 'аргумент' }, note: 'salomBer("Ali") — "Ali"' },
+  { front: { uz: 'Funksiya natijasini tashqariga chiqarish uchun nima yoziladi?', ru: 'Что пишут, чтобы вынести результат функции наружу?' }, back: 'return', note: { uz: 'qaytgan natijani keyin saqlash mumkin', ru: 'возвращённый результат потом можно сохранить' } },
+  { front: { uz: "return yozilmasa, funksiya nima qaytaradi?", ru: 'Что вернёт функция, если return не написан?' }, back: 'undefined', note: { uz: '«hech narsa» degani', ru: 'значит «ничего»' } },
+  { front: { uz: "Natijani shunchaki ekranda ko'rish uchun nima ishlatiladi?", ru: 'Что используют, чтобы просто увидеть результат на экране?' }, back: 'console.log', note: { uz: "ko'z uchun — natija saqlanmaydi", ru: 'для глаз — результат не сохраняется' } },
+  { front: { uz: "Funksiya qaytargan natijani qanday saqlab qo'yasiz?", ru: 'Как сохранить результат, который вернула функция?' }, back: 'let x = kvadrat(4)', note: { uz: 'natija qutiga tushadi', ru: 'результат попадает в коробку' } },
+  { front: { uz: 'Ikki parametr bir-biridan nima bilan ajratiladi?', ru: 'Чем разделяют два параметра?' }, back: { uz: 'vergul ,', ru: 'запятая ,' }, note: { uz: 'qoshish(a, b) — tartib muhim', ru: 'qoshish(a, b) — порядок важен' } },
+  { front: { uz: 'Funksiyaning qisqa yozuvida qaysi belgi ishlatiladi?', ru: 'Какой знак используют в короткой записи функции?' }, back: '=>', note: 'const kv = (n) => n * n' },
 ];
 function Flashcards({ cards }) {
   const [queue, setQueue] = useState(() => cards.map((_, i) => i));
@@ -1079,7 +1082,7 @@ function Flashcards({ cards }) {
       <div className="fc-cardwrap">
         <div className={`fc-fly ${exiting === 'knew' ? 'out-knew' : ''} ${exiting === 'again' ? 'out-again' : ''}`} key={swapRef.current}>
         <div className={`fc-card ${flipped ? 'flip' : ''}`} onClick={() => !flipped && !exiting && setFlipped(true)} role="button" tabIndex={0}>
-          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: 'Qaysi atama?', ru: 'Какой термин?' })} 🤔 <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
+          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: "Javobni o'ylang", ru: 'Подумайте над ответом' })} 🤔 <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
           <div className="fc-face fc-back"><span className="fc-tag">{tr(card.back)}</span>{card.note && <span className="fc-note">{tr(card.note)}</span>}</div>
         </div>
         </div>
@@ -2011,7 +2014,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
           <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> {tr({ uz: 'Endi siz bilasiz', ru: 'Теперь вы знаете' })}</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{r}</span></li>))}</ul></div>
           <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: 'Funksiyalar bilan mashq qiling:', ru: 'Потренируйтесь с функциями:' })}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{h.b}</b> <span className="t">{h.t}</span></li>))}</ul><p className="hw-note">{tr({ uz: "Funksiya — kodni tartibli va qayta ishlatiladigan qiladi. Mashq qilsangiz, qo'lingizga o'tirib qoladi! 🚀", ru: 'Функция делает код аккуратным и многоразовым. Потренируетесь — и рука сама запомнит! 🚀' })}</p></div>
         </div>
-        <div className="card ach-coll fade-up d3">
+        {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🏅 Nishonlaringiz', ru: '🏅 Ваши награды' })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">
             {Object.entries(ACHIEVEMENTS).map(([id, a]) => { const got = !!(achievements && achievements.has(id)); return (
@@ -2022,7 +2025,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
               </div>
             ); })}
           </div>
-        </div>
+        </div>}
         <div ref={glossRef} className="gloss fade-up d4" style={{ scrollMarginBottom: 16 }}><div className="gloss-head" onClick={toggleGloss}><span className="lbl">{tr({ uz: "💡 Kalit so'zlar (funksiya)", ru: '💡 Ключевые слова (функция)' })}</span><span className="gloss-toggle">{open ? '−' : '+'}</span></div>{open && (<div className="gloss-body">{GLOSSARY.map((g, i) => (<span key={i}><b>{g.b}</b> {g.t}{i < GLOSSARY.length - 1 ? ' · ' : ''}</span>))}</div>)}</div>
       </div>
     </Stage>
@@ -2172,7 +2175,7 @@ const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) =>
     <Stage eyebrow={{ uz: 'Takrorlash', ru: 'Повторение' }} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={false} label={{ uz: 'Yakunlash →', ru: 'Завершить →' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Atamalarni <span className="italic" style={{ color: T.accent }}>tez takrorlaymiz</span>.</>, ru: <>Быстро <span className="italic" style={{ color: T.accent }}>повторим термины</span>.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Darsni yakunlashdan oldin bugun o'rgangan atamalarni takrorlaymiz. Har kartada bir vazifa — <b style={{ color: T.ink }}>qaysi atama</b> ekanini o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</>, ru: <>Перед завершением урока повторим термины, которые вы сегодня узнали. На каждой карточке задание — подумайте, <b style={{ color: T.ink }}>какой это термин</b>, потом нажмите на карточку и проверьте себя. Оцените кнопками <b style={{ color: T.ink }}>Знаю</b> или <b style={{ color: T.ink }}>Повторить</b>.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Darsni yakunlashdan oldin bugun o'rgangan atamalarni takrorlaymiz. Har kartada bir savol — <b style={{ color: T.ink }}>javobini</b> o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</>, ru: <>Перед завершением урока повторим термины, которые вы сегодня узнали. На каждой карточке — вопрос: подумайте, <b style={{ color: T.ink }}>каким будет ответ</b>, потом нажмите на карточку и проверьте себя. Оцените кнопками <b style={{ color: T.ink }}>Знаю</b> или <b style={{ color: T.ink }}>Повторить</b>.</> })}</Mentor>
         <div className="fc-center"><Flashcards cards={JS_FLASHCARDS} /></div>
       </div>
     </Stage>
@@ -2623,7 +2626,7 @@ function QuizArena({ live, onClose, startSolo }) {
             <div className={`qz-res ${my?.correct ? 'good' : 'bad'}`}>
               {my?.correct
                 ? <><span className="qz-res-pts">+{myPtsFor(qi)}</span><span className="qz-res-t">{tr({ uz: 'ball', ru: 'баллов' })}{streakUpTo(qi) >= 2 ? ` · 🔥 x${streakUpTo(qi)} streak` : ''}</span></>
-                : <span className="qz-res-t">{my ? tr({ uz: 'Xato — 0 ball. Keyingisida olasiz! 💪', ru: 'Ошибка — 0 баллов. Возьмёте на следующем! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Быстрее! ⏱' })}</span>}
+                : <span className="qz-res-t">{my ? tr({ uz: 'Adashdingiz — 0 ball. Keyingisida olasiz! 💪', ru: 'Ошибка — 0 баллов. Возьмёте на следующем! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Быстрее! ⏱' })}</span>}
               {!solo && myRank >= 0 && <span className="qz-res-rank">{tr({ uz: <>Siz hozir: {myRank + 1}-o'rin</>, ru: <>Вы сейчас: {myRank + 1}-е место</> })}</span>}
             </div>
           )}

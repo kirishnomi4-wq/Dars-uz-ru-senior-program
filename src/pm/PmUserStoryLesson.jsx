@@ -377,7 +377,7 @@ export const SCREEN_INTENTS = {
   practice: "Bola o'z loyihasi uchun 3 hikoyani bittalab yozib, daftarga saqlaydi",
   peer: "Bola tayyor 3 namuna-kartaga bittalab hukm chiqarib, kamchilikni o'zi nomlaydi",
   s9: "Bola KIM va NATIJA'siz gap imkoniyat-so'rovi ekanini, hikoya emasligini aniqlaydi",
-  clinic: "Bola yomon va to'liq so'rovni dasturchiga yuborib, so'rov sifati mahsulotni belgilashini o'z ko'zi bilan ko'radi",
+  clinic: "Bola dasturchi o'rnida uch xil so'rovni o'qib, so'rov sifati natijani belgilashini o'z ko'zi bilan ko'radi",
   s10: "Bola hikoyaYasa funksiyasini to'ldirib, 3 hikoyasini kod orqali chiqaradi",
   priority: "Bola 3 hikoyasini muhimlik darajalariga (yuqori/o'rta/past) ajratadi",
   s11: "Bola bugun o'rganganini sherigiga aytib, bir gapda yozib qoldiradi",
@@ -1205,7 +1205,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow="1 hikoya — 3 bo'lak" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? 'Davom etish' : 'Uch bo\'lakni joylang'} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(14px,2.2vw,20px)' }}>
         <div className="head"><h2 className="title h-title fade-up">Hikoyani 3 bo'lakdan o'zingiz <span className="italic" style={{ color: T.accent }}>tuza olasizmi</span>?</h2></div>
-        <Mentor>User Story ichida 3 bo'lak bor: <b style={{ color: T.ink }}>«Men [KIM] sifatida, [NIMA]ni xohlayman, [NATIJA] uchun»</b> — ikkinchi mijoz gapi aynan shunday tuzilgan edi. Pastdagi bo'laklarni birma-bir bosib, hikoyani o'zingiz yig'ing — to'g'ri joyiga tushsa, to'liq gap hosil bo'ladi.</Mentor>
+        <Mentor>User Story ichida 3 bo'lak bor: <b style={{ color: T.ink }}>«Men [KIM] sifatida, [NIMA]ni xohlayman, [NATIJA] uchun»</b> — ikkinchi mijoz gapi aynan shunday tuzilgan edi. Pastdagi bo'laklarni birma-bir bosib, hikoyani o'zingiz yig'ing.</Mentor>
         <div className="formula-line fade-up delay-1">
           <span className="fw">Men</span>
           {SLOT_META.map((s, i) => (
@@ -1651,15 +1651,15 @@ const BT_REQS = [
   { id: 'quruq', tag: "1-so'rov · quruq", txt: "«Saytga video qo'shib qo'ying.»",
     kim: null, nima: "video (qanaqasi?)", natija: null, fail: 0,
     guess: "Kim so'rayapti? Yozilmagan — taxmin qilaman…",
-    out: "Dasturchi taxmin qilib bosh sahifaga tasodifiy video joyladi. Mijoz esa darsni qayta ko'rishni kutgan edi — qilingan ish bekor ketdi.", ok: false },
-  { id: 'yarim', tag: "2-so'rov · yarim hikoya", txt: "«Men o'quvchi sifatida, saytda qidiruv bo'lishini xohlayman»",
-    kim: "o'quvchi", nima: "qidiruv bo'limi", natija: null, fail: 2,
+    out: "Taxmin qilishga to'g'ri keldi: bosh sahifaga tasodifiy video tushdi. Mijoz esa darsni qayta ko'rishni kutgan edi — qilingan ish bekor ketdi.", ok: false },
+  { id: 'yarim', tag: "2-so'rov · yarim hikoya", txt: "«Men o'quvchi sifatida, darsni qayta ko'rishni xohlayman»",
+    kim: "o'quvchi", nima: "darsni qayta ko'rish", natija: null, fail: 2,
     guess: "Nega kerakligi aytilmagan — shunchaki qo'shib qo'yaman…",
-    out: "Qidiruv qo'shildi, lekin nega kerakligi noma'lum bo'lgani uchun menyuning eng chetiga tushib qoldi — o'quvchi uni topolmadi.", ok: false },
+    out: "«Darsni qayta ko'rish» tugmasi qo'shildi, lekin nega kerakligi noma'lum bo'lgani uchun sahifaning eng pastiga tushib qoldi — o'quvchi uni topolmadi.", ok: false },
   { id: 'toliq', tag: "3-so'rov · to'liq hikoya", txt: "«Men imtihonga tayyorlanayotgan o'quvchi sifatida, darsni qayta ko'rishni xohlayman — mavzuni o'zim tushunib olishim uchun»",
     kim: "imtihonga tayyorlanayotgan o'quvchi", nima: "darsni qayta ko'rish", natija: "mavzuni o'zim tushunib olishim", fail: -1,
     guess: null,
-    out: "Uchala bo'lak aniq — dasturchi «Darsni qayta ko'rish» tugmasini aynan video ostiga qo'ydi. Mijoz kutgani shu edi!", ok: true },
+    out: "Uchala bo'lak aniq — «Darsni qayta ko'rish» tugmasi aynan video ostiga qo'yildi. Mijoz kutgani shu edi!", ok: true },
 ];
 const BT_PARTS = [['KIM', 'kim'], ['NIMA', 'nima'], ['NATIJA', 'natija']];
 const ScreenClinic = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
@@ -1696,10 +1696,10 @@ const ScreenClinic = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   };
   const reading = phase === 'read';
   return (
-    <Stage eyebrow="Dasturchi-sinovi 🛠" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !isMentorB} label={done || isMentorB ? 'Davom etish' : "Quruq va to'liq so'rovni sinang"} onClick={onNext} /></>}>
+    <Stage eyebrow="So'rov-sinovi 🛠" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !isMentorB} label={done || isMentorB ? 'Davom etish' : "Quruq va to'liq so'rovni sinab ko'ring"} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">So'rov aniq bo'lsa — <span className="italic" style={{ color: T.accent }}>natija to'g'ri chiqadi</span></h2></div>
-        <Mentor>Jamoangizga yangi dasturchi qo'shildi — u loyihangizni hali bilmaydi. Chap tomondagi so'rovlardan birini tanlab <b style={{ color: T.ink }}>«Yuborish»</b>ni bosing: so'rov unga tushunarli bo'lsa — u aynan siz kutgan natijani yasab beradi.</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">Qaysi hikoyadan <span className="italic" style={{ color: T.accent }}>yaxshi natija</span> chiqadi?</h2></div>
+        <Mentor>So'rov qanday yozilgani natijani o'zgartiradi. Quyidagi uchta so'rov bitta narsa haqida, lekin turlicha yozilgan — birini tanlab <b style={{ color: T.ink }}>«Sinab ko'rish»</b>ni bosing va farqni o'zingiz ko'ring.</Mentor>
         <div className="split">
           <Col>
             <p className="flow-label">So'rovlar — birini tanlang</p>
@@ -1715,13 +1715,13 @@ const ScreenClinic = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               })}
             </div>
             <button className={`bt-send${sendHint ? ' turn-ring go' : ''}`} onClick={send} disabled={!sel || reading} style={{ alignSelf: 'flex-start' }}>
-              {reading ? "⏳ O'qimoqda…" : '📨 Yuborish'}
+              {reading ? "⏳ O'qilmoqda…" : "▶️ Sinab ko'rish"}
             </button>
           </Col>
           <Col>
-            <p className="flow-label">Dasturchi stoli</p>
+            <p className="flow-label">So'rov o'qilmoqda</p>
             <div className="bt-desk fade-up delay-2">
-              <div className="bt-desk-top"><span className="bt-dev" aria-hidden="true">🧑‍💻</span><span className="bt-dev-name">Yangi dasturchi</span><span className="bt-desk-t">{!req ? "so'rov kutyapti…" : reading ? "so'rovni o'qiyapti…" : phase === 'out' ? 'ishini tugatdi' : "so'rovni oldi — «Yuborish»ni bosing"}</span></div>
+              <div className="bt-desk-top"><span className="bt-dev" aria-hidden="true">🧑‍💻</span><span className="bt-dev-name">Ish stoli</span><span className="bt-desk-t">{!req ? "so'rov kutilmoqda…" : reading ? 'o\'qilmoqda…' : phase === 'out' ? 'ish tugadi' : "so'rov keldi — «Sinab ko'rish»ni bosing"}</span></div>
               <div className="bt-parts">
                 {BT_PARTS.map(([lbl, k], i) => {
                   const val = req ? req[k] : null;
@@ -1745,7 +1745,7 @@ const ScreenClinic = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 </div>
               )}
             </div>
-            {done && <div className="done-mini fade-step">✅ Farqni ko'rdingiz! <span className="dm-sub">— to'liq hikoya dasturchiga aniq yo'nalishni ko'rsatadi</span></div>}
+            {done && <div className="done-mini fade-step">✅ Farqni ko'rdingiz! <span className="dm-sub">— to'liq hikoya aniq yo'nalishni ko'rsatadi, taxmin qilishga o'rin qolmaydi</span></div>}
           </Col>
         </div>
       </div>

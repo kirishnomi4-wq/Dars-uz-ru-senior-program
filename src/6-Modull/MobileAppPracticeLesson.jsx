@@ -536,6 +536,7 @@ const MentorCollapseScroll = ({ targetRef }) => {
 };
 function AchCounter() {
   const earned = useContext(AchCtx);
+  const gate = useContext(LiveGateCtx);
   const count = earned ? earned.size : 0;
   const total = Object.keys(ACHIEVEMENTS).length;
   const prevRef = useRef(count);
@@ -545,6 +546,7 @@ function AchCounter() {
     if (count > prevRef.current) { setBump(true); const t = setTimeout(() => setBump(false), 800); prevRef.current = count; return () => clearTimeout(t); }
     prevRef.current = count;
   }, [count]);
+  if (gate && gate.live && gate.live.mode === 'mentor') return null; // 🔴 mentor proyektorida nishon YO'Q (hooklardan KEYIN)
   return (
     <div className="ach-cnt-wrap">
       <button className={`ach-counter ${bump ? 'bump' : ''} ${count > 0 ? 'has' : ''}`} onClick={() => setOpen(o => !o)} aria-label="Badges" title="Badges">
@@ -1981,7 +1983,7 @@ function QuizArena({ live, onClose, startSolo }) {
             <div className={`qz-res ${my?.correct ? 'good' : 'bad'}`}>
               {my?.correct
                 ? <><span className="qz-res-pts">+{myPtsFor(qi)}</span><span className="qz-res-t">{tr({ uz: 'ball', ru: 'очков' })}{streakUpTo(qi) >= 2 ? ` · 🔥 x${streakUpTo(qi)} streak` : ''}</span></>
-                : <span className="qz-res-t">{my ? tr({ uz: "Xato — 0 ball. Keyingisida olasiz! 💪", ru: 'Ошибка — 0 очков. В следующий раз получится! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 очков. Будьте быстрее! ⏱' })}</span>}
+                : <span className="qz-res-t">{my ? tr({ uz: "Adashdingiz — 0 ball. Keyingisida olasiz! 💪", ru: 'Ошибка — 0 очков. В следующий раз получится! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 очков. Будьте быстрее! ⏱' })}</span>}
               {!solo && myRank >= 0 && <span className="qz-res-rank">{tr({ uz: `Siz hozir: ${myRank + 1}-o'rin`, ru: `Вы сейчас: ${myRank + 1}-е место` })}</span>}
             </div>
           )}
@@ -2163,7 +2165,7 @@ function Flashcards({ cards }) {
       <div className="fc-cardwrap">
         <div className={`fc-fly ${exiting === 'knew' ? 'out-knew' : ''} ${exiting === 'again' ? 'out-again' : ''}`} key={swapRef.current}>
         <div className={`fc-card ${flipped ? 'flip' : ''}`} onClick={() => !flipped && !exiting && setFlipped(true)} role="button" tabIndex={0}>
-          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: 'Qaysi tushuncha? 🤔', ru: 'Какое это понятие? 🤔' })} <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
+          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: "Javobni o'ylang", ru: 'Подумайте над ответом' })} 🤔 <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
           <div className="fc-face fc-back"><span className="fc-tag">{tr(card.back)}</span>{card.note && <span className="fc-note">{tr(card.note)}</span>}</div>
         </div>
         </div>
@@ -2176,18 +2178,18 @@ function Flashcards({ cards }) {
 }
 // 🃏 FLASHCARD KARTALARI — mobil ilova atamalari
 const MOBILE_FLASHCARDS = [
-  { front: { uz: "Telefonda ilovani sinab ko'rish/ulashish vositasi (QR)", ru: 'Инструмент, чтобы проверить приложение на телефоне и поделиться им (QR)' }, back: 'Expo Go', note: { uz: "deploy · do'st telefoni", ru: 'деплой · телефон друга' } },
-  { front: { uz: "Ro'yxatni ko'rsatuvchi React Native komponenti", ru: 'Компонент React Native, который показывает список' }, back: 'FlatList', note: { uz: "mahsulotlar ro'yxati", ru: 'список товаров' } },
-  { front: { uz: "O'zgaruvchan ma'lumot; o'zgarsa ekran o'zi yangilanadi", ru: 'Изменяемые данные; меняются — экран обновляется сам' }, back: 'state', note: { uz: "savat", ru: 'корзина' } },
-  { front: { uz: "Ro'yxatni bitta qiymatga yig'ish (jami narx)", ru: 'Свернуть список в одно значение (итоговая сумма)' }, back: 'reduce', note: { uz: "callback · Modul 2", ru: 'колбэк · Модуль 2' } },
-  { front: { uz: "Backenddan ma'lumot olib kelish", ru: 'Забрать данные с бэкенда' }, back: 'fetch', note: "GET /products" },
-  { front: { uz: "Bir ekrandan ikkinchisiga o'tish", ru: 'Переход с одного экрана на другой' }, back: 'navigation', note: "Stack Navigator" },
-  { front: { uz: "Buyurtmani backendga yuborish yo'li", ru: 'Путь, по которому заказ уходит на бэкенд' }, back: 'POST /orders', note: { uz: "baza + bot", ru: 'база + бот' } },
-  { front: { uz: "Ilovaga rang, bo'shliq, tartib beruvchi", ru: 'То, что даёт приложению цвет, отступы и порядок' }, back: 'StyleSheet', note: { uz: "sayqal", ru: 'полировка' } },
-  { front: { uz: "Yuqorida savat sonini ko'rsatadigan belgi", ru: 'Значок сверху, который показывает число товаров в корзине' }, back: 'badge', note: "cart.length" },
-  { front: { uz: "Ilovani ishga tushirib, boshqalarga ulash", ru: 'Запустить приложение и передать его другим' }, back: 'deploy', note: { uz: "Expo Go QR", ru: 'QR в Expo Go' } },
-  { front: { uz: "Web, bot, mobil ulanadigan bitta markaz", ru: 'Единый центр, к которому подключаются веб, бот и мобильное' }, back: 'backend', note: "Node.js + PostgreSQL" },
-  { front: { uz: "Real telefonda sinab, xatoni topib tuzatish", ru: 'Проверить на реальном телефоне, найти ошибку и починить' }, back: { uz: 'Test → tuzat', ru: 'Тест → правка' }, note: { uz: "repetitsiya", ru: 'репетиция' } },
+  { front: { uz: "Mobil ilova mahsulotlarni qayerdan oladi?", ru: 'Откуда мобильное приложение берёт товары?' }, back: { uz: "O'sha backenddan", ru: 'С того же бэкенда' }, note: { uz: "GET /products so'rovi bilan, qo'lda yozilmaydi", ru: 'Запросом GET /products, а не вручную' } },
+  { front: { uz: "Loyiha kunida sizning rolingiz qanday?", ru: 'Какая у вас роль в день проекта?' }, back: { uz: 'Direktor', ru: 'Режиссёр' }, note: { uz: "Siz aniq buyurasiz, AI kod yozadi, siz o'qib tushunasiz", ru: 'Вы даёте точную команду, ИИ пишет код, вы его читаете' } },
+  { front: { uz: "Kod haqiqatan ishlaganini qanday bilasiz?", ru: 'Как вы узнаете, что код и правда работает?' }, back: { uz: "Telefonda ko'rsangiz", ru: 'Увидев на телефоне' }, note: { uz: "Expo Go'da o'z ko'zingiz bilan sinaysiz", ru: 'Проверяете своими глазами в Expo Go' } },
+  { front: { uz: "Savatga solingan mahsulotlar qayerda turadi?", ru: 'Где лежат товары, положенные в корзину?' }, back: 'state', note: { uz: "state o'zgarsa, ekran o'zi yangilanadi", ru: 'Меняется state — экран обновляется сам' } },
+  { front: { uz: "Savatdagi jami narxni qaysi usul hisoblaydi?", ru: 'Каким методом считается итоговая сумма корзины?' }, back: 'reduce', note: { uz: "Ro'yxatdagi barcha narxni bitta songa yig'adi", ru: 'Складывает все цены списка в одно число' } },
+  { front: { uz: "Bir ekrandan ikkinchisiga nima yordamida o'tiladi?", ru: 'С помощью чего переходят с одного экрана на другой?' }, back: 'navigation', note: { uz: "Ekranlarni Stack Navigator boshqaradi", ru: 'Экранами управляет Stack Navigator' } },
+  { front: { uz: "Buyurtma backendga qaysi so'rov bilan yuboriladi?", ru: 'Каким запросом заказ уходит на бэкенд?' }, back: 'POST /orders', note: { uz: "Buyurtma bazaga yoziladi, bot adminni ogohlantiradi", ru: 'Заказ пишется в базу, бот предупреждает админа' } },
+  { front: { uz: "Ilovaga rang, bo'shliq va tartib nima orqali beriladi?", ru: 'Через что приложению задаются цвет, отступы и порядок?' }, back: 'StyleSheet', note: { uz: "Ilova shu bosqichda sayqallanadi", ru: 'На этом шаге приложение полируется' } },
+  { front: { uz: "Savat ustidagi kichik son (badge) qayerdan olinadi?", ru: 'Откуда берётся маленькое число над корзиной (badge)?' }, back: 'cart.length', note: { uz: "Savatdagi mahsulotlar sonini ko'rsatadi", ru: 'Показывает количество товаров в корзине' } },
+  { front: { uz: "Bug topilsa butun ilovani qayta yozasizmi?", ru: 'Переписываете ли вы всё приложение, если нашли баг?' }, back: { uz: "Yo'q, aniq tuzatiladi", ru: 'Нет, чинится точечно' }, note: { uz: "Faqat buzilgan joyga aniq prompt beriladi", ru: 'Точный промпт даётся только на сломанное место' } },
+  { front: { uz: "Tayyor ilovani do'stingiz telefonida qanday ochasiz?", ru: 'Как открыть готовое приложение на телефоне друга?' }, back: { uz: 'Expo Go QR bilan', ru: 'По QR в Expo Go' }, note: { uz: "App Store'ga qo'yish shart emas", ru: 'Выкладывать в App Store не обязательно' } },
+  { front: { uz: "Nega ilovani emulyator emas, real telefonda sinaymiz?", ru: 'Почему проверяем на реальном телефоне, а не в эмуляторе?' }, back: { uz: 'Rost bug chiqadi', ru: 'Вылезают настоящие баги' }, note: { uz: "Tugma joyi, sekinlik, badge xatosi shunda ko'rinadi", ru: 'Место кнопки, тормоза, ошибка badge видны именно там' } },
 ];
 const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, []); // eslint-disable-line
@@ -2195,7 +2197,7 @@ const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) =>
     <Stage eyebrow={{ uz: 'Takrorlash', ru: 'Повторение' }} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={false} label={{ uz: 'Yakunlash →', ru: 'Завершить →' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Mobil atamalarni <span className="italic" style={{ color: T.accent }}>tez takrorlaymiz</span>.</>, ru: <><span className="italic" style={{ color: T.accent }}>Быстро повторим</span> мобильные термины.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Darsni yakunlashdan oldin bugungi atamalarni takrorlaymiz. Har kartada bir topishmoq — <b style={{ color: T.ink }}>qaysi atama</b> ekanini o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</>, ru: <>Перед завершением урока повторим сегодняшние термины. На каждой карточке загадка — подумайте, <b style={{ color: T.ink }}>какой это термин</b>, а потом нажмите на карточку и проверьте себя. Оцените себя кнопкой <b style={{ color: T.ink }}>Знаю</b> или <b style={{ color: T.ink }}>Повторить</b>.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Darsni yakunlashdan oldin bugungi atamalarni takrorlaymiz. Har kartada bir savol — <b style={{ color: T.ink }}>javobini</b> o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</>, ru: <>Перед завершением урока повторим сегодняшние термины. На каждой карточке вопрос — подумайте, <b style={{ color: T.ink }}>каким будет ответ</b>, а потом нажмите на карточку и проверьте себя. Оцените себя кнопкой <b style={{ color: T.ink }}>Знаю</b> или <b style={{ color: T.ink }}>Повторить</b>.</> })}</Mentor>
         <div className="fc-center"><Flashcards cards={MOBILE_FLASHCARDS} /></div>
       </div>
     </Stage>
@@ -2245,7 +2247,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
           <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> {tr({ uz: 'Endi siz bilasiz', ru: 'Теперь вы знаете' })}</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{tr(r)}</span></li>))}</ul></div>
           <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: "🚀 Keyingi dars — To'liq tizim (capstone): web + mobil + bot + backend + baza bitta tizimga.", ru: '🚀 Следующий урок — Полная система (capstone): веб + мобильное + бот + бэкенд + база в одну систему.' })}</p></div>
         </div>
-        <div className="card ach-coll fade-up d3">
+        {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🏅 Nishonlaringiz', ru: '🏅 Ваши значки' })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">
             {Object.entries(ACHIEVEMENTS).map(([id, a]) => { const got = !!(achievements && achievements.has(id)); return (
@@ -2256,7 +2258,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
               </div>
             ); })}
           </div>
-        </div>
+        </div>}
       </div>
     </Stage>
   );

@@ -386,6 +386,7 @@ const Col = ({ children, gap }) => <div className="col" style={gap ? { gap } : u
 // 🏅 Yuqori paneldagi nishon hisoblagichi (Stage chrome)
 function AchCounter() {
   const earned = useContext(AchCtx);
+  const gate = useContext(LiveGateCtx);
   const count = earned ? earned.size : 0;
   const total = Object.keys(ACHIEVEMENTS).length;
   const prevRef = useRef(count);
@@ -395,6 +396,7 @@ function AchCounter() {
     if (count > prevRef.current) { setBump(true); const t = setTimeout(() => setBump(false), 800); prevRef.current = count; return () => clearTimeout(t); }
     prevRef.current = count;
   }, [count]);
+  if (gate && gate.live && gate.live.mode === 'mentor') return null; // 🔴 mentor proyektorida nishon YO'Q (hooklardan KEYIN)
   return (
     <div className="ach-cnt-wrap">
       <button className={`ach-counter ${bump ? 'bump' : ''} ${count > 0 ? 'has' : ''}`} onClick={() => setOpen(o => !o)} aria-label="Badges" title="Badges">
@@ -1049,7 +1051,7 @@ function Flashcards({ cards }) {
       <div className="fc-cardwrap">
         <div className={`fc-fly ${exiting === 'knew' ? 'out-knew' : ''} ${exiting === 'again' ? 'out-again' : ''}`} key={swapRef.current}>
         <div className={`fc-card ${flipped ? 'flip' : ''}`} onClick={() => !flipped && !exiting && setFlipped(true)} role="button" tabIndex={0}>
-          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: 'Qaysi tushuncha? 🤔', ru: 'Какое это понятие? 🤔' })} <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
+          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: "Javobni o'ylang", ru: 'Подумайте над ответом' })} 🤔 <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
           <div className="fc-face fc-back"><span className="fc-tag">{tr(card.back)}</span>{card.note && <span className="fc-note">{tr(card.note)}</span>}</div>
         </div>
         </div>
@@ -1861,20 +1863,20 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   );
 };
 
-// 🃏 REACT-1 FLASHCARD KARTALARI (front=izoh, back=tushuncha) — Metodist keyin sayqallaydi
+// 🃏 REACT-1 FLASHCARD KARTALARI (front=savol, back=qisqa javob, note=misol)
 const REACT_FLASHCARDS = [
-  { front: { uz: "Interfeys uchun JS kutubxonasi", ru: 'JS-библиотека для интерфейсов' }, back: "React", note: "Facebook, 2013" },
-  { front: { uz: "Tayyor asboblar to'plami", ru: 'Набор готовых инструментов' }, back: { uz: "Kutubxona", ru: 'Библиотека' }, note: { uz: "qayta yozmaysiz", ru: 'не пишете заново' } },
-  { front: { uz: "Sahifaning qayta ishlatiladigan bloki", ru: 'Переиспользуемый блок страницы' }, back: { uz: "Komponent", ru: 'Компонент' }, note: { uz: "bir marta yoz, ko'p ishlat", ru: 'напиши раз — используй много' } },
-  { front: { uz: "Bitta komponentni ko'p marta ishlatish", ru: 'Использовать один компонент много раз' }, back: { uz: "Qayta ishlatish", ru: 'Переиспользование' }, note: "<SkinCard /> × N" },
-  { front: { uz: "Brauzerdagi haqiqiy sahifa tuzilishi", ru: 'Настоящая структура страницы в браузере' }, back: "DOM", note: { uz: "foydalanuvchi ko'radi", ru: 'видит пользователь' } },
-  { front: { uz: "Xotiradagi yengil nusxa (qoralama)", ru: 'Лёгкая копия в памяти (черновик)' }, back: "Virtual DOM", note: { uz: "tez, ko'rinmaydi", ru: 'быстрый, невидимый' } },
-  { front: { uz: "Eski va yangi nusxani taqqoslash", ru: 'Сопоставление старой и новой копий' }, back: { uz: "Solishtirish", ru: 'Сравнение' }, note: { uz: "farqni topadi", ru: 'находит разницу' } },
-  { front: { uz: "Faqat o'zgargan joyni yangilash", ru: 'Обновление только изменившегося места' }, back: { uz: "Aqlli yangilash", ru: 'Умное обновление' }, note: { uz: "butun sahifa emas", ru: 'не вся страница' } },
-  { front: { uz: "React bilan telefon ilovalari", ru: 'Мобильные приложения с React' }, back: "React Native", note: "iOS + Android" },
-  { front: { uz: "Katta kodni kichik bo'laklarga bo'lish", ru: 'Разбиение большого кода на маленькие части' }, back: { uz: "Dekompozitsiya", ru: 'Декомпозиция' }, note: { uz: "har bo'lak — komponent", ru: 'каждая часть — компонент' } },
-  { front: { uz: "Koddagi xatoni topib tuzatish", ru: 'Найти и исправить ошибку в коде' }, back: { uz: "Debugging", ru: 'Дебаггинг' }, note: { uz: "dasturchi mahorati", ru: 'навык программиста' } },
-  { front: { uz: "Komponent chaqiriladigan yozuv", ru: 'Запись, которой вызывается компонент' }, back: "<Tag />", note: { uz: "JSX ko'rinishi", ru: 'вид JSX' } },
+  { front: { uz: "React qaysi tanish dasturlash tilida yozilgan?", ru: 'На каком знакомом языке программирования написан React?' }, back: "JavaScript", note: { uz: "React yangi til emas — kutubxona", ru: 'React — не новый язык, а библиотека' } },
+  { front: { uz: "React nima qurish uchun ishlatiladi?", ru: 'Для чего используют React?' }, back: { uz: "Interfeys", ru: 'Интерфейс' }, note: { uz: "sahifaning ko'rinadigan qismi: menyu, kartochka, tugma", ru: 'видимая часть страницы: меню, карточки, кнопки' } },
+  { front: { uz: "Tayyor asboblar to'plami qanday ataladi?", ru: 'Как называется набор готовых инструментов?' }, back: { uz: "Kutubxona", ru: 'Библиотека' }, note: { uz: "har safar noldan yozmaysiz — tayyorini olasiz", ru: 'не пишете каждый раз с нуля — берёте готовое' } },
+  { front: { uz: "React'ni kim va qaysi yilda yaratgan?", ru: 'Кто и в каком году создал React?' }, back: "Facebook, 2013", note: { uz: "Instagram, WhatsApp shu kutubxonada ishlaydi", ru: 'Instagram и WhatsApp работают на этой библиотеке' } },
+  { front: { uz: "Sahifaning qayta ishlatiladigan bo'lagi qanday ataladi?", ru: 'Как называется переиспользуемая часть страницы?' }, back: { uz: "Komponent", ru: 'Компонент' }, note: { uz: "menyu, qidiruv katagi, kartochka, tugma", ru: 'меню, строка поиска, карточка, кнопка' } },
+  { front: { uz: "Bitta komponentni necha marta ishlatish mumkin?", ru: 'Сколько раз можно использовать один компонент?' }, back: { uz: "Istalgancha", ru: 'Сколько угодно' }, note: { uz: "kartochka ko'payadi, kod bitta qoladi", ru: 'карточек больше, а код остаётся один' } },
+  { front: { uz: "Komponent ichida boshqa komponent tura oladimi?", ru: 'Может ли внутри компонента быть другой компонент?' }, back: { uz: "Ha", ru: 'Да' }, note: { uz: "kartochka ichida like tugmasi yashaydi", ru: 'внутри карточки живёт кнопка лайка' } },
+  { front: { uz: "React xotirasida saqlaydigan yengil nusxa qanday ataladi?", ru: 'Как называется лёгкая копия, которую React хранит в памяти?' }, back: "Virtual DOM", note: { uz: "ko'rinmas qoralama", ru: 'невидимый черновик' } },
+  { front: { uz: "Virtual DOM yangi qoralamani nima bilan solishtiradi?", ru: 'С чем Virtual DOM сравнивает новый черновик?' }, back: { uz: "Eski nusxa bilan", ru: 'Со старой копией' }, note: { uz: "solishtiradi va farqni topadi", ru: 'сравнивает и находит разницу' } },
+  { front: { uz: "O'zgarish bo'lganda React sahifaning qaysi qismini yangilaydi?", ru: 'Какую часть страницы React обновляет при изменении?' }, back: { uz: "Faqat o'zgargan joyni", ru: 'Только изменившееся место' }, note: { uz: "butun sahifa emas — shuning uchun tez", ru: 'не всю страницу — поэтому быстро' } },
+  { front: { uz: "React bilimi bilan telefon ilovasi yasash nima deyiladi?", ru: 'Как называется создание мобильных приложений со знанием React?' }, back: "React Native", note: { uz: "Instagram, Discord, Shopify shu yo'lda", ru: 'Instagram, Discord, Shopify идут этим путём' } },
+  { front: { uz: "Koddagi xatoni topib tuzatish qanday ataladi?", ru: 'Как называется поиск и исправление ошибки в коде?' }, back: { uz: "Debugging", ru: 'Дебаггинг' }, note: { uz: "AI ham xato qiladi — siz tekshirasiz", ru: 'ИИ тоже ошибается — проверяете вы' } },
 ];
 const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, []); // eslint-disable-line
@@ -1882,7 +1884,7 @@ const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) =>
     <Stage eyebrow={tr({ uz: 'Takrorlash', ru: 'Повторение' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={false} label={tr({ uz: 'Yakunlash →', ru: 'Завершить →' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Tushunchalarni <span className="italic" style={{ color: T.accent }}>tez takrorlaymiz</span>.</>, ru: <>Быстро <span className="italic" style={{ color: T.accent }}>повторим понятия</span>.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Darsni yakunlashdan oldin bugun o'rgangan tushunchalarni takrorlaymiz. Har kartada bir izoh — <b style={{ color: T.ink }}>qaysi tushuncha</b> ekanini o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</>, ru: <>Перед завершением урока повторим изученные сегодня понятия. На каждой карточке описание — подумайте, <b style={{ color: T.ink }}>какое это понятие</b>, потом нажмите на карточку и проверьте. Оцените кнопками <b style={{ color: T.ink }}>Знаю</b> или <b style={{ color: T.ink }}>Повторить</b>.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Darsni yakunlashdan oldin bugun o'rgangan tushunchalarni takrorlaymiz. Har kartada bir savol — <b style={{ color: T.ink }}>javobini</b> o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</>, ru: <>Перед завершением урока повторим изученные сегодня понятия. На каждой карточке вопрос — подумайте, <b style={{ color: T.ink }}>каким будет ответ</b>, потом нажмите на карточку и проверьте. Оцените кнопками <b style={{ color: T.ink }}>Знаю</b> или <b style={{ color: T.ink }}>Повторить</b>.</> })}</Mentor>
         <div className="fc-center"><Flashcards cards={REACT_FLASHCARDS} /></div>
       </div>
     </Stage>
@@ -1934,7 +1936,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
           <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> {tr({ uz: 'Endi siz bilasiz', ru: 'Теперь вы знаете' })}</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{r}</span></li>))}</ul></div>
           <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: "Atrofingizdagi ilovalarga React ko'zi bilan qarang:", ru: 'Посмотрите на окружающие приложения глазами React:' })}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{h.b}</b> <span className="t">{h.t}</span></li>))}</ul><p className="hw-note">{tr({ uz: "Keyingi darsda muhitni o'rnatib, birinchi React komponentingizni o'zingiz yozasiz! 🚀", ru: 'На следующем уроке настроите окружение и сами напишете свой первый React-компонент! 🚀' })}</p></div>
         </div>
-        <div className="card ach-coll fade-up d3">
+        {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🏅 Nishonlaringiz', ru: '🏅 Ваши награды' })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">
             {Object.entries(ACHIEVEMENTS).map(([id, a]) => { const got = !!(achievements && achievements.has(id)); return (
@@ -1945,7 +1947,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
               </div>
             ); })}
           </div>
-        </div>
+        </div>}
       </div>
     </Stage>
   );
@@ -2528,7 +2530,7 @@ function QuizArena({ live, onClose, startSolo }) {
             <div className={`qz-res ${my?.correct ? 'good' : 'bad'}`}>
               {my?.correct
                 ? <><span className="qz-res-pts">+{myPtsFor(qi)}</span><span className="qz-res-t">{tr({ uz: 'ball', ru: 'баллов' })}{streakUpTo(qi) >= 2 ? ` · 🔥 x${streakUpTo(qi)} ${tr({ uz: 'streak', ru: 'стрик' })}` : ''}</span></>
-                : <span className="qz-res-t">{my ? tr({ uz: "Xato — 0 ball. Keyingisida olasiz! 💪", ru: 'Ошибка — 0 баллов. Возьмёте на следующем! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Быстрее! ⏱' })}</span>}
+                : <span className="qz-res-t">{my ? tr({ uz: "Adashdingiz — 0 ball. Keyingisida olasiz! 💪", ru: 'Ошибка — 0 баллов. Возьмёте на следующем! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Быстрее! ⏱' })}</span>}
               {!solo && myRank >= 0 && <span className="qz-res-rank">{tr({ uz: 'Siz hozir:', ru: 'Вы сейчас:' })} {myRank + 1}{tr({ uz: "-o'rin", ru: '-е место' })}</span>}
             </div>
           )}

@@ -458,6 +458,7 @@ const Col = ({ children, gap }) => <div className="col" style={gap ? { gap } : u
 // 🏅 Badges hisoblagichi (Stage chrome'ida) — bosilganda kolleksiya ochiladi
 function AchCounter() {
   const earned = useContext(AchCtx);
+  const gate = useContext(LiveGateCtx);
   const count = earned ? earned.size : 0;
   const total = Object.keys(ACHIEVEMENTS).length;
   const prevRef = useRef(count);
@@ -467,6 +468,7 @@ function AchCounter() {
     if (count > prevRef.current) { setBump(true); const t = setTimeout(() => setBump(false), 800); prevRef.current = count; return () => clearTimeout(t); }
     prevRef.current = count;
   }, [count]);
+  if (gate && gate.live && gate.live.mode === 'mentor') return null; // 🔴 mentor proyektorida nishon YO'Q (hooklardan KEYIN)
   return (
     <div className="ach-cnt-wrap">
       <button className={`ach-counter ${bump ? 'bump' : ''} ${count > 0 ? 'has' : ''}`} onClick={() => setOpen(o => !o)} aria-label="Badges" title="Badges">
@@ -1769,16 +1771,17 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 
 // ===== 🃏 FLASHCARDS — sistema/algoritm tushunchalari (karkas — matnni Metodist sayqallaydi) =====
 const JS_FLASHCARDS = [
-  { front: { uz: "Birga ishlab, umumiy maqsadga xizmat qiladigan qismlar", ru: 'Части, которые работают вместе ради общей цели' }, back: { uz: 'Sistema', ru: 'Система' }, note: { uz: 'tana · jamoa · sayt', ru: 'тело · команда · сайт' } },
-  { front: { uz: "Sistemaning bitta qismi", ru: 'Одна часть системы' }, back: { uz: 'Komponent', ru: 'Компонент' }, note: { uz: "yurak, o'pka…", ru: 'сердце, лёгкие…' } },
-  { front: { uz: "Qismlarni bir-biriga ulaydigan aloqa", ru: 'Соединение, связывающее части между собой' }, back: { uz: "Bog'lanish", ru: 'Связь' }, note: { uz: "qismlar orasidagi yo'l", ru: 'путь между частями' } },
-  { front: { uz: "Aniq, ketma-ket qadamlar (retsept)", ru: 'Точные, последовательные шаги (рецепт)' }, back: { uz: 'Algoritm', ru: 'Алгоритм' }, note: { uz: 'nima qilish rejasi', ru: 'план действий' } },
-  { front: { uz: "Qadamlar bir-biridan keyin, to'g'ri tartibda", ru: 'Шаги один за другим, в правильном порядке' }, back: { uz: 'Ketma-ketlik', ru: 'Последовательность' }, note: { uz: 'tartib muhim', ru: 'порядок важен' } },
-  { front: { uz: "«Agar yomg'ir bo'lsa — soyabon ol»", ru: '«Если идёт дождь — возьми зонт»' }, back: { uz: 'Shart', ru: 'Условие' }, note: { uz: "agar…bo'lsa…", ru: 'если… то…' } },
-  { front: { uz: "«O'tirib-tur × 10 marta»", ru: '«Присядь × 10 раз»' }, back: { uz: 'Sikl', ru: 'Цикл' }, note: { uz: 'takrorlash', ru: 'повторение' } },
-  { front: { uz: "Kompyuter bajaradigan tayyor algoritm", ru: 'Готовый алгоритм, который выполняет компьютер' }, back: { uz: 'Dastur', ru: 'Программа' }, note: { uz: 'kodga aylangan algoritm', ru: 'алгоритм, ставший кодом' } },
-  { front: { uz: "Xatoni topib tuzatish", ru: 'Найти и исправить ошибку' }, back: { uz: 'Debugging', ru: 'Debugging' }, note: { uz: 'dasturchi mahorati', ru: 'навык программиста' } },
-  { front: { uz: "Nonushta retsepti — bu nimaga misol?", ru: 'Рецепт завтрака — пример чего?' }, back: { uz: 'Algoritm', ru: 'Алгоритм' }, note: { uz: 'qadam-baqadam', ru: 'шаг за шагом' } },
+  { front: { uz: "Birga ishlab, bitta maqsadga xizmat qiladigan qismlar to'plami qanday ataladi?", ru: 'Как называется набор частей, которые работают вместе ради одной цели?' }, back: { uz: 'Sistema', ru: 'Система' }, note: { uz: 'tana · jamoa · sayt — hammasi sistema', ru: 'тело · команда · сайт — всё это системы' } },
+  { front: { uz: "Sistemaning bitta qismini nima deb ataymiz?", ru: 'Как мы называем одну часть системы?' }, back: { uz: 'Komponent', ru: 'Компонент' }, note: { uz: "yurak — tananing komponenti", ru: 'сердце — компонент тела' } },
+  { front: { uz: "Qismlarni bir-biriga ulaydigan yo'l qanday ataladi?", ru: 'Как называется путь, соединяющий части между собой?' }, back: { uz: "Bog'lanish", ru: 'Связь' }, note: { uz: "yurak qon yuboradi — o'pkaga boradi", ru: 'сердце гонит кровь — она идёт в лёгкие' } },
+  { front: { uz: "Aniq, ketma-ket qadamlardan tuzilgan reja qanday ataladi?", ru: 'Как называется план из точных, последовательных шагов?' }, back: { uz: 'Algoritm', ru: 'Алгоритм' }, note: { uz: "non oling · murabbo suring · yeng", ru: 'возьмите хлеб · намажьте варенье · ешьте' } },
+  { front: { uz: "Algoritmda qadamlar tartibi muhimmi?", ru: 'Важен ли в алгоритме порядок шагов?' }, back: { uz: 'Ha, juda muhim', ru: 'Да, очень важен' }, note: { uz: "avval non, keyin murabbo — teskarisi ishlamaydi", ru: 'сначала хлеб, потом варенье — наоборот не выйдет' } },
+  { front: { uz: "«Agar yomg'ir yog'sa — soyabon oling» — bu qanday qadam?", ru: '«Если идёт дождь — возьмите зонт» — что это за шаг?' }, back: { uz: 'Shart', ru: 'Условие' }, note: { uz: "agar... bo'lsa... — yo'l tanlaydi", ru: 'если... то... — выбирает путь' } },
+  { front: { uz: "«10 marta o'tirib-turing» — bu qanday qadam?", ru: '«Присядьте 10 раз» — что это за шаг?' }, back: { uz: 'Sikl', ru: 'Цикл' }, note: { uz: 'bitta harakat ko\'p marta qaytariladi', ru: 'одно движение повторяется много раз' } },
+  { front: { uz: "Shart bilan sikl orasidagi farq nima?", ru: 'В чём разница между условием и циклом?' }, back: { uz: 'Shart tanlaydi, sikl takrorlaydi', ru: 'Условие выбирает, цикл повторяет' }, note: { uz: "shart bir marta tekshiradi", ru: 'условие проверяет один раз' } },
+  { front: { uz: "Kompyuter bajaradigan tayyor algoritm nima deb ataladi?", ru: 'Как называется готовый алгоритм, который выполняет компьютер?' }, back: { uz: 'Dastur', ru: 'Программа' }, note: { uz: 'kodga aylangan algoritm', ru: 'алгоритм, ставший кодом' } },
+  { front: { uz: "Koddagi xatoni topib tuzatish qanday ataladi?", ru: 'Как называется поиск и исправление ошибки в коде?' }, back: { uz: 'Debugging', ru: 'Debugging' }, note: { uz: "har bir dasturchi buni har kuni qiladi", ru: 'это делает каждый программист каждый день' } },
+  { front: { uz: "Bitta g'ildirak mashina bo'la oladimi?", ru: 'Может ли одно колесо быть машиной?' }, back: { uz: "Yo'q — qismlar birga kerak", ru: 'Нет — нужны все части вместе' }, note: { uz: "sistema = qismlar + bog'lanishlar", ru: 'система = части + связи' } },
 ];
 function Flashcards({ cards }) {
   const [queue, setQueue] = useState(() => cards.map((_, i) => i));
@@ -1811,7 +1814,7 @@ function Flashcards({ cards }) {
       <div className="fc-cardwrap">
         <div className={`fc-fly ${exiting === 'knew' ? 'out-knew' : ''} ${exiting === 'again' ? 'out-again' : ''}`} key={swapRef.current}>
         <div className={`fc-card ${flipped ? 'flip' : ''}`} onClick={() => !flipped && !exiting && setFlipped(true)} role="button" tabIndex={0}>
-          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: 'Qaysi tushuncha?', ru: 'Какое это понятие?' })} 🤔 <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
+          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: "Javobni o'ylang", ru: 'Подумайте над ответом' })} 🤔 <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
           <div className="fc-face fc-back"><span className="fc-tag">{tr(card.back)}</span>{card.note && <span className="fc-note">{tr(card.note)}</span>}</div>
         </div>
         </div>
@@ -1825,13 +1828,13 @@ function Flashcards({ cards }) {
 
 // ===== SCREEN: FLASHCARD TAKRORLASH (yakuniy summarydan oldin) =====
 const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const audio = useAudio([{ id: 'sflash', text: `Darsni yakunlashdan oldin, bugun o'rgangan tushunchalarni tez takrorlaymiz. Har kartada bir izoh — qaysi tushuncha ekanini o'ylang, keyin kartani bosib tekshiring.`, trigger: 'on_mount', waits_for: null }]);
+  const audio = useAudio([{ id: 'sflash', text: `Darsni yakunlashdan oldin, bugun o'rgangan tushunchalarni tez takrorlaymiz. Har kartada bir savol — javobini o'ylang, keyin kartani bosib tekshiring.`, trigger: 'on_mount', waits_for: null }]);
   useEffect(() => { if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, []); // eslint-disable-line
   return (
     <Stage eyebrow={tr({ uz: 'Takrorlash', ru: 'Повторение' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={false} label={tr({ uz: 'Yakunlash →', ru: 'Завершить →' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Tushunchalarni <span className="italic" style={{ color: T.accent }}>tez takrorlaymiz</span>.</>, ru: <>Быстро <span className="italic" style={{ color: T.accent }}>повторим понятия</span>.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Darsni yakunlashdan oldin bugun o'rgangan tushunchalarni takrorlaymiz. Har kartada bir izoh — <b style={{ color: T.ink }}>qaysi tushuncha</b> ekanini o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</>, ru: <>Перед завершением урока повторим понятия, которые вы сегодня узнали. На каждой карточке подсказка — подумайте, <b style={{ color: T.ink }}>какое это понятие</b>, потом нажмите на карточку и проверьте себя. Оценивайте кнопками <b style={{ color: T.ink }}>Знаю</b> или <b style={{ color: T.ink }}>Повторить</b>.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Darsni yakunlashdan oldin bugun o'rgangan tushunchalarni takrorlaymiz. Har kartada bir savol — <b style={{ color: T.ink }}>javobini</b> o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</>, ru: <>Перед завершением урока повторим понятия, которые вы сегодня узнали. На каждой карточке вопрос — подумайте, <b style={{ color: T.ink }}>каким будет ответ</b>, потом нажмите на карточку и проверьте себя. Оценивайте кнопками <b style={{ color: T.ink }}>Знаю</b> или <b style={{ color: T.ink }}>Повторить</b>.</> })}</Mentor>
         <div className="fc-center"><Flashcards cards={JS_FLASHCARDS} /></div>
       </div>
     </Stage>
@@ -1891,11 +1894,12 @@ const Screen16 = ({ screen, answers, onReset, onPrev, onFinish }) => {
           <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> {tr({ uz: 'Endi siz bilasiz', ru: 'Теперь вы знаете' })}</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{r}</span></li>))}</ul></div>
           <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: 'Atrofingizdagi hayotni algoritm qilib yozing:', ru: 'Опишите жизнь вокруг себя в виде алгоритма:' })}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{h.b}</b> <span className="t">{h.t}</span></li>))}</ul><p className="hw-note">{tr({ uz: 'Keyingi darsda shu algoritmlarni kompyuterga JavaScript tilida yozishni boshlaymiz! 🚀', ru: 'На следующем уроке начнём записывать эти алгоритмы для компьютера на языке JavaScript! 🚀' })}</p></div>
         </div>
-        <div className="card fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🏅 Nishonlaringiz —', ru: '🏅 Ваши награды —' })} {earned ? earned.size : 0}/{Object.keys(ACHIEVEMENTS).length}</div>
+        {/* 🔴 Nishon-kolleksiyasi — SHAXSIY hisob, mentor proyektorida ko'rsatilmaydi (90-qonun) */}
+        {!isMentorL && <div className="card fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🏅 Nishonlaringiz —', ru: '🏅 Ваши награды —' })} {earned ? earned.size : 0}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid" style={{ marginTop: 8 }}>{Object.entries(ACHIEVEMENTS).map(([id, a]) => { const got = !!(earned && earned.has(id)); return (
             <div key={id} className={`ach-badge ${got ? 'got' : 'locked'}`}><span className="ach-badge-ic">{got ? a.icon : '🔒'}</span><span className="ach-badge-name">{a.name}</span><span className="ach-badge-desc">{got ? tr(a.desc) : '—'}</span></div>
           ); })}</div>
-        </div>
+        </div>}
         <div ref={glossRef} className="gloss fade-up d4" style={{ scrollMarginBottom: 16 }}><div className="gloss-head" onClick={toggleGloss}><span className="lbl">{tr({ uz: "💡 Kalit so'zlar (takrorlash)", ru: '💡 Ключевые слова (повторение)' })}</span><span className="gloss-toggle">{open ? '−' : '+'}</span></div>{open && (<div className="gloss-body">{GLOSSARY.map((g, i) => (<span key={i}><b>{g.b}</b> {g.t}{i < GLOSSARY.length - 1 ? ' · ' : ''}</span>))}</div>)}</div>
       </div>
       {arena && <QuizArena live={live || { mode: 'self' }} startSolo={arenaSolo} onClose={() => setArena(false)} />}
@@ -2456,7 +2460,7 @@ function QuizArena({ live, onClose, startSolo }) {
             <div className={`qz-res ${my?.correct ? 'good' : 'bad'}`}>
               {my?.correct
                 ? <><span className="qz-res-pts">+{myPtsFor(qi)}</span><span className="qz-res-t">{tr({ uz: 'ball', ru: 'баллов' })}{streakUpTo(qi) >= 2 ? ` · 🔥 x${streakUpTo(qi)} streak` : ''}</span></>
-                : <span className="qz-res-t">{my ? tr({ uz: "Xato — 0 ball. Keyingisida olasiz! 💪", ru: 'Ошибка — 0 баллов. Возьмёте своё на следующем! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Будьте быстрее! ⏱' })}</span>}
+                : <span className="qz-res-t">{my ? tr({ uz: "Adashdingiz — 0 ball. Keyingisida olasiz! 💪", ru: 'Ошибка — 0 баллов. Возьмёте своё на следующем! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Будьте быстрее! ⏱' })}</span>}
               {!solo && myRank >= 0 && <span className="qz-res-rank">{tr({ uz: 'Siz hozir:', ru: 'Вы сейчас:' })} {myRank + 1}-{tr({ uz: "o'rin", ru: 'е место' })}</span>}
             </div>
           )}

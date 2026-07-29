@@ -1765,7 +1765,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
           <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> {tr({ uz: 'Endi siz bilasiz', ru: 'Теперь Вы знаете' })}</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{r}</span></li>))}</ul></div>
           <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: 'Uyga vazifa', ru: 'Домашнее задание' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: 'Rejalashtirishni mashq qiling:', ru: 'Потренируйте планирование:' })}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{h.b}</b> <span className="t">{h.t}</span></li>))}</ul><p className="hw-note">{tr({ uz: "Esda tuting: avval o'ylab bo'laklang, keyin AI'ni oching.", ru: 'Помните: сначала подумайте и разбейте, потом открывайте AI.' })}</p></div>
         </div>
-        <div className="card ach-coll fade-up d3">
+        {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>🏅 {tr({ uz: 'Nishonlaringiz', ru: 'Ваши награды' })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">
             {Object.entries(ACHIEVEMENTS).map(([id, a]) => { const got = !!(achievements && achievements.has(id)); return (
@@ -1776,7 +1776,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
               </div>
             ); })}
           </div>
-        </div>
+        </div>}
       </div>
     </Stage>
   );
@@ -2002,13 +2002,16 @@ function DragDropOrder({ items, hints, onSolved }) {
 
 // 🃏 Qayta ishlatiladigan FLASHCARDS — aktiv takrorlash (3D flip + o'z-o'zini baholash).
 const PLANNING_FLASHCARDS = [
-  { front: { uz: "Katta vazifani kichik qadamlarga bo'lish", ru: 'Разбиение большой задачи на маленькие шаги' }, back: { uz: 'Dekompozitsiya', ru: 'Декомпозиция' }, note: { uz: "avval bo'laklab rejalashtir", ru: 'сначала разбей и спланируй' } },
-  { front: { uz: 'Eng kichik ishlaydigan versiya', ru: 'Минимальная работающая версия' }, back: 'MVP', note: { uz: 'masalan: avval skeytbord, keyin mashina', ru: 'например: сначала скейтборд, потом машина' } },
-  { front: { uz: "AI'ni ochishdan oldin tuzilgan qadamlar", ru: 'Шаги, составленные до открытия AI' }, back: { uz: 'Reja', ru: 'План' }, note: { uz: "avval o'yla, keyin och", ru: 'сначала подумай, потом открывай' } },
-  { front: { uz: 'Loyihaning asosiy ishlaydigan qismi', ru: 'Основная работающая часть проекта' }, back: { uz: "O'zak", ru: 'Ядро' }, note: { uz: 'poydevor + eng zarur qism', ru: 'фундамент + самое нужное' } },
-  { front: { uz: 'Loyihani rejalashtiruvchi (siz)', ru: 'Тот, кто планирует проект (Вы)' }, back: { uz: 'Arxitektor', ru: 'Архитектор' }, note: { uz: 'AI — quruvchi', ru: 'AI — строитель' } },
-  { front: { uz: "Do'kon qurishni qaysi qadamdan boshlaymiz", ru: 'С какого шага начинаем строить магазин' }, back: { uz: "Mahsulotlar ro'yxati", ru: 'Список товаров' }, note: { uz: "poydevor — busiz savat ham ma'nosiz", ru: 'фундамент — без него и корзина бессмысленна' } },
-  { front: { uz: 'Noaniq buyruq nimaga olib keladi', ru: 'К чему приводит неточная команда' }, back: { uz: "Bo'sh natija", ru: 'Пустой результат' }, note: { uz: 'aniq buyruq → aniq natija', ru: 'точная команда → точный результат' } },
+  { front: { uz: "Katta vazifani kichik qadamlarga bo'lish qanday ataladi?", ru: 'Как называется разбиение большой задачи на маленькие шаги?' }, back: { uz: 'Dekompozitsiya', ru: 'Декомпозиция' }, note: { uz: "avval bo'laklaymiz, keyin quramiz", ru: 'сначала разбиваем, потом строим' } },
+  { front: { uz: 'MVP nima degani?', ru: 'Что значит MVP?' }, back: { uz: 'Eng kichik ishlaydigan versiya', ru: 'Минимальная работающая версия' }, note: { uz: 'skeytbord ham manzilga olib boradi', ru: 'скейтборд тоже довезёт до места' } },
+  { front: { uz: "AI'ni ochishdan oldin nima tayyorlaysiz?", ru: 'Что Вы готовите до того, как открыть AI?' }, back: { uz: 'Reja', ru: 'План' }, note: { uz: "avval o'ylaymiz, keyin buyruq beramiz", ru: 'сначала думаем, потом даём команду' } },
+  { front: { uz: "Mini-do'konni qaysi qismidan boshlaymiz?", ru: 'С какой части начинаем мини-магазин?' }, back: { uz: "Mahsulotlar ro'yxatidan", ru: 'Со списка товаров' }, note: { uz: "bu poydevor — usiz savat bekor", ru: 'это фундамент — без него корзина не нужна' } },
+  { front: { uz: "Do'kon MVP o'zagi nimalardan iborat?", ru: 'Из чего состоит ядро MVP магазина?' }, back: { uz: "Ro'yxat va narx", ru: 'Список и цены' }, note: { uz: "katalog — mijoz ko'radigan vitrina", ru: 'каталог — витрина, которую видит клиент' } },
+  { front: { uz: 'Loyihada siz qaysi rolni bajarasiz?', ru: 'Какую роль в проекте выполняете Вы?' }, back: { uz: 'Arxitektor', ru: 'Архитектор' }, note: { uz: 'siz reja tuzasiz, AI quradi', ru: 'Вы составляете план, AI строит' } },
+  { front: { uz: 'Login va reklama MVP uchun shartmi?', ru: 'Логин и реклама обязательны для MVP?' }, back: { uz: "Yo'q", ru: 'Нет' }, note: { uz: "bular bezak — keyin qo'shiladi", ru: 'это украшение — добавим потом' } },
+  { front: { uz: 'Aniq buyruq nima beradi?', ru: 'Что даёт точная команда?' }, back: { uz: 'Aniq natija', ru: 'Точный результат' }, note: { uz: "«4 mahsulotli ro'yxat» — «biror narsa qil» emas", ru: '«список из 4 товаров», а не «сделай что-нибудь»' } },
+  { front: { uz: 'Agent qurishdan oldin nima qiladi?', ru: 'Что делает агент, прежде чем строить?' }, back: { uz: "Rejasini ko'rsatadi", ru: 'Показывает свой план' }, note: { uz: 'siz tasdiqlaysiz — keyin quradi', ru: 'Вы подтверждаете — и он строит' } },
+  { front: { uz: "To'g'ri qurilish tartibi qanday?", ru: 'Какой порядок стройки верный?' }, back: { uz: "Ro'yxat → narx → ko'rinish", ru: 'Список → цены → вид' }, note: { uz: 'pastdan yuqoriga: avval asos', ru: 'снизу вверх: сначала основа' } },
 ];
 function Flashcards({ cards }) {
   const [queue, setQueue] = useState(() => cards.map((_, i) => i));
@@ -2041,7 +2044,7 @@ function Flashcards({ cards }) {
       <div className="fc-cardwrap">
         <div className={`fc-fly ${exiting === 'knew' ? 'out-knew' : ''} ${exiting === 'again' ? 'out-again' : ''}`} key={swapRef.current}>
         <div className={`fc-card ${flipped ? 'flip' : ''}`} onClick={() => !flipped && !exiting && setFlipped(true)} role="button" tabIndex={0}>
-          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: 'Qaysi atama?', ru: 'Какой термин?' })} 🤔 <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
+          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: "Javobni o'ylang", ru: 'Подумайте над ответом' })} 🤔 <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
           <div className="fc-face fc-back"><span className="fc-tag">{tr(card.back)}</span>{card.note && <span className="fc-note">{tr(card.note)}</span>}</div>
         </div>
         </div>
@@ -2060,7 +2063,7 @@ const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) =>
     <Stage eyebrow={tr({ uz: 'Takrorlash', ru: 'Повторение' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={false} label={{ uz: 'Yakunlash →', ru: 'Завершить →' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Kalit so'zlarni <span className="italic" style={{ color: T.accent }}>tez takrorlaymiz</span>.</>, ru: <>Быстро повторим <span className="italic" style={{ color: T.accent }}>ключевые слова</span>.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Yakunlashdan oldin bugungi rejalashtirish atamalarini takrorlaymiz. Har kartada bir ta'rif — <b style={{ color: T.ink }}>qaysi atama</b> ekanini o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</>, ru: <>Перед финалом повторим сегодняшние термины планирования. На каждой карточке — определение: подумайте, <b style={{ color: T.ink }}>какой это термин</b>, потом нажмите на карточку и проверьте. Оцените себя кнопками <b style={{ color: T.ink }}>Знаю</b> или <b style={{ color: T.ink }}>Повторить</b>.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Yakunlashdan oldin bugungi rejalashtirish atamalarini takrorlaymiz. Har kartada bir savol — <b style={{ color: T.ink }}>javobini</b> o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</>, ru: <>Перед финалом повторим сегодняшние термины планирования. На каждой карточке — вопрос: подумайте, <b style={{ color: T.ink }}>каким будет ответ</b>, потом нажмите на карточку и проверьте. Оцените себя кнопками <b style={{ color: T.ink }}>Знаю</b> или <b style={{ color: T.ink }}>Повторить</b>.</> })}</Mentor>
         <div className="fc-center"><Flashcards cards={PLANNING_FLASHCARDS} /></div>
       </div>
     </Stage>
@@ -2206,6 +2209,7 @@ function AchToasts({ toasts, onDone }) {
 }
 function AchCounter() {
   const earned = useContext(AchCtx);
+  const gate = useContext(LiveGateCtx);
   const count = earned ? earned.size : 0;
   const total = Object.keys(ACHIEVEMENTS).length;
   const prevRef = useRef(count);
@@ -2215,6 +2219,7 @@ function AchCounter() {
     if (count > prevRef.current) { setBump(true); const t = setTimeout(() => setBump(false), 800); prevRef.current = count; return () => clearTimeout(t); }
     prevRef.current = count;
   }, [count]);
+  if (gate && gate.live && gate.live.mode === 'mentor') return null; // 🔴 mentor proyektorida nishon YO'Q (hooklardan KEYIN)
   return (
     <div className="ach-cnt-wrap">
       <button className={`ach-counter ${bump ? 'bump' : ''} ${count > 0 ? 'has' : ''}`} onClick={() => setOpen(o => !o)} aria-label="Badges" title="Badges">
@@ -2535,7 +2540,7 @@ function QuizArena({ live, onClose, startSolo }) {
             <div className={`qz-res ${my?.correct ? 'good' : 'bad'}`}>
               {my?.correct
                 ? <><span className="qz-res-pts">+{myPtsFor(qi)}</span><span className="qz-res-t">{tr({ uz: 'ball', ru: 'баллов' })}{streakUpTo(qi) >= 2 ? ` · 🔥 x${streakUpTo(qi)} streak` : ''}</span></>
-                : <span className="qz-res-t">{my ? tr({ uz: 'Xato — 0 ball. Keyingisida olasiz! 💪', ru: 'Ошибка — 0 баллов. Возьмёте на следующем! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Быстрее! ⏱' })}</span>}
+                : <span className="qz-res-t">{my ? tr({ uz: 'Adashdingiz — 0 ball. Keyingisida olasiz! 💪', ru: 'Ошибка — 0 баллов. Возьмёте на следующем! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Быстрее! ⏱' })}</span>}
               {!solo && myRank >= 0 && <span className="qz-res-rank">{tr({ uz: `Siz hozir: ${myRank + 1}-o'rin`, ru: `Вы сейчас: ${myRank + 1}-е место` })}</span>}
             </div>
           )}

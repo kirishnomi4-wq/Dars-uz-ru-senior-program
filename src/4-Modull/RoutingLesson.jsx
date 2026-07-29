@@ -381,6 +381,7 @@ const Col = ({ children, gap }) => <div className="col" style={gap ? { gap } : u
 // 🏅 Yuqori paneldagi nishon hisoblagichi (Stage chrome)
 function AchCounter() {
   const earned = useContext(AchCtx);
+  const gate = useContext(LiveGateCtx);
   const count = earned ? earned.size : 0;
   const total = Object.keys(ACHIEVEMENTS).length;
   const prevRef = useRef(count);
@@ -390,6 +391,7 @@ function AchCounter() {
     if (count > prevRef.current) { setBump(true); const t = setTimeout(() => setBump(false), 800); prevRef.current = count; return () => clearTimeout(t); }
     prevRef.current = count;
   }, [count]);
+  if (gate && gate.live && gate.live.mode === 'mentor') return null; // 🔴 mentor proyektorida nishon YO'Q (hooklardan KEYIN)
   return (
     <div className="ach-cnt-wrap">
       <button className={`ach-counter ${bump ? 'bump' : ''} ${count > 0 ? 'has' : ''}`} onClick={() => setOpen(o => !o)} aria-label="Badges" title="Badges">
@@ -918,7 +920,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   const audio = useAudio([{ id: 's2', text: `Har so'rov — xuddi konvertdagi xat. Unda ikki narsa bor: shtamp, ya'ni method — nima qilmoqchi (olishmi, qo'shishmi), va manzil, ya'ni path — qaysi bo'limga. O'zingiz bitta xatni yig'ing: avval method tanlang, keyin path. Shu ikkisi birgalikda serverga qaysi eshik kerakligini aytadi.`, trigger: 'on_mount', waits_for: null }]);
   return (
-    <Stage eyebrow={tr({ uz: "So'rov anatomiyasi", ru: 'Анатомия запроса' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "So'rovni yig'ing", ru: 'Соберите запрос' })} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: "So'rov tuzilishi", ru: 'Анатомия запроса' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "So'rovni yig'ing", ru: 'Соберите запрос' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Har bir so'rov <span className="italic" style={{ color: T.accent }}>nimadan</span> iborat?</>, ru: <>Из чего <span className="italic" style={{ color: T.accent }}>состоит</span> каждый запрос?</> })}</h2></div>
         <Mentor>{tr({ uz: <>Brauzer serverga so'rov yuborganda ikki narsani aytadi: <b style={{ color: T.ink }}>METHOD</b> (nima qilmoqchi — olish? qo'shish?) va <b style={{ color: T.ink }}>PATH</b> (qaysi manzilda). Mana shu ikkisi birgalikda so'rovni belgilaydi. O'zingiz bittasini yig'ing.</>, ru: <>Отправляя запрос серверу, браузер сообщает две вещи: <b style={{ color: T.ink }}>METHOD</b> (что хочу — получить? добавить?) и <b style={{ color: T.ink }}>PATH</b> (по какому адресу). Вместе они и определяют запрос. Соберите один сами.</> })}</Mentor>
@@ -1652,7 +1654,7 @@ function Flashcards({ cards }) {
       <div className="fc-cardwrap">
         <div className={`fc-fly ${exiting === 'knew' ? 'out-knew' : ''} ${exiting === 'again' ? 'out-again' : ''}`} key={swapRef.current}>
         <div className={`fc-card ${flipped ? 'flip' : ''}`} onClick={() => !flipped && !exiting && setFlipped(true)} role="button" tabIndex={0}>
-          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: 'Qaysi tushuncha? 🤔', ru: 'Что за понятие? 🤔' })} <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
+          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: "Javobni o'ylang", ru: 'Подумайте над ответом' })} 🤔 <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
           <div className="fc-face fc-back"><span className="fc-tag">{tr(card.back)}</span>{card.note && <span className="fc-note">{tr(card.note)}</span>}</div>
         </div>
         </div>
@@ -1663,29 +1665,29 @@ function Flashcards({ cards }) {
     </div>
   );
 }
-// 🃏 ROUTING FLASHCARD KARTALARI (front=izoh, back=tushuncha) — Metodist keyin sayqallaydi
+// 🃏 ROUTING FLASHCARD KARTALARI (front = savol, back = qisqa javob, note = bir qatorlik misol)
 const ROUTING_FLASHCARDS = [
-  { front: { uz: "Shtamp va manzil — server topadigan eshik", ru: 'Штамп и адрес — дверь, которую находит сервер' }, back: "Route", note: "method + path" },
-  { front: { uz: "Konvert shtampi — so'rovning niyati", ru: 'Штамп на конверте — намерение запроса' }, back: "Method", note: "GET/POST/PUT/DELETE" },
-  { front: { uz: "So'rov manzili — qaysi bo'lim", ru: 'Адрес запроса — какой отдел' }, back: "Path", note: "/games" },
-  { front: { uz: "«Menga ko'rsat» — olish niyati", ru: '«Покажи мне» — намерение получить' }, back: "GET", note: { uz: "o'qish", ru: 'чтение' } },
-  { front: { uz: "«Buni qo'sh» — yaratish niyati", ru: '«Добавь это» — намерение создать' }, back: "POST", note: { uz: "yangi qo'shish", ru: 'добавить новое' } },
-  { front: { uz: "«Buni yangila» — almashtirish niyati", ru: '«Обнови это» — намерение заменить' }, back: "PUT", note: { uz: 'yangilash', ru: 'обновление' } },
-  { front: { uz: "«Buni o'chir» — o'chirish niyati", ru: '«Удали это» — намерение удалить' }, back: "DELETE", note: { uz: "o'chirish", ru: 'удаление' } },
-  { front: { uz: "«Istalgan xonadon» eshigi — o'zgaruvchi manzil", ru: 'Дверь «любой квартиры» — переменный адрес' }, back: "/:id", note: { uz: "bitta route, ko'p qiymat", ru: 'один route, много значений' } },
-  { front: { uz: ":id raqamini ushlab oluvchi", ru: 'Ловец числа :id' }, back: "@Param", note: { uz: 'qiymatni metodga beradi', ru: 'передаёт значение методу' } },
-  { front: { uz: "Bir mavzu xatlarining pochta bo'limi", ru: 'Почтовое отделение писем одной темы' }, back: "Controller", note: "@Controller('games')" },
-  { front: { uz: "Eshik tabelkasi — metodni so'rovga bog'lovchi", ru: 'Табличка двери — связывает метод с запросом' }, back: "@Get / @Post", note: { uz: 'dekorator', ru: 'декоратор' } },
-  { front: { uz: "Mos eshik yo'q — vozvrat", ru: 'Подходящей двери нет — возврат' }, back: "404", note: "Not Found" },
+  { front: { uz: "Route qaysi ikki qismdan iborat?", ru: 'Из каких двух частей состоит route?' }, back: "method + path", note: { uz: "Shtamp va manzil: ikkisi birga bitta eshikni ochadi", ru: 'Штамп и адрес: вместе они открывают одну дверь' } },
+  { front: { uz: "So'rovning niyatini qaysi qism ko'rsatadi?", ru: 'Какая часть показывает намерение запроса?' }, back: "Method", note: "GET · POST · PUT · DELETE" },
+  { front: { uz: "So'rov qaysi bo'limga borishini qaysi qism aytadi?", ru: 'Какая часть говорит, в какой отдел идёт запрос?' }, back: "Path", note: { uz: "Manzil, masalan /games", ru: 'Адрес, например /games' } },
+  { front: { uz: "Ro'yxatni o'qish uchun qaysi method kerak?", ru: 'Какой method нужен, чтобы прочитать список?' }, back: "GET", note: { uz: "«Menga ko'rsat» — hech narsa o'zgarmaydi", ru: '«Покажи мне» — ничего не меняется' } },
+  { front: { uz: "Yangi o'yin qo'shish uchun qaysi method kerak?", ru: 'Какой method нужен, чтобы добавить новую игру?' }, back: "POST", note: { uz: "«Buni qo'sh» — yangi yozuv paydo bo'ladi", ru: '«Добавь это» — появляется новая запись' } },
+  { front: { uz: "Bor ma'lumotni yangilash uchun qaysi method kerak?", ru: 'Какой method нужен, чтобы обновить данные?' }, back: "PUT", note: { uz: "«Buni yangila» — eski qiymat almashadi", ru: '«Обнови это» — старое значение заменяется' } },
+  { front: { uz: "Ma'lumotni o'chirish uchun qaysi method kerak?", ru: 'Какой method нужен, чтобы удалить данные?' }, back: "DELETE", note: { uz: "«Buni o'chir» — yozuv yo'qoladi", ru: '«Удали это» — запись исчезает' } },
+  { front: { uz: "Bitta eshik ko'p qiymatga xizmat qilishi uchun path'ga nima yoziladi?", ru: 'Что пишут в path, чтобы одна дверь служила многим значениям?' }, back: "/:id", note: { uz: "/games/:id — bitta route minglab o'yinga yetadi", ru: '/games/:id — одного route хватит на тысячи игр' } },
+  { front: { uz: "So'rovdagi :id qiymatini nima ushlab oladi?", ru: 'Что ловит значение :id из запроса?' }, back: "@Param('id')", note: { uz: "/games/7 kelsa, id = 7 bo'lib metodga boradi", ru: 'Пришёл /games/7 — метод получит id = 7' } },
+  { front: { uz: "Bir mavzudagi barcha route'lar qayerda yig'iladi?", ru: 'Где собираются все route одной темы?' }, back: "@Controller('games')", note: { uz: "Umumiy manzil — ichidagi metodlar shunga qo'shiladi", ru: 'Общий адрес — методы внутри добавляются к нему' } },
+  { front: { uz: "Metodni so'rovga nima bog'laydi?", ru: 'Что привязывает метод к запросу?' }, back: "@Get / @Post", note: { uz: "Dekorator — eshik tabelkasi", ru: 'Декоратор — табличка на двери' } },
+  { front: { uz: "Mos route topilmasa, server nima qaytaradi?", ru: 'Что вернёт сервер, если подходящий route не найден?' }, back: "404 Not Found", note: { uz: "Method mos kelmasa ham 404 chiqadi", ru: 'Если не совпал даже method — тоже 404' } },
 ];
 const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, []); // eslint-disable-line
-  const audio = useAudio([{ id: 'sflash', text: `Darsni yakunlashdan oldin bugungi tushunchalarni tez takrorlaymiz. Har kartada bir izoh — qaysi tushuncha ekanini o'ylang, keyin kartani bosib tekshiring. Bildim yoki Takrorlash bilan o'zingizni baholang.`, trigger: 'on_mount', waits_for: null }]);
+  const audio = useAudio([{ id: 'sflash', text: `Darsni yakunlashdan oldin bugungi tushunchalarni tez takrorlaymiz. Har kartada bir savol — javobini o'ylang, keyin kartani bosib tekshiring. Bildim yoki Takrorlash bilan o'zingizni baholang.`, trigger: 'on_mount', waits_for: null }]);
   return (
     <Stage eyebrow={tr({ uz: 'Takrorlash', ru: 'Повторение' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={false} label={tr({ uz: 'Yakunlash →', ru: 'Завершить →' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Tushunchalarni <span className="italic" style={{ color: T.accent }}>tez takrorlaymiz</span>.</>, ru: <>Быстро <span className="italic" style={{ color: T.accent }}>повторим</span> понятия.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Darsni yakunlashdan oldin bugun o'rgangan tushunchalarni takrorlaymiz. Har kartada bir izoh — <b style={{ color: T.ink }}>qaysi tushuncha</b> ekanini o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</>, ru: <>Перед завершением урока повторим сегодняшние понятия. На каждой карточке — описание: подумайте, <b style={{ color: T.ink }}>какое это понятие</b>, затем нажмите на карточку и проверьте себя. Оцените себя кнопками <b style={{ color: T.ink }}>Знаю</b> и <b style={{ color: T.ink }}>Повторить</b>.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Darsni yakunlashdan oldin bugun o'rgangan tushunchalarni takrorlaymiz. Har kartada bir savol — <b style={{ color: T.ink }}>javobini</b> o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</>, ru: <>Перед завершением урока повторим сегодняшние понятия. На каждой карточке — вопрос: подумайте, <b style={{ color: T.ink }}>каким будет ответ</b>, затем нажмите на карточку и проверьте себя. Оцените себя кнопками <b style={{ color: T.ink }}>Знаю</b> и <b style={{ color: T.ink }}>Повторить</b>.</> })}</Mentor>
         <div className="fc-center"><Flashcards cards={ROUTING_FLASHCARDS} /></div>
       </div>
     </Stage>
@@ -2103,7 +2105,7 @@ function QuizArena({ live, onClose, startSolo }) {
             <div className={`qz-res ${my?.correct ? 'good' : 'bad'}`}>
               {my?.correct
                 ? <><span className="qz-res-pts">+{myPtsFor(qi)}</span><span className="qz-res-t">{tr({ uz: 'ball', ru: 'баллов' })}{streakUpTo(qi) >= 2 ? ` · 🔥 x${streakUpTo(qi)} streak` : ''}</span></>
-                : <span className="qz-res-t">{my ? tr({ uz: 'Xato — 0 ball. Keyingisida olasiz! 💪', ru: 'Ошибка — 0 баллов. Возьмёте на следующем! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Быстрее! ⏱' })}</span>}
+                : <span className="qz-res-t">{my ? tr({ uz: 'Adashdingiz — 0 ball. Keyingisida olasiz! 💪', ru: 'Ошибка — 0 баллов. Возьмёте на следующем! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Быстрее! ⏱' })}</span>}
               {!solo && myRank >= 0 && <span className="qz-res-rank">{tr({ uz: `Siz hozir: ${myRank + 1}-o'rin`, ru: `Вы сейчас: ${myRank + 1}-е место` })}</span>}
             </div>
           )}
@@ -2290,7 +2292,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
   return (
     <Stage eyebrow={tr({ uz: 'Tayyor', ru: 'Готово' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><button className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash ✓', ru: 'Завершить ✓' })}</button></>}>
       <div className="screen">
-        <div className="hero"><div className="hero-l"><span className="done-chip fade-up"><span className="tick">✓</span> {tr({ uz: 'Dars tugadi', ru: 'Урок завершён' })}</span><h2 className="title h-title fade-up d1">{tr({ uz: <>Routing'ni <span className="italic" style={{ color: T.accent }}>egalladingiz</span>.</>, ru: <>Вы <span className="italic" style={{ color: T.accent }}>освоили</span> роутинг.</> })}</h2><p className="body h-sub fade-up d2">{PASSED ? tr({ uz: "Tabriklaymiz! So'rov anatomiyasi, routing, HTTP method'lar, route param va Nest controller — hammasini tushundingiz va yangi POST eshigini o'zingiz ochdingiz.", ru: 'Поздравляем! Анатомия запроса, роутинг, HTTP-методы, route-параметр и Nest-контроллер — вы разобрались во всём и сами открыли новую POST-дверь.' }) : tr({ uz: "Yaxshi harakat! Routing va method tushunchalarini mustahkamlash uchun bir-ikki ekranni qayta ko'ring.", ru: 'Хорошая попытка! Чтобы закрепить роутинг и методы, пересмотрите пару экранов ещё раз.' })}</p></div><ScoreRing correct={correct} total={total} /></div>
+        <div className="hero"><div className="hero-l"><span className="done-chip fade-up"><span className="tick">✓</span> {tr({ uz: 'Dars tugadi', ru: 'Урок завершён' })}</span><h2 className="title h-title fade-up d1">{tr({ uz: <>Routing'ni <span className="italic" style={{ color: T.accent }}>egalladingiz</span>.</>, ru: <>Вы <span className="italic" style={{ color: T.accent }}>освоили</span> роутинг.</> })}</h2><p className="body h-sub fade-up d2">{PASSED ? tr({ uz: "Tabriklaymiz! So'rov tuzilishi, routing, HTTP method'lar, route param va Nest controller — hammasini tushundingiz va yangi POST eshigini o'zingiz ochdingiz.", ru: 'Поздравляем! Анатомия запроса, роутинг, HTTP-методы, route-параметр и Nest-контроллер — вы разобрались во всём и сами открыли новую POST-дверь.' }) : tr({ uz: "Yaxshi harakat! Routing va method tushunchalarini mustahkamlash uchun bir-ikki ekranni qayta ko'ring.", ru: 'Хорошая попытка! Чтобы закрепить роутинг и методы, пересмотрите пару экранов ещё раз.' })}</p></div><ScoreRing correct={correct} total={total} /></div>
         <div className={`qz-cta cs-cta fade-up d2 ${studentLive ? 'ready' : ''}`}>
           <CsWordmark stats={false} liveOn={studentLive} disabled={studentWait} onClick={studentWait ? undefined : openArena} hint={studentWait ? tr({ uz: '⏳ Mentorni kuting', ru: '⏳ Подождите ментора' }) : undefined} />
         </div>
@@ -2299,7 +2301,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
           <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> {tr({ uz: 'Endi siz bilasiz', ru: 'Теперь вы знаете' })}</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{r}</span></li>))}</ul></div>
           <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: 'Routingni mustahkamlang:', ru: 'Закрепите роутинг:' })}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{h.b}</b> <span className="t">{h.t}</span></li>))}</ul><p className="hw-note">{tr({ uz: "Keyingi modulda — Nest'ning to'liq arxitekturasi: controller, service, module qanday birga ishlaydi! 🚀", ru: 'В следующем модуле — полная архитектура Nest: как controller, service и module работают вместе! 🚀' })}</p></div>
         </div>
-        <div className="card ach-coll fade-up d3">
+        {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🏅 Nishonlaringiz —', ru: '🏅 Ваши значки —' })} {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">
             {Object.entries(ACHIEVEMENTS).map(([id, a]) => { const got = !!(achievements && achievements.has(id)); return (
@@ -2310,7 +2312,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
               </div>
             ); })}
           </div>
-        </div>
+        </div>}
       </div>
     </Stage>
   );

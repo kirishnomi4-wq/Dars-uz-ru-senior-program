@@ -456,6 +456,7 @@ const Col = ({ children, gap }) => <div className="col" style={gap ? { gap } : u
 
 function AchCounter() {
   const earned = useContext(AchCtx);
+  const gate = useContext(LiveGateCtx);
   const count = earned ? earned.size : 0;
   const total = Object.keys(ACHIEVEMENTS).length;
   const prevRef = useRef(count);
@@ -465,6 +466,7 @@ function AchCounter() {
     if (count > prevRef.current) { setBump(true); const t = setTimeout(() => setBump(false), 800); prevRef.current = count; return () => clearTimeout(t); }
     prevRef.current = count;
   }, [count]);
+  if (gate && gate.live && gate.live.mode === 'mentor') return null; // 🔴 mentor proyektorida nishon YO'Q (hooklardan KEYIN)
   return (
     <div className="ach-cnt-wrap">
       <button className={`ach-counter ${bump ? 'bump' : ''} ${count > 0 ? 'has' : ''}`} onClick={() => setOpen(o => !o)} aria-label="Badges" title="Badges">
@@ -1593,7 +1595,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
     setArenaSolo(studentSolo); setArena(true);
   };
   const RECAP = ['Dekompozitsiya — katta g\'oyani feature\'larga bo\'lish', 'MVP — eng kichik ishlaydigan versiya (skeytbord)', 'Backlog — qolgani bosqichma-bosqich (v2, v3)', 'Hammasini birato\'la qurmang — avval sinab ko\'ring'];
-  const HOMEWORK = [{ b: 'Sevimli ilovangizni o\'ylang', t: '— uning MVP\'si nima bo\'lgan deb taxmin qiling' }, { b: 'Loyihangiz feature listini yozing', t: '— hammasini sanab, MVP vs Keyin ga bo\'ling' }, { b: 'Demo Day\'ga tayyorlaning', t: '— "men avval MVP\'ni qildim" deb ayting' }];
+  const HOMEWORK = [{ b: 'Sevimli ilovangizni o\'ylang', t: '— uning MVP\'si nima bo\'lganini o\'zingiz aniqlab ko\'ring' }, { b: 'Loyihangiz feature listini yozing', t: '— hammasini sanab, MVP vs Keyin ga bo\'ling' }, { b: 'Demo Day\'ga tayyorlaning', t: '— "men avval MVP\'ni qildim" deb ayting' }];
   const GLOSSARY = [{ b: 'Dekompozitsiya', t: '— katta narsani kichik bo\'laklarga ajratish' }, { b: 'MVP', t: '— eng kichik ishlaydigan versiya' }, { b: 'Feature list', t: '— barcha mumkin funksiyalar ro\'yxati' }, { b: 'Backlog', t: '— keyin qilinadigan ishlar navbati' }, { b: 'Iteratsiya', t: '— versiyama-versiya o\'sish (v1→v2→v3)' }];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
@@ -1622,7 +1624,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
           <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>Demo Day'ga tayyorgarlik</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>Dekompozitsiya ko'nikmangizni mashq qiling:</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{h.b}</b> <span className="t">{h.t}</span></li>))}</ul><p className="hw-note">Demo Day — o'z mahsulotingiz MVP'sini qurib taqdim qilasiz! 🛹→🚗</p></div>
         </div>
         </Zoomable>
-        <div className="card ach-coll fade-up d3">
+        {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>🏅 Nishonlaringiz — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">
             {Object.entries(ACHIEVEMENTS).map(([id, a]) => { const got = !!(achievements && achievements.has(id)); return (
@@ -1633,7 +1635,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
               </div>
             ); })}
           </div>
-        </div>
+        </div>}
         <div ref={glossRef} className="gloss fade-up d4" style={{ scrollMarginBottom: 16 }}><div className="gloss-head" onClick={toggleGloss}><span className="lbl">Kalit so'zlar (takrorlash)</span><span className="gloss-toggle">{open ? '−' : '+'}</span></div>{open && (<div className="gloss-body">{GLOSSARY.map((g, i) => (<span key={i}><b>{g.b}</b> {g.t}{i < GLOSSARY.length - 1 ? ' · ' : ''}</span>))}</div>)}</div>
       </div>
     </Stage>
@@ -1643,18 +1645,18 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
 // 🃏 Qayta ishlatiladigan FLASHCARDS — aktiv takrorlash (3D flip + o'z-o'zini baholash + spaced recall).
 // Boshqa darsga: faqat `cards` ({ front, back, note }) almashtiriladi. Matnni Metodist sayqallaydi.
 const PM_FLASHCARDS = [
-  { front: "Katta g'oyani kichik bo'laklarga ajratish", back: 'Dekompozitsiya', note: 'katta → kichik bo\'laklar' },
-  { front: 'Eng kichik ishlaydigan versiya', back: 'MVP', note: 'Minimal Viable Product' },
-  { front: 'Keyin qilinadigan ishlar navbati', back: 'Backlog', note: 'v2, v3…' },
-  { front: "Versiyama-versiya o'sish", back: 'Iteratsiya', note: 'v1 → v2 → v3' },
-  { front: "Barcha mumkin bo'lgan funksiyalar ro'yxati", back: 'Feature list', note: 'MVP vs Keyin' },
-  { front: 'MVP metaforasi (allaqachon haydaladi)', back: 'Skeytbord', note: 'A dan B ga' },
-  { front: 'Mahsulotning bitta imkoniyati', back: 'Feature', note: 'masalan: qidiruv' },
-  { front: 'Birinchi ishlaydigan versiya', back: 'v1', note: 'keyin v2, v3' },
-  { front: 'Amazon boshlagan MVP', back: "Kitob do'koni", note: '1994' },
-  { front: 'Mahsulot taqdim etiladigan kun', back: 'Demo Day', note: "MVP ko'rsatiladi" },
-  { front: "Hammasini birato'la qurish oqibati", back: 'Resurs isrofi', note: 'fikr kech keladi' },
-  { front: "MVP nima uchun tez chiqariladi?", back: 'Erta fikr olish', note: 'sinash → yaxshilash' },
+  { front: "Katta g'oyani kichik bo'laklarga ajratish qanday ataladi?", back: "Dekompozitsiya", note: "katta mahsulot — kichik feature'larga" },
+  { front: "Eng kichik ishlaydigan versiya qanday ataladi?", back: "MVP", note: "kichik, lekin butun ishlaydi" },
+  { front: "Keyin qilinadigan ishlar navbati qanday ataladi?", back: "Backlog", note: "v2 va v3 ga qoldirilganlar" },
+  { front: "Mahsulotning versiyama-versiya o'sishi qanday ataladi?", back: "Iteratsiya", note: "avval v1, keyin v2, keyin v3" },
+  { front: "Barcha mumkin bo'lgan funksiyalarni sanab chiqsangiz — bu nima?", back: "Feature list", note: "birinchi qadam: hammasini yozib chiqing" },
+  { front: "To'g'ri MVP nimaga o'xshaydi — g'ildirakkami yoki skeytbordga?", back: "Skeytbordga", note: "g'ildirak yurmaydi, skeytbord esa allaqachon haydaladi" },
+  { front: "Amazon 1994-yilda nimadan boshlagan?", back: "Onlayn kitob do'konidan", note: "qolgan hamma narsa keyin qo'shilgan" },
+  { front: "Airbnb birinchi versiyada nima taklif qilgan?", back: "O'z xonasida 3 mehmonga havo matras", note: "bugun esa 220 dan ortiq davlatda" },
+  { front: "Mini-do'kon MVP'siga qaysi 3 feature kiradi?", back: "Mahsulot ro'yxati, qidiruv, mahsulot sahifasi", note: "savat va onlayn to'lov — keyingi versiyalarga" },
+  { front: "Hammasini birato'la qurishga urinsangiz nima bo'ladi?", back: "Kuch va vaqt behuda ketadi", note: "foydalanuvchi fikri juda kech keladi" },
+  { front: "MVP nega tezroq chiqariladi?", back: "Foydalanuvchi fikrini erta olish uchun", note: "avval sinaysiz, keyin yaxshilaysiz" },
+  { front: "Dekompozitsiyaning 3 qadami qaysi?", back: "Feature list, MVP, backlog", note: "sanab chiqing, eng kichigini tanlang, qolganini navbatga qo'ying" },
 ];
 function Flashcards({ cards }) {
   const [queue, setQueue] = useState(() => cards.map((_, i) => i));
@@ -1687,7 +1689,7 @@ function Flashcards({ cards }) {
       <div className="fc-cardwrap">
         <div className={`fc-fly ${exiting === 'knew' ? 'out-knew' : ''} ${exiting === 'again' ? 'out-again' : ''}`} key={swapRef.current}>
         <div className={`fc-card ${flipped ? 'flip' : ''}`} onClick={() => !flipped && !exiting && setFlipped(true)} role="button" tabIndex={0}>
-          <div className="fc-face fc-front"><span className="fc-q">{card.front}</span><span className="fc-cue">Qaysi atama? 🤔 <span className="fc-tap">bosing</span></span></div>
+          <div className="fc-face fc-front"><span className="fc-q">{card.front}</span><span className="fc-cue">Javobni o'ylang 🤔 <span className="fc-tap">bosing</span></span></div>
           <div className="fc-face fc-back"><span className="fc-tag">{card.back}</span>{card.note && <span className="fc-note">{card.note}</span>}</div>
         </div>
         </div>
@@ -1706,7 +1708,7 @@ const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) =>
     <Stage eyebrow="Takrorlash" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={false} label="Yakunlash →" onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">Atamalarni <span className="italic" style={{ color: T.accent }}>tez takrorlaymiz</span>.</h2></div>
-        <Mentor>Darsni yakunlashdan oldin bugun o'rgangan atamalarni takrorlaymiz. Har kartada bir vazifa — <b style={{ color: T.ink }}>qaysi atama</b> ekanini o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</Mentor>
+        <Mentor>Darsni yakunlashdan oldin bugun o'rgangan atamalarni takrorlaymiz. Har kartada bir savol — <b style={{ color: T.ink }}>javobini</b> o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</Mentor>
         <div className="fc-center"><Flashcards cards={PM_FLASHCARDS} /></div>
       </div>
     </Stage>
@@ -2283,7 +2285,7 @@ function QuizArena({ live, onClose, startSolo }) {
             <div className={`qz-res ${my?.correct ? 'good' : 'bad'}`}>
               {my?.correct
                 ? <><span className="qz-res-pts">+{myPtsFor(qi)}</span><span className="qz-res-t">ball{streakUpTo(qi) >= 2 ? ` · 🔥 x${streakUpTo(qi)} streak` : ''}</span></>
-                : <span className="qz-res-t">{my ? "Xato — 0 ball. Keyingisida olasiz! 💪" : "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱"}</span>}
+                : <span className="qz-res-t">{my ? "Adashdingiz — 0 ball. Keyingisida olasiz! 💪" : "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱"}</span>}
               {!solo && myRank >= 0 && <span className="qz-res-rank">Siz hozir: {myRank + 1}-o'rin</span>}
             </div>
           )}

@@ -391,6 +391,7 @@ const Zoomable = ({ children }) => {
 
 function AchCounter() {
   const earned = useContext(AchCtx);
+  const gate = useContext(LiveGateCtx);
   const count = earned ? earned.size : 0;
   const total = Object.keys(ACHIEVEMENTS).length;
   const prevRef = useRef(count);
@@ -400,6 +401,7 @@ function AchCounter() {
     if (count > prevRef.current) { setBump(true); const t = setTimeout(() => setBump(false), 800); prevRef.current = count; return () => clearTimeout(t); }
     prevRef.current = count;
   }, [count]);
+  if (gate && gate.live && gate.live.mode === 'mentor') return null; // 🔴 mentor proyektorida nishon YO'Q (hooklardan KEYIN)
   return (
     <div className="ach-cnt-wrap">
       <button className={`ach-counter ${bump ? 'bump' : ''} ${count > 0 ? 'has' : ''}`} onClick={() => setOpen(o => !o)} aria-label="Badges" title="Badges">
@@ -1625,18 +1627,18 @@ const ScreenFullPipelinePractice = (props) => (
 
 // 🃏 FLASHCARD KARTALARI — 5 darslik lug'atni takrorlash
 const PIPE_FLASHCARDS = [
-  { front: { uz: "Ishga tayyor holga yig'ilgan o'zgarishlar to'plami", ru: 'Собранный набор изменений, готовый к работе' }, back: 'Commit', note: { uz: "yig'ilgan chamadon", ru: 'собранный чемодан' } },
-  { front: { uz: 'Chamadonni umumiy lentaga qo\'yish', ru: 'Положить чемодан на общий конвейер' }, back: 'Push', note: { uz: "lentaga qo'yish", ru: 'кладём на конвейер' } },
-  { front: { uz: "Har push'da avtomatik ishlaydigan butun jarayon", ru: 'Весь процесс, который сам запускается при каждом push' }, back: 'Pipeline', note: { uz: 'LENTA', ru: 'КОНВЕЙЕР' } },
-  { front: { uz: 'Lentadagi bitta tekshiruv bosqichi (masalan Skaner)', ru: 'Один проверочный этап конвейера (например, Сканер)' }, back: 'Stage / Job', note: { uz: 'NUQTA', ru: 'ТОЧКА' } },
-  { front: { uz: 'Nuqta ichidagi bitta aniq buyruq', ru: 'Одна конкретная команда внутри точки' }, back: 'Step', note: { uz: 'AMAL', ru: 'ШАГ' } },
-  { front: { uz: "Lenta qanday ishlashini yozib qo'yiladigan fayl", ru: 'Файл, где записано, как работает конвейер' }, back: 'ci.yml', note: { uz: "YO'L XARITASI", ru: 'КАРТА МАРШРУТА' } },
-  { front: { uz: "Push bo'lganda lentani ishga tushiradigan buyruq", ru: 'Команда, запускающая конвейер при push' }, back: 'on: push', note: { uz: 'START SIGNALI', ru: 'СТАРТ-СИГНАЛ' } },
-  { front: { uz: 'Token/parolni xavfsiz saqlaydigan joy', ru: 'Место, где безопасно хранят токены и пароли' }, back: 'Secrets', note: { uz: 'SEYF + MAXFIY KALIT', ru: 'СЕЙФ + СЕКРЕТНЫЙ КЛЮЧ' } },
-  { front: { uz: 'Repo sahifasidagi lenta holatini ko\'rsatuvchi rasmcha', ru: 'Картинка на странице репозитория, показывающая состояние конвейера' }, back: 'Status badge', note: { uz: 'TABLO', ru: 'ТАБЛО' } },
-  { front: { uz: "Haqiqiy yo'lovchisiz, xavfsiz sinov muhiti", ru: 'Безопасная тестовая среда без настоящих пассажиров' }, back: 'Staging', note: { uz: 'sinov reysi', ru: 'пробный рейс' } },
-  { front: { uz: 'Foydalanuvchi haqiqatan ishlatadigan muhit', ru: 'Среда, которой реально пользуется пользователь' }, back: 'Production', note: { uz: "yo'lovchi qo'lida", ru: 'у пассажира в руках' } },
-  { front: { uz: 'Buzuq versiyadan oldingi yashil versiyaga qaytish', ru: 'Возврат к зелёной версии, которая была до сломанной' }, back: 'Rollback', note: { uz: 'ESKI YUKNI QAYTARISH', ru: 'ВОЗВРАТ СТАРОГО БАГАЖА' } },
+  { front: { uz: 'Lenta qanday ishlashi qaysi faylda yozilgan?', ru: 'В каком файле записано, как работает конвейер?' }, back: 'ci.yml', note: { uz: "Yo'l xaritasi: 5 nuqtaning hammasi shu faylda turadi", ru: 'Карта маршрута: все 5 точек лежат в этом файле' } },
+  { front: { uz: "Push bo'lganda lentani nima ishga tushiradi?", ru: 'Что запускает конвейер, когда сделан push?' }, back: 'on: push', note: { uz: 'START SIGNALI: busiz lenta hech qachon aylanmaydi', ru: 'СТАРТ-СИГНАЛ: без него конвейер никогда не тронется' } },
+  { front: { uz: "Lentaning 5 nuqtasidan qaysi biri eng oxirida turadi?", ru: 'Какая из 5 точек конвейера стоит самой последней?' }, back: { uz: 'Uchirish', ru: 'Взлёт' }, note: { uz: "Uchgan yukni qaytarib bo'lmaydi, shuning uchun u eng oxirida", ru: 'Улетевший багаж не вернуть, поэтому он в самом конце' } },
+  { front: { uz: 'Skaner nuqtasi kodning nimasini tekshiradi?', ru: 'Что проверяет точка Сканер?' }, back: { uz: 'Kod ishlaydimi', ru: 'Работает ли код' }, note: { uz: 'npm test buyrug\'i mantiqni tekshiradi', ru: 'Команда npm test проверяет логику' } },
+  { front: { uz: "O'lcham ramkasi kodning nimasini tekshiradi?", ru: 'Что проверяет точка Габарит-рамка?' }, back: { uz: 'Uslubini', ru: 'Стиль' }, note: { uz: "eslint . buyrug'i kod qoidaga mos yozilganini ko'radi", ru: 'Команда eslint . смотрит, написан ли код по правилам' } },
+  { front: { uz: 'Skaner xato topsa, keyingi nuqtalar ishga tushadimi?', ru: 'Если Сканер нашёл ошибку, запустятся ли следующие точки?' }, back: { uz: "Yo'q", ru: 'Нет' }, note: { uz: "Buzuq yuk shu yerda to'xtaydi, yo'lovchiga yetib bormaydi", ru: 'Сломанный багаж останавливается здесь и не доедет до пассажира' } },
+  { front: { uz: 'Maxfiy kalitni ci.yml faylida qanday chaqirasiz?', ru: 'Как вы вызываете секретный ключ в файле ci.yml?' }, back: '${{ secrets.NOM }}', note: { uz: 'Kalit seyfdan olinadi, ochiq matn sifatida yozilmaydi', ru: 'Ключ берётся из сейфа, открытым текстом его не пишут' } },
+  { front: { uz: "Haqiqiy yo'lovchisiz sinab ko'riladigan muhit qanday ataladi?", ru: 'Как называется среда, где всё проверяют без настоящих пассажиров?' }, back: 'staging', note: { uz: "Sinov reysi: xato chiqsa ham hech kim zarar ko'rmaydi", ru: 'Пробный рейс: даже если вылезет ошибка, никто не пострадает' } },
+  { front: { uz: 'Foydalanuvchi haqiqatan ishlatadigan muhit qanday ataladi?', ru: 'Как называется среда, которой реально пользуется пользователь?' }, back: 'production', note: { uz: "Haqiqiy reys: yuk endi yo'lovchi qo'lida", ru: 'Настоящий рейс: багаж уже у пассажира' } },
+  { front: { uz: "Yangi versiya productionda buzilsa, tezkor yechim qanday ataladi?", ru: 'Новая версия сломалась в production — как называется быстрое решение?' }, back: 'rollback', note: { uz: 'Eski yukni qaytarish: oxirgi yashil versiyaga qaytasiz', ru: 'Возврат старого багажа: вы откатываетесь к последней зелёной версии' } },
+  { front: { uz: "Repo sahifasida lenta yashilmi yoki qizilmi ekanini nima ko'rsatadi?", ru: 'Что показывает на странице репозитория, зелёный конвейер или красный?' }, back: 'status badge', note: { uz: "TABLO: holat bir qarashda ko'rinadi", ru: 'ТАБЛО: состояние видно с одного взгляда' } },
+  { front: { uz: "TABLO qizil bo'lganda birinchi qadam nima?", ru: 'ТАБЛО покраснело — какой первый шаг?' }, back: { uz: "Jurnalni o'qish", ru: 'Прочитать журнал' }, note: { uz: "Jurnal qaysi nuqta va nega to'xtaganini aytadi, taxmin qilinmaydi", ru: 'Журнал скажет, какая точка и почему встала — гадать не нужно' } },
 ];
 
 const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
@@ -1645,7 +1647,7 @@ const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) =>
     <Stage eyebrow={tr({ uz: 'Takrorlash', ru: 'Повторение' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={false} label={tr({ uz: 'Yakunlash →', ru: 'Завершить →' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Tushunchalarni <span className="italic" style={{ color: T.accent }}>tez takrorlaymiz</span>.</>, ru: <>Быстро <span className="italic" style={{ color: T.accent }}>повторим понятия</span>.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Darsni yakunlashdan oldin 5 darslik lug'atni takrorlaymiz. Har kartada bir izoh — <b style={{ color: T.ink }}>qaysi tushuncha</b> ekanini o'ylang, keyin kartani bosib tekshiring.</>, ru: <>Перед финалом повторим словарь всех 5 уроков. На каждой карточке — описание: подумайте, <b style={{ color: T.ink }}>какое это понятие</b>, потом нажмите на карточку и проверьте себя.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Darsni yakunlashdan oldin 5 darslik lug'atni takrorlaymiz. Har kartada bir savol — <b style={{ color: T.ink }}>javobini</b> o'ylang, keyin kartani bosib tekshiring.</>, ru: <>Перед финалом повторим словарь всех 5 уроков. На каждой карточке — вопрос: подумайте, <b style={{ color: T.ink }}>каким будет ответ</b>, потом нажмите на карточку и проверьте себя.</> })}</Mentor>
         <div className="fc-center"><Flashcards cards={PIPE_FLASHCARDS} /></div>
       </div>
     </Stage>
@@ -1684,8 +1686,8 @@ function Flashcards({ cards }) {
       <div className="fc-cardwrap">
         <div className={`fc-fly ${exiting === 'knew' ? 'out-knew' : ''} ${exiting === 'again' ? 'out-again' : ''}`} key={swapRef.current}>
         <div className={`fc-card ${flipped ? 'flip' : ''}`} onClick={() => !flipped && !exiting && setFlipped(true)} role="button" tabIndex={0}>
-          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: 'Qaysi tushuncha?', ru: 'Какое это понятие?' })} 🤔 <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
-          <div className="fc-face fc-back"><span className="fc-tag">{card.back}</span>{card.note && <span className="fc-note">{tr(card.note)}</span>}</div>
+          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: "Javobni o'ylang", ru: 'Подумайте над ответом' })} 🤔 <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
+          <div className="fc-face fc-back"><span className="fc-tag">{tr(card.back)}</span>{card.note && <span className="fc-note">{tr(card.note)}</span>}</div>
         </div>
         </div>
       </div>
@@ -2134,7 +2136,7 @@ function QuizArena({ live, onClose, startSolo }) {
             <div className={`qz-res ${my?.correct ? 'good' : 'bad'}`}>
               {my?.correct
                 ? <><span className="qz-res-pts">+{myPtsFor(qi)}</span><span className="qz-res-t">{tr({ uz: 'ball', ru: 'баллов' })}{streakUpTo(qi) >= 2 ? ` · 🔥 x${streakUpTo(qi)} streak` : ''}</span></>
-                : <span className="qz-res-t">{my ? tr({ uz: 'Xato — 0 ball. Keyingisida olasiz! 💪', ru: 'Мимо — 0 баллов. Возьмёте на следующем! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Побыстрее! ⏱' })}</span>}
+                : <span className="qz-res-t">{my ? tr({ uz: 'Adashdingiz — 0 ball. Keyingisida olasiz! 💪', ru: 'Мимо — 0 баллов. Возьмёте на следующем! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Побыстрее! ⏱' })}</span>}
               {!solo && myRank >= 0 && <span className="qz-res-rank">{tr({ uz: 'Siz hozir:', ru: 'Вы сейчас:' })} {myRank + 1}{tr({ uz: "-o'rin", ru: '-е место' })}</span>}
             </div>
           )}
@@ -2333,7 +2335,7 @@ const Screen14 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
           <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> {tr({ uz: 'Endi siz bilasiz', ru: 'Теперь вы знаете' })}</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{tr(r)}</span></li>))}</ul></div>
           <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: "🚀 Endi siz istalgan loyihaga to'liq lentani o'zingiz ulay olasiz!", ru: '🚀 Теперь вы сами можете подключить полный конвейер к любому проекту!' })}</p></div>
         </div>
-        <div className="card ach-coll fade-up d3">
+        {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🏅 Nishonlaringiz —', ru: '🏅 Ваши значки —' })} {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">
             {Object.entries(ACHIEVEMENTS).map(([id, a]) => { const got = !!(achievements && achievements.has(id)); return (
@@ -2344,7 +2346,7 @@ const Screen14 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
               </div>
             ); })}
           </div>
-        </div>
+        </div>}
       </div>
     </Stage>
   );

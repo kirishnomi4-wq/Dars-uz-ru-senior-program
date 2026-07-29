@@ -392,6 +392,7 @@ const Col = ({ children, gap }) => <div className="col" style={gap ? { gap } : u
 // 🏅 Yuqori paneldagi nishon hisoblagichi (Stage chrome)
 function AchCounter() {
   const earned = useContext(AchCtx);
+  const gate = useContext(LiveGateCtx);
   const count = earned ? earned.size : 0;
   const total = Object.keys(ACHIEVEMENTS).length;
   const prevRef = useRef(count);
@@ -401,6 +402,7 @@ function AchCounter() {
     if (count > prevRef.current) { setBump(true); const t = setTimeout(() => setBump(false), 800); prevRef.current = count; return () => clearTimeout(t); }
     prevRef.current = count;
   }, [count]);
+  if (gate && gate.live && gate.live.mode === 'mentor') return null; // 🔴 mentor proyektorida nishon YO'Q (hooklardan KEYIN)
   return (
     <div className="ach-cnt-wrap">
       <button className={`ach-counter ${bump ? 'bump' : ''} ${count > 0 ? 'has' : ''}`} onClick={() => setOpen(o => !o)} aria-label="Badges" title="Badges">
@@ -2162,7 +2164,7 @@ function QuizArena({ live, onClose, startSolo }) {
             <div className={`qz-res ${my?.correct ? 'good' : 'bad'}`}>
               {my?.correct
                 ? <><span className="qz-res-pts">+{myPtsFor(qi)}</span><span className="qz-res-t">{tr({ uz: 'ball', ru: 'баллов' })}{streakUpTo(qi) >= 2 ? ` · 🔥 x${streakUpTo(qi)} streak` : ''}</span></>
-                : <span className="qz-res-t">{my ? tr({ uz: "Xato — 0 ball. Keyingisida olasiz! 💪", ru: 'Мимо — 0 баллов. Возьмёте на следующем! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Побыстрее! ⏱' })}</span>}
+                : <span className="qz-res-t">{my ? tr({ uz: "Adashdingiz — 0 ball. Keyingisida olasiz! 💪", ru: 'Мимо — 0 баллов. Возьмёте на следующем! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Побыстрее! ⏱' })}</span>}
               {!solo && myRank >= 0 && <span className="qz-res-rank">{tr({ uz: `Siz hozir: ${myRank + 1}-o'rin`, ru: `Вы сейчас на ${myRank + 1}-м месте` })}</span>}
             </div>
           )}
@@ -2455,7 +2457,7 @@ function Flashcards({ cards }) {
       <div className="fc-cardwrap">
         <div className={`fc-fly ${exiting === 'knew' ? 'out-knew' : ''} ${exiting === 'again' ? 'out-again' : ''}`} key={swapRef.current}>
         <div className={`fc-card ${flipped ? 'flip' : ''}`} onClick={() => !flipped && !exiting && setFlipped(true)} role="button" tabIndex={0}>
-          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: 'Qaysi tushuncha? 🤔', ru: 'Какое это понятие? 🤔' })} <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
+          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: "Javobni o'ylang", ru: 'Подумайте над ответом' })} 🤔 <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
           <div className="fc-face fc-back"><span className="fc-tag">{tr(card.back)}</span>{card.note && <span className="fc-note">{tr(card.note)}</span>}</div>
         </div>
         </div>
@@ -2468,20 +2470,20 @@ function Flashcards({ cards }) {
 }
 
 
-// 🃏 EDGE CASES FLASHCARD KARTALARI (front=topishmoq, back=atama, note=metafora) — matnni 🎓 Metodist sayqallaydi
+// 🃏 EDGE CASES FLASHCARD KARTALARI (front=savol, back=qisqa javob, note=bir qatorlik izoh) — matnni 🎓 Metodist sayqallaydi
 const EDGE_FLASHCARDS = [
-  { front: { uz: 'Oddiy, kutilgan kirish — funksiya to\'g\'ri natija beradi', ru: 'Обычный, ожидаемый ввод — функция выдаёт правильный результат' }, back: 'Happy path', note: { uz: 'oddiy mijoz', ru: 'обычный клиент' } },
-  { front: { uz: "Oddiylikning chetidagi qiymat: 0, manfiy, eng kichik/katta", ru: 'Значение на краю обычного: 0, отрицательное, наименьшее/наибольшее' }, back: 'Edge case', note: { uz: 'shumtaka mijoz', ru: 'клиент-озорник' } },
-  { front: { uz: 'Chegara chizig\'ining ikki tomoni — masalan 1 va 0', ru: 'Обе стороны линии границы — например 1 и 0' }, back: 'Boundary', note: { uz: "chegara sinovi", ru: 'тест границы' } },
-  { front: { uz: '"Not a Number" — noto\'g\'ri turdagi kirishdan hosil bo\'ladi', ru: '«Not a Number» — возникает из ввода неверного типа' }, back: 'NaN', note: { uz: 'jim buzilish', ru: 'тихая поломка' } },
-  { front: { uz: 'Funksiyani to\'xtatib xato chiqaruvchi buyruq', ru: 'Команда, которая останавливает функцию и выдаёт ошибку' }, back: 'throw', note: { uz: 'himoya (guard)', ru: 'защита (guard)' } },
-  { front: { uz: 'Funksiya xato tashlaganini tekshiruvchi matcher', ru: 'Matcher, проверяющий, что функция бросила ошибку' }, back: 'toThrow', note: { uz: 'exception sinovi', ru: 'тест exception' } },
-  { front: { uz: 'toThrow ishlashi uchun funksiyani o\'rab beruvchi yozuv', ru: 'Запись-обёртка вокруг функции, чтобы работал toThrow' }, back: '() =>', note: { uz: 'nazorat ostida chaqirish', ru: 'вызов под контролем' } },
-  { front: { uz: 'Noto\'g\'ri kirishni rad etuvchi tekshiruv', ru: 'Проверка, отклоняющая неверный ввод' }, back: 'Guard', note: 'if → throw' },
-  { front: { uz: 'Funksiyadagi throw, API\'da nimaga aylanadi', ru: 'Во что превращается throw из функции в API' }, back: '400 Bad Request', note: 'error path' },
-  { front: { uz: 'Faqat bitta turdagi test yozilsa, nima yetishmaydi', ru: 'Чего не хватает, если написаны тесты только одного вида' }, back: { uz: "Edge case qamrovi", ru: 'Покрытие edge case' }, note: { uz: "ko'rinmas xato", ru: 'невидимая ошибка' } },
-  { front: { uz: 'orderTotal(10000, -5) → -50000. Bu qanday holat?', ru: 'orderTotal(10000, -5) → -50000. Что это за случай?' }, back: { uz: 'Manfiy edge case', ru: 'Отрицательный edge case' }, note: { uz: "qaytim", ru: 'сдача' } },
-  { front: { uz: 'Guard qo\'shilgach eski happy-path testi nima bo\'lishi mumkin', ru: 'Что может случиться со старым happy-path тестом после guard' }, back: 'FAIL', note: { uz: 'testni yangilash kerak', ru: 'тест нужно обновить' } },
+  { front: { uz: "Oddiy, kutilgan kirish bilan sinash qanday ataladi?", ru: 'Как называется проверка обычным, ожидаемым вводом?' }, back: 'Happy path', note: { uz: "oddiy mijoz: 3 dona buyurtma", ru: 'обычный клиент: заказ на 3 штуки' } },
+  { front: { uz: "0, manfiy yoki juda katta qiymat bilan sinash qanday ataladi?", ru: 'Как называется проверка нулём, отрицательным или очень большим значением?' }, back: 'Edge case', note: { uz: 'shumtaka mijoz — chegaradagi qiymat', ru: 'клиент-озорник — значение на границе' } },
+  { front: { uz: "Chegara chizig'ining ikki tomonini sinash qanday ataladi?", ru: 'Как называется проверка обеих сторон линии границы?' }, back: 'Boundary', note: { uz: "1 — eng kichik to'g'ri qiymat, 0 esa rad etiladi", ru: '1 — наименьшее допустимое значение, а 0 отклоняется' } },
+  { front: { uz: "Funksiyaga raqam o'rniga matn kelsa, natija nima bo'ladi?", ru: 'Что получится, если в функцию вместо числа придёт текст?' }, back: 'NaN', note: { uz: "Not a Number — jim buzilish, hech kim sezmaydi", ru: 'Not a Number — тихая поломка, её никто не замечает' } },
+  { front: { uz: "Noto'g'ri kirishni rad etadigan tekshiruv qanday ataladi?", ru: 'Как называется проверка, отклоняющая неверный ввод?' }, back: 'Guard', note: { uz: "funksiya boshidagi himoya qatori", ru: 'строка-защита в начале функции' } },
+  { front: { uz: "Funksiyani to'xtatib xato chiqaradigan buyruq qaysi?", ru: 'Какая команда останавливает функцию и выдаёт ошибку?' }, back: 'throw new Error(...)', note: { uz: "guard ichida shu buyruq turadi", ru: 'именно эта команда стоит внутри guard' } },
+  { front: { uz: "Funksiya xato tashlaganini qaysi tekshiruv bilan sinaysiz?", ru: 'Какой проверкой вы убеждаетесь, что функция бросила ошибку?' }, back: 'toThrow', note: { uz: "expect(() => orderTotal(10000, -5)).toThrow()", ru: 'expect(() => orderTotal(10000, -5)).toThrow()' } },
+  { front: { uz: "toThrow ishlashi uchun funksiyani nima bilan o'raysiz?", ru: 'Во что вы оборачиваете функцию, чтобы сработал toThrow?' }, back: '() =>', note: { uz: "o'ramasangiz xato darrov chiqadi va test o'zi qulaydi", ru: 'без обёртки ошибка вылетит сразу и тест рухнет сам' } },
+  { front: { uz: "Funksiyadagi throw API tomonida qanday javobga aylanadi?", ru: 'В какой ответ превращается throw из функции на стороне API?' }, back: '400 Bad Request', note: { uz: "bir xil mantiq: error path", ru: 'одна и та же логика: error path' } },
+  { front: { uz: "Faqat happy path testlarini yozsangiz, nima yetishmaydi?", ru: 'Чего не хватает, если вы пишете только happy-path тесты?' }, back: { uz: 'Edge case testlari', ru: 'Тесты edge case' }, note: { uz: "chegaradagi xato ko'rinmay qoladi", ru: 'ошибка на границе останется незаметной' } },
+  { front: { uz: "orderTotal(10000, -5) natijasi -50000 chiqdi. Bu qanday holat?", ru: 'orderTotal(10000, -5) вернул -50000. Что это за случай?' }, back: { uz: 'Manfiy edge case', ru: 'Отрицательный edge case' }, note: { uz: "do'kon pul qaytargandek — haqiqiy zarar", ru: 'магазин будто возвращает деньги — реальный убыток' } },
+  { front: { uz: "Guard qo'shgandan keyin eski test nega qizil bo'ladi?", ru: 'Почему после добавления guard старый тест становится красным?' }, back: { uz: 'Funksiya endi xato tashlaydi', ru: 'Функция теперь бросает ошибку' }, note: { uz: "eski test 0 kutgan edi — uni yangilash kerak", ru: 'старый тест ждал 0 — его нужно обновить' } },
 ];
 const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, []); // eslint-disable-line
@@ -2489,7 +2491,7 @@ const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) =>
     <Stage eyebrow={tr({ uz: 'Takrorlash', ru: 'Повторение' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={false} label={{ uz: 'Yakunlash →', ru: 'Завершить →' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Atamalarni <span className="italic" style={{ color: T.accent }}>tez takrorlaymiz</span>.</>, ru: <>Быстро <span className="italic" style={{ color: T.accent }}>повторим термины</span>.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Har kartada bir topishmoq — <b style={{ color: T.ink }}>qaysi atama</b> ekanini o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</>, ru: <>На каждой карточке загадка — подумайте, <b style={{ color: T.ink }}>какой это термин</b>, затем нажмите на карточку и проверьте себя. Оцените кнопками <b style={{ color: T.ink }}>Знаю</b> или <b style={{ color: T.ink }}>Повторить</b>.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Har kartada bir savol — <b style={{ color: T.ink }}>javobini</b> o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</>, ru: <>На каждой карточке вопрос — подумайте, <b style={{ color: T.ink }}>каким будет ответ</b>, затем нажмите на карточку и проверьте себя. Оцените кнопками <b style={{ color: T.ink }}>Знаю</b> или <b style={{ color: T.ink }}>Повторить</b>.</> })}</Mentor>
         <div className="fc-center"><Flashcards cards={EDGE_FLASHCARDS} /></div>
       </div>
     </Stage>
@@ -2542,7 +2544,7 @@ const Screen17 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
           <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> {tr({ uz: 'Endi siz bilasiz', ru: 'Теперь вы знаете' })}</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{tr(r)}</span></li>))}</ul></div>
           <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: "🎉 Modul 4b tugadi! Endi kodingizni o'zingiz ham, kompyuter ham tekshiradi — happy path va edge case bilan.", ru: '🎉 Модуль 4b завершён! Теперь ваш код проверяете и вы, и компьютер — с happy path и edge case.' })}</p></div>
         </div>
-        <div className="card ach-coll fade-up d3">
+        {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>🏅 Badges — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">
             {Object.entries(ACHIEVEMENTS).map(([id, a]) => { const got = !!(achievements && achievements.has(id)); return (
@@ -2553,7 +2555,7 @@ const Screen17 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
               </div>
             ); })}
           </div>
-        </div>
+        </div>}
       </div>
     </Stage>
   );

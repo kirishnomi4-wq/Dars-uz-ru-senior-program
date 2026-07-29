@@ -439,6 +439,7 @@ const Col = ({ children, gap }) => <div className="col" style={gap ? { gap } : u
 // 🏅 Yuqori paneldagi nishon hisoblagichi (Stage chrome)
 function AchCounter() {
   const earned = useContext(AchCtx);
+  const gate = useContext(LiveGateCtx);
   const count = earned ? earned.size : 0;
   const total = Object.keys(ACHIEVEMENTS).length;
   const prevRef = useRef(count);
@@ -448,6 +449,7 @@ function AchCounter() {
     if (count > prevRef.current) { setBump(true); const t = setTimeout(() => setBump(false), 800); prevRef.current = count; return () => clearTimeout(t); }
     prevRef.current = count;
   }, [count]);
+  if (gate && gate.live && gate.live.mode === 'mentor') return null; // 🔴 mentor proyektorida nishon YO'Q (hooklardan KEYIN)
   return (
     <div className="ach-cnt-wrap">
       <button className={`ach-counter ${bump ? 'bump' : ''} ${count > 0 ? 'has' : ''}`} onClick={() => setOpen(o => !o)} aria-label="Badges" title="Badges">
@@ -1710,7 +1712,7 @@ const Screen17 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
           <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> {tr({ uz: 'Endi siz bilasiz', ru: 'Теперь Вы знаете' })}</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{tr(r)}</span></li>))}</ul></div>
           <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>📝 {tr({ uz: 'Uyga vazifa', ru: 'Домашнее задание' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: "O'z loyihangizda siklni o'tang:", ru: 'Пройдите цикл на своём проекте:' })}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">🎉 {tr({ uz: "Backend modulini tamomladingiz: baza, server, fullstack ulanish va mahsulotni yaxshilash — hammasi sizning qo'lingizda!", ru: 'Вы завершили модуль Backend: база, сервер, fullstack-соединение и улучшение продукта — всё в Ваших руках!' })}</p></div>
         </div>
-        <div className="card ach-coll fade-up d3">
+        {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>🏅 {tr({ uz: 'Nishonlaringiz', ru: 'Ваши значки' })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">
             {Object.entries(ACHIEVEMENTS).map(([id, a]) => { const got = !!(achievements && achievements.has(id)); return (
@@ -1721,7 +1723,7 @@ const Screen17 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
               </div>
             ); })}
           </div>
-        </div>
+        </div>}
       </div>
     </Stage>
   );
@@ -1861,7 +1863,7 @@ function Flashcards({ cards }) {
       <div className="fc-cardwrap">
         <div className={`fc-fly ${exiting === 'knew' ? 'out-knew' : ''} ${exiting === 'again' ? 'out-again' : ''}`} key={swapRef.current}>
         <div className={`fc-card ${flipped ? 'flip' : ''}`} onClick={() => !flipped && !exiting && setFlipped(true)} role="button" tabIndex={0}>
-          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: 'Qaysi tushuncha?', ru: 'Какое понятие?' })} 🤔 <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
+          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: "Javobni o'ylang", ru: 'Подумайте над ответом' })} 🤔 <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
           <div className="fc-face fc-back"><span className="fc-tag">{tr(card.back)}</span>{card.note && <span className="fc-note">{tr(card.note)}</span>}</div>
         </div>
         </div>
@@ -1873,20 +1875,20 @@ function Flashcards({ cards }) {
   );
 }
 
-// 🃏 FEEDBACK FLASHCARD KARTALARI (front=izoh, back=tushuncha) — Metodist sayqallaydi
+// 🃏 FEEDBACK FLASHCARD KARTALARI (front=savol, back=qisqa javob, note=bir qatorlik izoh)
 const FB_FLASHCARDS = [
-  { front: { uz: 'Foydalanuvchi fikri — mahsulotni yaxshilash uchun', ru: 'Мнение пользователя — чтобы улучшать продукт' }, back: 'Feedback', note: { uz: "aniq bo'lsa foydali", ru: 'полезен, когда конкретен' } },
-  { front: { uz: "«Zo'r!» emas — aniq muammoni ko'rsatadigan fikr", ru: 'Не «круто!», а отзыв с конкретной проблемой' }, back: { uz: 'Aniq fikr', ru: 'Конкретный отзыв' }, note: { uz: "amalga oshsa bo'ladi", ru: 'можно выполнить' } },
-  { front: { uz: 'Fikr qancha foyda keltiradi', ru: 'Сколько пользы приносит отзыв' }, back: 'Impact', note: { uz: 'Foyda', ru: 'Польза' } },
-  { front: { uz: 'Yaxshilash qancha ish talab qiladi', ru: 'Сколько работы требует улучшение' }, back: 'Effort', note: { uz: 'Mehnat', ru: 'Усилия' } },
-  { front: { uz: "Fikrlarni foyda va mehnat bo'yicha saralaydigan 4 katak", ru: '4 клетки, где отзывы сортируются по пользе и усилиям' }, back: { uz: 'Foyda / Mehnat doskasi', ru: 'Доска Польза / Усилия' }, note: 'Impact / Effort' },
-  { front: { uz: "Ko'p foyda + kam mehnat — birinchi qilinadi", ru: 'Много пользы + мало усилий — делается первым' }, back: { uz: '⭐ Avval shu', ru: '⭐ Сначала это' }, note: { uz: 'doskaning 1-katagi', ru: '1-я клетка доски' } },
-  { front: { uz: "Qur → ko'rsat → fikr → sarala → upgrade", ru: 'Построй → покажи → отзывы → приоритизируй → апгрейд' }, back: { uz: 'Sikl (iteration)', ru: 'Цикл (iteration)' }, note: { uz: "to'xtovsiz", ru: 'непрерывный' } },
-  { front: { uz: 'Fikr asosida mahsulotni yaxshilash', ru: 'Улучшение продукта на основе отзывов' }, back: 'Upgrade', note: { uz: 'keyin qayta test', ru: 'потом повторный тест' } },
-  { front: { uz: "Muhim amaldan oldin «rostdanmi?» so'rash", ru: 'Спросить «точно?» перед важным действием' }, back: { uz: 'Tasdiq (confirm)', ru: 'Подтверждение (confirm)' }, note: { uz: "Ha / Yo'q", ru: 'Да / Нет' } },
-  { front: { uz: "Holatni bir qarashda ko'rsatuvchi panel", ru: 'Панель, показывающая состояние с одного взгляда' }, back: 'Dashboard', note: { uz: "bo'sh/band/tushum", ru: 'свободно/занято/выручка' } },
-  { front: { uz: "Sozlamani bazada o'zgartirish", ru: 'Изменение настройки в базе' }, back: 'Settings + UPDATE', note: { uz: 'narx, joylar', ru: 'цена, места' } },
-  { front: { uz: "Mavjud qatorni o'zgartirish (yangi qo'shmaydi)", ru: 'Изменяет существующую строку (не добавляет новую)' }, back: 'UPDATE', note: { uz: 'INSERT emas', ru: 'не INSERT' } }
+  { front: { uz: 'Foydalanuvchining mahsulot haqidagi fikri qanday ataladi?', ru: 'Как называется мнение пользователя о продукте?' }, back: 'Feedback', note: { uz: "Feedback — fikr; aniq bo'lsagina foydali", ru: 'Feedback — отзыв; полезен, только когда конкретен' } },
+  { front: { uz: "Nega «Zo'r ekan!» yetarli fikr emas?", ru: 'Почему «Круто!» — недостаточный отзыв?' }, back: { uz: 'Nimani yaxshilashni aytmaydi', ru: 'Не говорит, что улучшать' }, note: { uz: "Maqtov yoqimli, lekin yo'nalish bermaydi", ru: 'Похвала приятна, но не даёт направления' } },
+  { front: { uz: "Eng foydali fikr qanday bo'ladi?", ru: 'Каким бывает самый полезный отзыв?' }, back: { uz: "Aniq va bajarsa bo'ladigan", ru: 'Конкретным и выполнимым' }, note: { uz: "Masalan: «chiqishda tasdiq so'ralmadi»", ru: 'Например: «при выезде не спросили подтверждение»' } },
+  { front: { uz: "«Yoqmadi» degan fikrni qanday foydali qilasiz?", ru: 'Как сделать отзыв «не понравилось» полезным?' }, back: { uz: "Aniq muammoni so'raysiz", ru: 'Спрашиваете конкретную проблему' }, note: { uz: "«Aynan nimasi chalkash edi?» deb so'raysiz", ru: 'Спрашиваете: «что именно было непонятно?»' } },
+  { front: { uz: 'Doskadagi Impact va Effort nimani bildiradi?', ru: 'Что означают Impact и Effort на доске?' }, back: { uz: 'Foyda va mehnat', ru: 'Польза и усилия' }, note: { uz: 'Impact — qancha naf, Effort — qancha ish', ru: 'Impact — сколько пользы, Effort — сколько работы' } },
+  { front: { uz: 'Fikrlarni saralash uchun qaysi doskadan foydalanasiz?', ru: 'Какой доской пользуетесь, чтобы расставить отзывы по важности?' }, back: { uz: 'Foyda / Mehnat doskasi', ru: 'Доска Польза / Усилия' }, note: { uz: 'Har fikr 4 katakdan biriga tushadi', ru: 'Каждый отзыв попадает в одну из 4 клеток' } },
+  { front: { uz: 'Doskaning qaysi katagidagi ishni birinchi qilasiz?', ru: 'Работу из какой клетки доски делаете первой?' }, back: { uz: "Ko'p foyda + kam mehnat", ru: 'Много пользы + мало усилий' }, note: { uz: '«⭐ Avval shu» katagi — natija tez chiqadi', ru: 'Клетка «⭐ Сначала это» — результат виден быстро' } },
+  { front: { uz: 'Nega «eng qiyinini avval qilamiz» xato?', ru: 'Почему «сначала самое сложное» — ошибка?' }, back: { uz: "Natija kech ko'rinadi", ru: 'Результат виден поздно' }, note: { uz: "Qiyin ish ko'p vaqt oladi, foyda esa kutib qoladi", ru: 'Сложная работа занимает много времени, а польза ждёт' } },
+  { front: { uz: "Band joydan tasodifan chiqib ketishni nima to'xtatadi?", ru: 'Что остановит случайный выезд с занятого места?' }, back: { uz: 'Tasdiq (confirm)', ru: 'Подтверждение (confirm)' }, note: { uz: "Muhim amaldan oldin «rostdanmi?» — Ha / Yo'q", ru: 'Перед важным действием «точно?» — Да / Нет' } },
+  { front: { uz: "Bo'sh, band va tushumni bir qarashda nima ko'rsatadi?", ru: 'Что показывает свободно, занято и выручку с одного взгляда?' }, back: 'Dashboard', note: { uz: 'Dashboard — holat paneli, sanashga hojat yo\'q', ru: 'Дашборд — панель состояния, считать не нужно' } },
+  { front: { uz: "Bazadagi mavjud narxni qaysi SQL amali o'zgartiradi?", ru: 'Какая SQL-команда меняет уже существующую цену в базе?' }, back: 'UPDATE', note: { uz: "UPDATE mavjud qatorni o'zgartiradi, INSERT yangisini qo'shadi", ru: 'UPDATE меняет существующую строку, INSERT добавляет новую' } },
+  { front: { uz: 'Mahsulotni yaxshilash sikli qanday ketadi?', ru: 'Как идёт цикл улучшения продукта?' }, back: { uz: "Qur → ko'rsat → fikr ol → sarala → upgrade", ru: 'Построй → покажи → собери отзывы → приоритизируй → апгрейд' }, note: { uz: 'Keyin yana ko\'rsatasiz — sikl takrorlanadi', ru: 'Потом показываете снова — цикл повторяется' } }
 ];
 const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, []); // eslint-disable-line
@@ -1894,7 +1896,7 @@ const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) =>
     <Stage eyebrow={tr({ uz: 'Takrorlash', ru: 'Повторение' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={false} label={tr({ uz: 'Yakunlash →', ru: 'Завершить →' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Tushunchalarni <span className="italic" style={{ color: T.accent }}>tez takrorlaymiz</span>.</>, ru: <>Быстро <span className="italic" style={{ color: T.accent }}>повторим</span> понятия.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Darsni yakunlashdan oldin bugun o'rgangan tushunchalarni takrorlaymiz. Har kartada bir izoh — <b style={{ color: T.ink }}>qaysi tushuncha</b> ekanini o'ylang, keyin kartani bosib tekshiring.</>, ru: <>Перед завершением урока повторим выученные сегодня понятия. На каждой карточке — описание: подумайте, <b style={{ color: T.ink }}>какое это понятие</b>, потом нажмите карточку и проверьте.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Darsni yakunlashdan oldin bugun o'rgangan tushunchalarni takrorlaymiz. Har kartada bir savol — <b style={{ color: T.ink }}>javobini</b> o'ylang, keyin kartani bosib tekshiring.</>, ru: <>Перед завершением урока повторим выученные сегодня понятия. На каждой карточке — вопрос: подумайте, <b style={{ color: T.ink }}>каким будет ответ</b>, потом нажмите карточку и проверьте.</> })}</Mentor>
         <div className="fc-center"><Flashcards cards={FB_FLASHCARDS} /></div>
       </div>
     </Stage>
@@ -2329,7 +2331,7 @@ function QuizArena({ live, onClose, startSolo }) {
             <div className={`qz-res ${my?.correct ? 'good' : 'bad'}`}>
               {my?.correct
                 ? <><span className="qz-res-pts">+{myPtsFor(qi)}</span><span className="qz-res-t">{tr({ uz: 'ball', ru: 'баллов' })}{streakUpTo(qi) >= 2 ? ` · 🔥 x${streakUpTo(qi)} streak` : ''}</span></>
-                : <span className="qz-res-t">{my ? tr({ uz: 'Xato — 0 ball. Keyingisida olasiz! 💪', ru: 'Мимо — 0 баллов. Возьмёте на следующем! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Быстрее! ⏱' })}</span>}
+                : <span className="qz-res-t">{my ? tr({ uz: 'Adashdingiz — 0 ball. Keyingisida olasiz! 💪', ru: 'Мимо — 0 баллов. Возьмёте на следующем! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Быстрее! ⏱' })}</span>}
               {!solo && myRank >= 0 && <span className="qz-res-rank">{tr({ uz: 'Siz hozir:', ru: 'Вы сейчас:' })} {myRank + 1}-{tr({ uz: "o'rin", ru: 'место' })}</span>}
             </div>
           )}

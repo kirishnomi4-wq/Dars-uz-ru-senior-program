@@ -336,3 +336,65 @@ Manba: feedback/METODIST-prompt-fidbek.md (tashqi-chat tahlili) + bosh-agent o'z
 **Qonun:** 91 («BITTA MISOL-IP») PM_DARS_ETALON'ga + PM_Prompt_v8'ga ruscha eslatma (ildiz o'sha promptda edi).
 **Relslar:** INLINE_KEYS/QUIZ_BANK/SCREEN_META git-HEAD bilan IDENTIK. Barcha lint/build toza.
 **Deploy:** https://coddycamp-etalon-test.vercel.app yangilandi (yangi chunk'da «Ikki mijoz» hooki bor — curl bilan tasdiqlandi). UNCOMMITTED.
+
+## MENTOR EKRANIDA BADGES — 3 QATLAM 79/79 DARSDA O'CHIRILDI (2026-07-29, F-0729-24) — ✅
+**Buyruq:** «Mentorda umuman badges bo'lmasin — hattoki amaliyot bajarilganda ekranga katta chiqmasin».
+**Audit (oldin):** 79 fayldan faqat 2 tasi (PmLesson2, PmUserStory) to'liq qorovulli edi. 3-qatlam (bayram) ertalab hammasiga qo'yilgandi; 1-qatlam (hisoblagich) 77 tasida, 2-qatlam (kolleksiya) 75 tasida YO'Q edi — mentor proyektorida «🏅 0/4» va yakun-sahifada medalka-to'plami ko'rinardi.
+**Bajarildi (skript + qat'iy naqsh-tekshiruv, mos kelmagan fayl TEGILMAYDI):**
+1. `AchCounter` ga `const gate = useContext(LiveGateCtx)` + `if (gate && gate.live && gate.live.mode === 'mentor') return null;` — **barcha hooklardan KEYIN, `return (` dan OLDIN** (React qoidasi) → 77 fayl.
+2. Yakun-sahifa kolleksiyasi `{!isMentorL && …}` ostiga olindi → 75 fayl (blok bir xil 11 qator; CRLF/LF ikkalasi ham to'g'ri o'qildi).
+3. Qo'lda 3 istisno: `ReactRouterPracticeLesson` (isMentorL yo'q edi — `_live`dan qo'shildi) · `PmLesson3` (`ach-collect` boshqa klass-oila) · `JsIntroLesson` (kolleksiya `card fade-up` klassida).
+**Tekshiruv:** esbuild 77/77 toza · `vite build` toza · qat'iy skript: ACHIEVEMENTS ni chizadigan 81 joydan hammasi qorovul ostida (2 «topilma» — PmMetrics/PmUserStory podiumidagi `{!isLive ? …}` tarmog'i, mentorda umuman render bo'lmaydi). `AchCelebrate` faqat `AchToasts` ichida chaqiriladi — u root'da qorovulli.
+**Muhrlandi:** DARS_ETALON 10.1 ga «79/79 bajarildi + yangi darsda majburiy» bandi. UNCOMMITTED.
+
+## PRAKTIKA-DARVOZASI: DARS-ICHI MASHQI FAQAT JONLI DARSDA (2026-07-29, PILOT: Htmllesson1) — ✅
+**Buyruq:** o'quvchi mentorga ULANGAN bo'lsa praktika ishlasin va majburiy bo'lsin; mentor darsni tugatib «Erkin qilish»ni bosgach (yoki bola mustaqil o'qiyotgan bo'lsa) dars-ichi praktikalari OCHILMASIN — shunchaki mavzuni o'rgansin, praktikani yakun-sahifadagi uyga vazifa orqali bajarsin.
+**Tashxis:** praktika alohida ekran EMAS — `PRACTICE_AFTER` xaritasi orqali 3 joyda (idx 9/13/15) «Davom etish»da ochiladigan overlay. Shuning uchun ekran-indekslari, INLINE_KEYS, QUIZ_BANK va podium TEGILMAYDI (ball-relslari xavfsiz). Bu darsda LMS-sim allaqachon bor: `onPractice` prop.
+**Bajarildi (Htmllesson1.jsx):**
+1. `next()` — mentor tarmog'i o'z holicha (proyektor-paneli qoladi); o'quvchi uchun yangi shart: `inLiveClass = mode==='student' && status!=='ended' && mentorAlive`. Shart bajarilmasa (erkin qilingan / mentor uzilgan / mustaqil) → `advance()`, mashq ochilmaydi.
+2. `openHomeworkPractice()` — yakuniy topshiriq (`TASK_FINAL` = noldan sayt): LMS bo'lsa `onPractice`, bo'lmasa ichki kompilyator. Keyingi ekranga O'TKAZMAYDI (oxirgi sahifa) va serverga «bajardim» signali YUBORMAYDI (uy ishi, sinf ishi emas). Screen16'ga `onHomework` propi orqali uzatildi.
+3. Yakun-sahifada «Uyga vazifa · Amaliy topshiriqni boshlash →» kapsula-tugmasi (aura + shine + puls), darsning O'Z rangida (#FF4F28 — CodeStrike binafshasi bilan aralashmaydi). Mentor proyektorida KO'RSATILMAYDI.
+**Yo'l-yo'lakay:** 66-qonun buzilishi tuzatildi (arena: «Xato — 0 ball» → «Adashdingiz — 0 ball») — lint darvozasi shuni talab qildi.
+**O'lik kod:** yo'q — uchala task, mentor-paneli va PRACTICE_DONE_BASE signali jonli darsda ishlashda qoladi.
+**Tekshiruv:** esbuild toza · lint:til 0 error (12 warn — oldindan bor) · `vite build` toza · m1-demo deploy: https://coddycamp-1modul.vercel.app
+**Keyingi qadam:** foydalanuvchi pilotni ma'qullasa — xuddi shu naqsh qolgan texnik darslarga tatbiq qilinadi. UNCOMMITTED.
+
+## PRAKTIKA-DARVOZASI — PLATFORMA BO'YLAB TATBIQ (2026-07-29, F-0729-25) — ✅
+**Qamrov:** `PRACTICE_AFTER` bo'lgan 12 darsdan **9 tasi** (kompilyator ochadiganlar): Htmllesson1 (pilot) + CssLesson1/CssLesson2/CssPractice/Htmllesson2/HtmlPractice/HtmlTakrorlashLesson/VsCodeLesson/PracticeLesson1.
+- **Tegilmadi:** PracticeLesson2 va PracticeLesson4 — ularda `PRACTICE_AFTER` faqat mentor-paneli uchun, kompilyator ochilmaydi (bloklamaydi), signal allaqachon `status!=='ended'` bilan qorovulli.
+- **Aniqlangan o'lik fayl:** `src/compilator/Htmllesson2.jsx` (191 KB) — hech qayerdan import/havola qilinmagan (HtmlCompiler.jsx esa INFRA-MANBA sifatida kerak). O'chirish foydalanuvchi ruxsatini kutmoqda.
+**Har darsga 4 o'zgarish (skript + qat'iy ilgak-tekshiruvi, mos kelmasa fayl tegilmaydi):**
+1. `next()` ichiga, `if (!entry) …` dan darhol keyin: `if (!(live && (live.mode==='mentor' || (live.mode==='student' && live.status!=='ended' && live.mentorAlive)))) { advance(); return; }`
+2. Root'da `openHomeworkPractice()` — PRACTICE_AFTER ning ENG KATTA indeksli (yakuniy) mashqini ochadi; keyingi ekranga o'tkazmaydi, serverga signal yubormaydi.
+3. `<Current … onHomework={openHomeworkPractice} />` + yakuniy ekran imzosiga `onHomework`.
+4. Yakun-sahifada «Uyga vazifa · Amaliy topshiriqni boshlash →» kapsula-tugmasi (`{!isMentorL && onHomework && …}`) + generik CSS (`${T.accent}`/`${T.ink}` — har darsning o'z palitrasida).
+**⚠️ Jarayon-qaydi (muhim saboq):** birinchi urinishda skript qo'shimchalarni yuqoridan pastga qo'llagani uchun keyingi ilgak-indekslari surilib, qorovul `next()` dan TASHQARIDA — komponent tanasida paydo bo'ldi (esbuild o'tib ketardi, lekin render buzilardi). Darhol `git checkout` bilan 8 fayl qaytarildi, nishon-qorovullari qayta qo'yildi, skript **pastdan-yuqoriga qo'llash** (`inserts.sort((a,b)=>b[0]-a[0])`) bilan tuzatildi. Yangi tekshiruv-skript qorovul aynan `next()` ichida ekanini tasdiqlaydi — 9/9 ✅.
+**Yo'l-yo'lakay (lint darvozasi talab qildi):** 66-qonun buzilishi «Xato — 0 ball» → «Adashdingiz — 0 ball» — **74 faylda** tuzatildi · 79-qonun: VsCodeLesson mentor matni «Avval bir taxmin qiling» → «Avval o'zingiz o'ylab ko'ring» (ru ham).
+**Tekshiruv:** esbuild 9/9 toza · lint:til 9/9 error=0 · `vite build` toza · m1-demo deploy: https://coddycamp-1modul.vercel.app
+UNCOMMITTED.
+**Qo'shimcha (F-0729-25):** `src/compilator/Htmllesson2.jsx` (191 KB) O'CHIRILDI — foydalanuvchi ruxsati bilan. Tekshirildi: hech qayerdan import/havola qilinmagan, sarlavhasi «HTML 1-DARS — PLATFORM STANDARD v15» (nomi chalg'ituvchi: aslida 1-darsning eskirgan v15 nusxasi, joriy v17 `src/1-Modull/Htmllesson1.jsx` uni almashtirgan), git tarixida (63ab1b0) saqlanib qoladi. `src/compilator/HtmlCompiler.jsx` QOLDI — u PM darslarda «INFRA-MANBA» sifatida havola qilinadi. Barcha 4 build-konfiguratsiya (asosiy · m1 · pm · etalon) o'chirishdan keyin toza.
+
+## FLASHCARD ETALONI: «TA'RIF→ATAMA» TOPISHMOG'I → TO'G'RIDAN-TO'G'RI SAVOL (2026-07-29, F-0729-26) — 🔄 DAVOM ETMOQDA
+**Tashxis:** 76 darsda flashcard bor; faqat 4 tasi savol-shaklda edi (PmLesson2, PmLesson3, CssPractice, Htmllesson1-pilot). Qolgan ~72 tasida old tomonda ta'rif turardi («Eng katta sarlavha» → `<h1>`) — bola savolni emas, topishmoqni ko'radi.
+**Pilot (Htmllesson1):** 11 karta to'liq qayta yozildi — har biri savol («Eng katta sarlavhani qaysi teg yozadi?»), qisqa javob, bir qatorlik izoh. Foydalanuvchi ma'qulladi.
+**MEXANIK tuzatish (skript, 74 fayl):**
+1. `{card.back}` → `{tr(card.back)}` (11 faylda yetishmasdi — javobni ikki tilda yozib bo'lmasdi).
+2. Ishora savolni TAKRORLAMAYDI: har xil «Qaysi teg/atama/tushuncha/belgi?» → «Javobni o'ylang» / «Подумайте над ответом» (74 fayl). Sabab: kartada «HTML nima ish qiladi?» deb so'ralib, ostida «Qaysi teg?» turardi — zid.
+3. «teg yodlandi» → «karta yodlandi» (3 fayl) — kartalar endi faqat teglar haqida emas.
+⚠️ **Jarayon-qaydi:** 3 faylda (CssPractice, PracticeLesson2, AuthEnvLesson) ishora `tr()` ichida JSX-fragment sifatida tuzilgan ekan — regex uni buzdi (esbuild darhol ushladi). Uchalasi qo'lda to'g'ri tuzilishga keltirildi. Saboq: JSX ichidagi ko'p qatorli `tr({uz:<>…</>})` qoliplarini regex bilan almashtirmaslik.
+**MAZMUN (davom etmoqda):** har dars uchun savollar o'sha darsning RECAP/GLOSSARY/ekranlaridan yozilmoqda — 1-Modul (10 dars) parallel metodist-agentlarga berildi. Keyingi to'lqinlar: 2-Modul → 6-Modul.
+**Tekshiruv:** esbuild barcha o'zgargan fayllarda toza · `vite build` toza. UNCOMMITTED.
+
+## TAKRORLASH DARSI: PERSONAJ-ROL OLIB TASHLANDI + ATAMA-TOZALASH (2026-07-29, F-0729-27) — ✅
+**Fayl:** `src/1-Modull/HtmlTakrorlashLesson.jsx` (69 ta «Diyor» topilmasi → 0).
+**Foydalanuvchi qat'iy qarorlari (tashxissiz, to'g'ridan-to'g'ri buyruq):**
+1. **Personaj-rol taqiqlandi:** «Diyor» (buyurtmachi-do'st) roli butun darsdan olib tashlandi — chat-pufak (DChat), jamoa-reaksiyalari (Sardor/Bek/Murabbiy pufaklari) bilan birga. O'rniga: **🎯 TaskCard** (personajsiz vazifa-karta, chapda accent-chiziq) — vazifani Mentor beradi. Ro'yxatdagi sardor ismi: Diyor → **Aziz** (kod-misollar, debug-qatorlar, kompilyator-shartlar, QUIZ_BANK, RECAPS — hammasi yangilandi).
+2. **«Qurilishdan oldin tez isinish!» + «Bu ballga kirmaydi… 🔥 seriya o'sadi» o'chirildi** (s2 blits): yangi matn «Avval teglarni eslab olamiz…»; eyebrow «Isinish» → «Eslab olish»; yakun «Isinish tugadi!» → «Teglar yodingizda!»; seriya-jumla matndan olib tashlandi (🔥 hisoblagich UI qoldi).
+3. **«Qurilish» atamasi almashtirildi:** «Qurilish boshlandi!» → «Boshladik!», quramiz/qurdingiz → yasaymiz/yasadingiz (o'quvchi-matnda; «qurilma/qurol» tegilmadi).
+4. **s12b bayram-ekrani qayta qurildi:** chat-pufaklar o'rniga markaziy ustun (`.party-center`) — sahifa-preview + qisqa yashil xulosa («Siz bugun 5 bosqichda to'liq sahifa yasadingiz — hammasi o'z qo'lingiz bilan. Barakalla!»). Chap tomon bo'sh qolish muammosi (image copy.png) shu bilan yopildi.
+5. **Yashil-fon matnlari qisqartirildi** (s0 «qo'l isidi» olib tashlandi, s2 yakun, s12b xulosa).
+6. **Podium sarlavhasi:** «Kim g'olib?» → «Bugungi g'oliblarimiz!» (ru: «Наши сегодняшние победители!»).
+7. **Yakun-ekran ScoreRing (0/3 to'g'ri javob):** mentor proyektorida YASHIRILDI (`{!isMentorL && <ScoreRing/>}`) — mentor javob bermaydi, 0/3 chalg'itardi.
+**O'lik kod tozalandi:** DChat komponenti + `.dy-*` va `.party-react` CSS o'chirildi; `DEFAULT_TASK` sarlavhasi «quring» → «yasang».
+**Tekshiruv:** esbuild toza · lint:til 0 error · residue-grep: Diyor/Диёр/DChat/isinish/qurilish = 0 (o'quvchi-matnda).
+UNCOMMITTED. Vizual tekshiruv (s12b markaziy preview) foydalanuvchi ko'rigini kutmoqda.

@@ -448,6 +448,7 @@ const Col = ({ children, gap }) => <div className="col" style={gap ? { gap } : u
 // 🏅 Yuqori paneldagi nishon hisoblagichi — doim ko'rinadi, yangi olinganda pulslaydi, bosilsa ro'yxat chiqadi
 function AchCounter() {
   const earned = useContext(AchCtx);
+  const gate = useContext(LiveGateCtx);
   const count = earned ? earned.size : 0;
   const total = Object.keys(ACHIEVEMENTS).length;
   const prevRef = useRef(count);
@@ -457,6 +458,7 @@ function AchCounter() {
     if (count > prevRef.current) { setBump(true); const t = setTimeout(() => setBump(false), 800); prevRef.current = count; return () => clearTimeout(t); }
     prevRef.current = count;
   }, [count]);
+  if (gate && gate.live && gate.live.mode === 'mentor') return null; // 🔴 mentor proyektorida nishon YO'Q (hooklardan KEYIN)
   return (
     <div className="ach-cnt-wrap">
       <button className={`ach-counter ${bump ? 'bump' : ''} ${count > 0 ? 'has' : ''}`} onClick={() => setOpen(o => !o)} aria-label="Badges" title="Badges">
@@ -1753,16 +1755,18 @@ const ScreenElseWrite = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => 
 // 🃏 Qayta ishlatiladigan FLASHCARDS — aktiv takrorlash (3D flip + o'z-o'zini baholash + spaced recall).
 // Boshqa darsga: faqat `cards` ({ front, back, note }) almashtiriladi.
 const JS_FLASHCARDS = [
-  { front: { uz: '"Agar shart rost bo\'lsa — bajar"', ru: '«Если условие истинно — выполни»' }, back: 'if', note: { uz: 'if (shart) { ... }', ru: 'if (условие) { ... }' } },
-  { front: { uz: '"Aks holda" — shart yolg\'on bo\'lsa', ru: '«Иначе» — если условие ложно' }, back: 'else', note: { uz: 'if dan keyin keladi', ru: 'идёт после if' } },
-  { front: { uz: "Bir nechta yo'ldan birini tanlash", ru: 'Выбор одного из нескольких путей' }, back: 'else if', note: '90+ → 5, 70+ → 4 …' },
-  { front: { uz: 'Ikki qiymat tengmi? — tekshirish', ru: 'Два значения равны? — проверка' }, back: '===', note: { uz: 'true/false qaytaradi', ru: 'возвращает true/false' } },
-  { front: { uz: "Qutiga qiymat solish (o'zlashtirish)", ru: 'Положить значение в коробку (присваивание)' }, back: '=', note: 'ball = 10' },
-  { front: { uz: 'Teng EMASligini tekshirish', ru: 'Проверка, что НЕ равно' }, back: '!==', note: '10 !== 7 → true' },
-  { front: { uz: 'Katta yoki teng', ru: 'Больше или равно' }, back: '>=', note: { uz: 'yosh >= 12 — turniket sharti', ru: 'yosh >= 12 — условие турникета' } },
-  { front: { uz: 'Shart tekshiruvining natijasi', ru: 'Результат проверки условия' }, back: 'true / false', note: { uz: 'boolean qiymat', ru: 'значение boolean' } },
-  { front: { uz: 'if ichida yana bitta if', ru: 'if внутри ещё одного if' }, back: 'nested', note: { uz: 'ichma-ich shart', ru: 'вложенное условие' } },
-  { front: { uz: 'Shart kodi nima ichiga yoziladi?', ru: 'Во что записывается код условия?' }, back: '{ }', note: { uz: 'figurali qavs — blok', ru: 'фигурные скобки — блок' } },
+  { front: { uz: "Shart rost bo'lganda kodni ishga tushiradigan so'z qaysi?", ru: 'Какое слово запускает код, когда условие истинно?' }, back: 'if', note: { uz: 'if (shart) { ... }', ru: 'if (условие) { ... }' } },
+  { front: { uz: "Shart yolg'on bo'lsa, qaysi so'z ishlaydi?", ru: 'Какое слово срабатывает, если условие ложно?' }, back: 'else', note: { uz: "«aks holda» degani — if dan keyin keladi", ru: 'значит «иначе» — идёт после if' } },
+  { front: { uz: "Bir nechta yo'ldan birini tanlash uchun qaysi so'z ishlatiladi?", ru: 'Каким словом выбирают один путь из нескольких?' }, back: 'else if', note: { uz: '90+ → 5, 70+ → 4, qolgani → 3', ru: '90+ → 5, 70+ → 4, остальное → 3' } },
+  { front: { uz: 'Ikki qiymat tengligini qaysi belgi tekshiradi?', ru: 'Каким знаком проверяют равенство двух значений?' }, back: '===', note: { uz: '10 === 10 → true', ru: '10 === 10 → true' } },
+  { front: { uz: 'Qutiga qiymat solish uchun qaysi belgi ishlatiladi?', ru: 'Каким знаком кладут значение в коробку?' }, back: '=', note: { uz: 'ball = 10 — bu tekshiruv emas', ru: 'ball = 10 — это не проверка' } },
+  { front: { uz: 'Teng EMASligini qaysi belgi tekshiradi?', ru: 'Какой знак проверяет, что значения НЕ равны?' }, back: '!==', note: { uz: '10 !== 7 → true', ru: '10 !== 7 → true' } },
+  { front: { uz: "«Katta yoki teng»ni qaysi belgi bildiradi?", ru: 'Какой знак означает «больше или равно»?' }, back: '>=', note: { uz: "yosh >= 12 — 12 yosh ham o'tadi", ru: 'yosh >= 12 — 12 лет тоже проходит' } },
+  { front: { uz: 'Shart tekshiruvi qanday natija qaytaradi?', ru: 'Какой результат возвращает проверка условия?' }, back: 'true / false', note: { uz: "boolean qiymat — rost yoki yolg'on", ru: 'значение boolean — истина или ложь' } },
+  { front: { uz: 'if ichida yana bitta if yozilsa, bu qanday ataladi?', ru: 'Как называется if, записанный внутри другого if?' }, back: { uz: 'Ichma-ich (nested) shart', ru: 'Вложенное (nested) условие' }, note: { uz: 'avval tashqi shart tekshiriladi', ru: 'сначала проверяется внешнее условие' } },
+  { front: { uz: 'Shart bajarilganda ishlaydigan kod nima ichiga yoziladi?', ru: 'Во что записывают код, который работает при выполнении условия?' }, back: '{ }', note: { uz: 'figurali qavs — kod bloki', ru: 'фигурные скобки — блок кода' } },
+  { front: { uz: 'if/else da bir vaqtda nechta blok ishlaydi?', ru: 'Сколько блоков работает в if/else одновременно?' }, back: { uz: 'Faqat bittasi', ru: 'Только один' }, note: { uz: "yo if, yo else — ikkalasi birga emas", ru: 'либо if, либо else — не оба сразу' } },
+  { front: { uz: '14 > 12 ifodasi qanday qiymat qaytaradi?', ru: 'Какое значение вернёт выражение 14 > 12?' }, back: 'true', note: { uz: "taqqoslash doim true yoki false beradi", ru: 'сравнение всегда даёт true или false' } },
 ];
 function Flashcards({ cards }) {
   const [queue, setQueue] = useState(() => cards.map((_, i) => i));
@@ -1795,8 +1799,8 @@ function Flashcards({ cards }) {
       <div className="fc-cardwrap">
         <div className={`fc-fly ${exiting === 'knew' ? 'out-knew' : ''} ${exiting === 'again' ? 'out-again' : ''}`} key={swapRef.current}>
         <div className={`fc-card ${flipped ? 'flip' : ''}`} onClick={() => !flipped && !exiting && setFlipped(true)} role="button" tabIndex={0}>
-          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: 'Qaysi belgi?', ru: 'Какой знак?' })} 🤔 <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
-          <div className="fc-face fc-back"><span className="fc-tag">{card.back}</span>{card.note && <span className="fc-note">{tr(card.note)}</span>}</div>
+          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: "Javobni o'ylang", ru: 'Подумайте над ответом' })} 🤔 <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
+          <div className="fc-face fc-back"><span className="fc-tag">{tr(card.back)}</span>{card.note && <span className="fc-note">{tr(card.note)}</span>}</div>
         </div>
         </div>
       </div>
@@ -1809,13 +1813,13 @@ function Flashcards({ cards }) {
 
 // ===== SCREEN: FLASHCARD TAKRORLASH (yakuniy summarydan oldin) =====
 const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const audio = useAudio([{ id: 'sflash', text: `Darsni yakunlashdan oldin, bugun o'rgangan belgilarni tez takrorlaymiz. Har kartada bir vazifa — qaysi belgi yoki so'z ekanini o'ylang, keyin kartani bosib tekshiring.`, trigger: 'on_mount', waits_for: null }]);
+  const audio = useAudio([{ id: 'sflash', text: `Darsni yakunlashdan oldin, bugun o'rgangan belgilarni tez takrorlaymiz. Har kartada bir savol — javobini o'ylang, keyin kartani bosib tekshiring.`, trigger: 'on_mount', waits_for: null }]);
   useEffect(() => { if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, []); // eslint-disable-line
   return (
     <Stage eyebrow={tr({ uz: 'Takrorlash', ru: 'Повторение' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={false} label={{ uz: 'Yakunlash →', ru: 'Завершить →' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Belgilarni <span className="italic" style={{ color: T.accent }}>tez takrorlaymiz</span>.</>, ru: <>Быстро <span className="italic" style={{ color: T.accent }}>повторим знаки</span>.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Darsni yakunlashdan oldin bugun o'rgangan belgi va so'zlarni takrorlaymiz. Har kartada bir vazifa — <b style={{ color: T.ink }}>qaysi belgi</b> ekanini o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</>, ru: <>Перед завершением урока повторим знаки и слова, которые вы сегодня выучили. На каждой карточке задание — подумайте, <b style={{ color: T.ink }}>какой это знак</b>, потом нажмите карточку и проверьте себя. Оцените кнопками <b style={{ color: T.ink }}>Знаю</b> или <b style={{ color: T.ink }}>Повторить</b>.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Darsni yakunlashdan oldin bugun o'rgangan belgi va so'zlarni takrorlaymiz. Har kartada bir savol — <b style={{ color: T.ink }}>javobini</b> o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</>, ru: <>Перед завершением урока повторим знаки и слова, которые вы сегодня выучили. На каждой карточке — вопрос: подумайте, <b style={{ color: T.ink }}>какой это знак</b>, потом нажмите карточку и проверьте себя. Оцените кнопками <b style={{ color: T.ink }}>Знаю</b> или <b style={{ color: T.ink }}>Повторить</b>.</> })}</Mentor>
         <div className="fc-center"><Flashcards cards={JS_FLASHCARDS} /></div>
       </div>
     </Stage>
@@ -1864,7 +1868,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
           <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> {tr({ uz: 'Endi siz bilasiz', ru: 'Теперь вы знаете' })}</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{tr(r)}</span></li>))}</ul></div>
           <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>📝 {tr({ uz: 'Uyga vazifa', ru: 'Домашнее задание' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: "Quyidagi shartlarni yozib ko'ring:", ru: 'Попробуйте написать эти условия:' })}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b className="mono">{h.b}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: "Keyingi darsda kompyuterni ko'p marta takrorlatamiz — sikllar! 🔁", ru: 'На следующем уроке заставим компьютер повторять много раз — циклы! 🔁' })}</p></div>
         </div>
-        <div className="card ach-coll fade-up d3">
+        {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>🏅 {tr({ uz: 'Nishonlaringiz', ru: 'Ваши значки' })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">
             {Object.entries(ACHIEVEMENTS).map(([id, a]) => { const got = !!(achievements && achievements.has(id)); return (
@@ -1875,7 +1879,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
               </div>
             ); })}
           </div>
-        </div>
+        </div>}
       </div>
     </Stage>
   );
@@ -2462,7 +2466,7 @@ function QuizArena({ live, onClose, startSolo }) {
             <div className={`qz-res ${my?.correct ? 'good' : 'bad'}`}>
               {my?.correct
                 ? <><span className="qz-res-pts">+{myPtsFor(qi)}</span><span className="qz-res-t">{tr({ uz: 'ball', ru: 'баллов' })}{streakUpTo(qi) >= 2 ? ` · 🔥 x${streakUpTo(qi)} streak` : ''}</span></>
-                : <span className="qz-res-t">{my ? tr({ uz: 'Xato — 0 ball. Keyingisida olasiz! 💪', ru: 'Ошибка — 0 баллов. Возьмёте на следующем! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Побыстрее! ⏱' })}</span>}
+                : <span className="qz-res-t">{my ? tr({ uz: 'Adashdingiz — 0 ball. Keyingisida olasiz! 💪', ru: 'Ошибка — 0 баллов. Возьмёте на следующем! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Побыстрее! ⏱' })}</span>}
               {!solo && myRank >= 0 && <span className="qz-res-rank">{tr({ uz: 'Siz hozir:', ru: 'Вы сейчас:' })} {myRank + 1}-{tr({ uz: "o'rin", ru: 'е место' })}</span>}
             </div>
           )}

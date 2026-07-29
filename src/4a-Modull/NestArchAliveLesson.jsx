@@ -417,6 +417,7 @@ const Col = ({ children, gap }) => <div className="col" style={gap ? { gap } : u
 // 🏅 Yuqori paneldagi nishon hisoblagichi (Stage chrome)
 function AchCounter() {
   const earned = useContext(AchCtx);
+  const gate = useContext(LiveGateCtx);
   const count = earned ? earned.size : 0;
   const total = Object.keys(ACHIEVEMENTS).length;
   const prevRef = useRef(count);
@@ -426,6 +427,7 @@ function AchCounter() {
     if (count > prevRef.current) { setBump(true); const t = setTimeout(() => setBump(false), 800); prevRef.current = count; return () => clearTimeout(t); }
     prevRef.current = count;
   }, [count]);
+  if (gate && gate.live && gate.live.mode === 'mentor') return null; // 🔴 mentor proyektorida nishon YO'Q (hooklardan KEYIN)
   return (
     <div className="ach-cnt-wrap">
       <button className={`ach-counter ${bump ? 'bump' : ''} ${count > 0 ? 'has' : ''}`} onClick={() => setOpen(o => !o)} aria-label="Badges" title="Badges">
@@ -549,7 +551,7 @@ const RECAPS = {
     cards: [
       { ic: "🛡️", h: { uz: "Eng birinchi — qo'riqchi", ru: 'Самый первый — охранник' }, body: { uz: <>So'rov ichkariga kirishdan oldin <b>qo'riqchi</b> (guard) tekshiradi: klub kartasi (token) bormi?</>, ru: <>Прежде чем запрос попадёт внутрь, <b>охранник</b> (guard) проверяет: есть ли клубная карта (токен)?</> } },
       { ic: "⛔", h: { uz: "Yo'q bo'lsa — 401", ru: 'Нет карты — 401' }, body: { uz: <>Token bo'lmasa mijoz eshikdan o'tmaydi: <span className="mono">401</span>. Oshpazgacha ham bormaydi.</>, ru: <>Без токена клиент не пройдёт дальше двери: <span className="mono">401</span>. До повара он даже не дойдёт.</> } },
-      { ic: "🧐", h: { uz: "Qo'riqchi ≠ nazoratchi", ru: 'Охранник ≠ контролёр' }, body: { uz: <>Qo'riqchi <b>odamni</b> tekshiradi, nazoratchi (ValidationPipe) esa <b>anketani</b>.</>, ru: <>Охранник проверяет <b>человека</b>, а контролёр (ValidationPipe) — <b>анкету</b>.</> }, ask: { uz: "So'rov birinchi kimga uchraydi?", ru: 'Кого запрос встречает первым?' } },
+      { ic: "🧐", h: { uz: "Qo'riqchi va nazoratchi — boshqa-boshqa", ru: 'Охранник и контролёр — разные' }, body: { uz: <>Qo'riqchi <b>odamni</b> tekshiradi, nazoratchi (ValidationPipe) esa <b>anketani</b>.</>, ru: <>Охранник проверяет <b>человека</b>, а контролёр (ValidationPipe) — <b>анкету</b>.</> }, ask: { uz: "So'rov birinchi kimga uchraydi?", ru: 'Кого запрос встречает первым?' } },
     ]
   },
   15: {
@@ -2364,7 +2366,7 @@ function QuizArena({ live, onClose, startSolo }) {
             <div className={`qz-res ${my?.correct ? 'good' : 'bad'}`}>
               {my?.correct
                 ? <><span className="qz-res-pts">+{myPtsFor(qi)}</span><span className="qz-res-t">{tr({ uz: 'ball', ru: 'баллов' })}{streakUpTo(qi) >= 2 ? ` · 🔥 x${streakUpTo(qi)} streak` : ''}</span></>
-                : <span className="qz-res-t">{my ? tr({ uz: 'Xato — 0 ball. Keyingisida olasiz! 💪', ru: 'Ошибка — 0 баллов. Возьмёте на следующем! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Быстрее! ⏱' })}</span>}
+                : <span className="qz-res-t">{my ? tr({ uz: 'Adashdingiz — 0 ball. Keyingisida olasiz! 💪', ru: 'Ошибка — 0 баллов. Возьмёте на следующем! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Быстрее! ⏱' })}</span>}
               {!solo && myRank >= 0 && <span className="qz-res-rank">{tr({ uz: `Siz hozir: ${myRank + 1}-o'rin`, ru: `Вы сейчас: ${myRank + 1}-е место` })}</span>}
             </div>
           )}
@@ -2572,7 +2574,7 @@ function ScreenLivePractice({ title, task, checklist, screen, storedAnswer, onAn
     if (_live && _live.mode === 'student') _live.submitAnswer(PRACTICE_BASE + screen, 'practice', 0, true, 0);
   };
   // JONLI: mentor keyingi sahifaga o'tmaguncha NavNext qulf bo'ladi (optionalLive + LiveGateCtx gate). Hozircha done bo'lsa ochiq.
-  const audio = useAudio([{ id: `practice_${screen}`, text: `Endi navbat sizda — bu topshiriqni o'z kompyuteringizda, VS Code'da bajarasiz. Loyihani clone qiling, serverni yoqing va Swagger menyusida bitta eshikni sinab ko'ring. So'ng bitta so'rovning butun yo'lini o'z so'zingiz bilan aytib bering. Har bosqichni bajarib, belgilab boring. Tugagach «Bajardim» tugmasini bosing — ustoz kuzatib turadi.`, trigger: 'on_mount', waits_for: null }]);
+  const audio = useAudio([{ id: `practice_${screen}`, text: `Endi navbat sizda — bu topshiriqni o'z kompyuteringizda, VS Code'da bajarasiz. Loyihani clone qiling, serverni yoqing va Swagger menyusida bitta eshikni sinab ko'ring. So'ng bitta so'rovning butun yo'lini ekranga qaramasdan, yoddan aytib bering. Har bosqichni bajarib, belgilab boring. Tugagach «Bajardim» tugmasini bosing — ustoz kuzatib turadi.`, trigger: 'on_mount', waits_for: null }]);
   return (
     <Stage eyebrow={tr({ uz: 'Amaliyot · VS Code', ru: 'Практика · VS Code' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Avval bajaring', ru: 'Сначала выполните' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
@@ -2641,8 +2643,8 @@ function Flashcards({ cards }) {
       <div className="fc-cardwrap">
         <div className={`fc-fly ${exiting === 'knew' ? 'out-knew' : ''} ${exiting === 'again' ? 'out-again' : ''}`} key={swapRef.current}>
         <div className={`fc-card ${flipped ? 'flip' : ''}`} onClick={() => !flipped && !exiting && setFlipped(true)} role="button" tabIndex={0}>
-          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: 'Qaysi tushuncha? 🤔', ru: 'Что за понятие? 🤔' })} <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
-          <div className="fc-face fc-back"><span className="fc-tag">{card.back}</span>{card.note && <span className="fc-note">{tr(card.note)}</span>}</div>
+          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: "Javobni o'ylang", ru: 'Подумайте над ответом' })} 🤔 <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
+          <div className="fc-face fc-back"><span className="fc-tag">{tr(card.back)}</span>{card.note && <span className="fc-note">{tr(card.note)}</span>}</div>
         </div>
         </div>
       </div>
@@ -2657,7 +2659,7 @@ function Flashcards({ cards }) {
 const ScreenNestPractice = (props) => (
   <ScreenLivePractice {...props}
     title={{ uz: "Restoranni o'z kompyuteringizda oching", ru: 'Откройте ресторан на своём компьютере' }}
-    task={{ uz: "Loyihani clone qilib ishga tushiring, Swagger menyusida bitta eshikni sinang va bitta so'rovning yo'lini o'z so'zingiz bilan aytib bering: mijoz qaysi bekatlardan o'tadi?", ru: 'Клонируйте проект и запустите его, попробуйте одну дверь в меню Swagger и расскажите своими словами путь одного запроса: через какие станции проходит клиент?' }}
+    task={{ uz: "Loyihani clone qilib ishga tushiring, Swagger menyusida bitta eshikni sinang va bitta so'rovning yo'lini ekranga qaramasdan, yoddan aytib bering: mijoz qaysi bekatlardan o'tadi?", ru: 'Клонируйте проект и запустите его, попробуйте одну дверь в меню Swagger и расскажите своими словами путь одного запроса: через какие станции проходит клиент?' }}
     checklist={[
       { uz: "Repo'ni clone qiling: `git clone` + `npm install`", ru: 'Склонируйте репозиторий: `git clone` + `npm install`' },
       { uz: "`.env` faylini to'ldiring va `npm run start:dev` bilan serverni yoqing", ru: 'Заполните файл `.env` и включите сервер командой `npm run start:dev`' },
@@ -2669,18 +2671,18 @@ const ScreenNestPractice = (props) => (
 
 // 🃏 FLASHCARD KARTALARI — 12 atama (eski summary GLOSSARY'sidan ko'chdi; orqa tomon = restoran tili)
 const NEST_FLASHCARDS = [
-  { front: { uz: "Tayyor loyihani kompyuterga ko'chirish buyrug'i", ru: 'Команда, копирующая готовый проект на компьютер' }, back: 'git clone', note: { uz: "noldan yozmaymiz", ru: 'не пишем с нуля' } },
-  { front: { uz: "Menyu — API eshiklari ro'yxati", ru: 'Меню — список дверей API' }, back: 'Swagger', note: "localhost:3000/api/v1" },
-  { front: { uz: "So'rovni oladi, javobni qaytaradi", ru: 'Принимает запрос, возвращает ответ' }, back: 'Controller', note: { uz: "🤵 ofitsiant", ru: '🤵 официант' } },
-  { front: { uz: "Kelgan ma'lumot qanday bo'lishi kerak", ru: 'Какими должны быть входящие данные' }, back: 'DTO', note: { uz: "📋 buyurtma anketasi", ru: '📋 анкета заказа' } },
-  { front: { uz: "Anketa to'g'ri to'ldirilganmi — tekshiradi", ru: 'Проверяет, правильно ли заполнена анкета' }, back: 'ValidationPipe', note: { uz: "🧐 nazoratchi · 400", ru: '🧐 контролёр · 400' } },
-  { front: { uz: "Asosiy ishni bajaradi: parolni shifrlaydi", ru: 'Делает основную работу: шифрует пароль' }, back: 'Service', note: { uz: "👨‍🍳 oshpaz", ru: '👨‍🍳 повар' } },
-  { front: { uz: "Tayyor CRUD qadamlari bir marta yozilgan", ru: 'Готовые шаги CRUD, написанные один раз' }, back: 'BaseService', note: { uz: "📖 retsept kitobi", ru: '📖 книга рецептов' } },
-  { front: { uz: "Omborda qaysi tokchalar bo'lishini aytadi", ru: 'Говорит, какие полки будут на складе' }, back: 'Entity', note: { uz: "📐 javon chizmasi", ru: '📐 чертёж стеллажа' } },
-  { front: { uz: "Oshpaz aytadi — u ma'lumotni javonga qo'yadi", ru: 'Повар говорит — а он кладёт данные на полку' }, back: 'Repository + PostgreSQL', note: { uz: "📦 omborchi + 🗄️ ombor", ru: '📦 кладовщик + 🗄️ склад' } },
-  { front: { uz: "Bu bo'limda kim ishlashi yozilgan ro'yxat", ru: 'Список, где записано, кто работает в разделе' }, back: 'Module', note: { uz: "📑 shtat jadvali", ru: '📑 штатное расписание' } },
-  { front: { uz: "Klub kartasi (token) bormi — eshikda tekshiradi", ru: 'Проверяет у двери, есть ли клубная карта (токен)' }, back: 'Guard', note: { uz: "🛡️ qo'riqchi · 401", ru: '🛡️ охранник · 401' } },
-  { front: { uz: "Har javob bir xil shaklda chiqadi", ru: 'Каждый ответ выходит в одинаковой форме' }, back: 'successRes', note: { uz: "🍽️ bir xil lagan", ru: '🍽️ одинаковый поднос' } },
+  { front: { uz: "Tayyor loyihani kompyuteringizga qaysi buyruq ko'chiradi?", ru: "Какая команда копирует готовый проект на ваш компьютер?" }, back: "git clone", note: { uz: "Keyin npm install — kerakli paketlarni o'rnatadi", ru: "Потом npm install — ставит нужные пакеты" } },
+  { front: { uz: "Baza manzili va maxfiy kalitlar qaysi faylda turadi?", ru: "В каком файле лежат адрес базы и секретные ключи?" }, back: ".env", note: { uz: ".gitignore tufayli GitHub'ga chiqmaydi", ru: "Благодаря .gitignore не попадает на GitHub" } },
+  { front: { uz: "Serverni yoqib, o'zgarishlarni kuzatadigan buyruq qaysi?", ru: "Какая команда включает сервер и следит за изменениями?" }, back: "npm run start:dev", note: { uz: "Restoranni ochish tugmasi", ru: "Кнопка «открыть ресторан»" } },
+  { front: { uz: "Loyihaning barcha eshiklari ro'yxatini qayerdan ko'rasiz?", ru: "Где посмотреть список всех дверей проекта?" }, back: "Swagger", note: "localhost:3000/api/v1" },
+  { front: { uz: "So'rovni qabul qilib, javobni qaytaradigan qatlam qaysi?", ru: "Какой слой принимает запрос и возвращает ответ?" }, back: "Controller", note: { uz: "🤵 ofitsiant — ishni o'zi bajarmaydi", ru: "🤵 официант — сам работу не делает" } },
+  { front: { uz: "Kelgan ma'lumot qanday bo'lishi kerakligini nima belgilaydi?", ru: "Что задаёт, какими должны быть входящие данные?" }, back: "DTO", note: { uz: "📋 buyurtma anketasi", ru: "📋 анкета заказа" } },
+  { front: { uz: "Anketa xato to'ldirilsa, so'rovni kim to'xtatadi?", ru: "Кто останавливает запрос, если анкета заполнена неверно?" }, back: "ValidationPipe", note: { uz: "🧐 nazoratchi · javob 400", ru: "🧐 контролёр · ответ 400" } },
+  { front: { uz: "Parolni kim shifrlaydi — ofitsiantmi yoki oshpazmi?", ru: "Кто шифрует пароль — официант или повар?" }, back: { uz: "Service (oshpaz)", ru: "Service (повар)" }, note: { uz: "Asosiy ish har doim Service ichida", ru: "Основная работа всегда внутри Service" } },
+  { front: { uz: "Omborda qanday tokchalar bo'lishini qaysi fayl aytadi?", ru: "Какой файл говорит, какие полки будут на складе?" }, back: "Entity", note: { uz: "📐 javon chizmasi: id, username...", ru: "📐 чертёж стеллажа: id, username..." } },
+  { front: { uz: "So'rov eng birinchi kimga uchraydi?", ru: "Кого запрос встречает самым первым?" }, back: { uz: "Guard (qo'riqchi)", ru: "Guard (охранник)" }, note: { uz: "🛡️ token yo'q bo'lsa — 401", ru: "🛡️ нет токена — 401" } },
+  { front: { uz: "Bo'limda kim ishlashi qaysi faylda ro'yxatga olinadi?", ru: "В каком файле записано, кто работает в разделе?" }, back: "Module", note: { uz: "📑 shtat jadvali · providers", ru: "📑 штатное расписание · providers" } },
+  { front: { uz: "Yangi bo'lim ochsangiz, fayllarni qaysi tartibda yozasiz?", ru: "Открываете новый раздел — в каком порядке пишете файлы?" }, back: "Entity → DTO → Service → Controller → Module", note: { uz: "5 fayl — har bo'lim uchun bir xil tartib", ru: "5 файлов — порядок одинаков для любого раздела" } },
 ];
 const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, []); // eslint-disable-line
@@ -2688,7 +2690,7 @@ const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) =>
     <Stage eyebrow={tr({ uz: 'Takrorlash', ru: 'Повторение' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={false} label={tr({ uz: 'Yakunlash →', ru: 'Завершить →' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Restoran atamalarini <span className="italic" style={{ color: T.accent }}>tez takrorlaymiz</span>.</>, ru: <>Быстро <span className="italic" style={{ color: T.accent }}>повторим</span> термины ресторана.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Darsni yakunlashdan oldin bugungi atamalarni takrorlaymiz. Har kartada bir topishmoq — <b style={{ color: T.ink }}>qaysi atama</b> ekanini o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</>, ru: <>Перед завершением урока повторим сегодняшние термины. На каждой карточке — загадка: подумайте, <b style={{ color: T.ink }}>какой это термин</b>, затем нажмите на карточку и проверьте себя. Оцените себя кнопками <b style={{ color: T.ink }}>Знаю</b> и <b style={{ color: T.ink }}>Повторить</b>.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Darsni yakunlashdan oldin bugungi atamalarni takrorlaymiz. Har kartada bir savol — <b style={{ color: T.ink }}>javobini</b> o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</>, ru: <>Перед завершением урока повторим сегодняшние термины. На каждой карточке — вопрос: подумайте, <b style={{ color: T.ink }}>каким будет ответ</b>, затем нажмите на карточку и проверьте себя. Оцените себя кнопками <b style={{ color: T.ink }}>Знаю</b> и <b style={{ color: T.ink }}>Повторить</b>.</> })}</Mentor>
         <div className="fc-center"><Flashcards cards={NEST_FLASHCARDS} /></div>
       </div>
     </Stage>
@@ -2722,7 +2724,7 @@ const Screen20 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
   const HOMEWORK = [
     { b: tr({ uz: "Repo'ni oching", ru: 'Откройте репозиторий' }), t: tr({ uz: "— github.com/Azizbekcrypto/IntroNestArxitechture — papkalarni ko'zdan kechiring", ru: '— github.com/Azizbekcrypto/IntroNestArxitechture — пройдитесь по папкам' }) },
     { b: tr({ uz: 'Restoran', ru: 'Ресторан' }), t: tr({ uz: "— har papkani restoran bo'limiga moslab ayting", ru: '— назовите для каждой папки её ресторанную роль' }) },
-    { b: tr({ uz: "So'rov yo'li", ru: "Путь запроса" }), t: tr({ uz: "— bitta endpoint uchun buyurtma yo'lini o'z so'zingiz bilan tushuntiring", ru: '— объясните своими словами путь заказа для одного endpoint' }) }
+    { b: tr({ uz: "So'rov yo'li", ru: "Путь запроса" }), t: tr({ uz: "— bitta endpoint uchun buyurtma yo'lini ekranga qaramasdan, yoddan tushuntiring", ru: '— объясните своими словами путь заказа для одного endpoint' }) }
   ];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
@@ -2739,7 +2741,7 @@ const Screen20 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
           <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> {tr({ uz: 'Endi siz bilasiz', ru: 'Теперь вы знаете' })}</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{r}</span></li>))}</ul></div>
           <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{h.b}</b> <span className="t">{h.t}</span></li>))}</ul><p className="hw-note">{tr({ uz: "🚀 Keyingi darsda — restoranga o'z bo'limingizni ochasiz: Entity → DTO → Service → Controller → Module!", ru: '🚀 На следующем уроке вы откроете в ресторане свой раздел: Entity → DTO → Service → Controller → Module!' })}</p></div>
         </div>
-        <div className="card ach-coll fade-up d3">
+        {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🏅 Nishonlaringiz —', ru: '🏅 Ваши значки —' })} {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">
             {Object.entries(ACHIEVEMENTS).map(([id, a]) => { const got = !!(achievements && achievements.has(id)); return (
@@ -2750,7 +2752,7 @@ const Screen20 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
               </div>
             ); })}
           </div>
-        </div>
+        </div>}
       </div>
     </Stage>
   );

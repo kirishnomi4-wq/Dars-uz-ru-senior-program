@@ -408,6 +408,7 @@ const Col = ({ children, gap }) => <div className="col" style={gap ? { gap } : u
 // 🏅 Yuqori paneldagi nishon hisoblagichi (Stage chrome)
 function AchCounter() {
   const earned = useContext(AchCtx);
+  const gate = useContext(LiveGateCtx);
   const count = earned ? earned.size : 0;
   const total = Object.keys(ACHIEVEMENTS).length;
   const prevRef = useRef(count);
@@ -417,6 +418,7 @@ function AchCounter() {
     if (count > prevRef.current) { setBump(true); const t = setTimeout(() => setBump(false), 800); prevRef.current = count; return () => clearTimeout(t); }
     prevRef.current = count;
   }, [count]);
+  if (gate && gate.live && gate.live.mode === 'mentor') return null; // 🔴 mentor proyektorida nishon YO'Q (hooklardan KEYIN)
   return (
     <div className="ach-cnt-wrap">
       <button className={`ach-counter ${bump ? 'bump' : ''} ${count > 0 ? 'has' : ''}`} onClick={() => setOpen(o => !o)} aria-label="Badges" title="Badges">
@@ -2238,7 +2240,7 @@ function QuizArena({ live, onClose, startSolo }) {
             <div className={`qz-res ${my?.correct ? 'good' : 'bad'}`}>
               {my?.correct
                 ? <><span className="qz-res-pts">+{myPtsFor(qi)}</span><span className="qz-res-t">{tr({ uz: 'ball', ru: 'баллов' })}{streakUpTo(qi) >= 2 ? ` · 🔥 x${streakUpTo(qi)} streak` : ''}</span></>
-                : <span className="qz-res-t">{my ? tr({ uz: "Xato — 0 ball. Keyingisida olasiz! 💪", ru: 'Мимо — 0 баллов. Возьмёте на следующем! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Побыстрее! ⏱' })}</span>}
+                : <span className="qz-res-t">{my ? tr({ uz: "Adashdingiz — 0 ball. Keyingisida olasiz! 💪", ru: 'Мимо — 0 баллов. Возьмёте на следующем! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Побыстрее! ⏱' })}</span>}
               {!solo && myRank >= 0 && <span className="qz-res-rank">{tr({ uz: 'Siz hozir:', ru: 'Вы сейчас:' })} {myRank + 1}{tr({ uz: "-o'rin", ru: '-е место' })}</span>}
             </div>
           )}
@@ -2515,7 +2517,7 @@ function Flashcards({ cards }) {
       <div className="fc-cardwrap">
         <div className={`fc-fly ${exiting === 'knew' ? 'out-knew' : ''} ${exiting === 'again' ? 'out-again' : ''}`} key={swapRef.current}>
         <div className={`fc-card ${flipped ? 'flip' : ''}`} onClick={() => !flipped && !exiting && setFlipped(true)} role="button" tabIndex={0}>
-          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: 'Qaysi tushuncha? 🤔', ru: 'Какое понятие? 🤔' })} <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
+          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: "Javobni o'ylang", ru: 'Подумайте над ответом' })} 🤔 <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
           <div className="fc-face fc-back"><span className="fc-tag">{tr(card.back)}</span>{card.note && <span className="fc-note">{tr(card.note)}</span>}</div>
         </div>
         </div>
@@ -2543,18 +2545,18 @@ const ScreenBotPractice = (props) => (
 
 // 🃏 FLASHCARD KARTALARI — 12 atama (Botjon tili)
 const BOT_FLASHCARDS = [
-  { front: { uz: "Signalga reaksiya qiladigan, uxlamaydigan yordamchi", ru: 'Помощник, который реагирует на сигнал и не спит' }, back: { uz: 'Bot', ru: 'Бот' }, note: { uz: "Botjon", ru: 'Ботик' } },
-  { front: { uz: "Botni ishga tushiradigan xabar, tugma yoki buyruq", ru: 'Сообщение, кнопка или команда, которые запускают бота' }, back: { uz: 'Signal', ru: 'Сигнал' }, note: "trigger" },
-  { front: { uz: "Botjon signalga javoban bajaradigan ish", ru: 'Работа, которую Ботик делает в ответ на сигнал' }, back: { uz: 'Amal', ru: 'Действие' }, note: "action" },
-  { front: { uz: "Har qatorida signal→amal yozilgan hujjat", ru: 'Документ, где в каждой строке записано сигнал→действие' }, back: { uz: "Qoidalar varag'i", ru: 'Лист правил' }, note: { uz: "handler ro'yxati", ru: 'список handler' } },
-  { front: { uz: "Botning kim ekanini isbotlaydigan maxfiy raqamlar", ru: 'Секретные символы, доказывающие, кто такой бот' }, back: { uz: 'Kalit', ru: 'Ключ' }, note: "token" },
-  { front: { uz: "Kalitni beradigan rasmiy Telegram boti", ru: 'Официальный бот Telegram, который выдаёт ключ' }, back: 'BotFather', note: { uz: "ro'yxat idorasi", ru: 'бюро регистрации' } },
-  { front: { uz: "Kalit xavfsiz saqlanadigan qulfli tortma-fayl", ru: 'Файл-ящик под замком, где безопасно хранится ключ' }, back: '.env', note: { uz: "kodda ko'rinmaydi", ru: 'в коде не виден' } },
-  { front: { uz: "Telegram va kod orasidagi xizmat oynasi", ru: 'Служебное окно между Telegram и кодом' }, back: 'Bot API', note: { uz: "kalitsiz ochilmaydi", ru: 'без ключа не откроется' } },
-  { front: { uz: "Botjon o'zi so'rab: «menga signal bormi?»", ru: 'Ботик сам спрашивает: «есть для меня сигнал?»' }, back: 'Polling', note: { uz: "o'zi so'rab turish", ru: 'сам спрашивает' } },
-  { front: { uz: "Xizmat oynasi signal kelganda o'zi bildiradi", ru: 'Служебное окно само сообщает, когда пришёл сигнал' }, back: 'Webhook', note: { uz: "qo'ng'iroq", ru: 'звонок' } },
-  { front: { uz: "Hech biriga mos kelmasa ishlaydigan oxirgi qator", ru: 'Последняя строка, которая срабатывает, если ничего не подошло' }, back: 'Fallback', note: { uz: "jim qolmaslik", ru: 'чтобы не молчать' } },
-  { front: { uz: "Eski kalitni ishdan chiqarish", ru: 'Вывести старый ключ из строя' }, back: 'Revoke', note: { uz: "bekor qilish", ru: 'отзыв' } },
+  { front: { uz: "Botni ishga tushiradigan xabar yoki buyruq nima deb ataladi?", ru: 'Как называется сообщение или команда, которые запускают бота?' }, back: { uz: 'Signal', ru: 'Сигнал' }, note: { uz: "Masalan, /start tugmasini bosish", ru: 'Например, нажатие /start' } },
+  { front: { uz: "Botjon signalga javoban bajaradigan ishni nima deymiz?", ru: 'Как мы называем работу, которую Ботик делает в ответ на сигнал?' }, back: { uz: 'Amal', ru: 'Действие' }, note: { uz: "Masalan, javob xabarini yuborish", ru: 'Например, отправить ответное сообщение' } },
+  { front: { uz: "Qaysi signalga qaysi amal kerakligi qayerda yozib qo'yiladi?", ru: 'Где записано, какому сигналу какое действие нужно?' }, back: { uz: "Qoidalar varag'ida", ru: 'В листе правил' }, note: { uz: "Har qatorda bitta signal va uning amali turadi", ru: 'В каждой строке — один сигнал и его действие' } },
+  { front: { uz: "Botjon amalni bajargandan keyin nima qiladi?", ru: 'Что делает Ботик после того, как выполнил действие?' }, back: { uz: 'Yana kutadi', ru: 'Снова ждёт' }, note: { uz: "Kutadi, signal oladi, amal qiladi va yana kutadi — aylana to'xtamaydi", ru: 'Ждёт, получает сигнал, выполняет действие и снова ждёт — круг не останавливается' } },
+  { front: { uz: "Botning kim ekanini isbotlaydigan maxfiy belgilar nima deyiladi?", ru: 'Как называются секретные символы, которые доказывают, кто такой бот?' }, back: { uz: 'Kalit (token)', ru: 'Ключ (token)' }, note: { uz: "Kalit kimda bo'lsa, bot o'shaniki hisoblanadi", ru: 'У кого ключ — того и бот' } },
+  { front: { uz: "Yangi bot ochish va kalit olish uchun Telegramda kim bilan gaplashasiz?", ru: 'С кем в Telegram вы разговариваете, чтобы создать бота и получить ключ?' }, back: '@BotFather', note: { uz: "Bu — botlarni ro'yxatdan o'tkazadigan rasmiy bot", ru: 'Это официальный бот, который регистрирует ботов' } },
+  { front: { uz: "Kalitni qaysi faylda saqlaysiz?", ru: 'В каком файле вы храните ключ?' }, back: '.env', note: { uz: "Qulfli tortma: kodda faqat process.env.BOT_TOKEN ko'rinadi", ru: 'Запертый ящик: в коде видно только process.env.BOT_TOKEN' } },
+  { front: { uz: "Telegram bilan kodingiz orasidagi xizmat oynasi qanday nomlanadi?", ru: 'Как называется служебное окно между Telegram и вашим кодом?' }, back: 'Bot API', note: { uz: "Kalitsiz ochilmaydi — javob o'rniga 401 qaytadi", ru: 'Без ключа не откроется — вместо ответа вернётся 401' } },
+  { front: { uz: "Botjonning o'zi «menga signal bormi?» deb so'rab turishi qanday ataladi?", ru: 'Как называется способ, когда Ботик сам спрашивает: «есть для меня сигнал?»' }, back: 'Polling', note: { uz: "O'zi so'rab turadi — signal bo'lmasa ham qayta so'raydi", ru: 'Спрашивает сам — даже если сигнала нет, спросит снова' } },
+  { front: { uz: "Xizmat oynasi signal kelganda o'zi bildirsa, bu usul qanday ataladi?", ru: 'Как называется способ, когда служебное окно само сообщает о сигнале?' }, back: 'Webhook', note: { uz: "Qo'ng'iroq: Botjon bekor so'ramaydi, faqat kutadi", ru: 'Звонок: Ботик не спрашивает впустую, просто ждёт' } },
+  { front: { uz: "Varaqda mos qator topilmasa, Botjon jim qolmasligi uchun nima qo'shiladi?", ru: 'Что добавляют, чтобы Ботик не молчал, если в листе нет подходящей строки?' }, back: 'Fallback', note: { uz: "Eng oxirgi umumiy qator — hech kim javobsiz qolmaydi", ru: 'Самая последняя общая строка — никто не останется без ответа' } },
+  { front: { uz: "Kalitingiz begona odamga ko'rinib qolsa, birinchi nima qilasiz?", ru: 'Что вы сделаете первым делом, если ваш ключ увидел чужой человек?' }, back: { uz: 'Kalitni bekor qilish (revoke)', ru: 'Отозвать ключ (revoke)' }, note: { uz: "Eski kalit ishlamay qoladi, yangisini .env ga qo'yasiz", ru: 'Старый ключ перестанет работать, новый кладёте в .env' } },
 ];
 const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, []); // eslint-disable-line
@@ -2562,7 +2564,7 @@ const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) =>
     <Stage eyebrow={tr({ uz: 'Takrorlash', ru: 'Повторение' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={false} label={tr({ uz: 'Yakunlash →', ru: 'Завершить →' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Botjon atamalarini <span className="italic" style={{ color: T.accent }}>tez takrorlaymiz</span>.</>, ru: <><span className="italic" style={{ color: T.accent }}>Быстро повторим</span> термины Ботика.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Darsni yakunlashdan oldin bugungi atamalarni takrorlaymiz. Har kartada bir topishmoq — <b style={{ color: T.ink }}>qaysi atama</b> ekanini o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</>, ru: <>Перед завершением урока повторим сегодняшние термины. На каждой карте загадка — подумайте, <b style={{ color: T.ink }}>какой это термин</b>, затем нажмите на карту и проверьте. Оцените себя кнопкой <b style={{ color: T.ink }}>Знаю</b> или <b style={{ color: T.ink }}>Повторить</b>.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Darsni yakunlashdan oldin bugungi atamalarni takrorlaymiz. Har kartada bir savol — <b style={{ color: T.ink }}>javobini</b> o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</>, ru: <>Перед завершением урока повторим сегодняшние термины. На каждой карточке — вопрос: подумайте, <b style={{ color: T.ink }}>каким будет ответ</b>, затем нажмите на карту и проверьте. Оцените себя кнопкой <b style={{ color: T.ink }}>Знаю</b> или <b style={{ color: T.ink }}>Повторить</b>.</> })}</Mentor>
         <div className="fc-center"><Flashcards cards={BOT_FLASHCARDS} /></div>
       </div>
     </Stage>
@@ -2613,7 +2615,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
           <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> {tr({ uz: 'Endi siz bilasiz', ru: 'Теперь вы знаете' })}</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{tr(r)}</span></li>))}</ul></div>
           <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: "🚀 Keyingi dars — Telegram Bot API: @BotFather bilan birinchi haqiqiy botingizni yaratamiz va tugmalarni qo'shamiz!", ru: '🚀 Следующий урок — Telegram Bot API: создадим вашего первого настоящего бота с @BotFather и добавим кнопки!' })}</p></div>
         </div>
-        <div className="card ach-coll fade-up d3">
+        {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🏅 Nishonlaringiz', ru: '🏅 Ваши значки' })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">
             {Object.entries(ACHIEVEMENTS).map(([id, a]) => { const got = !!(achievements && achievements.has(id)); return (
@@ -2624,7 +2626,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
               </div>
             ); })}
           </div>
-        </div>
+        </div>}
       </div>
     </Stage>
   );

@@ -404,6 +404,7 @@ const Col = ({ children, gap }) => <div className="col" style={gap ? { gap } : u
 // 🏅 Yuqori paneldagi nishon hisoblagichi (Stage chrome)
 function AchCounter() {
   const earned = useContext(AchCtx);
+  const gate = useContext(LiveGateCtx);
   const count = earned ? earned.size : 0;
   const total = Object.keys(ACHIEVEMENTS).length;
   const prevRef = useRef(count);
@@ -413,6 +414,7 @@ function AchCounter() {
     if (count > prevRef.current) { setBump(true); const t = setTimeout(() => setBump(false), 800); prevRef.current = count; return () => clearTimeout(t); }
     prevRef.current = count;
   }, [count]);
+  if (gate && gate.live && gate.live.mode === 'mentor') return null; // 🔴 mentor proyektorida nishon YO'Q (hooklardan KEYIN)
   return (
     <div className="ach-cnt-wrap">
       <button className={`ach-counter ${bump ? 'bump' : ''} ${count > 0 ? 'has' : ''}`} onClick={() => setOpen(o => !o)} aria-label="Badges" title="Badges">
@@ -1116,7 +1118,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   const cur = PROMPT_PARTS.find(p => p.id === active);
   return (
-    <Stage eyebrow={tr({ uz: 'Topshiriq anatomiyasi', ru: 'Анатомия задания' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `4 qismni oching (${seen.size}/4)`, ru: `Откройте 4 части (${seen.size}/4)` }} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Topshiriq tuzilishi', ru: 'Строение задания' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `4 qismni oching (${seen.size}/4)`, ru: `Откройте 4 части (${seen.size}/4)` }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Yaxshi topshiriq — <span className="italic" style={{ color: T.accent }}>4 qism</span>dan iborat.</>, ru: <>Хорошее задание состоит из <span className="italic" style={{ color: T.accent }}>4 частей</span>.</> })}</h2></div>
         <Mentor>{tr({ uz: 'Aniq topshiriq 4 narsani aytadi: texnologiya, trigger→action, tugma turi va token. Har qismni bosib, nega muhimligini ko\'ring — bularning hammasini siz bilasiz, AI emas.', ru: 'Точное задание сообщает 4 вещи: технологию, trigger→action, тип кнопок и токен. Нажмите на каждую часть и посмотрите, почему она важна — всё это знаете вы, а не ИИ.' })}</Mentor>
@@ -1976,7 +1978,7 @@ function QuizArena({ live, onClose, startSolo }) {
             <div className={`qz-res ${my?.correct ? 'good' : 'bad'}`}>
               {my?.correct
                 ? <><span className="qz-res-pts">+{myPtsFor(qi)}</span><span className="qz-res-t">{tr({ uz: 'ball', ru: 'баллов' })}{streakUpTo(qi) >= 2 ? ` · 🔥 x${streakUpTo(qi)} ${tr({ uz: 'streak', ru: 'серия' })}` : ''}</span></>
-                : <span className="qz-res-t">{my ? tr({ uz: 'Xato — 0 ball. Keyingisida olasiz! 💪', ru: 'Ошибка — 0 баллов. В следующий раз получится! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Будьте быстрее! ⏱' })}</span>}
+                : <span className="qz-res-t">{my ? tr({ uz: 'Adashdingiz — 0 ball. Keyingisida olasiz! 💪', ru: 'Ошибка — 0 баллов. В следующий раз получится! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Будьте быстрее! ⏱' })}</span>}
               {!solo && myRank >= 0 && <span className="qz-res-rank">{tr({ uz: 'Siz hozir:', ru: 'Вы сейчас:' })} {myRank + 1}{tr({ uz: "-o'rin", ru: '-е место' })}</span>}
             </div>
           )}
@@ -2253,7 +2255,7 @@ function Flashcards({ cards }) {
       <div className="fc-cardwrap">
         <div className={`fc-fly ${exiting === 'knew' ? 'out-knew' : ''} ${exiting === 'again' ? 'out-again' : ''}`} key={swapRef.current}>
         <div className={`fc-card ${flipped ? 'flip' : ''}`} onClick={() => !flipped && !exiting && setFlipped(true)} role="button" tabIndex={0}>
-          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: 'Qaysi tushuncha? 🤔', ru: 'Какое это понятие? 🤔' })} <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
+          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: "Javobni o'ylang", ru: 'Подумайте над ответом' })} 🤔 <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
           <div className="fc-face fc-back"><span className="fc-tag">{tr(card.back)}</span>{card.note && <span className="fc-note">{tr(card.note)}</span>}</div>
         </div>
         </div>
@@ -2281,18 +2283,18 @@ const ScreenBotPractice = (props) => (
 
 // 🃏 FLASHCARD KARTALARI — 12 atama (loyiha kuni / vibecoding tili)
 const BOT_FLASHCARDS = [
-  { front: { uz: "AI'ga beriladigan aniq buyruq", ru: 'Точная команда, которую дают ИИ' }, back: { uz: 'Topshiriq', ru: 'Задание' }, note: { uz: 'prompt', ru: 'промпт' } },
-  { front: { uz: 'Siz buyurasiz, AI yozadi, siz tekshirasiz', ru: 'Вы заказываете, ИИ пишет, вы проверяете' }, back: { uz: 'Vibecoding', ru: 'Вайбкодинг' }, note: { uz: 'direktor va yozuvchi', ru: 'режиссёр и сценарист' } },
-  { front: { uz: "AI bilan ishlashda siz kim bo'lasiz", ru: 'Кто вы в работе с ИИ' }, back: { uz: 'Direktor', ru: 'Режиссёр' }, note: { uz: 'rul sizda', ru: 'руль у вас' } },
-  { front: { uz: "Promptdan oldin botni ajratadigan ro'yxat", ru: 'Список, на который разбивают бота до промпта' }, back: { uz: 'Reja', ru: 'План' }, note: { uz: 'trigger → action', ru: 'trigger → action' } },
-  { front: { uz: 'Yaxshi topshiriqning 4 qismi', ru: '4 части хорошего задания' }, back: { uz: 'Texnologiya, juftliklar, tugma, token', ru: 'Технология, пары, кнопки, токен' }, note: { uz: 'aniq prompt', ru: 'точный промпт' } },
-  { front: { uz: "Inline tugma callback'ini ushlaydigan kod", ru: 'Код, ловящий callback inline-кнопки' }, back: { uz: 'bot.action', ru: 'bot.action' }, note: { uz: 'handler', ru: 'обработчик' } },
-  { front: { uz: 'Tugma bosildi-yu bot jim qolsa, nima yetishmaydi', ru: 'Кнопку нажали, бот молчит — чего не хватает' }, back: { uz: 'Handler', ru: 'Обработчик' }, note: { uz: "bot.action yo'q", ru: 'нет bot.action' } },
-  { front: { uz: 'Token saqlanadigan maxfiy fayl', ru: 'Секретный файл, где хранится токен' }, back: { uz: '.env', ru: '.env' }, note: { uz: 'process.env.BOT_TOKEN', ru: 'process.env.BOT_TOKEN' } },
-  { front: { uz: 'AI kodini ishlatishdan oldin nima qilinadi', ru: 'Что делают до того, как использовать код ИИ' }, back: { uz: "O'qib tushunish", ru: 'Прочитать и понять' }, note: { uz: "ko'r-ko'rona emas", ru: 'не вслепую' } },
-  { front: { uz: 'Botni ishga tushirib, tugmalarni bosib sinash', ru: 'Запустить бота и понажимать кнопки' }, back: { uz: 'Test', ru: 'Тест' }, note: { uz: 'tekshirish', ru: 'проверка' } },
-  { front: { uz: 'Test → tuzatish → qayta test sikli', ru: 'Цикл: тест → правка → повторный тест' }, back: { uz: 'Iteratsiya', ru: 'Итерация' }, note: { uz: 'yaxshilash aylanasi', ru: 'круг улучшения' } },
-  { front: { uz: "AI xato qilsa (handler yo'q), buni siz nima qilib topasiz", ru: 'Как вы найдёте ошибку ИИ (нет обработчика)' }, back: { uz: 'Test qilib', ru: 'Тестом' }, note: { uz: 'tushunganingiz uchun', ru: 'потому что понимаете код' } },
+  { front: { uz: "AI'ga beriladigan aniq buyruq nima deb ataladi?", ru: 'Как называется точная команда, которую дают ИИ?' }, back: { uz: 'Topshiriq', ru: 'Задание' }, note: { uz: 'prompt — qanchalik aniq bo\'lsa, natija shunchalik aniq', ru: 'промпт — чем он точнее, тем точнее результат' } },
+  { front: { uz: "Siz buyurasiz, AI yozadi, siz tekshirasiz — bu usul nima deyiladi?", ru: 'Вы заказываете, ИИ пишет, Вы проверяете — как называется такой способ?' }, back: { uz: 'Vibecoding', ru: 'Вайбкодинг' }, note: { uz: 'siz buyurtmachi, AI ijrochi', ru: 'Вы заказчик, ИИ исполнитель' } },
+  { front: { uz: "Vibecodingda siz qanday rolda bo'lasiz?", ru: 'В какой роли Вы выступаете в вайбкодинге?' }, back: { uz: 'Direktor', ru: 'Режиссёр' }, note: { uz: 'rul sizda: nima bo\'lishini siz aytasiz', ru: 'руль у Вас: что делать, говорите Вы' } },
+  { front: { uz: "Prompt yozishdan oldin botni nimalarga ajratasiz?", ru: 'На что Вы разбиваете бота, прежде чем писать промпт?' }, back: { uz: 'Trigger va action juftliklariga', ru: 'На пары trigger и action' }, note: { uz: 'bu ro\'yxat reja deb ataladi', ru: 'такой список называется планом' } },
+  { front: { uz: "Aniq topshiriqda qaysi 4 narsa aytiladi?", ru: 'Какие 4 вещи называют в точном задании?' }, back: { uz: 'Texnologiya, juftliklar, tugma, token', ru: 'Технология, пары, кнопки, токен' }, note: { uz: 'to\'rttasi aytilsa, AI taxmin qilmaydi', ru: 'если названы все четыре, ИИ не гадает' } },
+  { front: { uz: "«Menga bot yasab ber» nega yomon topshiriq?", ru: 'Почему «сделай мне бота» — плохое задание?' }, back: { uz: 'AI hammasini o\'zicha tanlaydi', ru: 'ИИ всё выбирает сам' }, note: { uz: 'texnologiya ham, tugma ham taxmin bilan chiqadi', ru: 'и технология, и кнопки выходят наугад' } },
+  { front: { uz: "Inline tugma bosilganda nima jo'natiladi?", ru: 'Что отправляется при нажатии inline-кнопки?' }, back: { uz: 'Callback signal', ru: 'Callback-сигнал' }, note: { uz: 'bu signalni biror kod ushlashi kerak', ru: 'этот сигнал должен кто-то поймать' } },
+  { front: { uz: "Callback signalini ushlaydigan kod qanday yoziladi?", ru: 'Как пишется код, который ловит callback-сигнал?' }, back: 'bot.action', note: { uz: 'signalni ushlaydigan kod handler deyiladi', ru: 'код, ловящий сигнал, называется обработчиком' } },
+  { front: { uz: "Tugma bosildi, bot jim qoldi — nima yetishmayapti?", ru: 'Кнопку нажали, бот молчит — чего не хватает?' }, back: { uz: 'Handler', ru: 'Обработчик' }, note: { uz: 'shu tugma uchun bot.action yozilmagan', ru: 'для этой кнопки не написан bot.action' } },
+  { front: { uz: "Bot tokeni qaysi faylda saqlanadi?", ru: 'В каком файле хранится токен бота?' }, back: '.env', note: { uz: 'kodga process.env.BOT_TOKEN orqali olinadi', ru: 'в код берётся через process.env.BOT_TOKEN' } },
+  { front: { uz: "AI kod bergach, birinchi navbatda nima qilasiz?", ru: 'Что Вы делаете первым делом, когда ИИ выдал код?' }, back: { uz: 'O\'qib tushunaman', ru: 'Читаю и понимаю' }, note: { uz: 'ko\'r-ko\'rona ishlatilmaydi', ru: 'вслепую его не используют' } },
+  { front: { uz: "Test qilish, tuzatish va qayta test aylanasi nima deb ataladi?", ru: 'Как называется круг: тест, правка и повторный тест?' }, back: { uz: 'Iteratsiya', ru: 'Итерация' }, note: { uz: 'har aylanishda bot yaxshilanadi', ru: 'на каждом круге бот становится лучше' } },
 ];
 const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, []); // eslint-disable-line
@@ -2300,7 +2302,7 @@ const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) =>
     <Stage eyebrow={tr({ uz: 'Takrorlash', ru: 'Повторение' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={false} label={{ uz: 'Yakunlash →', ru: 'Завершить →' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Loyiha kuni atamalarini <span className="italic" style={{ color: T.accent }}>tez takrorlaymiz</span>.</>, ru: <><span className="italic" style={{ color: T.accent }}>Быстро повторим</span> термины проектного дня.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Darsni yakunlashdan oldin bugungi atamalarni takrorlaymiz. Har kartada bir topishmoq — <b style={{ color: T.ink }}>qaysi atama</b> ekanini o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</>, ru: <>Перед завершением урока повторим сегодняшние термины. На каждой карточке загадка — подумайте, <b style={{ color: T.ink }}>какой это термин</b>, затем нажмите на карточку и проверьте. Оцените себя кнопками <b style={{ color: T.ink }}>Знаю</b> или <b style={{ color: T.ink }}>Повторить</b>.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Darsni yakunlashdan oldin bugungi atamalarni takrorlaymiz. Har kartada bir savol — <b style={{ color: T.ink }}>javobini</b> o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</>, ru: <>Перед завершением урока повторим сегодняшние термины. На каждой карточке вопрос — подумайте, <b style={{ color: T.ink }}>каким будет ответ</b>, затем нажмите на карточку и проверьте. Оцените себя кнопками <b style={{ color: T.ink }}>Знаю</b> или <b style={{ color: T.ink }}>Повторить</b>.</> })}</Mentor>
         <div className="fc-center"><Flashcards cards={BOT_FLASHCARDS} /></div>
       </div>
     </Stage>
@@ -2351,7 +2353,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
           <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> {tr({ uz: 'Endi siz bilasiz', ru: 'Теперь вы знаете' })}</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{tr(r)}</span></li>))}</ul></div>
           <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: "🎉 Bu — modulning so'nggi darsi. Botjon endi to'liq jihozlangan: kalit, varaq, daftar, maslahatchi va sumka — hammasi sizda!", ru: '🎉 Это последний урок модуля. Ботик теперь полностью экипирован: ключ, лист, тетрадь, советчик и сумка — всё у вас!' })}</p></div>
         </div>
-        <div className="card ach-coll fade-up d3">
+        {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🏅 Nishonlaringiz —', ru: '🏅 Ваши значки —' })} {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">
             {Object.entries(ACHIEVEMENTS).map(([id, a]) => { const got = !!(achievements && achievements.has(id)); return (
@@ -2362,7 +2364,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
               </div>
             ); })}
           </div>
-        </div>
+        </div>}
       </div>
     </Stage>
   );

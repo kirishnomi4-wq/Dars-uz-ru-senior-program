@@ -387,6 +387,7 @@ const Col = ({ children, gap }) => <div className="col" style={gap ? { gap } : u
 // 🏅 Yuqori paneldagi nishon hisoblagichi (Stage chrome)
 function AchCounter() {
   const earned = useContext(AchCtx);
+  const gate = useContext(LiveGateCtx);
   const count = earned ? earned.size : 0;
   const total = Object.keys(ACHIEVEMENTS).length;
   const prevRef = useRef(count);
@@ -396,6 +397,7 @@ function AchCounter() {
     if (count > prevRef.current) { setBump(true); const t = setTimeout(() => setBump(false), 800); prevRef.current = count; return () => clearTimeout(t); }
     prevRef.current = count;
   }, [count]);
+  if (gate && gate.live && gate.live.mode === 'mentor') return null; // 🔴 mentor proyektorida nishon YO'Q (hooklardan KEYIN)
   return (
     <div className="ach-cnt-wrap">
       <button className={`ach-counter ${bump ? 'bump' : ''} ${count > 0 ? 'has' : ''}`} onClick={() => setOpen(o => !o)} aria-label="Badges" title="Badges">
@@ -1004,7 +1006,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 <span className="gap-lbl">{tr({ uz: '📦 Xotira (let likes)', ru: '📦 Память (let likes)' })}</span>
                 <span key={clicks} className={clicks > 0 ? 'gap-num pop' : 'gap-num'}>{clicks}</span>
               </div>
-              <span className="gap-vs">≠</span>
+              <span className="gap-vs">{tr({ uz: 'teng emas', ru: 'не равно' })}</span>
               <div className="gap-box scr">
                 <span className="gap-lbl">{tr({ uz: '🖥 Ekranda', ru: '🖥 На экране' })}</span>
                 <span className="gap-num frozen">0 <span className="gap-lock">🔒</span></span>
@@ -1145,7 +1147,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             </div>
             <div className="lm-gap fade-up delay-2">
               <span className="lm-gap-i">{tr({ uz: 'xotira:', ru: 'память:' })} <b style={{ color: T.accent }}>{memory}</b></span>
-              <span className="lm-gap-vs">≠</span>
+              <span className="lm-gap-vs">{tr({ uz: 'teng emas', ru: 'не равно' })}</span>
               <span className="lm-gap-i">{tr({ uz: 'ekran:', ru: 'экран:' })} <b style={{ color: T.success }}>{screenLikes}</b></span>
             </div>
           </Col>
@@ -1164,7 +1166,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             </div>
             {wasted > 0 && !done && <p key={wasted} className="mono small lm-wasted" style={{ margin: 0, color: T.ink3 }}>{tr({ uz: <>behuda ✏️ bosishlar: <b style={{ color: T.accent }}>{wasted}</b> — ekranga yetmadi</>, ru: <>впустую нажато ✏️: <b style={{ color: T.accent }}>{wasted}</b> — до экрана не дошло</> })}</p>}
             {toast && <div className="lm-toast fade-step">{tr({ uz: "🔒 React sezmadi — xotira o'zgardi, lekin ekran qotib qoldi", ru: '🔒 React не заметил — память изменилась, но экран застыл' })}</div>}
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>🎉 G'alaba! Ekrandagi 👍 {GOAL} ga yetdi — faqat <b>setLikes</b> orqali. ✏️ oddiy o'zgartirish {wasted} marta xotirani o'zgartirdi, lekin ekranga yetmadi. <b>Xotira ≠ ekran</b>: React'ni faqat set… uyg'otadi.</>, ru: <>🎉 Победа! 👍 на экране дошёл до {GOAL} — только через <b>setLikes</b>. ✏️ обычное изменение {wasted} раз меняло память, но до экрана не дошло. <b>Память ≠ экран</b>: React будит только set…</> })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>🎉 G'alaba! Ekrandagi 👍 {GOAL} ga yetdi — faqat <b>setLikes</b> orqali. ✏️ oddiy o'zgartirish {wasted} marta xotirani o'zgartirdi, lekin ekranga yetmadi. <b>Xotira ekranga teng emas</b>: React'ni faqat set… uyg'otadi.</>, ru: <>🎉 Победа! 👍 на экране дошёл до {GOAL} — только через <b>setLikes</b>. ✏️ обычное изменение {wasted} раз меняло память, но до экрана не дошло. <b>Память не равна экрану</b>: React будит только set…</> })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -1689,7 +1691,7 @@ function Flashcards({ cards }) {
       <div className="fc-cardwrap">
         <div className={`fc-fly ${exiting === 'knew' ? 'out-knew' : ''} ${exiting === 'again' ? 'out-again' : ''}`} key={swapRef.current}>
         <div className={`fc-card ${flipped ? 'flip' : ''}`} onClick={() => !flipped && !exiting && setFlipped(true)} role="button" tabIndex={0}>
-          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: 'Qaysi tushuncha?', ru: 'Какое понятие?' })} 🤔 <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
+          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: "Javobni o'ylang", ru: 'Подумайте над ответом' })} 🤔 <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
           <div className="fc-face fc-back"><span className="fc-tag">{tr(card.back)}</span>{card.note && <span className="fc-note">{tr(card.note)}</span>}</div>
         </div>
         </div>
@@ -1703,18 +1705,18 @@ function Flashcards({ cards }) {
 
 // 🃏 REACT-3 FLASHCARD KARTALARI (front=izoh, back=tushuncha) — Metodist keyin sayqallaydi
 const REACT_FLASHCARDS = [
-  { front: { uz: "Komponentning o'z ichki xotirasi", ru: 'Собственная внутренняя память компонента' }, back: "State", note: { uz: "o'zgarsa — ekran yangilanadi", ru: 'изменилась — экран обновился' } },
-  { front: { uz: "Xotira yaratuvchi React hook'i", ru: 'Хук React, создающий память' }, back: "useState", note: { uz: '[qiymat, yangilovchi]', ru: '[значение, обновитель]' } },
-  { front: { uz: "useState(0) qaytaradigan narsa", ru: 'То, что возвращает useState(0)' }, back: { uz: 'Juftlik', ru: 'Пара' }, note: "[likes, setLikes]" },
-  { front: { uz: "Qiymatni o'zgartiruvchi funksiya", ru: 'Функция, изменяющая значение' }, back: "setLikes", note: "setLikes(likes + 1)" },
-  { front: { uz: "useState(0) dagi 0 nima?", ru: 'Что такое 0 в useState(0)?' }, back: { uz: "Boshlang'ich qiymat", ru: 'Начальное значение' }, note: { uz: "birinchi ko'rinish", ru: 'первый показ' } },
-  { front: { uz: "set… chaqirilganda React nima qiladi?", ru: 'Что делает React при вызове set…?' }, back: { uz: 'Qayta chizadi', ru: 'Перерисовывает' }, note: "re-render" },
-  { front: { uz: "Oddiy o'zgaruvchi ekranni yangilaydimi?", ru: 'Обновляет ли экран обычная переменная?' }, back: { uz: "Yo'q", ru: 'Нет' }, note: { uz: 'React sezmaydi', ru: 'React не замечает' } },
-  { front: { uz: "Qo'shimcha ish bajaruvchi hook", ru: 'Хук для побочных дел' }, back: "useEffect", note: { uz: 'mount / kuzatuv', ru: 'mount / наблюдение' } },
-  { front: { uz: "useEffect(…, []) qachon ishlaydi?", ru: 'Когда срабатывает useEffect(…, [])?' }, back: { uz: 'Faqat bir marta', ru: 'Только один раз' }, note: { uz: "mount — tug'ilganda", ru: 'mount — при рождении' } },
-  { front: { uz: "useEffect(…, [likes]) qachon ishlaydi?", ru: 'Когда срабатывает useEffect(…, [likes])?' }, back: { uz: "likes o'zgarganda", ru: 'Когда likes меняется' }, note: { uz: 'kuzatuv', ru: 'наблюдение' } },
-  { front: { uz: "Komponent ekranga birinchi chiqishi", ru: 'Первое появление компонента на экране' }, back: "Mount", note: { uz: "tug'ilish", ru: 'рождение' } },
-  { front: { uz: "Komponent sahifadan olib tashlanishi", ru: 'Удаление компонента со страницы' }, back: "Unmount", note: { uz: 'xayrlashish', ru: 'прощание' } },
+  { front: { uz: "Komponentning ichki xotirasi qanday ataladi?", ru: 'Как называется внутренняя память компонента?' }, back: "State", note: { uz: "u o'zgarsa — ekran yangilanadi", ru: 'она меняется — экран обновляется' } },
+  { front: { uz: "Komponentga xotira ochib beradigan hook qaysi?", ru: 'Какой хук открывает компоненту память?' }, back: "useState", note: { uz: "const [likes, setLikes] = useState(0)", ru: 'const [likes, setLikes] = useState(0)' } },
+  { front: { uz: "useState(0) nechta narsa qaytaradi?", ru: 'Сколько вещей возвращает useState(0)?' }, back: { uz: "Ikkita: qiymat va yangilovchi", ru: 'Две: значение и обновитель' }, note: "[likes, setLikes]" },
+  { front: { uz: "useState(0) ichidagi 0 nimani bildiradi?", ru: 'Что означает 0 внутри useState(0)?' }, back: { uz: "Boshlang'ich qiymat", ru: 'Начальное значение' }, note: { uz: "kartochka birinchi chiqqandagi like soni", ru: 'число лайков при первом показе карточки' } },
+  { front: { uz: "Like sonini bittaga oshirish uchun nima yozasiz?", ru: 'Что напишете, чтобы увеличить число лайков на один?' }, back: "setLikes(likes + 1)", note: { uz: "xotirani oshiradi va ekranni yangilaydi", ru: 'увеличивает память и обновляет экран' } },
+  { front: { uz: "set… funksiyasi chaqirilganda React nima qiladi?", ru: 'Что делает React, когда вызвана функция set…?' }, back: { uz: "Ekranni qayta chizadi", ru: 'Перерисовывает экран' }, note: { uz: "bu qayta chizish — render", ru: 'эта перерисовка — render' } },
+  { front: { uz: "likes = likes + 1 yozsangiz, ekran yangilanadimi?", ru: 'Если написать likes = likes + 1, экран обновится?' }, back: { uz: "Yo'q", ru: 'Нет' }, note: { uz: "React sezmaydi — ekran qotib qoladi", ru: 'React не замечает — экран застывает' } },
+  { front: { uz: "Sarlavhani yangilash kabi qo'shimcha ishni qaysi hook bajaradi?", ru: 'Какой хук делает побочные дела, например обновляет заголовок?' }, back: "useEffect", note: { uz: "asosiy ishi — chizish emas, kuzatish", ru: 'его дело — не рисовать, а следить' } },
+  { front: { uz: "useEffect(…, []) necha marta ishlaydi?", ru: 'Сколько раз срабатывает useEffect(…, [])?' }, back: { uz: "Faqat bir marta", ru: 'Только один раз' }, note: { uz: "komponent ekranga birinchi chiqqanda", ru: 'когда компонент впервые появился на экране' } },
+  { front: { uz: "useEffect(…, [likes]) qachon qayta ishlaydi?", ru: 'Когда useEffect(…, [likes]) срабатывает снова?' }, back: { uz: "likes har o'zgarganda", ru: 'При каждом изменении likes' }, note: { uz: "kvadrat qavs ichidagi narsani kuzatadi", ru: 'следит за тем, что внутри квадратных скобок' } },
+  { front: { uz: "Komponentning ekranga birinchi chiqishi qanday ataladi?", ru: 'Как называется первое появление компонента на экране?' }, back: "Mount", note: { uz: "yo'l: Mount → Update → Unmount", ru: 'путь: Mount → Update → Unmount' } },
+  { front: { uz: "State bilan props nimasi bilan farq qiladi?", ru: 'Чем отличаются state и props?' }, back: { uz: "State — ichkaridan, props — tashqaridan", ru: 'State — изнутри, props — снаружи' }, note: { uz: "state'ni komponent o'zi o'zgartiradi", ru: 'state компонент меняет сам' } },
 ];
 const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, []); // eslint-disable-line
@@ -1722,7 +1724,7 @@ const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) =>
     <Stage eyebrow={tr({ uz: 'Takrorlash', ru: 'Повторение' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={false} label={tr({ uz: 'Yakunlash →', ru: 'Завершить →' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Tushunchalarni <span className="italic" style={{ color: T.accent }}>tez takrorlaymiz</span>.</>, ru: <>Быстро <span className="italic" style={{ color: T.accent }}>повторим понятия</span>.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Darsni yakunlashdan oldin bugun o'rgangan tushunchalarni takrorlaymiz. Har kartada bir izoh — <b style={{ color: T.ink }}>qaysi tushuncha</b> ekanini o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</>, ru: <>Перед завершением урока повторим сегодняшние понятия. На каждой карточке описание — подумайте, <b style={{ color: T.ink }}>какое это понятие</b>, потом нажмите на карточку и проверьте. Оцените себя кнопками <b style={{ color: T.ink }}>Знаю</b> или <b style={{ color: T.ink }}>Повторить</b>.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Darsni yakunlashdan oldin bugun o'rgangan tushunchalarni takrorlaymiz. Har kartada bir savol — <b style={{ color: T.ink }}>javobini</b> o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</>, ru: <>Перед завершением урока повторим сегодняшние понятия. На каждой карточке вопрос — подумайте, <b style={{ color: T.ink }}>каким будет ответ</b>, потом нажмите на карточку и проверьте. Оцените себя кнопками <b style={{ color: T.ink }}>Знаю</b> или <b style={{ color: T.ink }}>Повторить</b>.</> })}</Mentor>
         <div className="fc-center"><Flashcards cards={REACT_FLASHCARDS} /></div>
       </div>
     </Stage>
@@ -2280,7 +2282,7 @@ function QuizArena({ live, onClose, startSolo }) {
             <div className={`qz-res ${my?.correct ? 'good' : 'bad'}`}>
               {my?.correct
                 ? <><span className="qz-res-pts">+{myPtsFor(qi)}</span><span className="qz-res-t">{tr({ uz: 'ball', ru: 'баллов' })}{streakUpTo(qi) >= 2 ? ` · 🔥 x${streakUpTo(qi)} streak` : ''}</span></>
-                : <span className="qz-res-t">{my ? tr({ uz: "Xato — 0 ball. Keyingisida olasiz! 💪", ru: 'Ошибка — 0 баллов. Возьмёте на следующем! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Будьте быстрее! ⏱' })}</span>}
+                : <span className="qz-res-t">{my ? tr({ uz: "Adashdingiz — 0 ball. Keyingisida olasiz! 💪", ru: 'Ошибка — 0 баллов. Возьмёте на следующем! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Будьте быстрее! ⏱' })}</span>}
               {!solo && myRank >= 0 && <span className="qz-res-rank">{tr({ uz: 'Siz hozir:', ru: 'Вы сейчас:' })} {myRank + 1}-{tr({ uz: "o'rin", ru: 'е место' })}</span>}
             </div>
           )}
@@ -2478,7 +2480,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
           <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> {tr({ uz: 'Endi siz bilasiz', ru: 'Теперь вы знаете' })}</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{tr(r)}</span></li>))}</ul></div>
           <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: "Antigravity bilan o'z loyihangizda sinang:", ru: 'Попробуйте в своём проекте вместе с Antigravity:' })}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: "Keyingi darsda komponentlar jamoa bo'lib ishlaydi — ma'lumot bittasidan ikkinchisiga oqadi! 🚀", ru: 'На следующем уроке компоненты заработают командой — данные потекут от одного к другому! 🚀' })}</p></div>
         </div>
-        <div className="card ach-coll fade-up d3">
+        {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🏅 Nishonlaringiz', ru: '🏅 Ваши значки' })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">
             {Object.entries(ACHIEVEMENTS).map(([id, a]) => { const got = !!(achievements && achievements.has(id)); return (
@@ -2489,7 +2491,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
               </div>
             ); })}
           </div>
-        </div>
+        </div>}
       </div>
     </Stage>
   );

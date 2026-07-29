@@ -497,6 +497,7 @@ const ACH_TRIGGERS = { s4: 'firstwin', s13b: 'packet', s13c: 'router' };
 // 🏅 Yuqori paneldagi nishon hisoblagichi — doim ko'rinadi, yangi olinganda pulslaydi, bosilsa ro'yxat chiqadi
 function AchCounter() {
   const earned = useContext(AchCtx);
+  const gate = useContext(LiveGateCtx);
   const count = earned ? earned.size : 0;
   const total = Object.keys(ACHIEVEMENTS).length;
   const prevRef = useRef(count);
@@ -506,6 +507,7 @@ function AchCounter() {
     if (count > prevRef.current) { setBump(true); const t = setTimeout(() => setBump(false), 800); prevRef.current = count; return () => clearTimeout(t); }
     prevRef.current = count;
   }, [count]);
+  if (gate && gate.live && gate.live.mode === 'mentor') return null; // 🔴 mentor proyektorida nishon YO'Q (hooklardan KEYIN)
   return (
     <div className="ach-cnt-wrap">
       <button data-tour="ach" className={`ach-counter ${bump ? 'bump' : ''} ${count > 0 ? 'has' : ''}`} onClick={() => setOpen(o => !o)} aria-label="Badges" title="Badges">
@@ -904,7 +906,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
     <Stage eyebrow={tr({ uz: 'Kirish', ru: 'Вступление' })} screen={screen} audioState={audio} navContent={<NavNext optionalLive disabled={picked === null} label={{ uz: 'Davom etish', ru: 'Продолжить' }} onClick={onNext} />}>
       <div className="screen">
         <h1 className="title h-title fade-up">{tr({ uz: <>Sayt manzilini yozib Enter bossangiz, u <span className="italic" style={{ color: T.accent }}>qayerdan</span> keladi?</>, ru: <>Когда вы вводите адрес сайта и жмёте Enter, <span className="italic" style={{ color: T.accent }}>откуда</span> он берётся?</> })}</h1>
-        <Mentor>{tr({ uz: <>Telefon yoki kompyuterda <b style={{ color: T.ink }}>youtube.com</b> yozib Enter bossangiz — bir soniyada sayt chiqadi. Lekin shu bir soniya ichida ekran ortida so'rovingiz katta <b style={{ color: T.ink }}>yo'lni</b> bosib o'tadi. Avval tugmani bosing, keyin taxmin qiling: sayt qayerdan keladi?</>, ru: <>Когда на телефоне или компьютере вы вводите <b style={{ color: T.ink }}>youtube.com</b> и жмёте Enter — сайт появляется за секунду. Но за эту секунду ваш запрос за кулисами проходит большой <b style={{ color: T.ink }}>путь</b>. Сначала нажмите кнопку, потом угадайте: откуда берётся сайт?</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Telefon yoki kompyuterda <b style={{ color: T.ink }}>youtube.com</b> yozib Enter bossangiz — bir soniyada sayt chiqadi. Lekin shu bir soniya ichida ekran ortida so'rovingiz katta <b style={{ color: T.ink }}>yo'lni</b> bosib o'tadi. Avval tugmani bosing, keyin o'zingiz o'ylab ko'ring: sayt qayerdan keladi?</>, ru: <>Когда на телефоне или компьютере вы вводите <b style={{ color: T.ink }}>youtube.com</b> и жмёте Enter — сайт появляется за секунду. Но за эту секунду ваш запрос за кулисами проходит большой <b style={{ color: T.ink }}>путь</b>. Сначала нажмите кнопку, потом подумайте сами: откуда берётся сайт?</> })}</Mentor>
         <Split>
           <Col>
             <div className="urlbar fade-up delay-1"><span className="urlbar-lock">🔒</span><span className="urlbar-text">youtube.com</span><button className="urlbar-go" onClick={go} disabled={phase !== 'idle'}>Enter ↵</button></div>
@@ -2731,7 +2733,7 @@ function QuizArena({ live, onClose, startSolo }) {
             <div className={`qz-res ${my?.correct ? 'good' : 'bad'}`}>
               {my?.correct
                 ? <><span className="qz-res-pts">+{myPtsFor(qi)}</span><span className="qz-res-t">{tr({ uz: 'ball', ru: 'баллов' })}{streakUpTo(qi) >= 2 ? ` · 🔥 x${streakUpTo(qi)} streak` : ''}</span></>
-                : <span className="qz-res-t">{my ? tr({ uz: "Xato — 0 ball. Keyingisida olasiz! 💪", ru: 'Неверно — 0 баллов. В следующий раз получится! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Будьте быстрее! ⏱' })}</span>}
+                : <span className="qz-res-t">{my ? tr({ uz: "Adashdingiz — 0 ball. Keyingisida olasiz! 💪", ru: 'Неверно — 0 баллов. В следующий раз получится! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Будьте быстрее! ⏱' })}</span>}
               {!solo && myRank >= 0 && <span className="qz-res-rank">{tr({ uz: 'Siz hozir:', ru: 'Вы сейчас:' })} {myRank + 1}-{tr({ uz: 'o\'rin', ru: 'место' })}</span>}
             </div>
           )}
@@ -2853,7 +2855,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
           <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> {tr({ uz: 'Endi siz bilasiz', ru: 'Теперь вы знаете' })}</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{tr(r)}</span></li>))}</ul></div>
           <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🔎 Uyga vazifa', ru: '🔎 Домашнее задание' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: 'Internetni hayotda kuzating:', ru: 'Понаблюдайте за интернетом в жизни:' })}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul></div>
         </div>
-        <div className="card ach-coll fade-up d3">
+        {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🏅 Nishonlaringiz —', ru: '🏅 Ваши значки —' })} {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">
             {Object.entries(ACHIEVEMENTS).map(([id, a]) => { const got = !!(achievements && achievements.has(id)); return (
@@ -2864,7 +2866,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
               </div>
             ); })}
           </div>
-        </div>
+        </div>}
         <div className="gloss fade-up d4"><div className="gloss-head" onClick={() => setOpen(o => !o)}><span className="lbl">{tr({ uz: '💡 Kalit so\'zlar (takrorlash)', ru: '💡 Ключевые слова (повторение)' })}</span><span className="gloss-toggle">{open ? '−' : '+'}</span></div>{open && (<div className="gloss-body">{GLOSSARY.map((g, i) => (<span key={i}><b>{g.b}</b> {tr(g.t)}{i < GLOSSARY.length - 1 ? ' · ' : ''}</span>))}</div>)}</div>
       </div>
       {showDone && (
@@ -2996,18 +2998,18 @@ const ScreenReqOrder = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // 🃏 Qayta ishlatiladigan FLASHCARDS — aktiv takrorlash (3D flip + o'z-o'zini baholash).
 // Boshqa darsga: faqat `cards` ({ front, back, note }) almashtiriladi.
 const INTERNET_FLASHCARDS = [
-  { front: { uz: "Qurilmalarni bog'lovchi jahon tarmog'i", ru: 'Всемирная сеть, связывающая устройства' }, back: { uz: 'Internet', ru: 'Интернет' }, note: { uz: "tarmoqlar tarmog'i", ru: 'сеть сетей' } },
-  { front: { uz: 'Saytlarni ochib beruvchi dastur', ru: 'Программа, открывающая сайты' }, back: { uz: 'Brauzer', ru: 'Браузер' }, note: { uz: 'Chrome · Safari · Firefox', ru: 'Chrome · Safari · Firefox' } },
-  { front: { uz: 'Saytning matnli manzili', ru: 'Текстовый адрес сайта' }, back: { uz: 'Domen', ru: 'Домен' }, note: { uz: 'youtube.com', ru: 'youtube.com' } },
-  { front: { uz: 'Kompyuterlar uchun raqamli manzil', ru: 'Числовой адрес для компьютеров' }, back: { uz: 'IP', ru: 'IP' }, note: { uz: '142.250.190.78', ru: '142.250.190.78' } },
-  { front: { uz: "Domenni IP'ga aylantiradi", ru: 'Превращает домен в IP' }, back: { uz: 'DNS', ru: 'DNS' }, note: { uz: 'telefon kitobi', ru: 'телефонная книга' } },
-  { front: { uz: 'Saytni saqlaydigan doim yoniq kompyuter', ru: 'Всегда включённый компьютер, хранящий сайт' }, back: { uz: 'Server', ru: 'Сервер' }, note: { uz: 'sayt shu yerda yashaydi', ru: 'сайт живёт здесь' } },
-  { front: { uz: "Brauzerning serverdan sahifa so'rashi", ru: 'Браузер просит страницу у сервера' }, back: { uz: "So'rov", ru: 'Запрос' }, note: { uz: 'brauzer → DNS → server → ekran', ru: 'браузер → DNS → сервер → экран' } },
-  { front: { uz: 'Server qaytaradigan sahifa kodi', ru: 'Код страницы, который отдаёт сервер' }, back: { uz: 'HTML', ru: 'HTML' }, note: { uz: 'sahifaning retsepti', ru: 'рецепт страницы' } },
-  { front: { uz: "Domendagi .uz — bu qism", ru: '.uz в домене — это часть' }, back: { uz: 'Zona', ru: 'Зона' }, note: { uz: "O'zbekiston hududi", ru: 'зона Узбекистана' } },
-  { front: { uz: 'Sahifa topilmaganda chiqadigan xato', ru: 'Ошибка, когда страница не найдена' }, back: { uz: '404', ru: '404' }, note: { uz: "sahifa yo'q", ru: 'страницы нет' } },
-  { front: { uz: "Manzil qatoridagi to'liq havola", ru: 'Полная ссылка в адресной строке' }, back: { uz: 'URL', ru: 'URL' }, note: { uz: 'https://youtube.com', ru: 'https://youtube.com' } },
-  { front: { uz: "Saytlar ma'lumot almashadigan qoida", ru: 'Правило обмена данными между сайтами' }, back: { uz: 'HTTP', ru: 'HTTP' }, note: { uz: "so'rov tili", ru: 'язык запросов' } },
+  { front: { uz: "Butun dunyodagi kompyuterlarni bog'lagan tarmoq nima deb ataladi?", ru: 'Как называется сеть, связавшая компьютеры всего мира?' }, back: { uz: 'Internet', ru: 'Интернет' }, note: { uz: "tarmoqlar tarmog'i", ru: 'сеть сетей' } },
+  { front: { uz: 'Saytlarni ochib beradigan dastur qanday nomlanadi?', ru: 'Как называется программа, которая открывает сайты?' }, back: { uz: 'Brauzer', ru: 'Браузер' }, note: { uz: 'Chrome · Safari · Firefox', ru: 'Chrome · Safari · Firefox' } },
+  { front: { uz: 'Brauzer sayt bilan qaysi 3 ta ishni qiladi?', ru: 'Какие 3 дела браузер делает с сайтом?' }, back: { uz: 'Topadi, olib keladi, chizadi', ru: 'Находит, приносит, рисует' }, note: { uz: 'siz faqat manzil yozasiz', ru: 'вы только вводите адрес' } },
+  { front: { uz: 'Brauzerning yuqori qatoriga yoziladigan sayt manzili nima deb ataladi?', ru: 'Как называется адрес сайта, который пишут в верхней строке браузера?' }, back: { uz: 'Domen', ru: 'Домен' }, note: { uz: 'youtube.com', ru: 'youtube.com' } },
+  { front: { uz: 'youtube.com dagi «.com» — domenning qaysi qismi?', ru: '«.com» в youtube.com — какая часть домена?' }, back: { uz: 'Zona', ru: 'Зона' }, note: { uz: ".uz — O'zbekiston, .org — tashkilotlar", ru: '.uz — Узбекистан, .org — организации' } },
+  { front: { uz: 'Kompyuterlar bir-birini topadigan raqamli manzil nima deb ataladi?', ru: 'Как называется числовой адрес, по которому компьютеры находят друг друга?' }, back: { uz: 'IP manzil', ru: 'IP-адрес' }, note: { uz: '142.250.190.78', ru: '142.250.190.78' } },
+  { front: { uz: 'Domen nomidan IP raqamini kim topib beradi?', ru: 'Кто находит IP-номер по имени домена?' }, back: { uz: 'DNS', ru: 'DNS' }, note: { uz: 'internetning telefon kitobi', ru: 'телефонная книга интернета' } },
+  { front: { uz: 'Saytni saqlab, doim yoniq turadigan kompyuter nima deb ataladi?', ru: 'Как называется всегда включённый компьютер, который хранит сайт?' }, back: { uz: 'Server', ru: 'Сервер' }, note: { uz: 'kechasi ham uxlamaydi', ru: 'не спит даже ночью' } },
+  { front: { uz: 'Server brauzerga tayyor rasm emas, nima yuboradi?', ru: 'Сервер отправляет браузеру не готовую картинку, а что?' }, back: { uz: 'HTML kod', ru: 'HTML-код' }, note: { uz: 'sahifaning retsepti', ru: 'рецепт страницы' } },
+  { front: { uz: 'HTML kodni ekranda chiroyli sahifaga kim aylantiradi?', ru: 'Кто превращает HTML-код в красивую страницу на экране?' }, back: { uz: 'Brauzer', ru: 'Браузер' }, note: { uz: 'kod — retsept, brauzer — oshpaz', ru: 'код — рецепт, браузер — повар' } },
+  { front: { uz: 'Enter bosgandan keyin sahifa qanday tartibda keladi?', ru: 'В каком порядке страница приходит после нажатия Enter?' }, back: { uz: 'Brauzer → DNS → Server → Ekran', ru: 'Браузер → DNS → Сервер → Экран' }, note: { uz: 'bularning bari ≈ 1 soniyada', ru: 'и всё это ≈ за 1 секунду' } },
+  { front: { uz: 'Sayt ochilmasa, eng ko\'p uchraydigan sabab nima?', ru: 'Какая самая частая причина, если сайт не открылся?' }, back: { uz: 'Domen xato yozilgan', ru: 'Домен написан с ошибкой' }, note: { uz: "youtub.com — bitta harf kam", ru: 'youtub.com — не хватает одной буквы' } },
 ];
 function Flashcards({ cards }) {
   const [queue, setQueue] = useState(() => cards.map((_, i) => i));
@@ -3040,7 +3042,7 @@ function Flashcards({ cards }) {
       <div className="fc-cardwrap">
         <div className={`fc-fly ${exiting === 'knew' ? 'out-knew' : ''} ${exiting === 'again' ? 'out-again' : ''}`} key={swapRef.current}>
         <div className={`fc-card ${flipped ? 'flip' : ''}`} onClick={() => !flipped && !exiting && setFlipped(true)} role="button" tabIndex={0}>
-          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: 'Qaysi atama? 🤔', ru: 'Какой термин? 🤔' })} <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
+          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: "Javobni o'ylang", ru: 'Подумайте над ответом' })} 🤔 <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
           <div className="fc-face fc-back"><span className="fc-tag">{tr(card.back)}</span>{card.note && <span className="fc-note">{tr(card.note)}</span>}</div>
         </div>
         </div>
@@ -3054,13 +3056,13 @@ function Flashcards({ cards }) {
 
 // ===== SCREEN: FLASHCARD TAKRORLASH (podiumdan keyin, yakuniy summarydan oldin) =====
 const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const audio = useAudio([{ id: 'sflash', text: `Darsni yakunlashdan oldin, bugun o'rgangan atamalarni tez takrorlaymiz. Har kartada bir ta'rif — qaysi atama ekanini o'ylang, keyin kartani bosib tekshiring.`, trigger: 'on_mount', waits_for: null }]);
+  const audio = useAudio([{ id: 'sflash', text: `Darsni yakunlashdan oldin, bugun o'rgangan atamalarni tez takrorlaymiz. Har kartada bir savol — javobini o'ylang, keyin kartani bosib tekshiring.`, trigger: 'on_mount', waits_for: null }]);
   useEffect(() => { if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, []); // eslint-disable-line
   return (
     <Stage eyebrow={tr({ uz: 'Takrorlash', ru: 'Повторение' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={false} label={{ uz: 'Yakunlash →', ru: 'Завершить →' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Atamalarni <span className="italic" style={{ color: T.accent }}>tez takrorlaymiz</span>.</>, ru: <>Быстро <span className="italic" style={{ color: T.accent }}>повторим термины</span>.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Darsni yakunlashdan oldin bugun o'rgangan atamalarni takrorlaymiz. Har kartada bir <b style={{ color: T.ink }}>ta'rif</b> — qaysi atama ekanini o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</>, ru: <>Перед завершением урока повторим сегодняшние термины. На каждой карточке — одно <b style={{ color: T.ink }}>определение</b>: подумайте, какой это термин, затем нажмите на карточку и проверьте. Оцените себя кнопкой <b style={{ color: T.ink }}>Знаю</b> или <b style={{ color: T.ink }}>Повторить</b>.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Darsni yakunlashdan oldin bugun o'rgangan atamalarni takrorlaymiz. Har kartada bir <b style={{ color: T.ink }}>savol</b> — javobini o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</>, ru: <>Перед завершением урока повторим сегодняшние термины. На каждой карточке — один <b style={{ color: T.ink }}>вопрос</b>: подумайте над ответом, затем нажмите на карточку и проверьте. Оцените себя кнопкой <b style={{ color: T.ink }}>Знаю</b> или <b style={{ color: T.ink }}>Повторить</b>.</> })}</Mentor>
         <div className="fc-center"><Flashcards cards={INTERNET_FLASHCARDS} /></div>
       </div>
     </Stage>

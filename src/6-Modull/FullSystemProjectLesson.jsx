@@ -419,6 +419,7 @@ const Zoomable = ({ children }) => {
 // 🏅 Yuqori paneldagi nishon hisoblagichi (Stage chrome)
 function AchCounter() {
   const earned = useContext(AchCtx);
+  const gate = useContext(LiveGateCtx);
   const count = earned ? earned.size : 0;
   const total = Object.keys(ACHIEVEMENTS).length;
   const prevRef = useRef(count);
@@ -428,6 +429,7 @@ function AchCounter() {
     if (count > prevRef.current) { setBump(true); const t = setTimeout(() => setBump(false), 800); prevRef.current = count; return () => clearTimeout(t); }
     prevRef.current = count;
   }, [count]);
+  if (gate && gate.live && gate.live.mode === 'mentor') return null; // 🔴 mentor proyektorida nishon YO'Q (hooklardan KEYIN)
   return (
     <div className="ach-cnt-wrap">
       <button className={`ach-counter ${bump ? 'bump' : ''} ${count > 0 ? 'has' : ''}`} onClick={() => setOpen(o => !o)} aria-label="Badges" title="Badges">
@@ -2001,7 +2003,7 @@ function QuizArena({ live, onClose, startSolo }) {
             <div className={`qz-res ${my?.correct ? 'good' : 'bad'}`}>
               {my?.correct
                 ? <><span className="qz-res-pts">+{myPtsFor(qi)}</span><span className="qz-res-t">{tr({ uz: 'ball', ru: 'очков' })}{streakUpTo(qi) >= 2 ? ` · 🔥 x${streakUpTo(qi)} streak` : ''}</span></>
-                : <span className="qz-res-t">{my ? tr({ uz: "Xato — 0 ball. Keyingisida olasiz! 💪", ru: 'Ошибка — 0 очков. В следующий раз получится! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 очков. Будьте быстрее! ⏱' })}</span>}
+                : <span className="qz-res-t">{my ? tr({ uz: "Adashdingiz — 0 ball. Keyingisida olasiz! 💪", ru: 'Ошибка — 0 очков. В следующий раз получится! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 очков. Будьте быстрее! ⏱' })}</span>}
               {!solo && myRank >= 0 && <span className="qz-res-rank">{tr({ uz: `Siz hozir: ${myRank + 1}-o'rin`, ru: `Вы сейчас: ${myRank + 1}-е место` })}</span>}
             </div>
           )}
@@ -2296,7 +2298,7 @@ function Flashcards({ cards }) {
       <div className="fc-cardwrap">
         <div className={`fc-fly ${exiting === 'knew' ? 'out-knew' : ''} ${exiting === 'again' ? 'out-again' : ''}`} key={swapRef.current}>
         <div className={`fc-card ${flipped ? 'flip' : ''}`} onClick={() => !flipped && !exiting && setFlipped(true)} role="button" tabIndex={0}>
-          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: 'Qaysi tushuncha? 🤔', ru: 'Какое это понятие? 🤔' })} <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
+          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: "Javobni o'ylang", ru: 'Подумайте над ответом' })} 🤔 <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
           <div className="fc-face fc-back"><span className="fc-tag">{tr(card.back)}</span>{card.note && <span className="fc-note">{tr(card.note)}</span>}</div>
         </div>
         </div>
@@ -2309,18 +2311,18 @@ function Flashcards({ cards }) {
 }
 // 🃏 FLASHCARD KARTALARI — to'liq tizim atamalari (shahar tili)
 const FULL_FLASHCARDS = [
-  { front: { uz: 'Barcha kanal + yadro birga ishlaydigan butun', ru: 'Целое, где все каналы и ядро работают вместе' }, back: { uz: "To'liq tizim", ru: 'Полная система' }, note: { uz: 'shahar', ru: 'город' } },
-  { front: { uz: 'Bitta amalni boshidan oxirigacha sinash', ru: 'Проверить одно действие от начала до конца' }, back: 'End-to-end', note: { uz: 'fuqaro → tasdiq', ru: 'житель → подтверждение' } },
-  { front: { uz: 'Qismlar ulangan joyda chiqadigan xato', ru: 'Ошибка, которая вылезает в месте стыка частей' }, back: { uz: "Integratsiya bug'i", ru: 'Баг интеграции' }, note: { uz: 'chok xatosi', ru: 'ошибка на шве' } },
-  { front: { uz: 'Tizimni ishga tushirib mijozga yetkazish', ru: 'Запустить систему и довести до клиента' }, back: 'Deploy / Ship', note: { uz: 'katta ochilish', ru: 'большое открытие' } },
-  { front: { uz: 'Web, mobil, bot — bitta backendga', ru: 'Веб, мобильное, бот — к одному бэкенду' }, back: { uz: "Ko'p kanal", ru: 'Много каналов' }, note: { uz: "ko'p darvoza, bitta shahar", ru: 'много ворот, один город' } },
-  { front: { uz: 'Har kanal × har qadam sinash jadvali', ru: 'Таблица проверки: каждый канал × каждый шаг' }, back: { uz: 'Test matritsasi', ru: 'Матрица тестов' }, note: { uz: "chokni ko'rsatadi", ru: 'показывает шов' } },
-  { front: { uz: "Ma'lumot doimiy saqlanadigan reyestr", ru: 'Реестр, где данные хранятся постоянно' }, back: { uz: 'Baza (Arxiv)', ru: 'База (Архив)' }, note: 'PostgreSQL' },
-  { front: { uz: 'Qaror qiladigan, oqimni boshqaradigan markaz', ru: 'Центр, который решает и управляет потоком' }, back: { uz: 'Backend (Hokimlik)', ru: 'Бэкенд (Мэрия)' }, note: 'Node.js' },
-  { front: { uz: "Mijoz ko'radigan yuz — sahifa, tugma", ru: 'Лицо, которое видит клиент — страница, кнопка' }, back: { uz: 'Frontend (Peshtoq)', ru: 'Фронтенд (Фасад)' }, note: 'React' },
-  { front: { uz: 'Sozlamalar fayli: API_URL, BOT_TOKEN, AI kaliti', ru: 'Файл настроек: API_URL, BOT_TOKEN, ключ AI' }, back: '.env', note: { uz: 'ship sharti', ru: 'условие ship' } },
-  { front: { uz: "Telegram orqali kiradigan ikkinchi yo'l", ru: 'Второй путь входа — через Telegram' }, back: { uz: 'Bot (Ikkinchi darvoza)', ru: 'Бот (Вторые ворота)' }, note: 'Telegram' },
-  { front: { uz: 'Savolga javob va tavsif yozadigan aqlli yordamchi', ru: 'Умный помощник: отвечает на вопросы и пишет описания' }, back: { uz: 'AI (Ekspert-byuro)', ru: 'AI (Экспертное бюро)' }, note: 'Claude' },
+  { front: { uz: "Web, mobil va bot qaysi umumiy qismga ulanadi?", ru: 'К какой общей части подключаются веб, мобильное и бот?' }, back: { uz: 'Bitta backendga', ru: 'К одному бэкенду' }, note: { uz: "Darvoza uchta, lekin shahar bitta", ru: 'Ворот трое, но город один' } },
+  { front: { uz: "Nega web va bot bir xil buyurtmani ko'radi?", ru: 'Почему веб и бот видят один и тот же заказ?' }, back: { uz: 'Baza bitta', ru: 'База одна' }, note: { uz: "Barcha buyurtma bitta Arxivda saqlanadi", ru: 'Все заказы хранятся в одном Архиве' } },
+  { front: { uz: "Bitta amalni boshidan oxirigacha sinaydigan test qanday nomlanadi?", ru: 'Как называется тест, который проверяет одно действие от начала до конца?' }, back: 'End-to-end', note: { uz: "Ariza fuqarodan boshlanib, tasdiq bilan tugaydi", ru: 'Заявка начинается с жителя и кончается подтверждением' } },
+  { front: { uz: "Qismlar alohida ishlab, birga ishlamasa bu qanday xato?", ru: 'Как называется ошибка, когда части работают порознь, но не вместе?' }, back: { uz: "Integratsiya bug'i", ru: 'Баг интеграции' }, note: { uz: "U qismlar ulangan joyda, chokda yashiringan", ru: 'Он прячется в месте стыка частей, на шве' } },
+  { front: { uz: "Qaysi kanal qaysi qadamda buzilganini nima ko'rsatadi?", ru: 'Что показывает, какой канал сломался на каком шаге?' }, back: { uz: 'Test matritsasi', ru: 'Матрица тестов' }, note: { uz: "Har kanal va har qadam katak bo'ladi, qizili chok", ru: 'Каждый канал и шаг — клетка, красная клетка и есть шов' } },
+  { front: { uz: "Tizimni ishga tushirib foydalanuvchiga yetkazish qanday ataladi?", ru: 'Как называется запуск системы и доведение её до пользователя?' }, back: 'Deploy (ship)', note: { uz: "Bu shaharning katta ochilish kuni", ru: 'Это день большого открытия города' } },
+  { front: { uz: "Ishga tushirishdan oldin test matritsasi qanday bo'lishi shart?", ru: 'Какой должна быть матрица тестов перед запуском?' }, back: { uz: "To'liq yashil", ru: 'Полностью зелёной' }, note: { uz: "Bitta qizil katak qolsa, ship qilinmaydi", ru: 'Осталась хоть одна красная клетка — ship не делаем' } },
+  { front: { uz: "API_URL va BOT_TOKEN kabi sozlamalar qaysi faylda turadi?", ru: 'В каком файле лежат настройки вроде API_URL и BOT_TOKEN?' }, back: '.env', note: { uz: "Noto'g'ri bo'lsa, tizim mijozda buziladi", ru: 'Если они неверны, у клиента система ломается' } },
+  { front: { uz: "Buyurtmalar doimiy saqlanadigan joy qanday nomlanadi?", ru: 'Как называется место, где заказы хранятся постоянно?' }, back: { uz: 'Baza (Arxiv)', ru: 'База (Архив)' }, note: 'PostgreSQL' },
+  { front: { uz: "Qaror qabul qilib, butun oqimni boshqaradigan qism qaysi?", ru: 'Какая часть принимает решения и управляет всем потоком?' }, back: { uz: 'Backend (Hokimlik)', ru: 'Бэкенд (Мэрия)' }, note: 'Node.js' },
+  { front: { uz: "Mijoz ko'radigan sahifa va tugmalar qaysi qism?", ru: 'Какая часть — страницы и кнопки, которые видит клиент?' }, back: { uz: 'Frontend (Peshtoq)', ru: 'Фронтенд (Фасад)' }, note: 'React' },
+  { front: { uz: "Katta ochilishda eng birinchi nima ishga tushiriladi?", ru: 'Что запускают самым первым на большом открытии?' }, back: { uz: 'Arxiv (baza)', ru: 'Архив (база)' }, note: { uz: "Keyin Hokimlik, so'ng Peshtoq va Ikkinchi darvoza", ru: 'Затем Мэрия, потом Фасад и Вторые ворота' } },
 ];
 const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, []); // eslint-disable-line
@@ -2328,7 +2330,7 @@ const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) =>
     <Stage eyebrow={{ uz: 'Takrorlash', ru: 'Повторение' }} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={false} label={{ uz: 'Yakunlash →', ru: 'Завершить →' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>To'liq tizim atamalarini <span className="italic" style={{ color: T.accent }}>tez takrorlaymiz</span>.</>, ru: <>Быстро <span className="italic" style={{ color: T.accent }}>повторим термины</span> полной системы.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Kursni yakunlashdan oldin bugungi atamalarni takrorlaymiz. Har kartada bir topishmoq — <b style={{ color: T.ink }}>qaysi atama</b> ekanini o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</>, ru: <>Перед завершением курса повторим сегодняшние термины. На каждой карточке загадка — подумайте, <b style={{ color: T.ink }}>какой это термин</b>, затем нажмите на карточку и проверьте. Оцените себя кнопками <b style={{ color: T.ink }}>«Знаю»</b> или <b style={{ color: T.ink }}>«Повторить»</b>.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Kursni yakunlashdan oldin bugungi atamalarni takrorlaymiz. Har kartada bir savol — <b style={{ color: T.ink }}>javobini</b> o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</>, ru: <>Перед завершением курса повторим сегодняшние термины. На каждой карточке вопрос — подумайте, <b style={{ color: T.ink }}>каким будет ответ</b>, затем нажмите на карточку и проверьте. Оцените себя кнопками <b style={{ color: T.ink }}>«Знаю»</b> или <b style={{ color: T.ink }}>«Повторить»</b>.</> })}</Mentor>
         <div className="fc-center"><Flashcards cards={FULL_FLASHCARDS} /></div>
       </div>
     </Stage>
@@ -2379,7 +2381,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
           <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> {tr({ uz: 'Endi siz bilasiz', ru: 'Теперь вы знаете' })}</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{tr(r)}</span></li>))}</ul></div>
           <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: "🎓 Kurs tamom — endi o'z g'oyangizni oling, qismlarga bo'ling, yig'ing, sinang va ishga tushiring. Siz buni endi qila olasiz.", ru: '🎓 Курс окончен — берите свою идею, разбивайте на части, собирайте, проверяйте и запускайте. Теперь вы это умеете.' })}</p></div>
         </div>
-        <div className="card ach-coll fade-up d3">
+        {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🏅 Nishonlaringiz', ru: '🏅 Ваши значки' })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">
             {Object.entries(ACHIEVEMENTS).map(([id, a]) => { const got = !!(achievements && achievements.has(id)); return (
@@ -2390,7 +2392,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
               </div>
             ); })}
           </div>
-        </div>
+        </div>}
       </div>
     </Stage>
   );

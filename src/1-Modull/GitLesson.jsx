@@ -461,6 +461,7 @@ const Col = ({ children, gap }) => <div className="col" style={gap ? { gap } : u
 // 🏅 Yuqori paneldagi nishon hisoblagichi — doim ko'rinadi, yangi olinganda pulslaydi, bosilsa ro'yxat chiqadi
 function AchCounter() {
   const earned = useContext(AchCtx);
+  const gate = useContext(LiveGateCtx);
   const count = earned ? earned.size : 0;
   const total = Object.keys(ACHIEVEMENTS).length;
   const prevRef = useRef(count);
@@ -470,6 +471,7 @@ function AchCounter() {
     if (count > prevRef.current) { setBump(true); const t = setTimeout(() => setBump(false), 800); prevRef.current = count; return () => clearTimeout(t); }
     prevRef.current = count;
   }, [count]);
+  if (gate && gate.live && gate.live.mode === 'mentor') return null; // 🔴 mentor proyektorida nishon YO'Q (hooklardan KEYIN)
   return (
     <div className="ach-cnt-wrap">
       <button className={`ach-counter ${bump ? 'bump' : ''} ${count > 0 ? 'has' : ''}`} onClick={() => setOpen(o => !o)} aria-label="Badges" title="Badges">
@@ -1608,7 +1610,9 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const hasCmd = /git\s+commit/i.test(norm);
   const hasM = /-m\b/.test(norm);
   const afterM = hasM ? norm.split(/-m/i).slice(1).join('-m') : '';
-  const qmatch = afterM.match(/["'‘’“”]\s*([^"'‘’“”]+?)\s*["'‘’“”]/);
+  // Qo'shtirnoq turlari unicode-kod bilan yozilgan (matn emas, KOD) — til-lint qiyshiq-apostrof
+  // qoidasi shu regexni yolg'ondan ushlab qolmasin. Xatti-harakati o'zgarmagan.
+  const qmatch = afterM.match(/["'\u2018\u2019\u201C\u201D]\s*([^"'\u2018\u2019\u201C\u201D]+?)\s*["'\u2018\u2019\u201C\u201D]/);
   const hasMsg = hasM && !!qmatch;
   const valid = hasCmd && hasM && hasMsg;
   const solvedRef = useRef(!!storedAnswer);
@@ -1727,18 +1731,18 @@ function DragDropOrder({ items, hints, onSolved }) {
 // 🃏 Qayta ishlatiladigan FLASHCARDS — aktiv takrorlash (3D flip + o'z-o'zini baholash).
 // Boshqa darsga: faqat `cards` ({ front, back, note }) almashtiriladi.
 const GIT_FLASHCARDS = [
-  { front: { uz: 'Kod uchun vaqt mashinasi', ru: 'Машина времени для кода' }, back: 'Git', note: { uz: 'versiya nazorati', ru: 'контроль версий' } },
-  { front: { uz: 'Kodning saqlangan surati', ru: 'Сохранённый снимок кода' }, back: 'commit', note: { uz: 'izoh bilan nuqta', ru: 'точка с комментарием' } },
-  { front: { uz: 'Loyiha papkasi (kod uyi)', ru: 'Папка проекта (дом кода)' }, back: 'repository', note: { uz: 'qisqa: repo', ru: 'коротко: репо' } },
-  { front: { uz: 'Kodning bulutdagi uyi', ru: 'Облачный дом кода' }, back: 'GitHub', note: { uz: 'onlayn platforma', ru: 'онлайн-платформа' } },
-  { front: { uz: "O'zgarishni saqlashga tanlash", ru: 'Выбрать изменение для сохранения' }, back: 'git add', note: 'staged' },
-  { front: { uz: "Suratni saqlash buyrug'i", ru: 'Команда сохранения снимка' }, back: 'git commit', note: '-m "izoh"' },
-  { front: { uz: 'Lokaldan bulutga yuborish', ru: 'Отправить из локального в облако' }, back: 'git push', note: { uz: 'yuqoriga', ru: 'вверх' } },
-  { front: { uz: 'Bulutdan lokalga olish', ru: 'Забрать из облака к себе' }, back: 'git pull', note: { uz: 'pastga', ru: 'вниз' } },
-  { front: { uz: 'Repo nusxasini olib kelish', ru: 'Скопировать репо себе' }, back: 'git clone', note: { uz: 'birga ishlash', ru: 'совместная работа' } },
-  { front: { uz: "commitdagi qisqa izoh bayrog'i", ru: 'Флаг короткого комментария в commit' }, back: '-m', note: 'message' },
-  { front: { uz: "Repo holatini ko'rish", ru: 'Посмотреть состояние репо' }, back: 'git status', note: { uz: "nima o'zgardi", ru: 'что изменилось' } },
-  { front: { uz: "Commitlar tarixini ko'rish", ru: 'Посмотреть историю коммитов' }, back: 'git log', note: { uz: 'barcha suratlar', ru: 'все снимки' } },
+  { front: { uz: "Kodning eski holatiga qaytarib beradigan dastur qanday ataladi?", ru: 'Как называется программа, которая возвращает код к старому состоянию?' }, back: 'Git', note: { uz: "Git — kod uchun vaqt mashinasi: har holatni eslab qoladi", ru: 'Git — машина времени для кода: он помнит каждое состояние' } },
+  { front: { uz: "Kodning bir lahzada olingan surati qanday ataladi?", ru: 'Как называется снимок кода, сделанный в один момент?' }, back: 'commit', note: { uz: "Har commit'ning izohi va vaqti bo'ladi", ru: 'У каждого коммита есть комментарий и время' } },
+  { front: { uz: "Git kuzatib turadigan loyiha papkasi qanday ataladi?", ru: 'Как называется папка проекта, за которой следит Git?' }, back: 'repository (repo)', note: { uz: "Ichida barcha fayllar va commit tarixi turadi", ru: 'Внутри все файлы и история коммитов' } },
+  { front: { uz: "Kodni bulutda saqlaydigan sayt qaysi?", ru: 'Какой сайт хранит код в облаке?' }, back: 'GitHub', note: { uz: "Kompyuter buzilsa ham, kod GitHub'da qoladi", ru: 'Даже если компьютер сломается, код останется на GitHub' } },
+  { front: { uz: "Qaysi buyruq fayllarni saqlashga tanlaydi?", ru: 'Какая команда выбирает файлы для сохранения?' }, back: 'git add', note: { uz: "Xuddi savatga solgandek — bu holat staged deyiladi", ru: 'Как будто кладёте в корзину — это состояние staged' } },
+  { front: { uz: "Tanlangan fayllarni izoh bilan qaysi buyruq saqlaydi?", ru: 'Какая команда сохраняет выбранные файлы с комментарием?' }, back: 'git commit -m "izoh"', note: { uz: "Izoh qo'shtirnoq ichida yoziladi", ru: 'Комментарий пишется в кавычках' } },
+  { front: { uz: "commit buyrug'idagi -m nimani bildiradi?", ru: 'Что означает -m в команде commit?' }, back: { uz: 'Izoh (message)', ru: 'Комментарий (message)' }, note: { uz: "-m dan keyin nima o'zgargani yoziladi", ru: 'После -m пишут, что изменилось' } },
+  { front: { uz: "Kompyuteringizdagi commitlarni GitHub'ga qaysi buyruq yuboradi?", ru: 'Какая команда отправляет ваши коммиты на GitHub?' }, back: 'git push', note: { uz: "push — sizdan bulutga, yuqoriga", ru: 'push — от вас в облако, вверх' } },
+  { front: { uz: "GitHub'dagi yangi commitlarni kompyuteringizga qaysi buyruq oladi?", ru: 'Какая команда забирает новые коммиты с GitHub на компьютер?' }, back: 'git pull', note: { uz: "pull — bulutdan sizga, pastga", ru: 'pull — из облака к вам, вниз' } },
+  { front: { uz: "Do'stingizning loyihasini o'zingizga qaysi buyruq nusxalaydi?", ru: 'Какая команда копирует проект друга себе?' }, back: 'git clone', note: { uz: "Fayllar ham, butun tarix ham ko'chadi", ru: 'Копируются и файлы, и вся история' } },
+  { front: { uz: "Git bilan ishlash tartibi qanday?", ru: 'Каков порядок работы с Git?' }, back: 'add → commit → push', note: { uz: "Tartib muhim: saqlanmagan narsani yuborib bo'lmaydi", ru: 'Порядок важен: несохранённое отправить нельзя' } },
+  { front: { uz: "Har commitning o'ziga xos raqami qanday ataladi?", ru: 'Как называется собственный номер каждого коммита?' }, back: 'hash', note: { uz: "Masalan a1b2c3d — shu raqam bilan eski commitni topasiz", ru: 'Например a1b2c3d — по этому номеру найдёте старый коммит' } },
 ];
 function Flashcards({ cards }) {
   const [queue, setQueue] = useState(() => cards.map((_, i) => i));
@@ -1771,8 +1775,8 @@ function Flashcards({ cards }) {
       <div className="fc-cardwrap">
         <div className={`fc-fly ${exiting === 'knew' ? 'out-knew' : ''} ${exiting === 'again' ? 'out-again' : ''}`} key={swapRef.current}>
         <div className={`fc-card ${flipped ? 'flip' : ''}`} onClick={() => !flipped && !exiting && setFlipped(true)} role="button" tabIndex={0}>
-          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: 'Qaysi atama?', ru: 'Какой термин?' })} 🤔 <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
-          <div className="fc-face fc-back"><span className="fc-tag">{card.back}</span>{card.note && <span className="fc-note">{tr(card.note)}</span>}</div>
+          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: "Javobni o'ylang", ru: 'Подумайте над ответом' })} 🤔 <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
+          <div className="fc-face fc-back"><span className="fc-tag">{tr(card.back)}</span>{card.note && <span className="fc-note">{tr(card.note)}</span>}</div>
         </div>
         </div>
       </div>
@@ -1923,13 +1927,13 @@ const ScreenGitFlow = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 
 // ===== SCREEN FLASHCARDS — teglarni tez takrorlash (podiumdan keyin) =====
 const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const audio = useAudio([{ id: 'sflash', text: "Darsni yakunlashdan oldin bugun o'rgangan Git atamalarini tez takrorlaymiz. Har kartada bir vazifa — qaysi atama yoki buyruq ekanini o'ylang, keyin kartani bosib tekshiring.", trigger: 'on_mount', waits_for: null }]);
+  const audio = useAudio([{ id: 'sflash', text: "Darsni yakunlashdan oldin bugun o'rgangan Git atamalarini tez takrorlaymiz. Har kartada bir savol — javobini o'ylang, keyin kartani bosib tekshiring.", trigger: 'on_mount', waits_for: null }]);
   useEffect(() => { if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, []); // eslint-disable-line
   return (
     <Stage eyebrow={tr({ uz: 'Takrorlash', ru: 'Повторение' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={false} label={tr({ uz: 'Yakunlash →', ru: 'Завершить →' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Atamalarni <span className="italic" style={{ color: T.accent }}>tez takrorlaymiz</span>.</>, ru: <>Быстро <span className="italic" style={{ color: T.accent }}>повторим</span> термины.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Bugun o'rgangan Git atama va buyruqlarini takrorlaymiz. Har kartada bir vazifa — <b style={{ color: T.ink }}>qaysi atama</b> ekanini o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</>, ru: <>Повторим термины и команды Git, которые вы сегодня выучили. На каждой карточке одно задание — подумайте, <b style={{ color: T.ink }}>какой это термин</b>, затем нажмите на карточку и проверьте. Оцените себя кнопками <b style={{ color: T.ink }}>Знаю</b> или <b style={{ color: T.ink }}>Повторить</b>.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Bugun o'rgangan Git atama va buyruqlarini takrorlaymiz. Har kartada bir savol — <b style={{ color: T.ink }}>javobini</b> o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</>, ru: <>Повторим термины и команды Git, которые вы сегодня выучили. На каждой карточке — вопрос: подумайте, <b style={{ color: T.ink }}>каким будет ответ</b>, затем нажмите на карточку и проверьте. Оцените себя кнопками <b style={{ color: T.ink }}>Знаю</b> или <b style={{ color: T.ink }}>Повторить</b>.</> })}</Mentor>
         <div className="fc-center"><Flashcards cards={GIT_FLASHCARDS} /></div>
       </div>
     </Stage>
@@ -1953,7 +1957,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
     if (isMentorL && quizSt === 'off') { try { await _live.quizControl('lobby', -1); } catch { return; } }
     setArenaSolo(studentSolo); setArena(true);
   };
-  const audio = useAudio([{ id: 's16', text: "Tabriklaymiz! Endi Git va GitHub sirini bilasiz: Git — kod uchun vaqt mashinasi, commit — saqlangan surat, tarix orqali istalgan nuqtaga qaytasiz, GitHub — kodning bulutdagi uyi va jamoa maydoni. push bilan yuborasiz, clone bilan birga ishlaysiz. Endi o'zingizning birinchi repongizni ochishga tayyorsiz!", trigger: 'on_mount', waits_for: null }]);
+  const audio = useAudio([{ id: 's16', text: "Tabriklaymiz! Endi Git va GitHub qanday ishlashini bilasiz: Git — kod uchun vaqt mashinasi, commit — saqlangan surat, tarix orqali istalgan nuqtaga qaytasiz, GitHub — kodning bulutdagi uyi va jamoa maydoni. push bilan yuborasiz, clone bilan birga ishlaysiz. Endi o'zingizning birinchi repongizni ochishga tayyorsiz!", trigger: 'on_mount', waits_for: null }]);
   const RECAP = [{ uz: 'Git — kod uchun vaqt mashinasi', ru: 'Git — машина времени для кода' }, { uz: 'commit — kodning saqlangan surati', ru: 'commit — сохранённый снимок кода' }, { uz: 'Tarix — istalgan nuqtaga qaytish', ru: 'История — возврат к любой точке' }, { uz: 'GitHub — kodning bulutdagi uyi', ru: 'GitHub — облачный дом кода' }, { uz: 'push / pull — bulut bilan aloqa', ru: 'push / pull — связь с облаком' }, { uz: 'clone — jamoa bilan birga ishlash', ru: 'clone — совместная работа с командой' }];
   const HOMEWORK = [{ b: { uz: "Ro'yxatdan o'ting", ru: 'Зарегистрируйтесь' }, t: { uz: '— github.com da bepul account oching', ru: '— откройте бесплатный аккаунт на github.com' } }, { b: { uz: 'Repo yarating', ru: 'Создайте репо' }, t: { uz: '— birinchi repository: mening-saytim', ru: '— первый repository: moy-sayt' } }, { b: { uz: 'commit qiling', ru: 'Сделайте commit' }, t: { uz: "— fayl qo'shib, izoh bilan saqlang", ru: '— добавьте файл и сохраните с комментарием' } }];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
@@ -1962,7 +1966,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
   return (
     <Stage eyebrow={tr({ uz: 'Tayyor', ru: 'Готово' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><button className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash ✓', ru: 'Завершить ✓' })}</button></>}>
       <div className="screen">
-        <div className="hero"><div className="hero-l"><span className="done-chip fade-up"><span className="tick">✓</span> {tr({ uz: 'Git va GitHub darsi tugadi', ru: 'Урок Git и GitHub завершён' })}</span><h2 className="title h-title fade-up d1">{tr({ uz: <>Git va GitHub <span className="italic" style={{ color: T.accent }}>sirini</span> ochdingiz.</>, ru: <>Вы раскрыли <span className="italic" style={{ color: T.accent }}>секрет</span> Git и GitHub.</> })}</h2><p className="body h-sub fade-up d2">{PASSED ? tr({ uz: "Tabriklaymiz! Endi kodingizni Git bilan boshqarib, GitHub'ga joylaysiz.", ru: 'Поздравляем! Теперь вы управляете кодом через Git и выкладываете его на GitHub.' }) : tr({ uz: "Yaxshi harakat! Bir-ikki joyni mustahkamlash uchun darsni qayta ko'ring.", ru: 'Хорошая попытка! Пересмотрите урок, чтобы закрепить пару мест.' })}</p></div><ScoreRing correct={correct} total={total} /></div>
+        <div className="hero"><div className="hero-l"><span className="done-chip fade-up"><span className="tick">✓</span> {tr({ uz: 'Git va GitHub darsi tugadi', ru: 'Урок Git и GitHub завершён' })}</span><h2 className="title h-title fade-up d1">{tr({ uz: <>Git va GitHub <span className="italic" style={{ color: T.accent }}>qanday ishlashini</span> bilib oldingiz.</>, ru: <>Вы разобрались, <span className="italic" style={{ color: T.accent }}>как работают</span> Git и GitHub.</> })}</h2><p className="body h-sub fade-up d2">{PASSED ? tr({ uz: "Tabriklaymiz! Endi kodingizni Git bilan boshqarib, GitHub'ga joylaysiz.", ru: 'Поздравляем! Теперь вы управляете кодом через Git и выкладываете его на GitHub.' }) : tr({ uz: "Yaxshi harakat! Bir-ikki joyni mustahkamlash uchun darsni qayta ko'ring.", ru: 'Хорошая попытка! Пересмотрите урок, чтобы закрепить пару мест.' })}</p></div><ScoreRing correct={correct} total={total} /></div>
         <div className={`qz-cta cs-cta fade-up d2 ${studentLive ? 'ready' : ''}`}>
           <CsWordmark
             stats={false}
@@ -1977,7 +1981,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
           <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> {tr({ uz: 'Endi siz bilasiz', ru: 'Теперь вы знаете' })}</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{tr(r)}</span></li>))}</ul></div>
           <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>🔎 {tr({ uz: 'Uyga vazifa', ru: 'Домашнее задание' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: 'Bilimingizni amalda sinang:', ru: 'Проверьте знания на практике:' })}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: "GitHub'da birinchi repongizni yaratib, do'stlaringizga ulashing!", ru: 'Создайте на GitHub свой первый репозиторий и поделитесь с друзьями!' })}</p></div>
         </div>
-        <div className="card ach-coll fade-up d3">
+        {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>🏅 {tr({ uz: 'Nishonlaringiz', ru: 'Ваши значки' })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">
             {Object.entries(ACHIEVEMENTS).map(([id, a]) => { const got = !!(achievements && achievements.has(id)); return (
@@ -1988,7 +1992,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
               </div>
             ); })}
           </div>
-        </div>
+        </div>}
       </div>
     </Stage>
   );
@@ -2463,7 +2467,7 @@ function QuizArena({ live, onClose, startSolo }) {
             <div className={`qz-res ${my?.correct ? 'good' : 'bad'}`}>
               {my?.correct
                 ? <><span className="qz-res-pts">+{myPtsFor(qi)}</span><span className="qz-res-t">{tr({ uz: 'ball', ru: 'баллов' })}{streakUpTo(qi) >= 2 ? ` · 🔥 x${streakUpTo(qi)} streak` : ''}</span></>
-                : <span className="qz-res-t">{my ? tr({ uz: "Xato — 0 ball. Keyingisida olasiz! 💪", ru: 'Ошибка — 0 баллов. Возьмёте на следующем! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Побыстрее! ⏱' })}</span>}
+                : <span className="qz-res-t">{my ? tr({ uz: "Adashdingiz — 0 ball. Keyingisida olasiz! 💪", ru: 'Ошибка — 0 баллов. Возьмёте на следующем! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Побыстрее! ⏱' })}</span>}
               {!solo && myRank >= 0 && <span className="qz-res-rank">{tr({ uz: `Siz hozir: ${myRank + 1}-o'rin`, ru: `Вы сейчас: ${myRank + 1}-е место` })}</span>}
             </div>
           )}

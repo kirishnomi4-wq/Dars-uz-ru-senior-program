@@ -131,9 +131,9 @@ const HARD_DRILL = [
 
 // Sitata oltinligi drilli (s11)
 const QUOTE_DRILL = [
-  { id: 'q1', label: 'Transport muammosi bo\'yicha qaysi yozuv qimmatli?', emoji: '📝', color: T.blue, opts: ['«Respondent transportdan norozi» (mening xulosam)', '«“Avtobus qachon kelishi — xudoga ayon” dedi kulib', '«Transport yomon» deb yozib qo\'yish'], correct: 1, why: 'Jonli sitata + hissiyot belgisi. Xulosa — sizning talqiningiz; sitata — dalil.' },
-  { id: 'q2', label: 'Og\'riq kuchini qaysi yozuv ko\'rsatadi?', emoji: '🌡️', color: T.accent, opts: ['«Og\'riq: 8/10» (o\'zim baholadim)', '«Muammo katta deb o\'ylayman»', '«“Shu deb fizikadan 2 oldim” — ovozi o\'zgardi, jahli chiqdi»'], correct: 2, why: 'Real oqibat + kuzatilgan hissiyot. Sizning balingiz emas — UNING reaksiyasi o\'lchov.' },
-  { id: 'q3', label: 'Isbot bo\'yicha qaysi yozuv kuchli?', emoji: '💰', color: T.success, opts: ['«“Haftasiga 40-50 ming taksiga ketyapti” — aniq aytdi»', '«Pul sarflashga tayyor ko\'rinadi»', '«Boy oila shekilli, to\'laydi»'], correct: 0, why: 'Aniq raqam — respondentning o\'z og\'zidan. Taxmin va taassurot isbot emas.' }
+  { id: 'q1', label: 'Transport muammosi bo\'yicha qaysi yozuv qimmatli?', emoji: '📝', color: T.blue, opts: ['«Respondent transportdan norozi» (mening xulosam)', '«\u201CAvtobus qachon kelishi — xudoga ayon\u201D dedi kulib', '«Transport yomon» deb yozib qo\'yish'], correct: 1, why: 'Jonli sitata + hissiyot belgisi. Xulosa — sizning talqiningiz; sitata — dalil.' },
+  { id: 'q2', label: 'Og\'riq kuchini qaysi yozuv ko\'rsatadi?', emoji: '🌡️', color: T.accent, opts: ['«Og\'riq: 8/10» (o\'zim baholadim)', '«Muammo katta deb o\'ylayman»', '«\u201CShu deb fizikadan 2 oldim\u201D — ovozi o\'zgardi, jahli chiqdi»'], correct: 2, why: 'Real oqibat + kuzatilgan hissiyot. Sizning balingiz emas — UNING reaksiyasi o\'lchov.' },
+  { id: 'q3', label: 'Isbot bo\'yicha qaysi yozuv kuchli?', emoji: '💰', color: T.success, opts: ['«\u201CHaftasiga 40-50 ming taksiga ketyapti\u201D — aniq aytdi»', '«Pul sarflashga tayyor ko\'rinadi»', '«Boy oila shekilli, to\'laydi»'], correct: 0, why: 'Aniq raqam — respondentning o\'z og\'zidan. Taxmin va taassurot isbot emas.' }
 ];
 
 const STAGES = [

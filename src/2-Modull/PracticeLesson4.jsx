@@ -1730,7 +1730,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
           <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> {tr({ uz: 'Endi siz bilasiz', ru: 'Теперь Вы знаете' })}</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{tr(r)}</span></li>))}</ul></div>
           <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: 'Uyga vazifa', ru: 'Домашнее задание' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: "O'z ilovangizni quring va chiqaring:", ru: 'Постройте и выпустите своё приложение:' })}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: "Demak: siz istalgan g'oyani real, ishlaydigan loyihaga aylantira olasiz. 🚀", ru: 'Вывод: Вы можете превратить любую идею в реальный работающий проект. 🚀' })}</p></div>
         </div>
-        <div className="card ach-coll fade-up d3">
+        {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🏅 Nishonlaringiz', ru: '🏅 Ваши значки' })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">
             {Object.entries(ACHIEVEMENTS).map(([id, a]) => { const got = !!(achievements && achievements.has(id)); return (
@@ -1741,7 +1741,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
               </div>
             ); })}
           </div>
-        </div>
+        </div>}
       </div>
     </Stage>
   );
@@ -2021,15 +2021,16 @@ function DragDropOrder({ items, hints, onSolved }) {
 // 🃏 Qayta ishlatiladigan FLASHCARDS — aktiv takrorlash (3D flip + o'z-o'zini baholash).
 // Boshqa darsga: faqat `cards` ({ front, back, note }) almashtiriladi.
 const SHOP_FLASHCARDS = [
-  { front: { uz: 'Eng kichik ishlaydigan versiya', ru: 'Минимальная работающая версия' }, back: 'MVP', note: { uz: 'asosiy funksiyalar ishlaydi', ru: 'основные функции работают' } },
-  { front: { uz: "Tanlangan mahsulotlar ro'yxati", ru: 'Список выбранных товаров' }, back: { uz: 'Savat', ru: 'Корзина' }, note: { uz: "do'konni haqiqiy qiladi", ru: 'делает магазин настоящим' } },
-  { front: { uz: "Savatdagi narxlar yig'indisi", ru: 'Сумма цен в корзине' }, back: { uz: 'Jami narx', ru: 'Итоговая цена' }, note: { uz: "har qo'shilganda yangilanadi", ru: 'обновляется при каждом добавлении' } },
-  { front: { uz: 'Dasturdagi xato', ru: 'Ошибка в программе' }, back: { uz: 'Bug', ru: 'Баг' }, note: { uz: 'AI ham qiladi — tuzatamiz', ru: 'бывает и у ИИ — чиним' } },
-  { front: { uz: 'Xatoni topib tuzatish', ru: 'Поиск и исправление ошибки' }, back: { uz: 'Debugging', ru: 'Дебаггинг' }, note: { uz: "aniq tushuntirib, qayta so'rab", ru: 'точно объясняем и просим снова' } },
-  { front: { uz: 'Loyihani internetga chiqarish', ru: 'Выпуск проекта в интернет' }, back: { uz: 'Deploy', ru: 'Деплой' }, note: { uz: 'havola olib, ulashamiz', ru: 'получаем ссылку и делимся' } },
-  { front: { uz: "Chiqarilgach do'stlarga yuboriladigan narsa", ru: 'Что отправляем друзьям после выпуска' }, back: { uz: 'Havola', ru: 'Ссылка' }, note: { uz: 'link — butun kod emas', ru: 'ссылка — а не весь код' } },
-  { front: { uz: "Universal yo'l birinchi qadami", ru: 'Первый шаг универсального пути' }, back: { uz: 'Reja', ru: 'План' }, note: { uz: 'nima quramiz?', ru: 'что строим?' } },
-  { front: { uz: "Universal yo'l oxirgi qadami", ru: 'Последний шаг универсального пути' }, back: { uz: 'Deploy', ru: 'Деплой' }, note: { uz: 'dunyoga chiqarish', ru: 'выпуск в мир' } },
+  { front: { uz: "Katalogni haqiqiy do'konga nima aylantiradi?", ru: 'Что превращает каталог в настоящий магазин?' }, back: { uz: 'Savat va jami narx', ru: 'Корзина и итоговая цена' }, note: { uz: 'ularsiz sayt shunchaki vitrina', ru: 'без них сайт — просто витрина' } },
+  { front: { uz: "«Savatga qo'shish» bosilganda nima bo'ladi?", ru: 'Что происходит при нажатии «в корзину»?' }, back: { uz: "Hodisa → reaksiya → o'zgarish", ru: 'Событие → реакция → изменение' }, note: { uz: 'bosish — hodisa, savat yangilanishi — reaksiya', ru: 'нажатие — событие, обновление корзины — реакция' } },
+  { front: { uz: 'Jami narx qanday hisoblanadi?', ru: 'Как считается итоговая цена?' }, back: { uz: "Savatdagi narxlar qo'shiladi", ru: 'Цены в корзине складываются' }, note: { uz: "har qo'shilganda qayta yangilanadi", ru: 'обновляется при каждом добавлении' } },
+  { front: { uz: "Dasturdagi xato bir so'z bilan qanday ataladi?", ru: 'Как одним словом называют ошибку в программе?' }, back: { uz: 'Bug', ru: 'Баг' }, note: { uz: 'AI ham bug qiladi — bu normal', ru: 'баги бывают и у ИИ — это нормально' } },
+  { front: { uz: 'Xatoni topib tuzatish qanday ataladi?', ru: 'Как называется поиск и исправление ошибки?' }, back: { uz: 'Debugging', ru: 'Дебаггинг' }, note: { uz: 'topamiz, tushuntiramiz, tuzatamiz', ru: 'находим, объясняем, чиним' } },
+  { front: { uz: "AI bugni tuzatishi uchun unga nima aytasiz?", ru: 'Что Вы скажете ИИ, чтобы он починил баг?' }, back: { uz: "Nima noto'g'ri va qanday kerak", ru: 'Что не так и как должно быть' }, note: { uz: "faqat «tuzat» — yetarli emas", ru: 'просто «почини» — этого мало' } },
+  { front: { uz: "MVP «tayyor» degani nima?", ru: 'Что значит «MVP готов»?' }, back: { uz: 'Asosiy funksiyalar ishlaydi', ru: 'Основные функции работают' }, note: { uz: "mukammal bo'lishi shart emas", ru: 'идеальным быть не обязательно' } },
+  { front: { uz: 'Saytni internetga chiqarish qanday ataladi?', ru: 'Как называется выпуск сайта в интернет?' }, back: { uz: 'Deploy', ru: 'Деплой' }, note: { uz: 'shundan keyin uni istalgan odam ochadi', ru: 'после него сайт откроет любой человек' } },
+  { front: { uz: "Deploydan keyin do'stlaringizga nimani yuborasiz?", ru: 'Что Вы отправите друзьям после деплоя?' }, back: { uz: 'Sayt havolasini', ru: 'Ссылку на сайт' }, note: { uz: 'butun kodni emas — bitta havola', ru: 'не весь код, а одну ссылку' } },
+  { front: { uz: "Har qanday loyihaning universal 5 qadami qanday?", ru: 'Каковы универсальные 5 шагов любого проекта?' }, back: { uz: "Reja → MVP → qurish → tekshirish → deploy", ru: 'План → MVP → стройка → проверка → деплой' }, note: { uz: "do'kon ham, o'yin ham — shu yo'l bilan", ru: 'и магазин, и игра — по этому же пути' } },
 ];
 function Flashcards({ cards }) {
   const [queue, setQueue] = useState(() => cards.map((_, i) => i));
@@ -2062,7 +2063,7 @@ function Flashcards({ cards }) {
       <div className="fc-cardwrap">
         <div className={`fc-fly ${exiting === 'knew' ? 'out-knew' : ''} ${exiting === 'again' ? 'out-again' : ''}`} key={swapRef.current}>
         <div className={`fc-card ${flipped ? 'flip' : ''}`} onClick={() => !flipped && !exiting && setFlipped(true)} role="button" tabIndex={0}>
-          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: 'Qaysi atama?', ru: 'Какой это термин?' })} 🤔 <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
+          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: "Javobni o'ylang", ru: 'Подумайте над ответом' })} 🤔 <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
           <div className="fc-face fc-back"><span className="fc-tag">{tr(card.back)}</span>{card.note && <span className="fc-note">{tr(card.note)}</span>}</div>
         </div>
         </div>
@@ -2076,7 +2077,7 @@ function Flashcards({ cards }) {
 
 // ===== ScreenFlashcards — Quizlet-uslub takrorlash (glossary → kartalar) =====
 const ScreenFlashcards = ({ screen, onNext, onPrev }) => {
-  const audio = useAudio([{ id: 'sflash', text: "Yakunlashdan oldin bugungi asosiy atamalarni tez takrorlaymiz. Har kartada bir ta'rif — qaysi atama ekanini o'ylang, keyin kartani bosib tekshiring.", trigger: 'on_mount', waits_for: null }]);
+  const audio = useAudio([{ id: 'sflash', text: "Yakunlashdan oldin bugungi asosiy atamalarni tez takrorlaymiz. Har kartada bir savol — javobini o'ylang, keyin kartani bosib tekshiring.", trigger: 'on_mount', waits_for: null }]);
   return (
     <Stage eyebrow={tr({ uz: 'Tez takror', ru: 'Быстрое повторение' })} screen={screen} narrow audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext label={tr({ uz: "Yakunga o'tish", ru: 'К финалу' })} onClick={onNext} optionalLive /></>}>
       <div className="screen narrow">
@@ -2130,6 +2131,7 @@ function AchToasts({ toasts, onDone }) {
 }
 function AchCounter() {
   const earned = useContext(AchCtx);
+  const gate = useContext(LiveGateCtx);
   const count = earned ? earned.size : 0;
   const total = Object.keys(ACHIEVEMENTS).length;
   const prevRef = useRef(count);
@@ -2139,6 +2141,7 @@ function AchCounter() {
     if (count > prevRef.current) { setBump(true); const t = setTimeout(() => setBump(false), 800); prevRef.current = count; return () => clearTimeout(t); }
     prevRef.current = count;
   }, [count]);
+  if (gate && gate.live && gate.live.mode === 'mentor') return null; // 🔴 mentor proyektorida nishon YO'Q (hooklardan KEYIN)
   return (
     <div className="ach-cnt-wrap">
       <button className={`ach-counter ${bump ? 'bump' : ''} ${count > 0 ? 'has' : ''}`} onClick={() => setOpen(o => !o)} aria-label="Badges" title="Badges">
@@ -2565,7 +2568,7 @@ function QuizArena({ live, onClose, startSolo }) {
             <div className={`qz-res ${my?.correct ? 'good' : 'bad'}`}>
               {my?.correct
                 ? <><span className="qz-res-pts">+{myPtsFor(qi)}</span><span className="qz-res-t">{tr({ uz: 'ball', ru: 'баллов' })}{streakUpTo(qi) >= 2 ? ` · 🔥 x${streakUpTo(qi)} streak` : ''}</span></>
-                : <span className="qz-res-t">{my ? tr({ uz: 'Xato — 0 ball. Keyingisida olasiz! 💪', ru: 'Ошибка — 0 баллов. Возьмёте на следующем! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Будьте быстрее! ⏱' })}</span>}
+                : <span className="qz-res-t">{my ? tr({ uz: 'Adashdingiz — 0 ball. Keyingisida olasiz! 💪', ru: 'Ошибка — 0 баллов. Возьмёте на следующем! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Будьте быстрее! ⏱' })}</span>}
               {!solo && myRank >= 0 && <span className="qz-res-rank">{tr({ uz: 'Siz hozir', ru: 'Вы сейчас' })}: {myRank + 1}{tr({ uz: "-o'rin", ru: '-е место' })}</span>}
             </div>
           )}

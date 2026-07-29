@@ -417,6 +417,7 @@ const Col = ({ children, gap }) => <div className="col" style={gap ? { gap } : u
 // 🏅 Yuqori paneldagi nishon hisoblagichi (Stage chrome)
 function AchCounter() {
   const earned = useContext(AchCtx);
+  const gate = useContext(LiveGateCtx);
   const count = earned ? earned.size : 0;
   const total = Object.keys(ACHIEVEMENTS).length;
   const prevRef = useRef(count);
@@ -426,6 +427,7 @@ function AchCounter() {
     if (count > prevRef.current) { setBump(true); const t = setTimeout(() => setBump(false), 800); prevRef.current = count; return () => clearTimeout(t); }
     prevRef.current = count;
   }, [count]);
+  if (gate && gate.live && gate.live.mode === 'mentor') return null; // 🔴 mentor proyektorida nishon YO'Q (hooklardan KEYIN)
   return (
     <div className="ach-cnt-wrap">
       <button className={`ach-counter ${bump ? 'bump' : ''} ${count > 0 ? 'has' : ''}`} onClick={() => setOpen(o => !o)} aria-label="Badges" title="Badges">
@@ -1991,7 +1993,7 @@ function QuizArena({ live, onClose, startSolo }) {
             <div className={`qz-res ${my?.correct ? 'good' : 'bad'}`}>
               {my?.correct
                 ? <><span className="qz-res-pts">+{myPtsFor(qi)}</span><span className="qz-res-t">{tr({ uz: 'ball', ru: 'баллов' })}{streakUpTo(qi) >= 2 ? ` · 🔥 x${streakUpTo(qi)} streak` : ''}</span></>
-                : <span className="qz-res-t">{my ? tr({ uz: "Xato — 0 ball. Keyingisida olasiz! 💪", ru: 'Неверно — 0 баллов. В следующий раз получится! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Будьте быстрее! ⏱' })}</span>}
+                : <span className="qz-res-t">{my ? tr({ uz: "Adashdingiz — 0 ball. Keyingisida olasiz! 💪", ru: 'Неверно — 0 баллов. В следующий раз получится! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Будьте быстрее! ⏱' })}</span>}
               {!solo && myRank >= 0 && <span className="qz-res-rank">{tr({ uz: `Siz hozir: ${myRank + 1}-o'rin`, ru: `Вы сейчас: ${myRank + 1}-е место` })}</span>}
             </div>
           )}
@@ -2269,7 +2271,7 @@ function Flashcards({ cards }) {
       <div className="fc-cardwrap">
         <div className={`fc-fly ${exiting === 'knew' ? 'out-knew' : ''} ${exiting === 'again' ? 'out-again' : ''}`} key={swapRef.current}>
         <div className={`fc-card ${flipped ? 'flip' : ''}`} onClick={() => !flipped && !exiting && setFlipped(true)} role="button" tabIndex={0}>
-          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: 'Qaysi tushuncha? 🤔', ru: 'Какое это понятие? 🤔' })} <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
+          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: "Javobni o'ylang", ru: 'Подумайте над ответом' })} 🤔 <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
           <div className="fc-face fc-back"><span className="fc-tag">{tr(card.back)}</span>{card.note && <span className="fc-note">{tr(card.note)}</span>}</div>
         </div>
         </div>
@@ -2297,18 +2299,18 @@ const ScreenBotPractice = (props) => (
 
 // 🃏 FLASHCARD KARTALARI — 12 atama (AI-agent tili)
 const BOT_FLASHCARDS = [
-  { front: { uz: "Maqsad sari o'zi amal qiladigan bot (gapiribgina qolmaydi)", ru: 'Бот, который сам действует ради цели (а не только говорит)' }, back: { uz: 'AI-agent', ru: 'AI-агент' }, note: { uz: 'agent', ru: 'агент' } },
-  { front: { uz: "Faqat javob yozadigan, amal qilmaydigan bot", ru: 'Бот, который только пишет ответ и не действует' }, back: { uz: 'AI-bot', ru: 'AI-бот' }, note: { uz: 'reaktiv', ru: 'реактивный' } },
-  { front: { uz: "Agentning ishlash aylanasi", ru: 'Круг работы агента' }, back: { uz: 'Idrok → Qaror → Amal', ru: 'Восприятие → Решение → Действие' }, note: { uz: 'sikl / loop', ru: 'цикл / loop' } },
-  { front: { uz: "Holatni o'qish qadami (xabar, daftar)", ru: 'Шаг чтения состояния (сообщение, тетрадь)' }, back: { uz: 'Idrok', ru: 'Восприятие' }, note: { uz: 'perceive', ru: 'perceive' } },
-  { front: { uz: "Qaysi asbobni ishlatishni tanlash qadami", ru: 'Шаг выбора, какой инструмент применить' }, back: { uz: 'Qaror', ru: 'Решение' }, note: { uz: 'decide', ru: 'decide' } },
-  { front: { uz: "Sumkadan asbobni chaqirib ish bajarish qadami", ru: 'Шаг вызова инструмента из сумки и выполнения работы' }, back: { uz: 'Amal', ru: 'Действие' }, note: { uz: 'act / tool-call', ru: 'act / tool-call' } },
-  { front: { uz: "Agent chaqiradigan funksiya (masalan saveOrder)", ru: 'Функция, которую вызывает агент (например saveOrder)' }, back: { uz: 'Asbob (tool)', ru: 'Инструмент (tool)' }, note: { uz: 'tool', ru: 'tool' } },
-  { front: { uz: "Agentga berilgan vazifa — qadamlarni o'zi topadi", ru: 'Задача, данная агенту — шаги он находит сам' }, back: { uz: 'Maqsad', ru: 'Цель' }, note: { uz: 'goal', ru: 'goal' } },
-  { front: { uz: "Agentga qo'yiladigan xavfsizlik chegaralari", ru: 'Границы безопасности, которые ставят агенту' }, back: { uz: 'Guardrails', ru: 'Guardrails' }, note: { uz: 'chegaralar', ru: 'ограничения' } },
-  { front: { uz: "Xavfli amaldan oldin odamdan so'raladigan narsa", ru: 'То, что спрашивают у человека перед опасным действием' }, back: { uz: 'Tasdiq', ru: 'Подтверждение' }, note: { uz: 'confirm', ru: 'confirm' } },
-  { front: { uz: "Muhim qarorda odam nazorat qiladigan tamoyil", ru: 'Принцип, при котором важное решение контролирует человек' }, back: { uz: 'Human-in-loop', ru: 'Human-in-loop' }, note: { uz: 'odam nazorati', ru: 'контроль человека' } },
-  { front: { uz: "Agent kalitsiz murojaat qila olmaydigan begona xizmat", ru: 'Чужой сервис, к которому агент не обратится без ключа' }, back: { uz: 'Tashqi xizmat', ru: 'Внешний сервис' }, note: { uz: 'tashqi API', ru: 'внешний API' } },
+  { front: { uz: "Maqsad sari o'zi amal qiladigan botni nima deb ataymiz?", ru: 'Как мы называем бота, который сам действует ради цели?' }, back: { uz: 'AI-agent', ru: 'AI-агент' }, note: { uz: 'sumkadan asbob olib real ish bajaradi', ru: 'достаёт инструмент из сумки и делает реальную работу' } },
+  { front: { uz: "Faqat javob yozib, hech narsa qilmaydigan bot qanday ataladi?", ru: 'Как называется бот, который только пишет ответ и ничего не делает?' }, back: { uz: 'AI-bot', ru: 'AI-бот' }, note: { uz: 'bir javob berib to\'xtaydi', ru: 'даёт один ответ и останавливается' } },
+  { front: { uz: "Agent sikli qaysi uch qadamdan iborat?", ru: 'Из каких трёх шагов состоит цикл агента?' }, back: { uz: 'Idrok, qaror, amal', ru: 'Восприятие, решение, действие' }, note: { uz: 'maqsadga yetguncha qayta aylanadi', ru: 'крутится, пока цель не достигнута' } },
+  { front: { uz: "Agent hozir nima bo'layotganini qaysi qadamda o'qiydi?", ru: 'На каком шаге агент читает, что происходит сейчас?' }, back: { uz: 'Idrok qadamida', ru: 'На шаге восприятия' }, note: { uz: 'xabar va daftardagi holat o\'qiladi', ru: 'читает сообщение и состояние в тетради' } },
+  { front: { uz: "Qaysi asbobni ishlatishni agent qaysi qadamda tanlaydi?", ru: 'На каком шаге агент выбирает, какой инструмент применить?' }, back: { uz: 'Qaror qadamida', ru: 'На шаге решения' }, note: { uz: 'tanlovni maqsadga qarab AI qiladi', ru: 'выбор делает AI, глядя на цель' } },
+  { front: { uz: "Agent asbobni chaqirib, ishni qaysi qadamda bajaradi?", ru: 'На каком шаге агент вызывает инструмент и делает работу?' }, back: { uz: 'Amal qadamida', ru: 'На шаге действия' }, note: { uz: 'masalan saveOrder chaqiriladi', ru: 'например вызывается saveOrder' } },
+  { front: { uz: "Agent chaqiradigan funksiya nima deb ataladi?", ru: 'Как называется функция, которую вызывает агент?' }, back: { uz: 'Asbob', ru: 'Инструмент' }, note: { uz: 'tool — sumkadagi har bir funksiya', ru: 'tool — каждая функция в сумке' } },
+  { front: { uz: "Agentga qadamlar beriladimi yoki maqsadmi?", ru: 'Агенту дают шаги или цель?' }, back: { uz: 'Maqsad', ru: 'Цель' }, note: { uz: 'qadamlarni agent o\'zi topadi', ru: 'шаги агент находит сам' } },
+  { front: { uz: "Agent bitta amaldan keyin nima qiladi?", ru: 'Что агент делает после одного действия?' }, back: { uz: 'Natijani ko\'radi', ru: 'Смотрит на результат' }, note: { uz: 'maqsad bajarilmasa, sikl qayta aylanadi', ru: 'если цель не достигнута, цикл повторяется' } },
+  { front: { uz: "Agentga qo'yiladigan xavfsizlik chegaralari qanday ataladi?", ru: 'Как называются границы безопасности, которые ставят агенту?' }, back: 'Guardrails', note: { uz: 'sumkaga faqat kerakli asboblar solinadi', ru: 'в сумку кладут только нужные инструменты' } },
+  { front: { uz: "Pul yechish kabi xavfli amaldan oldin agent nima so'raydi?", ru: 'Что агент спрашивает перед опасным действием, например списанием денег?' }, back: { uz: 'Odam tasdig\'ini', ru: 'Подтверждение человека' }, note: { uz: 'tasdiqsiz xavfli amal bajarilmaydi', ru: 'без подтверждения опасное действие не выполняется' } },
+  { front: { uz: "Muhim qarorni odam nazorat qiladigan tamoyil nima deyiladi?", ru: 'Как называется принцип, при котором важное решение контролирует человек?' }, back: 'Human-in-loop', note: { uz: 'shubhali holat odamga uzatiladi', ru: 'спорную ситуацию передают человеку' } },
 ];
 const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, []); // eslint-disable-line
@@ -2316,7 +2318,7 @@ const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) =>
     <Stage eyebrow={tr({ uz: 'Takrorlash', ru: 'Повторение' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={false} label={tr({ uz: 'Yakunlash →', ru: 'Завершить →' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>AI-agent atamalarini <span className="italic" style={{ color: T.accent }}>tez takrorlaymiz</span>.</>, ru: <><span className="italic" style={{ color: T.accent }}>Быстро повторим</span> термины AI-агента.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Darsni yakunlashdan oldin bugungi atamalarni takrorlaymiz. Har kartada bir topishmoq — <b style={{ color: T.ink }}>qaysi atama</b> ekanini o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</>, ru: <>Перед концом урока повторим сегодняшние термины. На каждой карточке загадка — подумайте, <b style={{ color: T.ink }}>какой это термин</b>, затем нажмите на карточку и проверьте. Оцените себя кнопкой <b style={{ color: T.ink }}>Знаю</b> или <b style={{ color: T.ink }}>Повторить</b>.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Darsni yakunlashdan oldin bugungi atamalarni takrorlaymiz. Har kartada bir savol — <b style={{ color: T.ink }}>javobini</b> o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</>, ru: <>Перед концом урока повторим сегодняшние термины. На каждой карточке вопрос — подумайте, <b style={{ color: T.ink }}>каким будет ответ</b>, затем нажмите на карточку и проверьте. Оцените себя кнопкой <b style={{ color: T.ink }}>Знаю</b> или <b style={{ color: T.ink }}>Повторить</b>.</> })}</Mentor>
         <div className="fc-center"><Flashcards cards={BOT_FLASHCARDS} /></div>
       </div>
     </Stage>
@@ -2367,7 +2369,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
           <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> {tr({ uz: 'Endi siz bilasiz', ru: 'Теперь Вы знаете' })}</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{tr(r)}</span></li>))}</ul></div>
           <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: "🚀 Keyingi dars — Botjon o'z javobidan fikr-mulohaza (fidbek) asosida o'zini yaxshilashni o'rganadi!", ru: '🚀 Следующий урок — Ботжон научится улучшать себя по обратной связи (фидбеку) на свои ответы!' })}</p></div>
         </div>
-        <div className="card ach-coll fade-up d3">
+        {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🏅 Nishonlaringiz —', ru: '🏅 Ваши значки —' })} {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">
             {Object.entries(ACHIEVEMENTS).map(([id, a]) => { const got = !!(achievements && achievements.has(id)); return (
@@ -2378,7 +2380,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
               </div>
             ); })}
           </div>
-        </div>
+        </div>}
       </div>
     </Stage>
   );

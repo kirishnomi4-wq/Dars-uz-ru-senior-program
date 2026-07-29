@@ -111,7 +111,7 @@ const readProductName = () => {
 const toSlug = (name) => {
   if (!name) return 'avtobus-tracker';
   const map = { 'ʻ': '', '\'': '', 'ʼ': '', "'": '' };
-  let s = name.toLowerCase().replace(/[ʻʼ'']/g, '');
+  let s = name.toLowerCase().replace(/[\u02BB\u02BC'']/g, '');
   s = s.replace(/[^a-z0-9\s-]/g, '').trim().replace(/\s+/g, '-').replace(/-+/g, '-');
   return s.slice(0, 24) || 'avtobus-tracker';
 };

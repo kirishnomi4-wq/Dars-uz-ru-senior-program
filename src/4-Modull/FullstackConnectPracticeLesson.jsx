@@ -360,6 +360,7 @@ const Col = ({ children, gap }) => <div className="col" style={gap ? { gap } : u
 // 🏅 Yuqori paneldagi nishon hisoblagichi (Stage chrome)
 function AchCounter() {
   const earned = useContext(AchCtx);
+  const gate = useContext(LiveGateCtx);
   const count = earned ? earned.size : 0;
   const total = Object.keys(ACHIEVEMENTS).length;
   const prevRef = useRef(count);
@@ -369,6 +370,7 @@ function AchCounter() {
     if (count > prevRef.current) { setBump(true); const t = setTimeout(() => setBump(false), 800); prevRef.current = count; return () => clearTimeout(t); }
     prevRef.current = count;
   }, [count]);
+  if (gate && gate.live && gate.live.mode === 'mentor') return null; // 🔴 mentor proyektorida nishon YO'Q (hooklardan KEYIN)
   return (
     <div className="ach-cnt-wrap">
       <button className={`ach-counter ${bump ? 'bump' : ''} ${count > 0 ? 'has' : ''}`} onClick={() => setOpen(o => !o)} aria-label="Badges" title="Badges">
@@ -1147,7 +1149,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     { uz: "setCars ro'yxatni to'ldiradi — kartochkalar chiziladi.", ru: 'setCars заполняет список — рисуются карточки.' }
   ];
   return (
-    <Stage eyebrow={tr({ uz: 'Anatomiya · oqim', ru: 'Анатомия · поток' })} screen={screen} scrollSignal={done} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "So'rov yo'lini kuzating", ru: 'Проследите путь запроса' })} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Tuzilishi · oqim', ru: 'Строение · поток' })} screen={screen} scrollSignal={done} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "So'rov yo'lini kuzating", ru: 'Проследите путь запроса' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Bitta <span className="italic" style={{ color: T.accent }}>fetch</span> bosilganda nima sodir bo'ladi?</>, ru: <>Что происходит при одном <span className="italic" style={{ color: T.accent }}>fetch</span>?</> })}</h2></div>
         <Mentor>{tr({ uz: <>fetch — bu vitrinadan omborga yuborilgan <b style={{ color: T.ink }}>xat</b>: ko'prik ustidan so'rov ketadi, javob qaytadi. Qadam-qadam kuzating — har bosqichda nima bo'lishini ko'ring.</>, ru: <>fetch — это <b style={{ color: T.ink }}>письмо</b> с витрины на склад: запрос уходит по мосту, ответ возвращается. Следите шаг за шагом — смотрите, что происходит на каждом этапе.</> })}</Mentor>
@@ -1613,8 +1615,8 @@ function Flashcards({ cards }) {
       <div className="fc-cardwrap">
         <div className={`fc-fly ${exiting === 'knew' ? 'out-knew' : ''} ${exiting === 'again' ? 'out-again' : ''}`} key={swapRef.current}>
         <div className={`fc-card ${flipped ? 'flip' : ''}`} onClick={() => !flipped && !exiting && setFlipped(true)} role="button" tabIndex={0}>
-          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: 'Qaysi tushuncha? 🤔', ru: 'Какое это понятие? 🤔' })} <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
-          <div className="fc-face fc-back"><span className="fc-tag">{card.back}</span>{card.note && <span className="fc-note">{tr(card.note)}</span>}</div>
+          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: "Javobni o'ylang", ru: 'Подумайте над ответом' })} 🤔 <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
+          <div className="fc-face fc-back"><span className="fc-tag">{tr(card.back)}</span>{card.note && <span className="fc-note">{tr(card.note)}</span>}</div>
         </div>
         </div>
       </div>
@@ -1624,29 +1626,29 @@ function Flashcards({ cards }) {
     </div>
   );
 }
-// 🃏 FULLSTACK FLASHCARD KARTALARI (front=izoh, back=tushuncha) — Metodist keyin sayqallaydi
+// 🃏 FULLSTACK FLASHCARD KARTALARI (front=savol, back=qisqa javob, note=bir qatorlik izoh)
 const FULLSTACK_FLASHCARDS = [
-  { front: { uz: "Omborga (serverga) xat yuborib, ro'yxatni olib keladi", ru: 'Отправляет письмо на склад (сервер) и приносит список' }, back: "fetch", note: { uz: "HTTP so'rov", ru: 'HTTP-запрос' } },
-  { front: { uz: "Sahifa ochilganda so'rovni bir marta yuboradi", ru: 'Отправляет запрос один раз при открытии страницы' }, back: "useEffect([])", note: { uz: 'kirishda bir marta', ru: 'один раз при входе' } },
-  { front: { uz: 'Serverdan kelgan ro\'yxatni ekranda saqlaydi', ru: 'Хранит на экране список, пришедший с сервера' }, back: "useState", note: { uz: "ma'lumot xotirasi", ru: 'память данных' } },
-  { front: { uz: "Serverning javobini ro'yxatga aylantiradi", ru: 'Превращает ответ сервера в список' }, back: "res.json()", note: { uz: 'javob → massiv', ru: 'ответ → массив' } },
-  { front: { uz: "Ma'lumot kelguncha «yuklanmoqda» skeleton", ru: 'Пока данные в пути — skeleton «загрузка»' }, back: "loading", note: { uz: 'kutish holati', ru: 'состояние ожидания' } },
-  { front: { uz: "Ulanib bo'lmasa xabar — sayt qulamaydi", ru: 'Нет связи — сообщение, сайт не падает' }, back: "error", note: { uz: 'xato holati', ru: 'состояние ошибки' } },
-  { front: { uz: ":5173 dan :3000 ga so'rovni to'sadigan shlagbaum", ru: 'Шлагбаум, блокирующий запрос с :5173 на :3000' }, back: "CORS", note: { uz: 'brauzer himoyasi', ru: 'защита браузера' } },
-  { front: { uz: 'Shlagbaumni ochadigan bitta qator (serverda)', ru: 'Одна строка, открывающая шлагбаум (на сервере)' }, back: "app.use(cors())", note: { uz: 'ruxsat berish', ru: 'дать разрешение' } },
-  { front: { uz: 'Front va back — ikki alohida dastur portlari', ru: 'Фронт и бэк — порты двух отдельных программ' }, back: ":5173 / :3000", note: { uz: 'sayt / server', ru: 'сайт / сервер' } },
-  { front: { uz: "Omborga (bazaga) yangi mashina qo'shish", ru: 'Добавить новую машину на склад (в базу)' }, back: "POST", note: { uz: 'yaratish', ru: 'создание' } },
-  { front: { uz: "Qo'shgach yangi mashina darrov ko'rinadi", ru: 'После добавления машина видна сразу' }, back: "POST + qayta GET", note: { uz: "to'liq yo'l", ru: 'полный путь' } },
-  { front: { uz: 'Front + back + baza birga ishlashi', ru: 'Фронт + бэк + база работают вместе' }, back: "Fullstack", note: { uz: "to'liq ilova", ru: 'полное приложение' } },
+  { front: { uz: "Sayt serverdan ma'lumot so'rash uchun qaysi buyruqni ishlatadi?", ru: 'Какой командой сайт запрашивает данные у сервера?' }, back: "fetch", note: { uz: "fetch — serverga yuborilgan HTTP so'rov", ru: 'fetch — это HTTP-запрос, отправленный серверу' } },
+  { front: { uz: 'Front va back bitta dasturmi?', ru: 'Фронт и бэк — это одна программа?' }, back: { uz: "Yo'q, ikkita", ru: 'Нет, две' }, note: { uz: 'Front :5173, back :3000 — bir vaqtda ishlaydi', ru: 'Фронт :5173, бэк :3000 — работают одновременно' } },
+  { front: { uz: "So'rov sahifa ochilganda faqat bir marta ketishi uchun nima yoziladi?", ru: 'Что пишут, чтобы запрос ушёл только один раз при открытии страницы?' }, back: "useEffect(..., [])", note: { uz: "Bo'sh [] — «faqat kirishda bir marta» degani", ru: 'Пустой [] означает «только один раз при входе»' } },
+  { front: { uz: "Serverdan kelgan ro'yxat ekranda nimada saqlanadi?", ru: 'В чём хранится на экране список, пришедший с сервера?' }, back: "useState", note: { uz: "setCars ro'yxatni saqlaydi, ekran yangilanadi", ru: 'setCars сохраняет список, и экран обновляется' } },
+  { front: { uz: "Serverning javobini ro'yxatga qaysi buyruq aylantiradi?", ru: 'Какая команда превращает ответ сервера в список?' }, back: "res.json()", note: { uz: "Javob matni → massiv (ro'yxat)", ru: 'Текст ответа → массив (список)' } },
+  { front: { uz: "Ma'lumot kelguncha foydalanuvchi nimani ko'rishi kerak?", ru: 'Что должен видеть пользователь, пока данные в пути?' }, back: "loading", note: { uz: "Bo'sh oq ekran emas — «yuklanmoqda» ko'rinishi", ru: 'Не пустой белый экран, а вид «загрузка»' } },
+  { front: { uz: "Serverga ulanib bo'lmasa sayt nima qilishi kerak?", ru: 'Что должен сделать сайт, если связи с сервером нет?' }, back: "error", note: { uz: "Qulamaydi — xato haqida xabar ko'rsatadi", ru: 'Не падает — показывает сообщение об ошибке' } },
+  { front: { uz: "Brauzer :5173 dan :3000 ga so'rovni to'ssa, bu qanday xato?", ru: 'Браузер заблокировал запрос с :5173 на :3000 — что за ошибка?' }, back: "CORS", note: { uz: "Brauzer himoyasi: boshqa portga so'rovni to'sadi", ru: 'Защита браузера: блокирует запрос на другой порт' } },
+  { front: { uz: "CORS to'sig'ini ochish uchun serverga nima yoziladi?", ru: 'Что пишут на сервере, чтобы снять блок CORS?' }, back: "app.use(cors())", note: { uz: 'Bu qator faqat server (back) kodiga yoziladi', ru: 'Эта строка пишется только в код сервера (бэка)' } },
+  { front: { uz: "Bazaga yangi mashina qo'shish uchun qaysi so'rov yuboriladi?", ru: 'Какой запрос отправляют, чтобы добавить в базу новую машину?' }, back: "POST", note: { uz: "GET — faqat o'qiydi, POST — yangi qator qo'shadi", ru: 'GET только читает, POST добавляет новую строку' } },
+  { front: { uz: "Qo'shilgan mashina ekranda darrov ko'rinishi uchun nima qilinadi?", ru: 'Что делают, чтобы добавленная машина сразу появилась на экране?' }, back: { uz: 'POST, keyin qayta GET', ru: 'POST, затем повторный GET' }, note: { uz: "Qo'shgach ro'yxat serverdan qaytadan so'raladi", ru: 'После добавления список снова запрашивают у сервера' } },
+  { front: { uz: 'Front, back va baza birgalikda ishlashi qanday ataladi?', ru: 'Как называется совместная работа фронта, бэка и базы?' }, back: "Fullstack", note: { uz: "To'liq ilova: sayt + server + baza", ru: 'Полное приложение: сайт + сервер + база' } },
 ];
 const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, []); // eslint-disable-line
-  const audio = useAudio([{ id: 'sflash', text: `Darsni yakunlashdan oldin bugungi tushunchalarni tez takrorlaymiz. Har kartada bir izoh — qaysi tushuncha ekanini o'ylang, keyin kartani bosib tekshiring. Bildim yoki Takrorlash bilan o'zingizni baholang.`, trigger: 'on_mount', waits_for: null }]);
+  const audio = useAudio([{ id: 'sflash', text: `Darsni yakunlashdan oldin bugungi tushunchalarni tez takrorlaymiz. Har kartada bir savol — javobini o'ylang, keyin kartani bosib tekshiring. Bildim yoki Takrorlash bilan o'zingizni baholang.`, trigger: 'on_mount', waits_for: null }]);
   return (
     <Stage eyebrow={tr({ uz: 'Takrorlash', ru: 'Повторение' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={false} label={tr({ uz: 'Yakunlash →', ru: 'Завершить →' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Tushunchalarni <span className="italic" style={{ color: T.accent }}>tez takrorlaymiz</span>.</>, ru: <>Быстро <span className="italic" style={{ color: T.accent }}>повторим</span> понятия.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Darsni yakunlashdan oldin bugun o'rgangan tushunchalarni takrorlaymiz. Har kartada bir izoh — <b style={{ color: T.ink }}>qaysi tushuncha</b> ekanini o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</>, ru: <>Перед завершением урока повторим сегодняшние понятия. На каждой карточке описание — подумайте, <b style={{ color: T.ink }}>какое это понятие</b>, затем нажмите на карточку и проверьте. Оцените себя кнопками <b style={{ color: T.ink }}>Знаю</b> или <b style={{ color: T.ink }}>Повторить</b>.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Darsni yakunlashdan oldin bugun o'rgangan tushunchalarni takrorlaymiz. Har kartada bir savol — <b style={{ color: T.ink }}>javobini</b> o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</>, ru: <>Перед завершением урока повторим сегодняшние понятия. На каждой карточке вопрос — подумайте, <b style={{ color: T.ink }}>каким будет ответ</b>, затем нажмите на карточку и проверьте. Оцените себя кнопками <b style={{ color: T.ink }}>Знаю</b> или <b style={{ color: T.ink }}>Повторить</b>.</> })}</Mentor>
         <div className="fc-center"><Flashcards cards={FULLSTACK_FLASHCARDS} /></div>
       </div>
     </Stage>
@@ -2064,7 +2066,7 @@ function QuizArena({ live, onClose, startSolo }) {
             <div className={`qz-res ${my?.correct ? 'good' : 'bad'}`}>
               {my?.correct
                 ? <><span className="qz-res-pts">+{myPtsFor(qi)}</span><span className="qz-res-t">{tr({ uz: 'ball', ru: 'баллов' })}{streakUpTo(qi) >= 2 ? ` · 🔥 x${streakUpTo(qi)} streak` : ''}</span></>
-                : <span className="qz-res-t">{my ? tr({ uz: 'Xato — 0 ball. Keyingisida olasiz! 💪', ru: 'Ошибка — 0 баллов. Возьмёте на следующем! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Побыстрее! ⏱' })}</span>}
+                : <span className="qz-res-t">{my ? tr({ uz: 'Adashdingiz — 0 ball. Keyingisida olasiz! 💪', ru: 'Ошибка — 0 баллов. Возьмёте на следующем! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Побыстрее! ⏱' })}</span>}
               {!solo && myRank >= 0 && <span className="qz-res-rank">{tr({ uz: 'Siz hozir:', ru: 'Вы сейчас:' })} {myRank + 1}{tr({ uz: "-o'rin", ru: '-е место' })}</span>}
             </div>
           )}
@@ -2259,7 +2261,7 @@ const Screen17 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
           <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> {tr({ uz: 'Endi siz bilasiz', ru: 'Теперь вы знаете' })}</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{tr(r)}</span></li>))}</ul></div>
           <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: "Antigravity bilan o'z loyihangizda sinang:", ru: 'Попробуйте в своём проекте с Antigravity:' })}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: <>🚀 Front, back va baza endi bitta bo'lib ishlaydi! Keyingi praktikada — Loyiha kuni: shu ko'nikmalarni (CRUD, fetch, baza) yangi loyiha — <b>AvtoStoyanka</b>'da qo'llaymiz va noldan to'liq quramiz.</>, ru: <>🚀 Фронт, бэк и база теперь работают как одно целое! На следующей практике — День проекта: применим эти навыки (CRUD, fetch, база) в новом проекте — <b>AvtoStoyanka</b> — и построим его с нуля.</> })}</p></div>
         </div>
-        <div className="card ach-coll fade-up d3">
+        {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>🏅 Badges — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">
             {Object.entries(ACHIEVEMENTS).map(([id, a]) => { const got = !!(achievements && achievements.has(id)); return (
@@ -2270,7 +2272,7 @@ const Screen17 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
               </div>
             ); })}
           </div>
-        </div>
+        </div>}
       </div>
     </Stage>
   );

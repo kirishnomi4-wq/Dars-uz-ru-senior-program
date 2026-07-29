@@ -396,6 +396,7 @@ const Col = ({ children, gap }) => <div className="col" style={gap ? { gap } : u
 
 function AchCounter() {
   const earned = useContext(AchCtx);
+  const gate = useContext(LiveGateCtx);
   const count = earned ? earned.size : 0;
   const total = Object.keys(ACHIEVEMENTS).length;
   const prevRef = useRef(count);
@@ -405,6 +406,7 @@ function AchCounter() {
     if (count > prevRef.current) { setBump(true); const t = setTimeout(() => setBump(false), 800); prevRef.current = count; return () => clearTimeout(t); }
     prevRef.current = count;
   }, [count]);
+  if (gate && gate.live && gate.live.mode === 'mentor') return null; // 🔴 mentor proyektorida nishon YO'Q (hooklardan KEYIN)
   return (
     <div className="ach-cnt-wrap">
       <button className={`ach-counter ${bump ? 'bump' : ''} ${count > 0 ? 'has' : ''}`} onClick={() => setOpen(o => !o)} aria-label="Badges" title="Badges">
@@ -2137,7 +2139,7 @@ function QuizArena({ live, onClose, startSolo }) {
             <div className={`qz-res ${my?.correct ? 'good' : 'bad'}`}>
               {my?.correct
                 ? <><span className="qz-res-pts">+{myPtsFor(qi)}</span><span className="qz-res-t">{tr({ uz: 'ball', ru: 'баллов' })}{streakUpTo(qi) >= 2 ? ` · 🔥 x${streakUpTo(qi)} streak` : ''}</span></>
-                : <span className="qz-res-t">{my ? tr({ uz: 'Xato — 0 ball. Keyingisida olasiz! 💪', ru: 'Ошибка — 0 баллов. Возьмёте на следующем! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Быстрее! ⏱' })}</span>}
+                : <span className="qz-res-t">{my ? tr({ uz: 'Adashdingiz — 0 ball. Keyingisida olasiz! 💪', ru: 'Ошибка — 0 баллов. Возьмёте на следующем! 💪' }) : tr({ uz: "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱", ru: 'Время вышло — 0 баллов. Быстрее! ⏱' })}</span>}
               {!solo && myRank >= 0 && <span className="qz-res-rank">{tr({ uz: `Siz hozir: ${myRank + 1}-o'rin`, ru: `Вы сейчас на ${myRank + 1}-м месте` })}</span>}
             </div>
           )}
@@ -2420,8 +2422,8 @@ function Flashcards({ cards }) {
       <div className="fc-cardwrap">
         <div className={`fc-fly ${exiting === 'knew' ? 'out-knew' : ''} ${exiting === 'again' ? 'out-again' : ''}`} key={swapRef.current}>
         <div className={`fc-card ${flipped ? 'flip' : ''}`} onClick={() => !flipped && !exiting && setFlipped(true)} role="button" tabIndex={0}>
-          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: 'Qaysi atama? 🤔', ru: 'Какой термин? 🤔' })} <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
-          <div className="fc-face fc-back"><span className="fc-tag">{card.back}</span>{card.note && <span className="fc-note">{tr(card.note)}</span>}</div>
+          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: "Javobni o'ylang", ru: 'Подумайте над ответом' })} 🤔 <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
+          <div className="fc-face fc-back"><span className="fc-tag">{tr(card.back)}</span>{card.note && <span className="fc-note">{tr(card.note)}</span>}</div>
         </div>
         </div>
       </div>
@@ -2434,18 +2436,18 @@ function Flashcards({ cards }) {
 
 // 🃏 FLASHCARD KARTALARI — 12 atama (UCHISH LENTASI lug'ati)
 const GA_FLASHCARDS = [
-  { front: { uz: "GitHub bu joyni o'zi qidiradi", ru: 'GitHub сам ищет это место' }, back: '.github/workflows/ci.yml', note: { uz: "Yo'l xaritasi shu yerda", ru: 'Карта маршрута живёт здесь' } },
-  { front: { uz: "Workflow — 'qachon ishga tushsin' shu yerda yoziladi", ru: 'Здесь workflow указывает, когда стартовать' }, back: 'on:', note: { uz: 'START SIGNALI', ru: 'СТАРТ-СИГНАЛ' } },
-  { front: { uz: 'Job qaysi mashinada ishlashini belgilaydi', ru: 'Определяет, на какой машине работает job' }, back: 'runs-on', note: { uz: 'Lenta mashinasi', ru: 'Машина ленты' } },
-  { front: { uz: 'Bitta harakat — buyruq yoki tayyor amal', ru: 'Одно действие — команда или готовый шаг' }, back: 'step', note: { uz: 'AMAL', ru: 'ШАГ' } },
-  { front: { uz: 'Tayyor marketplace amali', ru: 'Готовый шаг из Marketplace' }, back: 'uses', note: { uz: 'masalan checkout@v4', ru: 'например checkout@v4' } },
-  { front: { uz: "Terminal buyrug'i", ru: 'Команда терминала' }, back: 'run', note: { uz: 'masalan npm test', ru: 'например npm test' } },
-  { front: { uz: 'Kodni lenta mashinasiga olib keluvchi birinchi amal', ru: 'Первый шаг, который приносит код на машину ленты' }, back: 'actions/checkout@v4', note: { uz: 'eng birinchi step', ru: 'самый первый step' } },
-  { front: { uz: 'Bitta yukni bir nechta sharoitda birdan tekshirish', ru: 'Проверка одного груза сразу в нескольких условиях' }, back: 'matrix', note: { uz: 'Parallel lentalar', ru: 'Параллельные ленты' } },
-  { front: { uz: 'Qayta yuklamay tezlashtiruvchi vosita', ru: 'Ускоритель: не качать всё заново' }, back: 'cache', note: { uz: 'Yaqin javon', ru: 'Ближняя полка' } },
-  { front: { uz: 'Maxfiy kalit saqlanadigan xavfsiz joy', ru: 'Безопасное место для секретного ключа' }, back: 'secrets', note: { uz: 'Seyf', ru: 'Сейф' } },
-  { front: { uz: 'Repo sahifasidagi yashil/qizil belgi', ru: 'Зелёный/красный значок на странице репо' }, back: 'status badge', note: { uz: 'Tablo', ru: 'Табло' } },
-  { front: { uz: 'Qizil chiroq sababi shu yerda yoziladi', ru: 'Причина красного света записана здесь' }, back: 'logs', note: { uz: 'Lenta jurnali', ru: 'Журнал ленты' } },
+  { front: { uz: "Yo'l xaritasi fayli qaysi papkada turishi kerak?", ru: 'В какой папке должен лежать файл карты маршрута?' }, back: '.github/workflows/', note: { uz: "Boshqa papkada tursa, GitHub uni umuman ko'rmaydi", ru: 'Если файл лежит в другой папке, GitHub его вообще не увидит' } },
+  { front: { uz: "Lenta qachon ishga tushishini qaysi kalit so'z belgilaydi?", ru: 'Какое ключевое слово задаёт, когда запускается лента?' }, back: 'on:', note: { uz: "on: push — har push'da lenta o'zi aylanadi", ru: 'on: push — лента сама крутится при каждом push' } },
+  { front: { uz: 'Nuqta qaysi mashinada ishlashini qaysi qator aytadi?', ru: 'Какая строка говорит, на какой машине работает точка?' }, back: 'runs-on', note: { uz: 'runs-on: ubuntu-latest — GitHub bepul toza mashina beradi', ru: 'runs-on: ubuntu-latest — GitHub бесплатно даёт чистую машину' } },
+  { front: { uz: "Yo'l xaritasidagi bitta katta bosqich qanday ataladi?", ru: 'Как называется один большой этап карты маршрута?' }, back: 'job', note: { uz: "Nuqta: har job o'z alohida lenta mashinasida ishlaydi", ru: 'Точка: каждый job работает на своей отдельной машине ленты' } },
+  { front: { uz: 'Nuqta ichidagi bitta harakat qanday ataladi?', ru: 'Как называется одно действие внутри точки?' }, back: 'step', note: { uz: 'Amal: amallar yozilgan tartibda, yuqoridan pastga bajariladi', ru: 'Шаг: шаги идут сверху вниз, в том порядке, как записаны' } },
+  { front: { uz: "Marketplace'dagi tayyor amalni qaysi so'z chaqiradi?", ru: 'Каким словом вызывают готовый шаг из Marketplace?' }, back: 'uses', note: { uz: 'masalan uses: actions/checkout@v4', ru: 'например uses: actions/checkout@v4' } },
+  { front: { uz: "Terminal buyrug'ini qaysi so'z bilan yozasiz?", ru: 'Каким словом записывают команду терминала?' }, back: 'run', note: { uz: 'masalan run: npm test — bu SKANER amali', ru: 'например run: npm test — это шаг СКАНЕР' } },
+  { front: { uz: 'Kodni repodan lenta mashinasiga qaysi amal olib keladi?', ru: 'Какой шаг приносит код из репозитория на машину ленты?' }, back: 'actions/checkout@v4', note: { uz: "Eng birinchi amal: kodsiz mashina bo'sh turadi", ru: 'Самый первый шаг: без кода машина стоит пустая' } },
+  { front: { uz: 'Bitta kodni bir nechta sharoitda birdan sinash uchun nima yoziladi?', ru: 'Что пишут, чтобы проверить один код сразу в нескольких условиях?' }, back: 'matrix', note: { uz: 'Parallel lentalar: bir nechta versiya bir vaqtda tekshiriladi', ru: 'Параллельные ленты: несколько версий проверяются одновременно' } },
+  { front: { uz: 'Paketlarni har safar noldan yuklamaslik uchun nima yordam beradi?', ru: 'Что помогает не качать пакеты заново каждый раз?' }, back: 'cache', note: { uz: 'Yaqin javon: tayyorini oladi, lenta tezroq aylanadi', ru: 'Ближняя полка: берёт готовое, лента крутится быстрее' } },
+  { front: { uz: 'Maxfiy kalitni qayerda saqlaysiz?', ru: 'Где вы храните секретный ключ?' }, back: 'secrets', note: { uz: "Seyf: kodda faqat ${{ secrets.API_KEY }} ko'rinadi", ru: 'Сейф: в коде видно только ${{ secrets.API_KEY }}' } },
+  { front: { uz: "Lenta qizil bo'lsa, sababni qayerdan qidirasiz?", ru: 'Лента покраснела — где вы ищете причину?' }, back: { uz: 'Lenta jurnalidan', ru: 'В журнале ленты' }, note: { uz: "Jurnal qaysi amal va nega to'xtaganini yozib boradi", ru: 'Журнал записывает, какой шаг и почему остановился' } },
 ];
 const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, []); // eslint-disable-line
@@ -2453,7 +2455,7 @@ const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) =>
     <Stage eyebrow={tr({ uz: 'Takrorlash', ru: 'Повторение' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={false} label={{ uz: 'Yakunlash →', ru: 'Завершить →' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Lenta atamalarini <span className="italic" style={{ color: T.accent }}>tez takrorlaymiz</span>.</>, ru: <>Быстро <span className="italic" style={{ color: T.accent }}>повторим термины</span> ленты.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Darsni yakunlashdan oldin bugungi atamalarni takrorlaymiz. Har kartada bir topishmoq — <b style={{ color: T.ink }}>qaysi atama</b> ekanini o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</>, ru: <>Перед финалом повторим сегодняшние термины. На каждой карточке — загадка: подумайте, <b style={{ color: T.ink }}>какой это термин</b>, затем нажмите на карточку и проверьте себя. Оцените кнопками <b style={{ color: T.ink }}>Знаю</b> или <b style={{ color: T.ink }}>Повторить</b>.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Darsni yakunlashdan oldin bugungi atamalarni takrorlaymiz. Har kartada bir savol — <b style={{ color: T.ink }}>javobini</b> o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</>, ru: <>Перед финалом повторим сегодняшние термины. На каждой карточке — вопрос: подумайте, <b style={{ color: T.ink }}>каким будет ответ</b>, затем нажмите на карточку и проверьте себя. Оцените кнопками <b style={{ color: T.ink }}>Знаю</b> или <b style={{ color: T.ink }}>Повторить</b>.</> })}</Mentor>
         <div className="fc-center"><Flashcards cards={GA_FLASHCARDS} /></div>
       </div>
     </Stage>
@@ -2505,7 +2507,7 @@ const Screen19 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
           <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> {tr({ uz: 'Endi siz bilasiz', ru: 'Теперь вы знаете' })}</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{tr(r)}</span></li>))}</ul></div>
           <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: "🚀 Keyingi dars — bitta yukni to'liq lentadan o'tkazamiz: 🔍 skaner + 🎁 o'rash + ✈️ uchirish!", ru: '🚀 Следующий урок — проведём один груз через всю ленту: 🔍 сканер + 🎁 упаковка + ✈️ взлёт!' })}</p></div>
         </div>
-        <div className="card ach-coll fade-up d3">
+        {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🏅 Nishonlaringiz —', ru: '🏅 Ваши значки —' })} {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">
             {Object.entries(ACHIEVEMENTS).map(([id, a]) => { const got = !!(achievements && achievements.has(id)); return (
@@ -2516,7 +2518,7 @@ const Screen19 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
               </div>
             ); })}
           </div>
-        </div>
+        </div>}
       </div>
     </Stage>
   );
