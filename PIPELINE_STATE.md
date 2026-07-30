@@ -398,3 +398,11 @@ UNCOMMITTED.
 **O'lik kod tozalandi:** DChat komponenti + `.dy-*` va `.party-react` CSS o'chirildi; `DEFAULT_TASK` sarlavhasi «quring» → «yasang».
 **Tekshiruv:** esbuild toza · lint:til 0 error · residue-grep: Diyor/Диёр/DChat/isinish/qurilish = 0 (o'quvchi-matnda).
 UNCOMMITTED. Vizual tekshiruv (s12b markaziy preview) foydalanuvchi ko'rigini kutmoqda.
+
+## SAHIFA-HOLAT SAQLOVI: RELOAD'DA O'QUVCHI O'Z EKRANIGA QAYTADI (2026-07-30, F-0730-01) — ✅
+**Tashxis:** har darsda `const [screen, setScreen] = useState(0)` — sahifa yangilanganda (F5, avto-yangilanish) o'quvchi 7-ekrandan 1-ekranga tushib qolardi. Jonli-sessiya (PIN/token) allaqachon localStorage'da omon qolardi, lekin ekran-pozitsiya va javoblar yo'qolardi.
+**Yechim (111 fayl = 2 pilot + 109 bulk, 8 parallel agent):** har darsga per-lesson localStorage saqlov `ccProgress:<lessonId>` — `{screen, answers, earned, startedAt, total, savedAt}`. 4 kiritish-joyi: (1) helper blok (progRead/progWrite/progClear, TTL 6 soat, total-tekshiruv, try/catch); (2) lesson-root'da savedRef bir-martalik tiklash + jonli-o'quvchi clamp (`lastScreen-1` — mentor darvozasidan oshmaydi); (3) reset'ga progClear + saqlash-effekti `[screen, answers, earned]`; (4) finishLesson'ga progClear.
+**Moslashuvlar:** sof-PM darslar (live/earned yo'q — PmLesson4–34 ko'pchiligi) clamp/earned'siz variant; kompilator ichidagi yarim yozilgan kod saqlanmaydi (ma'lum cheklov — o'quvchi hech bo'lmasa o'sha ekranga qaytadi).
+**Tekshiruv:** 111/111 esbuild toza · `vite build` toza · residue-grep 111 faylda 1/2/1 (progWrite/progClear/progRead) izchil · playwright-smoke 5 darsda (Htmllesson1, PmUserStory, JsVars, PmLesson26, PmJtbd): reload→screen=5 tiklandi PASS, TTL-eskirgan saqlov bekor PASS.
+**Yo'l-qaydi:** working tree'da 3 o'chirilgan PNG topildi (kim o'chirgani noma'lum, hech qayerda import qilinmagan) — `git restore` bilan qaytarildi.
+UNCOMMITTED (111 dars-fayl). Jonli-mentor rejimida real sinov foydalanuvchi ko'rigini kutmoqda.

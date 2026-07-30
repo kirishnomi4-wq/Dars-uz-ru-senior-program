@@ -56,6 +56,20 @@ const Ico = {
   coin: (s = 22) => (<svg viewBox="0 0 24 24" width={s} height={s} {...sv}><circle cx="12" cy="12" r="8.5" /><path d="M12 7.5v9M9.7 9.6a2.3 1.9 0 0 1 4.6.2c0 1-1 1.5-2.3 1.7s-2.3.8-2.3 1.8a2.3 1.9 0 0 0 4.6.2" /></svg>)
 };
 
+// ---- Sahifa-holat saqlovi (F-0730-01): reload'da o'quvchi o'z ekraniga qaytadi.
+// TTL 6 soat (kechagi chala urinish bugungi darsga aralashmasin); ekran soni
+// o'zgargan bo'lsa saqlov bekor; har qanday xatoda jimgina 0-ekrandan boshlanadi.
+const PROG_TTL_MS = 6 * 60 * 60 * 1000;
+const _progKey = (id) => `ccProgress:${id}`;
+const progRead = (id, total) => {
+  try {
+    const p = JSON.parse(localStorage.getItem(_progKey(id)) || 'null');
+    if (!p || p.total !== total || Date.now() - (p.savedAt || 0) > PROG_TTL_MS) return null;
+    return p;
+  } catch { return null; }
+};
+const progWrite = (id, o) => { try { localStorage.setItem(_progKey(id), JSON.stringify(o)); } catch {} };
+const progClear = (id) => { try { localStorage.removeItem(_progKey(id)); } catch {} };
 const LESSON_META = { lessonId: 'pm-security-trust-12-v16', lessonTitle: { uz: 'Xavfsizlik = foydalanuvchi ishonchi', ru: 'Безопасность = доверие пользователей' } };
 const SCREEN_META = [
   { id: 's0',  type: 'hook',        template: 'custom',   scored: false, scope: 'hook' },
@@ -849,15 +863,24 @@ const Screen16 = ({ screen, answers, onReset, onPrev, onFinish }) => {
 // ============================================================ LESSON ROOT
 export default function PmLesson12({ lang: langProp, onFinished }) {
   const lang = langProp || 'uz';
-  const [screen, setScreen] = useState(0);
-  const [answers, setAnswers] = useState({});
-  const startTimeRef = useRef(Date.now());
+  // F-0730-01: saqlangan progress bir marta o'qiladi (reload'da o'z ekraniga qaytadi).
+  const savedRef = useRef(undefined);
+  if (savedRef.current === undefined) savedRef.current = progRead(LESSON_META.lessonId, TOTAL_SCREENS);
+  const saved = savedRef.current;
+  const [screen, setScreen] = useState(() => saved ? Math.min(Math.max(saved.screen || 0, 0), TOTAL_SCREENS - 1) : 0);
+  const [answers, setAnswers] = useState(() => (saved && saved.answers) || {});
+  const startTimeRef = useRef(saved?.startedAt || Date.now());
   const next = () => setScreen(s => Math.min(s + 1, TOTAL_SCREENS - 1));
   const prev = () => setScreen(s => Math.max(s - 1, 0));
   const recordAnswer = (idx, data) => setAnswers(a => ({ ...a, [idx]: data }));
-  const reset = () => { setAnswers({}); setScreen(0); startTimeRef.current = Date.now(); };
+  const reset = () => { progClear(LESSON_META.lessonId); setAnswers({}); setScreen(0); startTimeRef.current = Date.now(); };
+  // F-0730-01: har o'zgarishda progress saqlanadi (screen + javoblar + boshlangan vaqt)
+  useEffect(() => {
+    progWrite(LESSON_META.lessonId, { screen, answers, startedAt: startTimeRef.current, total: TOTAL_SCREENS, savedAt: Date.now() });
+  }, [screen, answers]);
 
   const finishLesson = () => {
+    progClear(LESSON_META.lessonId); // F-0730-01: yakunlangan dars saqlovi tozalanadi
     const scoredMeta = SCREEN_META.filter(s => s.scored);
     const finalMeta = scoredMeta.filter(s => s.scope === 'final');
     const scoredAnswers = SCREEN_META.map((s, i) => (s.scored ? answers[i] : null)).filter(Boolean);

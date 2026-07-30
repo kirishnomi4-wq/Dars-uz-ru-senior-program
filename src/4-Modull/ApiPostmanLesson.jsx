@@ -61,6 +61,20 @@ const liveRead = (id) => { try { return JSON.parse(localStorage.getItem(_lsKey(i
 const liveStore = (id, o) => { try { localStorage.setItem(_lsKey(id), JSON.stringify(o)); } catch {} };
 const liveClear = (id) => { try { localStorage.removeItem(_lsKey(id)); } catch {} };
 const fmtPin = (p) => (p ? String(p).replace(/(\d{3})(\d{3})/, '$1 $2') : '');
+// ---- Sahifa-holat saqlovi (F-0730-01): reload'da o'quvchi o'z ekraniga qaytadi.
+// TTL 6 soat (kechagi chala urinish bugungi darsga aralashmasin); ekran soni
+// o'zgargan bo'lsa saqlov bekor; har qanday xatoda jimgina 0-ekrandan boshlanadi.
+const PROG_TTL_MS = 6 * 60 * 60 * 1000;
+const _progKey = (id) => `ccProgress:${id}`;
+const progRead = (id, total) => {
+  try {
+    const p = JSON.parse(localStorage.getItem(_progKey(id)) || 'null');
+    if (!p || p.total !== total || Date.now() - (p.savedAt || 0) > PROG_TTL_MS) return null;
+    return p;
+  } catch { return null; }
+};
+const progWrite = (id, o) => { try { localStorage.setItem(_progKey(id), JSON.stringify(o)); } catch {} };
+const progClear = (id) => { try { localStorage.removeItem(_progKey(id)); } catch {} };
 // Nickname — qurilma bo'ylab BITTA (darsga bog'lanmagan kalit): Internet darsida yozgan ismi shu yerda ham chiqadi
 const LIVE_NICK_KEY = 'liveNickname';
 const nickRead = () => { try { return localStorage.getItem(LIVE_NICK_KEY) || ''; } catch { return ''; } };
@@ -2432,12 +2446,25 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
 export default function ApiPostmanLesson({ lang: langProp, onFinished }) {
   const lang = langProp || 'uz';
   __lang = lang; // UZ-RU: tr() uchun joriy til (render'dan oldin o'rnatiladi)
-  const [screen, setScreen] = useState(0);
-  const [answers, setAnswers] = useState({});
-  const startTimeRef = useRef(Date.now());
+  // F-0730-01: saqlangan progress bir marta o'qiladi (jonli-o'quvchi mentor
+  // darvozasidan oshib ketmasin — liveRead'dagi lastScreen bilan clamp).
+  const savedRef = useRef(undefined);
+  if (savedRef.current === undefined) {
+    const p = progRead(LESSON_META.lessonId, TOTAL_SCREENS);
+    if (p) {
+      const li = LIVE_ENABLED ? liveRead(LESSON_META.lessonId) : null;
+      if (li && li.mode === 'student' && typeof li.lastScreen === 'number')
+        p.screen = Math.min(p.screen || 0, Math.max(0, li.lastScreen - 1));
+    }
+    savedRef.current = p;
+  }
+  const saved = savedRef.current;
+  const [screen, setScreen] = useState(() => saved ? Math.min(Math.max(saved.screen || 0, 0), TOTAL_SCREENS - 1) : 0);
+  const [answers, setAnswers] = useState(() => (saved && saved.answers) || {});
+  const startTimeRef = useRef(saved?.startedAt || Date.now());
   // 🏅 Nishonlar
-  const earnedRef = useRef(new Set());
-  const [earned, setEarned] = useState(() => new Set());
+  const earnedRef = useRef(new Set(saved?.earned || []));
+  const [earned, setEarned] = useState(() => new Set(saved?.earned || []));
   const [achToasts, setAchToasts] = useState([]);
   const achKeyRef = useRef(0);
   const earn = useCallback((id) => {
@@ -2465,9 +2492,14 @@ export default function ApiPostmanLesson({ lang: langProp, onFinished }) {
     if (_m && ACH_TRIGGERS[_m.id] && data && data.correct) earn(ACH_TRIGGERS[_m.id]); // 🏅 nishon (faqat REAL solve)
     if (_m && _m.scored && _m.scope === 'final' && data && data.correct && live.mode === 'student') live.submitAnswer(idx, _m.id, 0, true, 0); // final submit (M4-P1 xato-sinfi)
   };
-  const reset = () => { setAnswers({}); setScreen(0); startTimeRef.current = Date.now(); };
+  const reset = () => { progClear(LESSON_META.lessonId); setAnswers({}); setScreen(0); startTimeRef.current = Date.now(); };
+  // F-0730-01: har o'zgarishda progress saqlanadi (screen + javoblar + nishonlar + boshlangan vaqt)
+  useEffect(() => {
+    progWrite(LESSON_META.lessonId, { screen, answers, earned: [...earnedRef.current], startedAt: startTimeRef.current, total: TOTAL_SCREENS, savedAt: Date.now() });
+  }, [screen, answers, earned]);
 
   const finishLesson = () => {
+    progClear(LESSON_META.lessonId); // F-0730-01: yakunlangan dars saqlovi tozalanadi
     live.endSession();
     const scoredMeta = SCREEN_META.filter(s => s.scored);
     const finalMeta = scoredMeta.filter(s => s.scope === 'final');

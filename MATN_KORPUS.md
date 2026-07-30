@@ -325,6 +325,29 @@ Shuning uchun ular darsning o'z qonuniga 100% bo'ysunadi va tanish, real mahsulo
 ❌ «Yuqori muhimlik / O'rta muhimlik / Past muhimlik» — High/Medium/Low'ning so'zma-so'z
    kalkasi; «past muhimlik» o'zbekchada g'aliz, o'quvchi tushunmaydi.
 
+## 26. SAYT-TURI O'SMIRGA TANISH SO'Z BILAN AYTILADI (F-0730-02)
+
+✅ «Mana sizga tanish internet-magazin — OLX: …» *(o'smir kundalik nutqida saytni
+   «internet-magazin» deydi — tanish so'z darrov tasavvur uyg'otadi)*
+❌ «Mana sizga tanish savdo sayti — OLX: …» — «savdo sayti» kattalar/rasmiy atama;
+   13 yoshli uni ishlatmaydi, gap begonalashadi.
+
+## 27. FOYDALANUVCHI HARAKATI ANIQ FE'L BILAN AYTILADI (F-0730-03)
+
+✅ «ro'yxatga qarang» · «foydalanuvchi tushunmay saytga kirmay qo'yadi» ·
+   «foydalanuvchi qiziqib, saytdan foydalanishda davom etadi» ·
+   «foydalanuvchi saytdan chiqib ketadi» *(harakat KIM va QAYERDA — aniq)*
+❌ «ro'yxatga ko'z tashlang» (kitobiy ibora) · «tushunmay ketib qoladi» (qayerdan ketadi?) ·
+   «pastga davom etadi» (nimani davom ettiradi?) — harakat-fe'l mavhum bo'lsa, 13 yoshli
+   gapni ikki marta o'qiydi.
+
+## 28. JONSIZ NARSAGA ODAM-FE'L BERILMAYDI (F-0730-04)
+
+✅ «Tugma esa eng oxirida turibdi — foydalanuvchi nega bosish kerakligini tushungandan
+   keyin chiqadi.» *(tugma QAYERDA va QACHON — aniq)*
+❌ «Tugma esa shoshilmaydi: u sabab ko'rsatilgandan keyin keladi.» — tugma «shoshilmaydi/
+   keladi» — jonlantirish-metafora 13 yoshli uchun yashirin ma'no; gap ikki marta o'qiladi.
+
 ---
 
-*Korpus F-ID bilan o'sadi. Oxirgi yangilanish: 2026-07-29 (F-0729-03 — UserStory 13-sahifa: 24–25-bo'limlar).*
+*Korpus F-ID bilan o'sadi. Oxirgi yangilanish: 2026-07-30 (F-0730-04 — PmLesson2 tugma-jonlantirish: 28-bo'lim).*

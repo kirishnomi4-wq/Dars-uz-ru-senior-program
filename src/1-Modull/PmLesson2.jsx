@@ -69,6 +69,20 @@ const liveRead = (id) => { try { return JSON.parse(localStorage.getItem(_lsKey(i
 const liveStore = (id, o) => { try { localStorage.setItem(_lsKey(id), JSON.stringify(o)); } catch {} };
 const liveClear = (id) => { try { localStorage.removeItem(_lsKey(id)); } catch {} };
 const fmtPin = (p) => (p ? String(p).replace(/(\d{3})(\d{3})/, '$1 $2') : '');
+// ---- Sahifa-holat saqlovi (F-0730-01): reload'da o'quvchi o'z ekraniga qaytadi.
+// TTL 6 soat (kechagi chala urinish bugungi darsga aralashmasin); ekran soni
+// o'zgargan bo'lsa saqlov bekor; har qanday xatoda jimgina 0-ekrandan boshlanadi.
+const PROG_TTL_MS = 6 * 60 * 60 * 1000;
+const _progKey = (id) => `ccProgress:${id}`;
+const progRead = (id, total) => {
+  try {
+    const p = JSON.parse(localStorage.getItem(_progKey(id)) || 'null');
+    if (!p || p.total !== total || Date.now() - (p.savedAt || 0) > PROG_TTL_MS) return null;
+    return p;
+  } catch { return null; }
+};
+const progWrite = (id, o) => { try { localStorage.setItem(_progKey(id), JSON.stringify(o)); } catch {} };
+const progClear = (id) => { try { localStorage.removeItem(_progKey(id)); } catch {} };
 // Nickname — qurilma bo'ylab BITTA (darsga bog'lanmagan kalit): Internet darsida yozgan ismi shu yerda ham chiqadi
 const LIVE_NICK_KEY = 'liveNickname';
 const nickRead = () => { try { return localStorage.getItem(LIVE_NICK_KEY) || ''; } catch { return ''; } };
@@ -671,7 +685,7 @@ const RECAPS = {
         body: <>Har bo'lim bitta savolga javob beradi. Ularning <b>joyini almashtirsangiz</b> — hikoya buziladi, foydalanuvchi adashadi.</>,
         vis: <RcFlow items={['nima', 'nega', 'qanday', 'ishonch', 'harakat']} /> },
       { ic: '✅', h: "To'g'ri tartib — konversiya",
-        body: <>To'g'ri tartibda foydalanuvchi ishonib, tugmani bosadi — bu <b>konversiya</b> (tashrifchi mijozga aylanadi). Noto'g'ri tartibda esa ketib qoladi.</>,
+        body: <>To'g'ri tartibda foydalanuvchi ishonib, tugmani bosadi — bu <b>konversiya</b> (tashrifchi mijozga aylanadi). Noto'g'ri tartibda esa foydalanuvchi saytdan chiqib ketadi.</>,
         vis: <RcFlow items={['➡️ Tartibli', '🤝 Ishondi', '✅ Konversiya']} />,
         ask: "Konversiya nima degani?" },
     ]
@@ -1324,7 +1338,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
     <Stage eyebrow="Kirish" screen={screen} navContent={<NavNext optionalLive disabled={picked === null} label="Davom etish" onClick={onNext} />}>
       <div className="screen">
         <h1 className="title h-title fade-up" style={{ maxWidth: 780 }}>Ikkala sahifada so'zlar bir xil, ammo nega birida kerakli narsa <span className="italic" style={{ color: T.accent }}>darrov topiladi</span>?</h1>
-        <Mentor>Mana sizga tanish savdo sayti — OLX: pastdagi <b style={{ color: T.ink }}>«Tartibli»</b> va <b style={{ color: T.ink }}>«Aralash»</b> tugmalarini bosib, ikki ko'rinishni solishtiring. So'ng savolga javobingizni variantlardan belgilang.</Mentor>
+        <Mentor>Mana internet-magazin — OLX sayti, pastdagi <b style={{ color: T.ink }}>«Tartibli»</b> va <b style={{ color: T.ink }}>«Aralash»</b> tugmalarini bosib, ikki ko'rinishni solishtiring. So'ng savolga javobingizni variantlardan belgilang.</Mentor>
         <Zoomable>
         <Split>
           <Col>
@@ -1379,7 +1393,7 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
     <Stage eyebrow="Reja" screen={screen} mentorStatic navContent={<><NavBack onPrev={onPrev} /><NavNext label="Boshlaymiz →" onClick={onNext} /></>}>
       <div className="screen">
         <div className="head"><h2 className="title h-title fade-up">Saytni <span className="italic" style={{ color: T.accent }}>qaysi tartibda</span> tuzsak tushunarli bo'ladi?</h2></div>
-        <Mentor>Yaxshi sayt bo'limlarni to'g'ri tartibda joylashtiradi — bugun siz ham shu <b style={{ color: T.ink }}>tartibni</b> o'rganasiz. Yo'limiz — 5 qadam: ro'yxatga ko'z tashlang, so'ng boshlaymiz.</Mentor>
+        <Mentor>Yaxshi sayt bo'limlarni to'g'ri tartibda joylashtiradi — bugun siz ham shu <b style={{ color: T.ink }}>tartibni</b> o'rganasiz. Yo'limiz — 5 qadam: ro'yxatga qarang, so'ng boshlaymiz.</Mentor>
         {!isNarrow ? (<Zoomable><Split>{PreviewBlock}{StepsBlock}</Split></Zoomable>) : !showSteps ? (<div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px,2vw,16px)' }}>{PreviewBlock}<button className="btn" style={{ alignSelf: 'flex-start' }} onClick={() => setShowSteps(true)}>5 qadamni ko'rish</button></div>) : (<div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px,2vw,16px)' }}><button className="btn-soft" style={{ alignSelf: 'flex-start' }} onClick={() => setShowSteps(false)}>↩ G'oyani ko'rish</button>{StepsBlock}</div>)}
       </div>
     </Stage>
@@ -1413,8 +1427,8 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </Col>
           <Col>
             {top === 'hero'
-              ? <div className="frame-success fade-step" key="h"><p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: T.success, textTransform: 'uppercase', letterSpacing: '0.08em' }}>Tushunarli</p><p className="body" style={{ margin: 0, color: T.ink }}><b>Sayt nima taklif qilayotgani</b> birinchi qarashdayoq ko'rinib turibdi — foydalanuvchi qiziqib, pastga davom etadi.</p></div>
-              : <div className="frame-warn fade-step" key="c"><p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: AMBER_INK, textTransform: 'uppercase', letterSpacing: '0.08em' }}>Tushunarsiz</p><p className="body" style={{ margin: 0, color: T.ink }}>Tepada <b>tugma</b>, lekin nega bosish kerakligi noma'lum. Foydalanuvchi tushunmay ketib qoladi.</p></div>}
+              ? <div className="frame-success fade-step" key="h"><p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: T.success, textTransform: 'uppercase', letterSpacing: '0.08em' }}>Tushunarli</p><p className="body" style={{ margin: 0, color: T.ink }}><b>Sayt nima taklif qilayotgani</b> birinchi qarashdayoq ko'rinib turibdi — foydalanuvchi qiziqib, saytdan foydalanishda davom etadi.</p></div>
+              : <div className="frame-warn fade-step" key="c"><p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: AMBER_INK, textTransform: 'uppercase', letterSpacing: '0.08em' }}>Tushunarsiz</p><p className="body" style={{ margin: 0, color: T.ink }}>Tepada <b>tugma</b>, lekin nega bosish kerakligi noma'lum. Foydalanuvchi tushunmay saytga kirmay qo'yadi.</p></div>}
             {done && <div className="frame-soft fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Shuning uchun eng tepaga <b>birinchi blok (hero)</b> qo'yiladi: katta sarlavha va izoh.</p></div>}
           </Col>
         </div>
@@ -1454,7 +1468,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </Col>
           <Col>
             {active ? (<div className="sk-info fade-step" key={active}><span className="sk-tagbig"><span style={{ display: 'inline-flex' }}>{SITES[active].ic}</span><span className="sk-wordbadge">{SITES[active].name}</span></span><div style={{ display: 'flex', flexDirection: 'column', gap: 6, marginTop: 12 }}>{SITES[active].rows.map((r, i) => (<div key={i} style={{ display: 'flex', alignItems: 'center', gap: 9 }}><span className="mono" style={{ fontSize: 11, fontWeight: 700, color: T.accent, minWidth: 14 }}>{i + 1}</span><span className="body" style={{ margin: 0, color: T.ink }}>{r}</span></div>))}</div></div>) : (!isNarrow ? <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>Bir saytni bosing</p></div> : null)}
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Ko'rdingizmi — uchalasida ham <b>eng muhim narsa birinchi blokda</b> turibdi. Tugma esa shoshilmaydi: u sabab ko'rsatilgandan keyin keladi.</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Ko'rdingizmi — uchalasida ham <b>eng muhim narsa birinchi blokda</b> turibdi. Tugma esa eng oxirida turibdi — foydalanuvchi nega bosish kerakligini tushungandan keyin chiqadi.</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -1469,7 +1483,7 @@ const Screen4 = (props) => (
     questionText="Saytga kirgan foydalanuvchi birinchi nimani ko'rishi kerak?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-sub" style={{ marginTop: 8 }}>Saytga kirgan foydalanuvchi birinchi <span className="italic" style={{ color: T.accent }}>nimani</span> ko'rishi kerak?</h2></>}
     options={['Birinchi blokni — sayt nima taklif qilishini', 'Eng pastdagi `footer`ni — havolalar va aloqani', 'Harakat tugmasini — darrov bosib qo\'yishi uchun', 'Mahsulotlar ro\'yxatini — narxlari bilan']} correctIdx={0}
-    explainCorrect="To'g'ri! Eng birinchi bo'lib birinchi blok (`hero`) ko'rinadi — katta sarlavha bir jumlada sayt nima taklif qilishini aytadi. Shuni tushungan foydalanuvchi qiziqib, pastga davom etadi."
+    explainCorrect="To'g'ri! Eng birinchi bo'lib birinchi blok (`hero`) ko'rinadi — katta sarlavha bir jumlada sayt nima taklif qilishini aytadi. Shuni tushungan foydalanuvchi qiziqib, saytdan foydalanishda davom etadi."
     explainWrong={{ 1: '`footer` — sahifaning eng pastki qismi: havolalar va aloqa. Birinchi ko\'rinishda esa birinchi blok turadi.', 2: 'Tugmani sababsiz ko\'rsatsa, foydalanuvchi nega bosishini tushunmaydi. Avval birinchi blok.', 3: 'Ro\'yxat foydalanuvchi nima taklif qilinayotganini tushungach kerak bo\'ladi. Avval birinchi blok.', default: 'Birinchi — birinchi blok (sayt nima taklif qiladi).' }} />
 );
 
@@ -2752,12 +2766,25 @@ function QuizArena({ live, onClose, startSolo }) {
 
 export default function PmLesson2({ lang: langProp, onFinished }) {
   const lang = langProp || 'uz';
-  const [screen, setScreen] = useState(0);
-  const [answers, setAnswers] = useState({});
-  const startTimeRef = useRef(Date.now());
+  // F-0730-01: saqlangan progress bir marta o'qiladi (jonli-o'quvchi mentor
+  // darvozasidan oshib ketmasin — liveRead'dagi lastScreen bilan clamp).
+  const savedRef = useRef(undefined);
+  if (savedRef.current === undefined) {
+    const p = progRead(LESSON_META.lessonId, TOTAL_SCREENS);
+    if (p) {
+      const li = LIVE_ENABLED ? liveRead(LESSON_META.lessonId) : null;
+      if (li && li.mode === 'student' && typeof li.lastScreen === 'number')
+        p.screen = Math.min(p.screen || 0, Math.max(0, li.lastScreen - 1));
+    }
+    savedRef.current = p;
+  }
+  const saved = savedRef.current;
+  const [screen, setScreen] = useState(() => saved ? Math.min(Math.max(saved.screen || 0, 0), TOTAL_SCREENS - 1) : 0);
+  const [answers, setAnswers] = useState(() => (saved && saved.answers) || {});
+  const startTimeRef = useRef(saved?.startedAt || Date.now());
   // 🏅 Nishonlar (achievements)
-  const earnedRef = useRef(new Set());
-  const [earned, setEarned] = useState(() => new Set());
+  const earnedRef = useRef(new Set(saved?.earned || []));
+  const [earned, setEarned] = useState(() => new Set(saved?.earned || []));
   const [achToasts, setAchToasts] = useState([]);
   const achKeyRef = useRef(0);
   const earn = useCallback((id) => {
@@ -2780,7 +2807,11 @@ export default function PmLesson2({ lang: langProp, onFinished }) {
     if (_m && _m.scored && _m.scope === 'final' && data && data.correct && live.mode === 'student') live.submitAnswer(idx, _m.id, 0, true, 0);
     if (_m && ACH_TRIGGERS[_m.id] && data && data.correct) earn(ACH_TRIGGERS[_m.id]); // 🏅 nishon
   };
-  const reset = () => { setAnswers({}); setScreen(0); startTimeRef.current = Date.now(); };
+  const reset = () => { progClear(LESSON_META.lessonId); setAnswers({}); setScreen(0); startTimeRef.current = Date.now(); };
+  // F-0730-01: har o'zgarishda progress saqlanadi (screen + javoblar + nishonlar + boshlangan vaqt)
+  useEffect(() => {
+    progWrite(LESSON_META.lessonId, { screen, answers, earned: [...earnedRef.current], startedAt: startTimeRef.current, total: TOTAL_SCREENS, savedAt: Date.now() });
+  }, [screen, answers, earned]);
 
   // Javob kaliti: inline testlar + jang savollari (QUIZ_BANK'dan) — mentor ochganda serverga yuklanadi
   const answerKey = { ...INLINE_KEYS, ...Object.fromEntries(QUIZ_BANK.map((q, i) => [`quiz-${i}`, q.correct])) };
@@ -2793,6 +2824,7 @@ export default function PmLesson2({ lang: langProp, onFinished }) {
 
 
   const finishLesson = () => {
+    progClear(LESSON_META.lessonId); // F-0730-01: yakunlangan dars saqlovi tozalanadi
     live.endSession();
     const scoredMeta = SCREEN_META.filter(s => s.scored);
     const finalMeta = scoredMeta.filter(s => s.scope === 'final');

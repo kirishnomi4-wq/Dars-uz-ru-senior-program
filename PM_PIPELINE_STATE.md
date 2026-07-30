@@ -650,3 +650,15 @@ esbuild + lint toza, deploy jonli. UNCOMMITTED.
 **Tashxis:** ekran birdan «Sinfga savol» quti bilan boshlanardi — majburiy-imtihon ohangi, sarlavha yo'q edi.
 **Yechim (foydalanuvchi tasdig'i bilan, bir necha matn-iteratsiya):** sarlavha «Hikoya nimadan yasaladi?»; mentor (emojisiz, yakuniy): «Hikoya uch bo'lakdan yasaladi: KIM, harakat va sabab. Avval harakat bilan sababni ajratishni o'rganamiz — pastdagi gaplarni belgilab ko'ring. Barchasini to'g'ri belgilagach, to'liq hikoya quramiz.» (butun rasm → aniq vazifa → hikoyaga ishora; KIM'ni «yedirish» = induktiv). Og'zaki sinf-muhokama MentorNote'ga ko'chdi (proyektor-sirlik saqlanadi); o'lik .proj-q CSS o'chirildi.
 esbuild + lint toza, deploy jonli. UNCOMMITTED.
+
+## 2026-07-30 — F-0730-01: SAHIFA-HOLAT SAQLOVI (barcha PM darslar ham qamrovda) — ✅
+Reload'da 1-ekranga tushib qolish muammosi butun katalog bo'ylab yopildi (jami 111 dars, shu jumladan barcha PM darslar: PmLesson1–34, PmUserStory/PmJtbd/PmMetrics etalonlari). localStorage `ccProgress:<lessonId>` — screen+answers(+earned) TTL 6 soat bilan saqlanadi; reset/finishLesson tozalaydi; jonli-o'quvchi mentor-darvozadan oshmaydi (clamp). Sof-PM darslarda (live/earned yo'q) soddalashtirilgan variant. Tafsilot: PIPELINE_STATE.md shu sanadagi yozuv. UNCOMMITTED.
+
+## 2026-07-30 — F-0730-02: PmLesson2 mentor-gapida «savdo sayti» → «internet-magazin» — ✅
+Foydalanuvchi tashxisi: hook-ekrandagi mentor gapi «savdo sayti — OLX» rasmiy/kattalarcha jaranglaydi. Muhokamada mavzu-almashtirish variantlari (o'yin-sahifa, iTicket, Evos, kurs-sayt) taklif qilindi — foydalanuvchi RAD etdi: OLX qoladi, faqat so'z o'zgaradi. Tuzatish: PmLesson2.jsx:1341 «tanish internet-magazin — OLX». Qonunlashtirish: MATN_KORPUS 26-bo'lim (sayt-turi o'smirga tanish so'z bilan). esbuild + lint:til toza. UNCOMMITTED.
+
+## 2026-07-30 — F-0730-03: PmLesson2 harakat-fe'llar aniqlashtirildi (4 foydalanuvchi-topilma + 2 izchillik) — ✅
+Foydalanuvchi to'g'ridan-to'g'ri so'zlab berdi: (1) hook mentor-gapi «Mana internet-magazin — OLX sayti, pastdagi …» (sizga tanish olib tashlandi); (2) «ro'yxatga ko'z tashlang» → «ro'yxatga qarang»; (3) «tushunmay ketib qoladi» → «tushunmay saytga kirmay qo'yadi»; (4) yashil «Tushunarli» fon: «pastga davom etadi» → «saytdan foydalanishda davom etadi». Izchillik uchun shu iboralarning qolgan 2 uchrashuvi ham tuzatildi: s4 explainCorrect (pastga davom etadi) va flashcard-688 («ketib qoladi» → «foydalanuvchi saytdan chiqib ketadi»). Qonunlashtirish: MATN_KORPUS 27-bo'lim (harakat aniq fe'l bilan). esbuild + lint:til toza · residue-grep 0. UNCOMMITTED.
+
+## 2026-07-30 — F-0730-04: PmLesson2 s3 yashil-fon «tugma shoshilmaydi» metaforasi olib tashlandi — ✅
+Foydalanuvchi: 4-sahifadagi yashil-fon gapi «Tugma esa shoshilmaydi: u sabab ko'rsatilgandan keyin keladi» tushunarsiz. Tuzatish: «Tugma esa eng oxirida turibdi — foydalanuvchi nega bosish kerakligini tushungandan keyin chiqadi.» Qonunlashtirish: MATN_KORPUS 28-bo'lim (jonsiz narsaga odam-fe'l berilmaydi). esbuild + lint:til toza. UNCOMMITTED.
