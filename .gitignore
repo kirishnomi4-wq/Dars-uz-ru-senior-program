@@ -34,3 +34,7 @@ dist-m1
 .vercel
 .env*
 dist-etalon
+
+# build-chiqindilari (2026-08-01)
+dist-texnik
+dist-etalon-test

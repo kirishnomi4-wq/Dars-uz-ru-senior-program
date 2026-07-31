@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback, useMemo, createContext, useContext } from 'react';
+import React, { useState, useEffect, useRef, useCallback, createContext, useContext } from 'react';
 
 // ============================================================
 // HTML 1-DARS — PLATFORM STANDARD v15 (Notion: design_system + platform_contract + infrastructure_v1)
@@ -435,37 +435,30 @@ function useAudio(segments) {
 
 // AUDIOSIZ: AudioIndicator (ovoz/replay tugmalari) olib tashlandi — ovoz o'chirilgan, ikonka kerak emas.
 
-const LESSON_META = { lessonId: 'git-github-01-v18', lessonTitle: { uz: 'Git va GitHub — kod uchun vaqt mashinasi', ru: 'Git и GitHub — машина времени для кода' } };
+const LESSON_META = { lessonId: 'git-github-v19', lessonTitle: { uz: 'Git va GitHub — kodni internetga chiqaramiz', ru: 'Git и GitHub — выкладываем код в интернет' } };
 const SCREEN_META = [
-  { id: 's0',  type: 'hook',        template: 'custom',   scored: false, scope: 'hook' },
-  { id: 's1',  type: 'rule',        template: 'custom',   scored: false, scope: null },
-  { id: 's2',  type: 'exploration', template: 'custom',   scored: false, scope: null },
-  { id: 's3',  type: 'exploration', template: 'custom',   scored: false, scope: null },
-  { id: 's4',  type: 'test',        template: 'MCScreen', scored: true,  scope: 'module-mikro' },
-  { id: 's5',  type: 'exploration', template: 'custom',   scored: false, scope: null },
-  { id: 's5b', type: 'test',        template: 'MCScreen', scored: true,  scope: 'module-mikro' },
-  { id: 's6',  type: 'exploration', template: 'custom',   scored: false, scope: null },
-  { id: 's7',  type: 'exploration', template: 'custom',   scored: false, scope: null },
-  { id: 's8',  type: 'exploration', template: 'custom',   scored: false, scope: null },
-  { id: 's9',  type: 'test',        template: 'MCScreen', scored: true,  scope: 'module-mikro' },
-  { id: 's10', type: 'exploration', template: 'custom',   scored: false, scope: null },
-  { id: 's11', type: 'exploration', template: 'custom',   scored: false, scope: null },
-  { id: 's12', type: 'test',        template: 'MCScreen', scored: true,  scope: 'module-mikro' },
-  { id: 's13', type: 'case',        template: 'custom',   scored: false, scope: null },
-  { id: 's14', type: 'rule',        template: 'custom',   scored: false, scope: null },
-  { id: 's14b', type: 'challenge',  template: 'custom',   scored: false, scope: null },
-  { id: 's15', type: 'test',        template: 'MCScreen', scored: true,  scope: 'final' },
-  { id: 's15b', type: 'stats',      template: 'custom',   scored: false, scope: null },
-  { id: 'sflash', type: 'flashcard', template: 'custom',  scored: false, scope: null },
-  { id: 's16', type: 'summary',     template: 'custom',   scored: false, scope: null }
+  { id: 's0',     type: 'hook',        template: 'custom',   scored: false, scope: 'hook' },
+  { id: 's1',     type: 'rule',        template: 'custom',   scored: false, scope: null },
+  { id: 's2',     type: 'do',          template: 'DoScreen', scored: false, scope: null },
+  { id: 's3',     type: 'do',          template: 'DoScreen', scored: false, scope: null },
+  { id: 's4',     type: 'test',        template: 'MCScreen', scored: true,  scope: 'module-mikro' },
+  { id: 's5',     type: 'do',          template: 'DoScreen', scored: false, scope: null },
+  { id: 's6',     type: 'test',        template: 'MCScreen', scored: true,  scope: 'module-mikro' },
+  { id: 's7',     type: 'exploration', template: 'custom',   scored: false, scope: null },
+  { id: 's8',     type: 'exploration', template: 'custom',   scored: false, scope: null },
+  { id: 's9',     type: 'exploration', template: 'custom',   scored: false, scope: null },
+  { id: 's10',    type: 'exploration', template: 'custom',   scored: false, scope: null },
+  { id: 's11',    type: 'test',        template: 'MCScreen', scored: true,  scope: 'module-mikro' },
+  { id: 's12',    type: 'practice',    template: 'DoScreen', scored: false, scope: null },
+  { id: 's13',    type: 'practice',    template: 'DoScreen', scored: false, scope: null },
+  { id: 's14',    type: 'test',        template: 'MCScreen', scored: true,  scope: 'final' },
+  { id: 's15b',   type: 'stats',       template: 'custom',   scored: false, scope: null },
+  { id: 'sflash', type: 'flashcard',   template: 'custom',   scored: false, scope: null },
+  { id: 's16',    type: 'summary',     template: 'custom',   scored: false, scope: null }
 ];
 const TOTAL_SCREENS = SCREEN_META.length;
 const SCORED_IDX = SCREEN_META.map((m, i) => (m.scored ? i : null)).filter(i => i !== null);
 
-const CodeBox = ({ children }) => <pre className="code-box">{children}</pre>;
-const Tg = ({ children }) => <span style={{ color: CODE.tag }}>{children}</span>;
-const At = ({ children }) => <span style={{ color: CODE.attr }}>{children}</span>;
-const Sr = ({ children }) => <span style={{ color: CODE.str }}>{children}</span>;
 const Preview = ({ children, title = 'preview.html', minH }) => (
   <div className="bp-window"><div className="bp-bar"><span className="bb-dots"><i /><i /><i /></span><span className="bp-title">{title}</span></div><div className="bp-body" style={{ minHeight: minH }}>{children}</div></div>
 );
@@ -585,81 +578,66 @@ const RcFlow = ({ items, sep = '→' }) => (
 );
 // RECAPS — har scored test uchun «Qayta tushuntirish» kartalari (kalit = ekran indeksi, Q_LABELS bilan bir xil)
 const RECAPS = {
-  // idx 4 — s4: «Git asosan nima qiladi?» (nazariya: Git = checkpoint / versiya nazorati)
+  // idx 4 — s4: «Git kompyuterda qanday ish qiladi?»
   4: {
-    title: { uz: 'Git — kod uchun vaqt mashinasi', ru: 'Git — машина времени для кода' }, cards: [
-      { ic: '🎮', h: { uz: 'Git — kod uchun checkpoint', ru: 'Git — чекпоинт для кода' },
-        body: { uz: <>Kompyuter o'yinida qiyin joyga yetganda <b>checkpoint</b> (saqlash nuqtasi) qo'yasiz. O'lib qolsangiz — boshidan emas, o'sha nuqtadan davom etasiz. <b>Git</b> kodingiz uchun aynan shunday ishlaydi.</>, ru: <>В компьютерной игре перед сложным местом вы ставите <b>checkpoint</b> (точку сохранения). Проиграете — продолжите не с начала, а с этой точки. <b>Git</b> работает с вашим кодом точно так же.</> },
-        vis: <RcFlow items={[{ uz: "🎮 O'yin", ru: '🎮 Игра' }, { uz: '🚩 Checkpoint', ru: '🚩 Чекпоинт' }, { uz: '↩️ Qaytish', ru: '↩️ Возврат' }]} />,
-        ask: { uz: "Qaysi o'yinlarda checkpoint bo'ladi?", ru: 'В каких играх бывают чекпоинты?' } },
-      { ic: '🕐', h: { uz: 'Har holatni eslab qoladi', ru: 'Запоминает каждое состояние' },
-        body: { uz: <>Git — <b>versiya nazorati</b> tizimi: u kodning <b>har bir holatini</b> eslab qoladi. Xato qilsangiz, eski holatga bemalol qaytasiz — hech narsa yo'qolmaydi.</>, ru: <>Git — система <b>контроля версий</b>: она запоминает <b>каждое состояние</b> кода. Ошибётесь — спокойно вернётесь к старой версии, ничего не потеряется.</> },
-        vis: <RcFlow items={[{ uz: "Kod o'zgardi", ru: 'Код изменился' }, { uz: 'Git eslab qoldi', ru: 'Git запомнил' }, { uz: 'Orqaga qaytish', ru: 'Возврат назад' }]} /> },
+    title: { uz: 'Git — kodning nusxalarini yurituvchi dastur', ru: 'Git — программа, которая ведёт копии кода' }, cards: [
+      { ic: '🎮', h: { uz: "Git — kod uchun saqlash nuqtasi", ru: 'Git — точка сохранения для кода' },
+        body: { uz: <>O'yinda qiyin joyga yetganda <b>saqlash nuqtasi</b> qo'yasiz: yutqazsangiz, boshidan emas, o'sha nuqtadan davom etasiz. Git kod uchun aynan shu ishni qiladi.</>, ru: <>В игре перед сложным местом вы ставите <b>точку сохранения</b>: проиграете — продолжите не с начала, а с неё. Для кода Git делает ровно то же самое.</> },
+        vis: <RcFlow items={[{ uz: "O'yin", ru: 'Игра' }, { uz: 'Saqlash nuqtasi', ru: 'Точка сохранения' }, { uz: 'Qaytish', ru: 'Возврат' }]} />,
+        ask: { uz: "Qaysi o'yinlarda saqlash nuqtasi bo'ladi?", ru: 'В каких играх есть точки сохранения?' } },
+      { ic: '🕐', h: { uz: 'Har holatni saqlab qoladi', ru: 'Сохраняет каждое состояние' },
+        body: { uz: <>Git kodning <b>har bir holatini</b> saqlaydi. Xato qilsangiz, kechagi holatga qaytasiz — yozilgan narsa yo'qolmaydi.</>, ru: <>Git хранит <b>каждое состояние</b> кода. Ошибётесь — вернётесь ко вчерашнему состоянию, написанное не пропадёт.</> },
+        vis: <RcFlow items={[{ uz: "Kod o'zgardi", ru: 'Код изменился' }, { uz: 'Git saqladi', ru: 'Git сохранил' }, { uz: 'Orqaga qaytish', ru: 'Возврат назад' }]} /> },
       { ic: '☝️', h: { uz: 'Git nima QILMAYDI', ru: 'Чего Git НЕ делает' },
-        body: { uz: <>Git kodni <b>ranglamaydi</b> (bu — CSS ishi), internetni tezlashtirmaydi va rasm tahrirlamaydi. Uning bitta vazifasi bor: kod <b>versiyalarini saqlash</b> va orqaga qaytarish.</>, ru: <>Git не <b>раскрашивает</b> код (это работа CSS), не ускоряет интернет и не редактирует картинки. У него одна задача: <b>сохранять версии</b> кода и возвращать их назад.</> },
-        vis: <RcFlow items={[{ uz: 'Versiyani saqlaydi', ru: 'Сохраняет версии' }, { uz: 'Orqaga qaytaradi', ru: 'Возвращает назад' }]} sep="·" />,
-        ask: { uz: "Git kodni saqlaydi — yana nima qiladi?", ru: 'Git сохраняет код — а что ещё он делает?' } },
+        body: { uz: <>Kodni ranglash va xatoni belgilash — <b>VS Code</b> ishi. Kodni brauzerda ochish — <b>Live Server</b> ishi. Git faqat versiyalarni saqlaydi va qaytaradi.</>, ru: <>Раскрашивать код и подчёркивать ошибки — работа <b>VS Code</b>. Открывать код в браузере — работа <b>Live Server</b>. Git только хранит и возвращает версии.</> },
+        vis: <RcFlow items={[{ uz: 'Versiyani saqlaydi', ru: 'Хранит версию' }, { uz: 'Orqaga qaytaradi', ru: 'Возвращает назад' }]} sep="·" />,
+        ask: { uz: 'Git saqlaydi — yana nima qiladi?', ru: 'Git хранит — а что ещё он делает?' } },
     ]
   },
-  // idx 6 — s5b: «commit nima deb ataladi?» (nazariya: commit = surat, add → commit)
+  // idx 6 — s6: «Git bilan GitHub orasidagi farq»
   6: {
-    title: { uz: 'commit — kodning surati', ru: 'commit — снимок кода' }, cards: [
-      { ic: '📸', h: { uz: 'commit — kodning surati', ru: 'commit — снимок кода' },
-        body: { uz: <>Har bir saqlash — <b className="mono">commit</b>. Bu kodingizning o'sha lahzadagi <b>surati</b> (xuddi fotosurat), qisqa <b>izoh</b> bilan: nima o'zgardi.</>, ru: <>Каждое сохранение — <b className="mono">commit</b> (коммит). Это <b>снимок</b> вашего кода в тот момент (как фотография) с коротким <b>комментарием</b>: что изменилось.</> },
-        vis: <RcFlow items={[{ uz: 'Kod', ru: 'Код' }, '📸 commit', { uz: 'Izoh', ru: 'Комментарий' }]} /> },
-      { ic: '🛒', h: { uz: 'Avval add, keyin commit', ru: 'Сначала add, потом commit' },
-        body: { uz: <>commit ikki qadamda bo'ladi: <b className="mono">git add</b> — qaysi fayllarni saqlashni tanlaysiz (xuddi savatga solganday), keyin <b className="mono">git commit</b> — ularni izoh bilan saqlaysiz.</>, ru: <>Коммит делается в два шага: <b className="mono">git add</b> — выбираете, какие файлы сохранить (как будто кладёте в корзину), затем <b className="mono">git commit</b> — сохраняете их с комментарием.</> },
-        vis: <RcFlow items={['git add', 'git commit']} /> },
-      { ic: '🕐', h: { uz: 'Har commit — alohida nuqta', ru: 'Каждый коммит — отдельная точка' },
-        body: { uz: <>Har commit'ning <b>izohi</b>, <b>vaqti</b> va maxsus raqami (<b className="mono">hash</b>) bo'ladi. Shu tufayli istalgan eski commit'ni topib, o'sha holatga qaytishingiz mumkin.</>, ru: <>У каждого коммита есть <b>комментарий</b>, <b>время</b> и специальный номер (<b className="mono">hash</b>). Поэтому можно найти любой старый коммит и вернуться к тому состоянию.</> },
-        ask: { uz: "commit izohiga nima yozgan bo'lardingiz?", ru: 'Что бы вы написали в комментарии коммита?' } },
+    title: { uz: 'Git — dastur, GitHub — sayt', ru: 'Git — программа, GitHub — сайт' }, cards: [
+      { ic: '💻', h: { uz: 'Git kompyuterda ishlaydi', ru: 'Git работает на компьютере' },
+        body: { uz: <>Git — siz <b>o'rnatgan dastur</b>. U internetsiz ham ishlaydi: fayllarni tanlaydi, saqlash nuqtalarini yozadi.</>, ru: <>Git — <b>программа, которую вы установили</b>. Она работает и без интернета: выбирает файлы, записывает точки сохранения.</> },
+        vis: <RcFlow items={[{ uz: 'Kompyuter', ru: 'Компьютер' }, 'Git']} sep="·" /> },
+      { ic: '🌐', h: { uz: 'GitHub brauzerda ochiladi', ru: 'GitHub открывается в браузере' },
+        body: { uz: <>GitHub — <b>sayt</b>: kodning internetdagi nusxasi shu yerda turadi. Manzili bor, havolasini boshqalarga yuborish mumkin.</>, ru: <>GitHub — <b>сайт</b>: там лежит интернет-копия кода. У него есть адрес, ссылку можно отправить другим.</> },
+        vis: <RcFlow items={['github.com', { uz: 'nomingiz', ru: 'ваше имя' }, { uz: 'loyiha', ru: 'проект' }]} /> },
+      { ic: '🤝', h: { uz: 'Ular birga ishlaydi', ru: 'Они работают вместе' },
+        body: { uz: <>Git kompyuterda saqlash nuqtasini yozadi, keyin o'sha nuqtani GitHub'ga jo'natadi. Biri dastur, ikkinchisi joy.</>, ru: <>Git записывает точку сохранения на компьютере, затем отправляет её на GitHub. Одно — программа, другое — место.</> },
+        ask: { uz: "Qaysi biri kompyuterga o'rnatiladi?", ru: 'Что из них ставится на компьютер?' } },
     ]
   },
-  // idx 10 — s9: «git push nima qiladi?» (nazariya: tarix, GitHub bulut, push/pull)
-  10: {
-    title: { uz: 'push — bulutga yuborish', ru: 'push — отправка в облако' }, cards: [
-      { ic: '💻', h: { uz: 'Kod ikki joyda yashaydi', ru: 'Код живёт в двух местах' },
-        body: { uz: <>Kodingiz ikki joyda turadi: <b>kompyuteringizda</b> (lokal) va <b>bulutda</b> (GitHub). Maqsad — ikkalasini bir xil holatda tutish.</>, ru: <>Ваш код находится в двух местах: <b>на компьютере</b> (локально) и <b>в облаке</b> (GitHub). Цель — держать оба в одинаковом состоянии.</> },
-        vis: <RcFlow items={[{ uz: '💻 Lokal', ru: '💻 Локально' }, '☁️ GitHub']} sep="·" /> },
-      { ic: '⬆️', h: { uz: 'push — sizdan bulutga', ru: 'push — от вас в облако' },
-        body: { uz: <><b className="mono">git push</b> — kompyuteringizdagi yangi <b>commit'larni</b> GitHub'ga (bulutga) yuboradi. Endi kod bulutda ham xavfsiz turadi.</>, ru: <><b className="mono">git push</b> — отправляет новые <b>коммиты</b> с вашего компьютера на GitHub (в облако). Теперь код в безопасности и в облаке.</> },
-        vis: <RcFlow items={['💻 commit', '⬆️ push', '☁️ GitHub']} /> },
-      { ic: '⬇️', h: { uz: 'pull — bulutdan sizga', ru: 'pull — из облака к вам' },
-        body: { uz: <><b className="mono">git pull</b> — buning teskarisi: bulutdagi yangi commit'larni <b>kompyuteringizga</b> oladi. Do'stingiz o'zgarish qo'shsa, pull bilan olasiz.</>, ru: <><b className="mono">git pull</b> — наоборот: забирает новые коммиты из облака <b>на ваш компьютер</b>. Если друг добавил изменения, вы получите их через pull.</> },
-        vis: <RcFlow items={['☁️ GitHub', '⬇️ pull', { uz: '💻 Lokal', ru: '💻 Локально' }]} />,
-        ask: { uz: "push va pull — qaysi biri bulutga yuboradi?", ru: 'push и pull — какая из них отправляет в облако?' } },
-    ]
-  },
-  // idx 13 — s12: «GitHub nima uchun kerak?» (nazariya: GitHub bulut, repo, jamoa)
-  13: {
-    title: { uz: 'GitHub — bulutdagi uy', ru: 'GitHub — дом в облаке' }, cards: [
-      { ic: '☁️', h: { uz: "GitHub — kodning bulutdagi uyi", ru: 'GitHub — облачный дом кода' },
-        body: { uz: <>Git kompyuteringizda ishlaydi. Kompyuter buzilsa-chi? <b>GitHub</b> — kodning <b>bulutdagi nusxasi</b>: internetda xavfsiz saqlanadi va istalgan joydan ochiladi.</>, ru: <>Git работает на вашем компьютере. А если компьютер сломается? <b>GitHub</b> — это <b>облачная копия</b> кода: она надёжно хранится в интернете и открывается откуда угодно.</> },
-        vis: <RcFlow items={['💻 Git', '☁️ GitHub']} sep="·" /> },
-      { ic: '👥', h: { uz: 'Birga ishlash uchun', ru: 'Для совместной работы' },
-        body: { uz: <>GitHub'ning eng kuchli tomoni — <b>jamoa bilan ishlash</b>. Boshqaning loyihasini <b className="mono">clone</b> qilib nusxalaysiz, o'zgartirasiz va push qilasiz. Millionlab dasturchi shunday birga ishlaydi.</>, ru: <>Самая сильная сторона GitHub — <b>работа в команде</b>. Чужой проект вы копируете командой <b className="mono">clone</b>, меняете и делаете push. Так вместе работают миллионы программистов.</> },
-        vis: <RcFlow items={['clone', { uz: "o'zgartir", ru: 'измени' }, 'push']} /> },
-      { ic: '📦', h: { uz: 'Repo — bitta loyiha uyi', ru: 'Репо — дом одного проекта' },
-        body: { uz: <><b>Repository</b> (qisqacha <b>repo</b>) — Git kuzatadigan loyiha papkasi. Ichida barcha fayllar, commit tarixi va <b className="mono">README</b> (loyiha tavsifi) — hammasi birga turadi.</>, ru: <><b>Repository</b> (коротко <b>репо</b>) — папка проекта, за которой следит Git. Внутри все файлы, история коммитов и <b className="mono">README</b> (описание проекта) — всё в одном месте.</> },
-        ask: { uz: "Birinchi rep'ingiz nima haqida bo'lardi?", ru: 'О чём был бы ваш первый репозиторий?' } },
-    ]
-  },
-  // idx 17 — s15 (yozma, yakuniy): «commit buyrug'ini o'zingiz yozing» (nazariya: to'liq aylana + commit shakli)
-  17: {
-    title: { uz: "To'liq aylana va commit buyrug'i", ru: 'Полный цикл и команда commit' }, cards: [
-      { ic: '🔄', h: { uz: 'Git ish-oqimi — bitta aylana', ru: 'Рабочий цикл Git — один круг' },
-        body: { uz: <>Har o'zgarishdan keyin bir xil aylana takrorlanadi: <b className="mono">add</b> (tanlash) → <b className="mono">commit</b> (surat qilish) → <b className="mono">push</b> (bulutga yuborish). Tartib muhim!</>, ru: <>После каждого изменения повторяется один и тот же цикл: <b className="mono">add</b> (выбрать) → <b className="mono">commit</b> (сделать снимок) → <b className="mono">push</b> (отправить в облако). Порядок важен!</> },
-        vis: <RcFlow items={['add', 'commit', 'push']} /> },
-      { ic: '⌨️', h: { uz: "commit buyrug'i — uch qism", ru: 'Команда commit — три части' },
-        body: { uz: <>To'liq buyruq: <b className="mono">git commit</b> (buyruq) + <b className="mono">-m</b> (izoh bayrog'i) + <b>qo'shtirnoq</b> ichida izoh. Masalan: <b className="mono">git commit -m "birinchi commit"</b>.</>, ru: <>Полная команда: <b className="mono">git commit</b> (команда) + <b className="mono">-m</b> (флаг комментария) + комментарий в <b>кавычках</b>. Например: <b className="mono">git commit -m "birinchi commit"</b>.</> },
+  // idx 11 — s11: «add → commit → push tartibi»
+  11: {
+    title: { uz: "Uch qadam — qat'iy tartibda", ru: 'Три шага — в строгом порядке' }, cards: [
+      { ic: '📥', h: { uz: 'add — fayllarni tanlash', ru: 'add — выбор файлов' },
+        body: { uz: <><b className="mono">git add</b> — qaysi fayllar yuborilishini belgilaydi. Bu qadamda hech narsa yuborilmaydi, faqat ro'yxat tuziladi.</>, ru: <><b className="mono">git add</b> — отмечает, какие файлы уйдут. На этом шаге ничего не отправляется, только составляется список.</> },
+        vis: <RcFlow items={['index.html', 'style.css']} sep="·" /> },
+      { ic: '📸', h: { uz: 'commit — nuqtani belgilash', ru: 'commit — отметить точку' },
+        body: { uz: <><b className="mono">git commit</b> tanlangan fayllarni bitta nuqtaga izoh bilan yozadi. Izoh — nima o'zgargani.</>, ru: <><b className="mono">git commit</b> записывает выбранные файлы в одну точку с комментарием. Комментарий — что изменилось.</> },
         vis: <RcFlow items={['git commit', '-m', { uz: '"izoh"', ru: '"комментарий"' }]} /> },
-      { ic: '⚠️', h: { uz: "commit'siz push ishlamaydi", ru: 'push без коммита не работает' },
-        body: { uz: <>Faqat <b className="mono">add</b> qilib, to'g'ridan push qilsangiz — xato chiqadi. <b>Saqlanmagan</b> narsani yuborib bo'lmaydi. Avval <b className="mono">commit</b> bilan surat oling, keyin push.</>, ru: <>Если сделать только <b className="mono">add</b> и сразу push — будет ошибка. <b>Несохранённое</b> отправить нельзя. Сначала сделайте снимок командой <b className="mono">commit</b>, потом push.</> },
-        ask: { uz: "add'dan keyin, push'dan oldin qaysi qadam kerak?", ru: 'Какой шаг нужен после add и перед push?' } },
+      { ic: '⬆️', h: { uz: 'push — internetga yuborish', ru: 'push — отправить в интернет' },
+        body: { uz: <><b className="mono">git push</b> saqlangan nuqtani repoga jo'natadi. Saqlanmagan narsa yuborilmaydi — shuning uchun commit push'dan oldin turadi.</>, ru: <><b className="mono">git push</b> отправляет сохранённую точку в репо. Несохранённое не уйдёт — поэтому commit стоит раньше push.</> },
+        vis: <RcFlow items={['add', 'commit', 'push']} />,
+        ask: { uz: "add'dan keyin, push'dan oldin qaysi qadam turadi?", ru: 'Какой шаг стоит после add и перед push?' } },
+    ]
+  },
+  // idx 14 — s14 (yakuniy): «kompyuter buzildi — kod qayerdan qaytadi»
+  14: {
+    title: { uz: 'Repo — kodning internetdagi nusxasi', ru: 'Репо — интернет-копия кода' }, cards: [
+      { ic: '📦', h: { uz: 'Har loyihaga alohida joy', ru: 'Для каждого проекта своё место' },
+        body: { uz: <>GitHub'da loyiha uchun ochilgan joy <b>repo</b> deyiladi. Ichida fayllar, saqlangan nuqtalar va loyiha tavsifi (<span className="mono">README</span>) turadi.</>, ru: <>Место, открытое на GitHub для проекта, называется <b>репо</b>. Внутри файлы, сохранённые точки и описание проекта (<span className="mono">README</span>).</> },
+        vis: <RcFlow items={[{ uz: 'fayllar', ru: 'файлы' }, { uz: 'nuqtalar', ru: 'точки' }, 'README']} sep="·" /> },
+      { ic: '🛡️', h: { uz: 'Kompyuter buzilsa ham qoladi', ru: 'Останется, даже если компьютер сломается' },
+        body: { uz: <>Repo internetda turadi. Yangi kompyuterda GitHub'ga kirasiz va <b>nusxasini olasiz</b> — fayllar ham, saqlangan nuqtalar ham qaytadi.</>, ru: <>Репо находится в интернете. На новом компьютере вы заходите на GitHub и <b>забираете копию</b> — вернутся и файлы, и сохранённые точки.</> },
+        vis: <RcFlow items={[{ uz: 'GitHub repo', ru: 'Репо GitHub' }, { uz: 'yangi kompyuter', ru: 'новый компьютер' }]} /> },
+      { ic: '🔗', h: { uz: 'Havolasi bor', ru: 'У него есть ссылка' },
+        body: { uz: <>Repo manzili shunday ko'rinadi: <span className="mono">github.com/nomingiz/loyiha</span>. Shu havolani kimga yuborsangiz, u kodni brauzerda ochib ko'radi.</>, ru: <>Адрес репо выглядит так: <span className="mono">github.com/vashe-imya/proekt</span>. Кому отправите ссылку — тот откроет код в браузере.</> },
+        ask: { uz: 'Havolangizni birinchi kimga yuborardingiz?', ru: 'Кому бы вы первым отправили свою ссылку?' } },
     ]
   },
 };
-
 // Overlay — ekran ustida (indekslarga tegmaydi)
 // Overlay — ekran USTIDA ochiladi (indekslarga tegmaydi), slayd-slayd o'tiladi.
 function RecapOverlay({ screenIdx, onClose }) {
@@ -985,64 +963,97 @@ const Mentor = ({ children }) => {
   );
 };
 
-// Animatsiyani katta ekranda ko'rish uchun o'rovchi — ⛶ tugma, holat saqlanadi
-const Zoomable = ({ children }) => {
-  const [big, setBig] = useState(false);
-  useEffect(() => {
-    if (!big) return;
-    const onKey = (e) => { if (e.key === 'Escape') setBig(false); };
-    document.body.style.overflow = 'hidden';
-    window.addEventListener('keydown', onKey);
-    return () => { document.body.style.overflow = ''; window.removeEventListener('keydown', onKey); };
-  }, [big]);
-  return (
-    <>
-      {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div className={`zoomable ${big ? 'zoom-on' : ''}`}>
-        <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>
-        {children}
-      </div>
-    </>
-  );
-};
+// ============================================================
+//  ✅ «O'ZIM QILDIM» EKRANI — o'quvchi ishni real kompyuterida bajaradi.
+//  Qadamlar BITTALAB ochiladi (94-qonun): bajarilgani yopiladi, keyingisi ochiladi.
+//  Har qadamda: nima qilish · kutilgan natija ko'rinishi · «bajarolmadim» ipuchasi.
+//  practice=true — mentorga praktika-signali (PRACTICE_BASE + ekran) yuboriladi.
+// ============================================================
+const PRACTICE_BASE = 500; // praktika zonasi: dars javoblari (<100) va arena (100+) bilan to'qnashmaydi
 
-// ===== SCREEN 0 — HOOK =====
-const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
-  const audio = useAudio([{ id: 's0', text: `Loyiha ustida ishlayapsiz. Bir narsani o'zgartirib — saqlaysiz. Yana o'zgartirib — yana saqlaysiz. Tez orada papkangiz to'la bo'ladi: loyiha, loyiha2, loyiha_final, loyiha_oxirgi_ROST... Endi xato qildingiz, lekin uchinchi versiya yaxshiroq edi. Qaysi biriga qaytasiz? Buning aqlli yo'li bormi?`, trigger: 'on_mount', waits_for: { type: 'option_picked' } }]);
-  const [picked, setPicked] = useState(storedAnswer?.picked ?? null);
-  const FILES = [{ uz: 'loyiha.html', ru: 'proekt.html' }, { uz: 'loyiha2.html', ru: 'proekt2.html' }, { uz: 'loyiha_final.html', ru: 'proekt_final.html' }, { uz: 'loyiha_final_ROST.html', ru: 'proekt_final_TOCHNO.html' }, { uz: 'loyiha_oxirgi(1).html', ru: 'proekt_posledniy(1).html' }];
-  const [saved, setSaved] = useState(storedAnswer ? FILES.length : 1);
-  const OPTS = [
-    { id: 'a', label: { uz: "Yo'q — har safar yangi nom bilan saqlayverish kerak", ru: 'Нет — каждый раз нужно сохранять под новым именем' } },
-    { id: 'b', label: { uz: 'Ha — maxsus dastur har bir versiyani eslab qoladi', ru: 'Да — специальная программа запоминает каждую версию' } },
-    { id: 'c', label: { uz: "Eski faylni o'chirib, qaytadan yozish kerak", ru: 'Нужно удалить старый файл и написать заново' } }
-  ];
-  const save = () => setSaved(s => Math.min(s + 1, FILES.length));
-  const pick = (v) => { if (picked !== null) return; setPicked(v); onAnswer(screen, { stage: 'hook', screenIdx: screen, picked: v, correct: true }); audio.triggerEvent('option_picked'); };
+function DoSteps({ screen, storedAnswer, onAnswer, steps, taskLabel, practice, onStep }) {
+  const gate = useContext(LiveGateCtx) || {};
+  const live = gate.live;
+  const isMentorLive = !!(live && live.mode === 'mentor');
+  const initial = () => new Set(storedAnswer?.doneIds || (storedAnswer?.correct ? steps.map(s => s.id) : []));
+  const firstUndone = (set) => { const i = steps.findIndex(s => !set.has(s.id)); return i < 0 ? steps.length - 1 : i; };
+  const [done, setDone] = useState(initial);
+  const [open, setOpen] = useState(() => firstUndone(initial()));
+  const sentRef = useRef(!!(storedAnswer && storedAnswer.correct));
+  const allDone = done.size >= steps.length;
+  useEffect(() => { if (onStep) onStep(open); }, [open]); // eslint-disable-line
+  const toggle = (id, i) => {
+    if (isMentorLive) return;
+    const n = new Set(done);
+    const marking = !n.has(id);
+    if (marking) n.add(id); else n.delete(id);
+    setDone(n);
+    setOpen(marking ? firstUndone(n) : i);
+    const all = n.size >= steps.length;
+    onAnswer(screen, { correct: all, doneIds: [...n], picked: n.size, stage: 'do-steps', screenIdx: screen });
+    if (all && !sentRef.current) {
+      sentRef.current = true;
+      if (live && live.mode === 'student') live.submitAnswer((practice ? PRACTICE_BASE : 0) + screen, SCREEN_META[screen]?.id || `s${screen}`, 0, true, 0);
+    }
+  };
   return (
-    <Stage eyebrow={tr({ uz: 'Kirish', ru: 'Введение' })} screen={screen} audioState={audio} navContent={<NavNext optionalLive disabled={picked === null} label={tr({ uz: 'Davom etish', ru: 'Продолжить' })} onClick={onNext} />}>
-      <div className="screen">
-        <h1 className="title h-title fade-up" style={{ maxWidth: 760 }}>{tr({ uz: <>Xato qildingiz — kodni <span className="italic" style={{ color: T.accent }}>orqaga</span> qaytarib bo'ladimi?</>, ru: <>Вы ошиблись — можно ли <span className="italic" style={{ color: T.accent }}>откатить</span> код назад?</> })}</h1>
-        <Mentor>{tr({ uz: <>Bir narsani o'zgartirib <b style={{ color: T.ink }}>saqlaysiz</b>. Yana — yana saqlaysiz. Tez orada papka to'la: <span className="mono">loyiha_final_ROST.html</span>… Endi 3-versiya yaxshiroq edi. Qaysi biriga qaytasiz? Tugmani bosib, tartibsizlikni ko'ring.</>, ru: <>Вы что-то меняете и <b style={{ color: T.ink }}>сохраняете</b>. Ещё раз — и снова сохраняете. Скоро папка забита: <span className="mono">proekt_final_TOCHNO.html</span>… А теперь оказалось, что третья версия была лучше. К какой вернётесь? Нажмите кнопку и посмотрите на этот хаос.</> })}</Mentor>
+    <div className="dsx fade-up delay-1">
+      <div className="dsx-head">
+        <span className="dsx-lbl">✅ {tr({ uz: 'Kompyuteringizda bajaring', ru: 'Выполните на своём компьютере' })}</span>
+        <span className={`dsx-count ${allDone ? 'ok' : ''}`}>{done.size}/{steps.length}</span>
+      </div>
+      {steps.map((s, i) => {
+        const on = done.has(s.id);
+        const isOpen = !on && i === open;
+        const locked = !on && i !== open;
+        return (
+          <div key={s.id} className={`dsx-row ${on ? 'on' : ''} ${isOpen ? 'open' : ''} ${locked ? 'lock' : ''}`}>
+            <span className="dsx-num">{on ? '✓' : i + 1}</span>
+            <div className="dsx-body">
+              <span className="dsx-t">{fmtCode(tr(s.t))}</span>
+              {isOpen && s.d && <span className="dsx-d">{fmtCode(tr(s.d))}</span>}
+              {isOpen && s.help && (
+                <details className="dsx-help">
+                  <summary>{tr({ uz: 'Bajarolmadim', ru: 'Не получилось' })}</summary>
+                  <span>{fmtCode(tr(s.help))}</span>
+                </details>
+              )}
+              {isOpen && <button className="dsx-btn" onClick={() => toggle(s.id, i)} disabled={isMentorLive}>{tr({ uz: '✓ Bajardim', ru: '✓ Сделал(а)' })}</button>}
+            </div>
+            {on && !isMentorLive && <button className="dsx-undo" onClick={() => toggle(s.id, i)} title={tr({ uz: 'Qaytarish', ru: 'Вернуть' })}>↺</button>}
+          </div>
+        );
+      })}
+      {allDone && !isMentorLive && <p className="dsx-done fade-step">🎉 {tr({ uz: 'Hamma qadam bajarildi.', ru: 'Все шаги выполнены.' })}</p>}
+      {isMentorLive && <MentorWorkStats live={live} screenIdx={(practice ? PRACTICE_BASE : 0) + screen} taskLabel={taskLabel} />}
+    </div>
+  );
+}
+
+// Bitta ekran — bitta ish (92-qonun): chapda kutilgan natija, o'ngda qadamlar.
+const DoScreen = ({ screen, storedAnswer, onAnswer, onNext, onPrev, eyebrow, title, mentor, steps, taskLabel, practice, resultLabel }) => {
+  const _gate = useContext(LiveGateCtx) || {};
+  const _isMentorLive = !!(_gate.live && _gate.live.mode === 'mentor');
+  const [view, setView] = useState(0);
+  const doneIds = storedAnswer?.doneIds || (storedAnswer?.correct ? steps.map(s => s.id) : []);
+  const allDone = doneIds.length >= steps.length;
+  const waitIdx = Math.max(0, steps.findIndex(s => !doneIds.includes(s.id)));
+  const navLabel = (allDone || _isMentorLive)
+    ? tr({ uz: 'Davom etish', ru: 'Продолжить' })
+    : tr({ uz: `${waitIdx + 1}-qadam: ${tr(steps[waitIdx].nav)}`, ru: `Шаг ${waitIdx + 1}: ${tr(steps[waitIdx].nav)}` });
+  const cur = steps[Math.min(view, steps.length - 1)];
+  return (
+    <Stage eyebrow={eyebrow} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={_isMentorLive ? false : !allDone} label={navLabel} onClick={onNext} /></>}>
+      <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
+        <div className="head"><h2 className="title h-title fade-up">{title}</h2></div>
+        <Mentor>{mentor}</Mentor>
         <Split>
           <Col>
-            <div className="flow-label">{tr({ uz: 'Papkangiz', ru: 'Ваша папка' })}</div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 6, minHeight: 150 }}>
-              {FILES.slice(0, saved).map((f, i) => (
-                <div key={i} className="fade-step" style={{ display: 'flex', alignItems: 'center', gap: 9, background: T.paper, borderRadius: 9, padding: '9px 13px', fontFamily: "'JetBrains Mono', monospace", fontSize: 13, color: T.ink, boxShadow: '0 4px 12px -6px rgba(58,53,48,0.18)' }}>
-                  <span>📄</span><span style={{ flex: 1, minWidth: 0, overflow: 'hidden', textOverflow: 'ellipsis' }}>{tr(f)}</span>
-                  {i === saved - 1 && saved > 1 && <span className="mono small" style={{ color: T.accent, flexShrink: 0 }}>{tr({ uz: 'yangi', ru: 'новый' })}</span>}
-                </div>
-              ))}
-            </div>
-            <button className="btn" style={{ alignSelf: 'flex-start' }} onClick={save} disabled={saved >= FILES.length}>{saved >= FILES.length ? tr({ uz: '🤯 Tamom — chalkashlik!', ru: '🤯 Всё — полная путаница!' }) : tr({ uz: '💾 Yana saqlash', ru: '💾 Сохранить ещё раз' })}</button>
+            <p className="flow-label">{resultLabel || tr({ uz: 'Ekraningizda shunday chiqadi', ru: 'На вашем экране будет так' })}</p>
+            <div className="demo-swap" key={cur.id}>{cur.res()}</div>
           </Col>
           <Col>
-            <p className="eyebrow fade-up delay-2" style={{ color: T.ink2, margin: 0 }}>{tr({ uz: "Buning aqlli yo'li bormi?", ru: 'Есть ли способ умнее?' })}</p>
-            <div className="fade-up delay-3" style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
-              {OPTS.map(o => { const on = picked === o.id; return (<button key={o.id} className={`hook-option ${on ? 'on' : ''}`} disabled={picked !== null} onClick={() => pick(o.id)}><span className="radio">{on && <span className="radio-dot" />}</span><span>{tr(o.label)}</span></button>); })}
-            </div>
-            {picked !== null && <p className="hook-ack fade-step">{tr({ uz: <>To'g'ri yo'nalish! Maxsus dastur — <b>Git</b> — har bir o'zgarishni eslab qoladi va istalgan nuqtaga qaytaradi. Xuddi <b>vaqt mashinasi</b> kabi.</>, ru: <>Верное направление! Специальная программа — <b>Git</b> — запоминает каждое изменение и возвращает к любой точке. Прямо как <b>машина времени</b>.</> })}</p>}
+            <DoSteps screen={screen} storedAnswer={storedAnswer} onAnswer={onAnswer} steps={steps} taskLabel={taskLabel} practice={practice} onStep={setView} />
           </Col>
         </Split>
       </div>
@@ -1050,713 +1061,489 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
   );
 };
 
-// ===== SCREEN 1 — REJA =====
-const Screen1 = ({ screen, onNext, onPrev }) => {
-  const audio = useAudio([{ id: 's1', text: `Bugun Git va GitHub bilan tanishamiz — bu dasturchining eng muhim quroli. 5 qadamda kodingizni xavfsiz saqlash, istalgan nuqtaga orqaga qaytish va uni bulutga — GitHub'ga yuborishni o'rganamiz.`, trigger: 'on_mount', waits_for: null }]);
+// Brauzer oynasi ichidagi kichik maketlar uchun umumiy uslublar
+const winBox = { display: 'flex', flexDirection: 'column', gap: 10, alignItems: 'center', justifyContent: 'center', textAlign: 'center' };
+const avaDot = { width: 34, height: 34, borderRadius: '50%', background: T.accent, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontWeight: 800, fontSize: 15 };
+
+// ===== SCREEN 0 — HOOK =====
+const ScreenHook = ({ screen, storedAnswer, onAnswer, onNext }) => {
+  const [picked, setPicked] = useState(storedAnswer?.picked ?? null);
+  const OPTS = [
+    { id: 'a', label: { uz: "Hech qayerda qolmaydi — yozilgan hamma narsa yo'qoladi", ru: 'Нигде не останется — всё написанное пропадёт' } },
+    { id: 'b', label: { uz: "Kodning internetdagi nusxasi bo'lsa — yangi kompyuterga qaytariladi", ru: 'Если есть копия кода в интернете — её вернут на новый компьютер' } },
+    { id: 'c', label: { uz: "Brauzer kodni o'zi eslab qoladi", ru: 'Браузер сам запомнит код' } },
+  ];
+  const pick = (v) => { if (picked !== null) return; setPicked(v); onAnswer(screen, { stage: 'hook', screenIdx: screen, picked: v, correct: true }); };
+  return (
+    <Stage eyebrow={tr({ uz: 'Kirish', ru: 'Введение' })} screen={screen} navContent={<NavNext optionalLive disabled={picked === null} label={tr({ uz: 'Davom etish', ru: 'Продолжить' })} onClick={onNext} />}>
+      <div className="screen">
+        <h1 className="title h-title fade-up" style={{ maxWidth: 780 }}>{tr({ uz: <>Kompyuteringiz buzilsa, yozgan kodingiz <span className="italic" style={{ color: T.accent }}>qayerda</span> qoladi?</>, ru: <><span className="italic" style={{ color: T.accent }}>Где</span> останется написанный вами код, если компьютер сломается?</> })}</h1>
+        <Mentor>{tr({ uz: <>Pastdagi uch javobdan bittasini tanlang.</>, ru: <>Выберите один из трёх ответов ниже.</> })}</Mentor>
+        <Split>
+          <Col>
+            <p className="eyebrow fade-up delay-1" style={{ color: T.ink2, margin: 0 }}>{tr({ uz: 'Sizningcha qaysi biri?', ru: 'Как думаете, какой?' })}</p>
+            <div className="fade-up delay-2" style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
+              {OPTS.map(o => { const on = picked === o.id; return (<button key={o.id} className={`hook-option ${on ? 'on' : ''}`} disabled={picked !== null} onClick={() => pick(o.id)}><span className="radio">{on && <span className="radio-dot" />}</span><span>{tr(o.label)}</span></button>); })}
+            </div>
+            {picked !== null && <p className="hook-ack fade-step">{tr({ uz: <>Javob — ikkinchisi. Kodning internetdagi nusxasi bo'lsa, uni istalgan kompyuterga qaytarib olish mumkin. Nusxa saqlanadigan joy — <b>GitHub</b>.</>, ru: <>Ответ — второй. Если у кода есть копия в интернете, её можно вернуть на любой компьютер. Место, где хранится копия, — <b>GitHub</b>.</> })}</p>}
+          </Col>
+          <Col>
+            <p className="flow-label fade-up delay-1">{tr({ uz: 'Bitta joydagi fayllar', ru: 'Файлы в одном месте' })}</p>
+            <div className={`gh-lap fade-up delay-2 ${picked !== null ? 'dead' : ''}`}>
+              <div className="gh-lap-scr">
+                {['index.html', 'style.css', 'rasm.png'].map(f => <span key={f} className="gh-lap-f">📄 {f}</span>)}
+                {picked !== null && <span className="gh-lap-x">💥</span>}
+              </div>
+              <div className="gh-lap-base" />
+            </div>
+            <p className="body" style={{ margin: 0, color: T.ink2 }}>{picked === null
+              ? tr({ uz: 'Fayllar faqat shu kompyuterda turibdi.', ru: 'Файлы лежат только на этом компьютере.' })
+              : tr({ uz: "Bitta joyda turgan fayl — bitta xatoga bog'liq.", ru: 'Файл в одном месте зависит от одной поломки.' })}</p>
+          </Col>
+        </Split>
+      </div>
+    </Stage>
+  );
+};
+
+// ===== SCREEN 1 — BUGUNGI NATIJA =====
+const ScreenGoal = ({ screen, onNext, onPrev }) => {
+  const nick = (nickRead() || '').trim().toLowerCase().replace(/[^a-z0-9-]/g, '') || 'ismingiz';
   const STEPS = [
-    { text: { uz: 'Git nima?', ru: 'Что такое Git?' }, tag: { uz: 'versiya nazorati', ru: 'контроль версий' } },
-    { text: { uz: 'commit — saqlangan nuqta', ru: 'commit — точка сохранения' }, tag: 'snapshot' },
-    { text: { uz: 'Tarix — vaqt mashinasi', ru: 'История — машина времени' }, tag: { uz: 'orqaga qaytish', ru: 'возврат назад' } },
-    { text: { uz: 'GitHub — bulutdagi uy', ru: 'GitHub — дом в облаке' }, tag: 'github.com' },
-    { text: { uz: 'push — bulutga yuborish', ru: 'push — отправка в облако' }, tag: '' }
+    { text: { uz: 'Google akkauntga kiramiz', ru: 'Заходим в аккаунт Google' }, tag: 'google.com' },
+    { text: { uz: "Git dasturini o'rnatamiz", ru: 'Ставим программу Git' }, tag: 'git-scm.com' },
+    { text: { uz: "GitHub'da ro'yxatdan o'tamiz", ru: 'Регистрируемся на GitHub' }, tag: 'github.com' },
+    { text: { uz: 'Loyiha uchun joy ochamiz', ru: 'Открываем место для проекта' }, tag: 'repo' },
+    { text: { uz: 'Kodni internetga yuboramiz', ru: 'Отправляем код в интернет' }, tag: 'push' },
   ];
   const isNarrow = useIsMobile(768);
   const [showSteps, setShowSteps] = useState(false);
-  const JOURNEY = [{ ic: '✏️', l: { uz: "O'zgartirish", ru: 'Изменение' } }, { ic: '💾', l: 'commit' }, { ic: '🕐', l: { uz: 'Tarix', ru: 'История' } }, { ic: '☁️', l: 'GitHub' }, { ic: '👥', l: { uz: 'Jamoa', ru: 'Команда' } }];
   const PreviewBlock = (
     <Col>
-      <p className="flow-label">{tr({ uz: "Dars oxirida bilasiz — bu yo'lni", ru: 'К концу урока вы будете знать этот путь' })}</p>
-      <Zoomable>
-      <div className="jmini fade-up delay-1">
-        {JOURNEY.map((j, i) => (<React.Fragment key={i}><div className="jmini-node" style={{ animationDelay: `${i * 0.1}s` }}><span className="jmini-ic">{j.ic}</span><span className="jmini-l">{tr(j.l)}</span></div>{i < JOURNEY.length - 1 && <span className="jmini-arr" style={{ animationDelay: `${i * 0.18}s` }}>→</span>}</React.Fragment>))}
-      </div>
-      </Zoomable>
-      <p className="body" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: <>…va kodingiz <b style={{ color: T.ink }}>hech qachon</b> yo'qolmaydi.</>, ru: <>…и ваш код <b style={{ color: T.ink }}>никогда</b> не потеряется.</> })}</p>
+      <p className="flow-label">{tr({ uz: 'Dars oxirida shu sahifa ochiladi', ru: 'В конце урока откроется эта страница' })}</p>
+      <Preview title={`github.com/${nick}/mening-saytim`} minH={160}>
+        <div className="repo" style={{ boxShadow: 'none' }}>
+          <div className="repo-top">📦 <b>mening-saytim</b> <span style={{ marginLeft: 'auto', color: T.ink3, fontSize: 11 }}>Public</span></div>
+          <div className="repo-row" style={{ cursor: 'default' }}>📄 index.html</div>
+          <div className="repo-row" style={{ cursor: 'default' }}>📄 style.css</div>
+          <div className="repo-row" style={{ cursor: 'default' }}>🕐 1 commit</div>
+        </div>
+      </Preview>
+      <p className="body" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: <>Shu manzilni <b style={{ color: T.ink }}>do'stingizga yuborasiz</b> — u brauzerda ochib, kodni ko'radi.</>, ru: <>Этот адрес вы <b style={{ color: T.ink }}>отправите другу</b> — он откроет его в браузере и увидит код.</> })}</p>
     </Col>
   );
   const StepsBlock = (
     <Col>
       <p className="flow-label">{tr({ uz: '5 qadam', ru: '5 шагов' })}</p>
-      <ol className="roadmap">{STEPS.map((s, i) => (<li key={i} className="step-card fade-up" style={{ animationDelay: `${0.08 + i * 0.05}s` }}><span className="step-num">{String(i + 1).padStart(2, '0')}</span><span className="step-body"><span className="step-text">{tr(s.text)}</span>{s.tag && <span className="step-tag">{tr(s.tag)}</span>}</span></li>))}</ol>
+      <ol className="roadmap">{STEPS.map((s, i) => (<li key={i} className="step-card fade-up" style={{ animationDelay: `${0.08 + i * 0.05}s` }}><span className="step-num">{String(i + 1).padStart(2, '0')}</span><span className="step-body"><span className="step-text">{tr(s.text)}</span>{s.tag && <span className="step-tag">{s.tag}</span>}</span></li>))}</ol>
     </Col>
   );
   return (
-    <Stage eyebrow={tr({ uz: 'Reja', ru: 'План' })} screen={screen} audioState={audio} mentorStatic navContent={<><NavBack onPrev={onPrev} /><NavNext label={tr({ uz: 'Boshlaymiz →', ru: 'Начинаем →' })} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Bugungi natija', ru: 'Результат дня' })} screen={screen} mentorStatic navContent={<><NavBack onPrev={onPrev} /><NavNext label={tr({ uz: 'Boshlaymiz →', ru: 'Начинаем →' })} onClick={onNext} /></>}>
       <div className="screen">
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Kodingiz uchun <span className="italic" style={{ color: T.accent }}>vaqt mashinasi</span> quramiz</>, ru: <>Построим <span className="italic" style={{ color: T.accent }}>машину времени</span> для вашего кода</> })}</h2><p className="body fade-up delay-1" style={{ margin: '6px 0 0', color: T.ink2, maxWidth: 580 }}>{tr({ uz: <><b style={{ color: T.ink }}>«Vaqt mashinasi»</b> — bu istalgan paytda kodning <b style={{ color: T.ink }}>eski holatiga qaytish</b> imkoni. Xato qilsangiz ham, kechagi (yoki bir haftalik) kodga bemalol qaytasiz. Git aynan shuni beradi.</>, ru: <><b style={{ color: T.ink }}>«Машина времени»</b> — это возможность в любой момент <b style={{ color: T.ink }}>вернуть код к старому состоянию</b>. Даже если ошибётесь, спокойно вернётесь к вчерашнему (или недельной давности) коду. Именно это даёт Git.</> })}</p></div>
-        <Mentor>{tr({ uz: <>Bugun <b style={{ color: T.ink }}>Git</b> va <b style={{ color: T.ink }}>GitHub</b> bilan tanishamiz — dasturchining eng muhim quroli. <b style={{ color: T.ink }}>5 qadamda</b> kodni saqlash, orqaga qaytish va bulutga yuborishni o'rganamiz.</>, ru: <>Сегодня познакомимся с <b style={{ color: T.ink }}>Git</b> и <b style={{ color: T.ink }}>GitHub</b> — важнейшим инструментом программиста. За <b style={{ color: T.ink }}>5 шагов</b> научимся сохранять код, откатываться назад и отправлять код в облако.</> })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Bugun kod kompyuterdan <span className="italic" style={{ color: T.accent }}>internetga</span> chiqadi</>, ru: <>Сегодня код выйдет с компьютера <span className="italic" style={{ color: T.accent }}>в интернет</span></> })}</h2></div>
+        <Mentor>{tr({ uz: <>Dars oxirida kodingiz internetda turadi va uning <b style={{ color: T.ink }}>havolasi</b> bo'ladi. Buni <b style={{ color: T.ink }}>5 qadamda</b> o'zingiz qilasiz.</>, ru: <>К концу урока ваш код будет в интернете, и у него появится <b style={{ color: T.ink }}>ссылка</b>. Вы сделаете это сами за <b style={{ color: T.ink }}>5 шагов</b>.</> })}</Mentor>
         {!isNarrow ? (<Split>{PreviewBlock}{StepsBlock}</Split>)
           : !showSteps ? (<div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px,2vw,16px)' }}>{PreviewBlock}<button className="btn" style={{ alignSelf: 'flex-start' }} onClick={() => setShowSteps(true)}>📋 {tr({ uz: "5 qadamni ko'rish", ru: 'Посмотреть 5 шагов' })}</button></div>)
-          : (<div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px,2vw,16px)' }}><button className="btn-soft" style={{ alignSelf: 'flex-start' }} onClick={() => setShowSteps(false)}>↩ {tr({ uz: "Yo'lni ko'rish", ru: 'Посмотреть путь' })}</button>{StepsBlock}</div>)}
+            : (<div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px,2vw,16px)' }}><button className="btn-soft" style={{ alignSelf: 'flex-start' }} onClick={() => setShowSteps(false)}>↩ {tr({ uz: "Natijani ko'rish", ru: 'Посмотреть результат' })}</button>{StepsBlock}</div>)}
       </div>
     </Stage>
   );
 };
 
-// ===== SCREEN 2 — MINORA QURUVCHI (checkpoint-o'yin) =====
-// Holat-mashina: blocks (balandlik) · cp (checkpoint-balandlik | null) · photos (📸 tarix)
-// crash + qutqarish (cp'dan tiklash) = done. Matn — PLACEHOLDER (Metodist moslaydi).
-const S2_HASHES = ['a1b2c3d', 'e4f5a6b', 'c7d8e9f', 'b9a8c7d', 'd2c3b4a'];
-const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const audio = useAudio([{ id: 's2', text: `Git — versiya nazorati tizimi. Minora quruvchini tasavvur qiling: blok ustiga blok qo'yasiz. Ba'zan «Checkpoint» bosib, minoraning suratini olasiz — bu commit. Agar bug chiqib minora qulasa, checkpoint bo'lsa — o'sha suratdan tiklanasiz, boshidan emas! Blok qo'ying, checkpoint qo'ying va bug'ni bosib ko'ring.`, trigger: 'on_mount', waits_for: null }]);
-  const [blocks, setBlocks] = useState(storedAnswer ? 3 : 0);
-  const [cp, setCp] = useState(storedAnswer ? 3 : null);
-  const [photos, setPhotos] = useState(storedAnswer?.photos || []);
-  const [anim, setAnim] = useState(null);          // null | 'fall' | 'rewind'
-  const [rescued, setRescued] = useState(!!storedAnswer); // kamida bir marta checkpoint-QUTQARISH bo'ldimi
-  const [crashed, setCrashed] = useState(false);   // butun minora quladi (checkpointsiz)
-  const [celebrate, setCelebrate] = useState(false);
-  const done = rescued;
-  useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true, photos }); }, [done]); // eslint-disable-line
-  const putBlock = () => { if (anim) return; setCrashed(false); setBlocks(b => b + 1); };
-  const checkpoint = () => {
-    if (anim || blocks === 0) return;
-    setCp(blocks); setCrashed(false);
-    setPhotos(p => [{ n: blocks, hash: S2_HASHES[p.length % S2_HASHES.length] }, ...p]);
-  };
-  const bug = () => {
-    if (anim || blocks === 0) return;
-    setAnim('fall'); setCelebrate(false);
-    if (cp === null) {
-      // Checkpoint yo'q — butun minora qulaydi, boshidan
-      setTimeout(() => { setBlocks(0); setCrashed(true); setAnim(null); }, 520);
-    } else {
-      // Checkpoint bor — cp'dan yuqorisi qulaydi, so'ng cp holatiga tiklanadi
-      setTimeout(() => {
-        setBlocks(cp); setCrashed(false); setRescued(true); setCelebrate(true);
-        setAnim('rewind');
-        setTimeout(() => setAnim(null), 520);
-        setTimeout(() => setCelebrate(false), 2200);
-      }, 520);
-    }
-  };
-  const heights = Array.from({ length: blocks }, (_, i) => i + 1); // 1..blocks
-  const twrCls = `twr ${anim === 'fall' ? 'falling' : ''} ${anim === 'rewind' ? 'rewinding' : ''}`;
-  return (
-    <Stage eyebrow="Git" screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Minorangizni qutqaring', ru: 'Спасите свою башню' })} onClick={onNext} /></>}>
-      <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Git aslida <span className="italic" style={{ color: T.accent }}>nima</span>?</>, ru: <>Что же такое Git <span className="italic" style={{ color: T.accent }}>на самом деле</span>?</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Git — <b style={{ color: T.ink }}>versiya nazorati</b> tizimi. <b style={{ color: T.ink }}>Minora quruvchi</b>ni tasavvur qiling: blok qo'yasiz, ba'zan <b style={{ color: T.ink }}>Checkpoint</b> bosib suratga olasiz (commit). Bug chiqsa — checkpoint bo'lsa o'sha suratdan tiklanasiz, boshidan emas!</>, ru: <>Git — система <b style={{ color: T.ink }}>контроля версий</b>. Представьте <b style={{ color: T.ink }}>строителя башни</b>: вы ставите блоки и иногда нажимаете <b style={{ color: T.ink }}>Checkpoint</b>, делая снимок (коммит). Случится баг — если есть чекпоинт, восстановитесь с этого снимка, а не с нуля!</> })}</Mentor>
-        <Zoomable>
-        <div className="split">
-          <div className="col">
-            <div className="flow-label">{tr({ uz: 'Minora', ru: 'Башня' })}</div>
-            <div className="twr-wrap fade-up delay-2">
-              <div className={twrCls}>
-                {heights.length === 0
-                  ? <span className="twr-empty">{crashed ? tr({ uz: '💥 Minora quladi — boshidan', ru: '💥 Башня рухнула — всё сначала' }) : tr({ uz: "Blok qo'ying — minora o'sadi", ru: 'Ставьте блоки — башня растёт' })}</span>
-                  : heights.map(h => (
-                      // --fi = qulash navbat indeksi (0 = eng tepa, birinchi qulaydi; pastdagilar kattaroq = keyinroq)
-                      <div key={h} className={`twr-block ${h === cp ? 'flag' : ''}`} style={{ '--fi': blocks - h }}>
-                        {h === cp && <span className="twr-flag">🚩</span>}
-                      </div>
-                    ))}
-              </div>
-              <div className="twr-h">{tr({ uz: <><b>{blocks}</b>-qavat</>, ru: <>Этаж <b>{blocks}</b></> })}{cp !== null && <span style={{ color: T.success, fontWeight: 700 }}>{tr({ uz: <> · 🚩 {cp}-qavatda checkpoint</>, ru: <> · 🚩 чекпоинт на этаже {cp}</> })}</span>}</div>
-            </div>
-            <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-              <button className="btn" onClick={putBlock} disabled={!!anim}>▶ {tr({ uz: "Blok qo'yish", ru: 'Поставить блок' })}</button>
-              <button className="btn-soft" onClick={checkpoint} disabled={!!anim || blocks === 0}>💾 Checkpoint (commit)</button>
-              <button className="btn-soft" onClick={bug} disabled={!!anim || blocks === 0}>💥 Bug!</button>
-            </div>
-          </div>
-          <div className="col">
-            {done ? (
-              <div className="frame-success fade-step"><p className="small mono" style={{ margin: '0 0 4px', fontWeight: 600, color: T.success, textTransform: 'uppercase', letterSpacing: '0.08em' }}>✓ {tr({ uz: 'Checkpoint sizni qutqardi', ru: 'Чекпоинт вас спас' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Bug minorani qulatdi, lekin faqat <b>saqlanmagan</b> bloklar yo'qoldi — qolgani <b>🚩 checkpoint</b> suratida xavfsiz. Git ham xuddi shunday: har <b>commit</b> — vaqt mashinasidagi qaytish nuqtasi.</>, ru: <>Баг обрушил башню, но пропали только <b>несохранённые</b> блоки — остальное в безопасности на снимке <b>🚩 checkpoint</b>. Git работает так же: каждый <b>commit</b> — точка возврата в машине времени.</> })}</p></div>
-            ) : crashed ? (
-              <div className="frame-soft fade-step"><p className="small mono" style={{ margin: '0 0 4px', fontWeight: 600, color: T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>💥 {tr({ uz: 'Hech nima saqlanmagan edi', ru: 'Ничего не было сохранено' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Voy! Butun minora quladi va butun mehnatingiz yo'qoldi — hech qayerda surat yo'q edi. Xafa bo'lmang: keyingi safar avval <b>💾 Checkpoint</b> qo'ying, keyin bemalol tajriba qiling.</>, ru: <>Ой! Вся башня рухнула, и весь труд пропал — нигде не было снимка. Не расстраивайтесь: в следующий раз сначала поставьте <b>💾 Checkpoint</b>, а потом смело экспериментируйте.</> })}</p></div>
-            ) : (<div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: <>Bir necha blok qo'ying, <b>Checkpoint</b> bosing, keyin <b>Bug!</b>ni bosib ko'ring — minorangizni qutqaring.</>, ru: <>Поставьте несколько блоков, нажмите <b>Checkpoint</b>, затем нажмите <b>Bug!</b> — и спасите свою башню.</> })}</p></div>)}
-            <div className="frame-soft"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <><b>Git</b> — kodning har bir holatini surat qilib saqlaydi. Checkpoint = <span className="mono">commit</span>.</>, ru: <><b>Git</b> сохраняет каждое состояние кода как снимок. Checkpoint = <span className="mono">commit</span>.</> })}</p></div>
-            {photos.length > 0 && (
-              <div className="col" style={{ gap: 8 }}>
-                <div className="flow-label">📸 {tr({ uz: 'Suratlar', ru: 'Снимки' })}</div>
-                {photos.map((p, i) => (
-                  <div key={i} className="gcommit">
-                    <span className="gcommit-dot">📸</span>
-                    <span className="gcommit-body"><span className="gcommit-msg">{tr({ uz: `${p.n}-qavat saqlandi`, ru: `Сохранён этаж ${p.n}` })}</span><span className="gcommit-meta">commit {p.hash} · {tr({ uz: 'hozir', ru: 'сейчас' })}</span></span>
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
-        </div>
-        </Zoomable>
-      </div>
-      {celebrate && <Confetti />}
-    </Stage>
-  );
-};
-// ===== SCREEN 3 — COMMIT (snapshot) =====
-const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const audio = useAudio([{ id: 's3', text: `Git kodni qanday saqlaydi? Har bir saqlash — commit deyiladi. commit — bu kodingizning o'sha lahzadagi surati, xuddi fotosurat kabi. Unga qisqa izoh yozasiz: nima o'zgardi. Rangni o'zgartirib, surat oling — commit qiling.`, trigger: 'on_mount', waits_for: null }]);
-  const COLORS = [{ n: { uz: 'qora', ru: 'чёрный' }, c: '#0E0E10' }, { n: { uz: "ko'k", ru: 'синий' }, c: '#019ACB' }, { n: { uz: 'qizil', ru: 'красный' }, c: '#FF4F28' }, { n: { uz: 'yashil', ru: 'зелёный' }, c: '#1F7A4D' }];
-  const HASHES = ['a1b2c3d', 'e4f5a6b', 'c7d8e9f', 'b9a8c7d'];
-  const [ci, setCi] = useState(0);
-  const [commits, setCommits] = useState(storedAnswer?.commits || []);
-  const done = commits.length > 0;
-  const change = () => setCi(i => (i + 1) % COLORS.length);
-  const commit = () => {
-    const col = COLORS[ci];
-    const next = [{ n: col.n, hash: HASHES[commits.length % HASHES.length], c: col.c }, ...commits];
-    setCommits(next);
-    if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true, commits: next });
-  };
-  return (
-    <Stage eyebrow="commit" screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Surat oling (commit)', ru: 'Сделайте снимок (commit)' })} onClick={onNext} /></>}>
-      <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Git o'zgarishni qanday <span className="italic" style={{ color: T.accent }}>eslab qoladi</span>?</>, ru: <>Как Git <span className="italic" style={{ color: T.accent }}>запоминает</span> изменения?</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Git'da har bir saqlash — <b style={{ color: T.ink }}>commit</b>. Bu kodingizning o'sha lahzadagi <b style={{ color: T.ink }}>surati</b> 📸, qisqa izoh bilan. Rangni o'zgartirib, surat oling.</>, ru: <>В Git каждое сохранение — <b style={{ color: T.ink }}>commit</b>. Это <b style={{ color: T.ink }}>снимок</b> вашего кода в тот момент 📸, с коротким комментарием. Поменяйте цвет и сделайте снимок.</> })}</Mentor>
-        <Zoomable>
-        <div className="split">
-          <div className="col">
-            <div className="flow-label">{tr({ uz: 'Kodingiz', ru: 'Ваш код' })}</div>
-            <pre className="code-box fade-up delay-2" style={{ minHeight: 50 }}><Tg>{'<h1 '}</Tg><At>style</At>=<Sr>{`"color:${COLORS[ci].c}"`}</Sr><Tg>{'>'}</Tg>{tr({ uz: 'Salom', ru: 'Привет' })}<Tg>{'</h1>'}</Tg></pre>
-            <Preview title="index.html" minH={64}><h1 style={{ fontFamily: 'Georgia, serif', fontSize: 'clamp(20px,3vw,28px)', color: COLORS[ci].c, margin: 0 }}>{tr({ uz: 'Salom', ru: 'Привет' })}</h1></Preview>
-            <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-              <button className="btn-soft" onClick={change}>🎨 {tr({ uz: "Rangini o'zgartirish", ru: 'Поменять цвет' })}</button>
-              <button className="btn" onClick={commit}>📸 {tr({ uz: 'commit qilish', ru: 'Сделать commit' })}</button>
-            </div>
-          </div>
-          <div className="col">
-            <div className="flow-label">{tr({ uz: 'commit tarixi', ru: 'история коммитов' })}</div>
-            {commits.length === 0 ? (
-              <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: `Hali surat yo'q — "commit qilish"ni bosing`, ru: 'Пока нет снимков — нажмите «Сделать commit»' })}</p></div>
-            ) : (
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-                {commits.map((c, i) => (
-                  <div key={i} className="gcommit">
-                    <span className="gcommit-dot">📸</span>
-                    <span className="gcommit-body"><span className="gcommit-msg">{tr({ uz: 'Sarlavha rangi:', ru: 'Цвет заголовка:' })} {tr(c.n)}</span><span className="gcommit-meta">commit {c.hash} · {tr({ uz: 'hozir', ru: 'сейчас' })}</span></span>
-                    <span style={{ width: 16, height: 16, borderRadius: '50%', background: c.c, flexShrink: 0, alignSelf: 'center' }} />
-                  </div>
-                ))}
-              </div>
-            )}
-            {done && <div className="frame-soft fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Har commit — alohida surat: <b>izoh</b> + <b>vaqt</b> + maxsus raqam (<span className="mono">hash</span>). Tarix saqlanib qoladi.</>, ru: <>Каждый commit — отдельный снимок: <b>комментарий</b> + <b>время</b> + специальный номер (<span className="mono">hash</span>). История сохраняется.</> })}</p></div>}
-          </div>
-        </div>
-        </Zoomable>
-      </div>
-    </Stage>
-  );
-};
+// ===== SCREEN 2 — CHROME + GOOGLE AKKAUNT =====
+const CHROME_STEPS = [
+  { id: 'open', nav: { uz: 'brauzerni oching', ru: 'откройте браузер' },
+    t: { uz: 'Chrome brauzerini oching', ru: 'Откройте браузер Chrome' },
+    d: { uz: "Ish stolidagi rangli doira belgisi. Chrome bo'lmasa — Edge ham bo'laveradi.", ru: 'Цветной круглый значок на рабочем столе. Нет Chrome — подойдёт и Edge.' },
+    res: () => <Preview title={tr({ uz: 'Yangi varaq', ru: 'Новая вкладка' })} minH={140}><div style={{ ...winBox, minHeight: 110 }}><span style={{ fontSize: 26 }}>🔍</span><span className="mono small" style={{ color: T.ink3 }}>{tr({ uz: "manzil qatori bo'sh", ru: 'адресная строка пуста' })}</span></div></Preview> },
+  { id: 'goog', nav: { uz: 'google.com ni oching', ru: 'откройте google.com' },
+    t: { uz: 'Manzil qatoriga `google.com` yozing va Enter bosing', ru: 'Введите в адресной строке `google.com` и нажмите Enter' },
+    d: { uz: 'Manzil qatori — oynaning eng tepasidagi uzun maydon.', ru: 'Адресная строка — длинное поле в самом верху окна.' },
+    res: () => <Preview title="google.com" minH={140}><div style={{ ...winBox, minHeight: 110 }}><span style={{ fontFamily: 'Georgia, serif', fontSize: 30, letterSpacing: '-0.02em' }}>Google</span><span style={{ width: '80%', maxWidth: 240, height: 30, borderRadius: 99, background: '#fff', boxShadow: `inset 0 0 0 1.5px ${T.line}` }} /><span className="mono small" style={{ color: T.ink3 }}>{tr({ uz: "o'ng yuqorida — Kirish", ru: 'справа вверху — Войти' })}</span></div></Preview> },
+  { id: 'signin', nav: { uz: 'akkauntga kiring', ru: 'войдите в аккаунт' },
+    t: { uz: "O'ng yuqoridagi «Kirish» tugmasini bosing va pochtangiz bilan kiring", ru: 'Нажмите кнопку «Войти» справа вверху и войдите со своей почтой' },
+    d: { uz: 'Pochta manzili va parolni yozasiz.', ru: 'Вводите адрес почты и пароль.' },
+    help: { uz: "Akkauntim yo'q: «Akkaunt yaratish» (Create account) tugmasini bosing — ism, tug'ilgan sana va parol yozasiz.", ru: 'Нет аккаунта: нажмите «Создать аккаунт» (Create account) — введёте имя, дату рождения и пароль.' },
+    res: () => <Preview title="accounts.google.com" minH={140}><div style={{ ...winBox, minHeight: 110 }}><span style={{ fontFamily: 'Georgia, serif', fontSize: 22 }}>{tr({ uz: 'Kirish', ru: 'Вход' })}</span><span style={{ width: '80%', maxWidth: 220, height: 28, borderRadius: 8, background: '#fff', boxShadow: `inset 0 0 0 1.5px ${T.line}` }} /><span className="mono small" style={{ color: T.ink3 }}>ism@gmail.com</span></div></Preview> },
+  { id: 'check', nav: { uz: 'kirganingizni tekshiring', ru: 'проверьте вход' },
+    t: { uz: "O'ng yuqoridagi doirada ismingizning birinchi harfi paydo bo'ldimi — tekshiring", ru: 'Проверьте: появилась ли в кружке справа вверху первая буква вашего имени' },
+    d: { uz: "Harf ko'rinsa — akkauntga kirdingiz.", ru: 'Видна буква — вы вошли в аккаунт.' },
+    res: () => <Preview title="google.com" minH={140}><div style={{ ...winBox, minHeight: 110 }}><span style={avaDot}>A</span><span className="mono small" style={{ color: T.success, fontWeight: 700 }}>✓ {tr({ uz: 'akkaunt ochiq', ru: 'аккаунт открыт' })}</span></div></Preview> },
+];
+const ScreenChrome = (props) => (
+  <DoScreen {...props}
+    eyebrow={tr({ uz: '1-qadam · Akkaunt', ru: '1-й шаг · Аккаунт' })}
+    title={tr({ uz: <>Avval <span className="italic" style={{ color: T.accent }}>pochta</span> kerak bo'ladi</>, ru: <>Сначала понадобится <span className="italic" style={{ color: T.accent }}>почта</span></> })}
+    mentor={tr({ uz: <>Keyingi saytlarga kirish uchun ishlaydigan pochta kerak — qadamlarni <b style={{ color: T.ink }}>birma-bir</b> bajaring.</>, ru: <>Для входа на следующие сайты нужна рабочая почта — выполняйте шаги <b style={{ color: T.ink }}>по одному</b>.</> })}
+    steps={CHROME_STEPS} taskLabel={{ uz: 'Google akkaunt', ru: 'Аккаунт Google' }} />
+);
 
-// ===== SCREEN 4 — TEST (Git nima qiladi) =====
-const Screen4 = (props) => (
+// ===== SCREEN 3 — GIT O'RNATISH =====
+const GIT_STEPS = [
+  { id: 'site', nav: { uz: 'git-scm.com ni oching', ru: 'откройте git-scm.com' },
+    t: { uz: 'Brauzerda `git-scm.com` saytini oching', ru: 'Откройте в браузере сайт `git-scm.com`' },
+    d: { uz: "Manzilni qo'lda yozing — bu Git dasturining rasmiy sayti, bepul.", ru: 'Наберите адрес вручную — это официальный сайт Git, бесплатный.' },
+    res: () => <Preview title="git-scm.com" minH={150}><div style={{ ...winBox, minHeight: 120 }}><span style={{ fontSize: 26 }}>🌿</span><span style={{ fontFamily: 'Georgia, serif', fontSize: 20 }}>Git</span><span style={{ background: T.accent, color: '#fff', borderRadius: 8, padding: '7px 14px', fontWeight: 700, fontSize: 13 }}>⬇ Download for Windows</span></div></Preview> },
+  { id: 'dl', nav: { uz: 'faylni yuklab oling', ru: 'скачайте файл' },
+    t: { uz: '«Download for Windows» tugmasini bosing', ru: 'Нажмите кнопку «Download for Windows»' },
+    d: { uz: 'Fayl (taxminan 60 MB) yuklanishini kuting — u «Yuklanmalar» papkasiga tushadi.', ru: 'Дождитесь загрузки файла (около 60 МБ) — он попадёт в папку «Загрузки».' },
+    res: () => <Preview title="git-scm.com" minH={150}><div style={{ ...winBox, minHeight: 120 }}><span className="mono small">📦 Git-2.45-64-bit.exe</span><span style={{ width: '70%', maxWidth: 200, height: 7, borderRadius: 99, background: T.line, overflow: 'hidden' }}><span style={{ display: 'block', width: '70%', height: '100%', background: T.accent }} /></span><span className="mono small" style={{ color: T.ink3 }}>{tr({ uz: 'yuklanmoqda…', ru: 'загружается…' })}</span></div></Preview> },
+  { id: 'inst', nav: { uz: "dasturni o'rnating", ru: 'установите программу' },
+    t: { uz: "Yuklangan faylni oching va o'rnating", ru: 'Откройте скачанный файл и установите' },
+    d: { uz: "Oynadagi Next tugmasini bosaverasiz, oxirida Install. Sozlamalarni o'zgartirish shart emas.", ru: 'Нажимаете Next, в конце — Install. Настройки менять не нужно.' },
+    help: { uz: '«Bu dasturga ruxsat berasizmi?» degan oyna chiqsa — Ha (Yes) tugmasini bosing.', ru: 'Появилось окно «Разрешить этой программе?» — нажмите Да (Yes).' },
+    res: () => <div className="ginst"><div className="ginst-bar">Git Setup</div><div className="ginst-body"><p className="ginst-row">☑ Git Bash Here</p><p className="ginst-row">☑ Git GUI Here</p><div className="ginst-btns"><span>Back</span><span className="on">Install</span><span>Cancel</span></div></div></div> },
+  { id: 'ver', nav: { uz: "o'rnatilganini tekshiring", ru: 'проверьте установку' },
+    t: { uz: "VS Code'da terminal oching va `git --version` yozib Enter bosing", ru: 'Откройте терминал в VS Code, наберите `git --version` и нажмите Enter' },
+    d: { uz: 'Terminal: yuqoridagi menyudan Terminal → New Terminal.', ru: 'Терминал: в верхнем меню Terminal → New Terminal.' },
+    help: { uz: "«git is not recognized» chiqsa — VS Code'ni butunlay yopib, qaytadan oching.", ru: 'Появилось «git is not recognized» — закройте VS Code полностью и откройте заново.' },
+    res: () => <div className="term"><span className="term-row"><span className="term-prompt">$ </span><span className="term-cmd">git --version</span></span><span className="term-row"><span className="term-ok">git version 2.45.2.windows.1</span></span></div> },
+];
+const ScreenGitInstall = (props) => (
+  <DoScreen {...props}
+    eyebrow={tr({ uz: "2-qadam · O'rnatish", ru: '2-й шаг · Установка' })}
+    title={tr({ uz: <>Kodning nusxalarini <span className="italic" style={{ color: T.accent }}>bitta dastur</span> yuritadi</>, ru: <>Копии кода ведёт <span className="italic" style={{ color: T.accent }}>одна программа</span></> })}
+    mentor={tr({ uz: <>Kodning versiyalarini saqlaydigan bepul dastur bor — u <b style={{ color: T.ink }}>Git</b> deyiladi.</>, ru: <>Есть бесплатная программа, которая хранит версии кода, — она называется <b style={{ color: T.ink }}>Git</b>.</> })}
+    steps={GIT_STEPS} taskLabel={{ uz: "Git o'rnatish", ru: 'Установка Git' }}
+    resultLabel={tr({ uz: 'Kutilgan natija', ru: 'Ожидаемый результат' })} />
+);
+
+// ===== SCREEN 4 — TEST-1 (Git nima qiladi) =====
+const ScreenTest1 = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 1-savol', ru: 'Упражнение · вопрос 1' })}
-    audioText="Git dasturchiga asosan nima beradi — uning asosiy vazifasi nima?"
-    questionText="Git asosan nima qiladi?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-sub" style={{ marginTop: 8 }}>{tr({ uz: <>Git asosan <span className="italic" style={{ color: T.accent }}>nima</span> qiladi?</>, ru: <>Что Git делает <span className="italic" style={{ color: T.accent }}>в основном</span>?</> })}</h2></>}
-    options={[{ uz: 'Versiyalarni saqlab, orqaga qaytaradi', ru: 'Сохраняет версии и возвращает назад' }, { uz: "Kodni chiroyli ranglarga bo'yaydi", ru: 'Красиво раскрашивает код' }, { uz: 'Internet tezligini oshirib beradi', ru: 'Ускоряет интернет' }, { uz: 'Rasm va suratlarni tahrirlab beradi', ru: 'Редактирует фото и картинки' }]} correctIdx={0}
-    explainCorrect={tr({ uz: "To'g'ri! Git — versiya nazorati: u kodning har bir versiyasini (commit) saqlaydi va istalgan nuqtaga qaytaradi.", ru: 'Верно! Git — контроль версий: он сохраняет каждую версию кода (commit) и возвращает к любой точке.' })}
-    explainWrong={{ 1: tr({ uz: 'Ranglash — CSS ishi. Git esa kod versiyalarini saqlaydi.', ru: 'Раскрашивание — работа CSS. А Git сохраняет версии кода.' }), 2: tr({ uz: "Internet tezligi Git bilan bog'liq emas. Git versiyalarni boshqaradi.", ru: 'Скорость интернета с Git не связана. Git управляет версиями.' }), 3: tr({ uz: 'Rasm tahrirlash — Git vazifasi emas. U kod tarixini saqlaydi.', ru: 'Редактирование картинок — не задача Git. Он хранит историю кода.' }), default: tr({ uz: 'Git kod versiyalarini saqlaydi va orqaga qaytaradi.', ru: 'Git сохраняет версии кода и возвращает назад.' }) }} />
+    audioText="Git kompyuteringizda qanday ish qiladi? To'g'ri javobni tanlang."
+    questionText="Git kompyuterda qanday ish qiladi?"
+    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-sub" style={{ marginTop: 8 }}>{tr({ uz: <>Git kompyuterda qanday <span className="italic" style={{ color: T.accent }}>ish</span> qiladi?</>, ru: <>Какую <span className="italic" style={{ color: T.accent }}>работу</span> делает Git на компьютере?</> })}</h2></>}
+    options={[
+      { uz: 'Kodni ranglab, xatolarni belgilab beradi', ru: 'Раскрашивает код и подчёркивает ошибки' },
+      { uz: "Kodning versiyalarini saqlaydi va eski holatiga qaytaradi", ru: 'Хранит версии кода и возвращает старое состояние' },
+      { uz: 'Kodni brauzerda ochib beradi', ru: 'Открывает код в браузере' },
+      { uz: 'Saytni internetda hammaga ochadi', ru: 'Открывает сайт в интернете для всех' },
+    ]} correctIdx={1}
+    explainCorrect={tr({ uz: "To'g'ri. Git kodning har bir holatini saqlaydi, shuning uchun istalgan eski holatga qaytish mumkin.", ru: 'Верно. Git хранит каждое состояние кода, поэтому можно вернуться к любому старому состоянию.' })}
+    explainWrong={{
+      0: tr({ uz: "Kodni ranglash va xatoni belgilash — VS Code ishi. Git versiyalarni saqlaydi.", ru: 'Раскрашивать код и подчёркивать ошибки — работа VS Code. Git хранит версии.' }),
+      2: tr({ uz: "Kodni brauzerda ochish — Live Server ishi. Git versiyalarni saqlaydi.", ru: 'Открывать код в браузере — работа Live Server. Git хранит версии.' }),
+      3: tr({ uz: "Saytni hammaga ochish — GitHub ishi. Git esa kompyuterda versiyalarni saqlaydi.", ru: 'Открывать сайт для всех — работа GitHub. А Git хранит версии на компьютере.' }),
+      default: tr({ uz: 'Git kodning versiyalarini saqlaydi va eski holatiga qaytaradi.', ru: 'Git хранит версии кода и возвращает старое состояние.' }),
+    }} />
 );
 
-// ===== SCREEN 5 — COMMIT JARAYONI (add -> commit) =====
-const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const audio = useAudio([{ id: 's5', text: `commit ikki qadamda bo'ladi. Avval git add — qaysi fayllarni saqlashni tanlaysiz, xuddi savatga solganday. Keyin git commit — ularni izoh bilan saqlaysiz. Tugmalarni bosib, faylni o'zgartirgandan saqlangangacha bo'lgan yo'lni ko'ring.`, trigger: 'on_mount', waits_for: null }]);
-  const [stage, setStage] = useState(storedAnswer ? 2 : 0);
-  const done = stage >= 2;
-  useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
-  const STATUS = [{ ic: '🔴', l: { uz: "o'zgartirildi", ru: 'изменён' }, cls: 'gst-mod' }, { ic: '🟢', l: { uz: 'tayyorlandi (staged)', ru: 'подготовлен (staged)' }, cls: 'gst-staged' }, { ic: '✅', l: { uz: 'saqlandi (committed)', ru: 'сохранён (committed)' }, cls: 'gst-done' }];
-  const cur = STATUS[stage];
-  const add = () => { if (stage === 0) setStage(1); };
-  const commit = () => { if (stage === 1) setStage(2); };
-  return (
-    <Stage eyebrow={tr({ uz: 'commit jarayoni', ru: 'процесс коммита' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Saqlang (add → commit)', ru: 'Сохраните (add → commit)' })} onClick={onNext} /></>}>
-      <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Saqlashdan oldin <span className="italic" style={{ color: T.accent }}>nima bo'ladi</span>?</>, ru: <>Что происходит <span className="italic" style={{ color: T.accent }}>перед сохранением</span>?</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Avval <span className="mono">git add</span> — qaysi fayllarni saqlashni tanlaysiz (xuddi savatga solganday). Keyin <span className="mono">git commit</span> — ularni <b style={{ color: T.ink }}>izoh bilan</b> saqlaysiz. Tugmalarni bosing.</>, ru: <>Сначала <span className="mono">git add</span> — выбираете, какие файлы сохранить (как будто кладёте в корзину). Затем <span className="mono">git commit</span> — сохраняете их <b style={{ color: T.ink }}>с комментарием</b>. Нажимайте кнопки.</> })}</Mentor>
-        <Zoomable>
-        <div className="split">
-          <div className="col">
-            <div className="flow-label">{tr({ uz: 'Fayl holati', ru: 'Состояние файла' })}</div>
-            <div className="gfile fade-up delay-2"><span style={{ fontSize: 18 }}>📄</span><span className="gfile-name">index.html</span><span className={`gfile-status ${cur.cls}`}>{cur.ic} {tr(cur.l)}</span></div>
-            <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-              <button className="btn" onClick={add} disabled={stage !== 0}>📥 git add</button>
-              <button className="btn" onClick={commit} disabled={stage !== 1}>💾 git commit</button>
-            </div>
-            <div className="frame-soft"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <><b>add</b> → fayllarni tanlash. <b>commit</b> → izoh bilan saqlash. Ikkisi birga.</>, ru: <><b>add</b> → выбрать файлы. <b>commit</b> → сохранить с комментарием. Работают вместе.</> })}</p></div>
-          </div>
-          <div className="col">
-            <div className="flow-label">{tr({ uz: 'Terminal', ru: 'Терминал' })}</div>
-            <div className="term fade-up delay-2">
-              <span className="term-row"><span className="term-prompt">$ </span><span className="term-cmd">{stage >= 1 ? 'git add index.html' : '_'}</span></span>
-              {stage >= 2 && <span className="term-row"><span className="term-prompt">$ </span><span className="term-cmd">{tr({ uz: `git commit -m "yangi o'zgarish"`, ru: 'git commit -m "новое изменение"' })}</span></span>}
-              {stage >= 2 && <span className="term-row"><span className="term-ok">{tr({ uz: `[main a1b2c3d] yangi o'zgarish`, ru: '[main a1b2c3d] новое изменение' })}</span></span>}
-              {stage >= 2 && <span className="term-row"><span className="term-out"> {tr({ uz: `1 fayl o'zgardi`, ru: '1 файл изменён' })}</span></span>}
-            </div>
-            {done && (<div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <><b>add</b> faylni tanladi, <b>commit</b> uni izoh bilan saqladi. Checkpoint tayyor!</>, ru: <><b>add</b> выбрал файл, <b>commit</b> сохранил его с комментарием. Чекпоинт готов!</> })}</p></div>)}
-          </div>
-        </div>
-        </Zoomable>
-      </div>
-    </Stage>
-  );
-};
-
-// ===== SCREEN 5b — TEST (commit nima) =====
-const Screen5b = (props) => (
-  <QuestionScreen {...props} scope="module-mikro" eyebrow={tr({ uz: 'Tekshiruv', ru: 'Проверка' })}
-    audioText="Kodning bir holatini izoh bilan saqlagan nuqta — bu nima deb ataladi?"
-    questionText="Kodning izoh bilan saqlangan nuqtasi nima deb ataladi?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: 'Mustahkamlash', ru: 'Закрепление' })}</p><h2 className="title h-sub" style={{ marginTop: 8 }}>{tr({ uz: <>Kodning izoh bilan saqlangan <span className="italic" style={{ color: T.accent }}>nuqtasi (surati)</span> nima deb ataladi?</>, ru: <>Как называется сохранённая с комментарием <span className="italic" style={{ color: T.accent }}>точка (снимок)</span> кода?</> })}</h2></>}
-    options={[{ uz: 'Brauzer', ru: 'Браузер' }, { uz: 'Parol', ru: 'Пароль' }, 'commit', { uz: 'Domen', ru: 'Домен' }]} correctIdx={2}
-    explainCorrect={tr({ uz: "To'g'ri! commit — kodning o'sha lahzadagi saqlangan nuqtasi (surati), izoh bilan birga.", ru: 'Верно! commit — сохранённая точка (снимок) кода в тот момент, вместе с комментарием.' })}
-    explainWrong={{ 0: tr({ uz: 'Brauzer — saytni ochadigan dastur. Saqlangan nuqta — commit.', ru: 'Браузер — программа, открывающая сайты. Сохранённая точка — commit.' }), 1: tr({ uz: "Parol — maxfiy so'z. Kod surati — commit.", ru: 'Пароль — секретное слово. Снимок кода — commit.' }), 3: tr({ uz: 'Domen — sayt manzili. Kodning saqlangan nuqtasi — commit.', ru: 'Домен — адрес сайта. Сохранённая точка кода — commit.' }), default: tr({ uz: 'Kodning saqlangan surati — commit.', ru: 'Сохранённый снимок кода — commit.' }) }} />
+// ===== SCREEN 5 — GITHUB RO'YXATDAN O'TISH =====
+const GH_STEPS = [
+  { id: 'site', nav: { uz: 'github.com ni oching', ru: 'откройте github.com' },
+    t: { uz: 'Brauzerda `github.com` saytini oching', ru: 'Откройте в браузере сайт `github.com`' },
+    d: { uz: "Bu — kod saqlanadigan sayt, ro'yxatdan o'tish bepul.", ru: 'Это сайт, где хранится код, регистрация бесплатная.' },
+    res: () => <Preview title="github.com" minH={150}><div style={{ ...winBox, minHeight: 120 }}><span style={{ fontSize: 26 }}>🐙</span><span style={{ fontFamily: 'Georgia, serif', fontSize: 20 }}>GitHub</span><span style={{ background: T.ink, color: '#fff', borderRadius: 8, padding: '7px 14px', fontWeight: 700, fontSize: 13 }}>Sign up</span></div></Preview> },
+  { id: 'signup', nav: { uz: 'Sign up ni bosing', ru: 'нажмите Sign up' },
+    t: { uz: "O'ng yuqoridagi «Sign up» tugmasini bosing", ru: 'Нажмите кнопку «Sign up» справа вверху' },
+    d: { uz: "Sign up — ro'yxatdan o'tish degani.", ru: 'Sign up означает «зарегистрироваться».' },
+    res: () => <Preview title="github.com/signup" minH={150}><div style={{ ...winBox, minHeight: 120, alignItems: 'stretch', padding: '0 8px' }}><span className="mono small" style={{ color: T.ink3 }}>Email</span><span style={{ height: 26, borderRadius: 8, background: '#fff', boxShadow: `inset 0 0 0 1.5px ${T.line}` }} /><span className="mono small" style={{ color: T.ink3 }}>Password</span><span style={{ height: 26, borderRadius: 8, background: '#fff', boxShadow: `inset 0 0 0 1.5px ${T.line}` }} /></div></Preview> },
+  { id: 'form', nav: { uz: "ma'lumotlarni to'ldiring", ru: 'заполните данные' },
+    t: { uz: 'Pochta, parol va foydalanuvchi nomini yozing', ru: 'Введите почту, пароль и имя пользователя' },
+    d: { uz: "Foydalanuvchi nomi (username) lotin harflarida bo'lsin: masalan ali-karimov. Shu nom havolangizda turadi.", ru: 'Имя пользователя (username) пишите латиницей: например ali-karimov. Оно будет стоять в вашей ссылке.' },
+    help: { uz: "Nom band bo'lsa — oxiriga raqam qo'shing: ali-karimov7.", ru: 'Имя занято — добавьте в конец цифру: ali-karimov7.' },
+    res: () => <Preview title="github.com/signup" minH={150}><div style={{ ...winBox, minHeight: 120, alignItems: 'stretch', padding: '0 8px' }}><span className="mono small">ali@gmail.com</span><span className="mono small">••••••••</span><span className="mono small" style={{ color: T.accent, fontWeight: 700 }}>ali-karimov</span><span className="mono small" style={{ color: T.success }}>✓ {tr({ uz: "nom bo'sh", ru: 'имя свободно' })}</span></div></Preview> },
+  { id: 'code', nav: { uz: 'pochtadagi kodni kiriting', ru: 'введите код из почты' },
+    t: { uz: 'Pochtangizga kelgan raqamli kodni kiriting', ru: 'Введите цифровой код, который пришёл на почту' },
+    d: { uz: 'Shundan keyin profil sahifangiz ochiladi.', ru: 'После этого откроется страница вашего профиля.' },
+    help: { uz: "Xat kelmasa — «Spam» papkasini ochib ko'ring.", ru: 'Письмо не пришло — загляните в папку «Спам».' },
+    res: () => <Preview title="github.com/ali-karimov" minH={150}><div style={{ ...winBox, minHeight: 120 }}><span style={avaDot}>A</span><span style={{ fontWeight: 700 }}>ali-karimov</span><span className="mono small" style={{ color: T.success, fontWeight: 700 }}>✓ {tr({ uz: 'profil tayyor', ru: 'профиль готов' })}</span></div></Preview> },
+];
+const ScreenGithubSignup = (props) => (
+  <DoScreen {...props}
+    eyebrow={tr({ uz: "3-qadam · Ro'yxatdan o'tish", ru: '3-й шаг · Регистрация' })}
+    title={tr({ uz: <>Kod uchun internetda <span className="italic" style={{ color: T.accent }}>joy</span> ochamiz</>, ru: <>Откроем коду <span className="italic" style={{ color: T.accent }}>место</span> в интернете</> })}
+    mentor={tr({ uz: <>Kod internetda saqlanadigan sayt bor — u <b style={{ color: T.ink }}>GitHub</b> deyiladi.</>, ru: <>Есть сайт, где код хранится в интернете, — он называется <b style={{ color: T.ink }}>GitHub</b>.</> })}
+    steps={GH_STEPS} taskLabel={{ uz: 'GitHub akkaunt', ru: 'Аккаунт GitHub' }} />
 );
-// ===== SCREEN 6 — TARIX (vaqt mashinasi) =====
-const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const audio = useAudio([{ id: 's6', text: `Endi eng kuchli qism boshlanadi. Har commit tarixda saqlanadi. Istalgan eski commit'ni tanlasangiz, kodingiz aynan o'sha holatga qaytadi — xuddi vaqt mashinasi. Tarixdagi commit'larni bosib, kod qanday o'zgarishini ko'ring.`, trigger: 'on_mount', waits_for: { type: 'time_travel' } }]);
-  const HISTORY = [
-    { hash: 'c7d8e9f', msg: { uz: "Tugma qo'shildi", ru: 'Добавлена кнопка' }, code: [{ uz: '<h1>Salom</h1>', ru: '<h1>Привет</h1>' }, { uz: '<p>Mening saytim</p>', ru: '<p>Мой сайт</p>' }, { uz: '<button>Obuna</button>', ru: '<button>Подписаться</button>' }] },
-    { hash: 'e4f5a6b', msg: { uz: "Paragraf qo'shildi", ru: 'Добавлен абзац' }, code: [{ uz: '<h1>Salom</h1>', ru: '<h1>Привет</h1>' }, { uz: '<p>Mening saytim</p>', ru: '<p>Мой сайт</p>' }] },
-    { hash: 'a1b2c3d', msg: { uz: "Boshlang'ich sarlavha", ru: 'Начальный заголовок' }, code: [{ uz: '<h1>Salom</h1>', ru: '<h1>Привет</h1>' }] }
-  ];
-  const [sel, setSel] = useState(0);
-  const [traveled, setTraveled] = useState(!!storedAnswer);
-  const done = traveled;
-  const pick = (i) => { setSel(i); if (i !== 0 && !traveled) { setTraveled(true); audio.triggerEvent('time_travel'); if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); } };
-  const cur = HISTORY[sel];
-  return (
-    <Stage eyebrow={tr({ uz: 'Tarix', ru: 'История' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "Eski commit'ga qayting", ru: 'Вернитесь к старому коммиту' })} onClick={onNext} /></>}>
-      <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Bir hafta oldingi kodga <span className="italic" style={{ color: T.accent }}>qaytib bo'ladimi</span>?</>, ru: <>Можно ли <span className="italic" style={{ color: T.accent }}>вернуться</span> к коду недельной давности?</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Har commit tarixda saqlanadi. Istalgan <b style={{ color: T.ink }}>eski commit</b>'ni tanlasangiz, kod aynan o'sha holatga qaytadi — xuddi <b style={{ color: T.ink }}>vaqt mashinasi</b>. Eski commit'ni bosib ko'ring.</>, ru: <>Каждый коммит хранится в истории. Выберете любой <b style={{ color: T.ink }}>старый commit</b> — и код вернётся ровно к тому состоянию, как <b style={{ color: T.ink }}>машина времени</b>. Нажмите на старый коммит.</> })}</Mentor>
-        <Zoomable>
-        <div className="split">
-          <div className="col">
-            <div className="flow-label">{tr({ uz: 'commit tarixi (yangidan eskiga)', ru: 'история коммитов (от новых к старым)' })}</div>
-            <div className="gtl fade-up delay-2">
-              {HISTORY.map((h, i) => (
-                <div key={h.hash} className={`gtl-node ${sel === i ? 'on' : ''}`} onClick={() => pick(i)}>
-                  <div className="gtl-rail"><span className="gtl-dot" />{i < HISTORY.length - 1 && <span className="gtl-line" />}</div>
-                  <div className="gtl-card"><div className="gtl-msg">{tr(h.msg)}{i === 0 && <span style={{ color: T.accent, fontWeight: 700 }}> · {tr({ uz: 'hozir', ru: 'сейчас' })}</span>}</div><div className="gtl-hash">commit {h.hash}</div></div>
-                </div>
-              ))}
-            </div>
-          </div>
-          <div className="col">
-            <div className="flow-label">{sel === 0 ? tr({ uz: 'Hozirgi kod', ru: 'Текущий код' }) : tr({ uz: `Kod o'sha paytda · ${cur.hash}`, ru: `Код в тот момент · ${cur.hash}` })}</div>
-            <pre className="code-box gcode-rewind" key={cur.hash} style={{ minHeight: 90 }}>{cur.code.map(l => tr(l)).join('\n')}</pre>
-            {done && sel !== 0 && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Kod <b>{cur.hash}</b> holatiga qaytdi! Hech narsa yo'qolmadi — istalgan paytga sayohat qilsangiz bo'ladi.</>, ru: <>Код вернулся к состоянию <b>{cur.hash}</b>! Ничего не потерялось — можно путешествовать в любой момент времени.</> })}</p></div>}
-            {done && sel === 0 && <div className="frame-soft fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Yana <b>hozirgi</b> holatga qaytdingiz. Git hammasini eslab turadi.</>, ru: <>Вы снова вернулись к <b>текущему</b> состоянию. Git помнит всё.</> })}</p></div>}
-          </div>
-        </div>
-        </Zoomable>
-      </div>
-    </Stage>
-  );
-};
 
-// ===== SCREEN 7 — GITHUB (bulutdagi uy) =====
-const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const audio = useAudio([{ id: 's7', text: `Git kompyuteringizda ishlaydi — bu sizning shaxsiy kundaligingiz. Lekin kompyuter buzilsa-chi? Yoki kodni do'stingizga ko'rsatmoqchi bo'lsangiz? Shu yerda GitHub keladi — bu bulutdagi uy. Kodingiz internetda xavfsiz saqlanadi, istalgan joydan ochiladi va boshqalar bilan ulashasiz. Tugmani bosib, loyihani GitHub'ga joylang.`, trigger: 'on_mount', waits_for: null }]);
-  const [uploaded, setUploaded] = useState(!!storedAnswer);
-  const done = uploaded;
-  useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
-  const BEN = [{ ic: '🛡️', t: { uz: 'Zaxira — kompyuter buzilsa ham kod saqlanadi', ru: 'Резерв — код цел, даже если компьютер сломается' } }, { ic: '🌍', t: { uz: 'Istalgan joydan — uydan, maktabdan ochiladi', ru: 'Откуда угодно — открывается из дома и школы' } }, { ic: '👥', t: { uz: "Ulashish — do'stlar bilan birga ishlaysiz", ru: 'Совместная работа — работаете вместе с друзьями' } }, { ic: '💼', t: { uz: "Portfolio — ishlaringiz ko'rinadi", ru: 'Портфолио — ваши работы видны всем' } }];
-  return (
-    <Stage eyebrow="GitHub" screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "GitHub'ga joylang", ru: 'Загрузите на GitHub' })} onClick={onNext} /></>}>
-      <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Kompyuter buzilsa, kod <span className="italic" style={{ color: T.accent }}>yo'qoladimi</span>?</>, ru: <>Сломается компьютер — код <span className="italic" style={{ color: T.accent }}>пропадёт</span>?</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Git faqat <b style={{ color: T.ink }}>kompyuteringizda</b> ishlaydi. Lekin kompyuter buzilsa yoki yo'qolsa — kod ham ketadimi? Yo'q! <b style={{ color: T.ink }}>GitHub</b> bor — kodning <b style={{ color: T.ink }}>bulutdagi nusxasi</b>. Tugmani bosib, loyihani bulutga joylang.</>, ru: <>Git работает только <b style={{ color: T.ink }}>на вашем компьютере</b>. Но если компьютер сломается или потеряется — код тоже пропадёт? Нет! Есть <b style={{ color: T.ink }}>GitHub</b> — <b style={{ color: T.ink }}>облачная копия</b> кода. Нажмите кнопку и загрузите проект в облако.</> })}</Mentor>
-        <Zoomable>
-        <div className="split">
-          <div className="col">
-            <div className="cs fade-up delay-2">
-              <div className="cs-node"><span className="cs-ic">💻</span><span className="cs-l">{tr({ uz: <>Git<br />(kompyuteringiz)</>, ru: <>Git<br />(ваш компьютер)</> })}</span></div>
-              <div className="cs-wire"><div className={`cs-msg cs-req ${uploaded ? 'on' : ''}`}>⬆️ push</div>{uploaded && <span className="cs-fly cs-fly-r">📦</span>}</div>
-              <div className={`cs-node ${uploaded ? 'cs-active' : ''}`}><span className="cs-ic">☁️</span><span className="cs-l">{tr({ uz: <>GitHub<br />(bulut)</>, ru: <>GitHub<br />(облако)</> })}</span></div>
-            </div>
-            {!uploaded ? <button className="btn" style={{ alignSelf: 'flex-start' }} onClick={() => setUploaded(true)}>☁️ {tr({ uz: "GitHub'ga joylash", ru: 'Загрузить на GitHub' })}</button>
-              : <p className="mono small fade-step" style={{ color: T.success, margin: 0, fontWeight: 600 }}>✓ {tr({ uz: 'github.com/siz/loyiha', ru: 'github.com/vy/proekt' })}</p>}
-          </div>
-          <div className="col">
-            <div className="flow-label">{tr({ uz: 'GitHub nima beradi', ru: 'Что даёт GitHub' })}</div>
-            {uploaded ? (
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }} className="fade-step">
-                {BEN.map((b, i) => (<div key={i} className="gfile" style={{ fontFamily: "'Manrope', sans-serif" }}><span style={{ fontSize: 18 }}>{b.ic}</span><span className="gfile-name" style={{ fontFamily: "'Manrope', sans-serif", fontSize: 13.5 }}>{tr(b.t)}</span></div>))}
-              </div>
-            ) : (<div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: "Chapdagi tugmani bosing — kod kompyuterdan bulutga (GitHub) ko'chadi.", ru: 'Нажмите кнопку слева — код переедет с компьютера в облако (GitHub).' })}</p></div>)}
-          </div>
-        </div>
-        </Zoomable>
-      </div>
-    </Stage>
-  );
-};
-
-// ===== SCREEN 8 — PUSH & PULL =====
-const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const audio = useAudio([{ id: 's8', text: "Kodingiz ikki joyda — kompyuteringizda va bulutda. push sizdagi commit'larni bulutga yuboradi, pull bulutdagilarni sizga oladi. Bu yerda erkin sinab ko'ring: yangi commit qo'shib push qiling, do'stingiz commit qo'shsa pull qiling. Istagancha qayta-qayta bosib ko'ring.", trigger: 'on_mount', waits_for: null }]);
-  const [local, setLocal] = useState(2);
-  const [cloud, setCloud] = useState(storedAnswer ? 2 : 1);
-  const [anim, setAnim] = useState(null);
-  const [didPush, setDidPush] = useState(!!storedAnswer);
-  const [didPull, setDidPull] = useState(!!storedAnswer);
-  const timer = useRef(null);
-  const done = didPush && didPull;
-  useEffect(() => () => clearTimeout(timer.current), []);
-  useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
-  const newCommit = () => { if (anim) return; setLocal(n => n + 1); };
-  const friendCommit = () => { if (anim) return; setCloud(n => n + 1); };
-  const push = () => { if (anim || local <= cloud) return; const target = local; setAnim('push'); timer.current = setTimeout(() => { setCloud(target); setAnim(null); setDidPush(true); }, 750); };
-  const pull = () => { if (anim || cloud <= local) return; const target = cloud; setAnim('pull'); timer.current = setTimeout(() => { setLocal(target); setAnim(null); setDidPull(true); }, 750); };
-  return (
-    <Stage eyebrow="push & pull" screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "push va pull'ni sinang", ru: 'Попробуйте push и pull' })} onClick={onNext} /></>}>
-      <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Kodni bulut bilan qanday <span className="italic" style={{ color: T.accent }}>almashasiz</span>?</>, ru: <>Как <span className="italic" style={{ color: T.accent }}>обмениваться</span> кодом с облаком?</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Kodingiz ikki joyda: kompyuter va bulut. <b style={{ color: T.ink }}>push</b> — sizdagini bulutga yuboradi, <b style={{ color: T.ink }}>pull</b> — bulutdagini sizga oladi. Erkin sinang: commit qo'shib push qiling, do'st commit qo'shsa pull qiling — qayta-qayta.</>, ru: <>Ваш код в двух местах: компьютер и облако. <b style={{ color: T.ink }}>push</b> — отправляет ваше в облако, <b style={{ color: T.ink }}>pull</b> — забирает облачное к вам. Пробуйте свободно: добавьте коммит и сделайте push, друг добавит коммит — сделайте pull, и так сколько угодно.</> })}</Mentor>
-        <Zoomable>
-        <div className="split">
-          <div className="col">
-            <div className="cs fade-up delay-2">
-              <div className={`cs-node ${local >= cloud ? 'cs-active' : ''}`}><span className="cs-ic">💻</span><span className="cs-l">{tr({ uz: <>Lokal<br /><b>{local} commit</b></>, ru: <>Локально<br /><b>{local} commit</b></> })}</span></div>
-              <div className="cs-wire">
-                <div className={`cs-msg cs-req ${anim === 'push' ? 'on' : ''}`}>⬆️ push</div>
-                <div className={`cs-msg cs-res ${anim === 'pull' ? 'on' : ''}`}>⬇️ pull</div>
-                {anim === 'push' && <span className="cs-fly cs-fly-r">📦</span>}
-                {anim === 'pull' && <span className="cs-fly cs-fly-l">📦</span>}
-              </div>
-              <div className={`cs-node ${cloud >= local ? 'cs-active' : ''}`}><span className="cs-ic">☁️</span><span className="cs-l">GitHub<br /><b>{cloud} commit</b></span></div>
-            </div>
-            <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-              <button className="btn" onClick={push} disabled={anim !== null || local <= cloud}>⬆️ git push</button>
-              <button className="btn" onClick={pull} disabled={anim !== null || cloud <= local}>⬇️ git pull</button>
-            </div>
-            <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-              <button className="btn-soft" onClick={newCommit} disabled={anim !== null}>✏️ {tr({ uz: 'Yangi commit', ru: 'Новый коммит' })}</button>
-              <button className="btn-soft" onClick={friendCommit} disabled={anim !== null}>👤 {tr({ uz: "Do'st commit qo'shdi", ru: 'Друг добавил коммит' })}</button>
-            </div>
-          </div>
-          <div className="col">
-            {anim === 'push' ? (<div className="frame-soft fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>⬆️ {tr({ uz: "commit'lar bulutga yuborilmoqda…", ru: 'Коммиты отправляются в облако…' })}</p></div>)
-              : anim === 'pull' ? (<div className="frame-soft fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>⬇️ {tr({ uz: "commit'lar bulutdan olinmoqda…", ru: 'Коммиты загружаются из облака…' })}</p></div>)
-                : local > cloud ? (<div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: <>Lokalda <b>{local - cloud}</b> ta yangi commit bor. <b>push</b> bilan bulutga yuboring.</>, ru: <>Локально есть <b>{local - cloud}</b> новых коммита(ов). Отправьте их в облако через <b>push</b>.</> })}</p></div>)
-                  : cloud > local ? (<div className="frame-soft"><p className="small mono" style={{ margin: '0 0 4px', fontWeight: 600, color: T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>👤 {tr({ uz: "Do'stdan yangilik", ru: 'Новость от друга' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Bulutda <b>{cloud - local}</b> ta yangi commit bor. <b>pull</b> bilan o'zingizga oling.</>, ru: <>В облаке есть <b>{cloud - local}</b> новых коммита(ов). Заберите их себе через <b>pull</b>.</> })}</p></div>)
-                    : (<div className="frame-success"><p className="small mono" style={{ margin: '0 0 4px', fontWeight: 600, color: T.success, textTransform: 'uppercase', letterSpacing: '0.08em' }}>✓ {tr({ uz: 'Sinxron', ru: 'Синхронно' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: `Lokal va bulut bir xil! "Yangi commit" yoki "Do'st commit" qo'shib, yana push/pull qiling.`, ru: 'Локально и в облаке одно и то же! Добавьте «Новый коммит» или «Друг добавил коммит» — и снова push/pull.' })}</p></div>)}
-            <div style={{ display: 'flex', gap: 16, fontFamily: "'Manrope', sans-serif", fontSize: 13, fontWeight: 600 }}>
-              <span style={{ color: didPush ? T.success : T.ink3 }}>{didPush ? '✓' : '○'} {tr({ uz: 'push sinaldi', ru: 'push опробован' })}</span>
-              <span style={{ color: didPull ? T.success : T.ink3 }}>{didPull ? '✓' : '○'} {tr({ uz: 'pull sinaldi', ru: 'pull опробован' })}</span>
-            </div>
-          </div>
-        </div>
-        </Zoomable>
-      </div>
-    </Stage>
-  );
-};
-// ===== SCREEN 9 — TEST (push) =====
-const Screen9 = (props) => (
+// ===== SCREEN 6 — TEST-2 (Git va GitHub farqi) =====
+const ScreenTest2 = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 2-savol', ru: 'Упражнение · вопрос 2' })}
-    audioText="git push buyrug'i nima qiladi — u kodni qayerga jo'natadi?"
-    questionText="git push buyrug'i nima qiladi?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-sub" style={{ marginTop: 8 }}>{tr({ uz: <><span className="italic" style={{ color: T.accent }}>git push</span> buyrug'i nima qiladi?</>, ru: <>Что делает команда <span className="italic" style={{ color: T.accent }}>git push</span>?</> })}</h2></>}
-    options={[{ uz: "Barcha kodni butunlay o'chiradi", ru: 'Полностью удаляет весь код' }, { uz: "Lokal commit'larni bulutga yuboradi", ru: 'Отправляет локальные коммиты в облако' }, { uz: "Sahifaga yangi ranglar qo'shadi", ru: 'Добавляет странице новые цвета' }, { uz: 'Internet tezligini oshirib beradi', ru: 'Ускоряет интернет' }]} correctIdx={1}
-    explainCorrect={tr({ uz: "To'g'ri! push — lokal kompyuteringizdagi commit'larni GitHub'ga (bulutga) yuboradi.", ru: 'Верно! push отправляет коммиты с вашего компьютера на GitHub (в облако).' })}
-    explainWrong={{ 0: tr({ uz: "push o'chirmaydi — aksincha, commit'laringizni bulutga yuboradi.", ru: 'push ничего не удаляет — наоборот, отправляет ваши коммиты в облако.' }), 2: tr({ uz: "Rang — CSS ishi. push esa commit'larni bulutga yuboradi.", ru: 'Цвета — работа CSS. А push отправляет коммиты в облако.' }), 3: tr({ uz: "Internet tezligi push bilan bog'liq emas. U commit'larni yuboradi.", ru: 'Скорость интернета с push не связана. Он отправляет коммиты.' }), default: tr({ uz: "push — lokal commit'larni GitHub'ga yuboradi.", ru: 'push — отправляет локальные коммиты на GitHub.' }) }} />
+    audioText="Git bilan GitHub orasidagi farq nimada? To'g'ri javobni tanlang."
+    questionText="Git bilan GitHub orasidagi farq nimada?"
+    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-sub" style={{ marginTop: 8 }}>{tr({ uz: <>Git bilan GitHub orasidagi <span className="italic" style={{ color: T.accent }}>farq</span> nimada?</>, ru: <>В чём <span className="italic" style={{ color: T.accent }}>разница</span> между Git и GitHub?</> })}</h2></>}
+    options={[
+      { uz: 'Git — kompyuterdagi dastur, GitHub — kod turadigan sayt', ru: 'Git — программа на компьютере, GitHub — сайт, где лежит код' },
+      { uz: 'Git — sayt, GitHub — kompyuterdagi dastur', ru: 'Git — сайт, GitHub — программа на компьютере' },
+      { uz: "Ikkalasi bir narsaning ikki nomi", ru: 'Это два названия одного и того же' },
+      { uz: 'Git — brauzer, GitHub — kod muharriri', ru: 'Git — браузер, GitHub — редактор кода' },
+    ]} correctIdx={0}
+    explainCorrect={tr({ uz: "To'g'ri. Git kompyuterda o'rnatiladi va versiyalarni saqlaydi, GitHub esa brauzerda ochiladigan sayt — kod nusxasi o'sha yerda turadi.", ru: 'Верно. Git ставится на компьютер и хранит версии, а GitHub — сайт в браузере, где лежит копия кода.' })}
+    explainWrong={{
+      1: tr({ uz: "Teskarisi: Git — kompyuterga o'rnatgan dasturingiz, GitHub — brauzerda ochgan saytingiz.", ru: 'Наоборот: Git — программа, которую вы поставили на компьютер, GitHub — сайт, который открыли в браузере.' }),
+      2: tr({ uz: "Ular boshqa-boshqa: Git kompyuterda ishlaydi, GitHub internetda turadi.", ru: 'Они разные: Git работает на компьютере, GitHub находится в интернете.' }),
+      3: tr({ uz: "Brauzer — Chrome, kod muharriri — VS Code. Git kompyuterdagi dastur, GitHub — sayt.", ru: 'Браузер — Chrome, редактор кода — VS Code. Git — программа на компьютере, GitHub — сайт.' }),
+      default: tr({ uz: 'Git — kompyuterdagi dastur, GitHub — kod turadigan sayt.', ru: 'Git — программа на компьютере, GitHub — сайт, где лежит код.' }),
+    }} />
 );
 
-// ===== SCREEN 10 — REPOSITORY =====
-const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const audio = useAudio([{ id: 's10', text: "Kodingiz qayerda yashaydi? Repository'da — qisqacha repo. Repo — bu Git kuzatadigan loyiha papkasi. Ichida barcha fayllar, commit tarixi va README bor. GitHub'dagi repo qismlarini bosib o'rganing.", trigger: 'on_mount', waits_for: null }]);
-  const PARTS = {
-    name: { label: { uz: 'Repo nomi', ru: 'Имя репо' }, body: { uz: "Repository — Git kuzatadigan loyiha papkasi. Har repo'ning manzili bor: github.com/siz/loyiha.", ru: 'Repository — папка проекта, за которой следит Git. У каждого репо есть адрес: github.com/vy/proekt.' } },
-    files: { label: { uz: 'Fayllar', ru: 'Файлы' }, body: { uz: "Loyihaning barcha fayllari shu yerda: index.html, style.css va boshqalar.", ru: 'Здесь все файлы проекта: index.html, style.css и другие.' } },
-    readme: { label: 'README.md', body: { uz: "README — loyiha tavsifi. Repo'ni ochgan har kim avval shuni o'qiydi: bu qanday loyiha.", ru: 'README — описание проекта. Каждый, кто откроет репо, сначала читает его: что это за проект.' } },
-    commits: { label: { uz: 'commit tarixi', ru: 'история коммитов' }, body: { uz: "Repo barcha commit'larni saqlaydi — butun tarix shu yerda, vaqt mashinasi.", ru: 'Репо хранит все коммиты — вся история здесь, машина времени.' } }
-  };
-  const KEYS = Object.keys(PARTS);
-  const [seen, setSeen] = useState(storedAnswer?.seen || []);
-  const [active, setActive] = useState(storedAnswer ? 'name' : null);
-  const done = seen.length >= KEYS.length;
-  const click = (k) => { setActive(k); setSeen(s => { const ns = s.includes(k) ? s : [...s, k]; if (ns.length >= KEYS.length && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true, seen: ns }); return ns; }); };
+// ===== SCREEN 7 — NAZARIYA: LOYIHA JOYI (repo) =====
+const ScreenRepo = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
+  const [opened, setOpened] = useState(!!storedAnswer);
+  const done = opened;
+  const open = () => { setOpened(true); if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true, screenIdx: screen }); };
   return (
-    <Stage eyebrow="Repository" screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: `Qismlarni oching (${seen.length}/${KEYS.length})`, ru: `Откройте части (${seen.length}/${KEYS.length})` })} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Nazariya', ru: 'Теория' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Joy oching', ru: 'Откройте место' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Loyihaning hamma narsasi <span className="italic" style={{ color: T.accent }}>qayerda turadi</span>?</>, ru: <>Где <span className="italic" style={{ color: T.accent }}>хранится</span> всё, что есть в проекте?</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Loyihangizning fayllari, commit tarixi va tavsifi — hammasi qayerda? <b style={{ color: T.ink }}>Repository</b>'da (qisqacha <b style={{ color: T.ink }}>repo</b>) — Git kuzatadigan loyiha papkasi. GitHub'dagi repo qismlarini bosib o'rganing.</>, ru: <>Файлы проекта, история коммитов и описание — где всё это? В <b style={{ color: T.ink }}>Repository</b> (коротко <b style={{ color: T.ink }}>репо</b>) — папке проекта, за которой следит Git. Нажимайте на части репо на GitHub и изучайте.</> })}</Mentor>
-        <Zoomable>
-        <div className="split">
-          <div className="col">
-            <div className="repo fade-up delay-2">
-              <div className="repo-top">📦 <b>{tr({ uz: 'mening-saytim', ru: 'moy-sayt' })}</b> <span style={{ marginLeft: 'auto', color: T.ink3, fontSize: 11 }}>Public</span></div>
-              <div className={`repo-row ${active === 'name' ? 'on' : ''} ${seen.includes('name') ? 'seen' : ''}`} onClick={() => click('name')}>🔗 {tr({ uz: 'github.com/siz/mening-saytim', ru: 'github.com/vy/moy-sayt' })}</div>
-              <div className={`repo-row ${active === 'files' ? 'on' : ''} ${seen.includes('files') ? 'seen' : ''}`} onClick={() => click('files')}>📄 index.html · style.css</div>
-              <div className={`repo-row ${active === 'readme' ? 'on' : ''} ${seen.includes('readme') ? 'seen' : ''}`} onClick={() => click('readme')}>📝 README.md</div>
-              <div className={`repo-row ${active === 'commits' ? 'on' : ''} ${seen.includes('commits') ? 'seen' : ''}`} onClick={() => click('commits')}>🕐 5 commit</div>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Loyiha papkasi GitHub'da <span className="italic" style={{ color: T.accent }}>qayerga</span> tushadi?</>, ru: <><span className="italic" style={{ color: T.accent }}>Куда</span> попадает папка проекта на GitHub?</> })}</h2></div>
+        <Mentor>{tr({ uz: <>GitHub'da har loyiha uchun alohida joy ochiladi — shu joy <b style={{ color: T.ink }}>repository</b>, qisqacha <b style={{ color: T.ink }}>repo</b> deyiladi — tugmani bosib ko'ring.</>, ru: <>На GitHub для каждого проекта открывают отдельное место — оно называется <b style={{ color: T.ink }}>repository</b>, коротко <b style={{ color: T.ink }}>репо</b>, — нажмите кнопку.</> })}</Mentor>
+        <Split>
+          <Col>
+            <div className="cs fade-up delay-1">
+              <div className="cs-node cs-active"><span className="cs-ic">📁</span><span className="cs-l">{tr({ uz: <>Papka<br />(kompyuter)</>, ru: <>Папка<br />(компьютер)</> })}</span></div>
+              <div className="cs-wire"><div className={`cs-msg cs-req ${opened ? 'on' : ''}`}>📦 repo</div>{opened && <span className="cs-fly cs-fly-r">📄</span>}</div>
+              <div className={`cs-node ${opened ? 'cs-active' : ''}`}><span className="cs-ic">📦</span><span className="cs-l">{tr({ uz: <>Repo<br />(GitHub)</>, ru: <>Репо<br />(GitHub)</> })}</span></div>
             </div>
-          </div>
-          <div className="col">
-            <div className="flow-label">{tr({ uz: 'Qism haqida', ru: 'Об этой части' })}</div>
-            {active ? (
-              <div className="sk-info" key={active}><div className="sk-tagbig" style={{ marginBottom: 8 }}><span className="sk-wordbadge">{tr(PARTS[active].label)}</span></div><p className="body" style={{ margin: 0, color: T.ink }}>{tr(PARTS[active].body)}</p></div>
-            ) : (<div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Repo qismini bosing — izoh chiqadi', ru: 'Нажмите на часть репо — появится пояснение' })}</p></div>)}
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: 'Repo — bitta loyiha uchun bitta uy: fayllar + tarix + tavsif, hammasi birga.', ru: 'Репо — один дом для одного проекта: файлы + история + описание, всё вместе.' })}</p></div>}
-          </div>
-        </div>
-        </Zoomable>
+            {!opened
+              ? <button className="btn" style={{ alignSelf: 'flex-start' }} onClick={open}>📦 {tr({ uz: 'Loyiha uchun joy ochish', ru: 'Открыть место для проекта' })}</button>
+              : <p className="mono small fade-step" style={{ color: T.success, margin: 0, fontWeight: 600 }}>✓ github.com/ali-karimov/mening-saytim</p>}
+          </Col>
+          <Col>
+            {opened ? (
+              <div className="sk-info fade-step">
+                <div className="sk-tagbig" style={{ marginBottom: 8 }}><span className="sk-wordbadge">repo</span></div>
+                <p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Repo ichida loyihaning fayllari va ularning barcha eski nusxalari turadi. Har repo o'z manziliga ega: <span className="mono">github.com/nomingiz/loyiha</span>.</>, ru: <>Внутри репо лежат файлы проекта и все их прошлые копии. У каждого репо свой адрес: <span className="mono">github.com/vashe-imya/proekt</span>.</> })}</p>
+              </div>
+            ) : (<div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: "Chapdagi tugmani bosing — papka GitHub tomonga o'tadi.", ru: 'Нажмите кнопку слева — папка переедет в сторону GitHub.' })}</p></div>)}
+            <div className="frame-soft"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Bitta loyiha — bitta repo. Ikkinchi loyiha uchun yangi repo ochiladi.</>, ru: <>Один проект — одно репо. Для второго проекта открывают новое репо.</> })}</p></div>
+          </Col>
+        </Split>
       </div>
     </Stage>
   );
 };
 
-// ===== SCREEN 11 — CLONE & JAMOA =====
-const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const audio = useAudio([{ id: 's11', text: "GitHub'ning eng kuchli tomoni — birga ishlash. Boshqaning ochiq loyihasini ko'rdingizmi? clone qilib, butun repo'ni kompyuteringizga nusxalaysiz. Keyin o'zgartirib, push qilasiz. Shunday qilib millionlab dasturchilar bitta loyihada birga ishlaydi. Clone tugmasini bosib ko'ring.", trigger: 'on_mount', waits_for: null }]);
-  const [cloned, setCloned] = useState(!!storedAnswer);
-  const done = cloned;
-  useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
-  return (
-    <Stage eyebrow={tr({ uz: 'Jamoa', ru: 'Команда' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Clone qiling', ru: 'Сделайте clone' })} onClick={onNext} /></>}>
-      <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Boshqaning loyihasini qanday <span className="italic" style={{ color: T.accent }}>olasiz</span>?</>, ru: <>Как <span className="italic" style={{ color: T.accent }}>получить</span> чужой проект?</> })}</h2></div>
-        <Mentor>{tr({ uz: <>GitHub'ning eng kuchli tomoni — <b style={{ color: T.ink }}>birga ishlash</b>. Boshqaning loyihasini <b style={{ color: T.ink }}>clone</b> qilib, butun repo'ni kompyuteringizga nusxalaysiz. Keyin o'zgartirib, push qilasiz. Tugmani bosing.</>, ru: <>Самая сильная сторона GitHub — <b style={{ color: T.ink }}>совместная работа</b>. Чужой проект вы <b style={{ color: T.ink }}>клонируете</b> — копируете весь репозиторий на свой компьютер. Потом меняете и делаете push. Нажмите кнопку.</> })}</Mentor>
-        <Zoomable>
-        <div className="split">
-          <div className="col">
-            <div className="cs fade-up delay-2">
-              <div className="cs-node cs-active"><span className="cs-ic">☁️</span><span className="cs-l">{tr({ uz: <>GitHub repo<br />(jamoaniki)</>, ru: <>GitHub-репо<br />(командный)</> })}</span></div>
-              <div className="cs-wire"><div className={`cs-msg cs-res ${cloned ? 'on' : ''}`}>⬇️ clone</div>{cloned && <span className="cs-fly cs-fly-r">📦</span>}</div>
-              <div className={`cs-node ${cloned ? 'cs-active' : ''}`}><span className="cs-ic">💻</span><span className="cs-l">{tr({ uz: <>Sizning<br />kompyuter</>, ru: <>Ваш<br />компьютер</> })}</span></div>
-            </div>
-            {!cloned ? <button className="btn" style={{ alignSelf: 'flex-start' }} onClick={() => setCloned(true)}>⬇️ git clone</button>
-              : <div className="term fade-step"><span className="term-row"><span className="term-prompt">$ </span><span className="term-cmd">{tr({ uz: 'git clone github.com/jamoa/loyiha', ru: 'git clone github.com/komanda/proekt' })}</span></span><span className="term-row"><span className="term-ok">✓ {tr({ uz: 'Nusxalandi — barcha fayl va tarix', ru: 'Скопировано — все файлы и история' })}</span></span></div>}
-          </div>
-          <div className="col">
-            {done ? (
-              <div className="frame-success fade-step"><p className="small mono" style={{ margin: '0 0 4px', fontWeight: 600, color: T.success, textTransform: 'uppercase', letterSpacing: '0.08em' }}>✓ {tr({ uz: 'Repo nusxalandi', ru: 'Репо скопирован' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Endi butun loyiha sizda — barcha fayl va commit tarixi bilan. O'zgartirib, <b>push</b> qilsangiz, jamoa sizning hissangizni ko'radi.</>, ru: <>Теперь весь проект у вас — со всеми файлами и историей коммитов. Измените его и сделайте <b>push</b> — команда увидит ваш вклад.</> })}</p></div>
-            ) : (<div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: <><b>clone</b> — bulutdagi butun repo'ni kompyuteringizga ko'chiradi.</>, ru: <><b>clone</b> — переносит весь облачный репозиторий на ваш компьютер.</> })}</p></div>)}
-            <div className="frame-soft"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Millionlab dasturchilar shunday ishlaydi: <b>clone</b> → o'zgartir → <b>push</b>. Bitta loyiha — ko'p odam.</>, ru: <>Так работают миллионы программистов: <b>clone</b> → измени → <b>push</b>. Один проект — много людей.</> })}</p></div>
-          </div>
-        </div>
-        </Zoomable>
-      </div>
-    </Stage>
-  );
-};
-// ===== SCREEN 12 — TEST (GitHub nima uchun) =====
-const Screen12 = (props) => (
-  <QuestionScreen {...props} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 3-savol', ru: 'Упражнение · вопрос 3' })}
-    audioText="GitHub asosan nima uchun kerak — uning ikki asosiy foydasi nima?"
-    questionText="GitHub asosan nima uchun kerak?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-sub" style={{ marginTop: 8 }}>{tr({ uz: <>GitHub asosan <span className="italic" style={{ color: T.accent }}>nima uchun</span> kerak?</>, ru: <><span className="italic" style={{ color: T.accent }}>Для чего</span> в основном нужен GitHub?</> })}</h2></>}
-    options={[{ uz: "Faqat onlayn o'yin o'ynash uchun", ru: 'Только для онлайн-игр' }, { uz: "Internet tezligini oshirish uchun", ru: 'Для ускорения интернета' }, { uz: "Rasmlarni chiroyli tahrirlash uchun", ru: 'Для красивой обработки картинок' }, { uz: "Bulutda saqlash va birga ishlash uchun", ru: 'Для хранения в облаке и совместной работы' }]} correctIdx={3}
-    explainCorrect={tr({ uz: "To'g'ri! GitHub — kodni bulutda xavfsiz saqlaydi va boshqalar bilan birga ishlash imkonini beradi.", ru: 'Верно! GitHub надёжно хранит код в облаке и даёт возможность работать вместе с другими.' })}
-    explainWrong={{ 0: tr({ uz: "GitHub o'yin platformasi emas. U kodni saqlaydi va jamoa ishini birlashtiradi.", ru: 'GitHub — не игровая платформа. Он хранит код и объединяет работу команды.' }), 1: tr({ uz: "Internet tezligi GitHub bilan bog'liq emas. U kodni bulutda saqlaydi.", ru: 'Скорость интернета с GitHub не связана. Он хранит код в облаке.' }), 2: tr({ uz: "Rasm tahrirlash — Photoshop ishi. GitHub kod va loyihalar uchun.", ru: 'Обработка картинок — работа Photoshop. GitHub — для кода и проектов.' }), default: tr({ uz: "GitHub — kodni bulutda saqlash va birga ishlash uchun.", ru: 'GitHub — для хранения кода в облаке и совместной работы.' }) }} />
-);
-
-// ===== SCREEN 13 — WORKFLOW SIMULATOR =====
-const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const audio = useAudio([{ id: 's13', text: "Endi o'zingiz to'liq aylanani bajaring. Faylni o'zgartirdingiz. Endi uchta buyruqni tartib bilan bosing: git add fayllarni tanlaydi, git commit saqlaydi, git push GitHub'ga yuboradi. Tartib muhim!", trigger: 'on_mount', waits_for: null }]);
-  const CMDS = [
-    { cmd: 'git add .', out: { uz: "O'zgarishlar tanlandi (staged)", ru: 'Изменения выбраны (staged)' }, ic: '📥', l: 'add' },
-    { cmd: { uz: 'git commit -m "yangi sahifa"', ru: 'git commit -m "новая страница"' }, out: { uz: '[main a1b2c3d] yangi sahifa', ru: '[main a1b2c3d] новая страница' }, ic: '💾', l: 'commit' },
-    { cmd: 'git push', out: { uz: "GitHub'ga yuborildi ✓", ru: 'Отправлено на GitHub ✓' }, ic: '⬆️', l: 'push' }
+// ===== SCREEN 8 — NAZARIYA: FAYL TANLASH (add) =====
+const ScreenAdd = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
+  const FILES = [
+    { n: 'index.html', ch: true }, { n: 'style.css', ch: true }, { n: 'eski-nusxa.txt', ch: false },
   ];
-  const NODES = [{ ic: '✏️', l: { uz: "O'zgartirish", ru: 'Изменение' } }, ...CMDS.map(c => ({ ic: c.ic, l: c.l }))];
-  const [step, setStep] = useState(storedAnswer ? CMDS.length : 0);
-  const done = step >= CMDS.length;
-  const run = (i) => { if (i !== step) return; const ns = step + 1; setStep(ns); if (ns >= CMDS.length && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); };
-  return (
-    <Stage eyebrow={tr({ uz: 'Amaliyot · workflow', ru: 'Практика · workflow' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Aylanani bajaring', ru: 'Выполните цикл' })} onClick={onNext} /></>}>
-      <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>To'liq aylana — <span className="italic" style={{ color: T.accent }}>o'zingiz bajaring</span></>, ru: <>Полный цикл — <span className="italic" style={{ color: T.accent }}>выполните сами</span></> })}</h2></div>
-        <Mentor>{tr({ uz: <>Faylni o'zgartirdingiz. Endi uchta buyruqni <b style={{ color: T.ink }}>tartib bilan</b> bosing: <span className="mono">add</span> → <span className="mono">commit</span> → <span className="mono">push</span>. Tartib muhim!</>, ru: <>Вы изменили файл. Теперь нажмите три команды <b style={{ color: T.ink }}>по порядку</b>: <span className="mono">add</span> → <span className="mono">commit</span> → <span className="mono">push</span>. Порядок важен!</> })}</Mentor>
-        <div className="frame frame-col fade-up delay-2">
-          <div className="pz-flow">{NODES.map((s, i) => (<React.Fragment key={i}><div className={`pz-step ${i === 0 || step >= i ? 'on' : ''} ${i > 0 && step + 1 === i ? 'active' : ''}`}><span className="pz-ic">{i === 0 ? '✏️' : (step >= i ? '✓' : s.ic)}</span><span className="pz-lbl">{tr(s.l)}</span></div>{i < NODES.length - 1 && <span className={`pz-arrow ${step >= i ? 'on' : ''}`}>→</span>}</React.Fragment>))}</div>
-          <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', justifyContent: 'center' }}>
-            {CMDS.map((c, i) => (<button key={i} className={`chip ${step === i ? 'chip-on' : ''}`} disabled={step !== i} onClick={() => run(i)}>{c.ic} git {c.l}</button>))}
-          </div>
-        </div>
-        <div className="term fade-up delay-2" style={{ minHeight: 70 }}>
-          {step === 0 ? <span className="term-row"><span className="term-out">{tr({ uz: '// Buyruqlarni tartib bilan bosing…', ru: '// Нажимайте команды по порядку…' })}</span></span>
-            : CMDS.slice(0, step).map((c, i) => (<React.Fragment key={i}><span className="term-row"><span className="term-prompt">$ </span><span className="term-cmd">{tr(c.cmd)}</span></span><span className="term-row"><span className="term-ok">{tr(c.out)}</span></span></React.Fragment>))}
-        </div>
-        {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Mana to'liq aylana: <b>o'zgartir → add → commit → push</b>. Kodingiz endi GitHub'da, xavfsiz!</>, ru: <>Вот полный цикл: <b>измени → add → commit → push</b>. Ваш код теперь на GitHub, в безопасности!</> })}</p></div>}
-      </div>
-    </Stage>
-  );
-};
-
-// ===== SCREEN 14 — DEBUGGING (push ishlamadi) =====
-const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const audio = useAudio([{ id: 's14', text: "AI sizga buyruqlar berdi, lekin push ishlamadi. Nega? Diqqat bilan qarang: git add bor, git push bor, lekin orasida git commit yo'q! Saqlanmagan narsani yuborib bo'lmaydi. Avval ishga tushiring, keyin yetishmagan qadamni qo'shing.", trigger: 'on_mount', waits_for: { type: 'error_found' } }]);
-  const [stage, setStage] = useState(storedAnswer ? 'fixed' : 'idle'); // idle -> failed -> fixed
-  const done = stage === 'fixed';
-  const fail = () => { if (stage !== 'idle') return; setStage('failed'); audio.triggerEvent('error_found'); if (!audio.muted) setTimeout(() => { const e = getAudioEngine(); if (e && !audio.muted) e.pushOneOff("Mana muammo: git add dan keyin to'g'ridan-to'g'ri push. Orasida git commit yo'q — saqlanmagan o'zgarishni yuborib bo'lmaydi."); }, 300); };
-  const fix = () => { setStage('fixed'); if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); if (!audio.muted) setTimeout(() => { const e = getAudioEngine(); if (e && !audio.muted) e.pushOneOff("Tuzatildi! Endi git commit bor — o'zgarish saqlandi va push ishladi."); }, 300); };
-  return (
-    <Stage eyebrow={tr({ uz: 'Debugging', ru: 'Отладка' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : (stage === 'failed' ? tr({ uz: 'Endi tuzating', ru: 'Теперь исправьте' }) : tr({ uz: 'Ishga tushiring', ru: 'Запустите' }))} onClick={onNext} /></>}>
-      <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>push ishlamadi — <span className="italic" style={{ color: T.accent }}>nega</span>?</>, ru: <>push не сработал — <span className="italic" style={{ color: T.accent }}>почему</span>?</> })}</h2></div>
-        <Mentor>{tr({ uz: <>AI buyruqlar berdi, lekin push ishlamadi. Diqqat bilan qarang: <span className="mono">add</span> bor, <span className="mono">push</span> bor, lekin orasida <b style={{ color: T.ink }}>commit yo'q</b>! Ishga tushiring, keyin tuzating.</>, ru: <>ИИ выдал команды, но push не сработал. Смотрите внимательно: есть <span className="mono">add</span>, есть <span className="mono">push</span>, но между ними <b style={{ color: T.ink }}>нет commit</b>! Запустите, потом исправьте.</> })}</Mentor>
-        <div className="split">
-          <div className="col">
-            <div className="term fade-up delay-2" style={{ minHeight: 100 }}>
-              <span className="term-row"><span className="term-prompt">$ </span><span className="term-cmd">git add .</span></span>
-              {stage === 'fixed' && <span className="term-row fade-step"><span className="term-prompt">$ </span><span className="term-cmd">{tr({ uz: 'git commit -m "yangi"', ru: 'git commit -m "novoe"' })}</span></span>}
-              {stage === 'fixed' && <span className="term-row"><span className="term-ok">{tr({ uz: '[main a1b2c3d] yangi', ru: '[main a1b2c3d] novoe' })}</span></span>}
-              <span className="term-row"><span className="term-prompt">$ </span><span className="term-cmd">git push</span></span>
-              {stage === 'failed' && <span className="term-row fade-step"><span className="term-err">✗ {tr({ uz: 'Xato: nothing to commit — saqlanmagan', ru: 'Ошибка: nothing to commit — ничего не сохранено' })}</span></span>}
-              {stage === 'fixed' && <span className="term-row"><span className="term-ok">✓ {tr({ uz: "GitHub'ga yuborildi", ru: 'Отправлено на GitHub' })}</span></span>}
-            </div>
-            {stage === 'idle' && <button className="btn" style={{ alignSelf: 'flex-start' }} onClick={fail}>▶ {tr({ uz: 'Buyruqlarni bajarish', ru: 'Выполнить команды' })}</button>}
-            {stage === 'failed' && <button className="btn fade-step" style={{ alignSelf: 'flex-start' }} onClick={fix}>🔧 {tr({ uz: "git commit qo'shib tuzatish", ru: 'Исправить, добавив git commit' })}</button>}
-            {stage === 'fixed' && <p className="mono small" style={{ color: T.success, margin: 0, fontWeight: 600 }}>✓ {tr({ uz: "add → commit → push — to'g'ri!", ru: 'add → commit → push — верно!' })}</p>}
-          </div>
-          <div className="col">
-            {stage === 'idle' && (<div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: `Buyruqlarni o'qing. "Bajarish"ni bosib, nima bo'lishini ko'ring.`, ru: 'Прочитайте команды. Нажмите «Выполнить» и посмотрите, что будет.' })}</p></div>)}
-            {stage === 'failed' && (<div className="frame-warn fade-step"><p className="note-h" style={{ color: T.accent }}>❌ {tr({ uz: 'commit tushib qolgan', ru: 'commit пропущен' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <><span className="mono">add</span> fayllarni tanladi, lekin <b>commit</b> qilinmadi — saqlangan narsa yo'q. push yuboradigan narsani topolmadi. Chap tomondagi tugma bilan tuzating →</>, ru: <><span className="mono">add</span> выбрал файлы, но <b>commit</b> не сделан — ничего не сохранено. push не нашёл, что отправлять. Исправьте кнопкой слева →</> })}</p></div>)}
-            {stage === 'fixed' && (<div className="takeaway fade-step"><div className="ta-bulb">🛠️</div><p className="ta-h">{tr({ uz: 'Yetishmagan qadamni topdingiz!', ru: 'Вы нашли недостающий шаг!' })}</p><p className="ta-sub">{tr({ uz: 'add → commit → push: har biri kerak, tartib bilan', ru: 'add → commit → push: нужен каждый, и по порядку' })}</p></div>)}
-          </div>
-        </div>
-      </div>
-    </Stage>
-  );
-};
-// ===== SCREEN 15 — YAKUNIY (yozma) =====
-const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const audio = useAudio([{ id: 's15', text: "Oxirgi qadam: o'zingiz commit buyrug'ini yozing. Uch qism kerak: git commit, so'ng -m bayrog'i, so'ng qo'shtirnoq ichida izoh. Pastdagi namunaga qarab yozing.", trigger: 'on_mount', waits_for: null }]);
-  const [val, setVal] = useState(storedAnswer?.picked || '');
-  const norm = val.trim();
-  const hasCmd = /git\s+commit/i.test(norm);
-  const hasM = /-m\b/.test(norm);
-  const afterM = hasM ? norm.split(/-m/i).slice(1).join('-m') : '';
-  // Qo'shtirnoq turlari unicode-kod bilan yozilgan (matn emas, KOD) — til-lint qiyshiq-apostrof
-  // qoidasi shu regexni yolg'ondan ushlab qolmasin. Xatti-harakati o'zgarmagan.
-  const qmatch = afterM.match(/["'\u2018\u2019\u201C\u201D]\s*([^"'\u2018\u2019\u201C\u201D]+?)\s*["'\u2018\u2019\u201C\u201D]/);
-  const hasMsg = hasM && !!qmatch;
-  const valid = hasCmd && hasM && hasMsg;
-  const solvedRef = useRef(!!storedAnswer);
-  useEffect(() => {
-    if (valid && !solvedRef.current) {
-      solvedRef.current = true;
-      onAnswer(screen, { stage: 'final', screenIdx: screen, correct: true, firstAttemptCorrect: true, picked: val });
-      const e = getAudioEngine();
-      if (e && !audio.muted) setTimeout(() => { if (!audio.muted) e.pushOneOff("Zo'r! git commit, -m va izoh — uchchalasini to'liq yozdingiz."); }, 200);
-    }
-    // eslint-disable-next-line
-  }, [valid]);
-  const CHECKS = [{ ok: hasCmd, l: '1. git commit' }, { ok: hasM, l: { uz: `2. -m bayrog'i`, ru: '2. флаг -m' } }, { ok: hasMsg, l: { uz: `3. "izoh" qo'shtirnoqda`, ru: '3. «комментарий» в кавычках' } }];
-  return (
-    <Stage eyebrow={tr({ uz: 'Yakuniy · amaliy', ru: 'Финал · практика' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!valid} label={valid ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "To'liq buyruqni yozing", ru: 'Напишите команду полностью' })} onClick={onNext} /></>}>
-      <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>O'zingiz <span className="italic" style={{ color: T.accent }}>commit</span> yozing</>, ru: <>Напишите <span className="italic" style={{ color: T.accent }}>commit</span> сами</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Uch qism kerak: <span className="mono">git commit</span> + <span className="mono">-m</span> + qo'shtirnoq ichida <b style={{ color: T.ink }}>izoh</b>. Namuna: <span className="mono">{`git commit -m "birinchi commit"`}</span>.</>, ru: <>Нужны три части: <span className="mono">git commit</span> + <span className="mono">-m</span> + <b style={{ color: T.ink }}>комментарий</b> в кавычках. Образец: <span className="mono">{`git commit -m "birinchi commit"`}</span>.</> })}</Mentor>
-        <div className="split">
-          <div className="col">
-            <input className="text-input" style={valid ? { boxShadow: `0 8px 22px -6px rgba(31,122,77,0.4), 0 0 0 2px ${T.success}` } : undefined} value={val} placeholder={`git commit -m "..."`} onChange={e => setVal(e.target.value)} />
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 7 }}>
-              {CHECKS.map((c, i) => (<div key={i} style={{ display: 'flex', alignItems: 'center', gap: 9, fontFamily: "'Manrope', sans-serif", fontSize: 14, color: c.ok ? T.success : T.ink3, fontWeight: c.ok ? 600 : 500 }}><span style={{ width: 20, height: 20, borderRadius: '50%', background: c.ok ? T.success : 'transparent', boxShadow: c.ok ? 'none' : `inset 0 0 0 2px ${T.ink3}`, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, flexShrink: 0 }}>{c.ok ? '✓' : ''}</span>{tr(c.l)}</div>))}
-            </div>
-          </div>
-          <div className="col">
-            <div className="flow-label">{tr({ uz: 'Natija', ru: 'Результат' })}</div>
-            {valid ? (
-              <div className="term fade-step"><span className="term-row"><span className="term-prompt">$ </span><span className="term-cmd">{norm}</span></span><span className="term-row"><span className="term-ok">{tr({ uz: '[main a1b2c3d] saqlandi ✓', ru: '[main a1b2c3d] сохранено ✓' })}</span></span></div>
-            ) : (<div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: "To'liq buyruqni yozing — natija shu yerda chiqadi", ru: 'Напишите команду полностью — результат появится здесь' })}</p></div>)}
-            {valid && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "To'liq commit buyrug'ini o'zingiz yozdingiz! Endi haqiqiy loyihada ishlata olasiz.", ru: 'Вы сами написали полную команду commit! Теперь сможете использовать её в настоящем проекте.' })}</p></div>}
-          </div>
-        </div>
-      </div>
-    </Stage>
-  );
-};
-
-// 🧲 Qayta ishlatiladigan DRAG&DROP TARTIB — bo'laklarni to'g'ri ketma-ketlikda joylash.
-// Boshqa darsga: faqat `items` ({ id, label }), `hints`, `onSolved` almashtiriladi.
-// YAGONA holat (pool+slots birga) — StrictMode'da dublikat bo'lmaydi (S7 saboq).
-function DragDropOrder({ items, hints, onSolved }) {
-  const order = items.map(x => x.id);
-  const byId = useMemo(() => Object.fromEntries(items.map(x => [x.id, x])), [items]);
-  const [st, setSt] = useState(() => {
-    const a = order.slice();
-    for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); const t = a[i]; a[i] = a[j]; a[j] = t; }
-    return { pool: a, slots: order.map(() => null) };
-  });
-  const { pool, slots } = st;
-  const slotRefs = useRef([]);
-  const full = slots.every(s => s !== null);
-  const solved = slots.every((s, i) => s === order[i]);
-  const wrong = full && !solved;
-  useEffect(() => { if (solved) onSolved && onSolved(); }, [solved]); // eslint-disable-line
-  const place = (id, from, slotIdx) => setSt(({ pool, slots }) => {
-    const ns = slots.slice(); const occ = ns[slotIdx];
-    if (typeof from === 'number') ns[from] = null;
-    ns[slotIdx] = id;
-    let np = from === 'pool' ? pool.filter(x => x !== id) : pool.slice();
-    if (occ) np = [...np, occ];
-    return { pool: np, slots: ns };
-  });
-  const toPool = (slotIdx) => setSt(({ pool, slots }) => {
-    const id = slots[slotIdx]; if (!id) return { pool, slots };
-    const ns = slots.slice(); ns[slotIdx] = null;
-    return { pool: [...pool, id], slots: ns };
-  });
-  const tap = (id) => setSt(({ pool, slots }) => {
-    const e = slots.findIndex(s => s === null); if (e < 0) return { pool, slots };
-    const ns = slots.slice(); ns[e] = id;
-    return { pool: pool.filter(x => x !== id), slots: ns };
-  });
-  const down = (ev, id, from) => {
-    if (ev.button != null && ev.button !== 0) return;
-    ev.preventDefault();
-    const el = ev.currentTarget; const sx = ev.clientX, sy = ev.clientY; let moved = false;
-    el.style.transition = 'none'; el.style.zIndex = '9999'; el.style.willChange = 'transform';
-    const mv = (e) => {
-      const dx = e.clientX - sx, dy = e.clientY - sy;
-      if (!moved && Math.abs(dx) + Math.abs(dy) > 5) moved = true;
-      if (moved) el.style.transform = `translate(${dx}px,${dy}px) scale(1.06) rotate(-2deg)`;
-    };
-    const finish = (el2) => { el2.style.zIndex = ''; el2.style.willChange = ''; el2.style.transform = ''; el2.style.transition = ''; };
-    const up = (e) => {
-      window.removeEventListener('pointermove', mv); window.removeEventListener('pointerup', up);
-      if (!moved) { finish(el); if (from === 'pool') tap(id); else toPool(from); return; }
-      let t = -1;
-      slotRefs.current.forEach((elm, i) => { if (!elm) return; const r = elm.getBoundingClientRect(); if (e.clientX >= r.left && e.clientX <= r.right && e.clientY >= r.top && e.clientY <= r.bottom) t = i; });
-      if (t >= 0) { finish(el); place(id, from, t); }
-      else if (typeof from === 'number') { finish(el); toPool(from); }
-      else { el.style.transition = 'transform .2s cubic-bezier(.34,1.3,.4,1)'; el.style.transform = ''; setTimeout(() => finish(el), 210); }
-    };
-    window.addEventListener('pointermove', mv); window.addEventListener('pointerup', up);
+  const [sel, setSel] = useState(storedAnswer?.sel || []);
+  const need = FILES.filter(f => f.ch).map(f => f.n);
+  const done = need.every(n => sel.includes(n));
+  // Yon ta'sir setState ichida EMAS (StrictMode dublikatidan saqlanish — S7 saboq)
+  const tap = (n) => {
+    const ns = sel.includes(n) ? sel.filter(x => x !== n) : [...sel, n];
+    setSel(ns);
+    if (need.every(k => ns.includes(k)) && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true, sel: ns, screenIdx: screen });
   };
   return (
-    <div className="dd fade-up">
-      <div className="dd-slots">
-        {slots.map((sid, i) => (
-          <div key={i} ref={el => (slotRefs.current[i] = el)} className={`dd-slot ${sid ? 'filled' : ''} ${solved && sid ? 'ok' : ''} ${wrong && sid && sid !== order[i] ? 'bad' : ''}`}>
-            <span className="dd-slotn">{i + 1}</span>
-            {sid ? <button className="dd-chip in" onPointerDown={(e) => down(e, sid, i)}>{tr(byId[sid].label)}</button> : <span className="dd-hint">{hints ? tr(hints[i]) : tr({ uz: 'bu yerga joylang', ru: 'поместите сюда' })}</span>}
-          </div>
-        ))}
+    <Stage eyebrow={tr({ uz: 'Nazariya', ru: 'Теория' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "O'zgargan ikki faylni tanlang", ru: 'Выберите два изменённых файла' })} onClick={onNext} /></>}>
+      <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Qaysi fayllar yuboriladi — buni <span className="italic" style={{ color: T.accent }}>kim</span> hal qiladi?</>, ru: <><span className="italic" style={{ color: T.accent }}>Кто</span> решает, какие файлы уйдут?</> })}</h2></div>
+        <Mentor>{tr({ uz: <>Buni siz hal qilasiz: yuboriladigan fayllarni o'zingiz belgilaysiz — bu qadam <b style={{ color: T.ink }}>add</b> deyiladi — o'zgargan ikki faylni bosing.</>, ru: <>Решаете вы: сами отмечаете файлы, которые уйдут, — этот шаг называется <b style={{ color: T.ink }}>add</b>, — нажмите на два изменённых файла.</> })}</Mentor>
+        <Split>
+          <Col>
+            <p className="flow-label">{tr({ uz: 'Papkangizdagi fayllar', ru: 'Файлы в вашей папке' })}</p>
+            {FILES.map(f => {
+              const on = sel.includes(f.n);
+              return (
+                <div key={f.n} className="gfile" onClick={() => tap(f.n)} role="button" style={{ cursor: 'pointer', boxShadow: on ? `inset 0 0 0 2px ${T.success}, 0 6px 16px -6px rgba(31,122,77,0.3)` : undefined }}>
+                  <span style={{ fontSize: 18 }}>{on ? '✅' : '📄'}</span>
+                  <span className="gfile-name">{f.n}</span>
+                  <span className={`gfile-status ${on ? 'gst-staged' : f.ch ? 'gst-mod' : 'gst-done'}`}>{on ? tr({ uz: 'tanlandi', ru: 'выбран' }) : f.ch ? tr({ uz: "o'zgargan", ru: 'изменён' }) : tr({ uz: "o'zgarmagan", ru: 'без изменений' })}</span>
+                </div>
+              );
+            })}
+          </Col>
+          <Col>
+            {done ? (
+              <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Ikkala fayl tanlandi. Terminalda shu ish bitta buyruq bilan bajariladi: <span className="mono">git add .</span> — barcha o'zgargan fayllarni tanlaydi.</>, ru: <>Оба файла выбраны. В терминале это делается одной командой: <span className="mono">git add .</span> — выбирает все изменённые файлы.</> })}</p></div>
+            ) : (<div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: "O'zgargan fayllarni bosing. O'zgarmagan fayl tanlanmaydi — u avvalgidek qoladi.", ru: 'Нажмите на изменённые файлы. Файл без изменений не выбирают — он остаётся прежним.' })}</p></div>)}
+            <div className="frame-soft"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <><b>add</b> hech narsani yubormaydi — u faqat ro'yxat tuzadi.</>, ru: <><b>add</b> ничего не отправляет — он только составляет список.</> })}</p></div>
+          </Col>
+        </Split>
       </div>
-      <div className="dd-pool">
-        {pool.length === 0 && !solved && <span className="dd-pool-empty">{tr({ uz: "Tartib xato — bo'lakni bosib qaytaring va qayta joylang", ru: 'Порядок неверный — нажмите на блок, верните его и расставьте заново' })}</span>}
-        {pool.map(id => <button key={id} className="dd-chip" onPointerDown={(e) => down(e, id, 'pool')}>{tr(byId[id].label)}</button>)}
-      </div>
-      {solved && <div className="dd-done">✓ {tr({ uz: "To'g'ri! Git ish-oqimi aynan shu tartibda.", ru: 'Верно! Рабочий цикл Git именно в таком порядке.' })}</div>}
-      {wrong && !solved && <div className="dd-wrong">⚠️ {tr({ uz: 'Tartib xato — qayta joylang.', ru: 'Порядок неверный — расставьте заново.' })}</div>}
-    </div>
+    </Stage>
   );
-}
+};
 
+// ===== SCREEN 9 — NAZARIYA: SAQLASH NUQTASI (commit) =====
+const ScreenCommit = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
+  const [saved, setSaved] = useState(!!storedAnswer);
+  const done = saved;
+  const save = () => { setSaved(true); if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true, screenIdx: screen }); };
+  return (
+    <Stage eyebrow={tr({ uz: 'Nazariya', ru: 'Теория' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Nuqtani belgilang', ru: 'Отметьте точку' })} onClick={onNext} /></>}>
+      <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Tanlangan fayllar <span className="italic" style={{ color: T.accent }}>qanday</span> saqlanadi?</>, ru: <><span className="italic" style={{ color: T.accent }}>Как</span> сохраняются выбранные файлы?</> })}</h2></div>
+        <Mentor>{tr({ uz: <>Tanlangan fayllar bitta nuqtaga qisqa izoh bilan yoziladi — shu nuqta <b style={{ color: T.ink }}>commit</b> deyiladi — tugmani bosing.</>, ru: <>Выбранные файлы записываются в одну точку с коротким комментарием — эта точка называется <b style={{ color: T.ink }}>commit</b>, — нажмите кнопку.</> })}</Mentor>
+        <Split>
+          <Col>
+            <p className="flow-label">{tr({ uz: 'Tanlangan fayllar', ru: 'Выбранные файлы' })}</p>
+            <div className="gfile"><span style={{ fontSize: 18 }}>✅</span><span className="gfile-name">index.html</span></div>
+            <div className="gfile"><span style={{ fontSize: 18 }}>✅</span><span className="gfile-name">style.css</span></div>
+            <div className="term"><span className="term-row"><span className="term-prompt">$ </span><span className="term-cmd">{saved ? 'git commit -m "birinchi sahifa"' : '_'}</span></span>{saved && <span className="term-row"><span className="term-ok">[main a1b2c3d] birinchi sahifa</span></span>}</div>
+            {!saved && <button className="btn" style={{ alignSelf: 'flex-start' }} onClick={save}>📸 {tr({ uz: 'Saqlash nuqtasini belgilash', ru: 'Отметить точку сохранения' })}</button>}
+          </Col>
+          <Col>
+            <p className="flow-label">{tr({ uz: 'Saqlangan nuqtalar', ru: 'Сохранённые точки' })}</p>
+            {saved ? (
+              <>
+                <div className="gcommit"><span className="gcommit-dot">📸</span><span className="gcommit-body"><span className="gcommit-msg">{tr({ uz: 'birinchi sahifa', ru: 'первая страница' })}</span><span className="gcommit-meta">commit a1b2c3d · {tr({ uz: 'hozir', ru: 'сейчас' })}</span></span></div>
+                <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Nuqta belgilandi. Izoh — <b>nima o'zgargani</b>: keyin ro'yxatdan o'qib, kerakli nuqtani topasiz.</>, ru: <>Точка отмечена. Комментарий — это <b>что изменилось</b>: потом по списку найдёте нужную точку.</> })}</p></div>
+              </>
+            ) : (<div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: "Hali nuqta yo'q", ru: 'Пока нет ни одной точки' })}</p></div>)}
+            <div className="frame-soft"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Har commit — kodning o'sha paytdagi holati. Kerak bo'lsa, o'sha holatga qaytiladi.</>, ru: <>Каждый commit — состояние кода на тот момент. Если нужно, к нему возвращаются.</> })}</p></div>
+          </Col>
+        </Split>
+      </div>
+    </Stage>
+  );
+};
+
+// ===== SCREEN 10 — NAZARIYA: INTERNETGA YUBORISH (push) =====
+const ScreenPush = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
+  const [sent, setSent] = useState(!!storedAnswer);
+  const [flying, setFlying] = useState(false);
+  const timer = useRef(null);
+  useEffect(() => () => clearTimeout(timer.current), []);
+  const done = sent;
+  const push = () => { setFlying(true); timer.current = setTimeout(() => { setFlying(false); setSent(true); if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true, screenIdx: screen }); }, 750); };
+  return (
+    <Stage eyebrow={tr({ uz: 'Nazariya', ru: 'Теория' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Internetga yuboring', ru: 'Отправьте в интернет' })} onClick={onNext} /></>}>
+      <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Saqlangan nuqta internetga <span className="italic" style={{ color: T.accent }}>qanday</span> chiqadi?</>, ru: <><span className="italic" style={{ color: T.accent }}>Как</span> сохранённая точка попадает в интернет?</> })}</h2></div>
+        <Mentor>{tr({ uz: <>Saqlangan nuqta bitta buyruq bilan repoga jo'natiladi — bu qadam <b style={{ color: T.ink }}>push</b> deyiladi — tugmani bosing.</>, ru: <>Сохранённая точка одной командой уходит в репо — этот шаг называется <b style={{ color: T.ink }}>push</b>, — нажмите кнопку.</> })}</Mentor>
+        <Split>
+          <Col>
+            <div className="cs fade-up delay-1">
+              <div className="cs-node cs-active"><span className="cs-ic">💻</span><span className="cs-l">{tr({ uz: <>Kompyuter<br />(commit)</>, ru: <>Компьютер<br />(commit)</> })}</span></div>
+              <div className="cs-wire"><div className={`cs-msg cs-req ${flying || sent ? 'on' : ''}`}>⬆️ push</div>{flying && <span className="cs-fly cs-fly-r">📦</span>}</div>
+              <div className={`cs-node ${sent ? 'cs-active' : ''}`}><span className="cs-ic">📦</span><span className="cs-l">{tr({ uz: <>Repo<br />(GitHub)</>, ru: <>Репо<br />(GitHub)</> })}</span></div>
+            </div>
+            {!sent
+              ? <button className="btn" style={{ alignSelf: 'flex-start' }} onClick={push} disabled={flying}>⬆️ {tr({ uz: 'Internetga yuborish', ru: 'Отправить в интернет' })}</button>
+              : <div className="term fade-step"><span className="term-row"><span className="term-prompt">$ </span><span className="term-cmd">git push</span></span><span className="term-row"><span className="term-ok">✓ {tr({ uz: 'yuborildi', ru: 'отправлено' })}</span></span></div>}
+          </Col>
+          <Col>
+            {sent ? (
+              <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Kod endi ikki joyda: kompyuterda va repoda. Repo sahifasini yangilasangiz, fayllar ko'rinadi.</>, ru: <>Теперь код в двух местах: на компьютере и в репо. Обновите страницу репо — файлы будут видны.</> })}</p></div>
+            ) : (<div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: 'Chapdagi tugmani bosing — nuqta repoga uchadi.', ru: 'Нажмите кнопку слева — точка улетит в репо.' })}</p></div>)}
+            <div className="frame-soft"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Teskari yo'nalish ham bor: <span className="mono">git pull</span> repodagi yangi nuqtalarni kompyuterga oladi.</>, ru: <>Есть и обратное направление: <span className="mono">git pull</span> забирает новые точки из репо на компьютер.</> })}</p></div>
+            <div className="pz-flow">{[{ ic: '✏️', l: { uz: "o'zgartir", ru: 'измени' } }, { ic: '📥', l: 'add' }, { ic: '📸', l: 'commit' }, { ic: '⬆️', l: 'push' }].map((s, i) => (<React.Fragment key={i}><div className={`pz-step ${sent || i < 3 ? 'on' : ''}`}><span className="pz-ic">{s.ic}</span><span className="pz-lbl">{tr(s.l)}</span></div>{i < 3 && <span className="pz-arrow on">→</span>}</React.Fragment>))}</div>
+          </Col>
+        </Split>
+      </div>
+    </Stage>
+  );
+};
+
+// ===== SCREEN 11 — TEST-3 (tartib) =====
+const ScreenTest3 = (props) => (
+  <QuestionScreen {...props} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 3-savol', ru: 'Упражнение · вопрос 3' })}
+    audioText="Kodni internetga yuborish uchun qadamlar qaysi tartibda bajariladi?"
+    questionText="Kodni internetga yuborish qadamlari qaysi tartibda bajariladi?"
+    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-sub" style={{ marginTop: 8 }}>{tr({ uz: <>Kodni internetga yuborish qadamlari qaysi <span className="italic" style={{ color: T.accent }}>tartibda</span> bajariladi?</>, ru: <>В каком <span className="italic" style={{ color: T.accent }}>порядке</span> идут шаги отправки кода в интернет?</> })}</h2></>}
+    options={['commit → add → push', 'push → add → commit', 'add → commit → push', 'add → push → commit']} correctIdx={2}
+    explainCorrect={tr({ uz: "To'g'ri. Avval fayllar tanlanadi (add), keyin nuqta belgilanadi (commit), keyin internetga yuboriladi (push).", ru: 'Верно. Сначала выбирают файлы (add), потом отмечают точку (commit), потом отправляют в интернет (push).' })}
+    explainWrong={{
+      0: tr({ uz: "commit fayllar tanlanmaguncha ishlamaydi: avval add, keyin commit, keyin push.", ru: 'commit не сработает, пока файлы не выбраны: сначала add, потом commit, потом push.' }),
+      1: tr({ uz: "push — oxirgi qadam: u faqat saqlangan nuqtani yuboradi. Tartib: add → commit → push.", ru: 'push — последний шаг: он отправляет только сохранённую точку. Порядок: add → commit → push.' }),
+      3: tr({ uz: "push saqlanmagan narsani yubormaydi. Avval commit bilan nuqta belgilanadi: add → commit → push.", ru: 'push не отправит несохранённое. Сначала точка отмечается коммитом: add → commit → push.' }),
+      default: tr({ uz: 'Tartib: add → commit → push.', ru: 'Порядок: add → commit → push.' }),
+    }} />
+);
+
+// ===== SCREEN 12 — AMALIYOT: REPO YARATISH =====
+const MAKE_REPO_STEPS = [
+  { id: 'plus', nav: { uz: '«+» ni bosing', ru: 'нажмите «+»' },
+    t: { uz: "github.com'da o'ng yuqoridagi «+» belgisini bosing va «New repository»ni tanlang", ru: 'На github.com нажмите «+» справа вверху и выберите «New repository»' },
+    d: { uz: 'New repository — yangi joy ochish degani.', ru: 'New repository — открыть новое место.' },
+    res: () => <Preview title="github.com" minH={150}><div style={{ ...winBox, minHeight: 120 }}><span style={{ alignSelf: 'flex-end', fontWeight: 800, fontSize: 18 }}>+ ▾</span><span className="mono small" style={{ background: T.paper, borderRadius: 8, padding: '7px 12px', boxShadow: `inset 0 0 0 1.5px ${T.line}` }}>New repository</span></div></Preview> },
+  { id: 'name', nav: { uz: 'nom yozing', ru: 'напишите имя' },
+    t: { uz: '«Repository name» maydoniga `mening-saytim` deb yozing', ru: 'В поле «Repository name» напишите `mening-saytim`' },
+    d: { uz: "Nomda bo'sh joy bo'lmasin — o'rniga chiziqcha qo'ying.", ru: 'В имени не должно быть пробелов — вместо них ставьте дефис.' },
+    help: { uz: "Qizil yozuv chiqsa — bunday nom sizda bor. Oxiriga raqam qo'shing: mening-saytim-2.", ru: 'Появилась красная надпись — такое имя у вас уже есть. Добавьте цифру: mening-saytim-2.' },
+    res: () => <Preview title="github.com/new" minH={150}><div style={{ ...winBox, minHeight: 120, alignItems: 'stretch', padding: '0 8px' }}><span className="mono small" style={{ color: T.ink3 }}>Repository name</span><span className="mono small" style={{ background: '#fff', borderRadius: 8, padding: '7px 10px', boxShadow: `inset 0 0 0 1.5px ${T.line}` }}>mening-saytim</span><span className="mono small" style={{ color: T.success }}>✓ {tr({ uz: "nom bo'sh", ru: 'имя свободно' })}</span></div></Preview> },
+  { id: 'opts', nav: { uz: 'sozlamalarni belgilang', ru: 'отметьте настройки' },
+    t: { uz: '«Public» ni tanlang va «Add a README file» katagini belgilang', ru: 'Выберите «Public» и отметьте галочку «Add a README file»' },
+    d: { uz: "Public — reponi hamma ko'ra oladi. README — loyiha haqidagi qisqa yozuv.", ru: 'Public — репо видят все. README — короткая запись о проекте.' },
+    res: () => <Preview title="github.com/new" minH={150}><div style={{ ...winBox, minHeight: 120, alignItems: 'stretch', padding: '0 8px' }}><span className="mono small">◉ Public</span><span className="mono small" style={{ color: T.ink3 }}>○ Private</span><span className="mono small">☑ Add a README file</span></div></Preview> },
+  { id: 'create', nav: { uz: 'repo yarating', ru: 'создайте репо' },
+    t: { uz: 'Pastdagi yashil «Create repository» tugmasini bosing', ru: 'Нажмите зелёную кнопку «Create repository» внизу' },
+    d: { uz: "Repo sahifasi ochiladi — manzilini brauzerdan ko'rasiz.", ru: 'Откроется страница репо — адрес увидите в браузере.' },
+    res: () => <Preview title="github.com/ali-karimov/mening-saytim" minH={150}><div className="repo" style={{ boxShadow: 'none' }}><div className="repo-top">📦 <b>mening-saytim</b> <span style={{ marginLeft: 'auto', color: T.ink3, fontSize: 11 }}>Public</span></div><div className="repo-row" style={{ cursor: 'default' }}>📝 README.md</div><div className="repo-row" style={{ cursor: 'default' }}>🕐 1 commit</div></div></Preview> },
+];
+const ScreenMakeRepo = (props) => (
+  <DoScreen {...props} practice
+    eyebrow={tr({ uz: 'Amaliyot · repo', ru: 'Практика · репо' })}
+    title={tr({ uz: <>Loyihangiz uchun <span className="italic" style={{ color: T.accent }}>joy</span> yarating</>, ru: <>Создайте <span className="italic" style={{ color: T.accent }}>место</span> для своего проекта</> })}
+    mentor={tr({ uz: <>Endi reponi <b style={{ color: T.ink }}>o'zingiz</b> yaratasiz — qiynalgan joyda qo'l ko'taring.</>, ru: <>Теперь репо вы создаёте <b style={{ color: T.ink }}>сами</b> — где будет трудно, поднимите руку.</> })}
+    steps={MAKE_REPO_STEPS} taskLabel={{ uz: 'Repo yaratish', ru: 'Создание репо' }} />
+);
+
+// ===== SCREEN 13 — AMALIYOT: KODNI PUSH QILISH =====
+const PUSH_STEPS = [
+  { id: 'copy', nav: { uz: 'havolani nusxalang', ru: 'скопируйте ссылку' },
+    t: { uz: 'Repo sahifasidagi yashil «Code» tugmasini bosing va havolani nusxalang', ru: 'На странице репо нажмите зелёную кнопку «Code» и скопируйте ссылку' },
+    d: { uz: 'Havola shunday tugaydi: .git', ru: 'Ссылка заканчивается так: .git' },
+    res: () => <Preview title="github.com/ali-karimov/mening-saytim" minH={150}><div style={{ ...winBox, minHeight: 120 }}><span style={{ background: T.success, color: '#fff', borderRadius: 8, padding: '6px 14px', fontWeight: 700, fontSize: 13 }}>Code ▾</span><span className="mono small" style={{ background: '#fff', borderRadius: 8, padding: '6px 10px', boxShadow: `inset 0 0 0 1.5px ${T.line}` }}>https://github.com/ali-karimov/mening-saytim.git</span></div></Preview> },
+  { id: 'clone', nav: { uz: 'reponi kompyuterga oling', ru: 'заберите репо на компьютер' },
+    t: { uz: "VS Code'da Ctrl+Shift+P bosing, `Git: Clone` yozing va havolani qo'ying", ru: 'В VS Code нажмите Ctrl+Shift+P, наберите `Git: Clone` и вставьте ссылку' },
+    d: { uz: "Papkani tanlaysiz — repo o'sha yerga tushadi va VS Code uni ochadi.", ru: 'Выбираете папку — репо попадёт туда, и VS Code его откроет.' },
+    help: { uz: "Ro'yxatda Git: Clone yo'q bo'lsa — Git o'rnatilmagan. 2-qadamga qaytib, `git --version` ni tekshiring.", ru: 'В списке нет Git: Clone — значит Git не установлен. Вернитесь ко второму шагу и проверьте `git --version`.' },
+    res: () => <div className="term"><span className="term-row"><span className="term-prompt">&gt; </span><span className="term-cmd">Git: Clone</span></span><span className="term-row"><span className="term-out">https://github.com/ali-karimov/mening-saytim.git</span></span><span className="term-row"><span className="term-ok">✓ {tr({ uz: 'papka ochildi', ru: 'папка открыта' })}</span></span></div> },
+  { id: 'file', nav: { uz: "fayl qo'shing", ru: 'добавьте файл' },
+    t: { uz: "Shu papkaga `index.html` faylini qo'shing va ichiga bir necha qator yozing", ru: 'Добавьте в эту папку файл `index.html` и напишите внутри несколько строк' },
+    d: { uz: "Oldingi darsdagi sahifangiz bo'lsa — fayllarni shu papkaga ko'chirib qo'ying.", ru: 'Если есть страница с прошлого урока — скопируйте файлы в эту папку.' },
+    res: () => <div className="term"><span className="term-row"><span className="term-out">mening-saytim/</span></span><span className="term-row"><span className="term-cmd">  index.html</span></span><span className="term-row"><span className="term-out">  README.md</span></span></div> },
+  { id: 'commit', nav: { uz: 'nuqtani belgilang', ru: 'отметьте точку' },
+    t: { uz: "Chapdagi ⑂ belgisini bosing, fayl yonidagi ➕ ni bosing, izoh yozing va «Commit» tugmasini bosing", ru: 'Нажмите значок ⑂ слева, нажмите ➕ рядом с файлом, напишите комментарий и нажмите «Commit»' },
+    d: { uz: '➕ — bu add. Izohga «birinchi sahifa» deb yozing.', ru: '➕ — это add. В комментарии напишите «birinchi sahifa».' },
+    res: () => <div className="term"><span className="term-row"><span className="term-prompt">$ </span><span className="term-cmd">git add .</span></span><span className="term-row"><span className="term-prompt">$ </span><span className="term-cmd">git commit -m "birinchi sahifa"</span></span><span className="term-row"><span className="term-ok">[main 7f3a19c] birinchi sahifa</span></span></div> },
+  { id: 'push', nav: { uz: 'internetga yuboring', ru: 'отправьте в интернет' },
+    t: { uz: "«Sync Changes» tugmasini bosing, so'ng brauzerda repo sahifasini yangilang", ru: 'Нажмите «Sync Changes», затем обновите страницу репо в браузере' },
+    d: { uz: "Faylingiz sahifada ko'rinsa — kod internetda.", ru: 'Ваш файл виден на странице — значит код в интернете.' },
+    help: { uz: "GitHub parol so'rasa — «Sign in with browser» tugmasini bosing va brauzerda tasdiqlang.", ru: 'GitHub просит пароль — нажмите «Sign in with browser» и подтвердите в браузере.' },
+    res: () => <Preview title="github.com/ali-karimov/mening-saytim" minH={150}><div className="repo" style={{ boxShadow: 'none' }}><div className="repo-top">📦 <b>mening-saytim</b> <span style={{ marginLeft: 'auto', color: T.ink3, fontSize: 11 }}>Public</span></div><div className="repo-row" style={{ cursor: 'default' }}>📄 index.html</div><div className="repo-row" style={{ cursor: 'default' }}>📝 README.md</div><div className="repo-row" style={{ cursor: 'default' }}>🕐 2 commit</div></div></Preview> },
+];
+const ScreenPushPractice = (props) => (
+  <DoScreen {...props} practice
+    eyebrow={tr({ uz: 'Amaliyot · push', ru: 'Практика · push' })}
+    title={tr({ uz: <>Kodingizni <span className="italic" style={{ color: T.accent }}>internetga</span> chiqaring</>, ru: <>Выведите свой код <span className="italic" style={{ color: T.accent }}>в интернет</span></> })}
+    mentor={tr({ uz: <>Bu — bugungi <b style={{ color: T.ink }}>asosiy ish</b>: har qadamdan keyin natijani tekshirib boring.</>, ru: <>Это <b style={{ color: T.ink }}>главная работа</b> дня: после каждого шага проверяйте результат.</> })}
+    steps={PUSH_STEPS} taskLabel={{ uz: 'Kodni push qilish', ru: 'Отправка кода' }} />
+);
+
+// ===== SCREEN 14 — YAKUNIY TEST =====
+const ScreenFinalTest = (props) => (
+  <QuestionScreen {...props} scope="final" eyebrow={tr({ uz: 'Yakuniy savol', ru: 'Финальный вопрос' })}
+    audioText="Kompyuteringiz buzildi. Kodni yangi kompyuterda qanday qaytarasiz?"
+    questionText="Kompyuter buzildi. Kodni yangi kompyuterda qanday qaytarasiz?"
+    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: 'Yakuniy savol', ru: 'Финальный вопрос' })}</p><h2 className="title h-sub" style={{ marginTop: 8 }}>{tr({ uz: <>Kompyuter buzildi. Kodni yangi kompyuterda <span className="italic" style={{ color: T.accent }}>qanday</span> qaytarasiz?</>, ru: <>Компьютер сломался. <span className="italic" style={{ color: T.accent }}>Как</span> вернуть код на новом компьютере?</> })}</h2></>}
+    options={[
+      { uz: 'Brauzer tarixidan qidiraman', ru: 'Поищу в истории браузера' },
+      { uz: "VS Code'ni qayta o'rnataman — fayllar qaytadi", ru: 'Переустановлю VS Code — файлы вернутся' },
+      { uz: "Boshqa yo'l yo'q — qaytadan yozaman", ru: 'Другого пути нет — напишу заново' },
+      { uz: "GitHub'dagi repodan nusxasini olaman", ru: 'Заберу копию из репо на GitHub' },
+    ]} correctIdx={3}
+    explainCorrect={tr({ uz: "To'g'ri. Repo internetda turadi: yangi kompyuterda GitHub'ga kirib, nusxasini olasiz — fayllar ham, saqlangan nuqtalar ham qaytadi.", ru: 'Верно. Репо лежит в интернете: на новом компьютере заходите на GitHub и забираете копию — вернутся и файлы, и сохранённые точки.' })}
+    explainWrong={{
+      0: tr({ uz: "Brauzer tarixida ochilgan sahifalar qoladi, fayllar emas. Nusxa repoda turadi.", ru: 'В истории браузера остаются открытые страницы, а не файлы. Копия лежит в репо.' }),
+      1: tr({ uz: "VS Code — dastur, fayllaringizni saqlamaydi. Nusxa repoda turadi.", ru: 'VS Code — программа, ваши файлы она не хранит. Копия лежит в репо.' }),
+      2: tr({ uz: "Qaytadan yozish shart emas: repoga yuborilgan kod internetda saqlanib turadi.", ru: 'Писать заново не нужно: код, отправленный в репо, хранится в интернете.' }),
+      default: tr({ uz: "Kod nusxasi GitHub'dagi repoda turadi — o'sha yerdan olinadi.", ru: 'Копия кода лежит в репо на GitHub — оттуда её и забирают.' }),
+    }} />
+);
 // 🃏 Qayta ishlatiladigan FLASHCARDS — aktiv takrorlash (3D flip + o'z-o'zini baholash).
 // Boshqa darsga: faqat `cards` ({ front, back, note }) almashtiriladi.
 const GIT_FLASHCARDS = [
-  { front: { uz: "Kodning eski holatiga qaytarib beradigan dastur qanday ataladi?", ru: 'Как называется программа, которая возвращает код к старому состоянию?' }, back: 'Git', note: { uz: "Git — kod uchun vaqt mashinasi: har holatni eslab qoladi", ru: 'Git — машина времени для кода: он помнит каждое состояние' } },
-  { front: { uz: "Kodning bir lahzada olingan surati qanday ataladi?", ru: 'Как называется снимок кода, сделанный в один момент?' }, back: 'commit', note: { uz: "Har commit'ning izohi va vaqti bo'ladi", ru: 'У каждого коммита есть комментарий и время' } },
-  { front: { uz: "Git kuzatib turadigan loyiha papkasi qanday ataladi?", ru: 'Как называется папка проекта, за которой следит Git?' }, back: 'repository (repo)', note: { uz: "Ichida barcha fayllar va commit tarixi turadi", ru: 'Внутри все файлы и история коммитов' } },
-  { front: { uz: "Kodni bulutda saqlaydigan sayt qaysi?", ru: 'Какой сайт хранит код в облаке?' }, back: 'GitHub', note: { uz: "Kompyuter buzilsa ham, kod GitHub'da qoladi", ru: 'Даже если компьютер сломается, код останется на GitHub' } },
-  { front: { uz: "Qaysi buyruq fayllarni saqlashga tanlaydi?", ru: 'Какая команда выбирает файлы для сохранения?' }, back: 'git add', note: { uz: "Xuddi savatga solgandek — bu holat staged deyiladi", ru: 'Как будто кладёте в корзину — это состояние staged' } },
-  { front: { uz: "Tanlangan fayllarni izoh bilan qaysi buyruq saqlaydi?", ru: 'Какая команда сохраняет выбранные файлы с комментарием?' }, back: 'git commit -m "izoh"', note: { uz: "Izoh qo'shtirnoq ichida yoziladi", ru: 'Комментарий пишется в кавычках' } },
-  { front: { uz: "commit buyrug'idagi -m nimani bildiradi?", ru: 'Что означает -m в команде commit?' }, back: { uz: 'Izoh (message)', ru: 'Комментарий (message)' }, note: { uz: "-m dan keyin nima o'zgargani yoziladi", ru: 'После -m пишут, что изменилось' } },
-  { front: { uz: "Kompyuteringizdagi commitlarni GitHub'ga qaysi buyruq yuboradi?", ru: 'Какая команда отправляет ваши коммиты на GitHub?' }, back: 'git push', note: { uz: "push — sizdan bulutga, yuqoriga", ru: 'push — от вас в облако, вверх' } },
-  { front: { uz: "GitHub'dagi yangi commitlarni kompyuteringizga qaysi buyruq oladi?", ru: 'Какая команда забирает новые коммиты с GitHub на компьютер?' }, back: 'git pull', note: { uz: "pull — bulutdan sizga, pastga", ru: 'pull — из облака к вам, вниз' } },
-  { front: { uz: "Do'stingizning loyihasini o'zingizga qaysi buyruq nusxalaydi?", ru: 'Какая команда копирует проект друга себе?' }, back: 'git clone', note: { uz: "Fayllar ham, butun tarix ham ko'chadi", ru: 'Копируются и файлы, и вся история' } },
-  { front: { uz: "Git bilan ishlash tartibi qanday?", ru: 'Каков порядок работы с Git?' }, back: 'add → commit → push', note: { uz: "Tartib muhim: saqlanmagan narsani yuborib bo'lmaydi", ru: 'Порядок важен: несохранённое отправить нельзя' } },
-  { front: { uz: "Har commitning o'ziga xos raqami qanday ataladi?", ru: 'Как называется собственный номер каждого коммита?' }, back: 'hash', note: { uz: "Masalan a1b2c3d — shu raqam bilan eski commitni topasiz", ru: 'Например a1b2c3d — по этому номеру найдёте старый коммит' } },
+  { front: { uz: "Kodning versiyalarini saqlaydigan dastur qanday ataladi?", ru: 'Как называется программа, которая хранит версии кода?' }, back: 'Git', note: { uz: "Kompyuterga o'rnatiladi, internetsiz ham ishlaydi", ru: 'Ставится на компьютер, работает и без интернета' } },
+  { front: { uz: "Kod internetda saqlanadigan sayt qaysi?", ru: 'На каком сайте код хранится в интернете?' }, back: 'GitHub', note: { uz: "Brauzerda ochiladi, havolasi bo'ladi", ru: 'Открывается в браузере, у него есть ссылка' } },
+  { front: { uz: "GitHub'da bitta loyiha uchun ochilgan joy qanday ataladi?", ru: 'Как называется место, открытое на GitHub под один проект?' }, back: 'repo (repository)', note: { uz: "Ichida fayllar, saqlangan nuqtalar va README turadi", ru: 'Внутри файлы, сохранённые точки и README' } },
+  { front: { uz: "Qaysi qadam yuboriladigan fayllarni tanlaydi?", ru: 'Какой шаг выбирает файлы для отправки?' }, back: 'add', note: { uz: "Terminalda: git add . — barcha o'zgargan fayllar", ru: 'В терминале: git add . — все изменённые файлы' } },
+  { front: { uz: "Saqlangan nuqta qanday ataladi?", ru: 'Как называется сохранённая точка?' }, back: 'commit', note: { uz: "Har nuqtaning izohi va vaqti bo'ladi", ru: 'У каждой точки есть комментарий и время' } },
+  { front: { uz: "Qaysi qadam saqlangan nuqtani internetga yuboradi?", ru: 'Какой шаг отправляет сохранённую точку в интернет?' }, back: 'push', note: { uz: 'Kompyuterdan repoga, yuqoriga', ru: 'С компьютера в репо, наверх' } },
+  { front: { uz: "Repodagi yangi nuqtalarni kompyuterga qaysi buyruq oladi?", ru: 'Какая команда забирает новые точки из репо на компьютер?' }, back: 'git pull', note: { uz: 'Repodan kompyuterga, pastga', ru: 'Из репо на компьютер, вниз' } },
+  { front: { uz: "Uch qadam qaysi tartibda bajariladi?", ru: 'В каком порядке идут три шага?' }, back: 'add → commit → push', note: { uz: "Saqlanmagan narsa yuborilmaydi", ru: 'Несохранённое отправить нельзя' } },
+  { front: { uz: "commit buyrug'idagi -m nima uchun kerak?", ru: 'Зачем нужен -m в команде commit?' }, back: { uz: 'Izoh yozish uchun', ru: 'Чтобы написать комментарий' }, note: { uz: "Izoh qo'shtirnoq ichida yoziladi", ru: 'Комментарий пишется в кавычках' } },
+  { front: { uz: "Git bilan GitHub orasidagi farq nimada?", ru: 'В чём разница между Git и GitHub?' }, back: { uz: 'Git — dastur, GitHub — sayt', ru: 'Git — программа, GitHub — сайт' }, note: { uz: 'Biri kompyuterda, ikkinchisi internetda', ru: 'Одно на компьютере, другое в интернете' } },
+  { front: { uz: "Repo ichidagi README fayli nima uchun?", ru: 'Для чего в репо файл README?' }, back: { uz: 'Loyiha haqidagi qisqa yozuv', ru: 'Короткая запись о проекте' }, note: { uz: "Repo sahifasida birinchi bo'lib ko'rinadi", ru: 'Показывается на странице репо первым' } },
+  { front: { uz: "Git o'rnatilganini qaysi buyruq tekshiradi?", ru: 'Какая команда проверяет, установлен ли Git?' }, back: 'git --version', note: { uz: 'Javobda dastur raqami chiqadi', ru: 'В ответ выводится номер программы' } },
 ];
 function Flashcards({ cards }) {
   const [queue, setQueue] = useState(() => cards.map((_, i) => i));
@@ -1871,14 +1658,14 @@ const CsWordmark = ({ onClick, disabled, hint, stats = true, bolt = true, liveOn
 
 // ===== 🏅 ACHIEVEMENTS (nishonlar) — dars davomidagi real bosqichlar uchun =====
 const ACHIEVEMENTS = {
-  timetravel: { icon: '🔍', name: 'Nice Catch!', desc: { uz: "Yetishmagan git-qadamni topib tuzatdingiz", ru: 'Вы нашли и исправили недостающий git-шаг' } },
-  quizace:    { icon: '🎯', name: 'Bullseye!',      desc: { uz: "Test savoliga birinchi urinishda to'g'ri javob berdingiz", ru: 'Вы ответили на вопрос теста верно с первой попытки' } },
-  gitflow:    { icon: '🔀', name: 'Flow Master!',   desc: { uz: "Git ish-oqimini to'g'ri tartibladingiz", ru: 'Вы правильно расставили рабочий цикл Git' } },
-  graduate:   { icon: '🏆', name: 'Level Up!',      desc: { uz: "Git va GitHub darsini to'liq yakunladingiz", ru: 'Вы полностью завершили урок Git и GitHub' } },
+  installed: { icon: '🛠️', name: 'Setup Done!', desc: { uz: "Git dasturini kompyuteringizga o'rnatdingiz", ru: 'Вы установили программу Git на свой компьютер' } },
+  quizace:   { icon: '🎯', name: 'Bullseye!',   desc: { uz: "Test savoliga birinchi urinishda to'g'ri javob berdingiz", ru: 'Вы ответили на вопрос теста верно с первой попытки' } },
+  shipped:   { icon: '🚀', name: 'Code Online!', desc: { uz: 'Kodingizni internetga chiqardingiz', ru: 'Вы вывели свой код в интернет' } },
+  graduate:  { icon: '🏆', name: 'Level Up!',   desc: { uz: "Git va GitHub darsini to'liq yakunladingiz", ru: 'Вы полностью завершили урок Git и GitHub' } },
 };
-// Ekran id → nishon (recordAnswer'da avtomatik beriladi) — FAQAT ma'noli ekranga (haqiqiy challenge/scored):
-// s14 = debug challenge (yetishmagan qadamni topib TUZATGANDA correct:true otadi) · s9 = scored test · s14b = DragDrop gate g'alabasi
-const ACH_TRIGGERS = { s14: 'timetravel', s9: 'quizace', s14b: 'gitflow' };
+// Ekran id → nishon (recordAnswer'da avtomatik beriladi) — FAQAT haqiqiy yutuq ekraniga:
+// s3 = Git o'rnatildi (barcha qadam bajarilgan) · s4 = scored test · s13 = kod internetga chiqdi (amaliyot)
+const ACH_TRIGGERS = { s3: 'installed', s4: 'quizace', s13: 'shipped' };
 // 🏅 O'YIN USLUBIDAGI TO'LIQ-EKRAN NISHON BAYRAMI
 function AchCelebrate({ ach, onDone }) {
   useEffect(() => { const t = setTimeout(onDone, 4000); return () => clearTimeout(t); }, []); // eslint-disable-line
@@ -1913,31 +1700,6 @@ function AchToasts({ toasts, onDone }) {
 }
 
 
-// ===== SCREEN 14b — GIT ISH-OQIMI GATE (DragDrop tartiblash) =====
-// Bo'laklarni to'g'ri ketma-ketlikda joylash — «o'zim qildim» gate (S8 saboq: passiv→aktiv).
-const GIT_FLOW_PIECES = [
-  { id: 'edit',   label: { uz: "✏️ Faylni o'zgartir", ru: '✏️ Измени файл' } },
-  { id: 'add',    label: 'git add' },
-  { id: 'commit', label: 'git commit' },
-  { id: 'push',   label: 'git push' },
-  { id: 'github', label: { uz: "🌐 GitHub'da ko'rinadi", ru: '🌐 Виден на GitHub' } },
-];
-const ScreenGitFlow = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const audio = useAudio([{ id: 's14b', text: "Endi butun aylanani o'zingiz tartiblang. Fayl o'zgardi, keyin git add tanlaydi, git commit surat qilib saqlaydi, git push GitHub'ga yuboradi — va u yerda ko'rinadi. Bo'laklarni to'g'ri tartibda joylang.", trigger: 'on_mount', waits_for: null }]);
-  const [done, setDone] = useState(!!storedAnswer);
-  useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]); // eslint-disable-line
-  return (
-    <Stage eyebrow={tr({ uz: 'Amaliyot · tartib', ru: 'Практика · порядок' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Bosqichlarni tartiblang', ru: 'Расставьте шаги по порядку' })} onClick={onNext} /></>}>
-      <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Git ish-oqimini <span className="italic" style={{ color: T.accent }}>o'zingiz tartiblang</span></>, ru: <>Расставьте рабочий цикл Git <span className="italic" style={{ color: T.accent }}>сами</span></> })}</h2></div>
-        <Mentor>{tr({ uz: <>Butun aylanani eslang: <b style={{ color: T.ink }}>o'zgartir → add → commit → push → GitHub</b>. Bo'laklarni to'g'ri tartibda joylang — sudrab yoki bosib.</>, ru: <>Вспомните весь цикл: <b style={{ color: T.ink }}>измени → add → commit → push → GitHub</b>. Расставьте блоки в правильном порядке — перетаскивая или нажимая.</> })}</Mentor>
-        <div className="sk-buildbox">
-          <DragDropOrder items={GIT_FLOW_PIECES} hints={[{ uz: "ish shu qadamdan boshlanadi", ru: 'работа начинается с этого шага' }, { uz: "o'zgarishni saqlashga tanlash", ru: 'выбрать изменение для сохранения' }, { uz: "surat qilib saqlash", ru: 'сохранить как снимок' }, { uz: "bulutga yuborish", ru: 'отправить в облако' }, { uz: "natijada bulutda ko'rinadi", ru: 'в итоге виден в облаке' }]} onSolved={() => setDone(true)} />
-        </div>
-      </div>
-    </Stage>
-  );
-};
 
 // ===== SCREEN FLASHCARDS — teglarni tez takrorlash (podiumdan keyin) =====
 const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
@@ -1971,16 +1733,27 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
     if (isMentorL && quizSt === 'off') { try { await _live.quizControl('lobby', -1); } catch { return; } }
     setArenaSolo(studentSolo); setArena(true);
   };
-  const audio = useAudio([{ id: 's16', text: "Tabriklaymiz! Endi Git va GitHub qanday ishlashini bilasiz: Git — kod uchun vaqt mashinasi, commit — saqlangan surat, tarix orqali istalgan nuqtaga qaytasiz, GitHub — kodning bulutdagi uyi va jamoa maydoni. push bilan yuborasiz, clone bilan birga ishlaysiz. Endi o'zingizning birinchi repongizni ochishga tayyorsiz!", trigger: 'on_mount', waits_for: null }]);
-  const RECAP = [{ uz: 'Git — kod uchun vaqt mashinasi', ru: 'Git — машина времени для кода' }, { uz: 'commit — kodning saqlangan surati', ru: 'commit — сохранённый снимок кода' }, { uz: 'Tarix — istalgan nuqtaga qaytish', ru: 'История — возврат к любой точке' }, { uz: 'GitHub — kodning bulutdagi uyi', ru: 'GitHub — облачный дом кода' }, { uz: 'push / pull — bulut bilan aloqa', ru: 'push / pull — связь с облаком' }, { uz: 'clone — jamoa bilan birga ishlash', ru: 'clone — совместная работа с командой' }];
-  const HOMEWORK = [{ b: { uz: "Ro'yxatdan o'ting", ru: 'Зарегистрируйтесь' }, t: { uz: '— github.com da bepul account oching', ru: '— откройте бесплатный аккаунт на github.com' } }, { b: { uz: 'Repo yarating', ru: 'Создайте репо' }, t: { uz: '— birinchi repository: mening-saytim', ru: '— первый repository: moy-sayt' } }, { b: { uz: 'commit qiling', ru: 'Сделайте commit' }, t: { uz: "— fayl qo'shib, izoh bilan saqlang", ru: '— добавьте файл и сохраните с комментарием' } }];
+  const audio = useAudio([{ id: 's16', text: "Bugun Git dasturini o'rnatdingiz, GitHub'da ro'yxatdan o'tdingiz, loyiha uchun repo yaratdingiz va kodni internetga yubordingiz. Endi kodingizning havolasi bor.", trigger: 'on_mount', waits_for: null }]);
+  const RECAP = [
+    { uz: "Git dasturini o'rnatdingiz", ru: 'Установили программу Git' },
+    { uz: "GitHub'da ro'yxatdan o'tdingiz", ru: 'Зарегистрировались на GitHub' },
+    { uz: 'Loyiha uchun repo yaratdingiz', ru: 'Создали репо для проекта' },
+    { uz: 'Fayllarni tanlab, saqlash nuqtasini belgiladingiz', ru: 'Выбрали файлы и отметили точку сохранения' },
+    { uz: 'Kodni internetga yubordingiz', ru: 'Отправили код в интернет' },
+    { uz: 'Kod havolasini boshqalarga ulasha olasiz', ru: 'Можете поделиться ссылкой на код' },
+  ];
+  const HOMEWORK = [
+    { b: { uz: "Yangi fayl qo'shing", ru: 'Добавьте новый файл' }, t: { uz: '— repo papkasiga about.html yarating', ru: '— создайте about.html в папке репо' } },
+    { b: { uz: 'Nuqtani belgilang', ru: 'Отметьте точку' }, t: { uz: '— izoh yozing: about sahifasi', ru: '— напишите комментарий: about sahifasi' } },
+    { b: { uz: 'Internetga yuboring', ru: 'Отправьте в интернет' }, t: { uz: "— repo sahifangizda fayl paydo bo'lsin", ru: '— пусть файл появится на странице репо' } },
+  ];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
   const PASSED = (total ? correct / total : 0) >= 0.6;
   return (
     <Stage eyebrow={tr({ uz: 'Tayyor', ru: 'Готово' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><button className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash ✓', ru: 'Завершить ✓' })}</button></>}>
       <div className="screen">
-        <div className="hero"><div className="hero-l"><span className="done-chip fade-up"><span className="tick">✓</span> {tr({ uz: 'Git va GitHub darsi tugadi', ru: 'Урок Git и GitHub завершён' })}</span><h2 className="title h-title fade-up d1">{tr({ uz: <>Git va GitHub <span className="italic" style={{ color: T.accent }}>qanday ishlashini</span> bilib oldingiz.</>, ru: <>Вы разобрались, <span className="italic" style={{ color: T.accent }}>как работают</span> Git и GitHub.</> })}</h2><p className="body h-sub fade-up d2">{PASSED ? tr({ uz: "Tabriklaymiz! Endi kodingizni Git bilan boshqarib, GitHub'ga joylaysiz.", ru: 'Поздравляем! Теперь вы управляете кодом через Git и выкладываете его на GitHub.' }) : tr({ uz: "Yaxshi harakat! Bir-ikki joyni mustahkamlash uchun darsni qayta ko'ring.", ru: 'Хорошая попытка! Пересмотрите урок, чтобы закрепить пару мест.' })}</p></div><ScoreRing correct={correct} total={total} /></div>
+        <div className="hero"><div className="hero-l"><span className="done-chip fade-up"><span className="tick">✓</span> {tr({ uz: 'Git va GitHub darsi tugadi', ru: 'Урок Git и GitHub завершён' })}</span><h2 className="title h-title fade-up d1">{tr({ uz: <>Kodingiz endi <span className="italic" style={{ color: T.accent }}>internetda</span> turibdi.</>, ru: <>Ваш код теперь <span className="italic" style={{ color: T.accent }}>в интернете</span>.</> })}</h2><p className="body h-sub fade-up d2">{PASSED ? tr({ uz: "Kompyuter buzilsa ham, kod repoda saqlanib qoladi.", ru: 'Даже если компьютер сломается, код останется в репо.' }) : tr({ uz: "Yaxshi harakat! Nazariya ekranlarini qayta ko'rib chiqing.", ru: 'Хорошая попытка! Пересмотрите экраны с теорией.' })}</p></div><ScoreRing correct={correct} total={total} /></div>
         <div className={`qz-cta cs-cta fade-up d2 ${studentLive ? 'ready' : ''}`}>
           <CsWordmark
             stats={false}
@@ -1992,8 +1765,8 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
         </div>
         {arena && <QuizArena live={_live || { mode: 'self' }} startSolo={arenaSolo} onClose={() => setArena(false)} />}
         <div className="split">
-          <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> {tr({ uz: 'Endi siz bilasiz', ru: 'Теперь вы знаете' })}</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{tr(r)}</span></li>))}</ul></div>
-          <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>🔎 {tr({ uz: 'Uyga vazifa', ru: 'Домашнее задание' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: 'Bilimingizni amalda sinang:', ru: 'Проверьте знания на практике:' })}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: "GitHub'da birinchi repongizni yaratib, do'stlaringizga ulashing!", ru: 'Создайте на GitHub свой первый репозиторий и поделитесь с друзьями!' })}</p></div>
+          <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> {tr({ uz: 'Bugun nima qildingiz', ru: 'Что вы сегодня сделали' })}</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{tr(r)}</span></li>))}</ul></div>
+          <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>🔎 {tr({ uz: 'Uyga vazifa', ru: 'Домашнее задание' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: 'Uch qadamni yana bir marta takrorlang:', ru: 'Повторите три шага ещё раз:' })}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: "Repo havolasini sinfdoshingizga yuboring — u brauzerda ochib sahifangizni ko'radi.", ru: 'Отправьте ссылку на репо однокласснику — он откроет вашу страницу в браузере.' })}</p></div>
         </div>
         {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>🏅 {tr({ uz: 'Nishonlaringiz', ru: 'Ваши значки' })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
@@ -2011,10 +1784,9 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
     </Stage>
   );
 };
-
 // ============================================================ LESSON ROOT — ({ lang, onFinished })
 // Podium yorliqlari (scored indeks -> qisqa nom)
-const Q_LABELS = { 4: { uz: "Git nima qiladi", ru: 'Что делает Git' }, 6: { uz: "commit nima", ru: 'Что такое commit' }, 10: 'git push', 13: { uz: "GitHub nega kerak", ru: 'Зачем нужен GitHub' }, 17: { uz: "commit buyrug'i yozish (yakuniy)", ru: 'Написать команду commit (финал)' } };
+const Q_LABELS = { 4: { uz: 'Git nima qiladi', ru: 'Что делает Git' }, 6: { uz: 'Git va GitHub farqi', ru: 'Разница Git и GitHub' }, 11: { uz: 'Qadamlar tartibi', ru: 'Порядок шагов' }, 14: { uz: 'Kod qayerdan qaytadi (yakuniy)', ru: 'Откуда вернётся код (финал)' } };
 
 const Confetti = () => {
   const COLORS = [T.accent, T.success, T.blue, '#FFD380', '#FF7755', '#7DD181'];
@@ -2038,7 +1810,7 @@ const Confetti = () => {
 };
 
 // Server-baholash javob kaliti (mentor darsni ochganda avto-yuklanadi). s15 = -1 (yakuniy amaliy).
-const INLINE_KEYS = { s4: 0, s5b: 2, s9: 1, s12: 3, s15: -1 };
+const INLINE_KEYS = { s4: 1, s6: 0, s11: 2, s14: 3, s12: -1, s13: -1 };
 
 const ScreenPodium = ({ screen, answers, onNext, onPrev }) => {
   const gate = useContext(LiveGateCtx) || {};
@@ -2121,26 +1893,6 @@ const ScreenPodium = ({ screen, answers, onNext, onPrev }) => {
                 ))}
               </div>
             </div>
-            {/* Savollar bo'yicha — qaysi mavzu qiyin bo'ldi */}
-            <div className="card fade-up d2">
-              <div className="card-lbl" style={{ color: T.blue }}>📊 {tr({ uz: "Savollar bo'yicha", ru: 'По вопросам' })}</div>
-              <div className="pod-qstats">
-                {SCORED_IDX.map(q => {
-                  const qa = rows.filter(r => r.screen_idx === q);
-                  const okN = qa.filter(r => r.correct).length;
-                  const pct = qa.length ? Math.round((okN / qa.length) * 100) : 0;
-                  const hard = qa.length >= 2 && pct < 50;
-                  return (
-                    <div key={q} className="qstat-row">
-                      <span className="qstat-lbl">{Q_LABELS[q] ? tr(Q_LABELS[q]) : `#${q}`}{hard && ' ⚠️'}</span>
-                      <span className="mstats-track"><span className="mstats-fill" style={{ width: `${pct}%`, background: hard ? T.accent : T.success }} /></span>
-                      <span className="mono qstat-n">{okN}/{qa.length}</span>
-                    </div>
-                  );
-                })}
-              </div>
-              {live.mode === 'mentor' && <p className="small" style={{ margin: '10px 0 0', color: T.ink2 }}>{tr({ uz: '⚠️ belgili savollar — sinf qiynalgan mavzular. Qayta tushuntirish tavsiya etiladi.', ru: 'Вопросы со значком ⚠️ — темы, где класс споткнулся. Рекомендуем объяснить их ещё раз.' })}</p>}
-            </div>
           </>
         )}
       </div>
@@ -2166,18 +1918,18 @@ const QZ_BG_SHAPES = [
   { ch: 'commit',  l: 2,  t: 46, s: 24, c: 'rgba(203,173,255,0.10)', d: 26, dl: 2.6 },
 ];
 const QUIZ_BANK = [
-  { q: { uz: "Git asosan nima ish bajaradi?", ru: 'Чем в основном занимается Git?' }, opts: [{ uz: "Kod versiyalarini saqlab, orqaga qaytaradi", ru: 'Сохраняет версии кода и возвращает назад' }, { uz: "Kodni chiroyli ranglarga bo'yaydi", ru: 'Красиво раскрашивает код' }, { uz: "Internet tezligini oshiradi", ru: 'Ускоряет интернет' }, { uz: "Rasm va suratlarni tahrirlaydi", ru: 'Редактирует фото и картинки' }], correct: 0 },
-  { q: { uz: "Kodning izoh bilan saqlangan nuqtasi nima deb ataladi?", ru: 'Как называется сохранённая с комментарием точка кода?' }, opts: [{ uz: "Brauzer", ru: 'Браузер' }, "commit", { uz: "Parol", ru: 'Пароль' }, { uz: "Domen", ru: 'Домен' }], correct: 1 },
-  { q: { uz: "git push buyrug'i nima qiladi?", ru: 'Что делает команда git push?' }, opts: [{ uz: "Barcha kodni butunlay o'chiradi", ru: 'Полностью удаляет весь код' }, { uz: "Sahifaga yangi rang qo'shadi", ru: 'Добавляет странице новый цвет' }, { uz: "Lokal commit'larni bulutga yuboradi", ru: 'Отправляет локальные коммиты в облако' }, { uz: "Faylni printerda chop etadi", ru: 'Печатает файл на принтере' }], correct: 2 },
-  { q: { uz: "GitHub asosan nima uchun kerak?", ru: 'Для чего в основном нужен GitHub?' }, opts: [{ uz: "Onlayn o'yinlar o'ynash uchun", ru: 'Для онлайн-игр' }, { uz: "Musiqa va video tinglash uchun", ru: 'Для музыки и видео' }, { uz: "Rasmlarni chiroyli tahrirlash", ru: 'Для красивой обработки картинок' }, { uz: "Kodni bulutda saqlash va birga ishlash", ru: 'Хранить код в облаке и работать вместе' }], correct: 3 },
-  { q: { uz: "Git qanday tizim deb ataladi?", ru: 'Какой системой называют Git?' }, opts: [{ uz: "Versiya nazorati tizimi", ru: 'Система контроля версий' }, { uz: "Operatsion tizim (OS)", ru: 'Операционная система (ОС)' }, { uz: "Antivirus dasturi", ru: 'Антивирусная программа' }, { uz: "Internet brauzeri", ru: 'Интернет-браузер' }], correct: 0 },
-  { q: { uz: "commit'da -m bayrog'i nima uchun?", ru: 'Зачем в commit нужен флаг -m?' }, opts: [{ uz: "Faylni o'chirish", ru: 'Удалить файл' }, { uz: "Izoh (xabar) yozish", ru: 'Написать комментарий (сообщение)' }, { uz: "Rang berish", ru: 'Задать цвет' }, { uz: "Internetga ulanish", ru: 'Подключиться к интернету' }], correct: 1 },
-  { q: { uz: "To'g'ri commit buyrug'i qaysi?", ru: 'Какая команда commit написана верно?' }, opts: [{ uz: "git save 'matn'", ru: "git save 'tekst'" }, "commit push now", { uz: "git commit -m \"matn\"", ru: 'git commit -m "tekst"' }, { uz: "git upload -m matn", ru: 'git upload -m tekst' }], correct: 2 },
-  { q: { uz: "Eski holatga qaytmoqchisiz. Nima yordam beradi?", ru: 'Хотите вернуться к старой версии. Что поможет?' }, opts: [{ uz: "Brauzer sahifasini yangilash", ru: 'Обновить страницу браузера' }, { uz: "Kompyuterni qayta o'chirish", ru: 'Перезагрузить компьютер' }, { uz: "Butunlay yangi fayl yaratish", ru: 'Создать совершенно новый файл' }, { uz: "Git tarixidagi oldingi commit", ru: 'Предыдущий коммит в истории Git' }], correct: 3 },
-  { q: { uz: "Loyihaning GitHub'dagi joyi nima deb ataladi?", ru: 'Как называется место проекта на GitHub?' }, opts: [{ uz: "Repository (repozitoriy)", ru: 'Repository (репозиторий)' }, { uz: "Oddiy fayllar papkasi", ru: 'Обычная папка с файлами' }, { uz: "Maxfiy kirish paroli", ru: 'Секретный пароль для входа' }, { uz: "Sayt domen manzili", ru: 'Доменный адрес сайта' }], correct: 0 },
-  { q: { uz: "Nega loyiha_final_ROST.html kabi ko'p nusxa yomon?", ru: 'Почему много копий вроде proekt_final_TOCHNO.html — это плохо?' }, opts: [{ uz: "Kompyuter tez ishlaydi", ru: 'Компьютер работает быстрее' }, { uz: "Chalkashlik ko'payadi", ru: 'Растёт путаница' }, { uz: "Internet tejaladi", ru: 'Экономится интернет' }, { uz: "Kod chiroyli bo'ladi", ru: 'Код становится красивее' }], correct: 1 },
-  { q: { uz: "push qilgandan keyin commit'lar qayerda bo'ladi?", ru: 'Где будут коммиты после push?' }, opts: [{ uz: "Faqat mening kompyuterimda", ru: 'Только на моём компьютере' }, { uz: "O'chib ketadi", ru: 'Они исчезнут' }, { uz: "GitHub'da (bulutda) ham", ru: 'И на GitHub (в облаке)' }, { uz: "Qog'ozda", ru: 'На бумаге' }], correct: 2 },
-  { q: { uz: "O'yinda commit nimaga to'g'ri keladi?", ru: 'Чему соответствует commit в игре?' }, opts: [{ uz: "Yangi o'yin sotib olish", ru: 'Купить новую игру' }, { uz: "O'yindan butunlay chiqish", ru: 'Совсем выйти из игры' }, { uz: "O'yin ovozini balandlatish", ru: 'Сделать звук игры громче' }, { uz: "Checkpoint (saqlash nuqtasi)", ru: 'Checkpoint (точка сохранения)' }], correct: 3 },
+  { q: { uz: "Git kompyuterda qanday ish qiladi?", ru: 'Какую работу делает Git на компьютере?' }, opts: [{ uz: "Kod versiyalarini saqlaydi va qaytaradi", ru: 'Хранит и возвращает версии кода' }, { uz: "Kodni ranglaydi", ru: 'Раскрашивает код' }, { uz: "Internet tezligini oshiradi", ru: 'Ускоряет интернет' }, { uz: "Rasmlarni tahrirlaydi", ru: 'Редактирует картинки' }], correct: 0 },
+  { q: { uz: "Kod internetda qaysi saytda saqlanadi?", ru: 'На каком сайте код хранится в интернете?' }, opts: [{ uz: "google.com", ru: 'google.com' }, "github.com", { uz: "youtube.com", ru: 'youtube.com' }, { uz: "telegram.org", ru: 'telegram.org' }], correct: 1 },
+  { q: { uz: "Git o'rnatilganini qaysi buyruq tekshiradi?", ru: 'Какая команда проверяет установку Git?' }, opts: [{ uz: "git start", ru: 'git start' }, { uz: "git open", ru: 'git open' }, "git --version", { uz: "git check", ru: 'git check' }], correct: 2 },
+  { q: { uz: "GitHub'da bitta loyiha uchun ochilgan joy qanday ataladi?", ru: 'Как называется место на GitHub под один проект?' }, opts: [{ uz: "Parol", ru: 'Пароль' }, { uz: "Brauzer", ru: 'Браузер' }, { uz: "Domen", ru: 'Домен' }, { uz: "Repo (repository)", ru: 'Репо (repository)' }], correct: 3 },
+  { q: { uz: "Qaysi qadam yuboriladigan fayllarni tanlaydi?", ru: 'Какой шаг выбирает файлы для отправки?' }, opts: [{ uz: "push", ru: 'push' }, "add", { uz: "pull", ru: 'pull' }, { uz: "clone", ru: 'clone' }], correct: 1 },
+  { q: { uz: "Saqlangan nuqta qanday ataladi?", ru: 'Как называется сохранённая точка?' }, opts: ["commit", { uz: "Domen", ru: 'Домен' }, { uz: "Parol", ru: 'Пароль' }, { uz: "Papka", ru: 'Папка' }], correct: 0 },
+  { q: { uz: "Qadamlar qaysi tartibda bajariladi?", ru: 'В каком порядке идут шаги?' }, opts: [{ uz: "commit → add → push", ru: 'commit → add → push' }, { uz: "push → commit → add", ru: 'push → commit → add' }, { uz: "add → push → commit", ru: 'add → push → commit' }, { uz: "add → commit → push", ru: 'add → commit → push' }], correct: 3 },
+  { q: { uz: "commit buyrug'idagi -m nima uchun kerak?", ru: 'Зачем в команде commit нужен -m?' }, opts: [{ uz: "Faylni o'chirish uchun", ru: 'Чтобы удалить файл' }, { uz: "Rang berish uchun", ru: 'Чтобы задать цвет' }, { uz: "Izoh yozish uchun", ru: 'Чтобы написать комментарий' }, { uz: "Internetga ulanish uchun", ru: 'Чтобы подключиться к интернету' }], correct: 2 },
+  { q: { uz: "Git bilan GitHub orasidagi farq nimada?", ru: 'В чём разница между Git и GitHub?' }, opts: [{ uz: "Git — dastur, GitHub — sayt", ru: 'Git — программа, GitHub — сайт' }, { uz: "Git — sayt, GitHub — dastur", ru: 'Git — сайт, GitHub — программа' }, { uz: "Ikkalasi bir xil", ru: 'Это одно и то же' }, { uz: "Git — brauzer, GitHub — muharrir", ru: 'Git — браузер, GitHub — редактор' }], correct: 0 },
+  { q: { uz: "Kompyuter buzildi. Kod qayerdan qaytadi?", ru: 'Компьютер сломался. Откуда вернётся код?' }, opts: [{ uz: "Brauzer tarixidan", ru: 'Из истории браузера' }, { uz: "Hech qayerdan", ru: 'Ниоткуда' }, { uz: "GitHub'dagi repodan", ru: 'Из репо на GitHub' }, { uz: "VS Code sozlamalaridan", ru: 'Из настроек VS Code' }], correct: 2 },
+  { q: { uz: "Repodagi yangi nuqtalarni kompyuterga qaysi buyruq oladi?", ru: 'Какая команда забирает новые точки из репо на компьютер?' }, opts: [{ uz: "git push", ru: 'git push' }, "git pull", { uz: "git add", ru: 'git add' }, { uz: "git commit", ru: 'git commit' }], correct: 1 },
+  { q: { uz: "Repo ichidagi README fayli nima uchun?", ru: 'Для чего в репо файл README?' }, opts: [{ uz: "Parolni saqlash uchun", ru: 'Чтобы хранить пароль' }, { uz: "Saytni tezlashtirish uchun", ru: 'Чтобы ускорить сайт' }, { uz: "Rasmlarni saqlash uchun", ru: 'Чтобы хранить картинки' }, { uz: "Loyiha haqida qisqa yozuv", ru: 'Короткая запись о проекте' }], correct: 3 },
 ];
 const quizPts = (elapsedMs) => elapsedMs <= 500 ? 1000 : Math.max(0, Math.round(1000 * (1 - (Math.min(elapsedMs, QUIZ_MS) / QUIZ_MS) / 2)));
 // Bitta o'yinchining barcha javoblaridan yakuniy hisob (hamma klientda bir xil chiqadi)
@@ -2646,7 +2398,7 @@ export default function GitLesson({ lang: langProp, onFinished }) {
     if (typeof onFinished === 'function') onFinished(payload);
   };
 
-  const screens = [Screen0, Screen1, Screen2, Screen3, Screen4, Screen5, Screen5b, Screen6, Screen7, Screen8, Screen9, Screen10, Screen11, Screen12, Screen13, Screen14, ScreenGitFlow, Screen15, ScreenPodium, ScreenFlashcards, Screen16];
+  const screens = [ScreenHook, ScreenGoal, ScreenChrome, ScreenGitInstall, ScreenTest1, ScreenGithubSignup, ScreenTest2, ScreenRepo, ScreenAdd, ScreenCommit, ScreenPush, ScreenTest3, ScreenMakeRepo, ScreenPushPractice, ScreenFinalTest, ScreenPodium, ScreenFlashcards, Screen16];
   const Current = screens[screen];
   return (
     <LangContext.Provider value={lang}>
@@ -3074,48 +2826,7 @@ export default function GitLesson({ lang: langProp, onFinished }) {
         .cs-fly-l { animation: csFlyL 0.72s cubic-bezier(.5,0,.4,1) both; }
         @keyframes csFlyR { 0% { left: 0; opacity: 0; transform: scale(0.5); } 18% { opacity: 1; transform: scale(1); } 82% { opacity: 1; transform: scale(1); } 100% { left: calc(100% - 28px); opacity: 0; transform: scale(0.5); } }
         @keyframes csFlyL { 0% { left: calc(100% - 28px); opacity: 0; transform: scale(0.5); } 18% { opacity: 1; transform: scale(1); } 82% { opacity: 1; transform: scale(1); } 100% { left: 0; opacity: 0; transform: scale(0.5); } }
-        .jmini { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; background: ${T.paper}; border-radius: 12px; padding: 14px 12px; box-shadow: 0 6px 16px -6px rgba(${T.shadowBase},0.14); }
-        .jmini-node { display: flex; flex-direction: column; align-items: center; gap: 3px; }
-        .jmini-ic { font-size: 22px; }
-        .jmini-l { font-family: 'Manrope'; font-size: 10px; font-weight: 600; color: ${T.ink2}; }
-        .jmini-arr { color: ${T.accent}; font-weight: 700; }
-
         /* ============ GIT/GITHUB DARS CSS ============ */
-        /* === 🏗️ MINORA QURUVCHI (Screen2) — sodda vertikal stack (Dizayn sayqallaydi) === */
-        .twr-wrap { display: flex; flex-direction: column; align-items: center; gap: 8px; }
-        .twr { display: flex; flex-direction: column-reverse; align-items: center; justify-content: flex-start; gap: 4px; width: 100%; min-height: 200px; padding: 12px 10px; border-radius: 12px; background: ${T.bg}; box-shadow: inset 0 0 0 1.5px rgba(167,166,162,0.28); }
-        .twr-block { position: relative; width: clamp(80px,58%,150px); height: 26px; border-radius: 7px; background: linear-gradient(180deg, #FF8A3D, ${T.accent}); box-shadow: 0 4px 10px -4px rgba(255,79,40,0.5), inset 0 1.5px 0 rgba(255,255,255,0.32); animation: twrPop 0.4s cubic-bezier(.34,1.45,.5,1); will-change: transform; }
-        /* blok qo'shilishi — yuqoridan tushib joylashish spring'i (settle bounce bilan) */
-        @keyframes twrPop { 0% { transform: translateY(-24px) scale(0.6); opacity: 0; } 55% { transform: translateY(2px) scale(1.09); opacity: 1; } 76% { transform: translateY(-1px) scale(0.97); } 100% { transform: none; opacity: 1; } }
-        .twr-block.flag { background: ${T.successSoft}; box-shadow: 0 4px 10px -4px rgba(31,122,77,0.45), inset 0 0 0 2px ${T.success}; }
-        .twr-flag { position: absolute; right: -22px; top: 50%; transform: translateY(-50%); font-size: 16px; }
-        /* ===== 💥 MINORA QULASHI — darsning eng dramatik lahzasi =====
-           1) butun minora beqarorlikdan silkinadi (twrShake), 2) bloklar KETMA-KET qulaydi:
-           tepa avval, pastdagilar keyinroq (--fi stagger) — translateY+rotate+opacity bilan. */
-        .twr.falling { animation: twrShake 0.42s cubic-bezier(.36,.07,.19,.97); transform-origin: bottom center; }
-        @keyframes twrShake { 0%,100% { transform: translateX(0) rotate(0); } 12% { transform: translateX(-6px) rotate(-1deg); } 26% { transform: translateX(6px) rotate(1.2deg); } 40% { transform: translateX(-5px) rotate(-1deg); } 55% { transform: translateX(4px) rotate(.8deg); } 72% { transform: translateX(-2px) rotate(-.4deg); } 86% { transform: translateX(1px); } }
-        .twr.falling .twr-block { animation: twrBlockFall 0.36s cubic-bezier(.55,.08,.9,.35) forwards; animation-delay: calc(var(--fi, 0) * 0.05s); will-change: transform, opacity; }
-        .twr.falling .twr-block:nth-child(odd) { --fr: -19deg; }
-        @keyframes twrBlockFall { 0% { transform: translateY(0) rotate(0); opacity: 1; } 22% { transform: translateY(-5px) rotate(-2deg); opacity: 1; } 100% { transform: translateY(135px) rotate(var(--fr, 17deg)); opacity: 0; } }
-        /* ===== ⏪ QUTQARISH — vaqt-mashinasi tiklashi =====
-           gRewind (blur+siljish) container'da; tiklangan bloklar yengil "yashil nafas" oladi. */
-        .twr.rewinding { animation: gRewind 0.5s ease-out; }
-        .twr.rewinding .twr-block { animation: twrBreathe 0.75s ease-out; }
-        @keyframes twrBreathe { 0% { box-shadow: 0 4px 10px -4px rgba(31,122,77,0), inset 0 1.5px 0 rgba(255,255,255,0.32); } 45% { box-shadow: 0 0 0 4px rgba(31,122,77,0.22), 0 5px 16px -4px rgba(31,122,77,0.5), inset 0 1.5px 0 rgba(255,255,255,0.4); transform: scale(1.03); } 100% { box-shadow: 0 4px 10px -4px rgba(31,122,77,0), inset 0 1.5px 0 rgba(255,255,255,0.32); transform: none; } }
-        /* reduced-motion: dramatik qulash/rewind o'rniga tinch opacity-only variant */
-        @media (prefers-reduced-motion: reduce) {
-          .twr.falling { animation: none; }
-          .twr.falling .twr-block { animation: twrFadeOut 0.3s ease-out forwards; animation-delay: 0; }
-          @keyframes twrFadeOut { to { opacity: 0; } }
-          .twr.rewinding { animation: none; }
-          .twr.rewinding .twr-block { animation: acu-fade 0.35s ease-out; }
-        }
-        .twr-empty { color: ${T.ink3}; font-style: italic; font-size: 13px; padding: 30px 0; text-align: center; }
-        .twr-h { font-family: 'Manrope'; font-weight: 700; font-size: 14px; color: ${T.ink2}; }
-        .twr-h b { color: ${T.accent}; font-size: 16px; }
-        .term { background: ${CODE.bg}; border-radius: 12px; padding: 14px 16px; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.2); display: flex; flex-direction: column; gap: 5px; font-family: 'JetBrains Mono', monospace; font-size: clamp(12px,1.6vw,13.5px); line-height: 1.5; overflow-x: auto; }
-        .term-row { white-space: pre-wrap; word-break: break-word; }
-        .term-prompt { color: ${CODE.str}; } .term-cmd { color: ${CODE.attr}; } .term-out { color: ${CODE.punct}; } .term-err { color: ${CODE.tag}; } .term-ok { color: ${CODE.str}; }
         .gfile { display: flex; align-items: center; gap: 10px; background: ${T.paper}; border-radius: 11px; padding: 12px 15px; box-shadow: 0 6px 16px -6px rgba(${T.shadowBase},0.16); font-family: 'JetBrains Mono', monospace; font-size: 14px; transition: all 0.3s; }
         .gfile-name { color: ${T.ink}; flex: 1; min-width: 0; }
         .gfile-status { font-family: 'Manrope'; font-weight: 700; font-size: 11px; padding: 4px 11px; border-radius: 99px; flex-shrink: 0; }
@@ -3125,39 +2836,12 @@ export default function GitLesson({ lang: langProp, onFinished }) {
         .gcommit-body { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
         .gcommit-msg { font-family: 'Manrope'; font-weight: 600; font-size: 13.5px; color: ${T.ink}; }
         .gcommit-meta { font-family: 'JetBrains Mono'; font-size: 11px; color: ${T.ink3}; }
-        .gtl { display: flex; flex-direction: column; }
-        .gtl-node { display: flex; gap: 13px; cursor: pointer; }
-        .gtl-rail { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; }
-        .gtl-dot { width: 16px; height: 16px; border-radius: 50%; box-shadow: inset 0 0 0 3px ${T.paper}, 0 0 0 2px ${T.ink3}; background: ${T.ink3}; transition: all 0.25s; margin-top: 5px; }
-        .gtl-line { width: 2px; flex: 1; min-height: 20px; background: rgba(167,166,162,0.35); }
-        .gtl-node.on .gtl-dot { box-shadow: inset 0 0 0 3px ${T.paper}, 0 0 0 2px ${T.accent}; background: ${T.accent}; }
-        .gtl-card { flex: 1; min-width: 0; padding: 9px 13px; border-radius: 10px; background: ${T.paper}; box-shadow: 0 5px 14px -6px rgba(${T.shadowBase},0.14); margin-bottom: 8px; transition: all 0.2s; }
-        .gtl-node.on .gtl-card { box-shadow: 0 0 0 2px ${T.accent}, 0 8px 18px -6px rgba(255,79,40,0.25); background: ${T.accentSoft}; }
-        .gtl-msg { font-family: 'Manrope'; font-weight: 600; font-size: 13px; color: ${T.ink}; }
-        .gtl-hash { font-family: 'JetBrains Mono'; font-size: 11px; color: ${T.ink3}; }
         .repo { background: ${T.paper}; border-radius: 14px; overflow: hidden; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.16); }
         .repo-top { display: flex; align-items: center; gap: 8px; padding: 12px 15px; border-bottom: 1px solid rgba(167,166,162,0.25); font-family: 'JetBrains Mono'; font-size: 13px; color: ${T.ink}; }
-        .repo-row { display: flex; align-items: center; gap: 10px; padding: 11px 15px; cursor: pointer; transition: background 0.2s; font-family: 'JetBrains Mono'; font-size: 13px; color: ${T.ink2}; }
-        .repo-row:hover { background: ${T.bg}; }
-        .repo-row.on { background: ${T.accentSoft}; color: ${T.accent}; box-shadow: inset 3px 0 0 ${T.accent}; }
-        /* tap-hint affordance (L1 bilan bir xil): bosilmagan qatorlar "meni bos" deb pulslaydi; ochilgani ✓ */
-        @keyframes tap-hint { 0%, 100% { box-shadow: inset 0 0 0 0 rgba(255,79,40,0); } 50% { box-shadow: inset 0 0 0 2px rgba(255,79,40,0.42); } }
-        .repo-row:not(.on):not(.seen) { animation: tap-hint 1.8s ease-in-out infinite; }
-        .repo-row.seen:not(.on)::after { content: '✓'; margin-left: auto; color: ${T.success}; font-weight: 800; font-size: 12px; }
-        @media (prefers-reduced-motion: reduce) { .repo-row:not(.on):not(.seen) { animation: none; } }
+        .repo-row { display: flex; align-items: center; gap: 10px; padding: 11px 15px; font-family: 'JetBrains Mono'; font-size: 13px; color: ${T.ink2}; }
         /* === animatsiya yaxshilashlari (page 2,3,4,8,12) === */
-        .jmini-node { animation: jpop 0.45s backwards cubic-bezier(.34,1.5,.5,1); }
-        .jmini-arr { animation: jflow 1.8s ease-in-out infinite; }
-        @keyframes jpop { from { opacity: 0; transform: scale(0.55); } to { opacity: 1; transform: scale(1); } }
-        @keyframes jflow { 0%,100% { opacity: 0.4; transform: translateX(0); } 50% { opacity: 1; transform: translateX(2px); } }
         .gcommit-dot { animation: snapPop 0.5s cubic-bezier(.34,1.5,.5,1); }
         @keyframes snapPop { 0% { transform: scale(0); } 55% { transform: scale(1.3); box-shadow: 0 0 0 6px rgba(255,79,40,0.18); } 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255,79,40,0); } }
-        .gtl-node.on .gtl-dot { animation: dotPulse 0.55s cubic-bezier(.34,1.5,.5,1); }
-        @keyframes dotPulse { 0% { transform: scale(1); } 50% { transform: scale(1.45); } 100% { transform: scale(1); } }
-        .gcode-rewind { animation: gRewind 0.5s ease-out; }
-        @keyframes gRewind { 0% { opacity: 0; transform: translateX(-12px); filter: blur(1.5px); } 100% { opacity: 1; transform: none; filter: none; } }
-
-
         /* ===================== JONLI DARS CSS (InternetLesson bilan bir xil) ===================== */
         /* Konfetti */
         /* === Konfetti (yakun bayrami) === */
@@ -3388,10 +3072,6 @@ export default function GitLesson({ lang: langProp, onFinished }) {
         .pod-dot.bad { background: ${T.accent}; }
         .pod-row-score { min-width: 34px; text-align: right; font-size: 12.5px; font-weight: 700; color: ${T.ink}; }
         .pod-row-time { min-width: 46px; text-align: right; font-size: 11.5px; color: ${T.ink3}; }
-        .pod-qstats { display: flex; flex-direction: column; gap: 8px; }
-        .qstat-row { display: flex; align-items: center; gap: 10px; }
-        .qstat-lbl { min-width: clamp(120px,22vw,190px); font-family: 'Manrope'; font-weight: 600; font-size: 12.5px; color: ${T.ink2}; }
-        .qstat-n { min-width: 40px; text-align: right; font-size: 12px; color: ${T.ink2}; }
         .pm-pop { animation: pmPop 0.5s cubic-bezier(.34,1.55,.5,1); }
         @keyframes pmPop { 0% { transform: scale(0.9); } 50% { transform: scale(1.04); } 100% { transform: scale(1); } }
         .pm-match { animation: pmMatch 0.55s cubic-bezier(.34,1.5,.5,1); }
@@ -3411,29 +3091,6 @@ export default function GitLesson({ lang: langProp, onFinished }) {
         .option-wait { background: ${T.blueSoft} !important; color: ${T.blue} !important; box-shadow: inset 0 0 0 2px ${T.blue}, 0 8px 22px -8px rgba(1,154,203,0.3) !important; }
         /* frame-wait (feedback kutish) */
         .frame-wait { background: ${T.blueSoft}; border-left: 4px solid ${T.blue}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -8px rgba(1,154,203,0.22); }
-
-        /* === 🧲 DRAG&DROP (reusable) === */
-        .sk-buildbox { display: flex; flex-direction: column; animation: sk-swapin 0.5s cubic-bezier(.34,1.3,.4,1); }
-        @keyframes sk-swapin { from { opacity: 0; transform: translateY(12px) scale(0.96); } to { opacity: 1; transform: none; } }
-        .dd { display: flex; flex-direction: column; gap: 13px; }
-        .dd-slots { display: flex; flex-direction: column; gap: 9px; }
-        .dd-slot { display: flex; align-items: center; gap: 12px; min-height: 56px; border-radius: 14px; border: 2px dashed ${T.ink3}66; background: ${T.paper}; padding: 8px 12px; transition: border-color .18s, background .18s; }
-        .dd-slot.filled { border-style: solid; border-color: ${T.line}; }
-        .dd-slot.ok { border-color: ${T.success}; background: ${T.successSoft}; }
-        .dd-slot.bad { border-color: #E24848; background: #FBE9E9; animation: dd-shake .4s; }
-        @keyframes dd-shake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-5px)} 75%{transform:translateX(5px)} }
-        .dd-slotn { width: 26px; height: 26px; border-radius: 8px; background: ${T.bg}; color: ${T.ink3}; font-weight: 800; font-size: 13px; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
-        .dd-slot.ok .dd-slotn { background: ${T.success}; color: #fff; }
-        .dd-hint { color: ${T.ink3}; font-style: italic; font-size: 13px; }
-        .dd-pool { display: flex; flex-wrap: wrap; gap: 9px; min-height: 48px; padding: 10px; border-radius: 14px; background: ${T.bg}; }
-        .dd-pool-empty { color: ${T.ink3}; font-size: 12.5px; font-style: italic; align-self: center; }
-        .dd-chip { font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: clamp(13px,1.7vw,15px); color: #fff; background: linear-gradient(170deg, #FF8A3D, ${T.accent}); border: none; border-radius: 11px; padding: 11px 15px; cursor: grab; touch-action: none; box-shadow: 0 8px 16px -8px rgba(255,79,40,.6), inset 0 2px 0 rgba(255,255,255,.3); transition: transform .12s; user-select: none; }
-        .dd-chip:hover { transform: translateY(-2px); }
-        .dd-chip:active { cursor: grabbing; }
-        .dd-slots, .dd-pool { position: relative; }
-        .dd-pool { z-index: 1; }
-        .dd-done { font-weight: 700; color: ${T.success}; font-size: 14.5px; }
-        .dd-wrong { font-weight: 700; color: #E24848; font-size: 13.5px; }
 
         /* === 🃏 FLASHCARDS (reusable, 3D flip) === */
         .fc-center { display: flex; justify-content: center; padding-top: 4px; }
@@ -3677,6 +3334,57 @@ export default function GitLesson({ lang: langProp, onFinished }) {
         .qcode { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 0.92em; background: rgba(20,17,14,0.08); border-radius: 6px; padding: 1px 6px; white-space: nowrap; }
         .qz-tile .qcode { background: rgba(255,255,255,0.25); color: #fff; }
         .qz-q .qcode { background: rgba(203,173,255,0.18); color: #F2ECFF; }
+
+        /* === ✅ «O'ZIM QILDIM» QADAM-OQIMI (DoSteps) — qadamlar bittalab ochiladi === */
+        .dsx { display: flex; flex-direction: column; gap: 8px; background: ${T.paper}; border-radius: 16px; padding: 14px 15px; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.14); }
+        .dsx-head { display: flex; align-items: center; gap: 10px; }
+        .dsx-lbl { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 12.5px; color: ${T.ink2}; letter-spacing: 0.01em; }
+        .dsx-count { margin-left: auto; font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 700; color: ${T.ink3}; background: ${T.bg}; border-radius: 99px; padding: 3px 10px; }
+        .dsx-count.ok { color: ${T.success}; background: ${T.successSoft}; }
+        .dsx-row { display: flex; align-items: flex-start; gap: 11px; border-radius: 12px; padding: 10px 12px; background: ${T.bg}; transition: background 0.25s, opacity 0.25s; }
+        .dsx-row.open { background: ${T.accentSoft}; box-shadow: inset 0 0 0 1.5px rgba(255,79,40,0.35); animation: fade-step 0.3s ease-out; }
+        .dsx-row.on { background: ${T.successSoft}; }
+        .dsx-row.lock { opacity: 0.45; }
+        .dsx-num { width: 24px; height: 24px; flex-shrink: 0; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 700; background: ${T.paper}; color: ${T.ink2}; box-shadow: 0 3px 9px -4px rgba(${T.shadowBase},0.25); }
+        .dsx-row.on .dsx-num { background: ${T.success}; color: #fff; }
+        .dsx-row.open .dsx-num { background: ${T.accent}; color: #fff; }
+        .dsx-body { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 7px; }
+        .dsx-t { font-family: 'Manrope', sans-serif; font-weight: 600; font-size: clamp(13px,1.6vw,14.5px); color: ${T.ink}; line-height: 1.4; }
+        .dsx-row.on .dsx-t { color: ${T.success}; }
+        .dsx-d { font-family: 'Manrope', sans-serif; font-size: 12.5px; color: ${T.ink2}; line-height: 1.45; }
+        .dsx-help { font-size: 12px; color: ${T.ink2}; }
+        .dsx-help summary { cursor: pointer; font-weight: 600; color: ${T.accent}; list-style: none; }
+        .dsx-help summary::-webkit-details-marker { display: none; }
+        .dsx-help summary::before { content: '? '; font-weight: 800; }
+        .dsx-help span { display: block; margin-top: 5px; line-height: 1.45; }
+        .dsx-btn { align-self: flex-start; font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 12.5px; border: none; border-radius: 10px; padding: 8px 15px; background: ${T.ink}; color: ${T.bg}; cursor: pointer; transition: all 0.18s; box-shadow: 0 5px 14px -5px rgba(${T.shadowBase},0.3); }
+        .dsx-btn:hover:not(:disabled) { background: ${T.accent}; }
+        .dsx-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+        .dsx-undo { flex-shrink: 0; align-self: center; border: none; background: transparent; color: ${T.ink3}; font-size: 14px; cursor: pointer; padding: 2px 4px; border-radius: 8px; }
+        .dsx-undo:hover { color: ${T.accent}; background: ${T.paper}; }
+        .dsx-done { margin: 2px 0 0; font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 13px; color: ${T.success}; }
+
+        /* Hook: bitta joydagi fayllar (noutbuk maketi) */
+        .gh-lap { display: flex; flex-direction: column; align-items: center; gap: 0; }
+        .gh-lap-scr { position: relative; width: min(320px,100%); min-height: 128px; background: ${T.paper}; border-radius: 12px 12px 4px 4px; padding: 14px; display: flex; flex-direction: column; gap: 7px; box-shadow: 0 10px 26px -8px rgba(${T.shadowBase},0.24); transition: filter 0.4s, opacity 0.4s; }
+        .gh-lap-base { width: min(380px,110%); height: 10px; border-radius: 0 0 10px 10px; background: ${T.line}; }
+        .gh-lap-f { font-family: 'JetBrains Mono', monospace; font-size: 12.5px; color: ${T.ink2}; }
+        .gh-lap.dead .gh-lap-scr { filter: grayscale(1); opacity: 0.55; }
+        .gh-lap-x { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 42px; animation: fade-step 0.4s ease-out; }
+
+        /* Git o'rnatuvchi oynasi maketi */
+        .ginst { border-radius: 12px; overflow: hidden; background: ${T.paper}; box-shadow: 0 10px 26px -8px rgba(${T.shadowBase},0.2); }
+        .ginst-bar { background: ${T.ink}; color: ${T.bg}; font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 12px; padding: 8px 12px; }
+        .ginst-body { padding: 14px 15px; display: flex; flex-direction: column; gap: 8px; }
+        .ginst-row { font-family: 'JetBrains Mono', monospace; font-size: 12.5px; color: ${T.ink2}; margin: 0; }
+        .ginst-btns { display: flex; gap: 8px; justify-content: flex-end; margin-top: 4px; }
+        .ginst-btns span { font-family: 'Manrope', sans-serif; font-size: 11.5px; font-weight: 600; padding: 6px 13px; border-radius: 8px; background: ${T.bg}; color: ${T.ink3}; }
+        .ginst-btns span.on { background: ${T.accent}; color: #fff; }
+
+        @media (prefers-reduced-motion: reduce) {
+          .fade-up, .fade-step, .demo-swap { animation: none !important; opacity: 1 !important; }
+          .dsx-row.open, .gh-lap-x, .cs-fly, .cs-msg, .gcommit, .gcommit-dot, .confetti-bit, .repo-row { animation: none !important; }
+        }
       `}</style>
       <LiveGateCtx.Provider value={{ locked, live }}>
         <AchCtx.Provider value={earned}>

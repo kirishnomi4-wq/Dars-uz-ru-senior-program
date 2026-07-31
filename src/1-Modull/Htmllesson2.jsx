@@ -702,7 +702,7 @@ function HtmlCompiler({
         {hasSyntaxError ? (
           <div className="hc-errors">
             {htmlErrors.slice(0, 3).map((e, k) => (
-              <span key={k} className="hc-err">⚠ {tr({ uz: 'Sintaksis · qator', ru: 'Синтаксис · строка' })} {e.line}: {e.msg}</span>
+              <span key={k} className="hc-err">⚠ {tr({ uz: 'Yozilish xatosi · qator', ru: 'Ошибка записи · строка' })} {e.line}: {e.msg}</span>
             ))}
             {htmlErrors.length > 3 && <span className="hc-err">{tr({ uz: `… va yana ${htmlErrors.length - 3} ta xato`, ru: `… и ещё ${htmlErrors.length - 3} ошибок` })}</span>}
           </div>
@@ -1542,8 +1542,8 @@ const RECAPS = {
         vis: <RcFlow items={[{ uz: '🏷️ Logo', ru: '🏷️ Лого' }, { uz: '📋 Menyu', ru: '📋 Меню' }]} sep="·" />,
         ask: { uz: "Sevimli saytingizning header'ida nimalar bor?", ru: 'Что есть в header вашего любимого сайта?' } },
       { ic: '📮', h: { uz: 'main — asosiy, footer — past', ru: 'main — основное, footer — низ' },
-        body: { uz: <><b className="mono">&lt;main&gt;</b> — xonalar kabi o'rtada: matn, rasmlar, eng muhim kontent. <b className="mono">&lt;footer&gt;</b> — pol kabi pastda: aloqa, mualliflik (©).</>, ru: <><b className="mono">&lt;main&gt;</b> — посередине, как комнаты: текст, картинки, самый важный контент. <b className="mono">&lt;footer&gt;</b> — внизу, как пол: контакты, авторство (©).</> },
-        vis: <RcFlow items={[{ uz: 'main — asosiy kontent', ru: 'main — основной контент' }, { uz: 'footer — aloqa · ©', ru: 'footer — контакты · ©' }]} sep="·" /> },
+        body: { uz: <><b className="mono">&lt;main&gt;</b> — xonalar kabi o'rtada: matn, rasmlar, eng muhim narsalar. <b className="mono">&lt;footer&gt;</b> — pol kabi pastda: aloqa va © belgisi.</>, ru: <><b className="mono">&lt;main&gt;</b> — посередине, как комнаты: текст, картинки, самое важное. <b className="mono">&lt;footer&gt;</b> — внизу, как пол: контакты и знак ©.</> },
+        vis: <RcFlow items={[{ uz: 'main — asosiy qism', ru: 'main — основная часть' }, { uz: 'footer — aloqa · ©', ru: 'footer — контакты · ©' }]} sep="·" /> },
     ]
   },
   // idx 10 — s9: «Matn yozadigan maydonni qaysi teg yasaydi?» (nazariya: form/label/input/button)
@@ -2130,7 +2130,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: 'Rasm', ru: 'Картинка' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Rasmni almashtiring', ru: 'Поменяйте картинку' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Saytga rasmni qanday <span className="italic" style={{ color: T.accent }}>qo'yamiz</span>?</>, ru: <>Как <span className="italic" style={{ color: T.accent }}>вставить</span> картинку на сайт?</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Saytga rasm qo'yish — devorga <b style={{ color: T.ink }}>surat</b> ilganga o'xshaydi. <span className="mono">img</span> — bu ramka, <span className="mono">src</span> esa qaysi rasmni qo'yishni aytadi. Eng qizig'i: <span className="mono">img</span> <b style={{ color: T.ink }}>yopuvchi tegsiz</b>. Tugmalarni bosib, rasmni almashtiring.</>, ru: <>Вставить картинку на сайт — это как повесить <b style={{ color: T.ink }}>фото</b> на стену. <span className="mono">img</span> — рамка, а <span className="mono">src</span> говорит, какую картинку вставить. Самое интересное: <span className="mono">img</span> — <b style={{ color: T.ink }}>без закрывающего тега</b>. Нажимайте кнопки и меняйте картинку.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Saytga rasm qo'yish — devorga <b style={{ color: T.ink }}>surat</b> ilganga o'xshaydi. <span className="mono">img</span> — bu ramka, <span className="mono">src</span> esa qaysi rasmni qo'yishni aytadi. Tegga shunday qo'shimcha ma'lumot beruvchi so'z <b style={{ color: T.ink }}>atribut</b> deyiladi. Tugmalarni bosib, rasmni almashtiring.</>, ru: <>Вставить картинку на сайт — это как повесить <b style={{ color: T.ink }}>фото</b> на стену. <span className="mono">img</span> — рамка, а <span className="mono">src</span> говорит, какую картинку вставить. Такое слово, которое даёт тегу дополнительные сведения, называется <b style={{ color: T.ink }}>атрибут</b>. Нажимайте кнопки и меняйте картинку.</> })}</Mentor>
         <div className="split">
           <div className="col">
             <div className="fade-up delay-2" style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>{CHOICES.map(c => (<button key={c.key} className={`chip ${kind === c.key ? 'chip-on' : ''}`} onClick={() => pick(c.key)}>{tr(c.label)}</button>))}</div>
@@ -2191,8 +2191,8 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const audio = useAudio([{ id: 's5', text: `Uyni tasavvur qiling: tepada shift, o'rtada xonalar, pastda pol. Sahifa ham xuddi shunday bo'limlarga bo'linadi: header — shift kabi tepada, main — xonalar kabi o'rtada, footer — pol kabi pastda. Har bir bo'limni bosib ko'ring.`, trigger: 'on_mount', waits_for: null }]);
   const PARTS = {
     header: { tag: '<header>', word: { uz: 'Tepa', ru: 'Верх' }, role: { uz: 'Sahifaning tepasi: logotip, sayt nomi va menyu shu yerda turadi.', ru: 'Верх страницы: здесь логотип, название сайта и меню.' } },
-    main:   { tag: '<main>', word: { uz: 'Asosiy qism', ru: 'Основная часть' }, role: { uz: 'Sahifaning asosiy kontenti — matn, rasmlar, eng muhim narsalar shu yerda.', ru: 'Основной контент страницы — текст, картинки, всё самое важное здесь.' } },
-    footer: { tag: '<footer>', word: { uz: 'Pastki qism', ru: 'Нижняя часть' }, role: { uz: "Sahifaning pasti: aloqa, mualliflik huquqi (©), qo'shimcha havolalar.", ru: 'Низ страницы: контакты, авторские права (©), дополнительные ссылки.' } }
+    main:   { tag: '<main>', word: { uz: 'Asosiy qism', ru: 'Основная часть' }, role: { uz: 'Sahifaning asosiy qismi — matn, rasmlar, eng muhim narsalar shu yerda.', ru: 'Основная часть страницы — текст, картинки, всё самое важное здесь.' } },
+    footer: { tag: '<footer>', word: { uz: 'Pastki qism', ru: 'Нижняя часть' }, role: { uz: "Sahifaning eng pasti: aloqa, © belgisi (sayt kimniki ekani), qo'shimcha havolalar.", ru: 'Самый низ страницы: контакты, знак © (чей это сайт), дополнительные ссылки.' } }
   };
   const [active, setActive] = useState(null);
   const [clicked, setClicked] = useState(new Set());
@@ -2210,8 +2210,8 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <div className="col">
             <p className="sk-tapguide fade-up delay-1">👆 {tr({ uz: <>Chizmadagi <b>3 ta bo'limni birma-bir bosing</b> — bosilmaganlari yonib turadi</>, ru: <>Нажмите <b>по очереди на 3 раздела</b> схемы — ненажатые подсвечиваются</> })} <span className="sk-tapcount">{clicked.size}/3</span></p>
             <div className="strukt fade-up delay-2">
-              <div className={zc('header')} onClick={() => tap('header')}><p className="szone-h">🏷️ {tr({ uz: 'Logo · Menyu', ru: 'Лого · Меню' })}</p><p className="szone-d">{tr({ uz: 'sayt nomi va navigatsiya', ru: 'название сайта и навигация' })}</p><span className="szone-tag">&lt;header&gt;</span></div>
-              <div className={zc('main') + ' szone-main'} onClick={() => tap('main')}><p className="szone-h">📄 {tr({ uz: 'Asosiy kontent', ru: 'Основной контент' })}</p><p className="szone-d">{tr({ uz: 'matn, rasmlar, eng muhim narsa', ru: 'текст, картинки, самое важное' })}</p><span className="szone-tag">&lt;main&gt;</span></div>
+              <div className={zc('header')} onClick={() => tap('header')}><p className="szone-h">🏷️ {tr({ uz: 'Logo · Menyu', ru: 'Лого · Меню' })}</p><p className="szone-d">{tr({ uz: 'sayt nomi va menyu', ru: 'название сайта и меню' })}</p><span className="szone-tag">&lt;header&gt;</span></div>
+              <div className={zc('main') + ' szone-main'} onClick={() => tap('main')}><p className="szone-h">📄 {tr({ uz: 'Asosiy qism', ru: 'Основная часть' })}</p><p className="szone-d">{tr({ uz: 'matn, rasmlar, eng muhim narsa', ru: 'текст, картинки, самое важное' })}</p><span className="szone-tag">&lt;main&gt;</span></div>
               <div className={zc('footer')} onClick={() => tap('footer')}><p className="szone-h">📮 {tr({ uz: 'Aloqa · © 2026', ru: 'Контакты · © 2026' })}</p><p className="szone-d">{tr({ uz: "pastki ma'lumotlar", ru: 'нижняя информация' })}</p><span className="szone-tag">&lt;footer&gt;</span></div>
             </div>
           </div>
@@ -2247,7 +2247,7 @@ const Screen5b = (props) => (
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: 'Mustahkamlash', ru: 'Закрепление' })}</p><h2 className="title h-sub" style={{ marginTop: 8 }}>{tr({ uz: <>Sahifaning tepasidagi <span className="italic" style={{ color: T.accent }}>logotip va menyu</span> qaysi bo'limga joylanadi?</>, ru: <>В какой раздел помещаются <span className="italic" style={{ color: T.accent }}>логотип и меню</span> наверху страницы?</> })}</h2></>}
     options={['`<footer>`', '`<main>`', '`<header>`', '`<img>`']} correctIdx={2}
     explainCorrect={tr({ uz: "To'g'ri! `header` — sahifaning tepasi: logotip, sayt nomi va menyu shu yerda turadi.", ru: 'Верно! `header` — верх страницы: здесь логотип, название сайта и меню.' })}
-    explainWrong={{ 1: tr({ uz: "`footer` — bu pastki qism (aloqa, ©). Tepadagi menyu `header`da.", ru: '`footer` — это нижняя часть (контакты, ©). Меню наверху — в `header`.' }), 2: tr({ uz: "`main` — bu asosiy kontent qismi. Logotip va menyu `header`da.", ru: '`main` — это часть с основным контентом. Логотип и меню — в `header`.' }), 3: tr({ uz: "`<img>` — bu rasm tegi, bo'lim emas. To'g'risi — `header`.", ru: '`<img>` — это тег картинки, а не раздел. Правильный ответ — `header`.' }), default: tr({ uz: "Tepadagi logotip va menyu `header` bo'limiga joylanadi.", ru: 'Логотип и меню наверху помещаются в раздел `header`.' }) }} />
+    explainWrong={{ 1: tr({ uz: "`footer` — bu pastki qism (aloqa, ©). Tepadagi menyu `header`da.", ru: '`footer` — это нижняя часть (контакты, ©). Меню наверху — в `header`.' }), 2: tr({ uz: "`main` — bu sahifaning asosiy qismi. Logotip va menyu `header`da.", ru: '`main` — это часть с основным контентом. Логотип и меню — в `header`.' }), 3: tr({ uz: "`<img>` — bu rasm tegi, bo'lim emas. To'g'risi — `header`.", ru: '`<img>` — это тег картинки, а не раздел. Правильный ответ — `header`.' }), default: tr({ uz: "Tepadagi logotip va menyu `header` bo'limiga joylanadi.", ru: 'Логотип и меню наверху помещаются в раздел `header`.' }) }} />
 );
 
 // ===== SCREEN 6 — DIV (guruhlash) =====
@@ -2780,7 +2780,7 @@ const QUIZ_BANK = [
   { q: { uz: "Rasm yuklanmasa ko'rinadigan (va ko'zi ojizlarga o'qiladigan) matn qaysi atribut?", ru: 'Какой атрибут — текст, видимый при незагрузке картинки (и читаемый незрячим)?' }, opts: ["`title`", "`alt`", "`name`", "`text`"], correct: 1 },
   { q: { uz: "Logo va asosiy menyu odatda qaysi bo'limga joylanadi?", ru: 'В какой раздел обычно помещаются лого и главное меню?' }, opts: ["`<main>`", "`<footer>`", "`<aside>`", "`<header>`"], correct: 3 },
   { q: { uz: "Sahifaning ASOSIY mazmuni qaysi teg ichiga yoziladi?", ru: 'Внутрь какого тега пишется ОСНОВНОЕ содержимое страницы?' }, opts: ["`<header>`", "`<main>`", "`<footer>`", "`<body2>`"], correct: 1 },
-  { q: { uz: "Sahifa etagi (mualliflik ©, aloqa) uchun qaysi teg?", ru: 'Какой тег для подвала страницы (авторство ©, контакты)?' }, opts: ["`<end>`", "`<bottom>`", "`<header>`", "`<footer>`"], correct: 3 },
+  { q: { uz: "Sahifaning eng pastki qismi (aloqa, © belgisi) uchun qaysi teg?", ru: 'Какой тег для самой нижней части страницы (контакты, знак ©)?' }, opts: ["`<end>`", "`<bottom>`", "`<header>`", "`<footer>`"], correct: 3 },
   { q: { uz: "Butun formani o'rab turuvchi teg qaysi?", ru: 'Какой тег оборачивает всю форму?' }, opts: ["`<form>`", "`<input>`", "`<fieldset>`", "`<div>`"], correct: 0 },
   { q: { uz: "Foydalanuvchi matn kiritadigan maydonni qaysi teg yasaydi?", ru: 'Какой тег создаёт поле, куда пользователь вводит текст?' }, opts: ["`<label>`", "`<button>`", "`<input>`", "`<text>`"], correct: 2 },
   { q: { uz: "Maydon oldidagi yozuv (masalan «Ismingiz:») qaysi teg bilan beriladi?", ru: 'Каким тегом задаётся подпись перед полем (например «Ваше имя:»)?' }, opts: ["`<label>`", "`<title>`", "`<span>`", "`<p>`"], correct: 0 },
@@ -3235,7 +3235,7 @@ const HTML2_FLASHCARDS = [
   { front: { uz: 'Rasm yuklanmasa, uning joyida qaysi atribut matni chiqadi?', ru: 'Текст какого атрибута появится, если картинка не загрузилась?' }, back: 'alt', note: { uz: "shu matnni ko'zi ojiz odamlarning dasturi ham o'qib beradi", ru: 'этот текст читает и программа незрячих людей' } },
   { front: { uz: 'Logotip va menyu sahifaning qaysi bo\'limida turadi?', ru: 'В каком разделе страницы стоят логотип и меню?' }, back: '<header>', note: { uz: 'uy shifti kabi — eng tepada', ru: 'как потолок в доме — на самом верху' } },
   { front: { uz: "Sahifaning eng muhim mazmuni qaysi bo'limga yoziladi?", ru: 'В какой раздел пишется самое важное содержимое страницы?' }, back: '<main>', note: { uz: 'uy xonalari kabi — o\'rtada: matn va rasmlar', ru: 'как комнаты в доме — посередине: текст и картинки' } },
-  { front: { uz: "Aloqa va mualliflik belgisi (©) qaysi bo'limda bo'ladi?", ru: 'В каком разделе находятся контакты и знак авторства (©)?' }, back: '<footer>', note: { uz: 'uy poli kabi — eng pastda', ru: 'как пол в доме — в самом низу' } },
+  { front: { uz: "Aloqa va © belgisi qaysi bo'limda bo'ladi?", ru: 'В каком разделе находятся контакты и знак ©?' }, back: '<footer>', note: { uz: 'uy poli kabi — eng pastda', ru: 'как пол в доме — в самом низу' } },
   { front: { uz: 'Bir nechta elementni bitta qutiga yig\'ish uchun qaysi teg kerak?', ru: 'Какой тег нужен, чтобы собрать несколько элементов в одну коробку?' }, back: '<div>', note: { uz: 'ichidagilarni birga saqlaydigan quti', ru: 'коробка, которая держит содержимое вместе' } },
   { front: { uz: "Ro'yxatdan o'tish anketasini qaysi teg butunlay o'rab turadi?", ru: 'Какой тег полностью оборачивает анкету регистрации?' }, back: '<form>', note: { uz: 'ichida maydonlar va yuborish tugmasi turadi', ru: 'внутри стоят поля и кнопка отправки' } },
   { front: { uz: 'Foydalanuvchi matn yozadigan maydonni qaysi teg yasaydi?', ru: 'Какой тег делает поле, куда пользователь пишет текст?' }, back: '<input>', note: { uz: 'turi type bilan belgilanadi: matn, email, parol', ru: 'тип задаётся через type: текст, email, пароль' } },
@@ -3351,7 +3351,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish, on
             <button className="hw-big" onClick={onHomework}>
               <span className="hw-big-shine" aria-hidden="true" />
               <span className="hw-big-t">{tr({ uz: 'Uyga vazifa', ru: 'Домашнее задание' })}</span>
-              <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni boshlash →', ru: 'Начать практическое задание →' })}</span>
+              <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni bajarish →', ru: 'Выполнить практическое задание →' })}</span>
             </button>
           </div>
         )}

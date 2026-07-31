@@ -2070,7 +2070,7 @@ const ScreenHook = ({ screen, storedAnswer, onAnswer, onNext }) => {
   const ANAT = [
     { id: 'h1', tag: '<h1>', opts: ['<h1>', '<a>', '<li>'], lbl: { uz: 'katta sarlavha', ru: 'большой заголовок' } },
     { id: 'p', tag: '<p>', opts: ['<img>', '<p>', '<ul>'], lbl: { uz: 'matn (paragraf)', ru: 'текст (абзац)' } },
-    { id: 'ul', tag: '<ul>', opts: ['<ul>', '<h1>', '<a>'], lbl: { uz: "nuqtali ro'yxat", ru: 'маркированный список' } },
+    { id: 'ul', tag: '<ul>', opts: ['<ul>', '<h1>', '<a>'], lbl: { uz: "tartiblanmagan ro'yxat", ru: 'неупорядоченный список' } },
     { id: 'a', tag: '<a>', opts: ['<p>', '<img>', '<a>'], lbl: { uz: 'bosiladigan havola', ru: 'кликабельная ссылка' } },
   ];
   const [found, setFound] = useState(() => (storedAnswer ? new Set(ANAT.map(x => x.id)) : new Set()));
@@ -2193,8 +2193,8 @@ const BLITZ_QS = [
   { tag: '<p>', opts: [{ uz: 'Rasm joyi', ru: 'Место картинки' }, { uz: 'Matn (paragraf)', ru: 'Текст (абзац)' }, { uz: 'Sahifa nomi', ru: 'Имя страницы' }], c: 1 },
   { tag: '<li>', opts: [{ uz: "Qalin so'z", ru: 'Жирное слово' }, { uz: 'Katta sarlavha', ru: 'Большой заголовок' }, { uz: "Ro'yxat bandi", ru: 'Пункт списка' }], c: 2 },
   { tag: '<a>', opts: [{ uz: 'Rasm joyi', ru: 'Место картинки' }, { uz: 'Bosiladigan havola', ru: 'Кликабельная ссылка' }, { uz: 'Matn (paragraf)', ru: 'Текст (абзац)' }], c: 1 },
-  { tag: '<img>', opts: [{ uz: 'Rasm joyi', ru: 'Место картинки' }, { uz: "Nuqtali ro'yxat", ru: 'Маркированный список' }, { uz: 'Qiya matn', ru: 'Наклонный текст' }], c: 0 },
-  { tag: '<ul>', opts: [{ uz: 'Sahifa nomi', ru: 'Имя страницы' }, { uz: "Qalin so'z", ru: 'Жирное слово' }, { uz: "Nuqtali ro'yxat", ru: 'Маркированный список' }], c: 2 },
+  { tag: '<img>', opts: [{ uz: 'Rasm joyi', ru: 'Место картинки' }, { uz: "Tartiblanmagan ro'yxat", ru: 'Неупорядоченный список' }, { uz: 'Qiya matn', ru: 'Наклонный текст' }], c: 0 },
+  { tag: '<ul>', opts: [{ uz: 'Sahifa nomi', ru: 'Имя страницы' }, { uz: "Qalin so'z", ru: 'Жирное слово' }, { uz: "Tartiblanmagan ro'yxat", ru: 'Неупорядоченный список' }], c: 2 },
 ];
 const ScreenBlitz = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const audio = useAudio([{ id: 's2', text: "Avval teglarni eslab olamiz. Ekranda teg chiqadi — uchta variantdan uning vazifasini toping. Oltita teg bor, har biriga bitta bosish kifoya.", trigger: 'on_mount', waits_for: null }]);
@@ -2842,7 +2842,7 @@ function Flashcards({ cards }) {
 const TAKROR_FLASHCARDS = [
   { front: { uz: 'Eng katta sarlavhani qaysi teg yozadi?', ru: 'Каким тегом пишется самый большой заголовок?' }, back: '<h1>', note: { uz: "«Chempionlar» shu teg bilan yozilgan", ru: '«Чемпионы» написано этим тегом' } },
   { front: { uz: 'Oddiy matnni (paragrafni) qaysi teg yozadi?', ru: 'Каким тегом пишется обычный текст (абзац)?' }, back: '<p>', note: { uz: 'jamoa haqidagi gaplar shu tegda', ru: 'слова о команде — в этом теге' } },
-  { front: { uz: "Nuqtali ro'yxatni qaysi teg boshlaydi?", ru: 'Какой тег начинает маркированный список?' }, back: '<ul>', note: { uz: "o'yinchilar ro'yxati shunday yasaldi", ru: 'так сделан список игроков' } },
+  { front: { uz: "Tartiblanmagan ro'yxatni qaysi teg boshlaydi?", ru: 'Какой тег начинает неупорядоченный список?' }, back: '<ul>', note: { uz: "o'yinchilar ro'yxati shunday yasaldi", ru: 'так сделан список игроков' } },
   { front: { uz: "Ro'yxatning har bir bandi qaysi teg ichida yoziladi?", ru: 'Внутри какого тега пишется каждый пункт списка?' }, back: '<li>', note: { uz: "ul ichida, har o'yinchiga bittadan", ru: 'внутри ul, по одному на игрока' } },
   { front: { uz: "So'zni qalin qilish uchun qaysi teg kerak?", ru: 'Какой тег нужен, чтобы сделать слово жирным?' }, back: '<strong>', note: { uz: 'sardor ismi shunday qalin bo\'ldi', ru: 'так имя капитана стало жирным' } },
   { front: { uz: 'Bosiladigan havolani qaysi teg yasaydi?', ru: 'Какой тег делает кликабельную ссылку?' }, back: '<a>', note: { uz: "«Kanalimiz» yozuvi shu teg edi", ru: 'надпись «Kanalimiz» была этим тегом' } },

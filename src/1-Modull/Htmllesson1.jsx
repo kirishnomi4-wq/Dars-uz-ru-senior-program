@@ -1354,7 +1354,6 @@ const SCREEN_META = [
   { id: 's11', type: 'test',        template: 'MCScreen', scored: true,  scope: 'module-mikro' },
   { id: 's12', type: 'exploration', template: 'custom',   scored: false, scope: null },
   { id: 's14', type: 'case',        template: 'custom',   scored: false, scope: null },
-  { id: 's13', type: 'rule',        template: 'custom',   scored: false, scope: null },
   { id: 's15b', type: 'stats',      template: 'custom',   scored: false, scope: null },
   { id: 'sflash', type: 'review',   template: 'custom',   scored: false, scope: null },
   { id: 's16', type: 'summary',     template: 'custom',   scored: false, scope: null }
@@ -2833,9 +2832,11 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 };
 
 
-// ===== SCREEN 8 — SARLAVHALAR (gazeta -> teglar, v16) =====
+// ===== SCREEN 8 — SARLAVHALAR (Telegram posti -> teglar) =====
+// 95-qonun: analogiya o'quvchi HAR KUNI ko'radigan yuzadan olinadi (gazeta → maktab kanali posti).
+// 91-qonun: s9 ham Telegram olamida (post ichidagi so'z formatlash) — ip uzilmaydi.
 const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const audio = useAudio([{ id: 's8', text: `Mana oddiy gazeta sahifasi. Hatto o'qib chiqmasangiz ham, qaysi yozuv eng muhim ekanini darrov bilib olasiz. Sizningcha, qaysi biri eng muhim?`, trigger: 'on_mount', waits_for: { type: 'option_picked' } }]);
+  const audio = useAudio([{ id: 's8', text: `Maktab kanalidagi postni ochganingizda hamma matnni birdan o'qimaysiz — avval qalin, birinchi qatorni ko'rasiz. Sizningcha, qaysi yozuv eng muhim?`, trigger: 'on_mount', waits_for: { type: 'option_picked' } }]);
   const LADDER = [
     { n: 1, size: 28, tag: tr({ uz: 'eng katta', ru: 'самый большой' }) }, { n: 2, size: 23, tag: '' }, { n: 3, size: 19, tag: '' },
     { n: 4, size: 16.5, tag: '' }, { n: 5, size: 14.5, tag: '' }, { n: 6, size: 13, tag: tr({ uz: 'eng kichik', ru: 'самый маленький' }) }
@@ -2857,7 +2858,7 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     audio.triggerEvent('option_picked');
     if (isNarrow && mctx.setCollapsed) mctx.setCollapsed(true);
     setTimeout(() => { if (revealRef.current) revealRef.current.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); }, 420);
-    if (!audio.muted) setTimeout(() => { const e = getAudioEngine(); if (e && !audio.muted) e.pushOneOff(`Eng katta yozuv eng muhim. HTML'da ham shunday — h1 eng katta va muhim, h6 eng kichik.`); }, 300);
+    if (!audio.muted) setTimeout(() => { const e = getAudioEngine(); if (e && !audio.muted) e.pushOneOff(`Telegramda eng muhim gap qalin va birinchi turadi. HTML sahifasida esa uni kattaligi ko'rsatadi: h1 eng katta, h6 eng kichik.`); }, 300);
   };
   const showAnswer = done && (!isNarrow || revealed);
   const prevCollapsedRef = useRef(mctx.collapsed);
@@ -2871,12 +2872,15 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return (
     <Stage eyebrow={tr({ uz: 'Sarlavhalar', ru: 'Заголовки' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: '✍️ Praktika →', ru: '✍️ Практика →' }) : tr({ uz: 'Avval tanlang', ru: 'Сначала выберите' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Gazetada <span className="italic" style={{ color: T.accent }}>nima</span> darrov ko'zga tashlanadi?</>, ru: <>Что в газете <span className="italic" style={{ color: T.accent }}>сразу</span> бросается в глаза?</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Mana oddiy gazeta sahifasi. Hatto o'qib chiqmasangiz ham, qaysi yozuv eng muhim ekanini <b style={{ color: T.ink }}>darrov</b> bilib olasiz. Sizningcha, qaysi biri eng muhim?</>, ru: <>Вот обычная газетная страница. Даже не читая её, вы <b style={{ color: T.ink }}>сразу</b> поймёте, какая надпись самая важная. Как вы думаете, какая?</> })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Telegram postida qaysi yozuv <span className="italic" style={{ color: T.accent }}>birinchi</span> ko'zga tashlanadi?</>, ru: <>Какая надпись в посте Telegram бросается в глаза <span className="italic" style={{ color: T.accent }}>первой</span>?</> })}</h2></div>
+        <Mentor>{tr({ uz: <>Postni ochganingizda hamma matnni birdan o'qimaysiz — avval <b style={{ color: T.ink }}>qalin, birinchi</b> qatorni ko'rasiz. Sizningcha, qaysi yozuv eng muhim?</>, ru: <>Открыв пост, вы не читаете сразу весь текст — сначала видите <b style={{ color: T.ink }}>жирную первую</b> строку. Как вы думаете, какая надпись самая важная?</> })}</Mentor>
         <div className="split">
           <div className="col">
-            <div className={`news-card frame fade-up delay-1 ${showAnswer ? 'tagged' : ''}`}>
-              <p className="eyebrow" style={{ color: T.ink3, margin: '0 0 10px' }}>📰 {tr({ uz: 'Gazeta sahifasi', ru: 'Страница газеты' })}</p>
+            <div className={`news-card tg-post frame fade-up delay-1 ${showAnswer ? 'tagged' : ''}`}>
+              <div className="tgp-head">
+                <span className="tgp-ava" aria-hidden="true">🏫</span>
+                <div><p className="tgp-name">{tr({ uz: 'Maktab kanali', ru: 'Школьный канал' })}</p><p className="tgp-sub">{tr({ uz: 'bugun 09:14', ru: 'сегодня 09:14' })}</p></div>
+              </div>
               <div className="news-line news-headline">
                 <h3 style={{ fontFamily: G, fontWeight: 700, fontSize: 'clamp(20px,3vw,26px)', lineHeight: 1.15, color: T.ink, margin: 0 }}>{tr({ uz: "Maktabimizda robototexnika to'garagi ochildi", ru: 'В нашей школе открылся кружок робототехники' })}</h3>
                 <span className="tag-badge accent" style={{ transitionDelay: '0.05s' }}>&lt;h1&gt;</span>
@@ -2889,6 +2893,7 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 <p style={{ fontFamily: G, fontSize: 'clamp(13px,1.7vw,14.5px)', color: T.ink2, margin: 0, lineHeight: 1.5 }}>{tr({ uz: "To'garak har shanba soat 10:00 da. Ro'yxatdan o'tish hammaga ochiq.", ru: 'Кружок — каждую субботу в 10:00. Запись открыта для всех.' })}</p>
                 <span className="tag-badge soft" style={{ transitionDelay: '0.31s' }}>&lt;p&gt;</span>
               </div>
+              <p className="tgp-foot">👁 <b>412</b> · {tr({ uz: 'Maktab kanali', ru: 'Школьный канал' })}</p>
               {showAnswer && <p className="news-hint fade-step">{tr({ uz: <>↑ Har bir yozuvning o'z "darajasi" bor — eng kattasi <b style={{ color: T.accent }}>&lt;h1&gt;</b>.</>, ru: <>↑ У каждой надписи свой «уровень» — самый большой это <b style={{ color: T.accent }}>&lt;h1&gt;</b>.</> })}</p>}
             </div>
           </div>
@@ -2902,7 +2907,7 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               </>
             ) : (
               <div ref={revealRef} className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 12, scrollMarginTop: 16 }}>
-                {!isNarrow && <div className="frame-success"><p className="small mono" style={{ margin: '0 0 4px', fontWeight: 600, color: T.success, textTransform: 'uppercase', letterSpacing: '0.08em' }}>{picked === 'a' ? tr({ uz: "✓ To'g'ri", ru: '✓ Верно' }) : tr({ uz: 'Mana gap', ru: 'Вот в чём суть' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Eng <b>katta</b> yozuv darrov ko'zga tashlanadi — demak u eng muhim. HTML sarlavhalari ham aynan shunday darajalangan: <span className="mono">h1</span> eng katta, <span className="mono">h6</span> eng kichik.</>, ru: <>Самая <b>крупная</b> надпись сразу бросается в глаза — значит, она важнее всех. Заголовки HTML устроены так же: <span className="mono">h1</span> — самый большой, <span className="mono">h6</span> — самый маленький.</> })}</p></div>}
+                {!isNarrow && <div className="frame-success"><p className="small mono" style={{ margin: '0 0 4px', fontWeight: 600, color: T.success, textTransform: 'uppercase', letterSpacing: '0.08em' }}>{picked === 'a' ? tr({ uz: "✓ To'g'ri", ru: '✓ Верно' }) : tr({ uz: 'Mana gap', ru: 'Вот в чём суть' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Telegramda eng muhim gap <b>qalin</b> va birinchi turadi. HTML sahifasida esa uni <b>kattaligi</b> ko'rsatadi: <span className="mono">h1</span> eng katta va muhim, keyin <span className="mono">h2</span>, <span className="mono">h3</span>… <span className="mono">h6</span> eng kichik.</>, ru: <>В Telegram самая важная фраза — <b>жирная</b> и первая. На HTML-странице её показывает <b>размер</b>: <span className="mono">h1</span> — самый большой и важный, дальше <span className="mono">h2</span>, <span className="mono">h3</span>… <span className="mono">h6</span> — самый маленький.</> })}</p></div>}
                 <p className="flow-label">{isNarrow ? tr({ uz: 'h1 → h6 — sarlavha darajalari', ru: 'h1 → h6 — уровни заголовков' }) : tr({ uz: 'h1 dan h6 gacha — darajalar narvoni', ru: 'от h1 до h6 — лестница уровней' })}</p>
                 <div className="ladder ladder-stair">{(isNarrow ? LADDER_COMPACT : LADDER).map((h, i) => h.ellipsis ? (<div key="el" className="hl-row hl-stair" style={{ animationDelay: `${i * 0.1}s`, justifyContent: 'center', padding: '2px 0', background: 'transparent', boxShadow: 'none' }}><span style={{ color: T.ink3, fontSize: 18, letterSpacing: 3 }}>⋮</span></div>) : (<div key={h.n} className="hl-row hl-stair" style={{ animationDelay: `${i * 0.1}s`, marginLeft: isNarrow ? 0 : `${i * 15}px` }}><span className="hl-bar" style={{ opacity: Math.max(0.18, 1 - i * 0.15) }} /><span className="hl-chip">{`<h${h.n}>`}</span><span className="hl-text" style={{ fontSize: h.size }}>{tr({ uz: 'Sarlavha', ru: 'Заголовок' })}</span>{h.tag && <span className="hl-tag">{h.tag}</span>}</div>))}</div>
               </div>
@@ -3156,66 +3161,6 @@ const Screen12 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 };
 
 
-// ===== SCREEN 13 — DEBUGGING (musbat ramka + tuzatish, v16) =====
-const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const audio = useAudio([{ id: 's13', text: `AI kod yozishda zo'r yordamchi — hozir buyruq berib sahifa yasadingiz. Lekin odamlar ham, AI ham ba'zan kichik xato qiladi. Shuni topib tuzatish debugging deyiladi. Endi siz teglarni bilasiz: AI yozgan kodda bitta xato bor — qaysi qatorda? Bosing.`, trigger: 'on_mount', waits_for: { type: 'error_found' } }]);
-  const G = "Georgia, serif";
-  const [picked, setPicked] = useState(storedAnswer ? 'h1' : null);
-  const [fixed, setFixed] = useState(!!storedAnswer);
-  const found = picked === 'h1';
-  const done = fixed;
-  const pickH1 = () => {
-    if (found) return; setPicked('h1'); audio.triggerEvent('error_found');
-    if (!audio.muted) setTimeout(() => { const e = getAudioEngine(); if (e && !audio.muted) e.pushOneOff(`Topdingiz! h1 ochildi, lekin yopilmadi. Endi yopuvchi tegni qo'shib tuzatamiz.`); }, 300);
-  };
-  const fix = () => {
-    setFixed(true);
-    if (!audio.muted) setTimeout(() => { const e = getAudioEngine(); if (e && !audio.muted) e.pushOneOff(`Tuzatildi! Mana, debugging shunday bo'ladi: xatoni topasiz va to'g'rilaysiz.`); }, 300);
-  };
-  useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
-  return (
-    <Stage eyebrow={tr({ uz: 'Debugging', ru: 'Дебаггинг' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : (found ? tr({ uz: 'Endi tuzating', ru: 'Теперь исправьте' }) : tr({ uz: 'Xatoni toping', ru: 'Найдите ошибку' }))} onClick={onNext} /></>}>
-      <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>AI yordam beradi — siz esa <span className="italic" style={{ color: T.accent }}>tekshirasiz</span>.</>, ru: <>AI помогает — а вы <span className="italic" style={{ color: T.accent }}>проверяете</span>.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>AI kod yozishda zo'r yordamchi — hozir buyruq berib sahifa yasadingiz-ku. Lekin <b style={{ color: T.ink }}>odamlar ham, AI ham</b> ba'zan kichik xato qiladi. Shuni topib tuzatish — <b style={{ color: T.ink }}>debugging</b> deyiladi, va bu eng zo'r mahorat. Endi siz teglarni bilasiz: AI yozgan kodda bitta xato bor — toping-chi.</>, ru: <>AI — отличный помощник в написании кода: вы ведь только что собрали страницу командами. Но <b style={{ color: T.ink }}>и люди, и AI</b> иногда допускают маленькие ошибки. Найти и исправить их — это <b style={{ color: T.ink }}>дебаггинг</b>, самый крутой навык. Вы уже знаете теги: в коде, который написал AI, есть одна ошибка — найдите её.</> })}</Mentor>
-        <div className="split">
-          <div className="col">
-            <div className="ai-card fade-up delay-2">
-              <div className="ai-row"><span className="ai-badge">AI</span><span className="ai-bubble">{tr({ uz: "Mana, buyrug'ingiz bo'yicha sahifa kodi tayyor!", ru: 'Вот, код страницы по вашей команде готов!' })}</span></div>
-              <div className="ai-code">
-                <div className={`ai-line ${found ? (fixed ? 'ok' : 'bad') : ''}`} onClick={pickH1}><span className="tg">&lt;h1&gt;</span>{tr({ uz: 'Salom!', ru: 'Привет!' })}{fixed && <span className="tg">&lt;/h1&gt;</span>}</div>
-                <div className={`ai-line ${picked === 'p' ? 'ok' : ''}`} onClick={() => { if (!found) setPicked('p'); }}><span className="tg">&lt;p&gt;</span>{tr({ uz: 'Bu mening saytim.', ru: 'Это мой сайт.' })}<span className="tg">&lt;/p&gt;</span></div>
-              </div>
-              {!found && <p className="ai-prompt">{tr({ uz: 'Xato qaysi qatorda? Bosing.', ru: 'В какой строке ошибка? Нажмите.' })}</p>}
-              {found && !fixed && (<button className="btn fade-step" style={{ alignSelf: 'flex-start' }} onClick={fix}>🔧 {tr({ uz: "Yopuvchi tegni qo'shib tuzatish", ru: 'Исправить, добавив закрывающий тег' })}</button>)}
-              {fixed && <p className="ai-prompt" style={{ color: T.success, fontStyle: 'normal', fontWeight: 600 }}>✓ {tr({ uz: "Tuzatildi — endi kod to'g'ri!", ru: 'Исправлено — теперь код верный!' })}</p>}
-            </div>
-          </div>
-          <div className="col">
-            {/* JONLI preview — boshidan BUZUQ ko'rinadi (h1 yopilmagani uchun hammasi katta), tuzatgach to'g'rilanadi */}
-            <div className="flow-label">{fixed ? tr({ uz: "Endi sahifa to'g'ri ishlaydi", ru: 'Теперь страница работает правильно' }) : tr({ uz: "Hozir sahifa shunday ko'rinadi", ru: 'Сейчас страница выглядит так' })}</div>
-            <div className="bp-window fade-up delay-2" style={{ border: `2px solid ${fixed ? T.success : 'rgba(226,72,72,0.5)'}`, transition: 'border-color 0.35s' }}>
-              <div className="bp-bar"><span className="bb-dots"><i /><i /><i /></span><span className="bp-title">sahifa.html</span></div>
-              <div className="bp-body" style={{ display: 'block' }}>
-                {fixed
-                  ? (<><h1 key="okh" className="fade-step" style={{ fontFamily: G, fontSize: 'clamp(20px,2.8vw,26px)', color: T.ink, margin: '0 0 6px' }}>{tr({ uz: 'Salom!', ru: 'Привет!' })}</h1><p style={{ fontFamily: G, color: T.ink2, margin: 0, fontSize: 'clamp(13px,1.8vw,15px)' }}>{tr({ uz: 'Bu mening saytim.', ru: 'Это мой сайт.' })}</p></>)
-                  : (<><p style={{ fontFamily: G, fontWeight: 700, fontSize: 'clamp(19px,2.7vw,25px)', color: T.ink, margin: '0 0 6px' }}>{tr({ uz: 'Salom!', ru: 'Привет!' })}</p><p style={{ fontFamily: G, fontWeight: 700, fontSize: 'clamp(19px,2.7vw,25px)', color: T.ink, margin: 0 }}>{tr({ uz: 'Bu mening saytim.', ru: 'Это мой сайт.' })}</p></>)}
-              </div>
-            </div>
-            <p style={{ margin: 0, fontFamily: "'Manrope', sans-serif", fontWeight: 700, fontSize: 12.5, color: fixed ? T.success : '#E24848' }}>{fixed ? tr({ uz: "✓ endi to'g'ri ko'rinyapti", ru: '✓ теперь выглядит правильно' }) : tr({ uz: "⚠️ ikkala matn ham katta bo'lib ketgan — bitta teg yopilmagan", ru: '⚠️ оба текста стали большими — один тег не закрыт' })}</p>
-            {!found && (
-              picked === 'p'
-                ? (<div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Bu qator to'g'ri — <span className="mono">&lt;p&gt;</span> ochildi va <span className="mono">&lt;/p&gt;</span> bilan yopildi. Yana qarang: qaysi teg yopilmagan?</>, ru: <>Эта строка верная — <span className="mono">&lt;p&gt;</span> открылся и закрылся <span className="mono">&lt;/p&gt;</span>. Посмотрите ещё раз: какой тег не закрыт?</> })}</p></div>)
-                : (<div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: <>Preview'ga qarang — nega <b style={{ color: T.ink }}>ikkala matn ham katta</b>? Koddan qaysi teg <b style={{ color: T.ink }}>ochilib, yopilmaganini</b> toping.</>, ru: <>Посмотрите на превью — почему <b style={{ color: T.ink }}>оба текста большие</b>? Найдите в коде тег, который <b style={{ color: T.ink }}>открылся, но не закрылся</b>.</> })}</p></div>)
-            )}
-            {found && !fixed && (<div className="frame-warn fade-step"><p className="note-h" style={{ color: T.accent }}>✓ {tr({ uz: 'Topdingiz!', ru: 'Нашли!' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <><span className="mono">&lt;h1&gt;</span> ochildi, lekin <span className="mono">&lt;/h1&gt;</span> bilan yopilmagan — shu tufayli pastdagi matn ham sarlavhaga qo'shilib ketdi. Chap tomondagi tugmani bosib tuzating →</>, ru: <><span className="mono">&lt;h1&gt;</span> открылся, но не закрыт <span className="mono">&lt;/h1&gt;</span> — поэтому текст ниже тоже «прилип» к заголовку. Нажмите кнопку слева и исправьте →</> })}</p></div>)}
-            {fixed && (<div className="takeaway fade-step"><div className="ta-bulb">🛠️</div><p className="ta-h">{tr({ uz: 'Topdingiz va tuzatdingiz — bu debugging!', ru: 'Нашли и исправили — это и есть дебаггинг!' })}</p><p className="ta-sub">{tr({ uz: "AI tez yozadi, siz tekshirib tuzatasiz — zo'r jamoa", ru: 'AI быстро пишет, вы проверяете и чините — отличная команда' })}</p></div>)}
-          </div>
-        </div>
-      </div>
-    </Stage>
-  );
-};
 
 
 // ===== SCREEN 14 — BUILDER (Mentor + amaliyot) =====
@@ -4007,7 +3952,7 @@ const STARTER_LINK = {
 `,
 };
 
-// — P5: yakuniy (Screen13 Debugging dan keyin — Screen15 "ismingizni sarlavha qiling" olib tashlandi) —
+// — P5: yakuniy (oxirgi nazariya-ekranidan keyin — Screen15 "ismingizni sarlavha qiling" olib tashlandi) —
 const TASK_FINAL = {
   eyebrow: { uz: 'Praktika · yakuniy', ru: 'Практика · финальная' },
   title: { uz: "Hammasi birga — o'z sahifangiz", ru: 'Всё вместе — ваша страница' },
@@ -4034,7 +3979,7 @@ const PRACTICE_AFTER = {
   // 🔴 9.4: AYNAN 3 praktika-compiler (Sarlavha + Havola + Yakuniy). Matn/Ro'yxat praktikalari olib tashlandi (nazariyada qoladi).
   9:  { task: TASK_HEADINGS, starter: STARTER_HEADINGS }, // 1) Sarlavha (h1–h6)
   13: { task: TASK_LINK,     starter: STARTER_LINK },     // 2) Havola (a/href)
-  15: { task: TASK_FINAL,    starter: STARTER_FINAL },    // 3) Yakuniy (noldan sayt) — Debugging (idx 15) dan keyin
+  14: { task: TASK_FINAL,    starter: STARTER_FINAL },    // 3) Yakuniy (noldan sayt) — oxirgi nazariya-ekranidan (idx 14) keyin
 };
 
 // ===== 🏅 ACHIEVEMENTS (nishonlar) — dars davomidagi real bosqichlar uchun =====
@@ -4045,7 +3990,8 @@ const ACHIEVEMENTS = {
   graduate:  { icon: '🏆', name: 'Level Up!',   desc: { uz: "Birinchi HTML darsini to'liq yakunladingiz", ru: 'Вы полностью прошли первый урок HTML' } },
 };
 // Ekran id → nishon (recordAnswer'da avtomatik beriladi)
-const ACH_TRIGGERS = { s5: 'skelet', s7: 'firsttag', s13: 'debugger' };
+// s13 (alohida Debugging ekrani) olib tashlandi — 🐞 nishon endi s6 dagi xato-topish mashqidan beriladi.
+const ACH_TRIGGERS = { s5: 'skelet', s6: 'debugger', s7: 'firsttag' };
 // 🏅 O'YIN USLUBIDAGI TO'LIQ-EKRAN NISHON BAYRAMI — yorqin nurlar, medal portlashi, uchqunlar, zarba to'lqini
 function AchCelebrate({ ach, onDone }) {
   useEffect(() => { const t = setTimeout(onDone, 4000); return () => clearTimeout(t); }, []); // eslint-disable-line
@@ -4300,7 +4246,7 @@ export default function HtmlLesson({ lang: langProp, onFinished, onPractice }) {
     if (typeof onFinished === 'function') onFinished(payload);
   };
 
-  const screens = [Screen0, Screen1, Screen2, Screen3, Screen4, Screen5, ScreenSkeletTest, Screen6, Screen7, Screen8, Screen9, Screen10, Screen11, Screen12, Screen14, Screen13, ScreenPodium, ScreenFlashcards, Screen16];
+  const screens = [Screen0, Screen1, Screen2, Screen3, Screen4, Screen5, ScreenSkeletTest, Screen6, Screen7, Screen8, Screen9, Screen10, Screen11, Screen12, Screen14, ScreenPodium, ScreenFlashcards, Screen16];
   const Current = screens[screen];
   return (
     <LangContext.Provider value={lang}>
@@ -5063,8 +5009,14 @@ export default function HtmlLesson({ lang: langProp, onFinished, onPractice }) {
         @keyframes tb-pvpop { 0% { opacity: 0; transform: scale(0.6); } 60% { transform: scale(1.08); } 100% { opacity: 1; transform: scale(1); } }
         .slash-callout { display: flex; align-items: center; gap: 13px; background: ${T.accentSoft}; border-left: 4px solid ${T.accent}; border-radius: 12px; padding: 12px 15px; }
         .slash-big { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 30px; color: ${T.accent}; line-height: 1; flex-shrink: 0; }
-        /* SCREEN 8 — Sarlavhalar (gazeta -> teglar qo'nadi) */
+        /* SCREEN 8 — Sarlavhalar (Telegram posti -> teglar qo'nadi) */
         .news-card { display: flex; flex-direction: column; }
+        /* 📣 Telegram posti — maktab kanali (95-qonun: har kuni ko'radigan yuza) */
+        .tgp-head { display: flex; align-items: center; gap: 10px; margin: -4px -4px 12px; padding-bottom: 10px; border-bottom: 1px solid ${T.line}; }
+        .tgp-ava { width: 34px; height: 34px; border-radius: 50%; background: #5288C1; display: flex; align-items: center; justify-content: center; font-size: 17px; flex-shrink: 0; }
+        .tgp-name { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 13px; color: ${T.ink}; margin: 0; }
+        .tgp-sub { font-family: 'Manrope', sans-serif; font-size: 11px; color: ${T.ink3}; margin: 1px 0 0; }
+        .tgp-foot { font-family: 'Manrope', sans-serif; font-size: 11.5px; color: ${T.ink3}; margin: 12px 0 0; padding-top: 9px; border-top: 1px solid ${T.line}; }
         .news-line { display: flex; align-items: center; gap: 12px; padding: 9px 10px; margin: 0 -10px; border-radius: 10px; transition: background 0.4s ease; }
         .news-card.tagged .news-line { background: ${T.bg}; }
         .news-card.tagged .news-headline { background: ${T.accentSoft}; }

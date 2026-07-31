@@ -6,7 +6,7 @@ import React, { useState, useEffect, useRef, useMemo, useCallback, createContext
 //        funksiyani chaqirish (call), parametr (kirish/input),
 //        return (mashinadan chiqadigan natija/output),
 //        console.log vs return farqi, bir nechta parametr.
-// Hook: limonadni har safar qo'lda 4 bosqichda tayyorlash — takror dardi.
+// Hook: har buyurtma narxini qo'lda 4 amalda hisoblash — takror dardi (96-qonun: lavash modul-ipi).
 // AUDIOSIZ versiya — Mentor matni qoladi, TTS yo'q.
 // PRODUCTION: <style> ichidagi @import OLIB TASHLANADI — shriftlarni LMS yuklaydi.
 // ============================================================
@@ -513,11 +513,11 @@ const RECAPS = {
     title: { uz: "Funksiyani chaqirish", ru: 'Вызов функции' },
     cards: [
       {
-        ic: "🍳",
-        h: { uz: "Funksiya — bu retsept", ru: 'Функция — это рецепт' },
-        body: { uz: <>Funksiya — bir marta yozib qo'yilgan, nom berilgan <b>ish tartibi</b>. Xuddi retseptga o'xshaydi: yozib qo'yasiz, lekin retsept o'zi ovqat pishirmaydi — kimdir uni ishga solishi kerak.</>, ru: <>Функция — записанный один раз, названный по имени <b>порядок действий</b>. Совсем как рецепт: вы его записали, но сам рецепт еду не приготовит — кто-то должен пустить его в дело.</> },
-        vis: { uz: <RcFlow items={["retseptni yozdim", "javonda turibdi", "hali ovqat yo'q"]} />, ru: <RcFlow items={['рецепт записан', 'лежит на полке', 'еды пока нет']} /> },
-        ask: { uz: "Retsept daftarda yozilgani bilan qorin to'yadimi? Nima yetishmayapti?", ru: 'Если рецепт записан в тетради — вы уже сыты? Чего не хватает?' }
+        ic: "📋",
+        h: { uz: "Funksiya — nomlangan ish tartibi", ru: 'Функция — именованный порядок действий' },
+        body: { uz: <>Funksiya — bir marta yozib qo'yilgan, nom berilgan <b>ish tartibi</b>. Yozib qo'yilgani bilan u o'zi ishlamaydi: kimdir uni <b>nomi bilan chaqirishi</b> kerak.</>, ru: <>Функция — записанный один раз, названный по имени <b>порядок действий</b>. Сама по себе она не работает: кто-то должен <b>вызвать её по имени</b>.</> },
+        vis: { uz: <RcFlow items={["tartibni yozdim", "nomi bor", "hali chaqirilmadi"]} />, ru: <RcFlow items={['порядок записан', 'имя есть', 'ещё не вызвана'] } /> },
+        ask: { uz: "Yozib qo'yilgan tartib o'zi ishga tushadimi? Nima yetishmayapti?", ru: 'Запишете порядок — он сам заработает? Чего не хватает?' }
       },
       {
         ic: "▶️",
@@ -1114,30 +1114,30 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
   const [count, setCount] = useState(0);
   const [picked, setPicked] = useState(storedAnswer?.picked ?? null);
   const OPTS = [
-    { id: 'a', label: { uz: "Har safar 4 bosqichni qo'lda takrorlayman", ru: 'Каждый раз повторяю 4 шага вручную' } },
+    { id: 'a', label: { uz: "Har safar 4 amalni qo'lda takrorlayman", ru: 'Каждый раз повторяю 4 действия вручную' } },
     { id: 'b', label: { uz: "Bir marta 'mashina' yasab, keyin tugma bosaman", ru: 'Один раз соберу «машину», потом просто жму кнопку' } },
-    { id: 'c', label: { uz: "Umuman limonad ichmayman", ru: 'Вообще не пью лимонад' } }
+    { id: 'c', label: { uz: "Umuman buyurtma qabul qilmayman", ru: 'Вообще не принимаю заказы' } }
   ];
   const make = () => setCount(c => Math.min(c + 1, NEED));
   const pick = (v) => { if (picked !== null) return; setPicked(v); onAnswer(screen, { stage: 'hook', screenIdx: screen, picked: v, correct: true }); };
   return (
     <Stage eyebrow={{ uz: 'Kirish', ru: 'Введение' }} screen={screen} navContent={<NavNext optionalLive disabled={picked === null} label={{ uz: 'Davom etish', ru: 'Продолжить' }} onClick={onNext} />}>
       <div className="screen">
-        <h1 className="title h-title fade-up" style={{ maxWidth: 800 }}>{tr({ uz: <>Limonadni har safar <span className="italic" style={{ color: T.accent }}>noldan</span> qo'lda tayyorlaysizmi?</>, ru: <>Каждый раз готовите лимонад <span className="italic" style={{ color: T.accent }}>с нуля</span> вручную?</> })}</h1>
-        <Mentor>{tr({ uz: <>Tasavvur qiling: do'stlaringiz kelishdi, hammaga limonad kerak. Har bir stakan uchun <b style={{ color: T.ink }}>4 bosqichni</b> — limon kesish, shakar qo'shish, suv quyish, aralashtirish — qo'lda takrorlaysiz. Tugmani bir necha marta bosing, qancha zerikarli ekanini his qiling.</>, ru: <>Представьте: пришли друзья, всем нужен лимонад. Для каждого стакана вы вручную повторяете <b style={{ color: T.ink }}>4 шага</b> — нарезать лимон, добавить сахар, налить воду, перемешать. Понажимайте кнопку несколько раз и почувствуйте, как это скучно.</> })}</Mentor>
+        <h1 className="title h-title fade-up" style={{ maxWidth: 800 }}>{tr({ uz: <>Har bir buyurtma narxini <span className="italic" style={{ color: T.accent }}>qo'lda</span> hisoblaysizmi?</>, ru: <>Считаете стоимость каждого заказа <span className="italic" style={{ color: T.accent }}>вручную</span>?</> })}</h1>
+        <Mentor>{tr({ uz: <>Lavash do'koni saytiga buyurtmalar kelyapti. Har biri uchun <b style={{ color: T.ink }}>bir xil 4 amalni</b> — lavash narxi, ichimlik narxi, yetkazib berish, jami — qo'lda takrorlaysiz. Tugmani bir necha marta bosing, qancha zerikarli ekanini his qiling.</>, ru: <>На сайт лавашной приходят заказы. Для каждого вы вручную повторяете <b style={{ color: T.ink }}>одни и те же 4 действия</b> — цена лаваша, цена напитка, доставка, итог. Понажимайте кнопку несколько раз и почувствуйте, как это скучно.</> })}</Mentor>
         <Zoomable>
         <Split>
           <Col>
-            <p className="flow-label">{tr({ uz: "Qo'lda tayyorlangan limonadlar", ru: 'Лимонады, сделанные вручную' })}</p>
+            <p className="flow-label">{tr({ uz: "Qo'lda hisoblangan buyurtmalar", ru: 'Заказы, посчитанные вручную' })}</p>
             <div className="msg-list fade-up delay-1">
               {count === 0 ? (
-                <p style={{ color: T.ink3, fontStyle: 'italic', margin: 0, fontFamily: "'JetBrains Mono',monospace", fontSize: 13 }}>{tr({ uz: '// hali bittasi ham tayyorlanmadi', ru: '// пока не готово ни одного' })}</p>
+                <p style={{ color: T.ink3, fontStyle: 'italic', margin: 0, fontFamily: "'JetBrains Mono',monospace", fontSize: 13 }}>{tr({ uz: '// hali bittasi ham hisoblanmadi', ru: '// пока не посчитан ни один' })}</p>
               ) : Array.from({ length: count }).map((_, i) => (
-                <div key={i} className="msg-line el-in"><span className="msg-ok">🍋</span><span>{tr({ uz: <>Limonad #{i + 1} — 4 bosqich qo'lda bajarildi</>, ru: <>Лимонад #{i + 1} — 4 шага вручную</> })}</span></div>
+                <div key={i} className="msg-line el-in"><span className="msg-ok">🧾</span><span>{tr({ uz: <>Buyurtma #{i + 1} — 4 amal qo'lda bajarildi</>, ru: <>Заказ #{i + 1} — 4 действия вручную</> })}</span></div>
               ))}
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap' }}>
-              <button className={`btn ${count >= 3 ? 'btn-tired' : ''}`} onClick={make} disabled={count >= NEED} style={{ alignSelf: 'flex-start' }}>{count >= NEED ? tr({ uz: '😕 Charchadim…', ru: '😕 Я устал…' }) : tr({ uz: "🍋 Yana bittasini qo'lda tayyorlash", ru: '🍋 Приготовить ещё один вручную' })}</button>
+              <button className={`btn ${count >= 3 ? 'btn-tired' : ''}`} onClick={make} disabled={count >= NEED} style={{ alignSelf: 'flex-start' }}>{count >= NEED ? tr({ uz: '😕 Charchadim…', ru: '😕 Я устал…' }) : tr({ uz: "🧾 Yana bittasini qo'lda hisoblash", ru: '🧾 Посчитать ещё один вручную' })}</button>
               <span className="mono small" style={{ color: T.ink3 }}>{count} / {NEED}</span>
             </div>
             <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
@@ -1147,7 +1147,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
               </div>
               <div className="fatigue"><div className="fatigue-bar" style={{ width: `${(count / NEED) * 100}%`, color: count < NEED * 0.5 ? T.success : count < NEED * 0.8 ? '#E6A100' : T.accent, background: count < NEED * 0.5 ? T.success : count < NEED * 0.8 ? '#E6A100' : T.accent }} /></div>
             </div>
-            {count >= 3 && count < NEED && <p className="hook-ack fade-step">{tr({ uz: <>Har safar <b>aynan bir xil 4 bosqich</b>… Zerikarli, to'g'rimi? 😅</>, ru: <>Каждый раз <b>одни и те же 4 шага</b>… Скучно, правда? 😅</> })}</p>}
+            {count >= 3 && count < NEED && <p className="hook-ack fade-step">{tr({ uz: <>Har safar <b>aynan bir xil 4 amal</b>… Zerikarli, to'g'rimi? 😅</>, ru: <>Каждый раз <b>одни и те же 4 действия</b>… Скучно, правда? 😅</> })}</p>}
           </Col>
           <Col>
             <p className="eyebrow fade-up delay-2" style={{ color: T.ink2, margin: 0 }}>{tr({ uz: 'Dasturchi buni qanday hal qiladi?', ru: 'Как это решает программист?' })}</p>
@@ -1174,7 +1174,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
 // ===== SCREEN 1 — REJA =====
 const Screen1 = ({ screen, onNext, onPrev }) => {
   const STEPS = [
-    { text: { uz: 'Funksiya nima? — nomlangan retsept', ru: 'Что такое функция? — именованный рецепт' }, tag: '' },
+    { text: { uz: 'Funksiya nima? — nomlangan ish tartibi', ru: 'Что такое функция? — именованный порядок действий' }, tag: '' },
     { text: { uz: 'Funksiyani chaqirish — nom bilan', ru: 'Вызов функции — по имени' }, tag: 'salomBer()' },
     { text: { uz: 'Parametr — mashinaga kirish', ru: 'Параметр — вход машины' }, tag: '(ism)' },
     { text: { uz: 'return — mashinadan natija', ru: 'return — результат из машины' }, tag: { uz: 'javob', ru: 'ответ' } },
@@ -1200,8 +1200,8 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
         </div>
       </div>
       <div className="fade-up" style={{ display: 'flex', flexDirection: 'column', gap: 9, marginTop: 2 }}>
-        <p className="body" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: <>Retsept va mashina — bitta funksiyaning ikki tomoni: <b>retsept</b> bir marta yoziladigan tartib, uni <b>ishga tushirsangiz</b> mashina kabi kirishdan natija chiqaradi.</>, ru: <>Рецепт и машина — две стороны одной функции: <b>рецепт</b> — порядок, записанный один раз, а если его <b>запустить</b>, он, как машина, превращает вход в результат.</> })}</p>
-        <p className="mono small" style={{ color: T.accent, margin: 0 }}>{tr({ uz: '→ retseptni bir marta yozamiz, nom bilan necha marta chaqiramiz!', ru: '→ рецепт пишем один раз, по имени вызываем сколько хотим!' })}</p>
+        <p className="body" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: <>Tartib va mashina — bitta funksiyaning ikki tomoni: <b>tartib</b> bir marta yozib qo'yiladi, uni <b>ishga tushirsangiz</b> mashina kabi kirishdan natija chiqaradi.</>, ru: <>Порядок и машина — две стороны одной функции: <b>порядок</b> записывается один раз, а если его <b>запустить</b>, он, как машина, превращает вход в результат.</> })}</p>
+        <p className="mono small" style={{ color: T.accent, margin: 0 }}>{tr({ uz: '→ tartibni bir marta yozamiz, nom bilan necha marta chaqiramiz!', ru: '→ порядок пишем один раз, по имени вызываем сколько хотим!' })}</p>
         <div style={{ display: 'flex', gap: 7, flexWrap: 'wrap', alignItems: 'center' }}>
           {[0, 1, 2].map(i => <span key={i} className="call-pill" style={{ animationDelay: `${i * 0.4}s` }}>salomBer()</span>)}
           <span className="mono small" style={{ color: T.ink3 }}>{tr({ uz: '… xohlagancha', ru: '… сколько угодно' })}</span>
@@ -1252,7 +1252,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return (
     <Stage eyebrow={{ uz: 'Funksiya nima', ru: 'Что такое функция' }} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "Ikkala usulni ko'ring", ru: 'Посмотрите оба способа' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Bir retseptni <span className="italic" style={{ color: T.accent }}>3 marta</span> — qanday yozamiz?</>, ru: <>Один рецепт <span className="italic" style={{ color: T.accent }}>3 раза</span> — как напишем?</> })}</h2></div>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Bir ishni <span className="italic" style={{ color: T.accent }}>3 marta</span> — qanday yozamiz?</>, ru: <>Одно действие <span className="italic" style={{ color: T.accent }}>3 раза</span> — как напишем?</> })}</h2></div>
         <Mentor>{tr({ uz: <>3 qatorli salomlashishni 3 marta chop etmoqchimiz. <b style={{ color: T.ink }}>Funksiyasiz</b> — uch qatorni qayta-qayta ko'chiramiz (9 qator). <b style={{ color: T.ink }}>Funksiya bilan</b> — bir marta yozib, unga <b style={{ color: T.ink }}>nom</b> beramiz va shu nomni 3 marta chaqiramiz. Ikkala tugmani bosib solishtiring.</>, ru: <>Хотим напечатать приветствие из 3 строк 3 раза. <b style={{ color: T.ink }}>Без функции</b> — копируем три строки снова и снова (9 строк). <b style={{ color: T.ink }}>С функцией</b> — пишем один раз, даём <b style={{ color: T.ink }}>имя</b> и вызываем это имя 3 раза. Нажмите обе кнопки и сравните.</> })}</Mentor>
         <Zoomable>
         <div className="split">
@@ -1286,11 +1286,11 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </Col>
           <Col>
             <div key={mode} className="demo-swap" style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-              <div style={{ alignSelf: 'flex-start', display: 'inline-flex', alignItems: 'center', gap: 8, fontFamily: "'JetBrains Mono',monospace", fontWeight: 700, fontSize: 12.5, padding: '6px 13px', borderRadius: 99, background: mode === 'manual' ? T.accentSoft : T.successSoft, color: mode === 'manual' ? T.accent : T.success }}>{mode === 'manual' ? tr({ uz: '❌ 9 qator — 3 joyda tuzatasiz', ru: '❌ 9 строк — чините в 3 местах' }) : tr({ uz: '🛠️ 1 retsept · 3 chaqiruv', ru: '🛠️ 1 рецепт · 3 вызова' })}</div>
+              <div style={{ alignSelf: 'flex-start', display: 'inline-flex', alignItems: 'center', gap: 8, fontFamily: "'JetBrains Mono',monospace", fontWeight: 700, fontSize: 12.5, padding: '6px 13px', borderRadius: 99, background: mode === 'manual' ? T.accentSoft : T.successSoft, color: mode === 'manual' ? T.accent : T.success }}>{mode === 'manual' ? tr({ uz: '❌ 9 qator — 3 joyda tuzatasiz', ru: '❌ 9 строк — чините в 3 местах' }) : tr({ uz: '🛠️ 1 tartib · 3 chaqiruv', ru: '🛠️ 1 порядок · 3 вызова' })}</div>
               <p className="flow-label" style={{ margin: 0 }}>{tr({ uz: 'Natija (ikkalasida bir xil)', ru: 'Результат (одинаковый в обоих)' })}</p>
               <Terminal lines={['Salom!', 'Xush kelibsiz', 'Yaxshi kun!', '...', { uz: '(har chaqiriqda shu uchlik takrorlanadi)', ru: '(эта тройка повторяется при каждом вызове)' }]} />
             </div>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ Natija bir xil! Lekin <b>funksiya</b> bilan retsept bir marta yozildi. Matnni o'zgartirsangiz — faqat <b>bitta joyda</b> tuzatasiz. Mana shuning uchun funksiya kerak.</>, ru: <>✓ Результат одинаковый! Но с <b>функцией</b> рецепт записан один раз. Захотите поменять текст — почините только <b>в одном месте</b>. Вот зачем нужна функция.</> })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ Natija bir xil! Lekin <b>funksiya</b> bilan tartib bir marta yozildi. Matnni o'zgartirsangiz — faqat <b>bitta joyda</b> tuzatasiz. Mana shuning uchun funksiya kerak.</>, ru: <>✓ Результат одинаковый! Но с <b>функцией</b> порядок записан один раз. Захотите поменять текст — почините только <b>в одном месте</b>. Вот зачем нужна функция.</> })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -1667,11 +1667,15 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   );
 };
 
-// ===== SCREEN 11 — HAYOTIY MISOL (hook yechimi: limonad mashinasi) =====
+// ===== SCREEN 11 — HAYOTIY MISOL (hook yechimi: narx hisoblagichi) =====
 const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const XILLAR = [{ e: '🍋', n: tr({ uz: 'klassik', ru: 'классический' }) }, { e: '🌿', n: tr({ uz: 'yalpizli', ru: 'мятный' }) }, { e: '🫐', n: tr({ uz: 'malinali', ru: 'малиновый' }) }];
+  // Bitta funksiya — uch xil son bilan chaqiriladi, har safar boshqa natija (25 000 so'm × soni)
+  const XILLAR = [{ e: '🌯', s: 1, n: tr({ uz: '1 ta lavash', ru: '1 лаваш' }) }, { e: '🍽️', s: 3, n: tr({ uz: '3 ta lavash', ru: '3 лаваша' }) }, { e: '📦', s: 12, n: tr({ uz: '12 ta lavash', ru: '12 лавашей' }) }];
+  const NARX = 25000;
+  const som = (v) => v.toLocaleString('ru-RU').replace(/ /g, ' ');
   const N = XILLAR.length;
-  const [out, setOut] = useState(storedAnswer ? XILLAR.map(x => `🥤 ${x.n} ${tr({ uz: 'limonad tayyor', ru: 'лимонад готов' })}`) : []);
+  const line = (x) => `🧾 ${x.n} — ${som(x.s * NARX)} ${tr({ uz: "so'm", ru: 'сум' })}`;
+  const [out, setOut] = useState(storedAnswer ? XILLAR.map(line) : []);
   const [running, setRunning] = useState(false);
   const timer = useRef(null);
   const done = out.length >= N;
@@ -1679,7 +1683,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const run = () => {
     clearTimeout(timer.current); setOut([]); setRunning(true);
     const tick = (i) => {
-      setOut(prev => [...prev, `🥤 ${XILLAR[i].n} ${tr({ uz: 'limonad tayyor', ru: 'лимонад готов' })}`]);
+      setOut(prev => [...prev, line(XILLAR[i])]);
       if (i < N - 1) timer.current = setTimeout(() => tick(i + 1), 520);
       else setRunning(false);
     };
@@ -1687,40 +1691,40 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   };
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   return (
-    <Stage eyebrow={{ uz: 'Hayotiy misol', ru: 'Пример из жизни' }} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Mashinani ishlating', ru: 'Запустите машину' }} onClick={onNext} /></>}>
+    <Stage eyebrow={{ uz: 'Hayotiy misol', ru: 'Пример из жизни' }} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Hisoblagichni ishlating', ru: 'Запустите расчёт' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Esingizdagi limonad? Endi uni <span className="italic" style={{ color: T.accent }}>mashina</span> tayyorlaydi!</>, ru: <>Помните лимонад? Теперь его готовит <span className="italic" style={{ color: T.accent }}>машина</span>!</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Dars boshida har bir limonadni qo'lda 4 bosqichda tayyorlayotgan edingiz. Endi <b style={{ color: T.ink }}>limonad mashinasini</b> yozdik: retsept bir marta funksiya ichida. Mashinani <b style={{ color: T.ink }}>xil</b> (ta'm) parametri bilan chaqirsangiz — har safar tayyor limonad qaytaradi. Tugmani bosing.</>, ru: <>В начале урока вы готовили каждый лимонад вручную за 4 шага. Теперь мы написали <b style={{ color: T.ink }}>лимонадную машину</b>: рецепт один раз внутри функции. Вызовите машину с параметром <b style={{ color: T.ink }}>xil</b> (вкус) — и каждый раз она вернёт готовый лимонад. Нажмите кнопку.</> })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Esingizdagi buyurtmalar? Endi narxni <span className="italic" style={{ color: T.accent }}>funksiya</span> hisoblaydi!</>, ru: <>Помните заказы? Теперь стоимость считает <span className="italic" style={{ color: T.accent }}>функция</span>!</> })}</h2></div>
+        <Mentor>{tr({ uz: <>Dars boshida har bir buyurtmani qo'lda hisoblayotgan edingiz. Endi hisob-kitob bir marta funksiya ichiga yozildi. Uni <b style={{ color: T.ink }}>soni</b> parametri bilan chaqirasiz — har safar shu songa mos narx qaytadi. Tugmani bosing.</>, ru: <>В начале урока вы считали каждый заказ вручную. Теперь расчёт один раз записан внутри функции. Вызываете её с параметром <b style={{ color: T.ink }}>soni</b> — и каждый раз возвращается цена для этого количества. Нажмите кнопку.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
             <div className="codebox fade-up delay-1" style={{ lineHeight: 1.9 }}>
-              <div><KW>function</KW> <FN>limonadTayyorla</FN>(<span style={{ color: '#FF9777', fontWeight: 700 }}>xil</span>) {'{'}</div>
-              <div style={{ paddingLeft: 16 }}><CM>{tr({ uz: '// limon, shakar, suv, aralashtir', ru: '// лимон, сахар, вода, перемешать' })}</CM></div>
-              <div style={{ paddingLeft: 16 }}><KW>return</KW> <STR>"🥤 "</STR> + xil + <STR>{tr({ uz: '" limonad tayyor"', ru: '" лимонад готов"' })}</STR></div>
+              <div><KW>function</KW> <FN>narxHisobla</FN>(<span style={{ color: '#FF9777', fontWeight: 700 }}>soni</span>) {'{'}</div>
+              <div style={{ paddingLeft: 16 }}><CM>{tr({ uz: '// bitta lavash — 25 000 so\'m', ru: '// один лаваш — 25 000 сум' })}</CM></div>
+              <div style={{ paddingLeft: 16 }}><KW>return</KW> soni * <span style={{ color: '#FF9777', fontWeight: 700 }}>25000</span></div>
               <div>{'}'}</div>
-              <div style={{ marginTop: 8 }}><FN>limonadTayyorla</FN>(<STR>{tr({ uz: '"klassik"', ru: '"классический"' })}</STR>)</div>
-              <div><FN>limonadTayyorla</FN>(<STR>{tr({ uz: '"yalpizli"', ru: '"мятный"' })}</STR>)</div>
-              <div><FN>limonadTayyorla</FN>(<STR>{tr({ uz: '"malinali"', ru: '"малиновый"' })}</STR>)</div>
+              <div style={{ marginTop: 8 }}><FN>narxHisobla</FN>(<span style={{ color: '#FF9777', fontWeight: 700 }}>1</span>)</div>
+              <div><FN>narxHisobla</FN>(<span style={{ color: '#FF9777', fontWeight: 700 }}>3</span>)</div>
+              <div><FN>narxHisobla</FN>(<span style={{ color: '#FF9777', fontWeight: 700 }}>12</span>)</div>
             </div>
-            <button className="btn" onClick={run} disabled={running} style={{ alignSelf: 'flex-start' }}>{running ? tr({ uz: 'Tayyorlanyapti…', ru: 'Готовится…' }) : (done ? tr({ uz: '↻ Yana tayyorlash', ru: '↻ Приготовить ещё' }) : tr({ uz: '🍋 Mashinada tayyorlash', ru: '🍋 Приготовить машиной' }))}</button>
+            <button className="btn" onClick={run} disabled={running} style={{ alignSelf: 'flex-start' }}>{running ? tr({ uz: 'Hisoblanyapti…', ru: 'Считается…' }) : (done ? tr({ uz: '↻ Yana hisoblash', ru: '↻ Посчитать ещё' }) : tr({ uz: '🧾 Funksiya bilan hisoblash', ru: '🧾 Посчитать функцией' }))}</button>
           </Col>
           <Col>
-            <p className="flow-label">{tr({ uz: 'Mashina har xilini tayyorlayapti', ru: 'Машина готовит каждый вкус' })}</p>
+            <p className="flow-label">{tr({ uz: 'Funksiya har buyurtmani hisoblayapti', ru: 'Функция считает каждый заказ' })}</p>
             <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
               {XILLAR.map((x, i) => {
                 const got = out.length > i;
                 return (
                   <div key={i} className={`flavor-card ${got ? 'got' : ''}`}>
-                    <span className="flavor-ava">{got ? '🥤' : x.e}</span>
-                    <div><div className="flavor-name">{x.n} {tr({ uz: 'limonad', ru: 'лимонад' })}</div><div className="flavor-msg">{got ? tr({ uz: 'tayyor!', ru: 'готово!' }) : tr({ uz: 'navbatini kutyapti…', ru: 'ждёт своей очереди…' })}</div></div>
+                    <span className="flavor-ava">{got ? '🧾' : x.e}</span>
+                    <div><div className="flavor-name">{x.n}</div><div className="flavor-msg">{got ? `${som(x.s * NARX)} ${tr({ uz: "so'm", ru: 'сум' })}` : tr({ uz: 'navbatini kutyapti…', ru: 'ждёт своей очереди…' })}</div></div>
                     <span className="flavor-status">{got ? '✅' : x.e}</span>
                   </div>
                 );
               })}
             </div>
-            <Terminal lines={out} empty={{ uz: '// ▶ tugmani bosing', ru: '// ▶ нажмите кнопку' }} title={{ uz: 'limonad mashinasi', ru: 'лимонадная машина' }} />
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ 3 xil limonad — <b>bitta funksiya bilan</b>! Retsept bir marta yozildi, mashina har xil parametr bilan har xil natija qaytardi. Mana funksiyaning kuchi! 🚀</>, ru: <>✓ 3 вида лимонада — <b>одной функцией</b>! Рецепт записан один раз, а машина с разными параметрами вернула разные результаты. Вот она, сила функции! 🚀</> })}</p></div>}
+            <Terminal lines={out} empty={{ uz: '// ▶ tugmani bosing', ru: '// ▶ нажмите кнопку' }} title={{ uz: 'narx hisoblagichi', ru: 'расчёт стоимости' }} />
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ Uchala buyurtma — <b>bitta funksiya bilan</b>! Hisob-kitob bir marta yozildi, har xil son bilan chaqirilganda har xil narx qaytdi. Mana funksiyaning kuchi! 🚀</>, ru: <>✓ Все три заказа — <b>одной функцией</b>! Расчёт записан один раз, а с разными числами вернулись разные цены. Вот она, сила функции! 🚀</> })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -3041,7 +3045,7 @@ export default function JsFunctionsLesson({ lang: langProp, onFinished }) {
         @keyframes arrow-pulse { 0%,100%{opacity:.35; transform:translateX(0);} 50%{opacity:1; transform:translateX(3px);} }
         .pipe-lbl { font-family:'Manrope'; font-weight:700; font-size:9px; letter-spacing:0.1em; text-transform:uppercase; color:${T.ink3}; }
 
-        /* limonad ta'm kartalari (S11) */
+        /* buyurtma-narx kartalari (S11) */
         .flavor-card { display:flex; align-items:center; gap:11px; background:${T.paper}; border-radius:12px; padding:10px 14px; box-shadow:0 6px 16px -6px rgba(${T.shadowBase},0.14); transition:all 0.45s cubic-bezier(.4,0,.2,1); opacity:0.5; }
         .flavor-card.got { opacity:1; box-shadow: inset 0 0 0 1.5px ${T.success}, 0 8px 20px -6px rgba(31,122,77,0.25); }
         .flavor-ava { width:36px; height:36px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:19px; background:${T.accentSoft}; flex-shrink:0; transition: background 0.35s; }

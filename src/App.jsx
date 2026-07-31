@@ -161,7 +161,7 @@ const MODULES = [
       { key: 'm1-10', n: 11, type: 'Proyekt', emoji: '💅', title: 'Praktika: bezash va yakunlash',   sub: 'CSS + kontent + AI bilan tugma', comp: CssPractice },
       { key: 'm1-09', n: 12, type: 'Kod',     emoji: '🔀', title: 'Git va GitHub',                   sub: 'commit, push — kod uchun vaqt mashinasi', comp: GitLesson },
       { key: 'm1-11', n: 13, type: 'Kod',     emoji: '🚀', title: 'Netlify va deploy',               sub: 'hosting, maktab poddomeni', comp: DeployLesson },
-      { key: 'm1-12', n: 14, type: 'PM',      emoji: '🎤', title: 'Storytelling: mahsulotni so\'zlab berish', sub: '2 daqiqalik taqdimot: avval muammo, keyin yechim, oxirida demo', comp: PmLesson3 },
+      { key: 'm1-12', n: 14, type: 'PM',      emoji: '🎤', title: 'Demo Day: 3 daqiqalik nutq', sub: 'Ota-onangiz oldida saytingizni ko\'rsatasiz: ilgak, muammo, jonli demo va keyingi qadam', comp: PmLesson3 },
       { key: 'm1-13', n: 15, type: 'Demo',    emoji: '🎤', title: 'Demo Day 1',                      sub: 'ota-onalar oldida ochiq himoya' },
     ],
   },

@@ -1200,7 +1200,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <Col>
             <p className="flow-label">{tr({ uz: 'Natija — quti', ru: 'Результат — коробка' })}</p>
             <div style={{ display: 'flex', justifyContent: 'center', padding: '10px 0' }}>
-              {val ? <VarBox name="ism" value={`"${val}"`} valColor={CODE.str} pulse /> : <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: "Qiymat tanlang — quti to'ladi", ru: 'Выберите значение — коробка заполнится' })}</p></div>}
+              {val ? <VarBox name="ism" value={`"${val}"`} valColor={CODE.str} pulse /> : <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Qiymat tanlang — qutiga yoziladi', ru: 'Выберите значение — оно запишется в коробку' })}</p></div>}
             </div>
             {/* OMBORCHI O'QI: nom orqali chaqirib qiymatni chiqarish (robot-qo'l) */}
             {val && (
@@ -1699,6 +1699,16 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   );
 };
 
+// 🌯 LOYIHAGA KO'PRIK (96-qonun: modul-ipi) — o'rganilgan tushuncha 8–12-darslardagi
+// lavash do'koni saytida qanday ishlashini bir qatorda ko'rsatadi. Ekranni bulg'amaydi:
+// faqat mashq BAJARILGANDAN keyin chiqadi (92-qonun: bir ekran — bir ish).
+const ProjectBridge = () => (
+  <div className="frame-soft fade-step">
+    <p className="small mono" style={{ margin: '0 0 6px', fontWeight: 700, color: T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>{tr({ uz: '🌯 Loyihaga ko\'prik', ru: '🌯 Мост к проекту' })}</p>
+    <p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Loyiha kunlarida lavash do'koni sayti uchun xuddi shunday qutilar yozasiz: <span className="mono">let narx = 25000</span>, <span className="mono">let soni = 3</span>. Ism o'rniga — buyurtma ma'lumotlari.</>, ru: <>В проектные дни для сайта лавашной вы напишете такие же коробки: <span className="mono">let narx = 25000</span>, <span className="mono">let soni = 3</span>. Вместо имени — данные заказа.</> })}</p>
+  </div>
+);
+
 // ===== SCREEN 15 — YAKUNIY (o'zgaruvchini o'zi yozadi) =====
 const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const audio = useAudio([{ id: 's15', text: `Mana, eng muhim lahza. Shu paytgacha qutilarni qo'l bilan to'ldirdingiz — endi birinchi qutingizni so'z bilan yozasiz. Ismingizni saqlaydigan o'zgaruvchi yozing: let, keyin nom, teng belgisi va qo'shtirnoqda ismingiz. Masalan: let ism teng qo'shtirnoqda Aziza.`, trigger: 'on_mount', waits_for: { type: 'typed_ok' } }]);
@@ -1737,7 +1747,7 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <span className="tagpill" style={{ opacity: valid ? 1 : 0.4 }}>{valid ? '✓' : '4'} {tr({ uz: 'qiymat', ru: 'значение' })}</span>
             </div>
             {passed
-              ? (<div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ Zo'r! Bu — to'liq, to'g'ri o'zgaruvchi. Siz haqiqiy JavaScript yozdingiz!</>, ru: <>✓ Класс! Это полная, правильная переменная. Вы написали настоящий JavaScript!</> })}</p></div>)
+              ? (<><div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ Zo'r! Bu — to'liq, to'g'ri o'zgaruvchi. Siz haqiqiy JavaScript yozdingiz!</>, ru: <>✓ Класс! Это полная, правильная переменная. Вы написали настоящий JavaScript!</> })}</p></div><ProjectBridge /></>)
               : (<p className="body" style={{ margin: 0, color: T.ink3, fontSize: 13 }}>{tr({ uz: <>Matn qiymatini qo'shtirnoqqa oling: <span className="mono">"..."</span>. Raqam uchun qo'shtirnoq shart emas.</>, ru: <>Текстовое значение возьмите в кавычки: <span className="mono">"..."</span>. Числу кавычки не нужны.</> })}</p>)}
           </Col>
           <Col>

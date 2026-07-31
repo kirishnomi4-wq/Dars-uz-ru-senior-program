@@ -22,6 +22,7 @@
       "pattern": "zanjir",
       "flags": "i",
       "severity": "warn",
+      "except": "else if|if-else|rol-zanjir|prompt-zanjir|agent-zanjir|zanjir-reaksiya",
       "suggest": "streak haqida bo'lsa: «ketma-ket kunlar soni / hisob»",
       "law": "lug'at zanjir-qatori (2026-07-24)"
     },
@@ -432,6 +433,56 @@
       "pattern": "bublik",
       "suggest": "rus realiyasi — «bulochka (shirin non)» (MATN_ETALONI lug'at)",
       "law": "F-0726-01"
+    },
+    {
+      "id": "slot-ichki-atama",
+      "severity": "error",
+      "pattern": "kartangizdagi (KIM|MUAMMO|YECHIM)|kartadagi (KIM|MUAMMO|YECHIM)",
+      "suggest": "slot-nomi ekranda ko'rinmasa — SAVOLI yoziladi: «saytingiz kim uchun» / «qanday qiyinchilik» / «sayt buni qanday hal qiladi»",
+      "law": "KORPUS 50 · F-0731-20"
+    },
+    {
+      "id": "kozi-bilan-qarash",
+      "severity": "error",
+      "pattern": "ko'zi bilan qara|ko‘zi bilan qara",
+      "suggest": "kitobiy ko'chma ma'no — «uning o'rnida ko'ring»",
+      "law": "KORPUS 46 · F-0731-15"
+    },
+    {
+      "id": "auditoriya-kengaydi",
+      "severity": "warn",
+      "pattern": "auditoriya[a-z'‘]* keng(ay|ayd)",
+      "suggest": "kitob-iborasi — «saytdan foydalanadiganlar ko'paydi»",
+      "law": "KORPUS 42 · F-0731-11"
+    },
+    {
+      "id": "topshiriq-boshlash",
+      "severity": "warn",
+      "pattern": "topshiriqni boshlash|vazifani boshlash",
+      "suggest": "uy-vazifa tugmasi natijani aytsin — «Amaliy topshiriqni bajarish →»",
+      "law": "KORPUS 51 · F-0731-21"
+    },
+    {
+      "id": "karta-yozishni-organdik",
+      "severity": "warn",
+      "pattern": "karta(ni|ngizni)? yozishni o'rgandik|kartani yozishni",
+      "suggest": "yakun-fe'li ko'nikmani aytsin — «auditoriya-karta tuzishni o'rgandik»",
+      "law": "KORPUS 51 · F-0731-21"
+    },
+    {
+      "id": "nuqtali-royxat",
+      "severity": "warn",
+      "pattern": "nuqtali ro'yxat|nuqtali ro‘yxat|маркированный список",
+      "flags": "i",
+      "suggest": "«tartiblanmagan ro'yxat» (ul — ma'nosi bilan ataladi; nuqta faqat sukut-belgisi)",
+      "law": "KORPUS 55 · F-0731-35"
+    },
+    {
+      "id": "raqam-keyingina",
+      "severity": "warn",
+      "pattern": "\\d+\\s*(yil|oy|kun|hafta|soat)[a-z'‘]*\\s*keyingina",
+      "suggest": "hikoyada ortiqcha ta'kid — «oradan ikki yil o'tib, …» (raqam so'z bilan)",
+      "law": "KORPUS 42 · F-0731-11"
     }
   ]
 }

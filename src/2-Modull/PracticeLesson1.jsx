@@ -1655,7 +1655,7 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const EVTS = [{ id: 'click', l: tr({ uz: 'Bosilganda (click)', ru: 'При нажатии (click)' }) }, { id: 'hover', l: 'Hover' }, { id: 'scroll', l: tr({ uz: 'Aylantirilganda', ru: 'При прокрутке' }) }];
   const REACTS = [{ id: 'color', l: tr({ uz: "Rangni o'zgartir", ru: 'Изменить цвет' }) }, { id: 'delete', l: tr({ uz: "Sahifani o'chir", ru: 'Удалить страницу' }) }, { id: 'nothing', l: tr({ uz: 'Hech narsa', ru: 'Ничего' }) }];
   return (
-    <Stage eyebrow={tr({ uz: 'Yakuniy · amaliy', ru: 'Финал · практика' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!passed} label={passed ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "To'g'ri retseptni tuzing", ru: 'Соберите правильный рецепт' }} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Yakuniy · amaliy', ru: 'Финал · практика' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!passed} label={passed ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Hodisa va reaksiyani tanlang', ru: 'Выберите событие и реакцию' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Oxirgi sinov: tugmani <span className="italic" style={{ color: T.accent }}>o'zingiz</span> to'g'ri jonlantiring</>, ru: <>Последнее испытание: оживите кнопку <span className="italic" style={{ color: T.accent }}>сами</span></> })}</h2></div>
         <Mentor>{tr({ uz: <>Maqsad: <b style={{ color: T.ink }}>"Tugma bosilganda sahifa rangi o'zgarsin."</b> To'g'ri <b style={{ color: T.ink }}>HODISA</b> va to'g'ri <b style={{ color: T.ink }}>REAKSIYA</b>ni tanlang. Ikkalasi to'g'ri bo'lsa — tugma o'ngdagi saytda haqiqatan ishlay boshlaydi.</>, ru: <>Цель: <b style={{ color: T.ink }}>«При нажатии кнопки цвет страницы меняется.»</b> Выберите правильное <b style={{ color: T.ink }}>СОБЫТИЕ</b> и правильную <b style={{ color: T.ink }}>РЕАКЦИЮ</b>. Если оба верны — кнопка на сайте справа действительно заработает.</> })}</Mentor>
@@ -1752,7 +1752,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish, on
             <button className="hw-big" onClick={onHomework}>
               <span className="hw-big-shine" aria-hidden="true" />
               <span className="hw-big-t">{tr({ uz: 'Uyga vazifa', ru: 'Домашнее задание' })}</span>
-              <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni boshlash →', ru: 'Начать практическое задание →' })}</span>
+              <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni bajarish →', ru: 'Выполнить практическое задание →' })}</span>
             </button>
           </div>
         )}

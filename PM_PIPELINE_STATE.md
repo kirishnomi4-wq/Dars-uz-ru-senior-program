@@ -662,3 +662,300 @@ Foydalanuvchi to'g'ridan-to'g'ri so'zlab berdi: (1) hook mentor-gapi «Mana inte
 
 ## 2026-07-30 — F-0730-04: PmLesson2 s3 yashil-fon «tugma shoshilmaydi» metaforasi olib tashlandi — ✅
 Foydalanuvchi: 4-sahifadagi yashil-fon gapi «Tugma esa shoshilmaydi: u sabab ko'rsatilgandan keyin keladi» tushunarsiz. Tuzatish: «Tugma esa eng oxirida turibdi — foydalanuvchi nega bosish kerakligini tushungandan keyin chiqadi.» Qonunlashtirish: MATN_KORPUS 28-bo'lim (jonsiz narsaga odam-fe'l berilmaydi). esbuild + lint:til toza. UNCOMMITTED.
+
+## 2026-07-30 — PMLESSON2_ETALON_TARIX.md YARATILDI (5 kunlik evolyutsiya-xulosa) — ✅
+Foydalanuvchi topshirig'i: PmLesson2'ning 5 kunlik barcha o'zgarishlari (fyuchalar, so'z-almashuvlar, F-IDlar) bitta hujjatga yig'ilsin — 75 dars qayta tuzilganda shu etalondan chetga chiqilmasin. Yig'ildi: xronologiya (5 commit, ~20 F-ID) · 17-ekran anatomiyasi · 11 fyucha + 6 olib-tashlangan qatlam · 24-qatorlik so'z/atama TAQIQ-LUG'ATI · 4-B: ✅ ISHLATILADIGAN LUG'AT (11 atama yagona ta'riflari + 12 gap-qolipi, ~15 matn-to'lqin/60+ almashuv statistikasi) · 3-C: NAVBAT-PULSI to'liq logikasi (4 shart, 3-qadam qaror-tartibi, naqsh-jadval, sukut-tuzoq, 6 taqiq-joy, 5 tekshiruv, kod-shartnoma) · 3-D: MENTOR-YO'NALTIRISH logikasi (puls QAYERDA / mentor NIMA+NEGA mehnat-taqsimoti, 7 band) · 6 takror bug-sinf · 75-darsga tatbiq-tartibi. Manba: ikkala STATE, korpus 20–28, PM_DARS_ETALON 1-B/1-C/1-D, git-tarix. UNCOMMITTED.
+
+## 2026-07-30 — PMUSERSTORY_ETALON_TARIX.md YARATILDI (2-TUR etalon-xulosa) — ✅
+Foydalanuvchi topshirig'i: UserStory (P0) uchun ham PmLesson2'dagidek to'liq etalon-tarix + 2-TURga xos tamoyillar muhrlansin. 3 parallel tadqiqot-agent (jurnal-xronologiya · dars-anatomiya · qonun-ekstrakt) natijasi bitta hujjatga yig'ildi: xronologiya (07-16→30, ~90 topilma, qonun 14–91 manbasi) · 17-ekran anatomiya + artefakt-zanjir · 8 fyucha-standart · KEYS-BIZNES qoidalari (K1–K19 bank, real+o'quvchiga qiziq, raqam-yil, 91-qonun «keys bitta joyda — yoyilmaydi», takror-taqiqlar 10/24/38) · mexanika-takror taqiqi (4 manba: 10/26/1-B/59) · so'z-evolyutsiyasi (retsept, tekshiruvchi, klinika-tibbiyot tozalash, keys-tili, egaliksiz masdar, F-0729-08 22 tuzatish) · 1-TUR vs 2-TUR + GIBRID band · 87-qonun texnik-kirishuv · 5-bandlik tatbiq-tartibi. lint:prompt toza. UNCOMMITTED.
+
+## 2026-07-30 — PMLESSON2_ETALON_TARIX.md CHUQURLASHTIRILDI (1-TUR to'liq-tayyor) — ✅
+Foydalanuvchi: «1-tur etalonni ham chuqur ko'rib tayyorla, so'zlari bilan». 2 tadqiqot-agent (PmLesson2.jsx 3736-qator so'zma-so'z anatomiya · 1-TUR qonun-ekstrakt) natijasi hujjatga muhrlandi: 2-bo'lim → to'liq 17-ekran jadvali (mexanikalari bilan) + misol-ip xaritasi (91a isboti: OLX yagona ip, begona brend 0) + CustomerRun til-oilasi + koding-tafsilot (87-tatbiq: Htmllesson2:2562 bo'shlig'i) + 11 puls-nuqta aynan · YANGI 2-B: mentor-gaplar antologiyasi (barcha 10 gap aynan, NEGA+chorlov naqshi) · YANGI 2-C: 1-TUR blok-standart o'qishi (nazariya=interfeys-namunalar, ustaxona-chegara, qonun 46/72/75/18/23/27/56/79/82/91a, v8-halollik eslatmasi). Ikkala etalon-hujjat endi teng chuqurlikda — asl ishga (75 dars) tayyor. lint:prompt toza. UNCOMMITTED.
+
+## 2026-07-30 — PmLesson3 QAYTA QURILDI: «Demo Day — 3 daqiqalik nutq» (v18 → v19) — ✅
+**Topshiriq (foydalanuvchi):** dars M1-D14 kontekstga to'g'ri kelmasdi. O'quvchi bu darsga qadar loyihasini o'zi tanlab qurgan va oldingi darsda (DeployLesson) Netlify'ga chiqargan; keyingi qadam — **ota-onalar oldida Demo Day**. Eski dars esa mavhum «investor pitchi» edi (2 daqiqa, treyler metaforasi, 20 ekran). Talab: pitch 3 daqiqa bo'lsin · urg'u GAPIRISHGA qaratilsin · 17–18 ekran shart emas · dars individual bo'lsin.
+**GATE 1 (reja tasdiqlandi):** repetitsiya-xonasi konsepti · mikrofon-yozuv + zaxira yo'l · chuqur qayta qurish.
+
+**Yangi umurtqa (foydalanuvchi diktovkasi bo'yicha):** o'quvchi saytini qildi, lekin u qanday muammoni yechishini BILMAYDI → shuning uchun dars mentor bilan **muammo-qidiruv**dan boshlanadi, keyin ilgak+muammo → yechim → **jonli demo** → qaysi texnologiya (HTML/CSS) → **kelajak rejasi (2-Modul JS ko'prigi)**.
+
+**3 daqiqa = 6 bo'lak:** Ilgak 0:20 · Muammo 0:30 · Yechim 0:25 · **Jonli demo 1:00 (eng katta)** · Qanday qildim 0:25 · Keyingi qadam 0:20.
+
+**Ekranlar 20 → 15** (12 mazmun + podium + flashcard + yakun). Ball: 4 ta (s3·s6·s9 mikro + s11 final).
+- s0 ilgak (zalda ota-ona, 2 variant) · s1 vaqt-chizig'i + reja
+- **s2 MUAMMO-QIDIRUV** (yangi yadro): 6 sayt-turidan biri → 3 savol (kim · nimasi qiyin edi · nima osonlashdi) → bitta gap yig'iladi
+- s3 TEST · **s4 ilgak+muammo yozish + 🎤 birinchi ovoz-yozuv**
+- **s5 yechim + jonli demo**: namuna bir-jumlalar → o'z jumlasi → **o'z netlify manzili** → demo 3 qadamini sudrab tartiblash → Preview maketi
+- s6 TEST · **s7 «qanday qildim»**: har juftlikdan ota-ona TUSHUNADIGAN variant (texnik til = tuzoq)
+- **s8 keyingi qadam**: ikki tugma-tajriba (o'lik tugma ↔ JS tugmasi) → sayt turiga mos 4 taklifdan 2 tasi → 2-Modul ko'prigi
+- s9 TEST · **s10 ota-ona 3 savoli + 🧯 falokat rejasi** (internet o'chsa — skrinshot)
+- **s11 REPETITSIYA KABINASI (final)**: 6 bo'lak kartasi + **3:00 sahna-taymeri** (qaysi bo'lakni aytish kerakligini ko'rsatib turadi) + **mikrofon-yozuv → o'zini eshitish** + 3 o'z-baho bandi + mentorga MentorWorkStats
+
+**Texnika:** `MediaRecorder`+`getUserMedia`, yozuv faqat `blob:` URL'da, hech qayerga yuborilmaydi, ekrandan chiqqanda `revokeObjectURL`; mikrofon yo'q/ruxsat berilmasa — jimgina taymer rejimiga tushadi (xato-oyna yo'q, 66-qonun ohangi). Nutq matni `localStorage: ccPitch3` da (Demo Day kuni joyida turadi); ovoz saqlanmaydi.
+**Relslar yangilandi:** SCREEN_META(15) · SCORED_IDX[3,6,9,11] · INLINE_KEYS · Q_LABELS · ACH_TRIGGERS (5 nishon: Problem Finder/Demo Ready/Next Level/Stage Ready/Level Up) · RECAPS(3,6,9) · QUIZ_BANK 12 ta yangi savol · 12 flashcard · arena tokenlari (pitch/30s/💰 → nutq/3:00/👏) · App.jsx katalog sarlavhasi.
+**O'lik kod tozalandi:** InvestorAvatar + INVESTOR_MOODS + inv-* CSS · RehearseTimer · TrailerMontage → `OrderDrag` · IcoChip · 4 ishlatilmagan ikonka. MentorWorkStats qayta jonlantirildi (s11).
+**Tuzatilgan bug:** `Screen2` ichidagi `Row` har render'da qayta yaratilardi → «o'zim yozaman» maydonidan fokus uchardi; komponent screen tashqarisiga (`PfRow`) chiqarildi.
+**Darvozalar:** esbuild toza · `npm run lint:til` 0 topilma · `vite build` toza (2.64s) · SSR-smoke OK · residue-grep (PARTS/PMETA/Investor/treyler/2 daqiqa) 0.
+**Qolgan:** brauzer-verifikatsiya (Chrome kengaytmasi ulanmagan — mikrofon/sudrash/taymer jonli sinovdan o'tkazilmadi). UNCOMMITTED.
+
+## 2026-07-30 — PmLesson3 FEEDBACK RAUNDI (F-0730-05…09) — ✅
+Foydalanuvchi darsni o'zi ochib ko'rdi va 5 ta topilma berdi. Muhim: **6-sahifadan o'zi ham o'ta olmadi**.
+
+**F-0730-05 · Namunalar hayotdan uzoq edi.** «Abrazetslar yomon» — sayt turlari mavhum (blog/o'yin/maktab) edi, o'quvchilar amalda esa online do'kon quradi. `SITE_KINDS` qayta yozildi: 📚 Kitob do'koni · 👕 Kiyim do'koni · 🍕 Ovqat buyurtma sayti · 🛍️ Boshqa online do'kon · 🙋 O'zim haqimda · ⭐ Boshqa. **Butun dars bo'ylab yagona misol-ip = kitob do'koni** (hook, ilgak, muammo, yechim, demo namunalari — hammasi shu ipda; 91a-qonun naqshi).
+
+**F-0730-06 · Dizayn texnik darsniki edi (qonun buzilishi).** PmLesson3 to'q sariq/bej palitrada (`#FF4F28`, `#F6F4EF`) — ya'ni Htmllesson/JsIntro dekori. PM_DARS_ETALON 1-bo'limi buni taqiqlaydi. **PM-STUDIA palitrasi PmLesson2 etalonidan to'liq ko'chirildi**: `T`, `LT`, `G` (Source Serif 4), 33 ta `rgba(255,79,40)` → indigo, `CODE` kartasi navy → chuqur indigo `#241C4F`, zoom-backdrop, progress-bar porlashi. BLOKS ranglari PM oilasiga: ilgak amber · muammo `#D6455D` · yechim ko'k · **demo = brend-indigo (eng katta bo'lak brend rangida)** · qildim teal · keyin yashil.
+
+**F-0730-07 · 3-sahifa (muammo-qidiruv) ko'zni to'ldirib yuborardi.** Bir ekranda 9 tanlov + 3 tugma turardi. Endi: har savolda **2 namuna** (3 emas) va **savollar birma-bir ochiladi** (javob berilgach keyingisi chiqadi), raqamli belgi + to'lgan qator yashil ramka oladi.
+
+**F-0730-08 · 6-sahifa o'tib bo'lmas edi (eng jiddiy).** Bitta ekran uch ish so'rardi (yechim yozish + sayt manzili + sudrab tartiblash), ustiga **manzil MAJBURIY** edi — linki yo'q o'quvchi shu yerda qamalib qolardi. Yechim: ekran ikkiga bo'lindi —
+ · **s5 Yechim** (bitta ish): tanish ilovaning bir-jumlasi namuna sifatida → o'z jumlasi. Bas.
+ · **s6 Jonli demo**: 3 qadam **bosib ochiladi** (sudrash olib tashlandi — qiyin edi), sayt manzili **ixtiyoriy** («bilmasangiz bo'sh qoldiring»). Sayt-maketi (Preview/SiteMock) butunlay olib tashlandi — «pastdagi juda xunuk».
+ Ekranlar 15 → 16, lekin har ekranda ish kamaydi.
+
+**F-0730-09 · 8-sahifadagi gaplar noto'g'ri ohangda.** «endi uni manzilidan hamma ochadi» → «endi uni **hamma ko'rib, ishlata oladi**»; «Rang, o'lcham va joylashuvni o'zim tanladim» → «Rang va joylashuvni tanlab, saytga shu ko'rinishni berdim»; «bo'limlarni o'zim qo'ydim» → «o'zim **o'ylab tuzdim**». Sabab (foydalanuvchi): takror «o'zim… o'zim…» himoyalanayotgandek eshitiladi — go'yo kimdir «boshqa odam yaratdimi?» deb shubhalanayotgandek.
+
+**F-0730-10 · 🧯 «Internet o'chib qolsa?» kartasi butunlay olib tashlandi** (foydalanuvchi: kerakmas). Savol-javob 4 → 3 karta; izlari yakun-cheklist, uy-vazifa, flashcard va arena savolidan ham tozalandi (o'rniga «keyingi qadam» va «demo 3 qadami»).
+
+**Tuzilma yangilandi:** SCREEN_META 16 · SCORED_IDX [3,7,10,12] · RECAPS {3,7,10} · INLINE_KEYS {s3:1,s7:2,s10:2,s12:-1} · Q_LABELS · ACH_TRIGGERS · ekran-komponentlari qayta raqamlandi (Screen0–Screen13).
+**O'lik kod:** OrderDrag (+ .dd-* CSS), Preview, SiteMock o'chirildi.
+**Darvozalar:** esbuild ✓ · lint:til 0 ✓ · vite build ✓ · **har 16 ekran alohida SSR-render qilib tekshirildi** — bu darvoza qayta-raqamlashda o'chib ketgan test-ekranni (Screen7) ushladi va tiklandi.
+**Eslatma:** shu seansda `src/1-Modull/PmLesson1.jsx` ham o'zgargan (PM-STUDIA palitrasiga o'tkazilgan) — bu ish bu raundga kirmaydi, tegilmadi. UNCOMMITTED.
+
+## 2026-07-30 — PmLesson3 IKKINCHI FEEDBACK RAUNDI (F-0730-11…13) — ✅
+**F-0730-11 · 5-sahifa (birinchi savol + muammo) uzun edi.** Foydalanuvchi: «inputlardagi default ko'rinib turganlar kerakmas, shunchaki nimadir yozsak bo'ladi — tushunarli, oddiy». Olib tashlandi: 2-3 ta tayyor namuna-chip (`HOOKS`), uzun ipucha-matnlar, yon ustundagi nutq-kartasi. Qoldi: ikkita maydon (`Savolingizni yozing…` / `Kim uchun va nimasi qiyin edi?`) + mikrofon. Namuna endi mentor gapida BIR MARTA aytiladi (kitob do'koni misoli). Ekran matni 1031 → 417 belgi. Korpus 32-bo'lim.
+
+**F-0730-12 · 9-sahifa juda baland — qora nutq-kartasi aybdor.** Foydalanuvchi: «qora fonda uzun bo'lgani uchun bo'limlarni bir qarashda o'qigim ham kelmayapti». `PitchCard` ikki holatga bo'lindi: **mini** (dars o'rtasida — bitta qator: bo'lak nomlari + ✓ + «3/6») va **to'liq** (faqat yakuniy ekranda, o'quvchi tayyor nutqini o'qishi uchun). Natija: 8-ekran 1272 → 796, 9-ekran 1172 → 696, 12-ekran 1413 → 952 belgi. Korpus 33-bo'lim.
+
+**F-0730-13 · «Ilgak» atamasi olib tashlandi.** Foydalanuvchi so'radi, 3 variant taqdim etildi (Birinchi savol · Qiziqtiramiz · Diqqatni tortamiz), **«Birinchi savol» tasdiqlandi**: nom o'zi nima yozilishini aytadi, izoh talab qilmaydi va qolgan nomlar (Muammo · Yechim · Jonli demo · Qanday qildim · Keyingi qadam) bilan bir oilada turadi. Almashtirildi: BLOKS yorlig'i, vaqt-chizig'i, s4 sarlavha/maydon, repetitsiya o'z-baho bandi, yakun-cheklist, flashcard, arena savoli va suzuvchi token. Korpus 31-bo'lim.
+
+**Yakuniy ekran boyitildi:** endi o'quvchining TO'LIQ nutqi (6 bo'lak matni) yakunda ko'rinadi — Demo Day kuni shu darsni ochib o'qiy oladi.
+**Darvozalar:** esbuild ✓ · lint:til 0 ✓ · vite build ✓ · 16/16 ekran render ✓ · «Ilgak» qoldig'i 0 (faqat ichki o'zgaruvchi nomi). UNCOMMITTED.
+
+## 2026-07-30 — PmLesson3 UCHINCHI FEEDBACK RAUNDI (F-0730-14…18) + QONUN 92–93 — ✅
+Foydalanuvchi keskin e'tiroz bildirdi: «nega shuncha feedbackdan keyin ham dars zo'r chiqmayapti», «nega etalonga qaramayapsan?». Ikkala e'tiroz ham o'rinli — quyidagi ikki qonun aynan shundan tug'ildi.
+
+**F-0730-14 · 13-sahifa (repetitsiya) ma'lumotga to'lib ketgan edi.** «Juda ko'p ma'lumot, kirgim kelmayapti». Ekran 6 ta tahrir-maydoni + taymer + mikrofon + 3 bandlik o'z-baho ro'yxati + yon-kartani bir vaqtda ko'rsatardi. **Butunlay qayta qurildi**: bitta ustun, uch blok — **nutq (teleprompter, o'qish holatida)** → **taymer** → **mikrofon**. Tahrir «✎ Tahrirlash» ortiga yashirildi (bu ekranda o'quvchi YOZMAYDI — GAPIRADI), o'z-baho ro'yxati olib tashlandi. Ekran matni **1413 → 328 belgi**.
+
+**F-0730-15 · Savol-javob matnlari (12-sahifa).** «Mentor yo'l ko'rsatdi, kodni o'zim yozdim» → **«Mentor o'rgatdi, saytni o'zim qildim»** · «Bir necha hafta — har darsda bittadan bo'lak qo'shdim» → **«Bir necha kun — har darsda o'rganganlarimni loyihamda ishlatdim»** · «Bu kimga kerak?» javobi tushunarsiz qurilgan edi (`Bu — {kim} uchun: {qiyinchilik}…`) → **«Saytim {kim}ga kerak: {qanday foyda}»**. Flashcard va arena savolidagi eski varianti ham yangilandi.
+
+**F-0730-16 · Podium sarlavhasi etalondan olinmagan edi.** «Kim g'olib?» → etalondagi aynan naqsh: jonli darsda **«Bugungi g'oliblarimiz»**, yakka rejimda **«Bugungi natijangiz»** (`PmLesson2:2244` va `PmUserStoryLesson:2857` bilan bir xil). Yakka o'quvchi uchun «kim g'olib?» degan savol ma'nosiz edi.
+
+**F-0730-17 · Oxirgi sahifadagi «Muddat: …» olib tashlandi** — uy-vazifa bandlari qisqargan holda qoldi.
+
+**F-0730-18 · Flashcard javobi** «Mentor yo'l ko'rsatdi, kodni o'zim yozdim» → «Mentor o'rgatdi, saytni o'zim qildim».
+
+**🔴 QONUN 92 (PM_DARS_ETALON) — BIR EKRAN, BIR ISH; EKRAN BULG'ANIB TURMAYDI.** Foydalanuvchi talabi bilan qat'iy taqiq sifatida muhrlandi: (a) har ekranda so'raladigan ish BITTA — yozish YOKI tanlash YOKI gapirish; (b) yig'ma-karta dars o'rtasida yig'ilgan holatda; (c) ipucha qisqa buyruq, tayyor namuna maydonda turmaydi; (d) **majburiy maydon faqat o'quvchida aniq bor ma'lumot uchun** — tashqi ma'lumot (sayt manzili) ixtiyoriy, aks holda ekran o'tib bo'lmas devor bo'ladi; (e) gapirish ekranida yozuv-maydoni ochiq turmaydi. **Tekshiruv-usuli qonunga kiritildi: har ekranni SSR-render qilib matn uzunligini o'lchash; 400–800 belgidan oshsa — bo'lish nomzodi.**
+
+**🔴 QONUN 93 — TAKRORLANUVCHI ELEMENT ETALONDAN GREP QILINADI, QAYTA IXTIRO QILINMAYDI** (podium sarlavhasi, uy-vazifa kartasi, mentor-panellari, ball-fidbeki, arena matnlari).
+
+**Ekran og'irligi (SSR-o'lchov, belgi):** s0 509 · s1 757 · s2 421 · s3 384 · s4 417 · s5 386 · s6 357 · s7 344 · s8 796 · s9 696 · s10 321 · s11 736 · s12 328 · sflash 482 · s13 931. Hammasi 92-qonun chegarasida.
+**Korpus:** 31–33-bo'lim (bo'lak nomi atama bo'lmasin · ipucha qisqa · qora karta yig'ilgan).
+**Darvozalar:** esbuild ✓ · lint:til 0 ✓ · lint:prompt ✓ · vite build ✓ · 16/16 ekran render ✓. UNCOMMITTED.
+
+## 2026-07-30 — PmLesson3 ETALON-AUDIT (93-qonun bo'yicha to'liq tekshiruv) — ✅
+Foydalanuvchi: «boshqa pagelarniyam etalon bo'yicha tekshirib chiq». PmLesson2 (1-TUR etalon) bilan element-ma-element solishtirildi.
+
+**Topilgan va TUZATILGAN:**
+1. 🔴 **Navbat-pulsi (88-qonun) UMUMAN yo'q edi** — etalonda 22 ta ishlatish, PmLesson3'da 0. `useTurnHint`/`useTurnWalk`/`turnCls` + `.turn-ring/.turn-wave/.turn-step` CSS **etalondan aynan ko'chirildi** (93-qonun) va 8 interaktiv ekranga ulandi: s0 (variant-chip → sabab to'lqini), s2 (sayt-turi kartalari), s5 (namuna tanlagichi), s6 (demo qadamlari), s8 (juftlik-tanlov), s9 (ikki tugma → JS chiplari), s11 (savol-javob kartalari), s12 (repetitsiya tugmasi). Ballanadigan testlarda puls YO'Q (1-C.6).
+2. 🔴 **Ball-fidbekda stiker** — «Adashdingiz — 0 ball. Keyingisida olasiz! 💪» (+ «⏱») → etalondagidek stikersiz (korpus 6: mag'lubiyat tomoni TOZA).
+3. **Ekran-yorliqlari raqamli edi** («1–2-bo'lak», «3-bo'lak · yechim») → etalon uslubida ma'noli: «Birinchi savol · Yechim · Jonli demo · Qanday qildim · Keyingi qadam».
+4. **Ikki sarlavha bayon-shaklda edi** (korpus 3: buyruq yoki aniq savol) → «Saytingizni sahnada **qanday** ko'rsatasiz?» · «Endi nutqingizni **ovoz chiqarib** ayting».
+5. **O'zini fosh qiladigan distraktor** (korpus 21): «Qancha bo'lsa ham farqi yo'q» → ishonarli variant bilan almashtirildi.
+6. **Izoh-qoldiqlari**: «TOK pitch-mavzudan», «Pitch/treyler mavzusi» → Demo Day mavzusiga.
+7. s5 namuna-jumla endi sukut bo'yicha ochiq turmaydi — o'quvchi o'zi bosib ochadi (1-C: ko'rilmagani yonadi).
+
+**TEKSHIRILDI — TOZA:** «daftar» 0 · «tushunish oson» 0 · o'ylab topilgan personaj 0 · mentor gaplari NEGA+chorlov naqshida (korpus 22) · sarlavhalar savol/buyruq · nav-yorliqlari etalon bilan bir xil · podium sarlavhasi etalon bilan bir xil · ekran og'irliklari 92-qonun chegarasida (eng og'iri 931 — yakuniy ekran, u yerda to'liq nutq matni turadi).
+
+**HAL QILINMAGAN — foydalanuvchi qarori kerak:**
+· **87-qonun (koding bloki).** 1-TUR PM darsi «oldingi texnik darsdan o'sadigan» koding blokiga ega bo'lishi kerak (PmLesson2'da bor). PmLesson3 — nutq-repetitsiyasi darsi; koding qo'shilsa, darsning maqsadiga qarshi ketadi va 92-qonunni buzadi. Taklif: bu dars uchun 87-qonundan istisno rasmiylashtirilsin (sababi bilan) YOKI koding oldingi/keyingi darsga qoldirilsin.
+· **Uy-vazifa katta tugmasi (`hw-big`).** Etalonda LMS kompilyatorini ochadigan porlovchi CTA bor; bu darsda amaliy topshiriq LMS'da emas (ota-onaga aytish) — soxta tugma qo'yilmadi.
+· **Nishon-ro'yxati markup'i** etalonникidan farq qiladi (`ach-collect*` ↔ `ach-coll/ach-badge`) — ko'rinishi bir xil, faqat klass-nomlari boshqa. Kosmetik.
+
+**Darvozalar:** esbuild ✓ · lint:til 0 ✓ · vite build ✓ · 16/16 ekran render ✓. UNCOMMITTED.
+
+## 2026-07-31 — PmLesson3 ETALONGA TO'LIQ KELTIRILDI (87-qonun yopildi) — ✅
+Foydalanuvchi: «barchasi etalon bo'yicha to'g'rilansin, etalonday». Oldingi auditda ochiq qolgan uchala band ham yopildi — kod etalondan **aynan ko'chirildi** (93-qonun), faqat topshiriq-mazmuni bu darsniki.
+
+**1 · 🛠 KODING BLOKI (87-qonun) — endi bor.** Etalondan ko'chirilgan mashina: HTML sintaksis-linteri (`lintHtml`) · to'liq-ekran kompilyator (`StrukturaCompiler`: Tab=2 probel, 400ms jonli tekshiruv, jonli brauzer-natija, F5-himoya) · praktika-relslari (`PRACTICE_BASE`, `MentorPracticeStats`, `StudentPracticePulse`) · «sinfda bajarganman» takrorlash-yo'li · barcha CSS.
+**Topshiriq bu darsning maqsadiga bo'ysunadi** (87-qonun: oldingi texnik darsdan o'sadi — Htmllesson2 header/main/footer + h1/h2/p): o'quvchi **nutqidagi «Yechim» jumlasini saytining tepasiga chiqaradi**. Shartlar: `<header>` bor · ichida `<h1>` (sayt nomi) · ichida `<p>` (yechim jumlasi, ≥15 belgi) · `<main>` va undagi `<h2>`. Har shart uchun yo'naltiruvchi ipucha yozildi. Sarlavha 82-qonun oilasida: «Yechim jumlangizni saytingiz tepasiga chiqaradigan **kod** yozamiz». Brauzer-maketida o'quvchining O'Z netlify manzili ko'rinadi. Kalit: `pm-m1d14-koding`.
+**O'rni:** savol-javobdan KEYIN, repetitsiyadan OLDIN (s12) — zal demoda aynan shu sahifani ko'radi.
+
+**2 · Uy-vazifa kapsulasi (`hw-big`)** — etalondagi porlovchi CTA + zaryad-effekt (`fireHw`) + suzuvchi tokenlar ko'chirildi; tokenlar bu darsning DNK'siga moslandi (🎤 · muammo · yechim · demo · 3:00 · sahna · 👏). Tugma bosilgach uch bandlik topshiriq ochiladi.
+
+**3 · Nishon-ro'yxati** — o'zim yozgan `ach-collect*` markup/CSS o'chirildi, etalonning `card ach-coll` + `ach-grid` + `ach-badge` (got/locked) markupi va CSS'i qo'yildi.
+
+**Yakuniy holat:** 17 ekran (etalon ~17 bilan bir xil) · 4 ball-nuqta · 5 nishon · navbat-pulsi 8 ekranda · koding bloki bor · PM-STUDIA palitrasi.
+**Ekran og'irligi:** s0 509 · s1 757 · s2 421 · s3 384 · s4 416 · s5 294 · s6 337 · s7 344 · s8 796 · s9 696 · s10 321 · s11 736 · **s12 (koding) 641** · s13 327 · s13b 187 · sflash 482 · s14 731 — hammasi 92-qonun chegarasida.
+**Darvozalar:** esbuild ✓ · lint:til 0 ✓ · lint:prompt ✓ · vite build ✓ · **17/17 ekran render** ✓ · o'lik CSS 0 ✓. UNCOMMITTED.
+
+## 2026-07-31 — M1-D2 «Kim mening foydalanuvchim?» (PmLesson1) GIBRID QAYTA-QURISH — 🔄 3/6 BOSQICH
+**Retsept A/C aralash, foydalanuvchi buyrug'i:** 1-Modul PM darslarini etalonlarga yaqinlashtirish; bu dars = GIBRID (nazariya 1-TUR PmLesson2-uslub · ustaxona+uy-vazifa 2-TUR).
+**GATE 1 (pm-auditor):** infra sog'lom (jonli-ball zanjiri, INLINE_KEYS↔correctIdx, QUIZ_BANK 3/3/3/3, podium, ccProgress, badge-qorovullar, flashcard savol-shaklda) · 🔴 3 og'ir nuqson: palitra texnik-apelsin · misol-ip «7 xil olam» (91-qonun) · yo'q qatlamlar (puls 0, keys-slayd 0, ustaxona-qolip 0, koding 0, MentorNote 0, neon-kapsula 0) + o'lik audio-dvijok va onboarding-tur.
+**GATE S qarorlari (bosh-agent, tasdiqlangan senariy `pm-senariylar/M1-D2-Auditoriya.md` asosida):** misol-ip = **mahalla novvoyxonasi** (limonad/buvi-non/futbol/Telegram/YouTube/«Bozor» — hammasi chiqdi) · keys = **K8 Facebook** (bir marta, freym+bashorat+ko'prik) · koding 87b: HTML o'tilmagani uchun tayyor mini-sahifada `[KIM]/[MUAMMO]/[YECHIM]` o'z karta-javoblari bilan almashtiriladi.
+**1. Quruvchi ✅:** 20→17 ekran (o'chdi: zaif tap-reveal · soxta-ish · statik plakat · takror stepper · takror juftlash) · audio+TOUR+82q o'lik CSS olib tashlandi · navbat-pulsi (1-C.8 aynan, 15 nuqta) · ustaxona 80-qolip (`pm-m1d2-cards`) · koding-ekran (`pm-m1d2-koding`, kdx-skip) · K8 keys-slayd · PRACTICE_BASE signal-zona (avval xom indeks!) · lessonId `pm-m1d2-v1` · podium «0/4» va yakun ScoreRing mentorda yashirildi (90b) · neon-kapsula · PairTimer-recap. Indeks-siljish dasturiy tasdiqlandi (SCORED_IDX/RECAPS/Q_LABELS → 4,6,9,11,13).
+**2. Bosh-agent qo'lda:** arena 2 savoli va 1 test-izohi hali eski olamda edi (buvi/limonad) → novvoyxona-olamiga; `correct` indekslar tegilmadi.
+**3. Dizayn ✅:** palitra PM-STUDIA indigoga (35 qattiq-yozilgan rang) — qolgan 3 apelsin = CodeStrike arena brendi (ataylab) · rang-semantika KIM=ko'k/MUAMMO=amber/YECHIM=yashil butun darsda · imzo-vizual: hook «novvoyxona eshigi oldidagi odam-oqimi» + maqsad-ekran «karta o'z-o'zidan yozilishi» · 60/60b layout-qonunlari · 31q o'lik CSS + zararli dublikat (apelsin puls indigoni bosardi) · reduced-motion.
+**4. Metodist ✅:** 11 mentor-pufak NEGA+chorlov qolipiga · taqiq-sweep («keys»→«haqiqiy misol», «sessiya»→«dars», «shunchaki», «sayqallang», «zaxira», **PM qisqartmasi to'liq chiqdi**) · manbasiz raqam («kuniga 120 kishi») olib tashlandi · 🔴 arena savoli darsning O'Z ta'limiga zid edi (variant matni tuzatildi, kalit tegilmadi) · explainWrong'lar korpus-5 qolipiga · RECAPS 12/12 kartada `ask` · flashcard topishmoq→savol · uy-vazifa «Amaliy vazifa» qolipi, muddatsiz · barcha 17 ekran ≤400 grapheme (maks 384). Qonunlashtirish: MATN_KORPUS 34–36 (F-0731-01…03).
+**Tekshiruv (har bosqichda):** esbuild toza · lint:til 0 · lint:prompt toza · vite build toza · SSR-smoke 17/17 (self+mentor).
+**QOLDI (keyingi seans):** 👦 o'quvchi 2-o'qish · pm-tekshiruvchi (puls 5-band o'lchovi, mentor 1-D 13 band, 58/60 skroll o'lchovi 1440×900+1280×800) · verifikator · qabulchi · deploy+jonli ko'rik. Mayda: `WFIELDS.ph` o'lik maydon.
+UNCOMMITTED.
+
+## 2026-07-31 — F-0730-19: YIG'ILADIGAN GAP QOLIPI BUZUQ EDI — ✅
+**Foydalanuvchi topilmasi:** muammo-qidiruv natijasida «… uchun narx va tarkibi noaniq qolardi — mening saytim menyuni rasmi va narxi bilan ko'rsatadi» degan tushunarsiz gap chiqqan.
+**Tashxis:** foydalanuvchi ko'rsatgan g'alati so'z dars matnida YO'Q (grep 0) — u «➕ o'zim yozaman» maydoniga kiritilgan va `ccPitch3` da saqlanib qolgan. **Lekin ayb qolipda:** `{who} uchun {pain}` qurilishi EGAni yo'qotardi va o'z namunalarim bilan ham buzuq gap berardi («sinfdoshlarim uchun kerakli kitobni qidirib, do'konma-do'kon yurardi»).
+**Tuzatish:** qolip ikki tugal gapga bo'lindi — «**{KIM} {qiyinchilik}. Mening saytim {foyda}.**» + `cap()` bilan bosh harf. Barcha «qiyinchilik» javoblari EGAga bo'ysunadigan kesim shakliga o'tkazildi: «narxlarni solishtirib, ko'p vaqt yo'qotardi» · «telefon qilib, menyuni so'rab o'tirardi» · «kerakli narsani arzonroq topolmasdi» · «ortiqcha narsasini sotolmay yurardi» · «kerakli narsani turli joydan qidirardi». Qiyin so'z olib tashlandi: «narx va **tarkibi** noaniq qolardi» → «taomning narxini oldindan bilmasdi». s3 testidagi to'g'ri javob ham shu qolipga keltirildi.
+**Tekshirildi:** 6 sayt-turi × 2 KIM × 2 QIYINCHILIK juftligi qo'shilgan holda o'qib chiqildi — hammasi tugal gap.
+**Qonunlashtirish:** MATN_KORPUS 37-bo'lim (yig'iladigan gap bo'laklari QO'SHILGAN holatda tekshiriladi + 2×2 tekshiruv-usuli; avval 34 deb yozilgan edi — raqam-to'qnashuv tuzatildi).
+**Darvozalar:** esbuild ✓ · lint:til 0 ✓ · vite build ✓ · 17/17 ekran render ✓. UNCOMMITTED.
+
+## 2026-07-31 — M1-D14 «Demo Day» (PmLesson3) RUS TILIGA O'TKAZILDI (RU_I18N_SPEC) — ✅
+**Foydalanuvchi buyrug'i:** «PmLesson3 ni rus tilidayam qilishimiz kerak — texnik darslarda qilingan, shunaqa qilib ma'nolariga ham e'tibor ber».
+**Boshlang'ich holat:** faylda RU-infra UMUMAN yo'q edi (2 ta `ru:` — faqat `lessonTitle`). 1-Modul PM darslaridan BIRINCHISI ruslashtirildi.
+**Bajarildi (RU_I18N_SPEC 1–6 bo'limlari bo'yicha):** `tr()`/`__lang` infra · jonli-dars darvozasi va nishonlari · nishonlar (ACHIEVEMENTS.desc) · RECAPS 3×3 karta · MentorTestStats/MentorWorkStats/MentorPracticeStats/StudentPracticePulse · QuestionScreen · BLOKS · SITE_KINDS (6 tur × who/pain/help/hooks/js) · ONE_LINERS · PitchCard · MicRecorder · StageTimer · 17 ekranning hammasi · HTML-linter xabarlari · KODING kompilyatori · podium · CodeStrike arenasi · QUIZ_BANK 12 savol · 12 flashcard · AchCelebrate. Jami **454 `ru:` qator**.
+**Ma'noga tarjima (so'zma-so'z emas):** «Demo Day» → «Демо-день»; metafora va rang-semantika saqlandi; «Вы»-forma; PM atamalari ruscha tabiiy shaklda (проблема · решение · живое демо · фраза-решение).
+**🔴 KRITIK topilma (yangi bug-sinf emas, 6-Modul naqshining PM-varianti):** Screen9 da tanlangan JS-imkoniyatlar `sel` massivida **ko'rinadigan MATN** bilan saqlanardi (`sel.includes(j)`, `key={j}`). `K.js` `{uz,ru}` obyektga aylangach: (a) 4 chipning hammasi bitta `[object Object]` React-kalitini olardi, (b) til almashganda tanlov yo'qolardi. Yechim: indeks-satr kalitlari (`String(ji)`), matn faqat render-joyda `tr()` bilan.
+**Til-mustaqillik qarorlari:** `checkStructure`/`lintHtml` teg-asosli — faqat `hints`/`msg` tarjima qilindi, tekshiruv o'zgarmadi · `PfRow` chipi `tr(o)` saqlaydi, ya'ni o'quvchi gapi KO'RINADIGAN tilda yig'iladi · `muammo`/`keyin` jumlalari grammatika sabab har til uchun alohida ramkada (F-0730-19 qolipiga sodiq) · analitika-payload `uzOf()`/`ouz()` bilan **UZ-etalon** · `QzFX` canvas TOK ro'yxati `__lang` bo'yicha · string default prop'lar render-vaqtiga ko'chirildi (modul-yuklanishda UZ'da qotmasin).
+**Kalitlar TEGILMADI:** `INLINE_KEYS {s3:1, s7:2, s10:2, s13:-1}` · `correctIdx` 1/2/2 · `QUIZ_BANK.correct` 0-1-2-3 tartibi · `set_quiz_keys`/`answerKey` zanjiri.
+**Darvozalar:** esbuild ✓ · `vite build` ✓ · **SSR-smoke 26 komponent × UZ/RU = 52 render, 0 obyekt-render, 0 crash** ✓ · RU rejimda kirill hamma ekranda ✓ · **UZ rejimda ruscha qoldiq 0** ✓ · `lint:til` **0 error** (5 warn: KOD_PLACEHOLDER'ning ko'p qatorli `ru:` shabloni — linter faqat bir qatorli `ru:` maydonini oqlaydi, xato emas).
+**Hujjat:** `RU_I18N_SPEC.md` 8-bo'lim «1-Modul PM darslari» jadvali yangilandi. **PmLesson1/PmLesson2 hali ⬜ — keyingi navbat.** UNCOMMITTED.
+
+## 2026-07-31 — F-0731-04: PmLesson1 s11 «UI TO'LIB QOPTI» → BOSQICHLI OCHILISH — ✅
+**Foydalanuvchi topilmasi:** karta-yig'ish ekraniga (s11) kirganda KIM/MUAMMO/YECHIM uchala qatori 3×3 = 9 karta bilan birdan ochilib turardi — UI to'lib, qayerdan boshlash noaniq.
+**Tanlangan yechim (3 variantdan, foydalanuvchi tasdig'i):** har bosqichda egaga ko'rsatish — ① KIM (3 karta, tekshiruvsiz ✓) → qator yig'iladi → ② MUAMMO ochiladi → «👀 Egasiga ko'rsat» → personaj tan olsa ✓ → ③ YECHIM ham shunday → convert. Personaj-drama (Ijodkor brifi) saqlanib, endi HAR bosqichda alohida hukm beradi.
+**Tuzatish (Screen11):** `confirmed` holat + `step` mashinasi · tasdiqlangan qator bir-qatorlik ✓ ko'rinishga yig'iladi (↻ o'zgartirish bilan, keyingi bosqichlarni reset qiladi) · kelajak bosqich qulf-qator («MUAMMO — keyingi qadam») · mentor gapi bosqich bilan almashadi va joriy qadamga yo'naltiradi (KIM nomi bilan) · NavNext/tugma yorliqlari ①②③ qadam-raqamli · storedAnswer'dan qayta tiklash (revisit'da karta to'liq, konfetti otilmaydi) · ball-gate o'zgarmadi (faqat convert'da).
+**Qonunlashtirish:** PM_DARS_ETALON **94-qonun** (ko'p-bosqichli tanlov progressiv ochiladi, 5 band — 92-qonunning tanlov-varianti; texnik darslarga ham tegishli).
+**Darvozalar:** esbuild ✓ · lint:til 0 ✓ · lint:prompt ✓. UNCOMMITTED.
+
+## 2026-07-31 — F-0731-05: MISOL-OLAM «NOVVOYXONA» → «MAKTAB YONIDAGI LAVASH DO'KONI» (PmLesson1 to'liq) — ✅
+**Foydalanuvchi topilmasi:** o'quvchilar Toshkent shahrida — novvoyxonaga ishi tushmaydi, mavzu qiziq emas va begona; «buni barcha darslarda o'ylash kerak».
+**Tashxis:** novvoyxona-olami darsning yagona ipi (91-qonun) — 56 qatorda: hook, s2 namuna-karta, s3 sahna, s5b-izoh, WFIELDS, Screen8, s11 GROUPS/BUBBLE, s12 variant, koding-defaults, arena 3 savoli, RECAPS 5 karta, HW-tokenlar.
+**Tanlangan olam (3 variantdan, foydalanuvchi tasdig'i):** maktab yonidagi lavash do'koni. 3 persona: 🎒 tanaffusda shoshgan o'quvchi (navbat→oldindan buyurtma) · 🧑‍💻 ofis xodimi (telefon→doimiy tushlik-buyurtma) · 🙋 yangi mijoz (menyu-narx→menyu-sahifa). Kanonik karta: «Tanaffusda lavash oladigan maktab o'quvchilari / Navbat uzun — tanaffusga ulgurishmaydi / Oldindan buyurtma qilib, kelib olib ketish sahifasi».
+**Tuzatish:** 12 zona to'liq ko'chirildi; s11 guruh-kalitlari mazmunga moslandi (qoshni→mijoz, kafe→ofis), Screen8 kalitlari ham (novvoy→sotuvchi…); Facebook keys-slayd tegilmadi (91b: keys o'z olamida). 🔴 KALITLAR TEGILMADI: INLINE_KEYS, correctIdx, QUIZ_BANK.correct — faqat variant-matnlari yangi olamga moslandi (to'g'ri javob o'z indeksida qoldi). Residue-grep: novvoy|non|qo'shni|kafe|mahalla|🥖 = 0.
+**Qonunlashtirish:** PM_DARS_ETALON **95-qonun** — misol-olam Toshkent o'smirining o'z hayotidan, sinov-savoli «o'quvchi shu joyga O'ZI boradimi?»; barcha darslarga (texnik ham); GATE S'da tekshiriladi. + memory/auditoriya-toshkent-osmiri.md (seanslararo).
+**Darvozalar:** esbuild ✓ · lint:til 0 (1 topilma «masalliq» tuzatildi) ✓ · lint:prompt ✓. UNCOMMITTED.
+
+## 2026-07-31 — F-0731-06: s6 USTAXONADA «⭐ IKKINCHI KARTANI HAM YOZAMAN» TUGMASI OLIB TASHLANDI — ✅
+**Foydalanuvchi buyrug'i:** 8-sahifa (s6 ustaxona) — ikkinchi karta tugmasi kerak emas, ehtiyotkorlik bilan olib tashlansin (92-qonun ruhi: bir ekran — bir ish).
+**Tuzatish:** faqat tugma va ortiqcha Fragment o'chirildi; qolgan zanjir tegilmadi — saqlash-oqimi, ✎ tahrirlash, `readFullCards().slice(0,2)` himoya-kesimi (eski localStorage'da 2 karta bo'lsa ko'rsatiladi), koding-ekran `[0]`-kartani o'qishi o'zgarmagan.
+**Darvozalar:** esbuild ✓ · residue-grep «Ikkinchi karta» = 0. UNCOMMITTED.
+
+## 2026-07-31 — F-0731-07/08: SO'Z-FIDBEK RAUNDI (hook mentor-quyruq + atama-tanishtirish) — ✅
+**F-0731-07 (s0 hook):** mentor gapidagi «to'g'risini birozdan keyin birga bilib olamiz» quyrug'i ortiqcha — olib tashlandi, gap «…bittasini tanlang.» bilan tugaydi (payoff baribir javob-belgilangach chiqadigan tasdiq-gapda bor).
+**F-0731-08 (s1 maqsad):** «auditoriya-karta» atamasi sarlavhada tushuntirishsiz urilardi. Foydalanuvchi qolipi bilan qayta qurildi: sarlavha atamasiz («Dars oxirida saytingiz kim uchun ekanini yozib olasiz»), mentor avval oddiy gap → «shu yozuv auditoriya-karta deyiladi» → shundan keyin atama darsda erkin (83 joyga tegilmadi).
+**Qonunlashtirish:** MATN_KORPUS **38** (mentor gapida va'da-quyruq yo'q) + **39** (yangi atama — avval oddiy gap, sarlavhada atama yo'q, qolip bilan). Yo'l-yo'lakay: korpusdagi ikkita «34-bo'lim» to'qnashuvi tuzatildi (F-0730-19 bo'limi → 37).
+**Darvozalar:** esbuild ✓ · lint:til 0 ✓. UNCOMMITTED.
+
+## 2026-07-31 — F-0731-09/10: s1 MAQSAD-EKRANI SAYQAL (egalik + qisqalik + yo'l-xarita fe'li) — ✅
+**F-0731-09 (egalik):** «Dars oxirida SAYTINGIZ kim uchun ekanini yozib olasiz» — o'quvchida hali sayt yo'q, «-ingiz» yolg'on jaranglaydi. Foydalanuvchi taklifi bilan: **«Dars oxirida kim uchun sayt qilishni bilib olasiz»** (artefakt emas, BILIM va'da qilinadi).
+**F-0731-10 (qisqalik):** mentor gapi uzun edi (6 jumla, savollar yoyilgan, ekranda ko'rinib turgan narsa takrorlangan) → 3 gapga: «Uchta savolga javob topasiz: KIM? MUAMMO? YECHIM? Uchalasi bitta yozuvga yig'iladi — shu yozuv auditoriya-karta deyiladi. Quyida namunasi o'z-o'zidan yozilib chiqadi.»
+**Yo'l-xarita:** «Auditoriya nima ekanini ochamiz» → «…bilamiz» (qadam nomi erishiladigan holatni aytsin).
+**Qonunlashtirish:** MATN_KORPUS **40** (o'quvchida hali yo'q narsa uniki qilib aytilmaydi + «-ingiz» tekshiruvi + yozib/bilib olasiz farqi + yo'l-xarita fe'li) · **41** (atama tanishtiruvchi mentor gapi eng qisqa holatda, ekrandagi narsa matnda ta'riflanmaydi).
+**Darvozalar:** esbuild ✓ · lint:til 0 ✓ · lint:prompt ✓. UNCOMMITTED.
+
+## 2026-07-31 — F-0731-11/12/13: s5 KEYS-SLAYD (Facebook) TO'LIQ SAYQAL — ✅
+**Foydalanuvchi slayd-ma-slayd fidbegi, hammasi qabul qilindi:**
+· Sarlavha → «Bugungi eng katta ijtimoiy tarmoq avval kimlar uchun ishlagan?» · Mentor gapi tegilmadi (foydalanuvchi ma'qulladi).
+· 1-slayd: «kichik sayt» → «oddiy sayt». · 3-slayd: «…uchun ishlagan: boshqa hech kim ro'yxatdan o'tolmasdi» → «Avval sayt faqat Garvard universiteti talabalari uchun ochiq edi. Boshqalar ro'yxatdan o'ta olmasdi.» · 4-slayd: «auditoriya asta kengaydi» (kitobcha) → «Keyin boshqa universitetlar ham qo'shildi. Saytdan foydalanadiganlar ko'paydi.» · 5-slayd: «2 yildan keyingina… Bugun u — Facebook» → «Oradan ikki yil o'tib, sayt butun dunyoga ochildi. Bugun uni Facebook nomi bilan bilamiz.» · Xulosa: «kartangizdagi KIM» (ichki atama) → «Facebook ham avval juda aniq bir guruh uchun yaratilgan. Sizning auditoriya kartangizdagi «KIM» ham shunday aniq bo'lsin.»
+**Bashorat-variantlari (bosh-agent talqini, foydalanuvchi «bir xil darajada bo'lsin» ko'rsatmasi bo'yicha):** zinapoya tartibiga keltirildi — «Bitta universitet talabalari uchun» → «Amerikadagi barcha talabalar uchun» → «Butun dunyo uchun»; `right` 2→**0** (bashorat BALLANMAYDI, lokal holat — jonli-ball kalitlariga aloqasi yo'q, INLINE_KEYS/QUIZ_BANK tegilmadi). «AQSh» → «Amerika».
+**Yondosh tuzatish:** RECAPS idx6 kartasidagi «…talabalari uchun ishlagan» → «ochiq bo'lgan» (3-slayd bilan izchillik).
+**Qonunlashtirish:** MATN_KORPUS **42** (keys-voqea hikoya tilida: ishlagan→ochiq edi, auditoriya kengaydi→foydalanadiganlar ko'paydi, keyingina→oradan … o'tib, kichik→oddiy) · **43** (bashorat variantlari bir o'lchovda, zinapoya tartibida) · **44** (keys xulosasi ichki atamasiz, to'liq nom bilan).
+**Darvozalar:** esbuild ✓ · lint:til 0 ✓ · lint:prompt ✓. UNCOMMITTED.
+
+## 2026-07-31 — F-0731-14/15/16: s8 «FOYDALANUVCHI KO'ZI» EKRANI SAYQAL — ✅
+**Foydalanuvchi fidbegi (hammasi qabul):**
+· Sarlavha: «…bir xil narsaga **qaraydimi**?» → «Bitta saytga kirgan hamma bir xil narsani **qidiradimi**?» · Mentor: «saytga o'sha odamning ko'zi bilan qaraysiz» (kitobcha) → «Lavash do'koni saytiga uch xil odam kiradi. Har biri boshqa narsani qidiradi. Ularni birma-bir bosing va saytni ularning o'rnida ko'ring.»
+· Persona: «Ofis xodimi (doimiy xaridor)» → «**Doimiy xaridor** (ofis xodimi)» (rol birinchi, kasb qavsda) + emoji 🧑‍💻→🧑‍💼 **butun darsda sinxron** (hook, RECAPS×2, s11 AVA). Ehtiyoji: «Har kuni bir xil buyurtmani bir bosishda berish.»
+· Sayt-maketi 3-qatori: «🔁 Doimiy buyurtma: har kuni 15 ta lavash» → «🔁 **Oxirgi buyurtma: bir bosishda takrorlash**» (ehtiyoj-matn bilan bevosita bog'landi); `look` matni ham «OXIRGI BUYURTMAGA» ga moslandi.
+· Xulosa: «Bitta sayt — uch xil qarash…» (mavhum) → «Bir saytga turli odamlar kirishi mumkin. Ammo auditoriya kartasida eng muhim guruh tanlanadi.»
+· Yondosh izchillik: RECAPS idx9 kartasi (matn + RcFlow) yangi qator-nomi va persona-nomiga moslandi.
+**Qonunlashtirish:** MATN_KORPUS **45** (sarlavha fe'li ekran mazmunini aytsin: qaraydi→qidiradi) · **46** (mentor chorlovi «o'rnida ko'ring», kitobiy ko'chma ma'no yo'q) · **47** (persona nomi: rol birinchi + kasb qavsda; ehtiyoj-matni ekrandagi imkoniyatga ulansin; bir persona — bir qiyofa).
+**Darvozalar:** esbuild ✓ · lint:til 0 ✓ · lint:prompt ✓. UNCOMMITTED.
+
+## 2026-07-31 — F-0731-17: s11 SARLAVHASI BOSQICHLI OQIMGA MOSLANDI — ✅
+**Foydalanuvchi topilmasi:** «Bitta odamning kartasini yig'ing» — sarlavha birinchi qadamni (odam tanlash) aytmaydi, holbuki ekran endi bosqichli (94-qonun).
+**Tuzatish:** → «Bitta odamni tanlang va kartasini yig'ing.» (sarlavha ikki harakatni tartibi bilan aytadi — o'quvchi nimadan boshlashni sarlavhadanoq biladi).
+**Darvozalar:** esbuild ✓ · lint:til 0 ✓. UNCOMMITTED.
+
+## 2026-07-31 — F-0731-18/19: KODING EKRANI SAYQAL + o'ng-panel tashxisi — ✅
+**Qabul qilindi:** sarlavha «Kartangizni sahifada ko'rsatadigan kodni tayyorlaymiz» (texnik, «kodni o'zim yozamanmi?» noaniqligi) → **«Endi kartangizni sahifada ko'rsatamiz.»** · mentor 2-jumlasi ikkiga bo'lindi: «Pastdagi «🛠 Kompilyatorni ochish» tugmasini bosing. Kodni yozadigan va natijani darhol ko'rsatadigan oyna ochiladi.» · chap kod-maketidagi xira izoh «— uchtasi ham vaqtincha» → **«← Bu joylarni siz to'ldirasiz»**.
+**🔍 O'ng preview tashxisi (o'zgartirilmadi, sabab bilan):** foydalanuvchi ko'rgan «csadcdsac» — qattiq-yozilgan namuna EMAS, s6 ustaxonasida saqlangan O'Z kartasi (`readFullCards()[0]`). Panel ataylab shunday: chapda [KIM] qolipi ↔ o'ngda o'quvchining javobi = 50-qonun aylantirish-vizuali. Karta yozilmagan bo'lsa fallback allaqachon lavash-namunasi. Foydalanuvchi tasdig'isiz tegilmadi.
+**Atama-tekshiruv:** «kompilyator» — mentor gapida vazifa-ta'rifi bilan keladi (gloss o'rnini bosadi); 1-Modulning 7 texnik darsida ham shu atama ishlatiladi, ya'ni yangi emas.
+**Qonunlashtirish:** MATN_KORPUS **48** (koding sarlavhasi natijani aytadi; buyruq va izoh alohida gapda; «kompilyator» yonida vazifa-ta'rifi) · **49** (izoh-qator qiymat bersin, holatni takrorlamasin).
+**Darvozalar:** esbuild ✓ · lint:til 0 ✓ · lint:prompt ✓. UNCOMMITTED.
+
+## 2026-07-31 — F-0731-20: «KARTANGIZDAGI KIM» ICHKI ATAMASI SLOT-SAVOLIGA ALMASHDI — ✅
+**Foydalanuvchi topilmasi (s15 mustahkamlash):** «Kartangizdagi KIMni yoddan tushuntira olasizmi?» — «KIM» abstrakt, bola «nimani tushuntiraman?» deb qoladi.
+**Tuzatish:** sarlavha → **«Saytingiz kim uchun ekanini yoddan ayta olasizmi?»** · mentor → «Yoddan aytilgan gap eng yaxshi esda qoladi. Ekranga qaramasdan ayting: saytingiz kim uchun va nega aynan shu odamlarni tanladingiz?» (ikki gapga bo'lindi, ichki atamasiz).
+**Yondosh sweep (shu topilma-sinfi):** kompilyator ipuchalari ham slot-savoliga o'tkazildi — «kartangizdagi KIM/MUAMMO/YECHIM javobini yozing» → «saytingiz kim uchun ekanini» · «ularning qanday qiyinchiligi borligini» · «saytingiz buni qanday hal qilishini». Sabab: to'liq-ekran kompilyatorda karta ko'rinmaydi. s11 «① Avval KIMni tanlang» TEGILMADI — u yerda KIM yorlig'i ekranda turibdi.
+**Qonunlashtirish:** MATN_KORPUS **50** (slot-nomi ekranda ko'rinmasa — o'rniga slot SAVOLI; almashtirish jadvali: KIM→«kim uchun», MUAMMO→«qanday qiyinchilik», YECHIM→«sayt buni qanday hal qiladi»).
+**Darvozalar:** esbuild ✓ · lint:til 0 ✓ · lint:prompt ✓. UNCOMMITTED.
+
+## 2026-07-31 — F-0731-21/22: YAKUN EKRANI SAYQAL — ✅
+**Qabul qilindi:** sarlavha «Bugun birgalikda auditoriya-kartani **yozishni** o'rgandik» → **«Bugun auditoriya-karta tuzishni o'rgandik.»** (dars ko'nikmasi — tuzish/fikrlash, qo'l-harakati emas). Yakka rejim varianti ham izchillik uchun: «Endi siz auditoriya-karta **tuza olasiz**» · uy-vazifa tugmasi «Amaliy topshiriqni **boshlash** →» → «…**bajarish** →».
+**RECAP 3 qatori (foydalanuvchi matni):** «Auditoriya — saytdan foyda oladigan aniq odamlar guruhi» («real» olib tashlandi) · «"Hamma uchun" qilingan sayt odatda hech kimga mos kelmaydi» · «Eng katta saytlar ham kichik va aniq auditoriyadan boshlagan» (eski qator ikki qavat tire+ikki nuqta edi). 4-qator tegilmadi.
+**Yondosh izchillik (93-qonun):** flashcard javobi ham «Saytdan **real** foyda oladigan…» → «Saytdan foyda oladigan aniq odamlar guruhi» — ta'rif dars bo'ylab so'zma-so'z bir xil.
+**Qonunlashtirish:** MATN_KORPUS **51** (yakun-fe'li asl ko'nikmani aytsin: yozish→tuzish; tugma «bajarish») · **52** (yakuniy xulosa-qatorlari qisqa tugal gap; so'z-o'yin emas fakt; ta'rif bir xil).
+**Darvozalar:** esbuild ✓ · lint:til 0 ✓ · lint:prompt ✓. UNCOMMITTED.
+
+## 2026-07-31 — F-0731-23: KUNLIK FIDBEK MEXANIZMGA AYLANTIRILDI (til-lint 55→61 qoida) — ✅
+**Foydalanuvchi buyrug'i:** «yig'ib boramiz — yangi dars yasayotganda yoki barcha darslarda shu xatoni qilmaslik uchun».
+**Bajarildi:** bugungi korpus-topilmalaridan **grep-lanadigan** 6 qoida `til-lint-rules.json`ga qo'shildi (endi har `npm run lint:til` da avtomatik ushlanadi):
+· `slot-ichki-atama` (error) — «kartangizdagi KIM/MUAMMO/YECHIM» → slot-savoli (KORPUS 50)
+· `kozi-bilan-qarash` (error) — «ko'zi bilan qaraysiz» → «o'rnida ko'ring» (KORPUS 46)
+· `auditoriya-kengaydi` (warn) — kitob-iborasi → «foydalanadiganlar ko'paydi» (KORPUS 42)
+· `topshiriq-boshlash` (warn) — «topshiriqni boshlash» → «bajarish» (KORPUS 51)
+· `karta-yozishni-organdik` (warn) — yakun-fe'li → «tuzishni o'rgandik» (KORPUS 51)
+· `raqam-keyingina` (warn) — «2 yildan keyingina» → «oradan ikki yil o'tib» (KORPUS 42). Boshlang'ich naqsh juda keng edi («shundan keyingina» o'rinli ta'kidni ham ushladi) — raqam+vaqt-birligi shartiga toraytirildi.
+**Darhol natija:** yangi qoidalar xuddi shu xatoni **PmLesson2** va **PmUserStoryLesson (P0 etalon)** da topdi — ikkalasida ham uy-vazifa tugmasi «bajarish»ga o'tkazildi (esbuild ✓, 3 PM dars lint TOZA).
+**Qolgan qarz (buyruq kutadi):** «topshiriqni boshlash» yana **9 texnik darsda** bor (1-Modul 8 ta + 2-Modul 1 ta) — bugungi ko'rik doirasidan tashqarida, warn sifatida belgilangan holda qoldirildi; buyruq bo'lsa bir sweepda tuzatiladi.
+**Darvozalar:** esbuild ✓ (3 fayl) · lint:til 0 error ✓ · lint:prompt ✓. UNCOMMITTED.
+
+## 2026-07-31 — M2 PM UCHLIGI (PmLesson4/5/6) — GAP-AUDIT (ish BOSHLANMAGAN, keyingi seansga)
+**Foydalanuvchi asosiy nishoni:** «man istaganim PmLesson4/5/6 edi» — 2-Modulning PM darslari.
+**Ekran-oqimi (hammasi 20 ekran, infratuzilma butun):**
+· **D2 PmLesson4** «Muammodan yechimga»: Kirish|Reja|Og'riq→feature|Og'riq=o'zak|Test1|Saralash|Tekshiruv|Feature tug'iladi|Qaysini ishlatasiz|Dorixona|Test2|Tuzatish|Feature-karta|Test3|Namuna|Qoida|Yakuniy ish|Tayyor|Natijalar|Takrorlash
+· **D7 PmLesson5** «Dekompozitsiya»: …|Zo'r keyslar|Resurs|Evolyutsiya|O'sish|MVP vs Hammasi|Saralash|MVP yig'ish|…
+· **D13 PmLesson6** «Pitch»: …|Taqdimot tuzilishi|Aytish vs Ko'rsatish|Skelet→teri→harakat|2 daqiqalik taqdimot|Jargon vs Analogiya|Moslash|Pitch yig'ish|…
+**Topilmalar (tuzatilmagan):**
+1. 🔴 **RU tarjima YO'Q** (uchalasida `ru:`=1) — 2-Modulning qolgan 10 darsi to'liq ruslashtirilgan. Eng katta funksional qarz. Naqsh: PmLesson3 (RU_I18N_SPEC 1–6) — har darsga ~400 `ru:` qator.
+2. 🟡 **Atama-gigienasi:** `feature` 168x (D2), `MVP` 157x + `backlog` 22x + `dekompozitsiya` 12x (D7), `pitch` 28x + `jargon` 17x (D13). MATN_ETALONI lug'atida `feature`→«imkoniyat», `MVP`→«mahsulotingizning ilk sodda versiyasi» bor; darsda birinchi uchrashda gloss BOR-YO'QLIGI ekran-ma-ekran tekshirilishi kerak (D2 da faqat kod-izohida «feature (funksiya)» topildi — o'quvchi-matnida emas).
+3. 🟡 **96-qonun ko'prigi yo'q:** D2/D7/D13 lavash do'koni loyihasiga ulanmagan (D7 «do'kon» 15x — lekin bu boshqa, umumiy do'kon misoli). ProjectBridge naqshi (96b) qo'llanishi mumkin.
+4. 🟡 **Misol-olamlari 95-qonundan O'TADI:** D2 = og'riq→dori metaforasi (70x «dori») · D7 = skeytbord/mashina MVP klassikasi · D13 = ikki taqdimot. Hech biri «novvoyxona» tipidagi uzoq olam emas — almashtirish SHART emas, faqat D2 dagi «Dorixona» ekrani metafora-cho'zilishi jihatidan ko'rib chiqilsin.
+5. 🟡 lint: D2 = 2 warn (`to'ladi` fe'li 1470,1588), D13 = 1 warn (1465). D7 toza.
+**Bosh-agent tavsiyasi (foydalanuvchi tasdig'i kutiladi):** avval RU tarjima (funksional qarz) → keyin atama-gloss sweep → oxirida 96b ko'prigi. To'liq etalon-qayta ko'rik SHART EMAS: yangi qonunlar (92/94/95, KORPUS 38–52) endi lint+korpus mexanizmi orqali dars ochilganda avtomatik ushlanadi.
+**⚠️ UNCOMMITTED:** bugungi butun ish (1-Modul sayqali F-0731-04…23, PM_DARS_ETALON 94/95/96/96b, KORPUS 38–52, til-lint 55→61 qoida, 2-Modul Faza 1: D1/D3/D4/D5/D6) commit qilinmagan.
+
+## 2026-07-31 — M2 PM UCHLIGI TO'LIQ QAYTA QURILDI (Quruvchi bosqichi) — 🔄 1/8 BOSQICH
+**Foydalanuvchi qarori:** «to'liq etalon, shoshilmasdan, etalonlarimiz kabi». 3 senariy (GATE S) → 3 `pm-quruvchi` agenti parallel.
+**Bosh-agent GATE S qarorlari:** K12 (Airbnb pitch deck) M1-D12 da ham bosh-keys — QOLDIRILDI (M1 = slaydlar TARTIBI, M2-D13 = slaydlardagi TIL; agent farqni 3 band bilan asosladi) · `lessonId` yangilandi (darslar noldan qurildi, 11-qonun formati).
+**Natija — uchala dars:**
+· **PmLesson4 (M2-D2)** «Muammodan yechimga», 2-TUR, 19 ekran, 4174 qator. Markaziy mexanika: JUFTLIK (qiyinchilik↔imkoniyat) — s2 tap-ochilma · s4 sudrab-ulash + «🗄 javonda qoladi» · s10 ro'yxat-tozalash. Keys K1 UZUM (s6). Ustaxona 3 juftlik-karta → `pm-m2d2-features`. Koding HTML darajasida (87-qonun: M2-D1 dan keyin JS sintaksisi yo'q).
+· **PmLesson5 (M2-D7)** «Dekompozitsiya», GIBRID, 19 ekran. Markaziy mexanika: ⚖️ TAROZI — daraja TANLANMAYDI, ikki savoldan (zarurat × yuk) o'zi kelib chiqadi; UserStory'ning 🔥⚡🌱 doskasi takrorlanmadi. Keys K3 INSTAGRAM (s6). 🔥 v1 sig'imi = 3 (sabab vaqt bilan asoslangan). Artefakt `pm-m2d2-features` → `pm-m2d7-mvp`. Koding: 2 massiv + for + if + funksiya (obyekt/`.push()` YO'Q — o'rgatilmagan).
+· **PmLesson6 (M2-D13)** «Pitch», 2-TUR, 20 ekran. Markaziy mexanika: 🔎 SO'Z-ELAGI (variant berilmaydi — o'quvchi kasbiy so'zni O'ZI topadi) + 🧑‍🍳 TINGLOVCHI-JAVOBI + 🌯 UCH QATLAM; imzo-vizual «tushunish chizig'i». Keys K12 (s5). Artefakt `pm-m2d7-mvp` + `pm-m1d2-cards` → `pm-m2d13-pitch`. s12 «Bitta gap» — modul-yakuni (92e: o'qish holatida, tahrir ✎ ortida). PmLesson3 Demo Day bilan takror YO'Q (mikrofon/teleprompter/taymer ishlatilmagan).
+**🔗 ARTEFAKT-ZANJIRI TASDIQLANDI (dasturiy):** `pm-m1d2-cards` → **D2 yozadi** `pm-m2d2-features` → **D7 o'qiydi va yozadi** `pm-m2d7-mvp` → **D13 o'qiydi va yozadi** `pm-m2d13-pitch`. (Birinchi tekshiruv-skriptim yolg'on trevoga bergan edi — darslar `lsWrite`/`writeLS` o'ramlaridan foydalanadi, `setItem` to'g'ridan-to'g'ri emas.)
+**Darvozalar (bosh-agent qayta o'lchadi):** esbuild 3/3 toza ✓ · `vite build` toza ✓ · lint:til 0 error (2 warn — kod-qatoridagi RU-regex/arena tokenlari, yolg'on-ijobiy) ✓ · `SCREEN_META ↔ screens` 19/19 · 19/19 · 20/20 ✓ · `QUIZ_BANK` 12/12/12 ✓ · scored id'lar ↔ `INLINE_KEYS` 1:1 ✓ · UZ/RU muvozanati 599↔599 · 477↔477 · 467↔467 ✓.
+**QOLGAN ISH (zanjir davomi):** 🎨 Dizayn → ⚡ Jonli-ball (kalitlar tasdig'i) → 👦 o'quvchi 1-o'qish → ✍️ Metodist (EKRAN ≤400 dasturiy o'lchov) → 👦 2-o'qish → GATE 2 → Tekshiruvchi → Verifikator → Qabulchi → GATE 3.
+**AGENTLAR QOLDIRGAN ISH-BUYRUG'I:** (1) `App.jsx` m2-02 kartasi sub-matni hamon «har bir feature — qaysi og'riqqa dori?» — dars tiliga zid, foydalanuvchi ruxsati kutilmoqda; (2) arena/podium chrome-matnlari D7/D13 da UZ-only — RU yurishi kerak; (3) D2 s4 sudrash touch-qurilmada sinovdan o'tmagan; (4) o'lik CSS qoldiqlari (D6 `.mini-site`/`.lb-*`, D2 `.conn-*`/`.algo-*`). UNCOMMITTED.
+
+## 2026-08-01 — F-0801-01/02: M2-D2 DEMO-OLAMI LAVASH → KINOTEATR + SARLAVHA-QOIDASI — ✅
+**Foydalanuvchi kuzatuvi (ikkita):** (1) «yana lavash saytmi deb xo'rsinishi mumkin» — lavash M1-D2, M2-D2, M2-D7 da takrorlangan; (2) sarlavha «Ikkala sayt ham lavash do'koni uchun. Qaysi biri ko'proq buyurtma keltiradi?» — birinchi jumla sahna-sharti, o'quvchiga qiziq emas.
+**Qonunlashtirish:** PM_DARS_ETALON **96c** (🔴 ip o'quvchining ARTEFAKTIDA, demo-misolda emas: artefakt uzilmaydi · demo har darsda yangilanadi · dars ichida bitta · zaxira-namuna o'sha darsning olamidan · yangi demo 95-qonun testi + grep-to'qnashuv tekshiruvidan o'tadi) · MATN_KORPUS **56** (sarlavha savolni beradi, sahna-shartini emas; tekshiruv: birinchi jumlani o'chirib ko'ring).
+**Olam tanlovi (to'qnashuv grep bilan tekshirildi):** YouTube BAND (P0 etalon abrazetsi, 7 joy) · Instagram BAND (M2-D7 keysi K3) · Telegram BAND (bugun Htmllesson1 analogiyasiga qo'yildi) · CodeStrike = platforma brendi → **kino ERKIN**. Aniqlik: kinoteatr binosi emas, «do'stlar bilan kinoga borish» vaziyati (savdo markazidagi kino — 95-qonun testidan o'tadi).
+**Bajarildi — 18 zona:** fayl-izohi · s0 hook ro'yxatlari (A: 🎵 fon musiqasi · 🔄 aylanadigan logotip · 📄 uzun matn ↔ B: 🕒 seans jadvali · 💺 zal xaritasi · 🎟 onlayn chipta) · s1 natija-preview juftliklari · s2 kartalar · s4 juftlash + javon · s7 zaxira-qiyinchiliklar · s8 namunalar · s9 TEST-3 · s10 ro'yxat-tozalash · koding (`kino.uz`, seans-juftligi) · s12 yakuniy test · s14 uy-vazifa · QUIZ_BANK 3 savol · flashcard · arena fon-tokenlari (🎟 💺).
+**Sarlavha-tuzatishi (56-qonun): 2 ta** — s0 → **«Qaysi sayt ko'proq mijoz olib keladi?»** (sahna-sharti mentorga ko'chdi) · s6 keys → framing-prefiks olib tashlandi.
+**🔴 TEGILMADI (o'quvchi zanjiri va relslar):** `pm-m1d2-cards` o'qish · `pm-m2d2-features` yozish · `INLINE_KEYS {s3:2,s5:1,s9:1,s12:0, s8:-1,s10:-1,s11:-1}` · `correctIdx` va `QUIZ_BANK.correct` indekslari (variantlar matni almashdi, indeks o'z joyida) · mexanikalar · Dizayn palitrasi · K1 UZUM keysi (91-qonun: alohida janr).
+**Darvozalar (bosh-agent qayta o'lchadi):** esbuild ✓ · lint:til 0 error ✓ · `vite build` toza ✓ · `SCREEN_META 19 === screens 19` ✓ · UZ/RU 599↔599 ✓ · residue-grep `lavash|лаваш|do'kon|menyu|buyurtma` = **0** ✓.
+**Ochiq savol:** s0 sarlavhasida UZ «ko'proq mijoz» ↔ RU «больше зрителей» — ma'no bir, so'z-tanlovi teng emas. Foydalanuvchi UZ matnini aynan diktovka qilgani uchun tegilmadi; «tomoshabin»ga o'tkazish uning qaroriga qoldi. UNCOMMITTED.
+
+## 2026-08-01 — 🇷🇺 1-MODUL TO'LIQ IKKI TILLI: PmLesson1 + PmLesson2 RUSLASHTIRILDI — ✅
+**Foydalanuvchi buyrug'i:** «ru qil, parallelni hammasini qil, tayyor UZ-RU da 1-Modulni to'liq».
+**Boshlang'ich holat:** 14 darsdan 12 tasi to'liq ikki tilli edi; **PmLesson1 (M1-D2) va PmLesson2 (M1-D6) da RU UMUMAN YO'Q** (`ru:`=1, `tr()` infratuzilmasi ham yo'q). Rus tilida o'qiyotgan o'quvchi kursning 2-darsidayoq o'zbekcha matnga urilardi.
+**Bajarildi (2 agent parallel, naqsh-manba PmLesson3 etaloni):** `tr()`/`__lang`/`uzOf()`/`ouz()` infrasi o'rnatildi · jonli qobiq (LiveGate/LiveBadge/LiveBigCode/xato-xabarlari) · umumiy primitivlar (Stage/Nav/Mentor/ScoreRing/Zoomable/MentorTestStats/MentorPracticeStats/StudentPracticePulse) · 17 ekran × 2 dars · RECAPS 4×3 karta · flashcardlar · arena (QUIZ_BANK 12 savol × 4 variant, QuizArena, CsWordmark, QzFX tokenlari) · nishonlar · koding-kompilyator qobig'i va lint-xabarlari.
+**🔴 TOPILGAN VA TUZATILGAN BUG-SINFI (aynan ogohlantirilgan sinf — «kalit MATN bilan saqlanmasin»):**
+· PmLesson1: `DEMO_CARD` `key={r.k}` → uch qator bitta `[object Object]` kalitini olardi (→ `key={i}`) · `SiteMock` `key={name+headline}` obyekt-konkatenatsiyasi (→ `tr()` bilan string) · `HOOK_CHOICE_KEY` artefaktiga hook-tanlov MATN bilan yozilardi va keys-slaydda `[object Object]` chiqardi (→ `{uz,ru}` obyekt, render `tr()`).
+· PmLesson2: 🔴 **eng og'iri** — `checkStructure` o'quvchining `<h2>` matnini QATTIQ-YOZILGAN o'zbekcha so'zlar bilan tekshirardi (`'muammo'`, `'qanday ishlaydi'`, `'isbot'`, `'harakat'`). RU rejimda o'quvchi «Проблема» deb yozsa, ikki shart HECH QACHON yopilmasdi — koding ekrani o'tib bo'lmas devor bo'lardi. `word` → `{uz,ru}`, `tr()` `checkStructure` ICHIDA (`__lang` o'rnatilgandan keyin), turlanishga chidamli o'zaklar (`проблем`, `доказательств`, `действи`).
+· `HW_TOKENS`/`Q_LABELS`/`ACHIEVEMENTS.desc` xom render qilinardi → `tr()` bilan o'raldi.
+· PmLesson1 `wideKim` («hamma» darvozasi) RU so'zlari bilan kengaytirildi (`все/всех/любой/каждый/люди`) — aks holda RU o'quvchi darvozadan o'tib ketardi.
+**Ma'noga tarjima:** realiyalar (лавашная · перемена · сум) · slot-atamalari izchil (КТО·ПРОБЛЕМА·РЕШЕНИЕ) · OLX interfeysi tabiiy ruscha yorliqlar bilan · atamalar RU'da ham birinchi uchrashda izohli (CTA, конверсия) · grammatika-farqli gaplar har til uchun alohida ramkada · analitika-payload **UZ-etalon** (`uzOf()`).
+**Darvozalar:** esbuild 2/2 ✓ · `vite build` toza ✓ · lint:til **0 error** (11 warn — ikkalasida ham ko'p qatorli `ru:` shabloni, PmLesson3 dagi bilan bir sinf) ✓ · SSR-smoke **90 + 66 render** UZ/RU × self/mentor — 0 crash, 0 `[object Object]`, RU'da kirill bor, UZ'da ruscha qoldiq 0 ✓ · ball-relslari va artefakt-kalitlari bayt-aynan o'zgarmagan ✓ · UZ/RU 673↔673 va 557↔557 ✓.
+**🏁 NATIJA: 1-MODUL 14/14 DARS TO'LIQ IKKI TILLI.** (2-Modul: 13/13 — `JsIntroLesson` dagi 1 farq qonuniy fallback.)
+**Qolgan mayda:** `RU_I18N_SPEC.md` 8-bo'limidagi jadval yangilanmagan · lint:til ko'p qatorli `ru:` bloklarini oqlashni bilmaydi (11 warn manbayi) · PmLesson1 s11 chip-tugmalarida RU matni ikki qatorga tushishi mumkin (brauzer-ko'rigi kerak). UNCOMMITTED.

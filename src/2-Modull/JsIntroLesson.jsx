@@ -6,7 +6,7 @@ const MENTOR_IMG = 'https://go.coddycamp.uz/uploads/media_library/c7b711619071c9
 // ============================================================
 // 07-DARS — JAVASCRIPT MODULIGA KIRISH: SISTEMA VA ALGORITM — PLATFORM STANDARD v16
 // Mavzu: Sistema (inson tanasi: komponentlar + bog'lanishlar),
-//        Algoritm = retsept (ertalabki tartib: ketma-ketlik, shart, sikl).
+//        Algoritm = qadamlar tartibi (ertalabki tartib: ketma-ketlik, shart, sikl).
 // Sof tushuncha — JS kodisiz. Keyingi darsda haqiqiy JavaScript yoziladi.
 // PRODUCTION: <style> ichidagi @import OLIB TASHLANADI — shriftlarni LMS yuklaydi.
 // ============================================================
@@ -459,7 +459,7 @@ const SCORED_IDX = SCREEN_META.map((m, i) => (m.scored ? i : null)).filter(i => 
 // ===== 🏅 ACHIEVEMENTS (nishonlar) — dars davomidagi real bosqichlar uchun =====
 const ACHIEVEMENTS = {
   scout:     { icon: '🔍', name: 'System Scout',  desc: { uz: "Atrofdagi sistemani tanidingiz", ru: 'Вы распознали систему вокруг себя' } },
-  recipe:    { icon: '📋', name: 'Recipe Master', desc: { uz: "Algoritm — retseptni o'zlashtirdingiz", ru: 'Вы освоили алгоритм — рецепт' } },
+  recipe:    { icon: '📋', name: 'Algorithm Master', desc: { uz: "Algoritm — qadamlar tartibini o'zlashtirdingiz", ru: 'Вы освоили алгоритм — порядок шагов' } },
   bughunter: { icon: '🐞', name: 'Bug Hunter',    desc: { uz: 'Chalkash dasturni tuzatib RUN qildingiz', ru: 'Вы починили запутанную программу и нажали RUN' } },
   graduate:  { icon: '🏆', name: 'Level Up!',     desc: { uz: "Sistema va algoritm darsini to'liq yakunladingiz", ru: 'Вы полностью прошли урок о системе и алгоритме' } },
 };
@@ -1062,7 +1062,7 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
   const STEPS = [
     { text: tr({ uz: 'Sistema nima? — komponentlar', ru: 'Что такое система? — компоненты' }), tag: '' },
     { text: tr({ uz: "Bog'lanishlar — qismlar qanday ulanadi", ru: 'Связи — как части соединяются' }), tag: '' },
-    { text: tr({ uz: 'Algoritm = retsept', ru: 'Алгоритм = рецепт' }), tag: '' },
+    { text: tr({ uz: 'Algoritm — qadamlar tartibi', ru: 'Алгоритм — порядок шагов' }), tag: '' },
     { text: tr({ uz: 'Shart va sikl', ru: 'Условие и цикл' }), tag: tr({ uz: 'agar · takrorla', ru: 'если · повтори' }) },
     { text: tr({ uz: "O'z algoritmingni tuz", ru: 'Составь свой алгоритм' }), tag: '' }
   ];
@@ -1078,10 +1078,10 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
         </div>
         <div className="frame" style={{ display: 'flex', alignItems: 'center', gap: 14, padding: '16px 18px' }}>
           <span className="idea-ic idea-ic-algo">📋</span>
-          <div><p style={{ fontFamily: "'Source Serif 4',serif", fontWeight: 600, color: T.ink, margin: 0, fontSize: 'clamp(16px,2.2vw,19px)' }}>{tr({ uz: 'ALGORITM', ru: 'АЛГОРИТМ' })}</p><p className="body" style={{ margin: '2px 0 0', color: T.ink2 }}>{tr({ uz: 'Retsept: ketma-ketlik, shart, sikl', ru: 'Рецепт: последовательность, условие, цикл' })}</p></div>
+          <div><p style={{ fontFamily: "'Source Serif 4',serif", fontWeight: 600, color: T.ink, margin: 0, fontSize: 'clamp(16px,2.2vw,19px)' }}>{tr({ uz: 'ALGORITM', ru: 'АЛГОРИТМ' })}</p><p className="body" style={{ margin: '2px 0 0', color: T.ink2 }}>{tr({ uz: 'Aniq qadamlar: ketma-ketlik, shart, sikl', ru: 'Точные шаги: последовательность, условие, цикл' })}</p></div>
         </div>
       </div>
-      <p className="mono small" style={{ color: T.accent, margin: 0 }}>{tr({ uz: "→ keyingi darsda buni JavaScript'da yozamiz", ru: '→ на следующем уроке напишем это на JavaScript' })}</p>
+      <p className="mono small" style={{ color: T.accent, margin: 0 }}>{tr({ uz: "→ shu uch qism bilan istalgan algoritm yoziladi", ru: '→ этими тремя частями пишется любой алгоритм' })}</p>
     </Col>
   );
   const StepsBlock = (
@@ -1288,9 +1288,9 @@ const Screen5b = (props) => (
     }} />
 );
 
-// ===== SCREEN 6 — ALGORITM = RETSEPT (ketma-ketlik) =====
+// ===== SCREEN 6 — ALGORITM = QADAMLAR TARTIBI (ketma-ketlik) =====
 const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const audio = useAudio([{ id: 's6', text: `Har kuni ertalab deyarli bir xil ishni qilasiz: uyg'onasiz, yuvinasiz, kiyinasiz... O'ylab ko'rsangiz, bu ham algoritm — maqsadga olib boradigan aniq, ketma-ket qadamlar, xuddi ovqat retsepti kabi. "Boshlash"ni bosib, qadamlarni kuzating.`, trigger: 'on_mount', waits_for: { type: 'flow_done' } }]);
+  const audio = useAudio([{ id: 's6', text: `Har kuni ertalab deyarli bir xil ishni qilasiz: uyg'onasiz, yuvinasiz, kiyinasiz... O'ylab ko'rsangiz, bu ham algoritm — maqsadga olib boradigan aniq, ketma-ket qadamlar. "Boshlash"ni bosib, qadamlarni kuzating.`, trigger: 'on_mount', waits_for: { type: 'flow_done' } }]);
   const STEPS = [
     { ic: '🛏️', h: tr({ uz: "Uyg'onish", ru: 'Проснуться' }) }, { ic: '🚿', h: tr({ uz: 'Yuvinish', ru: 'Умыться' }) }, { ic: '👕', h: tr({ uz: 'Kiyinish', ru: 'Одеться' }) }, { ic: '🍳', h: tr({ uz: 'Nonushta', ru: 'Завтрак' }) }, { ic: '🏫', h: tr({ uz: 'Maktabga', ru: 'В школу' }) }
   ];
@@ -1310,7 +1310,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: 'Algoritm', ru: 'Алгоритм' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "Avval ko'ring", ru: 'Сначала посмотрите' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Ertalab nimadan <span className="italic" style={{ color: T.accent }}>boshlaysiz</span>?</>, ru: <>С чего <span className="italic" style={{ color: T.accent }}>начинается</span> ваше утро?</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Har kuni ertalab deyarli bir xil ishni qilasiz: uyg'onasiz, yuvinasiz, kiyinasiz... O'ylab ko'rsangiz, bu ham <b style={{ color: T.ink }}>algoritm</b> — maqsadga olib boradigan aniq, <b style={{ color: T.ink }}>ketma-ket qadamlar</b>, xuddi ovqat retsepti kabi. Tugmani bosib, qadamlarni kuzating.</>, ru: <>Каждое утро вы делаете почти одно и то же: просыпаетесь, умываетесь, одеваетесь... Если подумать, это тоже <b style={{ color: T.ink }}>алгоритм</b> — точные, <b style={{ color: T.ink }}>последовательные шаги</b>, ведущие к цели, прямо как кулинарный рецепт. Нажмите кнопку и понаблюдайте за шагами.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Har kuni ertalab deyarli bir xil ishni qilasiz: uyg'onasiz, yuvinasiz, kiyinasiz... O'ylab ko'rsangiz, bu ham <b style={{ color: T.ink }}>algoritm</b> — maqsadga olib boradigan aniq, <b style={{ color: T.ink }}>ketma-ket qadamlar</b>. Tugmani bosib, qadamlarni kuzating.</>, ru: <>Каждое утро вы делаете почти одно и то же: просыпаетесь, умываетесь, одеваетесь... Если подумать, это тоже <b style={{ color: T.ink }}>алгоритм</b> — точные, <b style={{ color: T.ink }}>последовательные шаги</b>, ведущие к цели. Нажмите кнопку и понаблюдайте за шагами.</> })}</Mentor>
         <Zoomable>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
         {!isNarrow ? (
@@ -1350,9 +1350,9 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 
 // ===== SCREEN 7 — KETMA-KETLIK MUHIM =====
 const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const audio = useAudio([{ id: 's7', text: `BAJARBOT — soqov robot-oshpaz: siz qaysi retseptni bersangiz, aynan o'shani, aynan o'sha tartibda bajaradi. To'g'ri yoki chalkash retseptni tanlab, RUN bosing — natijani o'z ko'zingiz bilan ko'ring. Chalkash bo'lsa, natija kulgili bo'lib qoladi.`, trigger: 'on_mount', waits_for: null }]);
-  const CORRECT = [{ ic: '🥣', h: tr({ uz: 'Likobni ol', ru: 'Возьми тарелку' }) }, { ic: '🥚', h: tr({ uz: 'Tuxumni yor', ru: 'Разбей яйцо' }) }, { ic: '🥛', h: tr({ uz: 'Sut quy', ru: 'Налей молоко' }) }, { ic: '🍳', h: tr({ uz: 'Pishir va uzat', ru: 'Приготовь и подай' }) }];
-  const MIXED = [{ ic: '🍳', h: tr({ uz: 'Pishir va uzat', ru: 'Приготовь и подай' }) }, { ic: '🥛', h: tr({ uz: 'Sut quy', ru: 'Налей молоко' }) }, { ic: '🥣', h: tr({ uz: 'Likobni ol', ru: 'Возьми тарелку' }) }, { ic: '🥚', h: tr({ uz: 'Tuxumni yor', ru: 'Разбей яйцо' }) }];
+  const audio = useAudio([{ id: 's7', text: `BAJARBOT — soqov robot-oshpaz: siz qaysi qadamlarni bersangiz, aynan o'shani, aynan o'sha tartibda bajaradi. To'g'ri yoki chalkash tartibni tanlab, RUN bosing — natijani o'z ko'zingiz bilan ko'ring. Chalkash bo'lsa, natija kulgili bo'lib qoladi.`, trigger: 'on_mount', waits_for: null }]);
+  const CORRECT = [{ ic: '🫓', h: tr({ uz: 'Nonni yoy', ru: 'Разложи лепёшку' }) }, { ic: '🍗', h: tr({ uz: "Go'sht sol", ru: 'Положи мясо' }) }, { ic: '🥫', h: tr({ uz: 'Sous quy', ru: 'Полей соусом' }) }, { ic: '🌯', h: tr({ uz: "O'rab uzat", ru: 'Заверни и подай' }) }];
+  const MIXED = [{ ic: '🌯', h: tr({ uz: "O'rab uzat", ru: 'Заверни и подай' }) }, { ic: '🥫', h: tr({ uz: 'Sous quy', ru: 'Полей соусом' }) }, { ic: '🫓', h: tr({ uz: 'Nonni yoy', ru: 'Разложи лепёшку' }) }, { ic: '🍗', h: tr({ uz: "Go'sht sol", ru: 'Положи мясо' }) }];
   const [order, setOrder] = useState('correct');
   const [phase, setPhase] = useState('idle'); // idle|run|done|fail
   const [running, setRunning] = useState(-1);
@@ -1362,7 +1362,7 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const list = order === 'correct' ? CORRECT : MIXED;
   const done = ranOnce; // gate: kamida 1 RUN
   const pick = (o) => { if (phase === 'run') return; setOrder(o); setPhase('idle'); setRunning(-1); };
-  // ▶ RUN — BAJARBOT retseptni birma-bir bajaradi (step-executor), oxirida oshxona natijasi
+  // ▶ RUN — BAJARBOT qadamlarni birma-bir bajaradi (step-executor), oxirida tayyorlash natijasi
   const run = () => {
     clearTimeout(timer.current); setPhase('run'); setRunning(0);
     const step = (i) => {
@@ -1377,12 +1377,12 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: 'Ketma-ketlik', ru: 'Последовательность' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : (phase === 'run' ? tr({ uz: 'BAJARBOT ishlamoqda…', ru: 'BAJARBOT работает…' }) : tr({ uz: 'RUN bosing', ru: 'Нажмите RUN' }))} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Qadamlar <span className="italic" style={{ color: T.accent }}>tartibi</span> muhimmi?</>, ru: <>Важен ли <span className="italic" style={{ color: T.accent }}>порядок</span> шагов?</> })}</h2></div>
-        <Mentor>{tr({ uz: <>BAJARBOT — <b style={{ color: T.ink }}>soqov robot-oshpaz</b>: siz qaysi retseptni bersangiz, aynan o'shani, aynan o'sha tartibda bajaradi. <b style={{ color: T.ink }}>To'g'ri</b> yoki <b style={{ color: T.ink }}>chalkash</b> retseptni tanlab, <b style={{ color: T.ink }}>▶ RUN</b> bosing — natijani ko'ring.</>, ru: <>BAJARBOT — <b style={{ color: T.ink }}>наивный робот-повар</b>: какой рецепт вы ему дадите, тот он и выполнит, ровно в том же порядке. Выберите <b style={{ color: T.ink }}>правильный</b> или <b style={{ color: T.ink }}>перепутанный</b> рецепт и нажмите <b style={{ color: T.ink }}>▶ RUN</b> — посмотрите на результат.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>BAJARBOT — <b style={{ color: T.ink }}>soqov robot-oshpaz</b>: siz qaysi qadamlarni bersangiz, aynan o'shani, aynan o'sha tartibda bajaradi. <b style={{ color: T.ink }}>To'g'ri</b> yoki <b style={{ color: T.ink }}>chalkash</b> tartibni tanlab, <b style={{ color: T.ink }}>▶ RUN</b> bosing — natijani ko'ring.</>, ru: <>BAJARBOT — <b style={{ color: T.ink }}>наивный робот-повар</b>: какие шаги вы ему дадите, те он и выполнит, ровно в том же порядке. Выберите <b style={{ color: T.ink }}>правильный</b> или <b style={{ color: T.ink }}>перепутанный</b> порядок и нажмите <b style={{ color: T.ink }}>▶ RUN</b> — посмотрите на результат.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
             <div className="fade-up delay-1" style={{ display: 'flex', gap: 8 }}>
-              <button className={`chip ${order === 'correct' ? 'chip-on' : ''}`} disabled={phase === 'run'} onClick={() => pick('correct')}>{tr({ uz: "✅ To'g'ri retsept", ru: '✅ Правильный рецепт' })}</button>
+              <button className={`chip ${order === 'correct' ? 'chip-on' : ''}`} disabled={phase === 'run'} onClick={() => pick('correct')}>{tr({ uz: "✅ To'g'ri tartib", ru: '✅ Правильный порядок' })}</button>
               <button className={`chip ${order === 'mixed' ? 'chip-on' : ''}`} disabled={phase === 'run'} onClick={() => pick('mixed')}>{tr({ uz: '🔀 Chalkash', ru: '🔀 Перепутанный' })}</button>
             </div>
             <div className="demo-swap" key={order} style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
@@ -1397,10 +1397,10 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <button className="btn cc-run" onClick={run} disabled={phase === 'run'} style={{ alignSelf: 'flex-start' }}>{phase === 'run' ? tr({ uz: 'BAJARILMOQDA…', ru: 'ВЫПОЛНЯЕТСЯ…' }) : (ranOnce ? tr({ uz: '↻ Yana RUN', ru: '↻ Ещё раз RUN' }) : '▶ RUN')}</button>
           </Col>
           <Col>
-            <p className="flow-label">{tr({ uz: 'Oshxona sahnasi', ru: 'Кухонная сцена' })}</p>
-            <KitchenStage phase={phase} current={running} steps={list.map(s => s.ic)} label={running >= 0 && list[running] ? `${list[running].ic} ${list[running].h}` : ''} failText={tr({ uz: "Pishirdi-yu, likob bo'sh — tuxum qobig'i bilan tovada!", ru: 'Приготовил, а тарелка пуста — яйцо со скорлупой на сковороде!' })} />
-            {phase === 'done' && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "✓ To'g'ri tartib — nonushta tayyor! Likob → tuxum → sut → pishir.", ru: '✓ Правильный порядок — завтрак готов! Тарелка → яйцо → молоко → готовка.' })}</p></div>}
-            {phase === 'fail' && <div className="frame-warn fade-step"><p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>{tr({ uz: '😄 Kulgili falokat', ru: '😄 Смешная катастрофа' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>BAJARBOT avval pishirdi — yog' bo'sh likobga quyildi, tuxum qobig'i bilan tovaga tushdi! <b>Tartib o'zgardi — natija buzildi.</b></>, ru: <>BAJARBOT сначала стал готовить — масло вылилось на пустую тарелку, яйцо упало на сковороду вместе со скорлупой! <b>Порядок изменился — результат сломался.</b></> })}</p></div>}
+            <p className="flow-label">{tr({ uz: 'Tayyorlash sahnasi', ru: 'Сцена приготовления' })}</p>
+            <KitchenStage phase={phase} current={running} steps={list.map(s => s.ic)} label={running >= 0 && list[running] ? `${list[running].ic} ${list[running].h}` : ''} failText={tr({ uz: "O'radi-yu, ichi bo'sh — go'sht bilan sous tashqarida qoldi!", ru: 'Завернул, а внутри пусто — мясо и соус остались снаружи!' })} />
+            {phase === 'done' && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "✓ To'g'ri tartib — lavash tayyor! Non → go'sht → sous → o'ra.", ru: '✓ Правильный порядок — лаваш готов! Лепёшка → мясо → соус → заверни.' })}</p></div>}
+            {phase === 'fail' && <div className="frame-warn fade-step"><p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>{tr({ uz: '😄 Kulgili falokat', ru: '😄 Смешная катастрофа' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>BAJARBOT avval o'radi — bo'sh nonni! Go'sht bilan sous peshtaxtada qolib ketdi. <b>Tartib o'zgardi — natija buzildi.</b></>, ru: <>BAJARBOT сначала завернул — пустую лепёшку! Мясо и соус так и остались на столе. <b>Порядок изменился — результат сломался.</b></> })}</p></div>}
             {done && <div className="frame-soft fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <><b>Robot o'ylamaydi — faqat aytilganini qiladi.</b> Shuning uchun algoritmda <b>ketma-ketlik</b> — birinchi qoida.</>, ru: <><b>Робот не думает — он делает только то, что сказано.</b> Поэтому <b>последовательность</b> — первое правило алгоритма.</> })}</p></div>}
           </Col>
         </div>
@@ -1412,7 +1412,7 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 
 // ===== SCREEN 8 — SHARTLAR =====
 const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const audio = useAudio([{ id: 's8', text: `BAJARBOTda sensor bor: muzlatgichni tekshiradi. AGAR sut bo'lsa — sut quyadi; aks holda — quruq qo'shadi. Bitta robot, sensordan kelgan javobga qarab ikki xil yo'ldan ketadi. Sensorni almashtirib, BAJARBOT qanday tarmoqlanishini kuzating.`, trigger: 'on_mount', waits_for: null }]);
+  const audio = useAudio([{ id: 's8', text: `BAJARBOTda sensor bor: sous idishini tekshiradi. AGAR sous bo'lsa — sous quyadi; aks holda — sousiz o'raydi. Bitta robot, sensordan kelgan javobga qarab ikki xil yo'ldan ketadi. Sensorni almashtirib, BAJARBOT qanday tarmoqlanishini kuzating.`, trigger: 'on_mount', waits_for: null }]);
   const [milk, setMilk] = useState('bor');
   const [seen, setSeen] = useState(new Set(['bor']));
   const has = milk === 'bor';
@@ -1423,24 +1423,24 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: 'Shartlar', ru: 'Условия' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Sensorni almashtiring', ru: 'Переключите сенсор' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>BAJARBOT <span className="italic" style={{ color: T.accent }}>qaror</span> qabul qila oladimi?</>, ru: <>Может ли BAJARBOT принимать <span className="italic" style={{ color: T.accent }}>решения</span>?</> })}</h2></div>
-        <Mentor>{tr({ uz: <>BAJARBOTda <b style={{ color: T.ink }}>sensor</b> bor — muzlatgichni tekshiradi. <b style={{ color: T.ink }}>AGAR</b> sut bo'lsa — sut quyadi, <b style={{ color: T.ink }}>AKS HOLDA</b> — quruq qo'shadi. Bitta robot, sensor javobiga qarab ikki xil yo'ldan ketadi — bunga <b style={{ color: T.ink }}>shart</b> deyiladi. Sensorni almashtiring.</>, ru: <>У BAJARBOT есть <b style={{ color: T.ink }}>сенсор</b> — он проверяет холодильник. <b style={{ color: T.ink }}>ЕСЛИ</b> молоко есть — наливает молоко, <b style={{ color: T.ink }}>ИНАЧЕ</b> — готовит всухую. Один робот, но в зависимости от ответа сенсора идёт по двум разным путям — это называется <b style={{ color: T.ink }}>условие</b>. Переключите сенсор.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>BAJARBOTda <b style={{ color: T.ink }}>sensor</b> bor — sous idishini tekshiradi. <b style={{ color: T.ink }}>AGAR</b> sous bo'lsa — sous quyadi, <b style={{ color: T.ink }}>AKS HOLDA</b> — sousiz o'raydi. Bitta robot, sensor javobiga qarab ikki xil yo'ldan ketadi — bunga <b style={{ color: T.ink }}>shart</b> deyiladi. Sensorni almashtiring.</>, ru: <>У BAJARBOT есть <b style={{ color: T.ink }}>сенсор</b> — он проверяет банку с соусом. <b style={{ color: T.ink }}>ЕСЛИ</b> соус есть — поливает соусом, <b style={{ color: T.ink }}>ИНАЧЕ</b> — заворачивает без соуса. Один робот, но в зависимости от ответа сенсора идёт по двум разным путям — это называется <b style={{ color: T.ink }}>условие</b>. Переключите сенсор.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
             <p className="flow-label">{tr({ uz: 'Muzlatgich sensori:', ru: 'Сенсор холодильника:' })}</p>
             <button onClick={toggle} className="weather-btn fade-up delay-1" style={{ cursor: 'pointer', border: 'none', borderRadius: 16, padding: '24px', background: has ? '#e6f6ee' : '#f1ede6', boxShadow: `0 8px 20px -6px rgba(${T.shadowBase},0.16)`, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6, transition: 'all 0.3s', width: '100%' }}>
               <span style={{ fontSize: 48, position: 'relative', zIndex: 1 }}>{has ? '🥛' : '🚫'}</span>
-              <span style={{ fontFamily: "'Manrope',sans-serif", fontWeight: 700, color: T.ink, position: 'relative', zIndex: 1 }}>{has ? tr({ uz: 'Sut bor', ru: 'Молоко есть' }) : tr({ uz: "Sut yo'q", ru: 'Молока нет' })}</span>
+              <span style={{ fontFamily: "'Manrope',sans-serif", fontWeight: 700, color: T.ink, position: 'relative', zIndex: 1 }}>{has ? tr({ uz: 'Sous bor', ru: 'Соус есть' }) : tr({ uz: "Sous yo'q", ru: 'Соуса нет' })}</span>
               <span className="mono small" style={{ color: T.ink3, position: 'relative', zIndex: 1 }}>{tr({ uz: '↻ almashtirish uchun bosing', ru: '↻ нажмите, чтобы переключить' })}</span>
             </button>
           </Col>
           <Col>
             <p className="flow-label">{tr({ uz: 'BAJARBOTning qarori', ru: 'Решение BAJARBOT' })}</p>
             <div className="cond-card fade-up delay-1">
-              <div className={`cond-line ${has ? 'on' : ''}`}>{tr({ uz: <><span className="cond-kw">AGAR</span> sut 🥛 <span className="cond-kw">BO'LSA</span> → <b>sut quy</b></>, ru: <><span className="cond-kw">ЕСЛИ</span> молоко 🥛 <span className="cond-kw">ЕСТЬ</span> → <b>налей молоко</b></> })}</div>
+              <div className={`cond-line ${has ? 'on' : ''}`}>{tr({ uz: <><span className="cond-kw">AGAR</span> sous 🥫 <span className="cond-kw">BO'LSA</span> → <b>sous quy</b></>, ru: <><span className="cond-kw">ЕСЛИ</span> соус 🥫 <span className="cond-kw">ЕСТЬ</span> → <b>полей соусом</b></> })}</div>
               <div className={`cond-line ${!has ? 'on' : ''}`}>{tr({ uz: <><span className="cond-kw">AKS HOLDA</span> 🚫 → <b>quruq qo'sh</b></>, ru: <><span className="cond-kw">ИНАЧЕ</span> 🚫 → <b>готовь всухую</b></> })}</div>
             </div>
-            <KitchenStage phase="done" result={has ? { icon: '🥛🍳', cap: tr({ uz: 'Sutli nonushta tayyor', ru: 'Завтрак с молоком готов' }) } : { icon: '🥣🥄', cap: tr({ uz: 'Quruq nonushta (sutsiz)', ru: 'Сухой завтрак (без молока)' }) }} />
+            <KitchenStage phase="done" result={has ? { icon: '🌯🥫', cap: tr({ uz: 'Sousli lavash tayyor', ru: 'Лаваш с соусом готов' }) } : { icon: '🌯', cap: tr({ uz: 'Sousiz lavash tayyor', ru: 'Лаваш без соуса готов' }) }} />
             {done && <div className="frame-soft fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Bitta BAJARBOT — sensorga qarab ikki xil ishladi. Mana <b>shart</b>ning kuchi!</>, ru: <>Один BAJARBOT — а сработал по-разному, глядя на сенсор. Вот она, сила <b>условия</b>!</> })}</p></div>}
           </Col>
         </div>
@@ -1588,12 +1588,12 @@ const Screen12 = (props) => (
 const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const audio = useAudio([{ id: 's13', text: `Endi navbat sizga. Quyidagi bloklardan BAJARBOTga dastur yig'ing — qadam, shart va siklni qo'shing. Keyin RUN bosib, robot buyruqlaringizni birma-bir bajarganini ko'ring. Kamida 3 ta blok qo'shing.`, trigger: 'on_mount', waits_for: null }]);
   const BLOCKS = [
-    { ic: '🥣', label: tr({ uz: 'Likobni ol', ru: 'Возьми тарелку' }), type: 'qadam' },
-    { ic: '🥚', label: tr({ uz: 'Tuxumni yor', ru: 'Разбей яйцо' }), type: 'qadam' },
-    { ic: '🥛', label: tr({ uz: 'Sut quy', ru: 'Налей молоко' }), type: 'qadam' },
-    { ic: '🍳', label: tr({ uz: 'Pishir', ru: 'Приготовь' }), type: 'qadam' },
-    { ic: '🔀', label: tr({ uz: "Agar suyuq → un qo'sh", ru: 'Если жидко → добавь муку' }), type: 'shart' },
-    { ic: '🔁', label: tr({ uz: 'Aralashtir × 10', ru: 'Перемешай × 10' }), type: 'sikl' }
+    { ic: '🫓', label: tr({ uz: 'Nonni yoy', ru: 'Разложи лепёшку' }), type: 'qadam' },
+    { ic: '🍗', label: tr({ uz: "Go'sht sol", ru: 'Положи мясо' }), type: 'qadam' },
+    { ic: '🥫', label: tr({ uz: 'Sous quy', ru: 'Полей соусом' }), type: 'qadam' },
+    { ic: '🌯', label: tr({ uz: "O'ra", ru: 'Заверни' }), type: 'qadam' },
+    { ic: '🔀', label: tr({ uz: "Agar sous yo'q → sousiz o'ra", ru: 'Если соуса нет → заверни без соуса' }), type: 'shart' },
+    { ic: '🔁', label: tr({ uz: 'Sabzavot sol × 3', ru: 'Добавь овощи × 3' }), type: 'sikl' }
   ];
   const MAX = 6;
   const [items, setItems] = useState([]);
@@ -1634,8 +1634,8 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <CommandConsole program={program} running={running} phase={phase} onRun={run} onReset={reset} canRun={canRun} />
           </Col>
           <Col>
-            <p className="flow-label">{tr({ uz: 'Oshxona sahnasi', ru: 'Кухонная сцена' })}</p>
-            <KitchenStage phase={phase} current={running} steps={program.map(b => b.ic)} label={running >= 0 && program[running] ? `${program[running].ic} ${program[running].t}` : ''} result={{ icon: '🍽️', cap: tr({ uz: 'BAJARBOT dasturingizni bajardi', ru: 'BAJARBOT выполнил вашу программу' }) }} />
+            <p className="flow-label">{tr({ uz: 'Tayyorlash sahnasi', ru: 'Сцена приготовления' })}</p>
+            <KitchenStage phase={phase} current={running} steps={program.map(b => b.ic)} label={running >= 0 && program[running] ? `${program[running].ic} ${program[running].t}` : ''} result={{ icon: '🌯', cap: tr({ uz: 'BAJARBOT dasturingizni bajardi', ru: 'BAJARBOT выполнил вашу программу' }) }} />
             {phase === 'done' && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ BAJARBOT buyruqlaringizni <b>aynan siz yozgan tartibda</b> bajardi — bu dastur!</>, ru: <>✓ BAJARBOT выполнил ваши команды <b>ровно в том порядке, как вы написали</b> — это и есть программа!</> })}</p></div>}
             {done && phase !== 'done' && <div className="frame-soft fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Zo'r! Siz <b>algoritm</b> tuzdingiz — endi ▶ RUN bosib, robot bajarganini ko'ring.</>, ru: <>Отлично! Вы составили <b>алгоритм</b> — теперь нажмите ▶ RUN и посмотрите, как робот его выполнит.</> })}</p></div>}
           </Col>
@@ -1652,11 +1652,11 @@ const BAJARBOT_TYPE_COLOR = { qadam: T.ink2, shart: T.blue, sikl: T.accent };
 // UZ-RU: blok turi yorlig'i (kalitlar o'zgarmaydi — faqat ko'rinadigan matn)
 const BAJARBOT_TYPE_LABEL = { qadam: { uz: 'qadam', ru: 'шаг' }, shart: { uz: 'shart', ru: 'условие' }, sikl: { uz: 'sikl', ru: 'цикл' } };
 
-// KitchenStage — BAJARBOT robot + peshtaxta/likob sahnasi. phase: idle|run|done|fail
+// KitchenStage — BAJARBOT robot + peshtaxta sahnasi (lavash). phase: idle|run|done|fail
 // (ko'rinish/animatsiya sayqali — 🎨 Dizayn / ✨ Animatsiya; bu yerda ishlaydigan skelet)
 function KitchenStage({ phase, current, label, result, failText, steps }) {
   const face = phase === 'done' ? '🤖😋' : phase === 'fail' ? '🤖😵' : phase === 'run' ? '🤖🦾' : '🤖';
-  // RUN paytida likobga tushgan ingredientlar (bosqichma-bosqich to'lish)
+  // RUN paytida peshtaxtaga qo'yilgan bo'laklar (bosqichma-bosqich yig'ilish)
   const collected = phase === 'run' && Array.isArray(steps) ? steps.slice(0, Math.max(0, current) + 1) : [];
   return (
     <div className={`kx-stage kx-${phase}`}>
@@ -1665,7 +1665,7 @@ function KitchenStage({ phase, current, label, result, failText, steps }) {
       {/* fail — kulgili tutun to'lqinlari */}
       {phase === 'fail' && <span className="kx-smoke" aria-hidden="true"><span>💨</span><span>💨</span><span>💨</span></span>}
       <div className="kx-counter">
-        {phase === 'idle' && <span className="kx-plate kx-empty">🍽️ <span className="kx-cap">{tr({ uz: "bo'sh likob", ru: 'пустая тарелка' })}</span></span>}
+        {phase === 'idle' && <span className="kx-plate kx-empty">🍽️ <span className="kx-cap">{tr({ uz: "bo'sh peshtaxta", ru: 'пустой стол' })}</span></span>}
         {phase === 'run' && (
           <span className="kx-plate kx-working">
             {collected.length > 0
@@ -1674,8 +1674,8 @@ function KitchenStage({ phase, current, label, result, failText, steps }) {
             <span className="kx-cap">{label ? `${label} · ${tr({ uz: 'bajarilmoqda…', ru: 'выполняется…' })}` : tr({ uz: 'bajarilmoqda…', ru: 'выполняется…' })}</span>
           </span>
         )}
-        {phase === 'done' && <span className="kx-plate kx-ok"><span className="kx-served">{result?.icon || '🍽️🍳🥛'}</span> <span className="kx-cap">{result?.cap || tr({ uz: 'Tayyor nonushta!', ru: 'Завтрак готов!' })}</span></span>}
-        {phase === 'fail' && <span className="kx-plate kx-bad"><span className="kx-splat">💥🥚</span> <span className="kx-cap">{failText || tr({ uz: 'Falokat — tartib chalkash!', ru: 'Катастрофа — порядок перепутан!' })}</span></span>}
+        {phase === 'done' && <span className="kx-plate kx-ok"><span className="kx-served">{result?.icon || '🌯'}</span> <span className="kx-cap">{result?.cap || tr({ uz: 'Lavash tayyor!', ru: 'Лаваш готов!' })}</span></span>}
+        {phase === 'fail' && <span className="kx-plate kx-bad"><span className="kx-splat">💥🥫</span> <span className="kx-cap">{failText || tr({ uz: 'Falokat — tartib chalkash!', ru: 'Катастрофа — порядок перепутан!' })}</span></span>}
       </div>
     </div>
   );
@@ -1708,11 +1708,11 @@ function CommandConsole({ program, running, phase, onRun, onReset, canRun }) {
 
 // ===== SCREEN 15 — 🤖 BAJARBOT scored final (s14 debug + s15 tartib birlashtirildi) =====
 const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const audio = useAudio([{ id: 's15', text: `BAJARBOT — soqov robot-oshpaz. Uning dasturi chalkashib ketgan. Bloklarni to'g'ri tartibda joylang, keyin RUN bosing. Tartib chalkash bo'lsa — falokat chiqadi; to'g'ri bo'lsa — tayyor nonushta.`, trigger: 'on_mount', waits_for: { type: 'typed_ok' } }]);
+  const audio = useAudio([{ id: 's15', text: `BAJARBOT — soqov robot-oshpaz. Uning dasturi chalkashib ketgan. Bloklarni to'g'ri tartibda joylang, keyin RUN bosing. Tartib chalkash bo'lsa — falokat chiqadi; to'g'ri bo'lsa — tayyor lavash.`, trigger: 'on_mount', waits_for: { type: 'typed_ok' } }]);
   const gate = useContext(LiveGateCtx) || {};
   const live = gate.live;
   const isMentorLive = !!(live && live.mode === 'mentor');
-  const STEPS = { bowl: { ic: '🥣', t: tr({ uz: 'Likobni ol', ru: 'Возьми тарелку' }), type: 'qadam' }, egg: { ic: '🥚', t: tr({ uz: 'Tuxumni yor', ru: 'Разбей яйцо' }), type: 'qadam' }, milk: { ic: '🥛', t: tr({ uz: 'Sut quy', ru: 'Налей молоко' }), type: 'qadam' }, stir: { ic: '🔁', t: tr({ uz: 'Aralashtir ×5', ru: 'Перемешай ×5' }), type: 'sikl' }, cook: { ic: '🍳', t: tr({ uz: 'Pishir va uzat', ru: 'Приготовь и подай' }), type: 'qadam' } };
+  const STEPS = { bowl: { ic: '🫓', t: tr({ uz: 'Nonni yoy', ru: 'Разложи лепёшку' }), type: 'qadam' }, egg: { ic: '🍗', t: tr({ uz: "Go'sht sol", ru: 'Положи мясо' }), type: 'qadam' }, milk: { ic: '🥫', t: tr({ uz: 'Sous quy', ru: 'Полей соусом' }), type: 'qadam' }, stir: { ic: '🔁', t: tr({ uz: 'Sabzavot sol ×3', ru: 'Добавь овощи ×3' }), type: 'sikl' }, cook: { ic: '🌯', t: tr({ uz: "O'rab uzat", ru: 'Заверни и подай' }), type: 'qadam' } };
   const CORRECT = ['bowl', 'egg', 'milk', 'stir', 'cook'];
   const SHUFFLED = ['stir', 'milk', 'cook', 'bowl', 'egg'];
   const [order, setOrder] = useState(storedAnswer?.picked || []);
@@ -1741,7 +1741,7 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             // Jonli darsda o'quvchi RUN'ni to'g'ri bajarganini serverga yozamiz — mentor «kim tugatdi»ni ko'radi va podium hisoblaydi
             if (live && live.mode === 'student') live.submitAnswer(screen, 's15', 0, true, 0);
             audio.triggerEvent('typed_ok');
-            if (!audio.muted) setTimeout(() => { const e = getAudioEngine(); if (e && !audio.muted) e.pushOneOff(`Zo'r! BAJARBOT to'g'ri tartibda ishladi — nonushta tayyor.`); }, 300);
+            if (!audio.muted) setTimeout(() => { const e = getAudioEngine(); if (e && !audio.muted) e.pushOneOff(`Zo'r! BAJARBOT to'g'ri tartibda ishladi — lavash tayyor.`); }, 300);
           } else { setPhase('fail'); setRunning(-1); }
         }, 520);
       }
@@ -1753,7 +1753,7 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: '🤖 BAJARBOT · yakuniy', ru: '🤖 BAJARBOT · финал' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={isMentorLive ? false : !passed} label={isMentorLive ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : (passed ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : (canRun ? tr({ uz: 'RUN bosing', ru: 'Нажмите RUN' }) : tr({ uz: 'Bloklarni joylang', ru: 'Расставьте блоки' })))} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>BAJARBOTning dasturi <span className="italic" style={{ color: T.accent }}>chalkash</span> — tartibla va RUN bos.</>, ru: <>Программа BAJARBOT <span className="italic" style={{ color: T.accent }}>перепутана</span> — наведите порядок и нажмите RUN.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>BAJARBOT — soqov robot-oshpaz: aynan siz aytgan tartibda bajaradi. Bloklarni <b style={{ color: T.ink }}>to'g'ri ketma-ketlikda</b> joylang, keyin <b style={{ color: T.ink }}>▶ RUN</b> bosing. Tartib chalkash bo'lsa — kulgili <b style={{ color: T.ink }}>falokat</b>; to'g'ri bo'lsa — <b style={{ color: T.ink }}>tayyor nonushta</b> 🍽️.</>, ru: <>BAJARBOT — наивный робот-повар: он выполнит всё ровно в том порядке, что вы скажете. Расставьте блоки <b style={{ color: T.ink }}>в правильной последовательности</b>, потом нажмите <b style={{ color: T.ink }}>▶ RUN</b>. Если порядок перепутан — будет смешная <b style={{ color: T.ink }}>катастрофа</b>; если верный — <b style={{ color: T.ink }}>готовый завтрак</b> 🍽️.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>BAJARBOT — soqov robot-oshpaz: aynan siz aytgan tartibda bajaradi. Bloklarni <b style={{ color: T.ink }}>to'g'ri ketma-ketlikda</b> joylang, keyin <b style={{ color: T.ink }}>▶ RUN</b> bosing. Tartib chalkash bo'lsa — kulgili <b style={{ color: T.ink }}>falokat</b>; to'g'ri bo'lsa — <b style={{ color: T.ink }}>tayyor lavash</b> 🌯.</>, ru: <>BAJARBOT — наивный робот-повар: он выполнит всё ровно в том порядке, что вы скажете. Расставьте блоки <b style={{ color: T.ink }}>в правильной последовательности</b>, потом нажмите <b style={{ color: T.ink }}>▶ RUN</b>. Если порядок перепутан — будет смешная <b style={{ color: T.ink }}>катастрофа</b>; если верный — <b style={{ color: T.ink }}>готовый лаваш</b> 🌯.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
@@ -1771,9 +1771,9 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <CommandConsole program={program} running={running} phase={phase} onRun={run} onReset={reset} canRun={canRun} />
           </Col>
           <Col>
-            <p className="flow-label">{tr({ uz: 'Oshxona sahnasi', ru: 'Кухонная сцена' })}</p>
+            <p className="flow-label">{tr({ uz: 'Tayyorlash sahnasi', ru: 'Сцена приготовления' })}</p>
             <KitchenStage phase={phase} current={running} steps={program.map(b => b.ic)} label={running >= 0 && program[running] ? `${program[running].ic} ${program[running].t}` : ''} />
-            {phase === 'done' && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "✓ To'g'ri! BAJARBOT: likob → tuxum → sut → aralashtir → pishir. Mukammal algoritm — nonushta tayyor!", ru: '✓ Верно! BAJARBOT: тарелка → яйцо → молоко → перемешай → приготовь. Идеальный алгоритм — завтрак готов!' })}</p></div>}
+            {phase === 'done' && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "✓ To'g'ri! BAJARBOT: non → go'sht → sous → sabzavot → o'ra. Mukammal algoritm — lavash tayyor!", ru: '✓ Верно! BAJARBOT: лепёшка → мясо → соус → овощи → заверни. Идеальный алгоритм — лаваш готов!' })}</p></div>}
             {phase === 'fail' && <div className="frame-warn fade-step"><p className="note-h" style={{ color: T.accent }}>{tr({ uz: '💥 Falokat!', ru: '💥 Катастрофа!' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{firstErr >= 0 ? tr({ uz: `${firstErr + 1}-blok noto'g'ri joyda — BAJARBOT chalkashdi.`, ru: `Блок №${firstErr + 1} не на своём месте — BAJARBOT запутался.` }) : tr({ uz: 'Tartib chalkash.', ru: 'Порядок перепутан.' })} {tr({ uz: <>Xatoni top, «↺ Tozalash» bilan qaytadan tartibla va RUN bos. Xatoni topib tuzatish — bu <b>debugging</b>!</>, ru: <>Найдите ошибку, нажмите «↺ Очистить», расставьте заново и нажмите RUN. Искать и чинить ошибки — это <b>debugging</b>!</> })}</p></div>}
           </Col>
         </div>
@@ -1857,7 +1857,7 @@ const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) =>
 
 // ===== SCREEN 16 — YAKUN =====
 const Screen16 = ({ screen, answers, onReset, onPrev, onFinish }) => {
-  const audio = useAudio([{ id: 's16', text: "Tabriklaymiz — bugun siz dasturchining tilida fikrlay boshladingiz! Esda saqlang: sistema — bu qismlar va ularning bog'lanishlari, algoritm esa retsept: ketma-ketlik, shart va sikl. Keyingi darsda eng qizig'i boshlanadi — shu algoritmlarni kompyuterga JavaScript tilida yozamiz.", trigger: 'on_mount', waits_for: null }]);
+  const audio = useAudio([{ id: 's16', text: "Tabriklaymiz — bugun siz dasturchining tilida fikrlay boshladingiz! Esda saqlang: sistema — bu qismlar va ularning bog'lanishlari, algoritm esa aniq qadamlar tartibi: ketma-ketlik, shart va sikl. Keyingi darsda eng qizig'i boshlanadi — shu algoritmlarni kompyuterga JavaScript tilida yozamiz.", trigger: 'on_mount', waits_for: null }]);
   // ⚔️ Mustahkamlash testi: jonli darsda mentor ochadi → o'quvchilar kiradi.
   // Dars tugagan / mentor uzilgan bo'lsa — o'quvchi UYDA solo (mashq) ishlaydi.
   const gate = useContext(LiveGateCtx) || {};
@@ -1876,9 +1876,9 @@ const Screen16 = ({ screen, answers, onReset, onPrev, onFinish }) => {
     setArenaSolo(studentSolo);
     setArena(true);
   };
-  const RECAP = [tr({ uz: "Sistema — komponentlar va bog'lanishlar", ru: 'Система — компоненты и связи' }), tr({ uz: 'Atrofdagi sistemalar (tana, jamoa, sayt)', ru: 'Системы вокруг нас (тело, команда, сайт)' }), tr({ uz: 'Algoritm = retsept (aniq qadamlar)', ru: 'Алгоритм = рецепт (точные шаги)' }), tr({ uz: 'Ketma-ketlik — tartib muhim', ru: 'Последовательность — порядок важен' }), tr({ uz: "Shart (agar...bo'lsa) va Sikl (takrorla)", ru: 'Условие (если... то) и Цикл (повтори)' })];
+  const RECAP = [tr({ uz: "Sistema — komponentlar va bog'lanishlar", ru: 'Система — компоненты и связи' }), tr({ uz: 'Atrofdagi sistemalar (tana, jamoa, sayt)', ru: 'Системы вокруг нас (тело, команда, сайт)' }), tr({ uz: 'Algoritm — aniq qadamlar tartibi', ru: 'Алгоритм — порядок точных шагов' }), tr({ uz: 'Ketma-ketlik — tartib muhim', ru: 'Последовательность — порядок важен' }), tr({ uz: "Shart (agar...bo'lsa) va Sikl (takrorla)", ru: 'Условие (если... то) и Цикл (повтори)' })];
   const HOMEWORK = [{ b: tr({ uz: 'Sistema top', ru: 'Найди систему' }), t: tr({ uz: '— atrofingizdan 1 sistema toping, qismlarini yozing', ru: '— найдите вокруг себя 1 систему и запишите её части' }) }, { b: tr({ uz: 'Algoritm yoz', ru: 'Напиши алгоритм' }), t: tr({ uz: '— maktabga tayyorgarlikni qadam-baqadam yozing', ru: '— распишите сборы в школу шаг за шагом' }) }, { b: tr({ uz: "Shart qo'sh", ru: 'Добавь условие' }), t: tr({ uz: '— "agar... bo\'lsa..." qadamini qo\'shing', ru: '— добавьте шаг «если... то...»' }) }];
-  const GLOSSARY = [{ b: tr({ uz: 'Sistema', ru: 'Система' }), t: tr({ uz: '— birga ishlaydigan qismlar', ru: '— части, работающие вместе' }) }, { b: tr({ uz: 'Komponent', ru: 'Компонент' }), t: tr({ uz: '— sistemaning bir qismi', ru: '— одна часть системы' }) }, { b: tr({ uz: "Bog'lanish", ru: 'Связь' }), t: tr({ uz: "— qismlarni ulaydigan yo'l", ru: '— путь, соединяющий части' }) }, { b: tr({ uz: 'Algoritm', ru: 'Алгоритм' }), t: tr({ uz: '— aniq qadamlar (retsept)', ru: '— точные шаги (рецепт)' }) }, { b: tr({ uz: 'Ketma-ketlik', ru: 'Последовательность' }), t: tr({ uz: '— qadamlar tartibi', ru: '— порядок шагов' }) }, { b: tr({ uz: 'Shart', ru: 'Условие' }), t: tr({ uz: '— agar...bo\'lsa...', ru: '— если... то...' }) }, { b: tr({ uz: 'Sikl', ru: 'Цикл' }), t: tr({ uz: '— takrorlash', ru: '— повторение' }) }];
+  const GLOSSARY = [{ b: tr({ uz: 'Sistema', ru: 'Система' }), t: tr({ uz: '— birga ishlaydigan qismlar', ru: '— части, работающие вместе' }) }, { b: tr({ uz: 'Komponent', ru: 'Компонент' }), t: tr({ uz: '— sistemaning bir qismi', ru: '— одна часть системы' }) }, { b: tr({ uz: "Bog'lanish", ru: 'Связь' }), t: tr({ uz: "— qismlarni ulaydigan yo'l", ru: '— путь, соединяющий части' }) }, { b: tr({ uz: 'Algoritm', ru: 'Алгоритм' }), t: tr({ uz: '— aniq qadamlar tartibi', ru: '— порядок точных шагов' }) }, { b: tr({ uz: 'Ketma-ketlik', ru: 'Последовательность' }), t: tr({ uz: '— qadamlar tartibi', ru: '— порядок шагов' }) }, { b: tr({ uz: 'Shart', ru: 'Условие' }), t: tr({ uz: '— agar...bo\'lsa...', ru: '— если... то...' }) }, { b: tr({ uz: 'Sikl', ru: 'Цикл' }), t: tr({ uz: '— takrorlash', ru: '— повторение' }) }];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
   const PASSED = (total ? correct / total : 0) >= 0.6;
@@ -2096,8 +2096,8 @@ const QUIZ_BANK = [
   { q: { uz: "Quyidagilardan qaysi biri SISTEMA?", ru: 'Что из перечисленного — СИСТЕМА?' }, opts: [{ uz: "Yo'lda yotgan bitta oddiy kulrang tosh", ru: 'Один обычный серый камень на дороге' }, { uz: "Ichi bo'sh, yopiq turgan bitta quti", ru: 'Одна пустая закрытая коробка' }, { uz: "Inson tanasi — a'zolar birga ishlaydi", ru: 'Тело человека — органы работают вместе' }, { uz: "Daftar chetidagi alohida bitta harf", ru: 'Одна отдельная буква на краю тетради' }], correct: 2 },
   { q: { uz: "Sistemadagi «komponent» nima?", ru: 'Что такое «компонент» в системе?' }, opts: [{ uz: "Sistemani tashkil qiluvchi bir qism", ru: 'Одна из частей, из которых состоит система' }, { uz: "Butun sistemaga berilgan umumiy nom", ru: 'Общее название всей системы' }, { uz: "Sistemadan butunlay tashqaridagi narsa", ru: 'То, что находится совсем вне системы' }, { uz: "Sistemadagi juda kichik bir xatolik", ru: 'Очень маленькая ошибка в системе' }], correct: 0 },
   { q: { uz: "«Bog'lanish» sistemada nimani bildiradi?", ru: 'Что означает «связь» в системе?' }, opts: [{ uz: "Qismlarni bir-biriga ulaydigan aloqa", ru: 'Соединение, связывающее части друг с другом' }, { uz: "Sistemadagi eng katta va og'ir qism", ru: 'Самая большая и тяжёлая часть системы' }, { uz: "Butun sistemaga berilgan umumiy nom", ru: 'Общее название всей системы' }, { uz: "Keraksiz, ortiqcha bo'sh turgan qism", ru: 'Ненужная, лишняя простаивающая часть' }], correct: 0 },
-  { q: { uz: "Algoritm — bu asli nima?", ru: 'Что такое алгоритм на самом деле?' }, opts: [{ uz: "Tartibsiz, chalkash fikrlar to'plami", ru: 'Беспорядочный набор запутанных мыслей' }, { uz: "Aniq, ketma-ket qadamlar (retsept kabi)", ru: 'Точные, последовательные шаги (как рецепт)' }, { uz: "Faqat juda murakkab matematik formula", ru: 'Только очень сложная математическая формула' }, { uz: "Kompyuter mashinasiga berilgan nom", ru: 'Название компьютерной машины' }], correct: 1 },
-  { q: { uz: "Nonushta tayyorlash retsepti — bu nimaga misol?", ru: 'Рецепт приготовления завтрака — пример чего?' }, opts: [{ uz: "Sistema", ru: 'Система' }, { uz: "Komponent", ru: 'Компонент' }, { uz: "Algoritm", ru: 'Алгоритм' }, { uz: "Bog'lanish", ru: 'Связь' }], correct: 2 },
+  { q: { uz: "Algoritm — bu asli nima?", ru: 'Что такое алгоритм на самом деле?' }, opts: [{ uz: "Tartibsiz, chalkash fikrlar to'plami", ru: 'Беспорядочный набор запутанных мыслей' }, { uz: "Aniq, ketma-ket qadamlar tartibi", ru: 'Порядок точных, последовательных шагов' }, { uz: "Faqat juda murakkab matematik formula", ru: 'Только очень сложная математическая формула' }, { uz: "Kompyuter mashinasiga berilgan nom", ru: 'Название компьютерной машины' }], correct: 1 },
+  { q: { uz: "Lavash tayyorlash tartibi — bu nimaga misol?", ru: 'Порядок приготовления лаваша — пример чего?' }, opts: [{ uz: "Sistema", ru: 'Система' }, { uz: "Komponent", ru: 'Компонент' }, { uz: "Algoritm", ru: 'Алгоритм' }, { uz: "Bog'lanish", ru: 'Связь' }], correct: 2 },
   { q: { uz: "Algoritmda qadamlar TARTIBI muhimmi?", ru: 'Важен ли ПОРЯДОК шагов в алгоритме?' }, opts: [{ uz: "Yo'q, qadamlar tartibining farqi yo'q", ru: 'Нет, порядок шагов не имеет значения' }, { uz: "Faqat kompyuterda ishlaganda muhim", ru: 'Важен только при работе на компьютере' }, { uz: "Ha — tartib buzilsa, natija ham buziladi", ru: 'Да — нарушится порядок, сломается и результат' }, { uz: "Faqat eng oxirgi bitta qadam muhim", ru: 'Важен только самый последний шаг' }], correct: 2 },
   { q: { uz: "«AGAR yomg'ir yog'sa — soyabon ol» — bu algoritmning qaysi qismi?", ru: '«ЕСЛИ идёт дождь — возьми зонт» — какая это часть алгоритма?' }, opts: [{ uz: "Ketma-ketlik", ru: 'Последовательность' }, { uz: "Sikl", ru: 'Цикл' }, { uz: "Komponent", ru: 'Компонент' }, { uz: "Shart", ru: 'Условие' }], correct: 3 },
   { q: { uz: "Bir amalni KO'P MARTA takrorlash uchun algoritmda nima ishlatiladi?", ru: 'Что используется в алгоритме, чтобы повторить действие МНОГО РАЗ?' }, opts: [{ uz: "Shart (agar...bo'lsa)", ru: 'Условие (если... то)' }, { uz: "Sikl (takrorlash)", ru: 'Цикл (повторение)' }, { uz: "Bog'lanish (aloqa)", ru: 'Связь (соединение)' }, { uz: "Komponent (qism)", ru: 'Компонент (часть)' }], correct: 1 },
@@ -3356,7 +3356,7 @@ export default function JsIntroLesson({ lang: langProp, onFinished }) {
         .kx-smoke span:nth-child(2) { animation-delay: 0.16s; }
         .kx-smoke span:nth-child(3) { animation-delay: 0.32s; }
         @keyframes kx-smokerise { 0% { opacity: 0; transform: translateY(6px) scale(0.6); } 30% { opacity: 0.9; } 100% { opacity: 0; transform: translateY(-26px) scale(1.25) rotate(12deg); } }
-        /* to'g'ri natija — likobga bosqichma-bosqich tushayotgan ingredientlar */
+        /* to'g'ri natija — peshtaxtaga bosqichma-bosqich qo'yilayotgan bo'laklar */
         .kx-fill { display: inline-flex; gap: 2px; font-size: clamp(24px,4.6vw,32px); line-height: 1; }
         .kx-drop { display: inline-block; animation: kx-dropin 0.4s cubic-bezier(.3,1.5,.5,1) both; }
         @keyframes kx-dropin { 0% { opacity: 0; transform: translateY(-16px) scale(0.5) rotate(-14deg); } 60% { opacity: 1; transform: translateY(2px) scale(1.15); } 100% { transform: translateY(0) scale(1) rotate(0); } }
@@ -3364,7 +3364,7 @@ export default function JsIntroLesson({ lang: langProp, onFinished }) {
         @keyframes kx-serve { 0% { transform: scale(0.4) rotate(-10deg); opacity: 0; } 60% { transform: scale(1.18) rotate(4deg); opacity: 1; } 100% { transform: scale(1) rotate(0); } }
         .kx-splat { display: inline-block; animation: kx-splatpop 0.45s cubic-bezier(.3,1.6,.5,1) both; }
         @keyframes kx-splatpop { 0% { transform: scale(0) rotate(-30deg); } 55% { transform: scale(1.3) rotate(12deg); } 80% { transform: scale(0.92) rotate(-6deg); } 100% { transform: scale(1) rotate(0); } }
-        /* peshtaxta — likob/natija shu oq sirtda o'qiladi */
+        /* peshtaxta — tayyorlanayotgan lavash shu oq sirtda o'qiladi */
         .kx-counter { display: flex; align-items: center; justify-content: center; min-height: 52px; width: 100%; max-width: 340px; padding: 12px 18px; border-radius: 16px; background: #fff; border: 1.5px solid rgba(255,79,40,0.14); box-shadow: inset 0 2px 6px rgba(58,53,48,0.06), 0 6px 16px -10px rgba(58,53,48,0.2); }
         .kx-plate { display: inline-flex; flex-direction: column; align-items: center; gap: 4px; font-size: clamp(26px,5vw,36px); line-height: 1; }
         .kx-cap { font-family: 'Manrope'; font-size: 12.5px; font-weight: 700; color: ${T.ink2}; text-align: center; }

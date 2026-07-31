@@ -1650,6 +1650,16 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   );
 };
 
+// 🌯 LOYIHAGA KO'PRIK (96-qonun: modul-ipi) — o'rganilgan tushuncha 8–12-darslardagi
+// lavash do'koni saytida qanday ishlashini bir qatorda ko'rsatadi. Ekranni bulg'amaydi:
+// faqat mashq BAJARILGANDAN keyin chiqadi (92-qonun: bir ekran — bir ish).
+const ProjectBridge = () => (
+  <div className="frame-soft fade-step">
+    <p className="small mono" style={{ margin: '0 0 6px', fontWeight: 700, color: T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>{tr({ uz: '🌯 Loyihaga ko\'prik', ru: '🌯 Мост к проекту' })}</p>
+    <p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Loyiha kunlarida shart do'kon saytida qaror qabul qiladi: <span className="mono">if (soni {'>'} 10)</span> — ko'p buyurtmaga yetkazib berish bepul bo'ladi.</>, ru: <>В проектные дни условие будет принимать решения на сайте: <span className="mono">if (soni {'>'} 10)</span> — при большом заказе доставка станет бесплатной.</> })}</p>
+  </div>
+);
+
 // ===== SCREEN 15 — YAKUNIY (if o'zi yozadi) =====
 const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const audio = useAudio([{ id: 's15', text: `Mana, oxirgi qadam — o'zingiz if yozasiz. Ball 90 dan katta bo'lsa tekshiradigan shart yozing. if, qavs ichida ball katta 90, va figurali qavs ochilsin. Masalan: if qavs ball katta 90 qavs figurali qavs.`, trigger: 'on_mount', waits_for: { type: 'typed_ok' } }]);
@@ -1687,7 +1697,7 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <span className="tagpill" style={{ opacity: hasBrace ? 1 : 0.4 }}>{hasBrace ? '✓' : '4'} {'{'}</span>
             </div>
             {passed
-              ? (<div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "✓ Zo'r! Bu to'g'ri shart — dasturingiz endi qaror qabul qila oladi!", ru: '✓ Отлично! Это верное условие — теперь ваша программа умеет принимать решения!' })}</p></div>)
+              ? (<><div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "✓ Zo'r! Bu to'g'ri shart — dasturingiz endi qaror qabul qila oladi!", ru: '✓ Отлично! Это верное условие — теперь ваша программа умеет принимать решения!' })}</p></div><ProjectBridge /></>)
               : (<p className="body" style={{ margin: 0, color: T.ink3, fontSize: 13 }}>{tr({ uz: <>Taqqoslash operatori: {'>'}, {'<'}, {'>='}, yoki ===. Oxirida {'{'} ochishni unutmang.</>, ru: <>Оператор сравнения: {'>'}, {'<'}, {'>='} или ===. Не забудьте открыть {'{'} в конце.</> })}</p>)}
           </Col>
           <Col>

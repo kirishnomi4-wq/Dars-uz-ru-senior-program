@@ -348,6 +348,345 @@ Shuning uchun ular darsning o'z qonuniga 100% bo'ysunadi va tanish, real mahsulo
 ❌ «Tugma esa shoshilmaydi: u sabab ko'rsatilgandan keyin keladi.» — tugma «shoshilmaydi/
    keladi» — jonlantirish-metafora 13 yoshli uchun yashirin ma'no; gap ikki marta o'qiladi.
 
+## 29. NAMUNA-RO'YXAT O'QUVCHI AMALDA QURADIGAN NARSADAN OLINADI (F-0730-05)
+
+✅ Sayt-turi tanlovi: «📚 Kitob do'koni · 👕 Kiyim do'koni · 🍕 Ovqat buyurtma sayti ·
+   🛍️ Boshqa online do'kon» *(o'quvchilar 1-modulda aynan shunaqa saytlar quradi —
+   ro'yxatda o'zini darrov taniydi)*
+❌ «Blog — maqola va hikoyalar · Sinf sayti · O'yin sayti» — kattalar tasavvuridagi
+   ro'yxat; o'quvchi o'z loyihasini topolmay «Boshqa»ni bosadi va dars mavhumlashadi.
+
+✅ Bitta misol-ip butun dars bo'ylab: kitob do'koni (hook → ilgak → muammo → yechim →
+   demo namunasi — hammasi shu do'kon haqida). *(91a-qonun naqshi)*
+❌ Har ekranda boshqa mahsulot — o'quvchi misolni emas, sakrashni eslab qoladi.
+
+## 30. «O'ZIM» TAKRORI HIMOYA-OHANG BERADI (F-0730-09)
+
+✅ «Saytning bo'limlarini o'zim o'ylab tuzdim: sarlavha, matn va rasm joylari» ·
+   «Rang va joylashuvni tanlab, saytga shu ko'rinishni berdim» ·
+   «Saytni internetga chiqardim — endi uni hamma ko'rib, ishlata oladi»
+   *(mehnat bir marta «o'zim» bilan aytiladi, qolgani harakat-fe'l bilan)*
+❌ «bo'limlarni o'zim qo'ydim» + «o'lcham va joylashuvni o'zim tanladim» + «o'zim qildim»
+   — uch gapda uch «o'zim»: go'yo kimdir «buni boshqa odam yaratdimi?» deb shubhalanayapti,
+   o'quvchi esa oqlanayotgandek eshitiladi (foydalanuvchi dalili).
+❌ «endi uni manzilidan hamma ochadi» — «manzilidan» texnik-quruq.
+   → ✅ «endi uni hamma ko'rib, ishlata oladi» (natija odam tilida).
+
+## 31. BO'LAK NOMI — O'ZI NIMA EKANINI AYTSIN, ATAMA BO'LMASIN (F-0730-13)
+
+✅ Nutq bo'laklari: «**Birinchi savol** · Muammo · Yechim · Jonli demo · Qanday qildim ·
+   Keyingi qadam» *(har nom o'quvchiga nima yozishini aytadi; izoh kerak emas)*
+❌ «**Ilgak** · Muammo · Yechim…» — «ilgak» (hook) o'smir lug'atida yo'q, izoh talab qiladi
+   va bo'lakka nima yozishni aytmaydi. Markaziy tushuncha bo'lsa — qavs-gloss yetmaydi,
+   o'zbekcha ibora atamaning O'RNINI oladi (20-qonun naqshi).
+❌ «Qiziqtiramiz» / «Diqqatni tortamiz» — maqsadni aytadi, vazifani emas: o'quvchi
+   «qanday qiziqtiraman?» deb qoladi; qolgan ot-nomlar orasida fe'l yolg'iz qoladi.
+
+## 32. YOZUV-MAYDONI IPUCHASI QISQA BO'LSIN, TAYYOR JAVOB TURMASIN (F-0730-11)
+
+✅ `placeholder="Savolingizni yozing…"` · `placeholder="Kim uchun va nimasi qiyin edi?"`
+   *(maydon bo'sh va tinch; namuna mentor gapida BIR MARTA aytiladi)*
+❌ `placeholder="masalan: Kerakli kitobni qidirib, do'konma-do'kon yurganmisiz?"` +
+   ustiga bosiladigan 2-3 ta tayyor namuna-chip — ekran to'lib ketadi, o'quvchi o'ylamay
+   tayyorini bosadi (foydalanuvchi: «defaultlar kerakmas, oddiy tushunarli bo'lsin»).
+
+## 33. QORA FONDAGI YIG'MA-KARTA DARS O'RTASIDA YIG'ILGAN HOLATDA TURADI (F-0730-12)
+
+✅ Dars o'rtasida — bir qatorlik holat-chizig'i: bo'lak nomlari + ✓ + «3/6».
+   To'liq matn faqat YAKUNIY ekranda ochiladi.
+❌ Har ekranda 6 qatorlik qora karta (har bo'lak matni bilan) — ekran balandligi ikki
+   barobar oshadi, o'quvchi «o'qigim kelmaydi» deydi (foydalanuvchi dalili).
+
+## 34. SCORED VARIANT DARSNING O'Z TA'LIMIGA ZID BO'LMASIN (F-0731-01)
+
+✅ Arena savoli: «Novvoyxona saytiga kirgan QO'SHNI birinchi nimaga qaraydi?» → to'g'ri variant
+   **«Issiq non qachon chiqishiga»** *(dars ekranida aynan shu o'rgatilgan: qo'shni NON VAQTIGA qaraydi)*
+❌ O'sha savolning to'g'ri varianti «Narx va buyurtma tugmasiga» — dars ekranida boshqa narsa
+   o'rgatilgan edi: ball beriladigan savol darsning O'Z ta'limiga zid javobni to'g'ri deb belgilagan.
+   Ball-kalitni EMAS, VARIANT MATNINI dars mazmuniga moslash kerak (indeks tegilmaydi).
+
+## 35. O'YIN-JARGONI O'ZBEKCHA HISOB-IBORASI BILAN (F-0731-02)
+
+✅ «🔥 ketma-ket 3 ta» · «eng uzun ketma-ketlik 🔥 4 ta» *(arena ball-fidbegi)*
+❌ «🔥 x3 streak» · «eng uzun streak 🔥x4» — «streak» o'smir lug'atida yo'q, gloss ham qilinmagan
+   (lug'atdagi «zanjir→hisob» saboqining o'yin-arena varianti).
+✅ «Adashdingiz — 0 ball. Keyingisida olasiz.» · «Vaqt tugadi — 0 ball. Keyingi savolda ulguring.»
+❌ «…Keyingisida olasiz! 💪» · «Tezroq bo'ling! ⏱» — 6-bo'lim qonuni arenaning HAR ekranida amal qiladi.
+
+## 36. DEMO-SAHNADAGI RAQAM HAM MANBASIZ BO'LMAYDI (F-0731-03)
+
+✅ «👥 Qo'shnilar har kuni kirib, non vaqtini ko'rib turadi» ↔ «👥 Kirgan odam o'zi izlaganini
+   topmadi va chiqib ketdi» *(ikki holat farqi HARAKAT bilan ko'rsatiladi)*
+❌ «👥 Kiruvchilar: kuniga 120 kishi» ↔ «👥 Kiruvchilar: 0» — o'ylab topilgan statistika;
+   o'quvchi uni fakt deb yodlab oladi. Sahna-kontrasti raqamsiz ham to'liq ishlaydi.
+
+## 37. YIG'ILADIGAN GAP — BO'LAKLARI QO'SHILGANDA GRAMMATIK TUGAL BO'LSIN (F-0730-19)
+
+O'quvchi tanlagan bo'laklardan gap YIG'ILSA, har bo'lak yakka holda emas, QO'SHILGAN
+holatda o'qib tekshiriladi — aks holda dars o'quvchiga buzuq gap ko'rsatadi.
+
+✅ Qolip: «{KIM} {nimasi qiyin edi}. Mening saytim {nima osonlashtiradi}.»
+   → «Sinfdoshlarim kerakli kitobni qidirib, do'konma-do'kon yurardi.
+      Mening saytim hamma kitobni bir joyda ko'rsatadi.»
+   *(bo'laklar EGAga bo'ysunadigan kesim shaklida yoziladi: «yurardi», «bilmasdi»,
+     «topolmasdi» — shunda istalgan KIM bilan qo'shilganda gap tugal chiqadi)*
+
+❌ Qolip: «{KIM} uchun {nimasi qiyin edi} — mening saytim {…}»
+   → «sinfdoshlarim uchun kerakli kitobni qidirib, do'konma-do'kon yurardi» — EGA yo'qoladi,
+     gap kim haqidaligi bilinmaydi (foydalanuvchi dalili: «bu … uchun degani nima degani?»).
+❌ Bo'lak-qiymat ot-birikma bo'lsa ham sinadi: «narx va tarkibi noaniq qolardi» —
+   yonidagi KIM bilan bog'lanmaydi + «tarkibi» 13 yoshli lug'atida yo'q
+   → ✅ «taomning narxini oldindan bilmasdi».
+
+🔧 Tekshiruv-usuli: har KIM × har QIYINCHILIK juftligini qolipga qo'yib ovoz chiqarib o'qing
+   (2×2 = 4 juftlik har sayt-turi uchun). Bittasi ham g'aliz bo'lsa — bo'lak qayta yoziladi.
+
+## 38. MENTOR GAPIDA ORTIQCHA VA'DA-QUYRUQ BO'LMAYDI (F-0731-07)
+
+✅ «Pastdagi uch javobdan bittasini tanlang.» *(buyruq qisqa tugaydi — o'quvchi darhol ishga kirishadi)*
+❌ «Pastdagi uch javobdan bittasini belgilang: to'g'risini birozdan keyin birga bilib olamiz.» —
+   gapning ikkinchi yarmi harakatga hech narsa qo'shmaydi, faqat cho'zadi. Va'da-payoff boshqa
+   joyda baribir bor (javob belgilangach chiqadigan tasdiq-gap) — mentor gapida TAKROR kerak emas.
+
+## 39. YANGI ATAMA — AVVAL ODDIY GAP, KEYIN NOM. SARLAVHADA YANGI ATAMA YO'Q (F-0731-08)
+
+✅ Sarlavha: «Dars oxirida **kim uchun** sayt qilishni bilib olasiz» + mentor: «…uchala javob
+   bitta yozuvga yig'iladi — shu yozuv auditoriya-karta deyiladi» *(ma'no birinchi, nom keyin;
+   shundan so'ng atama darsda erkin ishlatiladi)*
+❌ Sarlavha: «Dars oxirida sizda auditoriya-kartangiz bo'ladi» — o'quvchi hali bilmagan atama
+   birinchi jumlada, tushuntirishsiz uriladi («karta» o'smir uchun bank-karta/xarita).
+🔧 Qolip: [oddiy gap — nima bo'lishini aytadi] → «shu … X deyiladi» → keyin X ishlatilaveradi.
+
+## 40. O'QUVCHIDA HALI YO'Q NARSA UNIKI QILIB AYTILMAYDI (F-0731-09)
+
+✅ «Dars oxirida **kim uchun sayt qilishni** bilib olasiz» *(o'quvchi BILIMga ega bo'ladi — bu rost)*
+❌ «Dars oxirida **saytingiz** kim uchun ekanini bilib olasiz» — o'quvchida hali sayt YO'Q; egalik
+   qo'shimchasi («-ingiz») unga tegishli bo'lmagan narsani tegishli qilib ko'rsatadi va
+   gap yolg'on jaranglaydi.
+🔧 Tekshiruv: har «-ingiz/-ngiz» qo'shimchasidan oldin so'rang — «bu narsa o'quvchida SHU
+   DAQIQADA bormi?» Yo'q bo'lsa: (a) egalikni olib tashlang, yoki (b) fe'lni bilim/ko'nikma
+   fe'liga aylantiring («qilishni bilib olasiz», «yozishni o'rganasiz»).
+   Istisno: o'quvchi shu darsda O'ZI yaratadigan narsa — yaratilgandan KEYIN «kartangiz» to'g'ri.
+📌 Yozib olasiz ↔ bilib olasiz: dars natijasi ARTEFAKT bo'lsa «yozib olasiz», BILIM bo'lsa
+   «bilib olasiz» — maqsad-ekranda ikkinchisi kuchliroq (artefakt vosita, bilim — natija).
+📌 Yo'l-xaritada ham shunday: ✅ «Auditoriya nima ekanini **bilamiz**» ·
+   ❌ «…**ochamiz**» — «ochish» bu yerda hech narsani anglatmaydi (nimani ochamiz? sahifanimi?);
+   qadam nomi o'quvchi ERISHADIGAN holatni aytsin.
+
+## 41. ATAMA TANISHTIRILAYOTGAN MENTOR GAPI — ENG QISQA HOLATDA (F-0731-10)
+
+✅ «Uchta savolga javob topasiz: KIM? MUAMMO? YECHIM? Uchalasi bitta yozuvga yig'iladi —
+   shu yozuv auditoriya-karta deyiladi. Quyida namunasi o'z-o'zidan yozilib chiqadi.» *(3 gap)*
+❌ «Buning uchun uchta savolga javob topasiz: sayt KIM uchun? Uning qanday MUAMMOSI bor?
+   Sayt qanday YECHIM beradi? Uchala javob bitta yozuvga yig'iladi — shu yozuv auditoriya-karta
+   deyiladi. Quyida lavash do'koni uchun shunday yozuv o'z-o'zidan to'lib chiqadi — kuzating.»
+   — savollar to'liq jumlaga yoyilgan, «lavash do'koni uchun shunday yozuv» esa ekranda
+   ko'rinib turgan narsani takrorlaydi. Yangi atama kiritilayotgan gap AYNIQSA qisqa bo'lsin:
+   uzun gap atamani ko'mib yuboradi.
+🔧 Qolip: [savollar — kalit so'z bilan, jumlasiz] → [atama-ta'rif bitta gapda] → [ekranga bir
+   ishorali chorlov]. Ekranda ko'rinib turgan narsa matnda TA'RIFLANMAYDI.
+
+## 42. KEYS-VOQEA HIKOYA TILIDA AYTILADI, HISOBOT TILIDA EMAS (F-0731-11)
+
+Keys-slaydlar (91b: freymlangan real voqea) — bu VOQEA, ya'ni hikoya. Har slayd o'quvchi
+ovoz chiqarib aytsa tabiiy jaranglaydigan gap bo'lsin.
+
+✅ «Avval sayt faqat Garvard universiteti talabalari uchun **ochiq edi**. Boshqalar ro'yxatdan
+   o'ta olmasdi.» *(ikki qisqa gap, ko'z oldiga keladi)*
+❌ «Sayt faqat Garvard universiteti talabalari uchun **ishlagan**: boshqa hech kim ro'yxatdan
+   o'tolmasdi.» — «ishlagan» texnik fe'l (dvigatel/dastur ishlaydi), odam uchun «ochiq edi».
+✅ «Keyin boshqa universitetlar ham qo'shildi. **Saytdan foydalanadiganlar ko'paydi**.»
+❌ «Keyin unga boshqa universitetlar qo'shildi — **auditoriya asta kengaydi**.» — «auditoriya
+   kengaydi» kitob-iborasi; hodisa odam-tilida aytilsa yodda qoladi.
+✅ «**Oradan ikki yil o'tib**, sayt butun dunyoga ochildi. Bugun uni Facebook nomi bilan bilamiz.»
+❌ «2 yildan **keyingina** sayt butun dunyoga ochildi. Bugun u — Facebook.» — «keyingina»
+   ortiqcha ta'kid; raqam so'z bilan yozilsa hikoyaga qo'shilib ketadi.
+✅ «Bir universitet talabasi **oddiy** sayt ochdi» ❌ «…**kichik** sayt ochdi» *(«kichik» hajmni
+   o'lchaydi, «oddiy» — murakkab emasligini; o'smir ikkinchisini tez tasavvur qiladi)*
+
+## 43. BASHORAT VARIANTLARI BIR O'LCHOVDA, ZINAPOYA TARTIBIDA (F-0731-12)
+
+Mikro-bashorat (33/56-qonun) variantlari BITTA o'lchovning uch darajasi bo'lsin va o'sish
+tartibida tursin — shunda o'quvchi javobni ko'rgach ketma-ketlikni ham eslab qoladi.
+
+✅ «Bitta universitet talabalari uchun» → «Amerikadagi barcha talabalar uchun» → «Butun dunyo
+   uchun» *(bitta → mamlakat → dunyo: zinapoya ko'rinib turadi, uchalasi bir xil shaklda)*
+❌ «Butun dunyo uchun» · «AQShdagi barcha talabalar uchun» · «Bitta universitet talabalari uchun»
+   — tartib teskari (kattadan kichikka), zinapoya sezilmaydi; «AQSh» qisqartmasi o'quvchi
+   nutqida kam — «Amerika» tabiiyroq.
+🔧 Eslatma: bashorat BALLANMAYDI, shuning uchun to'g'ri variant birinchi turishi ham mumkin —
+   muhimi zinapoya. (Ball beriladigan testda tartib 6-bo'lim qoidalari bo'yicha aralashtiriladi.)
+
+## 44. KEYS XULOSASI — ICHKI ATAMASIZ, TO'LIQ NOM BILAN (F-0731-13)
+
+✅ «Facebook ham avval juda aniq bir guruh uchun yaratilgan. **Sizning auditoriya kartangizdagi
+   «KIM»** ham shunday aniq bo'lsin.» *(voqea qahramoni nomi bilan atalgan; artefakt to'liq nomi
+   bilan eslatilgan — o'quvchi qaysi yozuv haqida ketayotganini adashtirmaydi)*
+❌ «Dunyodagi eng katta ijtimoiy tarmoq ham kichkina, aniq auditoriyadan boshlangan —
+   **kartangizdagi KIM** ham shunday aniq bo'lsin.» — «kartangizdagi KIM» ichki qisqartma
+   (jamoa-tili); slayd oxirida nom allaqachon ochilgan, uni ishlatmaslik esa aloqani susaytiradi.
+
+## 45. FE'L EKRANDA NIMA SODIR BO'LAYOTGANINI AYTSIN (F-0731-14)
+
+Ekran sarlavhasidagi fe'l — o'quvchi shu ekranda BAJARADIGAN yoki KO'RADIGAN harakat.
+Umumiy fe'l («qaraydi») mazmunga tegmasa, aniq fe'lga almashadi.
+
+✅ «Bitta saytga kirgan hamma bir xil narsani **qidiradimi**?» *(ekran mazmuni — har kim o'z
+   ehtiyojini QIDIRADI; fe'l mavzuni ochadi)*
+❌ «Bitta saytga kirgan har kim bir xil narsaga **qaraydimi**?» — «qarash» passiv va sun'iy;
+   o'quvchi ekranda «qarash»ni emas, MAQSADni ko'radi.
+📌 Xuddi shu farq xulosada ham: ✅ «Bir saytga turli odamlar kirishi mumkin. Ammo auditoriya
+   kartasida **eng muhim guruh** tanlanadi.» ❌ «Bitta sayt — **uch xil qarash**. Shuning uchun
+   kartada asosiy auditoriya tanlanadi.» («uch xil qarash» mavhum, o'quvchi buni ko'rmadi).
+
+## 46. MENTOR CHORLOVI — «O'RNIDA KO'RING», «KO'ZI BILAN QARAYSIZ» EMAS (F-0731-15)
+
+✅ «Lavash do'koni saytiga uch xil odam kiradi. Har biri boshqa narsani qidiradi. Ularni
+   **birma-bir bosing** va saytni **ularning o'rnida** ko'ring.» *(uch qisqa gap; «o'rnida
+   ko'rish» — o'smir kundalik nutqida bor ibora)*
+❌ «…Uchtasini birma-bir bosing — saytga **o'sha odamning ko'zi bilan qaraysiz**.» — kitobiy
+   ko'chma ma'no; bola bunday gapirmaydi va aynan nima qilishini ham anglatmaydi.
+
+## 47. PERSONA NOMI — ROL BIRINCHI, KASB QAVSDA (F-0731-16)
+
+Auditoriya-personaji nomlanganda oldinga MAHSULOTGA MUNOSABATI (rol) chiqadi, kasb esa
+qavsda aniqlashtiruvchi bo'lib qoladi — chunki auditoriyani rol ajratadi, kasb emas.
+
+✅ «🧑‍💼 **Doimiy xaridor** (ofis xodimi)» · «🎒 O'quvchi (xaridor)» · «🧑‍🍳 Sotuvchi (lavash ustasi)»
+❌ «🧑‍💻 **Ofis xodimi** (doimiy xaridor)» — kasb birinchi turganda o'quvchi «bu men emas»
+   deb chetlaydi; rol birinchi bo'lsa, xuddi shu odamni boshqa kasbda ham tanib oladi.
+📌 Ehtiyoj-matni ham roldan kelib chiqsin: ✅ «Har kuni bir xil buyurtmani **bir bosishda**
+   berish» ❌ «Har kuni bir xil tushlikni olish va har safar telefon qilib o'tirmaslik» —
+   birinchisi qisqa va ekrandagi imkoniyat («oxirgi buyurtmani bir bosishda takrorlash»)
+   bilan bevosita bog'lanadi.
+🔧 Bir persona — bir qiyofa: emoji dars bo'ylab BIR XIL bo'lsin (hook, ekran, RECAPS, karta-o'yin).
+
+## 48. KODING SARLAVHASI NATIJANI AYTADI, JARAYONNI EMAS (F-0731-18)
+
+✅ «Endi kartangizni **sahifada ko'rsatamiz**.» *(o'quvchi nima bo'lishini ko'radi; «koding»
+   ekrani og'ir tuyulmaydi)*
+❌ «Kartangizni sahifada ko'rsatadigan **kodni tayyorlaymiz**.» — «kod tayyorlash» texnik va
+   noaniq: o'quvchi kodni O'ZI yozadimi yoki tayyorini ochadimi — sarlavhadan bilinmaydi.
+📌 Mentor gapida ham buyruq va tushuntirish AJRATILADI: ✅ «Pastdagi «🛠 Kompilyatorni ochish»
+   tugmasini bosing. Kodni yozadigan va natijani darhol ko'rsatadigan oyna ochiladi.»
+   ❌ «…«Kompilyatorni ochish»ni bosing — kod yozib, natijasini darhol ko'rsatadigan oyna
+   ochiladi.» (bitta uzun gapda ikkala ish; tire ortidagi izoh buyruqni bosib qo'yadi).
+📌 Atama-gigiena: «kompilyator» atamasi ishlatilgan HAR ekranda yonida vazifa-ta'rifi tursin
+   («kodni yozadigan va natijani darhol ko'rsatadigan oyna») — o'quvchi atamani birinchi
+   marta shu darsda uchratishi mumkin.
+
+## 49. IZOH-QATOR QIYMAT BERSIN — HOLATNI TAKRORLAMASIN (F-0731-19)
+
+Kod/maket ichidagi xira izoh-qator o'quvchiga KEYINGI HARAKATNI aytsin.
+
+✅ «**← Bu joylarni siz to'ldirasiz**» *(strelka aynan qaysi qatorlarga tegishli ekanini
+   ko'rsatadi; o'quvchi vazifani darhol tushunadi)*
+❌ «— uchtasi ham vaqtincha» — yuqorida allaqachon ko'rinib turgan holatni takrorlaydi,
+   o'quvchiga hech qanday yangi ma'lumot bermaydi.
+
+## 50. SLOT-NOMI EKRANDA KO'RINMASA — UNING O'RNIGA SAVOL YOZILADI (F-0731-20)
+
+KIM · MUAMMO · YECHIM kabi slot-nomlari faqat O'SHA ekranda yorliq bo'lib TURGANDA
+ishlatiladi. Ekranda yorliq yo'q bo'lsa, o'quvchi uchun bu mavhum katak nomi — u
+slotning SAVOLI bilan almashtiriladi.
+
+✅ «**Saytingiz kim uchun** ekanini yoddan ayta olasizmi?» *(sarlavha — mustahkamlash ekrani,
+   ekranda hech qanday KIM yorlig'i yo'q)*
+❌ «**Kartangizdagi KIMni** yoddan tushuntira olasizmi?» — «kartangizdagi KIM» ikki qavat ichki
+   atama: bola «nimani tushuntiraman?» deb qoladi (foydalanuvchi dalili).
+✅ Ipucha: «…[KIM] so'zini o'chirib, **saytingiz kim uchun ekanini** yozing» ·
+   «…[MUAMMO] so'zini o'chirib, **ularning qanday qiyinchiligi borligini** yozing» ·
+   «…[YECHIM] so'zini o'chirib, **saytingiz buni qanday hal qilishini** yozing»
+❌ «…kartangizdagi KIM javobini yozing» — o'quvchi to'liq-ekran kompilyatorda turibdi,
+   kartasi ko'rinmaydi; «KIM javobi» esa nima yozishni aytmaydi.
+🔧 Almashtirish jadvali: KIM → «kim uchun» · MUAMMO → «qanday qiyinchilik» ·
+   YECHIM → «sayt buni qanday hal qiladi». Slot yorlig'i ko'rinib turgan joyda
+   (karta-yig'ish, ustaxona maydonlari) qisqa nom O'Z O'RNIDA qoladi.
+
+## 51. YAKUN-FE'LI DARSNING ASL KO'NIKMASINI AYTSIN (F-0731-21)
+
+Yakun ekrani «bugun nimani o'rgandik?» degan savolga javob beradi — fe'l shu yerda
+KO'NIKMANI nomlaydi, qo'l-harakatini emas.
+
+✅ «Bugun auditoriya-karta **tuzishni** o'rgandik.» / yakka rejimda «Endi siz auditoriya-karta
+   **tuza olasiz**.» *(dars mazmuni — o'ylash va tanlash; karta shunchaki natija-qog'oz)*
+❌ «Bugun birgalikda auditoriya-kartani **yozishni** o'rgandik.» — «yozish» qo'l-harakati;
+   dars esa fikrlashni o'rgatdi, «yozdik» deyish ko'nikmani kichraytiradi.
+📌 Tugma-yorlig'i ham natijaga qarab tanlanadi: ✅ «Amaliy topshiriqni **bajarish** →»
+   ❌ «…**boshlash** →» («boshlash» ish tugashini va'da qilmaydi).
+
+## 52. YAKUNIY XULOSA-QATORLARI QISQA VA TUGAL GAP BO'LSIN (F-0731-22)
+
+Yakun ro'yxatidagi har qator — mustaqil, o'quvchi ovoz chiqarib ayta oladigan tugal fikr.
+Ikki nuqta, tire-ichida-tire va zanjir-izohlar bu yerda ISHLAMAYDI.
+
+✅ «Eng katta saytlar ham kichik va aniq auditoriyadan boshlagan.» *(bitta tugal fikr)*
+❌ «Kichik va aniq auditoriya — kuchli boshlanish: eng katta sayt ham shundan boshlangan»
+   — ikki qavat qurilma (tire + ikki nuqta), o'qishga og'ir, birinchi yarmi shior.
+✅ «"Hamma uchun" qilingan sayt odatda hech kimga mos kelmaydi.»
+❌ «"Hamma uchun" qilingan sayt — aslida hech kim uchun» — so'z-o'yin darsda ta'sirli, lekin
+   yakun-ro'yxatida FAKT kerak: nima bo'lishini aniq aytadigan gap.
+📌 Ta'rif dars bo'ylab BIR XIL yozilsin (93-qonun): yakun-ro'yxati va flashcard javobidagi
+   «Auditoriya — saytdan foyda oladigan aniq odamlar guruhi» so'zma-so'z mos tursin.
+
+## 53. ANALOGIYA — O'QUVCHI HAR KUNI KO'RADIGAN YUZADAN (F-0731-32)
+
+Analogiyaning maqsadi — o'quvchi «**ha, buni har kuni ko'raman**» deyishi. Agar u avval
+«bu narsa o'zi qanday bo'ladi?» deb so'rasa — analogiya ishlamaydi, aksincha yangi
+noma'lumlik qo'shadi. (95-qonunning matn-darajasidagi ko'rinishi.)
+
+✅ «**Telegram postida** qaysi yozuv birinchi ko'zga tashlanadi?» *(maktab kanali posti —
+   o'smir kuniga o'nlab marta ko'radi; e'lon matni ham o'zgarmaydi, faqat ramka)*
+❌ «**Gazetada** nima darrov ko'zga tashlanadi?» — Toshkent o'smiri gazetani qo'lida
+   ushlamagan bo'lishi mumkin (foydalanuvchi dalili: «gazeta qanday bo'lardi o'zi?» degan
+   savol tug'iladi).
+📌 Tekshiruv-savoli: **«o'quvchi buni oxirgi bir haftada ko'rganmi?»** Javob «yo'q» —
+   analogiya almashadi.
+📌 Dars-ipi bonusi (91-qonun): analogiyani tanlashda darsning BOSHQA ekranlariga qara —
+   Htmllesson1'da 9-ekran allaqachon Telegram olamida edi, ya'ni gazeta yagona begona
+   olam bo'lib turgan; almashtirish ipni ham butun qildi.
+
+## 54. ANALOGIYA MEXANIKASI HAQIQATGA MOS BO'LSIN (F-0731-33)
+
+Tanish yuza yetarli emas — analogiya **qanday ishlashi** ham haqiqatga mos bo'lsin,
+aks holda o'quvchi ichidan «axir unday emas-ku» deydi va ishonch susayadi.
+
+✅ Telegram uchun: «avval **qalin, birinchi** qatorni ko'rasiz» → ko'prik: «HTML sahifasida
+   esa uni **kattaligi** ko'rsatadi: h1 eng katta…» *(ikki olam farqi OCHIQ aytiladi)*
+❌ Telegram uchun: «avval **eng katta** yozuvni ko'rasiz» — Telegram postida shrift o'lchami
+   YO'Q; muhim gap qalin va birinchi turadi. Tanish yuza, lekin yolg'on mexanika.
+🔧 Qolip: [tanish yuzada haqiqatan qanday] → **«… esa …»** → [texnikada qanday]. Ikki
+   olam bir xil deb ko'rsatilmaydi, ko'prik bilan ulanadi.
+
+## 55. ATAMA TEGNING ASL MA'NOSI BILAN ATALADI, SUKUT-KO'RINISHI BILAN EMAS (F-0731-35)
+
+Teg/tushuncha nomlanayotganda uning **ishi** aytiladi, brauzer sukut bo'yicha qanday
+chizishi emas — chunki ko'rinish o'zgarishi mumkin, ma'no esa o'zgarmaydi.
+
+✅ `<ul>` — «**tartiblanmagan ro'yxat**» (unordered list) *(ma'nosi: bandlar tartibi
+   muhim emas — shu sabab u shunday nomlangan)*
+❌ `<ul>` — «**nuqtali ro'yxat**» — nuqta bu faqat sukut-belgisi; CSS bilan u kvadrat,
+   uchburchak yoki rasm bo'lishi mumkin. O'quvchi tegni belgi bilan bog'lab yodlab oladi,
+   keyin belgi o'zgarganda «bu boshqa teg ekan» deb o'ylaydi (foydalanuvchi dalili).
+📌 RU: «маркированный список» → «**неупорядоченный список**».
+🔧 Farq: EKRANDA nima chiqishini tasvirlash mumkin («uchta band ustma-ust, oldida belgi
+   bilan») — bu ta'rif emas, natija tavsifi. Ta'rif esa doim ma'nodan olinadi.
+
+## 56. SARLAVHA SAVOLNI BERADI, SAHNA-SHARTINI EMAS (F-0731-36)
+
+Ekran sarlavhasi — o'quvchi birinchi o'qiydigan qator. U yerda **muammo yoki savol** turishi kerak;
+voqeaning sharti («bu qayerda bo'lyapti», «ikkalasi ham falon uchun») mentor matnida qoladi.
+
+✅ «**Qaysi sayt ko'proq mijoz olib keladi?**» *(darhol savol — o'quvchi o'ylay boshlaydi)*
+❌ «**Ikkala sayt ham lavash do'koni uchun.** Qaysi biri ko'proq buyurtma keltiradi?» — birinchi
+   jumla sahna-sharti, o'quvchiga qiziq emas va savolni ikkinchi o'ringa suradi (foydalanuvchi
+   dalili: «bu o'quvchiga muhim emas, asl savol — qaysi sayt ko'proq mijoz keltiradi»).
+🔧 Tekshiruv: sarlavhadan birinchi jumlani o'chirib ko'ring. Ma'no yo'qolmasa — u ortiqcha
+   bo'lgan, mentor gapiga ko'chiriladi.
+📌 Yaqin qoidalar: sarlavhada YANGI ATAMA bo'lmaydi (39) · sarlavha fe'li ekranda sodir
+   bo'ladigan ishni aytadi (45).
+
 ---
 
-*Korpus F-ID bilan o'sadi. Oxirgi yangilanish: 2026-07-30 (F-0730-04 — PmLesson2 tugma-jonlantirish: 28-bo'lim).*
+*Korpus F-ID bilan o'sadi. Oxirgi yangilanish: 2026-07-31 (F-0731-01…03 — PmLesson1 darslik-sayqal:
+scored-variant dars ta'limiga zidligi, arena jargoni, demo-sahna raqami: 34–36-bo'lim).*

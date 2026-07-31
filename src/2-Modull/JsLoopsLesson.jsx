@@ -1735,6 +1735,16 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   );
 };
 
+// 🌯 LOYIHAGA KO'PRIK (96-qonun: modul-ipi) — o'rganilgan tushuncha 8–12-darslardagi
+// lavash do'koni saytida qanday ishlashini bir qatorda ko'rsatadi. Ekranni bulg'amaydi:
+// faqat mashq BAJARILGANDAN keyin chiqadi (92-qonun: bir ekran — bir ish).
+const ProjectBridge = () => (
+  <div className="frame-soft fade-step">
+    <p className="small mono" style={{ margin: '0 0 6px', fontWeight: 700, color: T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>{tr({ uz: '🌯 Loyihaga ko\'prik', ru: '🌯 Мост к проекту' })}</p>
+    <p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Loyiha kunlarida menyuni sikl chiqaradi: 12 ta lavashni bittalab yozmaysiz — <span className="mono">for</span> ularni o'zi ro'yxatga tizadi.</>, ru: <>В проектные дни меню выводит цикл: 12 лавашей вы не пишете по одному — <span className="mono">for</span> сам выстроит их в список.</> })}</p>
+  </div>
+);
+
 // ===== SCREEN 15 — YAKUNIY (for siklni o'zi yozadi) =====
 const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const _gate = useContext(LiveGateCtx) || {};
@@ -1777,7 +1787,7 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <span className="tagpill" style={{ opacity: hasBrace ? 1 : 0.4 }}>{hasBrace ? '✓' : '5'} {'{'}</span>
             </div>
             {passed
-              ? (<div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>✓ {tr({ uz: "Zo'r! Bu to'g'ri for sikli — endi kompyuter takrorlashni o'zi bajaradi!", ru: 'Класс! Это правильный цикл for — теперь компьютер повторяет сам!' })}</p></div>)
+              ? (<><div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>✓ {tr({ uz: "Zo'r! Bu to'g'ri for sikli — endi kompyuter takrorlashni o'zi bajaradi!", ru: 'Класс! Это правильный цикл for — теперь компьютер повторяет сам!' })}</p></div><ProjectBridge /></>)
               : (<p className="body" style={{ margin: 0, color: T.ink3, fontSize: 13 }}>{tr({ uz: <>3 qism: boshlanish, shart (&lt; yoki &lt;=), qadam (i++). Oxirida {'{'} ni unutmang.</>, ru: <>3 части: старт, условие (&lt; или &lt;=), шаг (i++). Не забудьте {'{'} в конце.</> })}</p>)}
           </Col>
           <Col>

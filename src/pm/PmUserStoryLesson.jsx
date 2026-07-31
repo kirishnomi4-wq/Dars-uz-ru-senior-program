@@ -2978,7 +2978,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
             </span>
             <span className="hw-big-shine" aria-hidden="true" />
             <span className="hw-big-t">Uyga vazifa</span>
-            <span className="hw-big-s">Amaliy topshiriqni boshlash →</span>
+            <span className="hw-big-s">Amaliy topshiriqni bajarish →</span>
           </button>
         </div>
         {hwNote && <p className="hw-cta-note fade-step" style={{ textAlign: 'center' }}>Topshiriq LMS kompilyatorida ochiladi — {hwTarget || 'tanlagan foydalanuvchingiz'} uchun 2 ta to'liq hikoya yozasiz.</p>}

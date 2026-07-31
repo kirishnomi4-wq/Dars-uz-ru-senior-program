@@ -3,26 +3,25 @@ import React, { useState, useEffect, useRef, useCallback, createContext, useCont
 const MENTOR_IMG = 'https://go.coddycamp.uz/uploads/media_library/c7b711619071c92bef604c7ad68380dd.png';
 
 // ============================================================
-// PM 5-DARS — DEKOMPOZITSIYA (Decomposition / MVP) — PLATFORM STANDARD v16
-// G'oya: katta mahsulotni bo'laklarga bo'lish — feature list → MVP → backlog.
-// Markaziy qoida: avval eng kichik ISHLAYDIGAN versiya (MVP), keyin bosqichma-bosqich o'stir.
-// Metafora: SKEYTBORD → SAMOKAT → VELOSIPED → MASHINA (har biri haydaladi).
-// JS bog'lanish: dasturni kichik funksiyalarga bo'lish + versiyama-versiya (iteratsiya).
-// Keyslar: Amazon, Facebook, Uber, Airbnb — ulkanlar ham kichik MVP'dan boshlagan.
-// Sandbox: mini-do'kon (Modul 2 praktikalari bilan izchil).
+// PM M2-D7 — DEKOMPOZITSIYA («ochilish ro'yxati») — GIBRID PM dars, 19 ekran
+// Misol-olam (95/96-qonun): maktab yonidagi lavash do'koni sayti.
+// Markaziy mexanika: ⚖️ TAROZI — o'quvchi darajani TANLAMAYDI; har imkoniyat ikki savoldan
+//   o'tadi (zarurat × yuk) va karta savatga O'ZI tushadi (94-qonun: bosqichma-bosqich ochilish).
+// Uch savat butun darsda bir xil rangda: 🔥 v1 (accent) · ⚡ v2 (blue) · 🌱 backlog (ink3) — .lvl-* tokenlari.
+// Keys: Burbn → Instagram (ortiqchani o'chirish).
 // AUDIOSIZ — ovoz yo'q, faqat matn va animatsiya.
 // PRODUCTION: <style> ichidagi @import OLIB TASHLANADI — shriftlarni LMS yuklaydi.
 // ============================================================
 
+// PM-STUDIA identitet-pasporti (PM_DARS_ETALON 1-bo'lim) — sovuq-indigo studiya.
 const T = {
-  bg: '#F6F4EF', ink: '#0E0E10', ink2: '#5A5A60', ink3: '#A7A6A2',
-  paper: '#FFFFFF', accent: '#FF4F28', accentSoft: '#FFE8E1', accentVivid: '#FF4F28',
-  success: '#1F7A4D', successSoft: '#E3F0E8', blue: '#019ACB', blueSoft: '#E2F4FA', link: '#1a56db',
-  honey: '#E0892B', honeySoft: '#FBEFDD', grape: '#7B3FE4', grapeSoft: '#EFE9FB',
-  shadowBase: '58, 53, 48'
+  bg: '#F2F0FA', ink: '#1B1630', ink2: '#565073', ink3: '#9C97B4',
+  paper: '#FFFFFF', accent: '#5B3DE6', accentSoft: '#EBE5FD', accentVivid: '#6E4BFF',
+  success: '#12A968', successSoft: '#E4F5EC', blue: '#0E86C4', blueSoft: '#E1F3FB', link: '#5B3DE6',
+  line: '#E7E3F4', err: '#E5484D', errSoft: '#FCE7E8',
+  shadowBase: '40, 34, 82'
 };
 const CODE = { bg: '#1A2436', text: '#E8E5DD', tag: '#FF7755', attr: '#FFD380', str: '#7DD181', comment: '#6B7585', punct: '#9FB4D8' };
-const G = "Georgia, serif";
 
 
 // ============================================================
@@ -35,7 +34,7 @@ const LIVE_ENABLED = !!(LIVE_SUPABASE_URL && LIVE_SUPABASE_KEY);
 // LIVE_STALE_MS = 180s (60s EMAS): Chrome fon-tabda setInterval'ni ~1 daqiqagacha bo'g'adi —
 // mentor boshqa oynaga o'tsa 60s oynada «o'lik» deb topilib, butun sinf-darvoza ochilib ketardi (F-0726-01).
 const LIVE_POLL_MS = 2500, LIVE_POLL_MAX_MS = 15000, LIVE_HEARTBEAT_MS = 10000, LIVE_STALE_MS = 180000;
-const LT = { bg: '#F6F4EF', ink: '#0E0E10', ink2: '#5A5A60', ink3: '#A7A6A2', paper: '#FFFFFF', accent: '#FF4F28', accentSoft: '#FFE8E1', success: '#1F7A4D' };
+const LT = { bg: '#F2F0FA', ink: '#1B1630', ink2: '#565073', ink3: '#9C97B4', paper: '#FFFFFF', accent: '#5B3DE6', accentSoft: '#EBE5FD', success: '#12A968' };
 const _liveHdr = { apikey: LIVE_SUPABASE_KEY, Authorization: `Bearer ${LIVE_SUPABASE_KEY}` };
 async function liveRpc(fn, body) {
   const r = await fetch(`${LIVE_SUPABASE_URL}/rest/v1/rpc/${fn}`, { method: 'POST', headers: { ..._liveHdr, 'Content-Type': 'application/json' }, body: JSON.stringify(body || {}) });
@@ -254,7 +253,7 @@ function useLiveSession(lessonId, answerKey) {
 }
 
 const _liveBtnPri = { background: LT.accent, color: '#fff', border: 'none', borderRadius: 12, padding: '14px 20px', fontSize: 16, fontWeight: 700, cursor: 'pointer' };
-const _liveBadgeS = { position: 'fixed', top: 10, left: '50%', transform: 'translateX(-50%)', zIndex: 9998, background: LT.paper, border: `1px solid ${LT.ink3}55`, borderRadius: 99, padding: '6px 14px', fontSize: 13, fontWeight: 600, color: LT.ink2, boxShadow: '0 2px 10px rgba(58,53,48,0.12)', display: 'flex', alignItems: 'center', gap: 8, whiteSpace: 'nowrap', maxWidth: '92vw' };
+const _liveBadgeS = { position: 'fixed', top: 10, left: '50%', transform: 'translateX(-50%)', zIndex: 9998, background: LT.paper, border: `1px solid ${LT.ink3}55`, borderRadius: 99, padding: '6px 14px', fontSize: 13, fontWeight: 600, color: LT.ink2, boxShadow: '0 2px 10px rgba(40,34,82,0.12)', display: 'flex', alignItems: 'center', gap: 8, whiteSpace: 'nowrap', maxWidth: '92vw' };
 const _liveDot = (c) => ({ width: 8, height: 8, borderRadius: 99, background: c, display: 'inline-block' });
 
 function LiveBigCode({ pin, onClose }) {
@@ -276,7 +275,7 @@ function LiveGate({ live, title = 'Jonli dars' }) {
   const [nick, setNick] = useState(() => nickRead()); // oldingi darsda yozgan ismi tayyor chiqadi
   const [mentorCode, setMentorCode] = useState('');
   const [role, setRole] = useState('student');
-  const card = { position: 'relative', width: '100%', maxWidth: 420, background: LT.paper, borderRadius: 20, padding: 'clamp(24px,4vw,36px)', boxShadow: '0 10px 40px -12px rgba(58,53,48,0.22)', display: 'flex', flexDirection: 'column', gap: 18 };
+  const card = { position: 'relative', width: '100%', maxWidth: 420, background: LT.paper, borderRadius: 20, padding: 'clamp(24px,4vw,36px)', boxShadow: '0 10px 40px -12px rgba(40,34,82,0.22)', display: 'flex', flexDirection: 'column', gap: 18 };
   const wrap = { minHeight: 'calc(100dvh / var(--lz, 1))', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 24 };
   const link = { background: 'none', border: 'none', color: LT.ink3, fontSize: 13, cursor: 'pointer', alignSelf: 'center' };
   if (role === 'mentor') {
@@ -338,16 +337,35 @@ const LangContext = createContext('uz');
 const MentorCtx = createContext(null);
 const AchCtx = createContext(null); // 🏅 olingan nishonlar (Set) — Stage hisoblagichi uchun
 
-// ===== 🏅 ACHIEVEMENTS (nishonlar) — dars davomidagi HAQIQIY solve/match bosqichlari uchun =====
-const ACHIEVEMENTS = {
-  sorter:   { icon: '🗂️', name: 'Sort It!',    desc: "Feature'larni MVP va Keyin'ga to'g'ri saraladingiz" },
-  debugger: { icon: '🐞', name: 'Nice Catch!', desc: "Og'ir feature'ni topib backlog'ga ko'chirdingiz" },
-  builder:  { icon: '🛠️', name: 'MVP Ready!',  desc: "MVP uchun eng muhim 3 tasini yig'dingiz" },
-  graduate: { icon: '🏆', name: 'Level Up!',   desc: 'Dekompozitsiya darsini to\'liq yakunladingiz' },
+// UZ-RU: modul-darajali tarjimon. Dars mount bo'lganda default export __lang'ni o'rnatadi;
+// barcha render-joylar tr({uz:'…', ru:'…'}) orqali joriy tildagi matnni oladi (string/JSX o'tkazib yuboriladi).
+let __lang = 'uz';
+const tr = (node) => {
+  if (node === null || node === undefined) return '';
+  if (typeof node === 'string') return node;
+  if (React.isValidElement(node)) return node;
+  return node[__lang] ?? node.uz ?? node.ru ?? '';
 };
-// Ekran id → nishon — FAQAT haqiqiy solve/match ekranlariga (recordAnswer'da avtomatik beriladi).
-// s8 (saralash), s10 (og'ir feature debug), s11 (MVP yig'ish) — ularda correct:true faqat to'g'ri yechimda chiqadi.
-const ACH_TRIGGERS = { s8: 'sorter', s10: 'debugger', s11: 'builder' };
+// Analitika/ball payloadi DOIM UZ-etalon (RU_I18N_SPEC 4-bo'lim)
+const uzOf = (node) => {
+  if (node === null || node === undefined) return '';
+  if (typeof node === 'string') return node;
+  if (React.isValidElement(node)) return '';
+  return node.uz ?? node.ru ?? '';
+};
+
+// Praktika signal-zonasi (12-qonun): test <100 · arena 100+ · praktika 500+screen
+const PRACTICE_BASE = 500;
+
+// ===== 🏅 ACHIEVEMENTS (nishonlar) — dars davomidagi HAQIQIY harakatlar uchun =====
+const ACHIEVEMENTS = {
+  splitter: { icon: '🧩', name: 'Splitter!',   desc: { uz: "Katta ishni oltita bo'lakka bo'ldingiz", ru: 'Вы разбили большую работу на шесть частей' } },
+  weigher:  { icon: '⚖️', name: 'Weigh In!',   desc: { uz: "Oltala imkoniyatni tarozidan o'tkazdingiz", ru: 'Вы взвесили все шесть возможностей' } },
+  launcher: { icon: '🚀', name: 'Launch List!', desc: { uz: "Ochilish ro'yxatini tuzib saqladingiz", ru: 'Вы составили и сохранили список к открытию' } },
+  sharpeye: { icon: '🔍', name: 'Sharp Eye!',  desc: { uz: "Noto'g'ri joydagi kartani topdingiz", ru: 'Вы нашли карточку не на своём месте' } },
+};
+// Ekran id → nishon — FAQAT real tekshiriladigan harakatga (recordAnswer'da avtomatik beriladi).
+const ACH_TRIGGERS = { s2: 'splitter', s8: 'weigher', s9: 'launcher', s11: 'sharpeye' };
 
 function useIsMobile(breakpoint = 640) {
   const [isMobile, setIsMobile] = useState(typeof window !== 'undefined' ? window.innerWidth < breakpoint : false);
@@ -363,110 +381,81 @@ function useIsMobile(breakpoint = 640) {
 // ===== IKONKALAR =====
 const sv = { fill: 'none', stroke: 'currentColor', strokeWidth: 1.7, strokeLinecap: 'round', strokeLinejoin: 'round' };
 const Ico = {
-  check: (s = 18) => (<svg viewBox="0 0 24 24" width={s} height={s} {...sv} strokeWidth={2.3}><path d="M20 6L9 17l-5-5" /></svg>),
-  x: (s = 18) => (<svg viewBox="0 0 24 24" width={s} height={s} {...sv} strokeWidth={2.2}><path d="M6 6l12 12M18 6L6 18" /></svg>),
-  arrow: (s = 22) => (<svg viewBox="0 0 24 24" width={s} height={s} {...sv} strokeWidth={1.9}><path d="M4 12h14" /><path d="M13 6l6 6-6 6" /></svg>),
-  clock: (s = 22) => (<svg viewBox="0 0 24 24" width={s} height={s} {...sv}><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></svg>),
-  search: (s = 22) => (<svg viewBox="0 0 24 24" width={s} height={s} {...sv}><circle cx="11" cy="11" r="7" /><path d="M21 21l-4.3-4.3" /></svg>),
-  list: (s = 22) => (<svg viewBox="0 0 24 24" width={s} height={s} {...sv}><path d="M8 6h12M8 12h12M8 18h12" /><circle cx="4" cy="6" r="1" /><circle cx="4" cy="12" r="1" /><circle cx="4" cy="18" r="1" /></svg>),
-  page: (s = 22) => (<svg viewBox="0 0 24 24" width={s} height={s} {...sv}><path d="M6 3h8l4 4v14H6z" /><path d="M14 3v4h4M9 13h6M9 16h5" /></svg>),
-  cart: (s = 22) => (<svg viewBox="0 0 24 24" width={s} height={s} {...sv}><circle cx="9" cy="20" r="1.5" /><circle cx="17" cy="20" r="1.5" /><path d="M3 4h2l2.4 11h10l2-7H6.2" /></svg>),
-  chat: (s = 22) => (<svg viewBox="0 0 24 24" width={s} height={s} {...sv}><path d="M4 5h16v11H9l-4 4v-4H4z" /></svg>),
-  star: (s = 22) => (<svg viewBox="0 0 24 24" width={s} height={s} {...sv}><path d="M12 4l2.3 5 5.4.6-4 3.7 1.1 5.4L12 16l-4.8 2.7 1.1-5.4-4-3.7 5.4-.6z" /></svg>),
-  card: (s = 22) => (<svg viewBox="0 0 24 24" width={s} height={s} {...sv}><rect x="3" y="6" width="18" height="12" rx="2" /><path d="M3 10h18M6.5 14.5h4" /></svg>),
-  truck: (s = 22) => (<svg viewBox="0 0 24 24" width={s} height={s} {...sv}><path d="M3 7h11v8H3zM14 10h4l3 3v2h-7z" /><circle cx="7" cy="18" r="1.7" /><circle cx="17.5" cy="18" r="1.7" /></svg>),
-  // brendlar
-  amazon: (s = 26) => (<svg viewBox="0 0 24 24" width={s} height={s}><rect x="2" y="2" width="20" height="20" rx="5" fill="#232F3E" /><text x="12" y="14.4" textAnchor="middle" fontFamily="Arial, sans-serif" fontSize="11" fontWeight="700" fill="#fff">a</text><path d="M6.8 17.4c3.2 1.9 7.2 1.9 10.4 0" stroke="#FF9900" strokeWidth="1.7" fill="none" strokeLinecap="round" /></svg>),
-  facebook: (s = 26) => (<svg viewBox="0 0 24 24" width={s} height={s}><rect x="2" y="2" width="20" height="20" rx="5" fill="#1877F2" /><path d="M14.6 12.2h-2.1v6H10v-6H8.6V9.9H10V8.5c0-1.7 1-2.7 2.6-2.7.8 0 1.5.1 1.5.1v1.9h-.8c-.8 0-1.1.5-1.1 1v1.1h1.9z" fill="#fff" /></svg>),
-  uber: (s = 26) => (<svg viewBox="0 0 24 24" width={s} height={s}><rect x="2" y="2" width="20" height="20" rx="5" fill="#000" /><text x="12" y="15.2" textAnchor="middle" fontFamily="Arial, sans-serif" fontSize="8" fontWeight="800" fill="#fff">Uber</text></svg>),
-  airbnb: (s = 26) => (<svg viewBox="0 0 24 24" width={s} height={s}><rect x="2" y="2" width="20" height="20" rx="5" fill="#fff" stroke="#EDEDED" /><path d="M12 5.6c-1.1 0-1.9.9-2.6 2.4-2.1 4-3.1 6.2-3.1 7.7 0 1.5 1.1 2.5 2.5 2.5.9 0 1.6-.4 2.2-1.1.6.7 1.3 1.1 2.2 1.1 1.4 0 2.5-1 2.5-2.5 0-1.5-1-3.7-3.1-7.7C13.9 6.5 13.1 5.6 12 5.6zm0 2c.3 0 .6.4 1.2 1.5 1.8 3.5 2.6 5.4 2.6 6.5 0 .7-.5 1.1-1 1.1-.6 0-1.1-.5-1.8-1.4.7-1 1.1-1.8 1.1-2.5 0-1.2-.9-2.2-2.1-2.2s-2.1 1-2.1 2.2c0 .7.4 1.5 1.1 2.5-.7.9-1.2 1.4-1.8 1.4-.5 0-1-.4-1-1.1 0-1.1.8-3 2.6-6.5C11.4 8 11.7 7.6 12 7.6zm0 5.3c.4 0 .8.3.8.9 0 .3-.3.8-.8 1.4-.5-.6-.8-1.1-.8-1.4 0-.6.4-.9.8-.9z" fill="#FF5A5F" /></svg>)
+  check: (n = 18) => (<svg viewBox="0 0 24 24" width={n} height={n} {...sv} strokeWidth={2.3}><path d="M20 6L9 17l-5-5" /></svg>),
 };
 
-// PM-5 belgilar: transport (skeyt→mashina), raketa, qatlamlar, uchqun, quti
-const p5sv = { fill: 'none', stroke: 'currentColor', strokeWidth: 1.7, strokeLinecap: 'round', strokeLinejoin: 'round' };
-const p5 = {
-  rocket: (s = 18) => (<svg viewBox="0 0 24 24" width={s} height={s} {...p5sv}><path d="M12 3c2.8 1.2 4.6 4 4.6 7.6 0 1.9-.8 3.7-1.8 4.9l-2.8 2-2.8-2c-1-1.2-1.8-3-1.8-4.9C7.4 7 9.2 4.2 12 3z" /><circle cx="12" cy="10" r="1.6" /><path d="M9.4 16l-2 3.5 3-1M14.6 16l2 3.5-3-1" /></svg>),
-  layers: (s = 18) => (<svg viewBox="0 0 24 24" width={s} height={s} {...p5sv}><path d="M12 3l9 5-9 5-9-5z" /><path d="M3 13l9 5 9-5" /></svg>),
-  spark: (s = 18) => (<svg viewBox="0 0 24 24" width={s} height={s} {...p5sv}><path d="M12 3.2v3.4M12 17.4v3.4M3.2 12h3.4M17.4 12h3.4M6.1 6.1l2.4 2.4M15.5 15.5l2.4 2.4M17.9 6.1l-2.4 2.4M8.5 15.5l-2.4 2.4" /></svg>),
-  box: (s = 18) => (<svg viewBox="0 0 24 24" width={s} height={s} {...p5sv}><path d="M3 8l9-5 9 5v8l-9 5-9-5z" /><path d="M3 8l9 5 9-5M12 13v8" /></svg>),
-  flag: (s = 18) => (<svg viewBox="0 0 24 24" width={s} height={s} {...p5sv}><path d="M5 21V4M5 5h11l-2 3 2 3H5" /></svg>)
-};
-
-// Transport siluetlari (chavandoz bilan) — evolyutsiya
-const VEH = {
-  skate: (<g fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M10 34h40" /><circle cx="20" cy="38" r="2.6" /><circle cx="40" cy="38" r="2.6" /><circle cx="30" cy="12" r="4" /><path d="M30 16v9M30 25l-6 9M30 25l6 9M30 19l-7 3M30 19l7 3" /></g>),
-  scooter: (<g fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M11 34h22" /><circle cx="12" cy="38" r="2.6" /><circle cx="35" cy="38" r="2.6" /><path d="M35 34V16h8" /><circle cx="25" cy="12" r="4" /><path d="M25 16v9M25 25l-3 9M25 25l5 9M25 19l13-3" /></g>),
-  bike: (<g fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><circle cx="15" cy="32" r="7.5" /><circle cx="45" cy="32" r="7.5" /><path d="M15 32l10-12h10l-7 12M25 20l9 12M22 18h8" /><circle cx="28" cy="11" r="4" /><path d="M28 15v5M28 16l-6 2" /></g>),
-  car: (<g fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M6 33q0-5 5-5l5-9h22l7 9q5 0 5 5v3H6z" /><path d="M19 19l-3 9h26l-5-9z" /><circle cx="19" cy="36" r="3.6" /><circle cx="43" cy="36" r="3.6" /></g>)
-};
-const Vehicle = ({ stage, size = 120 }) => (
-  <svg viewBox="0 0 60 44" width={size} height={Math.round(size * 44 / 60)} style={{ display: 'block' }}>{VEH[stage]}</svg>
-);
-
-const LESSON_META = { lessonId: 'pm-decomposition-05-v18', lessonTitle: { uz: 'Dekompozitsiya — MVP', ru: 'Декомпозиция — MVP' } };
+const LESSON_META = { lessonId: 'pm-m2d7-v1', lessonTitle: { uz: "Dekompozitsiya — ochilish ro'yxati", ru: 'Декомпозиция — список к открытию' } };
 const SCREEN_META = [
-  { id: 's0',  type: 'hook',        template: 'custom',   scored: false, scope: 'hook' },
-  { id: 's1',  type: 'rule',        template: 'custom',   scored: false, scope: null },
-  { id: 's2',  type: 'exploration', template: 'custom',   scored: false, scope: null },
-  { id: 's3',  type: 'exploration', template: 'custom',   scored: false, scope: null },
-  { id: 's4',  type: 'test',        template: 'MCScreen', scored: true,  scope: 'module-mikro' },
-  { id: 's5',  type: 'exploration', template: 'custom',   scored: false, scope: null },
-  { id: 's5b', type: 'test',        template: 'MCScreen', scored: true,  scope: 'module-mikro' },
-  { id: 's6',  type: 'exploration', template: 'custom',   scored: false, scope: null },
-  { id: 's7',  type: 'exploration', template: 'custom',   scored: false, scope: null },
-  { id: 's8',  type: 'exploration', template: 'custom',   scored: false, scope: null },
-  { id: 's9',  type: 'test',        template: 'MCScreen', scored: true,  scope: 'module-mikro' },
-  { id: 's10', type: 'exploration', template: 'custom',   scored: false, scope: null },
-  { id: 's11', type: 'exploration', template: 'custom',   scored: false, scope: null },
-  { id: 's12', type: 'test',        template: 'MCScreen', scored: true,  scope: 'module-mikro' },
-  { id: 's13', type: 'case',        template: 'custom',   scored: false, scope: null },
-  { id: 's14', type: 'rule',        template: 'custom',   scored: false, scope: null },
-  { id: 's15', type: 'test',        template: 'custom',   scored: true,  scope: 'final' },
-  { id: 's15b', type: 'stats',      template: 'custom',   scored: false, scope: null },
-  { id: 'sflash', type: 'review',   template: 'custom',   scored: false, scope: null },
-  { id: 's16', type: 'summary',     template: 'custom',   scored: false, scope: null }
+  { id: 's0',    type: 'hook',        template: 'custom',   scored: false, scope: 'hook' },
+  { id: 's1',    type: 'rule',        template: 'custom',   scored: false, scope: null },
+  { id: 's2',    type: 'exploration', template: 'custom',   scored: false, scope: null },
+  { id: 's3',    type: 'exploration', template: 'custom',   scored: false, scope: null },
+  { id: 's4',    type: 'test',        template: 'MCScreen', scored: true,  scope: 'module-mikro' },
+  { id: 's5',    type: 'exploration', template: 'custom',   scored: false, scope: null },
+  { id: 's6',    type: 'case',        template: 'custom',   scored: false, scope: null },
+  { id: 's7',    type: 'test',        template: 'MCScreen', scored: true,  scope: 'module-mikro' },
+  { id: 's8',    type: 'practice',    template: 'custom',   scored: false, scope: null },
+  { id: 's9',    type: 'practice',    template: 'custom',   scored: false, scope: null },
+  { id: 's10',   type: 'test',        template: 'MCScreen', scored: true,  scope: 'module-mikro' },
+  { id: 's11',   type: 'exploration', template: 'custom',   scored: false, scope: null },
+  { id: 's12',   type: 'koding',      template: 'custom',   scored: false, scope: null },
+  { id: 's13',   type: 'recap',       template: 'custom',   scored: false, scope: null },
+  { id: 's14',   type: 'homework',    template: 'custom',   scored: false, scope: null },
+  { id: 's15',   type: 'test',        template: 'MCScreen', scored: true,  scope: 'final' },
+  { id: 's15b',  type: 'stats',       template: 'custom',   scored: false, scope: null },
+  { id: 'sflash', type: 'review',     template: 'custom',   scored: false, scope: null },
+  { id: 's16',   type: 'summary',     template: 'custom',   scored: false, scope: null }
 ];
 const TOTAL_SCREENS = SCREEN_META.length;
 const SCORED_IDX = SCREEN_META.map((m, i) => (m.scored ? i : null)).filter(i => i !== null);
 
-// ===== KONSEPT LEKSIKONI =====
-// Zo'r keyslar — ulkanlar ham kichik MVP'dan boshlagan
-const CASES = {
-  amazon: { ic: Ico.amazon(26), name: 'Amazon', year: '1994', mvp: 'Faqat onlayn KITOB do\'koni.', today: 'Elektronika, kiyim, Prime, Kindle, bulut — hamma narsa.' },
-  facebook: { ic: Ico.facebook(26), name: 'Facebook', year: '2004', mvp: 'Faqat 1 universitet (Garvard) talabalari uchun profil.', today: '3 milliard odam, video, Marketplace, Messenger.' },
-  uber: { ic: Ico.uber(26), name: 'Uber', year: '2010', mvp: '1 shahar, faqat qora premium mashina.', today: '70+ davlat, arzon UberX, ovqat yetkazish.' },
-  airbnb: { ic: Ico.airbnb(26), name: 'Airbnb', year: '2008', mvp: 'O\'z xonasida 3 mehmonga havo matras ijara.', today: '220+ davlat, millionlab uy, sayohat tajribalari.' }
+// ===== ARTEFAKT ZANJIRI =====
+// Kirish: M2-D2 «Muammo → Yechim» darsida yozilgan imkoniyat-kartalar.
+// Chiqish: ochilish ro'yxati — 8–12-darslarda loyiha shu ro'yxat bo'yicha quriladi.
+const FEATURES_IN_KEY = 'pm-m2d2-features';
+const MVP_KEY = 'pm-m2d7-mvp';
+const DRAFT_KEY = 'pm-m2d7-draft';
+const HOOK_KEY = 'pm-m2d7-hook-choice';
+const KODING_KEY = 'pm-m2d7-code';
+const HW_KEY = 'pm-m2d7-hw';
+const REFLECT_KEY = 'pm-m2d7-reflection';
+
+// Zaxira ro'yxat (40-qonun): 2-darsdagi kartalar topilmasa — namuna bilan ishlanadi.
+const FALLBACK_FEATURES = [
+  { id: 'f1', ic: '📋', uz: 'Menyu va narxlar', ru: 'Меню и цены' },
+  { id: 'f2', ic: '🕒', uz: 'Ish vaqti va manzil', ru: 'Часы работы и адрес' },
+  { id: 'f3', ic: '🛒', uz: 'Buyurtma tugmasi', ru: 'Кнопка заказа' },
+  { id: 'f4', ic: '🎟', uz: 'Chegirma kodi', ru: 'Код скидки' },
+  { id: 'f5', ic: '🗺', uz: 'Yetkazib berish xaritasi', ru: 'Карта доставки' },
+  { id: 'f6', ic: '⭐', uz: "Sharhlar bo'limi", ru: 'Раздел отзывов' },
+];
+// M2-D2 kalitini o'qish: massiv satrlar yoki {text|label|title} obyektlari bo'lishi mumkin.
+const readIncomingFeatures = () => {
+  try {
+    const raw = JSON.parse(localStorage.getItem(FEATURES_IN_KEY) || 'null');
+    if (!Array.isArray(raw)) return null;
+    const list = raw.map((r, i) => {
+      const txt = typeof r === 'string' ? r : (r && (r.text || r.label || r.title || r.name)) || '';
+      const s = String(txt).trim();
+      return s ? { id: `own${i}`, ic: '🧩', uz: s, ru: s } : null;
+    }).filter(Boolean);
+    return list.length >= 6 ? list.slice(0, 6) : null;
+  } catch { return null; }
 };
+const readDraft = () => { try { const v = JSON.parse(localStorage.getItem(DRAFT_KEY) || 'null'); return v && typeof v === 'object' ? v : null; } catch { return null; } };
+const writeDraft = (o) => { try { localStorage.setItem(DRAFT_KEY, JSON.stringify(o)); } catch {} };
+const readMvp = () => { try { const v = JSON.parse(localStorage.getItem(MVP_KEY) || 'null'); return v && typeof v === 'object' ? v : null; } catch { return null; } };
 
-// Evolyutsiya bosqichlari (har biri ISHLAYDI)
-const STAGES = [
-  { key: 'skate', label: 'Skeytbord', color: T.honey, use: 'Eng oddiy — lekin sizni A dan B ga olib boradi. Allaqachon haydaladi!' },
-  { key: 'scooter', label: 'Samokat', color: T.blue, use: 'Tezroq va qulayroq. Hali ham sodda, lekin yaxshilangan.' },
-  { key: 'bike', label: 'Velosiped', color: T.grape, use: 'Uzoq masofa, kam kuch. Foydalanuvchi mamnun.' },
-  { key: 'car', label: 'Mashina', color: T.success, use: 'Mukammal versiya. Lekin shu yergacha HAR bosqich ishlatilgan!' }
+// ⚖️ TAROZI qarori: ikki javobdan daraja O'ZI kelib chiqadi (o'quvchi tanlamaydi)
+// need: 'must' = busiz sayt ish bermaydi · 'nice' = busiz ham ish beradi
+// cost: 'day'  = bir kunda bo'ladi   · 'week' = bir necha kun ketadi
+const levelOf = (need, cost) => (need === 'must' ? (cost === 'day' ? 'v1' : 'v2') : (cost === 'day' ? 'v2' : 'backlog'));
+const BUCKETS = [
+  { key: 'v1', ic: '🔥', uz: "Ochilish ro'yxati", ru: 'Список к открытию' },
+  { key: 'v2', ic: '⚡', uz: 'Keyingi versiya', ru: 'Следующая версия' },
+  { key: 'backlog', ic: '🌱', uz: 'Keyinga qoldirilganlar', ru: 'Отложенные' },
 ];
-
-// Mini-do'kon feature'lari (MVP / Keyin)
-const FEATURES = [
-  { id: 'list', text: 'Mahsulot ro\'yxati (rasm+narx)', stage: 'mvp', ic: Ico.list(17) },
-  { id: 'detail', text: 'Mahsulot sahifasi', stage: 'mvp', ic: Ico.page(17) },
-  { id: 'search', text: 'Qidiruv', stage: 'mvp', ic: Ico.search(17) },
-  { id: 'cart', text: 'Savat', stage: 'keyin', ic: Ico.cart(17) },
-  { id: 'chat', text: 'Sotuvchiga yozish', stage: 'keyin', ic: Ico.chat(17) },
-  { id: 'review', text: 'Sharh va baho', stage: 'keyin', ic: Ico.star(17) },
-  { id: 'pay', text: 'Onlayn to\'lov', stage: 'keyin', ic: Ico.card(17) },
-  { id: 'ai', text: 'AI tavsiya', stage: 'keyin', ic: p5.spark(17) }
-];
-
-// Versiyalar (mini-do'kon v1→v2→v3)
-const VERSIONS = [
-  { key: 'v1', label: 'v1 — MVP', color: T.success, feats: ['Mahsulot ro\'yxati', 'Qidiruv', 'Mahsulot sahifasi'], note: 'Eng kichik ishlaydigan do\'kon — odam ko\'radi va sotib oladi.' },
-  { key: 'v2', label: 'v2 — O\'sish', color: T.blue, feats: ['Savat', 'Sotuvchiga yozish', 'Sharh va baho'], note: 'Foydalanuvchi fikriga qarab qulayliklar qo\'shildi.' },
-  { key: 'v3', label: 'v3 — Kengayish', color: T.grape, feats: ['Onlayn to\'lov', 'Yetkazib berish', 'AI tavsiya'], note: 'Katta funksiyalar — endi bozorga tayyor.' }
-];
-
-const Split = ({ children, refEl }) => <div className="split" ref={refEl}>{children}</div>;
-const Col = ({ children, gap }) => <div className="col" style={gap ? { gap } : undefined}>{children}</div>;
+const bucketOf = (k) => BUCKETS.find(b => b.key === k) || BUCKETS[0];
 
 function AchCounter() {
   const earned = useContext(AchCtx);
@@ -539,13 +528,14 @@ const Stage = ({ children, eyebrow, screen, totalScreens = TOTAL_SCREENS, navCon
     </MentorCtx.Provider>
   );
 };
-const NavBack = ({ onPrev }) => <button className="btn-ghost" onClick={onPrev} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>Orqaga</button>;
-const NavNext = ({ disabled, label = 'Davom etish', onClick, optionalLive }) => {
+const NavBack = ({ onPrev }) => <button className="btn-ghost" onClick={onPrev} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Orqaga', ru: 'Назад' })}</button>;
+const NavNext = ({ disabled, label, onClick, optionalLive }) => {
+  const lbl = label || tr({ uz: 'Davom etish', ru: 'Продолжить' });
   const gate = useContext(LiveGateCtx);
   const locked = !!(gate && gate.locked);
   const live = gate && gate.live;
   const freeRide = !!(optionalLive && live && live.mode === 'student' && live.status !== 'ended' && live.mentorAlive);
-  return <button className="btn-white-accent" disabled={(freeRide ? false : disabled) || locked} onClick={onClick} title={locked ? 'Mentor hali bu sahifaga o\'tmadi' : undefined} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)', marginLeft: 'auto' }}>{locked ? '⏳ Mentorni kuting' : (freeRide && disabled ? 'Davom etish' : label)}</button>;
+  return <button className="btn-white-accent" disabled={(freeRide ? false : disabled) || locked} onClick={onClick} title={locked ? tr({ uz: "Mentor hali bu sahifaga o'tmadi", ru: 'Ментор ещё не перешёл на эту страницу' }) : undefined} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)', marginLeft: 'auto' }}>{locked ? tr({ uz: '⏳ Mentorni kuting', ru: '⏳ Подождите ментора' }) : (freeRide && disabled ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : lbl)}</button>;
 };
 
 const FeedbackBlock = ({ show, isCorrect, neutral, children }) => {
@@ -576,38 +566,58 @@ const RECAP_MIN_ANSWERS = 3; // foizga ishonch uchun kamida shuncha javob kerak
 const RcFlow = ({ items, sep = '→' }) => (
   <div className="rc-flow">{items.map((t, i) => <React.Fragment key={i}><span className="rc-chip">{t}</span>{sep && i < items.length - 1 && <span className="rc-arr">{sep}</span>}</React.Fragment>)}</div>
 );
-// RECAPS kontenti — Stage 4'da JS-intro testlariga to'ldiriladi (hozircha bo'sh)
+// RECAPS — har karta AYNAN o'z testining mavzusini qayta tushuntiradi (kalit = scored ekran indeksi)
 const RECAPS = {
   4: {
-    title: "MVP — eng kichik ishlaydigan versiya",
+    title: { uz: "Tugatib bo'ladigan bo'lak", ru: 'Часть, которую можно завершить' },
     cards: [
-      { ic: "🛹", h: "MVP nima uchun kerak?", body: <>MVP ning maqsadi — mukammal mahsulot emas. Maqsad: <b>eng kichik ishlaydigan versiyani</b> tez chiqarib, foydalanuvchidan <b>erta fikr olish</b>. Skeytbord ham sizni A dan B ga olib boradi — mashinani kutib o'tirmaysiz.</>, vis: <RcFlow items={["Kichik versiya", "Tez chiqarish", "Fikr olish", "Yaxshilash"]} /> },
-      { ic: "🚗", h: "Hammasini birdan emas", body: <>"Imkon qadar ko'p feature qo'shish" yoki "bir martada mukammal mahsulot" — bu MVP emas. MVP <b>bitta ishlaydigan g'oyani</b> tez sinaydi. Chiroyli dizayn ham keyin qo'shiladi.</> },
-      { ic: "🔁", h: "Sinab ko'rmasangiz — bilmaysiz", body: <>MVP ning sehri shunda: real odam ishlatmaguncha, g'oyangiz yaxshimi-yomonmi <b>hech kim bilmaydi</b>. Erta chiqarasiz — erta bilasiz. Kech chiqarasiz — kech bilasiz (va ko'p vaqt ketadi).</>, ask: "Nima uchun 6 oy yashirin ishlashdan ko'ra 1 haftada kichik versiya chiqarish yaxshiroq?" },
+      { ic: '🧩', h: { uz: 'Katta ish bitta qatorga sig\'maydi', ru: 'Большая работа не влезает в одну строку' },
+        body: { uz: <>«Lavash do'koniga sayt qilish» — bu butun ishning o'zi. Uni <b>bo'laklarga</b> bo'lish kerak: menyu, buyurtma tugmasi, manzil. Katta ishni shunday bo'lish — <b>dekompozitsiya</b>.</>, ru: <>«Сделать сайт для лавашной» — это вся работа целиком. Её надо разбить на <b>части</b>: меню, кнопка заказа, адрес. Такое разбиение — <b>декомпозиция</b>.</> },
+        vis: { uz: <RcFlow items={['Katta ish', 'Bo\'laklar', 'Har bo\'lak tugaydi']} />, ru: <RcFlow items={['Большая работа', 'Части', 'Каждая часть завершается']} /> } },
+      { ic: '✅', h: { uz: 'Bo\'lakning oxiri ko\'rinib turadi', ru: 'У части виден конец' },
+        body: { uz: <>Yaxshi bo'lakni alohida qilib, <b>tugatib bo'ladi</b>: menyu qo'shildi — tamom. «Chiroyli qilish» qachon tugaganini esa hech kim ayta olmaydi.</>, ru: <>Хорошую часть можно сделать отдельно и <b>завершить</b>: меню добавлено — всё. А про «сделать красиво» никто не скажет, когда оно закончилось.</> } },
+      { ic: '🎯', h: { uz: 'Natija ish emas', ru: 'Результат — это не работа' },
+        body: { uz: <>«Do'konni mashhur qilish» — bu <b>natija</b>, ish emas. Uni sayt ustida o'tirib tugatib bo'lmaydi, shuning uchun u bo'lak bo'la olmaydi.</>, ru: <>«Сделать магазин известным» — это <b>результат</b>, а не работа. Её нельзя завершить, сидя над сайтом, поэтому частью она быть не может.</> },
+        ask: { uz: 'Sizning ro\'yxatingizda qaysi yozuvning oxiri ko\'rinmayapti?', ru: 'В вашем списке у какой записи не виден конец?' } },
     ]
   },
-  6: {
-    title: "Skeytbord-mi yoki g'ildirak?",
+  7: {
+    title: { uz: 'Birinchi versiyaga nima kiradi', ru: 'Что входит в первую версию' },
     cards: [
-      { ic: "🛹", h: "To'g'ri MVP — haydab bo'ladigan skeytbord", body: <>To'g'ri MVP — <b>kichik, lekin ishlaydigan butun narsa</b>. Skeytbord kichik, ammo unga minib ketish mumkin. Foydalanuvchi undan foyda ko'radi va fikr bildiradi.</>, vis: <RcFlow items={["Skeytbord", "Samokat", "Velosiped", "Mashina"]} /> },
-      { ic: "🛞", h: "Yolg'iz g'ildirak — hech qayerga bormaysiz", body: <>Mashinaning bitta <b>g'ildiragi</b>, dvigateli yoki yarim qurilgan mashinasi — bularning hech biri ishlamaydi. Ustiga minib ketolmaysiz. Bu MVP emas, bu <b>bo'lak</b>. Bo'lak bilan foydalanuvchi hech narsa qilolmaydi.</>, ask: "Nega yolg'iz g'ildirak MVP emas, lekin skeytbord MVP?" },
-      { ic: "✅", h: "Sinov: minib ketsa bo'ladimi?", body: <>MVP to'g'rimi bilish oson: <b>foydalanuvchi undan hoziroq foyda ko'ra oladimi?</b> Skeytbordga minasiz — ha. Yolg'iz g'ildirakni haydab bo'lmaydi — yo'q. Har bosqich butun va ishlaydigan bo'lsin.</> },
+      { ic: '🔥', h: { uz: 'Busiz sayt ish bermaydi', ru: 'Без этого сайт не работает' },
+        body: { uz: <>Birinchi versiyaga faqat <b>busiz sayt ish bermaydigan</b> ishlar kiradi. Sayt ish beradigan eng sodda birinchi versiya — shu ro'yxat <b>MVP</b> deb ataladi.</>, ru: <>В первую версию входят только те дела, <b>без которых сайт не работает</b>. Самая простая рабочая первая версия — этот список и называется <b>MVP</b>.</> },
+        vis: { uz: <RcFlow items={['Busiz ish bermaydi', 'Bir kunda bo\'ladi', 'Ochilish ro\'yxati']} />, ru: <RcFlow items={['Без него не работает', 'Делается за день', 'Список к открытию']} /> } },
+      { ic: '⚖️', h: { uz: 'Osonligi qaror qilmaydi', ru: 'Лёгкость не решает' },
+        body: { uz: <>Chegirma kodi oson qilinadi, lekin busiz ham sayt ish beradi. Demak <b>osonlik</b> yetarli emas — birinchi savol boshqa: busiz sayt ish beradimi?</>, ru: <>Код скидки сделать легко, но и без него сайт работает. Значит <b>лёгкость</b> — не аргумент: первый вопрос другой — работает ли сайт без этого?</> } },
+      { ic: '🙂', h: { uz: 'Yoqish-yoqmaslik ham qaror qilmaydi', ru: 'Нравится или нет — тоже не решает' },
+        body: { uz: <>Do'kon egasiga bir imkoniyat juda yoqishi mumkin. Lekin ro'yxatni <b>ikki savol</b> tuzadi: busiz sayt ish beradimi va buni qurish qancha vaqt oladi.</>, ru: <>Владельцу магазина какая-то возможность может очень нравиться. Но список составляют <b>два вопроса</b>: работает ли сайт без неё и сколько времени займёт её сделать.</> },
+        ask: { uz: 'Ochilish kuni odam saytga kirsa, nima qila olishi shart?', ru: 'Что человек обязан суметь сделать на сайте в день открытия?' } },
     ]
   },
   10: {
-    title: "MVP'ga nima kiradi, nima keyinga qoladi",
+    title: { uz: 'Kerak, lekin og\'ir ish qayerga tushadi', ru: 'Куда попадает нужная, но тяжёлая работа' },
     cards: [
-      { ic: "🏪", h: "Do'kon ishlashi uchun shart bo'lgani", body: <>Mini-do'kon <b>birinchi versiyasiga</b> (MVP) faqat do'kon ishlashi uchun <b>shart</b> bo'lgan narsalar kiradi: <b>mahsulot ro'yxati (rasm + narx)</b>. Odam ko'radi, narxni biladi, tanlaydi — do'kon ishlaydi.</>, vis: <RcFlow items={["Ro'yxat", "Sahifa", "Qidiruv"]} /> },
-      { ic: "📦", h: "AI, 3D, bonus o'yin — backlog'ga", body: <>AI tavsiya, mahsulotni 3D ko'rish, bonus ballar o'yini — bular <b>zo'r</b>, lekin do'kon ularsiz ham ishlaydi. Shuning uchun ular <b>"Keyin" ro'yxatiga (backlog)</b> boradi. Avval asosiy, keyin qo'shimcha.</> },
-      { ic: "🧩", h: "Katta narsani bo'laklarga bo'ling", body: <>Bu — dekompozitsiya: katta mahsulotni <b>kichik bo'laklarga</b> bo'lib, "hozir shart" va "keyin qo'shiladi" ga ajratamiz. Shart bo'lganlar — MVP. Qolgani — backlog, navbat bilan qo'shiladi.</>, ask: "Mini-do'koningizga birinchi bo'lib qaysi 3 ta feature kerak deb o'ylaysiz?" },
+      { ic: '⚡', h: { uz: 'Kerak + og\'ir = keyingi versiya', ru: 'Нужно + тяжело = следующая версия' },
+        body: { uz: <>Imkoniyat kerak, lekin uni qurish bir necha kun oladi — u <b>keyingi versiyaga</b> tushadi. Ochilishgacha bir hafta bor, unga uchta ish sig'adi.</>, ru: <>Возможность нужна, но на неё уйдёт несколько дней — она попадает в <b>следующую версию</b>. До открытия неделя, а в неё влезают три дела.</> },
+        vis: { uz: <RcFlow items={['Kerak', 'Bir necha kun', 'Keyingi versiya']} />, ru: <RcFlow items={['Нужно', 'Несколько дней', 'Следующая версия']} /> } },
+      { ic: '🌱', h: { uz: 'Keyinga qoldirilganlar boshqa ro\'yxat', ru: 'Отложенные — это другой список' },
+        body: { uz: <>Keyinga qoldirilganlar ro'yxatida <b>busiz ham sayt ish beradigan</b> ishlar turadi. Kerakli ish u yerga tushmaydi — u faqat navbatini kutadi.</>, ru: <>В списке отложенных лежат дела, <b>без которых сайт и так работает</b>. Нужное дело туда не попадает — оно просто ждёт своей очереди.</> } },
+      { ic: '📦', h: { uz: 'Hech narsa o\'chirilmaydi', ru: 'Ничего не удаляется' },
+        body: { uz: <>Ro'yxatdan chiqqan imkoniyat yo'qolmaydi: uning <b>navbati kechroqqa suriladi</b>, xolos. Shuning uchun uch ro'yxat ham saqlanadi.</>, ru: <>Возможность, не попавшая в список, не исчезает: её <b>очередь просто сдвигается</b>. Поэтому сохраняются все три списка.</> },
+        ask: { uz: 'Ro\'yxatingizdagi qaysi ish kerak, lekin bir haftaga sig\'maydi?', ru: 'Какое дело в вашем списке нужно, но не влезает в неделю?' } },
     ]
   },
-  13: {
-    title: "Nega hammasini birdan qurish xato",
+  15: {
+    title: { uz: 'Nega aynan uchta', ru: 'Почему именно три' },
     cards: [
-      { ic: "🐌", h: "Katta v1 — ko'p vaqt, kech fikr", body: <>Hammasini <b>birato'la</b> qurmoqchi bo'lsangiz, <b>ko'p resurs va vaqt ketadi</b>, eng yomoni — foydalanuvchi fikrini <b>juda kech</b> bilasiz. Oylab ishlaysiz, oxirida "bu kerak emas ekan" chiqishi mumkin.</>, vis: <RcFlow items={["Oylab qurish", "Endi chiqardik", "Kerak emas ekan 😱"]} /> },
-      { ic: "💡", h: "Erta chiqaring — erta o'rganing", body: <>Kichik MVP chiqarsangiz, bir hafta ichida real fikr olasiz va yo'nalishni to'g'rilaysiz. Bu <b>arzon</b> ham, <b>tez</b> ham. Har bosqich ishlaydi va foyda erta keladi.</> },
-      { ic: "🏗️", h: "Bino ham poydevordan boshlanadi", body: <>Hech kim binoni tomidan qurmaydi — avval poydevor, keyin qavatlar. Mahsulot ham shunday: <b>avval ishlaydigan kichik yadro</b>, keyin ustiga qo'shamiz. Birato'la "hammasi" — qulaydigan bino.</>, ask: "Agar 6 oy o'tib g'oya noto'g'ri ekani ma'lum bo'lsa, qancha narsa behuda ketadi?" },
+      { ic: '📅', h: { uz: 'Chegara — vaqt', ru: 'Ограничение — это время' },
+        body: { uz: <>Ochilishgacha <b>bir hafta</b> bor, sayt ustida <b>bitta odam</b> ishlaydi. Bir haftada uchta ish tugaydi — shuning uchun ro'yxatga uchtasi sig'adi.</>, ru: <>До открытия <b>неделя</b>, над сайтом работает <b>один человек</b>. За неделю завершаются три дела — поэтому в список входят три.</> },
+        vis: { uz: <RcFlow items={['Bir hafta', 'Bitta odam', 'Uchta ish']} />, ru: <RcFlow items={['Неделя', 'Один человек', 'Три дела']} /> } },
+      { ic: '⏳', h: { uz: 'To\'rtinchisi tugamay qoladi', ru: 'Четвёртое останется незавершённым' },
+        body: { uz: <>To'rtinchi ish boshlanadi-yu, tugamaydi. Ochilish kuni sayt <b>yarim qolgan holda</b> ochiladi — bu eng yomon natija.</>, ru: <>Четвёртое дело начнётся, но не закончится. В день открытия сайт откроется <b>наполовину готовым</b> — это худший исход.</> } },
+      { ic: '🔢', h: { uz: 'Uchta — har doimgi son emas', ru: 'Три — не постоянное число' },
+        body: { uz: <>Boshqa muddat bo'lsa, son ham boshqacha bo'ladi. Uchta — bu <b>bir haftaga sig'adigan</b> son, sehrli raqam emas.</>, ru: <>При другом сроке и число будет другим. Три — это число, <b>которое влезает в неделю</b>, а не магическая цифра.</> },
+        ask: { uz: 'Agar ikki hafta bo\'lsa, ro\'yxatga nechta ish sig\'ardi?', ru: 'Если бы было две недели, сколько дел влезло бы в список?' } },
     ]
   },
 };
@@ -632,23 +642,23 @@ function RecapOverlay({ screenIdx, onClose }) {
   return (
     <div className="rc-overlay">
       <div className="rc-head">
-        <span className="rc-tag">📖 Qayta tushuntirish</span>
-        <span className="rc-title">{rc.title}</span>
-        <button className="rc-x" onClick={onClose} aria-label="Yopish">✕</button>
+        <span className="rc-tag">{tr({ uz: '📖 Qayta tushuntirish', ru: '📖 Объясняем заново' })}</span>
+        <span className="rc-title">{tr(rc.title)}</span>
+        <button className="rc-x" onClick={onClose} aria-label={tr({ uz: 'Yopish', ru: 'Закрыть' })}>✕</button>
       </div>
       <div className="rc-card" key={i}>
         <div className="rc-ic">{card.ic}</div>
-        <h2 className="rc-h">{card.h}</h2>
-        <p className="rc-body">{card.body}</p>
-        {card.vis && <div className="rc-vis">{card.vis}</div>}
-        {card.ask && <div className="rc-ask">🗣️ Sinfga savol: {card.ask}</div>}
+        <h2 className="rc-h">{tr(card.h)}</h2>
+        <p className="rc-body">{tr(card.body)}</p>
+        {card.vis && <div className="rc-vis">{tr(card.vis)}</div>}
+        {card.ask && <div className="rc-ask">{tr({ uz: '🗣️ Sinfga savol: ', ru: '🗣️ Вопрос классу: ' })}{tr(card.ask)}</div>}
       </div>
       <div className="rc-nav">
-        <button className="rc-btn ghost" disabled={i === 0} onClick={() => setI(i - 1)}>← Oldingi</button>
-        <div className="rc-dots">{rc.cards.map((_, k) => <button key={k} className={`rc-dot ${k === i ? 'cur' : k < i ? 'fill' : ''}`} onClick={() => setI(k)} aria-label={`${k + 1}-karta`} />)}</div>
+        <button className="rc-btn ghost" disabled={i === 0} onClick={() => setI(i - 1)}>{tr({ uz: '← Oldingi', ru: '← Предыдущая' })}</button>
+        <div className="rc-dots">{rc.cards.map((_, k) => <button key={k} className={`rc-dot ${k === i ? 'cur' : k < i ? 'fill' : ''}`} onClick={() => setI(k)} aria-label={`${k + 1}`} />)}</div>
         {last
-          ? <button className="rc-btn done" onClick={onClose}>✓ Tushunarli — davom etamiz</button>
-          : <button className="rc-btn" onClick={() => setI(i + 1)}>Keyingisi →</button>}
+          ? <button className="rc-btn done" onClick={onClose}>{tr({ uz: '✓ Tushunarli — davom etamiz', ru: '✓ Понятно — продолжаем' })}</button>
+          : <button className="rc-btn" onClick={() => setI(i + 1)}>{tr({ uz: 'Keyingisi →', ru: 'Дальше →' })}</button>}
       </div>
     </div>
   );
@@ -725,7 +735,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
           <div className={`mstats-verdict ${level}`}>
             {level === 'need' && <>
               <p className="mstats-verdict-t">⚠️ Faqat <b>{pct}%</b> to'g'ri — bu mavzu sinfga tushunarsiz qolgan. Davom etishdan oldin qisqa takrorlash tavsiya etiladi.</p>
-              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>📖 Qayta tushuntirish — {RECAPS[screenIdx]?.title}</button>}
+              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>📖 Qayta tushuntirish — {tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
             {level === 'maybe' && <>
               <p className="mstats-verdict-t">🟡 <b>{pct}%</b> to'g'ri — yomon emas. Xohlasangiz, davom etishdan oldin qisqa takrorlab oling.</p>
@@ -734,7 +744,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
             {level === 'good' && <p className="mstats-verdict-t">✅ <b>{pct}%</b> to'g'ri — sinf mavzuni o'zlashtirdi. Bemalol davom eting!</p>}
             {level === 'few' && <>
               <p className="mstats-verdict-t">Javob berganlar kam ({answered} ta) — foiz bo'yicha xulosa chiqarish qiyin. O'zingiz baholang:</p>
-              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>📖 Qayta tushuntirish — {RECAPS[screenIdx]?.title}</button>}
+              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>📖 Qayta tushuntirish — {tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
           </div>
         );
@@ -752,45 +762,6 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
   );
 }
 
-// ===== MENTOR YOZMA-ISH PANELI — s6 (amaliyot) va s15 (yakuniy g'oya) uchun =====
-// O'quvchining yozgan MATNI serverga bormaydi (jadval sxemasi) — faqat «tugatdi»
-// belgisi boradi. Mentor kim tugatgani/kim yozayotganini jonli ko'radi.
-function MentorWorkStats({ live, screenIdx, taskLabel }) {
-  const [data, setData] = useState({ players: null, rows: [] });
-  useEffect(() => {
-    let on = true, t = null;
-    const tick = async () => {
-      try {
-        const [players, answers] = await Promise.all([livePlayers(live.pin), liveAnswers(live.pin, screenIdx)]);
-        if (on) setData({ players, rows: answers });
-      } catch {}
-      if (on) t = setTimeout(tick, 3000);
-    };
-    tick();
-    return () => { on = false; clearTimeout(t); };
-  }, [live.pin, screenIdx]);
-  if (data.players === null) return null;
-  const total = data.players.length;
-  const doneN = data.rows.length;
-  const allIn = total > 0 && doneN >= total;
-  const doneIds = new Set(data.rows.map(r => r.player_id));
-  return (
-    <div className="mstats fade-up">
-      <div className="mstats-head">
-        <span className="mstats-lbl">✍️ {taskLabel}</span>
-        <span className="mstats-n">{allIn ? '✓ Hamma tugatdi!' : <>Tugatdi: <b>{doneN}</b> / {total}</>}</span>
-      </div>
-      <div className="mstats-prog"><span className={`mstats-prog-fill ${allIn ? 'full' : ''}`} style={{ width: `${total ? Math.round((doneN / total) * 100) : 0}%` }} /></div>
-      {total > 0 && (
-        <div className="mstats-waitrow">
-          {data.players.map(p => <span key={p.id} className="mstats-wait-chip" style={doneIds.has(p.id) ? { background: T.successSoft, color: T.success, fontWeight: 700 } : undefined}>{doneIds.has(p.id) ? '✓ ' : '✏️ '}{p.nickname}</span>)}
-        </div>
-      )}
-      {doneN === 0 && <p className="mstats-wait">O'quvchilar yozib tugatishi bilan shu yerda ✓ belgisi chiqadi…</p>}
-    </div>
-  );
-}
-
 // AUDIOSIZ dars — useAudio/getAudioEngine zaglushkasi (QuestionScreen imzosi saqlanadi, TTS yo'q)
 const getAudioEngine = () => null;
 const useAudio = () => ({ muted: true, isPlaying: false, currentSegment: null, triggerEvent: () => {}, replay: () => {}, toggleMute: () => {} });
@@ -800,7 +771,7 @@ const fmtCode = (s) => (typeof s === 'string' && s.includes('`'))
   ? s.split('`').map((p, i) => i % 2 ? <code className="qcode" key={i}>{p}</code> : p)
   : s;
 
-const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, options, correctIdx, explainCorrect, explainWrong, audioText, audioOk, audioWrong, storedAnswer, onAnswer, onNext, onPrev }) => {
+const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, payloadQuestion, payloadOptions, options, correctIdx, explainCorrect, explainWrong, audioText, audioOk, audioWrong, storedAnswer, onAnswer, onNext, onPrev }) => {
   const audio = useAudio(audioText ? [{ id: `s${screen}_intro`, text: audioText, trigger: 'on_mount', waits_for: { type: 'option_picked' } }] : null);
   const gate = useContext(LiveGateCtx) || {};
   const live = gate.live;
@@ -829,14 +800,16 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
     if (oneShot) {
       // Jonli dars: javob darhol qotadi (to'g'ri ham, xato ham) va serverga yoziladi
       setSolved(true);
-      onAnswer(screen, { stage: scope, screenIdx: screen, question: questionText, options, correctIndex: correctIdx, correctAnswer: options[correctIdx], picked: i, studentAnswerIndex: i, studentAnswer: options[i], correct: isCorrect, firstAttemptCorrect: isCorrect, solved: true, lastPicked: i });
+      onAnswer(screen, { stage: scope, screenIdx: screen, question: pQ, options: pOpts, correctIndex: correctIdx, correctAnswer: pOpts[correctIdx], picked: i, studentAnswerIndex: i, studentAnswer: pOpts[i], correct: isCorrect, firstAttemptCorrect: isCorrect, solved: true, lastPicked: i });
       live.submitAnswer(screen, SCREEN_META[screen]?.id || `s${screen}`, i, isCorrect, Date.now() - mountTs.current);
     } else {
       if (isCorrect) setSolved(true);
-      onAnswer(screen, { stage: scope, screenIdx: screen, question: questionText, options, correctIndex: correctIdx, correctAnswer: options[correctIdx], picked: i, studentAnswerIndex: i, studentAnswer: options[i], correct: firstCorrectRef.current, firstAttemptCorrect: firstCorrectRef.current, solved: isCorrect, lastPicked: i });
+      onAnswer(screen, { stage: scope, screenIdx: screen, question: pQ, options: pOpts, correctIndex: correctIdx, correctAnswer: pOpts[correctIdx], picked: i, studentAnswerIndex: i, studentAnswer: pOpts[i], correct: firstCorrectRef.current, firstAttemptCorrect: firstCorrectRef.current, solved: isCorrect, lastPicked: i });
     }
     if (audioText) { audio.triggerEvent('option_picked'); if (!audio.muted) setTimeout(() => { const e = getAudioEngine(); if (e && !audio.muted) e.pushOneOff(isCorrect ? (audioOk || "To'g'ri.") : (audioWrong || "Unchalik emas. Qaytadan urinib ko'ring.")); }, 300); }
   };
+  const pOpts = payloadOptions || options;
+  const pQ = payloadQuestion || questionText;
   const wrongLocked = oneShot && solved && picked !== correctIdx; // jonli darsda xato bosib qotgan
   // KAHOOT REVEAL: jonli darsda javob bosilgach to'g'ri/XATO ham sir saqlanadi —
   // faqat «javob qabul qilindi» ko'rinadi. Mentor «Natijani ochish»ni bosganda
@@ -847,7 +820,7 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
   const revealed = !oneShot || !!(live && (live.revealScreen === screen || (live.mentorMax ?? live.mentorScreen) > screen || live.status === 'ended' || !live.mentorAlive));
   const waiting = oneShot && solved && !revealed; // javob qotdi — natija mentordan kutilmoqda
   return (
-    <Stage eyebrow={eyebrow} screen={screen} narrow audioState={audioText ? audio : undefined} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={isMentorLive ? !mReveal : !solved} label={isMentorLive ? (mReveal ? 'Davom etish' : 'Avval natijani oching') : solved ? 'Davom etish' : (oneShot ? 'Javob tanlang' : "To'g'ri javobni toping")} onClick={onNext} /></>}>
+    <Stage eyebrow={eyebrow} screen={screen} narrow audioState={audioText ? audio : undefined} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={isMentorLive ? !mReveal : !solved} label={isMentorLive ? (mReveal ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Avval natijani oching', ru: 'Сначала откройте результат' })) : solved ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : (oneShot ? tr({ uz: 'Javob tanlang', ru: 'Выберите ответ' }) : tr({ uz: "To'g'ri javobni toping", ru: 'Найдите верный ответ' }))} onClick={onNext} /></>}>
       <div className="screen" style={{ justifyContent: isMentorLive ? 'flex-start' : 'safe center', gap: 'clamp(16px,2.5vw,24px)' }}>
         <div className="fade-up">{question}</div>
         {oneShot && !solved && <p className="small mono fade-up" style={{ margin: '-8px 0 0', color: T.accent, fontWeight: 600 }}>⚡ Jonli dars — bitta urinish, o'ylab bosing!</p>}
@@ -938,57 +911,6 @@ const Mentor = ({ children }) => {
 };
 
 const Q = ({ children, max = 760 }) => <h2 className="title h-title fade-up" style={{ maxWidth: max }}>{children}</h2>;
-const IcoChip = ({ color = T.accent, soft = T.accentSoft, children, size = 46 }) => (
-  <span style={{ width: size, height: size, borderRadius: 13, background: soft, color, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{children}</span>
-);
-
-const MentorCollapseScroll = ({ targetRef }) => {
-  const ctx = useContext(MentorCtx) || {};
-  const prev = useRef(false);
-  useEffect(() => {
-    if (ctx.enabled && ctx.collapsed && !prev.current && targetRef && targetRef.current) {
-      const el = targetRef.current;
-      setTimeout(() => { if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 420);
-    }
-    prev.current = !!ctx.collapsed;
-  }, [ctx.collapsed, ctx.enabled, targetRef]);
-  return null;
-};
-
-// Qora "reja" kartasi — MVP / yo'l xaritasi
-const SpecCard = ({ items, minH = 200, title = 'Yo\'l xaritasi', icon }) => (
-  <div className="spec-card" style={{ minHeight: minH }}>
-    <div className="spec-head"><span style={{ display: 'inline-flex', color: '#9FB4D8' }}>{icon || p5.layers(15)}</span><span className="spec-title">{title}</span></div>
-    {items.map((it, i) => (
-      <div key={i} className={it.text ? 'feat-pop' : ''}>
-        {it.label && <span className="spec-lbl" style={{ color: it.color || '#9FB4D8' }}>{it.label}</span>}
-        <p className="spec-text" style={{ color: it.text ? '#E8E5DD' : '#6B7585', fontStyle: it.text ? 'normal' : 'italic' }}>{it.text || it.ph}</p>
-      </div>
-    ))}
-  </div>
-);
-
-// PM5 — resurs/vaqt o'lchagichi (juda ko'p feature → to'lib toshadi)
-const ResourceMeter = ({ load, max = 8 }) => {
-  const pct = Math.min(100, Math.round((load / max) * 100));
-  const over = load > max * 0.6;
-  const col = over ? T.accent : T.success;
-  return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
-      {[{ lbl: 'Vaqt', mul: 1 }, { lbl: 'Risk', mul: 1.15 }].map(b => {
-        const w = Math.min(100, pct * b.mul);
-        const bover = w > 70;
-        return (
-          <div key={b.lbl}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 4 }}><span className="mono small" style={{ color: T.ink2 }}>{b.lbl}</span><span className="mono small" style={{ color: bover ? T.accent : T.ink3, fontWeight: 700 }}>{bover ? 'YUQORI' : 'normal'}</span></div>
-            <div className="meter-track"><div className={`meter-fill ${bover ? 'over' : ''}`} style={{ width: `${w}%`, background: bover ? T.accent : T.success }} /></div>
-          </div>
-        );
-      })}
-    </div>
-  );
-};
-
 const Zoomable = ({ children }) => {
   const [big, setBig] = useState(false);
   useEffect(() => {
@@ -1009,590 +931,1156 @@ const Zoomable = ({ children }) => {
   );
 };
 
-// ===== SCREEN 0 — HOOK =====
-const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
-  const [mode, setMode] = useState('step'); // 'step' | 'all'
-  const [picked, setPicked] = useState(storedAnswer?.picked ?? null);
-  const OPTS = [
-    { id: 'a', label: 'Chiroyliroq ko\'rinadi' },
-    { id: 'b', label: 'Har bosqichda ishlaydigan narsa bor — foyda erta keladi' },
-    { id: 'c', label: 'Farqi yo\'q, ikkalasi bir xil' }
-  ];
-  const pick = (id) => { if (picked !== null) return; setPicked(id); onAnswer(screen, { stage: 'hook', screenIdx: screen, picked: id, correct: true }); };
+// ============================================================
+// MENTORGA ESLATMA — proyektor-sir (5-qonun): default yopiq xira chip.
+// Faqat zarur ekranlarda: sir-saqlash · baholash-mezoni · vaqt-qoidasi · tekshirish-qoidasi.
+// ============================================================
+const MentorNote = ({ children }) => {
+  const gate = useContext(LiveGateCtx) || {};
+  const live = gate.live;
+  const [open, setOpen] = useState(false);
+  if (!live || live.mode !== 'mentor') return null;
+  if (!open) return (
+    <button type="button" className="mnote-chip" onClick={() => setOpen(true)} title={tr({ uz: 'Mentorga eslatma — bosib oching', ru: 'Заметка ментору — нажмите' })}>{tr({ uz: '📋 Eslatma', ru: '📋 Заметка' })}</button>
+  );
   return (
-    <Stage eyebrow="Kirish" screen={screen} navContent={<NavNext disabled={picked === null} label="Davom etish" optionalLive onClick={onNext} />}>
-      <div className="screen">
-        <h1 className="title h-title fade-up" style={{ maxWidth: 840 }}>Mashinani <span className="italic" style={{ color: T.accent }}>g'ildirakdanmi</span> yoki skeytborddan boshlaymizmi?</h1>
-        <Mentor>Ikki jamoa bitta ilova quryapti. Birini bosib, har birining natijasini ko'ring.</Mentor>
-        <Zoomable>
-        <Split>
-          <Col>
-            <div className="fade-up delay-1" style={{ display: 'flex', gap: 8 }}>
-              <button className={`chip ${mode === 'step' ? 'chip-on' : ''}`} onClick={() => setMode('step')}>Bosqichma-bosqich</button>
-              <button className={`chip ${mode === 'all' ? 'chip-on' : ''}`} onClick={() => setMode('all')}>Hammasini birato'la</button>
-            </div>
-            <div key={mode} className="demo-swap" style={{ background: T.paper, borderRadius: 16, padding: '20px 18px', boxShadow: `0 8px 22px -7px rgba(${T.shadowBase},0.16)`, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 12, borderLeft: `4px solid ${mode === 'step' ? T.success : T.ink3}` }}>
-              {mode === 'step' ? (
-                <>
-                  <span className="roll" style={{ color: T.honey }}><Vehicle stage="skate" size={120} /></span>
-                  <div style={{ textAlign: 'center' }}>
-                    <p className="mono small" style={{ color: T.success, fontWeight: 700, margin: 0 }}>1-HAFTA · SKEYTBORD</p>
-                    <p style={{ fontFamily: G, fontSize: 'clamp(14px,1.9vw,16px)', color: T.ink, margin: '5px 0 0' }}>Allaqachon yuryapti! Foydalanuvchi bugundan foydalanmoqda.</p>
-                  </div>
-                </>
-              ) : (
-                <>
-                  <span style={{ color: T.ink3, opacity: 0.45 }}><Vehicle stage="car" size={120} /></span>
-                  <div style={{ textAlign: 'center' }}>
-                    <p className="mono small" style={{ color: T.accent, fontWeight: 700, margin: 0 }}>1-YIL · HALI QURILMOQDA ⏳</p>
-                    <p style={{ fontFamily: G, fontSize: 'clamp(14px,1.9vw,16px)', color: T.ink, margin: '5px 0 0' }}>Hali hech narsa yurmaydi — foydalanuvchi kutib o'tiribdi.</p>
-                  </div>
-                </>
-              )}
-            </div>
-          </Col>
-          <Col>
-            <p className="eyebrow fade-up delay-2" style={{ color: T.ink2, margin: 0 }}>Nega bosqichma-bosqich yaxshiroq?</p>
-            <div className="fade-up delay-3" style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
-              {OPTS.map(o => { const on = picked === o.id; return (<button key={o.id} className={`hook-option ${on ? 'on' : ''}`} disabled={picked !== null} onClick={() => pick(o.id)}><span className="radio">{on && <span className="radio-dot" />}</span><span>{o.label}</span></button>); })}
-            </div>
-            {picked !== null && <p className="hook-ack fade-step">Katta mahsulotni birato'la qurib bo'lmaydi. Avval <b>eng kichik ishlaydigan versiya</b> (skeytbord) — buni <b>MVP</b> deyiladi. Keyin bosqichma-bosqich o'stiramiz.</p>}
-          </Col>
-        </Split>
-        </Zoomable>
-      </div>
-    </Stage>
+    <div className="mnote fade-up" onClick={() => setOpen(false)} title={tr({ uz: 'Yopish uchun bosing', ru: 'Нажмите, чтобы закрыть' })}>
+      <span className="mnote-lbl">{tr({ uz: '🧑‍🏫 Mentorga eslatma', ru: '🧑‍🏫 Заметка ментору' })}<span className="mnote-x">{tr({ uz: '✕ yopish', ru: '✕ закрыть' })}</span></span>
+      <p className="mnote-body">{children}</p>
+    </div>
   );
 };
 
-// ===== SCREEN 1 — REJA =====
-const Screen1 = ({ screen, onNext, onPrev }) => {
-  const STEPS = [
-    { text: 'Mahsulotni feature\'larga bo\'lamiz (dekompozitsiya)', tag: '' },
-    { text: 'MVP — eng kichik ishlaydigan versiyani ajratamiz', tag: '' },
-    { text: 'Qolganini "keyin" (backlog)ga qo\'yamiz', tag: '' },
-    { text: 'MVPga keraksiz og\'ir feature\'ni topib olib tashlash', tag: 'mashq' },
-    { text: 'O\'z loyihangizni MVP vs Keyin ga bo\'lasiz', tag: 'amaliyot' }
-  ];
-  const isNarrow = useIsMobile(768);
-  const [showSteps, setShowSteps] = useState(false);
-  const Idea = ({ ic, h, t, c }) => (<div className="frame" style={{ display: 'flex', alignItems: 'center', gap: 14, padding: '16px 18px' }}><IcoChip color={c} soft={c + '1c'}>{ic}</IcoChip><div><p style={{ fontFamily: "'Source Serif 4',serif", fontWeight: 600, color: T.ink, margin: 0, fontSize: 'clamp(16px,2.2vw,19px)' }}>{h}</p><p className="body" style={{ margin: '2px 0 0', color: T.ink2 }}>{t}</p></div></div>);
-  const IdeaBlock = (
-    <Col>
-      <p className="flow-label">Bugungi asosiy g'oya</p>
-      <div className="fade-up" style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-        <Idea ic={<span style={{ color: T.honey }}><Vehicle stage="skate" size={30} /></span>} c={T.honey} h="AVVAL SKEYTBORD" t="Eng kichik ishlaydigan versiya — MVP" />
-        <Idea ic={p5.layers(22)} c={T.grape} h="KEYIN O'STIR" t="v1 → v2 → v3, bosqichma-bosqich" />
-      </div>
-      <p className="mono small" style={{ color: T.accent, margin: 0 }}>→ Dekompozitsiya = katta dasturni kichik funksiyalarga bo'lish</p>
-    </Col>
-  );
-  const StepsBlock = (<Col><p className="flow-label">5 qadam</p><ol className="roadmap">{STEPS.map((s, i) => (<li key={i} className="step-card fade-up" style={{ animationDelay: `${0.08 + i * 0.05}s` }}><span className="step-num">{String(i + 1).padStart(2, '0')}</span><span className="step-body"><span className="step-text">{s.text}</span>{s.tag && <span className="step-tag">{s.tag}</span>}</span></li>))}</ol></Col>);
+// Mentor paneli: kim bajardi (3s polling, PRACTICE_BASE zonasi)
+const MentorPracticeStats = ({ live, screen, label }) => {
+  const [data, setData] = useState({ players: null, rows: [] });
+  const isMentor = !!(live && live.mode === 'mentor' && live.pin);
+  const pin = live ? live.pin : null;
+  useEffect(() => {
+    if (!isMentor) return;
+    let on = true, t = null;
+    const tick = async () => {
+      try {
+        const [players, answers] = await Promise.all([livePlayers(pin), liveAnswers(pin, PRACTICE_BASE + screen)]);
+        if (on) setData({ players, rows: answers });
+      } catch {}
+      if (on) t = setTimeout(tick, 3000);
+    };
+    tick();
+    return () => { on = false; clearTimeout(t); };
+  }, [isMentor, pin, screen]);
+  if (!isMentor || data.players === null) return null;
+  const total = data.players.length;
+  const doneIds = new Set(data.rows.map(r => r.player_id));
+  const doneN = doneIds.size;
+  const allIn = total > 0 && doneN >= total;
   return (
-    <Stage eyebrow="Reja" screen={screen} mentorStatic navContent={<><NavBack onPrev={onPrev} /><NavNext label="Boshlaymiz →" onClick={onNext} /></>}>
-      <div className="screen">
-        <div className="head"><h2 className="title h-title fade-up"><span className="italic" style={{ color: T.accent }}>Katta g'oyani qanday bosqichlarga bo'lamiz?</span></h2></div>
-        <Mentor>Hamma "ajoyib, mukammal mahsulot qilaman" deydi — lekin u <b style={{ color: T.ink }}>katta resurs</b> talab qiladi. PM sirri: katta g'oyani <b style={{ color: T.ink }}>bosqichlarga</b> bo'lish. Avval skeytbord, keyin mashina.</Mentor>
-        {!isNarrow ? (<Zoomable><Split>{IdeaBlock}{StepsBlock}</Split></Zoomable>) : !showSteps ? (<div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px,2vw,16px)' }}>{IdeaBlock}<button className="btn" style={{ alignSelf: 'flex-start' }} onClick={() => setShowSteps(true)}>5 qadamni ko'rish</button></div>) : (<div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px,2vw,16px)' }}><button className="btn-soft" style={{ alignSelf: 'flex-start' }} onClick={() => setShowSteps(false)}>↩ G'oyani ko'rish</button>{StepsBlock}</div>)}
+    <div className="mstats fade-up">
+      <div className="mstats-head">
+        <span className="mstats-lbl">{label || tr({ uz: '👀 Kim bajardi', ru: '👀 Кто выполнил' })}</span>
+        <span className="mstats-n">{allIn ? tr({ uz: "✓ Hamma bajardi!", ru: '✓ Все выполнили!' }) : <>{tr({ uz: 'Bajardi: ', ru: 'Выполнили: ' })}<b>{doneN}</b> / {total}</>}</span>
       </div>
-    </Stage>
-  );
-};
-
-// ===== SCREEN 2 — ZO'R KEYSLAR (ulkanlar kichikdan boshlagan) =====
-const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const KEYS = Object.keys(CASES);
-  const [active, setActive] = useState(null);
-  const [seen, setSeen] = useState(storedAnswer ? new Set(KEYS) : new Set());
-  const isNarrow = useIsMobile(768);
-  const done = seen.size >= KEYS.length;
-  const tap = (k) => { setActive(k); setSeen(prev => { const n = new Set(prev); n.add(k); return n; }); };
-  useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
-  const cur = active ? CASES[active] : null;
-  return (
-    <Stage eyebrow="Zo'r keyslar" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? 'Davom etish' : `${seen.size}/4 ko'ring`} optionalLive onClick={onNext} /></>}>
-      <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Ulkan kompaniyalar <span className="italic" style={{ color: T.accent }}>qanchadan</span> boshlagan?</h2></div>
-        <Mentor>Bugungi gigantlar ham birinchi kuni ulkan bo'lmagan — hammasi <b style={{ color: T.ink }}>kichik MVP</b>'dan boshlagan. Bittasini bosib, boshlanishini ko'ring.</Mentor>
-        <Zoomable>
-        <div className="split">
-          <Col>
-            <div className="fade-up delay-1" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
-              {KEYS.map(k => (<button key={k} onClick={() => tap(k)} style={{ display: 'flex', alignItems: 'center', gap: 9, cursor: 'pointer', border: 'none', borderRadius: 13, padding: '13px 12px', background: T.paper, boxShadow: active === k ? `inset 0 0 0 2px ${T.accent}, 0 8px 20px -7px rgba(255,79,40,0.22)` : `0 6px 16px -8px rgba(${T.shadowBase},0.16)`, transition: 'all 0.18s' }}><span style={{ display: 'inline-flex' }}>{CASES[k].ic}</span><span style={{ fontFamily: "'Manrope',sans-serif", fontWeight: 600, fontSize: 13.5, color: T.ink }}>{CASES[k].name}</span>{seen.has(k) && <span style={{ marginLeft: 'auto', color: T.success, display: 'inline-flex' }}>{Ico.check(13)}</span>}</button>))}
-            </div>
-          </Col>
-          <Col>
-            {cur ? (
-              <div className="sk-info fade-step" key={active}>
-                <span className="sk-tagbig"><span style={{ display: 'inline-flex' }}>{cur.ic}</span><span className="sk-wordbadge">{cur.name} · {cur.year}</span></span>
-                <div style={{ display: 'flex', alignItems: 'flex-start', gap: 9, margin: '13px 0 0' }}><span style={{ color: T.honey, display: 'inline-flex', marginTop: 1 }}><Vehicle stage="skate" size={18} /></span><p className="body" style={{ margin: 0, color: T.ink }}><b style={{ color: T.honey }}>MVP:</b> {cur.mvp}</p></div>
-                <div style={{ display: 'flex', alignItems: 'flex-start', gap: 9, margin: '8px 0 0' }}><span style={{ color: T.success, display: 'inline-flex', marginTop: 1 }}><Vehicle stage="car" size={18} /></span><p className="body" style={{ margin: 0, color: T.ink2 }}><b style={{ color: T.success }}>Bugun:</b> {cur.today}</p></div>
-              </div>
-            ) : (!isNarrow ? <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>Bir kompaniyani bosing</p></div> : null)}
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Hech biri birinchi kuni gigant bo'lmagan. Hammasi <b>kichik MVP</b>'dan boshlab, bosqichma-bosqich o'sgan.</p></div>}
-          </Col>
+      <div className="mstats-prog"><span className={`mstats-prog-fill ${allIn ? 'full' : ''}`} style={{ width: `${total ? Math.round((doneN / total) * 100) : 0}%` }} /></div>
+      {total > 0 && (
+        <div className="mstats-waitrow">
+          {data.players.map(p => <span key={p.id} className="mstats-wait-chip" style={doneIds.has(p.id) ? { background: T.successSoft, color: T.success, fontWeight: 700 } : undefined}>{doneIds.has(p.id) ? '✓ ' : '✏️ '}{p.nickname}</span>)}
         </div>
-        </Zoomable>
-      </div>
-    </Stage>
+      )}
+      {doneN === 0 && <p className="mstats-wait">{tr({ uz: "O'quvchilar bajarishi bilan shu yerda ✓ belgisi chiqadi…", ru: 'Как только ученики выполнят, здесь появится ✓…' })}</p>}
+    </div>
   );
 };
 
-// ===== SCREEN 3 — HAMMASINI BIRATO'LA → RESURS PORTLAYDI =====
-const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const [mode, setMode] = useState('mvp');
-  const [seen, setSeen] = useState(storedAnswer ? new Set(['mvp', 'all']) : new Set(['mvp']));
-  const done = seen.size >= 2;
-  const set = (v) => { setMode(v); setSeen(prev => { const n = new Set(prev); n.add(v); return n; }); };
-  const load = mode === 'mvp' ? 2 : 8;
-  useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
+// O'quvchiga sinf-pulsi (45-qonun): ismlarsiz, faqat son; mentor rejimida ko'rinmaydi
+const StudentPracticePulse = ({ live, screen }) => {
+  const isStudent = !!(live && live.mode === 'student' && live.pin);
+  const pin = live ? live.pin : null;
+  const [st, setSt] = useState({ total: 0, done: 0, ok: false });
+  useEffect(() => {
+    if (!isStudent) return;
+    let on = true, t = null;
+    const tick = async () => {
+      try {
+        const [players, answers] = await Promise.all([livePlayers(pin), liveAnswers(pin, PRACTICE_BASE + screen)]);
+        if (on) setSt({ total: players.length, done: new Set(answers.map(a => a.player_id)).size, ok: true });
+      } catch {}
+      if (on) t = setTimeout(tick, 4000);
+    };
+    tick();
+    return () => { on = false; clearTimeout(t); };
+  }, [isStudent, pin, screen]);
+  if (!isStudent || !st.ok || st.total === 0) return null;
+  const busy = Math.max(0, st.total - st.done);
   return (
-    <Stage eyebrow="Resurs" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? 'Davom etish' : 'Ikkalasini ko\'ring'} optionalLive onClick={onNext} /></>}>
-      <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Hammasini <span className="italic" style={{ color: T.accent }}>birato'la</span> qursak — nima bo'ladi?</h2></div>
-        <Mentor>Bitta versiyada nechta feature qurishni tanlang. Vaqt va risk o'lchagichini kuzating.</Mentor>
-        <Zoomable>
-        <div className="split">
-          <Col>
-            <div className="fade-up delay-1" style={{ display: 'flex', gap: 8 }}>
-              <button className={`chip ${mode === 'mvp' ? 'chip-on' : ''}`} onClick={() => set('mvp')}>MVP — 2 feature</button>
-              <button className={`chip ${mode === 'all' ? 'chip-on' : ''}`} onClick={() => set('all')}>Hammasi — 8 feature</button>
-            </div>
-            <div key={mode} className="frame demo-swap" style={{ padding: 'clamp(16px,2.5vw,22px)' }}>
-              <p className="mono small" style={{ color: T.ink2, margin: '0 0 12px' }}>Bitta versiyada: <b style={{ color: load > 5 ? T.accent : T.success }}>{load} feature</b></p>
-              <ResourceMeter load={load} />
-            </div>
-          </Col>
-          <Col>
-            {mode === 'mvp'
-              ? <div className="frame-success fade-step" key="m"><p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: T.success, textTransform: 'uppercase', letterSpacing: '0.08em' }}>Tez chiqadi</p><p className="body" style={{ margin: 0, color: T.ink }}>Kam feature — kam vaqt, kam risk. 1 haftada chiqarib, foydalanuvchi fikrini olasiz.</p></div>
-              : <div className="frame-warn fade-step" key="a"><p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>Loyiha cho'kadi</p><p className="body" style={{ margin: 0, color: T.ink }}>Hammasini birato'la — vaqt va risk portlaydi. Oylab hech narsa chiqmaydi, foydalanuvchi fikri ham yo'q.</p></div>}
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Shuning uchun avval <b>kam, lekin ishlaydigan</b> feature — MVP. Resurs cheklangan, uni to'g'ri sarflang.</p></div>}
-          </Col>
-        </div>
-        </Zoomable>
-      </div>
-    </Stage>
+    <p className="cls-pulse fade-step">{tr({ uz: '👥 Sinfda: ', ru: '👥 В классе: ' })}<b>{st.done}</b>{tr({ uz: ' bajardi · ✏️ ', ru: ' выполнили · ✏️ ' })}<b>{busy}</b>{tr({ uz: ' hali bajarmoqda', ru: ' ещё выполняют' })}</p>
   );
 };
 
-// ===== SCREEN 4 — TEST 1 =====
-const Screen4 = (props) => (
-  <QuestionScreen {...props} scope="module-mikro" eyebrow="Mashq · 1-savol"
-    questionText="MVP ning asosiy maqsadi nima?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-sub" style={{ marginTop: 8 }}>MVP ning asosiy <span className="italic" style={{ color: T.accent }}>maqsadi</span> nima?</h2></>}
-    options={['Mukammal mahsulotni bir martada chiqarish', 'Kichik ishlaydigan versiyani sinab, fikr olish', 'Imkon qadar ko\'p feature bir yo\'la qo\'shish', 'Eng chiroyli dizaynni birinchi yasash']} correctIdx={1}
-    explainCorrect="To'g'ri! MVP — eng kichik ISHLAYDIGAN versiya. Maqsad: tez chiqarib, foydalanuvchidan erta fikr olish va shu asosda o'stirish."
-    explainWrong={{ 0: 'Mukammal mahsulot bir martada chiqmaydi. Avval kichik ishlaydigan versiya.', 2: 'Ko\'p feature — ko\'p vaqt va risk. MVP aksincha: kam, lekin ishlaydigan.', 3: 'Dizayn keyin. Avval ishlaydigan o\'zak va foydalanuvchi fikri.', default: 'MVP — eng kichik ishlaydigan versiya bilan tez sinash.' }} />
-);
-
-// ===== SCREEN 5 — EVOLYUTSIYA (skeytbord → mashina) — signature =====
-const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const [idx, setIdx] = useState(0);
-  const [seen, setSeen] = useState(storedAnswer ? new Set([0, 1, 2, 3]) : new Set([0]));
-  const done = seen.size >= STAGES.length;
-  const go = (i) => { if (i < 0 || i >= STAGES.length) return; setIdx(i); setSeen(prev => { const n = new Set(prev); n.add(i); return n; }); };
-  useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
-  const st = STAGES[idx];
-  return (
-    <Stage eyebrow="Evolyutsiya" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? 'Davom etish' : `${seen.size}/4 bosqichni ko'ring`} optionalLive onClick={onNext} /></>}>
-      <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Har bosqich <span className="italic" style={{ color: T.accent }}>haydaladi</span> — skeytborddan mashinagacha</h2></div>
-        <Mentor>To'g'ri MVP — mashinaning g'ildiragi emas, <b style={{ color: T.ink }}>haydab bo'ladigan skeytbord</b>. Har bosqichni bosib, foydasini ko'ring.</Mentor>
-        <Zoomable>
-        <div className="split">
-          <Col>
-            <div className="fade-up delay-1" style={{ background: T.paper, borderRadius: 16, padding: 'clamp(16px,2.5vw,24px)', boxShadow: `0 8px 22px -7px rgba(${T.shadowBase},0.16)`, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10 }}>
-              <span key={st.key} className="veh-pop roll" style={{ color: st.color }}><Vehicle stage={st.key} size={130} /></span>
-              <div style={{ display: 'flex', gap: 6 }}>
-                {STAGES.map((s, i) => (<button key={s.key} onClick={() => go(i)} aria-label={s.label} className={i !== idx && !seen.has(i) ? 'tap-hint' : ''} style={{ width: 30, height: 30, borderRadius: 9, border: 'none', cursor: 'pointer', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', background: i === idx ? s.color : (seen.has(i) ? s.color + '22' : T.bg), color: i === idx ? '#fff' : s.color, transition: 'all 0.18s' }}><Vehicle stage={s.key} size={20} /></button>))}
-              </div>
-            </div>
-          </Col>
-          <Col>
-            <div className="sk-info fade-step" key={st.key}>
-              <span className="sk-tagbig"><span className="mono" style={{ fontSize: 11, fontWeight: 700, color: st.color }}>{idx + 1}-BOSQICH</span><span className="sk-wordbadge" style={{ color: st.color, background: st.color + '1c' }}>{st.label}</span></span>
-              <p className="body" style={{ color: T.ink, margin: '12px 0 0' }}>{st.use}</p>
-            </div>
-            {idx < STAGES.length - 1
-              ? <button className="btn" style={{ alignSelf: 'flex-start' }} onClick={() => go(idx + 1)}>Keyingi versiya →</button>
-              : <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Mana farqi: har bosqich <b>ishlaydi</b>. Mashinani g'ildirakdan boshlasangiz — yo'lda hech narsa yurmaydi.</p></div>}
-          </Col>
-        </div>
-        </Zoomable>
-      </div>
-    </Stage>
-  );
+// Mentor-baypas yozuvi (31-qonun): jonli darsda mentor amaliyotni bajarmaydi
+const MentorBypassLine = ({ live }) => {
+  if (!live || live.mode !== 'mentor') return null;
+  return <p className="mbypass">{tr({ uz: "👨‍🏫 Jonli darsda bu amaliyotni o'quvchilar bajaradi — siz kuzatasiz; «Davom etish» siz uchun ochiq", ru: '👨‍🏫 В живом уроке это задание выполняют ученики — вы наблюдаете; «Продолжить» для вас открыто' })}</p>;
 };
 
-// ===== SCREEN 5b — TEST 2 =====
-const Screen5b = (props) => (
-  <QuestionScreen {...props} scope="module-mikro" eyebrow="Tekshiruv"
-    questionText="Mahsulot uchun to'g'ri MVP qaysi?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>Mustahkamlash</p><h2 className="title h-sub" style={{ marginTop: 8 }}>To'g'ri MVP qaysi — <span className="italic" style={{ color: T.accent }}>g'ildirakmi</span> yoki skeytbord?</h2></>}
-    options={['Mashinaning bitta g\'ildiragi', 'Mashinaning dvigateli', 'Haydab bo\'ladigan skeytbord', 'Yarim qurilgan mashina']} correctIdx={2}
-    explainCorrect="To'g'ri! MVP butun, ishlaydigan narsa bo'lishi kerak — skeytbord sizni haydaydi. G'ildirak yoki dvigatel alohida hech qayerga olib bormaydi."
-    explainWrong={{ 0: 'Bitta g\'ildirak haydalmaydi. MVP — butun ishlaydigan narsa (skeytbord).', 1: 'Dvigatel o\'zi yurmaydi. MVP foydalanuvchini A dan B ga olib borishi kerak.', 3: 'Yarim mashina yurmaydi. Skeytbord kichik, lekin to\'liq ishlaydi.', default: 'MVP — kichik, lekin butun ishlaydigan narsa: skeytbord.' }} />
-);
-
-// ===== SCREEN 6 — VERSIYA STEPPERI (v1→v2→v3) =====
-const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const [step, setStep] = useState(storedAnswer ? VERSIONS.length : 0);
-  const [running, setRunning] = useState(false);
-  const timer = useRef(null);
-  const done = step >= VERSIONS.length;
-  useEffect(() => () => clearTimeout(timer.current), []);
-  const run = () => { clearTimeout(timer.current); setStep(0); setRunning(true); const tick = (i) => { setStep(i); if (i < VERSIONS.length) timer.current = setTimeout(() => tick(i + 1), 900); else setRunning(false); }; timer.current = setTimeout(() => tick(1), 350); };
-  useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
-  return (
-    <Stage eyebrow="O'sish" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? 'Davom etish' : 'Avval kuzating'} optionalLive onClick={onNext} /></>}>
-      <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Mini-do'kon <span className="italic" style={{ color: T.accent }}>versiyama-versiya</span> qanday o'sadi?</h2></div>
-        <Mentor>MVP chiqqach to'xtamaymiz — foydalanuvchi fikriga qarab <b style={{ color: T.ink }}>v2, v3</b> qo'shamiz. Tugmani bosib, o'sishni kuzating.</Mentor>
-        <Zoomable>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-          {VERSIONS.map((v, i) => { const on = step > i; return (
-            <div key={v.key} className={on ? 'ver-in' : ''} style={{ background: T.paper, borderRadius: 13, padding: '13px 15px', opacity: on ? 1 : 0.32, boxShadow: on ? `0 8px 20px -10px rgba(${T.shadowBase},0.2)` : 'none', borderLeft: `4px solid ${on ? v.color : T.ink3}`, transition: 'all 0.5s' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 9, marginBottom: 7 }}><span className="mono" style={{ fontSize: 12, fontWeight: 800, color: on ? v.color : T.ink3 }}>{v.label}</span>{on && <span style={{ marginLeft: 'auto', color: T.success, display: 'inline-flex' }}>{Ico.check(15)}</span>}</div>
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>{v.feats.map(f => (<span key={f} style={{ fontFamily: "'Manrope'", fontWeight: 600, fontSize: 12, color: on ? v.color : T.ink3, background: on ? v.color + '16' : T.bg, padding: '4px 10px', borderRadius: 99 }}>{f}</span>))}</div>
-              {on && <p className="small fade-step" style={{ margin: '8px 0 0', color: T.ink2, fontStyle: 'italic' }}>{v.note}</p>}
-            </div>
-          ); })}
-        </div>
-        <button className="btn" onClick={run} disabled={running} style={{ alignSelf: 'flex-start' }}>{running ? 'O\'smoqda…' : (done ? '↻ Yana ko\'rish' : 'Mahsulotni o\'stirish')}</button>
-        {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Mana — <b>v1 → v2 → v3</b>. Har versiya ishlaydi va o'sib boradi. Bu — iteratsiya.</p></div>}
-        </div>
-        </Zoomable>
-      </div>
-    </Stage>
-  );
-};
-
-// ===== SCREEN 7 — BIR FEATURE: MVP'DAMI YOKI KEYIN? (compare) =====
-const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const [v, setV] = useState('lean');
-  const [seen, setSeen] = useState(storedAnswer ? new Set(['lean', 'full']) : new Set(['lean']));
-  const done = seen.size >= 2;
-  const set = (x) => { setV(x); setSeen(prev => { const n = new Set(prev); n.add(x); return n; }); };
-  const LEAN = [{ label: 'MVP (v1)', color: CODE.str, text: 'Mahsulot ro\'yxati' }, { label: 'MVP (v1)', color: CODE.str, text: 'Qidiruv' }, { label: 'MVP (v1)', color: CODE.str, text: 'Mahsulot sahifasi' }];
-  const FULL = [{ label: 'v1', color: '#FFCB6B', text: 'Mahsulot ro\'yxati' }, { label: 'v1', color: '#FFCB6B', text: 'Qidiruv' }, { label: 'v1', color: '#FFCB6B', text: 'Savat + to\'lov + yetkazish' }, { label: 'v1', color: '#FFCB6B', text: 'AI tavsiya + chat + sharh' }];
-  useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
-  return (
-    <Stage eyebrow="MVP vs Hammasi" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? 'Davom etish' : 'Ikkalasini ko\'ring'} optionalLive onClick={onNext} /></>}>
-      <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Birinchi versiyaga <span className="italic" style={{ color: T.accent }}>nimani</span> qo'yamiz?</h2></div>
-        <Mentor>Ikki xil v1 reja: biri <b style={{ color: T.success }}>ozg'in</b> (faqat shart), biri <b style={{ color: T.honey }}>shishgan</b> (hammasi). Ikkalasini solishtiring.</Mentor>
-        <Zoomable>
-        <div className="split">
-          <Col>
-            <div className="fade-up delay-1" style={{ display: 'flex', gap: 8 }}>
-              <button className={`chip ${v === 'lean' ? 'chip-on' : ''}`} onClick={() => set('lean')}>Ozg'in MVP</button>
-              <button className={`chip ${v === 'full' ? 'chip-on' : ''}`} onClick={() => set('full')}>Shishgan v1</button>
-            </div>
-            <div key={v}><SpecCard items={v === 'lean' ? LEAN : FULL} minH={200} title={v === 'lean' ? 'v1 — ozg\'in MVP' : 'v1 — hammasi birato\'la'} icon={v === 'lean' ? p5.flag(15) : p5.box(15)} /></div>
-          </Col>
-          <Col>
-            {v === 'lean'
-              ? <div className="frame-success fade-step" key="l"><p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: T.success, textTransform: 'uppercase', letterSpacing: '0.08em' }}>1 haftada tayyor</p><p className="body" style={{ margin: 0, color: T.ink }}>Faqat eng kerakli 3 feature. Tez chiqadi, foydalanuvchi sotib oladi, fikr keladi.</p></div>
-              : <div className="frame-warn fade-step" key="f"><p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>Oylar ketadi</p><p className="body" style={{ margin: 0, color: T.ink }}>Hamma narsa v1'da — to'lov, AI, chat... Oylab qoladi, hech kim ishlatib ko'rmaydi.</p></div>}
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Har feature uchun so'rang: <b>"MVP'da shartmi, yoki keyin bo'ladimi?"</b></p></div>}
-          </Col>
-        </div>
-        </Zoomable>
-      </div>
-    </Stage>
-  );
-};
-
-// ===== SCREEN 8 — SARALASH: MVP yoki Keyin? =====
-const S8 = [
-  { id: 'list', text: 'Mahsulot ro\'yxati', stage: 'mvp', ic: Ico.list(17) },
-  { id: 'search', text: 'Qidiruv', stage: 'mvp', ic: Ico.search(17) },
-  { id: 'detail', text: 'Mahsulot sahifasi', stage: 'mvp', ic: Ico.page(17) },
-  { id: 'cart', text: 'Savat', stage: 'keyin', ic: Ico.cart(17) },
-  { id: 'pay', text: 'Onlayn to\'lov tizimi', stage: 'keyin', ic: Ico.card(17) },
-  { id: 'ai', text: 'AI tavsiya', stage: 'keyin', ic: p5.spark(17) }
+// ============================================================
+// EKRAN 0 — HOOK: bir haftada nechta ish tugaydi? (ovoz-berish + reveal)
+// ============================================================
+const HOOK_OPTS = [
+  { id: 'a', uz: '12 ta — hammasi tugaydi', ru: '12 — успеют все' },
+  { id: 'b', uz: "6 ta — yarmi tugaydi", ru: '6 — успеют половину' },
+  { id: 'c', uz: '3 ta — uchtasi tugaydi', ru: '3 — успеют три' },
 ];
-const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const [placed, setPlaced] = useState(storedAnswer ? Object.fromEntries(S8.map(it => [it.id, true])) : {});
-  const [wrong, setWrong] = useState(null);
-  const done = S8.every(it => placed[it.id]);
-  const place = (item, choice) => {
-    if (placed[item.id]) return;
-    if (choice === item.stage) { setPlaced(p => ({ ...p, [item.id]: true })); setWrong(null); }
-    else { setWrong(item.id); setTimeout(() => setWrong(w => (w === item.id ? null : w)), 480); }
+const ScrHook = ({ screen, storedAnswer, onAnswer, onNext }) => {
+  const gate = useContext(LiveGateCtx) || {};
+  const live = gate.live;
+  const isMentorLive = !!(live && live.mode === 'mentor');
+  const [picked, setPicked] = useState(storedAnswer?.picked ?? null);
+  const [mReveal, setMReveal] = useState(false);
+  const revealed = isMentorLive ? mReveal : picked !== null;
+  const pick = (id) => {
+    if (picked !== null || isMentorLive) return;
+    setPicked(id);
+    try { localStorage.setItem(HOOK_KEY, id); } catch {}
+    onAnswer(screen, { stage: 'hook', screenIdx: screen, picked: id, correct: true });
   };
-  useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
-  const cnt = Object.keys(placed).length;
   return (
-    <Stage eyebrow="Saralash" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? 'Davom etish' : `${cnt}/${S8.length} saralang`} optionalLive onClick={onNext} /></>}>
-      <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Bu feature <span className="italic" style={{ color: T.success }}>MVP</span>gami yoki <span className="italic" style={{ color: T.grape }}>Keyin</span>gami?</h2></div>
-        <Mentor>Mini-do'kon feature'lari. Har biri uchun tanlang: birinchi versiyada <b style={{ color: T.success }}>shart</b> bo'lsa — MVP, keyinroq bo'lsa — <b style={{ color: T.grape }}>Keyin</b>.</Mentor>
-        <Zoomable>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
-        <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
-          {S8.map(it => {
-            const ok = placed[it.id]; const isWrong = wrong === it.id;
+    <Stage eyebrow={tr({ uz: 'Ochilish kuni 🚀', ru: 'День открытия 🚀' })} screen={screen}
+      navContent={<NavNext optionalLive disabled={isMentorLive ? !mReveal : picked === null} label={isMentorLive ? (mReveal ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Avval natijani oching', ru: 'Сначала откройте результат' })) : (picked === null ? tr({ uz: 'Bittasini tanlang', ru: 'Выберите один' }) : tr({ uz: 'Davom etish', ru: 'Продолжить' }))} onClick={onNext} />}>
+      <div className="screen">
+        <h1 className="title h-title fade-up" style={{ maxWidth: 860 }}>{tr({ uz: <>Bir haftada <span className="italic" style={{ color: T.accent }}>nechta</span> ish tugaydi?</>, ru: <>Сколько дел <span className="italic" style={{ color: T.accent }}>успеют</span> за неделю?</> })}</h1>
+        <Mentor>{tr({ uz: <>Lavash do'koni egasi sayt uchun <b style={{ color: T.ink }}>12 ta</b> ish aytdi. Ochilishgacha bir hafta, sayt ustida bitta odam ishlaydi. Pastdagi uch javobdan bittasini tanlang.</>, ru: <>Владелец лавашной назвал для сайта <b style={{ color: T.ink }}>12 дел</b>. До открытия неделя, над сайтом работает один человек. Выберите один из трёх ответов ниже.</> })}</Mentor>
+        <MentorNote>{tr({ uz: "Javobni oldindan aytmang. Hamma ovoz bergach «Natijani ochish»ni bosing va ayting: «Uchta. Demak qolgan to'qqiztasi bilan nima qilamiz — shuni bugun hal qilamiz.»", ru: 'Не называйте ответ заранее. Когда все проголосуют, нажмите «Открыть результат» и скажите: «Три. Значит, что делать с оставшимися девятью — решим сегодня».' })}</MentorNote>
+        <div className="hk-work fade-up delay-1">
+          <div className="hk-list">
+            {['📋', '🛒', '🕒', '🗺', '🎟', '⭐', '📸', '💬', '🚚', '🏷', '📞', '🧾'].map((e, i) => (
+              <span key={i} className="hk-dot" style={{ animationDelay: `${0.1 + i * 0.05}s` }}>{e}</span>
+            ))}
+          </div>
+          <span className="hk-cap">{tr({ uz: '12 ta ish · 1 hafta · 1 odam', ru: '12 дел · 1 неделя · 1 человек' })}</span>
+        </div>
+        <div className="fade-up delay-2" style={{ display: 'flex', flexDirection: 'column', gap: 9, maxWidth: 560 }}>
+          {HOOK_OPTS.map(o => {
+            const on = picked === o.id;
+            const win = revealed && o.id === 'c';
             return (
-              <div key={it.id} className={isWrong ? 'shake-x' : ''} style={{ display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap', background: ok ? (it.stage === 'mvp' ? T.successSoft : T.grapeSoft) : T.paper, borderRadius: 12, padding: '11px 14px', boxShadow: ok ? 'none' : `0 6px 16px -8px rgba(${T.shadowBase},0.16)`, transition: 'background 0.25s' }}>
-                <span style={{ color: ok ? (it.stage === 'mvp' ? T.success : T.grape) : T.ink2, display: 'inline-flex' }}>{it.ic}</span>
-                <p style={{ flex: 1, minWidth: 130, fontFamily: "'Manrope',sans-serif", fontWeight: 600, fontSize: 14, color: T.ink, margin: 0 }}>{it.text}</p>
-                {ok ? (
-                  <span className="feat-pop" style={{ display: 'inline-flex', alignItems: 'center', gap: 6, fontFamily: "'Manrope'", fontWeight: 700, fontSize: 12.5, color: it.stage === 'mvp' ? T.success : T.grape }}>{it.stage === 'mvp' ? p5.flag(15) : p5.layers(15)} {it.stage === 'mvp' ? 'MVP' : 'Keyin'} {Ico.check(14)}</span>
-                ) : (
-                  <span style={{ display: 'flex', gap: 7 }}>
-                    <button className="kindbtn" onClick={() => place(it, 'mvp')} style={{ background: T.successSoft, color: T.success }}>{p5.flag(14)} MVP</button>
-                    <button className="kindbtn" onClick={() => place(it, 'keyin')} style={{ background: T.grapeSoft, color: T.grape }}>{p5.layers(14)} Keyin</button>
-                  </span>
-                )}
-              </div>
+              <button key={o.id} className={`hook-option ${on ? 'on' : ''} ${win ? 'hk-win' : ''}`} disabled={picked !== null || isMentorLive} onClick={() => pick(o.id)}>
+                <span className="radio">{on && <span className="radio-dot" />}</span><span>{tr(o)}</span>
+                {win && <span className="hk-tick">✓</span>}
+              </button>
             );
           })}
         </div>
-        {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Zo'r! <b>MVP</b> — ro'yxat, qidiruv, sahifa (do'kon ishlashi uchun shart). Savat, to'lov, AI — keyin qo'shiladi.</p></div>}
-        </div>
-        </Zoomable>
+        {isMentorLive && !mReveal && <button className="mstats-reveal ready" style={{ alignSelf: 'flex-start' }} onClick={() => { setMReveal(true); if (live) live.mentorReveal(screen); }}>{tr({ uz: '🔓 Natijani ochish', ru: '🔓 Открыть результат' })}</button>}
+        {revealed && <p className="hook-ack fade-step">{tr({ uz: <>Uchta. Qolgan to'qqizta ish bilan nima qilamiz — <b>bugun shuni hal qilamiz</b>.</>, ru: <>Три. Что делать с оставшимися девятью — <b>решим сегодня</b>.</> })}</p>}
       </div>
     </Stage>
   );
 };
 
-// ===== SCREEN 9 — TEST 3 =====
-const Screen9 = (props) => (
-  <QuestionScreen {...props} scope="module-mikro" eyebrow="Mashq · 2-savol"
-    questionText="Mini-do'kon MVP'siga (birinchi versiya) qaysi feature kiradi?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-sub" style={{ marginTop: 8 }}>Mini-do'kon <span className="italic" style={{ color: T.accent }}>MVP</span>'siga qaysi feature kiradi?</h2></>}
-    options={['Mahsulot ro\'yxati (rasm + narx)', 'AI tavsiya beruvchi tizim', 'Bonus ballar to\'plash o\'yini', 'Mahsulotni 3D ko\'rinishda ochish']} correctIdx={0}
-    explainCorrect="To'g'ri! Do'kon ishlashi uchun avvalo mahsulot ro'yxati shart — odam ko'rmasa, sotib ololmaydi. Bu MVP o'zagi."
-    explainWrong={{ 1: 'AI tavsiya — kuchli, lekin keyingi bosqich. Avval oddiy ro\'yxat ishlasin.', 2: 'Bonus o\'yin — bezak. MVP do\'kon ishlashi uchun shart narsa.', 3: '3D ko\'rish — keyinroq. Avval oddiy rasmli ro\'yxat yetarli.', default: 'MVP\'ga mahsulot ro\'yxati kiradi — do\'kon ishlashi uchun shart.' }} />
-);
-
-// ===== SCREEN 10 — OG'IR FEATURE'NI BACKLOGGA KO'CHIRISH (debug + raketa) =====
-const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const [found, setFound] = useState(!!storedAnswer);
-  const [fixed, setFixed] = useState(!!storedAnswer);
-  const done = fixed;
-  const lines = [
-    { key: 'list', text: 'Mahsulot ro\'yxati', sub: 'yengil · 2 kun', ok: true },
-    { key: 'search', text: 'Qidiruv', sub: 'yengil · 1 kun', ok: true },
-    { key: 'pay', text: 'Onlayn to\'lov tizimi', sub: 'OG\'IR · 2 oy, bank, xavfsizlik', ok: false },
-    { key: 'detail', text: 'Mahsulot sahifasi', sub: 'yengil · 2 kun', ok: true }
-  ];
-  const clickLine = (k) => { if (found || fixed) return; if (k === 'pay') setFound(true); };
-  const fix = () => setFixed(true);
-  useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
-  return (
-    <Stage eyebrow="Tuzatish" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? 'Davom etish' : (found ? 'Endi ko\'chiring' : 'Og\'ir feature\'ni toping')} optionalLive onClick={onNext} /></>}>
-      <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Bu MVP'da qaysi feature <span className="italic" style={{ color: T.accent }}>juda og'ir</span>?</h2></div>
-        <Mentor>Bu MVP rejasiga 1 ta <b style={{ color: T.ink }}>og'ir</b> feature solib qo'yilgan — u oylab vaqt oladi va MVP'ni cho'ktiradi. Qaysi biri? O'sha qatorni bosing.</Mentor>
-        <Zoomable>
-        <div className="split">
-          <Col>
-            <div className="ai-card fade-up delay-1">
-              <div className="ai-row"><span className="ai-badge">MVP REJA</span><span className="ai-bubble">{fixed ? 'Yengil — uchishga tayyor:' : 'Tekshiring:'}</span></div>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-                {lines.filter(l => !(fixed && l.key === 'pay')).map(l => {
-                  const bad = found && !fixed && l.key === 'pay';
-                  return (<div key={l.key} onClick={() => clickLine(l.key)} style={{ cursor: (found || fixed) ? 'default' : 'pointer', display: 'flex', alignItems: 'center', gap: 9, background: bad ? T.accentSoft : T.bg, borderRadius: 10, padding: '9px 12px', boxShadow: bad ? `inset 0 0 0 1.5px ${T.accent}` : 'none', transition: 'all 0.18s' }}><span style={{ color: l.ok ? T.success : T.accent, display: 'inline-flex' }}>{l.ok ? p5.flag(15) : p5.box(15)}</span><div style={{ flex: 1 }}><span style={{ fontFamily: G, fontSize: 13.5, color: T.ink, display: 'block' }}>{l.text}</span><span className="mono" style={{ fontSize: 10, color: l.ok ? T.ink3 : T.accent, fontWeight: l.ok ? 400 : 700 }}>{l.sub}</span></div></div>);
-                })}
-                {fixed && <div className="fade-step" style={{ display: 'flex', alignItems: 'center', gap: 9, background: T.grapeSoft, borderRadius: 10, padding: '9px 12px' }}><span style={{ color: T.grape, display: 'inline-flex' }}>{p5.layers(15)}</span><div style={{ flex: 1 }}><span style={{ fontFamily: G, fontSize: 13.5, color: T.ink, display: 'block' }}>Onlayn to'lov tizimi</span><span className="mono" style={{ fontSize: 10, color: T.grape, fontWeight: 700 }}>→ Backlog (v3)ga ko'chdi</span></div></div>}
-              </div>
-              {found && !fixed && <button className="btn fade-step" style={{ alignSelf: 'flex-start' }} onClick={fix}>To'lovni Backlog (v3)ga ko'chirish</button>}
-            </div>
-          </Col>
-          <Col>
-            {!found && <div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>Eslang: MVP <b>tez</b> chiqishi kerak. Qaysi feature oylab vaqt oladi (bank, xavfsizlik)?</p></div>}
-            {found && !fixed && <div className="frame-warn fade-step"><p className="note-h" style={{ color: T.accent }}>Topdingiz!</p><p className="body" style={{ margin: 0, color: T.ink }}>"Onlayn to'lov" — 2 oy ish, bank va xavfsizlik kerak. MVP'ni cho'ktiradi. Uni v3 backlog'ga ko'chiring — boshida naqd to'lov yetadi.</p></div>}
-            {fixed && <div className="takeaway fade-step"><div className="ta-bulb" style={{ color: T.success, display: 'inline-flex' }}>{p5.rocket(36)}</div><p className="ta-h">MVP yengillashdi — uchishga tayyor! 🚀</p><p className="ta-sub">Og'ir feature'lar keyingi bosqichga</p></div>}
-          </Col>
-        </div>
-        </Zoomable>
-      </div>
-    </Stage>
-  );
+// ============================================================
+// EKRAN 1 — MAQSAD: ochilish ro'yxati kartasi o'z-o'zidan yozilib chiqadi
+// (imzo-vizual: shtamp-qator; reduced-motion'da darhol to'liq holat)
+// ============================================================
+const DEMO_LIST = {
+  v1: [
+    { uz: 'Aloqa telefoni', ru: 'Контактный телефон' },
+    { uz: "Do'kon fotosurati", ru: 'Фотография магазина' },
+    { uz: "Bugungi taklif e'loni", ru: 'Объявление о предложении дня' },
+  ],
+  v2: [{ uz: 'Sodiqlik kartasi', ru: 'Карта постоянного клиента' }],
+  backlog: [{ uz: "Ish o'rni e'lonlari", ru: 'Объявления о вакансиях' }],
 };
-
-// ===== SCREEN 11 — MVP UCHUN ENG MUHIM 3 TASINI TANLASH (build) =====
-const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const POOL = [
-    { id: 'list', text: 'Mahsulot ro\'yxati', ic: Ico.list(16) },
-    { id: 'detail', text: 'Mahsulot sahifasi', ic: Ico.page(16) },
-    { id: 'search', text: 'Qidiruv', ic: Ico.search(16) },
-    { id: 'cart', text: 'Savat', ic: Ico.cart(16) },
-    { id: 'pay', text: 'Onlayn to\'lov', ic: Ico.card(16) },
-    { id: 'ai', text: 'AI tavsiya', ic: p5.spark(16) }
-  ];
-  const CORRECT = ['list', 'detail', 'search'];
-  const [chosen, setChosen] = useState(() => new Set(storedAnswer?.chosen || []));
-  const allGood = chosen.size === 3 && CORRECT.every(c => chosen.has(c));
-  const workRef = useRef(null);
-  const toggle = (id) => {
-    if (allGood) return;
-    setChosen(prev => { const n = new Set(prev); if (n.has(id)) n.delete(id); else if (n.size < 3) n.add(id); return n; });
-  };
-  useEffect(() => {
-    if (!allGood) return;
-    if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true, chosen: [...chosen] });
-    if (typeof window !== 'undefined' && window.innerWidth < 768 && workRef.current) { const el = workRef.current; setTimeout(() => { if (el) el.scrollIntoView({ behavior: 'smooth', block: 'end' }); }, 360); }
-  }, [allGood]);
-  const mvpItems = POOL.filter(p => chosen.has(p.id)).map(p => ({ label: 'MVP', color: CODE.str, text: p.text }));
-  while (mvpItems.length < 3) mvpItems.push({ label: 'MVP', color: '#6B7585', text: '', ph: 'bo\'sh slot…' });
-  const badPick = chosen.size === 3 && !allGood;
-  return (
-    <Stage eyebrow="MVP yig'ish" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!allGood} label={allGood ? 'Davom etish' : (chosen.size < 3 ? `MVP uchun tanlang (${chosen.size}/3)` : 'Eng muhim 3 tasi?')} optionalLive onClick={onNext} /></>}>
-      <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">MVP'ga faqat <span className="italic" style={{ color: T.accent }}>3 ta joy</span> bor — eng muhimini tanlang</h2></div>
-        <Mentor>6 feature, lekin MVP'ga faqat 3 ta sig'adi. Do'kon <b style={{ color: T.ink }}>ishlashi</b> uchun eng shart 3 tasini tanlang.</Mentor>
-        <MentorCollapseScroll targetRef={workRef} />
-        <Zoomable>
-        <div className="split" ref={workRef}>
-          <Col>
-            <p className="flow-label">Feature'lar ({chosen.size}/3 tanlangan)</p>
-            <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-              {POOL.map(p => { const on = chosen.has(p.id); const full = chosen.size >= 3 && !on; return (
-                <button key={p.id} onClick={() => toggle(p.id)} disabled={full && !allGood} style={{ display: 'flex', alignItems: 'center', gap: 10, textAlign: 'left', border: 'none', borderRadius: 11, padding: '11px 13px', cursor: full ? 'not-allowed' : 'pointer', background: on ? T.success : T.paper, color: on ? '#fff' : T.ink, opacity: full ? 0.45 : 1, boxShadow: on ? `0 7px 16px -7px ${T.success}` : `0 6px 16px -8px rgba(${T.shadowBase},0.16)`, transition: 'all 0.16s' }}><span style={{ display: 'inline-flex', color: on ? '#fff' : T.ink2 }}>{on ? Ico.check(16) : p.ic}</span><span style={{ flex: 1, fontFamily: "'Manrope'", fontWeight: 600, fontSize: 14 }}>{p.text}</span></button>
-              ); })}
-            </div>
-          </Col>
-          <Col>
-            <p className="flow-label">v1 — MVP rejangiz</p>
-            <SpecCard items={mvpItems} minH={180} title="MVP (v1)" icon={p5.flag(15)} />
-            {badPick && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Bu 3 ta do'konni ishlatmaydi. O'ylang: odam mahsulotni <b>ko'rishi, ochishi va topishi</b> kerak.</p></div>}
-            {allGood && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Mana — ishlaydigan MVP! Ro'yxat + sahifa + qidiruv. Qolgani keyin qo'shiladi.</p></div>}
-          </Col>
+const ScrGoal = ({ screen, onNext, onPrev }) => (
+  <Stage eyebrow={tr({ uz: 'Bugungi natija', ru: 'Сегодняшний результат' })} screen={screen} mentorStatic
+    navContent={<><NavBack onPrev={onPrev} /><NavNext label={tr({ uz: 'Boshlaymiz →', ru: 'Начинаем →' })} onClick={onNext} /></>}>
+    <div className="screen" style={{ gap: 'clamp(14px,2.2vw,20px)' }}>
+      <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Dars oxirida <span className="italic" style={{ color: T.accent }}>nimani</span> bilib olasiz?</>, ru: <>Что вы <span className="italic" style={{ color: T.accent }}>узнаете</span> к концу урока?</> })}</h2></div>
+      <Mentor>{tr({ uz: <>Katta ro'yxatni uch bo'lakka ajratishni bilib olasiz: uchta ish ochilish kuniga, qolganlari navbatiga qarab. Quyida namunasi o'z-o'zidan yozilib chiqadi.</>, ru: <>Вы научитесь делить большой список на три части: три дела — ко дню открытия, остальные — по очереди. Ниже образец заполняется сам.</> })}</Mentor>
+      <div className="lp-card fade-up delay-1">
+        <div className="lp-head"><span className="lp-ic">🚀</span><span className="lp-h">{tr({ uz: "Ochilish ro'yxati", ru: 'Список к открытию' })}</span><span className="lp-src">{tr({ uz: 'namuna', ru: 'образец' })}</span></div>
+        <div className="lp-rows">
+          {DEMO_LIST.v1.map((s, i) => (
+            <span key={i} className="lp-row" style={{ '--fd': `${0.9 + i * 0.8}s` }}>
+              <span className="lp-n">{i + 1}</span>
+              <span className="lp-slot"><span className="lp-ph">{tr({ uz: '…', ru: '…' })}</span><span className="lp-fill">{tr(s)}</span></span>
+              <span className="lp-stamp">{tr({ uz: 'OCHILISHGA', ru: 'К ОТКРЫТИЮ' })}</span>
+            </span>
+          ))}
         </div>
-        </Zoomable>
-      </div>
-    </Stage>
-  );
-};
-
-// ===== SCREEN 12 — TEST 4 =====
-const Screen12 = (props) => (
-  <QuestionScreen {...props} scope="module-mikro" eyebrow="Mashq · 3-savol"
-    questionText="Nega hammasini birato'la qurish (katta v1) xato?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-sub" style={{ marginTop: 8 }}>Nega hammasini <span className="italic" style={{ color: T.accent }}>birato'la</span> qurish xato?</h2></>}
-    options={['Mahsulot bozorga tezroq chiqadi', 'Loyiha arzonroq tushadi', 'Loyiha xavfsizroq bo\'ladi', 'Ko\'p vaqt ketadi, fikr kech keladi']} correctIdx={3}
-    explainCorrect="To'g'ri! Hammasini birato'la — oylab vaqt, ko'p resurs va katta risk. Eng yomoni: foydalanuvchi kerakmi-yo'qmi — buni juda kech bilasiz."
-    explainWrong={{ 0: 'Aksincha — sekinroq chiqadi. Ko\'p feature = ko\'p vaqt.', 1: 'Qimmatroq: ko\'p ish, lekin foyda noaniq. MVP arzon va tez.', 2: 'Xavfliroq: katta loyiha cho\'kishi oson. Kichik MVP xavfsizroq.', default: 'Birato\'la qurish — ko\'p resurs/vaqt va foydalanuvchi fikrini kech bilasiz.' }} />
-);
-
-// ===== SCREEN 13 — NAMUNA: bosqichli backlog (mini-do'kon) =====
-const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const WHY = { v1: 'Bularsiz do\'kon umuman ishlamaydi — odam mahsulotni ko\'radi, ochadi, topadi va sotib oladi. Eng kichik ishlaydigan o\'zak.', v2: 'MVP chiqib, foydalanuvchi fikri kelgach: savat qulaylik, chat ishonch, sharh esa boshqalarga yordam beradi.', v3: 'Do\'kon o\'sgach, katta investitsiya talab qiladigan funksiyalar — to\'lov, yetkazish, AI. Endi ularga arziydi.' };
-  const [seen, setSeen] = useState(storedAnswer ? new Set(VERSIONS.map(v => v.key)) : new Set());
-  const isNarrow = useIsMobile(768);
-  const [active, setActive] = useState(null);
-  const done = seen.size >= VERSIONS.length;
-  const tap = (k) => { setActive(k); setSeen(prev => { const n = new Set(prev); n.add(k); return n; }); };
-  useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
-  const cur = active ? VERSIONS.find(v => v.key === active) : null;
-  return (
-    <Stage eyebrow="Namuna" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? 'Endi navbat sizga →' : `${seen.size}/3 bosqichni oching`} optionalLive onClick={onNext} /></>}>
-      <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Tayyor backlog: har bosqich <span className="italic" style={{ color: T.accent }}>nega</span> shu yerda?</h2></div>
-        <Mentor>Mana mini-do'konning to'g'ri bo'lingan <b style={{ color: T.ink }}>yo'l xaritasi</b>. Har bosqichni bosib, nega aynan shu yerda turishini ko'ring.</Mentor>
-        <Zoomable>
-        <div className="split">
-          <Col>
-            <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-              {VERSIONS.map(v => { const open = seen.has(v.key); return (<button key={v.key} onClick={() => tap(v.key)} className={!open ? 'tap-hint-card' : ''} style={{ textAlign: 'left', cursor: 'pointer', border: 'none', borderRadius: 12, padding: '11px 14px', background: T.paper, display: 'flex', flexDirection: 'column', gap: 5, borderLeft: `4px solid ${v.color}`, boxShadow: active === v.key ? `inset 0 0 0 2px ${v.color}, 0 8px 20px -8px ${v.color}44` : (open ? `0 6px 16px -8px rgba(${T.shadowBase},0.18)` : `0 6px 16px -8px rgba(${T.shadowBase},0.16)`), transition: 'all 0.18s' }}><span style={{ display: 'flex', alignItems: 'center', gap: 9 }}><span className="mono" style={{ fontSize: 12, fontWeight: 800, color: v.color }}>{v.label}</span>{open && <span style={{ marginLeft: 'auto', color: T.success, display: 'inline-flex' }}>{Ico.check(13)}</span>}</span><span style={{ display: 'flex', flexWrap: 'wrap', gap: 5 }}>{v.feats.map(f => (<span key={f} style={{ fontFamily: G, fontSize: 11.5, color: T.ink2, background: T.bg, padding: '3px 8px', borderRadius: 6 }}>{f}</span>))}</span></button>); })}
-            </div>
-          </Col>
-          <Col>
-            {cur ? (<div className="sk-info fade-step" key={active}><span className="sk-tagbig"><span className="mono" style={{ fontSize: 12, fontWeight: 800, color: cur.color }}>{cur.label}</span></span><p className="body" style={{ color: T.ink, margin: '12px 0 0' }}>{WHY[cur.key]}</p></div>) : (!isNarrow ? <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>Bir bosqichni bosing</p></div> : null)}
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Har bosqich oldingisiga tayanadi va o'sib boradi. Endi o'z loyihangizni bo'lasiz.</p></div>}
-          </Col>
+        <div className="lp-rest">
+          <span className="lp-mini lvl lvl-v2" style={{ '--fd': '3.4s' }}>⚡ <b>{tr({ uz: 'Keyingi versiya', ru: 'Следующая версия' })}</b>: {DEMO_LIST.v2.map(x => tr(x)).join(', ')}</span>
+          <span className="lp-mini lvl lvl-backlog" style={{ '--fd': '3.9s' }}>🌱 <b>{tr({ uz: 'Keyinga qoldirilganlar', ru: 'Отложенные' })}</b>: {DEMO_LIST.backlog.map(x => tr(x)).join(', ')}</span>
         </div>
-        </Zoomable>
       </div>
-    </Stage>
-  );
-};
-
-// ===== SCREEN 14 — QOIDA =====
-const Screen14 = ({ screen, onNext, onPrev }) => (
-  <Stage eyebrow="Qoida" screen={screen} mentorStatic navContent={<><NavBack onPrev={onPrev} /><NavNext label="Yakuniy ishga →" onClick={onNext} /></>}>
-    <div className="screen">
-      <div className="head"><h2 className="title h-title fade-up">Avval <span className="italic" style={{ color: T.accent }}>skeytbord</span> — keyin mashina</h2></div>
-      <Mentor>Hammasini birato'la qurma. Avval eng kichik <b style={{ color: T.ink }}>ishlaydigan</b> versiya (MVP), keyin foydalanuvchi fikriga qarab bosqichma-bosqich o'stir.</Mentor>
-      <Zoomable>
-      <div className="split">
-        <Col>
-          <div className="frame fade-up" style={{ display: 'flex', alignItems: 'center', gap: 16, padding: 'clamp(18px,2.6vw,26px)' }}>
-            <span style={{ color: T.honey }}><Vehicle stage="skate" size={54} /></span>
-            <div><p style={{ fontFamily: "'Source Serif 4',serif", fontWeight: 600, margin: 0, color: T.ink, fontSize: 'clamp(18px,2.4vw,22px)' }}>MVP = skeytbord</p><p className="body" style={{ margin: '3px 0 0', color: T.ink2 }}>Kichik, lekin butun ishlaydigan narsa.</p></div>
-          </div>
-        </Col>
-        <Col>
-          <p className="flow-label">Dekompozitsiya — 3 qadam</p>
-          <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-            {[{ ic: Ico.list(18), c: T.honey, t: 'Feature LIST — hammasini sanab chiq' }, { ic: p5.flag(18), c: T.success, t: 'MVP — eng kichik ishlaydigan to\'plam' }, { ic: p5.layers(18), c: T.grape, t: 'BACKLOG — qolganini bosqichlarga qo\'y' }].map((s, i) => (<React.Fragment key={i}><div style={{ display: 'flex', alignItems: 'center', gap: 11, background: T.paper, borderRadius: 11, padding: '10px 13px', boxShadow: `0 5px 14px -8px rgba(${T.shadowBase},0.16)` }}><span style={{ color: s.c, display: 'inline-flex' }}>{s.ic}</span><span style={{ fontFamily: "'Manrope',sans-serif", fontWeight: 600, color: T.ink, fontSize: 13.5 }}>{s.t}</span></div>{i < 2 && <span style={{ color: T.ink3, textAlign: 'center', fontSize: 11 }}>↓</span>}</React.Fragment>))}
-          </div>
-        </Col>
-      </div>
-      </Zoomable>
+      <div className="takeaway fade-up delay-2"><span className="ta-bulb">🎯</span><p className="ta-h">{tr({ uz: "Dars oxirida shunday ro'yxatni o'zingiz tuzasiz.", ru: 'К концу урока такой список вы составите сами.' })}</p></div>
     </div>
   </Stage>
 );
 
-// ===== SCREEN 15 — YAKUNIY: o'z loyihangizni MVP vs Keyin =====
-const emptyPlan = () => ({ mvp: ['', '', ''], keyin: ['', ''] });
-const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const [plan, setPlan] = useState(() => storedAnswer?.plan || emptyPlan());
-  const mvpFilled = plan.mvp.filter(x => x.trim().length >= 3).length;
-  const keyinFilled = plan.keyin.filter(x => x.trim().length >= 3).length;
-  const passed = mvpFilled >= 2 && keyinFilled >= 1;
-  const prevPassed = useRef(false);
-  const workRef = useRef(null);
-  useEffect(() => {
-    if (passed && !prevPassed.current) {
-      prevPassed.current = true;
-      onAnswer(screen, { correct: true, plan, stage: 'final', screenIdx: screen });
-      if (typeof window !== 'undefined' && window.innerWidth < 768 && workRef.current) { const el = workRef.current; setTimeout(() => { if (el) el.scrollIntoView({ behavior: 'smooth', block: 'end' }); }, 360); }
-    }
-  }, [passed]);
-  const upd = (sec, i, v) => setPlan(prev => ({ ...prev, [sec]: prev[sec].map((x, idx) => (idx === i ? v : x)) }));
-  const items = [];
-  plan.mvp.forEach(x => { if (x.trim()) items.push({ label: 'MVP (hozir)', color: CODE.str, text: x }); });
-  plan.keyin.forEach(x => { if (x.trim()) items.push({ label: 'KEYIN', color: '#C792EA', text: x }); });
-  if (items.length === 0) items.push({ label: 'MVP (hozir)', color: '#6B7585', text: '', ph: 'feature yozing…' });
-  const inputStyle = { width: '100%', fontFamily: G, fontSize: 13.5, color: T.ink, background: T.bg, border: 'none', borderRadius: 9, padding: '8px 11px', outline: 'none', boxSizing: 'border-box' };
+// ============================================================
+// EKRAN 2 — KATTA ISH: bitta karta bosiladi va oltita bo'lakka ajraladi
+// ============================================================
+const ScrSplit = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
+  const [split, setSplit] = useState(!!storedAnswer);
+  const [seen, setSeen] = useState(() => new Set(storedAnswer ? FALLBACK_FEATURES.map(f => f.id) : []));
+  const done = split && seen.size >= FALLBACK_FEATURES.length;
+  useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { stage: 'split', screenIdx: screen, correct: true }); }, [done]); // eslint-disable-line
+  const open = (id) => setSeen(prev => { const n = new Set(prev); n.add(id); return n; });
   return (
-    <Stage eyebrow="Yakuniy ish" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!passed} label={passed ? 'Davom etish' : `MVP ${mvpFilled}/2 · Keyin ${keyinFilled}/1`} onClick={onNext} /></>}>
-      <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">O'z loyihangizni <span className="italic" style={{ color: T.accent }}>MVP</span> va <span className="italic" style={{ color: T.grape }}>Keyin</span> ga bo'ling</h2></div>
-        <Mentor>Mahsulotingiz feature'larini yozing. <b style={{ color: T.success }}>MVP</b> — hozir quriladigan eng kichik ishlaydigan to'plam. <b style={{ color: T.grape }}>Keyin</b> — backlogga.</Mentor>
-        <MentorCollapseScroll targetRef={workRef} />
-        <Zoomable>
-        <div className="split" ref={workRef}>
-          <Col>
-            <div style={{ background: T.paper, borderRadius: 12, padding: '12px 13px', boxShadow: `0 6px 16px -9px rgba(${T.shadowBase},0.16)`, borderLeft: `4px solid ${T.success}` }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8 }}><span style={{ color: T.success, display: 'inline-flex' }}>{p5.flag(16)}</span><span className="mono" style={{ fontSize: 11, fontWeight: 800, color: T.success, textTransform: 'uppercase' }}>MVP (hozir) — kamida 2</span></div>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 7 }}>{plan.mvp.map((x, i) => (<input key={i} value={x} onChange={e => upd('mvp', i, e.target.value)} placeholder={`Shart feature ${i + 1}`} style={inputStyle} />))}</div>
+    <Stage eyebrow={tr({ uz: 'Katta ish', ru: 'Большая работа' })} screen={screen}
+      navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : (!split ? tr({ uz: 'Avval kartani bosing', ru: 'Сначала нажмите карточку' }) : tr({ uz: `Yana ${FALLBACK_FEATURES.length - seen.size} bo'lakni oching`, ru: `Откройте ещё ${FALLBACK_FEATURES.length - seen.size} частей` }))} onClick={onNext} /></>}>
+      <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Bitta ish yoki <span className="italic" style={{ color: T.accent }}>oltita</span> ish?</>, ru: <>Одна работа или <span className="italic" style={{ color: T.accent }}>шесть</span> работ?</> })}</h2></div>
+        <Mentor>{tr({ uz: <>«Lavash do'koniga sayt qilish» bitta ish bo'lib ko'rinadi. Kartani bosing — u alohida ishlarga bo'linadi.</>, ru: <>«Сделать сайт для лавашной» выглядит как одно дело. Нажмите на карточку — она разделится на отдельные дела.</> })}</Mentor>
+        {!split ? (
+          <button className="dc-big tap-hint-card fade-up delay-1" onClick={() => setSplit(true)}>
+            <span className="dc-big-ic">🌯</span>
+            <span className="dc-big-t">{tr({ uz: "Lavash do'koniga sayt qilish", ru: 'Сделать сайт для лавашной' })}</span>
+            <span className="dc-big-cue">{tr({ uz: "👆 bosing — bo'laklarga ajraladi", ru: '👆 нажмите — разделится на части' })}</span>
+          </button>
+        ) : (
+          <>
+            <div className="dc-grid fade-step">
+              {FALLBACK_FEATURES.map((f, i) => {
+                const on = seen.has(f.id);
+                return (
+                  <button key={f.id} className={`dc-piece ${on ? 'on' : 'tap-hint-card'}`} style={{ animationDelay: `${i * 0.07}s` }} onClick={() => open(f.id)}>
+                    <span className="dc-piece-ic">{f.ic}</span>
+                    <span className="dc-piece-t">{on ? tr(f) : tr({ uz: "bo'lak", ru: 'часть' })}</span>
+                    {on && <span className="dc-piece-ok">✓</span>}
+                  </button>
+                );
+              })}
             </div>
-            <div style={{ background: T.paper, borderRadius: 12, padding: '12px 13px', boxShadow: `0 6px 16px -9px rgba(${T.shadowBase},0.16)`, borderLeft: `4px solid ${T.grape}` }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8 }}><span style={{ color: T.grape, display: 'inline-flex' }}>{p5.layers(16)}</span><span className="mono" style={{ fontSize: 11, fontWeight: 800, color: T.grape, textTransform: 'uppercase' }}>Keyin (backlog) — kamida 1</span></div>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 7 }}>{plan.keyin.map((x, i) => (<input key={i} value={x} onChange={e => upd('keyin', i, e.target.value)} placeholder={`Keyingi feature ${i + 1}`} style={inputStyle} />))}</div>
-            </div>
-          </Col>
-          <Col>
-            <p className="flow-label">Loyihangiz yo'l xaritasi</p>
-            <SpecCard items={items} minH={188} title="Mening loyiham" />
-            {passed && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Tayyor! Avval MVP'ni qurasiz, keyin backlogni bosqichma-bosqich ochasiz. Demo Day'da shu rejani aytasiz.</p></div>}
-          </Col>
-        </div>
-        </Zoomable>
+            <p className="small mono" style={{ color: T.ink2, margin: 0 }}>{seen.size}/{FALLBACK_FEATURES.length} {tr({ uz: "bo'lak ochildi", ru: 'частей открыто' })}</p>
+          </>
+        )}
+        {done && (
+          <div className="frame-success fade-step">
+            <p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Katta ishni shunday bo'laklarga bo'lish <b>dekompozitsiya</b> deyiladi. Har bo'lak — saytning bitta <b>imkoniyati</b>.</>, ru: <>Такое разбиение большой работы на части называется <b>декомпозиция</b>. Каждая часть — одна <b>возможность</b> сайта.</> })}</p>
+          </div>
+        )}
       </div>
     </Stage>
   );
 };
 
-// ===== SCREEN 16 — YAKUN + DEMO DAY =====
-const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) => {
+// ============================================================
+// EKRAN 3 — BO'LAK QANDAY YOZILADI: oxiri ko'rinadigan ikki yozuvni tanlash
+// ============================================================
+const S3_ITEMS = [
+  { id: 'a', good: true, uz: 'Menyu ro\'yxatini sahifaga qo\'shish', ru: 'Добавить список меню на страницу',
+    note: { uz: "To'g'ri: menyu qo'shildi — bo'lak tugadi.", ru: 'Верно: меню добавлено — часть завершена.' } },
+  { id: 'b', good: false, uz: 'Saytni chiroyli qilish', ru: 'Сделать сайт красивым',
+    note: { uz: "«Chiroyli qilish» qachon tugaganini hech kim ayta olmaydi.", ru: 'Никто не скажет, когда «сделать красиво» закончилось.' } },
+  { id: 'c', good: true, uz: 'Buyurtma tugmasini ishlaydigan qilish', ru: 'Сделать кнопку заказа рабочей',
+    note: { uz: "To'g'ri: tugma bosiladi va buyurtma ketadi — tamom.", ru: 'Верно: кнопка нажимается и заказ уходит — всё.' } },
+  { id: 'd', good: false, uz: 'Do\'konni mashhur qilish', ru: 'Сделать магазин известным',
+    note: { uz: "Bu — natija, ish emas. Uni sayt ustida o'tirib tugatib bo'lmaydi.", ru: 'Это результат, а не работа. Её нельзя завершить, сидя над сайтом.' } },
+];
+const ScrPiece = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
+  const [opened, setOpened] = useState(() => new Set());
+  const [tried, setTried] = useState(() => new Set(storedAnswer ? S3_ITEMS.map(i => i.id) : []));
+  const goodFound = S3_ITEMS.filter(i => i.good && tried.has(i.id)).length;
+  const done = goodFound >= 2;
+  useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { stage: 'piece', screenIdx: screen, correct: true }); }, [done]); // eslint-disable-line
+  const toggle = (id) => {
+    setTried(prev => { const n = new Set(prev); n.add(id); return n; });
+    setOpened(prev => { const n = new Set(prev); if (n.has(id)) n.delete(id); else n.add(id); return n; });
+  };
+  return (
+    <Stage eyebrow={tr({ uz: "Bo'lak qanday yoziladi", ru: 'Как записывается часть' })} screen={screen}
+      navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: `Oxiri ko'rinadigan yana ${2 - goodFound} yozuvni toping`, ru: `Найдите ещё ${2 - goodFound} записи с видимым концом` })} onClick={onNext} /></>}>
+      <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Qaysi ishning <span className="italic" style={{ color: T.accent }}>oxiri</span> ko'rinadi?</>, ru: <>У какой работы <span className="italic" style={{ color: T.accent }}>виден конец</span>?</> })}</h2></div>
+        <Mentor>{tr({ uz: <>Yaxshi bo'lakni alohida qilib, tugatib bo'ladi: qilindi — tamom. To'rt yozuvni bosib ko'ring, ikkitasining oxiri ko'rinadi.</>, ru: <>Хорошую часть можно сделать отдельно и завершить: сделано — всё. Нажмите на четыре записи: у двух конец виден.</> })}</Mentor>
+        <div className="s3list fade-up delay-1">
+          {S3_ITEMS.map(it => {
+            const isOpen = opened.has(it.id);
+            const wasTried = tried.has(it.id);
+            return (
+              <div key={it.id} className={`s3item ${wasTried ? (it.good ? 'good' : 'plain') : 'tap-hint-card'}`}>
+                <button className="s3btn" onClick={() => toggle(it.id)}>
+                  <span className="s3mark">{wasTried ? (it.good ? '✓' : '…') : '?'}</span>
+                  <span className="s3txt">{tr(it)}</span>
+                  <span className="s3caret">{isOpen ? '▴' : '▾'}</span>
+                </button>
+                {isOpen && <p className="s3note fade-step">{tr(it.note)}</p>}
+              </div>
+            );
+          })}
+        </div>
+        {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0 }}>{tr({ uz: <>Bo'lakning <b>boshi ham, oxiri ham</b> ko'rinib turishi kerak. Aks holda u qachon tugaganini hech kim ayta olmaydi.</>, ru: <>У части должны быть видны <b>и начало, и конец</b>. Иначе никто не скажет, когда она закончилась.</> })}</p></div>}
+      </div>
+    </Stage>
+  );
+};
+
+// ============================================================
+// SCORED TESTLAR — QuestionScreen ustida ikki tilli qobiq
+// ============================================================
+const TESTS = {
+  s4: {
+    eyebrow: { uz: 'Tekshiruv · 1', ru: 'Проверка · 1' },
+    q: { uz: "Quyidagilardan qaysi biri alohida qilib, tugatib bo'ladigan bo'lak?", ru: 'Что из перечисленного — часть, которую можно сделать отдельно и завершить?' },
+    opts: [
+      { uz: "Lavash do'koniga sayt qilish", ru: 'Сделать сайт для лавашной' },
+      { uz: 'Saytni chiroyli qilish', ru: 'Сделать сайт красивым' },
+      { uz: 'Menyu ro\'yxatini sahifaga qo\'shish', ru: 'Добавить список меню на страницу' },
+      { uz: "Do'konni mashhur qilish", ru: 'Сделать магазин известным' },
+    ],
+    correct: 2,
+    ok: { uz: "To'g'ri. Boshi va oxiri bor ish: menyu qo'shildi — bo'lak tugadi.", ru: 'Верно. У работы есть начало и конец: меню добавлено — часть завершена.' },
+    wrong: {
+      0: { uz: "Bu — butun ishning o'zi. Uni bo'laklarga bo'lish kerak edi.", ru: 'Это вся работа целиком. Её нужно было разбить на части.' },
+      1: { uz: "«Chiroyli qilish» qachon tugaganini hech kim ayta olmaydi. Bo'lakning oxiri ko'rinib turishi kerak.", ru: 'Никто не скажет, когда «сделать красиво» закончилось. У части должен быть виден конец.' },
+      3: { uz: "Bu — natija, ish emas. Uni sayt ustida o'tirib tugatib bo'lmaydi.", ru: 'Это результат, а не работа. Её нельзя завершить, сидя над сайтом.' },
+      default: { uz: "Bo'lakning oxiri ko'rinib turishi kerak.", ru: 'У части должен быть виден конец.' },
+    },
+  },
+  s7: {
+    eyebrow: { uz: 'Tekshiruv · 2', ru: 'Проверка · 2' },
+    q: { uz: 'Sayt ochilish kunida ish berishi uchun birinchi versiyaga qaysi imkoniyatlar kiradi?', ru: 'Чтобы сайт работал в день открытия, какие возможности входят в первую версию?' },
+    opts: [
+      { uz: "O'ylab topilgan hamma imkoniyatlar", ru: 'Все придуманные возможности' },
+      { uz: 'Eng oson qilinadigan imkoniyatlar', ru: 'Самые лёгкие возможности' },
+      { uz: 'Busiz sayt ish bermaydigan imkoniyatlar', ru: 'Возможности, без которых сайт не работает' },
+      { uz: "Do'kon egasiga eng ko'p yoqqan imkoniyatlar", ru: 'Возможности, которые больше всего понравились владельцу' },
+    ],
+    correct: 2,
+    ok: { uz: "To'g'ri. Birinchi versiyaga faqat busiz sayt ish bermaydigan ishlar kiradi — Instagram uchun bu foto, filtr va izoh edi.", ru: 'Верно. В первую версию входят только дела, без которых сайт не работает, — для Instagram это были фото, фильтр и комментарий.' },
+    wrong: {
+      0: { uz: "Hammasi kirsa, ochilish kuni kelganda ishlarning yarmi tugamagan bo'ladi.", ru: 'Если войдут все, то ко дню открытия половина дел останется незавершённой.' },
+      1: { uz: "Osonligi yetarli emas: chegirma kodi oson, lekin busiz ham sayt ish beradi.", ru: 'Лёгкости недостаточно: код скидки делается легко, но и без него сайт работает.' },
+      3: { uz: "Yoqish-yoqmaslik qaror qilmaydi. Savol boshqa: busiz sayt ish beradimi?", ru: 'Нравится или нет — не решает. Вопрос другой: работает ли сайт без этого?' },
+      default: { uz: 'Savol bitta: busiz sayt ish beradimi?', ru: 'Вопрос один: работает ли сайт без этого?' },
+    },
+  },
+  s10: {
+    eyebrow: { uz: 'Tekshiruv · 3', ru: 'Проверка · 3' },
+    q: { uz: "Bir imkoniyat kerak, lekin uni qurish bir necha kun oladi. U qaysi ro'yxatga tushadi?", ru: 'Возможность нужна, но на неё уйдёт несколько дней. В какой список она попадёт?' },
+    opts: [
+      { uz: "🔥 Ochilish ro'yxatiga", ru: '🔥 В список к открытию' },
+      { uz: '⚡ Keyingi versiyaga', ru: '⚡ В следующую версию' },
+      { uz: "🌱 Keyinga qoldirilganlar ro'yxatiga", ru: '🌱 В список отложенных' },
+      { uz: 'Hech qayerga — u qilinmaydi', ru: 'Никуда — её не сделают' },
+    ],
+    correct: 1,
+    ok: { uz: "To'g'ri. Kerak, lekin bir haftaga sig'maydi — ochilishdan keyin quriladi.", ru: 'Верно. Нужно, но в неделю не влезает — сделают после открытия.' },
+    wrong: {
+      0: { uz: "Sig'maydi: bir haftada uchta ish tugaydi, bu esa o'zi bir necha kun oladi.", ru: 'Не влезет: за неделю завершаются три дела, а на это уйдёт несколько дней.' },
+      2: { uz: "U yerda busiz ham ish beradiganlar turadi. Bu esa kerak.", ru: 'Там лежат те, без которых сайт и так работает. А эта нужна.' },
+      3: { uz: "Hech narsa o'chirilmaydi: navbati kechroqqa suriladi, xolos.", ru: 'Ничего не удаляется: очередь просто сдвигается на потом.' },
+      default: { uz: "Kerakli ish yo'qolmaydi — navbati suriladi.", ru: 'Нужное дело не исчезает — сдвигается его очередь.' },
+    },
+  },
+  s15: {
+    eyebrow: { uz: 'Yakuniy tekshiruv', ru: 'Итоговая проверка' },
+    q: { uz: "Ochilish ro'yxatiga uchta ish sig'adi. Nega aynan uchta?", ru: 'В список к открытию входят три дела. Почему именно три?' },
+    opts: [
+      { uz: "Uchtadan ko'p imkoniyat foydalanuvchini chalg'itadi", ru: 'Больше трёх возможностей отвлекают пользователя' },
+      { uz: "Bir haftada bitta odam uchta ishni tugatadi, to'rtinchisi tugamay qoladi", ru: 'За неделю один человек завершает три дела, четвёртое остаётся незавершённым' },
+      { uz: 'Uchta imkoniyat har qanday saytga yetadi', ru: 'Трёх возможностей хватает любому сайту' },
+      { uz: "Ko'p imkoniyat saytni sekinlashtiradi", ru: 'Много возможностей замедляют сайт' },
+    ],
+    correct: 1,
+    ok: { uz: "To'g'ri. Chegara — vaqt: ochilishgacha bir hafta, ishlaydigan odam bitta.", ru: 'Верно. Ограничение — время: до открытия неделя, работает один человек.' },
+    wrong: {
+      0: { uz: "Bu yerda gap chalg'ishda emas — masala ulgurishda.", ru: 'Дело не в отвлечении — вопрос в том, чтобы успеть.' },
+      2: { uz: "Uchta — har doimgi son emas: bu bir haftaga sig'adigan son.", ru: 'Три — не постоянное число: это число, которое влезает в неделю.' },
+      3: { uz: 'Sayt tezligi bu qarorni belgilamaydi.', ru: 'Скорость сайта это решение не определяет.' },
+      default: { uz: 'Chegara — vaqt, fikr emas.', ru: 'Ограничение — время, а не мнение.' },
+    },
+  },
+};
+const makeTest = (key) => (props) => {
+  const d = TESTS[key];
+  const wrong = {};
+  Object.keys(d.wrong).forEach(k => { wrong[k] = tr(d.wrong[k]); });
+  return (
+    <QuestionScreen {...props}
+      scope={SCREEN_META[props.screen] ? SCREEN_META[props.screen].scope : null}
+      eyebrow={tr(d.eyebrow)}
+      question={<Q>{tr(d.q)}</Q>}
+      questionText={tr(d.q)}
+      payloadQuestion={uzOf(d.q)}
+      options={d.opts.map(o => tr(o))}
+      payloadOptions={d.opts.map(o => uzOf(o))}
+      correctIdx={d.correct}
+      explainCorrect={tr(d.ok)}
+      explainWrong={wrong}
+    />
+  );
+};
+const ScrTest1 = makeTest('s4');
+const ScrTest2 = makeTest('s7');
+const ScrTest3 = makeTest('s10');
+const ScrTestFinal = makeTest('s15');
+
+// ============================================================
+// EKRAN 5 — IKKI SAVOL: tarozi-demo bitta namuna-imkoniyat ustida
+// ============================================================
+const NEED_OPTS = [
+  { id: 'must', uz: "🚫 Yo'q — busiz sayt ish bermaydi", ru: '🚫 Нет — без этого сайт не работает' },
+  { id: 'nice', uz: '✅ Ha — busiz ham ish beradi', ru: '✅ Да — и без этого работает' },
+];
+const COST_OPTS = [
+  { id: 'day', uz: '⚡ Bir kunda bo\'ladi', ru: '⚡ Делается за день' },
+  { id: 'week', uz: '🧱 Bir necha kun ketadi', ru: '🧱 Уйдёт несколько дней' },
+];
+const Q1_TEXT = { uz: 'Ochilish kuni bu bo\'lmasa, sayt ish beradimi?', ru: 'Если этого не будет в день открытия, сайт будет работать?' };
+const Q2_TEXT = { uz: 'Buni qurish qancha vaqt oladi?', ru: 'Сколько времени займёт это сделать?' };
+const DROP_NOTE = {
+  v1: { uz: "Busiz sayt ish bermaydi va bir kunda bo'ladi — ochilish kuniga shu kerak.", ru: 'Без этого сайт не работает, и делается за день — это и нужно ко дню открытия.' },
+  v2must: { uz: "Kerak, lekin bir haftaga sig'maydi. Ochilishdan keyin quriladi.", ru: 'Нужно, но в неделю не влезает. Сделают после открытия.' },
+  v2nice: { uz: "Tez bo'ladi, lekin busiz ham sayt ish beradi. Navbati keyin.", ru: 'Делается быстро, но и без этого сайт работает. Очередь позже.' },
+  backlog: { uz: "Busiz ham ish beradi, ustiga bir necha kun ketadi. Hozircha kutib turadi.", ru: 'И без этого работает, да ещё уйдёт несколько дней. Пока подождёт.' },
+};
+const noteFor = (need, cost) => (need === 'must' ? (cost === 'day' ? DROP_NOTE.v1 : DROP_NOTE.v2must) : (cost === 'day' ? DROP_NOTE.v2nice : DROP_NOTE.backlog));
+
+const ScaleCard = ({ ic, title, need, cost, onNeed, onCost }) => (
+  <div className="tz-wrap">
+    <div className={`tz-card ${need && cost ? 'dropped' : ''}`}>
+      <span className="tz-card-ic">{ic}</span><span className="tz-card-t">{title}</span>
+    </div>
+    <div className="tz-beam" data-tilt={!need ? 'flat' : (need === 'must' ? 'left' : 'right')}>
+      <span className={`tz-pan left ${need === 'must' ? 'heavy' : ''}`}>🎯 <b>{tr({ uz: 'foyda', ru: 'польза' })}</b></span>
+      <span className={`tz-pan right ${cost === 'week' ? 'heavy' : ''}`}>🧱 <b>{tr({ uz: 'yuk', ru: 'нагрузка' })}</b></span>
+    </div>
+    <div className="tz-qs">
+      {!need ? (
+        <div className="tz-q fade-step">
+          <span className="tz-q-t">1. {tr(Q1_TEXT)}</span>
+          <div className="tz-q-btns">{NEED_OPTS.map(o => <button key={o.id} className="tz-opt" onClick={() => onNeed(o.id)}>{tr(o)}</button>)}</div>
+        </div>
+      ) : (
+        <div className="tz-done"><span>✓ {tr(NEED_OPTS.find(o => o.id === need))}</span>{onNeed && <button className="tz-redo" onClick={() => onNeed(null)} title={tr({ uz: 'qayta tanlash', ru: 'выбрать заново' })}>↻</button>}</div>
+      )}
+      {!need ? (
+        <div className="tz-lock">⏳ {tr({ uz: 'Ikkinchi savol — javobdan keyin', ru: 'Второй вопрос — после ответа' })}</div>
+      ) : !cost ? (
+        <div className="tz-q fade-step">
+          <span className="tz-q-t">2. {tr(Q2_TEXT)}</span>
+          <div className="tz-q-btns">{COST_OPTS.map(o => <button key={o.id} className="tz-opt" onClick={() => onCost(o.id)}>{tr(o)}</button>)}</div>
+        </div>
+      ) : (
+        <div className="tz-done"><span>✓ {tr(COST_OPTS.find(o => o.id === cost))}</span>{onCost && <button className="tz-redo" onClick={() => onCost(null)} title={tr({ uz: 'qayta tanlash', ru: 'выбрать заново' })}>↻</button>}</div>
+      )}
+    </div>
+  </div>
+);
+
+const ScrScaleDemo = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
+  const [need, setNeed] = useState(null);
+  const [cost, setCost] = useState(null);
+  const done = !!(need && cost);
+  useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { stage: 'demo', screenIdx: screen, correct: true }); }, [done]); // eslint-disable-line
+  const lvl = done ? levelOf(need, cost) : null;
+  return (
+    <Stage eyebrow={tr({ uz: 'Ikki savol', ru: 'Два вопроса' })} screen={screen}
+      navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : (!need ? tr({ uz: 'Birinchi savolga javob bering', ru: 'Ответьте на первый вопрос' }) : tr({ uz: 'Ikkinchi savolga javob bering', ru: 'Ответьте на второй вопрос' }))} onClick={onNext} /></>}>
+      <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Har bo'lakdan <span className="italic" style={{ color: T.accent }}>nima</span> so'raymiz?</>, ru: <>Что мы <span className="italic" style={{ color: T.accent }}>спрашиваем</span> у каждой части?</> })}</h2></div>
+        <Mentor>{tr({ uz: <>Har bo'lak ikki savoldan o'tadi. Pastdagi imkoniyatni sinab ko'ring — javoblaringizdan keyin karta o'zi joyini topadi.</>, ru: <>Каждая часть проходит два вопроса. Попробуйте на возможности ниже — после ваших ответов карточка сама найдёт своё место.</> })}</Mentor>
+        <div className="fade-up delay-1">
+          <ScaleCard ic="📸" title={tr({ uz: 'Taomlar rasmi galereyasi', ru: 'Галерея фотографий блюд' })} need={need} cost={cost} onNeed={setNeed} onCost={setCost} />
+        </div>
+        {done && (
+          <div className="frame-success fade-step">
+            <p className="body" style={{ margin: 0 }}><span className={`lv-chip lvl lvl-${lvl}`}>{bucketOf(lvl).ic} {tr(bucketOf(lvl))}</span> — {tr(noteFor(need, cost))}</p>
+            <p className="body" style={{ margin: '8px 0 0' }}>{tr({ uz: <>Sayt ish beradigan eng sodda birinchi versiya — shu ro'yxat <b>MVP</b> deb ataladi.</>, ru: <>Самая простая рабочая первая версия — этот список называется <b>MVP</b>.</> })}</p>
+          </div>
+        )}
+      </div>
+    </Stage>
+  );
+};
+
+// ============================================================
+// EKRAN 6 — BIZNES OLAMIDAN MASHHUR VOQEA (keys-slayd + 2 mikro-bashorat, ballsiz)
+// ============================================================
+const K3_SLIDES = [
+  { ic: '📱', h: { uz: 'Avval boshqa ilova bor edi', ru: 'Сначала было другое приложение' },
+    body: { uz: <>Burbn degan ilova ichida bir nechta ish birga turardi: joy belgilash, uchrashuv rejasi, foto qo'yish, do'stlarga xabar. Hammasi bitta ilovada.</>, ru: <>В приложении Burbn всё лежало вместе: отметка места, план встречи, публикация фото, сообщения друзьям. Всё в одном приложении.</> } },
+  { ic: '👀', h: { uz: 'Odamlar nimani ishlatardi?', ru: 'Чем люди пользовались?' },
+    body: { uz: <>Odamlar ilovani ochib, deyarli hech narsaga tegmasdi. Faqat bitta ish qiziq bo'lgan: <b>foto qo'yish</b>.</>, ru: <>Люди открывали приложение и почти ничего не трогали. Интересным было только одно: <b>публикация фото</b>.</> },
+    predict: {
+      q: { uz: "Sizningcha, Burbn'da odamlar nimani ishlatardi?", ru: 'Как вы думаете, чем люди пользовались в Burbn?' },
+      opts: [{ uz: '📍 Joy belgilashni', ru: '📍 Отметкой места' }, { uz: '📅 Uchrashuv rejasini', ru: '📅 Планом встречи' }, { uz: "📷 Foto qo'yishni", ru: '📷 Публикацией фото' }],
+      right: 2,
+      miss: { uz: 'Adashdingiz — asl javob «foto qo\'yish».', ru: 'Не угадали — правильный ответ «публикация фото».' },
+    } },
+  { ic: '✂️', h: { uz: 'Asoschilar og\'ir qaror qildi', ru: 'Основатели приняли трудное решение' },
+    body: { uz: <>Ular qolgan hamma imkoniyatni <b>o'chirib tashladi</b>. Saqlab qolgani uchtasi: <b>foto · filtr · izoh</b>.</>, ru: <>Они <b>удалили</b> все остальные возможности. Оставили три: <b>фото · фильтр · комментарий</b>.</> } },
+  { ic: '🚀', h: { uz: 'Nima bo\'ldi?', ru: 'Что произошло?' },
+    body: { uz: <>Ilova 2010-yilning oktyabrida yangi nom bilan chiqdi — <b>Instagram</b>. <b>Birinchi kunning o'zida 25 000 odam ro'yxatdan o'tdi.</b></>, ru: <>Приложение вышло в октябре 2010 года под новым именем — <b>Instagram</b>. <b>В первый же день зарегистрировались 25 000 человек.</b></> },
+    predict: {
+      q: { uz: "Ortiqcha imkoniyatlarni o'chirgan ilova bilan nima bo'ldi?", ru: 'Что случилось с приложением, которое удалило лишние возможности?' },
+      opts: [{ uz: '😶 Hech kim yozilmadi', ru: '😶 Никто не зарегистрировался' }, { uz: "🙂 Bir necha yuz odam yozildi", ru: '🙂 Зарегистрировались несколько сотен' }, { uz: '🚀 Birinchi kuniyoq 25 000 odam yozildi', ru: '🚀 В первый же день — 25 000 человек' }],
+      right: 2,
+      miss: { uz: 'Adashdingiz — asl javob uchinchisi.', ru: 'Не угадали — правильный ответ третий.' },
+    } },
+  { ic: '🎯', h: { uz: 'Xulosa', ru: 'Вывод' },
+    body: { uz: <>Ilova ko'p ish qilgani uchun emas, bitta ishni <b>oxirigacha</b> qilgani uchun yurdi. Instagram ham ochilish kuniga uchta ishni olib chiqqan edi.</>, ru: <>Приложение пошло не потому, что делало много дел, а потому что одно дело довело <b>до конца</b>. Instagram тоже вышел ко дню запуска с тремя делами.</> } },
+];
+const ScrCase = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
+  const [i, setI] = useState(0);
+  const [seen, setSeen] = useState(storedAnswer ? K3_SLIDES.length - 1 : 0);
+  const [guess, setGuess] = useState({});
+  const cur = K3_SLIDES[i];
+  const pr = cur.predict;
+  const answered = !pr || guess[i] !== undefined;
+  const last = i === K3_SLIDES.length - 1;
+  const done = seen >= K3_SLIDES.length - 1;
+  useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { stage: 'case', screenIdx: screen, correct: true }); }, [done]); // eslint-disable-line
+  const go = (n) => { setI(n); setSeen(s => Math.max(s, n)); };
+  const hookChoice = (() => { try { return localStorage.getItem(HOOK_KEY) || ''; } catch { return ''; } })();
+  const hookN = hookChoice === 'a' ? 12 : hookChoice === 'b' ? 6 : hookChoice === 'c' ? 3 : 0;
+  return (
+    <Stage eyebrow={tr({ uz: 'Biznes olamidan mashhur voqea 📸', ru: 'Известная история из мира бизнеса 📸' })} screen={screen}
+      navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Voqeani oxirigacha ko\'ring', ru: 'Досмотрите историю до конца' })} onClick={onNext} /></>}>
+      <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Hamma imkoniyatni <span className="italic" style={{ color: T.accent }}>o'chirgan</span> ilova</>, ru: <>Приложение, которое <span className="italic" style={{ color: T.accent }}>удалило</span> все возможности</> })}</h2></div>
+        {pr && !answered ? (
+          <div className="k-predict fade-step" key={`p${i}`}>
+            <span className="k-predict-lbl">{tr({ uz: '🤔 Taxmin qiling — ball berilmaydi', ru: '🤔 Угадайте — баллы не начисляются' })}</span>
+            <p className="k-predict-q">{tr(pr.q)}</p>
+            <div className="k-predict-opts">
+              {pr.opts.map((o, k) => <button key={k} className="k-predict-opt" onClick={() => setGuess(g => ({ ...g, [i]: k }))}>{tr(o)}</button>)}
+            </div>
+          </div>
+        ) : (
+          <div className="k-slide fade-step" key={`s${i}`}>
+            <span className="k-slide-eyebrow">{i + 1} / {K3_SLIDES.length}</span>
+            <span className="k-slide-ic">{cur.ic}</span>
+            <h3 className="k-slide-h">{tr(cur.h)}</h3>
+            <p className="k-slide-body">{tr(cur.body)}</p>
+            {pr && guess[i] !== pr.right && <p className="k-miss">{tr(pr.miss)}</p>}
+            {last && hookN > 0 && <p className="k-hook">{tr({ uz: `Dars boshida siz bir haftaga ${hookN} ta ish sig'adi degandingiz. Instagram esa uchta ish bilan chiqqan.`, ru: `В начале урока вы сказали, что за неделю успеют ${hookN}. А Instagram вышел с тремя делами.` })}</p>}
+          </div>
+        )}
+        <div className="k-nav">
+          <button className="btn-soft" disabled={i === 0} onClick={() => go(i - 1)}>{tr({ uz: '← Orqaga', ru: '← Назад' })}</button>
+          <span className="k-dots">{K3_SLIDES.map((_, k) => <span key={k} className={`k-dot ${k === i ? 'cur' : k < i ? 'fill' : ''}`} />)}</span>
+          <button className="btn" disabled={last || !answered} onClick={() => go(i + 1)}>{tr({ uz: 'Keyingisi →', ru: 'Дальше →' })}</button>
+        </div>
+        {done && last && (
+          <div className="takeaway fade-step"><span className="ta-bulb">🌯</span><p className="ta-h">{tr({ uz: "Instagram ham ochilish kuniga faqat uchta ishni olib chiqdi. Lavash do'koni sayti ham xuddi shunday ochiladi — endi qaysi uchtasi ekanini o'zingiz aniqlaysiz.", ru: 'Instagram тоже вышел ко дню запуска всего с тремя делами. Сайт лавашной откроется так же — какие это три дела, вы определите сами.' })}</p></div>
+        )}
+      </div>
+    </Stage>
+  );
+};
+
+// ============================================================
+// EKRAN 8 — ⚖️ TAROZI: oltita imkoniyat birma-bir ikki savoldan o'tadi
+// ============================================================
+const ScrScale = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
+  const gate = useContext(LiveGateCtx) || {};
+  const live = gate.live;
+  const isMentor = !!(live && live.mode === 'mentor');
+  const [items] = useState(() => readIncomingFeatures() || FALLBACK_FEATURES);
+  const own = !!readIncomingFeatures();
+  const [res, setRes] = useState(() => (readDraft() || {}));
+  const [need, setNeed] = useState(null);
+  const [cost, setCost] = useState(null);
+  const idx = items.findIndex(f => !res[f.id]);
+  const cur = idx >= 0 ? items[idx] : null;
+  const doneN = items.filter(f => res[f.id]).length;
+  const done = doneN >= items.length;
+  useEffect(() => {
+    if (!done || storedAnswer !== undefined) return;
+    onAnswer(screen, { stage: 'tarozi', screenIdx: screen, correct: true });
+    if (live && live.mode === 'student') live.submitAnswer(PRACTICE_BASE + screen, 'tarozi', 0, true, 0);
+  }, [done]); // eslint-disable-line
+  const [lastNote, setLastNote] = useState(null);
+  const commit = (n, c) => {
+    const lvl = levelOf(n, c);
+    const next = { ...res, [cur.id]: lvl };
+    setRes(next); writeDraft(next);
+    setLastNote({ lvl, note: noteFor(n, c) });
+    setNeed(null); setCost(null);
+  };
+  const counts = BUCKETS.map(b => ({ ...b, n: items.filter(f => res[f.id] === b.key).length }));
+  return (
+    <Stage eyebrow={tr({ uz: 'Tarozi', ru: 'Весы' })} screen={screen}
+      navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !isMentor} label={done || isMentor ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: `Yana ${items.length - doneN} imkoniyatni tarozidan o'tkazing`, ru: `Взвесьте ещё ${items.length - doneN} возможностей` })} onClick={onNext} /></>}>
+      <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Har imkoniyat <span className="italic" style={{ color: T.accent }}>qayerga</span> tushadi?</>, ru: <>Куда <span className="italic" style={{ color: T.accent }}>попадёт</span> каждая возможность?</> })}</h2></div>
+        <Mentor>{tr({ uz: <>Imkoniyatlaringiz shu yerda. Har birini birma-bir ikki savoldan o'tkazing — karta o'zi tushadigan joyini topadi.</>, ru: <>Ваши возможности здесь. Проведите каждую через два вопроса — карточка сама найдёт своё место.</> })}</Mentor>
+        {!own && <p className="hint fade-up">{tr({ uz: "2-darsdagi kartalaringiz topilmadi — namuna ro'yxat bilan ishlaymiz.", ru: 'Ваши карточки из второго урока не найдены — работаем с образцовым списком.' })}</p>}
+        <div className="stepdots fade-up delay-1">
+          {items.map((f, i) => <span key={f.id} className={`sd ${res[f.id] ? 'ok' : (i === idx ? 'cur' : '')}`}>{res[f.id] ? '✓' : i + 1}</span>)}
+        </div>
+        {cur ? (
+          <div className="fade-step" key={cur.id}>
+            <ScaleCard ic={cur.ic} title={tr(cur)} need={need} cost={cost}
+              onNeed={(v) => { setNeed(v); }}
+              onCost={(v) => { if (v === null) { setCost(null); return; } setCost(v); setTimeout(() => commit(need, v), 500); }} />
+          </div>
+        ) : (
+          <div className="frame-success fade-step"><p className="body" style={{ margin: 0 }}>{tr({ uz: "Oltala imkoniyat tarozidan o'tdi. Endi ochilish ro'yxatini uchtaga keltiramiz.", ru: 'Все шесть возможностей взвешены. Теперь доведём список к открытию до трёх.' })}</p></div>
+        )}
+        {lastNote && cur && <p className={`tz-note lvl lvl-${lastNote.lvl} fade-step`}>{bucketOf(lastNote.lvl).ic} {tr(lastNote.note)}</p>}
+        <div className="bkt-row fade-up delay-2">
+          {counts.map(b => <span key={`${b.key}-${b.n}`} className={`bkt lvl lvl-${b.key} ${b.n ? 'has' : ''} ${lastNote && lastNote.lvl === b.key ? 'land' : ''}`}>{b.ic} {tr(b)} <b>{b.n}</b></span>)}
+        </div>
+        <MentorBypassLine live={live} />
+        <MentorNote>{tr({ uz: "Bu ekranda to'g'ri javob yo'q — bahslashmang. Uchtaga sig'may qolgan o'quvchiga vaqt-chegarasini eslatish kifoya.", ru: 'На этом экране нет правильного ответа — не спорьте. Ученику, у кого не влезает в три, достаточно напомнить об ограничении времени.' })}</MentorNote>
+        <StudentPracticePulse live={live} screen={screen} />
+        <MentorPracticeStats live={live} screen={screen} label={tr({ uz: '⚖️ Tarozidan o\'tkazganlar', ru: '⚖️ Кто взвесил' })} />
+      </div>
+    </Stage>
+  );
+};
+
+// ============================================================
+// EKRAN 9 — OCHILISH RO'YXATI: aynan 3 taga keltirib saqlash
+// ============================================================
+const V1_CAP = 3;
+const ScrLaunchList = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
+  const gate = useContext(LiveGateCtx) || {};
+  const live = gate.live;
+  const isMentor = !!(live && live.mode === 'mentor');
+  const [items] = useState(() => readIncomingFeatures() || FALLBACK_FEATURES);
+  const [res, setRes] = useState(() => {
+    const saved = readMvp();
+    if (saved && saved.byId) return saved.byId;
+    const d = readDraft();
+    if (d) return d;
+    return Object.fromEntries(FALLBACK_FEATURES.map(f => [f.id, 'v2']));
+  });
+  const [saved, setSaved] = useState(!!storedAnswer);
+  const inB = (k) => items.filter(f => (res[f.id] || 'v2') === k);
+  const v1 = inB('v1'), v2 = inB('v2'), bl = inB('backlog');
+  const move = (id, k) => { if (saved) return; setRes(p => ({ ...p, [id]: k })); };
+  const ready = v1.length === V1_CAP;
+  const lockLabel = v1.length > V1_CAP
+    ? tr({ uz: `🔒 Yana ${v1.length - V1_CAP} tasini ⚡ ga suring`, ru: `🔒 Переместите ещё ${v1.length - V1_CAP} в ⚡` })
+    : tr({ uz: `🔒 Yana ${V1_CAP - v1.length} tasini 🔥 ga ko'taring`, ru: `🔒 Поднимите ещё ${V1_CAP - v1.length} в 🔥` });
+  const save = () => {
+    if (!ready || saved) return;
+    const payload = {
+      v1: v1.map(f => uzOf(f)), v2: v2.map(f => uzOf(f)), backlog: bl.map(f => uzOf(f)),
+      byId: res, savedAt: Date.now(),
+    };
+    try { localStorage.setItem(MVP_KEY, JSON.stringify(payload)); } catch {}
+    setSaved(true);
+    onAnswer(screen, { stage: 'mvp', screenIdx: screen, correct: true, v1: payload.v1 });
+    if (live && live.mode === 'student') live.submitAnswer(PRACTICE_BASE + screen, 'mvp', 0, true, 0);
+  };
+  const Col2 = ({ b, list, up, down }) => (
+    <div className={`ll-col lvl lvl-${b.key} ${b.key}`}>
+      <div className="ll-col-h">{b.ic} {tr(b)} <b>{list.length}{b.key === 'v1' ? `/${V1_CAP}` : ''}</b></div>
+      {list.length === 0 && <span className="ll-empty">{tr({ uz: "hozircha bo'sh", ru: 'пока пусто' })}</span>}
+      {list.map(f => (
+        <div key={f.id} className="ll-item">
+          <span className="ll-ic">{f.ic}</span><span className="ll-t">{tr(f)}</span>
+          {!saved && up && <button className="ll-mv" title={tr({ uz: 'yuqoriga', ru: 'выше' })} onClick={() => move(f.id, up)}>▲</button>}
+          {!saved && down && <button className="ll-mv" title={tr({ uz: 'pastga', ru: 'ниже' })} onClick={() => move(f.id, down)}>▼</button>}
+        </div>
+      ))}
+    </div>
+  );
+  return (
+    <Stage eyebrow={tr({ uz: "Ochilish ro'yxati", ru: 'Список к открытию' })} screen={screen}
+      navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!saved && !isMentor} label={saved || isMentor ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : (ready ? tr({ uz: "🔒 Ro'yxatni saqlang", ru: '🔒 Сохраните список' }) : lockLabel)} onClick={onNext} /></>}>
+      <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Ochilish kuniga <span className="italic" style={{ color: T.accent }}>nima</span> sig'adi?</>, ru: <>Что <span className="italic" style={{ color: T.accent }}>влезет</span> в день открытия?</> })}</h2></div>
+        <Mentor>{tr({ uz: <>Ochilishgacha bir hafta bor, sayt ustida bitta odam ishlaydi. Bir haftada uchta ish tugaydi — ro'yxatni aynan uchtaga keltiring.</>, ru: <>До открытия неделя, над сайтом работает один человек. За неделю завершаются три дела — доведите список ровно до трёх.</> })}</Mentor>
+        {v1.length === 0 && !saved && <p className="hint fade-up">{tr({ uz: "Ochilish kunida hech narsa ishlamaydigan sayt ochiladi. Ro'yxatga uchtasini tanlang.", ru: 'Иначе в день открытия откроется сайт, где ничего не работает. Выберите в список три.' })}</p>}
+        <div className="ll-grid fade-up delay-1">
+          <Col2 b={BUCKETS[0]} list={v1} down="v2" />
+          <Col2 b={BUCKETS[1]} list={v2} up="v1" down="backlog" />
+          <Col2 b={BUCKETS[2]} list={bl} up="v2" />
+        </div>
+        <p className="small" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: "Keyinga qoldirilganlar ro'yxati — uni backlog deyishadi. Hech narsa o'chirilmaydi, navbati suriladi.", ru: 'Список отложенных называют бэклог. Ничего не удаляется — сдвигается очередь.' })}</p>
+        {!saved
+          ? <button className="btn" style={{ alignSelf: 'flex-start' }} disabled={!ready} onClick={save}>{ready ? tr({ uz: "✓ Ro'yxatni saqlash", ru: '✓ Сохранить список' }) : lockLabel}</button>
+          : <div className="done-mini fade-step">✅ {tr({ uz: "Saqlandi!", ru: 'Сохранено!' })} <span className="dm-sub">{tr({ uz: '— ochilish ro\'yxatida uchta ish bor', ru: '— в списке к открытию три дела' })}</span></div>}
+        <MentorBypassLine live={live} />
+        <MentorNote>{tr({ uz: "Baholash mezoni: 3/3 = qabul · 2/3 = joyida to'g'rilanadi · undan kam = mentor bilan qaytadan.", ru: 'Критерий оценки: 3/3 — принято · 2/3 — правится на месте · меньше — заново с ментором.' })}</MentorNote>
+        <StudentPracticePulse live={live} screen={screen} />
+        <MentorPracticeStats live={live} screen={screen} label={tr({ uz: "🚀 Ro'yxatni saqlaganlar", ru: '🚀 Кто сохранил список' })} />
+      </div>
+    </Stage>
+  );
+};
+
+// ============================================================
+// EKRAN 11 — BOSHQA GURUHNING RO'YXATI: xatoni topish (2 qadam)
+// ============================================================
+const FE_CARDS = [
+  { id: 'menu', ic: '📋', b: 'v1', uz: 'Menyu va narxlar', ru: 'Меню и цены', neutralUz: "Bu karta o'z joyida: busiz sayt ish bermaydi. Yana qarang.", neutralRu: 'Эта карточка на месте: без неё сайт не работает. Посмотрите ещё.' },
+  { id: 'order', ic: '🛒', b: 'v1', uz: 'Buyurtma tugmasi', ru: 'Кнопка заказа', neutralUz: "Bu karta o'z joyida: busiz sayt ish bermaydi. Yana qarang.", neutralRu: 'Эта карточка на месте: без неё сайт не работает. Посмотрите ещё.' },
+  { id: 'review', ic: '⭐', b: 'v1', uz: "Sharhlar bo'limi", ru: 'Раздел отзывов', bad: true },
+  { id: 'promo', ic: '🎟', b: 'v2', uz: 'Chegirma kodi', ru: 'Код скидки', neutralUz: "Bu karta o'z joyida — keyingi versiyada.", neutralRu: 'Эта карточка на месте — в следующей версии.' },
+  { id: 'photo', ic: '📸', b: 'v2', uz: 'Taomlar rasmi galereyasi', ru: 'Галерея фотографий блюд', neutralUz: "Bu karta o'z joyida — keyingi versiyada.", neutralRu: 'Эта карточка на месте — в следующей версии.' },
+  { id: 'map', ic: '🗺', b: 'backlog', uz: 'Yetkazib berish xaritasi', ru: 'Карта доставки', neutralUz: "Bu karta o'z joyida — keyinga qoldirilgan.", neutralRu: 'Эта карточка на месте — отложена.' },
+];
+const ScrFindError = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
+  const [found, setFound] = useState(!!storedAnswer);
+  const [placed, setPlaced] = useState(!!storedAnswer);
+  const [miss, setMiss] = useState(null);
+  const [wrongPlace, setWrongPlace] = useState(false);
+  const done = found && placed;
+  useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { stage: 'find', screenIdx: screen, correct: true }); }, [done]); // eslint-disable-line
+  const tap = (c) => {
+    if (found) return;
+    if (c.bad) { setFound(true); setMiss(null); }
+    else { setMiss(c.id); setTimeout(() => setMiss(m => (m === c.id ? null : m)), 2600); }
+  };
+  const place = (k) => {
+    if (!found || placed) return;
+    if (k === 'backlog') { setPlaced(true); setWrongPlace(false); }
+    else { setWrongPlace(true); setTimeout(() => setWrongPlace(false), 2600); }
+  };
+  return (
+    <Stage eyebrow={tr({ uz: "Boshqa guruhning ro'yxati", ru: 'Список другой группы' })} screen={screen}
+      navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : (!found ? tr({ uz: "Avval noto'g'ri kartani toping", ru: 'Сначала найдите неверную карточку' }) : tr({ uz: "Endi unga to'g'ri ro'yxatni tanlang", ru: 'Теперь выберите ей верный список' }))} onClick={onNext} /></>}>
+      <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Qaysi karta <span className="italic" style={{ color: T.accent }}>o'z joyida</span> emas?</>, ru: <>Какая карточка <span className="italic" style={{ color: T.accent }}>не на своём месте</span>?</> })}</h2></div>
+        <Mentor>{tr({ uz: <>Boshqa guruh xuddi shu do'kon uchun ro'yxat tuzdi. Bitta karta noto'g'ri joyda — uni toping.</>, ru: <>Другая группа составила список для того же магазина. Одна карточка не на месте — найдите её.</> })}</Mentor>
+        <div className="fe-grid fade-up delay-1">
+          {BUCKETS.map(b => (
+            <div key={b.key} className={`fe-col lvl lvl-${b.key} ${b.key}`}>
+              <div className="fe-col-h">{b.ic} {tr(b)}</div>
+              {FE_CARDS.filter(c => c.b === b.key || (found && placed && c.bad && b.key === 'backlog')).filter(c => !(c.bad && found && placed && b.key === 'v1')).map(c => (
+                <button key={c.id} className={`fe-card ${c.bad && found ? 'ok' : ''} ${miss === c.id ? 'miss' : ''}`} disabled={found} onClick={() => tap(c)}>
+                  <span>{c.ic} {tr(c)}</span>{c.bad && found && <span className="fe-tick">✓</span>}
+                </button>
+              ))}
+            </div>
+          ))}
+        </div>
+        {miss && <p className="fe-note fade-step">{tr({ uz: FE_CARDS.find(c => c.id === miss).neutralUz, ru: FE_CARDS.find(c => c.id === miss).neutralRu })}</p>}
+        {found && !placed && (
+          <div className="fe-place fade-step">
+            <p className="body" style={{ margin: '0 0 8px' }}>{tr({ uz: "Topdingiz. Endi «Sharhlar bo'limi» qaysi ro'yxatga tushishi kerak?", ru: 'Нашли. Теперь: в какой список должен попасть «Раздел отзывов»?' })}</p>
+            <div className="fe-place-btns">{BUCKETS.map(b => <button key={b.key} className={`tz-opt lvl lvl-${b.key}`} onClick={() => place(b.key)}>{b.ic} {tr(b)}</button>)}</div>
+            {wrongPlace && <p className="fe-note">{tr({ uz: "Yana o'ylab ko'ring: busiz sayt ish beradimi va qancha vaqt oladi?", ru: 'Подумайте ещё: работает ли сайт без этого и сколько времени это займёт?' })}</p>}
+          </div>
+        )}
+        {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0 }}>{tr({ uz: "Yangi ochilgan do'konda sharh yozadigan odam hali yo'q — busiz ham sayt ish beradi.", ru: 'В только что открывшемся магазине ещё некому писать отзывы — без этого сайт работает.' })}</p></div>}
+        <MentorNote>{tr({ uz: "Tekshirish qoidasi: har kartadan so'rang — busiz sayt ochilish kuni ish beradimi? Javob «ha» bo'lsa, u ochilish ro'yxatida turmaydi.", ru: 'Правило проверки: спросите у каждой карточки — работает ли сайт без неё в день открытия? Если «да» — ей не место в списке к открытию.' })}</MentorNote>
+      </div>
+    </Stage>
+  );
+};
+
+// ============================================================
+// EKRAN 12 — KODING: to'liq-ekran kompilyator (dvijok manbasi: HtmlCompiler / P0 PmCompiler)
+// ============================================================
+const HC_PREVIEW_CSS = `
+  *{box-sizing:border-box}
+  body{font-family:-apple-system,'Segoe UI',Roboto,sans-serif;margin:0;padding:16px;background:#FBFAFE;color:#1B1630}
+  #hcpm-out{display:flex;flex-direction:column;gap:9px}
+  .hcpm-empty{font-style:italic;color:#9C97B4;font-size:13px;margin:0}
+  .hcpm-err{font-family:monospace;font-size:13px;color:#5B3DE6;background:#EBE5FD;border-radius:9px;padding:10px 12px;margin:0;white-space:pre-wrap;word-break:break-word}
+  .hcpm-card{font-family:Georgia,serif;font-size:15px;line-height:1.5;color:#1B1630;background:#fff;border-radius:9px;padding:11px 13px;box-shadow:0 5px 14px -8px rgba(40,34,82,.25);border-left:3px solid #E7E3F4}
+  .hcpm-card.is-list{border-left-color:#5B3DE6}
+  .hcpm-badge{display:inline-block;font-family:'Manrope',system-ui,sans-serif;font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#5B3DE6;background:#EBE5FD;border-radius:99px;padding:3px 9px;margin-bottom:6px}
+  .hcpm-txt{display:block;white-space:pre-wrap;word-break:break-word}
+`;
+// Yashirin harness: o'quvchi kodidan KEYIN ishlaydi, uch shartni tekshirib parent'ga xabar yuboradi.
+const HC_HARNESS = (nonce, src) => `(function(){
+  var N=${JSON.stringify(nonce)};
+  var SRC=${JSON.stringify(src)};
+  var logs=window.__logs||[];
+  var err=window.__err||null;
+  var body=SRC.replace(/\\/\\/[^\\n]*/g,"");
+  var c1=/if\\s*\\(/.test(body)&&/darajalar\\s*\\[\\s*i\\s*\\]/.test(body);
+  var c2=/===\\s*("v1"|'v1')/.test(body);
+  var out="";
+  for(var i=0;i<logs.length;i++){ if(String(logs[i]).length>out.length) out=String(logs[i]); }
+  var parts=out.split(/[·,|]+/).map(function(s){return s.trim();}).filter(function(s){return s.length>1;});
+  var c3=parts.length===3;
+  var esc=function(s){return String(s).replace(/[&<>]/g,function(m){return m==="&"?"&amp;":m==="<"?"&lt;":"&gt;";});};
+  var root=document.getElementById("hcpm-out");
+  if(root){
+    if(err){root.innerHTML='<p class="hcpm-err">Kod ishlamadi: '+esc(err)+'</p>';}
+    else if(!logs.length){root.innerHTML='<p class="hcpm-empty">Natija hali chiqmadi.</p>';}
+    else{root.innerHTML=logs.map(function(l){var ok=String(l).trim().length>0;return '<div class="hcpm-card '+(ok?"is-list":"")+'">'+(ok?'<span class="hcpm-badge">Ochilish royxati</span>':"")+'<span class="hcpm-txt">'+esc(l)+'</span></div>';}).join("");}
+  }
+  try{parent.postMessage({__hcpmReport:true,nonce:N,c1:c1,c2:c2,c3:c3,err:err,count:parts.length},"*");}catch(e){}
+})();`;
+const HC_wrapDoc = (code, nonce) => `<!doctype html><html lang="uz"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>${HC_PREVIEW_CSS}</style>
+<script>window.__logs=[];window.__err=null;(function(){var _l=console.log;console.log=function(){for(var i=0;i<arguments.length;i++){var a=arguments[i];try{window.__logs.push(typeof a==="object"?JSON.stringify(a):String(a));}catch(e){window.__logs.push(String(a));}}try{_l.apply(console,arguments);}catch(e){}};})();
+window.onerror=function(m){window.__err=String(m);};<\/script>
+</head><body><div id="hcpm-out"></div>
+<script>${code}<\/script>
+<script>${HC_HARNESS(nonce, code)}<\/script>
+</body></html>`;
+
+const KODING_STARTER = `// Lavash do'koni sayti — imkoniyatlar va ularning darajasi.
+// Ikkala massivda ham bir xil o'rindagi element bir imkoniyatga tegishli.
+const nomlar = ["Menyu va narxlar", "Ish vaqti va manzil", "Buyurtma tugmasi",
+                "Yetkazib berish xaritasi", "Chegirma kodi", "Sharhlar bo'limi"];
+const darajalar = ["v1", "v1", "v1", "backlog", "v2", "backlog"];
+
+function ochilishRoyxati(nomlar, darajalar) {
+  let natija = "";
+  for (let i = 0; i < nomlar.length; i++) {
+    // ← Bu joyni siz to'ldirasiz
+  }
+  return natija;
+}
+
+console.log(ochilishRoyxati(nomlar, darajalar));`;
+const KODING_CONDS = [
+  { id: 'c1', label: { uz: 'Sikl ichida shart bor', ru: 'Внутри цикла есть условие' }, hint: { uz: 'Sikl har imkoniyatni birma-bir oladi. Ichida so\'rang: bu imkoniyatning darajasi nima?', ru: 'Цикл берёт каждую возможность по очереди. Спросите внутри: какой у неё уровень?' } },
+  { id: 'c2', label: { uz: '"v1" tekshirilyapti', ru: 'Проверяется "v1"' }, hint: { uz: 'Tenglikni bitta emas, uchta teng belgi tekshiradi: === "v1".', ru: 'Равенство проверяют не одним, а тремя знаками равенства: === "v1".' } },
+  { id: 'c3', label: { uz: 'Uchta nom chiqdi', ru: 'Вышли три названия' }, hint: { uz: 'Natija bo\'sh chiqsa — natija ga nom qo\'shilmayapti. natija = natija + nomlar[i] qatorini eslang.', ru: 'Если результат пустой — к natija не добавляется название. Вспомните строку natija = natija + nomlar[i].' } },
+];
+const readKoding = () => { try { const v = JSON.parse(localStorage.getItem(KODING_KEY) || 'null'); return v && typeof v === 'object' ? v : null; } catch { return null; } };
+
+function PmCompiler({ initialCode, onContinue, onBack }) {
+  const [code, setCode] = useState(initialCode || KODING_STARTER);
+  const nonceRef = useRef(0);
+  const [doc, setDoc] = useState('');
+  const [st, setSt] = useState({ ran: false, err: null, conds: { c1: false, c2: false, c3: false } });
+  useEffect(() => {
+    const t = setTimeout(() => {
+      const nonce = ++nonceRef.current;
+      setDoc(HC_wrapDoc(code, nonce));
+      try { const prev = readKoding(); localStorage.setItem(KODING_KEY, JSON.stringify({ code, done: !!(prev && prev.done) })); } catch {}
+    }, 400);
+    return () => clearTimeout(t);
+  }, [code]);
+  useEffect(() => {
+    const onMsg = (e) => {
+      const d = e.data;
+      if (d && d.__hcpmReport && d.nonce === nonceRef.current) setSt({ ran: true, err: d.err || null, conds: { c1: !!d.c1, c2: !!d.c2, c3: !!d.c3 } });
+    };
+    window.addEventListener('message', onMsg);
+    return () => window.removeEventListener('message', onMsg);
+  }, []);
+  const { conds, err } = st;
+  const passed = conds.c1 && conds.c2 && conds.c3;
+  const okN = KODING_CONDS.filter(c => conds[c.id]).length;
+  const firstHint = KODING_CONDS.find(c => !conds[c.id])?.hint;
+  const runNow = () => { const nonce = ++nonceRef.current; setDoc(HC_wrapDoc(code, nonce)); };
+  const onKeyDown = (e) => {
+    if (e.key === 'Tab') {
+      e.preventDefault();
+      const el = e.target, s = el.selectionStart, en = el.selectionEnd;
+      setCode(code.slice(0, s) + '  ' + code.slice(en));
+      requestAnimationFrame(() => { el.selectionStart = el.selectionEnd = s + 2; });
+    }
+  };
+  return (
+    <div className="hcp-root">
+      <div className="hcp-wrap">
+        <header className="hcp-top">
+          <span className="hcp-eyebrow">{tr({ uz: 'Koding · praktika', ru: 'Кодинг · практика' })}</span>
+          <h1 className="hcp-title">{tr({ uz: "Ochilish ro'yxatini kod o'zi ajratib beradi", ru: 'Список к открытию код отберёт сам' })}</h1>
+          <p className="hcp-brief">{tr({ uz: <>Siklning ichiga bitta shart yozing: daraja <span className="mono">"v1"</span> bo'lsa, nom <span className="mono">natija</span> ga qo'shilsin. Natija o'ngda darhol ko'rinadi.</>, ru: <>Впишите внутрь цикла одно условие: если уровень <span className="mono">"v1"</span>, название добавляется к <span className="mono">natija</span>. Результат сразу виден справа.</> })}</p>
+          <div className="hcp-checklist">
+            <span className="hcp-count">{okN}/{KODING_CONDS.length}</span>
+            {KODING_CONDS.map((c, i) => (
+              <span key={c.id} className={`hcp-chip ${conds[c.id] ? 'ok' : ''}`} title={tr(c.hint)}>
+                <span className="hcp-dot">{conds[c.id] ? '✓' : i + 1}</span>{tr(c.label)}
+              </span>
+            ))}
+          </div>
+          {err
+            ? <p className="hcp-err">⚠ {tr({ uz: 'Kod ishlamadi: ', ru: 'Код не сработал: ' })}{err}</p>
+            : (!passed && firstHint && <p className="hcp-hint">💡 {tr(firstHint)}</p>)}
+        </header>
+        <main className="hcp-split">
+          <section className="hcp-pane">
+            <div className="hcp-pane-bar dark">
+              <span className="bb-dots"><i /><i /><i /></span>
+              <span className="hcp-tab">ochilishRoyxati.js</span>
+              <button className="hcp-mini" onClick={runNow}>{tr({ uz: '▶ Ishga tushirish', ru: '▶ Запустить' })}</button>
+            </div>
+            <div className="hcp-code-wrap">
+              <textarea className="hcp-code" value={code} spellCheck={false} autoCapitalize="off" autoCorrect="off" onChange={e => setCode(e.target.value)} onKeyDown={onKeyDown} />
+            </div>
+          </section>
+          <section className="hcp-pane">
+            <div className="hcp-pane-bar">
+              <span className="hcp-pane-name">📺 {tr({ uz: 'Natija', ru: 'Результат' })}</span>
+              <span className="hcp-live">{tr({ uz: 'jonli', ru: 'живой' })}</span>
+            </div>
+            {doc
+              ? <iframe key={nonceRef.current} className="hcp-frame" title={tr({ uz: 'Jonli natija', ru: 'Живой результат' })} sandbox="allow-scripts" srcDoc={doc} />
+              : <p className="code-out-empty" style={{ padding: 16, margin: 0 }}>{tr({ uz: "Yozishni boshlang — natija shu yerda chiqadi.", ru: 'Начните писать — результат появится здесь.' })}</p>}
+          </section>
+        </main>
+        <footer className="hcp-bottom">
+          <button className="hcp-ghost" onClick={onBack}>{tr({ uz: '← Darsga qaytish', ru: '← Вернуться к уроку' })}</button>
+          <button className="hcp-ghost" onClick={() => setCode(KODING_STARTER)}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button>
+          <div className="hcp-status">
+            {passed
+              ? <span className="hcp-ok-msg">{tr({ uz: '✓ Uchala shart bajarildi!', ru: '✓ Все три условия выполнены!' })}</span>
+              : <span className="hcp-wait-msg">{tr({ uz: "Shartlarni bajaring — natija o'ngda jonli ko'rinadi", ru: 'Выполните условия — результат виден справа' })}</span>}
+          </div>
+          <button className="hcp-next" disabled={!passed} onClick={() => passed && onContinue({ code })}>{tr({ uz: 'Davom etish →', ru: 'Продолжить →' })}</button>
+        </footer>
+      </div>
+    </div>
+  );
+}
+
+const ScrCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
+  const gate = useContext(LiveGateCtx) || {};
+  const live = gate.live;
+  const isMentor = !!(live && live.mode === 'mentor');
+  const isSelf = !live || live.mode === 'self';
+  const [open, setOpen] = useState(false);
+  const [st, setSt] = useState(() => {
+    const saved = readKoding();
+    return { code: storedAnswer?.code || (saved && saved.code) || KODING_STARTER, done: !!(storedAnswer && storedAnswer.solved) || !!(saved && saved.done) };
+  });
+  const { code, done } = st;
+  useEffect(() => {
+    if (done && storedAnswer === undefined) {
+      onAnswer(screen, { stage: 'koding', screenIdx: screen, code, solved: true, correct: true });
+      if (live && live.mode === 'student') live.submitAnswer(PRACTICE_BASE + screen, 'koding', 0, true, 0);
+    }
+  }, []); // eslint-disable-line
+  const finish = ({ code: newCode }) => {
+    setOpen(false);
+    setSt({ code: newCode, done: true });
+    try { localStorage.setItem(KODING_KEY, JSON.stringify({ code: newCode, done: true })); } catch {}
+    if (!done) {
+      onAnswer(screen, { stage: 'koding', screenIdx: screen, code: newCode, solved: true, correct: true });
+      if (live && live.mode === 'student') live.submitAnswer(PRACTICE_BASE + screen, 'koding', 0, true, 0);
+    }
+  };
+  const mvp = readMvp();
+  const preview = (mvp && Array.isArray(mvp.v1) && mvp.v1.length ? mvp.v1 : FALLBACK_FEATURES.slice(0, 3).map(f => uzOf(f))).slice(0, 3);
+  return (
+    <Stage eyebrow={tr({ uz: 'Koding · 🛠 kompilyator', ru: 'Кодинг · 🛠 компилятор' })} screen={screen}
+      navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !isMentor} label={done || isMentor ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Avval kompilyatorda bajaring', ru: 'Сначала выполните в компиляторе' })} onClick={onNext} /></>}>
+      <div className="screen" style={{ gap: 'clamp(14px,2.2vw,20px)' }}>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Ochilish ro'yxatini <span className="italic" style={{ color: T.accent }}>kod</span> o'zi ajratib beradi</>, ru: <>Список к открытию <span className="italic" style={{ color: T.accent }}>код</span> отберёт сам</> })}</h2></div>
+        <Mentor>{tr({ uz: <>Ikki massiv tayyor: nomlar va darajalar. Pastdagi «🛠 Kompilyatorni ochish» tugmasini bosing. Kodni yozadigan va natijani darhol ko'rsatadigan oyna ochiladi.</>, ru: <>Два массива готовы: названия и уровни. Нажмите кнопку «🛠 Открыть компилятор» ниже. Откроется окно, где пишут код и сразу видят результат.</> })}</Mentor>
+        <div className="kdx fade-up delay-1">
+          <div className="kdx-fn">
+            <span className="kdx-fn-bar"><span className="bb-dots"><i /><i /><i /></span>ochilishRoyxati.js</span>
+            <code className="kdx-fn-code">ochilishRoyxati(<span className="kx-kim">nomlar</span>, <span className="kx-nima">darajalar</span>)</code>
+          </div>
+          <span className="kdx-arrow" aria-hidden="true">➜</span>
+          <div className="kdx-out">
+            {preview.map((s, i) => (
+              <div key={i} className="kdx-card" style={{ '--kd': `${0.5 + i * 0.3}s` }}>
+                <span className="hc-prev-badge lvl lvl-v1">🔥 {tr({ uz: 'ochilishga', ru: 'к открытию' })}</span>{s}
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="kdx-cta fade-up delay-2">
+          <button className="kod-launch-btn" onClick={() => setOpen(true)}>{done ? tr({ uz: '↻ Kompilyatorni qayta ochish', ru: '↻ Открыть компилятор заново' }) : tr({ uz: '🛠 Kompilyatorni ochish', ru: '🛠 Открыть компилятор' })}</button>
+          {!done && isSelf && <button className="kdx-skip" onClick={onNext}>{tr({ uz: '✓ Bu mashqni sinfda bajarganman — davom etish →', ru: '✓ Это задание я выполнил в классе — продолжить →' })}</button>}
+        </div>
+        <div className="takeaway fade-up delay-2"><span className="ta-bulb">📌</span><p className="ta-h">{tr({ uz: "Ochilish ro'yxati kod yozishdan oldin tuziladi — kod faqat tanlanganini quradi.", ru: 'Список к открытию составляют до написания кода — код лишь строит выбранное.' })}</p></div>
+        {done && <div className="done-mini fade-step">✅ {tr({ uz: 'Ishladi!', ru: 'Сработало!' })} <span className="dm-sub">{tr({ uz: '— koddan uchta nom chiqdi', ru: '— из кода вышли три названия' })}</span></div>}
+        <MentorNote>{tr({ uz: "Vaqt qoidasi: 10 daqiqa. Obyekt va .push bu darsgacha o'tilmagan — so'ralsa «keyingi modulda» deng, kodga kiritmang.", ru: 'Правило времени: 10 минут. Объект и .push до этого урока не проходили — если спросят, скажите «в следующем модуле», в код не вводите.' })}</MentorNote>
+        <MentorPracticeStats live={live} screen={screen} label={tr({ uz: "🛠 Kodni yozib bo'lganlar", ru: '🛠 Кто дописал код' })} />
+      </div>
+      {open && <PmCompiler initialCode={code} onContinue={finish} onBack={() => setOpen(false)} />}
+    </Stage>
+  );
+};
+
+// ============================================================
+// EKRAN 13 — RECAP: juftlik-taymer + bir qator yozuv
+// ============================================================
+function PairTimer({ onStage }) {
+  const [st, setSt] = useState({ running: false, left: 60, done: false });
+  const stage = st.running ? 'running' : (st.done ? 'done' : 'idle');
+  useEffect(() => { if (onStage) onStage(stage); }, [stage]); // eslint-disable-line
+  useEffect(() => {
+    if (!st.running) return;
+    if (st.left <= 0) { setSt({ running: false, left: 60, done: true }); return; }
+    const t = setTimeout(() => setSt(p => ({ ...p, left: p.left - 1 })), 1000);
+    return () => clearTimeout(t);
+  }, [st.running, st.left]);
+  const isA = st.left > 30;
+  const phaseLeft = isA ? st.left - 30 : st.left;
+  const R = 34, C = 2 * Math.PI * R, frac = phaseLeft / 30;
+  return (
+    <div className="pair-timer">
+      {st.running ? (
+        <div className="pair-live">
+          <div className={`pair-ring ${isA ? 'a' : 'b'}`}>
+            <svg width="82" height="82" viewBox="0 0 88 88" aria-hidden="true">
+              <circle cx="44" cy="44" r={R} fill="none" stroke={T.line} strokeWidth="7" />
+              <circle cx="44" cy="44" r={R} fill="none" stroke={isA ? T.accent : T.success} strokeWidth="7" strokeLinecap="round" strokeDasharray={C} strokeDashoffset={C * (1 - frac)} transform="rotate(-90 44 44)" style={{ transition: 'stroke-dashoffset 1s linear' }} />
+            </svg>
+            <div className="pair-ring-mid"><span className={`pair-ring-who ${isA ? '' : 'b'}`}>{isA ? 'A' : 'B'}</span><span className="pair-ring-sec">{phaseLeft}s</span></div>
+          </div>
+          <div className="pair-live-txt">
+            <span className="pair-now">{tr({ uz: 'Hozir ', ru: 'Сейчас говорит ' })}<span className={`pair-who ${isA ? '' : 'b'}`}>{isA ? 'A' : 'B'}</span>{tr({ uz: ' gapiradi', ru: '' })}</span>
+            <span className="pair-next">{isA ? tr({ uz: 'keyin — B navbati', ru: 'потом — очередь B' }) : tr({ uz: 'oxirgi navbat', ru: 'последняя очередь' })}</span>
+          </div>
+        </div>
+      ) : (
+        <p className="pair-now" style={{ margin: 0 }}>{st.done ? tr({ uz: "✓ Vaqt tugadi — ikkalangiz ham aytib bo'ldingiz. Barakalla!", ru: '✓ Время вышло — вы оба рассказали. Молодцы!' }) : tr({ uz: "Har biringizga 30 soniyadan — avval A, keyin B.", ru: 'По 30 секунд каждому — сначала A, потом B.' })}</p>
+      )}
+      <div className="pair-timer-btns">
+        {!st.running && <button className={st.done ? 'btn-soft' : 'pair-start'} onClick={() => setSt({ running: true, left: 60, done: false })}>{st.done ? tr({ uz: '↻ Yana 1 daqiqa', ru: '↻ Ещё 1 минута' }) : tr({ uz: '▶ 1 daqiqani boshlash', ru: '▶ Запустить 1 минуту' })}</button>}
+        {st.running && <button className="btn-soft" onClick={() => setSt({ running: false, left: 60, done: false })}>{tr({ uz: '⏹ To\'xtatish', ru: '⏹ Остановить' })}</button>}
+      </div>
+    </div>
+  );
+}
+const ScrRecap = ({ screen, onNext, onPrev }) => {
+  const [text, setText] = useState(() => { try { return localStorage.getItem(REFLECT_KEY) || ''; } catch { return ''; } });
+  const save = (v) => { setText(v); try { localStorage.setItem(REFLECT_KEY, v); } catch {} };
+  const written = text.trim().length >= 8;
+  return (
+    <Stage eyebrow={tr({ uz: 'Yoddan', ru: 'По памяти' })} screen={screen}
+      navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!written} label={written ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Bir qator yozing', ru: 'Напишите одну строку' })} onClick={onNext} /></>}>
+      <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Uchta ishni <span className="italic" style={{ color: T.accent }}>yoddan</span> ayta olasizmi?</>, ru: <>Сможете назвать три дела <span className="italic" style={{ color: T.accent }}>по памяти</span>?</> })}</h2></div>
+        <Mentor>{tr({ uz: <>Ekranga qaramasdan sherigingizga ayting: qaysi uchta ishni tanladingiz va nega aynan ular ochilish kuniga tushdi.</>, ru: <>Не глядя на экран, расскажите напарнику: какие три дела вы выбрали и почему именно они попали ко дню открытия.</> })}</Mentor>
+        <div className="rcp-flow">
+          <div className="rcp-step fade-up delay-1">
+            <div className="rcp-step-h"><span className="rcp-n">1</span><div><span className="rcp-t">{tr({ uz: '🗣 Sherigingizga ayting', ru: '🗣 Расскажите напарнику' })}</span></div></div>
+            <PairTimer />
+          </div>
+          <div className="rcp-step fade-up delay-2">
+            <div className="rcp-step-h"><span className="rcp-n">2</span><div><span className="rcp-t">{tr({ uz: '✍️ Endi bir qator yozing', ru: '✍️ Теперь напишите одну строку' })}</span></div></div>
+            <input className="reflect-input" value={text} onChange={e => save(e.target.value)} placeholder={tr({ uz: 'Ochilish kuniga ... tanladim, chunki ...', ru: 'Ко дню открытия я выбрал ..., потому что ...' })} maxLength={160} />
+            {written && <p className="small" style={{ margin: 0, color: T.success, fontWeight: 700 }}>{tr({ uz: '✓ Yozildi!', ru: '✓ Записано!' })}</p>}
+          </div>
+        </div>
+        <MentorNote>{tr({ uz: "Sinfning uchdan biridan ko'pi «nega aynan bu uchtasi» degan savolga javob berolmasa — vaqt-chegarasi gapini qayta tushuntiring.", ru: 'Если больше трети класса не отвечает на вопрос «почему именно эти три» — объясните ограничение по времени заново.' })}</MentorNote>
+      </div>
+    </Stage>
+  );
+};
+
+// ============================================================
+// EKRAN 14 — UYGA VAZIFA: shartnoma-karta (hajm-tanlovi)
+// ============================================================
+const HW_OPTS = [
+  { id: 'full', ic: '📗', title: { uz: "To'liq · ~20 daqiqa", ru: 'Полный · ~20 минут' },
+    items: [
+      { uz: "Uchta ishning har biriga bittadan qator yozing: bu tayyor bo'lganda odam saytga kirib nima qila oladi?", ru: 'К каждому из трёх дел напишите по строке: что человек сможет сделать на сайте, когда оно будет готово?' },
+      { uz: "Keyingi versiya ro'yxatiga o'zingizdan yana bitta imkoniyat qo'shing.", ru: 'Добавьте в список следующей версии ещё одну свою возможность.' },
+      { uz: "Yangi imkoniyatni ikki savoldan o'tkazing va darajasini belgilang.", ru: 'Проведите новую возможность через два вопроса и определите её уровень.' },
+    ] },
+  { id: 'short', ic: '📘', title: { uz: 'Qisqa · ~10 daqiqa', ru: 'Короткий · ~10 минут' },
+    items: [
+      { uz: "Faqat uchta qator: har bir ish tayyor bo'lganda odam saytda nima qila olishini yozing.", ru: 'Только три строки: что человек сможет сделать на сайте, когда каждое дело будет готово.' },
+    ] },
+];
+const ScrHomework = ({ screen, onNext, onPrev }) => {
+  const [pick, setPick] = useState(() => { try { return localStorage.getItem(HW_KEY) || ''; } catch { return ''; } });
+  const choose = (id) => { setPick(id); try { localStorage.setItem(HW_KEY, id); } catch {} };
+  return (
+    <Stage eyebrow={tr({ uz: 'Uyga vazifa', ru: 'Домашнее задание' })} screen={screen}
+      navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!pick} label={pick ? tr({ uz: 'Amaliy topshiriqni bajarish →', ru: 'Выполнить практическое задание →' }) : tr({ uz: 'Hajmni tanlang', ru: 'Выберите объём' })} onClick={onNext} /></>}>
+      <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Uyda <span className="italic" style={{ color: T.accent }}>qancha</span> ish qilasiz?</>, ru: <>Сколько работы вы сделаете <span className="italic" style={{ color: T.accent }}>дома</span>?</> })}</h2></div>
+        <Mentor>{tr({ uz: <>Ikki variantdan bittasini o'zingiz tanlaysiz — tanlaganingiz sizning shartnomangiz bo'ladi.</>, ru: <>Из двух вариантов вы выбираете сами — выбранное станет вашим договором.</> })}</Mentor>
+        <div className="hw-cards fade-up delay-1">
+          {HW_OPTS.map(o => (
+            <button key={o.id} className={`hw-card ${pick === o.id ? 'on' : ''}`} onClick={() => choose(o.id)}>
+              <span className="hw-card-h">{o.ic} {tr(o.title)}</span>
+              <ul className="hw-card-list">{o.items.map((it, i) => <li key={i}>{tr(it)}</li>)}</ul>
+              {pick === o.id && <span className="hw-card-ok">✓ {tr({ uz: 'tanlandi', ru: 'выбрано' })}</span>}
+            </button>
+          ))}
+        </div>
+        <MentorNote>{tr({ uz: "Tekshirish qoidasi: har qator odam nima qila olishini aytsin. Tashqi ma'lumot so'ralmaydi — hammasi o'quvchida bor.", ru: 'Правило проверки: каждая строка говорит, что человек сможет сделать. Внешних данных не требуется — всё уже есть у ученика.' })}</MentorNote>
+      </div>
+    </Stage>
+  );
+};
+
+// ============================================================
+// FLASHCARDS — aktiv takrorlash
+// ============================================================
+const PM_FLASHCARDS = [
+  { front: { uz: "Katta ishni bo'laklarga bo'lish nima deyiladi?", ru: 'Как называется разбиение большой работы на части?' }, back: { uz: 'Dekompozitsiya', ru: 'Декомпозиция' } },
+  { front: { uz: "Yaxshi bo'lak qanday yozilgan bo'ladi?", ru: 'Как записана хорошая часть?' }, back: { uz: "Uni alohida qilib, tugatib bo'ladi — boshi ham, oxiri ham ko'rinadi", ru: 'Её можно сделать отдельно и завершить — видны и начало, и конец' } },
+  { front: { uz: 'Imkoniyat nima?', ru: 'Что такое возможность?' }, back: { uz: 'Saytning odamga foyda beradigan bitta ishi', ru: 'Одно дело сайта, которое приносит человеку пользу' } },
+  { front: { uz: 'MVP nima?', ru: 'Что такое MVP?' }, back: { uz: 'Mahsulotning ish beradigan eng sodda birinchi versiyasi', ru: 'Самая простая рабочая первая версия продукта' } },
+  { front: { uz: 'Backlog nima?', ru: 'Что такое бэклог?' }, back: { uz: "Keyinga qoldirilganlar ro'yxati", ru: 'Список отложенных' } },
+  { front: { uz: 'Tarozining birinchi savoli qanday yozilgan?', ru: 'Как звучит первый вопрос весов?' }, back: { uz: 'Busiz sayt ish beradimi?', ru: 'Работает ли сайт без этого?' } },
+  { front: { uz: 'Tarozining ikkinchi savoli qanday yozilgan?', ru: 'Как звучит второй вопрос весов?' }, back: { uz: 'Buni qurish qancha vaqt oladi?', ru: 'Сколько времени займёт это сделать?' } },
+  { front: { uz: "Kerak, lekin og'ir ish qaysi ro'yxatga tushadi?", ru: 'В какой список попадает нужное, но тяжёлое дело?' }, back: { uz: '⚡ Keyingi versiyaga', ru: '⚡ В следующую версию' } },
+  { front: { uz: "Ochilish ro'yxatiga nechta ish sig'adi?", ru: 'Сколько дел влезает в список к открытию?' }, back: { uz: "Uchta — bir haftaga shuncha sig'adi", ru: 'Три — столько влезает в неделю' } },
+  { front: { uz: 'Nega hamma imkoniyat birdan qilinmaydi?', ru: 'Почему не делают все возможности сразу?' }, back: { uz: "Bir haftada hammasi tugamaydi — sayt yarim qolgan holda ochiladi", ru: 'За неделю всё не закончить — сайт откроется наполовину готовым' } },
+  { front: { uz: 'Instagram ochilishida qaysi uch ish qolgan edi?', ru: 'Какие три дела остались у Instagram к запуску?' }, back: { uz: 'Foto, filtr, izoh', ru: 'Фото, фильтр, комментарий' } },
+  { front: { uz: "Ochilish ro'yxati qachon tuziladi?", ru: 'Когда составляют список к открытию?' }, back: { uz: 'Kod yozishdan oldin', ru: 'До написания кода' } },
+];
+function Flashcards({ cards }) {
+  const [queue, setQueue] = useState(() => cards.map((_, i) => i));
+  const [flipped, setFlipped] = useState(false);
+  const [known, setKnown] = useState(0);
+  const [exiting, setExiting] = useState(null);
+  const swapRef = useRef(0);
+  const total = cards.length;
+  const cur = queue[0];
+  const card = cur != null ? cards[cur] : null;
+  const advance = (removed) => {
+    if (exiting) return;
+    setExiting(removed ? 'knew' : 'again');
+    setTimeout(() => {
+      setExiting(null); setFlipped(false); swapRef.current++;
+      if (removed) setKnown(k => k + 1);
+      setQueue(q => { const [first, ...rest] = q; return removed ? rest : [...rest, first]; });
+    }, 420);
+  };
+  const restart = () => { setQueue(cards.map((_, i) => i)); setKnown(0); setFlipped(false); };
+  if (!card) return (
+    <div className="fc-done fade-up"><span className="fc-done-emoji">🎉</span><p className="fc-done-h">{tr({ uz: 'Hammasini bilasiz!', ru: 'Вы знаете всё!' })}</p><p className="fc-done-s">{total}/{total} {tr({ uz: 'atama yodlandi', ru: 'терминов выучено' })}</p><button className="fc-btn ghost" onClick={restart}>{tr({ uz: '↻ Qaytadan takrorlash', ru: '↻ Повторить заново' })}</button></div>
+  );
+  return (
+    <div className="fc fade-up">
+      <div className="fc-top"><span className="fc-pill learn" key={`l-${queue.length}-${swapRef.current}`}>↻ {tr({ uz: "O'rganilmoqda", ru: 'Учим' })} · <b>{queue.length}</b></span><span className="fc-pill knew" key={`k-${known}`}>✓ {tr({ uz: 'Bildim', ru: 'Знаю' })} · <b>{known}</b></span></div>
+      <div className="fc-bar"><span className="fc-bar-fill" style={{ width: `${(known / total) * 100}%` }} /></div>
+      <div className="fc-cardwrap">
+        <div className={`fc-fly ${exiting === 'knew' ? 'out-knew' : ''} ${exiting === 'again' ? 'out-again' : ''}`} key={swapRef.current}>
+          <div className={`fc-card ${flipped ? 'flip' : ''}`} onClick={() => !flipped && !exiting && setFlipped(true)} role="button" tabIndex={0}>
+            <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: "Javobni o'ylang 🤔", ru: 'Подумайте над ответом 🤔' })} <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
+            <div className="fc-face fc-back"><span className="fc-tag">{tr(card.back)}</span></div>
+          </div>
+        </div>
+      </div>
+      {flipped
+        ? (<div className="fc-actions"><button className="fc-btn again" disabled={!!exiting} onClick={() => advance(false)}>{tr({ uz: '✗ Takrorlash', ru: '✗ Повторить' })}</button><button className="fc-btn knew" disabled={!!exiting} onClick={() => advance(true)}>{tr({ uz: '✓ Bildim', ru: '✓ Знаю' })}</button></div>)
+        : (<p className="fc-hint">{tr({ uz: '👆 Kartani bosing — javobni ko\'rasiz', ru: '👆 Нажмите карточку — увидите ответ' })}</p>)}
+    </div>
+  );
+}
+const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
+  useEffect(() => { if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, []); // eslint-disable-line
+  return (
+    <Stage eyebrow={tr({ uz: 'Takrorlash', ru: 'Повторение' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={false} label={tr({ uz: 'Yakunlash →', ru: 'Завершить →' })} onClick={onNext} /></>}>
+      <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Atamalarni <span className="italic" style={{ color: T.accent }}>tez takrorlaymiz</span>.</>, ru: <>Быстро <span className="italic" style={{ color: T.accent }}>повторим термины</span>.</> })}</h2></div>
+        <Mentor>{tr({ uz: <>Har kartada bir savol — javobini o'ylang, keyin kartani bosib tekshiring.</>, ru: <>На каждой карточке один вопрос — подумайте над ответом, потом нажмите карточку и проверьте.</> })}</Mentor>
+        <div className="fc-center"><Flashcards cards={PM_FLASHCARDS} /></div>
+      </div>
+    </Stage>
+  );
+};
+
+// ============================================================
+// EKRAN 16 — YAKUN + CODESTRIKE ARENA
+// ============================================================
+const SUM_RECAP = [
+  { uz: "Dekompozitsiya — katta ishni alohida tugatib bo'ladigan bo'laklarga bo'lish.", ru: 'Декомпозиция — разбиение большой работы на части, которые можно завершить по отдельности.' },
+  { uz: 'Har bo\'lak ikki savoldan o\'tadi: busiz sayt ish beradimi va uni qurish qancha vaqt oladi.', ru: 'Каждая часть проходит два вопроса: работает ли сайт без неё и сколько времени займёт её сделать.' },
+  { uz: "MVP — mahsulotning ish beradigan eng sodda birinchi versiyasi; unga uchta ish sig'adi.", ru: 'MVP — самая простая рабочая первая версия продукта; в неё входят три дела.' },
+  { uz: "Qolganlari yo'qolmaydi: biri keyingi versiyaga, biri keyinga qoldirilganlar ro'yxatiga tushadi.", ru: 'Остальные не пропадают: одни идут в следующую версию, другие — в список отложенных.' },
+];
+const SUM_GLOSS = [
+  { b: { uz: 'Dekompozitsiya', ru: 'Декомпозиция' }, t: { uz: "— katta ishni bo'laklarga bo'lish", ru: '— разбиение большой работы на части' } },
+  { b: { uz: 'Imkoniyat', ru: 'Возможность' }, t: { uz: '— saytning odamga foyda beradigan bitta ishi', ru: '— одно дело сайта, приносящее человеку пользу' } },
+  { b: { uz: 'MVP', ru: 'MVP' }, t: { uz: '— mahsulotning ish beradigan eng sodda birinchi versiyasi', ru: '— самая простая рабочая первая версия продукта' } },
+  { b: { uz: 'Backlog', ru: 'Бэклог' }, t: { uz: "— keyinga qoldirilganlar ro'yxati", ru: '— список отложенных' } },
+];
+const ScrSummary = ({ screen, answers, achievements, onReset, onPrev, onFinish }) => {
   const _gate = useContext(LiveGateCtx) || {};
   const _live = _gate.live;
   const [arena, setArena] = useState(false);
@@ -1608,130 +2096,64 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
     if (isMentorL && quizSt === 'off') { try { await _live.quizControl('lobby', -1); } catch { return; } }
     setArenaSolo(studentSolo); setArena(true);
   };
-  const RECAP = ['Dekompozitsiya — katta g\'oyani feature\'larga bo\'lish', 'MVP — eng kichik ishlaydigan versiya (skeytbord)', 'Backlog — qolgani bosqichma-bosqich (v2, v3)', 'Hammasini birato\'la qurmang — avval sinab ko\'ring'];
-  const HOMEWORK = [{ b: 'Sevimli ilovangizni o\'ylang', t: '— uning MVP\'si nima bo\'lganini o\'zingiz aniqlab ko\'ring' }, { b: 'Loyihangiz feature listini yozing', t: '— hammasini sanab, MVP vs Keyin ga bo\'ling' }, { b: 'Demo Day\'ga tayyorlaning', t: '— "men avval MVP\'ni qildim" deb ayting' }];
-  const GLOSSARY = [{ b: 'Dekompozitsiya', t: '— katta narsani kichik bo\'laklarga ajratish' }, { b: 'MVP', t: '— eng kichik ishlaydigan versiya' }, { b: 'Feature list', t: '— barcha mumkin funksiyalar ro\'yxati' }, { b: 'Backlog', t: '— keyin qilinadigan ishlar navbati' }, { b: 'Iteratsiya', t: '— versiyama-versiya o\'sish (v1→v2→v3)' }];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
   const PASSED = (total ? correct / total : 0) >= 0.6;
+  const mvp = readMvp();
   const [open, setOpen] = useState(false);
   const glossRef = useRef(null);
   const isNarrow = useIsMobile(768);
   const toggleGloss = () => setOpen(o => { const nv = !o; if (nv && isNarrow) setTimeout(() => { if (glossRef.current) glossRef.current.scrollIntoView({ behavior: 'smooth', block: 'end' }); }, 80); return nv; });
   return (
-    <Stage eyebrow="Tayyor" screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>Qaytadan</button><button className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>Yakunlash</button></>}>
+    <Stage eyebrow={tr({ uz: 'Tayyor', ru: 'Готово' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><button className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash', ru: 'Завершить' })}</button></>}>
       <div className="screen">
-        <div className="hero"><div className="hero-l"><span className="done-chip fade-up"><span className="tick">{Ico.check(11)}</span> PM bloki tugadi</span><h2 className="title h-title fade-up d1">Endi siz katta g'oyani <span className="italic" style={{ color: T.accent }}>bosqichlarga</span> bo'lasiz.</h2><p className="body h-sub fade-up d2">{PASSED ? 'Tabriklaymiz! MVP, backlog va bosqichma-bosqich o\'sishni o\'rgandingiz. Demo Day\'ga tayyorsiz!' : 'Yaxshi harakat! Bir-ikki joyni mustahkamlash uchun darsni qayta ko\'ring.'}</p></div><ScoreRing correct={correct} total={total} /></div>
+        <div className="hero"><div className="hero-l">
+          <span className="done-chip fade-up"><span className="tick">{Ico.check(11)}</span> {tr({ uz: 'Dars tugadi', ru: 'Урок завершён' })}</span>
+          <h2 className="title h-title fade-up d1">{tr({ uz: <>Endi siz ochilish ro'yxatini <span className="italic" style={{ color: T.accent }}>tuza olasiz</span>.</>, ru: <>Теперь вы <span className="italic" style={{ color: T.accent }}>умеете составлять</span> список к открытию.</> })}</h2>
+          <p className="body h-sub fade-up d2">{PASSED ? tr({ uz: "Ro'yxatingiz 8-darsdan boshlab loyihada quriladi.", ru: 'Ваш список начнут строить в проекте с восьмого урока.' }) : tr({ uz: 'Bir-ikki joyni mustahkamlash uchun darsni qayta ko\'ring.', ru: 'Пересмотрите урок, чтобы закрепить пару моментов.' })}</p>
+        </div>{!isMentorL && <ScoreRing correct={correct} total={total} />}</div>
         <div className={`qz-cta cs-cta fade-up d2 ${studentLive ? 'ready' : ''}`}>
-          <CsWordmark
-            stats={false}
-            liveOn={studentLive}
-            disabled={studentWait}
-            onClick={studentWait ? undefined : openArena}
-            hint={studentWait ? '⏳ Mentorni kuting' : undefined}
-          />
+          <CsWordmark stats={false} liveOn={studentLive} disabled={studentWait} onClick={studentWait ? undefined : openArena} hint={studentWait ? tr({ uz: '⏳ Mentorni kuting', ru: '⏳ Подождите ментора' }) : undefined} />
         </div>
         {arena && <QuizArena live={_live || { mode: 'self' }} startSolo={arenaSolo} onClose={() => setArena(false)} />}
         <Zoomable>
-        <div className="split">
-          <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span style={{ color: T.success, display: 'inline-flex' }}>{Ico.check(15)}</span> Endi siz bilasiz</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck" style={{ display: 'inline-flex' }}>{Ico.check(15)}</span><span>{r}</span></li>))}</ul></div>
-          <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>Demo Day'ga tayyorgarlik</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>Dekompozitsiya ko'nikmangizni mashq qiling:</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{h.b}</b> <span className="t">{h.t}</span></li>))}</ul><p className="hw-note">Demo Day — o'z mahsulotingiz MVP'sini qurib taqdim qilasiz! 🛹→🚗</p></div>
-        </div>
+          <div className="split">
+            <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span style={{ color: T.success, display: 'inline-flex' }}>{Ico.check(15)}</span> {tr({ uz: 'Endi siz bilasiz', ru: 'Теперь вы знаете' })}</div><ul className="recap">{SUM_RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck" style={{ display: 'inline-flex' }}>{Ico.check(15)}</span><span>{tr(r)}</span></li>))}</ul></div>
+            <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>🚀 {tr({ uz: "Sizning ochilish ro'yxatingiz", ru: 'Ваш список к открытию' })}</div>
+              {mvp && Array.isArray(mvp.v1) && mvp.v1.length
+                ? <ul>{mvp.v1.map((x, i) => <li key={i}><b>{i + 1}.</b> <span className="t">{x}</span></li>)}</ul>
+                : <p className="body" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: "Ro'yxat hali saqlanmagan.", ru: 'Список ещё не сохранён.' })}</p>}
+              <p className="hw-note">{tr({ uz: 'Shu uchta ish 8-darsdan boshlab quriladi va 13-darsda taqdim qilinadi.', ru: 'Эти три дела начнут делать с восьмого урока, а на тринадцатом — представят.' })}</p>
+            </div>
+          </div>
         </Zoomable>
         {!isMentorL && <div className="card ach-coll fade-up d3">
-          <div className="card-lbl" style={{ color: T.accent }}>🏅 Nishonlaringiz — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
+          <div className="card-lbl" style={{ color: T.accent }}>🏅 {tr({ uz: 'Nishonlaringiz', ru: 'Ваши награды' })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">
             {Object.entries(ACHIEVEMENTS).map(([id, a]) => { const got = !!(achievements && achievements.has(id)); return (
-              <div key={id} className={`ach-badge ${got ? 'got' : 'locked'}`} title={a.desc}>
+              <div key={id} className={`ach-badge ${got ? 'got' : 'locked'}`} title={tr(a.desc)}>
                 <span className="ach-badge-ic">{got ? a.icon : '🔒'}</span>
                 <span className="ach-badge-name">{a.name}</span>
-                {got && <span className="ach-badge-desc">{a.desc}</span>}
+                {got && <span className="ach-badge-desc">{tr(a.desc)}</span>}
               </div>
             ); })}
           </div>
         </div>}
-        <div ref={glossRef} className="gloss fade-up d4" style={{ scrollMarginBottom: 16 }}><div className="gloss-head" onClick={toggleGloss}><span className="lbl">Kalit so'zlar (takrorlash)</span><span className="gloss-toggle">{open ? '−' : '+'}</span></div>{open && (<div className="gloss-body">{GLOSSARY.map((g, i) => (<span key={i}><b>{g.b}</b> {g.t}{i < GLOSSARY.length - 1 ? ' · ' : ''}</span>))}</div>)}</div>
+        <div ref={glossRef} className="gloss fade-up d4" style={{ scrollMarginBottom: 16 }}><div className="gloss-head" onClick={toggleGloss}><span className="lbl">{tr({ uz: "Kalit so'zlar (takrorlash)", ru: 'Ключевые слова (повторение)' })}</span><span className="gloss-toggle">{open ? '−' : '+'}</span></div>{open && (<div className="gloss-body">{SUM_GLOSS.map((g, i) => (<span key={i}><b>{tr(g.b)}</b> {tr(g.t)}{i < SUM_GLOSS.length - 1 ? ' · ' : ''}</span>))}</div>)}</div>
       </div>
     </Stage>
   );
 };
 
-// 🃏 Qayta ishlatiladigan FLASHCARDS — aktiv takrorlash (3D flip + o'z-o'zini baholash + spaced recall).
-// Boshqa darsga: faqat `cards` ({ front, back, note }) almashtiriladi. Matnni Metodist sayqallaydi.
-const PM_FLASHCARDS = [
-  { front: "Katta g'oyani kichik bo'laklarga ajratish qanday ataladi?", back: "Dekompozitsiya", note: "katta mahsulot — kichik feature'larga" },
-  { front: "Eng kichik ishlaydigan versiya qanday ataladi?", back: "MVP", note: "kichik, lekin butun ishlaydi" },
-  { front: "Keyin qilinadigan ishlar navbati qanday ataladi?", back: "Backlog", note: "v2 va v3 ga qoldirilganlar" },
-  { front: "Mahsulotning versiyama-versiya o'sishi qanday ataladi?", back: "Iteratsiya", note: "avval v1, keyin v2, keyin v3" },
-  { front: "Barcha mumkin bo'lgan funksiyalarni sanab chiqsangiz — bu nima?", back: "Feature list", note: "birinchi qadam: hammasini yozib chiqing" },
-  { front: "To'g'ri MVP nimaga o'xshaydi — g'ildirakkami yoki skeytbordga?", back: "Skeytbordga", note: "g'ildirak yurmaydi, skeytbord esa allaqachon haydaladi" },
-  { front: "Amazon 1994-yilda nimadan boshlagan?", back: "Onlayn kitob do'konidan", note: "qolgan hamma narsa keyin qo'shilgan" },
-  { front: "Airbnb birinchi versiyada nima taklif qilgan?", back: "O'z xonasida 3 mehmonga havo matras", note: "bugun esa 220 dan ortiq davlatda" },
-  { front: "Mini-do'kon MVP'siga qaysi 3 feature kiradi?", back: "Mahsulot ro'yxati, qidiruv, mahsulot sahifasi", note: "savat va onlayn to'lov — keyingi versiyalarga" },
-  { front: "Hammasini birato'la qurishga urinsangiz nima bo'ladi?", back: "Kuch va vaqt behuda ketadi", note: "foydalanuvchi fikri juda kech keladi" },
-  { front: "MVP nega tezroq chiqariladi?", back: "Foydalanuvchi fikrini erta olish uchun", note: "avval sinaysiz, keyin yaxshilaysiz" },
-  { front: "Dekompozitsiyaning 3 qadami qaysi?", back: "Feature list, MVP, backlog", note: "sanab chiqing, eng kichigini tanlang, qolganini navbatga qo'ying" },
-];
-function Flashcards({ cards }) {
-  const [queue, setQueue] = useState(() => cards.map((_, i) => i));
-  const [flipped, setFlipped] = useState(false);
-  const [known, setKnown] = useState(0);
-  const [exiting, setExiting] = useState(null); // 'knew' | 'again' — karta uchib chiqish animatsiyasi (Quizlet uslubi)
-  const swapRef = useRef(0);                    // har almashishda karta remount bo'lib, kirish animatsiyasi o'ynaydi
-  const total = cards.length;
-  const cur = queue[0];
-  const card = cur != null ? cards[cur] : null;
-  const advance = (removed) => {
-    if (exiting) return;
-    setExiting(removed ? 'knew' : 'again');
-    setTimeout(() => {
-      setExiting(null); setFlipped(false); swapRef.current++;
-      if (removed) setKnown(k => k + 1);
-      setQueue(q => { const [first, ...rest] = q; return removed ? rest : [...rest, first]; });
-    }, 420);
-  };
-  const knew = () => advance(true);
-  const again = () => advance(false);
-  const restart = () => { setQueue(cards.map((_, i) => i)); setKnown(0); setFlipped(false); };
-  if (!card) return (
-    <div className="fc-done fade-up"><span className="fc-done-emoji">🎉</span><p className="fc-done-h">Hammasini bilasiz!</p><p className="fc-done-s">{total}/{total} atama yodlandi</p><button className="fc-btn ghost" onClick={restart}>↻ Qaytadan takrorlash</button></div>
-  );
-  return (
-    <div className="fc fade-up">
-      <div className="fc-top"><span className="fc-pill learn" key={`l-${queue.length}-${swapRef.current}`}>↻ O'rganilmoqda · <b>{queue.length}</b></span><span className="fc-pill knew" key={`k-${known}`}>✓ Bildim · <b>{known}</b></span></div>
-      <div className="fc-bar"><span className="fc-bar-fill" style={{ width: `${(known / total) * 100}%` }} /></div>
-      <div className="fc-cardwrap">
-        <div className={`fc-fly ${exiting === 'knew' ? 'out-knew' : ''} ${exiting === 'again' ? 'out-again' : ''}`} key={swapRef.current}>
-        <div className={`fc-card ${flipped ? 'flip' : ''}`} onClick={() => !flipped && !exiting && setFlipped(true)} role="button" tabIndex={0}>
-          <div className="fc-face fc-front"><span className="fc-q">{card.front}</span><span className="fc-cue">Javobni o'ylang 🤔 <span className="fc-tap">bosing</span></span></div>
-          <div className="fc-face fc-back"><span className="fc-tag">{card.back}</span>{card.note && <span className="fc-note">{card.note}</span>}</div>
-        </div>
-        </div>
-      </div>
-      {flipped
-        ? (<div className="fc-actions"><button className="fc-btn again" disabled={!!exiting} onClick={again}>✗ Takrorlash</button><button className="fc-btn knew" disabled={!!exiting} onClick={knew}>✓ Bildim</button></div>)
-        : (<p className="fc-hint">👆 Kartani bosing — javobni ko'rasiz</p>)}
-    </div>
-  );
-}
-
-// ===== FLASHCARD EKRANI — podiumdan keyin, yakundan oldin (aktiv takrorlash) =====
-const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  useEffect(() => { if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, []); // eslint-disable-line
-  return (
-    <Stage eyebrow="Takrorlash" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={false} label="Yakunlash →" onClick={onNext} /></>}>
-      <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Atamalarni <span className="italic" style={{ color: T.accent }}>tez takrorlaymiz</span>.</h2></div>
-        <Mentor>Darsni yakunlashdan oldin bugun o'rgangan atamalarni takrorlaymiz. Har kartada bir savol — <b style={{ color: T.ink }}>javobini</b> o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</Mentor>
-        <div className="fc-center"><Flashcards cards={PM_FLASHCARDS} /></div>
-      </div>
-    </Stage>
-  );
-};
 
 // ============================================================ LESSON ROOT
 // Podium yorliqlari (scored indeks -> qisqa nom)
-const Q_LABELS = { 4: "1 — MVP maqsadi", 6: "2 — To'g'ri MVP", 10: "3 — MVP'ga kiradi", 13: "4 — Birato'la xatosi", 16: "5 — MVP vs Keyin" };
+const Q_LABELS = {
+  4:  { uz: "1 — Tugatib bo'ladigan bo'lak", ru: '1 — Завершаемая часть' },
+  7:  { uz: '2 — Birinchi versiya', ru: '2 — Первая версия' },
+  10: { uz: '3 — Daraja qarori', ru: '3 — Решение об уровне' },
+  15: { uz: '4 — Nega uchta', ru: '4 — Почему три' },
+};
 
 const Confetti = () => {
   const COLORS = [T.accent, T.success, T.blue, '#FFD380', '#FF7755', '#7DD181'];
@@ -1755,7 +2177,8 @@ const Confetti = () => {
 };
 
 // Server-baholash javob kaliti (mentor darsni ochganda avto-yuklanadi). s15 = -1 (yakuniy amaliy).
-const INLINE_KEYS = { s4: 1, s5b: 2, s9: 0, s12: 3, s15: -1 };
+// Praktika ekranlari -1 sentinel bilan turadi (12-qonun).
+const INLINE_KEYS = { s4: 2, s7: 2, s10: 1, s15: 1, s8: -1, s9: -1, s11: -1, s12: -1 };
 
 const ScreenPodium = ({ screen, answers, onNext, onPrev }) => {
   const gate = useContext(LiveGateCtx) || {};
@@ -1782,7 +2205,7 @@ const ScreenPodium = ({ screen, answers, onNext, onPrev }) => {
   const totalQ = SCORED_IDX.length;
   const board = players.map(p => {
     // FAQAT baholanadigan testlar hisoblanadi — s6 amaliyotning «tugatdi» belgisi (idx 7)
-    // reytingga aralashmasin (u faqat MentorWorkStats uchun yoziladi)
+    // reytingga aralashmasin (praktika signali PRACTICE_BASE zonasida)
     const mine = rows.filter(a => a.player_id === p.id && SCORED_IDX.includes(a.screen_idx));
     const okCount = mine.filter(a => a.correct).length;
     const time = mine.reduce((s, a) => s + (a.elapsed_ms || 0), 0);
@@ -1796,16 +2219,16 @@ const ScreenPodium = ({ screen, answers, onNext, onPrev }) => {
   return (
     <Stage eyebrow="Natijalar" screen={screen} narrow navContent={<><NavBack onPrev={onPrev} /><NavNext label="Davom etish" onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(14px,2.2vw,20px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Kim <span className="italic" style={{ color: T.accent }}>g'olib</span>?</h2></div>
+        <div className="head"><h2 className="title h-title fade-up">{isLive ? tr({ uz: <>Bugungi <span className="italic" style={{ color: T.accent }}>g'oliblarimiz</span></>, ru: <>Наши сегодняшние <span className="italic" style={{ color: T.accent }}>победители</span></> }) : tr({ uz: <>Bugungi <span className="italic" style={{ color: T.accent }}>natijangiz</span></>, ru: <>Ваш сегодняшний <span className="italic" style={{ color: T.accent }}>результат</span></> })}</h2></div>
         {!isLive ? (
           <div className="fade-up" style={{ display: 'flex', flexDirection: 'column', gap: 16, alignItems: 'center' }}>
             <ScoreRing correct={selfCorrect} total={totalQ} />
-            <div className="frame-soft" style={{ maxWidth: 480 }}><p className="body" style={{ margin: 0 }}>Siz mustaqil rejimdasiz. Jonli darsda bu yerda butun guruh reytingi — 🥇🥈🥉 podium chiqadi.</p></div>
+            <div className="frame-soft" style={{ maxWidth: 480 }}><p className="body" style={{ margin: 0 }}>{tr({ uz: "Siz mustaqil rejimdasiz. Jonli darsda bu yerda butun guruh reytingi — \U0001F947\U0001F948\U0001F949 podium chiqadi.", ru: '\u0412\u044b \u0432 \u0441\u0430\u043c\u043e\u0441\u0442\u043e\u044f\u0442\u0435\u043b\u044c\u043d\u043e\u043c \u0440\u0435\u0436\u0438\u043c\u0435. \u0412 \u0436\u0438\u0432\u043e\u043c \u0443\u0440\u043e\u043a\u0435 \u0437\u0434\u0435\u0441\u044c \u043f\u043e\u044f\u0432\u0438\u0442\u0441\u044f \u0440\u0435\u0439\u0442\u0438\u043d\u0433 \u0432\u0441\u0435\u0439 \u0433\u0440\u0443\u043f\u043f\u044b — \U0001F947\U0001F948\U0001F949 \u043f\u043e\u0434\u0438\u0443\u043c.' })}</p></div>
           </div>
         ) : !loaded ? (
-          <p className="mono small fade-up" style={{ color: T.ink2 }}>Natijalar yuklanmoqda…</p>
+          <p className="mono small fade-up" style={{ color: T.ink2 }}>{tr({ uz: 'Natijalar yuklanmoqda…', ru: '\u0420\u0435\u0437\u0443\u043b\u044c\u0442\u0430\u0442\u044b \u0437\u0430\u0433\u0440\u0443\u0436\u0430\u044e\u0442\u0441\u044f…' })}</p>
         ) : board.length === 0 ? (
-          <div className="frame-soft fade-up"><p className="body" style={{ margin: 0 }}>Bu sessiyaga hali hech kim qo'shilmagan.</p></div>
+          <div className="frame-soft fade-up"><p className="body" style={{ margin: 0 }}>{tr({ uz: "Bu sessiyaga hali hech kim qo'shilmagan.", ru: '\u041a \u044d\u0442\u043e\u0439 \u0441\u0435\u0441\u0441\u0438\u0438 \u043f\u043e\u043a\u0430 \u043d\u0438\u043a\u0442\u043e \u043d\u0435 \u043f\u0440\u0438\u0441\u043e\u0435\u0434\u0438\u043d\u0438\u043b\u0441\u044f.' })}</p></div>
         ) : (
           <>
             <Confetti />
@@ -1823,40 +2246,20 @@ const ScreenPodium = ({ screen, answers, onNext, onPrev }) => {
                 );
               })}
             </div>
-            {myIdx >= 0 && <p className="pod-my fade-up">Siz — <b>{myIdx + 1}-o'rin</b> ({board[myIdx].okCount}/{totalQ} to'g'ri)</p>}
+            {myIdx >= 0 && <p className="pod-my fade-up">{tr({ uz: 'Siz — ', ru: '\u0412\u044b — ' })}<b>{myIdx + 1}</b>{tr({ uz: "-o'rin", ru: '-\u0435 \u043c\u0435\u0441\u0442\u043e' })} ({board[myIdx].okCount}/{totalQ})</p>}
             <div className="card fade-up d1">
-              <div className="card-lbl" style={{ color: T.accent }}>🏆 To'liq reyting</div>
+              <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: "\U0001F3C6 To'liq reyting", ru: '\U0001F3C6 \u041f\u043e\u043b\u043d\u044b\u0439 \u0440\u0435\u0439\u0442\u0438\u043d\u0433' })}</div>
               <div className="pod-list">
                 {board.map((b, i) => (
                   <div key={b.id} className={`pod-row ${live.playerId === b.id ? 'me' : ''}`}>
                     <span className="mono pod-rank">{i + 1}</span>
                     <span className="pod-row-name">{b.nickname}</span>
-                    <span className="pod-row-dots">{SCORED_IDX.map(q => { const a = rows.find(r => r.player_id === b.id && r.screen_idx === q); return <span key={q} className={`pod-dot ${a ? (a.correct ? 'ok' : 'bad') : ''}`} title={Q_LABELS[q]} />; })}</span>
+                    <span className="pod-row-dots">{SCORED_IDX.map(q => { const a = rows.find(r => r.player_id === b.id && r.screen_idx === q); return <span key={q} className={`pod-dot ${a ? (a.correct ? 'ok' : 'bad') : ''}`} title={tr(Q_LABELS[q])} />; })}</span>
                     <span className="mono pod-row-score">{b.okCount}/{totalQ}</span>
                     <span className="mono pod-row-time">{fmtT(b.time)}</span>
                   </div>
                 ))}
               </div>
-            </div>
-            {/* Savollar bo'yicha — qaysi mavzu qiyin bo'ldi */}
-            <div className="card fade-up d2">
-              <div className="card-lbl" style={{ color: T.blue }}>📊 Savollar bo'yicha</div>
-              <div className="pod-qstats">
-                {SCORED_IDX.map(q => {
-                  const qa = rows.filter(r => r.screen_idx === q);
-                  const okN = qa.filter(r => r.correct).length;
-                  const pct = qa.length ? Math.round((okN / qa.length) * 100) : 0;
-                  const hard = qa.length >= 2 && pct < 50;
-                  return (
-                    <div key={q} className="qstat-row">
-                      <span className="qstat-lbl">{Q_LABELS[q] || `#${q}`}{hard && ' ⚠️'}</span>
-                      <span className="mstats-track"><span className="mstats-fill" style={{ width: `${pct}%`, background: hard ? T.accent : T.success }} /></span>
-                      <span className="mono qstat-n">{okN}/{qa.length}</span>
-                    </div>
-                  );
-                })}
-              </div>
-              {live.mode === 'mentor' && <p className="small" style={{ margin: '10px 0 0', color: T.ink2 }}>⚠️ belgili savollar — sinf qiynalgan mavzular. Qayta tushuntirish tavsiya etiladi.</p>}
             </div>
           </>
         )}
@@ -1872,30 +2275,43 @@ const QUIZ_COLORS = ['#FF5A2C', '#0FA6D6', '#F5A623', '#22A05C']; // CodeStrike 
 const QUIZ_SHAPES = ['▲', '◆', '●', '■'];
 // Arena foni: suzuvchi PM tokenlari — dars mavzusidan (MVP → backlog → iteratsiya)
 const QZ_BG_SHAPES = [
-  { ch: 'MVP',     l: 5,  t: 10, s: 42, c: 'rgba(255,110,70,0.16)',  d: 19, dl: 0 },
-  { ch: '🛹',       l: 86, t: 7,  s: 40, c: 'rgba(203,173,255,0.16)', d: 23, dl: 1.5 },
+  { ch: '🔥',      l: 5,  t: 10, s: 42, c: 'rgba(255,110,70,0.16)',  d: 19, dl: 0 },
+  { ch: '⚖️',      l: 86, t: 7,  s: 40, c: 'rgba(203,173,255,0.16)', d: 23, dl: 1.5 },
   { ch: 'v1',      l: 8,  t: 72, s: 44, c: 'rgba(80,200,255,0.16)',  d: 27, dl: 0.8 },
   { ch: 'backlog', l: 78, t: 68, s: 30, c: 'rgba(120,235,175,0.14)', d: 21, dl: 2.2 },
-  { ch: 'v2',      l: 44, t: 86, s: 40, c: 'rgba(203,173,255,0.13)', d: 25, dl: 1.1 },
+  { ch: '⚡',      l: 44, t: 86, s: 40, c: 'rgba(203,173,255,0.13)', d: 25, dl: 1.1 },
   { ch: '→',       l: 66, t: 26, s: 46, c: 'rgba(255,110,70,0.13)',  d: 17, dl: 0.4 },
-  { ch: '🚗',       l: 26, t: 34, s: 34, c: 'rgba(120,235,175,0.13)', d: 20, dl: 1.9 },
-  { ch: 'feature', l: 55, t: 5,  s: 26, c: 'rgba(80,200,255,0.14)',  d: 22, dl: 0.6 },
-  { ch: 'v3',      l: 93, t: 42, s: 40, c: 'rgba(203,173,255,0.14)', d: 24, dl: 1.3 },
-  { ch: 'demo',    l: 2,  t: 45, s: 28, c: 'rgba(203,173,255,0.11)', d: 26, dl: 2.6 },
+  { ch: '🌱',      l: 26, t: 34, s: 34, c: 'rgba(120,235,175,0.13)', d: 20, dl: 1.9 },
+  { ch: 'MVP',     l: 55, t: 5,  s: 26, c: 'rgba(80,200,255,0.14)',  d: 22, dl: 0.6 },
+  { ch: '🌯',      l: 93, t: 42, s: 40, c: 'rgba(203,173,255,0.14)', d: 24, dl: 1.3 },
+  { ch: '🚀',      l: 2,  t: 45, s: 28, c: 'rgba(203,173,255,0.11)', d: 26, dl: 2.6 },
 ];
+// 12 savol · to'g'ri-indeks ketma-ketligi 0,2,1,3,2,0,3,1,3,0,1,2 — qo'shni takrorsiz, sikl emas, har indeks 3 marta
 const QUIZ_BANK = [
-  { q: "MVP nima?", opts: ["Kichik ishlaydigan versiya", "Mukammal to'liq mahsulot", "Tayyor dizayn maketi", "Qisqa reklama roligi"], correct: 0 },
-  { q: "To'g'ri MVP metaforasi qaysi?", opts: ["Mashinaning g'ildiragi", "Haydab bo'ladigan skeytbord", "Yolg'iz dvigatel bloki", "Yarim qurilgan mashina"], correct: 1 },
-  { q: "Dekompozitsiya nima?", opts: ["Mahsulotga rang tanlash", "Mahsulotni reklama qilish", "Ishni kichik bo'laklarga bo'lish", "Mahsulotni bir marta sotish"], correct: 2 },
-  { q: "Amazon nimadan boshlagan (MVP)?", opts: ["Bulut saqlash xizmati", "Video ko'rish platforma", "Onlayn taksi xizmati", "Onlayn KITOB do'koni"], correct: 3 },
-  { q: "Hammasini birato'la qurishning kamchiligi?", opts: ["Ko'p vaqt ketadi, fikr kech keladi", "Mahsulot juda tez chiqadi", "Loyiha arzonroq bo'ladi", "Loyiha xavfsiz bo'ladi"], correct: 0 },
-  { q: "MVP'dan keyingi feature'lar qayerga boradi?", opts: ["Butunlay o'chiriladi", "Backlog ('Keyin')ga", "Darhol qurib chiqiladi", "Boshqaga sotiladi"], correct: 1 },
-  { q: "Mini-do'kon MVP'siga qaysi kiradi?", opts: ["AI tavsiya tizimi", "Bonus ballar o'yini", "Rasmli mahsulot ro'yxati", "Mahsulotni 3D ko'rish"], correct: 2 },
-  { q: "Facebook MVP'si kimlar uchun edi?", opts: ["Butun dunyodagi hamma odam", "Faqat yirik kompaniyalar", "Kichik yoshdagi bolalar", "Bitta universitet talabalari"], correct: 3 },
-  { q: "'Skeytbord' bosqichining ma'nosi?", opts: ["A dan B ga olib boradi", "Hali umuman ishlamaydi", "Faqat ko'rgazma bezagi", "Eng qimmat versiyasi"], correct: 0 },
-  { q: "Bosqichma-bosqich yondashuv foydasi?", opts: ["Mahsulot chiroyliroq chiqadi", "Foyda erta keladi, har bosqich ishlaydi", "Loyiha ancha qimmatroq tushadi", "Ish sekinroq va og'irroq boradi"], correct: 1 },
-  { q: "Uber MVP'si qanday boshlangan?", opts: ["70+ davlatda ishlash", "Ovqat yetkazib berish", "1 shahar, premium mashina", "Arzon UberX xizmati"], correct: 2 },
-  { q: "v1 → v2 → v3 nimani anglatadi?", opts: ["Mahsulot narxi o'sishi", "Topilgan xatolar ro'yxati", "Reklama qilish bosqichlari", "Versiyama-versiya o'sish"], correct: 3 },
+  { q: { uz: "Katta ishni bo'laklarga bo'lish nima deyiladi?", ru: 'Как называется разбиение большой работы на части?' },
+    opts: [{ uz: 'Dekompozitsiya', ru: 'Декомпозиция' }, { uz: 'Optimizatsiya', ru: 'Оптимизация' }, { uz: 'Prezentatsiya', ru: 'Презентация' }, { uz: 'Registratsiya', ru: 'Регистрация' }], correct: 0 },
+  { q: { uz: "Qaysi biri tugatib bo'ladigan bo'lak?", ru: 'Что из этого — завершаемая часть?' },
+    opts: [{ uz: 'Sayt qilish', ru: 'Сделать сайт' }, { uz: "Do'konni mashhur qilish", ru: 'Сделать магазин известным' }, { uz: "Menyu ro'yxatini sahifaga qo'shish", ru: 'Добавить список меню на страницу' }, { uz: 'Saytni yaxshilash', ru: 'Улучшить сайт' }], correct: 2 },
+  { q: { uz: 'MVP — bu nima?', ru: 'MVP — это что?' },
+    opts: [{ uz: 'Eng qimmat versiyasi', ru: 'Самая дорогая версия' }, { uz: 'Mahsulotning ish beradigan eng sodda birinchi versiyasi', ru: 'Самая простая рабочая первая версия продукта' }, { uz: 'Reklama rejasi', ru: 'Рекламный план' }, { uz: 'Sayt manzili', ru: 'Адрес сайта' }], correct: 1 },
+  { q: { uz: "Keyinga qoldirilganlar ro'yxati qanday ataladi?", ru: 'Как называется список отложенных?' },
+    opts: [{ uz: 'Deadline', ru: 'Дедлайн' }, { uz: 'Feedback', ru: 'Фидбэк' }, { uz: 'Interfeys', ru: 'Интерфейс' }, { uz: 'Backlog', ru: 'Бэклог' }], correct: 3 },
+  { q: { uz: 'Tarozining birinchi savoli qanday?', ru: 'Каков первый вопрос весов?' },
+    opts: [{ uz: 'Bu chiroylimi?', ru: 'Это красиво?' }, { uz: "Buni kim so'radi?", ru: 'Кто это просил?' }, { uz: 'Busiz sayt ish beradimi?', ru: 'Работает ли сайт без этого?' }, { uz: 'Bu qanchaga tushadi?', ru: 'Во сколько это обойдётся?' }], correct: 2 },
+  { q: { uz: 'Tarozining ikkinchi savoli qanday?', ru: 'Каков второй вопрос весов?' },
+    opts: [{ uz: 'Buni qurish qancha vaqt oladi?', ru: 'Сколько времени займёт это сделать?' }, { uz: 'Bu kimga yoqadi?', ru: 'Кому это нравится?' }, { uz: 'Bu qanchaga sotiladi?', ru: 'За сколько это продаётся?' }, { uz: 'Buni kim quradi?', ru: 'Кто это будет делать?' }], correct: 0 },
+  { q: { uz: 'Kerak, lekin bir necha kun oladigan ish qayerga tushadi?', ru: 'Куда попадёт нужное дело, на которое уйдёт несколько дней?' },
+    opts: [{ uz: "Ochilish ro'yxatiga", ru: 'В список к открытию' }, { uz: 'Keyinga qoldirilganlarga', ru: 'В отложенные' }, { uz: 'Hech qayerga', ru: 'Никуда' }, { uz: 'Keyingi versiyaga', ru: 'В следующую версию' }], correct: 3 },
+  { q: { uz: "Busiz ham sayt ish beradigan, lekin bir kunda bo'ladigan ish qayerga tushadi?", ru: 'Куда попадёт дело, без которого сайт работает, но которое делается за день?' },
+    opts: [{ uz: "Ochilish ro'yxatiga", ru: 'В список к открытию' }, { uz: 'Keyingi versiyaga', ru: 'В следующую версию' }, { uz: 'Keyinga qoldirilganlarga', ru: 'В отложенные' }, { uz: "O'chiriladi", ru: 'Удаляется' }], correct: 1 },
+  { q: { uz: 'Instagram asoschilari eski ilova bilan nima qildi?', ru: 'Что основатели Instagram сделали со старым приложением?' },
+    opts: [{ uz: "Yangi imkoniyatlar qo'shdi", ru: 'Добавили новые возможности' }, { uz: 'Narxni oshirdi', ru: 'Подняли цену' }, { uz: 'Ilovani sotdi', ru: 'Продали приложение' }, { uz: "Ortiqcha imkoniyatlarni o'chirib, uchtasini qoldirdi", ru: 'Удалили лишние возможности, оставили три' }], correct: 3 },
+  { q: { uz: "Instagram chiqqan birinchi kuni nima bo'ldi?", ru: 'Что было в первый день выхода Instagram?' },
+    opts: [{ uz: "25 000 odam ro'yxatdan o'tdi (2010-yil, oktyabr)", ru: 'Зарегистрировались 25 000 человек (октябрь 2010 года)' }, { uz: 'Hech kim yozilmadi', ru: 'Никто не зарегистрировался' }, { uz: 'Ilova yopildi', ru: 'Приложение закрыли' }, { uz: "Faqat nomi o'zgardi", ru: 'Изменилось только название' }], correct: 0 },
+  { q: { uz: "Ochilish ro'yxatiga nechta ish sig'adi va nega?", ru: 'Сколько дел влезает в список к открытию и почему?' },
+    opts: [{ uz: 'Oltita — hamma imkoniyat kerak', ru: 'Шесть — нужны все возможности' }, { uz: 'Uchta — bir haftada bitta odam shuncha ishni tugatadi', ru: 'Три — за неделю один человек столько и завершает' }, { uz: "Bitta — ko'pi shart emas", ru: 'Одно — больше не обязательно' }, { uz: 'Cheksiz — vaqt muhim emas', ru: 'Сколько угодно — время не важно' }], correct: 1 },
+  { q: { uz: "Ochilish ro'yxati qachon tuziladi?", ru: 'Когда составляют список к открытию?' },
+    opts: [{ uz: 'Kod yozilgandan keyin', ru: 'После написания кода' }, { uz: 'Sayt ochilgandan keyin', ru: 'После открытия сайта' }, { uz: 'Kod yozishdan oldin', ru: 'До написания кода' }, { uz: 'Umuman tuzilmaydi', ru: 'Вообще не составляют' }], correct: 2 },
 ];
 const quizPts = (elapsedMs) => elapsedMs <= 500 ? 1000 : Math.max(0, Math.round(1000 * (1 - (Math.min(elapsedMs, QUIZ_MS) / QUIZ_MS) / 2)));
 // Bitta o'yinchining barcha javoblaridan yakuniy hisob (hamma klientda bir xil chiqadi)
@@ -1946,7 +2362,7 @@ function AchCelebrate({ ach, onDone }) {
         </div>
         <div className="acu-txt">
           <span className="acu-name">{ach.name}</span>
-          {ach.desc && <span className="acu-desc">{ach.desc}</span>}
+          {ach.desc && <span className="acu-desc">{tr(ach.desc)}</span>}
         </div>
         <span className="acu-tap">bosib davom eting</span>
       </div>
@@ -2250,16 +2666,16 @@ function QuizArena({ live, onClose, startSolo }) {
             <QzTimer remaining={remaining} />
             {isMentor
               ? <span className="qz-ansn">📨 {answeredN}/{players.length}</span>
-              : <span className="qz-ansn">{streakUpTo(qi - 1) >= 2 ? `🔥 x${streakUpTo(qi - 1)}` : ' '}</span>}
+              : <span className="qz-ansn">{streakUpTo(qi - 1) >= 2 ? `🔥 ketma-ket ${streakUpTo(qi - 1)} ta` : ' '}</span>}
           </div>
-          <h2 className="qz-q">{fmtCode(Q.q)}</h2>
+          <h2 className="qz-q">{fmtCode(tr(Q.q))}</h2>
           <div className="qz-grid">
             {Q.opts.map((o, i) => {
               const pickedThis = my && my.picked === i;
               return (
                 <button key={i} className={`qz-tile ${my ? (pickedThis ? 'picked' : 'faded') : ''}`} style={{ background: QUIZ_COLORS[i] }} disabled={isMentor || !!my} onClick={() => answer(i)}>
                   <span className="qz-shape">{QUIZ_SHAPES[i]}</span>
-                  <span className="qz-opt">{fmtCode(o)}</span>
+                  <span className="qz-opt">{fmtCode(tr(o))}</span>
                   {pickedThis && <span className="qz-pbadge">✔</span>}
                 </button>
               );
@@ -2281,7 +2697,7 @@ function QuizArena({ live, onClose, startSolo }) {
           <div className="qz-top">
             <span className="qz-count">Savol <b>{qi + 1}</b>/{QUIZ_BANK.length} — natija</span>
           </div>
-          <h2 className="qz-q">{fmtCode(Q.q)}</h2>
+          <h2 className="qz-q">{fmtCode(tr(Q.q))}</h2>
           <div className="qz-grid">
             {Q.opts.map((o, i) => {
               const win = i === Q.correct;
@@ -2289,7 +2705,7 @@ function QuizArena({ live, onClose, startSolo }) {
               return (
                 <div key={i} className={`qz-tile rv ${win ? 'win' : 'lose'} ${pickedThis ? 'picked' : ''}`} style={{ background: QUIZ_COLORS[i] }}>
                   <span className="qz-shape">{QUIZ_SHAPES[i]}</span>
-                  <span className="qz-opt">{fmtCode(o)}</span>
+                  <span className="qz-opt">{fmtCode(tr(o))}</span>
                   <span className="qz-cnt">{win ? '✓ ' : ''}{counts[i]}</span>
                 </div>
               );
@@ -2298,8 +2714,8 @@ function QuizArena({ live, onClose, startSolo }) {
           {!isMentor && (
             <div className={`qz-res ${my?.correct ? 'good' : 'bad'}`}>
               {my?.correct
-                ? <><span className="qz-res-pts">+{myPtsFor(qi)}</span><span className="qz-res-t">ball{streakUpTo(qi) >= 2 ? ` · 🔥 x${streakUpTo(qi)} streak` : ''}</span></>
-                : <span className="qz-res-t">{my ? "Adashdingiz — 0 ball. Keyingisida olasiz! 💪" : "Vaqt tugadi — 0 ball. Tezroq bo'ling! ⏱"}</span>}
+                ? <><span className="qz-res-pts">+{myPtsFor(qi)}</span><span className="qz-res-t">ball{streakUpTo(qi) >= 2 ? ` · 🔥 ketma-ket ${streakUpTo(qi)} ta` : ''}</span></>
+                : <span className="qz-res-t">{my ? "Adashdingiz — 0 ball. Keyingisida olasiz." : "Vaqt tugadi — 0 ball. Keyingi savolda ulguring."}</span>}
               {!solo && myRank >= 0 && <span className="qz-res-rank">Siz hozir: {myRank + 1}-o'rin</span>}
             </div>
           )}
@@ -2328,7 +2744,7 @@ function QuizArena({ live, onClose, startSolo }) {
           {solo ? (
             <div className="qz-solo-res">
               <div className="qz-solo-pts">{soloScore.pts}</div>
-              <p className="qz-sub">ball · {soloScore.ok}/{QUIZ_BANK.length} to'g'ri{soloScore.maxStreak >= 2 ? ` · eng uzun streak 🔥x${soloScore.maxStreak}` : ''}</p>
+              <p className="qz-sub">ball · {soloScore.ok}/{QUIZ_BANK.length} to'g'ri{soloScore.maxStreak >= 2 ? ` · eng uzun ketma-ketlik 🔥 ${soloScore.maxStreak} ta` : ''}</p>
               <button className="qz-btn big" onClick={soloReplay}>↻ Qayta ishlash</button>
             </div>
           ) : (
@@ -2352,7 +2768,7 @@ function QuizArena({ live, onClose, startSolo }) {
                 {board.map((b, i) => (
                   <div key={b.id} className={`qz-brow ${b.id === live.playerId ? 'me' : ''}`}>
                     <span className="qz-brank">{i + 1}</span><span className="qz-bname">{b.nickname}</span>
-                    {b.maxStreak >= 2 && <span className="qz-bstreak">🔥x{b.maxStreak}</span>}
+                    {b.maxStreak >= 2 && <span className="qz-bstreak">🔥 {b.maxStreak}</span>}
                     <span className="qz-bok">{b.ok}/{QUIZ_BANK.length}</span>
                     <span className="qz-bpts">{b.pts}</span>
                   </div>
@@ -2370,6 +2786,7 @@ function QuizArena({ live, onClose, startSolo }) {
 
 export default function PmLesson5({ lang: langProp, onFinished }) {
   const lang = langProp || 'uz';
+  __lang = lang; // UZ-RU: tr() uchun joriy til (render'dan oldin o'rnatiladi)
   // F-0730-01: saqlangan progress bir marta o'qiladi (jonli-o'quvchi mentor
   // darvozasidan oshib ketmasin — liveRead'dagi lastScreen bilan clamp).
   const savedRef = useRef(undefined);
@@ -2412,7 +2829,7 @@ export default function PmLesson5({ lang: langProp, onFinished }) {
     setAnswers(a => ({ ...a, [idx]: data }));
     const _m = SCREEN_META[idx];
     if (_m && ACH_TRIGGERS[_m.id] && data && data.correct) earn(ACH_TRIGGERS[_m.id]); // 🏅 nishon
-    if (_m && _m.scored && _m.scope === 'final' && data && data.correct && live.mode === 'student') live.submitAnswer(idx, _m.id, 0, true, 0);
+
   };
   const reset = () => { progClear(LESSON_META.lessonId); setAnswers({}); setScreen(0); startTimeRef.current = Date.now(); earnedRef.current = new Set(); setEarned(new Set()); setAchToasts([]); };
   // F-0730-01: har o'zgarishda progress saqlanadi (screen + javoblar + nishonlar + boshlangan vaqt)
@@ -2426,8 +2843,6 @@ export default function PmLesson5({ lang: langProp, onFinished }) {
   const isStudentLive = live.mode === 'student' && live.status !== 'ended' && live.mentorAlive;
   const locked = isStudentLive && (screen + 1 > live.mentorScreen);
   useEffect(() => { live.reportScreen(screen); }, [screen, live.mode, live.pin]); // eslint-disable-line
-  // 🏅 Yakuniy ekranga yetganda: bitiruvchi nishoni
-  useEffect(() => { if (screen === TOTAL_SCREENS - 1) earn('graduate'); }, [screen]); // eslint-disable-line
 
   const finishLesson = () => {
     progClear(LESSON_META.lessonId); // F-0730-01: yakunlangan dars saqlovi tozalanadi
@@ -2450,7 +2865,7 @@ export default function PmLesson5({ lang: langProp, onFinished }) {
     if (typeof onFinished === 'function') onFinished(payload);
   };
 
-  const screens = [Screen0, Screen1, Screen2, Screen3, Screen4, Screen5, Screen5b, Screen6, Screen7, Screen8, Screen9, Screen10, Screen11, Screen12, Screen13, Screen14, Screen15, ScreenPodium, ScreenFlashcards, Screen16];
+  const screens = [ScrHook, ScrGoal, ScrSplit, ScrPiece, ScrTest1, ScrScaleDemo, ScrCase, ScrTest2, ScrScale, ScrLaunchList, ScrTest3, ScrFindError, ScrCoding, ScrRecap, ScrHomework, ScrTestFinal, ScreenPodium, ScreenFlashcards, ScrSummary];
   const Current = screens[screen];
   return (
     <LangContext.Provider value={lang}>
@@ -2464,7 +2879,7 @@ export default function PmLesson5({ lang: langProp, onFinished }) {
 
         /* 11.15 — jonli-holat rozetkasi xira turadi, kerak bo'lganda ustiga borilsa yoritiladi */
         .live-badge { opacity: 0.4; transition: opacity 0.25s ease, box-shadow 0.25s ease; }
-        .live-badge:hover, .live-badge:focus-within { opacity: 1; box-shadow: 0 8px 24px -6px rgba(58,53,48,0.32) !important; }
+        .live-badge:hover, .live-badge:focus-within { opacity: 1; box-shadow: 0 8px 24px -6px rgba(40,34,82,0.32) !important; }
         @media (hover: none) { .live-badge { opacity: 0.62; } }
 
         .title { font-family: 'Source Serif 4', serif; font-weight: 600; line-height: 1.1; letter-spacing: -0.005em; }
@@ -2487,58 +2902,310 @@ export default function PmLesson5({ lang: langProp, onFinished }) {
         @keyframes zoom-pop { from { opacity: 0; transform: translate(-50%,-50%) scale(0.93); } to { opacity: 1; transform: translate(-50%,-50%) scale(1); } }
         .d1 { animation-delay: 0.12s; } .d2 { animation-delay: 0.24s; } .d3 { animation-delay: 0.36s; } .d4 { animation-delay: 0.48s; }
 
-        /* PM5 — transport / evolyutsiya / resurs */
-        @keyframes roll { 0%,100% { transform: translateX(-4px); } 50% { transform: translateX(4px); } }
-        .roll { animation: roll 1.8s ease-in-out infinite; display: inline-flex; }
-        @keyframes veh-pop { 0% { transform: scale(.78) translateY(6px); opacity: 0; } 60% { transform: scale(1.05); } 100% { transform: scale(1); opacity: 1; } }
-        .veh-pop { animation: veh-pop .4s cubic-bezier(.2,.7,.2,1); }
-        @keyframes ver-in { from { opacity: 0; transform: translateX(14px); } to { opacity: 1; transform: none; } }
-        .ver-in { animation: ver-in .45s cubic-bezier(.2,.7,.2,1); }
+        /* ===== M2-D7 — dekompozitsiya / tarozi / ochilish ro'yxati ===== */
+        /* Overflow-himoya (19-qonun): o'quvchi kiritmasi ko'rinadigan har konteyner */
+        .lp-fill, .ll-t, .dc-piece-t, .tz-card-t, .kdx-card, .fe-card, .reflect-input { min-width: 0; overflow-wrap: anywhere; }
+
+        .ta-bulb { font-size: 24px; line-height: 1; }
+        .mbypass { margin: 0; font-family: 'Manrope', sans-serif; font-weight: 600; font-size: 12.5px; color: ${T.blue}; background: ${T.blueSoft}; border-radius: 10px; padding: 8px 13px; }
+        .cls-pulse { margin: 0; font-family: 'Manrope', sans-serif; font-weight: 600; font-size: 12.5px; color: ${T.ink2}; }
+        .cls-pulse b { color: ${T.ink}; }
+
+        /* MENTOR-ESLATMA (proyektor-sir) */
+        .mnote { background: ${T.blueSoft}; border-left: 4px solid ${T.blue}; border-radius: 12px; padding: 12px 15px; display: flex; flex-direction: column; gap: 5px; cursor: pointer; }
+        .mnote-lbl { font-family: 'Manrope'; font-weight: 800; font-size: 11.5px; letter-spacing: 0.06em; text-transform: uppercase; color: ${T.blue}; display: flex; align-items: center; }
+        .mnote-x { margin-left: auto; font-weight: 800; font-size: 10.5px; opacity: 0.7; text-transform: none; letter-spacing: 0; }
+        .mnote-chip { align-self: flex-start; display: inline-flex; align-items: center; gap: 6px; background: ${T.paper}; border: 1.5px dashed ${T.blue}; color: ${T.blue}; border-radius: 999px; padding: 4px 12px; font-family: 'Manrope'; font-weight: 800; font-size: 11.5px; letter-spacing: 0.04em; cursor: pointer; opacity: 0.4; transition: opacity 0.2s ease, transform 0.2s ease; }
+        .mnote-chip:hover, .mnote-chip:focus-visible { opacity: 1; transform: translateY(-1px); }
+        .mnote-body { margin: 0; font-size: clamp(13px,1.5vw,14.5px); color: ${T.ink}; line-height: 1.45; }
+        .done-mini { display: inline-flex; align-items: center; gap: 7px; align-self: flex-start; background: ${T.successSoft}; color: ${T.success}; font-family: 'Manrope'; font-weight: 800; font-size: clamp(12.5px,1.5vw,14px); border-radius: 99px; padding: 8px 16px; box-shadow: inset 0 0 0 1.5px ${T.success}44; }
+        .done-mini .dm-sub { font-weight: 600; color: ${T.ink2}; }
+
+        /* s0 — 12 ta ish */
+        .hk-work { display: flex; flex-direction: column; align-items: flex-start; gap: 7px; }
+        .hk-list { display: flex; flex-wrap: wrap; gap: 7px; }
+        .hk-dot { width: 34px; height: 34px; border-radius: 10px; background: ${T.paper}; display: inline-flex; align-items: center; justify-content: center; font-size: 17px; box-shadow: 0 5px 13px -7px rgba(${T.shadowBase},0.24); animation: feat-pop 0.34s cubic-bezier(.2,.7,.2,1) both; }
+        .hk-cap { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: ${T.ink3}; }
+        .hook-option.hk-win { background: ${T.successSoft}; color: ${T.success}; box-shadow: 0 8px 22px -8px rgba(18,169,104,0.3), inset 0 0 0 1.5px ${T.success}; }
+        .hk-tick { margin-left: auto; font-weight: 800; color: ${T.success}; }
+
+        /* s1 — ochilish ro'yxati preview (imzo-vizual: shtamp-qator) */
+        .lp-card { background: ${T.paper}; border-radius: 18px; padding: clamp(16px,2.4vw,22px); display: flex; flex-direction: column; gap: 12px; box-shadow: 0 14px 34px -14px rgba(${T.shadowBase},0.26); max-width: 720px; }
+        .lp-head { display: flex; align-items: center; gap: 9px; }
+        .lp-ic { font-size: 22px; }
+        .lp-h { font-family: 'Source Serif 4', serif; font-weight: 600; font-size: clamp(17px,2.2vw,21px); color: ${T.ink}; }
+        .lp-src { margin-left: auto; font-family: 'Manrope'; font-weight: 800; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: ${T.ink3}; background: ${T.bg}; border-radius: 99px; padding: 4px 11px; }
+        .lp-rows { display: flex; flex-direction: column; gap: 9px; }
+        .lp-row { display: flex; align-items: center; gap: 10px; background: ${T.bg}; border-radius: 12px; padding: 11px 13px; }
+        .lp-n { width: 22px; height: 22px; border-radius: 50%; background: ${T.accent}; color: #fff; font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: 12px; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .lp-slot { flex: 1; min-width: 0; display: inline-grid; align-items: center; }
+        .lp-ph { grid-area: 1 / 1; color: ${T.ink3}; font-style: italic; animation: lp-out 0.3s ease forwards; animation-delay: var(--fd, 1s); }
+        .lp-fill { grid-area: 1 / 1; font-family: 'Manrope'; font-weight: 700; color: ${T.ink}; opacity: 0; transform: translateY(5px); animation: lp-in 0.4s cubic-bezier(.3,1.4,.45,1) forwards; animation-delay: var(--fd, 1s); }
+        .lp-stamp { flex-shrink: 0; font-family: 'Manrope'; font-weight: 800; font-size: 10px; letter-spacing: 0.1em; color: ${T.accent}; border: 1.5px solid ${T.accent}; border-radius: 6px; padding: 3px 8px; opacity: 0; transform: rotate(-6deg) scale(1.6); animation: lp-stamp 0.35s cubic-bezier(.2,.9,.3,1) forwards; animation-delay: calc(var(--fd, 1s) + 0.25s); }
+        @keyframes lp-out { to { opacity: 0; } }
+        @keyframes lp-in { to { opacity: 1; transform: none; } }
+        @keyframes lp-stamp { to { opacity: 1; transform: rotate(-6deg) scale(1); } }
+        .lp-rest { display: flex; flex-direction: column; gap: 6px; }
+        .lp-mini { font-family: 'Manrope'; font-weight: 600; font-size: 13px; color: ${T.ink2}; opacity: 0; animation: lp-in 0.4s ease forwards; animation-delay: var(--fd, 3s); }
+        .lp-mini b { color: var(--lvt, ${T.ink}); font-weight: 800; }
+        @media (prefers-reduced-motion: reduce) {
+          .lp-ph { opacity: 0; animation: none; } .lp-fill, .lp-mini { opacity: 1; transform: none; animation: none; }
+          .lp-stamp { opacity: 1; transform: rotate(-6deg); animation: none; }
+          .hk-dot, .dc-piece, .kdx-card { animation: none; opacity: 1; }
+        }
+
+        /* s2 — katta karta va bo'laklar */
+        .dc-big { display: flex; flex-direction: column; align-items: center; gap: 8px; background: ${T.paper}; border: none; border-radius: 18px; padding: clamp(24px,4vw,38px); cursor: pointer; box-shadow: 0 14px 34px -14px rgba(${T.shadowBase},0.3); max-width: 520px; align-self: flex-start; }
+        .dc-big-ic { font-size: 40px; }
+        .dc-big-t { font-family: 'Source Serif 4', serif; font-weight: 600; font-size: clamp(18px,2.6vw,24px); color: ${T.ink}; }
+        .dc-big-cue { font-family: 'Manrope'; font-weight: 600; font-size: 12.5px; color: ${T.ink3}; }
+        .dc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 10px; }
+        .dc-piece { display: flex; align-items: center; gap: 9px; background: ${T.paper}; border: none; border-radius: 13px; padding: 13px 14px; cursor: pointer; text-align: left; box-shadow: 0 6px 16px -8px rgba(${T.shadowBase},0.18); animation: feat-pop 0.34s cubic-bezier(.2,.7,.2,1) both; transition: box-shadow 0.18s; }
+        .dc-piece.on { box-shadow: inset 0 0 0 1.5px ${T.success}, 0 6px 16px -8px rgba(18,169,104,0.22); }
+        .dc-piece-ic { font-size: 18px; flex-shrink: 0; }
+        .dc-piece-t { flex: 1; font-family: 'Manrope'; font-weight: 600; font-size: 13.5px; color: ${T.ink}; }
+        .dc-piece:not(.on) .dc-piece-t { color: ${T.ink3}; font-style: italic; }
+        .dc-piece-ok { color: ${T.success}; font-weight: 800; }
+
+        /* s3 — bo'lak yozuvi */
+        .s3list { display: flex; flex-direction: column; gap: 9px; max-width: 720px; }
+        .s3item { background: ${T.paper}; border-radius: 13px; box-shadow: 0 6px 16px -8px rgba(${T.shadowBase},0.16); overflow: hidden; }
+        .s3item.good { box-shadow: inset 0 0 0 1.5px ${T.success}, 0 6px 16px -8px rgba(18,169,104,0.2); }
+        .s3btn { display: flex; align-items: center; gap: 11px; width: 100%; background: none; border: none; padding: 13px 15px; cursor: pointer; text-align: left; }
+        .s3mark { width: 22px; height: 22px; border-radius: 50%; background: ${T.bg}; color: ${T.ink3}; font-weight: 800; font-size: 12px; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .s3item.good .s3mark { background: ${T.success}; color: #fff; }
+        .s3txt { flex: 1; font-family: 'Manrope'; font-weight: 600; font-size: clamp(13.5px,1.6vw,15px); color: ${T.ink}; }
+        .s3caret { color: ${T.ink3}; font-size: 12px; }
+        .s3note { margin: 0; padding: 0 15px 13px 48px; font-size: 13px; color: ${T.ink2}; line-height: 1.5; }
+
+        /* ===== DARAJA-RANGLARI — 🔥 v1 · ⚡ v2 · 🌱 backlog =====
+           YAGONA manba: s6 · s8 tarozi · s9 ro'yxat · s11 xato-topish · s12 koding · yakun —
+           hammasida shu uch rang ishlaydi; ball-ranglari (yashil/qizil) bilan kesishmaydi. */
+        .lvl { --lv: ${T.ink3}; --lvs: ${T.line}; --lvt: ${T.ink2}; }
+        .lvl-v1 { --lv: ${T.accent}; --lvs: ${T.accentSoft}; --lvt: ${T.accent}; }
+        .lvl-v2 { --lv: ${T.blue}; --lvs: ${T.blueSoft}; --lvt: ${T.blue}; }
+        /* backlog: halqa xira (ink3), matn esa o'qiladigan (ink2) — kontrast uchun */
+        .lvl-backlog { --lv: ${T.ink3}; --lvs: ${T.line}; --lvt: ${T.ink2}; }
+        .lv-chip { display: inline-flex; align-items: center; gap: 6px; font-family: 'Manrope'; font-weight: 800; font-size: 12px; color: var(--lvt, var(--lv)); background: var(--lvs); border-radius: 99px; padding: 5px 12px; white-space: nowrap; }
+
+        /* ===== ⚖️ TAROZI — imzo-mexanika: karta o'zi tushadi ===== */
+        .tz-wrap { position: relative; display: flex; flex-direction: column; align-items: center; gap: 12px; background: ${T.paper}; border-radius: 18px; padding: clamp(16px,2.6vw,24px); box-shadow: 0 14px 34px -16px rgba(${T.shadowBase},0.26); max-width: 620px; overflow: hidden; }
+        .tz-card { display: flex; align-items: center; gap: 10px; background: ${T.bg}; border-radius: 13px; padding: 13px 17px; box-shadow: inset 0 0 0 1.5px ${T.line}; }
+        .tz-card.dropped { animation: tz-drop 0.5s cubic-bezier(.45,0,.75,1) forwards; }
+        @keyframes tz-drop { 0% { transform: none; opacity: 1; } 40% { transform: translateY(12px) scale(0.97); opacity: 0.9; } 100% { transform: translateY(72px) scale(0.82); opacity: 0; } }
+        .tz-card-ic { font-size: 21px; }
+        .tz-card-t { font-family: 'Manrope'; font-weight: 700; font-size: clamp(14px,1.8vw,16px); color: ${T.ink}; }
+        /* nur — tarozi dastasi; tayanch (▲) dasta qiyshayganda ham tik turadi */
+        .tz-beam { position: relative; display: flex; align-items: center; justify-content: center; gap: clamp(20px,5vw,54px); width: 100%; padding: 4px 0 14px; transition: transform 0.45s cubic-bezier(.3,1.2,.4,1); }
+        .tz-beam::before { content: ""; position: absolute; left: 10%; right: 10%; top: 50%; height: 2px; margin-top: -6px; background: ${T.line}; border-radius: 2px; }
+        .tz-beam::after { content: "▲"; position: absolute; left: 50%; top: 50%; margin-top: -2px; transform: translateX(-50%); font-size: 12px; line-height: 1; color: ${T.ink3}; }
+        .tz-beam[data-tilt="left"] { transform: rotate(-4deg); }
+        .tz-beam[data-tilt="right"] { transform: rotate(4deg); }
+        .tz-beam[data-tilt="left"]::after { transform: translateX(-50%) rotate(4deg); }
+        .tz-beam[data-tilt="right"]::after { transform: translateX(-50%) rotate(-4deg); }
+        .tz-pan { position: relative; font-family: 'Manrope'; font-weight: 600; font-size: 12.5px; color: ${T.ink2}; background: ${T.bg}; border-radius: 99px; padding: 8px 15px; box-shadow: inset 0 0 0 1.5px ${T.line}; transition: background 0.3s, color 0.3s, transform 0.3s, box-shadow 0.3s; }
+        .tz-pan.left.heavy { background: ${T.accentSoft}; color: ${T.accent}; box-shadow: inset 0 0 0 1.5px ${T.accent}55; transform: translateY(6px); }
+        .tz-pan.right.heavy { color: ${T.ink}; box-shadow: inset 0 0 0 1.5px ${T.ink3}; transform: translateY(6px); }
+        .tz-qs { width: 100%; display: flex; flex-direction: column; gap: 9px; }
+        .tz-q { display: flex; flex-direction: column; gap: 9px; }
+        .tz-q-t { font-family: 'Manrope'; font-weight: 700; font-size: clamp(14px,1.8vw,16px); color: ${T.ink}; }
+        .tz-q-btns { display: flex; flex-wrap: wrap; gap: 9px; }
+        .tz-opt { font-family: 'Manrope'; font-weight: 700; font-size: clamp(13px,1.6vw,14.5px); background: ${T.bg}; color: ${T.ink}; border: none; border-radius: 12px; padding: 12px 17px; cursor: pointer; box-shadow: inset 0 0 0 1.5px ${T.line}; transition: all 0.16s; }
+        .tz-opt:hover { transform: translateY(-2px); box-shadow: inset 0 0 0 1.5px ${T.accent}, 0 8px 18px -10px rgba(91,61,230,0.4); }
+        .tz-opt.lvl:hover { box-shadow: inset 0 0 0 1.5px var(--lv), 0 8px 18px -10px rgba(${T.shadowBase},0.32); }
+        .tz-done { display: flex; align-items: center; gap: 8px; font-family: 'Manrope'; font-weight: 700; font-size: 13px; color: ${T.success}; background: ${T.successSoft}; border-radius: 10px; padding: 8px 13px; }
+        .tz-redo { margin-left: auto; background: none; border: none; cursor: pointer; color: ${T.ink3}; font-size: 14px; }
+        .tz-lock { font-family: 'Manrope'; font-weight: 600; font-size: 12.5px; color: ${T.ink3}; background: ${T.bg}; border-radius: 10px; padding: 9px 13px; border: 1.5px dashed ${T.ink3}55; }
+        .tz-note { margin: 0; font-family: 'Manrope'; font-weight: 600; font-size: 13.5px; color: ${T.ink2}; background: ${T.bg}; border-left: 3px solid var(--lv, ${T.line}); border-radius: 4px 11px 11px 4px; padding: 10px 14px; }
+        .stepdots { display: flex; gap: 8px; }
+        .sd { width: 26px; height: 26px; border-radius: 50%; background: ${T.paper}; color: ${T.ink3}; font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: 12px; display: inline-flex; align-items: center; justify-content: center; box-shadow: inset 0 0 0 1.5px ${T.line}; transition: background 0.25s, color 0.25s, box-shadow 0.25s; }
+        .sd.cur { background: ${T.accent}; color: #fff; box-shadow: 0 0 0 3px ${T.accentSoft}; }
+        .sd.ok { background: ${T.success}; color: #fff; box-shadow: none; }
+        .bkt-row { display: flex; flex-wrap: wrap; gap: 9px; }
+        .bkt { font-family: 'Manrope'; font-weight: 700; font-size: 12.5px; color: ${T.ink2}; background: ${T.paper}; border-radius: 99px; padding: 8px 15px; box-shadow: 0 5px 14px -8px rgba(${T.shadowBase},0.18); transition: box-shadow 0.25s, color 0.25s; }
+        .bkt.has { color: ${T.ink}; box-shadow: inset 0 0 0 1.5px var(--lv); }
+        .bkt b { color: var(--lvt, var(--lv)); font-variant-numeric: tabular-nums; }
+        /* karta savatga «qo'nadi» — sanoq sakraydi */
+        .bkt.land { animation: bkt-land 0.5s cubic-bezier(.34,1.45,.4,1); }
+        @keyframes bkt-land { 0% { transform: translateY(-7px); } 45% { transform: translateY(2px) scale(1.06); } 100% { transform: none; } }
+        @media (prefers-reduced-motion: reduce) {
+          .tz-card.dropped { animation: none; opacity: 0.3; }
+          .tz-beam { transition: none; }
+          .bkt.land { animation: none; }
+          .tz-opt:hover { transform: none; }
+        }
+
+        /* s9 — ochilish ro'yxati (uch ustun) */
+        .ll-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; align-items: start; }
+        .ll-col { background: ${T.paper}; border-radius: 15px; padding: 13px; display: flex; flex-direction: column; gap: 8px; box-shadow: 0 8px 22px -12px rgba(${T.shadowBase},0.22); border-top: 3px solid var(--lv); }
+        .ll-col.v1 { box-shadow: inset 0 0 0 1.5px ${T.accent}44, 0 8px 22px -12px rgba(91,61,230,0.24); }
+        .ll-col-h { font-family: 'Manrope'; font-weight: 800; font-size: 12.5px; color: var(--lvt, var(--lv)); }
+        .ll-col-h b { color: ${T.ink}; font-variant-numeric: tabular-nums; }
+        .ll-empty { font-size: 12.5px; color: ${T.ink3}; font-style: italic; }
+        .ll-item { display: flex; align-items: center; gap: 7px; background: ${T.bg}; border-left: 3px solid var(--lv); border-radius: 4px 10px 10px 4px; padding: 9px 11px; animation: fade-step 0.3s cubic-bezier(.2,.7,.2,1); }
+        .ll-ic { flex-shrink: 0; }
+        .ll-t { flex: 1; font-family: 'Manrope'; font-weight: 600; font-size: 13px; color: ${T.ink}; }
+        .ll-mv { background: none; border: none; cursor: pointer; color: ${T.ink3}; font-size: 12px; padding: 2px 4px; border-radius: 6px; transition: color 0.15s, background 0.15s; }
+        .ll-mv:hover { color: var(--lv); background: var(--lvs); }
+        @media (prefers-reduced-motion: reduce) { .ll-item { animation: none; } }
+
+        /* s11 — xato-topish */
+        .fe-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; align-items: start; }
+        .fe-col { background: ${T.paper}; border-radius: 15px; padding: 13px; display: flex; flex-direction: column; gap: 8px; box-shadow: 0 8px 22px -12px rgba(${T.shadowBase},0.22); border-top: 3px solid var(--lv); }
+        .fe-col-h { font-family: 'Manrope'; font-weight: 800; font-size: 12.5px; color: var(--lvt, var(--lv)); }
+        .fe-card { display: flex; align-items: center; gap: 7px; background: ${T.bg}; border: none; border-left: 3px solid var(--lv); border-radius: 4px 10px 10px 4px; padding: 10px 12px; font-family: 'Manrope'; font-weight: 600; font-size: 13px; color: ${T.ink}; cursor: pointer; text-align: left; transition: transform 0.18s, box-shadow 0.18s, background 0.18s, color 0.18s; }
+        .fe-card:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 8px 18px -10px rgba(${T.shadowBase},0.3); }
+        .fe-card.ok { background: ${T.successSoft}; color: ${T.success}; box-shadow: inset 0 0 0 1.5px ${T.success}; }
+        .fe-card.miss { animation: shake 0.42s; box-shadow: inset 0 0 0 1.5px ${T.ink3}; }
+        .fe-tick { margin-left: auto; font-weight: 800; }
+        .fe-note { margin: 0; font-size: 13px; color: ${T.ink2}; background: ${T.bg}; border-radius: 11px; padding: 10px 14px; }
+        .fe-place { background: ${T.paper}; border-radius: 14px; padding: 14px 16px; box-shadow: 0 8px 22px -12px rgba(${T.shadowBase},0.22); }
+        .fe-place-btns { display: flex; flex-wrap: wrap; gap: 9px; }
+
+        /* KEYS-SLAYD */
+        .k-slide { position: relative; background: ${T.paper}; border-radius: 18px; padding: clamp(24px,4vw,38px) clamp(20px,3.5vw,34px) clamp(20px,3.5vw,34px); display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px; box-shadow: 0 14px 34px -12px rgba(${T.shadowBase},0.24); overflow: hidden; }
+        .k-slide::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 5px; background: linear-gradient(90deg, ${T.accent}, ${T.accentVivid}, ${T.blue}); }
+        .k-slide-eyebrow { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: clamp(10px,1.3vw,12px); letter-spacing: 0.14em; text-transform: uppercase; color: ${T.accent}; background: ${T.accentSoft}; border-radius: 99px; padding: 5px 14px; }
+        .k-slide-ic { font-size: clamp(38px,6.5vw,58px); line-height: 1; }
+        .k-slide-h { font-family: 'Source Serif 4', serif; font-weight: 600; font-size: clamp(19px,3vw,28px); color: ${T.ink}; margin: 0; }
+        .k-slide-body { font-size: clamp(15px,2vw,18px); color: ${T.ink2}; line-height: 1.55; max-width: 620px; margin: 0; } .k-slide-body b { color: ${T.ink}; }
+        .k-miss { margin: 0; font-family: 'Manrope'; font-weight: 600; font-size: 13px; color: ${T.ink2}; background: ${T.bg}; border-radius: 10px; padding: 8px 14px; }
+        .k-hook { margin: 0; font-family: 'Manrope'; font-weight: 600; font-size: 13.5px; color: ${T.accent}; background: ${T.accentSoft}; border-radius: 11px; padding: 10px 15px; }
+        .k-predict { background: ${T.paper}; border-radius: 18px; padding: clamp(20px,3.4vw,32px); display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center; box-shadow: 0 14px 34px -14px rgba(${T.shadowBase},0.24); }
+        .k-predict-lbl { font-family: 'Manrope'; font-weight: 800; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: ${T.ink3}; }
+        .k-predict-q { margin: 0; font-family: 'Source Serif 4', serif; font-weight: 600; font-size: clamp(17px,2.4vw,22px); color: ${T.ink}; }
+        .k-predict-opts { display: flex; flex-wrap: wrap; justify-content: center; gap: 9px; }
+        .k-predict-opt { font-family: 'Manrope'; font-weight: 700; font-size: clamp(13px,1.6vw,14.5px); background: ${T.bg}; color: ${T.ink}; border: none; border-radius: 12px; padding: 12px 18px; cursor: pointer; box-shadow: inset 0 0 0 1.5px ${T.line}; transition: all 0.16s; }
+        .k-predict-opt:hover { transform: translateY(-1px); box-shadow: inset 0 0 0 1.5px ${T.accent}; }
+        .k-nav { display: flex; align-items: center; gap: 12px; }
+        .k-dots { display: flex; gap: 6px; margin: 0 auto; }
+        .k-dot { width: 8px; height: 8px; border-radius: 50%; background: ${T.ink3}55; }
+        .k-dot.fill { background: ${T.accent}88; } .k-dot.cur { background: ${T.accent}; transform: scale(1.3); }
+
+        /* KODING — aylantirish-vizual + to'liq-ekran kompilyator (manba: P0 PmCompiler) */
+        .kdx { display: flex; align-items: center; gap: clamp(10px,1.8vw,18px); flex-wrap: wrap; }
+        .kdx-fn { flex-shrink: 0; border-radius: 14px; overflow: hidden; background: ${CODE.bg}; box-shadow: 0 12px 28px -10px rgba(${T.shadowBase},0.35); }
+        .kdx-fn-bar { display: flex; align-items: center; gap: 8px; background: #141C2B; padding: 8px 13px; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #7E92B4; }
+        .bb-dots { display: inline-flex; gap: 4px; } .bb-dots i { width: 7px; height: 7px; border-radius: 50%; background: #3A4A63; }
+        .kdx-fn-code { display: block; padding: clamp(16px,2.2vw,24px) clamp(16px,2.4vw,26px); font-family: 'JetBrains Mono', monospace; font-size: clamp(12.5px,1.6vw,15.5px); color: ${CODE.text}; white-space: nowrap; }
+        .kx-kim { color: #7DB8E8; } .kx-nima { color: ${CODE.attr}; }
+        .kdx-arrow { font-size: clamp(22px,3vw,30px); color: ${T.accent}; flex-shrink: 0; animation: kdx-arrow-nudge 1.6s ease-in-out infinite; }
+        @keyframes kdx-arrow-nudge { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(6px); } }
+        @media (prefers-reduced-motion: reduce) { .kdx-arrow { animation: none; } }
+        .kdx-out { flex: 1; min-width: 220px; display: flex; flex-direction: column; gap: 8px; }
+        .kdx-card { font-family: Georgia, serif; font-size: clamp(14px,1.8vw,16.5px); line-height: 1.55; color: ${T.ink}; background: ${T.paper}; border-radius: 12px; padding: clamp(12px,1.8vw,16px) clamp(14px,2vw,18px); box-shadow: 0 6px 16px -8px rgba(${T.shadowBase},0.25); border-left: 3px solid ${T.accent}; opacity: 0; animation: fade-step 0.45s ease-out forwards; animation-delay: var(--kd, 0.5s); }
+        .kdx-cta { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+        .kod-launch-btn { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: clamp(15px,1.9vw,17px); background: ${T.accent}; color: #fff; border: none; border-radius: 14px; padding: 15px 34px; cursor: pointer; box-shadow: 0 14px 30px -8px rgba(91,61,230,0.6); transition: transform 0.18s, box-shadow 0.18s; }
+        .kod-launch-btn:hover { transform: translateY(-2px); box-shadow: 0 18px 36px -8px rgba(91,61,230,0.7); }
+        .kdx-skip { margin-top: 2px; background: none; border: none; cursor: pointer; font-family: 'Manrope', sans-serif; font-weight: 600; font-size: 12.5px; color: ${T.ink3}; text-decoration: underline; text-underline-offset: 3px; padding: 4px 6px; border-radius: 8px; }
+        .kdx-skip:hover { color: ${T.accent}; }
+        .hc-prev-badge { display: inline-block; font-family: 'Manrope', sans-serif; font-size: 10px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--lvt, ${T.accent}); background: var(--lvs, ${T.accentSoft}); border-radius: 99px; padding: 3px 9px; margin-right: 8px; vertical-align: middle; }
+        .code-out-empty { font-family: 'Manrope', sans-serif; font-size: 12.5px; color: ${T.ink3}; font-style: italic; margin: 0; }
+        .hcp-root { position: fixed; inset: 0; z-index: 2100; background: radial-gradient(120% 80% at 50% -10%, ${T.accentSoft} 0%, rgba(235,229,253,0) 46%), ${T.bg}; overflow: hidden; animation: fade-step 0.3s ease-out; }
+        .hcp-wrap { width: 100%; max-width: 1160px; height: 100dvh; margin: 0 auto; display: flex; flex-direction: column; justify-content: center; gap: clamp(10px,1.6vw,16px); padding: clamp(14px,2.2vw,28px); }
+        .hcp-top { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 7px; }
+        .hcp-eyebrow { font-family: 'Manrope'; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 800; color: ${T.accent}; display: inline-flex; align-items: center; gap: 7px; }
+        .hcp-eyebrow::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: ${T.accent}; }
+        .hcp-title { font-family: 'Source Serif 4', serif; font-weight: 600; font-size: clamp(20px,2.8vw,30px); margin: 0; color: ${T.ink}; letter-spacing: -0.01em; line-height: 1.12; }
+        .hcp-brief { margin: 0; color: ${T.ink2}; font-size: clamp(13px,1.5vw,15px); line-height: 1.55; max-width: 64ch; }
+        .hcp-checklist { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 8px; margin-top: 5px; }
+        .hcp-count { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 12px; color: #fff; background: linear-gradient(135deg, ${T.accent}, ${T.accentVivid}); padding: 6px 11px; border-radius: 99px; box-shadow: 0 6px 16px -6px rgba(91,61,230,0.5); }
+        .hcp-chip { display: inline-flex; align-items: center; gap: 7px; font-family: 'Manrope'; font-size: 13px; font-weight: 500; color: ${T.ink2}; background: ${T.paper}; padding: 6px 14px 6px 7px; border-radius: 99px; border: 1px solid ${T.line}; transition: all 0.22s ease; cursor: default; }
+        .hcp-chip.ok { color: ${T.ink}; font-weight: 600; border-color: ${T.success}40; background: ${T.successSoft}; }
+        .hcp-dot { flex-shrink: 0; width: 21px; height: 21px; border-radius: 50%; background: ${T.bg}; color: ${T.ink3}; display: inline-flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; transition: all 0.25s; }
+        .hcp-chip.ok .hcp-dot { background: ${T.success}; color: #fff; }
+        .hcp-hint { margin: 3px 0 0; font-family: 'Manrope'; font-size: 13px; color: ${T.accent}; background: ${T.accentSoft}; padding: 8px 15px; border-radius: 11px; max-width: 64ch; line-height: 1.5; }
+        .hcp-err { margin: 3px 0 0; font-family: 'JetBrains Mono', monospace; font-size: 12.5px; color: ${T.err}; background: ${T.errSoft}; padding: 7px 14px; border-radius: 10px; max-width: 74ch; line-height: 1.5; }
+        .hcp-split { flex: none; height: 58vh; min-height: 0; display: grid; grid-template-columns: 1fr 1fr; gap: clamp(12px,1.6vw,18px); }
+        .hcp-pane { display: flex; flex-direction: column; min-height: 0; border-radius: 18px; overflow: hidden; background: ${T.paper}; box-shadow: 0 1px 0 ${T.line}, 0 18px 40px -22px rgba(${T.shadowBase},0.35); }
+        .hcp-pane-bar { display: flex; align-items: center; gap: 10px; padding: 10px 15px; font-family: 'Manrope'; font-size: 12px; font-weight: 600; color: ${T.ink2}; border-bottom: 1px solid ${T.line}; }
+        .hcp-pane-bar.dark { background: ${CODE.bg}; color: #A7B6D6; border-bottom: 1px solid rgba(255,255,255,0.06); }
+        .hcp-tab { font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 600; color: #fff; background: rgba(255,255,255,0.14); padding: 5px 13px; border-radius: 9px; box-shadow: inset 0 -2px 0 ${T.accent}; }
+        .hcp-mini { margin-left: auto; background: ${T.accent}; color: #fff; border: none; border-radius: 9px; padding: 6px 13px; font-size: 11.5px; font-weight: 700; cursor: pointer; font-family: 'Manrope', sans-serif; transition: all 0.18s; flex-shrink: 0; }
+        .hcp-mini:hover { transform: translateY(-1px); }
+        .hcp-code-wrap { flex: 1; min-height: 0; display: flex; }
+        .hcp-code-wrap > .hcp-code { flex: 1; width: 100%; }
+        .hcp-code { min-height: 0; resize: none; border: none; outline: none; background: ${CODE.bg}; color: ${CODE.text}; font-family: 'JetBrains Mono', monospace; font-size: 14px; line-height: 1.7; padding: 18px 20px; tab-size: 2; white-space: pre; overflow: auto; caret-color: ${T.accentVivid}; }
+        .hcp-pane-name { font-family: 'JetBrains Mono', monospace; font-weight: 700; }
+        .hcp-live { margin-left: auto; font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: ${T.success}; background: ${T.successSoft}; padding: 4px 9px; border-radius: 99px; font-weight: 800; display: inline-flex; align-items: center; gap: 6px; }
+        .hcp-live::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: ${T.success}; }
+        .hcp-frame { flex: 1; min-height: 0; width: 100%; border: none; background: #FBFAFE; }
+        .hcp-bottom { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+        .hcp-ghost { background: transparent; border: 1px solid transparent; color: ${T.ink2}; font-family: 'Manrope', sans-serif; font-weight: 600; font-size: 14px; cursor: pointer; padding: 11px 17px; border-radius: 12px; transition: all 0.15s; }
+        .hcp-ghost:hover { background: ${T.paper}; color: ${T.ink}; border-color: ${T.line}; }
+        .hcp-status { margin-left: auto; }
+        .hcp-ok-msg { color: ${T.success}; font-family: 'Manrope'; font-weight: 700; font-size: 14px; }
+        .hcp-wait-msg { color: ${T.ink3}; font-family: 'Manrope'; font-size: 13px; }
+        .hcp-next { background: ${T.accent}; color: #fff; border: none; border-radius: 13px; font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 15px; cursor: pointer; padding: 13px 30px; box-shadow: 0 10px 24px -8px rgba(91,61,230,0.6); transition: all 0.2s; }
+        .hcp-next:hover:not(:disabled) { transform: translateY(-2px); }
+        .hcp-next:disabled { background: #D7D8DE; color: #fff; cursor: not-allowed; box-shadow: none; }
+        @media (max-width: 900px) { .hcp-split { grid-template-columns: 1fr; height: auto; } }
+
+        /* RECAP — juftlik-taymer + refleksiya */
+        .rcp-flow { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: clamp(12px,2vw,18px); align-items: stretch; }
+        .rcp-step { background: ${T.paper}; border-radius: 16px; padding: 16px 18px; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.14); display: flex; flex-direction: column; gap: 12px; }
+        .rcp-step-h { display: flex; gap: 11px; align-items: flex-start; }
+        .rcp-n { width: 26px; height: 26px; border-radius: 50%; background: ${T.accent}; color: #fff; font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: 13px; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 0 0 3px ${T.accentSoft}; }
+        .rcp-t { display: block; font-family: 'Manrope'; font-weight: 800; font-size: clamp(14px,1.7vw,16px); color: ${T.ink}; }
+        .pair-timer { background: ${T.bg}; border-radius: 12px; padding: 13px 15px; display: flex; flex-direction: column; gap: 10px; box-shadow: inset 0 0 0 1.5px ${T.line}; margin-top: auto; }
+        .pair-now { font-family: 'Manrope'; font-weight: 700; font-size: 14px; color: ${T.ink2}; line-height: 1.45; }
+        .pair-who { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: 8px; background: ${T.accent}; color: #fff; font-weight: 800; font-size: 13px; vertical-align: middle; }
+        .pair-who.b { background: ${T.success}; }
+        .pair-live { display: flex; align-items: center; gap: 15px; }
+        .pair-ring { position: relative; width: 82px; height: 82px; flex-shrink: 0; }
+        .pair-ring-mid { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px; }
+        .pair-ring-who { display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 8px; background: ${T.accent}; color: #fff; font-weight: 800; font-size: 14px; }
+        .pair-ring-who.b { background: ${T.success}; }
+        .pair-ring-sec { font-family: 'JetBrains Mono'; font-weight: 700; font-size: 15px; color: ${T.ink}; font-variant-numeric: tabular-nums; margin-top: 2px; }
+        .pair-live-txt { display: flex; flex-direction: column; gap: 3px; }
+        .pair-next { font-family: 'Manrope'; font-weight: 600; font-size: 12.5px; color: ${T.ink3}; }
+        .pair-timer-btns { display: flex; gap: 8px; }
+        .pair-start { font-family: 'Manrope'; font-weight: 800; font-size: clamp(14px,1.8vw,16px); cursor: pointer; border: none; border-radius: 12px; padding: 12px 22px; background: linear-gradient(135deg, ${T.accent}, ${T.accentVivid}); color: #fff; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 10px 24px -8px rgba(91,61,230,0.5); transition: transform 0.15s; }
+        .pair-start:hover { transform: translateY(-2px); }
+        .reflect-input { font-family: 'Manrope'; font-size: 15px; color: ${T.ink}; border: none; border-radius: 10px; padding: 12px 14px; background: ${T.bg}; box-shadow: inset 0 0 0 1.5px ${T.line}; outline: none; }
+        .reflect-input:focus { box-shadow: inset 0 0 0 1.5px ${T.accent}; }
+
+        /* UYGA VAZIFA — shartnoma-karta */
+        .hw-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; }
+        .hw-card { text-align: left; background: ${T.paper}; border: none; border-radius: 16px; padding: 16px 18px; cursor: pointer; display: flex; flex-direction: column; gap: 9px; box-shadow: 0 8px 22px -10px rgba(${T.shadowBase},0.2); transition: all 0.18s; }
+        .hw-card:hover:not(.on) { transform: translateY(-2px); box-shadow: 0 14px 28px -12px rgba(${T.shadowBase},0.3); }
+        .hw-card.on { box-shadow: inset 0 0 0 2px ${T.accent}, 0 10px 24px -10px rgba(91,61,230,0.3); }
+        .hw-card-h { font-family: 'Manrope'; font-weight: 800; font-size: clamp(14px,1.8vw,16px); color: ${T.ink}; }
+        .hw-card-list { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 6px; }
+        .hw-card-list li { font-family: 'Manrope'; font-size: 13.5px; color: ${T.ink2}; line-height: 1.5; }
+        .hw-card-ok { font-family: 'Manrope'; font-weight: 800; font-size: 12px; color: ${T.success}; }
+
+        /* Umumiy harakat-primitivlar (bo'lak paydo bo'lishi · noto'g'ri bosish silkinishi) */
         @keyframes feat-pop { 0% { transform: scale(.82); opacity: 0; } 60% { transform: scale(1.05); } 100% { transform: scale(1); opacity: 1; } }
-        .feat-pop { animation: feat-pop .34s cubic-bezier(.2,.7,.2,1); }
         @keyframes shake { 0%,100% { transform: none; } 20% { transform: translateX(-4px); } 40% { transform: translateX(4px); } 60% { transform: translateX(-3px); } 80% { transform: translateX(3px); } }
-        .shake-x { animation: shake 0.42s; }
-        /* affordance: bosilmagan bosqich «meni bos» deb pulsatsiya qiladi (S23) — bosilgach ✓ */
-        @keyframes tap-hint { 0%,100% { box-shadow: inset 0 0 0 0 rgba(255,79,40,0); } 50% { box-shadow: inset 0 0 0 2px rgba(255,79,40,0.5); } }
-        .tap-hint { animation: tap-hint 1.8s ease-in-out infinite; }
-        /* karta uchun: yotgan drop-soyani saqlab, ustidan pulsatsiya qiluvchi inset halqa qo'shadi */
-        @keyframes tap-hint-card { 0%,100% { box-shadow: 0 6px 16px -8px rgba(${T.shadowBase},0.16); } 50% { box-shadow: 0 6px 16px -8px rgba(${T.shadowBase},0.16), inset 0 0 0 2px rgba(255,79,40,0.42); } }
+        /* affordance: bosilmagan karta «meni bos» deb pulsatsiya qiladi — bosilgach ✓ */
+        @keyframes tap-hint-card { 0%,100% { box-shadow: 0 6px 16px -8px rgba(${T.shadowBase},0.16); } 50% { box-shadow: 0 6px 16px -8px rgba(${T.shadowBase},0.16), inset 0 0 0 2px ${T.accent}66; } }
         .tap-hint-card { animation: tap-hint-card 1.8s ease-in-out infinite; }
-        @media (prefers-reduced-motion: reduce) { .tap-hint, .tap-hint-card { animation: none !important; } }
-        .meter-track { height: 12px; border-radius: 99px; background: rgba(167,166,162,0.22); overflow: hidden; }
-        .meter-fill { height: 100%; border-radius: 99px; transition: width 0.5s cubic-bezier(.4,0,.2,1), background 0.3s; }
-        .meter-fill.over { animation: meter-pulse 1s ease-in-out infinite; }
-        @keyframes meter-pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.62; } }
+        @media (prefers-reduced-motion: reduce) { .tap-hint-card { animation: none !important; } }
 
         .feedback-block { max-height: 0; opacity: 0; overflow: hidden; transition: max-height 0.4s ease-out, opacity 0.3s ease-out 0.1s, margin-top 0.4s ease-out; margin-top: 0; }
         .feedback-block.visible { max-height: 800px; opacity: 1; margin-top: clamp(14px,2vw,20px); }
 
         /* === KNOPKALAR === */
         .btn { font-family: 'Manrope', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.ink}; color: ${T.bg}; border: none; border-radius: 12px; letter-spacing: 0.01em; box-shadow: 0 6px 18px -4px rgba(${T.shadowBase},0.32); padding: clamp(11px,1.6vw,13px) clamp(20px,2.5vw,26px); font-size: clamp(13px,1.6vw,15px); }
-        .btn:hover:not(:disabled) { background: ${T.accent}; box-shadow: 0 10px 24px -4px rgba(255,79,40,0.45); }
+        .btn:hover:not(:disabled) { background: ${T.accent}; box-shadow: 0 10px 24px -4px rgba(91,61,230,0.45); }
         .btn:disabled { opacity: 0.4; cursor: not-allowed; box-shadow: none; }
-        .btn-white-accent { font-family: 'Manrope', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.paper}; color: ${T.accent}; border: none; border-radius: 12px; letter-spacing: 0.01em; box-shadow: 0 8px 22px -4px rgba(255,79,40,0.35), 0 0 0 1px rgba(255,79,40,0.12); }
-        .btn-white-accent:hover:not(:disabled) { background: ${T.accent}; color: #fff; box-shadow: 0 12px 28px -6px rgba(255,79,40,0.55); }
+        .btn-white-accent { font-family: 'Manrope', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.paper}; color: ${T.accent}; border: none; border-radius: 12px; letter-spacing: 0.01em; box-shadow: 0 8px 22px -4px rgba(91,61,230,0.35), 0 0 0 1px rgba(91,61,230,0.12); }
+        .btn-white-accent:hover:not(:disabled) { background: ${T.accent}; color: #fff; box-shadow: 0 12px 28px -6px rgba(91,61,230,0.55); }
         .btn-white-accent:disabled { opacity: 0.45; cursor: not-allowed; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.14); }
         .btn-ghost { font-family: 'Manrope', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.2s; background: transparent; color: ${T.ink}; border: none; border-radius: 12px; box-shadow: none; }
         .btn-ghost:hover:not(:disabled) { background: ${T.paper}; box-shadow: 0 6px 18px -6px rgba(${T.shadowBase},0.18); }
         .btn-ghost:disabled { opacity: 0.4; cursor: not-allowed; }
         .btn-soft { font-family: 'Manrope'; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.bg}; color: ${T.ink}; border: none; border-radius: 10px; padding: 9px 15px; font-size: 13px; }
         .btn-soft:hover:not(:disabled) { box-shadow: 0 6px 14px -5px rgba(${T.shadowBase},0.2); }
-        .kindbtn { font-family: 'Manrope'; font-weight: 700; font-size: 12.5px; border: none; border-radius: 99px; padding: 8px 14px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; transition: all 0.16s; }
-        .kindbtn:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 6px 14px -6px rgba(${T.shadowBase},0.28); }
 
         /* === OPSIYALAR === */
         .option { background: ${T.paper}; cursor: pointer; transition: all 0.2s; font-family: 'Manrope', sans-serif; font-weight: 500; text-align: left; border-radius: 12px; width: 100%; border: none; color: ${T.ink}; box-shadow: 0 6px 16px -7px rgba(${T.shadowBase},0.16); }
-        .option:hover:not(:disabled) { background: #FDFBF7; transform: translateY(-1px); box-shadow: 0 12px 24px -8px rgba(${T.shadowBase},0.22); }
+        .option:hover:not(:disabled) { background: #FBFAFE; transform: translateY(-1px); box-shadow: 0 12px 24px -8px rgba(${T.shadowBase},0.22); }
         .option:disabled { cursor: default; }
-        .option-correct { background: ${T.successSoft} !important; color: ${T.success} !important; box-shadow: 0 8px 22px -8px rgba(31,122,77,0.32) !important; }
+        .option-correct { background: ${T.successSoft} !important; color: ${T.success} !important; box-shadow: 0 8px 22px -8px rgba(18,169,104,0.32) !important; }
         .option-wrong { background: ${T.paper} !important; color: ${T.ink3} !important; opacity: 0.5 !important; box-shadow: none !important; }
-        .option-picked-wrong { background: ${T.accentSoft} !important; color: ${T.accent} !important; box-shadow: 0 8px 22px -8px rgba(255,79,40,0.34) !important; }
-
-        .chip { font-family: 'Manrope', sans-serif; font-weight: 600; font-size: clamp(13px,1.6vw,15px); display: inline-flex; align-items: center; gap: 7px; padding: 9px 16px; border-radius: 99px; border: none; background: ${T.paper}; color: ${T.ink}; cursor: pointer; transition: all 0.18s; box-shadow: 0 4px 12px -6px rgba(${T.shadowBase},0.2); }
-        .chip:hover:not(:disabled) { transform: translateY(-1px); }
-        .chip-on { background: ${T.accent}; color: #fff; box-shadow: 0 6px 16px -5px rgba(255,79,40,0.4); }
+        .option-picked-wrong { background: ${T.accentSoft} !important; color: ${T.accent} !important; box-shadow: 0 8px 22px -8px rgba(91,61,230,0.34) !important; }
 
         /* === MENTOR === */
         .mentor { display: flex; gap: 12px; align-items: flex-start; }
@@ -2551,7 +3218,7 @@ export default function PmLesson5({ lang: langProp, onFinished }) {
         /* === HOOK OPSIYALARI === */
         .hook-option { display: flex; align-items: center; gap: 13px; width: 100%; text-align: left; background: ${T.paper}; border: none; border-radius: 12px; padding: clamp(13px,1.9vw,16px) clamp(15px,2.2vw,18px); font-family: 'Manrope', sans-serif; font-weight: 500; font-size: clamp(14px,1.7vw,16px); color: ${T.ink}; cursor: pointer; transition: all 0.18s; box-shadow: 0 6px 16px -7px rgba(${T.shadowBase},0.16); }
         .hook-option:hover:not(:disabled):not(.on) { transform: translateY(-1px); box-shadow: 0 12px 24px -8px rgba(${T.shadowBase},0.22); }
-        .hook-option.on { background: ${T.accentSoft}; color: ${T.accent}; box-shadow: 0 8px 22px -8px rgba(255,79,40,0.3), inset 0 0 0 1.5px ${T.accent}; }
+        .hook-option.on { background: ${T.accentSoft}; color: ${T.accent}; box-shadow: 0 8px 22px -8px rgba(91,61,230,0.3), inset 0 0 0 1.5px ${T.accent}; }
         .hook-option:disabled { cursor: default; }
         .hook-option .radio { width: 20px; height: 20px; border-radius: 50%; flex-shrink: 0; box-shadow: inset 0 0 0 2px ${T.ink3}; display: inline-flex; align-items: center; justify-content: center; transition: all 0.18s; }
         .hook-option.on .radio { box-shadow: inset 0 0 0 2px ${T.accent}; }
@@ -2563,34 +3230,22 @@ export default function PmLesson5({ lang: langProp, onFinished }) {
         .body { font-size: clamp(14px,1.6vw,16px); line-height: 1.5; }
         .eyebrow { font-size: clamp(11px,1.3vw,12px); letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600; }
         .small { font-size: clamp(12.5px,1.4vw,13.5px); }
-        .flow-label { font-family: 'Manrope'; font-weight: 700; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: ${T.ink2}; }
-        .demo-swap { animation: fade-step 0.34s cubic-bezier(.2,.7,.2,1); }
 
         /* === STAGE === */
         .stage { max-width: 1100px; margin: 0 auto; height: calc(100dvh / var(--lz, 1)); display: flex; flex-direction: column; }
         .stage-header { flex-shrink: 0; background: ${T.bg}; padding-top: clamp(12px,2vw,18px); padding-bottom: clamp(8px,1.5vw,12px); }
         .stage-content { flex: 1; min-height: 0; padding-top: clamp(10px,1.7vw,16px); padding-bottom: clamp(17px,3.4vw,34px); display: flex; flex-direction: column; overflow-y: auto; overflow-x: hidden; -webkit-overflow-scrolling: touch; scroll-behavior: smooth; }
         .stage-content.narrow { max-width: 680px; width: 100%; margin: 0 auto; }
-        .stage-nav { flex-shrink: 0; background: ${T.bg}; border-top: 1px solid rgba(167,166,162,0.25); padding-top: clamp(12px,2vw,15px); padding-bottom: clamp(12px,2vw,15px); display: flex; gap: 12px; align-items: center; }
+        .stage-nav { flex-shrink: 0; background: ${T.bg}; border-top: 1px solid rgba(156,151,180,0.25); padding-top: clamp(12px,2vw,15px); padding-bottom: clamp(12px,2vw,15px); display: flex; gap: 12px; align-items: center; }
         .chrome { display: flex; align-items: center; justify-content: space-between; }
         .chrome-left { display: flex; align-items: center; gap: 10px; color: ${T.ink2}; }
-        .dot { width: 7px; height: 7px; border-radius: 50%; background: ${T.accent}; box-shadow: 0 0 8px rgba(255,79,40,0.55); }
-        .progress-track { height: 3px; background: rgba(167,166,162,0.25); width: 100%; margin-bottom: 12px; border-radius: 99px; }
-        .progress-bar { height: 100%; background: ${T.accent}; transition: width 0.5s cubic-bezier(.4,0,.2,1); border-radius: 99px; box-shadow: 0 0 10px rgba(255,79,40,0.55), 0 0 3px rgba(255,79,40,0.4); }
+        .dot { width: 7px; height: 7px; border-radius: 50%; background: ${T.accent}; box-shadow: 0 0 8px rgba(91,61,230,0.55); }
+        .progress-track { height: 3px; background: rgba(156,151,180,0.25); width: 100%; margin-bottom: 12px; border-radius: 99px; }
+        .progress-bar { height: 100%; background: ${T.accent}; transition: width 0.5s cubic-bezier(.4,0,.2,1); border-radius: 99px; box-shadow: 0 0 10px rgba(91,61,230,0.55), 0 0 3px rgba(91,61,230,0.4); }
 
         /* === FRAME === */
-        .frame { background: ${T.paper}; border-radius: 16px; padding: clamp(16px,3vw,24px); border: none; box-shadow: 0 8px 22px -7px rgba(${T.shadowBase},0.14); }
-        .frame-soft { background: ${T.accentSoft}; border-left: 4px solid ${T.accent}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -8px rgba(255,79,40,0.22); }
-        .frame-success { background: ${T.successSoft}; border-left: 4px solid ${T.success}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -8px rgba(31,122,77,0.22); }
-        .frame-warn { background: ${T.accentSoft}; border-left: 4px solid ${T.accent}; border-radius: 12px; padding: 12px 15px; }
-        .frame-dash { border: 1.5px dashed ${T.ink3}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); }
-
-        /* === SPEC CARD (qora — reja) === */
-        .spec-card { background: ${CODE.bg}; border-radius: 14px; padding: 16px 17px; box-shadow: 0 12px 30px -10px rgba(${T.shadowBase},0.3); display: flex; flex-direction: column; gap: 12px; }
-        .spec-head { display: flex; align-items: center; gap: 8px; padding-bottom: 9px; border-bottom: 1px solid #ffffff18; }
-        .spec-title { font-family: 'JetBrains Mono'; font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: #9FB4D8; }
-        .spec-lbl { font-family: 'JetBrains Mono'; font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
-        .spec-text { font-family: 'Georgia, serif'; font-size: clamp(13px,1.7vw,15px); line-height: 1.5; margin: 3px 0 0; }
+        .frame-soft { background: ${T.accentSoft}; border-left: 4px solid ${T.accent}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -8px rgba(91,61,230,0.22); }
+        .frame-success { background: ${T.successSoft}; border-left: 4px solid ${T.success}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -8px rgba(18,169,104,0.22); }
 
         /* === LAYOUT === */
         .screen { flex: 1; min-height: 0; display: flex; flex-direction: column; gap: clamp(14px,2vw,20px); }
@@ -2599,25 +3254,11 @@ export default function PmLesson5({ lang: langProp, onFinished }) {
         .col { display: flex; flex-direction: column; gap: clamp(12px,2vw,16px); min-width: 0; }
         @media (max-width: 760px) { .split { grid-template-columns: 1fr; gap: clamp(14px,3vw,20px); } }
 
-        /* === ROADMAP === */
-        .roadmap { display: flex; flex-direction: column; gap: 8px; list-style: none; }
-        .step-card { display: flex; align-items: center; gap: 14px; background: ${T.paper}; border-radius: 12px; padding: 13px 16px; box-shadow: 0 5px 14px -7px rgba(${T.shadowBase},0.16); }
-        .step-num { font-family: 'JetBrains Mono'; font-weight: 700; font-size: 13px; color: ${T.accent}; flex-shrink: 0; }
-        .step-body { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
-        .step-text { font-weight: 500; font-size: clamp(14px,1.7vw,16px); color: ${T.ink}; }
-        .step-tag { font-family: 'JetBrains Mono'; font-size: 11px; color: ${T.ink2}; background: ${T.bg}; padding: 3px 8px; border-radius: 6px; }
-
-        /* === SK-INFO === */
-        .sk-info { background: ${T.paper}; border-radius: 12px; padding: 16px 18px; box-shadow: 0 8px 20px -8px rgba(${T.shadowBase},0.16); animation: fade-step 0.34s; }
-        .sk-tagbig { display: flex; align-items: center; gap: 9px; flex-wrap: wrap; }
-        .sk-wordbadge { font-family: 'Manrope'; font-weight: 700; font-size: 13px; color: ${T.accent}; background: ${T.accentSoft}; padding: 4px 10px; border-radius: 6px; }
+        /* === MASLAHAT-QUTISI === */
         .hint { background: ${T.bg}; border: 1.5px dashed ${T.ink3}; border-radius: 12px; padding: 14px 16px; font-size: clamp(13px,1.5vw,14px); color: ${T.ink2}; }
 
-        /* === AI CARD / TAKEAWAY === */
-        .ai-card { background: ${T.paper}; border-radius: 14px; padding: 15px 17px; display: flex; flex-direction: column; gap: 11px; box-shadow: 0 8px 20px -8px rgba(${T.shadowBase},0.14); }
-        .ai-row { display: flex; align-items: center; gap: 9px; } .ai-badge { font-family: 'Manrope'; font-weight: 800; font-size: 11px; color: #fff; background: ${T.blue}; padding: 3px 9px; border-radius: 6px; } .ai-bubble { font-size: 13px; color: ${T.ink2}; }
-        .note-h { font-weight: 700; font-size: 13px; margin: 0 0 4px; }
-        .takeaway { background: ${T.successSoft}; border-radius: 14px; padding: 22px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 6px; } .ta-h { font-family: 'Source Serif 4', serif; font-weight: 600; font-size: clamp(16px,2.2vw,20px); color: ${T.ink}; margin: 0; } .ta-sub { color: ${T.success}; font-weight: 600; font-size: 13px; margin: 0; }
+        /* === XULOSA-KARTA === */
+        .takeaway { background: ${T.successSoft}; border-radius: 14px; padding: 22px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 6px; } .ta-h { font-family: 'Source Serif 4', serif; font-weight: 600; font-size: clamp(16px,2.2vw,20px); color: ${T.ink}; margin: 0; }
 
         /* === YAKUN === */
         .hero { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
@@ -2660,9 +3301,10 @@ export default function PmLesson5({ lang: langProp, onFinished }) {
         .mstats-lbl { font-family: 'Manrope'; font-weight: 800; font-size: 12.5px; letter-spacing: 0.07em; text-transform: uppercase; color: ${T.blue}; }
         .mstats-n { font-family: 'Manrope'; font-size: 13.5px; font-weight: 600; color: ${T.ink2}; }
         .mstats-reveal { font-family: 'Manrope'; font-weight: 700; font-size: 12.5px; background: ${T.ink}; color: #fff; border: none; border-radius: 99px; padding: 7px 14px; cursor: pointer; white-space: nowrap; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.35); transition: all 0.2s; }
-        .mstats-reveal:hover { background: ${T.accent}; box-shadow: 0 6px 16px -4px rgba(255,79,40,0.5); }
+        .mstats-reveal:hover { background: ${T.accent}; box-shadow: 0 6px 16px -4px rgba(91,61,230,0.5); }
         .mstats-reveal.ready { background: ${T.accent}; animation: mstats-pulse 1.6s ease-in-out infinite; }
-        @keyframes mstats-pulse { 0%,100% { box-shadow: 0 4px 12px -4px rgba(255,79,40,0.5); } 50% { box-shadow: 0 4px 18px 0 rgba(255,79,40,0.55); } }
+        @keyframes mstats-pulse { 0%,100% { box-shadow: 0 4px 12px -4px rgba(91,61,230,0.5); } 50% { box-shadow: 0 4px 18px 0 rgba(91,61,230,0.55); } }
+        @media (prefers-reduced-motion: reduce) { .mstats-reveal.ready { animation: none; } }
         .mstats-prog { height: 7px; background: rgba(${T.shadowBase},0.09); border-radius: 99px; overflow: hidden; }
         .mstats-prog-fill { display: block; height: 100%; border-radius: 99px; background: ${T.blue}; transition: width 0.6s cubic-bezier(.4,0,.2,1); }
         .mstats-prog-fill.full { background: ${T.success}; }
@@ -2694,10 +3336,10 @@ export default function PmLesson5({ lang: langProp, onFinished }) {
         .mstats-verdict.need { background: ${T.accentSoft}; border-left: 4px solid ${T.accent}; }
         .mstats-verdict.maybe { background: rgba(232,161,58,0.14); border-left: 4px solid #E8A13A; }
         .mstats-verdict.good { background: ${T.successSoft}; border-left: 4px solid ${T.success}; }
-        .mstats-verdict.few { background: rgba(167,166,162,0.12); border-left: 4px solid ${T.ink3}; }
+        .mstats-verdict.few { background: rgba(156,151,180,0.12); border-left: 4px solid ${T.ink3}; }
         .mstats-verdict-t { margin: 0; font-family: 'Manrope', sans-serif; font-size: clamp(13px,1.6vw,15px); line-height: 1.45; color: ${T.ink}; }
-        .rc-open { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(13px,1.6vw,15px); background: ${T.accent}; color: #fff; border: none; border-radius: 10px; padding: 10px 18px; cursor: pointer; box-shadow: 0 8px 20px -6px rgba(255,79,40,0.5); transition: all 0.2s; }
-        .rc-open:hover { transform: translateY(-1px); box-shadow: 0 12px 26px -6px rgba(255,79,40,0.55); }
+        .rc-open { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(13px,1.6vw,15px); background: ${T.accent}; color: #fff; border: none; border-radius: 10px; padding: 10px 18px; cursor: pointer; box-shadow: 0 8px 20px -6px rgba(91,61,230,0.5); transition: all 0.2s; }
+        .rc-open:hover { transform: translateY(-1px); box-shadow: 0 12px 26px -6px rgba(91,61,230,0.55); }
         .rc-open.soft { background: ${T.paper}; color: ${T.accent}; box-shadow: 0 4px 12px -5px rgba(${T.shadowBase},0.2); }
         .rc-open-mini { align-self: flex-start; margin-top: 10px; font-family: 'Manrope', sans-serif; font-weight: 600; font-size: 13px; background: ${T.paper}; color: ${T.accent}; border: none; border-radius: 99px; padding: 8px 14px; cursor: pointer; box-shadow: 0 4px 12px -5px rgba(${T.shadowBase},0.2); transition: all 0.2s; }
         .rc-open-mini:hover { transform: translateY(-1px); }
@@ -2721,7 +3363,7 @@ export default function PmLesson5({ lang: langProp, onFinished }) {
         .rc-ask { font-weight: 600; font-size: clamp(13px,1.8vw,16px); color: ${T.accent}; background: ${T.accentSoft}; border-radius: 12px; padding: 10px 18px; max-width: 660px; }
         .rc-nav { width: 100%; max-width: 880px; display: flex; align-items: center; gap: 14px; flex-shrink: 0; padding-top: 8px; }
         .rc-dots { flex: 1; display: flex; justify-content: center; gap: 8px; }
-        .rc-dot { width: 10px; height: 10px; border-radius: 99px; background: rgba(167,166,162,0.4); cursor: pointer; transition: all 0.25s; border: none; padding: 0; }
+        .rc-dot { width: 10px; height: 10px; border-radius: 99px; background: rgba(156,151,180,0.4); cursor: pointer; transition: all 0.25s; border: none; padding: 0; }
         .rc-dot.fill { background: ${T.ink3}; }
         .rc-dot.cur { background: ${T.accent}; width: 26px; }
         .rc-btn { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(13px,1.7vw,16px); border: none; border-radius: 12px; padding: clamp(11px,1.6vw,14px) clamp(18px,2.6vw,26px); cursor: pointer; background: ${T.ink}; color: ${T.bg}; box-shadow: 0 6px 18px -4px rgba(${T.shadowBase},0.32); transition: all 0.2s; white-space: nowrap; }
@@ -2746,10 +3388,10 @@ export default function PmLesson5({ lang: langProp, onFinished }) {
         .fc-pill.learn { background: ${T.accentSoft}; color: ${T.accent}; border: 1.5px solid ${T.accent}44; }
         .fc-pill.knew { background: ${T.successSoft}; color: ${T.success}; border: 1.5px solid ${T.success}44; }
         @keyframes fc-pill-pop { 40% { transform: scale(1.16); } }
-        .fc-bar { height: 7px; background: rgba(167,166,162,0.3); border-radius: 99px; overflow: hidden; }
+        .fc-bar { height: 7px; background: rgba(156,151,180,0.3); border-radius: 99px; overflow: hidden; }
         .fc-bar-fill { display: block; height: 100%; background: linear-gradient(90deg, #FF8A3D, ${T.accent}); border-radius: 99px; transition: width .4s cubic-bezier(.34,1.2,.4,1); }
         .fc-cardwrap { perspective: 1200px; position: relative; }
-        .fc-cardwrap::before, .fc-cardwrap::after { content: ""; position: absolute; left: 0; right: 0; top: 0; bottom: 0; border-radius: 20px; background: ${T.paper}; border: 2px solid rgba(167,166,162,0.3); z-index: -1; }
+        .fc-cardwrap::before, .fc-cardwrap::after { content: ""; position: absolute; left: 0; right: 0; top: 0; bottom: 0; border-radius: 20px; background: ${T.paper}; border: 2px solid rgba(156,151,180,0.3); z-index: -1; }
         .fc-cardwrap::before { transform: translateY(7px) scale(0.965); opacity: 0.7; }
         .fc-cardwrap::after { transform: translateY(15px) scale(0.93); opacity: 0.4; }
         .fc-fly { position: relative; animation: fc-in 0.3s ease; }
@@ -2766,13 +3408,12 @@ export default function PmLesson5({ lang: langProp, onFinished }) {
         .fc-card.flip { transform: rotateY(180deg); }
         .fc-card:not(.flip):hover { transform: translateY(-3px); }
         .fc-face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; padding: 22px; text-align: center; }
-        .fc-front { background: ${T.paper}; border: 2px solid rgba(167,166,162,0.3); box-shadow: 0 14px 34px -18px rgba(${T.shadowBase},0.4); }
-        .fc-back { background: linear-gradient(160deg, #FF8A3D, ${T.accent}); color: #fff; transform: rotateY(180deg); box-shadow: 0 16px 36px -16px rgba(255,79,40,0.6); }
+        .fc-front { background: ${T.paper}; border: 2px solid rgba(156,151,180,0.3); box-shadow: 0 14px 34px -18px rgba(${T.shadowBase},0.4); }
+        .fc-back { background: linear-gradient(160deg, #FF8A3D, ${T.accent}); color: #fff; transform: rotateY(180deg); box-shadow: 0 16px 36px -16px rgba(91,61,230,0.6); }
         .fc-q { font-family: 'Manrope'; font-weight: 800; font-size: clamp(18px,2.8vw,23px); color: ${T.ink}; line-height: 1.3; text-wrap: balance; }
         .fc-cue { font-family: 'Manrope'; font-size: 13px; color: ${T.ink3}; }
         .fc-tap { color: ${T.accent}; font-weight: 700; }
         .fc-tag { font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: clamp(26px,5vw,40px); letter-spacing: -0.02em; }
-        .fc-note { font-family: 'Manrope'; font-size: 14px; opacity: 0.92; }
         .fc-actions { display: flex; gap: 10px; }
         .fc-btn { flex: 1; padding: 13px; border-radius: 13px; font-family: 'Manrope'; font-weight: 800; font-size: 15px; cursor: pointer; border: none; transition: transform .15s; }
         .fc-btn:hover { transform: translateY(-2px); }
@@ -2780,7 +3421,7 @@ export default function PmLesson5({ lang: langProp, onFinished }) {
         .fc-btn.again { background: ${T.paper}; border: 2px solid ${T.accent}66; color: ${T.accent}; }
         .fc-btn.again:hover { border-color: ${T.accent}; background: ${T.accentSoft}; }
         .fc-btn:disabled { opacity: 0.55; cursor: default; transform: none; }
-        .fc-btn.ghost { background: ${T.paper}; border: 1.5px solid rgba(167,166,162,0.3); color: ${T.ink}; flex: none; align-self: center; padding: 11px 22px; }
+        .fc-btn.ghost { background: ${T.paper}; border: 1.5px solid rgba(156,151,180,0.3); color: ${T.ink}; flex: none; align-self: center; padding: 11px 22px; }
         .fc-hint { margin: 0; text-align: center; color: ${T.ink3}; font-style: italic; font-size: 13px; }
         .fc-done { display: flex; flex-direction: column; align-items: center; gap: 5px; text-align: center; background: ${T.successSoft}; border-radius: 18px; padding: 22px; max-width: 480px; }
         .fc-done-emoji { font-size: 40px; }
@@ -2831,24 +3472,24 @@ export default function PmLesson5({ lang: langProp, onFinished }) {
         .ach-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
         @media (max-width: 560px) { .ach-grid { grid-template-columns: repeat(2, 1fr); } }
         .ach-badge { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 4px; border-radius: 14px; padding: 14px 10px; transition: transform 0.15s; }
-        .ach-badge.got { background: linear-gradient(160deg, ${T.accentSoft}, #FFF3EC); border: 1.5px solid ${T.accent}55; }
+        .ach-badge.got { background: linear-gradient(160deg, ${T.accentSoft}, #F5F1FE); border: 1.5px solid ${T.accent}55; }
         .ach-badge.got:hover { transform: translateY(-3px); }
-        .ach-badge.locked { background: ${T.bg}; border: 1.5px dashed rgba(167,166,162,0.4); opacity: 0.75; }
+        .ach-badge.locked { background: ${T.bg}; border: 1.5px dashed rgba(156,151,180,0.4); opacity: 0.75; }
         .ach-badge-ic { font-size: 30px; line-height: 1; }
         .ach-badge.locked .ach-badge-ic { filter: grayscale(1) opacity(0.55); font-size: 22px; }
         .ach-badge-name { font-family: 'Manrope'; font-weight: 800; font-size: 13px; color: ${T.ink}; }
         .ach-badge.locked .ach-badge-name { color: ${T.ink3}; }
         .ach-badge-desc { font-family: 'Manrope'; font-size: 10.5px; color: ${T.ink2}; line-height: 1.3; }
         .ach-cnt-wrap { position: relative; }
-        .ach-counter { display: inline-flex; align-items: center; gap: 4px; background: ${T.paper}; border: 1.5px solid rgba(167,166,162,0.4); border-radius: 99px; padding: 5px 11px 5px 9px; font-family: 'Manrope'; font-weight: 700; font-size: 13px; color: ${T.ink2}; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s; }
+        .ach-counter { display: inline-flex; align-items: center; gap: 4px; background: ${T.paper}; border: 1.5px solid rgba(156,151,180,0.4); border-radius: 99px; padding: 5px 11px 5px 9px; font-family: 'Manrope'; font-weight: 700; font-size: 13px; color: ${T.ink2}; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s; }
         .ach-counter.has { border-color: ${T.accent}66; }
-        .ach-counter:hover { border-color: ${T.accent}; box-shadow: 0 6px 16px -8px rgba(255,79,40,0.4); }
+        .ach-counter:hover { border-color: ${T.accent}; box-shadow: 0 6px 16px -8px rgba(91,61,230,0.4); }
         .ach-counter b { color: ${T.accent}; font-size: 14px; font-variant-numeric: tabular-nums; }
         .ach-cnt-tot { color: ${T.ink3}; font-size: 11.5px; }
         .ach-cnt-ic { font-size: 14px; }
         .ach-counter.bump { animation: ach-bump 0.8s cubic-bezier(.34,1.6,.4,1); }
-        @keyframes ach-bump { 0% { transform: scale(1); } 30% { transform: scale(1.35) rotate(-6deg); box-shadow: 0 0 0 6px rgba(255,79,40,0.18); } 60% { transform: scale(0.96) rotate(3deg); } 100% { transform: scale(1) rotate(0); box-shadow: 0 0 0 0 rgba(255,79,40,0); } }
-        .ach-pop { position: absolute; top: calc(100% + 8px); right: 0; z-index: 200; width: 222px; background: ${T.paper}; border: 1px solid rgba(167,166,162,0.4); border-radius: 14px; padding: 10px; box-shadow: 0 18px 44px -14px rgba(${T.shadowBase},0.4); display: flex; flex-direction: column; gap: 3px; animation: fade-step 0.22s ease; }
+        @keyframes ach-bump { 0% { transform: scale(1); } 30% { transform: scale(1.35) rotate(-6deg); box-shadow: 0 0 0 6px rgba(91,61,230,0.18); } 60% { transform: scale(0.96) rotate(3deg); } 100% { transform: scale(1) rotate(0); box-shadow: 0 0 0 0 rgba(91,61,230,0); } }
+        .ach-pop { position: absolute; top: calc(100% + 8px); right: 0; z-index: 200; width: 222px; background: ${T.paper}; border: 1px solid rgba(156,151,180,0.4); border-radius: 14px; padding: 10px; box-shadow: 0 18px 44px -14px rgba(${T.shadowBase},0.4); display: flex; flex-direction: column; gap: 3px; animation: fade-step 0.22s ease; }
         .ach-pop-h { font-family: 'Manrope'; font-weight: 800; font-size: 12px; color: ${T.accent}; padding: 2px 6px 6px; }
         .ach-pop-row { display: flex; align-items: center; gap: 9px; padding: 6px 8px; border-radius: 9px; }
         .ach-pop-row.got { background: ${T.accentSoft}66; }
@@ -2857,17 +3498,8 @@ export default function PmLesson5({ lang: langProp, onFinished }) {
         .ach-pop-nm { font-family: 'Manrope'; font-weight: 700; font-size: 13px; color: ${T.ink}; }
         .ach-pop-row:not(.got) .ach-pop-nm { color: ${T.ink3}; }
 
-        /* === ⚔️ CTA (yakun sahifasida) === */
-        .qz-cta { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; background: linear-gradient(135deg, #1D1145, #35206B); border-radius: 18px; padding: clamp(16px,2.4vw,22px) clamp(18px,2.6vw,26px); box-shadow: 0 14px 36px -14px rgba(29,17,69,0.55); }
-        .qz-cta-brand { flex-shrink: 0; display: inline-flex; align-items: center; }
-        .qz-cta-txt { flex: 1; min-width: 200px; display: flex; flex-direction: column; gap: 3px; }
-        .qz-cta-h { font-family: 'Manrope'; font-weight: 800; font-size: clamp(16px,2.2vw,20px); color: #fff; }
-        .qz-cta-s { font-family: 'Manrope'; font-weight: 500; font-size: 13px; color: rgba(255,255,255,0.72); }
-        .qz-cta-btn { background: ${T.accent}; color: #fff; border: none; border-radius: 14px; padding: 13px 24px; font-family: 'Manrope'; font-weight: 800; font-size: 15px; cursor: pointer; box-shadow: 0 8px 22px -8px rgba(255,79,40,0.7); transition: transform 0.2s; }
-        .qz-cta-btn:hover:not(:disabled) { transform: translateY(-2px) scale(1.03); }
-        .qz-cta-btn:disabled { background: rgba(255,255,255,0.14); color: rgba(255,255,255,0.55); cursor: default; box-shadow: none; }
-        .qz-cta.ready .qz-cta-btn { animation: qz-pulse 1.1s ease-in-out infinite; }
-        @keyframes qz-pulse { 0%,100% { transform: scale(1); box-shadow: 0 8px 22px -8px rgba(255,79,40,0.7); } 50% { transform: scale(1.06); box-shadow: 0 10px 30px -6px rgba(255,79,40,0.95); } }
+        /* === ⚔️ CTA (yakun sahifasida) — vizual CsWordmark'niki, bu faqat o'ram === */
+        .qz-cta { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; border-radius: 18px; }
 
         /* ===== ⚡ ARENA — tungi-neon turnir muhiti ===== */
         .qz-arena { position: fixed; inset: 0; z-index: 10500; overflow-y: auto; display: flex; align-items: flex-start; justify-content: center; padding: clamp(18px,4vw,44px) clamp(12px,3vw,32px); background: radial-gradient(62% 46% at 10% 6%, rgba(124,58,237,0.30) 0%, rgba(124,58,237,0) 56%), radial-gradient(58% 48% at 92% 12%, rgba(15,166,214,0.14) 0%, rgba(15,166,214,0) 55%), radial-gradient(70% 52% at 78% 104%, rgba(255,79,40,0.14) 0%, rgba(255,79,40,0) 60%), radial-gradient(90% 55% at 50% -8%, #26123F 0%, rgba(38,18,63,0) 54%), #140B30; }
@@ -2884,6 +3516,9 @@ export default function PmLesson5({ lang: langProp, onFinished }) {
            Yorug' sahifada qop-qora binafsha kapsula = arenaga PORTAL.
            Ichida darsning o'z QZ_BG_SHAPES tokenlari suzadi (dars-DNK). */
         .cs-cta { flex-direction: column; align-items: stretch; justify-content: center; text-align: center; gap: 0; position: relative; padding: 0; background: none; border: none; box-shadow: none; }
+        /* Yakun-ekran CTA ixcham: so'z kattaligi o'zgarmaydi, faqat kapsula bo'sh joyi qisqaradi
+           («Mentorni kuting»dan keyin joy qolib qalin ko'rinmasin — P0 etaloni) */
+        .cs-cta .cs-cap { padding: clamp(14px,2vw,24px) clamp(22px,3.2vw,40px); gap: clamp(4px,0.7vw,8px); }
         @property --csa { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
 
         .cs-cap { position: relative; overflow: hidden; z-index: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; width: 100%;
@@ -2992,12 +3627,7 @@ export default function PmLesson5({ lang: langProp, onFinished }) {
         @media (prefers-reduced-motion: reduce) { .cs-cap, .cs-ring, .cs-tok, .cs-dash, .cs-thunder, .cs-word, .cs-word::before, .csn-bolt, .cs-spark, .cs-enter, .cs-livedot i, .cs-hud-i, .cs-portal { animation: none !important; } }
         @media (max-width: 560px) { .cs-word { font-size: clamp(26px,9vw,50px); } .cs-cap { border-radius: 40px; padding: 22px 18px; } .cs-livedot { top: 10px; right: 14px; } }
         .qz-view { position: relative; z-index: 1; width: 100%; max-width: 820px; display: flex; flex-direction: column; align-items: center; gap: clamp(14px,2.4vw,22px); margin: auto; }
-        .qz-brand { display: flex; align-items: center; gap: 12px; }
-        .qz-brand.sm { gap: 9px; }
         .qz-bolt { filter: drop-shadow(0 8px 18px rgba(255,79,40,0.32)); }
-        .qz-wm { font-family: 'Manrope'; font-weight: 800; font-size: clamp(28px,5vw,46px); letter-spacing: -0.03em; color: #F2ECFF; line-height: 1; text-shadow: 0 0 22px rgba(150,95,255,0.4); }
-        .qz-wm-h { color: #FF6A3D; }
-        .qz-logo { font-size: clamp(44px,8vw,72px); line-height: 1; }
         .qz-h { font-family: 'Manrope'; font-weight: 800; font-size: clamp(22px,4vw,36px); color: #F2ECFF; margin: 0; text-align: center; letter-spacing: -0.02em; text-shadow: 0 0 24px rgba(150,95,255,0.35); }
         .qz-sub { font-family: 'Manrope'; font-size: clamp(13px,1.9vw,16px); color: #B9A8E6; margin: 0; text-align: center; max-width: 540px; line-height: 1.55; font-weight: 500; }
         .qz-sub b { color: #F2ECFF; }
@@ -3024,7 +3654,7 @@ export default function PmLesson5({ lang: langProp, onFinished }) {
         @keyframes qz-shake { 0%,100% { transform: scale(1); } 50% { transform: scale(1.1); } }
         .qz-q { font-family: 'Manrope'; font-weight: 800; font-size: clamp(19px,3.2vw,28px); color: #F2ECFF; margin: 0; text-align: center; line-height: 1.35; background: rgba(255,255,255,0.05); border: 1px solid rgba(186,140,255,0.34); border-radius: 20px; padding: clamp(18px,2.8vw,28px) clamp(18px,3vw,30px); width: 100%; box-shadow: 0 0 34px rgba(124,58,237,0.28), inset 0 1px 0 rgba(255,255,255,0.06); backdrop-filter: blur(8px); text-wrap: balance; }
         .qz-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(11px,1.6vw,15px); width: 100%; }
-        @media (max-width: 560px) { .qz-grid { grid-template-columns: 1fr; } .qz-wm { font-size: clamp(24px,7vw,34px); } }
+        @media (max-width: 560px) { .qz-grid { grid-template-columns: 1fr; } }
         .qz-tile { --gl: 255,255,255; position: relative; display: flex; align-items: center; gap: 14px; border: none; border-radius: 18px; padding: clamp(15px,2.4vw,22px) clamp(14px,2.2vw,20px); cursor: pointer; text-align: left; min-height: 66px; color: #fff; overflow: hidden; box-shadow: 0 10px 26px -12px rgba(0,0,0,0.55), 0 0 26px -4px rgba(var(--gl),0.42), inset 0 2px 0 rgba(255,255,255,0.32), inset 0 -4px 0 rgba(0,0,0,0.22), inset 0 0 0 1.5px rgba(0,0,0,0.24); transition: transform 0.14s, opacity 0.3s, box-shadow 0.14s, filter 0.2s; }
         .qz-grid .qz-tile:nth-child(1) { --gl: 255,90,44; }
         .qz-grid .qz-tile:nth-child(2) { --gl: 15,166,214; }
@@ -3101,27 +3731,11 @@ export default function PmLesson5({ lang: langProp, onFinished }) {
         .pod-row-dots { display: flex; gap: 4px; }
         .pod-dot { width: 9px; height: 9px; border-radius: 50%; background: rgba(${T.shadowBase},0.15); }
         .pod-dot.ok { background: ${T.success}; }
-        .pod-dot.bad { background: ${T.accent}; }
+        .pod-dot.bad { background: ${T.err}; }
         .pod-row-score { min-width: 34px; text-align: right; font-size: 12.5px; font-weight: 700; color: ${T.ink}; }
         .pod-row-time { min-width: 46px; text-align: right; font-size: 11.5px; color: ${T.ink3}; }
-        .pod-qstats { display: flex; flex-direction: column; gap: 8px; }
-        .qstat-row { display: flex; align-items: center; gap: 10px; }
-        .qstat-lbl { min-width: clamp(120px,22vw,190px); font-family: 'Manrope'; font-weight: 600; font-size: 12.5px; color: ${T.ink2}; }
-        .qstat-n { min-width: 40px; text-align: right; font-size: 12px; color: ${T.ink2}; }
-        .pm-pop { animation: pmPop 0.5s cubic-bezier(.34,1.55,.5,1); }
-        @keyframes pmPop { 0% { transform: scale(0.9); } 50% { transform: scale(1.04); } 100% { transform: scale(1); } }
-        .pm-match { animation: pmMatch 0.55s cubic-bezier(.34,1.5,.5,1); }
-        @keyframes pmMatch { 0% { transform: scale(1); } 35% { transform: scale(1.06); box-shadow: 0 0 0 5px rgba(31,122,77,0.16); } 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(31,122,77,0); } }
-        .pm-shake { animation: shake 0.4s ease; }
         .fade-step { animation: fade-step 0.34s cubic-bezier(.2,.7,.2,1); }
         .d1 { animation-delay: 0.12s; } .d2 { animation-delay: 0.24s; } .d3 { animation-delay: 0.36s; } .d4 { animation-delay: 0.48s; }
-        @keyframes dl-pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.16); } }
-        @keyframes el-pop { from { opacity: 0; transform: translateX(8px); } to { opacity: 1; transform: none; } }
-        .el-in { animation: el-pop 0.3s ease-out; }
-
-        .feedback-block { max-height: 0; opacity: 0; overflow: hidden; transition: max-height 0.4s ease-out, opacity 0.3s ease-out 0.1s, margin-top 0.4s ease-out; margin-top: 0; }
-        .feedback-block.visible { max-height: 800px; opacity: 1; margin-top: clamp(14px,2vw,20px); }
-
 
         /* option-wait (jonli test kutish holati) */
         .option-wait { background: ${T.blueSoft} !important; color: ${T.blue} !important; box-shadow: inset 0 0 0 2px ${T.blue}, 0 8px 22px -8px rgba(1,154,203,0.3) !important; }
