@@ -1103,7 +1103,6 @@ const cardFull = (c) => !!(c && (c.kim || '').trim().length >= 3 && (c.muammo ||
 const readFullCards = () => readCards().filter(cardFull);
 // Hook-tanlovi keys-slaydda qaytariladi (33-qonun: payoff shaxsiylashadi)
 const HOOK_CHOICE_KEY = 'pm-m1d2-hook-choice';
-const readHookChoice = () => { try { return JSON.parse(localStorage.getItem(HOOK_CHOICE_KEY) || 'null'); } catch { return null; } };
 
 // ===== SCREEN 0 — HOOK (ovoz-berish + imzo-sahna: maktab yonidagi lavash do'koni) =====
 const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
@@ -1371,7 +1370,6 @@ const ScreenKeys = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const isMentor = !!(live && live.mode === 'mentor');
   const [i, setI] = useState(0);
   const [bet, setBet] = useState(null);
-  const [hook] = useState(() => readHookChoice());
   const last = i >= K_SLIDES.length - 1;
   const cur = K_SLIDES[i];
   const betOpen = !!cur.bet && bet === null;
@@ -1396,12 +1394,10 @@ const ScreenKeys = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                   <button key={k} className={'k-chip ' + (bet === k ? 'on' : '') + (betTurn ? ' turn-ring turn-wave w' + (k + 1) : '')} disabled={bet !== null} onClick={() => setBet(k)}>{tr(o)}</button>
                 ))}
               </div>
-              <p className="k-note">{tr({ uz: 'Bu ball emas — bemalol belgilang, javob hozir ochiladi.', ru: 'Это не на баллы — смело отмечайте, ответ откроется сейчас.' })}</p>
               {bet !== null && (
                 <p className={'k-res ' + (bet === cur.right ? 'ok' : '')}>
                   {bet === cur.right ? tr({ uz: '🎯 Topdingiz! ', ru: '🎯 Угадали! ' }) : tr({ uz: 'Adashdingiz — asl javob: ', ru: 'Не угадали — верный ответ: ' })}
                   <b>{tr(cur.opts[cur.right])}</b>
-                  {hook && hook.label ? <span className="k-hook">{tr({ uz: ' · Dars boshida siz «', ru: ' · В начале урока вы сказали «' })}{tr(hook.label)}{tr({ uz: '» degandingiz.', ru: '».' })}</span> : null}
                 </p>
               )}
             </div>
@@ -1906,6 +1902,9 @@ const Screen12 = (props) => (
 // qavs [ ] ichidagi vaqtincha yozuvlarni o'z auditoriya-kartasidagi javoblari bilan almashtiradi.
 const KODING_KEY = 'pm-m1d2-koding';
 const readKoding = () => { try { const v = JSON.parse(localStorage.getItem(KODING_KEY) || 'null'); return v && typeof v === 'object' ? v : null; } catch { return null; } };
+// F-0801-01: kompilyator ochiq-yopiqligi ham saqlanadi — fon-tabda Chrome sahifani
+// qayta yuklasa (Memory Saver), o'quvchi kompilyator ICHIGA qaytadi, praktika-sahifaga emas.
+const writeKodingOpen = (open) => { try { const p = readKoding() || {}; localStorage.setItem(KODING_KEY, JSON.stringify({ ...p, open })); } catch {} };
 // UZ-RU: starter-kod o'quvchining tilida ochiladi (RU o'quvchi kirill yozuvni almashtiradi)
 const KOD_START_UZ = [
   '<h1>Mening saytim</h1>',
@@ -1959,7 +1958,7 @@ function KartaCompiler({ initialCode, onContinue, onBack }) {
   useEffect(() => {
     const t = setTimeout(() => {
       setSrc(code);
-      try { const prev = readKoding(); localStorage.setItem(KODING_KEY, JSON.stringify({ code, done: !!(prev && prev.done) })); } catch {}
+      try { const prev = readKoding(); localStorage.setItem(KODING_KEY, JSON.stringify({ code, done: !!(prev && prev.done), open: true })); } catch {}
     }, 400);
     return () => clearTimeout(t);
   }, [code]);
@@ -2033,7 +2032,8 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const isMentor = !!(live && live.mode === 'mentor');
   const isSelf = !live || live.mode === 'self';
   const workRef = useRef(null);
-  const [open, setOpen] = useState(false);
+  // F-0801-01: qayta yuklanishda (Chrome fon-tabni bo'shatgan bo'lsa) kompilyator o'zi qayta ochiladi
+  const [open, setOpen] = useState(() => { const s = readKoding(); return !!(s && s.open); });
   const [st, setSt] = useState(() => {
     const saved = readKoding();
     return { code: storedAnswer?.code || (saved && saved.code) || kodStart(), done: !!(storedAnswer && storedAnswer.solved) || !!(saved && saved.done) };
@@ -2050,7 +2050,7 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const finishPractice = ({ code: newCode }) => {
     setOpen(false);
     setSt({ code: newCode, done: true });
-    try { localStorage.setItem(KODING_KEY, JSON.stringify({ code: newCode, done: true })); } catch {}
+    try { localStorage.setItem(KODING_KEY, JSON.stringify({ code: newCode, done: true, open: false })); } catch {}
     if (!done) {
       onAnswer(screen, { stage: 'koding', screenIdx: screen, code: newCode, solved: true, correct: true });
       if (live && live.mode === 'student') live.submitAnswer(PRACTICE_BASE + screen, 'koding', 0, true, 0);
@@ -2085,7 +2085,7 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </div>
         </div>
         <div className="stq-cta fade-up delay-2">
-          <button className={'kod-launch-btn' + (openHint ? ' turn-ring' : '')} onClick={() => setOpen(true)}>{done ? tr({ uz: '↻ Kompilyatorni qayta ochish', ru: '↻ Открыть компилятор снова' }) : tr({ uz: '🛠 Kompilyatorni ochish', ru: '🛠 Открыть компилятор' })}</button>
+          <button className={'kod-launch-btn' + (openHint ? ' turn-ring' : '')} onClick={() => { setOpen(true); writeKodingOpen(true); }}>{done ? tr({ uz: '↻ Kompilyatorni qayta ochish', ru: '↻ Открыть компилятор снова' }) : tr({ uz: '🛠 Kompilyatorni ochish', ru: '🛠 Открыть компилятор' })}</button>
           {done && <span className="stq-cta-sub">{tr({ uz: 'Bajarildi — xohlasangiz matnni yana tuzatishingiz mumkin', ru: 'Выполнено — при желании текст можно ещё поправить' })}</span>}
           {/* 89-qonun: takrorlash-yo'li — FAQAT erkin rejimda va FAQAT bajarilmagan holatda.
               Faqat eshikni ochadi: nishon bermaydi, saqlanmaydi, serverga signal yubormaydi. */}
@@ -2098,7 +2098,7 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <MentorPracticeStats live={live} screen={screen} label={{ uz: "🛠 Almashtirib bo'lganlar", ru: '🛠 Кто заменил' }} />
         <MentorNote>{{ uz: "Teglarni tushuntirib o'tirmang — bu keyingi darsning ishi. 10 daqiqada ulgurmaganlar uyda tugatadi. «Davom etish» siz uchun ochiq.", ru: 'Теги не объясняйте — это дело следующего урока. Кто не успел за 10 минут, доделает дома. «Продолжить» для вас открыто.' }}</MentorNote>
       </div>
-      {open && <KartaCompiler initialCode={code} onContinue={finishPractice} onBack={() => setOpen(false)} />}
+      {open && <KartaCompiler initialCode={code} onContinue={finishPractice} onBack={() => { setOpen(false); writeKodingOpen(false); }} />}
     </Stage>
   );
 };
@@ -2782,11 +2782,12 @@ const HW_TOKENS = [
 const PM_FLASHCARDS = [
   { front: { uz: "Saytning auditoriyasi — bu kimlar?", ru: 'Аудитория сайта — это кто?' }, back: { uz: 'Saytdan foyda oladigan aniq odamlar guruhi', ru: 'Конкретная группа людей, которой сайт полезен' }, note: { uz: "«hamma» emas — aniq guruh", ru: 'не «все» — конкретная группа' } },
   { front: { uz: "«Hamma uchun» qilingan sayt aslida kim uchun bo'lib qoladi?", ru: 'Для кого на деле оказывается сайт «для всех»?' }, back: { uz: 'Hech kim uchun', ru: 'Ни для кого' }, note: { uz: "hech kim o'zi izlaganini topmaydi", ru: 'никто не находит того, что искал' } },
-  { front: { uz: "Auditoriya-karta qaysi uch javobdan yig'iladi?", ru: 'Из каких трёх ответов собирается карточка аудитории?' }, back: { uz: 'KIM, MUAMMO, YECHIM', ru: 'КТО, ПРОБЛЕМА, РЕШЕНИЕ' }, note: { uz: "bittasi yetishmasa — karta to'liq emas", ru: 'не хватает одного — карточка неполная' } },
-  { front: { uz: "Kartadagi KIM qatoriga nima yoziladi?", ru: 'Что пишут в строке КТО?' }, back: { uz: 'Saytni birinchi ochadigan aniq guruh', ru: 'Конкретную группу, которая первой откроет сайт' }, note: { uz: "yoshi yoki qiziqishi bilan", ru: 'по возрасту или интересу' } },
-  { front: { uz: "Kartadagi MUAMMO qatoriga nima yoziladi?", ru: 'Что пишут в строке ПРОБЛЕМА?' }, back: { uz: 'Bitta aniq qiyinchilik', ru: 'Одну конкретную трудность' }, note: { uz: "o'sha odamlar sayt bilan nimani yengmoqchi", ru: 'что эти люди хотят преодолеть с помощью сайта' } },
-  { front: { uz: "Facebook boshida kimlar uchun ochilgan edi?", ru: 'Для кого Facebook открыли вначале?' }, back: { uz: 'Bitta universitet talabalari uchun', ru: 'Для студентов одного университета' }, note: { uz: "tor auditoriya — kuchli boshlanish", ru: 'узкая аудитория — сильное начало' } },
-  { front: { uz: "Bitta saytga kirgan har xil odamlar nimaga qaraydi?", ru: 'На что смотрят разные люди на одном сайте?' }, back: { uz: "Har biri o'ziga kerak qatorga", ru: 'Каждый — на нужную ему строку' }, note: { uz: "shuning uchun kartada asosiy auditoriya tanlanadi", ru: 'поэтому в карточке выбирают основную аудиторию' } },
+  { front: { uz: "Auditoriya-karta 3 ta savolga javob beradi. Qaysilar?", ru: 'Карточка аудитории отвечает на 3 вопроса. На какие?' }, back: { uz: 'KIM, MUAMMO, YECHIM', ru: 'КТО, ПРОБЛЕМА, РЕШЕНИЕ' }, note: { uz: "bittasi yetishmasa — karta to'liq emas", ru: 'не хватает одного — карточка неполная' } },
+  { front: { uz: "KIM qatoriga nima yoziladi?", ru: 'Что пишут в строке КТО?' }, back: { uz: "Saytdan birinchi bo'lib foydalanadigan aniq odamlar guruhi", ru: 'Конкретная группа людей, которая первой начнёт пользоваться сайтом' }, note: { uz: "yoshi, kasbi yoki qiziqishi bilan aniqlanadi", ru: 'определяется возрастом, профессией или интересом' } },
+  { front: { uz: "MUAMMO qatoriga nima yoziladi?", ru: 'Что пишут в строке ПРОБЛЕМА?' }, back: { uz: 'Bitta aniq qiyinchilik', ru: 'Одна конкретная трудность' }, note: { uz: "sayt aynan shu qiyinchilikni yechadi", ru: 'сайт решает именно эту трудность' } },
+  { front: { uz: "Facebook boshida kimlar uchun ochilgan edi?", ru: 'Для кого Facebook открыли вначале?' }, back: { uz: 'Faqat bitta universitet talabalari uchun', ru: 'Только для студентов одного университета' }, note: { uz: "tor auditoriya — kuchli boshlanish", ru: 'узкая аудитория — сильное начало' } },
+  { front: { uz: "Bir xil saytga kirgan odamlar nimaga qaraydi?", ru: 'На что смотрят люди, зашедшие на один и тот же сайт?' }, back: { uz: "Har kim o'ziga kerak bo'lgan narsani qidiradi", ru: 'Каждый ищет то, что нужно именно ему' }, note: { uz: "shuning uchun avval asosiy auditoriya tanlanadi", ru: 'поэтому сначала выбирают основную аудиторию' } },
+  { front: { uz: "Kuchli sayt nimadan boshlanadi?", ru: 'С чего начинается сильный сайт?' }, back: { uz: 'Kichik va aniq auditoriyadan', ru: 'С небольшой и конкретной аудитории' }, note: { uz: "Facebook ham shunday boshlagan", ru: 'Facebook начинал так же' } },
 ];
 function Flashcards({ cards }) {
   const [queue, setQueue] = useState(() => cards.map((_, i) => i));
@@ -2837,8 +2838,7 @@ const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) =>
   return (
     <Stage eyebrow={{ uz: 'Takrorlash', ru: 'Повторение' }} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={false} label={{ uz: 'Yakunlash →', ru: 'Завершить →' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Atamalarni <span className="italic" style={{ color: T.accent }}>tez takrorlaymiz</span>.</>, ru: <><span className="italic" style={{ color: T.accent }}>Быстро повторим</span> понятия.</> })}</h2></div>
-        <Mentor>{{ uz: <>Har kartada bitta savol: avval <b style={{ color: T.ink }}>javobini o'ylang</b>, so'ng kartani bosib tekshiring.</>, ru: <>На каждой карточке один вопрос: сначала <b style={{ color: T.ink }}>подумайте над ответом</b>, затем нажмите карточку и проверьте себя.</> }}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>O'zingizni <span className="italic" style={{ color: T.accent }}>sinab ko'ring</span>.</>, ru: <>Проверьте <span className="italic" style={{ color: T.accent }}>себя</span>.</> })}</h2></div>
         <div className="fc-center"><Flashcards cards={PM_FLASHCARDS} /></div>
       </div>
     </Stage>
@@ -2959,7 +2959,6 @@ function AchCelebrate({ ach, onDone }) {
           ))}
         </div>
         <div className="acu-txt">
-          <span className="acu-eyebrow">{tr({ uz: '🏅 Nishon ochildi!', ru: '🏅 Награда открыта!' })}</span>
           <span className="acu-name">{ach.name}</span>
           {ach.desc && <span className="acu-desc">{tr(ach.desc)}</span>}
         </div>
@@ -3691,8 +3690,8 @@ export default function PmLesson1({ lang: langProp, onFinished }) {
         .recap { display: flex; flex-direction: column; gap: 8px; list-style: none; } .recap li { display: flex; align-items: flex-start; gap: 10px; font-size: clamp(13px,1.6vw,15px); color: ${T.ink}; animation: fade-in-up 0.4s ease-out forwards; opacity: 0; } .recap .ck { color: ${T.success}; flex-shrink: 0; margin-top: 1px; }
 
         /* === 🃏 FLASHCARDS (reusable, 3D flip) === */
-        .fc-center { display: flex; justify-content: center; padding-top: 4px; }
-        .fc { display: flex; flex-direction: column; gap: 11px; max-width: 480px; width: 100%; }
+        .fc-center { flex: 1; min-height: 0; display: flex; align-items: center; justify-content: center; padding-top: 4px; }
+        .fc { display: flex; flex-direction: column; gap: 11px; max-width: 520px; width: 100%; }
         .fc-top { display: flex; justify-content: space-between; align-items: center; }
         .fc-pill { display: inline-flex; align-items: center; gap: 5px; font-family: 'Manrope'; font-weight: 800; font-size: 12.5px; border-radius: 99px; padding: 5px 13px; animation: fc-pill-pop 0.35s cubic-bezier(.34,1.5,.4,1); }
         .fc-pill b { font-size: 1.15em; font-variant-numeric: tabular-nums; }
@@ -3715,7 +3714,7 @@ export default function PmLesson1({ lang: langProp, onFinished }) {
         .fc-fly.out-knew::after { content: '✓'; background: ${T.success}; box-shadow: 0 10px 26px -8px ${T.success}; }
         .fc-fly.out-again::after { content: '✗'; background: ${T.accent}; box-shadow: 0 10px 26px -8px ${T.accent}; }
         @keyframes fc-stamp { from { transform: translate(-50%, -50%) scale(0); } }
-        .fc-card { position: relative; height: clamp(160px,26vw,188px); cursor: pointer; transform-style: preserve-3d; transition: transform .55s cubic-bezier(.4,0,.2,1); }
+        .fc-card { position: relative; height: clamp(188px,27vh,268px); cursor: pointer; transform-style: preserve-3d; transition: transform .55s cubic-bezier(.4,0,.2,1); }
         .fc-card.flip { transform: rotateY(180deg); }
         .fc-card:not(.flip):hover { transform: translateY(-3px); }
         .fc-face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; padding: 22px; text-align: center; }
@@ -3726,7 +3725,7 @@ export default function PmLesson1({ lang: langProp, onFinished }) {
         .fc-tap { color: ${T.accent}; font-weight: 700; }
         .fc-tag { font-family: 'Manrope'; font-weight: 800; font-size: clamp(24px,4.5vw,34px); letter-spacing: -0.01em; text-align: center; line-height: 1.15; }
         .fc-note { font-family: 'Manrope'; font-size: 14px; opacity: 0.92; }
-        .fc-actions { display: flex; gap: 10px; }
+        .fc-actions { display: flex; gap: 10px; min-height: 48px; }
         .fc-btn { flex: 1; padding: 13px; border-radius: 13px; font-family: 'Manrope'; font-weight: 800; font-size: 15px; cursor: pointer; border: none; transition: transform .15s; }
         .fc-btn:hover { transform: translateY(-2px); }
         .fc-btn.knew { background: ${T.success}; color: #fff; box-shadow: 0 10px 22px -10px ${T.success}; }
@@ -3734,7 +3733,7 @@ export default function PmLesson1({ lang: langProp, onFinished }) {
         .fc-btn.again:hover { border-color: ${T.accent}; background: ${T.accentSoft}; }
         .fc-btn:disabled { opacity: 0.55; cursor: default; transform: none; }
         .fc-btn.ghost { background: ${T.paper}; border: 1.5px solid ${T.line}; color: ${T.ink}; flex: none; align-self: center; padding: 11px 22px; }
-        .fc-hint { margin: 0; text-align: center; color: ${T.ink3}; font-style: italic; font-size: 13px; }
+        .fc-hint { margin: 0; min-height: 48px; display: flex; align-items: center; justify-content: center; text-align: center; color: ${T.ink3}; font-style: italic; font-size: 13px; }
         .fc-done { display: flex; flex-direction: column; align-items: center; gap: 5px; text-align: center; background: ${T.successSoft}; border-radius: 18px; padding: 22px; max-width: 480px; }
         .fc-done-emoji { font-size: 40px; }
         .fc-done-h { font-family: 'Manrope'; font-weight: 800; font-size: 20px; color: ${T.success}; margin: 0; }
@@ -4080,10 +4079,8 @@ export default function PmLesson1({ lang: langProp, onFinished }) {
         .k-chip:hover:not(:disabled) { transform: translateY(-2px); box-shadow: inset 0 0 0 1.5px ${T.accent}66; }
         .k-chip.on { background: ${T.accentSoft}; color: ${T.accent}; box-shadow: inset 0 0 0 2px ${T.accent}; }
         .k-chip:disabled { cursor: default; }
-        .k-note { margin: 0; font-family: 'Manrope', sans-serif; font-weight: 600; font-size: 12px; color: ${T.ink3}; }
         .k-res { margin: 0; font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 13.5px; color: ${T.ink}; background: ${T.bg}; border-radius: 12px; padding: 9px 14px; animation: fade-step 0.3s ease-out; min-width: 0; overflow-wrap: anywhere; }
         .k-res.ok { color: ${T.success}; background: ${T.successSoft}; }
-        .k-hook { font-weight: 600; color: ${T.ink2}; }
         .k-nav { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; justify-content: center; }
         .k-dots { display: inline-flex; gap: 6px; }
         .k-dot { width: 8px; height: 8px; border-radius: 99px; background: ${T.line}; }

@@ -907,7 +907,7 @@ const Confetti = () => {
 
 // ===== SCREEN 0 — HOOK =====
 const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
-  const audio = useAudio([{ id: 's0', text: `Brauzerga youtube.com yozib Enter bosasiz — bir soniyada sayt chiqadi. Lekin shu bir soniya ichida ekran ortida so'rovingiz katta yo'lni bosib o'tadi. Sizningcha, sayt qayerdan keladi?`, trigger: 'on_mount', waits_for: { type: 'option_picked' } }]);
+  const audio = useAudio([{ id: 's0', text: `Brauzerga youtube.com yozib Enter bosasiz — bir soniyada sayt chiqadi. Lekin shu bir soniya ichida so'rovingiz xonangizdan chiqib ketadi, chet elgacha yo'l bosadi va javob bilan qaytib keladi. Sizningcha, sayt sizga qayerdan yetib keladi?`, trigger: 'on_mount', waits_for: { type: 'option_picked' } }]);
   const [picked, setPicked] = useState(storedAnswer?.picked ?? null);
   const [phase, setPhase] = useState(storedAnswer ? 'site' : 'idle');
   const OPTS = [
@@ -920,8 +920,8 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
   return (
     <Stage eyebrow={tr({ uz: 'Kirish', ru: 'Вступление' })} screen={screen} audioState={audio} navContent={<NavNext optionalLive disabled={picked === null} label={{ uz: 'Davom etish', ru: 'Продолжить' }} onClick={onNext} />}>
       <div className="screen">
-        <h1 className="title h-title fade-up">{tr({ uz: <>Sayt manzilini yozib Enter bossangiz, u <span className="italic" style={{ color: T.accent }}>qayerdan</span> keladi?</>, ru: <>Когда вы вводите адрес сайта и жмёте Enter, <span className="italic" style={{ color: T.accent }}>откуда</span> он берётся?</> })}</h1>
-        <Mentor>{tr({ uz: <>Telefon yoki kompyuterda <b style={{ color: T.ink }}>youtube.com</b> yozib Enter bossangiz — bir soniyada sayt chiqadi. Lekin shu bir soniya ichida ekran ortida so'rovingiz katta <b style={{ color: T.ink }}>yo'lni</b> bosib o'tadi. Avval tugmani bosing, keyin o'zingiz o'ylab ko'ring: sayt qayerdan keladi?</>, ru: <>Когда на телефоне или компьютере вы вводите <b style={{ color: T.ink }}>youtube.com</b> и жмёте Enter — сайт появляется за секунду. Но за эту секунду ваш запрос за кулисами проходит большой <b style={{ color: T.ink }}>путь</b>. Сначала нажмите кнопку, потом подумайте сами: откуда берётся сайт?</> })}</Mentor>
+        <h1 className="title h-title fade-up">{tr({ uz: <>youtube.com yozib Enter bossangiz, sayt sizga <span className="italic" style={{ color: T.accent }}>qayerdan</span> yetib keladi?</>, ru: <>Вводите youtube.com и жмёте Enter — <span className="italic" style={{ color: T.accent }}>откуда</span> сайт добирается до вас?</> })}</h1>
+        <Mentor>{tr({ uz: <>Telefon yoki kompyuterda <b style={{ color: T.ink }}>youtube.com</b> yozib Enter bossangiz — bir soniyada sayt chiqadi. Lekin shu bir soniya ichida so'rovingiz xonangizdan chiqib ketadi, <b style={{ color: T.ink }}>chet elgacha</b> yo'l bosadi va javob bilan qaytib keladi. Avval tugmani bosing, keyin o'zingiz o'ylab ko'ring: sayt sizga qayerdan yetib keladi?</>, ru: <>Когда на телефоне или компьютере вы вводите <b style={{ color: T.ink }}>youtube.com</b> и жмёте Enter — сайт появляется за секунду. Но за эту секунду ваш запрос выходит из вашей комнаты, добирается <b style={{ color: T.ink }}>до другой страны</b> и возвращается с ответом. Сначала нажмите кнопку, потом подумайте сами: откуда сайт добирается до вас?</> })}</Mentor>
         <Split>
           <Col>
             <div className="urlbar fade-up delay-1"><span className="urlbar-lock">🔒</span><span className="urlbar-text">youtube.com</span><button className="urlbar-go" onClick={go} disabled={phase !== 'idle'}>Enter ↵</button></div>
@@ -937,7 +937,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
             </Preview>
           </Col>
           <Col>
-            <p className="eyebrow fade-up delay-2" style={{ color: T.ink2, margin: 0 }}>{tr({ uz: 'Sizningcha, sayt qayerdan keladi?', ru: 'Как думаете, откуда берётся сайт?' })}</p>
+            <p className="eyebrow fade-up delay-2" style={{ color: T.ink2, margin: 0 }}>{tr({ uz: 'Sizningcha, sayt sizga qayerdan yetib keladi?', ru: 'Как думаете, откуда сайт добирается до вас?' })}</p>
             <div className="fade-up delay-3" style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
               {OPTS.map(o => { const on = picked === o.id; return (<button key={o.id} className={`hook-option ${on ? 'on' : ''}`} disabled={picked !== null} onClick={() => pick(o.id)}><span className="radio">{on && <span className="radio-dot" />}</span><span>{tr(o.label)}</span></button>); })}
             </div>
@@ -1204,10 +1204,10 @@ const Screen4 = (props) => (
 
 // ===== SCREEN 5 — DOMEN =====
 const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const audio = useAudio([{ id: 's5', text: `Saytga borish uchun uning manzilini bilish kerak. Bu manzil — domen: youtube.com, google.uz. Xuddi uyingizning manzili kabi — uni yozsangiz, aynan o'sha saytga borasiz. Domenni tanlab, qismlarini ko'ring.`, trigger: 'on_mount', waits_for: null }]);
+  const audio = useAudio([{ id: 's5', text: `Saytga borish uchun uning manzilini bilish kerak. Bu manzil — domen: youtube.com, coddycamp.uz. Xuddi uyingizning manzili kabi — uni yozsangiz, aynan o'sha saytga borasiz. Domenni tanlab, qismlarini ko'ring.`, trigger: 'on_mount', waits_for: null }]);
   const DOMAINS = [
     { full: 'youtube.com', name: 'youtube', tld: '.com', note: { uz: '.com — tijoriy va umumiy saytlar uchun.', ru: '.com — для коммерческих и общих сайтов.' } },
-    { full: 'google.uz', name: 'google', tld: '.uz', note: { uz: ".uz — O'zbekiston saytlari uchun.", ru: '.uz — для сайтов Узбекистана.' } },
+    { full: 'coddycamp.uz', name: 'coddycamp', tld: '.uz', note: { uz: ".uz — O'zbekiston saytlari uchun. Bizning maktabimiz ham shu zonada.", ru: ".uz — для сайтов Узбекистана. Наша школа тоже в этой зоне." } },
     { full: 'wikipedia.org', name: 'wikipedia', tld: '.org', note: { uz: '.org — tashkilotlar uchun.', ru: '.org — для организаций.' } }
   ];
   const [sel, setSel] = useState(storedAnswer?.picked || null);
@@ -1218,7 +1218,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: 'Domen', ru: 'Домен' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Domenni tanlang', ru: 'Выберите домен' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Saytning <span className="italic" style={{ color: T.accent }}>manzili</span> qanday bo'ladi?</>, ru: <>Каким бывает <span className="italic" style={{ color: T.accent }}>адрес</span> сайта?</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Saytga borish uchun uning <b style={{ color: T.ink }}>manzilini</b> bilishingiz kerak — bu <b style={{ color: T.ink }}>domen</b>: youtube.com, google.uz. Xuddi do'stingiznikiga borish uchun uy manzilini bilganingizdek — manzilni yozsangiz, aynan o'sha saytga borasiz. Domenni tanlang.</>, ru: <>Чтобы попасть на сайт, нужно знать его <b style={{ color: T.ink }}>адрес</b> — это <b style={{ color: T.ink }}>домен</b>: youtube.com, google.uz. Как и с адресом дома друга — вводите адрес и попадаете именно на этот сайт. Выберите домен.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Saytga borish uchun uning <b style={{ color: T.ink }}>manzilini</b> bilishingiz kerak — bu <b style={{ color: T.ink }}>domen</b>: youtube.com, coddycamp.uz. Xuddi do'stingiznikiga borish uchun uy manzilini bilganingizdek — manzilni yozsangiz, aynan o'sha saytga borasiz. Domenni tanlang.</>, ru: <>Чтобы попасть на сайт, нужно знать его <b style={{ color: T.ink }}>адрес</b> — это <b style={{ color: T.ink }}>домен</b>: youtube.com, coddycamp.uz. Как и с адресом дома друга — вводите адрес и попадаете именно на этот сайт. Выберите домен.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <div className="col">
@@ -1246,9 +1246,9 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // ===== SCREEN 5b — TEST (domen) =====
 const Screen5b = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow={{ uz: 'Tekshiruv', ru: 'Проверка' }}
-    audioText="youtube.com, google.uz — saytning bunday manzili nima deb ataladi?"
-    questionText="youtube.com, google.uz — bunday sayt manzili nima deb ataladi?"
-    question={{ uz: <><p className="eyebrow" style={{ color: T.accent }}>Mustahkamlash</p><h2 className="title h-sub" style={{ marginTop: 8 }}><span className="italic" style={{ color: T.accent }}>youtube.com</span>, google.uz — bunday sayt manzili nima deb ataladi?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Закрепление</p><h2 className="title h-sub" style={{ marginTop: 8 }}><span className="italic" style={{ color: T.accent }}>youtube.com</span>, google.uz — как называется такой адрес сайта?</h2></> }}
+    audioText="youtube.com, coddycamp.uz — saytning bunday manzili nima deb ataladi?"
+    questionText="youtube.com, coddycamp.uz — bunday sayt manzili nima deb ataladi?"
+    question={{ uz: <><p className="eyebrow" style={{ color: T.accent }}>Mustahkamlash</p><h2 className="title h-sub" style={{ marginTop: 8 }}><span className="italic" style={{ color: T.accent }}>youtube.com</span>, coddycamp.uz — bunday sayt manzili nima deb ataladi?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Закрепление</p><h2 className="title h-sub" style={{ marginTop: 8 }}><span className="italic" style={{ color: T.accent }}>youtube.com</span>, coddycamp.uz — как называется такой адрес сайта?</h2></> }}
     options={[{ uz: 'Brauzer', ru: 'Браузер' }, { uz: 'Parol', ru: 'Пароль' }, { uz: 'Domen', ru: 'Домен' }, { uz: 'Server', ru: 'Сервер' }]} correctIdx={2}
     explainCorrect={{ uz: "Aniq topdingiz! Domen — saytning odam oson eslab qoladigan manzili (youtube.com).", ru: 'Точно! Домен — легко запоминаемый человеком адрес сайта (youtube.com).' }}
     explainWrong={{ 0: { uz: 'Brauzer — saytni ochadigan dastur, manzil emas.', ru: 'Браузер — программа, открывающая сайт, а не адрес.' }, 1: { uz: 'Parol — maxfiy so\'z. Sayt manzili — domen.', ru: 'Пароль — секретное слово. Адрес сайта — домен.' }, 3: { uz: 'Server — sayt saqlanadigan kompyuter. Uning manzili (nomi) — domen.', ru: 'Сервер — компьютер, где хранится сайт. Его адрес (имя) — домен.' }, default: { uz: 'Sayt manzili — domen deb ataladi.', ru: 'Адрес сайта называется доменом.' } }} />
@@ -1306,7 +1306,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // ===== SCREEN 7 — DNS =====
 const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const audio = useAudio([{ id: 's7', text: `Raqamlarni hech kim yodlamaydi! Shuning uchun DNS bor — internetning telefon kitobi: siz domen berasiz, u IP qaytaradi. Domenni tanlang.`, trigger: 'on_mount', waits_for: null }]);
-  const MAP = { 'youtube.com': '142.250.190.78', 'google.uz': '173.194.220.94', 'wikipedia.org': '208.80.154.224' };
+  const MAP = { 'youtube.com': '142.250.190.78', 'coddycamp.uz': '213.230.106.24', 'wikipedia.org': '208.80.154.224' };
   const PLACE = '•••.•••.•••.••';
   const [q, setQ] = useState(storedAnswer?.q || null);
   const [phase, setPhase] = useState(storedAnswer ? 'found' : 'idle'); // idle | looking | found
@@ -1673,7 +1673,7 @@ const Screen12 = (props) => (
 const SITE_CATALOG = {
   'youtube.com':   { ic: '▶️', name: 'YouTube',   ip: '142.250.190.78',  bar: '#FF0000', mock: 'youtube' },
   'google.com':    { ic: '🔍', name: 'Google',    ip: '142.250.185.78',  bar: '#4285F4', mock: 'google' },
-  'google.uz':     { ic: '🔍', name: 'Google',    ip: '142.250.185.3',   bar: '#4285F4', mock: 'google' },
+  'coddycamp.uz':{ ic: '🎓', name: 'CoddyCamp', ip: '213.230.106.24',  bar: '#FF4F28', mock: 'generic' },
   'wikipedia.org': { ic: '📚', name: 'Wikipedia', ip: '208.80.154.224',  bar: '#202122', mock: 'wikipedia' },
   'instagram.com': { ic: '📷', name: 'Instagram', ip: '157.240.221.174', bar: '#E1306C', mock: 'generic' },
   'telegram.org':  { ic: '✈️', name: 'Telegram',  ip: '149.154.167.99',  bar: '#229ED9', mock: 'generic' }
@@ -1796,7 +1796,7 @@ const RECAPS = {
   6: {
     title: { uz: 'Domen — sayt manzili', ru: 'Домен — адрес сайта' }, cards: [
       { ic: '🏠', h: { uz: 'Domen — saytning manzili', ru: 'Домен — адрес сайта' },
-        body: { uz: <>Do'stingiznikiga borish uchun uy manzilini bilishingiz kerak. Saytga kirish uchun ham manzil kerak — brauzerning yuqori qatoriga yoziladigan bu manzil <b>domen</b> deyiladi: <b className="mono">youtube.com</b>, <b className="mono">google.uz</b>.</>, ru: <>Чтобы прийти к другу, нужно знать адрес дома. Чтобы зайти на сайт, тоже нужен адрес — тот, что пишут в верхней строке браузера, называется <b>домен</b>: <b className="mono">youtube.com</b>, <b className="mono">google.uz</b>.</> },
+        body: { uz: <>Do'stingiznikiga borish uchun uy manzilini bilishingiz kerak. Saytga kirish uchun ham manzil kerak — brauzerning yuqori qatoriga yoziladigan bu manzil <b>domen</b> deyiladi: <b className="mono">youtube.com</b>, <b className="mono">coddycamp.uz</b>.</>, ru: <>Чтобы прийти к другу, нужно знать адрес дома. Чтобы зайти на сайт, тоже нужен адрес — тот, что пишут в верхней строке браузера, называется <b>домен</b>: <b className="mono">youtube.com</b>, <b className="mono">coddycamp.uz</b>.</> },
         vis: { uz: <RcFlow items={['🏠 Uy manzili → uyga borasiz', '🌐 Domen → saytga borasiz']} />, ru: <RcFlow items={['🏠 Адрес дома → приходите домой', '🌐 Домен → заходите на сайт']} /> },
         ask: { uz: "Sevimli saytingizning domeni nima?", ru: 'Какой домен у вашего любимого сайта?' } },
       { ic: '🧩', h: { uz: 'Domen ikki qismdan iborat', ru: 'Домен состоит из двух частей' },
@@ -2369,7 +2369,7 @@ const QUIZ_BANK = [
   { q: { uz: "Qaysi biri DOMEN?", ru: "Что из этого — ДОМЕН?" }, opts: [{ uz: '142.250.190.78', ru: '142.250.190.78' }, { uz: 'Chrome', ru: 'Chrome' }, { uz: 'wikipedia.org', ru: 'wikipedia.org' }, { uz: 'HTML', ru: 'HTML' }], correct: 2 },
   { q: { uz: "HTML kodni o'qib, chiroyli sahifaga aylantiradigan kim?", ru: "Кто читает HTML-код и превращает его в красивую страницу?" }, opts: [{ uz: 'Server', ru: 'Сервер' }, { uz: 'DNS', ru: 'DNS' }, { uz: 'Domen', ru: 'Домен' }, { uz: 'Brauzer', ru: 'Браузер' }], correct: 3 },
   { q: { uz: "So'rovning TO'G'RI tartibi qaysi?", ru: "Какой ПРАВИЛЬНЫЙ порядок запроса?" }, opts: [{ uz: 'Brauzer → DNS → Server → Ekran', ru: 'Браузер → DNS → Сервер → Экран' }, { uz: 'DNS → Brauzer → Ekran → Server', ru: 'DNS → Браузер → Экран → Сервер' }, { uz: 'Server → Brauzer → DNS → Ekran', ru: 'Сервер → Браузер → DNS → Экран' }, { uz: 'Brauzer → Server → DNS → Ekran', ru: 'Браузер → Сервер → DNS → Экран' }], correct: 0 },
-  { q: { uz: "google.uz'dagi «.uz» nimani bildiradi?", ru: "Что означает «.uz» в google.uz?" }, opts: [{ uz: 'Saytning nomi', ru: 'Название сайта' }, { uz: "O'zbekiston zonasi", ru: 'Зона Узбекистана' }, { uz: 'Parol', ru: 'Пароль' }, { uz: "Serverning IP'si", ru: 'IP сервера' }], correct: 1 },
+  { q: { uz: "coddycamp.uz'dagi «.uz» nimani bildiradi?", ru: "Что означает «.uz» в coddycamp.uz?" }, opts: [{ uz: 'Saytning nomi', ru: 'Название сайта' }, { uz: "O'zbekiston zonasi", ru: 'Зона Узбекистана' }, { uz: 'Parol', ru: 'Пароль' }, { uz: "Serverning IP'si", ru: 'IP сервера' }], correct: 1 },
   { q: { uz: "DNS «telefon kitobi» bo'lsa, undagi ism va raqam nima?", ru: "Если DNS — «телефонная книга», что в ней имя и номер?" }, opts: [{ uz: 'Ism=IP · Raqam=domen', ru: 'Имя=IP · Номер=домен' }, { uz: 'Ism=brauzer · Raqam=server', ru: 'Имя=браузер · Номер=сервер' }, { uz: 'Ism=domen · Raqam=IP', ru: 'Имя=домен · Номер=IP' }, { uz: 'Ism=sayt · Raqam=parol', ru: 'Имя=сайт · Номер=пароль' }], correct: 2 },
 ];
 const quizPts = (elapsedMs) => elapsedMs <= 500 ? 1000 : Math.max(0, Math.round(1000 * (1 - (Math.min(elapsedMs, QUIZ_MS) / QUIZ_MS) / 2)));
@@ -2992,17 +2992,16 @@ const REQ_ORDER_PIECES = [
 
 // ===== SCREEN 13c — SO'ROV TARTIBI (mustahkamlash-gate, o'yindan keyin) =====
 const ScreenReqOrder = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const audio = useAudio([{ id: 's13c', text: `Endi o'zingiz yig'ing: so'rov qaysi tartibda yuradi? Avval brauzer boshlaydi, keyin DNS manzilni topadi, server sahifani beradi, oxirida ekran chizadi. Bo'laklarni to'g'ri joylang.`, trigger: 'on_mount', waits_for: null }]);
+  const audio = useAudio([{ id: 's13c', text: `Hozirgina youtube.com ni topib, ekranga keltirdingiz. So'rov o'sha yo'lni bosib o'tdi. Endi shu tartibni o'zingiz yig'ing — bo'laklarni sudrab yoki bosib joylang.`, trigger: 'on_mount', waits_for: null }]);
   const [done, setDone] = useState(!!storedAnswer);
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]); // eslint-disable-line
   return (
     <Stage eyebrow={tr({ uz: 'Mustahkamlash', ru: 'Закрепление' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "Tartibni yig'ing", ru: 'Соберите порядок' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>So'rov qanday <span className="italic" style={{ color: T.accent }}>tartibda</span> yuradi?</>, ru: <>В каком <span className="italic" style={{ color: T.accent }}>порядке</span> идёт запрос?</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Paket o'yinida ko'rdingiz: so'rov <b style={{ color: T.ink }}>brauzerdan</b> boshlanadi, <b style={{ color: T.ink }}>DNS</b> manzilni topadi, <b style={{ color: T.ink }}>server</b> sahifani beradi, oxirida <b style={{ color: T.ink }}>ekran</b> chizadi. Endi shu tartibni o'zingiz yig'ing.</>, ru: <>В игре с пакетом вы видели: запрос начинается с <b style={{ color: T.ink }}>браузера</b>, <b style={{ color: T.ink }}>DNS</b> находит адрес, <b style={{ color: T.ink }}>сервер</b> отдаёт страницу, в конце <b style={{ color: T.ink }}>экран</b> рисует. Теперь соберите этот порядок сами.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Hozirgina <b style={{ color: T.ink }}>youtube.com</b> ni topib, ekranga keltirdingiz. So'rov o'sha <b style={{ color: T.ink }}>yo'lni</b> bosib o'tdi. Endi shu tartibni o'zingiz yig'ing.</>, ru: <>Вы только что нашли <b style={{ color: T.ink }}>youtube.com</b> и вывели его на экран. Запрос прошёл этот самый <b style={{ color: T.ink }}>путь</b>. Теперь соберите этот порядок сами.</> })}</Mentor>
         <div className="sk-buildbox" style={{ maxWidth: 480 }}>
-          <p className="eyebrow" style={{ color: T.accent, margin: '0 0 2px' }}>{tr({ uz: '🧲 Endi o\'zingiz yig\'ing', ru: '🧲 Теперь соберите сами' })}</p>
-          <p className="body" style={{ margin: '0 0 10px', color: T.ink2, fontSize: 13.5 }}>{tr({ uz: 'Bo\'laklarni to\'g\'ri tartibda joylang — sudrab yoki bosib.', ru: 'Разместите части в правильном порядке — перетаскивая или нажимая.' })}</p>
+          <p className="eyebrow" style={{ color: T.accent, margin: '0 0 10px' }}>{tr({ uz: '🧲 Bo\'laklarni sudrab yoki bosib joylang', ru: '🧲 Разместите части перетаскиванием или нажатием' })}</p>
           <DragDropOrder items={REQ_ORDER_PIECES} hints={[{ uz: "so'rov shu yerdan boshlanadi", ru: 'запрос начинается здесь' }, { uz: "manzilni (IP) topadi", ru: 'находит адрес (IP)' }, { uz: "sahifani beradi", ru: 'отдаёт страницу' }, { uz: "chizib ko'rsatadi", ru: 'рисует на экране' }]} onSolved={() => setDone(true)} />
         </div>
       </div>
@@ -3071,13 +3070,12 @@ function Flashcards({ cards }) {
 
 // ===== SCREEN: FLASHCARD TAKRORLASH (podiumdan keyin, yakuniy summarydan oldin) =====
 const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const audio = useAudio([{ id: 'sflash', text: `Darsni yakunlashdan oldin, bugun o'rgangan atamalarni tez takrorlaymiz. Har kartada bir savol — javobini o'ylang, keyin kartani bosib tekshiring.`, trigger: 'on_mount', waits_for: null }]);
+  const audio = useAudio([{ id: 'sflash', text: `O'zingizni sinab ko'ring. Har kartada bir savol — javobini o'ylang, keyin kartani bosing.`, trigger: 'on_mount', waits_for: null }]);
   useEffect(() => { if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, []); // eslint-disable-line
   return (
     <Stage eyebrow={tr({ uz: 'Takrorlash', ru: 'Повторение' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={false} label={{ uz: 'Yakunlash →', ru: 'Завершить →' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Atamalarni <span className="italic" style={{ color: T.accent }}>tez takrorlaymiz</span>.</>, ru: <>Быстро <span className="italic" style={{ color: T.accent }}>повторим термины</span>.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Darsni yakunlashdan oldin bugun o'rgangan atamalarni takrorlaymiz. Har kartada bir <b style={{ color: T.ink }}>savol</b> — javobini o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</>, ru: <>Перед завершением урока повторим сегодняшние термины. На каждой карточке — один <b style={{ color: T.ink }}>вопрос</b>: подумайте над ответом, затем нажмите на карточку и проверьте. Оцените себя кнопкой <b style={{ color: T.ink }}>Знаю</b> или <b style={{ color: T.ink }}>Повторить</b>.</> })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>O'zingizni <span className="italic" style={{ color: T.accent }}>sinab ko'ring</span>.</>, ru: <>Проверьте <span className="italic" style={{ color: T.accent }}>себя</span>.</> })}</h2></div>
         <div className="fc-center"><Flashcards cards={INTERNET_FLASHCARDS} /></div>
       </div>
     </Stage>
@@ -4441,8 +4439,8 @@ export default function HtmlLesson({ lang: langProp, onFinished }) {
         .dd-wrong { font-weight: 700; color: #E24848; font-size: 13.5px; }
 
         /* === 🃏 FLASHCARDS (reusable, 3D flip) === */
-        .fc-center { display: flex; justify-content: center; padding-top: 4px; }
-        .fc { display: flex; flex-direction: column; gap: 11px; max-width: 480px; width: 100%; }
+        .fc-center { flex: 1; min-height: 0; display: flex; align-items: center; justify-content: center; padding-top: 4px; }
+        .fc { display: flex; flex-direction: column; gap: 11px; max-width: 520px; width: 100%; }
         .fc-top { display: flex; justify-content: space-between; align-items: center; }
         .fc-pill { display: inline-flex; align-items: center; gap: 5px; font-family: 'Manrope'; font-weight: 800; font-size: 12.5px; border-radius: 99px; padding: 5px 13px; animation: fc-pill-pop 0.35s cubic-bezier(.34,1.5,.4,1); }
         .fc-pill b { font-size: 1.15em; font-variant-numeric: tabular-nums; }
@@ -4465,7 +4463,7 @@ export default function HtmlLesson({ lang: langProp, onFinished }) {
         .fc-fly.out-knew::after { content: '✓'; background: ${T.success}; box-shadow: 0 10px 26px -8px ${T.success}; }
         .fc-fly.out-again::after { content: '✗'; background: ${T.accent}; box-shadow: 0 10px 26px -8px ${T.accent}; }
         @keyframes fc-stamp { from { transform: translate(-50%, -50%) scale(0); } }
-        .fc-card { position: relative; height: clamp(160px,26vw,188px); cursor: pointer; transform-style: preserve-3d; transition: transform .55s cubic-bezier(.4,0,.2,1); }
+        .fc-card { position: relative; height: clamp(188px,27vh,268px); cursor: pointer; transform-style: preserve-3d; transition: transform .55s cubic-bezier(.4,0,.2,1); }
         .fc-card.flip { transform: rotateY(180deg); }
         .fc-card:not(.flip):hover { transform: translateY(-3px); }
         .fc-face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; padding: 22px; text-align: center; }
@@ -4476,7 +4474,7 @@ export default function HtmlLesson({ lang: langProp, onFinished }) {
         .fc-tap { color: ${T.accent}; font-weight: 700; }
         .fc-tag { font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: clamp(30px,6vw,46px); letter-spacing: -0.02em; }
         .fc-note { font-family: 'Manrope'; font-size: 14px; opacity: 0.92; }
-        .fc-actions { display: flex; gap: 10px; }
+        .fc-actions { display: flex; gap: 10px; min-height: 48px; }
         .fc-btn { flex: 1; padding: 13px; border-radius: 13px; font-family: 'Manrope'; font-weight: 800; font-size: 15px; cursor: pointer; border: none; transition: transform .15s; }
         .fc-btn:hover { transform: translateY(-2px); }
         .fc-btn.knew { background: ${T.success}; color: #fff; box-shadow: 0 10px 22px -10px ${T.success}; }
@@ -4484,7 +4482,7 @@ export default function HtmlLesson({ lang: langProp, onFinished }) {
         .fc-btn.again:hover { border-color: ${T.accent}; background: ${T.accentSoft}; }
         .fc-btn:disabled { opacity: 0.55; cursor: default; transform: none; }
         .fc-btn.ghost { background: ${T.paper}; border: 1.5px solid ${T.accentSoft}; color: ${T.ink}; flex: none; align-self: center; padding: 11px 22px; }
-        .fc-hint { margin: 0; text-align: center; color: ${T.ink3}; font-style: italic; font-size: 13px; }
+        .fc-hint { margin: 0; min-height: 48px; display: flex; align-items: center; justify-content: center; text-align: center; color: ${T.ink3}; font-style: italic; font-size: 13px; }
         .fc-done { display: flex; flex-direction: column; align-items: center; gap: 5px; text-align: center; background: ${T.successSoft}; border-radius: 18px; padding: 22px; max-width: 480px; }
         .fc-done-emoji { font-size: 40px; }
         .fc-done-h { font-family: 'Manrope'; font-weight: 800; font-size: 20px; color: ${T.success}; margin: 0; }

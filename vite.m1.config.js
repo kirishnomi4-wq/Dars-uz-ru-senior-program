@@ -2,7 +2,7 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { resolve } from 'path'
 
-// 1-Modul demo build: faqat modul1.html (1-Modul katalogi) — alohida Vercel loyihasi, chiqish: dist-m1/
+// 1+2-Modul demo build: modul1.html (ikkala modul katalogi) — alohida Vercel loyihasi, chiqish: dist-m1/
 export default defineConfig({
   plugins: [react()],
   build: {

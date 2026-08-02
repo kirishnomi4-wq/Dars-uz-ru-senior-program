@@ -519,11 +519,18 @@ ${opts.harness || ''}
 </body>
 </html>`;
 
+// F-0801-01 (102-qonun): yozilgan kod brauzer xotirasida turadi. Chrome «Memory Saver»
+// fon-tabni bo'shatib sahifani qayta yuklasa, o'quvchi yozganini yo'qotmaydi.
+// storageKey berilmasa saqlov umuman ishlamaydi (eski chaqiruvlar o'zgarishsiz ishlaydi).
+const codesRead = (k) => { try { const v = JSON.parse(localStorage.getItem(k) || 'null'); return v && typeof v === 'object' ? v : null; } catch { return null; } };
+const codesWrite = (k, codes) => { try { localStorage.setItem(k, JSON.stringify({ codes, savedAt: Date.now() })); } catch {} };
+
 export default function HtmlCompiler({
   task = DEFAULT_TASK,
   starterCode,            // eski kontrakt: bitta HTML fayl uchun starter
   onContinue,
   onBack,
+  storageKey,             // F-0801-01: berilsa — yozilgan kod shu kalitda saqlanadi
 }) {
   // Shartlarni bir marta normalizatsiya: deklarativ data ham, eski C.has(...)
   // uslubi ham bir xil { id, label, check } shaklga keladi. Quyidagi butun
@@ -541,9 +548,17 @@ export default function HtmlCompiler({
     return [single];
   }, [task.files, starterCode]);
 
-  const [codes, setCodes] = useState(() =>
-    Object.fromEntries(files.map((f) => [f.name, f.starter ?? '']))
-  );
+  // F-0801-01: saqlangan kod bo'lsa — o'shandan boshlanadi (faqat AYNAN shu fayllar
+  // to'plami uchun; topshiriq o'zgargan bo'lsa saqlov e'tiborsiz qoldiriladi).
+  const [codes, setCodes] = useState(() => {
+    const fresh = Object.fromEntries(files.map((f) => [f.name, f.starter ?? '']));
+    if (!storageKey) return fresh;
+    const s = codesRead(storageKey);
+    if (!s || !s.codes) return fresh;
+    const names = Object.keys(fresh);
+    if (names.length !== Object.keys(s.codes).length || !names.every((n) => n in s.codes)) return fresh;
+    return { ...fresh, ...s.codes };
+  });
   const [active, setActive] = useState(files[0].name);
   const taRef = useRef(null);
 
@@ -588,6 +603,13 @@ export default function HtmlCompiler({
     }, 300);
     return () => clearTimeout(id);
   }, [html, css, js, hasRuntime, runtimeProbes, showConsole]);
+
+  // F-0801-01: yozilgan kod jonli saqlanadi (400ms) — tab almashinuvida yo'qolmasin
+  useEffect(() => {
+    if (!storageKey) return;
+    const id = setTimeout(() => codesWrite(storageKey, codes), 400);
+    return () => clearTimeout(id);
+  }, [codes, storageKey]);
 
   // iframe'dan kelgan runtime natijalarni qabul qilamiz (faqat oxirgi nonce)
   useEffect(() => {

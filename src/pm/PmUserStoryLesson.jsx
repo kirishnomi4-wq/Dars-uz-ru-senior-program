@@ -2003,7 +2003,7 @@ function PmCompiler({ initialCode, onContinue, onBack }) {
       const nonce = ++nonceRef.current;
       setDoc(HC_wrapDoc(code, nonce));
       // Yozayotgan kod jonli saqlanadi — tasodifiy F5/yopilishda yo'qolmasin (F-0726-01)
-      try { const prev = readKoding(); localStorage.setItem(KODING_KEY, JSON.stringify({ code, done: !!(prev && prev.done) })); } catch {}
+      try { const prev = readKoding(); localStorage.setItem(KODING_KEY, JSON.stringify({ code, done: !!(prev && prev.done), open: true })); } catch {}
     }, 400);
     return () => clearTimeout(t);
   }, [code]);
@@ -2098,13 +2098,17 @@ function PmCompiler({ initialCode, onContinue, onBack }) {
 // Reload-himoya (F-0726-01): o'quvchi 10 daqiqa yozgan kod F5 da yo'qolmasin — lesson-scoped kalit.
 const KODING_KEY = 'pm-m3d2-koding';
 const readKoding = () => { try { const v = JSON.parse(localStorage.getItem(KODING_KEY) || 'null'); return v && typeof v === 'object' ? v : null; } catch { return null; } };
+// F-0801-01: kompilyator ochiq-yopiqligi ham saqlanadi — fon-tabda Chrome sahifani
+// qayta yuklasa (Memory Saver), o'quvchi kompilyator ICHIGA qaytadi, praktika-sahifaga emas.
+const writeKodingOpen = (open) => { try { const p = readKoding() || {}; localStorage.setItem(KODING_KEY, JSON.stringify({ ...p, open })); } catch {} };
 const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const gate = useContext(LiveGateCtx) || {};
   const live = gate.live;
   const isMentor = !!(live && live.mode === 'mentor');
   // Erkin (mustaqil) rejim — jonli sessiya yo'q. Takrorlash-yo'li faqat shu yerda ko'rinadi.
   const isSelf = !live || live.mode === 'self';
-  const [open, setOpen] = useState(false);
+  // F-0801-01: qayta yuklanishda (Chrome fon-tabni bo'shatgan bo'lsa) kompilyator o'zi qayta ochiladi
+  const [open, setOpen] = useState(() => { const s = readKoding(); return !!(s && s.open); });
   const [st, setSt] = useState(() => {
     const saved = readKoding();
     return {
@@ -2124,7 +2128,7 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const finishPractice = ({ code: newCode }) => {
     setOpen(false);
     setSt({ code: newCode, done: true });
-    try { localStorage.setItem(KODING_KEY, JSON.stringify({ code: newCode, done: true })); } catch {}
+    try { localStorage.setItem(KODING_KEY, JSON.stringify({ code: newCode, done: true, open: false })); } catch {}
     if (!done) {
       onAnswer(screen, { stage: 'koding', screenIdx: screen, code: newCode, solved: true, correct: true });
       if (live && live.mode === 'student') live.submitAnswer(PRACTICE_BASE + screen, 'koding', 0, true, 0);
@@ -2159,7 +2163,7 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </div>
         </div>
         <div className="kdx-cta fade-up delay-2">
-          <button className={`kod-launch-btn${launchTurn ? '' : ' calm'}`} onClick={() => setOpen(true)}>{done ? '↻ Kompilyatorni qayta ochish' : '🛠 Kompilyatorni ochish'}</button>
+          <button className={`kod-launch-btn${launchTurn ? '' : ' calm'}`} onClick={() => { setOpen(true); writeKodingOpen(true); }}>{done ? '↻ Kompilyatorni qayta ochish' : '🛠 Kompilyatorni ochish'}</button>
           {done && <span className="kdx-cta-sub">Bajarildi — xohlasangiz kodni yana yaxshilang</span>}
           {/* 🔓 TAKRORLASH-YO'LI (89-qonun) — FAQAT erkin rejimda va FAQAT bajarilmagan holatda.
               Nima uchun: bajarilgan praktika brauzer xotirasiga yoziladi va qaytib kelganda darvoza
@@ -2178,7 +2182,7 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <StudentPracticePulse live={live} screen={screen} />
         <MentorPracticeStats live={live} screen={screen} label="🛠 Kodni yozib bo'lganlar" />
       </div>
-      {open && <PmCompiler initialCode={code} onContinue={finishPractice} onBack={() => setOpen(false)} />}
+      {open && <PmCompiler initialCode={code} onContinue={finishPractice} onBack={() => { setOpen(false); writeKodingOpen(false); }} />}
     </Stage>
   );
 };

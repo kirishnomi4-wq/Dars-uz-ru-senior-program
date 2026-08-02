@@ -686,7 +686,132 @@ voqeaning sharti («bu qayerda bo'lyapti», «ikkalasi ham falon uchun») mentor
 📌 Yaqin qoidalar: sarlavhada YANGI ATAMA bo'lmaydi (39) · sarlavha fe'li ekranda sodir
    bo'ladigan ishni aytadi (45).
 
+## 57. HOOK-SAVOL — bola o'z ichida beradigan savol (F-0801-01)
+
+Hook savoli mavzuni to'g'ri aytishi yetarli emas — u **o'quvchining o'z savoli** bo'lishi kerak.
+Sinov: savolni ovoz chiqarib o'smir og'zidan ayting. Quloqqa «darslik» bo'lib eshitilsa — qayta yozing.
+Retsept: **aniq narsa (brend/predmet) + harakat fe'li + o'quvchi qilgan harakat**. (97-qonun.)
+
+✅ «**youtube.com yozib Enter bossangiz, sayt sizga qayerdan yetib keladi?**» *(InternetLesson · hook)*
+❌ «**Sayt manzilini yozib Enter bossangiz, u qayerdan keladi?**» — «sayt manzili» umumiy ot,
+   «keladi» holat-fe'li; bola o'z ichida hech qachon shunday so'ramaydi (foydalanuvchi dalili:
+   «"qayerdan keladi" sun'iy eshitiladi — bola aslida bunday o'ylamaydi»).
+📌 Yon-xato ogohlantirishi: savolni «qayerdan» → «qanday» ga o'zgartirsangiz, VARIANTLAR ham
+   qayta yoziladi — aks holda savol jarayonni, variantlar joyni so'rab, mos kelmay qoladi (97d).
+
+## 58. MENTOR GAPI — mavhum «katta yo'l» o'rniga ko'rinadigan sayohat (F-0801-02)
+
+Mentor jarayonni tasvirlaganda **ko'z oldiga keladigan** so'z ishlatadi. «Katta yo'l», «murakkab
+jarayon», «ko'p bosqich» — bola miyasida hech qanday rasm chizmaydi. Lekin: hook savolining
+JAVOBI mentor gapida aytilmaydi — aks holda variantlar ma'nosiz bo'lib qoladi.
+
+✅ «Lekin shu bir soniya ichida so'rovingiz **xonangizdan chiqib ketadi, chet elgacha yo'l bosadi
+   va javob bilan qaytib keladi**.» *(InternetLesson · hook mentori)* — uch fe'l = uch bosqichli
+   sayohat (jo'nash → yo'l → qaytish); masofa aniq, lekin «kim javob berdi» aytilmagan.
+❌ «Lekin shu bir soniya ichida ekran ortida so'rovingiz **katta yo'lni bosib o'tadi**.»
+   — qaysi yo'l? qayerga? rasm yo'q (foydalanuvchi dalili: «"katta yo'l" juda mavhum»).
+❌ «So'rovingiz **internet orqali boshqa kompyutergacha** boradi va javob bilan qaytadi.»
+   — aniq, LEKIN bu hook variantlaridan birining aynan o'zi: javob berib qo'yiladi, o'ylash o'ladi.
+🔧 Qolip: [qayerdan chiqadi] → [qancha yo'l bosadi] → [nima bilan qaytadi]. Masofa/vaqt aytiladi,
+   MEXANIKA (kim, qanday) esa keyingi ekranga qoldiriladi.
+
+## 59. ORQAGA-HAVOLA — o'quvchi ko'rgan so'z bilan (F-0801-06)
+
+Oldingi ekranga murojaat qilganda faqat **o'quvchi O'QIGAN sarlavha** yoki **O'ZI QILGAN harakat**
+eslatiladi. Jamoa ichidagi ish-nomi («paket o'yini», «funnel bloki») o'quvchi matniga chiqmaydi.
+
+✅ «**Hozirgina youtube.com ni topib, ekranga keltirdingiz.** So'rov o'sha yo'lni bosib o'tdi.»
+   *(InternetLesson s13c — oldingi ekran sarlavhasi: «youtube.com ni topib, ekranga keltira olasizmi?»)*
+❌ «**Paket o'yinida** ko'rdingiz: …» — «paket» so'zi darsda 8 marta uchraydi, 7 tasi KOD IZOHI;
+   o'quvchi bu nomni hech qayerda ko'rmagan (foydalanuvchi dalili: «14 yoshli o'quvchi bo'lib
+   o'qisam, shu joyda 1–2 soniya to'xtayman — qaysi paket? qaysi o'yin?»).
+🔧 Tekshiruv: shubhali nomni **grep qiling** — hamma uchrashuvi izohda bo'lsa-yu, bittasi
+   o'quvchi matnida bo'lsa, aynan shu xato. (98a-qonun.)
+
+## 60. MENTOR MASHQNING JAVOBINI AYTMAYDI (F-0801-07)
+
+O'quvchi ekranda biror narsani yig'ishi/tanlashi kerak bo'lsa, mentor gapi **va ovozli matn**
+o'sha javobni sanab bermaydi. Mentorga qoladigan: **nima uchun** va **qanday** — **nima** emas.
+
+✅ «Hozirgina youtube.com ni topib, ekranga keltirdingiz. So'rov o'sha yo'lni bosib o'tdi.
+   **Endi shu tartibni o'zingiz yig'ing.**» *(InternetLesson s13c — tartib aytilmaydi)*
+❌ «…so'rov **brauzerdan** boshlanadi, **DNS** manzilni topadi, **server** sahifani beradi,
+   oxirida **ekran** chizadi. Endi shu tartibni o'zingiz yig'ing.» — javob mashqning ustida
+   yozib qo'yilgan; bola yig'maydi, KO'CHIRADI.
+📌 Ovozli matn (`useAudio`) unutiladigan joy — u ham xuddi shu tekshiruvdan o'tadi.
+📌 Ipucha kerak bo'lsa komponentning O'Z `hints` mexanikasi beradi (mashq ichida, bosqichma-bosqich),
+   mentor pufagi emas.
+
+## 61. TAKRORLASH (FLASHCARD) EKRANI — sarlavha faoliyatni aytadi, mentor jim (F-0801-08)
+
+Komponentning O'Z yuzida ko'rsatma bo'lsa, mentor uni takrorlamaydi. Flashcard ekranida
+mentor pufagi umuman bo'lmaydi: **sarlavha → progress → karta**.
+
+✅ Sarlavha: «**O'zingizni sinab ko'ring.**» *(muqobil: «Bilimingizni sinab ko'ring»)* —
+   o'quvchiga NIMA QILISH kerakligini darhol aytadi.
+❌ Sarlavha: «**Atamalarni tez takrorlaymiz.**» — bu bizning niyatimiz, topshiriq emas.
+❌ Mentor: «Har kartada bir savol — javobini o'ylang, keyin kartani bosib tekshiring. Bildim
+   yoki Takrorlash bilan baholang.» — uchala gap ham ekranda allaqachon bor: karta yuzida
+   «Javobni o'ylang 🤔 bosing» · ostida «👆 Kartani bosing» · tugmalar «✓ Bildim»/«✗ Takrorlash».
+📌 Ritm: **Savol → O'ylash → Javobni ochish → «Bildim»/«Takrorlayman»**. Ortiqcha matn buni buzadi
+   (foydalanuvchi dalili: «o'quvchi bir xil ma'lumotni ikki marta o'qiydi — darsning ritmi sekinlashadi»).
+🔧 Umumiy shakl: **ko'rsatma BIR joyda** — harakatga eng yaqin joyda (tugma matni / komponent
+   ipuchasi); mentor faqat «nima uchun»ni aytadi yoki jim turadi. (99-qonun.)
+
+## 62. BASHORAT-SLAYDI — tinchlantiruvchi izohsiz, orqaga-havolasiz (F-0801-09)
+
+Taxmin-mexanikasi o'zini o'zi tushuntiradi; natija-qatori esa faqat ASL JAVOBNI muhrlaydi.
+
+❌ «**Bu ball emas — bemalol belgilang, javob hozir ochiladi.**» — yo'q narsani inkor qilish uni
+   eslatadi: o'quvchi savol haqida emas, ball haqida o'ylay boshlaydi. Ekrandagi
+   «🎲 Avval o'zingiz belgilab ko'ring» yorlig'i buni allaqachon aytib turibdi.
+❌ «Ball yo'q — bemalol belgilang, javob keyingi slaydda ochiladi» — o'sha xatoning boshqa kiyimi.
+❌ «🎯 Topdingiz! Bitta universitet talabalari uchun **· Dars boshida siz «Butun shahar aholisi»
+   degandingiz.**» — bitta qatorda uch narsa: natija + eski tanlov + taqqoslash.
+✅ «**🎯 Topdingiz! Bitta universitet talabalari uchun**» — tamom, quyruqsiz.
+✅ Adashganda: «**Adashdingiz — asl javob: Bitta universitet talabalari uchun**» (56-qonun:
+   taxmin takrorlanmaydi, asl javob aytiladi).
+📌 Slayd qatlamlari: **savol → variant-chiplar → natija-qatori + slayd matni**. Boshqa hech narsa.
+🔧 Hook-tanlovni keysda «shaxsiy payoff» qilib qaytarish naqshi ham yo'q — hook o'z ekranida
+   yopiladi. Grep: `ball emas` · `Ball yo'q` · `boshida siz` · `degandingiz`. (100-qonun.)
+
+## 63. NISHON BAYRAMI — kam so'z, bitta nafas (F-0801-10)
+
+Nishon 4 soniya turadi va o'quvchi uni O'QIMAYDI — bir qarashda ILG'AYDI. Shuning uchun
+bayramda faqat: medal → nom → BITTA qisqa qator → xira «bosib davom eting».
+
+❌ «🏅 Nishon ochildi!» sarlavhasi nom ustida — medal, nurlar va uchqunlar buni allaqachon
+   aytib turibdi; yozuv qatlamni ikkiga bo'ladi va nishon NOMI ikkinchi o'ringa tushadi.
+❌ «Web bo'lakni mobil sahnaga port qilishni — o'sha backendga ulanishni to'g'ri aniqladingiz»
+   (89 belgi, ikki tireli qo'shma gap) — 4 soniyada o'qib bo'lmaydi.
+✅ «Web bo'lakni mobil sahnaga ko'chirdingiz» (39 belgi) — bitta harakat, bitta nafas.
+❌ «Loyihani o'zingiz to'liq boshqardingiz: qo'shdingiz, o'zgartirdingiz, o'chirdingiz» (82)
+✅ «Qo'shdingiz, o'zgartirdingiz, o'chirdingiz» (41) — uchta fe'l o'zi hammasini aytadi.
+📌 Etalon o'lchov (P0 UserStory): 32–42 belgi. Chegara — **48 belgi**.
+🔧 Qisqartirish usuli: (a) «to'g'ri», «o'zingiz», «to'liq» to'ldiruvchilarini olib tashlang;
+   (b) tiredan keyingi tushuntirish quyrug'ini kesing; (c) rolni takrorlamang — nishon NOMI
+   allaqachon rolni aytadi («Blueprint!» + «ME'MOR sifatida…» = takror). (101-qonun.)
+
+## 64. QISQA YORLIQ HAM SIZ-FORMADA — reja-qadami, uy-vazifa sarlavhasi (F-0801-13)
+
+Siz-forma faqat uzun proza uchun emas. Eng ko'p buziladigan joy — **qisqa yorliqlar**: reja
+ro'yxatidagi qadam, uy-vazifa sarlavhasi, karta ustidagi ikki so'z. Ular «sarlavha, gap emas»
+tuyuladi — shu bahonada sen-forma o'tib ketadi va bitta qatorda ikki xil murojaat paydo bo'ladi.
+
+❌ «O'z algoritm**ingni tuz**» · ru «**Составь** свой алгоритм» — reja-qadami, qolgan 4 qadam
+   neytral (ot-birikma), faqat shu bittasi sen-formada.
+✅ «O'z algoritm**ingizni tuzing**» · ru «**Составьте** свой алгоритм»
+❌ Uy-vazifa: sarlavha «Sistema **top**» — izohi «— atrofingizdan 1 sistema **toping**».
+   Bitta qatorda sen + siz: sarlavha «sen»laydi, izoh «siz»laydi.
+✅ «Sistemani **toping**» + «— atrofingizdan 1 sistema toping, qismlarini yozing» — bitta ohang.
+✅ «Algoritm **yozing**» · «Shart **qo'shing**» · ru «**Напишите** алгоритм» · «**Добавьте** условие»
+📌 Istisno: **robotga/kompyuterga** beriladigan buyruq-kartalari (BAJARBOT: «Sabzavot sol ×3»,
+   ru «Добавь овощи ×3») sen-formada qoladi — u o'quvchiga emas, ijrochiga aytiladi.
+🔧 Grep: ru `\b(составь|найди|напиши|добавь|нажми|выбери|посмотри|попробуй|запиши|проверь)\b` ·
+   uz `\w+ingni\b` — topilganda so'rang: «bu gap KIMGA aytilyapti?» O'quvchiga bo'lsa — siz-forma.
+
 ---
 
-*Korpus F-ID bilan o'sadi. Oxirgi yangilanish: 2026-07-31 (F-0731-01…03 — PmLesson1 darslik-sayqal:
-scored-variant dars ta'limiga zidligi, arena jargoni, demo-sahna raqami: 34–36-bo'lim).*
+*Korpus F-ID bilan o'sadi. Oxirgi yangilanish: 2026-08-01 (F-0801-01…13 — 1-Modul QA raundi:
+hook-savol tabiiyligi · mavhum «yo'l» → ko'rinadigan sayohat · ichki-nom orqaga-havolasi · mentor javobni aytmasligi · flashcard mentorsiz · bashorat-slaydi tozaligi · nishon bayrami kam so'z: 57–63-bo'lim;
+F-0801-13 — qisqa yorliqlarda siz-forma: 64-bo'lim).*

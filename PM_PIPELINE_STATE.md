@@ -959,3 +959,78 @@ UNCOMMITTED.
 **Darvozalar:** esbuild 2/2 ✓ · `vite build` toza ✓ · lint:til **0 error** (11 warn — ikkalasida ham ko'p qatorli `ru:` shabloni, PmLesson3 dagi bilan bir sinf) ✓ · SSR-smoke **90 + 66 render** UZ/RU × self/mentor — 0 crash, 0 `[object Object]`, RU'da kirill bor, UZ'da ruscha qoldiq 0 ✓ · ball-relslari va artefakt-kalitlari bayt-aynan o'zgarmagan ✓ · UZ/RU 673↔673 va 557↔557 ✓.
 **🏁 NATIJA: 1-MODUL 14/14 DARS TO'LIQ IKKI TILLI.** (2-Modul: 13/13 — `JsIntroLesson` dagi 1 farq qonuniy fallback.)
 **Qolgan mayda:** `RU_I18N_SPEC.md` 8-bo'limidagi jadval yangilanmagan · lint:til ko'p qatorli `ru:` bloklarini oqlashni bilmaydi (11 warn manbayi) · PmLesson1 s11 chip-tugmalarida RU matni ikki qatorga tushishi mumkin (brauzer-ko'rigi kerak). UNCOMMITTED.
+
+## 2026-08-01 — F-0801-03: M2 PM UCHLIGI (D2/D7/D13) RU-QOBIG'I VA D13 RECAPS YOPILDI — ✅
+**Foydalanuvchi so'rovi:** «2-Modulldagi barcha darslar uz-ru tillaridami — ko'rib tekshir» → keyin «hammasini tuzat — PmLesson4, 5, 6».
+**Tashxis (13 fayl dasturiy o'lchandi):** dars MAZMUNI 13/13 da ikki tilli edi; kamchilik **umumiy qobiqda** — qobiq bo'limidagi `tr({uz:` o'ramlari: boshqa 10 darsda 23–27, **PmLesson5 = 1, PmLesson6 = 1**, PmLesson4 = 23 (3 qator tushib qolgan). Ya'ni RU rejimda join-ekran, mentor-paneli, arena, podium, xato-xabarlari o'zbekcha chiqardi (D7 ≈87, D13 ≈102 matn). Oldingi yozuvdagi «2-Modul: 13/13» xulosasi `ru:` qatorlarini sanaganidan yolg'on-ijobiy bo'lgan — qobiq umuman hisobga olinmagan.
+**🔴 KEYINCHALIK TOPILGAN, TASHXISDA YO'Q EDI:** PmLesson6 ning butun **`RECAPS` bloki** (4 guruh × 3 karta = 36 maydon: title·h·body·vis·ask) xom o'zbekcha edi va `RecapOverlay` ularni `tr()`siz render qilardi. Bu mazmun-kamchilik, qobiq emas.
+**Bajarildi:**
+· **PmLesson4** — 3 qator (`startMentor` catch, `Kodni to'liq kiriting`, `Ismingizni kiriting`).
+· **PmLesson5 / PmLesson6** — qobiq lug'at-asosida o'raldi (UZ→RU lug'ati 9862 juftlikdan yig'ildi, ustuvorlik: PmLesson4 → src/pm → 2-Modul → 1/3-Modul; birinchi manba yutadi), so'ng qo'lda yopilgan qoldiqlar: ternar birinchi shoxlari (`live.busy ? …`, `allIn ? …`, `lastQ ? …`, `big ? …`, `my ? …`), shablon-satrlar (`To'g'ri javob: ${…}`, `Yangi nishon: ${…}`, `Siz hozir: ${…}-o'rin`, `eng uzun streak`), `window.confirm` matni, `LiveGate title`, `LiveBigCode` ko'rsatma-paragrafi (JSX `<b>` bilan), `NavNext label` uchligi.
+· **PmLesson6 RECAPS** — 36 maydon `{uz,ru}` ga o'tkazildi + `RecapOverlay` da `tr(rc.title)`/`tr(card.h)`/`tr(card.body)`/`tr(card.vis)`/`tr(card.ask)` + «🗣️ Sinfga savol» yorlig'i + nuqta-tugma `aria-label`.
+· **🔴 CRASH OLDI OLINDI:** `MentorTestStats` ning ikki `rc-open` tugmasi `{RECAPS[screenIdx]?.title}` ni XOM render qilardi — maydon obyektga aylangach bu «Objects are not valid as a React child» bo'lardi. Ikkalasi `tr()` ga o'raldi (PmLesson5 da ham shu tugmalarning «📖 Qayta tushuntirish — » prefiksi tarjimasiz edi — yopildi).
+**Darvozalar (bosh-agent qayta o'lchadi):** esbuild 3/3 toza ✓ · `vite build` toza ✓ · `lint:til` **0 error** (2 warn — PmLesson4:1484,2290, tegilmagan qatorlar, oldindan bor) ✓ · qobiq-`tr()` 26 / 27 / 27 (etalon diapazoni) ✓ · UZ/RU qator-muvozanati 440↔440 · 453↔453 · 472↔472 ✓ · RECAPS 36/36 juft ✓ · **SSR-smoke** 3 dars × UZ/RU = 6 render: 0 crash, **0 `[object Object]`**, RU'da kirill bor, UZ'da yo'q ✓.
+**ATAYLAB TEGILMADI (etalon bilan izchil — hamma darslarda shunday):** (1) audio-TTS zaxira matni `(audioOk || "To'g'ri.")` / `"Unchalik emas…"` — 13/13 darsda UZ (PmLesson4:930 da buning izohi bor: ovoz o'chirilganda matn UZ holicha); (2) iframe-qumsandiq ichidagi kompilyator xabarlari (`hcpm-err` / `k-err`: «Kod ishlamadi», «Natija hali chiqmadi») — React daraxtidan tashqarida, PmLesson4 da ham UZ; (3) KODING namuna-kodidagi o'zbekcha identifikator/satrlar (`nomlar`, `qatlamlar`) — o'quvchi o'qiydigan kod; (4) nishon nomlari inglizcha (qonun bo'yicha).
+**QOLGAN OCHIQ SAVOL (foydalanuvchi qaroriga):** PmLesson6:440 dagi **jargon-detektor lug'ati** (`'baza'`, `"ma'lumotlar bazasi"`, `'server'`…) faqat o'zbekcha o'zaklarni tutadi — RU rejimda o'quvchi «база данных» deb yozsa, SO'Z-ELAGI mexanikasi kasbiy so'zni **topmaydi**. Bu PmLesson2 dagi `checkStructure` bug-sinfining aynan o'zi (2026-08-01 yozuviga qarang). Tuzatish uchun lug'atni `{uz,ru}` o'zaklar bilan kengaytirish kerak — tashxis qilindi, tuzatilmadi. Shuningdek PmLesson6:2189 `Q_LABELS` — o'lik kod (90(b)-qonun kartasi olib tashlangan). UNCOMMITTED.
+
+## 2026-08-01 — F-0801-04: M2-D13 MATN-TEKSHIRUVCHILARI IKKI TILLI QILINDI (F-0801-03 ochiq savoli yopildi) — ✅
+**Foydalanuvchi buyrug'i:** «ha, jargon lug'atini ham tuzat».
+**Muammo-sinfi (PmLesson2 `checkStructure` bilan bir xil):** o'quvchi MATNINI qattiq-yozilgan **o'zbekcha** so'zlar bilan tekshiradigan validatorlar. RU rejimda o'quvchi ruscha yozadi → mexanika ishlamaydi. PmLesson6 da uchta joy topildi (biri tashxisda aytilgan edi, ikkitasi audit paytida chiqdi):
+· **`JARGON` (s9/s11 SO'Z-ELAGI + koding-qumsandig'i)** — faqat UZ. RU o'quvchi «база данных» yozsa kasbiy so'z **topilmasdi** va `clean` noto'g'ri `true` bo'lardi (ball ham, pedagogika ham buzilardi).
+· **`ANALOGY_WORDS` (s9 «Nega ishlaydi» darvozasi)** — RU tomoni bor edi, lekin faqat **bosh kelishikda** (`прилавок·повар·полка`). «на прилавке», «как полку» yozgan RU o'quvchi darvozadan **o'ta olmasdi** (teskari xato — devor).
+· **`kim` darvozasi** — `все|всe` bor edi, `всех·любой·каждый·люди` yo'q edi (PmLesson1 `wideKim` da allaqachon kengaytirilgan ro'yxat).
+**Yechim — `ANALOGY` naqshiga keltirildi (`{uz, ru}` + qo'shma ro'yxat):**
+· `JARGON = { uz:[…], ru:[…], both:[…] }` → `JARGON_WORDS`. Ro'yxatdagilar **turlanmagan o'zak**: `funksi`/`функци`, `repozitori`/`репозитори`. `both` = lotincha qisqartmalar (`javascript·html·css·localstorage·api`) — ikkala tilda bir xil yoziladi.
+· 🔴 **Yolg'on-trevoga oldi olindi:** kirillcha `апи` ATAYLAB qo'shilmadi — u «н**апи**сали» ichiga tushib har pitchni jargon deb belgilardi. Sinovda tasdiqlandi.
+· `база данных` o'rniga **`данных`** o'zagi — «базу/базе/базы данных» ning barcha turlanishini bitta qoida bilan tutadi.
+· RU o'xshatish-o'zaklari kesildi: `прилав·повар·полк` (UZ da qo'shimcha oxiriga yopishgani uchun `peshtaxta·oshpaz·javon` o'zgarmadi).
+· **Xabar endi o'quvchi YOZGAN so'zni ko'rsatadi:** yangi `wholeWordAt()` o'zakni to'liq so'zgacha kengaytiradi → «funksiyalar», «массиве», «bazasida» (avval quruq o'zak «funksi» chiqardi). Apostrof (o', g') ajratuvchi emas. Koding-qumsandig'ida ham xuddi shu mantiq (`W()` helperi, `joinedRaw` bo'yicha).
+**Darvozalar:** esbuild 3/3 ✓ · `vite build` toza ✓ · `lint:til` **0 error** (2 warn — PmLesson4:1484,2290, tegilmagan; PmLesson6 ning warn'i `ru:` massivini bir qatorga yig'ish bilan yopildi) ✓ · SSR-smoke 6 render: 0 crash, 0 `[object Object]` ✓ · **detektor-sinovi 20/20** (UZ turlangan · RU turlangan · toza gaplar · «написали» yolg'on-trevogasi) va **o'xshatish-sinovi 10/10** ✓.
+**Qoldi:** PmLesson6:2189 `Q_LABELS` — o'lik kod (90(b)-qonun kartasi olib tashlangan), tozalash alohida ish. UNCOMMITTED.
+
+## 2026-08-01 — F-0801-09: BASHORAT-SLAYDI TOZALANDI (6 dars) + 100-QONUN MUHRLANDI — ✅
+**Foydalanuvchi buyrug'i:** «🎯 Topdingiz! Bitta universitet talabalari uchun» qolsin — «Bu ball emas — bemalol belgilang…» va « · Dars boshida siz «Butun shahar aholisi» degandingiz» **«bular ketsin tomom»**; keyin «barcha PMlardayam shunaqa qil shu joyida va Etalongayam yoz».
+**Topilma-sinfi (ikkita, ildizi bitta — ekran o'zi aytadigan narsani matn takrorlaydi):**
+· **(a) tinchlantiruvchi ball-izohi** — yo'q narsani inkor qilish uni eslatadi: o'quvchi savoldan ball-tizimiga o'tadi. «🎲 Avval o'zingiz belgilab ko'ring» yorlig'i + ball-indikatorining yo'qligi buni allaqachon aytib turibdi.
+· **(b) hook-echo quyrug'i** — natija-qatoriga eski taxminni ulash bitta qatorga uch narsa tiqadi (natija + eski tanlov + taqqoslash); 56-qonun (adashganda ASL javob aytiladi, taxmin takrorlanmaydi) bilan bir oila.
+**Tatbiq (6 fayl · 6 ekran):**
+· `src/1-Modull/PmLesson1.jsx` s6 (Facebook keysi) — `k-note` izohi + `k-hook` quyrug'i · `hook` state · `readHookChoice()` · `.k-note`/`.k-hook` CSS o'chirildi.
+· `src/pm/PmJtbdLesson.jsx` (Starbucks keysi) — `pred-cap` izohi + yakundagi ikki `frame` hook-echosi · `hookPick`/`hookHit` · `readHookChoice()` · `.pred-cap` CSS.
+· `src/pm/PmMetricsLesson.jsx` (Duolingo keysi) — `kbet-sub` izohi («Ball yo'q — bemalol belgilang…») + yakundagi hook-payoff `frame-soft` · `hookVote` state · `readHookVote()` · `HOOK_SHORT` · `.kbet-sub` CSS. `HOOK_KEY` **yozuvi qoldi** (o'qish yo'q — 100c).
+· `src/2-Modull/PmLesson4.jsx` (Uzum keysi) — `kp-sub` izohi + `frame-success` hook-echosi (uning zaxira-matni yuqoridagi `frame-soft` bilan takrorlanardi — butun blok ketdi, fragment yechildi) · `hookPick` · `.kp-sub` CSS.
+· `src/2-Modull/PmLesson5.jsx` (Instagram keysi) — `k-hook` echosi · `hookChoice`/`hookN` · `.k-hook` CSS.
+· `src/2-Modull/PmLesson6.jsx` (Airbnb keysi) — `ks-hook` ning hook-shoxi olib tashlandi, umumiy matn qoldi · `hookPick`.
+**Qonunlashtirish (retsept B, matn-topilma → IKKI joy + lint):**
+· `MATN_KORPUS.md` **§62** — ❌/✅ juftliklari (ikkala noto'g'ri variant + to'g'ri natija-qatori + adashgan holat).
+· `PM_DARS_ETALON.md` **100-qonun** (a–d): izoh taqiq · natija-qatoriga havola ulanmaydi · hook localStorage'dan **o'qilmaydi** (yozuv qolishi mumkin) · slayd qatlamlari = savol → chiplar → natija+matn. 📌 barcha darslarga (texnik ham).
+· `til-lint-rules.json` — 2 yangi **error**-qoida: `bashorat-ball-izohi` · `orqaga-havola-degandingiz` (jami 64 qoida). Probe-sinov: ikkalasi ham tutdi ✓.
+**Darvozalar:** esbuild 6/6 toza ✓ · residue-grep (`ball emas` · `Ball yo'q` · `boshida siz` · `degandingiz` · `tanlagandingiz` · `belgilagandingiz`) barcha PM darslarda **toza** ✓ · `lint:til` 6 fayl **0 error** (8 warn — PmLesson1:1468,1913-15 va PmLesson4:1471,2277 kirill-homoglif, tegilmagan qatorlar, oldindan bor) ✓ · butun repo bo'yicha yangi ikki qoidada **0 topilma** (boshqa darslarda bu naqsh yo'q) ✓.
+**Eslatma:** `vite build` bu raundda yuritilmadi (faqat matn/o'lik-kod o'chirildi, esbuild 6/6 toza). UNCOMMITTED.
+
+## 2026-08-01 — F-0801-10: PmLesson1 FLASHCARD MATNI SAYQALLANDI (5 karta tahrir + 1 yangi) — ✅
+**Foydalanuvchi fidbeki (karta-ma-karta o'qib chiqilgan):** «umuman juda yaxshi yozilgan, lekin 13–17 yoshli o'quvchi uchun ayrim joylari metodik jihatdan tabiiyroq bo'lishi mumkin». Eng katta maqtov: **barcha kartalar «ta'rif → javob» ko'rinishida** — bu naqsh saqlandi.
+**Tatbiq (`src/1-Modull/PmLesson1.jsx` · `PM_FLASHCARDS`, 7 → 8 karta):**
+· **3-karta** — ❌ «Auditoriya-karta qaysi uch javobdan **yig'iladi**?» → ✅ «Auditoriya-karta **3 ta savolga javob beradi. Qaysilar?**». Sabab: «yig'iladi» jarayonni aytadi, «3 ta savol» esa o'quvchi ko'rgan narsani aytadi.
+· **4-karta** — front qisqardi («Kartadagi KIM qatoriga» → «**KIM qatoriga**»); back ❌ «Saytni **birinchi ochadigan** aniq guruh» (sun'iy) → ✅ «Saytdan **birinchi bo'lib foydalanadigan** aniq odamlar guruhi»; note ✅ «yoshi, **kasbi** yoki qiziqishi bilan **aniqlanadi**» (tugal gap).
+· **5-karta** ⭐ — note ❌ «o'sha odamlar sayt bilan nimani yengmoqchi» (tugallanmagan, o'ylantiradi) → ✅ «**sayt aynan shu qiyinchilikni yechadi**». Foydalanuvchi «muammo» so'zini taklif qilgandi; karta orqasi «Bitta aniq **qiyinchilik**» bo'lgani uchun bitta karta ichida bir atama ushlab turildi (lug'at-izchilligi).
+· **6-karta** — back ✅ «**Faqat** bitta universitet talabalari uchun» — «faqat» urg'u beradi (tarixan Harvard).
+· **7-karta** ⭐ — ❌ back «Har biri o'ziga kerak **qatorga**» — **qaysi qator?** Kontekstsiz o'qilganda tushunarsiz (flashcard oradan vaqt o'tib ochiladi). ✅ front «**Bir xil** saytga kirgan odamlar nimaga qaraydi?» · back «Har kim **o'ziga kerak bo'lgan narsani qidiradi**» · note «shuning uchun **avval** asosiy auditoriya tanlanadi».
+· **8-karta (YANGI)** — front «Kuchli sayt nimadan boshlanadi?» · back «Kichik va aniq auditoriyadan» · note «Facebook ham shunday boshlagan». Darsning bosh xulosasini kartaga muhrlaydi va 6-karta bilan juftlashadi.
+· RU tomoni har olti kartada birga yangilandi (`{uz,ru}` juftligi buzilmadi).
+**Qonun-marshruti:** bu raundda yangi qonun ochilmadi — topilmalar mavjud qonunlar ostida (99: flashcard ekrani · KORPUS 45: fe'l ekrandagi ishni aytsin · KORPUS 52: xulosa-qatorlari tugal gap). 🔎 **Umumlashtirishga nomzod (keyingi seansda ko'rib chiqiladi):** «flashcard javobi ekran-kontekstisiz, YAKKA o'qilganda tushunarli bo'lsin» — 7-kartaning «qaysi qator?» xatosi shu sinfdan; hozircha faqat shu yozuvda qayd etildi.
+**Darvozalar:** esbuild toza ✓ · `lint:til` **0 error** (6 warn — kirill-homoglif, tegilmagan qatorlar) ✓ · karta soni hech qayerda qattiq-yozilmagan (`total = cards.length`, `PM_FLASHCARDS` faqat 2 joyda) ✓. UNCOMMITTED.
+
+## 2026-08-01 — F-0801-01: KOMPILYATOR TAB-QAYTISHDA YOPILIB QOLARDI (PmLesson1) — ✅ pilot, foydalanuvchi sinovi kutilmoqda
+**Fidbek:** kompilyatorda yozib turib boshqa tabga (Telegram) o'tib qaytilganda kompilyator yopilib, praktika-sahifa ochilib qolyapti.
+**Tashxis:** Chrome Memory Saver fon-tabni bo'shatib, qaytishda sahifani jimgina qayta yuklaydi. F-0730-01 progress-saqlov ekran-raqamni tiklaydi (shuning uchun 0-ekranga emas, praktika-sahifaga tushadi), lekin «kompilyator ochiq edi» belgisi saqlanmasdi — `ScreenCoding.open` oddiy React-state edi. Kod o'zi yo'qolmaydi (400ms jonli saqlov).
+**Tatbiq (`src/1-Modull/PmLesson1.jsx`):** `KODING_KEY` saqloviga `open` bayrog'i qo'shildi — `writeKodingOpen()` yordamchi; ochish-tugmasi `open:true`, «Darsga qaytish» va «Davom etish» `open:false` yozadi; 400ms jonli saqlov ham `open:true` ushlab turadi; `ScreenCoding` mount'da bayroqni o'qib kompilyatorni avto-qayta ochadi.
+**Darvozalar:** esbuild toza ✓ · o'quvchi-matn o'zgarmadi (lint:til shart emas).
+**Sinov:** foydalanuvchi tasdiqladi — «yaxshi ishladi» → tarqatishga ruxsat.
+
+## 2026-08-01 — F-0801-01 (b): TUZATISH BARCHA PM DARSLARIGA TARQATILDI (7 fayl) + 102-QONUN — ✅
+**Buyruq:** «Barcha Pm darsimizga qil shu 1-2-Modull va Userstoryga».
+**Qamrov (kompilyator-qobiqli PM darslar, 7/7):** `src/1-Modull/PmLesson1.jsx` (pilot) · `PmLesson2.jsx` · `PmLesson3.jsx` · `src/2-Modull/PmLesson4.jsx` · `PmLesson5.jsx` · `PmLesson6.jsx` · `src/pm/PmUserStoryLesson.jsx` (P0 etalon). Qolgan PM darslarida (7–34) kompilyator-qobiq yo'q — grep bilan tasdiqlandi.
+**Har faylda 6 nuqta (bir xil naqsh):** `writeKodingOpen()` yordamchisi · tugma `open:true` · «Darsga qaytish» `open:false` · «Davom etish» yozuvida `open:false` · 400ms jonli saqlovda `open:true` (aks holda birinchi saqlov bayroqni o'chirardi) · `useState` boshlang'ich-funksiyasida tiklov. Fayl-farqlari: PmLesson6 `readLS`/`writeLS` yordamchilarini ishlatadi (moslashtirildi) · PmLesson5/6 da `KODING_KEY` fayl boshida e'lon qilingan · tugma-selektorlari uch xil (`turn-ring` · sodda · `calm`).
+**Darvozalar:** esbuild **7/7 toza** ✅ · `vite build` **toza** (1.52s) ✅ · dasturiy to'liqlik-o'lchovi: 7 faylning har birida oltala nuqta **1/1** ✅ · yangi localStorage kaliti ochilmadi (mavjud `KODING_KEY` ichiga bayroq) ✅ · o'quvchi-matni o'zgarmadi (`lint:til` shart emas).
+**Qonunlashtirish:** `PM_DARS_ETALON.md` → **102-qonun** (to'liq-ekran oyna ochiqligi ham saqlanadi; (a) bayroq juftligi · (b) `useState` tiklovi · (c) jonli saqlov bayroqni ushlaydi · (d) yangi kalit ochilmaydi · (e) har qanday `fixed` qatlamga tegishli). 📌 barcha darslarga.
+**Qarz:** texnik darslardagi kompilyator-qobiqlar (Htmllesson1 va h.k.) shu naqsh bo'yicha hali tekshirilmagan. UNCOMMITTED.

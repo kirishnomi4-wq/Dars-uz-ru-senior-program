@@ -553,6 +553,7 @@ function HtmlCompiler({
   starterCode,            // eski kontrakt: bitta HTML fayl uchun starter
   onContinue,
   onBack,
+  storageKey,             // F-0801-01: berilsa — yozilgan kod shu kalitda saqlanadi
 }) {
   // Shartlarni bir marta normalizatsiya: deklarativ data ham, eski C.has(...)
   // uslubi ham bir xil { id, label, check } shaklga keladi. Quyidagi butun
@@ -570,9 +571,23 @@ function HtmlCompiler({
     return [single];
   }, [task.files, starterCode]);
 
-  const [codes, setCodes] = useState(() =>
-    Object.fromEntries(files.map((f) => [f.name, f.starter ?? '']))
-  );
+  // F-0801-01 (102-qonun): saqlangan kod bo'lsa — o'shandan boshlanadi (faqat AYNAN shu
+  // fayllar to'plami uchun; topshiriq o'zgargan bo'lsa saqlov e'tiborsiz qoldiriladi).
+  const [codes, setCodes] = useState(() => {
+    const fresh = Object.fromEntries(files.map((f) => [f.name, f.starter ?? '']));
+    if (!storageKey) return fresh;
+    const s = codesRead(storageKey);
+    if (!s || !s.codes) return fresh;
+    const names = Object.keys(fresh);
+    if (names.length !== Object.keys(s.codes).length || !names.every((n) => n in s.codes)) return fresh;
+    return { ...fresh, ...s.codes };
+  });
+  // Yozilgan kod jonli saqlanadi (400ms) — tab almashinuvida yo'qolmasin
+  useEffect(() => {
+    if (!storageKey) return;
+    const id = setTimeout(() => codesWrite(storageKey, codes), 400);
+    return () => clearTimeout(id);
+  }, [codes, storageKey]);
   const [active, setActive] = useState(files[0].name);
   const taRef = useRef(null);
 
@@ -963,6 +978,16 @@ const progRead = (id, total) => {
 };
 const progWrite = (id, o) => { try { localStorage.setItem(_progKey(id), JSON.stringify(o)); } catch {} };
 const progClear = (id) => { try { localStorage.removeItem(_progKey(id)); } catch {} };
+// F-0801-01 (102-qonun): ochiq praktika-oynasi ham saqlanadi — Chrome fon-tabni bo'shatib
+// sahifani qayta yuklasa, o'quvchi praktika ICHIGA qaytadi, ortidagi darsga emas.
+const _pracKey = (id) => `ccPractice:${id}`;
+const pracRead = (id) => { try { const v = JSON.parse(localStorage.getItem(_pracKey(id)) || 'null'); return v && typeof v === 'object' ? v : null; } catch { return null; } };
+const pracWrite = (id, o) => { try { localStorage.setItem(_pracKey(id), JSON.stringify(o)); } catch {} };
+const pracClear = (id) => { try { localStorage.removeItem(_pracKey(id)); } catch {} };
+// Kod-saqlov kaliti: har praktika o'z kaliti bilan (bir darsda bir necha praktika bor)
+const codeKeyOf = (id, kind) => `ccCode:${id}:${kind}`;
+const codesRead = (k) => { try { const v = JSON.parse(localStorage.getItem(k) || 'null'); return v && typeof v === 'object' ? v : null; } catch { return null; } };
+const codesWrite = (k, codes) => { try { localStorage.setItem(k, JSON.stringify({ codes, savedAt: Date.now() })); } catch {} };
 // Nickname — qurilma bo'ylab BITTA (darsga bog'lanmagan kalit): Internet darsida yozgan ismi shu yerda ham chiqadi
 const LIVE_NICK_KEY = 'liveNickname';
 const nickRead = () => { try { return localStorage.getItem(LIVE_NICK_KEY) || ''; } catch { return ''; } };
@@ -2568,13 +2593,12 @@ function Flashcards({ cards }) {
 
 // ===== SCREEN: FLASHCARD TAKRORLASH (yakuniy summarydan oldin) =====
 const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const audio = useAudio([{ id: 'sflash', text: `Yakunlashdan oldin bugun o'rgangan CSS xususiyatlarini tez takrorlaymiz. Har kartada bir vazifa — javobini o'ylang, keyin kartani bosib tekshiring.`, trigger: 'on_mount', waits_for: null }]);
+  const audio = useAudio([{ id: 'sflash', text: `O'zingizni sinab ko'ring. Har kartada bir savol — javobini o'ylang, keyin kartani bosing.`, trigger: 'on_mount', waits_for: null }]);
   useEffect(() => { if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, []); // eslint-disable-line
   return (
     <Stage eyebrow={tr({ uz: 'Takrorlash', ru: 'Повторение' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={false} label={{ uz: 'Yakunlash →', ru: 'Завершить →' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>CSS xususiyatlarini <span className="italic" style={{ color: T.accent }}>tez takrorlaymiz</span>.</>, ru: <>Быстро <span className="italic" style={{ color: T.accent }}>повторим</span> свойства CSS.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Yakunlashdan oldin bugun o'rgangan xususiyatlarni takrorlaymiz. Har kartada bir vazifa — <b style={{ color: T.ink }}>javobi nima</b> ekanini o'ylang, keyin kartani bosib tekshiring.</>, ru: <>Перед завершением повторим свойства, которые вы сегодня выучили. На каждой карточке — вопрос: подумайте, <b style={{ color: T.ink }}>какой будет ответ</b>, затем нажмите на карточку и проверьте.</> })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>O'zingizni <span className="italic" style={{ color: T.accent }}>sinab ko'ring</span>.</>, ru: <>Проверьте <span className="italic" style={{ color: T.accent }}>себя</span>.</> })}</h2></div>
         <div className="fc-center"><Flashcards cards={CSS_FLASHCARDS} /></div>
       </div>
     </Stage>
@@ -3365,10 +3389,10 @@ export default function CssPractice({ lang: langProp, onFinished, onPractice }) 
   const runPractice = (entry, fromScreen) => {
     const done = () => {
       if (live && live.mode === 'student') live.submitAnswer(PRACTICE_DONE_BASE + fromScreen, `practice-${fromScreen}`, 0, true, 0);
-      setPractice(null); advance();
+      pracClear(LESSON_META.lessonId); setPractice(null); advance();
     };
     if (typeof onPractice === 'function') Promise.resolve(onPractice(entry.task)).then(done);
-    else setPractice({ ...entry, done });
+    else { pracWrite(LESSON_META.lessonId, { kind: `s${fromScreen}`, screen: fromScreen }); setPractice({ ...entry, done, codeKey: codeKeyOf(LESSON_META.lessonId, `s${fromScreen}`) }); }
   };
   // 🏠 UYGA VAZIFA PRAKTIKASI (yakun-sahifadagi tugma) — yakuniy topshiriq.
   // Dars-ichi mashqidan farqi: keyingi ekranga O'TKAZMAYDI (oxirgi sahifa) va serverga
@@ -3376,8 +3400,23 @@ export default function CssPractice({ lang: langProp, onFinished, onPractice }) 
   const openHomeworkPractice = () => {
     const entry = { task: TASK_BUTTON, starter: '' };
     if (typeof onPractice === 'function') Promise.resolve(onPractice(entry.task)).catch(() => {});
-    else setPractice({ ...entry, done: () => setPractice(null) });
+    else {
+      pracWrite(LESSON_META.lessonId, { kind: 'hw' });
+      setPractice({ ...entry, codeKey: codeKeyOf(LESSON_META.lessonId, 'hw'), done: () => { pracClear(LESSON_META.lessonId); setPractice(null); } });
+    }
   };
+  // F-0801-01: qayta yuklanishda ochiq praktika tiklanadi (qaysi biri ochilgan bo'lsa — o'sha
+  // qayta quriladi; `done` shu yerda yangidan bog'lanadi).
+  useEffect(() => {
+    if (typeof onPractice === 'function') return; // production: overlay ishlatilmaydi
+    const p = pracRead(LESSON_META.lessonId);
+    if (!p) return;
+    if (p.kind === 'hw') { openHomeworkPractice(); return; }
+    const entry = PRACTICE_AFTER[p.screen];
+    if (entry) runPractice(entry, p.screen);
+    else pracClear(LESSON_META.lessonId); // dars o'zgargan — eskirgan saqlov tashlanadi
+  }, []); // eslint-disable-line
+
   const next = () => {
     const entry = PRACTICE_AFTER[screen];
     if (!entry) { advance(); return; }
@@ -3396,7 +3435,7 @@ export default function CssPractice({ lang: langProp, onFinished, onPractice }) 
     if (_m && _m.scored && _m.scope === 'final' && data && data.correct && live.mode === 'student') live.submitAnswer(idx, _m.id, 0, true, 0);
     if (_m && ACH_TRIGGERS[_m.id] && data && data.correct) earn(ACH_TRIGGERS[_m.id]); // 🏅 nishon
   };
-  const reset = () => { progClear(LESSON_META.lessonId); setAnswers({}); setScreen(0); setPractice(null); setMentorPractice(null); startTimeRef.current = Date.now(); };
+  const reset = () => { progClear(LESSON_META.lessonId); pracClear(LESSON_META.lessonId); setAnswers({}); setScreen(0); setPractice(null); setMentorPractice(null); startTimeRef.current = Date.now(); };
   // F-0730-01: har o'zgarishda progress saqlanadi (screen + javoblar + nishonlar + boshlangan vaqt)
   useEffect(() => {
     progWrite(LESSON_META.lessonId, { screen, answers, earned: [...earnedRef.current], startedAt: startTimeRef.current, total: TOTAL_SCREENS, savedAt: Date.now() });
@@ -4005,8 +4044,8 @@ export default function CssPractice({ lang: langProp, onFinished, onPractice }) 
         .mp-tip { margin: 2px 0 0; font-size: 12.5px; line-height: 1.5; color: ${T.ink3}; }
         /* Flashcards */
         /* === 🃏 FLASHCARDS (reusable, 3D flip) === */
-        .fc-center { display: flex; justify-content: center; padding-top: 4px; }
-        .fc { display: flex; flex-direction: column; gap: 11px; max-width: 480px; width: 100%; }
+        .fc-center { flex: 1; min-height: 0; display: flex; align-items: center; justify-content: center; padding-top: 4px; }
+        .fc { display: flex; flex-direction: column; gap: 11px; max-width: 520px; width: 100%; }
         .fc-top { display: flex; justify-content: space-between; align-items: center; }
         .fc-pill { display: inline-flex; align-items: center; gap: 5px; font-family: 'Manrope'; font-weight: 800; font-size: 12.5px; border-radius: 99px; padding: 5px 13px; animation: fc-pill-pop 0.35s cubic-bezier(.34,1.5,.4,1); }
         .fc-pill b { font-size: 1.15em; font-variant-numeric: tabular-nums; }
@@ -4030,7 +4069,7 @@ export default function CssPractice({ lang: langProp, onFinished, onPractice }) 
         .fc-fly.out-knew::after { content: '✓'; background: ${T.success}; box-shadow: 0 10px 26px -8px ${T.success}; }
         .fc-fly.out-again::after { content: '✗'; background: ${T.accent}; box-shadow: 0 10px 26px -8px ${T.accent}; }
         @keyframes fc-stamp { from { transform: translate(-50%, -50%) scale(0); } }
-        .fc-card { position: relative; height: clamp(160px,26vw,188px); cursor: pointer; transform-style: preserve-3d; transition: transform .55s cubic-bezier(.4,0,.2,1); }
+        .fc-card { position: relative; height: clamp(188px,27vh,268px); cursor: pointer; transform-style: preserve-3d; transition: transform .55s cubic-bezier(.4,0,.2,1); }
         .fc-card.flip { transform: rotateY(180deg); }
         .fc-card:not(.flip):hover { transform: translateY(-3px); }
         .fc-face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; padding: 22px; text-align: center; }
@@ -4041,7 +4080,7 @@ export default function CssPractice({ lang: langProp, onFinished, onPractice }) 
         .fc-tap { color: ${T.accent}; font-weight: 700; }
         .fc-tag { font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: clamp(30px,6vw,46px); letter-spacing: -0.02em; }
         .fc-note { font-family: 'Manrope'; font-size: 14px; opacity: 0.92; }
-        .fc-actions { display: flex; gap: 10px; }
+        .fc-actions { display: flex; gap: 10px; min-height: 48px; }
         .fc-btn { flex: 1; padding: 13px; border-radius: 13px; font-family: 'Manrope'; font-weight: 800; font-size: 15px; cursor: pointer; border: none; transition: transform .15s; }
         .fc-btn:hover { transform: translateY(-2px); }
         .fc-btn.knew { background: ${T.success}; color: #fff; box-shadow: 0 10px 22px -10px ${T.success}; }
@@ -4049,7 +4088,7 @@ export default function CssPractice({ lang: langProp, onFinished, onPractice }) 
         .fc-btn.again:hover { border-color: ${T.accent}; background: ${T.accentSoft}; }
         .fc-btn:disabled { opacity: 0.55; cursor: default; transform: none; }
         .fc-btn.ghost { background: ${T.paper}; border: 1.5px solid ${T.line}; color: ${T.ink}; flex: none; align-self: center; padding: 11px 22px; }
-        .fc-hint { margin: 0; text-align: center; color: ${T.ink3}; font-style: italic; font-size: 13px; }
+        .fc-hint { margin: 0; min-height: 48px; display: flex; align-items: center; justify-content: center; text-align: center; color: ${T.ink3}; font-style: italic; font-size: 13px; }
         .fc-done { display: flex; flex-direction: column; align-items: center; gap: 5px; text-align: center; background: ${T.successSoft}; border-radius: 18px; padding: 22px; max-width: 480px; }
         .fc-done-emoji { font-size: 40px; }
         .fc-done-h { font-family: 'Manrope'; font-weight: 800; font-size: 20px; color: ${T.success}; margin: 0; }
@@ -4148,7 +4187,7 @@ export default function CssPractice({ lang: langProp, onFinished, onPractice }) 
       {/* Lokal praktika overlay (LMS compilatorining o'rnini bosadi). */}
       {practice && (
         <div style={{ position: 'fixed', inset: 0, zIndex: 2000, background: T.bg }}>
-          <HtmlCompiler task={practice.task} starterCode={practice.starter} onContinue={practice.done} onBack={() => setPractice(null)} />
+          <HtmlCompiler task={practice.task} starterCode={practice.starter} storageKey={practice.codeKey} onContinue={practice.done} onBack={() => { pracClear(LESSON_META.lessonId); setPractice(null); }} />
         </div>
       )}
       {/* Jonli darsda mentor praktika paneli — o'quvchilar yozadi, mentor doskada ko'rsatadi */}

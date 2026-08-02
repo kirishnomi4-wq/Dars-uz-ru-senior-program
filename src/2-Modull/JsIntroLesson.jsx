@@ -1064,7 +1064,7 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
     { text: tr({ uz: "Bog'lanishlar — qismlar qanday ulanadi", ru: 'Связи — как части соединяются' }), tag: '' },
     { text: tr({ uz: 'Algoritm — qadamlar tartibi', ru: 'Алгоритм — порядок шагов' }), tag: '' },
     { text: tr({ uz: 'Shart va sikl', ru: 'Условие и цикл' }), tag: tr({ uz: 'agar · takrorla', ru: 'если · повтори' }) },
-    { text: tr({ uz: "O'z algoritmingni tuz", ru: 'Составь свой алгоритм' }), tag: '' }
+    { text: tr({ uz: "O'z algoritmingizni tuzing", ru: 'Составьте свой алгоритм' }), tag: '' }
   ];
   const isNarrow = useIsMobile(768);
   const [showSteps, setShowSteps] = useState(false);
@@ -1842,13 +1842,12 @@ function Flashcards({ cards }) {
 
 // ===== SCREEN: FLASHCARD TAKRORLASH (yakuniy summarydan oldin) =====
 const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const audio = useAudio([{ id: 'sflash', text: `Darsni yakunlashdan oldin, bugun o'rgangan tushunchalarni tez takrorlaymiz. Har kartada bir savol — javobini o'ylang, keyin kartani bosib tekshiring.`, trigger: 'on_mount', waits_for: null }]);
+  const audio = useAudio([{ id: 'sflash', text: `O'zingizni sinab ko'ring. Har kartada bir savol — javobini o'ylang, keyin kartani bosing.`, trigger: 'on_mount', waits_for: null }]);
   useEffect(() => { if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, []); // eslint-disable-line
   return (
     <Stage eyebrow={tr({ uz: 'Takrorlash', ru: 'Повторение' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={false} label={tr({ uz: 'Yakunlash →', ru: 'Завершить →' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Tushunchalarni <span className="italic" style={{ color: T.accent }}>tez takrorlaymiz</span>.</>, ru: <>Быстро <span className="italic" style={{ color: T.accent }}>повторим понятия</span>.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Darsni yakunlashdan oldin bugun o'rgangan tushunchalarni takrorlaymiz. Har kartada bir savol — <b style={{ color: T.ink }}>javobini</b> o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</>, ru: <>Перед завершением урока повторим понятия, которые вы сегодня узнали. На каждой карточке вопрос — подумайте, <b style={{ color: T.ink }}>каким будет ответ</b>, потом нажмите на карточку и проверьте себя. Оценивайте кнопками <b style={{ color: T.ink }}>Знаю</b> или <b style={{ color: T.ink }}>Повторить</b>.</> })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>O'zingizni <span className="italic" style={{ color: T.accent }}>sinab ko'ring</span>.</>, ru: <>Проверьте <span className="italic" style={{ color: T.accent }}>себя</span>.</> })}</h2></div>
         <div className="fc-center"><Flashcards cards={JS_FLASHCARDS} /></div>
       </div>
     </Stage>
@@ -1877,7 +1876,7 @@ const Screen16 = ({ screen, answers, onReset, onPrev, onFinish }) => {
     setArena(true);
   };
   const RECAP = [tr({ uz: "Sistema — komponentlar va bog'lanishlar", ru: 'Система — компоненты и связи' }), tr({ uz: 'Atrofdagi sistemalar (tana, jamoa, sayt)', ru: 'Системы вокруг нас (тело, команда, сайт)' }), tr({ uz: 'Algoritm — aniq qadamlar tartibi', ru: 'Алгоритм — порядок точных шагов' }), tr({ uz: 'Ketma-ketlik — tartib muhim', ru: 'Последовательность — порядок важен' }), tr({ uz: "Shart (agar...bo'lsa) va Sikl (takrorla)", ru: 'Условие (если... то) и Цикл (повтори)' })];
-  const HOMEWORK = [{ b: tr({ uz: 'Sistema top', ru: 'Найди систему' }), t: tr({ uz: '— atrofingizdan 1 sistema toping, qismlarini yozing', ru: '— найдите вокруг себя 1 систему и запишите её части' }) }, { b: tr({ uz: 'Algoritm yoz', ru: 'Напиши алгоритм' }), t: tr({ uz: '— maktabga tayyorgarlikni qadam-baqadam yozing', ru: '— распишите сборы в школу шаг за шагом' }) }, { b: tr({ uz: "Shart qo'sh", ru: 'Добавь условие' }), t: tr({ uz: '— "agar... bo\'lsa..." qadamini qo\'shing', ru: '— добавьте шаг «если... то...»' }) }];
+  const HOMEWORK = [{ b: tr({ uz: 'Sistemani toping', ru: 'Найдите систему' }), t: tr({ uz: '— atrofingizdan 1 sistema toping, qismlarini yozing', ru: '— найдите вокруг себя 1 систему и запишите её части' }) }, { b: tr({ uz: 'Algoritm yozing', ru: 'Напишите алгоритм' }), t: tr({ uz: '— maktabga tayyorgarlikni qadam-baqadam yozing', ru: '— распишите сборы в школу шаг за шагом' }) }, { b: tr({ uz: "Shart qo'shing", ru: 'Добавьте условие' }), t: tr({ uz: '— "agar... bo\'lsa..." qadamini qo\'shing', ru: '— добавьте шаг «если... то...»' }) }];
   const GLOSSARY = [{ b: tr({ uz: 'Sistema', ru: 'Система' }), t: tr({ uz: '— birga ishlaydigan qismlar', ru: '— части, работающие вместе' }) }, { b: tr({ uz: 'Komponent', ru: 'Компонент' }), t: tr({ uz: '— sistemaning bir qismi', ru: '— одна часть системы' }) }, { b: tr({ uz: "Bog'lanish", ru: 'Связь' }), t: tr({ uz: "— qismlarni ulaydigan yo'l", ru: '— путь, соединяющий части' }) }, { b: tr({ uz: 'Algoritm', ru: 'Алгоритм' }), t: tr({ uz: '— aniq qadamlar tartibi', ru: '— порядок точных шагов' }) }, { b: tr({ uz: 'Ketma-ketlik', ru: 'Последовательность' }), t: tr({ uz: '— qadamlar tartibi', ru: '— порядок шагов' }) }, { b: tr({ uz: 'Shart', ru: 'Условие' }), t: tr({ uz: '— agar...bo\'lsa...', ru: '— если... то...' }) }, { b: tr({ uz: 'Sikl', ru: 'Цикл' }), t: tr({ uz: '— takrorlash', ru: '— повторение' }) }];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
@@ -3287,8 +3286,8 @@ export default function JsIntroLesson({ lang: langProp, onFinished }) {
         /* frame-wait (feedback kutish) */
         .frame-wait { background: ${T.blueSoft}; border-left: 4px solid ${T.blue}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -8px rgba(1,154,203,0.22); }
         /* === 🃏 FLASHCARDS (reusable, 3D flip) === */
-        .fc-center { display: flex; justify-content: center; padding-top: 4px; }
-        .fc { display: flex; flex-direction: column; gap: 11px; max-width: 480px; width: 100%; }
+        .fc-center { flex: 1; min-height: 0; display: flex; align-items: center; justify-content: center; padding-top: 4px; }
+        .fc { display: flex; flex-direction: column; gap: 11px; max-width: 520px; width: 100%; }
         .fc-top { display: flex; justify-content: space-between; align-items: center; }
         .fc-pill { display: inline-flex; align-items: center; gap: 5px; font-family: 'Manrope'; font-weight: 800; font-size: 12.5px; border-radius: 99px; padding: 5px 13px; animation: fc-pill-pop 0.35s cubic-bezier(.34,1.5,.4,1); }
         .fc-pill b { font-size: 1.15em; font-variant-numeric: tabular-nums; }
@@ -3311,7 +3310,7 @@ export default function JsIntroLesson({ lang: langProp, onFinished }) {
         .fc-fly.out-knew::after { content: '✓'; background: ${T.success}; box-shadow: 0 10px 26px -8px ${T.success}; }
         .fc-fly.out-again::after { content: '✗'; background: ${T.accent}; box-shadow: 0 10px 26px -8px ${T.accent}; }
         @keyframes fc-stamp { from { transform: translate(-50%, -50%) scale(0); } }
-        .fc-card { position: relative; height: clamp(160px,26vw,188px); cursor: pointer; transform-style: preserve-3d; transition: transform .55s cubic-bezier(.4,0,.2,1); }
+        .fc-card { position: relative; height: clamp(188px,27vh,268px); cursor: pointer; transform-style: preserve-3d; transition: transform .55s cubic-bezier(.4,0,.2,1); }
         .fc-card.flip { transform: rotateY(180deg); }
         .fc-card:not(.flip):hover { transform: translateY(-3px); }
         .fc-face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; padding: 22px; text-align: center; }
@@ -3322,7 +3321,7 @@ export default function JsIntroLesson({ lang: langProp, onFinished }) {
         .fc-tap { color: ${T.accent}; font-weight: 700; }
         .fc-tag { font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: clamp(26px,5vw,40px); letter-spacing: -0.02em; }
         .fc-note { font-family: 'Manrope'; font-size: 14px; opacity: 0.92; }
-        .fc-actions { display: flex; gap: 10px; }
+        .fc-actions { display: flex; gap: 10px; min-height: 48px; }
         .fc-btn { flex: 1; padding: 13px; border-radius: 13px; font-family: 'Manrope'; font-weight: 800; font-size: 15px; cursor: pointer; border: none; transition: transform .15s; }
         .fc-btn:hover { transform: translateY(-2px); }
         .fc-btn.knew { background: ${T.success}; color: #fff; box-shadow: 0 10px 22px -10px ${T.success}; }
@@ -3330,7 +3329,7 @@ export default function JsIntroLesson({ lang: langProp, onFinished }) {
         .fc-btn.again:hover { border-color: ${T.accent}; background: ${T.accentSoft}; }
         .fc-btn:disabled { opacity: 0.55; cursor: default; transform: none; }
         .fc-btn.ghost { background: ${T.paper}; border: 1.5px solid rgba(167,166,162,0.35); color: ${T.ink}; flex: none; align-self: center; padding: 11px 22px; }
-        .fc-hint { margin: 0; text-align: center; color: ${T.ink3}; font-style: italic; font-size: 13px; }
+        .fc-hint { margin: 0; min-height: 48px; display: flex; align-items: center; justify-content: center; text-align: center; color: ${T.ink3}; font-style: italic; font-size: 13px; }
         .fc-done { display: flex; flex-direction: column; align-items: center; gap: 5px; text-align: center; background: ${T.successSoft}; border-radius: 18px; padding: 22px; max-width: 480px; }
         .fc-done-emoji { font-size: 40px; }
         .fc-done-h { font-family: 'Manrope'; font-weight: 800; font-size: 20px; color: ${T.success}; margin: 0; }

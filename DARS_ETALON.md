@@ -273,6 +273,62 @@ u yo'nalish beradi va tushuntiradi.
 - Tekshiruv-grep: dars matnida personaj ismi bilan imzolangan chat-pufak (`dy-msg`,
   `DChat` uslubidagi komponent) bo'lmasin.
 
+### 5.9 🔴 IKKINCHI QADAM AFFORDANSI — ipucha JOYNI aytadi + element pulsatsiya qiladi (2026-08-01, F-0801-11)
+
+Ko'p-qadamli interaktiv mexanikada (belgila → formatla, tanla → qo'y, sudra → tashla)
+o'quvchi **birinchi qadamni** o'zi topadi, **ikkinchisida esa qotib qoladi** — chunki yangi
+boshqaruv (pop-up menyu, chiqib kelgan tugma) uning ko'z-yo'lidan tashqarida paydo bo'ladi.
+Foydalanuvchi dalili: *«Men ham birinchi qarashda xabarni bosaman deb o'yladim. B/I menyusi
+bosilishini esa darrov anglamadim»* — muallif ham topolmagan bo'lsa, o'quvchi umuman topmaydi.
+
+Ikkala choraning **ikkalasi ham** qo'yiladi (bittasi yetarli emas):
+
+1. 🔴 **Ipucha element NOMINI va JOYINI aytadi, konteyner nomini emas.**
+   ❌ «Ustidagi **menyudan** B (qalin) yoki I (yotiq) tanlang» — «menyu» ekranda yozilmagan
+   so'z, o'quvchi uni izlaydi. ✅ «👆 **Yuqoridagi B yoki I tugmasini bosing**» — nima
+   (tugma), qayerda (yuqorida), qanday (bosing). Qavs-izohlar (qalin/yotiq) ipuchadan
+   olib tashlanadi — ular tugmaning O'Z `title` ida (99-qonun: ko'rsatma bir joyda).
+2. 🔴 **Kutilayotgan element «nafas oladi»** — hali bosilmagan boshqaruv ~2 s davrda bir
+   marta kattalashib-kichrayadi (`scale(1) → 1.22`, fon yorishadi). Bosilgach pulsatsiya
+   **o'chadi** (bosilgan-holat bayrog'i bilan: `usedB`/`usedI`) — aks holda bajarilgan ish
+   ham chaqirib turadi. Naqsh: `Htmllesson1.jsx` `.tgm-menu button.pulse` + `@keyframes tgm-breathe`.
+3. `prefers-reduced-motion: reduce` da animatsiya **o'chadi, affordans esa qoladi** —
+   pulsatsiya o'rniga doimiy yorug' fon. (Harakatni butunlay o'chirib qo'yish = 1-qadamdagi
+   muammoni qaytarish.)
+
+📌 Tekshiruv (`darslik-tekshiruvchi` / `darslik-animatsiya`): har ko'p-qadamli mexanikada
+**2-qadamning boshqaruvi** — pulsatsiyasi bormi va ipuchada uning aniq nomi turibdimi?
+
+### 5.10 🔴 TASHQI BOG'LIQLIK DARSNI TO'XTATMAYDI — ZAXIRA-YO'L MAJBURIY (2026-08-01, F-0801-12)
+
+Dars o'quvchini **o'z kompyuteridan tashqariga** chiqarsa (sayt ochish, dastur o'rnatish,
+ro'yxatdan o'tish), o'sha nuqta **buziladi**: sayt yotadi (`ERR_CONNECTION_RESET`), antivirus
+o'rnatuvchini to'xtatadi, administrator huquqi yo'q, internet uziladi, OS boshqa chiqadi.
+Bularning **hech biri bizning aybimiz emas — lekin o'quvchi uchun farqi yo'q**: u «dars
+buzilibdi» deb o'ylaydi va to'xtaydi. Foydalanuvchi dalili: *«Agar o'quvchi shunday xatoni
+ko'rsa, u "dars buzilibdi" deb o'ylaydi. Bu sizning aybingiz bo'lmasa ham, o'quvchi uchun
+farqi yo'q.»*
+
+🔴 **Bosh mezon: darsning YAKUNIY VA'DASI bitta tashqi bog'liqlikka osilib qolmaydi.**
+«Bugun saytingiz internetga chiqadi» va'da qilingan bo'lsa, u Git o'rnatilmasa ham bajariladi.
+
+1. 🔴 **Har tashqi qadamda `help` bandi** — xatoning **aynan matni** yozilib, ayblov o'quvchidan
+   olinadi: «Sayt ochilmasa (masalan `ERR_CONNECTION_RESET`) — **bu sizning xatongiz emas**».
+2. 🔴 **Ekran oxirida 🛟 ZAXIRA-YO'L paneli** (`FallbackPanel`, yopiq `details` — kerak bo'lgan
+   ochadi, qolganlarga ekranni to'ldirmaydi). Ichida ikki qatlam: **(a)** o'sha ishning boshqa
+   yo'li (sayt o'rnida paket-menejer buyrug'i), **(b)** 🔴 **butunlay boshqa marshrut** — natijaga
+   olib boradigan, tashqi bog'liqliksiz yo'l.
+3. 🔴 **OS-qamrovi.** Buyruq/tugma nomi OS'ga qarab farq qilsa, uchalasi ham yoziladi
+   (Windows · macOS · Linux) — bitta OS'ga yozilgan ekran boshqasida shunchaki **noto'g'ri**.
+4. 🔴 **Darvoza qulflanmaydi.** Qadamlar «bajardim» belgilanishiga bog'liq bo'lsa, zaxira-panel
+   ochiq aytadi: bajarolmagan qadamni ham belgilab, **keyingi ekranga o'ting**. Aks holda
+   himoya o'rniga yangi devor quriladi.
+
+📌 Tatbiq-namunasi: `GitLesson.jsx` — `FallbackPanel` + `.dsx-fb*` (o'rnatish ekranida
+`winget`/`brew`/`apt`, push-amaliyotida **Add file → Upload files** marshruti).
+Tekshiruv (`darslik-tekshiruvchi`): darsdagi har tashqi manzil/o'rnatishni sanab chiqing —
+har birida `help` bormi va ekranda zaxira-panel bormi?
+
 ## 6. 🟡 `MentorTestStats` — «to'g'ri» sanog'i ustunlar bilan bir manbadan
 
 Serverdagi (eskirishi mumkin) `a.correct`ga tayanmang — ustunlar bilan **bir xil mantiqdan**:
@@ -579,6 +635,44 @@ Namuna-tatbiq: `src/pm/PmUserStoryLesson.jsx` (qstats allaqachon yo'q) · `src/1
 
 ---
 
+## 11-D. 🔴 TO'LIQ-EKRAN OYNA HOLATI SAQLANADI (102-qonun, 2026-08-01)
+
+**Muammo.** F-0730-01 progress-saqlovi faqat **ekran raqamini** tiklaydi. Ekran USTIDA turgan
+to'liq-ekran qatlam (praktika-kompilyator overlayi) esa oddiy React-state bo'lgani uchun
+qayta yuklanishda yo'qoladi — o'quvchi kompilyator ichidan praktika-sahifasiga tushib qoladi.
+Texnik darslarda bundan ham yomoni bo'lgan: `HtmlCompiler` yozilgan kodni **hech qayerga
+saqlamasdi**, ya'ni bola yozganini butunlay yo'qotardi. Qo'zg'atuvchi — Chrome «Memory Saver»:
+fon-tabni xotiradan bo'shatib, qaytganda sahifani jimgina qayta yuklaydi (o'quvchi buni sezmaydi).
+
+**Qoida.** Praktika-oyna ochilishi bilan IKKI narsa saqlanadi:
+- **(a) qaysi praktika ochiq** → `ccPractice:<lessonId>` = `{ kind, screen }`. `kind` — `s<N>`
+  (dars-ichi, `PRACTICE_AFTER[N]`) yoki `hw` (uyga vazifa). Yopilganda (orqaga / tugatilganda /
+  `reset`) o'chiriladi.
+- **(b) yozilgan kod** → `ccCode:<lessonId>:<kind>` = `{ codes, savedAt }`, kompilyator ichida
+  har **400ms** jonli saqlanadi. Har praktika o'z kaliti bilan (bir darsda bir nechta bor).
+
+**Tiklash.** Dars mount'ida `pracRead` o'qiladi va o'sha praktika QAYTA QURILADI (`done`
+funksiyasi saqlanmaydi — u tiklashda yangidan bog'lanadi). `PRACTICE_AFTER[screen]` topilmasa
+(dars o'zgargan) saqlov jimgina tashlanadi. `HtmlCompiler` esa `storageKey` propi orqali
+kodni tiklaydi — **faqat fayllar to'plami AYNAN mos kelganda** (topshiriq o'zgargan bo'lsa
+saqlov e'tiborsiz qoldiriladi, o'quvchi eski kod bilan yangi topshiriqda qolib ketmasin).
+
+🔴 **Ehtiyot (F-0801-01 raundida yo'l qo'yilgan xato):** `codes` boshlang'ich qiymatini
+ko'chirishda darsning O'Z ifodasi saqlanadi — `CssLesson1` da u `tr(f.starter)` (UZ-RU),
+qolganlarida `f.starter`. Buni `f.starter` ga tekislash UZ-RU mexanizmini buzadi va
+`css.trim is not a function` bilan oq ekran beradi.
+
+**Qamrov.** Kompilyator-qobiqli har dars. Tatbiq (2026-08-01): PM 7 dars + texnik 9 dars
+(`Htmllesson1/2`, `CssLesson1/2`, `CssPractice`, `HtmlPractice`, `HtmlTakrorlashLesson`,
+`VsCodeLesson`, `PracticeLesson1`) + infra-manba `src/compilator/HtmlCompiler.jsx`.
+🔴 Har texnik darsning **O'Z ICHKI `HtmlCompiler` nusxasi** bor — infra-manbani tuzatish
+darslarga tarqalmaydi, har fayl alohida tuzatiladi.
+
+**Tekshiruv.** Brauzer-testi (`playwright-core`): praktikani ochish → kod yozish →
+`page.reload()` → oyna ochiq VA kod joyida bo'lishi shart. Dasturiy o'lchov: har darsda
+`pracRead`/`pracWrite`/`pracClear` + `storageKey={practice.codeKey}` + `codesWrite` bor.
+
+---
 ## 12. 🐛 MA'LUM BUGLAR TARIXI (qaytarilmasin!)
 
 | Bug | Belgi | Sabab | Tuzatish |
@@ -601,6 +695,7 @@ Namuna-tatbiq: `src/pm/PmUserStoryLesson.jsx` (qstats allaqachon yo'q) · `src/1
 | **Starterda tayyor kod** | Praktika ochilganda ba'zi shartlar oldindan ✓; o'quvchi o'zi yozmaydi | `STARTER_*`ga namuna teg/matn/ko'rsatma qo'shilgan | 11.9 (faqat `<!-- Bu yerga yozing -->`) |
 | **"Sirli" kutish matni** | «To'g'rimi-xatomi — hozircha sir! 🤫» — bola tushunmaydi/bezovta | Kahoot-reveal kutish matni dramatik yozilgan | 1-bo'lim ("sir"-uslub taqiqi) + 15-G |
 | **Apostrof tuzatishda build sinishi** | `Expected ")" but found ...` — esbuild yiqiladi | Qiyshiq apostrof single-quoted JS string ichida oddiy `'` bilan almashtirilgan | 15-G (`\'` escape) yoki stringni qo'shtirnoqqa o'tkazish |
+| **Kompilyator tab-qaytishda yopiladi** (2026-08-01) | O'quvchi kompilyatorda yozib turib boshqa tabga o'tib qaytsa — kompilyator yopiq, ortidagi praktika-sahifa ochiq; yozilgan kod **butunlay yo'qolgan** | Chrome «Memory Saver» fon-tabni bo'shatib sahifani jimgina qayta yuklaydi. `practice` overlay oddiy React-state edi, `HtmlCompiler` esa kodni hech qayerga saqlamasdi | 11-D (102-qonun): `ccPractice:<lessonId>` + `ccCode:<lessonId>:<praktika>` |
 
 ---
 

@@ -887,7 +887,6 @@ const HOOK_OPTS = [
 ];
 // Hook-tanlov lesson-scoped saqlanadi — s4 yakuniy slaydda shaxsiy qaytarish uchun (payoff).
 const HOOK_CHOICE_KEY = 'pm-m7d2-hook-choice';
-const readHookChoice = () => { try { const v = localStorage.getItem(HOOK_CHOICE_KEY); return v == null || v === '' ? null : Number(v); } catch { return null; } };
 const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
   const gate = useContext(LiveGateCtx) || {};
   const live = gate.live;
@@ -1173,9 +1172,6 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const c = K18_SLIDES[i];
   const pd = K18_PREDICTS[i];
   const myBet = pd && preds[i] !== undefined ? pd.opts[preds[i]] : null;
-  // 🎁 PAYOFF: hook-tanlovga shaxsiy qaytarish (saqlanmagan bo'lsa umumiy matn qoladi)
-  const hookPick = last ? readHookChoice() : null;
-  const hookHit = hookPick === 2; // «O'tirib ishlash va uchrashish uchun» — sirga eng yaqin javob
   return (
     <Stage eyebrow="Haqiqiy misol ☕" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={pending !== null && !isMentor4} label={pending !== null ? (isMentor4 ? '🔓 Slaydni ochish' : '👆 Avval taxminingizni tanlang') : last ? 'Davom etish' : `Keyingi bosqich (${i + 1}/${K18_SLIDES.length})`} onClick={last ? onNext : goNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(14px,2.2vw,20px)' }}>
@@ -1189,7 +1185,6 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 <button key={j} className="pred-chip" onClick={() => bet(j)}><span className="pred-ic" aria-hidden="true">{o.ic}</span>{o.t}</button>
               ))}
             </div>
-            <p className="pred-cap">Bu ball emas — bemalol belgilang, javob hozir ochiladi.</p>
           </div>
         ) : (
           <div className={`k-slide fade-step ${glow ? 'reveal-glow' : ''}`} key={i}>
@@ -1214,9 +1209,6 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </div>
         )}
         <div className="k-dots">{K18_SLIDES.map((_, k) => <button key={k} className={`k-dot ${k === i && pending === null ? 'cur' : k < i || pending === k ? 'fill' : ''}`} onClick={() => goDot(k)} aria-label={`${k + 1}-bosqich`} />)}</div>
-        {last && hookPick !== null && (hookHit
-          ? <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>🎉 Dars boshida siz «<b>{HOOK_OPTS[hookPick]}</b>» degandingiz — topgan ekansiz!</p></div>
-          : <div className="frame-soft fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Dars boshida siz «<b>{HOOK_OPTS[hookPick]}</b>» degandingiz — aslida odamlar joy va muhitga to'laydi.</p></div>)}
         {/* F-0725-01 · 54-qonun: keysning oxirgi slaydidagi «sizning MVP'ingiz ham…» ramkasi o'chirildi — P0 da bu qatlam yo'q (bir ekran, bir xabar). */}
         <MentorNote>Keysni sodda tilda ayting. Raqam to'qimang — bu keysda rasmiy raqam yo'q. Taxmin-bosqichda sinfdan ovoz so'rang, keyin slaydni oching.</MentorNote>
       </div>
@@ -4134,7 +4126,6 @@ export default function PmJtbdLesson({ lang: langProp, onFinished }) {
         .pred-chip:hover { transform: translateY(-2px); box-shadow: 0 12px 24px -8px rgba(91,61,230,0.28), inset 0 0 0 1.5px ${T.accent}66; }
         .pred-chip:active { transform: scale(0.95); }
         .pred-ic { font-size: 19px; }
-        .pred-cap { margin: 0; font-family: 'Manrope', sans-serif; font-weight: 500; font-size: clamp(11.5px,1.4vw,13px); color: ${T.ink3}; }
         /* taxmin natijasi — topsa yashil ✓, topmasa NEYTRAL indigo (qizil YO'Q) */
         .pred-res { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(12px,1.5vw,13.5px); border-radius: 99px; padding: 6px 14px; animation: hc-cond-pop 0.4s cubic-bezier(.34,1.5,.4,1); }
         .pred-res.hit { color: ${T.success}; background: ${T.successSoft}; box-shadow: inset 0 0 0 1.5px ${T.success}44; }

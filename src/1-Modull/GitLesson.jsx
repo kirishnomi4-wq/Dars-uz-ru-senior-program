@@ -1030,8 +1030,17 @@ function DoSteps({ screen, storedAnswer, onAnswer, steps, taskLabel, practice, o
   );
 }
 
+// 🛟 ZAXIRA-YO'L paneli (F-0801-12): tashqi sayt/o'rnatish sinsa ham dars TO'XTAMAYDI.
+// Yopiq turadi — kerak bo'lgan o'quvchi ochadi, qolganlarga ekranni to'ldirmaydi.
+const FallbackPanel = ({ title, children }) => (
+  <details className="dsx-fb">
+    <summary>🛟 {tr(title)}</summary>
+    <div className="dsx-fb-body">{children}</div>
+  </details>
+);
+
 // Bitta ekran — bitta ish (92-qonun): chapda kutilgan natija, o'ngda qadamlar.
-const DoScreen = ({ screen, storedAnswer, onAnswer, onNext, onPrev, eyebrow, title, mentor, steps, taskLabel, practice, resultLabel }) => {
+const DoScreen = ({ screen, storedAnswer, onAnswer, onNext, onPrev, eyebrow, title, mentor, steps, taskLabel, practice, resultLabel, fallback }) => {
   const _gate = useContext(LiveGateCtx) || {};
   const _isMentorLive = !!(_gate.live && _gate.live.mode === 'mentor');
   const [view, setView] = useState(0);
@@ -1054,6 +1063,7 @@ const DoScreen = ({ screen, storedAnswer, onAnswer, onNext, onPrev, eyebrow, tit
           </Col>
           <Col>
             <DoSteps screen={screen} storedAnswer={storedAnswer} onAnswer={onAnswer} steps={steps} taskLabel={taskLabel} practice={practice} onStep={setView} />
+            {fallback}
           </Col>
         </Split>
       </div>
@@ -1111,10 +1121,10 @@ const ScreenGoal = ({ screen, onNext, onPrev }) => {
   const nick = (nickRead() || '').trim().toLowerCase().replace(/[^a-z0-9-]/g, '') || 'ismingiz';
   const STEPS = [
     { text: { uz: 'Google akkauntga kiramiz', ru: 'Заходим в аккаунт Google' }, tag: 'google.com' },
-    { text: { uz: "Git dasturini o'rnatamiz", ru: 'Ставим программу Git' }, tag: 'git-scm.com' },
+    { text: { uz: "Kompyuterimizga Git o'rnatamiz", ru: 'Ставим Git на свой компьютер' }, sub: { uz: "kodni GitHub'ga yuborish uchun", ru: 'чтобы отправлять код на GitHub' }, tag: 'git-scm.com' },
     { text: { uz: "GitHub'da ro'yxatdan o'tamiz", ru: 'Регистрируемся на GitHub' }, tag: 'github.com' },
-    { text: { uz: 'Loyiha uchun joy ochamiz', ru: 'Открываем место для проекта' }, tag: 'repo' },
-    { text: { uz: 'Kodni internetga yuboramiz', ru: 'Отправляем код в интернет' }, tag: 'push' },
+    { text: { uz: "GitHub'da yangi loyiha (Repository) yaratamiz", ru: 'Создаём на GitHub новый проект (Repository)' }, tag: 'github.com' },
+    { text: { uz: 'Kodni internetga yuboramiz', ru: 'Отправляем код в интернет' }, tag: 'git push' },
   ];
   const isNarrow = useIsMobile(768);
   const [showSteps, setShowSteps] = useState(false);
@@ -1135,7 +1145,7 @@ const ScreenGoal = ({ screen, onNext, onPrev }) => {
   const StepsBlock = (
     <Col>
       <p className="flow-label">{tr({ uz: '5 qadam', ru: '5 шагов' })}</p>
-      <ol className="roadmap">{STEPS.map((s, i) => (<li key={i} className="step-card fade-up" style={{ animationDelay: `${0.08 + i * 0.05}s` }}><span className="step-num">{String(i + 1).padStart(2, '0')}</span><span className="step-body"><span className="step-text">{tr(s.text)}</span>{s.tag && <span className="step-tag">{s.tag}</span>}</span></li>))}</ol>
+      <ol className="roadmap">{STEPS.map((s, i) => (<li key={i} className="step-card fade-up" style={{ animationDelay: `${0.08 + i * 0.05}s` }}><span className="step-num">{String(i + 1).padStart(2, '0')}</span><span className="step-body"><span className="step-line"><span className="step-text">{tr(s.text)}</span>{s.tag && <span className="step-tag">{s.tag}</span>}</span>{s.sub && <span className="step-sub">{tr(s.sub)}</span>}</span></li>))}</ol>
     </Col>
   );
   return (
@@ -1184,10 +1194,12 @@ const GIT_STEPS = [
   { id: 'site', nav: { uz: 'git-scm.com ni oching', ru: 'откройте git-scm.com' },
     t: { uz: 'Brauzerda `git-scm.com` saytini oching', ru: 'Откройте в браузере сайт `git-scm.com`' },
     d: { uz: "Manzilni qo'lda yozing — bu Git dasturining rasmiy sayti, bepul.", ru: 'Наберите адрес вручную — это официальный сайт Git, бесплатный.' },
+    help: { uz: "Sayt ochilmasa (masalan «ERR_CONNECTION_RESET») — bu sizning xatongiz emas, sayt vaqtincha ochilmayapti. Pastdagi «🛟 Ochilmadimi?» panelini oching: u yerda saytsiz o'rnatish yo'li bor.", ru: 'Сайт не открылся (например «ERR_CONNECTION_RESET») — это не ваша ошибка, сайт временно недоступен. Откройте панель «🛟 Не открылось?» ниже: там способ установки без сайта.' },
     res: () => <Preview title="git-scm.com" minH={150}><div style={{ ...winBox, minHeight: 120 }}><span style={{ fontSize: 26 }}>🌿</span><span style={{ fontFamily: 'Georgia, serif', fontSize: 20 }}>Git</span><span style={{ background: T.accent, color: '#fff', borderRadius: 8, padding: '7px 14px', fontWeight: 700, fontSize: 13 }}>⬇ Download for Windows</span></div></Preview> },
   { id: 'dl', nav: { uz: 'faylni yuklab oling', ru: 'скачайте файл' },
     t: { uz: '«Download for Windows» tugmasini bosing', ru: 'Нажмите кнопку «Download for Windows»' },
     d: { uz: 'Fayl (taxminan 60 MB) yuklanishini kuting — u «Yuklanmalar» papkasiga tushadi.', ru: 'Дождитесь загрузки файла (около 60 МБ) — он попадёт в папку «Загрузки».' },
+    help: { uz: "Kompyuteringiz Mac yoki Linux bo'lsa — tugma «Download for Mac» / «Download for Linux» deb yozilgan bo'ladi, qolgani bir xil. Ishonchli yo'l — pastdagi «🛟 Ochilmadimi?» panelidagi buyruq.", ru: 'Если у вас Mac или Linux — кнопка называется «Download for Mac» / «Download for Linux», остальное так же. Надёжный путь — команда из панели «🛟 Не открылось?» ниже.' },
     res: () => <Preview title="git-scm.com" minH={150}><div style={{ ...winBox, minHeight: 120 }}><span className="mono small">📦 Git-2.45-64-bit.exe</span><span style={{ width: '70%', maxWidth: 200, height: 7, borderRadius: 99, background: T.line, overflow: 'hidden' }}><span style={{ display: 'block', width: '70%', height: '100%', background: T.accent }} /></span><span className="mono small" style={{ color: T.ink3 }}>{tr({ uz: 'yuklanmoqda…', ru: 'загружается…' })}</span></div></Preview> },
   { id: 'inst', nav: { uz: "dasturni o'rnating", ru: 'установите программу' },
     t: { uz: "Yuklangan faylni oching va o'rnating", ru: 'Откройте скачанный файл и установите' },
@@ -1206,7 +1218,24 @@ const ScreenGitInstall = (props) => (
     title={tr({ uz: <>Kodning nusxalarini <span className="italic" style={{ color: T.accent }}>bitta dastur</span> yuritadi</>, ru: <>Копии кода ведёт <span className="italic" style={{ color: T.accent }}>одна программа</span></> })}
     mentor={tr({ uz: <>Kodning versiyalarini saqlaydigan bepul dastur bor — u <b style={{ color: T.ink }}>Git</b> deyiladi.</>, ru: <>Есть бесплатная программа, которая хранит версии кода, — она называется <b style={{ color: T.ink }}>Git</b>.</> })}
     steps={GIT_STEPS} taskLabel={{ uz: "Git o'rnatish", ru: 'Установка Git' }}
-    resultLabel={tr({ uz: 'Kutilgan natija', ru: 'Ожидаемый результат' })} />
+    resultLabel={tr({ uz: 'Kutilgan natija', ru: 'Ожидаемый результат' })}
+    fallback={
+      <FallbackPanel title={{ uz: 'Ochilmadimi yoki o\'rnatilmadimi?', ru: 'Не открылось или не установилось?' }}>
+        <p className="dsx-fb-t">{tr({ uz: "Sayt ochilmasligi yoki o'rnatuvchi ishlamasligi — sizning xatongiz emas. Ikkita zaxira yo'l bor.", ru: 'Сайт не открылся или установщик не сработал — это не ваша ошибка. Есть два запасных пути.' })}</p>
+        <p className="dsx-fb-h">{tr({ uz: '1 · Saytsiz o\'rnatish — terminalga bitta buyruq', ru: '1 · Установка без сайта — одна команда в терминале' })}</p>
+        <div className="term">
+          <span className="term-row"><span className="term-out">Windows</span></span>
+          <span className="term-row"><span className="term-prompt">$ </span><span className="term-cmd">winget install --id Git.Git</span></span>
+          <span className="term-row"><span className="term-out">macOS</span></span>
+          <span className="term-row"><span className="term-prompt">$ </span><span className="term-cmd">brew install git</span></span>
+          <span className="term-row"><span className="term-out">Linux</span></span>
+          <span className="term-row"><span className="term-prompt">$ </span><span className="term-cmd">sudo apt install git</span></span>
+        </div>
+        <p className="dsx-fb-h">{tr({ uz: '2 · Hech biri ishlamasa — dars TO\'XTAMAYDI', ru: '2 · Если ничего не сработало — урок НЕ ОСТАНАВЛИВАЕТСЯ' })}</p>
+        <p className="dsx-fb-t">{tr({ uz: <>Kodni GitHub'ning <b>o'ziga</b> ham yuklash mumkin: repo sahifasida <b>Add file → Upload files</b>. Natija bir xil — saytingiz internetda va havolasi bo'ladi. Bu yo'l amaliyot ekranida ham eslatiladi.</>, ru: <>Код можно загрузить и <b>прямо на GitHub</b>: на странице репо <b>Add file → Upload files</b>. Результат тот же — сайт в интернете и у него есть ссылка. Этот путь напомним и на экране практики.</> })}</p>
+        <p className="dsx-fb-t" style={{ color: T.ink3 }}>{tr({ uz: <>Git'ni keyinroq uyda o'rnatasiz — u ishni tezlashtiradi, lekin bugungi natijani to'sib qo'ymaydi. Shuning uchun bajarolmagan qadamlarni ham belgilab, <b>keyingi ekranga o'ting</b>.</>, ru: <>Git поставите позже дома — он ускоряет работу, но не блокирует сегодняшний результат. Поэтому отметьте и невыполненные шаги и <b>переходите к следующему экрану</b>.</> })}</p>
+      </FallbackPanel>
+    } />
 );
 
 // ===== SCREEN 4 — TEST-1 (Git nima qiladi) =====
@@ -1485,7 +1514,7 @@ const PUSH_STEPS = [
   { id: 'clone', nav: { uz: 'reponi kompyuterga oling', ru: 'заберите репо на компьютер' },
     t: { uz: "VS Code'da Ctrl+Shift+P bosing, `Git: Clone` yozing va havolani qo'ying", ru: 'В VS Code нажмите Ctrl+Shift+P, наберите `Git: Clone` и вставьте ссылку' },
     d: { uz: "Papkani tanlaysiz — repo o'sha yerga tushadi va VS Code uni ochadi.", ru: 'Выбираете папку — репо попадёт туда, и VS Code его откроет.' },
-    help: { uz: "Ro'yxatda Git: Clone yo'q bo'lsa — Git o'rnatilmagan. 2-qadamga qaytib, `git --version` ni tekshiring.", ru: 'В списке нет Git: Clone — значит Git не установлен. Вернитесь ко второму шагу и проверьте `git --version`.' },
+    help: { uz: "Ro'yxatda Git: Clone yo'q bo'lsa — Git o'rnatilmagan. Pastdagi «🛟 Git o'rnatilmadimi?» panelini oching — kodni GitHub'ning o'zida yuklaysiz, natija bir xil.", ru: 'В списке нет Git: Clone — значит Git не установлен. Откройте панель «🛟 Git не установился?» ниже — загрузите код прямо на GitHub, результат тот же.' },
     res: () => <div className="term"><span className="term-row"><span className="term-prompt">&gt; </span><span className="term-cmd">Git: Clone</span></span><span className="term-row"><span className="term-out">https://github.com/ali-karimov/mening-saytim.git</span></span><span className="term-row"><span className="term-ok">✓ {tr({ uz: 'papka ochildi', ru: 'папка открыта' })}</span></span></div> },
   { id: 'file', nav: { uz: "fayl qo'shing", ru: 'добавьте файл' },
     t: { uz: "Shu papkaga `index.html` faylini qo'shing va ichiga bir necha qator yozing", ru: 'Добавьте в эту папку файл `index.html` и напишите внутри несколько строк' },
@@ -1506,7 +1535,19 @@ const ScreenPushPractice = (props) => (
     eyebrow={tr({ uz: 'Amaliyot · push', ru: 'Практика · push' })}
     title={tr({ uz: <>Kodingizni <span className="italic" style={{ color: T.accent }}>internetga</span> chiqaring</>, ru: <>Выведите свой код <span className="italic" style={{ color: T.accent }}>в интернет</span></> })}
     mentor={tr({ uz: <>Bu — bugungi <b style={{ color: T.ink }}>asosiy ish</b>: har qadamdan keyin natijani tekshirib boring.</>, ru: <>Это <b style={{ color: T.ink }}>главная работа</b> дня: после каждого шага проверяйте результат.</> })}
-    steps={PUSH_STEPS} taskLabel={{ uz: 'Kodni push qilish', ru: 'Отправка кода' }} />
+    steps={PUSH_STEPS} taskLabel={{ uz: 'Kodni push qilish', ru: 'Отправка кода' }}
+    fallback={
+      <FallbackPanel title={{ uz: "Git o'rnatilmadimi? Baribir chiqarasiz", ru: 'Git не установился? Всё равно выложите' }}>
+        <p className="dsx-fb-t">{tr({ uz: "Git yoki terminal ishlamasa — kodni GitHub'ning o'zida yuklaysiz. Bugungi natija bir xil bo'ladi.", ru: 'Если Git или терминал не работают — загрузите код прямо на GitHub. Сегодняшний результат будет тот же.' })}</p>
+        <ol className="dsx-fb-ol">
+          <li>{tr({ uz: <>Repo sahifasini oching: <b>github.com/nomingiz/mening-saytim</b></>, ru: <>Откройте страницу репо: <b>github.com/вашеимя/mening-saytim</b></> })}</li>
+          <li>{tr({ uz: <><b>Add file → Upload files</b> tugmasini bosing</>, ru: <>Нажмите <b>Add file → Upload files</b></> })}</li>
+          <li>{tr({ uz: <><span className="mono">index.html</span> faylini oynaga sudrab tashlang</>, ru: <>Перетащите файл <span className="mono">index.html</span> в окно</> })}</li>
+          <li>{tr({ uz: <>Pastda izoh yozing va <b>Commit changes</b> tugmasini bosing</>, ru: <>Напишите комментарий внизу и нажмите <b>Commit changes</b></> })}</li>
+        </ol>
+        <p className="dsx-fb-t">{tr({ uz: <>Fayl sahifada ko'rindi — demak <b>kodingiz internetda</b>. Bu ham commit: GitHub uni o'zi belgilaydi. Git'ni uyda o'rnatib, o'sha reponi terminaldan davom ettirasiz.</>, ru: <>Файл виден на странице — значит <b>ваш код в интернете</b>. Это тоже коммит: GitHub отмечает его сам. Установите Git дома и продолжите тот же репо из терминала.</> })}</p>
+      </FallbackPanel>
+    } />
 );
 
 // ===== SCREEN 14 — YAKUNIY TEST =====
@@ -1659,7 +1700,7 @@ const CsWordmark = ({ onClick, disabled, hint, stats = true, bolt = true, liveOn
 // ===== 🏅 ACHIEVEMENTS (nishonlar) — dars davomidagi real bosqichlar uchun =====
 const ACHIEVEMENTS = {
   installed: { icon: '🛠️', name: 'Setup Done!', desc: { uz: "Git dasturini kompyuteringizga o'rnatdingiz", ru: 'Вы установили программу Git на свой компьютер' } },
-  quizace:   { icon: '🎯', name: 'Bullseye!',   desc: { uz: "Test savoliga birinchi urinishda to'g'ri javob berdingiz", ru: 'Вы ответили на вопрос теста верно с первой попытки' } },
+  quizace:   { icon: '🎯', name: 'Bullseye!',   desc: { uz: "Birinchi urinishda to'g'ri javob berdingiz", ru: "Вы ответили верно с первой попытки" } },
   shipped:   { icon: '🚀', name: 'Code Online!', desc: { uz: 'Kodingizni internetga chiqardingiz', ru: 'Вы вывели свой код в интернет' } },
   graduate:  { icon: '🏆', name: 'Level Up!',   desc: { uz: "Git va GitHub darsini to'liq yakunladingiz", ru: 'Вы полностью завершили урок Git и GitHub' } },
 };
@@ -1703,13 +1744,12 @@ function AchToasts({ toasts, onDone }) {
 
 // ===== SCREEN FLASHCARDS — teglarni tez takrorlash (podiumdan keyin) =====
 const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const audio = useAudio([{ id: 'sflash', text: "Darsni yakunlashdan oldin bugun o'rgangan Git atamalarini tez takrorlaymiz. Har kartada bir savol — javobini o'ylang, keyin kartani bosib tekshiring.", trigger: 'on_mount', waits_for: null }]);
+  const audio = useAudio([{ id: 'sflash', text: `O'zingizni sinab ko'ring. Har kartada bir savol — javobini o'ylang, keyin kartani bosing.`, trigger: 'on_mount', waits_for: null }]);
   useEffect(() => { if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, []); // eslint-disable-line
   return (
     <Stage eyebrow={tr({ uz: 'Takrorlash', ru: 'Повторение' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={false} label={tr({ uz: 'Yakunlash →', ru: 'Завершить →' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Atamalarni <span className="italic" style={{ color: T.accent }}>tez takrorlaymiz</span>.</>, ru: <>Быстро <span className="italic" style={{ color: T.accent }}>повторим</span> термины.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Bugun o'rgangan Git atama va buyruqlarini takrorlaymiz. Har kartada bir savol — <b style={{ color: T.ink }}>javobini</b> o'ylang, keyin kartani bosib tekshiring. <b style={{ color: T.ink }}>Bildim</b> yoki <b style={{ color: T.ink }}>Takrorlash</b> bilan baholang.</>, ru: <>Повторим термины и команды Git, которые вы сегодня выучили. На каждой карточке — вопрос: подумайте, <b style={{ color: T.ink }}>каким будет ответ</b>, затем нажмите на карточку и проверьте. Оцените себя кнопками <b style={{ color: T.ink }}>Знаю</b> или <b style={{ color: T.ink }}>Повторить</b>.</> })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>O'zingizni <span className="italic" style={{ color: T.accent }}>sinab ko'ring</span>.</>, ru: <>Проверьте <span className="italic" style={{ color: T.accent }}>себя</span>.</> })}</h2></div>
         <div className="fc-center"><Flashcards cards={GIT_FLASHCARDS} /></div>
       </div>
     </Stage>
@@ -2555,8 +2595,10 @@ export default function GitLesson({ lang: langProp, onFinished }) {
         .roadmap { display: flex; flex-direction: column; gap: 8px; list-style: none; }
         .step-card { display: flex; align-items: center; gap: 14px; background: ${T.paper}; border-radius: 12px; padding: 13px 16px; box-shadow: 0 5px 14px -6px rgba(${T.shadowBase},0.14); }
         .step-num { font-family: 'JetBrains Mono'; font-weight: 700; font-size: 13px; color: ${T.accent}; flex-shrink: 0; }
-        .step-body { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+        .step-body { display: flex; flex-direction: column; gap: 3px; }
+        .step-line { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
         .step-text { font-weight: 500; font-size: clamp(14px,1.7vw,16px); color: ${T.ink}; }
+        .step-sub { font-size: clamp(12px,1.4vw,13px); color: ${T.ink3}; }
         .step-tag { font-family: 'JetBrains Mono'; font-size: 11px; color: ${T.ink2}; background: ${T.bg}; padding: 3px 8px; border-radius: 6px; }
         .dest { display: flex; align-items: center; gap: 14px; background: ${T.accentSoft}; border-left: 4px solid ${T.accent}; border-radius: 12px; padding: 14px 18px; }
         .dest-emoji { font-size: 28px; } .dest-title { font-weight: 700; color: ${T.ink}; margin: 0; font-size: clamp(15px,1.8vw,17px); } .dest-sub { color: ${T.ink2}; margin: 2px 0 0; font-size: clamp(13px,1.5vw,14px); }
@@ -3093,8 +3135,8 @@ export default function GitLesson({ lang: langProp, onFinished }) {
         .frame-wait { background: ${T.blueSoft}; border-left: 4px solid ${T.blue}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -8px rgba(1,154,203,0.22); }
 
         /* === 🃏 FLASHCARDS (reusable, 3D flip) === */
-        .fc-center { display: flex; justify-content: center; padding-top: 4px; }
-        .fc { display: flex; flex-direction: column; gap: 11px; max-width: 480px; width: 100%; }
+        .fc-center { flex: 1; min-height: 0; display: flex; align-items: center; justify-content: center; padding-top: 4px; }
+        .fc { display: flex; flex-direction: column; gap: 11px; max-width: 520px; width: 100%; }
         .fc-top { display: flex; justify-content: space-between; align-items: center; }
         .fc-pill { display: inline-flex; align-items: center; gap: 5px; font-family: 'Manrope'; font-weight: 800; font-size: 12.5px; border-radius: 99px; padding: 5px 13px; animation: fc-pill-pop 0.35s cubic-bezier(.34,1.5,.4,1); }
         .fc-pill b { font-size: 1.15em; font-variant-numeric: tabular-nums; }
@@ -3117,7 +3159,7 @@ export default function GitLesson({ lang: langProp, onFinished }) {
         .fc-fly.out-knew::after { content: '✓'; background: ${T.success}; box-shadow: 0 10px 26px -8px ${T.success}; }
         .fc-fly.out-again::after { content: '✗'; background: ${T.accent}; box-shadow: 0 10px 26px -8px ${T.accent}; }
         @keyframes fc-stamp { from { transform: translate(-50%, -50%) scale(0); } }
-        .fc-card { position: relative; height: clamp(160px,26vw,188px); cursor: pointer; transform-style: preserve-3d; transition: transform .55s cubic-bezier(.4,0,.2,1); }
+        .fc-card { position: relative; height: clamp(188px,27vh,268px); cursor: pointer; transform-style: preserve-3d; transition: transform .55s cubic-bezier(.4,0,.2,1); }
         .fc-card.flip { transform: rotateY(180deg); }
         .fc-card:not(.flip):hover { transform: translateY(-3px); }
         .fc-face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; padding: 22px; text-align: center; }
@@ -3128,7 +3170,7 @@ export default function GitLesson({ lang: langProp, onFinished }) {
         .fc-tap { color: ${T.accent}; font-weight: 700; }
         .fc-tag { font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: clamp(30px,6vw,46px); letter-spacing: -0.02em; }
         .fc-note { font-family: 'Manrope'; font-size: 14px; opacity: 0.92; }
-        .fc-actions { display: flex; gap: 10px; }
+        .fc-actions { display: flex; gap: 10px; min-height: 48px; }
         .fc-btn { flex: 1; padding: 13px; border-radius: 13px; font-family: 'Manrope'; font-weight: 800; font-size: 15px; cursor: pointer; border: none; transition: transform .15s; }
         .fc-btn:hover { transform: translateY(-2px); }
         .fc-btn.knew { background: ${T.success}; color: #fff; box-shadow: 0 10px 22px -10px ${T.success}; }
@@ -3136,7 +3178,7 @@ export default function GitLesson({ lang: langProp, onFinished }) {
         .fc-btn.again:hover { border-color: ${T.accent}; background: ${T.accentSoft}; }
         .fc-btn:disabled { opacity: 0.55; cursor: default; transform: none; }
         .fc-btn.ghost { background: ${T.paper}; border: 1.5px solid ${T.line}; color: ${T.ink}; flex: none; align-self: center; padding: 11px 22px; }
-        .fc-hint { margin: 0; text-align: center; color: ${T.ink3}; font-style: italic; font-size: 13px; }
+        .fc-hint { margin: 0; min-height: 48px; display: flex; align-items: center; justify-content: center; text-align: center; color: ${T.ink3}; font-style: italic; font-size: 13px; }
         .fc-done { display: flex; flex-direction: column; align-items: center; gap: 5px; text-align: center; background: ${T.successSoft}; border-radius: 18px; padding: 22px; max-width: 480px; }
         .fc-done-emoji { font-size: 40px; }
         .fc-done-h { font-family: 'Manrope'; font-weight: 800; font-size: 20px; color: ${T.success}; margin: 0; }
@@ -3352,6 +3394,15 @@ export default function GitLesson({ lang: langProp, onFinished }) {
         .dsx-t { font-family: 'Manrope', sans-serif; font-weight: 600; font-size: clamp(13px,1.6vw,14.5px); color: ${T.ink}; line-height: 1.4; }
         .dsx-row.on .dsx-t { color: ${T.success}; }
         .dsx-d { font-family: 'Manrope', sans-serif; font-size: 12.5px; color: ${T.ink2}; line-height: 1.45; }
+        /* 🛟 ZAXIRA-YO'L paneli — tashqi sayt/o'rnatish sinsa ham dars to'xtamaydi (F-0801-12) */
+        .dsx-fb { margin-top: 10px; background: ${T.paper}; border-radius: 12px; padding: 11px 14px; box-shadow: inset 0 0 0 1.5px ${T.line}; }
+        .dsx-fb > summary { cursor: pointer; list-style: none; font-weight: 700; font-size: clamp(13px,1.5vw,14px); color: ${T.accent}; }
+        .dsx-fb > summary::-webkit-details-marker { display: none; }
+        .dsx-fb[open] > summary { margin-bottom: 9px; }
+        .dsx-fb-body { display: flex; flex-direction: column; gap: 8px; }
+        .dsx-fb-t { margin: 0; font-size: clamp(12.5px,1.45vw,13.5px); line-height: 1.5; color: ${T.ink2}; }
+        .dsx-fb-h { margin: 3px 0 0; font-weight: 700; font-size: clamp(12.5px,1.45vw,13.5px); color: ${T.ink}; }
+        .dsx-fb-ol { margin: 0; padding-left: 19px; display: flex; flex-direction: column; gap: 5px; font-size: clamp(12.5px,1.45vw,13.5px); line-height: 1.5; color: ${T.ink2}; }
         .dsx-help { font-size: 12px; color: ${T.ink2}; }
         .dsx-help summary { cursor: pointer; font-weight: 600; color: ${T.accent}; list-style: none; }
         .dsx-help summary::-webkit-details-marker { display: none; }

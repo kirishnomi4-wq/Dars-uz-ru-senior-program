@@ -478,6 +478,22 @@
       "law": "KORPUS 55 · F-0731-35"
     },
     {
+      "id": "bashorat-ball-izohi",
+      "severity": "error",
+      "pattern": "(bu\\s+ball\\s+emas|ball\\s+yo'q)\\s*[—-]\\s*bemalol|bemalol belgilang",
+      "flags": "i",
+      "suggest": "bashorat-slaydida tinchlantiruvchi izoh taqiq — «🎲 Avval o'zingiz belgilab ko'ring» yorlig'i yetarli",
+      "law": "PM_DARS_ETALON 100a · KORPUS 62 · F-0801-09"
+    },
+    {
+      "id": "orqaga-havola-degandingiz",
+      "severity": "error",
+      "pattern": "boshida siz .{0,80}(degandingiz|tanlagandingiz|belgilagandingiz|bergandingiz)",
+      "flags": "i",
+      "suggest": "natija-qatoriga eski taxminni ulash taqiq — faqat asl javob muhrlanadi",
+      "law": "PM_DARS_ETALON 100b · KORPUS 62 · F-0801-09"
+    },
+    {
       "id": "raqam-keyingina",
       "severity": "warn",
       "pattern": "\\d+\\s*(yil|oy|kun|hafta|soat)[a-z'‘]*\\s*keyingina",

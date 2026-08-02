@@ -913,10 +913,7 @@ const HOOK_OPTS = [
   "Eslatma-bildirishnomalar",
   "Do'stlar bilan musobaqa",
 ];
-// Hook-ovoz lesson-scoped saqlanadi — K5 keys yakunida shaxsiy payoff («Siz "X" degandingiz…»).
 const HOOK_KEY = 'pm-m8d1-hookvote';
-const HOOK_SHORT = ["yangi so'zlar qiziq", "streak-qo'rquv", "eslatmalar", "do'stlar bilan musobaqa"];
-const readHookVote = () => { try { const v = localStorage.getItem(HOOK_KEY); return v == null || v === '' ? null : Number(v); } catch { return null; } };
 const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
   const gate = useContext(LiveGateCtx) || {};
   const live = gate.live;
@@ -1215,8 +1212,6 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const isMentor = !!(gate.live && gate.live.mode === 'mentor');
   const [i, setI] = useState(0);
   const [bets, setBets] = useState(() => readK5Bets());
-  // Hook-payoff shaxsiylashuvi: s0'dagi ovoz (HOOK_KEY) — yakuniy slaydda shaxsiy murojaat, bo'lmasa umumiy matn.
-  const [hookVote] = useState(() => readHookVote());
   const last = i === K5_SLIDES.length - 1;
   useEffect(() => { if (last && storedAnswer === undefined) onAnswer(screen, { correct: true }); }, [last]); // eslint-disable-line
   const c = K5_SLIDES[i];
@@ -1242,7 +1237,6 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 </button>
               ))}
             </div>
-            <span className="kbet-sub">Ball yo'q — bemalol belgilang, javob keyingi slaydda ochiladi</span>
           </div>
         ) : (
           <div className="k-slide fade-step" key={i}>
@@ -1260,10 +1254,6 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </div>
         )}
         <div className="k-dots">{K5_SLIDES.map((_, k) => <button key={k} className={`k-dot ${k === i ? 'cur' : k < i ? 'fill' : ''}`} onClick={() => setI(k)} aria-label={`${k + 1}-bosqich`} />)}</div>
-        {last && !betPending && hookVote != null && HOOK_SHORT[hookVote] && <div className="frame-soft fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>
-          {hookVote === 1 && <><b style={{ color: T.accent }}>Buni darsning boshidayoq sezgandingiz — «streak-qo'rquv» deb ovoz bergandingiz!</b>{' '}</>}
-          {hookVote != null && hookVote !== 1 && HOOK_SHORT[hookVote] && <><b style={{ color: T.accent }}>Dars boshida siz «{HOOK_SHORT[hookVote]}» degandingiz — asl javob esa streak ekan.</b>{' '}</>}
-          {/* F-0725-03 · 54(d)-qonun: keys oxiridagi «sizning MVP'ingizda ham…» qatori o'chirildi — P0 da bu qatlam yo'q. */}</p></div>}
         <MentorNote>Bu keysda rasmiy raqam yo'q — foydalanuvchi soni yoki foizini o'zingizdan to'qimang. «Streak» so'zini birinchi aytganda ochib bering (ketma-ket kunlar soni). Bashorat-bosqichda avval sinfdan taxmin so'rang — o'quvchilar ekranida taxmin-variantlari chiqadi.</MentorNote>
       </div>
     </Stage>
@@ -2357,7 +2347,7 @@ const Screen12 = ({ screen, onNext, onPrev }) => {
 const ACHIEVEMENTS = {
   panelPro:   { icon: '📊', name: 'Panel Pro!',   desc: "North Star va 3 metrika-kartani yozdingiz" },
   dataEye:    { icon: '👁️', name: 'Data Eye!',    desc: "3 testni ham to'g'ri yechdingiz" },
-  calcMaster: { icon: '🛠️', name: 'Calc Master!', desc: "Retention foizini MetrikaPanel komponentida hisobladingiz" },
+  calcMaster: { icon: '🛠️', name: 'Calc Master!', desc: "Retention foizini kodda hisobladingiz" },
   graduate:   { icon: '🎓', name: 'Level Up!',    desc: "Metrika darsini yakunladingiz" },
 };
 // Ekran id → nishon (recordAnswer'da, faqat REAL solve bilan). dataEye = 3/3 aggregat, graduate = summary.
@@ -3271,7 +3261,6 @@ export default function PmMetricsLesson({ lang: langProp, onFinished }) {
         .kbet-ic { font-size: 20px; line-height: 1; }
         .kbet-chip:hover { transform: translateY(-2px); box-shadow: 0 14px 28px -8px rgba(91,61,230,0.34), inset 0 0 0 1.5px ${T.accent}66, 0 0 18px rgba(110,75,255,0.28); }
         .kbet-chip:active { transform: scale(0.94); }
-        .kbet-sub { font-family: 'Manrope'; font-weight: 600; font-size: 12.5px; color: ${T.ink3}; }
         /* natija-chip: bashorat to'g'ri — yashil ✓; boshqacha — neytral indigo (ball emas) */
         .kbet-res { align-self: center; font-family: 'Manrope'; font-weight: 700; font-size: clamp(12.5px,1.5vw,14px); color: ${T.accent}; background: ${T.accentSoft}; border-radius: 99px; padding: 8px 16px; max-width: 100%; overflow-wrap: anywhere; }
         .kbet-res.win { color: ${T.success}; background: ${T.successSoft}; box-shadow: inset 0 0 0 1.5px ${T.success}44; animation: msort-pop 0.44s cubic-bezier(.34,1.5,.4,1); }
