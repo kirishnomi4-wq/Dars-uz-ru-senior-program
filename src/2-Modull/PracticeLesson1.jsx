@@ -1397,16 +1397,22 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [val, setVal] = useState('');
   const [msg, setMsg] = useState(null); // null | 'error' | 'ok'
+  const [msgKey, setMsgKey] = useState(0); // har «Yuborish»da xabar qayta jonlanadi (takror bosishda ham reaksiya ko'rinsin)
   const [seen, setSeen] = useState(new Set(storedAnswer ? ['error', 'ok'] : []));
   const done = seen.size >= 2;
   const submit = () => {
     const ok = val.trim().length > 0;
     setMsg(ok ? 'ok' : 'error');
+    setMsgKey(k => k + 1);
     setSeen(prev => { const n = new Set(prev); n.add(ok ? 'ok' : 'error'); return n; });
   };
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
+  const nextLabel = done ? { uz: 'Davom etish', ru: 'Продолжить' }
+    : seen.has('ok') ? { uz: "Endi bo'sh holda yuboring", ru: 'Теперь отправьте пустым' }
+    : seen.has('error') ? { uz: 'Endi ism yozib yuboring', ru: 'Теперь впишите имя и отправьте' }
+    : { uz: "Bo'sh va to'liq holatni sinang", ru: 'Попробуйте пустое и заполненное' };
   return (
-    <Stage eyebrow={tr({ uz: 'Vosita 5 · Forma', ru: 'Инструмент 5 · Форма' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "Bo'sh va to'liq holatni sinang", ru: 'Попробуйте пустое и заполненное' }} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Vosita 5 · Forma', ru: 'Инструмент 5 · Форма' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={nextLabel} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Bo'sh forma yuborilsa, sayt buni qanday <span className="italic" style={{ color: T.accent }}>payqaydi?</span></>, ru: <>Как сайт <span className="italic" style={{ color: T.accent }}>замечает</span>, что отправили пустую форму?</> })}</h2></div>
         <Mentor>{tr({ uz: <>Aqlli saytlar foydalanuvchi xato qilmasin deb <b style={{ color: T.ink }}>tekshiradi</b>. Bu yerda <b style={{ color: T.ink }}>shart</b> ishlaydi: <b style={{ color: T.ink }}>agar</b> maydon bo'sh bo'lsa — qizil xato, <b style={{ color: T.ink }}>aks holda</b> — yashil "yuborildi". Avval <b>bo'sh</b> holda "Yuborish"ni bosing, keyin ism yozib qayta bosing.</>, ru: <>Умные сайты <b style={{ color: T.ink }}>проверяют</b>, чтобы пользователь не ошибся. Здесь работает <b style={{ color: T.ink }}>условие</b>: <b style={{ color: T.ink }}>если</b> поле пустое — красная ошибка, <b style={{ color: T.ink }}>иначе</b> — зелёное «отправлено». Сначала нажмите «Отправить» с <b>пустым</b> полем, потом впишите имя и нажмите снова.</> })}</Mentor>
@@ -1417,10 +1423,10 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <Browser>
               <div className="site-card">
                 <p style={{ fontSize: 13, margin: 0, opacity: 0.85, fontWeight: 600 }}>{tr({ uz: "Bog'lanish formasi", ru: 'Форма обратной связи' })}</p>
-                <input className={msg === 'error' ? 'shake' : ''} value={val} onChange={e => { setVal(e.target.value); setMsg(null); }} placeholder={tr({ uz: 'Ismingiz…', ru: 'Ваше имя…' })} style={{ width: '100%', padding: '11px 14px', borderRadius: 10, border: `1.5px solid ${msg === 'error' ? T.accent : T.ink3}`, fontFamily: "'Manrope'", fontSize: 15, outline: 'none' }} />
+                <input value={val} onChange={e => { setVal(e.target.value); setMsg(null); }} onKeyDown={e => { if (e.key === 'Enter') submit(); }} placeholder={tr({ uz: 'Ismingiz…', ru: 'Ваше имя…' })} style={{ width: '100%', padding: '11px 14px', borderRadius: 10, border: `1.5px solid ${msg === 'error' ? T.accent : T.ink3}`, fontFamily: "'Manrope'", fontSize: 15, outline: 'none' }} />
                 <button className="site-btn" onClick={submit}>{tr({ uz: 'Yuborish', ru: 'Отправить' })}</button>
-                {msg === 'error' && <p className="fade-step" style={{ margin: 0, color: T.accent, fontWeight: 600, fontSize: 13 }}>{tr({ uz: 'Iltimos, ismingizni kiriting.', ru: 'Пожалуйста, введите имя.' })}</p>}
-                {msg === 'ok' && <p className="fade-step" style={{ margin: 0, color: T.success, fontWeight: 600, fontSize: 13 }}>{tr({ uz: 'Rahmat, xabaringiz yuborildi.', ru: 'Спасибо, сообщение отправлено.' })}</p>}
+                {msg === 'error' && <p key={msgKey} className="fade-step shake" style={{ margin: 0, color: T.accent, fontWeight: 600, fontSize: 13 }}>{tr({ uz: 'Iltimos, ismingizni kiriting.', ru: 'Пожалуйста, введите имя.' })}</p>}
+                {msg === 'ok' && <p key={msgKey} className="fade-step" style={{ margin: 0, color: T.success, fontWeight: 600, fontSize: 13 }}>{tr({ uz: 'Rahmat, xabaringiz yuborildi.', ru: 'Спасибо, сообщение отправлено.' })}</p>}
               </div>
             </Browser>
           </Col>
@@ -1436,6 +1442,9 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <span className="tagpill" style={{ opacity: seen.has('error') ? 1 : 0.4 }}>{seen.has('error') ? '✓' : '1'} {tr({ uz: "bo'sh → xato", ru: 'пусто → ошибка' })}</span>
               <span className="tagpill" style={{ opacity: seen.has('ok') ? 1 : 0.4 }}>{seen.has('ok') ? '✓' : '2'} {tr({ uz: "to'liq → ok", ru: 'заполнено → ok' })}</span>
             </div>
+            {!done && seen.size === 1 && <p className="fade-step body" style={{ margin: 0, fontSize: 14, color: T.ink2 }}>{seen.has('ok')
+              ? tr({ uz: <>Yaxshi — «yuborildi»ni ko'rdingiz. Endi maydonni <b style={{ color: T.ink }}>bo'shatib</b>, yana «Yuborish»ni bosing — sayt xatoni qanday ushlashini ko'ring.</>, ru: <>Хорошо — «отправлено» вы увидели. Теперь <b style={{ color: T.ink }}>очистите</b> поле и нажмите «Отправить» ещё раз — посмотрите, как сайт ловит ошибку.</> })
+              : tr({ uz: <>Yaxshi — xatoni ko'rdingiz. Endi <b style={{ color: T.ink }}>ismingizni yozib</b>, yana «Yuborish»ni bosing.</>, ru: <>Хорошо — ошибку вы увидели. Теперь <b style={{ color: T.ink }}>впишите имя</b> и нажмите «Отправить» ещё раз.</> })}</p>}
             {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Ikkala holatni ko'rdingiz. Sayt endi foydalanuvchini xatodan saqlaydi — bu professional saytlarning belgisi.</>, ru: <>Вы увидели оба состояния. Теперь сайт защищает пользователя от ошибки — признак профессионального сайта.</> })}</p></div>}
           </Col>
         </div>
@@ -2764,7 +2773,7 @@ function StyleTag() {
       .hc-chip.ok{color:${HC_T.ink};font-weight:600;border-color:${HC_T.success}40;background:${HC_T.successSoft}}
       .hc-dot{flex-shrink:0;width:21px;height:21px;border-radius:50%;background:${HC_T.bg};color:${HC_T.ink3};display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;transition:all .25s}
       .hc-chip.ok .hc-dot{background:${HC_T.success};color:#fff;box-shadow:0 3px 8px -2px ${HC_T.success}88}
-      .hc-hint{margin:3px 0 0;font-size:13px;color:${HC_T.warn};background:#FFF6EA;border:1px solid #F4DFBC;padding:8px 15px;border-radius:11px;max-width:60ch;line-height:1.5}
+      .hc-hint.hc-hint{margin:3px 0 0;font-size:13px;color:${HC_T.warn};background:#FFF6EA;border:1px solid #F4DFBC;padding:8px 15px;border-radius:11px;max-width:60ch;line-height:1.5}
       .hc-errors{display:flex;flex-direction:column;gap:5px;align-items:center;margin:3px 0 0}
       .hc-err{font-size:12.5px;color:#C01024;background:#FDECEC;border:1px solid #F6CFCF;padding:7px 14px;border-radius:10px;font-family:'JetBrains Mono',monospace;max-width:74ch;line-height:1.5}
 
@@ -2928,7 +2937,14 @@ const FC_CODE_WORDS = /\b(let|const|var|string|number|boolean|true|false|null|un
 const FC_VOCAB = new Set(['let', 'const', 'var', 'string', 'number', 'boolean', 'true', 'false', 'null', 'undefined', 'function', 'return', 'for', 'while', 'if', 'else']);
 // Kodmi yoki so'zmi? Monoshrift FAQAT kodga: lug'atdagi kalit so'z yoki kod-belgisi bo'lgan
 // token. «o'zgaruvchi» kabi o'zbekcha atama — gap, u Manrope bilan chiroyliroq va tor chiqadi.
-const fcIsCode = (s) => FC_VOCAB.has(s.toLowerCase()) || /[=(){};.[\]<>+*/%!&|-]/.test(s);
+// F-0803-23: defis-li ODDIY so'z («Promo-landing», «follow-up», «AI-agent») kod EMAS — ilgari u
+// dasturchi shriftida, `let`/`const` kabi kod-token bo'lib ko'rinardi. Haqiqiy defis-li kod
+// tokeni (`background-color`, `runs-on`) FC_VOCAB oq ro'yxati orqali mono bo'lib qoladi.
+const fcIsCode = (s) => {
+  if (FC_VOCAB.has(s.toLowerCase())) return true;
+  if (/^[\p{L}'\u02BB\u2019]+(-[\p{L}'\u02BB\u2019]+)+$/u.test(s)) return false;
+  return /[=(){};.[\]<>+*/%!&|-]/.test(s);
+};
 const fcTier = (s) => (s.length <= 8 ? 't1' : s.length <= 16 ? 't2' : s.length <= 32 ? 't3' : 't4');
 const fcAnswer = (raw) => {
   const s = String(raw ?? '');
@@ -3934,7 +3950,7 @@ export default function PracticeLesson1({ lang: langProp, onFinished, onPractice
         .card { background: ${T.paper}; border-radius: 16px; padding: 18px 20px; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.14); }
         .card-lbl { display: flex; align-items: center; gap: 8px; font-family: 'Manrope'; font-weight: 700; font-size: 13px; margin-bottom: 11px; }
         .recap { display: flex; flex-direction: column; gap: 8px; list-style: none; } .recap li { display: flex; align-items: flex-start; gap: 10px; font-size: clamp(13px,1.6vw,15px); color: ${T.ink}; animation: fade-in-up 0.4s ease-out forwards; opacity: 0; } .recap .ck { color: ${T.success}; font-weight: 700; flex-shrink: 0; background: none; padding: 0; }
-        .hw ul { display: flex; flex-direction: column; gap: 6px; list-style: none; } .hw li { font-size: clamp(13px,1.6vw,15px); color: ${T.ink}; } .hw li b { color: ${T.accent}; } .hw .t { color: ${T.ink2}; } .hw-note { margin: 11px 0 0; font-size: 12px; color: ${T.accent}; font-weight: 600; }
+        .hw ul { display: flex; flex-direction: column; gap: 6px; list-style: none; } .hw li { font-size: clamp(13px,1.6vw,15px); color: ${T.ink}; } .hw li b { color: ${T.accent}; } .hw .t { color: ${T.ink2}; } .hw-note.hw-note { margin: 11px 0 0; font-size: 12px; color: ${T.accent}; font-weight: 600; }
         /* 🏠 UYGA VAZIFA — amaliy topshiriqqa chorlaydigan kapsula (darsning O'Z rangida) */
         .hw-big-wrap { position: relative; align-self: center; width: min(560px, 100%); }
         .hw-big-wrap::before { content: ''; position: absolute; inset: -16px; border-radius: 34px; background: radial-gradient(ellipse at center, ${T.accent}66, ${T.accent}00 70%); filter: blur(18px); z-index: 0; pointer-events: none; animation: hw-aura 2.6s ease-in-out infinite; }
@@ -4031,7 +4047,7 @@ export default function PracticeLesson1({ lang: langProp, onFinished, onPractice
         .mstats-wait-lbl { font-family: 'Manrope'; font-weight: 700; font-size: 12px; color: ${T.ink3}; }
         .mstats-wait-chip { font-family: 'Manrope'; font-weight: 600; font-size: 12px; color: ${T.ink2}; background: rgba(${T.shadowBase},0.07); border-radius: 99px; padding: 3px 10px; }
         .mstats-wait-chip.more { color: ${T.ink3}; }
-        .mstats-warn { margin: 0; font-family: 'Manrope'; font-weight: 600; font-size: 13px; color: ${T.accent}; background: ${T.accentSoft}; border-radius: 10px; padding: 9px 12px; }
+        .mstats-warn.mstats-warn { margin: 0; font-family: 'Manrope'; font-weight: 600; font-size: 13px; color: ${T.accent}; background: ${T.accentSoft}; border-radius: 10px; padding: 9px 12px; }
         .mstats-wait { margin: 0; font-size: 12.5px; color: ${T.ink3}; font-style: italic; }
         @media (max-width: 560px) { .mstats-count { min-width: 78px; font-size: 11px; } }
         /* Verdikt + recap tugmalari */

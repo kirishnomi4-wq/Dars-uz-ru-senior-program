@@ -2642,7 +2642,14 @@ const FC_CODE_WORDS = /\b(let|const|var|string|number|boolean|true|false|null|un
 const FC_VOCAB = new Set(['let', 'const', 'var', 'string', 'number', 'boolean', 'true', 'false', 'null', 'undefined', 'function', 'return', 'for', 'while', 'if', 'else']);
 // Kodmi yoki so'zmi? Monoshrift FAQAT kodga: lug'atdagi kalit so'z yoki kod-belgisi bo'lgan
 // token. «o'zgaruvchi» kabi o'zbekcha atama — gap, u Manrope bilan chiroyliroq va tor chiqadi.
-const fcIsCode = (s) => FC_VOCAB.has(s.toLowerCase()) || /[=(){};.[\]<>+*/%!&|-]/.test(s);
+// F-0803-23: defis-li ODDIY so'z («Promo-landing», «follow-up», «AI-agent») kod EMAS — ilgari u
+// dasturchi shriftida, `let`/`const` kabi kod-token bo'lib ko'rinardi. Haqiqiy defis-li kod
+// tokeni (`background-color`, `runs-on`) FC_VOCAB oq ro'yxati orqali mono bo'lib qoladi.
+const fcIsCode = (s) => {
+  if (FC_VOCAB.has(s.toLowerCase())) return true;
+  if (/^[\p{L}'\u02BB\u2019]+(-[\p{L}'\u02BB\u2019]+)+$/u.test(s)) return false;
+  return /[=(){};.[\]<>+*/%!&|-]/.test(s);
+};
 const fcTier = (s) => (s.length <= 8 ? 't1' : s.length <= 16 ? 't2' : s.length <= 32 ? 't3' : 't4');
 const fcAnswer = (raw) => {
   const s = String(raw ?? '');
@@ -3023,7 +3030,7 @@ export default function NestArchAliveLesson({ lang: langProp, onFinished }) {
 
         /* === SK-INFO === */
         .sk-info { background: ${T.paper}; border-radius: 12px; padding: 15px 17px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.16); animation: fade-step 0.3s; }
-        .hint { background: ${T.bg}; border: 1.5px dashed ${T.ink3}; border-radius: 12px; padding: 14px 16px; font-size: clamp(13px,1.5vw,14px); color: ${T.ink2}; }
+        .hint.hint { background: ${T.bg}; border: 1.5px dashed ${T.ink3}; border-radius: 12px; padding: 14px 16px; font-size: clamp(13px,1.5vw,14px); color: ${T.ink2}; }
 
         /* === AI CARD === */
         .ai-card { background: ${T.paper}; border-radius: 14px; padding: 15px 17px; display: flex; flex-direction: column; gap: 11px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.14); }
@@ -3062,7 +3069,7 @@ export default function NestArchAliveLesson({ lang: langProp, onFinished }) {
         @keyframes hw-fire { 0%,100% { box-shadow: 0 0 0 1px rgba(90,40,180,.45), 0 0 26px rgba(124,58,237,.5), 0 0 68px rgba(124,58,237,.28), inset 0 0 48px rgba(124,58,237,.32); } 50% { box-shadow: 0 0 0 1px rgba(120,60,220,.6), 0 0 40px rgba(124,58,237,.72), 0 0 96px rgba(124,58,237,.4), inset 0 0 60px rgba(124,58,237,.44); } }
         @keyframes hw-shine { 0% { left: -60%; } 55%, 100% { left: 130%; } }
         @media (prefers-reduced-motion: reduce) { .hw-big, .hw-big-shine, .hw-big-wrap::before, .hw-tok, .hw-big.charging { animation: none !important; } }
-        .hw ul { display: flex; flex-direction: column; gap: 6px; list-style: none; } .hw li { font-size: clamp(13px,1.6vw,15px); color: ${T.ink}; } .hw li b { color: ${T.accent}; } .hw .t { color: ${T.ink2}; } .hw-note { margin: 11px 0 0; font-size: 12px; color: ${T.accent}; font-weight: 600; }
+        .hw ul { display: flex; flex-direction: column; gap: 6px; list-style: none; } .hw li { font-size: clamp(13px,1.6vw,15px); color: ${T.ink}; } .hw li b { color: ${T.accent}; } .hw .t { color: ${T.ink2}; } .hw-note.hw-note { margin: 11px 0 0; font-size: 12px; color: ${T.accent}; font-weight: 600; }
 
         /* === 4-MODUL: KOD QUTISI === */
         .bb-dots { display: flex; gap: 5px; }
@@ -3373,7 +3380,7 @@ export default function NestArchAliveLesson({ lang: langProp, onFinished }) {
         .mstats-wait-lbl { font-family: 'Manrope'; font-weight: 700; font-size: 12px; color: ${T.ink3}; }
         .mstats-wait-chip { font-family: 'Manrope'; font-weight: 600; font-size: 12px; color: ${T.ink2}; background: rgba(${T.shadowBase},0.07); border-radius: 99px; padding: 3px 10px; }
         .mstats-wait-chip.more { color: ${T.ink3}; }
-        .mstats-warn { margin: 0; font-family: 'Manrope'; font-weight: 600; font-size: 13px; color: ${T.accent}; background: ${T.accentSoft}; border-radius: 10px; padding: 9px 12px; }
+        .mstats-warn.mstats-warn { margin: 0; font-family: 'Manrope'; font-weight: 600; font-size: 13px; color: ${T.accent}; background: ${T.accentSoft}; border-radius: 10px; padding: 9px 12px; }
         .mstats-wait { margin: 0; font-size: 12.5px; color: ${T.ink3}; font-style: italic; }
         @media (max-width: 560px) { .mstats-count { min-width: 78px; font-size: 11px; } }
         /* Verdikt + recap tugmalari */
@@ -3594,6 +3601,8 @@ export default function NestArchAliveLesson({ lang: langProp, onFinished }) {
         /* HOOK — chalkash fayl */
         @keyframes shake { 0%,100% { transform: none; } 25% { transform: translateX(-4px); } 50% { transform: translateX(4px); } 75% { transform: translateX(-3px); } }
         .shake { animation: shake 0.4s ease; }
+        /* F-0803-22: .fade-up ustidan yozilsa opacity:0 qolib element yo'qoladi — juft e'lon */
+        .fade-up.shake { animation: fade-in-up 0.4s ease-out forwards, shake 0.4s ease; }
         .messy { background: ${CODE.bg}; color: ${CODE.comment}; font-family: 'JetBrains Mono'; font-size: 10.5px; line-height: 1.7; padding: 13px; border-radius: 11px; cursor: pointer; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.2); max-height: 170px; overflow: hidden; } .messy p { margin: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
         /* 11.13 — haqiqiy hayotda sinang */
@@ -3613,7 +3622,7 @@ export default function NestArchAliveLesson({ lang: langProp, onFinished }) {
         .gen-step.cur { background: ${T.accentSoft}; color: ${T.accent}; box-shadow: inset 0 0 0 1.5px ${T.accent}; }
         .gen-line { font-family: 'JetBrains Mono'; font-size: 12px; color: ${CODE.attr}; margin: 4px 2px 0; } .gen-line::after { content: '…'; animation: blink 1s steps(3) infinite; } @keyframes blink { 0% { opacity: 0.3; } 50% { opacity: 1; } 100% { opacity: 0.3; } }
         .filestream { display: flex; flex-direction: column; gap: 8px; max-height: clamp(260px,42vh,360px); overflow-y: auto; padding-right: 2px; }
-        .fs-empty { font-size: 13px; color: ${T.ink3}; font-style: italic; margin: 0; padding: 10px 0; }
+        .fs-empty.fs-empty { font-size: 13px; color: ${T.ink3}; font-style: italic; margin: 0; padding: 10px 0; }
         .fs-file { background: ${CODE.bg}; border-radius: 11px; overflow: hidden; box-shadow: 0 6px 16px -8px rgba(${T.shadowBase},0.22); }
         .fs-name { font-family: 'JetBrains Mono'; font-weight: 700; font-size: 11.5px; color: #C9D1D9; background: #243049; padding: 7px 11px; display: flex; align-items: center; gap: 7px; } .fs-ico { font-size: 14px; }
         .fs-code { font-family: 'JetBrains Mono'; font-size: clamp(11px,1.4vw,12.5px); line-height: 1.55; color: ${CODE.text}; padding: 10px 12px; margin: 0; white-space: pre-wrap; word-break: break-word; }

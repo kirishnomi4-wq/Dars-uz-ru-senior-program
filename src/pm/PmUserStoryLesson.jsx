@@ -371,9 +371,8 @@ const SCREEN_META = [
   { id: 's10',      type: 'koding',      template: 'custom',   scored: false, scope: null },          // 11 · koding (compiler)
   { id: 'priority', type: 'practice',    template: 'custom',   scored: false, scope: null },          // 12 · prioritet-doska
   { id: 's11',      type: 'recap',       template: 'custom',   scored: false, scope: null },          // 13
-  { id: 's12',      type: 'homework',    template: 'custom',   scored: false, scope: null },          // 14
-  { id: 'podium',   type: 'stats',       template: 'custom',   scored: false, scope: null },          // 15
-  { id: 's16',      type: 'summary',     template: 'custom',   scored: false, scope: null }           // 16
+  { id: 'podium',   type: 'stats',       template: 'custom',   scored: false, scope: null },          // 14
+  { id: 's16',      type: 'summary',     template: 'custom',   scored: false, scope: null }           // 15 (uy-vazifa kartasi shu yerda — F-0803-23)
 ];
 const TOTAL_SCREENS = SCREEN_META.length;
 const SCORED_IDX = SCREEN_META.map((m, i) => (m.scored ? i : null)).filter(i => i !== null);
@@ -395,9 +394,8 @@ export const SCREEN_INTENTS = {
   s10: "Bola hikoyaYasa funksiyasini to'ldirib, 3 hikoyasini kod orqali chiqaradi",
   priority: "Bola 3 hikoyasini muhimlik darajalariga (yuqori/o'rta/past) ajratadi",
   s11: "Bola bugun o'rganganini sherigiga aytib, bir gapda yozib qoldiradi",
-  s12: "Bola uyga vazifa uchun boshqa foydalanuvchini o'zi tanlaydi",
   podium: "Bola o'z natijasini (jonlida — sinf reytingini) ko'radi",
-  s16: "Bola darsni yakunlab, nishonlari va arena-imkoniyatini ko'radi"
+  s16: "Bola darsni yakunlab, uy-vazifa foydalanuvchisini tanlaydi, nishonlari va arena-imkoniyatini ko'radi"
 };
 
 const Col = ({ children, gap }) => <div className="col" style={gap ? { gap } : undefined}>{children}</div>;
@@ -892,10 +890,10 @@ const validateStory = (kim, nima, natija) => {
 // MentorNote (Eslatma, default-yopiq chip) ichida beriladi, proyektor toza qoladi.
 
 // ===== 📒 HIKOYA-DAFTAR — ekranlar bo'ylab o'sib boruvchi 3-slot strip (STORIES_KEY'dan O'QIYDI,
-// yangi state/storage YO'Q). Amaliyot/ustaxona/koding/recap/uy-vazifa ekranlarida ko'rinadi;
+// yangi state/storage YO'Q). Recap ekranida ko'rinadi (uy-vazifa endi yakun ichida — F-0803-23);
 // har hikoya validatordan o'tganda sloti yashil ✓ oladi. Bosilsa yig'iladi/ochiladi.
 // Ustaxona (o'z paneli bor) va koding (aylantirish-vizual o'zi daftardan o'qiydi) ekranlarida ko'rinmaydi.
-const BOARD_SCREEN_IDS = new Set(['s11', 's12']);
+const BOARD_SCREEN_IDS = new Set(['s11']);
 const boardSlots = () => {
   const arr = (readStories() || []).slice(0, 3);
   return [0, 1, 2].map(i => { const s = arr[i]; return !!(s && validateStory(s.kim, s.nima, s.natija).full); });
@@ -2272,7 +2270,10 @@ const HW_KEY = 'pm-m3d2-hw-target';
 // egalik qo'shimchasi bilan gap sinadi («mentorim kimligini aniqlang»).
 const HW_TARGETS = ["do'st", "mentor", "birinchi mehmon"];
 const readHwTarget = () => { try { return localStorage.getItem(HW_KEY) || ''; } catch { return ''; } };
-const Screen12 = ({ screen, onNext, onPrev }) => {
+// F-0803-23: alohida homework-EKRAN olib tashlandi (etalon: uy-vazifa yakun ichida —
+// JsFunctionsLesson F-0803-08 naqshi). Karta yakun-sahifadagi «Uyga vazifa» kapsulasi
+// bosilganda ochiladi; foydalanuvchi-tanlovi avvalgidek HW_KEY'ga saqlanadi.
+const HwTaskCard = () => {
   const [st, setSt] = useState(() => {
     const saved = readHwTarget();
     const isPreset = HW_TARGETS.includes(saved);
@@ -2283,42 +2284,39 @@ const Screen12 = ({ screen, onNext, onPrev }) => {
   const setCustom = (v) => { setSt(prev => ({ ...prev, custom: v, target: v.trim(), customMode: true })); try { localStorage.setItem(HW_KEY, v.trim()); } catch {} };
   const openCustom = () => setSt(prev => ({ ...prev, customMode: true, target: prev.custom.trim() }));
   const chosen = target && target.trim();
-  // Navbat (1-C): zanjir = foydalanuvchi turini tanlash → o'tish. To'rt yo'ldan BITTASI
-  // tanlanadi — hech biri ajratilmaydi, TO'LQIN: hammasi birma-bir yonadi. Tanlangach o'chadi.
-  // «O'zim yozaman» maydonida puls yo'q: u ochilganda kursor o'zi tushadi.
+  // Navbat (1-C): to'rt yo'ldan BITTASI tanlanadi — TO'LQIN: hammasi birma-bir yonadi.
+  // Tanlangach o'chadi. «O'zim yozaman» maydonida puls yo'q: kursor o'zi tushadi.
   const pickTurn = useTurnHint(!chosen);
   return (
-    <Stage eyebrow="Uyga vazifa · topshiriq" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext turnBusy={!chosen} label="Davom etish" onClick={onNext} /></>}>
-      <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Uyda <span className="italic" style={{ color: T.accent }}>kim</span> uchun hikoya yozasiz?</h2></div>
-        <Mentor>Uyda endi <b style={{ color: T.ink }}>boshqa foydalanuvchi</b> uchun hikoya yozasiz — pastdagi ro'yxatdan bittasini tanlang yoki «✍️ o'z variantimni yozaman»ni bosing.</Mentor>
-        <div className="hw-chips fade-up delay-1">
-          {HW_TARGETS.map((t, ti) => (
-            <button key={t} className={`hw-chip ${target === t && !customMode ? 'on' : ''}${waveCls(pickTurn, ti, HW_TARGETS.length + 1)}`} onClick={() => pick(t)}>{t}</button>
-          ))}
-          <button className={`hw-chip add ${customMode ? 'on' : ''}${waveCls(pickTurn, HW_TARGETS.length, HW_TARGETS.length + 1)}`} onClick={openCustom}>✍️ o'z variantimni yozaman</button>
-        </div>
-        {customMode && (
-          <input className="reflect-input fade-step" value={custom} onChange={e => setCustom(e.target.value)} placeholder="masalan: o'qituvchi, ota-ona, ilk mijoz…" maxLength={40} autoFocus />
-        )}
-        {chosen ? (
-          <div className="pmtask fade-step">
-            <div className="pmtask-head"><span className="pmtask-tag">🗂 Topshiriq kartasi</span><span className="pmtask-id">US-UY</span></div>
-            <div className="pmtask-rows">
-              <div className="pmtask-row"><span className="pmtask-k">Kim uchun</span><span className="pmtask-v"><b className="pmtask-val" key={chosen} style={{ color: T.accent }}>{chosen}</b></span></div>
-              <div className="pmtask-row"><span className="pmtask-k">Nechta hikoya</span><span className="pmtask-v"><b>2 ta yangi</b> <span className="pmtask-sub">(sinfda 3 ta, uyda 2 ta — jami 5 ta)</span></span></div>
-              </div>
-            <div className="pmtask-steps">
-              <span className="pmtask-step"><i>1</i><b>{chosen}</b> qanday odam ekanini bir gapda yozing</span>
-              <span className="pmtask-step"><i>2</i>unga 2 ta to'liq hikoya yozing</span>
-              <span className="pmtask-step"><i>3</i>5 hikoyadan eng muhim 3 tasini belgilang</span>
-            </div>
-          </div>
-        ) : (
-          <div className="frame-soft fade-up delay-2"><p className="body" style={{ margin: 0, color: T.ink }}>👆 Avval kim uchun yozishingizni tanlang — topshiriq-karta shunga moslashadi.</p></div>
-        )}
+    <div className="card hw fade-up d4">
+      <div className="card-lbl" style={{ color: T.accent }}>📝 Uyda <b>kim</b> uchun hikoya yozasiz?</div>
+      <p className="body" style={{ margin: '0 0 10px', color: T.ink }}>Uyda endi <b style={{ color: T.ink }}>boshqa foydalanuvchi</b> uchun hikoya yozasiz — ro'yxatdan bittasini tanlang yoki «✍️ o'z variantimni yozaman»ni bosing.</p>
+      <div className="hw-chips">
+        {HW_TARGETS.map((t, ti) => (
+          <button key={t} className={`hw-chip ${target === t && !customMode ? 'on' : ''}${waveCls(pickTurn, ti, HW_TARGETS.length + 1)}`} onClick={() => pick(t)}>{t}</button>
+        ))}
+        <button className={`hw-chip add ${customMode ? 'on' : ''}${waveCls(pickTurn, HW_TARGETS.length, HW_TARGETS.length + 1)}`} onClick={openCustom}>✍️ o'z variantimni yozaman</button>
       </div>
-    </Stage>
+      {customMode && (
+        <input className="reflect-input fade-step" value={custom} onChange={e => setCustom(e.target.value)} placeholder="masalan: o'qituvchi, ota-ona, ilk mijoz…" maxLength={40} autoFocus />
+      )}
+      {chosen ? (
+        <div className="pmtask fade-step">
+          <div className="pmtask-head"><span className="pmtask-tag">🗂 Topshiriq kartasi</span><span className="pmtask-id">US-UY</span></div>
+          <div className="pmtask-rows">
+            <div className="pmtask-row"><span className="pmtask-k">Kim uchun</span><span className="pmtask-v"><b className="pmtask-val" key={chosen} style={{ color: T.accent }}>{chosen}</b></span></div>
+            <div className="pmtask-row"><span className="pmtask-k">Nechta hikoya</span><span className="pmtask-v"><b>2 ta yangi</b> <span className="pmtask-sub">(sinfda 3 ta, uyda 2 ta — jami 5 ta)</span></span></div>
+            </div>
+          <div className="pmtask-steps">
+            <span className="pmtask-step"><i>1</i><b>{chosen}</b> qanday odam ekanini bir gapda yozing</span>
+            <span className="pmtask-step"><i>2</i>unga 2 ta to'liq hikoya yozing</span>
+            <span className="pmtask-step"><i>3</i>5 hikoyadan eng muhim 3 tasini belgilang</span>
+          </div>
+        </div>
+      ) : (
+        <div className="frame-soft fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>👆 Avval kim uchun yozishingizni tanlang — topshiriq-karta shunga moslashadi.</p></div>
+      )}
+    </div>
   );
 };
 
@@ -2954,17 +2952,16 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
     "NATIJA harakatni takrorlamaydi — foydani aytadi",
     "Hikoya kod yozishdan oldin yoziladi"
   ];
-  const hwTarget = (() => { try { return localStorage.getItem(HW_KEY) || ''; } catch { return ''; } })();
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
-  // 💻 Amaliy topshiriq kapsulasi — LMS kompilyatoriga olib kiradi (ulanish keyin kelishiladi; hozircha dizayn-qatlam)
-  const [hwNote, setHwNote] = useState(false);
+  // F-0803-23: kapsula bosilganda topshiriq kartasi (HwTaskCard) shu sahifada ochiladi
+  const [hwOpen, setHwOpen] = useState(false);
   // Zaryad-effekt (CodeStrike fire() naqshi): bosilganda kapsula yorishadi, so'ng harakat davom etadi
   const [hwCharge, setHwCharge] = useState(false);
   const fireHw = () => {
-    if (hwCharge) return;
+    if (hwCharge || hwOpen) return;
     setHwCharge(true);
-    setTimeout(() => { setHwNote(true); setHwCharge(false); }, 500);
+    setTimeout(() => { setHwOpen(true); setHwCharge(false); }, 500);
   };
   return (
     <Stage eyebrow="Tayyor" screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>Qaytadan</button><button className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>Yakunlash ✓</button></>}>
@@ -2985,7 +2982,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
             <span className="hw-big-s">Amaliy topshiriqni bajarish →</span>
           </button>
         </div>
-        {hwNote && <p className="hw-cta-note fade-step" style={{ textAlign: 'center' }}>Topshiriq LMS kompilyatorida ochiladi — {hwTarget || 'tanlagan foydalanuvchingiz'} uchun 2 ta to'liq hikoya yozasiz.</p>}
+        {hwOpen && <HwTaskCard />}
         {/* Nishon-kolleksiyasi — SHAXSIY hisob, mentor proyektorida ko'rsatilmaydi
             (90-qonun; AchCounter izohiga qarang: sahna ↔ daftar tamoyili). */}
         {!isMentorL && <div className="card ach-coll fade-up d3">
@@ -3083,7 +3080,7 @@ export default function PmUserStoryLesson({ lang: langProp, onFinished }) {
   };
 
   // V4 tartib — SCREEN_META bilan bir xil: s0,s1,s2,s3,TEST1,s4,TEST2,ustaxona,peer,TEST3,klinika,koding,prioritet,recap,uyga,podium,summary
-  const screens = [Screen0, Screen1, Screen2, Screen3, Screen7, Screen4, Screen8, ScreenStoryWorkshop, ScreenPeer, Screen9, ScreenClinic, ScreenCoding, ScreenPriority, Screen11, Screen12, ScreenPodium, Screen16];
+  const screens = [Screen0, Screen1, Screen2, Screen3, Screen7, Screen4, Screen8, ScreenStoryWorkshop, ScreenPeer, Screen9, ScreenClinic, ScreenCoding, ScreenPriority, Screen11, ScreenPodium, Screen16];
   const Current = screens[screen];
   return (
     <LangContext.Provider value={lang}>
@@ -3297,7 +3294,6 @@ export default function PmUserStoryLesson({ lang: langProp, onFinished }) {
         @keyframes hw-fire { 0%,100% { box-shadow: 0 0 0 1px rgba(90,40,180,.45), 0 0 26px rgba(124,58,237,.5), 0 0 68px rgba(124,58,237,.28), inset 0 0 48px rgba(124,58,237,.32), 0 0 0 0 rgba(124,58,237,.35); } 50% { box-shadow: 0 0 0 1px rgba(90,40,180,.45), 0 0 34px rgba(124,58,237,.68), 0 0 84px rgba(124,58,237,.4), inset 0 0 48px rgba(124,58,237,.32), 0 0 0 11px rgba(124,58,237,0); } }
         @keyframes hw-shine { 0% { left: -60%; } 55%, 100% { left: 130%; } }
         @media (prefers-reduced-motion: reduce) { .hw-big, .hw-big-shine, .hw-big-wrap::before, .hw-tok, .hw-big.charging { animation: none; } .hw-big-wrap::before { opacity: 0.55; } }
-        .hw-cta-note { margin: 9px 0 0; font-family: 'Manrope'; font-weight: 600; font-size: 12.5px; color: ${T.ink2}; }
 
         /* === bb-dots (kod-muharrir sarlavhasi) === */
         .bb-dots { display: flex; gap: 5px; }
@@ -3448,7 +3444,10 @@ export default function PmUserStoryLesson({ lang: langProp, onFinished }) {
         .opt-abc.dim { background: ${T.bg}; color: ${T.ink3}; }
         .kp-sub { margin: 0; font-family: 'Manrope'; font-weight: 600; font-size: 12.5px; color: ${T.ink3}; }
         /* taxmin natijasi: topdi = yashil · topmadi = NEYTRAL indigo (qizil EMAS — bu ball emas, o'yin) */
-        .kp-res { font-family: 'Manrope'; font-weight: 800; font-size: 12.5px; border-radius: 99px; padding: 5px 13px; animation: fade-step 0.3s ease-out; }
+        /* 🔴 F-0803-27 — klass IKKI marta ataylab: bu <p>, «.lesson-root p { padding:0 }» reseti
+           esa aniqligi (0,1,1) bilan bitta-klassli qoidadan kuchli va padding'ni jimgina
+           o'chiradi (99px burchakli «pill» yassilanib qoladi). Ikkilantirish (0,2,0) beradi. */
+        .kp-res.kp-res { font-family: 'Manrope'; font-weight: 800; font-size: 12.5px; border-radius: 99px; padding: 5px 13px; animation: fade-step 0.3s ease-out; }
         .kp-res.hit { color: ${T.success}; background: ${T.successSoft}; box-shadow: inset 0 0 0 1.5px ${T.success}44; }
         .kp-res.miss { color: ${T.accent}; background: ${T.accentSoft}; }
         /* reveal: yumshoq indigo glow-to'lqin */
@@ -3503,7 +3502,7 @@ export default function PmUserStoryLesson({ lang: langProp, onFinished }) {
         .ss-slot.kim.on { color: ${T.blue}; border-bottom-color: ${T.blue}55; }
         .ss-slot.nima.on { color: #B77A16; border-bottom-color: #B77A1655; }
         .ss-slot.natija.on { color: ${T.success}; border-bottom-color: ${T.success}55; }
-        .swed-hint { margin: 0; font-family: 'Manrope'; font-weight: 600; font-size: 13px; line-height: 1.45; color: ${T.accent}; background: ${T.accentSoft}; border-radius: 10px; padding: 9px 12px; }
+        .swed-hint.swed-hint { margin: 0; font-family: 'Manrope'; font-weight: 600; font-size: 13px; line-height: 1.45; color: ${T.accent}; background: ${T.accentSoft}; border-radius: 10px; padding: 9px 12px; }
         .swed-btns { display: flex; gap: 12px; justify-content: flex-end; align-items: center; }
         .swed-cnt { font-family: 'JetBrains Mono', monospace; font-weight: 600; font-size: 12px; color: ${T.ink3}; }
         .swed-save { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: clamp(14px,1.8vw,16px); cursor: pointer; border: none; border-radius: 12px; padding: 13px 26px; background: ${T.accent}; color: #fff; box-shadow: 0 10px 24px -8px rgba(91,61,230,0.55); transition: all 0.18s; }
@@ -3587,7 +3586,7 @@ export default function PmUserStoryLesson({ lang: langProp, onFinished }) {
         .bt-part.ok .bt-part-val { color: ${T.ink}; }
         .bt-part.bad { background: ${T.errSoft}; box-shadow: inset 0 0 0 1.5px ${T.err}66; }
         .bt-part.bad .bt-part-val { color: ${T.err}; font-weight: 700; }
-        .bt-guess { margin: 0; align-self: flex-start; font-family: 'Manrope'; font-weight: 600; font-size: 13px; color: ${T.ink2}; background: ${T.bg}; border-radius: 4px 14px 14px 14px; padding: 8px 12px; }
+        .bt-guess.bt-guess { margin: 0; align-self: flex-start; font-family: 'Manrope'; font-weight: 600; font-size: 13px; color: ${T.ink2}; background: ${T.bg}; border-radius: 4px 14px 14px 14px; padding: 8px 12px; }
         @media (prefers-reduced-motion: reduce) { .bt-req, .bt-part { transition: none; } }
         /* === PRIORITET-DOSKA: 3 ustun (Hozir=1 joy) + tanla-bos kartalar === */
         /* LAGANCHA (F-0727-08): joylashtirilmagan kartalar alohida idishda — qizil puls «meni joyla» signali */
@@ -3700,8 +3699,8 @@ export default function PmUserStoryLesson({ lang: langProp, onFinished }) {
         .hcp-chip.ok { color: ${T.ink}; font-weight: 600; border-color: ${T.success}40; background: ${T.successSoft}; }
         .hcp-dot { flex-shrink: 0; width: 21px; height: 21px; border-radius: 50%; background: ${T.bg}; color: ${T.ink3}; display: inline-flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; transition: all 0.25s; }
         .hcp-chip.ok .hcp-dot { background: ${T.success}; color: #fff; box-shadow: 0 3px 8px -2px ${T.success}88; }
-        .hcp-hint { margin: 3px 0 0; font-family: 'Manrope'; font-size: 13px; color: ${T.accent}; background: ${T.accentSoft}; padding: 8px 15px; border-radius: 11px; max-width: 64ch; line-height: 1.5; }
-        .hcp-err { margin: 3px 0 0; font-family: 'JetBrains Mono', monospace; font-size: 12.5px; color: ${T.err}; background: ${T.errSoft}; padding: 7px 14px; border-radius: 10px; max-width: 74ch; line-height: 1.5; }
+        .hcp-hint.hcp-hint { margin: 3px 0 0; font-family: 'Manrope'; font-size: 13px; color: ${T.accent}; background: ${T.accentSoft}; padding: 8px 15px; border-radius: 11px; max-width: 64ch; line-height: 1.5; }
+        .hcp-err.hcp-err { margin: 3px 0 0; font-family: 'JetBrains Mono', monospace; font-size: 12.5px; color: ${T.err}; background: ${T.errSoft}; padding: 7px 14px; border-radius: 10px; max-width: 74ch; line-height: 1.5; }
         .hcp-split { flex: none; height: 58vh; min-height: 0; display: grid; grid-template-columns: 1fr 1fr; gap: clamp(12px,1.6vw,18px); }
         .hcp-pane { display: flex; flex-direction: column; min-height: 0; border-radius: 18px; overflow: hidden; background: ${T.paper}; box-shadow: 0 1px 0 ${T.line}, 0 18px 40px -22px rgba(${T.shadowBase},0.35); }
         .hcp-pane-bar { display: flex; align-items: center; gap: 10px; padding: 10px 15px; font-family: 'Manrope'; font-size: 12px; font-weight: 600; color: ${T.ink2}; border-bottom: 1px solid ${T.line}; }
@@ -3782,7 +3781,7 @@ export default function PmUserStoryLesson({ lang: langProp, onFinished }) {
         .hw-chip.add { color: ${T.accent}; border-style: dashed; box-shadow: inset 0 0 0 1.5px ${T.accent}55; }
         .hw-chip.add.on { background: ${T.accent}; color: #fff; box-shadow: 0 8px 18px -6px rgba(91,61,230,0.4), inset 0 0 0 2px ${T.accent}; }
 
-        /* === PM-TOPSHIRIQ KARTASI + 3-QADAM (s12 uy-vazifa, jonli to'ladi) === */
+        /* === PM-TOPSHIRIQ KARTASI + 3-QADAM (yakun-sahifadagi uy-vazifa kartasi, jonli to'ladi) === */
         /* «imzolangan brief-hujjat» hissi — chap-accent hoshiya + indigo soya */
         .pmtask { background: ${T.paper}; border-radius: 16px; padding: 0; overflow: hidden; box-shadow: 0 12px 30px -12px rgba(91,61,230,0.28); border: 1.5px solid ${T.line}; border-left: 5px solid ${T.accent}; }
         .pmtask-head { display: flex; align-items: center; justify-content: space-between; padding: 11px 16px; background: ${T.accentSoft}; }
@@ -4054,7 +4053,7 @@ export default function PmUserStoryLesson({ lang: langProp, onFinished }) {
         .mstats-wait-lbl { font-family: 'Manrope'; font-weight: 700; font-size: 12px; color: ${T.ink3}; }
         .mstats-wait-chip { font-family: 'Manrope'; font-weight: 600; font-size: 12px; color: ${T.ink2}; background: rgba(${T.shadowBase},0.07); border-radius: 99px; padding: 3px 10px; }
         .mstats-wait-chip.more { color: ${T.ink3}; }
-        .mstats-warn { margin: 0; font-family: 'Manrope'; font-weight: 600; font-size: 13px; color: ${T.err}; background: ${T.errSoft}; border-radius: 10px; padding: 9px 12px; }
+        .mstats-warn.mstats-warn { margin: 0; font-family: 'Manrope'; font-weight: 600; font-size: 13px; color: ${T.err}; background: ${T.errSoft}; border-radius: 10px; padding: 9px 12px; }
         .mstats-wait { margin: 0; font-size: 12.5px; color: ${T.ink3}; font-style: italic; }
         @media (max-width: 560px) { .mstats-count { min-width: 78px; font-size: 11px; } }
         .mstats-verdict { border-radius: 12px; padding: 12px 15px; display: flex; flex-direction: column; gap: 10px; align-items: flex-start; animation: fade-step 0.3s ease-out; }

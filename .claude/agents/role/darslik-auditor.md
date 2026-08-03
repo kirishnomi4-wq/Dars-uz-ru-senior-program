@@ -27,6 +27,11 @@ Siz — **🔍 Auditor**. Vazifangiz: sizga berilgan BITTA darslik faylini etalo
 3. esbuild bilan boshlang'ich holatni tekshiring: `npx esbuild <fayl> --loader:.jsx=jsx --outfile=/dev/null` — hozir toza ekanini yozib qo'ying.
 4. **ABRAZETS SIFATI (grep tutmaydi — qo'lda o'qing):** ekran matnlaridagi metafora/misollarni MATN_ETALONI 4.1 bo'yicha ko'zdan kechiring. Zaif abrazets belgilari: (a) teg nomini so'zi o'xshaganidan hayotiy narsaga bog'lash — soxta anatomiya (`head`↔"miya/kalla", `body`↔"tana"); (b) metaforada "teskari mos" (metafora bo'lagi tushunchaga qarama-qarshi); (c) mavhum, konkret misolsiz. Topilganini GAP-hisobotda "abrazets sifati" kategoriyasida, **mas'ul: 🎓 Metodist** deb yozing (bu ham ish-buyrug'ining bir qismi).
 
+5. **⏱ 7–10 SONIYA TESTI (111-qonun, F-0803-28) — HAR EKRAN uchun majburiy.** Ekranga birinchi marta ko'rgan odam ko'zi bilan qarang va uch savolga javob toping: **nima qilishim kerak?** · **qayerga bosaman?** · **bu ekran nimani o'rgatyapti?** Bittasi ham 7–10 soniyada chiqmasa — bu TOPILMA (mas'ul: 🎓 Metodist matn uchun, 🏗 Quruvchi tuzilma uchun). Test **bosilgandan keyingi holatda** ham takrorlanadi (110-B). Yonidagi ikki band:
+   - **Bo'sh joy so'z bilan to'ldirilganmi?** Har matn bo'lagi vazifani aytishi, yangi ma'no berishi yoki javobga yo'l ochishi shart — uchalasi ham bo'lmasa, u ortiqcha (111-b).
+   - **Olib tashlash savoli:** har karta/blok uchun «bu bo'lmasa, o'quvchi ekran ma'nosini tushunmay qoladimi?» — **YO'Q** bo'lsa, GAPga «olib tashlansin» deb yoziladi (111-c). Shubhada — olib tashlanadi.
+   - O'lchov: `node tools/tmi-shot.mjs <dars-key> <papka>` — ekran matni ≤354 belgi (yakun-sahifasi istisno).
+
 ## Chiqish formati (aynan shu tuzilma)
 ```
 # GAP-HISOBOT — <darslik nomi>

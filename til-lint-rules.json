@@ -348,91 +348,103 @@
       "severity": "error",
       "pattern": "to'q yur",
       "suggest": "fe'l-ot mosligi: «to'q saqlaydi» (F-0727-03 — «och qoldirmaydi» ham bekor)",
-      "law": "F-0726-01 · F-0727-03"
+      "law": "F-0726-01 · F-0727-03",
+      "flags": "i"
     },
     {
       "id": "och-qoldir",
       "severity": "error",
       "pattern": "och qoldirma|och qolmaslik",
       "suggest": "inkor-shakl o'rniga to'g'ridan: «to'q saqlaydi / to'q qolish» (foydalanuvchi F-0727-03)",
-      "law": "F-0727-03"
+      "law": "F-0727-03",
+      "flags": "i"
     },
     {
       "id": "qol-keladi",
       "severity": "error",
       "pattern": "qo'l kel",
       "suggest": "«qo'l keladi» eskicha ibora — foydani konkret ayting yoki «juda mos tushadi» (F-0727-03)",
-      "law": "F-0727-03"
+      "law": "F-0727-03",
+      "flags": "i"
     },
     {
       "id": "keyingi-darsda-vada",
       "severity": "warn",
       "pattern": "keyingi darsda",
       "suggest": "va'da-qator ekranda turmaydi (73-qonun) — faqat uy-vazifa MUDDAT bandida joiz",
-      "law": "PM_ETALON 73 · F-0727-40"
+      "law": "PM_ETALON 73 · F-0727-40",
+      "flags": "i"
     },
     {
       "id": "hukm-buyruq",
       "severity": "error",
       "pattern": "hukm bering|hukm chiqaring|hukmingiz",
       "suggest": "«✓ To'g'ri yoki ✕ Noto'g'riga ajrating» / «javobingiz» (F-0727-05)",
-      "law": "F-0727-05"
+      "law": "F-0727-05",
+      "flags": "i"
     },
     {
       "id": "taxmin-qiling",
       "severity": "error",
       "pattern": "taxmin qiling",
       "suggest": "buyruqsiz chorlov: «bemalol belgilang» / «avval o'zingiz belgilab ko'ring» (79-qonun)",
-      "law": "PM_ETALON 79 · F-0727-15"
+      "law": "PM_ETALON 79 · F-0727-15",
+      "flags": "i"
     },
     {
       "id": "olchanadigan",
       "severity": "error",
       "pattern": "o'lchanadigan",
       "suggest": "«sanaladigan» — sanash o'smirga tanish (MATN_ETALONI lug'at, F-0727-34)",
-      "law": "F-0727-34"
+      "law": "F-0727-34",
+      "flags": "i"
     },
     {
       "id": "oz-sozingiz",
       "severity": "error",
       "pattern": "o'z so'zingiz bilan",
       "suggest": "«ekranga qaramasdan, yoddan» (76-qonun)",
-      "law": "PM_ETALON 76 · F-0727-09"
+      "law": "PM_ETALON 76 · F-0727-09",
+      "flags": "i"
     },
     {
       "id": "kimligini-aniqlang",
       "severity": "error",
       "pattern": "kimligini bir gapda aniqlang",
       "suggest": "«qanday odam ekanini bir gapda yozing» (F-0727-10)",
-      "law": "F-0727-10"
+      "law": "F-0727-10",
+      "flags": "i"
     },
     {
       "id": "mohiyat",
       "severity": "error",
       "pattern": "mohiyat",
       "suggest": "og'ir so'z — hodisani ochiq ayting (F-0727-03)",
-      "law": "F-0727-03"
+      "law": "F-0727-03",
+      "flags": "i"
     },
     {
       "id": "nusxalash-tugma",
       "severity": "error",
-      "pattern": "Nusxalash</button>|\ud83d\udccb Nusxalash",
-      "suggest": "koding-ekranda nusxa-tugma taqiq — «\ud83d\udd12 qo'lda yoziladi» (82-qonun)",
-      "law": "PM_ETALON 82 \u00b7 F-0727-48"
+      "pattern": "Nusxalash</button>|📋 Nusxalash",
+      "suggest": "koding-ekranda nusxa-tugma taqiq — «🔒 qo'lda yoziladi» (82-qonun)",
+      "law": "PM_ETALON 82 · F-0727-48"
     },
     {
       "id": "yana-kirish",
       "severity": "warn",
       "pattern": "yana kir",
       "suggest": "«qayta kirish» (MATN_ETALONI lug'at, F-0727-57)",
-      "law": "F-0727-57"
+      "law": "F-0727-57",
+      "flags": "i"
     },
     {
       "id": "bublik",
       "severity": "error",
       "pattern": "bublik",
       "suggest": "rus realiyasi — «bulochka (shirin non)» (MATN_ETALONI lug'at)",
-      "law": "F-0726-01"
+      "law": "F-0726-01",
+      "flags": "i"
     },
     {
       "id": "slot-ichki-atama",
@@ -446,28 +458,32 @@
       "severity": "error",
       "pattern": "ko'zi bilan qara|ko‘zi bilan qara",
       "suggest": "kitobiy ko'chma ma'no — «uning o'rnida ko'ring»",
-      "law": "KORPUS 46 · F-0731-15"
+      "law": "KORPUS 46 · F-0731-15",
+      "flags": "i"
     },
     {
       "id": "auditoriya-kengaydi",
       "severity": "warn",
       "pattern": "auditoriya[a-z'‘]* keng(ay|ayd)",
       "suggest": "kitob-iborasi — «saytdan foydalanadiganlar ko'paydi»",
-      "law": "KORPUS 42 · F-0731-11"
+      "law": "KORPUS 42 · F-0731-11",
+      "flags": "i"
     },
     {
       "id": "topshiriq-boshlash",
       "severity": "warn",
       "pattern": "topshiriqni boshlash|vazifani boshlash",
       "suggest": "uy-vazifa tugmasi natijani aytsin — «Amaliy topshiriqni bajarish →»",
-      "law": "KORPUS 51 · F-0731-21"
+      "law": "KORPUS 51 · F-0731-21",
+      "flags": "i"
     },
     {
       "id": "karta-yozishni-organdik",
       "severity": "warn",
       "pattern": "karta(ni|ngizni)? yozishni o'rgandik|kartani yozishni",
       "suggest": "yakun-fe'li ko'nikmani aytsin — «auditoriya-karta tuzishni o'rgandik»",
-      "law": "KORPUS 51 · F-0731-21"
+      "law": "KORPUS 51 · F-0731-21",
+      "flags": "i"
     },
     {
       "id": "nuqtali-royxat",

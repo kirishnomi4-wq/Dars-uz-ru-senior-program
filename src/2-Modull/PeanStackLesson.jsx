@@ -535,7 +535,7 @@ const RECAPS = {
       },
       {
         ic: "👀",
-        h: { uz: "Frontend — sen ko'rgan hamma narsa", ru: 'Frontend — всё, что Вы видите' },
+        h: { uz: "Frontend — siz ko'rgan hamma narsa", ru: 'Frontend — всё, что Вы видите' },
         body: { uz: <>Tugmalar, rasmlar, matn, ranglar — brauzerda <b>ko'rgan va bosgan</b> hamma narsa frontend. Uni ko'pincha <b>React</b> yasaydi.</>, ru: <>Кнопки, картинки, текст, цвета — всё, что Вы <b>видите и нажимаете</b> в браузере, — это frontend. Чаще всего его собирает <b>React</b>.</> },
         vis: <RcFlow items={[{ uz: 'tugma', ru: 'кнопка' }, { uz: 'rasm', ru: 'картинка' }, { uz: 'matn', ru: 'текст' }, { uz: 'rang', ru: 'цвет' }]} sep="·" />,
         ask: { uz: "Hozir ekranda ko'rib turgan qaysi narsalar frontendga tegishli?", ru: 'Что из того, что сейчас на экране, относится к frontend?' }
@@ -999,7 +999,10 @@ const Zoomable = ({ children }) => {
 
 // 🧲 Qayta ishlatiladigan DRAG-DROP TARTIB (L1 etaloni) — bo'laklarni to'g'ri tartibda joylash.
 // Boshqa darsga: faqat `items` ({id, label}) va `hints` almashtiriladi. onWrong — ball uchun (1-urinish).
-function DragDropOrder({ items, hints, onSolved, onWrong, doneText }) {
+// `side` (F-0803-26): ikki ustunli joylashuv — slotlar chapda, sudraladigan bo'laklar
+// (pool) va yechilgandan keyingi natija o'ngda. Bir ustunda hammasi 1280x773'ga sig'may,
+// bo'laklar ekran tagida KESILIB qolardi (60-qonun sinfi).
+function DragDropOrder({ items, hints, onSolved, onWrong, doneText, side }) {
   const order = items.map(x => x.id);
   const byId = useMemo(() => Object.fromEntries(items.map(x => [x.id, x])), [items]);
   // YAGONA holat — pool va slots birga (setState ichida setState YO'Q → StrictMode'da dublikat bo'lmaydi)
@@ -1058,7 +1061,7 @@ function DragDropOrder({ items, hints, onSolved, onWrong, doneText }) {
     window.addEventListener('pointermove', mv); window.addEventListener('pointerup', up);
   };
   return (
-    <div className="dd fade-up">
+    <div className={`dd fade-up${side !== undefined ? ' dd-wide' : ''}`}>
       <div className="dd-slots">
         {slots.map((sid, i) => (
           <div key={i} ref={el => (slotRefs.current[i] = el)} className={`dd-slot ${sid ? 'filled' : ''} ${solved && sid ? 'ok' : ''} ${wrong && sid && sid !== order[i] ? 'bad' : ''}`}>
@@ -1067,12 +1070,15 @@ function DragDropOrder({ items, hints, onSolved, onWrong, doneText }) {
           </div>
         ))}
       </div>
-      <div className="dd-pool">
-        {pool.length === 0 && !solved && <span className="dd-pool-empty">{tr({ uz: "Tartib xato — bo'lakni bosib qaytaring va qayta joylang", ru: 'Порядок неверный — нажмите на блок, чтобы вернуть его, и разложите заново' })}</span>}
-        {pool.map(id => <button key={id} className="dd-chip" onPointerDown={(e) => down(e, id, 'pool')}>{tr(byId[id].label)}</button>)}
+      <div className="dd-side">
+        <div className="dd-pool">
+          {pool.length === 0 && !solved && <span className="dd-pool-empty">{tr({ uz: "Tartib xato — bo'lakni bosib qaytaring va qayta joylang", ru: 'Порядок неверный — нажмите на блок, чтобы вернуть его, и разложите заново' })}</span>}
+          {pool.map(id => <button key={id} className="dd-chip" onPointerDown={(e) => down(e, id, 'pool')}>{tr(byId[id].label)}</button>)}
+        </div>
+        {side}
+        {solved && <div className="dd-done">{doneText ? tr(doneText) : tr({ uz: "✓ To'g'ri! Aynan shu tartibda.", ru: '✓ Верно! Именно в таком порядке.' })}</div>}
+        {wrong && !solved && <div className="dd-wrong">{tr({ uz: '⚠️ Tartib xato — qayta joylang.', ru: '⚠️ Порядок неверный — разложите заново.' })}</div>}
       </div>
-      {solved && <div className="dd-done">{doneText ? tr(doneText) : tr({ uz: "✓ To'g'ri! Aynan shu tartibda.", ru: '✓ Верно! Именно в таком порядке.' })}</div>}
-      {wrong && !solved && <div className="dd-wrong">{tr({ uz: '⚠️ Tartib xato — qayta joylang.', ru: '⚠️ Порядок неверный — разложите заново.' })}</div>}
     </div>
   );
 }
@@ -1103,7 +1109,14 @@ const FC_CODE_WORDS = /\b(let|const|var|string|number|boolean|true|false|null|un
 const FC_VOCAB = new Set(['let', 'const', 'var', 'string', 'number', 'boolean', 'true', 'false', 'null', 'undefined', 'function', 'return', 'for', 'while', 'if', 'else']);
 // Kodmi yoki so'zmi? Monoshrift FAQAT kodga: lug'atdagi kalit so'z yoki kod-belgisi bo'lgan
 // token. «o'zgaruvchi» kabi o'zbekcha atama — gap, u Manrope bilan chiroyliroq va tor chiqadi.
-const fcIsCode = (s) => FC_VOCAB.has(s.toLowerCase()) || /[=(){};.[\]<>+*/%!&|-]/.test(s);
+// F-0803-23: defis-li ODDIY so'z («Promo-landing», «follow-up», «AI-agent») kod EMAS — ilgari u
+// dasturchi shriftida, `let`/`const` kabi kod-token bo'lib ko'rinardi. Haqiqiy defis-li kod
+// tokeni (`background-color`, `runs-on`) FC_VOCAB oq ro'yxati orqali mono bo'lib qoladi.
+const fcIsCode = (s) => {
+  if (FC_VOCAB.has(s.toLowerCase())) return true;
+  if (/^[\p{L}'\u02BB\u2019]+(-[\p{L}'\u02BB\u2019]+)+$/u.test(s)) return false;
+  return /[=(){};.[\]<>+*/%!&|-]/.test(s);
+};
 const fcTier = (s) => (s.length <= 8 ? 't1' : s.length <= 16 ? 't2' : s.length <= 32 ? 't3' : 't4');
 const fcAnswer = (raw) => {
   const s = String(raw ?? '');
@@ -1736,9 +1749,12 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // ===== SCREEN 11 — KIM NIMA QILADI? (vazifa-tester) =====
 const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const TASKS = [
-    { q: tr({ uz: "Tugmani ko'k rangga bo'yab, bosilganda animatsiya qilish", ru: 'Покрасить кнопку в синий и анимировать её при нажатии' }), a: 'react', hint: tr({ uz: "Bu ko'rinadigan ish — zal.", ru: 'Это видимая работа — зал.' }) },
-    { q: tr({ uz: "/profil manziliga kelgan so'rovni qabul qilib yo'naltirish", ru: 'Принять запрос на адрес /profil и направить его дальше' }), a: 'express', hint: tr({ uz: "Bu yo'l topish ishi — ofitsiant.", ru: 'Это работа с маршрутами — официант.' }) },
-    { q: tr({ uz: "Foydalanuvchilar ro'yxatini doimiy eslab qolish", ru: 'Постоянно помнить список пользователей' }), a: 'postgres', hint: tr({ uz: 'Bu xotira ishi — ombor.', ru: 'Это работа памяти — склад.' }) }
+    // `k` (F-0803-26) — o'ng ustundagi taqsimot-taxtasi uchun QISQA yorliq. Ilgari u yerda
+    // `q` ning o'zi turardi: ayni vazifa matni bitta ekranda ikki marta ko'rinardi, qolgan
+    // ikkitasi esa oldindan o'qilib turardi (72-bo'lim: bir g'oya maks 2 marta).
+    { q: tr({ uz: "Tugmani ko'k rangga bo'yab, bosilganda animatsiya qilish", ru: 'Покрасить кнопку в синий и анимировать её при нажатии' }), k: tr({ uz: 'Tugma ko\'rinishi', ru: 'Вид кнопки' }), a: 'react', hint: tr({ uz: "Bu ko'rinadigan ish — zal.", ru: 'Это видимая работа — зал.' }) },
+    { q: tr({ uz: "/profil manziliga kelgan so'rovni qabul qilib yo'naltirish", ru: 'Принять запрос на адрес /profil и направить его дальше' }), k: tr({ uz: "/profil so'rovi", ru: 'Запрос /profil' }), a: 'express', hint: tr({ uz: "Bu yo'l topish ishi — ofitsiant.", ru: 'Это работа с маршрутами — официант.' }) },
+    { q: tr({ uz: "Foydalanuvchilar ro'yxatini doimiy eslab qolish", ru: 'Постоянно помнить список пользователей' }), k: tr({ uz: "Ro'yxatni eslab qolish", ru: 'Помнить список' }), a: 'postgres', hint: tr({ uz: 'Bu xotira ishi — ombor.', ru: 'Это работа памяти — склад.' }) }
   ];
   const [idx, setIdx] = useState(0);
   const [wrong, setWrong] = useState(null);
@@ -1784,7 +1800,8 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 const tech = techBy(t.a);
                 return (
                   <div key={i} className={ok ? 'jr-step on el-in' : 'jr-step'} style={ok ? { boxShadow: `inset 0 0 0 1.5px ${tech.color}` } : { opacity: 0.45 }}>
-                    <span className="jr-body"><span className="jr-t" style={{ fontSize: 'clamp(12.5px,1.5vw,14px)' }}>{t.q}</span></span>
+                    <span className="jr-num" style={{ background: ok ? tech.color : T.ink3 }}>{i + 1}</span>
+                    <span className="jr-body"><span className="jr-t" style={{ fontSize: 'clamp(12.5px,1.5vw,14px)' }}>{ok ? t.k : '…'}</span></span>
                     {ok && <span className="jr-tag" style={{ color: tech.color, background: tech.soft }}>{tech.name}</span>}
                   </div>
                 );
@@ -1898,10 +1915,10 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 <div className="frame-success"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ Do'kon ishga tushdi! Jamoa to'g'ri yig'ildi — endi izohlar ham, buyurtmalar ham yo'qolmaydi.</>, ru: <>✓ Магазин запущен! Команда собрана правильно — теперь ни комментарии, ни заказы не пропадут.</> })}</p></div>
               </div>
             ) : checked && full ? (
-              <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Qizil kartochkalar noto'g'ri joyda. Ularni bosib bo'shating va qayta biriktiring. Eslang: zal, pech, ofitsiant, daftar.</>, ru: <>Красные карточки стоят не на своих местах. Нажмите на них, освободите и прикрепите заново. Вспомните: зал, плита, официант, тетрадь.</> })}</p></div>
-            ) : (
-              <div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: <>Maslahat: <b style={{ color: T.ink }}>ko'rinish</b> — zal, <b style={{ color: T.ink }}>dvigatel</b> — oshxona pechi, <b style={{ color: T.ink }}>yo'llar</b> — ofitsiant, <b style={{ color: T.ink }}>ombor</b> — daftar.</>, ru: <>Подсказка: <b style={{ color: T.ink }}>вид</b> — зал, <b style={{ color: T.ink }}>двигатель</b> — плита на кухне, <b style={{ color: T.ink }}>маршруты</b> — официант, <b style={{ color: T.ink }}>склад</b> — тетрадь.</> })}</p></div>
-            )}
+              /* F-0803-26 (109-qonun): javob-kaliti («zal, pech, ofitsiant, daftar») olib tashlandi —
+                 xato javobdan keyin ham vazifani o'quvchi o'zi yechadi; bu yerda faqat harakat aytiladi. */
+              <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Qizil kartochkalar noto'g'ri joyda. Ularni bosib bo'shating va qayta biriktiring.</>, ru: <>Красные карточки стоят не на своих местах. Нажмите на них, освободите и прикрепите заново.</> })}</p></div>
+            ) : null}
           </Col>
         </div>
         </Zoomable>
@@ -1949,10 +1966,11 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             </div>
           </Col>
           <Col>
-            {!found && (
-              picked !== null
-                ? (<div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Bu qator to'g'ri — rol o'z egasida. Yana o'ylang: <b>chizish</b> kimning ishi edi, <b>saqlash</b> kimning?</>, ru: <>Эта строка верная — роль на своём месте. Подумайте ещё: <b>рисовать</b> — чья это работа, а <b>хранить</b> — чья?</> })}</p></div>)
-                : (<div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: <>Eslang: <b style={{ color: T.ink }}>chizish</b> — frontend (zal). <b style={{ color: T.ink }}>Saqlash</b> — baza (ombor). Qaysi a'zoga boshqaning ishi yozilgan?</>, ru: <>Вспомните: <b style={{ color: T.ink }}>рисовать</b> — frontend (зал). <b style={{ color: T.ink }}>Хранить</b> — база (склад). Кому из участников приписали чужую работу?</> })}</p></div>)
+            {/* F-0803-26 (109-qonun): boshlang'ich «Eslang…» qutisi olib tashlandi — u xato qatorni
+                to'g'ridan-to'g'ri aytib qo'yardi va o'ng ustunni band qilardi. Reaksiya faqat
+                noto'g'ri bosilganda chiqadi (110-qonun: har bosishga ko'rinadigan javob). */}
+            {!found && picked !== null && (
+              <div className="frame-warn fade-step" key={picked}><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Bu qator to'g'ri — rol o'z egasida. Yana o'ylang: <b>chizish</b> kimning ishi edi, <b>saqlash</b> kimning?</>, ru: <>Эта строка верная — роль на своём месте. Подумайте ещё: <b>рисовать</b> — чья это работа, а <b>хранить</b> — чья?</> })}</p></div>
             )}
             {found && !fixed && (<div className="frame-warn fade-step"><p className="note-h" style={{ color: T.accent }}>{tr({ uz: '✓ Topdingiz!', ru: '✓ Нашли!' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>PostgreSQL tugma chizmaydi — chizish React'ning ishi! PostgreSQL'ning vazifasi — <b>saqlash</b>. Chapdagi tugmani bosing.</>, ru: <>PostgreSQL не рисует кнопки — рисовать умеет React! Задача PostgreSQL — <b>хранить</b>. Нажмите кнопку слева.</> })}</p></div>)}
             {fixed && (<div className="takeaway fade-step"><div className="ta-bulb">✓</div><p className="ta-h">{tr({ uz: "Topdingiz va tuzatdingiz — bu arxitektor ko'zi!", ru: 'Нашли и исправили — вот это взгляд архитектора!' })}</p><p className="ta-sub">{tr({ uz: 'AI ham adashadi — rollarni bilgan odam tekshiradi', ru: 'AI тоже ошибается — проверяет тот, кто знает роли' })}</p></div>)}
@@ -1988,35 +2006,32 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Oxirgi qadam: sayohatni <span className="italic" style={{ color: T.accent }}>o'zingiz</span> tuzing</>, ru: <>Последний шаг: соберите путь запроса <span className="italic" style={{ color: T.accent }}>сами</span></> })}</h2></div>
         <Mentor>{tr({ uz: <>Buyurtma tugmasi bosildi! Endi butun yo'lni <b style={{ color: T.ink }}>o'zingiz</b> yig'ing: 5 qadamni <b style={{ color: T.ink }}>to'g'ri tartibda</b> joylang — sudrab yoki bosib. So'rovning boshdan oxirigacha sayohatini birma-bir tuzasiz.</>, ru: <>Кнопка заказа нажата! Теперь соберите весь путь <b style={{ color: T.ink }}>сами</b>: разложите 5 шагов <b style={{ color: T.ink }}>в правильном порядке</b> — перетаскивая или нажимая. Вы шаг за шагом построите путешествие запроса от начала до конца.</> })}</Mentor>
         <Zoomable>
-        <div className="split">
-          <Col>
-            <p className="flow-label">{tr({ uz: "Qadamlar — to'g'ri tartibda joylang", ru: 'Шаги — разложите в правильном порядке' })}</p>
-            <DragDropOrder
-              items={items}
-              hints={[{ uz: 'hammasi mijozning bosishidan boshlanadi', ru: 'всё начинается с нажатия гостя' }, { uz: "so'rov (xat) jo'naydi", ru: 'запрос (письмо) отправляется' }, { uz: 'ofitsiant qabul qiladi', ru: 'официант принимает' }, { uz: 'omborga yoziladi', ru: 'записывается на склад' }, { uz: 'oxirida javob qaytadi', ru: 'в конце возвращается ответ' }]}
-              onSolved={onSolved}
-              onWrong={onWrong}
-              doneText={{ uz: "✓ Mukammal! So'rov sayohati aynan shu tartibda.", ru: '✓ Отлично! Путь запроса именно такой.' }} />
-          </Col>
-          <Col>
-            <p className="flow-label">{tr({ uz: 'Sayohat xaritasi', ru: 'Карта путешествия' })}</p>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 7 }}>
-              {STEPS.map((s, i) => {
-                const tech = techBy(s.who);
-                return (
-                  <div key={s.key} className={`jr-step ${solved ? 'on el-in' : ''}`} style={solved ? { boxShadow: `inset 0 0 0 1.5px ${tech.color}` } : { opacity: 0.4 }}>
-                    <span className="jr-num" style={{ background: solved ? tech.color : T.ink3 }}>{i + 1}</span>
-                    <span className="jr-body"><span className="jr-t">{solved ? tr(s.label) : '…'}</span></span>
-                    {solved && <span className="jr-tag" style={{ color: tech.color, background: tech.soft }}>{tech.name}</span>}
-                  </div>
-                );
-              })}
-            </div>
-            {solved
-              ? <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ Mukammal! Siz endi katta saytlarning ichini bilasiz: <b>React → Express → PostgreSQL → javob</b>. Bu xarita keyingi modullarda doim siz bilan bo'ladi.</>, ru: <>✓ Отлично! Теперь Вы знаете большие сайты изнутри: <b>React → Express → PostgreSQL → ответ</b>. Эта карта останется с Вами во всех следующих модулях.</> })}</p></div>
-              : <div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: <>Maslahat: sayohat doim <b style={{ color: T.ink }}>foydalanuvchidan</b> boshlanadi va javob bilan tugaydi. O'rtada — ofitsiant va ombor.</>, ru: <>Подсказка: путешествие всегда начинается <b style={{ color: T.ink }}>с пользователя</b> и заканчивается ответом. Посередине — официант и склад.</> })}</p></div>}
-          </Col>
-        </div>
+          {/* F-0803-26: bitta ustun o'rniga keng rejim. Ilgari o'ng ustunda yechilgunga qadar
+              5 ta bo'sh «…» qatori + javobni aytib qo'yadigan «Maslahat» turardi (TMI), sudraladigan
+              bo'laklar esa ekran tagida kesilardi. Endi xarita FAQAT yechimdan keyin — mukofot sifatida. */}
+          <p className="flow-label">{tr({ uz: "Qadamlar — to'g'ri tartibda joylang", ru: 'Шаги — разложите в правильном порядке' })}</p>
+          <DragDropOrder
+            items={items}
+            hints={[{ uz: 'hammasi mijozning bosishidan boshlanadi', ru: 'всё начинается с нажатия гостя' }, { uz: "so'rov (xat) jo'naydi", ru: 'запрос (письмо) отправляется' }, { uz: 'ofitsiant qabul qiladi', ru: 'официант принимает' }, { uz: 'omborga yoziladi', ru: 'записывается на склад' }, { uz: 'oxirida javob qaytadi', ru: 'в конце возвращается ответ' }]}
+            onSolved={onSolved}
+            onWrong={onWrong}
+            doneText={{ uz: "✓ Mukammal! So'rov sayohati aynan shu tartibda.", ru: '✓ Отлично! Путь запроса именно такой.' }}
+            side={solved ? (
+              <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 7 }}>
+                <p className="flow-label" style={{ margin: 0 }}>{tr({ uz: 'Sayohat xaritasi', ru: 'Карта путешествия' })}</p>
+                {STEPS.map((s, i) => {
+                  const tech = techBy(s.who);
+                  return (
+                    <div key={s.key} className="jr-step on el-in" style={{ boxShadow: `inset 0 0 0 1.5px ${tech.color}` }}>
+                      <span className="jr-num" style={{ background: tech.color }}>{i + 1}</span>
+                      <span className="jr-body"><span className="jr-t">{tr(s.label)}</span></span>
+                      <span className="jr-tag" style={{ color: tech.color, background: tech.soft }}>{tech.name}</span>
+                    </div>
+                  );
+                })}
+                <div className="frame-success"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ Siz endi katta saytlarning ichini bilasiz: <b>React → Express → PostgreSQL → javob</b>.</>, ru: <>✓ Теперь Вы знаете большие сайты изнутри: <b>React → Express → PostgreSQL → ответ</b>.</> })}</p></div>
+              </div>
+            ) : null} />
         </Zoomable>
       </div>
     </Stage>
@@ -3592,7 +3607,7 @@ function StyleTag() {
       .hc-chip.ok{color:${HC_T.ink};font-weight:600;border-color:${HC_T.success}40;background:${HC_T.successSoft}}
       .hc-dot{flex-shrink:0;width:21px;height:21px;border-radius:50%;background:${HC_T.bg};color:${HC_T.ink3};display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;transition:all .25s}
       .hc-chip.ok .hc-dot{background:${HC_T.success};color:#fff;box-shadow:0 3px 8px -2px ${HC_T.success}88}
-      .hc-hint{margin:3px 0 0;font-size:13px;color:${HC_T.warn};background:#FFF6EA;border:1px solid #F4DFBC;padding:8px 15px;border-radius:11px;max-width:60ch;line-height:1.5}
+      .hc-hint.hc-hint{margin:3px 0 0;font-size:13px;color:${HC_T.warn};background:#FFF6EA;border:1px solid #F4DFBC;padding:8px 15px;border-radius:11px;max-width:60ch;line-height:1.5}
       .hc-errors{display:flex;flex-direction:column;gap:5px;align-items:center;margin:3px 0 0}
       .hc-err{font-size:12.5px;color:#C01024;background:#FDECEC;border:1px solid #F6CFCF;padding:7px 14px;border-radius:10px;font-family:'JetBrains Mono',monospace;max-width:74ch;line-height:1.5}
 
@@ -4176,7 +4191,7 @@ export default function PeanStackLesson({ lang: langProp, onFinished, onPractice
         @keyframes hw-fire { 0%,100% { box-shadow: 0 0 0 1px rgba(90,40,180,.45), 0 0 26px rgba(124,58,237,.5), 0 0 68px rgba(124,58,237,.28), inset 0 0 48px rgba(124,58,237,.32); } 50% { box-shadow: 0 0 0 1px rgba(120,60,220,.6), 0 0 40px rgba(124,58,237,.72), 0 0 96px rgba(124,58,237,.4), inset 0 0 60px rgba(124,58,237,.44); } }
         @keyframes hw-shine { 0% { left: -60%; } 55%, 100% { left: 130%; } }
         @media (prefers-reduced-motion: reduce) { .hw-big, .hw-big-shine, .hw-big-wrap::before, .hw-tok, .hw-big.charging { animation: none !important; } }
-        .hw ul { display: flex; flex-direction: column; gap: 6px; list-style: none; } .hw li { font-size: clamp(13px,1.6vw,15px); color: ${T.ink}; } .hw li b { color: ${T.accent}; } .hw .t { color: ${T.ink2}; } .hw-note { margin: 11px 0 0; font-size: 12px; color: ${T.accent}; font-weight: 600; }
+        .hw ul { display: flex; flex-direction: column; gap: 6px; list-style: none; } .hw li { font-size: clamp(13px,1.6vw,15px); color: ${T.ink}; } .hw li b { color: ${T.accent}; } .hw .t { color: ${T.ink2}; } .hw-note.hw-note { margin: 11px 0 0; font-size: 12px; color: ${T.accent}; font-weight: 600; }
 
         /* MOBIL: yig'iladigan Mentor */
         .mentor-mob .mentor-msg { overflow: hidden; max-height: 360px; transition: max-height 0.38s cubic-bezier(.4,0,.2,1), opacity 0.25s ease, padding 0.38s ease, box-shadow 0.3s ease; }
@@ -4187,6 +4202,10 @@ export default function PeanStackLesson({ lang: langProp, onFinished, onPractice
 
         /* === 🧲 DRAG-DROP ORDER (reusable) === */
         .dd { display: flex; flex-direction: column; gap: 13px; }
+        .dd-side { display: flex; flex-direction: column; gap: 13px; }
+        /* F-0803-26: keng rejim — slotlar chapda, bo'laklar o'ngda (bir ustunda kesilib qolardi) */
+        .dd-wide { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: clamp(14px,2.2vw,26px); align-items: start; }
+        @media (max-width: 768px) { .dd-wide { grid-template-columns: 1fr; } }
         .dd-slots { display: flex; flex-direction: column; gap: 9px; }
         .dd-slot { display: flex; align-items: center; gap: 12px; min-height: 56px; border-radius: 14px; border: 2px dashed ${T.ink3}66; background: ${T.paper}; padding: 8px 12px; transition: border-color .18s, background .18s; }
         .dd-slot.filled { border-style: solid; border-color: ${T.line}; }
@@ -4385,7 +4404,7 @@ export default function PeanStackLesson({ lang: langProp, onFinished, onPractice
         .mstats-wait-lbl { font-family: 'Manrope'; font-weight: 700; font-size: 12px; color: ${T.ink3}; }
         .mstats-wait-chip { font-family: 'Manrope'; font-weight: 600; font-size: 12px; color: ${T.ink2}; background: rgba(${T.shadowBase},0.07); border-radius: 99px; padding: 3px 10px; }
         .mstats-wait-chip.more { color: ${T.ink3}; }
-        .mstats-warn { margin: 0; font-family: 'Manrope'; font-weight: 600; font-size: 13px; color: ${T.accent}; background: ${T.accentSoft}; border-radius: 10px; padding: 9px 12px; }
+        .mstats-warn.mstats-warn { margin: 0; font-family: 'Manrope'; font-weight: 600; font-size: 13px; color: ${T.accent}; background: ${T.accentSoft}; border-radius: 10px; padding: 9px 12px; }
         .mstats-wait { margin: 0; font-size: 12.5px; color: ${T.ink3}; font-style: italic; }
         @media (max-width: 560px) { .mstats-count { min-width: 78px; font-size: 11px; } }
         /* Verdikt + recap tugmalari */

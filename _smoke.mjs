@@ -5,7 +5,10 @@ import { readFileSync } from 'node:fs';
 
 const NL = String.fromCharCode(10);
 const app = readFileSync('src/App.jsx', 'utf8');
-const KEYS = [...app.matchAll(/key: '([a-z0-9-]+)'/g)].map(m => m[1]);
+// FAQAT komponenti bor darslar. `comp:` siz yozuvlar — Demo Day, zaxira dars, hali qurilmagan
+// 8-modul kabi joy-egallovchilar; ular hech qachon `.lesson-root` chizmaydi va har yugurishda
+// 29 ta soxta «bo'sh ekran» beradi (2026-08-03: 29/138 «nuqson» aslida shular edi).
+const KEYS = [...app.matchAll(/\{ key: '([a-z0-9-]+)'[^\n]*/g)].filter(m => /comp:\s*\w/.test(m[0])).map(m => m[1]);
 const IDS = readFileSync('_lessonids.txt', 'utf8').split(NL).map(s => s.trim()).filter(Boolean);
 
 const browser = await chromium.launch({ executablePath: 'C:/Program Files/Google/Chrome/Application/chrome.exe', headless: true });

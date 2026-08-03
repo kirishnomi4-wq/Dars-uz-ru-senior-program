@@ -225,6 +225,9 @@ Har dars tekshirilganda topilgan tushunarsiz/rasmiy so'z shu jadvalga qo'shiladi
 | hero (ikki xil ta'riflangan) | birinchi blok (hero) — katta sarlavha va bir qatorlik izoh | bir joyda «sarlavha», boshqa joyda «butun tepa blok» bo'lib qolgan edi: bir tushuncha — bir ta'rif, u SECDATA/flashcard/RECAPS/testda AYNAN bir xil takrorlanadi (PM M1-D6, F-0728-01) |
 | footer = «aloqa qismi» | sahifaning eng pastki qismi: havolalar va aloqa | ta'rif juda tor edi — o'quvchi footer'da faqat telefon raqami bo'ladi deb tushunadi (PM M1-D6, F-0728-01) |
 | sinov mijozi (izohsiz) | sinov mijozi — sahifangizga birinchi marta kirgan odam | mashq-personaji birinchi ko'rinishda bir ibora bilan ochiladi (PM M1-D6 s11, F-0728-01) |
+| Vibecoding / Iteratsiya / Agent / Promo-landing (flashcard JAVOBIDA, izohsiz) | Vibecoding (gapirib qurish) / Iteratsiya (qayta so'rash) / Agent (AI yordamchi) / Promo sahifa (promo-landing) | 🔴 Karta orqasi — o'quvchi yodlaydigan YAGONA satr; tarjimasiz chet so'z u yerda tovushni yodlatadi, ma'noni emas. Naqsh: **atama + qavsda o'zbekcha** («Deploy (nashr qilish)» darsning o'z etaloni edi). Prozada gloss yetarli, JAVOB maydonida esa majburiy (m2-09 PracticeLesson2, F-0803-23; korpus 76-bo'lim) |
+| ta'minlaysiz / belgilaydi (o'quvchiga savolda) | qilasiz / aytadi | rasmiy-idoraviy fe'llar; savol o'smir tilida bo'lsin: «AI nima beradi, siz nima qilasiz?», «Promptdagi uslub nimani aytadi?» (m2-09 flashcard, F-0803-23) |
+| minimal (uslub nomi) | sodda | chet so'z; uslub-variantlari o'zbekcha bo'lsin: zamonaviy · o'ynoqi · sodda (m2-09 s3, F-0803-23) |
 
 > **Qo'shish tartibi:** darsda tushunarsiz so'z topilsa → shu jadvalga (qiyin, sodda, izoh) yoz → kodda grep bilan barcha o'rinlarini tuzat → audio/mentor matni ham birga yangilanadi.
 

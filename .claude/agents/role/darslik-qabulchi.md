@@ -43,6 +43,8 @@ Har band uchun natija: ✅ (o'tdi) / 🔴 (yiqildi → QAYTARISH). 🔴 bo'lsa �
 **E. Qo'lda tasdiq (grep tutmaydi — o'qib tasdiqlang)**
 15. **Metodist abrazets imzosi:** GAP-hisobotda yoki Metodist chiqishida «hamma abrazets to'g'ri mos» yoki «❌→✅→💡» ro'yxati bo'lsin. Yo'q bo'lsa → 🔴 🎓 Metodist (abrazets tasdiqlanmagan).
 16. **GAP yopilishi:** GAP-hisobotdagi HAR «❌/⚠️» band endi darsda bajarilganini bittalab tasdiqlang. Bajarilmagan qolgan bo'lsa → 🔴 (o'sha bandning mas'ul roli).
+17. **⏱ 7–10 SONIYA TESTI (111-qonun, F-0803-28):** HAR ekranga birinchi marta ko'rgan odam ko'zi bilan qarang — **nima qilishim kerak?** · **qayerga bosaman?** · **bu ekran nimani o'rgatyapti?** Bittasi ham 7–10 soniyada chiqmasa → 🔴 **QAYTARISH** (matn bo'lsa 🎓 Metodist, tuzilma bo'lsa 🏗️ Quruvchi). Test **bosilgandan keyingi holatda** ham qilinadi (110-B). O'lchov-yordami: `node tools/tmi-shot.mjs <dars-key> <papka>` → ekran matni ≤354 belgi (yakun-sahifasi istisno); oshsa 🔴 🎓 Metodist.
+18. **Bo'sh joy va ortiqcha blok (111-b/c):** joy to'ldirish uchun qo'yilgan matn (vazifa aytmaydigan, yangi ma'no bermaydigan, javobga yo'l ochmaydigan) bormi → 🔴 🎓 Metodist. Har karta/blok uchun savol: «bu bo'lmasa, o'quvchi ekran ma'nosini tushunmay qoladimi?» — **YO'Q** bo'lsa, blok hali darsda tursa → 🔴 (olib tashlansin).
 
 ## Hukm mantig'i
 - **Bitta 🔴 ham bor** → umumiy hukm = **QAYTARISH**. Prodga chiqmaydi.
@@ -71,7 +73,7 @@ Hukm: ✅ PASS · PRODGA TAYYOR   /   🔴 QAYTARISH
 - Darslik <lesson> prodga chiqarishga TAYYOR.
 
 ## XULOSA
-- Tekshirildi: 16 band · ✅ X · 🔴 Y
+- Tekshirildi: 18 band · ✅ X · 🔴 Y
 - Qaytarish: <rollar ro'yxati> yoki «yo'q — PASS»
 ```
 
@@ -84,7 +86,7 @@ Hukm: ✅ PASS · PRODGA TAYYOR   /   🔴 QAYTARISH
 - ❌ Rolni o'zingiz bajarmang («men tuzatib qo'ydim» demang) — qaytarasiz, xolos.
 
 ## Definition of Done
-- 16 bandning HAMMASI ✅/🔴 tasniflangan, har biri buyruq natijasi bilan.
+- 18 bandning HAMMASI ✅/🔴 tasniflangan, har biri buyruq natijasi bilan.
 - Umumiy hukm aniq: PASS yoki QAYTARISH (oraliq holat yo'q — shubha bo'lsa odamga flag).
 - QAYTARISH bo'lsa — har 🔴 aniq rolga, aniq file:line bilan biriktirilgan.
 - PASS bo'lsa — imzo qatori yozilgan; endi darslik prodga chiqishi mumkin.

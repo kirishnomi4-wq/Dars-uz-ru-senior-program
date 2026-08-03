@@ -1145,3 +1145,113 @@ UNCOMMITTED.
 **🔴 IKKI YANGI DARVOZA:** **(1)** `lint:jsx` ga qo'shildi: **(c2)** `tr()` ishlatilgan-u faylda aniqlanmagan → xato (aynan yuqoridagi sinf); **(d)** yakun tartibi — uy-vazifa kartasi recap bilan `split` da bo'lsa xato. **(2)** Yangi **`npm run smoke`** (`_smoke.mjs`): **138 marshrutning HAMMASINI brauzerda ochadi**, `pageerror` va konsol-xatolarini yig'adi, bo'sh ekranni aniqlaydi. Sabab: bugun ikki marta oq-ekran nuqsoni foydalanuvchiga yetib bordi va ikkalasini ham esbuild/vite tuta olmadi — endi mexanik darvoza bor.
 **Darvozalar:** esbuild **127/127 toza** ✅ · `vite build` toza (1.55s) ✅ · `lint:jsx` — tartib-topilmalari **0** (qolgan 1 xato: `PmUserStoryLesson` P0 dublikati, foydalanuvchi «hozircha tursin» dedi) ✅ · `lint:til` 0 error ✅ · `lint:prompt` 0 ✅ · 🔴 **`npm run smoke`: 138 dars tekshirildi, 29 nuqsonli — va aynan 29 tasi `comp:` bog'lanmagan bo'sh marshrut (hali qurilmagan darslar). HAQIQIY NUQSON: 0.** Ya'ni 109 ta real darsning hammasi xatosiz yuklanadi ✅.
 **Brauzer-namunalari (yakun sahifasi tartibi):** `m1-01 · m2-01 · m2-02 · m3-01 · m4-01 · m5-01 · m6-01 · m1-11 · m2-07 · m2-13 · m4c-02 · m5-11 · m6-13` — hammasida `hero → qz-cta.cs-cta → card «Endi siz bilasiz» → hw-big-wrap → card.ach-coll`, kapsula bosilganda topshiriq kartasi ochildi ✓. UNCOMMITTED.
+
+## 2026-08-03 — F-0803-24: P0 UY-VAZIFA IKKILANISHI TUZATILDI (etalon: yakun ichida) — ✅
+**Kelib chiqishi:** `lint:jsx` darvozasi (F-0803-22 ishi paytida ko'rindi): `PmUserStoryLesson.jsx:373` — uy-vazifa IKKI joyda: alohida `s12` homework-ekrani + yakun-sahifadagi kapsula. Foydalanuvchi: «kecha/bugun ertalab darslarni qanday yaxshilagan bo'lsak, bu ham shunaqa bo'lsin».
+**Etalon-naqsh:** JsFunctionsLesson (F-0803-08) — yakunda «Uyga vazifa» kapsulasi bosilganda topshiriq kartasi SHU sahifada ochiladi; alohida ekran yo'q.
+**Qilindi:**
+· `Screen12` (alohida ekran) → `HwTaskCard` komponenti: foydalanuvchi-tanlov chiplari + «✍️ o'z variantim» + 🗂 topshiriq kartasi (US-UY, 3 qadam) — hammasi saqlanib, yakun kapsulasi ostida ochiladi. Tanlov avvalgidek `HW_KEY` (localStorage)ga yoziladi.
+· `SCREEN_META`dan `s12` olib tashlandi (17→16 ekran), `screens` ro'yxati, `SCREEN_INTENTS` (s12 niyati s16'ga qo'shildi), `BOARD_SCREEN_IDS` → faqat `s11` yangilandi.
+· O'lik kod tozalandi (S33): `hw-cta-note` CSS + eski LMS-eslatma matni o'chirildi; `s12` izohlari yangilandi.
+· Indeks-xavf tekshirildi: `SCORED_IDX`/`SUMMARY_IDX` dinamik, `hotspotAce` [4,6,9] s12'dan OLDIN — siljish yo'q.
+**Darvozalar:** esbuild toza ✅ · `lint:jsx` — BUTUN repo 0 topilma ✅ · `lint:til` 0 ✅. UNCOMMITTED.
+
+## 2026-08-03 — F-0803-25: m2-13 (PmLesson6) TMI-TOZALASH — ✅
+**Kelib chiqishi:** foydalanuvchi: «UI keraksiz narsalar bilan to'ldirilgan; o'quvchi 7-10 soniyada sahifani yoqib tushunishni boshlashi kerak; har matn bo'lakchasiga savol bermaylik — tushunarli, kerakli bo'lmasa olib tashlash kerak». Etalon = kecha va bugun ertalab 6:30 gacha muhrlangan 108/109-qonunlar.
+**Tashxis (kod bo'yicha, 18 ekran):** (1) har ekranda 3-4 qavat matn — ikki gapli sarlavha + `Mentor` + `MentorNote` + `frame-success`; (2) bir g'oya 3 marta (s1: sarlavha→mentor→mono-qator; s11: mentor+note+219 belgilik `takeaway` aynan mashq-g'alabasi yonida — F-0803-11/12 ga zid); (3) s5 keysida 5 slaydning 2 tasi taxmin-savoli, ustiga `ks-hook` + `frame-success` ketma-ket; (4) o'lchamaydigan dekor: s1 `Uline` (qat'iy 78→92), s12 `og-path` zanjiri; (5) s13 da bir ekranda ikki topshiriq (sherik-hukmi + reflektsiya-matni).
+**Tuzatildi (PmLesson6.jsx, matn/tuzilma — mexanika va ball-kalitlariga TEGILMADI):**
+· s0 sarlavha bir gapga, Mentor va MentorNote qisqardi, `hook-ack` bir gap · s1 mono-takror qatori va statik `Uline` o'chdi · s2/s4/s7 sarlavhalari harakat-gapga, kontekst Mentorga ko'chdi · s5: 5 slayd → 3, ikki taxmindan bittasi qoldi, `ks-hook` o'chdi (yopilish matni bitta) · s9 MentorNote 2 gapdan 1 ga · s11 `takeaway` bloki o'chdi · s12 `og-path` dekori o'chdi · s13 reflektsiya-maydoni endi shartli («yarim/tushunmadim» javobidagina), nav-yorlig'i rejimga mos («O'zingizni baholang» / «Sherik hukmini belgilang»).
+· O'lik kod tozalandi (S33): `.ks-hook`, `.takeaway`/`.ta-bulb`/`.ta-h`, `.og-path`/`.og-step`/`.og-arr` CSS qoidalari.
+**O'lchov (`node _tmi-shot.mjs m2-13`, 18 ekran, oldin → keyin):** s00 273→234 · s01 369→279 · s04 264→237 · s05 316→303 (slaydlar 5→3, dars bo'yicha yig'indi ancha kam) · s07 301→287 · **s11 522→354** · s12 349→289 · s13 187→154. Qolganlari o'zgarmadi; eng og'ir dars-ekrani endi 354 belgi (yakun 618 — istisno). Sahifa xatolari: 0.
+**Muhrlandi:** `DARS_ETALON.md` 11-B → **109-qonun TMI OV-RO'YXATI** (6 sinf + `_tmi-shot.mjs` dasturiy tekshiruvi).
+**Darvozalar:** esbuild toza ✅ · `lint:jsx` butun repo 0 topilma ✅ · `lint:til` PmLesson6 0 topilma ✅. UNCOMMITTED.
+
+## 2026-08-03 — F-0803-22: m2-07 (PmLesson5) DARS O'TMAYDI — IKKI GATE-BUGI + TO'LIQ AUDIT — ✅
+**Kelib chiqishi:** foydalanuvchi skrinshoti — 03/18-ekran («Bitta ish yoki oltita ish?»): sarlavha va
+mentor bor, ostidagi maydon BO'SH, «Avval kartani bosing» tugmasi abadiy qulf. «dars o'tmayapti».
+**Tashxis 1 — ko'rinmas gate-vidjet (yangi bug-sinfi):** `className="dc-big tap-hint-card fade-up delay-1"` —
+`.fade-up` (`opacity:0` + `forwards`) va `.tap-hint-card` (`infinite`) ikkalasi ham `animation`
+**shorthand**ini yozadi; CSS'da keyingi e'lon oldingisini butunlay yengadi, `fade-in-up` hech qachon
+ishlamaydi va `opacity:0` abadiy qoladi. esbuild · lint:jsx · lint:til — hammasi TOZA, konsol jim edi.
+**Tashxis 2 — bajarib bo'lmaydigan gate (12-ekran, kompilyator):** harness `out.split(/[·,|]+/)` bilan
+`parts.length===3` talab qilardi, ipucha esa `natija = natija + nomlar[i]` deb aytardi — **ajratgichsiz**.
+Ko'rsatmani TO'G'RI bajargan o'quvchi qamalib qolardi (mentor `isMentor`, jonli o'quvchi `optionalLive`
+bilan o'tib ketgani uchun QA'da ko'rinmasdi).
+**Tuzatildi (PmLesson5.jsx):**
+· `.dc-stage` o'rovchi — `fade-up` endi o'ramda, puls tugmada; karta kattalashdi va bo'sh maydonda markazda (bo'shliq 70% muammosi, matn qo'shilmagan).
+· `c3` mezoni ma'noga bog'landi: uchta v1-nomi bor va qolgan uchtasi yo'q — `|| parts.length===3` qo'shimcha yo'l bo'lib qoldi.
+· `.dc-piece` + puls juft e'lon (`--fd` tokeni bilan kechikish juftlangan); reduced-motion bekor qilishi `!important` bilan tiklandi (media-blok kechroq e'lonlardan oldin turgani uchun ishlamayotgan edi).
+· 88-qonun: s2 da bir vaqtda 6 karta pulsatsiya qilardi → faqat navbatdagisi.
+**Rol-zanjir:** pm-auditor (18 ekran GAP: 48 PASS · 13 zaif · 11 buzuq) → pm-quruvchi (31-qonun mentor-baypas
+s3/s5/s6/s11/s12/s13 ga; 100a «ball berilmaydi» va 73 kelajak-va'da qatorlari o'chdi; s8/s9 blok-diyeta 6-7→4,
+backlog-glossi ustun-sarlavhasiga ko'chdi — arena Q4 tayanchi saqlandi) → pm-metodist (mentor ≤2 gap s0/s12;
+47-qonun uch savol-sarlavha buyruq shakliga; hook-savoli 97a/97b bo'yicha qayta yozildi; DEMO_LIST ishchi
+to'plamga birlashtirildi — 68-qonun) → pm-tekshiruvchi.
+**Brauzer-tekshiruvi (playwright, 1280×720 va 1280×648):** 18/18 ekran renderlanadi · ko'rinmas gate-vidjet 0 ·
+skrollsiz zonadan tashqari element 0 · konsol xatosi 0 · s2 kartasi ko'rinadi (opacity 1, 480×264) va gate ochiladi ·
+c3 ipuchali (ajratgichsiz) kod bilan bajariladi. Ekran 2/13/18 dagi «ko'rinmas» signal 6s kutilganda yo'qoldi —
+kechikuvchi animatsiya, yolg'on-signal.
+**🔴 YANGI DARVOZA — `lint:jsx` 4-qoidasi:** bir elementda ikki `animation`-klass. Faqat XAVFLI holat tutiladi:
+klass `opacity:0`+`forwards` bilan elementni OCHADI va uning ustidan keyinroq e'lon qilingan boshqa
+animatsiya-klass yozadi (`.a.b` juft e'loni bo'lsa — tutilmaydi). `animation: none` (reduced-motion) e'tiborga
+olinmaydi. Kalibrovka: dastlab 30+ yolg'on-signal berdi (`cs-off` kabi atayin bekor qiluvchi klasslar) — mezon
+toraytirildi; CSS izohlari va ketma-ket qoidalar (`A{}B{}`) tahlili tuzatildi.
+**🔴 SHU DARVOZA 4 TA BOSHQA DARSDA HAQIQIY NUQSON TOPDI** (xato javobda element ko'zdan yo'qolardi):
+`HtmlTakrorlashLesson` (`.fade-up`+`.party-glow`) · `FullstackConnectPracticeLesson` · `FullstackProjectDayLesson` ·
+`NestArchAliveLesson` (uchalasi `.fade-up`+`.shake`). Har biriga juft e'lon qo'shildi.
+**Muhrlandi:** `DARS_ETALON.md` 12-bo'lim — ikki yangi bug-qatori (animatsiya-shorthand to'qnashuvi ·
+gate-mezoni ipucha aytgan yechimni rad etishi).
+**Foydalanuvchi qaroriga qoldi:** dars hali **lavash ipida** — JS darslarida RAD etilgan va M1-D2 bilan
+to'qnashuvda (M2-D2 kino olamiga ko'chirilgan, M2-D7 ko'chirilmagan). Ip almashtirilsinmi?
+**Darvozalar:** esbuild toza ✅ · `lint:jsx` butun repo 0 topilma ✅ · `lint:til` PmLesson5 0 topilma ✅. UNCOMMITTED.
+
+## 2026-08-03 — F-0803-22 (davomi): MISOL-IP LAVASHDAN KINOTEATRGA + MODUL-KO'PRIGI TIKLANDI — ✅
+**Foydalanuvchi qarori:** lavash ipi almashtirilsin. Boshda «o'yin klubi» tanlangan edi; keyin
+`pm-m2d2-features` bog'liqligi ochilgach (M2-D2 = kinoteatr) **kinoteatr** tanlandi — 96-qonun
+(modul-ipi) tiklanishi uchun. Endi M2-D2 va M2-D7 bitta olamda.
+**Ip-taqsimoti (yangilangan):** M2-D2 = kinoteatr · **M2-D7 = kinoteatr (o'sha sayt davomi)** ·
+JS oilasi = o'yin olami. Lavash BUTUNLAY chiqarildi (`grep "lavash|лаваш|🌯"` → 0).
+**Yangi oltilik:** 🎬 Seanslar va narxlar · 🕒 Ish vaqti va manzil · 🎫 Chipta band qilish tugmasi
+(v1) · 🍿 Bufet menyusi (v2) · 🎟 Chegirma kodi · ⭐ Tomoshabin sharhlari (backlog).
+Uch ro'yxat (`FALLBACK_FEATURES` · harness `V1`/`REST` · `KODING_STARTER.nomlar`) harfma-harf mos.
+
+### 🔴 F-0803-22-B: MODUL-KO'PRIGI HECH QACHON ISHLAMAGAN (yangi topilma)
+**Belgi:** 8-ekrandagi «Bu ro'yxat — 2-darsda o'zingiz yozgan imkoniyatlar» tarmog'i bironta
+o'quvchida ochilmagan; dars doim namunaga tushgan. Hech qanday xato-xabar yo'q — jim buzilish.
+**Sabab (ikki shart ham noto'g'ri edi):** (1) `PmLesson4` kartani `{qiyinchilik, imkoniyat}`
+shaklida yozadi, `readIncomingFeatures` esa `text|label|title|name` ni qidirardi → har karta bo'sh
+chiqib ro'yxat tashlanardi; (2) `PmLesson4` aynan **3** juftlik yozadi (uning o'z maqsadi),
+`readIncomingFeatures` esa **≥6** talab qilardi.
+**Tuzatildi:** `imkoniyat` maydoni ham tanaladi; 2-5 ta karta kelsa ro'yxat namunadan 6 tagacha
+to'ldiriladi (dublikat nomlar tashlanadi). To'ldirish endi xavfsiz — ikkala dars bir olamda.
+s8 mentor matni halol yozildi: «Ro'yxat boshida — 2-darsda o'zingiz yozgan imkoniyatlar,
+qolganini kinoteatr namunasidan oldik.»
+**Brauzer-tasdiq (`bridge.mjs`):** M2-D2 artefakti bor holatda → 6 imkoniyat + «o'zingiz yozgan»
+matni ✅ · artefakt yo'q holatda → 6 imkoniyat + «tayyor namuna» matni ✅ · konsol xatosi 0.
+**Sabot (jarayonga):** modul-ipi kalitlari IKKI TOMONDAN tekshirilsin — yozuvchi dars qanday
+SHAKLDA va NECHTA yozishi, o'quvchi dars qanday shaklda va nechta kutishi. Faqat kalit nomi
+mos kelishi yetmaydi; bu ko'prik kalit nomi to'g'ri bo'la turib ishlamagan.
+
+### Boshqa yakuniy bandlar
+· `c3` mezonidan «`parts.length===3`» zaxira yo'li OLIB TASHLANDI (tekshiruvchi ikki teshik topdi:
+  darajalarni chop etish va teskari ro'yxat gate'ni yolg'ondan ocharkan). `c3.mjs` — 6/6 ✓.
+· 88-qonun s3 ga ham tatbiq etildi (4 karta birdan pulslardi → navbatdagi bittasi).
+· s6 keys-ekranidan `MentorBypassLine` olib tashlandi — u yerda mentor slaydni O'ZI varaqlaydi,
+  «o'quvchilar bajaradi, siz kuzatasiz» yozuvi noto'g'ri edi (NavNext baypasi joyida qoldi).
+· Grapheme-tell: 12 ballik savol balanslandi (eng yomoni 2.75 → 1.26; hammasi ≤1.30).
+· DEMO_LIST spoiler qaytarildi: namuna endi ishchi oltilik bilan KESISHMAYDI.
+· `🤔 Taxmin qiling` → `🎲 Avval o'zingiz belgilab ko'ring` (79-qonun kanonik yorlig'i).
+· Tekshiruvchi topgan ikki jim nuqson: podiumda `\U0001F947` chalkash matni (8 joy) va
+  `RECAPS` kaliti 15→14 (yakuniy testda «Qayta tushuntirish» bloki butunlay o'lik edi).
+
+### 🔴 `til-lint-rules.json` DARVOZA-TESHIGI YOPILDI (foydalanuvchi buyrug'i bilan)
+16 qoidaga `i` bayrog'i qo'shildi — gap boshidagi bosh harf ularni chetlab o'tardi (masalan
+taqiqlangan «Taxmin qiling» shu sabab o'tib ketgan). Harf registri MA'NOLI 12 qoida qat'iy qoldi:
+`belgi-formula · ichki-darskod · qiyshiq-apostrof · kirill-lotin-matnda · yadro-jargon ·
+kelajak-okr · xato-ball · kodda-xato · ishlaydi-hukm · nusxalash-tugma · slot-ichki-atama ·
+raqam-keyingina`. Ta'siri: butun repoda +2 error, +61 warn (jami 59/475). Bu ESKI qarz —
+`lint:til` har fayl uchun alohida darvoza, hozirgi ishni to'smaydi. Tozalash alohida ish.
+
+**Darvozalar:** esbuild toza ✅ · `lint:jsx` 127 fayl 0 topilma ✅ · `lint:til` PmLesson5 0 ✅ ·
+`lint:prompt` 0 ✅ · `vite build` toza ✅ · 18/18 ekran 1280×720 va 1280×648 da renderlanadi,
+ko'rinmas gate-vidjet 0, konsol xatosi 0 ✅. UNCOMMITTED.

@@ -1030,6 +1030,67 @@ O'quvchi «bu dars nima haqida?» deb so'rasa — dars yutqazgan. Sabablari odat
 📌 Yangi misol kiritishdan oldin savol: «bu ekran ASOSIY ipda qolsa bo'ladimi?» —
    ha bo'lsa, yangi misol kiritilmaydi. (Qonun: DARS_ETALON 108.)
 
+## 76. FLASHCARD JAVOBI — TARJIMASIZ CHET SO'Z BO'LOLMAYDI (F-0803-23)
+
+Kartaning orqa yuzi — o'quvchi yodlab qoladigan YAGONA satr. Agar u tarjimasiz chet
+so'z bo'lsa, o'quvchi tovushni yodlaydi, ma'noni emas. Naqsh: **atama + qavsda o'zbekcha**.
+
+❌ `Vibecoding` · `Iteratsiya` · `Promo-landing` · `Agent`
+✅ `Vibecoding (gapirib qurish)` · `Iteratsiya (qayta so'rash)` ·
+   `Promo sahifa (promo-landing)` · `Agent (AI yordamchi)`
+📌 Etalon-naqsh darsda allaqachon bor edi: `Deploy (nashr qilish)` — qolgan 11 karta
+   shunga tortildi (PracticeLesson2 / m2-09).
+
+Yana ikki band shu topilmadan:
+- **Izoh — ta'rif emas, bitta jonli misol.** ❌ «to'rttasi bor — buyruq aniq»
+  ✅ «masalan: o'yin · o'ynoqi · ko'k · tugma va 3 karta».
+- **Javoblar bir turkumda bo'lsin.** 11 karta ot/atama bo'lsa, 12-si fe'l bo'lmaydi:
+  ❌ «Tekshiraman» → ✅ «Tekshirish».
+- **Texnik yon-ta'sir:** defis-li oddiy so'z («Promo-landing») kod-token deb hisoblanib
+  dasturchi shriftida chiqardi (`fcIsCode`) — endi faqat harfsiz belgi-token kod sanaladi.
+
+## 77. «MASLAHAT» JAVOBNI AYTIB QO'YMAYDI (F-0803-26)
+
+Mashq ekranida o'quvchi hali hech narsa qilmasdan turib chiqadigan «Maslahat» / «Eslang»
+qutisi — ikki tomonlama zarar: **(1)** mashqni bekor qiladi (o'ylash o'rniga ko'chirish),
+**(2)** o'ng ustunni band qilib, ekranni matn bilan to'ldiradi (74-bo'lim).
+
+❌ Mashq boshlanishida turadigan javob-kaliti (PeanStack, tuzatilgan):
+   «Maslahat: **ko'rinish** — zal, **dvigatel** — oshxona pechi, **yo'llar** — ofitsiant,
+   **ombor** — daftar.» — bu to'rt juftlik aynan topshiriqning YECHIMI edi.
+   «Eslang: **chizish** — frontend (zal). **Saqlash** — baza (ombor).» — xato qatorni
+   to'g'ridan-to'g'ri ko'rsatib turardi.
+✅ Boshlanishida — hech narsa. Reaksiya FAQAT harakatdan keyin:
+   noto'g'ri bosilganda «Bu qator to'g'ri — rol o'z egasida. Yana o'ylang: **chizish**
+   kimning ishi edi?» (yo'nalish beradi, javobni aytmaydi).
+📌 Xato javobdan keyingi maslahat ham javob-kaliti EMAS: harakatni ayting
+   («qizil kartochkalarni bosib bo'shating»), yechimni emas («zal, pech, ofitsiant, daftar»).
+📌 O'lchov: maslahat matnini o'chirib mashqni yeching — yechib bo'lmasa maslahat kerak,
+   yechilsa u ortiqcha edi (74-bo'limdagi olib tashlash testining mashq-varianti).
+
+## 78. BO'SH JOY SO'Z BILAN TO'LDIRILMAYDI · OLIB TASHLASH SAVOLI (F-0803-28)
+
+74-bo'lim ortiqcha matnni TAQIQLAYDI; bu bo'lim uni QANDAY qaror qilishni yozadi.
+Qonun-shakli: `DARS_ETALON` **111-qonun** (7–10 soniya testi bilan bir bandda).
+
+**(a) Bo'sh joy — dizayn elementi, nuqson emas.** «Ustunda joy qoldi» degan sabab bilan matn
+qo'shilmaydi. Har matn bo'lagi uchtadan bittasini qilishi shart: **vazifani aytadi** ·
+**yangi ma'no beradi** · **javobga yo'l ochadi**. Uchalasi ham yo'q bo'lsa — u UI ni buzadi.
+
+❌ «Bu juda muhim, esda tuting» · «Yaxshi ish, davom etamiz!» · «Quyida ko'rasiz»
+✅ o'sha joy bo'sh qoladi — yoki blok markazga tortiladi (layout bilan hal qilinadi, matn bilan emas)
+
+**(b) Olib tashlash savoli — har karta/blok uchun bitta savol:**
+
+> **«Bu bo'lmasa, o'quvchi ekran ma'nosini tushunmay qoladimi?»**
+> **HA** → qoladi · **YO'Q** → olib tashlanadi · **shubha** → olib tashlanadi
+
+📌 Sabab: yetishmagan narsani o'quvchi so'raydi; ortiqchasini esa o'qimay tashlaydi va u bilan
+   birga keraklisini ham tashlaydi (74-bo'lim yakuni).
+📌 Savol BUTUN blokka beriladi, bitta so'zga emas. Blok qolsa — ichidagi matnga 74-bo'lim.
+📌 Qaror YOZILADI: auditor GAP-hisobotida har olib tashlangan blok uchun bitta qator
+   («nima olindi → savolga javob YO'Q edi») — keyingi seans uni qayta qo'ymasin.
+
 ---
 
 *Korpus F-ID bilan o'sadi. Oxirgi yangilanish: 2026-08-03 (F-0802-01…06 — 2-Modul JsIntro reja-ekrani:
@@ -1042,7 +1103,11 @@ F-0802-17 — zaxira-tarmoq tizim-xatosidek eshitilmasin: 69-bo'lim + 106c-qonun
 F-0803-01 — yozish-mashqi javobsiz qolmaydi: 106d-qonun;
 F-0803-02 — zona nomi o'zini tushuntirsin (70-bo'lim) va hukm qisqa-belgili (71-bo'lim) + 106e-qonun (uch zarb: ko'rsatma → vazifa → javob);
 F-0803-10 — JsVars s3: interaktiv ko'rsatganini matn qaytarmasin, bir g'oya maks 2 marta (72-bo'lim) va
-atamani kundalik bilim bilan qarama-qarshi qo'yish «Matematikada = … Dasturlashda esa = …» (73-bo'lim)).*
+atamani kundalik bilim bilan qarama-qarshi qo'yish «Matematikada = … Dasturlashda esa = …» (73-bo'lim);
+F-0803-23 — m2-09 flashcard: tarjimasiz chet so'z javob bo'lolmaydi, izoh = bitta misol (76-bo'lim) +
+o'sha darsda TMI kesimi (74-bo'lim tatbiqi: 13 mentor/xulosa matni 1–2 gapga tortildi);
+F-0803-28 — bo'sh joy so'z bilan to'ldirilmaydi + olib tashlash savoli «bu bo'lmasa o'quvchi
+ma'noni tushunmay qoladimi?» (78-bo'lim) + DARS_ETALON 111-qonun (7–10 soniya testi)).*
 
 <!-- eski yozuv: 2026-08-01 (F-0801-01…13 — 1-Modul QA raundi:
 hook-savol tabiiyligi · mavhum «yo'l» → ko'rinadigan sayohat · ichki-nom orqaga-havolasi · mentor javobni aytmasligi · flashcard mentorsiz · bashorat-slaydi tozaligi · nishon bayrami kam so'z: 57–63-bo'lim;

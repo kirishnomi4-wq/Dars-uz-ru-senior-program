@@ -786,12 +786,160 @@ bilan emas, o'sha ipning KENGAYISHI bilan ochiladi.
   QO'YILMAYDI — g'alaba lahzasi yakka turadi (F-0803-11/12).
 - 92-qonun («bir ekran — bir ish») bilan juft: matn ham bir ish atrofida.
 
+**109-qonun — TMI OV-RO'YXATI (2026-08-03, F-0803-25; manba: m2-13 tozalash).** Bitta darsni
+tozalaganda ayni bir OLTI sinf qayta-qayta chiqdi — auditor shu ro'yxat bo'yicha yuradi:
+1. **Ikki gapli sarlavha.** Sarlavhada FAQAT harakat qoladi («Tushunmaydigan so'zlarni bosing»),
+   kontekst-gap (`Bu gap — sizniki`) Mentor qatoriga ko'chadi.
+2. **Uchinchi takror.** sarlavha → mentor → yana mono-qator («→ Bugun O'Z saytingiz uchun shuni
+   yozasiz») = bir g'oya 3 marta. Uchinchisi o'chiriladi (109: maks 2).
+3. **O'lchamaydigan vizual.** Indikator/`Uline` qat'iy qiymatda tursa (78→92, hech narsaga
+   bog'lanmagan) — u ma'lumot emas, bezak: o'chiriladi. Vizual faqat o'zgaradigan holatni
+   ko'rsatganda qoladi.
+4. **Ikkita yopilish matni ketma-ket** (masalan `ks-hook` + `frame-success`) — bittasi qoladi.
+5. **Bir ekranda ikki topshiriq.** Ikkinchisi SHARTLI bo'ladi — faqat kerak bo'lganda ochiladi
+   (m2-13 s13: reflektsiya-maydoni endi «yarim/tushunmadim» javobidagina chiqadi), aks holda
+   alohida ekranga.
+6. **Har matn bo'lagiga savol.** Keys/hikoya slaydlarida ball bermaydigan taxmin — **maks 1 ta**;
+   qolgani hikoyani uzadi va o'quvchini «yana savolmi» holatiga soladi.
+- **Tekshiruv (dasturiy):** `node tools/tmi-shot.mjs <dars-key> <papka>` — har ekranni ochib skrinshot
+  oladi va `.screen` matn-uzunligini belgida chiqaradi. m2-13 tozalangandan keyingi o'lchov:
+  hamma dars-ekrani **≤354 belgi** (yakun sahifasi 618 — istisno, u to'plovchi ekran).
+
+## 11-C. 🚪 110-QONUN: GATE-EKRAN JIM QOLMAYDI (2026-08-03, F-0803-25)
+
+> Manba: PracticeLesson1 11-sahifa (forma-tekshiruv). O'quvchi ism yozib «Yuborish»ni qayta-qayta
+> bosgan — ekran hech qanday yangi reaksiya bermagan, «Davom etish» yopiq qolgan. Hukm:
+> «hech qanday o'zgarish bo'lmayapti, keyingi sahifaga o'ta olmayapman».
+
+Har `done`-shartli (o'tish-darvozali) interaktiv ekranda UCHTA majburiy xossa:
+1. **Har bosishga ko'rinadigan reaksiya.** Bir xil natija takrorlansa ham xabar/effekt QAYTA
+   jonlanadi (React'da: xabar elementiga `key={submitCounter}` — fade/shake har safar o'ynaydi).
+   Bosish → sukut = o'quvchi «buzilgan» deb o'qiydi.
+2. **Matn-maydonda Enter = yuborish.** Input bor joyda `onKeyDown Enter → submit` shart —
+   o'quvchi formada tabiiy ravishda Enter bosadi.
+3. **Qolgan qadam NOMMA-NOM aytiladi.** Darvoza bir necha qadamli bo'lsa (masalan «bo'sh holda
+   ham, to'liq holda ham sinang»), yarmi bajarilganda ikkala joyda ko'rsatiladi:
+   nav-tugma yorlig'i («Endi bo'sh holda yuboring») + ekran ichida bitta qisqa
+   yo'l-ko'rsatma qatori. Umumiy yorliq («Ikkala holatni sinang») yetarli EMAS — o'quvchi
+   qaysi yarmi qolganini bilmaydi.
+- **Tekshiruv:** darvozali ekranda har interaktiv tugmani 2 marta ketma-ket bosing — ikkinchi
+  bosishda ham ko'rinadigan reaksiya bo'lishi shart; inputda Enter bosing — submit ishlashi shart.
+
+**110-B — KO'RINISH TEKSHIRUVI DAM OLGAN HOLATDA EMAS, BOSILGANDAN KEYIN QILINADI.**
+(2026-08-03, F-0803-26 · m2-09 1-ekrani.) F-0803-19 bandi «vidjet 1280×720 da ko'rinsinmi?»
+deb tekshirishni buyuradi — lekin ekran OCHILGAN holatida o'lchansa, u yolg'on «toza» beradi:
+javob-variantlari, natija-oynasi, qabul akti va tuzatish tugmasi FAQAT bosishdan keyin
+paydo bo'ladi va aynan o'shalar pastga tushib ketadi.
+- m2-09 dalili: 1-ekran dam olgan holatda 0px oshgan edi; «Agentga yuborish» bosilgach
+  savol-variantlari **394px** pastga tushdi — darsning BIRINCHI sahifasida «Davom etish»
+  hech qachon ochilmasdi. 11-ekranda «Rangni ko'kka tuzat» tugmasi 894px da edi.
+- **Majburiy usul:** darsni 0-ekrandan oxirigacha **haqiqiy bosishlar bilan** o'tkazuvchi
+  skript yozing; har bosishdan OLDIN elementning `getBoundingClientRect().bottom` ni
+  `.stage-content` ning `getBoundingClientRect().bottom` i bilan solishtiring. Katta bo'lsa —
+  bu topilma. (Naqsh: `clickVisible(locator, nomi)` yordamchisi — avval o'lchaydi, keyin bosadi;
+  o'lchov `window.innerHeight` ga emas, `.stage-content` cheti ga qarab qilinadi, chunki
+  nav-paneli pastdan ~70px yeydi.)
+- Joy yetmasa tartib shu: (1) takroriy matnni kesing (109-qonun) → (2) ustma-ust turgan ikki
+  blokni yonma-yon qo'ying → (3) ro'yxatni 2 ustunga bo'ling → (4) faqat oxirida shrift/padding.
+
+## 11-E. 🎯 112-QONUN: `<p>` GA QO'YILGAN KLASS-QOIDA RESETDAN KUCHSIZ (2026-08-03, F-0803-27)
+
+> Foydalanuvchi rasmi bilan keldi: PmLesson4 2-ekranidagi kartalar «buzulib yotibti».
+> Sabab kartada emas edi — CSS **aniqligi** (specificity) da.
+
+Har darsda reset bor:
+`.lesson-root h1,…,.lesson-root p,… { margin: 0; padding: 0; }` — aniqligi **(0,1,1)**
+(bitta klass + bitta teg). Bitta klassli `.xyz { padding: … }` esa **(0,1,0)** — ya'ni
+**KUCHSIZ**. Shuning uchun `<p className="xyz">` da `padding`/`margin` **jimgina o'chadi**,
+ammo `background`, `border-radius`, `color`, `font` qoladi.
+
+**Nega bu eng yomon xato-sinfi:** blok «umuman stilsiz» emas, **yarim buzuq** ko'rinadi —
+matn fon chetiga yopishadi, «pill» yassilanadi, ota-kartaning `border-radius` + `overflow:hidden`
+ostida burchaklar kesiladi. esbuild jim, brauzer konsoli jim, `vite build` jim.
+Dalil: `.oc-pain` — mo'ljal `padding: 9px 12px; margin: 0 15px 14px`, brauzerda **0px/0px**;
+blok balandligi 38px o'rniga 20px, kartaning tagiga yopishib qolgan.
+
+**Ko'lam (2026-08-03 skaneri):** 78 faylda **136 ta** qoida shu holatda edi — jumladan
+o'quvchi ko'radigan kompilyator-ipuchasi `.hc-hint` (14 dars), `.mstats-warn` (79 dars),
+`.hint`, `.one-line`, `.s3note` (48px chekinish butunlay yo'qolgan edi).
+
+**Yechim (majburiy naqsh):** selektorni bir pog'ona kuchaytiring —
+`.xyz.xyz { … }`. Klassni ikki marta yozish aniqlikni **(0,2,0)** qiladi, lekin
+**aynan o'sha elementlarni** tanlaydi (element to'plami o'zgarmaydi) va modifikator
+qoidalari (`.xyz.empty`) manba-tartibi bo'yicha ustun qolaveradi. Ota-klass aniq
+bo'lsa `.karta .xyz { … }` ham bo'ladi.
+
+**Darvoza:** `npm run lint:jsx` endi buni avtomatik tutadi (5-tekshiruv). Ikki nozik joyi bor,
+ular kalibrovka qilingan:
+- CSS — JS shablon-satri, `color: ${T.ink}` ichidagi jingalak qavs qoida-tanasini bo'ladi →
+  tahlildan oldin `${…}` tokenga almashtiriladi (busiz darvoza jim o'tib ketardi);
+- selektor qoida BOSHIDA turishi shart, aks holda `.rel-box .mono` kabi avlod-selektorlari
+  yolg'on-signal beradi (ular allaqachon (0,2,0)).
+
+**Tegilmagani (ataylab):** faqat `margin` yo'qotgan ~369 qoida. Ular 2–11px oralig'ida va
+butun mahsulot oylar davomida shu holatda sozlangan — ommaviy «tiriltirish» 111 faylda
+oraliqlarni bir vaqtda o'zgartiradi, ya'ni bu **xato tuzatish emas, alohida dizayn-migratsiya**.
+Resetni `:where(.lesson-root) p` ga o'tkazish ham shu sababdan RAD etildi.
+
+---
+## 11-D. ⏱ 111-QONUN: 7–10 SONIYA TESTI · BO'SH JOY · OLIB TASHLASH SAVOLI (2026-08-03, F-0803-28)
+
+> Manba: foydalanuvchi qarori — «o'quvchi bir ko'rganda 7–10 soniyada UI ni ko'rib tushunishi
+> kerak · bo'sh joy qoldi deb uni so'z bilan to'ldirmaymiz — u ma'lumot bermasa, umuman kerak
+> emas · kartani olib tashlashda savol beramiz: bu bo'lmasa o'quvchi ma'noni tushunmay
+> qoladimi?». Bu — texnik darslar kitobidagi qarindoshi: PM tomonida `PM_DARS_ETALON` 106f
+> («7 soniya testi») va 106c («olib tashlash testi») allaqachon bor edi, texnik darslarda YO'Q edi.
+
+**(a) 7–10 SONIYA TESTI — qabul KPI si.** Ekran topshirilishidan oldin unga BIRINCHI MARTA
+ko'rgan odam ko'zi bilan 7–10 soniya qaraladi. Shu vaqt ichida UCHTA savolga javob chiqishi shart:
+1. **Nima qilishim kerak?** (vazifa bittami va ko'rinadimi)
+2. **Qayerga bosaman?** (birlamchi harakat qaysi element ekani shubhasizmi)
+3. **Bu ekran nimani o'rgatyapti?** (bitta g'oya — 92-qonun bilan juft)
+
+Uchtasidan biri 7–10 soniyada tushunilmasa — ekran **topshirilmaydi**: unda ortiqcha UI yoki
+ortiqcha matn bor. Tuzatish tartibi 109-qonun ov-ro'yxati bo'yicha (avval matn, keyin blok,
+oxirida shrift/padding). Test **bosilgandan keyingi holatda ham** takrorlanadi — 110-B: ochilgan
+paytdagi «toza» ko'rinish yolg'on bo'lishi mumkin.
+
+**(b) BO'SH JOY SO'Z BILAN TO'LDIRILMAYDI.** 🔴 Bo'sh joy — **dizayn elementi**, nuqson emas.
+«Ustunning pastida joy qoldi» degan sabab bilan izoh, eslatma, maslahat, motivatsiya-gap yoki
+takroriy tushuntirish QO'SHILMAYDI. Har matn bo'lagi ishga yollanadi: u yoki **vazifani aytadi**,
+yoki **yangi ma'no beradi**, yoki **javobga yo'l ochadi**. Uchalasi ham yo'q bo'lsa — matn
+o'sha joyda turishi UI ni buzadi (o'quvchi keraksizini o'qib, keraklisini tashlab ketadi).
+- ❌ «Bu juda muhim, esda tuting» · «Davom etamiz» · «Yaxshi ish!» (harakatsiz, ma'nosiz)
+- ✅ bo'sh joy shundoq qoladi — yoki blok markazga/yuqoriga tortiladi (layout bilan hal qilinadi,
+  matn bilan emas).
+
+**(c) OLIB TASHLASH SAVOLI — har karta/blok uchun.** Elementni (karta, ipucha, izoh, mini-blok,
+dekor-vizual) olib tashlashdan oldin AYNAN shu savol beriladi:
+
+> **«Bu bo'lmasa, o'quvchi ekran ma'nosini tushunmay qoladimi?»**
+> **HA** → qoladi (u ma'no tashiydi). · **YO'Q** → **olib tashlanadi** (u faqat joy egallaydi).
+
+- Shubha bo'lsa — **olib tashlanadi**: yetishmagan narsani o'quvchi so'raydi, ortiqchasini esa
+  o'qimay tashlaydi va u bilan birga keraklisini ham tashlaydi (korpus 74-bo'lim).
+- Savol **butun blokka** beriladi, bitta so'zga emas; blok qolsa — ichidagi matnga 109-qonun.
+- Bu 106c/korpus-74 dagi «olib tashlash testi»ning qaror-shakli: u elementni SINAB ko'radi,
+  bu esa qarorni YOZIB qo'yadi (auditor GAP-hisobotida har olib tashlangan blok uchun bitta
+  qator: nima olindi → savolga javob YO'Q edi).
+
+**O'lchov va tekshiruv (dasturiy):** `node tools/tmi-shot.mjs <dars-key> <papka>` — har ekranni
+ochib skrinshot oladi va `.screen` matn-uzunligini belgida chiqaradi (109-qonun mezoni: dars-ekrani
+**≤354 belgi**, yakun-sahifasi istisno). Skript `_lessonids.txt` dan dars ro'yxatini oladi va
+repo ildizidan ishga tushiriladi.
+
+**Rol-mas'uliyati:** `darslik-auditor` — GAP-hisobotida har ekran uchun 7–10 soniya hukmi
+(o'tdi / yiqildi + qaysi savol) · `darslik-qabulchi` — 7–10 soniyada yiqilgan ekran bo'lsa
+**QAYTARISH** hukmi (dars prodga chiqmaydi).
+
 ---
 ## 12. 🐛 MA'LUM BUGLAR TARIXI (qaytarilmasin!)
 
 | Bug | Belgi | Sabab | Tuzatish |
 |---|---|---|---|
 | 🔴 **Gate-vidjet ko'rinish-zonasidan TASHQARIDA** (2026-08-03, F-0803-19) | «Davom etish» ochilmaydi, o'quvchi «dars ishlamayapti / oq bo'lib qolgan» deydi; esbuild/lint hammasi toza | Majburiy vidjet (drag-drop) ikki ustunli splitdan KEYIN to'liq enli chizilgan — 720px oynada `y=766+` ga tushib qoladi; `.lesson-root` da `overflow:hidden` bo'lgani uchun scroll HAM yo'q | Gate-vidjet birinchi ekran-to'ldirishda ko'rinsin: mavjud ustunni ALMASHTIRSIN (JsFunctions s3 naqshi) yoki yuqorida tursin. Tekshiruv: brauzerda 1280×720 va 1280×648 da vidjet `getBoundingClientRect().bottom <= innerHeight` |
+| 🔴 **Ikki animatsiya-klass bitta elementda — gate-vidjet KO'RINMAS** (2026-08-03, F-0803-22) | Karta/tugma umuman chizilmaydi (bo'sh joy), o'quvchi bosa olmaydi → «Avval kartani bosing» abadiy qulf, dars o'tmaydi. esbuild · `lint:jsx` · `lint:til` — hammasi TOZA, konsolda xato YO'Q | `className="dc-big tap-hint-card fade-up"` — `.fade-up` (`opacity:0` + `fade-in-up … forwards`) va `.tap-hint-card` (`… infinite`) ikkalasi ham `animation` **shorthand**ini yozadi. CSS'da keyingi e'lon oldingisini butunlay yengadi (birlashtirmaydi): `fade-in-up` hech qachon ishlamaydi, `opacity:0` abadiy qoladi | **Bir elementda bitta `animation` yozuvchi klass.** Ikkalasi kerak bo'lsa: (a) chiqish-animatsiyasini o'rovchi `<div>`ga bering, yoki (b) juft e'lon qiling — `.dc-piece.tap-hint-card { animation: feat-pop …, tap-hint-card …; animation-delay: var(--fd), calc(var(--fd) + .8s) }`. ⚠️ Inline `style={{animationDelay}}` ikkala animatsiyaga birdan tushadi — `--fd` tokeni orqali bering. Shu sinf `@media (prefers-reduced-motion)` bekor qilishini ham buzadi: media-blok KEYINGI e'londan oldin tursa ishlamaydi (spetsifiklik qo'shilmaydi) — `!important` bering yoki oxirida e'lon qiling. **Tekshiruv:** brauzerda 1.5s kutib `getComputedStyle(el).opacity > 0.9` |
+| 🔴 **Gate-mezoni ipucha aytgan yechimni RAD etadi** (2026-08-03, F-0803-22) | Mashqni TO'G'RI bajargan o'quvchi «Davom etish»ga yeta olmaydi; mentor `isMentor` bilan, jonli o'quvchi `optionalLive` bilan o'tib ketadi — shuning uchun QA'da ko'rinmaydi, faqat yolg'iz o'qiyotgan bola qamaladi | PmLesson5 kompilyatori chiqishni `out.split(/[·,|]+/)` bilan sanardi (`parts.length===3`), ipucha esa `natija = natija + nomlar[i]` deb aytardi — **ajratgichsiz**. Shart-matni ham ajratgich haqida hech narsa demasdi | **Gate-mezoni ko'rsatma bilan bitta manbadan chiqsin.** Mezonni yozgach: ipucha/topshiriq matnini SO'ZMA-SO'Z bajarib ko'ring — o'tmasa, mezon xato (matn emas). Mezonni SHAKLGA emas MA'NOGA bog'lang: «uch v1-nomi bor, qolgan uchtasi yo'q», formatga bog'liq shart esa `\|\|` bilan qo'shimcha yo'l bo'lib qolsin |
 | 🔴 **`<style>` ichida ortiqcha backtick** (2026-07-28) | IDE **yuzlab** xato ko'rsatadi («'}' expected», «Did you mean `{'}'}`»), esbuild esa BITTA xato beradi | `<style>{` … `}</style>` bloki JS **shablon-satri**; uning ichiga (odatda CSS izohiga) yozilgan backtick satrni **erta yopadi** va undan keyingi butun CSS+JSX kod deb o'qiladi | CSS izohlarida backtick ISHLATMANG. 🔴 **Diagnostika:** IDE ro'yxatiga qaramang — **esbuild**ning BIRINCHI xatosiga qarang, ildiz doim bitta. ⚠️ Grep bilan ovlash ishonchsiz (ko'p qatorli izohda backtick 2-3-qatorda bo'lishi mumkin, `{/* … */}` JSX-izohlari esa yolg'on-signal beradi — ular shablon-satridan TASHQARIDA va zararsiz). To'g'ri usul: `<style>{\`` va `` \`}</style> `` orasidagi matnni ajratib, undagi backticklarni sanash — 0 bo'lishi shart. 🔴 **2026-08-02 (F-0802-15): endi bu QO'LDA emas — `npm run lint:jsx` avtomatik tekshiradi.** Sabab: bu qator 2026-07-28 da yozilgani holda, 2026-08-02 da aynan shu xato QAYTA qilindi (CSS izohiga `` `.mt-chip.in` `` yozildi → darslik oq ekran, `ReferenceError: chip is not defined`). Jadvaldagi eslatma o'qilmasa ishlamaydi — **darvoza ishlaydi** |
 | 🔴 **Bir-qatorli funksiya ichida `//` izoh** (2026-08-02, F-0802-14) | Skript bilan N faylga naqsh yoyilgach, esbuild **ommaviy** xato beradi (72 fayl) yoki jim o'tib funksiya yarim ishlaydi | Dars kodida ko'p yordamchi bir qatorga sig'diriladi: `const upd = () => { const z = …; document…setProperty(…); };`. Almashtiruvga `// izoh` qo'shilsa, u qatorning **QOLGANINI** yeydi — `setProperty` chaqiruvi yo'qoladi | Bir-qatorli funksiya ichiga `//` izoh QO'YILMAYDI: izoh qatordan **oldin** alohida turadi yoki `/* … */` ishlatiladi. Avtomatik: `npm run lint:jsx` (izohdan keyin o'sha qatorda yopiluvchi `}` bo'lsa — xato; satr-literallar hisobga olinadi, `http://` yolg'on-signal bermaydi) |
 | **Kalit yuklanmaydi** | Podium 0/5, arena 0 0 0 0 | `useLiveSession(lessonId)` `answerKey`ni tashlaydi; `set_quiz_keys` yo'q | 2.1 + 2.2 |

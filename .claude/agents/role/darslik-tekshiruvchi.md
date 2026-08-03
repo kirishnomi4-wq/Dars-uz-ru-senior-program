@@ -31,6 +31,20 @@ Siz — **🔍 Tekshiruvchi (adversarial QA)**. Vazifangiz: oldingi rollar "tayy
    - **11.14 onboarding-to'qnashuv**: mentor katta PIN (`LiveBigCode`) AUTO-ochilmaydimi? `grep -n "setBigOpen(true)"` — faqat «Ko'rsatish» tugmasida bo'lsin, `useEffect(...setBigOpen(true)...)` BO'LMASIN (aks holda onboarding spotlight qorong'u ustida bo'sh chiqadi → Quruvchiga qaytar).
    - **10 nishon MA'NOLI ekranda**: har `ACH_TRIGGERS` kaliti SCREEN_META'da `type:'test'` yoki challenge (DragDrop/Debug)mi? Exploration/toggle ekranga (`type:'exploration'`) bog'langan bo'lsa — nishon tekin beriladi → Quruvchiga qaytar.
    - **TIL: begona so'z** (qo'lda): matnda bola bilmaydigan so'z (masalan «afisha», «tizilish» oti)mi? MATN_ETALONI 3-lug'atdan tekshir → Metodistga qaytar.
+   - **SUDRALADIGAN BO'LAKLAR KO'RINISH-ZONASIDAN TASHQARIDA (F-0803-26):** `DragDropOrder` kabi
+     mexanikada slotlar VA bo'laklar bir ustunda tik joylashsa, 5 slot × ~56px + pool 1280×773'ga
+     sig'maydi — bo'laklar nav-panel ostida qolib KESILADI (esbuild/lint ko'rmaydi, o'quvchi
+     «sudrash uchun hech narsa yo'q» deb qoladi). Tekshiruv: darvozali sudrash-ekranini 1280×773
+     da ochib, pool chiplari ko'rinishini tasdiqlang. Yechim-naqsh: slotlar chapda, pool o'ngda
+     (`.dd-wide` grid — PeanStackLesson).
+   - **JAVOB-KALITI MASHQ BOSHIDA (F-0803-26):** mashq ekranida o'quvchi hech narsa qilmasdan
+     turib chiqadigan «Maslahat»/«Eslang» qutisi mashqni bekor qiladi va ekranni to'ldiradi.
+     `grep -n "Maslahat\|Eslang"` → har topilma uchun: u harakatdan KEYIN chiqadimi? Yo'q bo'lsa —
+     Metodistga qaytar (MATN_KORPUS 77-bo'lim).
+   - **PROGRESS-TAXTASIDA VAZIFA MATNI TAKRORI (F-0803-26):** o'ng ustundagi «taqsimot/xarita»
+     taxtasi chapdagi ayni vazifa matnini so'zma-so'z takrorlamasin (bir ekranda ikki marta) va
+     yechilmagan bandlar matnini oldindan ko'rsatmasin — qisqa yorliq + `…` naqshi ishlatiladi.
+   - **ANIMATSIYA-KLASS TO'QNASHUVI (F-0803-22):** bir elementda IKKI animatsiya-klass bo'lsa (`fade-up` + `demo-swap` kabi), keyingi klass `animation` xususiyatini butunlay almashtiradi — `fade-up`ning `forwards` fill'i ishlamay qoladi va element `opacity: 0` asos-holatiga qaytib KO'ZDAN YO'QOLADI. `grep -n 'fade-up[^"]*demo-swap\|demo-swap[^"]*fade-up'` — topilsa Quruvchiga qaytar (holat-almashinuvda klasslar shartli bo'lsin: yo `fade-up`, yo `demo-swap`).
    - apostrof tuzatishdan keyin JSX matnida noto'g'ri `\'` kirmadimi (`grep -n "\\\\'"`).
    - siz-forma istisno (mashina-buyrug'i) to'g'ri saqlanganmi.
    - **ABRAZETS SIFATI (4.1, qo'lda):** Metodist metaforalarni haqiqatan yaxshiladimi, yoki zaif abrazets (soxta anatomiya, teskari mos, mavhum) qolib ketdimi? Qolgan bo'lsa — nuqson sifatida "mas'ul: Metodist" bilan qaytaring.

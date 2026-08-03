@@ -2655,7 +2655,14 @@ const FC_CODE_WORDS = /\b(let|const|var|string|number|boolean|true|false|null|un
 const FC_VOCAB = new Set(['let', 'const', 'var', 'string', 'number', 'boolean', 'true', 'false', 'null', 'undefined', 'function', 'return', 'for', 'while', 'if', 'else']);
 // Kodmi yoki so'zmi? Monoshrift FAQAT kodga: lug'atdagi kalit so'z yoki kod-belgisi bo'lgan
 // token. «o'zgaruvchi» kabi o'zbekcha atama — gap, u Manrope bilan chiroyliroq va tor chiqadi.
-const fcIsCode = (s) => FC_VOCAB.has(s.toLowerCase()) || /[=(){};.[\]<>+*/%!&|-]/.test(s);
+// F-0803-23: defis-li ODDIY so'z («Promo-landing», «follow-up», «AI-agent») kod EMAS — ilgari u
+// dasturchi shriftida, `let`/`const` kabi kod-token bo'lib ko'rinardi. Haqiqiy defis-li kod
+// tokeni (`background-color`, `runs-on`) FC_VOCAB oq ro'yxati orqali mono bo'lib qoladi.
+const fcIsCode = (s) => {
+  if (FC_VOCAB.has(s.toLowerCase())) return true;
+  if (/^[\p{L}'\u02BB\u2019]+(-[\p{L}'\u02BB\u2019]+)+$/u.test(s)) return false;
+  return /[=(){};.[\]<>+*/%!&|-]/.test(s);
+};
 const fcTier = (s) => (s.length <= 8 ? 't1' : s.length <= 16 ? 't2' : s.length <= 32 ? 't3' : 't4');
 const fcAnswer = (raw) => {
   const s = String(raw ?? '');
@@ -3127,7 +3134,7 @@ export default function PmLesson4({ lang: langProp, onFinished }) {
         .mstats-wait-lbl { font-family: 'Manrope'; font-weight: 700; font-size: 12px; color: ${T.ink3}; }
         .mstats-wait-chip { font-family: 'Manrope'; font-weight: 600; font-size: 12px; color: ${T.ink2}; background: rgba(${T.shadowBase},0.07); border-radius: 99px; padding: 3px 10px; }
         .mstats-wait-chip.more { color: ${T.ink3}; }
-        .mstats-warn { margin: 0; font-family: 'Manrope'; font-weight: 600; font-size: 13px; color: ${T.accent}; background: ${T.accentSoft}; border-radius: 10px; padding: 9px 12px; }
+        .mstats-warn.mstats-warn { margin: 0; font-family: 'Manrope'; font-weight: 600; font-size: 13px; color: ${T.accent}; background: ${T.accentSoft}; border-radius: 10px; padding: 9px 12px; }
         .mstats-wait { margin: 0; font-size: 12.5px; color: ${T.ink3}; font-style: italic; }
         @media (max-width: 560px) { .mstats-count { min-width: 78px; font-size: 11px; } }
 
@@ -3169,8 +3176,8 @@ export default function PmLesson4({ lang: langProp, onFinished }) {
         .shc-chip.ok { color: ${T.ink}; border-color: ${T.success}44; background: ${T.successSoft}; }
         .shc-dot { flex-shrink: 0; width: 20px; height: 20px; border-radius: 50%; background: ${T.bg}; color: ${T.ink3}; display: inline-flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; transition: all 0.25s; }
         .shc-chip.ok .shc-dot { background: ${T.success}; color: #fff; }
-        .shc-hint { margin: 2px 0 0; font-family: 'Manrope', sans-serif; font-size: 13px; color: ${T.accent}; background: ${T.accentSoft}; padding: 8px 15px; border-radius: 11px; max-width: 72ch; line-height: 1.5; overflow-wrap: anywhere; }
-        .shc-err { margin: 2px 0 0; font-family: 'JetBrains Mono', monospace; font-size: 12.5px; color: ${T.err}; background: ${T.errSoft}; padding: 7px 14px; border-radius: 10px; max-width: 72ch; line-height: 1.5; overflow-wrap: anywhere; }
+        .shc-hint.shc-hint { margin: 2px 0 0; font-family: 'Manrope', sans-serif; font-size: 13px; color: ${T.accent}; background: ${T.accentSoft}; padding: 8px 15px; border-radius: 11px; max-width: 72ch; line-height: 1.5; overflow-wrap: anywhere; }
+        .shc-err.shc-err { margin: 2px 0 0; font-family: 'JetBrains Mono', monospace; font-size: 12.5px; color: ${T.err}; background: ${T.errSoft}; padding: 7px 14px; border-radius: 10px; max-width: 72ch; line-height: 1.5; overflow-wrap: anywhere; }
         .shc-split { flex: none; height: 56vh; min-height: 0; display: grid; grid-template-columns: 1fr 1fr; gap: clamp(10px,1.5vw,16px); }
         .shc-pane { display: flex; flex-direction: column; min-height: 0; min-width: 0; border-radius: 16px; overflow: hidden; background: ${T.paper}; box-shadow: 0 1px 0 ${T.line}, 0 18px 40px -24px rgba(${T.shadowBase},0.35); }
         .shc-bar { display: flex; align-items: center; gap: 10px; padding: 9px 14px; font-family: 'Manrope', sans-serif; font-size: 12px; font-weight: 600; color: ${T.ink2}; border-bottom: 1px solid ${T.line}; background: ${T.bg}; }
@@ -3316,7 +3323,7 @@ export default function PmLesson4({ lang: langProp, onFinished }) {
         .card { background: ${T.paper}; border-radius: 16px; padding: 18px 20px; box-shadow: 0 8px 22px -7px rgba(${T.shadowBase},0.14); }
         .card-lbl { display: flex; align-items: center; gap: 8px; font-family: 'Manrope'; font-weight: 700; font-size: 13px; margin-bottom: 11px; }
         .recap { display: flex; flex-direction: column; gap: 8px; list-style: none; } .recap li { display: flex; align-items: flex-start; gap: 10px; font-size: clamp(13px,1.6vw,15px); color: ${T.ink}; animation: fade-in-up 0.4s ease-out forwards; opacity: 0; } .recap .ck { color: ${T.success}; flex-shrink: 0; margin-top: 1px; }
-        .hw ul { display: flex; flex-direction: column; gap: 6px; list-style: none; } .hw li { font-size: clamp(13px,1.6vw,15px); color: ${T.ink}; } .hw li b { color: ${T.accent}; } .hw .t { color: ${T.ink2}; } .hw-note { margin: 11px 0 0; font-size: 12px; color: ${T.accent}; font-weight: 600; }
+        .hw ul { display: flex; flex-direction: column; gap: 6px; list-style: none; } .hw li { font-size: clamp(13px,1.6vw,15px); color: ${T.ink}; } .hw li b { color: ${T.accent}; } .hw .t { color: ${T.ink2}; } .hw-note.hw-note { margin: 11px 0 0; font-size: 12px; color: ${T.accent}; font-weight: 600; }
 
         /* === 📖 QAYTA TUSHUNTIRISH (recap overlay) — proyektorga katta shrift === */
         .rc-overlay { position: fixed; inset: 0; z-index: 10005; background: ${T.bg}; display: flex; flex-direction: column; align-items: center; padding: clamp(14px,3vw,32px); overflow-y: auto; animation: fade-step 0.3s ease-out; font-family: 'Manrope', sans-serif; }
@@ -3786,7 +3793,8 @@ export default function PmLesson4({ lang: langProp, onFinished }) {
         /* Gap-slotlari formula-konstruktor (s3) ranglarida: bo'sh = xira-punktir, to'lgan = o'z rangi */
         /* F-0803-01 — YOZUVGA JAVOB: xato (binafsha, savol) va tasdiq (yashil) bir joyda,
            forma OSTIDA — o'quvchi yozgan zahoti javob o'sha yerdan chiqadi. */
-        .swed-fb { margin: 0; font-family: 'Manrope'; font-weight: 600; font-size: 13.5px; line-height: 1.45; border-radius: 10px; padding: 10px 13px; }
+        /* klass ikki marta — F-0803-27, sabab «.oc-pain.oc-pain» izohida */
+        .swed-fb.swed-fb { margin: 0; font-family: 'Manrope'; font-weight: 600; font-size: 13.5px; line-height: 1.45; border-radius: 10px; padding: 10px 13px; }
         .swed-fb.bad { color: ${T.accent}; background: ${T.accentSoft}; }
         .swed-fb.ok { color: ${T.success}; background: ${T.successSoft}; }
         .swed-btns { display: flex; gap: 12px; justify-content: flex-end; align-items: center; }
@@ -3857,8 +3865,16 @@ export default function PmLesson4({ lang: langProp, onFinished }) {
         .oc-top:hover { background: ${T.accentSoft}55; }
         .oc-top:active { transform: scale(0.99); }
         /* Ochilgan matn — QIYINCHILIK, shuning uchun amber (s1/s4/s8 bilan bir xil rang). */
-        .oc-pain { margin: 0 15px 14px; padding: 9px 12px; border-radius: 10px; font-family: 'Manrope'; font-weight: 600; font-size: clamp(12.5px,1.5vw,14px); line-height: 1.45; color: ${T.amberInk}; background: ${T.amberSoft}; min-width: 0; overflow-wrap: anywhere; }
-        .oc-pain.empty { color: ${T.ink3}; background: ${T.bg}; font-style: italic; }
+        /* 🔴 F-0803-27 — KLASS IKKI MARTA YOZILGANI ATAYLAB (o'chirmang!): bu <p> elementi,
+           yuqoridagi «.lesson-root p { margin:0; padding:0 }» reseti esa aniqligi bo'yicha
+           (0,1,1) — bitta klassli qoidadan (0,1,0) KUCHLI. Ya'ni bir marta yozilsa, brauzer
+           bu yerdagi margin/padding'ni JIMGINA o'chiradi (fon va burchak qoladi — shuning
+           uchun blok «yarim buzuq» ko'rinadi). «.oc-pain.oc-pain» — aniqlik (0,2,0), aynan
+           o'sha elementlarni tanlaydi, lekin resetdan ustun turadi. */
+        .oc-pain.oc-pain { margin: 0 15px 14px; padding: 9px 12px; border-radius: 10px; font-family: 'Manrope'; font-weight: 600; font-size: clamp(12.5px,1.5vw,14px); line-height: 1.45; color: ${T.amberInk}; background: ${T.amberSoft}; min-width: 0; overflow-wrap: anywhere; }
+        /* Javobi yo'q imkoniyat: fon sahifa foni bilan bir xil bo'lsa, matn kartadan
+           tashqarida suzganday ko'rinardi (F-0803-27) — endi ingichka uzuq ramka bilan. */
+        .oc-pain.empty { color: ${T.ink3}; background: transparent; border: 1.5px dashed ${T.ink3}66; font-style: italic; }
 
         /* === s4 JUFTLASH (sudrab-ulash) === */
         .mt-wrap { display: flex; flex-direction: column; gap: 12px; }
@@ -3940,12 +3956,13 @@ export default function PmLesson4({ lang: langProp, onFinished }) {
         .cl-ok { animation: mt-snap 0.36s cubic-bezier(.34,1.5,.4,1); }
         .cl-body { display: flex; flex-direction: column; gap: 9px; padding: 0 15px 14px; }
         /* Ochilgan matn — QIYINCHILIK (amber, s1/s4/s8 bilan bir xil). Qiyinchiligi yo'q band — xira-neytral. */
-        .cl-pain { margin: 0; padding: 9px 12px; border-radius: 10px; font-family: 'Manrope'; font-weight: 600; font-size: clamp(12.5px,1.5vw,14px); color: ${T.amberInk}; background: ${T.amberSoft}; min-width: 0; overflow-wrap: anywhere; }
-        .cl-pain.none { color: ${T.ink3}; background: ${T.bg}; font-style: italic; }
+        /* klass ikki marta — F-0803-27, sabab «.oc-pain.oc-pain» izohida */
+        .cl-pain.cl-pain { margin: 0; padding: 9px 12px; border-radius: 10px; font-family: 'Manrope'; font-weight: 600; font-size: clamp(12.5px,1.5vw,14px); color: ${T.amberInk}; background: ${T.amberSoft}; min-width: 0; overflow-wrap: anywhere; }
+        .cl-pain.none { color: ${T.ink3}; background: transparent; border: 1.5px dashed ${T.ink3}66; font-style: italic; }
         .cl-shelf-btn { align-self: flex-start; font-family: 'Manrope'; font-weight: 800; font-size: 12.5px; color: ${T.accent}; background: ${T.accentSoft}; border: none; border-radius: 99px; padding: 7px 15px; cursor: pointer; transition: transform 0.16s, box-shadow 0.16s; }
         .cl-shelf-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 14px -6px rgba(91,61,230,0.4); }
         /* Maslahat/eslatma — indigo: amber bu darsda FAQAT qiyinchilik, qizil FAQAT haqiqiy xato. */
-        .cl-warn { margin: 0; font-family: 'Manrope'; font-weight: 600; font-size: 12.5px; color: ${T.accent}; background: ${T.accentSoft}; border-radius: 10px; padding: 8px 11px; animation: fade-step 0.28s ease-out; }
+        .cl-warn.cl-warn { margin: 0; font-family: 'Manrope'; font-weight: 600; font-size: 12.5px; color: ${T.accent}; background: ${T.accentSoft}; border-radius: 10px; padding: 8px 11px; animation: fade-step 0.28s ease-out; }
         .cl-shelf { display: flex; flex-wrap: wrap; align-items: center; gap: 9px; border: 1.5px dashed ${T.ink3}66; border-radius: 14px; padding: 12px 14px; }
         .cl-shelf-lbl { font-family: 'Manrope'; font-weight: 800; font-size: 11.5px; letter-spacing: 0.05em; text-transform: uppercase; color: ${T.ink3}; width: 100%; }
         .cl-shelf-empty { font-family: 'Manrope'; font-weight: 600; font-size: 12.5px; color: ${T.ink3}; font-style: italic; }

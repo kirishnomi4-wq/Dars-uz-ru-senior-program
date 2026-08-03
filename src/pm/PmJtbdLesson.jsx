@@ -3169,7 +3169,7 @@ export default function PmJtbdLesson({ lang: langProp, onFinished }) {
         @keyframes hw-fire { 0%,100% { box-shadow: 0 0 0 1px rgba(90,40,180,.45), 0 0 26px rgba(124,58,237,.5), 0 0 68px rgba(124,58,237,.28), inset 0 0 48px rgba(124,58,237,.32); } 50% { box-shadow: 0 0 0 1px rgba(120,60,220,.6), 0 0 40px rgba(124,58,237,.72), 0 0 96px rgba(124,58,237,.4), inset 0 0 60px rgba(124,58,237,.44); } }
         @keyframes hw-shine { 0% { left: -60%; } 55%, 100% { left: 130%; } }
         @media (prefers-reduced-motion: reduce) { .hw-big, .hw-big-shine, .hw-big-wrap::before, .hw-tok, .hw-big.charging { animation: none !important; } }
-        .hw ul { display: flex; flex-direction: column; gap: 6px; list-style: none; } .hw li { font-size: clamp(13px,1.6vw,15px); color: ${T.ink}; } .hw li b { color: ${T.accent}; } .hw .t { color: ${T.ink2}; } .hw-note { margin: 11px 0 0; font-size: 12px; color: ${T.accent}; font-weight: 600; }
+        .hw ul { display: flex; flex-direction: column; gap: 6px; list-style: none; } .hw li { font-size: clamp(13px,1.6vw,15px); color: ${T.ink}; } .hw li b { color: ${T.accent}; } .hw .t { color: ${T.ink2}; } .hw-note.hw-note { margin: 11px 0 0; font-size: 12px; color: ${T.accent}; font-weight: 600; }
 
         /* === bb-dots (kod-muharrir sarlavhasi) === */
         .bb-dots { display: flex; gap: 5px; }
@@ -3320,7 +3320,7 @@ export default function PmJtbdLesson({ lang: langProp, onFinished }) {
         .jw-part { font-weight: 600; font-style: italic; color: ${T.ink3}; opacity: 0.75; }
         .jw-part.on { font-style: normal; opacity: 1; }
         .jw-part.mahsulot.on { color: ${T.blue}; } .jw-part.ish.on { color: #B77A16; } .jw-part.tur.on { color: ${T.success}; }
-        .jw-hint { margin: 0; font-family: 'Manrope'; font-weight: 600; font-size: 13px; line-height: 1.45; color: ${T.accent}; background: ${T.accentSoft}; border-radius: 10px; padding: 9px 12px; overflow-wrap: anywhere; min-width: 0; }
+        .jw-hint.jw-hint { margin: 0; font-family: 'Manrope'; font-weight: 600; font-size: 13px; line-height: 1.45; color: ${T.accent}; background: ${T.accentSoft}; border-radius: 10px; padding: 9px 12px; overflow-wrap: anywhere; min-width: 0; }
         .jw-btns { display: flex; gap: 12px; justify-content: flex-end; align-items: center; flex-wrap: wrap; }
         .jw-cnt { font-family: 'JetBrains Mono', monospace; font-weight: 600; font-size: 12px; color: ${T.ink3}; }
         .jw-save { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: clamp(14px,1.8vw,16px); cursor: pointer; border: none; border-radius: 12px; padding: 13px 26px; background: ${T.accent}; color: #fff; box-shadow: 0 10px 24px -8px rgba(91,61,230,0.55); transition: all 0.18s; }
@@ -3391,7 +3391,10 @@ export default function PmJtbdLesson({ lang: langProp, onFinished }) {
         .jpeer-chip:hover { color: ${T.accent}; box-shadow: inset 0 0 0 1.5px ${T.accent}; transform: translateY(-2px); }
         .jpeer-chip.back { background: transparent; box-shadow: none; color: ${T.ink3}; font-weight: 600; }
         .jpeer-fb { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
-        .jpeer-fbt { margin: 0; flex: 1 1 260px; min-width: 0; overflow-wrap: anywhere; font-size: 13.5px; line-height: 1.45; border-radius: 12px; padding: 10px 14px; }
+        /* 🔴 F-0803-27 — klass IKKI marta ataylab: bu <p>, «.lesson-root p { padding:0 }» reseti
+           esa aniqligi (0,1,1) bilan bitta-klassli qoidadan kuchli va padding'ni jimgina
+           o'chiradi (fon qoladi → xabar-blok yopishib qoladi). Ikkilantirish (0,2,0) beradi. */
+        .jpeer-fbt.jpeer-fbt { margin: 0; flex: 1 1 260px; min-width: 0; overflow-wrap: anywhere; font-size: 13.5px; line-height: 1.45; border-radius: 12px; padding: 10px 14px; }
         .jpeer-fbt.hit { background: ${T.successSoft}; color: ${T.success}; }
         .jpeer-fbt.note { background: ${T.accentSoft}; color: ${T.ink}; }
         .jpeer-next { border: none; cursor: pointer; border-radius: 99px; padding: 11px 20px; font-family: 'Manrope'; font-weight: 800; font-size: 13.5px; color: #fff; background: ${T.accent}; box-shadow: 0 8px 18px -10px rgba(${T.shadowBase},0.8); transition: transform 0.15s; flex-shrink: 0; }
@@ -3835,7 +3838,7 @@ export default function PmJtbdLesson({ lang: langProp, onFinished }) {
         .mstats-wait-lbl { font-family: 'Manrope'; font-weight: 700; font-size: 12px; color: ${T.ink3}; }
         .mstats-wait-chip { font-family: 'Manrope'; font-weight: 600; font-size: 12px; color: ${T.ink2}; background: rgba(${T.shadowBase},0.07); border-radius: 99px; padding: 3px 10px; }
         .mstats-wait-chip.more { color: ${T.ink3}; }
-        .mstats-warn { margin: 0; font-family: 'Manrope'; font-weight: 600; font-size: 13px; color: ${T.err}; background: ${T.errSoft}; border-radius: 10px; padding: 9px 12px; }
+        .mstats-warn.mstats-warn { margin: 0; font-family: 'Manrope'; font-weight: 600; font-size: 13px; color: ${T.err}; background: ${T.errSoft}; border-radius: 10px; padding: 9px 12px; }
         .mstats-wait { margin: 0; font-size: 12.5px; color: ${T.ink3}; font-style: italic; }
         @media (max-width: 560px) { .mstats-count { min-width: 78px; font-size: 11px; } }
         .mstats-verdict { border-radius: 12px; padding: 12px 15px; display: flex; flex-direction: column; gap: 10px; align-items: flex-start; animation: fade-step 0.3s ease-out; }
