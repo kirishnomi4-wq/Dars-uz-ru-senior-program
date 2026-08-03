@@ -876,10 +876,31 @@ ular kalibrovka qilingan:
 - selektor qoida BOSHIDA turishi shart, aks holda `.rel-box .mono` kabi avlod-selektorlari
   yolg'on-signal beradi (ular allaqachon (0,2,0)).
 
-**Tegilmagani (ataylab):** faqat `margin` yo'qotgan ~369 qoida. Ular 2–11px oralig'ida va
-butun mahsulot oylar davomida shu holatda sozlangan — ommaviy «tiriltirish» 111 faylda
-oraliqlarni bir vaqtda o'zgartiradi, ya'ni bu **xato tuzatish emas, alohida dizayn-migratsiya**.
-Resetni `:where(.lesson-root) p` ga o'tkazish ham shu sababdan RAD etildi.
+**MARGIN tomoni — qaror o'lchov bilan chiqarilgan (F-0803-29).** Faqat `margin` yo'qotgan
+**423** qoida bor. Ular BIR XIL EMAS, ikkiga bo'linadi va qaror shundan kelib chiqadi:
+- **Ota-konteynerda `gap` bor → margin ORTIQCHA, tiklash REGRESSIYA.** `.hook-ack` (105 ta,
+  2px) `.col { gap: 12–16px }` ichida; `.fc-done-s` (77 ta, 8px) `.fc-done { gap: 5px }`
+  ichida. Ya'ni ~43% ida «tiklash» hech kim mo'ljallamagan bo'shliq qo'shadi.
+- **Ota oddiy blok, `gap` yo'q → yo'qolgan margin haqiqiy nuqson.** `.hw-note` (90 dars,
+  11px): yakun sahifasida uy-vazifa ro'yxati bilan izoh orasidagi oraliq brauzerda
+  o'lchanganda **0px** edi. **Faqat SHU tuzatildi** (F-0803-29).
+- Qolgani (2–4px) ko'zga tashlanmaydi; mualliflar ko'rinadigan joyni allaqachon inline
+  `style={{ marginTop: 8 }}` bilan yopib qo'yishgan — bu ham «qolgani sezilmagan» dalili.
+🔧 **Qoida:** margin-topilmasi bo'lsa AVVAL ota-konteynerni tekshiring —
+`display:flex` + `gap` bo'lsa, TEGMANG. Shuning uchun lint darvozasi ham faqat `padding`ni
+tekshiradi (margin uchun avtomatik hukm chiqarib bo'lmaydi).
+📌 Resetni `:where(.lesson-root) p` ga o'tkazish RAD etildi — u 423 qoidani birdan
+«tiriltiradi», ya'ni xato tuzatish emas, ko'rib chiqib bo'lmaydigan dizayn-migratsiya.
+
+**Darvozaning KO'R NUQTASI (F-0803-29) — CSS ikki xil joyda yashaydi.** Linter dastlab CSS ni
+faqat `<style>{…}</style>` ichidan o'qirdi, lekin bitta dars (`FullSystemProjectLesson`) uni
+alohida o'zgaruvchida saqlaydi: `<style>{LESSON_CSS}</style>`. Natijada o'sha fayl backtik
+darvozasidan ham, bu qonun darvozasidan ham BUTUNLAY chetda qolgan edi — va aynan o'sha
+faylda CSS izohiga backtik tushib, `esbuild` va `vite build` JIM o'tdi (backtiklar juft edi),
+darslik esa brauzerda `ReferenceError` bilan qulab tushdi. Endi ikkala shakl ham o'qiladi.
+⚠️ Ikkinchi nozik joy: o'zgaruvchi-shaklda yopuvchi backtikni «birinchi uchragani» deb olib
+BO'LMAYDI — aynan qidirilayotgan adashgan backtik o'shanda yopuvchi deb qabul qilinadi va
+darvoza yana jim qoladi. E'lon oxiri `` `; `` bilan anchorlanadi.
 
 ---
 ## 11-D. ⏱ 111-QONUN: 7–10 SONIYA TESTI · BO'SH JOY · OLIB TASHLASH SAVOLI (2026-08-03, F-0803-28)

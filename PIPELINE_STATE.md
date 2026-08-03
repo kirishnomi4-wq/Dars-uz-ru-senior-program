@@ -872,3 +872,16 @@ UNCOMMITTED (deploy build'dan qilindi, git'ga bog'liq emas).
 **Darvozalar:** esbuild ✅ · `lint:jsx` 127 fayl 0 topilma ✅ · `vite build` toza ✅ · `_smoke.mjs` **109 dars, 0 nosozlik** ✅.
 **Raqam-to'qnashuvi:** parallel seans 111-qonun va F-0803-28 ni band qilgani uchun bu ishning qonuni **112** (DARS_ETALON 11-E), F-ID si **F-0803-29** qilib surildi.
 **Tegilmagani:** qolgan ~330 margin-qoida (2–8px, ko'pi flex-`gap` ustida) — ataylab, 112-qonun oxirida sababi bilan yozilgan.
+
+## 2026-08-03 — F-0803-30: DEMO DAY LOYIHA-IPI — PmLesson1 → VsCode → Deploy → PmLesson3 — ✅
+**Kelib chiqishi:** foydalanuvchi qarori — «Demo Day'da o'quvchi istagan saytini emas, REAL muammoga yechim ko'rsatsin. PmLesson1 oxirida muammo tanlasin, VS Code darsida mentor har bir boladan loyihasini so'rasin (g'oyasi yo'q/yaroqsiz bolaga mentor beradi), Deploy shu g'oyani chiqarsin, PmLesson3 shu haqda nutq yig'sin».
+**Topilma (kod-arxeologiya):** ipning yarmi allaqachon bor edi, lekin uzuq — Deploy'da loyiha-tanlash (`cc-deploy-project`, 4 shablon, kursning OXIRIDA) va PmLesson3'da muammo-yechim nutqi (`ccPitch3`) bir-birini bilmasdi.
+**Qurildi (yagona kalit `ccDemoDay`, TTLsiz — Demo Day'gacha haftalar bor):**
+· `PmLesson1` — YANGI «Demo Day loyihasi» ekrani (sflash↔s16 orasida, 17/18): 4 bank-g'oya (95-qonun olami: to'garak jadvali · mahalla do'koni · sport seksiyasi · kitob almashinuv) 2 ustunli gridda + «O'z g'oyam» (2 input). 18 ekran bo'ldi.
+· `VsCodeLesson` — YANGI «Mentor so'raydi» ekrani (s14↔s15b orasida, 16/19): saqlangan g'oya + «✓ Shu — mening loyiham» / «Boshqasini tanlayman» (bank + KFC-qoidasi: «tayyor brendning saytini ko'chirmaymiz»); jonli rejimda MentorWorkStats — mentor kim tasdiqlaganini ko'radi. 19 ekran bo'ldi.
+· `DeployLesson` — yangi ekran YO'Q: mavjud tanlovda ⭐ «Demo Day loyiham» birinchi karta (shablonlar zaxira); AI-promptning sarlavhasi o'quvchining O'Z yechimi bo'ladi; `!proj` guard — g'oya o'chirilgan bo'lsa proj.ic da qulamaydi.
+· `PmLesson3` — yangi ekran YO'Q: nutq-ekranida bir qatorlik eslatma «💡 Demo Day loyihangiz: muammo → yechim».
+· `GitLesson`/`PmLesson2` — ATAYLAB tegilmadi (foydalanuvchi: «juda urg'u emas»; TMI xavfi).
+**Indeks-xavfsizlik:** ikkala darsda ham qo'shilgan ekran BARCHA scored-indekslardan keyin — Q_LABELS/QUIZ_BASE/podium siljimaydi; progress-saqlov total o'zgargani uchun eski saqlovlar o'z-o'zidan bekor (by design).
+**Sinov (playwright, real bosishlar, 10/10):** yangi ekran ochiladi · gate yopiq+yorliq aniq · bank-tanlov saqlanadi · o'z-g'oya yo'li · VsCode'da ko'rinadi+tasdiqlanadi · bank-almashtirish · Deploy'da ⭐ birinchi · promptda o'z yechimi · PmLesson3 eslatmasi · ip bo'sh bo'lsa hech narsa buzilmaydi (Deploy 4 karta, eslatma yo'q). Bitta 110-B topilma (VsCode «Tasdiqlash» 731px) — bank 2 ustunga o'tkazilib tuzatildi.
+**Darvozalar:** esbuild ✅ · `lint:jsx` 127 fayl 0 ✅ · `lint:til` 4 faylda 0 error (11 warn — HEAD'da ham bor edi) ✅ · `vite build` toza ✅ · smoke yakuniy yugurishda. UNCOMMITTED.

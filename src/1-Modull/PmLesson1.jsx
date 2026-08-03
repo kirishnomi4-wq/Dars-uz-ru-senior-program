@@ -388,7 +388,16 @@ const Ico = {
 };
 
 const LESSON_META = { lessonId: 'pm-m1d2-v1', lessonTitle: { uz: 'Kim mening foydalanuvchim?', ru: 'Кто мой пользователь?' } };
-// 🔴 17 ekran (gibrid qayta-qurish): nazariya 1-TUR mexanikalarida, ustaxona/uy-vazifa 2-TUR qolipida.
+
+// 🏁 DEMO DAY LOYIHA-IPI (F-0803-30): o'quvchi shu darsda tanlagan muammo-loyiha modul bo'ylab
+// yashaydi (TTLsiz — ataylab, chunki Demo Day'gacha haftalar bor). VS Code darsi (mentor
+// so'rovi), Deploy (loyiha kartasi) va PmLesson3 (Demo Day nutqi) AYNAN shu kalitni o'qiydi.
+// Shakl: { muammo, yechim, manba: bank-id|'ozim', holat: 'tanlangan'|'tasdiqlandi', savedAt }.
+const DEMO_KEY = 'ccDemoDay';
+const demoRead = () => { try { return JSON.parse(localStorage.getItem(DEMO_KEY) || 'null'); } catch { return null; } };
+const demoWrite = (patch) => { try { localStorage.setItem(DEMO_KEY, JSON.stringify({ ...(demoRead() || {}), ...patch, savedAt: Date.now() })); } catch { /* saqlab bo'lmadi */ } };
+
+// 🔴 18 ekran (gibrid qayta-qurish): nazariya 1-TUR mexanikalarida, ustaxona/uy-vazifa 2-TUR qolipida.
 // SCREEN_META ↔ screens massivi TARTIBI AYNAN bir xil bo'lishi shart (indeks-siljish bug-sinfi).
 const SCREEN_META = [
   { id: 's0',   type: 'hook',        template: 'custom',   scored: false, scope: 'hook' },
@@ -407,6 +416,7 @@ const SCREEN_META = [
   { id: 's15',  type: 'test',        template: 'custom',   scored: true,  scope: 'final' },
   { id: 's15b', type: 'stats',       template: 'custom',   scored: false, scope: null },
   { id: 'sflash', type: 'flashcards', template: 'custom',  scored: false, scope: null },
+  { id: 'sproj', type: 'practice',   template: 'custom',   scored: false, scope: null },
   { id: 's16',  type: 'summary',     template: 'custom',   scored: false, scope: null }
 ];
 // Podium reyting-nuqtalari uchun qisqa nom (kalit = ekran INDEKSI — SCREEN_META bilan sinxron)
@@ -2776,6 +2786,68 @@ const HW_TOKENS = [
   { t: '👥',         l: 3,  tp: 44, s: 13, d: 8.5 },
 ];
 
+// ===== SCREEN SPROJ — DEMO DAY LOYIHASI (F-0803-30, loyiha-ipining boshi) =====
+// Dars davomida o'quvchi lavash-do'kon uchun «kim uchun»ni aniqladi — endi o'ziga ko'chiradi:
+// atrofidagi bitta muammoni tanlaydi, sayti Demo Day'da shunga yechim bo'ladi. Tanlov
+// ccDemoDay'da saqlanadi va VS Code → Deploy → PmLesson3 darslari uni davom ettiradi.
+// Bank g'oyalari — 95-qonun olami (o'quvchi O'ZI boradigan joylar).
+const IDEA_BANK = [
+  { id: 'togarak', ic: '🏫', muammo: { uz: "To'garak jadvali faqat devorda — uydan ko'rib bo'lmaydi", ru: 'Расписание кружка только на стене — из дома не посмотришь' }, yechim: { uz: 'Jadval va manzil sayti', ru: 'Сайт с расписанием и адресом' } },
+  { id: 'dokon', ic: '🛒', muammo: { uz: "Mahalla do'konida nima bor-yo'qligini borib ko'rmaguncha bilib bo'lmaydi", ru: 'Что есть в магазине у дома — не узнаешь, пока не сходишь' }, yechim: { uz: 'Menyu va narxlar sayti', ru: 'Сайт с меню и ценами' } },
+  { id: 'seksiya', ic: '⚽', muammo: { uz: "Sport seksiyasining vaqti va narxini telefon qilib so'rashga to'g'ri keladi", ru: 'Время и цену секции приходится узнавать по телефону' }, yechim: { uz: "Mashg'ulot vaqtlari sayti", ru: 'Сайт с расписанием тренировок' } },
+  { id: 'kitob', ic: '📚', muammo: { uz: "Sinfda kimda qaysi kitob borligini hech kim bilmaydi", ru: 'Никто не знает, у кого в классе какая книга' }, yechim: { uz: "Kitob almashinuv ro'yxati sayti", ru: 'Сайт со списком обмена книгами' } },
+];
+const ScreenProject = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
+  const saved = demoRead();
+  const [sel, setSel] = useState(saved ? saved.manba : null);
+  const [ownM, setOwnM] = useState(saved && saved.manba === 'ozim' ? saved.muammo : '');
+  const [ownY, setOwnY] = useState(saved && saved.manba === 'ozim' ? saved.yechim : '');
+  const ownOk = ownM.trim().length >= 8 && ownY.trim().length >= 4;
+  const done = sel === 'ozim' ? ownOk : !!sel;
+  const pickBank = (b) => { setSel(b.id); demoWrite({ muammo: tr(b.muammo), yechim: tr(b.yechim), manba: b.id, holat: 'tanlangan' }); };
+  const pickOwn = () => setSel('ozim');
+  useEffect(() => {
+    if (sel === 'ozim' && ownOk) demoWrite({ muammo: ownM.trim(), yechim: ownY.trim(), manba: 'ozim', holat: 'tanlangan' });
+  }, [ownM, ownY, sel]); // eslint-disable-line
+  useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: sel, stage: 'practice', screenIdx: screen }); }, [done]); // eslint-disable-line
+  const navLabel = done ? { uz: 'Davom etish', ru: 'Продолжить' }
+    : sel === 'ozim' ? { uz: 'Muammo va yechimni yozing', ru: 'Впишите проблему и решение' }
+    : { uz: 'Muammoni tanlang', ru: 'Выберите проблему' };
+  return (
+    <Stage eyebrow={{ uz: 'Demo Day loyihasi', ru: 'Проект Demo Day' }} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={navLabel} onClick={onNext} /></>}>
+      <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Demo Day'da <span className="italic" style={{ color: T.accent }}>qaysi muammoni</span> yechasiz?</>, ru: <>Какую проблему вы решите на <span className="italic" style={{ color: T.accent }}>Demo Day</span>?</> })}</h2></div>
+        <Mentor>{{ uz: <>Modul oxirida Demo Day bo'ladi — sahnada <b style={{ color: T.ink }}>o'z saytingizni</b> ko'rsatasiz. Atrofingizdagi bitta muammoni hozir tanlab qo'ying: saytingiz shunga yechim bo'ladi.</>, ru: <>В конце модуля будет Demo Day — вы покажете <b style={{ color: T.ink }}>свой сайт</b> со сцены. Выберите одну проблему вокруг себя прямо сейчас: ваш сайт станет её решением.</> }}</Mentor>
+        <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 8, maxWidth: 680 }}>
+          {/* Bank 2 ustunda — 720px oynada hamma karta va «Saqlandi» qatori skrollsiz ko'rinsin (110-B) */}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(270px, 1fr))', gap: 8 }}>
+            {IDEA_BANK.map(b => {
+              const on = sel === b.id;
+              return (
+                <button key={b.id} className={'hook-option ' + (on ? 'on' : '')} onClick={() => pickBank(b)}>
+                  <span className="radio">{on && <span className="radio-dot" />}</span>
+                  <span>{b.ic} {tr(b.muammo)} <span style={{ color: on ? undefined : T.ink2 }}>→ {tr(b.yechim)}</span></span>
+                </button>
+              );
+            })}
+            <button className={'hook-option ' + (sel === 'ozim' ? 'on' : '')} onClick={pickOwn}>
+              <span className="radio">{sel === 'ozim' && <span className="radio-dot" />}</span>
+              <span>✍️ {tr({ uz: "O'z g'oyam bor", ru: 'У меня своя идея' })}</span>
+            </button>
+          </div>
+          {sel === 'ozim' && (
+            <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 8, paddingLeft: 6 }}>
+              <input className="reflect-input" value={ownM} onChange={e => setOwnM(e.target.value)} placeholder={tr({ uz: 'Qaysi muammo? (masalan: seksiya vaqtini hech kim bilmaydi)', ru: 'Какая проблема? (например: никто не знает время секции)' })} />
+              <input className="reflect-input" value={ownY} onChange={e => setOwnY(e.target.value)} placeholder={tr({ uz: 'Sayt nima qiladi? (masalan: vaqtlar jadvali sayti)', ru: 'Что сделает сайт? (например: сайт с расписанием)' })} />
+            </div>
+          )}
+        </div>
+        {done && <div className="frame-success fade-step" style={{ maxWidth: 640 }}><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Saqlandi. VS Code darsida mentor aynan shu loyihangizni so'raydi.</>, ru: <>Сохранено. На уроке VS Code ментор спросит именно про этот ваш проект.</> })}</p></div>}
+      </div>
+    </Stage>
+  );
+};
+
 // ===== SCREEN 16 — YAKUN =====
 // 🃏 Qayta ishlatiladigan FLASHCARDS (9.3) — aktiv takrorlash (3D flip + o'z-o'zini baholash).
 // Boshqa darsga: faqat `cards` ({ front, back, note }) almashtiriladi. Matn — Metodist sayqallaydi.
@@ -3113,7 +3185,7 @@ export default function PmLesson1({ lang: langProp, onFinished }) {
   };
 
   // 🔴 TARTIB SCREEN_META bilan AYNAN bir xil (indeks-siljish bug-sinfi — dasturiy tekshiriladi)
-  const screens = [Screen0, Screen1, Screen2, Screen3, Screen4, ScreenKeys, Screen5b, Screen6, Screen8, Screen9, Screen11, Screen12, ScreenCoding, Screen15, ScreenPodium, ScreenFlashcards, Screen16];
+  const screens = [Screen0, Screen1, Screen2, Screen3, Screen4, ScreenKeys, Screen5b, Screen6, Screen8, Screen9, Screen11, Screen12, ScreenCoding, Screen15, ScreenPodium, ScreenFlashcards, ScreenProject, Screen16];
   const Current = screens[screen];
   return (
     <LangContext.Provider value={lang}>

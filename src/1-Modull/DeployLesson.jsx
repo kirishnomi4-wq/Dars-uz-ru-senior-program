@@ -1005,6 +1005,9 @@ const PAGE_SLOTS = 5;   // 5 maydon: 4 tasi shart, 5-si ixtiyoriy
 const MIN_PAGES = 4;
 const projRead = () => { try { return JSON.parse(localStorage.getItem(PROJ_KEY) || 'null') || null; } catch { return null; } };
 const projWrite = (patch) => { try { const cur = projRead() || {}; localStorage.setItem(PROJ_KEY, JSON.stringify({ ...cur, ...patch })); } catch {} };
+// 🏁 DEMO DAY LOYIHA-IPI (F-0803-30): PmLesson1/VsCode'da tanlangan muammo-loyiha. Bor bo'lsa —
+// loyiha tanlovida BIRINCHI karta bo'lib chiqadi (shablonlar zaxira qoladi).
+const demoRead = () => { try { return JSON.parse(localStorage.getItem('ccDemoDay') || 'null'); } catch { return null; } };
 const siteUrlRead = () => { try { return localStorage.getItem(SITE_URL_KEY) || ''; } catch { return ''; } };
 // Havola IKKI joyga yoziladi: o'z kaliti + ccPitch3.link (Demo Day darsi o'qiydi).
 // ccPitch3 ichidagi boshqa maydonlar saqlanadi: o'qi -> yoy -> faqat link'ni yoz.
@@ -1268,29 +1271,36 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     return p;
   });
   const filled = pages.filter(p => p.trim().length > 1);
-  const done = !!turi && filled.length >= MIN_PAGES;
-  const proj = PROJECTS.find(p => p.id === turi);
+  // F-0803-30: PmLesson1/VsCode'da tanlangan Demo Day loyihasi birinchi karta bo'lib chiqadi
+  const demo = demoRead();
+  const projList = demo && demo.muammo
+    ? [{ id: 'demo', ic: '⭐', name: { uz: 'Demo Day loyiham', ru: 'Мой проект Demo Day' }, sub: { uz: demo.yechim || '', ru: demo.yechim || '' } }, ...PROJECTS]
+    : PROJECTS;
+  const proj = projList.find(p => p.id === turi);
+  const done = !!proj && filled.length >= MIN_PAGES;
   const choose = (id) => { setTuri(id); projWrite({ turi: id }); };
   const setPage = (i, v) => {
     const n = pages.slice(); n[i] = v; setPages(n);
     projWrite({ sahifalar: n.filter(x => x.trim()).map(x => x.trim()) });
   };
   useEffect(() => { if (done && !(storedAnswer && storedAnswer.correct)) onAnswer(screen, { correct: true, picked: filled.length, stage: 'artefakt', screenIdx: screen }); }, [done]); // eslint-disable-line
-  const navLabel = !turi ? tr({ uz: 'Loyihani tanlang', ru: 'Выберите проект' })
+  const navLabel = !proj ? tr({ uz: 'Loyihani tanlang', ru: 'Выберите проект' })
     : !done ? tr({ uz: `Yana ${MIN_PAGES - filled.length} ta sahifa nomi`, ru: `Ещё названий страниц: ${MIN_PAGES - filled.length}` })
       : tr({ uz: 'Davom etish', ru: 'Продолжить' });
   return (
     <Stage eyebrow={tr({ uz: 'Sizning loyihangiz', ru: 'Ваш проект' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={navLabel} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Bugun <span className="italic" style={{ color: T.accent }}>qanday</span> sayt quramiz?</>, ru: <>Какой сайт мы <span className="italic" style={{ color: T.accent }}>соберём</span> сегодня?</> })}</h2></div>
-        <Mentor>{!turi
-          ? tr({ uz: "To'rt loyihadan bittasini tanlang — shu sayt dars oxirida internetda turadi.", ru: 'Выберите один из четырёх проектов — этот сайт к концу урока окажется в интернете.' })
+        {/* F-0803-30: `!proj` sharti — turi saqlanib, lekin ro'yxatdan topilmasa (masalan
+            demo-g'oya o'chirilgan bo'lsa) tanlov qaytadan ochiladi, proj.ic da qulamaydi. */}
+        <Mentor>{!proj
+          ? tr({ uz: "Loyihangizni tanlang — shu sayt dars oxirida internetda turadi.", ru: 'Выберите свой проект — этот сайт к концу урока окажется в интернете.' })
           : tr({ uz: "Endi sayt qaysi sahifalardan iborat bo'lishini yozing. Kamida to'rttasi kerak: masalan «Bosh sahifa».", ru: 'Теперь напишите, из каких страниц состоит сайт. Нужно минимум четыре: например «Главная».' })}</Mentor>
         <Split>
           <Col>
-            {!turi ? (
+            {!proj ? (
               <div className="prj-grid fade-up delay-1">
-                {PROJECTS.map(p => (
+                {projList.map(p => (
                   <button key={p.id} className="prj-card" onClick={() => choose(p.id)}>
                     <span className="prj-ic">{p.ic}</span>
                     <span className="prj-nm">{tr(p.name)}</span>
@@ -1353,7 +1363,10 @@ const PROJ_TITLE = {
 };
 const buildPrompt = (proj, style) => {
   const pages = (proj && Array.isArray(proj.sahifalar) && proj.sahifalar.length ? proj.sahifalar : ['Bosh sahifa']).join(', ');
-  const ttl = PROJ_TITLE[proj && proj.turi] || { uz: 'Mening saytim', ru: 'Мой сайт' };
+  // F-0803-30: Demo Day loyihasi tanlangan bo'lsa, sarlavha o'quvchining O'Z yechimi bo'ladi
+  const demo = proj && proj.turi === 'demo' ? demoRead() : null;
+  const ttl = demo && demo.yechim ? { uz: demo.yechim, ru: demo.yechim }
+    : PROJ_TITLE[proj && proj.turi] || { uz: 'Mening saytim', ru: 'Мой сайт' };
   // Har qator UZ va RU juftligi bilan — o'quvchi qaysi tilda o'qisa, topshiriq ham shu tilda.
   return [
     tr({ uz: "Men veb-sayt qurmoqchiman. Menga uning to'liq kodini yozib ber.", ru: 'Я хочу сделать веб-сайт. Напиши мне его полный код.' }),

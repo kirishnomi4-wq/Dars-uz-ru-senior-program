@@ -1372,6 +1372,20 @@ function useAudio(segments) {
 
 
 const LESSON_META = { lessonId: 'vscode-start-01-v1', lessonTitle: { uz: 'VS Code — professional start', ru: 'VS Code — профессиональный старт' } };
+
+// 🏁 DEMO DAY LOYIHA-IPI (F-0803-30): PmLesson1 da tanlangan muammo-loyiha shu kalitda yashaydi
+// (TTLsiz). Bu darsda mentor har o'quvchidan loyihasini so'raydi; keyin Deploy uni saytga
+// aylantiradi, PmLesson3 esa nutqqa. Shakl: { muammo, yechim, manba, holat, savedAt }.
+const DEMO_KEY = 'ccDemoDay';
+const demoRead = () => { try { return JSON.parse(localStorage.getItem(DEMO_KEY) || 'null'); } catch { return null; } };
+const demoWrite = (patch) => { try { localStorage.setItem(DEMO_KEY, JSON.stringify({ ...(demoRead() || {}), ...patch, savedAt: Date.now() })); } catch { /* saqlab bo'lmadi */ } };
+// G'oya-bank — PmLesson1 dagi bilan BIR XIL (95-qonun olami); g'oyasiz kelgan bola shu yerdan oladi.
+const IDEA_BANK = [
+  { id: 'togarak', ic: '🏫', muammo: { uz: "To'garak jadvali faqat devorda — uydan ko'rib bo'lmaydi", ru: 'Расписание кружка только на стене — из дома не посмотришь' }, yechim: { uz: 'Jadval va manzil sayti', ru: 'Сайт с расписанием и адресом' } },
+  { id: 'dokon', ic: '🛒', muammo: { uz: "Mahalla do'konida nima bor-yo'qligini borib ko'rmaguncha bilib bo'lmaydi", ru: 'Что есть в магазине у дома — не узнаешь, пока не сходишь' }, yechim: { uz: 'Menyu va narxlar sayti', ru: 'Сайт с меню и ценами' } },
+  { id: 'seksiya', ic: '⚽', muammo: { uz: "Sport seksiyasining vaqti va narxini telefon qilib so'rashga to'g'ri keladi", ru: 'Время и цену секции приходится узнавать по телефону' }, yechim: { uz: "Mashg'ulot vaqtlari sayti", ru: 'Сайт с расписанием тренировок' } },
+  { id: 'kitob', ic: '📚', muammo: { uz: "Sinfda kimda qaysi kitob borligini hech kim bilmaydi", ru: 'Никто не знает, у кого в классе какая книга' }, yechim: { uz: "Kitob almashinuv ro'yxati sayti", ru: 'Сайт со списком обмена книгами' } },
+];
 const HW_TOKENS = [
   { t: { uz: 'amaliyot', ru: 'практика' }, l: 8, tp: 22, s: 13, d: 6 },
   { t: { uz: 'loyiha', ru: 'проект' }, l: 68, tp: 16, s: 12, d: 7.5 },
@@ -1394,7 +1408,8 @@ const SCREEN_META = [
   { id: 's12',  type: 'exploration', template: 'custom',   scored: false, scope: null },          // 12 Shortcut sandiqchasi
   { id: 's13',  type: 'test',        template: 'custom',   scored: true,  scope: 'final' },       // 13 YAKUNIY yozma — Go Live
   { id: 's14',  type: 'case',        template: 'custom',   scored: false, scope: null },          // 14 FINAL — jonli card tasdig'i + tantana
-  { id: 's15b', type: 'stats',       template: 'custom',   scored: false, scope: null },          // 15 Podium
+  { id: 'sproj', type: 'case',      template: 'custom',   scored: false, scope: null },          // 15 Demo Day loyihasi (F-0803-30)
+  { id: 's15b', type: 'stats',       template: 'custom',   scored: false, scope: null },          // 16 Podium
   { id: 'sflash', type: 'review',    template: 'custom',   scored: false, scope: null },          // 16 Flashcards
   { id: 's16',  type: 'summary',     template: 'custom',   scored: false, scope: null }           // 17 Yakun
 ];
@@ -3372,6 +3387,91 @@ const Confetti = () => {
   );
 };
 
+// ===== SCREEN SPROJ — DEMO DAY LOYIHASI: MENTOR SO'RAYDI (F-0803-30) =====
+// PmLesson1 da tanlangan g'oya shu yerda ko'rsatiladi va TASDIQLANADI — Demo Day'da bola
+// «istagan saytini» emas, real muammoga yechim ko'rsatishi uchun. G'oyasi yo'q (yoki
+// tayyor brend nusxasini aytgan) bola bank'dan oladi. Jonli darsda mentor panelida kim
+// tasdiqlagani ko'rinadi — mentor har bir boladan og'zaki so'rab chiqadi.
+const ScreenDemoIdea = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
+  const gate = useContext(LiveGateCtx) || {};
+  const live = gate.live;
+  const isMentorLive = !!(live && live.mode === 'mentor');
+  const saved = demoRead();
+  const hasSaved = !!(saved && saved.muammo);
+  const [picking, setPicking] = useState(!hasSaved);       // saqlangani yo'q → darrov tanlov
+  const [sel, setSel] = useState(hasSaved ? saved.manba : null);
+  const [ownM, setOwnM] = useState(hasSaved && saved.manba === 'ozim' ? saved.muammo : '');
+  const [ownY, setOwnY] = useState(hasSaved && saved.manba === 'ozim' ? saved.yechim : '');
+  const [confirmed, setConfirmed] = useState(!!(storedAnswer && storedAnswer.correct));
+  const ownOk = ownM.trim().length >= 8 && ownY.trim().length >= 4;
+  const ready = picking ? (sel === 'ozim' ? ownOk : !!sel) : hasSaved;
+  const confirm = () => {
+    if (confirmed || !ready) return;
+    if (picking) {
+      if (sel === 'ozim') demoWrite({ muammo: ownM.trim(), yechim: ownY.trim(), manba: 'ozim', holat: 'tasdiqlandi' });
+      else { const b = IDEA_BANK.find(x => x.id === sel); demoWrite({ muammo: tr(b.muammo), yechim: tr(b.yechim), manba: b.id, holat: 'tasdiqlandi' }); }
+    } else demoWrite({ holat: 'tasdiqlandi' });
+    setConfirmed(true);
+    onAnswer(screen, { correct: true, picked: picking ? sel : saved.manba, stage: 'case', screenIdx: screen });
+    if (live && live.mode === 'student') live.submitAnswer(screen, SCREEN_META[screen]?.id || `s${screen}`, 0, true, 0);
+  };
+  const cur = demoRead();
+  return (
+    <Stage eyebrow={tr({ uz: 'Demo Day loyihasi', ru: 'Проект Demo Day' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!confirmed && !isMentorLive} label={confirmed || isMentorLive ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Loyihani tasdiqlang', ru: 'Подтвердите проект' }} onClick={onNext} /></>}>
+      <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Demo Day loyihangiz <span className="italic" style={{ color: T.accent }}>qaysi?</span></>, ru: <>Какой у вас проект для <span className="italic" style={{ color: T.accent }}>Demo Day</span>?</> })}</h2></div>
+        <Mentor>{tr({ uz: <>Demo Day'da sahnada shu loyihani ko'rsatasiz. Mentor so'raganda bir gapda ayting: <b style={{ color: T.ink }}>qaysi muammo va qanday sayt</b>.</>, ru: <>На Demo Day вы покажете со сцены именно этот проект. Когда ментор спросит — скажите одной фразой: <b style={{ color: T.ink }}>какая проблема и какой сайт</b>.</> })}</Mentor>
+        {isMentorLive ? (
+          <MentorWorkStats live={live} screenIdx={screen} taskLabel={tr({ uz: "Demo Day loyihasini aytish", ru: 'Назвать проект Demo Day' })} />
+        ) : (
+        <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 8, maxWidth: 680 }}>
+          {!picking && hasSaved && (
+            <>
+              <div className="frame-success"><p className="body" style={{ margin: 0, color: T.ink }}>💡 <b>{cur ? cur.muammo : ''}</b> → {cur ? cur.yechim : ''}</p></div>
+              {!confirmed && (
+                <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
+                  <button className="btn" style={{ background: T.success }} onClick={confirm}>{tr({ uz: '✓ Shu — mening loyiham', ru: '✓ Это мой проект' })}</button>
+                  <button className="chip" onClick={() => { setPicking(true); setSel(null); }}>{tr({ uz: 'Boshqasini tanlayman', ru: 'Выберу другой' })}</button>
+                </div>
+              )}
+            </>
+          )}
+          {picking && (
+            <>
+              <p className="body" style={{ margin: 0, color: T.ink2, fontSize: 14 }}>{tr({ uz: "Qoida bitta: tayyor brendning saytini ko'chirmaymiz — o'z atrofingizdagi muammoni tanlang.", ru: 'Правило одно: не копируем сайт готового бренда — выберите проблему вокруг себя.' })}</p>
+              {/* Bank 2 ustunda — 720px oynada «Tasdiqlash» skrollsiz ko'rinsin (110-B) */}
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(270px, 1fr))', gap: 8 }}>
+                {IDEA_BANK.map(b => {
+                  const on = sel === b.id;
+                  return (
+                    <button key={b.id} className={'hook-option ' + (on ? 'on' : '')} onClick={() => setSel(b.id)}>
+                      <span className="radio">{on && <span className="radio-dot" />}</span>
+                      <span>{b.ic} {tr(b.muammo)} <span style={{ color: on ? undefined : T.ink2 }}>→ {tr(b.yechim)}</span></span>
+                    </button>
+                  );
+                })}
+                <button className={'hook-option ' + (sel === 'ozim' ? 'on' : '')} onClick={() => setSel('ozim')}>
+                  <span className="radio">{sel === 'ozim' && <span className="radio-dot" />}</span>
+                  <span>✍️ {tr({ uz: "O'z g'oyam bor", ru: 'У меня своя идея' })}</span>
+                </button>
+              </div>
+              {sel === 'ozim' && (
+                <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 8, paddingLeft: 6 }}>
+                  <input className="text-input" value={ownM} onChange={e => setOwnM(e.target.value)} placeholder={tr({ uz: 'Qaysi muammo?', ru: 'Какая проблема?' })} />
+                  <input className="text-input" value={ownY} onChange={e => setOwnY(e.target.value)} placeholder={tr({ uz: 'Sayt nima qiladi?', ru: 'Что сделает сайт?' })} />
+                </div>
+              )}
+              {!confirmed && <button className="btn" disabled={!ready} style={{ background: ready ? T.success : undefined, alignSelf: 'flex-start', opacity: ready ? 1 : 0.5 }} onClick={confirm}>{tr({ uz: '✓ Tasdiqlash', ru: '✓ Подтвердить' })}</button>}
+            </>
+          )}
+          {confirmed && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Tasdiqlandi. Deploy darsida aynan shu loyihani internetga chiqarasiz.</>, ru: <>Подтверждено. На уроке деплоя вы выложите в интернет именно этот проект.</> })}</p></div>}
+        </div>
+        )}
+      </div>
+    </Stage>
+  );
+};
+
 const ScreenPodium = ({ screen, answers, onNext, onPrev }) => {
   const gate = useContext(LiveGateCtx) || {};
   const live = gate.live;
@@ -4273,7 +4373,7 @@ export default function VsCodeLesson({ lang: langProp, onFinished, onPractice })
     if (typeof onFinished === 'function') onFinished(payload);
   };
 
-  const screens = [ScreenHook, ScreenGoal, ScreenInstall, ScreenTour, ScreenTest1, ScreenFolder, ScreenEmmet, ScreenLive, ScreenTest2, ScreenCardHtml, ScreenCardCss, ScreenTest3, ScreenKeys, ScreenFinalTest, ScreenFinale, ScreenPodium, ScreenFlashcards, ScreenSummary];
+  const screens = [ScreenHook, ScreenGoal, ScreenInstall, ScreenTour, ScreenTest1, ScreenFolder, ScreenEmmet, ScreenLive, ScreenTest2, ScreenCardHtml, ScreenCardCss, ScreenTest3, ScreenKeys, ScreenFinalTest, ScreenFinale, ScreenDemoIdea, ScreenPodium, ScreenFlashcards, ScreenSummary];
   const Current = screens[screen];
   return (
     <LangContext.Provider value={lang}>

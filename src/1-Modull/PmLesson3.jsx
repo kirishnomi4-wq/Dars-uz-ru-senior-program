@@ -1185,6 +1185,9 @@ const ONE_LINERS = {
 // 💾 Nutq matni brauzerda saqlanadi: reload'da yo'qolmaydi, Demo Day kuni joyida turadi.
 // Ovoz-yozuv saqlanmaydi (og'ir) — u faqat shu ekranda eshitiladi.
 const PITCH_KEY = 'ccPitch3';
+// 🏁 DEMO DAY LOYIHA-IPI (F-0803-30): PmLesson1→VsCode→Deploy'da tanlangan loyiha —
+// nutq-ekranida eslatma bo'lib chiqadi, bola nutqni AYNAN o'z loyihasi haqida yig'adi.
+const demoRead = () => { try { return JSON.parse(localStorage.getItem('ccDemoDay') || 'null'); } catch { return null; } };
 const pitch3Read = () => { try { return JSON.parse(localStorage.getItem(PITCH_KEY) || 'null') || {}; } catch (_e) { return {}; } };
 const pitch3Write = (o) => { try { localStorage.setItem(PITCH_KEY, JSON.stringify(o)); } catch (_e) { /* saqlash imkoni yo'q */ } };
 function usePitch3() {
@@ -1514,6 +1517,10 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Saytingiz kimning ishini <span className="italic" style={{ color: T.accent }}>yengillashtiradi</span>?</>, ru: <>Чью работу <span className="italic" style={{ color: T.accent }}>облегчает</span> ваш сайт?</> })}</h2></div>
         <Mentor>{tr({ uz: "Sayt tayyor — lekin u kimga kerakligini aytish qiyin. Uchta savolga javob bersangiz, javoblaringizdan bitta gap yig'iladi. Avval qanday sayt qilganingizni tanlang.", ru: 'Сайт готов — но сказать, кому он нужен, трудно. Ответите на три вопроса — из ваших ответов соберётся одна фраза. Сначала выберите, какой сайт вы сделали.' })}</Mentor>
         <MentorCollapseScroll targetRef={workRef} />
+        {/* F-0803-30: modul boshida tanlangan Demo Day loyihasi — nutq AYNAN shu haqda yig'ilsin */}
+        {(() => { const dm = demoRead(); return dm && dm.muammo ? (
+          <p className="hook-ack fade-up" style={{ margin: 0 }}>💡 {tr({ uz: 'Demo Day loyihangiz', ru: 'Ваш проект Demo Day' })}: <b>{dm.muammo}</b> → {dm.yechim}</p>
+        ) : null; })()}
         <div ref={workRef} style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px,2vw,16px)' }}>
           <div className="kind-grid fade-up delay-1">
             {SITE_KINDS.map(s => (
