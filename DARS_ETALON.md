@@ -170,7 +170,49 @@ s16 SUMMARY     — yakun (4.2)
 ### 4.2 YAKUN SAHIFASI (summary) — standart tarkibi
 Tartib bilan: **✓ Dars tugadi chip + sarlavha + ScoreRing** → **⚡ CodeStrike CTA** (studentWait/Solo/Live/mentor holatlari — 8-bo'lim) → **split: «Endi siz bilasiz» (RECAP) + «📝 Uyga vazifa» (HOMEWORK)** → **🏅 Nishonlar kolleksiyasi (X/4)**. Nav: «Qaytadan» (reset) + «Modulni yakunlash →» (finishLesson → payload: lessonId, nickname, ballar, davomiylik).
 
+### 4.2-A 🔴 DARS BITTA GAP BILAN YOPILADI — «Bugungi asosiy fikr» (103-qonun, 2026-08-02, F-0802-06)
+
+Dars bir nechta tushunchani o'rgatsa, ular ekranlar bo'ylab **alohida-alohida** yashaydi va
+o'quvchi ularni bir-biriga bog'lay olmasdan chiqib ketadi. RECAP buni yopmaydi — u sanoq
+ro'yxati, xulosa emas.
+
+📌 **Talab:** har darsning yakun sahifasida **bitta gap** turadi — o'quvchi dars oxirida
+**o'z og'zi bilan ayta oladigan** xulosa. Dars loyihalanganda AVVAL shu gap yoziladi, keyin
+ekranlar unga olib boradigan qilib quriladi (natija-avval loyihalash).
+
+- **Joyi:** hero + ScoreRing dan KEYIN, CodeStrike CTA dan OLDIN (birinchi ko'zga tushadigan joy).
+- **Hajmi:** ataylab kichik — `small` o'lchov, 1 qator ikona + `Bugungi asosiy fikr —` yorlig'i.
+  Katta qilinsa RECAP bilan raqobatlashadi va ikkalasi ham o'qilmaydi.
+- **Ohangi:** ikki tushuncha bir-biriga **ulanadi**, qayta ta'riflanmaydi.
+  ✅ «Har qanday ilova — bu **sistema**. Sistema ichida esa **algoritmlar** ishlaydi.»
+  ❌ «Sistema — qismlar va bog'lanishlar, algoritm — qadamlar tartibi» (bu RECAP, xulosa emas).
+- **Audio:** yakun-ovozi ham aynan shu gapni aytadi (matn va ovoz bir xil bo'lsin).
+- **Flashcardga qo'shilmaydi** — flashcard faqat darsda O'TILGAN atamalarni takrorlaydi;
+  yopuvchi fikr — sintez, atama emas (foydalanuvchi qoidasi, 2026-08-02).
+
 > ⚠️ **Kalit so'zlar (GLOSSARY) yakun sahifasida BO'LMAYDI.** Takrorlash uchun alohida **Flashcard** sahifasi bor (`ScreenFlashcards`, summarydan oldin) — glossary uni takrorlar, shuning uchun olib tashlangan. Yakun sahifasi Nishonlar kolleksiyasi bilan tugaydi. (`GLOSSARY` const va `open/setOpen` state ham Screen16'dan olib tashlangan; `.gloss*` CSS ishlatilmaydi.)
+
+---
+
+## 4.3 🔴 TEST-SAVOLI TIPOGRAFIYASI — `.h-ask` (105-qonun, 2026-08-02, F-0802-11)
+
+Savol `.h-title` (`clamp(22px,4vw,38px)` + `.title` dan `line-height: 1.1`) bilan chizilmaydi —
+u **qisqa sarlavha** klassi. 10–20 so'zlik savol unda 3–4 qatorga bo'linib, qatorlar
+bir-biriga yopishadi. Etalon o'lchov repo ichida bor: **arena** `.qz-q` (28px / lh 1.35).
+
+```css
+.h-ask { font-size: clamp(19px,2.6vw,27px); line-height: 1.32; letter-spacing: -0.01em; text-wrap: balance; }
+```
+- Savol-sarlavhasi: `className="title h-ask"` (ilgari `title h-sub` / PM darslarda `title h-title`).
+- `.h-title` va `.h-sub` ga **tegilmaydi** — ular sarlavha va yakun-subtitr uchun qoladi.
+- Variant tugmasi: `font-size: clamp(15px,1.85vw,17px)` · `line-height: 1.45` ·
+  padding `clamp(13px,1.9vw,17px) clamp(15px,2.2vw,20px)` · variantlar orasi **11px**.
+- Savol÷variant nisbati **2.4× → 1.6×** (asosiy ish — variantlarni o'qish — mayda qolmaydi).
+- Savol MATNI ham qisqa: 105b-qonun + `MATN_KORPUS.md` 68-bo'lim.
+
+> Dasturiy o'lchov: `title h-ask` ishlatgan har faylda `.h-ask {` e'loni bor (0 ta
+> «ishlatgan, e'lon qilmagan»); e'lon faylda bittadan ortiq emas; `.option` da `line-height: 1.45`.
+> To'liq matni: `PM_DARS_ETALON.md` 105-qonun. Tatbiq: **111 dars fayli**.
 
 ---
 
@@ -673,11 +715,85 @@ darslarga tarqalmaydi, har fayl alohida tuzatiladi.
 `pracRead`/`pracWrite`/`pracClear` + `storageKey={practice.codeKey}` + `codesWrite` bor.
 
 ---
+## 11-A. 🃏 FLASHCARD JAVOBI — 107-QONUN: O'LCHAM JAVOB UZUNLIGIGA MOSLASHADI (2026-08-03, F-0803-13/14)
+
+> Qamrov: **texnik VA PM darslar** — `Flashcards` umumiy komponent (76 dars).
+
+**Muammo (tuzatilgan):** `.fc-tag` hamma javobga bitta katta monoshrift berardi
+(`font-family:'JetBrains Mono'; font-size: clamp(30px,6vw,46px)`). Bu o'lcham **bir so'zlik**
+javob (`let`, `=`, `string`) uchun tanlangan, lekin 32-73 belgilik javoblarga ham qo'llanardi:
+matn 2-3 qatorga bo'linib, **qat'iy balandlikdagi** kartaga (`.fc-card { height: clamp(188px,27vh,268px) }`)
+sig'masdi va izoh (`.fc-note`) pastki yumaloq chetga yopishib qolardi.
+O'lchov (1280×648): kerak **195px** / bor **188px** → izoh padding qutisidan **4px** pastga chiqardi.
+
+**🔴 Miqyos — bu bitta darsning bugi EMAS edi:** `back:` maydonlari skanerlanganda **891** javobdan
+**312 tasi (35%)** 14 belgidan uzun, **74/76** darsda uchradi. Ya'ni har uchinchi karta siqilgan holatda edi.
+
+**Qonun (3 band):**
+1. **O'lcham pog'onali** — javob uzunligiga qarab sinf beriladi:
+   `t1` ≤8 belgi `clamp(30px,6vw,46px)` · `t2` ≤16 `clamp(24px,4.4vw,34px)` ·
+   `t3` ≤32 `clamp(20px,3.4vw,26px)` · `t4` >32 `clamp(17px,2.6vw,22px)` (+`line-height:1.3`).
+2. **Kod — mono, gap — Manrope.** `fcIsCode()`: monoshrift FAQAT lug'atdagi kalit so'zga
+   (`let, const, var, string, number, boolean, true, false, null, undefined, function, return, for, while, if, else`)
+   yoki kod-belgisi (`= ( ) { } ; . [ ] < > + * / % ! & | -`) bo'lgan **yakka** tokenga beriladi.
+   Gap — `Manrope` (mono gapni ~25% kengaytiradi). Gap ICHIDAGI kalit so'zlar `.fc-kw` bilan mono qoladi.
+   ❌ «o'zgaruvchi» monoshriftda — bu atama, kod emas.
+3. **Karta balandligi TEGILMAYDI** (`height`, `min-height` emas): pog'onalash 73 belgilik javobni
+   ham sig'dirgani uchun qat'iy balandlik saqlanadi — kartalar almashganda sakramaydi (Quizlet uslubi).
+
+**Tekshiruv (dasturiy, majburiy):**
+- `fcAnswer(` ishlatgan har faylda `const fcAnswer =` **va** `.fc-tag.t1 {` e'loni bor — «ishlatgan,
+  e'lon qilmagan» **0** bo'lishi shart (76/76/76 ✅ 2026-08-03).
+- Eski naqsh qoldig'i: `grep '<span className="fc-tag">'` → **0**.
+- Brauzer-o'lchovi: kartani ochib `javob + izoh + padding + gap` ni karta balandligi bilan solishtiring —
+  **toshish 0** bo'lsin. Sinov qilingan eng og'irlari: `PmLesson6` (73 blg → t4, 111/188px),
+  `PmLesson5` (67 blg), `ClaudeSkillsLesson` (34 blg) — uchalasida ham 0 toshish.
+
+**Sabot:** o'lchamni kontentga emas, **bitta namunaviy holatga** qarab tanlash — takrorlanuvchi xato-sinf.
+`.h-ask` (105-qonun) da savol-sarlavha bilan aynan shu bo'lgan: qisqa sarlavha uchun tanlangan o'lcham
+10-20 so'zlik savolga qo'llanib, matn yopishib qolgan edi. **Naqsh: matn o'zgaruvchan uzunlikda bo'lsa,
+o'lcham ham o'zgaruvchan bo'lishi shart.**
+
+---
+## 11-B. 🧵 108-QONUN: BIR DARS — BITTA MISOL-IP · 109-QONUN: TMI TAQIQI (2026-08-03, F-0803-19/20)
+
+> Foydalanuvchi buyrug'i bilan QAT'IY muhrlangan: «keraksiz tekst jalka UI to'ldirib
+> o'quvchi tushunmasligiga olib keladi — barcha darslarda shu bo'yicha».
+
+**108-qonun — BIR DARS, BITTA MISOL-IP.**
+Darsning barcha asosiy ekranlari (hook → tushuntirish → testlar → yakuniy mashq → flashcard →
+arena → uy vazifasi → praktika) **BITTA misol-olamda** yuradi; yangi tushuncha yangi misol
+bilan emas, o'sha ipning KENGAYISHI bilan ochiladi.
+- ❌ Anti-namuna (tuzatilgan): JsFunctions'da 4 olam ipsiz almashardi — buyurtma-narx →
+  salomBer/"Ali" → narxHisobla → kvadrat. O'quvchi hukmi: «mavzu nimaligini bilib bo'lmayapti».
+- ✅ Namuna: butun dars `zarar(kuch)` ipida; parametr = kuch, return = hisoblangan zarar,
+  ikkinchi parametr = krit bonus — tushuncha o'sdi, olam o'zgarmadi.
+- Ikkinchi misolga ruxsat FAQAT qisqa mashq/test bandida (asosiy tushuntirish emas) va u ham
+  o'quvchi tanigan olamdan (95-qonun) bo'lsin.
+- Ip tanlash foydalanuvchi bilan kelishiladi (2026-08-03: lavash ipi RAD etilgan, o'yin-olami
+  tanlangan — «lavash-mavash kerakmas»). Tayyor ip JsVars/JsCond/JsLoops/JsFunctions'da:
+  **o'yin olami** (ball, jon, zarar, krit).
+- **Tekshiruv (grep-lanadigan):** darsdagi funksiya/o'zgaruvchi nomlarini yig'ib sanang —
+  asosiy tushuntirish-ekranlarida 1 ta nom-oila bo'lishi shart. Eski ip qoldig'i:
+  `grep "salomBer\|kvadrat\|narxHisobla\|qoshish\|ayir" <fayl>` → 0.
+
+**109-qonun — TMI (ortiqcha matn) TAQIQI.** Matn-mezonlari `MATN_KORPUS.md` 74-75-bo'limda
+(mentor maks 2 gap · reja-ekran ta'rif aytmaydi · olib tashlash testi · bir g'oya maks
+2 marta). Bu yerda TEXNIK tomoni:
+- Ekran matni ekran maqsadidan katta bo'lmasin: tushuntirish-ekrani ~600 belgidan, hook
+  ~500 belgidan oshsa — auditor GAPga yozadi (JsFunctions s1: 918 → 503 belgi tajribasi).
+- Dekorativ blok (ko'prik, qo'shimcha eslatma, kelajak-reklama) mashq-g'alabasi yoniga
+  QO'YILMAYDI — g'alaba lahzasi yakka turadi (F-0803-11/12).
+- 92-qonun («bir ekran — bir ish») bilan juft: matn ham bir ish atrofida.
+
+---
 ## 12. 🐛 MA'LUM BUGLAR TARIXI (qaytarilmasin!)
 
 | Bug | Belgi | Sabab | Tuzatish |
 |---|---|---|---|
-| 🔴 **`<style>` ichida ortiqcha backtick** (2026-07-28) | IDE **yuzlab** xato ko'rsatadi («'}' expected», «Did you mean `{'}'}`»), esbuild esa BITTA xato beradi | `<style>{` … `}</style>` bloki JS **shablon-satri**; uning ichiga (odatda CSS izohiga) yozilgan backtick satrni **erta yopadi** va undan keyingi butun CSS+JSX kod deb o'qiladi | CSS izohlarida backtick ISHLATMANG. 🔴 **Diagnostika:** IDE ro'yxatiga qaramang — **esbuild**ning BIRINCHI xatosiga qarang, ildiz doim bitta. ⚠️ Grep bilan ovlash ishonchsiz (ko'p qatorli izohda backtick 2-3-qatorda bo'lishi mumkin, `{/* … */}` JSX-izohlari esa yolg'on-signal beradi — ular shablon-satridan TASHQARIDA va zararsiz). To'g'ri usul: `<style>{\`` va `` \`}</style> `` orasidagi matnni ajratib, undagi backticklarni sanash — 0 bo'lishi shart |
+| 🔴 **Gate-vidjet ko'rinish-zonasidan TASHQARIDA** (2026-08-03, F-0803-19) | «Davom etish» ochilmaydi, o'quvchi «dars ishlamayapti / oq bo'lib qolgan» deydi; esbuild/lint hammasi toza | Majburiy vidjet (drag-drop) ikki ustunli splitdan KEYIN to'liq enli chizilgan — 720px oynada `y=766+` ga tushib qoladi; `.lesson-root` da `overflow:hidden` bo'lgani uchun scroll HAM yo'q | Gate-vidjet birinchi ekran-to'ldirishda ko'rinsin: mavjud ustunni ALMASHTIRSIN (JsFunctions s3 naqshi) yoki yuqorida tursin. Tekshiruv: brauzerda 1280×720 va 1280×648 da vidjet `getBoundingClientRect().bottom <= innerHeight` |
+| 🔴 **`<style>` ichida ortiqcha backtick** (2026-07-28) | IDE **yuzlab** xato ko'rsatadi («'}' expected», «Did you mean `{'}'}`»), esbuild esa BITTA xato beradi | `<style>{` … `}</style>` bloki JS **shablon-satri**; uning ichiga (odatda CSS izohiga) yozilgan backtick satrni **erta yopadi** va undan keyingi butun CSS+JSX kod deb o'qiladi | CSS izohlarida backtick ISHLATMANG. 🔴 **Diagnostika:** IDE ro'yxatiga qaramang — **esbuild**ning BIRINCHI xatosiga qarang, ildiz doim bitta. ⚠️ Grep bilan ovlash ishonchsiz (ko'p qatorli izohda backtick 2-3-qatorda bo'lishi mumkin, `{/* … */}` JSX-izohlari esa yolg'on-signal beradi — ular shablon-satridan TASHQARIDA va zararsiz). To'g'ri usul: `<style>{\`` va `` \`}</style> `` orasidagi matnni ajratib, undagi backticklarni sanash — 0 bo'lishi shart. 🔴 **2026-08-02 (F-0802-15): endi bu QO'LDA emas — `npm run lint:jsx` avtomatik tekshiradi.** Sabab: bu qator 2026-07-28 da yozilgani holda, 2026-08-02 da aynan shu xato QAYTA qilindi (CSS izohiga `` `.mt-chip.in` `` yozildi → darslik oq ekran, `ReferenceError: chip is not defined`). Jadvaldagi eslatma o'qilmasa ishlamaydi — **darvoza ishlaydi** |
+| 🔴 **Bir-qatorli funksiya ichida `//` izoh** (2026-08-02, F-0802-14) | Skript bilan N faylga naqsh yoyilgach, esbuild **ommaviy** xato beradi (72 fayl) yoki jim o'tib funksiya yarim ishlaydi | Dars kodida ko'p yordamchi bir qatorga sig'diriladi: `const upd = () => { const z = …; document…setProperty(…); };`. Almashtiruvga `// izoh` qo'shilsa, u qatorning **QOLGANINI** yeydi — `setProperty` chaqiruvi yo'qoladi | Bir-qatorli funksiya ichiga `//` izoh QO'YILMAYDI: izoh qatordan **oldin** alohida turadi yoki `/* … */` ishlatiladi. Avtomatik: `npm run lint:jsx` (izohdan keyin o'sha qatorda yopiluvchi `}` bo'lsa — xato; satr-literallar hisobga olinadi, `http://` yolg'on-signal bermaydi) |
 | **Kalit yuklanmaydi** | Podium 0/5, arena 0 0 0 0 | `useLiveSession(lessonId)` `answerKey`ni tashlaydi; `set_quiz_keys` yo'q | 2.1 + 2.2 |
 | **Mentor stats "1 xato"** | To'g'ri javob "xato" sanaladi (ustunga zid) | Sanoq eskirgan `a.correct`ga tayanadi | 6-bo'lim (`picked === correctIdx`) |
 | **DragDrop dublikat** | Chiplar o'nlab ko'payib ketadi | setState ichida setState (StrictMode 2x) | 9.1 (yagona atomik holat) |

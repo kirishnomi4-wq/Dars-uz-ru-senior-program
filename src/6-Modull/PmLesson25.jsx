@@ -208,13 +208,13 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
     <Stage eyebrow={eyebrow} screen={screen} narrow navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!solved} label={solved ? 'Davom etish' : "To'g'ri javobni toping"} onClick={onNext} /></>}>
       <div className="screen" style={{ justifyContent: 'center', gap: 'clamp(16px,2.5vw,24px)' }}>
         <div className="fade-up">{question}</div>
-        <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
+        <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 11 }}>
           {options.map((opt, i) => {
             let cls = 'option';
             if (solved) { if (i === correctIdx) cls += ' option-correct'; else cls += ' option-wrong'; }
             else if (i === picked) cls += ' option-picked-wrong';
             return (
-              <button key={i} className={cls} disabled={solved} onClick={() => pick(i)} style={{ padding: 'clamp(12px,1.8vw,16px) clamp(14px,2.2vw,20px)', fontSize: 'clamp(14px,1.7vw,16px)', display: 'flex', alignItems: 'center', gap: 12 }}>
+              <button key={i} className={cls} disabled={solved} onClick={() => pick(i)} style={{ padding: 'clamp(13px,1.9vw,17px) clamp(15px,2.2vw,20px)', fontSize: 'clamp(15px,1.85vw,17px)', display: 'flex', alignItems: 'center', gap: 12 }}>
                 <span className="mono small" style={{ minWidth: 20, color: solved && i === correctIdx ? T.success : T.ink3 }}>{String.fromCharCode(65 + i)}</span>
                 <span style={{ flex: 1 }}>{opt}</span>
               </button>
@@ -444,7 +444,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const Screen4 = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow="Mashq · 1-savol"
     questionText="IT-auditoriya pitchda nimani ko'rishni istaydi?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-sub" style={{ marginTop: 8 }}>IT-auditoriya nimani <span className="italic" style={{ color: T.accent }}>istaydi</span>?</h2></>}
+    question={<><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>IT-auditoriya nimani <span className="italic" style={{ color: T.accent }}>istaydi</span>?</h2></>}
     options={['Ko\'p sifatlar: «zo\'r, innovatsion, inqilobiy»', 'Dalil: ishlaydigan demo, arxitektura va metrikalar', 'Faqat chiroyli slaydlar', 'Uzoq tarix va hissiyot']} correctIdx={1}
     explainCorrect="To'g'ri! IT-auditoriya dalil istaydi: ishlaydigan demo, arxitektura sxemasi va metrikalar. Bo'sh so'z emas, dalil ularni ishontiradi."
     explainWrong={{ 0: 'Sifatlar — bo\'sh so\'z. Dalil kerak.', 2: 'Chiroyli slayd yetarli emas — mazmun muhim.', 3: 'Hissiyot — bu auditoriya raqamni afzal ko\'radi.', default: 'Demo + arxitektura + metrika.' }} />
@@ -491,7 +491,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const Screen5b = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow="Tekshiruv"
     questionText="Mahsulot ishlashini auditoriyaga qanday isbotlaysiz?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>Mustahkamlash</p><h2 className="title h-sub" style={{ marginTop: 8 }}>Ishlashini qanday <span className="italic" style={{ color: T.accent }}>isbotlaysiz</span>?</h2></>}
+    question={<><p className="eyebrow" style={{ color: T.accent }}>Mustahkamlash</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Ishlashini qanday <span className="italic" style={{ color: T.accent }}>isbotlaysiz</span>?</h2></>}
     options={['Ko\'proq sifatlar bilan: «zo\'r, tez, kuchli»', 'Metrikalar bilan: aniq raqamlar (buyurtma, uptime, javob vaqti)', 'Ovozni balandlatib', 'Uzoqroq gapirib']} correctIdx={1}
     explainCorrect="To'g'ri! Metrikalar — aniq raqamlar (kunlik buyurtma, uptime, javob vaqti) ishlashini isbotlaydi. Sifatlar emas, son dalil bo'ladi."
     explainWrong={{ 0: 'Sifatlar — isbot emas, fikr.', 2: 'Ovoz — dalil emas.', 3: 'Uzoq gapirish — ishontirmaydi. Raqam ishontiradi.', default: 'Aniq metrikalar bilan isbotlanadi.' }} />
@@ -616,7 +616,7 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const Screen9 = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow="Mashq · 2-savol"
     questionText="Pitchda arxitektura sxemasi nima beradi?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-sub" style={{ marginTop: 8 }}>Arxitektura slaydi nima <span className="italic" style={{ color: T.accent }}>beradi</span>?</h2></>}
+    question={<><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Arxitektura slaydi nima <span className="italic" style={{ color: T.accent }}>beradi</span>?</h2></>}
     options={['Hech narsa — u faqat chiroy uchun', 'Siz haqiqiy, ishlaydigan tizim qurganingizning kuchli dalili', 'Auditoriyani chalg\'itadi', 'Faqat dasturchilarga tushunarli, foydasiz']} correctIdx={1}
     explainCorrect="To'g'ri! Arxitektura sxemasi — siz real, ishlaydigan tizim qurganingizning kuchli vizual dalili. IT-auditoriya buni bir qarashda tushunadi va qadrlaydi."
     explainWrong={{ 0: 'Chiroy emas — bu texnik dalil.', 2: 'Chalg\'itmaydi — aksincha, aniqlik beradi.', 3: 'Foydali — aynan texnik auditoriya uchun kuchli.', default: 'Haqiqiy tizim qurganingiz dalili.' }} />
@@ -705,7 +705,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const Screen12 = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow="Mashq · 3-savol"
     questionText="Yaxshi IT-pitch qanaqa bo'ladi?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-sub" style={{ marginTop: 8 }}>Yaxshi IT-pitch <span className="italic" style={{ color: T.accent }}>qanaqa</span>?</h2></>}
+    question={<><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Yaxshi IT-pitch <span className="italic" style={{ color: T.accent }}>qanaqa</span>?</h2></>}
     options={['Uzoq, hissiy va ko\'p sifatli', 'Tuzilgan (muammo→demo→arxitektura→metrika→so\'rov), metrikali, zich 3 daqiqa', 'Faqat slayd dizayni chiroyli', 'Imkon qadar ko\'p texnik atama']} correctIdx={1}
     explainCorrect="To'g'ri! Yaxshi IT-pitch: tuzilgan (muammo→demo→arxitektura→metrika→so'rov), har da'vo metrika bilan isbotlangan va 3 daqiqaga zich joylangan."
     explainWrong={{ 0: 'Uzoq/hissiy — IT-auditoriya dalil istaydi.', 2: 'Faqat dizayn — mazmun muhim.', 3: 'Ko\'p atama — chalkashtiradi. Aniqlik kerak.', default: 'Struktura + metrika + zich 3 daqiqa.' }} />
@@ -839,7 +839,7 @@ const Screen16 = ({ screen, answers, onReset, onPrev, onFinish }) => {
   return (
     <Stage eyebrow="Kursni tamomladingiz" screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>Qaytadan</button><button className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>Yakunlash</button></>}>
       <div className="screen">
-        <div className="hero"><div className="hero-l"><span className="done-chip fade-up"><span className="tick">{Ico.cap(12)}</span> Kurs finali</span><h2 className="title h-title fade-up d1">Siz endi <span className="italic" style={{ color: T.accent }}>quryasiz va pitch qilasiz</span>.</h2><p className="body h-sub fade-up d2">{PASSED ? 'Tabriklaymiz! Metrikali pitchni o\'rgandingiz va butun kursni tamomladingiz. Endi siz tizim quradigan VA uni ishonchli taqdim etadigan direktorsiz.' : 'Yaxshi harakat! Bir-ikki joyni mustahkamlash uchun darsni qayta ko\'ring — keyin bu finalni yopasiz.'}</p></div><ScoreRing correct={correct} total={total} /></div>
+        <div className="hero"><div className="hero-l"><span className="done-chip fade-up"><span className="tick">{Ico.cap(12)}</span> Kurs finali</span><h2 className="title h-title fade-up d1">Siz endi <span className="italic" style={{ color: T.accent }}>quryasiz va pitch qilasiz</span>.</h2>{/* 54-qonun (P0 PmUserStory · PmLesson2 qarori): h-sub qatori YO'Q — sarlavha o'zi yetadi. */}</div><ScoreRing correct={correct} total={total} /></div>
         <div className="split">
           <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span style={{ color: T.success, display: 'inline-flex' }}>{Ico.check(15)}</span> Endi siz bilasiz</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck" style={{ display: 'inline-flex' }}>{Ico.check(15)}</span><span>{r}</span></li>))}</ul></div>
           <div className="card fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>PM yo'lingiz</div><ol className="pmpath">{PM_PATH.map((p, i) => (<li key={i} className="pm-row" style={{ animationDelay: `${0.35 + i * 0.06}s` }}><span className="pm-num">{p.n}</span><span className="pm-text">{p.t}</span></li>))}</ol></div>
@@ -983,7 +983,7 @@ export default function PmLesson25({ lang: langProp, onFinished }) {
         .btn-soft:hover:not(:disabled) { box-shadow: 0 6px 14px -5px rgba(${T.shadowBase},0.2); }
 
         /* === OPSIYALAR === */
-        .option { background: ${T.paper}; cursor: pointer; transition: all 0.2s; font-family: 'Manrope', sans-serif; font-weight: 500; text-align: left; border-radius: 12px; width: 100%; border: none; color: ${T.ink}; box-shadow: 0 6px 16px -7px rgba(${T.shadowBase},0.16); }
+        .option { background: ${T.paper}; cursor: pointer; transition: all 0.2s; font-family: 'Manrope', sans-serif; font-weight: 500; line-height: 1.45; text-align: left; border-radius: 12px; width: 100%; border: none; color: ${T.ink}; box-shadow: 0 6px 16px -7px rgba(${T.shadowBase},0.16); }
         .option:hover:not(:disabled) { background: #FDFBF7; transform: translateY(-1px); box-shadow: 0 12px 24px -8px rgba(${T.shadowBase},0.22); }
         .option:disabled { cursor: default; }
         .option-correct { background: ${T.successSoft} !important; color: ${T.success} !important; box-shadow: 0 8px 22px -8px rgba(31,122,77,0.32) !important; }
@@ -1020,6 +1020,7 @@ export default function PmLesson25({ lang: langProp, onFinished }) {
 
         .h-title { font-size: clamp(22px,4vw,38px); }
         .h-sub { font-size: clamp(17px,2.5vw,22px); }
+        .h-ask { font-size: clamp(19px,2.6vw,27px); line-height: 1.32; letter-spacing: -0.01em; text-wrap: balance; }
         .body { font-size: clamp(14px,1.6vw,16px); line-height: 1.5; }
         .eyebrow { font-size: clamp(11px,1.3vw,12px); letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600; }
         .small { font-size: clamp(12.5px,1.4vw,13.5px); }
@@ -1051,7 +1052,10 @@ export default function PmLesson25({ lang: langProp, onFinished }) {
         .spec-text { font-family: 'Georgia, serif'; font-size: clamp(13px,1.7vw,15px); line-height: 1.5; margin: 3px 0 0; }
 
         /* === LAYOUT === */
-        .screen { flex: 1; min-height: 0; display: flex; flex-direction: column; gap: clamp(14px,2vw,20px); }
+        .screen { flex: 1 0 auto; min-height: 0; display: flex; flex-direction: column; gap: clamp(14px,2vw,20px); }
+        /* F-0725-04 · 60-qonun: kontent sig'masa ekran-bloklari SIQILMAYDI — stage-content skroll beradi.
+           Standart flex-shrink tufayli bloklar siqilib, ichidagi matn qirqilardi (F-0802-14 dalili). */
+        .screen > * { flex-shrink: 0; }
         .head { display: flex; flex-direction: column; gap: 6px; }
         .split { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: clamp(18px,3vw,36px); align-items: start; }
         .col { display: flex; flex-direction: column; gap: clamp(12px,2vw,16px); min-width: 0; }

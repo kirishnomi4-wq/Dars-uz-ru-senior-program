@@ -289,13 +289,13 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
     <Stage eyebrow={eyebrow} screen={screen} narrow navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!solved} label={solved ? 'Davom etish' : "To'g'ri javobni toping"} onClick={onNext} /></>}>
       <div className="screen" style={{ justifyContent: 'center', gap: 'clamp(16px,2.5vw,24px)' }}>
         <div className="fade-up">{question}</div>
-        <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
+        <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 11 }}>
           {options.map((opt, i) => {
             let cls = 'option';
             if (solved) { if (i === correctIdx) cls += ' option-correct'; else cls += ' option-wrong'; }
             else if (i === picked) cls += ' option-picked-wrong';
             return (
-              <button key={i} className={cls} disabled={solved} onClick={() => pick(i)} style={{ padding: 'clamp(12px,1.8vw,16px) clamp(14px,2.2vw,20px)', fontSize: 'clamp(14px,1.7vw,16px)', display: 'flex', alignItems: 'center', gap: 12 }}>
+              <button key={i} className={cls} disabled={solved} onClick={() => pick(i)} style={{ padding: 'clamp(13px,1.9vw,17px) clamp(15px,2.2vw,20px)', fontSize: 'clamp(15px,1.85vw,17px)', display: 'flex', alignItems: 'center', gap: 12 }}>
                 <span className="mono small" style={{ minWidth: 20, color: solved && i === correctIdx ? T.success : T.ink3 }}>{String.fromCharCode(65 + i)}</span>
                 <span style={{ flex: 1 }}>{opt}</span>
               </button>
@@ -558,7 +558,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const Screen4 = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow="Mashq · 1-savol"
     questionText="Web-mahsulotning 3 qavati nima?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-sub" style={{ marginTop: 8 }}>Har qanday web-mahsulotning <span className="italic" style={{ color: T.accent }}>3 qavati</span>?</h2></>}
+    question={<><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Har qanday web-mahsulotning <span className="italic" style={{ color: T.accent }}>3 qavati</span>?</h2></>}
     options={['Dizayn, kod va reklama', 'Frontend (ko\'rinish) + Backend (miya) + Data (xotira)', 'HTML, CSS va JavaScript', 'Telefon, kompyuter va planshet versiyalari']} correctIdx={1}
     explainCorrect="To'g'ri! Frontend — foydalanuvchi ko'radigan sahifa; backend — ko'rinmas hisob-kitob miyasi; data — o'chmas xotira. Instagram ham, 3 fichali MVP'ingiz ham shu 3 qavat."
     explainWrong={{ 0: 'Reklama mahsulot qavati emas — tarqatish vositasi.', 2: 'HTML/CSS/JS — bu faqat FRONTEND qavatining g\'ishtlari.', 3: 'Qurilmalar — ekran o\'lchami; arxitektura qavatlari emas.', default: 'Ko\'rinish + miya + xotira — 3 qavat.' }} />
@@ -632,7 +632,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const Screen5b = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow="Tekshiruv"
     questionText="MVP uchun stek qanday tanlanadi?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>Mustahkamlash</p><h2 className="title h-sub" style={{ marginTop: 8 }}>MVP uchun stekni <span className="italic" style={{ color: T.accent }}>nima hal qiladi</span>?</h2></>}
+    question={<><p className="eyebrow" style={{ color: T.accent }}>Mustahkamlash</p><h2 className="title h-ask" style={{ marginTop: 8 }}>MVP uchun stekni <span className="italic" style={{ color: T.accent }}>nima hal qiladi</span>?</h2></>}
     options={['Eng zamonaviy va moda bo\'lgan texnologiya', 'O\'zim BILADIGAN va core jobga yetadigan texnologiya', 'Eng katta kompaniyalar ishlatadigani', 'YouTube\'da eng ko\'p maqtalgani']} correctIdx={1}
     explainCorrect="To'g'ri! Ikki savol: bilamanmi? jobga yetadimi? Ikkalasiga HA — tanlov tayyor. Yangi texnologiya o'rganish zavqli, lekin bu MVP DAN KEYINGI zavq: hozir har hafta — real foydalanuvchi oldidagi qarz."
     explainWrong={{ 0: 'Moda o\'tadi, kechikish qoladi. MVPda tezlik — hayot.', 2: 'Google 10 000 dasturchiga quradi — siz bir kishisiz. Kontekst boshqa.', 3: 'YouTube maqtovi sizning tezligingizni oshirmaydi.', default: 'Bilaman + jobga yetadi = MVP stegi.' }} />
@@ -771,7 +771,7 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const Screen9 = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow="Mashq · 2-savol"
     questionText="MVP fundamentiga qaysi biri KIRMAYDI?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-sub" style={{ marginTop: 8 }}>Birinchi kun fundamentiga <span className="italic" style={{ color: T.accent }}>KIRMAYDIGANI</span> qaysi?</h2></>}
+    question={<><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Birinchi kun fundamentiga <span className="italic" style={{ color: T.accent }}>KIRMAYDIGANI</span> qaysi?</h2></>}
     options={['Ma\'lumotlar bazasi', 'Deploy — internetdagi havola', 'Ro\'yxatdan o\'tish (auth) — job talab qilmasa', 'Git repozitoriy']} correctIdx={2}
     explainCorrect="To'g'ri! Fundament = baza + deploy + git. Auth — FICHA: job talab qilsagina kiradi. Bizning avtobus-jobda «ochdi-ko'rdi-ketdi» — login faqat to'siq bo'lardi. 98-qarorga sodiq qoling."
     explainWrong={{ 0: 'Baza — miya oziqasi, birinchi kundan shart.', 1: 'Havolasiz real foydalanuvchi yo\'q — deploy fundament.', 3: 'Git — AI bilan qurishda ayniqsa: buzilsa qaytish yo\'li.', default: 'Fundament: baza + deploy + git. Auth — job so\'rasa.' }} />
@@ -868,7 +868,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const Screen12 = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow="Mashq · 3-savol"
     questionText="Malika sahifani ochganda so'rov qaysi yo'lni bosib o'tadi?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-sub" style={{ marginTop: 8 }}>«7 daqiqa» raqami <span className="italic" style={{ color: T.accent }}>qaysi safarni</span> bosib keladi?</h2></>}
+    question={<><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>«7 daqiqa» raqami <span className="italic" style={{ color: T.accent }}>qaysi safarni</span> bosib keladi?</h2></>}
     options={['Sahifa → baza → sahifa (server shart emas)', 'Sahifa → server (API) → baza → server → sahifa', 'Baza → sahifa → server', 'Server raqamni Malika telefoniga SMS qiladi']} correctIdx={1}
     explainCorrect="To'g'ri! Sahifa APIga so'rov beradi, server bazadan jadvalni oladi, hisoblaydi va javobni sahifaga qaytaradi. So'rov pastga — javob tepaga. Butun safar ~200 ms."
     explainWrong={{ 0: 'Sahifa bazaga to\'g\'ridan-to\'g\'ri kirmaydi — bu xavfsizlik va tartib uchun: miya o\'rtada turadi.', 2: 'Baza o\'zi hech narsani boshlamaydi — u XOTIRA, so\'ralganda javob beradi.', 3: 'SMS boshqa kanal — bizning safar web ichida.', default: 'Safar: sahifa → server → baza → orqaga.' }} />
@@ -902,7 +902,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             let cls = 'option';
             if (solved) { if (o.id === 1) cls += ' option-correct'; else cls += ' option-wrong'; }
             else if (picked === o.id) cls += ' option-picked-wrong';
-            return (<button key={o.id} className={cls} disabled={solved} onClick={() => pick(o.id)} style={{ padding: 'clamp(12px,1.8vw,16px) clamp(14px,2.2vw,20px)', fontSize: 'clamp(13.5px,1.7vw,15.5px)', display: 'flex', alignItems: 'center', gap: 12 }}><span className="mono small" style={{ minWidth: 20, color: T.ink3 }}>{String.fromCharCode(65 + o.id)}</span><span style={{ flex: 1, textAlign: 'left' }}>{o.t}</span></button>);
+            return (<button key={o.id} className={cls} disabled={solved} onClick={() => pick(o.id)} style={{ padding: 'clamp(13px,1.9vw,17px) clamp(15px,2.2vw,20px)', fontSize: 'clamp(15px,1.85vw,17px)', display: 'flex', alignItems: 'center', gap: 12 }}><span className="mono small" style={{ minWidth: 20, color: T.ink3 }}>{String.fromCharCode(65 + o.id)}</span><span style={{ flex: 1, textAlign: 'left' }}>{o.t}</span></button>);
           })}
         </div>
         <FeedbackBlock show={picked !== null} isCorrect={solved}>
@@ -1015,7 +1015,7 @@ const Screen16 = ({ screen, answers, onReset, onPrev, onFinish }) => {
     <Stage eyebrow="Qur bosqichi · 1/6" screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>Qaytadan</button><button className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>Yakunlash</button></>}>
       <div className="screen" style={{ position: 'relative' }}>
         {PASSED && <div className="confetti" aria-hidden="true">{Array.from({ length: 16 }).map((_, i) => (<span key={i} className="cf" style={{ left: `${(i * 6.3 + 2) % 100}%`, background: [T.accent, T.honey, T.grape, T.blue, T.success][i % 5], animationDelay: `${(i % 8) * 0.16}s` }} />))}</div>}
-        <div className="hero"><div className="hero-l"><span className="done-chip fade-up"><span className="tick">{Ico.rocket(12)}</span> 7-dars tamom · Qur bosqichi ochildi</span><h2 className="title h-title fade-up d1">Chizma qo'lda. <span className="italic" style={{ color: T.accent }}>Endi poydevor quyiladi.</span></h2><p className="body h-sub fade-up d2">{PASSED ? 'Arxitektura tayyor: 3 qavat, tanish stek, aniq fundament — va nimalar YO\'Qligi ham yozilgan. Keyingi darslar: analitika ulash, so\'ng AI bilan birinchi ekranni qurish.' : 'Yaxshi harakat! Qurishdan oldin qavatlar va fundament qoidalarini mustahkamlang.'}</p></div><ScoreRing correct={correct} total={total} /></div>
+        <div className="hero"><div className="hero-l"><span className="done-chip fade-up"><span className="tick">{Ico.rocket(12)}</span> 7-dars tamom · Qur bosqichi ochildi</span><h2 className="title h-title fade-up d1">Chizma qo'lda. <span className="italic" style={{ color: T.accent }}>Endi poydevor quyiladi.</span></h2>{/* 54-qonun (P0 PmUserStory · PmLesson2 qarori): h-sub qatori YO'Q — sarlavha o'zi yetadi. */}</div><ScoreRing correct={correct} total={total} /></div>
         <div className="split">
           <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span style={{ color: T.success, display: 'inline-flex' }}>{Ico.check(15)}</span> Endi siz bilasiz</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck" style={{ display: 'inline-flex' }}>{Ico.check(15)}</span><span>{r}</span></li>))}</ul></div>
           <div className="card fade-up d4"><div className="card-lbl" style={{ color: T.honey }}>🏅 Nishonlar yo'li</div><div style={{ display: 'flex', flexWrap: 'wrap', gap: 7 }}>{BADGES.map((b, i) => (<span key={i} className={`badge-chip ${i <= 1 ? 'badge-done' : ''} ${i === 2 ? 'badge-next' : ''}`}>{i === 0 ? '🏹' : (i === 1 ? '🎖️' : (i === 2 ? '🔜' : '🔒'))} {b.t}<span className="badge-when" style={i <= 1 ? { color: 'rgba(255,255,255,0.8)' } : undefined}>· {b.l}</span></span>))}</div><p className="small" style={{ margin: '10px 0 0', color: T.ink2 }}>Keyingi nishon — <b style={{ color: T.honey }}>🔨 Quruvchi</b>: chizmangiz bo'yicha MVP birinchi marta ISHLAGANDA (103-dars).</p></div>
@@ -1185,7 +1185,7 @@ export default function MvpArchLesson({ lang: langProp, onFinished }) {
         .btn-soft:hover:not(:disabled) { box-shadow: 0 6px 14px -5px rgba(${T.shadowBase},0.2); }
 
         /* === OPSIYALAR === */
-        .option { background: ${T.paper}; cursor: pointer; transition: all 0.2s; font-family: 'Manrope', sans-serif; font-weight: 500; text-align: left; border-radius: 12px; width: 100%; border: none; color: ${T.ink}; box-shadow: 0 6px 16px -7px rgba(${T.shadowBase},0.16); }
+        .option { background: ${T.paper}; cursor: pointer; transition: all 0.2s; font-family: 'Manrope', sans-serif; font-weight: 500; line-height: 1.45; text-align: left; border-radius: 12px; width: 100%; border: none; color: ${T.ink}; box-shadow: 0 6px 16px -7px rgba(${T.shadowBase},0.16); }
         .option:hover:not(:disabled) { background: #FDFBF7; transform: translateY(-1px); box-shadow: 0 12px 24px -8px rgba(${T.shadowBase},0.22); }
         .option:disabled { cursor: default; }
         .option-correct { background: ${T.successSoft} !important; color: ${T.success} !important; box-shadow: 0 8px 22px -8px rgba(31,122,77,0.32) !important; }
@@ -1222,6 +1222,7 @@ export default function MvpArchLesson({ lang: langProp, onFinished }) {
 
         .h-title { font-size: clamp(22px,4vw,38px); }
         .h-sub { font-size: clamp(17px,2.5vw,22px); }
+        .h-ask { font-size: clamp(19px,2.6vw,27px); line-height: 1.32; letter-spacing: -0.01em; text-wrap: balance; }
         .body { font-size: clamp(14px,1.6vw,16px); line-height: 1.5; }
         .eyebrow { font-size: clamp(11px,1.3vw,12px); letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600; }
         .small { font-size: clamp(12.5px,1.4vw,13.5px); }
@@ -1253,7 +1254,10 @@ export default function MvpArchLesson({ lang: langProp, onFinished }) {
         .spec-text { font-family: 'Georgia, serif'; font-size: clamp(13px,1.7vw,15px); line-height: 1.5; margin: 3px 0 0; }
 
         /* === LAYOUT === */
-        .screen { flex: 1; min-height: 0; display: flex; flex-direction: column; gap: clamp(14px,2vw,20px); }
+        .screen { flex: 1 0 auto; min-height: 0; display: flex; flex-direction: column; gap: clamp(14px,2vw,20px); }
+        /* F-0725-04 · 60-qonun: kontent sig'masa ekran-bloklari SIQILMAYDI — stage-content skroll beradi.
+           Standart flex-shrink tufayli bloklar siqilib, ichidagi matn qirqilardi (F-0802-14 dalili). */
+        .screen > * { flex-shrink: 0; }
         .head { display: flex; flex-direction: column; gap: 6px; }
         .split { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: clamp(18px,3vw,36px); align-items: start; }
         .col { display: flex; flex-direction: column; gap: clamp(12px,2vw,16px); min-width: 0; }

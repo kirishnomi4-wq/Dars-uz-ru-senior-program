@@ -68,6 +68,12 @@ const progWrite = (id, o) => { try { localStorage.setItem(_progKey(id), JSON.str
 const progClear = (id) => { try { localStorage.removeItem(_progKey(id)); } catch {} };
 
 const LESSON_META = { lessonId: 'pm-delivery-speed-17-v16', lessonTitle: { uz: 'Reliz tezligi = raqobat ustunligi', ru: 'Скорость доставки — конкурентное преимущество' } };
+const HW_TOKENS = [
+  { t: 'amaliyot', l: 8, tp: 22, s: 13, d: 6 },
+  { t: 'loyiha', l: 68, tp: 16, s: 12, d: 7.5 },
+  { t: 'mashq', l: 24, tp: 70, s: 12, d: 8.5 },
+  { t: 'natija', l: 78, tp: 68, s: 13, d: 6.8 }
+];
 const SCREEN_META = [
   { id: 's0',  type: 'hook',        template: 'custom',   scored: false, scope: 'hook' },
   { id: 's1',  type: 'rule',        template: 'custom',   scored: false, scope: null },
@@ -225,13 +231,13 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
     <Stage eyebrow={eyebrow} screen={screen} narrow navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!solved} label={solved ? 'Davom etish' : "To'g'ri javobni toping"} onClick={onNext} /></>}>
       <div className="screen" style={{ justifyContent: 'center', gap: 'clamp(16px,2.5vw,24px)' }}>
         <div className="fade-up">{question}</div>
-        <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
+        <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 11 }}>
           {options.map((opt, i) => {
             let cls = 'option';
             if (solved) { if (i === correctIdx) cls += ' option-correct'; else cls += ' option-wrong'; }
             else if (i === picked) cls += ' option-picked-wrong';
             return (
-              <button key={i} className={cls} disabled={solved} onClick={() => pick(i)} style={{ padding: 'clamp(12px,1.8vw,16px) clamp(14px,2.2vw,20px)', fontSize: 'clamp(14px,1.7vw,16px)', display: 'flex', alignItems: 'center', gap: 12 }}>
+              <button key={i} className={cls} disabled={solved} onClick={() => pick(i)} style={{ padding: 'clamp(13px,1.9vw,17px) clamp(15px,2.2vw,20px)', fontSize: 'clamp(15px,1.85vw,17px)', display: 'flex', alignItems: 'center', gap: 12 }}>
                 <span className="mono small" style={{ minWidth: 20, color: solved && i === correctIdx ? T.success : T.ink3 }}>{String.fromCharCode(65 + i)}</span>
                 <span style={{ flex: 1 }}>{opt}</span>
               </button>
@@ -443,7 +449,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const Screen4 = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow="Mashq · 1-savol"
     questionText="Kompaniyalar ko'pincha nima bilan yutadi?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-sub" style={{ marginTop: 8 }}>Kompaniyalar ko'pincha <span className="italic" style={{ color: T.accent }}>nima bilan</span> yutadi?</h2></>}
+    question={<><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Kompaniyalar ko'pincha <span className="italic" style={{ color: T.accent }}>nima bilan</span> yutadi?</h2></>}
     options={['Faqat eng yaxshi g\'oya bilan', 'Iteratsiya tezligi bilan — tez sinab, tez o\'rganib', 'Eng ko\'p kod yozish bilan', 'Eng chiroyli logotip bilan']} correctIdx={1}
     explainCorrect="To'g'ri! G'oya boshlanish nuqtasi, lekin g'olib ko'pincha tez iteratsiya qiladigan — tez relizlab, foydalanuvchidan tez o'rganadigan kompaniya."
     explainWrong={{ 0: 'Zo\'r g\'oya yetarli emas — tez sinab takomillashtirish kerak.', 2: 'Kod miqdori emas — o\'rganish tezligi.', 3: 'Logotip emas — iteratsiya tezligi.', default: 'Iteratsiya tezligi yutadi.' }} />
@@ -489,7 +495,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const Screen5b = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow="Tekshiruv"
     questionText="CI/CD reliz qilishni arzonlashtirsa, mahsulotga qanday ta'sir qiladi?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>Mustahkamlash</p><h2 className="title h-sub" style={{ marginTop: 8 }}>Reliz <span className="italic" style={{ color: T.accent }}>arzonlashsa</span> nima bo'ladi?</h2></>}
+    question={<><p className="eyebrow" style={{ color: T.accent }}>Mustahkamlash</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Reliz <span className="italic" style={{ color: T.accent }}>arzonlashsa</span> nima bo'ladi?</h2></>}
     options={['Eksperiment kamayadi', 'Ko\'proq eksperiment qilinadi — tez o\'rganiladi', 'Hech narsa o\'zgarmaydi', 'Kod sekinlashadi']} correctIdx={1}
     explainCorrect="To'g'ri! Reliz arzon va xavfsiz bo'lsa, jamoa bemalol ko'p marta relizlaydi — ko'p eksperiment, tez o'rganish."
     explainWrong={{ 0: 'Aksincha — arzon bo\'lsa ko\'payadi.', 2: 'Katta o\'zgarish — eksperiment tezligi oshadi.', 3: 'Kod tezligiga emas — reliz/eksperiment soniga ta\'sir qiladi.', default: 'Arzon reliz → ko\'p eksperiment.' }} />
@@ -627,7 +633,7 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const Screen9 = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow="Mashq · 2-savol"
     questionText="PM nuqtai nazaridan CI/CD aslida nima?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-sub" style={{ marginTop: 8 }}>PM uchun CI/CD <span className="italic" style={{ color: T.accent }}>aslida nima</span>?</h2></>}
+    question={<><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>PM uchun CI/CD <span className="italic" style={{ color: T.accent }}>aslida nima</span>?</h2></>}
     options={['Faqat dasturchilar uchun texnik vosita', 'Mahsulot eksperimentlari uchun infratuzilma', 'Dizayn dasturi', 'Ma\'lumotlar bazasi']} correctIdx={1}
     explainCorrect="To'g'ri! PM uchun CI/CD — tez va arzon eksperiment qilish imkoniyati. U mahsulotni tez sinab, o'rganib, yaxshilash infratuzilmasi."
     explainWrong={{ 0: 'Texnik ham, lekin PM uchun u — eksperiment infratuzilmasi.', 2: 'Dizayn emas — reliz avtomatlashtirish.', 3: 'Baza emas — reliz quvuri (pipeline).', default: 'CI/CD = eksperiment infratuzilmasi.' }} />
@@ -710,7 +716,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const Screen12 = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow="Mashq · 3-savol"
     questionText="Tez reliz qilish nega beparvolik emas?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-sub" style={{ marginTop: 8 }}>Tez reliz nega <span className="italic" style={{ color: T.accent }}>beparvolik emas</span>?</h2></>}
+    question={<><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Tez reliz nega <span className="italic" style={{ color: T.accent }}>beparvolik emas</span>?</h2></>}
     options={['Chunki tezlik doim xavfli', 'Chunki CI/CD har relizni test va lint darvozasidan o\'tkazadi', 'Chunki hech kim tekshirmaydi', 'Beparvolik aslida']} correctIdx={1}
     explainCorrect="To'g'ri! CI/CD tezlikni avtomatik sifat darvozalari (test, lint) bilan beradi. Shu sabab tez relizlasa ham bug foydalanuvchiga yetmaydi."
     explainWrong={{ 0: 'Tezlik darvozalar bilan xavfsiz bo\'ladi.', 2: 'Aksincha — CI/CD avtomatik tekshiradi.', 3: 'Aksincha — darvozalar tufayli xavfsiz.', default: 'CI/CD avtomatik test/lint darvozalari beradi.' }} />
@@ -822,6 +828,10 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 
 // ===== SCREEN 16 — YAKUN =====
 const Screen16 = ({ screen, answers, onReset, onPrev, onFinish }) => {
+  // F-0803-08: uyga vazifa kapsulasi — bosilganda topshiriq kartasi ochiladi
+  const [hwOpen, setHwOpen] = useState(false);
+  const [hwCharge, setHwCharge] = useState(false);
+  const fireHw = () => { if (hwCharge || hwOpen) return; setHwCharge(true); setTimeout(() => { setHwOpen(true); setHwCharge(false); }, 500); };
   const RECAP = ['Iteratsiya tezligi yutadi — zo\'r g\'oya emas', 'CI/CD = mahsulot eksperimentlari infratuzilmasi', 'Arzon reliz → ko\'p eksperiment → tez o\'rganish', 'Tez + xavfsiz (test va lint darvozalari)'];
   const HOMEWORK = [{ b: 'Loyihangizni o\'lchang', t: '— hozir oyiga nechta reliz qila olasiz?' }, { b: 'To\'siqlarni toping', t: '— qaysi qo\'l ishi sizni sekinlashtiradi?' }, { b: 'Bitta eksperiment rejalang', t: '— CI/CD bo\'lsa nimani sinab ko\'rardingiz?' }];
   const GLOSSARY = [{ b: 'Iteratsiya', t: '— qur→relizla→o\'rgan→yaxshila halqasi' }, { b: 'CI/CD', t: '— reliz quvurini avtomatlashtirish' }, { b: 'Eksperiment', t: '— g\'oyani relizlab, natijani o\'lchash' }, { b: 'Deploy', t: '— mahsulotni serverga chiqarish' }];
@@ -835,11 +845,19 @@ const Screen16 = ({ screen, answers, onReset, onPrev, onFinish }) => {
   return (
     <Stage eyebrow="Tayyor" screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>Qaytadan</button><button className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>Yakunlash</button></>}>
       <div className="screen">
-        <div className="hero"><div className="hero-l"><span className="done-chip fade-up"><span className="tick">{Ico.check(11)}</span> PM darsi tugadi</span><h2 className="title h-title fade-up d1">Endi tezlik — siz uchun <span className="italic" style={{ color: T.accent }}>raqobat ustunligi</span>.</h2><p className="body h-sub fade-up d2">{PASSED ? 'Tabriklaymiz! Iteratsiya tezligi, eksperiment infratuzilmasi va tez+xavfsiz relizni bilasiz. Endi keyingi darsda GitHub Actions bilan shu konveyerni quramiz!' : 'Yaxshi harakat! Bir-ikki joyni mustahkamlash uchun darsni qayta ko\'ring.'}</p></div><ScoreRing correct={correct} total={total} /></div>
-        <Zoomable><div className="split">
-          <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span style={{ color: T.success, display: 'inline-flex' }}>{Ico.check(15)}</span> Endi siz bilasiz</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck" style={{ display: 'inline-flex' }}>{Ico.check(15)}</span><span>{r}</span></li>))}</ul></div>
-          <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>Uyga vazifa</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>Tezlik ko'nikmangizni mashq qiling:</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{h.b}</b> <span className="t">{h.t}</span></li>))}</ul><p className="hw-note">Tez sina, tez o'rgan — birinchi bo'l! 🚀</p></div>
-        </div></Zoomable>
+        <div className="hero"><div className="hero-l"><span className="done-chip fade-up"><span className="tick">{Ico.check(11)}</span> PM darsi tugadi</span><h2 className="title h-title fade-up d1">Endi tezlik — siz uchun <span className="italic" style={{ color: T.accent }}>raqobat ustunligi</span>.</h2>{/* 54-qonun (P0 PmUserStory · PmLesson2 qarori): h-sub qatori YO'Q — sarlavha o'zi yetadi. */}</div><ScoreRing correct={correct} total={total} /></div>
+        <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span style={{ color: T.success, display: 'inline-flex' }}>{Ico.check(15)}</span> Endi siz bilasiz</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck" style={{ display: 'inline-flex' }}>{Ico.check(15)}</span><span>{r}</span></li>))}</ul></div>
+        <div className="hw-big-wrap fade-up d4">
+          <button className={`hw-big ${hwCharge ? 'charging' : ''}`} onClick={fireHw}>
+            <span className="hw-sky" aria-hidden="true">
+              {HW_TOKENS.map((k, i) => <span key={i} className="hw-tok" style={{ left: `${k.l}%`, top: `${k.tp}%`, fontSize: k.s, '--d': `${k.d}s` }}>{k.t}</span>)}
+            </span>
+            <span className="hw-big-shine" aria-hidden="true" />
+            <span className="hw-big-t">Uyga vazifa</span>
+            <span className="hw-big-s">Amaliy topshiriqni bajarish →</span>
+          </button>
+        </div>
+        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>Uyga vazifa</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>Tezlik ko'nikmangizni mashq qiling:</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{h.b}</b> <span className="t">{h.t}</span></li>))}</ul><p className="hw-note">Tez sina, tez o'rgan — birinchi bo'l! 🚀</p></div>}
         <div className="frame-success fade-up d4" style={{ display: 'flex', alignItems: 'center', gap: 14 }}><span style={{ fontSize: 30 }}>⚙️</span><div><p style={{ fontFamily: "'Source Serif 4',serif", fontWeight: 600, margin: 0, color: T.ink, fontSize: 'clamp(15px,2vw,18px)' }}>Keyingi dars: GitHub Actions</p><p className="body" style={{ margin: '2px 0 0', color: T.ink2 }}>Endi shu tezlikni beradigan konveyerni o'z qo'lingiz bilan quramiz — birinchi workflow.</p></div></div>
         <div ref={glossRef} className="gloss fade-up d4" style={{ scrollMarginBottom: 16 }}><div className="gloss-head" onClick={toggleGloss}><span className="lbl">Kalit so'zlar (takrorlash)</span><span className="gloss-toggle">{open ? '−' : '+'}</span></div>{open && (<div className="gloss-body">{GLOSSARY.map((g, i) => (<span key={i}><b>{g.b}</b> {g.t}{i < GLOSSARY.length - 1 ? ' · ' : ''}</span>))}</div>)}</div>
       </div>
@@ -960,7 +978,7 @@ export default function PmLesson17({ lang: langProp, onFinished }) {
         .btn-soft:hover:not(:disabled) { box-shadow: 0 6px 14px -5px rgba(${T.shadowBase},0.2); }
 
         /* === OPSIYALAR === */
-        .option { background: ${T.paper}; cursor: pointer; transition: all 0.2s; font-family: 'Manrope', sans-serif; font-weight: 500; text-align: left; border-radius: 12px; width: 100%; border: none; color: ${T.ink}; box-shadow: 0 6px 16px -7px rgba(${T.shadowBase},0.16); }
+        .option { background: ${T.paper}; cursor: pointer; transition: all 0.2s; font-family: 'Manrope', sans-serif; font-weight: 500; line-height: 1.45; text-align: left; border-radius: 12px; width: 100%; border: none; color: ${T.ink}; box-shadow: 0 6px 16px -7px rgba(${T.shadowBase},0.16); }
         .option:hover:not(:disabled) { background: #FDFBF7; transform: translateY(-1px); box-shadow: 0 12px 24px -8px rgba(${T.shadowBase},0.22); }
         .option:disabled { cursor: default; }
         .option-correct { background: ${T.successSoft} !important; color: ${T.success} !important; box-shadow: 0 8px 22px -8px rgba(31,122,77,0.32) !important; }
@@ -997,6 +1015,7 @@ export default function PmLesson17({ lang: langProp, onFinished }) {
 
         .h-title { font-size: clamp(22px,4vw,38px); }
         .h-sub { font-size: clamp(17px,2.5vw,22px); }
+        .h-ask { font-size: clamp(19px,2.6vw,27px); line-height: 1.32; letter-spacing: -0.01em; text-wrap: balance; }
         .body { font-size: clamp(14px,1.6vw,16px); line-height: 1.5; }
         .eyebrow { font-size: clamp(11px,1.3vw,12px); letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600; }
         .small { font-size: clamp(12.5px,1.4vw,13.5px); }
@@ -1027,7 +1046,10 @@ export default function PmLesson17({ lang: langProp, onFinished }) {
         .spec-text { font-family: 'Georgia, serif'; font-size: clamp(13px,1.7vw,15px); line-height: 1.5; margin: 3px 0 0; }
 
         /* === LAYOUT === */
-        .screen { flex: 1; min-height: 0; display: flex; flex-direction: column; gap: clamp(14px,2vw,20px); }
+        .screen { flex: 1 0 auto; min-height: 0; display: flex; flex-direction: column; gap: clamp(14px,2vw,20px); }
+        /* F-0725-04 · 60-qonun: kontent sig'masa ekran-bloklari SIQILMAYDI — stage-content skroll beradi.
+           Standart flex-shrink tufayli bloklar siqilib, ichidagi matn qirqilardi (F-0802-14 dalili). */
+        .screen > * { flex-shrink: 0; }
         .head { display: flex; flex-direction: column; gap: 6px; }
         .split { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: clamp(18px,3vw,36px); align-items: start; }
         .col { display: flex; flex-direction: column; gap: clamp(12px,2vw,16px); min-width: 0; }
@@ -1060,6 +1082,24 @@ export default function PmLesson17({ lang: langProp, onFinished }) {
         .card { background: ${T.paper}; border-radius: 16px; padding: 18px 20px; box-shadow: 0 8px 22px -7px rgba(${T.shadowBase},0.14); }
         .card-lbl { display: flex; align-items: center; gap: 8px; font-family: 'Manrope'; font-weight: 700; font-size: 13px; margin-bottom: 11px; }
         .recap { display: flex; flex-direction: column; gap: 8px; list-style: none; } .recap li { display: flex; align-items: flex-start; gap: 10px; font-size: clamp(13px,1.6vw,15px); color: ${T.ink}; animation: fade-in-up 0.4s ease-out forwards; opacity: 0; } .recap .ck { color: ${T.success}; flex-shrink: 0; margin-top: 1px; }
+        /* F-0803-08 — UYGA VAZIFA KAPSULASI (PmLesson2 etaloni): yakun sahifasida
+           «Endi siz bilasiz» dan KEYIN turadi, bosilganda topshiriq kartasi ochiladi. */
+        .hw-big-wrap { position: relative; align-self: center; width: min(560px, 100%); }
+        .hw-big-wrap::before { content: ''; position: absolute; inset: -16px; border-radius: 34px; background: radial-gradient(ellipse at center, rgba(124,58,237,0.45), rgba(124,58,237,0) 70%); filter: blur(18px); z-index: 0; pointer-events: none; animation: hw-aura 2.6s ease-in-out infinite; }
+        @keyframes hw-aura { 0%, 100% { opacity: 0.5; } 50% { opacity: 0.9; } }
+        .hw-big { position: relative; z-index: 1; overflow: hidden; display: flex; flex-direction: column; align-items: center; gap: 7px; width: 100%; padding: clamp(20px,2.8vw,30px) clamp(26px,3.4vw,44px); border: 1.5px solid rgba(186,140,255,0.72); border-radius: 22px; cursor: pointer; background: radial-gradient(130% 170% at 50% 120%, #3D1F86 0%, #2A1560 44%, #1B0F3F 100%); color: #fff; box-shadow: 0 0 0 1px rgba(90,40,180,.45), 0 0 26px rgba(124,58,237,.5), 0 0 68px rgba(124,58,237,.28), inset 0 0 48px rgba(124,58,237,.32); animation: hw-fire 1.7s ease-in-out 0.9s infinite; transition: transform 0.2s; }
+        .hw-big:hover { transform: translateY(-3px) scale(1.02); }
+        .hw-sky { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+        .hw-tok { position: absolute; font-family: 'JetBrains Mono', monospace; font-weight: 700; color: rgba(255,255,255,0.16); animation: hw-float var(--d, 7s) ease-in-out infinite alternate; }
+        @keyframes hw-float { from { transform: translateY(4px); } to { transform: translateY(-7px); } }
+        .hw-big.charging { animation: hw-fire 1.7s ease-in-out 0.9s infinite, hw-charge 0.5s ease; }
+        @keyframes hw-charge { 0% { filter: brightness(1); } 45% { filter: brightness(1.7) saturate(1.25); transform: scale(1.03); } 100% { filter: brightness(1); } }
+        .hw-big-t { font-family: 'Manrope'; font-weight: 800; font-size: clamp(25px,3.6vw,34px); letter-spacing: 0.02em; }
+        .hw-big-s { font-family: 'Manrope'; font-weight: 700; font-size: clamp(14px,1.9vw,17px); opacity: 0.94; }
+        .hw-big-shine { position: absolute; top: -40%; left: -60%; width: 45%; height: 180%; background: linear-gradient(100deg, transparent, rgba(255,255,255,0.16), transparent); transform: rotate(8deg); animation: hw-shine 4.6s ease-in-out infinite; pointer-events: none; }
+        @keyframes hw-fire { 0%,100% { box-shadow: 0 0 0 1px rgba(90,40,180,.45), 0 0 26px rgba(124,58,237,.5), 0 0 68px rgba(124,58,237,.28), inset 0 0 48px rgba(124,58,237,.32); } 50% { box-shadow: 0 0 0 1px rgba(120,60,220,.6), 0 0 40px rgba(124,58,237,.72), 0 0 96px rgba(124,58,237,.4), inset 0 0 60px rgba(124,58,237,.44); } }
+        @keyframes hw-shine { 0% { left: -60%; } 55%, 100% { left: 130%; } }
+        @media (prefers-reduced-motion: reduce) { .hw-big, .hw-big-shine, .hw-big-wrap::before, .hw-tok, .hw-big.charging { animation: none !important; } }
         .hw ul { display: flex; flex-direction: column; gap: 6px; list-style: none; } .hw li { font-size: clamp(13px,1.6vw,15px); color: ${T.ink}; } .hw li b { color: ${T.accent}; } .hw .t { color: ${T.ink2}; } .hw-note { margin: 11px 0 0; font-size: 12px; color: ${T.accent}; font-weight: 600; }
         .gloss { background: ${T.paper}; border-radius: 12px; box-shadow: 0 6px 16px -7px rgba(${T.shadowBase},0.12); overflow: hidden; }
         .gloss-head { display: flex; align-items: center; justify-content: space-between; padding: 13px 17px; cursor: pointer; } .gloss-head .lbl { font-family: 'Manrope'; font-weight: 700; font-size: 13px; color: ${T.ink}; } .gloss-toggle { font-size: 18px; color: ${T.ink2}; }

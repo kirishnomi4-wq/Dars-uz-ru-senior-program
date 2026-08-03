@@ -69,6 +69,12 @@ const progWrite = (id, o) => { try { localStorage.setItem(_progKey(id), JSON.str
 const progClear = (id) => { try { localStorage.removeItem(_progKey(id)); } catch {} };
 
 const LESSON_META = { lessonId: 'pm-monitoring-18-v16', lessonTitle: { uz: 'Monitoring = mahsulot metrikasi', ru: 'Мониторинг как продуктовая метрика' } };
+const HW_TOKENS = [
+  { t: 'amaliyot', l: 8, tp: 22, s: 13, d: 6 },
+  { t: 'loyiha', l: 68, tp: 16, s: 12, d: 7.5 },
+  { t: 'mashq', l: 24, tp: 70, s: 12, d: 8.5 },
+  { t: 'natija', l: 78, tp: 68, s: 13, d: 6.8 }
+];
 const SCREEN_META = [
   { id: 's0',  type: 'hook',        template: 'custom',   scored: false, scope: 'hook' },
   { id: 's1',  type: 'rule',        template: 'custom',   scored: false, scope: null },
@@ -220,13 +226,13 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
     <Stage eyebrow={eyebrow} screen={screen} narrow navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!solved} label={solved ? 'Davom etish' : "To'g'ri javobni toping"} onClick={onNext} /></>}>
       <div className="screen" style={{ justifyContent: 'center', gap: 'clamp(16px,2.5vw,24px)' }}>
         <div className="fade-up">{question}</div>
-        <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
+        <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 11 }}>
           {options.map((opt, i) => {
             let cls = 'option';
             if (solved) { if (i === correctIdx) cls += ' option-correct'; else cls += ' option-wrong'; }
             else if (i === picked) cls += ' option-picked-wrong';
             return (
-              <button key={i} className={cls} disabled={solved} onClick={() => pick(i)} style={{ padding: 'clamp(12px,1.8vw,16px) clamp(14px,2.2vw,20px)', fontSize: 'clamp(14px,1.7vw,16px)', display: 'flex', alignItems: 'center', gap: 12 }}>
+              <button key={i} className={cls} disabled={solved} onClick={() => pick(i)} style={{ padding: 'clamp(13px,1.9vw,17px) clamp(15px,2.2vw,20px)', fontSize: 'clamp(15px,1.85vw,17px)', display: 'flex', alignItems: 'center', gap: 12 }}>
                 <span className="mono small" style={{ minWidth: 20, color: solved && i === correctIdx ? T.success : T.ink3 }}>{String.fromCharCode(65 + i)}</span>
                 <span style={{ flex: 1 }}>{opt}</span>
               </button>
@@ -444,7 +450,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const Screen4 = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow="Mashq · 1-savol"
     questionText="Nega uptime/latency/error rate — PM (mahsulot) masalasi?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-sub" style={{ marginTop: 8 }}>Nega ishonchlilik metrikalari <span className="italic" style={{ color: T.accent }}>mahsulot</span> masalasi?</h2></>}
+    question={<><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Nega ishonchlilik metrikalari <span className="italic" style={{ color: T.accent }}>mahsulot</span> masalasi?</h2></>}
     options={['Chunki ular chiroyli grafik beradi', 'Chunki ular foydalanuvchi tajribasi va ishonchini bevosita o\'lchaydi', 'Chunki dasturchiga kerak', 'Aslida faqat texnik']} correctIdx={1}
     explainCorrect="To'g'ri! Sayt o'chiq, sekin yoki xato bersa — foydalanuvchi to'g'ridan-to'g'ri zarar ko'radi va ketadi. Bu metrikalar mahsulot ishonchini o'lchaydi."
     explainWrong={{ 0: 'Grafik emas — gap foydalanuvchi tajribasida.', 2: 'Dasturchiga ham, lekin avvalo mahsulot/biznes masalasi.', 3: 'Texnik ham, lekin to\'g\'ridan-to\'g\'ri mahsulot ishonchiga ta\'sir qiladi.', default: 'Ishonchlilik = foydalanuvchi tajribasi va ishonchi.' }} />
@@ -493,7 +499,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const Screen5b = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow="Tekshiruv"
     questionText="Uptime nima?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>Mustahkamlash</p><h2 className="title h-sub" style={{ marginTop: 8 }}>Uptime <span className="italic" style={{ color: T.accent }}>nima</span>?</h2></>}
+    question={<><p className="eyebrow" style={{ color: T.accent }}>Mustahkamlash</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Uptime <span className="italic" style={{ color: T.accent }}>nima</span>?</h2></>}
     options={['Sahifa rangi', 'Sayt ishlab turgan vaqt foizi (24/7 dan qancha)', 'Kodlar soni', 'Foydalanuvchi yoshi']} correctIdx={1}
     explainCorrect="To'g'ri! Uptime — sayt ishlab turgan vaqtning foizi. 99.9% uptime = vaqtning 99.9% ishlagan, 0.1% o'chiq bo'lgan."
     explainWrong={{ 0: 'Rang emas — ishlash vaqti foizi.', 2: 'Kod soni emas — tiriklik foizi.', 3: 'Yoshi emas — sayt ishlash vaqti.', default: 'Uptime — ishlab turgan vaqt foizi.' }} />
@@ -627,7 +633,7 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const Screen9 = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow="Mashq · 2-savol"
     questionText="99% uptime yiliga qancha o'chiq vaqtni anglatadi?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-sub" style={{ marginTop: 8 }}>99% uptime — yiliga <span className="italic" style={{ color: T.accent }}>qancha o'chiq</span>?</h2></>}
+    question={<><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>99% uptime — yiliga <span className="italic" style={{ color: T.accent }}>qancha o'chiq</span>?</h2></>}
     options={['5 daqiqa', 'Taxminan 3.6 kun (87 soat)', '1 soat', 'Hech qachon o\'chmaydi']} correctIdx={1}
     explainCorrect="To'g'ri! 99% chiroyli eshitiladi, lekin 1% o'chiq = yiliga ~3.6 kun! Shuning uchun jiddiy mahsulotlar 99.9% yoki undan yuqorini xohlaydi."
     explainWrong={{ 0: '5 daqiqa — bu 99.999% (besh to\'qqiz).', 2: '1 soat emas — 99% ancha ko\'p, ~3.6 kun.', 3: 'Aksincha — 99% yiliga 3.6 kun o\'chiq.', default: '99% = yiliga ~3.6 kun o\'chiq.' }} />
@@ -720,7 +726,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const Screen12 = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow="Mashq · 3-savol"
     questionText="Qaysi mahsulotga eng yuqori uptime (99.99%+) kerak?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-sub" style={{ marginTop: 8 }}>Qaysi mahsulotga eng <span className="italic" style={{ color: T.accent }}>yuqori</span> uptime kerak?</h2></>}
+    question={<><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Qaysi mahsulotga eng <span className="italic" style={{ color: T.accent }}>yuqori</span> uptime kerak?</h2></>}
     options={['Shaxsiy blog', 'To\'lov tizimi (har daqiqa pul oqadi)', 'O\'quv eslatma ilovasi', 'Bir martalik landing']} correctIdx={1}
     explainCorrect="To'g'ri! To'lov tizimi o'chsa, har daqiqa pul va ishonch yo'qoladi. Shuning uchun unga eng yuqori uptime (va eng katta xarajat) kerak."
     explainWrong={{ 0: 'Blog o\'chsa katta zarar yo\'q — 99% yetadi.', 2: 'Eslatma ilovasi — o\'rtacha daraja yetadi.', 3: 'Landing — past daraja ham bo\'ladi.', default: 'To\'lov tizimiga eng yuqori uptime kerak.' }} />
@@ -838,6 +844,10 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 
 // ===== SCREEN 16 — YAKUN =====
 const Screen16 = ({ screen, answers, onReset, onPrev, onFinish }) => {
+  // F-0803-08: uyga vazifa kapsulasi — bosilganda topshiriq kartasi ochiladi
+  const [hwOpen, setHwOpen] = useState(false);
+  const [hwCharge, setHwCharge] = useState(false);
+  const fireHw = () => { if (hwCharge || hwOpen) return; setHwCharge(true); setTimeout(() => { setHwOpen(true); setHwCharge(false); }, 500); };
   const RECAP = ['Uptime/latency/error rate = mahsulot metrikalari', 'Monitoring = 24/7 qo\'riqchi (dashboard + alert)', '"To\'qqizlar": 99% = yiliga 3.6 kun o\'chiq!', 'SLA — o\'chish narxiga qarab tanlanadi'];
   const HOMEWORK = [{ b: 'Mahsulotingizni baholang', t: '— o\'chsa har daqiqa qancha zarar?' }, { b: 'Uptime maqsadi qo\'ying', t: '— 99% / 99.9% / 99.99% va nega' }, { b: 'Alert rejalang', t: '— o\'chsa kimga, qanday xabar boradi?' }];
   const GLOSSARY = [{ b: 'Uptime', t: '— ishlab turgan vaqt foizi' }, { b: 'Latency', t: '— so\'rovga javob tezligi (ms)' }, { b: 'Error rate', t: '— xato so\'rovlar foizi' }, { b: 'SLA', t: '— va\'da qilingan ishonchlilik darajasi' }];
@@ -851,11 +861,19 @@ const Screen16 = ({ screen, answers, onReset, onPrev, onFinish }) => {
   return (
     <Stage eyebrow="Tayyor" screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>Qaytadan</button><button className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>Yakunlash</button></>}>
       <div className="screen">
-        <div className="hero"><div className="hero-l"><span className="done-chip fade-up"><span className="tick">{Ico.check(11)}</span> PM darsi tugadi</span><h2 className="title h-title fade-up d1">Endi siz <span className="italic" style={{ color: T.accent }}>ishonchlilikni</span> o'lchaysiz.</h2><p className="body h-sub fade-up d2">{PASSED ? 'Tabriklaymiz! Uptime, latency, error rate, monitoring va SLA\'ni bilasiz. Endi keyingi darsda AvtoIjara\'ga monitoring qo\'shamiz!' : 'Yaxshi harakat! Bir-ikki joyni mustahkamlash uchun darsni qayta ko\'ring.'}</p></div><ScoreRing correct={correct} total={total} /></div>
-        <div className="split">
-          <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span style={{ color: T.success, display: 'inline-flex' }}>{Ico.check(15)}</span> Endi siz bilasiz</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck" style={{ display: 'inline-flex' }}>{Ico.check(15)}</span><span>{r}</span></li>))}</ul></div>
-          <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>Uyga vazifa</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>Monitoring ko'nikmangizni mashq qiling:</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{h.b}</b> <span className="t">{h.t}</span></li>))}</ul><p className="hw-note">Mijozdan oldin bil — ishonchni saqla! 🛡️</p></div>
+        <div className="hero"><div className="hero-l"><span className="done-chip fade-up"><span className="tick">{Ico.check(11)}</span> PM darsi tugadi</span><h2 className="title h-title fade-up d1">Endi siz <span className="italic" style={{ color: T.accent }}>ishonchlilikni</span> o'lchaysiz.</h2>{/* 54-qonun (P0 PmUserStory · PmLesson2 qarori): h-sub qatori YO'Q — sarlavha o'zi yetadi. */}</div><ScoreRing correct={correct} total={total} /></div>
+        <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span style={{ color: T.success, display: 'inline-flex' }}>{Ico.check(15)}</span> Endi siz bilasiz</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck" style={{ display: 'inline-flex' }}>{Ico.check(15)}</span><span>{r}</span></li>))}</ul></div>
+        <div className="hw-big-wrap fade-up d4">
+          <button className={`hw-big ${hwCharge ? 'charging' : ''}`} onClick={fireHw}>
+            <span className="hw-sky" aria-hidden="true">
+              {HW_TOKENS.map((k, i) => <span key={i} className="hw-tok" style={{ left: `${k.l}%`, top: `${k.tp}%`, fontSize: k.s, '--d': `${k.d}s` }}>{k.t}</span>)}
+            </span>
+            <span className="hw-big-shine" aria-hidden="true" />
+            <span className="hw-big-t">Uyga vazifa</span>
+            <span className="hw-big-s">Amaliy topshiriqni bajarish →</span>
+          </button>
         </div>
+        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>Uyga vazifa</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>Monitoring ko'nikmangizni mashq qiling:</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{h.b}</b> <span className="t">{h.t}</span></li>))}</ul><p className="hw-note">Mijozdan oldin bil — ishonchni saqla! 🛡️</p></div>}
         <div className="frame-success fade-up d4" style={{ display: 'flex', alignItems: 'center', gap: 14 }}><span style={{ fontSize: 30 }}>📟</span><div><p style={{ fontFamily: "'Source Serif 4',serif", fontWeight: 600, margin: 0, color: T.ink, fontSize: 'clamp(15px,2vw,18px)' }}>Keyingi dars: Professional konveyer</p><p className="body" style={{ margin: '2px 0 0', color: T.ink2 }}>Endi AvtoIjara pipeline'iga lint, monitoring va alert qo'shib, professional darajaga olib chiqamiz.</p></div></div>
         <div ref={glossRef} className="gloss fade-up d4" style={{ scrollMarginBottom: 16 }}><div className="gloss-head" onClick={toggleGloss}><span className="lbl">Kalit so'zlar (takrorlash)</span><span className="gloss-toggle">{open ? '−' : '+'}</span></div>{open && (<div className="gloss-body">{GLOSSARY.map((g, i) => (<span key={i}><b>{g.b}</b> {g.t}{i < GLOSSARY.length - 1 ? ' · ' : ''}</span>))}</div>)}</div>
       </div>
@@ -983,7 +1001,7 @@ export default function PmLesson18({ lang: langProp, onFinished }) {
         .btn-soft:hover:not(:disabled) { box-shadow: 0 6px 14px -5px rgba(${T.shadowBase},0.2); }
 
         /* === OPSIYALAR === */
-        .option { background: ${T.paper}; cursor: pointer; transition: all 0.2s; font-family: 'Manrope', sans-serif; font-weight: 500; text-align: left; border-radius: 12px; width: 100%; border: none; color: ${T.ink}; box-shadow: 0 6px 16px -7px rgba(${T.shadowBase},0.16); }
+        .option { background: ${T.paper}; cursor: pointer; transition: all 0.2s; font-family: 'Manrope', sans-serif; font-weight: 500; line-height: 1.45; text-align: left; border-radius: 12px; width: 100%; border: none; color: ${T.ink}; box-shadow: 0 6px 16px -7px rgba(${T.shadowBase},0.16); }
         .option:hover:not(:disabled) { background: #FDFBF7; transform: translateY(-1px); box-shadow: 0 12px 24px -8px rgba(${T.shadowBase},0.22); }
         .option:disabled { cursor: default; }
         .option-correct { background: ${T.successSoft} !important; color: ${T.success} !important; box-shadow: 0 8px 22px -8px rgba(31,122,77,0.32) !important; }
@@ -1020,6 +1038,7 @@ export default function PmLesson18({ lang: langProp, onFinished }) {
 
         .h-title { font-size: clamp(22px,4vw,38px); }
         .h-sub { font-size: clamp(17px,2.5vw,22px); }
+        .h-ask { font-size: clamp(19px,2.6vw,27px); line-height: 1.32; letter-spacing: -0.01em; text-wrap: balance; }
         .body { font-size: clamp(14px,1.6vw,16px); line-height: 1.5; }
         .eyebrow { font-size: clamp(11px,1.3vw,12px); letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600; }
         .small { font-size: clamp(12.5px,1.4vw,13.5px); }
@@ -1051,7 +1070,10 @@ export default function PmLesson18({ lang: langProp, onFinished }) {
         .spec-text { font-family: 'Georgia, serif'; font-size: clamp(13px,1.7vw,15px); line-height: 1.5; margin: 3px 0 0; }
 
         /* === LAYOUT === */
-        .screen { flex: 1; min-height: 0; display: flex; flex-direction: column; gap: clamp(14px,2vw,20px); }
+        .screen { flex: 1 0 auto; min-height: 0; display: flex; flex-direction: column; gap: clamp(14px,2vw,20px); }
+        /* F-0725-04 · 60-qonun: kontent sig'masa ekran-bloklari SIQILMAYDI — stage-content skroll beradi.
+           Standart flex-shrink tufayli bloklar siqilib, ichidagi matn qirqilardi (F-0802-14 dalili). */
+        .screen > * { flex-shrink: 0; }
         .head { display: flex; flex-direction: column; gap: 6px; }
         .split { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: clamp(18px,3vw,36px); align-items: start; }
         .col { display: flex; flex-direction: column; gap: clamp(12px,2vw,16px); min-width: 0; }
@@ -1084,6 +1106,24 @@ export default function PmLesson18({ lang: langProp, onFinished }) {
         .card { background: ${T.paper}; border-radius: 16px; padding: 18px 20px; box-shadow: 0 8px 22px -7px rgba(${T.shadowBase},0.14); }
         .card-lbl { display: flex; align-items: center; gap: 8px; font-family: 'Manrope'; font-weight: 700; font-size: 13px; margin-bottom: 11px; }
         .recap { display: flex; flex-direction: column; gap: 8px; list-style: none; } .recap li { display: flex; align-items: flex-start; gap: 10px; font-size: clamp(13px,1.6vw,15px); color: ${T.ink}; animation: fade-in-up 0.4s ease-out forwards; opacity: 0; } .recap .ck { color: ${T.success}; flex-shrink: 0; margin-top: 1px; }
+        /* F-0803-08 — UYGA VAZIFA KAPSULASI (PmLesson2 etaloni): yakun sahifasida
+           «Endi siz bilasiz» dan KEYIN turadi, bosilganda topshiriq kartasi ochiladi. */
+        .hw-big-wrap { position: relative; align-self: center; width: min(560px, 100%); }
+        .hw-big-wrap::before { content: ''; position: absolute; inset: -16px; border-radius: 34px; background: radial-gradient(ellipse at center, rgba(124,58,237,0.45), rgba(124,58,237,0) 70%); filter: blur(18px); z-index: 0; pointer-events: none; animation: hw-aura 2.6s ease-in-out infinite; }
+        @keyframes hw-aura { 0%, 100% { opacity: 0.5; } 50% { opacity: 0.9; } }
+        .hw-big { position: relative; z-index: 1; overflow: hidden; display: flex; flex-direction: column; align-items: center; gap: 7px; width: 100%; padding: clamp(20px,2.8vw,30px) clamp(26px,3.4vw,44px); border: 1.5px solid rgba(186,140,255,0.72); border-radius: 22px; cursor: pointer; background: radial-gradient(130% 170% at 50% 120%, #3D1F86 0%, #2A1560 44%, #1B0F3F 100%); color: #fff; box-shadow: 0 0 0 1px rgba(90,40,180,.45), 0 0 26px rgba(124,58,237,.5), 0 0 68px rgba(124,58,237,.28), inset 0 0 48px rgba(124,58,237,.32); animation: hw-fire 1.7s ease-in-out 0.9s infinite; transition: transform 0.2s; }
+        .hw-big:hover { transform: translateY(-3px) scale(1.02); }
+        .hw-sky { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+        .hw-tok { position: absolute; font-family: 'JetBrains Mono', monospace; font-weight: 700; color: rgba(255,255,255,0.16); animation: hw-float var(--d, 7s) ease-in-out infinite alternate; }
+        @keyframes hw-float { from { transform: translateY(4px); } to { transform: translateY(-7px); } }
+        .hw-big.charging { animation: hw-fire 1.7s ease-in-out 0.9s infinite, hw-charge 0.5s ease; }
+        @keyframes hw-charge { 0% { filter: brightness(1); } 45% { filter: brightness(1.7) saturate(1.25); transform: scale(1.03); } 100% { filter: brightness(1); } }
+        .hw-big-t { font-family: 'Manrope'; font-weight: 800; font-size: clamp(25px,3.6vw,34px); letter-spacing: 0.02em; }
+        .hw-big-s { font-family: 'Manrope'; font-weight: 700; font-size: clamp(14px,1.9vw,17px); opacity: 0.94; }
+        .hw-big-shine { position: absolute; top: -40%; left: -60%; width: 45%; height: 180%; background: linear-gradient(100deg, transparent, rgba(255,255,255,0.16), transparent); transform: rotate(8deg); animation: hw-shine 4.6s ease-in-out infinite; pointer-events: none; }
+        @keyframes hw-fire { 0%,100% { box-shadow: 0 0 0 1px rgba(90,40,180,.45), 0 0 26px rgba(124,58,237,.5), 0 0 68px rgba(124,58,237,.28), inset 0 0 48px rgba(124,58,237,.32); } 50% { box-shadow: 0 0 0 1px rgba(120,60,220,.6), 0 0 40px rgba(124,58,237,.72), 0 0 96px rgba(124,58,237,.4), inset 0 0 60px rgba(124,58,237,.44); } }
+        @keyframes hw-shine { 0% { left: -60%; } 55%, 100% { left: 130%; } }
+        @media (prefers-reduced-motion: reduce) { .hw-big, .hw-big-shine, .hw-big-wrap::before, .hw-tok, .hw-big.charging { animation: none !important; } }
         .hw ul { display: flex; flex-direction: column; gap: 6px; list-style: none; } .hw li { font-size: clamp(13px,1.6vw,15px); color: ${T.ink}; } .hw li b { color: ${T.accent}; } .hw .t { color: ${T.ink2}; } .hw-note { margin: 11px 0 0; font-size: 12px; color: ${T.accent}; font-weight: 600; }
         .gloss { background: ${T.paper}; border-radius: 12px; box-shadow: 0 6px 16px -7px rgba(${T.shadowBase},0.12); overflow: hidden; }
         .gloss-head { display: flex; align-items: center; justify-content: space-between; padding: 13px 17px; cursor: pointer; } .gloss-head .lbl { font-family: 'Manrope'; font-weight: 700; font-size: 13px; color: ${T.ink}; } .gloss-toggle { font-size: 18px; color: ${T.ink2}; }

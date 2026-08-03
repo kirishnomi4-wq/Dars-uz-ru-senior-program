@@ -366,6 +366,12 @@ function useIsMobile(breakpoint = 640) {
 }
 const LESSON_META = { lessonId: 'mobile-practice-06-11-v18', lessonTitle: { uz: 'Praktika: mobil ilova (mini-do\'kon)', ru: 'Практика: мобильное приложение' } };
 // 20 ekran · 4.1 oqim: hook → reja → (exploration↔test)× → case(premyera) → rule → final(DragDrop) → podium → flashcard → summary
+const HW_TOKENS = [
+  { t: { uz: 'amaliyot', ru: 'практика' }, l: 8, tp: 22, s: 13, d: 6 },
+  { t: { uz: 'loyiha', ru: 'проект' }, l: 68, tp: 16, s: 12, d: 7.5 },
+  { t: { uz: 'mashq', ru: 'упражнение' }, l: 24, tp: 70, s: 12, d: 8.5 },
+  { t: { uz: 'natija', ru: 'результат' }, l: 78, tp: 68, s: 13, d: 6.8 }
+];
 const SCREEN_META = [
   { id: 's0',  type: 'hook',        template: 'custom',   scored: false, scope: 'hook' },
   { id: 's1',  type: 'rule',        template: 'custom',   scored: false, scope: null },
@@ -834,7 +840,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
       <div className="screen" style={{ justifyContent: isMentorLive ? 'flex-start' : 'center', gap: 'clamp(16px,2.5vw,24px)' }}>
         <div className="fade-up">{question}</div>
         {oneShot && !solved && <p className="small mono fade-up" style={{ margin: '-8px 0 0', color: T.accent, fontWeight: 600 }}>{tr({ uz: "⚡ Jonli dars — bitta urinish, o'ylab bosing!", ru: '⚡ Живой урок — одна попытка, жмите обдуманно!' })}</p>}
-        <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
+        <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 11 }}>
           {options.map((opt, i) => {
             let cls = 'option';
             if (isMentorLive) {
@@ -846,7 +852,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
             else if (i === picked) cls += ' option-picked-wrong';
             const showGreenLetter = isMentorLive ? (mReveal && i === correctIdx) : (solved && revealed && i === correctIdx);
             return (
-              <button key={i} className={cls} disabled={solved || isMentorLive} onClick={() => pick(i)} style={{ padding: 'clamp(12px,1.8vw,16px) clamp(14px,2.2vw,20px)', fontSize: 'clamp(14px,1.7vw,16px)', display: 'flex', alignItems: 'center', gap: 12 }}>
+              <button key={i} className={cls} disabled={solved || isMentorLive} onClick={() => pick(i)} style={{ padding: 'clamp(13px,1.9vw,17px) clamp(15px,2.2vw,20px)', fontSize: 'clamp(15px,1.85vw,17px)', display: 'flex', alignItems: 'center', gap: 12 }}>
                 <span className="mono small" style={{ minWidth: 20, color: showGreenLetter ? T.success : T.ink3 }}>{String.fromCharCode(65 + i)}</span>
                 <span style={{ flex: 1 }}>{fmtCode(tr(opt))}</span>
               </button>
@@ -1176,7 +1182,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const Screen4 = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow={{ uz: 'Mashq · 1-savol', ru: 'Упражнение · вопрос 1' }}
     questionText={{ uz: "Mobil ilova mahsulot ma'lumotini qayerdan oladi?", ru: 'Откуда мобильное приложение берёт данные о товарах?' }}
-    question={tr({ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-sub" style={{ marginTop: 8 }}>Mobil ilova mahsulotlarni <span className="italic" style={{ color: T.accent }}>qayerdan</span> oladi?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите правильный ответ</p><h2 className="title h-sub" style={{ marginTop: 8 }}><span className="italic" style={{ color: T.accent }}>Откуда</span> мобильное приложение берёт товары?</h2></> })}
+    question={tr({ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Mobil ilova mahsulotlarni <span className="italic" style={{ color: T.accent }}>qayerdan</span> oladi?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите правильный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}><span className="italic" style={{ color: T.accent }}>Откуда</span> мобильное приложение берёт товары?</h2></> })}
     options={[{ uz: "O'sha mavjud backenddan — GET /products bilan", ru: 'С того же существующего бэкенда — через GET /products' }, { uz: 'Yangi backend yozamiz, faqat mobil uchun', ru: 'Напишем новый бэкенд, только для мобильного' }, { uz: 'Mahsulotlarni ilova ichiga qo\'lda yozamiz', ru: 'Впишем товары внутрь приложения вручную' }, { uz: 'Hech qayerdan — mobil ilovada baza bo\'lmaydi', ru: 'Ниоткуда — у мобильного приложения базы не бывает' }]} correctIdx={0}
     explainCorrect={{ uz: "To'g'ri! Mobil ilova o'sha Node.js + PostgreSQL backendga ulanadi (GET /products). Web, bot, mobil — bitta tizimning eshiklari, hammasi o'sha bazadan.", ru: 'Верно! Мобильное приложение подключается к тому же бэкенду Node.js + PostgreSQL (GET /products). Веб, бот, мобильное — двери одной системы, и все берут данные из одной базы.' }}
     explainWrong={{ 0: { uz: 'Yangi backend shart emas — o\'sha bittasi hamma eshikka xizmat qiladi.', ru: 'Новый бэкенд не нужен — один и тот же обслуживает все двери.' }, 2: { uz: 'Qo\'lda yozsangiz — yangilanmaydi. Backenddan fetch qiling.', ru: 'Впишете вручную — данные не будут обновляться. Берите их с бэкенда через fetch.' }, 3: { uz: 'Ma\'lumot backendda — ilova undan fetch qiladi.', ru: 'Данные лежат на бэкенде — приложение забирает их оттуда.' }, default: { uz: 'O\'sha backend, GET /products — bitta tizim.', ru: 'Тот же бэкенд, GET /products — одна система.' } }} />
@@ -1217,7 +1223,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const Screen5b = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow={{ uz: 'Tekshiruv', ru: 'Проверка' }}
     questionText={{ uz: "Loyiha kunida sizning (direktor) rolingiz nima?", ru: 'Какая у вас (режиссёра) роль в день проекта?' }}
-    question={tr({ uz: <><p className="eyebrow" style={{ color: T.accent }}>Mustahkamlash</p><h2 className="title h-sub" style={{ marginTop: 8 }}>Loyiha kunida sizning <span className="italic" style={{ color: T.accent }}>rolingiz</span>?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Закрепление</p><h2 className="title h-sub" style={{ marginTop: 8 }}>Какая у вас <span className="italic" style={{ color: T.accent }}>роль</span> в день проекта?</h2></> })}
+    question={tr({ uz: <><p className="eyebrow" style={{ color: T.accent }}>Mustahkamlash</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Loyiha kunida sizning <span className="italic" style={{ color: T.accent }}>rolingiz</span>?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Закрепление</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Какая у вас <span className="italic" style={{ color: T.accent }}>роль</span> в день проекта?</h2></> })}
     options={[{ uz: 'AI bergan kodni o\'qimasdan ishlatish', ru: 'Использовать код от ИИ, не читая его' }, { uz: 'Hamma kodni o\'zingiz qo\'lda yozish', ru: 'Писать весь код самому вручную' }, { uz: "Aniq buyurib, kodni o'qib, telefonda sinash", ru: 'Давать точную команду, читать код и проверять на телефоне' }, { uz: 'Faqat dizayn va ranglarni tanlash', ru: 'Выбирать только дизайн и цвета' }]} correctIdx={2}
     explainCorrect={{ uz: "To'g'ri! Siz direktorsiz: aniq buyurasiz, AI kodini o'qib tushunasiz va Expo Go'da telefonda sinab ko'rasiz. Test qilmaguningizcha «ishladi» deyolmaysiz.", ru: 'Верно! Вы режиссёр: даёте точную команду, читаете и понимаете код от ИИ и проверяете его на телефоне в Expo Go. Пока не протестировали — сказать «работает» нельзя.' }}
     explainWrong={{ 0: { uz: 'O\'qimasdan ishlatish — bug\'larni ko\'rmaysiz.', ru: 'Использовать не читая — багов вы так не увидите.' }, 2: { uz: 'Hammasini qo\'lda emas — AI yozadi, siz boshqarasiz.', ru: 'Не всё вручную — код пишет ИИ, а вы им управляете.' }, 3: { uz: 'Dizayn ham muhim, lekin asosiy — buyuring, o\'qing, telefonda testlang.', ru: 'Дизайн тоже важен, но главное — команда, чтение кода и тест на телефоне.' }, default: { uz: 'Buyuring, kodni o\'qing, telefonda testlang.', ru: 'Командуйте, читайте код, тестируйте на телефоне.' } }} />
@@ -1353,7 +1359,7 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const Screen9 = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow={{ uz: 'Mashq · 2-savol', ru: 'Упражнение · вопрос 2' }}
     questionText={{ uz: "Mobil ilovada «Buyurtma qil» bosilganda nima bo'ladi?", ru: 'Что происходит при нажатии «Заказать» в мобильном приложении?' }}
-    question={tr({ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-sub" style={{ marginTop: 8 }}>Mobil «Buyurtma qil» bosilganda <span className="italic" style={{ color: T.accent }}>nima</span> bo'ladi?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите правильный ответ</p><h2 className="title h-sub" style={{ marginTop: 8 }}><span className="italic" style={{ color: T.accent }}>Что</span> произойдёт при нажатии «Заказать» в мобильном?</h2></> })}
+    question={tr({ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Mobil «Buyurtma qil» bosilganda <span className="italic" style={{ color: T.accent }}>nima</span> bo'ladi?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите правильный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}><span className="italic" style={{ color: T.accent }}>Что</span> произойдёт при нажатии «Заказать» в мобильном?</h2></> })}
     options={[{ uz: 'Faqat telefon ichida saqlanadi, hech qayerga bormaydi', ru: 'Сохранится только внутри телефона и никуда не уйдёт' }, { uz: "O'sha backendga POST /orders ketadi → baza saqlaydi → bot xabar beradi", ru: 'На тот же бэкенд уйдёт POST /orders → база сохранит → бот сообщит' }, { uz: 'Yangi mobil backend ishga tushadi', ru: 'Запустится новый мобильный бэкенд' }, { uz: 'Hech narsa — mobil ilova buyurtma qabul qilolmaydi', ru: 'Ничего — мобильное приложение не может принимать заказы' }]} correctIdx={1}
     explainCorrect={{ uz: "To'g'ri! Mobil ilova o'sha backendga POST /orders yuboradi. Buyurtma PostgreSQL'ga saqlanadi va Telegram bot adminni xabardor qiladi — web bilan bir xil pipeline.", ru: 'Верно! Мобильное приложение шлёт POST /orders на тот же бэкенд. Заказ сохраняется в PostgreSQL, а Telegram-бот сообщает администратору — конвейер тот же, что и в вебе.' }}
     explainWrong={{ 0: { uz: 'Telefonda qolmaydi — backendga yuboriladi, aks holda admin ko\'rmaydi.', ru: 'В телефоне он не остаётся — уходит на бэкенд, иначе администратор его не увидит.' }, 2: { uz: 'Yangi backend yo\'q — o\'sha bitta backend.', ru: 'Никакого нового бэкенда — тот же самый, один.' }, 3: { uz: 'Qabul qiladi — POST /orders orqali.', ru: 'Ещё как принимает — через POST /orders.' }, default: { uz: 'POST /orders → baza + bot. Bitta tizim.', ru: 'POST /orders → база + бот. Одна система.' } }} />
@@ -1439,7 +1445,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const Screen12 = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow={{ uz: 'Mashq · 3-savol', ru: 'Упражнение · вопрос 3' }}
     questionText={{ uz: "Mobil ilovani qanday to'g'ri test qilamiz?", ru: 'Как правильно тестировать мобильное приложение?' }}
-    question={tr({ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-sub" style={{ marginTop: 8 }}>Mobil ilovani qanday <span className="italic" style={{ color: T.accent }}>test</span> qilamiz?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите правильный ответ</p><h2 className="title h-sub" style={{ marginTop: 8 }}>Как <span className="italic" style={{ color: T.accent }}>тестировать</span> мобильное приложение?</h2></> })}
+    question={tr({ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Mobil ilovani qanday <span className="italic" style={{ color: T.accent }}>test</span> qilamiz?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите правильный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Как <span className="italic" style={{ color: T.accent }}>тестировать</span> мобильное приложение?</h2></> })}
     options={[{ uz: 'Test qilmaymiz — AI to\'g\'ri yozib beradi', ru: 'Не тестируем — ИИ напишет правильно' }, { uz: 'Faqat ranglar to\'g\'ri chiqqanini tekshirib', ru: 'Проверив только, верно ли вышли цвета' }, { uz: 'Faqat kompyuterda kodga qarab, ochmasdan', ru: 'Только глядя в код на компьютере, не открывая приложение' }, { uz: "Expo Go bilan haqiqiy telefonda, oqimni bosib ko'rib", ru: 'На настоящем телефоне через Expo Go, прощёлкав весь путь' }]} correctIdx={3}
     explainCorrect={{ uz: "To'g'ri! Expo Go bilan haqiqiy telefonda ochib, har ekran va oqimni (List → savat → buyurtma) bosib sinaymiz. Real qurilma — real bug'lar (sekinlik, badge, tugma joyi).", ru: 'Верно! Открываем на настоящем телефоне через Expo Go и прощёлкиваем каждый экран и весь путь (List → корзина → заказ). Реальное устройство — реальные баги (тормоза, счётчик, место кнопки).' }}
     explainWrong={{ 0: { uz: 'AI xato qiladi — telefonda test shart.', ru: 'ИИ ошибается — тест на телефоне обязателен.' }, 2: { uz: 'Kod to\'g\'ri ko\'rinishi mumkin, lekin telefonda boshqacha ishlaydi.', ru: 'Код может выглядеть верным, но на телефоне поведёт себя иначе.' }, 3: { uz: 'Rang — bir qismi xolos. Butun oqimni sinang.', ru: 'Цвета — лишь часть дела. Проверяйте весь путь.' }, default: { uz: 'Expo Go, haqiqiy telefon, butun oqim.', ru: 'Expo Go, настоящий телефон, весь путь целиком.' } }} />
@@ -2148,6 +2154,31 @@ const ScreenPodium = ({ screen, answers, onNext, onPrev }) => {
     </Stage>
   );
 };
+// F-0803-13/14: KARTA JAVOBI UZUNLIKKA MOSLASHADI.
+// Muammo edi: `.fc-tag` hamma javobga bir xil katta monoshrift berardi — u bir so'zlik javob
+// (`let`, `=`, `string`) uchun tanlangan o'lcham. Uzun javob 2-3 qatorga bo'linib, qat'iy
+// balandlikdagi kartaga sig'masdi va izoh pastki chetga yopishib qolardi.
+// Yechim: (1) uzunlik bo'yicha 4 pog'onali o'lcham · (2) bitta kod-tokeni — mono,
+// gap — Manrope (o'qishga qulay, ~25% tor) · (3) gap ichidagi kod so'zlari mono qoladi.
+const FC_CODE_WORDS = /\b(let|const|var|string|number|boolean|true|false|null|undefined|function|return|for|while|if|else)\b/g;
+const FC_VOCAB = new Set(['let', 'const', 'var', 'string', 'number', 'boolean', 'true', 'false', 'null', 'undefined', 'function', 'return', 'for', 'while', 'if', 'else']);
+// Kodmi yoki so'zmi? Monoshrift FAQAT kodga: lug'atdagi kalit so'z yoki kod-belgisi bo'lgan
+// token. «o'zgaruvchi» kabi o'zbekcha atama — gap, u Manrope bilan chiroyliroq va tor chiqadi.
+const fcIsCode = (s) => FC_VOCAB.has(s.toLowerCase()) || /[=(){};.[\]<>+*/%!&|-]/.test(s);
+const fcTier = (s) => (s.length <= 8 ? 't1' : s.length <= 16 ? 't2' : s.length <= 32 ? 't3' : 't4');
+const fcAnswer = (raw) => {
+  const s = String(raw ?? '');
+  const oneToken = !/\s/.test(s) && fcIsCode(s);        // `let`, `const`, `=`, `string` — kod tokeni
+  const cls = `fc-tag ${fcTier(s)} ${oneToken ? 'mono-all' : 'prose'}`;
+  if (oneToken) return <span className={cls}>{s}</span>;
+  const parts = s.split(FC_CODE_WORDS);                 // gap: kod so'zlari mono bo'lakda qoladi
+  return (
+    <span className={cls}>
+      {parts.map((p, i) => (i % 2 === 1 ? <span key={i} className="fc-kw">{p}</span> : p))}
+    </span>
+  );
+};
+
 function Flashcards({ cards }) {
   const [queue, setQueue] = useState(() => cards.map((_, i) => i));
   const [flipped, setFlipped] = useState(false);
@@ -2180,7 +2211,7 @@ function Flashcards({ cards }) {
         <div className={`fc-fly ${exiting === 'knew' ? 'out-knew' : ''} ${exiting === 'again' ? 'out-again' : ''}`} key={swapRef.current}>
         <div className={`fc-card ${flipped ? 'flip' : ''}`} onClick={() => !flipped && !exiting && setFlipped(true)} role="button" tabIndex={0}>
           <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: "Javobni o'ylang", ru: 'Подумайте над ответом' })} 🤔 <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
-          <div className="fc-face fc-back"><span className="fc-tag">{tr(card.back)}</span>{card.note && <span className="fc-note">{tr(card.note)}</span>}</div>
+          <div className="fc-face fc-back">{fcAnswer(tr(card.back))}{card.note && <span className="fc-note">{tr(card.note)}</span>}</div>
         </div>
         </div>
       </div>
@@ -2218,6 +2249,10 @@ const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) =>
 };
 // ===== YAKUN (4.2: ScoreRing + CodeStrike CTA + RECAP/Uyga vazifa + 🏅 kolleksiya) =====
 const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinish }) => {
+  // F-0803-08: uyga vazifa kapsulasi — bosilganda topshiriq kartasi ochiladi
+  const [hwOpen, setHwOpen] = useState(false);
+  const [hwCharge, setHwCharge] = useState(false);
+  const fireHw = () => { if (hwCharge || hwOpen) return; setHwCharge(true); setTimeout(() => { setHwOpen(true); setHwCharge(false); }, 500); };
   const _gate = useContext(LiveGateCtx) || {};
   const _live = _gate.live;
   const [arena, setArena] = useState(false);
@@ -2251,15 +2286,23 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
   return (
     <Stage eyebrow={{ uz: 'Tayyor', ru: 'Готово' }} screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><button className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash ✓', ru: 'Завершить ✓' })}</button></>}>
       <div className="screen">
-        <div className="hero"><div className="hero-l"><span className="done-chip fade-up"><span className="tick">✓</span> {tr({ uz: "Premyera bo'ldi", ru: 'Премьера состоялась' })}</span><h2 className="title h-title fade-up d1">{tr({ uz: <>Mobil ilovangiz <span className="italic" style={{ color: T.accent }}>gastrolga chiqdi</span>.</>, ru: <>Ваше мобильное приложение <span className="italic" style={{ color: T.accent }}>отправилось на гастроли</span>.</> })}</h2><p className="body h-sub fade-up d2">{PASSED ? tr({ uz: "Tabriklaymiz! mini-do'konning mobil versiyasini port qildingiz, telefonda testladingiz va Expo Go bilan ulashishni o'rgandingiz. Keyingi — to'liq tizimni yig'amiz!", ru: 'Поздравляем! Вы перенесли мини-магазин в мобильную версию, протестировали её на телефоне и научились делиться через Expo Go. Дальше — соберём полную систему!' }) : tr({ uz: "Yaxshi harakat! Bir-ikki joyni mustahkamlash uchun (o'sha backend, telefonda test) darsni qayta ko'ring.", ru: 'Хорошая попытка! Чтобы закрепить пару моментов (тот же бэкенд, тест на телефоне), пересмотрите урок.' })}</p></div><ScoreRing correct={correct} total={total} /></div>
+        <div className="hero"><div className="hero-l"><span className="done-chip fade-up"><span className="tick">✓</span> {tr({ uz: "Premyera bo'ldi", ru: 'Премьера состоялась' })}</span><h2 className="title h-title fade-up d1">{tr({ uz: <>Mobil ilovangiz <span className="italic" style={{ color: T.accent }}>gastrolga chiqdi</span>.</>, ru: <>Ваше мобильное приложение <span className="italic" style={{ color: T.accent }}>отправилось на гастроли</span>.</> })}</h2>{/* 54-qonun (P0 PmUserStory · PmLesson2 qarori): h-sub qatori YO'Q — sarlavha o'zi yetadi. */}</div><ScoreRing correct={correct} total={total} /></div>
         <div className={`qz-cta cs-cta fade-up d2 ${studentLive ? 'ready' : ''}`}>
           <CsWordmark stats={false} liveOn={studentLive} disabled={studentWait} onClick={studentWait ? undefined : openArena} hint={studentWait ? { uz: '⏳ Mentorni kuting', ru: '⏳ Подождите ментора' } : undefined} />
         </div>
         {arena && <QuizArena live={_live || { mode: 'self' }} startSolo={arenaSolo} onClose={() => setArena(false)} />}
-        <div className="split">
-          <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> {tr({ uz: 'Endi siz bilasiz', ru: 'Теперь вы знаете' })}</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{tr(r)}</span></li>))}</ul></div>
-          <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: "🚀 Keyingi dars — To'liq tizim (capstone): web + mobil + bot + backend + baza bitta tizimga.", ru: '🚀 Следующий урок — Полная система (capstone): веб + мобильное + бот + бэкенд + база в одну систему.' })}</p></div>
+        <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> {tr({ uz: 'Endi siz bilasiz', ru: 'Теперь вы знаете' })}</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{tr(r)}</span></li>))}</ul></div>
+        <div className="hw-big-wrap fade-up d4">
+          <button className={`hw-big ${hwCharge ? 'charging' : ''}`} onClick={fireHw}>
+            <span className="hw-sky" aria-hidden="true">
+              {HW_TOKENS.map((k, i) => <span key={i} className="hw-tok" style={{ left: `${k.l}%`, top: `${k.tp}%`, fontSize: k.s, '--d': `${k.d}s` }}>{tr(k.t)}</span>)}
+            </span>
+            <span className="hw-big-shine" aria-hidden="true" />
+            <span className="hw-big-t">{tr({ uz: 'Uyga vazifa', ru: 'Домашнее задание' })}</span>
+            <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni bajarish →', ru: 'Выполнить практическое задание →' })}</span>
+          </button>
         </div>
+        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: "🚀 Keyingi dars — To'liq tizim (capstone): web + mobil + bot + backend + baza bitta tizimga.", ru: '🚀 Следующий урок — Полная система (capstone): веб + мобильное + бот + бэкенд + база в одну систему.' })}</p></div>}
         {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🏅 Nishonlaringiz', ru: '🏅 Ваши значки' })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">
@@ -2308,7 +2351,7 @@ export default function MobileAppPracticeLesson({ lang: langProp, onFinished }) 
   }, []);
   // ETALON — 1920px (InternetLesson): keng oynada proportsional kattalashadi, <=1920 da z=1
   useEffect(() => {
-    const upd = () => { const z = Math.min(1.5, Math.max(1, window.innerWidth / 1920)); document.documentElement.style.setProperty('--lz', String(Math.round(z * 1000) / 1000)); };
+    const upd = () => { const z = Math.min(1.5, Math.max(1, Math.min(window.innerWidth / 1920, window.innerHeight / 1000))); document.documentElement.style.setProperty('--lz', String(Math.round(z * 1000) / 1000)); };
     upd(); window.addEventListener('resize', upd); return () => window.removeEventListener('resize', upd);
   }, []);
   // Javob kaliti: inline testlar + jang savollari (QUIZ_BANK'dan) — mentor ochganda set_quiz_keys bilan serverga yuklanadi
@@ -2474,7 +2517,7 @@ export default function MobileAppPracticeLesson({ lang: langProp, onFinished }) 
         .btn-soft:hover:not(:disabled) { box-shadow: 0 6px 14px -5px rgba(${T.shadowBase},0.2); }
 
         /* === OPSIYALAR === */
-        .option { background: ${T.paper}; cursor: pointer; transition: all 0.2s; font-family: 'Manrope', sans-serif; font-weight: 500; text-align: left; border-radius: 12px; width: 100%; border: none; color: ${T.ink}; box-shadow: 0 6px 16px -7px rgba(${T.shadowBase},0.16); }
+        .option { background: ${T.paper}; cursor: pointer; transition: all 0.2s; font-family: 'Manrope', sans-serif; font-weight: 500; line-height: 1.45; text-align: left; border-radius: 12px; width: 100%; border: none; color: ${T.ink}; box-shadow: 0 6px 16px -7px rgba(${T.shadowBase},0.16); }
         .option:hover:not(:disabled) { background: #FDFBF7; transform: translateY(-1px); box-shadow: 0 12px 24px -8px rgba(${T.shadowBase},0.22); }
         .option:disabled { cursor: default; }
         .option-correct { background: ${T.successSoft} !important; color: ${T.success} !important; box-shadow: 0 8px 22px -8px rgba(31,122,77,0.32) !important; }
@@ -2511,6 +2554,7 @@ export default function MobileAppPracticeLesson({ lang: langProp, onFinished }) 
 
         .h-title { font-size: clamp(22px,4vw,38px); }
         .h-sub { font-size: clamp(17px,2.5vw,22px); }
+        .h-ask { font-size: clamp(19px,2.6vw,27px); line-height: 1.32; letter-spacing: -0.01em; text-wrap: balance; }
         .body { font-size: clamp(14px,1.6vw,16px); line-height: 1.5; }
         .eyebrow { font-size: clamp(11px,1.3vw,12px); letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600; }
         .small { font-size: clamp(12.5px,1.4vw,13.5px); }
@@ -2542,7 +2586,10 @@ export default function MobileAppPracticeLesson({ lang: langProp, onFinished }) 
         .spec-text { font-family: 'Georgia, serif'; font-size: clamp(13px,1.7vw,15px); line-height: 1.5; margin: 3px 0 0; }
 
         /* === LAYOUT === */
-        .screen { flex: 1; min-height: 0; display: flex; flex-direction: column; gap: clamp(14px,2vw,20px); }
+        .screen { flex: 1 0 auto; min-height: 0; display: flex; flex-direction: column; gap: clamp(14px,2vw,20px); }
+        /* F-0725-04 · 60-qonun: kontent sig'masa ekran-bloklari SIQILMAYDI — stage-content skroll beradi.
+           Standart flex-shrink tufayli bloklar siqilib, ichidagi matn qirqilardi (F-0802-14 dalili). */
+        .screen > * { flex-shrink: 0; }
         .head { display: flex; flex-direction: column; gap: 6px; }
         .split { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: clamp(18px,3vw,36px); align-items: start; }
         .col { display: flex; flex-direction: column; gap: clamp(12px,2vw,16px); min-width: 0; }
@@ -2575,6 +2622,24 @@ export default function MobileAppPracticeLesson({ lang: langProp, onFinished }) 
         .card { background: ${T.paper}; border-radius: 16px; padding: 18px 20px; box-shadow: 0 8px 22px -7px rgba(${T.shadowBase},0.14); }
         .card-lbl { display: flex; align-items: center; gap: 8px; font-family: 'Manrope'; font-weight: 700; font-size: 13px; margin-bottom: 11px; }
         .recap { display: flex; flex-direction: column; gap: 8px; list-style: none; } .recap li { display: flex; align-items: flex-start; gap: 10px; font-size: clamp(13px,1.6vw,15px); color: ${T.ink}; animation: fade-in-up 0.4s ease-out forwards; opacity: 0; } .recap .ck { color: ${T.success}; flex-shrink: 0; margin-top: 1px; }
+        /* F-0803-08 — UYGA VAZIFA KAPSULASI (PmLesson2 etaloni): yakun sahifasida
+           «Endi siz bilasiz» dan KEYIN turadi, bosilganda topshiriq kartasi ochiladi. */
+        .hw-big-wrap { position: relative; align-self: center; width: min(560px, 100%); }
+        .hw-big-wrap::before { content: ''; position: absolute; inset: -16px; border-radius: 34px; background: radial-gradient(ellipse at center, rgba(124,58,237,0.45), rgba(124,58,237,0) 70%); filter: blur(18px); z-index: 0; pointer-events: none; animation: hw-aura 2.6s ease-in-out infinite; }
+        @keyframes hw-aura { 0%, 100% { opacity: 0.5; } 50% { opacity: 0.9; } }
+        .hw-big { position: relative; z-index: 1; overflow: hidden; display: flex; flex-direction: column; align-items: center; gap: 7px; width: 100%; padding: clamp(20px,2.8vw,30px) clamp(26px,3.4vw,44px); border: 1.5px solid rgba(186,140,255,0.72); border-radius: 22px; cursor: pointer; background: radial-gradient(130% 170% at 50% 120%, #3D1F86 0%, #2A1560 44%, #1B0F3F 100%); color: #fff; box-shadow: 0 0 0 1px rgba(90,40,180,.45), 0 0 26px rgba(124,58,237,.5), 0 0 68px rgba(124,58,237,.28), inset 0 0 48px rgba(124,58,237,.32); animation: hw-fire 1.7s ease-in-out 0.9s infinite; transition: transform 0.2s; }
+        .hw-big:hover { transform: translateY(-3px) scale(1.02); }
+        .hw-sky { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+        .hw-tok { position: absolute; font-family: 'JetBrains Mono', monospace; font-weight: 700; color: rgba(255,255,255,0.16); animation: hw-float var(--d, 7s) ease-in-out infinite alternate; }
+        @keyframes hw-float { from { transform: translateY(4px); } to { transform: translateY(-7px); } }
+        .hw-big.charging { animation: hw-fire 1.7s ease-in-out 0.9s infinite, hw-charge 0.5s ease; }
+        @keyframes hw-charge { 0% { filter: brightness(1); } 45% { filter: brightness(1.7) saturate(1.25); transform: scale(1.03); } 100% { filter: brightness(1); } }
+        .hw-big-t { font-family: 'Manrope'; font-weight: 800; font-size: clamp(25px,3.6vw,34px); letter-spacing: 0.02em; }
+        .hw-big-s { font-family: 'Manrope'; font-weight: 700; font-size: clamp(14px,1.9vw,17px); opacity: 0.94; }
+        .hw-big-shine { position: absolute; top: -40%; left: -60%; width: 45%; height: 180%; background: linear-gradient(100deg, transparent, rgba(255,255,255,0.16), transparent); transform: rotate(8deg); animation: hw-shine 4.6s ease-in-out infinite; pointer-events: none; }
+        @keyframes hw-fire { 0%,100% { box-shadow: 0 0 0 1px rgba(90,40,180,.45), 0 0 26px rgba(124,58,237,.5), 0 0 68px rgba(124,58,237,.28), inset 0 0 48px rgba(124,58,237,.32); } 50% { box-shadow: 0 0 0 1px rgba(120,60,220,.6), 0 0 40px rgba(124,58,237,.72), 0 0 96px rgba(124,58,237,.4), inset 0 0 60px rgba(124,58,237,.44); } }
+        @keyframes hw-shine { 0% { left: -60%; } 55%, 100% { left: 130%; } }
+        @media (prefers-reduced-motion: reduce) { .hw-big, .hw-big-shine, .hw-big-wrap::before, .hw-tok, .hw-big.charging { animation: none !important; } }
         .hw ul { display: flex; flex-direction: column; gap: 6px; list-style: none; } .hw li { font-size: clamp(13px,1.6vw,15px); color: ${T.ink}; } .hw li b { color: ${T.accent}; } .hw .t { color: ${T.ink2}; } .hw-note { margin: 11px 0 0; font-size: 12px; color: ${T.accent}; font-weight: 600; }
         .gloss { background: ${T.paper}; border-radius: 12px; box-shadow: 0 6px 16px -7px rgba(${T.shadowBase},0.12); overflow: hidden; }
         .gloss-head { display: flex; align-items: center; justify-content: space-between; padding: 13px 17px; cursor: pointer; } .gloss-head .lbl { font-family: 'Manrope'; font-weight: 700; font-size: 13px; color: ${T.ink}; } .gloss-toggle { font-size: 18px; color: ${T.ink2}; }
@@ -2639,7 +2704,15 @@ export default function MobileAppPracticeLesson({ lang: langProp, onFinished }) 
         .fc-q { font-family: 'Manrope'; font-weight: 800; font-size: clamp(18px,2.8vw,23px); color: ${T.ink}; line-height: 1.3; text-wrap: balance; }
         .fc-cue { font-family: 'Manrope'; font-size: 13px; color: ${T.ink3}; }
         .fc-tap { color: ${T.accent}; font-weight: 700; }
-        .fc-tag { font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: clamp(24px,5vw,40px); letter-spacing: -0.02em; text-wrap: balance; }
+        /* F-0803-13/14: javob uzunlikka moslashadi — 4 pog'ona + kod/gap shrift ajrimi */
+        .fc-tag { font-weight: 800; letter-spacing: -0.02em; line-height: 1.16; max-width: 100%; text-wrap: balance; overflow-wrap: anywhere; }
+        .fc-tag.mono-all { font-family: 'JetBrains Mono', monospace; }
+        .fc-tag.prose { font-family: 'Manrope', sans-serif; letter-spacing: -0.005em; }
+        .fc-tag .fc-kw { font-family: 'JetBrains Mono', monospace; font-weight: 800; }
+        .fc-tag.t1 { font-size: clamp(30px,6vw,46px); }
+        .fc-tag.t2 { font-size: clamp(24px,4.4vw,34px); }
+        .fc-tag.t3 { font-size: clamp(20px,3.4vw,26px); }
+        .fc-tag.t4 { font-size: clamp(17px,2.6vw,22px); line-height: 1.3; }
         .fc-note { font-family: 'Manrope'; font-size: 14px; opacity: 0.92; }
         .fc-actions { display: flex; gap: 10px; min-height: 48px; }
         .fc-btn { flex: 1; padding: 13px; border-radius: 13px; font-family: 'Manrope'; font-weight: 800; font-size: 15px; cursor: pointer; border: none; transition: transform .15s; }

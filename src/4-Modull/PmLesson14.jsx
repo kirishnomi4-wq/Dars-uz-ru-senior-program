@@ -220,13 +220,13 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
     <Stage eyebrow={eyebrow} screen={screen} narrow navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!solved} label={solved ? 'Davom etish' : "To'g'ri javobni toping"} onClick={onNext} /></>}>
       <div className="screen" style={{ justifyContent: 'center', gap: 'clamp(16px,2.5vw,24px)' }}>
         <div className="fade-up">{question}</div>
-        <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
+        <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 11 }}>
           {options.map((opt, i) => {
             let cls = 'option';
             if (solved) { if (i === correctIdx) cls += ' option-correct'; else cls += ' option-wrong'; }
             else if (i === picked) cls += ' option-picked-wrong';
             return (
-              <button key={i} className={cls} disabled={solved} onClick={() => pick(i)} style={{ padding: 'clamp(12px,1.8vw,16px) clamp(14px,2.2vw,20px)', fontSize: 'clamp(14px,1.7vw,16px)', display: 'flex', alignItems: 'center', gap: 12 }}>
+              <button key={i} className={cls} disabled={solved} onClick={() => pick(i)} style={{ padding: 'clamp(13px,1.9vw,17px) clamp(15px,2.2vw,20px)', fontSize: 'clamp(15px,1.85vw,17px)', display: 'flex', alignItems: 'center', gap: 12 }}>
                 <span className="mono small" style={{ minWidth: 20, color: solved && i === correctIdx ? T.success : T.ink3 }}>{String.fromCharCode(65 + i)}</span>
                 <span style={{ flex: 1 }}>{opt}</span>
               </button>
@@ -458,7 +458,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const Screen4 = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow="Mashq · 1-savol"
     questionText="Nega texnik qarorlarni stakeholderga biznes tilida tushuntiramiz?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-sub" style={{ marginTop: 8 }}>Nega arxitekturani <span className="italic" style={{ color: T.accent }}>biznes tilida</span> tushuntiramiz?</h2></>}
+    question={<><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Nega arxitekturani <span className="italic" style={{ color: T.accent }}>biznes tilida</span> tushuntiramiz?</h2></>}
     options={['Texnik til chiroyliroq', 'Stakeholder jargonni emas, foyda va natijani tushunadi — shunda ishonadi', 'Dasturchi tilini yashirish uchun', 'Aslida kerak emas']} correctIdx={1}
     explainCorrect="To'g'ri! Stakeholder texnik atamani emas, biznes foydasini (pul, vaqt, ishonch) tushunadi. Tarjima qilsangiz — u qaror qabul qila oladi."
     explainWrong={{ 0: 'Gap chiroylilikda emas — tushunarlilikda.', 2: 'Yashirish emas — tarjima. Stakeholder tilida gapirish.', 3: 'Aksincha — bu pitchning eng muhim qismi.', default: 'Biznes tili = stakeholder tushunadi va ishonadi.' }} />
@@ -500,7 +500,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const Screen5b = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow="Tekshiruv"
     questionText="'PostgreSQL bazada saqlanadi' ni stakeholder uchun qanday aytasiz?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>Mustahkamlash</p><h2 className="title h-sub" style={{ marginTop: 8 }}>"PostgreSQL" ni <span className="italic" style={{ color: T.accent }}>stakeholder</span> uchun qanday aytasiz?</h2></>}
+    question={<><p className="eyebrow" style={{ color: T.accent }}>Mustahkamlash</p><h2 className="title h-ask" style={{ marginTop: 8 }}>"PostgreSQL" ni <span className="italic" style={{ color: T.accent }}>stakeholder</span> uchun qanday aytasiz?</h2></>}
     options={['"PostgreSQL relyatsion bazasi ACID bilan"', '"Ma\'lumot hech qachon yo\'qolmaydi — kompyuter o\'chsa ham qoladi"', '"SQL so\'rovlar tez ishlaydi"', '"Baza 5432-portda turadi"']} correctIdx={1}
     explainCorrect="To'g'ri! Bu — biznes tarjimasi. Stakeholder 'yo'qolmaydi' degan foydani tushunadi va qadrlaydi."
     explainWrong={{ 0: 'Jargon — stakeholder hech narsa tushunmaydi.', 2: 'Tezlik texnik — foyda emas. "Yo\'qolmaydi" muhimroq.', 3: 'Port raqami — mutlaqo biznesga aloqasi yo\'q.', default: 'Biznes tilida: "ma\'lumot yo\'qolmaydi".' }} />
@@ -656,7 +656,7 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const Screen9 = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow="Mashq · 2-savol"
     questionText="Pitchda stakeholder eng ko'p nimaga qiziqadi?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-sub" style={{ marginTop: 8 }}>Stakeholder eng ko'p <span className="italic" style={{ color: T.accent }}>nimaga</span> qiziqadi?</h2></>}
+    question={<><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Stakeholder eng ko'p <span className="italic" style={{ color: T.accent }}>nimaga</span> qiziqadi?</h2></>}
     options={['Qaysi framework ishlatilgan', 'Biznes foydasi: pul, vaqt, ishonch, yo\'qolmaslik', 'Necha qator kod yozilgan', 'Server qaysi portda']} correctIdx={1}
     explainCorrect="To'g'ri! Stakeholder natijaga qiziqadi — bu unga qancha foyda keltiradi. Texnik tafsilot uni qiziqtirmaydi."
     explainWrong={{ 0: 'Framework — texnik tafsilot. Stakeholderga befarq.', 2: 'Kod miqdori — ahamiyatsiz. Natija muhim.', 3: 'Port — mutlaqo qiziqtirmaydi. Foyda muhim.', default: 'Stakeholder biznes foydasiga qiziqadi.' }} />
@@ -740,7 +740,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const Screen12 = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow="Mashq · 3-savol"
     questionText="Kuchli arxitektura pitchida eng muhim 2 narsa qaysi?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-sub" style={{ marginTop: 8 }}>Kuchli pitchda eng <span className="italic" style={{ color: T.accent }}>muhim</span> 2 narsa?</h2></>}
+    question={<><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Kuchli pitchda eng <span className="italic" style={{ color: T.accent }}>muhim</span> 2 narsa?</h2></>}
     options={['Ko\'p texnik atama va uzun kod', 'Vizual diagramma + biznes tili (foyda)', 'Tezroq gapirish', 'Faqat narx']} correctIdx={1}
     explainCorrect="To'g'ri! Diagramma ko'zga ko'rsatadi, biznes tili foydani tushuntiradi. Ikkisi birga — ishonch tug'diradi."
     explainWrong={{ 0: 'Texnik atama aksincha to\'sqinlik qiladi.', 2: 'Tezlik emas — aniqlik va tushunarlilik.', 3: 'Narx muhim, lekin yolg\'iz emas — foyda va ishonch ham kerak.', default: 'Vizual diagramma + biznes tili.' }} />
@@ -865,7 +865,7 @@ const Screen16 = ({ screen, answers, onReset, onPrev, onFinish }) => {
   return (
     <Stage eyebrow="Finale · tayyor" screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>Qaytadan</button><button className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>Yakunlash</button></>}>
       <div className="screen">
-        <div className="hero"><div className="hero-l"><span className="done-chip fade-up" style={{ color: T.grape, background: T.grapeSoft }}><span className="tick" style={{ color: T.grape }}>{Ico.star(12)}</span> Modul 4 PM yo'li tugadi · 4/4</span><h2 className="title h-title fade-up d1">Endi siz arxitekturani <span className="italic" style={{ color: T.accent }}>pitch</span> qila olasiz.</h2><p className="body h-sub fade-up d2">{PASSED ? 'Tabriklaymiz! Metrikalar, xavfsizlik, sxema va pitch — backend PM yo\'lini to\'liq o\'tdingiz. AvtoIjara\'dan AvtoStoyanka\'gacha!' : 'Yaxshi harakat! Bir-ikki joyni mustahkamlash uchun darsni qayta ko\'ring.'}</p></div><ScoreRing correct={correct} total={total} /></div>
+        <div className="hero"><div className="hero-l"><span className="done-chip fade-up" style={{ color: T.grape, background: T.grapeSoft }}><span className="tick" style={{ color: T.grape }}>{Ico.star(12)}</span> Modul 4 PM yo'li tugadi · 4/4</span><h2 className="title h-title fade-up d1">Endi siz arxitekturani <span className="italic" style={{ color: T.accent }}>pitch</span> qila olasiz.</h2>{/* 54-qonun (P0 PmUserStory · PmLesson2 qarori): h-sub qatori YO'Q — sarlavha o'zi yetadi. */}</div><ScoreRing correct={correct} total={total} /></div>
         <div className="split">
           <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span style={{ color: T.success, display: 'inline-flex' }}>{Ico.check(15)}</span> Endi siz bilasiz</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck" style={{ display: 'inline-flex' }}>{Ico.check(15)}</span><span>{r}</span></li>))}</ul></div>
           <div className="card fade-up d4"><div className="card-lbl" style={{ color: T.grape }}><span style={{ color: T.grape, display: 'inline-flex' }}>{Ico.star(15)}</span> Modul 4 PM yo'li</div><ul className="recap">{JOURNEY.map((j, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck" style={{ color: T.grape, display: 'inline-flex' }}>{Ico.check(15)}</span><span><b>{j.t}</b> <span style={{ color: T.ink2 }}>— {j.d}</span></span></li>))}</ul></div>
@@ -1000,7 +1000,7 @@ export default function PmLesson14({ lang: langProp, onFinished }) {
         .btn-soft:hover:not(:disabled) { box-shadow: 0 6px 14px -5px rgba(${T.shadowBase},0.2); }
 
         /* === OPSIYALAR === */
-        .option { background: ${T.paper}; cursor: pointer; transition: all 0.2s; font-family: 'Manrope', sans-serif; font-weight: 500; text-align: left; border-radius: 12px; width: 100%; border: none; color: ${T.ink}; box-shadow: 0 6px 16px -7px rgba(${T.shadowBase},0.16); }
+        .option { background: ${T.paper}; cursor: pointer; transition: all 0.2s; font-family: 'Manrope', sans-serif; font-weight: 500; line-height: 1.45; text-align: left; border-radius: 12px; width: 100%; border: none; color: ${T.ink}; box-shadow: 0 6px 16px -7px rgba(${T.shadowBase},0.16); }
         .option:hover:not(:disabled) { background: #FDFBF7; transform: translateY(-1px); box-shadow: 0 12px 24px -8px rgba(${T.shadowBase},0.22); }
         .option:disabled { cursor: default; }
         .option-correct { background: ${T.successSoft} !important; color: ${T.success} !important; box-shadow: 0 8px 22px -8px rgba(31,122,77,0.32) !important; }
@@ -1037,6 +1037,7 @@ export default function PmLesson14({ lang: langProp, onFinished }) {
 
         .h-title { font-size: clamp(22px,4vw,38px); }
         .h-sub { font-size: clamp(17px,2.5vw,22px); }
+        .h-ask { font-size: clamp(19px,2.6vw,27px); line-height: 1.32; letter-spacing: -0.01em; text-wrap: balance; }
         .body { font-size: clamp(14px,1.6vw,16px); line-height: 1.5; }
         .eyebrow { font-size: clamp(11px,1.3vw,12px); letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600; }
         .small { font-size: clamp(12.5px,1.4vw,13.5px); }
@@ -1067,7 +1068,10 @@ export default function PmLesson14({ lang: langProp, onFinished }) {
         .spec-text { font-family: 'Georgia, serif'; font-size: clamp(13px,1.7vw,15px); line-height: 1.5; margin: 3px 0 0; }
 
         /* === LAYOUT === */
-        .screen { flex: 1; min-height: 0; display: flex; flex-direction: column; gap: clamp(14px,2vw,20px); }
+        .screen { flex: 1 0 auto; min-height: 0; display: flex; flex-direction: column; gap: clamp(14px,2vw,20px); }
+        /* F-0725-04 · 60-qonun: kontent sig'masa ekran-bloklari SIQILMAYDI — stage-content skroll beradi.
+           Standart flex-shrink tufayli bloklar siqilib, ichidagi matn qirqilardi (F-0802-14 dalili). */
+        .screen > * { flex-shrink: 0; }
         .head { display: flex; flex-direction: column; gap: 6px; }
         .split { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: clamp(18px,3vw,36px); align-items: start; }
         .col { display: flex; flex-direction: column; gap: clamp(12px,2vw,16px); min-width: 0; }

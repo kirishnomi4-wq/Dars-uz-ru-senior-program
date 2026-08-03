@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback, createContext, useContext } from 'react';
+import React, { useState, useEffect, useRef, useMemo, useCallback, createContext, useContext } from 'react';
 
 // ============================================================
 // 10-DARS — JAVASCRIPT: SIKLLAR (for, while) + MASSIVNI AYLANIB CHIQISH — PLATFORM STANDARD v16
@@ -77,6 +77,16 @@ const progRead = (id, total) => {
 };
 const progWrite = (id, o) => { try { localStorage.setItem(_progKey(id), JSON.stringify(o)); } catch {} };
 const progClear = (id) => { try { localStorage.removeItem(_progKey(id)); } catch {} };
+// F-0801-01 (102-qonun): ochiq praktika-oynasi ham saqlanadi — Chrome fon-tabni bo'shatib
+// sahifani qayta yuklasa, o'quvchi praktika ICHIGA qaytadi, ortidagi darsga emas.
+const _pracKey = (id) => `ccPractice:${id}`;
+const pracRead = (id) => { try { const v = JSON.parse(localStorage.getItem(_pracKey(id)) || 'null'); return v && typeof v === 'object' ? v : null; } catch { return null; } };
+const pracWrite = (id, o) => { try { localStorage.setItem(_pracKey(id), JSON.stringify(o)); } catch {} };
+const pracClear = (id) => { try { localStorage.removeItem(_pracKey(id)); } catch {} };
+// Kod-saqlov kaliti: har praktika o'z kaliti bilan (bir darsda bir necha praktika bor)
+const codeKeyOf = (id, kind) => `ccCode:${id}:${kind}`;
+const codesRead = (k) => { try { const v = JSON.parse(localStorage.getItem(k) || 'null'); return v && typeof v === 'object' ? v : null; } catch { return null; } };
+const codesWrite = (k, codes) => { try { localStorage.setItem(k, JSON.stringify({ codes, savedAt: Date.now() })); } catch {} };
 // Nickname — qurilma bo'ylab BITTA (darsga bog'lanmagan kalit): Internet darsida yozgan ismi shu yerda ham chiqadi
 const LIVE_NICK_KEY = 'liveNickname';
 const nickRead = () => { try { return localStorage.getItem(LIVE_NICK_KEY) || ''; } catch { return ''; } };
@@ -342,6 +352,7 @@ function LiveBadge({ live, total }) {
 const LangContext = createContext('uz');
 const MentorCtx = createContext(null);
 const AchCtx = createContext(null); // 🏅 olingan nishonlar (Set) — Stage hisoblagichi uchun
+const PRACTICE_DONE_BASE = 500;     // praktika-tugadi signal indekslari (500+, test/arena zonasidan yuqori)
 
 function useIsMobile(breakpoint = 640) {
   const [isMobile, setIsMobile] = useState(typeof window !== 'undefined' ? window.innerWidth < breakpoint : false);
@@ -367,6 +378,12 @@ const fmtCode = (s) => (typeof s === 'string' && s.includes('`'))
   : s;
 
 const LESSON_META = { lessonId: 'js-loops-01-v18', lessonTitle: { uz: 'JavaScript — Sikllar (for, while)', ru: 'JavaScript — Циклы (for, while)' } };
+const HW_TOKENS = [
+  { t: { uz: 'amaliyot', ru: 'практика' }, l: 8, tp: 22, s: 13, d: 6 },
+  { t: { uz: 'loyiha', ru: 'проект' }, l: 68, tp: 16, s: 12, d: 7.5 },
+  { t: { uz: 'mashq', ru: 'упражнение' }, l: 24, tp: 70, s: 12, d: 8.5 },
+  { t: { uz: 'natija', ru: 'результат' }, l: 78, tp: 68, s: 13, d: 6.8 }
+];
 const SCREEN_META = [
   { id: 's0',  type: 'hook',        template: 'custom',   scored: false, scope: 'hook' },
   { id: 's1',  type: 'rule',        template: 'custom',   scored: false, scope: null },
@@ -384,7 +401,6 @@ const SCREEN_META = [
   { id: 's12', type: 'test',        template: 'MCScreen', scored: true,  scope: 'module-mikro' },
   { id: 's13', type: 'case',        template: 'custom',   scored: false, scope: null },
   { id: 's14', type: 'rule',        template: 'custom',   scored: false, scope: null },
-  { id: 's15', type: 'test',        template: 'custom',   scored: true,  scope: 'final' },
   { id: 's15b', type: 'stats',      template: 'custom',   scored: false, scope: null },
   { id: 'sflash', type: 'flashcard', template: 'custom',  scored: false, scope: null },
   { id: 's16', type: 'summary',     template: 'custom',   scored: false, scope: null }
@@ -816,7 +832,7 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
       <div className="screen" style={{ justifyContent: isMentorLive ? 'flex-start' : 'safe center', gap: 'clamp(16px,2.5vw,24px)' }}>
         <div className="fade-up">{question}</div>
         {oneShot && !solved && <p className="small mono fade-up" style={{ margin: '-8px 0 0', color: T.accent, fontWeight: 600 }}>⚡ {tr({ uz: "Jonli dars — bitta urinish, o'ylab bosing!", ru: 'Живой урок — одна попытка, думайте перед кликом!' })}</p>}
-        <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
+        <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 11 }}>
           {options.map((opt, i) => {
             let cls = 'option';
             if (isMentorLive) {
@@ -828,7 +844,7 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
             else if (i === picked) cls += ' option-picked-wrong';
             const showGreenLetter = isMentorLive ? (mReveal && i === correctIdx) : (solved && revealed && i === correctIdx);
             return (
-              <button key={i} className={cls} disabled={solved || isMentorLive} onClick={() => pick(i)} style={{ padding: 'clamp(12px,1.8vw,16px) clamp(14px,2.2vw,20px)', fontSize: 'clamp(14px,1.7vw,16px)', display: 'flex', alignItems: 'center', gap: 12 }}>
+              <button key={i} className={cls} disabled={solved || isMentorLive} onClick={() => pick(i)} style={{ padding: 'clamp(13px,1.9vw,17px) clamp(15px,2.2vw,20px)', fontSize: 'clamp(15px,1.85vw,17px)', display: 'flex', alignItems: 'center', gap: 12 }}>
                 <span className="mono small" style={{ minWidth: 20, color: showGreenLetter ? T.success : T.ink3 }}>{String.fromCharCode(65 + i)}</span>
                 <span style={{ flex: 1 }}>{fmtCode(tr(opt))}</span>
               </button>
@@ -941,7 +957,9 @@ const Zoomable = ({ children }) => {
 // Boshqariladigan (controlled) prezentatsion komponent: `count` — hozirgi i, ota-komponent
 // sikl vaqtini boshqaradi. 3 rangli dastak = for'ning 3 qismi; markazda i-tablo (odometr);
 // har aylanishda 1 quti pastdagi yashikka tushadi. cheksiz=true → qutilar toshib qizaradi.
-// whileMode → «Shart» dastagi «Datchik»ga aylanadi. load → massiv-yuk (quti yorliqlari).
+// whileMode → «Shart» dastagi «👀 Tekshiruvchi»ga aylanadi (F-0803-17: «datchik» —
+// o'smir uchun begona so'z, «tekshiruvchi» esa nima qilishini o'zi aytadi).
+// load → massiv-yuk (quti yorliqlari).
 // HARAKAT SIFATI (quti tushishi, dastak tortilishi, silliqlik) — ✨ Animatsiya roli.
 const SiklZavodi = ({ count = 0, max = 5, init = 'i = 1', cond = 'i <= 5', step = 'i++', load = null, cheksiz = false, whileMode = false, done = false, onStep, onAuto, manual = false, compact = false }) => {
   const n = Math.max(0, count);
@@ -952,7 +970,7 @@ const SiklZavodi = ({ count = 0, max = 5, init = 'i = 1', cond = 'i <= 5', step 
     <div className={`zavod ${overflow ? 'zavod-cheksiz' : ''} ${done && !cheksiz ? 'zavod-done' : ''} ${compact ? 'zavod-sm' : ''}`}>
       <div className="zavod-levers">
         <div className="zv-lever zv-init"><span className="zv-lbl">{tr({ uz: 'Boshlanish', ru: 'Старт' })}</span><span className="zv-code">{init}</span></div>
-        <div className="zv-lever zv-cond"><span className="zv-lbl">{whileMode ? tr({ uz: 'Datchik', ru: 'Датчик' }) : tr({ uz: 'Shart', ru: 'Условие' })}</span><span className="zv-code">{cond}</span></div>
+        <div className="zv-lever zv-cond"><span className="zv-lbl">{whileMode ? tr({ uz: '👀 Tekshiruvchi', ru: '👀 Проверяющий' }) : tr({ uz: 'Shart', ru: 'Условие' })}</span><span className="zv-code">{cond}</span></div>
         <div className="zv-lever zv-step"><span className="zv-lbl">{tr({ uz: 'Qadam', ru: 'Шаг' })}</span><span className="zv-code">{step}</span></div>
       </div>
       <div className="zavod-body">
@@ -1229,7 +1247,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const Screen4 = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 1-savol', ru: 'Практика · вопрос 1' })}
     questionText="for siklida 'i++' nima vazifani bajaradi?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-sub" style={{ marginTop: 8 }}>{tr({ uz: <>for siklidagi <span className="mono" style={{ color: T.accent }}>i++</span> nima qiladi?</>, ru: <>Что делает <span className="mono" style={{ color: T.accent }}>i++</span> в цикле for?</> })}</h2></>}
+    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>for siklidagi <span className="mono" style={{ color: T.accent }}>i++</span> nima qiladi?</>, ru: <>Что делает <span className="mono" style={{ color: T.accent }}>i++</span> в цикле for?</> })}</h2></>}
     options={[{ uz: "Siklni boshlang'ich qiymatini belgilaydi", ru: 'Задаёт начальное значение цикла' }, { uz: 'Har aylanishdan keyin i ni 1 ga oshiradi', ru: 'После каждой итерации увеличивает i на 1' }, { uz: "Siklni butunlay to'xtatib qo'yadi", ru: 'Полностью останавливает цикл' }, { uz: 'Yangi massiv yaratadi', ru: 'Создаёт новый массив' }]} correctIdx={1}
     explainCorrect={{ uz: "To'g'ri! i++ — bu qadam. Har bir aylanishdan so'ng i qiymati 1 ga oshadi va shart qaytadan tekshiriladi.", ru: 'Верно! i++ — это шаг. После каждой итерации значение i растёт на 1, и условие проверяется снова.' }}
     explainWrong={{
@@ -1295,7 +1313,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const Screen5b = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow={tr({ uz: 'Tekshiruv', ru: 'Проверка' })}
     questionText="for (let i = 1; i <= 3; i++) console.log(i) — konsolda qaysi sonlar chiqadi?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "Siklni o'qing", ru: 'Прочитайте цикл' })}</p><h2 className="title h-sub" style={{ margin: '8px 0 2px' }}>{tr({ uz: <>Bu sikl konsolga <span className="italic" style={{ color: T.accent }}>qaysi sonlarni</span> yozadi?</>, ru: <><span className="italic" style={{ color: T.accent }}>Какие числа</span> этот цикл выведет в консоль?</> })}</h2><div className="codebox" style={{ marginTop: 10, marginBottom: 4 }}><div><KW>for</KW> (<KW>let</KW> i = <NUM>1</NUM>; i &lt;= <NUM>3</NUM>; i++) {'{'}</div><div style={{ paddingLeft: 18 }}><FN>console</FN>.<FN>log</FN>(i)</div><div>{'}'}</div></div></>}
+    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "Siklni o'qing", ru: 'Прочитайте цикл' })}</p><h2 className="title h-ask" style={{ margin: '8px 0 2px' }}>{tr({ uz: <>Bu sikl konsolga <span className="italic" style={{ color: T.accent }}>qaysi sonlarni</span> yozadi?</>, ru: <><span className="italic" style={{ color: T.accent }}>Какие числа</span> этот цикл выведет в консоль?</> })}</h2><div className="codebox" style={{ marginTop: 10, marginBottom: 4 }}><div><KW>for</KW> (<KW>let</KW> i = <NUM>1</NUM>; i &lt;= <NUM>3</NUM>; i++) {'{'}</div><div style={{ paddingLeft: 18 }}><FN>console</FN>.<FN>log</FN>(i)</div><div>{'}'}</div></div></>}
     options={['1, 2, 3', '1, 2', '1, 2, 3, 4', '3, 2, 1']} correctIdx={0}
     explainCorrect={{ uz: "To'g'ri! i = 1 dan boshlanadi va «i <= 3» bo'lgancha ishlaydi: 1, 2, 3. i = 4 bo'lganda shart buziladi — sikl to'xtaydi.", ru: 'Верно! i начинается с 1 и работает, пока «i <= 3»: 1, 2, 3. При i = 4 условие нарушается — цикл останавливается.' }}
     explainWrong={{
@@ -1315,6 +1333,11 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const timer = useRef(null);
   const done = suv >= 100;
   useEffect(() => () => clearTimeout(timer.current), []);
+  // 👣 Bir qadam: o'quvchi shartni O'ZI tekshirib, aylanishni qo'lda bosadi.
+  // Sabab (F-0803-17): o'rganish shart YOLG'ON bo'lgan lahzani ko'rishdan keladi —
+  // uni qo'lda bosib kelgan bola bu lahzani kutadi va payqaydi.
+  const step = () => { if (running || suv >= 100) return; setSuv(v => Math.min(v + STEP, 100)); setIter(c => c + 1); };
+  const again = () => { clearTimeout(timer.current); setRunning(false); setSuv(0); setIter(0); };
   const run = () => {
     clearTimeout(timer.current); setSuv(0); setIter(0); setRunning(true);
     const tick = (v, c) => {
@@ -1329,7 +1352,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: 'while sikli', ru: 'Цикл while' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "Idishni to'ldiring", ru: 'Наполните сосуд' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Necha marta takrorlashni <span className="italic" style={{ color: T.accent }}>bilmasak-chi?</span></>, ru: <>А если <span className="italic" style={{ color: T.accent }}>не знаем</span>, сколько раз повторять?</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Zavodda idishni suv bilan to'ldiryapsiz — necha marta quyishni oldindan sanaysizmi? Yo'q! Bu yerda «Shart» dastagi o'rniga <b style={{ color: T.ink }}>datchik</b> turadi — u faqat bitta narsani kuzatadi: <b style={{ color: T.ink }}>"to'lmaguncha quyaver"</b>. <span className="mono" style={{ color: T.accent }}>while</span> ham aynan shunday ishlaydi: shart (datchik) <b style={{ color: T.ink }}>rost ekan</b> — takrorlayveradi, to'lib rost bo'lmay qolsa — to'xtaydi.</>, ru: <>На заводе вы наполняете сосуд водой — считаете заранее, сколько раз налить? Нет! Здесь вместо рычага «Условие» стоит <b style={{ color: T.ink }}>датчик</b> — он следит за одним: <b style={{ color: T.ink }}>«лей, пока не наполнится»</b>. <span className="mono" style={{ color: T.accent }}>while</span> работает точно так же: пока условие (датчик) <b style={{ color: T.ink }}>истинно</b> — повторяет, перестало быть истинным — останавливается.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Zavoddagi idish <b style={{ color: T.ink }}>to'lguncha</b> suv quyiladi — hech kim oldindan «5 marta quy» demaydi. <span className="mono" style={{ color: T.accent }}>while</span> ham shunday: shart <b style={{ color: T.success }}>rost</b> bo'lsa takrorlaydi, <b style={{ color: T.accent }}>yolg'on</b> bo'lsa to'xtaydi.</>, ru: <>В сосуд на заводе льют, <b style={{ color: T.ink }}>пока он не наполнится</b> — никто заранее не говорит «налей 5 раз». <span className="mono" style={{ color: T.accent }}>while</span> работает так же: условие <b style={{ color: T.success }}>истинно</b> — повторяет, <b style={{ color: T.accent }}>ложно</b> — останавливается.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
@@ -1339,8 +1362,19 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <div style={{ paddingLeft: 18 }}>suv += <NUM>20</NUM> <CM>{tr({ uz: '// yana quyamiz', ru: '// подливаем ещё' })}</CM></div>
               <div>{'}'}</div>
             </div>
-            <button className="btn" onClick={run} disabled={running} style={{ alignSelf: 'flex-start' }}>{running ? tr({ uz: 'Quyilmoqda…', ru: 'Наливается…' }) : (done ? tr({ uz: '↻ Yana', ru: '↻ Ещё раз' }) : tr({ uz: '💧 Suv quyishni boshlash', ru: '💧 Начать наливать воду' }))}</button>
-            <p className="body" style={{ margin: 0, color: T.ink2, fontSize: 13 }}>{tr({ uz: 'Aylanishlar:', ru: 'Итераций:' })} <b style={{ color: T.accent, fontFamily: "'JetBrains Mono',monospace" }}>{iter}</b>{tr({ uz: ' marta', ru: '' })}</p>
+            {/* F-0803-17: avval QO'LDA bir qadam (o'quvchi shartni o'zi tekshiradi), keyin to'liq animatsiya */}
+            <div className="fade-up delay-2" style={{ display: 'flex', gap: 9, flexWrap: 'wrap', alignItems: 'center' }}>
+              {done
+                ? <button className="btn" onClick={again}>{tr({ uz: '↻ Boshidan', ru: '↻ Сначала' })}</button>
+                : (<>
+                    <button className="btn" onClick={step} disabled={running}>👣 {tr({ uz: 'Bir marta quy', ru: 'Налить один раз' })}</button>
+                    <button className="btn-ghost" onClick={run} disabled={running} style={{ padding: '11px 18px', fontSize: 14 }}>{running ? tr({ uz: 'Quyilmoqda…', ru: 'Наливается…' }) : tr({ uz: "▶ To'liq quyib ko'rsat", ru: '▶ Показать целиком' })}</button>
+                  </>)}
+            </div>
+            <div className={`loop-count fade-up delay-2 ${iter ? 'bump' : ''}`} key={iter}>
+              <span className="loop-count-n">{iter}</span>
+              <span className="loop-count-l">{tr({ uz: 'aylanish bajarildi', ru: 'итераций выполнено' })}</span>
+            </div>
           </Col>
           <Col>
             <div className="glass-wrap fade-up delay-1">
@@ -1350,11 +1384,12 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 <span className="glass-pct">{suv}%</span>
                 {running && suv > 0 && <span className="splash" key={suv}>+20</span>}
               </div>
-              <div className="cond-pill" style={{ background: suv < 100 ? T.successSoft : T.accentSoft, color: suv < 100 ? T.success : T.accent }}>suv {suv} &lt; 100 → {suv < 100 ? tr({ uz: '✓ yana quy', ru: '✓ лей ещё' }) : tr({ uz: "✗ to'xta", ru: '✗ стоп' })}</div>
+              <p className="cond-label">👀 {tr({ uz: 'Tekshiruvchi', ru: 'Проверяющий' })}</p>
+              <div className={`cond-pill${done ? ' stop' : ''}`} style={{ background: suv < 100 ? T.successSoft : T.accentSoft, color: suv < 100 ? T.success : T.accent }}>suv {suv} &lt; 100 → {suv < 100 ? tr({ uz: '✓ rost — yana quy', ru: '✓ истина — лей ещё' }) : tr({ uz: "✗ yolg'on — to'xta", ru: '✗ ложь — стоп' })}</div>
               <p className="mono small" style={{ color: T.ink3, margin: 0 }}>{tr({ uz: `${iter}-aylanish`, ru: `итерация ${iter}` })}</p>
             </div>
             <div className="fade-up delay-2"><SiklZavodi count={iter} max={5} whileMode init="suv = 0" cond="suv < 100" step="suv += 20" done={done} compact /></div>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ Idish to'ldi! Sikl 5 marta ishladi — biz buni oldindan sanamadik, datchik (<span className="mono">suv &lt; 100</span>) o'zi to'xtatdi. Mana <b>while</b>ning farqi.</>, ru: <>✓ Сосуд полон! Цикл сработал 5 раз — мы это заранее не считали, датчик (<span className="mono">suv &lt; 100</span>) остановил его сам. В этом и отличие <b>while</b>.</> })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ Idish to'ldi — sikl 5 marta ishladi. Biz sanamadik: <b>Tekshiruvchi</b> shart yolg'on bo'lgan lahzada o'zi to'xtatdi.</>, ru: <>✓ Сосуд полон — цикл сработал 5 раз. Мы не считали: <b>Проверяющий</b> сам остановил его в момент, когда условие стало ложным.</> })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -1469,7 +1504,7 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const Screen9 = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 2-savol', ru: 'Практика · вопрос 2' })}
     questionText="mevalar = ['olma','banan','uzum']. mevalar[0] nima?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><div className="codebox" style={{ marginTop: 10, marginBottom: 6 }}><div><KW>const</KW> mevalar = [<STR>"olma"</STR>, <STR>"banan"</STR>, <STR>"uzum"</STR>]</div></div><h2 className="title h-sub" style={{ marginTop: 6 }}>{tr({ uz: <><span className="mono" style={{ color: T.accent }}>mevalar[0]</span> nimaga teng?</>, ru: <>Чему равно <span className="mono" style={{ color: T.accent }}>mevalar[0]</span>?</> })}</h2></>}
+    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><div className="codebox" style={{ marginTop: 10, marginBottom: 6 }}><div><KW>const</KW> mevalar = [<STR>"olma"</STR>, <STR>"banan"</STR>, <STR>"uzum"</STR>]</div></div><h2 className="title h-ask" style={{ marginTop: 6 }}>{tr({ uz: <><span className="mono" style={{ color: T.accent }}>mevalar[0]</span> nimaga teng?</>, ru: <>Чему равно <span className="mono" style={{ color: T.accent }}>mevalar[0]</span>?</> })}</h2></>}
     options={['"banan"', '"olma"', { uz: "Xato — [0] yo'q", ru: 'Ошибка — [0] не существует' }, '"uzum"']} correctIdx={1}
     explainCorrect={{ uz: `To'g'ri! Indeks 0 dan boshlanadi, shuning uchun mevalar[0] — birinchi element, ya'ni "olma".`, ru: 'Верно! Индекс начинается с 0, поэтому mevalar[0] — первый элемент, то есть "olma".' }}
     explainWrong={{
@@ -1600,7 +1635,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const Screen12 = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 3-savol', ru: 'Практика · вопрос 3' })}
     questionText="dostlar massivida 5 ta nom bor. for (i=0; i<dostlar.length; i++) sikli necha marta ishlaydi?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><div className="codebox" style={{ marginTop: 10, marginBottom: 6 }}><div><CM>{tr({ uz: '// dostlar = 5 ta nom', ru: '// dostlar = 5 имён' })}</CM></div><div><KW>for</KW> (<KW>let</KW> i = <NUM>0</NUM>; i &lt; dostlar.<FN>length</FN>; i++) {'{ … }'}</div></div><h2 className="title h-sub" style={{ marginTop: 6 }}>{tr({ uz: <>Sikl <span className="italic" style={{ color: T.accent }}>necha marta</span> ishlaydi?</>, ru: <>Цикл сработает <span className="italic" style={{ color: T.accent }}>сколько раз</span>?</> })}</h2></>}
+    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><div className="codebox" style={{ marginTop: 10, marginBottom: 6 }}><div><CM>{tr({ uz: '// dostlar = 5 ta nom', ru: '// dostlar = 5 имён' })}</CM></div><div><KW>for</KW> (<KW>let</KW> i = <NUM>0</NUM>; i &lt; dostlar.<FN>length</FN>; i++) {'{ … }'}</div></div><h2 className="title h-ask" style={{ marginTop: 6 }}>{tr({ uz: <>Sikl <span className="italic" style={{ color: T.accent }}>necha marta</span> ishlaydi?</>, ru: <>Цикл сработает <span className="italic" style={{ color: T.accent }}>сколько раз</span>?</> })}</h2></>}
     options={[{ uz: '4 marta', ru: '4 раза' }, { uz: '5 marta', ru: '5 раз' }, { uz: '6 marta', ru: '6 раз' }, { uz: 'Cheksiz', ru: 'Бесконечно' }]} correctIdx={1}
     explainCorrect={{ uz: "To'g'ri! .length = 5, sikl i = 0, 1, 2, 3, 4 bo'lganda ishlaydi — ya'ni 5 marta, har bir element uchun bir marta.", ru: 'Верно! .length = 5, цикл работает при i = 0, 1, 2, 3, 4 — то есть 5 раз, по разу на каждый элемент.' }}
     explainWrong={{
@@ -1735,92 +1770,20 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   );
 };
 
-// 🌯 LOYIHAGA KO'PRIK (96-qonun: modul-ipi) — o'rganilgan tushuncha 8–12-darslardagi
-// lavash do'koni saytida qanday ishlashini bir qatorda ko'rsatadi. Ekranni bulg'amaydi:
-// faqat mashq BAJARILGANDAN keyin chiqadi (92-qonun: bir ekran — bir ish).
-const ProjectBridge = () => (
-  <div className="frame-soft fade-step">
-    <p className="small mono" style={{ margin: '0 0 6px', fontWeight: 700, color: T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>{tr({ uz: '🌯 Loyihaga ko\'prik', ru: '🌯 Мост к проекту' })}</p>
-    <p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Loyiha kunlarida menyuni sikl chiqaradi: 12 ta lavashni bittalab yozmaysiz — <span className="mono">for</span> ularni o'zi ro'yxatga tizadi.</>, ru: <>В проектные дни меню выводит цикл: 12 лавашей вы не пишете по одному — <span className="mono">for</span> сам выстроит их в список.</> })}</p>
-  </div>
-);
+// F-0803-12: «🌯 Loyihaga ko'prik» bloki OLIB TASHLANDI (foydalanuvchi qarori, JsVars bilan bir xil) —
+// s15 ning ishi bitta: o'quvchi siklni O'ZI yozadi. Yozib bo'lgan lahzada kelajakdagi
+// loyiha haqida qo'shimcha matn chiqarish g'alaba-lahzasini suyultiradi.
 
-// ===== SCREEN 15 — YAKUNIY (for siklni o'zi yozadi) =====
-const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const _gate = useContext(LiveGateCtx) || {};
-  const isMentorLive = !!(_gate.live && _gate.live.mode === 'mentor'); // proyektorda mentor kod yozmaydi — gate uni qulflamasin
-  const [value, setValue] = useState(storedAnswer?.picked || '');
-  const [passed, setPassed] = useState(!!storedAnswer?.correct);
-  const v = value.trim();
-  const hasFor = /^for\b/.test(v);
-  const hasParen = /^for\s*\(.+\)/.test(v);
-  const hasCond = /(<=|<|>=|>)/.test(v);
-  const hasStep = /(\+\+|\+=)/.test(v);
-  const hasBrace = /\{/.test(v);
-  const valid = /^for\s*\([^)]*(<=|<|>=|>)[^)]*(\+\+|\+=)[^)]*\)\s*\{/.test(v);
-  useEffect(() => { if (valid && !passed) { setPassed(true); onAnswer(screen, { stage: 'final', screenIdx: screen, question: 'for siklini yozing', studentAnswer: value, correct: true, firstAttemptCorrect: true, solved: true, picked: value }); } }, [valid]);
-  // Qo'shimcha mini-mashqlar: while sharti + i++ qadami (yengil input-validatsiya, kompilatorsiz)
-  const [wv, setWv] = useState(storedAnswer?.correct ? 'i <= 10' : '');
-  const [sv, setSv] = useState(storedAnswer?.correct ? 'i += 2' : '');
-  const whileOk = /i\s*<=?\s*1[01]/.test(wv.trim());
-  const stepOk = /\+=\s*2|i\s*=\s*i\s*\+\s*2/.test(sv.trim());
-  const allDone = passed && whileOk && stepOk;
-  return (
-    <Stage eyebrow={tr({ uz: 'Yakuniy · amaliy', ru: 'Финал · практика' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={isMentorLive ? false : !allDone} label={isMentorLive ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : (allDone ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : (passed ? tr({ uz: "Mini-mashqlarni to'ldiring", ru: 'Заполните мини-задания' }) : tr({ uz: 'Siklni yozing', ru: 'Напишите цикл' })))} onClick={onNext} /></>}>
-      <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Oxirgi qadam: <span className="mono italic" style={{ color: T.accent }}>for</span> siklini o'zingiz yozing.</>, ru: <>Последний шаг: напишите цикл <span className="mono italic" style={{ color: T.accent }}>for</span> сами.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Navbat sizga! 1 dan 5 gacha sanaydigan <span className="mono">for</span> siklini yozing. Pastda <b style={{ color: T.ink }}>namuna</b> turibdi — xuddi shunday yozing. To'g'ri yozsangiz, har bir belgi <b style={{ color: T.success }}>yashil</b> yonadi. ✓</>, ru: <>Ваш ход! Напишите цикл <span className="mono">for</span>, считающий от 1 до 5. Внизу есть <b style={{ color: T.ink }}>образец</b> — пишите точно так же. Напишете верно — каждая метка загорится <b style={{ color: T.success }}>зелёным</b>. ✓</> })}</Mentor>
-        <Zoomable>
-        <div className="split">
-          <Col>
-            <p className="flow-label">{tr({ uz: 'Namuna — shunday yozing', ru: 'Образец — пишите так же' })}</p>
-            <div className="codebox fade-up delay-1" style={{ opacity: 0.85 }}>
-              <div><KW>for</KW> (<KW>let</KW> i = <NUM>1</NUM>; i &lt;= <NUM>5</NUM>; i++) {'{'}</div>
-            </div>
-            <p className="flow-label" style={{ marginTop: 4 }}>{tr({ uz: 'Bu yerga yozing 👇', ru: 'Пишите сюда 👇' })}</p>
-            <input className="fade-up delay-2" value={value} onChange={e => setValue(e.target.value)} placeholder={'for (let i = 1; i <= 5; i++) {'} spellCheck={false} autoCapitalize="off" autoCorrect="off" style={{ width: '100%', fontFamily: "'JetBrains Mono', monospace", fontSize: 16, padding: '14px 16px', borderRadius: 12, border: 'none', background: T.paper, color: T.ink, outline: 'none', transition: 'box-shadow 0.2s', boxShadow: valid ? `0 0 0 2px ${T.success}, 0 8px 20px -8px rgba(${T.shadowBase},0.2)` : `0 4px 14px -6px rgba(${T.shadowBase},0.16)` }} />
-            <div className="fade-up delay-2" style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-              <span className="tagpill" style={{ opacity: hasFor ? 1 : 0.4 }}>{hasFor ? '✓' : '1'} for</span>
-              <span className="tagpill" style={{ opacity: hasParen ? 1 : 0.4 }}>{hasParen ? '✓' : '2'} ( ... )</span>
-              <span className="tagpill" style={{ opacity: hasCond ? 1 : 0.4 }}>{hasCond ? '✓' : '3'} {tr({ uz: 'shart', ru: 'условие' })}</span>
-              <span className="tagpill" style={{ opacity: hasStep ? 1 : 0.4 }}>{hasStep ? '✓' : '4'} i++</span>
-              <span className="tagpill" style={{ opacity: hasBrace ? 1 : 0.4 }}>{hasBrace ? '✓' : '5'} {'{'}</span>
-            </div>
-            {passed
-              ? (<><div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>✓ {tr({ uz: "Zo'r! Bu to'g'ri for sikli — endi kompyuter takrorlashni o'zi bajaradi!", ru: 'Класс! Это правильный цикл for — теперь компьютер повторяет сам!' })}</p></div><ProjectBridge /></>)
-              : (<p className="body" style={{ margin: 0, color: T.ink3, fontSize: 13 }}>{tr({ uz: <>3 qism: boshlanish, shart (&lt; yoki &lt;=), qadam (i++). Oxirida {'{'} ni unutmang.</>, ru: <>3 части: старт, условие (&lt; или &lt;=), шаг (i++). Не забудьте {'{'} в конце.</> })}</p>)}
-          </Col>
-          <Col>
-            <p className="flow-label">{tr({ uz: 'natija', ru: 'результат' })}</p>
-            <div style={{ background: T.paper, borderRadius: 14, minHeight: 130, padding: '20px', boxShadow: `0 8px 22px -10px rgba(${T.shadowBase},0.16)`, display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>
-              {valid
-                ? <div className="fade-step"><div style={{ fontSize: 36 }}>🔁</div><p style={{ fontFamily: "'Source Serif 4',serif", color: T.success, fontWeight: 700, margin: '8px 0 4px', fontSize: 'clamp(16px,2.4vw,20px)' }}>{tr({ uz: 'Sikl tayyor!', ru: 'Цикл готов!' })}</p><p className="mono small" style={{ margin: 0, color: T.ink2 }}>1 → 2 → 3 → 4 → 5</p></div>
-                : <p style={{ fontFamily: "'Source Serif 4',serif", color: T.ink3, fontStyle: 'italic', margin: 0 }}>{tr({ uz: "To'liq yozing:", ru: 'Напишите полностью:' })} <span className="mono" style={{ fontStyle: 'normal' }}>{'for ( ... ) {'}</span></p>}
-            </div>
-          </Col>
-        </div>
-        </Zoomable>
-        <div className="split fade-up delay-3">
-          <div className="mini-task">
-            <p className="flow-label">{tr({ uz: <>Mini-mashq 1 — <b>while</b> sharti</>, ru: <>Мини-задание 1 — условие <b>while</b></> })}</p>
-            <p className="body" style={{ margin: '0 0 8px', color: T.ink2, fontSize: 13 }}>{tr({ uz: <>i <b>10 dan oshmaguncha</b> davom etsin. Shartni yozing:</>, ru: <>Пусть продолжается, пока i <b>не превысит 10</b>. Напишите условие:</> })}</p>
-            <input value={wv} onChange={e => setWv(e.target.value)} placeholder={'i <= 10'} spellCheck={false} autoCapitalize="off" autoCorrect="off" style={{ width: '100%', fontFamily: "'JetBrains Mono', monospace", fontSize: 15, padding: '11px 14px', borderRadius: 11, border: 'none', background: T.paper, color: T.ink, outline: 'none', boxShadow: whileOk ? `0 0 0 2px ${T.success}` : `0 4px 14px -6px rgba(${T.shadowBase},0.16)` }} />
-            {whileOk && <p className="body" style={{ margin: '8px 0 0', color: T.success, fontSize: 13, fontWeight: 600 }}>✓ {tr({ uz: "To'g'ri — i 10 gacha davom etadi.", ru: 'Верно — i идёт до 10.' })}</p>}
-          </div>
-          <div className="mini-task">
-            <p className="flow-label">{tr({ uz: <>Mini-mashq 2 — <b>qadam</b></>, ru: <>Мини-задание 2 — <b>шаг</b></> })}</p>
-            <p className="body" style={{ margin: '0 0 8px', color: T.ink2, fontSize: 13 }}>{tr({ uz: <>Har aylanishda i <b>2 ga oshsin</b> (juft sonlar). Qadamni yozing:</>, ru: <>Пусть i растёт <b>на 2</b> за итерацию (чётные числа). Напишите шаг:</> })}</p>
-            <input value={sv} onChange={e => setSv(e.target.value)} placeholder={'i += 2'} spellCheck={false} autoCapitalize="off" autoCorrect="off" style={{ width: '100%', fontFamily: "'JetBrains Mono', monospace", fontSize: 15, padding: '11px 14px', borderRadius: 11, border: 'none', background: T.paper, color: T.ink, outline: 'none', boxShadow: stepOk ? `0 0 0 2px ${T.success}` : `0 4px 14px -6px rgba(${T.shadowBase},0.16)` }} />
-            {stepOk && <p className="body" style={{ margin: '8px 0 0', color: T.success, fontSize: 13, fontWeight: 600 }}>✓ {tr({ uz: "To'g'ri — i 2, 4, 6, 8, 10 bo'ladi.", ru: 'Верно — i будет 2, 4, 6, 8, 10.' })}</p>}
-          </div>
-        </div>
-      </div>
-    </Stage>
-  );
-};
+// F-0803-15: eski `s15` («namunani ko'chirib yozing» inputi) OLIB TASHLANDI.
+// O'rniga 2 ta yengil praktika-kompilyator keldi (PRACTICE_AFTER: 6 va 15) — o'quvchi
+// endi kodni ISHGA TUSHIRIB, natijasini 🖥️ Console panelida o'z ko'zi bilan ko'radi.
 
 // ===== SCREEN 16 — YAKUN =====
-const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) => {
+const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish, onHomework }) => {
+  // F-0803-08: uyga vazifa kapsulasi — bosilganda topshiriq kartasi ochiladi
+  const [hwOpen, setHwOpen] = useState(false);
+  const [hwCharge, setHwCharge] = useState(false);
+  const fireHw = () => { if (hwCharge || hwOpen) return; setHwCharge(true); setTimeout(() => { setHwOpen(true); setHwCharge(false); }, 500); };
   const _gate = useContext(LiveGateCtx) || {};
   const _live = _gate.live;
   const [arena, setArena] = useState(false);
@@ -1844,7 +1807,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
   return (
     <Stage eyebrow={tr({ uz: 'Tayyor', ru: 'Готово' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><button className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash', ru: 'Завершить' })} ✓</button></>}>
       <div className="screen">
-        <div className="hero"><div className="hero-l"><span className="done-chip fade-up"><span className="tick">✓</span> {tr({ uz: 'Dars tugadi', ru: 'Урок завершён' })}</span><h2 className="title h-title fade-up d1">{tr({ uz: <>Endi <span className="italic" style={{ color: T.accent }}>takrorlashni</span> kompyuterga topshirasiz.</>, ru: <>Теперь <span className="italic" style={{ color: T.accent }}>повторение</span> вы поручаете компьютеру.</> })}</h2><p className="body h-sub fade-up d2">{PASSED ? tr({ uz: 'Tabriklaymiz! for, while va massivni aylanib chiqish — hammasini egalladingiz. Bu — dasturlashning yuragi.', ru: 'Поздравляем! for, while и обход массива — вы освоили всё. Это — сердце программирования.' }) : tr({ uz: "Yaxshi harakat! Sikllar muhim — bir-ikki ekranni qayta ko'rib mustahkamlang.", ru: 'Хорошая попытка! Циклы важны — пересмотрите пару экранов и закрепите.' })}</p></div><ScoreRing correct={correct} total={total} /></div>
+        <div className="hero"><div className="hero-l"><span className="done-chip fade-up"><span className="tick">✓</span> {tr({ uz: 'Dars tugadi', ru: 'Урок завершён' })}</span><h2 className="title h-title fade-up d1">{tr({ uz: <>Endi <span className="italic" style={{ color: T.accent }}>takrorlashni</span> kompyuterga topshirasiz.</>, ru: <>Теперь <span className="italic" style={{ color: T.accent }}>повторение</span> вы поручаете компьютеру.</> })}</h2>{/* 54-qonun (P0 PmUserStory · PmLesson2 qarori): h-sub qatori YO'Q — sarlavha o'zi yetadi. */}</div><ScoreRing correct={correct} total={total} /></div>
         <div className={`qz-cta cs-cta fade-up d2 ${studentLive ? 'ready' : ''}`}>
           <CsWordmark
             stats={false}
@@ -1855,10 +1818,18 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
           />
         </div>
         {arena && <QuizArena live={_live || { mode: 'self' }} startSolo={arenaSolo} onClose={() => setArena(false)} />}
-        <div className="split">
-          <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> {tr({ uz: 'Endi siz bilasiz', ru: 'Теперь вы знаете' })}</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{tr(r)}</span></li>))}</ul></div>
-          <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>📝 {tr({ uz: 'Uyga vazifa', ru: 'Домашнее задание' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: 'Sikllar bilan mashq qiling:', ru: 'Потренируйтесь с циклами:' })}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: "Sikllar — eng ko'p ishlatiladigan vosita. Mashq qilsangiz, qo'lingizga o'tirib qoladi! 🚀", ru: 'Циклы — самый используемый инструмент. Потренируетесь — и рука набьётся! 🚀' })}</p></div>
+        <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> {tr({ uz: 'Endi siz bilasiz', ru: 'Теперь вы знаете' })}</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{tr(r)}</span></li>))}</ul></div>
+        <div className="hw-big-wrap fade-up d4">
+          <button className={`hw-big ${hwCharge ? 'charging' : ''}`} onClick={fireHw}>
+            <span className="hw-sky" aria-hidden="true">
+              {HW_TOKENS.map((k, i) => <span key={i} className="hw-tok" style={{ left: `${k.l}%`, top: `${k.tp}%`, fontSize: k.s, '--d': `${k.d}s` }}>{tr(k.t)}</span>)}
+            </span>
+            <span className="hw-big-shine" aria-hidden="true" />
+            <span className="hw-big-t">{tr({ uz: 'Uyga vazifa', ru: 'Домашнее задание' })}</span>
+            <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni bajarish →', ru: 'Выполнить практическое задание →' })}</span>
+          </button>
         </div>
+        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>📝 {tr({ uz: 'Uyga vazifa', ru: 'Домашнее задание' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: 'Sikllar bilan mashq qiling:', ru: 'Потренируйтесь с циклами:' })}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: "Sikllar — eng ko'p ishlatiladigan vosita. Mashq qilsangiz, qo'lingizga o'tirib qoladi! 🚀", ru: 'Циклы — самый используемый инструмент. Потренируетесь — и рука набьётся! 🚀' })}</p>{typeof onHomework === 'function' && <button className="hw-run" onClick={onHomework}>✍️ {tr({ uz: 'Kompilyatorda yozib tekshirish →', ru: 'Написать и проверить в компиляторе →' })}</button>}</div>}
         {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>🏅 {tr({ uz: 'Nishonlaringiz', ru: 'Ваши награды' })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">
@@ -1878,7 +1849,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
 
 // ============================================================ LESSON ROOT
 // Podium yorliqlari (scored indeks -> qisqa nom)
-const Q_LABELS = { 4: { uz: "1 — i++ qadami", ru: '1 — шаг i++' }, 6: { uz: "2 — Sikl natijasi", ru: '2 — Результат цикла' }, 10: { uz: "3 — Massiv indeksi", ru: '3 — Индекс массива' }, 13: { uz: "4 — Necha marta", ru: '4 — Сколько раз' }, 16: { uz: "5 — for yoz", ru: '5 — Напиши for' } };
+const Q_LABELS = { 4: { uz: "1 — i++ qadami", ru: '1 — шаг i++' }, 6: { uz: "2 — Sikl natijasi", ru: '2 — Результат цикла' }, 10: { uz: "3 — Massiv indeksi", ru: '3 — Индекс массива' }, 13: { uz: "4 — Necha marta", ru: '4 — Сколько раз' }, };
 
 const Confetti = () => {
   const COLORS = [T.accent, T.success, T.blue, '#FFD380', '#FF7755', '#7DD181'];
@@ -1901,8 +1872,8 @@ const Confetti = () => {
   );
 };
 
-// Server-baholash javob kaliti (mentor darsni ochganda avto-yuklanadi). s15 = -1 (yakuniy amaliy).
-const INLINE_KEYS = { s4: 1, s5b: 0, s9: 1, s12: 1, s15: -1 };
+// Server-baholash javob kaliti (mentor darsni ochganda avto-yuklanadi).
+const INLINE_KEYS = { s4: 1, s5b: 0, s9: 1, s12: 1 }; // F-0803-15: s15 olib tashlandi (o'rnida praktika-kompilyator)
 
 const ScreenPodium = ({ screen, answers, onNext, onPrev }) => {
   const gate = useContext(LiveGateCtx) || {};
@@ -2488,7 +2459,8 @@ const ACHIEVEMENTS = {
   graduate:       { icon: '🏆', name: 'Level Up!',       desc: { uz: "Sikllar darsini to'liq yakunladingiz", ru: 'Вы полностью завершили урок о циклах' } },
 };
 // Ekran id → nishon (recordAnswer'da avtomatik beriladi — faqat SCORED test / challenge)
-const ACH_TRIGGERS = { s4: 'loopstarter', s14: 'infinitytamer', s15: 'assemblymaster' };
+// F-0803-15: `assemblymaster` endi ekran-testidan emas, PRAKTIKA bajarilganda beriladi (runPractice).
+const ACH_TRIGGERS = { s4: 'loopstarter', s14: 'infinitytamer' };
 // 🏅 O'YIN USLUBIDAGI TO'LIQ-EKRAN NISHON BAYRAMI — yorqin nurlar, medal portlashi, uchqunlar, zarba to'lqini
 function AchCelebrate({ ach, onDone }) {
   useEffect(() => { const t = setTimeout(onDone, 4000); return () => clearTimeout(t); }, []); // eslint-disable-line
@@ -2567,6 +2539,31 @@ const JS_LOOPS_FLASHCARDS = [
   { front: { uz: 'Massivda nechta element borligini nima aytadi?', ru: 'Что подскажет, сколько элементов в массиве?' }, back: 'massiv.length', note: { uz: "3 ta element bo'lsa → 3", ru: 'если элементов 3 → 3' } },
   { front: { uz: 'Massivning har bir elementini birma-bir ishlatish uchun nima yoziladi?', ru: 'Что пишут, чтобы использовать каждый элемент массива по одному?' }, back: 'for + massiv.length', note: { uz: 'i = 0 dan massiv.length gacha', ru: 'от i = 0 до massiv.length' } },
 ];
+// F-0803-13/14: KARTA JAVOBI UZUNLIKKA MOSLASHADI.
+// Muammo edi: `.fc-tag` hamma javobga bir xil katta monoshrift berardi — u bir so'zlik javob
+// (`let`, `=`, `string`) uchun tanlangan o'lcham. Uzun javob 2-3 qatorga bo'linib, qat'iy
+// balandlikdagi kartaga sig'masdi va izoh pastki chetga yopishib qolardi.
+// Yechim: (1) uzunlik bo'yicha 4 pog'onali o'lcham · (2) bitta kod-tokeni — mono,
+// gap — Manrope (o'qishga qulay, ~25% tor) · (3) gap ichidagi kod so'zlari mono qoladi.
+const FC_CODE_WORDS = /\b(let|const|var|string|number|boolean|true|false|null|undefined|function|return|for|while|if|else)\b/g;
+const FC_VOCAB = new Set(['let', 'const', 'var', 'string', 'number', 'boolean', 'true', 'false', 'null', 'undefined', 'function', 'return', 'for', 'while', 'if', 'else']);
+// Kodmi yoki so'zmi? Monoshrift FAQAT kodga: lug'atdagi kalit so'z yoki kod-belgisi bo'lgan
+// token. «o'zgaruvchi» kabi o'zbekcha atama — gap, u Manrope bilan chiroyliroq va tor chiqadi.
+const fcIsCode = (s) => FC_VOCAB.has(s.toLowerCase()) || /[=(){};.[\]<>+*/%!&|-]/.test(s);
+const fcTier = (s) => (s.length <= 8 ? 't1' : s.length <= 16 ? 't2' : s.length <= 32 ? 't3' : 't4');
+const fcAnswer = (raw) => {
+  const s = String(raw ?? '');
+  const oneToken = !/\s/.test(s) && fcIsCode(s);        // `let`, `const`, `=`, `string` — kod tokeni
+  const cls = `fc-tag ${fcTier(s)} ${oneToken ? 'mono-all' : 'prose'}`;
+  if (oneToken) return <span className={cls}>{s}</span>;
+  const parts = s.split(FC_CODE_WORDS);                 // gap: kod so'zlari mono bo'lakda qoladi
+  return (
+    <span className={cls}>
+      {parts.map((p, i) => (i % 2 === 1 ? <span key={i} className="fc-kw">{p}</span> : p))}
+    </span>
+  );
+};
+
 function Flashcards({ cards }) {
   const [queue, setQueue] = useState(() => cards.map((_, i) => i));
   const [flipped, setFlipped] = useState(false);
@@ -2599,7 +2596,7 @@ function Flashcards({ cards }) {
         <div className={`fc-fly ${exiting === 'knew' ? 'out-knew' : ''} ${exiting === 'again' ? 'out-again' : ''}`} key={swapRef.current}>
         <div className={`fc-card ${flipped ? 'flip' : ''}`} onClick={() => !flipped && !exiting && setFlipped(true)} role="button" tabIndex={0}>
           <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: "Javobni o'ylang", ru: 'Подумайте над ответом' })} 🤔 <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
-          <div className="fc-face fc-back"><span className="fc-tag">{tr(card.back)}</span>{card.note && <span className="fc-note">{tr(card.note)}</span>}</div>
+          <div className="fc-face fc-back">{fcAnswer(tr(card.back))}{card.note && <span className="fc-note">{tr(card.note)}</span>}</div>
         </div>
         </div>
       </div>
@@ -2621,7 +2618,1016 @@ const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) =>
   );
 };
 
-export default function JsLoopsLesson({ lang: langProp, onFinished }) {
+
+// ============================================================
+//  🔧 PRAKTIKA-KOMPILYATOR QATLAMI (manba: PracticeLesson1.jsx — bir xil dvijok)
+//  LMSga tayyor kontrakt: <HtmlCompiler task={...} onContinue={fn} onBack={fn} />
+//  JsLoops uchun yengil rejim: task.files = faqat `script.js` → 🖥️ Console paneli.
+// ============================================================
+
+const HC_T = {
+  bg: '#F6F4EF', ink: '#0E0E10', ink2: '#5A5A60', ink3: '#A7A6A2',
+  paper: '#FFFFFF', accent: '#FF4D26', accent2: '#FF8A3D', accentSoft: '#FFEDE5',
+  success: '#0FA968', successSoft: '#E4F7EE', warn: '#9A5400', shadowBase: '58, 53, 48', line: '#E9E6DF',
+};
+const HC_CODE = { bg: '#0E1525', text: '#E7EAF2', gutter: '#1C2740' };
+
+// ============================================================
+//  TEKSHIRUV YORDAMCHILARI (builders)
+//  Har biri ctx (kontekst) qabul qiladigan funksiya qaytaradi.
+//  Funksiya:  true  → shart bajarildi
+//             "..."  → bajarilmadi, qaytgan matn = o'quvchiga maslahat
+//
+//  ctx ichida nimalar bor:
+//    ctx.html / ctx.css / ctx.js  — xom (raw) manba matnlar
+//    ctx.doc                       — o'quvchi HTML'idan qurilgan real DOM
+//    ctx.$  / ctx.$$               — doc bo'yicha querySelector / All
+//    ctx.cssRules                  — [{selector, props:{...}}] — parslangan CSS
+// ============================================================
+const norm = (s) => (s || '').trim();
+
+// JS izohlarini olib tashlaymiz — izoh ichidagi matn `js` shartini ALDAB
+// o'tmasligi uchun (masalan starterdagi "// console.log ..." izohi).
+// Oddiy yondashuv (blok + satr izohi) — o'quv praktikalari uchun yetarli.
+const stripJsComments = (src) =>
+  (src || '')
+    .replace(/\/\*[\s\S]*?\*\//g, ' ') // /* ... */
+    .replace(/\/\/[^\n]*/g, ' ');      // // ...
+
+const checks = {
+  // Teg/selektor mavjudmi?
+  has: (sel, hint) => (x) =>
+    x.$(sel) ? true : (hint ?? `\`${sel}\` topilmadi`),
+
+  // Mavjud VA ichida bo'sh bo'lmagan matn bormi?
+  text: (sel, hint) => (x) => {
+    const el = x.$(sel);
+    if (!el) return hint ?? `\`${sel}\` topilmadi`;
+    return norm(el.textContent) ? true : (hint ?? `\`${sel}\` bor, lekin ichi bo'sh — matn yozing`);
+  },
+
+  // Atribut bormi va bo'sh emasmi? (yoki equals bilan aniq qiymat)
+  attr: (sel, attr, hint, equals) => (x) => {
+    const el = x.$(sel);
+    if (!el) return hint ?? `\`${sel}\` topilmadi`;
+    const v = el.getAttribute(attr);
+    if (v == null || !norm(v)) return hint ?? `\`${sel}\` da \`${attr}="..."\` to'ldiring`;
+    if (equals != null && norm(v) !== norm(equals)) return hint ?? `\`${sel}\` da \`${attr}\` qiymati \`${equals}\` bo'lsin`;
+    return true;
+  },
+
+  // Bir nechta atribut — hammasi bo'sh bo'lmasligi kerak
+  attrs: (sel, attrList, hint) => (x) => {
+    const el = x.$(sel);
+    if (!el) return hint ?? `\`${sel}\` topilmadi`;
+    const miss = attrList.filter((a) => !norm(el.getAttribute(a) || ''));
+    return miss.length ? (hint ?? `\`${sel}\` da \`${miss.join('` va `')}\` to'ldiring`) : true;
+  },
+
+  // child element parent ichidami?
+  nested: (parent, child, hint) => (x) =>
+    x.$(`${parent} ${child}`) ? true : (hint ?? `\`${child}\` ni \`${parent}\` ichiga joylang`),
+
+  // Kamida n ta bormi?
+  count: (sel, n, hint) => (x) =>
+    x.$$(sel).length >= n ? true : (hint ?? `Kamida ${n} ta \`${sel}\` kerak`),
+
+  // CSS: selektorga shu xossa yozilganmi?
+  cssProp: (selector, prop, hint) => (x) => {
+    const hit = x.cssRules.some(
+      (r) => r.selector.split(',').map(norm).includes(norm(selector)) && norm(r.props[prop])
+    );
+    return hit ? true : (hint ?? `\`${selector}\` uchun \`${prop}\` xossasini yozing`);
+  },
+
+  // CSS: selektorga shu xossa AYNAN shu qiymat bilan yozilganmi?
+  cssValue: (selector, prop, val, hint) => (x) => {
+    const hit = x.cssRules.some(
+      (r) => r.selector.split(',').map(norm).includes(norm(selector)) && norm(r.props[prop]) === norm(val)
+    );
+    return hit ? true : (hint ?? `\`${selector}\` da \`${prop}: ${val}\` yozing`);
+  },
+
+  // JS: manbada namuna (regex) bormi? (izohlar hisobga olinmaydi)
+  js: (re, hint) => (x) =>
+    re.test(stripJsComments(x.js)) ? true : (hint ?? `Skriptda kerakli qism topilmadi`),
+
+  // To'liq erkin tekshiruv: (ctx) => true | "maslahat"
+  custom: (fn) => fn,
+
+  // ── RUNTIME tekshiruvlar (kod iframe'da ishlatiladi) ──
+  // Bular funksiya emas, "probe" obyekti qaytaradi — komponent ularni
+  // iframe ichida ishlatib, natijani postMessage orqali oladi.
+
+  // console.log chiqishida shu qiymat bormi?
+  logs: (value, hint) => ({ __runtime: 'log_includes', value: String(value), hint }),
+
+  // JS ifoda (masalan global o'zgaruvchi yoki typeof) shu qiymatga tengmi?
+  evalEquals: (expr, expected, hint) => ({ __runtime: 'eval_equals', expr, expected: String(expected), hint }),
+
+  // clickSel bosilgach, readSel matni expected'ni o'z ichiga oladimi?
+  domAfterClick: (clickSel, readSel, expected, hint) =>
+    ({ __runtime: 'click_text', clickSel, readSel, expected: String(expected), hint }),
+
+  // ALMASHISH (toggle): clickSel ni ikki marta bosamiz.
+  //   boshida readSel matni = textA, 1-bosishdan keyin = textB,
+  //   2-bosishdan keyin yana = textA. Hammasi to'g'ri bo'lsa — haqiqiy toggle.
+  toggle: (clickSel, readSel, textA, textB, hint) =>
+    ({ __runtime: 'toggle', clickSel, readSel, textA: String(textA), textB: String(textB), hint }),
+};
+const C = checks;
+
+// ============================================================
+//  DEKLARATIV SHARTLAR — oddiy data → check (tarjimon)
+//  Dars yaratuvchi `C.has('form')` kabi kod yozmasdan, faqat data
+//  bilan shart bera oladi: { tag: 'form', attrs: ['action'] }.
+//  Istalgan teg/atribut ishlaydi — backend kerak emas, hammasi darsda.
+//  Qo'llab-quvvatlanadigan kalitlar:
+//    HTML:  { tag, text }                       → teg bor + ichi bo'sh emas
+//           { tag, attr, equals? }              → atribut bor (yoki aniq qiymat)
+//           { tag, attrs: ['src','alt'] }       → bir nechta atribut
+//           { tag, child: 'input' }             → child teg ichidami (nested)
+//           { tag, count: 3 }                   → kamida n ta
+//    CSS:   { css: { sel, prop, value? } }      → xossa (yoki aniq qiymat)
+//    JS:    { js: /addEventListener/ }          → manbada namuna
+//    Runtime: { logs: 5 }                       → console.log chiqishi
+//             { eval: 'typeof f', equals: 'function' }
+//             { click: '#btn', read: '#out', expect: 'Salom' }
+//  Har bir kalitga ixtiyoriy `hint` (maslahat matni) qo'shsa bo'ladi.
+// ============================================================
+function specToCheck(s) {
+  const hint = s.hint;
+  if (s.css) {
+    const { sel, prop, value } = s.css;
+    return value != null ? checks.cssValue(sel, prop, value, hint) : checks.cssProp(sel, prop, hint);
+  }
+  if (s.js) return checks.js(s.js instanceof RegExp ? s.js : new RegExp(s.js), hint);
+  if (s.logs !== undefined) return checks.logs(s.logs, hint);
+  if (s.eval !== undefined) return checks.evalEquals(s.eval, s.equals, hint);
+  if (s.toggle) return checks.toggle(s.toggle, s.read || s.toggle, s.a, s.b, hint);
+  if (s.click) return checks.domAfterClick(s.click, s.read, s.expect, hint);
+  const sel = s.tag || s.sel;
+  if (sel) {
+    if (s.child || s.nested) return checks.nested(sel, s.child || s.nested, hint);
+    if (s.count != null) return checks.count(sel, s.count, hint);
+    if (Array.isArray(s.attrs)) return checks.attrs(sel, s.attrs, hint);
+    if (s.attr) return checks.attr(sel, s.attr, hint, s.equals);
+    if (s.text) return checks.text(sel, hint);
+    return checks.has(sel, hint);
+  }
+  // Tanib bo'lmadi — yiqilmaydi, shunchaki bajarilmagan bo'lib qoladi
+  return () => (hint ?? 'shart aniqlanmadi');
+}
+
+// Deklarativ shartdan o'qiladigan label avtomatik yasaymiz (label berilmasa)
+function buildLabel(s) {
+  if (s.css) return `CSS: ${s.css.sel} { ${s.css.prop}${s.css.value != null ? `: ${s.css.value}` : ''} }`;
+  if (s.logs !== undefined) return `konsolda «${s.logs}»`;
+  if (s.toggle) return `${s.a} ⇄ ${s.b}`;
+  if (s.click) return `bosilsa «${s.expect}»`;
+  if (s.eval !== undefined) return `${s.eval} = ${s.equals}`;
+  if (s.js) return 'JS namunasi';
+  const sel = s.tag || s.sel;
+  if (sel) {
+    if (s.child || s.nested) return `<${sel}> ichida <${s.child || s.nested}>`;
+    if (Array.isArray(s.attrs)) return `<${sel}> — ${s.attrs.join(', ')}`;
+    if (s.attr) return `<${sel}> — ${s.attr}`;
+    if (s.count != null) return `kamida ${s.count} ta <${sel}>`;
+    if (s.text) return `<${sel}> (matn bilan)`;
+    return `<${sel}>`;
+  }
+  return 'shart';
+}
+
+// Shartni to'liq { id, label, check } shakliga keltiramiz.
+// Eski uslub (check: C.has(...) / runtime obyekt / re:/.../) — tegmaymiz,
+// faqat yetishmasa id/label to'ldiramiz. Deklarativ data bo'lsa — tarjima qilamiz.
+function normalizeReq(req, i = 0) {
+  const ready = typeof req.check === 'function' || (req.check && req.check.__runtime) || req.re;
+  if (ready) return { id: req.id ?? `r${i}`, label: req.label ?? '', ...req };
+  const check = specToCheck(req);
+  const id = req.id ?? `${req.tag || req.sel || 'r'}${i}`;
+  return { ...req, id, label: req.label ?? buildLabel(req), check };
+}
+
+// ============================================================
+//  STANDART SHART (komponent yakka ishga tushganda)
+// ============================================================
+const DEFAULT_FILES = [
+  { name: 'index.html', lang: 'html', starter: `<!-- Bu yerga yozing -->
+` },
+];
+
+const DEFAULT_TASK = {
+  eyebrow: { uz: 'Praktika', ru: 'Практика' },
+  title: { uz: "O'z sahifangizni quring", ru: 'Постройте свою страницу' },
+  brief: { uz: "Quyidagi shartlarni bajaring. Har biri bajarilganda yashil ✓ yonadi. Hammasi yashil bo'lsa — “Davom etish” ochiladi.", ru: 'Выполните условия ниже. Когда условие выполнено, загорается зелёная ✓. Все зелёные — откроется «Продолжить».' },
+  requirements: [
+    { id: 'h1', label: { uz: '<h1> sarlavha (matn bilan)', ru: '<h1> заголовок (с текстом)' }, check: checks.text('h1', { uz: "`<h1>` ichiga sarlavha matnini yozing", ru: 'Впишите текст заголовка внутрь `<h1>`' }) },
+    { id: 'p', label: { uz: '<p> — matn (paragraf)', ru: '<p> — текст (абзац)' }, check: checks.text('p', { uz: "`<p>` ichiga bir-ikki gap yozing", ru: 'Напишите пару предложений внутри `<p>`' }) },
+    { id: 'img', label: { uz: '<img> — src va alt bilan', ru: '<img> — со src и alt' }, check: checks.attrs('img', ['src', 'alt'], { uz: "`<img>` da `src` va `alt` ikkalasini to'ldiring", ru: 'Заполните в `<img>` оба атрибута: `src` и `alt`' }) },
+  ],
+};
+
+// ============================================================
+//  CSS'ni xavfsiz parslash — vaqtinchalik <style> orqali,
+//  qiymatlarni oddiy obyektga ko'chirib olamiz (DOM'dan ajratamiz).
+// ============================================================
+function parseCss(css) {
+  if (!css || !css.trim() || typeof document === 'undefined') return [];
+  const el = document.createElement('style');
+  el.textContent = css;
+  document.head.appendChild(el);
+  let rules = [];
+  try {
+    rules = [...(el.sheet?.cssRules || [])]
+      .filter((r) => r.style) // faqat style qoidalari (media/keyframes emas)
+      .map((r) => {
+        const props = {};
+        for (let i = 0; i < r.style.length; i++) {
+          const p = r.style[i];
+          props[p] = r.style.getPropertyValue(p);
+        }
+        return { selector: r.selectorText || '', props };
+      });
+  } catch { /* parse xatosi — bo'sh qaytadi */ }
+  el.remove();
+  return rules;
+}
+
+// ============================================================
+//  HTML LINTER — sintaksis tekshiruvi (DOMParser kechirimchi,
+//  bu esa qattiqqo'l). Yopilmagan teg, yopish typo'si, yopilmagan
+//  tirnoq/izoh, noto'g'ri ichma-ichlikni ushlaydi.
+//  Qaytaradi: [{ line, msg }]
+// ============================================================
+const VOID_TAGS = new Set([
+  'area', 'base', 'br', 'col', 'embed', 'hr', 'img', 'input',
+  'link', 'meta', 'param', 'source', 'track', 'wbr',
+]);
+
+// Yopish tegi IXTIYORIY bo'lgan elementlar (HTML brauzer o'zi yopadi).
+// Bularni "yopilmagan" deb xato chiqarmaymiz — aks holda <li>, ketma-ket
+// <p> kabi to'g'ri kod noto'g'ri qizil bo'lardi.
+const OPTIONAL_CLOSE = new Set(['li', 'p', 'td', 'th', 'tr', 'dt', 'dd', 'option', 'thead', 'tbody', 'tfoot']);
+const BLOCK_TAGS = new Set([
+  'address', 'article', 'aside', 'blockquote', 'details', 'div', 'dl', 'fieldset',
+  'figcaption', 'figure', 'footer', 'form', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
+  'header', 'hr', 'main', 'menu', 'nav', 'ol', 'p', 'pre', 'section', 'table', 'ul',
+]);
+// Yangi ochuvchi teg (open) stack tepasidagi (top) ixtiyoriy tegni yopadimi?
+function closesOnOpen(open, top) {
+  if (top === 'li') return open === 'li';
+  if (top === 'p') return open === 'p' || BLOCK_TAGS.has(open);
+  if (top === 'option') return open === 'option';
+  if (top === 'td' || top === 'th') return open === 'td' || open === 'th' || open === 'tr';
+  if (top === 'tr') return open === 'tr';
+  if (top === 'dt' || top === 'dd') return open === 'dt' || open === 'dd';
+  if (top === 'thead' || top === 'tbody' || top === 'tfoot') return open === 'tbody' || open === 'tfoot' || open === 'thead';
+  return false;
+}
+
+function lintHtml(src) {
+  const errors = [];
+  if (!src) return errors;
+  const stack = []; // { name, line }
+  const n = src.length;
+  let i = 0, line = 1, col = 1;
+  const here = () => ({ line, col });
+  const step = () => { if (src[i] === '\n') { line++; col = 1; } else { col++; } i++; };
+  const skipTo = (idx) => { while (i < idx && i < n) step(); };
+
+  while (i < n) {
+    if (src[i] !== '<') { step(); continue; }
+    const next = src[i + 1];
+
+    // Izoh
+    if (src.startsWith('<!--', i)) {
+      const end = src.indexOf('-->', i + 4);
+      if (end === -1) { errors.push({ ...here(), msg: { uz: 'Izoh yopilmagan (`-->` yetishmayapti)', ru: 'Комментарий не закрыт (не хватает `-->`)' } }); break; }
+      skipTo(end + 3); continue;
+    }
+    // <!doctype ...> yoki deklaratsiya
+    if (next === '!') {
+      const end = src.indexOf('>', i);
+      if (end === -1) { errors.push({ ...here(), msg: { uz: '`<! ... >` yopilmagan', ru: '`<! ... >` не закрыт' } }); break; }
+      skipTo(end + 1); continue;
+    }
+    // Yopuvchi teg </...>
+    if (next === '/') {
+      const start = here();
+      let j = i + 2, name = '';
+      while (j < n && /[a-zA-Z0-9-]/.test(src[j])) { name += src[j]; j++; }
+      while (j < n && src[j] !== '>') j++;
+      if (j >= n) { errors.push({ line: start.line, msg: { uz: `Yopuvchi teg \`</${name}>\` to'liq emas (\`>\` yetishmayapti)`, ru: `Закрывающий тег \`</${name}>\` неполный (не хватает \`>\`)` } }); break; }
+      const lname = name.toLowerCase();
+      // Ixtiyoriy yopiladigan teglarni jimgina yopamiz (masalan </ul> ochiq <li>'ni yopadi)
+      while (
+        stack.length &&
+        OPTIONAL_CLOSE.has(stack[stack.length - 1].name) &&
+        stack[stack.length - 1].name !== lname &&
+        stack.some((s, idx) => s.name === lname && idx < stack.length - 1)
+      ) {
+        stack.pop();
+      }
+      if (stack.length === 0) {
+        errors.push({ line: start.line, msg: { uz: `Ortiqcha yopuvchi teg \`</${name}>\` — mos ochuvchi yo'q`, ru: `Лишний закрывающий тег \`</${name}>\` — нет парного открывающего` } });
+      } else {
+        const top = stack[stack.length - 1];
+        if (top.name === lname) {
+          stack.pop();
+        } else {
+          const idx = stack.map((s) => s.name).lastIndexOf(lname);
+          if (idx === -1) {
+            errors.push({ line: start.line, msg: { uz: `\`</${name}>\` mos ochuvchi tegga ega emas (xato yoki typo)`, ru: `У \`</${name}>\` нет парного открывающего тега (ошибка или опечатка)` } });
+          } else {
+            errors.push({ line: top.line, msg: { uz: `\`<${top.name}>\` yopilmagan — \`</${top.name}>\` kutilgan, \`</${name}>\` keldi`, ru: `\`<${top.name}>\` не закрыт — ожидался \`</${top.name}>\`, а пришёл \`</${name}>\`` } });
+            stack.length = idx;
+          }
+        }
+      }
+      skipTo(j + 1); continue;
+    }
+    // Ochuvchi teg <...>
+    if (/[a-zA-Z]/.test(next || '')) {
+      const start = here();
+      let j = i + 1, name = '';
+      while (j < n && /[a-zA-Z0-9-]/.test(src[j])) { name += src[j]; j++; }
+      let selfClose = false, closed = false, quote = null, strayLt = false;
+      while (j < n) {
+        const c = src[j];
+        if (quote) { if (c === quote) quote = null; j++; continue; }
+        if (c === '"' || c === "'") { quote = c; j++; continue; }
+        if (c === '<') { strayLt = true; break; }
+        if (c === '/' && src[j + 1] === '>') { selfClose = true; closed = true; j += 2; break; }
+        if (c === '>') { closed = true; j++; break; }
+        j++;
+      }
+      if (quote && j >= n) { errors.push({ line: start.line, msg: { uz: `\`<${name}>\` ichida tirnoq (${quote}) yopilmagan`, ru: `Внутри \`<${name}>\` не закрыта кавычка (${quote})` } }); break; }
+      if (strayLt) {
+        errors.push({ line: start.line, msg: { uz: `\`<${name}\` tegi \`>\` bilan yopilmagan`, ru: `Тег \`<${name}\` не закрыт символом \`>\`` } });
+        skipTo(j); continue; // '<' dan qayta boshlaymiz
+      }
+      if (!closed && j >= n) { errors.push({ line: start.line, msg: { uz: `\`<${name}\` tegi \`>\` bilan yopilmagan`, ru: `Тег \`<${name}\` не закрыт символом \`>\`` } }); break; }
+      const lname = name.toLowerCase();
+      // Ochuvchi teg stack tepasidagi ixtiyoriy tegni yopsa — jimgina yopamiz
+      while (stack.length && closesOnOpen(lname, stack[stack.length - 1].name)) stack.pop();
+      if (!selfClose && !VOID_TAGS.has(lname)) stack.push({ name: lname, line: start.line });
+      skipTo(j); continue;
+    }
+    // '<' dan keyin harf/`/`/`!` emas → matn deb qaraladi (brauzer ham shunday)
+    step();
+  }
+  // Oxirida ochiq qolgan teglar (ixtiyoriy yopiladiganlardan tashqari)
+  for (const t of stack) {
+    if (OPTIONAL_CLOSE.has(t.name)) continue;
+    errors.push({ line: t.line, msg: { uz: `\`<${t.name}>\` ochiq qoldi — \`</${t.name}>\` bilan yoping`, ru: `\`<${t.name}>\` остался открытым — закройте его \`</${t.name}>\`` } });
+  }
+  return errors;
+}
+
+// Bitta shartni ishga tushiramiz → { ok, hint }
+function runOne(req, ctx) {
+  try {
+    // Runtime probe — bu yerda emas, iframe'da tekshiriladi (placeholder)
+    if (req.check && req.check.__runtime) {
+      return { ok: false, hint: { uz: 'ishga tushirilmoqda…', ru: 'запускается…' }, runtime: true };
+    }
+    if (typeof req.check === 'function') {
+      const r = req.check(ctx);
+      if (r === true) return { ok: true, hint: null };
+      return { ok: false, hint: (typeof r === 'string' || (r && typeof r === 'object')) ? r : (req.hint || null) };
+    }
+    // Eski uslub: regex (orqaga moslik). Izohlarni olib tashlab tekshiramiz.
+    if (req.re) {
+      const ok = req.re.test((ctx.html || '').replace(/<!--[\s\S]*?-->/g, ''));
+      return { ok, hint: ok ? null : (req.hint || null) };
+    }
+    return { ok: false, hint: null };
+  } catch {
+    return { ok: false, hint: { uz: 'tekshirishda xatolik', ru: 'ошибка при проверке' } };
+  }
+}
+
+// ============================================================
+//  RUNTIME HARNESS — iframe ichida ishlaydigan kod.
+//  console.log'ni ushlaydi, probe'larni bajaradi, natijani
+//  postMessage bilan ota-oynaga (parent) yuboradi. Xavfsiz:
+//  sandbox buzilmaydi, faqat bool natijalar uzatiladi.
+// ============================================================
+const CONSOLE_CAPTURE = `<script>
+window.__logs=[];
+(function(){var _l=console.log;console.log=function(){
+  for(var i=0;i<arguments.length;i++){var a=arguments[i];
+    try{window.__logs.push(typeof a==='object'?JSON.stringify(a):String(a));}catch(e){window.__logs.push(String(a));}}
+  try{_l.apply(console,arguments);}catch(e){}
+};})();
+<\/script>`;
+
+// KO'RINADIGAN konsol uchun: console.log/info/warn/error va xatolarni
+// ota-oynaga (parent) postMessage bilan uzatadi → UI'da chiqaramiz.
+// nonce — eski va yangi natijalar aralashmasligi uchun.
+const CONSOLE_FORWARD = (nonce) => `<script>
+(function(){
+  var N=${JSON.stringify(nonce)};
+  function fmt(a){try{return typeof a==='object'?JSON.stringify(a):String(a);}catch(e){return String(a);}}
+  function send(level,args){
+    var parts=[];for(var i=0;i<args.length;i++)parts.push(fmt(args[i]));
+    try{parent.postMessage({__hcConsole:true,nonce:N,level:level,text:parts.join(' ')},'*');}catch(e){}
+  }
+  ['log','info','warn','error'].forEach(function(m){
+    var _o=console[m]?console[m].bind(console):function(){};
+    console[m]=function(){send(m,arguments);try{_o.apply(null,arguments);}catch(e){}};
+  });
+  window.addEventListener('error',function(e){send('error',[e.message]);});
+})();
+<\/script>`;
+
+const buildHarness = (probes, nonce) => `<script>
+(function(){
+  function runProbes(){
+    var P=${JSON.stringify(probes)};
+    var logs=window.__logs||[];
+    var joined=logs.join(' ');
+    var out={};
+    for(var k=0;k<P.length;k++){
+      var p=P[k],ok=false;
+      try{
+        if(p.type==='log_includes'){
+          var v=String(p.value).trim();
+          ok=joined.indexOf(v)!==-1||logs.some(function(l){return String(l).trim().indexOf(v)!==-1;});
+        }else if(p.type==='eval_equals'){
+          var r; try{r=eval(p.expr);}catch(e){r=undefined;}
+          ok=String(r)===String(p.expected);
+        }else if(p.type==='click_text'){
+          var exp=String(p.expected);
+          var t0=document.querySelector(p.readSel);
+          var before=t0?t0.textContent:'';
+          var b=document.querySelector(p.clickSel);
+          if(b){try{b.click();}catch(e){}}
+          var t1=document.querySelector(p.readSel);
+          var after=t1?t1.textContent:'';
+          // Matn bosishdan KEYIN paydo bo'lishi kerak (oldin bo'lmagan) — JS'siz o'tmaydi
+          ok=after.indexOf(exp)!==-1 && before.indexOf(exp)===-1;
+        }else if(p.type==='toggle'){
+          var A=String(p.textA).toLowerCase().trim();
+          var B=String(p.textB).toLowerCase().trim();
+          var rd=function(){var e=document.querySelector(p.readSel);return (e?e.textContent:'').toLowerCase();};
+          var b2=document.querySelector(p.clickSel);
+          var s0=rd();
+          var startOk=s0.indexOf(A)!==-1 && s0.indexOf(B)===-1; // boshida A
+          if(b2){try{b2.click();}catch(e){}}
+          var s1=rd();
+          var firstOk=s1.indexOf(B)!==-1 && s1.indexOf(A)===-1; // 1-bosish -> B
+          if(b2){try{b2.click();}catch(e){}}
+          var s2=rd();
+          var secondOk=s2.indexOf(A)!==-1 && s2.indexOf(B)===-1; // 2-bosish -> A
+          ok=startOk && firstOk && secondOk;
+        }
+      }catch(e){ok=false;}
+      out[p.id]=ok;
+    }
+    try{parent.postMessage({__hcReport:true,nonce:${JSON.stringify(nonce)},results:out},'*');}catch(e){}
+  }
+  // 'load' hodisasidan keyin ishga tushiramiz — o'quvchi handler'ni
+  // window.onload / addEventListener('load') ichida ulagan bo'lsa ham ulgursin.
+  function start(){ setTimeout(runProbes, 50); }
+  if(document.readyState==='complete') start();
+  else window.addEventListener('load', start);
+})();
+<\/script>`;
+
+// Foydalanuvchi 3 faylini bitta jonli HTML hujjatga birlashtiramiz
+const baseStyle = `
+  *{box-sizing:border-box}
+  body{font-family:-apple-system,'Segoe UI',Roboto,sans-serif;margin:0;padding:24px;color:#13141A;line-height:1.6;background:#fff}
+  h1{font-family:Georgia,serif;margin:0 0 12px;letter-spacing:-.01em}
+  img{max-width:100%;border-radius:12px;display:block;margin:10px 0}
+  p{margin:0 0 12px}
+  li:empty{display:none}`;
+
+const wrapDoc = (html, css, js, opts = {}) => `<!doctype html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<base target="_blank">
+<style>${baseStyle}
+${css || ''}</style>
+${opts.capture ? CONSOLE_CAPTURE : ''}
+${opts.consoleNonce != null ? CONSOLE_FORWARD(opts.consoleNonce) : ''}
+</head>
+<body>
+${html || ''}
+<script>${js || ''}<\/script>
+${opts.harness || ''}
+</body>
+</html>`;
+
+function HtmlCompiler({
+  task = DEFAULT_TASK,
+  starterCode,            // eski kontrakt: bitta HTML fayl uchun starter
+  onContinue,
+  onBack,
+  storageKey,             // F-0801-01: berilsa — yozilgan kod shu kalitda saqlanadi
+}) {
+  // Shartlarni bir marta normalizatsiya: deklarativ data ham, eski C.has(...)
+  // uslubi ham bir xil { id, label, check } shaklga keladi. Quyidagi butun
+  // kod (runtimeProbes, results, merged, render) o'zgarmaydi.
+  const reqs = useMemo(
+    () => (task.requirements || []).map((r, i) => normalizeReq(r, i)),
+    [task.requirements]
+  );
+
+  // Fayllar: task.files bo'lsa o'shani, bo'lmasa eski yakka HTML faylni ishlatamiz
+  const files = useMemo(() => {
+    if (task.files && task.files.length) return task.files;
+    const single = { ...DEFAULT_FILES[0] };
+    if (starterCode != null) single.starter = starterCode;
+    return [single];
+  }, [task.files, starterCode]);
+
+  // F-0801-01 (102-qonun): saqlangan kod bo'lsa — o'shandan boshlanadi (faqat AYNAN shu
+  // fayllar to'plami uchun; topshiriq o'zgargan bo'lsa saqlov e'tiborsiz qoldiriladi).
+  const [codes, setCodes] = useState(() => {
+    const fresh = Object.fromEntries(files.map((f) => [f.name, f.starter ?? '']));
+    if (!storageKey) return fresh;
+    const s = codesRead(storageKey);
+    if (!s || !s.codes) return fresh;
+    const names = Object.keys(fresh);
+    if (names.length !== Object.keys(s.codes).length || !names.every((n) => n in s.codes)) return fresh;
+    return { ...fresh, ...s.codes };
+  });
+  // Yozilgan kod jonli saqlanadi (400ms) — tab almashinuvida yo'qolmasin
+  useEffect(() => {
+    if (!storageKey) return;
+    const id = setTimeout(() => codesWrite(storageKey, codes), 400);
+    return () => clearTimeout(id);
+  }, [codes, storageKey]);
+  const [active, setActive] = useState(files[0].name);
+  const taRef = useRef(null);
+
+  // Til bo'yicha matnni olish (birlashtirilgan preview uchun)
+  const byLang = (lang) => {
+    const f = files.find((ff) => ff.lang === lang);
+    return f ? (codes[f.name] ?? '') : '';
+  };
+  const html = byLang('html'), css = byLang('css'), js = byLang('js');
+
+  // Runtime shartlar (iframe'da ishlatib tekshiriladi)
+  const runtimeProbes = useMemo(
+    () => reqs.filter((r) => r.check && r.check.__runtime)
+      .map((r) => ({ id: r.id, type: r.check.__runtime, ...r.check })),
+    [reqs]
+  );
+  const hasRuntime = runtimeProbes.length > 0;
+  const nonceRef = useRef(0);
+  const [runtimeResults, setRuntimeResults] = useState({});
+
+  // ── KO'RINADIGAN KONSOL — JS fayli bo'lsa ko'rsatamiz (console.log natijasi) ──
+  const showConsole = useMemo(() => files.some((f) => f.lang === 'js'), [files]);
+  // F-0803-16: YENGIL REJIM — topshiriqda faqat `script.js` bo'lsa, ko'rinadigan sahifa
+  // YO'Q (HTML yozilmaydi). Bo'sh oq preview yarim ekranni egallamasin: iframe jimgina
+  // ishlashda davom etadi (JS bajariladi, console uzatiladi), lekin ko'rinmaydi —
+  // o'rniga konsol butun panelni oladi.
+  const jsOnly = useMemo(() => files.length > 0 && files.every((f) => f.lang === 'js'), [files]);
+  const consoleNonceRef = useRef(0);
+  const [consoleLines, setConsoleLines] = useState([]);
+
+  // Ko'rinadigan preview — HECH QACHON tekshiruv tomonidan o'zgartirilmaydi
+  const [doc, setDoc] = useState(() => wrapDoc(html, css, js));
+  // Tekshiruv hujjati — alohida YASHIRIN iframe'da ishlaydi (tugmani bosadi,
+  // DOMni o'zgartiradi — lekin foydalanuvchi buni ko'rmaydi)
+  const [checkDoc, setCheckDoc] = useState('');
+  // Jonli natijani debounce bilan yangilaymiz (har bosishda emas)
+  useEffect(() => {
+    const id = setTimeout(() => {
+      const cn = showConsole ? ++consoleNonceRef.current : null;
+      if (showConsole) setConsoleLines([]); // yangi ishga tushishda konsol tozalanadi
+      setDoc(wrapDoc(html, css, js, cn != null ? { consoleNonce: cn } : {}));
+      if (hasRuntime) {
+        const nonce = ++nonceRef.current;
+        setRuntimeResults({}); // kutish holatiga qaytaramiz
+        setCheckDoc(wrapDoc(html, css, js, { capture: true, harness: buildHarness(runtimeProbes, nonce) }));
+      }
+    }, 300);
+    return () => clearTimeout(id);
+  }, [html, css, js, hasRuntime, runtimeProbes, showConsole]);
+
+  // iframe'dan kelgan runtime natijalarni qabul qilamiz (faqat oxirgi nonce)
+  useEffect(() => {
+    if (!hasRuntime) return;
+    const onMsg = (e) => {
+      const d = e.data;
+      if (d && d.__hcReport && d.nonce === nonceRef.current) {
+        setRuntimeResults(d.results || {});
+      }
+    };
+    window.addEventListener('message', onMsg);
+    return () => window.removeEventListener('message', onMsg);
+  }, [hasRuntime]);
+
+  // Preview iframe'dan kelgan console.log xabarlarini yig'amiz (faqat oxirgi nonce)
+  useEffect(() => {
+    if (!showConsole) return;
+    const onMsg = (e) => {
+      const d = e.data;
+      if (d && d.__hcConsole && d.nonce === consoleNonceRef.current) {
+        setConsoleLines((prev) => (prev.length >= 200 ? prev : [...prev, { level: d.level, text: d.text }]));
+      }
+    };
+    window.addEventListener('message', onMsg);
+    return () => window.removeEventListener('message', onMsg);
+  }, [showConsole]);
+
+  // ── TEKSHIRUV: real tahlil, sinxron, xavfsiz (iframe'ga tegmaydi) ──
+  const results = useMemo(() => {
+    const parsed = new DOMParser().parseFromString(html || '', 'text/html');
+    const ctx = {
+      html, css, js,
+      doc: parsed,
+      $: (s) => { try { return parsed.querySelector(s); } catch { return null; } },
+      $$: (s) => { try { return [...parsed.querySelectorAll(s)]; } catch { return []; } },
+      cssRules: parseCss(css),
+    };
+    return reqs.map((r) => runOne(r, ctx));
+  }, [html, css, js, reqs]);
+
+  // ── SINTAKSIS: HTML linter (DOMParser ushlamaydigan xatolarni tutadi) ──
+  const htmlErrors = useMemo(() => lintHtml(html), [html]);
+  const hasSyntaxError = htmlErrors.length > 0;
+
+  // Sinxron + runtime natijalarni birlashtiramiz
+  const merged = reqs.map((r, i) => {
+    if (r.check && r.check.__runtime) {
+      const got = runtimeResults[r.id];
+      if (got === undefined) return { ok: false, hint: { uz: 'ishga tushirilmoqda…', ru: 'запускается…' } };
+      return { ok: !!got, hint: got ? null : (r.check.hint || { uz: 'natija kutilgancha emas', ru: 'результат не такой, как ожидалось' }) };
+    }
+    return results[i];
+  });
+
+  const passedCount = merged.filter((r) => r.ok).length;
+  const allPassed = reqs.length > 0 && passedCount === reqs.length && !hasSyntaxError;
+  const firstHint = merged.find((r) => !r.ok && r.hint)?.hint;
+
+  const setActiveCode = (val) => setCodes((prev) => ({ ...prev, [active]: val }));
+
+  // Tab tugmasi 2 bo'sh joy qo'shsin
+  const onKeyDown = (e) => {
+    if (e.key === 'Tab') {
+      e.preventDefault();
+      const el = e.target;
+      const s = el.selectionStart, en = el.selectionEnd;
+      const cur = codes[active] ?? '';
+      const next = cur.slice(0, s) + '  ' + cur.slice(en);
+      setActiveCode(next);
+      requestAnimationFrame(() => { el.selectionStart = el.selectionEnd = s + 2; });
+    }
+  };
+
+  const runNow = () => {
+    const cn = showConsole ? ++consoleNonceRef.current : null;
+    if (showConsole) setConsoleLines([]);
+    setDoc(wrapDoc(html, css, js, cn != null ? { consoleNonce: cn } : {}));
+  };
+  const reset = () => setCodes(Object.fromEntries(files.map((f) => [f.name, f.starter ?? ''])));
+
+  return (
+    <div className="hc-root">
+      <StyleTag />
+
+      {/* ── Tepa: shart (markazda) ── */}
+      <header className="hc-top">
+        {task.eyebrow && <span className="hc-eyebrow">{tr(task.eyebrow)}</span>}
+        <h1 className="hc-title">{tr(task.title)}</h1>
+        {task.brief && <p className="hc-brief">{tr(task.brief)}</p>}
+        <div className="hc-checklist">
+          <span className="hc-count">{passedCount}/{reqs.length}</span>
+          {reqs.map((r, i) => (
+            <span key={r.id} className={`hc-chip ${merged[i]?.ok ? 'ok' : ''}`} title={tr(merged[i]?.hint) || ''}>
+              <span className="hc-dot">{merged[i]?.ok ? '✓' : i + 1}</span>
+              {tr(r.label)}
+            </span>
+          ))}
+        </div>
+        {hasSyntaxError ? (
+          <div className="hc-errors">
+            {htmlErrors.slice(0, 3).map((e, k) => (
+              <span key={k} className="hc-err">⚠ {tr({ uz: 'Sintaksis · qator', ru: 'Синтаксис · строка' })} {e.line}: {tr(e.msg)}</span>
+            ))}
+            {htmlErrors.length > 3 && <span className="hc-err">… {tr({ uz: 'va yana', ru: 'и ещё' })} {htmlErrors.length - 3} {tr({ uz: 'ta xato', ru: 'ошибок' })}</span>}
+          </div>
+        ) : (!allPassed && firstHint && (
+          <p className="hc-hint">💡 {tr(firstHint)}</p>
+        ))}
+      </header>
+
+      {/* ── O'rta: editor | natija ── */}
+      <main className="hc-split">
+        <section className="hc-pane hc-editor-pane">
+          <div className="hc-pane-bar hc-tabs-bar">
+            <span className="hc-dots"><i /><i /><i /></span>
+            <div className="hc-tabs">
+              {files.map((f) => (
+                <button
+                  key={f.name}
+                  className={`hc-tab ${active === f.name ? 'active' : ''}`}
+                  onClick={() => setActive(f.name)}
+                >
+                  {f.name}
+                </button>
+              ))}
+            </div>
+            <button className="hc-mini" onClick={runNow} title={tr({ uz: 'Ishga tushirish', ru: 'Запустить' })}>▶ {tr({ uz: 'Ishga tushirish', ru: 'Запустить' })}</button>
+          </div>
+          <textarea
+            ref={taRef}
+            className="hc-code"
+            value={codes[active] ?? ''}
+            onChange={(e) => setActiveCode(e.target.value)}
+            onKeyDown={onKeyDown}
+            spellCheck={false}
+            autoCapitalize="off"
+            autoCorrect="off"
+            placeholder={tr({ uz: 'Kodingizni shu yerga yozing…', ru: 'Пишите свой код здесь…' })}
+          />
+        </section>
+
+        <section className="hc-pane hc-preview-pane">
+          {!jsOnly && (
+            <div className="hc-pane-bar">
+              <span className="hc-pane-name">📺 {tr({ uz: 'Natija', ru: 'Результат' })}</span>
+              <span className="hc-live">{tr({ uz: 'jonli', ru: 'live' })}</span>
+            </div>
+          )}
+          <iframe
+            className={`hc-frame${jsOnly ? ' hc-frame-off' : ''}`}
+            title="natija"
+            sandbox="allow-scripts allow-popups allow-popups-to-escape-sandbox"
+            srcDoc={doc}
+          />
+          {showConsole && (
+            <div className={`hc-console${jsOnly ? ' full' : ''}`}>
+              <div className="hc-console-bar">
+                <span className="hc-console-title">🖥️ Console</span>
+                {consoleLines.length > 0 && (
+                  <button className="hc-console-clear" onClick={() => setConsoleLines([])}>{tr({ uz: 'tozalash', ru: 'очистить' })}</button>
+                )}
+              </div>
+              <div className="hc-console-body">
+                {consoleLines.length === 0 ? (
+                  <div className="hc-console-empty">{tr({ uz: 'console.log(...) natijasi shu yerda chiqadi', ru: 'результат console.log(...) появится здесь' })}</div>
+                ) : (
+                  consoleLines.map((l, i) => (
+                    <div key={i} className={`hc-console-line lvl-${l.level}`}>
+                      <span className="hc-console-caret">›</span>
+                      <span className="hc-console-text">{l.text}</span>
+                    </div>
+                  ))
+                )}
+              </div>
+            </div>
+          )}
+        </section>
+      </main>
+
+      {/* Yashirin tekshiruv iframe'i — probe'lar shu yerda ishlaydi (tugmani
+          bosadi, DOMni o'zgartiradi), foydalanuvchi ko'radigan preview esa toza qoladi */}
+      {hasRuntime && (
+        <iframe
+          aria-hidden="true"
+          tabIndex={-1}
+          title="tekshiruv"
+          sandbox="allow-scripts"
+          srcDoc={checkDoc}
+          style={{ position: 'fixed', left: '-9999px', top: 0, width: 1, height: 1, opacity: 0, pointerEvents: 'none', border: 'none' }}
+        />
+      )}
+
+      {/* ── Past: harakatlar ── */}
+      <footer className="hc-bottom">
+        {onBack && <button className="hc-ghost" onClick={onBack}>← {tr({ uz: 'Orqaga', ru: 'Назад' })}</button>}
+        <button className="hc-ghost" onClick={reset}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button>
+        <div className="hc-status">
+          {allPassed
+            ? <span className="hc-ok-msg">✓ {tr({ uz: 'Barcha shartlar bajarildi!', ru: 'Все условия выполнены!' })}</span>
+            : <span className="hc-wait-msg">{tr({ uz: "Shartlarni bajaring — natija o'ngda ko'rinadi", ru: 'Выполняйте условия — результат виден справа' })}</span>}
+        </div>
+        <button
+          className="hc-next"
+          disabled={!allPassed}
+          onClick={() => allPassed && onContinue && onContinue({ codes, code: html })}
+        >
+          {tr({ uz: 'Davom etish', ru: 'Продолжить' })} →
+        </button>
+      </footer>
+    </div>
+  );
+}
+
+function StyleTag() {
+  return (
+    <style>{`
+      @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap');
+      .hc-root,.hc-root *{box-sizing:border-box}
+      .hc-root{font-family:'Manrope',system-ui,sans-serif;color:${HC_T.ink};background:
+        radial-gradient(120% 80% at 50% -10%, ${HC_T.accentSoft} 0%, rgba(255,237,229,0) 46%),
+        ${HC_T.bg};
+        height:100dvh;display:flex;flex-direction:column;justify-content:center;gap:clamp(12px,1.8vw,18px);padding:clamp(16px,2.4vw,30px);overflow:hidden;-webkit-font-smoothing:antialiased;width:100%;max-width:1160px;margin:0 auto}
+
+      .hc-top{display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px}
+      .hc-eyebrow{font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:800;color:${HC_T.accent};display:inline-flex;align-items:center;gap:7px}
+      .hc-eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;background:${HC_T.accent}}
+      .hc-title{font-family:Georgia,serif;font-size:clamp(22px,3vw,32px);margin:0;color:${HC_T.ink};font-weight:600;letter-spacing:-.015em;line-height:1.12}
+      .hc-brief{margin:0;color:${HC_T.ink2};font-size:clamp(13px,1.5vw,15px);line-height:1.55;max-width:60ch}
+
+      .hc-checklist{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:8px;margin-top:6px}
+      .hc-count{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:12px;color:#fff;background:linear-gradient(135deg,${HC_T.accent},${HC_T.accent2});padding:6px 11px;border-radius:99px;box-shadow:0 6px 16px -6px rgba(255,77,38,.5)}
+      .hc-chip{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:500;color:${HC_T.ink2};background:${HC_T.paper};padding:6px 14px 6px 7px;border-radius:99px;border:1px solid ${HC_T.line};box-shadow:0 1px 2px rgba(${HC_T.shadowBase},.04);transition:all .22s ease;cursor:default}
+      .hc-chip.ok{color:${HC_T.ink};font-weight:600;border-color:${HC_T.success}40;background:${HC_T.successSoft}}
+      .hc-dot{flex-shrink:0;width:21px;height:21px;border-radius:50%;background:${HC_T.bg};color:${HC_T.ink3};display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;transition:all .25s}
+      .hc-chip.ok .hc-dot{background:${HC_T.success};color:#fff;box-shadow:0 3px 8px -2px ${HC_T.success}88}
+      .hc-hint{margin:3px 0 0;font-size:13px;color:${HC_T.warn};background:#FFF6EA;border:1px solid #F4DFBC;padding:8px 15px;border-radius:11px;max-width:60ch;line-height:1.5}
+      .hc-errors{display:flex;flex-direction:column;gap:5px;align-items:center;margin:3px 0 0}
+      .hc-err{font-size:12.5px;color:#C01024;background:#FDECEC;border:1px solid #F6CFCF;padding:7px 14px;border-radius:10px;font-family:'JetBrains Mono',monospace;max-width:74ch;line-height:1.5}
+
+      .hc-split{flex:none;height:62vh;min-height:0;display:grid;grid-template-columns:1fr 1fr;gap:clamp(12px,1.6vw,18px)}
+      .hc-pane{display:flex;flex-direction:column;min-height:0;border-radius:18px;overflow:hidden;background:${HC_T.paper};box-shadow:0 1px 0 ${HC_T.line},0 18px 40px -22px rgba(${HC_T.shadowBase},.35)}
+      .hc-pane-bar{display:flex;align-items:center;gap:10px;padding:10px 15px;font-size:12px;font-weight:600;color:${HC_T.ink2}}
+      .hc-editor-pane .hc-pane-bar{background:${HC_CODE.bg};color:#A7B6D6;border-bottom:1px solid rgba(255,255,255,.06)}
+      .hc-preview-pane .hc-pane-bar{background:${HC_T.paper};border-bottom:1px solid ${HC_T.line}}
+      .hc-dots{display:inline-flex;gap:6px;flex-shrink:0}
+      .hc-dots i{width:11px;height:11px;border-radius:50%;background:#3A4760;display:block}
+      .hc-dots i:nth-child(1){background:#ff5f56}.hc-dots i:nth-child(2){background:#ffbd2e}.hc-dots i:nth-child(3){background:#27c93f}
+      .hc-pane-name{font-family:'JetBrains Mono',monospace;font-weight:700}
+      .hc-live{margin-left:auto;font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:${HC_T.success};background:${HC_T.successSoft};padding:4px 9px;border-radius:99px;font-weight:800;display:inline-flex;align-items:center;gap:6px}
+      .hc-live::before{content:"";width:6px;height:6px;border-radius:50%;background:${HC_T.success};animation:hc-pulse 1.8s infinite}
+      @keyframes hc-pulse{0%{box-shadow:0 0 0 0 ${HC_T.success}66}70%{box-shadow:0 0 0 6px ${HC_T.success}00}100%{box-shadow:0 0 0 0 ${HC_T.success}00}}
+
+      .hc-tabs{display:flex;gap:4px;overflow:hidden}
+      .hc-tab{background:transparent;border:none;color:#7E92B4;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;padding:6px 13px;border-radius:9px;cursor:pointer;transition:all .15s;white-space:nowrap}
+      .hc-tab:hover{color:#cfe0ff;background:rgba(255,255,255,.06)}
+      .hc-tab.active{color:#fff;background:rgba(255,255,255,.14);box-shadow:inset 0 -2px 0 ${HC_T.accent}}
+      .hc-mini{margin-left:auto;background:linear-gradient(135deg,${HC_T.accent},${HC_T.accent2});color:#fff;border:none;border-radius:9px;padding:6px 13px;font-size:11.5px;font-weight:700;cursor:pointer;font-family:'Manrope',sans-serif;transition:all .18s;flex-shrink:0;box-shadow:0 6px 14px -6px rgba(255,77,38,.6)}
+      .hc-mini:hover{transform:translateY(-1px);box-shadow:0 9px 18px -6px rgba(255,77,38,.7)}
+      .hc-mini:active{transform:translateY(0)}
+
+      .hc-code{flex:1;min-height:0;resize:none;border:none;outline:none;background:${HC_CODE.bg};color:${HC_CODE.text};font-family:'JetBrains Mono',monospace;font-size:14px;line-height:1.7;padding:18px 20px;tab-size:2;white-space:pre;overflow:auto;caret-color:${HC_T.accent2}}
+      .hc-code::placeholder{color:#5B6B86}
+      .hc-code::selection{background:${HC_T.accent}55}
+
+      .hc-frame{flex:1;min-height:0;width:100%;border:none;background:#fff}
+
+      .hc-frame-off{display:none}
+      .hc-console.full{height:auto;flex:1;border-top:none}
+      .hc-console{flex-shrink:0;height:34%;min-height:96px;display:flex;flex-direction:column;background:${HC_CODE.bg};border-top:1px solid rgba(255,255,255,.07)}
+      .hc-console-bar{display:flex;align-items:center;gap:8px;padding:7px 14px;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7E92B4;border-bottom:1px solid rgba(255,255,255,.06)}
+      .hc-console-title{font-family:'JetBrains Mono',monospace}
+      .hc-console-clear{margin-left:auto;background:rgba(255,255,255,.08);color:#cfe0ff;border:none;border-radius:7px;padding:4px 10px;font-size:10.5px;font-weight:600;cursor:pointer;text-transform:none;letter-spacing:0;font-family:'Manrope',sans-serif;transition:all .15s}
+      .hc-console-clear:hover{background:${HC_T.accent};color:#fff}
+      .hc-console-body{flex:1;min-height:0;overflow:auto;padding:6px 0;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.6}
+      .hc-console-empty{color:#5B6B86;padding:4px 15px;font-style:italic}
+      .hc-console-line{display:flex;gap:8px;padding:2px 15px;color:#E7EAF2;border-bottom:1px solid rgba(255,255,255,.03);white-space:pre-wrap;word-break:break-word}
+      .hc-console-caret{color:#27c93f;flex-shrink:0;font-weight:700}
+      .hc-console-line.lvl-warn{color:#FFD380;background:rgba(255,189,46,.08)}
+      .hc-console-line.lvl-error{color:#ff8a7a;background:rgba(255,95,86,.1)}
+      .hc-console-line.lvl-error .hc-console-caret{color:#ff5f56}
+
+      .hc-bottom{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+      .hc-ghost{background:transparent;border:1px solid transparent;color:${HC_T.ink2};font-family:'Manrope',sans-serif;font-weight:600;font-size:14px;cursor:pointer;padding:11px 17px;border-radius:12px;transition:all .15s}
+      .hc-ghost:hover{background:${HC_T.paper};color:${HC_T.ink};border-color:${HC_T.line};box-shadow:0 6px 16px -10px rgba(${HC_T.shadowBase},.3)}
+      .hc-status{margin-left:auto}
+      .hc-ok-msg{color:${HC_T.success};font-weight:700;font-size:14px}
+      .hc-wait-msg{color:${HC_T.ink3};font-size:13px}
+      .hc-next{background:linear-gradient(135deg,${HC_T.accent},${HC_T.accent2});color:#fff;border:none;border-radius:13px;font-family:'Manrope',sans-serif;font-weight:800;font-size:15px;cursor:pointer;padding:13px 30px;box-shadow:0 10px 24px -8px rgba(255,77,38,.6);transition:all .2s}
+      .hc-next:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 16px 32px -8px rgba(255,77,38,.7)}
+      .hc-next:active:not(:disabled){transform:translateY(0)}
+      .hc-next:disabled{background:#D7D8DE;color:#fff;cursor:not-allowed;box-shadow:none}
+
+      @media (max-width:820px){
+        .hc-split{grid-template-columns:1fr;grid-template-rows:1fr 1fr}
+        .hc-checklist{width:100%}
+      }
+    `}</style>
+  );
+}
+
+// Dars shartlarida ishlatiladigan qisqa alias (ilgari `checks as C`)
+
+function MentorPracticeOverlay({ entry, live, onClose }) {
+  const [view, setView] = useState('watch'); // 'watch' | 'demo'
+  const [data, setData] = useState({ players: null, rows: [] });
+  const doneIdx = PRACTICE_DONE_BASE + entry.fromScreen;
+  useEffect(() => {
+    let on = true, t = null;
+    const tick = async () => {
+      try {
+        const [players, rows] = await Promise.all([livePlayers(live.pin), liveAnswers(live.pin, doneIdx)]);
+        if (on) setData({ players, rows });
+      } catch {}
+      if (on) t = setTimeout(tick, 3000);
+    };
+    tick();
+    return () => { on = false; clearTimeout(t); };
+  }, [live.pin, doneIdx]);
+
+  if (view === 'demo') {
+    return (
+      <div style={{ position: 'fixed', inset: 0, zIndex: 2000, background: T.bg }}>
+        <HtmlCompiler task={entry.task} starterCode={entry.starter} onContinue={() => setView('watch')} onBack={() => setView('watch')} />
+      </div>
+    );
+  }
+
+  const total = data.players ? data.players.length : 0;
+  const doneN = data.rows.length;
+  const allIn = total > 0 && doneN >= total;
+  const doneIds = new Set(data.rows.map(r => r.player_id));
+  return (
+    <div className="mp-overlay">
+      <div className="mp-card">
+        <div className="mp-eyebrow">✍️ {tr({ uz: 'Amaliyot · jonli', ru: 'Практика · живой урок' })}</div>
+        <h2 className="mp-title">{tr(entry.task.title)}</h2>
+        <p className="mp-brief">{tr(entry.task.brief)}</p>
+        <div className="mp-flow">
+          <span className="mp-step cur">1 · {tr({ uz: "O'quvchilar o'z qurilmasida yozmoqda", ru: 'Ученики пишут на своих устройствах' })}</span>
+          <span className="mp-arr">→</span>
+          <span className="mp-step">2 · {tr({ uz: "Mentor doskada yozib ko'rsatadi", ru: 'Ментор пишет и показывает на доске' })}</span>
+        </div>
+        {data.players === null ? (
+          <p className="mstats-wait">{tr({ uz: 'Ulanish…', ru: 'Подключение…' })}</p>
+        ) : (
+          <div className="mstats" style={{ marginTop: 2 }}>
+            <div className="mstats-head">
+              <span className="mstats-lbl">👨‍🎓 {tr({ uz: 'Praktikani tugatdi', ru: 'Завершили практику' })}</span>
+              <span className="mstats-n">{allIn ? tr({ uz: '✓ Hamma tugatdi!', ru: '✓ Все закончили!' }) : <>{tr({ uz: 'Tugatdi:', ru: 'Закончили:' })} <b>{doneN}</b> / {total}</>}</span>
+            </div>
+            <div className="mstats-prog"><span className={`mstats-prog-fill ${allIn ? 'full' : ''}`} style={{ width: `${total ? Math.round((doneN / total) * 100) : 0}%` }} /></div>
+            {total > 0 && (
+              <div className="mstats-waitrow" style={{ marginTop: 10 }}>
+                {data.players.map(p => <span key={p.id} className="mstats-wait-chip" style={doneIds.has(p.id) ? { background: T.successSoft, color: T.success, fontWeight: 700 } : undefined}>{doneIds.has(p.id) ? '✓ ' : '✏️ '}{p.nickname}</span>)}
+              </div>
+            )}
+            {total === 0 && <p className="mstats-wait">{tr({ uz: "Hali o'quvchi qo'shilmagan — ular praktikani boshlashi bilan bu yerda ✓ chiqadi…", ru: 'Пока никто не присоединился — как только ученики начнут практику, здесь появятся ✓…' })}</p>}
+          </div>
+        )}
+        <div className="mp-actions">
+          <button className="mp-demo" onClick={() => setView('demo')}>🖊 {tr({ uz: "Doskada yozib ko'rsatish", ru: 'Показать на доске' })}</button>
+          <button className="mp-next" onClick={onClose}>{tr({ uz: 'Keyingi mavzuga', ru: 'К следующей теме' })} →</button>
+        </div>
+        <p className="mp-tip">{tr({ uz: "💡 Ko'pchilik tugatgach, aynan shu mashqni doskada birga yozing — shunda o'quvchilar o'zini tekshiradi va mavzu mustahkamlanadi.", ru: '💡 Когда большинство закончит, напишите это же упражнение на доске вместе — так ученики проверят себя, и тема закрепится.' })}</p>
+      </div>
+    </div>
+  );
+}
+
+// ============================================================
+//  ✏️ PRAKTIKA — 2 ta YENGIL topshiriq (F-0803-15).
+//  Yengil variant (JsVars naqshi): BITTA fayl (`script.js`), HTML/DOM yo'q,
+//  natija 🖥️ Console panelida ko'rinadi, har topshiriqda 2 ta shart.
+//  Bu ikkovi eski `s15` («namunani ko'chirib yozing» inputi) O'RNIGA keldi:
+//  o'quvchi endi kodni ISHGA TUSHIRIB, natijasini o'z ko'zi bilan ko'radi.
+//  Pedagogik tartib (527-qonun): har topshiriq faqat o'sha ekrangacha
+//  o'tilgan tushunchani so'raydi.
+// ============================================================
+
+// — P1: 1 DAN 5 GACHA SANASH (Screen5b — for testidan — keyin) —
+const TASK_SANOQ = {
+  eyebrow: { uz: 'Praktika · for', ru: 'Практика · for' },
+  title: { uz: "Kompyuterga 1 dan 5 gacha sanatib ko'ring", ru: 'Заставьте компьютер посчитать от 1 до 5' },
+  brief: { uz: "`for` sikli yozing: `i` birdan boshlansin, `5` gacha borsin, har qadamda bittaga oshsin. Sikl ichida `console.log(i)` yozing — pastdagi konsolda `1 2 3 4 5` chiqadi.", ru: 'Напишите цикл `for`: `i` начинается с единицы, идёт до `5`, на каждом шаге растёт на 1. Внутри цикла напишите `console.log(i)` — в консоли внизу появится `1 2 3 4 5`.' },
+  files: [
+    { name: 'script.js', lang: 'js', starter: `// Bu yerga yozing\n` },
+  ],
+  requirements: [
+    { id: 'for', label: { uz: 'for sikli yozildi', ru: 'цикл for написан' }, check: C.js(/for\s*\([^)]*;[^)]*;[^)]*\)/, { uz: "`for (let i = 1; i <= 5; i++) {` deb boshlang", ru: 'Начните с `for (let i = 1; i <= 5; i++) {`' }) },
+    { id: 'log', label: { uz: 'konsolda 1 2 3 4 5', ru: 'в консоли 1 2 3 4 5' }, check: C.logs('1 2 3 4 5', { uz: "Sikl ichida `console.log(i)` yozing — har qadamda bitta son chiqadi", ru: 'Внутри цикла напишите `console.log(i)` — на каждом шаге выводится число' }) },
+  ],
+};
+
+// — P2: MASSIVNI SIKL BILAN O'QISH (Screen14 — debugging — dan keyin, YAKUNIY) —
+const TASK_MEVA = {
+  eyebrow: { uz: 'Praktika · massiv', ru: 'Практика · массив' },
+  title: { uz: "Ro'yxatni sikl bilan chiqaring", ru: 'Выведите список циклом' },
+  brief: { uz: "Massiv yozing: `let mevalar = [\"olma\", \"banan\", \"uzum\"]`. Keyin `for` sikli bilan har bir mevani konsolga chiqaring — `console.log(mevalar[i])`. Konsolda uchalasi ketma-ket chiqadi.", ru: 'Напишите массив: `let mevalar = [\"olma\", \"banan\", \"uzum\"]`. Затем циклом `for` выведите каждый фрукт — `console.log(mevalar[i])`. В консоли появятся все три подряд.' },
+  files: [
+    { name: 'script.js', lang: 'js', starter: `// Bu yerga yozing\n` },
+  ],
+  requirements: [
+    { id: 'arr', label: { uz: 'massiv yozildi', ru: 'массив написан' }, check: C.js(/\[\s*["'][^"']+["']\s*,/, { uz: "Massivni shunday yozing: `let mevalar = [\"olma\", \"banan\", \"uzum\"]`", ru: 'Напишите массив так: `let mevalar = [\"olma\", \"banan\", \"uzum\"]`' }) },
+    { id: 'log', label: { uz: 'konsolda uchala meva', ru: 'в консоли все три фрукта' }, check: C.logs('olma banan uzum', { uz: "Sikl ichida `console.log(mevalar[i])` yozing", ru: 'Внутри цикла напишите `console.log(mevalar[i])`' }) },
+  ],
+};
+
+// Praktika handoff xaritasi: shu ekran INDEKSIDAN keyin qaysi praktika chaqiriladi.
+// (indekslar `screens[]` bo'yicha — s15 olib tashlangandan KEYINGI holat: 6 = s5b, 15 = s14)
+const PRACTICE_AFTER = {
+  6:  { task: TASK_SANOQ, starter: '' }, // 1) for bilan 1..5 sanash
+  15: { task: TASK_MEVA,  starter: '' }, // 2) yakuniy: massivni sikl bilan o'qish
+};
+
+export default function JsLoopsLesson({ lang: langProp, onFinished, onPractice }) {
   const lang = langProp || 'uz';
   __lang = lang; // UZ-RU: tr() uchun joriy til (render'dan oldin o'rnatiladi)
   // F-0730-01: saqlangan progress bir marta o'qiladi (jonli-o'quvchi mentor
@@ -2639,6 +3645,8 @@ export default function JsLoopsLesson({ lang: langProp, onFinished }) {
   const saved = savedRef.current;
   const [screen, setScreen] = useState(() => saved ? Math.min(Math.max(saved.screen || 0, 0), TOTAL_SCREENS - 1) : 0);
   const [answers, setAnswers] = useState(() => (saved && saved.answers) || {});
+  const [practice, setPractice] = useState(null);             // lokal overlay: { task, starter, done } yoki null
+  const [mentorPractice, setMentorPractice] = useState(null); // jonli mentor paneli
   const startTimeRef = useRef(saved?.startedAt || Date.now());
   // 🏅 Nishonlar
   const earnedRef = useRef(new Set(saved?.earned || []));
@@ -2654,7 +3662,7 @@ export default function JsLoopsLesson({ lang: langProp, onFinished }) {
 
   // ETALON — 1920px (InternetLesson): keng oynada proportsional kattalashadi, <=1920 da z=1
   useEffect(() => {
-    const upd = () => { const z = Math.min(1.5, Math.max(1, window.innerWidth / 1920)); document.documentElement.style.setProperty('--lz', String(Math.round(z * 1000) / 1000)); };
+    const upd = () => { const z = Math.min(1.5, Math.max(1, Math.min(window.innerWidth / 1920, window.innerHeight / 1000))); document.documentElement.style.setProperty('--lz', String(Math.round(z * 1000) / 1000)); };
     upd(); window.addEventListener('resize', upd); return () => window.removeEventListener('resize', upd);
   }, []);
   // 🃏 Flashcard jonli darsda FAQAT MENTORGA ko'rinadi (proyektorda jamoaviy
@@ -2662,11 +3670,51 @@ export default function JsLoopsLesson({ lang: langProp, onFinished }) {
   const FLASH_IDX = SCREEN_META.findIndex(m => m.id === 'sflash');
   const flashHidden = () =>
     live.mode === 'student' && live.status !== 'ended' && live.mentorAlive;
-  const next = () => setScreen(s => {
+  const advance = () => setScreen(s => {
     let n = Math.min(s + 1, TOTAL_SCREENS - 1);
     if (n === FLASH_IDX && flashHidden()) n = Math.min(n + 1, TOTAL_SCREENS - 1);
     return n;
   });
+  // Praktikani ishga tushiradi: production'da onPractice (LMS), lokalda overlay.
+  const runPractice = (entry, fromScreen) => {
+    const done = () => {
+      if (live && live.mode === 'student') live.submitAnswer(PRACTICE_DONE_BASE + fromScreen, `practice-${fromScreen}`, 0, true, 0);
+      earn('assemblymaster'); // 🏅 F-0803-15: siklni o'z qo'li bilan yozib, ishga tushirdi
+      pracClear(LESSON_META.lessonId); setPractice(null); advance();
+    };
+    if (typeof onPractice === 'function') Promise.resolve(onPractice(entry.task)).then(done);
+    else { pracWrite(LESSON_META.lessonId, { kind: `s${fromScreen}`, screen: fromScreen }); setPractice({ ...entry, done, codeKey: codeKeyOf(LESSON_META.lessonId, `s${fromScreen}`) }); }
+  };
+  // 🏠 UYGA VAZIFA PRAKTIKASI (yakun-sahifadagi tugma) — yakuniy topshiriq (TASK_MEVA).
+  // Dars-ichi mashqidan farqi: keyingi ekranga O'TKAZMAYDI va serverga signal YUBORMAYDI.
+  const openHomeworkPractice = () => {
+    const entry = { task: TASK_MEVA, starter: '' };
+    if (typeof onPractice === 'function') Promise.resolve(onPractice(entry.task)).catch(() => {});
+    else {
+      pracWrite(LESSON_META.lessonId, { kind: 'hw' });
+      setPractice({ ...entry, codeKey: codeKeyOf(LESSON_META.lessonId, 'hw'), done: () => { pracClear(LESSON_META.lessonId); setPractice(null); } });
+    }
+  };
+  // F-0801-01 (102-qonun): qayta yuklanishda ochiq praktika tiklanadi.
+  useEffect(() => {
+    if (typeof onPractice === 'function') return; // production: overlay ishlatilmaydi
+    const p = pracRead(LESSON_META.lessonId);
+    if (!p) return;
+    if (p.kind === 'hw') { openHomeworkPractice(); return; }
+    const entry = PRACTICE_AFTER[p.screen];
+    if (entry) runPractice(entry, p.screen);
+    else pracClear(LESSON_META.lessonId); // dars o'zgargan — eskirgan saqlov tashlanadi
+  }, []); // eslint-disable-line
+  // "Davom etish": shu ekrandan keyin praktika bo'lsa — compilatorni ochadi.
+  // 🔴 DARS-ICHI PRAKTIKASI FAQAT JONLI DARSDA (2026-07-29 qarori, boshqa darslar bilan bir xil):
+  // mustaqil o'quvchi uchun mashq yakun-sahifadagi «Uyga vazifa» tugmasi orqali ochiladi.
+  const next = () => {
+    const entry = PRACTICE_AFTER[screen];
+    if (!entry) { advance(); return; }
+    if (!(live && (live.mode === 'mentor' || (live.mode === 'student' && live.status !== 'ended' && live.mentorAlive)))) { advance(); return; }
+    if (live.mode === 'mentor') { setMentorPractice({ ...entry, fromScreen: screen }); advance(); }
+    else runPractice(entry, screen);
+  };
   const prev = () => setScreen(s => {
     let n = Math.max(s - 1, 0);
     if (n === FLASH_IDX && flashHidden()) n = Math.max(n - 1, 0);
@@ -2678,7 +3726,7 @@ export default function JsLoopsLesson({ lang: langProp, onFinished }) {
     if (_m && _m.scored && _m.scope === 'final' && data && data.correct && live.mode === 'student') live.submitAnswer(idx, _m.id, 0, true, 0);
     if (_m && ACH_TRIGGERS[_m.id] && data && data.correct) earn(ACH_TRIGGERS[_m.id]); // 🏅 nishon
   };
-  const reset = () => { progClear(LESSON_META.lessonId); setAnswers({}); setScreen(0); startTimeRef.current = Date.now(); };
+  const reset = () => { progClear(LESSON_META.lessonId); pracClear(LESSON_META.lessonId); setAnswers({}); setScreen(0); setPractice(null); setMentorPractice(null); startTimeRef.current = Date.now(); };
   // F-0730-01: har o'zgarishda progress saqlanadi (screen + javoblar + nishonlar + boshlangan vaqt)
   useEffect(() => {
     progWrite(LESSON_META.lessonId, { screen, answers, earned: [...earnedRef.current], startedAt: startTimeRef.current, total: TOTAL_SCREENS, savedAt: Date.now() });
@@ -2715,7 +3763,7 @@ export default function JsLoopsLesson({ lang: langProp, onFinished }) {
     if (typeof onFinished === 'function') onFinished(payload);
   };
 
-  const screens = [Screen0, Screen1, Screen2, Screen3, Screen4, Screen5, Screen5b, Screen6, Screen7, Screen8, Screen9, Screen10, Screen11, Screen12, Screen13, Screen14, Screen15, ScreenPodium, ScreenFlashcards, Screen16];
+  const screens = [Screen0, Screen1, Screen2, Screen3, Screen4, Screen5, Screen5b, Screen6, Screen7, Screen8, Screen9, Screen10, Screen11, Screen12, Screen13, Screen14, ScreenPodium, ScreenFlashcards, Screen16];
   const Current = screens[screen];
   return (
     <LangContext.Provider value={lang}>
@@ -2763,7 +3811,7 @@ export default function JsLoopsLesson({ lang: langProp, onFinished }) {
         .btn-soft:hover:not(:disabled) { box-shadow: 0 6px 14px -5px rgba(${T.shadowBase},0.2); }
 
         /* === OPSIYALAR === */
-        .option { background: ${T.paper}; cursor: pointer; transition: all 0.2s; font-family: 'Manrope', sans-serif; font-weight: 500; text-align: left; border-radius: 12px; width: 100%; border: none; color: ${T.ink}; box-shadow: 0 6px 16px -6px rgba(${T.shadowBase},0.14); }
+        .option { background: ${T.paper}; cursor: pointer; transition: all 0.2s; font-family: 'Manrope', sans-serif; font-weight: 500; line-height: 1.45; text-align: left; border-radius: 12px; width: 100%; border: none; color: ${T.ink}; box-shadow: 0 6px 16px -6px rgba(${T.shadowBase},0.14); }
         .option:hover:not(:disabled) { background: #FDFBF7; box-shadow: 0 10px 22px -6px rgba(${T.shadowBase},0.22); }
         .option:disabled { cursor: default; }
         .option-correct { background: ${T.successSoft} !important; color: ${T.success} !important; box-shadow: 0 8px 22px -6px rgba(31,122,77,0.32) !important; }
@@ -2794,6 +3842,7 @@ export default function JsLoopsLesson({ lang: langProp, onFinished }) {
 
         .h-title { font-size: clamp(22px,4vw,38px); }
         .h-sub { font-size: clamp(17px,2.5vw,22px); }
+        .h-ask { font-size: clamp(19px,2.6vw,27px); line-height: 1.32; letter-spacing: -0.01em; text-wrap: balance; }
         .body { font-size: clamp(14px,1.6vw,16px); line-height: 1.5; }
         .eyebrow { font-size: clamp(11px,1.3vw,12px); letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600; }
         .small { font-size: clamp(12.5px,1.4vw,13.5px); }
@@ -2818,7 +3867,10 @@ export default function JsLoopsLesson({ lang: langProp, onFinished }) {
         .frame-dash { border: 1.5px dashed ${T.ink3}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); }
 
         /* === LAYOUT === */
-        .screen { flex: 1; min-height: 0; display: flex; flex-direction: column; gap: clamp(14px,2vw,20px); }
+        .screen { flex: 1 0 auto; min-height: 0; display: flex; flex-direction: column; gap: clamp(14px,2vw,20px); }
+        /* F-0725-04 · 60-qonun: kontent sig'masa ekran-bloklari SIQILMAYDI — stage-content skroll beradi.
+           Standart flex-shrink tufayli bloklar siqilib, ichidagi matn qirqilardi (F-0802-14 dalili). */
+        .screen > * { flex-shrink: 0; }
         .head { display: flex; flex-direction: column; gap: 6px; }
         .split { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: clamp(18px,3vw,36px); align-items: start; }
         .col { display: flex; flex-direction: column; gap: clamp(12px,2vw,16px); min-width: 0; }
@@ -2912,6 +3964,24 @@ export default function JsLoopsLesson({ lang: langProp, onFinished }) {
         .card { background: ${T.paper}; border-radius: 16px; padding: 18px 20px; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.14); }
         .card-lbl { display: flex; align-items: center; gap: 8px; font-family: 'Manrope'; font-weight: 700; font-size: 13px; margin-bottom: 11px; }
         .recap { display: flex; flex-direction: column; gap: 8px; list-style: none; } .recap li { display: flex; align-items: flex-start; gap: 10px; font-size: clamp(13px,1.6vw,15px); color: ${T.ink}; animation: fade-in-up 0.4s ease-out forwards; opacity: 0; } .recap .ck { color: ${T.success}; font-weight: 700; flex-shrink: 0; background: none; padding: 0; }
+        /* F-0803-08 — UYGA VAZIFA KAPSULASI (PmLesson2 etaloni): yakun sahifasida
+           «Endi siz bilasiz» dan KEYIN turadi, bosilganda topshiriq kartasi ochiladi. */
+        .hw-big-wrap { position: relative; align-self: center; width: min(560px, 100%); }
+        .hw-big-wrap::before { content: ''; position: absolute; inset: -16px; border-radius: 34px; background: radial-gradient(ellipse at center, rgba(124,58,237,0.45), rgba(124,58,237,0) 70%); filter: blur(18px); z-index: 0; pointer-events: none; animation: hw-aura 2.6s ease-in-out infinite; }
+        @keyframes hw-aura { 0%, 100% { opacity: 0.5; } 50% { opacity: 0.9; } }
+        .hw-big { position: relative; z-index: 1; overflow: hidden; display: flex; flex-direction: column; align-items: center; gap: 7px; width: 100%; padding: clamp(20px,2.8vw,30px) clamp(26px,3.4vw,44px); border: 1.5px solid rgba(186,140,255,0.72); border-radius: 22px; cursor: pointer; background: radial-gradient(130% 170% at 50% 120%, #3D1F86 0%, #2A1560 44%, #1B0F3F 100%); color: #fff; box-shadow: 0 0 0 1px rgba(90,40,180,.45), 0 0 26px rgba(124,58,237,.5), 0 0 68px rgba(124,58,237,.28), inset 0 0 48px rgba(124,58,237,.32); animation: hw-fire 1.7s ease-in-out 0.9s infinite; transition: transform 0.2s; }
+        .hw-big:hover { transform: translateY(-3px) scale(1.02); }
+        .hw-sky { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+        .hw-tok { position: absolute; font-family: 'JetBrains Mono', monospace; font-weight: 700; color: rgba(255,255,255,0.16); animation: hw-float var(--d, 7s) ease-in-out infinite alternate; }
+        @keyframes hw-float { from { transform: translateY(4px); } to { transform: translateY(-7px); } }
+        .hw-big.charging { animation: hw-fire 1.7s ease-in-out 0.9s infinite, hw-charge 0.5s ease; }
+        @keyframes hw-charge { 0% { filter: brightness(1); } 45% { filter: brightness(1.7) saturate(1.25); transform: scale(1.03); } 100% { filter: brightness(1); } }
+        .hw-big-t { font-family: 'Manrope'; font-weight: 800; font-size: clamp(25px,3.6vw,34px); letter-spacing: 0.02em; }
+        .hw-big-s { font-family: 'Manrope'; font-weight: 700; font-size: clamp(14px,1.9vw,17px); opacity: 0.94; }
+        .hw-big-shine { position: absolute; top: -40%; left: -60%; width: 45%; height: 180%; background: linear-gradient(100deg, transparent, rgba(255,255,255,0.16), transparent); transform: rotate(8deg); animation: hw-shine 4.6s ease-in-out infinite; pointer-events: none; }
+        @keyframes hw-fire { 0%,100% { box-shadow: 0 0 0 1px rgba(90,40,180,.45), 0 0 26px rgba(124,58,237,.5), 0 0 68px rgba(124,58,237,.28), inset 0 0 48px rgba(124,58,237,.32); } 50% { box-shadow: 0 0 0 1px rgba(120,60,220,.6), 0 0 40px rgba(124,58,237,.72), 0 0 96px rgba(124,58,237,.4), inset 0 0 60px rgba(124,58,237,.44); } }
+        @keyframes hw-shine { 0% { left: -60%; } 55%, 100% { left: 130%; } }
+        @media (prefers-reduced-motion: reduce) { .hw-big, .hw-big-shine, .hw-big-wrap::before, .hw-tok, .hw-big.charging { animation: none !important; } }
         .hw ul { display: flex; flex-direction: column; gap: 6px; list-style: none; } .hw li { font-size: clamp(13px,1.6vw,15px); color: ${T.ink}; } .hw li b { color: ${T.accent}; } .hw .t { color: ${T.ink2}; } .hw-note { margin: 11px 0 0; font-size: 12px; color: ${T.accent}; font-weight: 600; }
         .mini-task { background: ${T.paper}; border-radius: 14px; padding: 15px 17px; box-shadow: 0 8px 22px -8px rgba(${T.shadowBase},0.14); } .mini-task b { color: ${T.ink}; }
 
@@ -3008,7 +4078,15 @@ export default function JsLoopsLesson({ lang: langProp, onFinished }) {
         .fc-q { font-family: 'Manrope'; font-weight: 800; font-size: clamp(18px,2.8vw,23px); color: ${T.ink}; line-height: 1.3; text-wrap: balance; }
         .fc-cue { font-family: 'Manrope'; font-size: 13px; color: ${T.ink3}; }
         .fc-tap { color: ${T.accent}; font-weight: 700; }
-        .fc-tag { font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: clamp(30px,6vw,46px); letter-spacing: -0.02em; }
+        /* F-0803-13/14: javob uzunlikka moslashadi — 4 pog'ona + kod/gap shrift ajrimi */
+        .fc-tag { font-weight: 800; letter-spacing: -0.02em; line-height: 1.16; max-width: 100%; text-wrap: balance; overflow-wrap: anywhere; }
+        .fc-tag.mono-all { font-family: 'JetBrains Mono', monospace; }
+        .fc-tag.prose { font-family: 'Manrope', sans-serif; letter-spacing: -0.005em; }
+        .fc-tag .fc-kw { font-family: 'JetBrains Mono', monospace; font-weight: 800; }
+        .fc-tag.t1 { font-size: clamp(30px,6vw,46px); }
+        .fc-tag.t2 { font-size: clamp(24px,4.4vw,34px); }
+        .fc-tag.t3 { font-size: clamp(20px,3.4vw,26px); }
+        .fc-tag.t4 { font-size: clamp(17px,2.6vw,22px); line-height: 1.3; }
         .fc-note { font-family: 'Manrope'; font-size: 14px; opacity: 0.92; }
         .fc-actions { display: flex; gap: 10px; min-height: 48px; }
         .fc-btn { flex: 1; padding: 13px; border-radius: 13px; font-family: 'Manrope'; font-weight: 800; font-size: 15px; cursor: pointer; border: none; transition: transform .15s; }
@@ -3151,6 +4229,16 @@ export default function JsLoopsLesson({ lang: langProp, onFinished }) {
         .splash { position: absolute; top: 10px; left: 50%; font-family: 'JetBrains Mono'; font-weight: 700; font-size: 15px; color: ${T.blue}; animation: floatup 0.72s ease-out; }
         @keyframes floatup { from { opacity: 1; transform: translate(-50%, 8px);} to { opacity: 0; transform: translate(-50%, -24px);} }
         .cond-pill { font-family: 'JetBrains Mono'; font-size: 12px; font-weight: 700; padding: 6px 13px; border-radius: 99px; transition: all 0.3s ease; }
+        /* F-0803-17: 👀 Tekshiruvchi yorlig'i + shart YOLG'ON bo'lgan lahza urg'usi */
+        .cond-label { margin: 2px 0 -2px; font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 11.5px; letter-spacing: 0.12em; text-transform: uppercase; color: ${T.ink3}; }
+        .cond-pill.stop { animation: cond-flash 0.9s ease-out; }
+        @keyframes cond-flash { 0% { box-shadow: 0 0 0 0 rgba(255,79,40,0.55); } 60% { box-shadow: 0 0 0 15px rgba(255,79,40,0); } 100% { box-shadow: 0 0 0 0 rgba(255,79,40,0); } }
+        /* Aylanish hisoblagichi — ekrandagi asosiy raqam (avval 13px matn edi) */
+        .loop-count { display: inline-flex; align-items: baseline; gap: 9px; align-self: flex-start; background: ${T.paper}; border-radius: 14px; padding: 9px 16px; box-shadow: 0 6px 16px -8px rgba(${T.shadowBase},0.18); }
+        .loop-count-n { font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: clamp(28px,4.2vw,40px); line-height: 1; color: ${T.accent}; font-variant-numeric: tabular-nums; }
+        .loop-count-l { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 13px; color: ${T.ink2}; }
+        .loop-count.bump .loop-count-n { animation: lc-bump 0.38s cubic-bezier(.34,1.6,.4,1); }
+        @keyframes lc-bump { 0% { transform: scale(1); } 45% { transform: scale(1.26); } 100% { transform: scale(1); } }
 
         /* S7 — karta ikonkalari + misol satrlari */
         @keyframes pulseq { 0%,100%{transform:scale(1); opacity:1;} 50%{transform:scale(1.16); opacity:0.65;} }
@@ -3538,6 +4626,25 @@ export default function JsLoopsLesson({ lang: langProp, onFinished }) {
         .feedback-block.visible { max-height: 800px; opacity: 1; margin-top: clamp(14px,2vw,20px); }
 
 
+        /* === ✍️ PRAKTIKA — mentor paneli (jonli darsda) + uy-vazifa tugmasi === */
+        .mp-overlay { position: fixed; inset: 0; z-index: 2000; background: ${T.bg}; display: flex; align-items: center; justify-content: center; padding: clamp(16px,3vw,34px); overflow: auto; }
+        .mp-card { width: 100%; max-width: 640px; background: ${T.paper}; border-radius: 22px; padding: clamp(22px,3.4vw,36px); box-shadow: 0 24px 60px -24px rgba(${T.shadowBase},0.4); display: flex; flex-direction: column; gap: 14px; animation: zoom-pop 0.3s cubic-bezier(.34,1.3,.4,1); }
+        .mp-eyebrow { font-size: 12px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: ${T.accent}; }
+        .mp-title { font-family: 'Source Serif 4', Georgia, serif; font-weight: 600; font-size: clamp(22px,3.2vw,30px); color: ${T.ink}; margin: 0; line-height: 1.15; }
+        .mp-brief { margin: 0; font-size: clamp(13.5px,1.8vw,15px); line-height: 1.55; color: ${T.ink2}; }
+        .mp-flow { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin: 2px 0 4px; }
+        .mp-step { font-family: 'Manrope'; font-weight: 700; font-size: 12.5px; color: ${T.ink2}; background: rgba(${T.shadowBase},0.06); border-radius: 99px; padding: 6px 13px; }
+        .mp-step.cur { color: ${T.success}; background: ${T.successSoft}; }
+        .mp-arr { color: ${T.ink3}; font-weight: 700; }
+        .mp-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 4px; }
+        .mp-demo { flex: 1; min-width: 200px; padding: 14px 20px; border: none; border-radius: 14px; background: ${T.ink}; color: ${T.paper}; font-family: 'Manrope'; font-weight: 800; font-size: 15px; cursor: pointer; box-shadow: 0 10px 26px -10px rgba(${T.shadowBase},0.4); transition: transform 0.15s; }
+        .mp-demo:hover { transform: translateY(-2px); }
+        .mp-next { flex: 1; min-width: 160px; padding: 14px 20px; border: 1.5px solid rgba(${T.shadowBase},0.16); border-radius: 14px; background: ${T.paper}; color: ${T.ink}; font-family: 'Manrope'; font-weight: 800; font-size: 15px; cursor: pointer; transition: all 0.15s; }
+        .mp-next:hover { border-color: ${T.accent}; color: ${T.accent}; }
+        .mp-tip { margin: 2px 0 0; font-size: 12.5px; line-height: 1.5; color: ${T.ink3}; }
+        .hw-run { margin-top: 12px; align-self: flex-start; padding: 12px 20px; border: none; border-radius: 13px; background: ${T.ink}; color: ${T.paper}; font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 14px; cursor: pointer; box-shadow: 0 10px 24px -10px rgba(${T.shadowBase},0.42); transition: transform 0.15s, background 0.15s; }
+        .hw-run:hover { transform: translateY(-2px); background: ${T.accent}; }
+
         /* option-wait (jonli test kutish holati) */
         .option-wait { background: ${T.blueSoft} !important; color: ${T.blue} !important; box-shadow: inset 0 0 0 2px ${T.blue}, 0 8px 22px -8px rgba(1,154,203,0.3) !important; }
         /* frame-wait (feedback kutish) */
@@ -3550,11 +4657,17 @@ export default function JsLoopsLesson({ lang: langProp, onFinished }) {
             <LiveGate live={live} title={{ uz: 'JS darsi', ru: 'Урок JS' }} />
           ) : (
             <>
-              <Current screen={screen} storedAnswer={answers[screen]} answers={answers} achievements={earned} onAnswer={recordAnswer} onNext={next} onPrev={prev} onReset={reset} onFinish={finishLesson} />
+              <Current screen={screen} storedAnswer={answers[screen]} answers={answers} achievements={earned} onAnswer={recordAnswer} onNext={next} onPrev={prev} onReset={reset} onFinish={finishLesson} onHomework={openHomeworkPractice} />
               {live.mode !== 'mentor' && <AchToasts toasts={achToasts} onDone={(k) => setAchToasts(t => t.filter(x => x.k !== k))} />}
               <LiveBadge live={live} total={TOTAL_SCREENS} />
             </>
           )}
+          {practice && (
+            <div style={{ position: 'fixed', inset: 0, zIndex: 2000, background: T.bg }}>
+              <HtmlCompiler task={practice.task} starterCode={practice.starter} storageKey={practice.codeKey} onContinue={practice.done} onBack={() => { pracClear(LESSON_META.lessonId); setPractice(null); }} />
+            </div>
+          )}
+          {mentorPractice && <MentorPracticeOverlay entry={mentorPractice} live={live} onClose={() => setMentorPractice(null)} />}
         </div>
         </AchCtx.Provider>
       </LiveGateCtx.Provider>

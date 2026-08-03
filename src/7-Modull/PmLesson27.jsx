@@ -266,13 +266,13 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
     <Stage eyebrow={eyebrow} screen={screen} narrow navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!solved} label={solved ? 'Davom etish' : "To'g'ri javobni toping"} onClick={onNext} /></>}>
       <div className="screen" style={{ justifyContent: 'center', gap: 'clamp(16px,2.5vw,24px)' }}>
         <div className="fade-up">{question}</div>
-        <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
+        <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 11 }}>
           {options.map((opt, i) => {
             let cls = 'option';
             if (solved) { if (i === correctIdx) cls += ' option-correct'; else cls += ' option-wrong'; }
             else if (i === picked) cls += ' option-picked-wrong';
             return (
-              <button key={i} className={cls} disabled={solved} onClick={() => pick(i)} style={{ padding: 'clamp(12px,1.8vw,16px) clamp(14px,2.2vw,20px)', fontSize: 'clamp(14px,1.7vw,16px)', display: 'flex', alignItems: 'center', gap: 12 }}>
+              <button key={i} className={cls} disabled={solved} onClick={() => pick(i)} style={{ padding: 'clamp(13px,1.9vw,17px) clamp(15px,2.2vw,20px)', fontSize: 'clamp(15px,1.85vw,17px)', display: 'flex', alignItems: 'center', gap: 12 }}>
                 <span className="mono small" style={{ minWidth: 20, color: solved && i === correctIdx ? T.success : T.ink3 }}>{String.fromCharCode(65 + i)}</span>
                 <span style={{ flex: 1 }}>{opt}</span>
               </button>
@@ -520,7 +520,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const Screen4 = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow="Mashq · 1-savol"
     questionText="JTBD tafakkuri qaysi savolni beradi?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-sub" style={{ marginTop: 8 }}>JTBD qaysi <span className="italic" style={{ color: T.accent }}>savolni</span> beradi?</h2></>}
+    question={<><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>JTBD qaysi <span className="italic" style={{ color: T.accent }}>savolni</span> beradi?</h2></>}
     options={['Mahsulotda nechta xususiyat bor?', 'Odam bu mahsulotni qaysi ISHNI bajarish uchun yollaydi?', 'Mahsulot qaysi texnologiyada qurilgan?', 'Raqobatchilar qancha turadi?']} correctIdx={1}
     explainCorrect="To'g'ri! JTBD asosiy savoli: odam mahsulotni qaysi ishga yollaydi? Drel «teshik ochish» ishiga, milksheyk «zerikarli yo'lga yo'ldosh» ishiga yollanadi."
     explainWrong={{ 0: 'Xususiyat soni — «sotib olish» ko\'zi. JTBD ishni so\'raydi.', 2: 'Texnologiya foydalanuvchiga baribir — unga bajarilgan ish kerak.', 3: 'Narx muhim, lekin JTBD savoli emas.', default: 'Kalit so\'z — ISH (Job).' }} />
@@ -570,7 +570,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const Screen5b = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow="Tekshiruv"
     questionText="«Bu krossovkani kiysam davrada zo'r ko'rinaman» — qaysi job?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>Mustahkamlash</p><h2 className="title h-sub" style={{ marginTop: 8 }}>«Kiysam davrada zo'r ko'rinaman» — <span className="italic" style={{ color: T.accent }}>qaysi job</span>?</h2></>}
+    question={<><p className="eyebrow" style={{ color: T.accent }}>Mustahkamlash</p><h2 className="title h-ask" style={{ marginTop: 8 }}>«Kiysam davrada zo'r ko'rinaman» — <span className="italic" style={{ color: T.accent }}>qaysi job</span>?</h2></>}
     options={['Funksional — oyoqni himoya qiladi', 'Ijtimoiy — boshqalar ko\'zida qanday ko\'rinish', 'Emotsional — yugurish qulayligi', 'Bu umuman job emas']} correctIdx={1}
     explainCorrect="To'g'ri! «Davrada ko'rinish» — boshqalar ko'ziga qaratilgan, demak ijtimoiy job. Krossovkaning himoya vazifasi (funksional) bu xaridda ikkinchi o'rinda."
     explainWrong={{ 0: 'Himoya — funksional, lekin gapda «davrada ko\'rinish» aytilgan.', 2: 'Emotsional — o\'z ichki hissi; bu yerda esa boshqalar ko\'zi.', 3: 'Bu to\'la job — faqat qaysi tur?', default: 'Kalit: «davrada» — boshqalar ko\'zi.' }} />
@@ -728,7 +728,7 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const Screen9 = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow="Mashq · 2-savol"
     questionText="Milksheykning asosiy raqobatchisi kim bo'lib chiqdi?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-sub" style={{ marginTop: 8 }}>Milksheykning asosiy <span className="italic" style={{ color: T.accent }}>raqobatchisi</span> kim edi?</h2></>}
+    question={<><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Milksheykning asosiy <span className="italic" style={{ color: T.accent }}>raqobatchisi</span> kim edi?</h2></>}
     options={['Boshqa restoranlarning milksheyklari', 'Banan, bagel va zerikish — o\'sha ishga da\'vogar hamma narsa', 'Gazli ichimliklar', 'Qahva']} correctIdx={1}
     explainCorrect="To'g'ri! Raqobat mahsulot toifasida emas — ISHda bo'ladi. «Yo'lga yo'ldosh» ishiga banan ham, bagel ham, radio ham da'vogar. Sizning ilovangizning raqibi ham Google emas — balki qog'oz-daftar yoki «hech narsa qilmaslik»dir."
     explainWrong={{ 0: 'Toifa ichida o\'ylash — eski ko\'z. Ish uchun kurash kengroq.', 2: 'Gazli ichimlik boshqa ishlarga yollanadi.', 3: 'Qahva ham raqib, lekin javob to\'liq emas — zerikish ham raqib!', default: 'Ishga da\'vogar HAMMA narsa raqib.' }} />
@@ -818,7 +818,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const Screen12 = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow="Mashq · 3-savol"
     questionText="Job qayerda «yashaydi»?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-sub" style={{ marginTop: 8 }}>Job qayerda <span className="italic" style={{ color: T.accent }}>«yashaydi»</span>?</h2></>}
+    question={<><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Job qayerda <span className="italic" style={{ color: T.accent }}>«yashaydi»</span>?</h2></>}
     options={['Mahsulotning ichida — kodda va fichalarda', 'Odamning VAZIYATIDA — qachon, qayerda, nima uchun kerak bo\'lganida', 'Reklama sloganida', 'Narx belgisida']} correctIdx={1}
     explainCorrect="To'g'ri! Job vaziyatda yashaydi: o'sha YouTube imtihon oldidan o'qituvchi, tanaffusda esa ijtimoiy yopishqoq. Shu sababli founder mahsulotdan oldin VAZIYATLARNI o'rganadi."
     explainWrong={{ 0: 'Ficha — ishning bajaruvchisi, o\'zi emas. Vaziyat o\'zgarsa, o\'sha ficha keraksiz bo\'ladi.', 2: 'Reklama jobni aks ettirishi mumkin, lekin yaratmaydi.', 3: 'Narx — to\'siq yoki imkon, job emas.', default: 'Job — odamning vaziyatida.' }} />
@@ -852,7 +852,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             let cls = 'option';
             if (solved) { if (o.id === 1) cls += ' option-correct'; else cls += ' option-wrong'; }
             else if (picked === o.id) cls += ' option-picked-wrong';
-            return (<button key={o.id} className={cls} disabled={solved} onClick={() => pick(o.id)} style={{ padding: 'clamp(12px,1.8vw,16px) clamp(14px,2.2vw,20px)', fontSize: 'clamp(13.5px,1.7vw,15.5px)', display: 'flex', alignItems: 'center', gap: 12 }}><span className="mono small" style={{ minWidth: 20, color: T.ink3 }}>{String.fromCharCode(65 + o.id)}</span><span style={{ flex: 1, textAlign: 'left' }}>{o.t}</span></button>);
+            return (<button key={o.id} className={cls} disabled={solved} onClick={() => pick(o.id)} style={{ padding: 'clamp(13px,1.9vw,17px) clamp(15px,2.2vw,20px)', fontSize: 'clamp(15px,1.85vw,17px)', display: 'flex', alignItems: 'center', gap: 12 }}><span className="mono small" style={{ minWidth: 20, color: T.ink3 }}>{String.fromCharCode(65 + o.id)}</span><span style={{ flex: 1, textAlign: 'left' }}>{o.t}</span></button>);
           })}
         </div>
         <FeedbackBlock show={picked !== null} isCorrect={solved}>
@@ -963,7 +963,7 @@ const Screen16 = ({ screen, answers, onReset, onPrev, onFinish }) => {
     <Stage eyebrow="Kashf bosqichi · 2/3" screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>Qaytadan</button><button className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>Yakunlash</button></>}>
       <div className="screen" style={{ position: 'relative' }}>
         {PASSED && <div className="confetti" aria-hidden="true">{Array.from({ length: 16 }).map((_, i) => (<span key={i} className="cf" style={{ left: `${(i * 6.3 + 2) % 100}%`, background: [T.accent, T.honey, T.grape, T.blue, T.success][i % 5], animationDelay: `${(i % 8) * 0.16}s` }} />))}</div>}
-        <div className="hero"><div className="hero-l"><span className="done-chip fade-up"><span className="tick">{Ico.rocket(12)}</span> 2-dars tamom</span><h2 className="title h-title fade-up d1">Endi siz <span className="italic" style={{ color: T.accent }}>ishni ko'rasiz</span> — mahsulotni emas.</h2><p className="body h-sub fade-up d2">{PASSED ? 'Ajoyib! JTBD ko\'zingiz ochildi: zanjir, yollash, 3 tur, vaziyat. Portfolio 2-sahifasi muhrlandi. Keyingi dars — ov boshlanadi!' : 'Yaxshi harakat! JTBD — modulning eng muhim tafakkur asbobi. Darsni qayta ko\'rib mustahkamlang.'}</p></div><ScoreRing correct={correct} total={total} /></div>
+        <div className="hero"><div className="hero-l"><span className="done-chip fade-up"><span className="tick">{Ico.rocket(12)}</span> 2-dars tamom</span><h2 className="title h-title fade-up d1">Endi siz <span className="italic" style={{ color: T.accent }}>ishni ko'rasiz</span> — mahsulotni emas.</h2>{/* 54-qonun (P0 PmUserStory · PmLesson2 qarori): h-sub qatori YO'Q — sarlavha o'zi yetadi. */}</div><ScoreRing correct={correct} total={total} /></div>
         <div className="split">
           <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span style={{ color: T.success, display: 'inline-flex' }}>{Ico.check(15)}</span> Endi siz bilasiz</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck" style={{ display: 'inline-flex' }}>{Ico.check(15)}</span><span>{r}</span></li>))}</ul></div>
           <div className="card fade-up d4"><div className="card-lbl" style={{ color: T.honey }}>🏅 Nishonlar yo'li</div><div style={{ display: 'flex', flexWrap: 'wrap', gap: 7 }}>{BADGES.map((b, i) => (<span key={i} className={`badge-chip ${i === 0 ? 'badge-next' : ''}`}>{i === 0 ? '🔜' : '🔒'} {b.t}<span className="badge-when">· {b.l}</span></span>))}</div><p className="small" style={{ margin: '10px 0 0', color: T.ink2 }}>Keyingi darsda atrofingizdan <b style={{ color: T.honey }}>10 muammo</b> topsangiz — birinchi nishon sizniki!</p></div>
@@ -1131,7 +1131,7 @@ export default function PmLesson27({ lang: langProp, onFinished }) {
         .btn-soft:hover:not(:disabled) { box-shadow: 0 6px 14px -5px rgba(${T.shadowBase},0.2); }
 
         /* === OPSIYALAR === */
-        .option { background: ${T.paper}; cursor: pointer; transition: all 0.2s; font-family: 'Manrope', sans-serif; font-weight: 500; text-align: left; border-radius: 12px; width: 100%; border: none; color: ${T.ink}; box-shadow: 0 6px 16px -7px rgba(${T.shadowBase},0.16); }
+        .option { background: ${T.paper}; cursor: pointer; transition: all 0.2s; font-family: 'Manrope', sans-serif; font-weight: 500; line-height: 1.45; text-align: left; border-radius: 12px; width: 100%; border: none; color: ${T.ink}; box-shadow: 0 6px 16px -7px rgba(${T.shadowBase},0.16); }
         .option:hover:not(:disabled) { background: #FDFBF7; transform: translateY(-1px); box-shadow: 0 12px 24px -8px rgba(${T.shadowBase},0.22); }
         .option:disabled { cursor: default; }
         .option-correct { background: ${T.successSoft} !important; color: ${T.success} !important; box-shadow: 0 8px 22px -8px rgba(31,122,77,0.32) !important; }
@@ -1168,6 +1168,7 @@ export default function PmLesson27({ lang: langProp, onFinished }) {
 
         .h-title { font-size: clamp(22px,4vw,38px); }
         .h-sub { font-size: clamp(17px,2.5vw,22px); }
+        .h-ask { font-size: clamp(19px,2.6vw,27px); line-height: 1.32; letter-spacing: -0.01em; text-wrap: balance; }
         .body { font-size: clamp(14px,1.6vw,16px); line-height: 1.5; }
         .eyebrow { font-size: clamp(11px,1.3vw,12px); letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600; }
         .small { font-size: clamp(12.5px,1.4vw,13.5px); }
@@ -1199,7 +1200,10 @@ export default function PmLesson27({ lang: langProp, onFinished }) {
         .spec-text { font-family: 'Georgia, serif'; font-size: clamp(13px,1.7vw,15px); line-height: 1.5; margin: 3px 0 0; }
 
         /* === LAYOUT === */
-        .screen { flex: 1; min-height: 0; display: flex; flex-direction: column; gap: clamp(14px,2vw,20px); }
+        .screen { flex: 1 0 auto; min-height: 0; display: flex; flex-direction: column; gap: clamp(14px,2vw,20px); }
+        /* F-0725-04 · 60-qonun: kontent sig'masa ekran-bloklari SIQILMAYDI — stage-content skroll beradi.
+           Standart flex-shrink tufayli bloklar siqilib, ichidagi matn qirqilardi (F-0802-14 dalili). */
+        .screen > * { flex-shrink: 0; }
         .head { display: flex; flex-direction: column; gap: 6px; }
         .split { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: clamp(18px,3vw,36px); align-items: start; }
         .col { display: flex; flex-direction: column; gap: clamp(12px,2vw,16px); min-width: 0; }

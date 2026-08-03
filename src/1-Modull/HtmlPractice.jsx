@@ -125,6 +125,12 @@ function useAudio(segments) {
 // AUDIOSIZ: AudioIndicator (ovoz/replay tugmalari) olib tashlandi — ovoz o'chirilgan, ikonka kerak emas.
 
 const LESSON_META = { lessonId: 'html-practice-portfolio-v2', lessonTitle: { uz: 'HTML Praktika — Portfolio sayt', ru: 'HTML практика — портфолио' } };
+const HW_TOKENS = [
+  { t: { uz: 'amaliyot', ru: 'практика' }, l: 8, tp: 22, s: 13, d: 6 },
+  { t: { uz: 'loyiha', ru: 'проект' }, l: 68, tp: 16, s: 12, d: 7.5 },
+  { t: { uz: 'mashq', ru: 'упражнение' }, l: 24, tp: 70, s: 12, d: 8.5 },
+  { t: { uz: 'natija', ru: 'результат' }, l: 78, tp: 68, s: 13, d: 6.8 }
+];
 const SCREEN_META = [
   { id: 's0',  type: 'hook',        template: 'custom',   scored: false, scope: 'hook' },
   { id: 's1',  type: 'rule',        template: 'custom',   scored: false, scope: null },
@@ -270,7 +276,7 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
       <div className="screen" style={{ justifyContent: isMentorLive ? 'flex-start' : 'center', gap: 'clamp(16px,2.5vw,24px)' }}>
         <div className="fade-up">{question}</div>
         {oneShot && !solved && <p className="small mono fade-up" style={{ margin: '-8px 0 0', color: T.accent, fontWeight: 600 }}>⚡ {tr({ uz: "Jonli dars — bitta urinish, o'ylab bosing!", ru: 'Живой урок — одна попытка, думайте перед кликом!' })}</p>}
-        <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
+        <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 11 }}>
           {options.map((opt, i) => {
             let cls = 'option';
             if (isMentorLive) {
@@ -282,7 +288,7 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
             else if (i === picked) cls += ' option-picked-wrong';
             const showGreenLetter = isMentorLive ? (mReveal && i === correctIdx) : (solved && revealed && i === correctIdx);
             return (
-              <button key={i} className={cls} disabled={solved || isMentorLive} onClick={() => pick(i)} style={{ padding: 'clamp(12px,1.8vw,16px) clamp(14px,2.2vw,20px)', fontSize: 'clamp(14px,1.7vw,16px)', display: 'flex', alignItems: 'center', gap: 12 }}>
+              <button key={i} className={cls} disabled={solved || isMentorLive} onClick={() => pick(i)} style={{ padding: 'clamp(13px,1.9vw,17px) clamp(15px,2.2vw,20px)', fontSize: 'clamp(15px,1.85vw,17px)', display: 'flex', alignItems: 'center', gap: 12 }}>
                 <span className="mono small" style={{ minWidth: 20, color: showGreenLetter ? T.success : T.ink3 }}>{String.fromCharCode(65 + i)}</span>
                 <span style={{ flex: 1 }}>{fmtCode(tr(opt))}</span>
               </button>
@@ -594,7 +600,7 @@ const Screen4 = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 1-savol', ru: 'Упражнение · вопрос 1' })}
     audioText="Sahifadagi eng katta, eng asosiy sarlavha qaysi teg bilan yoziladi?"
     questionText="Eng katta, asosiy sarlavha qaysi teg?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-sub" style={{ marginTop: 8 }}>{tr({ uz: <>Sahifadagi <span className="italic" style={{ color: T.accent }}>eng katta</span>, asosiy sarlavha (ismingiz) qaysi teg bilan yoziladi?</>, ru: <>Каким тегом пишется <span className="italic" style={{ color: T.accent }}>самый большой</span>, главный заголовок страницы (ваше имя)?</> })}</h2></>}
+    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Sahifadagi <span className="italic" style={{ color: T.accent }}>eng katta</span>, asosiy sarlavha (ismingiz) qaysi teg bilan yoziladi?</>, ru: <>Каким тегом пишется <span className="italic" style={{ color: T.accent }}>самый большой</span>, главный заголовок страницы (ваше имя)?</> })}</h2></>}
     options={['`<p>`', '`<h1>`', '`<h6>`', '`<title>`']} correctIdx={1}
     explainCorrect={{ uz: "To'g'ri! `<h1>` — sahifadagi eng katta va eng muhim sarlavha (ismingiz). Har sahifada bitta `<h1>` bo'ladi.", ru: 'Верно! `<h1>` — самый большой и главный заголовок страницы (ваше имя). На странице бывает один `<h1>`.' }}
     explainWrong={{ 0: { uz: "`<p>` — oddiy matn (paragraf), sarlavha emas. Eng katta sarlavha — `<h1>`.", ru: '`<p>` — обычный текст (абзац), а не заголовок. Самый большой заголовок — `<h1>`.' }, 2: { uz: "`<h6>` — eng kichik sarlavha. Eng kattasi — `<h1>`.", ru: '`<h6>` — самый маленький заголовок. Самый большой — `<h1>`.' }, 3: { uz: "`<title>` — brauzer yorlig'idagi nom, sahifa ichida ko'rinmaydi. Asosiy sarlavha — `<h1>`.", ru: '`<title>` — имя на вкладке браузера, внутри страницы его не видно. Главный заголовок — `<h1>`.' }, default: { uz: "Eng katta sarlavha — `<h1>`.", ru: 'Самый большой заголовок — `<h1>`.' } }} />
@@ -647,7 +653,7 @@ const Screen6 = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 2-savol', ru: 'Упражнение · вопрос 2' })}
     audioText="Boshqa sahifaga yoki bo'limga o'tkazadigan, bosiladigan havola qaysi teg bilan yaratiladi?"
     questionText="Bosiladigan havola qaysi teg?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-sub" style={{ marginTop: 8 }}>{tr({ uz: <>Boshqa bo'lim yoki saytga o'tkazadigan, <span className="italic" style={{ color: T.accent }}>bosiladigan havola</span> qaysi teg bilan yaratiladi?</>, ru: <>Каким тегом создаётся <span className="italic" style={{ color: T.accent }}>кликабельная ссылка</span>, ведущая в другой раздел или на другой сайт?</> })}</h2></>}
+    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Boshqa bo'lim yoki saytga o'tkazadigan, <span className="italic" style={{ color: T.accent }}>bosiladigan havola</span> qaysi teg bilan yaratiladi?</>, ru: <>Каким тегом создаётся <span className="italic" style={{ color: T.accent }}>кликабельная ссылка</span>, ведущая в другой раздел или на другой сайт?</> })}</h2></>}
     options={['`<nav>`', '`<p>`', '`<link>`', '`<a>`']} correctIdx={3}
     explainCorrect={{ uz: "To'g'ri! `<a>` (anchor) — bosiladigan havola. `href` atributi qayerga o'tishni ko'rsatadi: `<a href=…>`.", ru: 'Верно! `<a>` (anchor) — кликабельная ссылка. Атрибут `href` указывает, куда переходить: `<a href=…>`.' }}
     explainWrong={{ 0: { uz: "`<nav>` — menyuni o'rab turadigan idish. Ichidagi har bir havola — `<a>`.", ru: '`<nav>` — контейнер, оборачивающий меню. Каждая ссылка внутри — `<a>`.' }, 1: { uz: "`<p>` — oddiy matn. Bosiladigan havola — `<a>`.", ru: '`<p>` — обычный текст. Кликабельная ссылка — `<a>`.' }, 2: { uz: "`<link>` — boshqa narsa (masalan CSS fayl ulash) uchun. Ko'rinadigan havola — `<a>`.", ru: '`<link>` — для другого (например, подключить CSS-файл). Видимая ссылка — `<a>`.' }, default: { uz: "Bosiladigan havola — `<a>` tegi.", ru: 'Кликабельная ссылка — тег `<a>`.' } }} />
@@ -700,7 +706,7 @@ const Screen8 = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 3-savol', ru: 'Упражнение · вопрос 3' })}
     audioText="Rasm yuklanmasa yoki ko'rinmasa, uning o'rniga matn ko'rsatadigan atribut qaysi?"
     questionText="Rasm o'rniga matn ko'rsatadigan atribut?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-sub" style={{ marginTop: 8 }}>{tr({ uz: "«Men haqimda» rasmingiz yuklanmasa, uning o'rniga matn ko'rsatadigan (va ko'rish imkoni cheklanganlar uchun muhim) atribut qaysi?", ru: 'Если фото из «Обо мне» не загрузится, какой атрибут покажет вместо него текст (важный и для людей с нарушением зрения)?' })}</h2></>}
+    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: "«Men haqimda» rasmingiz yuklanmasa, uning o'rniga matn ko'rsatadigan (va ko'rish imkoni cheklanganlar uchun muhim) atribut qaysi?", ru: 'Если фото из «Обо мне» не загрузится, какой атрибут покажет вместо него текст (важный и для людей с нарушением зрения)?' })}</h2></>}
     options={['`src`', '`href`', '`alt`', '`title`']} correctIdx={2}
     explainCorrect={{ uz: "To'g'ri! `alt` (alternative) — rasm chiqmasa o'rniga ko'rsatiladigan matn. Ekran o'qigichlar ham shu matnni o'qiydi.", ru: 'Верно! `alt` (alternative) — текст, который показывается вместо картинки, если она не появилась. Скринридеры тоже читают этот текст.' }}
     explainWrong={{ 0: { uz: "`src` — rasm faylining manzili. O'rniga matn esa — `alt`.", ru: '`src` — адрес файла картинки. А текст вместо неё — `alt`.' }, 1: { uz: "`href` — bu havola (`<a>`) uchun. Rasm matni — `alt`.", ru: '`href` — это для ссылки (`<a>`). Текст картинки — `alt`.' }, 3: { uz: "`title` — sichqoncha ustiga kelganda chiqadigan maslahat. Asosiy muqobil matn — `alt`.", ru: '`title` — подсказка при наведении мыши. Основной альтернативный текст — `alt`.' }, default: { uz: "Rasm o'rniga matn — `alt` atributi.", ru: 'Текст вместо картинки — атрибут `alt`.' } }} />
@@ -749,7 +755,7 @@ const Screen10 = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 4-savol', ru: 'Упражнение · вопрос 4' })}
     audioText="Tartibi muhim bo'lmagan, nuqtali ro'yxat qaysi teg bilan yaratiladi?"
     questionText="Tartibsiz (nuqtali) ro'yxat qaysi teg?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-sub" style={{ marginTop: 8 }}>{tr({ uz: <>Loyihalar ro'yxatida tartib muhim emas. <span className="italic" style={{ color: T.accent }}>Tartibsiz (nuqtali)</span> ro'yxat qaysi teg bilan yaratiladi?</>, ru: <>В списке проектов порядок не важен. Каким тегом создаётся <span className="italic" style={{ color: T.accent }}>маркированный (с точками)</span> список?</> })}</h2></>}
+    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Loyihalar ro'yxatida tartib muhim emas. <span className="italic" style={{ color: T.accent }}>Tartibsiz (nuqtali)</span> ro'yxat qaysi teg bilan yaratiladi?</>, ru: <>В списке проектов порядок не важен. Каким тегом создаётся <span className="italic" style={{ color: T.accent }}>маркированный (с точками)</span> список?</> })}</h2></>}
     options={['`<ol>`', '`<ul>`', '`<li>`', '`<dl>`']} correctIdx={1}
     explainCorrect={{ uz: "To'g'ri! `<ul>` (unordered list) — tartibsiz, nuqtali ro'yxat. Ichidagi har bir element — `<li>`.", ru: 'Верно! `<ul>` (unordered list) — маркированный список с точками. Каждый элемент внутри — `<li>`.' }}
     explainWrong={{ 0: { uz: "`<ol>` (ordered list) — raqamli, tartibli ro'yxat. Nuqtalisi — `<ul>`.", ru: '`<ol>` (ordered list) — нумерованный, упорядоченный список. С точками — `<ul>`.' }, 2: { uz: "`<li>` — ro'yxat elementi. Uni o'rab turadigan idish — `<ul>`.", ru: '`<li>` — элемент списка. Контейнер, который его оборачивает, — `<ul>`.' }, 3: { uz: "`<dl>` — boshqa tur (ta'rif ro'yxati). Oddiy nuqtali ro'yxat — `<ul>`.", ru: '`<dl>` — другой вид (список определений). Обычный маркированный список — `<ul>`.' }, default: { uz: "Nuqtali ro'yxat — `<ul>`.", ru: 'Маркированный список — `<ul>`.' } }} />
@@ -844,7 +850,7 @@ const Screen13 = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 5-savol', ru: 'Упражнение · вопрос 5' })}
     audioText="Sahifaning eng pastida, mualliflik va yil joylashadigan qism qaysi teg bilan belgilanadi?"
     questionText="Sahifaning eng pastki qismi qaysi teg?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-sub" style={{ marginTop: 8 }}>{tr({ uz: <>Sahifaning <span className="italic" style={{ color: T.accent }}>eng pastida</span> (mualliflik ©, yil) joylashadigan qism qaysi teg bilan belgilanadi?</>, ru: <>Каким тегом обозначается часть в <span className="italic" style={{ color: T.accent }}>самом низу</span> страницы (авторство ©, год)?</> })}</h2></>}
+    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Sahifaning <span className="italic" style={{ color: T.accent }}>eng pastida</span> (mualliflik ©, yil) joylashadigan qism qaysi teg bilan belgilanadi?</>, ru: <>Каким тегом обозначается часть в <span className="italic" style={{ color: T.accent }}>самом низу</span> страницы (авторство ©, год)?</> })}</h2></>}
     options={['`<header>`', '`<nav>`', '`<section>`', '`<footer>`']} correctIdx={3}
     explainCorrect={{ uz: "To'g'ri! `<footer>` — sahifaning eng pastki, yakuniy qismi: mualliflik, yil, aloqa. Nomi ham 'oyoq' (foot) degani.", ru: 'Верно! `<footer>` — самая нижняя, завершающая часть страницы: авторство, год, контакты. Название и значит «нога» (foot).' }}
     explainWrong={{ 0: { uz: "`<header>` — aksincha, eng yuqoridagi qism (sarlavha). Pastdagi — `<footer>`.", ru: '`<header>` — наоборот, самая верхняя часть (шапка). Нижняя — `<footer>`.' }, 1: { uz: "`<nav>` — menyu (havolalar). Pastki qism — `<footer>`.", ru: '`<nav>` — меню (ссылки). Нижняя часть — `<footer>`.' }, 2: { uz: "`<section>` — oddiy bo'lim. Maxsus pastki qism — `<footer>`.", ru: '`<section>` — обычный раздел. Специальная нижняя часть — `<footer>`.' }, default: { uz: "Eng pastki qism — `<footer>`.", ru: 'Самая нижняя часть — `<footer>`.' } }} />
@@ -944,7 +950,7 @@ const Screen16 = (props) => (
   <QuestionScreen {...props} scope="final" eyebrow={tr({ uz: 'Yakuniy savol', ru: 'Финальный вопрос' })}
     audioText="Portfolio sahifangiz to'g'ri tartibda qanday joylashadi? Yuqoridan pastga qarab."
     questionText="Bo'limlar to'g'ri tartibi qaysi?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: 'Butun saytni eslang', ru: 'Вспомните весь сайт' })}</p><h2 className="title h-sub" style={{ marginTop: 8 }}>{tr({ uz: <>Portfolio sahifangiz <span className="italic" style={{ color: T.accent }}>yuqoridan pastga</span> qanday tartibda joylashadi?</>, ru: <>В каком порядке идёт ваша страница портфолио <span className="italic" style={{ color: T.accent }}>сверху вниз</span>?</> })}</h2></>}
+    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: 'Butun saytni eslang', ru: 'Вспомните весь сайт' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Portfolio sahifangiz <span className="italic" style={{ color: T.accent }}>yuqoridan pastga</span> qanday tartibda joylashadi?</>, ru: <>В каком порядке идёт ваша страница портфолио <span className="italic" style={{ color: T.accent }}>сверху вниз</span>?</> })}</h2></>}
     options={[{ uz: 'Footer → Header → Men haqimda → Loyihalar → Aloqa', ru: 'Footer → Header → Обо мне → Проекты → Контакты' }, { uz: 'Men haqimda → Header → Loyihalar → Aloqa → Footer', ru: 'Обо мне → Header → Проекты → Контакты → Footer' }, { uz: 'Header → Men haqimda → Loyihalar → Aloqa → Footer', ru: 'Header → Обо мне → Проекты → Контакты → Footer' }, { uz: 'Header → Loyihalar → Men haqimda → Footer → Aloqa', ru: 'Header → Проекты → Обо мне → Footer → Контакты' }]} correctIdx={2}
     explainCorrect={{ uz: "To'g'ri! Yuqorida header (ism), keyin bo'limlar (men haqimda, loyihalar, aloqa), eng pastda footer.", ru: 'Верно! Сверху header (имя), затем разделы (обо мне, проекты, контакты), в самом низу footer.' }}
     explainWrong={{ 0: { uz: "Footer eng pastda bo'lishi kerak, yuqorida emas. Header — birinchi.", ru: 'Footer должен быть в самом низу, а не сверху. Header — первый.' }, 1: { uz: 'Header birinchi bo\'ladi — "Men haqimda" undan keyin keladi.', ru: 'Header идёт первым — «Обо мне» после него.' }, 3: { uz: "Boshlanishi to'g'ri, lekin Footer eng oxirida bo'lishi kerak.", ru: 'Начало верное, но Footer должен быть в самом конце.' }, default: { uz: "To'g'ri tartib: Header → bo'limlar → Footer.", ru: 'Верный порядок: Header → разделы → Footer.' } }} />
@@ -952,6 +958,10 @@ const Screen16 = (props) => (
 
 // ===== SCREEN 17 — YAKUN =====
 const Screen17 = ({ screen, answers, achievements, onReset, onPrev, onFinish, onHomework }) => {
+  // F-0803-08: uyga vazifa kapsulasi — bosilganda topshiriq kartasi ochiladi
+  const [hwOpen, setHwOpen] = useState(false);
+  const [hwCharge, setHwCharge] = useState(false);
+  const fireHw = () => { if (hwCharge || hwOpen) return; setHwCharge(true); setTimeout(() => { setHwOpen(true); setHwCharge(false); }, 500); };
   const pf = usePortfolio(answers);
   const audio = useAudio([{ id: 's17', text: "Tabriklayman! Siz o'z qo'lingiz bilan to'liq portfolio saytini HTML bilan qurdingiz: header, navigatsiya, men haqimda, loyihalar, aloqa va footer. Hozir u bezaksiz. Keyingi darsda esa aynan shu saytga CSS bilan jon kiritamiz — ranglar, shriftlar, chiroyli joylashuv. Tayyor bo'ling!", trigger: 'on_mount', waits_for: null }]);
   const RECAP = [{ uz: 'header — sahifa sarlavhasi (ism, kasb)', ru: 'header — шапка страницы (имя, профессия)' }, { uz: 'h1, h2 — sarlavhalar bosqichi', ru: 'h1, h2 — ступени заголовков' }, { uz: 'nav va a — menyu havolalari', ru: 'nav и a — ссылки меню' }, { uz: "section — alohida bo'limlar", ru: 'section — отдельные разделы' }, { uz: 'img (src, alt) — rasm', ru: 'img (src, alt) — картинка' }, { uz: "ul va li — ro'yxat", ru: 'ul и li — список' }, { uz: 'a + mailto — email havola', ru: 'a + mailto — email-ссылка' }, { uz: 'footer — pastki qism', ru: 'footer — нижняя часть' }];
@@ -977,15 +987,23 @@ const Screen17 = ({ screen, answers, achievements, onReset, onPrev, onFinish, on
   return (
     <Stage eyebrow={tr({ uz: 'Tayyor', ru: 'Готово' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><button className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'CSS bilan bezashni boshlash →', ru: 'Начать оформление с CSS →' })}</button></>}>
       <div className="screen">
-        <div className="hero"><div className="hero-l"><span className="done-chip fade-up"><span className="tick">✓</span> {tr({ uz: 'HTML praktika tugadi', ru: 'HTML-практика завершена' })}</span><h2 className="title h-title fade-up d1">{tr({ uz: <>{pf.name} — <span className="italic" style={{ color: T.accent }}>portfolio</span> tayyor.</>, ru: <>{pf.name} — <span className="italic" style={{ color: T.accent }}>портфолио</span> готово.</> })}</h2><p className="body h-sub fade-up d2">{PASSED ? tr({ uz: "Zo'r! Siz to'liq saytni HTML bilan o'z qo'lingiz bilan qurdingiz.", ru: 'Класс! Вы своими руками построили целый сайт на HTML.' }) : tr({ uz: "Yaxshi harakat! Bir-ikki tegni mustahkamlash uchun darsni qayta ko'ring.", ru: 'Хорошая попытка! Пересмотрите урок, чтобы закрепить пару тегов.' })}</p></div><ScoreRing correct={correct} total={total} /></div>
+        <div className="hero"><div className="hero-l"><span className="done-chip fade-up"><span className="tick">✓</span> {tr({ uz: 'HTML praktika tugadi', ru: 'HTML-практика завершена' })}</span><h2 className="title h-title fade-up d1">{tr({ uz: <>{pf.name} — <span className="italic" style={{ color: T.accent }}>portfolio</span> tayyor.</>, ru: <>{pf.name} — <span className="italic" style={{ color: T.accent }}>портфолио</span> готово.</> })}</h2>{/* 54-qonun (P0 PmUserStory · PmLesson2 qarori): h-sub qatori YO'Q — sarlavha o'zi yetadi. */}</div><ScoreRing correct={correct} total={total} /></div>
         <div className={`qz-cta cs-cta fade-up d2 ${studentLive ? 'ready' : ''}`}>
           <CsWordmark stats={false} disabled={studentWait} liveOn={studentLive} onClick={studentWait ? undefined : openArena} hint={studentWait ? tr({ uz: '⏳ Mentorni kuting', ru: '⏳ Ждите ментора' }) : undefined} />
         </div>
         {arena && <QuizArena live={_live || { mode: 'self' }} startSolo={arenaSolo} onClose={() => setArena(false)} />}
-        <div className="split">
-          <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> {tr({ uz: 'Endi siz qura olasiz', ru: 'Теперь вы умеете строить' })}</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.06}s` }}><span className="ck">✓</span><span>{tr(r)}</span></li>))}</ul></div>
-          <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>🔧 {tr({ uz: 'Uyga vazifa', ru: 'Домашнее задание' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: "Saytingizni o'zingizniki qiling:", ru: 'Сделайте сайт по-настоящему своим:' })}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: 'Keyingi darsda aynan shu portfolioga CSS bilan jon kiritamiz! 🎨', ru: 'На следующем уроке именно это портфолио оживим с помощью CSS! 🎨' })}</p></div>
+        <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> {tr({ uz: 'Endi siz qura olasiz', ru: 'Теперь вы умеете строить' })}</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.06}s` }}><span className="ck">✓</span><span>{tr(r)}</span></li>))}</ul></div>
+        <div className="hw-big-wrap fade-up d4">
+          <button className={`hw-big ${hwCharge ? 'charging' : ''}`} onClick={fireHw}>
+            <span className="hw-sky" aria-hidden="true">
+              {HW_TOKENS.map((k, i) => <span key={i} className="hw-tok" style={{ left: `${k.l}%`, top: `${k.tp}%`, fontSize: k.s, '--d': `${k.d}s` }}>{tr(k.t)}</span>)}
+            </span>
+            <span className="hw-big-shine" aria-hidden="true" />
+            <span className="hw-big-t">{tr({ uz: 'Uyga vazifa', ru: 'Домашнее задание' })}</span>
+            <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni bajarish →', ru: 'Выполнить практическое задание →' })}</span>
+          </button>
         </div>
+        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>🔧 {tr({ uz: 'Uyga vazifa', ru: 'Домашнее задание' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: "Saytingizni o'zingizniki qiling:", ru: 'Сделайте сайт по-настоящему своим:' })}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: 'Keyingi darsda aynan shu portfolioga CSS bilan jon kiritamiz! 🎨', ru: 'На следующем уроке именно это портфолио оживим с помощью CSS! 🎨' })}</p></div>}
         {/* 🏠 UYGA VAZIFA — amaliy topshiriq kompilyatorda bajariladi. Mentor proyektorida
             KO'RSATILMAYDI: uy ishi shaxsiy (sahna ↔ daftar tamoyili). */}
         {!isMentorL && onHomework && (
@@ -2664,6 +2682,31 @@ const HTML_FLASHCARDS = [
   { front: { uz: 'Bosilganda xat yozish oynasi ochilishi uchun href nima bilan boshlanadi?', ru: 'С чего начинается href, чтобы при клике открылось письмо?' }, back: 'mailto:', note: '<a href="mailto:ali@mail.uz">' },
   { front: { uz: 'Mualliflik va yil sahifaning qaysi qismiga yoziladi?', ru: 'В какую часть страницы пишутся авторство и год?' }, back: '<footer>', note: { uz: 'sahifaning eng pastki qismi', ru: 'самая нижняя часть страницы' } },
 ];
+// F-0803-13/14: KARTA JAVOBI UZUNLIKKA MOSLASHADI.
+// Muammo edi: `.fc-tag` hamma javobga bir xil katta monoshrift berardi — u bir so'zlik javob
+// (`let`, `=`, `string`) uchun tanlangan o'lcham. Uzun javob 2-3 qatorga bo'linib, qat'iy
+// balandlikdagi kartaga sig'masdi va izoh pastki chetga yopishib qolardi.
+// Yechim: (1) uzunlik bo'yicha 4 pog'onali o'lcham · (2) bitta kod-tokeni — mono,
+// gap — Manrope (o'qishga qulay, ~25% tor) · (3) gap ichidagi kod so'zlari mono qoladi.
+const FC_CODE_WORDS = /\b(let|const|var|string|number|boolean|true|false|null|undefined|function|return|for|while|if|else)\b/g;
+const FC_VOCAB = new Set(['let', 'const', 'var', 'string', 'number', 'boolean', 'true', 'false', 'null', 'undefined', 'function', 'return', 'for', 'while', 'if', 'else']);
+// Kodmi yoki so'zmi? Monoshrift FAQAT kodga: lug'atdagi kalit so'z yoki kod-belgisi bo'lgan
+// token. «o'zgaruvchi» kabi o'zbekcha atama — gap, u Manrope bilan chiroyliroq va tor chiqadi.
+const fcIsCode = (s) => FC_VOCAB.has(s.toLowerCase()) || /[=(){};.[\]<>+*/%!&|-]/.test(s);
+const fcTier = (s) => (s.length <= 8 ? 't1' : s.length <= 16 ? 't2' : s.length <= 32 ? 't3' : 't4');
+const fcAnswer = (raw) => {
+  const s = String(raw ?? '');
+  const oneToken = !/\s/.test(s) && fcIsCode(s);        // `let`, `const`, `=`, `string` — kod tokeni
+  const cls = `fc-tag ${fcTier(s)} ${oneToken ? 'mono-all' : 'prose'}`;
+  if (oneToken) return <span className={cls}>{s}</span>;
+  const parts = s.split(FC_CODE_WORDS);                 // gap: kod so'zlari mono bo'lakda qoladi
+  return (
+    <span className={cls}>
+      {parts.map((p, i) => (i % 2 === 1 ? <span key={i} className="fc-kw">{p}</span> : p))}
+    </span>
+  );
+};
+
 function Flashcards({ cards }) {
   const [queue, setQueue] = useState(() => cards.map((_, i) => i));
   const [flipped, setFlipped] = useState(false);
@@ -2696,7 +2739,7 @@ function Flashcards({ cards }) {
         <div className={`fc-fly ${exiting === 'knew' ? 'out-knew' : ''} ${exiting === 'again' ? 'out-again' : ''}`} key={swapRef.current}>
         <div className={`fc-card ${flipped ? 'flip' : ''}`} onClick={() => !flipped && !exiting && setFlipped(true)} role="button" tabIndex={0}>
           <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: "Javobni o'ylang", ru: 'Подумайте над ответом' })} 🤔 <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
-          <div className="fc-face fc-back"><span className="fc-tag">{tr(card.back)}</span>{card.note && <span className="fc-note">{tr(card.note)}</span>}</div>
+          <div className="fc-face fc-back">{fcAnswer(tr(card.back))}{card.note && <span className="fc-note">{tr(card.note)}</span>}</div>
         </div>
         </div>
       </div>
@@ -3449,7 +3492,7 @@ export default function HtmlPractice({ lang: langProp, onFinished, onPractice })
 
   // ETALON — 1920px avto-zoom (InternetLesson): keng oynada proportsional kattalashadi, <=1920 da z=1
   useEffect(() => {
-    const upd = () => { const z = Math.min(1.5, Math.max(1, window.innerWidth / 1920)); document.documentElement.style.setProperty('--lz', String(Math.round(z * 1000) / 1000)); };
+    const upd = () => { const z = Math.min(1.5, Math.max(1, Math.min(window.innerWidth / 1920, window.innerHeight / 1000))); document.documentElement.style.setProperty('--lz', String(Math.round(z * 1000) / 1000)); };
     upd(); window.addEventListener('resize', upd); return () => window.removeEventListener('resize', upd);
   }, []);
 
@@ -3518,7 +3561,7 @@ export default function HtmlPractice({ lang: langProp, onFinished, onPractice })
         .btn-ghost:hover:not(:disabled) { background: ${T.paper}; box-shadow: 0 6px 18px -6px rgba(${T.shadowBase},0.18); }
         .btn-ghost:disabled { opacity: 0.4; cursor: not-allowed; }
 
-        .option { background: ${T.paper}; cursor: pointer; transition: all 0.2s; font-family: 'Manrope', sans-serif; font-weight: 500; text-align: left; border-radius: 12px; width: 100%; border: none; color: ${T.ink}; box-shadow: 0 6px 16px -6px rgba(${T.shadowBase},0.14); }
+        .option { background: ${T.paper}; cursor: pointer; transition: all 0.2s; font-family: 'Manrope', sans-serif; font-weight: 500; line-height: 1.45; text-align: left; border-radius: 12px; width: 100%; border: none; color: ${T.ink}; box-shadow: 0 6px 16px -6px rgba(${T.shadowBase},0.14); }
         .option:hover:not(:disabled) { background: #FDFBF7; box-shadow: 0 10px 22px -6px rgba(${T.shadowBase},0.22); }
         .option:disabled { cursor: default; }
         .option-correct { background: ${T.successSoft} !important; color: ${T.success} !important; box-shadow: 0 8px 22px -6px rgba(31,122,77,0.32) !important; }
@@ -3562,6 +3605,7 @@ export default function HtmlPractice({ lang: langProp, onFinished, onPractice })
 
         .h-title { font-size: clamp(22px,4vw,38px); }
         .h-sub { font-size: clamp(17px,2.5vw,22px); }
+        .h-ask { font-size: clamp(19px,2.6vw,27px); line-height: 1.32; letter-spacing: -0.01em; text-wrap: balance; }
         .body { font-size: clamp(14px,1.6vw,16px); line-height: 1.5; }
         .eyebrow { font-size: clamp(11px,1.3vw,12px); letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600; }
         .small { font-size: clamp(12.5px,1.4vw,13.5px); }
@@ -3689,7 +3733,10 @@ export default function HtmlPractice({ lang: langProp, onFinished, onPractice })
         .mp-next:hover { border-color: ${T.accent}; color: ${T.accent}; }
         .mp-tip { margin: 2px 0 0; font-size: 12.5px; line-height: 1.5; color: ${T.ink3}; }
 
-        .screen { flex: 1; min-height: 0; display: flex; flex-direction: column; gap: clamp(14px,2vw,20px); }
+        .screen { flex: 1 0 auto; min-height: 0; display: flex; flex-direction: column; gap: clamp(14px,2vw,20px); }
+        /* F-0725-04 · 60-qonun: kontent sig'masa ekran-bloklari SIQILMAYDI — stage-content skroll beradi.
+           Standart flex-shrink tufayli bloklar siqilib, ichidagi matn qirqilardi (F-0802-14 dalili). */
+        .screen > * { flex-shrink: 0; }
         .head { display: flex; flex-direction: column; gap: 6px; }
         .split { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: clamp(18px,3vw,36px); align-items: start; }
         .col { display: flex; flex-direction: column; gap: clamp(12px,2vw,16px); min-width: 0; }
@@ -3864,7 +3911,15 @@ export default function HtmlPractice({ lang: langProp, onFinished, onPractice })
         .fc-q { font-family: 'Manrope'; font-weight: 800; font-size: clamp(18px,2.8vw,23px); color: ${T.ink}; line-height: 1.3; text-wrap: balance; }
         .fc-cue { font-family: 'Manrope'; font-size: 13px; color: ${T.ink3}; }
         .fc-tap { color: ${T.accent}; font-weight: 700; }
-        .fc-tag { font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: clamp(30px,6vw,46px); letter-spacing: -0.02em; }
+        /* F-0803-13/14: javob uzunlikka moslashadi — 4 pog'ona + kod/gap shrift ajrimi */
+        .fc-tag { font-weight: 800; letter-spacing: -0.02em; line-height: 1.16; max-width: 100%; text-wrap: balance; overflow-wrap: anywhere; }
+        .fc-tag.mono-all { font-family: 'JetBrains Mono', monospace; }
+        .fc-tag.prose { font-family: 'Manrope', sans-serif; letter-spacing: -0.005em; }
+        .fc-tag .fc-kw { font-family: 'JetBrains Mono', monospace; font-weight: 800; }
+        .fc-tag.t1 { font-size: clamp(30px,6vw,46px); }
+        .fc-tag.t2 { font-size: clamp(24px,4.4vw,34px); }
+        .fc-tag.t3 { font-size: clamp(20px,3.4vw,26px); }
+        .fc-tag.t4 { font-size: clamp(17px,2.6vw,22px); line-height: 1.3; }
         .fc-note { font-family: 'Manrope'; font-size: 14px; opacity: 0.92; }
         .fc-actions { display: flex; gap: 10px; min-height: 48px; }
         .fc-btn { flex: 1; padding: 13px; border-radius: 13px; font-family: 'Manrope'; font-weight: 800; font-size: 15px; cursor: pointer; border: none; transition: transform .15s; }

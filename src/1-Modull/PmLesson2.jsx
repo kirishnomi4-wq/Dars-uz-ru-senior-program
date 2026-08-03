@@ -967,7 +967,7 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
       <div className="screen" style={{ justifyContent: isMentorLive ? 'flex-start' : 'safe center', gap: 'clamp(16px,2.5vw,24px)' }}>
         <div className="fade-up">{tr(question)}</div>
         {oneShot && !solved && <p className="small mono fade-up" style={{ margin: '-8px 0 0', color: T.accent, fontWeight: 600 }}>{tr({ uz: "⚡ Jonli dars — bitta urinish, o'ylab bosing!", ru: '⚡ Живой урок — одна попытка, жмите обдуманно!' })}</p>}
-        <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
+        <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 11 }}>
           {options.map((opt, i) => {
             let cls = 'option';
             if (isMentorLive) {
@@ -979,7 +979,7 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
             else if (i === picked) cls += ' option-picked-wrong';
             const showGreenLetter = isMentorLive ? (mReveal && i === correctIdx) : (solved && revealed && i === correctIdx);
             return (
-              <button key={i} className={cls} disabled={solved || isMentorLive} onClick={() => pick(i)} style={{ padding: 'clamp(12px,1.8vw,16px) clamp(14px,2.2vw,20px)', fontSize: 'clamp(14px,1.7vw,16px)', display: 'flex', alignItems: 'center', gap: 12 }}>
+              <button key={i} className={cls} disabled={solved || isMentorLive} onClick={() => pick(i)} style={{ padding: 'clamp(13px,1.9vw,17px) clamp(15px,2.2vw,20px)', fontSize: 'clamp(15px,1.85vw,17px)', display: 'flex', alignItems: 'center', gap: 12 }}>
                 <span className="mono small" style={{ minWidth: 20, color: showGreenLetter ? T.success : T.ink3 }}>{String.fromCharCode(65 + i)}</span>
                 <span style={{ flex: 1 }}>{fmtCode(tr(opt))}</span>
               </button>
@@ -1269,6 +1269,31 @@ const PM_FLASHCARDS = [
   { front: { uz: "Bo'limlar tartibi kim uchun tuziladi?", ru: 'Для кого выстраивают порядок разделов?' }, back: { uz: 'Foydalanuvchi uchun', ru: 'Для пользователя' }, note: { uz: 'bezak emas — qulaylik', ru: 'не украшение — удобство' } },
   { front: { uz: "Yaxshi sahifa qanday o'qiladi?", ru: 'Как читается хорошая страница?' }, back: { uz: 'Hikoyadek, boshdan oxirigacha', ru: 'Как история, от начала до конца' }, note: { uz: 'muammo → yechim → isbot → tugma', ru: 'проблема → решение → доказательство → кнопка' } },
 ];
+// F-0803-13/14: KARTA JAVOBI UZUNLIKKA MOSLASHADI.
+// Muammo edi: `.fc-tag` hamma javobga bir xil katta monoshrift berardi — u bir so'zlik javob
+// (`let`, `=`, `string`) uchun tanlangan o'lcham. Uzun javob 2-3 qatorga bo'linib, qat'iy
+// balandlikdagi kartaga sig'masdi va izoh pastki chetga yopishib qolardi.
+// Yechim: (1) uzunlik bo'yicha 4 pog'onali o'lcham · (2) bitta kod-tokeni — mono,
+// gap — Manrope (o'qishga qulay, ~25% tor) · (3) gap ichidagi kod so'zlari mono qoladi.
+const FC_CODE_WORDS = /\b(let|const|var|string|number|boolean|true|false|null|undefined|function|return|for|while|if|else)\b/g;
+const FC_VOCAB = new Set(['let', 'const', 'var', 'string', 'number', 'boolean', 'true', 'false', 'null', 'undefined', 'function', 'return', 'for', 'while', 'if', 'else']);
+// Kodmi yoki so'zmi? Monoshrift FAQAT kodga: lug'atdagi kalit so'z yoki kod-belgisi bo'lgan
+// token. «o'zgaruvchi» kabi o'zbekcha atama — gap, u Manrope bilan chiroyliroq va tor chiqadi.
+const fcIsCode = (s) => FC_VOCAB.has(s.toLowerCase()) || /[=(){};.[\]<>+*/%!&|-]/.test(s);
+const fcTier = (s) => (s.length <= 8 ? 't1' : s.length <= 16 ? 't2' : s.length <= 32 ? 't3' : 't4');
+const fcAnswer = (raw) => {
+  const s = String(raw ?? '');
+  const oneToken = !/\s/.test(s) && fcIsCode(s);        // `let`, `const`, `=`, `string` — kod tokeni
+  const cls = `fc-tag ${fcTier(s)} ${oneToken ? 'mono-all' : 'prose'}`;
+  if (oneToken) return <span className={cls}>{s}</span>;
+  const parts = s.split(FC_CODE_WORDS);                 // gap: kod so'zlari mono bo'lakda qoladi
+  return (
+    <span className={cls}>
+      {parts.map((p, i) => (i % 2 === 1 ? <span key={i} className="fc-kw">{p}</span> : p))}
+    </span>
+  );
+};
+
 function Flashcards({ cards }) {
   const [queue, setQueue] = useState(() => cards.map((_, i) => i));
   const [flipped, setFlipped] = useState(false);
@@ -1301,7 +1326,7 @@ function Flashcards({ cards }) {
         <div className={`fc-fly ${exiting === 'knew' ? 'out-knew' : ''} ${exiting === 'again' ? 'out-again' : ''}`} key={swapRef.current}>
         <div className={`fc-card ${flipped ? 'flip' : ''}`} onClick={() => !flipped && !exiting && setFlipped(true)} role="button" tabIndex={0}>
           <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: "Javobni o'ylang 🤔", ru: 'Подумайте над ответом 🤔' })} <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
-          <div className="fc-face fc-back"><span className="fc-tag">{tr(card.back)}</span>{card.note && <span className="fc-note">{tr(card.note)}</span>}</div>
+          <div className="fc-face fc-back">{fcAnswer(tr(card.back))}{card.note && <span className="fc-note">{tr(card.note)}</span>}</div>
         </div>
         </div>
       </div>
@@ -1500,7 +1525,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const Screen4 = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 1-savol', ru: 'Упражнение · вопрос 1' })}
     questionText={{ uz: "Saytga kirgan foydalanuvchi birinchi nimani ko'rishi kerak?", ru: 'Что пользователь должен увидеть на сайте первым?' }}
-    question={{ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-sub" style={{ marginTop: 8 }}>Saytga kirgan foydalanuvchi birinchi <span className="italic" style={{ color: T.accent }}>nimani</span> ko'rishi kerak?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите верный ответ</p><h2 className="title h-sub" style={{ marginTop: 8 }}><span className="italic" style={{ color: T.accent }}>Что</span> пользователь должен увидеть на сайте первым?</h2></> }}
+    question={{ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Saytga kirgan foydalanuvchi birinchi <span className="italic" style={{ color: T.accent }}>nimani</span> ko'rishi kerak?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите верный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}><span className="italic" style={{ color: T.accent }}>Что</span> пользователь должен увидеть на сайте первым?</h2></> }}
     options={[{ uz: 'Birinchi blokni — sayt nima taklif qilishini', ru: 'Первый блок — что предлагает сайт' }, { uz: 'Eng pastdagi `footer`ni — havolalar va aloqani', ru: 'Нижний `footer` — ссылки и контакты' }, { uz: "Harakat tugmasini — darrov bosib qo'yishi uchun", ru: 'Кнопку действия — чтобы сразу нажал' }, { uz: "Mahsulotlar ro'yxatini — narxlari bilan", ru: 'Список товаров — вместе с ценами' }]} correctIdx={0}
     explainCorrect={{ uz: "To'g'ri! Eng birinchi bo'lib birinchi blok (`hero`) ko'rinadi — katta sarlavha bir jumlada sayt nima taklif qilishini aytadi. Shuni tushungan foydalanuvchi qiziqib, saytdan foydalanishda davom etadi.", ru: 'Верно! Первым виден первый блок (`hero`) — крупный заголовок одной фразой говорит, что предлагает сайт. Поняв это, пользователь остаётся.' }}
     explainWrong={{ 1: { uz: "`footer` — sahifaning eng pastki qismi: havolalar va aloqa. Birinchi ko'rinishda esa birinchi blok turadi.", ru: '`footer` — самый низ страницы: ссылки и контакты. А первым виден первый блок.' }, 2: { uz: "Tugmani sababsiz ko'rsatsa, foydalanuvchi nega bosishini tushunmaydi. Avval birinchi blok.", ru: 'Кнопка без причины — и человек не поймёт, зачем жать. Сначала первый блок.' }, 3: { uz: "Ro'yxat foydalanuvchi nima taklif qilinayotganini tushungach kerak bo'ladi. Avval birinchi blok.", ru: 'Список нужен, когда человек уже понял, что ему предлагают. Сначала первый блок.' }, default: { uz: 'Birinchi — birinchi blok (sayt nima taklif qiladi).', ru: 'Первым — первый блок (что предлагает сайт).' } }} />
@@ -1545,7 +1570,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const Screen5b = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 2-savol', ru: 'Упражнение · вопрос 2' })}
     questionText={{ uz: 'Harakat tugmasi sahifaning qayerida turishi kerak?', ru: 'Где на странице должна стоять кнопка действия?' }}
-    question={{ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-sub" style={{ marginTop: 8 }}>Harakat tugmasi (CTA) sahifaning <span className="italic" style={{ color: T.accent }}>qayerida</span> turishi kerak?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите верный ответ</p><h2 className="title h-sub" style={{ marginTop: 8 }}><span className="italic" style={{ color: T.accent }}>Где</span> на странице должна стоять кнопка действия (CTA)?</h2></> }}
+    question={{ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Harakat tugmasi (CTA) sahifaning <span className="italic" style={{ color: T.accent }}>qayerida</span> turishi kerak?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите верный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}><span className="italic" style={{ color: T.accent }}>Где</span> на странице должна стоять кнопка действия (CTA)?</h2></> }}
     options={[{ uz: 'Eng tepada, hammadan ham oldin', ru: 'В самом верху, раньше всего' }, { uz: "Sahifa o'rtasida, muammodan oldin", ru: 'В середине страницы, до проблемы' }, { uz: "Sabab ko'rsatilgandan keyin, oxirroqda", ru: 'После того как показана причина, ближе к концу' }, { uz: 'Menyuda, boshqa havolalar orasida', ru: 'В меню, среди других ссылок' }]} correctIdx={2}
     explainCorrect={{ uz: "To'g'ri! Avval foydalanuvchi muammo, yechim va isbotni ko'rib ishonch hosil qiladi — endi tugmani bosishga sababi bor.", ru: 'Верно! Сначала пользователь видит проблему, решение и доказательство и начинает доверять — теперь у него есть причина нажать.' }}
     explainWrong={{ 0: { uz: "Tepada bo'lsa, foydalanuvchi nega bosishini hali bilmaydi. Avval ishontirish kerak.", ru: 'Наверху человек ещё не знает, зачем жать. Сначала нужно его убедить.' }, 1: { uz: "Muammodan oldin hali erta — foydalanuvchi bu yerda hali ishonmagan. Tugma sabab ko'rsatilgandan keyin keladi.", ru: 'До проблемы ещё рано — здесь доверия пока нет. Кнопка идёт после причины.' }, 3: { uz: "Havolalar orasida tugma ko'zga tashlanmaydi. U foyda tushuntirilgach, alohida turishi kerak.", ru: 'Среди ссылок кнопка теряется. Она должна стоять отдельно — после того как объяснили пользу.' }, default: { uz: 'Tugma — foydalanuvchi nega bosishini tushungandan keyin.', ru: 'Кнопка — после того, как человек понял, зачем жать.' } }} />
@@ -1637,7 +1662,7 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const Screen9 = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 3-savol', ru: 'Упражнение · вопрос 3' })}
     questionText={{ uz: "Bo'limlarni to'g'ri tartibda joylashdan maqsad nima?", ru: 'Зачем расставлять разделы в верном порядке?' }}
-    question={{ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-sub" style={{ marginTop: 8 }}>Bo'limlarni to'g'ri tartibda joylashdan <span className="italic" style={{ color: T.accent }}>maqsad</span> nima?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите верный ответ</p><h2 className="title h-sub" style={{ marginTop: 8 }}><span className="italic" style={{ color: T.accent }}>Зачем</span> расставлять разделы в верном порядке?</h2></> }}
+    question={{ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Bo'limlarni to'g'ri tartibda joylashdan <span className="italic" style={{ color: T.accent }}>maqsad</span> nima?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите верный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}><span className="italic" style={{ color: T.accent }}>Зачем</span> расставлять разделы в верном порядке?</h2></> }}
     options={[{ uz: "Sahifaga chiroyli ko'rinish berish uchun", ru: 'Чтобы страница выглядела красиво' }, { uz: 'Foydalanuvchini muammodan yechimga yetaklash uchun', ru: 'Чтобы провести пользователя от проблемы к решению' }, { uz: "Sahifani uzunroq va to'liqroq qilish uchun", ru: 'Чтобы страница стала длиннее и полнее' }, { uz: 'Qidiruvda yuqoriroq chiqib turish uchun', ru: 'Чтобы оказаться выше в поиске' }]} correctIdx={1}
     explainCorrect={{ uz: "To'g'ri! Tartib — bu yo'l: foydalanuvchini muammodan yechimga, keyin harakatga olib boradi. Bu foydalanuvchi uchun qilingan qulaylik.", ru: 'Верно! Порядок — это дорога: он ведёт человека от проблемы к решению, а затем к действию. Это удобство, сделанное для пользователя.' }}
     explainWrong={{ 0: { uz: "Chiroyli ko'rinish — bezashning ishi, u keyingi darslarda. Tartibning vazifasi esa foydalanuvchini yetaklash.", ru: 'Красота — работа оформления, она в следующих уроках. А задача порядка — вести человека.' }, 2: { uz: "Uzunlik maqsad emas. Tartib — foydalanuvchini to'g'ri yo'ldan olib borish uchun.", ru: 'Длина — не цель. Порядок нужен, чтобы вести человека верной дорогой.' }, 3: { uz: "Qidiruvdagi o'rin boshqa narsalarga bog'liq. Tartib esa odamni yechimga olib borish uchun.", ru: 'Место в поиске зависит от другого. А порядок — чтобы довести человека до решения.' }, default: { uz: 'Tartib foydalanuvchini muammodan yechimga olib boradi.', ru: 'Порядок ведёт пользователя от проблемы к решению.' } }} />
@@ -1678,7 +1703,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const Screen12 = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 4-savol', ru: 'Упражнение · вопрос 4' })}
     questionText={{ uz: "Sahifa bo'limlarining eng mantiqiy tartibi qaysi?", ru: 'Какой порядок разделов страницы самый логичный?' }}
-    question={{ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-sub" style={{ marginTop: 8 }}>Eng <span className="italic" style={{ color: T.accent }}>mantiqiy</span> tartib qaysi?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите верный ответ</p><h2 className="title h-sub" style={{ marginTop: 8 }}>Какой порядок самый <span className="italic" style={{ color: T.accent }}>логичный</span>?</h2></> }}
+    question={{ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Eng <span className="italic" style={{ color: T.accent }}>mantiqiy</span> tartib qaysi?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите верный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Какой порядок самый <span className="italic" style={{ color: T.accent }}>логичный</span>?</h2></> }}
     options={[{ uz: 'Tugma, isbot, birinchi blok, muammo, yechim', ru: 'Кнопка, доказательство, первый блок, проблема, решение' }, { uz: 'Isbot, tugma, muammo, birinchi blok, yechim', ru: 'Доказательство, кнопка, проблема, первый блок, решение' }, { uz: 'Muammo, tugma, birinchi blok, yechim, isbot', ru: 'Проблема, кнопка, первый блок, решение, доказательство' }, { uz: 'Birinchi blok, muammo, yechim, isbot, tugma', ru: 'Первый блок, проблема, решение, доказательство, кнопка' }]} correctIdx={3}
     explainCorrect={{ uz: "To'g'ri! Birinchi blok — nima taklif qilinmoqda, muammo — nega kerak, yechim — qanday ishlaydi, isbot — nega ishonsa bo'ladi, tugma — endi nima qilish kerak.", ru: 'Верно! Первый блок — что предлагают, проблема — зачем это нужно, решение — как работает, доказательство — почему можно верить, кнопка — что делать теперь.' }}
     explainWrong={{ 0: { uz: 'Tugma boshida — erta. Avval birinchi blok, keyin ishontirish kerak.', ru: 'Кнопка в начале — рано. Сначала первый блок, потом убеждение.' }, 1: { uz: "Bo'limlar o'rni almashib ketgan. To'g'risi: birinchi blok, muammo, yechim, isbot, tugma.", ru: 'Разделы перепутаны местами. Верно так: первый блок, проблема, решение, доказательство, кнопка.' }, 2: { uz: "Birinchi blok eng boshida bo'lishi kerak, tugma esa oxirida.", ru: 'Первый блок должен быть в самом начале, а кнопка — в конце.' }, default: { uz: 'Birinchi blok, muammo, yechim, isbot, tugma.', ru: 'Первый блок, проблема, решение, доказательство, кнопка.' } }} />
@@ -2991,7 +3016,7 @@ export default function PmLesson2({ lang: langProp, onFinished }) {
         .btn-soft:hover:not(:disabled) { box-shadow: 0 6px 14px -5px rgba(${T.shadowBase},0.2); }
 
         /* === OPSIYALAR === */
-        .option { background: ${T.paper}; cursor: pointer; transition: all 0.2s; font-family: 'Manrope', sans-serif; font-weight: 500; text-align: left; border-radius: 12px; width: 100%; border: none; color: ${T.ink}; box-shadow: 0 6px 16px -7px rgba(${T.shadowBase},0.16); }
+        .option { background: ${T.paper}; cursor: pointer; transition: all 0.2s; font-family: 'Manrope', sans-serif; font-weight: 500; line-height: 1.45; text-align: left; border-radius: 12px; width: 100%; border: none; color: ${T.ink}; box-shadow: 0 6px 16px -7px rgba(${T.shadowBase},0.16); }
         .option:hover:not(:disabled) { background: #FBFAFE; transform: translateY(-1px); box-shadow: 0 12px 24px -8px rgba(${T.shadowBase},0.22); }
         .option:disabled { cursor: default; }
         .option-correct { background: ${T.successSoft} !important; color: ${T.success} !important; box-shadow: 0 8px 22px -8px rgba(18,169,104,0.32) !important; }
@@ -3023,6 +3048,7 @@ export default function PmLesson2({ lang: langProp, onFinished }) {
 
         .h-title { font-size: clamp(22px,4vw,38px); }
         .h-sub { font-size: clamp(17px,2.5vw,22px); }
+        .h-ask { font-size: clamp(19px,2.6vw,27px); line-height: 1.32; letter-spacing: -0.01em; text-wrap: balance; }
         .body { font-size: clamp(14px,1.6vw,16px); line-height: 1.5; }
         .eyebrow { font-size: clamp(11px,1.3vw,12px); letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600; }
         .small { font-size: clamp(12.5px,1.4vw,13.5px); }
@@ -3695,7 +3721,15 @@ export default function PmLesson2({ lang: langProp, onFinished }) {
         .fc-q { font-family: 'Manrope'; font-weight: 800; font-size: clamp(18px,2.8vw,23px); color: ${T.ink}; line-height: 1.3; text-wrap: balance; }
         .fc-cue { font-family: 'Manrope'; font-size: 13px; color: ${T.ink3}; }
         .fc-tap { color: ${T.accent}; font-weight: 700; }
-        .fc-tag { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: clamp(26px,5vw,40px); letter-spacing: -0.01em; }
+        /* F-0803-13/14: javob uzunlikka moslashadi — 4 pog'ona + kod/gap shrift ajrimi */
+        .fc-tag { font-weight: 800; letter-spacing: -0.02em; line-height: 1.16; max-width: 100%; text-wrap: balance; overflow-wrap: anywhere; }
+        .fc-tag.mono-all { font-family: 'JetBrains Mono', monospace; }
+        .fc-tag.prose { font-family: 'Manrope', sans-serif; letter-spacing: -0.005em; }
+        .fc-tag .fc-kw { font-family: 'JetBrains Mono', monospace; font-weight: 800; }
+        .fc-tag.t1 { font-size: clamp(30px,6vw,46px); }
+        .fc-tag.t2 { font-size: clamp(24px,4.4vw,34px); }
+        .fc-tag.t3 { font-size: clamp(20px,3.4vw,26px); }
+        .fc-tag.t4 { font-size: clamp(17px,2.6vw,22px); line-height: 1.3; }
         .fc-note { font-family: 'Manrope'; font-size: 14px; opacity: 0.92; }
         .fc-actions { display: flex; gap: 10px; min-height: 48px; }
         .fc-btn { flex: 1; padding: 13px; border-radius: 13px; font-family: 'Manrope'; font-weight: 800; font-size: 15px; cursor: pointer; border: none; transition: transform .15s; }

@@ -357,6 +357,12 @@ function useIsMobile(breakpoint = 640) {
 const LESSON_META = { lessonId: 'pm-m7d2-v2', lessonTitle: { uz: 'Jobs-to-be-Done: odamlar nimani sotib oladi?', ru: 'Jobs-to-be-Done' } };
 // V4 EKRAN-TARTIB (P0 tuzilmasi bilan tenglik): ustaxona bittalab-yozish + 3 yangi unscored ekran
 // (tekshiruvchi stoli / mijoz-talabi / prioritet); testlar teoriyaga biriktirilgan (s7 idx4 · s8 idx6 · s9 idx9).
+const HW_TOKENS = [
+  { t: 'amaliyot', l: 8, tp: 22, s: 13, d: 6 },
+  { t: 'loyiha', l: 68, tp: 16, s: 12, d: 7.5 },
+  { t: 'mashq', l: 24, tp: 70, s: 12, d: 8.5 },
+  { t: 'natija', l: 78, tp: 68, s: 13, d: 6.8 }
+];
 const SCREEN_META = [
   { id: 's0',       type: 'hook',        template: 'custom',   scored: false, scope: 'hook' },        // 0
   { id: 's1',       type: 'rule',        template: 'custom',   scored: false, scope: null },          // 1
@@ -372,7 +378,8 @@ const SCREEN_META = [
   { id: 's10',      type: 'koding',      template: 'custom',   scored: false, scope: null },          // 11 · koding JtbdCard (React · VS Code)
   { id: 'priority', type: 'practice',    template: 'custom',   scored: false, scope: null },          // 12 · prioritet-doska
   { id: 's11',      type: 'recap',       template: 'custom',   scored: false, scope: null },          // 13
-  { id: 's12',      type: 'homework',    template: 'custom',   scored: false, scope: null },          // 14
+  // F-0803-06: alohida `homework` ekrani OLIB TASHLANDI — uy-vazifa kartasi YAKUN
+  // sahifasida allaqachon bor edi (dublikat). Etalon: P0 PmUserStory / PmLesson2.
   { id: 'podium',   type: 'stats',       template: 'custom',   scored: false, scope: null },          // 15
   { id: 's16',      type: 'summary',     template: 'custom',   scored: false, scope: null }           // 16
 ];
@@ -703,7 +710,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
       <div className="screen" style={{ justifyContent: isMentorLive ? 'flex-start' : 'center', gap: 'clamp(16px,2.5vw,24px)' }}>
         <div className="fade-up">{question}</div>
         {oneShot && !solved && <p className="small mono fade-up" style={{ margin: '-8px 0 0', color: T.accent, fontWeight: 600 }}>⚡ Jonli dars — bitta urinish, o'ylab bosing!</p>}
-        <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
+        <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 11 }}>
           {options.map((opt, i) => {
             let cls = 'option';
             if (isMentorLive) {
@@ -717,7 +724,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
             const showRedLetter = cls.includes('option-picked-wrong');
             const showDimLetter = cls.includes('option-wrong') && !showGreenLetter && !showRedLetter;
             return (
-              <button key={i} className={cls} disabled={solved || isMentorLive} onClick={() => pick(i)} style={{ padding: 'clamp(12px,1.8vw,16px) clamp(14px,2.2vw,20px)', fontSize: 'clamp(14px,1.7vw,16px)', display: 'flex', alignItems: 'center', gap: 12 }}>
+              <button key={i} className={cls} disabled={solved || isMentorLive} onClick={() => pick(i)} style={{ padding: 'clamp(13px,1.9vw,17px) clamp(15px,2.2vw,20px)', fontSize: 'clamp(15px,1.85vw,17px)', display: 'flex', alignItems: 'center', gap: 12 }}>
                 <span className={`jq-abc ${showGreenLetter ? 'ok' : showRedLetter ? 'bad' : showDimLetter ? 'dim' : ''}`}>{showGreenLetter ? '✓' : showRedLetter ? '✗' : String.fromCharCode(65 + i)}</span>
                 <span style={{ flex: 1 }}>{fmtCode(opt)}</span>
               </button>
@@ -2223,60 +2230,6 @@ const HW_KEY = 'pm-m7d2-hw-target';
 // («ota-onamga o'qib bering» = shaxs-nomuvofiqligi; to'g'risi «ota-onangizga o'qib bering»).
 const HW_TARGETS = ["sinfdoshingiz", "ota-onangiz", "do'stingiz"];
 const readHwTarget = () => { try { return localStorage.getItem(HW_KEY) || ''; } catch { return ''; } };
-const Screen12 = ({ screen, onNext, onPrev }) => {
-  const [st, setSt] = useState(() => {
-    const saved = readHwTarget();
-    const isPreset = HW_TARGETS.includes(saved);
-    return { target: saved, custom: isPreset ? '' : saved, customMode: !!saved && !isPreset };
-  });
-  const { target, custom, customMode } = st;
-  const pick = (t) => { setSt(prev => ({ ...prev, target: t, customMode: false })); try { localStorage.setItem(HW_KEY, t); } catch {} };
-  const setCustom = (v) => { setSt(prev => ({ ...prev, custom: v, target: v.trim(), customMode: true })); try { localStorage.setItem(HW_KEY, v.trim()); } catch {} };
-  const openCustom = () => setSt(prev => ({ ...prev, customMode: true, target: prev.custom.trim() }));
-  const chosen = target && target.trim();
-  return (
-    <Stage eyebrow="Uyga vazifa" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext label="Davom etish" onClick={onNext} /></>}>
-      <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">MVP'ingiz haqida <span className="italic" style={{ color: T.accent }}>kimdan</span> so'rab ko'rasiz?</h2></div>
-        <Mentor>Uyda <b style={{ color: T.ink }}>3 ta karta</b> yozasiz — avval kimdan so'rashni tanlang: pastdagi ro'yxatdan birini tanlang yoki «➕ o'zim yozaman»ni bosing.</Mentor>
-        <div className="hw-chips fade-up delay-1">
-          {HW_TARGETS.map(t => (
-            <button key={t} className={`hw-chip ${target === t && !customMode ? 'on' : ''}`} onClick={() => pick(t)}>{t}</button>
-          ))}
-          <button className={`hw-chip add ${customMode ? 'on' : ''}`} onClick={openCustom}>➕ o'zim yozaman</button>
-        </div>
-        {customMode && (
-          <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-            <input className="reflect-input" value={custom} onChange={e => setCustom(e.target.value)} placeholder="masalan: o'qituvchim, akam, ilk foydalanuvchim…" maxLength={40} autoFocus />
-            <p className="small" style={{ margin: 0, color: T.ink2 }}>Kimdan so'rasangiz — o'shani yozing. Bitta so'z yetadi.</p>
-          </div>
-        )}
-        {chosen ? (
-          <div className="split">
-            {/* F-0725-02 (👦 topilmasi): qaysi karta kimga tegishli ekani O'QUVCHI matnida aytiladi — avval buni faqat MentorNote bilardi. */}
-            <div className="hw-card full fade-step">
-              <span className="hw-badge">To'liq · ~20 daqiqa</span>
-              <p className="body" style={{ color: T.ink }}>Kodni sinfda tugatgan bo'lsangiz — pastdagi 3 qadamni bajaring.</p>
-            </div>
-            <div className="hw-card short fade-step">
-              <span className="hw-badge short">Qisqa · ~10 daqiqa</span>
-              <p className="body" style={{ color: T.ink }}>Kodni sinfda tugatolmagan bo'lsangiz — avval uyda kodni tugating, keyin bitta karta yozib <b>{chosen}</b>ga o'qib bering.</p>
-            </div>
-          </div>
-        ) : (
-          <div className="frame-soft fade-up delay-2"><p className="body" style={{ margin: 0, color: T.ink }}>👆 Kimdan so'raysiz? Masalan: sinfdoshingizdan yoki ota-onangizdan — birini tanlang, vazifa-karta shunga moslashadi.</p></div>
-        )}
-        {/* 53-qonun: uy-vazifa qadamlari tiqilmaydi — raqam-doirali 3 alohida qator */}
-        <div className="pmtask-steps fade-up delay-2">
-          <span className="pmtask-step"><i>1</i><b>{chosen || 'tanlagan odamingiz'}</b>dan so'rab, 3 ta karta yozing</span>
-          <span className="pmtask-step"><i>2</i>har kartaning vazifasi natija bo'lsin — mahsulot nomi emas</span>
-          <span className="pmtask-step"><i>3</i>eng kuchlisini belgilang va sababini yozing</span>
-        </div>
-        <MentorNote>Koding sinfda tugagan bo'lsa — to'liq versiya (3 JTBD); koding uyga ketgan bo'lsa — qisqa versiya (1 funksional JTBD). Ro'yxat: 3/3 = o'tdi · 2/3 = to'ldiradi · kam = qayta.</MentorNote>
-      </div>
-    </Stage>
-  );
-};
 
 // ===== 🏅 BADGES — REAL bosqichlar uchun (tekin emas). Har 4 nishonning triggeri bajariladigan harakat:
 // cardMaster = ustaxonada «✅ Bajardim» (3/3 karta) · jobHunter = 3 tekshiruvda ham javob berib yechish ·
@@ -2876,6 +2829,10 @@ const ScreenPodium = ({ screen, answers, achievements, onNext, onPrev }) => {
 
 // ===== SCREEN 16 — YAKUN + CODESTRIKE CTA =====
 const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) => {
+  // F-0803-08: uyga vazifa kapsulasi — bosilganda topshiriq kartasi ochiladi
+  const [hwOpen, setHwOpen] = useState(false);
+  const [hwCharge, setHwCharge] = useState(false);
+  const fireHw = () => { if (hwCharge || hwOpen) return; setHwCharge(true); setTimeout(() => { setHwOpen(true); setHwCharge(false); }, 500); };
   const _gate = useContext(LiveGateCtx) || {};
   const _live = _gate.live;
   const [arena, setArena] = useState(false);
@@ -2916,10 +2873,18 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
           <CsWordmark stats={false} liveOn={studentLive} disabled={studentWait} onClick={studentWait ? undefined : openArena} hint={studentWait ? '⏳ Mentorni kuting' : undefined} />
         </div>
         {arena && <QuizArena live={_live || { mode: 'self' }} startSolo={arenaSolo} onClose={() => setArena(false)} />}
-        <div className="split">
-          <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> Endi siz bilasiz</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{r}</span></li>))}</ul></div>
-          <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>📝 Uyga vazifa</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{hwTarget ? <>Tanlovingiz: <b style={{ color: T.accent }}>{hwTarget}</b>dan so'rab, MVP uchun 3 ta karta.</> : "MVP'ingiz uchun 3 ta karta — har turdan bittadan:"}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{h.b}</b> <span className="t">{h.t}</span></li>))}</ul><p className="hw-note">Keyingi darsda foydalanuvchilar bilan suhbat savollarini aynan shu «vazifa»lardan tuzamiz! 🚀</p></div>
+        <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> Endi siz bilasiz</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{r}</span></li>))}</ul></div>
+        <div className="hw-big-wrap fade-up d4">
+          <button className={`hw-big ${hwCharge ? 'charging' : ''}`} onClick={fireHw}>
+            <span className="hw-sky" aria-hidden="true">
+              {HW_TOKENS.map((k, i) => <span key={i} className="hw-tok" style={{ left: `${k.l}%`, top: `${k.tp}%`, fontSize: k.s, '--d': `${k.d}s` }}>{k.t}</span>)}
+            </span>
+            <span className="hw-big-shine" aria-hidden="true" />
+            <span className="hw-big-t">Uyga vazifa</span>
+            <span className="hw-big-s">Amaliy topshiriqni bajarish →</span>
+          </button>
         </div>
+        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>📝 Uyga vazifa</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{hwTarget ? <>Tanlovingiz: <b style={{ color: T.accent }}>{hwTarget}</b>dan so'rab, MVP uchun 3 ta karta.</> : "MVP'ingiz uchun 3 ta karta — har turdan bittadan:"}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{h.b}</b> <span className="t">{h.t}</span></li>))}</ul><p className="hw-note">Keyingi darsda foydalanuvchilar bilan suhbat savollarini aynan shu «vazifa»lardan tuzamiz! 🚀</p></div>}
         {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>🏅 Nishonlaringiz — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">
@@ -3018,7 +2983,7 @@ export default function PmJtbdLesson({ lang: langProp, onFinished }) {
 
   // V4 tartib — SCREEN_META bilan bir xil (17 ekran):
   // s0,s1,s2,s3,TEST1(s7),s4,TEST2(s8),ustaxona,tekshiruv-stoli,TEST3(s9),mijoz-talabi,koding,prioritet,recap,uyga,podium,summary
-  const screens = [Screen0, Screen1, Screen2, Screen3, Screen7, Screen4, Screen8, ScreenJobWorkshop, ScreenPeer, Screen9, ScreenClinic, ScreenCoding, ScreenPriority, Screen11, Screen12, ScreenPodium, Screen16];
+  const screens = [Screen0, Screen1, Screen2, Screen3, Screen7, Screen4, Screen8, ScreenJobWorkshop, ScreenPeer, Screen9, ScreenClinic, ScreenCoding, ScreenPriority, Screen11, ScreenPodium, Screen16];
   const Current = screens[screen];
   return (
     <LangContext.Provider value={lang}>
@@ -3060,7 +3025,7 @@ export default function PmJtbdLesson({ lang: langProp, onFinished }) {
         .btn-soft:disabled { opacity: 0.5; cursor: not-allowed; }
 
         /* === OPSIYALAR === */
-        .option { background: ${T.paper}; cursor: pointer; transition: all 0.2s; font-family: 'Manrope', sans-serif; font-weight: 500; text-align: left; border-radius: 12px; width: 100%; border: none; color: ${T.ink}; box-shadow: 0 6px 16px -6px rgba(${T.shadowBase},0.14); }
+        .option { background: ${T.paper}; cursor: pointer; transition: all 0.2s; font-family: 'Manrope', sans-serif; font-weight: 500; line-height: 1.45; text-align: left; border-radius: 12px; width: 100%; border: none; color: ${T.ink}; box-shadow: 0 6px 16px -6px rgba(${T.shadowBase},0.14); }
         .option:hover:not(:disabled) { background: #FBFAFE; box-shadow: 0 12px 24px -8px rgba(${T.shadowBase},0.24); transform: translateY(-2px); }
         .option:hover:not(:disabled) .jq-abc { background: ${T.accent}; color: #fff; }
         .option:active:not(:disabled) { transform: translateY(0) scale(0.995); }
@@ -3140,6 +3105,7 @@ export default function PmJtbdLesson({ lang: langProp, onFinished }) {
 
         .h-title { font-size: clamp(22px,4vw,38px); }
         .h-sub { font-size: clamp(17px,2.5vw,22px); }
+        .h-ask { font-size: clamp(19px,2.6vw,27px); line-height: 1.32; letter-spacing: -0.01em; text-wrap: balance; }
         .body { font-size: clamp(14px,1.6vw,16px); line-height: 1.5; }
         .eyebrow { font-size: clamp(11px,1.3vw,12px); letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600; }
         .small { font-size: clamp(12.5px,1.4vw,13.5px); }
@@ -3185,6 +3151,24 @@ export default function PmJtbdLesson({ lang: langProp, onFinished }) {
         .card { background: ${T.paper}; border-radius: 16px; padding: 18px 20px; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.14); }
         .card-lbl { display: flex; align-items: center; gap: 8px; font-family: 'Manrope'; font-weight: 700; font-size: 13px; margin-bottom: 11px; }
         .recap { display: flex; flex-direction: column; gap: 8px; list-style: none; } .recap li { display: flex; align-items: flex-start; gap: 10px; font-size: clamp(13px,1.6vw,15px); color: ${T.ink}; animation: fade-in-up 0.4s ease-out forwards; opacity: 0; } .recap .ck { color: ${T.success}; font-weight: 700; flex-shrink: 0; background: none; padding: 0; }
+        /* F-0803-08 — UYGA VAZIFA KAPSULASI (PmLesson2 etaloni): yakun sahifasida
+           «Endi siz bilasiz» dan KEYIN turadi, bosilganda topshiriq kartasi ochiladi. */
+        .hw-big-wrap { position: relative; align-self: center; width: min(560px, 100%); }
+        .hw-big-wrap::before { content: ''; position: absolute; inset: -16px; border-radius: 34px; background: radial-gradient(ellipse at center, rgba(124,58,237,0.45), rgba(124,58,237,0) 70%); filter: blur(18px); z-index: 0; pointer-events: none; animation: hw-aura 2.6s ease-in-out infinite; }
+        @keyframes hw-aura { 0%, 100% { opacity: 0.5; } 50% { opacity: 0.9; } }
+        .hw-big { position: relative; z-index: 1; overflow: hidden; display: flex; flex-direction: column; align-items: center; gap: 7px; width: 100%; padding: clamp(20px,2.8vw,30px) clamp(26px,3.4vw,44px); border: 1.5px solid rgba(186,140,255,0.72); border-radius: 22px; cursor: pointer; background: radial-gradient(130% 170% at 50% 120%, #3D1F86 0%, #2A1560 44%, #1B0F3F 100%); color: #fff; box-shadow: 0 0 0 1px rgba(90,40,180,.45), 0 0 26px rgba(124,58,237,.5), 0 0 68px rgba(124,58,237,.28), inset 0 0 48px rgba(124,58,237,.32); animation: hw-fire 1.7s ease-in-out 0.9s infinite; transition: transform 0.2s; }
+        .hw-big:hover { transform: translateY(-3px) scale(1.02); }
+        .hw-sky { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+        .hw-tok { position: absolute; font-family: 'JetBrains Mono', monospace; font-weight: 700; color: rgba(255,255,255,0.16); animation: hw-float var(--d, 7s) ease-in-out infinite alternate; }
+        @keyframes hw-float { from { transform: translateY(4px); } to { transform: translateY(-7px); } }
+        .hw-big.charging { animation: hw-fire 1.7s ease-in-out 0.9s infinite, hw-charge 0.5s ease; }
+        @keyframes hw-charge { 0% { filter: brightness(1); } 45% { filter: brightness(1.7) saturate(1.25); transform: scale(1.03); } 100% { filter: brightness(1); } }
+        .hw-big-t { font-family: 'Manrope'; font-weight: 800; font-size: clamp(25px,3.6vw,34px); letter-spacing: 0.02em; }
+        .hw-big-s { font-family: 'Manrope'; font-weight: 700; font-size: clamp(14px,1.9vw,17px); opacity: 0.94; }
+        .hw-big-shine { position: absolute; top: -40%; left: -60%; width: 45%; height: 180%; background: linear-gradient(100deg, transparent, rgba(255,255,255,0.16), transparent); transform: rotate(8deg); animation: hw-shine 4.6s ease-in-out infinite; pointer-events: none; }
+        @keyframes hw-fire { 0%,100% { box-shadow: 0 0 0 1px rgba(90,40,180,.45), 0 0 26px rgba(124,58,237,.5), 0 0 68px rgba(124,58,237,.28), inset 0 0 48px rgba(124,58,237,.32); } 50% { box-shadow: 0 0 0 1px rgba(120,60,220,.6), 0 0 40px rgba(124,58,237,.72), 0 0 96px rgba(124,58,237,.4), inset 0 0 60px rgba(124,58,237,.44); } }
+        @keyframes hw-shine { 0% { left: -60%; } 55%, 100% { left: 130%; } }
+        @media (prefers-reduced-motion: reduce) { .hw-big, .hw-big-shine, .hw-big-wrap::before, .hw-tok, .hw-big.charging { animation: none !important; } }
         .hw ul { display: flex; flex-direction: column; gap: 6px; list-style: none; } .hw li { font-size: clamp(13px,1.6vw,15px); color: ${T.ink}; } .hw li b { color: ${T.accent}; } .hw .t { color: ${T.ink2}; } .hw-note { margin: 11px 0 0; font-size: 12px; color: ${T.accent}; font-weight: 600; }
 
         /* === bb-dots (kod-muharrir sarlavhasi) === */

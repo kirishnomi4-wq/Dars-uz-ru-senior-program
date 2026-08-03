@@ -9,7 +9,9 @@
     "lint": "oxlint",
     "preview": "vite preview",
     "lint:prompt": "node prompt-lint.mjs",
-    "lint:til": "node til-lint.mjs"
+    "lint:til": "node til-lint.mjs",
+    "lint:jsx": "node jsx-lint.mjs",
+    "smoke": "node _smoke.mjs"
   },
   "dependencies": {
     "react": "^19.2.7",

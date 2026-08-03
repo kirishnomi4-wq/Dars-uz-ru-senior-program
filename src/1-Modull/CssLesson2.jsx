@@ -1347,6 +1347,12 @@ function useAudio(segments) {
 // AUDIOSIZ: AudioIndicator (ovoz/replay tugmalari) olib tashlandi — ovoz o'chirilgan, ikonka kerak emas.
 
 const LESSON_META = { lessonId: 'css-02-v18', lessonTitle: { uz: 'CSS: layout, flexbox, DevTools', ru: 'CSS руками — часть 2' } };
+const HW_TOKENS = [
+  { t: { uz: 'amaliyot', ru: 'практика' }, l: 8, tp: 22, s: 13, d: 6 },
+  { t: { uz: 'loyiha', ru: 'проект' }, l: 68, tp: 16, s: 12, d: 7.5 },
+  { t: { uz: 'mashq', ru: 'упражнение' }, l: 24, tp: 70, s: 12, d: 8.5 },
+  { t: { uz: 'natija', ru: 'результат' }, l: 78, tp: 68, s: 13, d: 6.8 }
+];
 const SCREEN_META = [
   { id: 's0',  type: 'hook',        template: 'custom',   scored: false, scope: 'hook' },
   { id: 's1',  type: 'rule',        template: 'custom',   scored: false, scope: null },
@@ -1829,7 +1835,7 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
       <div className="screen" style={{ justifyContent: isMentorLive ? 'flex-start' : 'safe center', gap: 'clamp(16px,2.5vw,24px)' }}>
         <div className="fade-up">{question}</div>
         {oneShot && !solved && <p className="small mono fade-up" style={{ margin: '-8px 0 0', color: T.accent, fontWeight: 600 }}>⚡ {tr({ uz: "Jonli dars — bitta urinish, o'ylab bosing!", ru: 'Живой урок — одна попытка, думайте перед кликом!' })}</p>}
-        <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
+        <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 11 }}>
           {options.map((opt, i) => {
             let cls = 'option';
             if (isMentorLive) {
@@ -1841,7 +1847,7 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
             else if (i === picked) cls += ' option-picked-wrong';
             const showGreenLetter = isMentorLive ? (mReveal && i === correctIdx) : (solved && revealed && i === correctIdx);
             return (
-              <button key={i} className={cls} disabled={solved || isMentorLive} onClick={() => pick(i)} style={{ padding: 'clamp(12px,1.8vw,16px) clamp(14px,2.2vw,20px)', fontSize: 'clamp(14px,1.7vw,16px)', display: 'flex', alignItems: 'center', gap: 12 }}>
+              <button key={i} className={cls} disabled={solved || isMentorLive} onClick={() => pick(i)} style={{ padding: 'clamp(13px,1.9vw,17px) clamp(15px,2.2vw,20px)', fontSize: 'clamp(15px,1.85vw,17px)', display: 'flex', alignItems: 'center', gap: 12 }}>
                 <span className="mono small" style={{ minWidth: 20, color: showGreenLetter ? T.success : T.ink3 }}>{String.fromCharCode(65 + i)}</span>
                 <span style={{ flex: 1 }}>{fmtCode(tr(opt))}</span>
               </button>
@@ -2271,7 +2277,7 @@ const Screen4 = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 1-savol', ru: 'Упражнение · вопрос 1' })}
     audioText="Konteyner ichidagi elementlarni yonma-yon qatorga tizish uchun unga qaysi xususiyat beriladi?"
     questionText="Elementlarni yonma-yon qatorga tizish uchun konteynerga qaysi xususiyat beriladi?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-sub" style={{ marginTop: 8 }}>{tr({ uz: <>Elementlarni <span className="italic" style={{ color: T.accent }}>yonma-yon</span> qatorga tizish uchun konteynerga qaysi xususiyat beriladi?</>, ru: <>Какое свойство задаётся контейнеру, чтобы выстроить элементы <span className="italic" style={{ color: T.accent }}>в ряд</span>?</> })}</h2></>}
+    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Elementlarni <span className="italic" style={{ color: T.accent }}>yonma-yon</span> qatorga tizish uchun konteynerga qaysi xususiyat beriladi?</>, ru: <>Какое свойство задаётся контейнеру, чтобы выстроить элементы <span className="italic" style={{ color: T.accent }}>в ряд</span>?</> })}</h2></>}
     options={['color: red', 'font-size: 20px', 'display: flex', 'text-align: center']} correctIdx={2}
     explainCorrect={{ uz: "To'g'ri! display: flex konteynerni flex'ga aylantiradi va ichki elementlarini qatorga tizadi.", ru: 'Верно! display: flex превращает контейнер во flex и выстраивает его внутренние элементы в ряд.' }}
     explainWrong={{ 0: { uz: "color — matn rangi, joylashuvga aloqasi yo'q. Qator uchun — display: flex.", ru: 'color — цвет текста, к расположению отношения не имеет. Для ряда — display: flex.' }, 1: { uz: "font-size — shrift o'lchami. Qator uchun — display: flex.", ru: 'font-size — размер шрифта. Для ряда — display: flex.' }, 3: { uz: 'text-align matn ichidagi joylashuv. Elementlarni qatorga tizadigan — display: flex.', ru: 'text-align — выравнивание текста внутри. Элементы в ряд выстраивает display: flex.' }, default: { uz: 'Qatorga tizadigan — display: flex.', ru: 'В ряд выстраивает display: flex.' } }} />
@@ -2312,7 +2318,7 @@ const Screen5b = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow={tr({ uz: 'Tekshiruv', ru: 'Проверка' })}
     audioText="Flex elementlarni vertikal ustunga, ya'ni ustma-ust tizish uchun qaysi qiymat kerak?"
     questionText="Flex elementlarni vertikal ustunga tizish uchun?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: 'Mustahkamlash', ru: 'Закрепление' })}</p><h2 className="title h-sub" style={{ marginTop: 8 }}>{tr({ uz: <>Flex elementlarni <span className="italic" style={{ color: T.accent }}>vertikal ustunga</span> tizish uchun nima yoziladi?</>, ru: <>Что написать, чтобы выстроить flex-элементы <span className="italic" style={{ color: T.accent }}>в вертикальный столбик</span>?</> })}</h2></>}
+    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: 'Mustahkamlash', ru: 'Закрепление' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Flex elementlarni <span className="italic" style={{ color: T.accent }}>vertikal ustunga</span> tizish uchun nima yoziladi?</>, ru: <>Что написать, чтобы выстроить flex-элементы <span className="italic" style={{ color: T.accent }}>в вертикальный столбик</span>?</> })}</h2></>}
     options={['flex-direction: row', 'display: block', 'justify-content: center', 'flex-direction: column']} correctIdx={3}
     explainCorrect={{ uz: "To'g'ri! flex-direction: column elementlarni ustma-ust (ustunga) tizadi.", ru: 'Верно! flex-direction: column выстраивает элементы друг под другом (в столбик).' }}
     explainWrong={{ 0: { uz: 'row — bu qator (yonma-yon), sukut holat. Ustun uchun — column.', ru: 'row — это ряд (рядом), значение по умолчанию. Для столбика — column.' }, 1: { uz: "display: block flexni o'chiradi. Ustun uchun — flex-direction: column.", ru: 'display: block выключает flex. Для столбика — flex-direction: column.' }, 2: { uz: "justify-content joylashtiradi, yo'nalishni emas. Ustun uchun — column.", ru: 'justify-content выравнивает, а не задаёт направление. Для столбика — column.' }, default: { uz: 'Vertikal ustun — flex-direction: column.', ru: 'Вертикальный столбик — flex-direction: column.' } }} />
@@ -2435,7 +2441,7 @@ const Screen9 = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 2-savol', ru: 'Упражнение · вопрос 2' })}
     audioText="Flex elementlarni qator bo'ylab gorizontal markazga joylashtirish uchun qaysi xususiyat?"
     questionText="Flex elementlarni gorizontal markazga joylashtirish uchun?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-sub" style={{ marginTop: 8 }}>{tr({ uz: <>Flex elementlarni qator bo'ylab <span className="italic" style={{ color: T.accent }}>gorizontal markazga</span> joylashtirish uchun?</>, ru: <>Как разместить flex-элементы вдоль ряда <span className="italic" style={{ color: T.accent }}>по центру горизонтали</span>?</> })}</h2></>}
+    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Flex elementlarni qator bo'ylab <span className="italic" style={{ color: T.accent }}>gorizontal markazga</span> joylashtirish uchun?</>, ru: <>Как разместить flex-элементы вдоль ряда <span className="italic" style={{ color: T.accent }}>по центру горизонтали</span>?</> })}</h2></>}
     options={['align-items: center', 'justify-content: center', 'text-align: center', 'margin: center']} correctIdx={1}
     explainCorrect={{ uz: "To'g'ri! justify-content: center flex elementlarni asosiy o'q (gorizontal) bo'ylab markazga to'playdi.", ru: 'Верно! justify-content: center собирает flex-элементы к центру вдоль главной (горизонтальной) оси.' }}
     explainWrong={{ 0: { uz: 'align-items vertikal tekislaydi, gorizontal emas. Gorizontal markaz — justify-content.', ru: 'align-items выравнивает по вертикали, не по горизонтали. Центр по горизонтали — justify-content.' }, 2: { uz: 'text-align matn ichida ishlaydi, flex elementlarga emas.', ru: 'text-align работает внутри текста, а не с flex-элементами.' }, 3: { uz: "margin: center degan qiymat yo'q. To'g'risi — justify-content: center.", ru: 'Значения margin: center не существует. Правильно — justify-content: center.' }, default: { uz: 'Gorizontal markaz — justify-content: center.', ru: 'Центр по горизонтали — justify-content: center.' } }} />
@@ -2517,7 +2523,7 @@ const Screen12 = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 3-savol', ru: 'Упражнение · вопрос 3' })}
     audioText="DevTools'ning qaysi paneli elementning CSS qoidalarini ko'rsatadi va o'zgartirishga imkon beradi?"
     questionText="DevTools'ning qaysi paneli element CSS'ini ko'rsatadi?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-sub" style={{ marginTop: 8 }}>{tr({ uz: <>DevTools'ning qaysi paneli elementning <span className="italic" style={{ color: T.accent }}>CSS qoidalarini</span> ko'rsatadi va o'zgartiradi?</>, ru: <>Какая панель DevTools показывает и меняет <span className="italic" style={{ color: T.accent }}>CSS-правила</span> элемента?</> })}</h2></>}
+    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>DevTools'ning qaysi paneli elementning <span className="italic" style={{ color: T.accent }}>CSS qoidalarini</span> ko'rsatadi va o'zgartiradi?</>, ru: <>Какая панель DevTools показывает и меняет <span className="italic" style={{ color: T.accent }}>CSS-правила</span> элемента?</> })}</h2></>}
     options={['Console', 'Network', 'Styles', 'Sources']} correctIdx={2}
     explainCorrect={{ uz: "To'g'ri! Styles paneli tanlangan elementning barcha CSS qoidalarini ko'rsatadi va jonli o'zgartirishga imkon beradi.", ru: 'Верно! Панель Styles показывает все CSS-правила выбранного элемента и позволяет менять их вживую.' }}
     explainWrong={{ 0: { uz: 'Console — xato va xabarlar uchun. CSS uchun — Styles.', ru: 'Console — для ошибок и сообщений. Для CSS — Styles.' }, 1: { uz: 'Network — fayllar yuklanishi uchun. CSS uchun — Styles.', ru: 'Network — для загрузки файлов. Для CSS — Styles.' }, 3: { uz: "Sources — fayllar kodi uchun. Element CSS'i uchun — Styles.", ru: 'Sources — для кода файлов. CSS элемента — в Styles.' }, default: { uz: "Element CSS'i — Styles panelida.", ru: 'CSS элемента — в панели Styles.' } }} />
@@ -2623,6 +2629,31 @@ const CSS_FLASHCARDS = [
   { front: { uz: 'Brauzerda DevTools qaysi tugma bilan ochiladi?', ru: 'Какой клавишей открывается DevTools в браузере?' }, back: 'F12', note: { uz: 'brauzer ustaxonasi', ru: 'мастерская браузера' } },
   { front: { uz: "Elementning CSS qoidalarini DevTools'ning qaysi paneli ko'rsatadi?", ru: 'Какая панель DevTools показывает CSS-правила элемента?' }, back: 'Styles', note: { uz: "o'zgarish darhol ko'rinadi", ru: 'изменение видно сразу' } },
 ];
+// F-0803-13/14: KARTA JAVOBI UZUNLIKKA MOSLASHADI.
+// Muammo edi: `.fc-tag` hamma javobga bir xil katta monoshrift berardi — u bir so'zlik javob
+// (`let`, `=`, `string`) uchun tanlangan o'lcham. Uzun javob 2-3 qatorga bo'linib, qat'iy
+// balandlikdagi kartaga sig'masdi va izoh pastki chetga yopishib qolardi.
+// Yechim: (1) uzunlik bo'yicha 4 pog'onali o'lcham · (2) bitta kod-tokeni — mono,
+// gap — Manrope (o'qishga qulay, ~25% tor) · (3) gap ichidagi kod so'zlari mono qoladi.
+const FC_CODE_WORDS = /\b(let|const|var|string|number|boolean|true|false|null|undefined|function|return|for|while|if|else)\b/g;
+const FC_VOCAB = new Set(['let', 'const', 'var', 'string', 'number', 'boolean', 'true', 'false', 'null', 'undefined', 'function', 'return', 'for', 'while', 'if', 'else']);
+// Kodmi yoki so'zmi? Monoshrift FAQAT kodga: lug'atdagi kalit so'z yoki kod-belgisi bo'lgan
+// token. «o'zgaruvchi» kabi o'zbekcha atama — gap, u Manrope bilan chiroyliroq va tor chiqadi.
+const fcIsCode = (s) => FC_VOCAB.has(s.toLowerCase()) || /[=(){};.[\]<>+*/%!&|-]/.test(s);
+const fcTier = (s) => (s.length <= 8 ? 't1' : s.length <= 16 ? 't2' : s.length <= 32 ? 't3' : 't4');
+const fcAnswer = (raw) => {
+  const s = String(raw ?? '');
+  const oneToken = !/\s/.test(s) && fcIsCode(s);        // `let`, `const`, `=`, `string` — kod tokeni
+  const cls = `fc-tag ${fcTier(s)} ${oneToken ? 'mono-all' : 'prose'}`;
+  if (oneToken) return <span className={cls}>{s}</span>;
+  const parts = s.split(FC_CODE_WORDS);                 // gap: kod so'zlari mono bo'lakda qoladi
+  return (
+    <span className={cls}>
+      {parts.map((p, i) => (i % 2 === 1 ? <span key={i} className="fc-kw">{p}</span> : p))}
+    </span>
+  );
+};
+
 function Flashcards({ cards }) {
   const [queue, setQueue] = useState(() => cards.map((_, i) => i));
   const [flipped, setFlipped] = useState(false);
@@ -2655,7 +2686,7 @@ function Flashcards({ cards }) {
         <div className={`fc-fly ${exiting === 'knew' ? 'out-knew' : ''} ${exiting === 'again' ? 'out-again' : ''}`} key={swapRef.current}>
         <div className={`fc-card ${flipped ? 'flip' : ''}`} onClick={() => !flipped && !exiting && setFlipped(true)} role="button" tabIndex={0}>
           <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: "Javobni o'ylang", ru: 'Подумайте над ответом' })} 🤔 <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
-          <div className="fc-face fc-back"><span className="fc-tag">{tr(card.back)}</span>{card.note && <span className="fc-note">{tr(card.note)}</span>}</div>
+          <div className="fc-face fc-back">{fcAnswer(tr(card.back))}{card.note && <span className="fc-note">{tr(card.note)}</span>}</div>
         </div>
         </div>
       </div>
@@ -2681,6 +2712,10 @@ const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) =>
 };
 
 const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish, onHomework }) => {
+  // F-0803-08: uyga vazifa kapsulasi — bosilganda topshiriq kartasi ochiladi
+  const [hwOpen, setHwOpen] = useState(false);
+  const [hwCharge, setHwCharge] = useState(false);
+  const fireHw = () => { if (hwCharge || hwOpen) return; setHwCharge(true); setTimeout(() => { setHwOpen(true); setHwCharge(false); }, 500); };
   const _gate = useContext(LiveGateCtx) || {};
   const _live = _gate.live;
   const [arena, setArena] = useState(false);
@@ -2706,7 +2741,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish, on
   return (
     <Stage eyebrow={tr({ uz: 'Tayyor', ru: 'Готово' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><button className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Keyingi dars', ru: 'Следующий урок' })} →</button></>}>
       <div className="screen">
-        <div className="hero"><div className="hero-l"><span className="done-chip fade-up"><span className="tick">✓</span> {tr({ uz: 'CSS 2-dars tugadi', ru: 'Урок CSS 2 завершён' })}</span><h2 className="title h-title fade-up d1">{tr({ uz: <>Endi <span className="italic" style={{ color: T.accent }}>joylashtira</span> olasiz.</>, ru: <>Теперь вы умеете <span className="italic" style={{ color: T.accent }}>расставлять</span>.</> })}</h2><p className="body h-sub fade-up d2">{PASSED ? tr({ uz: 'Tabriklaymiz! Flexbox va DevTools — zamonaviy layoutning asosi sizda.', ru: 'Поздравляем! Flexbox и DevTools — основа современных макетов — теперь у вас.' }) : tr({ uz: "Yaxshi harakat! Bir-ikki joyni mustahkamlash uchun darsni qayta ko'ring.", ru: 'Хорошая попытка! Пересмотрите урок, чтобы закрепить пару мест.' })}</p></div><ScoreRing correct={correct} total={total} /></div>
+        <div className="hero"><div className="hero-l"><span className="done-chip fade-up"><span className="tick">✓</span> {tr({ uz: 'CSS 2-dars tugadi', ru: 'Урок CSS 2 завершён' })}</span><h2 className="title h-title fade-up d1">{tr({ uz: <>Endi <span className="italic" style={{ color: T.accent }}>joylashtira</span> olasiz.</>, ru: <>Теперь вы умеете <span className="italic" style={{ color: T.accent }}>расставлять</span>.</> })}</h2>{/* 54-qonun (P0 PmUserStory · PmLesson2 qarori): h-sub qatori YO'Q — sarlavha o'zi yetadi. */}</div><ScoreRing correct={correct} total={total} /></div>
         <div className={`qz-cta cs-cta fade-up d2 ${studentLive ? 'ready' : ''}`}>
           <CsWordmark
             stats={false}
@@ -2721,10 +2756,18 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish, on
           />
         </div>
         {arena && <QuizArena live={_live || { mode: 'self' }} startSolo={arenaSolo} onClose={() => setArena(false)} />}
-        <div className="split">
-          <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> {tr({ uz: 'Endi siz bilasiz', ru: 'Теперь вы знаете' })}</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{tr(r)}</span></li>))}</ul></div>
-          <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>🧩 {tr({ uz: 'Uyga vazifa', ru: 'Домашнее задание' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: 'Saytingiz menyusini Flexbox bilan yasang:', ru: 'Сделайте меню своего сайта на Flexbox:' })}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: 'Flexbox — deyarli har bir zamonaviy saytda ishlatiladi!', ru: 'Flexbox используется почти на каждом современном сайте!' })}</p></div>
+        <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> {tr({ uz: 'Endi siz bilasiz', ru: 'Теперь вы знаете' })}</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{tr(r)}</span></li>))}</ul></div>
+        <div className="hw-big-wrap fade-up d4">
+          <button className={`hw-big ${hwCharge ? 'charging' : ''}`} onClick={fireHw}>
+            <span className="hw-sky" aria-hidden="true">
+              {HW_TOKENS.map((k, i) => <span key={i} className="hw-tok" style={{ left: `${k.l}%`, top: `${k.tp}%`, fontSize: k.s, '--d': `${k.d}s` }}>{tr(k.t)}</span>)}
+            </span>
+            <span className="hw-big-shine" aria-hidden="true" />
+            <span className="hw-big-t">{tr({ uz: 'Uyga vazifa', ru: 'Домашнее задание' })}</span>
+            <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni bajarish →', ru: 'Выполнить практическое задание →' })}</span>
+          </button>
         </div>
+        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>🧩 {tr({ uz: 'Uyga vazifa', ru: 'Домашнее задание' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: 'Saytingiz menyusini Flexbox bilan yasang:', ru: 'Сделайте меню своего сайта на Flexbox:' })}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: 'Flexbox — deyarli har bir zamonaviy saytda ishlatiladi!', ru: 'Flexbox используется почти на каждом современном сайте!' })}</p></div>}
         {/* 🏠 UYGA VAZIFA — amaliy topshiriq kompilyatorda bajariladi. Mentor proyektorida
             KO'RSATILMAYDI: uy ishi shaxsiy (sahna ↔ daftar tamoyili). */}
         {!isMentorL && onHomework && (
@@ -3566,7 +3609,7 @@ export default function HtmlLesson({ lang: langProp, onFinished, onPractice }) {
 
   // ETALON — 1920px (InternetLesson): keng oynada proportsional kattalashadi, <=1920 da z=1
   useEffect(() => {
-    const upd = () => { const z = Math.min(1.5, Math.max(1, window.innerWidth / 1920)); document.documentElement.style.setProperty('--lz', String(Math.round(z * 1000) / 1000)); };
+    const upd = () => { const z = Math.min(1.5, Math.max(1, Math.min(window.innerWidth / 1920, window.innerHeight / 1000))); document.documentElement.style.setProperty('--lz', String(Math.round(z * 1000) / 1000)); };
     upd(); window.addEventListener('resize', upd); return () => window.removeEventListener('resize', upd);
   }, []);
   // 🃏 Flashcard jonli darsda FAQAT MENTORGA ko'rinadi (proyektorda jamoaviy takrorlash);
@@ -3703,7 +3746,7 @@ export default function HtmlLesson({ lang: langProp, onFinished, onPractice }) {
         .btn-ghost:disabled { opacity: 0.4; cursor: not-allowed; }
 
         /* === OPSIYALAR v15 === */
-        .option { background: ${T.paper}; cursor: pointer; transition: all 0.2s; font-family: 'Manrope', sans-serif; font-weight: 500; text-align: left; border-radius: 12px; width: 100%; border: none; color: ${T.ink}; box-shadow: 0 6px 16px -6px rgba(${T.shadowBase},0.14); }
+        .option { background: ${T.paper}; cursor: pointer; transition: all 0.2s; font-family: 'Manrope', sans-serif; font-weight: 500; line-height: 1.45; text-align: left; border-radius: 12px; width: 100%; border: none; color: ${T.ink}; box-shadow: 0 6px 16px -6px rgba(${T.shadowBase},0.14); }
         .option:hover:not(:disabled) { background: #FDFBF7; box-shadow: 0 10px 22px -6px rgba(${T.shadowBase},0.22); }
         .option:disabled { cursor: default; }
         .option-correct { background: ${T.successSoft} !important; color: ${T.success} !important; box-shadow: 0 8px 22px -6px rgba(31,122,77,0.32) !important; }
@@ -3775,6 +3818,7 @@ export default function HtmlLesson({ lang: langProp, onFinished, onPractice }) {
 
         .h-title { font-size: clamp(22px,4vw,38px); }
         .h-sub { font-size: clamp(17px,2.5vw,22px); }
+        .h-ask { font-size: clamp(19px,2.6vw,27px); line-height: 1.32; letter-spacing: -0.01em; text-wrap: balance; }
         .body { font-size: clamp(14px,1.6vw,16px); line-height: 1.5; }
         .lead { margin: 0; }
         .eyebrow { font-size: clamp(11px,1.3vw,12px); letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600; }
@@ -3801,7 +3845,10 @@ export default function HtmlLesson({ lang: langProp, onFinished, onPractice }) {
         .frame-dash { border: 1.5px dashed ${T.ink3}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); }
 
         /* === LAYOUT === */
-        .screen { flex: 1; min-height: 0; display: flex; flex-direction: column; gap: clamp(14px,2vw,20px); }
+        .screen { flex: 1 0 auto; min-height: 0; display: flex; flex-direction: column; gap: clamp(14px,2vw,20px); }
+        /* F-0725-04 · 60-qonun: kontent sig'masa ekran-bloklari SIQILMAYDI — stage-content skroll beradi.
+           Standart flex-shrink tufayli bloklar siqilib, ichidagi matn qirqilardi (F-0802-14 dalili). */
+        .screen > * { flex-shrink: 0; }
         .head { display: flex; flex-direction: column; gap: 6px; }
         .split { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: clamp(18px,3vw,36px); align-items: start; }
         .col { display: flex; flex-direction: column; gap: clamp(12px,2vw,16px); min-width: 0; }
@@ -4609,7 +4656,15 @@ export default function HtmlLesson({ lang: langProp, onFinished, onPractice }) {
         .fc-q { font-family: 'Manrope'; font-weight: 800; font-size: clamp(18px,2.8vw,23px); color: ${T.ink}; line-height: 1.3; text-wrap: balance; }
         .fc-cue { font-family: 'Manrope'; font-size: 13px; color: ${T.ink3}; }
         .fc-tap { color: ${T.accent}; font-weight: 700; }
-        .fc-tag { font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: clamp(30px,6vw,46px); letter-spacing: -0.02em; }
+        /* F-0803-13/14: javob uzunlikka moslashadi — 4 pog'ona + kod/gap shrift ajrimi */
+        .fc-tag { font-weight: 800; letter-spacing: -0.02em; line-height: 1.16; max-width: 100%; text-wrap: balance; overflow-wrap: anywhere; }
+        .fc-tag.mono-all { font-family: 'JetBrains Mono', monospace; }
+        .fc-tag.prose { font-family: 'Manrope', sans-serif; letter-spacing: -0.005em; }
+        .fc-tag .fc-kw { font-family: 'JetBrains Mono', monospace; font-weight: 800; }
+        .fc-tag.t1 { font-size: clamp(30px,6vw,46px); }
+        .fc-tag.t2 { font-size: clamp(24px,4.4vw,34px); }
+        .fc-tag.t3 { font-size: clamp(20px,3.4vw,26px); }
+        .fc-tag.t4 { font-size: clamp(17px,2.6vw,22px); line-height: 1.3; }
         .fc-note { font-family: 'Manrope'; font-size: 14px; opacity: 0.92; }
         .fc-actions { display: flex; gap: 10px; min-height: 48px; }
         .fc-btn { flex: 1; padding: 13px; border-radius: 13px; font-family: 'Manrope'; font-weight: 800; font-size: 15px; cursor: pointer; border: none; transition: transform .15s; }

@@ -810,8 +810,241 @@ tuyuladi — shu bahonada sen-forma o'tib ketadi va bitta qatorda ikki xil muroj
 🔧 Grep: ru `\b(составь|найди|напиши|добавь|нажми|выбери|посмотри|попробуй|запиши|проверь)\b` ·
    uz `\w+ingni\b` — topilganda so'rang: «bu gap KIMGA aytilyapti?» O'quvchiga bo'lsa — siz-forma.
 
+## 65. «SIR» TAQIQI — mentor intriga sotmaydi, ishni tushuntiradi (F-0802-01)
+
+«Sizga bir sirni aytaman…» — sun'iy intriga. O'quvchi keyin **sir emas, oddiy ta'rif**
+eshitadi va va'da bilan mazmun orasida bo'shliq qoladi. Ishonch shu yerda sinadi.
+
+❌ «Sizga bir sirni aytaman: dasturchilar kod yozishdan oldin boshqacha **fikrlaydi**.
+   Ularning butun ishi ikkita asosiy **tushunchaga** — ya'ni 2 ta muhim fikrga — tayanadi…»
+   (sir yo'q + «tushuncha»ni «muhim fikr» bilan qavssiz izohlash — ikki marta aytilgan bir narsa)
+✅ «Kod yozishni boshlashdan oldin yaxshi dasturchilar muammoni qanday **hal qilishni** o'ylaydi.
+   Buning uchun ular ikkita kuchli **vositadan** foydalanadi: **sistema** va **algoritm**.
+   Bugun shu ikki g'oyani oddiy misollar orqali o'rganamiz, keyingi darslarda esa ularni
+   **JavaScript**'da ishlatamiz.»
+📌 Nima o'zgardi: (a) intriga → **maqsad** («muammoni hal qilish»); (b) «tushuncha» → **vosita**
+   (o'smir uchun ushlanadigan so'z); (c) oxirida **keyingi darsga ko'prik** — bugungi bilim
+   qayerda ishlatilishi aytiladi.
+🔧 Grep (o'quvchi-matnida): `sir\b` · `sirni` · ru `секрет` · `по секрету`.
+   Kod izohlaridagi «sir saqlanadi» (Kahoot-reveal) — istisno, u o'quvchiga ko'rinmaydi.
+
+## 66. KARTA-OST MATNI: TA'RIF EMAS, HODISA — atama-sanog'i taqiq (F-0802-02…05)
+
+Reja-ekranidagi karta o'quvchi tushunchani **birinchi marta** ko'radigan joy. U yerga formula
+(`qism + bog'lanish`) yoki hali o'tilmagan atamalar ro'yxati qo'yilsa — bola o'qiydi-yu,
+hech narsa ko'rmaydi. Kartada **nima sodir bo'lishini** ayting.
+
+❌ SISTEMA: «Birga ishlaydigan qismlar **+** bog'lanishlar» — `+` belgisi formula, hodisa emas.
+✅ SISTEMA: «**Bir nechta qismlar birgalikda ishlasa — sistema hosil bo'ladi.**»
+   (ta'rif emas, ko'z oldida yuz beradigan hodisa: qo'shildi → paydo bo'ldi)
+❌ ALGORITM: «Aniq qadamlar: **ketma-ketlik, shart, sikl**» — uchala atama ham hali o'tilmagan;
+   birinchi ekranda uchtasini birdan berish = uchtasini ham yo'qotish (1-tamoyil buzilishi).
+✅ ALGORITM: «**Maqsadga olib boradigan aniq qadamlar.**» — atamalar o'z ekranida ochiladi.
+❌ Ost-matn: «→ shu **uch qism** bilan istalgan algoritm yoziladi» — texnik, ustidagi kartada
+   endi uch atama yo'q, «uch qism» havoda qoladi.
+✅ Ost-matn: «→ **Har qanday dastur aynan shu ikki g'oyadan quriladi**» — kartadagi 2 g'oyaga
+   ishora qiladi va nima uchun bugungi dars muhimligini bir qatorda aytadi.
+❌ Reja-qadami: matn «Shart va **sikl**», yorlig'i «agar · takrorla» — atama tashqarida,
+   tanish so'z ichkarida (teskari).
+✅ Reja-qadami: matn «Shart va **takrorlash**», yorlig'i «agar · **sikl**» — tanish so'z
+   ko'rinadigan joyda, atama qavs-o'rnida (yorliqda) turadi.
+📌 Umumiy naqsh: **ko'rinadigan katta matn — tanish so'z; kichik yorliq — atama.**
+🔧 Grep: reja/karta matnlarida `+` belgisi · vergul bilan sanalgan 3+ atama · o'sha ekrangacha
+   hali tushuntirilmagan so'z.
+
+## 67. HOOK-SOLISHTIRUVI: ANIQ MEZON · KULGILI QARAMA-QARSHILIK · STRELKALI PAYOFF (F-0802-07…10)
+
+«A yoki B» hook-ekrani uch qismdan iborat: **savol (mezon) → ikki ro'yxat → payoff**.
+Uchalasi ham bir xil kasallikka chalinadi — mavhumlik.
+
+**(a) Savol MEZONNI aytadi — «yaxshi/yomon» emas, O'LCHANADIGAN natija.**
+❌ «Qaysi sayt **ko'proq mijoz olib keladi**?» — «mijoz» ofis-so'zi, «olib keladi» mavhum.
+✅ «Qaysi sayt **ko'proq chipta sotadi**?» — bola ko'z oldiga keltiradi va sanaydi.
+📌 Sarlavha va Mentor **bir xil mezonni** aytsin. Ikkovi ikki xil o'lchov aytsa (biri «mijoz»,
+   ikkinchisi «odam») — o'quvchi nimani solishtirayotganini bilmaydi.
+
+**(b) Mentor sahnani qo'yadi, savolni TAKRORLAMAYDI** (99-qonun: ko'rsatma bir joyda).
+❌ «Savdo markazidagi kinoteatr sayt ochdi — ikkala ro'yxat ham shu kinoteatr uchun.
+   Qaysi biri ko'proq odam olib keladi deb o'ylaysiz?» (savol sarlavhada allaqachon bor;
+   «savdo markazidagi… sayt ochdi» — ortiqcha dekor, hikoyaga hech nima qo'shmaydi)
+✅ «**Tasavvur qiling:** bitta kinoteatr uchun ikkita turli sayt tayyorlandi. Quyida har birida
+   nima borligi yozilgan — **o'qing va sizningcha ko'proq chipta sotadiganini tanlang.**»
+📌 Naqsh: **sarlavha = savol · Mentor = sahna + bitta harakat.**
+
+**(c) «Noto'g'ri» ro'yxat KULGILI darajada aniq — sifat qo'shib kuchaytiriladi.**
+❌ «fon musiqasi» · «aylanadigan logotip» · «biz haqimizda uzun matni» — neytral, bola
+   «balki keraklidir?» deb o'ylaydi; tanlov qiynaladi va sabab ochilganda «aha» bo'lmaydi.
+✅ «**baland** fon musiqasi» · «aylanadigan **katta** logotip» · «**miltillaydigan** animatsiya» ·
+   «**5 sahifalik** «biz haqimizda»» — bola **kulganda** tushunadi: «bular foydasiz ekan».
+📌 Usul: mavhum bandga **o'lchov yoki ortiqchalik sifatini** qo'shing (baland · katta ·
+   5 sahifalik · miltillaydigan). Yangi band o'ylab topish shart emas — borini kuchaytiring.
+📌 Sonlar teng bo'lsin (104-qonun): bir tomonga band qo'shsangiz — ikkinchisiga ham.
+
+**(d) Payoff — proza emas, STRELKALI juftlik.**
+❌ «B-saytdagi har band odamning aniq bir qiyinchiligini yo'qotadi: film qachon boshlanishini
+   bilmaslik, joy bor-yo'qligini bilmaslik, chiptani qayerdan olishni bilmaslik. A-saytdagilar
+   esa hech qanday qiyinchilikka tegmaydi.» — 3 ta «bilmaslik» bitta gapga tiqilgan; qaysi band
+   qaysi qiyinchilikka tegishli — **ko'rinmaydi**, o'quvchi o'zi taqsimlashi kerak.
+✅ B-saytdagi **har bir band** odamning bitta savoliga javob beradi:
+   **Seans jadvali** → «Film qachon boshlanadi?»
+   **Zal xaritasi** → «Bo'sh joy bormi?»
+   **Onlayn chipta** → «Chiptani qayerdan olaman?»
+   A-saytdagilar esa hech qanday savolga javob bermaydi.
+📌 **Bandni odamning O'Z SAVOLIGA** ulang («muammo»/«qiyinchilik» degan atamadan ko'ra
+   qo'shtirnoq ichidagi tirik savol kuchliroq — bola uni o'z ovozida eshitadi).
+📌 Hookda **atama ishlatilmaydi**: «Har bir **feature** bitta muammoni hal qiladi» ❌ —
+   *imkoniyat (feature)* keyingi ekranda beriladi (1-tamoyil: hodisa avval, atama keyin).
+
+## 68. TEST SAVOLI — BIR NAFASDA O'QILADIGAN (F-0802-12)
+
+Savol ekranda eng katta matn. Har ortiqcha so'z o'sha o'lchamda takrorlanadi va o'quvchi
+variantlarga yetib borguncha charchaydi. Savol **ikki qismdan** oshmaydi:
+**(1) qisqa vaziyat → (2) savolning o'zi.**
+
+❌ «Saytga yangi imkoniyat taklif qilindi: bosh sahifada fon musiqasi. Uni qo'shishdan oldin
+   qaysi savolga javob topiladi?» — 15 so'z, ikki ergash gap; «bosh sahifada» savolga hech
+   nima qo'shmaydi; «taklif qilindi / javob topiladi» — shaxssiz idora-qurilmasi.
+✅ «**🎵** Saytga fon musiqasi qo'shmoqchi**siz**. Avval qaysi savolga javob berish kerak?»
+   — 10 so'z, ikkita qisqa gap.
+📌 Uch usul: **(a)** sahna-tafsilotini kesing («bosh sahifada», «yangi imkoniyat taklif qilindi»);
+   **(b)** shaxssiz fe'lni o'quvchiga qarating — «taklif qilindi» → «qo'shmoqchisiz»,
+   «javob topiladi» → «javob berish kerak» (PM darsida qarorni O'QUVCHI qabul qiladi);
+   **(c)** vaziyatni **emoji** bir belgida aytsin (🎵) — u so'z o'rnini bosadi, bezak emas.
+📌 O'lchov: savol **12 so'zgacha**. Undan oshsa — vaziyatni Mentor-qatoriga ko'chiring yoki kesing.
+🔧 Bu MATN qoidasi; savolning O'LCHAMI esa `.h-ask` standarti — 105-qonun (`DARS_ETALON` 4.3).
+   Ikkovi birga ishlaydi: qisqa matn + to'g'ri tipografiya. Bittasi yolg'iz yetmaydi.
+
+## 69. ZAXIRA-TARMOQ TIZIM-XATOSIDEK ESHITILMASIN (F-0802-17)
+
+Dars o'quvchining oldingi yozuvini o'qiydi; topilmasa **zaxira ro'yxat**ka o'tadi. Bu tarmoqning
+matni ko'pincha DASTURCHI tilida yoziladi — o'quvchi esa uni **buzilish** deb o'qiydi.
+
+❌ «**Sizda saqlangan yozuv topilmadi**, shuning uchun kinoteatr sayti ro'yxatidan foydalanamiz.
+   Uchta qiyinchilikni belgilang.» — foydalanuvchi bahosi: «bu backend xatosiga o'xshaydi 😂;
+   o'quvchi o'qimaydi ham». Ustiga «belgilang» sarlavhadagi ko'rsatmani takrorlaydi.
+✅ «**Boshlash uchun kinoteatr misolidan foydalanamiz** — quyidagilar sizga tanish.
+   Keyingi ekranda ularga imkoniyat yozasiz.»
+📌 Uch shart: **(a)** yo'qlik-haqida gapirmang («topilmadi», «saqlanmagan», «bo'sh») — nima BOR,
+   shuni ayting; **(b)** ikkala tarmoq (yozuv bor / yo'q) **bir xil shaklda** yozilsin — o'quvchi
+   qaysi tarmoqda ekanini sezmasin; **(c)** Mentor ish-buyrug'ini takrorlamaydi (u sarlavhada) —
+   Mentor ro'yxat QAYERDAN kelganini va KEYIN nima bo'lishini aytadi.
+🔧 Grep: `topilmadi` · `saqlanmagan` · `bo'sh ekan` · ru `не нашлось` · `не найдено` — o'quvchi
+   matnida 0 bo'lishi kerak (kod izohlarida bemalol).
+
+## 70. ZONA NOMI O'ZINI TUSHUNTIRSIN — metafora izoh talab qilmasin (F-0803-02)
+
+Mashqda kartalar tashlanadigan joyga nom qo'yiladi. Nom **metafora** bo'lsa (javon, savat,
+arxiv), o'quvchi uni ALOHIDA tushuntirishni talab qiladi — va o'sha tushuntirish ekranga
+yana bitta blok bo'lib qo'shiladi. Nom o'z ma'nosini **o'zi** aytsin.
+
+❌ «🗄 **Javon**» + tugma «🗄 Javonga chiqarish» — foydalanuvchi: «bu nom unchalik intuitiv emas».
+   Metafora ishlashi uchun avval «javonga chiqarish nima degani» tushuntirilishi kerak edi.
+✅ «🗑 **Keraksizlar**» + tugma «🗑 **Bu kerak emas**» — nom hukmni AYTADI; tugma esa
+   o'quvchi qilayotgan qarorni uning o'z tili bilan takrorlaydi.
+📌 Tugma **harakatni** emas, **QARORNI** yozsin: «Javonga chiqarish» (harakat, mavhum) →
+   «Bu kerak emas» (qaror, o'quvchi aynan shuni o'ylayapti).
+📌 Nom o'zgarsa — **butun dars bo'ylab** o'zgaradi: mashq, testlar (`explainCorrect`),
+   RECAPS, flashcard, uy-vazifa, mentor-savollari, hatto fon-bezagidagi so'z va ikonalar.
+   Bittasi eskicha qolsa, o'quvchi ikki xil nom ko'radi va ikkovini boshqa narsa deb o'ylaydi.
+🔧 Residue-grep majburiy: eski nom (`javon` · ru `полк`) + eski ikona (🗄) — **0** bo'lishi shart.
+
+## 71. HUKM QISQA VA BELGILI — tushuntirish emas (F-0803-02)
+
+Mashq javobi bir qarashda o'qilishi kerak. Uzun izoh «yaxshi feedback» bo'lsa ham,
+o'quvchi uni o'qimaydi — u faqat «to'g'rimi yoki yo'qmi» degan javobni qidiradi.
+
+❌ «"Zamonaviy ko'rinsin" — kimga kerakligi yozilmagan. Bu bandni qanday qilib aniq
+   qiyinchilikka bog'lasa bo'ladi?» — hukm + muhokama-savoli bitta blokda, 90+ belgi.
+✅ «❌ **Qaysi qiyinchilikni yo'qotishi yozilmagan**» — 38 belgi, belgi bilan boshlanadi.
+   Muhokama-savoli esa `MentorNote`ga ko'chadi (jonli darsda mentor so'raydi).
+❌ Natija: «✅ Ro'yxat tozalandi — uch band qoldi, ikkitasi javonda»
+✅ Natija: «✅ **3 ta foydali band qoldi**» — bitta qator, sanoq bilan.
+📌 Hukm `❌` / `✅` / `🤔` belgisidan boshlanadi — belgi matnni o'qishdan OLDIN javob beradi.
+📌 «Nega shunday» tushuntirish kerak bo'lsa — u MENTORGA (`MentorNote`), o'quvchi ekraniga emas.
+
+## 72. INTERAKTIV KO'RSATGANINI MATN QAYTA AYTMASIN (F-0803-10)
+
+O'quvchi tugmani bosdi, quti to'ldi, robot-qo'l qiymatni chiqardi — **u buni ko'rib turibdi**.
+Har bosqichni matn bilan takrorlash «tushuntirish» emas, **shovqin**: bir ekranda bitta g'oya
+uch-to'rt marta aytilsa, o'quvchi hech birini o'qimay qo'yadi.
+
+O'lchov: bitta ekranda bitta g'oya **NECHA MARTA** aytilganini sanang. Kod-namuna, vizual quti,
+harakat-natijasi va yakuniy hukm — bularning har biri «aytish»ga kiradi. **Ikkitadan oshsa — kesing.**
+
+❌ Bir ekranda: `let ism = "Bobur"` (kod) → 📦 quti `"Bobur"` (vizual) → «🤖 Robot-qo'l `ism`
+   qutisini topdi va ichidan `"Bobur"` ni tortib chiqardi» (matn) → «✓ Tayyor! `ism` qutisida
+   endi `"Bobur"` turibdi — nomi orqali istalgan payt o'qiysiz» (matn) — **4 marta bir xil fikr**.
+✅ Kod → vizual quti → harakat natijasi **rasm bilan**: `🤖 ism → "Bobur"` → bitta qatorlik hukm:
+   «✓ Endi `ism` ni chaqirsangiz `"Bobur"` qaytadi.» — **2 marta**, ikkinchisi yangi ma'no qo'shadi
+   (kelasi zamon: «chaqirsangiz» — bu o'qish endi qayta-qayta ishlaydi degani).
+📌 Harakat natijasini **matn emas, natijaning o'zi** ko'rsatsin: sxema/strelka/qiymat-token
+   (`ism → "Bobur"`) paragrafdan tez o'qiladi va tarjima talab qilmaydi.
+📌 Yakuniy hukm — **bitta qator**. Uzun bo'lsa, demak u natijani takrorlayapti, umumlashtirmayapti.
+
+## 73. ATAMANI KUNDALIK BILIM BILAN QARAMA-QARSHI QO'YING (F-0803-10)
+
+«X — bu Y emas» shakli bo'sh: o'quvchi X ni Y deb o'ylagani AYTILMAGAN bo'lsa, inkor osilib qoladi.
+Kuchli shakl — **ikki olamni yonma-yon qo'yish**: o'quvchi bilgan olam, keyin yangi olam.
+
+❌ «Kodda `=` "teng" degani emas — u "qutiga sol" degani!» — inkordan boshlanadi, undov
+   ishonchsizlikni oshiradi, o'quvchi qayerdan «teng» deb o'ylagani aytilmagan.
+✅ «Matematikada `=` — «teng» degani. Dasturlashda esa `=` — «qutiga joylashtir» degani.»
+   Ikki jumla, ikki olam, inkor yo'q — o'quvchining eski bilimi **rad etilmaydi, joyiga qo'yiladi**.
+📌 Naqsh: «<Tanish olamda> X — A degani. <Yangi olamda> esa X — B degani.»
+📌 Bu naqsh esda qoladi, chunki o'quvchi eski bilimini yo'qotmaydi — unga qo'shni yangi ma'no oladi.
+
+## 74. ORTIQCHA MATN TAQIQI — TMI (F-0803-19, sessiya-qonuni)
+
+Ekrandagi HAR ortiqcha gap o'quvchining diqqatini asosiy fikrdan tortadi. «Yaxshi
+tushuntirish» niyatida qo'shilgan matn aslida UI'ni to'ldirib, tushunishga TO'SIQ bo'ladi.
+Foydalanuvchi hukmi (2026-08-03): «keraksiz tekst jalka UI to'ldirib o'quvchi
+tushunmasligiga olib keladi» — bu BOSH USTUVORLIK darajasidagi qoida.
+
+O'lchovlar (dars-matn yozishda va tekshirishda MAJBURIY):
+- **Mentor — maksimum 2 gap.** 4 fikrli mentor = 4 ta yarim-o'qilgan fikr.
+  ❌ zavod + idish + datchik + while ta'rifi bitta blokda (JsLoops s7, tuzatilgan)
+  ✅ «Zavoddagi idish to'lguncha suv quyiladi — hech kim "5 marta quy" demaydi.
+     while ham shunday: shart rost bo'lsa takrorlaydi, yolg'on bo'lsa to'xtaydi.»
+- **Reja-ekran ta'rif AYTMAYDI.** Atamalar o'z ekranida, misol ustida ochiladi (induktiv).
+  ❌ JsFunctions s1: 3 ta atama-ta'rifi + 2 xatboshi = 918 belgi (darsning eng katta matni,
+     dars boshlanmasdan mazmun aytib qo'yilgan) → ✅ bitta ko'rsatiladigan nuqta: «Bir marta
+     yozasiz — xohlagancha ishlatasiz» = 503 belgi.
+- **Olib tashlash testi:** blokni o'chirib ko'ring — ekran ma'nosi buzilmasa, blok ORTIQCHA
+  edi (F-0803-11/12: «Loyihaga ko'prik» uch darsdan olib tashlandi — g'alaba-lahzasini
+  suyultirardi).
+- **Sanoq-tekshiruv:** ekranda bitta g'oya nechta shaklda aytilgan? >2 bo'lsa — kesing
+  (72-bo'lim bilan juft ishlaydi).
+📌 Shubha bo'lsa — QISQAROQ variantni oling. O'quvchi yetishmagan so'zni so'raydi,
+   ortiqcha so'zni esa o'qimay tashlaydi va u bilan birga keraklisini ham tashlaydi.
+
+## 75. DIRECT VA POINT — ekran birinchi soniyada nima haqidaligini aytsin (F-0803-19/20)
+
+O'quvchi «bu dars nima haqida?» deb so'rasa — dars yutqazgan. Sabablari odatda ikkitadi:
+(1) matn ko'pligi (74-bo'lim) va (2) misollar sakrashi.
+
+❌ JsFunctions (tuzatilgunga qadar): s0 buyurtma-narx → s1-s5 salomBer/"Ali" → s9-s11
+   narxHisobla → s14-s15 kvadrat — o'quvchi har 3-4 ekranda YANGI olamga tushadi,
+   «mavzu nimaligini bilib bo'lmayapti» hissi shundan.
+✅ Butun dars BITTA ip: zarar(kuch) → kuch * 3 → zarar(kuch, bonus). Hook'dagi dard,
+   testlar, flashcard, arena, uy vazifasi, praktika — hammasi shu olamda.
+📌 Yangi misol kiritishdan oldin savol: «bu ekran ASOSIY ipda qolsa bo'ladimi?» —
+   ha bo'lsa, yangi misol kiritilmaydi. (Qonun: DARS_ETALON 108.)
+
 ---
 
-*Korpus F-ID bilan o'sadi. Oxirgi yangilanish: 2026-08-01 (F-0801-01…13 — 1-Modul QA raundi:
+*Korpus F-ID bilan o'sadi. Oxirgi yangilanish: 2026-08-03 (F-0802-01…06 — 2-Modul JsIntro reja-ekrani:
+«sir» taqiqi · karta-ostida ta'rif emas hodisa · atama-sanog'i taqiq: 65–66-bo'lim;
+F-0802-06 — darsni yopuvchi bitta gap: DARS_ETALON 4.2-A / 103-qonun;
+F-0802-07…10 — PmLesson4 hook-solishtiruvi: aniq mezon · kulgili qarama-qarshilik · strelkali payoff:
+67-bo'lim + PM_DARS_ETALON 104-qonun (teng sonli ro'yxatlar);
+F-0802-12 — test savoli bir nafasda o'qiladigan: 68-bo'lim + 105b-qonun (o'lchami: 105-qonun / DARS_ETALON 4.3);
+F-0802-17 — zaxira-tarmoq tizim-xatosidek eshitilmasin: 69-bo'lim + 106c-qonun (olib tashlash testi, bo'sh joy dizayn elementi);
+F-0803-01 — yozish-mashqi javobsiz qolmaydi: 106d-qonun;
+F-0803-02 — zona nomi o'zini tushuntirsin (70-bo'lim) va hukm qisqa-belgili (71-bo'lim) + 106e-qonun (uch zarb: ko'rsatma → vazifa → javob);
+F-0803-10 — JsVars s3: interaktiv ko'rsatganini matn qaytarmasin, bir g'oya maks 2 marta (72-bo'lim) va
+atamani kundalik bilim bilan qarama-qarshi qo'yish «Matematikada = … Dasturlashda esa = …» (73-bo'lim)).*
+
+<!-- eski yozuv: 2026-08-01 (F-0801-01…13 — 1-Modul QA raundi:
 hook-savol tabiiyligi · mavhum «yo'l» → ko'rinadigan sayohat · ichki-nom orqaga-havolasi · mentor javobni aytmasligi · flashcard mentorsiz · bashorat-slaydi tozaligi · nishon bayrami kam so'z: 57–63-bo'lim;
-F-0801-13 — qisqa yorliqlarda siz-forma: 64-bo'lim).*
+F-0801-13 — qisqa yorliqlarda siz-forma: 64-bo'lim).* -->
+

@@ -753,7 +753,7 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
       <div className="screen" style={{ justifyContent: isMentorLive ? 'flex-start' : 'safe center', gap: 'clamp(16px,2.5vw,24px)' }}>
         <div className="fade-up">{tr(question)}</div>
         {oneShot && !solved && <p className="small mono fade-up" style={{ margin: '-8px 0 0', color: T.accent, fontWeight: 600 }}>{tr({ uz: "⚡ Jonli dars — bitta urinish, o'ylab bosing!", ru: '⚡ Живой урок — одна попытка, жмите обдуманно!' })}</p>}
-        <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
+        <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 11 }}>
           {options.map((opt, i) => {
             let cls = 'option';
             if (isMentorLive) {
@@ -765,7 +765,7 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
             else if (i === picked) cls += ' option-picked-wrong';
             const showGreenLetter = isMentorLive ? (mReveal && i === correctIdx) : (solved && revealed && i === correctIdx);
             return (
-              <button key={i} className={cls} disabled={solved || isMentorLive} onClick={() => pick(i)} style={{ padding: 'clamp(12px,1.8vw,16px) clamp(14px,2.2vw,20px)', fontSize: 'clamp(14px,1.7vw,16px)', display: 'flex', alignItems: 'center', gap: 12 }}>
+              <button key={i} className={cls} disabled={solved || isMentorLive} onClick={() => pick(i)} style={{ padding: 'clamp(13px,1.9vw,17px) clamp(15px,2.2vw,20px)', fontSize: 'clamp(15px,1.85vw,17px)', display: 'flex', alignItems: 'center', gap: 12 }}>
                 <span className="mono small" style={{ minWidth: 20, color: showGreenLetter ? T.success : T.ink3 }}>{String.fromCharCode(65 + i)}</span>
                 <span style={{ flex: 1 }}>{fmtCode(tr(opt))}</span>
               </button>
@@ -1344,7 +1344,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const Screen4 = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow={{ uz: 'Mashq · 1-savol', ru: 'Задание · вопрос 1' }}
     questionText="Sayt birinchi navbatda nima uchun yaratiladi?"
-    question={{ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-sub" style={{ marginTop: 8 }}>Sayt birinchi navbatda <span className="italic" style={{ color: T.accent }}>nima uchun</span> yaratiladi?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите верный ответ</p><h2 className="title h-sub" style={{ marginTop: 8 }}><span className="italic" style={{ color: T.accent }}>Ради чего</span> в первую очередь создают сайт?</h2></> }}
+    question={{ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Sayt birinchi navbatda <span className="italic" style={{ color: T.accent }}>nima uchun</span> yaratiladi?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите верный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}><span className="italic" style={{ color: T.accent }}>Ради чего</span> в первую очередь создают сайт?</h2></> }}
     options={[{ uz: 'Ko\'p odam kirib, mashhur bo\'lishi uchun', ru: 'Чтобы заходило много людей и он стал популярным' }, { uz: 'Egasiga pul topib berishi uchun', ru: 'Чтобы приносить деньги владельцу' }, { uz: 'Kimningdir aniq muammosini yechish uchun', ru: 'Чтобы решить конкретную проблему конкретных людей' }, { uz: 'Zamonaviy va chiroyli ko\'rinishi uchun', ru: 'Чтобы выглядеть современно и красиво' }]} correctIdx={2}
     explainCorrect={{ uz: "To'g'ri! Hammasi muammodan boshlanadi. Muammo yaxshi yechilsa — odamlar o'zi kirib keladi, mashhurlik ham, pul ham shundan keyin keladi.", ru: 'Верно! Всё начинается с проблемы. Если проблема решена хорошо, люди приходят сами — а популярность и деньги приходят уже после.' }}
     explainWrong={{
@@ -1424,7 +1424,7 @@ const ScreenKeys = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const Screen5b = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow={{ uz: 'Mashq · 2-savol', ru: 'Задание · вопрос 2' }}
     questionText="'Hamma uchun' qilingan sayt nega kam ishlaydi?"
-    question={{ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-sub" style={{ marginTop: 8 }}>"Hamma uchun" sayt nega <span className="italic" style={{ color: T.accent }}>kam</span> ishlaydi?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите верный ответ</p><h2 className="title h-sub" style={{ marginTop: 8 }}>Почему сайт «для всех» работает <span className="italic" style={{ color: T.accent }}>плохо</span>?</h2></> }}
+    question={{ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>"Hamma uchun" sayt nega <span className="italic" style={{ color: T.accent }}>kam</span> ishlaydi?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите верный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Почему сайт «для всех» работает <span className="italic" style={{ color: T.accent }}>плохо</span>?</h2></> }}
     options={[{ uz: 'Hammaga yoqadigan sayt qurish juda ko\'p pulga tushadi', ru: 'Сайт, который нравится всем, слишком дорого строить' }, { uz: 'Hamma narsa bor, lekin hech kim o\'zi izlaganini topolmaydi', ru: 'Есть всё, но никто не находит того, что искал' }, { uz: 'Ko\'p odam bir vaqtda kirganidan sayt sekinlashib qoladi', ru: 'Из-за наплыва посетителей сайт начинает тормозить' }, { uz: 'Reklama qilinmasa, uni hech kim ko\'rmay va bilmay qoladi', ru: 'Без рекламы его никто не увидит и не узнает' }]} correctIdx={1}
     explainCorrect={{ uz: "Aniq topdingiz! Hammaga gapirgan sayt hech kimga aniq gapirmaydi. Tanaffusga shoshgan o'quvchiga ham, katta buyurtma qidirgan ofis xodimiga ham bir xil gapirsangiz — ikkisi ham kerakli narsasini topolmaydi.", ru: 'Точно! Сайт, который говорит со всеми, ни с кем не говорит прямо. Если одинаково обращаться и к школьнику, спешащему на перемене, и к офисному работнику с большим заказом, — нужного не найдёт ни тот, ни другой.' }}
     explainWrong={{
@@ -1645,7 +1645,7 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const Screen9 = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow={{ uz: 'Mashq · 3-savol', ru: 'Задание · вопрос 3' }}
     questionText="Do'stingizga birinchi qaysi savolni berasiz?"
-    question={{ uz: <><p className="eyebrow" style={{ color: T.accent }}>Vaziyatni yeching</p><h2 className="title h-sub" style={{ marginTop: 8 }}>Do'stingiz: «Zo'r sayt qilmoqchiman, lekin <span className="italic" style={{ color: T.accent }}>nimadan boshlashni</span> bilmayapman» — deydi. Unga birinchi qaysi savolni berasiz?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Разберите ситуацию</p><h2 className="title h-sub" style={{ marginTop: 8 }}>Друг говорит: «Хочу сделать классный сайт, но не знаю, <span className="italic" style={{ color: T.accent }}>с чего начать</span>». Какой вопрос зададите ему первым?</h2></> }}
+    question={{ uz: <><p className="eyebrow" style={{ color: T.accent }}>Vaziyatni yeching</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Do'stingiz: «Zo'r sayt qilmoqchiman, lekin <span className="italic" style={{ color: T.accent }}>nimadan boshlashni</span> bilmayapman» — deydi. Unga birinchi qaysi savolni berasiz?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Разберите ситуацию</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Друг говорит: «Хочу сделать классный сайт, но не знаю, <span className="italic" style={{ color: T.accent }}>с чего начать</span>». Какой вопрос зададите ему первым?</h2></> }}
     options={[{ uz: '«Sayt qanday zamonaviy dizaynda va rangda bo\'ladi?»', ru: '«Какой у сайта будет современный дизайн и цвет?»' }, { uz: '«Saytga qancha pul, vaqt va odam kuchi sarflanadi?»', ru: '«Сколько денег, времени и людей уйдёт на сайт?»' }, { uz: '«Sayt aniq kimga kerak va qanday muammosini yechadi?»', ru: '«Кому именно нужен сайт и какую его проблему он решает?»' }, { uz: '«Saytga qanday zo\'r va yodda qoladigan nom topamiz?»', ru: '«Какое классное и запоминающееся имя придумаем сайту?»' }]} correctIdx={2}
     explainCorrect={{ uz: "Barakalla! Mahsulot menejeri ham aynan shu savoldan boshlaydi: KIM va MUAMMO aniq bo'lsa, dizayn ham, nom ham, hatto qancha vaqt ketishi ham o'z-o'zidan ayon bo'ladi.", ru: 'Молодец! Продакт-менеджер начинает ровно с этого вопроса: когда ясны КТО и ПРОБЛЕМА, дизайн, название и даже сроки становятся понятны сами собой.' }}
     explainWrong={{
@@ -1886,7 +1886,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const Screen12 = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow={{ uz: 'Mashq · 4-savol', ru: 'Задание · вопрос 4' }}
     questionText="Qaysi g'oya TO'LIQ (kim + muammo + yechim bor)?"
-    question={{ uz: <><p className="eyebrow" style={{ color: T.accent }}>Mahsulot menejeri ko'zi bilan tekshiring</p><h2 className="title h-sub" style={{ marginTop: 8 }}>To'rtta g'oyadan qaysi biri <span className="italic" style={{ color: T.accent }}>to'liq</span> — KIM + MUAMMO + YECHIM uchchalasi ham bormi?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Проверьте глазами продакт-менеджера</p><h2 className="title h-sub" style={{ marginTop: 8 }}>Какая из четырёх идей <span className="italic" style={{ color: T.accent }}>полная</span> — есть все три части: КТО + ПРОБЛЕМА + РЕШЕНИЕ?</h2></> }}
+    question={{ uz: <><p className="eyebrow" style={{ color: T.accent }}>Mahsulot menejeri ko'zi bilan tekshiring</p><h2 className="title h-ask" style={{ marginTop: 8 }}>To'rtta g'oyadan qaysi biri <span className="italic" style={{ color: T.accent }}>to'liq</span> — KIM + MUAMMO + YECHIM uchchalasi ham bormi?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Проверьте глазами продакт-менеджера</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Какая из четырёх идей <span className="italic" style={{ color: T.accent }}>полная</span> — есть все три части: КТО + ПРОБЛЕМА + РЕШЕНИЕ?</h2></> }}
     options={[{ uz: '«Juda chiroyli, zamonaviy va tez sport sayti qilib beramiz»', ru: '«Сделаем очень красивый, современный и быстрый спортивный сайт»' }, { uz: '«O\'quvchilar uchun sayt — unda mumkin bo\'lgan hamma narsa bo\'ladi»', ru: '«Сайт для школьников — на нём будет вообще всё, что можно»' }, { uz: '«Avtobus kutgan o\'quvchiga — u qachon kelishini ko\'rsatadigan sayt»', ru: '«Школьнику на остановке — сайт, который показывает, когда придёт автобус»' }, { uz: '«Lavash buyurtma qilinadigan qulay sayt — maktabdagi hamma uchun»', ru: '«Удобный сайт для заказа лаваша — для всех в школе»' }]} correctIdx={2}
     explainCorrect={{ uz: "Aniq topdingiz! KIM — avtobus kutadigan o'quvchilar, MUAMMO — qachon kelishi noma'lum, YECHIM — vaqtni ko'rsatadigan sayt. Uchchalasi joyida — qurish mumkin!", ru: 'Точно! КТО — школьники, ждущие автобус; ПРОБЛЕМА — неизвестно, когда он придёт; РЕШЕНИЕ — сайт, который показывает время. Все три на месте — можно строить!' }}
     explainWrong={{
@@ -2789,6 +2789,31 @@ const PM_FLASHCARDS = [
   { front: { uz: "Bir xil saytga kirgan odamlar nimaga qaraydi?", ru: 'На что смотрят люди, зашедшие на один и тот же сайт?' }, back: { uz: "Har kim o'ziga kerak bo'lgan narsani qidiradi", ru: 'Каждый ищет то, что нужно именно ему' }, note: { uz: "shuning uchun avval asosiy auditoriya tanlanadi", ru: 'поэтому сначала выбирают основную аудиторию' } },
   { front: { uz: "Kuchli sayt nimadan boshlanadi?", ru: 'С чего начинается сильный сайт?' }, back: { uz: 'Kichik va aniq auditoriyadan', ru: 'С небольшой и конкретной аудитории' }, note: { uz: "Facebook ham shunday boshlagan", ru: 'Facebook начинал так же' } },
 ];
+// F-0803-13/14: KARTA JAVOBI UZUNLIKKA MOSLASHADI.
+// Muammo edi: `.fc-tag` hamma javobga bir xil katta monoshrift berardi — u bir so'zlik javob
+// (`let`, `=`, `string`) uchun tanlangan o'lcham. Uzun javob 2-3 qatorga bo'linib, qat'iy
+// balandlikdagi kartaga sig'masdi va izoh pastki chetga yopishib qolardi.
+// Yechim: (1) uzunlik bo'yicha 4 pog'onali o'lcham · (2) bitta kod-tokeni — mono,
+// gap — Manrope (o'qishga qulay, ~25% tor) · (3) gap ichidagi kod so'zlari mono qoladi.
+const FC_CODE_WORDS = /\b(let|const|var|string|number|boolean|true|false|null|undefined|function|return|for|while|if|else)\b/g;
+const FC_VOCAB = new Set(['let', 'const', 'var', 'string', 'number', 'boolean', 'true', 'false', 'null', 'undefined', 'function', 'return', 'for', 'while', 'if', 'else']);
+// Kodmi yoki so'zmi? Monoshrift FAQAT kodga: lug'atdagi kalit so'z yoki kod-belgisi bo'lgan
+// token. «o'zgaruvchi» kabi o'zbekcha atama — gap, u Manrope bilan chiroyliroq va tor chiqadi.
+const fcIsCode = (s) => FC_VOCAB.has(s.toLowerCase()) || /[=(){};.[\]<>+*/%!&|-]/.test(s);
+const fcTier = (s) => (s.length <= 8 ? 't1' : s.length <= 16 ? 't2' : s.length <= 32 ? 't3' : 't4');
+const fcAnswer = (raw) => {
+  const s = String(raw ?? '');
+  const oneToken = !/\s/.test(s) && fcIsCode(s);        // `let`, `const`, `=`, `string` — kod tokeni
+  const cls = `fc-tag ${fcTier(s)} ${oneToken ? 'mono-all' : 'prose'}`;
+  if (oneToken) return <span className={cls}>{s}</span>;
+  const parts = s.split(FC_CODE_WORDS);                 // gap: kod so'zlari mono bo'lakda qoladi
+  return (
+    <span className={cls}>
+      {parts.map((p, i) => (i % 2 === 1 ? <span key={i} className="fc-kw">{p}</span> : p))}
+    </span>
+  );
+};
+
 function Flashcards({ cards }) {
   const [queue, setQueue] = useState(() => cards.map((_, i) => i));
   const [flipped, setFlipped] = useState(false);
@@ -2821,7 +2846,7 @@ function Flashcards({ cards }) {
         <div className={`fc-fly ${exiting === 'knew' ? 'out-knew' : ''} ${exiting === 'again' ? 'out-again' : ''}`} key={swapRef.current}>
         <div className={`fc-card ${flipped ? 'flip' : ''}`} onClick={() => !flipped && !exiting && setFlipped(true)} role="button" tabIndex={0}>
           <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span><span className="fc-cue">{tr({ uz: "Javobni o'ylang 🤔", ru: 'Подумайте над ответом 🤔' })} <span className="fc-tap">{tr({ uz: 'bosing', ru: 'нажмите' })}</span></span></div>
-          <div className="fc-face fc-back"><span className="fc-tag">{tr(card.back)}</span>{card.note && <span className="fc-note">{tr(card.note)}</span>}</div>
+          <div className="fc-face fc-back">{fcAnswer(tr(card.back))}{card.note && <span className="fc-note">{tr(card.note)}</span>}</div>
         </div>
         </div>
       </div>
@@ -3539,7 +3564,7 @@ export default function PmLesson1({ lang: langProp, onFinished }) {
         .btn-soft:hover:not(:disabled) { box-shadow: 0 6px 14px -5px rgba(${T.shadowBase},0.2); }
 
         /* === OPSIYALAR === */
-        .option { background: ${T.paper}; cursor: pointer; transition: all 0.2s; font-family: 'Manrope', sans-serif; font-weight: 500; text-align: left; border-radius: 12px; width: 100%; border: none; color: ${T.ink}; box-shadow: 0 6px 16px -7px rgba(${T.shadowBase},0.16); }
+        .option { background: ${T.paper}; cursor: pointer; transition: all 0.2s; font-family: 'Manrope', sans-serif; font-weight: 500; line-height: 1.45; text-align: left; border-radius: 12px; width: 100%; border: none; color: ${T.ink}; box-shadow: 0 6px 16px -7px rgba(${T.shadowBase},0.16); }
         .option:hover:not(:disabled) { background: #FBFAFE; transform: translateY(-1px); box-shadow: 0 12px 24px -8px rgba(${T.shadowBase},0.22); }
         .option:disabled { cursor: default; }
         .option-correct { background: ${T.successSoft} !important; color: ${T.success} !important; box-shadow: 0 8px 22px -8px rgba(18,169,104,0.32) !important; }
@@ -3579,6 +3604,7 @@ export default function PmLesson1({ lang: langProp, onFinished }) {
 
         .h-title { font-size: clamp(22px,4vw,38px); }
         .h-sub { font-size: clamp(17px,2.5vw,22px); }
+        .h-ask { font-size: clamp(19px,2.6vw,27px); line-height: 1.32; letter-spacing: -0.01em; text-wrap: balance; }
         .body { font-size: clamp(14px,1.6vw,16px); line-height: 1.5; }
         .eyebrow { font-size: clamp(11px,1.3vw,12px); letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600; }
         .small { font-size: clamp(12.5px,1.4vw,13.5px); }
@@ -3723,7 +3749,15 @@ export default function PmLesson1({ lang: langProp, onFinished }) {
         .fc-q { font-family: 'Manrope'; font-weight: 800; font-size: clamp(18px,2.8vw,23px); color: ${T.ink}; line-height: 1.3; text-wrap: balance; }
         .fc-cue { font-family: 'Manrope'; font-size: 13px; color: ${T.ink3}; }
         .fc-tap { color: ${T.accent}; font-weight: 700; }
-        .fc-tag { font-family: 'Manrope'; font-weight: 800; font-size: clamp(24px,4.5vw,34px); letter-spacing: -0.01em; text-align: center; line-height: 1.15; }
+        /* F-0803-13/14: javob uzunlikka moslashadi — 4 pog'ona + kod/gap shrift ajrimi */
+        .fc-tag { font-weight: 800; letter-spacing: -0.02em; line-height: 1.16; max-width: 100%; text-wrap: balance; overflow-wrap: anywhere; }
+        .fc-tag.mono-all { font-family: 'JetBrains Mono', monospace; }
+        .fc-tag.prose { font-family: 'Manrope', sans-serif; letter-spacing: -0.005em; }
+        .fc-tag .fc-kw { font-family: 'JetBrains Mono', monospace; font-weight: 800; }
+        .fc-tag.t1 { font-size: clamp(30px,6vw,46px); }
+        .fc-tag.t2 { font-size: clamp(24px,4.4vw,34px); }
+        .fc-tag.t3 { font-size: clamp(20px,3.4vw,26px); }
+        .fc-tag.t4 { font-size: clamp(17px,2.6vw,22px); line-height: 1.3; }
         .fc-note { font-family: 'Manrope'; font-size: 14px; opacity: 0.92; }
         .fc-actions { display: flex; gap: 10px; min-height: 48px; }
         .fc-btn { flex: 1; padding: 13px; border-radius: 13px; font-family: 'Manrope'; font-weight: 800; font-size: 15px; cursor: pointer; border: none; transition: transform .15s; }

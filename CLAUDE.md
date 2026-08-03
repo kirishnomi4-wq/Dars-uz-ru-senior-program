@@ -59,6 +59,10 @@ Yordamchi joylar: `arxiv/` (eski tarix — L1_TARIX, AVTOPILOT_CHECKPOINT, eski 
 ## 4. O'zgarmas tamoyillar (qisqa eslatma — to'liqlari PIPELINE.md 3-bo'lim)
 - Commit/push faqat buyruq bilan · Tashxis avval, yechim keyin · Bir fayl — bir muharrir ·
   esbuild har tahrirdan keyin · maks 2 QA-aylanish, keyin foydalanuvchiga eskalatsiya ·
+  **Jim-buzilish darvozasi:** `.jsx` tahrirlangan har seansda `npm run lint:jsx` — 0 topilma
+  shart. esbuild/`vite build` faqat SINTAKSISNI ko'radi; bu darvoza ma'no buzilishini tutadi
+  (CSS shablon-satri ichidagi backtik → oq ekran; bir-qatorli funksiya ichidagi `//` izoh
+  → qatorning qolgani o'chadi). Ikkalasi ham 2026-08-02 da prodga yetib borgan (F-0802-14/15) ·
   **Matn-darvozalari:** dars-matn yozishdan OLDIN `MATN_KORPUS.md` o'qiladi (taqlid-manba);
   matn tegilgan har darsdan keyin `npm run lint:til <fayl>` — 0 error bo'lmaguncha keyingi
   bosqichga o'tilmaydi (qoidalar: `til-lint-rules.json`, lug'at bilan juft o'sadi) ·
