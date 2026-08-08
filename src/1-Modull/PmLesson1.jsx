@@ -2860,6 +2860,8 @@ const PM_FLASHCARDS = [
   { front: { uz: "Facebook boshida kimlar uchun ochilgan edi?", ru: 'Для кого Facebook открыли вначале?' }, back: { uz: 'Faqat bitta universitet talabalari uchun', ru: 'Только для студентов одного университета' }, note: { uz: "tor auditoriya — kuchli boshlanish", ru: 'узкая аудитория — сильное начало' } },
   { front: { uz: "Bir xil saytga kirgan odamlar nimaga qaraydi?", ru: 'На что смотрят люди, зашедшие на один и тот же сайт?' }, back: { uz: "Har kim o'ziga kerak bo'lgan narsani qidiradi", ru: 'Каждый ищет то, что нужно именно ему' }, note: { uz: "shuning uchun avval asosiy auditoriya tanlanadi", ru: 'поэтому сначала выбирают основную аудиторию' } },
   { front: { uz: "Kuchli sayt nimadan boshlanadi?", ru: 'С чего начинается сильный сайт?' }, back: { uz: 'Kichik va aniq auditoriyadan', ru: 'С небольшой и конкретной аудитории' }, note: { uz: "Facebook ham shunday boshlagan", ru: 'Facebook начинал так же' } },
+  { front: { uz: "YECHIM qatoriga nima yoziladi?", ru: 'Что пишут в строке РЕШЕНИЕ?' }, back: { uz: "Sayt o'sha muammoni qanday yechishi", ru: 'Как сайт решает эту проблему' }, note: { uz: "shoshgan o'quvchi uchun — oldindan buyurtma sahifasi", ru: 'для спешащего ученика — страница предзаказа' } },
+  { front: { uz: "Sayt hech kimning muammosini yechmasa, nima bo'ladi?", ru: 'Что будет, если сайт не решает ничьей проблемы?' }, back: { uz: 'Unga hech kim kirmay qo\'yadi', ru: 'На него перестанут заходить' }, note: { uz: "sayt kimningdir aniq qiyinchiligi uchun quriladi", ru: 'сайт строят под чью-то конкретную трудность' } },
 ];
 // F-0803-13/14: KARTA JAVOBI UZUNLIKKA MOSLASHADI.
 // Muammo edi: `.fc-tag` hamma javobga bir xil katta monoshrift berardi — u bir so'zlik javob

@@ -966,8 +966,12 @@ const SiklZavodi = ({ count = 0, max = 5, init = 'i = 1', cond = 'i <= 5', step 
   const zeroBased = /=\s*0/.test(init);
   const boxes = Array.from({ length: n }, (_, k) => (load ? (load[k] ?? '?') : (zeroBased ? k : k + 1)));
   const overflow = cheksiz && n >= max + 3;
+  // F-0807-06: `zv-idle` — sikl HALI ISHLAMAGAN (n=0) yoki TUGAGAN paytda lenta to'xtaydi.
+  // Avval lenta har doim yugurardi — o'qish ekranlarida (s1/s4/s8/s13) ham. Endi harakat
+  // ma'noli: lenta qimirlasa — mashina ishlayapti.
+  const idle = (n === 0 || (done && !cheksiz)) && !overflow;
   return (
-    <div className={`zavod ${overflow ? 'zavod-cheksiz' : ''} ${done && !cheksiz ? 'zavod-done' : ''} ${compact ? 'zavod-sm' : ''}`}>
+    <div className={`zavod ${overflow ? 'zavod-cheksiz' : ''} ${done && !cheksiz ? 'zavod-done' : ''} ${compact ? 'zavod-sm' : ''} ${idle ? 'zv-idle' : ''}`}>
       <div className="zavod-levers">
         <div className="zv-lever zv-init"><span className="zv-lbl">{tr({ uz: 'Boshlanish', ru: 'Старт' })}</span><span className="zv-code">{init}</span></div>
         <div className="zv-lever zv-cond"><span className="zv-lbl">{whileMode ? tr({ uz: '👀 Tekshiruvchi', ru: '👀 Проверяющий' }) : tr({ uz: 'Shart', ru: 'Условие' })}</span><span className="zv-code">{cond}</span></div>
@@ -3995,9 +3999,10 @@ export default function JsLoopsLesson({ lang: langProp, onFinished, onPractice }
         /* === 🏭 SIKL ZAVODI (konveyer mashina skeleti) === */
         .zavod { position: relative; display: flex; flex-direction: column; gap: 12px; background: linear-gradient(160deg, #FFFFFF, #F1EDE4); border: 1.5px solid ${T.line}; border-radius: 18px; padding: 16px; box-shadow: 0 12px 30px -14px rgba(${T.shadowBase},0.22); transition: border-color 0.3s, box-shadow 0.3s, background 0.3s; }
         .zavod-sm { padding: 12px; gap: 9px; }
-        .zavod.zavod-cheksiz { border-color: ${T.accent}; background: linear-gradient(160deg, #FFF3EF, #FFE1D7); box-shadow: 0 0 0 3px ${T.accentSoft}, 0 14px 34px -12px rgba(255,79,40,0.4); animation: zv-shake 0.5s ease-in-out infinite; }
-        @keyframes zv-shake { 0%,100% { transform: translateX(0); } 25% { transform: translateX(-3px); } 75% { transform: translateX(3px); } }
-        @media (prefers-reduced-motion: reduce) { .zavod.zavod-cheksiz { animation: none; } }
+        /* F-0807-05: panel silkinishi (zv-shake) OLIB TASHLANDI. Bu ekranda o'quvchi kodni
+           diqqat bilan o'qib xatoni (i--) topishi kerak — to'xtovsiz harakat o'qishga
+           raqobat qilardi. Xavf-signali qizil ramka, fon va ⚠️ yozuv bilan beriladi. */
+        .zavod.zavod-cheksiz { border-color: ${T.accent}; background: linear-gradient(160deg, #FFF3EF, #FFE1D7); box-shadow: 0 0 0 3px ${T.accentSoft}, 0 14px 34px -12px rgba(255,79,40,0.4); }
         .zavod.zavod-done { border-color: ${T.success}; background: linear-gradient(160deg, #FFFFFF, #EAF6EE); }
         .zavod-levers { display: flex; gap: 8px; }
         .zv-lever { position: relative; flex: 1; display: flex; flex-direction: column; align-items: center; gap: 3px; border-radius: 11px; padding: 10px 6px 8px; text-align: center; overflow: hidden; }
@@ -4026,6 +4031,9 @@ export default function JsLoopsLesson({ lang: langProp, onFinished, onPractice }
         .zv-belt-arrow:nth-child(3) { animation-delay: 0.36s; }
         @keyframes zv-arrow-flow { 0%,100% { opacity: 0.3; } 50% { opacity: 1; } }
         .zavod-cheksiz .zv-belt-arrow { color: ${T.accent}; animation-duration: 0.42s; }
+        /* F-0807-06: sikl ishlamayotgan paytda lenta ham turadi (o'qish ekranlari tinch) */
+        .zavod.zv-idle .zavod-belt { animation: none; }
+        .zavod.zv-idle .zv-belt-arrow { animation: none; opacity: 0.28; }
         .zavod-done .zv-belt-arrow { animation-play-state: paused; opacity: 0.55; }
         .zavod-controls { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
         .zv-start { font-family: 'Manrope'; font-weight: 800; font-size: 14px; color: #FFFFFF; background: linear-gradient(180deg, #2FA968, #1F7A4D); border: none; border-radius: 12px; padding: 12px 20px; cursor: pointer; box-shadow: 0 8px 18px -6px rgba(31,122,77,0.55), inset 0 1px 0 rgba(255,255,255,0.25); transition: transform 0.12s, box-shadow 0.2s, filter 0.2s; }
@@ -4037,7 +4045,10 @@ export default function JsLoopsLesson({ lang: langProp, onFinished, onPractice }
         .zv-box { position: relative; display: inline-flex; align-items: center; gap: 3px; font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 700; color: ${T.ink}; background: ${T.paper}; border-radius: 8px; padding: 4px 8px; box-shadow: 0 3px 8px -3px rgba(${T.shadowBase},0.25); transform-origin: top center; animation: zv-box-drop 0.5s cubic-bezier(.34,1.56,.5,1) both; }
         .zv-box b { color: ${T.accent}; }
         @keyframes zv-box-drop { 0% { opacity: 0; transform: translateY(-24px) scale(0.55); } 55% { opacity: 1; transform: translateY(3px) scale(1.1); } 75% { transform: translateY(-1px) scale(0.96); } 100% { transform: translateY(0) scale(1); } }
-        .zavod-cheksiz .zv-box { animation: zv-box-jitter 0.34s ease-in-out infinite; }
+        /* F-0807-05: avval SAKKIZTA qutining hammasi titrardi (8 ta cheksiz animatsiya).
+           Endi faqat OXIRGI IKKITASI — ya'ni «hozir kelayotgani». Ma'no o'sha: ishlab
+           chiqarish to'xtamayapti; lekin ko'z bir joyga qaraydi, o'qish buzilmaydi. */
+        .zavod-cheksiz .zv-box:nth-last-child(-n+2) { animation: zv-box-jitter 0.34s ease-in-out infinite; }
         @keyframes zv-box-jitter { 0%,100% { transform: translateY(0) rotate(-2.5deg); } 50% { transform: translateY(-2px) rotate(2.5deg); } }
         .zavod-done .zavod-tablo { animation: zv-ding 0.75s ease-out; }
         @keyframes zv-ding { 0% { box-shadow: inset 0 2px 8px rgba(0,0,0,0.55), 0 0 0 0 rgba(125,209,129,0), 0 5px 14px -7px rgba(0,0,0,0.45); } 28% { box-shadow: inset 0 2px 8px rgba(0,0,0,0.55), 0 0 0 7px rgba(125,209,129,0.55), 0 5px 14px -7px rgba(0,0,0,0.45); } 100% { box-shadow: inset 0 2px 8px rgba(0,0,0,0.55), 0 0 0 0 rgba(125,209,129,0), 0 5px 14px -7px rgba(0,0,0,0.45); } }

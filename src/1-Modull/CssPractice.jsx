@@ -1370,6 +1370,7 @@ const SCREEN_META = [
   { id: 's14', type: 'test',        template: 'MCScreen', scored: true,  scope: 'module-mikro' },
   { id: 's15', type: 'exploration', template: 'custom',   scored: false, scope: null },
   { id: 's16', type: 'test',        template: 'custom',   scored: true,  scope: 'final' },
+  { id: 'spodium', type: 'podium',  template: 'custom',   scored: false, scope: null },
   { id: 'sflash', type: 'flashcard', template: 'custom',  scored: false, scope: null },
   { id: 's17', type: 'summary',     template: 'custom',   scored: false, scope: null }
 ];
@@ -2552,6 +2553,8 @@ const CSS_FLASHCARDS = [
   { front: { uz: "Element ICHIDAGI bo'shliq (kontent bilan chet orasida)?", ru: 'Отступ ВНУТРИ элемента (между контентом и краем)?' }, back: 'padding', note: { uz: "ichki bo'shliq — masalan: padding: 10px 20px", ru: 'внутренний отступ — например: padding: 10px 20px' } },
   { front: { uz: "Elementlar ORASIDAGI (tashqi) bo'shliq?", ru: 'Отступ МЕЖДУ элементами (внешний)?' }, back: 'margin', note: { uz: "tashqi bo'shliq — element chetidan tashqariga", ru: 'внешний отступ — наружу от края элемента' } },
   { front: { uz: "Kartani ekran markaziga qo'yuvchi qiymat?", ru: 'Значение, ставящее карточку в центр экрана?' }, back: 'margin: 0 auto', note: { uz: "max-width bilan birga — kartani o'rtaga", ru: 'вместе с max-width — карточка в середину' } },
+  { front: { uz: "CSS qoidasida h1 va color qanday ataladi?", ru: 'Как называются h1 и color в правиле CSS?' }, back: { uz: 'Selektor va xususiyat', ru: 'Селектор и свойство' }, note: { uz: "h1 — kimga beriladi, color — nima beriladi", ru: 'h1 — кому задаётся, color — что задаётся' } },
+  { front: { uz: "Menyu havolalarini gorizontal markazga qaysi xususiyat qo'yadi?", ru: 'Какое свойство ставит ссылки меню в горизонтальный центр?' }, back: 'justify-content: center', note: { uz: 'display: flex bilan birga ishlaydi', ru: 'работает вместе с display: flex' } },
 ];
 
 // F-0803-13/14: KARTA JAVOBI UZUNLIKKA MOSLASHADI.
@@ -3388,6 +3391,149 @@ const PRACTICE_AFTER = {
   12: { task: TASK_BUTTON, starter: '' },
 };
 
+// ===== 🏆 «BUGUNGI G'OLIBLARIMIZ» — PODIUM / STATISTIKA SAHIFASI =====
+// Etalon: CssLesson1.jsx ScreenPodium + PmUserStoryLesson (solo-ko'rinishda nishonlar).
+// Jonli darsda — guruh reytingi (🥇🥈🥉); mustaqil o'qishda — shaxsiy natija + nishonlar.
+// Podium yorliqlari (scored ekran indeksi -> qisqa mavzu nomi)
+const PODIUM_LABELS = {
+  4:  { uz: 'color — matn rangi',        ru: 'color — цвет текста' },
+  6:  { uz: 'text-align — joylashuv',    ru: 'text-align — выравнивание' },
+  8:  { uz: 'display: flex — qator',     ru: 'display: flex — ряд' },
+  11: { uz: "padding — ichki bo'shliq",  ru: 'padding — внутренний отступ' },
+  14: { uz: 'justify-content — markaz',  ru: 'justify-content — центр' },
+  16: { uz: 'Yakuniy amaliy (CSS yozish)', ru: 'Финальная практика (написать CSS)' }
+};
+
+const ScreenPodium = ({ screen, answers, achievements, onNext, onPrev }) => {
+  const gate = useContext(LiveGateCtx) || {};
+  const live = gate.live;
+  const isLive = !!(live && (live.mode === 'student' || live.mode === 'mentor') && live.pin);
+  const isMentorL = !!(live && live.mode === 'mentor');
+  const livePin = live ? live.pin : null;
+  const [players, setPlayers] = useState([]);
+  const [rows, setRows] = useState([]);
+  const [loaded, setLoaded] = useState(false);
+  useEffect(() => {
+    if (!isLive || !livePin) return;
+    let on = true, t = null;
+    const tick = async () => {
+      try {
+        const [p, a] = await Promise.all([livePlayers(livePin), liveAnswers(livePin)]);
+        if (on) { setPlayers(p); setRows(a); setLoaded(true); }
+      } catch {}
+      if (on) t = setTimeout(tick, 3000); // kech qo'shilganlar ham jonli ko'rinadi
+    };
+    tick();
+    return () => { on = false; clearTimeout(t); };
+  }, [isLive, livePin]);
+
+  const totalQ = SCORED_IDX.length;
+  // FAQAT baholanadigan testlar hisoblanadi — praktika «tugatdi» signali (500+) reytingga aralashmaydi
+  const board = players.map(p => {
+    const mine = rows.filter(a => a.player_id === p.id && SCORED_IDX.includes(a.screen_idx));
+    const okCount = mine.filter(a => a.correct).length;
+    const time = mine.reduce((s, a) => s + (a.elapsed_ms || 0), 0);
+    return { id: p.id, nickname: p.nickname, okCount, time };
+  }).sort((x, y) => y.okCount - x.okCount || x.time - y.time);
+  const fmtT = (ms) => `${(ms / 1000).toFixed(1)}s`;
+  const top3 = board.slice(0, 3);
+  const myIdx = live && live.playerId ? board.findIndex(b => b.id === live.playerId) : -1;
+  const selfCorrect = SCORED_IDX.filter(i => answers[i]?.correct).length;
+  const achN = achievements ? achievements.size : 0;
+  const achTotal = Object.keys(ACHIEVEMENTS).length;
+
+  // 🏅 Nishonlar bloki — mentor proyektorida ko'rsatilmaydi (u sinf ekrani, shaxsiy natija emas)
+  const Badges = () => (
+    <div className="card ach-coll fade-up d2">
+      <div className="card-lbl" style={{ color: T.accent }}>🏅 {tr({ uz: 'Nishonlaringiz', ru: 'Ваши награды' })} — {achN}/{achTotal}</div>
+      <div className="ach-grid">
+        {Object.entries(ACHIEVEMENTS).map(([id, a]) => { const got = !!(achievements && achievements.has(id)); return (
+          <div key={id} className={`ach-badge ${got ? 'got' : 'locked'}`} title={tr(a.desc)}>
+            <span className="ach-badge-ic">{got ? a.icon : '🔒'}</span>
+            <span className="ach-badge-name">{a.name}</span>
+            {got && <span className="ach-badge-desc">{tr(a.desc)}</span>}
+          </div>
+        ); })}
+      </div>
+    </div>
+  );
+
+  return (
+    <Stage eyebrow={tr({ uz: 'Natijalar', ru: 'Результаты' })} screen={screen} narrow navContent={<><NavBack onPrev={onPrev} /><NavNext label={tr({ uz: 'Davom etish', ru: 'Продолжить' })} onClick={onNext} /></>}>
+      <div className="screen" style={{ gap: 'clamp(14px,2.2vw,20px)' }}>
+        <div className="head"><h2 className="title h-title fade-up">{isLive
+          ? tr({ uz: <>Bugungi <span className="italic" style={{ color: T.accent }}>g'oliblarimiz</span></>, ru: <>Наши <span className="italic" style={{ color: T.accent }}>победители</span> сегодня</> })
+          : tr({ uz: <>Bugungi <span className="italic" style={{ color: T.accent }}>natijangiz</span></>, ru: <>Ваш <span className="italic" style={{ color: T.accent }}>результат</span> сегодня</> })}</h2></div>
+        {!isLive ? (
+          <div className="fade-up" style={{ display: 'flex', flexDirection: 'column', gap: 16, alignItems: 'center' }}>
+            <ScoreRing correct={selfCorrect} total={totalQ} />
+            <div style={{ width: '100%' }}><Badges /></div>
+            <div className="frame-soft" style={{ maxWidth: 480 }}><p className="body" style={{ margin: 0 }}>{tr({ uz: 'Siz mustaqil rejimdasiz. Jonli darsda bu yerda butun guruh reytingi — 🥇🥈🥉 podium chiqadi.', ru: 'Вы в самостоятельном режиме. На живом уроке здесь появится рейтинг всей группы — подиум 🥇🥈🥉.' })}</p></div>
+          </div>
+        ) : !loaded ? (
+          <p className="mono small fade-up" style={{ color: T.ink2 }}>{tr({ uz: 'Natijalar yuklanmoqda…', ru: 'Результаты загружаются…' })}</p>
+        ) : board.length === 0 ? (
+          <div className="frame-soft fade-up"><p className="body" style={{ margin: 0 }}>{tr({ uz: "Bu sessiyaga hali hech kim qo'shilmagan.", ru: 'К этой сессии пока никто не подключился.' })}</p></div>
+        ) : (
+          <>
+            <Confetti />
+            {/* Podium — 2-1-3 tartibida (o'rtada g'olib, balandroq) */}
+            <div className="pod-stage fade-up">
+              {[1, 0, 2].map(rank => {
+                const b = top3[rank];
+                return (
+                  <div key={rank} className={`pod-col pod-${rank + 1} ${b && live.playerId === b.id ? 'me' : ''}`}>
+                    <span className="pod-medal">{['🥇', '🥈', '🥉'][rank]}</span>
+                    <span className="pod-name">{b ? b.nickname : '—'}</span>
+                    {b && <span className="pod-score mono">{b.okCount}/{totalQ} · {fmtT(b.time)}</span>}
+                    <div className="pod-bar" />
+                  </div>
+                );
+              })}
+            </div>
+            {myIdx >= 0 && <p className="pod-my fade-up">{tr({ uz: <>Siz — <b>{myIdx + 1}-o'rin</b> ({board[myIdx].okCount}/{totalQ} to'g'ri)</>, ru: <>Вы — <b>{myIdx + 1}-е место</b> ({board[myIdx].okCount}/{totalQ} верных)</> })}</p>}
+            <div className="card fade-up d1">
+              <div className="card-lbl" style={{ color: T.accent }}>🏆 {tr({ uz: "To'liq reyting", ru: 'Полный рейтинг' })}</div>
+              <div className="pod-list">
+                {board.map((b, i) => (
+                  <div key={b.id} className={`pod-row ${live.playerId === b.id ? 'me' : ''}`}>
+                    <span className="mono pod-rank">{i + 1}</span>
+                    <span className="pod-row-name">{b.nickname}</span>
+                    <span className="pod-row-dots">{SCORED_IDX.map(q => { const a = rows.find(r => r.player_id === b.id && r.screen_idx === q); return <span key={q} className={`pod-dot ${a ? (a.correct ? 'ok' : 'bad') : ''}`} title={tr(PODIUM_LABELS[q])} />; })}</span>
+                    <span className="mono pod-row-score">{b.okCount}/{totalQ}</span>
+                    <span className="mono pod-row-time">{fmtT(b.time)}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            {!isMentorL && <Badges />}
+            {/* Savollar bo'yicha — qaysi mavzu qiyin bo'ldi */}
+            <div className="card fade-up d3">
+              <div className="card-lbl" style={{ color: T.blue }}>📊 {tr({ uz: "Savollar bo'yicha", ru: 'По вопросам' })}</div>
+              <div className="pod-qstats">
+                {SCORED_IDX.map(q => {
+                  const qa = rows.filter(r => r.screen_idx === q);
+                  const okN = qa.filter(r => r.correct).length;
+                  const pct = qa.length ? Math.round((okN / qa.length) * 100) : 0;
+                  const hard = qa.length >= 2 && pct < 50;
+                  return (
+                    <div key={q} className="qstat-row">
+                      <span className="qstat-lbl">{PODIUM_LABELS[q] ? tr(PODIUM_LABELS[q]) : `#${q}`}{hard && ' ⚠️'}</span>
+                      <span className="mstats-track"><span className="mstats-fill" style={{ width: `${pct}%`, background: hard ? T.accent : T.success }} /></span>
+                      <span className="mono qstat-n">{okN}/{qa.length}</span>
+                    </div>
+                  );
+                })}
+              </div>
+              {isMentorL && <p className="small" style={{ margin: '10px 0 0', color: T.ink2 }}>{tr({ uz: '⚠️ belgili savollar — sinf qiynalgan mavzular. Qayta tushuntirish tavsiya etiladi.', ru: 'Вопросы со значком ⚠️ — темы, где класс споткнулся. Рекомендуем объяснить их ещё раз.' })}</p>}
+            </div>
+          </>
+        )}
+      </div>
+    </Stage>
+  );
+};
+
 // Javob kaliti (INLINE_KEYS) — mavjud test correctIdx'lari (⚡ Jonli tekshiradi/tasdiqlaydi).
 // s16 = -1 sentinel (yakuniy amaliy — CSS qo'lda yoziladi, server picked bilan solishtirmaydi).
 const INLINE_KEYS = { s4: 0, s6: 3, s8: 2, s11: 1, s14: 3, s16: -1 };
@@ -3522,7 +3668,8 @@ export default function CssPractice({ lang: langProp, onFinished, onPractice }) 
     if (typeof onFinished === 'function') onFinished(payload);
   };
 
-  const screens = [Screen0, Screen1, Screen2, Screen3, Screen4, Screen5, Screen6, Screen7, Screen8, Screen9, Screen10, Screen11, Screen12, Screen13, Screen14, Screen15, Screen16, ScreenFlashcards, Screen17];
+  // Tartib SCREEN_META bilan AYNAN bir xil: …s16 (yakuniy amaliy) → spodium (g'oliblar) → sflash → s17 (yakun)
+  const screens = [Screen0, Screen1, Screen2, Screen3, Screen4, Screen5, Screen6, Screen7, Screen8, Screen9, Screen10, Screen11, Screen12, Screen13, Screen14, Screen15, Screen16, ScreenPodium, ScreenFlashcards, Screen17];
   const Current = screens[screen];
   return (
     <LangContext.Provider value={lang}>
@@ -3649,6 +3796,36 @@ export default function CssPractice({ lang: langProp, onFinished, onPractice }) 
         .mstats-warn.mstats-warn { margin: 0; font-family: 'Manrope'; font-weight: 600; font-size: 13px; color: ${T.accent}; background: ${T.accentSoft}; border-radius: 10px; padding: 9px 12px; }
         .mstats-wait { margin: 0; font-size: 12.5px; color: ${T.ink3}; font-style: italic; }
         @media (max-width: 560px) { .mstats-count { min-width: 78px; font-size: 11px; } }
+
+        /* === 🏆 «BUGUNGI G'OLIBLARIMIZ» — PODIUM / STATISTIKA SAHIFASI === */
+        .pod-stage { display: flex; align-items: flex-end; justify-content: center; gap: clamp(10px,2vw,20px); padding-top: 8px; }
+        .pod-col { display: flex; flex-direction: column; align-items: center; gap: 5px; width: clamp(88px,22vw,150px); }
+        .pod-medal { font-size: clamp(26px,4vw,38px); line-height: 1; }
+        .pod-name { font-family: 'Manrope'; font-weight: 800; font-size: clamp(13px,1.8vw,16px); color: ${T.ink}; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .pod-score { font-size: clamp(11px,1.4vw,12.5px); color: ${T.ink2}; }
+        .pod-bar { width: 100%; border-radius: 10px 10px 0 0; background: linear-gradient(180deg, ${T.accent}, ${T.accent}BB); box-shadow: 0 8px 20px -8px rgba(${T.shadowBase},0.35); }
+        .pod-1 .pod-bar { height: clamp(74px,11vw,120px); }
+        .pod-2 .pod-bar { height: clamp(52px,8vw,86px); background: linear-gradient(180deg, ${T.ink2}, ${T.ink3}); }
+        .pod-3 .pod-bar { height: clamp(38px,6vw,62px); background: linear-gradient(180deg, #C98A3D, #DDA55C); }
+        .pod-col.me .pod-name { color: ${T.accent}; }
+        .pod-my { margin: 0; text-align: center; font-family: 'Manrope'; font-size: 14px; color: ${T.ink2}; }
+        .pod-my b { color: ${T.accent}; }
+        .pod-list { display: flex; flex-direction: column; gap: 4px; max-height: 300px; overflow: auto; }
+        .pod-row { display: flex; align-items: center; gap: 10px; padding: 8px 10px; border-radius: 10px; background: rgba(${T.shadowBase},0.04); }
+        .pod-row.me { background: ${T.accentSoft}; outline: 1.5px solid ${T.accent}55; }
+        .pod-rank { min-width: 22px; font-size: 12px; font-weight: 700; color: ${T.ink3}; }
+        .pod-row-name { flex: 1; min-width: 0; font-family: 'Manrope'; font-weight: 700; font-size: 14px; color: ${T.ink}; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .pod-row-dots { display: flex; gap: 4px; }
+        .pod-dot { width: 9px; height: 9px; border-radius: 50%; background: rgba(${T.shadowBase},0.15); }
+        .pod-dot.ok { background: ${T.success}; }
+        .pod-dot.bad { background: ${T.accent}; }
+        .pod-row-score { min-width: 34px; text-align: right; font-size: 12.5px; font-weight: 700; color: ${T.ink}; }
+        .pod-row-time { min-width: 46px; text-align: right; font-size: 11.5px; color: ${T.ink3}; }
+        .pod-qstats { display: flex; flex-direction: column; gap: 8px; }
+        .qstat-row { display: flex; align-items: center; gap: 10px; }
+        .qstat-lbl { min-width: clamp(120px,22vw,190px); font-family: 'Manrope'; font-weight: 600; font-size: 12.5px; color: ${T.ink2}; }
+        .qstat-n { min-width: 40px; text-align: right; font-size: 12px; color: ${T.ink2}; }
+        @media (prefers-reduced-motion: reduce) { .pod-bar { transition: none; } }
 
         .chip { font-family: 'Manrope', sans-serif; font-weight: 600; font-size: clamp(13px,1.6vw,15px); display: inline-flex; align-items: center; gap: 8px; padding: 9px 15px; border-radius: 99px; border: none; background: ${T.paper}; color: ${T.ink}; cursor: pointer; transition: all 0.18s; box-shadow: 0 4px 12px -5px rgba(${T.shadowBase},0.18); }
         .chip:hover:not(:disabled) { transform: translateY(-1px); }

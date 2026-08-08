@@ -894,3 +894,127 @@ UNCOMMITTED (deploy build'dan qilindi, git'ga bog'liq emas).
 **URL (yangi loyiha):** https://coddycamp-1-2-modul-senior.vercel.app — `azizbek10` jamoasida, production. Mavjud loyihalarga (`coddycamp-1modul` va b.) TEGILMADI: deploy papka ICHIDAN turib bajarildi, shuning uchun ildizdagi `.vercel` havolasi ishlatilmadi.
 **Tekshiruv:** bosh URL 200 + to'g'ri `<title>` · bosh chunk va 5 dars-chunki 200 · headless-render: katalog to'liq chiqdi (2 modul, chip-ranglar, UZ/RU tugmasi) · `#/m1-02` PM darsi (binafsha PM-studia) va `#/m2-08` praktika (CodeStrike to'q sariq) ochildi, uy-tugmasi + UZ/RU joyida · RU qatlami 28 chunkning HAMMASIDA (dars boshiga ~17–21 ming kirill belgi), katalog matni ham RU («Модули 1 и 2»).
 **Commit YO'Q** — buyruqsiz. Kuzatilmagan fayllar: `LMS_INTEGRATSIYA_TZ.md/.pdf`, `.gitignore` o'zgarishi.
+
+## 2026-08-07 — F-0807-01: m2-01 (JsIntro) — BAJARBOT/LAVASH IPI OLIB TASHLANDI, ESKI (v16) MISOL-OLAMI TIKLANDI — ✅
+**Buyruq:** foydalanuvchi eski (v16) nusxalarni `src/2-moodull eski/` ga tashladi va: «robot lavash ipini olib tashlaymiz, eski papkadagidek qilamiz — mayli animatsiyasi hozirgilani zo'r bo'la turadi, eskilarning logikasini olamiz». JsIntrodan boshlash tasdiqlandi.
+**Tashxis (kodga tegilmasdan):** sahifa TARTIBI (`SCREEN_META`) eskisi bilan AYNAN bir xil ekan — «pagelarni qayta tartiblash» kerak emas edi. Farq faqat ekran ICHIDAGI misol-olamda + 2 ta o'chirilgan ekranda. Shu tashxis ishni ~5 200 satrlik blanket-revertdan 6 ekranlik nuqtali ishga tushirdi.
+**Ko'rik-vositasi:** `eski.html` + `src/eski/` (EskiApp/EskiMain + 5 eski darsning ko'chirmasi) — har dars uchun eski↔hozirgi yonma-yon, `#/eski-intro` / `#/yangi-intro`. Eski asl fayllar `src/2-moodull eski/` da TEGILMAGAN.
+**Tiklangan misol-olam (eskidan so'zma-so'z):**
+· `s7` Ketma-ketlik: lavash 4 qadami → **ertalabki tartib** (uyg'on·yuvin·kiyin·ko'chaga); mentor — «tuxumni pishirishdan oldin yorasizmi?»; fail — «Pijamada ko'chada qoldingiz!»
+· `s8` Shartlar: sous-sensori → **yomg'ir/soyabon** (`wx-fx`/`sun-fx` CSS hozirgi faylda o'lik yotardi — qayta ishga tushdi). **Yon-foyda:** `s9` testi allaqachon «AGAR yomg'ir bo'lsa, soyabon ol» deb so'rardi — dars↔test nomuvofiqligi yopildi.
+· `s10` Sikllar: robot xamir aralashtirish → **murabbiy «o'tirib-tur, 10 marta!»** (🏋️)
+· `s13` Amaliyot: BAJARBOTga dastur → **o'z ertalabki algoritmi** (RUN step-executor SAQLANDI)
+· `s14` **QAYTA TIKLANDI** — «AI algoritm yozdi, xatoni toping» Debugging ekrani (hozirgi versiyada butunlay o'chirilgan edi; `ai-card`/`takeaway` CSS'lari faylda turgan edi)
+· `s15` Yakuniy: lavash 5 bloki → **ertalabki 4 qadam** (scored + jonli `submitAnswer` relsi saqlandi)
+· `s5` Sistemalar: 4-misol `bajarbot` olindi → eskidagidek 3 misol (`done >= 3`)
+· QUIZ_BANK: «Lavash tayyorlash tartibi» → «Ertalabki tartib — uyg'on, yuvin, kiyin»
+**Saqlangan (foydalanuvchi so'raganidek — «animatsiyasi zo'r bo'la turadi»):** RUN step-executor, `cc-active` qadam-yonishi, `kx-*` sahna animatsiyalari (kx-work/nod/shake/drop/serve/smoke), CommandConsole, flashcard (`sflash`), stats (`s15b`), progress-saqlov, to'liq UZ-RU (tiklangan matnlarning RUSCHASI YANGIDAN yozildi — eski fayllarda i18n YO'Q edi: `tr({` = 0).
+**Refaktor:** `KitchenStage` (robot+peshtaxta) → **`SahnaStage`** (aktyor prop bilan: idle/run/done/fail emojilari; `idleCap`/`failIcon` proplari) · `BAJARBOT_TYPE_*` → `BLOK_TYPE_*` · `CommandConsole` sarlavhasi prop bo'ldi (default «Mening algoritmim») · `.kx-robot` → `.kx-actor` · o'lik `.kx-hand`/`@keyframes kx-stir` o'chirildi (element yo'q).
+**🔴 TUTILGAN JIM-BUZILISH:** `Q_LABELS` ekran INDEKSI bilan kalitlangan (`15: '5 — …'`); `s14` 15-o'ringa qo'shilgach `s15` 16 ga siljidi — podium savol-yorlig'i noto'g'ri ekranga bog'lanib qolardi. `15` → `16` tuzatildi. `RECAPS` kalitlari (4,6,10,13) qo'shilgan ekrandan OLDIN — siljimadi. `SCORED_IDX` `SCREEN_META` dan hosil bo'ladi — o'zi to'g'rilandi.
+**Darvozalar:** esbuild ✅ · `SCREEN_META` (20) ↔ `screens[]` (20) dasturiy solishtirildi ✅ · `lint:jsx` — `src/2-Modull/JsIntroLesson.jsx` 0 topilma ✅ (qolgan 20 topilma faqat eski NUSXALARDA: 10 fayl × 2, v16 qonun-54 dan oldingi) · `lint:til` 0 error / 4 warn (2 tasi HEAD'da ham bor edi; 2 tasi «retsept» — PM-qoidasi, texnik darsda eski tasdiqlangan matn) · `npm run smoke` — 109 dars, 0 nuqson ✅ · playwright 20/20 ekran: hammasi renderlandi, konsol xatosi 0, `BAJARBOT|lavash` — 0 topilma ✅
+**Qolgan navbat:** JsVars (s2/s3/s13/s15 «omborchi») · JsLoops (o'chirilgan `s15` «Yakuniy · amaliy») · JsConditions — **tegilmaydi** (matni eskisi bilan aynan bir xil) · JsFunctions — foydalanuvchi qarori kutilmoqda (o'yin olami 2026-08-03 da o'zi tanlagan, 108-qonun).
+**Commit YO'Q** — buyruqsiz. UNCOMMITTED.
+
+## 2026-08-07 — F-0807-02: m2-01 (JsIntro) — SAHNA AKTYORI, YAKUN-QATORI, KALIT-SO'ZLAR OLIB TASHLANDI + 10-SAHIFA AFFORDANSI — ✅
+**Kelib chiqishi:** foydalanuvchi F-0807-01 dan keyin darsni ochib ko'rdi. Rasm: `src/2-Modull/image.png` (9-sahifa, sahna tepasidagi figura qizil X bilan belgilangan).
+**Topilmalar va tuzatishlar:**
+· **9/15/17-sahifa — sahna aktyori RAD.** «Ertalabki sahna»da tepada alohida odam-emoji (RUN paytida yuguradigan) turardi, pastda esa qadam-emojilari yig'ilardi — ikkinchi figura ortiqcha yuk. `SahnaStage` dan `kx-actor` elementi + `SAHNA_ACTOR`/`actor` propi butunlay olib tashlandi (bitta komponent — uchala sahifadan birdan ketdi). O'lik CSS ham: `.kx-actor`, `@keyframes kx-work/kx-shake/kx-nod`.
+· **20-sahifa — «Bugungi asosiy fikr» qatori RAD** (F-0802-06 da qo'shilgan edi). Sabab: pastdagi «Endi siz bilasiz» ro'yxati o'sha fikrni allaqachon aytadi — takror yopuvchi gap.
+· **20-sahifa — «💡 Kalit so'zlar (takrorlash)» akkordeoni RAD.** Flashcard ekrani (`sflash`) o'sha atamalarni faolroq takrorlaydi; yakunda ikkinchi lug'at ortiqcha. Orqasidagi o'lik kod tozalandi: `GLOSSARY`, `glossRef`, `toggleGloss`, `open`/`setOpen`, `isNarrow`, `.gloss/.gloss-head/.gloss-body` CSS.
+· 🔴 **10-sahifa — YOLG'ON AFFORDANS (tashxis).** Foydalanuvchi: «ob-havoni almashtiring deyapmiz, ammo nimani bosishni bilmay qoldim; "Soyabon olindi" tugmaday turibdi, ammo bosilmadi». Ikki alohida nuqson edi: (1) **haqiqiy tugma tugmaga o'xshamasdi** — sariq karta tekis panel, yo'riq pastda mayda kulrang monoshriftda; (2) **bosilmaydigan narsa tugmaga o'xshardi** — `.cond-result` da oq fon + soya + dumaloq chekka = tugma ko'rinishi, lekin `onClick` yo'q.
+  **Yechim (foydalanuvchi tasdig'i bilan):** karta ichiga haqiqiy tugma-yorliq `.wx-cta` («↻ Ob-havoni almashtirish», to'q sariq, soyali) + birinchi bosilgunicha `.wx-hint` puls-animatsiyasi (reduced-motion hisobga olingan); `.cond-result` dan oq fon va soya olindi — u endi natija-yozuvi, boshqarув emas.
+**Sinov (playwright, real bosish):** `.wx-cta` bosildi → holat quyoshli↔yomg'irli **almashdi** ✅ · ikkala holat ko'rilgach «Davom etish» ochildi ✅ · 20/20 ekran: `kx-actor` **yo'q**, «Kalit so'zlar» **yo'q**, «Bugungi asosiy fikr» **yo'q**, konsol xatosi **0** ✅
+**Darvozalar:** esbuild ✅ · `lint:jsx` — JsIntro 0 topilma ✅ · `lint:til` 0 error / 4 warn (o'zgarmadi) ✅ · `npm run smoke` 109 dars 0 nuqson ✅ · `vite build` toza (1.80s) ✅
+**Eslatma-saboq:** bir yugurishda 4 ta «konsol xatosi» ko'rindi — tekshirilganda vite HMR so'rovi (`?t=…` ERR_ABORTED) ekan, ya'ni fayl tahrirlanayotgan paytda test yugurgan. Test faylni tahrirlash BILAN BIR VAQTDA yugurtirilmasin.
+**Commit YO'Q** — buyruqsiz. UNCOMMITTED.
+
+## 2026-08-07 — F-0807-03: m2-03 (JsVars) — «OMBORCHI» YORLIQ-MEXANIKASI RAD, ESKI SODDA MANTIQ QAYTDI — ✅
+**Tashxis (ish boshlanishidan oldin aytilgan):** JsVars da robot ham, lavash ham YO'Q edi — misol-olami (`ism`/`ball`/`yosh`/`tug'ilgan yil`) eskisi bilan bir xil. Farq boshqa narsada: «omborchi» metaforasi `cd50c17` (2026-08-03) da — ya'ni praktika-kompilyator + flashcard + TMI-tozalash bilan BIR commitda kelgan. Shuning uchun uni «lavash ipi» kabi avtomatik olib tashlamay, foydalanuvchiga uch yo'l ko'rsatildi (faqat matn · butunlay olib tashlash · tegmaslik) va solishtirish sahifasi berildi.
+**Foydalanuvchi qarori:** «hozirgiyam yaxshi lekin yorliq yopishtirish kerakmas… 15-page ham juda qiyin… o'zi oddiy `let a = 15` da… eski logikani qilaylik, animatsiyasi porlaganday hozirgiday tursin, qiyinlik darajasi juda qiyin bo'lmasin».
+**Tuzatildi:**
+· **3-sahifa (s2)** — «omborchi» sudrash + yorliq-yopishtirish OLIB TASHLANDI (token sudra → yorliq yopishtir = 2 bosqichli darvoza). Eski (v16) mantiq: quti TAYYOR turadi, o'quvchi uning **ikki qismini bosib** (NOMI / QIYMATI) nima ekanini biladi. `S2_VALUES`/`S2_NAMES`, drag/drop/jolt holatlari o'chdi.
+· **15-sahifa (s13)** — «Kulminatsiya · o'z omboring» (let/const tanla → qiymat sudra → yorliq yopishtir → «Omborga qo'y» — 3 quti uchun **12 harakat**) → eski **«Amaliyot · o'zgaruvchilar»**: blokni bosdingiz, kodda tayyor qator chiqadi — **3 bosish**. `shelf`/`cur`/`drag`/`over`/`jolt`, `S13_VALUES`, `S13_NAMES` o'chdi; `S13_BLOCKS` (eski 6 blok) qaytdi.
+· **O'lik kod tozalandi:** `.stellaj`, `.stellaj-empty`, `@keyframes wh-shelve` + `.wh-shelve` (6 qator CSS) va ularning reduced-motion ro'yxatidagi ismi. `wh-jolt` (s5 da ishlatiladi), `drop-in` (VarBox), `wh-arm`/`wh-grope`/`wh-graygone` (s3) — SAQLANDI.
+· **`TASK_OMBOR` → `TASK_QUTILAR`** (4 o'rin) + uning ko'rinadigan yorlig'i «Praktika · ombor / Практика · склад» → «Praktika · o'zgaruvchilar / Практика · переменные». Praktika-kompilyator MAZMUNI (let ism · let yosh · const tugilgan_yil) tegilmadi — u foydalanuvchi so'ragan ish.
+· 🔴 **YONDOSH BUG TOPILDI VA TUZATILDI (men tegmagan joyda):** 10-sahifa (`var` ekrani) — `<pre key={era}>` va `<p key={era}>` bitta `<Col>` ichida **bir xil kalit** ishlatardi → React «two children with the same key» ogohlantirishi, siblinglar almashganda holat chalkashishi mumkin edi. `key={\`code-${era}\`}` / `key={\`note-${era}\`}` qilindi.
+**TEGILMADI (foydalanuvchi so'ramagan, ataylab qoldirildi):** s3 dagi 🤖 robot-qo'l «qutini chaqirib o'qish» + «nomsiz qutini chaqirib ko'ring» mexanikasi (F-0803-10 ishi, yorliq-yopishtirish emas) · s5 dagi `wh-jolt` qayta-to'ldirish · praktika-kompilyatorlar · flashcard/stats.
+**Darvozalar:** esbuild ✅ · `lint:jsx` — JsVars 0 topilma ✅ · `lint:til` 0 error / 2 warn ✅ · playwright 20/20 ekran renderlandi, **konsol xatosi 0** (avval 2 ta kalit-ogohlantirishi bor edi) ✅ · `npm run smoke` 109 dars 0 nuqson ✅ · `vite build` toza (2.24s) ✅ · `lint:prompt` ✅
+**Eslatma:** `TASK_OMBOR` nomini almashtirishda node-skriptida apostrof qochirilmay qolib, `'Praktika · o'zgaruvchilar'` sintaksisni buzdi — esbuild darhol tutdi, qo'shtirnoqqa o'tkazib tuzatildi. Saboq: apostrofli o'zbekcha matnni node -e ichida almashtirmaslik, Edit bilan qilish.
+**Commit YO'Q** — buyruqsiz. UNCOMMITTED.
+
+## 2026-08-07 — F-0807-04: m2-05 (JsLoops) — TEKSHIRILDI, O'ZGARTIRILMADI (qaror: tegmaymiz) — ✅
+**Kontekst:** F-0807-01 rejasida JsLoops uchun «o'chirilgan `s15` (Yakuniy · amaliy) ni tiklash» bandi turgan edi. Ish boshlashdan oldin sabab-tarix tekshirildi.
+**Nega TIKLANMADI:** `s15` o'z-o'zidan yo'qolmagan — uni **foydalanuvchi 2026-08-03 da olib tashlatgan** (F-0803-15/16: «17-page'ni olib tashlaylik, chunki 2 ta yengil praktika-kompilator qo'shaylik»). Jurnaldagi sabab: eski `s15` — «namunani ko'chirib yozing» inputi, **kodni ISHGA TUSHIRMAS edi**; o'quvchi namunani ko'chirardi, natijani ko'rmasdi. Eski fayl o'qib tasdiqlandi: `input` + regex (`/^for\s*\([^)]*(<=|<)...`) + 5 ta indikator-pilyulya, konsol yo'q. O'rnini bosgan `TASK_MEVA` — haqiqiy kompilyator (massiv + sikl → konsolda 3 qator). **Hozirgisi eskisidan kuchli**, tiklash orqaga qadam bo'lardi.
+**🔴 TOPILMA (o'zgartirilmadi, kelajak uchun yozib qo'yildi):** JsLoops — M2 JS-o'zagidagi **yagona 4 ballli dars**. O'lchov: JsIntro/JsVars/JsConditions/JsFunctions/PeanStack — har birida **5** (`{s4, s5b, s9, s12, s15:-1}`), JsLoopsda esa `{s4:1, s5b:0, s9:1, s12:1}` — `scope:'final'` ekran yo'q. Dars ishlaydi (F-0803-15 da qayd etilgan zaxira shart: `finalMeta.length === 0` → `passed` umumiy nisbatdan hisoblanadi), lekin **jonli darsda arena/podium JsLoops uchun 4 savoldan hisoblaydi**, qolgan darslarda 5 dan.
+**Foydalanuvchiga ko'rsatilgan 3 yo'l:** (a) tegmaslik · (b) mavjud `TASK_MEVA` praktikasini ballli yakuniy qilish (`s15:-1`) — 5 ballga tenglashadi, eski zaif ekran qaytmaydi · (c) eski `s15` ni tiklash (maslahat berilmadi).
+**FOYDALANUVCHI QARORI: (a) — «tegmaymiz mayli».** JsLoops fayliga **hech qanday o'zgarish kiritilmadi**.
+**Ochiq qolgan band:** agar kelajakda jonli darsda JsLoops podiumi boshqa darslar bilan bir xil o'lchovda bo'lishi kerak bo'lsa — (b) varianti tayyor turibdi.
+
+## 2026-08-07 — F-0807-05: m2-05 (JsLoops) — 16-SAHIFA ANIMATSIYA YUKI KAMAYTIRILDI + PeanStack lavash tekshiruvi — ✅
+**Kelib chiqishi:** foydalanuvchi: «JS loopniyam bir ko'r, animatsiyalari juda og'ir qilinganday» + «PeanStackLessonda lavash ipidan bormi ko'rchi».
+
+**(1) PeanStack — lavash IPI YO'Q (tegilmadi).** 3 topilma ham BITTA praktika-topshirig'ida, oddiy ro'yxat elementi sifatida: `let mahsulotlar = ["Lavash", "Burger", "Shashlik"]` (baza → `for` → konsolda menyu). «Lavash» bu yerda uch taomdan biri, darsni egallaydigan misol-ip EMAS. 108-qonun rad etgani — ip; bu unaqa emas. **O'zgartirilmadi.**
+
+**(2) JsLoops animatsiya-yuki — o'lchov (statik sanoq emas, BRAUZERDA `getAnimations()`, har ekran 1.4s kutilib, faqat `iterations===Infinity` va `playState==='running'`):**
+| Dars | cheksiz jami | o'rtacha/ekran |
+|---|---|---|
+| JsVars | 32 | 1.6 |
+| JsIntro | 43 | 2.1 |
+| **JsLoops (avval)** | **70** | **3.7** |
+
+**🔴 Aybdor topildi — 16-sahifa «Debugging»: bir vaqtda 15 ta cheksiz animatsiya** (`zv-box-jitter×8` + `zv-arrow-flow×3` + `warnpulse×2` + `zv-shake×1`). Muammo faqat son emas, **vazifa bilan qarama-qarshilik**: shu ekranda o'quvchi kodni diqqat bilan o'qib `i--` xatosini topishi kerak, o'ng panel esa to'xtovsiz titrardi — harakat o'qish bilan raqobatlashardi.
+
+**Tuzatildi (2 ta CSS o'zgarishi):**
+· `.zavod.zavod-cheksiz` dan `animation: zv-shake … infinite` OLINDI (butun panel silkinishi). Xavf-signali qizil ramka + fon + ⚠️ yozuv bilan qoladi. O'lik `@keyframes zv-shake` va uning reduced-motion qoidasi ham o'chirildi.
+· `.zavod-cheksiz .zv-box` → `.zavod-cheksiz .zv-box:nth-last-child(-n+2)` — avval SAKKIZTA qutining hammasi titrardi, endi faqat oxirgi ikkitasi («hozir kelayotgani»). Ma'no saqlandi (ishlab chiqarish to'xtamayapti), ko'z bir joyga qaraydi.
+
+**Natija (qayta o'lchov):** 16-sahifa **15 → 8** · dars jami **70 → 63** · o'rtacha **3.7 → 3.3**.
+**HALOL QAYD:** taklif bosqichida «~4–5 ga tushadi» deyilgan edi — amalda **8** chiqdi. Qolgani: `zv-arrow-flow×3` + `zv-belt-move×1` (lenta oqishi — mashina ishlayotganini bildiradi) · `zv-box-jitter×2` (ataylab) · `warnpulse×2` (konsoldagi ⚠️ qatori va `⋮` «chiqish tugamaydi» belgisi). Yana kamaytirish mumkin (⚠️ qatoridan pulsni olib, `⋮` da qoldirish → 7; lenta o'qlari 3→1 → 5) — foydalanuvchiga variant sifatida taklif qilindi, o'zboshimchalik bilan qilinmadi.
+
+**TEGILMADI:** 19-sahifa (32 ta) — bu CodeStrike bayram ekrani, JsIntro (33) va JsVars (32) da ham AYNAN shuncha; JsLoopsga xos emas · 1–2-sahifadagi ikonka animatsiyalari (4–5) — brend-his.
+**Darvozalar:** esbuild ✅ · `lint:jsx` JsLoops 0 ✅ · `lint:til` **TOZA (0 topilma)** ✅ · playwright 19/19 ekran renderlandi (balandlik >200), konsol xatosi **0** ✅ · `npm run smoke` 109 dars 0 nuqson ✅
+**Commit YO'Q** — buyruqsiz. UNCOMMITTED.
+
+## 2026-08-07 — F-0807-06: 2-MODUL AUDITI (249 ekran) + 4 ta nuqtali tuzatish — ✅
+**Buyruq:** foydalanuvchi: «nimalar qoldi, o'quvchiday user story qil — qaysi darslar tushunarsiz bo'lardi va qaysi animatsiyalar juda og'ir va beso'naqay» → so'ng «bajar maqul».
+
+**O'LCHOV (brauzerda, statik sanoq EMAS):** 13 dars · **249 ekran** · har ekran 0.95s kutilib · `getAnimations()` dan faqat `playState==='running'` + `iterations===Infinity`.
+· **Oshiq-toshiq >40px: 249 ekranda 0** ✅ · **PageError: 0** ✅ · **Mentor >320 belgi: butun modulda 1 ta** (08-03 TMI ishi natija bergan).
+· Cheksiz-animatsiya o'rtachasi: JsLoops **3.3** (eng og'ir) · JsIntro 2.1 · JsFunctions 2.0 · qolganlari 1.5–1.8.
+· TMI >600 belgi: JsLoops 5 · JsFunctions/Practice1/Practice2/Practice4 4 tadan.
+
+**O'QUVCHI-O'QISHI (6 ta eng og'ir ekran matni haqiqatan o'qildi).** 🔴 **Bir farazim NOTO'G'RI chiqdi va tekshirib to'g'rilandi:** JsLoops s13 dagi `dostlar.length` «o'rgatilmagan» deb o'ylandi — aslida s12 da aynan shu savol (`.length — necha marta?`) + recap-kartasi bor. Faraz aytilmadi, tekshirildi.
+
+**TUZATILDI (4 band):**
+· **[1] JsLoops konveyer lentasi ma'noga bog'landi.** Avval `zv-belt-move` + `zv-arrow-flow×3` BESH ekranda (s1/s4/s8/s13/s16) to'xtovsiz yugurardi — shundan uchtasi o'qish ekrani. Yangi `zv-idle` klassi: sikl hali ishlamagan (`n===0`) yoki tugagan paytda lenta TO'XTAYDI (`.zavod.zv-idle .zavod-belt/.zv-belt-arrow { animation: none }`). Cheksiz-sikl ekrani (s16) o'z harakatini saqladi — u yerda harakat MA'NOLI. **Natija: JsLoops 63 → 47 · o'rtacha 3.3 → 2.5 · s1 (Kirish) 4 → 0.**
+· **[2] Practice1 s15 (modulning eng uzun ekrani).** Mentor 293 belgi / 4 fikr edi: «agent» izohsiz, «Antigravity» ortiqcha, va uch bosqich (reja→tasdiq→tekshiruv) matnda takrorlanardi — vaholanki ular pastdagi **1–2 raqamli panellarda allaqachon ko'rinadi** (KORPUS 72-bo'lim: interaktiv ko'rsatganini matn qayta aytmasin). Endi **2 gap**, «AI agent» izohlangan («buyruqni bajaradigan dastur»). **Ekran 773 → 696 belgi · mentor 293 → 216.**
+· **[3] Practice1 s2 —** beshta vosita-yorlig'idan yagona inglizchasi `input` → **`matn`** (endi beshovi ham o'zbekcha: son · rejim · holat · matn · shart).
+· **[4] PeanStack s2 —** reja-ekranida to'rtta notanish nom izohsiz turardi. `TECH` ga `short` maydoni qo'shildi va chip yonida ko'rsatildi: **React·Ko'rinish · Express·Yo'llar · Node.js·Dvigatel · PostgreSQL·Xotira** (`.asm-short` — nomdan kichik va xira). Chiplar 2 qatorga o'tdi, oshiq-toshiq 0.
+
+**TEGILMADI (ataylab):** bayram/yakun ekranlari (29–33 cheksiz anim.) — ular HAMMA darsda bir xil (`cs-float×10` + `cs-dash-run×5`), yakunda o'qish yo'q · JsIntro s1 hook (6) · JsLoops s2 ikonkalari (5) — brend-his.
+**Kod-gigiena:** `//` izohlari JSX ichidan tashqariga chiqarildi (CLAUDE.md jim-buzilish ogohlantirishi) — `SiklZavodi` da `idle` o'zgaruvchisi, `PernAssemble` ustida blok-izoh.
+**Darvozalar:** esbuild ×3 toza ✅ · `lint:jsx` — `src/2-Modull` da **0** topilma ✅ (6 topilma faqat eski NUSXALARDA) · `lint:til` uchala faylda **TOZA** ✅ · `npm run smoke` 109 dars 0 nuqson ✅ · `vite build` toza (4.00s) ✅ · `lint:prompt` ✅ · tahrirlangan 3 ekran qayta o'lchandi: oshiq-toshiq 0, PageError 0.
+**KEYINGI (kelishilgan, bajarilmagan):** M1 ni 108–112 qonunlarga tortish — m1-14 HtmlTakrorlash (7 TMI · 11 mentor · 3 oshiq) dan boshlab; keyin m1-03, m1-15, m1-10. Bu alohida kun.
+**Commit YO'Q** — buyruqsiz. UNCOMMITTED. Foydalanuvchi ko'rib fidbek beradi.
+
+## 2026-08-08 — F-0808-01: m1-08 (HtmlPractice) + m1-10 (CssPractice) — «BUGUNGI G'OLIBLARIMIZ» EKRANI YO'Q EDI, QO'SHILDI — ✅
+
+**Buyruq:** foydalanuvchi: «HtmlPractice'da Bugungi G'oliblarimiz degan page bormi?» → «nega yakunrogidan oldingi pageda yo'q, etalon darsimizdayam barchasida borku» → «badgeslar ham qilinsin» → «CssPractisegayam qivor».
+
+**TOPILMA (repo bo'ylab sanoq, faraz emas):** `MentorTestStats` (jonli-test infrasi) — **79** darsda · `ScreenPodium` («Bugungi g'oliblarimiz») — **77** darsda. Farq AYNAN 2 ta fayl: `src/1-Modull/HtmlPractice.jsx` va `src/1-Modull/CssPractice.jsx`. Ikkalasi ham 1-Moduldagi «praktika-kun» darslari — bir qolipdan qurilgan, xato ham birga meros bo'lgan. Podium arena ichida (`phase==='done'`) bor edi, lekin dars OQIMIDA navigatsiyalanadigan ekran sifatida yo'q edi.
+
+**QILINDI (ikkala faylda bir xil):**
+· `ScreenPodium` + `PODIUM_LABELS` qo'shildi. Manba: `CssLesson1.jsx` (tuzilma) + `PmUserStoryLesson.jsx` (solo-ko'rinishda nishonlar). Sarlavha rejimga qarab: jonli → «Bugungi **g'oliblarimiz**» · solo → «Bugungi **natijangiz**».
+· Ekran-oqimidagi o'rni etalondagidek: `… s16 → **spodium** → sflash → s17`. `SCREEN_META` ga `spodium` yozuvi; ekran soni **19 → 20** (ikkala darsda).
+· 🏅 **Nishonlar** podiumga qo'shildi (foydalanuvchi talabi): solo'da ScoreRing ostida, jonli o'quvchida reytingdan keyin, **mentor proyektorida YO'Q** (`AchCounter` qoidasi bilan izchil — sinf ekranida shaxsiy natija turmaydi).
+· Yorliqlar har darsning O'Z mavzulari bilan: HtmlPractice `h1·a·alt·ul·footer·bo'limlar tartibi` (scored 4,6,8,10,13,16) · CssPractice `color·text-align·display:flex·padding·justify-content·yakuniy amaliy` (scored 4,6,8,11,14,16).
+· CSS bloki (`.pod-*`, `.qstat-*`) + `prefers-reduced-motion`.
+
+**TEKSHIRILDI, NUQSON EMAS:** `ACHIEVEMENTS` to'liq yopiq — HtmlPractice 4/4 nishon berilishi mumkin (`built` s2 · `debugger` s14 · `coder` praktika-kompilyatorda · `graduate` oxirgi ekranda), CssPractice ham 4/4 (`color`·`layout`·`spacer`·`graduate`). Yaroqsiz nishon yo'q.
+
+**YON TA'SIR (bilib turilsin):** `progRead` saqlovni `p.total !== total` bo'lsa tashlaydi. Ekran soni 19→20 bo'lgani uchun shu 2 darsni yarim ochib qo'ygan o'quvchi relizdan keyin darsni boshidan boshlaydi. Mexanizmning o'zi shunday mo'ljallangan (eskirgan saqlov ishlatilmasin).
+
+**Darvozalar:** esbuild ×2 toza ✅ · `vite build` toza (3.09s) ✅ · `lint:jsx` — ikkala darsda **0** topilma (20 xato faqat `src/eski/` va `src/2-moodull eski/` arxiv papkalarida, eskidan bor) ✅ · `lint:til` — **0 error** (HtmlPractice 14 warn, CssPractice 2 warn — hammasi eskidan bor, yangi matnda emas) ✅
+**Brauzerda ishga tushirildi** (Chrome 1440×900, playwright): har dars uchun 3 rejim — solo · jonli o'quvchi · mentor + RU tili. Konsolda **0 xato**, podium/nishon/statistika render bo'ldi. Suratlar: `feedback/F-0808-01/`.
+
+**Commit YO'Q** — buyruqsiz. UNCOMMITTED.

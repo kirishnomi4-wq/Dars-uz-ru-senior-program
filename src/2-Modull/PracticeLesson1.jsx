@@ -1008,7 +1008,7 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
     { text: tr({ uz: 'Like sanagich — bosilsa son oshadi', ru: 'Счётчик лайков — нажали, число выросло' }), tag: 'son' },
     { text: tr({ uz: 'Tungi / kunduzgi rejim', ru: 'Ночной / дневной режим' }), tag: 'rejim' },
     { text: tr({ uz: "Ko'rsat / yashir — menyu, batafsil", ru: 'Показать / скрыть — меню, «подробнее»' }), tag: 'holat' },
-    { text: tr({ uz: "Jonli salom — ism yozsangiz o'zgaradi", ru: 'Живое приветствие — пишете имя, оно меняется' }), tag: 'input' },
+    { text: tr({ uz: "Jonli salom — ism yozsangiz o'zgaradi", ru: 'Живое приветствие — пишете имя, оно меняется' }), tag: 'matn' }, // F-0807-06: 'input' — beshta yorliqdan yagona inglizchasi edi
     { text: tr({ uz: "Forma tekshiruvi — bo'sh bo'lsa xato", ru: 'Проверка формы — пусто, значит ошибка' }), tag: 'shart' }
   ];
   const NODES = [
@@ -1607,7 +1607,10 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: 'Keyingi qadam · AI', ru: 'Следующий шаг · AI' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "Agent bilan ishlab ko'ring", ru: 'Поработайте с агентом' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Shularni endi <span className="italic" style={{ color: T.accent }}>AI'ga aytib</span> qildirsak-chi?</>, ru: <>А что если теперь <span className="italic" style={{ color: T.accent }}>поручить это AI</span>?</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Buni <b style={{ color: T.ink }}>vibecoding</b> deyiladi: kodni o'zingiz yozish o'rniga, <b style={{ color: T.ink }}>oddiy so'z bilan</b> nima xohlayotganingizni aytasiz — AI agent (masalan, <b style={{ color: T.ink }}>Antigravity</b>) yozib beradi. Ammo <b style={{ color: T.accent }}>boshliq — siz</b>: agent avval rejasini ko'rsatadi, siz uni <b style={{ color: T.ink }}>tasdiqlaysiz</b>, oxirida natijani <b style={{ color: T.ink }}>tekshirasiz</b>. Bir buyruqni sinab ko'ring.</>, ru: <>Это называется <b style={{ color: T.ink }}>vibecoding</b>: вместо того чтобы писать код самому, вы <b style={{ color: T.ink }}>простыми словами</b> говорите, чего хотите, — AI-агент (например, <b style={{ color: T.ink }}>Antigravity</b>) напишет его за вас. Но <b style={{ color: T.accent }}>главный — вы</b>: сначала агент показывает план, вы его <b style={{ color: T.ink }}>подтверждаете</b>, а в конце <b style={{ color: T.ink }}>проверяете</b> результат. Попробуйте одну команду.</> })}</Mentor>
+        {/* F-0807-06: mentor 293 belgi / 4 fikr edi — «agent» izohsiz, bosqichlar esa pastdagi
+            1–2 raqamli panellarda ALLAQACHON ko'rinardi (72-bo'lim: interaktiv ko'rsatganini
+            matn qayta aytmasin). Endi 2 gap: nima bo'layotgani + kim javobgar. */}
+        <Mentor>{tr({ uz: <>Kodni o'zingiz yozmaysiz: <b style={{ color: T.ink }}>oddiy so'z bilan</b> nima kerakligini aytasiz, <b style={{ color: T.ink }}>AI agent</b> — buyruqni bajaradigan dastur — yozib beradi. Buni <b style={{ color: T.ink }}>vibecoding</b> deyiladi, lekin <b style={{ color: T.accent }}>boshliq — siz</b>: natijani oxirida o'zingiz tekshirasiz.</>, ru: <>Код вы не пишете сами: <b style={{ color: T.ink }}>простыми словами</b> говорите, что нужно, а <b style={{ color: T.ink }}>AI-агент</b> — программа, которая выполняет поручение — напишет его. Это называется <b style={{ color: T.ink }}>vibecoding</b>, но <b style={{ color: T.accent }}>главный — вы</b>: результат в конце проверяете сами.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>

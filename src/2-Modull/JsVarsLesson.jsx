@@ -1116,72 +1116,45 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
 };
 
 // ===== SCREEN 2 — O'ZGARUVCHI = NOMLANGAN QUTI =====
-// OMBORCHI: qiymat tokenlari + nom yorliqlari (stellaj uyasini to'ldirish uchun)
-const S2_VALUES = [{ id: 'aziza', label: '"Aziza"', color: CODE.str }, { id: 'v1250', label: '1250', color: CODE.num }, { id: 'v14', label: '14', color: CODE.num }];
-const S2_NAMES = ['ism', 'ball', 'yosh'];
+// F-0807-03: «omborchi» sudrash + yorliq-yopishtirish mexanikasi OLIB TASHLANDI —
+// o'quvchiga ortiqcha qiyinlik tug'dirardi. Eski (v16) sodda mantiq: quti tayyor turadi,
+// o'quvchi uning IKKI QISMINI bosib nima ekanini biladi. Ko'rinish/animatsiya hozirgicha.
 const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const audio = useAudio([{ id: 's2', text: `O'zgaruvchini shunday tasavvur qiling: ustiga nom yozilgan quti. Endi omborchi kabi birinchi qutingizni to'ldiring: avval ichiga qiymat soling, keyin ustiga nom yorlig'ini yopishtiring. Qiymat tokenini quti ichiga sudrang yoki bosing.`, trigger: 'on_mount', waits_for: null }]);
-  // Stellaj uyasi — bitta atomik holat: { value, name } (S7: bitta useState obyekti)
-  const [box, setBox] = useState(() => storedAnswer?.box || { value: null, name: null });
-  const [drag, setDrag] = useState(null);      // sudralayotgan token id (skelet — Animatsiya silliqlaydi)
-  const [over, setOver] = useState(false);      // quti ustida turibdimi
-  const [jolt, setJolt] = useState(false);      // token tushganda quti seskanadi
+  const audio = useAudio([{ id: 's2', text: `O'zgaruvchini shunday tasavvur qiling: ustiga nom yozilgan quti. Qutining nomi bor — masalan "ism", ichida esa qiymat turadi — masalan Aziza. Nom orqali qutini istalgan payt topib, ichidagini olasiz. Quti qismlarini bosib ko'ring.`, trigger: 'on_mount', waits_for: null }]);
+  const PARTS = {
+    nom: { label: tr({ uz: 'Nom', ru: 'Имя' }), role: tr({ uz: "Qutining yorlig'i — uni shu nom orqali chaqirasiz. Masalan: ism, ball, yosh.", ru: 'Ярлык коробки — по этому имени вы её и зовёте. Например: ism, ball, yosh.' }) },
+    qiymat: { label: tr({ uz: 'Qiymat', ru: 'Значение' }), role: tr({ uz: 'Quti ichida saqlanadigan narsa. Masalan: "Aziza", 1250, 14.', ru: 'То, что хранится внутри коробки. Например: "Aziza", 1250, 14.' }) }
+  };
+  const [active, setActive] = useState(null);
+  const [seen, setSeen] = useState(new Set());
   const isNarrow = useIsMobile(768);
-  const filled = !!box.value;
-  const done = !!box.value && !!box.name;
-  const placeValue = (tok) => { if (box.value) return; setBox(b => ({ ...b, value: tok })); setDrag(null); setOver(false); setJolt(true); setTimeout(() => setJolt(false), 450); };
-  const placeName = (nm) => setBox(b => ({ ...b, name: nm }));
-  useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true, box }); }, [done]); // eslint-disable-line
-  const navLabel = done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : filled ? tr({ uz: 'Yorliq yopishtiring 🏷️', ru: 'Наклейте ярлык 🏷️' }) : tr({ uz: 'Qutiga qiymat soling', ru: 'Положите значение в коробку' });
+  const done = seen.size >= 2;
+  const tap = (k) => { setActive(k); setSeen(prev => { const n = new Set(prev); n.add(k); return n; }); };
+  useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   return (
-    <Stage eyebrow={tr({ uz: "O'zgaruvchi", ru: 'Переменная' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={navLabel} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: "O'zgaruvchi", ru: 'Переменная' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : `${seen.size}/2 ${tr({ uz: "qismni ko'ring", ru: 'части посмотрите' })}`} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Birinchi <span className="italic" style={{ color: T.accent }}>qutini</span> to'ldiring.</>, ru: <>Заполните первую <span className="italic" style={{ color: T.accent }}>коробку</span>.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>O'zgaruvchi — ustiga <b style={{ color: T.ink }}>yorliq</b> yopishtirilgan <b style={{ color: T.ink }}>quti</b>. Omborchi bo'ling: avval ichiga <b style={{ color: T.ink }}>qiymat</b> soling (tokenni sudrang yoki bosing), keyin ustiga <b style={{ color: T.ink }}>nom</b> yorlig'ini yopishtiring.</>, ru: <>Переменная — это <b style={{ color: T.ink }}>коробка</b> с наклеенным <b style={{ color: T.ink }}>ярлыком</b>. Побудьте кладовщиком: сначала положите внутрь <b style={{ color: T.ink }}>значение</b> (перетащите или нажмите жетон), затем наклейте ярлык с <b style={{ color: T.ink }}>именем</b>.</> })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>O'zgaruvchi aslida <span className="italic" style={{ color: T.accent }}>nima</span>?</>, ru: <>Что такое переменная <span className="italic" style={{ color: T.accent }}>на самом деле</span>?</> })}</h2></div>
+        <Mentor>{tr({ uz: <>O'zgaruvchi — bu ustiga <b style={{ color: T.ink }}>yorliq yopishtirilgan quti</b>. Yorlig'i — uning <b style={{ color: T.ink }}>nomi</b> (masalan <span className="mono">ism</span>), ichidagi narsa — <b style={{ color: T.ink }}>qiymati</b> (masalan <span className="mono">"Aziza"</span>). Nomini aytib, ichidagini istalgan payt olasiz. Quti qismlarini bosib ko'ring.</>, ru: <>Переменная — это <b style={{ color: T.ink }}>коробка с наклеенным ярлыком</b>. Ярлык — это её <b style={{ color: T.ink }}>имя</b> (например <span className="mono">ism</span>), а то, что внутри — <b style={{ color: T.ink }}>значение</b> (например <span className="mono">"Aziza"</span>). Назовёте имя — в любой момент получите содержимое. Понажимайте на части коробки.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
-            {/* Qiymat tokenlari (SOL: qutiga sol) */}
-            <p className="flow-label">{tr({ uz: '1 — qiymat tokeni', ru: '1 — жетон значения' })} {filled ? '✓' : ''}</p>
-            <div className="fade-up delay-1" style={{ display: 'flex', gap: 8, justifyContent: 'center', flexWrap: 'wrap', minHeight: 40 }}>
-              {S2_VALUES.map(tok => {
-                const used = box.value && box.value.id === tok.id;
-                return (
-                  <button key={tok.id} disabled={filled}
-                    draggable={!filled}
-                    onDragStart={() => setDrag(tok.id)}
-                    onDragEnd={() => setDrag(null)}
-                    onClick={() => placeValue(tok)}
-                    className="mono" style={{ cursor: filled ? 'default' : 'grab', border: 'none', borderRadius: 9, padding: '9px 15px', fontWeight: 700, fontSize: 15, background: used ? T.accentSoft : T.paper, color: tok.color, opacity: filled && !used ? 0.35 : 1, boxShadow: `0 4px 12px -6px rgba(${T.shadowBase},0.25)`, transition: 'all 0.18s' }}>{tok.label}</button>
-                );
-              })}
-            </div>
-            {/* Stellaj uyasi — drop target */}
-            <div className="fade-up delay-2" style={{ display: 'flex', justifyContent: 'center', padding: '10px 0' }}>
-              <div className={jolt ? 'wh-jolt' : ''}
-                onDragOver={(e) => { if (!filled) { e.preventDefault(); setOver(true); } }}
-                onDragLeave={() => setOver(false)}
-                onDrop={(e) => { e.preventDefault(); const tok = S2_VALUES.find(t => t.id === drag); if (tok) placeValue(tok); }}
-                style={{ background: T.paper, borderRadius: 16, boxShadow: `0 10px 26px -6px rgba(${T.shadowBase},0.16)`, overflow: 'hidden', minWidth: 210, outline: over ? `2px dashed ${T.accent}` : 'none', outlineOffset: 3, transition: 'outline 0.15s' }}>
-                <div style={{ background: box.name ? T.accent : T.ink, color: '#fff', fontFamily: "'JetBrains Mono',monospace", fontWeight: 700, fontSize: 14, padding: '10px 16px', display: 'flex', alignItems: 'center', gap: 8, transition: 'all 0.2s' }}><span style={{ fontFamily: "'Manrope',sans-serif", fontSize: 9.5, opacity: 0.65, letterSpacing: '0.12em' }}>{tr({ uz: 'YORLIQ · NOMI', ru: 'ЯРЛЫК · ИМЯ' })}</span>🏷️ {box.name || '___'}</div>
-                <div className={`${box.value ? 'drop-in' : ''}`} style={{ padding: '20px 16px', textAlign: 'center', fontFamily: "'JetBrains Mono',monospace", fontWeight: 700, fontSize: 'clamp(20px,4vw,28px)', color: box.value ? box.value.color : T.ink3, background: box.value ? T.accentSoft : '#fff', transition: 'all 0.2s' }} key={box.value ? box.value.id : 'empty'}><div style={{ fontFamily: "'Manrope',sans-serif", fontSize: 9.5, opacity: 0.6, letterSpacing: '0.12em', fontWeight: 600, marginBottom: 5 }}>{tr({ uz: 'QIYMATI · ICHIDAGI', ru: 'ЗНАЧЕНИЕ · ВНУТРИ' })}</div>{box.value ? box.value.label : <span style={{ fontStyle: 'italic', fontSize: 13, opacity: 0.8 }}>{tr({ uz: "bo'sh — qiymat soling", ru: 'пусто — положите значение' })}</span>}</div>
+            <div className="fade-up delay-1" style={{ display: 'flex', justifyContent: 'center', padding: '8px 0' }}>
+              <div style={{ background: T.paper, borderRadius: 16, boxShadow: `0 10px 26px -6px rgba(${T.shadowBase},0.16)`, overflow: 'hidden', minWidth: 210 }}>
+                <div onClick={() => tap('nom')} style={{ cursor: 'pointer', background: active === 'nom' ? T.accent : T.ink, color: '#fff', fontFamily: "'JetBrains Mono',monospace", fontWeight: 700, fontSize: 14, padding: '10px 16px', display: 'flex', alignItems: 'center', gap: 8, transition: 'all 0.2s' }}><span style={{ fontFamily: "'Manrope',sans-serif", fontSize: 9.5, opacity: 0.65, letterSpacing: '0.12em' }}>{tr({ uz: 'NOMI', ru: 'ИМЯ' })}</span>📦 ism {seen.has('nom') && <span style={{ marginLeft: 'auto' }}>✓</span>}</div>
+                <div onClick={() => tap('qiymat')} style={{ cursor: 'pointer', padding: '18px 16px', textAlign: 'center', fontFamily: "'JetBrains Mono',monospace", fontWeight: 700, fontSize: 'clamp(20px,4vw,28px)', color: active === 'qiymat' ? T.accent : T.ink, background: active === 'qiymat' ? T.accentSoft : '#fff', transition: 'all 0.2s' }}><div style={{ fontFamily: "'Manrope',sans-serif", fontSize: 9.5, opacity: 0.6, letterSpacing: '0.12em', fontWeight: 600, marginBottom: 5 }}>{tr({ uz: 'QIYMATI · ICHIDAGI', ru: 'ЗНАЧЕНИЕ · ВНУТРИ' })}</div>"Aziza" {seen.has('qiymat') && <span style={{ fontSize: 14, color: T.success }}>✓</span>}</div>
               </div>
             </div>
-            <pre className="code-box fade-up delay-2" style={{ textAlign: 'center' }}><Kw>let</Kw> <Vr>{box.name || '___'}</Vr> <Op>=</Op> {box.value ? <St>{box.value.label}</St> : <span style={{ color: T.ink3 }}>___</span>}</pre>
+            <pre className="code-box fade-up delay-2" style={{ textAlign: 'center' }}><Kw>let</Kw> <Vr>ism</Vr> <Op>=</Op> <St>"Aziza"</St></pre>
           </Col>
           <Col>
-            {/* Nom yorliqlari (YORLIQLA) — faqat qiymat solingach ochiladi */}
-            {filled ? (
-              <div className="pop-in">
-                <p className="flow-label">{tr({ uz: "2 — nom yorlig'ini yopishtiring 🏷️", ru: '2 — наклейте ярлык с именем 🏷️' })}</p>
-                <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', padding: '4px 0 10px' }}>
-                  {S2_NAMES.map(nm => (
-                    <button key={nm} onClick={() => placeName(nm)} className="mono" style={{ cursor: 'pointer', border: box.name === nm ? `2px solid ${T.accent}` : `2px solid ${T.line}`, borderRadius: 9, padding: '8px 15px', fontWeight: 700, fontSize: 14, background: box.name === nm ? T.accentSoft : T.paper, color: box.name === nm ? T.accent : T.ink, transition: 'all 0.18s' }}>🏷️ {nm}</button>
-                  ))}
-                </div>
+            {active ? (
+              <div className="sk-info pop-in" key={active}>
+                <span className="sk-tagbig"><span className="sk-wordbadge">{PARTS[active].label}</span></span>
+                <p className="body" style={{ color: T.ink, margin: '11px 0 0' }}>{PARTS[active].role}</p>
               </div>
-            ) : (!isNarrow ? <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: "Avval qutiga qiymat soling — keyin nom yorlig'i ochiladi", ru: 'Сначала положите значение в коробку — потом откроются ярлыки с именами' })}</p></div> : null)}
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ Birinchi qutingiz to'ldi! Mana shu — <b>o'zgaruvchi</b>: <span className="mono">{box.name}</span> deb chaqirsangiz, ichidagi <span className="mono">{box.value.label}</span> ni olasiz.</>, ru: <>✓ Первая коробка заполнена! Это и есть <b>переменная</b>: позовёте её по имени <span className="mono">{box.name}</span> — получите <span className="mono">{box.value.label}</span> изнутри.</> })}</p></div>}
+            ) : (!isNarrow ? <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Quti nomi yoki ichini bosing', ru: 'Нажмите на имя коробки или на её содержимое' })}</p></div> : null)}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ Mana shu — <b>o'zgaruvchi</b>: nomi bor quti. <span className="mono">ism</span> deb chaqirsangiz, ichidagi <span className="mono">"Aziza"</span> ni olasiz.</>, ru: <>✓ Вот это и есть <b>переменная</b>: коробка с именем. Позовёте <span className="mono">ism</span> — получите <span className="mono">"Aziza"</span> изнутри.</> })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -1441,12 +1414,12 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <button className={`chip ${era === 'old' ? 'chip-on' : ''}`} onClick={() => set('old')}>{tr({ uz: '🕰️ Eski (2015 gacha)', ru: '🕰️ Старый (до 2015)' })}</button>
               <button className={`chip ${era === 'new' ? 'chip-on' : ''}`} onClick={() => set('new')}>{tr({ uz: '✨ Hozir', ru: '✨ Сейчас' })}</button>
             </div>
-            <pre className="code-box demo-swap" key={era} style={{ fontSize: 'clamp(13px,2.1vw,16px)' }}>
+            <pre className="code-box demo-swap" key={`code-${era}`} style={{ fontSize: 'clamp(13px,2.1vw,16px)' }}>
               {era === 'old'
                 ? <><Kw>var</Kw> <Vr>ism</Vr> <Op>=</Op> <St>"Aziza"</St>{'\n'}<Kw>var</Kw> <Vr>yosh</Vr> <Op>=</Op> <Nm>14</Nm></>
                 : <><Kw>let</Kw> <Vr>ism</Vr> <Op>=</Op> <St>"Aziza"</St>{'\n'}<Kw>const</Kw> <Vr>yosh</Vr> <Op>=</Op> <Nm>14</Nm></>}
             </pre>
-            <p className="el-in" key={era} style={{ margin: '8px 0 0', fontSize: 13, fontWeight: 600, color: era === 'old' ? T.accent : T.success }}>{era === 'old' ? tr({ uz: '⚠️ Eski usul — kamchiliklari bor edi', ru: '⚠️ Старый способ — у него были недостатки' }) : tr({ uz: '✨ Zamonaviy va ishonchli usul', ru: '✨ Современный и надёжный способ' })}</p>
+            <p className="el-in" key={`note-${era}`} style={{ margin: '8px 0 0', fontSize: 13, fontWeight: 600, color: era === 'old' ? T.accent : T.success }}>{era === 'old' ? tr({ uz: '⚠️ Eski usul — kamchiliklari bor edi', ru: '⚠️ Старый способ — у него были недостатки' }) : tr({ uz: '✨ Zamonaviy va ishonchli usul', ru: '✨ Современный и надёжный способ' })}</p>
           </Col>
           <Col>
             <div className="frame fade-up delay-2">
@@ -1584,88 +1557,54 @@ const Screen12 = (props) => (
     }} />
 );
 
-// ===== SCREEN 13 — KULMINATSIYA: O'Z OMBORINGNI YIG' (stellaj-gate) =====
+// ===== SCREEN 13 — AMALIYOT: O'Z O'ZGARUVCHILARING =====
+// F-0807-03: «quti yig'ish stansiyasi» (let/const tanla → qiymat sudra → yorliq yopishtir →
+// omborga qo'y, 3 quti uchun 12 harakat) juda qiyin edi. Eski (v16) mantiq qaytdi:
+// bitta blokni bosdingiz — kodda tayyor qator paydo bo'ladi. Ko'rinish hozirgicha.
 const S13_COLOR = (t) => (t === 'str' ? CODE.str : t === 'bool' ? CODE.bool : CODE.num);
-const S13_VALUES = [{ label: '"Aziza"', t: 'str' }, { label: '14', t: 'num' }, { label: '"Toshkent"', t: 'str' }, { label: '0', t: 'num' }, { label: 'true', t: 'bool' }, { label: '"Coddycamp"', t: 'str' }];
-const S13_NAMES = ['ism', 'yosh', 'shahar', 'ball', 'maktab', 'oqiyaptimi'];
+const S13_BLOCKS = [
+  { kw: 'let', name: 'ism', val: '"Aziza"', t: 'str' },
+  { kw: 'let', name: 'yosh', val: '14', t: 'num' },
+  { kw: 'const', name: 'shahar', val: '"Toshkent"', t: 'str' },
+  { kw: 'let', name: 'ball', val: '0', t: 'num' },
+  { kw: 'const', name: 'maktab', val: '"Coddycamp"', t: 'str' },
+  { kw: 'let', name: 'oqiyaptimi', val: 'true', t: 'bool' }
+];
 const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const audio = useAudio([{ id: 's13', text: `Endi navbat sizga — o'z omboringizni yig'ing. Har quti uchun: qiymat-tokenni ichiga soling, nom yorlig'ini yopishtiring va let yoki const tanlang. O'zgarmasiga const tanlansa quti qulflanadi. Kamida 3 ta to'liq quti yig'ing.`, trigger: 'on_mount', waits_for: null }]);
-  // OMBORCHI kulminatsiya: build-station'da quti yig'iladi (SOL + YORLIQLA + let/const) → omborga qo'yiladi
-  const [shelf, setShelf] = useState(() => storedAnswer?.shelf || []);
-  const [cur, setCur] = useState({ kw: 'let', value: null, name: null });
-  const [drag, setDrag] = useState(null);
-  const [over, setOver] = useState(false);
-  const [jolt, setJolt] = useState(false);      // token qutiga tushganda seskanish
-  const MAX = 5;
-  const usedNames = shelf.map(b => b.name);
-  const done = shelf.length >= 3;
-  const curReady = !!cur.value && !!cur.name;
-  const placeValue = (tok) => { setCur(c => ({ ...c, value: tok })); setDrag(null); setOver(false); setJolt(true); setTimeout(() => setJolt(false), 450); };
-  const stash = () => { if (!curReady || shelf.length >= MAX) return; setShelf(s => [...s, cur]); setCur({ kw: 'let', value: null, name: null }); };
-  const resetAll = () => { setShelf([]); setCur({ kw: 'let', value: null, name: null }); };
-  useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true, shelf }); }, [done]); // eslint-disable-line
-  const availNames = S13_NAMES.filter(n => !usedNames.includes(n));
-  const isConst = cur.kw === 'const';
+  const audio = useAudio([{ id: 's13', text: `Endi navbat sizga — o'zingiz haqingizda bir nechta o'zgaruvchi yarating. Pastdagi bloklarni bosib qo'shing: ism, yosh, shahar... Kamida 3 ta o'zgaruvchi yig'ing.`, trigger: 'on_mount', waits_for: null }]);
+  const MAX = 6;
+  const [items, setItems] = useState(() => storedAnswer?.items || []);
+  const done = items.length >= 3;
+  const add = (b) => { if (items.length >= MAX || items.find(x => x.name === b.name)) return; setItems(prev => [...prev, b]); };
+  const reset = () => setItems([]);
+  useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true, items }); }, [done]); // eslint-disable-line
   return (
-    <Stage eyebrow={tr({ uz: "Kulminatsiya · o'z omboring", ru: 'Кульминация · ваш склад' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : `${tr({ uz: 'Kamida 3 ta quti', ru: 'Минимум 3 коробки' })} (${shelf.length}/3)`} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: "Amaliyot · o'zgaruvchilar", ru: 'Практика · переменные' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : `${tr({ uz: 'Kamida 3 ta', ru: 'Минимум 3' })} (${items.length}/3)`} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(8px,1.2vw,12px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>O'z <span className="italic" style={{ color: T.accent }}>omboringizni</span> yig'ing.</>, ru: <>Соберите свой <span className="italic" style={{ color: T.accent }}>склад</span>.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Navbat sizga — omborchi bo'ling. Har quti uchun: <b style={{ color: T.ink }}>qiymat</b> soling, <b style={{ color: T.ink }}>nom</b> yorlig'ini yopishtiring, <b style={{ color: T.ink }}>let/const</b> tanlang (o'zgarmasiga const — quti qulflanadi 🔒). Kamida <b style={{ color: T.ink }}>3 ta</b> to'liq quti yig'ing.</>, ru: <>Теперь ваша очередь — побудьте кладовщиком. Для каждой коробки: положите <b style={{ color: T.ink }}>значение</b>, наклейте ярлык с <b style={{ color: T.ink }}>именем</b>, выберите <b style={{ color: T.ink }}>let/const</b> (для неизменного — const, коробка запирается 🔒). Соберите минимум <b style={{ color: T.ink }}>3</b> полные коробки.</> })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>O'z o'zgaruvchilaringizni <span className="italic" style={{ color: T.accent }}>yarating</span></>, ru: <><span className="italic" style={{ color: T.accent }}>Создайте</span> свои переменные</> })}</h2></div>
+        <Mentor>{tr({ uz: <>Endi navbat sizga — o'zingiz haqingizda o'zgaruvchilar yarating. Bloklarni bosib qo'shing: ism, yosh, shahar... Kamida <b style={{ color: T.ink }}>3 ta</b> o'zgaruvchi yig'ing.</>, ru: <>Теперь ваша очередь — создайте переменные о себе. Нажимайте блоки, чтобы добавить: ism, yosh, shahar... Соберите минимум <b style={{ color: T.ink }}>3</b> переменные.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
-            <p className="flow-label">{tr({ uz: "Quti yig'ish stansiyasi", ru: 'Станция сборки коробок' })}</p>
-            {/* let/const tanlov */}
-            <div className="fade-up delay-1" style={{ display: 'flex', gap: 8 }}>
-              {['let', 'const'].map(k => (
-                <button key={k} onClick={() => setCur(c => ({ ...c, kw: k }))} className="mono" style={{ cursor: 'pointer', flex: 1, border: cur.kw === k ? `2px solid ${T.accent}` : `2px solid ${T.line}`, borderRadius: 9, padding: '8px 10px', fontWeight: 700, fontSize: 14, background: cur.kw === k ? T.accentSoft : T.paper, color: cur.kw === k ? T.accent : T.ink }}>{k === 'const' ? '🔒 const' : 'let'}</button>
+            <p className="flow-label">{tr({ uz: "Bloklar — bosib qo'shing", ru: 'Блоки — нажмите, чтобы добавить' })}</p>
+            <div className="fade-up delay-1" style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+              {S13_BLOCKS.map((b, i) => (
+                <button key={i} className="gchip" disabled={items.length >= MAX || !!items.find(x => x.name === b.name)} onClick={() => add(b)}>
+                  <span className="mono" style={{ color: T.accent }}>{b.kw}</span> {b.name}
+                </button>
               ))}
+              {items.length > 0 && <button className="gchip" onClick={reset}>{tr({ uz: '↺ Tozalash', ru: '↺ Очистить' })}</button>}
             </div>
-            {/* qiymat tokenlari (SOL) */}
-            <div className="fade-up delay-1" style={{ display: 'flex', gap: 7, flexWrap: 'wrap' }}>
-              {S13_VALUES.map(tok => {
-                const used = cur.value && cur.value.label === tok.label;
-                return (
-                  <button key={tok.label} draggable onDragStart={() => setDrag(tok)} onDragEnd={() => setDrag(null)} onClick={() => placeValue(tok)}
-                    className="mono" style={{ cursor: 'grab', border: 'none', borderRadius: 8, padding: '7px 12px', fontWeight: 700, fontSize: 13.5, background: used ? T.accentSoft : T.paper, color: S13_COLOR(tok.t), boxShadow: `0 3px 10px -6px rgba(${T.shadowBase},0.25)` }}>{tok.label}</button>
-                );
-              })}
-            </div>
-            {/* quti — drop target + yorliq */}
-            <div
-              onDragOver={(e) => { e.preventDefault(); setOver(true); }}
-              onDragLeave={() => setOver(false)}
-              onDrop={(e) => { e.preventDefault(); if (drag) placeValue(drag); }}
-              className={jolt ? 'wh-jolt' : ''}
-              style={{ background: T.paper, borderRadius: 14, boxShadow: `0 8px 22px -8px rgba(${T.shadowBase},0.16)`, overflow: 'hidden', outline: over ? `2px dashed ${T.accent}` : 'none', outlineOffset: 3 }}>
-              <div style={{ background: cur.name ? T.accent : T.ink, color: '#fff', fontFamily: "'JetBrains Mono',monospace", fontWeight: 700, fontSize: 13, padding: '8px 14px', display: 'flex', alignItems: 'center', gap: 6 }}>{isConst ? '🔒' : '🏷️'} {cur.name || '___'} <span style={{ marginLeft: 'auto', fontSize: 10, opacity: 0.7 }}>{cur.kw}</span></div>
-              <div className={cur.value ? 'drop-in' : ''} key={cur.value ? cur.value.label : 'e'} style={{ padding: '14px', textAlign: 'center', fontFamily: "'JetBrains Mono',monospace", fontWeight: 700, fontSize: 'clamp(17px,3vw,22px)', color: cur.value ? S13_COLOR(cur.value.t) : T.ink3, background: cur.value ? T.accentSoft : '#fff' }}>{cur.value ? cur.value.label : <span style={{ fontStyle: 'italic', fontSize: 12 }}>{tr({ uz: 'qiymat soling', ru: 'положите значение' })}</span>}</div>
-            </div>
-            {/* nom yorliqlari (YORLIQLA) */}
-            <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
-              {availNames.map(nm => (
-                <button key={nm} onClick={() => setCur(c => ({ ...c, name: nm }))} className="mono" style={{ cursor: 'pointer', border: cur.name === nm ? `2px solid ${T.accent}` : `2px solid ${T.line}`, borderRadius: 8, padding: '6px 12px', fontWeight: 700, fontSize: 13, background: cur.name === nm ? T.accentSoft : T.paper, color: cur.name === nm ? T.accent : T.ink }}>🏷️ {nm}</button>
-              ))}
-            </div>
-            <button className="btn" onClick={stash} disabled={!curReady || shelf.length >= MAX} style={{ alignSelf: 'flex-start', opacity: curReady && shelf.length < MAX ? 1 : 0.5 }}>{tr({ uz: "📦 Omborga qo'y", ru: '📦 Поставить на склад' })}</button>
+            <p className="body fade-up delay-2" style={{ margin: '2px 0 0', color: T.ink3, fontSize: 13 }}>{tr({ uz: <><b style={{ color: T.ink2 }}>Maslahat:</b> o'zgaradiganiga let, o'zgarmasiga const.</>, ru: <><b style={{ color: T.ink2 }}>Совет:</b> для изменяемого — let, для неизменного — const.</> })}</p>
           </Col>
           <Col>
-            <p className="flow-label">{tr({ uz: 'Sizning omboringiz', ru: 'Ваш склад' })} ({shelf.length}/3){shelf.length > 0 && <button onClick={resetAll} style={{ marginLeft: 8, background: 'none', border: 'none', color: T.ink3, cursor: 'pointer', fontSize: 12 }}>{tr({ uz: '↺ tozalash', ru: '↺ очистить' })}</button>}</p>
-            <div className="stellaj">
-              {shelf.length === 0 && <div className="frame-dash stellaj-empty"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: "Yig'ilgan qutilaringiz shu yerda javon-javon terilib boradi", ru: 'Собранные коробки будут выстраиваться здесь, полка за полкой' })}</p></div>}
-              {shelf.map((b, i) => (
-                <div key={i} className="wh-shelve" style={{ background: T.paper, borderRadius: 12, boxShadow: `0 6px 16px -8px rgba(${T.shadowBase},0.18)`, overflow: 'hidden' }}>
-                  <div style={{ background: b.kw === 'const' ? T.ink : T.accent, color: '#fff', fontFamily: "'JetBrains Mono',monospace", fontWeight: 700, fontSize: 12, padding: '6px 11px' }}>{b.kw === 'const' ? '🔒' : '🏷️'} {b.name}</div>
-                  <div className="mono" style={{ padding: '10px 11px', textAlign: 'center', fontWeight: 700, color: S13_COLOR(b.value.t) }}>{b.value.label}</div>
-                </div>
-              ))}
-            </div>
-            <pre className="code-box" style={{ minHeight: 54, fontSize: 'clamp(12px,1.8vw,14px)' }}>
-              {shelf.length === 0
-                ? <span style={{ color: CODE.comment }}>{"// quti yig'ing…"}</span>
-                : shelf.map((b, i) => (<span key={i} style={{ display: 'block' }}><Kw>{b.kw}</Kw> <Vr>{b.name}</Vr> <Op>=</Op> <span style={{ color: S13_COLOR(b.value.t) }}>{b.value.label}</span></span>))}
+            <p className="flow-label">{tr({ uz: 'Sizning kodingiz', ru: 'Ваш код' })}</p>
+            <pre className="code-box" style={{ minHeight: 110 }}>
+              {items.length === 0
+                ? <span style={{ color: CODE.comment }}>{tr({ uz: "// blok qo'shing…", ru: '// добавьте блок…' })}</span>
+                : items.map((b, i) => (<span key={i} className="el-in" style={{ display: 'block' }}><Kw>{b.kw}</Kw> <Vr>{b.name}</Vr> <Op>=</Op> <span style={{ color: S13_COLOR(b.t) }}>{b.val}</span></span>))}
             </pre>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ Ombor tayyor! {shelf.length} ta quti — har biri nomi, qiymati va turi (let/const) bilan. Siz omborchisiz! 🎉</>, ru: <>✓ Склад готов! {shelf.length} коробки — у каждой есть имя, значение и тип (let/const). Вы настоящий кладовщик! 🎉</> })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ Zo'r! Siz {items.length} ta o'zgaruvchi yaratdingiz — har biri nomi va qiymati bor quti.</>, ru: <>✓ Отлично! Вы создали {items.length} переменные — каждая это коробка с именем и значением.</> })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -3607,8 +3546,8 @@ const TASK_QUOTES = {
 
 // — P3: OMBOR (Screen15 — o'zi yozgan birinchi qatordan — keyin). Yakun-sahifadagi
 //   «Uyga vazifa» tugmasi ham AYNAN shu topshiriqni ochadi (matni bir xil). —
-const TASK_OMBOR = {
-  eyebrow: { uz: 'Praktika · ombor', ru: 'Практика · склад' },
+const TASK_QUTILAR = {
+  eyebrow: { uz: "Praktika · o'zgaruvchilar", ru: 'Практика · переменные' },
   title: { uz: "O'zingiz haqingizda 3 ta quti", ru: 'Три коробки о себе' },
   brief: { uz: "Uch quti yozing: `ism` — `let` bilan, qo'shtirnoqda; `yosh` — `let` bilan, qo'shtirnoqsiz raqam; `tugilgan_yil` — `const` bilan (u hech qachon o'zgarmaydi).", ru: 'Напишите три коробки: `ism` — через `let`, в кавычках; `yosh` — через `let`, число без кавычек; `tugilgan_yil` — через `const` (он никогда не меняется).' },
   files: [
@@ -3626,7 +3565,7 @@ const TASK_OMBOR = {
 const PRACTICE_AFTER = {
   6:  { task: TASK_BALL,   starter: '' }, // 1) let quti + o'zgartirish → console
   13: { task: TASK_QUOTES, starter: '' }, // 2) qo'shtirnoq: 10 va 55
-  16: { task: TASK_OMBOR,  starter: '' }, // 3) yakuniy: 3 quti (uy vazifasi bilan bir xil)
+  16: { task: TASK_QUTILAR,  starter: '' }, // 3) yakuniy: 3 quti (uy vazifasi bilan bir xil)
 };
 
 export default function JsVarsLesson({ lang: langProp, onFinished, onPractice }) {
@@ -3680,11 +3619,11 @@ export default function JsVarsLesson({ lang: langProp, onFinished, onPractice })
     if (typeof onPractice === 'function') Promise.resolve(onPractice(entry.task)).then(done);
     else { pracWrite(LESSON_META.lessonId, { kind: `s${fromScreen}`, screen: fromScreen }); setPractice({ ...entry, done, codeKey: codeKeyOf(LESSON_META.lessonId, `s${fromScreen}`) }); }
   };
-  // 🏠 UYGA VAZIFA PRAKTIKASI (yakun-sahifadagi tugma) — yakuniy topshiriq (TASK_OMBOR).
+  // 🏠 UYGA VAZIFA PRAKTIKASI (yakun-sahifadagi tugma) — yakuniy topshiriq (TASK_QUTILAR).
   // Dars-ichi mashqidan farqi: keyingi ekranga O'TKAZMAYDI (oxirgi sahifa) va serverga
   // «bajardim» signali YUBORMAYDI — bu uy ishi, sinf ishi emas.
   const openHomeworkPractice = () => {
-    const entry = { task: TASK_OMBOR, starter: '' };
+    const entry = { task: TASK_QUTILAR, starter: '' };
     if (typeof onPractice === 'function') Promise.resolve(onPractice(entry.task)).catch(() => {});
     else {
       pracWrite(LESSON_META.lessonId, { kind: 'hw' });
@@ -3809,9 +3748,6 @@ export default function JsVarsLesson({ lang: langProp, onFinished, onPractice })
         /* const-qulf: rad etilgan token orqaga/yuqoriga uchib ketadi (s6) */
         @keyframes wh-reject { 0% { transform: translate(-50%,0) scale(1); opacity: 0; } 18% { transform: translate(-50%,-14px) scale(1.08); opacity: 1; } 55% { transform: translate(-50%,-42px) scale(.96) rotate(8deg); opacity: 1; } 100% { transform: translate(-50%,-88px) scale(.6) rotate(18deg); opacity: 0; } }
         .wh-reject { animation: wh-reject .62s cubic-bezier(.4,.05,.75,.5) forwards; }
-        /* javonga quti terilishi: yuqoridan tushib bounce (s13) */
-        @keyframes wh-shelve { 0% { transform: translateY(-24px) scale(.9); opacity: 0; } 55% { transform: translateY(4px) scale(1.05); opacity: 1; } 76% { transform: translateY(-1px) scale(.99); } 100% { transform: translateY(0) scale(1); } }
-        .wh-shelve { animation: wh-shelve .5s cubic-bezier(.34,1.4,.4,1); }
         /* robot-qo'l O'QI: cho'zilish → ushlash → tortib chiqarish (s3) */
         @keyframes wh-arm { 0% { transform: translateX(-34px) scale(.7); opacity: 0; } 34% { transform: translateX(0) scale(1); opacity: 1; } 58% { transform: translateX(7px) scale(1.14); } 100% { transform: translateX(0) scale(1); opacity: 1; } }
         .wh-arm { animation: wh-arm .72s cubic-bezier(.34,1.3,.4,1); display: inline-block; }
@@ -3822,7 +3758,7 @@ export default function JsVarsLesson({ lang: langProp, onFinished, onPractice })
         @keyframes wh-graygone { 0% { opacity: 1; filter: grayscale(0); } 100% { opacity: .32; filter: grayscale(1); } }
         .wh-graygone { animation: wh-graygone .6s ease forwards; }
         @media (prefers-reduced-motion: reduce) {
-          .wh-jolt, .wh-shelve, .wh-arm, .wh-grope { animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
+          .wh-jolt, .wh-arm, .wh-grope { animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
           .wh-fall, .wh-reject { animation-duration: .2s !important; }
           .wh-graygone { animation: none !important; opacity: .32; filter: grayscale(1); }
         }
@@ -4038,9 +3974,6 @@ export default function JsVarsLesson({ lang: langProp, onFinished, onPractice })
         .frame-success { background: ${T.successSoft}; border-left: 4px solid ${T.success}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -6px rgba(31,122,77,0.22); }
         .frame-warn { background: ${T.accentSoft}; border-left: 4px solid ${T.accent}; border-radius: 12px; padding: 12px 15px; }
         .frame-dash { border: 1.5px dashed ${T.ink3}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); }
-        /* OMBORCHI stellaj — iliq karton/yog'och javon: recessed rack + tekis grid */
-        .stellaj { display: grid; grid-template-columns: repeat(auto-fill, 118px); justify-content: start; gap: 12px; min-height: 96px; align-content: start; padding: 16px 15px 18px; border-radius: 16px; background: ${T.bg}; border: 1px solid ${T.line}; box-shadow: inset 0 2px 8px -3px rgba(${T.shadowBase},0.20), inset 0 -13px 20px -16px rgba(${T.shadowBase},0.28); }
-        .stellaj-empty { grid-column: 1 / -1; }
 
         .screen { flex: 1 0 auto; min-height: 0; display: flex; flex-direction: column; gap: clamp(14px,2vw,20px); }
         /* F-0725-04 · 60-qonun: kontent sig'masa ekran-bloklari SIQILMAYDI — stage-content skroll beradi.

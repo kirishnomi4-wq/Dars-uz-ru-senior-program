@@ -1268,6 +1268,9 @@ const PM_FLASHCARDS = [
   { front: { uz: 'Harakat tugmasi qayerda turadi?', ru: 'Где стоит кнопка действия?' }, back: { uz: 'Sahifaning oxirida', ru: 'В конце страницы' }, note: { uz: 'foydalanuvchi ishongandan keyin bosiladi', ru: 'её жмут, когда уже поверили' } },
   { front: { uz: "Bo'limlar tartibi kim uchun tuziladi?", ru: 'Для кого выстраивают порядок разделов?' }, back: { uz: 'Foydalanuvchi uchun', ru: 'Для пользователя' }, note: { uz: 'bezak emas — qulaylik', ru: 'не украшение — удобство' } },
   { front: { uz: "Yaxshi sahifa qanday o'qiladi?", ru: 'Как читается хорошая страница?' }, back: { uz: 'Hikoyadek, boshdan oxirigacha', ru: 'Как история, от начала до конца' }, note: { uz: 'muammo → yechim → isbot → tugma', ru: 'проблема → решение → доказательство → кнопка' } },
+  { front: { uz: "Besh bo'lim qaysi tartibda joylashadi?", ru: 'В каком порядке идут пять разделов?' }, back: { uz: 'Birinchi blok · Muammo · Yechim · Isbot · Harakat', ru: 'Первый блок · Проблема · Решение · Доказательство · Действие' }, note: { uz: "shu tartib foydalanuvchini ishonchga olib boradi", ru: 'этот порядок ведёт пользователя к доверию' } },
+  { front: { uz: "Bo'limlar aralash tartibda bo'lsa nima bo'ladi?", ru: 'Что будет, если разделы стоят вперемешку?' }, back: { uz: 'Foydalanuvchi adashadi va ketadi', ru: 'Пользователь теряется и уходит' }, note: { uz: "u kerakli bo'limni o'zi qidirmaydi", ru: 'он не станет сам искать нужный раздел' } },
+  { front: { uz: "Chiroyli sayt ishonchlisidan ko'pincha nimasi bilan farq qiladi?", ru: 'Чем красивый сайт чаще всего отличается от надёжного?' }, back: { uz: 'Tartibi (strukturasi) bilan', ru: 'Порядком (структурой)' }, note: { uz: "rang va shrift emas — bo'limlar ketma-ketligi", ru: 'не цвет и шрифт — последовательность разделов' } },
 ];
 // F-0803-13/14: KARTA JAVOBI UZUNLIKKA MOSLASHADI.
 // Muammo edi: `.fc-tag` hamma javobga bir xil katta monoshrift berardi — u bir so'zlik javob

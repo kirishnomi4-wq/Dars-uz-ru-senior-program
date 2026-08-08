@@ -948,10 +948,10 @@ const Mentor = ({ children }) => {
 
 // ===== 4 TEXNOLOGIYA (PERN) — yagona manba =====
 const TECH = [
-  { key: 'react',    name: 'React',      color: '#019ACB', soft: '#E2F4FA', rest: { uz: 'Zal', ru: 'Зал' },       role: { uz: "Ko'rinish — foydalanuvchi ko'radigan va bosadigan hamma narsa", ru: 'Вид — всё, что пользователь видит и нажимает' }, side: 'Frontend' },
-  { key: 'express',  name: 'Express',    color: '#FF4F28', soft: '#FFE8E1', rest: { uz: 'Ofitsiant', ru: 'Официант' }, role: { uz: "Yo'llar — so'rovni qabul qiladi va kerakli joyga yetkazadi", ru: 'Маршруты — принимает запрос и доставляет его куда нужно' }, side: 'Backend' },
-  { key: 'node',     name: 'Node.js',    color: '#1F7A4D', soft: '#E3F0E8', rest: { uz: 'Oshxona', ru: 'Кухня' },   role: { uz: "Dvigatel — JavaScript'ni serverda ishlatadi", ru: 'Двигатель — запускает JavaScript на сервере' }, side: 'Backend' },
-  { key: 'postgres', name: 'PostgreSQL', color: '#7C3AED', soft: '#EFE9FB', rest: { uz: 'Ombor', ru: 'Склад' },     role: { uz: "Xotira — ma'lumotlarni doimiy saqlaydi", ru: 'Память — постоянно хранит данные' }, side: { uz: 'Baza', ru: 'База' } }
+  { key: 'react',    name: 'React',      short: { uz: "Ko'rinish", ru: 'Вид' },      color: '#019ACB', soft: '#E2F4FA', rest: { uz: 'Zal', ru: 'Зал' },       role: { uz: "Ko'rinish — foydalanuvchi ko'radigan va bosadigan hamma narsa", ru: 'Вид — всё, что пользователь видит и нажимает' }, side: 'Frontend' },
+  { key: 'express',  name: 'Express',    short: { uz: "Yo'llar", ru: 'Маршруты' }, color: '#FF4F28', soft: '#FFE8E1', rest: { uz: 'Ofitsiant', ru: 'Официант' }, role: { uz: "Yo'llar — so'rovni qabul qiladi va kerakli joyga yetkazadi", ru: 'Маршруты — принимает запрос и доставляет его куда нужно' }, side: 'Backend' },
+  { key: 'node',     name: 'Node.js',    short: { uz: 'Dvigatel', ru: 'Двигатель' }, color: '#1F7A4D', soft: '#E3F0E8', rest: { uz: 'Oshxona', ru: 'Кухня' },   role: { uz: "Dvigatel — JavaScript'ni serverda ishlatadi", ru: 'Двигатель — запускает JavaScript на сервере' }, side: 'Backend' },
+  { key: 'postgres', name: 'PostgreSQL', short: { uz: 'Xotira', ru: 'Память' },   color: '#7C3AED', soft: '#EFE9FB', rest: { uz: 'Ombor', ru: 'Склад' },     role: { uz: "Xotira — ma'lumotlarni doimiy saqlaydi", ru: 'Память — постоянно хранит данные' }, side: { uz: 'Baza', ru: 'База' } }
 ];
 const techBy = (k) => TECH.find(t => t.key === k);
 
@@ -1254,12 +1254,16 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
 };
 
 // 4 texnologiya → birlashib → bitta yaxlit sayt (animatsiyali)
+// F-0807-06: reja-ekranida to'rtta notanish nom (React/Express/Node.js/PostgreSQL) izohsiz
+// turardi — o'quvchi uchun birdan 4 ta yangi so'z. Endi har nom yonida bitta o'zbekcha
+// gloss (`short`): Ko'rinish · Yo'llar · Dvigatel · Xotira.
 const PernAssemble = () => (
   <div className="assemble">
     <div className="asm-pieces">
       {TECH.map((t, i) => (
         <div key={t.key} className="asm-chip" style={{ background: t.soft, color: t.color, animationDelay: `${0.1 + i * 0.13}s` }}>
           <span className="asm-dot" style={{ background: t.color }} />{t.name}
+          <span className="asm-short">{tr(t.short)}</span>
         </div>
       ))}
     </div>
@@ -4110,6 +4114,8 @@ export default function PeanStackLesson({ lang: langProp, onFinished, onPractice
         @keyframes asm-bounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(4px); } }
         .assemble { display: flex; flex-direction: column; align-items: center; gap: 11px; }
         .asm-pieces { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+        /* F-0807-06: nom yonidagi o'zbekcha gloss — nomdan kichikroq va xiraroq, o'qishga xalaqit bermaydi */
+        .asm-short { font-weight: 600; font-size: 0.82em; opacity: 0.72; }
         .asm-chip { display: inline-flex; align-items: center; gap: 7px; font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(12px,1.6vw,13.5px); padding: 8px 14px; border-radius: 10px; box-shadow: 0 5px 14px -6px rgba(${T.shadowBase},0.18); opacity: 0; animation: asm-in 0.42s cubic-bezier(.34,1.4,.5,1) forwards; }
         .asm-dot { width: 9px; height: 9px; border-radius: 3px; flex-shrink: 0; }
         .asm-merge { display: flex; align-items: center; gap: 8px; font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 11.5px; letter-spacing: 0.08em; text-transform: uppercase; color: ${T.ink3}; opacity: 0; animation: fade-in-up 0.4s ease-out forwards 0.62s; }
