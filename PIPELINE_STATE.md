@@ -1817,3 +1817,25 @@ darslarda qattiqlik kerakmi (URL-shakl / `#`/`http`/nisbiy yo'l), keyin hal qili
   (umumiy 20 = hammasi `src/eski/`, avvaldan, o'zgarmadi). Alohida commit.
   **QARZ (kichik):** raw ajratkich-belgilar (`join('\x01')` PmLesson2/3/4, HtmlCompiler `sig` `\0`) `\u0001`/`\u0000` escape'ga
   o'tkazilsa — 4-bandni «faylning istalgan joyida boshqaruv-belgi» ga kengaytirish mumkin (xulq bir xil, ko'rinadigan bo'ladi).
+- [x] **K-C-09 (= K-P-04, hisobot №12) — JS xato-satri raqamsiz / `lineno` siljigan / inglizcha / konsoldan qatorga sakrab bo'lmaydi** — tuzatildi, stendda tasdiqlandi.
+  Qayta chiqarish (`t-kc09.mjs`, eski bundle): `foo();` script.js 3-qator → konsol `Uncaught ReferenceError: foo is not defined` (satr yo'q),
+  `e.lineno`=57; CSS +10 qator → 67; HTML +6 qator → 62 — ofset O'ZGARUVCHAN (wrapDoc prefiksidagi `\n` soni: baseStyle+previewCss+
+  o'quvchi CSS+harness+`<body>`+o'quvchi HTML), CONSOLE_FORWARD `lineno/colno`ni tashlab yuborardi; RU rejimda ham inglizcha.
+  Yechim (foydalanuvchi roziligi 1+2+3, minimal): (1) **ofset AYIRILADI, taxmin emas** — `wrapDoc` endi ikki bosqichli: head 0/0 bilan
+  o'lchanadi (raqamlar satr-sonini o'zgartirmaydi), `htmlStart`/`jsStart` (o'quvchi index.html / script.js 1-qatorining hujjat-satri)
+  aniq hisoblanib `CONSOLE_FORWARD(nonce,{jsStart,htmlStart})`ga uzatiladi; error-hodisa `{level:'error',text(xom),file,line,col}`
+  yuboradi (`lineno≥jsStart` → script.js:N, `htmlStart≤lineno<jsStart` → index.html:N — inline `<script>` ham); (2) **tarjima
+  K-M-01 mexanizmi** — xom inglizcha holatda saqlanadi, `jsErrText()` RENDER paytida `tr()` bilan (10 ta eng ko'p uchraydigan: not defined,
+  Cannot read properties of null/undefined, not a function, Unexpected token, Unexpected end of input, Invalid or unexpected token,
+  already declared, Missing initializer, Assignment to constant, throw Error(msg)); lug'atda yo'q → xom inglizcha (faqat `Uncaught `
+  olinadi), title'da doim xom; (3) xato-satr bosilsa → tab o'sha faylga + kursor o'sha qatorga (`jumpToLine(ln, text)` — boshqa fayl
+  matni bilan; 1-urinishda stale `codes[active]` → 1-qator, tuzatildi). Natija: `t-kc09` **13/13** — script.js:3/3/3 (CSS/HTML uzunligi
+  o'zgarsa ham), :4 null, :2 SyntaxError, :2 throw, :2 not-a-function, RU → «`foo` не определено…», **FALLBACK 2 hol** (RangeError
+  «Invalid array length», DOMException querySelector) → `script.js:2` + xom inglizcha, bo'sh/buzuq EMAS; `index.html:2` inline
+  `<script>`; JUMP → faol fayl script.js, kursor 3-qator; TIL (`t-kc09-i18n.mjs`, i18n-stend, BIR instansiya, qayta ishga tushirmasdan)
+  uz→ru konsol matni almashdi (2→2 satr). Regressiya: `tc-4-runtime` A 17 satr o'zgarmadi (`console.error('xato-matn')` xom qoladi —
+  faqat `Uncaught `-hodisalar tarjima), B/B2 endi `script.js:4`/`:2` bilan; `tc-6 [1]/[1b]` forge → qizil; `t-kp01-c` watchdog OK;
+  `t-kc11` 15/15; `t-kc05` 19/19; `t-kc06c` 5/5; `t-kc11-lessons` 25/25; smoke-shared JsVars/JsConditions/JsFunctions 3/3; lint:jsx 0;
+  lint:til (74 qoida) 0; `lms/html-compiler.jsx` qayta yig'ildi (111 KB, MD5 `f49d5568`) — LMS'ga YUKLANMAGAN. Stend: `tc-lib.mjs`
+  wrapDoc-kesimi `^};` gacha (funksiya endi blokli). Yon-o'zgarish: `e.lineno` xom qiymati +5 (forward skripti 5 satr o'sdi) — ayirish
+  aniq bo'lgani uchun ta'sirsiz.

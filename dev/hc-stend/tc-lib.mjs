@@ -31,7 +31,7 @@ const parts = [
   slice(/^const buildHarness/, /^<[\\][\/]script>`;/),
   slice(/^const baseStyle/, /^  \.hc-imgfb code/),
   slice(/^const IMG_FALLBACK/, /^<[\\][\/]script>`;/),
-  slice(/^const wrapDoc/, /^<[\/]html>`;/),
+  slice(/^const wrapDoc/, /^};/),   // K-C-09: wrapDoc endi blok-funksiya (`};` bilan tugaydi)
 ];
 export const INJECT = `window.__X = (function(){ const isValidElement = (n) => !!(n && n.$$typeof);
 ${parts.join('\n')}

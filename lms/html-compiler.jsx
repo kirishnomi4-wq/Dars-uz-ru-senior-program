@@ -918,9 +918,9 @@ function runOne(req, ctx) {
     return { ok: false, hint: tr({ uz: "tekshirishda xatolik", ru: "ошибка при проверке" }) };
   }
 }
-var CONSOLE_FORWARD = (nonce) => `<script>
+var CONSOLE_FORWARD = (nonce, pos) => `<script>
 (function(){
-  var N=${JSON.stringify(nonce)};
+  var N=${JSON.stringify(nonce)},JS=${Number(pos && pos.jsStart) || 0},HT=${Number(pos && pos.htmlStart) || 0};
   function fmt(a){try{return typeof a==='object'?JSON.stringify(a):String(a);}catch(e){return String(a);}}
   function send(level,args){
     var parts=[];for(var i=0;i<args.length;i++)parts.push(fmt(args[i]));
@@ -930,7 +930,12 @@ var CONSOLE_FORWARD = (nonce) => `<script>
     var _o=console[m]?console[m].bind(console):function(){};
     console[m]=function(){send(m,arguments);try{_o.apply(null,arguments);}catch(e){}};
   });
-  window.addEventListener('error',function(e){send('error',[e.message]);});
+  window.addEventListener('error',function(e){
+    var ln=e.lineno||0,file='',line=0;
+    if(JS&&ln>=JS){file='script.js';line=ln-JS+1;}
+    else if(HT&&ln>=HT){file='index.html';line=ln-HT+1;}
+    try{parent.postMessage({__hcConsole:true,nonce:N,level:'error',text:String(e.message||''),file:file,line:line,col:e.colno||0},'*');}catch(x){}
+  });
 })();
 <\/script>`;
 var buildHarness = (probes, nonce) => `<script>
@@ -1024,7 +1029,8 @@ document.addEventListener('error',function(e){
   if(el.parentNode)el.parentNode.insertBefore(b,el.nextSibling);
 },true);
 <\/script>`;
-var wrapDoc = (html, css, js, opts = {}) => `<!doctype html>
+var wrapDoc = (html, css, js, opts = {}) => {
+  const head = (pos) => `<!doctype html>
 <html lang="${__lang}">
 <head>
 <meta charset="utf-8">
@@ -1034,15 +1040,67 @@ var wrapDoc = (html, css, js, opts = {}) => `<!doctype html>
 ${opts.previewCss || ""}
 ${css || ""}</style>
 ${opts.harness || ""}
-${opts.consoleNonce != null ? CONSOLE_FORWARD(opts.consoleNonce) : ""}
+${opts.consoleNonce != null ? CONSOLE_FORWARD(opts.consoleNonce, pos) : ""}
 ${opts.harness ? "" : IMG_FALLBACK()}
 </head>
 <body>
-${html || ""}
+`;
+  const nl = (s) => (String(s || "").match(/\n/g) || []).length;
+  const htmlStart = nl(head({ jsStart: 0, htmlStart: 0 })) + 1;
+  const jsStart = htmlStart + nl(html) + 1;
+  return `${head({ jsStart, htmlStart })}${html || ""}
 <script>${js || ""}<\/script>
 ${opts.doneNonce != null ? `<script>try{parent.postMessage({__hcDone:true,nonce:${JSON.stringify(opts.doneNonce)}},'*')}catch(e){}<\/script>` : ""}
 </body>
 </html>`;
+};
+var JS_ERR_DICT = [
+  [/^(?:Uncaught )?ReferenceError: (.+?) is not defined$/, (m) => ({
+    uz: `\`${m[1]}\` aniqlanmagan — bunday o'zgaruvchi yoki funksiya yo'q. Imlosini yoki e'lon qilinganini tekshiring`,
+    ru: `\`${m[1]}\` не определено — такой переменной или функции нет. Проверьте написание или объявление`
+  })],
+  [/^(?:Uncaught )?TypeError: Cannot read propert(?:y|ies) of (null|undefined) \(reading '(.+?)'\)$/, (m) => ({
+    uz: `\`${m[2]}\` ni o'qib bo'lmadi — qiymat ${m[1]}. Element topilmagan yoki o'zgaruvchi hali bo'sh bo'lishi mumkin`,
+    ru: `не удалось прочитать \`${m[2]}\` — значение ${m[1]}. Возможно, элемент не найден или переменная ещё пустая`
+  })],
+  [/^(?:Uncaught )?TypeError: (.+?) is not a function$/, (m) => ({
+    uz: `\`${m[1]}\` funksiya emas — uni qavs bilan chaqirib bo'lmaydi. Nomini tekshiring`,
+    ru: `\`${m[1]}\` — не функция, её нельзя вызвать со скобками. Проверьте имя`
+  })],
+  [/^(?:Uncaught )?SyntaxError: Unexpected token '?(.+?)'?$/, (m) => ({
+    uz: `kutilmagan belgi \`${m[1]}\` — oldingi qator(lar)da qavs, tirnoq yoki nuqta-vergul tekshiring`,
+    ru: `неожиданный символ \`${m[1]}\` — проверьте скобки, кавычки или точку с запятой в предыдущих строках`
+  })],
+  [/^(?:Uncaught )?SyntaxError: Unexpected end of input$/, () => ({
+    uz: `kod tugab qoldi — qavs \`)\` yoki \`}\` yopilmagan`,
+    ru: `код оборвался — не закрыта скобка \`)\` или \`}\``
+  })],
+  [/^(?:Uncaught )?SyntaxError: Invalid or unexpected token$/, () => ({
+    uz: `noto'g'ri belgi — tirnoq yopilmagan yoki begona belgi kirib qolgan bo'lishi mumkin`,
+    ru: `неверный символ — возможно, не закрыта кавычка или попал лишний символ`
+  })],
+  [/^(?:Uncaught )?SyntaxError: Identifier '(.+?)' has already been declared$/, (m) => ({
+    uz: `\`${m[1]}\` allaqachon e'lon qilingan — ikkinchi marta \`let\`/\`const\` yozmang`,
+    ru: `\`${m[1]}\` уже объявлено — не пишите \`let\`/\`const\` второй раз`
+  })],
+  [/^(?:Uncaught )?SyntaxError: Missing initializer in const declaration$/, () => ({
+    uz: `\`const\` ga qiymat berilmagan — \`const nom = qiymat;\` shaklida yozing`,
+    ru: `\`const\` без значения — пишите \`const имя = значение;\``
+  })],
+  [/^(?:Uncaught )?TypeError: Assignment to constant variable\.?$/, () => ({
+    uz: `\`const\` ga qayta qiymat berib bo'lmaydi — o'zgarishi kerak bo'lsa \`let\` ishlating`,
+    ru: `\`const\` нельзя переприсвоить — если значение меняется, используйте \`let\``
+  })],
+  [/^(?:Uncaught )?Error: (.+)$/, (m) => ({ uz: `xato: ${m[1]}`, ru: `ошибка: ${m[1]}` })]
+];
+var jsErrText = (raw) => {
+  const s = String(raw ?? "").trim();
+  for (const [re, fn] of JS_ERR_DICT) {
+    const m = re.exec(s);
+    if (m) return tr(fn(m));
+  }
+  return s.replace(/^Uncaught /, "") || s;
+};
 function HtmlCompiler({
   task: taskProp = DEFAULT_TASK,
   starterCode,
@@ -1211,7 +1269,7 @@ function HtmlCompiler({
     const onMsg = (e) => {
       const d = e.data;
       if (d && d.__hcConsole && d.nonce === consoleNonceRef.current && fromFrame(e, previewFrameRef)) {
-        setConsoleLines((prev) => prev.length >= 200 ? prev : [...prev, { level: d.level, text: d.text }]);
+        setConsoleLines((prev) => prev.length >= 200 ? prev : [...prev, { level: d.level, text: String(d.text ?? ""), file: d.file || "", line: Number(d.line) || 0, col: Number(d.col) || 0 }]);
       }
     };
     window.addEventListener("message", onMsg);
@@ -1729,10 +1787,10 @@ ${ind}`, s + 1 + ind.length);
     el.setSelectionRange(0, 0);
     caretRef.current = 0;
   };
-  const jumpToLine = (ln) => {
+  const jumpToLine = (ln, text) => {
     const el = taRef.current;
     if (!el || !ln) return;
-    const lines = (codes[active] ?? "").split("\n");
+    const lines = (text ?? codes[active] ?? "").split("\n");
     let pos = 0;
     for (let i = 0; i < Math.min(ln - 1, lines.length); i++) pos += lines[i].length + 1;
     el.focus();
@@ -2001,7 +2059,26 @@ ${tr({ uz: "Bosing — kursor shu qatorga tushadi", ru: "Нажмите — ку
         sandbox: "allow-scripts allow-popups allow-popups-to-escape-sandbox",
         srcDoc: doc
       }
-    ), hung && /* @__PURE__ */ React.createElement("div", { className: "hc-hung", role: "alert" }, HUNG_MSG), showConsole && /* @__PURE__ */ React.createElement("div", { className: "hc-console" }, /* @__PURE__ */ React.createElement("div", { className: "hc-console-bar" }, /* @__PURE__ */ React.createElement("span", { className: "hc-console-title" }, "🖥️ Console"), consoleLines.length > 0 && /* @__PURE__ */ React.createElement("button", { className: "hc-console-clear", onClick: () => setConsoleLines([]) }, tr({ uz: "tozalash", ru: "очистить" }))), /* @__PURE__ */ React.createElement("div", { className: "hc-console-body" }, consoleLines.length === 0 ? /* @__PURE__ */ React.createElement("div", { className: "hc-console-empty" }, tr({ uz: "console.log(...) natijasi shu yerda chiqadi", ru: "результат console.log(...) появится здесь" })) : consoleLines.map((l, i) => /* @__PURE__ */ React.createElement("div", { key: i, className: `hc-console-line lvl-${l.level}` }, /* @__PURE__ */ React.createElement("span", { className: "hc-console-caret" }, "›"), /* @__PURE__ */ React.createElement("span", { className: "hc-console-text" }, l.text))))))),
+    ), hung && /* @__PURE__ */ React.createElement("div", { className: "hc-hung", role: "alert" }, HUNG_MSG), showConsole && /* @__PURE__ */ React.createElement("div", { className: "hc-console" }, /* @__PURE__ */ React.createElement("div", { className: "hc-console-bar" }, /* @__PURE__ */ React.createElement("span", { className: "hc-console-title" }, "🖥️ Console"), consoleLines.length > 0 && /* @__PURE__ */ React.createElement("button", { className: "hc-console-clear", onClick: () => setConsoleLines([]) }, tr({ uz: "tozalash", ru: "очистить" }))), /* @__PURE__ */ React.createElement("div", { className: "hc-console-body" }, consoleLines.length === 0 ? /* @__PURE__ */ React.createElement("div", { className: "hc-console-empty" }, tr({ uz: "console.log(...) natijasi shu yerda chiqadi", ru: "результат console.log(...) появится здесь" })) : consoleLines.map((l, i) => l.level === "error" && l.file ? (
+      // K-C-09: xato — fayl:satr (bosilsa o'sha faylning o'sha qatoriga kursor) + o'quvchi tilida matn; xom matn title'da
+      /* @__PURE__ */ React.createElement(
+        "div",
+        {
+          key: i,
+          className: `hc-console-line lvl-${l.level} has-pos`,
+          title: l.text,
+          onClick: () => {
+            if (files.some((f) => f.name === l.file)) {
+              setActive(l.file);
+              setTimeout(() => jumpToLine(l.line, codes[l.file]), 0);
+            }
+          }
+        },
+        /* @__PURE__ */ React.createElement("span", { className: "hc-console-caret" }, "›"),
+        /* @__PURE__ */ React.createElement("span", { className: "hc-console-pos" }, l.file, ":", l.line),
+        /* @__PURE__ */ React.createElement("span", { className: "hc-console-text" }, jsErrText(l.text))
+      )
+    ) : /* @__PURE__ */ React.createElement("div", { key: i, className: `hc-console-line lvl-${l.level}`, title: l.level === "error" && /^Uncaught /.test(l.text) ? l.text : void 0 }, /* @__PURE__ */ React.createElement("span", { className: "hc-console-caret" }, "›"), /* @__PURE__ */ React.createElement("span", { className: "hc-console-text" }, l.level === "error" && /^Uncaught /.test(l.text) ? jsErrText(l.text) : l.text))))))),
     hasRuntime && !framesOff && /* @__PURE__ */ React.createElement(
       "iframe",
       {
@@ -2180,6 +2257,9 @@ function StyleTag() {
       .hc-console-line.lvl-warn{color:#FFD380;background:rgba(255,189,46,.08)}
       .hc-console-line.lvl-error{color:#ff8a7a;background:rgba(255,95,86,.1)}
       .hc-console-line.lvl-error .hc-console-caret{color:#ff5f56}
+      .hc-console-line.has-pos{cursor:pointer}
+      .hc-console-line.has-pos:hover{background:rgba(255,95,86,.18)}
+      .hc-console-pos{flex-shrink:0;color:#FFD380;font-weight:700;text-decoration:underline dotted}
 
       .hc-bottom{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
       .hc-ghost{background:transparent;border:1px solid transparent;color:${HC_T.ink2};font-family:'Manrope',sans-serif;font-weight:600;font-size:14px;cursor:pointer;padding:11px 17px;border-radius:12px;transition:all .15s}

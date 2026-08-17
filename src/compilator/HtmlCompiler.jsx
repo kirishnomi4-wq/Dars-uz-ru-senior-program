@@ -865,9 +865,12 @@ function runOne(req, ctx) {
 // KO'RINADIGAN konsol uchun: console.log/info/warn/error va xatolarni
 // ota-oynaga (parent) postMessage bilan uzatadi → UI'da chiqaramiz.
 // nonce — eski va yangi natijalar aralashmasligi uchun.
-const CONSOLE_FORWARD = (nonce) => `<script>
+// K-C-09: `pos` = {jsStart, htmlStart} — wrapDoc hujjatida o'quvchi script.js / index.html
+// BIRINCHI qatorining hujjat-satr raqami (wrapDoc aniq hisoblaydi). error-hodisadagi `lineno`
+// hujjat bo'yicha keladi → ofset AYIRILADI (taxmin emas): script.js:N yoki index.html:N.
+const CONSOLE_FORWARD = (nonce, pos) => `<script>
 (function(){
-  var N=${JSON.stringify(nonce)};
+  var N=${JSON.stringify(nonce)},JS=${Number(pos && pos.jsStart) || 0},HT=${Number(pos && pos.htmlStart) || 0};
   function fmt(a){try{return typeof a==='object'?JSON.stringify(a):String(a);}catch(e){return String(a);}}
   function send(level,args){
     var parts=[];for(var i=0;i<args.length;i++)parts.push(fmt(args[i]));
@@ -877,7 +880,12 @@ const CONSOLE_FORWARD = (nonce) => `<script>
     var _o=console[m]?console[m].bind(console):function(){};
     console[m]=function(){send(m,arguments);try{_o.apply(null,arguments);}catch(e){}};
   });
-  window.addEventListener('error',function(e){send('error',[e.message]);});
+  window.addEventListener('error',function(e){
+    var ln=e.lineno||0,file='',line=0;
+    if(JS&&ln>=JS){file='script.js';line=ln-JS+1;}
+    else if(HT&&ln>=HT){file='index.html';line=ln-HT+1;}
+    try{parent.postMessage({__hcConsole:true,nonce:N,level:'error',text:String(e.message||''),file:file,line:line,col:e.colno||0},'*');}catch(x){}
+  });
 })();
 <\/script>`;
 
@@ -988,7 +996,11 @@ document.addEventListener('error',function(e){
 },true);
 <\/script>`;
 
-const wrapDoc = (html, css, js, opts = {}) => `<!doctype html>
+const wrapDoc = (html, css, js, opts = {}) => {
+  // K-C-09: o'quvchi kodi hujjatning QAYSI satridan boshlanishi aniq hisoblanadi (prefiksdagi
+  // `\n` soni — CSS/HTML uzunligiga qarab o'zgaradi) va CONSOLE_FORWARD'ga uzatiladi.
+  // Raqamlar head'ning satr-sonini o'zgartirmaydi → avval 0/0 bilan o'lchab, keyin haqiqiysi qo'yiladi.
+  const head = (pos) => `<!doctype html>
 <html lang="${__lang}">
 <head>
 <meta charset="utf-8">
@@ -998,17 +1010,61 @@ const wrapDoc = (html, css, js, opts = {}) => `<!doctype html>
 ${opts.previewCss || ''}
 ${css || ''}</style>
 ${opts.harness || '' /* K-C-11: capture+probes bitta skript, o'quvchi kodidan OLDIN (head) */}
-${opts.consoleNonce != null ? CONSOLE_FORWARD(opts.consoleNonce) : ''}
+${opts.consoleNonce != null ? CONSOLE_FORWARD(opts.consoleNonce, pos) : ''}
 ${opts.harness ? '' : IMG_FALLBACK() /* faqat KO'RINADIGAN preview; tekshiruv-hujjati toza qoladi */}
 </head>
 <body>
-${html || ''}
+`;
+  const nl = (s) => (String(s || '').match(/\n/g) || []).length;
+  const htmlStart = nl(head({ jsStart: 0, htmlStart: 0 })) + 1;   // index.html 1-qatori = hujjatning shu satri
+  const jsStart = htmlStart + nl(html) + 1;                        // script.js 1-qatori
+  return `${head({ jsStart, htmlStart })}${html || ''}
 <script>${js || ''}<\/script>
 ${opts.doneNonce != null ? `<script>try{parent.postMessage({__hcDone:true,nonce:${JSON.stringify(opts.doneNonce)}},'*')}catch(e){}<\/script>` : ''}
 </body>
 </html>`;
+};
 // K-P-01: `__hcDone` — o'quvchi skripti (sinxron qismi) TUGAGANINI bildiradi. Cheksiz
 // sikl bo'lsa bu xabar hech qachon kelmaydi → ota-oyna watchdog bilan qotganini biladi.
+
+// K-C-09: brauzerning inglizcha JS-xato matni → o'quvchi tilida (RENDER paytida chaqiriladi —
+// til almashsa darhol qayta chiziladi, K-M-01 mexanizmi). Xom matn saqlanadi (title'da).
+// Lug'atda yo'q xato → xom inglizcha (faqat `Uncaught ` prefiksi olinadi) — hech qachon bo'sh emas.
+const JS_ERR_DICT = [
+  [/^(?:Uncaught )?ReferenceError: (.+?) is not defined$/, (m) => ({
+    uz: `\`${m[1]}\` aniqlanmagan — bunday o'zgaruvchi yoki funksiya yo'q. Imlosini yoki e'lon qilinganini tekshiring`,
+    ru: `\`${m[1]}\` не определено — такой переменной или функции нет. Проверьте написание или объявление` })],
+  [/^(?:Uncaught )?TypeError: Cannot read propert(?:y|ies) of (null|undefined) \(reading '(.+?)'\)$/, (m) => ({
+    uz: `\`${m[2]}\` ni o'qib bo'lmadi — qiymat ${m[1]}. Element topilmagan yoki o'zgaruvchi hali bo'sh bo'lishi mumkin`,
+    ru: `не удалось прочитать \`${m[2]}\` — значение ${m[1]}. Возможно, элемент не найден или переменная ещё пустая` })],
+  [/^(?:Uncaught )?TypeError: (.+?) is not a function$/, (m) => ({
+    uz: `\`${m[1]}\` funksiya emas — uni qavs bilan chaqirib bo'lmaydi. Nomini tekshiring`,
+    ru: `\`${m[1]}\` — не функция, её нельзя вызвать со скобками. Проверьте имя` })],
+  [/^(?:Uncaught )?SyntaxError: Unexpected token '?(.+?)'?$/, (m) => ({
+    uz: `kutilmagan belgi \`${m[1]}\` — oldingi qator(lar)da qavs, tirnoq yoki nuqta-vergul tekshiring`,
+    ru: `неожиданный символ \`${m[1]}\` — проверьте скобки, кавычки или точку с запятой в предыдущих строках` })],
+  [/^(?:Uncaught )?SyntaxError: Unexpected end of input$/, () => ({
+    uz: `kod tugab qoldi — qavs \`)\` yoki \`}\` yopilmagan`,
+    ru: `код оборвался — не закрыта скобка \`)\` или \`}\`` })],
+  [/^(?:Uncaught )?SyntaxError: Invalid or unexpected token$/, () => ({
+    uz: `noto'g'ri belgi — tirnoq yopilmagan yoki begona belgi kirib qolgan bo'lishi mumkin`,
+    ru: `неверный символ — возможно, не закрыта кавычка или попал лишний символ` })],
+  [/^(?:Uncaught )?SyntaxError: Identifier '(.+?)' has already been declared$/, (m) => ({
+    uz: `\`${m[1]}\` allaqachon e'lon qilingan — ikkinchi marta \`let\`/\`const\` yozmang`,
+    ru: `\`${m[1]}\` уже объявлено — не пишите \`let\`/\`const\` второй раз` })],
+  [/^(?:Uncaught )?SyntaxError: Missing initializer in const declaration$/, () => ({
+    uz: `\`const\` ga qiymat berilmagan — \`const nom = qiymat;\` shaklida yozing`,
+    ru: `\`const\` без значения — пишите \`const имя = значение;\`` })],
+  [/^(?:Uncaught )?TypeError: Assignment to constant variable\.?$/, () => ({
+    uz: `\`const\` ga qayta qiymat berib bo'lmaydi — o'zgarishi kerak bo'lsa \`let\` ishlating`,
+    ru: `\`const\` нельзя переприсвоить — если значение меняется, используйте \`let\`` })],
+  [/^(?:Uncaught )?Error: (.+)$/, (m) => ({ uz: `xato: ${m[1]}`, ru: `ошибка: ${m[1]}` })],
+];
+const jsErrText = (raw) => {
+  const s = String(raw ?? '').trim();
+  for (const [re, fn] of JS_ERR_DICT) { const m = re.exec(s); if (m) return tr(fn(m)); }
+  return s.replace(/^Uncaught /, '') || s;   // lug'atda yo'q — xom inglizcha, bo'sh EMAS
+};
 
 function HtmlCompiler({
   task: taskProp = DEFAULT_TASK,
@@ -1218,7 +1274,8 @@ function HtmlCompiler({
     const onMsg = (e) => {
       const d = e.data;
       if (d && d.__hcConsole && d.nonce === consoleNonceRef.current && fromFrame(e, previewFrameRef)) {
-        setConsoleLines((prev) => (prev.length >= 200 ? prev : [...prev, { level: d.level, text: d.text }]));
+        // K-C-09: xato-satrlar {file,line,col} bilan keladi (xom inglizcha matn saqlanadi, tarjima renderda)
+        setConsoleLines((prev) => (prev.length >= 200 ? prev : [...prev, { level: d.level, text: String(d.text ?? ''), file: d.file || '', line: Number(d.line) || 0, col: Number(d.col) || 0 }]));
       }
     };
     window.addEventListener('message', onMsg);
@@ -1768,9 +1825,9 @@ function HtmlCompiler({
     el.setSelectionRange(0, 0); caretRef.current = 0;
   };
   // Xato yozuvi bosilsa — kursor o'sha qatorga tushadi (bola qatorni sanamasin)
-  const jumpToLine = (ln) => {
+  const jumpToLine = (ln, text) => {   // K-C-09: `text` berilsa (boshqa fayl) — o'sha matn bo'yicha
     const el = taRef.current; if (!el || !ln) return;
-    const lines = (codes[active] ?? '').split('\n');
+    const lines = (text ?? codes[active] ?? '').split('\n');
     let pos = 0;
     for (let i = 0; i < Math.min(ln - 1, lines.length); i++) pos += lines[i].length + 1;
     el.focus(); el.setSelectionRange(pos, pos); caretRef.current = pos;
@@ -2063,10 +2120,20 @@ function HtmlCompiler({
                   <div className="hc-console-empty">{tr({ uz: 'console.log(...) natijasi shu yerda chiqadi', ru: 'результат console.log(...) появится здесь' })}</div>
                 ) : (
                   consoleLines.map((l, i) => (
-                    <div key={i} className={`hc-console-line lvl-${l.level}`}>
-                      <span className="hc-console-caret">›</span>
-                      <span className="hc-console-text">{l.text}</span>
-                    </div>
+                    l.level === 'error' && l.file ? (
+                      // K-C-09: xato — fayl:satr (bosilsa o'sha faylning o'sha qatoriga kursor) + o'quvchi tilida matn; xom matn title'da
+                      <div key={i} className={`hc-console-line lvl-${l.level} has-pos`} title={l.text}
+                        onClick={() => { if (files.some((f) => f.name === l.file)) { setActive(l.file); setTimeout(() => jumpToLine(l.line, codes[l.file]), 0); } }}>
+                        <span className="hc-console-caret">›</span>
+                        <span className="hc-console-pos">{l.file}:{l.line}</span>
+                        <span className="hc-console-text">{jsErrText(l.text)}</span>
+                      </div>
+                    ) : (
+                      <div key={i} className={`hc-console-line lvl-${l.level}`} title={l.level === 'error' && /^Uncaught /.test(l.text) ? l.text : undefined}>
+                        <span className="hc-console-caret">›</span>
+                        <span className="hc-console-text">{l.level === 'error' && /^Uncaught /.test(l.text) ? jsErrText(l.text) : l.text}</span>
+                      </div>
+                    )
                   ))
                 )}
               </div>
@@ -2258,6 +2325,9 @@ function StyleTag() {
       .hc-console-line.lvl-warn{color:#FFD380;background:rgba(255,189,46,.08)}
       .hc-console-line.lvl-error{color:#ff8a7a;background:rgba(255,95,86,.1)}
       .hc-console-line.lvl-error .hc-console-caret{color:#ff5f56}
+      .hc-console-line.has-pos{cursor:pointer}
+      .hc-console-line.has-pos:hover{background:rgba(255,95,86,.18)}
+      .hc-console-pos{flex-shrink:0;color:#FFD380;font-weight:700;text-decoration:underline dotted}
 
       .hc-bottom{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
       .hc-ghost{background:transparent;border:1px solid transparent;color:${HC_T.ink2};font-family:'Manrope',sans-serif;font-weight:600;font-size:14px;cursor:pointer;padding:11px 17px;border-radius:12px;transition:all .15s}
