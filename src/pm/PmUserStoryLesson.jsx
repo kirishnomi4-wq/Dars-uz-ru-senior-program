@@ -1285,25 +1285,29 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <h3 className="k-slide-h">{c.predict.ask}</h3>
               <div className="kp-chips">
                 {c.predict.chips.map((ch, k) => {
-                  const locked = bet !== undefined || isMentorK;
+                  // F-0812-04 — mentor rejimida javob oldindan ochilmaydi (44-qonun oilasi):
+                  // ilgari `|| isMentorK` turardi va proyektorda to'g'ri chip yashil ✓ bilan
+                  // darhol chiqib, bashorat butun sinf uchun ma'nosini yo'qotardi. Endi mentor
+                  // ham BOSIB ochadi; NavNext bypassi (31-qonun) o'z joyida qoladi.
+                  const locked = bet !== undefined;
                   const isAns = k === c.predict.ans;
                   let cls = 'kp-chip';
-                  if (locked) { cls += ' locked'; if (isAns) cls += ' correct'; else if (bet === k) cls += ' wrong'; }
+                  if (locked) { cls += ' locked'; if (isAns) cls += ' correct'; else if (bet === k && !isMentorK) cls += ' wrong'; }
                   else cls += waveCls(betHint, k, c.predict.chips.length);
                   return (
                     <button key={k} className={cls} disabled={locked} onClick={() => setBets(p => ({ ...p, [i]: k }))}>
                       <span className="kp-ic">{ch.ic}</span>{ch.t}
                       {locked && isAns && <span className="kp-mark ok">✓</span>}
-                      {locked && !isAns && bet === k && <span className="kp-mark no">✗</span>}
+                      {locked && !isAns && bet === k && !isMentorK && <span className="kp-mark no">✗</span>}
                     </button>
                   );
                 })}
               </div>
-              {bet === undefined && !isMentorK
+              {bet === undefined
                 ? <p className="kp-sub">Birini tanlang — javobi ochiladi.</p>
                 : (bet !== undefined && !isMentorK && <p className={`kp-res ${bet === c.predict.ans ? 'hit' : 'miss'}`}>{bet === c.predict.ans ? '🎯 Topdingiz!' : <>Adashdingiz — asl javob «{c.predict.chips[c.predict.ans].t}», «{c.predict.chips[bet].t}» emas.</>}</p>)}
             </div>
-            {(bet !== undefined || isMentorK) && (
+            {bet !== undefined && (
               <div className="k-slide fade-step revealed" key={i}>
                 <div className="k-slide-ic">{c.ic}</div>
                 <h3 className="k-slide-h">{c.h}</h3>

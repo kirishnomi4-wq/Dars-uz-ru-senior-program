@@ -28,6 +28,17 @@
 - **Karta-uslub:** oq qog'oz + indigo soya + `line` halqa; artefaktlar «indeks-karta/hujjat» hissi (chap-accent hoshiya); interaktivlar hover'da translateY-lift.
 - **Formula/slot semantikasi:** KIM=ko'k · NIMA=amber · NATIJA=yashil.
 - **Dekor o'qitadi (M7):** fon/arena tokenlari (`QZ_BG_SHAPES`/`TOK`) shu dars atamalaridan; ma'nosiz shakl yo'q. Arena CodeStrike brendi O'ZGARMAYDI (platforma mahsuloti).
+- 🔴 **KOMPILYATOR PALITRA-ISTISNOSI (2026-08-09, F-0809-05, boshliq-qarori).** Kod
+  kompilyatori (`src/compilator/HtmlCompiler.jsx`) PM darsida ham **CodeStrike to'q
+  sariq** brendida qoladi — indigoga bo'yalmaydi. Sabab: kompilyator dars-sahifasining
+  bir bo'lagi EMAS, u tugma bilan ochiladigan **to'liq-ekran ASBOB** (`position: fixed;
+  inset: 0`) — ochilganda PM sahifasi umuman ko'rinmaydi, ya'ni ranglar yonma-yon
+  tushmaydi. Bola uchun bu bitta tanish asbob: texnik darsda ham, PM darsida ham
+  AYNAN bir xil ko'rinadi va bir xil ishlaydi (arena brendi bilan bir mantiq).
+  · Buning o'rniga PM-hissi **manzil-qatori** orqali beriladi: `task.previewUrl`
+  (masalan `olx.uz`) — natija paneli soxta brauzer oynasiga aylanadi.
+  · 🔴 **Auditorlarga:** bu topilma EMAS. PM darsda to'q sariq kompilyator ko'rsangiz —
+  tegmang; indigoga qaytarish taqiqlanadi.
 - Universal: layout 1100px+`--lz`+padH60 · `MENTOR_IMG`+`PHOTO_SET` hostlangan · xira LiveBadge · o'z-ball yashil · `prefers-reduced-motion` har og'ir animatsiyada.
 
 ## 1-B. 🔀 PM DARSLARNING IKKI TURI (boshliq-qarori, 2026-07-28)

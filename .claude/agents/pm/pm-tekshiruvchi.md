@@ -76,6 +76,65 @@ Bu sinf nuqsonlarning ildizi bitta: **etalondan naqsh ko'chiriladi, lekin etalon
 
 15. **🖥 Mentor ekrani sweep'i (90-qonun · jadval: `PM_DARS_ETALON.md` 1-D bo'lim).** Darsni **mentor rejimida** yuritib (yoki `live.mode === 'mentor'` qorovullarini grep bilan), 1-D jadvalining 13 bandini birma-bir tasdiqlang. Eng ko'p uchraydigan buzilishlar: **(a)** nishon-hisoblagichi (tepadagi 🏅 N/M) proyektorda ko'rinib turibdi → 🔴; **(b)** yakuniy ekranda nishon-ro'yxati mentorga chiqyapti → 🔴; **(c)** podiumda «📊 Savollar bo'yicha» (`0/4` kabi) kartasi bor → 🔴 **butunlay olib tashlanadi** (mag'lubiyat-tablosi; mentor bu ma'lumotni dars paytida `MentorTestStats` dan oladi); **(d)** shaxsiy `ScoreRing` mentorda chiqyapti → 🔴; **(e)** aksincha — to'liq-ekran nishon-bayrami YO'Q qilingan → 🔴 (u **lahza**, qolishi kerak). Karta olib tashlanganda uning CSS'i ham o'lik qolmasin (`pod-qstats`/`qstat-*` kabi) — residue-grep qiling.
 
+16. **🔴 DISTRAKTOR-ROSTLIGI (F-0813-03 bug-sinfi · 17-qonun · BLOKLOVCHI).**
+    **Dalil:** 2026-08-13 da ketma-ket tekshirilgan **4 darsning 4 tasida ham** shu xato topildi —
+    M3-D10 (TEST-3 + bashorat), M3-D14 (TEST-4), M4-D2 (TEST-3), M4-D7 (TEST-2 + TEST-3).
+    Bu tasodif emas, **tizimli**: savol yozuvchi distraktorni «ishonarli bo'lsin» deb tanlaydi,
+    ishonarlilikning eng oson manbai esa — **darsning o'zida rost bo'lgan gap**.
+    **Oqibat:** to'g'ri o'ylagan bolaga «Adashdingiz» deyiladi va u **jazolanadi**.
+
+    **Tekshirish usuli — distraktorni SAVOL bilan emas, EKRAN bilan solishtiring**
+    (korpus §102). Har test/bashorat savolining har bir noto'g'ri varianti uchun:
+    - (a) shu gap dars **ekranlarining birortasida** rostmi? (keys slaydlari, mexanika
+      natijalari, mentor-pufaklari, flashcard orqalari — hammasi);
+    - (b) shu gap **mexanika ishlaganda** ekranda rost bo'lib chiqadimi? *(M4-D7 saboqi:
+      distraktor matnda yo'q edi, lekin s4 mexanikasi bosilganda ekran uni ko'rsatardi)*;
+    - (c) shu gap **hayotda** rostmi — o'quvchi telefonida tekshira oladimi? *(M4-D2 saboqi:
+      «Yangi chiqqanlar» qatori Netflix'da haqiqatan bor)*;
+    - (d) **savol-fe'li** distraktorni rost qilib qo'ymaydimi? *(M4-D7 saboqi: «qachon
+      biladi?» — odam ma'lumoti sizib ketganda ham «biladi»; «qachon o'qiy oladi?» ga
+      almashtirildi)*.
+    Bittasi ham «ha» bo'lsa → 🔴, mas'ul rolga qaytariladi. `correct` indeksiga TEGILMAYDI —
+    **distraktor matni** almashtiriladi (indeks o'zgarishi ball-kalitini buzadi).
+
+    **Shu bandda — SHAKL-TELLI (javobni bilmasdan topish yo'li).** Har savolda variant
+    uzunliklarini o'lchang (`Intl.Segmenter`): to'g'ri javob **eng uzuni** bo'lsa 🟡, va
+    darsda bunday savollar **yarmidan ko'p** bo'lsa 🔴. *(M3-D10 da 12 arena-savolidan
+    8 tasida to'g'ri javob eng uzun edi; 👦 o'quvchi 4 testdan 2 tasini mazmunni bilmay,
+    faqat uzunlikka qarab topdi.)* Shu bandda yana: distraktorlarning bittasi
+    **grammatik shakli bilan** ajralib turmasin *(M3-D10 s5: ikkita variant «Ha…» bilan,
+    to'g'risi yolg'iz «Yo'q…» — bola mazmunni emas, naqshni o'qiydi)*.
+
+17. **🔴 KEYS-EKRAN RELSLARI (F-0813-09 bug-sinfi · ETALON 33 + 22).**
+    **Dalil:** 2026-08-13 da M3-D10 qabulchidan 27/28 bilan qaytdi (bashorat 1 ta), tuzatildi —
+    lekin sinf opa-singil darslarga tarqatilmadi va M4-D2 ham qabulchidan **aynan shu ikki
+    band** bilan qaytdi; tekshiruvda M3-D14 va M4-D7 da ham bor edi. Skelet klonlanganda
+    keys-ekran nuqsonlari birga klonlanadi — endi HAR darsda tekshiriladi:
+    - (a) **keys/holat-slaydlarida `predict:` KAMIDA 2 ta** (ETALON 33) — grep bilan sanang;
+      bittasi bo'lsa 🔴 quruvchiga;
+    - (b) **bosqich-hisoblagich uzluksiz** — bashoratli bosqichda eyebrow hisoblagichSIZ
+      qolmasin, bashorat javobidan keyin ham yo'qolmasin, ko'prik-bosqich ham sanalsin
+      (to'g'ri naqsh: `PmLesson9.jsx` s6 — har bosqichda aynan bitta hisoblagich,
+      `1·2·…·N` uzuq joysiz);
+    - (c) ikki bashorat **ikki o'lchovda** bo'lsin (bir savolning ikki shakli emas) va
+      birinchisi ikkinchisining javobini oshkor qilmasin.
+
+18. **🔴 KOMPILYATOR-QOBIQ RELSLARI (F-0814-01 bug-sinfi).**
+    **Dalil:** umumiy-kompilyator refaktorida `position:fixed` qobig'i ko'chirilmay, 6 PM
+    darsda kompilyator `.stage-content` ichida ~300px bo'lib qisilib qolgan — shart-chiplar
+    va «Davom etish» ekrandan tashqarida, jonli rejimda bola s10 da QAMALADI; ≤860px da
+    muharrir 0px. Har kompilyatorli darsda tekshiriladi:
+    - (a) `<HtmlCompiler` chaqirig'i **fixed-qobiq ichidami** (`position:'fixed', inset:0,
+      zIndex≥2000, background:T.bg` — `Htmllesson1` naqshi)? Yo'q bo'lsa 🔴 quruvchiga.
+      Dasturiy isbot: kompilyator ochiq holatda `.hc-top` VA `.hc-bottom` viewport ichida;
+    - (b) **sof-JS rejimda `previewUrl` YO'Q** (aks holda soxta manzil-qatori + oq iframe
+      «saytim ochilmadi» yolg'onini beradi; JsVars etaloni: previewUrl'siz → «📺 Natija»
+      konsol-paneli). HTML fayl bor bo'lsagina previewUrl joiz;
+    - (c) **shartlar starter holatida yashil emas** (starterning o'zi biror `check` ni
+      qanoatlantirsa — test yolg'on) va **xulq-atvorga bog'langan** (manba-regex sanog'i
+      to'g'ri-lekin-boshqacha yozilgan yechimni RAD etmasin — `buyurtma['soni']` sinfi);
+    - (d) ≤860px da muharrir balandligi >0 ekanini o'lchang.
+
 ## Tuzatish vakolati (chekli!)
 - **O'zingiz tuzatasiz** — faqat MAYDA, tasdiqlangan, bir-nuqtali nuqson (typo, yetim import, bitta rang-token). Har tuzatishdan keyin esbuild.
 - **QAYTARASIZ** — tuzilmaviy nuqson (ekran-oqim, kalit-mos kelmaslik, senariy-chetlashish, palitra-sinf) → mas'ul rolga file:line bilan. **Maks 2 aylanish** — 2-qaytarishdan keyin ham sinsa, bosh-agentga eskalatsiya.

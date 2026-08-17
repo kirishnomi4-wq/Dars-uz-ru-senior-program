@@ -1018,3 +1018,503 @@ UNCOMMITTED (deploy build'dan qilindi, git'ga bog'liq emas).
 **Brauzerda ishga tushirildi** (Chrome 1440×900, playwright): har dars uchun 3 rejim — solo · jonli o'quvchi · mentor + RU tili. Konsolda **0 xato**, podium/nishon/statistika render bo'ldi. Suratlar: `feedback/F-0808-01/`.
 
 **Commit YO'Q** — buyruqsiz. UNCOMMITTED.
+
+## 2026-08-08 — F-0808-02: m1-08 (HtmlPractice) KOMPILYATORI — SHRIFT LIGATURASI, SAKRASH, LINTER SHOVQINI + 3 TA TUZATISH — ✅
+
+**Buyruq:** foydalanuvchi: «kompilyator juda slabe, `</h1` qilganimda `<` belgisi o'zidan o'zi ochib ketadi yoki ikkita bo'lib ketadi... hech qayeriga edit qilma, ammo to'liq kompilyatorni ko'r» → tashxisdan keyin «barchasini yaxshila ehtiyotkorlik aniqlik bilan to'liq».
+
+**ASOSIY SABAB (o'lchandi, faraz emas):** `.hc-code` shrifti — JetBrains Mono, **dasturchi-ligaturali**. Repo bo'ylab `font-variant-ligatures` hech qayerda yo'q edi. Natijada bola yozgan belgi ekranda boshqa ko'rinardi: izoh-ochilishi chap strelkaga, izoh-yopilishi o'ng strelkaga aylanardi; yopuvchi-teg boshi va o'zi-yopiluvchi teg oxiri bir-biriga qo'shilib ketardi. Belgima-belgi yozganda ikki belgi QO'SHILIB, keyingi harfda yana AJRALARDI — foydalanuvchi aytgan «o'zidan o'zi ochib ketadi yoki ikkita bo'lib ketadi» aynan shu. Eng yomoni: uchala topshiriqning boshlang'ich matni izoh (`HtmlPractice.jsx:3489/3502/3517`) — bola kompilyatorni ochishi bilan birinchi ko'rgan narsasi buzuq edi.
+
+**TUZATILDI (6 band):**
+· **[1] Ligatura o'chirildi** — `font-feature-settings:"liga" 0,"calt" 0` kompilyator kod-matnida VA dars ichidagi kod-bo'laklarida (`.mono`, `.code-box`, `.dbg-line`, `.qcode`, flashcard va h.k.). 🔴 DIQQAT: `font-variant-ligatures` bilan BIRGA yozilsa Chrome bu qatorni e'tiborsiz qoldiradi — faqat `font-feature-settings` yoziladi (sinab ko'rilgan).
+· **[2] Editor sakramaydi.** Xato paneli sarlavha ichida edi, `.hc-root` esa markazlashtiradi — xato paydo bo'lganda butun muharrir **29px** pastga, yo'qolganda 28px yuqoriga sakrardi (`</h1>` yozayotgan paytda!). Endi `.hc-msg` — qat'iy 40px, bitta qator, bir vaqtda BITTA xato (+N belgisi bilan). O'lchov: 14 bosishda siljish **0px**.
+· **[3] Linter yozib bo'lgandan keyin gapiradi.** Avval har bosishda ishlardi: 14 bosishdan **12 tasida** qizil xato turardi (`<h` → «`>` bilan yopilmagan»). Endi 700ms kechikish + kursor matn oxirida turganda «tugallanmagan» ogohlantirishi (`atEnd`) yashiriladi. O'lchov: **0/14**. Haqiqiy xato (`<div>` ochiq qoldi) esa KO'RINADI — sinaldi.
+· **[4] Katta monitor.** Kompilyator `.lesson-root` ichida edi, unda `zoom:var(--lz)` bor: 2560×1400 da hc-root **1866px** bo'lib, pastki **466px** (shu jumladan «Davom etish») ekrandan chiqib ketardi. Endi `createPortal` bilan `document.body` ga chiqarilgan + `.lesson-root` naqshi qo'llangan (`zoom:var(--lz)` + `height:calc(100dvh / var(--lz))`, `.hc-split` ham shunday). Natija: ekranga aynan sig'adi VA katta monitorda to'g'ri kattalashadi.
+· **[5] Muharrir yordami qo'shildi** — avto-yopish (`<h1>` → juftini qo'yadi, kursor orasida; void teglar juftlanmaydi), **yopuvchi tegni bola O'ZI yozsa yutiladi** (takror `</p></p>` chiqmaydi — dars aynan «tegni yop» deb o'rgatadi), juft tirnoq + yopuvchi tirnoq ustidan o'tish, Enter'da avto-tekislash (teg ichida bo'lsa ichkariga suradi), **qator raqamlari** (xato «Qator 3» desa, bola sanamasdan topsin), Shift+Tab.
+· **[6] Ctrl+Z tuzatildi.** Tab avval `setState` bilan matn qo'yardi — brauzer bekor-qilish tarixidan tashqarida qolardi va Tab'dan keyin Ctrl+Z hech narsa qilmasdi. Endi butun kiritish `execCommand('insertText')` orqali — Ctrl+Z va Ctrl+Y ishlaydi (sinaldi). Kursor `useLayoutEffect` bilan tiklanadi (faqat rAF yetmasdi: React `value` ni qayta yozganda kursor oxiriga sakrab, keyingi harf noto'g'ri joyga tushardi — bu sinovda tutildi va tuzatildi).
+
+**TEKSHIRILDI — MUAMMO EMAS (ikki farazim o'lchov bilan RAD etildi):**
+· Sekinlik: 2070 belgilik matnda bitta bosishning sinxron narxi median **2.1ms** (eng yomoni 4.8ms) — 16ms dan ancha past, lag yo'q.
+· Belgi tushib qolishi: 81 belgi 12ms oraliq bilan yozildi — matn AYNAN mos.
+· «Sandbox localStorage» konsol xatosi: manba topildi — u **mening test-skriptimning `addInitScript`i** edi (sandbox iframe'da ham ishga tushib SecurityError berardi). Ilova aybdor emas; skript tuzatilgach xato yo'qoldi.
+
+**Darvozalar:** esbuild toza ✅ · `vite build` toza (2.90s) ✅ · `lint:jsx` — HtmlPractice **0** topilma ✅ (yo'lda bitta jim-buzilish o'zim kiritdim — CSS izohidagi backtik shablon-satrni yopib qo'ygandi; esbuild+lint tutdi, tuzatildi) · `lint:til` **0 error** ✅ · `npm run smoke` — **109 dars, 0 nuqson** ✅
+**Brauzerda o'lchandi:** 21 bandlik tekshiruv skripti — hammasi o'tdi (1440×900 va 2560×1400). Suratlar: `feedback/F-0808-02/` (tuzatishdan oldin: `compiler-*`, `ligature-isbot.png` · keyin: `fix-*`).
+
+**QILINMADI (ataylab, buyruq kutilmoqda):** bu kompilyator **15 ta darsga** nusxalangan — qolgan 14 tasida ligatura hamon yoqilgan va sakrash bor. Bir faylda sinab ko'rilgan yechim tayyor, lekin 14 faylga yoyish alohida ish sifatida foydalanuvchi tasdig'ini kutadi.
+
+**Commit YO'Q** — buyruqsiz. UNCOMMITTED.
+
+## 2026-08-08 — F-0808-03 (1-bosqich): KOMPILYATOR UMUMIY MODULGA AJRATILDI — ✅
+
+**Buyruq:** foydalanuvchi: «kompilyatorni kuchaytirmoqchiman, VS Code'day qulayliklar... ammo xato sintaksis yaratilmasligi kerak». Tanlangan yo'nalish (3 savol bo'yicha): **ro'yxat + cheklangan Tab** · qurilma: **noutbuk asosiy, planshet/telefon ham** · tuzilma: **avval umumiy modulga ajratamiz**.
+
+**TAHLIL (o'lchandi):** `HtmlCompiler` 15 ta faylda nusxalangan (har biri ~295 qator, 12 xil variant — ya'ni allaqachon uzoqlashgan). `src/compilator/HtmlCompiler.jsx` (45KB, 2026-08-01) allaqachon mavjud ekan va faylning o'zida «kelajakda CSS/JS darslarida ham shu komponent ishlatiladi» deb yozilgan — lekin **hech kim import qilmagan** va eskirib qolgan: `tr({...})` **0 ta**, ruscha matn **0 ta** (dars nusxasida 26 va 53), F-0808-02 tuzatishlari yo'q. Uni asos qilib olish rus tilini yo'q qilardi.
+
+**QARORLAR:**
+· Umumiy modul **eng yangi nusxadan** (HtmlPractice ichidagi) qayta qurildi va `src/compilator/HtmlCompiler.jsx` ga yozildi — yangi papka ochilmadi, chunki LMS kontrakti aynan shu manzilga bog'langan.
+· **Til `lang` propi orqali** keladi (`<HtmlCompiler lang="uz|ru" …/>`). Sabab: modul portal bilan `document.body` da ishlaydi, dars `LangContext`iga ulanmaydi. Ichkarida darslardagi bilan bir xil naqsh — modul-darajali `__lang` + `tr({uz,ru})`, render boshida propdan o'rnatiladi. LMS uchun ham to'g'ri: u ham tilni shunday beradi.
+· Iliq CodeStrike palitrasi (`#F6F4EF`) saqlandi — eskirgan moduldagi sovuq kulrang (`#F3F4F7`) OLINMADI, aks holda kompilyator foni o'zgarardi.
+
+**BAJARILDI:** HtmlPractice.jsx dan 1030 qator (1051..2080) olib tashlandi → **4599 → 3571 qator**. Modul **1071 qator**, `export default HtmlCompiler` + `export { checks }`. Dars endi `import HtmlCompiler, { checks as C } from '../compilator/HtmlCompiler.jsx'`. Ikkala chaqiruv joyiga `lang` uzatildi (mentor paneli `useLang()` orqali). Bo'shab qolgan `codesRead`/`codesWrite` darsdan olib tashlandi (o'lik kod).
+
+**Darvozalar:** esbuild ×2 toza ✅ · `vite build` toza (4.01s) ✅ · `lint:jsx` — 0 topilma ✅ · `lint:til` 0 error ✅ · `npm run smoke` **109 dars, 0 nuqson** ✅
+**Brauzerda:** 22 bandlik tekshiruv — hammasi o'tdi. Jumladan **RU tekshiruvi**: tugma «Запустить», placeholder, sarlavha va **linter xabari** («Строка 1: `<div>` остался открытым») — til propi to'liq oqadi.
+
+**KEYINGI (kelishilgan, hali bajarilmagan):** 2-bosqich — sintaksis rangi · juft tegni birga tahrirlash · `<` da teglar ro'yxati · atribut takliflari · Tab-kengaytirish (ul/a/img) · xato→qatorga sakrash · «Chiroyli qilish» · ko'rinadigan ↶↷. 3-bosqich — planshet/telefon. 4-bosqich — qolgan 14 darsni shu modulga ko'chirish.
+
+**Commit YO'Q** — buyruqsiz. UNCOMMITTED.
+
+## 2026-08-08 — F-0808-03 (2-bosqich): KOMPILYATORGA VS CODE QULAYLIKLARI — ✅
+
+**Buyruq:** «shoshilmasdan bemalol yaxshi chiqsin, har tomonlama o'ylab». Kelishilgan yo'nalish: **ro'yxat + cheklangan Tab**.
+
+**TAMOYIL (qaror):** muharrir MEXANIK yukni oladi (bir narsani ikki marta yozish, qavs sanash, chekinish), lekin QARORNI olmaydi (qaysi teg, qaysi atribut, qanday tuzilma). Shu chegara har bandda qo'llandi.
+
+**QO'SHILDI (hammasi `src/compilator/HtmlCompiler.jsx` da — bitta manba):**
+· **Sintaksis rangi.** Matn maydoni ORTIDA `<pre>` qatlami; matn maydonining o'z matni shaffof, faqat kursor ko'rinadi. Uch tokenizator: HTML · CSS · JS (modul CSS/JS darslariga ham xizmat qiladi). Ranglar DARS matnidagi `CODE` bilan AYNAN bir xil — bola darsda ko'rgan `<h1>` rangi kompilyatorda ham o'sha. Tanlash rangi yarim-shaffof (ostidagi rangli harflar ko'rinsin). 20 000 belgidan uzun matnda ranglash o'chadi (yozish tezligi muhimroq). Har tokenizator TO'LIQ — tanimagan bo'lagini oddiy matn deb chiqaradi.
+· **Juft tegni birga tahrirlash.** `<h1>` ni `<h2>` qilsa, `</h1>` o'zi `</h2>` bo'ladi. Mos juft chuqurlik hisobi bilan topiladi — ichma-ich bir xil teglarda ham TO'G'RI juft o'zgaradi (sinaldi: `<div><div>a</div></div>` da tashqi juft).
+· **`<` bosilganda teglar ro'yxati** — 19 ta teg, har biriga o'zbekcha/ruscha bir og'iz izoh. Tab tanlaydi, strelkalar yuradi, Esc yopadi. **Enter ATAYLAB bog'lanmagan** — u har doim yangi qator (bolaga oldindan aytiladigan xulq). Tanlanganda faqat teg NOMI qo'yiladi, `>` ni bola o'zi bosadi — shunda avto-yopish ishlaydi va «tegni yop» sabog'i buzilmaydi.
+· **Atribut takliflari** — `<a ` → href · `<img ` → src, alt · hammasi uchun class, id. Allaqachon yozilgan atribut ro'yxatdan chiqib ketadi. Tanlanganda `src=""` qo'yiladi, kursor tirnoq ichida.
+· **Tab-qisqartma** — FAQAT uzun tuzilmalar: `ul`, `ol`, `a`, `img`. **h1/h2/p ataylab YO'Q** — ularni qo'lda yozish darsning o'zi. Faqat qatorda yolg'iz so'z turganda ishlaydi (`<p>ul</p>` ichida ishlamaydi — sinaldi). Chekinish saqlanadi.
+· **Xato → qatorga sakrash.** Xato yozuvi bosilsa kursor o'sha qatorga tushadi (endi qator raqamlari bor).
+· **«✨ Chiroyli»** — chekinishni tartibga soladi. XAVFSIZLIK: natijani qayta o'qib, teglar ketma-ketligi yoki matn zarracha o'zgargan bo'lsa — RAD etadi va hech narsa qilmaydi. Buzuq sintaksisda, `<pre>`/`<textarea>` bo'lsa ham tegmaydi (sababi ekranga yoziladi). Qisqa matnli teg bitta qatorda qoladi (`<footer>2026</footer>`), ichma-ich teg qatorlarga bo'linadi — bolaga ichma-ichlik ko'rinib tursin.
+· **Ko'rinadigan ↶ ↷ tugmalari** — 13 yoshli bola Ctrl+Z ni bilmasligi mumkin.
+
+**RAD ETILDI (ataylab):** to'liq Emmet (`ul>li*3`) — bola HTML o'rniga Emmet sintaksisini o'rganadi · tayyor sahifa shabloni — topshiriqni bajarib qo'yadi · Enter bilan avtoto'ldirish — yangi qator bilan urishadi · avto-tuzatish — bola xatosini ko'rmay qoladi (debugging darsning maqsadi).
+
+**SINOV (ikki qatlam):** sof funksiyalar React'siz — **25 band** (rang: matn hech qachon o'zgarmaydi; formatlagich: ma'no saqlanadi) ✅ · brauzerda — **35 band** (piksel-aniqlik: shrift/chekinish farqi 0, dx=dy=0, gorizontal surilish birga; ro'yxat, atribut, juft teg, qisqartma, chiroyli, xato→qator, ↶↷; RU) ✅ · **eski xulq buzilmadi**: sakrash 0, yozayotganda qizil xato 0, yopuvchi tegni bola o'zi yozsa takrorlanmaydi, rang qatlamida ham ligatura o'chiq.
+
+**Yo'lda tutilgan 4 ta o'z xatom:** (1) strelka bilan tanlash `keyup` da nolga qaytardi — ro'yxat konteksti o'zgarmasa tanlangan qator endi saqlanadi; (2) Esc bosilgach ro'yxat darhol qayta ochilardi — `escAtRef` qo'shildi; (3) rang qatlamida ligatura o'chirilmay qolgandi (ya'ni F-0808-02 nuqsoni qaytib kelardi) — `.hc-hl` qoidaga qo'shildi; (4) CSS izohidagi backtik va `bo'lak` ichidagi apostrof qatorni yopib qo'ygandi — esbuild tutdi.
+
+**Darvozalar:** esbuild ✅ · `vite build` toza (5.99s) ✅ · `lint:jsx` 0 topilma ✅ · `lint:til` 0 error ✅ · `lint:prompt` ✅ · `npm run smoke` **109 dars, 0 nuqson** ✅
+**Suratlar:** `feedback/F-0808-03/` (vs-rang-zoom.png — ranglar · vs-ru.png — ruscha teglar ro'yxati).
+
+**ESLATMA (kod emas, muhit):** sinov paytida mashinada bo'sh RAM 115 MB ga tushdi (foydalanuvchi brauzerida 15 tab ochiq edi) va headless brauzer surat ololmay qoldi. Kod aybdor emas — surat kichikroq o'lchamda olinib tasdiqlandi.
+
+**KEYINGI:** 3-bosqich — planshet/telefon. 4-bosqich — qolgan 14 darsni shu modulga ko'chirish.
+**Commit YO'Q** — buyruqsiz. UNCOMMITTED.
+
+## 2026-08-08 — F-0808-03 (3-bosqich): PLANSHET VA TELEFON — ✅
+
+**Buyruq:** «3-bosqichga o'tsak bo'ladi, yaxshilab shoshilmasdan to'g'ri o'ylab bajar, aralashib buzulib ketmasin».
+
+**IKKI MUSTAQIL O'LCHOV (qaror):** ekran eni bilan barmoq-ekranni ARALASHTIRMASLIK kerak edi —
+· **tabbed** (JS, 860px gacha) — muharrir va natija TAB bilan almashadi. Sabab: 860px da yonma-yon qo'yilsa, ikkalasi ham ~6 qatordan qolardi.
+· **pointer:coarse** (CSS) — barmoq bilan ishlanadigan ekran. Shu tufayli **tor oynadagi noutbukka sensor-panel chiqmaydi**, planshetga esa chiqadi. Eni bo'yicha qilsak, noutbukda oyna kichraytirilganda ham panel chiqib ketardi.
+
+**QO'SHILDI:**
+· **Kod / Natija tablari** (tor ekran) — bitta panel to'liq balandlikda. «Ishga tushirish» bosilsa Natija tabi o'zi ochiladi. Pastdagi holat-matni ham moslashdi («natija o'ngda» → «Natija tabida»).
+· **Belgi qatori** (barmoq) — HTML: `< > / " = # -` · CSS: `{ } : ; . # -` · JS: `( ) { } ; = "` + `⇥` (chekinish). Barchasi undo-xavfsiz `insertText` orqali; bosilganda **fokus muharrirda qoladi** (sinaldi). Til bo'yicha almashadi.
+· **Sarlavha ixchamlashdi** (860px gacha): chiplar bitta qatorda suriladi, xabar maydoni 34px. 520px gacha: shart-matni yashiriladi — shartlar chiplarda baribir ko'rinadi.
+· **Barmoq nishonlari kattaroq** (`pointer:coarse`): tab, tugmacha, ro'yxat qatori, «Davom etish» — hammasi 36px+.
+· **Ro'yxat ekrandan chiqmaydi** — o'ng chetga yetganda cheklanadi, pastda joy bo'lmasa kursordan TEPAGA chiqadi.
+
+**O'LCHOV (brauzerda, 6 qurilma):**
+| Qurilma | Natija |
+|---|---|
+| Noutbuk 1440×900 | yonma-yon · tab YO'Q · belgi qatori YO'Q · 21 qator · avto-yopish ishlaydi ✅ |
+| Noutbuk 1366×768 va 1280×720 | yonma-yon, sig'di, xatosiz ✅ |
+| Planshet 820×1140 (barmoq) | tab BOR · belgi qatori BOR · **28 qator** (yonma-yon bo'lganda ~6 bo'lardi) · fokus saqlanadi ✅ |
+| Telefon 390×844 (barmoq) | gorizontal skrol YO'Q · «Davom etish» ko'rinadi · 18 qator · 8 ta belgi tugmasi to'liq sig'di ✅ |
+
+**REGRESSIYA TEKSHIRUVI (16 band):** 1 va 2-bosqich imkoniyatlarining BIRORTASI buzilmadi — avto-yopish, qo'lda yopuvchi teg, Enter tekislash, Tab+Ctrl+Z, sakrash 0, linter shovqini 0, ligatura o'chiq, rang qatlami aniq ustma-ust (dx=dy=0), teglar ro'yxati, strelka, Esc, atribut takliflari, Tab-qisqartma, «Chiroyli», juft tegni birga tahrirlash ✅
+
+**Yo'lda tutilgan xato:** telefonda belgi tugmalari `flex:1 0 auto` bo'lgani uchun qisqara olmay, oxirgisi qirqilardi → `1 1 auto`.
+
+**🔴 MUHIM DARS (qonunlashtirishga arzigulik):** CSS shablon-satri ichidagi izohga backtik yozildi (uchinchi marta shu tuzoq). **`esbuild` buni O'TKAZIB YUBORDI, `vite build` esa tutdi** — demak esbuild yolg'iz yetarli emas, CSS tegilgan har tahrirdan keyin `vite build` yoki `lint:jsx` ham yuritilishi shart. Vite dev-serveri ham buzuq holatda qotib qoldi va `--force` bilan qayta ishga tushirish kerak bo'ldi.
+
+**Darvozalar:** `vite build` toza (2.71s) ✅ · `lint:jsx` 0 topilma ✅ · `lint:til` 0 error ✅ · `lint:prompt` ✅ · `npm run smoke` **109 dars, 0 nuqson** ✅
+**Suratlar:** `feedback/F-0808-03/` — dev-laptop.png · dev-tablet.png · dev-phone.png
+
+**KEYINGI:** 4-bosqich — qolgan 14 darsni shu modulga ko'chirish.
+**Commit YO'Q** — buyruqsiz. UNCOMMITTED.
+
+## 2026-08-09 — RELIZ: 1+2-Modul oxirgi holat → coddycamp-1-2-modul-senior — ✅
+**Buyruq:** foydalanuvchi — «https://coddycamp-1-2-modul-senior.vercel.app shunga oxirgi versiyadagi 1-2-Modullarni yuklab ber».
+**Manba-holat:** `6091d73` (optimization 1-2-Modull) + UNCOMMITTED F-0808-03 (umumiy `src/compilator/HtmlCompiler.jsx` + `HtmlPractice.jsx` shu modulga o'tkazilgan; 1–3-bosqich: muharrir, rang qatlami, planshet/telefon).
+**Darvozalar:** `lint:jsx` — 20 error, HAMMASI `src/eski/lessons/` va `src/2-moodull eski/` solishtirish-nusxalarida (deploy bundle'iga kirmaydi), jonli darslar 0 ✅ · `vite build --config vite.m1.config.js` toza (28 chunk, 933ms) ✅
+**Deploy:** `dist-m1/assets` + `modul1.html`→`index.html` → `coddycamp-1-2-modul-senior/` papkasi, o'sha papka ICHIDAN `vercel deploy --prod --yes` (azizbek10). Boshqa loyihalarga tegilmadi.
+**Tekshiruv:** bosh URL 200 · 28 chunkning HAMMASI 200 (0 nuqson) · yangi kompilyator prodda tasdiqlandi — `HtmlPractice-C1X9KEWs.js` da `insertText` 4 marta (barmoq belgi-qatori), `pointer: coarse` bor.
+**Commit YO'Q** — buyruqsiz. UNCOMMITTED.
+
+## 2026-08-09 — F-0809-01: KOMPILYATOR TAKLIF-RO'YXATI — YARIM QO'YISH TUZATILDI + `<` SIZ OCHILADI — ✅
+**Kelib chiqishi:** foydalanuvchi prodda kompilyatorni sinab ko'rdi — «`<h1` qilyapman ro'yxatda chiqyapti, ammo `h1` deb yozsam hech nima chiqmayapti; `<h1` da bossam to'liq teg paydo bo'lmasdan, `<h1>` qilganimda `<h1></h1>` paydo bo'lyapti».
+**Tashxis (ikkalasi ham F-0808-03 ning ATAYLAB qilingan qarori edi — qaror noto'g'ri chiqqan):**
+1. `refreshMenu` ning yagona sharti `/<([a-zA-Z][a-zA-Z0-9-]*)?$/` — kursoroldida majburan `<` turishi kerak edi. `h1` yozilsa ro'yxat umuman ochilmasdi; Tab-qisqartmalar ham faqat `ul/ol/a/img` uchun edi.
+2. `acceptMenu` teg uchun FAQAT nomni qo'yardi (`h1`), `>` ni bola o'zi bosishi kerak edi. Uch zid: (a) ro'yxat qatorida `<h1>` deb YOZILGAN, (b) o'sha menyuning atribut tarmog'i `href=""` ni TO'LIQ qo'yardi, (c) natijada tanlash qo'lda yozishdan foydasizroq — qo'lda `<h1>` yozilsa avto-yopish `<h1></h1>` berardi.
+**Foydalanuvchi qarori (2 savol):** to'liq teg qo'yilsin · `<` siz ham ochilsin, lekin FAQAT so'z qatorda yolg'iz tursa (matn ichida shovqin bo'lmasin).
+**Tuzatildi (`src/compilator/HtmlCompiler.jsx`):**
+· `menu.from` endi ALMASHTIRILADIGAN bo'lakning boshi (`<` ning o'zi ham kiradi) — ilgari `<` dan keyingi joy edi.
+· `acceptMenu` teg uchun to'liq tana qo'yadi: oddiy teg `<h1></h1>` (kursor juft orasida) · yolg'iz teg `<br>` (juftsiz) · `ul/ol/a/img` — mavjud `SNIPPETS` tanasi, **chekinish saqlangan holda** (eski Tab-yo'lidagi ind-siljish xatosi ham shu yerda yo'q).
+· Yangi uchinchi tarmoq: qatorda yolg'iz turgan so'z (`h1`) ro'yxatni ochadi. Shart qat'iy — kursordan keyin ham qator bo'sh bo'lishi kerak. Atribut tarmog'idan KEYIN turadi (`<img\n  src` holati atributga tegishli).
+**SINOV (playwright, real bosishlar — 14/14):** `<h1`+Tab → `<h1></h1>` kursor 4 · `h1`+Tab (`<` siz) → o'sha · `ul` → 4 qatorli tuzilma kursor 11 · `<br` → juft QO'YILMAYDI · `a` → `<a href=""></a>` kursor tirnoqda · qo'lda `<h1>` avto-yopish (regressiya) · `<p>Bugun ol` da ro'yxat CHIQMAYDI · `<a hr`+Tab → `href=""` (regressiya) · sichqoncha bilan bosib tanlash · chekinish saqlanadi · oddiy Tab hamon 2 bo'sh joy (regressiya) · Esc → yopiladi va Tab chekinish qo'yadi · konsol xatosi 0.
+**QOLDIQ (o'sha kuni F-0809-02 da yopildi):** teg ichidagi matn ALOHIDA qatorda yozilsa ro'yxat baribir qalqib chiqardi.
+**Qonunlashtirildi:** `DARS_ETALON.md` **113-qonun** — «taklif nima ko'rsatsa, aynan o'shani qo'yadi» + taklif-ro'yxatlari bosib sinaladi (jim-buzilish sinfi).
+**Darvozalar:** esbuild ✅ · `vite build` toza (907ms) ✅ · `lint:jsx` — 20 error, hammasi `src/eski/` va `src/2-moodull eski/` solishtirish-nusxalarida (HEAD'da ham bor edi), jonli darslarda 0 ✅ · `lint:til` kompilyatorda 0 topilma ✅ · `npm run smoke` **109 dars, 0 nuqson** ✅
+**Prodga chiqarilmadi** — buyruq kutiladi. Commit YO'Q. UNCOMMITTED.
+
+## 2026-08-09 — F-0809-02: KOMPILYATOR — ENTER TANLAMASDI · MATN ICHIDA SHOVQIN · ESC ABADIY JIM QOLARDI — ✅
+**Kelib chiqishi:** foydalanuvchi F-0809-01 dan keyin sinashda davom etdi — «`a` yozyapman chiqyapti, mishka bilan bossam bo'lyapti, Enter bossam bo'lmayapti — bu nimadan?».
+**Tashxis:** `onKeyDown` da ro'yxat ochiq bo'lgandagi blok FAQAT 4 tugmani ushlardi (`ArrowDown/ArrowUp/Tab/Escape`). Enter u yerdan o'tib ketib, pastdagi «yangi qator + chekinish» tarmog'iga tushardi. Sichqoncha esa butunlay boshqa yo'ldan borardi (`onClick → acceptMenu`) — shuning uchun ishlardi. Ya'ni nuqson emas, **bog'lanmagan tugma**; lekin bola VS Code'dagidek Enter bosadi.
+**Bog'liqlik (tuzatishdan OLDIN aniqlangan):** Enter'ni bog'lash F-0809-01 dagi ma'lum qoldiqni XAVFLI qilardi — `<p>` ⏎ `ol|` holatida Enter yangi qator o'rniga `<ol>` qo'yib yuborardi. Shuning uchun foydalanuvchi ikkovini BIRGA hal qilishni tanladi.
+**Tuzatildi (`src/compilator/HtmlCompiler.jsx`):**
+· **Enter tanlaydi** (Tab ham qoladi). `Shift+Enter` — chiqish yo'li: ro'yxat ochiq bo'lsa ham oddiy yangi qator. Yorliq «Tab — tanlash» → «**Enter — tanlash** · Esc — yopish» (RU ham).
+· **`inTextTag()`** — kursoroldidagi matndan teg-stek yig'iladi; eng ichkarisi MATN tegi (`p·h1..h6·a·span·strong·em·b·i·button·li·label·title·td·th·figcaption·blockquote`) bo'lsa `<` SIZ ro'yxat ochilmaydi. Yopish tegi ixtiyoriylar (`<li>` ketma-ket) linterning AYNAN o'sha `closesOnOpen` qoidasi bilan hisoblanadi — ikki joyda ikki xil mantiq bo'lmasin. `<` bilan boshlansa ro'yxat hamma joyda ishlayveradi (`<p>` ichida `<a>` yozish mumkin).
+· **🔴 SINOV PAYTIDA TOPILGAN ESKI BUG (F-0808-03 davridan):** `escAtRef` faqat kursor o'rnini eslardi va HECH QACHON tozalanmasdi — bola bir marta Esc bosgach, o'sha o'ringa qaytsa (masalan harfni o'chirib qayta yozsa) ro'yxat BOSHQA chiqmasdi. Birinchi urinish (matnni ham eslash) YETMADI: harf o'chirilib qayta yozilsa matn aynan o'sha bo'ladi — sinov buni tutdi. To'g'ri o'lchov — **tahrir raqami** (`editSeqRef`, har `onChangeCode` da o'sadi): Esc keyingi tahrirgacha jim qoladi, xolos.
+**SINOV (playwright, real bosishlar — 23/23; F-0809-01 ning 14 bandi + 9 yangi):** `a`+Enter → `<a href=""></a>` · `<h2`+Enter → `<h2></h2>` · `<p>` ichida alohida qatorda ro'yxat CHIQMAYDI · o'sha joyda Enter → yangi qator (teg tushmaydi) · `<p>` ichida `<a` → CHIQADI · Shift+Enter → yangi qator · yopilgan `<li>` dan keyin ishlaydi · `<div>` ichida ishlaydi · yopilgan `<p>` dan keyin ishlaydi · Esc → tahrirdan keyin ro'yxat QAYTADI. Barcha eski regressiya-bandlari joyida.
+**Qonunlashtirildi:** `DARS_ETALON.md` 113-qonunga 2 yangi tomon — «sichqoncha bilan klaviatura bir xil ishlasin (bosish = Enter)» va «jim qol holati har doim bo'shashi kerak, o'lchov tahrir raqami».
+**Darvozalar:** `vite build` toza ✅ · `lint:jsx` jonli darslarda 0 (20 error faqat `src/eski/`+`src/2-moodull eski/` nusxalarida, HEAD'da ham bor) ✅ · `lint:til` 0 ✅ · `lint:prompt` ✅ · `npm run smoke` **109 dars, 0 nuqson** ✅
+**Prodga chiqarilmadi** — buyruq kutiladi. Commit YO'Q. UNCOMMITTED.
+
+## 2026-08-09 — F-0809-03: KOMPILYATOR AUDITI — 5 TA KAMCHILIK TUZATILDI — ✅
+**Buyruq:** foydalanuvchi — «yana realne qanday kamchiliklar bor, halol aytchi yaxshilab tekshirib» → keyin «1-2-3-4-5 kamchiliklarni yaxshi o'ylab yaxshi yechim qilishimiz kerak».
+**AUDIT USULI:** butun fayl (1680 satr) o'qib chiqildi + brauzerda «buzishga urinish» skripti (playwright, 12+8+6 band). Har topilma O'LCHOV bilan tasdiqlandi — taxmin bilan emas. Yo'lda 3 ta shubham O'ZI TUSHDI (rang qatlami dx=dy=0, gutter 80 qatorda mos, linter yopilmagan tegni to'g'ri tutadi — birinchi sinovim xato edi, `>` avto-yopishi kodni to'g'rilab qo'ygan ekan).
+
+**1. «Qaytadan» — 30 daqiqalik ishni qaytarib bo'lmas qilib o'chirardi.**
+O'lchov: saqlovda `<h1>30 daqiqalik ishim</h1>` → bosildi → saqlovda starter → qayta yuklashda ham starter. Tasdiq yo'q, `Ctrl+Z` qaytarmasdi (`setCodes` brauzer tarixiga tushmaydi), 400 ms dan keyin localStorage nusxasi ham ustidan yozilardi.
+**Yechim:** ikki qadam + qaytarish. 1-bosish → tugma qizarib «⚠ Rostdanmi?» (4 s, keyin o'zi so'nadi; `onBlur` da ham so'nadi), holat-matnida «Butun kod o'chadi — tugmani yana bosing». 2-bosish → `snapRef` ga nusxa, keyin tozalash, 8 soniya «↶ Qaytarish». Yorliq ATAYLAB qisqa — pastki panel kengligi sakramasin. `Ctrl+Z` ga tayanilmadi: ko'p faylli darsda brauzer faqat ochiq faylni biladi, `ref` esa hammasini qaytaradi.
+
+**2. Hamma shart yashil, «Davom etish» o'lik, sabab ko'rinmasdi.**
+O'lchov: 3/3 yashil · tugma o'chiq · yuqorida xabar `""` · pastda «Shartlarni bajaring…» (yolg'on) — 4 soniya kutildi, o'zgarmadi. Sabab: `shownErrors` `atEnd` xatolarini «bola hali yozyapti» deb yashirardi, `hasSyntaxError` esa to'liq ro'yxatga qarab tugmani bloklardi.
+**Yechim:** `blockedBySyntax` (hamma shart bajarilgan + sintaksis xatosi bor) — bu holatda yashirish qoidasi BEKOR. Uch joy birga to'g'rilandi: xato yozuvi ko'rinadi · holat-matni «✓ Shartlar bajarildi — sintaksis xatosi qoldi» · o'chiq tugmaning `title` ida sabab.
+**Yon-tozalash:** holat-matnining 5 pog'onali ichma-ich ternari `statusMsg` o'zgaruvchisiga ajratildi (build shu ternarda sindi — o'qib bo'lmas edi).
+
+**3. Ro'yxatda 8 tadan ko'p band bo'lsa, strelka ko'rinmaydigan bandga o'tardi.**
+O'lchov: `<` → 19 band mos, ekranda 8 ta; 9 marta ↓ → tanlangan qator indeksi -1 (ko'rinmaydi), Enter `<header></header>` qo'ydi.
+**Yechim:** `slice(0,8)` olib tashlandi — hamma band chiqadi, `.hc-menu-list` ichida ~8 qator ko'rinib suriladi, «Enter — tanlash» yorlig'i pastda qotib turadi. Tanlangan qator qo'lda `scrollTop` bilan ko'rinishga suriladi — `scrollIntoView` ATAYLAB ishlatilmadi (u ota-elementlarni surib butun sahifani sakratardi).
+
+**4. Natija oynasi har bosishda noldan qayta yuklanardi.**
+O'lchov: preview'ga «MENING MATNIM» yozildi → muharrirda 1 belgi → maydon bo'sh.
+**Foydalanuvchi qarori:** HTML/CSS darslarida jonli qoladi, JS fayli bor darslarda qo'lda.
+**Yechim:** `manualRun = showConsole`. JS darsida preview faqat `▶` bosilganda yangilanadi; kod o'zgargan bo'lsa nishon «jonli» → «eskirdi · ▶ bosing». Birinchi ochilishda bir marta o'zi yuriladi (bola bo'sh ekran ko'rmasin). Shart-belgilari BARIBIR jonli — ular yashirin iframe'da tekshiriladi.
+
+**5. Siniq rasm: shart yashil, ekranda buzuq belgi.**
+O'lchov: `<img src="rasm.png" alt="…">` → `naturalWidth=0`, ✓ yashil.
+**Yechim:** `IMG_FALLBACK` — rasm yuklanmasa punktir quti: 🖼 + o'quvchining `alt` matni + «rasm topilmadi — `src` manzilini tekshiring». Buzuq holat DARSGA aylandi: `alt` nima uchun kerakligi aynan shu yerda ko'rinadi. Ikki ehtiyot: `<img>` DOM'da QOLADI (faqat `display:none`) — aks holda `querySelector('img')` shartlari sinardi; va faqat KO'RINADIGAN preview'ga qo'yiladi (`opts.capture` bo'lsa qo'shilmaydi), tekshiruv-hujjati toza qoladi.
+
+**SINOV (playwright, real bosishlar — 36/36):** 2-band 4 ta (sabab ko'rinadi · pastki matn · tugma title · tuzatilgach ochiladi) · 1-band 5 ta (1-bosish o'chirmaydi · 2-bosish + taklif · qaytarish · SAQLOV ham tiklanadi · 4 s da so'nadi) · 3-band 4 ta (19 band · 9-bandda ko'rinadi · Enter aynan ko'rsatilganini qo'yadi · yorliq qotib turadi) · 5-band 4 ta (quti chiqadi · alt matni bor · `<img>` qoladi · ishlaydigan rasmda chiqmaydi) · 4-band 5 ta (ochilishda jonli · o'zgargach eskirdi · ▶ dan keyin jonli · **harf yozilsa natija yo'qolmaydi** · ✓ jonli qoladi) · F-0809-01/02 ga 14 regressiya-bandi.
+**Qonunlashtirildi:** `DARS_ETALON.md` — 113-qonunga 5-tomon (ro'yxat kesilmasin, surilsin) + **114** (o'chiruvchi tugma qaytarib bo'ladigan bo'lsin) + **115** (bloklangan tugmaning sababi doim ko'rinsin) + **116** (natija oynasi qo'ldagi ishni yo'q qilmasin) + **117** («to'g'ri qildim, nega buzuq?» holati tug'ilmasin).
+**Darvozalar:** `vite build` toza ✅ · `lint:jsx` jonli darslarda 0 ✅ · `lint:til` 0 ✅ · `npm run smoke` **109 dars, 0 nuqson** ✅
+**QOLGAN (auditda topilgan, hozircha tegilmagan):** «Chiroyli» bosilgach kursor 0 ga sakraydi · Esc'dan keyingi eski Tab-yo'lida chekinishli kursor 15 (to'g'risi 19) · Tab bilan muharrirdan chiqib bo'lmaydi (klaviatura tuzog'i) · preview `sandbox` da `allow-same-origin` yo'q (o'quvchi JS'ida localStorage ishlamaydi) · 20 000 belgidan uzun kodda ranglash o'chadi (ataylab).
+**Prodga chiqarilmadi** — buyruq kutiladi. Commit YO'Q. UNCOMMITTED.
+
+## 2026-08-09/10 — F-0809-04: 13 DARS UMUMIY KOMPILYATORGA KO'CHIRILDI — ✅
+**Buyruq:** foydalanuvchi — «shu 13 ta darsni umumiy kompilatorini kuchaygan to'liq holida qilishimiz kerak… shoshilmasdan yaxshilab, sifat bizga muhim».
+**Sabab:** F-0809-01/02/03 tuzatishlari faqat 5 ta darsga tegardi (HtmlPractice, PmLesson2/3/4, PmUserStory) — qolgan 13 tasi, jumladan **oltin etalon Htmllesson1**, o'z eski nusxasini saqlab turardi. Bitta yaxshilanish 5 ta darsga tegib, 13 tasiga tegmasdi.
+
+**AVVAL O'LCHOV, KEYIN ISH (tuzatishdan oldin 5 ta skan):**
+· 13 nusxaning HAMMASI bir xil eski avlod: `lintHtml` va ko'p-fayl bor, lekin rang qatlami · taklif-ro'yxati · qisqartmalar · planshet-rejimi YO'Q.
+· Blok chegarasi bir xil: `const HC_T = {` → `function StyleTag()` oxiri (878–891 satr). Dars kodi blokdagi nomlarga tashqaridan TAYANMAYDI — hammasi `C.*` orqali.
+· Bloklar bir-biriga AYNAN emas — 10 xil variant. Farqni o'qib chiqqach 3 ta jiddiy narsa topildi (quyida).
+· Barcha fayllar CRLF; `lines[i] === '}'` bilan chegara topish ishlamaydi (birinchi urinishim shunda adashdi).
+
+**🔴 0-BOSQICH — UMUMIY MODULNI SUPERSET QILISH (ko'chirishdan OLDIN).** Busiz ko'chirish yaxshilash emas, ORQAGA KETISH bo'lardi:
+1. **CSS qisqa xossalari** (`CssLesson1/2` da bor, umumiy modulda yo'q edi): CSSOM `padding`/`gap`/`margin` ni longhandga yoyadi, shuning uchun `cssProp('.box','padding')` TOPA OLMASDI — 3 ta CSS darsining shartlari kulrang qolib, o'quvchi qamalib qolardi. 17 nomli ro'yxat (ikkala nusxaning birlashmasi) ko'chirildi.
+2. **`tr(starter)`** — boshlang'ich kod `{uz, ru}` juftlik bo'lishi mumkin; umumiy modul tarjima qilmasdi → muharrirda `[object Object]`.
+3. **`tr(req.hint)`** — maslahat matni ham `{uz, ru}` bo'lishi mumkin; xuddi shu muammo.
+**Superset darvozasi:** qayta skan — nusxalarda qolgan 117 noyob qatorning HAMMASI eski avlod kodi bo'lib chiqdi (umumiy modul ularni yaxshiroq versiya bilan almashtirgan). Yo'qotilgan narsa yo'q.
+**Sinov:** 16/16 (qisqa xossa · longhand regressiyasi · UZ/RU starter · standart starter · `[object Object]` yo'qligi · RU hint + 9 regressiya bandi).
+
+**🔴 ENG JIM XAVF — `lang` propi.** 13 darsning birortasi ham `lang` uzatmasdi: kompilyator dars faylining ICHIDA turgani uchun darsning modul-darajali `__lang` ini o'zi ko'rardi. Ajratilgach o'z `__lang` i bo'ladi → propsiz RU rejimda kompilyator butunlay o'zbekcha qolardi. Hech narsa sinmaydi, lint jim.
+**Yechim:** hamma joyda `lang={__lang}` (dars o'zgaruvchisi). ATAYLAB `lang` emas: chaqiruv joylarining biri `MentorPracticeOverlay` ichida — u yerda mahalliy `lang` YO'Q. Bitta qoida — 26 joyda, scope tahlilisiz.
+
+**KO'CHIRISH VOSITASI (`_migrate.mjs`, scratchpad'da):** har fayl uchun chegarani o'zi topadi va **shubha bo'lsa faylga TEGMASDAN to'xtaydi**. Darvoza 2 marta ishladi va ikkalasi ham foydali bo'ldi: (1) blokdan tashqaridagi `checks` — izohlarda ekan (soxta) → izohlar hisobga olinmaydigan qilindi; (2) `JsFunctionsLesson` da `const checks = S.checks(...)` — komponent ichidagi BOSHQA o'zgaruvchi (nom to'qnashuvi) → `obj.NAME`/`NAME:`/`const NAME` holatlari ajratildi. Shu tufayli `checks as C` deb import qilinadi.
+**Yon-tozalash:** blokdan keyin qolib ketadigan yetim izoh (`// ...alias (ilgari checks as C)`) ham olib tashlanadi.
+
+**BAJARILDI:** 13 fayl · **13 502 satr o'chdi** · pilot (Htmllesson1) alohida tasdiqlangandan keyingina qolgan 12 tasi (HTML 3 · CSS 3 · JS 6), har guruhdan keyin esbuild+build.
+
+**PILOT SINOVI (Htmllesson1, haqiqiy ilovada, praktika ekrani — 7/7):** praktika ochildi + rang qatlami/qator raqamlari/«Chiroyli» bor · taklif-ro'yxati ishlaydi (bu darsda ILGARI YO'Q edi) · `C.*` shartlari 3/3 yashil, «Davom etish» ochildi · natija oynasi render qildi · siniq-rasm qutisi · **RU kompilyatorga yetdi** · konsol xatosi 0.
+**13 DARS SINOVI (har biri UZ va RU da ochildi — 13/13 toza):** rang qatlami · shart-chiplari · `[object Object]` yo'q · muharrir bor · RU matnlari (`Заново/Продолжить/Результат`) · konsol xatosi 0. JS darslarida teg-ro'yxati chiqmaydi — TO'G'RI, ularning praktikasida faqat `script.js` bor.
+**JS DARSI ALOHIDA (JsVars, 116-qonun xulqi):** ochilishda «jonli» · kod yozilgach «eskirdi · ▶ bosing» · ▶ bosilgach konsolda `25` va **2/2 yashil** — ya'ni runtime-probe (`C.logs`) ko'chirishdan keyin ham ishlaydi.
+
+**Darvozalar:** har faylga esbuild ✅ · `vite build` toza (3 marta) ✅ · `lint:jsx` jonli darslarda 0 ✅ · `lint:til` **0 error** (16 warn — HEAD'da ham bor, tekshirildi) ✅ · `lint:prompt` ✅ · `npm run smoke` **109 dars, 0 nuqson** ✅ · grep-darvoza: `<HtmlCompiler` bo'lgan 26 joyning HAMMASIDA `lang=` bor; o'z nusxasini saqlab turgan dars **0 ta**.
+**NATIJA:** endi kompilyatorni ishlatadigan **18 dars fayli** bitta manbadan oziqlanadi. Keyingi har yaxshilanish hamma darsga birdan tegadi.
+**Prodga chiqarilmadi** — buyruq kutiladi. Commit YO'Q. UNCOMMITTED.
+
+## 2026-08-10 — F-0810-01: VsCodeLesson MATN-RAUNDI (ekran-nomi · panel-birligi · orzu-kasb · ohang) — ✅
+
+**Fidbek (foydalanuvchi):** «VsCode darsi matnlari juda xato — tushunarsiz uzun va o'quvchi tushunadigan emas;
+sof o'zbekcha gapirilgan, bizga esa o'quvchi tushunadigan til kerak.»
+
+**Tashxis (o'lchov bilan).** `lint:til` 64 qoida bilan **toza** o'tardi — muammo qoidalar ko'ra olmaydigan
+qatlamda edi. 221 ta o'zbekcha matn ko'zdan kechirildi, 5 muammo-sinf topildi:
+1. **Ekrandagi nom tarjima qilingan** — `muharrir` (8 joy), `kengaytma` (13 joy). O'quvchi VS Code'da
+   `Editor`/`Extensions` yozuvini ko'radi, dars boshqa so'z ishlatardi.
+2. **Bitta narsaga 5 xil nom** — *panel · bo'lim · qism · oyna · maydon* (~16 joy).
+3. **Uzun gap** — 9 ta gap 90 belgidan uzun, eng uzuni 162 (bitta gapda 4 ta buyruq).
+4. **Idoraviy ohang** — `tavsiya etiladi` · `yakunlandi` · `mustahkamlanadi` · `o'zgarmas` (7 joy).
+5. 🔴 **Misol-olam mos emas** — «kasbingizni yozing» (6 joy): 13 yoshli o'quvchining kasbi yo'q (95-qonun).
+
+**Foydalanuvchi qarori (GATE):** «kasb» → **orzu** yo'nalishi (`kim bo'lmoqchisiz` / `orzu-kasb`);
+dastur bo'laklari uchun yagona so'z → **panel**.
+
+**Bajarilgan ish (6 blok, UZ va RU birga).** Atama tizimi: butun dastur = *oyna*, ichidagilar = *panel*
+(`Explorer` fayllar paneli · `Editor` kod paneli · `Extensions` qo'shimcha dasturlar paneli ·
+`Terminal` buyruq paneli · `Status bar` — pastki ko'k chiziq, «panel» emas). Dastur TURI = «kod redaktori»
+(hook ekranida, bola «video redaktor»dan biladi) — panel `Editor` bilan chalkashmasin.
+🔴 **14 ta `useAudio` matni ham tekshirildi va tuzatildi** — aks holda ovoz «muharrir» der, ekranda `Editor` turardi.
+
+**O'lchov (avval → hozir):** `muharrir` 8 → 0 · `kengaytma` 13 → 0 · 90+ belgili gap **9 → 3**
+(eng uzuni **162 → 93**) · qolgan 3 tasi bitta fikrli, me'yorda.
+
+**Darvozalar:** esbuild ✅ · `lint:jsx` 0 ✅ · `lint:til` 0 ✅ · UZ↔RU son-mosligi 607 = 607 ✅ · `lint:prompt` ✅.
+👦 **2-o'qish (o'quvchi-roli) — HALI QILINMADI** (foydalanuvchi buyrug'i kutiladi).
+
+**Muhrlash:** `MATN_KORPUS.md` 79–82-bo'lim (4 juftlik) · `MATN_ETALONI.md` lug'atiga 5 qator ·
+`til-lint-rules.json` +3 qoida (64 → 67): `ekran-nomi-tarjimasi`, `tavsiya-etiladi`, `osmirga-kasb`.
+Qoidalar eski nusxada 24 topilma berdi, yangi darsda 0 — ya'ni ishlaydi (va men o'tkazib yuborgan 2 joyni ular topdi).
+
+**🚦 OCHIQ QAROR — repo bo'ylab tarqalgan bir xil nuqson.** Yangi qoidalar boshqa darslarda ham o'sha
+muammoni ko'rsatdi: `tavsiya etiladi` — **78 faylda** (74 tasida AYNAN bir xil mentor-panel shabloni,
+ya'ni ko'chirma) · `ekran-nomi-tarjimasi` — bir necha PM/texnik darsda · `kasbingiz` — `HtmlPractice.jsx` (10x,
+u ham card yasaydigan dars). Ular tuzatilmaguncha `npm run lint:til` (butun repo) qizil turadi.
+Variantlar: (a) 78 faylda bitta aniq satrni almashtirish — mexanik, sanab tekshiriladigan ·
+(b) qoidani vaqtincha `warn` ga tushirish · (c) darslar navbati bilan tuzatiladi.
+**Foydalanuvchi qarori kutiladi.**
+
+**Commit YO'Q.** UNCOMMITTED.
+
+## 2026-08-11 — F-0810-02…06: VsCodeLesson SO'Z-TOZALASH VA TUZILMA RAUNDI — ✅
+
+Foydalanuvchi darsni **sahifama-sahifa** ko'rib chiqdi (1, 2, 3, 4, 7, 8, 10, 11, 13, 14,
+15, 16, 17-sahifalar) va har birida so'z/tuzilma topilmasini berdi. Quyida — nima topilgani
+va nima qilingani.
+
+### F-0810-02 — SO'ZLAR (13 sinf)
+
+| ❌ topilma | ✅ qilingani | joy |
+|---|---|---|
+| «Professionallar kodni qayerda yozadi?» | «**Dasturchilar** kodni qayerga yozadi?» — `professional` 8 joydan chiqarildi | s0 va 6 ekran |
+| «dars ichidagi **maydonchada**» | «dars ichidagi **kompilatorga**» — bola uni 10 darsdan biladi | s0 |
+| «o'quv **velosipedi** → haqiqiy **mashina**» | o'xshatish butunlay olindi: «mashq joyi» ↔ «o'z kompyuteringiz» | s0 |
+| «Kompyuteringiz **ustaxonaga** aylanadi» | «Bugun **o'z kompyuteringizda** birinchi sahifangizni yasaysiz» | s1, s14 |
+| «**vizitka**-card» | «**card**» — kodda yozadigan nom bilan | 8 joy |
+| «**Mr.iot**» (namuna-kasb) | «**Frontend developer**» — praktika misoli bilan bir xil | 6 ekran |
+| «VS Code'ni qayerdan **olamiz**?» | «qayerdan **yuklaymiz**?» | s2 |
+| «VS Code **ichida** nima bor?» | «VS Code **oynasida nimalar** bor?» | s3 |
+| «**Sehrni** ko'rish» · «serverning **sehri**» | «**Natijani** ko'rish» · «shuning uchun qulay» — 7 joy | s6, s8, s12 |
+| «eng **shirin** qadam» · «Sahifangiz **jonlanadi**» | «eng **muhim** qadam» · «**Go Live** bilan sahifani ochamiz» | s7 |
+| «Card'ning **suyagini**» · «**Skeletni** yig'ing» · «HTML — **suyak**, CSS — **libos**» | «**shablon**» / «Card **nechta qismdan** iborat?» — 9 joy | s6, s9, RECAP |
+| «Card'ga **jon kiritamiz**» | «Cardni qanday **chiroyli** qilamiz?» — CSS bezaydi, jon bermaydi | s10 |
+| «**Ustalar sandiqchasi**» | «Dasturchining **maxfiy tugmalari** qanday?» | s12 |
+| «**Kim g'olib?**» | «**Bugungi g'oliblarimiz.**» | s15b |
+
+🔴 **Audio matnlari ham tozalandi** (8 ta blok). Foydalanuvchi «audio kerakmas» degan
+edi, lekin taqiqlangan so'zlar audio-satrlarda qolsa `lint:til` darvozasi shu darsda
+DOIM qizil turardi va keyingi har tahrirni to'sardi.
+
+### F-0810-03 — PRAKTIKA TAKRORI OLIB TASHLANDI
+
+`s7` dan keyingi praktika («VS Code'da qilganingizni **qaytaring**») o'chirildi: o'quvchi
+hozirgina VS Code'da yozgan `h1` ni kompilatorda qaytadan yozardi — bir ish ikki marta.
+Qolgan 2 praktika (card HTML + card CSS) takror EMAS, lekin ularning ma'nosi matnda
+aytilmagan edi. Endi ochiq aytiladi: *«Avval shu yerda yig'ing — xato bo'lsa ✓ ko'rsatadi.
+Tayyor kodni keyin VS Code'ga ko'chirasiz.»*
+O'lchov: praktika **0 ball** beradi (`submitAnswer(...,0,true,0)`) — ya'ni o'chirish
+ball-tizimiga tegmaydi; u faqat mentor-paneliga «tugatdi» signalini yuboradi.
+
+### F-0810-04 — DIZAYN: `narrow` ikki ekrandan olindi
+
+`s12` va `s13` da `<Stage narrow>` bor edi → `.stage-content.narrow { max-width: 680px }`.
+Butun dars ichida shu ikkovi qisilib turardi, mentor gapi uch qatorga bo'linib qalin
+ko'rinardi. `s12` bundan tashqari s3 naqshiga solindi (chapda bosiladigan narsalar,
+o'ngda tushuntirish) — ilgari tushuntirish kartalar ostida chiqib, sahifa har bosishda sakrardi.
+Qolgan `narrow`: test-shabloni (`QuestionScreen`) va podium — **ataylab qoldirildi**.
+
+### F-0810-05 — YAKUN EKRANIDA TASDIQLASH OLIB TASHLANDI
+
+«Card kompyuterimda jonli turibdi!» tugmasi o'quvchidan o'zi bilgan narsani belgilashni
+so'rardi va bosmaguncha «Davom etish» ochilmasdi. Endi ekranga yetgani o'zi «bajardim»
+degani: bayram va card animatsiyasi darrov boshlanadi, mentor-signali avtomatik ketadi.
+Demo Day ekranidagi tasdiqlash **qoldirildi** — u yerda o'quvchi 4 g'oyadan bittasini
+tanlaydi va tanlov Deploy darsiga saqlanadi (bu tasdiq emas, TANLOV).
+🔴 Yo'l-yo'lakay tutilgan xato: tasdiqlash olib tashlanganda `anim={confirmed}` osilib
+qolgan edi — `confirmed` endi yo'q, ya'ni ishga tushganda **oq ekran**. esbuild buni
+ko'rmaydi; grep bilan topildi va brauzerda render qilib tasdiqlandi.
+
+### F-0810-06 — FLASHCARD AUDITI (foydalanuvchi topshirig'i: «halol tekshir»)
+
+12 kartaning HAMMASI darsda mavjud ekan — «darsda yo'q savol» topilmadi. Lekin 3 nuqson:
+1. **`Port` kartasining javobi darsdagi so'z bilan mos emas edi** (dars: «eshik raqami
+   (port)», karta: «Port») — bu F-0810-01 dagi o'z tuzatishimdan kelib chiqqan nomuvofiqlik.
+   Karta javobi «**Eshik raqami (port)**» ga o'zgartirildi.
+2. **Darsda o'rgatilgan, kartada yo'q**: «har loyiha — alohida papka» (darsda QOIDA deb
+   ta'kidlangan). Yangi karta qo'shildi → jami **13 ta**.
+3. **`Ctrl+Z` darsda atigi 1 marta** (`s12` Bonus ekranida) uchrardi, karta esa undan
+   javob so'rardi. Emmet ekraniga (`s6`) eslatma qo'shildi — bir bosishda 10 qator paydo
+   bo'lgan payt, ya'ni bola «orqaga qaytarish»ni birinchi marta qidiradigan lahza.
+
+### DARVOZALAR
+
+esbuild ✅ · `lint:jsx` 0 ✅ · `lint:til` (quyidagi ochiq banddan tashqari) ✅ ·
+UZ↔RU son-mosligi ✅ · `vite build` toza (5 marta) ✅ · `lint:prompt` ✅ ·
+`scripts/shot-screen.mjs` bilan s3/s6/s12/s13/s14 brauzerda ochib ko'z bilan tasdiqlandi.
+
+### MUHRLASH
+
+`MATN_KORPUS.md` **83–90-bo'lim** (7 so'z-juftligi + 6 bandli ekran-tuzilishi qoidasi) ·
+`MATN_ETALONI.md` lug'atiga **9 qator** · `til-lint-rules.json` **67 → 74 qoida**
+(`sehr-sozi`, `usta-sandiqcha`, `anatomiya-metaforasi`, `jon-kiritish`, `professional-sozi`,
+`vizitka-sozi`, `bosh-sifat-qadam`). Qoidalar darsning ESKI nusxasida **42 error + 7 warn**
+beradi, yangisida 0 — ya'ni ishlaydi.
+
+### 🚦 OCHIQ QARORLAR (foydalanuvchi so'zini kutadi)
+
+1. **Dars nomi**: `LESSON_META.lessonTitle` = «VS Code — **professional** start». Foydalanuvchi
+   «tegmang» degan edi (uni o'zgaruvchi deb o'ylagan), lekin bu LMS'da KO'RINADIGAN nom va
+   endi `professional-sozi` qoidasiga zid. `lint:til` shu bitta banddan qizil turibdi.
+2. **Repo bo'ylab tarqalgan nuqsonlar** (oldingi raunddan qolgan): `tavsiya etiladi` — 78
+   faylda (74 tasida aynan bir xil mentor-panel shabloni) · `ekran-nomi-tarjimasi`,
+   `professional`, `sehr`, `suyak/skelet` — boshqa darslarda ham. Yangi qoidalar butun
+   repo bo'ylab qizil beradi. Variantlar: (a) bitta aniq satrni 78 faylda almashtirish —
+   mexanik va sanab tekshiriladigan · (b) qoidalarni vaqtincha `warn` ga tushirish ·
+   (c) darslar navbati bilan.
+3. **Audio**: foydalanuvchi «umuman kerakmas» dedi. Hozir so'zlari tozalangan holda joyida
+   turibdi; butunlay olib tashlash alohida ish sifatida kutmoqda.
+
+**Commit YO'Q.** UNCOMMITTED.
+
+## 2026-08-11 — RELIZ: VsCodeLesson (F-0810-01…06) → coddycamp-1-2-modul-senior + LMS fayli — ✅
+
+**Buyruq:** foydalanuvchi — «shu URLga yangi VS Code darsimizni yangilab deploy qil, qolgan
+darslar o'z holicha tursin» + «shu darsni `lms/` papkaga JsVars kabi tayyorla».
+
+**Darvozalar (deploydan oldin):** `lint:jsx` — 30 error, HAMMASI `src\eski\` va
+`src\2-moodull eski\` arxiv-nusxalarida (bundle'ga kirmaydi, oldingi reliz bilan bir xil
+holat); jonli darslarda 0 ✅ · `lint:til` (VsCodeLesson) — 1 error: `LESSON_META.lessonTitle`
+dagi «professional» (foydalanuvchi «tegmang» degan, ochiq qaror) · `vite build
+--config vite.m1.config.js` toza, 29 chunk, 754ms ✅
+
+**Yo'l-yo'lakay topilgan:** `vizitka-card` so'zi CSS izohida qolgan ekan — JS izohlari
+qurishda o'chadi, lekin CSS izohi shablon-satr ichida bo'lgani uchun bundle'ga TUSHADI.
+Tozalandi va qayta qurildi (bu — «izoh baribir ko'rinmaydi» taxminining aniq qarshi-misoli).
+
+**Deploy:** `dist-m1/assets` + `modul1.html`→`index.html` → `coddycamp-1-2-modul-senior/`
+papkasi (`.vercel/project.json` va `vercel.json` teginilmadi), o'sha papka ICHIDAN
+`vercel deploy --prod --yes`. Hisob: `kirishnomi4-6915`, jamoa: `azizbek10`
+(`projectId prj_1wmp…`). Boshqa Vercel loyihalariga tegilmadi.
+
+**Prod tekshiruvi:** bosh URL 200 ✅ · **29 chunkning HAMMASI 200 — 0 nuqson** ✅ ·
+yangi matnlar prodda tasdiqlandi (`Dasturchilar kodni`, `maxfiy tugmalari`, `Steve Jobs`,
+`orzu-kasb`, `Editor`, `Extensions`, `kompilatorga`, `eng muhim qadam`, `Bugungi`) ·
+eski so'zlar prodda **0 marta** (`Professionallar`, `Sehrni`, `sandiqcha`, `suyagini`,
+`jon kiritamiz`, `vizitka`).
+⚠️ Deploy buyrug'i ikki marta yurdi (birinchisining chiqishi kesilgani uchun qayta
+yurgizildi) — ikkita prod-deploy yaratildi, oxirgisi (`ihe8hhqrs`) asosiy manzilga ulangan.
+
+**Boshqa darslar:** manbasiga tegilmadi. Lekin bundle bir butun qurilgani uchun prodga
+oxirgi relizdan KEYIN qilingan yig'ilmagan ishlar ham tushdi — asosan F-0809-04
+(18 dars umumiy `src/compilator/HtmlCompiler.jsx` ga o'tkazilgani). Bu foydalanuvchiga
+deploydan OLDIN aytildi.
+
+**LMS fayli:** `node scripts/build-lms.mjs src/1-Modull/VsCodeLesson.jsx` →
+`lms/VsCodeLesson.jsx` — **6793 qator · 485 KB · 1 ta import (`react`)**.
+`scripts/smoke-lms.mjs` bilan brauzerda tekshirildi: dars render bo'ldi (577 belgi matn),
+**kompilyator qatlami ochildi**, konsol xatosi 0 ✅ — ya'ni JsVarsLesson bilan bir xil,
+LMSga yuklashga tayyor.
+
+**Commit YO'Q.** UNCOMMITTED.
+
+**Tozalash (2026-08-11):** `lms/_sinov-1-url-import.jsx` va `lms/_sinov-2-JsVarsLesson-url.jsx`
+o'chirildi — ular URL-import tajribasi uchun edi, vazifasini bajardi (LMS registri yopiq ekani
+tasdiqlandi). `lms/` da endi FAQAT yuklanadigan fayllar qoladi — nomi o'xshash sinov fayli
+bilan adashish ehtimoli yo'q qilindi.
+
+## 2026-08-13 — F-0813-01: Kompilyator VS Code darajasiga — kenglik +50% + 6 qulaylik — ✅
+
+**Feedback:** foydalanuvchi — «desktopda ramka kichkina, ishlatayotganda kichkinalik
+qilyapti» + «qulayliklari bilan VS Codega o'xshasin». Yechim-tanlov foydalanuvchi bilan
+kelishildi (4 banddan 4i ham tanlandi + «o'zing foydali deb bilganingni qo'sh»).
+
+**Sabab (tashxis):** `.hc-root{max-width:1160px}` — 1920px ekranda ~60%, ustiga --lz zoom.
+Editor/Natija teng bo'linib har biriga ~550px qolardi.
+
+**Qilindi (bitta fayl — `src/compilator/HtmlCompiler.jsx`):**
+1. Kenglik `max-width:1160px → 1740px` (+50%); balandlik TEGILMAGAN; ≤860px o'zgarishsiz.
+2. Yozuv-qulayliklari (faqat CSS/JS fayllarida, HTMLga TEGILMADI — bola matnda qavs
+   yozadi): `{ ( [ " ' `` ` `` avto-juftlik · tirnoq faqat SO'Z CHETIDA juftlanadi
+   (o'zbekcha apostrof himoyasi: `o'zim`, `g'oya` buzilmaydi) · yopuvchi ustidan
+   type-over · Backspace bo'sh juftlikni birga o'chiradi · tanlov ustida tirnoq/qavs —
+   O'RASH (`salom` → `"salom"`) · `{}` orasida Enter — smart-indent.
+3. Ctrl+/ izoh — barcha tillarda (HTML `<!-- -->` · CSS `/* */` · JS `//`), toggle.
+4. Joriy qator xira yoritiladi (`.hc-curline`, state'siz — to'g'ridan-to'g'ri suriladi).
+5. Status-bar (VS Code'dagidek): fayl · til · A−/A+ shrift (12–20, `hcFont` localStorage,
+   belgi-eni keshi qayta o'lchanadi) · Qator/Ustun. ≤860px da yashirin.
+6. Sudraluvchi chegara Editor↔Natija (30–70%, `hcSplit` localStorage, 2 bosish — teng;
+   sudrash payti iframe pointer-events o'chadi).
+
+**Darvozalar:** esbuild toza (106.6 KB) ✅ · `lint:jsx` — kompilyatorda 0 (qizillar faqat
+`src/eski`+`2-moodull eski` arxivlarida, avvalgidek) ✅ · `lint:til` HtmlCompiler — 0 ✅ ·
+`build:lms` 18/18 dars yig'ildi ✅ · **Playwright e2e 12/12 OK** (juftlik, apostrof-himoya,
+type-over, Backspace, smart-indent, Ctrl+/ CSS+HTML, HTML-qavs-tegilmagani, sudrash
+0.5→0.377, A+ 14→15px+saqlov, o'rash) · skrinshot 1920×1080: kenglik 1740, status-bar,
+joriy qator — ko'z bilan tasdiqlandi.
+
+**Keyingi qadam:** bitta darsni tanlab sof-ESM tashqi kompilyator bilan real sinov
+(LMS «manzil yo'li» ishlagani 2026-08-13 rasmda tasdiqlangan, `lms-sinov/image.png`).
+
+**Commit YO'Q.** UNCOMMITTED.
+
+## 2026-08-13 — 2-QADAM: JsVarsLesson tashqi kompilyator-modulga o'tkazildi (lokal isbot) — ✅
+
+**Buyruq:** foydalanuvchi — «JsVarsLesson'ni to'liq shu kompilyatorga moslab qilamiz».
+
+**Qilindi:**
+1. `scripts/react-merge.mjs` — react-import birlashtirish alohida helperga chiqarildi
+   (build-lms va yangi skript ikkalasi ishlatadi, nusxa-drift yo'q).
+2. `scripts/build-shared-module.mjs` (YANGI) — `src/compilator/HtmlCompiler.jsx` →
+   `lms/html-compiler.jsx`: **96 KB · sof ESM · JSX yo'q (klassik createElement,
+   jsx-runtime'siz) · import FAQAT `react` · eksport: default + checks + HC_NASHR
+   (nashr-sanasi)**. Chiqish-shartnoma skript ichida DARVOZA: importlar/JSX/NUL/
+   eksportlar tekshirilmasa fayl yozilmaydi.
+3. `scripts/build-lms.mjs` — `--shared <spec>` rejimi (kompilyator bundle'ga kirmaydi,
+   import satri spec bilan qoladi) + SRC_DIRS'ga `src/3-Modull` (PmLesson9 teshigi
+   yopildi: 18 → **19 dars**). `lms/JsVarsLesson.shared.jsx` — **309 KB** (404 edi),
+   2 import: `react` + `@shared/html-compiler`.
+4. `scripts/smoke-shared.mjs` (YANGI) — LMS muhitining taqlidi: lokal HTTP + importmap
+   (=LMS resolveri), dars JSX'i LMS'dagidek kompilyatsiya qilinadi, modul XOM ishlaydi.
+   Har nashrdan oldingi avto-tekshiruv (TZ v2 9-bo'lim va'dasi).
+5. `scripts/smoke-lms.mjs` — default-ro'yxatdan `html-compiler.jsx` va `*.shared.jsx`
+   chiqarildi (ular smoke-shared'niki).
+
+**Sinov natijalari:** smoke-shared **7/7 React 19.2.7da** va **7/7 React 18.3.1da**
+(LMS'dagi aynan shu versiya — bugungi rasmda o'lchangan): modul eksportlari ✓ ·
+checks.has ✓ · HC_NASHR ✓ · dars ochildi ✓ · kompilyator TASHQI MODULDAN ochildi ✓ ·
+yozish ishladi (hook = **React BITTA nusxada**) ✓ · konsol 0 xato ✓. Skrinshot bilan
+tasdiqlandi (JsVars praktika + status-bar + joriy qator). `build:lms` 19/19 ·
+lint:jsx yangi fayllarda 0 · lint:til 0.
+
+**LMS'ga chiqarish tartibi (qo'lda qoladigan yagona qadamlar):**
+1. `lms/html-compiler.jsx` LMS'ga yuklanadi (Umumiy modullar yoki course_artifacts) → manzil chiqadi.
+2. `node scripts/build-lms.mjs --shared <o'sha manzil yoki @shared/html-compiler> src/2-Modull/JsVarsLesson.jsx`
+3. `node scripts/smoke-shared.mjs` (spec darsdan o'zi olinadi) → 7/7 bo'lsa `lms/JsVarsLesson.shared.jsx` LMS'ga yuklanadi.
+
+**Commit YO'Q.** UNCOMMITTED.
+
+## 2026-08-13 — N-TEST 8 O'TDI (haqiqiy dars + tashqi kompilyator LMS'da) + F-0813-02 — ✅
+
+**Tarixiy natija (foydalanuvchi rasmlari `lms/image.png`, `lms/image copy.png`):**
+haqiqiy LMS'da (`lms.coddycamp.uz/course/20/module/73/2433`, RU-rejim) JsVarsLesson.shared
+ochildi — kompilyator TASHQI MODULDAN (`f9e30f4a….jsx`, MD5 lokal bilan bir xil) yuklandi,
+bola kod yozdi (`let ball = 25`), 2/2 shart yashil, Console'da 25, status-bar ruscha
+(Строка/Столбец), dars OXIRIGACHA yetdi («Dars muvaffaqiyatli yakunlandi!»). Konsolda
+faqat zararsiz AudioContext ogohlantirishi. T-1 + T-2 haqiqiy darsda tasdiqlandi.
+
+**F-0813-02 — uy-vazifa tugmasi olib tashlandi (foydalanuvchi qarori):** YAKUN'dagi
+«✍️ Kompilyatorda yozib tekshirish →» tugmasi (`onHomework` guard) 5 darsdan o'chirildi:
+JsConditions/JsFunctions/JsLoops/JsVars/PeanStack. Vazifa-kartasi (matn+ro'yxat) qoldi.
+Sabab: uy-vazifa oqimi keyin alohida hal qilinadi; LMS kompilyatoriga ulanish KUN
+TARTIBIDAN OLINGAN. `onHomework` mexanizmi (ccPractice 'hw') hozircha kodda qoldi —
+smoke-lms unga tayanadi; primoy-migratsiyada birga olib tashlanadi.
+Darvozalar: esbuild 5/5 · lint:jsx 2-Modull 0 · pilot qayta yig'ildi
+(`lms/JsVarsLesson.shared.jsx`, tugmasiz) + smoke-shared 7/7.
+
+**Yo'nalish qarori (foydalanuvchi): «PRIMOY» —** darslar `src/N-Modull/` da yoziladi va
+LMS'ga O'SHA fayl to'g'ridan-to'g'ri yuklanadi; lms/ yig'uv-bosqichi bekor qilinadi.
+Texnik yo'li: dars importi `@shared/html-compiler` bo'ladi + Vite alias (sayt uchun) —
+LEKIN bunga o'tish LMS ro'yxatiga `html-compiler` RASMAN tushgandan keyin (hozircha URL
+yo'li pilotda). Audit: 41 darsdan 40 tasi faqat react+kompilyator import qiladi (primoy'ga
+tayyor); yagona istisno PmLesson7 (`mentor.png` lokal import — o'z navbatida tozalanadi).
+
+**Commit YO'Q.** UNCOMMITTED.

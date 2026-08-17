@@ -11,7 +11,9 @@
     "lint:prompt": "node prompt-lint.mjs",
     "lint:til": "node til-lint.mjs",
     "lint:jsx": "node jsx-lint.mjs",
-    "smoke": "node _smoke.mjs"
+    "smoke": "node _smoke.mjs",
+    "build:lms": "node scripts/build-lms.mjs",
+    "smoke:lms": "node scripts/smoke-lms.mjs"
   },
   "dependencies": {
     "react": "^19.2.7",
@@ -21,6 +23,7 @@
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^6.0.2",
+    "esbuild": "^0.28.2",
     "oxlint": "^1.69.0",
     "playwright-core": "^1.61.1",
     "vite": "^8.1.0"

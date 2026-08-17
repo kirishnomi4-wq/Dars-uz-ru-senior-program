@@ -1,0 +1,1 @@
+var e=`/assets/mentor-D-nG2MNK.png`;export{e as t};

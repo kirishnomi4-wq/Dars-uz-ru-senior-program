@@ -53,7 +53,7 @@ node-server-04-03-v18
 pean-stack-01-v18
 pg-crud-04-05-v18
 pipeline-project-06-08-v18
-pm-acceptance-09-v16
+pm-m3d10-v1
 pm-analysis-31-v16
 pm-analytics-32-v16
 pm-architecture-pitch-14-v16
@@ -63,7 +63,7 @@ pm-delivery-speed-17-v16
 pm-design-33-v16
 pm-ethics-23-v16
 pm-first-users-19-v16
-pm-frontend-handoff-10-v16
+pm-m3d14-v1
 pm-interviews-30-v16
 pm-jtbd-27-v16
 pm-m1d2-v1
@@ -74,7 +74,7 @@ pm-m2d7-v1
 pm-m3d2-v3
 pm-m7d2-v2
 pm-m8d1-v2
-pm-metrics-11-v16
+pm-m4d2-v1
 pm-metrics-users-21-v16
 pm-monitoring-18-v16
 pm-pitch-03-v19
@@ -87,7 +87,7 @@ pm-quality-value-16-v16
 pm-roadmap-24-v16
 pm-scalability-15-v16
 pm-schema-prd-13-v16
-pm-security-trust-12-v16
+pm-m4d7-v1
 pm-usability-34-v16
 pm-user-story-07-v16
 practice-01-jonlantirish-v18

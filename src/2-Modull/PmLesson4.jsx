@@ -1,4 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback, useMemo, createContext, useContext } from 'react';
+// Kod kompilyatori — UMUMIY modul (F-0809-05). Tugma bilan ochiladigan to'liq-ekran
+// asbob, shuning uchun CodeStrike brendida (PM_DARS_ETALON 1-bo'lim, palitra-istisnosi).
+import HtmlCompiler, { checks as C } from '../compilator/HtmlCompiler.jsx';
 
 // ============================================================
 // PM M2-D2 — MUAMMODAN YECHIMGA: har imkoniyat qaysi qiyinchilikni yo'qotadi?
@@ -1404,20 +1407,25 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: 'Keys 🛒', ru: 'Кейс 🛒' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={betPending && !isMentorK} label={betPending && !isMentorK ? { uz: 'Avval taxminingizni belgilang', ru: 'Сначала отметьте свою догадку' } : last ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `Keyingi bosqich (${i + 1}/${K_SLIDES.length})`, ru: `Следующий шаг (${i + 1}/${K_SLIDES.length})` }} onClick={last ? onNext : () => setI(i + 1)} /></>}>
       <div className="screen" style={{ gap: 'clamp(14px,2.2vw,20px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>O'zbekistonda <span className="italic" style={{ color: T.accent }}>internet-magazin</span> qanday boshlangan?</>, ru: <>Как в Узбекистане начинался <span className="italic" style={{ color: T.accent }}>интернет-магазин</span>?</> })}</h2></div>
-        {c.predict && (bet === undefined || isMentorK) ? (
+        {/* F-0812-04 — MENTOR REJIMIDA JAVOB OLDINDAN OCHILMAYDI (44-qonun oilasi).
+            Ilgari mentorda bashorat-bloki va slayd (javob matni bilan) BIR VAQTDA chiqardi,
+            chiplar esa `disabled` edi — ya'ni proyektorda savol bilan javob yonma-yon turardi
+            va bashorat butun sinf uchun ma'nosini yo'qotardi. Endi mentor ham o'quvchidek
+            BOSIB ochadi. Mentor-bypass (31-qonun) saqlanadi: NavNext mentorda qulflanmaydi. */}
+        {c.predict && bet === undefined ? (
           <div className="kp-bet fade-step" key={`b${i}`}>
             <span className="k-slide-eyebrow">{tr({ uz: '🎲 Avval o\'zingiz belgilab ko\'ring', ru: '🎲 Сначала отметьте сами' })}</span>
             <h3 className="k-slide-h">{tr(c.predict.ask)}</h3>
             <div className="kp-chips">
               {c.predict.chips.map((ch, k) => (
-                <button key={k} className={`kp-chip${!isMentorK && betHint ? ' turn-ring' : ''}`} disabled={isMentorK} onClick={() => setBets(p => ({ ...p, [i]: k }))}>
+                <button key={k} className={`kp-chip${!isMentorK && betHint ? ' turn-ring' : ''}`} onClick={() => setBets(p => ({ ...p, [i]: k }))}>
                   <span className="kp-ic">{ch.ic}</span>{tr(ch.t)}
                 </button>
               ))}
             </div>
           </div>
         ) : null}
-        {(!c.predict || bet !== undefined || isMentorK) && (
+        {(!c.predict || bet !== undefined) && (
           <div className={`k-slide fade-step ${c.predict ? 'revealed' : ''}`} key={`s${i}`}>
             <span className="k-slide-eyebrow">{tr({ uz: `Uzum voqeasi · ${i + 1} / ${K_SLIDES.length}`, ru: `История Uzum · ${i + 1} / ${K_SLIDES.length}` })}</span>
             <div className="k-slide-ic">{c.ic}</div>
@@ -1725,96 +1733,6 @@ const ScreenClean = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   );
 };
 
-// ===== HTML SINTAKSIS-LINTERI (manba: src/compilator/HtmlCompiler.jsx — qator raqami bilan xato) =====
-const KOD_VOID = new Set(['area', 'base', 'br', 'col', 'embed', 'hr', 'img', 'input', 'link', 'meta', 'param', 'source', 'track', 'wbr']);
-// Yopish tegi IXTIYORIY bo'lgan elementlar — brauzer o'zi yopadi, «yopilmagan» deb qizarmasin
-const KOD_OPTIONAL = new Set(['li', 'p', 'td', 'th', 'tr', 'dt', 'dd', 'option', 'thead', 'tbody', 'tfoot']);
-const KOD_BLOCK = new Set(['address', 'article', 'aside', 'blockquote', 'details', 'div', 'dl', 'fieldset', 'figcaption', 'figure', 'footer', 'form', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'header', 'hr', 'main', 'menu', 'nav', 'ol', 'p', 'pre', 'section', 'table', 'ul']);
-function kodClosesOnOpen(open, top) {
-  if (top === 'li') return open === 'li';
-  if (top === 'p') return open === 'p' || KOD_BLOCK.has(open);
-  if (top === 'option') return open === 'option';
-  if (top === 'td' || top === 'th') return open === 'td' || open === 'th' || open === 'tr';
-  if (top === 'tr') return open === 'tr';
-  if (top === 'dt' || top === 'dd') return open === 'dt' || open === 'dd';
-  if (top === 'thead' || top === 'tbody' || top === 'tfoot') return open === 'tbody' || open === 'tfoot' || open === 'thead';
-  return false;
-}
-function lintHtml(src) {
-  const errors = [];
-  if (!src) return errors;
-  const stack = [];
-  const n = src.length;
-  let i = 0, line = 1, col = 1;
-  const here = () => ({ line, col });
-  const step = () => { if (src[i] === '\n') { line++; col = 1; } else { col++; } i++; };
-  const skipTo = (idx) => { while (i < idx && i < n) step(); };
-  while (i < n) {
-    if (src[i] !== '<') { step(); continue; }
-    const next = src[i + 1];
-    if (src.startsWith('<!--', i)) {
-      const end = src.indexOf('-->', i + 4);
-      if (end === -1) { errors.push({ ...here(), msg: tr({ uz: "Izoh yopilmagan — oxiriga --> qo'ying", ru: 'Комментарий не закрыт — поставьте в конце -->' }) }); break; }
-      skipTo(end + 3); continue;
-    }
-    if (next === '!') {
-      const end = src.indexOf('>', i);
-      if (end === -1) { errors.push({ ...here(), msg: tr({ uz: '<! ... > yopilmagan', ru: '<! ... > не закрыт' }) }); break; }
-      skipTo(end + 1); continue;
-    }
-    if (next === '/') {
-      const start = here();
-      let j = i + 2, name = '';
-      while (j < n && /[a-zA-Z0-9-]/.test(src[j])) { name += src[j]; j++; }
-      while (j < n && src[j] !== '>') j++;
-      if (j >= n) { errors.push({ line: start.line, msg: tr({ uz: `</${name}> to'liq emas — oxiriga > qo'ying`, ru: `</${name}> не дописан — поставьте в конце >` }) }); break; }
-      const lname = name.toLowerCase();
-      while (stack.length && KOD_OPTIONAL.has(stack[stack.length - 1].name) && stack[stack.length - 1].name !== lname && stack.some((s, idx) => s.name === lname && idx < stack.length - 1)) stack.pop();
-      if (stack.length === 0) {
-        errors.push({ line: start.line, msg: tr({ uz: `Ortiqcha yopuvchi teg </${name}> — unga mos ochuvchi teg yo'q`, ru: `Лишний закрывающий тег </${name}> — для него нет открывающего` }) });
-      } else {
-        const top = stack[stack.length - 1];
-        if (top.name === lname) { stack.pop(); }
-        else {
-          const idx = stack.map(s => s.name).lastIndexOf(lname);
-          if (idx === -1) errors.push({ line: start.line, msg: tr({ uz: `</${name}> ga mos ochuvchi teg yo'q — nom xato yozilgan bo'lishi mumkin`, ru: `Для </${name}> нет открывающего тега — возможно, имя написано с ошибкой` }) });
-          else { errors.push({ line: top.line, msg: tr({ uz: `<${top.name}> yopilmagan — </${top.name}> kutilgan edi, </${name}> keldi`, ru: `<${top.name}> не закрыт — ожидался </${top.name}>, а пришёл </${name}>` }) }); stack.length = idx; }
-        }
-      }
-      skipTo(j + 1); continue;
-    }
-    if (/[a-zA-Z]/.test(next || '')) {
-      const start = here();
-      let j = i + 1, name = '';
-      while (j < n && /[a-zA-Z0-9-]/.test(src[j])) { name += src[j]; j++; }
-      let selfClose = false, closed = false, quote = null, strayLt = false;
-      while (j < n) {
-        const c = src[j];
-        if (quote) { if (c === quote) quote = null; j++; continue; }
-        if (c === '"' || c === "'") { quote = c; j++; continue; }
-        if (c === '<') { strayLt = true; break; }
-        if (c === '/' && src[j + 1] === '>') { selfClose = true; closed = true; j += 2; break; }
-        if (c === '>') { closed = true; j++; break; }
-        j++;
-      }
-      if (quote && j >= n) { errors.push({ line: start.line, msg: tr({ uz: `<${name}> ichida tirnoq (${quote}) yopilmagan`, ru: `Внутри <${name}> не закрыта кавычка (${quote})` }) }); break; }
-      if (strayLt) { errors.push({ line: start.line, msg: tr({ uz: `<${name} tegi > bilan yopilmagan`, ru: `Тег <${name} не закрыт символом >` }) }); skipTo(j); continue; }
-      if (!closed && j >= n) { errors.push({ line: start.line, msg: tr({ uz: `<${name} tegi > bilan yopilmagan`, ru: `Тег <${name} не закрыт символом >` }) }); break; }
-      const lname = name.toLowerCase();
-      while (stack.length && kodClosesOnOpen(lname, stack[stack.length - 1].name)) stack.pop();
-      if (!selfClose && !KOD_VOID.has(lname)) stack.push({ name: lname, line: start.line });
-      skipTo(j); continue;
-    }
-    step();
-  }
-  for (const t of stack) {
-    if (KOD_OPTIONAL.has(t.name)) continue;
-    errors.push({ line: t.line, msg: tr({ uz: `<${t.name}> ochiq qoldi — </${t.name}> bilan yoping`, ru: `<${t.name}> остался открытым — закройте его через </${t.name}>` }) });
-  }
-  return errors;
-}
-
-// ===== TUZILMA-TEKSHIRUVI — ro'yxat bandlari ustida, 3 shart (jonli chip) =====
 const KOD_CONDS = [
   { id: 'c1', label: { uz: "Ro'yxatda 3 ta band", ru: 'В списке 3 пункта' } },
   { id: 'c2', label: { uz: 'Har bandda qalin nom', ru: 'В каждом пункте жирное имя' } },
@@ -1852,10 +1770,6 @@ const KOD_PREVIEW_CSS = `
   li b{color:#1B1630}
   h2,li,p{overflow-wrap:anywhere;min-width:0}
 `;
-const kodWrapDoc = (code) => `<!doctype html><html lang="uz"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1"><style>${KOD_PREVIEW_CSS}</style></head>
-<body>${code}</body></html>`;
-
 // Boshlang'ich kod: birinchi <li> o'quvchining O'Z 1-juftligidan (bo'lmasa — namuna-fallback, 40-qonun)
 const kodStarter = () => {
   const f = readFeatures();
@@ -1877,84 +1791,32 @@ const readKoding = () => { try { const v = JSON.parse(localStorage.getItem(KODIN
 // qayta yuklasa (Memory Saver), o'quvchi kompilyator ICHIGA qaytadi, praktika-sahifaga emas.
 const writeKodingOpen = (open) => { try { const p = readKoding() || {}; localStorage.setItem(KODING_KEY, JSON.stringify({ ...p, open })); } catch {} };
 
+// ===== TOPSHIRIQ — umumiy kompilyator formatida (F-0809-05) ==================
+// Tekshiruv mantig'i (`checkList`) AYNAN o'zgarmadi; u shartlarni bitta o'tishda
+// hisoblaydi, shuning uchun natija oxirgi matn bo'yicha eslab qolinadi.
+let _listSrc = null, _listRes = null;
+const listOf = (html) => {
+  if (html !== _listSrc) { _listSrc = html; _listRes = checkList(html || ''); }
+  return _listRes;
+};
+const KOD_TASK = {
+  eyebrow: { uz: 'Koding · juftliklar ro\'yxati', ru: 'Кодинг · список пар' },
+  title: { uz: 'Juftliklaringizni sahifada ko\'rsating', ru: 'Покажите свои пары на странице' },
+  brief: { uz: <>Ro'yxatga yana <b>ikkita band</b> qo'shing. Har bandda imkoniyat nomi <span className="mono">&lt;b&gt;</span> va <span className="mono">&lt;/b&gt;</span> orasida turadi, tiredan keyin esa o'sha imkoniyat yo'qotadigan qiyinchilik yoziladi.</>, ru: <>Добавьте в список ещё <b>два пункта</b>. В каждом название возможности стоит между <span className="mono">&lt;b&gt;</span> и <span className="mono">&lt;/b&gt;</span>, а после тире пишется трудность, которую эта возможность убирает.</> },
+  previewUrl: 'kino.uz',
+  previewCss: KOD_PREVIEW_CSS,
+  requirements: KOD_CONDS.map((c) => ({
+    id: c.id,
+    label: c.label,
+    check: C.custom((x) => {
+      const r = listOf(x.html);
+      return r[c.id] ? true : (r.hints[c.id] || false);
+    }),
+  })),
+};
+
 // ===== TO'LIQ-EKRAN KOMPILYATOR — tepada topshiriq + jonli shart-chiplar,
 // chapda muharrir (Tab = 2 probel, ▶), o'ngda jonli natija, pastda navigatsiya.
-function ListCompiler({ initialCode, onContinue, onBack }) {
-  const [code, setCode] = useState(initialCode || '');
-  const [src, setSrc] = useState(initialCode || '');
-  useEffect(() => {
-    const t = setTimeout(() => {
-      setSrc(code);
-      try { const prev = readKoding(); localStorage.setItem(KODING_KEY, JSON.stringify({ code, done: !!(prev && prev.done), open: true })); } catch {}
-    }, 400);
-    return () => clearTimeout(t);
-  }, [code]);
-  const res = useMemo(() => checkList(src), [src]);
-  const errs = useMemo(() => lintHtml(src), [src]);
-  const doc = useMemo(() => kodWrapDoc(src), [src]);
-  const okN = KOD_CONDS.filter(c => res[c.id]).length;
-  const passed = okN === KOD_CONDS.length && errs.length === 0;
-  const firstHint = KOD_CONDS.map(c => (res[c.id] ? null : res.hints[c.id])).find(Boolean);
-  const runNow = () => setSrc(code);
-  const onKeyDown = (e) => {
-    if (e.key === 'Tab') {
-      e.preventDefault();
-      const el = e.target, s = el.selectionStart, en = el.selectionEnd;
-      setCode(code.slice(0, s) + '  ' + code.slice(en));
-      requestAnimationFrame(() => { el.selectionStart = el.selectionEnd = s + 2; });
-    }
-  };
-  return (
-    <div className="shc-root">
-      <div className="shc-wrap">
-        <header className="shc-top">
-          <span className="shc-eyebrow">{tr({ uz: 'Koding · juftliklar ro\'yxati', ru: 'Кодинг · список пар' })}</span>
-          <h1 className="shc-title">{tr({ uz: 'Juftliklaringizni sahifada ko\'rsating', ru: 'Покажите свои пары на странице' })}</h1>
-          <p className="shc-brief">{tr({ uz: <>Ro'yxatga yana <b>ikkita band</b> qo'shing. Har bandda imkoniyat nomi <span className="mono">&lt;b&gt;</span> va <span className="mono">&lt;/b&gt;</span> orasida turadi, tiredan keyin esa o'sha imkoniyat yo'qotadigan qiyinchilik yoziladi.</>, ru: <>Добавьте в список ещё <b>два пункта</b>. В каждом название возможности стоит между <span className="mono">&lt;b&gt;</span> и <span className="mono">&lt;/b&gt;</span>, а после тире пишется трудность, которую эта возможность убирает.</> })}</p>
-          <div className="shc-chips">
-            <span className="shc-count">{okN}/{KOD_CONDS.length}</span>
-            {KOD_CONDS.map((c, i) => (
-              <span key={c.id} className={`shc-chip ${res[c.id] ? 'ok' : ''}`}>
-                <span className="shc-dot">{res[c.id] ? '✓' : i + 1}</span>{tr(c.label)}
-              </span>
-            ))}
-          </div>
-          {errs.length > 0
-            ? <p className="shc-err">⚠ {tr({ uz: `${errs[0].line}-qator:`, ru: `Строка ${errs[0].line}:` })} {errs[0].msg}{errs.length > 1 ? tr({ uz: ` (yana ${errs.length - 1} ta sintaksis xatosi)`, ru: ` (ещё синтаксических ошибок: ${errs.length - 1})` }) : ''}</p>
-            : (!passed && firstHint && <p className="shc-hint">💡 {firstHint}</p>)}
-        </header>
-        <main className="shc-split">
-          <section className="shc-pane">
-            <div className="shc-bar dark">
-              <span className="bb-dots"><i /><i /><i /></span>
-              <span className="shc-tab">index.html</span>
-              <button className="shc-mini" onClick={runNow}>{tr({ uz: '▶ Ishga tushirish', ru: '▶ Запустить' })}</button>
-            </div>
-            <textarea className="shc-code" value={code} spellCheck={false} autoCapitalize="off" autoCorrect="off" onChange={e => setCode(e.target.value)} onKeyDown={onKeyDown} placeholder={tr({ uz: '<ul> ... </ul> ichiga bandlaringizni yozing', ru: 'Напишите свои пункты внутри <ul> ... </ul>' })} />
-          </section>
-          <section className="shc-pane">
-            <div className="shc-bar">
-              <span className="bb-dots"><i /><i /><i /></span>
-              <span className="shc-url"><span className="lock">●</span>kino.uz</span>
-              <span className="shc-live">{tr({ uz: 'jonli', ru: 'вживую' })}</span>
-            </div>
-            <iframe className="shc-frame" title={tr({ uz: 'Jonli natija', ru: 'Живой результат' })} sandbox="" srcDoc={doc} />
-          </section>
-        </main>
-        <footer className="shc-bottom">
-          <button className="shc-ghost" onClick={onBack}>{tr({ uz: '← Darsga qaytish', ru: '← Вернуться к уроку' })}</button>
-          <button className="shc-ghost" onClick={() => setCode(kodStarter())}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button>
-          <div className="shc-status">
-            {passed
-              ? <span className="shc-ok-msg">{tr({ uz: '✓ Uchala shart bajarildi!', ru: '✓ Все три условия выполнены!' })}</span>
-              : <span className="shc-wait-msg">{tr({ uz: "Shartlarni bajaring — natija o'ngda jonli ko'rinadi", ru: 'Выполните условия — результат виден справа вживую' })}</span>}
-          </div>
-          <button className="shc-next" disabled={!passed} onClick={() => passed && onContinue({ code })}>{tr({ uz: 'Davom etish →', ru: 'Продолжить →' })}</button>
-        </footer>
-      </div>
-    </div>
-  );
-}
 
 const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const gate = useContext(LiveGateCtx) || {};
@@ -2027,7 +1889,15 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <MentorPracticeStats live={live} screen={screen} label={{ uz: '🛠 Kodni yozib bo\'lganlar', ru: '🛠 Кто уже написал код' }} />
         <MentorNote>{tr({ uz: "Kodni VS Code'da emas, shu oynada yozadi — 10 daqiqa yetadi. Ulgurmagan o'quvchi uyga vazifada tugatadi, unga qisqa variant beriladi.", ru: 'Код пишут не в VS Code, а в этом окне — 10 минут достаточно. Кто не успел, дописывает в домашнем задании по короткому варианту.' })}</MentorNote>
       </div>
-      {open && <ListCompiler initialCode={code} onContinue={finishPractice} onBack={() => { setOpen(false); writeKodingOpen(false); }} />}
+      {/* Kod-saqlov kompilyatorning O'ZIDA (`:code`) — dars kaliti `done`/`open` uchun qoladi */}
+      {/* To'liq-ekran qobiq (Htmllesson1 naqshi): kompilyator `.stage-content` ichida qisilib
+          qolsa, shart-chiplari (.hc-top) va «Davom etish» (.hc-bottom) ekrandan tashqarida qoladi. */}
+      {open && (
+        <div style={{ position: 'fixed', inset: 0, zIndex: 2000, background: T.bg }}>
+          <HtmlCompiler lang={__lang} task={KOD_TASK} starterCode={code || kodStarter()} storageKey={`${KODING_KEY}:code`}
+            onContinue={finishPractice} onBack={() => { setOpen(false); writeKodingOpen(false); }} />
+        </div>
+      )}
     </Stage>
   );
 };
@@ -3162,43 +3032,6 @@ export default function PmLesson4({ lang: langProp, onFinished }) {
         .kod-launch-btn { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: clamp(15px,1.9vw,17px); background: ${T.accent}; color: #fff; border: none; border-radius: 14px; padding: 15px 34px; cursor: pointer; box-shadow: 0 14px 30px -8px rgba(91,61,230,0.6); transition: transform 0.18s, box-shadow 0.18s; }
         .kod-launch-btn:hover { transform: translateY(-2px); box-shadow: 0 18px 36px -8px rgba(110,75,255,0.72); }
 
-        /* To'liq-ekran kompilyator (Htmllesson1 relslari, PM-STUDIA palitrasi) */
-        .shc-root { position: fixed; inset: 0; z-index: 2100; background: radial-gradient(120% 80% at 50% -10%, ${T.accentSoft} 0%, rgba(235,229,253,0) 46%), ${T.bg}; overflow: hidden; animation: fade-step 0.3s ease-out; }
-        .shc-wrap { width: 100%; max-width: 1160px; height: 100dvh; margin: 0 auto; display: flex; flex-direction: column; justify-content: center; gap: clamp(9px,1.4vw,14px); padding: clamp(12px,2vw,26px); }
-        .shc-top { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 6px; min-width: 0; }
-        .shc-eyebrow { font-family: 'Manrope', sans-serif; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 800; color: ${T.accent}; }
-        .shc-title { font-family: 'Source Serif 4', serif; font-weight: 600; font-size: clamp(19px,2.6vw,28px); margin: 0; color: ${T.ink}; line-height: 1.15; }
-        .shc-brief { margin: 0; color: ${T.ink2}; font-size: clamp(12.5px,1.4vw,14.5px); line-height: 1.55; max-width: 72ch; overflow-wrap: anywhere; }
-        .shc-brief b { color: ${T.ink}; }
-        .shc-chips { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 7px; margin-top: 3px; }
-        .shc-count { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 12px; color: #fff; background: ${T.accent}; padding: 6px 11px; border-radius: 99px; }
-        .shc-chip { display: inline-flex; align-items: center; gap: 7px; font-family: 'Manrope', sans-serif; font-size: 12.5px; font-weight: 600; color: ${T.ink2}; background: ${T.paper}; padding: 5px 13px 5px 6px; border-radius: 99px; border: 1px solid ${T.line}; transition: all 0.22s ease; }
-        .shc-chip.ok { color: ${T.ink}; border-color: ${T.success}44; background: ${T.successSoft}; }
-        .shc-dot { flex-shrink: 0; width: 20px; height: 20px; border-radius: 50%; background: ${T.bg}; color: ${T.ink3}; display: inline-flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; transition: all 0.25s; }
-        .shc-chip.ok .shc-dot { background: ${T.success}; color: #fff; }
-        .shc-hint.shc-hint { margin: 2px 0 0; font-family: 'Manrope', sans-serif; font-size: 13px; color: ${T.accent}; background: ${T.accentSoft}; padding: 8px 15px; border-radius: 11px; max-width: 72ch; line-height: 1.5; overflow-wrap: anywhere; }
-        .shc-err.shc-err { margin: 2px 0 0; font-family: 'JetBrains Mono', monospace; font-size: 12.5px; color: ${T.err}; background: ${T.errSoft}; padding: 7px 14px; border-radius: 10px; max-width: 72ch; line-height: 1.5; overflow-wrap: anywhere; }
-        .shc-split { flex: none; height: 56vh; min-height: 0; display: grid; grid-template-columns: 1fr 1fr; gap: clamp(10px,1.5vw,16px); }
-        .shc-pane { display: flex; flex-direction: column; min-height: 0; min-width: 0; border-radius: 16px; overflow: hidden; background: ${T.paper}; box-shadow: 0 1px 0 ${T.line}, 0 18px 40px -24px rgba(${T.shadowBase},0.35); }
-        .shc-bar { display: flex; align-items: center; gap: 10px; padding: 9px 14px; font-family: 'Manrope', sans-serif; font-size: 12px; font-weight: 600; color: ${T.ink2}; border-bottom: 1px solid ${T.line}; background: ${T.bg}; }
-        .shc-bar.dark { background: #141C2B; color: #A7B6D6; border-bottom: 1px solid rgba(255,255,255,0.06); }
-        .shc-tab { font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 600; color: #fff; background: rgba(255,255,255,0.14); padding: 4px 12px; border-radius: 8px; box-shadow: inset 0 -2px 0 ${T.accent}; }
-        .shc-url { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: ${T.ink2}; display: flex; align-items: center; gap: 6px; }
-        .shc-mini { margin-left: auto; background: ${T.accent}; color: #fff; border: none; border-radius: 9px; padding: 6px 13px; font-size: 11.5px; font-weight: 700; cursor: pointer; font-family: 'Manrope', sans-serif; flex-shrink: 0; }
-        .shc-live { margin-left: auto; font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: ${T.success}; background: ${T.successSoft}; padding: 4px 9px; border-radius: 99px; font-weight: 800; }
-        .shc-code { flex: 1; min-height: 0; resize: none; border: none; outline: none; background: #10141F; color: #E8E5DD; font-family: 'JetBrains Mono', monospace; font-size: 13.5px; line-height: 1.7; padding: 16px 18px; tab-size: 2; white-space: pre; overflow: auto; caret-color: ${T.accentVivid}; }
-        .shc-code::placeholder { color: #5B6B86; font-style: italic; }
-        .shc-frame { flex: 1; min-height: 0; width: 100%; border: none; background: #FBFAFE; }
-        .shc-bottom { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
-        .shc-ghost { background: transparent; border: 1px solid transparent; color: ${T.ink2}; font-family: 'Manrope', sans-serif; font-weight: 600; font-size: 14px; cursor: pointer; padding: 11px 16px; border-radius: 12px; transition: all 0.15s; }
-        .shc-ghost:hover { background: ${T.paper}; color: ${T.ink}; border-color: ${T.line}; }
-        .shc-status { margin-left: auto; min-width: 0; }
-        .shc-ok-msg { color: ${T.success}; font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 14px; }
-        .shc-wait-msg { color: ${T.ink3}; font-family: 'Manrope', sans-serif; font-size: 13px; }
-        .shc-next { background: ${T.accent}; color: #fff; border: none; border-radius: 13px; font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 15px; cursor: pointer; padding: 13px 28px; box-shadow: 0 10px 24px -8px rgba(91,61,230,0.55); transition: all 0.2s; }
-        .shc-next:hover:not(:disabled) { transform: translateY(-2px); }
-        .shc-next:disabled { background: #D7D8DE; color: #fff; cursor: not-allowed; box-shadow: none; }
-        @media (max-width: 820px) { .shc-split { grid-template-columns: 1fr; grid-template-rows: 1fr 1fr; height: 62vh; } }
         /* Verdikt + recap tugmalari */
         .mstats-verdict { border-radius: 12px; padding: 12px 15px; display: flex; flex-direction: column; gap: 10px; align-items: flex-start; animation: fade-step 0.3s ease-out; }
         .mstats-verdict.need { background: ${T.accentSoft}; border-left: 4px solid ${T.accent}; }

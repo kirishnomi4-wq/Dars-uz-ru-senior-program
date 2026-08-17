@@ -842,6 +842,116 @@ paydo bo'ladi va aynan o'shalar pastga tushib ketadi.
 - Joy yetmasa tartib shu: (1) takroriy matnni kesing (109-qonun) → (2) ustma-ust turgan ikki
   blokni yonma-yon qo'ying → (3) ro'yxatni 2 ustunga bo'ling → (4) faqat oxirida shrift/padding.
 
+**113-qonun — TAKLIF NIMA KO'RSATSA, AYNAN O'SHANI QO'YADI (2026-08-09, F-0809-01).**
+Har qanday taklif/tanlov ro'yxati (kompilyator teg-ro'yxati, atribut taklifi, qisqartma) —
+qatorda ko'rsatilgan narsani **to'liq holda** qo'yishi shart. Yarim qo'yish taqiqlanadi.
+- Dalil: ro'yxat `<h1>` deb ko'rsatib, bosilganda faqat `h1` qo'yardi — bola `>` ni baribir
+  o'zi bosardi, ya'ni **tanlash qo'lda yozishdan foydasizroq** edi. O'sha ro'yxatning
+  atribut tarmog'i esa `href=""` ni to'liq qo'yardi — bitta menyu ichida ikki xil xulq.
+- **Nega bu jim-buzilish sinfi:** hech narsa sinmaydi, esbuild/lint/`vite build` jim —
+  faqat foydalanuvchi bosib ko'rganda bilinadi. Shuning uchun har taklif-ro'yxati
+  **bosib** sinaladi: ko'rsatilgan matn ↔ tushgan matn ↔ kursor o'rni.
+- **Ikkinchi tomoni:** taklif faqat «to'g'ri sintaksis»dan boshlanmasin. Bola `<` ni
+  bilmasligi mumkin — qatorda yolg'iz turgan `h1` ham ro'yxatni ochsin. Lekin MATN
+  yozilayotgan joyda ochilmasin (shovqin): shart qat'iy — so'z qatorda yolg'iz tursin
+  VA kursor matn tegi (`p·h1·li·a·span…`) ichida bo'lmasin.
+- **Uchinchi tomoni — SICHQONCHA BILAN KLAVIATURA BIR XIL ISHLASIN (F-0809-02).**
+  Ro'yxat sichqoncha bilan bosilganda tanlanib, Enter bosilganda tanlanmasa —
+  bu nuqson. Bola VS Code'dagidek Enter bosadi. Har tanlov-ro'yxati uchun majburiy
+  juftlik: **bosish = Enter**; Tab qo'shimcha yo'l, Esc — yopish, Shift+Enter — chiqish.
+- **To'rtinchi tomoni — «JIM QOL» HOLATI HAR DOIM BO'SHASHI KERAK.** Esc bilan yopilgan
+  ro'yxat qaysi shart bilan qayta ochilishi ANIQ yozilsin. Dalil: Esc faqat kursor
+  o'rnini eslardi va hech qachon tozalanmasdi — bola o'sha joyga qaytsa ro'yxat
+  boshqa chiqmasdi. Matnni eslash ham yetmaydi (harf o'chirilib qayta yozilsa matn
+  aynan o'sha bo'ladi) — o'lchov **tahrir raqami** bo'lishi kerak.
+- **Beshinchi tomoni — RO'YXAT KESILMASIN, SURILSIN.** Ko'rinadigan bandlar soni
+  cheklansa (`slice(0,8)`), strelka esa HAMMA band bo'ylab yursa — tanlangan qator
+  ekrandan chiqib ketadi va bola nima tanlaganini ko'rmay Enter bosadi. Bandlar
+  to'liq chiqarilsin, quti ichida surilsin, tanlangan qator o'zi ko'rinishga kelsin.
+  (`scrollIntoView` ATAYLAB emas — u ota-elementlarni surib butun sahifani sakratadi;
+  qo'lda `scrollTop` hisoblanadi.)
+
+**114-qonun — O'CHIRUVCHI TUGMA QAYTARIB BO'LADIGAN BO'LSIN (2026-08-09, F-0809-03).**
+O'quvchining ishini yo'q qiladigan har qanday tugma (kompilyatordagi «Qaytadan»,
+progress-tozalash, javob-qaytarish) **ikki qadamli** bo'ladi VA qaytarish yo'li
+qoldiradi. Dalil: bitta bosish 30 daqiqalik ishni o'chirardi — tasdiq yo'q,
+`Ctrl+Z` qaytarmasdi (`setState` brauzer tarixiga tushmaydi) va 400 ms dan keyin
+**localStorage'dagi nusxa ham ustidan yozilardi**; qayta yuklansa ish butunlay yo'q.
+- Naqsh: 1-bosish → tugma qizarib «⚠ Rostdanmi?» bo'ladi (4 s, keyin o'zi so'nadi) ·
+  2-bosish → eski holat `ref` ga nusxalanadi, keyin tozalanadi · 8 soniya davomida
+  «↶ Qaytarish» taklifi turadi.
+- `Ctrl+Z` ga TAYANMANG: dars ko'p faylli bo'lsa brauzer faqat ochiq faylni biladi.
+- Yorliq qisqa qolsin («Rostdanmi?»), tushuntirish yonidagi holat-matnida —
+  aks holda pastki panel kengligi sakraydi.
+
+**115-qonun — BLOKLANGAN TUGMANING SABABI DOIM KO'RINSIN (2026-08-09, F-0809-03).**
+«Davom etish» yopiq bo'lsa, NEGA yopiqligi ekranda bo'lishi shart. Xatoni «bola hali
+yozyapti» deb yashiruvchi har qanday qoida, o'sha xato tugmani bloklayotgan bo'lsa,
+**bekor bo'ladi**. Dalil: barcha shart yashil (3/3), «Davom etish» o'lik, yuqorida
+xabar bo'sh, pastda esa «Shartlarni bajaring» degan YOLG'ON matn — 4 soniya kutildi,
+o'zgarmadi; bola uchun boshi berk ko'cha.
+- Uch joy birga to'g'rilanadi: (1) xato yozuvi ko'rsatiladi · (2) holat-matni haqiqatni
+  aytadi («Shartlar bajarildi — sintaksis xatosi qoldi») · (3) o'chiq tugmaning
+  `title` ida sabab yoziladi.
+
+**116-qonun — NATIJA OYNASI O'QUVCHI QO'LIDAGI ISHNI YO'Q QILMASIN (2026-08-09, F-0809-03).**
+Jonli preview har bosishda iframe'ni qayta yuklaydi — HTML/CSS darsida bu zavq,
+JS darsida esa zarar: bola o'z tugmasini bosib natijani ko'radi, bitta harf yozadi —
+hammasi nolga qaytadi (o'lchandi: preview'ga yozilgan matn 1 belgidan keyin bo'shadi).
+- Qoida: **JS fayli bor darsda preview QO'LDA** yangilanadi (`▶ Ishga tushirish`);
+  kod o'zgargan bo'lsa nishon «jonli» dan «eskirdi · ▶ bosing» ga o'tadi.
+  Birinchi ochilishda bir marta o'zi yuriladi — bola bo'sh ekran ko'rmasin.
+- Shart-belgilari (✓) BARIBIR jonli qoladi: ular alohida YASHIRIN iframe'da
+  tekshiriladi, ko'rinadigan preview bilan bog'liq emas.
+
+**117-qonun — «TO'G'RI QILDIM, NEGA BUZUQ?» HOLATI TUG'ILMASIN (2026-08-09, F-0809-03).**
+Shart yashil yonib, ekranda esa buzuq narsa ko'rinsa — bola o'zini aybdor his qiladi.
+Dalil: `<img src="rasm.png" alt="…">` — `src`+`alt` bor, ✓ yonadi, lekin fayl mavjud
+emas va brauzer siniq belgi chizadi.
+- Yechim yo'nalishi: buzuq holatni **darsga aylantiring**. Rasm yuklanmasa punktir
+  quti chiqadi: 🖼 + o'quvchining `alt` matni + «rasm topilmadi — `src` ni tekshiring».
+  Bu `alt` nima uchun borligini aynan ko'rsatadi.
+- Ehtiyot: bunday o'rin-egallovchi element asl tegni DOM'dan O'CHIRMASIN (yashirsin) —
+  aks holda `querySelector('img')` ga tayangan shartlar sinadi. Va u faqat KO'RINADIGAN
+  preview'ga qo'yilsin, tekshiruv-hujjatiga emas.
+
+**118-qonun — UMUMIY MODULGA KO'CHIRISHDAN OLDIN U SUPERSET BO'LSIN (2026-08-09, F-0809-04).**
+Takrorlangan nusxalarni bitta umumiy modulga yig'ishda nusxalar «eski» deb faraz
+qilinmaydi: ba'zisida umumiy modulda **yo'q** yaxshilanish bo'ladi. Ko'chirishdan oldin
+har nusxaning umumiy moduldan FARQI o'qib chiqiladi va yetishmagani modulga kiritiladi.
+- Dalil: `CssLesson1/2` nusxasida CSS qisqa xossalarini longhanddan tiklash bor edi
+  (CSSOM `padding` ni 4 tomonga yoyadi, `cssProp('.box','padding')` topa olmaydi).
+  Busiz ko'chirsak — 3 ta CSS darsining shartlari kulrang qolib, o'quvchi qamalardi.
+  Yana ikkitasi: `tr(starter)` va `tr(hint)` — busiz RU rejimda `[object Object]`.
+- **Superset darvozasi:** ko'chirishdan oldin VA keyin skan — nusxalarda bor, modulda
+  yo'q qatorlar ro'yxati. Qolganlarining hammasi eski avlod kodi ekani ISBOTLANSIN.
+- 🔴 **SKAN HAR FAYL UCHUN QAYTA YURITILADI, PILOT VIZUAL XOSSANI HAM O'LCHASIN
+  (2026-08-10, F-0809-05).** Bir marta skan qilib «boshqalari ham shunday» deb
+  o'ylash yetarli emas. Dalil: PM kompilyatorlarini ko'chirishda `previewCss`
+  (natija oynasining dars-uslubi) sezilmay QOLDI va PmLesson2 da o'chirib
+  yuborildi — pilot sinovi buni tutmadi, chunki u faqat «elementlar soni to'g'rimi»
+  deb qarardi. Vizual xossa ko'chirilayotganda sinov **hisoblangan uslubni**
+  (`getComputedStyle` — fon rangi, matn rangi) o'lchasin, element sonini emas.
+
+**119-qonun — MODUL-DARAJALI YASHIRIN BOG'LIQLIK KO'CHIRISHDA UZILADI (2026-08-09, F-0809-04).**
+Kod dars fayli ichida turganda dars bilan **modul-o'zgaruvchi** ulashadi (bizda `__lang`).
+Alohida faylga chiqarilgach u bog'liqlik uziladi — va hech narsa sinmaydi, lint jim
+qoladi: shunchaki RU rejimda kompilyator o'zbekcha qolib ketadi. Ko'chirishdan oldin
+«bu blok dars-faylining qaysi global holatini o'qiydi?» degan savol beriladi.
+- Yechim naqshi: holatni PROP qilib uzatish, va **bitta qoida bilan hamma joyda** —
+  `lang={__lang}`. Mahalliy `lang` o'zgaruvchisiga tayanmang: chaqiruv joylarining
+  ba'zisi uni olmaydigan komponent ichida bo'ladi (bizda `MentorPracticeOverlay`).
+- Yakunda grep-darvoza: chaqiruv bor har joyda prop borligi sanab tekshiriladi.
+
+**120-qonun — KO'CHIRISH VOSITASI SHUBHADA TO'XTASIN, TAXMIN QILMASIN (2026-08-09, F-0809-04).**
+Ko'p faylli mexanik ko'chirish skript bilan qilinadi, lekin skript chegarani o'zi
+topib, **shubha bo'lsa faylga tegmasdan to'xtaydi**. Avval hamma faylda QURUQ
+YUGURISH, keyin bitta PILOT fayl, u tasdiqlangandan keyingina qolganlari.
+- Dalil: darvoza 2 marta ishladi va ikkalasi ham foydali bo'ldi — biri soxta signal
+  (nom faqat izohda), ikkinchisi haqiqiy nom to'qnashuvi (`const checks` — komponent
+  ichidagi butunlay boshqa o'zgaruvchi). Ikkovi ham skriptni aniqroq qildi.
+- CRLF: `line === '}'` bilan chegara topish Windows faylida ISHLAMAYDI (`'}\r'`).
+
 ## 11-E. 🎯 112-QONUN: `<p>` GA QO'YILGAN KLASS-QOIDA RESETDAN KUCHSIZ (2026-08-03, F-0803-27)
 
 > Foydalanuvchi rasmi bilan keldi: PmLesson4 2-ekranidagi kartalar «buzulib yotibti».

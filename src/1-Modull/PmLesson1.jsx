@@ -1,4 +1,8 @@
 import React, { useState, useEffect, useRef, useCallback, createContext, useContext } from 'react';
+// Kod kompilyatori — UMUMIY modul (F-0809-05). PM darsida ham AYNAN shu asbob ishlaydi;
+// u tugma bilan ochiladigan to'liq-ekran asbob, shuning uchun CodeStrike brendida qoladi
+// (PM_DARS_ETALON 1-bo'lim, palitra-istisnosi).
+import HtmlCompiler, { checks as C } from '../compilator/HtmlCompiler.jsx';
 
 // ============================================================
 // PM 1-DARS — KIM MENING FOYDALANUVCHIM? — PLATFORM STANDARD v16
@@ -1955,86 +1959,36 @@ const checkKarta = (src) => {
   });
   return res;
 };
-const kodWrapDoc = (src) => '<!doctype html><html lang="' + (__lang === 'ru' ? 'ru' : 'uz') + '"><head><meta charset="utf-8"><style>'
-  + 'body{font-family:Manrope,system-ui,sans-serif;margin:0;padding:22px;color:#1B1630;background:#FBFAFE;line-height:1.5}'
-  + 'h1{font-family:Georgia,serif;font-size:26px;margin:0 0 14px;color:#5B3DE6}'
-  + 'p{margin:0 0 10px;font-size:15px;background:#fff;border-left:4px solid #D8CEFA;border-radius:10px;padding:10px 13px;overflow-wrap:anywhere}'
-  + '</style></head><body>' + src + '</body></html>';
 
-function KartaCompiler({ initialCode, onContinue, onBack }) {
-  const [code, setCode] = useState(initialCode || kodStart());
-  const [src, setSrc] = useState(initialCode || kodStart());
-  // Yozgan sari O'ZI tekshiriladi (400ms) + kod jonli saqlanadi (F5 da yo'qolmasin)
-  useEffect(() => {
-    const t = setTimeout(() => {
-      setSrc(code);
-      try { const prev = readKoding(); localStorage.setItem(KODING_KEY, JSON.stringify({ code, done: !!(prev && prev.done), open: true })); } catch {}
-    }, 400);
-    return () => clearTimeout(t);
-  }, [code]);
-  const res = checkKarta(src);
-  const okN = KOD_CONDS.filter(c => res[c.id]).length;
-  const passed = okN === KOD_CONDS.length;
-  const firstHint = KOD_CONDS.map(c => (res[c.id] ? null : res.hints[c.id])).find(Boolean);
-  const doc = kodWrapDoc(src);
-  const runNow = () => setSrc(code);
-  const onKeyDown = (e) => {
-    if (e.key === 'Tab') {
-      e.preventDefault();
-      const el = e.target, st = el.selectionStart, en = el.selectionEnd;
-      setCode(code.slice(0, st) + '  ' + code.slice(en));
-      requestAnimationFrame(() => { el.selectionStart = el.selectionEnd = st + 2; });
-    }
-  };
-  return (
-    <div className="shc-root">
-      <div className="shc-wrap">
-        <header className="shc-top">
-          <span className="shc-eyebrow">{tr({ uz: 'Koding · auditoriya-karta', ru: 'Кодинг · карточка аудитории' })}</span>
-          <h1 className="shc-title">{tr({ uz: "Kartangizni sahifada ko'rsatadigan kod", ru: 'Код, который показывает вашу карточку на странице' })}</h1>
-          <p className="shc-brief">{tr({ uz: <>Sahifa tayyor turibdi. Kvadrat qavs [ ] ichidagi uchta vaqtincha yozuvni — <b>[KIM]</b>, <b>[MUAMMO]</b>, <b>[YECHIM]</b> — kartangizdagi javoblaringizga almashtiring. Qolgan belgilarga tegmang: o'ngdagi sahifa darhol o'zgarib boradi.</>, ru: <>Страница уже готова. Замените три временные надписи в квадратных скобках [ ] — <b>[КТО]</b>, <b>[ПРОБЛЕМА]</b>, <b>[РЕШЕНИЕ]</b> — на ответы из своей карточки. Остальные знаки не трогайте: страница справа меняется сразу.</> })}</p>
-          <div className="shc-chips">
-            <span className="shc-count">{okN}/{KOD_CONDS.length}</span>
-            {KOD_CONDS.map((c, i) => (
-              <span key={c.id} className={'shc-chip ' + (res[c.id] ? 'ok' : '')}>
-                <span className="shc-dot">{res[c.id] ? '✓' : i + 1}</span>{tr(c.label)}
-              </span>
-            ))}
-          </div>
-          {!passed && firstHint && <p className="shc-hint">💡 {firstHint}</p>}
-        </header>
-        <main className="shc-split">
-          <section className="shc-pane">
-            <div className="shc-bar dark">
-              <span className="bb-dots"><i /><i /><i /></span>
-              <span className="shc-tab">index.html</span>
-              <button className="shc-mini" onClick={runNow}>{tr({ uz: '▶ Ishga tushirish', ru: '▶ Запустить' })}</button>
-            </div>
-            <textarea className="shc-code" value={code} spellCheck={false} autoCapitalize="off" autoCorrect="off" onChange={e => setCode(e.target.value)} onKeyDown={onKeyDown} />
-          </section>
-          <section className="shc-pane">
-            <div className="shc-bar">
-              <span className="bb-dots"><i /><i /><i /></span>
-              <span className="shc-url"><span className="lock">●</span>mening-saytim.uz</span>
-              <span className="shc-live">jonli</span>
-            </div>
-            <iframe className="shc-frame" title={tr({ uz: 'Jonli natija', ru: 'Живой результат' })} sandbox="" srcDoc={doc} />
-          </section>
-        </main>
-        <footer className="shc-bottom">
-          <button className="shc-ghost" onClick={onBack}>{tr({ uz: '← Darsga qaytish', ru: '← Вернуться к уроку' })}</button>
-          <button className="shc-ghost" onClick={() => setCode(kodStart())}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button>
-          <div className="shc-status">
-            {passed
-              ? <span className="shc-ok-msg">{tr({ uz: '✓ Sahifada endi sizning kartangiz turibdi!', ru: '✓ Теперь на странице стоит ваша карточка!' })}</span>
-              : <span className="shc-wait-msg">{tr({ uz: "Uchala yozuvni almashtiring — natija o'ngda jonli ko'rinadi", ru: 'Замените все три надписи — результат виден справа вживую' })}</span>}
-          </div>
-          <button className="shc-next" disabled={!passed} onClick={() => passed && onContinue({ code })}>{tr({ uz: 'Davom etish →', ru: 'Продолжить →' })}</button>
-        </footer>
-      </div>
-    </div>
-  );
-}
+// ===== TOPSHIRIQ — umumiy kompilyator formatida (F-0809-05) ==================
+// Tekshiruv mantig'i (`checkKarta`) AYNAN o'zgarmadi — u 3 shartni bitta o'tishda
+// hisoblaydi, shuning uchun natija oxirgi matn bo'yicha eslab qolinadi.
+let _kartaSrc = null, _kartaRes = null;
+const kartaOf = (src) => {
+  if (src !== _kartaSrc) { _kartaSrc = src; _kartaRes = checkKarta(src || ''); }
+  return _kartaRes;
+};
+const KOD_PREVIEW_CSS = `
+  body{font-family:Manrope,system-ui,sans-serif;margin:0;padding:22px;color:#1B1630;background:#FBFAFE;line-height:1.5}
+  h1{font-family:Georgia,serif;font-size:26px;margin:0 0 14px;color:#5B3DE6}
+  p{margin:0 0 10px;font-size:15px;background:#fff;border-left:4px solid #D8CEFA;border-radius:10px;padding:10px 13px;overflow-wrap:anywhere}
+`;
+const KOD_TASK = {
+  eyebrow: { uz: 'Koding · auditoriya-karta', ru: 'Кодинг · карточка аудитории' },
+  title: { uz: "Kartangizni sahifada ko'rsatadigan kod", ru: 'Код, который показывает вашу карточку на странице' },
+  brief: { uz: <>Sahifa tayyor turibdi. Kvadrat qavs [ ] ichidagi uchta vaqtincha yozuvni — <b>[KIM]</b>, <b>[MUAMMO]</b>, <b>[YECHIM]</b> — kartangizdagi javoblaringizga almashtiring. Qolgan belgilarga tegmang: o'ngdagi sahifa darhol o'zgarib boradi.</>, ru: <>Страница уже готова. Замените три временные надписи в квадратных скобках [ ] — <b>[КТО]</b>, <b>[ПРОБЛЕМА]</b>, <b>[РЕШЕНИЕ]</b> — на ответы из своей карточки. Остальные знаки не трогайте: страница справа меняется сразу.</> },
+  previewUrl: 'mening-saytim.uz',
+  previewCss: KOD_PREVIEW_CSS,
+  requirements: KOD_CONDS.map((c) => ({
+    id: c.id,
+    label: c.label,
+    check: C.custom((x) => {
+      const r = kartaOf(x.html);
+      return r[c.id] ? true : (r.hints[c.id] || false);
+    }),
+  })),
+};
+
 
 const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const gate = useContext(LiveGateCtx) || {};
@@ -2108,7 +2062,15 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <MentorPracticeStats live={live} screen={screen} label={{ uz: "🛠 Almashtirib bo'lganlar", ru: '🛠 Кто заменил' }} />
         <MentorNote>{{ uz: "Teglarni tushuntirib o'tirmang — bu keyingi darsning ishi. 10 daqiqada ulgurmaganlar uyda tugatadi. «Davom etish» siz uchun ochiq.", ru: 'Теги не объясняйте — это дело следующего урока. Кто не успел за 10 минут, доделает дома. «Продолжить» для вас открыто.' }}</MentorNote>
       </div>
-      {open && <KartaCompiler initialCode={code} onContinue={finishPractice} onBack={() => { setOpen(false); writeKodingOpen(false); }} />}
+      {/* Kod-saqlov kompilyatorning O'ZIDA (`:code`) — dars kaliti `done`/`open` uchun qoladi */}
+      {/* To'liq-ekran qobiq (Htmllesson1 naqshi): kompilyator `.stage-content` ichida qisilib
+          qolsa, shart-chiplari (.hc-top) va «Davom etish» (.hc-bottom) ekrandan tashqarida qoladi. */}
+      {open && (
+        <div style={{ position: 'fixed', inset: 0, zIndex: 2000, background: T.bg }}>
+          <HtmlCompiler lang={__lang} task={KOD_TASK} starterCode={code || kodStart()} storageKey={`${KODING_KEY}:code`}
+            onContinue={finishPractice} onBack={() => { setOpen(false); writeKodingOpen(false); }} />
+        </div>
+      )}
     </Stage>
   );
 };
@@ -3974,44 +3936,6 @@ export default function PmLesson1({ lang: langProp, onFinished }) {
         .stq-cta-sub { font-family: 'Manrope', sans-serif; font-weight: 600; font-size: 12.5px; color: ${T.ink3}; text-align: center; }
         .kod-launch-btn { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: clamp(15px,1.9vw,17px); background: ${T.accent}; color: #fff; border: none; border-radius: 14px; padding: 15px 34px; cursor: pointer; box-shadow: 0 14px 30px -8px rgba(91,61,230,0.6); transition: transform 0.18s, box-shadow 0.18s; }
         .kod-launch-btn:hover { transform: translateY(-2px); box-shadow: 0 18px 36px -8px rgba(110,75,255,0.72); }
-
-        .shc-root { position: fixed; inset: 0; z-index: 2100; background: radial-gradient(120% 80% at 50% -10%, ${T.accentSoft} 0%, rgba(235,229,253,0) 46%), ${T.bg}; overflow: hidden; animation: fade-step 0.3s ease-out; }
-        .shc-wrap { width: 100%; max-width: 1160px; height: 100dvh; margin: 0 auto; display: flex; flex-direction: column; justify-content: center; gap: clamp(9px,1.4vw,14px); padding: clamp(12px,2vw,26px); }
-        .shc-top { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 6px; min-width: 0; }
-        .shc-eyebrow { font-family: 'Manrope', sans-serif; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 800; color: ${T.accent}; }
-        .shc-title { font-family: 'Source Serif 4', serif; font-weight: 600; font-size: clamp(19px,2.6vw,28px); margin: 0; color: ${T.ink}; line-height: 1.15; }
-        .shc-brief { margin: 0; color: ${T.ink2}; font-size: clamp(12.5px,1.4vw,14.5px); line-height: 1.55; max-width: 72ch; overflow-wrap: anywhere; }
-        .shc-brief b { color: ${T.ink}; }
-        .shc-chips { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 7px; margin-top: 3px; }
-        .shc-count { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 12px; color: #fff; background: ${T.accent}; padding: 6px 11px; border-radius: 99px; }
-        .shc-chip { display: inline-flex; align-items: center; gap: 7px; font-family: 'Manrope', sans-serif; font-size: 12.5px; font-weight: 600; color: ${T.ink2}; background: ${T.paper}; padding: 5px 13px 5px 6px; border-radius: 99px; border: 1px solid ${T.line}; transition: all 0.22s ease; }
-        .shc-chip.ok { color: ${T.ink}; border-color: ${T.success}44; background: ${T.successSoft}; }
-        .shc-dot { flex-shrink: 0; width: 20px; height: 20px; border-radius: 50%; background: ${T.bg}; color: ${T.ink3}; display: inline-flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; transition: all 0.25s; }
-        .shc-chip.ok .shc-dot { background: ${T.success}; color: #fff; animation: shc-tick 0.36s cubic-bezier(.34,1.6,.4,1); }
-        @keyframes shc-tick { 0% { transform: scale(0.6); } 55% { transform: scale(1.22); } 100% { transform: scale(1); } }
-        @media (prefers-reduced-motion: reduce) { .shc-chip.ok .shc-dot { animation: none; } }
-        .shc-hint.shc-hint { margin: 2px 0 0; font-family: 'Manrope', sans-serif; font-size: 13px; color: ${T.accent}; background: ${T.accentSoft}; padding: 8px 15px; border-radius: 11px; max-width: 72ch; line-height: 1.5; overflow-wrap: anywhere; }
-        .shc-split { flex: none; height: 56vh; min-height: 0; display: grid; grid-template-columns: 1fr 1fr; gap: clamp(10px,1.5vw,16px); }
-        .shc-pane { display: flex; flex-direction: column; min-height: 0; min-width: 0; border-radius: 16px; overflow: hidden; background: ${T.paper}; box-shadow: 0 1px 0 ${T.line}, 0 18px 40px -24px rgba(${T.shadowBase},0.35); }
-        .shc-bar { display: flex; align-items: center; gap: 10px; padding: 9px 14px; font-family: 'Manrope', sans-serif; font-size: 12px; font-weight: 600; color: ${T.ink2}; border-bottom: 1px solid ${T.line}; background: ${T.bg}; }
-        .shc-bar.dark { background: #141C2B; color: #A7B6D6; border-bottom: 1px solid rgba(255,255,255,0.06); }
-        .shc-tab { font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 600; color: #fff; background: rgba(255,255,255,0.14); padding: 4px 12px; border-radius: 8px; box-shadow: inset 0 -2px 0 ${T.accent}; }
-        .shc-url { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: ${T.ink2}; display: flex; align-items: center; gap: 6px; }
-        .shc-mini { margin-left: auto; background: ${T.accent}; color: #fff; border: none; border-radius: 9px; padding: 6px 13px; font-size: 11.5px; font-weight: 700; cursor: pointer; font-family: 'Manrope', sans-serif; flex-shrink: 0; }
-        .shc-live { margin-left: auto; font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: ${T.success}; background: ${T.successSoft}; padding: 4px 9px; border-radius: 99px; font-weight: 800; }
-        .shc-code { flex: 1; min-height: 0; resize: none; border: none; outline: none; background: #10141F; color: #E8E5DD; font-family: 'JetBrains Mono', monospace; font-size: 13.5px; line-height: 1.7; padding: 16px 18px; tab-size: 2; white-space: pre; overflow: auto; caret-color: ${T.accentVivid}; }
-        .shc-code::placeholder { color: #5B6B86; font-style: italic; }
-        .shc-frame { flex: 1; min-height: 0; width: 100%; border: none; background: #FBFAFE; }
-        .shc-bottom { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
-        .shc-ghost { background: transparent; border: 1px solid transparent; color: ${T.ink2}; font-family: 'Manrope', sans-serif; font-weight: 600; font-size: 14px; cursor: pointer; padding: 11px 16px; border-radius: 12px; transition: all 0.15s; }
-        .shc-ghost:hover { background: ${T.paper}; color: ${T.ink}; border-color: ${T.line}; }
-        .shc-status { margin-left: auto; min-width: 0; }
-        .shc-ok-msg { color: ${T.success}; font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 14px; }
-        .shc-wait-msg { color: ${T.ink3}; font-family: 'Manrope', sans-serif; font-size: 13px; }
-        .shc-next { background: ${T.accent}; color: #fff; border: none; border-radius: 13px; font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 15px; cursor: pointer; padding: 13px 28px; box-shadow: 0 10px 24px -8px rgba(91,61,230,0.55); transition: all 0.2s; }
-        .shc-next:hover:not(:disabled) { transform: translateY(-2px); }
-        .shc-next:disabled { background: #D7D8DE; color: #fff; cursor: not-allowed; box-shadow: none; }
-        @media (max-width: 820px) { .shc-split { grid-template-columns: 1fr; grid-template-rows: 1fr 1fr; height: 62vh; } }
         .kdx-line.kdx-line { margin: 0 0 7px; font-family: 'Manrope', sans-serif; font-size: 13px; color: ${T.ink}; background: #fff; border-radius: 9px; padding: 8px 11px; min-width: 0; overflow-wrap: anywhere; }
         /* ============ 💻 UYGA VAZIFA — neon-kapsula (PmLesson2) ============ */
         .hw-big-wrap { position: relative; align-self: center; width: min(560px, 100%); }

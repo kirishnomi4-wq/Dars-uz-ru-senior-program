@@ -1255,3 +1255,566 @@ raqam-keyingina`. Ta'siri: butun repoda +2 error, +61 warn (jami 59/475). Bu ESK
 **Darvozalar:** esbuild toza ✅ · `lint:jsx` 127 fayl 0 topilma ✅ · `lint:til` PmLesson5 0 ✅ ·
 `lint:prompt` 0 ✅ · `vite build` toza ✅ · 18/18 ekran 1280×720 va 1280×648 da renderlanadi,
 ko'rinmas gate-vidjet 0, konsol xatosi 0 ✅. UNCOMMITTED.
+
+## 2026-08-10 — F-0809-05: 4 TA PM DARS UMUMIY KOMPILYATORGA KO'CHIRILDI — ✅
+**Buyruq:** foydalanuvchi — «PM darsining ham kompilyatorini kuchaytirishimiz kerak… kompilyatorga kirganda mayli shu umumiy kompilyatorimizday bo'lsin, rangigacha sariq bo'lsa bo'ladi». Tekshirib, dalili tasdiqlandi.
+**TEKSHIRUV (kodga tegilmasdan):** PM kompilyatori sahifaning bo'lagi EMAS — «🛠 Kompilyatorni ochish» tugmasi bilan ochiladigan **to'liq-ekran overlay** (`position: fixed; inset: 0; z-index: 2100`); texnik darslarda ham xuddi shu naqsh (z-index 2000). Demak ochilganda PM sahifasi ko'rinmaydi va ranglar yonma-yon tushmaydi — foydalanuvchi dalili to'g'ri.
+**QONUN:** `PM_DARS_ETALON` 1-bo'limga **kompilyator palitra-istisnosi** yozildi (kompilyator PM darsda ham CodeStrike to'q sariq brendida qoladi; auditorlarga «bu topilma emas, indigoga qaytarish taqiqlanadi»).
+
+**0-BOSQICH — SUPERSET (118-qonun bo'yicha, ko'chirishdan OLDIN).** PM nusxalarida umumiy modulda YO'Q uchta narsa topildi:
+1. **`task.previewUrl`** — natija paneli soxta brauzer oynasiga aylanadi (`● olx.uz`). PM darsining o'zagi: bola o'z sahifasini «haqiqiy sayt» sifatida ko'radi. Har darsda o'z manzili: `mening-saytim.uz` · `olx.uz` · `olx.uz` · `kino.uz`.
+2. **`task.placeholder`** (fayl-darajasi ham) — «xira NAMUNA»: bola tuzilma shaklini ko'radi, yozishni boshlasa o'chadi. Umumiy modulda matn QOTIB yozilgan edi.
+3. **`task.previewCss`** — 🔴 buni PILOTDAN KEYIN topdim: PmLesson2 ning natija-uslubini (qora header, binafsha `h2`, lavanda footer) e'tibordan chetda qoldirib O'CHIRIB YUBORGAN edim. Sinovim buni tutmadi (u faqat «h2 soni 4 mi» deb qarardi). Umumiy modulga `previewCss` qo'shildi (`baseStyle` dan keyin, o'quvchi CSS'idan oldin) va PmLesson2'niki tiklandi; endi sinov rangni ham o'lchaydi. **Sabog'i:** superset-skan har fayl uchun QAYTA yuritilishi kerak, pilot esa vizual xossani ham o'lchashi kerak.
+
+**KO'CHIRILDI (4 dars, har biri QO'LDA — 13 texnik darsdek skript ishi emas):**
+| Dars | Vidjet | Tekshiruv | Manzil |
+|---|---|---|---|
+| PmLesson1 (m1-02) | `KartaCompiler` | `checkKarta` (3 shart) | mening-saytim.uz |
+| PmLesson2 (m1-05) | `StrukturaCompiler` | `checkStructure` (4, tartib bilan) | olx.uz |
+| PmLesson3 (m1-12) | `StrukturaCompiler` | `checkStructure` (4) | olx.uz |
+| PmLesson4 (m2-02) | `ListCompiler` | `checkList` (3) | kino.uz |
+Tekshiruv funksiyalari AYNAN o'zgarmadi — faqat `KOD_CONDS` → `requirements` qobig'iga o'raldi (`C.custom`), natija oxirgi matn bo'yicha eslab qolinadi (4 shart uchun 4 marta qayta hisoblamasin). Kod-saqlov kompilyatorning O'ZIDA (`<KODING_KEY>:code`), dars kaliti esa `done`/`open` uchun qoldi — bitta kalitni bo'lishsa, biri ikkinchisini o'chirardi.
+**O'CHDI:** 4 ta `lintHtml` nusxasi · 4 ta `kodWrapDoc` · 4 ta kompilyator komponenti · 4 ta `.shc-*` CSS bloki — **~760 satr**.
+**YUTUQ:** bu 4 darsda ilgari YO'Q edi — sintaksis-rangi, teg-taklif ro'yxati, Enter bilan tanlash, avto-yopish, «Chiroyli», qator raqamlari, undo/redo, planshet-rejimi, belgi qatori va bugungi 5 tuzatish.
+
+**SINOV:** pilot `PmLesson2` — **12/12** (kompilyator ochildi · manzil saqlandi · xira namuna · brief JSX bezaklari · taklif-ro'yxati · `checkStructure` 4/4 · natija render · xato holatida maslahat · «Davom etish» darsga qaytardi va saqladi · RU · natija-uslubi ranglari · konsol 0). Keyin 4 dars birga — **4/4** (UZ va RU da, `shc-` qoldig'i 0).
+**Darvozalar:** har faylga esbuild ✅ · `vite build` (pm + m1) ✅ · `lint:jsx` jonli darslarda 0 ✅ · `lint:til` **0 error** ✅ · `lint:prompt` ✅ · `smoke` **109 dars, 0 nuqson** ✅
+**Yo'lda tutilgan xato:** CSS shablon-satri ichidagi izohga backtik yozdim (to'rtinchi marta) — `lint:jsx` tutdi, `esbuild` o'tkazib yuborgan bo'lardi.
+
+**🔴 QOLDI — `hcp-*` OILASI (3 dars, ATAYLAB tegilmadi):** `PmLesson5` · `PmLesson6` · `PmUserStoryLesson`. Bular boshqa turdagi nusxa: `PmLesson5` va `PmUserStory` da natija oynasi SAHIFA emas — o'quvchining `console.log` lentasini **kartalar** qilib chizadigan maxsus harness (`hcpm-*`). Ularni ko'chirish uchun umumiy modulga yana ikki narsa kerak: (a) `task.previewHarness` (ko'rinadigan preview'ga qo'shiladigan skript+CSS), (b) yangi probe-turlari (hozirgi `logs` probe'i faqat substring qaraydi, u yerda «kamida 3 ta mos qator» va «qaytgan matn 3 so'zni saqlaydimi» kerak). `PmLesson6` da harness yo'q — u soddaroq. Bu alohida qaror, foydalanuvchiga aytildi.
+**Prodga chiqarilmadi** — buyruq kutiladi. Commit YO'Q. UNCOMMITTED.
+
+## 2026-08-12 — M3-D5 «Qaysi ishni birinchi qilasiz?» (`pm-m3d5-v1`) — ✅ GATE 3 YOPILDI
+**Fayl:** `src/3-Modull/PmLesson8.jsx` — eski `pm-priority-08-v16` (1147 qator) BUTUNLAY almashdi
+→ **3621 qator · 16 ekran**. `App.jsx` `m3-05`: title «Qaysi ishni birinchi qilasiz?» ·
+sub «Nechta odam so'raydi va qancha vaqt oladi».
+
+**Senariy:** `pm-senariylar/M3-D5-Prioritet.md` (ARALASH tur — nazariya 2-TURdan, amaliyot 1-TURdan).
+**Bosh keys:** K14 INSTAGRAM STORIES (dasturda birinchi marta). **Misol-ip:** 🎮 o'yin-klub sayti.
+**Imzo-vizual:** ikki o'qli foyda-vaqt doskasi + hafta-chizig'i (P0 story-silosi klonlanmadi).
+**Kirish-artefakt:** `pm-m3d2-stories` · **chiqish:** `pm-m3d5-board`.
+**KODING:** VS Code-topshirig'i (React props + map) — 26-qonun bo'yicha M3-D2 kompilyatoridan
+mexanika almashdi; **kompilyator-qobiq ATAYLAB qurilmadi** (foydalanuvchi qarori 2026-08-11).
+
+**[GATE S] 7 qaror:** sarlavha almashdi · K14 qoldi · o'yin-klub · uy-vazifa 2-qadami qoldi ·
+«imkoniyat (feature)» BITTA gloss-gap · doska nomi «foyda va vaqt» · Bashorat-2/TEST-3 o'zgarmadi.
+
+### Zanjir va topilmalar
+**👦 1-o'qish:** 20 topilma · «bilmadim» 1 (s10) · niyat 14/16 · gloss'siz so'z 5 · qayta o'qilgan gap 8.
+**🎓 Metodist:** 17 TUZATILDI · 3 OQLANDI · 2 yo'naltirildi. **👦 2-o'qish:** «bilmadim» **0** ·
+niyat **16/16** · gloss-tartib 0 · gloss'siz so'z 1 · qayta o'qilgan gap 4 → rasman O'TMADI;
+foydalanuvchi qarori bilan qolgan 4 sabab tuzatildi, 3-o'qish o'tkazilmadi (darvoza maks 2 aylanish).
+
+**🔴 Yo'lda tutilgan REAL nuqsonlar (dars ishga tushmasdan turib):**
+1. **Server-ball teshigi** (⚡ Jonli): praktika ekranlarining `recheck`/`koding` savol-nomlari
+   `INLINE_KEYS` da yo'q edi → `submit_answer` ularni «noma'lum savol → correct=false» deb yozardi.
+2. **Bajarib bo'lmaydigan mashq** (🎨 Dizayn): s10 rang-juftlashda «Vaqt bo'lsa» va «Kerak emas»
+   kataklari bir xil kulrang edi — bola to'rt rangni ajrata olmasdi.
+3. **🔴 MASHQNI TUGATIB BO'LMASDI** (🏗️ Quruvchi, brauzer-tasdiqda): s8 da to'lgan katak
+   «o'lik zona»ga aylanardi (`stopPropagation` shartsiz) — 3 kartadan 1 tasi joylashardi,
+   `step1` hech qachon tugamasdi, 3-bosqichga yetib bo'lmasdi. **esbuild, lint va 12-qadamli
+   yurish buni topa olmadi** — faqat mashqni oxirigacha bajarganda chiqdi.
+4. **RECAPS deyarli bo'sh** (🎓 Metodist): har testda 1 karta edi, etalon 3 talab qiladi → 12 ga to'ldirildi.
+5. **Tuzilma-xatosi** (bosh-agent senariysida): uy-vazifa/arena/flashcard alohida ekran qilingandi —
+   `F-0803-04` da allaqachon tuzatilgan xatoning takrori. 18 → **16 ekran**, etalon yakun-tuzilmasi
+   tiklandi. 🔴 Quruvchi lint bilan to'qnashganda `type: 'arena'` ni `'quiz'` deb **qayta nomlab
+   chetlab o'tgan** edi — darvozani aldash; qaytarildi va tuzilma o'zgartirildi.
+
+**🔍 Tekshiruvchi:** senariy-sadoqat **9/9**, GATE S 7/7 · 4 nuqson qaytardi (`.cmt` pulsi tinmasligi ·
+o'lik `.cmt.ok` · s8 2-halqada navbat-signali yo'qligi · s9 gating-yozuvi) · 1 o'zi tuzatdi.
+**✅ Verifikator: TASDIQLANDI** — 128 o'lchov (16 ekran × 2 rejim × 2 o'lcham × 2 holat):
+**0 konsol xatosi · 0 ustma-ust · 0 render-yo'qolishi**. s8 uch bosqichi to'liq o'tildi
+(to'lgan katakka va joylashgan chip ustiga bosish alohida sinaldi) · s10 ikki bosqichi ·
+mentor darvozasi **13/13** · reduced-motion'da ko'rinmay qolgan element 0.
+**🚦 Qabulchi: PASS 28/28** · 0 bloklovchi nuqson · 2 ogohlantirish.
+
+### Qabul qilingan og'ishlar (tuzatish talab qilinmaydi)
+· s15 skroll +49px (1440×900) / +149px (1280×800) — **P0 da +138/+238**, ya'ni etalondan yaxshiroq.
+· Mentor test-ekranlari reveal'dan KEYIN +278/+378 — sistemli uy-naqsh, **P0 da +409/+509**.
+58-qonun «sayqal», 60-qonun «bloklovchi» — 60 bo'yicha toza (0 ustma-ust).
+
+### Qonun-taklifi (verifikatordan, PM_DARS_ETALON ga kiritilishi kerak)
+**88(e) — IDISH VA UNING ICHIDAGISI BITTA SIGNAL HISOBLANADI.** 72-qonun (idish diqqat-pulsi)
+88(d) ga («bir lahzada maks 1 element») zid emas, agar ikki signal **uyali** bo'lsa va **bir
+harakatni** ko'rsatsa. Shartlar: (a) ikkinchi signal birinchisining DOM-avlodi; (b) birinchi
+harakatdan keyin idish-pulsi darhol so'nadi (`.calm`). Idish bilan **undan tashqaridagi** element
+birga yonsa — 88(d) buzilishi.
+
+### Qoldi
+🔴 **Qo'lda jonli sinov:** yangi PIN + `MENTOR-2026` + 2 o'quvchi — server-ball haqiqatan
+hisoblanishini, podium va arena `0 0 0 0` emasligini tasdiqlash. Hech qanday agent buni
+tekshira olmaydi (Supabase yo'q edi, faqat kod-qorovullari darajasida tasdiqlangan).
+🟢 Mayda tozalash keyingi tegishda: `:1730` `rang` klassiga CSS yo'q · `:1123` s2 gloss-qatori
+proza-budjetini chegaraga olib chiqdi (385/406) · `:1796, 1869` komponent-izohlari eski raqamlashda.
+
+**Darvozalar:** esbuild ✅ · `lint:jsx` 0 ✅ · `lint:til` 0 ✅ · `vite build` ✅ · `lint:prompt` ✅ ·
+`smoke` 109 dars 0 nuqson ✅. **UNCOMMITTED.**
+
+## 2026-08-12 — F-0812-04: MENTOR REJIMIDA BASHORAT-JAVOBI OLDINDAN OCHILARDI (3 dars) — ✅
+**Topilma:** 🔍 pm-tekshiruvchi M3-D5 auditida ilg'adi. Keys-slaydidagi bashorat («Sizningcha,
+keyin nima bo'ldi?») mentor rejimida — ya'ni **proyektorda, butun sinf oldida** — to'g'ri javobni
+darhol yashil `✓` bilan ko'rsatardi. Sinf taxmin qilmasidan javobni ko'rardi, bashorat mexanikasi
+(33-qonun) o'z ma'nosini yo'qotardi.
+
+**Ildiz:** `const locked = bet !== undefined || isMentorK` — mentorda `locked` darhol rost.
+**Ko'lam:** kod **P0 dan meros**, so'zma-so'z bir xil — `src/pm/PmUserStoryLesson.jsx` ·
+`src/2-Modull/PmLesson4.jsx` · `src/3-Modull/PmLesson8.jsx`. Foydalanuvchi qarori (2026-08-12):
+**uchala darsda ham tuzatilsin.**
+
+**Tuzatildi:** mentor ham o'quvchidek **bosib ochadi** — sinf taxmin qiladi, mentor ochadi.
+· `locked` dan `|| isMentorK` olindi (chiplar va slayd-matni)
+· mentor bosgan chipga `✗` qo'yilmaydi (u taxmin qilmayapti, ochyapti)
+· «🎲 Avval o'zingiz belgilab ko'ring» yorlig'i endi mentorda ham ko'rinadi (bu — sinfga ko'rsatma)
+· 🔴 **Mentor-bypass (31-qonun) SAQLANDI:** `NavNext` mentorda qulflanmaydi — u bosmasdan ham
+  keyingi bosqichga o'tadi, ya'ni hech qachon qamalib qolmaydi.
+· `PmLesson4` da mexanizm boshqacha edi (chiplar `disabled={isMentorK}`, slayd savol bilan birga
+  chiqardi) — o'sha ham shu mantiqqa keltirildi.
+
+**Brauzer-tasdiq (mentor rejimi, 1440×900, Supabase route-stub bilan):**
+| Dars | OLDIN (javob-chip · belgi · slayd) | Mentor bosgach |
+|---|---|---|
+| PmUserStoryLesson | 0 · 0 · 0 · (3 chip bosiladi) | ✓ chiqdi · ✗ yo'q · slayd ochildi |
+| PmLesson4 | 0 · 0 · 0 · (3 chip bosiladi) | slayd ochildi · ✗ yo'q |
+| PmLesson8 | 0 · 0 · 0 · (3 chip bosiladi) | ✓ chiqdi · ✗ yo'q |
+*(PmLesson8 da bashorat slaydining o'zida javob-matni yo'q — u keyingi slaydda; dars shunday
+loyihalangan, nuqson emas.)*
+
+**Darvozalar:** esbuild ✅ (3/3) · `lint:jsx` 0 ✅ · `vite build` ✅ · `smoke` **109 dars 0 nuqson** ✅.
+🟡 `lint:til` da 2 eski xato qoldi (`PmUserStory` va `PmLesson4` da «tavsiya etiladi» ×2) — bu
+F-0812-03 oilasidagi eski qarz, bugungi kod-tahririga aloqasi yo'q. **UNCOMMITTED.**
+
+## 2026-08-12 — M3-D10 «Qachon "tayyor" deb ayta olamiz?» — SENARIY + [GATE S] YOPILDI
+**Fayl (kelajakda):** `src/3-Modull/PmLesson9.jsx` (hozirgi `pm-acceptance-09-v16`, 1130 qator).
+**Senariy:** `pm-senariylar/M3-D10-Acceptance.md` (642 qator) — 2-TUR, 16 ekran, 82 daqiqa.
+**Bosh keys:** K10 CYBERPUNK 2077 (dasturda birinchi marta). **Misol-ip:** 🎒 maktab bufeti.
+**Imzo-mexanika:** «ISHGA TUSHIRIB KO'RISH» — ekranda ishlaydigan soxta buyurtma-formasi;
+o'quvchi uni haqiqatan bosib ko'rib, to'rt shartdan qaysi biri bajarilganini O'ZI topadi.
+**TEKSHIRUV:** Timeline (qabul qadamlarini tartibga solish) — M3-D5 mexanikasidan farqli.
+**Kirish:** `pm-m3d5-board` · **chiqish:** `pm-m3d10-shartlar` → M3-D14.
+
+**🎓 Metodist korrekturasi — 17 toifa, jumladan bosh-agent senariysidagi IKKI JIDDIY XATO:**
+1. **TEST-3 da ikkita to'g'ri javob bor edi** — distraktor «Dasturchilar yangi kod yozishga majbur
+   bo'ldi» keysda ROST; uni tanlagan bolaga «Adashdingiz» deyilardi (17-qonun buzilishi).
+2. **Bashorat varianti keysda ROST chiqardi** — «Pul qaytarish boshlandi» 4-slaydda haqiqatan sodir
+   bo'lgan hodisa; to'g'ri taxmin qilgan bola «Adashdingiz» olardi.
+Yana: keys-sadoqati (bankda yo'q «millionlab odam», «yillar davomida» olindi; «pristavka»→
+**PlayStation**, «Sotuvchi»→**Sony**) · «tayyor» so'zining ma'no-intizomi (4 joyda) ·
+sanoq-nomosligi (koding 3 shart e'lon qilib 2 tasini sinardi → 4 sinov).
+
+**[GATE S] 8 qaror yopildi** (senariy 14-bo'limida): sarlavha almashadi · bufet olami ·
+**hozirgi umumiy kompilyator** (LMS tayyor bo'lgach hammasi bir yo'la ko'chiriladi) ·
+artefakt M3-D14 ga · K10 qoladi · «shart» so'zi qoladi · s8 da eski yorliqlar yo'q · 4 sinov.
+
+**Quruvchiga ogohlantirish:** s4 kashfiyot-mashqi — bola 2–3 daqiqa hech narsa topmasa ekran
+devorga aylanadi; 40–45 s harakatsizlikdan keyin **javobni aytmaydigan** qoida-ipuchasi kerak.
+
+**Keyingi qadam:** `pm-quruvchi` → dizayn → jonli → 👦 → metodist → 👦 → GATE 2 → QA zanjiri.
+
+## 2026-08-13 — CHALA DARSLAR INVENTARI + KEYS/MEXANIKA REGISTRI (paralel yopish tayyorgarligi)
+
+**Buyruq:** foydalanuvchi — «quruvchini ishga tushir» (M3-D10) + «paralelni chala qolgan
+darslarni to'liq qilib qo'yishimiz kerak, barchasini ko'rib o'ylab chiq».
+
+**M3-D10:** `pm-quruvchi` ishga tushirildi (`src/3-Modull/PmLesson9.jsx`) — natijasi alohida
+yoziladi.
+
+**Inventar (butun `src/` skani, qator-soni + `lessonId` + qobiliyat-matritsasi):**
+- Tayyor (etalon avlod, 3000–4800 qator): **80 dars**
+- **Chala (`-v16` avlod): 30 fayl** — hammasi AYNAN bir qolipdan: **18 ekran**, va
+  `useLiveSession` **0** · `QUIZ_BANK` **0** · `FLASHCARDS` **0** · `INLINE_KEYS` **0** ·
+  `SCREEN_INTENTS` **0**. Ya'ni jonli-ball / test / flashcard qatlami butunlay yo'q.
+  Bu — 30 ta alohida muammo emas, **bitta muammo-sinfi**.
+- Taqsimot: 24 PM dars + 4 texnik (M7 MVP: `MvpArch/Build1/Build2/Iterate`) + 1 qurilmoqda
+  (`PmLesson9`) + 1 o'lik.
+
+**O'lik fayl tozalandi:** `7-Modull/PmLesson27.jsx` → `arxiv/olik-darslar/` (importi bor edi,
+lekin hech bir `comp:` da ishlatilmasdi — o'rnini `PmJtbdLesson` egallagan). `App.jsx` dagi
+o'lik import olib tashlandi.
+⚠️ **`PmLesson7.jsx` avval xato o'lik deb belgilandi va ko'chirildi — qaytarildi.** U
+`src/solishtir/SolishtirApp.jsx` da tirik: «PmLesson7 (chala) ↔ PmUserStory (etalon)»
+solishtirish juftligi. Saboq: `App.jsx` da import yo'qligi ≠ o'lik fayl — `src/` bo'ylab
+grep shart. Yana: `arxiv/` ga ko'chirilgan dars `../assets/...` rasm-yo'llarini yo'qotadi.
+
+**Yangi hujjat:** `PM_KEYS_MEXANIKA_REGISTRI.md` — keys-bank holati (K1…K19), 24 darsga
+keys taqsimoti, band mexanikalar jadvali, artefakt-zanjiri. Sabab: hozirgacha har senariy
+«ISHLATILGAN_KEYS» ni qo'lda ko'chirib yurardi; parallel yozuvda ikki senariy bir xil
+keys/mexanikani oladi va buni faqat oxirida bilamiz.
+
+**🔴 TOPILGAN TO'SIQ — keys-bank yetmaydi.** Bank 19 keys · band 11 · bo'sh **8** ·
+qurilishi kerak **24 PM dars**. Ikki qoida bir-biriga zid:
+- `PM_Prompt_v8.md`: taqiq **modul ichida** («уже использованные в этом модуле») — va amalda
+  shunday qilingan: **K12 ikki marta** (M1-D14 va M2-D13);
+- `M3-D10` senariy shapkasi keyslarni **global** band deb sanagan («K10 birinchi marta»).
+
+Modul-ichi qoidasi bilan 24 darsning **21 tasi** qoplanadi; **3 tasi zaxira ilgak** talab
+qiladi (`m4c-06` monitoring · `m6-06` etika · `m7-05` intervyu). Global qoida bilan — 8 dars
+qoplanadi, 16 tasi ochiq qoladi.
+**[GATE] Foydalanuvchi qarori kutilmoqda** (registr 4-bo'limi).
+
+**Yo'l-yo'lakay — karta-supurgisi (`App.jsx`, `lint:til`):** 2 error topildi.
+- `m1-08` «HTML **skelet**» → «HTML **shablon**» (anatomiya-metaforasi taqiqi) — TUZATILDI
+- `m1-15` «VS Code — **professional** start» — foydalanuvchi «tegmang» degan ochiq qaror,
+  TEGILMADI (F-0810 oilasidan qolgan qarz)
+- `m3-10` kartasi «**Acceptance Criteria**» → «**Qachon «tayyor» deb ayta olamiz?**»,
+  sub «feature qachon tayyor» → «ishni qabul qilish shartlari» — senariy shu atamani ekranga
+  chiqarishni TAQIQLAGAN, karta esa undan chetda qolgan edi. TUZATILDI.
+- Qolgan 🟡 warn (kelajakdagi ish): `custdev-glossiz` ×3 (280, 317, 318-qatorlar) ·
+  `kelajak-okr` (337) · `kirill-lotin-matnda` ×2 (428, 473).
+
+**Darvozalar:** `App.jsx` esbuild ✅ · `SolishtirApp.jsx` bundle ✅ (rasm-yuklovchi bilan) ·
+`lint:til src/App.jsx` — 2 error → **1** (qolgani ochiq qaror) · `lint:jsx` — 20 error,
+**hammasi** `src\eski\` va `src\2-moodull eski\` arxiv nusxalarida, jonli darslarda **0** ✅
+
+**Commit YO'Q.** UNCOMMITTED.
+
+## 2026-08-13 — BATCH 1 (3 senariy) + M3-D10 dars — parallel konveyer
+
+**M3-D10 dars (`src/3-Modull/PmLesson9.jsx`):** Quruvchi → Dizayn → Jonli → 👦 1-o'qish.
+- **Quruvchi:** 1130 → 3606 qator, `pm-acceptance-09-v16` → `pm-m3d10-v1`, 16 ekran.
+  Chalada jonli qatlam BUTUNLAY yo'q edi (0 `useLiveSession`/`QUIZ_BANK`/`FLASHCARDS`/
+  `INLINE_KEYS`/`SCREEN_INTENTS`) — hammasi qurildi.
+- **Dizayn:** soya-ierarxiyasi (L1/L2/L3), `.split.s4` nisbatlari + 1000px oraliq-qorovuli,
+  `.shl` chizig'i endi haqiqatan formaga yetadi, `.tline` 820px da **vertikal** taymlaynga
+  aylanadi (avval 2 ustunga sinib, ketma-ketlik ma'nosini yo'q qilardi).
+- **Jonli:** `INLINE_KEYS` tasdiqlandi (o'zgarishsiz). 🔴 **`QUIZ_BANK` taqsimoti 2/5/3/2 edi**
+  (etalon 3/3/3/3) — 3 savolda variantlar qayta joylandi, matn tegilmadi. `correct` indeksi
+  xato — 0 ta.
+- **👦 1-o'qish — 3 TUZILMA NUQSONI (quruvchiga qaytarildi):**
+  1. 🔴 **BLOKLOVCHI:** s4 da o'quvchi **qamalib qoladi**. 4-shart «tez ikki bosish» ekani
+     aytilmagan; 45 s ipuchasi (a) 4-shart haqida gapirmaydi, (b) **har bosishda taymer
+     qaytadan boshlanadi** — ya'ni tirishqoq bola ipuchani hech qachon ko'rmaydi.
+     «Davom etish» qulflangani uchun dars to'xtaydi.
+  2. s10 kodida **`vaqt` sharti yo'qdan paydo bo'lgan** — bufet oynasida bunday maydon yo'q
+     (108-qonun). Yana s8 (o'z shartlari) → s10 (boshqa shartlar) ko'prigi yo'q.
+  3. s12 da yakka o'quvchiga «avval A, keyin B», «ikkalangiz ham aytib bo'ldingiz» deyiladi —
+     bola kimnidir kutib 1 daqiqa bekorga o'tirgan.
+  4. 🟡 s6 da nuqtalarni bosib javob-slaydiga sakrab, bashoratni buzib bo'ladi.
+
+**Batch 1 senariylari — 3 tasi ham yozildi va korrektura qilindi, `lint:til` 0 error:**
+`M3-D14-Frontend-Pitch.md` (851 q · «GAPSIZ KO'RSATUV» · Hotspot · K12 3-burchak) ·
+`M4-D2-Malumot.md` (845 q · «XOTIRA TUGMALARI» · jadval-qatorini belgilash · K6) ·
+`M4-D7-Ishonch.md` (1006 q · «UCH KIRISH» · «ORTIQCHASINI OLIB TASHLANG» · **K10 rad → zaxira ilgak**).
+
+**🔴 PARALLEL TO'QNASHUV (saboq):** m3-14 va m4-02 **ikkalasi ham Hotspot** ni tanladi.
+Mening yo'lakcha-biriktirishim keys/imzo-vizual/olamni qamragan, **TEKSHIRUV mexanikasini
+emas**. Hotspot m3-14 ga muhrlandi, m4-02 faqat s9 blokini qayta yozdi. Registrga
+**TEKSHIRUV primitivlari bandlik jadvali** qo'shildi.
+
+**🔴 TAKROR BUG-SINF — F-0813-03 «distraktor rostligi».** Tekshirilgan **4 darsning 4 tasida
+ham** 17-qonun buzilishi topildi: M3-D10 (TEST-3 + bashorat) · M3-D14 (TEST-4) ·
+M4-D2 (TEST-3) · M4-D7 (TEST-2 + TEST-3). Ildizi bitta: distraktor «ishonarli» bo'lsin deb
+tanlanadi, ishonarlilikning eng oson manbai esa — darsning O'ZIDA rost bo'lgan gap.
+→ **`.claude/agents/pm/pm-tekshiruvchi.md` ga 16-ov-bandi qo'shildi** (4 tekshiruv usuli:
+ekran · mexanika-natijasi · hayot · savol-fe'li) + **shakl-telli** o'lchovi (M3-D10 da
+12 arena-savolidan 8 tasida to'g'ri javob eng uzun edi; 👦 o'quvchi 2 testni mazmunni bilmay
+topdi). Korpusga §102 va §103 muhrlandi (F-0813-02).
+
+**M3-D14 korrekturasi alohida:** 1-slaydda **keys-bankida yo'q fakt** bor edi
+(«ko'rsatadigan tayyor dastur yo'q edi») — ustiga 2-slaydga zid, va u **ballanadigan
+arena-savolining o'zagi** edi. Qayta yozildi (F-0813-01 korpusga).
+
+**Darvozalar:** 3 senariy `lint:til` **0 error** · `PmLesson9` esbuild ✅ `lint:jsx` 0 ✅
+`lint:til` 0 ✅ `QUIZ_BANK` 3/3/3/3 ✅ · `lint:prompt` ✅
+
+**[GATE S] — 3 senariy foydalanuvchi qaroriga chiqdi.** Commit YO'Q. UNCOMMITTED.
+
+## 2026-08-13 — [GATE S] YOPILDI (3 senariy) + PARALLEL QURILISH BOSHLANDI + M3-D10 👦 2-o'qish O'TDI
+
+**[GATE 2]:** M3-D10 👦 2-o'qishdan O'TDI — 16/16 niyat-moslik · 0 «bilmadim» · 0 glosssiz ·
+1 ikki-o'qish (limit ≤2). 1-o'qishning barcha og'ir qoqilishlari yopilgani tasdiqlandi
+(s4 ipucha-zinapoyasi ishladi, testlarda eng-uzun-hiyla endi noto'g'ri javob beradi).
+Qolgan 5 pardoz-topilma tekshiruvchiga berildi. Metodist-bosqichi: 19 banddan 17 TUZATILDI,
+2 OQLANDI (s8 namuna-taqiqi 80c · flashcard-takror 99); korpusga §104–107 (F-0813-04).
+Shakl-telli 12/12 yo'q qilindi (8 savolda to'g'ri javob eng uzun edi → 0). s4=641 grapheme —
+istisno qabul qilindi (simulyator-ekran, qatorlar harakat bilan ochiladi).
+
+**[GATE S] foydalanuvchi qarori: «tavsiyang bo'yicha» + «3 darsni parallel qur» + commit YO'Q.**
+Muhrlandi (har senariyda «[GATE S] YOPILDI» bo'limi + registr):
+- Koding-navbati: M3-D14 VS Code · M4-D2 kompilyator · M4-D7 VS Code (26-qonun)
+- Artefakt kaliti `pm-m4d2-data.maydonlar` (`qatorlar` emas) — M4-D7 kirishi moslandi
+- Modul-ipi: musiqa/jurnal olamlari qoladi, ip artefakt orqali (96c(b))
+- M4-D7: K10 RAD → zaxira ilgak TASDIQLANDI · M3-D14: K12 uchinchi burchak TASDIQLANDI
+- M4-D2 s9 3-raundi qoladi (variant a)
+
+**App.jsx kartalari tuzatildi (29-qonun):** m3-14 «Storytelling: frontend pitchi» →
+«Ishlayotgan saytni qanday ko'rsatasiz?» · m4-02 sub'dan «metrikalar» olib tashlandi ·
+m4-07 sub'dan «.env» olib tashlandi («nima ochiq, nima yopiq»). esbuild ✅, lint:til —
+qolgan 1 error faqat m1-15 «professional» (ochiq qaror).
+
+**Parallel ishga tushirildi (4 agent):** pm-quruvchi ×3 (PmLesson10 · PmLesson11 ·
+PmLesson12 — har biriga M3-D10 saboqlarining 12-bandli majburiy ro'yxati berildi) +
+pm-tekshiruvchi (PmLesson9, yangi 16-ov-bandining birinchi sinovi + 5 pardoz-topilma).
+
+**Commit YO'Q** (foydalanuvchi: «shoshilma»). UNCOMMITTED.
+
+## 2026-08-13 — M3-D10 QA-ZANJIRI TO'LIQ + BATCH 1 UCH DARS KONVEYERDA
+
+**M3-D10 (`PmLesson9.jsx`) — 👦 2-o'qishdan keyingi bosqichlar:**
+- **Tekshiruvchi (yangi 16-ov-bandining birinchi sinovi):** 40+ band yuritildi. Shakl-telli
+  o'lchovi: 0/17 savolda to'g'ri javob eng uzun (1-o'qishda 8/12 edi — metodist ishi
+  tasdiqlandi). 🔴 1 bloklovchi: ARENA-10 distraktori «O'yinning yaxshi nomini» to'g'ri
+  javobning MA'NODOSHI. 3 pardoz o'zi tuzatildi. 5-pardoz («tasdiq xabari»↔«yuborildi ✓»)
+  tuzatilmadi — tenglashtirish ARENA-4 ni buzardi (to'g'ri tashxis).
+- **Metodist 2-aylanish:** ARENA-10 → «Sotib olganlarning pulini» (keys-slayd ochiq rad
+  etadi — o'qiganni mukofotlaydi) · ARENA-9 hayotda-rost distraktor almashdi · ARENA-4
+  2Ha+2Yo'q muvozanati. «Tasdiq xabari» qarori: (b) QOLADI — kriteriy tili ≠ UI tili,
+  darsning o'zi o'rgatadigan narsa. Korpus §102 ga F-0813-05 qo'shimchasi (ma'nodoshlik-
+  tekshiruvi: «ikkalasini "ya'ni" bilan bog'lab bo'ladimi?»).
+- **Quruvchi-mayda:** s4 mentorga bosish RUXSAT (MentorNote turtki-vazifasi uchun; submitAnswer
+  student-only) + gating-qatori 4 ekranda bir xil · s15 uy-vazifa scrollIntoView (738→454px).
+- **O'lik-CSS (dizayn):** 23 qoida o'chirildi; dinamik oilalar (w2/w3/pod-N/pN) himoyalandi;
+  `.delay-3` paritet uchun bosh-agent tomonidan qaytarildi (P0/PmLesson8 bilan bir xil zinapoya).
+- **Verifikator: PASS** — 16/16 ekran brauzerda, konsol 0, vite build toza (234KB),
+  ccProgress reload-tiklovi ✅, md5-dalil bilan. Skrinshotlar scratchpad'da.
+  🟡 1280×720 yakun-kesilishi — etalonda ham bor (platforma-sinfi, alohida F-ID nomzodi).
+- **Qabulchi: 27/28 ✅ · 1 🔴 QAYTARISH** — s6 keysda bashorat 1 ta, ETALON 33 «kamida 2»
+  talab qiladi (senariy-ichi qarama-qarshilik: jadval 2 degan, spetsifikatsiya 1 yozgan,
+  GATE S da sezilmagan). → quruvchiga qaytdi: 2-slayd oldiga ikkinchi mikro-bashorat.
+- **Hujjatlashtirilgan chetlashish (qabulchi 🟡2):** TEST-2 B varianti «Ha, qolganini keyin
+  tuzatishadi» → «Yo'q — dasturchi hali kodni yozmagan» (metodist, §107: yagona-Yo'q
+  shakl-tellisini yo'q qilish uchun; senariyda eski shakl edi).
+
+**Batch 1 uch dars — konveyer holati (har biri to'liq zanjirda):**
+- **M3-D14 (`PmLesson10`):** Quruvchi (3554 q · skript-yig'ilgan, infra PmLesson9 dan bayt-mos)
+  → Dizayn (kadr-tasma kino-tili · palitra-chetlashish #7C3AED tuzatildi) → Jonli (2 ta
+  o'suvchi A→B→C→D qatori buzildi, 4 savolda variant-tartib) → 👦 1-o'qish 15/16 (s4 niyat-
+  matn nomuvofiqligi · arena fonida M3-D10 lug'ati klon-qoldiq) → Metodist 9/9 (s3/s5 §106
+  ko'chirma-testlari qayta yozildi · Airbnb gloss · fon-lug'at) → 👦 2-o'qish **O'TDI 16/16**
+  → tekshiruvchida.
+- **M4-D2 (`PmLesson11`):** Quruvchi (3561 q · «XOTIRA TUGMALARI» · jadval-belgilash ·
+  artefakt `maydonlar`) → Dizayn (bo'lim-yopilishi simmetrik · bo'sh tugmaga sokin javob ·
+  mobil sticky) → Jonli (INLINE_KEYS 4/4 · 12 savol toza) → 👦 1-o'qish 16/16 (arena-savoli:
+  jonli bashorati AMALDA tasdiqlandi — bola «Tinglash vaqtidan»ga qoqildi) → Metodist 12 band
+  (savol teskari o'girildi §108 · bosh ta'rif · yozuv-ko'prik) → 👦 2-o'qish **O'TDI 16/16**
+  → tekshiruvchida. Korpus §108–112 (F-0813-06).
+- **M4-D7 (`PmLesson12`):** Quruvchi (3630 q · «UCH KIRISH» · API-uzilishdan tiklangan,
+  bufet-residue 0) → Dizayn (`••••••` panjara-redaksiya · `p{padding:0}` reset-nuqsoni
+  topildi — P0/9/10/11 da ham bor, sweep GATE 3 savoliga) → Jonli (Q2 17-qonun bugi: distraktor
+  s8 yulduzchasida ekranda ROST edi · 9-savollik correct-tsikl buzildi) → 👦 1-o'qish 16/16
+  (s9 ipuchasi parolga TESKARI · s11 inkor-savol) → Metodist (ipucha joy-o'lchoviga o'girildi ·
+  s11 savoli §108 bo'yicha darsning o'z fe'liga) → Quruvchi s9-siqilish (426→387, mfold) →
+  👦 2-o'qishda. Korpus §116–117 + §108/§110 kuchaytirish (F-0813-08).
+
+**Saboq-muhrlash bugungi jami:** korpus §99–117 (19 bo'lim, F-0813-01…08) ·
+pm-tekshiruvchi 16-ov-bandi · registrga TEKSHIRUV-primitivlari bandligi + pitch-taqiqlar.
+`_lessonids.txt` 4 ID yangilandi. `App.jsx` 3 karta tuzatildi.
+
+**Commit YO'Q.** UNCOMMITTED.
+
+## 2026-08-13 — M3-D10 QABULCHI: ✅ PASS 28/28 — [GATE 3] FOYDALANUVCHIGA
+
+**Qaytarish-aylanishi (qabulchi 27/28 → 28/28):**
+- Quruvchi: 2-slayd oldiga ikkinchi mikro-bashorat (mavjud `kp-bet`, unscored) — endi
+  P1 «o'yinchi nimaga duch keldi» (kategoriyali) + P2 «o'yin taqdiri» (zinapoya).
+- Metodist mikro-ko'rigi: «O'yin juda qimmat edi» distraktori RAD (hayotda himoyalanadi —
+  bola rost gapni tanlab jazolanardi) → «O'yin ruscha chiqmadi». Qolgan 5 band oqlangan
+  (43-qonun kategoriyali chiplar istisnosi asoslandi).
+- Quruvchi: slayd-hisoblagich bashoratli slaydlarda yo'qolgan edi (ETALON 22) → har
+  bosqichda aynan bitta hisoblagich, sanoq uzluksiz 1·2·3·4.
+- **Qabulchi qayta-o'lchovi (brauzerda):** 1-band yopildi · regressiya 0 · 28/28 ✅.
+
+**Qoldiq 🟡 (bloklamaydi):** P1 savolidagi «ular» referenti oldingi bosqichda (ixtiyoriy
+aniqlashtirish) · `.hw` CSS-siz klass (P0 merosi) · s11 lead-gap (senariyda tasdiqlangan).
+
+**PROD-SHARTLARI:** jonli PIN-sinovi (MENTOR-2026, ≥2 o'quvchi, podium≠0) · artefakt-zanjiri
+jonli tekshiruvi (M3-D5→M3-D10) · foydalanuvchi-imzosi · commit faqat buyruq bilan.
+
+**M3-D10 — chala-avloddan to'liq zanjir orqali o'tgan BIRINCHI dars** (13 bosqich:
+quruvchi→dizayn→jonli→👦1→tuzatish→metodist→👦2→tekshiruvchi→metodist-2→quruvchi-mayda→
+o'lik-CSS→verifikator→qabulchi×2).
+
+## 2026-08-13 — M4-D2 QA-YAKUNI + QABULCHI QAYTARISHI (F-0813-09 sinf-tarqalishi)
+
+**M4-D2 jurnal-qarzi yopildi (qabulchi 🟡1):** 👦 2-o'qish O'TDI (16/16 · 2 ikki-o'qish) →
+Tekshiruvchi «verifikatorga tayyor» (4 mayda o'zi tuzatdi: 77-qonun avto-skroli M3-D10 dan
+port · uy-vazifa «bittasi» referenti · ETALON 31 gating · yetim import; F-5 hukmi: TEST-1
+chetlashishi OQLANDI — tiklash grammatik telli tug'dirardi) → Quruvchi (s6 ko'prik alohida
+5-bosqichga: 460→279 grapheme, GATE S matni so'zma-so'z; `.split.foot2` o'lik CSS o'chdi) →
+**Verifikator PASS** (16/16 render konsol-0 · vite 233.5KB · s9 3 raund · avto-skroll 0→383 ·
+ccProgress tiklovi; qayd: skroll `.stage-content` da, `window.scrollY` bilan o'lchash yolg'on
+FAIL beradi).
+
+**Qabulchi: 25/28 — QAYTARISH, 3 🔴:** №1 s6 bashorat 1 ta (ETALON 33) · №2 s6 hisoblagich
+uzuq (ETALON 22) · №3 arena Q1 ikki mutlaq-so'zli distraktor (§110 shu darsdan tug'ilib,
+arenaga qo'llanmagan).
+
+**🔴 SINF-TARQALISH SABOG'I (F-0813-09):** uchala band ham M3-D10 da bir kun oldin yopilgan
+sinflar. Bosh-agent xatosi: M3-D10 qaytarishidan keyin opa-singil darslar (M3-D14, M4-D2,
+M4-D7) tekshirilmadi — grep tasdiqladi: uchchalasida `predict:` 1 ta va hisoblagich naqshi
+uzuq. → `pm-tekshiruvchi` ga **17-ov-bandi** (keys-ekran relslari: ≥2 predict · uzluksiz
+hisoblagich · ikki o'lchov) muhrlandi. M4-D2 quruvchida; M3-D14/M4-D7 fayllari bo'shashi
+bilan xuddi shu tuzatish kiradi.
+
+**M4-D7 QA-yo'li (jurnalga):** 👦 2-o'qish O'TDI (16/16) → Tekshiruvchi «verifikatorga
+tayyor» (6 mayda o'zi tuzatdi, eng muhimi: s0/s2/s6 da `turnBusy` yo'qligidan jonli rejimda
+2 element bir vaqtda yonardi — 88(d)) → Metodist 4 band (Q9 «faqat»-telli ildizi SAVOLDA:
+«eng erta qachon?» o'lchov-so'zi; Q12 ham; s4 nav-fe'li «yopiladigan»; gating-qatori;
+s4 423→385) → dizayn-mikro (o'lik CSS) ketmoqda. Korpus §118 muhrlandi (F-0813-08).
+
+**Commit YO'Q.** UNCOMMITTED.
+
+## 2026-08-13 — M4-D2 QABULCHI: ✅ PASS 28/28 (qayta-tekshiruv)
+
+Qaytarilgan 3 band yopildi: №1 s6 endi 6 bosqich, `predict` 2 ta (bashorat-1 kategoriya
+«ikki odam nimani ko'radi» — metodist 3-chipni «butunlay boshqa»ga kuchaytirdi, kundalik-
+kuzatuv tuzog'i yopildi · bashorat-2 miqdor 80%) · №2 hisoblagich 1/6…6/6 uzluksiz
+(M3-D10 naqshi) · №3 arena Q1 mutlaq-so'z 2→1 («Boshqa ilovalarda tinglaganingizni»).
+Qabulchi qayta-o'lchovi brauzerda: 6-bosqich zanjiri 0 xato, ko'prik GATE S bilan
+so'zma-so'z, bank 3/3/3/3, vite 234.1KB. 🟡 qoldiqlar: bashorat-1 dagi «Netflix» gloss-
+slayddan oldin (ballanmaydi) · s0 «buni» referenti · s12 mentori 2 gap · platforma-sinflar.
+
+**M4-D2 — Batch 1 dan IKKINCHI to'liq yopilgan dars.** M3-D14/M4-D7 dagi F-0813-09
+profilaktikasi allaqachon kiritilgan (qabulchi 4-sharti bajarilgan holda boradi).
+**Commit YO'Q.** UNCOMMITTED.
+
+## 2026-08-13 — M3-D14 QABULCHI: ✅ PASS 28/28 (qayta-tekshiruv)
+
+**Jurnal-qarzi yopildi — M3-D14 to'liq zanjiri:** Tekshiruvchi «verifikatorga tayyor»
+(3 🔴 o'zi tuzatdi: s6 bashorat-tuzog'i «...so'ng mahsulotning o'zi» ro'yxat-yopilishi ·
+s4 mentor-gating ochildi · 77-qonun avto-skroli port) → Metodist mikro (F-6 mentor 1 gap ·
+F-7 «o'rtasida»→ekran-faktiga) → Verifikator PASS (16/16, nusxa-taqiq 4 kanal, arena +952,
+o'z test-skript xatosini halol qayd etdi) → Quruvchi F-0813-09 (bashorat-2 SON-o'lchovida
+«nechta varaq → O'ntacha», hisoblagich 1·2·3·4) → Qabulchi 27/28 (arena Q8: 4/4 variantda
+mutlaq so'z — §110/§118) → Metodist 2-aylanish (Q8 mutlaq-so'z 0/4, son-javoblar; Q12
+«konsol» glosssiz distraktor almashdi; s7 «umuman bo'lmagan» → «Ko'rsatilgan tartibda...»;
+gating 4/4 bir xil) → **Qabulchi qayta: PASS 28/28**.
+
+Qabulchi Q6 hukmi: «hamma» 1/4 chegarada QOLADI (s9 ochiq rad etadi — o'qiganni
+mukofotlaydi). 🟡 qoldiqlar: Q8 kadr/sahifa leksik-juftligi (ball-xavfsiz) · bashorat-1
+K12 detali (spoylersiz muqobil yo'q edi) · `.hw` platforma-merosi.
+
+**M3-D14 — Batch 1 dan UCHINCHI to'liq yopilgan dars.** App.jsx m3-14 kartasi GATE S
+sarlavhasida. Qolgan: M4-D7 qabulchida. **Commit YO'Q.** UNCOMMITTED.
+
+## 2026-08-13 — ⏸ SEANS-CHEKPOINT (foydalanuvchi ketdi, davomi keyingi seansda)
+
+**BATCH 1 HOLATI:**
+- ✅ M3-D10 (`PmLesson9`) — **PASS 28/28**, imzo kutmoqda
+- ✅ M3-D14 (`PmLesson10`) — **PASS 28/28**, imzo kutmoqda
+- ✅ M4-D2 (`PmLesson11`) — **PASS 28/28**, imzo kutmoqda
+- 🔧 M4-D7 (`PmLesson12`) — qabulchi 27/28; **QOLGAN YAGONA ISH:** arena Q1 (`:2082`,
+  distraktorlarda «eng ko'p/faqat/hammadan oldin») va Q12 (`:2109`, «Faqat birinchi
+  ustunni» + «Hech narsani qaytarmaydi») — §110 mutlaq-so'z ≤1/4 ga tushirilsin,
+  `correct` indekslari va tsikl (0,3,2,1·1,0,2,3·0,2,1,3) TEGILMAYDI + Q5/Q2/Q8 sariq-hukmlar.
+  Metodist-aylanish chekpoint paytida yakunlanmagan bo'lishi mumkin — **keyingi seansda
+  avval `grep -n "eng ko'p\|hammadan oldin" src/4-Modull/PmLesson12.jsx` bilan tekshiring:**
+  topilmasa tuzatilgan (→ qabulchiga qayta-o'lchov), topilsa pm-metodistga qayta topshiring.
+  Keyin: qabulchi qayta (faqat 6-band + regressiya) → PASS → GATE 3.
+
+**KEYINGI SEANS TARTIBI:**
+1. M4-D7 ni yopish (yuqoridagi tekshiruv → qabulchi qayta-o'lchov).
+2. Foydalanuvchiga UMUMIY HISOBOT (va'da qilingan): 4 dars jadvali · korpus §99–118 ·
+   tekshiruvchi 16/17-ov-bandlari · registr · platforma-savollar · prod-shartlari.
+3. Foydalanuvchi qarorlari: GATE 3 imzo (4 dars) · jonli PIN-sinovi (MENTOR-2026, ≥2
+   o'quvchi, podium≠0 — 4 darsda ham) · platforma-sweep (quyida) · COMMIT (faqat buyruq!).
+
+**PLATFORMA-SWEEP SAVOLLARI (GATE 3 ga yig'ilgan, barcha darslarga tegishli):**
+`p{padding:0}` reset-nuqsoni (P0+3 darsda bor, PmLesson12 da toza yechim) · s15
+yakun-skroli +125px · 1280×720 yakun-kesilishi · 82(f) qonun-eskirishi (koding-ekran
+pulsi) · `.hvote-lbl` mobil-ellipsis · `kp-mark.ok/.no` rangsiz · `.hw` stilsiz meros ·
+`kp-chip.wrong` qizili (ETALON 33 indigo deydi) · M3-D10 zaxira-`ish` shakli («"Buyurtma
+berish" tugmasi» — M3-D14 s8 da tugma-nom bo'lib o'qiladi).
+
+**BUGUNGI MUHRLAR (yo'qolmaydi, fayllarda):** korpus §99–118 (F-0813-01…08) ·
+pm-tekshiruvchi 16- va 17-ov-bandlari (distraktor-rostligi+shakl-telli · keys-ekran
+relslari F-0813-09) · PM_KEYS_MEXANIKA_REGISTRI (keys/mexanika/artefakt + GATE S qarorlar +
+TEKSHIRUV-primitivlar bandligi) · 3 senariy GATE S yopiq · `_lessonids.txt` 4 ID ·
+App.jsx 4 karta.
+
+**Hammasi UNCOMMITTED — commit faqat foydalanuvchi buyrug'i bilan.**
+
+## 2026-08-13 — M4-D7 QABULCHI: ✅ PASS 28/28 — 🏁 BATCH 1 TO'LIQ YOPILDI (4/4)
+
+Qaytarish-aylanishi: qabulchi 27/28 (arena Q1 4/4 va Q12 3/4 mutlaq-so'z, §110) → metodist
+(Q1 distraktorlari «noto'g'ri mezon» sinfiga · Q12 uchtasi m4-01 chalkashliklaridan, bir
+ramkada · sariq Q2/Q5 ham qayta ishlandi; API-uzilish faqat hisobotni uzdi, tahrirlar
+kirgan edi — bosh-agent dasturiy o'lchov bilan tasdiqladi) → qabulchi qayta-o'lchov
+(mustaqil skript, faqat opts bo'yicha): mutlaq so'z distraktorlarda 1 (Q6 «baribir» —
+yon-ravish, chegara ichida), 2 tasi CORRECT-kanon; tell maks 1.39; regressiya 0 → **PASS**.
+
+Registr `:79`/`:194` m4-07 qatorlari yangilandi (zaxira ilgak · UCH KIRISH) — qabulchi
+3-sharti bajarilgan.
+
+**BATCH 1 YAKUN: M3-D10 · M3-D14 · M4-D2 · M4-D7 — to'rttalasi PASS 28/28.**
+Qolgan: GATE 3 foydalanuvchi-imzosi · jonli PIN-sinovi (MENTOR-2026) · commit-qarori.
+**Commit YO'Q.** UNCOMMITTED.
+
+## 2026-08-14 — F-0814-01: KOMPILYATOR-QOBIQ REGRESSIYASI (tashxis + tuzatish) · B2 BOSHLANDI · AVTOKONTROL
+
+**Foydalanuvchi:** «3-Modull PM darsida kompilyator qismida muammo borday» + «B2 dan boshla» +
+«B2 tugagach B3–B5 ga o'zing avtomat o'tkazib ketaver, avtokontrolda ishla» (≈1 soat yo'q).
+**Avtokontrol-qoidalari:** GATE S avto-yopiladi (pretsedent-oila bo'yicha, har qaror
+senariyda «avto-GATE S» belgisi bilan) · commit TAQIQ · konveyer to'liq · xavfli qaror
+chiqsa savol-ro'yxatiga.
+
+**F-0814-01 TASHXIS (verifikator-agent, brauzer-dalil):** 🔴 T-1 asosiy — umumiy-kompilyator
+refaktorida (GATE S 3-qarori) `position:fixed` qobig'i ko'chirilmagan: `.hc-root` PM darslarda
+`.stage-content` ichida ~300px (git-dalil: HEAD dagi `ListCompiler .shc-root { position:fixed;
+inset:0 }` bor edi). Oqibat: shart-chiplar/«Davom etish» ekrandan tashqarida, ▶ ni dars-karta
+to'sadi, jonli rejimda bola s10 da QAMALADI. **Tarqalishi: 6 dars** (PmLesson1/2/3/4/9/11).
+🔴 T-2 ≤860px muharrir 0px · 🟡 T-3 sof-JS da previewUrl → oq soxta-sayt (9/11) · 🟡 T-5
+starter 2-chipni yashil qiladi · 🟡 T-6 shart manba-regexda (to'g'ri yechim RAD) · 🟢 T-4/7/8.
+PmLesson8 TOZA (VS Code maketi).
+
+**Yechim-qarori (avtokontrol, konservativ):** umumiy `HtmlCompiler.jsx` ga TEGILMAYDI
+(18 texnik dars + LMS-nashr portlash-radiusi) → 6 PM darsga texnik-darslardagi fixed-qobiq
+naqshi (`Htmllesson1:4652`). T-3 (previewUrl olib tashlash, JsVars etaloni) + T-5/T-6
+(shartlar xulq-atvorga) birga. T-4/T-7/T-8 — navbatda. Quruvchi-agent ishlamoqda.
+**Muhr:** `pm-tekshiruvchi` **18-ov-bandi** (kompilyator-qobiq relslari: fixed-qobiq ·
+JS-previewUrl · starter-yashil · manba-regex · ≤860px) — B2+ qurilishlarida majburiy.
+
+**B2 BOSHLANDI:** 3 senariy parallel yozilmoqda (M4-D12-Sxema · M4-D15-Arxitektura-Pitch ·
+M4a-D2-Masshtab) — registr R2 pasportlari bilan, §99–118 boshidan berildi.
+**Commit YO'Q.** UNCOMMITTED.
+
+## 2026-08-14 — F-0814-01 TUZATILDI (6 dars, brauzer-isbot bilan)
+
+**ISH 1:** fixed-qobiq 6 PM darsga (`Htmllesson1:4652` naqshi, umumiy `HtmlCompiler.jsx`
+TEGILMADI): PmLesson1:2069 · 2:2026 · 3:2139 · 4:1896 · 9:1815 · 11:1760. O'lchov: `.hc-top`
+va `.hc-bottom` endi viewport ichida, muharrir 636–645px; 860px da 802px (0px edi).
+**ISH 2 (T-3):** `previewUrl` sof-JS darslardan olindi (PmLesson9 `maktab-bufeti.uz`,
+PmLesson11 `musiqa-ilovasi.uz`) — panel endi «📺 Natija»+konsol (JsVars etaloni); PmLesson4
+`kino.uz` qoldi (haqiqiy HTML-preview).
+**ISH 3/4 (T-5/T-6):** PmLesson9 shartlari manba-regexdan XULQ-ATVORGA ko'chdi
+(`UCH_EXPR`/`BOOL_EXPR`); isbotlar: starter holatida 0/3 (2-chip yashil emas) · muqobil
+yechim (`buyurtma['soni']`) o'tadi (eski regex RAD etardi) · yodlangan-javob
+(`taom==='somsa'&&soni===2`) 2/3 da to'xtaydi. Bosh-agent qo'shimchasi: sinov-qiymatidagi
+`lavash` (RAD-olam so'zi, yorliqda ko'rinardi) → `hot-dog` (menyu so'zi), ifoda qayta
+isbotlandi.
+**Darvozalar:** esbuild 6/6 · lint:jsx 6 faylda 0 · lint:til 9/11 TOZA · correct/INLINE_KEYS
+tegilmagan. **Qoldiq (navbatda):** T-4 (eskirdi-konsol) · T-7 (starterCode o'lik prop) ·
+T-8 (JS sintaksis-xato paneli) — 🟢 sinf, alohida raund.
+**Eslatma:** PmLesson9/11 post-qabulchi tahrir — qayta-verifikatsiya brauzerda qilindi
+(yuqoridagi isbotlar); jonli PIN-sinovi baribir kutilmoqda.
+**Commit YO'Q.** UNCOMMITTED.
+
+## 2026-08-14 — ⏸ SEANS-CHEKPOINT №2 + 3-4-MODUL DEPLOY
+
+**Foydalanuvchi:** «to'xtatamiz, joyni saqla; 3-4-Modullarning hozirgi versiyasini YANGI
+URLga deploy qil».
+
+**B2 TO'XTATILDI (xavfsiz):** 3 quruvchi TaskStop qilindi. Yarim-qurilgan fayllar
+(PmLesson13/14/15, ~3700 qatordan, esbuild-toza lekin YAKUNLANMAGAAN) scratchpad'ga
+zaxiralandi (`b2-yarim-qurilgan/`), keyin `git checkout` bilan eski stublarga qaytarildi —
+deploy barqaror daraxtdan ketdi. ⚠️ Scratchpad seans-mahalliy — B2 qurilishi baribir
+noldan qayta boshlanadi (arzon: senariylar + AVTO-GATE S + registr muhrlangan, R3
+protokoli bo'yicha 3 quruvchi qayta ishga tushiriladi).
+
+**B2 senariy-bosqichi YAKUNLANGAN holda qoldi:** M4-D12-Sxema.md · M4-D15-Arxitektura-
+Pitch.md · M4a-D2-Masshtab.md — uchalasi korrektura + AVTO-GATE S bilan, lint 0 error.
+Korpus §119–125 (F-0814-02/03/04) · registrda Batch2 muhrlar · 18-ov-band · F-0814-01
+tuzatilgan (6 dars kompilyator-qobiq).
+
+**DEPLOY (yangi loyiha):** `src/m34-demo/` (M34DemoApp — m1-demo naqshi, UZ) +
+`modul34.html` + `vite.m34.config.js` → `dist-m34` (33 asset) → `coddycamp-3-4-modul-senior/`
+papkasi → `npx vercel deploy --prod --yes --scope azizbek10`.
+**Prod URL: https://coddycamp-3-4-modul-senior.vercel.app** — bosh sahifa 200 ✅ ·
+title to'g'ri ✅ · **32/32 JS-chunk 200** ✅. m4-12/m4-15 kartalari eski stub-darslar bilan
+(hozirgi versiya holati). Boshqa Vercel loyihalarga tegilmadi.
+
+**KEYINGI SEANS:** (1) B2 qurilishini qayta boshlash (3 quruvchi, R2/R3 + 18-ov-band
+briflar tayyor — shu STATE dagi 2026-08-14 yozuvlariga qarang) → zanjirlar → B3→B4→B5
+(avtokontrol-ruxsati berilgan edi, davomi foydalanuvchi bilan aniqlashtiriladi).
+(2) GATE 3 imzo (Batch 1 4 darsi) · jonli PIN-sinovi · platforma-sweep savollari ·
+COMMIT (faqat buyruq).
+**Commit YO'Q.** UNCOMMITTED.

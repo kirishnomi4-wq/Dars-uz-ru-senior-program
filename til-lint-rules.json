@@ -515,6 +515,86 @@
       "pattern": "\\d+\\s*(yil|oy|kun|hafta|soat)[a-z'‘]*\\s*keyingina",
       "suggest": "hikoyada ortiqcha ta'kid — «oradan ikki yil o'tib, …» (raqam so'z bilan)",
       "law": "KORPUS 42 · F-0731-11"
+    },
+    {
+      "id": "ekran-nomi-tarjimasi",
+      "severity": "error",
+      "pattern": "\\bmuharrir|\\bkengaytma",
+      "flags": "i",
+      "suggest": "ekranda inglizcha turgan nom tarjima qilinmaydi: muharrir→Editor, kengaytma→Extensions/qo'shimcha dastur (birinchi ko'rinishda qavsda gloss)",
+      "law": "MATN_ETALONI 3-lugat · KORPUS 71 · F-0810-01"
+    },
+    {
+      "id": "tavsiya-etiladi",
+      "severity": "error",
+      "pattern": "tavsiya\\s+(etiladi|qilinadi)",
+      "flags": "i",
+      "suggest": "idoraviy shakl — to'g'ridan-to'g'ri buyruq: «yana bir bor tushuntiring»",
+      "law": "MATN_ETALONI 7-ohang · KORPUS 72 · F-0810-01"
+    },
+    {
+      "id": "osmirga-kasb",
+      "severity": "warn",
+      "pattern": "\\bkasbingiz",
+      "flags": "i",
+      "suggest": "13 yoshli o'quvchining kasbi yo'q — «kim bo'lmoqchi ekaningiz» / «orzu-kasb» (95-qonun, misol-olam testi)",
+      "law": "MATN_ETALONI 4.1 · KORPUS 73 · F-0810-01"
+    },
+    {
+      "id": "sehr-sozi",
+      "severity": "error",
+      "pattern": "\\bsehr|\\bмаги[яию]|волшебн",
+      "flags": "i",
+      "suggest": "«sehr» tushuntirmaydi, yashiradi — natijani ATANG: «Natijani ko'rish», «shuning uchun qulay»",
+      "law": "MATN_ETALONI 3-lugat · KORPUS 83 · F-0810-02"
+    },
+    {
+      "id": "usta-sandiqcha",
+      "severity": "error",
+      "pattern": "\\bustalar|\\busta\\b|sandiqcha|мастеров|[Сс]ундуч",
+      "flags": "i",
+      "suggest": "«usta/sandiqcha» — o'smir olamida yo'q obraz; to'g'ridan-to'g'ri «dasturchi» va metaforasiz nom",
+      "law": "MATN_ETALONI 4.1 · KORPUS 84 · F-0810-02"
+    },
+    {
+      "id": "anatomiya-metaforasi",
+      "severity": "error",
+      "pattern": "suyag|\\bsuyak|\\bskelet|скелет|\\blibos\\b",
+      "flags": "i",
+      "suggest": "inson anatomiyasi taqiq (4.1): HTML tuzilishi — «shablon»; bir tushuncha — bir nom",
+      "law": "MATN_ETALONI 4.1 · KORPUS 85 · F-0810-02"
+    },
+    {
+      "id": "jon-kiritish",
+      "severity": "error",
+      "pattern": "jon kirit|вдохн[ёе]м жизнь|оживля",
+      "flags": "i",
+      "suggest": "«jon» — JS darslarining so'zi; CSS faqat ko'rinishni o'zgartiradi: «bezaymiz», «to'ldiramiz»",
+      "law": "MATN_ETALONI 3-lugat · KORPUS 86 · F-0810-02"
+    },
+    {
+      "id": "professional-sozi",
+      "severity": "error",
+      "pattern": "professional|профессиональн",
+      "flags": "i",
+      "suggest": "«professional» o'quvchiga hech narsa demaydi — «dasturchilar» yoki «haqiqiy»",
+      "law": "MATN_ETALONI 3-lugat · KORPUS 87 · F-0810-02"
+    },
+    {
+      "id": "vizitka-sozi",
+      "severity": "warn",
+      "pattern": "vizitka|визитк",
+      "flags": "i",
+      "suggest": "«vizitka» — kattalar dunyosining narsasi; kodda yozadigan nom bilan atang: «card»",
+      "law": "MATN_ETALONI 3-lugat · KORPUS 88 · F-0810-02"
+    },
+    {
+      "id": "bosh-sifat-qadam",
+      "severity": "warn",
+      "pattern": "shirin qadam|вкусный шаг",
+      "flags": "i",
+      "suggest": "«shirin» qadamga hech narsa qo'shmaydi — nima uchun muhimligini ayting: «eng muhim qadam»",
+      "law": "MATN_ETALONI 7-ohang · KORPUS 89 · F-0810-02"
     }
   ]
 }

@@ -126,7 +126,8 @@ const PmLesson25 = L(() => import('./6-Modull/PmLesson25.jsx'))
 const PmJtbdLesson = L(() => import('./pm/PmJtbdLesson.jsx')) // PM pipeline P1 (eski PmLesson27 o'rnida)
 const PmMetricsLesson = L(() => import('./pm/PmMetricsLesson.jsx')) // PM pipeline P1 (M8-D1)
 const PmLesson26 = L(() => import('./7-Modull/PmLesson26.jsx'))
-const PmLesson27 = L(() => import('./7-Modull/PmLesson27.jsx'))
+// PmLesson27 — o'lik import olib tashlandi (2026-08-13): m7-02 ni PmJtbdLesson egallagan,
+// fayl arxiv/olik-darslar/ ga ko'chirildi. Qayta ulanmaydi.
 const PmLesson28 = L(() => import('./7-Modull/PmLesson28.jsx'))
 const PmLesson29 = L(() => import('./7-Modull/PmLesson29.jsx'))
 const PmLesson30 = L(() => import('./7-Modull/PmLesson30.jsx'))
@@ -156,7 +157,7 @@ const MODULES = [
       { key: 'm1-05', n: 6,  type: 'PM',      emoji: '🗺️', title: 'Struktura — mahsulot qarori',     sub: 'bo\'limlar tartibi kimga qarab tuziladi', comp: PmLesson2 },
       { key: 'm1-06', n: 7,  type: 'Kod',     emoji: '🎨', title: 'CSS qo\'lda — 1',                 sub: 'rang, shrift, bo\'shliqlar', comp: CssLesson1 },
       { key: 'm1-07', n: 8,  type: 'Kod',     emoji: '📐', title: 'CSS qo\'lda — 2',                 sub: 'layout, flexbox, DevTools', comp: CssLesson2 },
-      { key: 'm1-08', n: 9,  type: 'Proyekt', emoji: '🧱', title: 'Praktika: portfolio strukturasi', sub: 'saytni bo\'laklaymiz, HTML skelet', comp: HtmlPractice },
+      { key: 'm1-08', n: 9,  type: 'Proyekt', emoji: '🧱', title: 'Praktika: portfolio strukturasi', sub: 'saytni bo\'laklaymiz, HTML shablon', comp: HtmlPractice },
       { key: 'm1-15', n: 10, type: 'Kod',     emoji: '💻', title: 'VS Code — professional start',    sub: 'o\'rnatish, Emmet, Live Server, jonli card', comp: VsCodeLesson },
       { key: 'm1-10', n: 11, type: 'Proyekt', emoji: '💅', title: 'Praktika: bezash va yakunlash',   sub: 'CSS + kontent + AI bilan tugma', comp: CssPractice },
       { key: 'm1-09', n: 12, type: 'Kod',     emoji: '🔀', title: 'Git va GitHub',                   sub: 'commit, push — kod uchun vaqt mashinasi', comp: GitLesson },
@@ -194,16 +195,16 @@ const MODULES = [
       { key: 'm3-02', n: 2,  type: 'PM',      emoji: '📝', title: 'User Story: kim va nima uchun?', sub: '"Men [kim] sifatida..." — JTBD', comp: PmUserStoryLesson },
       { key: 'm3-03', n: 3,  type: 'Kod',     emoji: '🧱', title: 'Birinchi komponent',             sub: 'Vite, JSX, props, loyiha strukturasi', comp: ReactFirstComponentLesson },
       { key: 'm3-04', n: 4,  type: 'Kod',     emoji: '💗', title: 'State va Effect',                sub: 'useState + useEffect, lifecycle', comp: ReactStateEffectLesson },
-      { key: 'm3-05', n: 5,  type: 'PM',      emoji: '⚖️', title: 'Komponent ham funksiya: qaysi biri birinchi?', sub: 'Impact vs Effort matritsasi', comp: PmLesson8 },
+      { key: 'm3-05', n: 5,  type: 'PM',      emoji: '⚖️', title: 'Qaysi ishni birinchi qilasiz?', sub: 'Nechta odam so\'raydi va qancha vaqt oladi', comp: PmLesson8 },
       { key: 'm3-06', n: 6,  type: 'Kod',     emoji: '🏭', title: 'Props va qayta ishlatish',       sub: 'ma\'lumotni komponentlar orasida uzatish', comp: ReactPropsReuseLesson },
       { key: 'm3-07', n: 7,  type: 'Proyekt', emoji: '🐠', title: 'Praktika: AI bilan to\'liq CRUD', sub: 'Create / Read / Update / Delete', comp: ReactCrudPracticeLesson },
       { key: 'm3-08', n: 8,  type: 'Kod',     emoji: '🛎️', title: 'API bilan ishlash — GET',        sub: 'fetch / axios, JSON, loading', comp: ReactApiGetLesson },
       { key: 'm3-09', n: 9,  type: 'Kod',     emoji: '📦', title: 'API — POST / PUT / DELETE',      sub: 'serverga ma\'lumot yuborish', comp: ReactApiPostLesson },
-      { key: 'm3-10', n: 10, type: 'PM',      emoji: '✅', title: 'Acceptance Criteria',            sub: 'feature qachon tayyor hisoblanadi?', comp: PmLesson9 },
+      { key: 'm3-10', n: 10, type: 'PM',      emoji: '✅', title: 'Qachon «tayyor» deb ayta olamiz?', sub: 'ishni qabul qilish shartlari', comp: PmLesson9 },
       { key: 'm3-11', n: 11, type: 'Proyekt', emoji: '🌀', title: 'Praktika: React Router',         sub: 'ko\'p sahifali ilova, navigatsiya', comp: ReactRouterPracticeLesson },
       { key: 'm3-12', n: 12, type: 'Proyekt', emoji: '🚗', title: 'Loyiha kuni — AvtoIjara',        sub: 'React + API + CRUD + routing', comp: ReactProjectDayLesson },
       { key: 'm3-13', n: 13, type: 'Proyekt', emoji: '🏗️', title: 'Final loyihani bo\'laklash va qurish', sub: 'komponent sxemasi + ishlaydigan loyiha', comp: ReactBuildSiteLesson },
-      { key: 'm3-14', n: 14, type: 'PM',      emoji: '🎤', title: 'Storytelling: frontend pitchi',  sub: 'mahsulotni jonli ko\'rsatish', comp: PmLesson10 },
+      { key: 'm3-14', n: 14, type: 'PM',      emoji: '🎤', title: 'Ishlayotgan saytingizni qanday ko\'rsatasiz?', sub: 'uch kadrlik ko\'rsatuv', comp: PmLesson10 },
       { key: 'm3-15', n: 15, type: 'Rezerv',  emoji: '📅', title: 'Zaxira dars',                    sub: 'yetib olish / sayqallash' },
       { key: 'm3-16', n: 16, type: 'Demo',    emoji: '🎤', title: 'Demo Day',                       sub: 'guruh + mehmonlar oldida himoya' },
     ],
@@ -214,12 +215,12 @@ const MODULES = [
     idea: 'Ma\'lumot sxemasi — mahsulot qarori. Ma\'lumot tasodifan emas, vazifa uchun yig\'iladi.',
     lessons: [
       { key: 'm4-01', n: 1,  type: 'Kod',     emoji: '🔌', title: 'Ma\'lumot nima',                sub: 'JSON, jadval, bog\'lanish, PK/FK', comp: DataIntroLesson },
-      { key: 'm4-02', n: 2,  type: 'PM',      emoji: '📊', title: 'Ma\'lumot ham mahsulot qarori',   sub: 'nimani saqlaymiz va nega — metrikalar', comp: PmLesson11 },
+      { key: 'm4-02', n: 2,  type: 'PM',      emoji: '📊', title: 'Ma\'lumot ham mahsulot qarori',   sub: 'nimani saqlaymiz va nega — bo\'lim shundan quriladi', comp: PmLesson11 },
       { key: 'm4-03', n: 3,  type: 'Kod',     emoji: '📦', title: 'SQL vs NoSQL — PostgreSQL',     sub: 'qachon qaysi biri kerak', comp: DbSqlNosqlLesson },
       { key: 'm4-04', n: 4,  type: 'Kod',     emoji: '🏪', title: 'Node.js — birinchi server',     sub: 'npm, Express, birinchi endpoint', comp: NodeServerLesson },
       { key: 'm4-05', n: 5,  type: 'Kod',     emoji: '📮', title: 'Routing — Express / Nest',      sub: 'method + path, 404, /:id', comp: RoutingLesson },
       { key: 'm4-06', n: 6,  type: 'Kod',     emoji: '🐘', title: 'PostgreSQL so\'rovlari',        sub: 'SELECT, INSERT, UPDATE, DELETE', comp: PostgresCrudLesson },
-      { key: 'm4-07', n: 7,  type: 'PM',      emoji: '🔐', title: 'Xavfsizlik — foydalanuvchi ishonchi', sub: '.env va ma\'lumot himoyasi — mahsulot qiymati', comp: PmLesson12 },
+      { key: 'm4-07', n: 7,  type: 'PM',      emoji: '🔐', title: 'Xavfsizlik — foydalanuvchi ishonchi', sub: 'nima ochiq, nima yopiq — ishonch mahsulot qiymati', comp: PmLesson12 },
       { key: 'm4-08', n: 8,  type: 'Proyekt', emoji: '🚗', title: 'Praktika: Backend CRUD',        sub: 'AvtoIjara — Express + PostgreSQL', comp: BackendCrudPracticeLesson },
       { key: 'm4-09', n: 9,  type: 'Kod',     emoji: '📡', title: 'API nima + Postman',            sub: 'so\'rov va javob, status kodlari', comp: ApiPostmanLesson },
       { key: 'm4-10', n: 10, type: 'Proyekt', emoji: '🌉', title: 'Praktika: React + Node ulash',  sub: 'fetch, CORS — front ↔ back', comp: FullstackConnectPracticeLesson },
