@@ -1751,3 +1751,11 @@ LMS'ga yuklash foydalanuvchi qaroriga ko'ra.
   padding/margin/gap, `cssValue` text-align/display/justify-content/align-items/flex-direction) qo'shildi → **25/25**
   task halol yashil (16 JS + 9 CSS). smoke-shared 5/5 (CssLesson1, Htmllesson1, JsLoops, CssLesson2, CssPractice);
   lint:jsx kompilyator 0; `lms/html-compiler.jsx` qayta yig'ildi (105 KB) — LMS'ga YUKLANMAGAN.
+
+**ORALIQ NASHR TAYYORLOVI (2026-08-17, K-C-05 dan oldin, foydalanuvchi buyrug'i):** `lms/` to'liq qayta yig'ildi
+(`f1b2a11`): 19 yakka + 19 shared, kompilyator K-P-01…K-C-04 (MD5 `85db809e`). smoke-lms yakka 14/19 (5 PM darsi
+«kompilyator: yo'q» — smoke-lms'da PM KODING-urug'i yo'q, HEAD'dagi eski bundle ham shunday → avvaldan, regressiya
+emas; PmLesson1.shared smoke-shared ISHLAYDI). Rollback-nusxa: `arxiv/lms-rollback/html-compiler.2026-08-17-live-
+a9141db9.jsx` (= LMS'dagi hozirgi `f9e30f4a….jsx`, commit `dc7bdad`). Yuklash-tartibi: (1) `lms/html-compiler.jsx` →
+course_artifacts → YANGI URL; (2) shu URL bilan `build-lms.mjs --shared <URL>` → 19 shared qayta; (3) jonli
+darslar (JsVars, Htmllesson1) + JsFunctions shared yuklanadi. Yuklashdan keyin K-C-05.
