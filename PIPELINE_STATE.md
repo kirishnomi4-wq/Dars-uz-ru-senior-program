@@ -1977,7 +1977,28 @@ barcha darslar (M1/M2 21 + m3-02) BITTA `HtmlCompiler`dan. `lms/`: 21+1 shared (
 Ochiq qarorlar: PmLesson6 nusxalash-taqiqi · natija-karta ko'rinishi (PmLesson5/6/UserStory) · `lms/html-compiler.jsx` (MD5 `7b954027`, №14 bilan) LMS'da
 hali `4340b314` (K-P-01…K-C-14) — nashrda kompilyator ham yangilansa, shared'lar yangi URL bilan qayta yig'iladi.
 
-**KEYINGI NAVBAT: YAKUNIY YIG'ISH (foydalanuvchi buyrug'i) → bir martalik nashr. Kompilyator-hisobot qolgan tartibi: №15 K-C-15=K-P-08 (`"</script>"`
+**QARORLAR (foydalanuvchi, 2026-08-17):** PmLesson6 paste-taqiq — HOZIRCHA YO'Q; **DIZAYN-QARZ: `task.noPaste` kontrakti — jonli o'qitishda ehtiyoj sezilsa
+qilinadi.** PmUserStory starter — ma'qul. Kompilyator nashrda yangilanadi → yakuniy yig'ish IKKI bosqichli.
+- [x] **YAKUNIY PAKET tayyor (`177ee1a`)** — 7 kompilyatorsiz yakka bundle (Internet/Git/Deploy/JsIntro/Practice2/3/4) — smoke-lms **7/7** (dars ochildi,
+  0 sahifa-xato; «kompilyator: kutilmaydi» rejimi). **VOSITA-BUGLAR (tuzatildi):** `build-lms.mjs` `--shared`siz rejimda `filter(i !== sharedIdx+1)` =
+  `i !== 0` → 1-nishon yutilib HAMMA dars yig'ilardi (tasodifan qayta yig'ilgan 19 yakka `git checkout` bilan qaytarildi, PmLesson5/6 yakka o'chirildi);
+  banner endi «Kompilyator: yo'q» deb yozadi. `smoke-lms.mjs` — bundle'da `hc-root` bo'lmasa 3-qadam o'tkaziladi.
+  **YUKLASH TARTIB-VARAQASI (ikki bosqich):**
+  **A-bosqich (foydalanuvchi):** `lms/html-compiler.jsx` — **MD5 `7b954027`, 124 825 bayt** (K-P-01…№14) → LMS course_artifacts → YANGI URL.
+  Rollback: `4340b314…` (K-P-01…K-C-14) va `e069aaaa…` LMS'da tirik.
+  **B-bosqich (yangi URL kelgach, bu yerda):** `node scripts/build-lms.mjs --shared <URL> <manba>` × 22 → 22 shared qayta (MD5'lar yangi) → smoke-shared
+  3–5 dars → to'liq ro'yxat + MD5 → foydalanuvchi yuklaydi. **Yuklanadigan 29 fayl:** 22 shared (CssLesson1/2, CssPractice, Htmllesson1/2, HtmlPractice,
+  HtmlTakrorlashLesson, JsConditions/JsFunctions/JsLoops/JsVars, PeanStack, PmLesson1/2/3/4/9, PracticeLesson1, VsCodeLesson — LMS'da yozuvi BOR;
+  **PmLesson5, PmLesson6, PmUserStoryLesson — «ehtimol yangi» yozuv**) + 7 yakka (**Internet/Git/Deploy/JsIntro/Practice2/3/4 — «ehtimol yangi»**;
+  MD5: 0c9440ba/328cfbc8/58c89e02/48488642/5a7fa6c8/a43a206c/fc7a7822). Bu tomondan LMS-yozuv borligini tekshirib bo'lmaydi.
+  **Yuklashdan keyingi qo'l-tekshiruv (10 daqiqa):** (1) buzuq-saqlov (K-K-10) · (2) xato-satr `script.js:3` + ru (K-C-09) · (3) alert/prompt ⚠ + modal-null
+  (K-C-14) · (4) **PmLesson5 KODING — ESKI PROGRESS:** avval eski nusxada kod yozib chiqib, yangisida ochganda kod joyida (starter = `pm-m2d7-code`.code),
+  chip 3/3 · (5) PmLesson6 `chiqar()` — starter boshida yordamchi, 4 chip (jargon «server» → 4-chip qizil, so'z hint'da) · (6) PmUserStory — bitta task:
+  3 hikoya `console.log` → 3/3 · (7) №14 konsol-panel: `for(i<800) console.log(i)` → «500 · eng eski 300 yashirildi», pastda; tepaga surib yangi log →
+  «↓ yangi N»; `console.log(new Map([[1,2]]), document.body)` → `Map(1) {1 => 2} <body>`; `console.table([{a:1}])` · (8) yakka bundle'dan bittasi —
+  GitLesson ochilishi (kompilyatorsiz).
+
+**KEYINGI NAVBAT: A-bosqich (foydalanuvchi kompilyator 7b954027 yuklaydi) → B-bosqich (yangi URL bilan 22 shared qayta) → nashr. Kompilyator-hisobot qolgan tartibi: №15 K-C-15=K-P-08 (`"</script>"`
 satr ichida) → №16 K-P-02/03/18/17 (havola/tarix/meta-refresh) → №17 K-P-10 (baseStyle bo'yash) → №18 K-P-12/13/K-M-24 (layout 600px,
 scroll, 14 shart) → №19 K-E-02…06 (muharrir) → №20 K-K-11/06/07/05 (holat-saqlov, debounce-flush) → №21 K-K-13=K-P-26 (ikki
 kompilyator — `<style>` qismi K-C-06 da yopildi, nonce-qismi ochiq) → №22 K-M-04…11 (matn) → №7 K-C-10 (`<script>` ichini linter HTML
