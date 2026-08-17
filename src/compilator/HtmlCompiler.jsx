@@ -899,8 +899,11 @@ ${opts.capture ? '' : IMG_FALLBACK /* faqat KO'RINADIGAN preview; tekshiruv-hujj
 ${html || ''}
 <script>${js || ''}<\/script>
 ${opts.harness || ''}
+${opts.doneNonce != null ? `<script>try{parent.postMessage({__hcDone:true,nonce:${JSON.stringify(opts.doneNonce)}},'*')}catch(e){}<\/script>` : ''}
 </body>
 </html>`;
+// K-P-01: `__hcDone` — o'quvchi skripti (sinxron qismi) TUGAGANINI bildiradi. Cheksiz
+// sikl bo'lsa bu xabar hech qachon kelmaydi → ota-oyna watchdog bilan qotganini biladi.
 
 function HtmlCompiler({
   task = DEFAULT_TASK,
@@ -980,6 +983,51 @@ function HtmlCompiler({
   // Tekshiruv hujjati — alohida YASHIRIN iframe'da ishlaydi (tugmani bosadi,
   // DOMni o'zgartiradi — lekin foydalanuvchi buni ko'rmaydi)
   const [checkDoc, setCheckDoc] = useState('');
+
+  // ── K-P-01: QOTGAN KOD WATCHDOG'I (cheksiz sikl) ──────────────────────────────
+  // O'lchandi (dev/hc-stend/x-recreate*.mjs): sandbox-iframe'lar BITTA jarayonda — biri
+  // `while(true){}` da qotsa ikkinchisi ham qotadi, `srcdoc` almashtirish tiklamaydi;
+  // faqat HAMMA iframe DOM'dan olib tashlansa jarayon o'ladi va yangi frame ishlaydi.
+  // Shuning uchun: har hujjat `__hcDone` (yoki hisobot) yuboradi; HUNG_MS ichida kelmasa →
+  // frame'lar o'chiriladi (jarayon o'ladi) → 120 ms → yangi `key` bilan qayta yaratiladi
+  // (oxirgi kod bilan BIR marta; yana qotsa keyingi tahrirgacha o'chiq qoladi) + xabar.
+  const HUNG_MS = 3000;
+  const HUNG_MSG = tr({
+    uz: '⏱ Kod juda uzoq ishladi — sikl tugamayapti (cheksiz sikl?). Shartni tekshiring: sanagich o\'zgaryaptimi (masalan i++)?',
+    ru: '⏱ Код работал слишком долго — цикл не заканчивается (бесконечный цикл?). Проверьте условие: меняется ли счётчик (например i++)?',
+  });
+  const [frameGen, setFrameGen] = useState(0);        // iframe `key` — oshsa yangi frame
+  const [framesOff, setFramesOff] = useState(false);  // true = iframe'lar DOM'da yo'q
+  const [hung, setHung] = useState(false);            // xabar ko'rsatish uchun
+  const doneNonceRef = useRef(0);                     // preview hujjatining «tugadi» nonce'i
+  const pendingRef = useRef({});                      // { doc: nonce|null, check: nonce|null }
+  const dogRef = useRef(null);
+  const killedForRef = useRef(null);                  // qaysi (doc,check) juftlik uchun o'ldirilgan
+  const armDog = () => {
+    clearTimeout(dogRef.current);
+    dogRef.current = setTimeout(() => {
+      const p = pendingRef.current;
+      if (p.doc == null && p.check == null) return;   // hammasi yetib keldi
+      const sigKill = `${p.doc}/${p.check}`;
+      setHung(true);
+      pendingRef.current = {};
+      setFramesOff(true);                             // 1) frame'lar yo'q → jarayon o'ladi
+      if (killedForRef.current === sigKill) return;   // shu kod uchun allaqachon qayta urinilgan — o'chiq qoladi
+      killedForRef.current = sigKill;
+      setTimeout(() => {                              // 2) yangi frame'lar — o'sha kod bilan bir marta
+        setFrameGen((g) => g + 1); setFramesOff(false);
+        pendingRef.current = { ...p }; armDog();      // yana qotsa — yuqoridagi shart o'chiq qoldiradi
+      }, 120);
+    }, HUNG_MS);
+  };
+  const expect = (which, nonce) => { pendingRef.current = { ...pendingRef.current, [which]: nonce }; armDog(); };
+  const settle = (which, nonce) => {                  // xabar keldi — kutish ro'yxatidan chiqadi
+    if (pendingRef.current[which] !== nonce) return;
+    pendingRef.current = { ...pendingRef.current, [which]: null };
+    const p = pendingRef.current;
+    if (p.doc == null && p.check == null) { clearTimeout(dogRef.current); setHung(false); }
+  };
+  useEffect(() => () => clearTimeout(dogRef.current), []);
   // ── PREVIEW QACHON YANGILANADI (F-0809-03) ────────────────────────────────
   // HTML/CSS darslarida — JONLI: bola yozadi, darrov ko'radi (1-modulning zavqi).
   // JS fayli bor darslarda — QO'LDA: har bosishda iframe qayta yuklansa, bola o'z
@@ -992,12 +1040,16 @@ function HtmlCompiler({
   const [stale, setStale] = useState(false);
   useEffect(() => {
     const id = setTimeout(() => {
+      // K-P-01: yangi kod keldi — qotgan holat tashlanadi, frame'lar (kerak bo'lsa) qaytadi
+      setHung(false); setFramesOff(false);
       if (!manualRun) {
-        setDoc(mkDoc());
+        const dn = ++doneNonceRef.current;
+        setDoc(mkDoc({ doneNonce: dn })); expect('doc', dn);
       } else if (lastRunRef.current === null) {
         const cn = ++consoleNonceRef.current;     // birinchi ochilish — bir marta o'zi yuradi
+        const dn = ++doneNonceRef.current;
         setConsoleLines([]);
-        setDoc(mkDoc({ consoleNonce: cn }));
+        setDoc(mkDoc({ consoleNonce: cn, doneNonce: dn })); expect('doc', dn);
         lastRunRef.current = sig;
         setStale(false);
       } else {
@@ -1006,7 +1058,7 @@ function HtmlCompiler({
       if (hasRuntime) {
         const nonce = ++nonceRef.current;
         setRuntimeResults({}); // kutish holatiga qaytaramiz
-        setCheckDoc(mkDoc({ capture: true, harness: buildHarness(runtimeProbes, nonce) }));
+        setCheckDoc(mkDoc({ capture: true, harness: buildHarness(runtimeProbes, nonce) })); expect('check', nonce);
       }
     }, 300);
     return () => clearTimeout(id);
@@ -1019,11 +1071,22 @@ function HtmlCompiler({
       const d = e.data;
       if (d && d.__hcReport && d.nonce === nonceRef.current) {
         setRuntimeResults(d.results || {});
+        settle('check', d.nonce);   // K-P-01
       }
     };
     window.addEventListener('message', onMsg);
     return () => window.removeEventListener('message', onMsg);
   }, [hasRuntime]);
+
+  // K-P-01: preview hujjati «tugadi» dedi — watchdog uchun
+  useEffect(() => {
+    const onDone = (e) => {
+      const d = e.data;
+      if (d && d.__hcDone && d.nonce === doneNonceRef.current) settle('doc', d.nonce);
+    };
+    window.addEventListener('message', onDone);
+    return () => window.removeEventListener('message', onDone);
+  }, []);
 
   // Preview iframe'dan kelgan console.log xabarlarini yig'amiz (faqat oxirgi nonce)
   useEffect(() => {
@@ -1067,7 +1130,7 @@ function HtmlCompiler({
   const merged = reqs.map((r, i) => {
     if (r.check && r.check.__runtime) {
       const got = runtimeResults[r.id];
-      if (got === undefined) return { ok: false, hint: tr({ uz: 'ishga tushirilmoqda…', ru: 'запускается…' }) };
+      if (got === undefined) return { ok: false, hint: hung ? HUNG_MSG : tr({ uz: 'ishga tushirilmoqda…', ru: 'запускается…' }) };
       return { ok: !!got, hint: got ? null : (tr(r.check.hint) || tr({ uz: 'natija kutilgancha emas', ru: 'результат не такой, как ожидалось' })) };
     }
     return results[i];
@@ -1592,7 +1655,9 @@ function HtmlCompiler({
   const runNow = () => {
     const cn = showConsole ? ++consoleNonceRef.current : null;
     if (showConsole) setConsoleLines([]);
-    setDoc(mkDoc(cn != null ? { consoleNonce: cn } : {}));
+    const dn = ++doneNonceRef.current;               // K-P-01
+    setHung(false); setFramesOff(false); killedForRef.current = null;
+    setDoc(mkDoc(cn != null ? { consoleNonce: cn, doneNonce: dn } : { doneNonce: dn })); expect('doc', dn);
     lastRunRef.current = sig;
     setStale(false);
     if (narrow) setPane('result');   // tor ekranda «Ishga tushirish» natija tabini ochadi
@@ -1845,12 +1910,19 @@ function HtmlCompiler({
               ? <span className="hc-stale">{tr({ uz: 'eskirdi · ▶ bosing', ru: 'устарело · нажмите ▶' })}</span>
               : <span className="hc-live">{tr({ uz: 'jonli', ru: 'live' })}</span>}
           </div>
-          <iframe
-            className="hc-frame"
-            title="natija"
-            sandbox="allow-scripts allow-popups allow-popups-to-escape-sandbox"
-            srcDoc={doc}
-          />
+          {/* K-P-01: `key` — qotgan frame tashlanib yangisi yaratiladi; framesOff — jarayon o'lsin */}
+          {!framesOff && (
+            <iframe
+              key={frameGen}
+              className="hc-frame"
+              title="natija"
+              sandbox="allow-scripts allow-popups allow-popups-to-escape-sandbox"
+              srcDoc={doc}
+            />
+          )}
+          {hung && (
+            <div className="hc-hung" role="alert">{HUNG_MSG}</div>
+          )}
           {showConsole && (
             <div className="hc-console">
               <div className="hc-console-bar">
@@ -1878,8 +1950,9 @@ function HtmlCompiler({
 
       {/* Yashirin tekshiruv iframe'i — probe'lar shu yerda ishlaydi (tugmani
           bosadi, DOMni o'zgartiradi), foydalanuvchi ko'radigan preview esa toza qoladi */}
-      {hasRuntime && (
+      {hasRuntime && !framesOff && (
         <iframe
+          key={frameGen}
           aria-hidden="true"
           tabIndex={-1}
           title="tekshiruv"
@@ -2030,6 +2103,7 @@ function StyleTag() {
       .hc-code,.hc-hl,.hc-gutter,.hc-err,.hc-count,.hc-pane-name,.hc-tab,.hc-console-title,.hc-console-body{font-feature-settings:"liga" 0,"calt" 0}
 
       .hc-frame{flex:1;min-height:0;width:100%;border:none;background:#fff}
+      .hc-hung{flex:1;min-height:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:24px;font-size:14px;line-height:1.55;font-weight:700;color:#9A2A0F;background:#FFF1EC;border-top:2px solid ${HC_T.accent}}
 
       .hc-console{flex-shrink:0;height:34%;min-height:96px;display:flex;flex-direction:column;background:${HC_CODE.bg};border-top:1px solid rgba(255,255,255,.07)}
       .hc-console-bar{display:flex;align-items:center;gap:8px;padding:7px 14px;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7E92B4;border-bottom:1px solid rgba(255,255,255,.06)}

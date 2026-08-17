@@ -1518,3 +1518,96 @@ yo'li pilotda). Audit: 41 darsdan 40 tasi faqat react+kompilyator import qiladi 
 tayyor); yagona istisno PmLesson7 (`mentor.png` lokal import — o'z navbatida tozalanadi).
 
 **Commit YO'Q.** UNCOMMITTED.
+
+## 2026-08-17 — MVP: 19 dars URL-yo'lida tashqi kompilyatorga o'tkazildi (`lms/*.shared.jsx`) — ✅
+
+**Kontekst.** LMS 3-raund javobi (`lms-sinov/JAVOB_RAUND_3_UZ (2).md`, 2026-08-14): modul toza
+(98 252 bayt, MD5 `a9141db9…` — bizniki bilan mos; xatimizdagi «96 252» yozuv-xatosi edi),
+ro'yxatga qo'yish huquqi bizda (CRM → Media kutubxona → Umumiy modullar), `version.json`
+chiqarilgan (tekshirildi: build 117). `registry.json` hali `{"modules":{}}` — bo'sh.
+**Foydalanuvchi qarori:** ro'yxatni kutmay MVP — hozirgi URL bilan barcha darslar.
+
+**Kompilyator «to'liq»mi — tekshirildi:** `build-shared-module.mjs` hozirgi manbadan qayta
+yig'ildi → 08-13 artifact bilan bayt-bayt bir xil (faqat HC_NASHR sanasi). Ya'ni serverdagi
+`f9e30f4a….jsx` = to'liq HtmlCompiler (default+checks+highlight+formatHtml). QAYTA YUKLASH
+SHART EMAS. `lms/html-compiler.jsx` server-nusxa bilan aynan (MD5 mos) qoldirildi.
+
+**Yig'uv:** `node scripts/build-lms.mjs --shared https://go.coddycamp.uz/uploads/course_artifacts/f9e30f4aaecfeada4e3482bfe60877d2.jsx`
+→ 19 dars `lms/*.shared.jsx` (268–403 KB, 2 import: react + modul-URL; HtmlPractice 3: +react-dom).
+
+**Smoke (`smoke-shared.mjs`) — 19/19 × React 19.2.7 va 18.3.1 = 38/38 O'TDI.** Yo'lda 2 harness-
+nuqsoni topilib tuzatildi (darslar emas):
+- `react-dom` importmap'da yo'q edi → HtmlPractice (`createPortal`) soxta sindi. LMS resolveri
+  react-dom beradi (TZ v2 «Mavjud modullar») — importmap'ga `react-dom` yuzi qo'shildi.
+- PM darslarda hw-mexanizmi yo'q (`ccPractice` urug'i ishlamaydi) → kompilyator qatlami ochilmadi.
+  Endi skript darsdan `KODING_KEY` + `SCREEN_META`dagi `type:'koding'` indeksini o'qib
+  `ccProgress` + `{open:true}` urug'i bilan KODING-ekranga sakraydi. Ikkala naqsh avto-tanlanadi.
+- Yozish-sinovi kursorni satr o'rtasiga tushirib `console.log(qabul// salom` qilardi (PmLesson9
+  «Unexpected end of input») → `Ctrl+End`+`Enter` dan keyin yoziladi.
+
+**Keyingi qadam (foydalanuvchi):** 19 faylni CRM'ga yuklash (JsVarsLesson allaqachon shu
+ko'rinishda ishlagan). Kelishuv: kompilyator yangilansa → yangi URL → 19 dars qayta yig'ilib
+qayta yuklanadi; registry ochilgach bir buyruq bilan `@shared/html-compiler`ga o'tiladi.
+React 18 sinov-papkasi: scratchpad `react18/` (REACT_DIR).
+
+**Commit YO'Q.** UNCOMMITTED (scripts/smoke-shared.mjs + lms/*.shared.jsx yangi).
+
+## 2026-08-17 — Htmllesson1.shared.jsx HAQIQIY LMS'da ishladi + F-0817-01 (kuzatuv) — ✅
+
+Foydalanuvchi `Htmllesson1.shared.jsx` (403 KB, eng og'iri) ni LMS'ga yukladi:
+`lms.coddycamp.uz/course/20/module/70/2417`, RU-rejim — kompilyator tashqi moduldan ochildi,
+avto-to'ldirish menyusi, jonli natija, shart-chiplari, maslahat-satri — hammasi ishladi
+(rasm: `feedback/F-0817-01-lms-htmllesson1-live-panel-overlap.png`). Endi haqiqiy LMS'da
+2 dars tasdiqlangan (JsVars + Htmllesson1); qolgan 17 tasi yuklanish navbatida.
+
+**F-0817-01 (kuzatuv, tuzatilmagan):** rasmda jonli-sessiya paneli («● Код: 877 … Показать ·
+Отпустить») ekran-eyebrow'i («ПРАКТИКА · ЗАГОЛОВОК») ustiga tushgan — ustma-ust. Tashxis
+kerak: bizning saytda ham shundaymi yoki faqat LMS-qobiqda (tepa-offset farqi)? Foydalanuvchi
+qaror bermaguncha tegilmaydi.
+
+## 2026-08-17 — KOMPILYATOR CHUQUR TESTI (faqat tashxis) — `KOMPILYATOR_TEST_HISOBOT.md` — ✅ hisobot, tuzatish YO'Q
+
+Foydalanuvchi buyrug'i: kompilyatorni shoshilmasdan, o'ta chuqur testlab, BARCHA kamchiliklarni MD'ga
+yozish; tuzatish foydalanuvchi ko'rib chiqqach. Stend: `dev/hc-stend/` (kompilyator yakka holda,
+React 19, `window.mountHC(props)`, playwright-core + Chrome). 5 parallel sinovchi (checks · editor ·
+preview/runtime · matn/i18n · kontrakt/holat) — har biri kodni o'qidi + brauzerda sinadi, topilmalar
+2× tasdiqlangan. Manba `src/compilator/HtmlCompiler.jsx` TEGILMAGAN.
+
+Natija: 142 xom topilma (🔴7 · 🟠41 · 🟡63 · 🔵31), takrorlar birlashtirilgach ≈125 noyob. Bosh
+hujjat: `KOMPILYATOR_TEST_HISOBOT.md` (1-bo'lim manzara + nima yaxshi, 2-bo'lim 22 ta ustuvor
+birlashtirilgan muammo, §A–§E to'liq hisobotlar satr-raqam va dalil bilan). Asl hisobotlar/skriptlar/
+skrinshotlar `dev/hc-stend/`da. Ziddiyat hal qilindi: cheksiz sikl — checks-sinovchi «tiklanadi»
+degan, qayta sinov (t-preview-2c) RAD → K-P-01 🔴 (kod tuzatilgach ham iframe qotgan qoladi).
+
+Eng og'irlari: cheksiz sikl qotirishi · `cssValue` hex/0/qisqa-xossa hech qachon o'tmaydi ·
+runtime-hisobot spoof (`e.source` yo'q) · fayl-tablar tor panelda ko'rinmaydi · til almashuvida
+eski til qoladi · linter-xabari kesiladi · `<script>` ichi HTML deb lintlanadi · oq-ekran sinfi
+(ErrorBoundary yo'q) · `@import` dars-origin'dan tarmoq · JS xato-satrsiz.
+
+Yon-kuzatuv (bu seansniki EMAS): `src/4-Modull/PmLesson13/14.jsx`, `src/4a-Modull/PmLesson15.jsx`,
+`src/m34-demo/M34DemoApp.jsx` va `scripts/_tmp-*.mjs` 13:57–15:09 da o'zgargan — parallel seans
+ishi bo'lsa kerak; tegilmadi.
+
+**Commit YO'Q.** UNCOMMITTED.
+
+## 2026-08-17 — KOMPILYATOR TUZATISH-KONVEYERI (KOMPILYATOR_TEST_HISOBOT.md bo'yicha, birma-bir)
+
+Tartib (foydalanuvchi): 7 qizil → cssValue → to'q sariqlar. Har tuzatish: stendda qayta chiqarish →
+minimal tuzatish → stend-skript qayta → 3 dars regressiya (CssLesson1, Htmllesson1, JsLoopsLesson) →
+alohida commit. 2 urinishda o'tmasa — to'xtab hisobot.
+
+- [x] **K-P-01 (= K-C-13) — cheksiz sikl** — tuzatildi, stendda tasdiqlandi.
+  Qayta chiqarish: `t-preview-2c.mjs` (40 s HUNG, tuzatishdan keyin chip yashil bo'lmadi).
+  O'lchov (`x-recreate.mjs`, `x-recreate2.mjs`): sandbox-iframe'lar bir jarayonda; `srcdoc`
+  almashtirish tiklamaydi; faqat HAMMA iframe DOM'dan olib tashlansa jarayon o'ladi, 300 ms dan keyin
+  yangi frame ishlaydi. Yechim (minimal, arxitektura o'zgarmadi): (a) hard-timeout — har hujjat
+  oxirida `__hcDone` (tekshiruv-iframe'da hisobot o'zi), 3 s ichida kelmasa qotgan; (b) ikkala iframe
+  o'chiriladi (`framesOff`) → 120 ms → yangi `key={frameGen}` bilan qayta yaratiladi — o'sha kod bilan
+  bir marta, yana qotsa keyingi tahrirgacha o'chiq; (c) natija-panelda `.hc-hung` banner + runtime-chip
+  maslahati «⏱ Kod juda uzoq ishladi — sikl tugamayapti…» (uz/ru); `setTimeout(runProbes,50)`
+  taym-autsizligi shu watchdog bilan yopildi. Yangi kod kelganda / ▶ bosilganda holat tozalanadi.
+  Sinov: `t-kp01-b/c/d/e.mjs` — HTML-jonli qotish → 3 s da banner → tuzatilgach 1,5 s da natija;
+  3 s ichida tuzatilsa ham tiklanadi; JS-fayl + runtime-shart (yashirin iframe) qotish → chip-hint
+  banner → tuzatilgach yashil. Regressiya: smoke-shared 3/3 dars 7/7; `tc-4-runtime.mjs` (checks-
+  sinovchi) natijalari o'zgarmadi; lint:jsx kompilyator 0. Modul qayta yig'ildi (`lms/html-compiler.jsx`
+  99 KB, nashr 2026-08-17) — LMS'ga hali YUKLANMAGAN (qizillar tugagach bitta nashr).

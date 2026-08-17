@@ -1,7 +1,7 @@
 // ============================================================
 //  UMUMIY MODUL — LMS TASHQI-MODUL (avto-yig'ilgan, QO'LDA TAHRIRLAMANG)
 //  Manba:   src/compilator/HtmlCompiler.jsx
-//  Nashr:   2026-08-13
+//  Nashr:   2026-08-17
 //  Mazmun:  sof ESM, JSX YO'Q, faqat `react` import qilinadi.
 //  Eksport: default (kompilyator) · checks · HC_NASHR
 //  Qayta yig'ish:  node scripts/build-shared-module.mjs
@@ -936,6 +936,7 @@ ${opts.capture ? "" : IMG_FALLBACK}
 ${html || ""}
 <script>${js || ""}<\/script>
 ${opts.harness || ""}
+${opts.doneNonce != null ? `<script>try{parent.postMessage({__hcDone:true,nonce:${JSON.stringify(opts.doneNonce)}},'*')}catch(e){}<\/script>` : ""}
 </body>
 </html>`;
 function HtmlCompiler({
@@ -994,18 +995,69 @@ function HtmlCompiler({
   const mkDoc = (extra = {}) => wrapDoc(html, css, js, { previewCss: task.previewCss, ...extra });
   const [doc, setDoc] = useState(() => wrapDoc(html, css, js, { previewCss: task.previewCss }));
   const [checkDoc, setCheckDoc] = useState("");
+  const HUNG_MS = 3e3;
+  const HUNG_MSG = tr({
+    uz: "⏱ Kod juda uzoq ishladi — sikl tugamayapti (cheksiz sikl?). Shartni tekshiring: sanagich o'zgaryaptimi (masalan i++)?",
+    ru: "⏱ Код работал слишком долго — цикл не заканчивается (бесконечный цикл?). Проверьте условие: меняется ли счётчик (например i++)?"
+  });
+  const [frameGen, setFrameGen] = useState(0);
+  const [framesOff, setFramesOff] = useState(false);
+  const [hung, setHung] = useState(false);
+  const doneNonceRef = useRef(0);
+  const pendingRef = useRef({});
+  const dogRef = useRef(null);
+  const killedForRef = useRef(null);
+  const armDog = () => {
+    clearTimeout(dogRef.current);
+    dogRef.current = setTimeout(() => {
+      const p = pendingRef.current;
+      if (p.doc == null && p.check == null) return;
+      const sigKill = `${p.doc}/${p.check}`;
+      setHung(true);
+      pendingRef.current = {};
+      setFramesOff(true);
+      if (killedForRef.current === sigKill) return;
+      killedForRef.current = sigKill;
+      setTimeout(() => {
+        setFrameGen((g) => g + 1);
+        setFramesOff(false);
+        pendingRef.current = { ...p };
+        armDog();
+      }, 120);
+    }, HUNG_MS);
+  };
+  const expect = (which, nonce) => {
+    pendingRef.current = { ...pendingRef.current, [which]: nonce };
+    armDog();
+  };
+  const settle = (which, nonce) => {
+    if (pendingRef.current[which] !== nonce) return;
+    pendingRef.current = { ...pendingRef.current, [which]: null };
+    const p = pendingRef.current;
+    if (p.doc == null && p.check == null) {
+      clearTimeout(dogRef.current);
+      setHung(false);
+    }
+  };
+  useEffect(() => () => clearTimeout(dogRef.current), []);
   const manualRun = showConsole;
   const sig = `${html}\0${css}\0${js}`;
   const lastRunRef = useRef(null);
   const [stale, setStale] = useState(false);
   useEffect(() => {
     const id = setTimeout(() => {
+      setHung(false);
+      setFramesOff(false);
       if (!manualRun) {
-        setDoc(mkDoc());
+        const dn = ++doneNonceRef.current;
+        setDoc(mkDoc({ doneNonce: dn }));
+        expect("doc", dn);
       } else if (lastRunRef.current === null) {
         const cn = ++consoleNonceRef.current;
+        const dn = ++doneNonceRef.current;
         setConsoleLines([]);
-        setDoc(mkDoc({ consoleNonce: cn }));
+        setDoc(mkDoc({ consoleNonce: cn, doneNonce: dn }));
+        expect("doc", dn);
         lastRunRef.current = sig;
         setStale(false);
       } else {
@@ -1015,6 +1067,7 @@ function HtmlCompiler({
         const nonce = ++nonceRef.current;
         setRuntimeResults({});
         setCheckDoc(mkDoc({ capture: true, harness: buildHarness(runtimeProbes, nonce) }));
+        expect("check", nonce);
       }
     }, 300);
     return () => clearTimeout(id);
@@ -1025,11 +1078,20 @@ function HtmlCompiler({
       const d = e.data;
       if (d && d.__hcReport && d.nonce === nonceRef.current) {
         setRuntimeResults(d.results || {});
+        settle("check", d.nonce);
       }
     };
     window.addEventListener("message", onMsg);
     return () => window.removeEventListener("message", onMsg);
   }, [hasRuntime]);
+  useEffect(() => {
+    const onDone = (e) => {
+      const d = e.data;
+      if (d && d.__hcDone && d.nonce === doneNonceRef.current) settle("doc", d.nonce);
+    };
+    window.addEventListener("message", onDone);
+    return () => window.removeEventListener("message", onDone);
+  }, []);
   useEffect(() => {
     if (!showConsole) return;
     const onMsg = (e) => {
@@ -1077,7 +1139,7 @@ function HtmlCompiler({
   const merged = reqs.map((r, i) => {
     if (r.check && r.check.__runtime) {
       const got = runtimeResults[r.id];
-      if (got === void 0) return { ok: false, hint: tr({ uz: "ishga tushirilmoqda…", ru: "запускается…" }) };
+      if (got === void 0) return { ok: false, hint: hung ? HUNG_MSG : tr({ uz: "ishga tushirilmoqda…", ru: "запускается…" }) };
       return { ok: !!got, hint: got ? null : tr(r.check.hint) || tr({ uz: "natija kutilgancha emas", ru: "результат не такой, как ожидалось" }) };
     }
     return results[i];
@@ -1566,7 +1628,12 @@ ${ind}`, s + 1 + ind.length);
   const runNow = () => {
     const cn = showConsole ? ++consoleNonceRef.current : null;
     if (showConsole) setConsoleLines([]);
-    setDoc(mkDoc(cn != null ? { consoleNonce: cn } : {}));
+    const dn = ++doneNonceRef.current;
+    setHung(false);
+    setFramesOff(false);
+    killedForRef.current = null;
+    setDoc(mkDoc(cn != null ? { consoleNonce: cn, doneNonce: dn } : { doneNonce: dn }));
+    expect("doc", dn);
     lastRunRef.current = sig;
     setStale(false);
     if (narrow) setPane("result");
@@ -1810,18 +1877,20 @@ ${ind}`, s + 1 + ind.length);
         title: tr({ uz: "Sudrang — panellar kengligi o'zgaradi · 2 marta bosish — teng", ru: "Тяните — изменится ширина панелей · двойной клик — поровну" })
       },
       /* @__PURE__ */ React.createElement("i", null)
-    ), /* @__PURE__ */ React.createElement("section", { className: "hc-pane hc-preview-pane" }, /* @__PURE__ */ React.createElement("div", { className: "hc-pane-bar" }, task.previewUrl ? /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement("span", { className: "hc-dots" }, /* @__PURE__ */ React.createElement("i", null), /* @__PURE__ */ React.createElement("i", null), /* @__PURE__ */ React.createElement("i", null)), /* @__PURE__ */ React.createElement("span", { className: "hc-url" }, /* @__PURE__ */ React.createElement("span", { className: "hc-lock" }, "●"), tr(task.previewUrl))) : /* @__PURE__ */ React.createElement("span", { className: "hc-pane-name" }, "📺 ", tr({ uz: "Natija", ru: "Результат" })), stale ? /* @__PURE__ */ React.createElement("span", { className: "hc-stale" }, tr({ uz: "eskirdi · ▶ bosing", ru: "устарело · нажмите ▶" })) : /* @__PURE__ */ React.createElement("span", { className: "hc-live" }, tr({ uz: "jonli", ru: "live" }))), /* @__PURE__ */ React.createElement(
+    ), /* @__PURE__ */ React.createElement("section", { className: "hc-pane hc-preview-pane" }, /* @__PURE__ */ React.createElement("div", { className: "hc-pane-bar" }, task.previewUrl ? /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement("span", { className: "hc-dots" }, /* @__PURE__ */ React.createElement("i", null), /* @__PURE__ */ React.createElement("i", null), /* @__PURE__ */ React.createElement("i", null)), /* @__PURE__ */ React.createElement("span", { className: "hc-url" }, /* @__PURE__ */ React.createElement("span", { className: "hc-lock" }, "●"), tr(task.previewUrl))) : /* @__PURE__ */ React.createElement("span", { className: "hc-pane-name" }, "📺 ", tr({ uz: "Natija", ru: "Результат" })), stale ? /* @__PURE__ */ React.createElement("span", { className: "hc-stale" }, tr({ uz: "eskirdi · ▶ bosing", ru: "устарело · нажмите ▶" })) : /* @__PURE__ */ React.createElement("span", { className: "hc-live" }, tr({ uz: "jonli", ru: "live" }))), !framesOff && /* @__PURE__ */ React.createElement(
       "iframe",
       {
+        key: frameGen,
         className: "hc-frame",
         title: "natija",
         sandbox: "allow-scripts allow-popups allow-popups-to-escape-sandbox",
         srcDoc: doc
       }
-    ), showConsole && /* @__PURE__ */ React.createElement("div", { className: "hc-console" }, /* @__PURE__ */ React.createElement("div", { className: "hc-console-bar" }, /* @__PURE__ */ React.createElement("span", { className: "hc-console-title" }, "🖥️ Console"), consoleLines.length > 0 && /* @__PURE__ */ React.createElement("button", { className: "hc-console-clear", onClick: () => setConsoleLines([]) }, tr({ uz: "tozalash", ru: "очистить" }))), /* @__PURE__ */ React.createElement("div", { className: "hc-console-body" }, consoleLines.length === 0 ? /* @__PURE__ */ React.createElement("div", { className: "hc-console-empty" }, tr({ uz: "console.log(...) natijasi shu yerda chiqadi", ru: "результат console.log(...) появится здесь" })) : consoleLines.map((l, i) => /* @__PURE__ */ React.createElement("div", { key: i, className: `hc-console-line lvl-${l.level}` }, /* @__PURE__ */ React.createElement("span", { className: "hc-console-caret" }, "›"), /* @__PURE__ */ React.createElement("span", { className: "hc-console-text" }, l.text))))))),
-    hasRuntime && /* @__PURE__ */ React.createElement(
+    ), hung && /* @__PURE__ */ React.createElement("div", { className: "hc-hung", role: "alert" }, HUNG_MSG), showConsole && /* @__PURE__ */ React.createElement("div", { className: "hc-console" }, /* @__PURE__ */ React.createElement("div", { className: "hc-console-bar" }, /* @__PURE__ */ React.createElement("span", { className: "hc-console-title" }, "🖥️ Console"), consoleLines.length > 0 && /* @__PURE__ */ React.createElement("button", { className: "hc-console-clear", onClick: () => setConsoleLines([]) }, tr({ uz: "tozalash", ru: "очистить" }))), /* @__PURE__ */ React.createElement("div", { className: "hc-console-body" }, consoleLines.length === 0 ? /* @__PURE__ */ React.createElement("div", { className: "hc-console-empty" }, tr({ uz: "console.log(...) natijasi shu yerda chiqadi", ru: "результат console.log(...) появится здесь" })) : consoleLines.map((l, i) => /* @__PURE__ */ React.createElement("div", { key: i, className: `hc-console-line lvl-${l.level}` }, /* @__PURE__ */ React.createElement("span", { className: "hc-console-caret" }, "›"), /* @__PURE__ */ React.createElement("span", { className: "hc-console-text" }, l.text))))))),
+    hasRuntime && !framesOff && /* @__PURE__ */ React.createElement(
       "iframe",
       {
+        key: frameGen,
         "aria-hidden": "true",
         tabIndex: -1,
         title: "tekshiruv",
@@ -1967,6 +2036,7 @@ function StyleTag() {
       .hc-code,.hc-hl,.hc-gutter,.hc-err,.hc-count,.hc-pane-name,.hc-tab,.hc-console-title,.hc-console-body{font-feature-settings:"liga" 0,"calt" 0}
 
       .hc-frame{flex:1;min-height:0;width:100%;border:none;background:#fff}
+      .hc-hung{flex:1;min-height:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:24px;font-size:14px;line-height:1.55;font-weight:700;color:#9A2A0F;background:#FFF1EC;border-top:2px solid ${HC_T.accent}}
 
       .hc-console{flex-shrink:0;height:34%;min-height:96px;display:flex;flex-direction:column;background:${HC_CODE.bg};border-top:1px solid rgba(255,255,255,.07)}
       .hc-console-bar{display:flex;align-items:center;gap:8px;padding:7px 14px;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7E92B4;border-bottom:1px solid rgba(255,255,255,.06)}
@@ -2090,5 +2160,5 @@ export {
   highlight
 };
 
-export const HC_NASHR = '2026-08-13';
+export const HC_NASHR = '2026-08-17';
 
