@@ -1930,6 +1930,24 @@ BIRINCHI ISH); (3) jonli darslar (JsVars, Htmllesson1) + JsFunctions shared yukl
 **REJA O'ZGARDI (foydalanuvchi, 2026-08-17):** 19 shared LMS'ga YUKLANMADI — endi BARCHA darslar tayyorlanib, oxirida hammasi bir martada yuklanadi.
 №14 dan keyin: KONVERSIYA vazifasi (foydalanuvchi beradi) → yakuniy yig'ish → bir martalik nashr. Kompilyator jonli = `4340b314…` (K-P-01…K-C-14).
 
+## KONVERSIYA — M1/M2 darslari yangi kompilyator-zanjirga (2026-08-17, foydalanuvchi vazifasi; nashr — hammasi bir martada, keyin)
+**Tekshiruv-hisobot (o'zgarishsiz):** M1 14 + M2 13 = 27 dars. 19 tasi allaqachon zanjirda (`.shared.jsx`, import 1, URL `4340b314`);
+**2 tasi O'Z mini-kompilyatori bilan** — PmLesson5 (`HC_wrapDoc`+`window.__logs` ochiq, K-C-11 qarzi) va PmLesson6 (`KOD_wrapDoc`+`window.__out`+`chiqar()`,
+bir sinf); **6 tasi kompilyatorsiz** (JsIntro «sof tushuncha», Internet/Git/Deploy nazariy/vosita, Practice2/3/4 — o'z VS Code'ida) — konversiya kerak emas,
+lekin `lms/`da bundle YO'Q → yakuniy yig'ishda yakka bundle. PmUserStoryLesson (`src/pm/`, m3-02) — M1/M2 emas, o'sha qarz; foydalanuvchi qarori: shu
+konversiyada 3-nomer. **(d) hcpm-card baholandi:** kartani HtmlCompiler ustida saqlash = yangi kontrakt (`previewScript`/yashirin fayl) yoki o'quvchiga
+ko'rinadigan index.html + hook — qimmat/nozik → konsol-panel (foydalanuvchi rozi); **DIZAYN-QARZ:** «natija-karta» ko'rinishi kerak bo'lsa —
+`task.previewScript` kontrakti alohida seansda.
+- [x] **1/3 PmLesson5 (m2-07)** — `f1f4ed1`. Yechim: `import HtmlCompiler, { checks as C }`; `HC_PREVIEW_CSS/HC_HARNESS/HC_wrapDoc` + `PmCompiler` + o'lik
+  `hcp-*` CSS o'chirildi; `mkKodTask(starter)`: bitta fayl `ochilishRoyxati.js`, 3 shart — c1 `C.custom` (`if\s*\(` + `darajalar\[i\]`, eski semantika),
+  c2 `js: /===\s*("v1"|'v1')/`, c3 `eval` (natijada 3 v1-nom BOR, 3 boshqasi YO'Q → `'true'`, closure-harness ichida). Qobiq PmLesson4 naqshi (fixed
+  overlay, `storageKey=\`${KODING_KEY}:code\``, `onContinue({codes})` → `codes[KOD_FILE]`). **Saqlov-moslik:** eski `pm-m2d7-code`.code → task-starter
+  (`useMemo`, K-K-05), `open/done` o'sha kalitda; yangi kod `pm-m2d7-code:code` (HtmlCompiler formati, saqlangan bo'lsa starter'dan ustun).
+  Sinov `t-pm5.mjs` **13/13** (starter 0/3 · halol 3/3 · `'v1'` · `d = darajalar[i]` · shartsiz 0/3 · v2 → ✓✗✗ · bo'sh natija ✓✓✗ · `__logs` spoof
+  ta'sirsiz · faqat spoof 0/3 · cheksiz sikl — chip yashil emas · eski kod starter · yangi saqlov ustun · ru label). esbuild OK; `lms/PmLesson5.shared.jsx`
+  yig'ildi (309 KB, URL `4340b314`) — smoke-shared ISHLAYDI (7/7); lint:jsx PmLesson5 0; lint:til 1 topilma (`tavsiya-etiladi` :761/783 —
+  AVVALDAN, mentor-eslatma matni, konversiyaga tegishli emas — alohida matn-ishida). Residue-grep `__logs|HC_wrapDoc|PmCompiler|hcp-` = 0 (izohlardan tashqari).
+
 **KEYINGI NAVBAT: KONVERSIYA vazifasi (foydalanuvchi) → yakuniy yig'ish → bir martalik nashr. Kompilyator-hisobot qolgan tartibi: №15 K-C-15=K-P-08 (`"</script>"`
 satr ichida) → №16 K-P-02/03/18/17 (havola/tarix/meta-refresh) → №17 K-P-10 (baseStyle bo'yash) → №18 K-P-12/13/K-M-24 (layout 600px,
 scroll, 14 shart) → №19 K-E-02…06 (muharrir) → №20 K-K-11/06/07/05 (holat-saqlov, debounce-flush) → №21 K-K-13=K-P-26 (ikki
