@@ -388,6 +388,41 @@ var SNIPPETS = {
   img: { body: '<img src="" alt="">', caret: 10 }
 };
 var norm = (s) => (s || "").trim();
+var __cssNormEl = null;
+var cssNorm = (prop, val) => {
+  const raw = String(val ?? "").trim();
+  if (typeof document === "undefined") return raw;
+  try {
+    if (!__cssNormEl) __cssNormEl = document.createElement("div");
+    __cssNormEl.style.cssText = "";
+    __cssNormEl.style.setProperty(prop, raw);
+    return __cssNormEl.style.getPropertyValue(prop) || raw;
+  } catch {
+    return raw;
+  }
+};
+var __cssColorEl = null;
+var cssColorEq = (prop, a, b) => {
+  if (!/(^|-)color$/.test(prop) || typeof document === "undefined" || !document.body) return false;
+  try {
+    if (!__cssColorEl) {
+      __cssColorEl = document.createElement("i");
+      __cssColorEl.style.cssText = "position:absolute;width:0;height:0;overflow:hidden;visibility:hidden";
+    }
+    if (!__cssColorEl.isConnected) document.body.appendChild(__cssColorEl);
+    const comp = (v) => {
+      __cssColorEl.style.setProperty(prop, "");
+      __cssColorEl.style.setProperty(prop, String(v ?? "").trim());
+      if (!__cssColorEl.style.getPropertyValue(prop)) return null;
+      return getComputedStyle(__cssColorEl).getPropertyValue(prop);
+    };
+    const ca = comp(a), cb = comp(b);
+    __cssColorEl.style.setProperty(prop, "");
+    return !!ca && ca === cb;
+  } catch {
+    return false;
+  }
+};
 var stripJsComments = (src) => (src || "").replace(/\/\*[\s\S]*?\*\//g, " ").replace(/\/\/[^\n]*/g, " ");
 var checks = {
   // Teg/selektor mavjudmi?
@@ -426,9 +461,13 @@ var checks = {
     return hit ? true : tr(hint ?? { uz: `\`${selector}\` uchun \`${prop}\` xossasini yozing`, ru: `для \`${selector}\` задайте свойство \`${prop}\`` });
   },
   // CSS: selektorga shu xossa AYNAN shu qiymat bilan yozilganmi?
+  // K-C-01: o'quvchi qiymati CSSOM'dan NORMALLASHGAN holda keladi (`#ff0000`→`rgb(255, 0, 0)`,
+  // `0`→`0px`, `flex:1`→`1 1 0%`), kutilgan qiymat esa xom matn edi — hech qachon mos kelmasdi.
+  // Endi kutilgan qiymat ham O'SHA CSSOM orqali o'tkaziladi (cssNorm), keyin solishtiriladi.
   cssValue: (selector, prop, val, hint) => (x) => {
+    const want = cssNorm(prop, val);
     const hit = x.cssRules.some(
-      (r) => r.selector.split(",").map(norm).includes(norm(selector)) && norm(r.props[prop]) === norm(val)
+      (r) => r.selector.split(",").map(norm).includes(norm(selector)) && (norm(r.props[prop]) === norm(String(val ?? "")) || norm(r.props[prop]).toLowerCase() === want.toLowerCase() || cssColorEq(prop, r.props[prop], val))
     );
     return hit ? true : tr(hint ?? { uz: `\`${selector}\` da \`${prop}: ${val}\` yozing`, ru: `в \`${selector}\` напишите \`${prop}: ${val}\`` });
   },

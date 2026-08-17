@@ -347,6 +347,39 @@ const SNIPPETS = {
 //    ctx.cssRules                  — [{selector, props:{...}}] — parslangan CSS
 // ============================================================
 const norm = (s) => (s || '').trim();
+// K-C-01: kutilgan CSS qiymatini brauzerning o'zi bilan normallashtirish — o'quvchi qiymati
+// (stylesheet'dan) qanday serializatsiya bo'lsa, kutilgan ham shunday bo'ladi. Ajratilgan element,
+// tarmoq/layout yo'q. Yaroqsiz qiymat bo'lsa xom matn qaytadi.
+let __cssNormEl = null;
+const cssNorm = (prop, val) => {
+  const raw = String(val ?? '').trim();
+  if (typeof document === 'undefined') return raw;
+  try {
+    if (!__cssNormEl) __cssNormEl = document.createElement('div');
+    __cssNormEl.style.cssText = '';
+    __cssNormEl.style.setProperty(prop, raw);
+    return __cssNormEl.style.getPropertyValue(prop) || raw;
+  } catch { return raw; }
+};
+// Rang-xossalar (`color`, `background-color`, `border-color`…): CSSOM `white` ni `white`, `#fff` ni
+// `rgb(255, 255, 255)` deb saqlaydi — ikkalasi bir rang. Faqat shu xossalar uchun HISOBLANGAN
+// (computed) qiymat solishtiriladi; layout'ga bog'liq xossalarga (margin/auto…) tegilmaydi.
+let __cssColorEl = null;
+const cssColorEq = (prop, a, b) => {
+  if (!/(^|-)color$/.test(prop) || typeof document === 'undefined' || !document.body) return false;
+  try {
+    if (!__cssColorEl) { __cssColorEl = document.createElement('i'); __cssColorEl.style.cssText = 'position:absolute;width:0;height:0;overflow:hidden;visibility:hidden'; }
+    if (!__cssColorEl.isConnected) document.body.appendChild(__cssColorEl);
+    const comp = (v) => {
+      __cssColorEl.style.setProperty(prop, ''); __cssColorEl.style.setProperty(prop, String(v ?? '').trim());
+      if (!__cssColorEl.style.getPropertyValue(prop)) return null;   // yaroqsiz qiymat — solishtirilmaydi
+      return getComputedStyle(__cssColorEl).getPropertyValue(prop);
+    };
+    const ca = comp(a), cb = comp(b);
+    __cssColorEl.style.setProperty(prop, '');
+    return !!ca && ca === cb;
+  } catch { return false; }
+};
 
 // JS izohlarini olib tashlaymiz — izoh ichidagi matn `js` shartini ALDAB
 // o'tmasligi uchun (masalan starterdagi "// console.log ..." izohi).
@@ -403,9 +436,15 @@ const checks = {
   },
 
   // CSS: selektorga shu xossa AYNAN shu qiymat bilan yozilganmi?
+  // K-C-01: o'quvchi qiymati CSSOM'dan NORMALLASHGAN holda keladi (`#ff0000`→`rgb(255, 0, 0)`,
+  // `0`→`0px`, `flex:1`→`1 1 0%`), kutilgan qiymat esa xom matn edi — hech qachon mos kelmasdi.
+  // Endi kutilgan qiymat ham O'SHA CSSOM orqali o'tkaziladi (cssNorm), keyin solishtiriladi.
   cssValue: (selector, prop, val, hint) => (x) => {
+    const want = cssNorm(prop, val);
     const hit = x.cssRules.some(
-      (r) => r.selector.split(',').map(norm).includes(norm(selector)) && norm(r.props[prop]) === norm(val)
+      (r) => r.selector.split(',').map(norm).includes(norm(selector))
+        && (norm(r.props[prop]) === norm(String(val ?? '')) || norm(r.props[prop]).toLowerCase() === want.toLowerCase()
+            || cssColorEq(prop, r.props[prop], val))
     );
     return hit ? true : tr(hint ?? { uz: `\`${selector}\` da \`${prop}: ${val}\` yozing`, ru: `в \`${selector}\` напишите \`${prop}: ${val}\`` });
   },

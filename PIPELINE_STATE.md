@@ -1611,3 +1611,14 @@ alohida commit. 2 urinishda o'tmasa — to'xtab hisobot.
   banner → tuzatilgach yashil. Regressiya: smoke-shared 3/3 dars 7/7; `tc-4-runtime.mjs` (checks-
   sinovchi) natijalari o'zgarmadi; lint:jsx kompilyator 0. Modul qayta yig'ildi (`lms/html-compiler.jsx`
   99 KB, nashr 2026-08-17) — LMS'ga hali YUKLANMAGAN (qizillar tugagach bitta nashr).
+- [x] **K-C-01 — `cssValue` normallashtiruv** (+ K-C-08 raqam-qiymat) — tuzatildi, stendda tasdiqlandi.
+  Qayta chiqarish (`t-kc01.mjs`, eski bundle): 15 holdan 5 yashil — `#ff0000`, `#fff`, `white`↔`#fff`,
+  `margin:0`, `0 auto`, `flex:1`, `transition`, `z-index:2` (raqam → «tekshirishda xatolik»), `#eee`
+  hammasi RED. Yechim (minimal, `checks.cssValue` + 2 yordamchi): kutilgan qiymat ham O'SHA CSSOM
+  orqali o'tkaziladi (`cssNorm` — ajratilgan element `style.setProperty` → `getPropertyValue`), rang-
+  xossalar (`/(^|-)color$/`) uchun qo'shimcha hisoblangan (computed) tenglik (`cssColorEq`, yaroqsiz
+  qiymat solishtirilmaydi); raqam qiymat `String()` bilan. Yangi bundle: 14/15 (oxirgisi ataylab
+  salbiy — `p{color:blue}` vs `red` → RED, to'g'ri). Regressiya: darslardagi 8 ta `cssValue`
+  (display:flex / text-align:center / flex-direction:column / justify-content / align-items) hammasi
+  kalit-so'z — sinovda OK; smoke-shared CssLesson1/CssLesson2/Htmllesson1/JsLoopsLesson 4/4;
+  `tc-6-confirm [6]`: z/m/c/f/w/bg/bgc/tr → OK (qolgan RED'lar = K-C-04 qisqa-xossa/@media, alohida).
