@@ -1730,3 +1730,8 @@ LMS'ga yuklash foydalanuvchi qaroriga ko'ra.
   barcha `C.js` regexlari — `let\s+ball`, `["'][^"']+["']`, `\breturn\b`, `else\s+if` …); smoke-shared 3/3;
   lint:jsx kompilyator 0; `lms/html-compiler.jsx` qayta yig'ildi (105 KB) — LMS'ga YUKLANMAGAN. Stend: `tc-lib.mjs`
   `stripJsComments` kesimi `^};` gacha (funksiya endi ko'p qatorli).
+- [x] **Backspace-tuzatish tozalanishi (foydalanuvchi eslatmasi):** `lms/JsFunctionsLesson.jsx` va `.shared.jsx` avval
+  QO'LDA tahrirlangan edi (build-chiqishi) — bekor qilinib, manbadan qayta yig'ildi (`build-lms.mjs` oddiy + `--shared
+  <coddycamp-URL>`). `.shared.jsx`: qo'lda-tahrir bilan qayta-yig'ish AYNAN bir xil (diff 0). `lms/JsFunctionsLesson.jsx`
+  (yakka-bundle): 756 satr farq — faqat ichiga kirgan kompilyator yangilanishi (K-C-01…03), 0x08 = 0. Repo-grep
+  (`grep -rnP "\x08"` src/lms/scripts/dev/public, jsx/js/mjs/html/css) → 0; regex-literal ichida boshqaruv-belgi → 0.
