@@ -13,7 +13,7 @@ function slice(startRe, endRe) {
 const parts = [
   slice(/^let __lang = 'uz';/, /^};/),                       // tr
   slice(/^const norm = /, /^const norm = /),
-  slice(/^const stripJsComments/, { test: (l) => l.includes("// // ...") }),
+  slice(/^const stripJsComments/, /^};/),
   slice(/^const checks = \{/, /^};/),
   slice(/^function specToCheck/, /^}/),
   slice(/^function buildLabel/, /^}/),

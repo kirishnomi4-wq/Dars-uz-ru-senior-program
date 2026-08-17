@@ -423,7 +423,75 @@ var cssColorEq = (prop, a, b) => {
     return false;
   }
 };
-var stripJsComments = (src) => (src || "").replace(/\/\*[\s\S]*?\*\//g, " ").replace(/\/\/[^\n]*/g, " ");
+var stripJsComments = (src) => {
+  const s = src || "";
+  let out = "", i = 0, last = "";
+  const n = s.length;
+  const regexMayStart = () => !last || /[(,=:\[!&|?{};+\-*%<>~^]/.test(last) || /\b(return|typeof|case|in|of|delete|void|throw|new)$/.test(out.slice(-8));
+  while (i < n) {
+    const c = s[i], d = s[i + 1];
+    if (c === "/" && d === "/") {
+      while (i < n && s[i] !== "\n") {
+        out += " ";
+        i++;
+      }
+      continue;
+    }
+    if (c === "/" && d === "*") {
+      const e = s.indexOf("*/", i + 2);
+      const end = e === -1 ? n : e + 2;
+      for (; i < end; i++) out += s[i] === "\n" ? "\n" : " ";
+      continue;
+    }
+    if (c === '"' || c === "'" || c === "`") {
+      const q = c;
+      out += c;
+      i++;
+      while (i < n && s[i] !== q) {
+        if (s[i] === "\\" && i + 1 < n) {
+          out += s[i] + s[i + 1];
+          i += 2;
+          continue;
+        }
+        if (s[i] === "\n" && q !== "`") break;
+        out += s[i];
+        i++;
+      }
+      if (i < n && s[i] === q) {
+        out += q;
+        i++;
+      }
+      last = q;
+      continue;
+    }
+    if (c === "/" && regexMayStart()) {
+      out += c;
+      i++;
+      let cls = false;
+      while (i < n && s[i] !== "\n" && (cls || s[i] !== "/")) {
+        if (s[i] === "\\" && i + 1 < n) {
+          out += s[i] + s[i + 1];
+          i += 2;
+          continue;
+        }
+        if (s[i] === "[") cls = true;
+        else if (s[i] === "]") cls = false;
+        out += s[i];
+        i++;
+      }
+      if (i < n && s[i] === "/") {
+        out += "/";
+        i++;
+      }
+      last = "/";
+      continue;
+    }
+    out += c;
+    if (!/\s/.test(c)) last = c;
+    i++;
+  }
+  return out;
+};
 var checks = {
   // Teg/selektor mavjudmi?
   has: (sel, hint) => (x) => x.$(sel) ? true : tr(hint ?? { uz: `\`${sel}\` topilmadi`, ru: `\`${sel}\` не найден` }),

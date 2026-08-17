@@ -383,11 +383,51 @@ const cssColorEq = (prop, a, b) => {
 
 // JS izohlarini olib tashlaymiz — izoh ichidagi matn `js` shartini ALDAB
 // o'tmasligi uchun (masalan starterdagi "// console.log ..." izohi).
-// Oddiy yondashuv (blok + satr izohi) — o'quv praktikalari uchun yetarli.
-const stripJsComments = (src) =>
-  (src || '')
-    .replace(/\/\*[\s\S]*?\*\//g, ' ') // /* ... */
-    .replace(/\/\/[^\n]*/g, ' ');      // // ...
+// K-C-03: oddiy regex-yondashuv satr ichidagi `//` (URL!) va `"/*"` ni ham izoh deb yerdi —
+// `const u = "https://x"; alert(1)` da `alert` yo'qolardi. Endi bir o'tishli skaner: `'` `"` `` ` ``
+// satrlar (qochirish bilan) va regex-literallar (`/` oldida operator/qavs/boshlanish bo'lsa) o'tkazib
+// yuboriladi, faqat HAQIQIY `//…` va `/*…*/` bo'shliqqa almashadi (satr-tuzilma saqlanadi). Satr-mazmuni
+// tegilmaydi — darslardagi `js(/["'][^"']+["']/)` kabi regexlar avvalgidek ishlaydi.
+const stripJsComments = (src) => {
+  const s = src || '';
+  let out = '', i = 0, last = ''; // last — oxirgi ma'noli (bo'shliq bo'lmagan) belgi
+  const n = s.length;
+  const regexMayStart = () => !last || /[(,=:\[!&|?{};+\-*%<>~^]/.test(last) || /\b(return|typeof|case|in|of|delete|void|throw|new)$/.test(out.slice(-8));
+  while (i < n) {
+    const c = s[i], d = s[i + 1];
+    if (c === '/' && d === '/') {                       // satr-izoh
+      while (i < n && s[i] !== '\n') { out += ' '; i++; }
+      continue;
+    }
+    if (c === '/' && d === '*') {                       // blok-izoh
+      const e = s.indexOf('*/', i + 2); const end = e === -1 ? n : e + 2;
+      for (; i < end; i++) out += s[i] === '\n' ? '\n' : ' ';
+      continue;
+    }
+    if (c === '"' || c === "'" || c === '`') {          // satr / template (mazmuni saqlanadi)
+      const q = c; out += c; i++;
+      while (i < n && s[i] !== q) {
+        if (s[i] === '\\' && i + 1 < n) { out += s[i] + s[i + 1]; i += 2; continue; }
+        if (s[i] === '\n' && q !== '`') break;          // yopilmagan oddiy satr — qatorda tugaydi
+        out += s[i]; i++;
+      }
+      if (i < n && s[i] === q) { out += q; i++; }
+      last = q; continue;
+    }
+    if (c === '/' && regexMayStart()) {                 // regex-literal
+      out += c; i++; let cls = false;
+      while (i < n && s[i] !== '\n' && (cls || s[i] !== '/')) {
+        if (s[i] === '\\' && i + 1 < n) { out += s[i] + s[i + 1]; i += 2; continue; }
+        if (s[i] === '[') cls = true; else if (s[i] === ']') cls = false;
+        out += s[i]; i++;
+      }
+      if (i < n && s[i] === '/') { out += '/'; i++; }
+      last = '/'; continue;
+    }
+    out += c; if (!/\s/.test(c)) last = c; i++;
+  }
+  return out;
+};
 
 const checks = {
   // Teg/selektor mavjudmi?

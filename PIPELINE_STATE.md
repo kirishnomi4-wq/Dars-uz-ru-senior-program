@@ -1717,3 +1717,16 @@ LMS'ga yuklash foydalanuvchi qaroriga ko'ra.
   smoke-shared JsFunctions ISHLAYDI; lint:jsx JsFunctions (joriy) 0 (topilmalar faqat `eski/` nusxalarda, avvaldan).
   Sabab-gipoteza: `\b` yozilganda muharrir/vosita escape'ni belgiga aylantirgan — kelajakda `lint:jsx`ga
   «regex ichida boshqaruv-belgi (0x00–0x1F)» ov-bandi qo'shish mumkin (taklif, qilinmadi).
+- [x] **K-C-03 — `js` shartida satr ichidagi `//` (URL) / `"/*"` qatorning qolganini «izoh» deb yerdi** — tuzatildi, stendda tasdiqlandi.
+  Qayta chiqarish (`t-kc03.mjs`, eski bundle): `const u = "https://example.com/x"; alert(1);` + `C.js(/alert\(/)` →
+  qizil; `'http://t.me/x'` + `addEventListener` → qizil; template `` `https://…` ``, `"/*"`, regex-literal `/https:\/\/x/`,
+  qochirilgan tirnoq, `"O'quvchi // salom"` — 7/11 hol noto'g'ri. Sabab: `stripJsComments` ikki regex bilan
+  (`/\*…\*/`, `//…`) — satr/template/regex-literalni bilmasdi. Yechim (faqat shu funksiya, ~35 satr): bir o'tishli
+  skaner — `'`/`"`/`` ` `` satrlar (qochirish bilan, yopilmagan oddiy satr qatorda tugaydi) va regex-literallar
+  (`/` oldida operator/qavs/kalit-so'z/boshlanish bo'lsa; `[…]` sinf ichidagi `/` hisobga olinadi) o'tkazib
+  yuboriladi; faqat haqiqiy `//…`/`/*…*/` bo'shliqqa (`\n` saqlanib) almashadi; satr-mazmuni tegilmaydi.
+  Natija: `t-kc03` **11/11** (haqiqiy izohlar avvalgidek o'chadi — `// alert(1)` → qizil, `a / b / c` bo'linish
+  → yashil); `tc-6-confirm [4]/[4b]/[4c]` → yashil. Regressiya: `t-kc11-lessons` 16/16 task halol yashil (darslardagi
+  barcha `C.js` regexlari — `let\s+ball`, `["'][^"']+["']`, `\breturn\b`, `else\s+if` …); smoke-shared 3/3;
+  lint:jsx kompilyator 0; `lms/html-compiler.jsx` qayta yig'ildi (105 KB) — LMS'ga YUKLANMAGAN. Stend: `tc-lib.mjs`
+  `stripJsComments` kesimi `^};` gacha (funksiya endi ko'p qatorli).
