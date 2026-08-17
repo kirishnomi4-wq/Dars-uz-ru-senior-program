@@ -1801,10 +1801,12 @@ function HtmlCompiler({
           {fmtNote ? (
             <p className="hc-note">{fmtNote}</p>
           ) : shownErrors.length > 0 ? (
+            /* K-M-02: matn alohida span'da kesiladi (ellipsis), «+N» belgisi esa DOIM ko'rinadi;
+               title'da to'liq xabar — kesilgan bo'lsa ham o'qish yo'li bor */
             <button type="button" className="hc-err" onClick={() => jumpToLine(shownErrors[0].line)}
-              title={tr({ uz: 'Bosing — kursor shu qatorga tushadi', ru: 'Нажмите — курсор перейдёт на эту строку' })}>
-              ⚠ {tr({ uz: 'Qator', ru: 'Строка' })} {shownErrors[0].line}: {shownErrors[0].msg}
-              {shownErrors.length > 1 && <b className="hc-err-more"> +{shownErrors.length - 1}</b>}
+              title={`${tr({ uz: 'Qator', ru: 'Строка' })} ${shownErrors[0].line}: ${shownErrors[0].msg}\n${tr({ uz: 'Bosing — kursor shu qatorga tushadi', ru: 'Нажмите — курсор перейдёт на эту строку' })}`}>
+              <span className="hc-err-text">⚠ {tr({ uz: 'Qator', ru: 'Строка' })} {shownErrors[0].line}: {shownErrors[0].msg}</span>
+              {shownErrors.length > 1 && <b className="hc-err-more">+{shownErrors.length - 1}</b>}
             </button>
           ) : (!allPassed && firstHint && (
             <p className="hc-hint">💡 {firstHint}</p>
@@ -2073,9 +2075,11 @@ function StyleTag() {
       /* F-0808-02: qat'iy balandlik — xabar paydo bo'lganda/yo'qolganda muharrir SAKRAMAYDI */
       .hc-msg{height:40px;width:100%;display:flex;align-items:center;justify-content:center;margin-top:3px;overflow:hidden}
       .hc-hint.hc-hint{margin:0;font-size:13px;color:${HC_T.warn};background:#FFF6EA;border:1px solid #F4DFBC;padding:8px 15px;border-radius:11px;max-width:76ch;line-height:1.4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-      .hc-err{font-size:12.5px;color:#C01024;background:#FDECEC;border:1px solid #F6CFCF;padding:7px 14px;border-radius:10px;font-family:'JetBrains Mono',monospace;max-width:76ch;line-height:1.4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:pointer;text-align:left}
+      /* K-M-02: tugma flex — matn (span) kesiladi, «+N» belgisi qisilmaydi va doim ko'rinadi */
+      .hc-err{font-size:12.5px;color:#C01024;background:#FDECEC;border:1px solid #F6CFCF;padding:7px 14px;border-radius:10px;font-family:'JetBrains Mono',monospace;max-width:min(100%,96ch);line-height:1.4;display:inline-flex;align-items:center;gap:8px;min-width:0;cursor:pointer;text-align:left}
+      .hc-err-text{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
       .hc-err:hover{background:#FBDFDF;border-color:#EEB8B8}
-      .hc-err-more{margin-left:8px;background:#C01024;color:#fff;border-radius:99px;padding:1px 7px;font-size:11px}
+      .hc-err-more{flex-shrink:0;background:#C01024;color:#fff;border-radius:99px;padding:1px 7px;font-size:11px}
 
       /* F-0813-01: 3 ustun — editor | sudraluvchi chegara | natija. Ulush --hcL/--hcR
          o'zgaruvchilarida (30–70%), sudralganda JS yangilaydi, tanlov eslab qolinadi. */

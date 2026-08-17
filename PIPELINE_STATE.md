@@ -1654,3 +1654,10 @@ alohida commit. 2 urinishda o'tmasa — to'xtab hisobot.
   qotib qoladi. Yechim (2 satr): ikkala memo deps'iga `lang`. Natija: almashgach darhol ru
   («Напишите пару предложений внутри `<p>`», «⚠ Строка 1: У `</h2>` нет парного…»). K-K-21 (starter
   tili) 🟡 — navbatda emas, tegilmadi. Regressiya: smoke 3/3.
+- [x] **K-M-02 — linter xato-xabari kesiladi, «+N» yo'qoladi** — tuzatildi, stendda tasdiqlandi.
+  Qayta chiqarish (`t-km02.mjs`): ru 1400 px — matn 76ch da kesilib «+N» ko'rinmasdi (tooltip yo'q).
+  Yechim: xabar-matn alohida `.hc-err-text` (ellipsis), «+N» flex-qo'shni `flex-shrink:0` (doim
+  ko'rinadi), `max-width:min(100%,96ch)`, `title`da to'liq xabar + «bosing — kursor…». Natija: 1400/1100/
+  768 ru — kesilmaydi, «+2» ko'rinadi; 480 uz — matn kesiladi (bir qator, joy yo'q) lekin «+2» ko'rinadi
+  va title'da to'liq. `.hc-msg` balandligi o'zgarmadi (F-0808-02 sakrash-qoidasi saqlandi). Regressiya:
+  smoke 3/3.
