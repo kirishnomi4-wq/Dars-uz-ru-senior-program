@@ -627,34 +627,25 @@ function parseCss(css) {
   document.head.appendChild(el);
   let rules = [];
   try {
-    rules = [...el.sheet?.cssRules || []].filter((r) => r.style).map((r) => {
+    const declared = new Set((css.match(/([-a-zA-Z]+)\s*:/g) || []).map((m) => m.replace(/\s*:$/, "").toLowerCase()));
+    const flat = [];
+    const walk = (list) => {
+      for (const r of list || []) {
+        if (r.style && r.selectorText != null) flat.push(r);
+        else if (r.cssRules && r.cssRules.length && !(typeof CSSKeyframesRule !== "undefined" && r instanceof CSSKeyframesRule)) walk([...r.cssRules]);
+      }
+    };
+    walk([...el.sheet?.cssRules || []]);
+    rules = flat.map((r) => {
       const props = {};
       for (let i = 0; i < r.style.length; i++) {
         const p = r.style[i];
         props[p] = r.style.getPropertyValue(p);
       }
-      [
-        "gap",
-        "margin",
-        "padding",
-        "border",
-        "flex",
-        "background",
-        "font",
-        "inset",
-        "place-items",
-        "place-content",
-        "border-radius",
-        "flex-flow",
-        "list-style",
-        "transition",
-        "overflow",
-        "grid-template",
-        "gridArea"
-      ].forEach((sh) => {
-        if (props[sh] == null) {
-          const v = r.style.getPropertyValue(sh);
-          if (v) props[sh] = v;
+      declared.forEach((name) => {
+        if (props[name] == null) {
+          const v = r.style.getPropertyValue(name);
+          if (v) props[name] = v;
         }
       });
       return { selector: r.selectorText || "", props };

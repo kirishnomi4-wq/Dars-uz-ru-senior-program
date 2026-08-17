@@ -624,26 +624,34 @@ function parseCss(css) {
   document.head.appendChild(el);
   let rules = [];
   try {
-    rules = [...(el.sheet?.cssRules || [])]
-      .filter((r) => r.style) // faqat style qoidalari (media/keyframes emas)
-      .map((r) => {
-        const props = {};
-        for (let i = 0; i < r.style.length; i++) {
-          const p = r.style[i];
-          props[p] = r.style.getPropertyValue(p);
-        }
-        // 🔴 QISQA XOSSALAR: CSSOM ularni longhandga yoyadi (gap→row-gap/column-gap,
-        // margin→4 tomon, padding→4 tomon...) — enumeratsiyada faqat longhand chiqadi,
-        // `props['gap']` bo'sh qoladi va cssProp('.row','gap') TOPA OLMAYDI.
-        // Qisqa xossani ham qo'shamiz. (CssLesson1/2 nusxalaridan ko'chirildi, F-0809-04 —
-        // busiz CSS darslarining shartlari kulrang qolib, o'quvchi qamalib qolardi.)
-        ['gap', 'margin', 'padding', 'border', 'flex', 'background', 'font', 'inset',
-         'place-items', 'place-content', 'border-radius', 'flex-flow', 'list-style',
-         'transition', 'overflow', 'grid-template', 'gridArea'].forEach((sh) => {
-          if (props[sh] == null) { const v = r.style.getPropertyValue(sh); if (v) props[sh] = v; }
-        });
-        return { selector: r.selectorText || '', props };
+    // K-C-04: QISQA XOSSALAR — CSSOM ularni longhandga yoyadi (gap→row-gap/column-gap,
+    // margin→4 tomon…), enumeratsiyada faqat longhand chiqadi va `props['gap']` bo'sh qolardi
+    // (F-0809-04). Avval qo'lda ro'yxat bor edi (`border-bottom`, `text-decoration`, `outline`,
+    // `columns`, `animation`, `grid-area`… unda yo'q, `gridArea` camelCase — ishlamasdi). Endi:
+    // manbada E'LON QILINGAN har bir xossa-nom uchun CSSOM'dan qiymat so'raladi — brauzer bilgan
+    // istalgan qisqa xossa avtomatik chiqadi, ro'yxat kerak emas.
+    const declared = new Set((css.match(/([-a-zA-Z]+)\s*:/g) || []).map((m) => m.replace(/\s*:$/, '').toLowerCase()));
+    // K-C-04: @media/@supports/@layer (va boshqa guruh-qoidalar) ichidagi qoidalar ham hisobga
+    // olinadi — rekursiv tekislanadi. @keyframes/@font-face (selectorText yo'q) o'tkazib yuboriladi.
+    const flat = [];
+    const walk = (list) => {
+      for (const r of list || []) {
+        if (r.style && r.selectorText != null) flat.push(r);
+        else if (r.cssRules && r.cssRules.length && !(typeof CSSKeyframesRule !== 'undefined' && r instanceof CSSKeyframesRule)) walk([...r.cssRules]);
+      }
+    };
+    walk([...(el.sheet?.cssRules || [])]);
+    rules = flat.map((r) => {
+      const props = {};
+      for (let i = 0; i < r.style.length; i++) {
+        const p = r.style[i];
+        props[p] = r.style.getPropertyValue(p);
+      }
+      declared.forEach((name) => {
+        if (props[name] == null) { const v = r.style.getPropertyValue(name); if (v) props[name] = v; }
       });
+      return { selector: r.selectorText || '', props };
+    });
   } catch { /* parse xatosi — bo'sh qaytadi */ }
   el.remove();
   return rules;

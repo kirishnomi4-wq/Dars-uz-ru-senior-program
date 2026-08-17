@@ -7,6 +7,8 @@ const LESSONS = {
   JsVarsLesson: 'src/2-Modull/JsVarsLesson.jsx', JsLoopsLesson: 'src/2-Modull/JsLoopsLesson.jsx',
   JsConditionsLesson: 'src/2-Modull/JsConditionsLesson.jsx', JsFunctionsLesson: 'src/2-Modull/JsFunctionsLesson.jsx',
   PeanStackLesson: 'src/2-Modull/PeanStackLesson.jsx', PracticeLesson1: 'src/2-Modull/PracticeLesson1.jsx',
+  // K-C-04: CSS darslari (cssProp/cssValue)
+  CssLesson1: 'src/1-Modull/CssLesson1.jsx', CssLesson2: 'src/1-Modull/CssLesson2.jsx', CssPractice: 'src/1-Modull/CssPractice.jsx',
 };
 // halol yechimlar (fayl-nomi → kod)
 const SOL = {
@@ -26,6 +28,15 @@ const SOL = {
   'PracticeLesson1/TASK_LIKE': { 'index.html': `<button id="like">❤ Like</button>\n<p id="son">0</p>`, 'script.js': `let son = 0;\ndocument.querySelector('#like').addEventListener('click', function(){ son = son + 1; document.querySelector('#son').textContent = son; });` },
   'PracticeLesson1/TASK_TOGGLE': { 'index.html': `<button id="rejim">Kunduz</button>`, 'script.js': `document.querySelector('#rejim').addEventListener('click', function(){ var b = document.querySelector('#rejim'); b.textContent = b.textContent === 'Kunduz' ? 'Tun' : 'Kunduz'; });` },
   'PracticeLesson1/TASK_FORM': { 'index.html': `<input id="ism"><button id="yubor">Yubor</button><p id="xabar"></p>`, 'script.js': `document.querySelector('#yubor').addEventListener('click', function(){ var v = document.querySelector('#ism').value; if (v === '') { document.querySelector('#xabar').textContent = 'Ism kiriting'; } else { document.querySelector('#xabar').textContent = 'Salom, ' + v; } });` },
+  'CssLesson1/TASK_COLOR': { 'style.css': `h1 { color: red; background-color: #FFE066; }` },
+  'CssLesson1/TASK_TEXT': { 'style.css': `h1 { font-size: 40px; text-align: center; }` },
+  'CssLesson1/TASK_BOX': { 'style.css': `.box { padding: 20px; margin: 20px; }` },
+  'CssLesson2/TASK_FLEX': { 'style.css': `.row { display: flex; gap: 12px; }` },
+  'CssLesson2/TASK_CENTER': { 'style.css': `.box { display: flex; justify-content: center; align-items: center; }` },
+  'CssLesson2/TASK_COLUMN': { 'style.css': `.menu { display: flex; flex-direction: column; }` },
+  'CssPractice/TASK_HEADER': { 'style.css': `h1 { color: #FF4F28; text-align: center; }` },
+  'CssPractice/TASK_MENU': { 'style.css': `nav { display: flex; gap: 14px; }` },
+  'CssPractice/TASK_BUTTON': { 'style.css': `.btn { background-color: #FF4F28; padding: 10px 20px; }` },
 };
 const rows = [];
 for (const [lesson, file] of Object.entries(LESSONS)) {

@@ -1735,3 +1735,19 @@ LMS'ga yuklash foydalanuvchi qaroriga ko'ra.
   <coddycamp-URL>`). `.shared.jsx`: qo'lda-tahrir bilan qayta-yig'ish AYNAN bir xil (diff 0). `lms/JsFunctionsLesson.jsx`
   (yakka-bundle): 756 satr farq — faqat ichiga kirgan kompilyator yangilanishi (K-C-01…03), 0x08 = 0. Repo-grep
   (`grep -rnP "\x08"` src/lms/scripts/dev/public, jsx/js/mjs/html/css) → 0; regex-literal ichida boshqaruv-belgi → 0.
+- [x] **K-C-04 — `cssProp`/`cssValue`: ro'yxatdan tashqari qisqa-xossalar va `@media`/`@supports`/`@layer` ichidagi qoidalar topilmasdi** — tuzatildi, stendda tasdiqlandi.
+  Qayta chiqarish (`t-kc04.mjs`, eski bundle): 19 holdan **14 noto'g'ri qizil** — `border-bottom`, `text-decoration`,
+  `outline`, `border-color/width`, `columns`, `animation`, `grid-area`; `@media (max-width:600px){h1{font-size:2em}}`,
+  `@supports`, `@layer`, `@media`→`@supports` ichma-ich. Sabab: `parseCss` (a) qisqa-xossalarni qo'lda ro'yxatdan
+  olardi (`gridArea` camelCase — hech qachon ishlamasdi), (b) `.filter(r => r.style)` guruh-qoidalarni tashlardi.
+  Yechim (faqat `parseCss`, `cssProp/cssValue/cssNorm` TEGILMADI): (1) ro'yxat o'rniga — CSS matnida E'LON QILINGAN
+  xossa-nomlar (`/([-a-zA-Z]+)\s*:/`) to'plami; har qoidada longhand-enumeratsiyadan keyin shu nomlardan yo'qlari
+  uchun `r.style.getPropertyValue(name)` — brauzer bilgan istalgan qisqa xossa avtomatik; (2) `cssRules` rekursiv
+  tekislanadi (`selectorText`+`style` bor qoidalar; `@keyframes` o'tkazib yuboriladi). Natija: `t-kc04` **19/19**
+  (14 ijobiy + `@keyframes` yiqilmaydi + 2 salbiy + eski ro'yxat `gap`/`margin 0 auto` saqlangan); `tc-6 [6]`
+  bo/td/ga/me → OK (14/14). **K-C-01 regressiya: `t-kc01` 14/15 — o'zgarmadi** (14 ijobiy OK, 15-si ataylab salbiy
+  RED); qiymatlar avvalgidek o'sha CSSOM'dan → `cssNorm` solishtiruvi tegilmagan. Dars-regressiya: `t-kc11-lessons`
+  kengaytirildi — CssLesson1/CssLesson2/CssPractice 9 ta haqiqiy CSS-task (`cssProp` color/background-color/font-size/
+  padding/margin/gap, `cssValue` text-align/display/justify-content/align-items/flex-direction) qo'shildi → **25/25**
+  task halol yashil (16 JS + 9 CSS). smoke-shared 5/5 (CssLesson1, Htmllesson1, JsLoops, CssLesson2, CssPractice);
+  lint:jsx kompilyator 0; `lms/html-compiler.jsx` qayta yig'ildi (105 KB) — LMS'ga YUKLANMAGAN.
