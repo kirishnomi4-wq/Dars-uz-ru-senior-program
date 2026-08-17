@@ -2874,7 +2874,7 @@ const TASK_KVADRAT = {
 ` },
   ],
   requirements: [
-    { id: 'ret', label: { uz: 'return ishlatildi', ru: 'использован return' }, check: C.js(/return/, { uz: "Funksiya ichida `return kuch * 3` yozing", ru: 'Внутри функции напишите `return kuch * 3`' }) },
+    { id: 'ret', label: { uz: 'return ishlatildi', ru: 'использован return' }, check: C.js(/\breturn\b/, { uz: "Funksiya ichida `return kuch * 3` yozing", ru: 'Внутри функции напишите `return kuch * 3`' }) },
     { id: 'log', label: { uz: 'konsolda 15', ru: 'в консоли 15' }, check: C.logs('15', { uz: "`console.log(zarar(5))` yozing — javob konsolga chiqadi", ru: 'Напишите `console.log(zarar(5))` — ответ выйдет в консоль' }) },
   ],
 };

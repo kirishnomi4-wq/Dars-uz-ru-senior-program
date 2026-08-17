@@ -1709,3 +1709,11 @@ LMS'ga yuklash foydalanuvchi qaroriga ko'ra.
   alohida hal qilinadi.
   **QARZ:** `src/2-Modull/PmLesson5.jsx:1770` va `src/pm/PmUserStoryLesson.jsx:1971` dagi eski nusxa-harnesslar
   (`window.__logs` ochiq) yangi closure-harness'ga o'tkazilishi kerak — K-C-11 teshigi ularda ochiq qolyapti.
+- [x] **YON-TOPILMA (foydalanuvchi roziligi bilan) — JsFunctionsLesson `C.js(/\breturn\b/)` da haqiqiy backspace (0x08)** — tuzatildi.
+  `od -c`: regex ichida 2 ta 0x08 belgi → `ret` sharti hech qachon o'tmasdi, TASK_KVADRAT yakunlanmasdi. Tuzatish:
+  0x08 → to'g'ri `\b` escape (`src/2-Modull/JsFunctionsLesson.jsx:2877` + `lms/JsFunctionsLesson.jsx:5085` +
+  `lms/JsFunctionsLesson.shared.jsx:2919`). Repo-bo'ylab grep (`\x08`, jsx/js/mjs/html): faqat shu 3 fayl — boshqa
+  darsda yo'q. Tasdiq: `t-kc11-lessons.mjs` TASK_KVADRAT halol yechim ✗✓ → **✓✓** (16/16 task yashil);
+  smoke-shared JsFunctions ISHLAYDI; lint:jsx JsFunctions (joriy) 0 (topilmalar faqat `eski/` nusxalarda, avvaldan).
+  Sabab-gipoteza: `\b` yozilganda muharrir/vosita escape'ni belgiga aylantirgan — kelajakda `lint:jsx`ga
+  «regex ichida boshqaruv-belgi (0x00–0x1F)» ov-bandi qo'shish mumkin (taklif, qilinmadi).
