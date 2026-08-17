@@ -1166,14 +1166,14 @@ function HtmlCompiler({
       cssRules: parseCss(css),
     };
     return reqs.map((r) => runOne(r, ctx));
-  }, [html, css, js, reqs]);
+  }, [html, css, js, reqs, lang]);   // K-M-01: maslahat-matnlari tr() bilan shu yerda tug'iladi — til almashsa qayta hisoblansin
 
   // ── SINTAKSIS: HTML linter (DOMParser ushlamaydigan xatolarni tutadi) ──
   // F-0808-02: linter YOZIB BO'LGANDAN KEYIN gapiradi. Avval har bosishda ishlardi —
   // `</h1` yozayotgan bola har harfda qizil xato ko'rardi (14 bosishdan 12 tasida).
   const [lintSrc, setLintSrc] = useState(html);
   useEffect(() => { const id = setTimeout(() => setLintSrc(html), LINT_DELAY_MS); return () => clearTimeout(id); }, [html]);
-  const htmlErrors = useMemo(() => lintHtml(lintSrc), [lintSrc]);
+  const htmlErrors = useMemo(() => lintHtml(lintSrc), [lintSrc, lang]);   // K-M-01: linter xabari ham til bilan
   // Kursor matn oxirida turib, muharrir fokusda bo'lsa — bola AYNAN shu tegni yozyapti.
   // Shunda «tugallanmagan» (atEnd) ogohlantirishlari KO'RSATILMAYDI; boshqa joyga o'tsa chiqadi.
   const [tailTyping, setTailTyping] = useState(false);

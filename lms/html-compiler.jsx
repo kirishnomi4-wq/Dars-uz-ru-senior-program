@@ -1175,13 +1175,13 @@ function HtmlCompiler({
       cssRules: parseCss(css)
     };
     return reqs.map((r) => runOne(r, ctx));
-  }, [html, css, js, reqs]);
+  }, [html, css, js, reqs, lang]);
   const [lintSrc, setLintSrc] = useState(html);
   useEffect(() => {
     const id = setTimeout(() => setLintSrc(html), LINT_DELAY_MS);
     return () => clearTimeout(id);
   }, [html]);
-  const htmlErrors = useMemo(() => lintHtml(lintSrc), [lintSrc]);
+  const htmlErrors = useMemo(() => lintHtml(lintSrc), [lintSrc, lang]);
   const [tailTyping, setTailTyping] = useState(false);
   const hasSyntaxError = htmlErrors.length > 0;
   const merged = reqs.map((r, i) => {

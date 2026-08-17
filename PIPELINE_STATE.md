@@ -1647,3 +1647,10 @@ alohida commit. 2 urinishda o'tmasa — to'xtab hisobot.
   yutqazdi → CSS oxiriga ko'chirildi. Natija: 6 en (390 touch/600/1024/1280/1366/1400) — 3/3 tab
   ko'rinadi. Stend `index.html`ga viewport-meta qo'shildi (telefon emulyatsiyasi haqiqiy bo'lishi
   uchun; LMS sahifasida bor). Regressiya: smoke 3/3.
+- [x] **K-M-01 (= K-K-20) — til almashganda maslahat/linter eski tilda** — tuzatildi, stendda tasdiqlandi.
+  Qayta chiqarish (`t-i18n-2-switch.mjs`, i18n-stend qayta yig'ilgan): uz→ru, kod tegilmagan — chip-
+  maslahat «`<p>` ichiga bir-ikki gap yozing», linter «⚠ Строка 1: … mos ochuvchi tegga ega emas» (aralash).
+  Sabab: `results`/`htmlErrors` useMemo ichida `tr()` bilan tug'ilgan matn deps'da `lang` yo'qligidan
+  qotib qoladi. Yechim (2 satr): ikkala memo deps'iga `lang`. Natija: almashgach darhol ru
+  («Напишите пару предложений внутри `<p>`», «⚠ Строка 1: У `</h2>` нет парного…»). K-K-21 (starter
+  tili) 🟡 — navbatda emas, tegilmadi. Regressiya: smoke 3/3.
