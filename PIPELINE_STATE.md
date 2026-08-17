@@ -5,6 +5,8 @@
 > **Bosqichlar:** `0` Auditor · `0.5` Ijodkor (kerak bo'lsa) · `1` Quruvchi · `2` Dizayn · `3` Animatsiya · `4` Jonli · `5` Metodist · `6` Tekshiruvchi · `7` Verifikator.
 > **Belgilar:** ⬜ boshlanmagan · 🔵 jarayonda (bosqich nomi bilan) · ✅ tugadi (imzolangan) · 🚦 human-gate kutmoqda.
 > Tartib: `DARS_ETALON.md` 13-bo'lim (modul oqimi).
+> **QOIDA (foydalanuvchi, 2026-08-17): bu fayl HAR seans yakunida commit qilinadi** (`docs: pipeline holati (…gacha)`) — uncommitted
+> qolmasin: tasodifiy reset butun raund-tarixni o'chirishi mumkin. Dars/kod-commitlari alohida, STATE-commit — seans-yakuni.
 
 ## To'liq etalon (namuna — tayyor)
 | Dars | Holat |
@@ -1840,19 +1842,46 @@ darslarda qattiqlik kerakmi (URL-shakl / `#`/`http`/nisbiy yo'l), keyin hal qili
   wrapDoc-kesimi `^};` gacha (funksiya endi blokli). Yon-o'zgarish: `e.lineno` xom qiymati +5 (forward skripti 5 satr o'sdi) — ayirish
   aniq bo'lgani uchun ta'sirsiz.
 
+- [x] **K-C-14 (= K-P-05, hisobot №13) — `alert/prompt/confirm` sandbox'da JIM yutilardi (xabar yo'q, `prompt`→null)** — tuzatildi, stendda tasdiqlandi (`e931c85`).
+  Qayta chiqarish (`t-kc14.mjs`, eski bundle, 7 hol): `alert("Salom!")` → o'quvchi konsolida faqat keyingi log, ru'da BO'SH; `prompt` → `Salom, null`,
+  `confirm` → `false`; `prompt().length` → K-C-09 tarjimasi «qiymat null. **Element topilmagan** yoki o'zgaruvchi hali bo'sh» (noto'g'ri yo'lga
+  boshlaydi); brauzer o'z konsoliga «Ignored call to 'alert()'. The document is sandboxed…» ×4 yozardi — o'quvchi ko'rmaydi. Sabab: preview
+  `sandbox`da `allow-modals` yo'q (to'g'ri qaror, TEGILMADI), `CONSOLE_FORWARD` bu chaqiriqlarni bilmasdi. **Grep (yechim shunga bog'liq edi):**
+  kompilyator ichida `alert/prompt/confirm` ishlatadigan dars **0** — topilmalar boshqa sinf (mentor-UI `window.confirm`, ScreenLivePractice
+  checklist-matni — o'z VS Code'ida, FullstackFeedback mock-VS-Code'da `confirm` so'zini yozish, «prompt» = AI-buyruq) → emulyatsiya kerak emas,
+  yutish qoladi + tushunarli xabar. Yechim (foydalanuvchi roziligi 1+2a+2b, faqat `CONSOLE_FORWARD` + `jsErrText` + render): (1) forward-skript
+  (faqat KO'RINADIGAN preview, o'quvchi kodidan oldin head'da) `window.alert/prompt/confirm`ni almashtiradi — semantika SAQLANADI (undefined/null/
+  false — «Bekor» bosilgandek), har chaqiriq 🟡 warn-marker (`__hcModal:kind:first|again:arg`) yuboradi, matn RENDER paytida `modalText()` bilan
+  o'quvchi tilida (K-M-01 mexanizmi): birinchi chaqiriq to'liq («alert("Salom!") — bu muhitda dialog-oyna ochilmaydi. Matnni ko'rsatish uchun
+  `console.log(...)` yoki sahifaga yozing» / prompt: «javob null (bo'sh) qaytdi. Qiymatni o'zgaruvchiga to'g'ridan-to'g'ri yozing: `let ism = "Ali"`» /
+  confirm: «javob false qaytdi — `else` tarmog'i ishlaydi»), sikl-toshqinda keyingilari qisqa («… — o'tkazib yuborildi»); (2a) prompt-warn xato-
+  satridan OLDIN turadi (xronologik zanjir); (2b) forward «shu run'da modal chaqirildi» bayrog'ini error-xabarga `hint:'modal-null'` qilib qo'shadi,
+  `jsErrText(raw, hint)` «Cannot read properties of null» uchun sabab-jumlani almashtiradi: «… qiymat null. Ehtimol bu `prompt()`/`confirm()` javobi:
+  bu muhitda ular doim null/false qaytaradi — qiymatni o'zgaruvchiga to'g'ridan-to'g'ri yozing» (promptsiz null-xato — eski element-taxmin qoladi).
+  O'quvchi ixtiyori ustun (foydalanuvchi talabi): oddiy o'zlashtirish, himoya YO'Q — o'quvchi `window.alert = function(){…}` yoki `function alert(){}`
+  (hoisting) yozsa uniki ishlaydi, ⚠ chiqmaydi. Natija: `t-kc14` **10/10** (alert · prompt+confirm semantika · prompt→null.length bog'langan ·
+  promptsiz null → eski taxmin · confirm→else · ru 3 satr · sikl 3× → 1 to'liq + 2 qisqa + `alert()` argsiz · inline `<script>` index.html:3 ·
+  o'quvchi-o'z-alert (window.alert= / prompt= → `3`) · o'quvchi-o'z-alert funksiya-e'lon). Brauzer «Ignored call»: preview'dagisi yo'qoldi (4→3),
+  qolganlari ko'rinmas tekshiruv-hujjatidan (`buildHarness`, forward yo'q) — ta'sirsiz. Regressiya: `t-kc09` 13/13, `t-kc11` 15/15, `t-kc05` 19/19,
+  `tc-4-runtime` [A] 17→20 satr (aynan +3 ⚠, qolgani o'zgarmadi); smoke-shared JsVars/JsConditions/JsFunctions 3/3; lint:jsx kompilyator 0 (20 =
+  `src/eski/`, avvaldan); `lms/html-compiler.jsx` qayta yig'ildi (114 KB, MD5 `68a2f606`) — LMS'ga YUKLANMAGAN.
+  **QARZ (K-C-14 chegarasi):** HTML-only rejimda (`.js` fayl yo'q → konsol-panel yashirin, Htmllesson1 kabi) inline `<script>alert()` avvalgidek
+  IZSIZ — bu K-C-09/JS-xatolar bilan bir sinf (ular ham u yerda ko'rinmaydi); JS o'rgatmaydigan darslar. Agar HTML-darsda konsol-panel kerak
+  bo'lsa (`showConsole` sharti kengaysa) — ikkalasi birga hal bo'ladi.
+
 **SESSIYA-YAKUNI (2026-08-17, kompilyator to'q-sariq konveyeri, 2-sessiya):**
 Bugun yopilganlar (har biri alohida commit, stend-dalil bilan yuqorida):
 - `5da93b3` K-C-05 (+K-K-26, K-K-10) — oq-ekran sinfi: js satr-spec matn-qidiruv, yaroqsiz task/requirements/files, buzuq saqlov → starter (migratsiya 9/9)
 - `b491351` K-C-06 (+K-P-25/K-K-24, K-P-26) — o'quvchi @import parseCss'da kesiladi (tarmoq 0), Google Fonts bir marta `<link id=hc-fonts>`
 - `41504e6` LINT-DARVOZA — jsx-lint 4-band: regex-literal/`new RegExp` ichida boshqaruv-belgi (0x08 sinfi) → error (ataylab-buzuq fayl 3/3 tutildi, repo 0)
 - `6279b48` K-C-09 (=K-P-04) — JS xato fayl:satr (wrapDoc ofseti aniq ayiriladi), o'quvchi tilida (render-vaqt tarjima, fallback xom), bosilsa qatorga
-Holat: `lms/html-compiler.jsx` (MD5 `f49d5568`, 111 KB) K-P-01…K-C-09 bilan qayta yig'ilgan — **LMS'ga YUKLANMAGAN** (LMS'dagi jonli
+- `e931c85` K-C-14 (=K-P-05) — alert/prompt/confirm jim emas: ⚠ ogoh (uz/ru), semantika saqlanadi, null-TypeError sababi bog'lanadi, o'quvchi o'z alert'i ustun (3-sessiya)
+Holat: `lms/html-compiler.jsx` (MD5 `68a2f606`, 114 KB) K-P-01…K-C-14 bilan qayta yig'ilgan — **LMS'ga YUKLANMAGAN** (LMS'dagi jonli
 = `e069aaaa…` K-P-01…K-C-04); yakka `lms/*.jsx` bundle'lar ham nashr-sikli oldidan qayta yig'iladi (nashrni foydalanuvchi qiladi).
 Ochiq qarzlar (yuqorida batafsil): ichki ErrorBoundary (alohida seans) · href-qiymat tekshiruvi · o'quvchi @import indamay kesiladi (eslatma) ·
 raw ajratkich-belgilar → `\u0001` escape + lint 4-band kengaytmasi · K-C-11 hisobot-varianti (tasodifiy kutilgan qiymat) · PmLesson5/
 PmUserStory eski nusxa-harnesslar · F-0817-01 LMS jonli-panel ustma-ust.
-**KEYINGI NAVBAT: K-C-14 (= K-P-05)** — `alert/prompt/confirm` jim yutiladi (hisobot №13). Undan keyin hisobot 2-bo'lim tartibida:
-№14 K-P-06/K-P-07=K-C-16/K-P-16 (konsol-panel: 200 satr, auto-scroll, obyekt `{}`, debug/table/clear) → №15 K-C-15=K-P-08 (`"</script>"`
+**KEYINGI NAVBAT: №14 K-P-06/K-P-07=K-C-16/K-P-16 (konsol-panel: 200 satr, auto-scroll, obyekt `{}`, debug/table/clear) → №15 K-C-15=K-P-08 (`"</script>"`
 satr ichida) → №16 K-P-02/03/18/17 (havola/tarix/meta-refresh) → №17 K-P-10 (baseStyle bo'yash) → №18 K-P-12/13/K-M-24 (layout 600px,
 scroll, 14 shart) → №19 K-E-02…06 (muharrir) → №20 K-K-11/06/07/05 (holat-saqlov, debounce-flush) → №21 K-K-13=K-P-26 (ikki
 kompilyator — `<style>` qismi K-C-06 da yopildi, nonce-qismi ochiq) → №22 K-M-04…11 (matn) → №7 K-C-10 (`<script>` ichini linter HTML
