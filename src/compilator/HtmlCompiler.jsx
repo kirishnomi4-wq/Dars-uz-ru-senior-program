@@ -803,15 +803,6 @@ function runOne(req, ctx) {
 //  postMessage bilan ota-oynaga (parent) yuboradi. Xavfsiz:
 //  sandbox buzilmaydi, faqat bool natijalar uzatiladi.
 // ============================================================
-const CONSOLE_CAPTURE = `<script>
-window.__logs=[];
-(function(){var _l=console.log;console.log=function(){
-  for(var i=0;i<arguments.length;i++){var a=arguments[i];
-    try{window.__logs.push(typeof a==='object'?JSON.stringify(a):String(a));}catch(e){window.__logs.push(String(a));}}
-  try{_l.apply(console,arguments);}catch(e){}
-};})();
-<\/script>`;
-
 // KO'RINADIGAN konsol uchun: console.log/info/warn/error va xatolarni
 // ota-oynaga (parent) postMessage bilan uzatadi → UI'da chiqaramiz.
 // nonce — eski va yangi natijalar aralashmasligi uchun.
@@ -831,48 +822,61 @@ const CONSOLE_FORWARD = (nonce) => `<script>
 })();
 <\/script>`;
 
+// K-C-11: capture (console.log ushlash) + probes BITTA closure-skriptda, HEAD'da turadi:
+// loglar yopiq massivda (`window.__logs` yo'q — o'quvchi kodi yozolmaydi), native havolalar
+// (push/String/JSON.stringify/indexOf/trim/toLowerCase) o'quvchi kodi ishlashidan OLDIN saqlanadi —
+// prototip zaharlansa (`String.prototype.indexOf=()=>0`) ham probe aldanmaydi. Skript elementi
+// DOM'dan olib tashlanadi (K-C-02 — nonce o'qilmasin). Probes 'load'dan keyin ishlaydi (avvalgidek).
 const buildHarness = (probes, nonce) => `<script>
 (function(){
-  // K-C-02: token (nonce) faqat shu skriptda — element DOM'dan olib tashlanadi, o'quvchining
-  // kechiktirilgan kodi uni o'qiy olmasin (document.scripts / outerHTML orqali).
   try{var _cs=document.currentScript;if(_cs)_cs.parentNode.removeChild(_cs);}catch(e){}
+  var logs=[],_push=Array.prototype.push,_str=String,_json=JSON.stringify,
+      _idx=String.prototype.indexOf,_trim=String.prototype.trim,_low=String.prototype.toLowerCase,
+      _st=window.setTimeout,_qs=document.querySelector;
+  var _l=console.log;console.log=function(){
+    for(var i=0;i<arguments.length;i++){var a=arguments[i];
+      try{_push.call(logs,typeof a==='object'?_json(a):_str(a));}catch(e){_push.call(logs,_str(a));}}
+    try{_l.apply(console,arguments);}catch(e){}
+  };
+  function has(hay,needle){return _idx.call(_str(hay),needle)!==-1;}
+  function qs(sel){try{return _qs.call(document,sel);}catch(e){return null;}}
   function runProbes(){
     var P=${JSON.stringify(probes)};
-    var logs=window.__logs||[];
-    var joined=logs.join(' ');
+    var joined='';for(var j=0;j<logs.length;j++)joined+=(j?' ':'')+logs[j];
     var out={};
     for(var k=0;k<P.length;k++){
       var p=P[k],ok=false;
       try{
         if(p.type==='log_includes'){
-          var v=String(p.value).trim();
-          ok=joined.indexOf(v)!==-1||logs.some(function(l){return String(l).trim().indexOf(v)!==-1;});
+          var v=_trim.call(_str(p.value));
+          ok=has(joined,v);
+          if(!ok){for(var q=0;q<logs.length;q++){if(has(_trim.call(_str(logs[q])),v)){ok=true;break;}}}
         }else if(p.type==='eval_equals'){
           var r; try{r=eval(p.expr);}catch(e){r=undefined;}
-          ok=String(r)===String(p.expected);
+          ok=_str(r)===_str(p.expected);
         }else if(p.type==='click_text'){
-          var exp=String(p.expected);
-          var t0=document.querySelector(p.readSel);
+          var exp=_str(p.expected);
+          var t0=qs(p.readSel);
           var before=t0?t0.textContent:'';
-          var b=document.querySelector(p.clickSel);
+          var b=qs(p.clickSel);
           if(b){try{b.click();}catch(e){}}
-          var t1=document.querySelector(p.readSel);
+          var t1=qs(p.readSel);
           var after=t1?t1.textContent:'';
           // Matn bosishdan KEYIN paydo bo'lishi kerak (oldin bo'lmagan) — JS'siz o'tmaydi
-          ok=after.indexOf(exp)!==-1 && before.indexOf(exp)===-1;
+          ok=has(after,exp) && !has(before,exp);
         }else if(p.type==='toggle'){
-          var A=String(p.textA).toLowerCase().trim();
-          var B=String(p.textB).toLowerCase().trim();
-          var rd=function(){var e=document.querySelector(p.readSel);return (e?e.textContent:'').toLowerCase();};
-          var b2=document.querySelector(p.clickSel);
+          var A=_trim.call(_low.call(_str(p.textA)));
+          var B=_trim.call(_low.call(_str(p.textB)));
+          var rd=function(){var e=qs(p.readSel);return _low.call(_str(e?e.textContent:''));};
+          var b2=qs(p.clickSel);
           var s0=rd();
-          var startOk=s0.indexOf(A)!==-1 && s0.indexOf(B)===-1; // boshida A
+          var startOk=has(s0,A) && !has(s0,B); // boshida A
           if(b2){try{b2.click();}catch(e){}}
           var s1=rd();
-          var firstOk=s1.indexOf(B)!==-1 && s1.indexOf(A)===-1; // 1-bosish -> B
+          var firstOk=has(s1,B) && !has(s1,A); // 1-bosish -> B
           if(b2){try{b2.click();}catch(e){}}
           var s2=rd();
-          var secondOk=s2.indexOf(A)!==-1 && s2.indexOf(B)===-1; // 2-bosish -> A
+          var secondOk=has(s2,A) && !has(s2,B); // 2-bosish -> A
           ok=startOk && firstOk && secondOk;
         }
       }catch(e){ok=false;}
@@ -882,11 +886,11 @@ const buildHarness = (probes, nonce) => `<script>
   }
   // 'load' hodisasidan keyin ishga tushiramiz — o'quvchi handler'ni
   // window.onload / addEventListener('load') ichida ulagan bo'lsa ham ulgursin.
-  function start(){ setTimeout(runProbes, 50); }
+  function start(){ _st.call(window, runProbes, 50); }
   if(document.readyState==='complete') start();
   else window.addEventListener('load', start);
 })();
-<\/script>`;
+</script>`;
 
 // Foydalanuvchi 3 faylini bitta jonli HTML hujjatga birlashtiramiz
 const baseStyle = `
@@ -934,14 +938,13 @@ const wrapDoc = (html, css, js, opts = {}) => `<!doctype html>
 <style>${baseStyle}
 ${opts.previewCss || ''}
 ${css || ''}</style>
-${opts.capture ? CONSOLE_CAPTURE : ''}
+${opts.harness || '' /* K-C-11: capture+probes bitta skript, o'quvchi kodidan OLDIN (head) */}
 ${opts.consoleNonce != null ? CONSOLE_FORWARD(opts.consoleNonce) : ''}
-${opts.capture ? '' : IMG_FALLBACK() /* faqat KO'RINADIGAN preview; tekshiruv-hujjati toza qoladi */}
+${opts.harness ? '' : IMG_FALLBACK() /* faqat KO'RINADIGAN preview; tekshiruv-hujjati toza qoladi */}
 </head>
 <body>
 ${html || ''}
 <script>${js || ''}<\/script>
-${opts.harness || ''}
 ${opts.doneNonce != null ? `<script>try{parent.postMessage({__hcDone:true,nonce:${JSON.stringify(opts.doneNonce)}},'*')}catch(e){}<\/script>` : ''}
 </body>
 </html>`;
@@ -1111,7 +1114,7 @@ function HtmlCompiler({
         const nonce = nonceRef.current = `${Math.random().toString(36).slice(2)}${Date.now().toString(36)}`;
         gotReportRef.current = null;
         setRuntimeResults({}); // kutish holatiga qaytaramiz
-        setCheckDoc(mkDoc({ capture: true, harness: buildHarness(runtimeProbes, nonce) })); expect('check', nonce);
+        setCheckDoc(mkDoc({ harness: buildHarness(runtimeProbes, nonce) })); expect('check', nonce);
       }
     }, 300);
     return () => clearTimeout(id);

@@ -1669,5 +1669,43 @@ alohida commit. 2 urinishda o'tmasa — to'xtab hisobot.
   o'zgarmadi. Regressiya: smoke 3/3, lint:jsx kompilyator 0.
 
 **7/7 QIZIL YOPILDI** (K-P-01, K-C-01, K-C-02, K-E-01, K-M-01, K-M-02, K-M-03) — har biri alohida commit.
-Keyingi: to'q sariqlar hisobotdagi tartibda (K-C-03 …). Modul (`lms/html-compiler.jsx`) qayta yig'ilgan,
+Keyingi: to'q sariqlar — foydalanuvchi buyrug'i bilan K-C-11 ro'yxat BOSHIGA (baholash halolligi), so'ng hisobotdagi tartibda (K-C-03 …). Modul (`lms/html-compiler.jsx`) qayta yig'ilgan,
 LMS'ga yuklash foydalanuvchi qaroriga ko'ra.
+- [x] **K-C-11 (to'q sariq ro'yxat BOSHI — baholash halolligi) — `window.__logs` orqali soxta hisobot** — tuzatildi, stendda tasdiqlandi.
+  Qayta chiqarish (`t-kc11.mjs`, eski bundle): `window.__logs=['999']` / `.push('999')` / `defineProperty` getter →
+  logs-chip YASHIL (soxta). Sabab: `CONSOLE_CAPTURE` loglarni ochiq global massivga yig'ardi, harness alohida
+  skriptda `window.__logs` ni o'qirdi — o'quvchi kodi ikkovi orasida ishlaydi. Yechim (2 bosqich, arxitektura
+  o'zgarmadi): (1) loglar YOPIQ closure-massivda, `window.__logs` yo'q; native havolalar (`push/String/
+  JSON.stringify`) capture paytida saqlanadi — 1-bosqichdan keyin 12/15, prototip-zaharlar (`String.prototype.
+  indexOf→0`, `Array.prototype.join/some`) hali o'tardi, chunki harness alohida skript edi; (2) capture + probes
+  BITTA closure-skript, HEAD'da (o'quvchi kodidan oldin) — `indexOf/trim/toLowerCase/setTimeout/querySelector`
+  ham oldindan muzlatilgan, `join/some` oddiy siklga almashdi; `CONSOLE_CAPTURE` konstantasi va `opts.capture`
+  olib tashlandi (`wrapDoc`: `opts.harness` head'ga). Skript elementi avvalgidek DOM'dan olib tashlanadi (K-C-02),
+  probes avvalgidek `load`+50 ms da. Natija: `t-kc11.mjs` **15/15** (halol 3 → yashil; 3 spoof + 3 yangi-nom
+  hujum + 4 prototip-zahar → qizil). postMessage/iframe→parent aloqasi alohida tekshirildi: `tc-4-runtime` —
+  hisobot (`__hcReport`), konsol (`__hcConsole`, 17 satr), `__hcDone` (D loop remount) hammasi kelmoqda,
+  natijalar hisobotdagi bilan bir xil (yagona farq `[C __logs]` → qizil); `t-kp01-c` (watchdog) va
+  `tc-6-confirm [1]/[1b]` (K-C-02 forge → qizil, «Davom etish» yopiq) o'zgarmadi.
+  **Kengaytirilgan smoke** (capture hamma runtime-tekshiruvga tegadi): `t-kc11-lessons.mjs` — 6 darsning
+  HAQIQIY `TASK_*` obyektlari (manbadan kesib olinadi) yangi harness bilan, halol yechim + `__logs`-spoof:
+  | Dars / task | Tur | Halol | Spoof |
+  |---|---|---|---|
+  | JsVars BALL·QUOTES·QUTILAR | oddiy log | ✓✓ ✓✓ ✓✓✓ | ✓✗ ✗✗ — |
+  | JsLoops SANOQ·MEVA | sikl ichida log | ✓✓ ✓✓ | ✓✗ ✓✗ |
+  | JsConditions IF·ELSE·ELSEIF | shart+log | ✓✓ ✓✓ ✓✓ | ✓✗ ✓✗ ✓✗ |
+  | JsFunctions SALOM·KVADRAT·QAYTA | funksiya+log | ✓✓ **✗**✓ ✓✓ | ✓✗ ✗✗ ✓✗ |
+  | PeanStack HISOB·BAZA | return+sikl log | ✓✓ ✓✓ | ✓✗ ✓✗ |
+  | PracticeLesson1 LIKE·TOGGLE·FORM | domAfterClick/toggle (postMessage-hisobot) | ✓✓✓ ✓✓ ✓✓✓ | — |
+  (spoof ustunida ✓ = statik `C.js` regex-chipi, ✗ = logs-chip qizil — kutilgan). smoke-shared 8/8 (CssLesson1,
+  Htmllesson1, JsLoops, JsVars, JsFunctions, PracticeLesson1, JsConditions, PeanStack); lint:jsx kompilyator 0;
+  `lms/html-compiler.jsx` qayta yig'ildi (103 KB, `__logs` 0) — LMS'ga YUKLANMAGAN (nashr foydalanuvchi qaroriga).
+  Stend: `tc-lib.mjs` dan `CONSOLE_CAPTURE` kesimi olib tashlandi (konstanta yo'q).
+  **YON-TOPILMA (K-C-11 emas, tuzatilmagan — tashxis):** `src/2-Modull/JsFunctionsLesson.jsx:2877`
+  `C.js(/\breturn\b/)` regexida `\b` HAQIQIY backspace-belgi (0x08, `od -c` tasdiqladi) — `ret` sharti hech qachon
+  o'tmaydi, TASK_KVADRAT'ni o'quvchi yakunlay olmaydi (halol yechim ✗✓). `lms/JsFunctionsLesson.jsx` va
+  `.shared.jsx`da ham shu. Yechim taklifi: `/\breturn\b/` (to'g'ri escape) — foydalanuvchi tasdig'i bilan.
+  **DIZAYN-QARZ (K-C-11 hisobot-varianti):** literal `console.log('999')` / substring (`1999`⊃`999`) — tekshiruvda
+  kutilgan qiymatni tasodifiylashtirish (harness kirish-qiymatini o'zi berib, chiqishni kutish) kerak; keyinroq
+  alohida hal qilinadi.
+  **QARZ:** `src/2-Modull/PmLesson5.jsx:1770` va `src/pm/PmUserStoryLesson.jsx:1971` dagi eski nusxa-harnesslar
+  (`window.__logs` ochiq) yangi closure-harness'ga o'tkazilishi kerak — K-C-11 teshigi ularda ochiq qolyapti.
