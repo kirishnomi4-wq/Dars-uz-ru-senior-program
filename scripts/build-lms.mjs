@@ -77,6 +77,7 @@ async function one(entry, sharedSpec) {
     }] : [],
   });
 
+  const usesCompiler = /from\s+['"][^'"]*compilator\/HtmlCompiler/.test(readFileSync(entry, 'utf8'));
   const banner =
     '// ============================================================\n' +
     '//  AVTO-YIG\'ILGAN FAYL — QO\'LDA TAHRIRLAMANG.\n' +
@@ -84,8 +85,8 @@ async function one(entry, sharedSpec) {
     (sharedSpec
       ? `//  Kompilyator: TASHQI MODUL — ${sharedSpec}\n` +
         `//  Qayta yig'ish:  node scripts/build-lms.mjs --shared ${sharedSpec} ${entry.replace(/\\/g, '/')}\n`
-      : `//          ${COMPILER}\n` +
-        '//  Qayta yig\'ish:  npm run build:lms\n') +
+      : (usesCompiler ? `//          ${COMPILER}\n` : `//  Kompilyator: yo'q (dars uni import qilmaydi)\n`) +
+        `//  Qayta yig'ish:  node scripts/build-lms.mjs ${entry.replace(/\\/g, '/')}\n`) +
     '//  Tahrir MANBAGA kiritiladi, keyin shu buyruq qayta yuriladi.\n' +
     '// ============================================================\n';
 
@@ -104,7 +105,8 @@ const rawArgs = process.argv.slice(2);
 const sharedIdx = rawArgs.indexOf('--shared');
 const sharedSpec = sharedIdx !== -1 ? rawArgs[sharedIdx + 1] : null;
 if (sharedIdx !== -1 && !sharedSpec) { console.log(`${RED}--shared dan keyin modul manzili/nomi kerak${R}`); process.exit(1); }
-const args = rawArgs.filter((a, i) => i !== sharedIdx && i !== sharedIdx + 1);
+// (bug tuzatildi 2026-08-17: `--shared`siz rejimda `i !== sharedIdx + 1` = `i !== 0` birinchi nishonni yeb qo'yardi → hamma dars yig'ilardi)
+const args = sharedIdx === -1 ? rawArgs : rawArgs.filter((a, i) => i !== sharedIdx && i !== sharedIdx + 1);
 const targets = args.length ? args.map((a) => a.replace(/\\/g, '/')) : findLessons();
 
 if (!targets.length) { console.log(`${RED}Yig'iladigan dars topilmadi${R}`); process.exit(1); }

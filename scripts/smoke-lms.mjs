@@ -97,9 +97,12 @@ createRoot(document.getElementById('root')).render(React.createElement(Lesson, {
   }
 
   // ── 3) KOMPILYATOR qatlami ochiladimi (yig'uvning butun ma'nosi shu) ──
-  let hc = false;
+  // Kompilyatorsiz darslar (Internet/Git/Deploy/JsIntro/Practice2-4 — bundle'da HtmlCompiler yo'q): 3-qadam
+  // o'tkaziladi, dars-ochilish + xato-yo'qligi yetadi (2026-08-17, yakuniy yig'ish).
+  const noCompiler = !/hc-root/.test(readFileSync(target, 'utf8').replace(/^\/\/.*$/gm, ''));   // izoh-sarlavhasiz (u HtmlCompiler'ni har doim tilga oladi)
+  let hc = noCompiler;
   const shotHc = join(TMP, basename(target) + '-kompilyator.png');
-  try {
+  if (noCompiler) { /* o'tkazildi */ } else try {
     const p2 = await ctx.newPage();
     p2.on('pageerror', (e) => errs.push('PAGEERROR(kompilyator): ' + String(e.message).slice(0, 110)));
     await p2.goto('file:///' + pageCompiler.replace(/\\/g, '/'), { waitUntil: 'domcontentloaded', timeout: 20000 });
@@ -114,7 +117,7 @@ createRoot(document.getElementById('root')).render(React.createElement(Lesson, {
 
   const ok = out.root && out.text > 20 && hc && !errs.length;
   console.log(`  ${ok ? GRN + '✓' : RED + '✗'}${R} ${basename(target).padEnd(26)} ` +
-    `${DIM}dars: ${out.root ? 'ha' : "yo'q"} (${out.text} belgi) · kompilyator: ${hc ? 'ha' : "yo'q"}${R}`);
+    `${DIM}dars: ${out.root ? 'ha' : "yo'q"} (${out.text} belgi) · kompilyator: ${noCompiler ? 'kutilmaydi' : hc ? 'ha' : "yo'q"}${R}`);
   if (errs.length) errs.forEach((e) => console.log(`     ${RED}${e}${R}`));
   else console.log(`     ${DIM}skrinshot: ${shot}${R}`);
   return ok;
