@@ -946,7 +946,7 @@ var baseStyle = `
   .hc-imgfb-t{font-weight:700;color:#0E0E10}
   .hc-imgfb-h{font-size:12.5px;color:#8A8880}
   .hc-imgfb code{font-family:ui-monospace,Menlo,Consolas,monospace;background:#EFEBE3;padding:1px 5px;border-radius:5px}`;
-var IMG_FALLBACK = `<script>
+var IMG_FALLBACK = () => `<script>
 document.addEventListener('error',function(e){
   var el=e.target;
   if(!el||el.tagName!=='IMG'||el.dataset.hcFb)return;
@@ -956,13 +956,13 @@ document.addEventListener('error',function(e){
   b.className='hc-imgfb';
   b.innerHTML='<span class="hc-imgfb-i">\\uD83D\\uDDBC</span>'
     +'<span class="hc-imgfb-t"></span>'
-    +'<span class="hc-imgfb-h">rasm topilmadi — <code>src</code> manzilini tekshiring</span>';
-  b.querySelector('.hc-imgfb-t').textContent = alt || 'alt matni yozilmagan';
+    +'<span class="hc-imgfb-h">'+${JSON.stringify(tr({ uz: "rasm topilmadi — <code>src</code> manzilini tekshiring", ru: "картинка не найдена — проверьте адрес в <code>src</code>" }))}+'</span>';
+  b.querySelector('.hc-imgfb-t').textContent = alt || ${JSON.stringify(tr({ uz: "alt matni yozilmagan", ru: "текст alt не написан" }))};
   if(el.parentNode)el.parentNode.insertBefore(b,el.nextSibling);
 },true);
 <\/script>`;
 var wrapDoc = (html, css, js, opts = {}) => `<!doctype html>
-<html lang="uz">
+<html lang="${__lang}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -972,7 +972,7 @@ ${opts.previewCss || ""}
 ${css || ""}</style>
 ${opts.capture ? CONSOLE_CAPTURE : ""}
 ${opts.consoleNonce != null ? CONSOLE_FORWARD(opts.consoleNonce) : ""}
-${opts.capture ? "" : IMG_FALLBACK}
+${opts.capture ? "" : IMG_FALLBACK()}
 </head>
 <body>
 ${html || ""}

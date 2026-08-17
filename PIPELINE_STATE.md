@@ -1661,3 +1661,13 @@ alohida commit. 2 urinishda o'tmasa — to'xtab hisobot.
   768 ru — kesilmaydi, «+2» ko'rinadi; 480 uz — matn kesiladi (bir qator, joy yo'q) lekin «+2» ko'rinadi
   va title'da to'liq. `.hc-msg` balandligi o'zgarmadi (F-0808-02 sakrash-qoidasi saqlandi). Regressiya:
   smoke 3/3.
+- [x] **K-M-03 (= K-P-09) — «Rasm topilmadi» qutisi ru'da o'zbekcha + `<html lang>`** — tuzatildi, tasdiqlandi.
+  Qayta chiqarish (`t-km03.mjs`): ru rejimda iframe'da «rasm topilmadi — src manzilini tekshiring», «alt
+  matni yozilmagan», `lang=uz`. Yechim: `IMG_FALLBACK` funksiyaga aylandi (hujjat yig'ilganda `tr()`
+  bilan matn — `__lang` allaqachon o'rnatilgan), ru matnlar qo'shildi; `wrapDoc` `<html lang="${__lang}">`.
+  Natija: ru → «картинка не найдена — проверьте адрес в src» / «текст alt не написан», `lang=ru`; uz
+  o'zgarmadi. Regressiya: smoke 3/3, lint:jsx kompilyator 0.
+
+**7/7 QIZIL YOPILDI** (K-P-01, K-C-01, K-C-02, K-E-01, K-M-01, K-M-02, K-M-03) — har biri alohida commit.
+Keyingi: to'q sariqlar hisobotdagi tartibda (K-C-03 …). Modul (`lms/html-compiler.jsx`) qayta yig'ilgan,
+LMS'ga yuklash foydalanuvchi qaroriga ko'ra.

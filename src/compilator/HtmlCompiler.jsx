@@ -908,7 +908,8 @@ const baseStyle = `
 // Bu quti AYNAN `alt` nima uchun kerakligini ko'rsatadi: matn rasm o'rnida qoladi.
 // 🔴 MUHIM: `<img>` DOM'dan O'CHIRILMAYDI (faqat yashiriladi) — aks holda
 // yashirin tekshiruv-iframe'idagi `querySelector('img')` shartlari sinardi.
-const IMG_FALLBACK = `<script>
+// K-M-03: matn til bo'yicha — preview hujjati yig'ilayotganda `tr()` (`__lang`) allaqachon o'rnatilgan
+const IMG_FALLBACK = () => `<script>
 document.addEventListener('error',function(e){
   var el=e.target;
   if(!el||el.tagName!=='IMG'||el.dataset.hcFb)return;
@@ -918,14 +919,14 @@ document.addEventListener('error',function(e){
   b.className='hc-imgfb';
   b.innerHTML='<span class="hc-imgfb-i">\\uD83D\\uDDBC</span>'
     +'<span class="hc-imgfb-t"></span>'
-    +'<span class="hc-imgfb-h">rasm topilmadi — <code>src</code> manzilini tekshiring</span>';
-  b.querySelector('.hc-imgfb-t').textContent = alt || 'alt matni yozilmagan';
+    +'<span class="hc-imgfb-h">'+${JSON.stringify(tr({ uz: 'rasm topilmadi — <code>src</code> manzilini tekshiring', ru: 'картинка не найдена — проверьте адрес в <code>src</code>' }))}+'</span>';
+  b.querySelector('.hc-imgfb-t').textContent = alt || ${JSON.stringify(tr({ uz: 'alt matni yozilmagan', ru: 'текст alt не написан' }))};
   if(el.parentNode)el.parentNode.insertBefore(b,el.nextSibling);
 },true);
 <\/script>`;
 
 const wrapDoc = (html, css, js, opts = {}) => `<!doctype html>
-<html lang="uz">
+<html lang="${__lang}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -935,7 +936,7 @@ ${opts.previewCss || ''}
 ${css || ''}</style>
 ${opts.capture ? CONSOLE_CAPTURE : ''}
 ${opts.consoleNonce != null ? CONSOLE_FORWARD(opts.consoleNonce) : ''}
-${opts.capture ? '' : IMG_FALLBACK /* faqat KO'RINADIGAN preview; tekshiruv-hujjati toza qoladi */}
+${opts.capture ? '' : IMG_FALLBACK() /* faqat KO'RINADIGAN preview; tekshiruv-hujjati toza qoladi */}
 </head>
 <body>
 ${html || ''}
