@@ -1998,7 +1998,9 @@ qilinadi.** PmUserStory starter — ma'qul. Kompilyator nashrda yangilanadi → 
   «↓ yangi N»; `console.log(new Map([[1,2]]), document.body)` → `Map(1) {1 => 2} <body>`; `console.table([{a:1}])` · (8) yakka bundle'dan bittasi —
   GitLesson ochilishi (kompilyatorsiz).
 
-**KEYINGI NAVBAT: A-bosqich (foydalanuvchi kompilyator 7b954027 yuklaydi) → B-bosqich (yangi URL bilan 22 shared qayta) → nashr. Kompilyator-hisobot qolgan tartibi: №15 K-C-15=K-P-08 (`"</script>"`
+**3-NASHR A+B BAJARILDI (2026-08-17):** A — kompilyator MD5 `7b954027` LMS'ga yuklandi (yangi yozuv, eskilari tirik) → `https://go.coddycamp.uz/uploads/course_artifacts/81a985c6a19b3e7f7d39be9fda07af4e.jsx` (curl: 124 825 bayt, MD5 AYNAN lokal bilan). B — 22 shared shu URL bilan qayta yig'ildi (`fccfca6`; eski `4340b314` 0 faylda); smoke-shared JsVars/PmLesson5/PmLesson6/PmUserStory/CssLesson2 ISHLAYDI, Htmllesson1 1-urinishda vaqt-sababli sindi, keyingi 3/3 ISHLAYDI (o'sha flaky, 412 KB). Yuklanadigan 29 fayl ro'yxati + MD5 foydalanuvchiga berildi (3 shared + 7 yakka «ehtimol yangi»). Rollback: kompilyator `4340b314`/`e069aaaa`, shared'lar `177ee1a` va oldingi commitlar. **Qoldi (foydalanuvchi):** 29 fayl yuklash + 8-bandli qo'l-tekshiruv (yuqorida).
+
+**KEYINGI NAVBAT: foydalanuvchi 29 faylni yuklaydi + qo'l-tekshiruv → natija STATE'ga. Kompilyator-hisobot qolgan tartibi: №15 K-C-15=K-P-08 (`"</script>"` satr ichida) → №16 … Kompilyator-hisobot qolgan tartibi: №15 K-C-15=K-P-08 (`"</script>"`
 satr ichida) → №16 K-P-02/03/18/17 (havola/tarix/meta-refresh) → №17 K-P-10 (baseStyle bo'yash) → №18 K-P-12/13/K-M-24 (layout 600px,
 scroll, 14 shart) → №19 K-E-02…06 (muharrir) → №20 K-K-11/06/07/05 (holat-saqlov, debounce-flush) → №21 K-K-13=K-P-26 (ikki
 kompilyator — `<style>` qismi K-C-06 da yopildi, nonce-qismi ochiq) → №22 K-M-04…11 (matn) → №7 K-C-10 (`<script>` ichini linter HTML
