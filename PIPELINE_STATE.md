@@ -1899,6 +1899,8 @@ BIRINCHI ISH); (3) jonli darslar (JsVars, Htmllesson1) + JsFunctions shared yukl
 
 **2-NASHR BAJARILDI (2026-08-17):** kompilyator (MD5 `68a2f606`) LMS'ga yuklandi → `https://go.coddycamp.uz/uploads/course_artifacts/4340b314d6398ef53f3db530789e9e0e.jsx` (curl bilan tortildi — MD5/117 064 bayt lokal bilan AYNAN). 19 shared shu URL bilan qayta yig'ildi (eski `e069aaaa…` 0 faylda; import satri tasdiqlandi `JsVarsLesson.shared.jsx:10`), commit shu yerda. smoke-shared JsVars/JsFunctions ISHLAYDI, Htmllesson1 1-urinishda vaqt-sababli SINDI, keyingi 4/4 ISHLAYDI (flaky, 403 KB). Rollback: eski URL `e069aaaa…` LMS'da tirik, eski shared'lar `058b546` dan oldingi commitlarda. **Qoldi (foydalanuvchi):** 19 shared LMS'ga yuklash + 5-daqiqalik qo'l-tekshiruv (yuqorida).
 
+**2-NASHR JONLIDA QO'LDA TASDIQLANDI (foydalanuvchi, 2026-08-17):** kompilyator `4340b314…` + 19 shared — 5/5 band: buzuq-saqlov ochilyapti (K-K-10) · xato-satr `script.js:3` to'g'ri + ruscha (K-C-09) · alert/prompt ⚠ ogohlar + modal-null hint (K-C-14) · `__logs` spoof qizil (K-C-11) · @import kesilyapti (K-C-06). LMS jonli = K-P-01…K-C-14. Rollback `e069aaaa…` tirik.
+
 **KEYINGI NAVBAT: №14 K-P-06/K-P-07=K-C-16/K-P-16 (konsol-panel: 200 satr, auto-scroll, obyekt `{}`, debug/table/clear) → №15 K-C-15=K-P-08 (`"</script>"`
 satr ichida) → №16 K-P-02/03/18/17 (havola/tarix/meta-refresh) → №17 K-P-10 (baseStyle bo'yash) → №18 K-P-12/13/K-M-24 (layout 600px,
 scroll, 14 shart) → №19 K-E-02…06 (muharrir) → №20 K-K-11/06/07/05 (holat-saqlov, debounce-flush) → №21 K-K-13=K-P-26 (ikki
