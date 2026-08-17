@@ -626,6 +626,10 @@ const DEFAULT_TASK = {
 // ============================================================
 function parseCss(css) {
   if (!css || !css.trim() || typeof document === 'undefined') return [];
+  // K-C-06: o'quvchi CSS'idagi `@import` KESILADI — aks holda tekshiruv-`<style>` asosiy hujjat
+  // (dars-origin, cookie bilan) nomidan har tugma bosishda tarmoqqa chiqardi. Preview baribir
+  // `@import`ni qo'llamaydi (baseStyle'dan keyin turadi); qolgan qoidalar to'liq tahlil qilinadi.
+  css = css.replace(/@import\b[^;]*;?/gi, '');
   const el = document.createElement('style');
   el.textContent = css;
   document.head.appendChild(el);
@@ -2111,10 +2115,17 @@ function HtmlCompiler({
   );
 }
 
+const HC_FONTS_URL = 'https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap';
 function StyleTag() {
+  // K-P-25/K-K-24 (+K-P-26): shrift sahifaga BIR MARTA <link id="hc-fonts"> bilan ulanadi — har mount /
+  // har instansiya uchun @import emas. Yuklanmasa (oflayn/CSP) — system-ui fallback, hech narsa sinmaydi.
+  useEffect(() => {
+    if (typeof document === 'undefined' || document.getElementById('hc-fonts')) return;
+    const l = document.createElement('link'); l.id = 'hc-fonts'; l.rel = 'stylesheet'; l.href = HC_FONTS_URL;
+    document.head.appendChild(l);
+  }, []);
   return (
     <style>{`
-      @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap');
       .hc-root,.hc-root *{box-sizing:border-box}
       .hc-root{font-family:'Manrope',system-ui,sans-serif;color:${HC_T.ink};background:
         radial-gradient(120% 80% at 50% -10%, ${HC_T.accentSoft} 0%, rgba(255,237,229,0) 46%),

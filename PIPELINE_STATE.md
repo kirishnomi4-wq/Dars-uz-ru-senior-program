@@ -1785,3 +1785,24 @@ darslarda qattiqlik kerakmi (URL-shakl / `#`/`http`/nisbiy yo'l), keyin hal qili
   — LMS'ga YUKLANMAGAN (to'q sariqlar tugagach bitta sikl).
   **KEYINGA (foydalanuvchi qarori): ichki ErrorBoundary** — default-eksport shakliga tegadi; alohida seansda, o'z sinov-rejasi bilan
   (19 shared import-zanjiri regressiyasini qamragan holda). Hozir QILINMADI.
+- [x] **K-C-06 (+ K-P-25 = K-K-24, K-P-26 — hisobot №11) — o'quvchi `@import`i dars-origin nomidan tarmoq so'rovi; modul Google Fonts** — tuzatildi, stendda tasdiqlandi.
+  Qayta chiqarish (`t-kc06.mjs`/`t-kc06b.mjs`, eski bundle): `style.css`da `@import url(...)` + 5 probel → **6 HTTP so'rov, hammasi
+  TOP-LEVEL** (dars-origin, cookie bilan), iframe'dan 0 — manba `parseCss` (`<style>` `document.head`ga). Yon-fakt: preview'da `@import`
+  UMUMAN ishlamaydi (`wrapDoc` o'quvchi CSS'ini `baseStyle`dan keyin qo'yadi → CSS-qoida bo'yicha e'tiborsiz) — o'quvchi uchun bugun ham
+  «yo'q», faqat tekshiruv-motori tarmoqqa chiqardi. Google Fonts: 1-mount 7 so'rov (1 css + 6 woff2), keyingi 3× mount 0 (brauzer keshi).
+  Oflayn (abort) — preview/chip tirik, hung yo'q; sekin (4 s) — preview 300 ms da. Grep: o'quvchi CSS'ida (starter/task) `@import`
+  ishlatadigan dars **0** (barcha topilmalar — darslarning o'z Google-Fonts importi). Yechim (foydalanuvchi roziligi 1+2+3, minimal):
+  (1) `parseCss` boshida `@import …;` KESILADI (1 regex-satr; kesh emas — bloklash, chunki dars ehtiyoji yo'q, preview qo'llamaydi, kesh
+  top-level so'rovni saqlardi); (2) StyleTag `@import` o'rniga sahifaga BIR MARTA `<link id="hc-fonts">` (id-guard, useEffect) — ikki
+  instansiya bo'lsa ham bitta (K-P-26 yopildi), oflayn'da system-ui fallback; (3) oflayn/sekin — doimiy regressiya. Natija (`t-kc06c.mjs`
+  **5/5**): `@import` BOR holda qolgan CSS to'liq ishlaydi — checker 3/3 chip (color/margin/font-size) + preview `h1` red/0px, `p` 30px;
+  tarmoq: mount + 5 probel → **0 so'rov** (edi 6); `link#hc-fonts`=1 (3× mount), `<style>` ichida @import 0, fonts so'rovi faqat 1-sahifa-
+  yuklashda 7, keyin 0; oflayn (fonts+import abort) → chip yashil, preview red, hung yo'q, 0 pageerror, UI shrift fallback. Regressiya:
+  `t-kc04` 19/19, `t-kc01` 14/15 (o'zgarmadi), `t-kc05` 19/19, `t-kc11-lessons` 25/25; smoke-shared CssLesson1/CssLesson2/CssPractice 3/3;
+  lint:jsx 0; `lms/html-compiler.jsx` qayta yig'ildi (106 KB, MD5 `ba34dc35`) — LMS'ga YUKLANMAGAN.
+  **QARZ (foydalanuvchi):** o'quvchi `@import`i indamay kesiladi — linter/`hc-msg`da eslatma kerak («`@import` bu yerda ishlamaydi»);
+  agar kelajakda CSS-darsda tashqi shrift kerak bo'lsa — sandbox-iframe (credential'siz) orqali hoisting, alohida hal. O'quvchi yozgan
+  qator izohsiz g'oyib bo'lishi keyin savol tug'diradi.
+  **YON-TOPILMA (jarayon):** shu tuzatishda `\b` regex-escape'i IKKI marta 0x08 (backspace) bo'lib faylga tushdi (heredoc/tool escape) —
+  `od -c` bilan tutildi, Edit-tool/sed-skript bilan tuzatildi. Bu JsFunctions-bug (K-C-11 yon-topilma) bilan bir sinf → `lint:jsx`ga
+  «regex-literal ichida boshqaruv-belgi (0x00–0x1F)» ov-bandi endi taklif emas, ZARUR (qilinmadi — foydalanuvchi qaroriga).
