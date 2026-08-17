@@ -880,11 +880,22 @@ const CONSOLE_FORWARD = (nonce, pos) => `<script>
     var _o=console[m]?console[m].bind(console):function(){};
     console[m]=function(){send(m,arguments);try{_o.apply(null,arguments);}catch(e){}};
   });
+  // K-C-14 (= K-P-05): sandbox'da (allow-modals yo'q) alert/prompt/confirm brauzer tomonidan JIM yutiladi.
+  // Semantika SAQLANADI (alert→undefined, prompt→null, confirm→false — «Bekor» bosilgandek), lekin har
+  // chaqiriq konsolga warn-marker yuboradi (matn RENDER paytida o'quvchi tilida — K-M-01). O'quvchi
+  // o'z kodida window.alert'ni qayta belgilasa — uniki ustun (oddiy o'zlashtirish, himoya YO'Q, ataylab).
+  var seenModal=false,firstOf={};
+  function modal(kind,ret){return function(msg){
+    seenModal=true;var again=!!firstOf[kind];firstOf[kind]=true;
+    var t='';try{t=msg===undefined?'':String(msg);}catch(e){t='';}
+    try{parent.postMessage({__hcConsole:true,nonce:N,level:'warn',text:'__hcModal:'+kind+':'+(again?'again':'first')+':'+t},'*');}catch(e){}
+    return ret;};}
+  try{window.alert=modal('alert',undefined);window.prompt=modal('prompt',null);window.confirm=modal('confirm',false);}catch(e){}
   window.addEventListener('error',function(e){
     var ln=e.lineno||0,file='',line=0;
     if(JS&&ln>=JS){file='script.js';line=ln-JS+1;}
     else if(HT&&ln>=HT){file='index.html';line=ln-HT+1;}
-    try{parent.postMessage({__hcConsole:true,nonce:N,level:'error',text:String(e.message||''),file:file,line:line,col:e.colno||0},'*');}catch(x){}
+    try{parent.postMessage({__hcConsole:true,nonce:N,level:'error',text:String(e.message||''),file:file,line:line,col:e.colno||0,hint:seenModal?'modal-null':''},'*');}catch(x){}
   });
 })();
 <\/script>`;
@@ -1060,10 +1071,35 @@ const JS_ERR_DICT = [
     ru: `\`const\` нельзя переприсвоить — если значение меняется, используйте \`let\`` })],
   [/^(?:Uncaught )?Error: (.+)$/, (m) => ({ uz: `xato: ${m[1]}`, ru: `ошибка: ${m[1]}` })],
 ];
-const jsErrText = (raw) => {
+const jsErrText = (raw, hint) => {
   const s = String(raw ?? '').trim();
+  // K-C-14: shu run'da prompt/confirm chaqirilgan bo'lsa, «null» xatosining sababi ehtimol o'sha — element-taxmini emas
+  if (hint === 'modal-null') {
+    const m = /^(?:Uncaught )?TypeError: Cannot read propert(?:y|ies) of null \(reading '(.+?)'\)$/.exec(s);
+    if (m) return tr({
+      uz: `\`${m[1]}\` ni o'qib bo'lmadi — qiymat null. Ehtimol bu \`prompt()\`/\`confirm()\` javobi: bu muhitda ular doim null/false qaytaradi — qiymatni o'zgaruvchiga to'g'ridan-to'g'ri yozing`,
+      ru: `не удалось прочитать \`${m[1]}\` — значение null. Вероятно, это ответ \`prompt()\`/\`confirm()\`: в этой среде они всегда возвращают null/false — запишите значение в переменную напрямую` });
+  }
   for (const [re, fn] of JS_ERR_DICT) { const m = re.exec(s); if (m) return tr(fn(m)); }
   return s.replace(/^Uncaught /, '') || s;   // lug'atda yo'q — xom inglizcha, bo'sh EMAS
+};
+// K-C-14: alert/prompt/confirm marker → o'quvchi tilida ogoh (birinchi chaqiriq to'liq, keyingilari qisqa)
+const MODAL_RE = /^__hcModal:(alert|prompt|confirm):(first|again):([\s\S]*)$/;
+const modalText = (raw) => {
+  const m = MODAL_RE.exec(String(raw ?? ''));
+  if (!m) return null;
+  const [, kind, when, arg] = m;
+  const call = `${kind}(${arg ? JSON.stringify(arg) : ''})`;
+  if (when === 'again') return tr({ uz: `${call} — o'tkazib yuborildi (bu muhitda ishlamaydi)`, ru: `${call} — пропущено (в этой среде не работает)` });
+  const T = {
+    alert:   { uz: `${call} — bu muhitda dialog-oyna ochilmaydi. Matnni ko'rsatish uchun \`console.log(...)\` yoki sahifaga yozing`,
+               ru: `${call} — в этой среде диалоговое окно не открывается. Чтобы показать текст, используйте \`console.log(...)\` или выведите на страницу` },
+    prompt:  { uz: `${call} — bu yerda ishlamaydi, javob null (bo'sh) qaytdi. Qiymatni o'zgaruvchiga to'g'ridan-to'g'ri yozing: \`let ism = "Ali"\``,
+               ru: `${call} — здесь не работает, ответ null (пусто). Запишите значение в переменную напрямую: \`let ism = "Ali"\`` },
+    confirm: { uz: `${call} — bu yerda ishlamaydi, javob false qaytdi — \`else\` tarmog'i ishlaydi`,
+               ru: `${call} — здесь не работает, ответ false — сработает ветка \`else\`` },
+  };
+  return tr(T[kind]);
 };
 
 function HtmlCompiler({
@@ -1275,7 +1311,7 @@ function HtmlCompiler({
       const d = e.data;
       if (d && d.__hcConsole && d.nonce === consoleNonceRef.current && fromFrame(e, previewFrameRef)) {
         // K-C-09: xato-satrlar {file,line,col} bilan keladi (xom inglizcha matn saqlanadi, tarjima renderda)
-        setConsoleLines((prev) => (prev.length >= 200 ? prev : [...prev, { level: d.level, text: String(d.text ?? ''), file: d.file || '', line: Number(d.line) || 0, col: Number(d.col) || 0 }]));
+        setConsoleLines((prev) => (prev.length >= 200 ? prev : [...prev, { level: d.level, text: String(d.text ?? ''), file: d.file || '', line: Number(d.line) || 0, col: Number(d.col) || 0, hint: String(d.hint || '') }]));
       }
     };
     window.addEventListener('message', onMsg);
@@ -2126,12 +2162,12 @@ function HtmlCompiler({
                         onClick={() => { if (files.some((f) => f.name === l.file)) { setActive(l.file); setTimeout(() => jumpToLine(l.line, codes[l.file]), 0); } }}>
                         <span className="hc-console-caret">›</span>
                         <span className="hc-console-pos">{l.file}:{l.line}</span>
-                        <span className="hc-console-text">{jsErrText(l.text)}</span>
+                        <span className="hc-console-text">{jsErrText(l.text, l.hint)}</span>
                       </div>
                     ) : (
-                      <div key={i} className={`hc-console-line lvl-${l.level}`} title={l.level === 'error' && /^Uncaught /.test(l.text) ? l.text : undefined}>
-                        <span className="hc-console-caret">›</span>
-                        <span className="hc-console-text">{l.level === 'error' && /^Uncaught /.test(l.text) ? jsErrText(l.text) : l.text}</span>
+                      <div key={i} className={`hc-console-line lvl-${l.level}${l.level === 'warn' && MODAL_RE.test(l.text) ? ' is-modal' : ''}`} title={l.level === 'error' && /^Uncaught /.test(l.text) ? l.text : undefined}>
+                        <span className="hc-console-caret">{l.level === 'warn' && MODAL_RE.test(l.text) ? '⚠' : '›'}</span>
+                        <span className="hc-console-text">{l.level === 'error' && /^Uncaught /.test(l.text) ? jsErrText(l.text, l.hint) : (l.level === 'warn' && modalText(l.text)) || l.text}</span>
                       </div>
                     )
                   ))
