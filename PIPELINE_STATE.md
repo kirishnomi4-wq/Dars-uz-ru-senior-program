@@ -1875,8 +1875,9 @@ Bugun yopilganlar (har biri alohida commit, stend-dalil bilan yuqorida):
 - `b491351` K-C-06 (+K-P-25/K-K-24, K-P-26) — o'quvchi @import parseCss'da kesiladi (tarmoq 0), Google Fonts bir marta `<link id=hc-fonts>`
 - `41504e6` LINT-DARVOZA — jsx-lint 4-band: regex-literal/`new RegExp` ichida boshqaruv-belgi (0x08 sinfi) → error (ataylab-buzuq fayl 3/3 tutildi, repo 0)
 - `6279b48` K-C-09 (=K-P-04) — JS xato fayl:satr (wrapDoc ofseti aniq ayiriladi), o'quvchi tilida (render-vaqt tarjima, fallback xom), bosilsa qatorga
+- `cfa0ff8` №14 K-P-06/K-P-07=K-C-16/K-P-16 — konsol-panel: 500 satr+hisoblagich+scroll-lock, DevTools-uslub obyekt, debug/dir/group/table/clear (3-sessiya)
 - `e931c85` K-C-14 (=K-P-05) — alert/prompt/confirm jim emas: ⚠ ogoh (uz/ru), semantika saqlanadi, null-TypeError sababi bog'lanadi, o'quvchi o'z alert'i ustun (3-sessiya)
-Holat: `lms/html-compiler.jsx` (MD5 `68a2f606`, 114 KB) K-P-01…K-C-14 bilan qayta yig'ilgan — **LMS'ga YUKLANMAGAN** (LMS'dagi jonli
+Holat: `lms/html-compiler.jsx` (MD5 `7b954027`, 122 KB) K-P-01…№14 bilan qayta yig'ilgan — **LMS'ga YUKLANMAGAN** (LMS'dagi jonli
 = `e069aaaa…` K-P-01…K-C-04); yakka `lms/*.jsx` bundle'lar ham nashr-sikli oldidan qayta yig'iladi (nashrni foydalanuvchi qiladi).
 Ochiq qarzlar (yuqorida batafsil): ichki ErrorBoundary (alohida seans) · href-qiymat tekshiruvi · o'quvchi @import indamay kesiladi (eslatma) ·
 raw ajratkich-belgilar → `\u0001` escape + lint 4-band kengaytmasi · K-C-11 hisobot-varianti (tasodifiy kutilgan qiymat) · PmLesson5/
@@ -1901,7 +1902,35 @@ BIRINCHI ISH); (3) jonli darslar (JsVars, Htmllesson1) + JsFunctions shared yukl
 
 **2-NASHR JONLIDA QO'LDA TASDIQLANDI (foydalanuvchi, 2026-08-17):** kompilyator `4340b314…` + 19 shared — 5/5 band: buzuq-saqlov ochilyapti (K-K-10) · xato-satr `script.js:3` to'g'ri + ruscha (K-C-09) · alert/prompt ⚠ ogohlar + modal-null hint (K-C-14) · `__logs` spoof qizil (K-C-11) · @import kesilyapti (K-C-06). LMS jonli = K-P-01…K-C-14. Rollback `e069aaaa…` tirik.
 
-**KEYINGI NAVBAT: №14 K-P-06/K-P-07=K-C-16/K-P-16 (konsol-panel: 200 satr, auto-scroll, obyekt `{}`, debug/table/clear) → №15 K-C-15=K-P-08 (`"</script>"`
+- [x] **№14 — K-P-06 (200 satr, auto-scroll yo'q) + K-P-07 = K-C-16 (obyekt `{}`) + K-P-16 (`debug/table/dir/clear` yo'q)** — tuzatildi, stendda tasdiqlandi (`cfa0ff8`).
+  Qayta chiqarish (`t-kp06.mjs`, eski bundle): 500 log → 200 satr, oxirgi `qator 200`, «kesildi» belgisi yo'q, `scrollTop=0` (o'quvchi 1-satrlarni
+  ko'radi, oxirgilari yashirin); `setInterval` 1.5 s → 180 satr tepada; Error/Map/Set/body/element/`{u:undefined}` → hammasi `{}`, `xato: {}`; circular →
+  `[object Object]`; `%s` ishlamaydi; 20 000 obyektli massiv → **bitta satr 537 KB** DOM'da; `debug/table/dir` umuman chiqmaydi, `clear` hech narsa
+  qilmaydi; `console.clear()` → harness-chip ✓ (harness ko'rinmas hujjatda, native clear closure-`logs`ga tegmaydi — avvaldan xavfsiz).
+  Yechim (foydalanuvchi roziligi A+B+C, limit 500; faqat `CONSOLE_FORWARD` + panel state/render/CSS; `buildHarness`/checks TEGILMADI):
+  **A (K-P-06):** `consoleBuf {lines, dropped}` — 500 dan oshsa eng eskisi tashlanadi, sarlavhada «N · eng eski M yashirildi» (uz/ru); **scroll-lock** —
+  `consoleAtBottomRef`, effect faqat pastda turganda `scrollTop=scrollHeight`; o'quvchi TEPAGA sursa (scrollTop kamaysa) lock ochiladi, yangi satrlar
+  surmaydi, sarlavhada «↓ yangi N» tugma (bosilsa/o'zi pastga yetsa — yo'qoladi, lock qaytadi). 1-urinishda poyga: programmatik scroll'ning kechikkan
+  `scroll`-hodisasi yangi balandlik bilan kelib lockni yo'qotardi → «faqat kamayganda ochiladi» + effect'da lastTop sinxron — tuzatildi.
+  **B (K-P-07/K-C-16):** `fmt` → `insp(v,d,seen)` iframe ichida: Error → `SyntaxError: …` (name: message), `Map(1) {1 => 2}`, `Set(1) {1}`, Date ISO
+  tirnoqsiz, DOM → `<h1 id="p" class="big">`, `[undefined, null]`, `{u: undefined}`, `5n`, `ƒ f()`, `-0`, ichki satr tirnoqli, `%s/%d/%i/%f/%o/%c`;
+  chuqurlik maks 3 → `{…}`/`[…]`, 50 element → `… +N`, `[Circular]` (seen-stek), bitta satr maks 4000 belgi → `… (+N belgi)`; harness'ning
+  `log_includes` o'z formatida — chip natijasi o'zgarmaydi. **C (K-P-16):** `debug/dir` → log; `group/groupEnd` → `▼ nom` + 2-probel chekinish;
+  `table` → matnli jadval (`(index) │ a │ b`, maks 20 qator × 6 ustun, `… +N qator`, satr bo'lsa → log); `clear` → `{level:'clear'}` → FAQAT
+  ko'rinadigan panel tozalanadi + «— console.clear() — tozalandi —» chizig'i (ru: «очищено»); harness'ga ta'sir yo'q (dizayn: alohida iframe, forward yo'q).
+  Natija: `t-kp06` **27/27** (limit 800→500 oxirgi saqlanadi · hisoblagich · auto-scroll pastda · setInterval pastda · scroll-lock st=0 + «↓ yangi 30» ·
+  tugma → pastga · o'zi pastga → lock qaytadi · hisoblagich uz/ru · Error · Map/Set/Date/DOM/undefined/bigint · [Circular] · %s/%d · chuqurlik 3 ·
+  20 000 massiv → 1091 belgi «… +19950» · ƒ/Symbol/-0/tirnoq · Map 70 → «… +20» · 9000 belgi → 4017 · yozish 111 ms · debug/dir · group · table 2 ·
+  table 300 → 20 + «… +280 qator» · table(satr) · clear + keyingi log · **clear → harness-chip yashil** · clear ru · «tozalash» tugmasi).
+  Regressiya: `t-kc14` 10/10, `t-kc09` 13/13, `t-kc05` 19/19, `t-kc11` 15/15, `tc-4` [A] 20→22 satr (debug+table endi chiqadi; B/B2/C forge o'zgarmadi);
+  smoke-shared JsVars/JsLoops/JsFunctions 3/3; lint:jsx kompilyator 0; `lms/html-compiler.jsx` qayta yig'ildi (124 825 bayt, MD5 `7b954027`) — LMS'ga
+  YUKLANMAGAN. **Chegara/qarz:** panel virtualizatsiya yo'q (500 satr DOM — yengil); `console.log(el)` 1 qavat (tag+id+class), bolalari ko'rsatilmaydi;
+  `console.log(bigString)` 4000 belgida kesiladi (to'liq matn hech qayerda saqlanmaydi — kerak bo'lsa title'ga qo'yish mumkin).
+
+**REJA O'ZGARDI (foydalanuvchi, 2026-08-17):** 19 shared LMS'ga YUKLANMADI — endi BARCHA darslar tayyorlanib, oxirida hammasi bir martada yuklanadi.
+№14 dan keyin: KONVERSIYA vazifasi (foydalanuvchi beradi) → yakuniy yig'ish → bir martalik nashr. Kompilyator jonli = `4340b314…` (K-P-01…K-C-14).
+
+**KEYINGI NAVBAT: KONVERSIYA vazifasi (foydalanuvchi) → yakuniy yig'ish → bir martalik nashr. Kompilyator-hisobot qolgan tartibi: №15 K-C-15=K-P-08 (`"</script>"`
 satr ichida) → №16 K-P-02/03/18/17 (havola/tarix/meta-refresh) → №17 K-P-10 (baseStyle bo'yash) → №18 K-P-12/13/K-M-24 (layout 600px,
 scroll, 14 shart) → №19 K-E-02…06 (muharrir) → №20 K-K-11/06/07/05 (holat-saqlov, debounce-flush) → №21 K-K-13=K-P-26 (ikki
 kompilyator — `<style>` qismi K-C-06 da yopildi, nonce-qismi ochiq) → №22 K-M-04…11 (matn) → №7 K-C-10 (`<script>` ichini linter HTML
