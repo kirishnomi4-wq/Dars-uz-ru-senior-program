@@ -541,6 +541,8 @@ var checks = {
   },
   // JS: manbada namuna (regex) bormi? (izohlar hisobga olinmaydi)
   js: (re, hint) => (x) => re.test(stripJsComments(x.js)) ? true : tr(hint ?? { uz: `Skriptda kerakli qism topilmadi`, ru: `В скрипте не найден нужный фрагмент` }),
+  // JS: manbada shu MATN bormi? (deklarativ { js: 'console.log(' } uchun — K-C-05)
+  jsText: (text, hint) => (x) => stripJsComments(x.js).includes(text) ? true : tr(hint ?? { uz: `Skriptda kerakli qism topilmadi`, ru: `В скрипте не найден нужный фрагмент` }),
   // To'liq erkin tekshiruv: (ctx) => true | "maslahat"
   custom: (fn) => fn,
   // ── RUNTIME tekshiruvlar (kod iframe'da ishlatiladi) ──
@@ -563,7 +565,7 @@ function specToCheck(s) {
     const { sel: sel2, prop, value } = s.css;
     return value != null ? checks.cssValue(sel2, prop, value, hint) : checks.cssProp(sel2, prop, hint);
   }
-  if (s.js) return checks.js(s.js instanceof RegExp ? s.js : new RegExp(s.js), hint);
+  if (s.js) return s.js instanceof RegExp ? checks.js(s.js, hint) : checks.jsText(String(s.js), hint);
   if (s.logs !== void 0) return checks.logs(s.logs, hint);
   if (s.eval !== void 0) return checks.evalEquals(s.eval, s.equals, hint);
   if (s.toggle) return checks.toggle(s.toggle, s.read || s.toggle, s.a, s.b, hint);
@@ -585,7 +587,7 @@ function buildLabel(s) {
   if (s.toggle) return `${s.a} ⇄ ${s.b}`;
   if (s.click) return { uz: `bosilsa «${s.expect}»`, ru: `по клику «${s.expect}»` };
   if (s.eval !== void 0) return `${s.eval} = ${s.equals}`;
-  if (s.js) return { uz: "JS namunasi", ru: "фрагмент JS" };
+  if (s.js) return s.js instanceof RegExp ? { uz: "JS namunasi", ru: "фрагмент JS" } : `JS: ${s.js}`;
   const sel = s.tag || s.sel;
   if (sel) {
     if (s.child || s.nested) return { uz: `<${sel}> ichida <${s.child || s.nested}>`, ru: `<${s.child || s.nested}> внутри <${sel}>` };
@@ -598,6 +600,7 @@ function buildLabel(s) {
   return { uz: "shart", ru: "условие" };
 }
 function normalizeReq(req, i = 0) {
+  if (!req || typeof req !== "object") req = {};
   const ready = typeof req.check === "function" || req.check && req.check.__runtime || req.re;
   if (ready) return { id: req.id ?? `r${i}`, label: req.label ?? "", ...req };
   const check = specToCheck(req);
@@ -1040,7 +1043,7 @@ ${opts.doneNonce != null ? `<script>try{parent.postMessage({__hcDone:true,nonce:
 </body>
 </html>`;
 function HtmlCompiler({
-  task = DEFAULT_TASK,
+  task: taskProp = DEFAULT_TASK,
   starterCode,
   // eski kontrakt: bitta HTML fayl uchun starter
   onContinue,
@@ -1051,12 +1054,15 @@ function HtmlCompiler({
   // 'uz' | 'ru' — modul dars kontekstidan tashqarida ishlaydi
 }) {
   __lang = lang === "ru" ? "ru" : "uz";
+  const task = taskProp && typeof taskProp === "object" ? taskProp : DEFAULT_TASK;
+  const taskReqs = Array.isArray(task.requirements) ? task.requirements : [];
+  const taskFiles = Array.isArray(task.files) ? task.files.filter((f) => f && typeof f === "object" && f.name) : [];
   const reqs = useMemo(
-    () => (task.requirements || []).map((r, i) => normalizeReq(r, i)),
+    () => taskReqs.map((r, i) => normalizeReq(r, i)),
     [task.requirements]
   );
   const files = useMemo(() => {
-    if (task.files && task.files.length) return task.files;
+    if (taskFiles.length) return taskFiles;
     const single = { ...DEFAULT_FILES[0] };
     if (starterCode != null) single.starter = starterCode;
     return [single];
@@ -1067,8 +1073,9 @@ function HtmlCompiler({
     const s = codesRead(storageKey);
     if (!s || !s.codes) return fresh;
     const names = Object.keys(fresh);
+    if (!s.codes || typeof s.codes !== "object" || Array.isArray(s.codes)) return fresh;
     if (names.length !== Object.keys(s.codes).length || !names.every((n) => n in s.codes)) return fresh;
-    return { ...fresh, ...s.codes };
+    return Object.fromEntries(names.map((n) => [n, typeof s.codes[n] === "string" ? s.codes[n] : fresh[n]]));
   });
   useEffect(() => {
     if (!storageKey) return;

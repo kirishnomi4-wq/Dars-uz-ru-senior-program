@@ -493,6 +493,10 @@ const checks = {
   js: (re, hint) => (x) =>
     re.test(stripJsComments(x.js)) ? true : tr(hint ?? { uz: `Skriptda kerakli qism topilmadi`, ru: `В скрипте не найден нужный фрагмент` }),
 
+  // JS: manbada shu MATN bormi? (deklarativ { js: 'console.log(' } uchun — K-C-05)
+  jsText: (text, hint) => (x) =>
+    stripJsComments(x.js).includes(text) ? true : tr(hint ?? { uz: `Skriptda kerakli qism topilmadi`, ru: `В скрипте не найден нужный фрагмент` }),
+
   // To'liq erkin tekshiruv: (ctx) => true | "maslahat"
   custom: (fn) => fn,
 
@@ -541,7 +545,9 @@ function specToCheck(s) {
     const { sel, prop, value } = s.css;
     return value != null ? checks.cssValue(sel, prop, value, hint) : checks.cssProp(sel, prop, hint);
   }
-  if (s.js) return checks.js(s.js instanceof RegExp ? s.js : new RegExp(s.js), hint);
+  // K-C-05: `js` SATR bo'lsa — regex EMAS, oddiy matn-qidiruv (`console.log(`, `arr[0]` maxsus
+  // belgilari RegExp'ni yiqitardi → butun dars oq ekran). RegExp berilsa avvalgidek.
+  if (s.js) return s.js instanceof RegExp ? checks.js(s.js, hint) : checks.jsText(String(s.js), hint);
   if (s.logs !== undefined) return checks.logs(s.logs, hint);
   if (s.eval !== undefined) return checks.evalEquals(s.eval, s.equals, hint);
   if (s.toggle) return checks.toggle(s.toggle, s.read || s.toggle, s.a, s.b, hint);
@@ -566,7 +572,7 @@ function buildLabel(s) {
   if (s.toggle) return `${s.a} ⇄ ${s.b}`;
   if (s.click) return { uz: `bosilsa «${s.expect}»`, ru: `по клику «${s.expect}»` };
   if (s.eval !== undefined) return `${s.eval} = ${s.equals}`;
-  if (s.js) return { uz: 'JS namunasi', ru: 'фрагмент JS' };
+  if (s.js) return s.js instanceof RegExp ? { uz: 'JS namunasi', ru: 'фрагмент JS' } : `JS: ${s.js}`;
   const sel = s.tag || s.sel;
   if (sel) {
     if (s.child || s.nested) return { uz: `<${sel}> ichida <${s.child || s.nested}>`, ru: `<${s.child || s.nested}> внутри <${sel}>` };
@@ -583,6 +589,7 @@ function buildLabel(s) {
 // Eski uslub (check: C.has(...) / runtime obyekt / re:/.../) — tegmaymiz,
 // faqat yetishmasa id/label to'ldiramiz. Deklarativ data bo'lsa — tarjima qilamiz.
 function normalizeReq(req, i = 0) {
+  if (!req || typeof req !== 'object') req = {};   // K-K-26: null/satr element → «shart aniqlanmadi», yiqilmaydi
   const ready = typeof req.check === 'function' || (req.check && req.check.__runtime) || req.re;
   if (ready) return { id: req.id ?? `r${i}`, label: req.label ?? '', ...req };
   const check = specToCheck(req);
@@ -1000,7 +1007,7 @@ ${opts.doneNonce != null ? `<script>try{parent.postMessage({__hcDone:true,nonce:
 // sikl bo'lsa bu xabar hech qachon kelmaydi → ota-oyna watchdog bilan qotganini biladi.
 
 function HtmlCompiler({
-  task = DEFAULT_TASK,
+  task: taskProp = DEFAULT_TASK,
   starterCode,            // eski kontrakt: bitta HTML fayl uchun starter
   onContinue,
   onBack,
@@ -1010,17 +1017,22 @@ function HtmlCompiler({
   // Til RENDERDAN OLDIN o'rnatiladi: quyidagi barcha tr(...) chaqiriqlari (jumladan
   // linter xabarlari) shu qiymatni o'qiydi. Darslardagi __lang naqshi bilan bir xil.
   __lang = (lang === 'ru' ? 'ru' : 'uz');
+  // K-K-26: yaroqsiz kirish (task:null, requirements:'h1'/{…}, files:'x'/[null]) oq ekran bermasin —
+  // obyekt bo'lmagan task → DEFAULT_TASK; requirements/files massiv bo'lmasa e'tiborsiz.
+  const task = taskProp && typeof taskProp === 'object' ? taskProp : DEFAULT_TASK;
+  const taskReqs = Array.isArray(task.requirements) ? task.requirements : [];
+  const taskFiles = Array.isArray(task.files) ? task.files.filter((f) => f && typeof f === 'object' && f.name) : [];
   // Shartlarni bir marta normalizatsiya: deklarativ data ham, eski C.has(...)
   // uslubi ham bir xil { id, label, check } shaklga keladi. Quyidagi butun
   // kod (runtimeProbes, results, merged, render) o'zgarmaydi.
   const reqs = useMemo(
-    () => (task.requirements || []).map((r, i) => normalizeReq(r, i)),
+    () => taskReqs.map((r, i) => normalizeReq(r, i)),
     [task.requirements]
   );
 
   // Fayllar: task.files bo'lsa o'shani, bo'lmasa eski yakka HTML faylni ishlatamiz
   const files = useMemo(() => {
-    if (task.files && task.files.length) return task.files;
+    if (taskFiles.length) return taskFiles;
     const single = { ...DEFAULT_FILES[0] };
     if (starterCode != null) single.starter = starterCode;   // tr() codes/reset da qo'llanadi
     return [single];
@@ -1034,8 +1046,10 @@ function HtmlCompiler({
     const s = codesRead(storageKey);
     if (!s || !s.codes) return fresh;
     const names = Object.keys(fresh);
+    if (!s.codes || typeof s.codes !== 'object' || Array.isArray(s.codes)) return fresh;
     if (names.length !== Object.keys(s.codes).length || !names.every((n) => n in s.codes)) return fresh;
-    return { ...fresh, ...s.codes };
+    // K-K-10: qiymat satr bo'lmasa (raqam/obyekt — buzuq saqlov) → shu fayl uchun starter, oq ekran emas
+    return Object.fromEntries(names.map((n) => [n, typeof s.codes[n] === 'string' ? s.codes[n] : fresh[n]]));
   });
   // Yozilgan kod jonli saqlanadi (400ms) — tab almashinuvida yo'qolmasin
   useEffect(() => {

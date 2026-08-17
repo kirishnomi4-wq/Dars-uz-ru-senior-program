@@ -1763,3 +1763,25 @@ darslar (JsVars, Htmllesson1) + JsFunctions shared yuklanadi. Yuklashdan keyin K
 `https://go.coddycamp.uz/uploads/course_artifacts/e069aaaa4d94bd163588a759a75419dc.jsx` (curl bilan tortib olindi —
 MD5/bayt lokal bilan AYNAN bir xil). 19 shared shu URL bilan qayta yig'ildi (eski `f9e30f4a…` 0 faylda qoldi);
 smoke-shared JsVars/Htmllesson1/JsFunctions ISHLAYDI. Rollback: eski URL `f9e30f4a…` LMS'da tirik, eski shared'lar `dc7bdad`.
+**Nashr jonli muhitda qo'lda tekshirildi (foydalanuvchi, 2026-08-17):** kompilyator yangi URL (`e069aaaa…`) + 19 shared — hammasi ishlayapti.
+**DIZAYN-QARZ (foydalanuvchi, 2026-08-17):** `href`-tekshiruv qiymatga qaramaydi (`href="hgfds"` ham o'tadi) — boshlang'ich
+darslarda qattiqlik kerakmi (URL-shakl / `#`/`http`/nisbiy yo'l), keyin hal qilinadi.
+- [x] **K-C-05 (+ K-K-26, K-K-10 = hisobot №10 «oq-ekran sinfi») — `js:` satr-spec RegExp'da yiqilardi; yaroqsiz task/requirements/files; saqlovda string-bo'lmagan kod** — tuzatildi, stendda tasdiqlandi.
+  Qayta chiqarish (`t-kc05.mjs`, eski bundle): **14/19 noto'g'ri** — `{js:'console.log('}`/`{js:'alert('}` → OQ EKRAN (`Invalid
+  regular expression … Unterminated group`); `{js:'arr[0]'}`/`'a+b'` chip qizil, `{js:'a.b'}` `aXb`ga yashil (regex deb o'qilardi);
+  `task:null` · `requirements:[null]`/`{a:1}`/`'h1'` · `files:[null]`/`'x'` → 6/6 OQ EKRAN; saqlov `codes:{index.html:123}`/`{a:1}`
+  → OQ EKRAN (`.match is not a function`, reload ham yordam bermasdi). Darslarda satr-`js:` ishlatilmagan (grep 0; `NodeServerLesson:1749`
+  checklist-matni, shart emas). Yechim (minimal, 3 nuqta, foydalanuvchi roziligi 1–3): (1) `specToCheck` — `js` SATR bo'lsa oddiy
+  matn-qidiruv (`checks.jsText`: `stripJsComments(x.js).includes(text)`), RegExp avvalgidek; label `JS: <matn>`; (2) K-K-26 —
+  `task` obyekt bo'lmasa `DEFAULT_TASK`, `requirements` massiv bo'lmasa `[]`, `normalizeReq(null/satr)` → «shart aniqlanmadi»,
+  `files` massiv bo'lmasa/`name`siz element filtrlanadi (bo'sh → `DEFAULT_FILES`); (3) K-K-10 — saqlovda qiymat satr bo'lmasa shu
+  fayl uchun starter (`codes` massiv/satr/null → to'liq starter). Natija: `t-kc05` **19/19** (8 js-satr + 8 K-K-26 + 3 K-K-10).
+  **Saqlov-migratsiya (foydalanuvchi so'rovi, `t-kc05-storage.mjs`, 9 hol):** sog'lom saqlov saqlanadi (`<h1>saved</h1>`); aralash
+  (`index.html:123`, `style.css` satr) → buzuq fayl starter, sog'lomi SAQLANADI; ikkovi obyekt / `codes` massiv / satr / null / ildiz
+  massiv / JSON-emas satr / boshqa fayl-to'plami → starter; 400 ms debounce yozuvi bilan saqlov **KONVERT** bo'ladi (hammasi string,
+  `{codes,savedAt}`), reload → yana ochiladi (9/9 ochildi, 9/9 reload). Saqlov-formati boshidan bitta (`999e7f4`, `{codes,savedAt}`) —
+  eski format yo'q, «reload ham yordam bermaydi» holati yopildi. Regressiya: `t-kc11-lessons` 25/25 halol yashil; smoke-shared
+  JsVars/JsFunctions/Htmllesson1 3/3 ISHLAYDI; lint:jsx kompilyator 0; `lms/html-compiler.jsx` qayta yig'ildi (106 KB, MD5 `377002b4`)
+  — LMS'ga YUKLANMAGAN (to'q sariqlar tugagach bitta sikl).
+  **KEYINGA (foydalanuvchi qarori): ichki ErrorBoundary** — default-eksport shakliga tegadi; alohida seansda, o'z sinov-rejasi bilan
+  (19 shared import-zanjiri regressiyasini qamragan holda). Hozir QILINMADI.
