@@ -51,8 +51,9 @@ const vendor = await build({
   stdin: {
     contents: `
 import React from 'react';
+import * as ReactDOM from 'react-dom';
 import { createRoot } from 'react-dom/client';
-export { React, createRoot };
+export { React, ReactDOM, createRoot };
 `,
     resolveDir: process.env.REACT_DIR || process.cwd(), sourcefile: 'vendor-entry.js', loader: 'js',
   },
@@ -68,6 +69,13 @@ export default React;
 export const { useState, useEffect, useLayoutEffect, useRef, useMemo, useCallback,
   useReducer, useContext, createContext, createElement, cloneElement, Fragment,
   isValidElement, Children, memo, forwardRef, useId, version } = React;
+`, 'utf8');
+// `react-dom` — LMS resolverida bor (TZ v2 «Mavjud modullar»); createPortal
+// ishlatadigan darslar (HtmlPractice) shu yuzdan oladi.
+writeFileSync(join(TMP, 'react-dom.js'), `
+import { ReactDOM } from './vendor.js';
+export default ReactDOM;
+export const { createPortal, flushSync, findDOMNode, version } = ReactDOM;
 `, 'utf8');
 writeFileSync(join(TMP, 'react-dom-client.js'), `
 import { createRoot } from './vendor.js';
@@ -96,6 +104,7 @@ writeFileSync(join(TMP, 'lesson.js'), lessonJs.outputFiles[0].text, 'utf8');
 const importMap = {
   imports: {
     'react': './react.js',
+    'react-dom': './react-dom.js',
     'react-dom/client': './react-dom-client.js',
     [spec]: './shared-module.js',
   },
@@ -127,7 +136,23 @@ const mkPage = (name, seed) => {
   return p;
 };
 const pageLesson = mkPage('lesson.html', '');
-const pageCompiler = mkPage('compiler.html', `localStorage.setItem('ccPractice:${lessonId}','{"kind":"hw"}')`);
+// Kompilyator qatlamiga yetish — ikki naqsh:
+//   · texnik darslar: `ccPractice:<id>` = {kind:'hw'} (uy-vazifa oqimi kompilyatorni ochadi)
+//   · PM darslar (hw yo'q): KODING-ekranga sakrash (ccProgress) + `<KODING_KEY>` = {open:true}
+const kodingKey = (/KODING_KEY\d*\s*=\s*['"]([^'"]+)['"]/.exec(lessonSrc) || [])[1];
+const metaBody = (/SCREEN_META\d*\s*=\s*\[([\s\S]*?)\n\];/.exec(lessonSrc) || [])[1] || '';
+const metaRows = metaBody.split('\n').filter((l) => /\{\s*id:/.test(l));
+const kodingIdx = metaRows.findIndex((l) => /type:\s*['"]koding['"]/.test(l));
+// KODING-ekran `type:'koding'` deb belgilanmagan darslar (PmLesson6: s11 = practice) — nomzodlar: practice-qatorlar
+// OXIRIDAN (KODING odatda oxirgi praktika); har nomzod uchun alohida sahifa (compiler.html, compiler1.html…),
+// birinchi ochilgani hisobga olinadi.
+const kodingCandidates = kodingIdx !== -1 ? [kodingIdx]
+  : metaRows.map((l, i) => (/type:\s*['"]practice['"]/.test(l) ? i : -1)).filter((i) => i !== -1).reverse();
+const seedFor = (idx) => (kodingKey && idx !== -1)
+  ? `localStorage.setItem('ccProgress:${lessonId}',JSON.stringify({screen:${idx},answers:{},earned:[],startedAt:Date.now(),total:${metaRows.length},savedAt:Date.now()}));` +
+    `localStorage.setItem(${JSON.stringify(kodingKey)},'{"open":true}');`
+  : `localStorage.setItem('ccPractice:${lessonId}','{"kind":"hw"}')`;
+const compilerPages = (kodingKey && kodingCandidates.length ? kodingCandidates : [-1]).map((idx, k) => mkPage(`compiler${k ? k : ''}.html`, seedFor(idx)));
 
 // ── 4) Lokal HTTP-server: file:// da module-skriptlar CORS bilan to'siladi ──
 const MIME = { html: 'text/html', js: 'text/javascript', json: 'application/json' };
@@ -182,15 +207,21 @@ await p1.screenshot({ path: join(TMP, 'dars.png') });
 
 // B: kompilyator qatlami + hook-sinovi (BITTA React isboti)
 const p2 = await ctx.newPage(); hook(p2, 'kompilyator');
-await p2.goto(`${BASE}/compiler.html`, { waitUntil: 'domcontentloaded', timeout: 20000 });
 let hcOpen = false, hcTyped = false;
+for (let k = 0; k < compilerPages.length && !hcOpen; k++) {
+  await p2.goto(`${BASE}/compiler${k ? k : ''}.html`, { waitUntil: 'domcontentloaded', timeout: 20000 });
+  try { await p2.waitForSelector('.hc-root textarea.hc-code', { timeout: k === 0 ? 15000 : 6000 }); hcOpen = true; } catch { /* keyingi nomzod */ }
+}
 try {
-  await p2.waitForSelector('.hc-root textarea.hc-code', { timeout: 15000 });
-  hcOpen = true;
+  if (!hcOpen) throw new Error('kompilyator ochilmadi');
   // Yozish = setState = hook. Ikki React bo'lsa shu yerda «Invalid hook call» qulaydi.
   // Matn `// salom` — HTML'da ham, JS'da ham yaroqli (aktiv fayl tili noma'lum;
   // JS fayliga `<h1>` yozilsa preview haqli ravishda sintaksis-xato beradi).
   await p2.click('.hc-code');
+  // Kursor fayl OXIRIGA — bosish satr o'rtasiga tushsa, `// salom` starter-kodni
+  // (`console.log(qabul// salom`) sindirib preview'da soxta sintaksis-xato beradi.
+  await p2.keyboard.press('Control+End');
+  await p2.keyboard.press('Enter');
   await p2.keyboard.type('// salom');
   await p2.waitForTimeout(300);
   hcTyped = (await p2.inputValue('.hc-code')).includes('// salom');

@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useRef, useCallback, createContext, useContext } from 'react';
+import React, { useState, useEffect, useRef, useCallback, useMemo, createContext, useContext } from 'react';
+import HtmlCompiler, { checks as C } from '../compilator/HtmlCompiler.jsx';
 const MENTOR_IMG = 'https://go.coddycamp.uz/uploads/media_library/c7b711619071c92bef604c7ad68380dd.png';
 
 // ============================================================
@@ -1679,7 +1680,13 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 };
 
 // ===== SCREEN 11 — KODING (to'liq-ekran kompilyator) =====
-const KOD_STARTER = `// Saytingiz uch qatlamdan iborat. Har qatlamni do'kon egasi tushunadigan tilda yozing.
+const KOD_HELPER = `// chiqar(...) — natijani konsolga chiqaradi (tayyor yordamchi, o'zgartirmang)
+const chiqarilgan = [];
+function chiqar(v) { chiqarilgan.push(String(v)); console.log(v); }
+
+`;
+const ensureHelper = (code) => (/function\s+chiqar\s*\(/.test(code || '') ? code : KOD_HELPER + (code || ''));
+const KOD_STARTER = KOD_HELPER + `// Saytingiz uch qatlamdan iborat. Har qatlamni do'kon egasi tushunadigan tilda yozing.
 const sistema = {
   korinish: "",   // peshtaxta: mijoz ekranda nimani ko'radi?
   ishlash:  "",   // oshpaz: sayt qanday ishni o'zi bajaradi?
@@ -1707,139 +1714,37 @@ const KOD_CONDS = [
   { id: 'c2', label: { uz: 'Funksiya gap qaytaradi', ru: 'Функция возвращает фразу' }, hint: { uz: "return qatoriga sistema[qatlam] ni qo'shing.", ru: 'Добавьте в строку return выражение sistema[qatlam].' } },
   { id: 'c3', label: { uz: 'Uch qator chiqdi', ru: 'Вышли три строки' }, hint: { uz: "Sikl ichida chiqar(oddiyGap(qatlamlar[i])) deb yozing.", ru: 'Внутри цикла напишите chiqar(oddiyGap(qatlamlar[i])).' } }
 ];
-const KOD_CSS = `*{box-sizing:border-box}body{font-family:-apple-system,'Segoe UI',Roboto,sans-serif;margin:0;padding:16px;background:#F2F0FA;color:#1B1630}
-#out{display:flex;flex-direction:column;gap:9px}
-.k-empty{font-style:italic;color:#9C97B4;font-size:13px;margin:0}
-.k-err{font-family:monospace;font-size:13px;color:#E5484D;background:#FCE7E8;border-radius:9px;padding:10px 12px;margin:0;white-space:pre-wrap;word-break:break-word}
-.k-card{font-family:'Source Serif 4',Georgia,serif;font-size:15px;line-height:1.5;background:#fff;border-radius:9px;padding:11px 13px;box-shadow:0 5px 14px -8px rgba(40,34,82,.25);border-left:3px solid #E7E3F4;white-space:pre-wrap;word-break:break-word;min-width:0}
-.k-card.ok{border-left-color:#12A968}`;
-const KOD_HARNESS = (nonce) => `(function(){
-  var N=${JSON.stringify(nonce)};
-  var out=window.__out||[];var err=null;var c1=false,c2=false,c3=false,bad=null;
-  var J=${JSON.stringify(JARGON_WORDS)};
-  var W=function(t,at,n){var isW=function(c){return !!c && !/[\\s.,!?;:()«»"—–-]/.test(c);};
-    var s=at,e=at+n;while(s>0&&isW(t.charAt(s-1)))s--;while(e<t.length&&isW(t.charAt(e)))e++;return t.slice(s,e);};
-  try{
-    var s=(typeof sistema!=="undefined")?sistema:null;
-    if(s){c1=["korinish","ishlash","malumot"].every(function(k){return typeof s[k]==="string"&&s[k].trim().length>=6;});}
-    var probe=(typeof oddiyGap==="function")?oddiyGap("korinish"):null;
-    c2=!!(typeof probe==="string"&&s&&s.korinish&&s.korinish.trim().length>0&&probe.indexOf(s.korinish.trim())!==-1);
-    c3=out.length===3;
-    var joinedRaw=out.join(" ");var joined=joinedRaw.toLowerCase();
-    for(var i=0;i<J.length;i++){var at=joined.indexOf(J[i]);if(at!==-1){bad=W(joinedRaw,at,J[i].length);break;}}
-  }catch(e){err=String(e&&e.message||e);}
-  var esc=function(t){return String(t).replace(/[&<>]/g,function(m){return m==="&"?"&amp;":m==="<"?"&lt;":"&gt;";});};
-  var root=document.getElementById("out");
-  if(root){
-    if(err){root.innerHTML='<p class="k-err">Kod ishlamadi: '+esc(err)+'</p>';}
-    else if(!out.length){root.innerHTML='<p class="k-empty">Natija hali chiqmadi — chiqar(...) ni chaqiring.</p>';}
-    else{root.innerHTML=out.map(function(l){return '<div class="k-card '+(bad?"":"ok")+'">'+esc(l)+'</div>';}).join("");}
-  }
-  try{parent.postMessage({__pmKod:true,nonce:N,c1:c1,c2:c2,c3:c3,err:err,bad:bad},"*");}catch(e){}
-})();`;
-const KOD_wrapDoc = (code, nonce) => `<!doctype html><html lang="uz"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1"><style>${KOD_CSS}</style>
-<script>window.__out=[];window.chiqar=function(v){window.__out.push(String(v));};<\/script>
-</head><body><div id="out"></div>
-<script>${code}<\/script>
-<script>${KOD_HARNESS(nonce)}<\/script>
-</body></html>`;
 const readKoding = () => readLS(KODING_KEY);
 // F-0801-01: kompilyator ochiq-yopiqligi ham saqlanadi — fon-tabda Chrome sahifani
 // qayta yuklasa (Memory Saver), o'quvchi kompilyator ICHIGA qaytadi, praktika-sahifaga emas.
 const writeKodingOpen = (open) => writeLS(KODING_KEY, { ...(readKoding() || {}), open });
-function PmCompiler({ initialCode, onContinue, onBack }) {
-  const [code, setCode] = useState(initialCode || '');
-  const nonceRef = useRef(0);
-  const [doc, setDoc] = useState('');
-  const [st, setSt] = useState({ err: null, bad: null, conds: { c1: false, c2: false, c3: false } });
-  useEffect(() => {
-    const t = setTimeout(() => {
-      const nonce = ++nonceRef.current;
-      setDoc(KOD_wrapDoc(code, nonce));
-      const prev = readKoding();
-      writeLS(KODING_KEY, { code, done: !!(prev && prev.done), open: true });
-    }, 400);
-    return () => clearTimeout(t);
-  }, [code]);
-  useEffect(() => {
-    const onMsg = (e) => {
-      const d = e.data;
-      if (d && d.__pmKod && d.nonce === nonceRef.current) setSt({ err: d.err || null, bad: d.bad || null, conds: { c1: !!d.c1, c2: !!d.c2, c3: !!d.c3 } });
-    };
-    window.addEventListener('message', onMsg);
-    return () => window.removeEventListener('message', onMsg);
-  }, []);
-  const { conds, err, bad } = st;
-  const passed = conds.c1 && conds.c2 && conds.c3 && !bad;
-  const okN = KOD_CONDS.filter(c => conds[c.id]).length;
-  const firstHint = KOD_CONDS.find(c => !conds[c.id]);
-  const runNow = () => { const nonce = ++nonceRef.current; setDoc(KOD_wrapDoc(code, nonce)); };
-  const onKeyDown = (e) => {
-    if (e.key === 'Tab') {
-      e.preventDefault();
-      const el = e.target, s = el.selectionStart, en = el.selectionEnd;
-      setCode(code.slice(0, s) + '  ' + code.slice(en));
-      requestAnimationFrame(() => { el.selectionStart = el.selectionEnd = s + 2; });
-    }
-  };
-  return (
-    <div className="hcp-root">
-      <div className="hcp-wrap">
-        <header className="hcp-top">
-          <span className="hcp-eyebrow">{tr({ uz: 'Koding · praktika', ru: 'Кодинг · практика' })}</span>
-          <h1 className="hcp-title">{tr({ uz: "Saytingizning uch qatlamini sahifada ko'rsatamiz", ru: 'Покажем три слоя вашего сайта на странице' })}</h1>
-          <p className="hcp-brief">{tr({ uz: <>Obyektga uch qatlamni yozing, <span className="mono">oddiyGap</span> har qatlamni sodda gapga aylantirsin, sikl uchalasini <span className="mono">chiqar</span> bilan chiqarsin.</>, ru: <>Впишите три слоя в объект, пусть <span className="mono">oddiyGap</span> превращает слой во фразу, а цикл выводит все три через <span className="mono">chiqar</span>.</> })}</p>
-          <div className="hcp-checklist">
-            <span className="hcp-count">{okN}/{KOD_CONDS.length}</span>
-            {KOD_CONDS.map((c, i) => (
-              <span key={c.id} className={`hcp-chip ${conds[c.id] ? 'ok' : ''}`} title={tr(c.hint)}>
-                <span className="hcp-dot">{conds[c.id] ? '✓' : i + 1}</span>{tr(c.label)}
-              </span>
-            ))}
-            {bad && <span className="hcp-chip warn"><span className="hcp-dot">!</span>⚠️ {tr({ uz: "Kasbiy so'z qoldi", ru: 'Осталось профессиональное слово' })}: {bad}</span>}
-          </div>
-          {err
-            ? <p className="hcp-err">⚠ {tr({ uz: 'Kod ishlamadi', ru: 'Код не сработал' })}: {err}</p>
-            : bad ? <p className="hcp-hint jrg">💡 {tr({ uz: `Natijada «${bad}» so'zi qoldi — uni tanish so'z bilan almashtiring.`, ru: `В результате осталось слово «${bad}» — замените его знакомым.` })}</p>
-              : (!passed && firstHint && <p className="hcp-hint">💡 {tr(firstHint.hint)}</p>)}
-        </header>
-        <main className="hcp-split">
-          <section className="hcp-pane">
-            <div className="hcp-pane-bar dark">
-              <span className="bb-dots"><i /><i /><i /></span>
-              <span className="hcp-tab">sistema.js</span>
-              <button className="hcp-mini" onClick={runNow}>▶ {tr({ uz: 'Ishga tushirish', ru: 'Запустить' })}</button>
-            </div>
-            <div className="hcp-code-wrap">
-              <textarea className="hcp-code" value={code} spellCheck={false} autoCapitalize="off" autoCorrect="off"
-                onChange={e => setCode(e.target.value)} onKeyDown={onKeyDown} onCopy={e => e.preventDefault()} onPaste={e => e.preventDefault()} />
-            </div>
-          </section>
-          <section className="hcp-pane">
-            <div className="hcp-pane-bar">
-              <span className="hcp-pane-name">📺 {tr({ uz: 'Natija', ru: 'Результат' })}</span>
-              <span className="hcp-live">{tr({ uz: 'jonli', ru: 'вживую' })}</span>
-            </div>
-            {doc
-              ? <iframe key={nonceRef.current} className="hcp-frame" title={tr({ uz: 'Jonli natija', ru: 'Живой результат' })} sandbox="allow-scripts" srcDoc={doc} />
-              : <p style={{ padding: 16, margin: 0 }}>{tr({ uz: 'Yozishni boshlang — natija shu yerda chiqadi.', ru: 'Начните писать — результат появится здесь.' })}</p>}
-          </section>
-        </main>
-        <footer className="hcp-bottom">
-          <button className="hcp-ghost" onClick={onBack}>← {tr({ uz: 'Darsga qaytish', ru: 'Вернуться к уроку' })}</button>
-          <button className="hcp-ghost" onClick={() => setCode(KOD_STARTER)}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button>
-          <div className="hcp-status">
-            {passed
-              ? <span className="hcp-ok-msg">✓ {tr({ uz: 'Uchala shart bajarildi!', ru: 'Все три условия выполнены!' })}</span>
-              : <span className="hcp-wait-msg">🔒 {tr({ uz: "Kod qo'lda yoziladi — nusxalash yopiq", ru: 'Код пишется вручную — копирование закрыто' })}</span>}
-          </div>
-          <button className="hcp-next" disabled={!passed} onClick={() => passed && onContinue({ code })}>{tr({ uz: 'Davom etish', ru: 'Продолжить' })} →</button>
-        </footer>
-      </div>
-    </div>
-  );
-}
+// KODING endi umumiy HtmlCompiler zanjirida (eski nusxa-harness `window.__out`/`chiqar` wrapDoc'dan o'chirildi — K-C-11 sinfi).
+// c1/c2/c3 — runtime `eval` (closure-harness ichida), c4 jargon — statik: kod SATR-LITERALLARIDA kasbiy so'z (topilgan so'z hint'da).
+// Saqlov-moslik: eski `pm-m2d13-code`.code → starter (chiqar-yordamchisi yo'q bo'lsa avtomatik qo'shiladi); yangi kod `pm-m2d13-code:code`.
+const KOD_FILE = 'qatlamlar.js';
+const KOD_EVAL_C1 = '(function(){try{var s=sistema;return ["korinish","ishlash","malumot"].every(function(k){return typeof s[k]==="string"&&s[k].trim().length>=6;});}catch(e){return false;}})()';
+const KOD_EVAL_C2 = '(function(){try{var p=oddiyGap("korinish");return typeof p==="string"&&!!sistema.korinish&&sistema.korinish.trim().length>0&&p.indexOf(sistema.korinish.trim())!==-1;}catch(e){return false;}})()';
+const KOD_EVAL_C3 = '(function(){try{return chiqarilgan.length===3;}catch(e){return false;}})()';
+const kodJargon = (js) => {
+  // faqat satr-literallar (o'quvchi yozgan matn) — izoh/identifikator emas
+  const lits = []; const re = /"((?:[^"\\\n]|\\.)*)"|'((?:[^'\\\n]|\\.)*)'/g; let m;
+  while ((m = re.exec(js || ''))) lits.push(m[1] != null ? m[1] : m[2]);
+  return findJargon(lits.join(' '));
+};
+const mkKodTask = (starter) => ({
+  eyebrow: { uz: 'Koding · praktika', ru: 'Кодинг · практика' },
+  title: { uz: 'Uch qatlamni oddiy gapga aylantiring', ru: 'Превратите три слоя в простые фразы' },
+  brief: { uz: <>Har qatlamni do'kon egasi tushunadigan tilda yozing, keyin <span className="mono">oddiyGap</span> gap qaytarsin va sikl uchalasini <span className="mono">chiqar(...)</span> bilan chiqarsin. Natija konsolda.</>, ru: <>Опишите каждый слой словами владельца магазина, затем <span className="mono">oddiyGap</span> вернёт фразу, а цикл выведет все три через <span className="mono">chiqar(...)</span>. Результат — в консоли.</> },
+  files: [{ name: KOD_FILE, lang: 'js', starter }],
+  requirements: [
+    { id: 'c1', label: KOD_CONDS[0].label, hint: KOD_CONDS[0].hint, eval: KOD_EVAL_C1, equals: 'true' },
+    { id: 'c2', label: KOD_CONDS[1].label, hint: KOD_CONDS[1].hint, eval: KOD_EVAL_C2, equals: 'true' },
+    { id: 'c3', label: KOD_CONDS[2].label, hint: KOD_CONDS[2].hint, eval: KOD_EVAL_C3, equals: 'true' },
+    { id: 'c4', label: { uz: "Kasbiy so'z yo'q", ru: 'Без профессиональных слов' }, hint: { uz: "Natijada kasbiy so'z qolmasin — tanish so'z bilan almashtiring.", ru: 'В результате не должно остаться профессиональных слов — замените знакомым словом.' },
+      check: C.custom((x) => { const bad = kodJargon(x.js); return bad ? tr({ uz: `Natijada «${bad}» so'zi qoldi — uni tanish so'z bilan almashtiring.`, ru: `В результате осталось слово «${bad}» — замените его знакомым словом.` }) : true; }) },
+  ],
+});
+
 const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const gate = useContext(LiveGateCtx) || {};
   const live = gate.live;
@@ -1858,7 +1763,9 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       if (live && live.mode === 'student') live.submitAnswer(PRACTICE_BASE + screen, 'koding', 0, true, 0);
     }
   }, []); // eslint-disable-line
-  const finish = ({ code: nc }) => {
+  const kodTask = useMemo(() => mkKodTask(ensureHelper(code || KOD_STARTER)), []); // eslint-disable-line -- K-K-05: task bir marta
+  const finish = ({ codes }) => {
+    const nc = (codes && codes[KOD_FILE]) || code;
     setOpen(false); setSt({ code: nc, done: true });
     writeLS(KODING_KEY, { code: nc, done: true, open: false });
     if (!done) {
@@ -1898,7 +1805,11 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <StudentPracticePulse live={live} screen={screen} />
         <MentorPracticeStats live={live} screen={screen} label={tr({ uz: '🛠 Kodni yozib bo\'lganlar', ru: '🛠 Кто дописал код' })} />
       </div>
-      {open && <PmCompiler initialCode={code} onContinue={finish} onBack={() => { setOpen(false); writeKodingOpen(false); }} />}
+      {open && (
+        <div style={{ position: 'fixed', inset: 0, zIndex: 2000, background: T.bg }}>
+          <HtmlCompiler lang={__lang} task={kodTask} storageKey={`${KODING_KEY}:code`} onContinue={finish} onBack={() => { setOpen(false); writeKodingOpen(false); }} />
+        </div>
+      )}
     </Stage>
   );
 };
@@ -3378,42 +3289,6 @@ export default function PmLesson6({ lang: langProp, onFinished }) {
         .kod-launch-btn:hover { transform: translateY(-2px); }
 
         /* to'liq-ekran kompilyator */
-        .hcp-root { position: fixed; inset: 0; z-index: 2100; background: ${T.bg}; overflow: hidden; animation: fade-step 0.3s ease-out; }
-        .hcp-wrap { width: 100%; max-width: 1160px; height: 100dvh; margin: 0 auto; display: flex; flex-direction: column; justify-content: center; gap: clamp(10px,1.6vw,16px); padding: clamp(14px,2.2vw,28px); }
-        .hcp-top { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 7px; }
-        .hcp-eyebrow { font-family: 'Manrope'; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 800; color: ${T.accent}; }
-        .hcp-title { font-family: 'Source Serif 4', serif; font-weight: 600; font-size: clamp(19px,2.6vw,28px); margin: 0; color: ${T.ink}; line-height: 1.12; }
-        .hcp-brief { margin: 0; color: ${T.ink2}; font-size: clamp(13px,1.5vw,15px); line-height: 1.55; max-width: 64ch; }
-        .hcp-checklist { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 8px; margin-top: 5px; }
-        .hcp-count { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 12px; color: #fff; background: ${T.accent}; padding: 6px 11px; border-radius: 99px; }
-        .hcp-chip { display: inline-flex; align-items: center; gap: 7px; font-family: 'Manrope'; font-size: 13px; font-weight: 500; color: ${T.ink2}; background: ${T.paper}; padding: 6px 14px 6px 7px; border-radius: 99px; box-shadow: inset 0 0 0 1px ${T.line}; transition: all 0.22s ease; }
-        .hcp-chip.ok { color: ${T.ink}; font-weight: 600; background: ${T.successSoft}; box-shadow: inset 0 0 0 1px ${T.success}40; }
-        .hcp-chip.warn { color: ${T.amber}; font-weight: 700; background: ${T.amberSoft}; box-shadow: inset 0 0 0 1px ${T.amberLine}88; }
-        .hcp-chip.warn .hcp-dot { background: ${T.amberLine}; color: #fff; }
-        .hcp-dot { flex-shrink: 0; width: 21px; height: 21px; border-radius: 50%; background: ${T.bg}; color: ${T.ink3}; display: inline-flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; }
-        .hcp-chip.ok .hcp-dot { background: ${T.success}; color: #fff; }
-        .hcp-hint.hcp-hint { margin: 3px 0 0; font-family: 'Manrope'; font-size: 13px; color: ${T.accent}; background: ${T.accentSoft}; padding: 8px 15px; border-radius: 11px; max-width: 64ch; line-height: 1.5; }
-        .hcp-hint.jrg { color: ${T.amber}; background: ${T.amberSoft}; }
-        .hcp-err.hcp-err { margin: 3px 0 0; font-family: 'JetBrains Mono', monospace; font-size: 12.5px; color: ${T.err}; background: ${T.errSoft}; padding: 7px 14px; border-radius: 10px; max-width: 74ch; line-height: 1.5; overflow-wrap: anywhere; }
-        .hcp-split { flex: none; height: 58vh; min-height: 0; display: grid; grid-template-columns: 1fr 1fr; gap: clamp(12px,1.6vw,18px); }
-        @media (max-width: 760px) { .hcp-split { grid-template-columns: 1fr; height: 62vh; } }
-        .hcp-pane { display: flex; flex-direction: column; min-height: 0; border-radius: 18px; overflow: hidden; background: ${T.paper}; box-shadow: 0 18px 40px -22px rgba(${T.shadowBase},0.35); }
-        .hcp-pane-bar { display: flex; align-items: center; gap: 10px; padding: 10px 15px; font-family: 'Manrope'; font-size: 12px; font-weight: 600; color: ${T.ink2}; border-bottom: 1px solid ${T.line}; }
-        .hcp-pane-bar.dark { background: ${CODE.bg}; color: #A7B6D6; border-bottom: 1px solid rgba(255,255,255,0.06); }
-        .hcp-tab { font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 600; color: #fff; background: rgba(255,255,255,0.14); padding: 5px 13px; border-radius: 9px; }
-        .hcp-mini { margin-left: auto; background: ${T.accent}; color: #fff; border: none; border-radius: 9px; padding: 6px 13px; font-size: 11.5px; font-weight: 700; cursor: pointer; font-family: 'Manrope', sans-serif; flex-shrink: 0; }
-        .hcp-code-wrap { flex: 1; min-height: 0; display: flex; }
-        .hcp-code { flex: 1; width: 100%; min-height: 0; resize: none; border: none; outline: none; background: ${CODE.bg}; color: ${CODE.text}; font-family: 'JetBrains Mono', monospace; font-size: 13.5px; line-height: 1.7; padding: 16px 18px; tab-size: 2; white-space: pre; overflow: auto; caret-color: ${T.accentVivid}; }
-        .hcp-pane-name { font-family: 'JetBrains Mono', monospace; font-weight: 700; }
-        .hcp-live { margin-left: auto; font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: ${T.success}; background: ${T.successSoft}; padding: 4px 9px; border-radius: 99px; font-weight: 800; }
-        .hcp-frame { flex: 1; min-height: 0; width: 100%; border: none; background: ${T.bg}; }
-        .hcp-bottom { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
-        .hcp-ghost { background: ${T.paper}; color: ${T.ink2}; border: none; border-radius: 12px; padding: 11px 18px; font-family: 'Manrope'; font-weight: 600; font-size: 13.5px; cursor: pointer; box-shadow: 0 6px 16px -8px rgba(${T.shadowBase},0.2); }
-        .hcp-status { flex: 1; min-width: 0; text-align: center; }
-        .hcp-ok-msg { font-family: 'Manrope'; font-weight: 800; font-size: 13.5px; color: ${T.success}; }
-        .hcp-wait-msg { font-family: 'Manrope'; font-weight: 600; font-size: 13px; color: ${T.ink3}; }
-        .hcp-next { background: ${T.accent}; color: #fff; border: none; border-radius: 12px; padding: 12px 24px; font-family: 'Manrope'; font-weight: 800; font-size: 14px; cursor: pointer; }
-        .hcp-next:disabled { opacity: 0.4; cursor: not-allowed; }
 
         /* s12 bitta gap */
         /* 92(e): gapirish ekrani — matn TELEPROMPTER holatida (tinch, katta, keng qatorlar);
