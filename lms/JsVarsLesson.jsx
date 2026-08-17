@@ -387,7 +387,110 @@ var SNIPPETS = {
   img: { body: '<img src="" alt="">', caret: 10 }
 };
 var norm = (s) => (s || "").trim();
-var stripJsComments = (src) => (src || "").replace(/\/\*[\s\S]*?\*\//g, " ").replace(/\/\/[^\n]*/g, " ");
+var __cssNormEl = null;
+var cssNorm = (prop, val) => {
+  const raw = String(val ?? "").trim();
+  if (typeof document === "undefined") return raw;
+  try {
+    if (!__cssNormEl) __cssNormEl = document.createElement("div");
+    __cssNormEl.style.cssText = "";
+    __cssNormEl.style.setProperty(prop, raw);
+    return __cssNormEl.style.getPropertyValue(prop) || raw;
+  } catch {
+    return raw;
+  }
+};
+var __cssColorEl = null;
+var cssColorEq = (prop, a, b) => {
+  if (!/(^|-)color$/.test(prop) || typeof document === "undefined" || !document.body) return false;
+  try {
+    if (!__cssColorEl) {
+      __cssColorEl = document.createElement("i");
+      __cssColorEl.style.cssText = "position:absolute;width:0;height:0;overflow:hidden;visibility:hidden";
+    }
+    if (!__cssColorEl.isConnected) document.body.appendChild(__cssColorEl);
+    const comp = (v) => {
+      __cssColorEl.style.setProperty(prop, "");
+      __cssColorEl.style.setProperty(prop, String(v ?? "").trim());
+      if (!__cssColorEl.style.getPropertyValue(prop)) return null;
+      return getComputedStyle(__cssColorEl).getPropertyValue(prop);
+    };
+    const ca = comp(a), cb = comp(b);
+    __cssColorEl.style.setProperty(prop, "");
+    return !!ca && ca === cb;
+  } catch {
+    return false;
+  }
+};
+var stripJsComments = (src) => {
+  const s = src || "";
+  let out = "", i = 0, last = "";
+  const n = s.length;
+  const regexMayStart = () => !last || /[(,=:\[!&|?{};+\-*%<>~^]/.test(last) || /\b(return|typeof|case|in|of|delete|void|throw|new)$/.test(out.slice(-8));
+  while (i < n) {
+    const c = s[i], d = s[i + 1];
+    if (c === "/" && d === "/") {
+      while (i < n && s[i] !== "\n") {
+        out += " ";
+        i++;
+      }
+      continue;
+    }
+    if (c === "/" && d === "*") {
+      const e = s.indexOf("*/", i + 2);
+      const end = e === -1 ? n : e + 2;
+      for (; i < end; i++) out += s[i] === "\n" ? "\n" : " ";
+      continue;
+    }
+    if (c === '"' || c === "'" || c === "`") {
+      const q = c;
+      out += c;
+      i++;
+      while (i < n && s[i] !== q) {
+        if (s[i] === "\\" && i + 1 < n) {
+          out += s[i] + s[i + 1];
+          i += 2;
+          continue;
+        }
+        if (s[i] === "\n" && q !== "`") break;
+        out += s[i];
+        i++;
+      }
+      if (i < n && s[i] === q) {
+        out += q;
+        i++;
+      }
+      last = q;
+      continue;
+    }
+    if (c === "/" && regexMayStart()) {
+      out += c;
+      i++;
+      let cls = false;
+      while (i < n && s[i] !== "\n" && (cls || s[i] !== "/")) {
+        if (s[i] === "\\" && i + 1 < n) {
+          out += s[i] + s[i + 1];
+          i += 2;
+          continue;
+        }
+        if (s[i] === "[") cls = true;
+        else if (s[i] === "]") cls = false;
+        out += s[i];
+        i++;
+      }
+      if (i < n && s[i] === "/") {
+        out += "/";
+        i++;
+      }
+      last = "/";
+      continue;
+    }
+    out += c;
+    if (!/\s/.test(c)) last = c;
+    i++;
+  }
+  return out;
+};
 var checks = {
   // Teg/selektor mavjudmi?
   has: (sel, hint) => (x) => x.$(sel) ? true : tr(hint ?? { uz: `\`${sel}\` topilmadi`, ru: `\`${sel}\` не найден` }),
@@ -425,9 +528,13 @@ var checks = {
     return hit ? true : tr(hint ?? { uz: `\`${selector}\` uchun \`${prop}\` xossasini yozing`, ru: `для \`${selector}\` задайте свойство \`${prop}\`` });
   },
   // CSS: selektorga shu xossa AYNAN shu qiymat bilan yozilganmi?
+  // K-C-01: o'quvchi qiymati CSSOM'dan NORMALLASHGAN holda keladi (`#ff0000`→`rgb(255, 0, 0)`,
+  // `0`→`0px`, `flex:1`→`1 1 0%`), kutilgan qiymat esa xom matn edi — hech qachon mos kelmasdi.
+  // Endi kutilgan qiymat ham O'SHA CSSOM orqali o'tkaziladi (cssNorm), keyin solishtiriladi.
   cssValue: (selector, prop, val, hint) => (x) => {
+    const want = cssNorm(prop, val);
     const hit = x.cssRules.some(
-      (r) => r.selector.split(",").map(norm).includes(norm(selector)) && norm(r.props[prop]) === norm(val)
+      (r) => r.selector.split(",").map(norm).includes(norm(selector)) && (norm(r.props[prop]) === norm(String(val ?? "")) || norm(r.props[prop]).toLowerCase() === want.toLowerCase() || cssColorEq(prop, r.props[prop], val))
     );
     return hit ? true : tr(hint ?? { uz: `\`${selector}\` da \`${prop}: ${val}\` yozing`, ru: `в \`${selector}\` напишите \`${prop}: ${val}\`` });
   },
@@ -519,34 +626,25 @@ function parseCss(css) {
   document.head.appendChild(el);
   let rules = [];
   try {
-    rules = [...el.sheet?.cssRules || []].filter((r) => r.style).map((r) => {
+    const declared = new Set((css.match(/([-a-zA-Z]+)\s*:/g) || []).map((m) => m.replace(/\s*:$/, "").toLowerCase()));
+    const flat = [];
+    const walk = (list) => {
+      for (const r of list || []) {
+        if (r.style && r.selectorText != null) flat.push(r);
+        else if (r.cssRules && r.cssRules.length && !(typeof CSSKeyframesRule !== "undefined" && r instanceof CSSKeyframesRule)) walk([...r.cssRules]);
+      }
+    };
+    walk([...el.sheet?.cssRules || []]);
+    rules = flat.map((r) => {
       const props = {};
       for (let i = 0; i < r.style.length; i++) {
         const p = r.style[i];
         props[p] = r.style.getPropertyValue(p);
       }
-      [
-        "gap",
-        "margin",
-        "padding",
-        "border",
-        "flex",
-        "background",
-        "font",
-        "inset",
-        "place-items",
-        "place-content",
-        "border-radius",
-        "flex-flow",
-        "list-style",
-        "transition",
-        "overflow",
-        "grid-template",
-        "gridArea"
-      ].forEach((sh) => {
-        if (props[sh] == null) {
-          const v = r.style.getPropertyValue(sh);
-          if (v) props[sh] = v;
+      declared.forEach((name) => {
+        if (props[name] == null) {
+          const v = r.style.getPropertyValue(name);
+          if (v) props[name] = v;
         }
       });
       return { selector: r.selectorText || "", props };
@@ -815,14 +913,6 @@ function runOne(req, ctx) {
     return { ok: false, hint: tr({ uz: "tekshirishda xatolik", ru: "ошибка при проверке" }) };
   }
 }
-var CONSOLE_CAPTURE = `<script>
-window.__logs=[];
-(function(){var _l=console.log;console.log=function(){
-  for(var i=0;i<arguments.length;i++){var a=arguments[i];
-    try{window.__logs.push(typeof a==='object'?JSON.stringify(a):String(a));}catch(e){window.__logs.push(String(a));}}
-  try{_l.apply(console,arguments);}catch(e){}
-};})();
-<\/script>`;
 var CONSOLE_FORWARD = (nonce) => `<script>
 (function(){
   var N=${JSON.stringify(nonce)};
@@ -840,43 +930,54 @@ var CONSOLE_FORWARD = (nonce) => `<script>
 <\/script>`;
 var buildHarness = (probes, nonce) => `<script>
 (function(){
+  try{var _cs=document.currentScript;if(_cs)_cs.parentNode.removeChild(_cs);}catch(e){}
+  var logs=[],_push=Array.prototype.push,_str=String,_json=JSON.stringify,
+      _idx=String.prototype.indexOf,_trim=String.prototype.trim,_low=String.prototype.toLowerCase,
+      _st=window.setTimeout,_qs=document.querySelector;
+  var _l=console.log;console.log=function(){
+    for(var i=0;i<arguments.length;i++){var a=arguments[i];
+      try{_push.call(logs,typeof a==='object'?_json(a):_str(a));}catch(e){_push.call(logs,_str(a));}}
+    try{_l.apply(console,arguments);}catch(e){}
+  };
+  function has(hay,needle){return _idx.call(_str(hay),needle)!==-1;}
+  function qs(sel){try{return _qs.call(document,sel);}catch(e){return null;}}
   function runProbes(){
     var P=${JSON.stringify(probes)};
-    var logs=window.__logs||[];
-    var joined=logs.join(' ');
+    var joined='';for(var j=0;j<logs.length;j++)joined+=(j?' ':'')+logs[j];
     var out={};
     for(var k=0;k<P.length;k++){
       var p=P[k],ok=false;
       try{
         if(p.type==='log_includes'){
-          var v=String(p.value).trim();
-          ok=joined.indexOf(v)!==-1||logs.some(function(l){return String(l).trim().indexOf(v)!==-1;});
+          var v=_trim.call(_str(p.value));
+          ok=has(joined,v);
+          if(!ok){for(var q=0;q<logs.length;q++){if(has(_trim.call(_str(logs[q])),v)){ok=true;break;}}}
         }else if(p.type==='eval_equals'){
           var r; try{r=eval(p.expr);}catch(e){r=undefined;}
-          ok=String(r)===String(p.expected);
+          ok=_str(r)===_str(p.expected);
         }else if(p.type==='click_text'){
-          var exp=String(p.expected);
-          var t0=document.querySelector(p.readSel);
+          var exp=_str(p.expected);
+          var t0=qs(p.readSel);
           var before=t0?t0.textContent:'';
-          var b=document.querySelector(p.clickSel);
+          var b=qs(p.clickSel);
           if(b){try{b.click();}catch(e){}}
-          var t1=document.querySelector(p.readSel);
+          var t1=qs(p.readSel);
           var after=t1?t1.textContent:'';
           // Matn bosishdan KEYIN paydo bo'lishi kerak (oldin bo'lmagan) — JS'siz o'tmaydi
-          ok=after.indexOf(exp)!==-1 && before.indexOf(exp)===-1;
+          ok=has(after,exp) && !has(before,exp);
         }else if(p.type==='toggle'){
-          var A=String(p.textA).toLowerCase().trim();
-          var B=String(p.textB).toLowerCase().trim();
-          var rd=function(){var e=document.querySelector(p.readSel);return (e?e.textContent:'').toLowerCase();};
-          var b2=document.querySelector(p.clickSel);
+          var A=_trim.call(_low.call(_str(p.textA)));
+          var B=_trim.call(_low.call(_str(p.textB)));
+          var rd=function(){var e=qs(p.readSel);return _low.call(_str(e?e.textContent:''));};
+          var b2=qs(p.clickSel);
           var s0=rd();
-          var startOk=s0.indexOf(A)!==-1 && s0.indexOf(B)===-1; // boshida A
+          var startOk=has(s0,A) && !has(s0,B); // boshida A
           if(b2){try{b2.click();}catch(e){}}
           var s1=rd();
-          var firstOk=s1.indexOf(B)!==-1 && s1.indexOf(A)===-1; // 1-bosish -> B
+          var firstOk=has(s1,B) && !has(s1,A); // 1-bosish -> B
           if(b2){try{b2.click();}catch(e){}}
           var s2=rd();
-          var secondOk=s2.indexOf(A)!==-1 && s2.indexOf(B)===-1; // 2-bosish -> A
+          var secondOk=has(s2,A) && !has(s2,B); // 2-bosish -> A
           ok=startOk && firstOk && secondOk;
         }
       }catch(e){ok=false;}
@@ -886,7 +987,7 @@ var buildHarness = (probes, nonce) => `<script>
   }
   // 'load' hodisasidan keyin ishga tushiramiz — o'quvchi handler'ni
   // window.onload / addEventListener('load') ichida ulagan bo'lsa ham ulgursin.
-  function start(){ setTimeout(runProbes, 50); }
+  function start(){ _st.call(window, runProbes, 50); }
   if(document.readyState==='complete') start();
   else window.addEventListener('load', start);
 })();
@@ -903,7 +1004,7 @@ var baseStyle = `
   .hc-imgfb-t{font-weight:700;color:#0E0E10}
   .hc-imgfb-h{font-size:12.5px;color:#8A8880}
   .hc-imgfb code{font-family:ui-monospace,Menlo,Consolas,monospace;background:#EFEBE3;padding:1px 5px;border-radius:5px}`;
-var IMG_FALLBACK = `<script>
+var IMG_FALLBACK = () => `<script>
 document.addEventListener('error',function(e){
   var el=e.target;
   if(!el||el.tagName!=='IMG'||el.dataset.hcFb)return;
@@ -913,13 +1014,13 @@ document.addEventListener('error',function(e){
   b.className='hc-imgfb';
   b.innerHTML='<span class="hc-imgfb-i">\\uD83D\\uDDBC</span>'
     +'<span class="hc-imgfb-t"></span>'
-    +'<span class="hc-imgfb-h">rasm topilmadi — <code>src</code> manzilini tekshiring</span>';
-  b.querySelector('.hc-imgfb-t').textContent = alt || 'alt matni yozilmagan';
+    +'<span class="hc-imgfb-h">'+${JSON.stringify(tr({ uz: "rasm topilmadi — <code>src</code> manzilini tekshiring", ru: "картинка не найдена — проверьте адрес в <code>src</code>" }))}+'</span>';
+  b.querySelector('.hc-imgfb-t').textContent = alt || ${JSON.stringify(tr({ uz: "alt matni yozilmagan", ru: "текст alt не написан" }))};
   if(el.parentNode)el.parentNode.insertBefore(b,el.nextSibling);
 },true);
 <\/script>`;
 var wrapDoc = (html, css, js, opts = {}) => `<!doctype html>
-<html lang="uz">
+<html lang="${__lang}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -927,14 +1028,14 @@ var wrapDoc = (html, css, js, opts = {}) => `<!doctype html>
 <style>${baseStyle}
 ${opts.previewCss || ""}
 ${css || ""}</style>
-${opts.capture ? CONSOLE_CAPTURE : ""}
+${opts.harness || ""}
 ${opts.consoleNonce != null ? CONSOLE_FORWARD(opts.consoleNonce) : ""}
-${opts.capture ? "" : IMG_FALLBACK}
+${opts.harness ? "" : IMG_FALLBACK()}
 </head>
 <body>
 ${html || ""}
 <script>${js || ""}<\/script>
-${opts.harness || ""}
+${opts.doneNonce != null ? `<script>try{parent.postMessage({__hcDone:true,nonce:${JSON.stringify(opts.doneNonce)}},'*')}catch(e){}<\/script>` : ""}
 </body>
 </html>`;
 function HtmlCompiler({
@@ -985,35 +1086,92 @@ function HtmlCompiler({
     [reqs]
   );
   const hasRuntime = runtimeProbes.length > 0;
-  const nonceRef = useRef(0);
+  const nonceRef = useRef("");
+  const gotReportRef = useRef(null);
   const [runtimeResults, setRuntimeResults] = useState({});
+  const previewFrameRef = useRef(null);
+  const checkFrameRef = useRef(null);
+  const fromFrame = (e, ref) => !!(ref.current && e.source && e.source === ref.current.contentWindow);
   const showConsole = useMemo(() => files.some((f) => f.lang === "js"), [files]);
   const consoleNonceRef = useRef(0);
   const [consoleLines, setConsoleLines] = useState([]);
   const mkDoc = (extra = {}) => wrapDoc(html, css, js, { previewCss: task.previewCss, ...extra });
   const [doc, setDoc] = useState(() => wrapDoc(html, css, js, { previewCss: task.previewCss }));
   const [checkDoc, setCheckDoc] = useState("");
+  const HUNG_MS = 5e3;
+  const HUNG_MSG = tr({
+    uz: "⏱ Kod juda uzoq ishladi — sikl tugamayapti (cheksiz sikl?). Shartni tekshiring: sanagich o'zgaryaptimi (masalan i++)?",
+    ru: "⏱ Код работал слишком долго — цикл не заканчивается (бесконечный цикл?). Проверьте условие: меняется ли счётчик (например i++)?"
+  });
+  const [frameGen, setFrameGen] = useState(0);
+  const [framesOff, setFramesOff] = useState(false);
+  const [hung, setHung] = useState(false);
+  const doneNonceRef = useRef(0);
+  const pendingRef = useRef({});
+  const dogRef = useRef(null);
+  const killedForRef = useRef(null);
+  const armDog = () => {
+    clearTimeout(dogRef.current);
+    dogRef.current = setTimeout(() => {
+      const p = pendingRef.current;
+      if (p.doc == null && p.check == null) return;
+      const sigKill = `${p.doc}/${p.check}`;
+      setHung(true);
+      pendingRef.current = {};
+      setFramesOff(true);
+      if (killedForRef.current === sigKill) return;
+      killedForRef.current = sigKill;
+      setTimeout(() => {
+        setFrameGen((g) => g + 1);
+        setFramesOff(false);
+        pendingRef.current = { ...p };
+        armDog();
+      }, 120);
+    }, HUNG_MS);
+  };
+  const expect = (which, nonce) => {
+    pendingRef.current = { ...pendingRef.current, [which]: nonce };
+    armDog();
+  };
+  const settle = (which, nonce) => {
+    if (pendingRef.current[which] !== nonce) return;
+    pendingRef.current = { ...pendingRef.current, [which]: null };
+    const p = pendingRef.current;
+    if (p.doc == null && p.check == null) {
+      clearTimeout(dogRef.current);
+      setHung(false);
+    }
+  };
+  useEffect(() => () => clearTimeout(dogRef.current), []);
   const manualRun = showConsole;
   const sig = `${html}\0${css}\0${js}`;
   const lastRunRef = useRef(null);
   const [stale, setStale] = useState(false);
   useEffect(() => {
     const id = setTimeout(() => {
+      setHung(false);
+      setFramesOff(false);
       if (!manualRun) {
-        setDoc(mkDoc());
+        const dn = ++doneNonceRef.current;
+        setDoc(mkDoc({ doneNonce: dn }));
+        expect("doc", dn);
       } else if (lastRunRef.current === null) {
         const cn = ++consoleNonceRef.current;
+        const dn = ++doneNonceRef.current;
         setConsoleLines([]);
-        setDoc(mkDoc({ consoleNonce: cn }));
+        setDoc(mkDoc({ consoleNonce: cn, doneNonce: dn }));
+        expect("doc", dn);
         lastRunRef.current = sig;
         setStale(false);
       } else {
         setStale(lastRunRef.current !== sig);
       }
       if (hasRuntime) {
-        const nonce = ++nonceRef.current;
+        const nonce = nonceRef.current = `${Math.random().toString(36).slice(2)}${Date.now().toString(36)}`;
+        gotReportRef.current = null;
         setRuntimeResults({});
-        setCheckDoc(mkDoc({ capture: true, harness: buildHarness(runtimeProbes, nonce) }));
+        setCheckDoc(mkDoc({ harness: buildHarness(runtimeProbes, nonce) }));
+        expect("check", nonce);
       }
     }, 300);
     return () => clearTimeout(id);
@@ -1022,18 +1180,28 @@ function HtmlCompiler({
     if (!hasRuntime) return;
     const onMsg = (e) => {
       const d = e.data;
-      if (d && d.__hcReport && d.nonce === nonceRef.current) {
+      if (d && d.__hcReport && d.nonce === nonceRef.current && fromFrame(e, checkFrameRef) && gotReportRef.current !== d.nonce) {
+        gotReportRef.current = d.nonce;
         setRuntimeResults(d.results || {});
+        settle("check", d.nonce);
       }
     };
     window.addEventListener("message", onMsg);
     return () => window.removeEventListener("message", onMsg);
   }, [hasRuntime]);
   useEffect(() => {
+    const onDone = (e) => {
+      const d = e.data;
+      if (d && d.__hcDone && d.nonce === doneNonceRef.current && fromFrame(e, previewFrameRef)) settle("doc", d.nonce);
+    };
+    window.addEventListener("message", onDone);
+    return () => window.removeEventListener("message", onDone);
+  }, []);
+  useEffect(() => {
     if (!showConsole) return;
     const onMsg = (e) => {
       const d = e.data;
-      if (d && d.__hcConsole && d.nonce === consoleNonceRef.current) {
+      if (d && d.__hcConsole && d.nonce === consoleNonceRef.current && fromFrame(e, previewFrameRef)) {
         setConsoleLines((prev) => prev.length >= 200 ? prev : [...prev, { level: d.level, text: d.text }]);
       }
     };
@@ -1064,19 +1232,19 @@ function HtmlCompiler({
       cssRules: parseCss(css)
     };
     return reqs.map((r) => runOne(r, ctx));
-  }, [html, css, js, reqs]);
+  }, [html, css, js, reqs, lang]);
   const [lintSrc, setLintSrc] = useState(html);
   useEffect(() => {
     const id = setTimeout(() => setLintSrc(html), LINT_DELAY_MS);
     return () => clearTimeout(id);
   }, [html]);
-  const htmlErrors = useMemo(() => lintHtml(lintSrc), [lintSrc]);
+  const htmlErrors = useMemo(() => lintHtml(lintSrc), [lintSrc, lang]);
   const [tailTyping, setTailTyping] = useState(false);
   const hasSyntaxError = htmlErrors.length > 0;
   const merged = reqs.map((r, i) => {
     if (r.check && r.check.__runtime) {
       const got = runtimeResults[r.id];
-      if (got === void 0) return { ok: false, hint: tr({ uz: "ishga tushirilmoqda…", ru: "запускается…" }) };
+      if (got === void 0) return { ok: false, hint: hung ? HUNG_MSG : tr({ uz: "ishga tushirilmoqda…", ru: "запускается…" }) };
       return { ok: !!got, hint: got ? null : tr(r.check.hint) || tr({ uz: "natija kutilgancha emas", ru: "результат не такой, как ожидалось" }) };
     }
     return results[i];
@@ -1565,7 +1733,12 @@ ${ind}`, s + 1 + ind.length);
   const runNow = () => {
     const cn = showConsole ? ++consoleNonceRef.current : null;
     if (showConsole) setConsoleLines([]);
-    setDoc(mkDoc(cn != null ? { consoleNonce: cn } : {}));
+    const dn = ++doneNonceRef.current;
+    setHung(false);
+    setFramesOff(false);
+    killedForRef.current = null;
+    setDoc(mkDoc(cn != null ? { consoleNonce: cn, doneNonce: dn } : { doneNonce: dn }));
+    expect("doc", dn);
     lastRunRef.current = sig;
     setStale(false);
     if (narrow) setPane("result");
@@ -1649,15 +1822,20 @@ ${ind}`, s + 1 + ind.length);
        Bir vaqtda BITTA xato: 13 yoshli bolaga uchta qizil qator — shovqin. */
   }
         <div className="hc-msg">
-          {fmtNote ? <p className="hc-note">{fmtNote}</p> : shownErrors.length > 0 ? <button
-    type="button"
-    className="hc-err"
-    onClick={() => jumpToLine(shownErrors[0].line)}
-    title={tr({ uz: "Bosing — kursor shu qatorga tushadi", ru: "Нажмите — курсор перейдёт на эту строку" })}
-  >
-              ⚠ {tr({ uz: "Qator", ru: "Строка" })} {shownErrors[0].line}: {shownErrors[0].msg}
-              {shownErrors.length > 1 && <b className="hc-err-more"> +{shownErrors.length - 1}</b>}
-            </button> : !allPassed && firstHint && <p className="hc-hint">💡 {firstHint}</p>}
+          {fmtNote ? <p className="hc-note">{fmtNote}</p> : shownErrors.length > 0 ? (
+    /* K-M-02: matn alohida span'da kesiladi (ellipsis), «+N» belgisi esa DOIM ko'rinadi;
+       title'da to'liq xabar — kesilgan bo'lsa ham o'qish yo'li bor */
+    <button
+      type="button"
+      className="hc-err"
+      onClick={() => jumpToLine(shownErrors[0].line)}
+      title={`${tr({ uz: "Qator", ru: "Строка" })} ${shownErrors[0].line}: ${shownErrors[0].msg}
+${tr({ uz: "Bosing — kursor shu qatorga tushadi", ru: "Нажмите — курсор перейдёт на эту строку" })}`}
+    >
+              <span className="hc-err-text">⚠ {tr({ uz: "Qator", ru: "Строка" })} {shownErrors[0].line}: {shownErrors[0].msg}</span>
+              {shownErrors.length > 1 && <b className="hc-err-more">+{shownErrors.length - 1}</b>}
+            </button>
+  ) : !allPassed && firstHint && <p className="hc-hint">💡 {firstHint}</p>}
         </div>
       </header>
 
@@ -1879,12 +2057,18 @@ ${ind}`, s + 1 + ind.length);
   }
             {stale ? <span className="hc-stale">{tr({ uz: "eskirdi · ▶ bosing", ru: "устарело · нажмите ▶" })}</span> : <span className="hc-live">{tr({ uz: "jonli", ru: "live" })}</span>}
           </div>
-          <iframe
+          {
+    /* K-P-01: `key` — qotgan frame tashlanib yangisi yaratiladi; framesOff — jarayon o'lsin */
+  }
+          {!framesOff && <iframe
+    key={frameGen}
+    ref={previewFrameRef}
     className="hc-frame"
     title="natija"
     sandbox="allow-scripts allow-popups allow-popups-to-escape-sandbox"
     srcDoc={doc}
-  />
+  />}
+          {hung && <div className="hc-hung" role="alert">{HUNG_MSG}</div>}
           {showConsole && <div className="hc-console">
               <div className="hc-console-bar">
                 <span className="hc-console-title">🖥️ Console</span>
@@ -1904,7 +2088,9 @@ ${ind}`, s + 1 + ind.length);
     /* Yashirin tekshiruv iframe'i — probe'lar shu yerda ishlaydi (tugmani
        bosadi, DOMni o'zgartiradi), foydalanuvchi ko'radigan preview esa toza qoladi */
   }
-      {hasRuntime && <iframe
+      {hasRuntime && !framesOff && <iframe
+    key={frameGen}
+    ref={checkFrameRef}
     aria-hidden="true"
     tabIndex={-1}
     title="tekshiruv"
@@ -1970,9 +2156,11 @@ function StyleTag() {
       /* F-0808-02: qat'iy balandlik — xabar paydo bo'lganda/yo'qolganda muharrir SAKRAMAYDI */
       .hc-msg{height:40px;width:100%;display:flex;align-items:center;justify-content:center;margin-top:3px;overflow:hidden}
       .hc-hint.hc-hint{margin:0;font-size:13px;color:${HC_T.warn};background:#FFF6EA;border:1px solid #F4DFBC;padding:8px 15px;border-radius:11px;max-width:76ch;line-height:1.4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-      .hc-err{font-size:12.5px;color:#C01024;background:#FDECEC;border:1px solid #F6CFCF;padding:7px 14px;border-radius:10px;font-family:'JetBrains Mono',monospace;max-width:76ch;line-height:1.4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:pointer;text-align:left}
+      /* K-M-02: tugma flex — matn (span) kesiladi, «+N» belgisi qisilmaydi va doim ko'rinadi */
+      .hc-err{font-size:12.5px;color:#C01024;background:#FDECEC;border:1px solid #F6CFCF;padding:7px 14px;border-radius:10px;font-family:'JetBrains Mono',monospace;max-width:min(100%,96ch);line-height:1.4;display:inline-flex;align-items:center;gap:8px;min-width:0;cursor:pointer;text-align:left}
+      .hc-err-text{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
       .hc-err:hover{background:#FBDFDF;border-color:#EEB8B8}
-      .hc-err-more{margin-left:8px;background:#C01024;color:#fff;border-radius:99px;padding:1px 7px;font-size:11px}
+      .hc-err-more{flex-shrink:0;background:#C01024;color:#fff;border-radius:99px;padding:1px 7px;font-size:11px}
 
       /* F-0813-01: 3 ustun — editor | sudraluvchi chegara | natija. Ulush --hcL/--hcR
          o'zgaruvchilarida (30–70%), sudralganda JS yangilaydi, tanlov eslab qolinadi. */
@@ -1995,7 +2183,11 @@ function StyleTag() {
       .hc-stale::before{content:"";width:6px;height:6px;border-radius:50%;background:${HC_T.warn}}
       @keyframes hc-pulse{0%{box-shadow:0 0 0 0 ${HC_T.success}66}70%{box-shadow:0 0 0 6px ${HC_T.success}00}100%{box-shadow:0 0 0 0 ${HC_T.success}00}}
 
-      .hc-tabs{display:flex;gap:4px;overflow:hidden}
+      /* K-E-01: tablar QISILMAYDI (flex-shrink:0) va joy yetmasa gorizontal suriladi — 1024–1400px
+         va telefonda style.css/script.js 0 gacha qisilib yo'qolardi. Tor panelda ▶/✨ ikonkaga ixchamlashadi. */
+      .hc-tabs{display:flex;gap:4px;flex:1 1 auto;min-width:0;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+      .hc-tabs::-webkit-scrollbar{display:none}
+      .hc-tab{flex-shrink:0}
       .hc-tab{background:transparent;border:none;color:#7E92B4;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;padding:6px 13px;border-radius:9px;cursor:pointer;transition:all .15s;white-space:nowrap}
       .hc-tab:hover{color:#cfe0ff;background:rgba(255,255,255,.06)}
       .hc-tab.active{color:#fff;background:rgba(255,255,255,.14);box-shadow:inset 0 -2px 0 ${HC_T.accent}}
@@ -2056,6 +2248,7 @@ function StyleTag() {
       .hc-code,.hc-hl,.hc-gutter,.hc-err,.hc-count,.hc-pane-name,.hc-tab,.hc-console-title,.hc-console-body{font-feature-settings:"liga" 0,"calt" 0}
 
       .hc-frame{flex:1;min-height:0;width:100%;border:none;background:#fff}
+      .hc-hung{flex:1;min-height:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:24px;font-size:14px;line-height:1.55;font-weight:700;color:#9A2A0F;background:#FFF1EC;border-top:2px solid ${HC_T.accent}}
 
       .hc-console{flex-shrink:0;height:34%;min-height:96px;display:flex;flex-direction:column;background:${HC_CODE.bg};border-top:1px solid rgba(255,255,255,.07)}
       .hc-console-bar{display:flex;align-items:center;gap:8px;padding:7px 14px;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7E92B4;border-bottom:1px solid rgba(255,255,255,.06)}
@@ -2169,6 +2362,22 @@ function StyleTag() {
         .hc-ghost,.hc-next{padding:12px 18px}
         .hc-panetabs button{padding:11px 12px}
       }
+      /* K-E-01: tor panelda ▶/✨ ikonkaga ixchamlashadi (panel ENIga qarab — container query) */
+      .hc-editor-pane{container-type:inline-size}
+      @container (max-width:760px){
+        .hc-mini{font-size:0;padding:6px 10px;line-height:1}
+        .hc-mini::after{content:"▶";font-size:13px}
+        .hc-ic.wide{font-size:0;padding:0 8px}
+        .hc-ic.wide::after{content:"✨";font-size:13px}
+        .hc-tools{margin-left:4px}
+      }
+      @container (max-width:480px){
+        /* telefon: tablar O'Z qatorida (to'liq en), tugmalar pastki qatorda — hech biri yo'qolmaydi */
+        .hc-tabs-bar{flex-wrap:wrap;row-gap:6px}
+        .hc-tabs{order:-1;flex-basis:100%}
+        .hc-dots{display:none}
+      }
+
     `}</style>;
 }
 var HtmlCompiler_default = HtmlCompiler;
@@ -4211,7 +4420,7 @@ var Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish, onHo
             <span className="hw-big-s">{tr2({ uz: "Amaliy topshiriqni bajarish →", ru: "Выполнить практическое задание →" })}</span>
           </button>
         </div>
-        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr2({ uz: "Uyga vazifa", ru: "Домашнее задание" })}</div><p className="body" style={{ margin: "0 0 10px", color: T.ink }}>{tr2({ uz: "O'zingiz haqingizda 3 ta o'zgaruvchi yozing:", ru: "Напишите 3 переменные о себе:" })}</p><ul>{HOMEWORK.map((h, i) => <li key={i}><b className="mono">{h.b}</b> <span className="t">{tr2(h.t)}</span></li>)}</ul><p className="hw-note">{tr2({ uz: "Avval qo'lda yozing, keyin to'g'ri-noto'g'risini tekshiring. Keyingi darsda ularni ekranga chiqaramiz! 🚀", ru: "Сначала напишите сами, потом проверьте, всё ли верно. На следующем уроке выведем их на экран! 🚀" })}</p>{typeof onHomework === "function" && <button className="hw-run" onClick={onHomework}>✍️ {tr2({ uz: "Kompilyatorda yozib tekshirish →", ru: "Написать и проверить в компиляторе →" })}</button>}</div>}
+        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr2({ uz: "Uyga vazifa", ru: "Домашнее задание" })}</div><p className="body" style={{ margin: "0 0 10px", color: T.ink }}>{tr2({ uz: "O'zingiz haqingizda 3 ta o'zgaruvchi yozing:", ru: "Напишите 3 переменные о себе:" })}</p><ul>{HOMEWORK.map((h, i) => <li key={i}><b className="mono">{h.b}</b> <span className="t">{tr2(h.t)}</span></li>)}</ul><p className="hw-note">{tr2({ uz: "Avval qo'lda yozing, keyin to'g'ri-noto'g'risini tekshiring. Keyingi darsda ularni ekranga chiqaramiz! 🚀", ru: "Сначала напишите сами, потом проверьте, всё ли верно. На следующем уроке выведем их на экран! 🚀" })}</p></div>}
         {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>🏅 {tr2({ uz: "Nishonlaringiz", ru: "Ваши значки" })} — {achievements ? achievements.size : 0}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">
