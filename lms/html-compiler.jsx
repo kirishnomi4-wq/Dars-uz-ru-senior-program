@@ -2025,7 +2025,11 @@ function StyleTag() {
       .hc-stale::before{content:"";width:6px;height:6px;border-radius:50%;background:${HC_T.warn}}
       @keyframes hc-pulse{0%{box-shadow:0 0 0 0 ${HC_T.success}66}70%{box-shadow:0 0 0 6px ${HC_T.success}00}100%{box-shadow:0 0 0 0 ${HC_T.success}00}}
 
-      .hc-tabs{display:flex;gap:4px;overflow:hidden}
+      /* K-E-01: tablar QISILMAYDI (flex-shrink:0) va joy yetmasa gorizontal suriladi — 1024–1400px
+         va telefonda style.css/script.js 0 gacha qisilib yo'qolardi. Tor panelda ▶/✨ ikonkaga ixchamlashadi. */
+      .hc-tabs{display:flex;gap:4px;flex:1 1 auto;min-width:0;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+      .hc-tabs::-webkit-scrollbar{display:none}
+      .hc-tab{flex-shrink:0}
       .hc-tab{background:transparent;border:none;color:#7E92B4;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;padding:6px 13px;border-radius:9px;cursor:pointer;transition:all .15s;white-space:nowrap}
       .hc-tab:hover{color:#cfe0ff;background:rgba(255,255,255,.06)}
       .hc-tab.active{color:#fff;background:rgba(255,255,255,.14);box-shadow:inset 0 -2px 0 ${HC_T.accent}}
@@ -2200,6 +2204,22 @@ function StyleTag() {
         .hc-ghost,.hc-next{padding:12px 18px}
         .hc-panetabs button{padding:11px 12px}
       }
+      /* K-E-01: tor panelda ▶/✨ ikonkaga ixchamlashadi (panel ENIga qarab — container query) */
+      .hc-editor-pane{container-type:inline-size}
+      @container (max-width:760px){
+        .hc-mini{font-size:0;padding:6px 10px;line-height:1}
+        .hc-mini::after{content:"▶";font-size:13px}
+        .hc-ic.wide{font-size:0;padding:0 8px}
+        .hc-ic.wide::after{content:"✨";font-size:13px}
+        .hc-tools{margin-left:4px}
+      }
+      @container (max-width:480px){
+        /* telefon: tablar O'Z qatorida (to'liq en), tugmalar pastki qatorda — hech biri yo'qolmaydi */
+        .hc-tabs-bar{flex-wrap:wrap;row-gap:6px}
+        .hc-tabs{order:-1;flex-basis:100%}
+        .hc-dots{display:none}
+      }
+
     `);
 }
 var HtmlCompiler_default = HtmlCompiler;

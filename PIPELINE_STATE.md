@@ -1636,3 +1636,14 @@ alohida commit. 2 urinishda o'tmasa — to'xtab hisobot.
   ekspluatatsiyani yopadi. Yon-o'zgarish: K-P-01 `HUNG_MS` 3 s → 5 s (preview + tekshiruv-iframe
   ketma-ket ishlaydi; 3 s halol uzun kodni ham qotgan derdi). Regressiya: smoke 3/3, `tc-4-runtime`
   A/onload/eval/click/toggle o'zgarmadi, `t-kp01-c` 5 s bilan qayta o'tdi.
+- [x] **K-E-01 (≈ K-M-23) — fayl-tablar tor panelda yo'qolishi** — tuzatildi, stendda tasdiqlandi.
+  Qayta chiqarish (`t-ke01.mjs`, 3 faylli task): 390/1024 px — uchala tab yashirin; 600/1280/1366/1400 —
+  `script.js` yashirin (tabsW 96–277, kerak 300). Sabab: `.hc-tabs{overflow:hidden}` min-width'siz,
+  qo'shnilar (`hc-tools`, ▶) qisilmaydi. Yechim (faqat CSS, 1 qoida-guruh): `.hc-tabs{flex:1 1 auto;
+  min-width:0;overflow-x:auto}` + `.hc-tab{flex-shrink:0}` (tab hech qachon qisilmaydi, joy yetmasa
+  suriladi); `.hc-editor-pane{container-type:inline-size}` + `@container (max-width:760px)` — ▶ va ✨
+  ikonkaga ixchamlashadi; `@container (max-width:480px)` — tablar O'Z qatorida (to'liq en), tugmalar
+  pastki qatorda, nuqtalar yashirin. 1-urinish container-bloki `.hc-mini` ta'rifidan oldin turib
+  yutqazdi → CSS oxiriga ko'chirildi. Natija: 6 en (390 touch/600/1024/1280/1366/1400) — 3/3 tab
+  ko'rinadi. Stend `index.html`ga viewport-meta qo'shildi (telefon emulyatsiyasi haqiqiy bo'lishi
+  uchun; LMS sahifasida bor). Regressiya: smoke 3/3.
