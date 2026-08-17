@@ -1948,7 +1948,36 @@ ko'rinadigan index.html + hook — qimmat/nozik → konsol-panel (foydalanuvchi 
   yig'ildi (309 KB, URL `4340b314`) — smoke-shared ISHLAYDI (7/7); lint:jsx PmLesson5 0; lint:til 1 topilma (`tavsiya-etiladi` :761/783 —
   AVVALDAN, mentor-eslatma matni, konversiyaga tegishli emas — alohida matn-ishida). Residue-grep `__logs|HC_wrapDoc|PmCompiler|hcp-` = 0 (izohlardan tashqari).
 
-**KEYINGI NAVBAT: KONVERSIYA vazifasi (foydalanuvchi) → yakuniy yig'ish → bir martalik nashr. Kompilyator-hisobot qolgan tartibi: №15 K-C-15=K-P-08 (`"</script>"`
+- [x] **2/3 PmLesson6 (m2-13 Pitch)** — `ab5c151`. Eski `KOD_CSS/KOD_HARNESS/KOD_wrapDoc` (`window.__out` + `chiqar()` wrapDoc'dan) + `PmCompiler` + o'lik
+  `hcp-*` CSS o'chirildi. `chiqar()` endi **ko'rinadigan yordamchi** starter boshida (`KOD_HELPER`: `const chiqarilgan=[]; function chiqar(v){chiqarilgan.push(String(v));console.log(v);}`),
+  eski saqlangan kodga `ensureHelper()` avtomatik qo'shadi. 4 shart: c1/c2/c3 `eval` (`sistema` 3 maydon ≥6 belgi · `oddiyGap("korinish")` ichida
+  `sistema.korinish` · `chiqarilgan.length===3`), **c4 jargon** — `C.custom` statik: kod SATR-LITERALLARIDA `findJargon` (izoh/identifikator emas),
+  topilgan so'z hint'da («Natijada «Server» so'zi qoldi…»). Saqlov-moslik: `pm-m2d13-code`.code → starter, yangi `pm-m2d13-code:code`.
+  Sinov `t-pm6.mjs` **11/11** (starter ✗✗✗✓ · halol 4/4 · qisqa maydon · sistema'siz gap · 2 marta chiqar · «Server» · «ma'lumotlar bazasi» ·
+  izohdagi so'z sanalmaydi · eski kod → yordamchi qo'shildi 4/4 · eski `__out` spoof → c3 ✗ · ru labellar). Shared 310 KB; smoke-shared ISHLAYDI;
+  lint:jsx 0; lint:til 0 (oldin/keyin). **XULQ-FARQI (foydalanuvchi qaroriga):** eski qobiqda **nusxalash/qo'yish taqiqi** («Kod qo'lda yoziladi —
+  nusxalash yopiq», `onCopy/onPaste preventDefault`) bor edi — HtmlCompiler'da bunday opsiya yo'q → yo'qoldi. Kerak bo'lsa `task.noPaste`
+  kontrakti alohida (kompilyator o'zgarishi). Natija-«karta» ko'rinishi ham konsol-panelga o'tdi (PmLesson5 kabi, dizayn-qarz).
+  **SMOKE-VOSITA tuzatildi (`scripts/smoke-shared.mjs`):** PmLesson6 `SCREEN_META`da `type:'koding'` yo'q (s11 = `practice`) → urug' KODING'ga bormasdi,
+  «KOMPILYATOR qatlami ✗» — konversiyadan OLDIN ham (baseline tekshirildi). Fallback: koding-qator bo'lmasa `practice`-qatorlar OXIRIDAN nomzod-sahifalar
+  (`compiler.html`, `compiler1.html`…), birinchi ochilgani hisobga olinadi. Regressiya: PmLesson5/JsVars/Htmllesson2 ISHLAYDI.
+- [x] **3/3 PmUserStoryLesson (m3-02, `src/pm/`)** — `68ff0c0`. Eski `HC_PREVIEW_CSS/HC_HARNESS/HC_wrapDoc` (`window.__logs`) + `PmCompiler` +
+  `KODING_PLACEHOLDER` + `hcp-*` CSS o'chirildi. 3 shart `eval`: c1 probe `hikoyaYasa("yangi mehmon",…)` satr va bo'sh emas; c2 qolip
+  (sifatida·xohlayman·uchun); **c3 harness'ning YOPIQ `logs` massivi ustida** (eval closure ichida bevosita → `logs` ko'rinadi; o'quvchi yetolmaydi) —
+  «sifatida»+«uchun» bo'lgan loglar ≥3. **Yon-topilma (tuzatildi):** dars-`eval` ifodasi zaharlangan realm'da ishlaydi — `String.prototype.indexOf=()=>0`
+  c3'ni aldadi (✓✓✓); yechim: c2/c3 harness'ning MUZLATILGAN `has`/`_low`/`_str` yordamchilarini ishlatadi (yo'q bo'lsa fallback) → zahar bilan ✓✓✗.
+  UX-farq: muharrir endi starter bilan boshlanadi (avval bo'sh + xira namuna-placeholder — HtmlCompiler'da placeholder-rejim yo'q); natija konsolda.
+  Saqlov-moslik: `pm-m3d2-koding`.code → starter, yangi `pm-m3d2-koding:code`. Sinov `t-pmus.mjs` **8/8** (starter 0/3 · halol 3/3 · qolip buzuq ✓✗✗ ·
+  2 hikoya ✓✓✗ · `__logs` spoof ✓✓✗ · bo'sh return · sikl bilan 3 log 3/3 · prototip-zahar ✓✓✗). `lms/PmUserStoryLesson.shared.jsx` YANGI (305 KB) —
+  smoke-shared ISHLAYDI; lint:jsx 0; lint:til 0.
+**KONVERSIYA YAKUNI:** K-C-11 «eski nusxa-harness» qarzi (PmLesson5 + PmUserStory) **YOPILDI**, PmLesson6 ham shu zanjirda. Endi kompilyator ishlatadigan
+barcha darslar (M1/M2 21 + m3-02) BITTA `HtmlCompiler`dan. `lms/`: 21+1 shared (URL `4340b314`), hali LMS'ga yuklanmagan.
+**Yakuniy yig'ish (foydalanuvchi buyrug'i bilan):** (1) 22 shared `--shared 4340b314` (allaqachon yig'ilgan, kompilyator o'zgarsa qayta); (2) 6 kompilyatorsiz
+(Internet/Git/Deploy/JsIntro/Practice2/3/4 — 7 ta!) yakka bundle `build-lms.mjs` oddiy → `smoke-lms`; (3) ro'yxat + MD5 → bir martalik nashr.
+Ochiq qarorlar: PmLesson6 nusxalash-taqiqi · natija-karta ko'rinishi (PmLesson5/6/UserStory) · `lms/html-compiler.jsx` (MD5 `7b954027`, №14 bilan) LMS'da
+hali `4340b314` (K-P-01…K-C-14) — nashrda kompilyator ham yangilansa, shared'lar yangi URL bilan qayta yig'iladi.
+
+**KEYINGI NAVBAT: YAKUNIY YIG'ISH (foydalanuvchi buyrug'i) → bir martalik nashr. Kompilyator-hisobot qolgan tartibi: №15 K-C-15=K-P-08 (`"</script>"`
 satr ichida) → №16 K-P-02/03/18/17 (havola/tarix/meta-refresh) → №17 K-P-10 (baseStyle bo'yash) → №18 K-P-12/13/K-M-24 (layout 600px,
 scroll, 14 shart) → №19 K-E-02…06 (muharrir) → №20 K-K-11/06/07/05 (holat-saqlov, debounce-flush) → №21 K-K-13=K-P-26 (ikki
 kompilyator — `<style>` qismi K-C-06 da yopildi, nonce-qismi ochiq) → №22 K-M-04…11 (matn) → №7 K-C-10 (`<script>` ichini linter HTML
