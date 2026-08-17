@@ -1,4 +1,4 @@
-import { useState, useEffect, useLayoutEffect, useRef, useMemo, isValidElement } from 'react';
+import { useState, useEffect, useLayoutEffect, useRef, useMemo, useCallback, isValidElement } from 'react';
 
 // ============================================================
 //  KOD KOMPILYATORI — UMUMIY MODUL (barcha darslar shu faylni ishlatadi)
@@ -871,15 +871,75 @@ function runOne(req, ctx) {
 const CONSOLE_FORWARD = (nonce, pos) => `<script>
 (function(){
   var N=${JSON.stringify(nonce)},JS=${Number(pos && pos.jsStart) || 0},HT=${Number(pos && pos.htmlStart) || 0};
-  function fmt(a){try{return typeof a==='object'?JSON.stringify(a):String(a);}catch(e){return String(a);}}
+  // K-P-07/K-C-16: DevTools uslubidagi ko'rinish — Error name: message, Map(n) {k => v}, Set(n) {..}, <tag id>, Date ISO,
+  // undefined saqlanadi, 5n, ƒ nom(); chuqurlik maks 3 ({…}/[…]), 50 element (… +N), [Circular]; bitta satr maks 4000 belgi.
+  var DEPTH=3,ITEMS=50,MAXCH=4000;
+  function insp(v,d,seen){
+    var t=typeof v;
+    if(v===null)return 'null';if(t==='undefined')return 'undefined';
+    if(t==='string')return d>0?JSON.stringify(v):v;
+    if(t==='number')return (v===0&&1/v<0)?'-0':String(v);
+    if(t==='bigint')return String(v)+'n';if(t==='symbol'||t==='boolean')return String(v);
+    if(t==='function')return 'ƒ '+(v.name||'')+'()';
+    try{
+      if(v instanceof Error)return (v.name||'Error')+': '+v.message;
+      if(v instanceof Date)return isNaN(v.getTime())?'Invalid Date':v.toISOString();
+      if(v instanceof RegExp)return String(v);
+      if(v.nodeType===1)return '<'+String(v.tagName).toLowerCase()+(v.id?' id="'+v.id+'"':'')+(typeof v.className==='string'&&v.className?' class="'+v.className+'"':'')+'>';
+      if(v.nodeType)return String(v.nodeName);
+      if(seen.indexOf(v)!==-1)return '[Circular]';
+      var isArr=Array.isArray(v),isMap=v instanceof Map,isSet=v instanceof Set;
+      if(d>=DEPTH)return isArr?'[…]':'{…}';
+      seen.push(v);
+      var out=[],i=0,more=0;
+      if(isMap){v.forEach(function(val,k){if(i<ITEMS)out.push(insp(k,d+1,seen)+' => '+insp(val,d+1,seen));else more++;i++;});seen.pop();return 'Map('+v.size+') {'+out.join(', ')+(more?', … +'+more:'')+'}';}
+      if(isSet){v.forEach(function(val){if(i<ITEMS)out.push(insp(val,d+1,seen));else more++;i++;});seen.pop();return 'Set('+v.size+') {'+out.join(', ')+(more?', … +'+more:'')+'}';}
+      if(isArr){for(i=0;i<v.length;i++){if(i<ITEMS)out.push(insp(v[i],d+1,seen));else{more=v.length-ITEMS;break;}}seen.pop();return '['+out.join(', ')+(more?', … +'+more:'')+']';}
+      var ks=Object.keys(v);for(i=0;i<ks.length;i++){if(i<ITEMS)out.push(ks[i]+': '+insp(v[ks[i]],d+1,seen));else{more=ks.length-ITEMS;break;}}
+      seen.pop();return '{'+out.join(', ')+(more?', … +'+more:'')+'}';
+    }catch(e){try{return String(v);}catch(x){return '[?]';}}
+  }
+  function fmt(a){return insp(a,0,[]);}
+  var indent='';
+  function join(args){
+    var parts=[],i=0;
+    if(args.length>1&&typeof args[0]==='string'&&/%[sdifoOc]/.test(args[0])){ // %s/%d/%o format-belgilar (birinchi arg satr)
+      var k=1,str=args[0].replace(/%([sdifoOc])/g,function(m,c){if(k>=args.length)return m;var a=args[k++];if(c==='c')return '';if(c==='d'||c==='i')return String(parseInt(a,10));if(c==='f')return String(parseFloat(a));return fmt(a);});
+      parts.push(str);i=k;
+    }
+    for(;i<args.length;i++)parts.push(fmt(args[i]));
+    var text=parts.join(' ');
+    if(text.length>MAXCH)text=text.slice(0,MAXCH)+' … (+'+(text.length-MAXCH)+' belgi)';
+    return indent+text;
+  }
   function send(level,args){
-    var parts=[];for(var i=0;i<args.length;i++)parts.push(fmt(args[i]));
-    try{parent.postMessage({__hcConsole:true,nonce:N,level:level,text:parts.join(' ')},'*');}catch(e){}
+    try{parent.postMessage({__hcConsole:true,nonce:N,level:level,text:join(args)},'*');}catch(e){}
   }
   ['log','info','warn','error'].forEach(function(m){
     var _o=console[m]?console[m].bind(console):function(){};
     console[m]=function(){send(m,arguments);try{_o.apply(null,arguments);}catch(e){}};
   });
+  // K-P-16: debug/dir → log; group/groupEnd → chekinish; table → matnli jadval (maks 20 qator × 6 ustun); clear → panel tozalanadi
+  var _dbg=console.debug?console.debug.bind(console):function(){},_dir=console.dir?console.dir.bind(console):function(){};
+  console.debug=function(){send('log',arguments);try{_dbg.apply(null,arguments);}catch(e){}};
+  console.dir=function(){send('log',arguments);try{_dir.apply(null,arguments);}catch(e){}};
+  console.group=console.groupCollapsed=function(){send('log',arguments.length?['▼ '+join(arguments).slice(indent.length)]:['▼']);indent+='  ';};
+  console.groupEnd=function(){indent=indent.slice(0,-2);};
+  console.clear=function(){try{parent.postMessage({__hcConsole:true,nonce:N,level:'clear',text:''},'*');}catch(e){}};
+  console.table=function(data){
+    if(!data||typeof data!=='object'){send('log',arguments);return;}
+    var ROWS=20,COLS=6,rows=[],keys=[],rk=Object.keys(data),i,j;
+    for(i=0;i<rk.length&&i<ROWS;i++){var r=data[rk[i]];rows.push([rk[i],r]);if(r&&typeof r==='object'){var kk=Object.keys(r);for(j=0;j<kk.length;j++)if(keys.indexOf(kk[j])===-1&&keys.length<COLS)keys.push(kk[j]);}}
+    var hasVal=rows.some(function(r){return !(r[1]&&typeof r[1]==='object');});
+    var head=['(index)'].concat(keys,hasVal?['Value']:[]);
+    var lines=[head];
+    rows.forEach(function(r){var line=[r[0]];keys.forEach(function(k){line.push(r[1]&&typeof r[1]==='object'&&k in r[1]?insp(r[1][k],1,[]):'');});if(hasVal)line.push(r[1]&&typeof r[1]==='object'?'':insp(r[1],1,[]));lines.push(line);});
+    var w=head.map(function(_,c){var m=0;lines.forEach(function(l){var s=String(l[c]==null?'':l[c]).slice(0,24);if(s.length>m)m=s.length;});return m;});
+    var txt=lines.map(function(l){return l.map(function(c,ci){var s=String(c==null?'':c).slice(0,24);while(s.length<w[ci])s+=' ';return s;}).join(' │ ');});
+    txt.splice(1,0,w.map(function(x){var s='';while(s.length<x)s+='─';return s;}).join('─┼─'));
+    if(rk.length>ROWS)txt.push('… +'+(rk.length-ROWS)+' qator');
+    send('log',[txt.join('\\n')]);
+  };
   // K-C-14 (= K-P-05): sandbox'da (allow-modals yo'q) alert/prompt/confirm brauzer tomonidan JIM yutiladi.
   // Semantika SAQLANADI (alert→undefined, prompt→null, confirm→false — «Bekor» bosilgandek), lekin har
   // chaqiriq konsolga warn-marker yuboradi (matn RENDER paytida o'quvchi tilida — K-M-01). O'quvchi
@@ -1182,7 +1242,32 @@ function HtmlCompiler({
   // ── KO'RINADIGAN KONSOL — JS fayli bo'lsa ko'rsatamiz (console.log natijasi) ──
   const showConsole = useMemo(() => files.some((f) => f.lang === 'js'), [files]);
   const consoleNonceRef = useRef(0);
-  const [consoleLines, setConsoleLines] = useState([]);
+  // K-P-06: 500 satr (eskisi tashlanadi, `dropped` sanaladi), scroll-lock: faqat pastda turganda auto-scroll
+  const [consoleBuf, setConsoleBuf] = useState({ lines: [], dropped: 0 });
+  const consoleLines = consoleBuf.lines;
+  const setConsoleLines = useCallback((v) => setConsoleBuf({ lines: Array.isArray(v) ? v : [], dropped: 0 }), []);
+  const CONSOLE_MAX = 500;
+  const consoleBodyRef = useRef(null);
+  const consoleAtBottomRef = useRef(true);
+  const [consoleNew, setConsoleNew] = useState(0);
+  const consoleScrollBottom = useCallback(() => { const el = consoleBodyRef.current; if (el) el.scrollTop = el.scrollHeight; consoleAtBottomRef.current = true; setConsoleNew(0); }, []);
+  const consoleLastTopRef = useRef(0);
+  // Faqat o'quvchi TEPAGA surganda lock ochiladi (programmatik scrollTop=scrollHeight faqat oshiradi — uning kechikkan
+  // scroll-hodisasi yangi balandlik bilan kelib lockni yo'qotmasin); pastga yetsa lock qaytadi.
+  const onConsoleScroll = useCallback(() => {
+    const el = consoleBodyRef.current; if (!el) return;
+    const atB = el.scrollHeight - el.scrollTop - el.clientHeight < 24;
+    if (atB) { consoleAtBottomRef.current = true; setConsoleNew(0); }
+    else if (el.scrollTop < consoleLastTopRef.current - 2) consoleAtBottomRef.current = false;
+    consoleLastTopRef.current = el.scrollTop;
+  }, []);
+  const consolePrevLenRef = useRef(0);
+  useEffect(() => {
+    const el = consoleBodyRef.current, prevLen = consolePrevLenRef.current; consolePrevLenRef.current = consoleLines.length;
+    if (!el || consoleLines.length === 0) return;
+    if (consoleAtBottomRef.current) { el.scrollTop = el.scrollHeight; consoleLastTopRef.current = el.scrollTop; }   // pastda edi → pastda qoladi
+    else setConsoleNew((c) => c + Math.max(1, consoleLines.length - prevLen));           // tepada o'qiyapti → surilmaydi, «↓ yangi N»
+  }, [consoleLines]);
 
   // Dars natija-oynasiga O'Z uslubini bera oladi (F-0809-05): PM darslarida sahifa
   // «tayyor mahsulot» ko'rinishida chiqadi (qora header, binafsha sarlavha, karta-p).
@@ -1311,7 +1396,11 @@ function HtmlCompiler({
       const d = e.data;
       if (d && d.__hcConsole && d.nonce === consoleNonceRef.current && fromFrame(e, previewFrameRef)) {
         // K-C-09: xato-satrlar {file,line,col} bilan keladi (xom inglizcha matn saqlanadi, tarjima renderda)
-        setConsoleLines((prev) => (prev.length >= 200 ? prev : [...prev, { level: d.level, text: String(d.text ?? ''), file: d.file || '', line: Number(d.line) || 0, col: Number(d.col) || 0, hint: String(d.hint || '') }]));
+        if (d.level === 'clear') { setConsoleBuf({ lines: [{ level: 'clear', text: '' }], dropped: 0 }); return; }   // K-P-16: o'quvchi console.clear()
+        const item = { level: d.level, text: String(d.text ?? ''), file: d.file || '', line: Number(d.line) || 0, col: Number(d.col) || 0, hint: String(d.hint || '') };
+        setConsoleBuf((prev) => (prev.lines.length >= CONSOLE_MAX
+          ? { lines: [...prev.lines.slice(prev.lines.length - CONSOLE_MAX + 1), item], dropped: prev.dropped + 1 }
+          : { lines: [...prev.lines, item], dropped: prev.dropped }));
       }
     };
     window.addEventListener('message', onMsg);
@@ -2148,15 +2237,23 @@ function HtmlCompiler({
               <div className="hc-console-bar">
                 <span className="hc-console-title">🖥️ Console</span>
                 {consoleLines.length > 0 && (
+                  <span className="hc-console-count">{consoleLines.length}{consoleBuf.dropped > 0 ? ' · ' + tr({ uz: `eng eski ${consoleBuf.dropped} yashirildi`, ru: `скрыто старых: ${consoleBuf.dropped}` }) : ''}</span>
+                )}
+                {consoleNew > 0 && (
+                  <button className="hc-console-new" onClick={consoleScrollBottom}>↓ {tr({ uz: `yangi ${consoleNew}`, ru: `новых ${consoleNew}` })}</button>
+                )}
+                {consoleLines.length > 0 && (
                   <button className="hc-console-clear" onClick={() => setConsoleLines([])}>{tr({ uz: 'tozalash', ru: 'очистить' })}</button>
                 )}
               </div>
-              <div className="hc-console-body">
+              <div className="hc-console-body" ref={consoleBodyRef} onScroll={onConsoleScroll}>
                 {consoleLines.length === 0 ? (
                   <div className="hc-console-empty">{tr({ uz: 'console.log(...) natijasi shu yerda chiqadi', ru: 'результат console.log(...) появится здесь' })}</div>
                 ) : (
                   consoleLines.map((l, i) => (
-                    l.level === 'error' && l.file ? (
+                    l.level === 'clear' ? (
+                      <div key={i} className="hc-console-line lvl-clear"><span className="hc-console-text">— {tr({ uz: 'console.clear() — tozalandi', ru: 'console.clear() — очищено' })} —</span></div>
+                    ) : l.level === 'error' && l.file ? (
                       // K-C-09: xato — fayl:satr (bosilsa o'sha faylning o'sha qatoriga kursor) + o'quvchi tilida matn; xom matn title'da
                       <div key={i} className={`hc-console-line lvl-${l.level} has-pos`} title={l.text}
                         onClick={() => { if (files.some((f) => f.name === l.file)) { setActive(l.file); setTimeout(() => jumpToLine(l.line, codes[l.file]), 0); } }}>
@@ -2356,6 +2453,9 @@ function StyleTag() {
       .hc-console-clear:hover{background:${HC_T.accent};color:#fff}
       .hc-console-body{flex:1;min-height:0;overflow:auto;padding:6px 0;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.6}
       .hc-console-empty{color:#5B6B86;padding:4px 15px;font-style:italic}
+      .hc-console-count{font-weight:600;color:#5B6B86;text-transform:none;letter-spacing:0}
+      .hc-console-new{background:${HC_T.accent};color:#fff;border:none;border-radius:99px;padding:3px 10px;font-size:10.5px;font-weight:700;cursor:pointer;text-transform:none;letter-spacing:0}
+      .hc-console-line.lvl-clear{color:#5B6B86;font-style:italic;justify-content:center}
       .hc-console-line{display:flex;gap:8px;padding:2px 15px;color:#E7EAF2;border-bottom:1px solid rgba(255,255,255,.03);white-space:pre-wrap;word-break:break-word}
       .hc-console-caret{color:#27c93f;flex-shrink:0;font-weight:700}
       .hc-console-line.lvl-warn{color:#FFD380;background:rgba(255,189,46,.08)}
