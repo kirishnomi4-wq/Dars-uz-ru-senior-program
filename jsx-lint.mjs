@@ -257,6 +257,23 @@ for (const file of files) {
     }
   }
 
+  // ---- 4) REGEX-LITERAL ICHIDA BOSHQARUV-BELGI (0x00–0x1F) — 2026-08-17 ov-bandi ----
+  // `\b` (so'z-chegara) yozilganda muharrir/heredoc/vosita escape'ni HAQIQIY 0x08 (backspace)
+  // belgiga aylantirishi mumkin: `/\breturn\b/` ko'zga bir xil ko'rinadi, lekin hech qachon mos
+  // kelmaydi — JsFunctions TASK_KVADRAT shu sabab yakunlanmasdi; K-C-06 tuzatishida ham ikki
+  // marta takrorlandi. esbuild/vite buni ko'rmaydi (sintaktik to'g'ri). Faqat regex-literal
+  // (`/…/flags`) va `new RegExp('…')` ichi tekshiriladi — string-ajratkichlar (`join('\x01')`
+  // kabi) bu bandga kirmaydi.
+  const CTRL = /[\x00-\x08\x0b\x0c\x0e-\x1f]/;
+  const REGEX_LIT = /(^|[=(,:;!&|?{}\[\s]|return\s|typeof\s)\/(?![/*])((?:\\.|\[(?:\\.|[^\]\\\n])*\]|[^\\/\n\[])+)\/[a-z]*/g;
+  const NEW_RE = /new RegExp\(\s*(['"`])((?:\\.|(?!\1)[^\\\n])*)\1/g;
+  src.split('\n').forEach((ln, k) => {
+    if (!CTRL.test(ln)) return;
+    const show = (body) => body.replace(/[\x00-\x08\x0b\x0c\x0e-\x1f]/g, (c) => `\\x${c.charCodeAt(0).toString(16).padStart(2, '0')}`).slice(0, 60);
+    for (const m of ln.matchAll(REGEX_LIT)) if (CTRL.test(m[2])) hits.push({ line: k + 1, msg: `regex-literal ichida boshqaruv-belgi (haqiqiy 0x08 kabi) — \\b/\\x escape buzilgan, shart hech qachon mos kelmaydi: /${show(m[2])}/` });
+    for (const m of ln.matchAll(NEW_RE)) if (CTRL.test(m[2])) hits.push({ line: k + 1, msg: `new RegExp('…') ichida boshqaruv-belgi — escape buzilgan: '${show(m[2])}'` });
+  });
+
   if (hits.length) {
     errors += hits.length;
     report.push({ file, hits });

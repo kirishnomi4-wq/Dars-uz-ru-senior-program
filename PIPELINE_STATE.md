@@ -1806,3 +1806,14 @@ darslarda qattiqlik kerakmi (URL-shakl / `#`/`http`/nisbiy yo'l), keyin hal qili
   **YON-TOPILMA (jarayon):** shu tuzatishda `\b` regex-escape'i IKKI marta 0x08 (backspace) bo'lib faylga tushdi (heredoc/tool escape) —
   `od -c` bilan tutildi, Edit-tool/sed-skript bilan tuzatildi. Bu JsFunctions-bug (K-C-11 yon-topilma) bilan bir sinf → `lint:jsx`ga
   «regex-literal ichida boshqaruv-belgi (0x00–0x1F)» ov-bandi endi taklif emas, ZARUR (qilinmadi — foydalanuvchi qaroriga).
+- [x] **LINT-DARVOZA (foydalanuvchi buyrug'i, K-C-09 dan OLDIN) — `jsx-lint.mjs` 4-band: regex-literal / `new RegExp('…')` ichida
+  boshqaruv-belgi (0x00–0x1F) → 🔴 error.** Sabab: `\b` escape'i heredoc/vosita orqali HAQIQIY 0x08 bo'lib faylga tushadi — JsFunctions
+  TASK_KVADRAT (K-C-11 yon-topilma) + K-C-06 tuzatishida 2 marta; esbuild/vite ko'rmaydi. Qamrov: `/…/flags` literallar (bo'linish
+  `a / b / c` va `//`/`/*` chalg'itmaydi) + `new RegExp('…')` satri; string-ajratkichlar (`join('\x01')` — PmLesson2/3/4:581/600/598,
+  HtmlCompiler:1156 `\0` imzo) bandga KIRMAYDI (ishlaydi, faqat ko'rinmas — quyida qarz). Sinov: ataylab 0x08 li fayl
+  (scratchpad `mk-lint-sinov.mjs` → `lint-0x08-sinov.jsx`: to'g'ri `/\breturn\b/` + 3 buzuq + `join('\x01')` + `a / b / c`) →
+  **3/3 buzuq tutildi** (2 regex-literal + 1 `new RegExp`), to'g'ri escape/ajratkich/bo'linish TOZA, exit 1. Eski JsFunctions
+  (`git show dc7bdad`) → `:2877 /\x08return\x08/` tutildi (bug retroaktiv topilardi). Toza repo: `npm run lint:jsx` — yangi band 0 topilma
+  (umumiy 20 = hammasi `src/eski/`, avvaldan, o'zgarmadi). Alohida commit.
+  **QARZ (kichik):** raw ajratkich-belgilar (`join('\x01')` PmLesson2/3/4, HtmlCompiler `sig` `\0`) `\u0001`/`\u0000` escape'ga
+  o'tkazilsa — 4-bandni «faylning istalgan joyida boshqaruv-belgi» ga kengaytirish mumkin (xulq bir xil, ko'rinadigan bo'ladi).
