@@ -1881,6 +1881,22 @@ Holat: `lms/html-compiler.jsx` (MD5 `68a2f606`, 114 KB) K-P-01…K-C-14 bilan qa
 Ochiq qarzlar (yuqorida batafsil): ichki ErrorBoundary (alohida seans) · href-qiymat tekshiruvi · o'quvchi @import indamay kesiladi (eslatma) ·
 raw ajratkich-belgilar → `\u0001` escape + lint 4-band kengaytmasi · K-C-11 hisobot-varianti (tasodifiy kutilgan qiymat) · PmLesson5/
 PmUserStory eski nusxa-harnesslar · F-0817-01 LMS jonli-panel ustma-ust.
+**2-NASHR (2026-08-17, foydalanuvchi qarori — №14 dan OLDIN):** `lms/html-compiler.jsx` MD5 `68a2f606` (117 064 bayt, yig'ilgan 2026-08-17 20:20,
+commit `e931c85` bilan AYNAN bir xil, ishchi daraxtda farq yo'q). Ichida (kod-izlari bilan tasdiqlangan): K-P-01…K-C-04 (avvalgi nashr) + K-C-05 `jsText`
+· K-K-26 `DEFAULT_TASK` fallback · K-K-10 `typeof s.codes[n]==="string"` · K-C-06 `@import` kesish + `link#hc-fonts` · K-C-09 `jsStart`/tarjima
+· K-C-11 closure-harness · K-C-14 `__hcModal`/`modal-null`. **Tartib:** (1) foydalanuvchi `lms/html-compiler.jsx` → LMS course_artifacts → YANGI URL;
+(2) shu URL bilan `node scripts/build-lms.mjs --shared <URL>` → 19 shared qayta (foydalanuvchi URL berganda shu seans; limit tugasa — KEYINGI SEANS
+BIRINCHI ISH); (3) jonli darslar (JsVars, Htmllesson1) + JsFunctions shared yuklanadi. Rollback: eski URL `e069aaaa…` LMS'da tirik.
+**Yuklashdan keyingi 5-daqiqalik qo'l-tekshiruv (shu nashr tuzatishlariga mos):**
+1. **Buzuq saqlov (K-K-10):** JsVars darsida DevTools → localStorage'da kompilyator kalitini `{"codes":{"index.html":123},"savedAt":1}` ga o'zgartir → reload →
+   kompilyator OCHILADI (oq ekran emas), o'sha fayl starter'da; bir belgi yozgach 400 ms — saqlov qayta string bo'ladi.
+2. **Xato-satr (K-C-09):** script.js 3-qatorga `foo();` → konsolda 🔴 `script.js:3` + «`foo` aniqlanmagan…»; bosilsa kursor 3-qatorga; RU'ga o'tsang matn ruscha.
+3. **alert xabari (K-C-14):** `alert("Salom!"); var n = prompt("?"); console.log(n.length);` → 🟡⚠ alert-ogoh, 🟡⚠ prompt-ogoh («javob null»), 🔴 `script.js:2` +
+   «…Ehtimol bu `prompt()`… javobi»; sahifa qotmaydi.
+4. **@import'li CSS (K-C-06):** style.css 1-qator `@import url("https://fonts.googleapis.com/css2?family=Roboto");` + `h1{color:red}` → chip/preview red ISHLAYDI,
+   Network'da o'quvchi-import so'rovi YO'Q, `link#hc-fonts` bitta.
+5. **Halol yechim → chip yashil (K-C-11):** JsVars TASK_BALL to'g'ri yozilsa yashil; `window.__logs=['999']` yozilsa qizil.
+
 **KEYINGI NAVBAT: №14 K-P-06/K-P-07=K-C-16/K-P-16 (konsol-panel: 200 satr, auto-scroll, obyekt `{}`, debug/table/clear) → №15 K-C-15=K-P-08 (`"</script>"`
 satr ichida) → №16 K-P-02/03/18/17 (havola/tarix/meta-refresh) → №17 K-P-10 (baseStyle bo'yash) → №18 K-P-12/13/K-M-24 (layout 600px,
 scroll, 14 shart) → №19 K-E-02…06 (muharrir) → №20 K-K-11/06/07/05 (holat-saqlov, debounce-flush) → №21 K-K-13=K-P-26 (ikki
