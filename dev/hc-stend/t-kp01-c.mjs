@@ -7,12 +7,12 @@ let { b, p } = await open({ props: { lang: 'uz', task: { title: 't', files: [
 await p.click('.hc-tab:has-text("script.js")'); await setCode(p, 'console.log(5)'); await p.waitForTimeout(1500);
 console.log('a sog\'lom:', await st(p));
 await setCode(p, 'let i=0;\nwhile(i<3){}'); await p.waitForTimeout(1500); console.log('b qotgan (1.5s):', await st(p));
-await p.waitForTimeout(2500); console.log('c watchdog (4s):', await st(p));
+await p.waitForTimeout(4500); console.log('c watchdog (6s):', await st(p));
 await p.waitForTimeout(4500); console.log('d 2-urinish o\'tdi (8.5s):', await st(p));
 await setCode(p, 'let i=0;\nwhile(i<3){i++}\nconsole.log(5)'); await p.waitForTimeout(2500);
 console.log('e tuzatilgach (2.5s):', await st(p));
 // tez tuzatish: qotgan → 1s ichida tuzatildi
 await setCode(p, 'while(true){}'); await p.waitForTimeout(800);
-await setCode(p, 'console.log(5)'); await p.waitForTimeout(4500);
-console.log('f tez tuzatilgan (5.3s):', await st(p));
+await setCode(p, 'console.log(5)'); await p.waitForTimeout(6500);
+console.log('f tez tuzatilgan (7.3s):', await st(p));
 await b.close();

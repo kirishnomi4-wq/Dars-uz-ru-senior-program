@@ -880,6 +880,9 @@ var CONSOLE_FORWARD = (nonce) => `<script>
 <\/script>`;
 var buildHarness = (probes, nonce) => `<script>
 (function(){
+  // K-C-02: token (nonce) faqat shu skriptda — element DOM'dan olib tashlanadi, o'quvchining
+  // kechiktirilgan kodi uni o'qiy olmasin (document.scripts / outerHTML orqali).
+  try{var _cs=document.currentScript;if(_cs)_cs.parentNode.removeChild(_cs);}catch(e){}
   function runProbes(){
     var P=${JSON.stringify(probes)};
     var logs=window.__logs||[];
@@ -1026,15 +1029,19 @@ function HtmlCompiler({
     [reqs]
   );
   const hasRuntime = runtimeProbes.length > 0;
-  const nonceRef = useRef(0);
+  const nonceRef = useRef("");
+  const gotReportRef = useRef(null);
   const [runtimeResults, setRuntimeResults] = useState({});
+  const previewFrameRef = useRef(null);
+  const checkFrameRef = useRef(null);
+  const fromFrame = (e, ref) => !!(ref.current && e.source && e.source === ref.current.contentWindow);
   const showConsole = useMemo(() => files.some((f) => f.lang === "js"), [files]);
   const consoleNonceRef = useRef(0);
   const [consoleLines, setConsoleLines] = useState([]);
   const mkDoc = (extra = {}) => wrapDoc(html, css, js, { previewCss: task.previewCss, ...extra });
   const [doc, setDoc] = useState(() => wrapDoc(html, css, js, { previewCss: task.previewCss }));
   const [checkDoc, setCheckDoc] = useState("");
-  const HUNG_MS = 3e3;
+  const HUNG_MS = 5e3;
   const HUNG_MSG = tr({
     uz: "⏱ Kod juda uzoq ishladi — sikl tugamayapti (cheksiz sikl?). Shartni tekshiring: sanagich o'zgaryaptimi (masalan i++)?",
     ru: "⏱ Код работал слишком долго — цикл не заканчивается (бесконечный цикл?). Проверьте условие: меняется ли счётчик (например i++)?"
@@ -1103,7 +1110,8 @@ function HtmlCompiler({
         setStale(lastRunRef.current !== sig);
       }
       if (hasRuntime) {
-        const nonce = ++nonceRef.current;
+        const nonce = nonceRef.current = `${Math.random().toString(36).slice(2)}${Date.now().toString(36)}`;
+        gotReportRef.current = null;
         setRuntimeResults({});
         setCheckDoc(mkDoc({ capture: true, harness: buildHarness(runtimeProbes, nonce) }));
         expect("check", nonce);
@@ -1115,7 +1123,8 @@ function HtmlCompiler({
     if (!hasRuntime) return;
     const onMsg = (e) => {
       const d = e.data;
-      if (d && d.__hcReport && d.nonce === nonceRef.current) {
+      if (d && d.__hcReport && d.nonce === nonceRef.current && fromFrame(e, checkFrameRef) && gotReportRef.current !== d.nonce) {
+        gotReportRef.current = d.nonce;
         setRuntimeResults(d.results || {});
         settle("check", d.nonce);
       }
@@ -1126,7 +1135,7 @@ function HtmlCompiler({
   useEffect(() => {
     const onDone = (e) => {
       const d = e.data;
-      if (d && d.__hcDone && d.nonce === doneNonceRef.current) settle("doc", d.nonce);
+      if (d && d.__hcDone && d.nonce === doneNonceRef.current && fromFrame(e, previewFrameRef)) settle("doc", d.nonce);
     };
     window.addEventListener("message", onDone);
     return () => window.removeEventListener("message", onDone);
@@ -1135,7 +1144,7 @@ function HtmlCompiler({
     if (!showConsole) return;
     const onMsg = (e) => {
       const d = e.data;
-      if (d && d.__hcConsole && d.nonce === consoleNonceRef.current) {
+      if (d && d.__hcConsole && d.nonce === consoleNonceRef.current && fromFrame(e, previewFrameRef)) {
         setConsoleLines((prev) => prev.length >= 200 ? prev : [...prev, { level: d.level, text: d.text }]);
       }
     };
@@ -1920,6 +1929,7 @@ ${ind}`, s + 1 + ind.length);
       "iframe",
       {
         key: frameGen,
+        ref: previewFrameRef,
         className: "hc-frame",
         title: "natija",
         sandbox: "allow-scripts allow-popups allow-popups-to-escape-sandbox",
@@ -1930,6 +1940,7 @@ ${ind}`, s + 1 + ind.length);
       "iframe",
       {
         key: frameGen,
+        ref: checkFrameRef,
         "aria-hidden": "true",
         tabIndex: -1,
         title: "tekshiruv",

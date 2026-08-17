@@ -833,6 +833,9 @@ const CONSOLE_FORWARD = (nonce) => `<script>
 
 const buildHarness = (probes, nonce) => `<script>
 (function(){
+  // K-C-02: token (nonce) faqat shu skriptda — element DOM'dan olib tashlanadi, o'quvchining
+  // kechiktirilgan kodi uni o'qiy olmasin (document.scripts / outerHTML orqali).
+  try{var _cs=document.currentScript;if(_cs)_cs.parentNode.removeChild(_cs);}catch(e){}
   function runProbes(){
     var P=${JSON.stringify(probes)};
     var logs=window.__logs||[];
@@ -1005,8 +1008,14 @@ function HtmlCompiler({
     [reqs]
   );
   const hasRuntime = runtimeProbes.length > 0;
-  const nonceRef = useRef(0);
+  const nonceRef = useRef('');
+  const gotReportRef = useRef(null);   // K-C-02: shu token uchun hisobot allaqachon qabul qilinganmi
   const [runtimeResults, setRuntimeResults] = useState({});
+  // K-C-02: xabar MANBASI tekshiriladi — faqat o'z iframe'imizdan (contentWindow) kelgan
+  // hisobot/konsol/done qabul qilinadi; o'quvchi kodi (preview'dan) hisobotni soxtalashtira olmaydi.
+  const previewFrameRef = useRef(null);
+  const checkFrameRef = useRef(null);
+  const fromFrame = (e, ref) => !!(ref.current && e.source && e.source === ref.current.contentWindow);
 
   // ── KO'RINADIGAN KONSOL — JS fayli bo'lsa ko'rsatamiz (console.log natijasi) ──
   const showConsole = useMemo(() => files.some((f) => f.lang === 'js'), [files]);
@@ -1030,7 +1039,7 @@ function HtmlCompiler({
   // Shuning uchun: har hujjat `__hcDone` (yoki hisobot) yuboradi; HUNG_MS ichida kelmasa →
   // frame'lar o'chiriladi (jarayon o'ladi) → 120 ms → yangi `key` bilan qayta yaratiladi
   // (oxirgi kod bilan BIR marta; yana qotsa keyingi tahrirgacha o'chiq qoladi) + xabar.
-  const HUNG_MS = 3000;
+  const HUNG_MS = 5000;   // preview + tekshiruv-iframe ketma-ket ishlaydi — 3 s halol uzun kodni ham qotgan derdi
   const HUNG_MSG = tr({
     uz: '⏱ Kod juda uzoq ishladi — sikl tugamayapti (cheksiz sikl?). Shartni tekshiring: sanagich o\'zgaryaptimi (masalan i++)?',
     ru: '⏱ Код работал слишком долго — цикл не заканчивается (бесконечный цикл?). Проверьте условие: меняется ли счётчик (например i++)?',
@@ -1095,7 +1104,11 @@ function HtmlCompiler({
         setStale(lastRunRef.current !== sig);     // faqat nishonni yoqamiz, iframe'ga tegmaymiz
       }
       if (hasRuntime) {
-        const nonce = ++nonceRef.current;
+        // K-C-02: sanoq emas — tasodifiy token (brute-force yopiladi); bitta token uchun
+        // faqat BIRINCHI hisobot qabul qilinadi (harness load+50ms da, soxta kechiktirilgan
+        // xabar undan keyin keladi va rad etiladi).
+        const nonce = nonceRef.current = `${Math.random().toString(36).slice(2)}${Date.now().toString(36)}`;
+        gotReportRef.current = null;
         setRuntimeResults({}); // kutish holatiga qaytaramiz
         setCheckDoc(mkDoc({ capture: true, harness: buildHarness(runtimeProbes, nonce) })); expect('check', nonce);
       }
@@ -1108,7 +1121,9 @@ function HtmlCompiler({
     if (!hasRuntime) return;
     const onMsg = (e) => {
       const d = e.data;
-      if (d && d.__hcReport && d.nonce === nonceRef.current) {
+      if (d && d.__hcReport && d.nonce === nonceRef.current && fromFrame(e, checkFrameRef)
+          && gotReportRef.current !== d.nonce) {              // K-C-02: birinchi hisobot g'olib
+        gotReportRef.current = d.nonce;
         setRuntimeResults(d.results || {});
         settle('check', d.nonce);   // K-P-01
       }
@@ -1121,7 +1136,7 @@ function HtmlCompiler({
   useEffect(() => {
     const onDone = (e) => {
       const d = e.data;
-      if (d && d.__hcDone && d.nonce === doneNonceRef.current) settle('doc', d.nonce);
+      if (d && d.__hcDone && d.nonce === doneNonceRef.current && fromFrame(e, previewFrameRef)) settle('doc', d.nonce);
     };
     window.addEventListener('message', onDone);
     return () => window.removeEventListener('message', onDone);
@@ -1132,7 +1147,7 @@ function HtmlCompiler({
     if (!showConsole) return;
     const onMsg = (e) => {
       const d = e.data;
-      if (d && d.__hcConsole && d.nonce === consoleNonceRef.current) {
+      if (d && d.__hcConsole && d.nonce === consoleNonceRef.current && fromFrame(e, previewFrameRef)) {
         setConsoleLines((prev) => (prev.length >= 200 ? prev : [...prev, { level: d.level, text: d.text }]));
       }
     };
@@ -1953,6 +1968,7 @@ function HtmlCompiler({
           {!framesOff && (
             <iframe
               key={frameGen}
+              ref={previewFrameRef}
               className="hc-frame"
               title="natija"
               sandbox="allow-scripts allow-popups allow-popups-to-escape-sandbox"
@@ -1992,6 +2008,7 @@ function HtmlCompiler({
       {hasRuntime && !framesOff && (
         <iframe
           key={frameGen}
+          ref={checkFrameRef}
           aria-hidden="true"
           tabIndex={-1}
           title="tekshiruv"

@@ -1622,3 +1622,17 @@ alohida commit. 2 urinishda o'tmasa — to'xtab hisobot.
   (display:flex / text-align:center / flex-direction:column / justify-content / align-items) hammasi
   kalit-so'z — sinovda OK; smoke-shared CssLesson1/CssLesson2/Htmllesson1/JsLoopsLesson 4/4;
   `tc-6-confirm [6]`: z/m/c/f/w/bg/bgc/tr → OK (qolgan RED'lar = K-C-04 qisqa-xossa/@media, alohida).
+- [x] **K-C-02 (= K-P-11 = K-K-14) — runtime-hisobot soxtalashtirish** — tuzatildi, stendda tasdiqlandi.
+  Qayta chiqarish (`tc-6-confirm.mjs` [1]/[1b], eski bundle): kechiktirilgan `postMessage({__hcReport…})`
+  + nonce 1..200 brute → ikkala chip yashil, «Davom etish» ochiq. Birinchi urinish (`e.source` ===
+  tekshiruv-iframe) YETARLI BO'LMADI — o'quvchi kodi tekshiruv-iframe'ning O'ZIDA ham bajariladi
+  (manba bir xil). Yakuniy yechim (3 qatlam, minimal): (1) `e.source` — hisobot faqat tekshiruv-
+  iframe'dan, konsol/done faqat preview-iframe'dan (boshqa oyna/nusxa xabari rad); (2) nonce = tasodifiy
+  token (sanoq emas), harness `document.currentScript` ni DOM'dan olib tashlaydi — kechiktirilgan kod
+  tokenni o'qiy olmaydi; (3) bitta token uchun faqat BIRINCHI hisobot qabul (`gotReportRef`) — harness
+  load+50ms da, soxta `setTimeout` xabari keyin keladi → rad. Natija: [1]/[1b] → chiplar qizil,
+  «Davom etish» yopiq. Halol chegara (hisobotga yozildi): bir oynada ishlaydigan harnessni TO'LIQ
+  himoyalab bo'lmaydi (`window.__logs` qo'lda to'ldirish — K-C-11 sinfi) — bu aynan hisobotdagi
+  ekspluatatsiyani yopadi. Yon-o'zgarish: K-P-01 `HUNG_MS` 3 s → 5 s (preview + tekshiruv-iframe
+  ketma-ket ishlaydi; 3 s halol uzun kodni ham qotgan derdi). Regressiya: smoke 3/3, `tc-4-runtime`
+  A/onload/eval/click/toggle o'zgarmadi, `t-kp01-c` 5 s bilan qayta o'tdi.
