@@ -1,14 +1,14 @@
 // ============================================================
 //  AVTO-YIG'ILGAN FAYL — QO'LDA TAHRIRLAMANG.
 //  Manba:  src/1-Modull/HtmlPractice.jsx
-//  Kompilyator: TASHQI MODUL — https://go.coddycamp.uz/uploads/course_artifacts/f9e30f4aaecfeada4e3482bfe60877d2.jsx
-//  Qayta yig'ish:  node scripts/build-lms.mjs --shared https://go.coddycamp.uz/uploads/course_artifacts/f9e30f4aaecfeada4e3482bfe60877d2.jsx src/1-Modull/HtmlPractice.jsx
+//  Kompilyator: TASHQI MODUL — https://go.coddycamp.uz/uploads/course_artifacts/e069aaaa4d94bd163588a759a75419dc.jsx
+//  Qayta yig'ish:  node scripts/build-lms.mjs --shared https://go.coddycamp.uz/uploads/course_artifacts/e069aaaa4d94bd163588a759a75419dc.jsx src/1-Modull/HtmlPractice.jsx
 //  Tahrir MANBAGA kiritiladi, keyin shu buyruq qayta yuriladi.
 // ============================================================
 // src/1-Modull/HtmlPractice.jsx
 import React, { useState, useEffect, useRef, useMemo, useCallback, createContext, useContext } from "react";
 import { createPortal } from "react-dom";
-import HtmlCompiler, { checks as C } from "https://go.coddycamp.uz/uploads/course_artifacts/f9e30f4aaecfeada4e3482bfe60877d2.jsx";
+import HtmlCompiler, { checks as C } from "https://go.coddycamp.uz/uploads/course_artifacts/e069aaaa4d94bd163588a759a75419dc.jsx";
 var MENTOR_IMG = "https://go.coddycamp.uz/uploads/media_library/c7b711619071c92bef604c7ad68380dd.png";
 var PROFILE_IMG = "https://go.coddycamp.uz/uploads/media_library/58ebafabd92e2e3a80d86b7bb7e88eda.png";
 var T = {

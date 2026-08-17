@@ -1,13 +1,13 @@
 // ============================================================
 //  AVTO-YIG'ILGAN FAYL — QO'LDA TAHRIRLAMANG.
 //  Manba:  src/2-Modull/JsVarsLesson.jsx
-//  Kompilyator: TASHQI MODUL — https://go.coddycamp.uz/uploads/course_artifacts/f9e30f4aaecfeada4e3482bfe60877d2.jsx
-//  Qayta yig'ish:  node scripts/build-lms.mjs --shared https://go.coddycamp.uz/uploads/course_artifacts/f9e30f4aaecfeada4e3482bfe60877d2.jsx src/2-Modull/JsVarsLesson.jsx
+//  Kompilyator: TASHQI MODUL — https://go.coddycamp.uz/uploads/course_artifacts/e069aaaa4d94bd163588a759a75419dc.jsx
+//  Qayta yig'ish:  node scripts/build-lms.mjs --shared https://go.coddycamp.uz/uploads/course_artifacts/e069aaaa4d94bd163588a759a75419dc.jsx src/2-Modull/JsVarsLesson.jsx
 //  Tahrir MANBAGA kiritiladi, keyin shu buyruq qayta yuriladi.
 // ============================================================
 // src/2-Modull/JsVarsLesson.jsx
 import React, { useState, useEffect, useRef, useMemo, useCallback, createContext, useContext } from "react";
-import HtmlCompiler, { checks as C } from "https://go.coddycamp.uz/uploads/course_artifacts/f9e30f4aaecfeada4e3482bfe60877d2.jsx";
+import HtmlCompiler, { checks as C } from "https://go.coddycamp.uz/uploads/course_artifacts/e069aaaa4d94bd163588a759a75419dc.jsx";
 var __lang = "uz";
 var tr = (node) => {
   if (node === null || node === void 0) return "";

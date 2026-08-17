@@ -1759,3 +1759,7 @@ emas; PmLesson1.shared smoke-shared ISHLAYDI). Rollback-nusxa: `arxiv/lms-rollba
 a9141db9.jsx` (= LMS'dagi hozirgi `f9e30f4a….jsx`, commit `dc7bdad`). Yuklash-tartibi: (1) `lms/html-compiler.jsx` →
 course_artifacts → YANGI URL; (2) shu URL bilan `build-lms.mjs --shared <URL>` → 19 shared qayta; (3) jonli
 darslar (JsVars, Htmllesson1) + JsFunctions shared yuklanadi. Yuklashdan keyin K-C-05.
+**Nashr, 1-bosqich bajarildi (foydalanuvchi):** `lms/html-compiler.jsx` (MD5 `85db809e`, 107 400 bayt) LMS'ga yuklandi →
+`https://go.coddycamp.uz/uploads/course_artifacts/e069aaaa4d94bd163588a759a75419dc.jsx` (curl bilan tortib olindi —
+MD5/bayt lokal bilan AYNAN bir xil). 19 shared shu URL bilan qayta yig'ildi (eski `f9e30f4a…` 0 faylda qoldi);
+smoke-shared JsVars/Htmllesson1/JsFunctions ISHLAYDI. Rollback: eski URL `f9e30f4a…` LMS'da tirik, eski shared'lar `dc7bdad`.
