@@ -1839,3 +1839,22 @@ darslarda qattiqlik kerakmi (URL-shakl / `#`/`http`/nisbiy yo'l), keyin hal qili
   lint:til (74 qoida) 0; `lms/html-compiler.jsx` qayta yig'ildi (111 KB, MD5 `f49d5568`) — LMS'ga YUKLANMAGAN. Stend: `tc-lib.mjs`
   wrapDoc-kesimi `^};` gacha (funksiya endi blokli). Yon-o'zgarish: `e.lineno` xom qiymati +5 (forward skripti 5 satr o'sdi) — ayirish
   aniq bo'lgani uchun ta'sirsiz.
+
+**SESSIYA-YAKUNI (2026-08-17, kompilyator to'q-sariq konveyeri, 2-sessiya):**
+Bugun yopilganlar (har biri alohida commit, stend-dalil bilan yuqorida):
+- `5da93b3` K-C-05 (+K-K-26, K-K-10) — oq-ekran sinfi: js satr-spec matn-qidiruv, yaroqsiz task/requirements/files, buzuq saqlov → starter (migratsiya 9/9)
+- `b491351` K-C-06 (+K-P-25/K-K-24, K-P-26) — o'quvchi @import parseCss'da kesiladi (tarmoq 0), Google Fonts bir marta `<link id=hc-fonts>`
+- `41504e6` LINT-DARVOZA — jsx-lint 4-band: regex-literal/`new RegExp` ichida boshqaruv-belgi (0x08 sinfi) → error (ataylab-buzuq fayl 3/3 tutildi, repo 0)
+- `6279b48` K-C-09 (=K-P-04) — JS xato fayl:satr (wrapDoc ofseti aniq ayiriladi), o'quvchi tilida (render-vaqt tarjima, fallback xom), bosilsa qatorga
+Holat: `lms/html-compiler.jsx` (MD5 `f49d5568`, 111 KB) K-P-01…K-C-09 bilan qayta yig'ilgan — **LMS'ga YUKLANMAGAN** (LMS'dagi jonli
+= `e069aaaa…` K-P-01…K-C-04); yakka `lms/*.jsx` bundle'lar ham nashr-sikli oldidan qayta yig'iladi (nashrni foydalanuvchi qiladi).
+Ochiq qarzlar (yuqorida batafsil): ichki ErrorBoundary (alohida seans) · href-qiymat tekshiruvi · o'quvchi @import indamay kesiladi (eslatma) ·
+raw ajratkich-belgilar → `\u0001` escape + lint 4-band kengaytmasi · K-C-11 hisobot-varianti (tasodifiy kutilgan qiymat) · PmLesson5/
+PmUserStory eski nusxa-harnesslar · F-0817-01 LMS jonli-panel ustma-ust.
+**KEYINGI NAVBAT: K-C-14 (= K-P-05)** — `alert/prompt/confirm` jim yutiladi (hisobot №13). Undan keyin hisobot 2-bo'lim tartibida:
+№14 K-P-06/K-P-07=K-C-16/K-P-16 (konsol-panel: 200 satr, auto-scroll, obyekt `{}`, debug/table/clear) → №15 K-C-15=K-P-08 (`"</script>"`
+satr ichida) → №16 K-P-02/03/18/17 (havola/tarix/meta-refresh) → №17 K-P-10 (baseStyle bo'yash) → №18 K-P-12/13/K-M-24 (layout 600px,
+scroll, 14 shart) → №19 K-E-02…06 (muharrir) → №20 K-K-11/06/07/05 (holat-saqlov, debounce-flush) → №21 K-K-13=K-P-26 (ikki
+kompilyator — `<style>` qismi K-C-06 da yopildi, nonce-qismi ochiq) → №22 K-M-04…11 (matn) → №7 K-C-10 (`<script>` ichini linter HTML
+deb ko'radi — hisobotda 7-o'rinda, to'q sariq, HALI YOPILMAGAN) → K-C-07 (`/g` regex miltillashi, №8 ning qolgan qismi). Har biri:
+stendda qayta chiqar → qisqa taklif → rozilik → minimal tuzatish → smoke ≥3 dars → alohida commit → STATE. LMS'ga yuklash — foydalanuvchi.
