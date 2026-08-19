@@ -952,6 +952,96 @@ YUGURISH, keyin bitta PILOT fayl, u tasdiqlangandan keyingina qolganlari.
   ichidagi butunlay boshqa o'zgaruvchi). Ikkovi ham skriptni aniqroq qildi.
 - CRLF: `line === '}'` bilan chegara topish Windows faylida ISHLAMAYDI (`'}\r'`).
 
+
+**121-qonun — SOLISHTIRUV RAQAMI BITTA MANBADAN CHIQADI (2026-08-19, F-0819-11).**
+«Yomon usul» va «yaxshi usul» ekranlari bir xil o'lchovni ko'rsatsa (qator soni, vaqt,
+qadam soni), u **bitta konstantadan** hisoblanadi va ikkala ekranda bir xil formula
+bilan yoziladi. Qo'lda ikki joyga yozilgan raqam ertami-kechmi bir-biriga zid bo'ladi —
+va o'quvchi buni ko'radi.
+- Dalil: M3-D1 da 3-ekran badge'i `2 + n*4`, 6-ekrandagi «Oddiy HTML bo'lsa:» ham
+  `2 + n*4` — ikkovi alohida yozilgan edi. Biri o'zgarganda ikkinchisi qolib ketardi.
+  Yechim: `CARD_LINES = 22` konstantasi, ikkala ekran `n * CARD_LINES`.
+- Tekshirish: `grep -n "n \* \|2 + n" <fayl>` — bir xil o'lchovning ikki xil formulasi
+  chiqmasin.
+
+**122-qonun — RAQAM EKRANDA TEKSHIRILSIN, AKS HOLDA YASHIRINGANI AYTILSIN (2026-08-19, F-0819-11).**
+Badge «22 qator» desa, o'quvchi ekranda 22 qatorni sanay olishi kerak. Kod ixcham
+ko'rsatilsa (ko'rsatish TO'G'RI qaror — TMI, 109-qonun), **yashiringan qism izohda
+oshkor aytiladi**, shunda arifmetika baribir yopiladi.
+- ✅ `<div class="skin">` / `<img …>` / `<h3>…</h3>` / `<!-- narx, like, tugma… yana
+  18 qator -->` / `</div>` → 4 ko'rinadi + 18 yashirin = badge'dagi 22.
+- ❌ 4 qatorli blok ko'rsatib, badge'da 22 deyish — test-halolligi buziladi.
+- Qo'shimcha foyda: «yana 18 qator» yozuvining o'zi «haqiqiy kartochka katta» degan
+  sabog'ini beradi.
+
+**123-qonun — NATIJA USTUNI KODDAN KENG, TO'R ESA TESHIKSIZ (2026-08-19, F-0819-08/09).**
+Kod va natija yonma-yon turgan ekranda **natija kengroq** bo'ladi (45% kod / 55%
+natija, `.split-4555`): o'quvchi avval NIMA chiqqanini ko'radi, keyin qanday
+yozilganini. Natija to'ri esa maksimal element sonida **to'liq to'ldirilsin** —
+3 ustunga 5 element qo'yilsa oxirgi qator teshik qoladi va «tugallanmagan sayt»
+tuyg'usini beradi.
+- Dalil: M3-D1 da maks 5 karta + 2 ustun = □□/□□/□ ; 3 ustun + maks 6 karta =
+  □□□/□□□ — «marketplace» hissi shundan chiqadi.
+- ⚠️ O'lchov `style={{ fontSize: … }}` ichida yozilsa, modifikator klass (`.mk-grid …`)
+  UNING USTIDAN O'TOLMAYDI — inline uslub kuchliroq. Kichraytiriladigan har o'lcham
+  klassda yashashi shart (`.vcard-name`, `.vthumb-em`), inline'da faqat dinamik
+  qiymat (masalan `background: s.bg`) qoladi.
+
+
+**124-qonun — «KIM YARATGAN» EMAS, «QANDAY HAL QILADI» (2026-08-19, F-0819-13).**
+Muammo qo'yilgandan keyingi tanishtiruv ekranining vazifasi — **ko'prik qurish**
+(muammo → vosita → asosiy tushuncha), tarix bermaslik. Sarlavha «kim/qachon» deb
+so'rasa, ekran o'zi tarixga og'adi va o'quvchi kompaniya nomi bilan yilni yodlashga
+tushadi; «qanday» deb so'rasa, javob mexanikaga olib boradi.
+- ❌ Sarlavha: «Shu nusxalash muammosini KIM hal qilgan?» · Mentor: «React —
+  JavaScript'da yozilgan kutubxona. Uni 2013-yilda Facebook yaratgan…»
+- ✅ Sarlavha: «Shu nusxalash muammosi QANDAY hal qilingan?» · Mentor: «Bir xil
+  kartochkani qayta-qayta yozish shart emas. React bu muammoni komponentlar yordamida
+  hal qiladi. Avval React nima ekanini bilib olaylik — ilovalarni bosib ko'ring.»
+- Ta'rif ham shu tartibda: avval **nima uchun kerak**, keyin **atama**.
+  ❌ «React = JavaScript kutubxonasi» (13 yoshli uchun quruq atama)
+  ✅ «React — saytni tayyor bo'laklardan qurishga yordam beradigan JavaScript
+  kutubxonasi» — vazifa oldinda, atama orqada, ikkalasi ham bor.
+- Tarix o'chirilmaydi, **pastga tushiriladi**: majburiy Mentor-matnidan ixtiyoriy,
+  bosib ochiladigan kartochka ichiga (quyidagi bandga qarang).
+
+**125-qonun — ATAMAGA TEGISHDAN OLDIN UNI KIM TEKSHIRAYOTGANINI GREP QIL (2026-08-19, F-0819-13).**
+Tushuntirish-ekranidan atama yoki fakt olib tashlansa, uni **test, flashcard, arena
+va yakun-banneri** hali ham so'rayotgan bo'lishi mumkin — natijada o'rgatilmagan
+narsa so'raladi (test-halolligi buziladi), arena esa 3/3/3/3 balansidan chiqadi.
+- Tartib: `grep -n "<atama>" <fayl>` → topilgan har bir joyni tasnifla
+  (tushuntirish · test · flashcard · QUIZ_BANK · yakun) → keyin qaror qil.
+- Dalil: M3-D1 3-ekranidan «kutubxona» va «Facebook 2013» olib tashlanmoqchi edi.
+  Grep ko'rsatdi: «kutubxona» — 1-test kaliti VA arena Q1 kaliti; «Facebook 2013» —
+  flashcard, arena Q2, yakun-banneri, RECAPS kartasi. Yechim: ikkalasi ham qoldi,
+  lekin joyi o'zgardi — «kutubxona» ta'rifda vazifadan KEYIN, tarix esa Mentor'dan
+  bosiladigan Facebook kartochkasi ichiga tushdi.
+- Muqobil yo'l (qimmatroq): faktni butunlay olib tashlash — u holda unga bog'liq
+  HAR BIR savol ham o'chadi va arena balansi uchun o'rniga yangisi yoziladi.
+
+
+**126-qonun — TOPISH-MEXANIKASI O'ZINI TANITSIN (2026-08-19, F-0819-15).**
+«Bosib toping» turidagi ekranda o'quvchi birinchi soniyada **nimani, qayerdan va
+nechtasini** izlashini bilishi shart. Bilmasa, ekranda qotib qoladi va mexanika
+umuman ishlamaydi — dars esa uni bosib o'tgan deb hisoblaydi.
+Uch qatlam birga ishlaydi:
+1. **Tinmay chorlovchi halqa** — bosiladigan zona bosilmaguncha sekin yonib turadi.
+   Halqa juda xira bo'lsa (`rgba(...,0.16)` kabi) — bori ham yo'g'i ham bir xil.
+   Ko'rinadigan chegara: tinch holatda ≥0.28, cho'qqida ≥0.6 va ≥3px.
+2. **Hover-yorlig'i** — sichqoncha ustiga kelganda zona o'zi aytadi: «✨ Bu ham alohida
+   blok». `content: '✨ ' attr(data-hint)` bilan, matn `data-hint` da (tarjima uchun).
+   ⚠️ Ichma-ich zonalarda ikkita yorliq chiqmasligi uchun
+   `:hover:not(:has(.zone:hover))` bilan faqat ichkarigisi ko'rsatiladi.
+3. **Bo'sh holat sanoq beradi** — ❌ «Sahifadan bir qismni bosing» →
+   ✅ «Chapdagi sahifada **4 ta** komponent yashiringan. Bosib toping.»
+   Miqdor berilmasa o'quvchi qachon tugaganini bilmaydi.
+- `prefers-reduced-motion` da halqa yonmaydi, lekin **statik holda ko'rinib turadi** —
+  harakat o'chirilsa affordans ham o'chib qolmasin.
+- Hisoblagich va tugma yorlig'ida **o'rgatilayotgan atama** ishlatiladi
+  («2/4 komponent topildi», «Bloklar» → «Komponentlar»): atama sanoq bilan birga
+  quloqqa singadi. Sarlavhada esa tanish so'z qolishi mumkin («nechta blokdan?») —
+  tanishdan yangiga ko'prik shunday quriladi.
+
 ## 11-E. 🎯 112-QONUN: `<p>` GA QO'YILGAN KLASS-QOIDA RESETDAN KUCHSIZ (2026-08-03, F-0803-27)
 
 > Foydalanuvchi rasmi bilan keldi: PmLesson4 2-ekranidagi kartalar «buzulib yotibti».

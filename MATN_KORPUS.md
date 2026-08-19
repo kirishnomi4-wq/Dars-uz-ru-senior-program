@@ -1718,9 +1718,202 @@ yetgan edi):
   1-qadamdan so'raydi) → ✅ har qadamda ishlaydigan yordam;
 - **Uy-vazifa kuzatiladigan hodisani aytadi:** ❌ «savol tug'ilsa» → ✅ «u qaytadan so'rasa».
 
+## 126. BOSH ATAMA MAQSAD-EKRANDA EMAS, KEYINGI EKRANDA TUG'ILADI (F-0817-01)
+
+§104 oilasi (M4-D12 PmLesson13 👦 1-o'qish: «sxema» s1 sarlavhasida, gloss esa s2 da —
+bola so'zni bilmay o'qidi):
+
+- ❌ s1 «uch ustunli **sxema** tuza olasiz» + mentor «pastdagi sxemani kuzating» (atama gloss'dan
+  OLDIN) → ✅ s1 «uch ustunli **ro'yxat** tuza olasiz» / «pastdagi uch ustunni» → s2 «shu
+  ro'yxat **sxema** deyiladi». Maqsad-ekran natijani sodda so'z bilan NOMLAYDI, atama keyingi
+  ekranda tug'iladi.
+🔧 Tekshiruv: bosh atamaning BIRINCHI uchrash-qatori gloss-qatoridan KEYINMI? (grep bilan
+   qator raqamlarini solishtiring.)
+
+## 127. DARS ATAMASI FAQAT TO'G'RI VARIANTDA YASHAMASIN (F-0817-01)
+
+§106 oilasi (M4-D12 TEST-1/2/3: to'g'ri javob yagona «sxema»/«e'lon» so'zli variant edi —
+bola mazmunni bilmay kalit-so'z bilan topdi):
+
+- ❌ TEST-2 to'g'ri javob yagona «e'lon»li («E'londagi bitta gap ustunsiz qolganda»),
+  distraktorlar e'lonsiz → ✅ atama KAMIDA IKKI variantda: «Dasturchi **e'londa yo'q**
+  ustunni xohlaganda» (distraktor) + «**E'londagi** bitta gap ustunsiz qolganda» (to'g'ri) —
+  farq ma'noda qoladi, so'zda emas.
+- Distraktorga kirgan atama-gap darsning o'zida ochiq RAD etilgan bo'lsin (§102 — hook/slayd
+  uni rad etadi → o'qiganni mukofotlaydi).
+🔧 Tekshiruv: har scored-savolda dars atamasi nechta variantda? 1 ta bo'lsa va u to'g'ri
+   javob bo'lsa — 🔴.
+
+## 128. MAYDA SINFLAR: SHART DARAK GAPDA · NAMUNA O'Z QOIDASIDAN O'TSIN (F-0817-01)
+
+- **Shart/mezon yorlig'i darak gapda, buyruq bilan aralashmasin:** ❌ «Har ustunni e'londagi
+  gap so'ragan» (savolmi? buyruqmi? — 2 marta o'qildi) → ✅ «Har ustun e'londagi gapdan
+  chiqqan».
+- **Namuna-javob mashqning O'Z qabul-shartidan o'tsin:** ❌ s1 namunasi «Kim yozgan?» (2 so'z)
+  ↔ s8 mashqi «<3 so'z = qisqa» deb rad etadi → ✅ «**Kitobni** kim yozgan?», «Qancha **pulga**
+  olingan?». Bola namunani ko'chirsa — o'tishi kerak.
+- **Referent ekranda ko'rinsin:** ❌ «Bu savol yuqoridagiga o'xshash» (yozish payti yozilganlar
+  ko'rinmaydi) → ✅ «Oldingi ustunga ham shunday savol yozgandingiz» + oldingi savol ekranda.
+
+## 129. MAYDA SINFLAR: TEST-KALITI XULOSADAN EMAS · DARVOZA-VARIANTLAR BIR TURDA · YO'L-FE'LI DARS-FE'LI (F-0817-02)
+
+M4-D15 (PmLesson14) 👦 1-o'qish + metodist raundi:
+
+- **Test kaliti oldingi ekran XULOSASIDAN so'zma-so'z olinmasin — savolni odam HARAKATIGA
+  o'giring:** ❌ s3 «...so'ragan odam nimani oladi?» → to'g'ri javob «notanish so'z» (s2
+  xulosasida aynan shu) → ✅ «Texnik so'z bilan javob berdingiz — so'ragan odam endi nima
+  qiladi?» — uchala variant «odam harakati» shaklida, kalit reveal'da qoladi.
+- **Darvoza-variantlarida yagona odam-tilidagi qator = shakl-telli:** ❌ 2 kod-qatori + 1
+  odam-gap (javob) → ✅ uchalasi bir turdagi ekran-qatori («Server javobi keldi: 200, xatosiz» ·
+  «Massiv 5 ta element bilan to'ldi» · …), farq faqat MA'NOda.
+- **Yo'l/animatsiya holat-so'zi qavatning DARS FE'LI bilan bir o'zakda:** ❌ yo'lda «yozib
+  qo'yildi», darsda «baza eslab qoladi» → ✅ «qabul qildi / tekshirdi / eslab qoldi / ko'rsatdi»
+  — done-mini gapi bilan so'zma-so'z bir xil (§117 ko'prik-izchillik).
+- **Referentsiz «buni» keys-slaydida:** ❌ «buni qancha odam kutayotgani» → ✅ «yechimni qancha
+  odam kutayotgani».
+
+## 130. MAYDA SINFLAR: HISOBLAGICH-YORLIG'I · ILDIZ PLATFORMA-MATNIDA · CHECKLIST MA'NONI SO'RAYDI · ✅-QATORI ROST (F-0817-03)
+
+M4a-D2 (PmLesson15) 👦 1-o'qish + metodist raundi:
+
+- **Jonli hisoblagich yorlig'i o'z-o'zini tushuntirsin:** ❌ «Kompaniya bahosi — mlrd $» («baho»
+  maktab bahosiga o'xshaydi, «mlrd» gloss'siz qisqartma) → ✅ «Kompaniya narxi — 1,16 milliard $»;
+  bo'sh holat «—» EMAS → «hali noma'lum».
+- **Bosh atamaning ildizi PLATFORMA-matnida ham yashamasin (§121 kengaytmasi):** «yuk» darsida
+  ❌ «Natijalar yuklanmoqda…» → ✅ «Natijalar kelmoqda…» — tizim-matnlari (loader, podium)
+  ham ildiz-grep'ga kiradi.
+- **Checklist mezoni AYNAN so'zni emas, MA'NOni talab qilsin:** ❌ «Har sababda «birdan» yoki
+  «bitta-bitta»» (bola shu so'zlarni ko'chirishi shart deb o'qiydi) → ✅ «Har sabab yukni
+  ko'rsatadi» + ikki savol Yordam chipida.
+- **Yashil ✅-qatori tekshirilmagan narsani tasdiqlamasin (§94):** ❌ har saqlashda «Sababingizda
+  yuk ko'rinib turibdi» → ✅ belgi topilmasa boshqa, rost gap («har birida qism, qaror va sabab
+  bor»).
+- **Omonim bir ekranda:** ❌ «Konsert tartibini ko'rish» ↔ «Sinish tartibi» → ✅ «Konsert
+  jadvalini ko'rish» (§117).
+
+## 131. MAYDA SINFLAR: ATAMA KARTA-SARLAVHASIDA EMAS · «ENG ERTA» DISTRAKTORLARI · FARQ YO'NALISHDA (F-0817-04)
+
+M4c-D2 (PmLesson17) 👦 1-o'qish + metodist raundi:
+
+- **§126 kengaytmasi — atama KARTA-SARLAVHASIGA ham gloss'dan oldin chiqmaydi:** ❌ «🎮 O'yin relizi /
+  🌐 Sayt relizi» (gloss shu ekranning xulosasida) → ✅ «🎮 O'yinda / 🌐 Saytda» + tanada hodisaning o'zi.
+  «Bu o'smirning o'z so'zi» bahonasi yetmaydi — yorliq atamani nomlab, ochmay qo'yadi.
+- **«Eng erta qachon?» savolida distraktorlar to'g'ri javobdan KEYIN turmasin:** ❌ eng erta ko'ringani =
+  javob (mazmunsiz topiladi) → ✅ distraktorlar to'g'ri javobdan OLDINGI paytlar («rejaga yozgan kuni»,
+  «kompyuterda ishlagan kuni») — bola vaqtni emas, «odamlar tegdimi?» ma'nosini tanlaydi.
+- **Slayd so'zi ko'chirilmasin — farq YO'NALISHGA ko'chsin (§106+§127):** ❌ slayd «yillar keyin» ↔
+  variantlar «hafta / yil o'tgach / o'sha kuni» → ✅ «Telegramdan bir necha yil oldin / keyin / bir kunda» —
+  bir xil so'z uchala variantda, xato-varianti darsda ochiq rad etilgan (§102).
+- **§130 «baho» davomi:** ❌ «⏱ kun-bahosi — sinfdoshning o'z bahosi» → ✅ «⏱ Necha kun ketishini
+  sinfdoshning o'zi hisoblagan»; bir joyda tuzatilsa — kod-izohida ham ovlanadi.
+- **Yig'iladigan natija HAR qadamda sanalib borsin:** ❌ «6 marta ↔ 1 marta» faqat yakun-kartada → ✅ har
+  haftada «🔎 n-marta bilib oldi» / «0 marta» — bola xulosani o'zi ko'radi.
+
+## 132. MAYDA SINFLAR: ARTEFAKT-NOMI OMONIMI · «YO… YO…» · SARLAVHA-SO'ZI · BASHORAT-SLAYDI · FLASHCARD-NOM · INKOR-SHAKL (F-0817-05)
+
+M4b-D2 (PmLesson16) 👦 1-o'qish + metodist raundi:
+
+- **Dars artefakti «karta» bo'lsa, mashq-materialida bank kartasi turmaydi (§105):** ❌ «yangi karta qo'shilmaydi —
+  kartasiz ijara boshlanmaydi» → ✅ «To'lov sahifasi ochilmaydi — to'lovsiz ijara boshlanmaydi».
+- **Yakun-qoidada «yo… yo…» juft bog'lovchi o'rniga ekrandagi belgi/nom:** ❌ «Keyin — yo hammada, yo ishni
+  to'xtatadigani» → ✅ «Birinchi — 🔴 hammada ishni to'xtatadigani. Keyin — 🟠 bittasi og'ir bo'lgani. Eng oxiri — ⚪ …».
+- **Darvoza-varianti ekran-sarlavhasining so'zini takrorlamasin (§129):** ❌ sarlavha «odamlarga yetmasidan» ↔
+  to'g'ri variant «odamlarga yetmasdan» → ✅ «Dasturchi stolida, kod yozilayotganda».
+- **Bashorat-slaydi javobni oldindan aytmasin (§106):** ❌ 1-slayd «…sotuvga chiqdi. Ichida esa juda ko'p nosozlik
+  bor edi» (bashorat «kim topdi?») → ✅ «…sotuvga chiqdi. Uni juda ko'p odam sotib oldi» — nosozlik-fakt keyingi slaydda.
+- **Flashcard old-tomoni o'rgatilmagan inglizcha nomni so'ramaydi (§76):** ❌ «…ning inglizcha nomi?» → ✅ «Nosozliklarga
+  navbat qanday qo'yiladi?» / javobda «(inglizchasi — bug triage)».
+- **Inkor-shakl («-madi/-maydi») yagona to'g'ri variantda qolmasin (§107 leksik):** ❌ 1 inkor + 2 tasdiq → ✅ inkor ≥2
+  variantda («Narx oshdi — kechagi arzon narx qaytmadi» distraktor, s2 uni ochiq rad etadi).
+- **Bashorat-savoli referentli:** ❌ «Sizningcha, qancha vaqtga?» → ✅ «Sizningcha, o'yin do'kondan qancha vaqtga olib tashlandi?».
+
+## 133. MAYDA SINFLAR: TINISH-SHAKL TELLI · XULOSA-BANDI KEYINGI TEST KALITI · IKKI MA'NOLI FE'L · NISHON-DESC ROST (F-0817-06)
+
+M4c-D6 (PmLesson18) 👦 1-o'qish + metodist raundi:
+
+- **Test varianti yagona tinish-shaklda qolmasin (§99 tinish-ko'rinishi):** ❌ 2 variant «X — sabab», to'g'risi tiresiz
+  ot-birikma → ✅ uchalasi bir qolipda («…-gan + ot»), farq ma'noda.
+- **Xulosa-gapning oxirgi bandi keyingi testning kalitiga aylanmasin (§106 + TMI):** ❌ s4 xulosasi «pastroq bo'lsa quruq
+  signal ko'payadi» ↔ s11 to'g'ri javobi → ✅ band olib tashlanadi — uni natija-qatorlari va RECAP o'zi o'rgatadi.
+- **Fe'l ikki ma'noli bo'lsa, sonli o'lchov bilan almashtiriladi:** ❌ «6 soniyalik kutish o'tib ketdi» (chegaradan
+  o'tdimi? o'tkazib yuborildimi?) → ✅ «6 soniyalik kutish 10 soniyaga yetmadi».
+- **Nishon-desc faqat REAL tekshirilgan ishni aytsin (§94/§130):** ❌ «To'rt signalni to'g'ri yo'naltirdingiz» (nishon xato
+  javobda ham beriladi) → ✅ «To'rt signalning yo'lini tanladingiz».
+- **Uzun gap ichida qavs-gloss emas — alohida gap:** ❌ «har qator bitta so'rov … (ms — millisekund…)» → ✅ «…nimani
+  so'ragan bo'lsa, har so'rov — bitta qator. Vaqt ms da: millisekund, ya'ni soniyaning mingdan biri».
+
+## 134. RANG-HOLATI DISTRAKTORDA ISHLAMAYDI, AGAR RANG MA'NOSI O'QUVCHI MATNIDA O'RGATILMAGAN BO'LSA (F-0818-01)
+
+M4c-D6 (PmLesson18) tekshiruvchi + metodist-mikro raundi. §102 («distraktor darsning o'z ekranida rost bo'lib
+qolmasin») ning yon-bandi — rang bo'yicha:
+
+- **Rang-holatiga tayangan variant ikki tomondan sinadi:** ❌ arena Q5 «Panel qizil rangda ko'rsatgan signal»
+  (savol: «Qaysi signal chin?») → ✅ «Har mayda sakrashdan kelgan signal».
+  **Sabab:** darsning o'z mexanikasida qizil = «sayt ochilmadi», ya'ni yagona haqiqiy nosozlik — demak distraktor
+  ROST bo'lib qolardi va darsni tushungan o'quvchini jazolardi. Ayni paytda bu ma'no faqat **kod-izohida** yozilgan,
+  o'quvchi matnida hech qayerda yo'q — demak variantni tekshirib ham bo'lmasdi (§110).
+  **Qoida:** rang-holati distraktorga faqat o'sha rangning ma'nosi o'quvchi MATNIDA aniq o'rgatilgan bo'lsa chiqadi.
+  Aks holda variant **hodisa-tiliga** o'giriladi (dars ochiq rad etadigan hodisa: «mayda sakrash» → quruq signal).
+- **Test-kalitida savolning soni qaytmasin (§129/§106 davomi):** ❌ savol «…20 daqiqa ochilmadi…», to'g'ri variant
+  «O'sha **20 daqiqada** saytga kirgan odamlar» → ✅ «O'sha **paytda** saytga kirgan odamlar». Son-echo mazmunni
+  tushunmay kalit topish yo'lini ochadi.
+- **Senariy taqiq-so'zi §112 ko'prigidan kuchli:** ❌ «**Serverni** `node server.js` bilan yurgizgansiz» → ✅ «Kodni
+  **`node`** buyrug'i bilan yurgizgansiz». Ko'prik tanish BUYRUQ nomi ustida qurilsa, taqiq-atamasiz ham ishlaydi.
+
+## 135. B4 SENARIY-KORREKTURASIDAN CHIQQAN SINFLAR (F-0818-02)
+
+Uch senariy (M5-D2 · M5-D8 · M5-D11) metodist-korrekturasi. Uchtasi mustaqil ishlagan, lekin
+uch xil «matn ekranga ZID» sinfini topdi — shuning uchun bitta bo'limda.
+
+**A. Matn ekranda ko'rinadigan narsaga zid bo'lmasin (§94/§36 kengaytmasi)**
+- **Sonli da'vo ekrandagi belgilar bilan tekshiriladi:** ❌ «kelganlar to'rt barobardan ko'proq oshdi»
+  (ekranda 6→23; 6×4=24 — da'vo yolg'on) → ✅ «kecha 6 odam kelgan edi». Ustiga «barobar/marta» —
+  nisbat-jargoni; tirik-sanoq darsida u ham taqiq.
+- **Qoida o'z mexanikasiga zid bo'lmasin:** ❌ «e'lon qaytganlar sonini o'zi ko'tarmaydi» (ekranda
+  qaytganlar 4→5 o'sadi) → ✅ «qaytganlar soni esa deyarli o'zgarmaydi». Kaskad: qoida 4 yuzada
+  (ekran · RECAP · flashcard · test-reveal) takrorlansa, to'rttasi ham tuzatiladi.
+- **Yo'l-tanlovli mashqning yakun-gapi HAR yo'lda rost bo'lsin:** ❌ «Yigirma ikkita joydan yig'ildi»
+  (o'quvchi to'rttasini bosgan bo'lishi mumkin — jami 23) → ✅ «Yigirmata odamni ikkita joy berdi:
+  sinfdoshlar 13, to'garakdagilar 7».
+- **Manbasiz son sarlavhaga chiqmasin:** ❌ «Bugun kelgan 10 odam…» (10 ning manbasi ekranda yo'q)
+  → ✅ «Bugun kelgan odamlar…».
+
+**B. Dars ishlatadigan atama hech bir ekranda TA'RIFSIZ qolmasin (§104/§126 yon-bandi)**
+- ❌ «eshitgan javob» s8 · koding · flashcard · checklistda ishlatiladi, ta'rifi hech qayerda yo'q
+  (senariy uni va'da qilgan, yakun-kartaga tushmagan) → ✅ yakun-kartada kanonik gap: «Odam aytgan
+  gapni o'z so'zi bilan yozib qo'ysangiz — bu **eshitgan javob**».
+  **Tekshiruv usuli:** dars lug'atidagi har atamani grep qiling — ta'rif-gapi bormi, qaysi ekranda.
+- **Teskari gloss** — atama taqiq-ro'yxatida bo'lsa-yu, nomi baribir kerak bo'lsa: hodisa avval,
+  nom keyin, alohida gapda: ❌ «Custdev (mijozni o'rganish)» → ✅ «…sinfdosh, to'garakdosh yoki
+  qo'shni. Suhbatning inglizcha nomi — custdev».
+
+**C. §134 ning ikki kengaytmasi**
+- **Rangga ma'no yuklansa — legenda o'quvchi MATNIDA majburiy:** kalendardagi yashil belgi ma'nosi
+  hech qayerda o'rgatilmagan edi → «🟩 kecha ham kelgan · ⬜ birinchi marta kelgan». Legendasiz
+  §95 sanab-tekshirish ishlamaydi. (§134 rangni distraktordan quvadi; bu band uni MEXANIKADA
+  qonuniylashtiradi — shart bitta: ma'no matnda aytilsin.)
+- **Vaqt-so'zi ham son kabi tell:** ❌ T4 da «kecha» faqat to'g'ri variantda uchraydi → ✅ so'z
+  distraktorlarga ham tarqatiladi. Kalitni faqat sonlar emas, HAR QANDAY yakka-uchraydigan so'z
+  oshkor qiladi.
+
+**D. Mayda sinflar**
+- **Jadval ustun-yorlig'i har qatorning qiymatiga mos bo'lsin (§115 kengaytmasi):** ❌ ustun
+  «Qanchalik tez-tez ko'rishadi» ↔ qiymat «bir-birini tanimaydi» → ✅ ustun «Odamlar qanchalik
+  tez-tez ko'rishadi» + hamma qiymat shu o'lchovda («har kuni ko'rishadi», «umuman ko'rishmaydi»).
+- **«X qilib bo'lmaydi» ikki ma'noli qurilma (§133 davomi):** ❌ «uni e'lon qilib bo'lmaydi»
+  (ruxsat yo'qmi? imkoni yo'qmi?) → ✅ «e'lonning qo'lidan kelmaydi».
+- **Omonim-vaqt:** ❌ «Birinchi kunning kechasi yo'q» («kechasi» = tunda) → ✅ «Birinchi kundan
+  oldin kun yo'q».
+- **Kod-satri o'quvchiga ko'rinsa, imlosi buzuq so'z ko'rsatmasin:** ❌ `'Yigirma yigildi'`
+  (ASCII saqlash uchun apostrof tashlangan) → ✅ `'Yigirmata odam bor'` — ASCII qoidasi buzilmaydi,
+  imlo ham to'g'ri.
+- **Boshlang'ich kod bitta tirnoqda yozilmasin:** o'zbek javobida apostrof deyarli har gapda bor —
+  `'O\'tgan…'` o'quvchi matnini qo'ygach kod SINADI. Qo'shtirnoq majburiy.
+
+
 ---
 
-*Korpus F-ID bilan o'sadi. Oxirgi yangilanish: 2026-08-14 (F-0814-02 — M4-D12 senariy-korrekturasi:
+*Korpus F-ID bilan o'sadi. Oxirgi yangilanish: 2026-08-19 (F-0819-01…28 — M3-D1 ReactIntro ekranma-ekran sayqali: §137 A–I) · oldingi: 2026-08-18 (F-0818-02 — B4 uch senariy korrekturasi: matn ekranga zid bo'lmasin · atama ta'rifsiz qolmasin · §134 ikki kengaytmasi (rang-legendasi majburiy, vaqt-so'zi tell) · jadval yorlig'i · bir tirnoqli starter: 135-bo'lim). Oldingi yangilanish: 2026-08-18 (F-0818-01 — M4c-D6 (PmLesson18) tekshiruvchi + metodist-mikro: rang-holati distraktorda ishlamaydi · test-kalitida savol soni qaytmasin · senariy taqiq-so'zi §112 ko'prigidan kuchli: 134-bo'lim). Oldingi yangilanish: 2026-08-17 (F-0817-06 — M4c-D6 (PmLesson18) 👦1 + metodist: tinish-shakl telli · xulosa-bandi keyingi test kaliti · ikki ma'noli fe'l · nishon-desc rost: 133-bo'lim). Oldingi yangilanish: 2026-08-17 (F-0817-05 — M4b-D2 (PmLesson16) 👦1 + metodist: artefakt-nomi omonimi · «yo… yo…» · sarlavha-so'zi · bashorat-slaydi · flashcard-nom · inkor-shakl: 132-bo'lim). Oldingi yangilanish: 2026-08-17 (F-0817-04 — M4c-D2 (PmLesson17) 👦1 + metodist: atama karta-sarlavhasida emas · «eng erta» distraktorlari · farq yo'nalishda · yig'iladigan natija: 131-bo'lim). Oldingi yangilanish: 2026-08-17 (F-0817-03 — M4a-D2 (PmLesson15) 👦1 + metodist: hisoblagich-yorlig'i · ildiz platforma-matnida · checklist ma'no · ✅-qatori rost: 130-bo'lim). Oldingi yangilanish: 2026-08-17 (F-0817-02 — M4-D15 (PmLesson14) 👦 1-o'qish + metodist: test-kaliti xulosadan emas · darvoza-variantlar bir turda · yo'l-fe'li dars-fe'li: 129-bo'lim). Oldingi yangilanish: 2026-08-17 (F-0817-01 — M4-D12 (PmLesson13) 👦 1-o'qish + metodist raundi: bosh atama maqsad-ekranda emas · atama ≥2 variantda · shart darak gapda · namuna o'z qoidasidan: 126–128-bo'lim). Oldingi yangilanish: 2026-08-14 (F-0814-02 — M4-D12 senariy-korrekturasi:
 hook fikr-so'rovi payoffi hech bir tanlovni yolg'onga chiqarmasligi · tekshiruv-mashqi materiali
 har shart uchun bitta javobni himoyalashi: 119–120-bo'lim). Oldingi yangilanish: 2026-08-13 (F-0813-06 — M4-D2 (PmLesson11)
 👦 1-o'qish + metodist raundi: savol-yo'nalishi rostni rad ettirmasin · bosh ta'rif
@@ -1761,3 +1954,354 @@ ma'noni tushunmay qoladimi?» (78-bo'lim) + DARS_ETALON 111-qonun (7–10 soniya
 hook-savol tabiiyligi · mavhum «yo'l» → ko'rinadigan sayohat · ichki-nom orqaga-havolasi · mentor javobni aytmasligi · flashcard mentorsiz · bashorat-slaydi tozaligi · nishon bayrami kam so'z: 57–63-bo'lim;
 F-0801-13 — qisqa yorliqlarda siz-forma: 64-bo'lim).* -->
 
+## 136. ADABIY NORMA — KANTSELYARIT HAM, SHEVA HAM EMAS (F-0818-03)
+
+Foydalanuvchi 2026-08-18 da ikki qutbni birdan chizdi: dars-matn na «hujjat-tarjimasi», na
+«messenjer-suhbati». Bosh test: **«tirik odam ovoz chiqarib aytarmidi — lekin o'qituvchi sifatida,
+chat sifatida emas?»** Chatdagi uslub mahsulotga oqmaydi. Qonun: `MATN_ETALONI.md` 7-C; lint:
+`kant-*` · `sheva-*` · `registr-*`.
+
+**A. Kantselyarit → jonli o'qituvchi**
+- ❌ «Kod yozish amalga oshiriladi.» → ✅ «Endi kod yozamiz.» (majhul nisbat + «amalga oshir» → faol fe'l)
+- ❌ «Ushbu funksiya ma'lumotni qayta ishlashni amalga oshiradi.» → ✅ «Bu funksiya ma'lumotni qayta ishlaydi.»
+- ❌ «Mentorga yuborsangiz, vazifa bajarilgan hisoblanadi.» → ✅ «Mentorga yuborsangiz — vazifa bajarildi.»
+- ❌ «Bu qadam muhim ahamiyatga ega.» → ✅ «Bu qadam muhim.»
+- ❌ «Quyidagi kodni kiriting.» / «ushbu kodni kiriting» → ✅ «Bu kodni kiriting.» / «Kodni kiriting:»
+- ❌ «Bundan tashqari, sayt tez ochilishi kerak.» → ✅ «Yana bir narsa: sayt tez ochilishi kerak.»
+  Sabab: majhul nisbat, «amalga oshir», «ushbu», «hisoblanadi» — o'smir hech qachon og'zaki eshitmaydigan
+  qolip; matn tarjima bo'lib eshitiladi, o'quvchi «bu menga emas, hujjatga yozilgan» deb o'qiydi.
+
+**B. Sheva/so'zlashuv → adabiy norma (ohang iliq qoladi)**
+- ❌ «Kompyuter kod kutvotti.» → ✅ «Kompyuter kod kutyapti.»
+- ❌ «Bo'pti, endi tugmani bosing.» → ✅ «Yaxshi, endi tugmani bosing.»
+- ❌ «Raqamini telefon o'zi topadi-ku?» → ✅ «Raqamini telefon o'zi topadi, to'g'rimi?»
+- ❌ «Shu odamnikini toping-da, keyin…» → ✅ «Shu odamnikini toping, keyin…»
+- ❌ «Har kuni bir xil ish qilmaysiz-ku: …» → ✅ «Axir har kuni bir xil ish qilmaysiz: …»
+- ❌ «Zo'r! Sahifangizga rasm qo'shdingiz.» → ✅ «Juda yaxshi! Sahifangizga rasm qo'shdingiz.»
+- ❌ «Eng zo'r tomoni — …» → ✅ «Eng yaxshi tomoni — …»
+- ❌ «Brat, mana shu yerga qarang.» → ✅ «Mana shu yerga qarang.»
+  Sabab: iliqlik registr bilan emas, murojaat-ohangi bilan beriladi («Keling, birga ko'ramiz»);
+  yuklama va sheva-shakl olib tashlansa gap sovumaydi, faqat adabiy bo'ladi. Ovoz-testi: o'qituvchi
+  sinf oldida «bo'pti»/«brat» demaydi, lekin «juda yaxshi» deydi.
+
+**C. Chegara — nima TAQIQ EMAS**
+- «hisoblanadi» haqiqiy hisob ma'nosida: «Bizda sonlar hisoblanadi: 10 * 3 + 3 = 33» — qoladi (lint `except`).
+- Persona ISMI «Karim aka (ota)» — kattalar-persona nomi, murojaat emas — qoladi.
+- «-chi» so'roq-yuklamasi («Siz-chi?») — adabiy, taqiq emas (1-bo'lim: faqat tushuntirish-matnda so'zlashuv ohangi bo'lsa).
+- Iliq maqtov «Ajoyib!», «Yaxshi!», «To'g'ri!» — adabiy, qoladi; «Zo'r/Qoyil» esa warn.
+
+---
+
+## 137. M3-D1 «REACT NIMA» — 1–2-EKRAN TOZALASHI (F-0819-01…07)
+
+Ochilish ekranlari — o'quvchining darsga birinchi ishonchi. Shu yerdagi har bir so'z
+tekshiruvdan o'tadi: sheva yo'q, «sir» yo'q, mavzuni kichraytiruvchi baho yo'q.
+
+**A. Sheva-yuklama ochilish gapida (F-0819-01)**
+- ❌ «Butun ekran o'chib-yonadimi? Yo'q-ku! Lekin eski saytlarda…»
+  → ✅ «Butun ekran o'chib-yonadimi? Albatta yo'q. Lekin eski saytlarda…»
+  Sabab: `-ku` — so'zlashuv yuklamasi (136-§ B bandi). «Albatta yo'q» ohangni
+  saqlaydi, lekin adabiy: mentor sinf oldida shunday gapiradi.
+  ⚠️ Mentor gapi va **audio matni** — ikki nusxa. Bittasini tuzatib, ikkinchisini
+  unutish = eshitilgan gap ko'ringan gapdan farq qiladi. Har doim juftlab qidiring.
+
+**B. «Sir» — intriga o'rniga aniq javob (F-0819-03)**
+- ❌ «Sizningcha, zamonaviy ilovalar siri nimada?»
+  → ✅ «Sizningcha, zamonaviy ilovalar buni qanday uddalaydi?»
+- ❌ «Yaxshi! Sir — faqat o'zgargan joy yangilanadi. … Hozir hammasini ochamiz.»
+  → ✅ «To'g'ri! Faqat o'zgargan joy yangilanadi. … Hozir qanday ishlashini ko'ramiz.»
+- ❌ «Eng muhim sir: sahifada ikkita kartochka bor, lekin kod BITTA.»
+  → ✅ «Eng muhimi: sahifada ikkita kartochka bor, lekin kod BITTA.»
+  Sabab: MATN_ETALONI 325-qatori — «sir»-uslub taqiq. Bitta ekranda 3 marta uchradi:
+  bittasini ko'rsangiz, butun faylni grep qiling (`sir|siri|секрет`).
+  «Hozir hammasini ochamiz» ham predmetsiz — nima ochilishi aytilsin.
+
+**C. Mavzuni kichraytiruvchi baho (F-0819-06)**
+- ❌ «Buning ortida bor-yo'g'i ikkita oddiy tushuncha turadi — komponent va Virtual DOM.»
+  → ✅ «Buning ortida ikkita muhim tushuncha bor: Komponent va Virtual DOM.»
+  Sabab: «bor-yo'g'i» + «oddiy» mavzuni oldindan arzonlashtiradi. Keyin qiynalgan
+  o'quvchi «oddiy edi, demak men uddalay olmadim» degan xulosaga keladi. Reja-ekranida
+  hajm emas, QIYMAT aytiladi («muhim»), miqdor esa qadamlar sonida ko'rinadi.
+
+**D. Ta'rifda sen-forma buyruq (F-0819-05)**
+- ❌ «Sahifaning bloki: bir marta yoz — istalgancha ishlat»
+  → ✅ «Bir marta yaratasiz — istalgan joyda ishlatasiz»
+  Sabab: shior-uslubdagi qisqa ta'riflar sen-formaga eng oson sirg'aladi
+  («yoz/ishlat/ko'r»). Ta'rif ham o'quvchiga murojaat — «siz» qoidasi bu yerda ham
+  amal qiladi. Yo'qolgan «sahifaning bloki» ta'rifi yonidagi qadam-ro'yxatida bor —
+  bir ma'no ikki marta takrorlanmaydi (TMI, 109-qonun).
+
+**E. Badiiy ko'chma ma'no qadam-nomida (F-0819-07)**
+- ❌ «Oddiy saytning dardi» → ✅ «Oddiy saytning kamchiligi»
+  Sabab: «dard» — emotsional ko'chma ma'no; reja-ro'yxatining vazifasi aniq nom
+  berish, kayfiyat yaratish emas.
+
+**F. Va'da-qatori ekranda turmaydi (F-0819-04)**
+- ❌ Reja ekranida qizil qator: «→ keyingi darsda birinchi komponentingizni yozasiz»
+  → ✅ olib tashlanadi (73-qonun; lint: `keyingi-darsda-vada`).
+  Sabab: bugungi ekran bugungi ish haqida. Kelasi darsning va'dasi diqqatni bo'ladi va
+  o'quvchi hali boshlamagan ishning yukini oldindan oladi. Audio matnidagi nusxasi ham
+  birga o'chadi.
+
+## 138. B4 DARS-RAUNDIDAN CHIQQAN SINFLAR (F-0819-08…10, PmLesson20 · M5-D8)
+
+Uchala sinf ham 👦 1-o'qish + metodist raundida topildi. Ikkitasi 29-qonun va §104 ning
+yangi hududlarini ochadi, uchinchisi arena-distraktorlariga tegishli.
+
+**A. Kelajak-dars atamasi FLASHCARD-JAVOBIDA ham yashamaydi (F-0819-08)**
+- ❌ «Botingizni ishlatgan odamdan: sinfdosh, to'garakdosh yoki qo'shni. Suhbatning
+  inglizcha nomi — custdev» → ✅ «…yoki qo'shni» (atama butunlay ketadi).
+  Sabab: §135-B «teskari gloss» ruxsati 29-qonundan KUCHSIZ. Atama keyingi modulning
+  BOSH nomi bo'lsa (`App.jsx`: m7-04 «Custdev: savol berish», m7-05 «Custdev: 5 real
+  intervyu»), u joriy darsda umuman ishlatilmaydi — flashcard javobida ham, «inglizcha
+  nomi» ko'rinishida ham.
+  Tekshiruv usuli: `App.jsx` dan keyingi modullarning dars-sarlavhalarini grep qilib,
+  o'sha nomlarni joriy dars matnida ov qilish.
+
+**B. Gloss-tartibi BASHORAT-SLAYDIGA ham taalluqli (F-0819-09)**
+- ❌ «O'sish to'xtaganda asoschilar nima qildi?» (bashorat-savoli — atama shu yerda
+  BIRINCHI marta chiqadi) → ✅ «Saytga yangi odamlar qo'shilmay qolganda…»; atama
+  keyingi slaydda hodisa bilan birga tug'iladi.
+  Sabab: §104 «atama hodisadan keyin tug'iladi» qoidasi keys-slayd oilasiga ham
+  kengayadi. Bashorat savoli — o'quvchi javob YOZADIGAN joy; u yerda notanish atama
+  bo'lsa, o'quvchi savolni emas, so'zni yechishga urinadi.
+
+**C. Arena ketma-ket savollarda BITTA kalit-so'z bilan yechilmaydi (F-0819-10)**
+- ❌ Q1–Q4 ning to'g'ri javoblari «bo'lib o'tgan ish» iborasi bilan ajralib turadi —
+  o'quvchi (13 yosh, sinovda) o'ylamasdan, kalit-so'zni qidirib to'rttasini ketma-ket
+  topdi. → ✅ ibora distraktorlarda ham tabiiy yashaydi («…odamsiz, o'zingiz taxmin
+  qilish» · «…ishga odam qo'ygan bahosi» · «…emas, kelajakni so'ragan»), ajratuvchi
+  endi MA'NO: ish ↔ baho/fikr/taxmin.
+  Sabab: §127 (atama ≥2 variantda) savol ICHIDAGI telni yopadi, bu band esa savollar
+  ORASIDAGI telni yopadi — darsning bosh iborasi to'g'ri javoblarning belgisiga
+  aylanib qolmasin. 🔴 Tuzatish `correct` indekslariga TEGMASDAN, faqat variant
+  matnlari bilan qilinadi.
+  Tekshiruv usuli: arena 12 savolining to'g'ri javoblarini ustma-ust qo'yib, takrorlanuvchi
+  ibora bor-yo'qligiga qarash (tekshiruvchi rolining bandi).
+
+## 139. EKRAN HOLATI O'QUVCHINING HARAKATINI KO'RSATSIN, OLDINDAN YOZILGAN SSENARIYNI EMAS (F-0819-11)
+
+Bir kunda **ikki xil darsda ikki xil ko'rinishda** chiqdi — shuning uchun alohida sinf va
+tekshiruvchi rolining ov-bandi.
+
+**A. Natija-kartasi tanlovga bog'langan (PmLesson20 s9, «SAVOL-ELAK»)**
+- ❌ `elak-body${pick === 'otdi' && togri ? ' fall' : ' hold'}` — o'quvchi XATO tanlaganda ham
+  karta «savol o'tdi» holatini ko'rsatardi, ostidagi matn esa boshqa narsa derdi.
+- ✅ `elak-body${cur.yol === 'otdi' ? ' fall' : ' hold'}` — karta HAQIQATNI ko'rsatadi;
+  o'quvchi xato qilsa, tuzatish matni bilan birga to'g'ri natijani ham ko'radi.
+
+**B. Yakun-xulosasi oldindan yozilgan (PmLesson19 s9, «JOY-QUVURI»)**
+- ❌ O'quvchi to'rt joyni tanladi (13 + 2 + 7 + 1 = 23 odam), ekran esa «Yigirmata odamni
+  IKKITA joy berdi — sinfdoshlar guruhi 13, to'garakdagilar 7» dedi (👦 sinovida aynan shu
+  qadamda «men bosgan narsa bilan yozilgani mos kelmadi» deb qayd etildi).
+- ✅ Yakun-xulosasi o'quvchi haqiqatda tanlagan joylardan va ularning sonlaridan yig'iladi.
+
+**Sabab (ikkalasiga bir xil):** interaktiv mexanikaning butun qiymati — «men qilgan ish natija
+berdi» hissi. Holat ssenariydan chizilsa, o'quvchi qo'lidagi boshqaruvni yo'qotadi va mexanikaga
+ishonchi so'nadi; bundan tashqari xato tanlagan o'quvchi noto'g'ri xulosani o'rganib qoladi.
+
+**Tekshiruv usuli (tekshiruvchi ov-bandi):** har interaktiv ekranda ikki holatni solishtiring —
+(1) o'quvchi TO'G'RI tanlaganda, (2) XATO tanlaganda va (3) kutilganidan boshqacha (ko'proq/kamroq)
+tanlaganda. Ekrandagi har son va har nom shu uch holatda ham o'quvchining o'z ma'lumotidan
+kelib chiqsin. Grep-ilgagi: yakun-matnida qatiy yozilgan sonlar va nomlar (`13`, `7`, «ikkita joy»).
+
+## 140. NOMZOD-DUEL VA STARTER-KOD SINFLARI (F-0819-12…13, M6-D14 senariy-korrekturasi)
+
+**A. Duel-mashqida savol MUTLAQ shaklda berilmasin (F-0819-12)**
+- ❌ «Qaysi raqam tizim ishlaganini ko'rsatadi?» — mashqda uch raund bor va bitta element
+  1-raundda g'olib, 3-raundda mag'lub bo'ladi; mutlaq savol o'sha 3-raundda **ikkinchi rost
+  javob** tug'diradi («41 odam tizimni ochdi» ham rost).
+- ✅ «Har juftlikda qaysi raqam buni KO'PROQ ko'rsatadi?» — qiyoslash qolipi savolni raundga
+  bog'laydi.
+  Sabab: §17/§120 ning duel-oilasiga kengaytmasi. Ikki nomzodni solishtiradigan har mexanikada
+  savol nisbiy bo'lishi shart, aks holda to'g'ri javob raunddan raundga ko'chib yuradi.
+
+**B. Boshlang'ich kod bo'sh qiymat qaytarsa, kutilgan natijalarning birortasi ham bo'sh
+bo'lmasin (F-0819-13)**
+- ❌ Starter `return []`, uchinchi tekshiruvning kutilgan natijasi ham `[]` → o'quvchi hech narsa
+  yozmasdan uchtadan **ikkitasini to'g'ri** oladi; senariyning «uchala natija ham noto'g'ri
+  chiqadi» da'vosi yolg'onga aylanadi.
+- ✅ Tekshiruv ma'lumoti shunday tanlanadiki, bo'sh qiymat birorta kutilgan natijaga
+  teng kelmasin.
+  Sabab: 18-ov bandining («starter yashil bo'lmasin») hisob-kitobli ko'rinishi — starter yashil
+  bo'lmasligi ko'zga tashlanmaydi, uni faqat kutilgan natijalarni bo'sh qiymat bilan solishtirib
+  aniqlash mumkin. Tekshiruv usuli: starter kodini o'zgartirmasdan ishga tushirib, nechta
+  tekshiruv o'tishini sanash — 0 bo'lishi shart.
+
+**G. Mexanika o'zi ko'rsatgan xulosani matn qaytarmaydi (F-0819-12)**
+- ❌ Interaktiv ekran ostida alohida ogohlantirish-bloki: «Endi tasavvur qiling:
+  saytingizda yuzlab skin. Bitta kartochka dizayni o'zgarsa, qolganlarini ham alohida
+  o'zgartirasizmi?»
+  → ✅ blok olib tashlanadi; o'rniga sayt oynasi ostida ramkasiz bitta qator
+  (`mono small`, urg'u rangida), faqat to'r to'lganda: «Bir xil kod qayta-qayta
+  yozilyapti.»
+  Sabab: o'quvchi tugmani bosdi, badge 22 → 44 → 66 bo'lib o'sdi, kodda bir xil blok
+  takrorlandi — **xulosa allaqachon qo'l bilan chiqarildi**. Uni matnda qaytarish
+  109-qonun (TMI) buzilishi: qo'shimcha blok ekranni bosadi va tayyor javobni tutqazib
+  qo'yadi. Mexanika xulosani o'zi ko'rsatgan joyda matn jim turadi.
+- ⚠️ Tekshiring: olib tashlangan savolning JAVOBI keyingi ekranda qolmasin-mi.
+  Qolsa, u javob **mustaqil gap** sifatida o'qilishi kerak («Bitta joyda o'zgartirasiz
+  — hammasi yangilanadi»), savolga ishora qilib turmasin.
+
+## 141. B5 SENARIY-KORREKTURASIDAN CHIQQAN SINFLAR (F-0819-14…21)
+
+To'rt senariy korrekturasidan chiqdi; §135 va §138 ning yon-shoxlari, lekin har biri o'z
+tekshiruv-usuli bilan.
+
+**A. Vizualning o'z so'zi atamaning dublyoriga aylanmasin (F-0819-14)**
+- ❌ Yo'ldagi uch nuqta goh «ufq», goh «bekat» deb ataladi, ikkovi hech qayerda tenglashtirilmagan.
+- ✅ O'quvchi matnida BITTA nom qoladi (ikkinchisi olinadi).
+  Sabab: chizmadagi shakl o'z nomini talab qiladi, lekin ikki nom bitta narsani anglatsa,
+  o'quvchi ular orasida farq qidiradi (§135-B + 80-qonun).
+
+**B. Kalitni belgilaydigan ibora IKKI test bo'ylab takrorlanmasin (F-0819-15)**
+- ❌ T2 kaliti «Unga **kerak narsa** hali paydo bo'lmagan» va T4 kaliti «**Kerak narsa** qachon
+  tayyor bo'lishi» — ibora distraktorlarda 0 marta.
+- ✅ Biri qayta ifodalanadi («U **kutayotgan narsa** …»).
+  Sabab: §135-C bitta test ichidagi telni yopadi, bu band testlar ORASIDAGISINI — o'quvchi
+  birinchi testda topgan iborani ikkinchisida qidiradi.
+
+**C. Savol o'zagi variant YORLIG'INI so'zma-so'z qaytarmasin (F-0819-16)**
+- ❌ «"Olti oydan keyin" ufqiga tushdi…» ↔ kalit «olti oydan keyin boshlaymiz».
+- ✅ «Eng uzoq ufqqa tushdi…» — savol yorliqni emas, MA'NOni aytadi.
+  Sabab: §134 dagi son-echo bandining so'z-varianti.
+
+**D. Sahna VAQTI sabab-qatorlariga zid bo'lmasin (F-0819-17)**
+- ❌ «Yarim yil o'tdi» ↔ «uchinchi tashrif uchun ko'pchilik hali bir marta kelgan» (sartaroshxona —
+  soch har oy oldiriladi, yarim yilda bu ish allaqachon yaqin ufqqa tushardi).
+- ✅ «Ochilganiga bir necha oy bo'ldi …».
+  Sabab: §135-A («matn ekranga zid bo'lmasin») ning vaqt-bandi; sahna vaqti mexanikaning
+  sababini buzmasligi kerak.
+
+**E. Starter izohi nomlanmagan o'zgaruvchini yozishga chaqirmasin (F-0819-18)**
+- ❌ Izoh `r.ish` ni yozishga chaqiradi, `r` esa hech qayerda tug'ilmagan.
+- ✅ `const r = reja[j];` ochiq ko'rsatiladi.
+  Sabab: §135-D («kodingda jim tuzoq») juftligi — o'quvchi mavjud bo'lmagan nomni yozib xato oladi.
+
+**F. Test to'g'ri javobi darsning O'Z mashqida ruxsat berilgan qarorni jazolamasin (F-0819-19)**
+- ❌ T3 «Tavsif saytga qanday chiqadi?» → kalit «Do'kon egasi o'qib chiqqanidan keyin», holbuki
+  mashq egaga uch ishdan faqat BITTASINI beradi: tavsifni o'qimaslik ham to'g'ri qaror edi.
+- ✅ Savol holatni emas, qoidaning JOYINI so'raydi.
+  Sabab: mashq o'quvchiga tanlov bergan bo'lsa, test o'sha tanlovni «xato» deb belgilay olmaydi —
+  aks holda o'quvchi o'z to'g'ri qarori uchun ball yo'qotadi.
+
+**G. Rang-legendasining ikkinchi yelkasi darsning kalit fe'lini teskari ma'noda ishlatmasin (F-0819-20)**
+- ❌ «⚪ — bu qaror unga **tegmaydi**» ↔ darsning bosh qoidasi «har qaror bitta odamga **tegadi**».
+- ✅ Legenda atamani ta'riflab tug'diradi: «🔴 — bu qaror shu odamning kunini buzadi: u jabr ko'radi».
+  Sabab: §134 (rang-legendasi majburiy) ning ma'no-bandi — legenda darsning o'z fe'lini ikki
+  qarama-qarshi ma'noda ishlatsa, qoida ham, rang ham ishonchini yo'qotadi.
+
+**H. Senariyning O'Z residue-grep ro'yxatidagi so'z markaziy ekranda qolmasin (F-0819-21)**
+- ❌ 8-bo'limda taqiqlangan ildiz («chegaralangan») s4 ning markaziy kartasida turibdi.
+- ✅ Ro'yxat yozilgach fayl bo'ylab qayta grep — taqiq o'z faylida ham amal qiladi.
+  Sabab: taqiq-ro'yxati odatda yozuvchining O'ZI uchun eslatma bo'lib qoladi va matn allaqachon
+  yozilgan joylar tekshirilmaydi.
+
+## 142. IKKI KUNLIK MUNOSABAT VA OBYEKT-NOMLASH SINFLARI (F-0819-22…24, M5-D11)
+
+**A. Ikki kunni solishtiradigan har o'lchovda YO'NALISH bitta bo'lsin, va hisob-katagi qaysi kunga
+yozilishini TA'RIFNING O'ZI aytsin (F-0819-22)**
+- ❌ «Bugun kelgan odam **ertasi kuni** yana kelsa — u qaytgan hisoblanadi» — o'quvchi bugungi katakka
+  nima yozishini bilmaydi (ertangi kun hali kelmagan), va dars boshqa yuzalarda teskari yo'nalishda
+  gapiradi.
+- ✅ «**Kecha** kelgan odam **bugun ham** kelsa — u **bugun** qaytgan hisoblanadi.»
+  Sabab: 👦 sinovida bola yozish-ekranida to'xtab qoldi — ikki ta'rif ikki xil son beradi va qaysi
+  biri katakka tushishi aytilmagan edi. Bir darsda 13 yuza shu ta'rifni takrorlaydi; bittasi
+  boshqa yo'nalishda tursa, butun mexanika ishonchini yo'qotadi.
+  **Tekshiruv usuli:** artefakt yoki kod ma'lumotini oling va 1-yozuvning qiymati nega `0` ekanini
+  ta'rif-gapidan chiqarib ko'ring. Chiqmasa — ta'rif teskari yo'nalishda yozilgan.
+
+**B. Bitta rang ikki ekranda ikki OBYEKTNI bo'yasa, legenda obyektni nomlasin (F-0819-23)**
+- ❌ s4 «🟩 kecha ham kelgan» (belgilar — odamlar) ↔ s9 «🟩 kelgan kun» (kataklar — kunlar).
+- ✅ «🟩 kecha ham kelgan **odam**» ↔ «🟩 **odam kelgan kun**».
+  Sabab: §134 ning davomi. Rang bir xil bo'lsa, o'quvchi birinchi ekranda o'rgangan ma'noni
+  ikkinchisiga ko'chiradi — 👦 aynan shunday qilib xato bosdi.
+
+**C. Yordamchi keysning sanog'i darsning O'Z artefakti bilan bir so'zda atalmasin (F-0819-24)**
+- ❌ «🗓 Uch kunlik **hisob**» (o'quvchining artefakti) ↔ «🔥 **hisob**» (keysdagi sanoq).
+- ✅ Keys-sanog'i boshqa nom oladi («🔥 **raqam**»).
+  Sabab: §105/§121 ildiz-omonimining keys-oilasiga kengaytmasi. 🔴 Yangi nom bashorat-slaydining
+  javobini oshkor qilmasligi shart (masalan «kun-sanog'i» yaramaydi — u javobning o'zi).
+
+**H. Bitta tushuncha — bitta nom, butun dars bo'ylab (F-0819-19)**
+- ❌ Bir ekranda «Virtual DOM — xotiradagi **qoralama**», o'sha ekranning o'ng
+  ustunida esa qutilar «Eski **nusxa**» / «Yangi **nusxa**» deb nomlangan.
+  → ✅ butun darsda **nusxa**: qadamlar, Mentor, audio, RECAPS, test izohi,
+  tartib-tizish mashqi, flashcard, oqim-yorliqlari — hammasi bitta so'z.
+  Sabab: o'quvchi ikki so'zni ko'rib, ular **ikki xil narsa** deb o'ylaydi va
+  qo'shimcha yuk oladi. Metafora kuchli bo'lsa ham, ekrandagi yorliq bilan
+  ziddiyatga tushsa — zarari foydasidan ko'p.
+- Qaysi so'z qoladi degan savolga javob: **ekranda ko'rinib turgani**. Bu yerda
+  qutilarda «nusxa» yozilgan edi, demak matn ham «nusxa»ga moslashadi — teskarisi
+  emas (yorliqni o'zgartirish ham mumkin, lekin bittasi tanlanadi).
+- ⚠️ «qoralama» kabi so'z o'zbek o'quvchisiga tanish ko'rinsa ham, u yerda
+  **ikki bosqichli metafora** yasaydi (sahifa → qoralama → nusxa). O'smir uchun
+  bir bosqich yetadi: «xotiradagi yengil **nusxa**».
+- Tartib: `grep -n "<so'z>\|<ruscha juftligi>" <fayl>` → HAR BIR joy tuzatiladi
+  (kod izohi ham) → keyin `grep -c` 0 chiqishi tekshiriladi. 125-qonun bilan juft
+  ishlaydi: avval kim tekshirayotganini bil, keyin hamma joyda birdan almashtir.
+
+## 143. ANIQLASHTIRUVCHI IZOH QO'SHISHDAN OLDIN — O'SHA QOIDA DARSDA NECHTA JOYDA QATIY BELGILANGANINI GREP QILING (F-0819-25)
+
+Bu — **jarayon sinfi**: nuqson emas, nuqsonni tuzatish YO'LI xato bo'lgan holat.
+
+**Nima bo'ldi (M5-D11, 2026-08-19):** 👦 sinovida o'quvchi yozish-ekranida «1-kunga qaysi
+sonni yozaman?» deb to'xtadi. Tuzatish sifatida ekranga aniqlashtiruvchi izoh qo'shildi:
+«Botingiz 1-kundan oldin ham ishlagan — 1-kunda ham qaytganlar bo'lishi mumkin».
+Ayni darsning **to'rt** boshqa joyida esa teskari qoida qatiy yozilgan edi: s4 fakti ·
+koding sharti · flashcard · **va arena savoli — ballanadigan**. Natijada: yozish-ekranida
+1-kunga son yozib ✅ tasdiq olgan o'quvchi arena savolida **jazolanardi**.
+
+❌ Bitta ekrandagi noaniqlikni o'sha ekranga izoh qo'shib yopish.
+✅ Avval `grep` bilan o'sha tushuncha darsda nechta joyda va qanday shaklda qatiy
+belgilanganini sanash; agar u ballanadigan savolda (test yoki arena) mustahkamlangan bo'lsa —
+izoh emas, **yagona kanonik shakl** tanlanadi va noaniq joy o'shanga keltiriladi.
+
+**Tekshiruv usuli:** aniqlashtiruvchi gap yozishdan oldin uning kalit tushunchasini
+(«birinchi kun», «qaytgan», «bo'sh katak» kabi) fayl bo'ylab grep qiling va **ballanadigan
+qatlamni** (`QUIZ_BANK`, `INLINE_KEYS` bilan bog'liq ekranlar, flashcard javoblari) alohida
+ko'rib chiqing. Yangi izoh ulardan birortasiga zid bo'lsa — izoh emas, qoida tuzatiladi.
+
+**I. Matn mexanikaning ishini takrorlamaydi, xulosani ham oldindan aytmaydi (F-0819-24)**
+Bir kunda uch marta chiqqan naqsh — shuning uchun alohida band:
+- ❌ Interaktiv ekran ostidagi ogohlantirish-bloki: badge 22→44→66 bo'lib o'sgandan
+  keyin «Bitta kartochka dizayni o'zgarsa, qolganlarini ham alohida o'zgartirasizmi?»
+  → ✅ blok olib tashlanadi (mexanika buni allaqachon ko'rsatdi).
+- ❌ Mentor kashfiyotni oldindan aytadi: «Eng zo'ri: bitta komponentni necha marta
+  xohlasangiz — shuncha ishlating», holbuki ekranda bir xil blok ikki marta
+  qo'yilganda yashil yorliq chiqadi: «✓ `<SkinCard />` — 2 marta. Bitta kod!»
+  → ✅ Mentor faqat RUXSAT beradi («xohlagan blokni qayta-qayta qo'yish mumkin»),
+  XULOSANI mexanika aytadi.
+- ❌ Ekran oxiridagi yashil xulosa «React nega tez: Komponentlar + Virtual DOM + …»,
+  holbuki darsning YAKUN ekranida shu ro'yxat allaqachon bor.
+  → ✅ xulosa bitta joyda — o'z o'rnida, dars oxirida.
+
+Vazifa taqsimoti (uchalasi ham shundan kelib chiqadi):
+| Element | Nima aytadi |
+|---|---|
+| **Mentor** | nima qilish kerak — vazifa, qisqa |
+| **Yordam-bloki** | ipuchi (agar o'quvchi qotib qolsa) |
+| **Mexanika/badge** | natija va XULOSA |
+| **Dars yakuni** | butun darsning yig'ma ro'yxati |
+
+Tekshirish savoli: «bu jumlani o'chirsam, o'quvchi biror narsani BILMAY qoladimi?»
+Javob «yo'q, u buni ekranda ko'rgan» bo'lsa — jumla o'chadi. Tugma yorlig'i, badge,
+sanoq va animatsiya ham «aytish» hisoblanadi.
+
+## 144. ARENA SAVOLI EKRAN-SAVOLINING NUSXASI BO'LMASIN — U BOSHQA HOLATNI SO'RASIN (F-0819-26)
+
+❌ Arena Q3 = s5 testining aynan o'zi · Q7 = s6 bashoratining aynan o'zi · Q11 = yakuniy testning
+aynan o'zi · Q8–Q10 javoblari mashq-kartalaridan so'zma-so'z ko'chirilgan.
+✅ Har biri **boshqa sahnaga** ko'chiriladi: telefon ilovasi → do'kon sayti · oqibat-savoli →
+sabab-savoli · «kasal mijoz» → «bir hafta telefoniga qaray olmagan mijoz».
+
+**Sabab:** dars ichida arena — yagona takroriy-ballanadigan qatlam. U xotira-nusxasini o'lchasa,
+bilim emas, **yaqinda ko'rilgan ekran** o'lchanadi. 👦 sinovida bola 12 savoldan 7 tasini shu yo'l
+bilan topdi: «Q3 = s5 ning aynan o'zi, Q7 = s6 taxminining aynan o'zi, Q8/Q9/Q10 javoblari s9
+kartalaridan so'zma-so'z».
+
+**Tekshiruv usuli:** `QUIZ_BANK` savol va variantlarini ekran-testlari hamda mashq-kartalari matni
+bilan ustma-ust qo'yib, **5+ so'zli takroriy bo'lakni** grep qiling.
+
+**§138-C bilan juft ishlaydi:** §138-C savollar ORASIDAGI kalit-so'z telini yopadi, §144 esa
+ekran ↔ arena NUSXASINI. Ikkalasi ham `correct` indekslariga tegmasdan, faqat matn bilan yopiladi.
