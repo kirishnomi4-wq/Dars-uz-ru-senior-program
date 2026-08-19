@@ -135,6 +135,13 @@ Bu sinf nuqsonlarning ildizi bitta: **etalondan naqsh ko'chiriladi, lekin etalon
       to'g'ri-lekin-boshqacha yozilgan yechimni RAD etmasin — `buyurtma['soni']` sinfi);
     - (d) ≤860px da muharrir balandligi >0 ekanini o'lchang.
 
+## 🔴 F-0818-03 OV-BANDI — ADABIY NORMA (2026-08-18, ETALON 7-C · KORPUS 136)
+- **Kantselyarit ovi:** `grep -niE "\b(ushbu|mazkur)\b|amalga oshir|muhim ahamiyat|quyidagi|Bundan tashqari|Shunday qilib"` + «X Y hisoblanadi» bog'lamasi (hisob-ma'nosi emas) → 0 bo'lsin.
+- **Sheva ovi:** `grep -niE "[a-z']+(v|y)otti|bo'pti|ketvor|qivor|diyam\b|-ku\b|(di|siz|miz|adi|gan|ing)-(da|a|ya)\b"` → 0.
+- **Registr ovi:** o'quvchiga «zo'r/qoyil/aka/brat» — warn, metodistga qaytariladi (persona ISMI «Karim aka» — mumkin).
+- **Ovoz-testi (grep tutmaydi):** 3 tasodifiy mentor-pufak + 1 test-savolni ovoz chiqarib o'qing — «hujjat-tarjimasi» yoki «messenjer» bo'lib eshitilsa → metodistga file:line bilan.
+- Rasmiy darvoza: `npm run lint:til <fayl>` — `kant-*`/`sheva-*` error 0.
+
 ## Tuzatish vakolati (chekli!)
 - **O'zingiz tuzatasiz** — faqat MAYDA, tasdiqlangan, bir-nuqtali nuqson (typo, yetim import, bitta rang-token). Har tuzatishdan keyin esbuild.
 - **QAYTARASIZ** — tuzilmaviy nuqson (ekran-oqim, kalit-mos kelmaslik, senariy-chetlashish, palitra-sinf) → mas'ul rolga file:line bilan. **Maks 2 aylanish** — 2-qaytarishdan keyin ham sinsa, bosh-agentga eskalatsiya.

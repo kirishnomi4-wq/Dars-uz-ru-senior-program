@@ -595,6 +595,111 @@
       "flags": "i",
       "suggest": "«shirin» qadamga hech narsa qo'shmaydi — nima uchun muhimligini ayting: «eng muhim qadam»",
       "law": "MATN_ETALONI 7-ohang · KORPUS 89 · F-0810-02"
+    },
+    {
+      "id": "kant-ushbu-mazkur",
+      "severity": "error",
+      "pattern": "\\b(ushbu|mazkur)\\b",
+      "flags": "i",
+      "suggest": "kantselyarit — «bu»: «bu kodni kiriting»",
+      "law": "MATN_ETALONI 7-C · KORPUS 136 · F-0818-03"
+    },
+    {
+      "id": "kant-hisoblanadi",
+      "severity": "warn",
+      "pattern": "\\b(?!sonlar\\b|natija\\b|ball(ar)?\\b|narx(i)?\\b|urish(lar)?\\b|yig'indi\\b|foiz\\b)[a-z']+\\)? hisoblan(adi|maydi|gan)\\b",
+      "flags": "i",
+      "except": "[0-9*+/=%].{0,20}hisoblan|JS'da hisoblan|kodda hisoblan|avtomatik hisoblan",
+      "suggest": "«X Y hisoblanadi» bog'lamasi kantselyarit — «X — bu Y» yoki fe'lsiz qayta quring (haqiqiy HISOB ma'nosi — «sonlar hisoblanadi» — bo'lsa o'tkazing)",
+      "law": "MATN_ETALONI 7-C · KORPUS 136 · F-0818-03"
+    },
+    {
+      "id": "kant-amalga-oshir",
+      "severity": "error",
+      "pattern": "amalga oshir",
+      "flags": "i",
+      "suggest": "«qilmoq / bajarmoq / qilinadi»: ❌ «Kod yozish amalga oshiriladi» → ✅ «Endi kod yozamiz»",
+      "law": "MATN_ETALONI 7-C · KORPUS 136 · F-0818-03"
+    },
+    {
+      "id": "kant-muhim-ahamiyat",
+      "severity": "error",
+      "pattern": "muhim ahamiyat",
+      "flags": "i",
+      "suggest": "shunchaki «muhim»",
+      "law": "MATN_ETALONI 7-C · KORPUS 136 · F-0818-03"
+    },
+    {
+      "id": "kant-quyidagi",
+      "severity": "warn",
+      "pattern": "\\bquyidagi(cha)?\\b",
+      "flags": "i",
+      "suggest": "har abzatsda «quyidagi» — hujjat-tili; «mana bunday / shunday» yoki tashlab keting",
+      "law": "MATN_ETALONI 7-C · KORPUS 136 · F-0818-03"
+    },
+    {
+      "id": "kant-shtamp",
+      "severity": "warn",
+      "pattern": "Bundan tashqari|Shunday qilib|Xulosa qilib aytganda",
+      "flags": "",
+      "suggest": "kitobiy shtamp — olib tashlang yoki oddiy bog'lang («Yana bir narsa:», «Demak,»)",
+      "law": "MATN_ETALONI 7-C · KORPUS 136 · F-0818-03"
+    },
+    {
+      "id": "sheva-votti",
+      "severity": "error",
+      "pattern": "[a-z']+(v|y)ott(i|ilar|ing|iz|im|ik|ingiz)\\b",
+      "flags": "i",
+      "suggest": "sheva — hozirgi zamon faqat -yapti: kelvotti→kelyapti, qilvotti→qilyapti",
+      "law": "MATN_ETALONI 7-C · KORPUS 136 · F-0818-03"
+    },
+    {
+      "id": "sheva-qisqargan",
+      "severity": "error",
+      "pattern": "\\bbo'pti\\b|ketvor|qivor|[a-z']+diyam\\b|\\bkevor|\\bopke",
+      "flags": "i",
+      "suggest": "so'zlashuv qisqartmasi — to'liq shakl: bo'pti→bo'libdi · ketvordi→ketib qoldi · qivormoq→qilib qo'ymoq · aytdiyam→aytdi ham",
+      "law": "MATN_ETALONI 7-C · KORPUS 136 · F-0818-03"
+    },
+    {
+      "id": "sheva-yuklama-ku",
+      "severity": "error",
+      "pattern": "[a-z']-ku\\b",
+      "flags": "i",
+      "suggest": "so'zlashuv yuklamasi «-ku» — olib tashlang: «bosasiz-ku» → «bosasiz»",
+      "law": "MATN_ETALONI 1 · MATN_ETALONI 7-C · KORPUS 136 · F-0818-03"
+    },
+    {
+      "id": "sheva-yuklama-da-a-ya",
+      "severity": "error",
+      "pattern": "(di|siz|miz|adi|gan|ing|dim|man|ng)-(da|a|ya|yu)\\b",
+      "flags": "i",
+      "suggest": "gap oxiridagi so'zlashuv yuklamasi «-da/-a/-ya» — olib tashlang: «toping-da,» → «toping,»; «Charchatadi-a?» → «Charchatadi, to'g'rimi?»",
+      "law": "MATN_ETALONI 7-C · KORPUS 136 · F-0818-03"
+    },
+    {
+      "id": "sheva-toldiruvchi",
+      "severity": "warn",
+      "pattern": "\\bha, mayli\\b|\\bnima gap\\b|\\bxo'sh\\b",
+      "flags": "i",
+      "suggest": "so'zlashuv to'ldiruvchisi — neytral: «Yaxshi, davom etamiz»",
+      "law": "MATN_ETALONI 7-C · KORPUS 136 · F-0818-03"
+    },
+    {
+      "id": "registr-zor-qoyil",
+      "severity": "warn",
+      "pattern": "\\bzo'r\\b|\\bqoyil\\b",
+      "flags": "i",
+      "suggest": "o'quvchiga «Zo'r!/Qoyil!» — so'zlashuv registri; adabiy: «Yaxshi!», «Juda yaxshi!», «To'g'ri!», «Ajoyib!»; «eng zo'r tomoni» → «eng yaxshi tomoni»",
+      "law": "MATN_ETALONI 7-C · KORPUS 136 · F-0818-03"
+    },
+    {
+      "id": "registr-aka-brat",
+      "severity": "warn",
+      "pattern": "(?<![A-Z][a-z']* )\\b(aka|uka|brat|bratan|jo'ra)\\b",
+      "flags": "",
+      "suggest": "o'quvchiga «aka/brat» murojaati taqiq (persona ISMI «Karim aka» — mumkin, ism bilan yoziladi)",
+      "law": "MATN_ETALONI 7-C · KORPUS 136 · F-0818-03"
     }
   ]
 }

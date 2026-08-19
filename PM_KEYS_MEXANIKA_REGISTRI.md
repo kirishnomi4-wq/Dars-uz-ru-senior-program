@@ -350,3 +350,122 @@ bu jadvalga qaytib yoziladi).
   `pm-m4a2-yuk {qarorlar:[{qism,qaror,sabab}x3]}` (modul-ochilish, kirishsiz).
 - Batch 2 kartalar (bosh-agent qurilishda kiritadi): m4-12 «Ilova nimani yozib qoladi?» ·
   m4-15 «"Qanday ishlaydi?" deb so'rashsa» · m4a-02 «Hamma birdan kirsa, sayt chidaydimi?».
+
+### 🔒 BATCH 3 — aniq mexanika-muhrlari (2026-08-17, senariylar tugagani sayin)
+
+| Dars | Imzo-vizual (muhrlangan nom) | TEKSHIRUV mexanikasi | Holat |
+|---|---|---|---|
+| m4c-02 | **«RELIZ-TASMASI»** — «🏁 Poyga: 6 hafta», ikki yo'lak (bir marta katta / har hafta kichik), «▶ Keyingi hafta» bilan 6 katak, «bilindi» qatorlari yig'iladi | **«haftaga-sig'dirish darvozasi»** — bitta darvoza, ikki chiroq (⏱ haftaga sig'adi · 👤 odam ishlata oladi), 3 raund × 3 nomzod, har raundda bitta ✅✅ (M3-D5 hafta-chizig'i/tekshiruvchi stoli/Timeline'dan farq hujjatlangan) | ✅ muhrlangan (2026-08-17) |
+| m4b-02 | **«SIFAT-TAROZI»** — 🧪 tekshiruv-belgisini nosozlik yo'lining 3 nuqtasiga qo'yish → tarozi «Tuzatish/Yo'qotish» qiyshayadi | **«NOSOZLIK-NAVBATI»** — hukm-javon: har kartaga «Kimda?»+«Nima bo'ladi?», karta Hozir/Bugun/Keyin javoniga o'zi tushadi (yuk-tartiblash/sxema-shart/qaror-juftlashdan farqi hujjatlangan) | ✅ muhrlangan (2026-08-17) |
+| m4c-06 | **«O'LCHAGICH-PANELI»** — 3 o'lchagich (🟢 ochiladimi · ⏱ javob vaqti · ❌ xato/100), soxta 08:00–20:00 kun + 6 hodisa, 2-bosqich chegara 1/3/10 s → signal sanash | **«signal-saralash»** — har signalga YO'L (📣 hozir xabar / 📒 jurnal), 4 signal 2/2 | ✅ muhrlangan (2026-08-17) |
+
+- **Artefakt-zanjir muhri (B3):** `pm-m4b2-sifat {kartalar:[{nima,kimda,oqibat}×3],savedAt}` (modul-chegara,
+  kirishsiz) · `pm-m4c2-reliz {bolaklar:[{hafta,ish}×3],savedAt}` → m4c-06 o'qiydi → `pm-m4c6-signal`.
+- Batch 3 kartalar (App.jsx da kiritildi 2026-08-17): m4b-02 «Bitta xato — nechta odam ketadi?» ·
+  m4c-02 «Hammasini birdan chiqaraymi — yoki har hafta bo'lak?» · m4c-06 «Saytingiz hozir ochilyaptimi?».
+- **BATCH 3 AVTO-GATE S YOPILDI (2026-08-17, avtokontrol):** M4c-D2 (12 qaror) · M4b-D2 (16 qaror; bashorat-2
+  M3-D10 kesishuvi — SAVOLLAR ro'yxatida 🟢) · M4c-D6 (12 qaror; 2 bashorat ETALON 33 bo'yicha, F12/Network qoldi).
+  Artefakt: `pm-m4c6-signal {signallar:[{olchov,chegara,sabab}×3],savedAt}` — m4c-07 monitoring-qadamiga namuna-taklif (qurilmaydi).
+- **Zanjir-olam izohi (qabulchi M4-D15 🟡1):** `pm-m4d12-sxema` kutubxona-olamidan keladi, m4-15 s8 da AvtoStoyanka olamida
+  ko'rinadi — demo-olam kesishuvi ATAYLAB (96c(b): ip artefakt orqali; M4-D7→M4-D12 pretsedenti). Nuqson emas.
+
+### 🔒 BATCH 4 — artefakt-shakl muhrlari (2026-08-18, senariy fan-out'dan OLDIN)
+
+Uch yozuvchi bir vaqtda ishlagani uchun zanjir-shakllari **oldindan** muhrlandi (B3 dagi
+`pm-m4c2-reliz` moslash-saboqi: shaklni yozuvchilar o'zaro kelishishga qoldirib bo'lmaydi).
+Yozuvchi shaklni O'ZGARTIRMAYDI; taklifi bo'lsa senariyning 14-bo'limiga (GATE S) yozadi.
+
+| Dars | Fayl · lessonId | Kirish | Chiqish (muhrlangan shakl) |
+|---|---|---|---|
+| m5-02 | `PmLesson19` · `pm-m5d2-v1` | YO'Q (modul-chegara — «topilmadi» tarmog'i yozilmaydi, §69) | `pm-m5d2-yigirmata = { kanallar: [{ kanal, kim, nechta } × 3], savedAt }` |
+| m5-08 | `PmLesson20` · `pm-m5d8-v1` | `pm-m5d2-yigirmata` (kanal → kimni intervyu qilish; jim zaxira) | `pm-m5d8-javoblar = { javoblar: [{ savol, eshitgan } × 3], savedAt }` |
+| m5-11 | `PmLesson21` · `pm-m5d11-v1` | `pm-m5d8-javoblar` (jim zaxira) | `pm-m5d11-metrika = { kunlar: [{ kun, kelgan, qaytgan } × 3], savedAt }` |
+
+- **Modul-ipi:** o'quvchining O'Z Telegram-boti (M5 texnik darslarida qurilgan) — uch darsda ham
+  bitta ip (108-qonun); zanjir M5 ni yopadi: birinchi 20 foydalanuvchi → intervyu → qaytish raqami.
+- **Koding R1 navbati (o'zgarmaydi):** m5-02 🖥 kompilyator · m5-08 ⌨️ VS Code · m5-11 🖥 kompilyator.
+  m5-11 kompilyator qobig'iga `zoom: 'calc(1 / var(--lz, 1))'` bekori MAJBURIY (PmLesson15/17 naqshi) —
+  25 fayllik sweep hali ochiq, yangi dars tuzatilgan naqsh bilan tug'iladi.
+- **Takror-xavfi ogohlantirishlari (yozuvchi shapkada farq-dalilini beradi):** m5-08 ↔ M1-D2 auditoriya /
+  M2-D2 (bu dars — jonli intervyu O'TKAZISH, auditoriyani TA'RIFLASH emas) va M2-D13 «so'z-elagi»
+  (u SO'Z ni elaydi, «savol-elak» SAVOL-TURINI) · m5-11 ↔ `src/pm/PmMetricsLesson.jsx` + M3-D10
+  (bu dars metrika NIMA ligi emas, faqat QAYTISH o'lchovi).
+- **Eski avlod:** `PmLesson19/20/21` mavjud, lekin v16 (~1100 q, `useLiveSession` 0, `QUIZ_BANK` 0) —
+  to'liq qayta quriladi, eski tuzilma/matn ko'chirilmaydi.
+
+### 🔒 BATCH 4 — aniq mexanika-muhrlari (2026-08-18, uch senariy parallel tugadi)
+
+| Dars | Imzo-vizual (muhrlangan nom) | TEKSHIRUV mexanikasi | Holat |
+|---|---|---|---|
+| m5-02 | **«BIRINCHI 20»** — uch halqali odamlar xaritasi; halqani ochish → bitta haftani bitta halqaga berish → natijalarni solishtirish (eng kichik halqa eng ko'p odam beradi) | **«JOY-QUVURI»** — to'rt joy × uch qadam («eshitdi → ochdi → ishlatdi»), 20 ga yig'ish | ✅ muhrlangan |
+| m5-08 | **«INTERVYU-STOLI»** — 4 savol → jonli javob-pufagi → bilingan-qatori; 2-bosqich: eshitganini qaysi qator bilan yozish | **«SAVOL-ELAK»** — ikki to'siqli elak, UCH natija; o'quvchi baho bermaydi, savolni qaysi to'siq ushlaganini NOMLAYDI (M2-D13 so'z-elagidan farq: obyekt savol · harakat to'siqni nomlash · mezon «ish allaqachon bo'lganmi») | ✅ muhrlangan |
+| m5-11 | **«QAYTISH-KALENDARI»** — kunlar ustun, odamlar belgi; e'lon tugmasi yuqori qatorni ko'taradi, pastki qator joyida qoladi | **«KUN-BELGILASH»** — 4 odam × 5 kun; mezon O'RIN MUNOSABATI (chap yon), mazmun emas (M4-D2 jadval-belgilashidan farq) | ✅ muhrlangan |
+
+- **Keys burchak-taqsimoti (B4):** K8 META — M1-D2 «KIM (auditoriya aniqligi)» band → m5-02 **«QAYERDAN va nega bitta
+  joydan»** (zichlik kattalikdan muhim) · K4 Airbnb — burchak BO'LINDI: matras-boshlanishi + «muammo qayerdan topiladi»
+  **m7-03 ga qoldi**, m5-08 faqat Nyu-York uy-ma-uy bo'lagini oldi · K5 Duolingo — M8-D1 `PmMetricsLesson` «qaytarish
+  USULI» band → m5-11 **«sanoq birligi: hisob nimani sanaydi va nega aynan kun»**.
+- **Senariylararo qaydlar (GATE S ga):** (a) m5-02 o'quvchi matnida «joy» deydi, JSON kaliti `kanal` — m5-08 shu kalitni
+  o'qiydi; (b) m5-08 yozuvchisi kirish-artefaktni «amalda yo'q» deb hisoblagan (m5-02 ni v16 deb) — **noto'g'ri: m5-02 shu
+  batchda qayta quriladi, `pm-m5d2-yigirmata` MAVJUD bo'ladi**; (c) m5-02 da o'quvchining boti hali qurilmagan (bot m5-03
+  dan boshlanadi) → §40 darvozasi: «botingiz ishlab turibdi» deb bo'lmaydi, «quradigan botingiz» shakli olindi.
+
+### 🔒 BATCH 5 — artefakt-shakl muhrlari (2026-08-19, senariy fan-out'dan OLDIN)
+
+To'rt yozuvchi bir vaqtda ishlaydi — zanjir-shakllari **oldindan** muhrlandi (B3/B4 saboqi).
+Yozuvchi shaklni O'ZGARTIRMAYDI; taklifi bo'lsa senariyning 14-bo'limiga (GATE S) yozadi.
+
+| Dars | Fayl · lessonId | Kirish | Chiqish (muhrlangan shakl) |
+|---|---|---|---|
+| m6-02 | `PmLesson22` · `pm-m6d2-v1` | YO'Q (modul-chegara — «topilmadi» tarmog'i yozilmaydi, §69) | `pm-m6d2-prd = { prd: { muammo, kim, yechim, metrika }, savedAt }` |
+| m6-06 | `PmLesson23` · `pm-m6d6-v1` | `pm-m6d2-prd` (jim zaxira — «BOR» tarmog'i to'liq yoziladi) | `pm-m6d6-chegara = { chegaralar: [{ qaror, jabr } × 3], savedAt }` |
+| m6-12 | `PmLesson24` · `pm-m6d12-v1` | `pm-m6d6-chegara` (jim zaxira) | `pm-m6d12-yol = { ufqlar: [{ ufq, ish } × 3], savedAt }` — `ufq` qiymatlari ASCII: `hozir` · `uch-oy` · `olti-oy` |
+| m6-14 | `PmLesson25` · `pm-m6d14-v1` | `pm-m6d12-yol` (jim zaxira) | `pm-m6d14-pitch = { slayd: { raqam, nima, isbot }, savedAt }` — M6 + Demo Day 3 ni YOPADI |
+
+- **Modul-ipi:** o'quvchining O'Z to'liq tizimi (M6 texnik darslarida yig'iladi: `m6-01` front+back+baza+AI+bot ·
+  `m6-04` AI-agent · `m6-05/07` Claude Skills · `m6-08` to'liq pipeline · `m6-09…11` mobil versiya · `m6-13` loyiha kuni).
+  To'rt darsda bitta ip (108-qonun): hujjat → chegara → yo'l → sahna.
+- **Koding R1 navbati (o'zgarmaydi):** m6-02 ⌨️ VS Code · m6-06 🖥 kompilyator · m6-12 ⌨️ VS Code · m6-14 🖥 kompilyator.
+  🔴 Ikkala kompilyator-darsi (`m6-06`, `m6-14`) `zoom: 'calc(1 / var(--lz, 1))'` bekori bilan tug'iladi (25 fayllik
+  sweep hali ochiq — yangi dars tuzatilgan naqsh bilan quriladi; etalon PmLesson15/17).
+- **Keys burchaklari (B5):** K7 Microsoft — burchak **«hujjat sotuvdan keyin yozildi»** (PRD ning tug'ilish sababi) ·
+  m6-06 ⛔ **ZAXIRA ILGAK** (keys yo'q — M4-D7 naqshi: shapkada sabab + ilgak yoziladi) · K17 Tesla — burchak
+  **«uch ufq: bir varaqdagi uzoq reja»** (master-plan) · K12 ♻️ pitch — **5-burchak: metrika-varag'i** (3-burchak
+  M3-D14 da, 4-burchak m4-15 da band).
+- **Takror-xavfi ogohlantirishlari (yozuvchi shapkada farq-dalilini beradi):**
+  (a) `m6-02` PRD ↔ M2-D7 dekompozitsiya / M3-D2 story — bu dars hikoya YOZISH emas, **bir varaqqa to'rt katak**;
+  (b) `m6-06` etika ↔ M4-D7 «ishonch» — u ishonchni QURISH, bu **kimga zarar tegishi**; MatchPairs 🔴band, shuning
+  uchun «oqibat-juftlash» qaror↔jabr bo'ladi (NOM-juftlash emas);
+  (c) `m6-12` ufq-yo'li ↔ **M3-D10 Timeline 🔴band** va M3-D5 ikki o'qli doska — farq: tartib/prioritet emas,
+  **UFQqa joylash** (hozir · uch oy · olti oy) — farq-dalili shapkada majburiy;
+  (d) `m6-14` — dasturdagi **5-chi pitch darsi**: PITCH-OILASI taqiq ro'yxati (5-bo'lim) TO'LIQ amal qiladi, ustiga
+  m4-15 ning «ARXITEKTURA-QAVATLARI» va «QAROR-SABAB TANLOVI» hamda M3-D14 ning «GAPSIZ KO'RSATUV» tasmasi ham taqiq.
+- **Eski avlod:** `PmLesson22/23/24/25` mavjud, lekin v16 (1101/1121/1139/1105 q, `useLiveSession` 0, `QUIZ_BANK` 0) —
+  to'liq qayta quriladi, eski tuzilma/matn ko'chirilmaydi.
+- **App.jsx karta-supurgisi (bosh-agent, qurish paytida):** `m6-12` sub'idagi «RICE» — 29-qonun (kelajak-dars atamasi)
+  bo'yicha almashtiriladi; `m6-02` sub «muammo / auditoriya / yechim / metrika» — karta-savol shakliga o'giriladi.
+- 🔴 **F-0818-03 ADABIY NORMA DARVOZASI B5 ga to'liq amal qiladi:** senariy `til-lint` 0 error (87 qoida).
+  Yangi qutblar `MATN_ETALONI.md` 7-C bo'limida: 7-C.1 registr · 7-C.2 kantselyarit · 7-C.3 sheva-yuklamalari ·
+  7-C.4 atama-neologizm · 7-C.5 grammatika; taqlid-manba `MATN_KORPUS.md` §136.
+
+### 🔒 BATCH 5 — aniq mexanika-muhrlari (senariylar tugagani sayin, 2026-08-19)
+
+| Dars | Imzo-vizual (senariydan) | TEKSHIRUV mexanikasi | Holat |
+|---|---|---|---|
+| m6-02 | **«BIR VARAQ»** — bo'sh varaqqa to'rt savol javobini yozib chiqish; uch dasturchi bir xil narsa qura boshlaydi | **«katak-tekshiruv»** — uch varaqda uch xil bo'shliq (yechim aytilmagan · kim aytilmagan · son aytilmagan) | ✅ senariy tayyor (1013 q, til-lint 0) |
+| m6-06 | **«OQIBAT-KO'ZGUSI»** — uch ish → uch aniq mijoz; «bittasini olib qo'ying» qarori | **«oqibat-juftlash»** — botning 4 qarori ↔ 4 odam (MatchPairs nom-juftlashidan farqli: qaror↔odam) | ✅ senariy tayyor (988 q, til-lint 0) |
+| m6-12 | **«UCH UFQ YO'LI»** — olti ishni «bugun boshlab bo'ladimi?» o'qi bo'yicha uch bekatga joylash (bekat ichida tartib YO'Q, hech narsa tashlanmaydi) | **«ufq-joylash»** — yarim yil keyingi yangi olti ish | ✅ senariy tayyor (911 q, til-lint 0) |
+| m6-14 | **«GAPIRADIGAN SLAYD»** — uch qatorli slayd; ikki rost raqamdan kuchlirog'ini tanlash (pasportdagi «METRIKA-SLAYDI» nomi o'rniga; nom GATE S da tasdiqlanadi) | **«IKKI RAQAM — BIR JOY»** — uch duel; 3-raundda ikkala nomzod birinchi mezondan o'tadi va hukmni nozikroq qoida chiqaradi (band mexanikalarda bunday raund yo'q) | ✅ senariy tayyor (878 q, til-lint 0) |
+
+- **m6-14 bosh qarori:** «metrika» so'zi ekranga CHIQMAYDI (29-qonun — M8-D1 atamasi); darsning so'zi «raqam», hukm-juftligi
+  **isbot ↔ shovqin**. Pitch-oilasidan farq-dalili to'rt dars bilan hujjatlangan (M1-D14 nutq · M2-D13 tinglovchi ·
+  M3-D14 ko'rsatuv tartibi · M4-D15 arxitekturani odam tiliga o'girish → **bu darsda raqam gapiradi**).
+
+- **B5 olam-taqsimoti (96c, to'qnashuv yo'q):** 🏊 basseyn guruhiga yozilish (m6-02) · 🛒 mini-do'kon (m6-06) ·
+  ✂️ sartaroshxona navbati (m6-12) · 🎤 Demo Day sahnasi (m6-14). Har to'rtovida o'quvchining O'Z M6 tizimi —
+  uy-vazifa va yozish-ekranlarida ip sifatida qaytadi.
+- **§40 tuzatishi (m6-06 yozuvchisidan, pasportga qaytdi):** m6-06 da o'quvchi tizimi **hali AI bilan javob
+  qaytarmaydi** — AI `m6-08` da ulanadi, Skill `m6-07` da yoziladi. Shuning uchun «quradigan» shakli olindi
+  (B4 dagi m5-02 «quradigan botingiz» pretsedenti bilan bir xil).
+- **Zanjir-nomlari (GATE S ga):** m6-02 «tizimingiz» ↔ m6-06 «mini-do'kon» — o'quvchi matnida bir-biriga zid
+  ko'rinmasligi metodist korrekturasida tekshirilmoqda.

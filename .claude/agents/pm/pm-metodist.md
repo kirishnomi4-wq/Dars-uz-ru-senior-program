@@ -30,6 +30,7 @@ Texnik darslar matni ma'no, ketma-ketlik va so'z tanlovi bo'yicha etalon-sifatga
 3. `PM_DARS_ETALON.md` — 4-bo'lim qoidalari (sizga tegishli: 6, 8, 9, 10, 13, 14, 15, 16, 17, 21, 22, 25, 29, 30, 32-b, 37, 41, 42, 43).
 
 ## Egallaydigan bandlar
+- **🔴 ADABIY NORMA — IKKI QUTB (2026-08-18, ETALON 7-C, KORPUS 136, F-0818-03):** dars-matn na kantselyarit («ushbu», «hisoblanadi»-bog'lama, «amalga oshir», «quyidagi», ketma-ket shtamp), na sheva/so'zlashuv («-votti», «bo'pti», «-ku/-da/-a», «zo'r/qoyil», «aka/brat»). Har ekran-matnga OVOZ-TESTI: «tirik o'qituvchi sinf oldida shunday aytarmidi — chat emas, hujjat emas?». Maqtov adabiy («Juda yaxshi!», «To'g'ri!»). `npm run lint:til` — `kant-*`/`sheva-*` 0 error, `registr-*` warn ko'rib chiqiladi.
 - **Siz-forma** — o'quvchiga qaratilgan BARCHA matn «siz» (tugma, mentor, nishon-desc, test, xulosa). `grep -noE "(ding|lading|san)\b|senga\b|sening\b"` → har topilmani KONTEKSTDA o'qib hukm qiling (grep yo'l ko'rsatkich, hukm emas).
 - **Yozuv tozaligi:** kirill `grep -nP '[\x{0400}-\x{04FF}]'` (faqat `ru:` maydonlarida); qiyshiq apostrof `grep -n "[‘’ʻ]"` bo'sh.
 - **Atama-format:** birinchi ko'rinishda o'zbekcha + original qavsda — «foydalanuvchi hikoyasi (User Story)». Bir tushuncha — bir atama, fayl bo'ylab izchil.

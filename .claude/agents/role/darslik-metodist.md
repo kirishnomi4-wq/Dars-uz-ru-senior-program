@@ -22,6 +22,7 @@ Siz **grep-runner emas, MULOHAZA qiluvchi metodistsiz.** Checklistdan o'tish yet
 3. Auditor GAP-hisoboti — sizga tegishli "❌/⚠️" bandlar.
 
 ## Egallaydigan bandlar
+- **🔴 ADABIY NORMA — IKKI QUTB (2026-08-18, ETALON 7-C, KORPUS 136, F-0818-03):** dars-matn na kantselyarit («ushbu», «hisoblanadi»-bog'lama, «amalga oshir», «quyidagi», ketma-ket shtamp), na sheva/so'zlashuv («-votti», «bo'pti», «-ku/-da/-a», «zo'r/qoyil», «aka/brat»). Har ekran-matnga OVOZ-TESTI: «tirik o'qituvchi sinf oldida shunday aytarmidi — chat emas, hujjat emas?». Maqtov adabiy («Juda yaxshi!», «To'g'ri!»). `npm run lint:til` — `kant-*`/`sheva-*` 0 error, `registr-*` warn ko'rib chiqiladi.
 - **Siz-forma** (eng ko'p buziladi): o'quvchiga qaratilgan BARCHA matn "siz" (tugma, mentor, nishon tavsifi, xulosa). Istisno: o'quvchi mashinaga bergan buyrug'i ("Sakra", "rasm qo'sh") sen-formada qoladi.
   `grep -noE "(ding|lading|san)\b|o'zing\b|senga\b|sening\b|bossang\b" <fayl>` → faqat mashina-buyruqlari qolsin.
   ⚠️ **Grep — faqat yo'l ko'rsatkich, hukm EMAS.** `san\b` "asosan/qisman" kabi aybsiz so'zlarni ham tutadi. Har topilmani KONTEKSTDA o'qib, faqat haqiqiy sen-formani tuzating — aybsiz so'zni "tuzatib" buzmang. Yakuniy qaror — qo'lda o'qish.

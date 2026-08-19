@@ -2305,3 +2305,165 @@ bilan ustma-ust qo'yib, **5+ so'zli takroriy bo'lakni** grep qiling.
 
 **§138-C bilan juft ishlaydi:** §138-C savollar ORASIDAGI kalit-so'z telini yopadi, §144 esa
 ekran ↔ arena NUSXASINI. Ikkalasi ham `correct` indekslariga tegmasdan, faqat matn bilan yopiladi.
+
+## 145. FLASHCARD DARSDA O'RGATILMAGAN NOMNI SO'RAMASIN (F-0819-27)
+
+Bir kunda **ikki darsda** chiqdi — shuning uchun alohida sinf.
+
+❌ `M6-D12`: flashcard savoli «Uch ufqli uzoq reja qanday ataladi?», javobi «Yo'l-xarita (inglizchasi —
+roadmap)». 👦: «Bu so'z darsning 16 ekranining birortasida ham yo'q. **Javob berolmadim.**»
+❌ `M6-D14`: flashcard savoli «Sahnadagi qisqa taqdimot qanday ataladi?», javobi «pitch» — bu so'z ham
+darsda umuman uchramaydi. 👦: «javobni bilishim mumkin emas edi, javob ochilgach o'rgandim».
+
+✅ Ikki yo'ldan biri: (a) nom dars ichida — hodisadan keyin — **tug'iladi**, keyin flashcard uni
+mustahkamlaydi; (b) flashcard boshqa savolni so'raydi (darsda o'rgatilgan qoidani).
+
+**Sabab:** flashcard — **takrorlash** qatlami, ya'ni o'quvchi allaqachon bilgan narsani mustahkamlaydi.
+U yangi nom kiritsa, karta sinovdan o'qitishga aylanadi va o'quvchi «bilmadim» holatida qoladi —
+bu esa darsning oxirgi taassurotini buzadi (90f-qonun).
+⚠️ Bu band 29-qonun bilan **ziddiyatga tushmaydi**: agar nom kelajak modulning bosh atamasi bo'lsa
+(§138-A), u umuman ishlatilmaydi — na darsda, na flashcardda.
+
+**Tekshiruv usuli:** har flashcard javobidagi ATAMANI oling va uni dars-ekranlari matnida grep qiling;
+topilmasa — karta o'zgaradi yoki atama darsda tug'iladi.
+
+## 146. HUKM-JUFTLIGINING IKKALA YARMI HAM TA'RIFLANADI · METAFORA BIRINCHI ISHLATILGAN JOYIDA OCHILADI (F-0819-28…29, M6-D14)
+
+Ikkalasi ham 👦 1-o'qishida bitta darsdan chiqdi (niyat 15/16, «bilmadim» 0 — nuqson ma'noda emas,
+SO'ZDA edi).
+
+**A. Qarama-qarshi juftlikning faqat bir yarmi ta'riflangan (F-0819-28)**
+- ❌ «Tizim odam uchun nima qilganini sanab turgan raqam — **isbot**. Faqat siz qancha
+  ishlaganingizni sanaydigan raqam esa **shovqin**: u sahnada hech narsani isbotlamaydi.»
+  👦: «Ma'nosini "keraksiz raqam" deb tushundim, lekin **nega tovush so'zi** ishlatilgani
+  aytilmagan». Atama keyin s14 kartasida va arena savolida qaytadi — ya'ni ballanadigan
+  qatlamga ta'rifsiz chiqadi.
+- ✅ «…raqam esa hech narsani isbotlamaydi. Bunday raqamni **shovqin** deymiz: shovqin ham
+  quloqni band qiladi, lekin hech narsa aytmaydi.»
+  Sabab: dars ikki qutbli hukm bersa (isbot ↔ shovqin, foyda ↔ xarajat), o'quvchi ikkinchi
+  qutbni ham NOM sifatida ishlatishi kerak. §104 «atama hodisadan keyin tug'iladi» qoidasi
+  juftlikning HAR IKKI yarmiga birdek amal qiladi — birinchisi ta'riflanib, ikkinchisi
+  yorliq bo'lib qolmaydi. Ko'chma so'z (shovqin, shovqinli, sovuq) tanlansa, **nega aynan
+  shu so'z** ekani bir gapda ochiladi.
+  Tekshiruv usuli: darsning ikki qarama-qarshi atamasini grep qiling va har birining
+  birinchi ko'rinishidan keyin ta'rif-gapi bor-yo'qligini sanang; flashcard/arena
+  qatlamidagi ko'rinishlar ta'rif hisoblanmaydi.
+
+**B. Metafora birinchi ishlatilgan joyida ochiladi, uch ekran keyin emas (F-0819-29)**
+- ❌ s0: «Bugun raqamni **gapirtirasiz**» · s2 sarlavhasi: «Qaysi raqam sahnada **gapira oladi?**»
+  — ma'no faqat s4 dagi «Slayd nima aytdi?» qatoridan keyin ochildi (👦: «uchinchi ekrangacha
+  nima qilishimni tasavvur qilmadim»).
+- ✅ «Bugun raqamni gapirtirasiz: **yoniga shu savolning javobini yozasiz**.»
+  Sabab: ko'chma fe'l («gapiradi», «nafas oladi», «charchaydi») o'z-o'zidan ko'rsatma bermaydi —
+  o'quvchi uni birinchi o'qishda haqiqiy harakatga aylantira olishi kerak. Metaforani ochish
+  bitta ergash gap: metafora + shu darsda qiladigan ANIQ ish.
+  Tekshiruv usuli: har ko'chma fe'lni grep qilib, birinchi o'rnida yonida aniq harakat
+  turganini tekshiring; turmasa — ochilish keyingi ekranga surilgan.
+
+### §144 KENGAYTMASI — ARENA FLASHCARD QATLAMINI HAM TAKRORLAMASIN (F-0819-30)
+
+**O'lchov (2026-08-19, foydalanuvchi qaroriga chiqarilgan):** arena savollari flashcard sarlavhalarining
+so'zma-so'z nusxasi bo'lib qolmoqda — `PmLesson19` 12 tadan **7 tasi** · `PmLesson21` **6** · `PmLesson20` **4**.
+Flashcard (s14) va arena (s15) **ketma-ket** keladi: o'quvchi hozirgina ochgan kartani eslab bosadi.
+
+✅ Arena savoli flashcard savolining ham nusxasi bo'lmasin — boshqa holatni, boshqa sahnada so'rasin.
+**Tekshiruv usuli:** `QUIZ_BANK` ni ekran-testlari BILAN BIRGA `FLASHCARDS` sarlavhalariga ham ustma-ust
+qo'yib 5+ so'zli takroriy bo'lakni grep qiling (§144 ning asosiy usuli bilan bir xil, faqat qatlam ko'proq).
+
+**🔴 FOYDALANUVCHI QARORI (2026-08-19):** yangi darslarda hoziroq qo'llanadi (B5: `PmLesson22/23/24/25`);
+bugun PASS olgan `PmLesson19/20/21` **tegilmaydi** (ular baribir etalon darajasida); eski darslar
+**sweep-navbatiga** qo'yiladi.
+
+## 147. SHAKL-TELLI: TO'G'RI JAVOB YOLG'IZ BOSHQA SO'Z BILAN BOSHLANMASIN (3-vs-1) · O'LCHOV KIRISH-ARTEFAKTI BILAN QILINADI (F-0819-31…32)
+
+**A. 3-vs-1 shakl-telli (F-0819-31)**
+- ❌ `"Eng kattasi — …"` · `"Eng arzoni — …"` · `"Eng qiyini — …"` ↔ to'g'ri javob `"Bugun boshlanadigani — …"`
+  (uchtasi bir qolipda, to'g'risi yolg'iz boshqa qolipda).
+- ❌ `"Ishni …"` ×3 ↔ to'g'ri `"Kutayotgan narsasi …"`.
+- ✅ Qolip **to'g'ri javobda ham, kamida bitta distraktorda ham** bir xil bo'lsin.
+  **Sabab:** o'quvchi savolni o'qimasdan «ajralib turganini» bosadi va to'liq ball oladi. Bu M3-D10 s5
+  sinfining kuchliroq ko'rinishi: 2-vs-1 emas, **3-vs-1** — ajralish yanada ko'zga tashlanadi.
+  🔴 **Alohida ogohlantirish:** bu nuqson **tuzatish paytida tug'ildi** — arena savolining eski varianti
+  §144 bo'yicha qayta yozilganda uch distraktor bir qolipda qolib ketdi. Ya'ni har qayta-yozishdan keyin
+  shakl-telli QAYTA o'lchanadi.
+  **Tekshiruv usuli:** har savolning to'rt variantini birinchi 1–2 so'zi bo'yicha guruhlang; guruhlardan
+  biri aynan bitta elementdan iborat bo'lsa va u to'g'ri javob bo'lsa — nuqson. Uzunlik-tell alohida
+  o'lchanadi (§138-C) va u toza bo'lsa ham shakl-telli qolishi mumkin.
+
+**B. Skroll/grapheme o'lchovi KIRISH-ARTEFAKTI MAVJUD holatda qilinadi (F-0819-32)**
+- ❌ Dizayn s8 ni o'lchab «0» dedi — lekin u **kirish-artefaktisiz** o'lchagan edi. Artefakt mavjud bo'lganda
+  o'sha ekran 1280×800 da **21px**, uch qator yozilgach **82px** skroll berdi.
+- ✅ Artefakt-panel (`.chpanel`, `.varaq`, `🎙 tasma` kabi) chizilgan holatda ham o'lchanadi.
+  **Sabab:** kirish-artefakti **odatiy** holat — o'quvchi oldingi darsni bajargan bo'lsa panel doim ko'rinadi.
+  O'lchovni artefaktsiz qilish eng keng tarqalgan holatni tekshirishdan chetlab o'tadi.
+  **Tekshiruv usuli:** o'lchashdan oldin kirish-artefaktini `localStorage` ga seed qiling (muhrlangan shaklda),
+  so'ng ekranni bo'sh · yarim · to'la holatlarida o'lchang.
+
+## 148. SARLAVHA MEXANIKANING ISTISNOSINI HAM AYTSIN · TASDIQ-MATN HALI BO'LMAGAN HOLATNI AYTMASIN · QISQARTMA BIRINCHI KO'RINISHIDA YECHILSIN (F-0819-33…35, M6-D2)
+
+**A. Mexanika-qaroriga zid sarlavha (F-0819-33)**
+- ❌ Qaror: «uch varaqdan **bittasi butunlay to'g'ri** bo'lsin» (o'quvchi «doim bittasi javobsiz» naqshini
+  o'rganmasin). Sarlavha esa: «**Har varaqda** javobsiz katakni toping».
+- ✅ «Qaysi varaqda javobsiz katak bor — **qaysisida yo'q**?»
+  **Sabab:** 👦 sinovida qaror **amalda ishlamadi** — bola uchinchi varaqda ham katak qidirdi va «javobsiz
+  katak yo'q» tugmasini faqat ikki xato bosishdan keyin payqadi. Mexanikaning istisnosi sarlavhada
+  aytilmasa, o'quvchi uni yo'q deb hisoblaydi.
+  **Tekshiruv usuli:** mexanikada istisno bormi (bitta element boshqalardan farq qiladimi) — bo'lsa,
+  sarlavha va yo'riqnoma **ikkalasi ham** shu istisnoni ochiq aytsin.
+
+**B. Tasdiq-matn hali bo'lmagan holatni aytmasin (F-0819-34)**
+- ❌ O'quvchi katakka yozayotgan paytda «✅ **Yozildi** — bu katakda endi bitta qator bor» chiqadi, holbuki
+  u hali «✓ Saqlash» ni bosmagan. 👦: «saqlandimi-yo'qmi tushunmadim».
+- ✅ «✅ Qator to'liq — endi **saqlashingiz mumkin**».
+  **Sabab:** tasdiq-matn holatni emas, **kelajakdagi harakatni** aytishi kerak, aks holda o'quvchi ishni
+  tugallangan deb hisoblab keyingi qadamga o'tadi.
+
+**C. Qisqartma birinchi ko'rinishida harflari yechilsin (F-0819-35, §145 ning qisqartma-bandi)**
+- ❌ «…shu bitta varaq — PRD. Inglizchada Product Requirements Document, ya'ni mahsulot talablari varag'i»
+  — 👦: «P-R-D uchta harf o'sha uch so'zning boshi ekani aytilmagan, men buni o'zim taxmin qildim».
+- ✅ «…shu bitta varaq — **PRD**. **Uch harf uchta inglizcha so'zning boshi:** Product Requirements
+  Document — mahsulot talablari varag'i.»
+  **Sabab:** o'smir uchun qisqartma va uning yoyilmasi **avtomatik bog'lanmaydi**; bog'lash bir og'iz
+  gap bilan qilinadi va shundan keyingina flashcard uni so'ray oladi (§145).
+
+### §144 O'LCHOVI ANIQLASHTIRILDI — «KALIT-AKS-SADOSI» (F-0819-36)
+
+**Muammo mavzu-takrorida EMAS.** 10 flashcard darsning har qoidasini yopadi (§90f) va 12 arena savoli
+ekranlarga bog'lanadi (65-qonun) — kesishuv **arifmetik jihatdan majburiy**; PASS olgan darslarda ham
+12 dan 6 tasi bir mavzuni so'raydi.
+
+🔴 **Haqiqiy nuqson — kalit-aks-sadosi:** to'g'ri variant kartaning javobini **deyarli so'zma-so'z**
+takrorlaydi, distraktorlar esa yaqin ham emas → o'quvchi mazmunni emas, **satrni taniydi**.
+
+**O'lchov usuli (raqamli):** normallashtiring (kichik harf · tinish tushadi · ≥3 belgili so'zlar ·
+`-ni/-ning/-lar/-ga/-da/-gani/-ini` qo'shimchalari kesiladi), so'ng har savol uchun:
+- `E_kalit` = to'g'ri variant ↔ karta-javobi orasidagi maksimal **containment**;
+- `E_distr` = shu ko'rsatkichning distraktorlardagi maksimali.
+🔴 **Bayroq:** `E_kalit ≥ 0.75` **VA** `E_kalit − E_distr ≥ 0.35`.
+
+**Batch-normasi (2026-08-19 o'lchovi):** `PmLesson23` **1/12** · `PmLesson24` **1/12** · `PmLesson22` **2/10** —
+ya'ni sog'lom daraja 1–2. `PmLesson25` da **5/12** chiqdi (normadan 3–5×) va qaytarildi.
+
+**Yechim-yo'nalishi:** kalit matnini emas, **distraktor lug'atini** karta-javobiga yaqinlashtirish
+(shunda containment farqi yopiladi), yoki savolni butunlay yangi holatga o'girish.
+
+**Yon-band — teskari uzunlik-telli:** «to'g'ri javob eng uzun bo'lmasin» darvozasini quvib, to'g'ri javob
+**eng qisqa** bo'lib qolishi mumkin (bir darsda ichki 4 testda 4/4 shunday chiqdi). Ikkala chekka ham telli:
+o'lchovda «eng uzun = kalit» va «eng qisqa = kalit» sanoqlari **ikkalasi ham** yarmidan kam bo'lsin.
+
+## 149. CHIP-YORLIG'I GAP EMAS, HOLAT NOMI (F-0819-37, M6-D14)
+
+❌ «Ikkinchi qator odam yoki tizim ishini aytadi» (7 so'z) · «Uchinchi qator raqam nimani ko'rsatishini
+aytadi» (6 so'z) — bular **yo'riqnoma-gaplari**, checklist chipiga qo'yilgan.
+✅ «Odam foydalangani sanalgan» (3 so'z) · «Tizim haqida yangi gap» (4 so'z) — **holat nomi**.
+
+**Sabab:** chip — o'quvchi ko'z bilan ushlaydigan **holat ko'rsatkichi** (○ / ✓), o'qib chiqadigan
+ko'rsatma emas. Gap-shaklidagi yorliq uni ikkinchi yo'riqnomaga aylantiradi va panelni og'irlashtiradi.
+ETALON 32(a) chegarasi **≤4 so'z**; PASS olgan darslardagi o'lchov: `PmLesson21` 4/5/3 · `PmLesson23` 3/3/3.
+
+🔴 **Juftlik-bandi (§130 bilan):** chip yorlig'i qanchalik qisqarsa ham, u **haqiqiy predikatga**
+bog'langan bo'lishi shart. Shu darsda yorliq «odam yoki tizim ishini aytadi» der edi, predikat esa
+faqat `list.length > 1` — ya'ni o'quvchi «312 kod satri» (darsning o'zi «shovqin» deb o'rgatgan narsa)
+yozganda ham ✓ yonardi.
+**Tekshiruv usuli:** har chipning `className` shartini oling va o'sha ekranning javob-qatori
+(🤔-tarmog'i) bilan solishtiring — javob-qatori nimani rad etsa, chip ham o'shani rad etsin.

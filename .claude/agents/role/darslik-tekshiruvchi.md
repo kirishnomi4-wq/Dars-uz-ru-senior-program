@@ -65,6 +65,13 @@ Bu ikki sinf **har darsda** yuritiladi — ular ko'z bilan sezilmaydi, chunki od
 1. **Mentor ekrani (10-B jadvali, 12 band).** Darsni `live.mode === 'mentor'` holatida tekshiring (yoki qorovullarni grep bilan). Eng ko'p buzilishlar: **(a)** nishon-hisoblagichi (🏅 N/M) proyektorda ko'rinyapti → 🔴; **(b)** yakuniy nishon-kolleksiyasi mentorga chiqyapti → 🔴; **(c)** podiumda «📊 Savollar bo'yicha» (`0/4` kabi) kartasi bor → 🔴 **butunlay olib tashlanadi** — bu mag'lubiyat-tablosi, mentor bu ma'lumotni dars PAYTIDA `MentorTestStats` dan oladi; **(d)** shaxsiy `ScoreRing` mentorda chiqyapti → 🔴; **(e)** aksincha — to'liq-ekran bayram o'chirilgan → 🔴, u **lahza**, qolishi kerak. Karta olib tashlangan bo'lsa CSS'i ham o'lik qolmasin (`pod-qstats`/`qstat-*`) — **residue-grep majburiy** (S33 saboqi bilan bir oila).
 2. **Praktika-darvozasi (9.4-A).** `next()` da praktika **har safar** ochilyaptimi va bajarilganlik **saqlanmayaptimi** → 🔴: uyda takrorlayotgan bola uchala praktikani qaytadan qilishga majbur bo'ladi. Tekshiring: dars-doirasidagi `localStorage` kaliti bormi · qayta kirganda majburlamaydimi · erkin rejimdagi takrorlash-yo'li matni **umumiy**mi («davom etish», ❌ «uy vazifasiga») · havola **faqat** eshikni ochadimi (nishon/yozuv/server-signal bermasligi).
 
+## 🔴 F-0818-03 OV-BANDI — ADABIY NORMA (2026-08-18, ETALON 7-C · KORPUS 136)
+- **Kantselyarit ovi:** `grep -niE "\b(ushbu|mazkur)\b|amalga oshir|muhim ahamiyat|quyidagi|Bundan tashqari|Shunday qilib"` + «X Y hisoblanadi» bog'lamasi (hisob-ma'nosi emas) → 0 bo'lsin.
+- **Sheva ovi:** `grep -niE "[a-z']+(v|y)otti|bo'pti|ketvor|qivor|diyam\b|-ku\b|(di|siz|miz|adi|gan|ing)-(da|a|ya)\b"` → 0.
+- **Registr ovi:** o'quvchiga «zo'r/qoyil/aka/brat» — warn, metodistga qaytariladi (persona ISMI «Karim aka» — mumkin).
+- **Ovoz-testi (grep tutmaydi):** 3 tasodifiy mentor-pufak + 1 test-savolni ovoz chiqarib o'qing — «hujjat-tarjimasi» yoki «messenjer» bo'lib eshitilsa → metodistga file:line bilan.
+- Rasmiy darvoza: `npm run lint:til <fayl>` — `kant-*`/`sheva-*` error 0.
+
 ## Nuqsonni hal qilish (CHEKLI — loop yo'q)
 - **Mayda, aniq, xavfsiz** nuqson (bitta apostrof, bitta siz-forma, bitta yorliq) — **o'zingiz Edit qiling**, keyin esbuild.
 - **Tuzilmaviy** nuqson (yetishmagan qatlam, noto'g'ri `correct` indeks, indeks-map siljishi) — **o'zingiz tuzatmang**. Uni hisobotda "mas'ul rol: X" bilan qaytaring. Asosiy agent uni bir marta o'sha rolga yuboradi (maksimum 2 aylanish, keyin foydalanuvchiga eskalatsiya).

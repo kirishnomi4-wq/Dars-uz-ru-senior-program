@@ -34,7 +34,7 @@
 - **Gap chala qolmasin.** Atama tashlab ketilmaydi — to'liq gap bilan tugatiladi. ❌ "...ro'yxati — bu dastur (kod)." → ✅ "...ro'yxati **dastur** deyiladi (uni **kod** ham deymiz)."
 - **Yangi tushunchani yarim qoldirmang.** Texnik atamani kiritganda uning har bo'lagining vazifasini ochib bering. ❌ "havola `a href` bilan yasaladi" (o'quvchi `href` nimaligini bilmaydi) → ✅ "havola `<a>` tegi bilan: `href` ichiga manzil yoziladi, teglar orasiga esa ko'rinadigan matn". Har bo'lak nima uchun kerakligi aytilsin.
 - **Og'zaki-so'zlashuv qo'shimchalari YO'Q** (tushuntirish matnida): `-ku`, `-da`, `-chi` kabi. ❌ "yonidagisiga bosib o'tasiz-ku" → ✅ "yonidagi videoga bosib o'tasiz".
-- **Do'stona ohang.** Mentor — do'st, ustoz emas nazoratchi. "Zo'r!", "Keling, birga ko'ramiz", "Bemalol tajriba qiling".
+- **Do'stona ohang, lekin ADABIY registr.** Mentor — do'st-ustoz, nazoratchi emas. "Juda yaxshi!", "Keling, birga ko'ramiz", "Bemalol tajriba qiling". («Zo'r!/Qoyil!» — so'zlashuv registri, 7-C.)
 - **🟡 Qiziqtiruvchi ilinma > quruq va'da.** Natijani e'lon qiladigan mentor gapi rasmiy-majburiyat ohangida emas, o'quvchini qiziqtiradigan savol/taklif bilan boshlanadi. ❌ "Va'da beraman: dars oxirida saytingiz tayyor bo'ladi" (rasmiy, majburiyat hidi) → ✅ "Ishonasizmi — dars oxirida o'zingizning saytingiz tayyor bo'ladi, xuddi mana shunaqa." Qiziqish uyg'otadigan boshlama ("Ishonasizmi?", "Bir o'ylab ko'ring…", "Sizga sir emas…") bolani ichiga tortadi; "va'da beraman", "kafolatlayman" kabi rasmiy iboralar sovuq. (Htmllesson1 2-page)
 - **🟢 ISTISNO — nishon (badge) NOMLARI ataylab inglizcha** (o'yin uslubi: "Built It!", "Nice Catch!", "Level Up!"). Bu o'yin his'ini beradi. Ammo nishon **tavsifi (desc) o'zbekcha** siz-formada qoladi ("Buzuq kodni topib tuzatdingiz"). Bu yagona inglizcha istisno — qolgan BARCHA o'quvchi matni o'zbekcha (DARS_ETALON 10-bo'lim).
 
@@ -243,6 +243,18 @@ Har dars tekshirilganda topilgan tushunarsiz/rasmiy so'z shu jadvalga qo'shiladi
 | ta'minlaysiz / belgilaydi (o'quvchiga savolda) | qilasiz / aytadi | rasmiy-idoraviy fe'llar; savol o'smir tilida bo'lsin: «AI nima beradi, siz nima qilasiz?», «Promptdagi uslub nimani aytadi?» (m2-09 flashcard, F-0803-23) |
 | minimal (uslub nomi) | sodda | chet so'z; uslub-variantlari o'zbekcha bo'lsin: zamonaviy · o'ynoqi · sodda (m2-09 s3, F-0803-23) |
 
+| ushbu / mazkur | bu | kitobiy-idoraviy ko'rsatkich (7-C, F-0818-03) |
+| X Y hisoblanadi (bog'lama) | X — bu Y | «bajarilgan hisoblanadi» → «bajarildi»; haqiqiy hisob-ma'nosi («sonlar hisoblanadi») qoladi (7-C) |
+| amalga oshirmoq / amalga oshiriladi | qilmoq / bajarmoq / qilinadi | «Kod yozish amalga oshiriladi» → «Endi kod yozamiz» (7-C) |
+| muhim ahamiyatga ega | muhim | (7-C) |
+| quyidagicha / quyidagi (har abzatsda) | mana bunday / shunday | hujjat-tili (7-C) |
+| Bundan tashqari / Shunday qilib / Xulosa qilib aytganda | — (olib tashlanadi) yoki «Demak,» | kitobiy shtamp (7-C) |
+| kelvotti / qilvotti / boryotti | kelyapti / qilyapti / boryapti | sheva; hozirgi zamon faqat -yapti (7-C) |
+| bo'pti / ketvordi / qivormoq / aytdiyam | bo'libdi / ketib qoldi / qilib qo'ymoq / aytdi ham | so'zlashuv qisqartmasi (7-C) |
+| bosasiz-ku / toping-da / charchatadi-a? | bosasiz / toping / charchatadi, to'g'rimi? | so'zlashuv yuklamalari (7-C) |
+| Zo'r! / Qoyil! | Juda yaxshi! / To'g'ri! / Ajoyib! | so'zlashuv registri; «eng zo'r tomoni» → «eng yaxshi tomoni» (7-C) |
+| aka / brat (o'quvchiga murojaat) | — (murojaatsiz, «siz») | persona ISMI «Karim aka» — mumkin (7-C) |
+
 > **Qo'shish tartibi:** darsda tushunarsiz so'z topilsa → shu jadvalga (qiyin, sodda, izoh) yoz → kodda grep bilan barcha o'rinlarini tuzat → audio/mentor matni ham birga yangilanadi.
 
 ---
@@ -315,7 +327,7 @@ Har dars tekshirilganda topilgan tushunarsiz/rasmiy so'z shu jadvalga qo'shiladi
   grep -nE "hozircha sir|🤫" <fayl>   # bo'sh chiqsin
   ```
 - **Bir ekranda bitta ilinish (hook) yetarli.** Qiziqtiruvchi savol/ibora bir ekranda bir marta ishlaydi; har jumlada takror ("sirni bilasizmi? U...") charchatadi va asosiy fikrni kechiktiradi. ❌ "Kompyuter tez, lekin **sirni bilasizmi? U** o'zicha hech narsa qila olmaydi" → ✅ "Kompyuter tez, lekin o'zicha hech narsa qila olmaydi".
-- **Muvaffaqiyat xabari — samimiy, aniq.** "Zo'r! Sahifangizga rasm qo'shdingiz." (quruq "Bajarildi" emas).
+- **Muvaffaqiyat xabari — samimiy, aniq.** "Juda yaxshi! Sahifangizga rasm qo'shdingiz." (quruq "Bajarildi" emas; «Zo'r!» — 7-C).
 - **Jonli test kutish matni — QISQA.** O'quvchi javob bergach, mentor natijani ochguncha kutadi. Bu paytdagi xabar uzun bo'lmasin. ✅ Yorliq: "📨 Javobingiz qabul qilindi" + izoh: "Hozir to'g'ri javobni bilib olasiz." ❌ Uzun tushuntirish ("...mentor «Natijani ochish»ni bosganda hammada birdan ko'rinadi...").
 
 ---
@@ -374,6 +386,61 @@ Bitta «yo'q» = matn qayta yoziladi.
 
 ---
 
+## 7-C. 🔴 ADABIY NORMA — IKKI QUTBDAN TENG UZOQ (2026-08-18, F-0818-03)
+
+Dars-matn tili — **zamonaviy adabiy o'zbek** (lotin, O'zbekiston normasi). U ikki qutbning
+HECH BIRIGA yaqinlashmaydi:
+- ❌ **Kantselyarit / hujjat-tarjimasi** («ushbu», «hisoblanadi», «amalga oshiriladi»)
+- ❌ **Sheva / so'zlashuv / messenjer-tili** («kelvotti», «bo'pti», «-ku/-da», «zo'r», «brat»)
+
+**BOSH TEST (har matn-bo'lakka, yuborishdan oldin):**
+> «Buni tirik odam **ovoz chiqarib** aytarmidi — lekin **o'qituvchi sifatida**, chat sifatida emas?»
+
+Hujjat-tarjimasiga o'xshasa YOKI messenjer-suhbatga o'xshasa → qayta yoziladi.
+Matnni ichda ovoz chiqarib o'qing: quloqqa «tarjima» yoki «ko'cha» bo'lib eshitilsa — tuzating.
+
+**Chat ≠ mahsulot.** Foydalanuvchi bilan seansdagi muloqot uslubi (rus/o'zbek/erkin) dars-matnga
+OQMAYDI. Mahsulot-matn har doim: adabiy norma · lotin · «siz».
+
+### 7-C.1 Registr va murojaat
+- O'quvchiga faqat «siz»: bajaring, o'ylab ko'ring, yozing (2-bo'lim). Fe'l «siz» bilan mos: -siz / -ing (-san/-sen EMAS).
+- Ohang iliq, ustozona, sodda. Qisqa gaplar. Faol nisbat, fe'l gapning markazida.
+- O'quvchiga «zo'r», «qoyil», «aka/brat/uka» — YO'Q. Maqtov adabiy: «Yaxshi!», «Juda yaxshi!», «To'g'ri!», «Ajoyib!».
+
+### 7-C.2 Kantselyarit — shunday gapirilmaydi (lint: `kant-*`)
+| ❌ | ✅ |
+|---|---|
+| ushbu, mazkur | bu |
+| X Y hisoblanadi | X — bu Y (yoki bog'lamasiz qayta qur) |
+| amalga oshirmoq / amalga oshiriladi | qilmoq / bajarmoq / qilinadi |
+| muhim ahamiyatga ega | muhim |
+| quyidagicha / quyidagi (har abzatsda) | mana bunday / shunday |
+| Bundan tashqari · Shunday qilib · Xulosa qilib aytganda (ketma-ket) | olib tashlanadi |
+| og'ir arab-fors kitobiy leksika | o'smir biladigan oddiy so'z |
+
+❌ «Kod yozish amalga oshiriladi.» → ✅ «Endi kod yozamiz.»
+❌ «Ushbu funksiya ma'lumotni qayta ishlashni amalga oshiradi.» → ✅ «Bu funksiya ma'lumotni qayta ishlaydi.»
+
+### 7-C.3 Sheva va so'zlashuv — mahsulotda TAQIQ (lint: `sheva-*`)
+- **Hozirgi zamon faqat -yapti:** kelyapti · boryapti · qilyapti · yozyapti (❌ kelvotti, boryotti, qilvotti, yozvotti).
+- **Qisqargan shakl → to'liq:** bo'pti→bo'libdi · ketvordi→ketib qoldi · qivormoq→qilib qo'ymoq · aytdiyam→aytdi ham.
+- **Yuklamalar -ku, -da, -a, -ya** gap oxirida (so'zlashuv ohangi uchun) — olib tashlanadi. ❌ «bosasiz-ku» → ✅ «bosasiz»; ❌ «Charchatadi-a?» → ✅ «Charchatadi, to'g'rimi?».
+- **To'ldiruvchilar** «ha, mayli», «nima gap», «xo'sh» — neytralga: «Yaxshi, davom etamiz».
+
+### 7-C.4 Atamalar — neologizm o'ylab topilmaydi
+Qoladi: kod, dastur, kompyuter, brauzer, sayt, internet, ekran, tugma, funksiya, massiv, sikl.
+Standart: o'zgaruvchi, qiymat, shart, takrorlash. Hech kim ishlatmaydigan sun'iy so'z bilan atama «tozalanmaydi»
+(3-bo'lim lug'ati — «qiyin → sodda», «bor → o'ylab topilgan» EMAS).
+
+### 7-C.5 Grammatika-tekshiruv
+- Kelishiklar -ni / -ning / -ga / -da aralashmasin (1-bo'lim).
+- «va» suiiste'mol qilinmaydi — gaplarga bo'linadi.
+- Yakuniy qadam: butun o'zbek matn ichda ovoz chiqarib o'qiladi; «hujjat» yoki «ko'cha» bo'lib eshitilgan joy qayta yoziladi. **Norma + insoniylik.**
+
+`npm run lint:til <fayl>` — `kant-*` (error/warn), `sheva-*` (error), `registr-*` (warn); ovoz-testi esa qo'lda.
+
+---
+
 ## 8. ✅ HAR DARS UCHUN MATN TEKSHIRUV RO'YXATI
 
 ```
@@ -392,6 +459,7 @@ Bitta «yo'q» = matn qayta yoziladi.
 [ ] 5  apostrof: grep "[‘’ʻ]" — bo'sh
 [ ] 6  tugma nomlari neytral; matn ↔ UI ↔ audio mos
 [ ] 7  "sir"-uslub yo'q: grep "hozircha sir|🤫" — bo'sh; ohang do'stona
+[ ] 7-C ADABIY NORMA: kantselyarit yo'q (ushbu/hisoblanadi/amalga oshir/quyidagi — lint kant-*), sheva yo'q (-votti/bo'pti/-ku/-da — lint sheva-*), «zo'r/qoyil/aka» yo'q; OVOZ-TESTI: «tirik o'qituvchi shunday aytarmidi?» — hujjat ham, chat ham emas
 [ ] 7-B har interaktiv ekran: TOPSHIRIQ(buyruq 3–6 so'z, savol EMAS) → YO'RIQNOMA(≤20 so'z) → KARTOCHKA(faqat material) → VARIANTLAR(qisqa); taqiq-so'zlar grep bo'sh
 ```
 
