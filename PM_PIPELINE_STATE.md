@@ -2803,3 +2803,38 @@ sababi kod emas — vite'da bu loader konfiguratsiyada turadi).
 Tegilmadi.
 
 **Holat:** UNCOMMITTED.
+
+---
+
+## RAUND — 2026-08-20 · M3-D14 UZ-RU (3-Modul PM tomondan YOPILDI)
+
+**Ish:** `src/3-Modull/PmLesson10.jsx` (M3-D14 «Ishlayotgan saytingizni qanday
+ko'rsatasiz?») — modulda qolgan yagona tarjimasiz dars. Boshqa faylga tegilmadi
+(parallel-seans modul chegarasi).
+
+**Natija:** 0 → **402 `ru:` qator**. 3-Modulda tarjimasiz dars qolmadi
+(`PmLesson7.jsx` — o'lik fayl, App.jsx:45 da P0 uni almashtirgan; ro'yxatga kirmaydi).
+
+**Darvozalar:** esbuild TOZA · `lint:jsx` **0** · `lint:til` **0🔴 / 3🟡** ·
+`lint:dark` **0** · kalit-relslar (`INLINE_KEYS`, `correctIdx`, `QUIZ_BANK.correct`)
+HEAD bilan **bayt-aynan**.
+
+**Yangi darvoza — esbuild-kanonik UZ-regressiya.** `esbuild(normalize(tarjima)) ===
+esbuild(etalon)`: ko'rinadigan UZ matn bir belgiga ham o'zgarmaganini ISBOTLAYDI.
+Salbiy sinovlardan o'tdi (so'z / «—» tire / «!» olinsa — tutadi). Tafsiloti va
+tuzoqlari `RU_I18N_SPEC.md` 3-Modul PM bo'limida.
+
+**Brauzer-walk (esbuild va lint ko'rmaydigan qatlam):** 16 ekran × 2 til = 32 render
++ 32 interaktiv holat (karta ochilgan, test javoblangan, hotspot, koding-darvozasi,
+flashcard, arena, uy-vazifa kartasi). 0 JS-xato, 0 bo'sh ekran, UZ'da kirill 0,
+RU'da lotin qoldiq 0.
+
+**Ikki kritik topilma (ikkalasini ham FAQAT walk tutdi):**
+1. `QzFX` arena canvas'idagi `TOK` so'z-ro'yxati + `HW_TOKENS`/`QZ_BG_SHAPES`
+   fon-tokenlari — RU rejimda o'zbekcha suzib yurardi.
+2. `ekranniTakror()` — o'quvchi yozgan gapni tekshiradigan `EKRAN_SOZ`/`QOSHIMCHA`
+   regexlari faqat lotin edi; RU o'quvchida «bo'sh gap» ipuchasi hech qachon
+   ishlamasdi. `{uz,ru}` juftligiga ajratildi, `anyTest()` ikkala tilni sinaydi,
+   UZ shohi tegilmadi.
+
+**Holat:** UNCOMMITTED (commit buyruq bilan).

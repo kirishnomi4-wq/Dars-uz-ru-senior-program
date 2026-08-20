@@ -198,3 +198,30 @@ npx esbuild src/1-Modull/<Fayl>.jsx --loader:.jsx=jsx --outfile=C:\Users\ADMIN\A
 | `PmLesson1.jsx` | ⬜ | ⬜ | navbatda (optimallashdan keyin) |
 | `PmLesson2.jsx` | ⬜ | ⬜ | navbatda |
 | `PmLesson3.jsx` | ✅ | ✅ | 454 `ru:` qator (2026-07-31). esbuild + `vite build` toza; SSR-smoke 26 komponent × UZ/RU = 52 render, 0 obyekt-render, 0 crash; UZ rejimda ruscha qoldiq 0. `lint:til` 0 error (5 warn — KOD_PLACEHOLDER'ning ko'p qatorli `ru:` shabloni, linter faqat bir qatorli `ru:` ni oqlaydi). Kalitlar tegilmagan: `INLINE_KEYS {s3:1,s7:2,s10:2,s13:-1}`, `correctIdx` 1/2/2, `QUIZ_BANK.correct` 0..3 tartibi. **MAXSUS (kritik):** Screen9 `sel` massivi ko'rinadigan MATNni saqlardi (`sel.includes(j)`, `key={j}`) → `K.js` obyektga aylangach barcha chip bitta `[object Object]` kalitini olardi va til almashganda tanlov yo'qolardi; indeks-satr kalitlariga o'tkazildi. **Boshqa qarorlar:** `checkStructure`/`lintHtml` teg-asosli — faqat `hints`/`msg` matni tarjima qilindi, tekshiruv til-mustaqil qoldi; `PfRow` chipi `tr(o)` — ya'ni o'quvchining yig'ilgan gapi KO'RINADIGAN tilda saqlanadi; `muammo`/`keyin` jumlalari grammatika sabab har til uchun alohida ramkada; payload `uzOf()`/`ouz()` bilan UZ-etalon; `QzFX` canvas TOK ro'yxati `__lang` bo'yicha; string default prop'lar (`NavNext.label`, `LiveGate.title`, `MicRecorder.title`, `MentorPracticeStats.label`) render-vaqtiga ko'chirildi |
+
+### 3-Modul PM darslari (M3-D2 · D5 · D10 · D14)
+> 2026-08-20: modul PM tomondan ham YOPILDI — 3-Modulda tarjimasiz dars qolmadi.
+> `PmLesson7.jsx` ro'yxatda YO'Q: u o'lik fayl (App.jsx:45 — P0 `PmUserStoryLesson` uni almashtirgan).
+
+| Dars | Infra (tr/__lang) | Kontent RU | Izoh |
+|---|---|---|---|
+| `pm/PmUserStoryLesson.jsx` (M3-D2, P0) | ✅ | ✅ | 2026-08-20 (oldingi seans) |
+| `3-Modull/PmLesson8.jsx` (M3-D5) | ✅ | ✅ | 2026-08-20 (oldingi seans) |
+| `3-Modull/PmLesson9.jsx` (M3-D10) | ✅ | ✅ | 2026-08-20 (oldingi seans) |
+| `3-Modull/PmLesson10.jsx` (M3-D14) | ✅ | ✅ | 402 `ru:` qator (2026-08-20). Darvozalar: esbuild toza · `lint:jsx` 0 · `lint:til` **0🔴** (3🟡 — s0 dagi «Zo'r ekan!/Xo'sh» **tirnoq ichidagi personaj gapi**, tarjimadan OLDIN ham bor edi) · `lint:dark` 0. Kalit-relslar HEAD bilan **bayt-aynan**: `INLINE_KEYS`, `correctIdx`, `QUIZ_BANK.correct` (0,1,3,2,1,3,2,0,2,1,0,3). Brauzer-walk: 16 ekran × 2 til = 32 render + 32 interaktiv holat — 0 JS-xato, UZ'da kirill 0, RU'da lotin qoldiq 0. **MAXSUS (kritik):** `QzFX` arena canvas'idagi `TOK` ro'yxati (`kadr/gap/harakat/…`) — esbuild ham, lint ham ko'rmaydi, faqat brauzer-walk tutdi; `HW_TOKENS` va `QZ_BG_SHAPES` fon-tokenlari ham shunday. **Ikkinchi kritik:** `ekranniTakror()` o'quvchi YOZGAN matnni `EKRAN_SOZ`/`QOSHIMCHA` regexlari bilan tekshiradi — RU rejimda ular hech qachon mos kelmasdi va «bo'sh gap» ipuchasi jim o'lardi; regexlar `{uz,ru}` juftligiga ajratilib, `anyTest()` IKKALA tilni sinaydi (UZ shohi bir belgiga ham o'zgarmagan). **Artefakt:** `ish` maydoniga `tr(ZAXIRA_ISH)` — ya'ni MATN yoziladi, obyekt emas. **Kod-namunasi:** identifikator nomlari (`BandQilish`, `bandQilindi`) ikkala tilda bir xil qoldi — o'quvchi ularni VS Code'da o'zi teradi; faqat kod IZOHLARI tarjima qilindi (M3-D5/D10 konvensiyasi) |
+
+#### Usul: esbuild-kanonik UZ-regressiya darvozasi (yangi, keyingi darslarga tavsiya)
+Tarjima paytida ko'rinadigan UZ matn o'zgarmaganini **isbotlaydigan** darvoza:
+`esbuild(normalize(tarjima)) === esbuild(etalon)`, bu yerda `normalize` — `tr({uz,ru})` va
+`{uz,ru}` larni uz-shohiga yig'uvchi JSX-xabardor skaner. esbuild haqiqiy parser bo'lgani uchun
+`<p>Salom</p>` va `<p>{'Salom'}</p>` bir xil natijaga keladi — qavs-uslubi shovqin qilmaydi.
+Kanonizatsiya ikkala tomonga BIR XIL qo'llanadi: qo'shni satr-literallar birlashtiriladi
+(`"A","B"` → `"AB"`), `React.Fragment` o'ramasi olib tashlanadi, izohlar tashlanadi.
+Darvoza salbiy sinovlardan o'tkazildi: bitta so'z, bitta «—» tire va bitta «!» olib tashlansa —
+**tutadi**. Atayin kiritilgan (matnga tegmaydigan) o'zgarishlar etalon-nusxaga sabab bilan
+ko'chiriladi, shunda ular jimgina o'tib ketmaydi.
+
+**Tuzoq (yangi):** shablon-satrni bo'lib tashlamang. `` `👆 Yana ${n} kadr` `` ni
+`` `${tr(...)} ${n}${tr(...)}` `` qilib yozish kanonik natijani o'zgartiradi — butun shablonni
+`tr({uz: \`…\`, ru: \`…\`})` ichiga oling. Xuddi shunday, JSX matn tugunini shablon-satrga
+aylantirmang: `{i+1}-kadr` → `tr({uz: <>{i+1}-kadr</>, ru: <>Кадр {i+1}</>})`.
