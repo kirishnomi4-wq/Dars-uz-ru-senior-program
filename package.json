@@ -11,6 +11,7 @@
     "lint:prompt": "node prompt-lint.mjs",
     "lint:til": "node til-lint.mjs",
     "lint:jsx": "node jsx-lint.mjs",
+    "lint:dark": "node dark-lint.mjs",
     "smoke": "node _smoke.mjs",
     "build:lms": "node scripts/build-lms.mjs",
     "smoke:lms": "node scripts/smoke-lms.mjs"

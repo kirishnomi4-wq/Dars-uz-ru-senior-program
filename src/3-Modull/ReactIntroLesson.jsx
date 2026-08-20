@@ -832,13 +832,16 @@ const Win = ({ title, children, minH }) => (
   <div className="bp-window"><div className="bp-bar"><span className="bb-dots"><i /><i /><i /></span><span className="bp-title">{title}</span></div><div className="bp-body" style={{ minHeight: minH, position: 'relative' }}>{children}</div></div>
 );
 // Minecraft skinlar — misol saytning kartochkalari
+// VARIANT D (F-0819-33): kartochka tanasi HAMMASIDA bir xil (oq).
+// Farq faqat tepadagi pastel strip + emoji + nom. Gradient yo'q.
+// Ranglar past to'yinganlikda va brend to'q sarig'i (H 11-24) oralig'idan TASHQARIDA.
 const SKINS = [
-  { name: { uz: 'Creeper', ru: 'Крипер' }, emoji: '🟩', bg: 'linear-gradient(135deg,#8FBF6B,#3E7A33)' },
-  { name: { uz: 'Zombi', ru: 'Зомби' }, emoji: '🧟', bg: 'linear-gradient(135deg,#A8C686,#5E8C4A)' },
-  { name: { uz: 'Ninja', ru: 'Ниндзя' }, emoji: '🥷', bg: 'linear-gradient(135deg,#7A87A8,#2E3A56)' },
-  { name: { uz: 'Qahramon', ru: 'Герой' }, emoji: '🦸', bg: 'linear-gradient(135deg,#F0B27A,#C96B2E)' },
-  { name: { uz: 'Robot', ru: 'Робот' }, emoji: '🤖', bg: 'linear-gradient(135deg,#AFC2D2,#5E7A92)' },
-  { name: { uz: 'Piglin', ru: 'Пиглин' }, emoji: '🐷', bg: 'linear-gradient(135deg,#F0B6C4,#C96B86)' }
+  { name: { uz: 'Creeper', ru: 'Крипер' }, emoji: '🟩', bg: '#97D8A8' },   // H135 toza yashil
+  { name: { uz: 'Zombi', ru: 'Зомби' }, emoji: '🧟', bg: '#C4D590' },     // H75  zaytun-yashil
+  { name: { uz: 'Ninja', ru: 'Ниндзя' }, emoji: '🥷', bg: '#92A2D3' },     // H225 yumshoq navy
+  { name: { uz: 'Qahramon', ru: 'Герой' }, emoji: '🦸', bg: '#C2A9DA' },   // H270 yumshoq lavanda
+  { name: { uz: 'Robot', ru: 'Робот' }, emoji: '🤖', bg: '#B3D0DB' },      // H196 kulrang-ko'k, ochroq
+  { name: { uz: 'Piglin', ru: 'Пиглин' }, emoji: '🐷', bg: '#E0AEBF' }     // H340 pastel pushti
 ];
 const SkinCard = ({ n }) => {
   const s = SKINS[(n - 1) % SKINS.length];
@@ -1263,7 +1266,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <div className="split-4555">
           <Col>
             <div className="fade-up delay-1" style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
-              <button className="btn" onClick={add} disabled={n >= 6}>{tr({ uz: "+ Skin qo'shish", ru: '+ Добавить скин' })}</button>
+              <button className={`btn ${n === 1 ? 'invite' : ''}`} onClick={add} disabled={n >= 6}>{tr({ uz: "+ Skin qo'shish", ru: '+ Добавить скин' })}</button>
               <span className="tagpill" key={lines} style={{ color: n >= 3 ? T.accent : T.ink }}>{lines} {tr({ uz: 'qator kod', ru: 'строк кода' })}</span>
             </div>
             <pre className="code-box fade-up delay-2">
@@ -1474,7 +1477,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <div className="split-4555">
           <Col>
             <div className="fade-up delay-1" style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
-              <button className="btn" onClick={add} disabled={n >= 6}>{tr({ uz: "+ <SkinCard /> qo'shish", ru: '+ Добавить <SkinCard />' })}</button>
+              <button className={`btn ${n === 1 ? 'invite' : ''}`} onClick={add} disabled={n >= 6}>{tr({ uz: "+ <SkinCard /> qo'shish", ru: '+ Добавить <SkinCard />' })}</button>
             </div>
             <pre className="code-box fade-up delay-2">
               <Cm>{tr({ uz: '// blok BIR marta yoziladi:', ru: '// блок пишется ОДИН раз:' })}</Cm>{'\n'}
@@ -1541,7 +1544,7 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <button className={`chip ${mode === 'old' ? 'chip-on' : ''}`} onClick={() => setMode('old')}>{tr({ uz: 'Eski usul', ru: 'Старый способ' })} {tried.has('old') ? '✓' : ''}</button>
               <button className={`chip ${mode === 'smart' ? 'chip-on' : ''}`} onClick={() => setMode('smart')}>{tr({ uz: 'Aqlli usul', ru: 'Умный способ' })} {tried.has('smart') ? '✓' : ''}</button>
             </div>
-            <button className="btn fade-up delay-2" style={{ alignSelf: 'flex-start' }} onClick={change}>{tr({ uz: "Azizaning bahosini o'zgartirish", ru: 'Изменить оценку Азизы' })}</button>
+            <button className={`btn fade-up delay-2 ${tried.size === 0 ? 'invite' : ''}`} style={{ alignSelf: 'flex-start' }} onClick={change}>{tr({ uz: "Azizaning bahosini o'zgartirish", ru: 'Изменить оценку Азизы' })}</button>
             {tried.size > 0 && mode === 'smart' && (
               <div className="hint fade-step" key={`${mode}-${tried.size}`}>
                 <p className="body" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: <>Endi <b style={{ color: T.success }}>faqat 1 katak</b> yangilandi. React ham aynan shunday ishlaydi.</>, ru: <>Теперь обновилась <b style={{ color: T.success }}>только 1 клетка</b>. React работает точно так же.</> })}</p>
@@ -1572,12 +1575,12 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               </div>
             </div>
             {tried.size > 0 && (
-              <div className={`redraw-card ${mode === 'old' ? 'rc-bad' : 'rc-good'}`} key={`rt-${mode}-${grade}-${flashKey}`}>
-                <span className="rc-ic">{mode === 'old' ? '🔴' : '✅'}</span>
-                <span className="rc-num">{mode === 'old' ? 12 : 1}</span>
-                <span className="rc-txt">
-                  <span className="rc-hd">{mode === 'old' ? tr({ uz: 'ta katak qayta chizildi', ru: 'клеток перерисовано' }) : tr({ uz: 'ta katak yangilandi', ru: 'клетка обновилась' })}</span>
-                  <span className="rc-sub">{mode === 'old' ? tr({ uz: 'Butun jadval yangidan', ru: 'Вся таблица заново' }) : tr({ uz: 'Faqat kerakli katak', ru: 'Только нужная клетка' })}</span>
+              <div className={`jr-card ${mode === 'old' ? 'jr-bad' : 'jr-good'}`} key={`rt-${mode}-${grade}-${flashKey}`}>
+                <span className="jr-ic">{mode === 'old' ? '🔴' : '✅'}</span>
+                <span className="jr-num">{mode === 'old' ? 12 : 1}</span>
+                <span className="jr-txt">
+                  <span className="jr-hd">{mode === 'old' ? tr({ uz: 'ta katak qayta chizildi', ru: 'клеток перерисовано' }) : tr({ uz: 'ta katak yangilandi', ru: 'клетка обновилась' })}</span>
+                  <span className="jr-sub">{mode === 'old' ? tr({ uz: 'Butun jadval yangidan', ru: 'Вся таблица заново' }) : tr({ uz: 'Faqat kerakli katak', ru: 'Только нужная клетка' })}</span>
                 </span>
               </div>
             )}
@@ -1621,7 +1624,7 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <Zoomable>
         <div className="split">
           <Col>
-            <button className="btn fade-up delay-1" style={{ alignSelf: 'flex-start' }} onClick={run} disabled={running}>{running ? tr({ uz: 'Ishlayapti…', ru: 'Работает…' }) : (done ? tr({ uz: "↻ Yana ko'rsatish", ru: '↻ Показать ещё раз' }) : tr({ uz: '▶ Like bosildi — kuzating', ru: '▶ Лайк нажат — наблюдайте' }))}</button>
+            <button className={`btn fade-up delay-1 ${phase === 0 ? 'invite' : ''}`} style={{ alignSelf: 'flex-start' }} onClick={run} disabled={running}>{running ? tr({ uz: 'Ishlayapti…', ru: 'Работает…' }) : (done ? tr({ uz: "↻ Yana ko'rsatish", ru: '↻ Показать ещё раз' }) : tr({ uz: '▶ Like bosildi — kuzating', ru: '▶ Лайк нажат — наблюдайте' }))}</button>
             <div className="fade-up delay-2" style={{ display: 'flex', flexDirection: 'column', gap: 7 }}>
               {STEPS.map((s, i) => (
                 <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '10px 13px', borderRadius: 11, background: phase > i ? T.successSoft : T.bg, opacity: phase > i ? 1 : 0.55, transition: 'all 0.4s' }}>
@@ -1688,9 +1691,9 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const mark = (k) => setLiked(prev => { const s = new Set(prev); s.add(k); return s; });
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   const ROWS = [
-    ['🔄', tr({ uz: 'Butun sahifa yangilanadi', ru: 'Обновляется вся страница' }), '⚡', tr({ uz: "Faqat o'zgargan joy yangilanadi", ru: 'Обновляется только изменившееся место' })],
-    ['✍️', tr({ uz: "Kod nusxa-nusxa ko'payadi", ru: 'Код растёт копия за копией' }), '🧩', tr({ uz: 'Komponentlar qayta ishlatiladi', ru: 'Компоненты используются повторно' })],
-    ['😕', tr({ uz: 'Sekin ishlaydi', ru: 'Работает медленно' }), '🚀', tr({ uz: 'Tez ishlaydi', ru: 'Работает быстро' })]
+    [tr({ uz: 'Butun sahifa yangilanadi', ru: 'Обновляется вся страница' }), tr({ uz: "Faqat o'zgargan joy yangilanadi", ru: 'Обновляется только изменившееся место' })],
+    [tr({ uz: "Kod nusxa-nusxa ko'payadi", ru: 'Код растёт копия за копией' }), tr({ uz: 'Komponentlar qayta ishlatiladi', ru: 'Компоненты используются повторно' })],
+    [tr({ uz: 'Sekin ishlaydi', ru: 'Работает медленно' }), tr({ uz: 'Tez ishlaydi', ru: 'Работает быстро' })]
   ];
   return (
     <Stage eyebrow={tr({ uz: 'Taqqoslash', ru: 'Сравнение' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Ikkalasida like bosing', ru: 'Нажмите лайк на обоих' })} onClick={onNext} /></>}>
@@ -1714,10 +1717,10 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <div className="cmp-grid">
               <span className="cmp-hd bad">{tr({ uz: 'Oddiy sayt', ru: 'Обычный сайт' })}</span>
               <span className="cmp-hd good">{tr({ uz: 'React ilova', ru: 'React-приложение' })}</span>
-              {ROWS.map(([ea, a, eb, b], i) => (
+              {ROWS.map(([a, b], i) => (
                 <React.Fragment key={i}>
-                  <span className="cmp-cell bad"><span className="cmp-ic">{ea}</span>{a}</span>
-                  <span className="cmp-cell good"><span className="cmp-ic">{eb}</span>{b}</span>
+                  <span className="cmp-cell bad">{a}</span>
+                  <span className="cmp-cell good">{b}</span>
                 </React.Fragment>
               ))}
             </div>
@@ -1932,7 +1935,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 ? <p style={{ color: T.ink3, fontStyle: 'italic', margin: 0, fontFamily: 'Georgia, serif', fontSize: 13 }}>{tr({ uz: "Bo'sh sahifa — blok qo'shing…", ru: 'Пустая страница — добавьте блок…' })}</p>
                 : <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>{items.map((k, i) => renderPart(k, i))}</div>}
             </Win>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Siz hozir <b>React'cha fikrladingiz</b>: sahifa = komponentlar ro'yxati. Keyingi darsda buni haqiqiy kodda yozasiz.</>, ru: <>Вы только что <b>мыслили как React</b>: страница = список компонентов. На следующем уроке напишете это в настоящем коде.</> })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Siz hozir <b>React'cha fikrladingiz</b>: sahifa = komponentlar ro'yxati.</>, ru: <>Вы только что <b>мыслили как React</b>: страница = список компонентов.</> })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -1970,7 +1973,6 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {!done
               ? <div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: <>Komponent — <b style={{ color: T.ink }}>kichik va aniq</b> bo'lak. «Qolgan hammasi» degani esa bitta ulkan <b style={{ color: T.ink }}>monolit</b>. Qaysi qator shunday?</>, ru: <>Компонент — <b style={{ color: T.ink }}>маленькая и понятная</b> часть. А «всё остальное» — это один огромный <b style={{ color: T.ink }}>монолит</b>. Какая строка такая?</> })}</p></div>
               : (<>
-                  <div className="takeaway fade-step"><div className="ta-bulb">🛠️</div><p className="ta-h">{tr({ uz: 'Topdingiz va tuzatdingiz — bu debugging!', ru: 'Нашли и исправили — это дебаггинг!' })}</p><p className="ta-sub">{tr({ uz: "AI tez yozadi, siz tekshirib tuzatasiz — ajoyib jamoa", ru: 'ИИ быстро пишет, вы проверяете и чините — отличная команда' })}</p></div>
                   <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Tanish-a? Bu — Praktika darsidagi <b>dekompozitsiya</b>! React shu fikrlashni kodning o'ziga olib kiradi.</>, ru: <>Знакомо, правда? Это — <b>декомпозиция</b> с урока Практики! React переносит это мышление в сам код.</> })}</p></div>
                 </>)}
           </Col>
@@ -2010,7 +2012,7 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 
 // 🃏 REACT-1 FLASHCARD KARTALARI (front=savol, back=qisqa javob, note=misol)
 const REACT_FLASHCARDS = [
-  { front: { uz: "React qaysi tanish dasturlash tilida yozilgan?", ru: 'На каком знакомом языке программирования написан React?' }, back: "JavaScript", note: { uz: "React yangi til emas — kutubxona", ru: 'React — не новый язык, а библиотека' } },
+  { front: { uz: "React qaysi dasturlash tilida yozilgan?", ru: 'На каком языке программирования написан React?' }, back: "JavaScript", note: { uz: "React yangi til emas — kutubxona", ru: 'React — не новый язык, а библиотека' } },
   { front: { uz: "React nima qurish uchun ishlatiladi?", ru: 'Для чего используют React?' }, back: { uz: "Interfeys", ru: 'Интерфейс' }, note: { uz: "sahifaning ko'rinadigan qismi: menyu, kartochka, tugma", ru: 'видимая часть страницы: меню, карточки, кнопки' } },
   { front: { uz: "Tayyor asboblar to'plami qanday ataladi?", ru: 'Как называется набор готовых инструментов?' }, back: { uz: "Kutubxona", ru: 'Библиотека' }, note: { uz: "har safar noldan yozmaysiz — tayyorini olasiz", ru: 'не пишете каждый раз с нуля — берёте готовое' } },
   { front: { uz: "React'ni kim va qaysi yilda yaratgan?", ru: 'Кто и в каком году создал React?' }, back: "Facebook, 2013", note: { uz: "Instagram, WhatsApp shu kutubxonada ishlaydi", ru: 'Instagram и WhatsApp работают на этой библиотеке' } },
@@ -2858,6 +2860,9 @@ export default function ReactIntroLesson({ lang: langProp, onFinished }) {
         @keyframes fade-step { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
         .fade-step { animation: fade-step 0.3s ease-out; }
         .zoomable { position: relative; }
+        /* Zoomable tugmasi (⛶) o'ng yuqori burchakdagi hisoblagich bilan to'qnashmasin (F-0819-35). */
+        .zoomable .split > .col:last-child > div:first-child,
+        .zoomable .split-4555 > .col:last-child > div:first-child { padding-right: 38px; }
         .zoom-btn { position: absolute; top: 6px; right: 6px; z-index: 5; width: 30px; height: 30px; border-radius: 8px; border: none; background: rgba(255,255,255,0.82); color: ${T.ink2}; font-size: 14px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.22); transition: all 0.2s; }
         .zoom-btn:hover { background: ${T.paper}; color: ${T.accent}; transform: scale(1.08); }
         .zoom-backdrop { position: fixed; inset: 0; background: rgba(14,14,16,0.55); z-index: 1000; animation: fade-step 0.25s ease; }
@@ -2872,9 +2877,16 @@ export default function ReactIntroLesson({ lang: langProp, onFinished }) {
         .feedback-block.visible { max-height: 800px; opacity: 1; margin-top: clamp(14px,2vw,20px); }
 
         /* === KNOPKALAR === */
-        .btn { font-family: 'Manrope', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.ink}; color: ${T.bg}; border: none; border-radius: 12px; letter-spacing: 0.01em; box-shadow: 0 6px 18px -4px rgba(${T.shadowBase},0.32); padding: clamp(11px,1.6vw,13px) clamp(20px,2.5vw,26px); font-size: clamp(13px,1.6vw,15px); }
-        .btn:hover:not(:disabled) { background: ${T.accent}; box-shadow: 0 10px 24px -4px rgba(255,79,40,0.45); }
-        .btn:disabled { opacity: 0.4; cursor: not-allowed; box-shadow: none; }
+        .btn { font-family: 'Manrope', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.accent}; color: #fff; border: none; border-radius: 12px; letter-spacing: 0.01em; box-shadow: 0 6px 18px -4px rgba(${T.shadowBase},0.32); padding: 9px 18px; font-size: 13.5px; line-height: 1.25; }
+        .btn:hover:not(:disabled) { background: #E03E1B; box-shadow: 0 10px 24px -4px rgba(255,79,40,0.45); }
+        .btn:disabled { opacity: 0.4; cursor: not-allowed; box-shadow: none; animation: none; }
+        /* bosish-ishorasi: birinchi bosilishgacha yumshoq puls + yoyiluvchi halqa (F-0819-34) */
+        @keyframes btn-invite { 0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255,79,40,0.40); }
+          60% { transform: scale(1.035); box-shadow: 0 0 0 10px rgba(255,79,40,0); }
+          100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255,79,40,0); } }
+        .btn.invite { animation: btn-invite 1.9s ease-out infinite; }
+        .btn.invite:hover, .btn.invite:active { animation: none; }
+        @media (prefers-reduced-motion: reduce) { .btn.invite { animation: none; box-shadow: 0 0 0 3px rgba(255,79,40,0.30); } }
         .btn-white-accent { font-family: 'Manrope', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.paper}; color: ${T.accent}; border: none; border-radius: 12px; letter-spacing: 0.01em; box-shadow: 0 8px 22px -4px rgba(255,79,40,0.35), 0 0 0 1px rgba(255,79,40,0.12); }
         .btn-white-accent:hover:not(:disabled) { background: ${T.accent}; color: #fff; box-shadow: 0 12px 28px -6px rgba(255,79,40,0.55); }
         .btn-white-accent:disabled { opacity: 0.45; cursor: not-allowed; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.14); }
@@ -3050,7 +3062,6 @@ export default function ReactIntroLesson({ lang: langProp, onFinished }) {
         .ai-line { font-family: 'JetBrains Mono'; font-size: 13px; color: ${CODE.text}; cursor: pointer; padding: 7px 9px; border-radius: 6px; transition: all 0.15s; } .ai-line:hover { background: rgba(255,255,255,0.06); }
         .ai-line.bad { background: rgba(255,79,40,0.16); box-shadow: inset 0 0 0 1px ${T.accent}; } .ai-line.ok { background: rgba(31,122,77,0.16); }
         .ai-prompt { font-size: 12px; color: ${T.ink3}; margin: 0; font-style: italic; } .note-h { font-weight: 700; font-size: 13px; margin: 0 0 4px; }
-        .takeaway { background: ${T.accentSoft}; border-radius: 14px; padding: 20px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 5px; } .ta-bulb { font-size: 34px; } .ta-h { font-family: 'Source Serif 4', serif; font-weight: 600; font-size: clamp(16px,2.2vw,20px); color: ${T.ink}; margin: 0; } .ta-sub { color: ${T.accent}; font-weight: 600; font-size: 13px; margin: 0; }
 
         /* === YAKUN === */
         .hero { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
@@ -3096,20 +3107,25 @@ export default function ReactIntroLesson({ lang: langProp, onFinished }) {
         .code-box { background: ${CODE.bg}; color: ${CODE.text}; font-family: 'JetBrains Mono', monospace; font-size: clamp(12px,1.5vw,13.5px); line-height: 1.55; padding: clamp(12px,2.2vw,16px); border-radius: 12px; overflow-x: auto; white-space: pre-wrap; word-break: break-word; margin: 0; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.2); }
         /* marketplace to'ri: 3x2, kartochkalar ~17% kichik (F-0819-08) */
         .mk-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 7px; }
-        .mk-grid .vthumb { height: 35px; }
-        .mk-grid .vthumb-em { font-size: 16px; }
+        .mk-grid .vcard .vthumb { height: 62px; }
+        .mk-grid .vcard .vthumb-em { font-size: 42px; }
         .mk-grid .vcard-b { padding: 5px 7px; gap: 4px; }
         .mk-grid .vcard-name { font-size: 10px; }
         .mk-grid .vcard-like { font-size: 9px; }
         @media (max-width: 420px) { .mk-grid { grid-template-columns: repeat(2, minmax(0,1fr)); } }
-        .vcard { border-radius: 10px; background: #fff; box-shadow: 0 4px 12px -4px rgba(0,0,0,0.14); overflow: hidden; border: 1px solid rgba(0,0,0,0.04); }
+        .vcard { border-radius: 10px; background: #fff; box-shadow: 0 4px 12px -4px rgba(0,0,0,0.14); overflow: hidden; border: 1px solid rgba(0,0,0,0.06); transition: transform 0.18s cubic-bezier(.34,1.2,.5,1), box-shadow 0.18s; }
+        .vcard:hover { transform: translateY(-3px); box-shadow: 0 10px 20px -8px rgba(0,0,0,0.20); }
+        @media (prefers-reduced-motion: reduce) { .vcard:hover { transform: none; } }
         .vthumb-em { font-size: 19px; }
         .vcard-b { padding: 7px 9px; display: flex; align-items: center; justify-content: space-between; gap: 6px; }
         .vcard-name { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 11.5px; color: ${T.ink}; margin: 0; }
         .vcard-like { border: none; background: transparent; cursor: pointer; padding: 0; font-family: 'Manrope', sans-serif; font-size: 10.5px; font-weight: 400; color: ${T.ink3}; }
         .vcard-like.on { font-weight: 700; color: ${T.accent}; }
         .vcard-like > span { display: inline-block; }
-        .vthumb { height: 42px; background: linear-gradient(135deg,#AFC8EE,#D9C5EC); display: flex; align-items: center; justify-content: center; }
+        .vthumb { height: 42px; background: ${T.bg}; display: flex; align-items: center; justify-content: center; }
+        /* VARIANT D: SkinCard strip'i baland, emoji katta (F-0819-33) */
+        .vcard .vthumb { height: 66px; }
+        .vcard .vthumb-em { font-size: 46px; }
         .vplay { width: 18px; height: 18px; border-radius: 50%; background: rgba(255,255,255,0.85); color: #333; font-size: 8px; display: flex; align-items: center; justify-content: center; }
         .likebtn { font-family: 'Manrope'; font-weight: 700; font-size: 13px; border: none; border-radius: 10px; background: ${T.bg}; color: ${T.ink}; padding: 7px 13px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; transition: all 0.15s; box-shadow: 0 3px 8px -3px rgba(0,0,0,0.15); }
         .likebtn:hover { transform: translateY(-1px); }
@@ -3136,6 +3152,9 @@ export default function ReactIntroLesson({ lang: langProp, onFinished }) {
         .zone.seen::after { display: none; }
         .zone.active { box-shadow: 0 0 0 2px ${T.accent}; animation: zone-pop 0.4s ease; }
         @keyframes zone-pop { 0% { transform: scale(1); } 35% { transform: scale(1.04); } 100% { transform: scale(1); } }
+        /* ichma-ich zonada (qidiruv menyu ichida, like kartochka ichida) ikkala
+           yorliq ham o'ng burchakka tushib ustma-ust qolardi (F-0819-30) */
+        .zone .zone .zlbl { right: auto; left: -5px; }
         .zlbl { position: absolute; top: -9px; right: -5px; font-family: 'JetBrains Mono'; font-size: 9px; background: ${T.ink}; color: #fff; padding: 2px 7px; border-radius: 6px; z-index: 3; white-space: nowrap; animation: zlbl-in 0.38s cubic-bezier(.34,1.45,.5,1); }
         @keyframes zlbl-in { from { opacity: 0; transform: translateY(5px) scale(0.78); } to { opacity: 1; transform: translateY(0) scale(1); } }
         @keyframes jflash { 0% { background: #fff; transform: scale(1); } 22% { background: ${T.accent}; color: #fff; transform: scale(0.88); } 60% { background: ${T.accentSoft}; } 100% { background: #fff; transform: scale(1); } }
@@ -3143,16 +3162,16 @@ export default function ReactIntroLesson({ lang: langProp, onFinished }) {
         @keyframes jpop { 0% { transform: scale(0.5); } 55% { transform: scale(1.16); } 100% { transform: scale(1); } }
         .jhot { animation: jpop 0.5s cubic-bezier(.34,1.45,.5,1); background: ${T.successSoft} !important; box-shadow: inset 0 0 0 2px ${T.success}; }
         /* natija-kartasi: raqam ekranning bosh qahramoni (F-0819-17) */
-        .redraw-card { display: flex; align-items: center; gap: clamp(9px,2vw,14px); border-radius: 12px; padding: clamp(10px,1.8vw,14px) clamp(12px,2vw,16px); animation: fade-step 0.35s; }
-        .rc-bad { background: ${T.accentSoft}; box-shadow: inset 0 0 0 1.5px rgba(255,79,40,0.35); }
-        .rc-good { background: ${T.successSoft}; box-shadow: inset 0 0 0 1.5px ${T.success}; }
-        .rc-ic { font-size: clamp(17px,2.6vw,21px); line-height: 1; flex-shrink: 0; }
-        .rc-num { font-family: 'Source Serif 4', serif; font-weight: 600; font-size: clamp(30px,5.4vw,44px); line-height: 1; flex-shrink: 0; animation: num-pop 0.42s cubic-bezier(.34,1.45,.5,1); }
-        .rc-bad .rc-num { color: ${T.accent}; } .rc-good .rc-num { color: ${T.success}; }
-        .rc-txt { display: flex; flex-direction: column; min-width: 0; }
-        .rc-hd { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(11.5px,1.7vw,13px); color: ${T.ink}; line-height: 1.25; }
-        .rc-sub { font-family: 'Manrope', sans-serif; font-size: 10.5px; color: ${T.ink2}; }
-        @media (prefers-reduced-motion: reduce) { .rc-num { animation: none; } }
+        .jr-card { display: flex; align-items: center; gap: clamp(9px,2vw,14px); border-radius: 12px; padding: clamp(10px,1.8vw,14px) clamp(12px,2vw,16px); animation: fade-step 0.35s; }
+        .jr-bad { background: ${T.accentSoft}; box-shadow: inset 0 0 0 1.5px rgba(255,79,40,0.35); }
+        .jr-good { background: ${T.successSoft}; box-shadow: inset 0 0 0 1.5px ${T.success}; }
+        .jr-ic { font-size: 14px; line-height: 1; flex-shrink: 0; opacity: 0.75; }
+        .jr-num { font-family: 'Source Serif 4', serif; font-weight: 600; font-size: clamp(26px,3.6vw,34px); line-height: 1; flex-shrink: 0; animation: num-pop 0.42s cubic-bezier(.34,1.45,.5,1); }
+        .jr-bad .jr-num { color: ${T.accent}; } .jr-good .jr-num { color: ${T.success}; }
+        .jr-txt { display: flex; flex-direction: column; min-width: 0; }
+        .jr-hd { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(11.5px,1.7vw,13px); color: ${T.ink}; line-height: 1.25; }
+        .jr-sub { font-family: 'Manrope', sans-serif; font-size: 10.5px; color: ${T.ink2}; }
+        @media (prefers-reduced-motion: reduce) { .jr-num { animation: none; } }
         .phone { width: clamp(210px,24vw,258px); background: #0E0E10; border-radius: 34px; padding: 7px; box-shadow: 0 18px 38px -12px rgba(${T.shadowBase},0.50), inset 0 0 0 1.5px #2c2c31; margin: 0 auto; }
         .phone-scr { background: #fff; border-radius: 28px; overflow: hidden; position: relative; min-height: 300px; display: flex; flex-direction: column; }
         /* status qatori + Dynamic Island (F-0819-25) */
@@ -3192,7 +3211,6 @@ export default function ReactIntroLesson({ lang: langProp, onFinished }) {
         .cmp-cell { display: flex; align-items: center; gap: 8px; border-radius: 10px; padding: 9px 11px; font-family: 'Manrope', sans-serif; font-size: 12.5px; line-height: 1.3; }
         .cmp-cell.bad { background: ${T.bg}; color: ${T.ink3}; }
         .cmp-cell.good { background: ${T.successSoft}; color: ${T.ink}; font-weight: 600; }
-        .cmp-ic { font-size: 15px; line-height: 1; flex-shrink: 0; }
         @media (max-width: 520px) { .cmp-grid { grid-template-columns: 1fr; } .cmp-hd.good { margin-top: 6px; } }
         .post { display: flex; flex-direction: column; }
         .post-head { display: flex; align-items: center; gap: 9px; padding: 1px 1px 9px; }
@@ -3463,6 +3481,11 @@ export default function ReactIntroLesson({ lang: langProp, onFinished }) {
         /* === kod chip (fmtCode) === */
         .qcode { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 0.92em; background: rgba(20,17,14,0.08); border-radius: 6px; padding: 1px 6px; white-space: nowrap; }
         /* ===================== JONLI DARS CSS (InternetLesson bilan bir xil) ===================== */
+        /* Jonli tasma dars ustida osilib turadi — xira, ustiga borilganda yonadi (F-0819-35).
+           Manba naqsh 81 ta darsda bor edi, 3-Modul React darslariga yetib bormagan.
+           Naqshdagi ikki karra opacity e'loni bu yerda bitta qoidaga yig'ildi. */
+        .live-badge { opacity: 0.62; transition: opacity 0.25s ease, box-shadow 0.25s ease; }
+        .live-badge:hover, .live-badge:focus-within { opacity: 1; box-shadow: 0 8px 24px -6px rgba(58,53,48,0.32) !important; }
         /* Konfetti */
         /* === Konfetti (yakun bayrami) === */
         .confetti { position: fixed; inset: 0; pointer-events: none; z-index: 1200; overflow: hidden; }

@@ -8,7 +8,7 @@ const MENTOR_IMG = 'https://go.coddycamp.uz/uploads/media_library/c7b711619071c9
 //        props read-only (o'zgartirish = state ishi), ma'lumotlar ro'yxati (massiv),
 //        map bilan katalog (data-driven UI), name={g} — jingalak qavsli dinamik props.
 // Misol sayt: robo-games (davom) — to'liq o'yinlar KATALOGI quriladi.
-// Animatsiyalar: rentgen (kartalar skeletga aylanadi), posilka 📦 (props yetkaziladi),
+// Animatsiyalar: rentgen (kartalar qolipga aylanadi), varaqa 📄 (props yetkaziladi),
 //        ma'lumot daryosi (tomchilar pastga oqadi, teskari — shake ❌),
 //        katalog stagger (qator yonadi → kartochka pop).
 // MUHIM: kelgusi darslar ro'yxati o'quvchiga AYTILMAYDI — faqat yakunda teaser.
@@ -267,7 +267,7 @@ function LiveBigCode({ pin, onClose }) {
     <div style={overlay}>
       <div style={{ fontSize: 'clamp(13px,2vw,18px)', fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: LT.accent, marginBottom: 'clamp(14px,3vw,28px)' }}>{tr({ uz: "Jonli darsga qo'shilish", ru: 'Подключение к живому уроку' })}</div>
       <div style={{ display: 'flex', gap: 'clamp(6px,1.4vw,16px)', justifyContent: 'center', flexWrap: 'wrap' }}>{digits.map((d, i) => <span key={i} style={box}>{d}</span>)}</div>
-      <p style={{ color: '#fff', opacity: 0.85, fontSize: 'clamp(15px,2.2vw,22px)', maxWidth: 640, margin: 'clamp(20px,4vw,36px) 0 0', lineHeight: 1.5 }}>{tr({ uz: <>Shu darsni o'z qurilmangizda oching → <b style={{ color: '#fff' }}>«👨‍🎓 O'quvchiman»</b> → ushbu kodni kiriting.</>, ru: <>Откройте этот урок на своём устройстве → <b style={{ color: '#fff' }}>«👨‍🎓 Я ученик»</b> → введите этот код.</> })}</p>
+      <p style={{ color: '#fff', opacity: 0.85, fontSize: 'clamp(15px,2.2vw,22px)', maxWidth: 640, margin: 'clamp(20px,4vw,36px) 0 0', lineHeight: 1.5 }}>{tr({ uz: <>Shu darsni o'z qurilmangizda oching → <b style={{ color: '#fff' }}>«👨‍🎓 O'quvchiman»</b> → shu kodni kiriting.</>, ru: <>Откройте этот урок на своём устройстве → <b style={{ color: '#fff' }}>«👨‍🎓 Я ученик»</b> → введите этот код.</> })}</p>
       <button onClick={onClose} style={{ marginTop: 'clamp(22px,4vw,40px)', background: LT.accent, color: '#fff', border: 'none', borderRadius: 14, padding: 'clamp(12px,1.6vw,16px) clamp(24px,3vw,36px)', fontSize: 'clamp(15px,1.8vw,18px)', fontWeight: 700, cursor: 'pointer' }}>{tr({ uz: 'Darsni boshlash →', ru: 'Начать урок →' })}</button>
     </div>
   );
@@ -527,7 +527,7 @@ const RECAPS = {
   4: {
     title: { uz: "Props — komponentga uzatiladigan ma'lumot", ru: 'Props — данные, передаваемые компоненту' },
     cards: [
-      { ic: "🎁", h: { uz: "Props — kartochkaga solingan ma'lumot", ru: 'Props — данные, вложенные в карточку' }, body: { uz: <>Hamma <span className="mono">{'<GameCard />'}</span> bir xil skeletdan yasaladi — farqi faqat ichidagi <b style={{ color: T.ink }}>ma'lumotda</b>: nom, o'yinchilar soni, belgi. Kartochkaga solinadigan shu ma'lumot <b style={{ color: T.ink }}>props</b> deb ataladi. Xuddi posilka kabi: ichida nima borligini bergan odam belgilaydi.</>, ru: <>Все <span className="mono">{'<GameCard />'}</span> собраны из одного скелета — отличаются только <b style={{ color: T.ink }}>данными</b> внутри: название, число игроков, значок. Эти вложенные в карточку данные и называются <b style={{ color: T.ink }}>props</b>. Как посылка: что внутри — решает тот, кто её отправил.</> } },
+      { ic: "🎁", h: { uz: "Props — kartochkaga solingan ma'lumot", ru: 'Props — данные, вложенные в карточку' }, body: { uz: <>Hamma <span className="mono">{'<GameCard />'}</span> bir xil qolipdan yasaladi — farqi faqat ichidagi <b style={{ color: T.ink }}>ma'lumotda</b>: nom, o'yinchilar soni, belgi. Kartochkaga solinadigan shu ma'lumot <b style={{ color: T.ink }}>props</b> deb ataladi. Xuddi varaqa kabi: ichida nima borligini bergan odam belgilaydi.</>, ru: <>Все <span className="mono">{'<GameCard />'}</span> собраны по одному шаблону — отличаются только <b style={{ color: T.ink }}>данными</b> внутри: название, число игроков, значок. Эти вложенные в карточку данные и называются <b style={{ color: T.ink }}>props</b>. Как слип: что внутри — решает тот, кто её отправил.</> } },
       { ic: "🏷️", h: { uz: "Atribut yozasiz — props bo'lib yetib boradi", ru: 'Пишете атрибут — доходит как props' }, body: { uz: <>Props'ni <b style={{ color: T.ink }}>App</b> (ota komponent) uzatadi: chaqiruvda atribut yozadi — <span className="mono">name="Doors"</span>. O'sha yozuv <span className="mono">GameCard</span> ichiga <b style={{ color: T.ink }}>props bo'lib</b> yetib boradi. Ya'ni atribut — tashqaridan, props — komponentning ichida ko'ringan o'sha ma'lumot.</>, ru: <>Props передаёт <b style={{ color: T.ink }}>App</b> (родительский компонент): при вызове он пишет атрибут — <span className="mono">name="Doors"</span>. Эта запись доходит внутрь <span className="mono">GameCard</span> <b style={{ color: T.ink }}>уже как props</b>. То есть атрибут — снаружи, props — те же данные, видимые внутри компонента.</> } },
       { ic: "📦", h: { uz: "Bir nechta props — bir nechta atribut", ru: 'Несколько props — несколько атрибутов' }, body: { uz: <>Bitta kartochkaga bir nechta ma'lumot uzatsa bo'ladi: har biri alohida atribut, alohida props — <span className="mono">name</span>, <span className="mono">players</span>, <span className="mono">emoji</span>. Qancha kerak bo'lsa, shuncha yozasiz.</>, ru: <>Одной карточке можно передать несколько данных: каждое — отдельный атрибут, отдельный props — <span className="mono">name</span>, <span className="mono">players</span>, <span className="mono">emoji</span>. Пишете столько, сколько нужно.</> }, ask: { uz: "Sevimli o'yiningiz kartochkasiga qanday props'lar kerak bo'lardi?", ru: 'Какие props понадобились бы карточке вашей любимой игры?' } },
     ]
@@ -669,7 +669,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
         return (
           <div className={`mstats-verdict ${level}`}>
             {level === 'need' && <>
-              <p className="mstats-verdict-t">{tr({ uz: <>⚠️ Faqat <b>{pct}%</b> to'g'ri — bu mavzu sinfga tushunarsiz qolgan. Davom etishdan oldin qisqa takrorlash tavsiya etiladi.</>, ru: <>⚠️ Только <b>{pct}%</b> верных — тема осталась классу непонятной. Перед продолжением рекомендуем короткое повторение.</> })}</p>
+              <p className="mstats-verdict-t">{tr({ uz: <>⚠️ Faqat <b>{pct}%</b> to'g'ri — bu mavzu sinfga tushunarsiz qolgan. Davom etishdan oldin qisqa takrorlab oling.</>, ru: <>⚠️ Только <b>{pct}%</b> верных — тема осталась классу непонятной. Перед продолжением рекомендуем короткое повторение.</> })}</p>
               {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>{tr({ uz: '📖 Qayta tushuntirish', ru: '📖 Повторное объяснение' })} — {tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
             {level === 'maybe' && <>
@@ -691,7 +691,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
           {waiting.length > 8 && <span className="mstats-wait-chip more">+{waiting.length - 8}</span>}
         </div>
       )}
-      {reveal && struggling && <p className="mstats-warn">{tr({ uz: "⚠️ Ko'pchilik xato qildi — bu mavzu tushunarsiz bo'lgan ko'rinadi. Qayta tushuntirish tavsiya etiladi.", ru: '⚠️ Большинство ошиблось — похоже, тема осталась непонятной. Рекомендуем объяснить ещё раз.' })}</p>}
+      {reveal && struggling && <p className="mstats-warn">{tr({ uz: "⚠️ Ko'pchilik xato qildi — bu mavzu tushunarsiz qolgan. Yana bir bor tushuntiring.", ru: '⚠️ Большинство ошиблось — похоже, тема осталась непонятной. Рекомендуем объяснить ещё раз.' })}</p>}
       {answered === 0 && <p className="mstats-wait">{tr({ uz: "O'quvchilar javoblari shu yerda jonli ko'rinadi…", ru: 'Ответы учеников появятся здесь вживую…' })}</p>}
     </div>
   );
@@ -845,20 +845,20 @@ const Win = ({ title, children, minH }) => (
 );
 // Roblox uslubidagi o'yinlar (oldingi darslardan tanish) + yangi qo'shiladiganlar
 const GAMES = [
-  { name: 'Adopt Me!', emoji: '🐾', likes: 92, players: '402K', bg: 'linear-gradient(135deg,#FF9DBF,#C44569)' },
-  { name: 'Blox Fruits', emoji: '🍇', likes: 95, players: '750K', bg: 'linear-gradient(135deg,#7EA6F4,#2E4A9E)' },
-  { name: 'Brookhaven', emoji: '🏠', likes: 89, players: '510K', bg: 'linear-gradient(135deg,#8FD3A8,#2E7A4E)' },
-  { name: 'Tower of Hell', emoji: '🗼', likes: 84, players: '120K', bg: 'linear-gradient(135deg,#F4B26A,#C9622E)' },
-  { name: 'Pet Sim 99', emoji: '🐶', likes: 90, players: '230K', bg: 'linear-gradient(135deg,#B9A8F4,#6A4AC9)' },
-  { name: 'Murder Mystery', emoji: '🕵️', likes: 86, players: '95K', bg: 'linear-gradient(135deg,#9AB6C9,#3E5A70)' }
+  { name: 'Adopt Me!', emoji: '🐾', likes: 92, players: '402K', bg: 'linear-gradient(135deg,#F3C2D2,#DFA6BA)' },
+  { name: 'Blox Fruits', emoji: '🍇', likes: 95, players: '750K', bg: 'linear-gradient(135deg,#BAC4EC,#98A6DC)' },
+  { name: 'Brookhaven', emoji: '🏠', likes: 89, players: '510K', bg: 'linear-gradient(135deg,#B6DDC4,#92C8A7)' },
+  { name: 'Tower of Hell', emoji: '🗼', likes: 84, players: '120K', bg: 'linear-gradient(135deg,#A6D4CF,#82BDB6)' },
+  { name: 'Pet Sim 99', emoji: '🐶', likes: 90, players: '230K', bg: 'linear-gradient(135deg,#D2C0EE,#B6A0E2)' },
+  { name: 'Murder Mystery', emoji: '🕵️', likes: 86, players: '95K', bg: 'linear-gradient(135deg,#B7CAD6,#93AEBF)' }
 ];
 const EXTRA = [
-  { name: 'Doors', emoji: '🚪', likes: 91, players: '310K', bg: 'linear-gradient(135deg,#6B7280,#1F2430)' },
-  { name: 'Piggy', emoji: '🐷', likes: 87, players: '180K', bg: 'linear-gradient(135deg,#F4A6C0,#B5446E)' },
-  { name: 'Bee Swarm', emoji: '🐝', likes: 93, players: '260K', bg: 'linear-gradient(135deg,#F4D06A,#C99B2E)' }
+  { name: 'Doors', emoji: '🚪', likes: 91, players: '310K', bg: 'linear-gradient(135deg,#C6BFB8,#A79E95)' },
+  { name: 'Piggy', emoji: '🐷', likes: 87, players: '180K', bg: 'linear-gradient(135deg,#DCC0D2,#C29FB6)' },
+  { name: 'Bee Swarm', emoji: '🐝', likes: 93, players: '260K', bg: 'linear-gradient(135deg,#CFD8B2,#B0BC90)' }
 ];
 const gameByName = (nm) => [...GAMES, ...EXTRA].find(g => g.name.toLowerCase() === String(nm).toLowerCase());
-// O'yin kartochkasi: name/emoji/players props bilan; top → 🔥 TOP belgisi; xray → skelet rejimi
+// O'yin kartochkasi: name/emoji/players props bilan; top → 🔥 TOP belgisi; xray → qolip rejimi
 const RoCard = ({ name, emoji, players, top, xray, onClick }) => {
   const g = gameByName(name);
   const bg = g ? g.bg : 'linear-gradient(135deg,#8E9BB5,#4A5670)';
@@ -904,7 +904,7 @@ function CardFactory({
     const isLast = i === count - 1;
     return (
       <div
-        className={`cf-slot ${sealed && isLast ? 'cf-sealed' : ''} ${shaking && sealed && isLast ? 'cf-shake' : ''}`}
+        className={`cf-slot ${sealed && isLast ? 'cf-sealed' : ''} ${shaking && isLast ? 'cf-shake' : ''}`}
         key={`${mode}-${i}-${nm}`}
         draggable={mode === 'oneway' ? true : undefined}
         onDragStart={mode === 'oneway' ? (e) => { e.preventDefault(); onJam && onJam(); } : undefined}
@@ -933,10 +933,7 @@ function CardFactory({
         {jammed && <span className="cf-jam-note el-in">{tr({ uz: '⛔ faqat yuqoridan pastga', ru: '⛔ только сверху вниз' })}</span>}
       </div>
       <div className="cf-body">
-        <span className="cf-bolts" aria-hidden><i /><i /><i /><i /></span>
         <div className="cf-plate">{'<GameCard />'}</div>
-        <div className="cf-gears" aria-hidden><span className="cf-gear">⚙</span><span className="cf-gear cf-gear-b">⚙</span></div>
-        <div className="cf-window">{humming ? <span className="cf-spark">✦ ✦ ✦</span> : <span className="cf-idle">▢ ▢</span>}</div>
         {mode === 'feeder' && (
           <button type="button" className={`cf-lever ${leverPulled ? 'pulled' : ''}`} onClick={onLever} aria-label={tr({ uz: 'Richagni torting', ru: 'Потяните рычаг' })}>
             <span className="cf-lever-arm"><span className="cf-lever-knob" /></span>
@@ -1009,7 +1006,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
               })}
             </div>
             {!xrayUsed && <p className="small" style={{ color: T.ink3, fontStyle: 'italic', margin: 0 }}>{tr({ uz: "Avval Rentgenni yoqib ko'ring ←", ru: 'Сначала включите Рентген ←' })}</p>}
-            {picked !== null && <p className="hook-ack fade-step">{tr({ uz: <>Aynan! Skelet — <b>bitta <span className="mono">{'<GameCard />'}</span></b>, farq esa faqat <b>ma'lumotda</b> (props). Bugun shu ma'lumotni komponentlarga <b>uzatish san'atini</b> o'rganamiz — va butun katalogni quramiz.</>, ru: <>Именно! Скелет — <b>один <span className="mono">{'<GameCard />'}</span></b>, а разница только в <b>данных</b> (props). Сегодня освоим <b>искусство передачи</b> этих данных компонентам — и соберём весь каталог.</> })}</p>}
+            {picked !== null && <p className="hook-ack fade-step">{tr({ uz: <>Aynan! Qolip — <b>bitta <span className="mono">{'<GameCard />'}</span></b>, farq esa faqat <b>ma'lumotda</b> (props). Bugun shu ma'lumotni komponentlarga <b>uzatish san'atini</b> o'rganamiz — va butun katalogni quramiz.</>, ru: <>Именно! Шаблон — <b>один <span className="mono">{'<GameCard />'}</span></b>, а разница только в <b>данных</b> (props). Сегодня освоим <b>искусство передачи</b> этих данных компонентам — и соберём весь каталог.</> })}</p>}
           </Col>
         </Split>
         </Zoomable>
@@ -1021,9 +1018,9 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
 // ===== SCREEN 1 — REJA (va'da + bugungi 5 qadam) =====
 const Screen1 = ({ screen, onNext, onPrev }) => {
   const STEPS = [
-    { text: { uz: "Ma'lumotni uzatish — posilka", ru: 'Передача данных — посылка' }, tag: '<GameCard name="…" />' },
+    { text: { uz: "Ma'lumotni uzatish — varaqa", ru: 'Передача данных — слип' }, tag: '<GameCard name="…" />' },
     { text: { uz: 'Bir nechta props', ru: 'Несколько props' }, tag: 'name · players · emoji' },
-    { text: { uz: "Ma'lumot daryosi — faqat pastga", ru: 'Река данных — только вниз' }, tag: 'App → Card → Button' },
+    { text: { uz: 'Bir tomonlama konveyer — faqat pastga', ru: 'Односторонний конвейер — только вниз' }, tag: 'App → Card → Button' },
     { text: { uz: "Props faqat o'qiladi", ru: 'Props только читаются' }, tag: 'read-only' },
     { text: { uz: "Ro'yxat → katalog", ru: 'Список → каталог' }, tag: 'games.map(…)' }
   ];
@@ -1077,7 +1074,7 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
   );
 };
 
-// ===== SCREEN 2 — POSILKA (App → GameCard ma'lumot yetkaziladi) =====
+// ===== SCREEN 2 — VARAQA (App → GameCard ma'lumot yetkaziladi) =====
 const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [phase, setPhase] = useState(storedAnswer ? 3 : 0); // 0 idle, 1 uchmoqda, 2 yetib keldi, 3 chizildi
   const [running, setRunning] = useState(false);
@@ -1093,12 +1090,12 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     }, 900);
   };
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
-  const audio = useAudio([{ id: 's2', text: `App ma'lumotni GameCard'ga qanday yetkazadi? Xuddi Roblox'dagi trade kabi: bir o'yinchi ikkinchisiga buyum uzatadi. Bizda App posilka jo'natadi — atribut yozadi. GameCard esa uni props orqali qabul qiladi. Posilkani yuborib, yo'lini kuzating.`, trigger: 'on_mount', waits_for: null }]);
+  const audio = useAudio([{ id: 's2', text: `App ma'lumotni GameCard'ga qanday yetkazadi? Xuddi Roblox'dagi trade kabi: bir o'yinchi ikkinchisiga buyum uzatadi. Bizda App varaqa jo'natadi — atribut yozadi. GameCard esa uni props orqali qabul qiladi. Varaqani yuborib, yo'lini kuzating.`, trigger: 'on_mount', waits_for: null }]);
   return (
-    <Stage eyebrow={tr({ uz: 'Uzatish', ru: 'Передача' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Posilkani yuboring', ru: 'Отправьте посылку' })} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Uzatish', ru: 'Передача' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Varaqani yuboring', ru: 'Отправьте посылку' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>App ma'lumotni GameCard'ga <span className="italic" style={{ color: T.accent }}>qanday yetkazadi</span>?</>, ru: <>Как App <span className="italic" style={{ color: T.accent }}>доставляет данные</span> в GameCard?</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Xuddi Roblox'dagi <b style={{ color: T.ink }}>trade</b> kabi: bir o'yinchi ikkinchisiga buyum uzatadi. Bizda: <b style={{ color: T.ink }}>App jo'natadi</b> (atribut yozadi), <b style={{ color: T.ink }}>GameCard qabul qiladi</b> (props orqali). Posilkani yuborib, yo'lini kuzating.</>, ru: <>Как <b style={{ color: T.ink }}>trade</b> в Roblox: один игрок передаёт вещь другому. У нас: <b style={{ color: T.ink }}>App отправляет</b> (пишет атрибут), <b style={{ color: T.ink }}>GameCard принимает</b> (через props). Отправьте посылку и проследите её путь.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Xuddi Roblox'dagi <b style={{ color: T.ink }}>trade</b> kabi: bir o'yinchi ikkinchisiga buyum uzatadi. Bizda: <b style={{ color: T.ink }}>App jo'natadi</b> (atribut yozadi), <b style={{ color: T.ink }}>GameCard qabul qiladi</b> (props orqali). Varaqani yuborib, yo'lini kuzating.</>, ru: <>Как <b style={{ color: T.ink }}>trade</b> в Roblox: один игрок передаёт вещь другому. У нас: <b style={{ color: T.ink }}>App отправляет</b> (пишет атрибут), <b style={{ color: T.ink }}>GameCard принимает</b> (через props). Отправьте слип и проследите его путь.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
@@ -1109,7 +1106,8 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 <Jx>{'<GameCard '}</Jx><At>name</At>=<St>"Doors"</St> <At>players</At>=<St>"310K"</St><Jx>{' />'}</Jx>
               </span>
             </pre>
-            <button className="btn fade-up delay-2" style={{ alignSelf: 'flex-start' }} onClick={send} disabled={running}>{running ? tr({ uz: "Yo'lda…", ru: 'В пути…' }) : (done ? tr({ uz: '📦 Yana yuborish', ru: '📦 Отправить ещё раз' }) : tr({ uz: '📦 Posilkani yuborish', ru: '📦 Отправить посылку' }))}</button>
+            <button className="btn fade-up delay-2" style={{ alignSelf: 'flex-start' }} onClick={send} disabled={running}>{running ? tr({ uz: "Yo'lda…", ru: 'В пути…' }) : (done ? tr({ uz: '📄 Yana yuborish', ru: '📄 Отправить ещё раз' }) : tr({ uz: '📄 Varaqani yuborish', ru: '📄 Отправить слип' }))}</button>
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Yo'l: <b>atribut yozildi → props'ga tushdi → kartochka chizildi</b>. Atribut nomi = props ichidagi nom: <span className="mono">name</span> → <span className="mono">props.name</span>.</>, ru: <>Путь: <b>написан атрибут → попал в props → нарисована карточка</b>. Имя атрибута = имя внутри props: <span className="mono">name</span> → <span className="mono">props.name</span>.</> })}</p></div>}
           </Col>
           <Col>
             <p className="flow-label">{tr({ uz: 'GameCard — qabul qiluvchi', ru: 'GameCard — получатель' })}</p>
@@ -1123,7 +1121,6 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <CardFactory mode="debut" humming={running} slipIn={phase === 1}
               slip={phase < 3 ? <><span className="cf-slip-k">name</span>="Doors" · <span className="cf-slip-k">players</span>="310K"</> : null}
               trayCards={phase >= 3 ? [{ name: 'Doors', players: '310K' }] : []} used={phase >= 3 ? 1 : 0} feed={phase} />
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Yo'l: <b>atribut yozildi → props'ga tushdi → kartochka chizildi</b>. Atribut nomi = props ichidagi nom: <span className="mono">name</span> → <span className="mono">props.name</span>.</>, ru: <>Путь: <b>написан атрибут → попал в props → нарисована карточка</b>. Имя атрибута = имя внутри props: <span className="mono">name</span> → <span className="mono">props.name</span>.</> })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -1163,6 +1160,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <div className="fade-up delay-2" style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
               {EMOJIS.map(v => <button key={v} className={`propchip propchip-emoji ${emoji === v ? 'sel' : ''}`} onClick={() => setEmoji(v)}>{v}</button>)}
             </div>
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>3 ta props — 3 ta atribut. Komponent ularni <span className="mono">props.name</span>, <span className="mono">props.players</span>, <span className="mono">props.emoji</span> deb o'qiydi.</>, ru: <>3 props — 3 атрибута. Компонент читает их как <span className="mono">props.name</span>, <span className="mono">props.players</span>, <span className="mono">props.emoji</span>.</> })}</p></div>}
           </Col>
           <Col>
             <pre className="code-box fade-up delay-2">
@@ -1180,7 +1178,6 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 <span className={`cf-slip-f ${emoji ? 'on' : ''}`}>emoji{emoji ? `="${emoji}"` : '=?'}</span>
               </span>}
               trayCards={done ? [{ name, players, emoji }] : []} />
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>3 ta props — 3 ta atribut. Komponent ularni <span className="mono">props.name</span>, <span className="mono">props.players</span>, <span className="mono">props.emoji</span> deb o'qiydi.</>, ru: <>3 props — 3 атрибута. Компонент читает их как <span className="mono">props.name</span>, <span className="mono">props.players</span>, <span className="mono">props.emoji</span>.</> })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -1229,17 +1226,17 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     timer.current = setTimeout(() => setShaking(false), 520);
   };
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
-  const audio = useAudio([{ id: 's5', text: `Bola komponent otasiga ma'lumot yubora oladimi? Tasavvur qiling: tepada App — ota, pastida uchta bola kartochka. Ota har bolaga props'ni sharik kabi tashlaydi — yuqoridan pastga. Avval pastga tugmasini, keyin teskarisini sinab ko'ring.`, trigger: 'on_mount', waits_for: null }]);
+  const audio = useAudio([{ id: 's5', text: `Bola komponent otasiga ma'lumot yubora oladimi? Fabrika konveyeri faqat bir tomonga aylanadi: tepada App varaqa tashlaydi, pastdan kartochkalar chiqadi. Avval pastga tugmasini bosing, keyin kartochkani teshikka qaytarib sudrang.`, trigger: 'on_mount', waits_for: null }]);
   return (
-    <Stage eyebrow={tr({ uz: "Ma'lumot daryosi", ru: 'Река данных' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "Ikkala yo'nalishni sinang", ru: 'Проверьте оба направления' })} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Bir tomonlama konveyer', ru: 'Односторонний конвейер' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "Ikkala yo'nalishni sinang", ru: 'Проверьте оба направления' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Bola komponent otasiga ma'lumot <span className="italic" style={{ color: T.accent }}>yubora oladimi</span>?</>, ru: <>Может ли дочерний компонент <span className="italic" style={{ color: T.accent }}>отправить данные</span> родителю?</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Tasavvur qiling: tepada <b style={{ color: T.ink }}>App (ota)</b>, pastida <b style={{ color: T.ink }}>3 ta bola kartochka</b>. Ota har bolaga ma'lumot (props) <b style={{ color: T.ink }}>sharik kabi tashlaydi</b> — yuqoridan pastga. <b style={{ color: T.ink }}>Pastga</b> tugmasini, keyin <b style={{ color: T.ink }}>teskarisini</b> sinab ko'ring.</>, ru: <>Представьте: сверху <b style={{ color: T.ink }}>App (родитель)</b>, под ним <b style={{ color: T.ink }}>3 дочерние карточки</b>. Родитель <b style={{ color: T.ink }}>бросает как шарик</b> данные (props) каждому ребёнку — сверху вниз. Нажмите кнопку <b style={{ color: T.ink }}>Вниз</b>, потом попробуйте <b style={{ color: T.ink }}>наоборот</b>.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Fabrika konveyeri <b style={{ color: T.ink }}>faqat bir tomonga</b> aylanadi. Tepada <b style={{ color: T.ink }}>App (ota)</b> varaqa tashlaydi, pastdan <b style={{ color: T.ink }}>3 ta bola kartochka</b> chiqadi. <b style={{ color: T.ink }}>Pastga</b> tugmasini bosing, keyin kartochkani <b style={{ color: T.ink }}>teshikka qaytarib</b> sudrang.</>, ru: <>Конвейер фабрики крутится <b style={{ color: T.ink }}>только в одну сторону</b>. Сверху <b style={{ color: T.ink }}>App (родитель)</b> бросает слип, снизу выходят <b style={{ color: T.ink }}>3 дочерние карточки</b>. Нажмите <b style={{ color: T.ink }}>Вниз</b>, а потом попробуйте затащить карточку <b style={{ color: T.ink }}>обратно в щель</b>.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
             <div className="fade-up delay-1">
-              <CardFactory mode="oneway" humming={running} slipIn={flow === 1} feed={flow}
+              <CardFactory mode="oneway" humming={running} slipIn={flow === 1} feed={flow} shaking={shaking}
                 jammed={reversed} onJam={sendUp}
                 slip={flow < 2 ? tr({ uz: <><span className="cf-slip-k">App</span> → props (⬇ pastga)</>, ru: <><span className="cf-slip-k">App</span> → props (⬇ вниз)</> }) : null}
                 trayCards={flow >= 2 ? KIDS.map(g => g.name) : []} used={flow >= 2 ? KIDS.length : 0} />
@@ -1250,11 +1247,11 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <p className="flow-label">{tr({ uz: "Ma'lumotni yuborib ko'ring", ru: 'Попробуйте отправить данные' })}</p>
             <div className="fade-up delay-2" style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
               <button className="btn" style={{ alignSelf: 'flex-start' }} onClick={sendDown} disabled={running}>{tr({ uz: "⬇ App'dan bolalarga yuborish", ru: '⬇ Отправить от App детям' })} {flow >= 2 ? '✓' : ''}</button>
-              <button className="btn-soft" style={{ alignSelf: 'flex-start' }} onClick={sendUp}>{tr({ uz: "⬆ Boladan otaga yuborib ko'rish", ru: '⬆ Попробовать от ребёнка родителю' })} {reversed ? '✓' : ''}</button>
+              <button className="btn-soft" style={{ alignSelf: 'flex-start' }} onClick={sendUp} disabled={flow < 2} title={flow < 2 ? tr({ uz: 'Avval pastga yuboring', ru: 'Сначала отправьте вниз' }) : undefined}>{tr({ uz: "⬆ Boladan otaga yuborib ko'rish", ru: '⬆ Попробовать от ребёнка родителю' })} {reversed ? '✓' : ''}</button>
             </div>
-            {flow >= 2 && !reversed && <div className="hint fade-step"><p className="body" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: <>Sharik pastga tushdi: App → 3 ta bola, har biri o'z props'ini oldi. Endi <b style={{ color: T.ink }}>teskarisini</b> sinang ↑</>, ru: <>Шарик упал вниз: App → 3 ребёнка, каждый получил свои props. Теперь попробуйте <b style={{ color: T.ink }}>наоборот</b> ↑</> })}</p></div>}
-            {reversed && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>❌ Yo'l yo'q! Bola otaga props uzata <b>olmaydi</b> — sharik tepaga ketmaydi. Bu React'ning qat'iy qoidasi: ma'lumot <b>faqat yuqoridan pastga</b>. Shuning uchun xatoni topish oson — ma'lumot qayerdan kelganini doim bilasiz.</>, ru: <>❌ Пути нет! Ребёнок <b>не может</b> передать props родителю — шарик не летит вверх. Это строгое правило React: данные <b>только сверху вниз</b>. Поэтому ошибку легко найти — вы всегда знаете, откуда пришли данные.</> })}</p></div>}
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Bir tomonlama oqim: <span className="mono">App → bola kartochkalar</span>. Har bola faqat <b>o'z otasidan</b> oladi, hech qachon aksincha emas.</>, ru: <>Односторонний поток: <span className="mono">App → дочерние карточки</span>. Каждый ребёнок получает только <b>от своего родителя</b>, и никогда наоборот.</> })}</p></div>}
+            {flow >= 2 && !reversed && <div className="hint fade-step"><p className="body" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: <>Varaqa pastga tushdi: App → 3 ta bola, har biri o'z props'ini oldi. Endi kartochkani <b style={{ color: T.ink }}>teshikka qaytarib</b> sudrang ↑</>, ru: <>Слип упал вниз: App → 3 ребёнка, каждый получил свои props. Теперь затащите карточку <b style={{ color: T.ink }}>обратно в щель</b> ↑</> })}</p></div>}
+            {reversed && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>❌ Konveyer orqaga aylanmaydi. Bola otaga props uzata <b>olmaydi</b> — React'da ma'lumot <b>faqat yuqoridan pastga</b>.</>, ru: <>❌ Конвейер не крутится назад. Ребёнок <b>не может</b> передать props родителю — в React данные идут <b>только сверху вниз</b>.</> })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Bir tomonlama konveyer: <span className="mono">App → bola kartochkalar</span>. Ma'lumot qayerdan kelganini doim bilasiz — shuning uchun xatoni topish oson.</>, ru: <>Односторонний конвейер: <span className="mono">App → дочерние карточки</span>. Вы всегда знаете, откуда пришли данные — поэтому ошибку легко найти.</> })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -1491,11 +1488,11 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <Cm>{tr({ uz: "// katalog kodi O'ZGARMADI:", ru: '// код каталога НЕ ИЗМЕНИЛСЯ:' })}</Cm>{'\n'}
               {'{games.map(g => '}<Jx>{'<GameCard '}</Jx><At>name</At>{'={g.name}'}<Jx>{' />'}</Jx>{')}'}
             </pre>
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Ko'rdingizmi? <b>Faqat ma'lumot o'zgardi</b> — kartochkalar o'zi paydo bo'ldi. Buning nomi <b>data-driven sayt</b>: sayt ro'yxatga qarab o'zini chizadi. Roblox ham shunday ishlaydi!</>, ru: <>Видели? <b>Изменились только данные</b> — карточки появились сами. Это называется <b>data-driven сайт</b>: сайт рисует себя по списку. Roblox работает так же!</> })}</p></div>}
           </Col>
           <Col>
             <p className="flow-label">{tr({ uz: "Fabrika — javon o'sadi", ru: 'Фабрика — полка растёт' })}</p>
             <CardFactory mode="shelf" trayCards={all} used={all.length} feed={added.length} />
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Ko'rdingizmi? <b>Faqat ma'lumot o'zgardi</b> — kartochkalar o'zi paydo bo'ldi. Buning nomi <b>data-driven sayt</b>: sayt ro'yxatga qarab o'zini chizadi. Roblox ham shunday ishlaydi!</>, ru: <>Видели? <b>Изменились только данные</b> — карточки появились сами. Это называется <b>data-driven сайт</b>: сайт рисует себя по списку. Roblox работает так же!</> })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -1536,7 +1533,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {!cur && <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Yuqoridan bitta buyruqni tanlang', ru: 'Выберите одну команду выше' })}</p></div>}
             {cur && (
               <div className="ai-card fade-step" key={task || 'stored'}>
-                <div className="ai-row"><span className="ai-badge" style={{ background: T.ink }}>{tr({ uz: 'Agent', ru: 'Агент' })}</span><span className="ai-bubble">{phase === 'planned' ? tr({ uz: 'Mana rejam — tasdiqlaysizmi?', ru: 'Вот мой план — подтверждаете?' }) : (phase === 'building' ? tr({ uz: 'Yozyapman…', ru: 'Пишу…' }) : tr({ uz: 'Bajardim — kodni tekshiring', ru: 'Готово — проверьте код' }))}</span></div>
+                <div className="ai-row"><span className="ai-badge">{tr({ uz: 'Agent', ru: 'Агент' })}</span><span className="ai-bubble">{phase === 'planned' ? tr({ uz: 'Mana rejam — tasdiqlaysizmi?', ru: 'Вот мой план — подтверждаете?' }) : (phase === 'building' ? tr({ uz: 'Yozyapman…', ru: 'Пишу…' }) : tr({ uz: 'Bajardim — kodni tekshiring', ru: 'Готово — проверьте код' }))}</span></div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
                   {cur.plan.map((p, i) => <div key={i} style={{ display: 'flex', gap: 8, alignItems: 'center', fontSize: 13 }}><span style={{ color: phase === 'planned' ? T.ink3 : T.success }}>{phase === 'planned' ? '○' : '✓'}</span><span style={{ color: T.ink }}>{tr(p)}</span></div>)}
                 </div>
@@ -1647,7 +1644,7 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [done, setDone] = useState(!!storedAnswer);
   const LIST = GAMES.slice(0, 3);
   const LINES = [
-    { text: "const games = [ \"Adopt Me!\", \"Blox Fruits\", … ];" },
+    { text: "const games = [\"Adopt Me!\", \"Blox Fruits\", …];" },
     { text: "{games.map(g => (" },
     { text: "  <GameCard />", bug: true },
     { text: "))}" },
@@ -1657,7 +1654,7 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: 'Debugging', ru: 'Дебаггинг' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Xatoni toping', ru: 'Найдите ошибку' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>AI yordam beradi — siz esa <span className="italic" style={{ color: T.accent }}>tekshirasiz</span>.</>, ru: <>AI помогает — а вы <span className="italic" style={{ color: T.accent }}>проверяете</span>.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>AI kod yozishda <b style={{ color: T.ink }}>zo'r yordamchi</b> — katalogni bir zumda yozib berdi. Lekin <b style={{ color: T.ink }}>odamlar ham, AI ham</b> ba'zan kichik xato qiladi. Katalog chizildi, lekin kartochkalar <b style={{ color: T.ink }}>nomsiz</b> — ma'lumot qayerdadir yo'qoldi. Qaysi qator qoidaga zid?</>, ru: <>AI — <b style={{ color: T.ink }}>отличный помощник</b> в написании кода: каталог написал мгновенно. Но <b style={{ color: T.ink }}>и люди, и AI</b> иногда допускают мелкие ошибки. Каталог нарисован, но карточки <b style={{ color: T.ink }}>без имён</b> — данные где-то потерялись. Какая строка нарушает правило?</> })}</Mentor>
+        <Mentor>{tr({ uz: <>AI kod yozishda <b style={{ color: T.ink }}>yaxshi yordamchi</b> — katalogni bir zumda yozib berdi. Lekin <b style={{ color: T.ink }}>odamlar ham, AI ham</b> ba'zan kichik xato qiladi. Katalog chizildi, lekin kartochkalar <b style={{ color: T.ink }}>nomsiz</b> — ma'lumot qayerdadir yo'qoldi. Qaysi qator qoidaga zid?</>, ru: <>AI — <b style={{ color: T.ink }}>отличный помощник</b> в написании кода: каталог написал мгновенно. Но <b style={{ color: T.ink }}>и люди, и AI</b> иногда допускают мелкие ошибки. Каталог нарисован, но карточки <b style={{ color: T.ink }}>без имён</b> — данные где-то потерялись. Какая строка нарушает правило?</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
@@ -1665,15 +1662,14 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <DebugChallenge
               lines={LINES}
               fixed={"  <GameCard name={g} />"}
-              explain={tr({ uz: "Konveyer aylandi, lekin <GameCard /> posilkasiz chaqirilgan — g qo'lda turibdi-yu, uzatilmagan. name={g} qo'shilsa, ma'lumot kartochkalarga oqadi.", ru: 'Конвейер крутился, но <GameCard /> вызван без посылки — g в руках, а не передан. Добавьте name={g} — и данные потекут в карточки.' })}
+              explain={tr({ uz: "Konveyer aylandi, lekin <GameCard /> varaqasiz chaqirilgan — g qo'lda turibdi, lekin uzatilmagan. name={g} qo'shilsa, ma'lumot kartochkalarga oqadi.", ru: 'Конвейер крутился, но <GameCard /> вызван без слипа — g в руках, а не передан. Добавьте name={g} — и данные потекут в карточки.' })}
               onSolved={solve}
             />
           </Col>
           <Col>
             {!done
-              ? <div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: <>Kartochkalar nomsiz va kulrang — demak ularga <b style={{ color: T.ink }}>props yetib bormagan</b>. Posilka qaysi qatorda jo'natilmay qolgan?</>, ru: <>Карточки без имён и серые — значит, <b style={{ color: T.ink }}>props до них не дошли</b>. В какой строке посылка так и не была отправлена?</> })}</p></div>
+              ? <div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: <>Kartochkalar nomsiz va kulrang — demak ularga <b style={{ color: T.ink }}>props yetib bormagan</b>. Varaqa qaysi qatorda jo'natilmay qolgan?</>, ru: <>Карточки без имён и серые — значит, <b style={{ color: T.ink }}>props до них не дошли</b>. В какой строке слип так и не был отправлен?</> })}</p></div>
               : (<>
-                  <div className="takeaway fade-step"><div className="ta-bulb">🛠️</div><p className="ta-h">{tr({ uz: 'Topdingiz va tuzatdingiz — bu debugging!', ru: 'Нашли и исправили — это дебаггинг!' })}</p><p className="ta-sub">{tr({ uz: "AI tez yozadi, siz tekshirib tuzatasiz — zo'r jamoa", ru: 'AI пишет быстро, вы проверяете и чините — отличная команда' })}</p></div>
                   <Win title="robo-games — localhost:5173"><div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 8 }}>{LIST.map(g => <RoCard key={g.name} name={g.name} />)}</div></Win>
                 </>)}
           </Col>
@@ -1914,6 +1910,7 @@ const MentorPracticeStats = ({ live, screen }) => {
 function ScreenLivePractice({ title, task, checklist, screen, storedAnswer, onAnswer, onNext, onPrev, live }) {
   const _gate = useContext(LiveGateCtx) || {};
   const _live = live || _gate.live;
+  const isMentor = !!(_live && _live.mode === 'mentor'); // mentor topshiriqni BAJARMAYDI — kuzatadi (F-0819-41)
   const [checked, setChecked] = useState(() => new Set());
   const [done, setDone] = useState(!!(storedAnswer && storedAnswer.solved));
   const toggle = (i) => setChecked(prev => { const s = new Set(prev); if (s.has(i)) s.delete(i); else s.add(i); return s; });
@@ -1926,10 +1923,10 @@ function ScreenLivePractice({ title, task, checklist, screen, storedAnswer, onAn
   };
   // JONLI: mentor keyingi sahifaga o'tmaguncha NavNext qulf bo'ladi (optionalLive + LiveGateCtx gate). Hozircha done bo'lsa ochiq.
   return (
-    <Stage eyebrow={tr({ uz: 'Amaliyot · VS Code', ru: 'Практика · VS Code' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Avval bajaring', ru: 'Сначала выполните' })} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Amaliyot · VS Code', ru: 'Практика · VS Code' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !isMentor} label={(done || isMentor) ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Avval bajaring', ru: 'Сначала выполните' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr(title)}</h2></div>
-        <Mentor>{tr({ uz: <>Bu topshiriqni <b style={{ color: T.ink }}>o'z kompyuteringizda</b> — VS Code'da bajaring. Har bosqichni bajarib, belgilab boring. Tugagach <b style={{ color: T.ink }}>«Bajardim»</b> tugmasini bosing — ustoz kuzatib turadi.</>, ru: <>Выполните это задание <b style={{ color: T.ink }}>на своём компьютере</b> — в VS Code. Отмечайте каждый шаг по мере выполнения. Когда закончите, нажмите <b style={{ color: T.ink }}>«Выполнил»</b> — наставник наблюдает.</> })}</Mentor>
+        <Mentor>{isMentor ? tr({ uz: <>O'quvchilar topshiriqni <b style={{ color: T.ink }}>VS Code'da</b> bajarmoqda. Nechtasi tugatgani pastda ko'rinadi — hamma tayyor bo'lgach davom eting.</>, ru: <>Ученики выполняют задание <b style={{ color: T.ink }}>в VS Code</b>. Сколько закончили — видно ниже; продолжайте, когда будут готовы все.</> }) : tr({ uz: <>Bu topshiriqni <b style={{ color: T.ink }}>o'z kompyuteringizda</b> — VS Code'da bajaring. Har bosqichni bajarib, belgilab boring. Tugagach <b style={{ color: T.ink }}>«Bajardim»</b> tugmasini bosing — ustoz kuzatib turadi.</>, ru: <>Выполните это задание <b style={{ color: T.ink }}>на своём компьютере</b> — в VS Code. Отмечайте каждый шаг по мере выполнения. Когда закончите, нажмите <b style={{ color: T.ink }}>«Выполнил»</b> — наставник наблюдает.</> })}</Mentor>
         <div className="split">
           <Col>
             <div className="lp-task fade-up delay-1">
@@ -1951,10 +1948,10 @@ function ScreenLivePractice({ title, task, checklist, screen, storedAnswer, onAn
                 );
               })}
             </div>
-            <button className={`lp-done-btn ${done ? 'is-done' : ''}`} disabled={done} onClick={complete}>
+            {!isMentor && <button className={`lp-done-btn ${done ? 'is-done' : ''}`} disabled={done} onClick={complete}>
               {done ? tr({ uz: '✓ Bajarildi — ustozni kuting', ru: '✓ Выполнено — ждите наставника' }) : tr({ uz: '✅ Bajardim', ru: '✅ Выполнил' })}
-            </button>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Zo'r! Vazifani bajardingiz. Ustoz tekshirib, keyingi qadamga o'tkazadi.", ru: 'Отлично! Задание выполнено. Наставник проверит и переведёт к следующему шагу.' })}</p></div>}
+            </button>}
+            {done && !isMentor && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Juda yaxshi! Vazifani bajardingiz. Ustoz tekshirib, keyingi qadamga o'tkazadi.", ru: 'Отлично! Задание выполнено. Наставник проверит и переведёт к следующему шагу.' })}</p></div>}
           </Col>
         </div>
       </div>
@@ -2793,8 +2790,8 @@ export default function ReactPropsReuseLesson({ lang: langProp, onFinished }) {
         .feedback-block.visible { max-height: 800px; opacity: 1; margin-top: clamp(14px,2vw,20px); }
 
         /* === KNOPKALAR === */
-        .btn { font-family: 'Manrope', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.ink}; color: ${T.bg}; border: none; border-radius: 12px; letter-spacing: 0.01em; box-shadow: 0 6px 18px -4px rgba(${T.shadowBase},0.32); padding: clamp(11px,1.6vw,13px) clamp(20px,2.5vw,26px); font-size: clamp(13px,1.6vw,15px); }
-        .btn:hover:not(:disabled) { background: ${T.accent}; box-shadow: 0 10px 24px -4px rgba(255,79,40,0.45); }
+        .btn { font-family: 'Manrope', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.accent}; color: #fff; border: none; border-radius: 12px; letter-spacing: 0.01em; box-shadow: 0 6px 18px -4px rgba(${T.shadowBase},0.32); padding: clamp(11px,1.6vw,13px) clamp(20px,2.5vw,26px); font-size: clamp(13px,1.6vw,15px); }
+        .btn:hover:not(:disabled) { background: #E03E1B; box-shadow: 0 10px 24px -4px rgba(255,79,40,0.45); }
         .btn:disabled { opacity: 0.4; cursor: not-allowed; box-shadow: none; }
         .btn-white-accent { font-family: 'Manrope', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.paper}; color: ${T.accent}; border: none; border-radius: 12px; letter-spacing: 0.01em; box-shadow: 0 8px 22px -4px rgba(255,79,40,0.35), 0 0 0 1px rgba(255,79,40,0.12); }
         .btn-white-accent:hover:not(:disabled) { background: ${T.accent}; color: #fff; box-shadow: 0 12px 28px -6px rgba(255,79,40,0.55); }
@@ -2824,6 +2821,8 @@ export default function ReactPropsReuseLesson({ lang: langProp, onFinished }) {
         /* === MENTOR === */
         .mentor { display: flex; gap: 12px; align-items: flex-start; }
         .zoomable { position: relative; }
+        /* ⛶ tugmasi yuqori-o'ng burchakni band qiladi (30px + 6px chekka) — o'ng ustunning birinchi qatori unga tegmasin */
+        .zoomable > .split > :last-child > :first-child { padding-right: 40px; }
         .zoom-btn { position: absolute; top: 6px; right: 6px; z-index: 5; width: 30px; height: 30px; border-radius: 8px; border: none; background: rgba(255,255,255,0.82); color: ${T.ink2}; font-size: 14px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.22); transition: all 0.2s; }
         .zoom-btn:hover { background: ${T.paper}; color: ${T.accent}; transform: scale(1.08); }
         .zoom-backdrop { position: fixed; inset: 0; background: rgba(14,14,16,0.55); z-index: 1000; animation: fade-step 0.25s ease; }
@@ -2857,7 +2856,7 @@ export default function ReactPropsReuseLesson({ lang: langProp, onFinished }) {
         /* === STAGE === */
         .stage { max-width: 1100px; margin: 0 auto; height: calc(100dvh / var(--lz, 1)); display: flex; flex-direction: column; }
         .stage-header { flex-shrink: 0; background: ${T.bg}; padding-top: clamp(12px,2vw,18px); padding-bottom: clamp(8px,1.5vw,12px); }
-        .stage-content { flex: 1; min-height: 0; padding-top: clamp(10px,1.7vw,16px); padding-bottom: clamp(17px,3.4vw,34px); display: flex; flex-direction: column; overflow-y: auto; overflow-x: hidden; -webkit-overflow-scrolling: touch; scroll-behavior: smooth; }
+        .stage-content { flex: 1; min-height: 0; justify-content: safe center; padding-top: clamp(10px,1.7vw,16px); padding-bottom: clamp(17px,3.4vw,34px); display: flex; flex-direction: column; overflow-y: auto; overflow-x: hidden; -webkit-overflow-scrolling: touch; scroll-behavior: smooth; }
         .stage-content.narrow { max-width: 680px; width: 100%; margin: 0 auto; }
         .stage-nav { flex-shrink: 0; background: ${T.bg}; border-top: 1px solid rgba(167,166,162,0.25); padding-top: clamp(12px,2vw,15px); padding-bottom: clamp(12px,2vw,15px); display: flex; gap: 12px; align-items: center; }
         .chrome { display: flex; align-items: center; justify-content: space-between; }
@@ -2906,7 +2905,6 @@ export default function ReactPropsReuseLesson({ lang: langProp, onFinished }) {
         .ai-line { font-family: 'JetBrains Mono'; font-size: 13px; color: ${CODE.text}; cursor: pointer; padding: 7px 9px; border-radius: 6px; transition: all 0.15s; white-space: pre-wrap; } .ai-line:hover { background: rgba(255,255,255,0.06); }
         .ai-line.bad { background: rgba(255,79,40,0.16); box-shadow: inset 0 0 0 1px ${T.accent}; } .ai-line.ok { background: rgba(31,122,77,0.16); }
         .ai-prompt { font-size: 12px; color: ${T.ink3}; margin: 0; font-style: italic; } .note-h { font-weight: 700; font-size: 13px; margin: 0 0 4px; }
-        .takeaway { background: ${T.accentSoft}; border-radius: 14px; padding: 20px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 5px; } .ta-bulb { font-size: 34px; } .ta-h { font-family: 'Source Serif 4', serif; font-weight: 600; font-size: clamp(16px,2.2vw,20px); color: ${T.ink}; margin: 0; } .ta-sub { color: ${T.accent}; font-weight: 600; font-size: 13px; margin: 0; }
 
         /* === YAKUN === */
         .hero { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
@@ -2958,7 +2956,7 @@ export default function ReactPropsReuseLesson({ lang: langProp, onFinished }) {
         .rothumb-play { position: absolute; z-index: 1; bottom: 6px; right: 6px; width: 19px; height: 19px; border-radius: 50%; background: rgba(255,255,255,0.92); color: #1A2436; font-size: 8px; display: flex; align-items: center; justify-content: center; padding-left: 1px; box-shadow: 0 2px 7px rgba(0,0,0,0.3); opacity: 0; transform: scale(0.55); transition: all 0.2s; }
         .topbadge { position: absolute; z-index: 2; top: 6px; left: 6px; font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 8.5px; color: #fff; background: linear-gradient(135deg,#FF6B35,#FF4F28); padding: 3px 8px; border-radius: 99px; letter-spacing: 0.04em; box-shadow: 0 2px 8px -1px rgba(255,79,40,0.6); }
         .robar { height: 4px; background: rgba(0,0,0,0.13); }
-        .robar-fill { display: block; height: 100%; background: #1FA463; transition: width 0.4s ease; }
+        .robar-fill { display: block; height: 100%; background: #5FA77F; transition: width 0.4s ease; }
         .robody { padding: 8px 11px 10px; }
         .roname { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 12.5px; color: ${T.ink}; margin: 0 0 5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         .rostats { display: flex; align-items: center; gap: 9px; font-family: 'Manrope', sans-serif; font-size: 11px; color: ${T.ink3}; font-weight: 700; }
@@ -2968,7 +2966,7 @@ export default function ReactPropsReuseLesson({ lang: langProp, onFinished }) {
         .hpop { animation: heart-pop 0.4s ease; display: inline-block; }
         /* Rentgen rejimi */
         .xray-ov { position: absolute; inset: 0; border: 1.5px dashed ${T.accent}; border-radius: 12px; background: rgba(246,244,239,0.9); display: flex; align-items: center; justify-content: center; animation: fade-step 0.35s ease-out; z-index: 2; }
-        /* Posilka */
+        /* Varaqa */
         @keyframes fly-down { 0% { opacity: 0; transform: translate(-50%, -18px) scale(0.7); } 35% { opacity: 1; } 100% { opacity: 0; transform: translate(-50%, 46px) scale(1); } }
         .parcel { transform: translateX(-50%); animation: fly-down 0.9s ease-in forwards; z-index: 3; }
         /* Ma'lumot daryosi tomchilari */
@@ -2981,7 +2979,7 @@ export default function ReactPropsReuseLesson({ lang: langProp, onFinished }) {
         @keyframes card-pop { 0% { opacity: 0; transform: scale(0.82) translateY(6px); } 60% { transform: scale(1.04); } 100% { opacity: 1; transform: none; } }
         .card-pop { animation: card-pop 0.4s cubic-bezier(.34,1.45,.5,1); }
 
-        /* === POSILKA 2 (yorliqli) — Screen2 === */
+        /* === VARAQA 2 (yorliqli) — Screen2 === */
         @keyframes parcel-arc { 0% { opacity: 0; transform: translate(-50%,-24px) scale(0.6) rotate(-10deg); } 25% { opacity: 1; } 80% { opacity: 1; } 100% { opacity: 0; transform: translate(-50%,42px) scale(1.05) rotate(8deg); } }
         .parcel2 { position: absolute; top: 6px; left: 50%; z-index: 3; display: flex; flex-direction: column; align-items: center; gap: 3px; animation: parcel-arc 0.95s cubic-bezier(.5,0,.5,1) forwards; pointer-events: none; }
         .parcel2-box { font-size: 26px; filter: drop-shadow(0 4px 6px rgba(255,79,40,0.45)); }
@@ -3001,7 +2999,7 @@ export default function ReactPropsReuseLesson({ lang: langProp, onFinished }) {
         .tree-upball { position: absolute; left: 50%; bottom: 34%; transform: translateX(-50%); font-family: 'Manrope'; font-weight: 700; font-size: 11px; color: ${T.accent}; background: #fff; padding: 3px 10px; border-radius: 99px; box-shadow: 0 4px 11px -3px rgba(255,79,40,0.45); white-space: nowrap; z-index: 5; animation: upbounce 1s ease-out forwards; }
         @keyframes upbounce { 0% { opacity: 0; transform: translate(-50%,12px); } 20% { opacity: 1; } 55% { transform: translate(-50%,-16px); } 72% { transform: translate(-50%,-7px); } 100% { opacity: 0; transform: translate(-50%,-22px); } }
 
-        /* === APP → KARTOCHKA SHARIK — Screen6 (read-only) === */
+        /* === APP → KARTOCHKA VARAQASI — Screen6 (read-only) === */
         .drop-stage { display: flex; flex-direction: column; align-items: center; gap: 0; }
         .drop-app { display: flex; flex-direction: column; align-items: center; gap: 1px; background: ${T.ink}; color: #fff; border-radius: 11px; padding: 8px 20px; box-shadow: 0 6px 16px -5px rgba(${T.shadowBase},0.4); }
         .drop-app-tag { font-family: 'Manrope'; font-weight: 800; font-size: 13px; }
@@ -3041,8 +3039,8 @@ export default function ReactPropsReuseLesson({ lang: langProp, onFinished }) {
         .lp-step.on .lp-check { background: ${T.success}; color: #fff; box-shadow: none; animation: lp-check-pop 0.34s cubic-bezier(.3,1.5,.5,1); }
         @keyframes lp-check-pop { 0% { transform: scale(0.7); } 45% { transform: scale(1.3); } 100% { transform: scale(1); } }
         .lp-step-t { flex: 1; min-width: 0; }
-        .lp-done-btn { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(14px,1.8vw,16px); cursor: pointer; border: none; border-radius: 13px; padding: 14px 20px; background: ${T.ink}; color: ${T.bg}; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.34); transition: all 0.18s; margin-top: 2px; }
-        .lp-done-btn:hover:not(:disabled) { background: ${T.accent}; box-shadow: 0 12px 28px -6px rgba(255,79,40,0.5); }
+        .lp-done-btn { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(14px,1.8vw,16px); cursor: pointer; border: none; border-radius: 13px; padding: 14px 20px; background: ${T.accent}; color: ${T.bg}; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.34); transition: all 0.18s; margin-top: 2px; }
+        .lp-done-btn:hover:not(:disabled) { background: #E03E1B; box-shadow: 0 12px 28px -6px rgba(255,79,40,0.5); }
         .lp-done-btn.is-done { background: ${T.successSoft}; color: ${T.success}; box-shadow: inset 0 0 0 1.5px ${T.success}66; cursor: default; animation: lp-done-pop 0.44s cubic-bezier(.3,1.35,.5,1); }
         @keyframes lp-done-pop { 0% { transform: scale(1); } 32% { transform: scale(1.05) translateY(-2px); } 60% { transform: scale(0.98); } 100% { transform: scale(1); } }
         @media (prefers-reduced-motion: reduce) { .lp-step.on .lp-check, .lp-done-btn.is-done { animation: none !important; } }
@@ -3051,7 +3049,7 @@ export default function ReactPropsReuseLesson({ lang: langProp, onFinished }) {
         /* === 🐞 DEBUG CHALLENGE (reusable) === */
         .dbg { display: flex; flex-direction: column; gap: 10px; }
         .dbg-code { background: ${CODE.bg}; border-radius: 14px; padding: 10px; display: flex; flex-direction: column; gap: 4px; box-shadow: 0 10px 26px -14px rgba(${T.shadowBase},0.4); overflow-x: auto; }
-        .dbg-line { display: flex; align-items: center; gap: 12px; font-family: 'JetBrains Mono', monospace; font-size: clamp(13px,1.8vw,15px); color: ${CODE.text}; padding: 8px 12px; border-radius: 9px; cursor: pointer; border: 1.5px solid transparent; transition: background .15s, border-color .15s; white-space: nowrap; }
+        .dbg-line { display: flex; align-items: center; gap: 10px; font-family: 'JetBrains Mono', monospace; font-size: clamp(11.5px,1.5vw,13.5px); color: ${CODE.text}; padding: 8px 12px; border-radius: 9px; cursor: pointer; border: 1.5px solid transparent; transition: background .15s, border-color .15s; white-space: nowrap; }
         .dbg-line:hover { background: rgba(255,255,255,0.06); }
         .dbg-line.wrong { border-color: #E24848; background: rgba(226,72,72,0.16); animation: dd-shake .4s; }
         @keyframes dd-shake { 0%,100% { transform: translateX(0); } 25% { transform: translateX(-4px); } 75% { transform: translateX(4px); } }
@@ -3290,15 +3288,16 @@ export default function ReactPropsReuseLesson({ lang: langProp, onFinished }) {
 
         /* ===== 🏭 KARTOCHKA FABRIKASI — GameCard-3000 (robot-press) ===== */
         .cf { position: relative; width: 100%; max-width: 300px; margin: 2px auto; display: flex; flex-direction: column; align-items: center; }
-        .cf-meter { display: flex; align-items: center; gap: 7px; font-family: 'Manrope', sans-serif; font-size: 10.5px; font-weight: 600; color: ${T.ink3}; letter-spacing: 0.02em; margin-bottom: 7px; text-transform: uppercase; }
+        .cf-meter { display: flex; align-items: center; gap: 7px; font-family: 'Manrope', sans-serif; font-size: 10.5px; font-weight: 600; color: ${T.ink3}; letter-spacing: 0.02em; margin-bottom: 0; text-transform: uppercase; }
         .cf-meter b { color: ${T.accent}; font-weight: 900; }
         .cf-dot { color: ${T.line}; }
-        .cf-top { position: relative; display: flex; flex-direction: column; align-items: center; width: 82%; min-height: 36px; }
-        .cf--fields .cf-top { min-height: 56px; margin-top: 40px; }
-        .cf-hole { width: 60%; height: 13px; border-radius: 9px; background: #0d1220; box-shadow: inset 0 3px 6px rgba(0,0,0,0.65), 0 0 0 2px ${T.accent}44, 0 1px 0 rgba(255,255,255,0.14); }
-        .cf-slip { position: absolute; top: -30px; left: 50%; transform: translateX(-50%); background: #fff; color: ${T.ink}; font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 9px; padding: 4px 10px; border-radius: 7px; white-space: nowrap; box-shadow: 0 5px 12px -3px rgba(${T.shadowBase},0.4), inset 0 0 0 1px ${T.line}; border-top: 3px solid ${T.accent}; }
+        .cf-top { position: relative; display: flex; flex-direction: column; align-items: center; width: 82%; min-height: 36px; margin-top: 42px; }
+        .cf--shelf .cf-top { margin-top: 0; }
+        .cf--fields .cf-top { min-height: 56px; margin-top: 58px; }
+        .cf-hole { width: 60%; height: 13px; border-radius: 9px; background: #FBF0DC; box-shadow: inset 0 0 0 1.5px #DFB068; }
+        .cf-slip { position: absolute; top: -26px; left: 50%; transform: translateX(-50%); background: #fff; color: ${T.ink}; font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 9px; padding: 4px 10px; border-radius: 7px; white-space: nowrap; box-shadow: 0 5px 12px -3px rgba(${T.shadowBase},0.4), inset 0 0 0 1px ${T.line}; border-top: 3px solid #DFB068; }
         .cf--fields .cf-slip { top: -46px; }
-        .cf-slip-k { color: ${T.accent}; font-weight: 800; }
+        .cf-slip-k { color: #7A5510; font-weight: 800; }
         .cf-slip-in { animation: cf-slip-in 0.9s cubic-bezier(.5,0,.4,1) both; }
         .cf-slip-fields { display: flex; flex-direction: column; gap: 1px; text-align: left; }
         .cf-slip-f { color: ${T.ink3}; transition: color 0.25s; padding: 2px 0; border-bottom: 1px dashed ${T.line}; }
@@ -3306,49 +3305,39 @@ export default function ReactPropsReuseLesson({ lang: langProp, onFinished }) {
         .cf-slip-f.on { color: ${T.success}; font-weight: 800; }
         .cf-slip-jam { animation: cf-jam-bounce 0.62s cubic-bezier(.3,1.4,.5,1) both; }
         .cf-jam-note { position: absolute; top: -26px; right: -8px; background: ${T.accent}; color: #fff; font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 9px; padding: 3px 8px; border-radius: 8px; white-space: nowrap; box-shadow: 0 4px 10px -2px rgba(255,79,40,0.5); }
-        .cf-body { position: relative; width: 100%; border-radius: 16px; padding: 12px 14px 15px; background: linear-gradient(160deg, #26324a, ${CODE.bg}); box-shadow: 0 12px 26px -10px rgba(0,0,0,0.55), inset 0 2px 0 rgba(255,255,255,0.08), inset 0 -4px 0 rgba(0,0,0,0.34); border: 1px solid rgba(0,0,0,0.4); margin-top: 2px; }
+        .cf-body { position: relative; width: 100%; border-radius: 16px; padding: 12px 14px 15px; min-height: 76px; display: flex; flex-direction: column; justify-content: center; background: ${T.paper}; border: 1px solid ${T.line}; box-shadow: 0 12px 26px -14px rgba(${T.shadowBase},0.4); margin-top: 2px; }
         .cf-hum .cf-body { animation: cf-hum-pulse 0.5s ease-in-out infinite; }
-        .cf-bolts { position: absolute; inset: 7px; pointer-events: none; }
-        .cf-bolts i { position: absolute; width: 5px; height: 5px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #9fb0cc, #4a5771); box-shadow: inset 0 -1px 1px rgba(0,0,0,0.4); }
-        .cf-bolts i:nth-child(1){top:0;left:0}.cf-bolts i:nth-child(2){top:0;right:0}.cf-bolts i:nth-child(3){bottom:0;left:0}.cf-bolts i:nth-child(4){bottom:0;right:0}
-        .cf-plate { position: relative; z-index: 1; text-align: center; font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: 12px; color: #fff; background: linear-gradient(180deg, #1f2740, #171d30); border-radius: 8px; padding: 5px 0; margin: 0 4px 9px; box-shadow: inset 0 0 0 1px rgba(255,255,255,0.08); }
-        .cf-gears { position: absolute; top: 8px; right: 10px; display: flex; gap: 1px; font-size: 13px; color: #56637f; z-index: 2; }
-        .cf-hum .cf-gear { animation: cf-gear-spin 1.1s linear infinite; color: ${T.accent}; }
-        .cf-hum .cf-gear-b { animation-direction: reverse; animation-duration: 0.8s; }
-        .cf-window { position: relative; z-index: 1; min-height: 30px; border-radius: 9px; background: repeating-linear-gradient(45deg, rgba(255,255,255,0.05) 0 6px, rgba(255,255,255,0.02) 6px 12px), #141a2b; box-shadow: inset 0 2px 6px rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; padding: 6px; }
-        .cf-idle { font-size: 17px; letter-spacing: 4px; color: #56637f; }
-        .cf-spark { font-size: 12px; letter-spacing: 3px; color: ${T.accent}; animation: cf-hum-pulse 0.5s ease-in-out infinite; }
+        .cf-plate { position: relative; z-index: 1; text-align: center; font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: 12px; color: ${T.ink}; background: ${T.bg}; border: 1px solid ${T.line}; border-radius: 8px; padding: 5px 0; margin: 0 4px; }
         .cf-lever { position: absolute; top: 28%; right: -16px; z-index: 3; border: none; background: transparent; padding: 0; cursor: pointer; display: flex; flex-direction: column; align-items: center; }
-        .cf-lever-arm { position: relative; width: 8px; height: 42px; border-radius: 5px; background: linear-gradient(90deg, #7a8296, #4a5568); transform-origin: bottom center; transition: transform 0.16s; }
+        .cf-lever-arm { position: relative; width: 8px; height: 42px; border-radius: 5px; background: linear-gradient(90deg, #B9BFC9, #8A93A3); box-shadow: inset -1px 0 0 rgba(0,0,0,0.25); transform-origin: bottom center; transition: transform 0.16s; }
         .cf-lever-knob { position: absolute; top: -9px; left: 50%; transform: translateX(-50%); width: 22px; height: 22px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #ff8b6f, ${T.accent} 55%, #c23412); box-shadow: 0 3px 8px -1px rgba(255,79,40,0.6), inset 0 -3px 0 rgba(0,0,0,0.3); }
         .cf-lever:hover .cf-lever-arm { transform: rotate(-8deg); }
         .cf-lever.pulled .cf-lever-arm { animation: cf-lever-pull 0.5s cubic-bezier(.4,0,.3,1); }
         .cf-lever-lbl { margin-top: 4px; font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 8px; letter-spacing: 0.12em; color: ${T.accent}; }
         .cf-hopper { position: absolute; top: -30px; left: 50%; transform: translateX(-50%); display: flex; gap: 3px; }
-        .cf-hopper-slip { position: relative; background: #fff; color: ${T.ink2}; font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 8px; padding: 3px 6px; border-radius: 5px; box-shadow: 0 3px 7px -2px rgba(${T.shadowBase},0.35), inset 0 0 0 1px ${T.line}; border-top: 2px solid ${T.accent}; }
+        .cf-hopper-slip { position: relative; background: #fff; color: ${T.ink2}; font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 8px; padding: 3px 6px; border-radius: 5px; box-shadow: 0 3px 7px -2px rgba(${T.shadowBase},0.35), inset 0 0 0 1px ${T.line}; border-top: 2px solid #DFB068; }
         .cf-chute { position: relative; width: 90%; margin-top: -2px; }
-        .cf-lip { display: block; height: 10px; border-radius: 0 0 11px 11px; background: linear-gradient(180deg, #2a3348, #1a2131); box-shadow: inset 0 3px 5px rgba(0,0,0,0.5); }
-        .cf-hum .cf-lip { box-shadow: inset 0 3px 5px rgba(0,0,0,0.5), 0 0 14px 1px rgba(255,79,40,0.5); }
+        .cf-lip { display: block; height: 10px; border-radius: 0 0 11px 11px; background: ${T.bg}; box-shadow: inset 0 0 0 1px ${T.line}; }
+        .cf-hum .cf-lip { box-shadow: inset 0 0 0 1px ${T.line}, 0 0 14px 1px rgba(255,79,40,0.45); }
         .cf-tray { margin-top: 9px; display: grid; grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); gap: 8px; min-height: 44px; }
         .cf-tray-empty { grid-column: 1 / -1; text-align: center; font-family: 'Manrope', sans-serif; font-style: italic; font-size: 11px; color: ${T.ink3}; padding: 10px 0; }
         .cf-slot { position: relative; animation: cf-card-pop 0.55s cubic-bezier(.4,1.3,.5,1) both; }
         .cf--oneway .cf-slot { cursor: grab; }
         .cf-slot.cf-shake { animation: cf-shake 0.5s ease-in-out; }
-        .cf-sealed::after { content: ''; position: absolute; inset: 0; border-radius: 12px; background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.55) 50%, transparent 70%); background-size: 220% 100%; background-position: 130% 0; pointer-events: none; animation: cf-seal-shine 2.6s ease-in-out infinite; }
+        .cf-sealed::after { content: ''; position: absolute; inset: 0; border-radius: 12px; background: linear-gradient(120deg, transparent 30%, rgba(${T.shadowBase},0.16) 50%, transparent 70%); background-size: 220% 100%; background-position: 130% 0; pointer-events: none; animation: cf-seal-shine 2.6s ease-in-out infinite; }
         .cf-seal { position: absolute; top: 5px; right: 5px; font-size: 13px; filter: drop-shadow(0 1px 2px rgba(0,0,0,0.35)); z-index: 2; }
         .cf-marker { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); font-size: 18px; opacity: 0; pointer-events: none; z-index: 3; }
         .cf-slot.cf-shake .cf-marker { animation: cf-marker-slip 0.5s ease-in both; }
-        @keyframes cf-slip-in { 0% { transform: translate(-50%,-30px); opacity: 0; } 40% { opacity: 1; } 75% { transform: translate(-50%,6px); } 100% { transform: translate(-50%,0); opacity: 1; } }
-        @keyframes cf-hum-pulse { 0%,100% { filter: brightness(1); } 50% { filter: brightness(1.16); } }
-        @keyframes cf-gear-spin { to { transform: rotate(360deg); } }
+        @keyframes cf-slip-in { 0% { transform: translate(-50%,-18px); opacity: 0; } 40% { opacity: 1; } 75% { transform: translate(-50%,6px); } 100% { transform: translate(-50%,0); opacity: 1; } }
+        @keyframes cf-hum-pulse { 0%,100% { box-shadow: 0 12px 26px -14px rgba(${T.shadowBase},0.4); } 50% { box-shadow: 0 12px 26px -14px rgba(${T.shadowBase},0.4), 0 0 0 3px rgba(255,79,40,0.18); } }
         @keyframes cf-lever-pull { 0% { transform: rotate(0); } 40% { transform: rotate(52deg); } 100% { transform: rotate(0); } }
         @keyframes cf-card-pop { 0% { transform: translateY(-34px) scale(0.85); opacity: 0; } 55% { opacity: 1; } 78% { transform: translateY(4px) scale(1.04); } 100% { transform: translateY(0) scale(1); opacity: 1; } }
         @keyframes cf-shake { 0%,100% { transform: translateX(0); } 20% { transform: translateX(-6px) rotate(-1.5deg); } 45% { transform: translateX(6px) rotate(1.5deg); } 70% { transform: translateX(-3px); } }
-        @keyframes cf-jam-bounce { 0% { transform: translate(-50%,10px); } 35% { transform: translate(-50%,4px); } 60% { transform: translate(-50%,-14px); } 100% { transform: translate(-50%,-30px); } }
+        @keyframes cf-jam-bounce { 0% { transform: translate(-50%,10px); } 35% { transform: translate(-50%,4px); } 60% { transform: translate(-50%,-12px); } 100% { transform: translate(-50%,-4px); } }
         @keyframes cf-seal-shine { 0%,72%,100% { background-position: 130% 0; } 84% { background-position: -60% 0; } }
         @keyframes cf-marker-slip { 0% { opacity: 0; transform: translate(-50%,-50%) rotate(0); } 25% { opacity: 1; } 100% { opacity: 0; transform: translate(60px,40px) rotate(35deg); } }
         @media (prefers-reduced-motion: reduce) {
-          .cf-slip-in, .cf-slot, .cf-slot.cf-shake, .cf-sealed::after, .cf-hum .cf-body, .cf-hum .cf-gear, .cf-spark, .cf-lever.pulled .cf-lever-arm, .cf-slip-jam, .cf-slot.cf-shake .cf-marker { animation: none !important; }
+          .cf-slip-in, .cf-slot, .cf-slot.cf-shake, .cf-sealed::after, .cf-hum .cf-body, .cf-lever.pulled .cf-lever-arm, .cf-slip-jam, .cf-slot.cf-shake .cf-marker { animation: none !important; }
           .cf-sealed::after { display: none; }
         }
 
@@ -3358,8 +3347,8 @@ export default function ReactPropsReuseLesson({ lang: langProp, onFinished }) {
         .mstats-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
         .mstats-lbl { font-family: 'Manrope'; font-weight: 800; font-size: 12.5px; letter-spacing: 0.07em; text-transform: uppercase; color: ${T.blue}; }
         .mstats-n { font-family: 'Manrope'; font-size: 13.5px; font-weight: 600; color: ${T.ink2}; }
-        .mstats-reveal { font-family: 'Manrope'; font-weight: 700; font-size: 12.5px; background: ${T.ink}; color: #fff; border: none; border-radius: 99px; padding: 7px 14px; cursor: pointer; white-space: nowrap; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.35); transition: all 0.2s; }
-        .mstats-reveal:hover { background: ${T.accent}; box-shadow: 0 6px 16px -4px rgba(255,79,40,0.5); }
+        .mstats-reveal { font-family: 'Manrope'; font-weight: 700; font-size: 12.5px; background: ${T.paper}; color: ${T.accent}; border: 1px solid ${T.accent}; border-radius: 99px; padding: 7px 14px; cursor: pointer; white-space: nowrap; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.35); transition: all 0.2s; }
+        .mstats-reveal:hover { color: #fff; background: ${T.accent}; box-shadow: 0 6px 16px -4px rgba(255,79,40,0.5); }
         .mstats-reveal.ready { background: ${T.accent}; animation: mstats-pulse 1.6s ease-in-out infinite; }
         @keyframes mstats-pulse { 0%,100% { box-shadow: 0 4px 12px -4px rgba(255,79,40,0.5); } 50% { box-shadow: 0 4px 18px 0 rgba(255,79,40,0.55); } }
         .mstats-prog { height: 7px; background: rgba(${T.shadowBase},0.09); border-radius: 99px; overflow: hidden; }
@@ -3423,8 +3412,8 @@ export default function ReactPropsReuseLesson({ lang: langProp, onFinished }) {
         .rc-dot { width: 10px; height: 10px; border-radius: 99px; background: rgba(167,166,162,0.4); cursor: pointer; transition: all 0.25s; border: none; padding: 0; }
         .rc-dot.fill { background: ${T.ink3}; }
         .rc-dot.cur { background: ${T.accent}; width: 26px; }
-        .rc-btn { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(13px,1.7vw,16px); border: none; border-radius: 12px; padding: clamp(11px,1.6vw,14px) clamp(18px,2.6vw,26px); cursor: pointer; background: ${T.ink}; color: ${T.bg}; box-shadow: 0 6px 18px -4px rgba(${T.shadowBase},0.32); transition: all 0.2s; white-space: nowrap; }
-        .rc-btn:hover:not(:disabled) { background: ${T.accent}; }
+        .rc-btn { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(13px,1.7vw,16px); border: none; border-radius: 12px; padding: clamp(11px,1.6vw,14px) clamp(18px,2.6vw,26px); cursor: pointer; background: ${T.accent}; color: #fff; box-shadow: 0 6px 18px -4px rgba(${T.shadowBase},0.32); transition: all 0.2s; white-space: nowrap; }
+        .rc-btn:hover:not(:disabled) { background: #E03E1B; }
         .rc-btn:disabled { opacity: 0.35; cursor: not-allowed; box-shadow: none; }
         .rc-btn.ghost { background: transparent; color: ${T.ink2}; box-shadow: none; }
         .rc-btn.ghost:hover:not(:disabled) { background: ${T.paper}; color: ${T.ink}; }

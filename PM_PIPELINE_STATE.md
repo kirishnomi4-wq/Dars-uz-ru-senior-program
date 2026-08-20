@@ -2429,3 +2429,325 @@ M6 zanjirining OXIRGI halqasi (`pm-m6d12-yol` → **`pm-m6d14-pitch`**).
 **KORPUS §138–§149 — 27 yangi sinf muhrlandi** (F-0819-08…37), har biri tekshiruv-usuli bilan.
 **PROD-SHARTI (yettalasiga ham):** MENTOR-2026 jonli PIN-sinovi — ≥2 o'quvchi, podium/arena ≠ 0.
 **Commit YO'Q. HAMMASI UNCOMMITTED.**
+
+---
+
+## 2026-08-20 · PmLesson9 (m3-09) — audit + 9 bandli tuzatish (F-0820-65…67)
+
+**Eslatma:** `AUDIT_PROMPT.md` yana so'raldi — **repo'da yo'q** (ikkinchi marta tekshirildi).
+Audit `.claude/agents/role/darslik-auditor.md` formati bo'yicha yurgizildi.
+
+| Band | Qilingani |
+|---|---|
+| a | `.live-badge` PmLesson8:2825 qiymatlari aynan: `0.4` → **`0.62`** + `:focus-within` + soya. Eng muhimi `focus-within`: klaviatura bilan yuruvchi ilgari ochib ololmasdi |
+| b | `.wsx` uzuq quti → **matn-havola** (PmLesson8:3156-3163 aynan): `width:auto` · 11.5px · `T.ink2` · `border-bottom`. `.mnote-chip` va `.ach-badge.locked` uzuqlari **qoldi** — 16-qonunga to'g'ri mos |
+| c | `MentorPracticeStats` → `return null` (PmLesson8:866). Bo'sh holat JSX'i ham olib tashlandi. 4 ekran yorlig'i tegilmadi (5·9·10·11/16) |
+| d | **PM-oilaga yangi qaror:** `safe center` ikkala faylga — PmLesson9 **va** PmLesson8 |
+| f | 5 klass → `T.ink2`; **2 ta ISTISNO** → yangi `T.ink3Deep` = `#6D6785` (4.74:1 bg · 5.34:1 paper) |
+| 2 | `.mstats-reveal` → kontur-accent (PM binafsha) · `.rc-btn` → binafsha to'ldirma |
+| 3 | «Kompilyatorni ochish» → **«Kod oynasini ochish»**; kod-izohlar va `src/compilator/` havolalari tegilmadi. Joylashuv **A varianti** |
+| 4 | Hook diagrammasiga `totalVotes > 0` + izoh |
+| 5 | «ushbu kodni va ismingizni kiriting» → «shu…» |
+
+**f-bandi istisnolari (o'lchov bilan asoslandi):**
+- **`.stp`** — ataylab uch pog'onali: kutilmoqda < `.on` (accent) < `.done` (yashil).
+  `ink2` qilinsa bajarilmagan qadam bajarilganchalik kuchli ko'rinadi.
+- **`.h0log-bar`** — brauzer manzil-satri **taqlidi**. Haqiqiy brauzerda ham u kulrang;
+  `ink2` qilinsa sayt-mazmuni bilan tenglashib, maket-ramka ekani bilinmay qoladi.
+
+Qolgan 5 tasi (`.klaunch-sub` · `.kd-skip` · `.pair-next` · `.fc-cue` · `.bfm-lbl` ·
+`.bfm-log-lbl`) — oddiy o'qiladigan matn, `T.ink2` (6.67:1).
+
+**Tegilmadi:** flashcard 9 ta (son kontentga mos, sun'iy to'ldirilmaydi) · himoyalangan
+4 ekran (3/16 «ishlaydi ≠ tayyor» · 5/16 bufet · 7/16 Cyberpunk · 12/16 «tekshirib
+bo'ladigan shart») · `src/compilator/` havolalari.
+
+**Qonunlashtirildi:** `DARS_ETALON` **128-qonun** (`safe center` ikkala olamda majburiy) ·
+**129-qonun** (bo'sh apparat ko'rsatilmaydi — endi ovoz-diagrammasi ham qamrovda) ·
+`KATTA_TOZALASH` **9-band** (C g'oyasi — 111-qonun savoli sifatida).
+
+### ⚠️ PmLesson8 haqida — ogohlantirish
+
+`safe center` qo'shish uchun PmLesson8 ga bir qator yozildi. Shu payt ma'lum bo'ldiki,
+u **yopilgan sikl EMAS**: boshqa seans unga **RU tarjimasini qo'shmoqda** (`ru:` = **394**,
+avvalgi auditimda **0** edi). Mening tahririm bitta qatordan iborat va ularning ishiga
+tegmadi (`ScreenBaho` joyida · `SCREEN_META↔screens` 17=17 · esbuild toza).
+
+`lint:til` PmLesson8 da **5 🟡** beradi (`:1464` `SABAB_SOZ_RU` regexi · `:1765-1767`
+`nom:` maydonlaridagi ruscha matn) — bular **o'sha tarjima ishining yarim holati**,
+meniki emas. **Tegilmadi.**
+
+## Darvozalar
+
+| | PmLesson9 | PmLesson8 |
+|---|---|---|
+| esbuild | ✅ TOZA | ✅ TOZA |
+| `lint:jsx` | ✅ 0 | ✅ 0 |
+| `lint:til` | ✅ 0 | 🟡 5 (begona ish — RU tarjimasi jarayonda) |
+| `lint:dark` | ✅ 0 | ✅ 0 |
+| `lint:prompt` | ✅ 0 | ✅ 0 |
+| META ↔ screens | ✅ 16 = 16 | ✅ 17 = 17 |
+
+**Holat:** UNCOMMITTED.
+
+---
+
+## RU raundi (2026-08-20) — M3-D5 «Qaysi ishni birinchi qilasiz?» UZ→UZ-RU — ✅ TUGADI
+
+**Nima uchun:** 3-Modul auditi ko'rsatdi: 10 ta React darsi UZ-RU tayyor, 4 ta PM darsi
+(`PmLesson8/9/10` + `src/pm/PmUserStoryLesson`) faqat o'zbekcha — RU rejimda modul yarim
+tilda qolardi. Repo bo'ylab PM darslarda RU chizig'i aynan PmLesson7 dan uziladi.
+
+**Bajarildi (`src/3-Modull/PmLesson8.jsx`, `pm-m3d5-v1`):**
+- `RU_I18N_SPEC` 1-bo'lim mexanizmi o'rnatildi (`let __lang` + `tr()` + default export'da `__lang = lang`).
+- **556 ta `{uz, ru}` juftligi** (uz=ru, farq 0) · **432 ta `tr()`** render-chaqirig'i.
+  Qamrov: jonli-darvoza · Stage/Nav · RECAPS (4 to'plam) · mentor-statistika · 4 test ·
+  KATAKLAR/ISHLAR/DEMO_ISH/BAHO/QAYTA ma'lumotlari · Instagram Stories slaydlari ·
+  koding ekrani (VS Code namunasi ham) · refleksiya · 10 flashcard · uy-vazifa ·
+  4 nishon · arena 12 savoli · podium · yakun.
+- **Tekshiruvga bog'liq matnlar sinxronlandi** (spec 4-bo'lim):
+  - `pIsh.vaqt === '1 kun'` → `pIsh.vaqt.uz === '1 kun'` (qiymat endi juftlik);
+  - sabab-tekshiruvi `SABAB_SOZ_RU` bilan to'ldirildi — RU rejimda o'quvchi ruscha yozadi,
+    aks holda to'g'ri sabab «topilmadi» deb qolardi;
+  - takrorlanadigan javob qiymatlari `FOYDA`/`VAQT` lug'atchalariga yig'ildi (bitta manba).
+- Tegilmadi (etalon bo'yicha): `INLINE_KEYS`, `correct`/`correctIdx`, `SCREEN_META`,
+  `SCREEN_INTENTS`, `lessonId`, nishonlarning inglizcha nomlari, class/uslub.
+
+**Darvozalar:** esbuild ✅ toza · `lint:jsx` ✅ 0 · `lint:til` ✅ 0 error (5 🟡 — ruscha
+regex va RU kod-namunasi, kutilgan) · **UZ-regressiya darvozasi**: fayl UZ holiga qaytarilib
+boshlang'ich nusxa bilan solishtirildi — **ko'rinadigan bironta UZ matn o'zgarmagan**
+(farqlar faqat `tr()` o'ramlari, qo'shtirnoq uslubi va yangi `FOYDA/VAQT` ta'riflari).
+
+**Brauzer-tekshiruvi (playwright, dev :5300):** 17/17 ekran **RU** rejimda ochildi —
+0 konsol xatosi, o'zbekcha qoldiq yo'q; 17/17 ekran **UZ** rejimda — 0 xato, kirill oqmagan.
+Topilib tuzatilgani: flashcard «✓ Bildim» pillasi · yakun/arena fonidagi suzuvchi
+so'z-tokenlar (`katak`, `vaqt`, `foyda`, `darrov`, `reja`, `navbat`) RU rejimda o'zbekcha edi.
+
+**Yo'l-yo'lakay topilgan nuqson (tuzatilmadi, qaror kutmoqda):** `_lessonids.txt` da
+`pm-m3d5-v1` YO'Q — shu sababli `npm run smoke` bu darsni jonli-darvozada to'xtatib,
+ichki ekranlarni umuman tekshirmaydi.
+
+**Holat:** UNCOMMITTED. Navbat: PmLesson9 (M3-D10) → PmLesson10 (M3-D14) → PmUserStoryLesson (M3-D2).
+
+### 2026-08-20 · PmLesson9 — 2-raund: takrorlangan ikki nuqson (F-0820-68/69)
+
+Foydalanuvchi topdi: **ikkalasi ham PmLesson8 da allaqachon hal qilingan**, lekin
+PmLesson9 ga o'tmagan. Bu «bir marta hal qilingan nuqson qo'shni darsda qaytadi»
+sinfi — shuning uchun ikkalasi ham raqamli qonun-havolasi bilan muhrlanadi.
+
+**1 · Yonuvchi ramka (10/16 «✋ Qaysi qadam birinchi bo'ladi?»)**
+
+```
+ESKI  .itray { … background: ${T.accentSoft}66; box-shadow: 0 0 0 1.5px ${T.accent}44;
+               animation: itray-pulse 1.6s ease-in-out infinite; }
+      @keyframes itray-pulse { 50% { box-shadow: 0 0 0 2px ${T.accent}, 0 0 16px 2px rgba(91,61,230,0.22); } }
+
+YANGI .itray { display: flex; flex-direction: column; gap: 7px; }
+```
+
+Fon, halqa va puls-animatsiyasi **butunlay o'chdi**; `@keyframes itray-pulse` va
+`.itray.calm` o'lik kod sifatida olib tashlandi. Yorliq («✋ Qaysi qadam birinchi
+bo'ladi? ↓») **qoldi** — u vazifani aytadi, ramka esa hech narsa qo'shmasdi.
+PmLesson8 da bu qatlam **umuman yo'q**: `.ipool` yalang'och.
+
+Qo'shimcha: `↓` strelkasi `infinite` edi → `animation-iteration-count: 6` (≈9 s).
+Chaqiruv vazifasini bajarib to'xtaydi, cheksiz tebranmaydi.
+
+**2 · KODING (11/16): 1·2·3 raqamlari karta chetiga yopishgan**
+
+| | PmLesson8 (tuzatilgan) | PmLesson9 (edi) |
+|---|---|---|
+| `.kdpanel` padding | 14px **18px** | 11px **13px** |
+| `.kdreq` padding-left | **22px** | **19px** |
+| `.kdreq` gap | **7px** | **4px** |
+
+Chapda `border-left: 5px solid ${T.accent}` turadi: 13 + 19 = 32px, ya'ni `<ol>`
+raqamlari accent-chizig'iga yopishardi (PmLesson8 da 18 + 22 = 40px). PmLesson8
+qiymatlari **aynan** ko'chirildi.
+
+**⚠️ Yonidagi topilma — TEGILMADI, qaror kutmoqda.** `.cmt.hunt` (`:3158`) — xuddi shu
+sinfdan yana bir puls-halqa (`@keyframes cmt-hunt`: `0 0 0 9px rgba(110,75,255,0)`).
+Koddagi izohning o'zi uni «`.itray` bilan bir naqsh» deb ataydi. Farqi: u **to'lqin**
+(kengayib so'nadi), doimiy halqa emas, va birinchi juftlik ulangach `.calm` bilan
+tinadi. Foydalanuvchi faqat ✋ ekranini ko'rsatdi — shuning uchun tegilmadi.
+
+**Darvozalar:** esbuild TOZA · `lint:jsx` 0 · `lint:til` 0 · `lint:dark` 0.
+
+### 2026-08-20 · PmLesson9 10/16 — «birortasi joylashmayapti» (F-0820-70)
+
+**Foydalanuvchi shikoyati:** kartalarni bosyapti, hech biri joylashmayapti.
+
+**Tashxis: kod BUZUQ EMAS.** `tryPlace` faqat navbatdagi TO'G'RI kartani qabul qiladi
+(`QADAMLAR[placed.length].id === id`) — bu darsning mazmuni (tartib). Buzuq bo'lgani —
+mexanika atrofidagi hamma narsa:
+
+| Nuqson | Tafsilot |
+|---|---|
+| Va'da yolg'on | Mentor: «Kartani bosing — u **keyingi bo'sh joyga tushadi**». Aslida faqat mos karta tushadi |
+| **Savol o'zgarmaydi** | Yorliq doim «Qaysi qadam **birinchi**?» — 1-karta joylashgach o'quvchi oldida savol qolmasdi |
+| Nishon jim | `.tslot.next` = `inset 0 0 0 2px accent66` — ingichka halqa, bo'sh katakda `—`. Ko'z uni ko'rmasdi |
+| Rad-signali zaif | Karta joyidan **qimirlamasdi**, 0.4 s silkinardi — «hech narsa bo'lmadi» taassuroti |
+| Yon-omil | `S9_ARALASH = ['q3','q5','q1',…]` — to'g'ri karta **3-o'rinda**, chapdan bosgan odam ikki marta xato qiladi |
+
+**Qilingani (muhimlik tartibida — silkinish OXIRGI, birinchi emas):**
+
+1. **Savol tirik:** `S9_ORD = ['birinchi','ikkinchi','uchinchi',"to'rtinchi",'beshinchi']`,
+   yorliq `S9_ORD[placed.length]` ga bog'landi.
+2. **Nishon ko'rinadi:** navbatdagi katakda `—` o'rniga **`?`**; `.tslot.next` to'q accent
+   halqa + accent fon + **oq raqam** + accent `?`.
+   🔴 **Puls ATAYLAB qo'yilmadi** — yonib-o'chuvchi ramka shu darsdan endigina olib
+   tashlangan edi (F-0820-68). Statik, lekin aniq.
+3. **Va'da rost:** «Chiziqda **?** turgan katak — hozir shuni qidiryapmiz. Mos kartani bosing.»
+4. **Rad ko'rinadi:** `@keyframes qstep-reject` — karta yuqoriga sakrab qaytadi
+   (`cmt-shake` o'rniga). `prefers-reduced-motion` qamrovida allaqachon bor.
+
+**Saboq:** «o'zgarmaydigan savol — savol emas». Mexanika to'g'ri bo'lsa ham, agar ekran
+har qadamda **nima so'rayotganini aytmasa**, o'quvchi uni buzuq deb biladi.
+
+**Darvozalar:** esbuild TOZA · `lint:jsx` 0 · `lint:til` 0 · `lint:dark` 0.
+
+---
+
+## RU raundi · 2-dars (2026-08-20) — M3-D2 «User Story: kim va nima uchun?» UZ→UZ-RU — ✅ TUGADI
+
+**Fayl:** `src/pm/PmUserStoryLesson.jsx` (`pm-m3d2-v3`) — P0 etalon-dars, shuning uchun
+har qadam qo'shimcha ehtiyot bilan.
+
+**Bajarildi:** mexanizm (`let __lang` + `tr()` + `__lang = lang`) · **592 ta `{uz, ru}`
+juftligi** (uz=ru, farq 0) · **454 ta `tr()`**. Qamrov: jonli-darvoza · RECAPS (3 to'plam) ·
+mentor-statistika · hikoya-daftar · ikki-mijoz hooki · YouTube namunalari · harakat/sabab
+mashqi · qolip-konstruktor · McDonald's milkshake voqeasi (5 slayd + 2 bashorat) ·
+hikoya-ustaxona · tekshiruvchi stoli (3 karta) · so'rov-sinovi (3 so'rov) · prioritet-doska ·
+3 test · koding (kompilyator) · refleksiya · uy-vazifa · 4 nishon · arena 12 savoli ·
+podium · yakun.
+
+**Tekshiruvga bog'liq joylar (RU_I18N_SPEC 4-bo'lim) — sinxronlandi:**
+- **Kompilyator shartlari** `KOD_EVAL_C2/C3` o'zbekcha «sifatida/xohlayman/uchun» so'zlarini
+  qidirardi — RU rejimda ruscha yozgan o'quvchi shartni bajara olmasdi. Endi ikki to'plam
+  ham qabul qilinadi («как/хочу/чтобы»). Alohida sinov: UZ yechim ✅, RU yechim ✅,
+  chala yechim ❌ (kutilgandek).
+- `<HtmlCompiler lang="uz">` → `lang={__lang}` (qobiq matnlari ham tilga ergashadi);
+  starter-kod, shart-yorliqlari va topshiriq matni `{uz,ru}` juftligiga o'tdi.
+- **Qolip-gapi** ikki tilda boshqa tuzilishda (`Men [KIM] sifatida…` ↔ `Я как [КТО], хочу…`) —
+  bog'lovchi so'zlar `FORMULA_WORDS` ga chiqarildi, gap-bloklar juftlik sifatida yozildi.
+- **Tanlov-saqlash ikki joyda matndan `id`ga o'tkazildi** (takror bug-sinf): qolip-konstruktor
+  (`FRAG_POOL` indeksi) va uy-vazifa nishoni (`HW_TARGETS[].id`) — aks holda til
+  almashganda joylashgan bo'lak/tanlov yo'qolardi.
+
+**Darvozalar:** esbuild ✅ · `lint:jsx` ✅ 0 · `lint:prompt` ✅ 0 · `lint:til` — 5 🔴 bor,
+lekin **hammasi tarjimadan OLDIN ham bor edi** (asl nusxada aynan o'sha 5 xato: `:265`
+kantselyarit «ushbu», `:397` anatomiya-metaforasi, `:717/:732` «tavsiya etiladi»,
+`:1878` sheva-yuklama) — men kiritmadim, tegilmadi (UZ matnni o'zgartirish tarjima
+doirasidan tashqarida). Yangi 🟡 lar — ruscha matn homoglif-ogohlantirishi, kutilgan.
+**UZ-regressiya darvozasi:** normalizatsiya-diff ko'rildi — ko'rinadigan UZ matn o'zgarmagan.
+
+**Brauzer-tekshiruvi (playwright, dev :5300):** **16/16 ekran RU** — 0 konsol xatosi,
+o'zbekcha qoldiq yo'q; **16/16 ekran UZ** — 0 xato, kirill oqmagan. Brauzer tutgan va
+tuzatilgan qoldiqlar: podiumdagi «📒 Hikoya-daftar» yorlig'i · yakun/arena fonidagi suzuvchi
+so'z-tokenlar (KIM/NIMA/NATIJA/sifatida/uchun/xohlayman) uch joyda (`QZ_BG_SHAPES`,
+`HW_TOKENS`, arena canvas `TOK`) · prioritet-yakunidagi tushib qolgan «—» tire.
+Ekran 12 (koding) da `hikoyaYasa(kim, nima, natija)` ataylab o'zbekcha qoladi — kod-entity.
+
+**Holat:** UNCOMMITTED. 3-Modul: 12/14 dars UZ-RU tayyor. Qolgani: PmLesson9 (M3-D10),
+PmLesson10 (M3-D14).
+
+---
+
+## RU raundi · 3-dars (2026-08-20) — M3-D10 «Qachon "tayyor" deb ayta olamiz?» UZ→UZ-RU — ✅ TUGADI
+
+**Fayl:** `src/3-Modull/PmLesson9.jsx` (`pm-m3d10-v1`).
+
+**Bajarildi:** mexanizm (`let __lang` + `tr()` + `__lang = lang`) · **580 ta `{uz, ru}`
+juftligi** (uz=ru, farq 0) · **421 ta `tr()`** · 113 qator tayyor darslardan avtomatik
+ko'chirildi. Qamrov: jonli-darvoza · RECAPS (4 to'plam) · mentor-statistika · bufet
+buyurtma-oynasi sinovi (4 shart) · Cyberpunk 2077 voqeasi (2 bashorat) · o'z shartlaringiz
+ustaxonasi · qabul-tartibi (5 qadam) · koding (kompilyator) · refleksiya · 9 flashcard ·
+4 test · uy-vazifa · 4 nishon · arena 12 savoli · podium · yakun.
+
+**Tekshiruvga bog'liq to'rt joy (RU_I18N_SPEC 4-bo'lim) — sinxronlandi:**
+- **`BAHO_SOZ`** (mavhum-baho detektori) faqat o'zbekcha so'zlarni bilardi — ruscha
+  kalit so'zlar qo'shildi (`красив|удобн|современн|хорош|качествен|понятн|быстр|интересн`);
+  aks holda RU o'quvchi «удобно» deb yozsa, dastur uni yaxshi shart deb hisoblardi.
+- **`normShart`** kirill harflarni butunlay tashlab yuborardi (`[^a-z0-9 ]`) — ruscha
+  shartlar bo'shab qolib, **takror-aniqlagich umuman ishlamasdi**. Endi kirill saqlanadi
+  (alohida sinovda tekshirildi: RU takror ✅ aniqlanadi, boshqa shart ❌ deb belgilanmaydi).
+- **Kompilyator:** `<HtmlCompiler lang="uz">` → `lang={__lang}`; starter-kod, shart-yorliq
+  va hint'lar `{uz,ru}` juftligiga o'tdi. Shartlarning O'ZI (`evalEquals` — true/false
+  qiymatlari) tilga bog'liq emas, tegilmadi.
+- **Kirish/chiqish artefaktlari:** `pm-m3d10-shartlar` yukidagi `ish` maydoni M3-D14 ga
+  uzatiladi va u yerda **matn** sifatida o'qiladi — shuning uchun `tr(ish)` bilan
+  yoziladi (juftlik obyekt sifatida saqlansa keyingi darsda `[object Object]` chiqardi).
+
+**Darvozalar:** esbuild ✅ · `lint:jsx` ✅ 0 · `lint:til` ✅ 0 error (2 🟡 — ruscha regex,
+kutilgan) · `lint:prompt` ✅ 0 · UZ-regressiya normalizatsiya-diffi ko'rildi — ko'rinadigan
+UZ matn o'zgarmagan · arena kalitlari va 60 ta UZ matn dasturiy solishtirildi (aynan mos).
+
+**Brauzer-tekshiruvi:** **16/16 ekran RU** — 0 konsol xatosi, o'zbekcha qoldiq yo'q;
+**16/16 ekran UZ** — 0 xato, kirill oqmagan. Brauzer tutgani: ikkita test-ekran (s5, s7)
+butunlay tarjimasiz qolgan edi + podium sarlavhasi — uchtasi ham tuzatildi.
+
+**Holat:** UNCOMMITTED. 3-Modul: **13/14 dars UZ-RU tayyor**, qolgani — `PmLesson10` (M3-D14).
+
+---
+
+## 2026-08-20 · PmLesson10 (m3-14 · Demo Day) — audit + to'liq to'plam (F-0820-74…87)
+
+**`AUDIT_PROMPT.md` topildi** (03:42, parallel seans yaratgan) — audit shu bo'yicha yurgizildi.
+✅ **Tuzatish:** avvalgi hisobotda «CLAUDE.md xaritasida qayd etilmagan» deb yozgandim — **xato**.
+U ikki joyda qayd etilgan: QONUN jadvalida va yangi **«E — YANGI DARS OCHILDI»** retseptida.
+
+| F-ID | Qilingani |
+|---|---|
+| **74** | `.kdpanel` 11/13px → **14/18px**, `.kdreq` 19px/gap4 → **22px/gap7** (PM8 aynan). Bu nuqsonning **uchinchi** takrori |
+| **75** | `MentorPracticeStats` 0/0 → `return null` (PM8:866) — 5·9·10·11/16 |
+| **76** | `.mstats-reveal` kontur-accent `#5B3DE6` · `.lp-done-btn` va `.rc-btn` to'ldirilgan binafsha |
+| **77** | `.live-badge` `0.4` → **`0.62`** + `:focus-within` + soya |
+| **78** | `.wsx` uzuq quti → matn-havola (PM8:3156-3163) |
+| **79** | `safe center` — endi **uchala PM darsida** bor |
+| **81** | Hook diagrammasi: `totalVotes > 0` |
+| **82** | `.wsp-save:disabled` `0.42` → **`0.5`** + `.wsp-why` shart-matni |
+| **84** | 9 klass → `T.ink2` · **3 ta ISTISNO** → yangi `T.ink3Deep` (`#6D6785`) |
+| **85** | «ushbu» → «shu» |
+| **86** | `dark-lint` ALLOW ga `.cq-b` — muharrir-qatori (m3-08 `.dbg-line` oilasi) |
+| **87** | `.hs` puls-halqasi olib tashlandi + `@keyframes hs-pulse` + `.hs.calm` + reduced-motion bandi |
+
+**F-84 istisnolari — qaysi va nega:**
+`.stp` (uch pog'onali ierarxiya: kutilmoqda < `.on` accent < `.done` yashil) ·
+`.h0site-bar` (brauzer manzil-satri taqlidi) · `.kf-url` (kadr-mock'idagi manzil).
+Qolgan 9 tasi `T.ink2` ga: `.kd-skip` · `.pair-next` · `.fc-cue` · `.fc-hint` ·
+`.hs-list-lbl` · `.hstep-row` · `.wsp-fl` · `.kdr-edit` · `.kf-say-empty`.
+
+### 🔴 F-80 (⛶ burchagi) — QILINMADI, sabab bor
+
+Buyruq «uchala PM fayliga» edi. Tekshirdim: **PM darslarida `Zoomable` komponenti umuman
+yo'q** (`Zoomable` = 0 · `zoom-btn` = 0 · `⛶` = 0 — uchalasida ham). Ya'ni to'qnashadigan
+tugma mavjud emas; qoida qo'shilsa **o'lik CSS** bo'lardi. ⛶ faqat texnik darslarda bor.
+
+### 🔴 Darvoza jiddiy xatoni tutdi
+
+`.wsp-why` matnini buyruq bo'yicha `tr({ uz, ru })` bilan yozdim. `lint:jsx`:
+> `:1451 → tr() ishlatilgan, lekin faylda aniqlanmagan — brauzerda «tr is not defined» (oq ekran)`
+
+**PmLesson10 bir tilli** (`tr()` ta'rifi = 0 · `ru:` = 1). Solishtirish: PM8 `ru:` = 405,
+PM9 = 460 — ularga boshqa seans tarjima qo'shgan, PM10 ga hali yo'q. Matn oddiy o'zbekcha
+qoldirildi; RU — `KATTA_TOZALASH` 6-bandi.
+
+**Yolg'on signal (hujjatlashtirildi, tegilmadi):** `lint:til` 🟡3 — «Zo'r ekan!» (`:911`),
+«Xo'sh, bu nima o'zi?» (`:912`), `MentorNote` dagi iqtibos (`:990`). Bular **personaj
+reaksiyalari**, o'quvchiga murojaat emas.
+
+**Qonunlashtirildi:** `DARS_ETALON` **131-qonun** — «TEGMA» chegarasi: mexanika va
+matn-mazmun himoyalanadi, bezaklar umumiy qonunlarga bo'ysunadi (127·129·130).
+Pretsedent: PM9 `.itray` → PM10 `.hs`.
+
+## Darvozalar — uchala PM darsi
+
+| | PmLesson8 | PmLesson9 | PmLesson10 |
+|---|---|---|---|
+| esbuild | ✅ | ✅ | ✅ |
+| `lint:jsx` | 0 | 0 | 0 |
+| `lint:til` | 0🔴 (5🟡) | 0🔴 (2🟡) | 0🔴 (3🟡 — yolg'on signal) |
+| `lint:dark` | ✅ TOZA | ✅ TOZA | ✅ TOZA |
+| META ↔ screens | 17=17 | 16=16 | 16=16 |
+
+**Holat:** UNCOMMITTED.

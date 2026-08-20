@@ -72,6 +72,80 @@ Bu ikki sinf **har darsda** yuritiladi — ular ko'z bilan sezilmaydi, chunki od
 - **Ovoz-testi (grep tutmaydi):** 3 tasodifiy mentor-pufak + 1 test-savolni ovoz chiqarib o'qing — «hujjat-tarjimasi» yoki «messenjer» bo'lib eshitilsa → metodistga file:line bilan.
 - Rasmiy darvoza: `npm run lint:til <fayl>` — `kant-*`/`sheva-*` error 0.
 
+
+## 🔴 F-0819-56 OV-BANDI — OG'IR/QORA INTERAKTIV ELEMENT (2026-08-19, ETALON 127 · F-29)
+
+**Buyruq:** `npm run lint:dark` — 0 topilma bo'lishi shart.
+
+Nima ovlanadi: krem fonli darsda **quyuq fonli bosiladigan element** (tugma/chip).
+U sahifadagi eng og'ir dog' bo'lib, diqqatni kontentdan tortadi va boshqa tugmalardan
+ajralib qoladi — bitta ekranda ikki xil CTA tili paydo bo'ladi.
+
+**Uchta naqsh — uchalasi ham majburiy.** Qo'lda tekshirganda ham shu tartib:
+
+1. **XOSSA bo'yicha, klass bo'yicha EMAS.** `.btn` dan tashqari `.lp-done-btn`,
+   `.mstats-reveal`, `.rc-btn` da ham aynan shu fon turadi. Klass ro'yxati bilan
+   qidirish ularni KO'RMAYDI — `background` xossasi bo'yicha, yorqinlik hisoblab
+   (`L < 0.22`) qidiriladi.
+
+2. **JSX tomondan klass QISMIY moslik bilan.** `className="btn"` ni qidirish
+   `className="btn fade-step"` va `className="btn fade-up delay-2"` ni o'tkazib
+   yuboradi — 2026-08-19 da aynan shu sabab «3 ta qora tugma» deb xato hisobot
+   berilgan, aslida **6 ta** edi.
+
+3. **INLINE `style={{ background: … }}` — 2026-08-20 da qo'shildi (F-0820-57).**
+   Qoida CSS faylida emas, JSX ichida turishi mumkin:
+   `<span className="ai-badge" style={{ background: T.ink }}>`. Klassning O'ZI toza
+   bo'lsa ham (`.ai-badge` moviy), inline uni bosib ketadi — CSS skaneri esa buni
+   umuman ko'rmaydi. Bu **uchinchi ko'r nuqta** edi: m3-06 auditidan o'tib ketdi va
+   yopilgan m3-04 da ham bitta qoldiq borligi shundan keyin ma'lum bo'ldi.
+   Inline qiymat token bo'lishi mumkin (`T.ink`, `LT.ink`) — u ham almashtiriladi.
+
+**Istisno — JONLI SESSIYA INFRA.** `live-badge` / `LiveBigCode` ichidagi quyuq fonlar
+dars kontenti emas: ular **122 faylda bir xil** va faqat mentorga ko'rinadi. Bitta dars
+sikli ularni tuzata olmaydi, shuning uchun detektorda ataylab istisno qilingan va
+`KATTA_TOZALASH` 1-bandida yashaydi. Boshqa istisno qo'shilmaydi.
+
+**⚠️ ENG MUHIM TEXNIK BAND — tokenlarni AVVAL almashtiring.**
+Dars CSS'i `<style>{\`…\`}</style>` ichida yashaydi, ranglar `${T.ink}` ko'rinishida.
+Qoida tanasini `/\{([^}]*)\}/` bilan olsangiz — `${T.ink}` ning YOPUVCHI qavsi
+qoidani yarim o'qitadi va **token orqali berilgan barcha quyuq fonlar ko'rinmay
+qoladi**. 2026-08-19: birinchi skan 12 ta topdi, tuzatilgani **28 ta** — farq shu.
+Tartib: `css.replace(/\$\{T\.ink\}/g,'#0E0E10')…` → keyin parse.
+
+**Signal BERILMAYDI (ataylab quyuq):**
+kod oynasi (`.code-box`, `.ai-code`, `.dbg-code`) · VS Code maketi (`.vsc*`) ·
+arena/CODE STRIKE/podium (`.qz-`, `.cs-`, `.csn-`, `.hw-big`, `.pod-`) ·
+semantik yashil `#1F7A4D` · holat-ranglari (`:hover`) ·
+**bosilmaydigan maket va bezak** (telefon `.phone*`, Minecraft `.mc-*`, kod-yorlig'i
+`.zlbl`, jonli tasma `.lb-*`) — mezon: qoidada `cursor: pointer` yoki nomida
+`btn|chip|cta|tab|reveal|toggle|pill` bo'lsagina signal beriladi.
+
+**Tuzatish qoidasi (F-29):** ichkaridagi harakat-tugmasi — `accent` fon + oq matn;
+pastdagi navigatsiya — `btn-white-accent`. Ikki holatli tugmada holat farqi
+saqlanadi: bajarilmagan = accent · bajarilgan = yashil.
+
+## 🔴 F-0820-74 OV-BANDI — `.ai-badge` GA INLINE `background` BERILMAYDI (2026-08-20)
+
+**Buyruq:** `grep -n 'ai-badge" style' <fayl>` — 0 topilma bo'lishi shart.
+
+Naqsh **besh darsda** takrorlangan: m3-04:1443 · m3-06:1539 · m3-07:1372 · m3-09:1930 ·
+m3-11:1417. Har safar bir xil:
+
+```jsx
+❌ <span className="ai-badge" style={{ background: T.ink }}>Agent</span>
+✅ <span className="ai-badge">Agent</span>
+```
+
+`.ai-badge` klassining o'zi allaqachon **moviy** (`T.blue`, F-39) — inline uslub uni
+bosib o'tadi va bitta darsda ikki xil AI-rozetka paydo bo'ladi: «AI» moviy, «Agent» qora.
+
+**Nega takrorlanadi:** yangi dars oldingisidan AI-panel blokini ko'chiradi va inline
+uslub blok bilan birga ketadi. Shu sababli tekshiruv **ko'chirilgan har blokda**
+yuritiladi, faqat yangi yozilganida emas. `lint:dark` uni inline-skan orqali tutadi,
+lekin darsning o'z accenti quyuq bo'lsa (PM darslari, `#5B3DE6`) tutmasligi mumkin —
+shuning uchun grep ham majburiy.
+
 ## Nuqsonni hal qilish (CHEKLI — loop yo'q)
 - **Mayda, aniq, xavfsiz** nuqson (bitta apostrof, bitta siz-forma, bitta yorliq) — **o'zingiz Edit qiling**, keyin esbuild.
 - **Tuzilmaviy** nuqson (yetishmagan qatlam, noto'g'ri `correct` indeks, indeks-map siljishi) — **o'zingiz tuzatmang**. Uni hisobotda "mas'ul rol: X" bilan qaytaring. Asosiy agent uni bir marta o'sha rolga yuboradi (maksimum 2 aylanish, keyin foydalanuvchiga eskalatsiya).

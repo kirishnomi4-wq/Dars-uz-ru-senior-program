@@ -369,6 +369,7 @@
     },
     {
       "id": "keyingi-darsda-vada",
+      "except": "hw-note|card hw|Uyga vazifa|Домашнее задание|Tabriklaymiz|Поздравляем",
       "severity": "warn",
       "pattern": "keyingi darsda",
       "suggest": "va'da-qator ekranda turmaydi (73-qonun) — faqat uy-vazifa MUDDAT bandida joiz",
@@ -518,6 +519,7 @@
     },
     {
       "id": "ekran-nomi-tarjimasi",
+      "except": "fayl kengaytma|kengaytmasi(ning)? turi|Brauzerga qo'shiladigan kengaytma|Расширение для браузера|расширения файла|расширение файла|тип файла",
       "severity": "error",
       "pattern": "\\bmuharrir|\\bkengaytma",
       "flags": "i",
@@ -559,10 +561,11 @@
     {
       "id": "anatomiya-metaforasi",
       "severity": "error",
-      "pattern": "suyag|\\bsuyak|\\bskelet|скелет|\\blibos\\b",
+      "pattern": "suyag|\\bsuyak|\\bskelet|скелет|\\blibos\\b|\\byurak|\\byurag|\\bmiya|\\bqon\\b|\\bсердц|\\bмозг",
       "flags": "i",
       "suggest": "inson anatomiyasi taqiq (4.1): HTML tuzilishi — «shablon»; bir tushuncha — bir nom",
-      "law": "MATN_ETALONI 4.1 · KORPUS 85 · F-0810-02"
+      "law": "MATN_ETALONI 4.1 · KORPUS 85 · F-0810-02",
+      "except": "skeleton|скелетон|SkelCard|skel"
     },
     {
       "id": "jon-kiritish",

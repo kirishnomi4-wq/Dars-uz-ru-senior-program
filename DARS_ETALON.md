@@ -1042,6 +1042,163 @@ Uch qatlam birga ishlaydi:
   quloqqa singadi. Sarlavhada esa tanish so'z qolishi mumkin («nechta blokdan?») —
   tanishdan yangiga ko'prik shunday quriladi.
 
+
+**127-qonun — EKRANDAGI HAR DETAL MA'NO TASHISIN (2026-08-19, F-0819-42).**
+Vizual metafora (mashina, robot, qurilma, sxema) qurilganda o'quvchi ko'radigan
+**har bir element biror narsani bildirishi** shart. Bildirmasa — bu bezak emas,
+**shovqin**: o'quvchi «buning ma'nosi nima?» deb to'xtaydi va asosiy g'oyadan chalg'iydi.
+
+**Qat'iy taqiq ro'yxati** (metaforadan qat'i nazar):
+- ❌ **Ko'zlar / yuz** — qurilmaga «tiriklik» beruvchi bezak
+- ❌ **Boltlar, vintlar, zanglar, panel-chiziqlari** — «texnik ko'rinish» uchun
+- ❌ **Ma'nosiz indikator chiroqlari** — holatni bildirmasa, yonmasin
+- ❌ **Sababsiz uzuq chiziqlar** — «bog'lanish» ni bildirmasa, chizilmasin
+  (uzuq chiziq FAQAT: bo'sh joy · joylash zonasi · to'ldiriladigan maydon — 16-qonun)
+- ❌ **To'ldiruvchi shakllar** (`▢ ▢`, `···`) — o'rniga real kod/matn ko'rsatiladi
+
+**Tekshirish savoli:** har elementga barmoq qo'yib so'rang — *«bu nimani bildiradi?»*
+Javob bir jumlada aytilmasa — element o'chadi.
+
+**Oqim-diagrammasi qoidasi.** Ma'lumot yo'li ko'rsatilsa, u **abstrakt emas, o'qiladigan**
+bo'lsin: har qadamda **real kod** tursin va yo'nalish bitta o'qda ko'rinsin.
+- ❌ `props ---- {..}` (gorizontal, abstrakt, uzuq chiziq bilan)
+- ✅ vertikal, har qatori real:
+  `name="Blox Fruits"` ↓ `props` ↓ `{props.name}` ↓ `Blox Fruits`
+  O'quvchi **3 soniyada** oqimni o'qishi kerak.
+
+**Rang — ma'no, bezak emas** (4-bo'lim bilan juft):
+| Rol | Rang |
+|---|---|
+| KIRISH (props, tashqaridan keladigan ma'lumot) | yumshoq **amber** `#FBF0DC` / `#DFB068` / `#7A5510` |
+| NATIJA (JSX, ekranga chiqadigan) | yumshoq **ko'k** `#EDF1FC` / `#A7B9E8` / `#33478A` |
+| ❌ **QIZIL ISHLATILMAYDI** | u XATO rangi — oqim-diagrammasida ziddiyat tug'diradi |
+
+**Metaforani o'ldirmang.** Bezakni olib tashlash ≠ metaforadan voz kechish. Agar bir
+qurilma bir necha ekran bo'ylab o'sib borsa (qismlari yonadi → richag tortiladi →
+ichiga solinadi → ichi ko'rsatiladi), u **bitta hikoya** bo'lib qolishi kerak: faqat
+ma'nosiz qismlari olib tashlanadi, tuzilishi va rejimlari saqlanadi.
+- Dalil: M3-D3 `CardMachine` — 4 ekranda (9·10·12·14/23) bitta qurilma. Ko'zlar,
+  boltlar, `▢ ▢` va uzuq chiziq olib tashlandi; quyuq robot-fon yorug' kartochkaga
+  aylandi; nom-plastinkasi, qolip, kirish teshigi, richag, chiqish latogi — **qoldi**,
+  chunki har biri bir tushunchani bildiradi.
+- Dalil-2: M3-D6 `CardFactory` — **6 ekranda** bitta fabrika (2026-08-20). Aynan shu
+  uch taqiq buzilgan edi: `.cf-bolts` (4 ta bolt) · `.cf-gears` (⚙⚙) · `.cf-window`
+  → **`▢ ▢`** — qonunda misol qilib keltirilgan belgi. Uchalasi o'chdi; teshik, varaqa,
+  nom-plastinkasi, richag, chiqish latogi, hisoblagich va **6 rejimning hammasi qoldi**.
+  Palitra M3-D3 bilan tenglashtirildi (tana `T.paper`, teshik amber `#FBF0DC/#DFB068`).
+  
+  🔴 **«Ishlayapti» signali bittadan ortiq bo'lmasin.** Fabrikada mashina ishlayotganini
+  **to'rtta** narsa aytardi: korpus pulsi · aylanayotgan g'ildirak · `✦ ✦ ✦` · yorishgan
+  latok labi. Holat-indikatori o'z-o'zicha ruxsat etilgan, lekin **takrorlansa** u ham
+  shovqinga aylanadi — bittasi qoldiriladi.
+  
+  ⚠️ **Bezak olingach nisbatni tekshiring.** Oyna o'chgach tana 92px dan 62px ga tushdi
+  va richag (42px) undan oshib ketdi. Qism o'chirilganda qolgan tuzilma o'lchamlari
+  qayta hisoblanadi (`min-height` + markazlash), aks holda metafora «yassilanadi».
+
+- **Dalil-3: M3-D11 `WarpMap` (ROBO-WORLD) — 2026-08-20, F-0820-76.** Modulda uchta
+  metafora-qurilma bor edi; ikkitasi yorug'ga o'tkazilgan, uchinchisi quyuq qolgandi
+  (`.warp` `#141C2E→#0E1524`, `.warp-scene` `#0B1220`). Foydalanuvchi topilmasi:
+  «xaritaning pastida bir qoramtir narsa bor» — uch portal va chiqish eshigi **bitta
+  quyuq dog'** bo'lib o'qilardi.
+
+  🔴 **O'lchov aytgan haqiqat — matn kontrasti AYBDOR EMAS edi.** Barcha yozuvlar AA
+  dan o'tardi (`4.80` · `5.15` · `8.09` · `14.90`). Sinadigan joy **yuza ajratuvchisi**:
+  portal foni o'z idishiga nisbatan **1.14**, chegara **1.35**. Krem olamda kartani
+  **soya** ajratadi — quyuq fonda soya ko'rinmaydi, shuning uchun quyuq panelda
+  «karta» tushunchasi umuman yasalmaydi.
+  📌 Umumiy saboq: quyuq panel ichidagi kartalarni faqat chegara ushlab turadi;
+  ajratish kerak bo'lsa yo chegara kuchaytiriladi, yo panel yorug'ga o'tadi.
+
+  **Qaror: yorug'.** Sabab — 127-qonunning o'z testi: *«bu nimani bildiradi?»*
+  Sahna = sahifa mazmuni, HUD = URL. Kremdagi sahifa yorug'; quyuqlik atmosfera edi,
+  ma'no emas. Palitra M3-D3/M3-D6 bilan tenglashtirildi: tana `T.paper`, portallar
+  `T.bg` + `T.line`, sahna «natija» ko'ki (`#EDF1FC → T.bg`). Zona ranglari
+  (accent · moviy · yashil) identifikator bo'lib **qoldi**.
+
+  ✅ **Yorug' fonda porlash ishlaydi** — retsept M3-D3 `.cm-plate.cm-on` dan: porlaydigan
+  elementning O'ZI to'yingan bo'lsa yetadi. `.warp-zoneicon` → oq halqa + zona-rangli
+  halqa + yumshoq soya. `.warp-zap` oq radialdan **rangli halqa**ga o'tdi (oq porlash
+  yorug' fonda ko'rinmaydi).
+
+  🔴 **ATAYLAB QUYUQ QOLDIRILDI:** `.warp-flash` (`#060A12`) — `<a href>` ning to'liq
+  qayta yuklanishi. Endi u xaritadagi yagona quyuq yuza: **1.06 → 18.03** kontrast.
+  Ya'ni darsning bosh farqi (`<Link>` = markaz almashadi · `<a>` = hammasi qorayadi)
+  matndan tashqari **ko'z bilan** ham o'qiladi. *Quyuq yuza ma'no tashisa — qoladi.*
+
+  ⚠️ **Yorug'ga o'tkazganda kichik kegldagi matnni qayta o'lchang.** `T.ink3` krem fonda
+  atigi **2.22** beradi (quyuq fonda o'sha matn 4.80 edi) — ya'ni «yorug' qildim» degan
+  o'zgarish o'qishni **buzishi** mumkin. Ma'noli kichik matn (yo'l, izoh) `T.ink2` ga
+  o'tkazildi: **6.23**.
+
+**128-qonun — «OLIB KELISH» VA «YUBORISH» DARSLARI IKKI XIL OBRAZDA (2026-08-20, F-0820-71).**
+
+Bitta modul ichida ikki darsning markaziy metaforasi **boshqa-boshqa** bo'lishi mumkin —
+agar ular **teskari yo'nalishdagi** amalni o'rgatsa. Bu izchillik buzilishi emas,
+**semantik bo'linish**: obraz amalning yo'nalishini ko'rsatadi.
+
+| Dars turi | Amal | Obraz | Namuna |
+|---|---|---|---|
+| **olib kelish** | server → o'quvchi (GET) | **ofitsiant**: taom keltiriladi | m3-08 API GET |
+| **yuborish** | o'quvchi → server (POST · PUT · DELETE) | **jo'natma**: posilka, yorliq, dispetcher-pulti | m3-09 API POST/PUT/DELETE |
+
+**Nega bitta obraz yetmaydi.** «Ofitsiantga taom berdim» — ma'nosiz gap. Ofitsiant
+metaforasi FAQAT olib kelishni ko'taradi; yuborish uchun jo'natma obrazi kerak.
+Aksincha ham: GET ni posilka bilan tushuntirish o'quvchini «men nima jo'natdim?»
+degan savolga olib keladi.
+
+🔴 **IKKI MAJBURIY SHART** (ularsiz istisno ishlamaydi):
+
+1. **Obrazlar aralashmasin.** Har dars O'Z obrazida toza turadi. «Olib kelish»
+   darsida jo'natma so'zi (posilka, yorliq, yuk) **qolmasligi** kerak va aksincha.
+   Tekshiruv **o'quvchiga ko'rinadigan matn** bo'yicha: `grep -i 'posilka|ofitsiant' <fayl>` —
+   chiqqan qatorlar `tr({uz,ru})` ichidami? Ha bo'lsa — buzilish. CSS klass-nomi va kod-izohi
+   (`.parcel`, `/* Posilka */`) obraz emas, identifikator — ular qoidaga kirmaydi.
+   *Dalil: m3-08:1051 da «posilka yo'lda…» qolib ketgan edi — GET darsi ikki olamda
+   turardi; chalkashlik m3-09 dan emas, aynan shu qoldiqdan kelardi (2026-08-20).*
+
+2. **O'tish ekranida KO'PRIK-GAP majburiy.** Obraz almashadigan darsning reja-ekranida
+   va birinchi tushuncha-ekranida o'quvchi almashuvni **aytib** o'tkaziladi:
+   «O'tgan darsda ofitsiant taomni olib kelardi — bugun teskarisi: siz jo'natasiz.»
+   Ko'prik-gapsiz o'quvchi obraz uzilganini sezmaydi va uni **xato** deb o'qiydi.
+
+⚠️ **Eng xavfli xato — eski obrazga havola.** Yangi darsning matni o'tgan darsni
+eslatganda **o'tgan darsning obrazini** aytishi shart. m3-09 ning 4/23 mentori
+«o'tgan darsda posilka kelardi» derdi — o'tgan darsda posilka umuman yo'q edi.
+Bunday havola ikki darsni ham buzadi: o'quvchi o'zi eslamagan narsani eslashga majbur.
+
+📌 Qonun **obrazga** tegishli, so'zga emas: «posilka» so'zini «jo'natma» ga almashtirish
+muammoni hal qilmaydi (obraz o'sha-o'sha) va lug'atni **kitobiyroq** qiladi.
+
+---
+🔴 **127-QONUN ISTISNOSI — «BIR MARTALIK MA'NO-CHO'QQISI»** (2026-08-20, F-0820-78).
+
+Quyuq yuza **ma'no tashisa** — qoladi. Ikki tasdiqlangan hol:
+
+| Joy | Nima uchun quyuq |
+|---|---|
+| `WarpMap` `.warp-flash` (m3-11, 6/22) | `<a href>` ning to'liq qayta yuklanishi — «hammasi qorayib ketdi» hodisasi |
+| Yakuniy formula-lavhasi (m3-13, 16/20) | darsning **bir marta** chiqadigan xulosa-cho'qqisi |
+
+**Uch shart — uchalasi ham bajarilishi kerak:**
+1. **Bir martalik.** Yuza darsda **bitta** joyda chiqadi. Takrorlansa — u endi «cho'qqi» emas, uslub.
+2. **Rangning o'zi xabar.** «Chiroyli» yoki «atmosfera» yetarli asos EMAS (127-qonunning bosh testi).
+3. **Atrofi yorug'.** Cho'qqi faqat krem fon ustida ishlaydi. Butun ekran quyuq bo'lsa, u yo'qoladi —
+   aynan shu sabab m3-11 da xarita yorug'ga o'tkazilgan edi (kontrast `1.06 → 18.03`).
+
+**Qanday e'lon qilinadi.** Hex-oq ro'yxat ISHLATILMAYDI: `#0E0E10` ni `dark-lint` ning
+`SEMANTIC` to'plamiga solish butun detektorni o'chiradi. Istisno **elementning o'zida**
+e'lon qilinadi va shu bilan muallif niyati kodda qoladi:
+
+```jsx
+<div className="frame" data-dark-ok="ma'no-cho'qqisi" style={{ background: T.ink }}>
+```
+
+`dark-lint` `data-dark-ok` ni ko'rsa o'sha qatorni o'tkazadi. Kod-tekshiruvda savol
+bitta bo'ladi: *«bu marker haqli ekanini yuqoridagi uch shart tasdiqlaydimi?»*
+
+---
+
 ## 11-E. 🎯 112-QONUN: `<p>` GA QO'YILGAN KLASS-QOIDA RESETDAN KUCHSIZ (2026-08-03, F-0803-27)
 
 > Foydalanuvchi rasmi bilan keldi: PmLesson4 2-ekranidagi kartalar «buzulib yotibti».
@@ -1431,3 +1588,91 @@ Barchasi ${T.} palitradan foydalanadi (hamma darsda bor). esbuild + brauzerda si
 | `Konfetti (yakun bayrami)` | 4907 | ✨ Animatsiya |
 
 > **Ishlatish:** yangi darsga qatlam ko'chirayotgan rol shu jadvaldan anchor'ni oladi → `grep -n` bilan L1'da aniq blokni topadi → python/Edit bilan ko'chiradi → mavzuga moslaydi → esbuild. Qator drift bo'lgani uchun HAR SAFAR grep bilan tasdiqlanadi.
+
+---
+
+**128-qonun — `safe center` IKKALA OLAMDA MAJBURIY (2026-08-20, F-0820-67).**
+`.stage-content` markazlashtirilgan ustun bo'lsa, `justify-content: center` **kontent
+konteynerdan baland bo'lganda yuqori qismini kesib tashlaydi** va u skroll bilan ham
+qaytmaydi. Yechim bitta so'z:
+
+```css
+.stage-content { … justify-content: safe center; … }
+```
+
+`safe` kalit so'zi: sig'sa — markazlashtiradi, sig'masa — `flex-start` ga qaytadi.
+
+**Qamrov.** Ilgari bu faqat texnik darslarda (krem olam) bor edi; PM darslarida (binafsha
+olam) **umuman yo'q edi** — `PmLesson8` va `PmLesson9` ning ikkalasida ham. 2026-08-20 da
+foydalanuvchi qarori bilan **ikkala olamga ham** majburiy qilindi.
+
+**Tekshirish:** `grep -c "justify-content: safe center" <fayl>` → **1** bo'lishi shart.
+Yangi dars quriladigan bo'lsa, `.stage-content` shu bilan yoziladi.
+
+---
+
+**129-qonun — BO'SH APPARAT KO'RSATILMAYDI (2026-08-20, F-0819-57 dan o'sdi).**
+Jonli-sessiya paneli ma'lumot kelmagunicha **hech narsa chizmaydi**. «Yuklanmoqda…»,
+«Hali hech kim qo'shilmagan», `— 0/0` sarlavhasi yoki hammasi **0%** turgan diagramma —
+bular joy egallaydi, diqqatni tortadi va **hech narsa o'rgatmaydi**.
+
+**Naqsh:**
+```js
+if (data.players === null || data.players.length === 0) return null;   // mentor paneli
+if (!data || data.total === 0) return null;                            // o'quvchi pulsi
+{opened && isLive && counts && totalVotes > 0 && ( … )}                 // ovoz-diagrammasi
+```
+
+Birinchi o'quvchi qo'shilgach panel **o'zi paydo bo'ladi** (3 soniyalik yangilanish).
+
+**Qamrov:** `MentorPracticeStats` · `StudentPracticePulse` · `MentorTestStats` ·
+hook ovoz-diagrammasi. Uchinchisi 2026-08-20 da qo'shildi: `counts` massiv bo'lgani uchun
+`truthy` edi va jonli darsning boshida to'rt chiziq ham **0%** bo'lib osilib turardi.
+
+**Tekshirish savoli:** panel ma'lumotsiz holatda **nima o'rgatadi?** Javob «hech narsa»
+bo'lsa — u holatda render qilinmaydi.
+
+---
+
+**130-qonun — `position: fixed` QATLAM SAHIFA SARLAVHASINI BOSMASIN (2026-08-20, F-0820-73).**
+Ekran ustida suzuvchi panel (progress-treker, holat-strip, yordamchi lenta) `.stage-header`
+zonasiga — progress-chizig'i · eyebrow · `NN / NN` hisoblagichi turgan qatorga — kirmasligi
+shart. Kirsa, dars **o'z joyini yo'qotadi**: o'quvchi qaysi bo'limda turganini o'qiy olmaydi.
+
+**Dalil (M3-D12 AvtoIjara):** `DeliveryTracker` — `position: fixed; top: 8px; left: 10px;
+z-index: 9997; max-width: min(60vw, 620px)`. Ekran-suratida u «● KIRISH · LOYIHA KUNI»
+eyebrow'ini butunlay bosib turardi.
+
+**Uch bandli tekshiruv — har `position: fixed` element uchun:**
+1. **Joy:** `top < 60px` bo'lsa, `.stage-header` bilan to'qnashadimi? Sahifa tepasi allaqachon
+   uchta narsani ko'taradi: progress · eyebrow · hisoblagich. To'rtinchisiga joy yo'q.
+2. **Qamrov:** u **necha ekranda** ko'rinadi? Barcha ekranda turgan panel odatda faqat
+   bir nechtasida ma'noli — 111-qonun savoli («bu bo'lmasa tushunmay qoladimi?») shu yerda
+   beriladi.
+3. **Bo'sh holat:** birinchi ekranda u **nima ko'rsatadi**? To'rtta bo'sh `☐` — o'quvchi hali
+   o'sha to'rt topshiriq borligini bilmaydi — bu ma'lumot emas, shovqin (129-qonun bilan juft).
+
+**Qaror-tartibi:** avval 2 va 3-bandga javob bering. «Faqat ma'noli ekranlarda ko'rsatish»
+yetarli bo'lsa — shunday qiling; ma'noli ekran topilmasa — element **o'chiriladi**.
+M3-D12 da uchala band ham kesildi va treker to'liq olib tashlandi.
+
+---
+
+**131-qonun — «TEGMA» CHEGARASI: MEXANIKA HIMOYALANADI, BEZAK EMAS (2026-08-20, F-0820-87).**
+Foydalanuvchi biror ekranni «TEGMA» deb belgilasa, bu **mexanika va matn-mazmunni**
+himoya qiladi: tanlov-mantiqi, savol-javob oqimi, metafora, misollar, ballar.
+
+**Bezaklar bu himoyaga kirmaydi** — ular umumiy qonunlarga (127 · 129 · 130) bo'ysunadi:
+puls-halqalar, yonuvchi ramkalar, ma'nosiz indikatorlar, sababsiz uzuq chiziqlar.
+Bezakni olib tashlash ekranning **ishlashini o'zgartirmaydi**, ya'ni «TEGMA» buzilmaydi.
+
+**Pretsedent:** M3-D9 (PmLesson9) 10/16 — foydalanuvchi «kartalarni o'rab turgan katta
+yonuvchi ramka» ni **qat'iy** olib tashlashni buyurdi (`.itray` puls-halqasi, F-0820-68).
+M3-D14 (PmLesson10) 10/16 da xuddi shu sinf topildi (`.hs` → `hs-pulse` binafsha halqa),
+ekran esa «TEGMA» ro'yxatida edi — halqa olib tashlandi, **tanlov-mexanikaga tegilmadi**.
+
+**Shubhada:** «bu elementni o'chirsam, ekran BOSHQACHA ishlaydimi?»
+- **Ha** → mexanika, TEGMA amal qiladi, foydalanuvchidan so'raladi.
+- **Yo'q** → bezak, umumiy qonun amal qiladi.
+
+Auditda bunday topilma **«bahsli joylar»** bo'limiga chiqariladi — jim o'chirilmaydi.

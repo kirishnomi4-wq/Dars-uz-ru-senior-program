@@ -112,19 +112,34 @@ const Loading = () => (
   </div>
 )
 
-export default function M34DemoApp() {
+// `only` berilsa faqat o'sha modul(lar) ko'rsatiladi (m3-demo shundan foydalanadi).
+export default function M34DemoApp({ only }) {
+  const MODS = only ? MODULES.filter(m => only.includes(m.id) || only.includes(m.id.replace(/^m/, ''))) : MODULES;
   const key = useRoute()
   const lesson = useMemo(() => ALL_LESSONS.find(l => l.key === key && l.comp), [key])
+  // UZ-RU: global dars tili — localStorage'da saqlanadi (asosiy App.jsx bilan bir xil kalit), har darsga lang prop bo'lib uzatiladi
+  const [lang, setLang] = useState(() => {
+    try { return localStorage.getItem('cc_lang') === 'ru' ? 'ru' : 'uz' } catch { return 'uz' }
+  })
+  const pickLang = (l) => { setLang(l); try { localStorage.setItem('cc_lang', l) } catch {} }
   useEffect(() => { window.scrollTo(0, 0) }, [key])
 
   if (lesson) {
     const C = lesson.comp
     return (
       <Suspense fallback={<Loading />}>
-        <C />
+        <C lang={lang} />
         <a href="#/" title="Darslar ro'yxatiga qaytish" aria-label="Darslar ro'yxatiga qaytish"
           style={{ position: 'fixed', bottom: 14, left: 14, zIndex: 950, width: 40, height: 40, borderRadius: 12, border: 'none', background: '#FFFFFF', color: '#5A5A60', fontSize: 19, lineHeight: '40px', textAlign: 'center', textDecoration: 'none', cursor: 'pointer', boxShadow: '0 6px 18px -6px rgba(58,53,48,0.35)', opacity: 0.55, transition: 'opacity 0.2s' }}
           onMouseEnter={e => { e.currentTarget.style.opacity = 1 }} onMouseLeave={e => { e.currentTarget.style.opacity = 0.55 }}>⌂</a>
+        {/* UZ-RU: dars ichida til almashtirgich — ⌂ yonida, progress saqlanadi (komponent remount bo'lmaydi) */}
+        <div style={{ position: 'fixed', bottom: 14, left: 62, zIndex: 950, display: 'flex', borderRadius: 12, background: '#FFFFFF', boxShadow: '0 6px 18px -6px rgba(58,53,48,0.35)', overflow: 'hidden', opacity: 0.55, transition: 'opacity 0.2s' }}
+          onMouseEnter={e => { e.currentTarget.style.opacity = 1 }} onMouseLeave={e => { e.currentTarget.style.opacity = 0.55 }}>
+          {['uz', 'ru'].map(l => (
+            <button key={l} title={l === 'uz' ? "Dars tili: o'zbekcha" : 'Язык урока: русский'} onClick={() => pickLang(l)}
+              style={{ width: 34, height: 40, border: 'none', cursor: 'pointer', fontFamily: "'Manrope', system-ui, sans-serif", fontWeight: 800, fontSize: 11.5, background: lang === l ? '#0E0E10' : 'transparent', color: lang === l ? '#fff' : '#5A5A60', transition: 'background 0.15s, color 0.15s' }}>{l.toUpperCase()}</button>
+          ))}
+        </div>
       </Suspense>
     )
   }
@@ -148,6 +163,7 @@ export default function M34DemoApp() {
         .m1-tabs { display: flex; gap: 8px; margin: 0 0 8px; flex-wrap: wrap; }
         .m1-tab { text-decoration: none; cursor: pointer; font-family: 'Manrope', system-ui, sans-serif; font-weight: 800; font-size: 12.5px; padding: 8px 15px; border-radius: 99px; background: #fff; color: #5A5A60; box-shadow: 0 4px 12px -8px rgba(58,53,48,0.3); transition: background 0.15s, color 0.15s; }
         .m1-tab:hover { background: #0E0E10; color: #fff; }
+        .m1-tab.on { background: #0E0E10; color: #fff; }
         @media (prefers-reduced-motion: reduce) { .m1-card, .m1-arrow { transition: none } .m1-card:hover { transform: none } }
         @media (max-width: 620px) { .m1-card { gap: 10px; padding: 12px } .m1-chip { display: none } }
       `}</style>
@@ -156,9 +172,13 @@ export default function M34DemoApp() {
         <h1 style={{ margin: '0 0 8px', fontFamily: "'Source Serif 4', Georgia, serif", fontWeight: 600, fontSize: 'clamp(26px,4.4vw,38px)', color: '#0E0E10' }}>3 va 4-Modul — barcha darslar</h1>
         <p style={{ margin: '0 0 22px', fontSize: 14, fontWeight: 500, color: '#5A5A60', maxWidth: 560 }}>Darsni bosing — to'liq ochiladi.</p>
         <div className="m1-tabs">
-          {MODULES.map(m => <a key={m.id} className="m1-tab" href={`#${m.id}`}>{m.label}</a>)}
+          {MODS.length > 1 && MODS.map(m => <a key={m.id} className="m1-tab" href={`#${m.id}`}>{m.label}</a>)}
+          <span style={{ width: 1, height: 22, background: '#E2DED4', flexShrink: 0, alignSelf: 'center', margin: '0 4px' }} />
+          {['uz', 'ru'].map(l => (
+            <button key={l} className={`m1-tab${lang === l ? ' on' : ''}`} title={l === 'uz' ? "Dars tili: o'zbekcha" : 'Язык уроков: русский'} onClick={() => pickLang(l)}>{l.toUpperCase()}</button>
+          ))}
         </div>
-        {MODULES.map(m => (
+        {MODS.map(m => (
           <div key={m.id} id={m.id} className="m1-mod">
             <h2 className="m1-mod-h">{m.heading}</h2>
             <p className="m1-mod-lead">{m.lead}</p>

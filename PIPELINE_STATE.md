@@ -2006,3 +2006,218 @@ scroll, 14 shart) → №19 K-E-02…06 (muharrir) → №20 K-K-11/06/07/05 (ho
 kompilyator — `<style>` qismi K-C-06 da yopildi, nonce-qismi ochiq) → №22 K-M-04…11 (matn) → №7 K-C-10 (`<script>` ichini linter HTML
 deb ko'radi — hisobotda 7-o'rinda, to'q sariq, HALI YOPILMAGAN) → K-C-07 (`/g` regex miltillashi, №8 ning qolgan qismi). Har biri:
 stendda qayta chiqar → qisqa taklif → rozilik → minimal tuzatish → smoke ≥3 dars → alohida commit → STATE. LMS'ga yuklash — foydalanuvchi.
+
+---
+
+## 2026-08-20 · m3-06 ReactPropsReuseLesson — 8 bandli tuzatish raundi (F-0820-56…59)
+
+**Kirish:** foydalanuvchi ekranda ko'rdi + kod-audit. 8 band tasdiqlandi, hammasi bajarildi.
+
+| # | Topilma | Qilingani | Muhr |
+|---|---|---|---|
+| 1 | 6/21 da bitta g'oyaga 3 xil obraz (daryo · sharik · fabrika) | fabrika g'olib: yorliq «Bir tomonlama konveyer», Mentor/hint/warn/audio/reja-qadam — 10 joy | KORPUS §150 |
+| 2 | `shaking` e'lon qilingan, hech qayerda o'qilmagan → rad etish sezilmasdi | `cf-shake` sharti `sealed`dan ozod qilindi + `oneway`ga ulandi; «⬆» tugmasi `flow<2` da o'chiq | — |
+| 3 | til-lint 7🔴 2🟡 | skelet→qolip (4) · ushbu→shu · «tavsiya etiladi»→buyruq (2) · «Zo'r!»→«Juda yaxshi!»/«yaxshi yordamchi» · «turibdi-yu»→«turibdi, lekin» | — |
+| 4 | 4 ta qora tugma + 1 inline | F-29 accent (m3-04 naqshi); `.mstats-reveal` kontur-accent; `:1539` inline olib tashlandi | ov-bandi 3-naqsh |
+| 5 | Palitra drift — to'yingan gradientlar | Variant D pastel (m3-03 bilan **aynan**) + 3 yangi: Doors iliq grafit · Piggy xira olxo'ri · Bee Swarm o'tloq-sabza; `robar-fill` #1FA463→#5FA77F | — |
+| 6 | slip hisoblagichni bosardi (4/21 · 8/21 · 6.1) · ⛶ matnni bosardi (1/21) · debug'da scrollbar (17/21) | `.cf-top` ga 42px uchish yo'li (`--fields` 58px, `--shelf` 0) · jam-animatsiya endi ekrandan uchib chiqmaydi · `.zoomable` ga ⛶ xavfsiz burchagi · `stage-content: safe center` (bu faylda YO'Q edi) · debug shrift kichraytirildi + 1-qator qisqartirildi | — |
+| 7 | «posilka» — rus o'zlashmasi va qo'shni dars (API POST) metaforasi | → «varaqa», 📦 → 📄 (17 joy, izohlar bilan) | KORPUS §151 |
+| 8 | Ikkita AI-ekran | TEGILMADI — foydalanuvchi qarori: kuzatuv to'g'ri, muammo emas | — |
+
+**Vosita yangilandi:** `dark-lint.mjs` ga **inline `style={{ background }}` skani** qo'shildi
+(uchinchi ko'r nuqta, F-0820-57). Darrov ikki topilma berdi: `m3-06:1539` (tuzatildi) va
+**`m3-04:1443` — hali turibdi**, `KATTA_TOZALASH` 1-bandiga yozildi. Jonli-sessiya infra
+(`live-badge`) ataylab istisno — 122 faylda bir xil, faqat mentorga ko'rinadi.
+
+**Darvozalar:** esbuild 470.6kb TOZA · `lint:jsx` 0 · `lint:til` 0 (87 qoida) ·
+`lint:dark` 0 (yangi inline-skan bilan) · `lint:prompt` 0.
+
+**Holat:** UNCOMMITTED.
+
+### 2026-08-20 · m3-06 — 2-raund: apparat A+B va maket (F-0820-60/61)
+
+**Maket (4 ta ekran).** Yashil `frame-success` bloklari sabab turgan ustunga ko'chdi:
+3/21 tugma ostiga · 4/21 emoji qatori ostiga · 12/21 kod oynasi ostiga — skroll ketdi.
+6/21 dagi qizil rad-bloki 4 gapdan 2 ga tushdi, foydali xulosa yashilga ko'chdi
+(ikkalasi birga ko'rinib, bir qoidani takrorlardi). → KORPUS §152, §153.
+
+**Apparat A+B — `CardFactory` 127-qonunga tortildi.** Foydalanuvchi m3-03 dagi
+`CardMachine` (Bloxy-Press) ni eslatdi — u qonunning Dalil-1 i.
+
+*A — bezak o'chdi:* `.cf-bolts` (4 bolt) · `.cf-gears` (⚙⚙) · `.cf-window` + `.cf-idle`
+**`▢ ▢`** + `.cf-spark` `✦ ✦ ✦` · `@keyframes cf-gear-spin`. Qoldi: teshik, varaqa,
+nom-plastinkasi, richag, hopper, chiqish latogi, javon, hisoblagich, **6 rejim**.
+
+*B — yorug'likka (m3-03 palitrasi):* tana `#26324a→CODE.bg` → `T.paper` ·
+plastinka `#1f2740→#171d30` → `T.bg`+`T.ink` · teshik `#0d1220` → **amber**
+`#FBF0DC/#DFB068` (KIRISH rangi) · latok labi → `T.bg` · varaqa chizig'i accent → amber ·
+`cf-slip-k` → `#7A5510` · richag sopi m3-03 bilan bir xil · quyuq korpus uchun qurilgan
+soyalar/yaltirashlar yorug' fonga moslandi · `cf-hum` pulsi `brightness` dan accent
+halqasiga (oq fonda brightness ko'rinmasdi).
+
+*Nisbat:* oyna ketgach tana 92px→62px bo'lib, richag (42px) undan oshib ketardi →
+`min-height: 76px` + plastinka markazga. → DARS_ETALON 127-qonun **Dalil-2**.
+
+**C va D qilinmadi** (foydalanuvchi A+B ni tanladi): oynaga ma'no berish (`props.name`)
+va «GameCard-3000» → «Bloxy-Press» nomi — ochiq qaror.
+
+**Darvozalar:** esbuild TOZA · `lint:jsx` 0 · `lint:til` 0 · `lint:dark` 0 ·
+`lint:prompt` 0 · SCREEN_META↔screens 21=21. **UNCOMMITTED.**
+
+---
+
+## 2026-08-20 · m3-08 ReactApiGetLesson — audit + 3 to'plam (F-0820-62…64)
+
+**Eslatma:** foydalanuvchi `AUDIT_PROMPT.md` ni so'radi — **repo'da yo'q** (find/git/xotira
+bo'ylab qidirildi). Audit `.claude/agents/role/darslik-auditor.md` formati bo'yicha yurgizildi.
+
+### 1-to'plam — VOSITALAR (avval bu, aks holda darvozalar yolg'on gapiradi)
+
+- `til-lint-rules.json` · `anatomiya-metaforasi`: naqshga **`yurak|yurag|miya|qon|сердц|мозг`**
+  qo'shildi (teshik edi — «saytlarning yuragi» darvozadan o'tib ketgan). `qon` chegarasi
+  «qonun» so'ziga tegmaydi.
+- O'sha qoidaga **`except: skeleton|скелетон|SkelCard|skel`** — «skeleton» bu yerda UI-atamasi
+  (yuklanish sharpasi), anatomiya emas; `skelet` taqiqda **qoladi**.
+- 🔴 **`til-lint.mjs` ning O'ZIDA nuqson topildi (F-0820-62):** `exceptRe` faqat `'u'` bayrog'i
+  bilan yig'ilardi — ya'ni istisno katta-kichik harfni ajratardi va `skeleton` istisnosi
+  `Skeleton` ni ushlamasdi. Endi qoidaning o'z bayroqlari bilan yig'iladi.
+- `dark-lint.mjs` ALLOW ga **`.codechip`** (F-0820-63) — matn oqimidagi kod bo'lagi, bosilmaydi;
+  `CTRL_SEL` dagi «chip» uni tugma deb o'ylardi. Juftlik `.code-box` allaqachon istisnoda edi.
+
+**Natija:** `lint:til` 24🔴 → **7🔴** · `lint:dark` 6 → **5** (haqiqiy raqamlar).
+
+### 2-to'plam — TAYYOR YECHIMLAR
+
+Palitra 7/7 Variant D (Doors iliq grafit `#C6BFB8/#A79E95` · Bee Swarm o'tloq-sabza
+`#CFD8B2/#B0BC90` — oltin EMAS) · qora to'plam F-29 (`.btn` · `.lp-done-btn` ikki holat ·
+`.mstats-reveal` kontur-accent · `.rc-btn`) · `:1536` inline olib tashlandi (moviy `.ai-badge`) ·
+`safe center` · `.zoomable` ⛶ xavfsiz burchagi · `MentorPracticeStats` 0/0 → `return null`
+(m3-07:1704 dan) · `.hint` uzuq → `1px solid ${T.line}`; `.frame-dash` tegilmadi.
+
+### 3-to'plam — SHU DARSNIKI
+
+- **`.stepbtn`** (F-0820-64) — juft-tugmalar teng o'lchov/vazn; farqni faqat HOLAT bildiradi:
+  bosilmagan accent · bajarilgan yashil + **ichkaridagi** ✓ · navbatsiz soft+disabled.
+  Uch joyda: 6/20 (ketma-ket) · 8/20 (parallel) · **12/20** (404 — kontent tegilmadi, faqat
+  tugma uslubi). Avval og'irlik 6/20 da 1-qadamda, 8/20 da 2-qadamda edi — teskari.
+- **3/20 A-varianti:** `.migrate { align-items: stretch }` + `.mig-box > .code-box { flex: 1 }`
+  + `minHeight: 96` olib tashlandi → ikki quti teng balandlik.
+- **Til:** «yuragi» → «asosi» · «professional saytlar» → «katta saytlar» (audio+Mentor+ru) ·
+  «ushbu» · «tavsiya etiladi» ×2 · «Zo'r!» · izohlarda «FETCH ANATOMIYASI» → «FETCH TUZILISHI» ·
+  «so'rading» → «so'radingiz» (server nutqi ham siz-formada).
+
+🔴 **Jim-buzilish darvozasi o'z ishini qildi:** `.stepbtn` izohida backtik yozgan edim
+(`\`.btn\``) — CSS shablon-satrini erta yopardi. `esbuild` buni O'TKAZIB YUBORDI,
+`lint:jsx` tutdi. CLAUDE.md 4-bo'limidagi qoidaning tirik dalili.
+
+**Darvozalar:** esbuild TOZA · `lint:jsx` **0** · `lint:til` **0** · `lint:dark` **0** ·
+`lint:prompt` 0 · SCREEN_META↔screens 20=20.
+
+**KATTA_TOZALASH:** 7-band (`.hint` uzuq chizig'i m3-06/m3-07 — m3-07 ga TEGMA) ·
+8-band (`RoCard` darslararo har xil → theme-band ostiga).
+
+**Holat:** UNCOMMITTED.
+
+---
+
+## 2026-08-20 · ReactProjectDayLesson (AvtoIjara · modul toj-darsi) — 9 bandli to'plam (F-0820-71/72)
+
+**⚠️ `AUDIT_PROMPT.md` HALI YO'Q.** Foydalanuvchi matnini yubormoqchi bo'ldi, lekin xabarda
+`[doimiy audit-promptning TO'LIQ matni]` joy-egallovchisi keldi. Fayl **yaratilmadi** —
+o'ylab topib yozilmaydi. Matn kelgach yaratiladi + CLAUDE.md xaritasiga qo'shiladi.
+
+| Band | Qilingani |
+|---|---|
+| 1 | CARS 4/4 Variant D. **Lamborghini `#F4B26A→#C9622E` → `#A6D4CF→#82BDB6`** (muzli teal) — to'q sariq `T.accent` bilan bevosita raqobat qilardi |
+| 2 | `.navlink.on` `${T.ink}` → `${T.accent}` (m3-11 qarori) |
+| 3 | 4/23 toggle → `.stepbtn`: teng vazn, tanlanmagan accent, tanlangan `successSoft`+ichkaridagi ✓. **Qizil/yashil semantika olib tashlandi** (solishtiruv, baho emas) va o'lik `? '' : ''` sharti o'chdi |
+| 4 | «aniqlashtiruvchi prompt» hamma joyda (UZ+RU, 14 joy). `follow-up` faqat **bitta** gloss-qavsda (`:572`) + kod-izohida qoldi |
+| 5 | 2/23 Mentor: «Jamoangizdagi agentning nomi — **Antigravity**» (UZ+RU). Ilgari «agent» 77 marta, «Antigravity» esa birinchi marta **8/23 topshirig'ida** bog'lovchisiz paydo bo'lardi |
+| 6 | F-29 to'plami (`.btn`·`.lp-done-btn`·`.mstats-reveal`·`.rc-btn`) + **ikkala** inline `ai-badge` (`:937`, `:1407`) → moviy `.ai-badge` |
+| 7 | `MentorPracticeStats` 0/0 → `return null` + `label` propsi · **`StudentPracticePulse` yangi qo'shildi** (m3-11 naqshi, `.lp-pulse` uslubi bilan) · to'rt yorliq |
+| 8 | Ko'chma to'rtlik to'liq: `safe center` · ⛶ burchagi (m3-11 selektori) · `.hint` → `1px solid ${T.line}` · `.live-badge` `0.62 + focus-within` — **bu faylda umuman yo'q edi** |
+| 9 | 8🔴 → **0**: «ushbu» · «tavsiya etiladi» ×3 · «Zo'r!» · «Quyidagi» ×2 · anatomiya ×4 |
+
+**9-band · «yuragi» → «o'zagi» (ESKI→YANGI):**
+`:1306` audio «ilovaning **yuragi**» → «ilovaning **o'zagi**» ·
+`:1310` Mentor «ijara + jami narx — ilovaning **yuragi**» → «…**o'zagi**» ·
+`:1350` «**Yuragi** tayyor!» → «**O'zagi** tayyor!» ·
+`:1651` sarlavha «ilovangizning **yuragini** o'zingiz yozing» → «…**o'zagini**…»
+
+**9-band · «hisoblanadi» — bittalab ko'rildi (7 ta):**
+
+| Qator | Ma'no | Qaror |
+|---|---|---|
+| 556 · 557 · 1306 · 1311 · 1350 · 1921 | **ARIFMETIK** — «jami narx o'zi qayta hisoblanadi» (hisoblab chiqiladi) | **QOLADI** — qoidaning o'z istisnosi |
+| **1964** | «FAQAT baholanadigan testlar **hisoblanadi**» = sanaladi/kiradi | **TUZATILDI** → «sanaladi» (kod-izohi) |
+
+Shuning uchun `lint:til` 🟡7 qoladi — bu **ataylab**, arifmetik ma'no.
+
+**⚠️ Auditdagi noaniqlik tuzatildi.** Hisobotda 3- va 4-praktikani «POST + iteratsiya» va
+«Yakuniy yig'ish» deb tavsiflagan edim; aslida ular «**Ijara + jami (State)**» va
+«**Debug + saytni topshirish**». Tasdiqlangan emoji saqlandi, matn haqiqiy vazifaga moslandi:
+🚗 Katalogni chiqarganlar · 🔗 Sahifani ulaganlar · **➕ Jami narxni ishlatganlar** ·
+**🏁 Saytni topshirganlar**.
+
+**6-band (`practice: -1`)** — ish bo'lmadi, allaqachon to'g'ri edi (`:2733`).
+
+**Darvozalar:** esbuild TOZA · `lint:jsx` **0** · `lint:til` **0🔴** (7🟡 ataylab) ·
+`lint:dark` **7 → 0** · `lint:prompt` 0 · SCREEN_META↔screens **23=23**.
+
+**Holat:** UNCOMMITTED.
+
+### 2026-08-20 · AvtoIjara — `DeliveryTracker` olib tashlandi (F-0820-73)
+
+Foydalanuvchi ekran-surati yubordi (`src/3-Modull/image.png`): chap-yuqori burchakdagi
+«🏗️ AvtoIjara ☐ 🌐 Katalog (GET) ☐ 🧭 Mashina (Router) ☐ 💾 Ijara + jami (State) ☐ 🐞 Debug»
+lentasi **eyebrow'ni bosib turardi** — «● KIRISH · LOYIHA KUNI» yozuvi uning ostida qolgan.
+
+Koddan ko'rinmagan uch omil suratda ochildi:
+1. `position: fixed; top: 8px; left: 10px` — `.stage-header` bilan bir qatorda
+2. **23 ekranning hammasida** turardi (ekran-almashtirgichdan tashqarida, `:3611`)
+3. 1/23 da to'rtta **bo'sh `☐`** — o'quvchi hali o'sha praktikalar borligini bilmaydi
+
+Uch variant taklif qilingandi (A: faqat praktika ekranlarida · B: pastga ko'chirish ·
+C: olib tashlash). Foydalanuvchi **C** ni tanladi.
+
+**O'chirilgani (39 qator):** `TRACKER_STEPS` · `DeliveryTracker` · `<DeliveryTracker/>` ·
+`.dtrack*` CSS (7 qoida) · `@keyframes dt-fill` · `dt-mark-pop` · `dt-ship-pop` ·
+reduced-motion bandi · 760px media-query bandi. Qoldiq: **0**.
+
+**Qonunlashtirildi:** `DARS_ETALON` **130-qonun** — `position: fixed` qatlam sahifa
+sarlavhasini bosmasin (joy · qamrov · bo'sh holat — uch bandli tekshiruv).
+
+**Darvozalar:** esbuild TOZA · `lint:jsx` 0 · `lint:til` 0🔴 (7🟡 ataylab) ·
+`lint:dark` 0 · SCREEN_META↔screens 23=23.
+
+---
+
+## 2026-08-20 · DEPLOY — 3-Modul demosi yangilandi
+
+**URL:** https://coddycamp-3modul.vercel.app (alias saqlandi)
+**Loyiha:** `coddycamp-3modul` (`prj_TaMip6SSwe7pkJ5iWjgqsoM4RmwH`, scope `azizbek10`)
+**Deploy:** `coddycamp-3modul-fmxdjk55i-azizbek10.vercel.app` → production alias
+
+**Qurish:** `npx vite build --config vite.m3.config.js` → `dist-m3/`.
+`modul3.html` → `index.html` nusxalandi (Vercel ildizda `index.html` kutadi).
+Deploy `dist-m3/` ichidan, o'z `.vercel` bog'lanishi bilan — repo ildizidagi
+`dars-uz-ru-senior-program-azizbe` bog'lanishiga **tegilmadi**.
+
+**Tekshiruv — bundle-ichi (faqat HTTP 200 emas):**
+
+| | Natija |
+|---|---|
+| Asosiy chunk mahalliy bilan mos | `modul3-B23ajH4m.js` ✅ |
+| Katalogda m3-01…m3-16 | ✅ · `m4` = **0** (faqat 3-Modul) |
+| 14 dars chunk'i HTTP 200 | ✅ 14/14 |
+
+**Tuzatishlar jonli saytda tasdiqlandi:** m3-05 yangi ekran («Endi javoblarni…») ·
+m3-06 «Bir tomonlama konveyer» · m3-08 «katta saytlarning asosi» · m3-10 «Kod oynasini
+ochish» · m3-12 «Antigravity» · m3-14 «Gap va harakatni to'ldiring».
+
+**Olib tashlanganlar jonli saytda ham yo'q:** `dtrack` (treker) · «posilka» ·
+`itray-pulse` · `hs-pulse`.
+
+⚠️ **Eslatma:** demo UZ+RU deb berilgan, lekin **PM darslari hali o'zbekcha**
+(PmLesson10 `ru:` = 1). PM8/PM9 ga boshqa seans tarjima qo'shmoqda —
+`KATTA_TOZALASH` 6-band.

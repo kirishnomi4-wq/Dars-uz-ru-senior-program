@@ -8,9 +8,9 @@
 
 | Tur | Fayllar | Qoida |
 |---|---|---|
-| **QONUN** (qanday bo'lishi kerak) | `DARS_ETALON.md` (texnik) · `PM_DARS_ETALON.md` (PM, qonun 1–67) · `MATN_ETALONI.md` (til, umumiy) · **`MATN_KORPUS.md` (oltin-namunalar — matn YOZISHDAN OLDIN o'qiladi, qonunlar tekshiruvga)** · `PM_Prompt_v8.md` (senariy-qonun) · `RU_I18N_SPEC.md` (ru-mexanizm) | Faqat raqamlangan qonun/lug'at. Yangi qonun = yangi raqam, eski raqam o'zgarmaydi |
+| **QONUN** (qanday bo'lishi kerak) | `DARS_ETALON.md` (texnik) · `PM_DARS_ETALON.md` (PM, qonun 1–67) · `MATN_ETALONI.md` (til, umumiy) · **`MATN_KORPUS.md` (oltin-namunalar — matn YOZISHDAN OLDIN o'qiladi, qonunlar tekshiruvga)** · `PM_Prompt_v8.md` (senariy-qonun) · **`AUDIT_PROMPT.md` (doimiy audit-prompti — har YANGI dars shu bilan ochiladi, qayta yuborilmaydi)** · `RU_I18N_SPEC.md` (ru-mexanizm) | Faqat raqamlangan qonun/lug'at. Yangi qonun = yangi raqam, eski raqam o'zgarmaydi |
 | **JARAYON** (qaysi tartibda) | `PIPELINE.md` (texnik zanjir) · `PM_PIPELINE.md` (PM zanjir) · `OQUVCHI_DARVOZA.md` (👦 simulyator-spec) | Zanjir/darvoza/o'tish-shartlari. Rol-mazmuni bu yerda YO'Q — u agent-faylda |
-| **HOLAT** (nima bo'ldi) | `PIPELINE_STATE.md` · `PM_PIPELINE_STATE.md` | Faqat raund-yozuvlar (sana + nima qilindi + hukm). Har feedback F-ID bilan (quyida) |
+| **HOLAT** (nima bo'ldi) | `PIPELINE_STATE.md` · `PM_PIPELINE_STATE.md` · `KATTA_TOZALASH.md` (loyiha-darajasidagi ish ro'yxati — 8+ faylga tegadigan ishlar; dars ustida ishlaganda ko'tarilmaydi, faqat yoziladi) | Faqat raund-yozuvlar (sana + nima qilindi + hukm). Har feedback F-ID bilan (quyida) |
 | **ROLLAR** | `.claude/agents/role/*` (texnik + umumiy: jonli, verifikator, o'quvchi, qabulchi) · `.claude/agents/pm/*` (PM) | Har rol o'z scope-fence bilan. `.claude/` da FAQAT agentlar+sozlamalar turadi |
 
 Yordamchi joylar: `arxiv/` (eski tarix — L1_TARIX, AVTOPILOT_CHECKPOINT, eski hisobotlar) ·
@@ -24,6 +24,7 @@ Yordamchi joylar: `arxiv/` (eski tarix — L1_TARIX, AVTOPILOT_CHECKPOINT, eski 
 | «yangi PM dars yarat / M__-D__ qur» | **A** |
 | «bu xato / mana feedback / rasmga qara / bu tushunarsiz» | **B** |
 | «shu darsni yaxshila / audit qil / etalonga tortaylik» | **C** |
+| «yangi dars: <nom> · audit yurgiz» | **E** |
 | «commit / push / deploy» | **D** |
 | Texnik (HTML/CSS/JS) dars ustida ish | A/C ning texnik varianti — `PIPELINE.md` |
 
@@ -55,6 +56,15 @@ Yordamchi joylar: `arxiv/` (eski tarix — L1_TARIX, AVTOPILOT_CHECKPOINT, eski 
 ### D — COMMIT / RELEASE
 1. Faqat foydalanuvchi buyrug'i bilan. Oldin: esbuild + `vite build` toza; STATE'da UNCOMMITTED yozuvlari bor-yo'qligini ko'rsat.
 2. Deploy: PM-demo = `vite.pm.config.js` (batafsil: memory/darslar-holati).
+
+### E — YANGI DARS OCHILDI (audit → tuzatish → muhrlash)
+1. **`AUDIT_PROMPT.md` ni o'qi va to'liq yurgiz.** Foydalanuvchi uni qayta yubormaydi;
+   xabarida faqat **darsga xos qo'shimchalar** bo'ladi — ular promptning USTIGA qo'shiladi.
+2. Darvozalar: esbuild + `lint:jsx` + `lint:til` + `lint:dark` — har biri raqami bilan hisobotda.
+3. **Hisobot + [GATE] — tasdiqsiz hech narsa o'zgartirilmaydi.** Bahsli joylar alohida ro'yxat.
+4. Tasdiqdan keyin tuzatish → darvozalar qayta → topilma-sinfi qonunga muhrlanadi
+   (`MATN_KORPUS.md` matn uchun · `DARS_ETALON.md` UX/dizayn uchun · rol-fayli takror bug uchun).
+5. 8+ faylga tegadigan ish chiqsa — `KATTA_TOZALASH.md` ga yoziladi, o'sha yerda tuzatilmaydi.
 
 ## 4. O'zgarmas tamoyillar (qisqa eslatma — to'liqlari PIPELINE.md 3-bo'lim)
 - Commit/push faqat buyruq bilan · Tashxis avval, yechim keyin · Bir fayl — bir muharrir ·

@@ -26,7 +26,10 @@ const { rules } = JSON.parse(fs.readFileSync(rulesFile, 'utf8'));
 const compiled = rules.map(r => ({
   ...r,
   re: new RegExp(r.pattern, (r.flags || '') + 'u'),
-  exceptRe: r.except ? new RegExp(r.except, 'u') : null,
+  // Istisno qoidaning O'Z bayroqlari bilan yig'iladi. Avval faqat 'u' edi — ya'ni
+  // istisno katta-kichik harfni ajratardi: `skeleton` istisnosi `Skeleton` ni
+  // ushlamasdi va qoida baribir yonardi (F-0820-62, m3-08).
+  exceptRe: r.except ? new RegExp(r.except, (r.flags || '') + 'u') : null,
 }));
 
 // --- fayllarni yig'ish ---

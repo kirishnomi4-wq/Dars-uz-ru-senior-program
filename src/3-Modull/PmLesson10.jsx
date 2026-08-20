@@ -24,6 +24,9 @@ const T = {
   paper: '#FFFFFF', accent: '#5B3DE6', accentSoft: '#EBE5FD', accentVivid: '#6E4BFF',
   success: '#12A968', successSoft: '#E4F5EC', blue: '#0E86C4', blueSoft: '#E1F3FB', link: '#5B3DE6',
   line: '#E7E3F4', err: '#E5484D', errSoft: '#FCE7E8',
+  // ink3 (#9C97B4) kontrasti 2.48:1 — o'qiladigan matnga yaramaydi. ink3Deep 4.74:1 (bg)
+  // va 5.34:1 (paper): ataylab «past daraja» bo'lishi kerak joylar uchun (PM9 · F-0820-65).
+  ink3Deep: '#6D6785',
   shadowBase: '40, 34, 82'
 };
 
@@ -242,7 +245,7 @@ function LiveBigCode({ pin, onClose }) {
     <div style={overlay}>
       <div style={{ fontSize: 'clamp(13px,2vw,18px)', fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: LT.accent, marginBottom: 'clamp(14px,3vw,28px)' }}>Jonli darsga qo'shilish</div>
       <div style={{ display: 'flex', gap: 'clamp(6px,1.4vw,16px)', justifyContent: 'center', flexWrap: 'wrap' }}>{digits.map((d, i) => <span key={i} style={box}>{d}</span>)}</div>
-      <p style={{ color: '#fff', opacity: 0.85, fontSize: 'clamp(15px,2.2vw,22px)', maxWidth: 640, margin: 'clamp(20px,4vw,36px) 0 0', lineHeight: 1.5 }}>Shu darsni o'z qurilmangizda oching → <b style={{ color: '#fff' }}>«Darsga qo'shilish»</b> oynasida ushbu kodni va ismingizni kiriting.</p>
+      <p style={{ color: '#fff', opacity: 0.85, fontSize: 'clamp(15px,2.2vw,22px)', maxWidth: 640, margin: 'clamp(20px,4vw,36px) 0 0', lineHeight: 1.5 }}>Shu darsni o'z qurilmangizda oching → <b style={{ color: '#fff' }}>«Darsga qo'shilish»</b> oynasida shu kodni va ismingizni kiriting.</p>
       <button onClick={onClose} style={{ marginTop: 'clamp(22px,4vw,40px)', background: LT.accent, color: '#fff', border: 'none', borderRadius: 14, padding: 'clamp(12px,1.6vw,16px) clamp(24px,3vw,36px)', fontSize: 'clamp(15px,1.8vw,18px)', fontWeight: 700, cursor: 'pointer' }}>Darsni boshlash →</button>
     </div>
   );
@@ -848,7 +851,11 @@ const MentorPracticeStats = ({ live, screen, label = "👀 Kim bajardi" }) => {
     return () => { on = false; clearTimeout(t); };
   }, [live && live.pin, screen]);
   if (!live || live.mode !== 'mentor') return null;
-  const players = data.players || [];
+  // Bo'sh apparat ko'rsatilmaydi: yuklanish va «0/0 — hech kim qo'shilmagan» holatlari
+  // joy egallaydi, lekin hech narsa o'rgatmaydi. Birinchi o'quvchi qo'shilgach panel o'zi
+  // paydo bo'ladi (har 3 s da) — F-0819-57 / ETALON 129-qonun, PM8:866 dan.
+  if (data.players === null || data.players.length === 0) return null;
+  const players = data.players;
   const doers = players.filter(p => data.doneIds.has(p.id));
   const waiting = players.filter(p => !data.doneIds.has(p.id));
   return (
@@ -964,7 +971,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
           </>
         )}
         {/* Korpus §97: ovoz-diagrammasi FAQAT jonli darsda — yakka o'quvchida «ko'pchilik» yo'q */}
-        {opened && isLive && counts && (
+        {opened && isLive && counts && totalVotes > 0 && (
           <div className="hvote fade-step" aria-label="Sinf natijasi">
             {HOOK_OPTS.map((o, i) => {
               const n = counts[i];
@@ -1440,6 +1447,8 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 {!gapUzun && gap.trim().length > 0 && <p className="sfb ask">🤔 Qisqa qoldi: to'liq gap bilan yozing.</p>}
                 {actN > 5 && <p className="sfb ask">🤔 Harakat qisqa bo'ladi: nimani bosasiz?</p>}
                 <button type="button" className="wsp-save" disabled={!canSave} onClick={save}>{edit === null ? 'Saqlash →' : '✓ Yangilash'}</button>
+                {/* Tugma nega o'chiq — sabab ko'rinsin (canSave = gapUzun && actOk) */}
+                {!canSave && <span className="wsp-why">Gap va harakatni to'ldiring — keyin saqlanadi</span>}
               </div>
             )}
             {/* 80c: yozilganlar YOZISH PAYTIDA ko'rinmaydi; uchtasi yozilgach tasma ochiladi */}
@@ -1533,7 +1542,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <Mentor>Hamma sahifani ochib chiqmaysiz — bitta joyni bosasiz: bu ish chindan bajarilishini ko'rsatadigan joyni.</Mentor>
         <div className="split s9">
           <Col gap={9}>
-            <div className={`hs${done ? ' calm' : ''}`}>
+            <div className="hs">
               <span className="hs-bar"><span className="bb-dots"><i /><i /><i /></span>{SAYT}
                 <button type="button" className={zCls('sozlama')} onClick={() => hit('sozlama')} disabled={zDis('sozlama')} title="Sozlamalar">⚙</button>
               </span>
@@ -2661,8 +2670,8 @@ const CSS_BASE = `
 
   .feedback-block { max-height: 0; opacity: 0; overflow: hidden; transition: max-height 0.4s ease-out, opacity 0.3s ease-out 0.1s, margin-top 0.4s ease-out; margin-top: 0; }
   .feedback-block.visible { max-height: 800px; opacity: 1; margin-top: clamp(14px,2vw,20px); }
-  .live-badge { opacity: 0.4; transition: opacity 0.25s ease; }
-  .live-badge:hover { opacity: 1; }
+  .live-badge { opacity: 0.62; transition: opacity 0.25s ease, box-shadow 0.25s ease; }
+  .live-badge:hover, .live-badge:focus-within { opacity: 1; box-shadow: 0 8px 24px -6px rgba(${T.shadowBase},0.32) !important; }
 
   .btn-white-accent { font-family: 'Manrope', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.paper}; color: ${T.accent}; border: none; border-radius: 12px; letter-spacing: 0.01em; box-shadow: 0 8px 22px -4px rgba(91,61,230,0.35), 0 0 0 1px rgba(91,61,230,0.12); }
   .btn-white-accent:hover:not(:disabled) { background: ${T.accent}; color: #fff; box-shadow: 0 12px 28px -6px rgba(91,61,230,0.55); }
@@ -2740,7 +2749,7 @@ const CSS_BASE = `
 
   .stage { max-width: 1100px; margin: 0 auto; height: calc(100dvh / var(--lz, 1)); display: flex; flex-direction: column; }
   .stage-header { flex-shrink: 0; background: ${T.bg}; padding-top: clamp(12px,2vw,18px); padding-bottom: clamp(8px,1.5vw,12px); }
-  .stage-content { flex: 1; min-height: 0; padding-top: clamp(9px,1.5vw,14px); padding-bottom: clamp(14px,2.6vw,26px); display: flex; flex-direction: column; overflow-y: auto; overflow-x: hidden; -webkit-overflow-scrolling: touch; scroll-behavior: smooth; }
+  .stage-content { flex: 1; min-height: 0; justify-content: safe center; padding-top: clamp(9px,1.5vw,14px); padding-bottom: clamp(14px,2.6vw,26px); display: flex; flex-direction: column; overflow-y: auto; overflow-x: hidden; -webkit-overflow-scrolling: touch; scroll-behavior: smooth; }
   .stage-content.narrow { max-width: 680px; width: 100%; margin: 0 auto; }
   .stage-nav { flex-shrink: 0; background: ${T.bg}; border-top: 1px solid rgba(167,166,162,0.25); padding-top: clamp(12px,2vw,15px); padding-bottom: clamp(12px,2vw,15px); display: flex; gap: 12px; align-items: center; }
   .chrome { display: flex; align-items: center; justify-content: space-between; }
@@ -2833,7 +2842,8 @@ const CSS_LESSON = `
 
   /* HOOK imzo-sahnasi: sayt ishlab turibdi, gap-qatori esa bo'sh (L3 — ekranning yagona sahnasi) */
   .h0site { display: flex; flex-direction: column; background: ${T.paper}; border-radius: 14px; overflow: hidden; box-shadow: 0 16px 34px -16px rgba(${T.shadowBase},0.28), inset 0 0 0 1.5px ${T.line}; max-width: 560px; align-self: center; width: 100%; }
-  .h0site-bar { display: flex; align-items: center; font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: ${T.ink3}; background: ${T.bg}; padding: 7px 12px; }
+  /* ISTISNO (F-0820-84): brauzer manzil-satri taqlidi — haqiqiy brauzerda ham kulrang */
+  .h0site-bar { display: flex; align-items: center; font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: ${T.ink3Deep}; background: ${T.bg}; padding: 7px 12px; }
   .h0site-body { display: flex; flex-direction: column; gap: 7px; padding: 11px 13px 13px; }
   .h0row { display: flex; align-items: center; justify-content: space-between; gap: 10px; background: ${T.bg}; border-radius: 10px; padding: 8px 12px; font-family: 'Manrope'; font-weight: 600; font-size: clamp(12.5px,1.5vw,14px); color: ${T.ink}; min-width: 0; overflow-wrap: anywhere; animation: fade-in-up 0.34s ease-out both; }
   .h0row:nth-child(2) { animation-delay: 0.10s; }
@@ -2904,7 +2914,8 @@ const CSS_LESSON = `
   .kf-bar { display: flex; align-items: center; gap: 6px; min-width: 0; }
   .kf-shot .bb-dots { margin-right: 0; flex-shrink: 0; }
   .kf-shot .bb-dots i { width: 5px; height: 5px; }
-  .kf-url { font-size: 8.5px; color: ${T.ink3}; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+  /* ISTISNO (F-0820-84): kadr-mock'idagi manzil satri — sayt mazmuni bilan tenglashmasin */
+  .kf-url { font-size: 8.5px; color: ${T.ink3Deep}; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
   .kf-r { display: flex; align-items: center; justify-content: space-between; gap: 6px; background: ${T.paper}; border-radius: 7px; padding: 5px 7px; font-family: 'Manrope'; font-weight: 700; font-size: 9.5px; color: ${T.ink}; box-shadow: inset 0 0 0 1px ${T.line}; min-width: 0; }
   .kf-r b { font-weight: 800; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
   .kf-r.new { background: ${T.successSoft}; box-shadow: inset 0 0 0 1.5px ${T.success}66; }
@@ -2924,7 +2935,7 @@ const CSS_LESSON = `
   .kf-say { display: flex; flex-direction: column; gap: 5px; background: ${T.bg}; border-radius: 10px; padding: 8px 10px 8px 11px; min-height: 66px; min-width: 0; transition: background 0.2s; }
   .kframe.open:not(.add) .kf-say { background: rgba(${T.shadowBase},0.075); box-shadow: inset 3px 0 0 ${T.ink3}; }
   .kframe.open.add .kf-say { background: ${T.successSoft}; box-shadow: inset 3px 0 0 ${T.success}; }
-  .kf-say-empty { font-family: 'Manrope'; font-weight: 700; font-size: 13px; letter-spacing: 0.2em; color: ${T.ink3}; }
+  .kf-say-empty { font-family: 'Manrope'; font-weight: 700; font-size: 13px; letter-spacing: 0.2em; color: ${T.ink2}; }
   .kf-say-t { font-family: 'Manrope'; font-weight: 700; font-size: 12px; line-height: 1.4; color: ${T.ink}; overflow-wrap: anywhere; min-width: 0; animation: fade-step 0.3s ease-out; }
   .kf-vd { font-family: 'Manrope'; font-weight: 800; font-size: clamp(11px,1.25vw,12.5px); line-height: 1.35; overflow-wrap: anywhere; min-width: 0; animation: fade-in-up 0.3s ease-out both; }
   .kf-vd.plain { color: ${T.ink2}; }
@@ -2948,7 +2959,8 @@ const CSS_LESSON = `
      Shakli s1/s4 kadrlari bilan bir xil (teshik-qatorli), shunda «men kadr yozyapman»
      degani ustaxonada ham ko'rinib turadi. */
   .stps { display: flex; flex-wrap: wrap; gap: 8px; }
-  .stp { position: relative; display: inline-flex; align-items: center; gap: 7px; font-family: 'Manrope'; font-weight: 700; font-size: clamp(11.5px,1.4vw,13px); color: ${T.ink3}; background: ${T.paper}; border-radius: 11px; padding: 14px 13px 7px 6px; box-shadow: inset 0 0 0 1.5px ${T.line}; }
+  /* ISTISNO (F-0820-84): uch pog'onali ierarxiya (kutilmoqda < .on accent < .done yashil) */
+  .stp { position: relative; display: inline-flex; align-items: center; gap: 7px; font-family: 'Manrope'; font-weight: 700; font-size: clamp(11.5px,1.4vw,13px); color: ${T.ink3Deep}; background: ${T.paper}; border-radius: 11px; padding: 14px 13px 7px 6px; box-shadow: inset 0 0 0 1.5px ${T.line}; }
   .stp::before { content: ""; position: absolute; left: 7px; right: 7px; top: 5px; height: 5px; background: var(--perf-h); pointer-events: none; }
   .stp i { font-style: normal; width: 20px; height: 20px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; background: ${T.bg}; color: ${T.ink3}; font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: 11px; }
   .stp.on { color: ${T.accent}; box-shadow: inset 0 0 0 1.5px ${T.accent}; }
@@ -2958,11 +2970,12 @@ const CSS_LESSON = `
   .wsp-ed { display: flex; flex-direction: column; gap: 9px; background: ${T.paper}; border-radius: 16px; padding: clamp(12px,2vw,17px); box-shadow: 0 16px 34px -16px rgba(${T.shadowBase},0.28), inset 0 0 0 2px ${T.accent}44; min-width: 0; }
   .wsp-ed-h { font-family: 'Manrope'; font-weight: 800; font-size: clamp(12.5px,1.5vw,14px); color: ${T.accent}; }
   .wsp-f { display: flex; flex-direction: column; gap: 5px; min-width: 0; }
-  .wsp-fl { font-family: 'Manrope'; font-weight: 800; font-size: 11px; letter-spacing: 0.07em; text-transform: uppercase; color: ${T.ink3}; }
+  .wsp-fl { font-family: 'Manrope'; font-weight: 800; font-size: 11px; letter-spacing: 0.07em; text-transform: uppercase; color: ${T.ink2}; }
   .wsp-save { align-self: flex-start; font-family: 'Manrope'; font-weight: 800; font-size: clamp(13px,1.6vw,14.5px); color: #fff; background: ${T.accent}; border: none; border-radius: 12px; padding: 10px 20px; cursor: pointer; box-shadow: 0 10px 22px -10px rgba(91,61,230,0.6); transition: transform 0.14s, opacity 0.14s, box-shadow 0.14s; }
   .wsp-save:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 13px 26px -10px rgba(91,61,230,0.7); }
   .wsp-save:active:not(:disabled) { transform: translateY(0) scale(0.97); }
-  .wsp-save:disabled { opacity: 0.42; cursor: not-allowed; box-shadow: none; }
+  .wsp-why { font-family: 'Manrope'; font-weight: 600; font-size: 12px; color: ${T.ink2}; margin-top: -2px; }
+  .wsp-save:disabled { opacity: 0.5; cursor: not-allowed; box-shadow: none; }
   @media (prefers-reduced-motion: reduce) { .wsp-save { transition: none; } .wsp-save:hover:not(:disabled), .wsp-save:active:not(:disabled) { transform: none; } }
   .wsp-task { display: flex; flex-direction: column; gap: 5px; background: ${T.paper}; border-left: 5px solid ${T.accent}; border-radius: 14px; padding: 11px 14px; box-shadow: 0 10px 24px -12px rgba(${T.shadowBase},0.2); min-width: 0; }
   .wsp-task-lbl { font-family: 'Manrope'; font-weight: 800; font-size: 11px; letter-spacing: 0.07em; text-transform: uppercase; color: ${T.accent}; }
@@ -2980,7 +2993,7 @@ const CSS_LESSON = `
   .kdr-col { flex: 1; display: flex; flex-direction: column; gap: 4px; min-width: 0; }
   .kdr-gap { font-family: 'Manrope'; font-weight: 700; font-size: clamp(12.5px,1.5vw,14px); color: ${T.ink}; line-height: 1.4; overflow-wrap: anywhere; min-width: 0; }
   .kdr-act { align-self: flex-start; font-family: 'Manrope'; font-weight: 800; font-size: 11.5px; color: ${T.accent}; background: ${T.accentSoft}; border-radius: 99px; padding: 3px 11px; overflow-wrap: anywhere; max-width: 100%; }
-  .kdr-edit { flex-shrink: 0; background: none; border: none; cursor: pointer; font-size: 14px; color: ${T.ink3}; border-radius: 8px; padding: 2px 6px; }
+  .kdr-edit { flex-shrink: 0; background: none; border: none; cursor: pointer; font-size: 14px; color: ${T.ink2}; border-radius: 8px; padding: 2px 6px; }
   .kdr-edit:hover { color: ${T.accent}; background: ${T.accentSoft}; }
   /* 81-qonun: maydon-signallari MA'NO rangida (qizil hech qachon) */
   .reflect-input { font-family: 'Manrope'; font-size: 15px; color: ${T.ink}; border: none; border-radius: 10px; padding: 11px 14px; background: ${T.bg}; box-shadow: inset 0 0 0 1.5px ${T.line}; outline: none; width: 100%; min-width: 0; transition: box-shadow 0.18s; }
@@ -2994,19 +3007,18 @@ const CSS_LESSON = `
   .sfb.ok { color: ${T.success}; background: ${T.successSoft}; }
   .sfb.ask { color: ${T.accent}; background: ${T.accentSoft}; }
   .wsxrow { display: flex; gap: 8px; flex-wrap: wrap; }
-  .wsx { flex: 1; min-width: 160px; background: ${T.bg}; border: 1.5px dashed ${T.ink3}66; border-radius: 12px; overflow: hidden; }
+  /* 16-qonun: bu yopiladigan MATN, bo'sh joy emas — uzuq chiziqli quti EMAS, matn-havola. */
+  .wsx { flex: none; min-width: 0; background: transparent; border: none; border-radius: 0; overflow: visible; }
   .wsx.star { border-color: ${T.blue}66; }
-  .wsx-toggle { width: 100%; text-align: left; background: none; border: none; padding: 8px 11px; font-family: 'Manrope'; font-weight: 700; font-size: 12.5px; color: ${T.accent}; cursor: pointer; }
+  .wsx-toggle { width: auto; text-align: left; background: none; border: none; border-bottom: 1px solid ${T.line}; padding: 2px 0; font-family: 'Manrope'; font-weight: 700; font-size: 11.5px; color: ${T.ink2}; cursor: pointer; }
+  .wsx-toggle:hover, .wsx-toggle:focus-visible { color: ${T.accent}; border-bottom-color: ${T.accent}; }
   .wsx.star .wsx-toggle { color: ${T.blue}; }
   .wsx-body { padding: 0 11px 9px; display: flex; flex-direction: column; gap: 6px; animation: fade-step 0.25s ease-out; }
   .wsx-body p { font-size: 12.5px; color: ${T.ink2}; margin: 0; line-height: 1.45; overflow-wrap: anywhere; }
   .wsx-body b { color: ${T.ink}; }
 
   /* TEKSHIRUV (s9): hotspot — soxta sayt ustidagi joylar */
-  .hs { display: flex; flex-direction: column; background: ${T.paper}; border-radius: 16px; overflow: hidden; box-shadow: 0 16px 34px -16px rgba(${T.shadowBase},0.28), inset 0 0 0 1.5px ${T.line}; animation: hs-pulse 1.9s ease-in-out infinite; min-width: 0; }
-  .hs.calm { animation: none; }
-  @keyframes hs-pulse { 0%, 100% { box-shadow: 0 16px 34px -16px rgba(${T.shadowBase},0.28), inset 0 0 0 1.5px ${T.line}, 0 0 0 0 rgba(91,61,230,0); } 50% { box-shadow: 0 16px 34px -16px rgba(${T.shadowBase},0.28), inset 0 0 0 1.5px ${T.accent}66, 0 0 0 8px rgba(91,61,230,0.08); } }
-  @media (prefers-reduced-motion: reduce) { .hs { animation: none; } }
+  .hs { display: flex; flex-direction: column; background: ${T.paper}; border-radius: 16px; overflow: hidden; box-shadow: 0 16px 34px -16px rgba(${T.shadowBase},0.28), inset 0 0 0 1.5px ${T.line}; min-width: 0; }
   .hs-bar { display: flex; align-items: center; gap: 8px; font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: ${T.ink3}; background: ${T.bg}; padding: 6px 12px; }
   .hs-body { display: flex; flex-direction: column; gap: 7px; padding: clamp(11px,1.8vw,15px); }
   .hs-z { display: flex; align-items: center; gap: 8px; text-align: left; background: ${T.bg}; border: none; border-radius: 11px; padding: 9px 12px; cursor: pointer; font-family: 'Manrope'; font-weight: 700; font-size: clamp(12px,1.45vw,13.5px); color: ${T.ink}; box-shadow: inset 0 0 0 1.5px ${T.line}; transition: box-shadow 0.16s, background 0.2s, transform 0.12s; min-width: 0; overflow-wrap: anywhere; }
@@ -3025,10 +3037,10 @@ const CSS_LESSON = `
   .hs-z.btn .hs-num { background: rgba(255,255,255,0.22); color: #fff; box-shadow: none; }
   .hs-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; background: ${T.bg}; border-radius: 10px; padding: 8px 12px; font-family: 'Manrope'; font-weight: 600; font-size: clamp(12px,1.45vw,13.5px); color: ${T.ink}; min-width: 0; overflow-wrap: anywhere; }
   .hs-row.dim b { color: ${T.ink3}; font-style: italic; font-weight: 600; }
-  .hs-list-lbl { font-family: 'Manrope'; font-weight: 800; font-size: 11px; letter-spacing: 0.07em; text-transform: uppercase; color: ${T.ink3}; }
+  .hs-list-lbl { font-family: 'Manrope'; font-weight: 800; font-size: 11px; letter-spacing: 0.07em; text-transform: uppercase; color: ${T.ink2}; }
   .hstep { display: flex; flex-direction: column; gap: 7px; background: ${T.paper}; border-radius: 14px; padding: 11px 14px; box-shadow: 0 10px 24px -12px rgba(${T.shadowBase},0.2); min-width: 0; }
   .hstep-lbl { font-family: 'Manrope'; font-weight: 800; font-size: 11px; letter-spacing: 0.07em; text-transform: uppercase; color: ${T.accent}; }
-  .hstep-row { display: flex; align-items: center; gap: 9px; font-family: 'Manrope'; font-weight: 700; font-size: clamp(12px,1.45vw,13.5px); color: ${T.ink3}; background: ${T.bg}; border-radius: 11px; padding: 8px 11px; min-width: 0; overflow-wrap: anywhere; }
+  .hstep-row { display: flex; align-items: center; gap: 9px; font-family: 'Manrope'; font-weight: 700; font-size: clamp(12px,1.45vw,13.5px); color: ${T.ink2}; background: ${T.bg}; border-radius: 11px; padding: 8px 11px; min-width: 0; overflow-wrap: anywhere; }
   .hstep-row i { font-style: normal; flex-shrink: 0; width: 20px; height: 20px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; background: ${T.paper}; color: ${T.ink3}; font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: 11px; box-shadow: inset 0 0 0 1.5px ${T.line}; }
   .hstep-row.on { color: ${T.accent}; box-shadow: inset 0 0 0 1.5px ${T.accent}66; }
   .hstep-row.on i { background: ${T.accent}; color: #fff; box-shadow: none; }
@@ -3049,9 +3061,12 @@ const CSS_LESSON = `
   }
 
   /* KODING — VS Code-topshirig'i (82-qonun): panel CHAPDA, kod O'NGDA, nusxalash yopiq */
-  .kdpanel { position: relative; background: ${T.paper}; border-radius: 16px; padding: 11px 13px; display: flex; flex-direction: column; gap: 8px; box-shadow: 0 12px 28px -14px rgba(${T.shadowBase},0.22); border-left: 5px solid ${T.accent}; min-width: 0; transition: border-color 0.3s; }
+  .kdpanel { position: relative; background: ${T.paper}; border-radius: 16px; padding: 14px 18px; display: flex; flex-direction: column; gap: 8px; box-shadow: 0 12px 28px -14px rgba(${T.shadowBase},0.22); border-left: 5px solid ${T.accent}; min-width: 0; transition: border-color 0.3s; }
   .kdpanel.is-done { border-left-color: ${T.success}; }
-  .kdreq { margin: 0; padding-left: 19px; display: flex; flex-direction: column; gap: 4px; }
+  /* padding-left 19px + panel 13px edi: <ol> raqamlari chap accent-chizig'iga yopishardi.
+     PM8 qiymatlari (22px / gap 7px) — F-0820-74. Bu nuqson PM8 da tuzatilgan, PM9 va PM10 da
+     qaytgan: uchala PM darsi bir manbadan ko'chirilgan. */
+  .kdreq { margin: 0; padding-left: 22px; display: flex; flex-direction: column; gap: 7px; }
   .kdreq li { font-family: 'Manrope'; font-weight: 600; font-size: 12.5px; line-height: 1.45; color: ${T.ink2}; overflow-wrap: anywhere; }
   .cmt { background: ${T.bg}; border-radius: 13px; border-left: 4px solid ${T.accent}; padding: 11px 13px; display: flex; flex-direction: column; gap: 9px; }
   /* Bitta savol — bitta ustun: uch qator kod butun enni egallab, banner bo'lib ketmasin */
@@ -3077,12 +3092,12 @@ const CSS_LESSON = `
   .cq-t { flex: 1; min-width: 0; overflow-x: auto; white-space: pre; }
   @media (max-width: 520px) { .cq-b { padding: 9px 10px; font-size: 10.5px; } }
   @media (prefers-reduced-motion: reduce) { .cq-b, .cq-b:hover, .cq-b:active, .cq-b.miss { transition: none; transform: none; animation: none; } }
-  .lp-done-btn { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(13.5px,1.7vw,15px); cursor: pointer; border: none; border-radius: 13px; padding: 12px 18px; background: ${T.ink}; color: ${T.bg}; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.34); transition: all 0.18s; }
+  .lp-done-btn { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(13.5px,1.7vw,15px); cursor: pointer; border: none; border-radius: 13px; padding: 12px 18px; background: ${T.accent}; color: ${T.bg}; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.34); transition: all 0.18s; }
   .lp-done-btn:hover:not(:disabled) { background: ${T.accent}; box-shadow: 0 12px 28px -6px rgba(91,61,230,0.5); }
   .lp-done-btn:disabled { opacity: 0.5; cursor: not-allowed; }
   .lp-done-btn.is-done { background: ${T.successSoft}; color: ${T.success}; box-shadow: inset 0 0 0 1.5px ${T.success}66; cursor: default; }
   .lp-mstats { background: ${T.blueSoft}; border-radius: 12px; padding: 10px 13px; display: flex; flex-direction: column; gap: 5px; }
-  .kd-skip { align-self: flex-start; background: none; border: none; cursor: pointer; font-family: 'Manrope', sans-serif; font-weight: 600; font-size: 12.5px; color: ${T.ink3}; text-decoration: underline; text-underline-offset: 3px; padding: 4px 6px; border-radius: 8px; transition: color 0.15s; }
+  .kd-skip { align-self: flex-start; background: none; border: none; cursor: pointer; font-family: 'Manrope', sans-serif; font-weight: 600; font-size: 12.5px; color: ${T.ink2}; text-decoration: underline; text-underline-offset: 3px; padding: 4px 6px; border-radius: 8px; transition: color 0.15s; }
   .kd-skip:hover { color: ${T.accent}; }
   .vsc { position: relative; background: #1E1E1E; border-radius: 14px; overflow: hidden; box-shadow: 0 14px 30px -10px rgba(${T.shadowBase},0.35); }
   .vsc-bar { background: #252526; display: flex; align-items: center; gap: 2px; padding-right: 8px; }
@@ -3120,7 +3135,7 @@ const CSS_LESSON = `
   .pair-ring-who.b { background: ${T.success}; }
   .pair-ring-sec { font-family: 'JetBrains Mono'; font-weight: 700; font-size: 15px; color: ${T.ink}; font-variant-numeric: tabular-nums; margin-top: 2px; }
   .pair-live-txt { display: flex; flex-direction: column; gap: 3px; }
-  .pair-next { font-family: 'Manrope'; font-weight: 600; font-size: 12.5px; color: ${T.ink3}; }
+  .pair-next { font-family: 'Manrope'; font-weight: 600; font-size: 12.5px; color: ${T.ink2}; }
   .pair-timer-btns { display: flex; gap: 8px; }
   .pair-start { font-family: 'Manrope'; font-weight: 800; font-size: clamp(14px,1.8vw,16px); cursor: pointer; border: none; border-radius: 12px; padding: 12px 22px; background: linear-gradient(135deg, ${T.accent}, ${T.accentVivid}); color: #fff; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 10px 24px -8px rgba(91,61,230,0.5); animation: pair-start-pulse 1.6s ease-in-out infinite; transition: transform 0.15s; }
   .pair-start:hover { transform: translateY(-2px); }
@@ -3190,7 +3205,7 @@ const CSS_LESSON = `
   .fc-front { background: ${T.paper}; border: 2px solid ${T.line}; box-shadow: 0 14px 34px -18px rgba(${T.shadowBase},0.4); }
   .fc-back { background: linear-gradient(160deg, ${T.accentVivid}, ${T.accent}); color: #fff; transform: rotateY(180deg); box-shadow: 0 16px 36px -16px rgba(91,61,230,0.6); }
   .fc-q { font-family: 'Manrope'; font-weight: 800; font-size: clamp(17px,2.6vw,22px); color: ${T.ink}; line-height: 1.3; text-wrap: balance; }
-  .fc-cue { font-family: 'Manrope'; font-size: 13px; color: ${T.ink3}; }
+  .fc-cue { font-family: 'Manrope'; font-size: 13px; color: ${T.ink2}; }
   .fc-tap { color: ${T.accent}; font-weight: 700; }
   .fc-tag { font-family: 'Manrope', sans-serif; font-weight: 800; letter-spacing: -0.01em; line-height: 1.2; max-width: 100%; text-wrap: balance; overflow-wrap: anywhere; }
   .fc-tag.t1 { font-size: clamp(28px,5.4vw,42px); }
@@ -3204,7 +3219,7 @@ const CSS_LESSON = `
   .fc-btn.again { background: ${T.paper}; border: 2px solid ${T.accent}66; color: ${T.accent}; }
   .fc-btn:disabled { opacity: 0.55; cursor: default; transform: none; }
   .fc-btn.ghost { background: ${T.paper}; border: 1.5px solid ${T.line}; color: ${T.ink}; flex: none; align-self: center; padding: 11px 22px; }
-  .fc-hint { margin: 0; min-height: 48px; display: flex; align-items: center; justify-content: center; text-align: center; color: ${T.ink3}; font-style: italic; font-size: 13px; }
+  .fc-hint { margin: 0; min-height: 48px; display: flex; align-items: center; justify-content: center; text-align: center; color: ${T.ink2}; font-style: italic; font-size: 13px; }
   .fc-done { display: flex; flex-direction: column; align-items: center; gap: 5px; text-align: center; background: ${T.successSoft}; border-radius: 18px; padding: 22px; max-width: 480px; }
   .fc-done-emoji { font-size: 40px; }
   .fc-done-h { font-family: 'Manrope'; font-weight: 800; font-size: 20px; color: ${T.success}; margin: 0; }
@@ -3253,9 +3268,9 @@ const CSS_ARENA = `
   .mstats-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
   .mstats-lbl { font-family: 'Manrope'; font-weight: 800; font-size: 12.5px; letter-spacing: 0.07em; text-transform: uppercase; color: ${T.blue}; }
   .mstats-n { font-family: 'Manrope'; font-size: 13.5px; font-weight: 600; color: ${T.ink2}; }
-  .mstats-reveal { font-family: 'Manrope'; font-weight: 700; font-size: 12.5px; background: ${T.ink}; color: #fff; border: none; border-radius: 99px; padding: 7px 14px; cursor: pointer; white-space: nowrap; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.35); transition: all 0.2s; }
-  .mstats-reveal:hover { background: ${T.accent}; box-shadow: 0 6px 16px -4px rgba(91,61,230,0.5); }
-  .mstats-reveal.ready { background: ${T.accent}; animation: mstats-pulse 1.6s ease-in-out infinite; }
+  .mstats-reveal { font-family: 'Manrope'; font-weight: 700; font-size: 12.5px; background: ${T.paper}; color: ${T.accent}; border: 1px solid ${T.accent}; border-radius: 99px; padding: 7px 14px; cursor: pointer; white-space: nowrap; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.35); transition: all 0.2s; }
+  .mstats-reveal:hover { color: #fff; background: ${T.accent}; box-shadow: 0 6px 16px -4px rgba(91,61,230,0.5); }
+  .mstats-reveal.ready { color: #fff; background: ${T.accent}; animation: mstats-pulse 1.6s ease-in-out infinite; }
   @keyframes mstats-pulse { 0%,100% { box-shadow: 0 4px 12px -4px rgba(91,61,230,0.5); } 50% { box-shadow: 0 4px 18px 0 rgba(91,61,230,0.55); } }
   .mstats-prog { height: 7px; background: rgba(${T.shadowBase},0.09); border-radius: 99px; overflow: hidden; }
   .mstats-prog-fill { display: block; height: 100%; border-radius: 99px; background: ${T.blue}; transition: width 0.6s cubic-bezier(.4,0,.2,1); }
@@ -3311,7 +3326,7 @@ const CSS_ARENA = `
   .rc-dot { width: 10px; height: 10px; border-radius: 99px; background: rgba(167,166,162,0.4); cursor: pointer; transition: all 0.25s; border: none; padding: 0; }
   .rc-dot.fill { background: ${T.ink3}; }
   .rc-dot.cur { background: ${T.accent}; width: 26px; }
-  .rc-btn { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(13px,1.7vw,16px); border: none; border-radius: 12px; padding: clamp(11px,1.6vw,14px) clamp(18px,2.6vw,26px); cursor: pointer; background: ${T.ink}; color: ${T.bg}; box-shadow: 0 6px 18px -4px rgba(${T.shadowBase},0.32); transition: all 0.2s; white-space: nowrap; }
+  .rc-btn { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(13px,1.7vw,16px); border: none; border-radius: 12px; padding: clamp(11px,1.6vw,14px) clamp(18px,2.6vw,26px); cursor: pointer; background: ${T.accent}; color: #fff; box-shadow: 0 6px 18px -4px rgba(${T.shadowBase},0.32); transition: all 0.2s; white-space: nowrap; }
   .rc-btn:hover:not(:disabled) { background: ${T.accent}; }
   .rc-btn:disabled { opacity: 0.35; cursor: not-allowed; box-shadow: none; }
   .rc-btn.ghost { background: transparent; color: ${T.ink2}; box-shadow: none; }

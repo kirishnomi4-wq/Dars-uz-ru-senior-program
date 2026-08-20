@@ -2467,3 +2467,178 @@ faqat `list.length > 1` — ya'ni o'quvchi «312 kod satri» (darsning o'zi «sh
 yozganda ham ✓ yonardi.
 **Tekshiruv usuli:** har chipning `className` shartini oling va o'sha ekranning javob-qatori
 (🤔-tarmog'i) bilan solishtiring — javob-qatori nimani rad etsa, chip ham o'shani rad etsin.
+
+## 150. MARKAZIY METAFORA G'OLIB — YONDOSH OBRAZLAR UNGA BO'YSUNADI (F-0820-58, M3-D6 Props)
+
+❌ Bitta ekranda: yorliq «**Ma'lumot daryosi**» · Mentor «props'ni **sharik kabi** tashlaydi» ·
+ekranda ko'rinadigan narsa esa **fabrika konveyeri**.
+✅ Yorliq «**Bir tomonlama konveyer**» · Mentor «Fabrika konveyeri faqat bir tomonga aylanadi:
+tepada App **varaqa** tashlaydi, pastdan kartochkalar chiqadi».
+
+**Sabab:** dars 6 ta ekranda `CardFactory` ni ko'rsatadi — bu darsning umurtqasi (108-qonun).
+O'quvchi ekranda daryoni ham, sharikni ham **ko'rmaydi**. Uch nomdan ikkitasi ekranda yo'q bo'lsa,
+eng muhim qoida (ma'lumot faqat pastga) eng loyqa tushuntirilgan joyga aylanadi.
+
+🔴 **Tekshiruv usuli — «uchta ustun» sinovi.** Har ekran uchun uchta ustun yozing:
+(1) yorliq/sarlavha qaysi obrazni aytadi · (2) Mentor qaysi obrazni aytadi · (3) ekranda
+haqiqatan **nima chiziladi**. Uchalasi bir xil bo'lmasa — g'olib **3-ustun** (chizilgani),
+qolgan ikkitasi unga tortiladi. Obraz almashtirilmaydi, **matn** almashtiriladi.
+
+**Yon-band — «o'zgarish shart emas» hukmini qayta ko'rish.** Bu topilma bir marta auditdan
+«sub-nuqtani aniq beradi, o'zgarish shart emas» degan hukm bilan o'tib ketgan edi. Obraz
+o'z-o'zicha to'g'ri bo'lishi mumkin, lekin **ekrandagi rasm bilan solishtirilmasa** hukm chala.
+
+## 151. METAFORA ATAMASI QO'SHNI DARSGA TEGIB KETMASIN (F-0820-59, M3-D6 · M3-D8)
+
+❌ M3-D6 (Props) da «**posilka** 📦 yuborish» — holbuki 📦 **o'sha modulning 8-darsi**
+(API POST) ning markaziy metaforasi: u yerda haqiqiy tarmoq posilkasi jo'natiladi.
+✅ M3-D6 da «**varaqa** 📄 yuborish» — fabrika tilining o'z so'zi va ekranda
+chizilgan narsa aynan **oq qog'oz varaqasi**, quti emas.
+
+**Sabab:** bir modulda bitta so'z ikki xil tushunchani nomlasa («props uzatish» va «HTTP body
+jo'natish»), o'quvchi ikkinchi darsda birinchisini eslaydi va chalkashadi. «Bir tushuncha —
+bir nom» qoidasi **dars ichida emas, modul bo'ylab** tekshiriladi.
+
+🔴 **Tekshiruv usuli:** yangi metafora-so'zi kiritilganda `grep -ril "<so'z>" src/<modul>/` —
+qo'shni darslarda bor-yo'qligi ko'riladi. Bor bo'lsa: so'z **asl egasida** qoladi, yangi darsga
+boshqa so'z olinadi. Emoji ham tekshiriladi — 📦 so'zdan oldin ko'zga tashlanadi.
+
+**Yon-band — so'z ekrandagi rasmni tasvirlasin.** «Posilka» + 📦 ikki marta xato edi: rus
+o'zlashmasi bo'lgani uchun ham, ekranda **quti emas, varaqa** turgani uchun ham.
+
+## 152. RAD-BLOKI QISQA BO'LSIN — XULOSA YASHILGA (F-0820-60, M3-D6)
+
+❌ Qizil blok (4 gap): «❌ Yo'l yo'q! Bola otaga props uzata olmaydi — konveyer orqaga
+aylanmaydi. Bu React'ning qat'iy qoidasi: ma'lumot faqat yuqoridan pastga. Shuning uchun
+xatoni topish oson — ma'lumot qayerdan kelganini doim bilasiz.»
+✅ Qizil (2 gap): «❌ Konveyer orqaga aylanmaydi. Bola otaga props uzata **olmaydi** —
+React'da ma'lumot **faqat yuqoridan pastga**.»
+✅ Yashil (xulosa shu yerga ko'chdi): «…Ma'lumot qayerdan kelganini doim bilasiz — shuning
+uchun xatoni topish oson.»
+
+**Sabab:** o'quvchi tugmani bosgan **onda** rad javobini oladi — bu **reaksiya**, ma'ruza
+emas. Uzun matn reaksiyani sekinlashtiradi. Ekranda ikkalasi ham (qizil + yashil) **birga**
+turardi va ikkalasi bir xil qoidani takrorlardi.
+
+🔴 **Tekshiruv usuli:** qizil va yashil bloklar bir vaqtda ko'rinadimi? Ko'rinsa —
+matnlarini yonma-yon qo'ying. Takrorlangan gap **faqat bittasida** qoladi: qisqa rad
+qizilda, foydali xulosa yashilda.
+
+## 153. YAKUN-BLOKI SABAB TURGAN USTUNDA TURSIN (F-0820-61, M3-D6)
+
+❌ Chap ustunda tugma/kod, yashil «natija» bloki esa **o'ng** ustunda — vizual og'irlik
+o'ng tomonga to'planadi va o'sha ustun **skroll** talab qiladi.
+✅ Yashil blok **sabab** turgan ustunga: tugma ostiga · kod oynasi ostiga · tanlov
+qatorlari ostiga. Ikki ustun tenglashadi, skroll yo'qoladi.
+
+**Sabab:** ikki ustunli maketda blok «mavzusiga qarab» emas, **balandlikka qarab**
+joylashtiriladi. Apparat/rasm turgan ustun allaqachon eng baland — unga yana matn
+qo'shilsa, ekran sig'maydi.
+
+🔴 **Tekshiruv usuli:** har `split` ekranda ikki ustunning elementlar sonini sanang.
+Farq 2 dan oshsa — shartli (`{done && …}`) bloklarni qisqa ustunga ko'chiring.
+M3-D6 da uchta ekranda (3/21 · 4/21 · 12/21) aynan shu tuzatildi.
+
+## 154. TASDIQ-BLOKI (hook-ack) — REAKSIYA, XULOSA EMAS (F-0820-70, M3-D7)
+
+O'quvchi hook-savoliga javob bosgan **onda** chiqadigan blok. U tasdiq beradi va darsni
+ochadi — darsning mazmunini oldindan aytib qo'ymaydi.
+
+❌ (4 gap, 25 so'z): «Aynan! Ilova faqat **ko'rsata** oladi (Read). Lekin to'liq ilovaga
+yana 3 ta amal kerak: **qo'shish, o'zgartirish, o'chirish**. Bugun shularni qo'shib,
+**to'liq boshqariladigan ilova** quramiz.»
+✅ (2 gap, 15 so'z): «Aynan! Hozircha ilova faqat **ko'rsata** oladi (Read). Yana uchtasi
+kerak: **qo'shish, o'zgartirish, o'chirish** — bugun shularni o'rganamiz.»
+
+**Sabab:** oxirgi gap uchinchisini qayta aytardi — bitta g'oya («to'liq ilova quramiz»)
+ikki shaklda (74-bo'lim sanoq-tekshiruvi). Bitta blokda «ilova» × 3, «to'liq» × 2,
+«qo'shish/qo'shib» × 2. «To'liq boshqariladigan ilova quramiz» — kitobiy tuzilma;
+jonli o'qituvchi «bugun shularni o'rganamiz» deydi.
+
+🔴 **Tekshiruv usuli:** tasdiq-blokining oxirgi gapini o'chiring. Ma'no o'zgarmasa —
+u ortiqcha edi (74-bo'lim olib tashlash testi). Keyin takrorlangan otni sanang:
+bitta qisqa blokda bir ot 3 marta kelsa, gap qayta aytilyapti.
+
+**Ikkinchi dalil — M3-D9 (2026-08-20, F-0820-72).** Naqsh takrorlandi, «ot-sanog'i»
+tellisi darhol ishladi: bitta blokda **«server» × 3**.
+
+❌ (3 gap, 24 so'z): «Aynan! GET — **faqat o'qiydi**: serverga boradi, bor narsani olib
+keladi. Sizning o'yiningiz esa hali serverga **yetib bormagan**. Bugun yuborishni
+o'rganamiz: **POST, PUT, DELETE**.»
+✅ (2 gap, 15 so'z): «Aynan! GET faqat **o'qiydi** — bor narsani olib keladi. O'yiningiz
+hali serverda yo'q — bugun **yuborishni** o'rganamiz: POST, PUT, DELETE.»
+
+Uchta kesim: ① «serverga boradi, bor narsani olib keladi» — «o'qiydi» ni takrorlardi,
+bittasi qoldi ② «Sizning» tushdi, chunki «o'yin**ingiz**» da egalik allaqachon bor
+③ «yetib bormagan» olib tashlandi — u jo'natma-obraziga ishora qilardi, obraz esa
+darsning 4-ekranida ochiladi (128-qonun: obraz kiritilmasdan unga havola berilmaydi).
+
+**Uchinchi dalil — M3-D11 (2026-08-20, F-0820-75).** Bu safar tell boshqacha: **inkor
+va tasdiq ikki uzun bo'lakka yoyilgan** edi.
+
+❌ (3 gap, 26 so'z): «Aynan! **React Router** sahifani butunlay qayta yuklamaydi — u
+faqat **ekranning kerakli qismini** almashtiradi. Shuning uchun o'tish bir zumda.
+Bugun robo-games'ni shunday **ko'p sahifali ilovaga** aylantiramiz.»
+✅ (2 gap, 20 so'z): «Aynan! **React Router** butun sahifani emas, faqat **kerakli
+qismini** almashtiradi — shuning uchun o'tish bir zumda. Bugun robo-games'ni **ko'p
+sahifali** qilamiz.»
+
+Uchta kesim: ① «X qilmaydi — u faqat Y qiladi» ikki bo'lagi **bitta qolipga** yig'ildi:
+«**X emas, faqat Y**». Qarama-qarshilik shu qolipda bir nafasda o'qiladi ② «u» olmoshi
+tushdi — ega o'zgarmagan joyda olmosh takror ③ «shunday ko'p sahifali ilovaga
+**aylantiramiz**» → «**qilamiz**»: kitobiy zanjir o'rniga jonli fe'l.
+
+🔴 **Qo'shimcha tekshiruv — INKOR QOLIPI.** Tasdiq-blokida «… qilmaydi — u faqat …
+qiladi» ko'rinishi uchrasa, uni «**… emas, faqat …**» ga yig'ing. Bu deyarli har safar
+bitta gapni va bitta olmoshni yo'qotadi, ma'no esa o'zgarmaydi.
+
+**To'rtinchi dalil — M3-D13 (2026-08-20, F-0820-79).** To'rt darsdagi eng og'iri:
+**4 gap, 33 so'z.** Uchala eski tell bir vaqtda ishladi (ot-sanog'i: «blok» · «bo'laklash» ·
+«bo'lak» ×3 · yoyilgan inkor · takroriy oxirgi gap), ustiga **yangisi** qo'shildi.
+
+❌ «Aynan! Katta sayt — **kichik bloklarning** yig'indisi: `<Navbar />`, `<Hero />`,
+`<TaomCard />`… Buni **bo'laklash** (dekompozitsiya) deyiladi. Keyin har bo'lakka
+**aniq prompt** yozasiz — AI taxmin qilmaydi. Bugun shu ikki mahorat bilan istalgan
+saytni qurasiz.»
+✅ (2 gap, 20 so'z): «Aynan! Katta sayt — **kichik bloklar** yig'indisi: `<Navbar />`,
+`<Hero />`, `<TaomCard />`… Bugun ikkitasini o'rganamiz: **bo'laklash** va har bo'lakka
+**aniq prompt**.»
+
+🔴 **YANGI TELL — BIR MARTALIK CHET ATAMA HOOK-TASDIG'IDA GLOSS QILINMAYDI.**
+`(dekompozitsiya)` butun faylda **1 marta** — aynan shu qatorda. «Bo'laklash» esa
+**53 marta**: dars atamasi o'zbekcha va mustahkam. Ya'ni lotincha atama hech qayerda
+ishlatilmaydi — u tushuntirmaydi, faqat bir nafaslik tasdiqni og'irlashtiradi.
+📌 Tekshiruv: qavsdagi chet atamani `grep` qiling. Faylda **1 marta** chiqsa — o'chiring.
+76-bo'lim glossni **yodlab qolinadigan** joyda talab qiladi (flashcard javobi, atama
+kiritiladigan ekran), o'tkinchi tasdiqda emas.
+
+⚠️ **Ikkinchi kesim — spoyler.** «AI taxmin qilmaydi» olib tashlandi: bu **9/20
+aniqlik-o'lchagichli prompt-quruvchi** ekranining butun mavzusi. Hook'da aytilsa,
+o'sha ekran o'z zarbasini yo'qotadi. *Hook nima o'rganilishini aytadi, javobini emas.*
+
+## 154. O'ZGARMAYDIGAN SAVOL — SAVOL EMAS (F-0820-70, M3-D9 10/16)
+
+❌ Yorliq: «✋ Qaysi qadam **birinchi** bo'ladi?» — beshta kartaning hammasi uchun, oxirigacha
+o'zgarmaydi. Birinchi karta joylashgach o'quvchi oldida **savol qolmaydi**, faqat urinish qoladi.
+✅ «✋ Qaysi qadam **{S9_ORD[placed.length]}** bo'ladi?» — birinchi → ikkinchi → uchinchi →
+to'rtinchi → beshinchi.
+
+**Sabab:** ketma-ket mexanikada (faqat navbatdagi to'g'ri element qabul qilinadi) o'quvchi
+har qadamda **yangi savolga** javob beradi. Yorliq qotib qolsa, u ikkinchi qadamdanoq
+yo'riqnomaga aylanadi va o'quvchi ko'r-ko'rona bosa boshlaydi — keyin mexanikani «buzuq»
+deb hisoblaydi.
+
+🔴 **Uch bandli tekshiruv — ketma-ket mexanikali har ekranda:**
+1. **Savol** har qadamda o'zgaradimi? (`placed.length` ga bog'langanmi)
+2. **Nishon** ko'rinadimi? Navbatdagi bo'sh joy `—` emas, **`?`** bo'lsin; belgisi to'q bo'lsin
+3. **Va'da** mexanikaga mosmi? «istalgan kartani bosing» deyilsa-yu, faqat bittasi qabul
+   qilinsa — o'quvchi uni **bug** deb ko'radi, dars deb emas
+
+**Yon-band — rad-signali OXIRGI o'rinda.** Instinkt «rad etishni kuchaytirish» deydi, lekin
+kuchli rad-signali ko'r urinishni **qulayroq** qiladi, savolni tiklamaydi. Avval savol va
+nishon, keyin rad. Bu darsda rad-signali (karta sakrab qaytadi) to'rtinchi bo'lib qilindi.
+
+**Yon-band-2 — takliflar tartibi ham telli.** Birinchi tashxisda «matnni tuzat + silkinishni
+kuchaytir» deb taklif qilingan edi; `.tslot.next` va yorliq kodda tekshirilgach, asosiy sabab
+boshqa ekani chiqdi. **Ekran-nuqsonida taklif berishdan oldin nishon-elementning CSS'i
+o'qiladi** — «ko'rinadi» deb taxmin qilinmaydi.
