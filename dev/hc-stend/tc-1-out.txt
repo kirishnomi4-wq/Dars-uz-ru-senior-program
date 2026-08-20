@@ -1,0 +1,881 @@
+TOTAL 444 MISMATCH 1 NOTE 264 ok 179
+[MISMATCH] cssValue: margin 0 auto
+     args=["h1","margin","0 auto"] src={"css":"h1{margin:0 auto}"}
+     got="`h1` da `margin: 0 auto` yozing" got2="`h1` da `margin: 0 auto` yozing" exp=true rules=[{"selector":"h1","props":{"margin-top":"0px","margin-right":"auto","margin-bottom":"0px","margin-left":"auto","margin":"0px auto"}}]
+[NOTE] has: atribut selektor input[type=email]
+     args=["input[type=\"email\"]"] src={"html":"<input type=\"EMAIL\">"}
+     got=true got2=true exp=note rules=[]
+[NOTE] text: &nbsp; (faqat nbsp)
+     args=["h1"] src={"html":"<h1>&nbsp;</h1>"}
+     got="`h1` bor, lekin ichi bo'sh — matn yozing" got2="`h1` bor, lekin ichi bo'sh — matn yozing" exp=note rules=[]
+[NOTE] text: birinchi h1 bo'sh, ikkinchisi to'la
+     args=["h1"] src={"html":"<h1></h1><h1>Salom</h1>"}
+     got="`h1` bor, lekin ichi bo'sh — matn yozing" got2="`h1` bor, lekin ichi bo'sh — matn yozing" exp=note rules=[]
+[NOTE] text: h1 <script> ichida matn
+     args=["h1"] src={"html":"<h1><script>x</script></h1>"}
+     got=true got2=true exp=note rules=[]
+[NOTE] text: h1 ichida <style>
+     args=["h1"] src={"html":"<h1><style>p{}</style></h1>"}
+     got=true got2=true exp=note rules=[]
+[NOTE] text: matn yashirin (display:none) — o'tadi
+     args=["p"] src={"html":"<p style=\"display:none\">x</p>"}
+     got=true got2=true exp=note rules=[]
+[NOTE] text: zero-width space
+     args=["p"] src={"html":"<p>​</p>"}
+     got=true got2=true exp=note rules=[]
+[NOTE] text: NBSP entity real belgi
+     args=["p"] src={"html":"<p> </p>"}
+     got="`p` bor, lekin ichi bo'sh — matn yozing" got2="`p` bor, lekin ichi bo'sh — matn yozing" exp=note rules=[]
+[NOTE] attr: equals katta harf EMAIL
+     args=["input","type",null,"email"] src={"html":"<input type=\"EMAIL\">"}
+     got="`input` da `type` qiymati `email` bo'lsin" got2="`input` da `type` qiymati `email` bo'lsin" exp=note rules=[]
+[NOTE] attr: birinchi element mos emas, ikkinchisi mos
+     args=["input","type",null,"email"] src={"html":"<input type=\"text\"><input type=\"email\">"}
+     got="`input` da `type` qiymati `email` bo'lsin" got2="`input` da `type` qiymati `email` bo'lsin" exp=note rules=[]
+[NOTE] attr: href="#"
+     args=["a","href"] src={"html":"<a href=\"#\">a</a>"}
+     got=true got2=true exp=note rules=[]
+[NOTE] attr: birinchi <a> hrefsiz, ikkinchi bor
+     args=["a","href"] src={"html":"<a>1</a><a href=\"x\">2</a>"}
+     got="`a` da `href=\"...\"` to'ldiring" got2="`a` da `href=\"...\"` to'ldiring" exp=note rules=[]
+[NOTE] attr: birinchi <img> altsiz, ikkinchisi bor
+     args=["img","alt"] src={"html":"<img src=\"a\"><img src=\"b\" alt=\"ok\">"}
+     got="`img` da `alt=\"...\"` to'ldiring" got2="`img` da `alt=\"...\"` to'ldiring" exp=note rules=[]
+[NOTE] attrs: takror atribut src="" src="a"
+     args=["img",["src"]] src={"html":"<img src=\"\" src=\"a\">"}
+     got="`img` da `src` to'ldiring" got2="`img` da `src` to'ldiring" exp=note rules=[]
+[NOTE] attrs: bo'sh ro'yxat
+     args=["img",[]] src={"html":"<img>"}
+     got=true got2=true exp=note rules=[]
+[NOTE] nested: yo'q
+     args=["ul","li"] src={"html":"<ul></ul><li>a</li>"}
+     got="`li` ni `ul` ichiga joylang" got2="`li` ni `ul` ichiga joylang" exp=note rules=[]
+[NOTE] nested: <ul><div><li>
+     args=["ul","li"] src={"html":"<ul><div><li>x</li></div></ul>"}
+     got=true got2=true exp=note rules=[]
+[NOTE] count: bo'sh li lar 3 ta
+     args=["li",3] src={"html":"<ul><li></li><li></li><li></li></ul>"}
+     got=true got2=true exp=note rules=[]
+[NOTE] count: n=0
+     args=["li",0] src={"html":""}
+     got=true got2=true exp=note rules=[]
+[NOTE] count: 3 ta img srcsiz
+     args=["img",3] src={"html":"<img><img><img>"}
+     got=true got2=true exp=note rules=[]
+[NOTE] cssProp: H1 katta harf selektor
+     args=["h1","color"] src={"css":"H1{color:red}"}
+     got=true got2=true exp=note rules=[{"selector":"h1","props":{"color":"red"}}]
+[NOTE] cssProp: @media ichida
+     args=["h1","color"] src={"css":"@media (max-width:600px){h1{color:red}}"}
+     got="`h1` uchun `color` xossasini yozing" got2="`h1` uchun `color` xossasini yozing" exp=note rules=[]
+[NOTE] cssProp: yopilmagan { (birinchi qoida)
+     args=["h1","color"] src={"css":"h1{color:red"}
+     got=true got2=true exp=note rules=[{"selector":"h1","props":{"color":"red"}}]
+[NOTE] cssProp: yopilmagan { oldingi qoidadan keyin
+     args=["h1","color"] src={"css":"p{margin:0} h1{color:red"}
+     got=true got2=true exp=note rules=[{"selector":"p","props":{"margin-top":"0px","margin-right":"0px","margin-bottom":"0px","margin-left":"0px","margin":"0px"}},{"selector":"h1","props":{"color":"red"}}]
+[NOTE] cssProp: keyingi qoida buzuq: h1{color:red} p{margin:0
+     args=["h1","color"] src={"css":"h1{color:red} p{margin:0"}
+     got=true got2=true exp=note rules=[{"selector":"h1","props":{"color":"red"}},{"selector":"p","props":{"margin-top":"0px","margin-right":"0px","margin-bottom":"0px","margin-left":"0px","margin":"0px"}}]
+[NOTE] cssProp: qisqa margin → margin-left
+     args=["h1","margin-left"] src={"css":"h1{margin:0 auto}"}
+     got=true got2=true exp=note rules=[{"selector":"h1","props":{"margin-top":"0px","margin-right":"auto","margin-bottom":"0px","margin-left":"auto","margin":"0px auto"}}]
+[NOTE] cssProp: margin-left yozilgan → margin so'ralgan
+     args=["h1","margin"] src={"css":"h1{margin-left:10px}"}
+     got="`h1` uchun `margin` xossasini yozing" got2="`h1` uchun `margin` xossasini yozing" exp=note rules=[{"selector":"h1","props":{"margin-left":"10px"}}]
+[NOTE] cssProp: border-color so'ralgan, border qisqa yozilgan
+     args=["h1","border-color"] src={"css":"h1{border:1px solid red}"}
+     got="`h1` uchun `border-color` xossasini yozing" got2="`h1` uchun `border-color` xossasini yozing" exp=note rules=[{"selector":"h1","props":{"border-top-width":"1px","border-right-width":"1px","border-bottom-width":"1px","border-left-width":"1px","border-top-style":"solid","border-right-style":"solid","border-bottom-style":"solid","border-left-style":"solid","border-top-color":"red","border-right-color":"red","
+[NOTE] cssProp: text-decoration (qisqa, ro'yxatda yo'q)
+     args=["a","text-decoration"] src={"css":"a{text-decoration:none}"}
+     got="`a` uchun `text-decoration` xossasini yozing" got2="`a` uchun `text-decoration` xossasini yozing" exp=note rules=[{"selector":"a","props":{"text-decoration-line":"none","text-decoration-thickness":"initial","text-decoration-style":"initial","text-decoration-color":"initial"}}]
+[NOTE] cssProp: outline (qisqa, ro'yxatda yo'q)
+     args=["a","outline"] src={"css":"a{outline:1px solid red}"}
+     got="`a` uchun `outline` xossasini yozing" got2="`a` uchun `outline` xossasini yozing" exp=note rules=[{"selector":"a","props":{"outline-color":"red","outline-style":"solid","outline-width":"1px"}}]
+[NOTE] cssProp: columns qisqa
+     args=[".g","columns"] src={"css":".g{columns:2}"}
+     got="`.g` uchun `columns` xossasini yozing" got2="`.g` uchun `columns` xossasini yozing" exp=note rules=[{"selector":".g","props":{"column-width":"auto","column-count":"2","column-height":"auto","column-wrap":"auto"}}]
+[NOTE] cssProp: border-width qisqa
+     args=["h1","border-width"] src={"css":"h1{border-width:2px}"}
+     got="`h1` uchun `border-width` xossasini yozing" got2="`h1` uchun `border-width` xossasini yozing" exp=note rules=[{"selector":"h1","props":{"border-top-width":"2px","border-right-width":"2px","border-bottom-width":"2px","border-left-width":"2px"}}]
+[NOTE] cssProp: xato qiymat color:qizil
+     args=["h1","color"] src={"css":"h1{color:qizil}"}
+     got="`h1` uchun `color` xossasini yozing" got2="`h1` uchun `color` xossasini yozing" exp=note rules=[{"selector":"h1","props":{}}]
+[NOTE] cssProp: xato xossa nomi colr
+     args=["h1","colr"] src={"css":"h1{colr:red}"}
+     got="`h1` uchun `colr` xossasini yozing" got2="`h1` uchun `colr` xossasini yozing" exp=note rules=[{"selector":"h1","props":{}}]
+[NOTE] cssProp: nuqta-vergul yo'q ikki xossa orasida
+     args=["h1","color"] src={"css":"h1{font-size:2em color:red}"}
+     got="`h1` uchun `color` xossasini yozing" got2="`h1` uchun `color` xossasini yozing" exp=note rules=[{"selector":"h1","props":{}}]
+[NOTE] cssProp: .card selektor, .card:hover yozilgan
+     args=[".card","color"] src={"css":".card:hover{color:red}"}
+     got="`.card` uchun `color` xossasini yozing" got2="`.card` uchun `color` xossasini yozing" exp=note rules=[{"selector":".card:hover","props":{"color":"red"}}]
+[NOTE] cssProp: descendant ko'p probel "nav   a"
+     args=["nav a","color"] src={"css":"nav   a{color:red}"}
+     got=true got2=true exp=note rules=[{"selector":"nav a","props":{"color":"red"}}]
+[NOTE] cssProp: nav > a
+     args=["nav > a","color"] src={"css":"nav>a{color:red}"}
+     got=true got2=true exp=note rules=[{"selector":"nav > a","props":{"color":"red"}}]
+[NOTE] cssProp: background-color so'ralgan, background yozilgan
+     args=["body","background-color"] src={"css":"body{background:#eee}"}
+     got=true got2=true exp=note rules=[{"selector":"body","props":{"background-image":"initial","background-position-x":"initial","background-position-y":"initial","background-size":"initial","background-repeat":"initial","background-attachment":"initial","background-origin":"initial","background-clip":"initial","background-color":"rgb(
+[NOTE] cssProp: background so'ralgan, background-color yozilgan
+     args=["body","background"] src={"css":"body{background-color:#eee}"}
+     got="`body` uchun `background` xossasini yozing" got2="`body` uchun `background` xossasini yozing" exp=note rules=[{"selector":"body","props":{"background-color":"rgb(238, 238, 238)"}}]
+[NOTE] cssProp: inline style (HTML da) — CSS bo'sh
+     args=["h1","color"] src={"html":"<h1 style=\"color:red\">x</h1>","css":""}
+     got="`h1` uchun `color` xossasini yozing" got2="`h1` uchun `color` xossasini yozing" exp=note rules=[]
+[NOTE] cssProp: <style> HTML ichida — CSS bo'sh
+     args=["h1","color"] src={"html":"<style>h1{color:red}</style><h1>x</h1>","css":""}
+     got="`h1` uchun `color` xossasini yozing" got2="`h1` uchun `color` xossasini yozing" exp=note rules=[]
+[NOTE] cssProp: custom property --x
+     args=[":root","--main"] src={"css":":root{--main:red}"}
+     got=true got2=true exp=note rules=[{"selector":":root","props":{"--main":"red"}}]
+[NOTE] cssProp: vendor -webkit-
+     args=["h1","-webkit-text-stroke"] src={"css":"h1{-webkit-text-stroke:1px red}"}
+     got="`h1` uchun `-webkit-text-stroke` xossasini yozing" got2="`h1` uchun `-webkit-text-stroke` xossasini yozing" exp=note rules=[{"selector":"h1","props":{"-webkit-text-stroke-width":"1px","-webkit-text-stroke-color":"red"}}]
+[NOTE] cssProp: xossa so'rovi katta harf "Color"
+     args=["h1","Color"] src={"css":"h1{color:red}"}
+     got="`h1` uchun `Color` xossasini yozing" got2="`h1` uchun `Color` xossasini yozing" exp=note rules=[{"selector":"h1","props":{"color":"red"}}]
+[NOTE] cssProp: animation qisqa
+     args=[".a","animation"] src={"css":".a{animation:x 1s}"}
+     got="`.a` uchun `animation` xossasini yozing" got2="`.a` uchun `animation` xossasini yozing" exp=note rules=[{"selector":".a","props":{"animation-duration":"1s","animation-timing-function":"ease","animation-delay":"0s","animation-iteration-count":"1","animation-direction":"normal","animation-fill-mode":"none","animation-play-state":"running","animation-name":"x","animation-timeline":"auto","animation-rang
+[NOTE] cssProp: keyframes ichi
+     args=["from","opacity"] src={"css":"@keyframes x{from{opacity:0}to{opacity:1}}"}
+     got="`from` uchun `opacity` xossasini yozing" got2="`from` uchun `opacity` xossasini yozing" exp=note rules=[]
+[NOTE] cssProp: border-bottom qisqa
+     args=["h1","border-bottom"] src={"css":"h1{border-bottom:1px solid red}"}
+     got="`h1` uchun `border-bottom` xossasini yozing" got2="`h1` uchun `border-bottom` xossasini yozing" exp=note rules=[{"selector":"h1","props":{"border-bottom-width":"1px","border-bottom-style":"solid","border-bottom-color":"red"}}]
+[NOTE] cssProp: font-size so'ralgan, font qisqa yozilgan
+     args=["p","font-size"] src={"css":"p{font:16px Arial}"}
+     got=true got2=true exp=note rules=[{"selector":"p","props":{"font-style":"normal","font-variant-caps":"normal","font-variant-ligatures":"normal","font-variant-numeric":"normal","font-variant-east-asian":"normal","font-variant-alternates":"normal","font-size-adjust":"none","font-language-override":"normal","font-kerning":"auto","font
+[NOTE] cssProp: text-decoration-line so'ralgan, text-decoration qisqa
+     args=["a","text-decoration-line"] src={"css":"a{text-decoration:none}"}
+     got=true got2=true exp=note rules=[{"selector":"a","props":{"text-decoration-line":"none","text-decoration-thickness":"initial","text-decoration-style":"initial","text-decoration-color":"initial"}}]
+[NOTE] cssProp: border-style
+     args=["a","border-style"] src={"css":"a{border-style:dashed}"}
+     got="`a` uchun `border-style` xossasini yozing" got2="`a` uchun `border-style` xossasini yozing" exp=note rules=[{"selector":"a","props":{"border-top-style":"dashed","border-right-style":"dashed","border-bottom-style":"dashed","border-left-style":"dashed"}}]
+[NOTE] cssProp: padding qisqa → padding-top so'ralgan
+     args=["a","padding-top"] src={"css":"a{padding:4px}"}
+     got=true got2=true exp=note rules=[{"selector":"a","props":{"padding-top":"4px","padding-right":"4px","padding-bottom":"4px","padding-left":"4px","padding":"4px"}}]
+[NOTE] cssProp: grid-area
+     args=["a","grid-area"] src={"css":"a{grid-area:x}"}
+     got="`a` uchun `grid-area` xossasini yozing" got2="`a` uchun `grid-area` xossasini yozing" exp=note rules=[{"selector":"a","props":{"grid-row-start":"x","grid-column-start":"x","grid-row-end":"x","grid-column-end":"x"}}]
+[NOTE] cssProp: gridArea (ro'yxatdagi camelCase)
+     args=["a","gridArea"] src={"css":"a{grid-area:x}"}
+     got="`a` uchun `gridArea` xossasini yozing" got2="`a` uchun `gridArea` xossasini yozing" exp=note rules=[{"selector":"a","props":{"grid-row-start":"x","grid-column-start":"x","grid-row-end":"x","grid-column-end":"x"}}]
+[NOTE] cssProp: grid-template qisqa
+     args=["a","grid-template"] src={"css":"a{grid-template:1fr / 1fr}"}
+     got=true got2=true exp=note rules=[{"selector":"a","props":{"grid-template-rows":"1fr","grid-template-columns":"1fr","grid-template-areas":"none","grid-template":"1fr / 1fr"}}]
+[NOTE] cssProp: flex-grow so'ralgan, flex qisqa
+     args=["a","flex-grow"] src={"css":"a{flex:1}"}
+     got=true got2=true exp=note rules=[{"selector":"a","props":{"flex-grow":"1","flex-shrink":"1","flex-basis":"0%","flex":"1 1 0%"}}]
+[NOTE] cssProp: border so'ralgan, border-bottom yozilgan
+     args=["a","border"] src={"css":"a{border-bottom:1px solid red}"}
+     got="`a` uchun `border` xossasini yozing" got2="`a` uchun `border` xossasini yozing" exp=note rules=[{"selector":"a","props":{"border-bottom-width":"1px","border-bottom-style":"solid","border-bottom-color":"red"}}]
+[NOTE] cssProp: background so'ralgan, background-image yozilgan
+     args=["a","background"] src={"css":"a{background-image:url(x.png)}"}
+     got="`a` uchun `background` xossasini yozing" got2="`a` uchun `background` xossasini yozing" exp=note rules=[{"selector":"a","props":{"background-image":"url(\"x.png\")"}}]
+[NOTE] cssProp: margin so'ralgan, margin-top yozilgan
+     args=["a","margin"] src={"css":"a{margin-top:0}"}
+     got="`a` uchun `margin` xossasini yozing" got2="`a` uchun `margin` xossasini yozing" exp=note rules=[{"selector":"a","props":{"margin-top":"0px"}}]
+[NOTE] cssProp: margin so'ralgan, 4 tomon alohida
+     args=["a","margin"] src={"css":"a{margin-top:0;margin-right:0;margin-bottom:0;margin-left:0}"}
+     got=true got2=true exp=note rules=[{"selector":"a","props":{"margin-top":"0px","margin-right":"0px","margin-bottom":"0px","margin-left":"0px","margin":"0px"}}]
+[NOTE] cssProp: padding so'ralgan, padding-left yozilgan
+     args=["a","padding"] src={"css":"a{padding-left:0}"}
+     got="`a` uchun `padding` xossasini yozing" got2="`a` uchun `padding` xossasini yozing" exp=note rules=[{"selector":"a","props":{"padding-left":"0px"}}]
+[NOTE] cssProp: text-align 2 selektor "h1,p" so'ralgan
+     args=["h1, p","text-align"] src={"css":"h1, p{text-align:center}"}
+     got="`h1, p` uchun `text-align` xossasini yozing" got2="`h1, p` uchun `text-align` xossasini yozing" exp=note rules=[{"selector":"h1, p","props":{"text-align":"center"}}]
+[NOTE] cssProp: a:HOVER
+     args=["a:hover","color"] src={"css":"a:HOVER{color:red}"}
+     got=true got2=true exp=note rules=[{"selector":"a:hover","props":{"color":"red"}}]
+[NOTE] cssProp: [type=text]
+     args=["input[type=text]","color"] src={"css":"input[type=text]{color:red}"}
+     got="`input[type=text]` uchun `color` xossasini yozing" got2="`input[type=text]` uchun `color` xossasini yozing" exp=note rules=[{"selector":"input[type=\"text\"]","props":{"color":"red"}}]
+[NOTE] cssProp: [type="text"] tirnoq bilan so'ralgan
+     args=["input[type=\"text\"]","color"] src={"css":"input[type=text]{color:red}"}
+     got=true got2=true exp=note rules=[{"selector":"input[type=\"text\"]","props":{"color":"red"}}]
+[NOTE] cssProp: :before bitta ikki nuqta
+     args=["a::before","content"] src={"css":"a:before{content:\"x\"}"}
+     got=true got2=true exp=note rules=[{"selector":"a::before","props":{"content":"\"x\""}}]
+[NOTE] cssProp: <style> teg matni CSS faylda
+     args=["h1","color"] src={"css":"<style>h1{color:red}</style>"}
+     got="`h1` uchun `color` xossasini yozing" got2="`h1` uchun `color` xossasini yozing" exp=note rules=[]
+[NOTE] cssProp: BOM/emoji
+     args=["h1","color"] src={"css":"﻿h1{color:red}"}
+     got=true got2=true exp=note rules=[{"selector":"﻿h1","props":{"color":"red"}}]
+[NOTE] cssProp: nested CSS (h1{ & b{color:red} })
+     args=["h1 b","color"] src={"css":"h1{ & b{color:red} }"}
+     got="`h1 b` uchun `color` xossasini yozing" got2="`h1 b` uchun `color` xossasini yozing" exp=note rules=[{"selector":"h1","props":{}}]
+[NOTE] cssProp: nested CSS ustki xossa
+     args=["h1","color"] src={"css":"h1{color:red; & b{margin:0} }"}
+     got=true got2=true exp=note rules=[{"selector":"h1","props":{"color":"red"}}]
+[NOTE] cssProp: @supports ichida
+     args=["h1","color"] src={"css":"@supports(display:grid){h1{color:red}}"}
+     got="`h1` uchun `color` xossasini yozing" got2="`h1` uchun `color` xossasini yozing" exp=note rules=[]
+[NOTE] cssProp: @layer ichida
+     args=["h1","color"] src={"css":"@layer x{h1{color:red}}"}
+     got="`h1` uchun `color` xossasini yozing" got2="`h1` uchun `color` xossasini yozing" exp=note rules=[]
+[NOTE] cssProp: birinchi selektor tanib bo'lmas (h1, ::foo)
+     args=["h1","color"] src={"css":"h1, ::foo{color:red}"}
+     got="`h1` uchun `color` xossasini yozing" got2="`h1` uchun `color` xossasini yozing" exp=note rules=[]
+[NOTE] cssProp: xato guruh (h1,, p)
+     args=["h1","color"] src={"css":"h1,, p{color:red}"}
+     got="`h1` uchun `color` xossasini yozing" got2="`h1` uchun `color` xossasini yozing" exp=note rules=[]
+[NOTE] cssProp: yopish qavs ortiqcha }
+     args=["h1","color"] src={"css":"h1{color:red}} p{margin:0}"}
+     got=true got2=true exp=note rules=[{"selector":"h1","props":{"color":"red"}}]
+[NOTE] cssProp: yopish qavs ortiqcha } keyingi qoida topilsinmi
+     args=["p","margin"] src={"css":"h1{color:red}} p{margin:0}"}
+     got="`p` uchun `margin` xossasini yozing" got2="`p` uchun `margin` xossasini yozing" exp=note rules=[{"selector":"h1","props":{"color":"red"}}]
+[NOTE] cssProp: yopilmagan " tirnoq
+     args=["h1","color"] src={"css":"h1{color:red} p{content:\"x}"}
+     got=true got2=true exp=note rules=[{"selector":"h1","props":{"color":"red"}},{"selector":"p","props":{"content":"\"x}\""}}]
+[NOTE] cssProp: yopilmagan " keyin qoida
+     args=["h1","color"] src={"css":"p{content:\"x} h1{color:red}"}
+     got="`h1` uchun `color` xossasini yozing" got2="`h1` uchun `color` xossasini yozing" exp=note rules=[{"selector":"p","props":{"content":"\"x} h1{color:red}\""}}]
+[NOTE] cssProp: teg katta harf DIV
+     args=["div","color"] src={"css":"DIV{color:red}"}
+     got=true got2=true exp=note rules=[{"selector":"div","props":{"color":"red"}}]
+[NOTE] cssProp: teg katta harf so'rov DIV
+     args=["DIV","color"] src={"css":"div{color:red}"}
+     got="`DIV` uchun `color` xossasini yozing" got2="`DIV` uchun `color` xossasini yozing" exp=note rules=[{"selector":"div","props":{"color":"red"}}]
+[NOTE] cssValue: RED
+     args=["h1","color","red"] src={"css":"h1{color:RED}"}
+     got=true got2=true exp=note rules=[{"selector":"h1","props":{"color":"red"}}]
+[NOTE] cssValue: Red
+     args=["h1","color","red"] src={"css":"h1{color:Red}"}
+     got=true got2=true exp=note rules=[{"selector":"h1","props":{"color":"red"}}]
+[NOTE] cssValue: #FFF vs #fff
+     args=["h1","color","#fff"] src={"css":"h1{color:#FFF}"}
+     got="`h1` da `color: #fff` yozing" got2="`h1` da `color: #fff` yozing" exp=note rules=[{"selector":"h1","props":{"color":"rgb(255, 255, 255)"}}]
+[NOTE] cssValue: #ffffff vs #fff
+     args=["h1","color","#fff"] src={"css":"h1{color:#ffffff}"}
+     got="`h1` da `color: #fff` yozing" got2="`h1` da `color: #fff` yozing" exp=note rules=[{"selector":"h1","props":{"color":"rgb(255, 255, 255)"}}]
+[NOTE] cssValue: white vs #fff
+     args=["h1","color","#fff"] src={"css":"h1{color:white}"}
+     got="`h1` da `color: #fff` yozing" got2="`h1` da `color: #fff` yozing" exp=note rules=[{"selector":"h1","props":{"color":"white"}}]
+[NOTE] cssValue: so'rov #FFF (katta) yozilgan #fff
+     args=["h1","color","#FFF"] src={"css":"h1{color:#fff}"}
+     got="`h1` da `color: #FFF` yozing" got2="`h1` da `color: #FFF` yozing" exp=note rules=[{"selector":"h1","props":{"color":"rgb(255, 255, 255)"}}]
+[NOTE] cssValue: 0px vs 0
+     args=["h1","margin","0"] src={"css":"h1{margin:0px}"}
+     got="`h1` da `margin: 0` yozing" got2="`h1` da `margin: 0` yozing" exp=note rules=[{"selector":"h1","props":{"margin-top":"0px","margin-right":"0px","margin-bottom":"0px","margin-left":"0px","margin":"0px"}}]
+[NOTE] cssValue: margin 0 auto 0 auto
+     args=["h1","margin","0 auto"] src={"css":"h1{margin:0 auto 0 auto}"}
+     got="`h1` da `margin: 0 auto` yozing" got2="`h1` da `margin: 0 auto` yozing" exp=note rules=[{"selector":"h1","props":{"margin-top":"0px","margin-right":"auto","margin-bottom":"0px","margin-left":"auto","margin":"0px auto"}}]
+[NOTE] cssValue: margin  0   auto (probel)
+     args=["h1","margin","0 auto"] src={"css":"h1{margin:0   auto}"}
+     got="`h1` da `margin: 0 auto` yozing" got2="`h1` da `margin: 0 auto` yozing" exp=note rules=[{"selector":"h1","props":{"margin-top":"0px","margin-right":"auto","margin-bottom":"0px","margin-left":"auto","margin":"0px auto"}}]
+[NOTE] cssValue: font-family Arial vs "Arial"
+     args=["p","font-family","Arial"] src={"css":"p{font-family:\"Arial\"}"}
+     got=true got2=true exp=note rules=[{"selector":"p","props":{"font-family":"Arial"}}]
+[NOTE] cssValue: font-family so'rov "Arial, sans-serif" yozilgan "Arial,sans-serif"
+     args=["p","font-family","Arial, sans-serif"] src={"css":"p{font-family:Arial,sans-serif}"}
+     got=true got2=true exp=note rules=[{"selector":"p","props":{"font-family":"Arial, sans-serif"}}]
+[NOTE] cssValue: 16px vs 16PX
+     args=["p","font-size","16px"] src={"css":"p{font-size:16PX}"}
+     got=true got2=true exp=note rules=[{"selector":"p","props":{"font-size":"16px"}}]
+[NOTE] cssValue: 1em vs 1.0em
+     args=["p","font-size","1em"] src={"css":"p{font-size:1.0em}"}
+     got=true got2=true exp=note rules=[{"selector":"p","props":{"font-size":"1em"}}]
+[NOTE] cssValue: .5 vs 0.5
+     args=["p","opacity","0.5"] src={"css":"p{opacity:.5}"}
+     got=true got2=true exp=note rules=[{"selector":"p","props":{"opacity":"0.5"}}]
+[NOTE] cssValue: display FLEX
+     args=[".r","display","flex"] src={"css":".r{display:FLEX}"}
+     got=true got2=true exp=note rules=[{"selector":".r","props":{"display":"flex"}}]
+[NOTE] cssValue: border solid 1px red (tartib)
+     args=["h1","border","1px solid red"] src={"css":"h1{border:solid 1px red}"}
+     got=true got2=true exp=note rules=[{"selector":"h1","props":{"border-top-width":"1px","border-right-width":"1px","border-bottom-width":"1px","border-left-width":"1px","border-top-style":"solid","border-right-style":"solid","border-bottom-style":"solid","border-left-style":"solid","border-top-color":"red","border-right-color":"red","
+[NOTE] cssValue: border 1px solid #f00 vs red
+     args=["h1","border","1px solid red"] src={"css":"h1{border:1px solid #f00}"}
+     got="`h1` da `border: 1px solid red` yozing" got2="`h1` da `border: 1px solid red` yozing" exp=note rules=[{"selector":"h1","props":{"border-top-width":"1px","border-right-width":"1px","border-bottom-width":"1px","border-left-width":"1px","border-top-style":"solid","border-right-style":"solid","border-bottom-style":"solid","border-left-style":"solid","border-top-color":"rgb(255, 0, 0)","border-right-col
+[NOTE] cssValue: background red
+     args=["body","background","red"] src={"css":"body{background:red}"}
+     got=true got2=true exp=note rules=[{"selector":"body","props":{"background-image":"initial","background-position-x":"initial","background-position-y":"initial","background-size":"initial","background-repeat":"initial","background-attachment":"initial","background-origin":"initial","background-clip":"initial","background-color":"red"
+[NOTE] cssValue: background-color red
+     args=["body","background-color","red"] src={"css":"body{background:red}"}
+     got=true got2=true exp=note rules=[{"selector":"body","props":{"background-image":"initial","background-position-x":"initial","background-position-y":"initial","background-size":"initial","background-repeat":"initial","background-attachment":"initial","background-origin":"initial","background-clip":"initial","background-color":"red"
+[NOTE] cssValue: padding 10px 10px
+     args=["div","padding","10px"] src={"css":"div{padding:10px 10px}"}
+     got=true got2=true exp=note rules=[{"selector":"div","props":{"padding-top":"10px","padding-right":"10px","padding-bottom":"10px","padding-left":"10px","padding":"10px"}}]
+[NOTE] cssValue: gap 10px 10px
+     args=["div","gap","10px"] src={"css":"div{gap:10px 10px}"}
+     got=true got2=true exp=note rules=[{"selector":"div","props":{"row-gap":"10px","column-gap":"10px","gap":"10px"}}]
+[NOTE] cssValue: url(x.png) vs url("x.png")
+     args=["div","background-image","url(x.png)"] src={"css":"div{background-image:url(\"x.png\")}"}
+     got="`div` da `background-image: url(x.png)` yozing" got2="`div` da `background-image: url(x.png)` yozing" exp=note rules=[{"selector":"div","props":{"background-image":"url(\"x.png\")"}}]
+[NOTE] cssValue: rgb(255, 0, 0) vs rgb(255,0,0)
+     args=["h1","color","rgb(255, 0, 0)"] src={"css":"h1{color:rgb(255,0,0)}"}
+     got=true got2=true exp=note rules=[{"selector":"h1","props":{"color":"rgb(255, 0, 0)"}}]
+[NOTE] cssValue: 1-qoida blue, 2-qoida red (oxirgisi qo'llanadi)
+     args=["h1","color","blue"] src={"css":"h1{color:blue} h1{color:red}"}
+     got=true got2=true exp=note rules=[{"selector":"h1","props":{"color":"blue"}},{"selector":"h1","props":{"color":"red"}}]
+[NOTE] cssValue: 1-qoida red, 2-qoida blue (red ustidan yozildi)
+     args=["h1","color","red"] src={"css":"h1{color:red} h1{color:blue}"}
+     got=true got2=true exp=note rules=[{"selector":"h1","props":{"color":"red"}},{"selector":"h1","props":{"color":"blue"}}]
+[NOTE] cssValue: bir qoidada color:red;color:blue
+     args=["h1","color","red"] src={"css":"h1{color:red;color:blue}"}
+     got="`h1` da `color: red` yozing" got2="`h1` da `color: red` yozing" exp=note rules=[{"selector":"h1","props":{"color":"blue"}}]
+[NOTE] cssValue: font-weight bold vs 700
+     args=["h1","font-weight","bold"] src={"css":"h1{font-weight:700}"}
+     got="`h1` da `font-weight: bold` yozing" got2="`h1` da `font-weight: bold` yozing" exp=note rules=[{"selector":"h1","props":{"font-weight":"700"}}]
+[NOTE] cssValue: none vs "none"
+     args=["a","text-decoration","none"] src={"css":"a{text-decoration:none}"}
+     got="`a` da `text-decoration: none` yozing" got2="`a` da `text-decoration: none` yozing" exp=note rules=[{"selector":"a","props":{"text-decoration-line":"none","text-decoration-thickness":"initial","text-decoration-style":"initial","text-decoration-color":"initial"}}]
+[NOTE] cssValue: list-style none
+     args=["ul","list-style","none"] src={"css":"ul{list-style:none}"}
+     got=true got2=true exp=note rules=[{"selector":"ul","props":{"list-style-position":"initial","list-style-image":"initial","list-style-type":"none","list-style":"none"}}]
+[NOTE] cssValue: expected qiymat katta harf "Center"
+     args=["h1","text-align","Center"] src={"css":"h1{text-align:center}"}
+     got="`h1` da `text-align: Center` yozing" got2="`h1` da `text-align: Center` yozing" exp=note rules=[{"selector":"h1","props":{"text-align":"center"}}]
+[NOTE] cssValue: linear-gradient probel
+     args=["div","background","linear-gradient(red, blue)"] src={"css":"div{background:linear-gradient(red,blue)}"}
+     got=true got2=true exp=note rules=[{"selector":"div","props":{"background-image":"linear-gradient(red, blue)","background-position-x":"initial","background-position-y":"initial","background-size":"initial","background-repeat":"initial","background-attachment":"initial","background-origin":"initial","background-clip":"initial","backg
+[NOTE] cssValue: linear-gradient aynan
+     args=["div","background","linear-gradient(red, blue)"] src={"css":"div{background:linear-gradient(red, blue)}"}
+     got=true got2=true exp=note rules=[{"selector":"div","props":{"background-image":"linear-gradient(red, blue)","background-position-x":"initial","background-position-y":"initial","background-size":"initial","background-repeat":"initial","background-attachment":"initial","background-origin":"initial","background-clip":"initial","backg
+[NOTE] cssValue: background-image linear-gradient
+     args=["div","background-image","linear-gradient(red, blue)"] src={"css":"div{background-image:linear-gradient(red, blue)}"}
+     got=true got2=true exp=note rules=[{"selector":"div","props":{"background-image":"linear-gradient(red, blue)"}}]
+[NOTE] cssValue: transition all .3s
+     args=["a","transition","all .3s"] src={"css":"a{transition:all .3s}"}
+     got="`a` da `transition: all .3s` yozing" got2="`a` da `transition: all .3s` yozing" exp=note rules=[{"selector":"a","props":{"transition-behavior":"normal","transition-duration":"0.3s","transition-timing-function":"ease","transition-delay":"0s","transition-property":"all","transition":"0.3s"}}]
+[NOTE] cssValue: transition all 0.3s
+     args=["a","transition","all 0.3s"] src={"css":"a{transition:all 0.3s}"}
+     got="`a` da `transition: all 0.3s` yozing" got2="`a` da `transition: all 0.3s` yozing" exp=note rules=[{"selector":"a","props":{"transition-behavior":"normal","transition-duration":"0.3s","transition-timing-function":"ease","transition-delay":"0s","transition-property":"all","transition":"0.3s"}}]
+[NOTE] cssValue: box-shadow 0 0 3px red
+     args=["a","box-shadow","0 0 3px red"] src={"css":"a{box-shadow:0 0 3px red}"}
+     got="`a` da `box-shadow: 0 0 3px red` yozing" got2="`a` da `box-shadow: 0 0 3px red` yozing" exp=note rules=[{"selector":"a","props":{"box-shadow":"red 0px 0px 3px"}}]
+[NOTE] cssValue: box-shadow 0px 0px 3px red vs 0 0 3px red
+     args=["a","box-shadow","0 0 3px red"] src={"css":"a{box-shadow:0px 0px 3px red}"}
+     got="`a` da `box-shadow: 0 0 3px red` yozing" got2="`a` da `box-shadow: 0 0 3px red` yozing" exp=note rules=[{"selector":"a","props":{"box-shadow":"red 0px 0px 3px"}}]
+[NOTE] cssValue: grid-template-columns 1fr 1fr vs repeat(2,1fr)
+     args=["a","grid-template-columns","1fr 1fr"] src={"css":"a{grid-template-columns:repeat(2,1fr)}"}
+     got="`a` da `grid-template-columns: 1fr 1fr` yozing" got2="`a` da `grid-template-columns: 1fr 1fr` yozing" exp=note rules=[{"selector":"a","props":{"grid-template-columns":"repeat(2, 1fr)"}}]
+[NOTE] cssValue: grid-template-columns repeat(2, 1fr) aynan
+     args=["a","grid-template-columns","repeat(2, 1fr)"] src={"css":"a{grid-template-columns:repeat(2, 1fr)}"}
+     got=true got2=true exp=note rules=[{"selector":"a","props":{"grid-template-columns":"repeat(2, 1fr)"}}]
+[NOTE] cssValue: repeat(2,1fr) probelsiz yozilgan
+     args=["a","grid-template-columns","repeat(2, 1fr)"] src={"css":"a{grid-template-columns:repeat(2,1fr)}"}
+     got=true got2=true exp=note rules=[{"selector":"a","props":{"grid-template-columns":"repeat(2, 1fr)"}}]
+[NOTE] cssValue: font-family "Georgia", serif
+     args=["h1","font-family","Georgia, serif"] src={"css":"h1{font-family:\"Georgia\", serif}"}
+     got=true got2=true exp=note rules=[{"selector":"h1","props":{"font-family":"Georgia, serif"}}]
+[NOTE] cssValue: font-family georgia (kichik)
+     args=["h1","font-family","Georgia"] src={"css":"h1{font-family:georgia}"}
+     got="`h1` da `font-family: Georgia` yozing" got2="`h1` da `font-family: Georgia` yozing" exp=note rules=[{"selector":"h1","props":{"font-family":"georgia"}}]
+[NOTE] cssValue: overflow-x hidden, overflow so'ralgan
+     args=["a","overflow","hidden"] src={"css":"a{overflow-x:hidden}"}
+     got="`a` da `overflow: hidden` yozing" got2="`a` da `overflow: hidden` yozing" exp=note rules=[{"selector":"a","props":{"overflow-x":"hidden"}}]
+[NOTE] cssValue: calc(100% - 10px)
+     args=["a","width","calc(100% - 10px)"] src={"css":"a{width:calc(100% - 10px)}"}
+     got=true got2=true exp=note rules=[{"selector":"a","props":{"width":"calc(100% - 10px)"}}]
+[NOTE] cssValue: var(--x)
+     args=["a","color","var(--x)"] src={"css":"a{color:var(--x)}"}
+     got=true got2=true exp=note rules=[{"selector":"a","props":{"color":"var(--x)"}}]
+[NOTE] cssValue: 1px solid
+     args=["a","border","1px solid"] src={"css":"a{border:1px solid}"}
+     got=true got2=true exp=note rules=[{"selector":"a","props":{"border-top-width":"1px","border-right-width":"1px","border-bottom-width":"1px","border-left-width":"1px","border-top-style":"solid","border-right-style":"solid","border-bottom-style":"solid","border-left-style":"solid","border-top-color":"currentcolor","border-right-color"
+[NOTE] cssValue: 2px dashed
+     args=["a","border","2px dashed"] src={"css":"a{border:2px dashed}"}
+     got=true got2=true exp=note rules=[{"selector":"a","props":{"border-top-width":"2px","border-right-width":"2px","border-bottom-width":"2px","border-left-width":"2px","border-top-style":"dashed","border-right-style":"dashed","border-bottom-style":"dashed","border-left-style":"dashed","border-top-color":"currentcolor","border-right-co
+[NOTE] cssValue: border-bottom 1px solid red
+     args=["a","border-bottom","1px solid red"] src={"css":"a{border-bottom:1px solid red}"}
+     got="`a` da `border-bottom: 1px solid red` yozing" got2="`a` da `border-bottom: 1px solid red` yozing" exp=note rules=[{"selector":"a","props":{"border-bottom-width":"1px","border-bottom-style":"solid","border-bottom-color":"red"}}]
+[NOTE] cssValue: border-left 3px solid red
+     args=["a","border-left","3px solid red"] src={"css":"a{border-left:3px solid red}"}
+     got="`a` da `border-left: 3px solid red` yozing" got2="`a` da `border-left: 3px solid red` yozing" exp=note rules=[{"selector":"a","props":{"border-left-width":"3px","border-left-style":"solid","border-left-color":"red"}}]
+[NOTE] cssValue: text-decoration underline
+     args=["a","text-decoration","underline"] src={"css":"a{text-decoration:underline}"}
+     got="`a` da `text-decoration: underline` yozing" got2="`a` da `text-decoration: underline` yozing" exp=note rules=[{"selector":"a","props":{"text-decoration-line":"underline","text-decoration-thickness":"initial","text-decoration-style":"initial","text-decoration-color":"initial"}}]
+[NOTE] cssValue: text-decoration underline red
+     args=["a","text-decoration","underline"] src={"css":"a{text-decoration:underline red}"}
+     got="`a` da `text-decoration: underline` yozing" got2="`a` da `text-decoration: underline` yozing" exp=note rules=[{"selector":"a","props":{"text-decoration-line":"underline","text-decoration-thickness":"initial","text-decoration-style":"initial","text-decoration-color":"red"}}]
+[NOTE] cssValue: outline none
+     args=["a","outline","none"] src={"css":"a{outline:none}"}
+     got="`a` da `outline: none` yozing" got2="`a` da `outline: none` yozing" exp=note rules=[{"selector":"a","props":{"outline-color":"initial","outline-style":"none","outline-width":"initial"}}]
+[NOTE] cssValue: flex 1
+     args=["a","flex","1"] src={"css":"a{flex:1}"}
+     got="`a` da `flex: 1` yozing" got2="`a` da `flex: 1` yozing" exp=note rules=[{"selector":"a","props":{"flex-grow":"1","flex-shrink":"1","flex-basis":"0%","flex":"1 1 0%"}}]
+[NOTE] cssValue: flex 1 1 0%
+     args=["a","flex","1 1 0%"] src={"css":"a{flex:1 1 0%}"}
+     got=true got2=true exp=note rules=[{"selector":"a","props":{"flex-grow":"1","flex-shrink":"1","flex-basis":"0%","flex":"1 1 0%"}}]
+[NOTE] cssValue: font 16px Arial
+     args=["p","font","16px Arial"] src={"css":"p{font:16px Arial}"}
+     got=true got2=true exp=note rules=[{"selector":"p","props":{"font-style":"normal","font-variant-caps":"normal","font-variant-ligatures":"normal","font-variant-numeric":"normal","font-variant-east-asian":"normal","font-variant-alternates":"normal","font-size-adjust":"none","font-language-override":"normal","font-kerning":"auto","font
+[NOTE] cssValue: font bold 16px Arial
+     args=["p","font","bold 16px Arial"] src={"css":"p{font:bold 16px Arial}"}
+     got=true got2=true exp=note rules=[{"selector":"p","props":{"font-style":"normal","font-variant-caps":"normal","font-variant-ligatures":"normal","font-variant-numeric":"normal","font-variant-east-asian":"normal","font-variant-alternates":"normal","font-size-adjust":"none","font-language-override":"normal","font-kerning":"auto","font
+[NOTE] cssValue: background #eee
+     args=["body","background","#eee"] src={"css":"body{background:#eee}"}
+     got="`body` da `background: #eee` yozing" got2="`body` da `background: #eee` yozing" exp=note rules=[{"selector":"body","props":{"background-image":"initial","background-position-x":"initial","background-position-y":"initial","background-size":"initial","background-repeat":"initial","background-attachment":"initial","background-origin":"initial","background-clip":"initial","background-color":"rgb(
+[NOTE] cssValue: background url(x.png)
+     args=["body","background","url(x.png)"] src={"css":"body{background:url(x.png)}"}
+     got="`body` da `background: url(x.png)` yozing" got2="`body` da `background: url(x.png)` yozing" exp=note rules=[{"selector":"body","props":{"background-image":"url(\"x.png\")","background-position-x":"initial","background-position-y":"initial","background-size":"initial","background-repeat":"initial","background-attachment":"initial","background-origin":"initial","background-clip":"initial","background-color
+[NOTE] cssValue: background red url(x.png)
+     args=["body","background","red url(x.png)"] src={"css":"body{background:red url(x.png)}"}
+     got="`body` da `background: red url(x.png)` yozing" got2="`body` da `background: red url(x.png)` yozing" exp=note rules=[{"selector":"body","props":{"background-image":"url(\"x.png\")","background-position-x":"initial","background-position-y":"initial","background-size":"initial","background-repeat":"initial","background-attachment":"initial","background-origin":"initial","background-clip":"initial","background-color
+[NOTE] cssValue: padding 10px 20px
+     args=["div","padding","10px 20px"] src={"css":"div{padding:10px 20px}"}
+     got=true got2=true exp=note rules=[{"selector":"div","props":{"padding-top":"10px","padding-right":"20px","padding-bottom":"10px","padding-left":"20px","padding":"10px 20px"}}]
+[NOTE] cssValue: padding 10px 20px 10px 20px
+     args=["div","padding","10px 20px"] src={"css":"div{padding:10px 20px 10px 20px}"}
+     got=true got2=true exp=note rules=[{"selector":"div","props":{"padding-top":"10px","padding-right":"20px","padding-bottom":"10px","padding-left":"20px","padding":"10px 20px"}}]
+[NOTE] cssValue: margin auto
+     args=["div","margin","auto"] src={"css":"div{margin:auto}"}
+     got=true got2=true exp=note rules=[{"selector":"div","props":{"margin-top":"auto","margin-right":"auto","margin-bottom":"auto","margin-left":"auto","margin":"auto"}}]
+[NOTE] cssValue: margin 0
+     args=["div","margin","0"] src={"css":"div{margin:0}"}
+     got="`div` da `margin: 0` yozing" got2="`div` da `margin: 0` yozing" exp=note rules=[{"selector":"div","props":{"margin-top":"0px","margin-right":"0px","margin-bottom":"0px","margin-left":"0px","margin":"0px"}}]
+[NOTE] cssValue: margin 0 0 0 0
+     args=["div","margin","0"] src={"css":"div{margin:0 0 0 0}"}
+     got="`div` da `margin: 0` yozing" got2="`div` da `margin: 0` yozing" exp=note rules=[{"selector":"div","props":{"margin-top":"0px","margin-right":"0px","margin-bottom":"0px","margin-left":"0px","margin":"0px"}}]
+[NOTE] cssValue: border-radius 8px
+     args=["div","border-radius","8px"] src={"css":"div{border-radius:8px}"}
+     got=true got2=true exp=note rules=[{"selector":"div","props":{"border-top-left-radius":"8px","border-top-right-radius":"8px","border-bottom-right-radius":"8px","border-bottom-left-radius":"8px","border-radius":"8px"}}]
+[NOTE] cssValue: border-radius 8px 8px
+     args=["div","border-radius","8px"] src={"css":"div{border-radius:8px 8px}"}
+     got=true got2=true exp=note rules=[{"selector":"div","props":{"border-top-left-radius":"8px","border-top-right-radius":"8px","border-bottom-right-radius":"8px","border-bottom-left-radius":"8px","border-radius":"8px"}}]
+[NOTE] cssValue: inset 0
+     args=["div","inset","0"] src={"css":"div{inset:0}"}
+     got="`div` da `inset: 0` yozing" got2="`div` da `inset: 0` yozing" exp=note rules=[{"selector":"div","props":{"top":"0px","right":"0px","bottom":"0px","left":"0px","inset":"0px"}}]
+[NOTE] cssValue: place-items center
+     args=["div","place-items","center"] src={"css":"div{place-items:center}"}
+     got=true got2=true exp=note rules=[{"selector":"div","props":{"align-items":"center","justify-items":"center","place-items":"center"}}]
+[NOTE] cssValue: place-content center
+     args=["div","place-content","center"] src={"css":"div{place-content:center}"}
+     got=true got2=true exp=note rules=[{"selector":"div","props":{"align-content":"center","justify-content":"center","place-content":"center"}}]
+[NOTE] cssValue: flex-flow row wrap
+     args=["div","flex-flow","row wrap"] src={"css":"div{flex-flow:row wrap}"}
+     got="`div` da `flex-flow: row wrap` yozing" got2="`div` da `flex-flow: row wrap` yozing" exp=note rules=[{"selector":"div","props":{"flex-direction":"row","flex-wrap":"wrap","flex-flow":"wrap"}}]
+[NOTE] cssValue: overflow auto
+     args=["div","overflow","auto"] src={"css":"div{overflow:auto}"}
+     got=true got2=true exp=note rules=[{"selector":"div","props":{"overflow-x":"auto","overflow-y":"auto","overflow":"auto"}}]
+[NOTE] cssValue: overflow hidden auto
+     args=["div","overflow","hidden auto"] src={"css":"div{overflow:hidden auto}"}
+     got=true got2=true exp=note rules=[{"selector":"div","props":{"overflow-x":"hidden","overflow-y":"auto","overflow":"hidden auto"}}]
+[NOTE] cssValue: gap 8px 16px
+     args=["div","gap","8px 16px"] src={"css":"div{gap:8px 16px}"}
+     got=true got2=true exp=note rules=[{"selector":"div","props":{"row-gap":"8px","column-gap":"16px","gap":"8px 16px"}}]
+[NOTE] cssValue: transition color .2s
+     args=["a","transition","color .2s"] src={"css":"a{transition:color .2s}"}
+     got="`a` da `transition: color .2s` yozing" got2="`a` da `transition: color .2s` yozing" exp=note rules=[{"selector":"a","props":{"transition-behavior":"normal","transition-duration":"0.2s","transition-timing-function":"ease","transition-delay":"0s","transition-property":"color","transition":"color 0.2s"}}]
+[NOTE] cssValue: transition color 0.2s ease
+     args=["a","transition","color 0.2s ease"] src={"css":"a{transition:color 0.2s ease}"}
+     got="`a` da `transition: color 0.2s ease` yozing" got2="`a` da `transition: color 0.2s ease` yozing" exp=note rules=[{"selector":"a","props":{"transition-behavior":"normal","transition-duration":"0.2s","transition-timing-function":"ease","transition-delay":"0s","transition-property":"color","transition":"color 0.2s"}}]
+[NOTE] cssValue: list-style none inside
+     args=["ul","list-style","none inside"] src={"css":"ul{list-style:none inside}"}
+     got="`ul` da `list-style: none inside` yozing" got2="`ul` da `list-style: none inside` yozing" exp=note rules=[{"selector":"ul","props":{"list-style-position":"inside","list-style-image":"initial","list-style-type":"none","list-style":"inside none"}}]
+[NOTE] cssValue: grid-template "a b" / 1fr 1fr
+     args=["div","grid-template","\"a b\" / 1fr 1fr"] src={"css":"div{grid-template:\"a b\" / 1fr 1fr}"}
+     got=true got2=true exp=note rules=[{"selector":"div","props":{"grid-template-rows":"auto","grid-template-columns":"1fr 1fr","grid-template-areas":"\"a b\"","grid-template":"\"a b\" / 1fr 1fr"}}]
+[NOTE] cssValue: qiymat oxirida ; yo'q va } yopilmagan
+     args=["h1","text-align","center"] src={"css":"h1{text-align:center"}
+     got=true got2=true exp=note rules=[{"selector":"h1","props":{"text-align":"center"}}]
+[NOTE] cssValue: value = raqam (number tipida)
+     args=["h1","z-index",2] src={"css":"h1{z-index:2}"}
+     got="THROW: (s || \"\").trim is not a function" got2="THROW: (s || \"\").trim is not a function" exp=note rules=[{"selector":"h1","props":{"z-index":"2"}}]
+[NOTE] cssValue: value = raqam 0
+     args=["h1","margin",0] src={"css":"h1{margin:0}"}
+     got="`h1` da `margin: 0` yozing" got2="`h1` da `margin: 0` yozing" exp=note rules=[{"selector":"h1","props":{"margin-top":"0px","margin-right":"0px","margin-bottom":"0px","margin-left":"0px","margin":"0px"}}]
+[NOTE] cssValue: "H1.big" katta
+     args=["h1.big","color","red"] src={"css":"H1.big{color:red}"}
+     got=true got2=true exp=note rules=[{"selector":"h1.big","props":{"color":"red"}}]
+[NOTE] cssValue: "h1>.big" so'rovda >, yozuvda probelli
+     args=["h1>.big","color","red"] src={"css":"h1 > .big{color:red}"}
+     got="`h1>.big` da `color: red` yozing" got2="`h1>.big` da `color: red` yozing" exp=note rules=[{"selector":"h1 > .big","props":{"color":"red"}}]
+[NOTE] cssValue: :root --x
+     args=[":root","--x","red"] src={"css":":root{--x:red}"}
+     got=true got2=true exp=note rules=[{"selector":":root","props":{"--x":"red"}}]
+[NOTE] cssValue: :root --x " red" (probel)
+     args=[":root","--x","red"] src={"css":":root{--x: red}"}
+     got=true got2=true exp=note rules=[{"selector":":root","props":{"--x":"red"}}]
+[NOTE] cssValue: * 
+     args=["*","margin","0"] src={"css":"*{margin:0}"}
+     got="`*` da `margin: 0` yozing" got2="`*` da `margin: 0` yozing" exp=note rules=[{"selector":"*","props":{"margin-top":"0px","margin-right":"0px","margin-bottom":"0px","margin-left":"0px","margin":"0px"}}]
+[NOTE] cssValue: *,*::before
+     args=["*","margin","0"] src={"css":"*, *::before, *::after{margin:0}"}
+     got="`*` da `margin: 0` yozing" got2="`*` da `margin: 0` yozing" exp=note rules=[{"selector":"*, ::before, ::after","props":{"margin-top":"0px","margin-right":"0px","margin-bottom":"0px","margin-left":"0px","margin":"0px"}}]
+[NOTE] cssValue: color currentColor
+     args=["em","color","currentColor"] src={"css":"em{color:currentColor}"}
+     got="`em` da `color: currentColor` yozing" got2="`em` da `color: currentColor` yozing" exp=note rules=[{"selector":"em","props":{"color":"currentcolor"}}]
+[NOTE] cssValue: color currentcolor
+     args=["em","color","currentcolor"] src={"css":"em{color:currentColor}"}
+     got=true got2=true exp=note rules=[{"selector":"em","props":{"color":"currentcolor"}}]
+[NOTE] cssValue: color #ff0000 vs red
+     args=["p","color","red"] src={"css":"p{color:#ff0000}"}
+     got="`p` da `color: red` yozing" got2="`p` da `color: red` yozing" exp=note rules=[{"selector":"p","props":{"color":"rgb(255, 0, 0)"}}]
+[NOTE] cssValue: color rgb(255,0,0) vs red
+     args=["p","color","red"] src={"css":"p{color:rgb(255,0,0)}"}
+     got="`p` da `color: red` yozing" got2="`p` da `color: red` yozing" exp=note rules=[{"selector":"p","props":{"color":"rgb(255, 0, 0)"}}]
+[NOTE] cssValue: color RGB(255,0,0)
+     args=["p","color","rgb(255, 0, 0)"] src={"css":"p{color:RGB(255,0,0)}"}
+     got=true got2=true exp=note rules=[{"selector":"p","props":{"color":"rgb(255, 0, 0)"}}]
+[NOTE] cssValue: color hsl
+     args=["p","color","hsl(0, 100%, 50%)"] src={"css":"p{color:hsl(0, 100%, 50%)}"}
+     got="`p` da `color: hsl(0, 100%, 50%)` yozing" got2="`p` da `color: hsl(0, 100%, 50%)` yozing" exp=note rules=[{"selector":"p","props":{"color":"rgb(255, 0, 0)"}}]
+[NOTE] cssValue: color rgba(0,0,0,.5)
+     args=["p","color","rgba(0,0,0,.5)"] src={"css":"p{color:rgba(0,0,0,.5)}"}
+     got="`p` da `color: rgba(0,0,0,.5)` yozing" got2="`p` da `color: rgba(0,0,0,.5)` yozing" exp=note rules=[{"selector":"p","props":{"color":"rgba(0, 0, 0, 0.5)"}}]
+[NOTE] cssValue: color rgba(0, 0, 0, 0.5)
+     args=["p","color","rgba(0, 0, 0, 0.5)"] src={"css":"p{color:rgba(0, 0, 0, 0.5)}"}
+     got=true got2=true exp=note rules=[{"selector":"p","props":{"color":"rgba(0, 0, 0, 0.5)"}}]
+[NOTE] cssValue: url() bilan background
+     args=["div","background","url(a.png)"] src={"css":"div{background:url(a.png)}"}
+     got="`div` da `background: url(a.png)` yozing" got2="`div` da `background: url(a.png)` yozing" exp=note rules=[{"selector":"div","props":{"background-image":"url(\"a.png\")","background-position-x":"initial","background-position-y":"initial","background-size":"initial","background-repeat":"initial","background-attachment":"initial","background-origin":"initial","background-clip":"initial","background-color"
+[NOTE] cssValue: url() bilan background-image
+     args=["div","background-image","url(a.png)"] src={"css":"div{background-image:url(a.png)}"}
+     got="`div` da `background-image: url(a.png)` yozing" got2="`div` da `background-image: url(a.png)` yozing" exp=note rules=[{"selector":"div","props":{"background-image":"url(\"a.png\")"}}]
+[NOTE] cssValue: url("a.png") so'ralgan, url(a.png) yozilgan
+     args=["div","background-image","url(\"a.png\")"] src={"css":"div{background-image:url(a.png)}"}
+     got=true got2=true exp=note rules=[{"selector":"div","props":{"background-image":"url(\"a.png\")"}}]
+[NOTE] cssValue: url("a.png") ikkalasi ham
+     args=["div","background-image","url(\"a.png\")"] src={"css":"div{background-image:url(\"a.png\")}"}
+     got=true got2=true exp=note rules=[{"selector":"div","props":{"background-image":"url(\"a.png\")"}}]
+[NOTE] cssValue: url('a.png') bir tirnoq
+     args=["div","background-image","url(\"a.png\")"] src={"css":"div{background-image:url('a.png')}"}
+     got=true got2=true exp=note rules=[{"selector":"div","props":{"background-image":"url(\"a.png\")"}}]
+[NOTE] cssValue: url(https://...) tarmoq
+     args=["div","background-image","url(https://example.com/a.png)"] src={"css":"div{background-image:url(https://example.com/a.png)}"}
+     got="`div` da `background-image: url(https://example.com/a.png)` yozing" got2="`div` da `background-image: url(https://example.com/a.png)` yozing" exp=note rules=[{"selector":"div","props":{"background-image":"url(\"https://example.com/a.png\")"}}]
+[NOTE] cssValue: url(x) probel ichida
+     args=["div","background-image","url( a.png )"] src={"css":"div{background-image:url( a.png )}"}
+     got="`div` da `background-image: url( a.png )` yozing" got2="`div` da `background-image: url( a.png )` yozing" exp=note rules=[{"selector":"div","props":{"background-image":"url(\"a.png\")"}}]
+[NOTE] cssValue: bo'sh qiymat
+     args=["h1","color",""] src={"css":"h1{color:red}"}
+     got="`h1` da `color: ` yozing" got2="`h1` da `color: ` yozing" exp=note rules=[{"selector":"h1","props":{"color":"red"}}]
+[NOTE] cssValue: bo'sh qiymat + bo'sh CSS
+     args=["h1","color",""] src={"css":""}
+     got="`h1` da `color: ` yozing" got2="`h1` da `color: ` yozing" exp=note rules=[]
+[NOTE] cssValue: qoidasiz selector CSS "h1{}"
+     args=["h1","color",""] src={"css":"h1{}"}
+     got=true got2=true exp=note rules=[{"selector":"h1","props":{}}]
+[NOTE] cssValue: bo'sh CSS + HTML style atributi
+     args=["h1","color","red"] src={"html":"<h1 style=\"color:red\">x</h1>","css":""}
+     got="`h1` da `color: red` yozing" got2="`h1` da `color: red` yozing" exp=note rules=[]
+[NOTE] cssValue: text-align center, lekin CSS oxirida keyingi buzuq
+     args=["h1","text-align","center"] src={"css":"h1{text-align:center}\np{"}
+     got=true got2=true exp=note rules=[{"selector":"h1","props":{"text-align":"center"}},{"selector":"p","props":{}}]
+[NOTE] cssValue: text-align center, lekin CSS boshida buzuq "p{"
+     args=["h1","text-align","center"] src={"css":"p{\nh1{text-align:center}"}
+     got="`h1` da `text-align: center` yozing" got2="`h1` da `text-align: center` yozing" exp=note rules=[{"selector":"p","props":{}}]
+[NOTE] cssValue: text-align center, boshida buzuq "p{color:red" (yopilmagan)
+     args=["h1","text-align","center"] src={"css":"p{color:red\nh1{text-align:center}"}
+     got="`h1` da `text-align: center` yozing" got2="`h1` da `text-align: center` yozing" exp=note rules=[{"selector":"p","props":{}}]
+[NOTE] cssValue: text-align center, boshida "p color:red;}" (ochilmagan)
+     args=["h1","text-align","center"] src={"css":"p color:red;}\nh1{text-align:center}"}
+     got="`h1` da `text-align: center` yozing" got2="`h1` da `text-align: center` yozing" exp=note rules=[]
+[NOTE] cssValue: text-align center, boshida ortiqcha }
+     args=["h1","text-align","center"] src={"css":"}\nh1{text-align:center}"}
+     got="`h1` da `text-align: center` yozing" got2="`h1` da `text-align: center` yozing" exp=note rules=[]
+[NOTE] cssValue: text-align center, boshida "h1{color:red;;}"
+     args=["h1","text-align","center"] src={"css":"h1{color:red;;}\nh1{text-align:center}"}
+     got=true got2=true exp=note rules=[{"selector":"h1","props":{"color":"red"}},{"selector":"h1","props":{"text-align":"center"}}]
+[NOTE] cssValue: text-align center, boshida "h1{color red}"
+     args=["h1","text-align","center"] src={"css":"h1{color red}\nh1{text-align:center}"}
+     got=true got2=true exp=note rules=[{"selector":"h1","props":{}},{"selector":"h1","props":{"text-align":"center"}}]
+[NOTE] cssValue: text-align center, boshida "h1{color:red}}"
+     args=["h1","text-align","center"] src={"css":"h1{color:red}}\nh1{text-align:center}"}
+     got="`h1` da `text-align: center` yozing" got2="`h1` da `text-align: center` yozing" exp=note rules=[{"selector":"h1","props":{"color":"red"}}]
+[NOTE] cssValue: text-align center, boshida "h1{color:red}}}}"
+     args=["h1","text-align","center"] src={"css":"h1{color:red}}}}\nh1{text-align:center}"}
+     got="`h1` da `text-align: center` yozing" got2="`h1` da `text-align: center` yozing" exp=note rules=[{"selector":"h1","props":{"color":"red"}}]
+[NOTE] cssValue: text-align center, boshida "@media{"
+     args=["h1","text-align","center"] src={"css":"@media (max-width:600px){\nh1{text-align:center}"}
+     got="`h1` da `text-align: center` yozing" got2="`h1` da `text-align: center` yozing" exp=note rules=[]
+[NOTE] cssValue: text-align center, boshida "@media (max-width:600px){}"
+     args=["h1","text-align","center"] src={"css":"@media (max-width:600px){}\nh1{text-align:center}"}
+     got=true got2=true exp=note rules=[{"selector":"h1","props":{"text-align":"center"}}]
+[NOTE] cssValue: text-align center, boshida "@import"
+     args=["h1","text-align","center"] src={"css":"@import \"x.css\";\nh1{text-align:center}"}
+     got=true got2=true exp=note rules=[{"selector":"h1","props":{"text-align":"center"}}]
+[NOTE] cssValue: text-align center, boshida "@charset"
+     args=["h1","text-align","center"] src={"css":"@charset \"utf-8\";\nh1{text-align:center}"}
+     got=true got2=true exp=note rules=[{"selector":"h1","props":{"text-align":"center"}}]
+[NOTE] cssValue: text-align center, boshida "<style>"
+     args=["h1","text-align","center"] src={"css":"<style>\nh1{text-align:center}\n</style>"}
+     got="`h1` da `text-align: center` yozing" got2="`h1` da `text-align: center` yozing" exp=note rules=[]
+[NOTE] cssValue: text-align center, boshida "//izoh"
+     args=["h1","text-align","center"] src={"css":"// izoh\nh1{text-align:center}"}
+     got="`h1` da `text-align: center` yozing" got2="`h1` da `text-align: center` yozing" exp=note rules=[]
+[NOTE] cssValue: text-align center, boshida "# izoh"
+     args=["h1","text-align","center"] src={"css":"# izoh\nh1{text-align:center}"}
+     got="`h1` da `text-align: center` yozing" got2="`h1` da `text-align: center` yozing" exp=note rules=[]
+[NOTE] cssValue: text-align center, boshida "izoh so'z"
+     args=["h1","text-align","center"] src={"css":"bu yerga css yozing\nh1{text-align:center}"}
+     got="`h1` da `text-align: center` yozing" got2="`h1` da `text-align: center` yozing" exp=note rules=[{"selector":"bu yerga css yozing h1","props":{"text-align":"center"}}]
+[NOTE] cssValue: text-align center, boshida "izoh so'z" bilan; 
+     args=["h1","text-align","center"] src={"css":"bu yerga css yozing;\nh1{text-align:center}"}
+     got="`h1` da `text-align: center` yozing" got2="`h1` da `text-align: center` yozing" exp=note rules=[]
+[NOTE] cssValue: text-align center, ichida "//izoh" satri
+     args=["h1","text-align","center"] src={"css":"h1{\n// markazga\ntext-align:center}"}
+     got="`h1` da `text-align: center` yozing" got2="`h1` da `text-align: center` yozing" exp=note rules=[{"selector":"h1","props":{}}]
+[NOTE] cssValue: text-align center, ichida "//izoh" satri, oldida ;
+     args=["h1","text-align","center"] src={"css":"h1{\ncolor:red;\n// markazga\ntext-align:center}"}
+     got="`h1` da `text-align: center` yozing" got2="`h1` da `text-align: center` yozing" exp=note rules=[{"selector":"h1","props":{"color":"red"}}]
+[NOTE] cssValue: text-align center, ichida "//izoh;" satri
+     args=["h1","text-align","center"] src={"css":"h1{\ncolor:red;\n// markazga;\ntext-align:center}"}
+     got=true got2=true exp=note rules=[{"selector":"h1","props":{"color":"red","text-align":"center"}}]
+[NOTE] cssValue: text-align center, ichida "<!-- -->" 
+     args=["h1","text-align","center"] src={"css":"h1{\n<!-- markazga -->\ntext-align:center}"}
+     got="`h1` da `text-align: center` yozing" got2="`h1` da `text-align: center` yozing" exp=note rules=[{"selector":"h1","props":{}}]
+[NOTE] cssValue: text-align center, ichida "color red;"
+     args=["h1","text-align","center"] src={"css":"h1{color red;text-align:center}"}
+     got=true got2=true exp=note rules=[{"selector":"h1","props":{"text-align":"center"}}]
+[NOTE] cssValue: text-align center, ichida "color:red text-align:center"
+     args=["h1","text-align","center"] src={"css":"h1{color:red text-align:center}"}
+     got="`h1` da `text-align: center` yozing" got2="`h1` da `text-align: center` yozing" exp=note rules=[{"selector":"h1","props":{}}]
+[NOTE] cssValue: text-align center, ichida "color:red: text-align:center"
+     args=["h1","text-align","center"] src={"css":"h1{color:red: text-align:center}"}
+     got="`h1` da `text-align: center` yozing" got2="`h1` da `text-align: center` yozing" exp=note rules=[{"selector":"h1","props":{}}]
+[NOTE] cssValue: text-align center, ichida "color:red, text-align:center"
+     args=["h1","text-align","center"] src={"css":"h1{color:red, text-align:center}"}
+     got="`h1` da `text-align: center` yozing" got2="`h1` da `text-align: center` yozing" exp=note rules=[{"selector":"h1","props":{}}]
+[NOTE] cssValue: text-align center, ichida "color:red. text-align:center"
+     args=["h1","text-align","center"] src={"css":"h1{color:red. text-align:center}"}
+     got="`h1` da `text-align: center` yozing" got2="`h1` da `text-align: center` yozing" exp=note rules=[{"selector":"h1","props":{}}]
+[NOTE] cssValue: text-align center, ichida "color=red; text-align:center"
+     args=["h1","text-align","center"] src={"css":"h1{color=red; text-align:center}"}
+     got=true got2=true exp=note rules=[{"selector":"h1","props":{"text-align":"center"}}]
+[NOTE] cssValue: text-align center, ichida "color:red! text-align:center"
+     args=["h1","text-align","center"] src={"css":"h1{color:red! text-align:center}"}
+     got="`h1` da `text-align: center` yozing" got2="`h1` da `text-align: center` yozing" exp=note rules=[{"selector":"h1","props":{}}]
+[NOTE] cssValue: text-align center, ichida "color:'red'; text-align:center"
+     args=["h1","text-align","center"] src={"css":"h1{color:'red'; text-align:center}"}
+     got=true got2=true exp=note rules=[{"selector":"h1","props":{"text-align":"center"}}]
+[NOTE] cssValue: text-align center, ichida "color:'red; text-align:center"
+     args=["h1","text-align","center"] src={"css":"h1{color:'red; text-align:center}"}
+     got="`h1` da `text-align: center` yozing" got2="`h1` da `text-align: center` yozing" exp=note rules=[{"selector":"h1","props":{}}]
+[NOTE] cssValue: text-align center, ichida "color:red'; text-align:center"
+     args=["h1","text-align","center"] src={"css":"h1{color:red'; text-align:center}"}
+     got="`h1` da `text-align: center` yozing" got2="`h1` da `text-align: center` yozing" exp=note rules=[{"selector":"h1","props":{}}]
+[NOTE] cssValue: text-align center, ichida "color:(red; text-align:center"
+     args=["h1","text-align","center"] src={"css":"h1{color:(red; text-align:center}"}
+     got="`h1` da `text-align: center` yozing" got2="`h1` da `text-align: center` yozing" exp=note rules=[{"selector":"h1","props":{}}]
+[NOTE] cssValue: text-align center, ichida "color:[red; text-align:center"
+     args=["h1","text-align","center"] src={"css":"h1{color:[red; text-align:center}"}
+     got="`h1` da `text-align: center` yozing" got2="`h1` da `text-align: center` yozing" exp=note rules=[{"selector":"h1","props":{}}]
+[NOTE] cssValue: text-align center, ichida "color:{red; text-align:center}"
+     args=["h1","text-align","center"] src={"css":"h1{color:{red; text-align:center}}"}
+     got="`h1` da `text-align: center` yozing" got2="`h1` da `text-align: center` yozing" exp=note rules=[{"selector":"h1","props":{}}]
+[NOTE] cssValue: text-align center, ichida "background:url(a; text-align:center"
+     args=["h1","text-align","center"] src={"css":"h1{background:url(a; text-align:center}"}
+     got="`h1` da `text-align: center` yozing" got2="`h1` da `text-align: center` yozing" exp=note rules=[{"selector":"h1","props":{}}]
+[NOTE] cssValue: text-align center, ichida "background:url(a.png; text-align:center;}"
+     args=["h1","text-align","center"] src={"css":"h1{background:url(a.png; text-align:center;}"}
+     got="`h1` da `text-align: center` yozing" got2="`h1` da `text-align: center` yozing" exp=note rules=[{"selector":"h1","props":{}}]
+[NOTE] cssValue: text-align center, ichida "font-family:"Arial; text-align:center"
+     args=["h1","text-align","center"] src={"css":"h1{font-family:\"Arial; text-align:center}"}
+     got="`h1` da `text-align: center` yozing" got2="`h1` da `text-align: center` yozing" exp=note rules=[{"selector":"h1","props":{"font-family":"\"Arial; text-align:center}\""}}]
+[NOTE] cssValue: text-align center, ichida "font-family:"Arial; text-align:center;}"
+     args=["h1","text-align","center"] src={"css":"h1{font-family:\"Arial; text-align:center;}"}
+     got="`h1` da `text-align: center` yozing" got2="`h1` da `text-align: center` yozing" exp=note rules=[{"selector":"h1","props":{"font-family":"\"Arial; text-align:center;}\""}}]
+[NOTE] cssValue: text-align center, ichida "font-family:"Arial;" text-align:center;}"
+     args=["h1","text-align","center"] src={"css":"h1{font-family:\"Arial;\" text-align:center;}"}
+     got="`h1` da `text-align: center` yozing" got2="`h1` da `text-align: center` yozing" exp=note rules=[{"selector":"h1","props":{}}]
+[NOTE] cssValue: text-align center, ichida "font-family:"Arial;"; text-align:center;}"
+     args=["h1","text-align","center"] src={"css":"h1{font-family:\"Arial;\"; text-align:center;}"}
+     got=true got2=true exp=note rules=[{"selector":"h1","props":{"font-family":"\"Arial;\"","text-align":"center"}}]
+[NOTE] cssValue: text-align center, ichida "content:'a'; text-align:center;}"
+     args=["h1","text-align","center"] src={"css":"h1{content:'a'; text-align:center;}"}
+     got=true got2=true exp=note rules=[{"selector":"h1","props":{"content":"\"a\"","text-align":"center"}}]
+[NOTE] cssValue: text-align center, ichida "content:'a; text-align:center;}"
+     args=["h1","text-align","center"] src={"css":"h1{content:'a; text-align:center;}"}
+     got="`h1` da `text-align: center` yozing" got2="`h1` da `text-align: center` yozing" exp=note rules=[{"selector":"h1","props":{"content":"\"a; text-align:center;}\""}}]
+[NOTE] cssValue: text-align center, ichida "color:red;}
+h1{text-align:center"
+     args=["h1","text-align","center"] src={"css":"h1{color:red;}\nh1{text-align:center"}
+     got=true got2=true exp=note rules=[{"selector":"h1","props":{"color":"red"}},{"selector":"h1","props":{"text-align":"center"}}]
+[NOTE] cssValue: text-align center, ichida "color:red;
+h1{text-align:center}"
+     args=["h1","text-align","center"] src={"css":"h1{color:red;\nh1{text-align:center}"}
+     got="`h1` da `text-align: center` yozing" got2="`h1` da `text-align: center` yozing" exp=note rules=[{"selector":"h1","props":{"color":"red"}}]
+[NOTE] cssValue: text-align center, ichida "color:red;
+p{margin:0}
+h1{text-align:center}"
+     args=["h1","text-align","center"] src={"css":"h1{color:red;\np{margin:0}\nh1{text-align:center}"}
+     got="`h1` da `text-align: center` yozing" got2="`h1` da `text-align: center` yozing" exp=note rules=[{"selector":"h1","props":{"color":"red"}}]
+[NOTE] cssValue: text-align center, ichida "color:red;
+p{margin:0}}
+h1{text-align:center}"
+     args=["h1","text-align","center"] src={"css":"h1{color:red;\np{margin:0}}\nh1{text-align:center}"}
+     got=true got2=true exp=note rules=[{"selector":"h1","props":{"color":"red"}},{"selector":"h1","props":{"text-align":"center"}}]
+[NOTE] cssValue: text-align center, ichida "color:red;
+}}
+h1{text-align:center}"
+     args=["h1","text-align","center"] src={"css":"h1{color:red;\n}}\nh1{text-align:center}"}
+     got="`h1` da `text-align: center` yozing" got2="`h1` da `text-align: center` yozing" exp=note rules=[{"selector":"h1","props":{"color":"red"}}]
+[NOTE] cssValue: text-align center, ichida "color:red;
+}
+}
+h1{text-align:center}"
+     args=["h1","text-align","center"] src={"css":"h1{color:red;\n}\n}\nh1{text-align:center}"}
+     got="`h1` da `text-align: center` yozing" got2="`h1` da `text-align: center` yozing" exp=note rules=[{"selector":"h1","props":{"color":"red"}}]
+[NOTE] cssValue: text-align center, ichida "color:red;
+}
+p{margin:0
+h1{text-align:center}"
+     args=["h1","text-align","center"] src={"css":"h1{color:red;\n}\np{margin:0\nh1{text-align:center}"}
+     got="`h1` da `text-align: center` yozing" got2="`h1` da `text-align: center` yozing" exp=note rules=[{"selector":"h1","props":{"color":"red"}},{"selector":"p","props":{}}]
+[NOTE] cssValue: text-align center, ichida "color:red;
+}
+p{margin:0;
+h1{text-align:center}"
+     args=["h1","text-align","center"] src={"css":"h1{color:red;\n}\np{margin:0;\nh1{text-align:center}"}
+     got="`h1` da `text-align: center` yozing" got2="`h1` da `text-align: center` yozing" exp=note rules=[{"selector":"h1","props":{"color":"red"}},{"selector":"p","props":{"margin-top":"0px","margin-right":"0px","margin-bottom":"0px","margin-left":"0px","margin":"0px"}}]
+[NOTE] cssValue: text-align center, ichida "color:red;
+}
+p{margin:0;}
+}
+h1{text-align:center}"
+     args=["h1","text-align","center"] src={"css":"h1{color:red;\n}\np{margin:0;}\n}\nh1{text-align:center}"}
+     got="`h1` da `text-align: center` yozing" got2="`h1` da `text-align: center` yozing" exp=note rules=[{"selector":"h1","props":{"color":"red"}},{"selector":"p","props":{"margin-top":"0px","margin-right":"0px","margin-bottom":"0px","margin-left":"0px","margin":"0px"}}]
+[NOTE] cssValue: text-align center, ichida "color:red;
+}
+p{margin:0;}
+}}
+h1{text-align:center}"
+     args=["h1","text-align","center"] src={"css":"h1{color:red;\n}\np{margin:0;}\n}}\nh1{text-align:center}"}
+     got="`h1` da `text-align: center` yozing" got2="`h1` da `text-align: center` yozing" exp=note rules=[{"selector":"h1","props":{"color":"red"}},{"selector":"p","props":{"margin-top":"0px","margin-right":"0px","margin-bottom":"0px","margin-left":"0px","margin":"0px"}}]
+[NOTE] cssValue: text-align center, ichida "color:red;
+}
+p{margin:0;}
+}}}
+h1{text-align:center}"
+     args=["h1","text-align","center"] src={"css":"h1{color:red;\n}\np{margin:0;}\n}}}\nh1{text-align:center}"}
+     got="`h1` da `text-align: center` yozing" got2="`h1` da `text-align: center` yozing" exp=note rules=[{"selector":"h1","props":{"color":"red"}},{"selector":"p","props":{"margin-top":"0px","margin-right":"0px","margin-bottom":"0px","margin-left":"0px","margin":"0px"}}]
+[NOTE] cssValue: text-align center, ichida "color:red;
+}
+p{margin:0;}
+{
+h1{text-align:center}"
+     args=["h1","text-align","center"] src={"css":"h1{color:red;\n}\np{margin:0;}\n{\nh1{text-align:center}"}
+     got="`h1` da `text-align: center` yozing" got2="`h1` da `text-align: center` yozing" exp=note rules=[{"selector":"h1","props":{"color":"red"}},{"selector":"p","props":{"margin-top":"0px","margin-right":"0px","margin-bottom":"0px","margin-left":"0px","margin":"0px"}}]
+[NOTE] cssValue: text-align center, ichida "color:red;
+}
+p{margin:0;}
+{}
+h1{text-align:center}"
+     args=["h1","text-align","center"] src={"css":"h1{color:red;\n}\np{margin:0;}\n{}\nh1{text-align:center}"}
+     got=true got2=true exp=note rules=[{"selector":"h1","props":{"color":"red"}},{"selector":"p","props":{"margin-top":"0px","margin-right":"0px","margin-bottom":"0px","margin-left":"0px","margin":"0px"}},{"selector":"h1","props":{"text-align":"center"}}]
+[NOTE] cssValue: text-align center, ichida "color:red;
+}
+p{margin:0;}
+;
+h1{text-align:center}"
+     args=["h1","text-align","center"] src={"css":"h1{color:red;\n}\np{margin:0;}\n;\nh1{text-align:center}"}
+     got="`h1` da `text-align: center` yozing" got2="`h1` da `text-align: center` yozing" exp=note rules=[{"selector":"h1","props":{"color":"red"}},{"selector":"p","props":{"margin-top":"0px","margin-right":"0px","margin-bottom":"0px","margin-left":"0px","margin":"0px"}}]
+[NOTE] cssValue: text-align center, ichida "color:red;
+}
+p{margin:0;}
+:
+h1{text-align:center}"
+     args=["h1","text-align","center"] src={"css":"h1{color:red;\n}\np{margin:0;}\n:\nh1{text-align:center}"}
+     got="`h1` da `text-align: center` yozing" got2="`h1` da `text-align: center` yozing" exp=note rules=[{"selector":"h1","props":{"color":"red"}},{"selector":"p","props":{"margin-top":"0px","margin-right":"0px","margin-bottom":"0px","margin-left":"0px","margin":"0px"}}]
+[NOTE] cssValue: text-align center, ichida "color:red;
+}
+p{margin:0;}
+.
+h1{text-align:center}"
+     args=["h1","text-align","center"] src={"css":"h1{color:red;\n}\np{margin:0;}\n.\nh1{text-align:center}"}
+     got="`h1` da `text-align: center` yozing" got2="`h1` da `text-align: center` yozing" exp=note rules=[{"selector":"h1","props":{"color":"red"}},{"selector":"p","props":{"margin-top":"0px","margin-right":"0px","margin-bottom":"0px","margin-left":"0px","margin":"0px"}}]
+[NOTE] cssValue: text-align center, ichida "color:red;
+}
+p{margin:0;}
+#
+h1{text-align:center}"
+     args=["h1","text-align","center"] src={"css":"h1{color:red;\n}\np{margin:0;}\n#\nh1{text-align:center}"}
+     got="`h1` da `text-align: center` yozing" got2="`h1` da `text-align: center` yozing" exp=note rules=[{"selector":"h1","props":{"color":"red"}},{"selector":"p","props":{"margin-top":"0px","margin-right":"0px","margin-bottom":"0px","margin-left":"0px","margin":"0px"}}]
+[NOTE] cssValue: text-align center, ichida "color:red;
+}
+p{margin:0;}
+@
+h1{text-align:center}"
+     args=["h1","text-align","center"] src={"css":"h1{color:red;\n}\np{margin:0;}\n@\nh1{text-align:center}"}
+     got="`h1` da `text-align: center` yozing" got2="`h1` da `text-align: center` yozing" exp=note rules=[{"selector":"h1","props":{"color":"red"}},{"selector":"p","props":{"margin-top":"0px","margin-right":"0px","margin-bottom":"0px","margin-left":"0px","margin":"0px"}}]
+[NOTE] cssValue: text-align center, ichida "color:red;
+}
+p{margin:0;}
+@media
+h1{text-align:center}"
+     args=["h1","text-align","center"] src={"css":"h1{color:red;\n}\np{margin:0;}\n@media\nh1{text-align:center}"}
+     got="`h1` da `text-align: center` yozing" got2="`h1` da `text-align: center` yozing" exp=note rules=[{"selector":"h1","props":{"color":"red"}},{"selector":"p","props":{"margin-top":"0px","margin-right":"0px","margin-bottom":"0px","margin-left":"0px","margin":"0px"}}]
+[NOTE] cssValue: text-align center, ichida "color:red;
+}
+p{margin:0;}
+@media;
+h1{text-align:center}"
+     args=["h1","text-align","center"] src={"css":"h1{color:red;\n}\np{margin:0;}\n@media;\nh1{text-align:center}"}
+     got=true got2=true exp=note rules=[{"selector":"h1","props":{"color":"red"}},{"selector":"p","props":{"margin-top":"0px","margin-right":"0px","margin-bottom":"0px","margin-left":"0px","margin":"0px"}},{"selector":"h1","props":{"text-align":"center"}}]
+[NOTE] cssValue: text-align center, ichida "color:red;
+}
+p{margin:0;}
+@media screen;
+h1{text-align:center}"
+     args=["h1","text-align","center"] src={"css":"h1{color:red;\n}\np{margin:0;}\n@media screen;\nh1{text-align:center}"}
+     got=true got2=true exp=note rules=[{"selector":"h1","props":{"color":"red"}},{"selector":"p","props":{"margin-top":"0px","margin-right":"0px","margin-bottom":"0px","margin-left":"0px","margin":"0px"}},{"selector":"h1","props":{"text-align":"center"}}]
+[NOTE] cssValue: text-align center, ichida "color:red;
+}
+p{margin:0;}
+@media screen {
+h1{text-align:center}"
+     args=["h1","text-align","center"] src={"css":"h1{color:red;\n}\np{margin:0;}\n@media screen {\nh1{text-align:center}"}
+     got="`h1` da `text-align: center` yozing" got2="`h1` da `text-align: center` yozing" exp=note rules=[{"selector":"h1","props":{"color":"red"}},{"selector":"p","props":{"margin-top":"0px","margin-right":"0px","margin-bottom":"0px","margin-left":"0px","margin":"0px"}}]
+[NOTE] cssValue: text-align center, ichida "color:red;
+}
+p{margin:0;}
+@media screen {}
+h1{text-align:center}"
+     args=["h1","text-align","center"] src={"css":"h1{color:red;\n}\np{margin:0;}\n@media screen {}\nh1{text-align:center}"}
+     got=true got2=true exp=note rules=[{"selector":"h1","props":{"color":"red"}},{"selector":"p","props":{"margin-top":"0px","margin-right":"0px","margin-bottom":"0px","margin-left":"0px","margin":"0px"}},{"selector":"h1","props":{"text-align":"center"}}]
+[NOTE] cssValue: text-align center, ichida "color:red;
+}
+p{margin:0;}
+@media screen {}}
+h1{text-align:center}"
+     args=["h1","text-align","center"] src={"css":"h1{color:red;\n}\np{margin:0;}\n@media screen {}}\nh1{text-align:center}"}
+     got="`h1` da `text-align: center` yozing" got2="`h1` da `text-align: center` yozing" exp=note rules=[{"selector":"h1","props":{"color":"red"}},{"selector":"p","props":{"margin-top":"0px","margin-right":"0px","margin-bottom":"0px","margin-left":"0px","margin":"0px"}}]
+[NOTE] cssValue: text-align center, ichida "color:red;
+}
+p{margin:0;}
+@media screen {}}}
+h1{text-align:center}"
+     args=["h1","text-align","center"] src={"css":"h1{color:red;\n}\np{margin:0;}\n@media screen {}}}\nh1{text-align:center}"}
+     got="`h1` da `text-align: center` yozing" got2="`h1` da `text-align: center` yozing" exp=note rules=[{"selector":"h1","props":{"color":"red"}},{"selector":"p","props":{"margin-top":"0px","margin-right":"0px","margin-bottom":"0px","margin-left":"0px","margin":"0px"}}]
+[NOTE] js: satr ichida "let x"
+     args=["/let\\s+x/"] src={"js":"console.log(\"let x\")"}
+     got=true got2=true exp=note rules=[]
+[NOTE] js: template literal `let x`
+     args=["/let\\s+x/"] src={"js":"const s = `let x`;"}
+     got=true got2=true exp=note rules=[]
+[NOTE] js: console. log
+     args=["/console\\.log\\(/"] src={"js":"console. log(1)"}
+     got="Skriptda kerakli qism topilmadi" got2="Skriptda kerakli qism topilmadi" exp=note rules=[]
+[NOTE] js: URL ichida // (izoh deb o'chiriladi)
+     args=["/example\\.com\\/x/"] src={"js":"const u = \"https://example.com/x\";"}
+     got="Skriptda kerakli qism topilmadi" got2="Skriptda kerakli qism topilmadi" exp=note rules=[]
+[NOTE] js: regex literal /\/\// ichida
+     args=["/split/"] src={"js":"const a = s.replace(/\\/\\//g, \"\").split(\",\")"}
+     got="Skriptda kerakli qism topilmadi" got2="Skriptda kerakli qism topilmadi" exp=note rules=[]
+[NOTE] js: satr ichida "/*" izohni boshlab yuboradi
+     args=["/alert\\(/"] src={"js":"const s = \"/*\"; alert(1); const t = \"*/\";"}
+     got="Skriptda kerakli qism topilmadi" got2="Skriptda kerakli qism topilmadi" exp=note rules=[]
+[NOTE] js: satr ichida "//" qatorning qolganini yeydi
+     args=["/alert\\(/"] src={"js":"const s = \"http://x\"; alert(1);"}
+     got="Skriptda kerakli qism topilmadi" got2="Skriptda kerakli qism topilmadi" exp=note rules=[]
+[NOTE] js: HTML ichida <script> — ctx.js bo'sh
+     args=["/alert/"] src={"html":"<script>alert(1)</script>","js":""}
+     got="Skriptda kerakli qism topilmadi" got2="Skriptda kerakli qism topilmadi" exp=note rules=[]
+[NOTE] js: satr regexi maxsus belgilar "console.log(" 
+     args=["s:console.log("] src={"js":"console.log(1)"}
+     got="ARG-THROW: Invalid regular expression: /console.log(/: Unterminated group" got2="" exp=note rules=[]
+[NOTE] js: satr regexi katta harf
+     args=["s:LET"] src={"js":"let x"}
+     got="Skriptda kerakli qism topilmadi" got2="Skriptda kerakli qism topilmadi" exp=note rules=[]
+[NOTE] js: /g bayroqli regex ketma-ket 2 marta (lastIndex)
+     args=["/x/g"] src={"js":"x"}
+     got=true got2="Skriptda kerakli qism topilmadi" exp=note rules=[]

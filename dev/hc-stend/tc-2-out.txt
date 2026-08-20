@@ -1,0 +1,1036 @@
+TOTAL 322 MISMATCH 0 NOTE 228 ok 94
+[NOTE] ok: matnda a<b (harf keyin)
+     html="<p>a<b</p>"
+     n=1 [{"line":1,"msg":"`<b` tegi `>` bilan yopilmagan"}]
+[NOTE] ok: <script> ichida <
+     html="<script>if(a<b){x=\"<div>\"}</script>"
+     n=1 [{"line":1,"msg":"`<b` tegi `>` bilan yopilmagan"}]
+[NOTE] ok: <script> ichida </div> satr
+     html="<script>var s=\"</div>\";</script>"
+     n=1 [{"line":1,"msg":"`</div>` mos ochuvchi tegga ega emas (xato yoki typo)"}]
+[NOTE] ok: <script> ichida "<h1>"
+     html="<script>document.write(\"<h1>x</h1>\")</script>"
+     n=0 []
+[NOTE] ok: <script> ichida "<h1>" yopilmagan
+     html="<script>document.write(\"<h1>x\")</script>"
+     n=1 [{"line":1,"msg":"`<h1>` yopilmagan — `</h1>` kutilgan, `</script>` keldi"}]
+[NOTE] ok: <script> ichida for(i<3)
+     html="<script>for(var i=0;i<3;i++){}</script>"
+     n=0 []
+[NOTE] ok: <script> ichida a<b regex
+     html="<script>if(a<b && c>d){}</script>"
+     n=1 [{"line":1,"msg":"`<b>` yopilmagan — `</b>` kutilgan, `</script>` keldi"}]
+[NOTE] ok: <style> ichida a>b
+     html="<style>a>b{color:red}</style>"
+     n=0 []
+[NOTE] ok: <style> ichida <
+     html="<style>/* < */</style>"
+     n=0 []
+[NOTE] ok: <textarea> ichida <h1>
+     html="<textarea><h1>x</textarea>"
+     n=1 [{"line":1,"msg":"`<h1>` yopilmagan — `</h1>` kutilgan, `</textarea>` keldi"}]
+[NOTE] ok: <html><head><body> yopilmagan (ixtiyoriy)
+     html="<!doctype html><html><head><title>x</title><body><h1>x</h1>"
+     n=3 [{"line":1,"msg":"`<html>` ochiq qoldi — `</html>` bilan yoping"},{"line":1,"msg":"`<head>` ochiq qoldi — `</head>` bilan yoping"},{"line":1,"msg":"`<body>` ochiq qoldi — `</body>` bilan yoping"}]
+[NOTE] ok: <html> ichida <body> yopilmagan
+     html="<html><body><h1>x</h1></html>"
+     n=1 [{"line":1,"msg":"`<body>` yopilmagan — `</body>` kutilgan, `</html>` keldi"}]
+[NOTE] ok: <head> yopilmagan
+     html="<head><title>x</title><body>x</body>"
+     n=1 [{"line":1,"msg":"`<head>` ochiq qoldi — `</head>` bilan yoping"}]
+[NOTE] ok: tirnoqsiz atribut ichida / oxirida
+     html="<a href=a/>x</a>"
+     n=1 [{"line":1,"msg":"Ortiqcha yopuvchi teg `</a>` — mos ochuvchi yo'q"}]
+[NOTE] ok: matn ichida < oxirida
+     html="<p>a <</p>"
+     n=0 []
+[NOTE] ok: matn ichida <!
+     html="<p>a <! b</p>"
+     n=0 []
+[NOTE] ok: matn ichida <?
+     html="<p>a <? b</p>"
+     n=0 []
+[NOTE] ok: matn ichida <?xml
+     html="<?xml version=\"1.0\"?><h1>x</h1>"
+     n=0 []
+[NOTE] ok: CDATA
+     html="<![CDATA[ x ]]><h1>x</h1>"
+     n=0 []
+[NOTE] ok: <!-- --> ichida <!--
+     html="<!-- <!-- x --><h1>x</h1>"
+     n=0 []
+[NOTE] ok: <!---->
+     html="<!----><h1>x</h1>"
+     n=0 []
+[NOTE] ok: <!--->
+     html="<!---><h1>x</h1>"
+     n=1 [{"line":1,"col":1,"atEnd":true,"msg":"Izoh yopilmagan (`-->` yetishmayapti)"}]
+[NOTE] ok: <!-->
+     html="<!--><h1>x</h1>"
+     n=1 [{"line":1,"col":1,"atEnd":true,"msg":"Izoh yopilmagan (`-->` yetishmayapti)"}]
+[NOTE] ok: ichma-ich <p><p> (2 xato emas)
+     html="<p><p>x</p></p>"
+     n=1 [{"line":1,"msg":"Ortiqcha yopuvchi teg `</p>` — mos ochuvchi yo'q"}]
+[NOTE] ok: <a> ichida <a>
+     html="<a><a>x</a></a>"
+     n=0 []
+[NOTE] ok: <script></script> ichida <!--
+     html="<script><!--\nvar a=1;\n//--></script>"
+     n=0 []
+[NOTE] ok: <style> ichida <!--
+     html="<style><!--\nh1{}\n--></style>"
+     n=0 []
+[NOTE] ok: <script> ichida "</scr"+"ipt>"
+     html="<script>var s=\"</scr\"+\"ipt>\";</script>"
+     n=1 [{"line":1,"msg":"`</scr>` mos ochuvchi tegga ega emas (xato yoki typo)"}]
+[NOTE] ok: <script> ichida `<`
+     html="<script>let x = a<b?1:2;</script>"
+     n=1 [{"line":1,"msg":"`<b` tegi `>` bilan yopilmagan"}]
+[NOTE] ok: <script> ichida "<!--"
+     html="<script>var s=\"<!--\";</script>"
+     n=2 [{"line":1,"col":16,"atEnd":true,"msg":"Izoh yopilmagan (`-->` yetishmayapti)"},{"line":1,"msg":"`<script>` ochiq qoldi — `</script>` bilan yoping"}]
+[NOTE] ok: <script> ichida </p>
+     html="<script>el.innerHTML=\"<p>a</p>\";</script>"
+     n=0 []
+[NOTE] ok: <script> ichida "<p>a" yopilmagan
+     html="<script>el.innerHTML=\"<p>a\";</script>"
+     n=0 []
+[NOTE] ok: <script> ichida "<div>a" yopilmagan
+     html="<script>el.innerHTML=\"<div>a\";</script>"
+     n=1 [{"line":1,"msg":"`<div>` yopilmagan — `</div>` kutilgan, `</script>` keldi"}]
+[NOTE] ok: <script> ichida "</div>" ochilmagan
+     html="<script>el.innerHTML=\"</div>\";</script>"
+     n=1 [{"line":1,"msg":"`</div>` mos ochuvchi tegga ega emas (xato yoki typo)"}]
+[NOTE] ok: <script> ichida "<img src=x>"
+     html="<script>el.innerHTML=\"<img src=x>\";</script>"
+     n=0 []
+[NOTE] ok: <script> ichida "<b>x</b>"
+     html="<script>el.innerHTML=\"<b>x</b>\";</script>"
+     n=0 []
+[NOTE] ok: <script> ichida "<b>x"
+     html="<script>el.innerHTML=\"<b>x\";</script>"
+     n=1 [{"line":1,"msg":"`<b>` yopilmagan — `</b>` kutilgan, `</script>` keldi"}]
+[NOTE] ok: <script> ichida "x</b>"
+     html="<script>el.innerHTML=\"x</b>\";</script>"
+     n=1 [{"line":1,"msg":"`</b>` mos ochuvchi tegga ega emas (xato yoki typo)"}]
+[NOTE] ok: <script> ichida `<a href="#">`
+     html="<script>el.innerHTML=`<a href=\"#\">x</a>`;</script>"
+     n=0 []
+[NOTE] ok: <script> ichida `<a href="#">` yopilmagan
+     html="<script>el.innerHTML=`<a href=\"#\">x`;</script>"
+     n=1 [{"line":1,"msg":"`<a>` yopilmagan — `</a>` kutilgan, `</script>` keldi"}]
+[NOTE] ok: <script> ichida "<"
+     html="<script>var s=\"<\";</script>"
+     n=0 []
+[NOTE] ok: <script> ichida "<a"
+     html="<script>var s=\"<a\";</script>"
+     n=2 [{"line":1,"atEnd":true,"msg":"`<a>` ichida tirnoq (\") yopilmagan"},{"line":1,"msg":"`<script>` ochiq qoldi — `</script>` bilan yoping"}]
+[NOTE] ok: <script> ichida "<a "
+     html="<script>var s=\"<a \";</script>"
+     n=2 [{"line":1,"atEnd":true,"msg":"`<a>` ichida tirnoq (\") yopilmagan"},{"line":1,"msg":"`<script>` ochiq qoldi — `</script>` bilan yoping"}]
+[NOTE] ok: <script> ichida "<a>"
+     html="<script>var s=\"<a>\";</script>"
+     n=1 [{"line":1,"msg":"`<a>` yopilmagan — `</a>` kutilgan, `</script>` keldi"}]
+[NOTE] ok: <script> ichida `<a`
+     html="<script>var s=`<a`;</script>"
+     n=1 [{"line":1,"msg":"`<a` tegi `>` bilan yopilmagan"}]
+[NOTE] ok: <script> ichida a<b>c
+     html="<script>if(a<b>c){}</script>"
+     n=1 [{"line":1,"msg":"`<b>` yopilmagan — `</b>` kutilgan, `</script>` keldi"}]
+[NOTE] ok: <script> ichida a<b>c yopilgan
+     html="<script>if(a<b>c</b>){}</script>"
+     n=0 []
+[NOTE] ok: <script> ichida "'"
+     html="<script>var s=\"'\";</script>"
+     n=0 []
+[NOTE] ok: <script> ichida "'" + <
+     html="<script>var s=\"'\"; if(a<b){}</script>"
+     n=1 [{"line":1,"msg":"`<b` tegi `>` bilan yopilmagan"}]
+[NOTE] ok: <script> ichida '"' + <
+     html="<script>var s='\"'; if(a<b){}</script>"
+     n=1 [{"line":1,"msg":"`<b` tegi `>` bilan yopilmagan"}]
+[NOTE] ok: <script> ichida x<y va '
+     html="<script>if(x<y){s='a'}</script>"
+     n=1 [{"line":1,"msg":"`<y` tegi `>` bilan yopilmagan"}]
+[NOTE] ok: <script> ichida x<y va ' juft
+     html="<script>if(x<y){s='a';t='b'}</script>"
+     n=1 [{"line":1,"msg":"`<y` tegi `>` bilan yopilmagan"}]
+[NOTE] ok: <script> ichida x<y va " juft
+     html="<script>if(x<y){s=\"a\";t=\"b\"}</script>"
+     n=1 [{"line":1,"msg":"`<y` tegi `>` bilan yopilmagan"}]
+[NOTE] ok: <script> ichida x<y va " toq
+     html="<script>if(x<y){s=\"a\"}</script>"
+     n=1 [{"line":1,"msg":"`<y` tegi `>` bilan yopilmagan"}]
+[NOTE] ok: <script> ichida x<y va " toq va >
+     html="<script>if(x<y){s=\"a>\"}</script>"
+     n=1 [{"line":1,"msg":"`<y` tegi `>` bilan yopilmagan"}]
+[NOTE] ok: <script> ichida x<y va " juft va >
+     html="<script>if(x<y){s=\"a>\";t=\"b\"}</script>"
+     n=1 [{"line":1,"msg":"`<y` tegi `>` bilan yopilmagan"}]
+[NOTE] ok: <script> ichida x<yz va " juft va >
+     html="<script>if(x<yz){s=\"a>\";t=\"b\"}</script>"
+     n=1 [{"line":1,"msg":"`<yz` tegi `>` bilan yopilmagan"}]
+[NOTE] ok: <script> ichida x <y va " juft va >
+     html="<script>if(x <y){s=\"a>\";t=\"b\"}</script>"
+     n=1 [{"line":1,"msg":"`<y` tegi `>` bilan yopilmagan"}]
+[NOTE] ok: <script> ichida x< y va " juft va >
+     html="<script>if(x< y){s=\"a>\";t=\"b\"}</script>"
+     n=0 []
+[NOTE] ok: <script> ichida x<1
+     html="<script>if(x<1){}</script>"
+     n=0 []
+[NOTE] ok: <script> ichida x<-1
+     html="<script>if(x<-1){}</script>"
+     n=0 []
+[NOTE] ok: <script> ichida x<(1)
+     html="<script>if(x<(1)){}</script>"
+     n=0 []
+[NOTE] ok: <script> ichida x<"a"
+     html="<script>if(x<\"a\"){}</script>"
+     n=0 []
+[NOTE] ok: <script> ichida x<a.length
+     html="<script>for(i=0;i<a.length;i++){}</script>"
+     n=1 [{"line":1,"msg":"`<a` tegi `>` bilan yopilmagan"}]
+[NOTE] ok: <script> ichida x<a.length va >
+     html="<script>for(i=0;i<a.length;i++){if(a>b){}}</script>"
+     n=1 [{"line":1,"msg":"`<a>` yopilmagan — `</a>` kutilgan, `</script>` keldi"}]
+[NOTE] ok: <script> ichida x<a.length va > va "
+     html="<script>for(i=0;i<a.length;i++){if(a>b){s=\"x\"}}</script>"
+     n=1 [{"line":1,"msg":"`<a>` yopilmagan — `</a>` kutilgan, `</script>` keldi"}]
+[NOTE] ok: <script> ichida x<a.length va > va " toq
+     html="<script>for(i=0;i<a.length;i++){if(a>b){s=\"x}}</script>"
+     n=1 [{"line":1,"msg":"`<a>` yopilmagan — `</a>` kutilgan, `</script>` keldi"}]
+[NOTE] ok: <script> ichida x<a.length va > va ' toq
+     html="<script>for(i=0;i<a.length;i++){if(a>b){s='x}}</script>"
+     n=1 [{"line":1,"msg":"`<a>` yopilmagan — `</a>` kutilgan, `</script>` keldi"}]
+[NOTE] ok: <script> ichida x<a.length va > va ' juft
+     html="<script>for(i=0;i<a.length;i++){if(a>b){s='x'}}</script>"
+     n=1 [{"line":1,"msg":"`<a>` yopilmagan — `</a>` kutilgan, `</script>` keldi"}]
+[NOTE] ok: <script> ichida x<a.length va > va ' juft va </script> yo'q
+     html="<script>for(i=0;i<a.length;i++){if(a>b){s='x'}}"
+     n=2 [{"line":1,"msg":"`<script>` ochiq qoldi — `</script>` bilan yoping"},{"line":1,"msg":"`<a>` ochiq qoldi — `</a>` bilan yoping"}]
+[NOTE] ok: <script> ichida x<a.length va > va ' juft va </script> yo'q va h1
+     html="<script>for(i=0;i<a.length;i++){if(a>b){s='x'}}<h1>x</h1>"
+     n=2 [{"line":1,"msg":"`<script>` ochiq qoldi — `</script>` bilan yoping"},{"line":1,"msg":"`<a>` ochiq qoldi — `</a>` bilan yoping"}]
+[NOTE] ok: <script> ichida x<a.length va > va ' juft va </script> yo'q va h1 yopilmagan
+     html="<script>for(i=0;i<a.length;i++){if(a>b){s='x'}}<h1>x"
+     n=3 [{"line":1,"msg":"`<script>` ochiq qoldi — `</script>` bilan yoping"},{"line":1,"msg":"`<a>` ochiq qoldi — `</a>` bilan yoping"},{"line":1,"msg":"`<h1>` ochiq qoldi — `</h1>` bilan yoping"}]
+[NOTE] ok: <script> ichida x<a.length va > va ' juft va </script> yo'q va h1 yopilmagan va </p>
+     html="<script>for(i=0;i<a.length;i++){if(a>b){s='x'}}<h1>x</p>"
+     n=4 [{"line":1,"msg":"`</p>` mos ochuvchi tegga ega emas (xato yoki typo)"},{"line":1,"msg":"`<script>` ochiq qoldi — `</script>` bilan yoping"},{"line":1,"msg":"`<a>` ochiq qoldi — `</a>` bilan yoping"},{"line":1,"msg":"`<h1>` ochiq qoldi — `</h1>` bilan yoping"}]
+[NOTE] ok: <script> ichida x<a.length va > va ' juft va </script> yo'q va h1 yopilmagan va </p> va </h1>
+     html="<script>for(i=0;i<a.length;i++){if(a>b){s='x'}}<h1>x</p></h1>"
+     n=3 [{"line":1,"msg":"`</p>` mos ochuvchi tegga ega emas (xato yoki typo)"},{"line":1,"msg":"`<script>` ochiq qoldi — `</script>` bilan yoping"},{"line":1,"msg":"`<a>` ochiq qoldi — `</a>` bilan yoping"}]
+[NOTE] ok: <script> ichida x<a.length va > va ' juft va </script> yo'q va h1 yopilmagan va </p> va </h1> va </script>
+     html="<script>for(i=0;i<a.length;i++){if(a>b){s='x'}}<h1>x</p></h1></script>"
+     n=2 [{"line":1,"msg":"`</p>` mos ochuvchi tegga ega emas (xato yoki typo)"},{"line":1,"msg":"`<a>` yopilmagan — `</a>` kutilgan, `</script>` keldi"}]
+[NOTE] ok: <script> ichida x<a.length va > va ' juft va </script> yo'q va h1 yopilmagan va </p> va </h1> va </script> va h2
+     html="<script>for(i=0;i<a.length;i++){if(a>b){s='x'}}<h1>x</p></h1></script><h2>y</h2>"
+     n=2 [{"line":1,"msg":"`</p>` mos ochuvchi tegga ega emas (xato yoki typo)"},{"line":1,"msg":"`<a>` yopilmagan — `</a>` kutilgan, `</script>` keldi"}]
+[NOTE] err: <h1>x</h2>
+     html="<h1>x</h2>"
+     n=2 [{"line":1,"msg":"`</h2>` mos ochuvchi tegga ega emas (xato yoki typo)"},{"line":1,"msg":"`<h1>` ochiq qoldi — `</h1>` bilan yoping"}]
+[NOTE] err: <div><p>x</div></p>
+     html="<div><p>x</div></p>"
+     n=1 [{"line":1,"msg":"Ortiqcha yopuvchi teg `</p>` — mos ochuvchi yo'q"}]
+[NOTE] err: <b><i>x</b></i>
+     html="<b><i>x</b></i>"
+     n=2 [{"line":1,"msg":"`<i>` yopilmagan — `</i>` kutilgan, `</b>` keldi"},{"line":1,"msg":"Ortiqcha yopuvchi teg `</i>` — mos ochuvchi yo'q"}]
+[NOTE] err: <ul><li>a</ul></li>
+     html="<ul><li>a</ul></li>"
+     n=1 [{"line":1,"msg":"Ortiqcha yopuvchi teg `</li>` — mos ochuvchi yo'q"}]
+[NOTE] err: <h1 class="x>y</h1>
+     html="<h1 class=\"x>y</h1>"
+     n=1 [{"line":1,"atEnd":true,"msg":"`<h1>` ichida tirnoq (\") yopilmagan"}]
+[NOTE] err: <h1 class="x">y</h1
+     html="<h1 class=\"x\">y</h1"
+     n=2 [{"line":1,"atEnd":true,"msg":"Yopuvchi teg `</h1>` to'liq emas (`>` yetishmayapti)"},{"line":1,"msg":"`<h1>` ochiq qoldi — `</h1>` bilan yoping"}]
+[NOTE] err: <h1 class="x">y<h1
+     html="<h1 class=\"x\">y<h1"
+     n=2 [{"line":1,"atEnd":true,"msg":"`<h1` tegi `>` bilan yopilmagan"},{"line":1,"msg":"`<h1>` ochiq qoldi — `</h1>` bilan yoping"}]
+[NOTE] err: <h1
+     html="<h1"
+     n=1 [{"line":1,"atEnd":true,"msg":"`<h1` tegi `>` bilan yopilmagan"}]
+[NOTE] err: <h1 
+     html="<h1 "
+     n=1 [{"line":1,"atEnd":true,"msg":"`<h1` tegi `>` bilan yopilmagan"}]
+[NOTE] err: <h1 <p>
+     html="<h1 <p>x</p>"
+     n=1 [{"line":1,"msg":"`<h1` tegi `>` bilan yopilmagan"}]
+[NOTE] err: <img src="a" alt="b"
+     html="<img src=\"a\" alt=\"b\""
+     n=1 [{"line":1,"atEnd":true,"msg":"`<img` tegi `>` bilan yopilmagan"}]
+[NOTE] err: <img src="a alt="b">
+     html="<img src=\"a alt=\"b\">"
+     n=1 [{"line":1,"atEnd":true,"msg":"`<img>` ichida tirnoq (\") yopilmagan"}]
+[NOTE] err: <img src=a alt=b
+     html="<img src=a alt=b"
+     n=1 [{"line":1,"atEnd":true,"msg":"`<img` tegi `>` bilan yopilmagan"}]
+[NOTE] err: <!-- yopilmagan
+     html="<!-- x"
+     n=1 [{"line":1,"col":1,"atEnd":true,"msg":"Izoh yopilmagan (`-->` yetishmayapti)"}]
+[NOTE] err: <!-- yopilmagan + teg
+     html="<!-- x\n<h1>y</h1>"
+     n=1 [{"line":1,"col":1,"atEnd":true,"msg":"Izoh yopilmagan (`-->` yetishmayapti)"}]
+[NOTE] err: <! yopilmagan
+     html="<!doctype html"
+     n=1 [{"line":1,"col":1,"atEnd":true,"msg":"`<! ... >` yopilmagan"}]
+[NOTE] err: <div>
+<p>x
+</span>
+</div>
+     html="<div>\n<p>x\n</span>\n</div>"
+     n=1 [{"line":3,"msg":"`</span>` mos ochuvchi tegga ega emas (xato yoki typo)"}]
+[NOTE] err: <div>
+<span>x
+</div>
+     html="<div>\n<span>x\n</div>"
+     n=1 [{"line":2,"msg":"`<span>` yopilmagan — `</span>` kutilgan, `</div>` keldi"}]
+[NOTE] err: <div>
+<span>x
+</div>
+</span>
+     html="<div>\n<span>x\n</div>\n</span>"
+     n=2 [{"line":2,"msg":"`<span>` yopilmagan — `</span>` kutilgan, `</div>` keldi"},{"line":4,"msg":"Ortiqcha yopuvchi teg `</span>` — mos ochuvchi yo'q"}]
+[NOTE] err: <ul>
+<li>a
+<li>b
+</ol>
+     html="<ul>\n<li>a\n<li>b\n</ol>"
+     n=2 [{"line":4,"msg":"`</ol>` mos ochuvchi tegga ega emas (xato yoki typo)"},{"line":1,"msg":"`<ul>` ochiq qoldi — `</ul>` bilan yoping"}]
+[NOTE] err: <ul>
+<li>a</li>
+<li>b</li>
+     html="<ul>\n<li>a</li>\n<li>b</li>"
+     n=1 [{"line":1,"msg":"`<ul>` ochiq qoldi — `</ul>` bilan yoping"}]
+[NOTE] err: <ul><li>a</li><li>b</li></u>
+     html="<ul><li>a</li><li>b</li></u>"
+     n=2 [{"line":1,"msg":"`</u>` mos ochuvchi tegga ega emas (xato yoki typo)"},{"line":1,"msg":"`<ul>` ochiq qoldi — `</ul>` bilan yoping"}]
+[NOTE] err: <ul><li>a</li><li>b</li></lu>
+     html="<ul><li>a</li><li>b</li></lu>"
+     n=2 [{"line":1,"msg":"`</lu>` mos ochuvchi tegga ega emas (xato yoki typo)"},{"line":1,"msg":"`<ul>` ochiq qoldi — `</ul>` bilan yoping"}]
+[NOTE] err: <h1>x<h1>
+     html="<h1>x<h1>"
+     n=2 [{"line":1,"msg":"`<h1>` ochiq qoldi — `</h1>` bilan yoping"},{"line":1,"msg":"`<h1>` ochiq qoldi — `</h1>` bilan yoping"}]
+[NOTE] err: <p>x<p>y</p> — 2 ta p, 1 ta yopilgan
+     html="<p>x<p>y</p>"
+     n=0 []
+[NOTE] err: <div>x<div>y</div>
+     html="<div>x<div>y</div>"
+     n=1 [{"line":1,"msg":"`<div>` ochiq qoldi — `</div>` bilan yoping"}]
+[NOTE] err: <div>x<div>y</div> satr raqami
+     html="<div>x\n<div>y</div>"
+     n=1 [{"line":1,"msg":"`<div>` ochiq qoldi — `</div>` bilan yoping"}]
+[NOTE] err: <span>a<div>b</div></span>
+     html="<span>a<div>b</div></span>"
+     n=0 []
+[NOTE] err: <a>a<div>b</div></a>
+     html="<a>a<div>b</div></a>"
+     n=0 []
+[NOTE] err: <p><div>x</div></p>
+     html="<p><div>x</div></p>"
+     n=1 [{"line":1,"msg":"Ortiqcha yopuvchi teg `</p>` — mos ochuvchi yo'q"}]
+[NOTE] err: <p><h1>x</h1></p>
+     html="<p><h1>x</h1></p>"
+     n=1 [{"line":1,"msg":"Ortiqcha yopuvchi teg `</p>` — mos ochuvchi yo'q"}]
+[NOTE] err: <p><ul><li>a</li></ul></p>
+     html="<p><ul><li>a</li></ul></p>"
+     n=1 [{"line":1,"msg":"Ortiqcha yopuvchi teg `</p>` — mos ochuvchi yo'q"}]
+[NOTE] err: <li>a</li> <ul> siz
+     html="<li>a</li>"
+     n=0 []
+[NOTE] err: <td> <table> siz
+     html="<td>a</td>"
+     n=0 []
+[NOTE] err: <img>x</img>
+     html="<img src=\"a\">x</img>"
+     n=1 [{"line":1,"msg":"Ortiqcha yopuvchi teg `</img>` — mos ochuvchi yo'q"}]
+[NOTE] err: <br></br>
+     html="a<br></br>b"
+     n=1 [{"line":1,"msg":"Ortiqcha yopuvchi teg `</br>` — mos ochuvchi yo'q"}]
+[NOTE] err: <input></input>
+     html="<input></input>"
+     n=1 [{"line":1,"msg":"Ortiqcha yopuvchi teg `</input>` — mos ochuvchi yo'q"}]
+[NOTE] err: </br>
+     html="a</br>b"
+     n=1 [{"line":1,"msg":"Ortiqcha yopuvchi teg `</br>` — mos ochuvchi yo'q"}]
+[NOTE] err: <hr>x</hr>
+     html="<hr>x</hr>"
+     n=1 [{"line":1,"msg":"Ortiqcha yopuvchi teg `</hr>` — mos ochuvchi yo'q"}]
+[NOTE] err: <h1/>x
+     html="<h1/>x"
+     n=0 []
+[NOTE] err: <div/>x
+     html="<div/>x"
+     n=0 []
+[NOTE] err: <p/>x
+     html="<p/>x"
+     n=0 []
+[NOTE] err: <span/>x
+     html="<span/>x"
+     n=0 []
+[NOTE] err: <a href="#"/>x
+     html="<a href=\"#\"/>x"
+     n=0 []
+[NOTE] err: <script/>
+     html="<script/>alert(1)"
+     n=0 []
+[NOTE] err: <div><div></div>
+     html="<div><div></div>"
+     n=1 [{"line":1,"msg":"`<div>` ochiq qoldi — `</div>` bilan yoping"}]
+[NOTE] err: <div></div></div>
+     html="<div></div></div>"
+     n=1 [{"line":1,"msg":"Ortiqcha yopuvchi teg `</div>` — mos ochuvchi yo'q"}]
+[NOTE] err: <h1>a<b>b</h1>
+     html="<h1>a<b>b</h1>"
+     n=1 [{"line":1,"msg":"`<b>` yopilmagan — `</b>` kutilgan, `</h1>` keldi"}]
+[NOTE] err: <h1>a<b>b</h1> </b>
+     html="<h1>a<b>b</h1></b>"
+     n=2 [{"line":1,"msg":"`<b>` yopilmagan — `</b>` kutilgan, `</h1>` keldi"},{"line":1,"msg":"Ortiqcha yopuvchi teg `</b>` — mos ochuvchi yo'q"}]
+[NOTE] err: <b>a<h1>b</b></h1>
+     html="<b>a<h1>b</b></h1>"
+     n=2 [{"line":1,"msg":"`<h1>` yopilmagan — `</h1>` kutilgan, `</b>` keldi"},{"line":1,"msg":"Ortiqcha yopuvchi teg `</h1>` — mos ochuvchi yo'q"}]
+[NOTE] err: <table><tr><td>a</tr></td></table>
+     html="<table><tr><td>a</tr></td></table>"
+     n=1 [{"line":1,"msg":"`</td>` mos ochuvchi tegga ega emas (xato yoki typo)"}]
+[NOTE] err: <table><td>a</td></table> (tr yo'q)
+     html="<table><td>a</td></table>"
+     n=0 []
+[NOTE] err: <ul><p>a</p></ul>
+     html="<ul><p>a</p></ul>"
+     n=0 []
+[NOTE] err: <html><body></html></body>
+     html="<html><body></html></body>"
+     n=2 [{"line":1,"msg":"`<body>` yopilmagan — `</body>` kutilgan, `</html>` keldi"},{"line":1,"msg":"Ortiqcha yopuvchi teg `</body>` — mos ochuvchi yo'q"}]
+[NOTE] err: <html><body></body></html></html>
+     html="<html><body></body></html></html>"
+     n=1 [{"line":1,"msg":"Ortiqcha yopuvchi teg `</html>` — mos ochuvchi yo'q"}]
+[NOTE] err: <h1>x</h1>
+<p>y
+</h1>
+     html="<h1>x</h1>\n<p>y\n</h1>"
+     n=1 [{"line":3,"msg":"`</h1>` mos ochuvchi tegga ega emas (xato yoki typo)"}]
+[NOTE] err: <h1>x</h1>
+<p>y</p>
+</h1>
+     html="<h1>x</h1>\n<p>y</p>\n</h1>"
+     n=1 [{"line":3,"msg":"Ortiqcha yopuvchi teg `</h1>` — mos ochuvchi yo'q"}]
+[NOTE] err: <div>
+<h1>x</h1>
+<p>y</p>
+</h1>
+</div>
+     html="<div>\n<h1>x</h1>\n<p>y</p>\n</h1>\n</div>"
+     n=1 [{"line":4,"msg":"`</h1>` mos ochuvchi tegga ega emas (xato yoki typo)"}]
+[NOTE] err: <div>
+<h1>x</h1>
+<p>y</p>
+</div>
+</div>
+     html="<div>\n<h1>x</h1>\n<p>y</p>\n</div>\n</div>"
+     n=1 [{"line":5,"msg":"Ortiqcha yopuvchi teg `</div>` — mos ochuvchi yo'q"}]
+[NOTE] err: <div>
+<h1>x</h1>
+<p>y</p>
+     html="<div>\n<h1>x</h1>\n<p>y</p>"
+     n=1 [{"line":1,"msg":"`<div>` ochiq qoldi — `</div>` bilan yoping"}]
+[NOTE] err: <div>
+<h1>x</h1>
+<p>y</p>
+<div>
+     html="<div>\n<h1>x</h1>\n<p>y</p>\n<div>"
+     n=2 [{"line":1,"msg":"`<div>` ochiq qoldi — `</div>` bilan yoping"},{"line":4,"msg":"`<div>` ochiq qoldi — `</div>` bilan yoping"}]
+[NOTE] err: <div>
+<h1>x</h1>
+<p>y</p>
+<div>
+</div>
+     html="<div>\n<h1>x</h1>\n<p>y</p>\n<div>\n</div>"
+     n=1 [{"line":1,"msg":"`<div>` ochiq qoldi — `</div>` bilan yoping"}]
+[NOTE] err: <div>
+<h1>x</h1>
+<p>y</p>
+<div>
+</div>
+</div>
+</div>
+     html="<div>\n<h1>x</h1>\n<p>y</p>\n<div>\n</div>\n</div>\n</div>"
+     n=1 [{"line":7,"msg":"Ortiqcha yopuvchi teg `</div>` — mos ochuvchi yo'q"}]
+[NOTE] err: <div>
+<h1>x
+<p>y</p>
+</div>
+     html="<div>\n<h1>x\n<p>y</p>\n</div>"
+     n=1 [{"line":2,"msg":"`<h1>` yopilmagan — `</h1>` kutilgan, `</div>` keldi"}]
+[NOTE] err: <div>
+<h1>x
+<p>y</p>
+</div> — satr 2 kutiladi
+     html="<div>\n<h1>x\n<p>y</p>\n</div>"
+     n=1 [{"line":2,"msg":"`<h1>` yopilmagan — `</h1>` kutilgan, `</div>` keldi"}]
+[NOTE] err: <div>
+<h1>x
+<h1>y</h1>
+</div>
+     html="<div>\n<h1>x\n<h1>y</h1>\n</div>"
+     n=1 [{"line":2,"msg":"`<h1>` yopilmagan — `</h1>` kutilgan, `</div>` keldi"}]
+[NOTE] err: <div>
+<h1>x
+<h1>y</h1>
+</div>
+</h1>
+     html="<div>\n<h1>x\n<h1>y</h1>\n</div>\n</h1>"
+     n=2 [{"line":2,"msg":"`<h1>` yopilmagan — `</h1>` kutilgan, `</div>` keldi"},{"line":5,"msg":"Ortiqcha yopuvchi teg `</h1>` — mos ochuvchi yo'q"}]
+[NOTE] err: <div>
+<a>x
+</a>
+</div>
+</a>
+     html="<div>\n<a>x\n</a>\n</div>\n</a>"
+     n=1 [{"line":5,"msg":"Ortiqcha yopuvchi teg `</a>` — mos ochuvchi yo'q"}]
+[NOTE] err: <div>
+<a>x
+</div>
+</a>
+     html="<div>\n<a>x\n</div>\n</a>"
+     n=2 [{"line":2,"msg":"`<a>` yopilmagan — `</a>` kutilgan, `</div>` keldi"},{"line":4,"msg":"Ortiqcha yopuvchi teg `</a>` — mos ochuvchi yo'q"}]
+[NOTE] err: <div>
+<a>x
+</span>
+</div>
+     html="<div>\n<a>x\n</span>\n</div>"
+     n=2 [{"line":3,"msg":"`</span>` mos ochuvchi tegga ega emas (xato yoki typo)"},{"line":2,"msg":"`<a>` yopilmagan — `</a>` kutilgan, `</div>` keldi"}]
+[NOTE] err: <div>
+<a>x
+</span>
+</div>
+</a>
+     html="<div>\n<a>x\n</span>\n</div>\n</a>"
+     n=3 [{"line":3,"msg":"`</span>` mos ochuvchi tegga ega emas (xato yoki typo)"},{"line":2,"msg":"`<a>` yopilmagan — `</a>` kutilgan, `</div>` keldi"},{"line":5,"msg":"Ortiqcha yopuvchi teg `</a>` — mos ochuvchi yo'q"}]
+[NOTE] err: <div>
+<a>x
+</span>
+</a>
+</div>
+     html="<div>\n<a>x\n</span>\n</a>\n</div>"
+     n=1 [{"line":3,"msg":"`</span>` mos ochuvchi tegga ega emas (xato yoki typo)"}]
+[NOTE] err: <div>
+<a>x
+</span>
+</a>
+</div>
+</span>
+     html="<div>\n<a>x\n</span>\n</a>\n</div>\n</span>"
+     n=2 [{"line":3,"msg":"`</span>` mos ochuvchi tegga ega emas (xato yoki typo)"},{"line":6,"msg":"Ortiqcha yopuvchi teg `</span>` — mos ochuvchi yo'q"}]
+[NOTE] err: <div>
+<a>x
+</span>
+</a>
+</div>
+</span>
+</div>
+     html="<div>\n<a>x\n</span>\n</a>\n</div>\n</span>\n</div>"
+     n=3 [{"line":3,"msg":"`</span>` mos ochuvchi tegga ega emas (xato yoki typo)"},{"line":6,"msg":"Ortiqcha yopuvchi teg `</span>` — mos ochuvchi yo'q"},{"line":7,"msg":"Ortiqcha yopuvchi teg `</div>` — mos ochuvchi yo'q"}]
+[NOTE] err: <div>
+<a>x
+</span>
+</a>
+</div>
+</span>
+</div>
+</a>
+     html="<div>\n<a>x\n</span>\n</a>\n</div>\n</span>\n</div>\n</a>"
+     n=4 [{"line":3,"msg":"`</span>` mos ochuvchi tegga ega emas (xato yoki typo)"},{"line":6,"msg":"Ortiqcha yopuvchi teg `</span>` — mos ochuvchi yo'q"},{"line":7,"msg":"Ortiqcha yopuvchi teg `</div>` — mos ochuvchi yo'q"},{"line":8,"msg":"Ortiqcha yopuvchi teg `</a>` — mos ochuvchi yo'q"}]
+[NOTE] err: <div>
+<a>x
+</span>
+</a>
+</div>
+</span>
+</div>
+</a>
+</h1>
+     html="<div>\n<a>x\n</span>\n</a>\n</div>\n</span>\n</div>\n</a>\n</h1>"
+     n=5 [{"line":3,"msg":"`</span>` mos ochuvchi tegga ega emas (xato yoki typo)"},{"line":6,"msg":"Ortiqcha yopuvchi teg `</span>` — mos ochuvchi yo'q"},{"line":7,"msg":"Ortiqcha yopuvchi teg `</div>` — mos ochuvchi yo'q"},{"line":8,"msg":"Ortiqcha yopuvchi teg `</a>` — mos ochuvchi yo'q"},{"line":9,"msg":"Ortiqcha yopuvchi teg `</h1>` — mos ochuvchi yo'q"}]
+[NOTE] err: <div>
+<a>x
+</span>
+</a>
+</div>
+</span>
+</div>
+</a>
+</h1>
+<h1>
+     html="<div>\n<a>x\n</span>\n</a>\n</div>\n</span>\n</div>\n</a>\n</h1>\n<h1>"
+     n=6 [{"line":3,"msg":"`</span>` mos ochuvchi tegga ega emas (xato yoki typo)"},{"line":6,"msg":"Ortiqcha yopuvchi teg `</span>` — mos ochuvchi yo'q"},{"line":7,"msg":"Ortiqcha yopuvchi teg `</div>` — mos ochuvchi yo'q"},{"line":8,"msg":"Ortiqcha yopuvchi teg `</a>` — mos ochuvchi yo'q"},{"line":9,"msg":"Ortiqcha yopuvchi teg `</h1>` — mos ochuvchi yo'q"},{"line":10,"msg":"`<h1>` ochiq qoldi — `</h1>` bilan yoping"}]
+[NOTE] err: <div>
+<a>x
+</span>
+</a>
+</div>
+</span>
+</div>
+</a>
+</h1>
+<h1>y
+     html="<div>\n<a>x\n</span>\n</a>\n</div>\n</span>\n</div>\n</a>\n</h1>\n<h1>y"
+     n=6 [{"line":3,"msg":"`</span>` mos ochuvchi tegga ega emas (xato yoki typo)"},{"line":6,"msg":"Ortiqcha yopuvchi teg `</span>` — mos ochuvchi yo'q"},{"line":7,"msg":"Ortiqcha yopuvchi teg `</div>` — mos ochuvchi yo'q"},{"line":8,"msg":"Ortiqcha yopuvchi teg `</a>` — mos ochuvchi yo'q"},{"line":9,"msg":"Ortiqcha yopuvchi teg `</h1>` — mos ochuvchi yo'q"},{"line":10,"msg":"`<h1>` ochiq qoldi — `</h1>` bilan yoping"}]
+[NOTE] err: <div>
+<a>x
+</span>
+</a>
+</div>
+</span>
+</div>
+</a>
+</h1>
+<h1>y</h1>
+     html="<div>\n<a>x\n</span>\n</a>\n</div>\n</span>\n</div>\n</a>\n</h1>\n<h1>y</h1>"
+     n=5 [{"line":3,"msg":"`</span>` mos ochuvchi tegga ega emas (xato yoki typo)"},{"line":6,"msg":"Ortiqcha yopuvchi teg `</span>` — mos ochuvchi yo'q"},{"line":7,"msg":"Ortiqcha yopuvchi teg `</div>` — mos ochuvchi yo'q"},{"line":8,"msg":"Ortiqcha yopuvchi teg `</a>` — mos ochuvchi yo'q"},{"line":9,"msg":"Ortiqcha yopuvchi teg `</h1>` — mos ochuvchi yo'q"}]
+[NOTE] err: <div>
+<a>x
+</span>
+</a>
+</div>
+</span>
+</div>
+</a>
+</h1>
+<h1>y</h1>
+</div>
+     html="<div>\n<a>x\n</span>\n</a>\n</div>\n</span>\n</div>\n</a>\n</h1>\n<h1>y</h1>\n</div>"
+     n=6 [{"line":3,"msg":"`</span>` mos ochuvchi tegga ega emas (xato yoki typo)"},{"line":6,"msg":"Ortiqcha yopuvchi teg `</span>` — mos ochuvchi yo'q"},{"line":7,"msg":"Ortiqcha yopuvchi teg `</div>` — mos ochuvchi yo'q"},{"line":8,"msg":"Ortiqcha yopuvchi teg `</a>` — mos ochuvchi yo'q"},{"line":9,"msg":"Ortiqcha yopuvchi teg `</h1>` — mos ochuvchi yo'q"},{"line":11,"msg":"Ortiqcha yopuvchi teg `</div>` — mos ochuvchi yo'q"}]
+[NOTE] err: <div>
+<a>x
+</span>
+</a>
+</div>
+</span>
+</div>
+</a>
+</h1>
+<h1>y</h1>
+</div>
+<div>
+     html="<div>\n<a>x\n</span>\n</a>\n</div>\n</span>\n</div>\n</a>\n</h1>\n<h1>y</h1>\n</div>\n<div>"
+     n=7 [{"line":3,"msg":"`</span>` mos ochuvchi tegga ega emas (xato yoki typo)"},{"line":6,"msg":"Ortiqcha yopuvchi teg `</span>` — mos ochuvchi yo'q"},{"line":7,"msg":"Ortiqcha yopuvchi teg `</div>` — mos ochuvchi yo'q"},{"line":8,"msg":"Ortiqcha yopuvchi teg `</a>` — mos ochuvchi yo'q"},{"line":9,"msg":"Ortiqcha yopuvchi teg `</h1>` — mos ochuvchi yo'q"},{"line":11,"msg":"Ortiqcha yopuvchi teg `</div>` — mos ochuvchi yo'q"},{"line":12,"msg":"`<div>` ochiq qoldi — `</div>` bilan yoping"}]
+[NOTE] err: <div>
+<a>x
+</span>
+</a>
+</div>
+</span>
+</div>
+</a>
+</h1>
+<h1>y</h1>
+</div>
+<div>
+</div>
+     html="<div>\n<a>x\n</span>\n</a>\n</div>\n</span>\n</div>\n</a>\n</h1>\n<h1>y</h1>\n</div>\n<div>\n</div>"
+     n=6 [{"line":3,"msg":"`</span>` mos ochuvchi tegga ega emas (xato yoki typo)"},{"line":6,"msg":"Ortiqcha yopuvchi teg `</span>` — mos ochuvchi yo'q"},{"line":7,"msg":"Ortiqcha yopuvchi teg `</div>` — mos ochuvchi yo'q"},{"line":8,"msg":"Ortiqcha yopuvchi teg `</a>` — mos ochuvchi yo'q"},{"line":9,"msg":"Ortiqcha yopuvchi teg `</h1>` — mos ochuvchi yo'q"},{"line":11,"msg":"Ortiqcha yopuvchi teg `</div>` — mos ochuvchi yo'q"}]
+[NOTE] err: <div>
+<a>x
+</span>
+</a>
+</div>
+</span>
+</div>
+</a>
+</h1>
+<h1>y</h1>
+</div>
+<div>
+</div>
+</div>
+     html="<div>\n<a>x\n</span>\n</a>\n</div>\n</span>\n</div>\n</a>\n</h1>\n<h1>y</h1>\n</div>\n<div>\n</div>\n</div>"
+     n=7 [{"line":3,"msg":"`</span>` mos ochuvchi tegga ega emas (xato yoki typo)"},{"line":6,"msg":"Ortiqcha yopuvchi teg `</span>` — mos ochuvchi yo'q"},{"line":7,"msg":"Ortiqcha yopuvchi teg `</div>` — mos ochuvchi yo'q"},{"line":8,"msg":"Ortiqcha yopuvchi teg `</a>` — mos ochuvchi yo'q"},{"line":9,"msg":"Ortiqcha yopuvchi teg `</h1>` — mos ochuvchi yo'q"},{"line":11,"msg":"Ortiqcha yopuvchi teg `</div>` — mos ochuvchi yo'q"},{"line":14,"msg":"Ortiqcha yopuvchi teg `</div>` — mos ochuvchi yo'q"}]
+[NOTE] err: <div>
+<a>x
+</span>
+</a>
+</div>
+</span>
+</div>
+</a>
+</h1>
+<h1>y</h1>
+</div>
+<div>
+</div>
+</div>
+</div>
+     html="<div>\n<a>x\n</span>\n</a>\n</div>\n</span>\n</div>\n</a>\n</h1>\n<h1>y</h1>\n</div>\n<div>\n</div>\n</div>\n</div>"
+     n=8 [{"line":3,"msg":"`</span>` mos ochuvchi tegga ega emas (xato yoki typo)"},{"line":6,"msg":"Ortiqcha yopuvchi teg `</span>` — mos ochuvchi yo'q"},{"line":7,"msg":"Ortiqcha yopuvchi teg `</div>` — mos ochuvchi yo'q"},{"line":8,"msg":"Ortiqcha yopuvchi teg `</a>` — mos ochuvchi yo'q"},{"line":9,"msg":"Ortiqcha yopuvchi teg `</h1>` — mos ochuvchi yo'q"},{"line":11,"msg":"Ortiqcha yopuvchi teg `</div>` — mos ochuvchi yo'q"},{"line":14,"msg":"Ortiqcha yopuvchi teg `</div>` — mos ochuvchi yo'q"},{"line":15,"msg":"Ortiqcha yopuvchi teg `</div>` — mos ochuvchi yo'q"}]
+[NOTE] err: <p>x</ p>
+     html="<p>x</ p>"
+     n=1 [{"line":1,"msg":"`</>` mos ochuvchi tegga ega emas (xato yoki typo)"}]
+[NOTE] err: <p>x< /p>
+     html="<p>x< /p>"
+     n=0 []
+[NOTE] err: <p>x</p/>
+     html="<p>x</p/>"
+     n=0 []
+[NOTE] err: <p>x</>
+     html="<p>x</>"
+     n=1 [{"line":1,"msg":"`</>` mos ochuvchi tegga ega emas (xato yoki typo)"}]
+[NOTE] err: <>x</>
+     html="<>x</>"
+     n=1 [{"line":1,"msg":"Ortiqcha yopuvchi teg `</>` — mos ochuvchi yo'q"}]
+[NOTE] err: <1>x</1>
+     html="<1>x</1>"
+     n=1 [{"line":1,"msg":"Ortiqcha yopuvchi teg `</1>` — mos ochuvchi yo'q"}]
+[NOTE] err: <-a>x</-a>
+     html="<-a>x</-a>"
+     n=1 [{"line":1,"msg":"Ortiqcha yopuvchi teg `</-a>` — mos ochuvchi yo'q"}]
+[NOTE] err: <_a>x</_a>
+     html="<_a>x</_a>"
+     n=1 [{"line":1,"msg":"Ortiqcha yopuvchi teg `</>` — mos ochuvchi yo'q"}]
+[NOTE] err: <a_b>x</a_b>
+     html="<a_b>x</a_b>"
+     n=0 []
+[NOTE] err: <a:b>x</a:b>
+     html="<a:b>x</a:b>"
+     n=0 []
+[NOTE] err: <a.b>x</a.b>
+     html="<a.b>x</a.b>"
+     n=0 []
+[NOTE] err: <a=b>x</a=b>
+     html="<a=b>x</a=b>"
+     n=0 []
+[NOTE] err: <a"b>x</a"b>
+     html="<a\"b>x</a\"b>"
+     n=1 [{"line":1,"msg":"`<a>` ochiq qoldi — `</a>` bilan yoping"}]
+[NOTE] err: <h1>x</h1>x</h1>
+     html="<h1>x</h1>x</h1>"
+     n=1 [{"line":1,"msg":"Ortiqcha yopuvchi teg `</h1>` — mos ochuvchi yo'q"}]
+[NOTE] err: <div>
+<h1>x</h1>
+</div>
+<p>y
+<h1>z</h1>
+</p>
+     html="<div>\n<h1>x</h1>\n</div>\n<p>y\n<h1>z</h1>\n</p>"
+     n=1 [{"line":6,"msg":"Ortiqcha yopuvchi teg `</p>` — mos ochuvchi yo'q"}]
+[NOTE] err: <p>y
+</p>
+</p>
+     html="<p>y\n</p>\n</p>"
+     n=1 [{"line":3,"msg":"Ortiqcha yopuvchi teg `</p>` — mos ochuvchi yo'q"}]
+[NOTE] err: <p>y
+<div>
+</p>
+</div>
+     html="<p>y\n<div>\n</p>\n</div>"
+     n=1 [{"line":3,"msg":"`</p>` mos ochuvchi tegga ega emas (xato yoki typo)"}]
+[NOTE] err: <p>y
+<b>
+</p>
+</b>
+     html="<p>y\n<b>\n</p>\n</b>"
+     n=2 [{"line":2,"msg":"`<b>` yopilmagan — `</b>` kutilgan, `</p>` keldi"},{"line":4,"msg":"Ortiqcha yopuvchi teg `</b>` — mos ochuvchi yo'q"}]
+[NOTE] err: <p>y
+<b>z
+</p>
+     html="<p>y\n<b>z\n</p>"
+     n=1 [{"line":2,"msg":"`<b>` yopilmagan — `</b>` kutilgan, `</p>` keldi"}]
+[NOTE] err: <p><b>z</p>
+     html="<p><b>z</p>"
+     n=1 [{"line":1,"msg":"`<b>` yopilmagan — `</b>` kutilgan, `</p>` keldi"}]
+[NOTE] err: <b><p>z</b>
+     html="<b><p>z</b>"
+     n=0 []
+[NOTE] err: <b><p>z</b></p>
+     html="<b><p>z</b></p>"
+     n=1 [{"line":1,"msg":"Ortiqcha yopuvchi teg `</p>` — mos ochuvchi yo'q"}]
+[NOTE] err: <li><b>z</li>
+     html="<ul><li><b>z</li></ul>"
+     n=1 [{"line":1,"msg":"`<b>` yopilmagan — `</b>` kutilgan, `</li>` keldi"}]
+[NOTE] err: <li><b>z</li></b>
+     html="<ul><li><b>z</li></b></ul>"
+     n=2 [{"line":1,"msg":"`<b>` yopilmagan — `</b>` kutilgan, `</li>` keldi"},{"line":1,"msg":"`</b>` mos ochuvchi tegga ega emas (xato yoki typo)"}]
+[NOTE] err: <li><div>z</li>
+     html="<ul><li><div>z</li></ul>"
+     n=1 [{"line":1,"msg":"`<div>` yopilmagan — `</div>` kutilgan, `</li>` keldi"}]
+[NOTE] err: <li><div>z</li></ul>
+     html="<ul><li><div>z</li></ul>"
+     n=1 [{"line":1,"msg":"`<div>` yopilmagan — `</div>` kutilgan, `</li>` keldi"}]
+[NOTE] err: <li>z<div></li>
+     html="<ul><li>z<div></li></ul>"
+     n=1 [{"line":1,"msg":"`<div>` yopilmagan — `</div>` kutilgan, `</li>` keldi"}]
+[NOTE] err: <li>z<div></ul>
+     html="<ul><li>z<div></ul>"
+     n=1 [{"line":1,"msg":"`<div>` yopilmagan — `</div>` kutilgan, `</ul>` keldi"}]
+[NOTE] err: <li>z<div>
+     html="<ul><li>z<div>"
+     n=2 [{"line":1,"msg":"`<ul>` ochiq qoldi — `</ul>` bilan yoping"},{"line":1,"msg":"`<div>` ochiq qoldi — `</div>` bilan yoping"}]
+[NOTE] err: <li>z<div>
+</ul>
+</div>
+     html="<ul><li>z<div>\n</ul>\n</div>"
+     n=2 [{"line":1,"msg":"`<div>` yopilmagan — `</div>` kutilgan, `</ul>` keldi"},{"line":3,"msg":"Ortiqcha yopuvchi teg `</div>` — mos ochuvchi yo'q"}]
+[NOTE] err: <li>z<div>
+</div>
+</li>
+</ul>
+</li>
+     html="<ul><li>z<div>\n</div>\n</li>\n</ul>\n</li>"
+     n=1 [{"line":5,"msg":"Ortiqcha yopuvchi teg `</li>` — mos ochuvchi yo'q"}]
+[NOTE] err: <li>z<div>
+</div>
+</li>
+</ul>
+</ul>
+     html="<ul><li>z<div>\n</div>\n</li>\n</ul>\n</ul>"
+     n=1 [{"line":5,"msg":"Ortiqcha yopuvchi teg `</ul>` — mos ochuvchi yo'q"}]
+[NOTE] err: <li>z<div>
+</div>
+</li>
+</ul>
+</div>
+     html="<ul><li>z<div>\n</div>\n</li>\n</ul>\n</div>"
+     n=1 [{"line":5,"msg":"Ortiqcha yopuvchi teg `</div>` — mos ochuvchi yo'q"}]
+[NOTE] err: <li>z<div>
+</div>
+</li>
+</ul>
+</p>
+     html="<ul><li>z<div>\n</div>\n</li>\n</ul>\n</p>"
+     n=1 [{"line":5,"msg":"Ortiqcha yopuvchi teg `</p>` — mos ochuvchi yo'q"}]
+[NOTE] err: <li>z<div>
+</div>
+</li>
+</ul>
+</p>
+<p>
+     html="<ul><li>z<div>\n</div>\n</li>\n</ul>\n</p>\n<p>"
+     n=1 [{"line":5,"msg":"Ortiqcha yopuvchi teg `</p>` — mos ochuvchi yo'q"}]
+[NOTE] err: <li>z<div>
+</div>
+</li>
+</ul>
+</p>
+<p>x
+     html="<ul><li>z<div>\n</div>\n</li>\n</ul>\n</p>\n<p>x"
+     n=1 [{"line":5,"msg":"Ortiqcha yopuvchi teg `</p>` — mos ochuvchi yo'q"}]
+[NOTE] err: <li>z<div>
+</div>
+</li>
+</ul>
+</p>
+<p>x</p>
+     html="<ul><li>z<div>\n</div>\n</li>\n</ul>\n</p>\n<p>x</p>"
+     n=1 [{"line":5,"msg":"Ortiqcha yopuvchi teg `</p>` — mos ochuvchi yo'q"}]
+[NOTE] err: <li>z<div>
+</div>
+</li>
+</ul>
+</p>
+<p>x</p>
+</p>
+     html="<ul><li>z<div>\n</div>\n</li>\n</ul>\n</p>\n<p>x</p>\n</p>"
+     n=2 [{"line":5,"msg":"Ortiqcha yopuvchi teg `</p>` — mos ochuvchi yo'q"},{"line":7,"msg":"Ortiqcha yopuvchi teg `</p>` — mos ochuvchi yo'q"}]
+[NOTE] err: <li>z<div>
+</div>
+</li>
+</ul>
+</p>
+<p>x</p>
+</p>
+<p>
+     html="<ul><li>z<div>\n</div>\n</li>\n</ul>\n</p>\n<p>x</p>\n</p>\n<p>"
+     n=2 [{"line":5,"msg":"Ortiqcha yopuvchi teg `</p>` — mos ochuvchi yo'q"},{"line":7,"msg":"Ortiqcha yopuvchi teg `</p>` — mos ochuvchi yo'q"}]
+[NOTE] err: <li>z<div>
+</div>
+</li>
+</ul>
+</p>
+<p>x</p>
+</p>
+<p>y
+     html="<ul><li>z<div>\n</div>\n</li>\n</ul>\n</p>\n<p>x</p>\n</p>\n<p>y"
+     n=2 [{"line":5,"msg":"Ortiqcha yopuvchi teg `</p>` — mos ochuvchi yo'q"},{"line":7,"msg":"Ortiqcha yopuvchi teg `</p>` — mos ochuvchi yo'q"}]
+[NOTE] err: <li>z<div>
+</div>
+</li>
+</ul>
+</p>
+<p>x</p>
+</p>
+<p>y</p>
+     html="<ul><li>z<div>\n</div>\n</li>\n</ul>\n</p>\n<p>x</p>\n</p>\n<p>y</p>"
+     n=2 [{"line":5,"msg":"Ortiqcha yopuvchi teg `</p>` — mos ochuvchi yo'q"},{"line":7,"msg":"Ortiqcha yopuvchi teg `</p>` — mos ochuvchi yo'q"}]
+[NOTE] err: <li>z<div>
+</div>
+</li>
+</ul>
+</p>
+<p>x</p>
+</p>
+<p>y</p>
+</p>
+     html="<ul><li>z<div>\n</div>\n</li>\n</ul>\n</p>\n<p>x</p>\n</p>\n<p>y</p>\n</p>"
+     n=3 [{"line":5,"msg":"Ortiqcha yopuvchi teg `</p>` — mos ochuvchi yo'q"},{"line":7,"msg":"Ortiqcha yopuvchi teg `</p>` — mos ochuvchi yo'q"},{"line":9,"msg":"Ortiqcha yopuvchi teg `</p>` — mos ochuvchi yo'q"}]
+[NOTE] err: <li>z<div>
+</div>
+</li>
+</ul>
+</p>
+<p>x</p>
+</p>
+<p>y</p>
+</p>
+<p>
+     html="<ul><li>z<div>\n</div>\n</li>\n</ul>\n</p>\n<p>x</p>\n</p>\n<p>y</p>\n</p>\n<p>"
+     n=3 [{"line":5,"msg":"Ortiqcha yopuvchi teg `</p>` — mos ochuvchi yo'q"},{"line":7,"msg":"Ortiqcha yopuvchi teg `</p>` — mos ochuvchi yo'q"},{"line":9,"msg":"Ortiqcha yopuvchi teg `</p>` — mos ochuvchi yo'q"}]
+[NOTE] err: <li>z<div>
+</div>
+</li>
+</ul>
+</p>
+<p>x</p>
+</p>
+<p>y</p>
+</p>
+<p>z
+     html="<ul><li>z<div>\n</div>\n</li>\n</ul>\n</p>\n<p>x</p>\n</p>\n<p>y</p>\n</p>\n<p>z"
+     n=3 [{"line":5,"msg":"Ortiqcha yopuvchi teg `</p>` — mos ochuvchi yo'q"},{"line":7,"msg":"Ortiqcha yopuvchi teg `</p>` — mos ochuvchi yo'q"},{"line":9,"msg":"Ortiqcha yopuvchi teg `</p>` — mos ochuvchi yo'q"}]
+[NOTE] err: <li>z<div>
+</div>
+</li>
+</ul>
+</p>
+<p>x</p>
+</p>
+<p>y</p>
+</p>
+<p>z</p>
+     html="<ul><li>z<div>\n</div>\n</li>\n</ul>\n</p>\n<p>x</p>\n</p>\n<p>y</p>\n</p>\n<p>z</p>"
+     n=3 [{"line":5,"msg":"Ortiqcha yopuvchi teg `</p>` — mos ochuvchi yo'q"},{"line":7,"msg":"Ortiqcha yopuvchi teg `</p>` — mos ochuvchi yo'q"},{"line":9,"msg":"Ortiqcha yopuvchi teg `</p>` — mos ochuvchi yo'q"}]
+[NOTE] err: <li>z<div>
+</div>
+</li>
+</ul>
+</p>
+<p>x</p>
+</p>
+<p>y</p>
+</p>
+<p>z</p>
+</p>
+     html="<ul><li>z<div>\n</div>\n</li>\n</ul>\n</p>\n<p>x</p>\n</p>\n<p>y</p>\n</p>\n<p>z</p>\n</p>"
+     n=4 [{"line":5,"msg":"Ortiqcha yopuvchi teg `</p>` — mos ochuvchi yo'q"},{"line":7,"msg":"Ortiqcha yopuvchi teg `</p>` — mos ochuvchi yo'q"},{"line":9,"msg":"Ortiqcha yopuvchi teg `</p>` — mos ochuvchi yo'q"},{"line":11,"msg":"Ortiqcha yopuvchi teg `</p>` — mos ochuvchi yo'q"}]
+[NOTE] err: <li>z<div>
+</div>
+</li>
+</ul>
+</p>
+<p>x</p>
+</p>
+<p>y</p>
+</p>
+<p>z</p>
+</p>
+<p>
+     html="<ul><li>z<div>\n</div>\n</li>\n</ul>\n</p>\n<p>x</p>\n</p>\n<p>y</p>\n</p>\n<p>z</p>\n</p>\n<p>"
+     n=4 [{"line":5,"msg":"Ortiqcha yopuvchi teg `</p>` — mos ochuvchi yo'q"},{"line":7,"msg":"Ortiqcha yopuvchi teg `</p>` — mos ochuvchi yo'q"},{"line":9,"msg":"Ortiqcha yopuvchi teg `</p>` — mos ochuvchi yo'q"},{"line":11,"msg":"Ortiqcha yopuvchi teg `</p>` — mos ochuvchi yo'q"}]
+[NOTE] err: <li>z<div>
+</div>
+</li>
+</ul>
+</p>
+<p>x</p>
+</p>
+<p>y</p>
+</p>
+<p>z</p>
+</p>
+<p>w
+     html="<ul><li>z<div>\n</div>\n</li>\n</ul>\n</p>\n<p>x</p>\n</p>\n<p>y</p>\n</p>\n<p>z</p>\n</p>\n<p>w"
+     n=4 [{"line":5,"msg":"Ortiqcha yopuvchi teg `</p>` — mos ochuvchi yo'q"},{"line":7,"msg":"Ortiqcha yopuvchi teg `</p>` — mos ochuvchi yo'q"},{"line":9,"msg":"Ortiqcha yopuvchi teg `</p>` — mos ochuvchi yo'q"},{"line":11,"msg":"Ortiqcha yopuvchi teg `</p>` — mos ochuvchi yo'q"}]
+[NOTE] err: <li>z<div>
+</div>
+</li>
+</ul>
+</p>
+<p>x</p>
+</p>
+<p>y</p>
+</p>
+<p>z</p>
+</p>
+<p>w</p>
+     html="<ul><li>z<div>\n</div>\n</li>\n</ul>\n</p>\n<p>x</p>\n</p>\n<p>y</p>\n</p>\n<p>z</p>\n</p>\n<p>w</p>"
+     n=4 [{"line":5,"msg":"Ortiqcha yopuvchi teg `</p>` — mos ochuvchi yo'q"},{"line":7,"msg":"Ortiqcha yopuvchi teg `</p>` — mos ochuvchi yo'q"},{"line":9,"msg":"Ortiqcha yopuvchi teg `</p>` — mos ochuvchi yo'q"},{"line":11,"msg":"Ortiqcha yopuvchi teg `</p>` — mos ochuvchi yo'q"}]
+[NOTE] err: <li>z<div>
+</div>
+</li>
+</ul>
+</p>
+<p>x</p>
+</p>
+<p>y</p>
+</p>
+<p>z</p>
+</p>
+<p>w</p>
+</p>
+     html="<ul><li>z<div>\n</div>\n</li>\n</ul>\n</p>\n<p>x</p>\n</p>\n<p>y</p>\n</p>\n<p>z</p>\n</p>\n<p>w</p>\n</p>"
+     n=5 [{"line":5,"msg":"Ortiqcha yopuvchi teg `</p>` — mos ochuvchi yo'q"},{"line":7,"msg":"Ortiqcha yopuvchi teg `</p>` — mos ochuvchi yo'q"},{"line":9,"msg":"Ortiqcha yopuvchi teg `</p>` — mos ochuvchi yo'q"},{"line":11,"msg":"Ortiqcha yopuvchi teg `</p>` — mos ochuvchi yo'q"},{"line":13,"msg":"Ortiqcha yopuvchi teg `</p>` — mos ochuvchi yo'q"}]
+[NOTE] err: h1 3-qatorda yopilmagan
+     html="a\nb\n<h1>x\n<p>y</p>"
+     n=1 [{"line":3,"msg":"`<h1>` ochiq qoldi — `</h1>` bilan yoping"}]
+[NOTE] err: h1 3-qatorda, </h2> 5-qatorda
+     html="a\nb\n<h1>x\n\n</h2>"
+     n=2 [{"line":5,"msg":"`</h2>` mos ochuvchi tegga ega emas (xato yoki typo)"},{"line":3,"msg":"`<h1>` ochiq qoldi — `</h1>` bilan yoping"}]
+[NOTE] err: <img src="a
+b">
+     html="<img src=\"a\nb\">"
+     n=0 []
+[NOTE] err: <img src="a
+b
+     html="<img src=\"a\nb"
+     n=1 [{"line":1,"atEnd":true,"msg":"`<img>` ichida tirnoq (\") yopilmagan"}]
+[NOTE] err: <img src="a alt="b" > (tirnoq juft, lekin xato) 
+     html="<img src=\"a alt=\"b\" >"
+     n=1 [{"line":1,"atEnd":true,"msg":"`<img>` ichida tirnoq (\") yopilmagan"}]
+[NOTE] err: <a href="x">y</a href>
+     html="<a href=\"x\">y</a href>"
+     n=0 []
+[NOTE] err: <a href="x">y</a href="x">
+     html="<a href=\"x\">y</a href=\"x\">"
+     n=0 []
+[NOTE] err: <a href="x">y</a "> keyin <p>
+     html="<a href=\"x\">y</a \"><p>x</p>"
+     n=0 []
+[NOTE] err: <a href="x">y</a "> keyin <p> tirnoq yopilmagan (yopuvchi tegda)
+     html="<a href=\"x\">y</a \"<p>x</p>"
+     n=1 [{"line":1,"msg":"Ortiqcha yopuvchi teg `</p>` — mos ochuvchi yo'q"}]
+[NOTE] err: <a href="x">y<</a>
+     html="<a href=\"x\">y<</a>"
+     n=0 []
+[NOTE] err: <a href="x">y<<</a>
+     html="<a href=\"x\">y<<</a>"
+     n=0 []
+[NOTE] err: <a href="x">y<><</a>
+     html="<a href=\"x\">y<><</a>"
+     n=0 []
+[NOTE] err: <a href="x">y< a</a>
+     html="<a href=\"x\">y< a</a>"
+     n=0 []
+[NOTE] err: <a href="x">y<a</a>
+     html="<a href=\"x\">y<a</a>"
+     n=1 [{"line":1,"msg":"`<a` tegi `>` bilan yopilmagan"}]
+[NOTE] err: <a href="x">y<a </a>
+     html="<a href=\"x\">y<a </a>"
+     n=1 [{"line":1,"msg":"`<a` tegi `>` bilan yopilmagan"}]
+[NOTE] err: <a href="x">y<a<b></a>
+     html="<a href=\"x\">y<a<b></a>"
+     n=2 [{"line":1,"msg":"`<a` tegi `>` bilan yopilmagan"},{"line":1,"msg":"`<b>` yopilmagan — `</b>` kutilgan, `</a>` keldi"}]
+[NOTE] err: <a href="x">y<a<b</a>
+     html="<a href=\"x\">y<a<b</a>"
+     n=2 [{"line":1,"msg":"`<a` tegi `>` bilan yopilmagan"},{"line":1,"msg":"`<b` tegi `>` bilan yopilmagan"}]
+[NOTE] err: <a href="x">y<a<b<c</a>
+     html="<a href=\"x\">y<a<b<c</a>"
+     n=3 [{"line":1,"msg":"`<a` tegi `>` bilan yopilmagan"},{"line":1,"msg":"`<b` tegi `>` bilan yopilmagan"},{"line":1,"msg":"`<c` tegi `>` bilan yopilmagan"}]
