@@ -1544,7 +1544,8 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <button className={`chip ${mode === 'old' ? 'chip-on' : ''}`} onClick={() => setMode('old')}>{tr({ uz: 'Eski usul', ru: 'Старый способ' })} {tried.has('old') ? '✓' : ''}</button>
               <button className={`chip ${mode === 'smart' ? 'chip-on' : ''}`} onClick={() => setMode('smart')}>{tr({ uz: 'Aqlli usul', ru: 'Умный способ' })} {tried.has('smart') ? '✓' : ''}</button>
             </div>
-            <button className={`btn fade-up delay-2 ${tried.size === 0 ? 'invite' : ''}`} style={{ alignSelf: 'flex-start' }} onClick={change}>{tr({ uz: "Azizaning bahosini o'zgartirish", ru: 'Изменить оценку Азизы' })}</button>
+            {/* F-0820-136: kirish-animatsiya (fade-up) o'rovchida, puls (invite) tugmada — bir elementda `animation` to'qnashib opacity 0 da qolardi */}
+            <div className="fade-up delay-2" style={{ alignSelf: 'flex-start' }}><button className={`btn ${tried.size === 0 ? 'invite' : ''}`} onClick={change}>{tr({ uz: "Azizaning bahosini o'zgartirish", ru: 'Изменить оценку Азизы' })}</button></div>
             {tried.size > 0 && mode === 'smart' && (
               <div className="hint fade-step" key={`${mode}-${tried.size}`}>
                 <p className="body" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: <>Endi <b style={{ color: T.success }}>faqat 1 katak</b> yangilandi. React ham aynan shunday ishlaydi.</>, ru: <>Теперь обновилась <b style={{ color: T.success }}>только 1 клетка</b>. React работает точно так же.</> })}</p>
@@ -1624,7 +1625,8 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <Zoomable>
         <div className="split">
           <Col>
-            <button className={`btn fade-up delay-1 ${phase === 0 ? 'invite' : ''}`} style={{ alignSelf: 'flex-start' }} onClick={run} disabled={running}>{running ? tr({ uz: 'Ishlayapti…', ru: 'Работает…' }) : (done ? tr({ uz: "↻ Yana ko'rsatish", ru: '↻ Показать ещё раз' }) : tr({ uz: '▶ Like bosildi — kuzating', ru: '▶ Лайк нажат — наблюдайте' }))}</button>
+            {/* F-0820-136: fade-up o'rovchida, invite tugmada (yuqoridagi Screen7 izohiga qarang) */}
+            <div className="fade-up delay-1" style={{ alignSelf: 'flex-start' }}><button className={`btn ${phase === 0 ? 'invite' : ''}`} onClick={run} disabled={running}>{running ? tr({ uz: 'Ishlayapti…', ru: 'Работает…' }) : (done ? tr({ uz: "↻ Yana ko'rsatish", ru: '↻ Показать ещё раз' }) : tr({ uz: '▶ Like bosildi — kuzating', ru: '▶ Лайк нажат — наблюдайте' }))}</button></div>
             <div className="fade-up delay-2" style={{ display: 'flex', flexDirection: 'column', gap: 7 }}>
               {STEPS.map((s, i) => (
                 <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '10px 13px', borderRadius: 11, background: phase > i ? T.successSoft : T.bg, opacity: phase > i ? 1 : 0.55, transition: 'all 0.4s' }}>

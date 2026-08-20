@@ -274,6 +274,62 @@ for (const file of files) {
     for (const m of ln.matchAll(NEW_RE)) if (CTRL.test(m[2])) hits.push({ line: k + 1, msg: `new RegExp('…') ichida boshqaruv-belgi — escape buzilgan: '${show(m[2])}'` });
   });
 
+  // ---- 5) KIRISH-ANIMATSIYA + HOLAT-ANIMATSIYA BIR ELEMENTDA (F-0820-136, ETALON 135) ----
+  // `.fade-up` elementni `opacity: 0` qilib, ko'rinishni `animation: fade-in-up … forwards`ga
+  // topshiradi. O'sha elementga `animation` shorthand beradigan BOSHQA klass (`.btn.invite` pulsi)
+  // qo'shilsa, kaskadda kuchlirog'i `animation`ni butunlay almashtiradi — kirish hech qachon
+  // o'ynamaydi, tugma abadiy ko'rinmas (m3-01 da ikki ekran o'tib bo'lmas edi). esbuild/dark-lint
+  // ko'rmaydi. Holat-klasslar ro'yxati qo'lda emas — darsning o'z CSS'idan yig'iladi.
+  // Aniqlik-shartlari (yolg'on-ijobiy bo'lmasin): (1) selektorning OXIRGI birikmasi elementga to'liq
+  // mos kelishi kerak (`.btn.invite` → ikkala klass ham className'da); (2) psevdo-element (`::before`)
+  // va hover/active/focus qoidalari hisobga olinmaydi; (3) qoida o'zi `opacity` bersa yoki uning
+  // keyframes'i `opacity`ni boshqarsa — element baribir ko'rinadi, topilma emas; (4) bitta-klassli
+  // qoida faqat `.fade-up`dan KEYIN yozilgan bo'lsa ustun keladi (teng aniqlik — keyingisi yutadi).
+  {
+    const css = BLOCKS.filter(b => !b.unclosed).map(b => b.body).join('\n').replace(/\/\*[\s\S]*?\*\//g, '');
+    // Kirish-klasslar ro'yxati qo'lda emas: bazada `opacity: 0` + `animation` beradigan bitta-klassli qoidalar
+    // (`.fade-up`). `.fade-step` kabi fill'siz o'tishlar kirmaydi — ular bosilsa ham element ko'rinadi.
+    const ENTRY = new Set(); const entryAt = {};
+    const ENTRY_RE = /(?:^|[;}]|,)\s*\.([A-Za-z][\w-]*)\s*\{([^{}]*)\}/g; // faqat YAKKA-klassli selektor (avlod/birikma emas)
+    for (const m of css.matchAll(ENTRY_RE)) {
+      if (/(?:^|;)\s*opacity\s*:\s*0(?:\s|;|$)/.test(m[2]) && /(?:^|;)\s*animation\s*:\s*(?!none)/.test(m[2])) { ENTRY.add(m[1]); entryAt[m[1]] = m.index; }
+    }
+    const kfOpacity = new Set(); // opacity'ni boshqaradigan animatsiya nomlari
+    for (const m of css.matchAll(/@keyframes\s+([\w-]+)\s*\{((?:[^{}]*\{[^{}]*\})*)\s*\}/g)) if (/opacity\s*:/.test(m[2])) kfOpacity.add(m[1]);
+    const rules = [];   // to'qnashuvchi qoidalar: { need: [klasslar], at, single }
+    const repairs = []; // ta'mir-qoidalar: `.fade-up.shake { animation: fade-in-up …, shake … }` — ikkalasini birga beradi, to'qnashuv yo'q
+    for (const m of css.matchAll(/([^{}]+)\{([^{}]*)\}/g)) {
+      const decl = m[2];
+      const anim = /(?:^|;)\s*animation\s*:\s*([^;]+)/.exec(decl);
+      if (!anim || /^\s*none\b/.test(anim[1])) continue;
+      const animNames = anim[1].split(',').map(s => (s.trim().match(/[A-Za-z_][\w-]*/g) || []).find(t => !/^(ease|linear|infinite|forwards|backwards|both|alternate|normal|reverse|running|paused|ease-in|ease-out|ease-in-out|step-start|step-end|none)$/.test(t)));
+      const visible = /(?:^|;)\s*opacity\s*:/.test(decl) || animNames.some(n => n && kfOpacity.has(n)); // element baribir ko'rinadi
+      for (const selRaw of m[1].split(',')) {
+        const sel = selRaw.trim().split(/\s*[>+~]\s*|\s+/).pop() || '';
+        if (!sel || sel.startsWith('@') || /::|:hover|:active|:focus|:checked|%$/.test(sel)) continue;
+        const all = [...sel.matchAll(/\.([A-Za-z][\w-]*)/g)].map(c => c[1]);
+        const need = all.filter(c => !ENTRY.has(c));
+        if (!need.length) continue;
+        if (all.some(c => ENTRY.has(c))) { repairs.push({ need }); continue; } // `.fade-up.shake` — ataylab birlashtirilgan
+        if (visible) continue;
+        rules.push({ need, at: m.index, single: need.length === 1 && !/^[a-z]/i.test(sel) && !/#/.test(sel) });
+      }
+    }
+    if (ENTRY.size && rules.length) {
+      const ATTR = /className=(?:"([^"]*)"|'([^']*)'|\{`((?:[^`\\]|\\.)*)`\})/g;
+      src.split('\n').forEach((ln, k) => {
+        for (const m of ln.matchAll(ATTR)) {
+          const toks = new Set((m[1] ?? m[2] ?? m[3] ?? '').match(/[A-Za-z][\w-]*/g) || []);
+          const entry = [...ENTRY].find(t => toks.has(t));
+          if (!entry) continue;
+          const r = rules.find(r => r.need.every(c => toks.has(c)) && (!r.single || r.at > entryAt[entry])
+            && !repairs.some(p => p.need.every(c => toks.has(c)) && r.need.every(c => p.need.includes(c))));
+          if (r) hits.push({ line: k + 1, msg: `'${entry}' + '.${r.need.join('.')}' bir elementda — bu qoidaning animation'i kirishni bosib o'tadi, element opacity 0 da qoladi; kirishni o'rovchi <div>ga ko'chiring (F-0820-136, ETALON 135)` });
+        }
+      });
+    }
+  }
+
   if (hits.length) {
     errors += hits.length;
     report.push({ file, hits });

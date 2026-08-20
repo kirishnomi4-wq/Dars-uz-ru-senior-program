@@ -146,6 +146,27 @@ yuritiladi, faqat yangi yozilganida emas. `lint:dark` uni inline-skan orqali tut
 lekin darsning o'z accenti quyuq bo'lsa (PM darslari, `#5B3DE6`) tutmasligi mumkin —
 shuning uchun grep ham majburiy.
 
+## 🔴 F-0820-136 OV-BANDI — `fade-up` + HOLAT-ANIMATSIYA BIR ELEMENTDA = KO'RINMAS TUGMA (2026-08-20, ETALON 135)
+
+**Buyruq:** `grep -n "fade-up[^\"\`]*invite\|invite[^\"\`]*fade-up" <fayl>` — 0 topilma bo'lishi
+shart (`lint:jsx` 5-bandi ham shuni mexanik tutadi).
+
+`.fade-up` elementni `opacity: 0` qilib, ko'rinishni `animation: fade-in-up … forwards`ga
+topshiradi. O'sha elementga `animation` beradigan **boshqa** klass (`.btn.invite` pulsi) qo'shilsa,
+kaskadda kuchlirog'i `animation`ni butunlay almashtiradi — kirish hech qachon o'ynamaydi,
+element abadiy ko'rinmas. m3-01 da ikki ekran (09 · 10/20) shu sabab o'tib bo'lmas edi.
+
+```jsx
+❌ <button className={`btn fade-up delay-2 ${first ? 'invite' : ''}`} style={{ alignSelf: 'flex-start' }}>
+✅ <div className="fade-up delay-2" style={{ alignSelf: 'flex-start' }}><button className={`btn ${first ? 'invite' : ''}`}>
+```
+
+**Nega xavfli:** esbuild, `lint:dark`, kod-o'qish — hech biri ko'rmaydi; tugma DOMda bor,
+bosilsa ishlaydi ham, faqat ko'rinmaydi. Shuning uchun Verifikator bosqichida **yagona
+harakat-tugmasi bor ekranlar** (Screen7/8 turi) ekranda ochib ko'riladi, yoki computed
+`opacity` o'lchanadi. Yangi holat-animatsiya klassi (`pulse`, `shake`, …) kiritilsa,
+`jsx-lint.mjs` 5-bandi uni CSS'dan o'zi topadi — ro'yxat qo'lda yangilanmaydi.
+
 ## Nuqsonni hal qilish (CHEKLI — loop yo'q)
 - **Mayda, aniq, xavfsiz** nuqson (bitta apostrof, bitta siz-forma, bitta yorliq) — **o'zingiz Edit qiling**, keyin esbuild.
 - **Tuzilmaviy** nuqson (yetishmagan qatlam, noto'g'ri `correct` indeks, indeks-map siljishi) — **o'zingiz tuzatmang**. Uni hisobotda "mas'ul rol: X" bilan qaytaring. Asosiy agent uni bir marta o'sha rolga yuboradi (maksimum 2 aylanish, keyin foydalanuvchiga eskalatsiya).
