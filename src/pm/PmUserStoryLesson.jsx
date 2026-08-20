@@ -262,7 +262,7 @@ function LiveBigCode({ pin, onClose }) {
     <div style={overlay}>
       <div style={{ fontSize: 'clamp(13px,2vw,18px)', fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: LT.accent, marginBottom: 'clamp(14px,3vw,28px)' }}>{tr({ uz: "Jonli darsga qo'shilish", ru: 'Подключение к живому уроку' })}</div>
       <div style={{ display: 'flex', gap: 'clamp(6px,1.4vw,16px)', justifyContent: 'center', flexWrap: 'wrap' }}>{digits.map((d, i) => <span key={i} style={box}>{d}</span>)}</div>
-      <p style={{ color: '#fff', opacity: 0.85, fontSize: 'clamp(15px,2.2vw,22px)', maxWidth: 640, margin: 'clamp(20px,4vw,36px) 0 0', lineHeight: 1.5 }}>{tr({ uz: <>Shu darsni o'z qurilmangizda oching → <b style={{ color: '#fff' }}>«Darsga qo'shilish»</b> oynasida ushbu kodni va ismingizni kiriting.</>, ru: <>Откройте этот урок на своём устройстве → в окне <b style={{ color: '#fff' }}>«Подключиться к уроку»</b> введите этот код и своё имя.</> })}</p>
+      <p style={{ color: '#fff', opacity: 0.85, fontSize: 'clamp(15px,2.2vw,22px)', maxWidth: 640, margin: 'clamp(20px,4vw,36px) 0 0', lineHeight: 1.5 }}>{tr({ uz: <>Shu darsni o'z qurilmangizda oching → <b style={{ color: '#fff' }}>«Darsga qo'shilish»</b> oynasida shu kodni va ismingizni kiriting.</>, ru: <>Откройте этот урок на своём устройстве → в окне <b style={{ color: '#fff' }}>«Подключиться к уроку»</b> введите этот код и своё имя.</> })}</p>
       <button onClick={onClose} style={{ marginTop: 'clamp(22px,4vw,40px)', background: LT.accent, color: '#fff', border: 'none', borderRadius: 14, padding: 'clamp(12px,1.6vw,16px) clamp(24px,3vw,36px)', fontSize: 'clamp(15px,1.8vw,18px)', fontWeight: 700, cursor: 'pointer' }}>{tr({ uz: 'Darsni boshlash →', ru: 'Начать урок →' })}</button>
     </div>
   );
@@ -394,7 +394,7 @@ const SCORED_IDX = SCREEN_META.map((m, i) => (m.scored ? i : null)).filter(i => 
 export const SCREEN_INTENTS = {
   s0: "Bola ikki so'rovni solishtirib ovoz beradi va farq KIM+NEGA ekanini darhol biladi — dars ipi shu yerdan boshlanadi",
   s1: "Bola dars oxirida o'zi 3 hikoya-karta yozishini oldindan ko'radi",
-  s2: "Bola harakat bilan sababni ajratadi va hikoyaning yuragi sabab ekanini biladi",
+  s2: "Bola harakat bilan sababni ajratadi va hikoyada eng muhimi sabab ekanini biladi",
   s3: "Bola hikoyaning 3 bo'lagini (KIM/NIMA/NATIJA) formulaga o'zi joylab yig'adi",
   s7: "Bola hikoyada NATIJA bo'lagi umuman yetishmayotganini topadi",
   s4: "Bola milkshake misolidan odam mahsulotni emas, natijani sotib olishini biladi",
@@ -714,7 +714,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
         const level = answered < RECAP_MIN_ANSWERS ? 'few' : pct < RECAP_NEED_PCT ? 'need' : pct < RECAP_GOOD_PCT ? 'maybe' : 'good';
         return (
           <div className={`mstats-verdict ${level}`}>
-            {level === 'need' && <p className="mstats-verdict-t">{tr({ uz: <>⚠️ Faqat <b>{pct}%</b> to'g'ri — bu mavzu sinfga tushunarsiz qolgan. Davom etishdan oldin qisqa takrorlash tavsiya etiladi.</>, ru: <>⚠️ Верно только <b>{pct}%</b> — тему класс не понял. Перед тем как идти дальше, стоит коротко повторить.</> })}</p>}
+            {level === 'need' && <p className="mstats-verdict-t">{tr({ uz: <>⚠️ Faqat <b>{pct}%</b> to'g'ri — bu mavzu sinfga tushunarsiz qolgan. Davom etishdan oldin qisqa takrorlang.</>, ru: <>⚠️ Верно только <b>{pct}%</b> — тему класс не понял. Перед тем как идти дальше, стоит коротко повторить.</> })}</p>}
             {level === 'maybe' && <p className="mstats-verdict-t">{tr({ uz: <>🟡 <b>{pct}%</b> to'g'ri — yomon emas. Xohlasangiz, davom etishdan oldin qisqa takrorlab oling.</>, ru: <>🟡 <b>{pct}%</b> верно — неплохо. При желании коротко повторите перед тем, как идти дальше.</> })}</p>}
             {level === 'good' && <p className="mstats-verdict-t">{tr({ uz: <>✅ <b>{pct}%</b> to'g'ri — sinf mavzuni o'zlashtirdi. Bemalol davom eting!</>, ru: <>✅ <b>{pct}%</b> верно — класс тему усвоил. Спокойно идите дальше!</> })}</p>}
             {level === 'few' && <p className="mstats-verdict-t">{tr({ uz: <>Javob berganlar kam ({answered} ta) — foiz bo'yicha xulosa chiqarish qiyin. O'zingiz baholang.</>, ru: <>Ответивших мало ({answered}) — по процентам вывод делать сложно. Оцените сами.</> })}</p>}
@@ -729,7 +729,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
           {waiting.length > 8 && <span className="mstats-wait-chip more">+{waiting.length - 8}</span>}
         </div>
       )}
-      {reveal && struggling && <p className="mstats-warn">{tr({ uz: "⚠️ Ko'pchilik xato qildi — bu mavzu tushunarsiz bo'lgan ko'rinadi. Qayta tushuntirish tavsiya etiladi.", ru: '⚠️ Большинство ошиблось — похоже, тема осталась непонятной. Стоит объяснить заново.' })}</p>}
+      {reveal && struggling && <p className="mstats-warn">{tr({ uz: "⚠️ Ko'pchilik xato qildi — bu mavzu tushunarsiz bo'lgan ko'rinadi. Yana bir bor tushuntiring.", ru: '⚠️ Большинство ошиблось — похоже, тема осталась непонятной. Стоит объяснить заново.' })}</p>}
       {answered === 0 && <p className="mstats-wait">{tr({ uz: "O'quvchilar javoblari shu yerda jonli ko'rinadi…", ru: 'Ответы учеников появятся здесь вживую…' })}</p>}
     </div>
   );
@@ -1754,7 +1754,7 @@ const ScreenClinic = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: "So'rov-sinovi 🛠", ru: 'Испытание просьб 🛠' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !isMentorB} label={done || isMentorB ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "Quruq va to'liq so'rovni sinab ko'ring", ru: 'Испытайте сухую и полную просьбу' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Qaysi hikoyadan <span className="italic" style={{ color: T.accent }}>yaxshi natija</span> chiqadi?</>, ru: <>Из какой истории выйдет <span className="italic" style={{ color: T.accent }}>хороший результат</span>?</> })}</h2></div>
-        <Mentor>{tr({ uz: <>So'rov qanday yozilgani natijani o'zgartiradi. Quyidagi uchta so'rov bitta narsa haqida, lekin turlicha yozilgan — birini tanlab <b style={{ color: T.ink }}>«Sinab ko'rish»</b>ni bosing va farqni o'zingiz ko'ring.</>, ru: <>От того, как написана просьба, зависит результат. Три просьбы ниже — об одном и том же, но написаны по-разному: выберите одну, нажмите <b style={{ color: T.ink }}>«Испытать»</b> и увидите разницу сами.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>So'rov qanday yozilgani natijani o'zgartiradi. Mana shu uchta so'rov bitta narsa haqida, lekin turlicha yozilgan — birini tanlab <b style={{ color: T.ink }}>«Sinab ko'rish»</b>ni bosing va farqni o'zingiz ko'ring.</>, ru: <>От того, как написана просьба, зависит результат. Три просьбы ниже — об одном и том же, но написаны по-разному: выберите одну, нажмите <b style={{ color: T.ink }}>«Испытать»</b> и увидите разницу сами.</> })}</Mentor>
         <div className="split">
           <Col>
             <p className="flow-label">{tr({ uz: "So'rovlar — birini tanlang", ru: 'Просьбы — выберите одну' })}</p>
@@ -1875,7 +1875,7 @@ const ScreenPriority = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: 'Muhimlik darajalari · 🔥', ru: 'Уровни важности · 🔥' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !isMentorPr} label={done || isMentorPr ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: '🔥 3 hikoyani ajrating', ru: '🔥 Разложите 3 истории' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Qaysi hikoya <span className="italic" style={{ color: T.accent }}>eng muhim</span>? Darajasini belgilang</>, ru: <>Какая история <span className="italic" style={{ color: T.accent }}>самая важная</span>? Отметьте её уровень</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Siz 3 ta hikoya yozdingiz — lekin uchalasini birdaniga qurib bo'lmaydi, shuning uchun eng muhimi birinchi qilinadi; buni <b style={{ color: T.ink }}>navbat belgilash</b> (prioritet) deyiladi. Hikoyani bosib tanlang-da, unga mos darajani bosing.</>, ru: <>Вы написали 3 истории — но все три сразу не построишь, поэтому первой делают самую важную; это называют <b style={{ color: T.ink }}>расстановкой очереди</b> (приоритет). Нажмите на историю, а потом на подходящий ей уровень.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Siz 3 ta hikoya yozdingiz — lekin uchalasini birdaniga qurib bo'lmaydi, shuning uchun eng muhimi birinchi qilinadi; buni <b style={{ color: T.ink }}>navbat belgilash</b> (prioritet) deyiladi. Hikoyani bosib tanlang, keyin unga mos darajani bosing.</>, ru: <>Вы написали 3 истории — но все три сразу не построишь, поэтому первой делают самую важную; это называют <b style={{ color: T.ink }}>расстановкой очереди</b> (приоритет). Нажмите на историю, а потом на подходящий ей уровень.</> })}</Mentor>
         {isDemo && <p className="small fade-up" style={{ margin: 0, color: T.ink3, fontStyle: 'italic' }}>{tr({ uz: 'Namuna hikoyalar — ustaxonada yozilganlar shu yerda chiqadi.', ru: 'Это истории-образцы — здесь появятся те, что вы напишете в мастерской.' })}</p>}
         {/* F-0727-08: kartalar mentor-gapga yopishib turmasin — belgi-yorliqli LAGANCHA: qizil puls-border
             «bularni joylashtirish kerak» signalini beradi; birinchi karta joylashgach tinchlanadi. */}
@@ -3759,7 +3759,7 @@ export default function PmUserStoryLesson({ lang: langProp, onFinished }) {
         .qcode { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 0.92em; background: rgba(20,17,14,0.08); border-radius: 6px; padding: 1px 6px; white-space: nowrap; }
 
         /* === 🛠️ JONLI PRAKTIKA (self-report) === */
-        .lp-done-btn { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(14px,1.8vw,16px); cursor: pointer; border: none; border-radius: 13px; padding: 14px 20px; background: ${T.ink}; color: ${T.bg}; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.34); transition: all 0.18s; margin-top: 2px; }
+        .lp-done-btn { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(14px,1.8vw,16px); cursor: pointer; border: none; border-radius: 13px; padding: 14px 20px; background: ${T.accent}; color: #fff; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.34); transition: all 0.18s; margin-top: 2px; }
         .lp-done-btn:hover:not(:disabled) { background: ${T.accent}; box-shadow: 0 12px 28px -6px rgba(91,61,230,0.5); }
         .lp-done-btn:disabled { opacity: 0.5; cursor: not-allowed; }
         .lp-done-btn.is-done { background: ${T.successSoft}; color: ${T.success}; box-shadow: inset 0 0 0 1.5px ${T.success}66; cursor: default; animation: lp-done-pop 0.44s cubic-bezier(.3,1.35,.5,1); }
@@ -3974,9 +3974,9 @@ export default function PmUserStoryLesson({ lang: langProp, onFinished }) {
         .mstats-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
         .mstats-lbl { font-family: 'Manrope'; font-weight: 800; font-size: 12.5px; letter-spacing: 0.07em; text-transform: uppercase; color: ${T.blue}; }
         .mstats-n { font-family: 'Manrope'; font-size: 13.5px; font-weight: 600; color: ${T.ink2}; }
-        .mstats-reveal { font-family: 'Manrope'; font-weight: 700; font-size: 12.5px; background: ${T.ink}; color: #fff; border: none; border-radius: 99px; padding: 7px 14px; cursor: pointer; white-space: nowrap; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.35); transition: all 0.2s; }
-        .mstats-reveal:hover { background: ${T.accent}; box-shadow: 0 6px 16px -4px rgba(91,61,230,0.5); }
-        .mstats-reveal.ready { background: ${T.accent}; animation: mstats-pulse 1.6s ease-in-out infinite; }
+        .mstats-reveal { font-family: 'Manrope'; font-weight: 700; font-size: 12.5px; background: ${T.paper}; color: ${T.accent}; border: 1px solid ${T.accent}; border-radius: 99px; padding: 7px 14px; cursor: pointer; white-space: nowrap; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.35); transition: all 0.2s; }
+        .mstats-reveal:hover { color: #fff; background: ${T.accent}; box-shadow: 0 6px 16px -4px rgba(91,61,230,0.5); }
+        .mstats-reveal.ready { color: #fff; background: ${T.accent}; animation: mstats-pulse 1.6s ease-in-out infinite; }
         @keyframes mstats-pulse { 0%,100% { box-shadow: 0 4px 12px -4px rgba(91,61,230,0.5); } 50% { box-shadow: 0 4px 18px 0 rgba(91,61,230,0.55); } }
         .mstats-prog { height: 7px; background: rgba(${T.shadowBase},0.09); border-radius: 99px; overflow: hidden; }
         .mstats-prog-fill { display: block; height: 100%; border-radius: 99px; background: ${T.blue}; transition: width 0.6s cubic-bezier(.4,0,.2,1); }
@@ -4035,7 +4035,7 @@ export default function PmUserStoryLesson({ lang: langProp, onFinished }) {
         .rc-dot { width: 10px; height: 10px; border-radius: 99px; background: rgba(167,166,162,0.4); cursor: pointer; transition: all 0.25s; border: none; padding: 0; }
         .rc-dot.fill { background: ${T.ink3}; }
         .rc-dot.cur { background: ${T.accent}; width: 26px; }
-        .rc-btn { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(13px,1.7vw,16px); border: none; border-radius: 12px; padding: clamp(11px,1.6vw,14px) clamp(18px,2.6vw,26px); cursor: pointer; background: ${T.ink}; color: ${T.bg}; box-shadow: 0 6px 18px -4px rgba(${T.shadowBase},0.32); transition: all 0.2s; white-space: nowrap; }
+        .rc-btn { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(13px,1.7vw,16px); border: none; border-radius: 12px; padding: clamp(11px,1.6vw,14px) clamp(18px,2.6vw,26px); cursor: pointer; background: ${T.accent}; color: #fff; box-shadow: 0 6px 18px -4px rgba(${T.shadowBase},0.32); transition: all 0.2s; white-space: nowrap; }
         .rc-btn:hover:not(:disabled) { background: ${T.accent}; }
         .rc-btn:disabled { opacity: 0.35; cursor: not-allowed; box-shadow: none; }
         .rc-btn.ghost { background: transparent; color: ${T.ink2}; box-shadow: none; }

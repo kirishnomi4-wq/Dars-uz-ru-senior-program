@@ -262,7 +262,7 @@ function LiveBigCode({ pin, onClose }) {
     <div style={overlay}>
       <div style={{ fontSize: 'clamp(13px,2vw,18px)', fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: LT.accent, marginBottom: 'clamp(14px,3vw,28px)' }}>{tr({ uz: "Jonli darsga qo'shilish", ru: 'Подключение к живому уроку' })}</div>
       <div style={{ display: 'flex', gap: 'clamp(6px,1.4vw,16px)', justifyContent: 'center', flexWrap: 'wrap' }}>{digits.map((d, i) => <span key={i} style={box}>{d}</span>)}</div>
-      <p style={{ color: '#fff', opacity: 0.85, fontSize: 'clamp(15px,2.2vw,22px)', maxWidth: 640, margin: 'clamp(20px,4vw,36px) 0 0', lineHeight: 1.5 }}>{tr({ uz: <>Shu darsni o'z qurilmangizda oching → <b style={{ color: '#fff' }}>«👨‍🎓 O'quvchiman»</b> → ushbu kodni kiriting.</>, ru: <>Откройте этот урок на своём устройстве → <b style={{ color: '#fff' }}>«👨‍🎓 Я ученик»</b> → введите этот код.</> })}</p>
+      <p style={{ color: '#fff', opacity: 0.85, fontSize: 'clamp(15px,2.2vw,22px)', maxWidth: 640, margin: 'clamp(20px,4vw,36px) 0 0', lineHeight: 1.5 }}>{tr({ uz: <>Shu darsni o'z qurilmangizda oching → <b style={{ color: '#fff' }}>«👨‍🎓 O'quvchiman»</b> → bu kodni kiriting.</>, ru: <>Откройте этот урок на своём устройстве → <b style={{ color: '#fff' }}>«👨‍🎓 Я ученик»</b> → введите этот код.</> })}</p>
       <button onClick={onClose} style={{ marginTop: 'clamp(22px,4vw,40px)', background: LT.accent, color: '#fff', border: 'none', borderRadius: 14, padding: 'clamp(12px,1.6vw,16px) clamp(24px,3vw,36px)', fontSize: 'clamp(15px,1.8vw,18px)', fontWeight: 700, cursor: 'pointer' }}>{tr({ uz: 'Darsni boshlash →', ru: 'Начать урок →' })}</button>
     </div>
   );
@@ -659,7 +659,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
         return (
           <div className={`mstats-verdict ${level}`}>
             {level === 'need' && <>
-              <p className="mstats-verdict-t">{tr({ uz: <>⚠️ Faqat <b>{pct}%</b> to'g'ri — bu mavzu sinfga tushunarsiz qolgan. Davom etishdan oldin qisqa takrorlash tavsiya etiladi.</>, ru: <>⚠️ Только <b>{pct}%</b> верно — эта тема осталась для класса непонятной. Перед продолжением рекомендуется короткое повторение.</> })}</p>
+              <p className="mstats-verdict-t">{tr({ uz: <>⚠️ Faqat <b>{pct}%</b> to'g'ri — bu mavzu sinfga tushunarsiz qolgan. Davom etishdan oldin qisqa takrorlang.</>, ru: <>⚠️ Только <b>{pct}%</b> верно — эта тема осталась для класса непонятной. Перед продолжением рекомендуется короткое повторение.</> })}</p>
               {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>{tr({ uz: '📖 Qayta tushuntirish — ', ru: '📖 Повторное объяснение — ' })}{tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
             {level === 'maybe' && <>
@@ -681,7 +681,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
           {waiting.length > 8 && <span className="mstats-wait-chip more">+{waiting.length - 8}</span>}
         </div>
       )}
-      {reveal && struggling && <p className="mstats-warn">{tr({ uz: "⚠️ Ko'pchilik xato qildi — bu mavzu tushunarsiz bo'lgan ko'rinadi. Qayta tushuntirish tavsiya etiladi.", ru: '⚠️ Большинство ошиблось — похоже, тема осталась непонятной. Рекомендуется объяснить ещё раз.' })}</p>}
+      {reveal && struggling && <p className="mstats-warn">{tr({ uz: "⚠️ Ko'pchilik xato qildi — bu mavzu tushunarsiz bo'lgan ko'rinadi. Yana bir bor tushuntiring.", ru: '⚠️ Большинство ошиблось — похоже, тема осталась непонятной. Рекомендуется объяснить ещё раз.' })}</p>}
       {answered === 0 && <p className="mstats-wait">{tr({ uz: "O'quvchilar javoblari shu yerda jonli ko'rinadi…", ru: 'Ответы учеников появятся здесь в реальном времени…' })}</p>}
     </div>
   );
@@ -1430,7 +1430,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <div className="frame-success fade-step"><p className="small mono" style={{ margin: '0 0 4px', fontWeight: 600, color: T.success, textTransform: 'uppercase', letterSpacing: '0.08em' }}>{tr({ uz: '✓ Hammasini topdingiz', ru: '✓ Вы нашли всё' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Sahifa = komponentlar yig'indisi: <span className="mono">Navbar + SearchBar + SkinCard + LikeButton</span>. Har biri — mustaqil blok.</>, ru: <>Страница = сумма компонентов: <span className="mono">Navbar + SearchBar + SkinCard + LikeButton</span>. Каждый — самостоятельный блок.</> })}</p></div>
             ) : active ? (
               <div className="sk-info" key={active}>
-                <span className="sk-tagbig"><span className="mono" style={{ fontWeight: 700, fontSize: 14, color: CODE.tag, background: CODE.bg, padding: '4px 10px', borderRadius: 7 }}>{PARTS[active].jx}</span><span className="sk-wordbadge">{PARTS[active].word}</span></span>
+                <span className="sk-tagbig"><span className="mono" data-dark-ok="kod-bo'lagi" style={{ fontWeight: 700, fontSize: 14, color: CODE.tag, background: CODE.bg, padding: '4px 10px', borderRadius: 7 }}>{PARTS[active].jx}</span><span className="sk-wordbadge">{PARTS[active].word}</span></span>
                 <div className="sk-fact"><span className="sk-fact-l">{tr({ uz: 'Vazifasi', ru: 'Задача' })}</span><p className="body">{PARTS[active].role}</p></div>
                 <div className="sk-fact"><span className="sk-fact-l">{tr({ uz: 'Qayta ishlatish', ru: 'Переиспользование' })}</span><p className="body">{PARTS[active].reuse}</p></div>
               </div>
@@ -1610,7 +1610,7 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   const STEPS = [tr({ uz: "Xotirada yangi nusxa yaratiladi", ru: 'В памяти создаётся новая копия' }), tr({ uz: "Eski nusxa bilan solishtiriladi", ru: 'Сравнивается со старой копией' }), tr({ uz: "Faqat o'zgargan joy yangilanadi", ru: 'Обновляется только изменившееся место' })];
   const Snap = ({ label, likes, hot }) => (
-    <div style={{ flex: 1, minWidth: 0, background: CODE.bg, borderRadius: 10, padding: '9px 10px' }}>
+    <div data-dark-ok="kod-oynasi" style={{ flex: 1, minWidth: 0, background: CODE.bg, borderRadius: 10, padding: '9px 10px' }}>
       <p className="mono" style={{ fontSize: 9.5, color: CODE.comment, margin: '0 0 6px', textTransform: 'uppercase', letterSpacing: '0.08em' }}>{label}</p>
       <p className="mono" style={{ fontSize: 11.5, color: CODE.text, margin: 0 }}>{tr({ uz: 'post: "Qal\'a"', ru: 'post: "Замок"' })}</p>
       <p className={`mono ${hot ? 'vdom-hot' : ''}`} style={{ fontSize: 11.5, color: CODE.text, margin: '3px 0 0', borderRadius: 5, padding: '1px 4px', background: hot ? 'rgba(255,79,40,0.22)' : 'transparent', display: 'inline-block' }}>like: <span style={{ color: CODE.str }}>{likes}</span></p>
@@ -2067,7 +2067,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
     tr({ uz: "React Native — shu bilim bilan telefon ilovalari", ru: 'React Native — мобильные приложения с этим же знанием' })
   ];
   const HOMEWORK = [
-    { b: tr({ uz: 'Komponent ovi', ru: 'Охота на компоненты' }), t: tr({ uz: "— Instagram yoki YouTube'ni oching, takrorlanadigan 5 ta bo'lakni toping va daftaringizga yozing", ru: '— откройте Instagram или YouTube, найдите 5 повторяющихся частей и запишите в тетрадь' }) },
+    { b: tr({ uz: 'Komponent ovi', ru: 'Охота на компоненты' }), t: tr({ uz: "— Instagram yoki YouTube'ni oching, takrorlanadigan 5 ta bo'lakni toping va nomlarini yozib qo'ying", ru: '— откройте Instagram или YouTube, найдите 5 повторяющихся частей и запишите их названия' }) },
     { b: tr({ uz: "Bo'laklash", ru: 'Разбиение' }), t: tr({ uz: "— sevimli saytingiz bosh sahifasini qog'ozga komponentlarga bo'lib chizing", ru: '— нарисуйте на бумаге главную страницу любимого сайта, разбив её на компоненты' }) },
     { b: tr({ uz: 'Kuzatuv', ru: 'Наблюдение' }), t: tr({ uz: "— 3 ta ilovada like yoki tugma bosing: sahifa to'liq yangilanadimi yoki faqat bir joyi?", ru: '— нажмите лайк или кнопку в 3 приложениях: обновляется вся страница или только одно место?' }) }
   ];
@@ -2093,7 +2093,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
             <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni bajarish →', ru: 'Выполнить практическое задание →' })}</span>
           </button>
         </div>
-        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: "Atrofingizdagi ilovalarga React ko'zi bilan qarang:", ru: 'Посмотрите на окружающие приложения глазами React:' })}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{h.b}</b> <span className="t">{h.t}</span></li>))}</ul><p className="hw-note">{tr({ uz: "Keyingi darsda muhitni o'rnatib, birinchi React komponentingizni o'zingiz yozasiz! 🚀", ru: 'На следующем уроке настроите окружение и сами напишете свой первый React-компонент! 🚀' })}</p></div>}
+        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: "Atrofingizdagi ilovalarni komponentlarga bo'lib ko'ring:", ru: 'Разберите окружающие приложения на компоненты:' })}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{h.b}</b> <span className="t">{h.t}</span></li>))}</ul><p className="hw-note">{tr({ uz: "Keyingi darsda muhitni o'rnatib, birinchi React komponentingizni o'zingiz yozasiz! 🚀", ru: 'На следующем уроке настроите окружение и сами напишете свой первый React-компонент! 🚀' })}</p></div>}
         {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🏅 Nishonlaringiz', ru: '🏅 Ваши награды' })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">
@@ -2278,7 +2278,7 @@ const ScreenPodium = ({ screen, answers, onNext, onPrev }) => {
                   );
                 })}
               </div>
-              {live.mode === 'mentor' && <p className="small" style={{ margin: '10px 0 0', color: T.ink2 }}>{tr({ uz: '⚠️ belgili savollar — sinf qiynalgan mavzular. Qayta tushuntirish tavsiya etiladi.', ru: 'Вопросы со знаком ⚠️ — темы, с которыми класс справился хуже. Рекомендуется объяснить ещё раз.' })}</p>}
+              {live.mode === 'mentor' && <p className="small" style={{ margin: '10px 0 0', color: T.ink2 }}>{tr({ uz: '⚠️ belgili savollar — sinf qiynalgan mavzular. Yana bir bor tushuntiring.', ru: 'Вопросы со знаком ⚠️ — темы, с которыми класс справился хуже. Рекомендуется объяснить ещё раз.' })}</p>}
             </div>
           </>
         )}
@@ -2314,7 +2314,7 @@ const QUIZ_BANK = [
   { q: { uz: "React bilan telefon ilovasi qanday yasaladi?", ru: 'Как с React делают мобильное приложение?' }, opts: [{ uz: "React DOM orqali", ru: 'Через React DOM' }, { uz: "React CSS orqali", ru: 'Через React CSS' }, { uz: "React Web orqali", ru: 'Через React Web' }, { uz: "React Native orqali", ru: 'Через React Native' }], correct: 3 },
   { q: { uz: "Komponentning asosiy foydasi nima?", ru: 'Главная польза компонента?' }, opts: [{ uz: "Kodni ancha sekinlashtiradi", ru: 'Сильно замедляет код' }, { uz: "Internetga tezroq ulaydi", ru: 'Быстрее подключает к интернету' }, { uz: "Bir marta yoz, ko'p ishlat", ru: 'Напиши раз — используй много' }, { uz: "Rasmlarni ekranga chizadi", ru: 'Рисует картинки на экране' }], correct: 2 },
   { q: { uz: "Oddiy eski sayt like bosilganda nima qiladi?", ru: 'Что делает старый сайт при нажатии лайка?' }, opts: [{ uz: "Butun sahifa qayta yuklanadi", ru: 'Перезагружает всю страницу' }, { uz: "Umuman javob qaytarmaydi", ru: 'Вообще не отвечает' }, { uz: "Sayt butunlay o'chib qoladi", ru: 'Сайт полностью выключается' }, { uz: "Faqat rang o'zgaradi", ru: 'Меняется только цвет' }], correct: 0 },
-  { q: { uz: "DOM nima?", ru: 'Что такое DOM?' }, opts: [{ uz: "Kod yozadigan muharrir dasturi", ru: 'Редактор для написания кода' }, { uz: "Sahifaning haqiqiy tuzilishi", ru: 'Настоящая структура страницы' }, { uz: "Ranglar palitrasi dasturi", ru: 'Программа палитры цветов' }, { uz: "Internet provayderi nomi", ru: 'Название интернет-провайдера' }], correct: 1 },
+  { q: { uz: "DOM nima?", ru: 'Что такое DOM?' }, opts: [{ uz: "Kod yozadigan dastur (Editor)", ru: 'Редактор для написания кода' }, { uz: "Sahifaning haqiqiy tuzilishi", ru: 'Настоящая структура страницы' }, { uz: "Ranglar palitrasi dasturi", ru: 'Программа палитры цветов' }, { uz: "Internet provayderi nomi", ru: 'Название интернет-провайдера' }], correct: 1 },
   { q: { uz: "Virtual DOM qayerda turadi?", ru: 'Где находится Virtual DOM?' }, opts: [{ uz: "Ekranda, ko'z oldida", ru: 'На экране, у всех на виду' }, { uz: "Serverda, uzoq joyda", ru: 'На сервере, далеко' }, { uz: "Internet bulutida", ru: 'В интернет-облаке' }, { uz: "Xotirada, ko'rinmaydi", ru: 'В памяти, невидим' }], correct: 3 },
   { q: { uz: "Bir komponentni ko'p marta ishlatish nima deyiladi?", ru: 'Как называется использование одного компонента много раз?' }, opts: [{ uz: "Qaytadan yuklash", ru: 'Перезагрузка' }, { uz: "Butunlay o'chirish", ru: 'Полное удаление' }, { uz: "Qayta ishlatish", ru: 'Переиспользование' }, { uz: "Boshqa tilga tarjima", ru: 'Перевод на другой язык' }], correct: 2 },
   { q: { uz: "JSX'da komponent qanday chaqiriladi?", ru: 'Как вызывается компонент в JSX?' }, opts: ["<SkinCard />", "call SkinCard", "SkinCard()", "{SkinCard}"], correct: 0 },
@@ -3503,9 +3503,11 @@ export default function ReactIntroLesson({ lang: langProp, onFinished }) {
         .mstats-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
         .mstats-lbl { font-family: 'Manrope'; font-weight: 800; font-size: 12.5px; letter-spacing: 0.07em; text-transform: uppercase; color: ${T.blue}; }
         .mstats-n { font-family: 'Manrope'; font-size: 13.5px; font-weight: 600; color: ${T.ink2}; }
-        .mstats-reveal { font-family: 'Manrope'; font-weight: 700; font-size: 12.5px; background: ${T.ink}; color: #fff; border: none; border-radius: 99px; padding: 7px 14px; cursor: pointer; white-space: nowrap; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.35); transition: all 0.2s; }
-        .mstats-reveal:hover { background: ${T.accent}; box-shadow: 0 6px 16px -4px rgba(255,79,40,0.5); }
-        .mstats-reveal.ready { background: ${T.accent}; animation: mstats-pulse 1.6s ease-in-out infinite; }
+        .mstats-reveal { font-family: 'Manrope'; font-weight: 700; font-size: 12.5px; background: ${T.paper}; color: ${T.accent}; border: 1px solid ${T.accent}; border-radius: 99px; padding: 7px 14px; cursor: pointer; white-space: nowrap; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.35); transition: all 0.2s; }
+        .mstats-reveal:hover { color: #fff; background: ${T.accent}; box-shadow: 0 6px 16px -4px rgba(255,79,40,0.5); }
+        /* .ready — to'ldirilgan holat: kontur bazasi accent matn ishlatadi, shuning uchun
+           fon accentga o'tganda matn OQga o'tishi shart (aks holda accent-ustida-accent). */
+        .mstats-reveal.ready { background: ${T.accent}; color: #fff; animation: mstats-pulse 1.6s ease-in-out infinite; }
         @keyframes mstats-pulse { 0%,100% { box-shadow: 0 4px 12px -4px rgba(255,79,40,0.5); } 50% { box-shadow: 0 4px 18px 0 rgba(255,79,40,0.55); } }
         .mstats-prog { height: 7px; background: rgba(${T.shadowBase},0.09); border-radius: 99px; overflow: hidden; }
         .mstats-prog-fill { display: block; height: 100%; border-radius: 99px; background: ${T.blue}; transition: width 0.6s cubic-bezier(.4,0,.2,1); }
@@ -3568,8 +3570,8 @@ export default function ReactIntroLesson({ lang: langProp, onFinished }) {
         .rc-dot { width: 10px; height: 10px; border-radius: 99px; background: rgba(167,166,162,0.4); cursor: pointer; transition: all 0.25s; border: none; padding: 0; }
         .rc-dot.fill { background: ${T.ink3}; }
         .rc-dot.cur { background: ${T.accent}; width: 26px; }
-        .rc-btn { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(13px,1.7vw,16px); border: none; border-radius: 12px; padding: clamp(11px,1.6vw,14px) clamp(18px,2.6vw,26px); cursor: pointer; background: ${T.ink}; color: ${T.bg}; box-shadow: 0 6px 18px -4px rgba(${T.shadowBase},0.32); transition: all 0.2s; white-space: nowrap; }
-        .rc-btn:hover:not(:disabled) { background: ${T.accent}; }
+        .rc-btn { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(13px,1.7vw,16px); border: none; border-radius: 12px; padding: clamp(11px,1.6vw,14px) clamp(18px,2.6vw,26px); cursor: pointer; background: ${T.accent}; color: #fff; box-shadow: 0 6px 18px -4px rgba(${T.shadowBase},0.32); transition: all 0.2s; white-space: nowrap; }
+        .rc-btn:hover:not(:disabled) { background: #E03E1B; }
         .rc-btn:disabled { opacity: 0.35; cursor: not-allowed; box-shadow: none; }
         .rc-btn.ghost { background: transparent; color: ${T.ink2}; box-shadow: none; }
         .rc-btn.ghost:hover:not(:disabled) { background: ${T.paper}; color: ${T.ink}; }

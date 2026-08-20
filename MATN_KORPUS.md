@@ -2642,3 +2642,22 @@ nishon, keyin rad. Bu darsda rad-signali (karta sakrab qaytadi) to'rtinchi bo'li
 kuchaytir» deb taklif qilingan edi; `.tslot.next` va yorliq kodda tekshirilgach, asosiy sabab
 boshqa ekani chiqdi. **Ekran-nuqsonida taklif berishdan oldin nishon-elementning CSS'i
 o'qiladi** — «ko'rinadi» deb taxmin qilinmaydi.
+
+## 155. O'QUVCHINING DAFTARIGA ISHORA QILINMAYDI (F-0820-79, M3-D1 uy-vazifasi)
+
+❌ «Instagram yoki YouTube'ni oching, takrorlanadigan 5 ta bo'lakni toping va
+**daftaringizga** yozing»
+✅ «…toping va **nomlarini yozib qo'ying**»
+
+**Sabab:** matn o'quvchida daftar bor deb hisoblaydi. Bo'lmasa — vazifa bajarilmaydi,
+o'quvchi esa aybni o'zida deb biladi. Vosita emas, **natija** aytiladi: nima yozilishi
+kerakligi ayt, qayerga yozilishini o'quvchi o'zi hal qiladi (telefon eslatmasi, fayl, qog'oz).
+Taqiq 2026-07-29 dagi foydalanuvchi e'tirozidan beri kuchda edi, lekin **qoidasi yo'q edi** —
+shu sabab bir yil bo'ylab yangi darslarga sizib o'tdi.
+
+🔴 **Taqiq FAQAT egalik shakliga:** «daftaringiz / daftaringda / daftarlaringizga».
+«daftar» so'zining o'zi **qonuniy**: M5 da u botning xotira-metaforasi
+(📓 «Yechim — daftar»), PM darsida ekrandagi vidjet nomi («Hikoya-daftar»).
+Qoida keng yozilsa 24 faylda 190 yolg'on signal beradi — o'lchab ko'rilgan.
+
+**Darvoza:** `til-lint` · `daftar-referenti` (88-qoida).

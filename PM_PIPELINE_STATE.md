@@ -2751,3 +2751,55 @@ Pretsedent: PM9 `.itray` → PM10 `.hs`.
 | META ↔ screens | 17=17 | 16=16 | 16=16 |
 
 **Holat:** UNCOMMITTED.
+
+---
+
+## 2026-08-20 · 3-MODULNI YOPISH — BOSQICH B · m3-02 PmUserStoryLesson (P0) (F-0820-79)
+
+P0 etalon `src/pm/` da yashaydi va 3-Modul chegarasidan chiqadi, shuning uchun
+foydalanuvchi uni **alohida bosqichga** ajratdi: avval ishoralar ro'yxati, keyin tuzatish,
+oxirida bog'liq modullarning qurilishi.
+
+### 1-qadam — ISHORALAR RO'YXATI (tuzatishdan OLDIN)
+
+**Kod-bog'liqlik (haqiqiy `import`) — 6 kirish nuqtasi:**
+`src/App.jsx` (asosiy kurs) · `src/m34-demo/M34DemoApp.jsx` (**← `modul3.html` → jonli
+3-Modul demosi**) · `src/pm-demo/PmDemoApp.jsx` · `src/etalon-demo/EtalonDemoApp.jsx` ·
+`src/etalon-test-demo/EtalonTestApp.jsx` · `src/solishtir/SolishtirApp.jsx`.
+LMS `.shared.jsx` nusxasi — **yo'q**.
+
+**Izoh-ishora («INFRA/SKELET MANBAI») — 15 dars:** PmLesson2 · PmAudience · PmJtbd ·
+PmMetrics · PmLesson8/9/10 · PmLesson11/12/13 · PmLesson15 · PmLesson17 · PmLesson21 ·
+PmLesson22 · PmLesson25. Ular **infra va primitivlarni** ko'chirgan (liveRpc, Stage,
+QuestionScreen…). Bu raundda **matn va tugma-rangi** tegildi, infraga tegilmadi —
+ya'ni parite buzilmaydi.
+
+### 2-qadam — TUZATISH
+
+**Til (5🔴 → 0):** «ushbu kodni» → «shu kodni» · **«hikoyaning yuragi» → «hikoyada eng
+muhimi»** (anatomiya-metaforasi taqiqi) · «tavsiya etiladi» ×2 → buyruq shakli ·
+«Quyidagi uchta so'rov» → «Mana shu uchta so'rov» · **«tanlang-da,» → «tanlang, keyin»**
+(so'zlashuv yuklamasi).
+
+**Dark (3 → 0) — PM binafsha `#5B3DE6`, to'q sariq EMAS.** Namuna: m3-05 (PmLesson8,
+allaqachon yopilgan). `.lp-done-btn` → accent+oq · `.mstats-reveal` → kontur
+(`paper` fon, accent matn/chegara) + `:hover` va `.ready` da matn OQ (132-qonun) ·
+`.rc-btn` → accent+oq. Yashil `is-done`/`done` holatlari tegilmadi.
+
+**🟡 5 «kirill» — ATAYLAB TEGILMADI, yolg'on signal.** `:1177`, `:1178`, `:1983`, `:2004`
+va yana bittasi — JSX ichidagi **haqiqiy RU kontenti** (`data-sub="🙋 кто"`,
+`console.log('новый гость'…)`). Linter faqat `ru:` maydonini taniydi, JSX-tarmoqni emas.
+Qoida o'zgartirilmadi: uni kengaytirish detektorni bo'shashtirardi.
+
+### 3-qadam — HECH NARSA SINMAGANI
+
+`lint:jsx` 0 · `lint:til` **0🔴** (5🟡 yuqorida izohlangan) · `lint:dark` 0 ·
+esbuild TOZA. **Oltala kirish nuqtasi butun daraxti bilan qurildi — 6/6 TOZA**
+(png/svg loader bayrog'i bilan; usiz `App.jsx` va `SolishtirApp.jsx` «xato» beradi,
+sababi kod emas — vite'da bu loader konfiguratsiyada turadi).
+
+⚠️ **Kuzatuv:** `src/3-Modull/PmLesson10.jsx` ish daraxtida o'zgargan (201+/189−,
+154 yangi `ru:` qatori) — bu **boshqa seansning tarjima ishi** (`KATTA_TOZALASH` 6-band).
+Tegilmadi.
+
+**Holat:** UNCOMMITTED.

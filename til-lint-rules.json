@@ -703,6 +703,14 @@
       "flags": "",
       "suggest": "o'quvchiga «aka/brat» murojaati taqiq (persona ISMI «Karim aka» — mumkin, ism bilan yoziladi)",
       "law": "MATN_ETALONI 7-C · KORPUS 136 · F-0818-03"
+    },
+    {
+      "id": "daftar-referenti",
+      "severity": "error",
+      "pattern": "\\bdaftar(lar)?(ing|ingiz)(ga|da|dan|ni|iz)?\\b",
+      "flags": "i",
+      "suggest": "o'quvchining daftariga ishora qilinmaydi (unda daftar bo'lmasligi mumkin) — «yozib qo'ying» yoki bajarilgan ishga ishora: «Siz 3 ta hikoya yozdingiz». «daftar» so'zining o'zi (metafora/vidjet nomi) mumkin",
+      "law": "F-e'tiroz 2026-07-29 · F-0820-79"
     }
   ]
 }

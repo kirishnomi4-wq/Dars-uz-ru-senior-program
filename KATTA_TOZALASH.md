@@ -21,7 +21,7 @@ saqlanadi (bajarilmagan = accent · bajarilgan = yashil).
 
 Odatda har darsda **4 ta**: `.btn` · `.lp-done-btn` · `.mstats-reveal` · `.rc-btn`.
 
-Bajarilgan: m3-01 *(qisman — faqat `.btn`)* · m3-03 ✅ · m3-04 ✅ · m3-05 (PmLesson8) ✅ · **m3-06 (Props) ✅** · **m3-07 (CrudPractice) ✅** · **m3-08 (ApiGet) ✅** · **m3-09 (ApiPost) ✅** · **m3-11 (Router) ✅** · **m3-13 (BuildSite) ✅**
+Bajarilgan: **m3-01 ✅ (2026-08-20 — to'liq yopildi)** · **m3-03 ✅ (2026-08-20 — haqiqatan)** · m3-04 ✅ · m3-05 (PmLesson8) ✅ · **m3-06 (Props) ✅** · **m3-07 (CrudPractice) ✅** · **m3-08 (ApiGet) ✅** · **m3-09 (ApiPost) ✅** · **m3-11 (Router) ✅** · **m3-13 (BuildSite) ✅**
 
 > **2026-08-20 — detektor kuchaytirildi va 8 yopilgan dars qayta yurgizildi.**
 > `dark-lint` endi **modifikator-qoidalarni** (`.on`, `.active`, `.selected`, `.is-*`)
@@ -73,7 +73,7 @@ ularni yo'qotadi. Farqlar tekislanmaguncha birlashtirilmaydi.
 
 ---
 
-## 3 ⬜ m3-01 · m3-03 · m3-04 ni YANGI skaner bilan qayta yurgizish
+## 3 ✅ m3-01 · m3-03 · m3-04 ni YANGI skaner bilan qayta yurgizish — YOPILDI (2026-08-20)
 
 Ular tekshirilgan paytda `dark-lint.mjs` hali yo'q edi va qo'lda skanim
 **buzuq parser** bilan ishlagan: `${T.ink}` ning yopuvchi qavsi qoidani yarim
@@ -83,7 +83,10 @@ o'qitgan, natijada token orqali berilgan quyuq fonlar ko'rinmagan
 Ya'ni o'sha darslarning hisoboti **to'liq emas**. `npm run lint:dark` bilan
 qaytadan yuritilib, qolgan topilmalar yopiladi.
 
-**2026-08-20 yangilanish:** ro'yxatga **m3-04 ham qo'shildi** — inline-skan qo'shilgach
+**✅ 2026-08-20 · YAKUN:** uchalasi ham `lint:dark` **0**. m3-01 (til 6🔴 + dark 4) va m3-03
+(dark 3) shu kuni yopildi; m3-04 tekshirilganda allaqachon toza edi — quyidagi yozuv eskirgan.
+
+**Eski yozuv:** ro'yxatga **m3-04 ham qo'shildi** — inline-skan qo'shilgach
 unda ham yangi topilma chiqdi (`:1443`). Ya'ni «yopilgan» dars ham yangi darvoza bilan
 qayta yuritilishi kerak. Joriy holat: m3-01 🔴1 · m3-03 🔴3 · m3-04 🔴1 · m3-06 ✅ toza.
 
@@ -150,7 +153,7 @@ to'ldiriladigan maydon. Ma'lumot-qutisiga tekis chegara kerak.
 | Dars | Holat |
 |---|---|
 | m3-04 StateEffect | ✅ `1px solid ${T.line}` — allaqachon tuzatilgan |
-| **m3-06 Props** | ⬜ `1.5px dashed` |
+| **m3-06 Props** | ✅ 2026-08-20 tuzatildi |
 | **m3-07 Crud** | ⬜ `1.5px dashed` — 🔴 **TEGMA:** boshqa sessiya ishlayapti |
 | m3-11 Router | ✅ 2026-08-20 tuzatildi |
 | m3-13 BuildSite | ✅ 2026-08-20 tuzatildi |
@@ -178,7 +181,7 @@ yana bir marta qo'lda yurish kerak bo'ladi.
 
 ---
 
-## 9 ⬜ GameCard palitrasi — Variant D qolgan 5 darsga
+## 9 ✅ GameCard palitrasi — Variant D — 3-MODULDA YOPILDI (2026-08-20)
 
 O'yin kartochkalari ikki xil palitrada yashaydi: **Variant D** (pastel, brend oralig'ida) va
 **eski to'yingan** (`#FF9DBF`, `#7EA6F4`, `#F4D06A` — oltin/neon tomonga chiqib ketadi).
@@ -186,7 +189,12 @@ O'yin kartochkalari ikki xil palitrada yashaydi: **Variant D** (pastel, brend or
 Variant D ✅: `ReactFirstComponentLesson` · `ReactPropsReuseLesson` · `ReactStateEffectLesson` ·
 **`ReactCrudPracticeLesson`** · **`ReactApiPostLesson`** · **`ReactRouterPracticeLesson`** *(2026-08-20)*
 
-Qolgan **2 dars**: `ReactApiGetLesson` · `ReactProjectDayLesson`
+**✅ Ikkalasi ham yopildi (2026-08-20):** `ReactApiGetLesson` 7/7 · `ReactProjectDayLesson`
+**6/6** — oldingi raundda 4/6 qilingan ekan, qolgan ikkitasi: Jeep Wrangler quyuq grafit
+`#6B7280,#1F2430` → iliq grafit `#C6BFB8,#A79E95` · Mini Cooper to'yingan oltin
+`#F4D06A,#C99B2E` (T.accent bilan raqobatlashardi) → siyohrang `#D2C0EE,#B6A0E2`.
+
+> Qolgan modullar (1 · 2 · 4 · 5 · 6 · 7) hali ko'rilmagan.
 
 > m3-13 (`ReactBuildSiteLesson`) 2026-08-20 da yopildi — u yerda palitra o'yin-kartochkasi
 > emas, **«Yetkaz» taom-kartalari** edi: pitsa `#E6B9A3 → #C98D74` (terrakota-g'isht —
@@ -238,3 +246,32 @@ sinovlar kod oynasining o'zida ko'rinadi. Shubhada — qo'shilmaydi.
 
 **Qaror kimda:** foydalanuvchi. Qo'shilsa — 111-b bandi bo'yicha har qatori vazifa
 aytishi shart (sinov nomi + kutilgan natija), shunchaki ro'yxat bo'lmasin.
+
+
+---
+
+## 11 ⬜ «daftaringiz» — 6 fayl (M5 · M6 · M7)
+
+`til-lint` ga **88-qoida** qo'shildi (`daftar-referenti`, F-0820-79): o'quvchining
+daftariga ishora qilinmaydi — unda daftar bo'lmasligi mumkin. Taqiq 2026-07-29 dan beri
+kuchda edi, qoidasi esa yo'q edi.
+
+⚠️ **Bu qoida BUGUNDAN boshlab quyidagi 6 faylda `lint:til` ni qizartiradi** — o'sha
+modullar ustida ishlayotgan seans buni kutilmagan regressiya deb o'ylamasin:
+
+| Fayl | Qator |
+|---|---|
+| `5-Modull/BotFeedbackIterationLesson.jsx` | 2526 |
+| `5-Modull/BotStatefulMemoryLesson.jsx` | 2375 |
+| `6-Modull/AgentArchitectureLesson.jsx` | 2244 |
+| `6-Modull/ArchPatternsLesson.jsx` | 2291 |
+| `6-Modull/ClaudeSkillsLesson.jsx` | 2375 |
+| `7-Modull/PmLesson30.jsx` | 593 |
+
+Beshtasi bir xil naqsh: uy-vazifa kartasining `place={{ uz: 'daftaringizda' }}` propsi.
+Tuzatish bir so'zlik, lekin **modul chegarasidan tashqarida** — o'sha modul siklida
+qilinadi. Namuna: `MATN_KORPUS` §155.
+
+> **Qoida ATAYLAB tor:** faqat egalik shakli («daftaringiz/daftaringda»). «daftar»
+> so'zining o'zi qonuniy — M5 da botning xotira-metaforasi, PM darsida vidjet nomi.
+> Keng variant sinab ko'rilgan: 24 faylda 190 topilma, deyarli hammasi yolg'on.

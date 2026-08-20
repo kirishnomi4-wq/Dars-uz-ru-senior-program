@@ -108,6 +108,18 @@ function collectCss(src) {
 //       Nishon tugma emas — bosiladigan kartaning ichidagi belgi, rangi ma'no kodi.
 const SEMANTIC = new Set(['#1F7A4D', '#17603C', '#E03E1B', '#C2362B', '#B45309']);
 
+// «#fff» · «#ffffff» · «white» -> 6 xonali hex. Aniqlab bo'lmasa null.
+function hexOf(v) {
+  if (!v) return null;
+  const t = String(v).trim();
+  if (/^white/i.test(t)) return '#FFFFFF';
+  if (/^black/i.test(t)) return '#000000';
+  const m6 = t.match(/#[0-9A-Fa-f]{6}/);
+  if (m6) return m6[0];
+  const m3 = t.match(/#([0-9A-Fa-f])([0-9A-Fa-f])([0-9A-Fa-f])(?![0-9A-Fa-f])/);
+  return m3 ? '#' + m3[1] + m3[1] + m3[2] + m3[2] + m3[3] + m3[3] : null;
+}
+
 function lum(hex) {
   const c = [1, 3, 5].map(i => parseInt(hex.substr(i, 2), 16) / 255)
     .map(v => (v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4)));
@@ -150,6 +162,30 @@ function scan(file) {
       const _body = m.body + (_bs ? (BODY.get(_bs) || '') : '');
       if (!isControl(_bs ? sel + ' ' + _bs : sel, _body)) continue;   // bosilmaydigan bezak/maket
       out.push({ kind: 'fon', sel, hex, L: L.toFixed(3) });
+    }
+
+    // ── 1c-NAQSH · HOLAT-MODIFIKATORI FONNI ALMASHTIRSA — MATN KONTRASTI (F-0820-79) ──
+    // Kontur uslubidagi tugma matnni accent bilan yozadi:
+    //     .mstats-reveal       { background: #FFFFFF; color: #FF4F28; border: 1px solid ... }
+    //     .mstats-reveal.ready { background: #FF4F28; }        <- matn rangi QAYTA BERILMAGAN
+    // Natijada accent ustida accent qoladi va yozuv KO'RINMAY ketadi. Bu «quyuq fon»
+    // emas, shuning uchun yuqoridagi skan uni ko'rmaydi — bu yerda KONTRAST tekshiriladi.
+    // 4 ta darsda shu holda topilgan (m3-04 · m3-06 · m3-08 · m3-12), F-29 ni kontur
+    // variantiga o'tkazishning yon ta'siri.
+    for (const m of RULES) {
+      const tail = m.sel.split(/[\s>+~]+/).pop();
+      if (!MODIF.test(tail) || /:/.test(tail)) continue;            // :hover va o'xshashlari emas
+      if (/(?:^|[;{\s])color:/.test(m.body)) continue;              // matn rangi berilgan — joyida
+      const bg = hexOf((m.body.match(/background(?:-color)?:\s*([^;]+)/) || [])[1]);
+      const base = baseSel(m.sel);
+      if (!bg || !base) continue;
+      const fg = hexOf(((BODY.get(base) || '').match(/(?:^|[;\s])color:\s*([^;]+)/) || [])[1]);
+      if (!fg) continue;
+      if (bg === '#888888' || fg === '#888888') continue;           // aniqlanmagan token — hukm chiqarilmaydi
+      const lb = lum(bg), lf = lum(fg);
+      const ratio = (Math.max(lb, lf) + 0.05) / (Math.min(lb, lf) + 0.05);
+      if (ratio >= 3) continue;                                     // farq yetarli
+      out.push({ kind: 'kontrast', sel: m.sel, hex: bg, fg, ratio: ratio.toFixed(2), base });
     }
   }
 
@@ -223,11 +259,13 @@ console.log(`${B}\nDARK-LINT — og'ir/qora element detektori · ${files.length}
 for (const f of files) {
   let hits; try { hits = scan(f); } catch { continue; }
   const fon = hits.filter(h => h.kind === 'fon');
-  if (!fon.length) continue;
-  total += fon.length;
-  console.log(`\n${B}${f}${R}  ${RED}${fon.length}${R}`);
+  const knt = hits.filter(h => h.kind === 'kontrast');
+  if (!fon.length && !knt.length) continue;
+  total += fon.length + knt.length;
+  console.log(`\n${B}${f}${R}  ${RED}${fon.length + knt.length}${R}`);
   fon.forEach(h => console.log(`  ${RED}●${R} ${h.sel.padEnd(30)} ${h.hex}  L=${h.L}  ${DIM}— accent qoidasiga bo'ysundirilsinmi?${R}`));
+  knt.forEach(h => console.log(`  ${RED}◐${R} ${h.sel.padEnd(30)} fon ${h.hex} · matn ${h.fg} (${h.base} dan)  ${DIM}— kontrast ${h.ratio}:1, matn ko'rinmaydi; modifikatorga color bering${R}`));
   const btn = [...new Set(hits.filter(h => h.kind === 'btn').map(h => h.sel))];
   if (btn.length) console.log(`  ${DIM}btn-oilasi (qismiy moslik): ${btn.join(' · ')}${R}`);
 }
-console.log(total ? `\n${RED}${B}Jami: ${total} ta og'ir element${R}\n` : `\n${GRN}✓ TOZA — kutilmagan quyuq fon yo'q.${R}\n`);
+console.log(total ? `\n${RED}${B}Jami: ${total} ta topilma${R}\n` : `\n${GRN}✓ TOZA — kutilmagan quyuq fon yo'q.${R}\n`);

@@ -1676,3 +1676,26 @@ ekran esa «TEGMA» ro'yxatida edi — halqa olib tashlandi, **tanlov-mexanikaga
 - **Yo'q** → bezak, umumiy qonun amal qiladi.
 
 Auditda bunday topilma **«bahsli joylar»** bo'limiga chiqariladi — jim o'chirilmaydi.
+
+---
+
+**132-qonun — HOLAT-MODIFIKATORI FONNI ALMASHTIRSA, MATN RANGI HAM BERILADI (2026-08-20, F-0820-79).**
+Kontur uslubidagi tugma matnni urg'u rangi bilan yozadi. Holat-modifikatori (`.ready`,
+`.on`, `.active`, `.selected`, `.is-*`) faqat **fonni** o'sha urg'u rangiga o'tkazsa va
+matn rangini qayta bermasa — accent ustida accent qoladi, **yozuv ko'rinmay ketadi**:
+
+```
+.mstats-reveal       { background: #FFFFFF; color: #FF4F28; border: 1px solid #FF4F28; }
+.mstats-reveal.ready { background: #FF4F28; }        ← matn ham #FF4F28, kontrast 1:1
+```
+
+**Nega kech topildi:** bu **quyuq fon emas**, shuning uchun `dark-lint` ning fon-skani uni
+ko'rmasdi. F-29 ni «kontur» variantiga o'tkazishning yon ta'siri — nuqson **tuzatish paytida
+tug'ildi** va yopilgan 4 ta darsda (m3-04 · m3-06 · m3-08 · m3-12) prodga yetib bordi.
+
+🔴 **Darvoza:** `dark-lint` **1c-naqsh** — modifikator fonni almashtirsa-yu `color` bermasa,
+asosiy qoidaning matn rangi bilan kontrast hisoblanadi; **3:1 dan past** bo'lsa signal beradi
+(`◐` belgisi). Buzilgan nusxada sinovdan o'tkazilgan, butun repo bo'ylab yolg'on signal — 0.
+
+**Umumiy shakl:** rang-juftligining **bir yarmi** o'zgarsa, ikkinchi yarmi ham ko'riladi.
+Bu `background`↔`color` ga ham, `border`↔`background` ga ham tegishli.

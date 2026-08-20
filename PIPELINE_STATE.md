@@ -2221,3 +2221,55 @@ ochish» · m3-12 «Antigravity» · m3-14 «Gap va harakatni to'ldiring».
 ⚠️ **Eslatma:** demo UZ+RU deb berilgan, lekin **PM darslari hali o'zbekcha**
 (PmLesson10 `ru:` = 1). PM8/PM9 ga boshqa seans tarjima qo'shmoqda —
 `KATTA_TOZALASH` 6-band.
+
+---
+
+## 2026-08-20 · 3-MODULNI YOPISH — BOSQICH A (F-0820-79)
+
+Kechagi seans oxiridagi jadval (`src/3-Modull/image.png`): 14 darsdan 11 tasi toza,
+uchtasi ochiq — m3-01 (til 6🔴 · dark 4) · m3-02 (til 5🔴 · dark 3) · m3-03 (dark 3).
+Raqamlar bugun qayta o'lchandi, hammasi mos chiqdi. Foydalanuvchi qamrovni ikki
+bosqichga bo'ldi: **A — 3-Modul ichi** · **B — m3-02** (P0 etalon, alohida ehtiyot).
+
+| Band | Qilingani | Natija |
+|---|---|---|
+| 1 | **m3-01 til:** «ushbu»→«bu» · «tavsiya etiladi» ×3 → buyruq shakli · «React ko'zi bilan qarang» → «komponentlarga bo'lib ko'ring» (UZ+RU) · «muharrir» → «dastur (Editor)» | 6🔴 → **0** |
+| 1 | **m3-01 dark:** `.mstats-reveal` → kontur · `.rc-btn` → accent+oq, hover `#E03E1B` | 4 → **0** |
+| 2 | **m3-03:** `.lp-done-btn` · `.mstats-reveal` · `.rc-btn` → F-29 (yashil `is-done`/`done` holatlari tegilmadi) | 3 → **0** |
+| 3 | **m3-04:1443** — ish chiqmadi, allaqachon toza edi. `KATTA_TOZALASH` 1/3-bandidagi yozuv eskirgan, tuzatildi | — |
+| 4 | **m3-06 `.hint`** `1.5px dashed` → `1px solid ${T.line}` (16-qonun). m3-07 ga TEGILMADI — boshqa seans | ✅ |
+| 5 | **GameCard Variant D:** m3-08 kecha yopilgan ekan (7/7). **m3-12 esa 4/6 edi** — Jeep `#6B7280,#1F2430` → iliq grafit `#C6BFB8,#A79E95` · Mini Cooper `#F4D06A,#C99B2E` (accent bilan raqobat) → siyohrang `#D2C0EE,#B6A0E2` | 6/6 |
+
+### A-quyrug'i — uchta og'ish (foydalanuvchi ruxsati bilan)
+
+🔴 **1. YANGI BUG-SINF: `.mstats-reveal.ready` da matn ko'rinmaydi.** F-29 ni «kontur»
+variantiga o'tkazganda baza matni `T.accent` bo'ladi; `.ready` esa faqat **fonni** o'sha
+accentga o'tkazadi va matn rangini qayta bermaydi → **kontrast 1:1**. Nuqson **tuzatish
+paytida tug'ilgan** va yopilgan 4 darsda (m3-04 · m3-06 · m3-08 · m3-12) prodga yetib borgan.
+Hammasida `color: #fff` qo'shildi.
+
+**Detektorga qoida:** `dark-lint.mjs` **1c-naqsh** — modifikator (`.ready`/`.on`/`.active`/
+`.is-*`) fonni almashtirsa-yu `color` bermasa, asosiy qoidaning matn rangi bilan kontrast
+hisoblanadi; 3:1 dan past bo'lsa `◐` signali. **Buzilgan nusxada sinovdan o'tkazildi**
+(tutdi), butun repo bo'ylab yolg'on signal — **0**. → `DARS_ETALON` **132-qonun**.
+
+**2. m3-01 ning 2 inline topilmasi `ai-badge` emas edi** — ikkalasi ham `CODE.bg`
+(kod oynasi va matn oqimidagi kod bo'lagi), ataylab quyuq. Dizayn o'zgartirilmadi;
+detektorning o'z `data-dark-ok="kod-oynasi"` / `"kod-bo'lagi"` mexanizmi bilan
+muallif niyati yozib qoldirildi.
+
+**3. m3-01:2070 «daftaringizga»** — 2026-07-29 dagi taqiq, lekin **qoidasi yo'q edi**,
+shu sabab darvoza uni ko'rmasdi. Jumla tuzatildi → «nomlarini yozib qo'ying» (UZ+RU).
+`til-lint` ga **88-qoida** `daftar-referenti`. → `MATN_KORPUS` **§155**.
+
+> **Qoida ATAYLAB tor.** Birinchi (keng) variant 24 faylda **190** topilma berdi va
+> deyarli hammasi yolg'on: M5 da «daftar» — botning xotira-metaforasi (📓 «Yechim — daftar»),
+> PM darsida — ekrandagi vidjet nomi («Hikoya-daftar»). Toraytirilgan variant faqat
+> **egalik shakliga** tegadi va butun repoda **6** haqiqiy topilma qoldirdi (M5·M6·M7) —
+> ular modul chegarasidan tashqarida, `KATTA_TOZALASH` **11-bandiga** yozildi.
+
+**Darvozalar (6 fayl):** esbuild 6/6 TOZA · `lint:jsx` **0** · `lint:til` **0🔴**
+(m3-12 da 7🟡 — kecha hujjatlashtirilgan arifmetik «hisoblanadi») · `lint:dark` **0** ·
+`lint:prompt` 0.
+
+**Holat:** UNCOMMITTED.

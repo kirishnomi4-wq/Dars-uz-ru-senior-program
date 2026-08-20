@@ -872,8 +872,8 @@ const CARS = [
   { id: 4, name: 'Mustang', emoji: '🐎', price: 150, seats: 4, speed: 280, desc: { uz: "Klassik amerikan kuchi.", ru: 'Классическая американская мощь.' }, bg: 'linear-gradient(135deg,#F3C2D2,#DFA6BA)' }
 ];
 const POOL = [
-  { id: 5, name: 'Jeep Wrangler', emoji: '🚙', price: 90, seats: 5, speed: 180, desc: { uz: "Tog'u tosh — hamma joyga boradi.", ru: 'Горы и камни — проедет где угодно.' }, bg: 'linear-gradient(135deg,#6B7280,#1F2430)' },
-  { id: 6, name: 'Mini Cooper', emoji: '🚗', price: 60, seats: 4, speed: 200, desc: { uz: "Kichkina, ixcham, arzon.", ru: 'Маленькая, компактная, недорогая.' }, bg: 'linear-gradient(135deg,#F4D06A,#C99B2E)' }
+  { id: 5, name: 'Jeep Wrangler', emoji: '🚙', price: 90, seats: 5, speed: 180, desc: { uz: "Tog'u tosh — hamma joyga boradi.", ru: 'Горы и камни — проедет где угодно.' }, bg: 'linear-gradient(135deg,#C6BFB8,#A79E95)' },
+  { id: 6, name: 'Mini Cooper', emoji: '🚗', price: 60, seats: 4, speed: 200, desc: { uz: "Kichkina, ixcham, arzon.", ru: 'Маленькая, компактная, недорогая.' }, bg: 'linear-gradient(135deg,#D2C0EE,#B6A0E2)' }
 ];
 const carById = (id) => [...CARS, ...POOL].find(c => c.id === Number(id)) || CARS[0];
 
@@ -3030,7 +3030,10 @@ export default function ReactProjectDayLesson({ lang: langProp, onFinished }) {
         .mstats-n { font-family: 'Manrope'; font-size: 13.5px; font-weight: 600; color: ${T.ink2}; }
         .mstats-reveal { font-family: 'Manrope'; font-weight: 700; font-size: 12.5px; background: ${T.paper}; color: ${T.accent}; border: 1px solid ${T.accent}; border-radius: 99px; padding: 7px 14px; cursor: pointer; white-space: nowrap; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.35); transition: all 0.2s; }
         .mstats-reveal:hover { color: #fff; background: ${T.accent}; box-shadow: 0 6px 16px -4px rgba(255,79,40,0.5); }
-        .mstats-reveal.ready { background: ${T.accent}; animation: mstats-pulse 1.6s ease-in-out infinite; }
+        /* .ready — to'ldirilgan holat: kontur bazasi accent MATN ishlatadi, shuning uchun
+           fon accentga o'tganda matn OQga o'tishi shart (aks holda accent-ustida-accent,
+           yozuv ko'rinmaydi). */
+        .mstats-reveal.ready { background: ${T.accent}; color: #fff; animation: mstats-pulse 1.6s ease-in-out infinite; }
         @keyframes mstats-pulse { 0%,100% { box-shadow: 0 4px 12px -4px rgba(255,79,40,0.5); } 50% { box-shadow: 0 4px 18px 0 rgba(255,79,40,0.55); } }
         .mstats-prog { height: 7px; background: rgba(${T.shadowBase},0.09); border-radius: 99px; overflow: hidden; }
         .mstats-prog-fill { display: block; height: 100%; border-radius: 99px; background: ${T.blue}; transition: width 0.6s cubic-bezier(.4,0,.2,1); }
