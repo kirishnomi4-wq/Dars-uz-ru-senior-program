@@ -2661,3 +2661,89 @@ shu sabab bir yil bo'ylab yangi darslarga sizib o'tdi.
 Qoida keng yozilsa 24 faylda 190 yolg'on signal beradi — o'lchab ko'rilgan.
 
 **Darvoza:** `til-lint` · `daftar-referenti` (88-qoida).
+
+## 156. BITTA TUSHUNCHA — BITTA NOM: SO'Z IKKI MA'NODA ISHLATILMAYDI (F-0820-91, m4-01)
+
+❌ `posts.izoh` = post imzosi **va** `comments` = «izohlar» — bitta darsda «izoh» ikki
+xil narsani anglatardi (64 joyda). O'quvchi jadval sarlavhasida `izoh` ni ko'radi, keyingi
+ekranda esa «izohlar jadvali» boshqa narsa ekanini biladi.
+✅ `posts.imzo` (post imzosi) · `comments` = «izohlar» (kommentlar) — har tushunchaga
+o'z nomi.
+
+**Sabab:** to'qnashuv **faqat UZ tomonida** edi — RU allaqachon ajratardi
+(«подпись» ≠ «комментарий»). Ya'ni tarjima to'g'ri, asl matn chalkash. Dars ichida
+so'z-inventari **bir marta** chiqariladi: bitta tushuncha — bitta nom, bitta nom — bitta
+tushuncha.
+
+🔴 **Yangi nom tanlashda MEXANIKA tekshiriladi.** Birinchi taklif `posts.matn` edi —
+lekin `comments.matn` allaqachon bor edi va 6b sudrash-mashqi (**«har ustun qaysi
+jadvalga?»**) buzilardi: `CDRAG_COLS.find(c => c.k === colKey)` birinchi mosini olardi,
+React `key` esa takrorlanardi. Pedagogik jihatdan ham `matn` endi **ikkala** jadvalga
+tegishli bo'lardi — mashqning javobi yo'qolardi. Nom o'zgartirishdan oldin: shu nom
+mashq-mexanikasida **noyob** qoladimi?
+
+**Darvoza:** yangi ustun nomi kiritilganda `grep -c "'<nom>'"` — mashq massivlarida
+(`CDRAG_COLS`, `OPTIONS`, `SCHEMA_NODES`) faqat bitta jadvalga tegishli bo'lishi shart.
+
+## 157. HOOK-EKRANDA «TOPDINGIZ!» FAQAT TOPILGANDA (F-0820-95, m4-01)
+
+❌ Uch javobdan qaysi biri tanlansa ham `correct: true` yoziladi va ekranda
+«**Topdingiz!** Postlar bazada saqlanadi» chiqadi — «postlar internetda havoda suzib
+yuradi» degan o'quvchi ham maqtov oladi.
+✅ `correct: v === 'c'` (haqiqiy bayroq) + javobga qarab ikki matn:
+to'g'risiga «Topdingiz! …», xatosiga **yumshoq to'g'rilash** — «**Aslida boshqacha.**
+Postlar «havoda» ham suzmaydi… — ular alohida **ma'lumotlar bazasida** saqlanadi.
+Yuqorida buni **o'zingiz ko'rdingiz**: server o'chdi, xotira bo'shadi, baza saqlab qoldi.»
+
+**Sabab:** hook ekrani **ball bermaydi** — shuning uchun «hamma javob to'g'ri» qilib
+qo'yish oson. Lekin o'quvchi maqtovni javobiga bog'laydi: noto'g'ri model
+**tasdiqlanib** qoladi va dars davomida shu bilan yuradi. Ball bermaslik ≠ halol
+bo'lmaslik. Yumshoq to'g'rilash uyaltirmaydi: aybni javobga emas, **hozirgina
+ko'rilgan tajribaga** yo'naltiradi.
+
+🔴 **`correct` bayrog'i LMS payloadiga boradi** — soxta `true` tahlilni ham buzadi.
+
+**Darvoza:** har `onAnswer(... correct: …)` chaqiruvi — qiymat **haqiqiy** shartdanmi
+yoki qattiq `true` mi, ko'rib chiqiladi.
+
+## 158. BITTA TUSHUNCHAGA BITTA OBRAZ — KO'PRIKSIZ IKKINCHI METAFORA QO'YILMAYDI (F-0820-94, m4-01)
+
+❌ Bir ekranda: Mentor «id raqami bor (**xuddi pasport raqami kabi**)» → o'sha ekran
+natija-qutisi «`users.id` — **rozetka** ◎». Ikki obraz, ko'prik-gap yo'q.
+✅ Pasport-gapi olib tashlandi; `id` = **rozetka** (◎), `_id` = **vilka** (⌁) — dars
+bo'ylab yagona obraz, RECAPS kanoni bilan bir xil.
+
+**Sabab:** ikkinchi metafora yangi ma'no qo'shmasa — u faqat **yodda saqlanadigan
+narsalar sonini** oshiradi. Obraz almashishi kerak bo'lsa, ko'prik-gap majburiy
+(«pasport raqami — ya'ni ulanish rozetkasi»). Bu yerda ko'prik ham shart emas edi:
+rozetka/vilka jufti butun darsni (6b · s7 · s15) ko'taradi, pasport esa bir marta
+ishlatilib tashlanardi.
+
+**Tekshirish:** bitta tushuncha uchun `RECAPS`/flashcard **kanonik** obrazni belgilaydi —
+ekran matni undan chetga chiqmaydi.
+
+## 159. O'RGATILAYOTGAN OBYEKT — QOIDA O'ZIGA TEGMAYDI (F-0820-194, uch a'zoli oila)
+
+Dars **qoida-buzilishini misol qilib ko'rsatayotganda**, o'sha misol **matn-qoidasiga
+tushmaydi** — u xato emas, **o'quv materiali**. Lint uchun bu **yolg'on signal** sinfi.
+
+**Uch a'zo — uchalasi ham 4-Modulda topildi:**
+
+| # | A'zo | Dalil | Nima uchun qonuniy |
+|---|---|---|---|
+| 1 | **Personaj matni** | m4-01 `DataIntroLesson:848` — `COMMENTS` massivida `matn: "Zo'r manzara!"` | Bu **olam kontenti**: Instagram izohi, o'quvchiga murojaat emas |
+| 2 | **Olam-oqimi matni** | m4-03 `DbSqlNosqlLesson:1305,1308` — chat oynasidagi `"Zo'r 🔥"` xabarlari | Ekranda **oqib turgan** xabarlar; dars ularni yozmaydi, **ko'rsatadi** |
+| 3 | **Iqtibos-obyekt** | m4-14 `FullstackFeedbackLesson` — «Zo'r ekan!» · `"zo'r"mi yoki aniqmi?` | Dars **aynan shu so'z haqida**: bo'sh maqtovni **fosh qilyapti** |
+
+🔴 **Chegara qayerda.** «Qo'shtirnoq ichida bo'lsa istisno» — **NOTO'G'RI mezon**:
+JSX'da hamma matn qo'shtirnoq ichida. To'g'ri mezon — **matn kimga tegishli**:
+
+- **O'quvchiga murojaat** («Zo'r! Vazifani bajardingiz») → 🔴 **qoida ishlaydi**
+- **Olamga tegishli** (personaj gapi, chat xabari, iqtibos-obyekt) → ✅ **istisno**
+
+**Lint-tatbiqi:** istisno **tor** yoziladi — guillemetlar («…») va sof-so'z iqtiboslari
+(`"zo'r"`), butun qo'shtirnoq emas. `registr-zor-qoyil` da shunday qilingan:
+istisnodan keyin qoida repoda hali **73 faylda** ishlaydi.
+
+**Umumlashma:** bu sinf faqat «zo'r» ga tegishli emas. Har qanday til-qoidasi uchun
+savol bitta: **matn darsning ovozimi yoki olamning ovozimi?** Ikkinchisiga qoida tegmaydi.

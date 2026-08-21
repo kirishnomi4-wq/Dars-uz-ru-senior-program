@@ -3471,7 +3471,6 @@ export default function ReactRouterPracticeLesson({ lang: langProp, onFinished }
         .qz-brand.sm { gap: 9px; }
         .qz-wm { font-family: 'Manrope'; font-weight: 800; font-size: clamp(28px,5vw,46px); letter-spacing: -0.03em; color: #F2ECFF; line-height: 1; text-shadow: 0 0 22px rgba(150,95,255,0.4); }
         .qz-wm-h { color: #FF6A3D; }
-        .qz-logo { font-size: clamp(44px,8vw,72px); line-height: 1; }
         .qz-h { font-family: 'Manrope'; font-weight: 800; font-size: clamp(22px,4vw,36px); color: #F2ECFF; margin: 0; text-align: center; letter-spacing: -0.02em; text-shadow: 0 0 24px rgba(150,95,255,0.35); }
         .qz-sub { font-family: 'Manrope'; font-size: clamp(13px,1.9vw,16px); color: #B9A8E6; margin: 0; text-align: center; max-width: 540px; line-height: 1.55; font-weight: 500; }
         .qz-sub b { color: #F2ECFF; }

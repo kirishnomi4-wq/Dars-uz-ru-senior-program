@@ -254,7 +254,7 @@ function LiveBigCode({ pin, onClose }) {
     <div style={overlay}>
       <div style={{ fontSize: 'clamp(13px,2vw,18px)', fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: LT.accent, marginBottom: 'clamp(14px,3vw,28px)' }}>{tr({ uz: "Jonli darsga qo'shilish", ru: 'Подключение к живому уроку' })}</div>
       <div style={{ display: 'flex', gap: 'clamp(6px,1.4vw,16px)', justifyContent: 'center', flexWrap: 'wrap' }}>{digits.map((d, i) => <span key={i} style={box}>{d}</span>)}</div>
-      <p style={{ color: '#fff', opacity: 0.85, fontSize: 'clamp(15px,2.2vw,22px)', maxWidth: 640, margin: 'clamp(20px,4vw,36px) 0 0', lineHeight: 1.5 }}>{tr({ uz: <>Shu darsni o'z qurilmangizda oching → <b style={{ color: '#fff' }}>«👨‍🎓 O'quvchiman»</b> → ushbu kodni kiriting.</>, ru: <>Откройте этот урок на своём устройстве → <b style={{ color: '#fff' }}>«👨‍🎓 Я ученик»</b> → введите этот код.</> })}</p>
+      <p style={{ color: '#fff', opacity: 0.85, fontSize: 'clamp(15px,2.2vw,22px)', maxWidth: 640, margin: 'clamp(20px,4vw,36px) 0 0', lineHeight: 1.5 }}>{tr({ uz: <>Shu darsni o'z qurilmangizda oching → <b style={{ color: '#fff' }}>«👨‍🎓 O'quvchiman»</b> → shu kodni kiriting.</>, ru: <>Откройте этот урок на своём устройстве → <b style={{ color: '#fff' }}>«👨‍🎓 Я ученик»</b> → введите этот код.</> })}</p>
       <button onClick={onClose} style={{ marginTop: 'clamp(22px,4vw,40px)', background: LT.accent, color: '#fff', border: 'none', borderRadius: 14, padding: 'clamp(12px,1.6vw,16px) clamp(24px,3vw,36px)', fontSize: 'clamp(15px,1.8vw,18px)', fontWeight: 700, cursor: 'pointer' }}>{tr({ uz: 'Darsni boshlash →', ru: 'Начать урок →' })}</button>
     </div>
   );
@@ -677,7 +677,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
         return (
           <div className={`mstats-verdict ${level}`}>
             {level === 'need' && <>
-              <p className="mstats-verdict-t">{tr({ uz: <>⚠️ Faqat <b>{pct}%</b> to'g'ri — bu mavzu sinfga tushunarsiz qolgan. Davom etishdan oldin qisqa takrorlash tavsiya etiladi.</>, ru: <>⚠️ Только <b>{pct}%</b> верных — класс не понял эту тему. Прежде чем идти дальше, стоит коротко повторить.</> })}</p>
+              <p className="mstats-verdict-t">{tr({ uz: <>⚠️ Faqat <b>{pct}%</b> to'g'ri — bu mavzu sinfga tushunarsiz qolgan. Davom etishdan oldin qisqa takrorlang.</>, ru: <>⚠️ Только <b>{pct}%</b> верных — класс не понял эту тему. Прежде чем идти дальше, стоит коротко повторить.</> })}</p>
               {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>{tr({ uz: '📖 Qayta tushuntirish — ', ru: '📖 Объяснение заново — ' })}{tr(RECAPS[screenIdx]?.title)}</button>}
             </>}
             {level === 'maybe' && <>
@@ -696,13 +696,50 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
           {waiting.length > 8 && <span className="mstats-wait-chip more">+{waiting.length - 8}</span>}
         </div>
       )}
-      {reveal && struggling && <p className="mstats-warn">{tr({ uz: "⚠️ Ko'pchilik xato qildi — bu mavzu tushunarsiz bo'lgan ko'rinadi. Qayta tushuntirish tavsiya etiladi.", ru: '⚠️ Большинство ошиблось — похоже, тема осталась непонятной. Рекомендуем объяснить заново.' })}</p>}
+      {reveal && struggling && <p className="mstats-warn">{tr({ uz: "⚠️ Ko'pchilik xato qildi — bu mavzu tushunarsiz bo'lgan ko'rinadi. Yana bir bor tushuntiring.", ru: '⚠️ Большинство ошиблось — похоже, тема осталась непонятной. Рекомендуем объяснить заново.' })}</p>}
       {answered === 0 && <p className="mstats-wait">{tr({ uz: "O'quvchilar javoblari shu yerda jonli ko'rinadi…", ru: 'Ответы учеников будут появляться здесь в реальном времени…' })}</p>}
     </div>
   );
 }
 
-const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, options, correctIdx, explainCorrect, explainWrong, storedAnswer, onAnswer, onNext, onPrev }) => {
+
+// ══ KLAPAN — IPUCHA-ZINAPOYA + RESCUE (KATTA_TOZALASH 13-band) ══
+//
+// Uch daraja (138-qonun): QULF-YORLIQ aytadi -> IPUCHA chuqurlashtiradi -> RESCUE yo'l ochadi.
+// Bu darsda 1-daraja TUG'MA bajarilgan (14 qulf-joyining hammasida yorliq harakatni aytadi).
+//
+// 🔴 BALLIK EKRANLAR: `QuestionScreen` (s4·s7·s10·s15) va `Screen18` (s18) — 138-qonun
+// qo'shimchasi bo'yicha rescue-yorlig'i «Davom etish» EMAS, harakat-nom.
+// ⚠️ `Screen17` qulf-sharti `solvedOnce` deb ATALADI (`done` emas) — navLabel-oilasining
+// ikkinchi takrori; klapan nom bo'yicha alohida ulangan.
+//
+// IKKI O'LCHOV: `sec` — ekran ochiq turgan vaqt · `idle` — oxirgi HAQIQIY siljishdan beri.
+// 🔴 MUSTAQILLIK: hook komponent ICHIDA — setInterval faqat o'sha ekran ochiq turganda yuradi.
+const VALVE_TIP_SEC = 40, VALVE_TIP_IDLE = 25;
+const VALVE_RES_SEC = 110, VALVE_RES_IDLE = 60;
+function useStuckValve(done, progress = 0) {
+  const _gate = useContext(LiveGateCtx) || {};
+  const isMentor = !!(_gate.live && _gate.live.mode === 'mentor');
+  const [sec, setSec] = useState(0);
+  const [idle, setIdle] = useState(0);
+  const lastProg = useRef(progress);
+  useEffect(() => {
+    if (lastProg.current !== progress) { lastProg.current = progress; setIdle(0); }
+  }, [progress]);
+  useEffect(() => {
+    if (done || isMentor) return;
+    const t = setInterval(() => { setSec(v => v + 1); setIdle(v => v + 1); }, 1000);
+    return () => clearInterval(t);
+  }, [done, isMentor]);
+  const live = !done && !isMentor;
+  return {
+    tip: live && (sec >= VALVE_TIP_SEC || idle >= VALVE_TIP_IDLE),
+    rescue: live && (sec >= VALVE_RES_SEC || idle >= VALVE_RES_IDLE),
+    isMentor,
+  };
+}
+
+const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, options, correctIdx, explainCorrect, explainWrong, storedAnswer, tip, onAnswer, onNext, onPrev }) => {
   const gate = useContext(LiveGateCtx) || {};
   const live = gate.live;
   const oneShot = !!(live && live.mode === 'student');
@@ -710,6 +747,7 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
   const mountTs = useRef(Date.now());
   const [picked, setPicked] = useState(storedAnswer?.lastPicked ?? storedAnswer?.picked ?? null);
   const [solved, setSolved] = useState(storedAnswer ? (storedAnswer.solved ?? (storedAnswer.picked === correctIdx)) : false);
+  const { tip: _tip, rescue: _resc } = useStuckValve(solved, picked === null ? -1 : picked);   // 13-band klapan
   const firstCorrectRef = useRef(storedAnswer ? (storedAnswer.firstAttemptCorrect ?? storedAnswer.correct ?? null) : null);
   const [mReveal, setMReveal] = useState(() => !!(isMentorLive && storedAnswer));
   const [recapOpen, setRecapOpen] = useState(false);
@@ -737,7 +775,7 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
   const revealed = !oneShot || !!(live && (live.revealScreen === screen || (live.mentorMax ?? live.mentorScreen) > screen || live.status === 'ended' || !live.mentorAlive));
   const waiting = oneShot && solved && !revealed;
   return (
-    <Stage eyebrow={eyebrow} screen={screen} narrow navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={isMentorLive ? !mReveal : !solved} label={isMentorLive ? (mReveal ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Avval natijani oching', ru: 'Сначала откройте результат' }) : solved ? { uz: 'Davom etish', ru: 'Продолжить' } : (oneShot ? { uz: 'Javob tanlang', ru: 'Выберите ответ' } : { uz: "To'g'ri javobni toping", ru: 'Найдите правильный ответ' })} onClick={onNext} /></>}>
+    <Stage eyebrow={eyebrow} screen={screen} narrow navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={isMentorLive ? !mReveal : (!solved && !_resc)} label={isMentorLive ? (mReveal ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Avval natijani oching', ru: 'Сначала откройте результат' }) : solved ? { uz: 'Davom etish', ru: 'Продолжить' } : _resc ? { uz: "Javobni birga ko'ramiz →", ru: 'Разберём ответ вместе →' } : (oneShot ? { uz: 'Javob tanlang', ru: 'Выберите ответ' } : { uz: "To'g'ri javobni toping", ru: 'Найдите правильный ответ' })} onClick={onNext} /></>}>
       <div className="screen" style={{ justifyContent: isMentorLive ? 'flex-start' : 'center', gap: 'clamp(16px,2.5vw,24px)' }}>
         <div className="fade-up">{question}</div>
         {oneShot && !solved && <p className="small mono fade-up" style={{ margin: '-8px 0 0', color: T.accent, fontWeight: 600 }}>{tr({ uz: "⚡ Jonli dars — bitta urinish, o'ylab bosing!", ru: '⚡ Живой урок — одна попытка, подумайте перед нажатием!' })}</p>}
@@ -785,6 +823,8 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
         </FeedbackBlock>
         {isMentorLive && <MentorTestStats live={live} screenIdx={screen} options={options} correctIdx={correctIdx} reveal={mReveal} onReveal={doReveal} onOpenRecap={hasRecap ? () => setRecapOpen(true) : null} />}
         {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} />}
+        {_tip && !solved && tip && <p className="bhint fade-step">{tr(tip)}</p>}
+        {_resc && !solved && <p className="bhint calm fade-step">{tr({ uz: "Bu savolni keyinroq birga ko'rib chiqamiz — hozir davom etsangiz bo'ladi.", ru: 'Этот вопрос разберём вместе позже — сейчас можно продолжить.' })}</p>}
       </div>
     </Stage>
   );
@@ -975,7 +1015,15 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
     { id: 'c', label: { uz: "Testni umuman tashlab qo'yaman", ru: 'Вообще откажусь от тестов' } }
   ];
   const poke = () => { setTried(true); setSc(n => n + 1); };
-  const pick = (v) => { if (picked !== null || !tried) return; setPicked(v); setSc(n => n + 1); onAnswer(screen, { stage: 'hook', screenIdx: screen, picked: v, correct: true }); };
+  // 137-qonun: har tanlovga O'Z javobi; «Aynan!» faqat to'g'ri tanlovda; xato tanlovga
+  // ko'prik-gap (uyaltirish emas — dars nimani ko'rsatishini VA'DA qiladi).
+  // Naqsh-manba: 4a-02 ACK xaritasi (F-0820-401).
+  const ACK = {
+    a: { uz: <>Qo'lda ham ishlaydi — <b>esingizda turgan kunlari</b>. Lenta esa esdan chiqarmaydi: u <b>har push'da</b>, siz so'ramasangiz ham yuradi. Bugun shu farqni ko'rasiz.</>, ru: <>Вручную тоже работает — <b>в те дни, когда вы помните</b>. Лента же не забывает: она идёт <b>на каждый пуш</b>, даже когда её не просят. Сегодня увидите эту разницу.</> },
+    b: { uz: <>Aynan! <b>GitHub Actions</b> — repozitoriyangiz ichidagi bepul lenta tizimi. Unga bir marta yo'l xaritasi (ci.yml) berasiz, u <b>har push'da</b> lentani o'zi aylantiradi. Bugun shu yo'l xaritasini o'zingiz yozasiz.</>, ru: <>Именно! <b>GitHub Actions</b> — бесплатная система ленты прямо в вашем репозитории. Один раз даёте ей карту маршрута (ci.yml) — и она <b>при каждом пуше</b> сама крутит ленту. Сегодня вы напишете эту карту сами.</> },
+    c: { uz: <>Testsiz xato yo'qolmaydi — u <b>ko'rinmay qoladi</b> va yo'lovchi qo'lida ochiladi. Bugun ko'ramiz: lenta testni <b>siz o'rniga</b> yuritadi, ya'ni vaqt ham ketmaydi, xato ham o'tib ketmaydi.</>, ru: <>Без тестов ошибка не исчезает — она просто <b>становится незаметной</b> и всплывает уже у пассажира. Сегодня увидим: лента гоняет тесты <b>вместо вас</b> — и время не тратится, и ошибка не проскакивает.</> },
+  };
+  const pick = (v) => { if (picked !== null || !tried) return; setPicked(v); setSc(n => n + 1); onAnswer(screen, { stage: 'hook', screenIdx: screen, picked: v, correct: v === 'b' }); };
   return (
     <Stage eyebrow={tr({ uz: 'Kirish', ru: 'Введение' })} screen={screen} scrollSignal={sc} navContent={<NavNext optionalLive disabled={picked === null} label={{ uz: 'Davom etish', ru: 'Продолжить' }} onClick={onNext} />}>
       <div className="screen">
@@ -1003,7 +1051,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
               })}
             </div>
             {!tried && <p className="small" style={{ color: T.ink3, fontStyle: 'italic', margin: 0 }}>{tr({ uz: "Avval push'ni bosing ←", ru: 'Сначала нажмите push ←' })}</p>}
-            {picked !== null && <p className="hook-ack fade-step">{tr({ uz: <>Aynan! <b>GitHub Actions</b> — repozitoriyangiz ichidagi bepul lenta tizimi. Unga bir marta yo'l xaritasi (ci.yml) berasiz, u <b>har push'da</b> lentani o'zi aylantiradi. Bugun shu yo'l xaritasini o'zingiz yozasiz.</>, ru: <>Именно! <b>GitHub Actions</b> — бесплатная система ленты прямо в вашем репозитории. Один раз даёте ей карту маршрута (ci.yml) — и она <b>при каждом пуше</b> сама крутит ленту. Сегодня вы напишете эту карту сами.</> })}</p>}
+            {picked !== null && <p className="hook-ack fade-step">{tr(ACK[picked])}</p>}
           </Col>
         </Split></Zoomable>
       </div>
@@ -1052,9 +1100,10 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [show, setShow] = useState(!!storedAnswer);
   const [sc, setSc] = useState(0);
   const done = show;
+  const { tip: _tip, rescue: _resc } = useStuckValve(done, show ? 1 : 0);   // 13-band klapan
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   return (
-    <Stage eyebrow={tr({ uz: 'Tushuncha · lenta tizimi', ru: 'Понятие · система ленты' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "Lentani ko'ring", ru: 'Посмотрите ленту' }} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Tushuncha · lenta tizimi', ru: 'Понятие · система ленты' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !_resc} label={(done || _resc) ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "Lentani ko'ring", ru: 'Посмотрите ленту' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>GitHub Actions — bu <span className="italic" style={{ color: T.accent }}>aslida nima</span>?</>, ru: <>GitHub Actions — что это <span className="italic" style={{ color: T.accent }}>на самом деле</span>?</> })}</h2></div>
         <Mentor>{tr({ uz: <>GitHub Actions — GitHub'ning o'z xizmati: <b style={{ color: T.ink }}>bepul</b>, alohida server kerak emas. Siz yo'l xaritasini yozasiz, lenta har push'da o'zi aylanadi. Natijani <b style={{ color: T.ink }}>Actions</b> bo'limida ko'rasiz. Tugmani bosing.</>, ru: <>GitHub Actions — собственный сервис GitHub: <b style={{ color: T.ink }}>бесплатный</b>, отдельный сервер не нужен. Вы пишете карту маршрута — и лента сама крутится при каждом пуше. Результат смотрите во вкладке <b style={{ color: T.ink }}>Actions</b>. Нажмите кнопку.</> })}</Mentor>
@@ -1072,6 +1121,8 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </Col>
         </div>
         </Zoomable>
+        {_tip && !done && <p className="bhint fade-step">{tr({ uz: "💡 Lentani oching — GitHub uni qayerda va qachon aylantirishini ko'rasiz.", ru: '💡 Откройте ленту — увидите, где и когда GitHub её крутит.' })}</p>}
+        {_resc && !done && <p className="bhint calm fade-step">{tr({ uz: "Qolganini keyinroq birga ko'rib chiqamiz — «Davom etish» ochiq.", ru: 'Остальное разберём вместе позже — «Продолжить» открыто.' })}</p>}
       </div>
     </Stage>
   );
@@ -1082,6 +1133,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [revealed, setRevealed] = useState(storedAnswer ? 3 : 0);
   const [sc, setSc] = useState(0);
   const done = revealed >= 3;
+  const { tip: _tip, rescue: _resc } = useStuckValve(done, revealed);   // 13-band klapan
   const NOTES = [
     { uz: 'Loyiha ildizida maxsus papka — .github bilan boshlanadi.', ru: 'В корне проекта — специальная папка, начинается с .github.' },
     { uz: "Uning ichida workflows papkasi — barcha yo'l xaritalari shu yerda.", ru: 'Внутри неё — папка workflows: все карты маршрута лежат здесь.' },
@@ -1090,7 +1142,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const go = () => { setRevealed(r => Math.min(r + 1, 3)); setSc(n => n + 1); };
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   return (
-    <Stage eyebrow={tr({ uz: 'Tushuncha · joylashuv', ru: 'Понятие · расположение' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "Yo'lni oching", ru: 'Откройте путь' }} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Tushuncha · joylashuv', ru: 'Понятие · расположение' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !_resc} label={(done || _resc) ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "Yo'lni oching", ru: 'Откройте путь' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Yo'l xaritasi <span className="italic" style={{ color: T.accent }}>qayerda</span> saqlanadi?</>, ru: <>Карта маршрута — <span className="italic" style={{ color: T.accent }}>где</span> она хранится?</> })}</h2></div>
         <Mentor>{tr({ uz: <>Yo'l xaritasi aniq bir joyga yoziladi: <span className="mono">.github/workflows/ci.yml</span>. Bu nomlar <b style={{ color: T.ink }}>aniq shunday</b> bo'lishi kerak — GitHub shu papkani o'zi qidiradi. Yo'lni qadam-baqadam oching.</>, ru: <>Карта маршрута пишется в строго определённое место: <span className="mono">.github/workflows/ci.yml</span>. Названия должны быть <b style={{ color: T.ink }}>именно такими</b> — GitHub сам ищет эту папку. Откройте путь шаг за шагом.</> })}</Mentor>
@@ -1109,6 +1161,8 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </Col>
         </div>
         </Zoomable>
+        {_tip && !done && <p className="bhint fade-step">{tr({ uz: "💡 Yo'lni bosqichma-bosqich oching — har qadam oldingisidan nimani oladi?", ru: '💡 Открывайте путь шаг за шагом — что каждый шаг берёт от предыдущего?' })}</p>}
+        {_resc && !done && <p className="bhint calm fade-step">{tr({ uz: "Qolganini keyinroq birga ko'rib chiqamiz — «Davom etish» ochiq.", ru: 'Остальное разберём вместе позже — «Продолжить» открыто.' })}</p>}
       </div>
     </Stage>
   );
@@ -1116,7 +1170,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 
 // ===== SCREEN 4 — TEST 1 =====
 const Screen4 = (props) => (
-  <QuestionScreen {...props} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 1-savol', ru: 'Практика · вопрос 1' })}
+  <QuestionScreen {...props} scope="module-mikro" tip={{ uz: "💡 Yo'l xaritasi qaysi papkada yashashini eslang — GitHub uni o'sha yerdan o'zi topadi.", ru: '💡 Вспомните, в какой папке живёт карта маршрута — GitHub находит её там сам.' }} eyebrow={tr({ uz: 'Mashq · 1-savol', ru: 'Практика · вопрос 1' })}
     questionText="Yo'l xaritasi (workflow) fayli qayerda saqlanadi?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Yo'l xaritasi fayli <span className="italic" style={{ color: T.accent }}>qayerda</span> saqlanadi?</>, ru: <>Файл карты маршрута — <span className="italic" style={{ color: T.accent }}>где</span> он хранится?</> })}</h2></>}
     options={[{ uz: 'src/ papkasi ichida — bu yerga hech qachon yozilmaydi', ru: 'В папке src/ — там, где лежит код проекта' }, { uz: 'package.json fayli ichida', ru: 'Внутри файла package.json' }, { uz: '.github/workflows/ papkasida, .yml fayl sifatida', ru: 'В папке .github/workflows/, в виде .yml-файла' }, { uz: "Hech qayerda — GitHub o'zi biladi", ru: 'Нигде — GitHub сам всё знает' }]} correctIdx={2}
@@ -1140,6 +1194,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [active, setActive] = useState(null);
   const [sc, setSc] = useState(0);
   const done = seen.size >= PARTS.length;
+  const { tip: _tip, rescue: _resc } = useStuckValve(done, seen.size);   // 13-band klapan
   const tap = (id) => { setActive(id); setSeen(prev => { const s = new Set(prev); s.add(id); return s; }); setSc(n => n + 1); };
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   const cur = PARTS.find(p => p.id === active);
@@ -1156,7 +1211,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     </CodeFile>
   );
   return (
-    <Stage eyebrow={tr({ uz: 'Tushuncha · YAML', ru: 'Понятие · YAML' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `3 qoidani ko'ring (${seen.size}/3)`, ru: `Посмотрите 3 правила (${seen.size}/3)` }} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Tushuncha · YAML', ru: 'Понятие · YAML' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !_resc} label={(done || _resc) ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `3 qoidani ko'ring (${seen.size}/3)`, ru: `Посмотрите 3 правила (${seen.size}/3)` }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>YAML nima — nega <span className="italic" style={{ color: T.accent }}>bo'sh joy</span> muhim?</>, ru: <>Что такое YAML — почему <span className="italic" style={{ color: T.accent }}>отступ</span> так важен?</> })}</h2></div>
         <Mentor>{tr({ uz: <>ci.yml — YAML tilida. Unda qavs yo'q: <b style={{ color: T.ink }}>bo'sh joy (chekinish)</b> qaysi qator qaysining ichida turishini bildiradi. 3 ta qoidani bosib o'rganing — keyin yo'l xaritasi tushunarli bo'ladi.</>, ru: <>ci.yml написан на языке YAML. Скобок в нём нет: <b style={{ color: T.ink }}>отступ (пробелы слева)</b> показывает, какая строка внутри какой. Нажмите и изучите 3 правила — после них карта маршрута станет понятной.</> })}</Mentor>
@@ -1174,6 +1229,8 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </Col>
         </div>
         </Zoomable>
+        {_tip && !done && <p className="bhint fade-step">{tr({ uz: "💡 Uchala qoidani ham oching — yo'l xaritasi qaysi uch qismdan yig'iladi?", ru: '💡 Откройте все три правила — из каких трёх частей собирается карта маршрута?' })}</p>}
+        {_resc && !done && <p className="bhint calm fade-step">{tr({ uz: "Qolganini keyinroq birga ko'rib chiqamiz — «Davom etish» ochiq.", ru: 'Остальное разберём вместе позже — «Продолжить» открыто.' })}</p>}
       </div>
     </Stage>
   );
@@ -1190,11 +1247,12 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [active, setActive] = useState(null);
   const [sc, setSc] = useState(0);
   const done = seen.size >= LEVELS.length;
+  const { tip: _tip, rescue: _resc } = useStuckValve(done, seen.size);   // 13-band klapan
   const tap = (id) => { setActive(id); setSeen(prev => { const s = new Set(prev); s.add(id); return s; }); setSc(n => n + 1); };
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   const cur = LEVELS.find(l => l.id === active);
   return (
-    <Stage eyebrow={tr({ uz: 'Tushuncha · ierarxiya', ru: 'Понятие · иерархия' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `3 darajani ko'ring (${seen.size}/3)`, ru: `Посмотрите 3 уровня (${seen.size}/3)` }} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Tushuncha · ierarxiya', ru: 'Понятие · иерархия' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !_resc} label={(done || _resc) ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `3 darajani ko'ring (${seen.size}/3)`, ru: `Посмотрите 3 уровня (${seen.size}/3)` }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Yo'l xaritasi ichida nima — <span className="italic" style={{ color: T.accent }}>Workflow → Job → Step</span> qanday joylashgan?</>, ru: <>Что внутри карты маршрута — как устроены <span className="italic" style={{ color: T.accent }}>Workflow → Job → Step</span>?</> })}</h2></div>
         <Mentor>{tr({ uz: <>Bu darsning markazi. <b style={{ color: T.ink }}>Yo'l xaritasi</b> ichida <b style={{ color: T.ink }}>nuqta</b>, nuqta ichida <b style={{ color: T.ink }}>amal</b>. Har darajani bosing.</>, ru: <>Это сердце урока. Внутри <b style={{ color: T.ink }}>карты маршрута</b> — <b style={{ color: T.ink }}>точка</b>, внутри точки — <b style={{ color: T.ink }}>шаг</b>. Нажмите на каждый уровень.</> })}</Mentor>
@@ -1220,6 +1278,8 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </Col>
         </div>
         </Zoomable>
+        {_tip && !done && <p className="bhint fade-step">{tr({ uz: "💡 Uch darajani birma-bir bosing — qaysi biri ikkinchisining ichida turadi?", ru: '💡 Нажимайте три уровня по очереди — какой из них находится внутри другого?' })}</p>}
+        {_resc && !done && <p className="bhint calm fade-step">{tr({ uz: "Qolganini keyinroq birga ko'rib chiqamiz — «Davom etish» ochiq.", ru: 'Остальное разберём вместе позже — «Продолжить» открыто.' })}</p>}
       </div>
     </Stage>
   );
@@ -1227,7 +1287,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 
 // ===== SCREEN 7 — TEST 2 =====
 const Screen7 = (props) => (
-  <QuestionScreen {...props} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 2-savol', ru: 'Практика · вопрос 2' })}
+  <QuestionScreen {...props} scope="module-mikro" tip={{ uz: "💡 `on:` qatoriga qarang — lentaga start signalini nima beradi?", ru: '💡 Посмотрите на строку `on:` — что подаёт ленте стартовый сигнал?' }} eyebrow={tr({ uz: 'Mashq · 2-savol', ru: 'Практика · вопрос 2' })}
     questionText="Workflow, job va step qanday joylashgan?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Yo'l xaritasi, nuqta va amal qanday <span className="italic" style={{ color: T.accent }}>joylashgan</span>?</>, ru: <>Как <span className="italic" style={{ color: T.accent }}>устроены</span> карта маршрута, точка и шаг?</> })}</h2></>}
     options={[{ uz: "Yo'l xaritasi ichida nuqta, nuqta ichida amal", ru: 'Внутри карты маршрута — точка, внутри точки — шаг' }, { uz: "Amal ichida nuqta, nuqta ichida yo'l xaritasi", ru: 'Внутри шага — точка, внутри точки — карта маршрута' }, { uz: 'Uchchalasi ham bir xil darajada', ru: 'Все три — на одном уровне' }, { uz: "Nuqta ichida yo'l xaritasi, yo'l xaritasi ichida amal", ru: 'Внутри точки — карта маршрута, внутри карты — шаг' }]} correctIdx={0}
@@ -1251,11 +1311,12 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [active, setActive] = useState(null);
   const [sc, setSc] = useState(0);
   const done = seen.size >= TRIG.length;
+  const { tip: _tip, rescue: _resc } = useStuckValve(done, seen.size);   // 13-band klapan
   const tap = (id) => { setActive(id); setSeen(prev => { const s = new Set(prev); s.add(id); return s; }); setSc(n => n + 1); };
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   const cur = TRIG.find(t => t.id === active);
   return (
-    <Stage eyebrow={tr({ uz: 'Tushuncha · START SIGNALI', ru: 'Понятие · СТАРТ-СИГНАЛ' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `Signallarni ko'ring (${seen.size}/3)`, ru: `Посмотрите сигналы (${seen.size}/3)` }} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Tushuncha · START SIGNALI', ru: 'Понятие · СТАРТ-СИГНАЛ' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !_resc} label={(done || _resc) ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `Signallarni ko'ring (${seen.size}/3)`, ru: `Посмотрите сигналы (${seen.size}/3)` }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <><span className="mono" style={{ color: T.accent }}>on:</span> — lenta <span className="italic" style={{ color: T.accent }}>qachon</span> aylanadi?</>, ru: <><span className="mono" style={{ color: T.accent }}>on:</span> — <span className="italic" style={{ color: T.accent }}>когда</span> закрутится лента?</> })}</h2></div>
         <Mentor>{tr({ uz: <><span className="mono">on:</span> — yo'l xaritasining <b style={{ color: T.ink }}>START SIGNALI</b>: qaysi hodisa lentani aylantiradi. Bizning maqsad — <span className="mono">on: push</span>. Uchala signalni bosib ko'ring va lenta qachon aylanishini ko'ring.</>, ru: <><span className="mono">on:</span> — <b style={{ color: T.ink }}>СТАРТ-СИГНАЛ</b> карты маршрута: какое событие запускает ленту. Наша цель — <span className="mono">on: push</span>. Понажимайте все три сигнала и посмотрите, когда крутится лента.</> })}</Mentor>
@@ -1279,6 +1340,8 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </Col>
         </div>
         </Zoomable>
+        {_tip && !done && <p className="bhint fade-step">{tr({ uz: "💡 Har signalni bosing — lentani nima ishga tushirishi mumkinligini solishtiring.", ru: '💡 Нажмите каждый сигнал — сравните, что может запустить ленту.' })}</p>}
+        {_resc && !done && <p className="bhint calm fade-step">{tr({ uz: "Qolganini keyinroq birga ko'rib chiqamiz — «Davom etish» ochiq.", ru: 'Остальное разберём вместе позже — «Продолжить» открыто.' })}</p>}
       </div>
     </Stage>
   );
@@ -1289,9 +1352,10 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [show, setShow] = useState(!!storedAnswer);
   const [sc, setSc] = useState(0);
   const done = show;
+  const { tip: _tip, rescue: _resc } = useStuckValve(done, show ? 1 : 0);   // 13-band klapan
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   return (
-    <Stage eyebrow={tr({ uz: 'Tushuncha · LENTA MASHINASI', ru: 'Понятие · МАШИНА ЛЕНТЫ' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "Mashinani ko'ring", ru: 'Посмотрите машину' }} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Tushuncha · LENTA MASHINASI', ru: 'Понятие · МАШИНА ЛЕНТЫ' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !_resc} label={(done || _resc) ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "Mashinani ko'ring", ru: 'Посмотрите машину' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <><span className="mono" style={{ color: T.accent }}>runs-on</span> — nuqta <span className="italic" style={{ color: T.accent }}>qaysi mashinada</span> ishlaydi?</>, ru: <><span className="mono" style={{ color: T.accent }}>runs-on</span> — <span className="italic" style={{ color: T.accent }}>на какой машине</span> работает точка?</> })}</h2></div>
         <Mentor>{tr({ uz: <>Tekshiruv bir joyda ishlashi kerak. <span className="mono">runs-on: ubuntu-latest</span> — GitHub sizga <b style={{ color: T.ink }}>bepul, toza LENTA MASHINASI</b> beradi. Har safar yangi mashinada — toza sharoitda. Tugmani bosing.</>, ru: <>Проверке нужно где-то работать. <span className="mono">runs-on: ubuntu-latest</span> — GitHub выдаёт вам <b style={{ color: T.ink }}>бесплатную, чистую МАШИНУ ЛЕНТЫ</b>. Каждый раз новая машина — чистые условия. Нажмите кнопку.</> })}</Mentor>
@@ -1315,6 +1379,8 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </Col>
         </div>
         </Zoomable>
+        {_tip && !done && <p className="bhint fade-step">{tr({ uz: "💡 Mashinani oching — lenta qaysi mashinada yurishini kim belgilaydi?", ru: '💡 Откройте машину — кто задаёт, на какой машине идёт лента?' })}</p>}
+        {_resc && !done && <p className="bhint calm fade-step">{tr({ uz: "Qolganini keyinroq birga ko'rib chiqamiz — «Davom etish» ochiq.", ru: 'Остальное разберём вместе позже — «Продолжить» открыто.' })}</p>}
       </div>
     </Stage>
   );
@@ -1322,7 +1388,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 
 // ===== SCREEN 10 — TEST 3 =====
 const Screen10 = (props) => (
-  <QuestionScreen {...props} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 3-savol', ru: 'Практика · вопрос 3' })}
+  <QuestionScreen {...props} scope="module-mikro" tip={{ uz: "💡 Bosqichlar tartibini eslang: yuk tekshirilmasdan turib o'ralishi mumkinmi?", ru: '💡 Вспомните порядок шагов: можно ли упаковать груз, не проверив его?' }} eyebrow={tr({ uz: 'Mashq · 3-savol', ru: 'Практика · вопрос 3' })}
     questionText="ci.yml'da on: push va runs-on: nimaga javob beradi?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <><span className="mono" style={{ color: T.accent }}>on: push</span> va <span className="mono" style={{ color: T.accent }}>runs-on</span> <span className="italic" style={{ color: T.accent }}>nimaga</span> javob beradi?</>, ru: <><span className="mono" style={{ color: T.accent }}>on: push</span> и <span className="mono" style={{ color: T.accent }}>runs-on</span> — <span className="italic" style={{ color: T.accent }}>за что</span> они отвечают?</> })}</h2></>}
     options={[{ uz: "Ikkalasi ham aynan bir xil narsani anglatadi, hech qanday farqi yo'q butunlay", ru: 'Оба означают ровно одно и то же, никакой разницы между ними нет' }, { uz: "runs-on kodni serverga o'zi push qilib yuboradi", ru: 'runs-on сам пушит код на сервер' }, { uz: 'on: push — mashinani tanlaydi, runs-on — qachonligini', ru: 'on: push выбирает машину, а runs-on — время запуска' }, { uz: "on: push qachon, runs-on qaysi mashinada ishlashini belgilaydi", ru: 'on: push задаёт когда, runs-on — на какой машине работать' }]} correctIdx={3}
@@ -1345,11 +1411,12 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [active, setActive] = useState(null);
   const [sc, setSc] = useState(0);
   const done = seen.size >= KINDS.length;
+  const { tip: _tip, rescue: _resc } = useStuckValve(done, seen.size);   // 13-band klapan
   const tap = (id) => { setActive(id); setSeen(prev => { const s = new Set(prev); s.add(id); return s; }); setSc(n => n + 1); };
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   const cur = KINDS.find(k => k.id === active);
   return (
-    <Stage eyebrow={tr({ uz: 'Tushuncha · amal turlari', ru: 'Понятие · виды шагов' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `2 turni ko'ring (${seen.size}/2)`, ru: `Посмотрите 2 вида (${seen.size}/2)` }} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Tushuncha · amal turlari', ru: 'Понятие · виды шагов' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !_resc} label={(done || _resc) ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `2 turni ko'ring (${seen.size}/2)`, ru: `Посмотрите 2 вида (${seen.size}/2)` }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Amal qanday yoziladi — <span className="italic" style={{ color: T.accent }}>uses</span>mi yoki <span className="italic" style={{ color: T.accent }}>run</span>mi?</>, ru: <>Как записать шаг — через <span className="italic" style={{ color: T.accent }}>uses</span> или <span className="italic" style={{ color: T.accent }}>run</span>?</> })}</h2></div>
         <Mentor>{tr({ uz: <>Har amal yo tayyor blok chaqiradi (<span className="mono">uses</span>), yo buyruq bajaradi (<span className="mono">run</span>). Ikkalasini bosib ko'ring.</>, ru: <>Каждый шаг либо вызывает готовый блок (<span className="mono">uses</span>), либо выполняет команду (<span className="mono">run</span>). Нажмите на оба.</> })}</Mentor>
@@ -1374,6 +1441,8 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </Col>
         </div>
         </Zoomable>
+        {_tip && !done && <p className="bhint fade-step">{tr({ uz: "💡 Ikkala turni ham oching — biri tayyor blok, ikkinchisi siz yozadigan buyruq.", ru: '💡 Откройте оба вида — один готовый блок, второй — команда, которую пишете вы.' })}</p>}
+        {_resc && !done && <p className="bhint calm fade-step">{tr({ uz: "Qolganini keyinroq birga ko'rib chiqamiz — «Davom etish» ochiq.", ru: 'Остальное разберём вместе позже — «Продолжить» открыто.' })}</p>}
       </div>
     </Stage>
   );
@@ -1382,6 +1451,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // ===== SCREEN 12 — DRAG-DROP: 4 STANDART AMAL TARTIBI =====
 const Screen12 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [done, setDone] = useState(!!storedAnswer);
+  const { tip: _tip, rescue: _resc } = useStuckValve(done, done ? 1 : 0);   // 13-band klapan
   const ITEMS = [
     { id: 'checkout', label: '🧩 uses: actions/checkout@v4' },
     { id: 'node', label: '🧩 uses: actions/setup-node@v4' },
@@ -1390,13 +1460,15 @@ const Screen12 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   ];
   const HINTS = [{ uz: '1 — kodni mashinaga olib keladi', ru: '1 — приносит код на машину' }, { uz: "2 — Node.js o'rnatadi", ru: '2 — устанавливает Node.js' }, { uz: "3 — kutubxonalarni yig'adi", ru: '3 — собирает библиотеки' }, { uz: "4 — kodni skanerdan o'tkazadi", ru: '4 — прогоняет код через сканер' }];
   return (
-    <Stage eyebrow={tr({ uz: 'Amaliyot · tartib', ru: 'Практика · порядок' })} screen={screen} scrollSignal={done ? 1 : 0} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Amallarni tartiblang', ru: 'Расставьте шаги' }} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Amaliyot · tartib', ru: 'Практика · порядок' })} screen={screen} scrollSignal={done ? 1 : 0} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !_resc} label={(done || _resc) ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Amallarni tartiblang', ru: 'Расставьте шаги' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Har yo'l xaritasi qaysi <span className="italic" style={{ color: T.accent }}>4 amal</span>dan boshlanadi?</>, ru: <>С каких <span className="italic" style={{ color: T.accent }}>4 шагов</span> начинается почти каждая карта маршрута?</> })}</h2></div>
         <Mentor>{tr({ uz: "Tartib muhim: avval kodni olamiz, Node o'rnatamiz, kutubxonalarni yig'amiz, keyin skaner qilamiz. Bo'laklarni sudrab to'g'ri tartibga joylang.", ru: 'Порядок важен: сначала берём код, ставим Node, собираем библиотеки, потом сканируем. Перетащите блоки в правильном порядке.' })}</Mentor>
         <DragDropOrder items={ITEMS} hints={HINTS} doneText={{ uz: "checkout → setup-node → install → test — to'g'ri tartib!", ru: 'checkout → setup-node → install → test — правильный порядок!' }}
           onSolved={() => { if (!done) { setDone(true); if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); } }} />
         {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "checkout → setup-node → install → test. Endi bu tartibni yo'l xaritasida o'zingiz yozasiz.", ru: 'checkout → setup-node → install → test. Теперь вы сами запишете этот порядок в карте маршрута.' })}</p></div>}
+        {_tip && !done && <p className="bhint fade-step">{tr({ uz: "💡 Amallarni tartibga soling: lenta qaysi ishni boshqasidan OLDIN bajarishi kerak?", ru: '💡 Расставьте действия по порядку: какую работу лента должна сделать РАНЬШЕ другой?' })}</p>}
+        {_resc && !done && <p className="bhint calm fade-step">{tr({ uz: "Qolganini keyinroq birga ko'rib chiqamiz — «Davom etish» ochiq.", ru: 'Остальное разберём вместе позже — «Продолжить» открыто.' })}</p>}
       </div>
     </Stage>
   );
@@ -1457,9 +1529,10 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     return () => { clearInterval(i1); clearInterval(i2); };
   }, [run]);
   const done = run && t1 >= 40 && t2 >= 8;
+  const { tip: _tip, rescue: _resc } = useStuckValve(done, (run ? 1 : 0) + t2);   // 13-band klapan
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   return (
-    <Stage eyebrow={tr({ uz: 'Tushuncha · YAQIN JAVON', ru: 'Понятие · БЛИЖНЯЯ ПОЛКА' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Ikkalasini solishtiring', ru: 'Сравните оба' }} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Tushuncha · YAQIN JAVON', ru: 'Понятие · БЛИЖНЯЯ ПОЛКА' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !_resc} label={(done || _resc) ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Ikkalasini solishtiring', ru: 'Сравните оба' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <><span className="italic" style={{ color: T.accent }}>Cache</span> — YAQIN JAVON nima uchun tezlashtiradi?</>, ru: <><span className="italic" style={{ color: T.accent }}>Cache</span> — почему БЛИЖНЯЯ ПОЛКА ускоряет работу?</> })}</h2></div>
         <Mentor>{tr({ uz: <>📦 YIG'ISH har safar noldan yuklasa — sekin. <span className="mono">cache</span> — o'tgan safargi tayyor javobni <b style={{ color: T.ink }}>yaqin joyda</b> saqlab qo'yadi. Ikkala holatni solishtiring.</>, ru: <>Если 📦 СБОРКА каждый раз качает всё с нуля — это медленно. <span className="mono">cache</span> хранит прошлый готовый результат <b style={{ color: T.ink }}>под рукой</b>. Сравните оба случая.</> })}</Mentor>
@@ -1490,6 +1563,17 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </Col>
         </div>
         </Zoomable>
+        {/* 🔴 F-0820-407 — TABLO (status badge) obyekti shu yerda TUG'ILADI.
+            Sabab: arena savoli TABLO ni so'raydi, 4c-03 esa uni 35 marta ishlatadi —
+            ilgari obyekt faqat kod-izohidagi lug'atda bor edi, ekranda YO'Q edi.
+            4c-01 lug'at-e'loni naqshi: atama olam ichida nomlanadi va O'Z darsida ochiladi. */}
+        <div className="frame-soft fade-up delay-3">
+          <p className="note-h" style={{ color: T.accent }}>{tr({ uz: '🚦 Va yana bittasi — TABLO (status badge)', ru: '🚦 И ещё одно — ТАБЛО (status badge)' })}</p>
+          <p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Lenta yurib bo'lgach, natijasini <b style={{ color: T.ink }}>ko'chaga chiqarib qo'yish</b> mumkin: repozitoriya sahifasining boshida kichik <b style={{ color: T.ink }}>TABLO</b> turadi va yozib qo'yadi — lenta hozir yashilmi yoki qizil. Uni bosgan har kim jonli holatni ko'radi.</>, ru: <>Когда лента отработала, её результат можно <b style={{ color: T.ink }}>вынести на улицу</b>: в начале страницы репозитория стоит маленькое <b style={{ color: T.ink }}>ТАБЛО</b> и показывает — лента сейчас зелёная или красная. Кто угодно нажмёт и увидит живое состояние.</> })}</p>
+          <p className="body" style={{ margin: '8px 0 0', color: T.ink2 }}>{tr({ uz: <>Yashil va qizil <b>chiroq</b> — bitta yurishning natijasi (siz uni yuqorida ko'rdingiz); <b>TABLO</b> esa <b>oxirgi</b> yurishni doim ko'rsatib turadigan yorliq.</>, ru: <>Зелёный и красный <b>свет</b> — итог одного прогона (вы видели его выше); <b>ТАБЛО</b> — табличка, которая постоянно показывает <b>последний</b> прогон.</> })}</p>
+        </div>
+        {_tip && !done && <p className="bhint fade-step">{tr({ uz: "💡 Solishtirish tugmasini bosing va ikki chiziq oxirigacha yurishini kuting.", ru: '💡 Нажмите кнопку сравнения и дождитесь, пока обе полосы дойдут до конца.' })}</p>}
+        {_resc && !done && <p className="bhint calm fade-step">{tr({ uz: "Qolganini keyinroq birga ko'rib chiqamiz — «Davom etish» ochiq.", ru: 'Остальное разберём вместе позже — «Продолжить» открыто.' })}</p>}
       </div>
     </Stage>
   );
@@ -1497,7 +1581,7 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 
 // ===== SCREEN 15 — TEST 4 =====
 const Screen15 = (props) => (
-  <QuestionScreen {...props} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 4-savol', ru: 'Практика · вопрос 4' })}
+  <QuestionScreen {...props} scope="module-mikro" tip={{ uz: "💡 Biri tayyor blokni chaqiradi, ikkinchisi terminal buyrug'ini yozadi — qaysi biri qaysi?", ru: '💡 Один вызывает готовый блок, другой пишет команду терминала — который из них какой?' }} eyebrow={tr({ uz: 'Mashq · 4-savol', ru: 'Практика · вопрос 4' })}
     questionText="uses va run orasidagi farq nima?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <><span className="mono" style={{ color: T.accent }}>uses</span> bilan <span className="mono" style={{ color: T.accent }}>run</span> orasidagi <span className="italic" style={{ color: T.accent }}>farq</span> nima?</>, ru: <>В чём <span className="italic" style={{ color: T.accent }}>разница</span> между <span className="mono" style={{ color: T.accent }}>uses</span> и <span className="mono" style={{ color: T.accent }}>run</span>?</> })}</h2></>}
     options={[{ uz: 'uses va run — ikkalasi ham aynan bir xil ishni bajaradi', ru: 'uses и run делают ровно одно и то же' }, { uz: 'uses tayyor amalni chaqiradi, run buyruq bajaradi', ru: 'uses вызывает готовый шаг, run выполняет команду' }, { uz: 'matrix — faqat bitta lentani tezlashtiradi', ru: 'matrix лишь ускоряет одну-единственную ленту' }, { uz: "cache har doim skanerni o'chirib qo'yadi", ru: 'cache всегда отключает сканер' }]} correctIdx={1}
@@ -1515,10 +1599,11 @@ const Screen16 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [tried, setTried] = useState(() => new Set(storedAnswer?.tried || []));
   const [sc, setSc] = useState(0);
   const done = tried.has('open') && tried.has('safe');
+  const { tip: _tip, rescue: _resc } = useStuckValve(done, tried.size);   // 13-band klapan
   const go = (id) => { setTried(prev => { const s = new Set(prev); s.add(id); return s; }); setSc(n => n + 1); };
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true, tried: ['open', 'safe'] }); }, [done]);
   return (
-    <Stage eyebrow={tr({ uz: 'Tushuncha · SEYF', ru: 'Понятие · СЕЙФ' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Ikkalasini sinang', ru: 'Испытайте оба' }} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Tushuncha · SEYF', ru: 'Понятие · СЕЙФ' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !_resc} label={(done || _resc) ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Ikkalasini sinang', ru: 'Испытайте оба' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Maxfiy kalitni <span className="italic" style={{ color: T.accent }}>qayerga</span> yozamiz?</>, ru: <><span className="italic" style={{ color: T.accent }}>Куда</span> записать секретный ключ?</> })}</h2></div>
         <Mentor>{tr({ uz: <>Yo'l xaritasida ba'zan API kalit kerak bo'ladi. Uni <b style={{ color: T.danger }}>ochiq yozish</b> yoki <b style={{ color: T.success }}>SEYFga qo'yish</b> mumkin. Ikkalasini sinab ko'ring — oqibati boshqacha.</>, ru: <>Иногда карте маршрута нужен API-ключ. Его можно <b style={{ color: T.danger }}>написать открыто</b> или <b style={{ color: T.success }}>убрать в СЕЙФ</b>. Попробуйте оба варианта — последствия разные.</> })}</Mentor>
@@ -1541,6 +1626,8 @@ const Screen16 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         </div>
         {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Qoida: maxfiy kalit doim <span className="mono">{"${{ secrets.NOM }}"}</span> orqali — hech qachon to'g'ridan-to'g'ri yozilmaydi.</>, ru: <>Правило: секретный ключ — всегда через <span className="mono">{"${{ secrets.NOM }}"}</span>, и никогда напрямую.</> })}</p></div>}
         </Zoomable>
+        {_tip && !done && <p className="bhint fade-step">{tr({ uz: "💡 Ikkalasini ham sinang: biri ochiq yozilgan, ikkinchisi seyfdan olinadi.", ru: '💡 Попробуйте оба: один записан открыто, второй берётся из сейфа.' })}</p>}
+        {_resc && !done && <p className="bhint calm fade-step">{tr({ uz: "Qolganini keyinroq birga ko'rib chiqamiz — «Davom etish» ochiq.", ru: 'Остальное разберём вместе позже — «Продолжить» открыто.' })}</p>}
       </div>
     </Stage>
   );
@@ -1586,6 +1673,7 @@ const Screen17 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [result, setResult] = useState(null);
   const [sending, setSending] = useState(false);
   const [solvedOnce, setSolvedOnce] = useState(!!storedAnswer?.correct);
+  const { tip: _tip, rescue: _resc } = useStuckValve(solvedOnce, (trigger ? 1 : 0) + (solvedOnce ? 1 : 0));   // 13-band klapan
   const [sc, setSc] = useState(0);
   const sendTimer = useRef(null);
   useEffect(() => () => clearTimeout(sendTimer.current), []);
@@ -1603,7 +1691,7 @@ const Screen17 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     }, 780);
   };
   return (
-    <Stage eyebrow={tr({ uz: "🛫 Markaziy · yo'l xaritasi", ru: '🛫 Центральный · карта маршрута' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!solvedOnce} label={solvedOnce ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Lentani yashil qiling', ru: 'Сделайте ленту зелёной' }} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: "🛫 Markaziy · yo'l xaritasi", ru: '🛫 Центральный · карта маршрута' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!solvedOnce && !_resc} label={(solvedOnce || _resc) ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Lentani yashil qiling', ru: 'Сделайте ленту зелёной' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Yo'l xaritasini <span className="italic" style={{ color: T.accent }}>o'zingiz</span> yozing.</>, ru: <>Напишите карту маршрута <span className="italic" style={{ color: T.accent }}>сами</span>.</> })}</h2></div>
         <Mentor>{tr({ uz: <>START SIGNALINI, LENTA MASHINASINI va amallarni tanlang, so'ng <b style={{ color: T.ink }}>«🚀 Lentaga qo'ying»</b> bosing. Xaritangiz qanday yozilgan bo'lsa — lenta <b style={{ color: T.ink }}>aynan shunday</b> aylanadi. Xato bo'lsa — tuzatib qayta yuboring.</>, ru: <>Выберите СТАРТ-СИГНАЛ, МАШИНУ ЛЕНТЫ и шаги, затем нажмите <b style={{ color: T.ink }}>«🚀 Положить на ленту»</b>. Как написана ваша карта — <b style={{ color: T.ink }}>ровно так</b> и закрутится лента. Ошиблись — поправьте и отправьте снова.</> })}</Mentor>
@@ -1660,6 +1748,8 @@ const Screen17 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </Col>
         </div>
         </Zoomable>
+        {_tip && !solvedOnce && <p className="bhint fade-step">{tr({ uz: "💡 Lentani yashil qilish uchun qizil chiroq sababini yo'l xaritasidan toping.", ru: '💡 Чтобы лента стала зелёной, найдите причину красного света в карте маршрута.' })}</p>}
+        {_resc && !solvedOnce && <p className="bhint calm fade-step">{tr({ uz: "Qolganini keyinroq birga ko'rib chiqamiz — «Davom etish» ochiq.", ru: 'Остальное разберём вместе позже — «Продолжить» открыто.' })}</p>}
       </div>
     </Stage>
   );
@@ -1683,6 +1773,7 @@ const Screen18 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [picked, setPicked] = useState(storedAnswer?.uiPicked ?? null);
   const [recapOpen, setRecapOpen] = useState(false);
   const done = picked !== null;
+  const { tip: _tip, rescue: _resc } = useStuckValve(done, done ? 1 : 0);   // 13-band klapan
   const correctIdx = 0;
   const pick = (i) => {
     if (done) return;
@@ -1691,10 +1782,10 @@ const Screen18 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     onAnswer(screen, { stage: 'final', screenIdx: screen, question: 'Lenta jurnali — qizil chiroq sababi', uiPicked: i, correct: isCorrect, solved: true, picked: isCorrect ? 0 : 1 });
   };
   return (
-    <Stage eyebrow={tr({ uz: 'Yakuniy · LENTA JURNALI', ru: 'Финал · ЖУРНАЛ ЛЕНТЫ' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Sababni toping', ru: 'Найдите причину' }} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Yakuniy · LENTA JURNALI', ru: 'Финал · ЖУРНАЛ ЛЕНТЫ' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done && !_resc} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : _resc ? { uz: "Jurnalni birga o'qiymiz →", ru: 'Прочитаем журнал вместе →' } : { uz: 'Sababni toping', ru: 'Найдите причину' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(14px,2.2vw,20px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Qizil chiroq yondi — <span className="italic" style={{ color: T.accent }}>sababini</span> jurnaldan toping.</>, ru: <>Загорелся красный — найдите <span className="italic" style={{ color: T.accent }}>причину</span> в журнале.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Foydalanuvchi telefonida buzuq sayt chiqdi. Quyidagi LENTA JURNALIGA qarang va sababni toping. <b style={{ color: T.accent }}>Faqat bitta urinish bor</b> — diqqat bilan tanlang.</>, ru: <>На телефоне пользователя открылся сломанный сайт. Посмотрите на ЖУРНАЛ ЛЕНТЫ ниже и найдите причину. <b style={{ color: T.accent }}>Попытка всего одна</b> — выбирайте внимательно.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Foydalanuvchi telefonida buzuq sayt chiqdi. Mana bu LENTA JURNALIGA qarang va sababni toping. <b style={{ color: T.accent }}>Faqat bitta urinish bor</b> — diqqat bilan tanlang.</>, ru: <>На телефоне пользователя открылся сломанный сайт. Посмотрите на ЖУРНАЛ ЛЕНТЫ ниже и найдите причину. <b style={{ color: T.accent }}>Попытка всего одна</b> — выбирайте внимательно.</> })}</Mentor>
         <Split>
           <Col>
             <div className="term">
@@ -1723,6 +1814,8 @@ const Screen18 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </Col>
         </Split>
         {recapOpen && RECAPS[screen] && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} />}
+        {_tip && !done && <p className="bhint fade-step">{tr({ uz: "💡 Jurnalni oxirgi qizil qatorgacha o'qing — xato qaysi nuqtada to'xtaganini aytadi.", ru: '💡 Читайте журнал до последней красной строки — она говорит, на какой точке всё встало.' })}</p>}
+        {_resc && !done && <p className="bhint calm fade-step">{tr({ uz: "Jurnalni keyinroq birga o'qiymiz — hozir davom etsangiz bo'ladi.", ru: 'Прочитаем журнал вместе позже — сейчас можно продолжить.' })}</p>}
       </div>
     </Stage>
   );
@@ -2182,8 +2275,9 @@ function QuizArena({ live, onClose, startSolo }) {
 
       {phase === 'done' && (
         <div className="qz-view fade-step">
-          <Confetti />
-          <h2 className="qz-h">{tr({ uz: '🏆 Test yakunlandi!', ru: '🏆 Тест завершён!' })}</h2>
+          {/* 141-qonun (F-0820-402): yakun-marosimi BITTA — konfetti podiumda qoladi.
+              Bu yerda tasdiq: o'quvchi yakunni ko'radi, bayram takrorlanmaydi. */}
+          <h2 className="qz-h">{tr({ uz: 'Test yakunlandi', ru: 'Тест завершён' })}</h2>
           {solo ? (
             <div className="qz-solo-res">
               <div className="qz-solo-pts">{soloScore.pts}</div>
@@ -2331,22 +2425,46 @@ const MentorPracticeStats = ({ live, screen }) => {
     return () => { on = false; clearTimeout(t); };
   }, [live && live.pin, screen]);
   if (!live || live.mode !== 'mentor') return null;
-  const players = data.players || [];
+  // 129-qonun (F-0819-57): bo'sh apparat ko'rsatilmaydi — birinchi o'quvchi qo'shilgach
+  // panel o'zi paydo bo'ladi (har 3 s da yangilanadi).
+  if (data.players === null || data.players.length === 0) return null;
+  const players = data.players;
   const doers = players.filter(p => data.doneIds.has(p.id));
   const waiting = players.filter(p => !data.doneIds.has(p.id));
   return (
     <div className="lp-mstats fade-up">
       <div className="card-lbl" style={{ color: T.blue }}>{tr({ uz: '👀 Kim bajardi —', ru: '👀 Кто выполнил —' })} {doers.length}/{players.length}</div>
-      {data.players === null ? (
-        <p className="small" style={{ color: T.ink3, margin: 0, fontStyle: 'italic' }}>{tr({ uz: 'Yuklanmoqda…', ru: 'Загрузка…' })}</p>
-      ) : players.length === 0 ? (
-        <p className="small" style={{ color: T.ink3, margin: 0, fontStyle: 'italic' }}>{tr({ uz: "Hali hech kim qo'shilmagan.", ru: 'Пока никто не присоединился.' })}</p>
-      ) : (
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
-          {doers.map(p => <span key={p.id} className="mstats-wait-chip" style={{ background: T.successSoft, color: T.success }}>✓ {p.nickname}</span>)}
-          {waiting.map(p => <span key={p.id} className="mstats-wait-chip" style={{ opacity: 0.6 }}>⏳ {p.nickname}</span>)}
-        </div>
-      )}
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
+        {doers.map(p => <span key={p.id} className="mstats-wait-chip" style={{ background: T.successSoft, color: T.success }}>✓ {p.nickname}</span>)}
+        {waiting.map(p => <span key={p.id} className="mstats-wait-chip" style={{ opacity: 0.6 }}>⏳ {p.nickname}</span>)}
+      </div>
+    </div>
+  );
+};
+// O'QUVCHI ko'radigan sinf-holati (45-qonun) — sof O'QISH, ball-relsga yozmaydi.
+// Manba-etalon: m3-09 `ReactApiPostLesson` (kanonik nusxa).
+// 🔴 F-0820-283 saboqi: komponent ko'chirilganda `.done-mini` CSS'i ham BIRGA ko'chadi.
+const StudentPracticePulse = ({ live, screen }) => {
+  const [data, setData] = useState(null);
+  useEffect(() => {
+    if (!live || live.mode !== 'student' || !live.pin) return;
+    let on = true, t = null;
+    const tick = async () => {
+      try {
+        const [players, rows] = await Promise.all([livePlayers(live.pin), liveAnswers(live.pin, PRACTICE_BASE + screen)]);
+        if (on) setData({ total: players.length, done: new Set(rows.map(r => r.player_id)).size });
+      } catch {}
+      if (on) t = setTimeout(tick, 3000);
+    };
+    tick();
+    return () => { on = false; clearTimeout(t); };
+  }, [live && live.pin, screen]);
+  if (!live || live.mode !== 'student' || !data || data.total === 0) return null;
+  const doing = Math.max(0, data.total - data.done);
+  return (
+    <div className="done-mini fade-up">
+      👥 {tr({ uz: 'Sinfda:', ru: 'В классе:' })} <b>{data.done}</b> {tr({ uz: 'bajardi', ru: 'выполнили' })}
+      {doing > 0 && <span className="dm-sub">· ✏️ {doing} {tr({ uz: 'hali bajarmoqda', ru: 'ещё выполняют' })}</span>}
     </div>
   );
 };
@@ -2374,6 +2492,7 @@ function ScreenLivePractice({ title, task, checklist, screen, storedAnswer, onAn
               <p className="body" style={{ margin: 0, color: T.ink }}>{tr(task)}</p>
             </div>
             <MentorPracticeStats live={_live} screen={screen} />
+            <StudentPracticePulse live={_live} screen={screen} />
           </Col>
           <Col>
             <p className="flow-label">{tr({ uz: 'Bosqichlar — belgilab boring', ru: 'Шаги — отмечайте по ходу' })}</p>
@@ -2391,7 +2510,7 @@ function ScreenLivePractice({ title, task, checklist, screen, storedAnswer, onAn
             <button className={`lp-done-btn ${done ? 'is-done' : ''}`} disabled={done} onClick={complete}>
               {done ? tr({ uz: '✓ Bajarildi — mentorni kuting', ru: '✓ Выполнено — ждите ментора' }) : tr({ uz: '✅ Bajardim', ru: '✅ Выполнил' })}
             </button>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Zo'r! Yo'l xaritangizni yozdingiz. Mentor tekshirib, keyingi qadamga o'tkazadi.", ru: 'Отлично! Вы написали свою карту маршрута. Ментор проверит и переведёт вас на следующий шаг.' })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Ajoyib! Yo'l xaritangizni yozdingiz. Mentor tekshirib, keyingi qadamga o'tkazadi.", ru: 'Отлично! Вы написали свою карту маршрута. Ментор проверит и переведёт вас на следующий шаг.' })}</p></div>}
           </Col>
         </div>
       </div>
@@ -2689,8 +2808,8 @@ export default function GithubActionsLesson({ lang: langProp, onFinished }) {
         .feedback-block { max-height: 0; opacity: 0; overflow: hidden; transition: max-height 0.4s ease-out, opacity 0.3s ease-out 0.1s, margin-top 0.4s ease-out; margin-top: 0; }
         .feedback-block.visible { max-height: 800px; opacity: 1; margin-top: clamp(14px,2vw,20px); }
 
-        .btn { font-family: 'Manrope'; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.ink}; color: ${T.bg}; border: none; border-radius: 12px; box-shadow: 0 6px 18px -4px rgba(${T.shadowBase},0.32); padding: clamp(11px,1.6vw,13px) clamp(20px,2.5vw,26px); font-size: clamp(13px,1.6vw,15px); }
-        .btn:hover:not(:disabled) { background: ${T.accent}; box-shadow: 0 10px 24px -4px rgba(255,79,40,0.45); }
+        .btn { font-family: 'Manrope'; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.accent}; color: #fff; border: none; border-radius: 12px; box-shadow: 0 6px 18px -4px rgba(${T.shadowBase},0.32); padding: clamp(11px,1.6vw,13px) clamp(20px,2.5vw,26px); font-size: clamp(13px,1.6vw,15px); }
+        .btn:hover:not(:disabled) { background: #E03E1B; box-shadow: 0 10px 24px -4px rgba(255,79,40,0.45); }
         .btn:disabled { opacity: 0.55; cursor: not-allowed; box-shadow: none; }
         .btn-white-accent { font-family: 'Manrope'; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.paper}; color: ${T.accent}; border: none; border-radius: 12px; box-shadow: 0 8px 22px -4px rgba(255,79,40,0.35), 0 0 0 1px rgba(255,79,40,0.12); }
         .btn-white-accent:hover:not(:disabled) { background: ${T.accent}; color: #fff; }
@@ -3125,9 +3244,9 @@ export default function GithubActionsLesson({ lang: langProp, onFinished }) {
         .mstats-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
         .mstats-lbl { font-family: 'Manrope'; font-weight: 800; font-size: 12.5px; letter-spacing: 0.07em; text-transform: uppercase; color: ${T.blue}; }
         .mstats-n { font-family: 'Manrope'; font-size: 13.5px; font-weight: 600; color: ${T.ink2}; }
-        .mstats-reveal { font-family: 'Manrope'; font-weight: 700; font-size: 12.5px; background: ${T.ink}; color: #fff; border: none; border-radius: 99px; padding: 7px 14px; cursor: pointer; white-space: nowrap; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.35); transition: all 0.2s; }
-        .mstats-reveal:hover { background: ${T.accent}; box-shadow: 0 6px 16px -4px rgba(255,79,40,0.5); }
-        .mstats-reveal.ready { background: ${T.accent}; animation: mstats-pulse 1.6s ease-in-out infinite; }
+        .mstats-reveal { font-family: 'Manrope'; font-weight: 700; font-size: 12.5px; background: ${T.paper}; color: ${T.accent}; border: 1px solid ${T.accent}; border-radius: 99px; padding: 7px 14px; cursor: pointer; white-space: nowrap; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.35); transition: all 0.2s; }
+        .mstats-reveal:hover { color: #fff; background: ${T.accent}; box-shadow: 0 6px 16px -4px rgba(255,79,40,0.5); }
+        .mstats-reveal.ready { background: ${T.accent}; color: #fff; animation: mstats-pulse 1.6s ease-in-out infinite; }
         @keyframes mstats-pulse { 0%,100% { box-shadow: 0 4px 12px -4px rgba(255,79,40,0.5); } 50% { box-shadow: 0 4px 18px 0 rgba(255,79,40,0.55); } }
         .mstats-prog { height: 7px; background: rgba(${T.shadowBase},0.09); border-radius: 99px; overflow: hidden; }
         .mstats-prog-fill { display: block; height: 100%; border-radius: 99px; background: ${T.blue}; transition: width 0.6s cubic-bezier(.4,0,.2,1); }
@@ -3189,8 +3308,8 @@ export default function GithubActionsLesson({ lang: langProp, onFinished }) {
         .rc-dot { width: 10px; height: 10px; border-radius: 99px; background: rgba(167,166,162,0.4); cursor: pointer; transition: all 0.25s; border: none; padding: 0; }
         .rc-dot.fill { background: ${T.ink3}; }
         .rc-dot.cur { background: ${T.accent}; width: 26px; }
-        .rc-btn { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(13px,1.7vw,16px); border: none; border-radius: 12px; padding: clamp(11px,1.6vw,14px) clamp(18px,2.6vw,26px); cursor: pointer; background: ${T.ink}; color: ${T.bg}; box-shadow: 0 6px 18px -4px rgba(${T.shadowBase},0.32); transition: all 0.2s; white-space: nowrap; }
-        .rc-btn:hover:not(:disabled) { background: ${T.accent}; }
+        .rc-btn { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(13px,1.7vw,16px); border: none; border-radius: 12px; padding: clamp(11px,1.6vw,14px) clamp(18px,2.6vw,26px); cursor: pointer; background: ${T.accent}; color: #fff; box-shadow: 0 6px 18px -4px rgba(${T.shadowBase},0.32); transition: all 0.2s; white-space: nowrap; }
+        .rc-btn:hover:not(:disabled) { background: #E03E1B; }
         .rc-btn:disabled { opacity: 0.35; cursor: not-allowed; box-shadow: none; }
         .rc-btn.ghost { background: transparent; color: ${T.ink2}; box-shadow: none; }
         .rc-btn.ghost:hover:not(:disabled) { background: ${T.paper}; color: ${T.ink}; }
@@ -3305,12 +3424,16 @@ export default function GithubActionsLesson({ lang: langProp, onFinished }) {
         .lp-step.on .lp-check { background: ${T.success}; color: #fff; box-shadow: none; animation: lp-check-pop 0.34s cubic-bezier(.3,1.5,.5,1); }
         @keyframes lp-check-pop { 0% { transform: scale(0.7); } 45% { transform: scale(1.3); } 100% { transform: scale(1); } }
         .lp-step-t { flex: 1; min-width: 0; }
-        .lp-done-btn { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(14px,1.8vw,16px); cursor: pointer; border: none; border-radius: 13px; padding: 14px 20px; background: ${T.ink}; color: ${T.bg}; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.34); transition: all 0.18s; margin-top: 2px; }
-        .lp-done-btn:hover:not(:disabled) { background: ${T.accent}; box-shadow: 0 12px 28px -6px rgba(255,79,40,0.5); }
+        .lp-done-btn { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(14px,1.8vw,16px); cursor: pointer; border: none; border-radius: 13px; padding: 14px 20px; background: ${T.accent}; color: #fff; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.34); transition: all 0.18s; margin-top: 2px; }
+        .lp-done-btn:hover:not(:disabled) { background: #E03E1B; box-shadow: 0 12px 28px -6px rgba(255,79,40,0.5); }
         .lp-done-btn.is-done { background: ${T.successSoft}; color: ${T.success}; box-shadow: inset 0 0 0 1.5px ${T.success}66; cursor: default; animation: lp-done-pop 0.44s cubic-bezier(.3,1.35,.5,1); }
         @keyframes lp-done-pop { 0% { transform: scale(1); } 32% { transform: scale(1.05) translateY(-2px); } 60% { transform: scale(0.98); } 100% { transform: scale(1); } }
         @media (prefers-reduced-motion: reduce) { .lp-step.on .lp-check, .lp-done-btn.is-done { animation: none !important; } }
         .lp-mstats { background: ${T.blueSoft}; border-radius: 12px; padding: 13px 15px; display: flex; flex-direction: column; gap: 6px; }
+        .bhint.bhint { margin: 0; align-self: flex-start; font-size: clamp(12.5px,1.5vw,14px); line-height: 1.5; color: ${T.ink}; background: ${T.accentSoft}; border-radius: 12px; padding: 10px 14px; box-shadow: inset 0 0 0 1.5px ${T.accent}55; }
+        .bhint.bhint.calm { color: ${T.ink2}; background: ${T.bg}; box-shadow: inset 0 0 0 1.5px ${T.line}; font-style: italic; }
+        .done-mini { display: inline-flex; align-items: center; gap: 7px; align-self: flex-start; background: ${T.successSoft}; color: ${T.success}; font-family: 'Manrope'; font-weight: 800; font-size: clamp(12.5px,1.5vw,14px); border-radius: 99px; padding: 8px 16px; box-shadow: inset 0 0 0 1.5px ${T.success}44; }
+        .done-mini .dm-sub { font-weight: 600; color: ${T.ink2}; }
 
         /* === 🃏 FLASHCARDS (3D flip) === */
         .fc-center { flex: 1; min-height: 0; display: flex; align-items: center; justify-content: center; padding-top: 4px; }

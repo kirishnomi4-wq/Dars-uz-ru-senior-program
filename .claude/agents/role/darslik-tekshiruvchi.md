@@ -180,3 +180,67 @@ harakat-tugmasi bor ekranlar** (Screen7/8 turi) ekranda ochib ko'riladi, yoki co
 - 14 + 8 checklist to'liq yuritilgan; har band ✅ yoki nuqson (dalil + ssenariy + mas'ul rol).
 - Mayda nuqsonlar tuzatilgan (esbuild toza); tuzilmaviylar mas'ul rolga aniq qaytarilgan.
 - Yakuniy VERDIKT: **TAYYOR** (0 tuzilmaviy nuqson) yoki **QAYTARILADI** (ro'yxat bilan).
+
+---
+
+## 🎯 OV-BANDI — BIR EKRANDA IKKI MAXRAJ (F-0820-169, 2026-08-20)
+
+**Manba:** 2-sessiya nomzodi ③ (m4-04 auditi). Egasi tomonidan **o'lchab tasdiqlandi**.
+
+Bitta ekranda o'quvchiga **uch xil raqam** ko'rsatilishi mumkin va ular mos kelmasligi
+mumkin — hech bir darvoza buni tutmaydi:
+
+| Manba | Nima aytadi |
+|---|---|
+| `NavNext` yorlig'i | `${seen.size}/X qism o'rganildi` |
+| Ekran tanasi | `{seen.size} / Y ko'rildi` |
+| Ochilish sharti | `done = seen.size >= Z` |
+
+**Dalil (m4-05 `RoutingLesson:1160`, Nest controller ekrani):**
+`PARTS` da **5** ta qism · NavNext **`/3`** · tana **`/5`** · ochilish **`>= 3`**.
+Ya'ni o'quvchi «3/3 tugadi» degan yorliqni va «3/5 ko'rildi» degan hisoblagichni
+**bir vaqtda** ko'radi, ekran esa 5 qismdan 3 tasida ochiladi — **2 qism hech qachon
+talab qilinmaydi**. m4-04 da ham shu sinf chiqqan (parallel seans `5/5` qilib yopgan,
+F-0820-155).
+
+**Tekshiruv (har ekran uchun):**
+```
+grep -n "seen.size}/"  <fayl>     # NavNext maxraji
+grep -n "{seen.size} /" <fayl>     # tana maxraji
+grep -n "done = seen.size >= "     # ochilish sharti
+```
+Uchala raqam **teng** bo'lishi shart. Teng bo'lmasa — qaysi biri to'g'ri ekanini
+mazmundan aniqlang (odatda **to'plamning haqiqiy uzunligi**) va uchalasini o'shanga
+tenglashtiring.
+
+**Repo-o'lchovi (2026-08-20):** butun repoda **1 ta** nomos ekran — `RoutingLesson:1160`.
+Kam uchraydi, lekin **jim** o'tadi va o'quvchini adashtiradi, shuning uchun ov-bandi
+sifatida qoladi (regressiya-qorovuli).
+
+---
+
+## 🎯 OV-BANDI — SAVOLNING O'ZI HALOLMI (139 · 140-qonun, 2026-08-21)
+
+Ikkalasi ham **grep bilan tutilmaydi** — shuning uchun ular darvoza emas, **o'qish**
+bandi. Har ballik savolda ikkovi birga tekshiriladi.
+
+**(A) 139-qonun — oshkor-belgi.** Variant/karta yorlig'ida ✅/❌ **hukmdan oldin**
+turibdimi? Chegara-savoli bitta: «o'quvchi bu yerda **hukm qilyaptimi**, yoki
+**ko'rsatmani bajaryaptimi**?»
+- hukm qiladi (ballik savol · hook · «qaysi to'g'ri?») → belgi **topilma**
+- ko'rsatmani bajaradi (dars «xatosini ham bosing» degan tadqiqot tugmasi) → **ruxsat**
+- hukmdan **keyin** (reveal · `mstats` · podium) → **ruxsat**
+
+Nomzod-ro'yxati uchun: tanlov-massivi (`opts|options|VARIANTS|CARDS|CHOICES|answers`)
+ochilishidan yopilishigacha ✅/❌ qidiriladi. **2026-08-21 da repoda 0 ta** — bu band
+regressiya-qorovuli.
+
+**(B) 140-qonun — chalg'ituvchi halolligi.** Har **noto'g'ri** variantga uch savol:
+1. darsning **o'z qoidasi/qorovuli** bo'yicha ham noto'g'rimi? (o'tib ketsa — bu
+   chalg'ituvchi emas, **ikkinchi to'g'ri javob**)
+2. noto'g'riligining sababi **darsda aytilganmi**?
+3. **ishonarlimi** — aniq bir yanglish tasavvurni gavdalantiradimi?
+
+🔴 Eng xavfli joy — **dars o'z mavzusining finali**: o'sha yerda chalg'ituvchi
+darsning o'z ta'limotidan o'tib ketsa, dars **o'zini inkor qiladi**
+(manba: 4b-02 edge-case darsi finali, F-0820-300).

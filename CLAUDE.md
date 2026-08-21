@@ -10,7 +10,7 @@
 |---|---|---|
 | **QONUN** (qanday bo'lishi kerak) | `DARS_ETALON.md` (texnik) · `PM_DARS_ETALON.md` (PM, qonun 1–67) · `MATN_ETALONI.md` (til, umumiy) · **`MATN_KORPUS.md` (oltin-namunalar — matn YOZISHDAN OLDIN o'qiladi, qonunlar tekshiruvga)** · `PM_Prompt_v8.md` (senariy-qonun) · **`AUDIT_PROMPT.md` (doimiy audit-prompti — har YANGI dars shu bilan ochiladi, qayta yuborilmaydi)** · `RU_I18N_SPEC.md` (ru-mexanizm) | Faqat raqamlangan qonun/lug'at. Yangi qonun = yangi raqam, eski raqam o'zgarmaydi |
 | **JARAYON** (qaysi tartibda) | `PIPELINE.md` (texnik zanjir) · `PM_PIPELINE.md` (PM zanjir) · `OQUVCHI_DARVOZA.md` (👦 simulyator-spec) | Zanjir/darvoza/o'tish-shartlari. Rol-mazmuni bu yerda YO'Q — u agent-faylda |
-| **HOLAT** (nima bo'ldi) | `PIPELINE_STATE.md` · `PM_PIPELINE_STATE.md` · `KATTA_TOZALASH.md` (loyiha-darajasidagi ish ro'yxati — 8+ faylga tegadigan ishlar; dars ustida ishlaganda ko'tarilmaydi, faqat yoziladi) | Faqat raund-yozuvlar (sana + nima qilindi + hukm). Har feedback F-ID bilan (quyida) |
+| **HOLAT** (nima bo'ldi) | `PIPELINE_STATE.md` · `PM_PIPELINE_STATE.md` · `KATTA_TOZALASH.md` (loyiha-darajasidagi ish ro'yxati — 8+ faylga tegadigan ishlar; dars ustida ishlaganda ko'tarilmaydi, faqat yoziladi) · **`MODUL_TUR.md` (ekranda tekshiriladigan bandlar — dars sikli to'xtamaydi, modul oxirida bir yo'la ko'riladi)** | Faqat raund-yozuvlar (sana + nima qilindi + hukm). Har feedback F-ID bilan (quyida) |
 | **ROLLAR** | `.claude/agents/role/*` (texnik + umumiy: jonli, verifikator, o'quvchi, qabulchi) · `.claude/agents/pm/*` (PM) | Har rol o'z scope-fence bilan. `.claude/` da FAQAT agentlar+sozlamalar turadi |
 
 Yordamchi joylar: `arxiv/` (eski tarix — L1_TARIX, AVTOPILOT_CHECKPOINT, eski hisobotlar) ·
@@ -39,7 +39,7 @@ Yordamchi joylar: `arxiv/` (eski tarix — L1_TARIX, AVTOPILOT_CHECKPOINT, eski 
 ### B — FEEDBACK KELDI (eng tez-tez ishlaydigan retsept)
 1. **ID ber:** `F-MMDD-NN` (masalan F-0724-01). Rasm bo'lsa → `feedback/`ga (public/ EMAS — u sayt-papka).
 2. **Tashxis AVVAL:** muammoni aniqlab AYT, yechim taklif qil — foydalanuvchi tasdig'ini kut (yechimni so'ramasdan qilma).
-3. **Tuzat** (tasdiqdan keyin) → esbuild + tegishli residue-grep.
+3. **Tuzat** (tasdiqdan keyin) → `npm run gates -- <fayl>` + tegishli residue-grep.
 4. **Qonunlashtirish-marshruti** (har topilma AYNAN bitta joyga; MATN-topilma esa IKKI joyga — avval korpus):
    - matn/ohang/ifoda topilmasi → **AVVAL `MATN_KORPUS.md`ga juftlik** (❌ eski → ✅ yangi + sabab + F-ID), keyin kerak bo'lsa qonun/lug'at
    - so'z/atama muammosi → `MATN_ETALONI.md` LUG'AT (qiyin·sodda·izoh·manba-sana) + grep-lanadigan bo'lsa `til-lint-rules.json`ga qoida
@@ -60,7 +60,8 @@ Yordamchi joylar: `arxiv/` (eski tarix — L1_TARIX, AVTOPILOT_CHECKPOINT, eski 
 ### E — YANGI DARS OCHILDI (audit → tuzatish → muhrlash)
 1. **`AUDIT_PROMPT.md` ni o'qi va to'liq yurgiz.** Foydalanuvchi uni qayta yubormaydi;
    xabarida faqat **darsga xos qo'shimchalar** bo'ladi — ular promptning USTIGA qo'shiladi.
-2. Darvozalar: esbuild + `lint:jsx` + `lint:til` + `lint:dark` — har biri raqami bilan hisobotda.
+2. Darvozalar: **`npm run gates -- <fayl>`** — beshalasi bitta buyruqda (esbuild → jsx → dark →
+   til → prompt), har biri raqami bilan hisobotda. Argument beshalasiga uzatiladi (F-0820-193).
 3. **Hisobot + [GATE] — tasdiqsiz hech narsa o'zgartirilmaydi.** Bahsli joylar alohida ro'yxat.
 4. Tasdiqdan keyin tuzatish → darvozalar qayta → topilma-sinfi qonunga muhrlanadi
    (`MATN_KORPUS.md` matn uchun · `DARS_ETALON.md` UX/dizayn uchun · rol-fayli takror bug uchun).
@@ -68,7 +69,7 @@ Yordamchi joylar: `arxiv/` (eski tarix — L1_TARIX, AVTOPILOT_CHECKPOINT, eski 
 
 ## 4. O'zgarmas tamoyillar (qisqa eslatma — to'liqlari PIPELINE.md 3-bo'lim)
 - Commit/push faqat buyruq bilan · Tashxis avval, yechim keyin · Bir fayl — bir muharrir ·
-  esbuild har tahrirdan keyin · maks 2 QA-aylanish, keyin foydalanuvchiga eskalatsiya ·
+  **`npm run gates -- <fayl>`** har tahrirdan keyin · maks 2 QA-aylanish, keyin foydalanuvchiga eskalatsiya ·
   **Jim-buzilish darvozasi:** `.jsx` tahrirlangan har seansda `npm run lint:jsx` — 0 topilma
   shart. esbuild/`vite build` faqat SINTAKSISNI ko'radi; bu darvoza ma'no buzilishini tutadi
   (CSS shablon-satri ichidagi backtik → oq ekran; bir-qatorli funksiya ichidagi `//` izoh
@@ -79,4 +80,7 @@ Yordamchi joylar: `arxiv/` (eski tarix — L1_TARIX, AVTOPILOT_CHECKPOINT, eski 
   **Prompt-gigiena darvozasi:** rol/qonun/jarayon MD tahrirlangan har seans yakunida
   `npm run lint:prompt` (aralash-yozuv homoglif detektori; jurnal-misollar va ruscha
   defis-birikmalar avto-istisno) — 0 topilma bo'lishi shart ·
+  **CSS izohiga BACKTIK yozilmaydi** — `<style>{`…`}</style>` satrini erta yopadi va
+  darslik oq ekran beradi. Bu seansda **uch marta** tutildi (m4-03 · m4-05 · m4-08):
+  klass nomini izohda `.calm` emas, «Modifikator .calm» deb yozing ·
   Rol-fayllar `.claude/agents/`dan tashqariga ko'chirilmaydi.

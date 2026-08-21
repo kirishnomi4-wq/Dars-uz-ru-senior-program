@@ -253,7 +253,7 @@ function LiveBigCode({ pin, onClose }) {
     <div style={overlay}>
       <div style={{ fontSize: 'clamp(13px,2vw,18px)', fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: LT.accent, marginBottom: 'clamp(14px,3vw,28px)' }}>{tr({ uz: "Jonli darsga qo'shilish", ru: 'Присоединиться к живому уроку' })}</div>
       <div style={{ display: 'flex', gap: 'clamp(6px,1.4vw,16px)', justifyContent: 'center', flexWrap: 'wrap' }}>{digits.map((d, i) => <span key={i} style={box}>{d}</span>)}</div>
-      <p style={{ color: '#fff', opacity: 0.85, fontSize: 'clamp(15px,2.2vw,22px)', maxWidth: 640, margin: 'clamp(20px,4vw,36px) 0 0', lineHeight: 1.5 }}>{tr({ uz: <>Shu darsni o'z qurilmangizda oching → <b style={{ color: '#fff' }}>«👨‍🎓 O'quvchiman»</b> → ushbu kodni kiriting.</>, ru: <>Откройте этот урок на своём устройстве → <b style={{ color: '#fff' }}>«👨‍🎓 Я ученик»</b> → введите этот код.</> })}</p>
+      <p style={{ color: '#fff', opacity: 0.85, fontSize: 'clamp(15px,2.2vw,22px)', maxWidth: 640, margin: 'clamp(20px,4vw,36px) 0 0', lineHeight: 1.5 }}>{tr({ uz: <>Shu darsni o'z qurilmangizda oching → <b style={{ color: '#fff' }}>«👨‍🎓 O'quvchiman»</b> → bu kodni kiriting.</>, ru: <>Откройте этот урок на своём устройстве → <b style={{ color: '#fff' }}>«👨‍🎓 Я ученик»</b> → введите этот код.</> })}</p>
       <button onClick={onClose} style={{ marginTop: 'clamp(22px,4vw,40px)', background: LT.accent, color: '#fff', border: 'none', borderRadius: 14, padding: 'clamp(12px,1.6vw,16px) clamp(24px,3vw,36px)', fontSize: 'clamp(15px,1.8vw,18px)', fontWeight: 700, cursor: 'pointer' }}>{tr({ uz: 'Darsni boshlash →', ru: 'Начать урок →' })}</button>
     </div>
   );
@@ -371,7 +371,7 @@ const SCREEN_META = [
   { id: 's13', type: 'exploration', template: 'custom',   scored: false, scope: null },
   { id: 's14', type: 'rule',        template: 'custom',   scored: false, scope: null },
   { id: 's15', type: 'test',        template: 'custom',   scored: true,  scope: 'final' },
-  { id: 's15p',type: 'practice',    template: 'custom',   scored: false, scope: null },
+  { id: 'practice', type: 'practice', template: 'custom', scored: false, scope: null },
   { id: 's15b',type: 'stats',       template: 'custom',   scored: false, scope: null },
   { id: 'sflash', type: 'flashcards', template: 'custom', scored: false, scope: null },
   { id: 's16', type: 'summary',     template: 'custom',   scored: false, scope: null }
@@ -645,7 +645,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
         const level = answered < RECAP_MIN_ANSWERS ? 'few' : pct < RECAP_NEED_PCT ? 'need' : pct < RECAP_GOOD_PCT ? 'maybe' : 'good';
         return (
           <div className={`mstats-verdict ${level}`}>
-            {level === 'need' && <p className="mstats-verdict-t">{tr({ uz: <>⚠️ Faqat <b>{pct}%</b> to'g'ri — bu mavzu sinfga tushunarsiz qolgan. Davom etishdan oldin qisqa takrorlash tavsiya etiladi.</>, ru: <>⚠️ Только <b>{pct}%</b> верных — тема осталась непонятной классу. Перед продолжением рекомендуем короткое повторение.</> })}</p>}
+            {level === 'need' && <p className="mstats-verdict-t">{tr({ uz: <>⚠️ Faqat <b>{pct}%</b> to'g'ri — bu mavzu sinfga tushunarsiz qolgan. Davom etishdan oldin qisqa takrorlang.</>, ru: <>⚠️ Только <b>{pct}%</b> верных — тема осталась непонятной классу. Перед продолжением рекомендуем короткое повторение.</> })}</p>}
             {level === 'maybe' && <p className="mstats-verdict-t">{tr({ uz: <>🟡 <b>{pct}%</b> to'g'ri — yomon emas. Xohlasangiz, davom etishdan oldin qisqa takrorlab oling.</>, ru: <>🟡 <b>{pct}%</b> верных — неплохо. При желании коротко повторите перед продолжением.</> })}</p>}
             {level === 'good' && <p className="mstats-verdict-t">{tr({ uz: <>✅ <b>{pct}%</b> to'g'ri — sinf mavzuni o'zlashtirdi. Bemalol davom eting!</>, ru: <>✅ <b>{pct}%</b> верных — класс усвоил тему. Смело продолжайте!</> })}</p>}
             {level === 'few' && <p className="mstats-verdict-t">{tr({ uz: <>Javob berganlar kam ({answered} ta) — foiz bo'yicha xulosa chiqarish qiyin. O'zingiz baholang.</>, ru: <>Ответивших мало ({answered}) — по процентам судить трудно. Оцените сами.</> })}</p>}
@@ -660,7 +660,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
           {waiting.length > 8 && <span className="mstats-wait-chip more">+{waiting.length - 8}</span>}
         </div>
       )}
-      {reveal && struggling && <p className="mstats-warn">{tr({ uz: "⚠️ Ko'pchilik xato qildi — bu mavzu tushunarsiz bo'lgan ko'rinadi. Qayta tushuntirish tavsiya etiladi.", ru: '⚠️ Большинство ошиблось — похоже, тема осталась непонятной. Рекомендуем объяснить ещё раз.' })}</p>}
+      {reveal && struggling && <p className="mstats-warn">{tr({ uz: "⚠️ Ko'pchilik xato qildi — bu mavzu tushunarsiz bo'lgan ko'rinadi. Yana bir bor tushuntiring.", ru: '⚠️ Большинство ошиблось — похоже, тема осталась непонятной. Рекомендуем объяснить ещё раз.' })}</p>}
       {answered === 0 && <p className="mstats-wait">{tr({ uz: "O'quvchilar javoblari shu yerda jonli ko'rinadi…", ru: 'Ответы учеников появятся здесь в реальном времени…' })}</p>}
     </div>
   );
@@ -907,7 +907,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
     { id: 'b', label: tr({ uz: "NoSQL ko'rinishi — chunki u zamonaviyroq", ru: 'Вид NoSQL — потому что он современнее' }) },
     { id: 'c', label: tr({ uz: "Ikkalasi ham to'g'ri — qaysi birini ishlatish vazifaga bog'liq", ru: 'Оба правильные — какой использовать, зависит от задачи' }) }
   ];
-  const pick = (v) => { if (picked !== null || !tried) return; setPicked(v); onAnswer(screen, { stage: 'hook', screenIdx: screen, picked: v, correct: true }); };
+  const pick = (v) => { if (picked !== null || !tried) return; setPicked(v); onAnswer(screen, { stage: 'hook', screenIdx: screen, picked: v, correct: v === 'c' }); };
   return (
     <Stage eyebrow={tr({ uz: 'Kirish', ru: 'Введение' })} screen={screen} audioState={audio} navContent={<NavNext optionalLive disabled={picked === null} label={tr({ uz: 'Davom etish', ru: 'Продолжить' })} onClick={onNext} />}>
       <div className="screen">
@@ -941,7 +941,9 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
               })}
             </div>
             {!tried && <p className="small" style={{ color: T.ink3, fontStyle: 'italic', margin: 0 }}>{tr({ uz: "Avval ikkala ko'rinishni bosib ko'ring ←", ru: 'Сначала нажмите и посмотрите оба вида ←' })}</p>}
-            {picked !== null && <p className="hook-ack fade-step">{tr({ uz: <>Aynan! Hech biri "noto'g'ri" emas — <b>ikkalasi ham ishlaydi</b>. Savol shundaki: <b>qaysi vazifa uchun qaysi biri yaxshiroq?</b> Bugun shu tanlovni qilishni o'rganamiz — va nega bizning loyihalarga PostgreSQL mos kelishini ko'ramiz.</>, ru: <>Именно! Ни один не «неправильный» — <b>работают оба</b>. Вопрос в другом: <b>какой лучше для какой задачи?</b> Сегодня научимся делать этот выбор — и увидим, почему нашим проектам подходит PostgreSQL.</> })}</p>}
+            {picked !== null && <p className="hook-ack fade-step">{picked === 'c'
+              ? tr({ uz: <>Aynan! Hech biri "noto'g'ri" emas — <b>ikkalasi ham ishlaydi</b>. Savol shundaki: <b>qaysi vazifa uchun qaysi biri yaxshiroq?</b> Bugun shu tanlovni qilishni o'rganamiz — va nega bizning loyihalarga PostgreSQL mos kelishini ko'ramiz.</>, ru: <>Именно! Ни один не «неправильный» — <b>работают оба</b>. Вопрос в другом: <b>какой лучше для какой задачи?</b> Сегодня научимся делать этот выбор — и увидим, почему нашим проектам подходит PostgreSQL.</> })
+              : tr({ uz: <>Aslida bu — <b>keng tarqalgan afsona</b>. Hech biri o'z-o'zidan "to'g'ri" yoki "zamonaviyroq" emas: <b>ikkalasi ham ishlaydi</b>, gap qaysi vazifa uchun qaysi biri yaxshiroq ekanida. Dars oxirida shu afsonani <b>birga buzamiz</b> — va nega bizning loyihalarga PostgreSQL mos kelishini ko'ramiz.</>, ru: <>На самом деле это — <b>распространённый миф</b>. Ни один из них сам по себе не «правильнее» и не «современнее»: <b>работают оба</b>, вопрос лишь в том, какой лучше под какую задачу. В конце урока мы <b>вместе разберём</b> этот миф — и увидим, почему нашим проектам подходит PostgreSQL.</> })}</p>}
           </Col>
         </Split>
         </Zoomable>
@@ -983,7 +985,7 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: 'Reja', ru: 'План' })} screen={screen} mentorStatic audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext label={tr({ uz: 'Boshlaymiz →', ru: 'Начинаем →' })} onClick={onNext} /></>}>
       <div className="screen">
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Ikki dunyo orasidan <span className="italic" style={{ color: T.accent }}>to'g'ri tanlash</span></>, ru: <>Сделать <span className="italic" style={{ color: T.accent }}>верный выбор</span> между двумя мирами</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Ishonasizmi — dars oxirida loyihangiz uchun <b style={{ color: T.ink }}>qaysi ma'lumotlar bazasi to'g'ri kelishini</b> o'zingiz aniqlay olasiz. SQL ham, NoSQL ham zo'r — gap ularni <b style={{ color: T.ink }}>qachon ishlatishni</b> bilishda. O'ngdagi kompas bizni shu qarorga olib boradi.</>, ru: <>Поверите ли — к концу урока вы сами определите, <b style={{ color: T.ink }}>какая база данных подходит вашему проекту</b>. И SQL, и NoSQL хороши — вся суть в том, чтобы знать, <b style={{ color: T.ink }}>когда какую использовать</b>. Компас справа приведёт нас к этому решению.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Ishonasizmi — dars oxirida loyihangiz uchun <b style={{ color: T.ink }}>qaysi ma'lumotlar bazasi to'g'ri kelishini</b> o'zingiz aniqlay olasiz. SQL ham, NoSQL ham yaxshi — gap ularni <b style={{ color: T.ink }}>qachon ishlatishni</b> bilishda. O'ngdagi kompas bizni shu qarorga olib boradi.</>, ru: <>Поверите ли — к концу урока вы сами определите, <b style={{ color: T.ink }}>какая база данных подходит вашему проекту</b>. И SQL, и NoSQL хороши — вся суть в том, чтобы знать, <b style={{ color: T.ink }}>когда какую использовать</b>. Компас справа приведёт нас к этому решению.</> })}</Mentor>
         {!isNarrow ? (
           <Zoomable><Split>{PreviewBlock}{StepsBlock}</Split></Zoomable>
         ) : !showSteps ? (
@@ -1338,7 +1340,7 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <p className="flow-label">{tr({ uz: 'Jami xabarlar', ru: 'Всего сообщений' })}</p>
             <div className="bigcount">{count.toLocaleString('en-US')}</div>
             <p className="small" style={{ color: T.ink2, margin: 0 }}>{tr({ uz: <>Har xabar — oddiy hujjat: <span className="mono">{'{ kim, matn, vaqt }'}</span>. Bog'lanish kam, soni ulkan, tezlik shart.</>, ru: <>Каждое сообщение — простой документ: <span className="mono">{'{ кто, текст, время }'}</span>. Связей мало, объём огромный, скорость обязательна.</> })}</p>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>NoSQL ulkan, oddiy va tez ma'lumot uchun zo'r. <span className="mono">(Masalan, o'yin inventari ham har o'yinchida har xil — NoSQL egiluvchanligi shu yerda ham yordam beradi.)</span></>, ru: <>NoSQL хорош для огромных, простых и быстрых данных. <span className="mono">(Например, игровой инвентарь у каждого игрока свой — гибкость NoSQL пригодится и здесь.)</span></> })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>NoSQL ulkan, oddiy va tez ma'lumot uchun juda yaxshi. <span className="mono">(Masalan, o'yin inventari ham har o'yinchida har xil — NoSQL egiluvchanligi shu yerda ham yordam beradi.)</span></>, ru: <>NoSQL хорош для огромных, простых и быстрых данных. <span className="mono">(Например, игровой инвентарь у каждого игрока свой — гибкость NoSQL пригодится и здесь.)</span></> })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -1416,7 +1418,7 @@ const Screen9 = (props) => (
 const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const audio = useAudio([{ id: 's10', text: "SQL oilasida ko'p a'zo bor, biz esa PostgreSQL qutisini tanlaymiz. Chunki u bog'langan, ishonchli, bepul — va kerak bo'lsa JSON paketini ham saqlaydi, ya'ni NoSQL egiluvchanligi ham bor. Sabablarni bosib ko'ring.", trigger: 'on_mount', waits_for: null }]);
   const FEATS = [
-    { id: 'rel', t: tr({ uz: 'Relyatsion (SQL)', ru: 'Реляционная (SQL)' }), d: tr({ uz: "Jadvallar va JOIN — bog'langan ma'lumot bilan zo'r ishlaydi.", ru: 'Таблицы и JOIN — отлично работает со связанными данными.' }) },
+    { id: 'rel', t: tr({ uz: 'Relyatsion (SQL)', ru: 'Реляционная (SQL)' }), d: tr({ uz: "Jadvallar va JOIN — bog'langan ma'lumot bilan juda yaxshi ishlaydi.", ru: 'Таблицы и JOIN — отлично работает со связанными данными.' }) },
     { id: 'safe', t: tr({ uz: 'Ishonchli', ru: 'Надёжная' }), d: tr({ uz: "Tranzaksiyalar — pul va buyurtmada xato bo'lmaydi.", ru: 'Транзакции — в деньгах и заказах не будет ошибок.' }) },
     { id: 'free', t: tr({ uz: 'Bepul + ochiq kodli', ru: 'Бесплатная + открытый код' }), d: tr({ uz: "Hech kim pul so'ramaydi, butun dunyo ishlatadi.", ru: 'Никто не просит денег, пользуется весь мир.' }) },
     { id: 'json', t: tr({ uz: 'JSON ham saqlaydi', ru: 'Хранит и JSON' }), d: tr({ uz: "Kerak bo'lsa, NoSQL kabi egiluvchan JSON ham saqlay oladi — ikki dunyodan eng yaxshisi!", ru: 'При необходимости хранит и гибкий JSON, как NoSQL — лучшее из двух миров!' }) },
@@ -1450,7 +1452,7 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <p className="flow-label">{tr({ uz: 'Taqqoslash', ru: 'Сравнение' })}</p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
               <div className="cmp-row"><DbBadge kind="sql" /><span className="small" style={{ color: T.ink }}>{tr({ uz: <>bog'langan + ishonchli + JSON ham — <b style={{ color: T.accent }}>bizga mos</b></>, ru: <>связанно + надёжно + ещё и JSON — <b style={{ color: T.accent }}>подходит нам</b></> })}</span></div>
-              <div className="cmp-row"><DbBadge kind="nosql" /><span className="small" style={{ color: T.ink2 }}>{tr({ uz: "ulkan oddiy oqim uchun zo'r, lekin bog'lanish qiyin", ru: 'хорош для огромного простого потока, но связи даются трудно' })}</span></div>
+              <div className="cmp-row"><DbBadge kind="nosql" /><span className="small" style={{ color: T.ink2 }}>{tr({ uz: "ulkan oddiy oqim uchun juda yaxshi, lekin bog'lanish qiyin", ru: 'хорош для огромного простого потока, но связи даются трудно' })}</span></div>
             </div>
             {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>PostgreSQL — SQL kuchini va NoSQL egiluvchanligini birlashtiradi. Shuning uchun bizning butun moduldagi tanlovimiz — <b>PostgreSQL</b>.</>, ru: <>PostgreSQL объединяет силу SQL и гибкость NoSQL. Поэтому наш выбор на весь модуль — <b>PostgreSQL</b>.</> })}</p></div>}
           </Col>
@@ -1508,7 +1510,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               {done && cur ? (
                 <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 10, alignItems: 'center' }}>
                   <DbBadge kind={cur.db} big />
-                  <p className="small" style={{ color: T.ink2, textAlign: 'center', margin: 0 }}>{cur.db === 'sql' ? tr({ uz: 'PostgreSQL tavsiya etiladi', ru: 'Рекомендуется PostgreSQL' }) : tr({ uz: 'MongoDB (NoSQL) tavsiya etiladi', ru: 'Рекомендуется MongoDB (NoSQL)' })}</p>
+                  <p className="small" style={{ color: T.ink2, textAlign: 'center', margin: 0 }}>{cur.db === 'sql' ? tr({ uz: 'PostgreSQL mos keladi', ru: 'Подходит PostgreSQL' }) : tr({ uz: 'MongoDB (NoSQL) mos keladi', ru: 'Подходит MongoDB (NoSQL)' })}</p>
                 </div>
               ) : <p style={{ color: T.ink3, fontStyle: 'italic', margin: 0, fontFamily: 'Georgia, serif', fontSize: 13 }}>{tr({ uz: 'Loyihani tanlang va tahlilni tasdiqlang…', ru: 'Выберите проект и подтвердите анализ…' })}</p>}
             </Win>
@@ -1585,13 +1587,13 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 
 // ===== SCREEN 14 — MIF-BUSTER (debugging uslubi) =====
 const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const audio = useAudio([{ id: 's14', text: "Ko'p odam adashadi: NoSQL yangi, demak har doim yaxshiroq. Bu — mif. Tanlov modaga emas, vazifaga bog'liq. Quyidagi fikrlardan noto'g'risini toping va uni to'g'irlang.", trigger: 'on_mount', waits_for: null }]);
+  const audio = useAudio([{ id: 's14', text: "Ko'p odam adashadi: NoSQL yangi, demak har doim yaxshiroq. Bu — mif. Tanlov modaga emas, vazifaga bog'liq. Pastdagi fikrlardan noto'g'risini toping va uni to'g'irlang.", trigger: 'on_mount', waits_for: null }]);
   const [picked, setPicked] = useState(storedAnswer ? 'myth' : null);
   const [fixed, setFixed] = useState(!!storedAnswer);
   const found = picked === 'myth';
   const done = fixed;
   const CLAIMS = [
-    { id: 'c1', txt: tr({ uz: "SQL bog'langan ma'lumot bilan zo'r ishlaydi", ru: 'SQL отлично работает со связанными данными' }), ok: true },
+    { id: 'c1', txt: tr({ uz: "SQL bog'langan ma'lumot bilan juda yaxshi ishlaydi", ru: 'SQL отлично работает со связанными данными' }), ok: true },
     { id: 'myth', txt: tr({ uz: "NoSQL zamonaviyroq, shuning uchun do'konga ham NoSQL kerak", ru: 'NoSQL современнее, поэтому и магазину нужен NoSQL' }), ok: false },
     { id: 'c3', txt: tr({ uz: "Tanlov vazifaga bog'liq, modaga emas", ru: 'Выбор зависит от задачи, а не от моды' }), ok: true }
   ];
@@ -1600,11 +1602,11 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: 'Mif-buster', ru: 'Разрушитель мифов' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : (found ? tr({ uz: "Endi to'g'irlang", ru: 'Теперь исправьте' }) : tr({ uz: "Noto'g'ri fikrni toping", ru: 'Найдите неверное утверждение' }))} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Do'stingiz aytdi — bitta fikr <span className="italic" style={{ color: T.accent }}>noto'g'ri</span>. Toping.</>, ru: <>Друг сказал три вещи — одна <span className="italic" style={{ color: T.accent }}>неверна</span>. Найдите её.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Ko'p odam adashadi: "NoSQL yangi, demak har doim yaxshiroq". Bu — <b style={{ color: T.ink }}>mif</b>! Tanlov modaga emas, <b style={{ color: T.ink }}>vazifaga</b> bog'liq. Quyidagi fikrlardan noto'g'risini bosing.</>, ru: <>Многие ошибаются: «NoSQL новее, значит всегда лучше». Это — <b style={{ color: T.ink }}>миф</b>! Выбор зависит не от моды, а от <b style={{ color: T.ink }}>задачи</b>. Нажмите на неверное утверждение ниже.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Ko'p odam adashadi: "NoSQL yangi, demak har doim yaxshiroq". Bu — <b style={{ color: T.ink }}>mif</b>! Tanlov modaga emas, <b style={{ color: T.ink }}>vazifaga</b> bog'liq. Pastdagi fikrlardan noto'g'risini bosing.</>, ru: <>Многие ошибаются: «NoSQL новее, значит всегда лучше». Это — <b style={{ color: T.ink }}>миф</b>! Выбор зависит не от моды, а от <b style={{ color: T.ink }}>задачи</b>. Нажмите на неверное утверждение ниже.</> })}</Mentor>
         <div className="split">
           <Col>
             <div className="ai-card fade-up delay-1">
-              <div className="ai-row"><span className="ai-badge" style={{ background: T.ink }}>{tr({ uz: "Do'st", ru: 'Друг' })}</span><span className="ai-bubble">{tr({ uz: 'Fikrlar:', ru: 'Утверждения:' })}</span></div>
+              <div className="ai-row"><span className="peer-badge">{tr({ uz: "Do'st", ru: 'Друг' })}</span><span className="ai-bubble">{tr({ uz: 'Fikrlar:', ru: 'Утверждения:' })}</span></div>
               <div className="ai-code">
                 {CLAIMS.map(c => {
                   const isMyth = c.id === 'myth';
@@ -1708,22 +1710,46 @@ const MentorPracticeStats = ({ live, screen }) => {
     return () => { on = false; clearTimeout(t); };
   }, [live && live.pin, screen]);
   if (!live || live.mode !== 'mentor') return null;
-  const players = data.players || [];
+  // 129-qonun (F-0819-57): bo'sh apparat ko'rsatilmaydi. «Yuklanmoqda…» va «0/0 — hech kim
+  // qo'shilmagan» joy egallaydi, lekin hech narsa o'rgatmaydi. Birinchi o'quvchi qo'shilgach
+  // panel o'zi paydo bo'ladi (har 3 s da yangilanadi).
+  if (data.players === null || data.players.length === 0) return null;
+  const players = data.players;
   const doers = players.filter(p => data.doneIds.has(p.id));
   const waiting = players.filter(p => !data.doneIds.has(p.id));
   return (
     <div className="lp-mstats fade-up">
       <div className="card-lbl" style={{ color: T.blue }}>{tr({ uz: '👀 Kim bajardi', ru: '👀 Кто выполнил' })} — {doers.length}/{players.length}</div>
-      {data.players === null ? (
-        <p className="small" style={{ color: T.ink3, margin: 0, fontStyle: 'italic' }}>{tr({ uz: 'Yuklanmoqda…', ru: 'Загружается…' })}</p>
-      ) : players.length === 0 ? (
-        <p className="small" style={{ color: T.ink3, margin: 0, fontStyle: 'italic' }}>{tr({ uz: "Hali hech kim qo'shilmagan.", ru: 'Пока никто не присоединился.' })}</p>
-      ) : (
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
-          {doers.map(p => <span key={p.id} className="mstats-wait-chip" style={{ background: T.successSoft, color: T.success }}>✓ {p.nickname}</span>)}
-          {waiting.map(p => <span key={p.id} className="mstats-wait-chip" style={{ opacity: 0.6 }}>⏳ {p.nickname}</span>)}
-        </div>
-      )}
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
+        {doers.map(p => <span key={p.id} className="mstats-wait-chip" style={{ background: T.successSoft, color: T.success }}>✓ {p.nickname}</span>)}
+        {waiting.map(p => <span key={p.id} className="mstats-wait-chip" style={{ opacity: 0.6 }}>⏳ {p.nickname}</span>)}
+      </div>
+    </div>
+  );
+};
+// O'QUVCHI ko'radigan sinf-holati (45-qonun) — sof O'QISH, ball-relsga yozmaydi.
+// Manba-etalon: m3-09 `ReactApiPostLesson`; 4-Modulda standart (m4-01 bilan bir xil).
+const StudentPracticePulse = ({ live, screen }) => {
+  const [data, setData] = useState(null);
+  useEffect(() => {
+    if (!live || live.mode !== 'student' || !live.pin) return;
+    let on = true, t = null;
+    const tick = async () => {
+      try {
+        const [players, rows] = await Promise.all([livePlayers(live.pin), liveAnswers(live.pin, PRACTICE_BASE + screen)]);
+        if (on) setData({ total: players.length, done: new Set(rows.map(r => r.player_id)).size });
+      } catch {}
+      if (on) t = setTimeout(tick, 3000);
+    };
+    tick();
+    return () => { on = false; clearTimeout(t); };
+  }, [live && live.pin, screen]);
+  if (!live || live.mode !== 'student' || !data || data.total === 0) return null;
+  const doing = Math.max(0, data.total - data.done);
+  return (
+    <div className="done-mini fade-up">
+      👥 {tr({ uz: 'Sinfda:', ru: 'В классе:' })} <b>{data.done}</b> {tr({ uz: 'bajardi', ru: 'выполнили' })}
+      {doing > 0 && <span className="dm-sub">· ✏️ {doing} {tr({ uz: 'hali bajarmoqda', ru: 'ещё выполняют' })}</span>}
     </div>
   );
 };
@@ -1731,6 +1757,7 @@ function ScreenLivePractice({ title, task, checklist, screen, storedAnswer, onAn
   const audio = useAudio([{ id: 's15p', text: "Endi o'z loyihangizni oling. To'rt mezon — bog'lanish, shakl, ishonchlilik va miqyos — bo'yicha SQL quti yoki NoSQL paketini tanlab, bir jumla bilan asoslang. SQL bo'lsa, ustunli jadval sxemasini ham yozing. Har bosqichni belgilab boring va «Bajardim» tugmasini bosing.", trigger: 'on_mount', waits_for: null }]);
   const _gate = useContext(LiveGateCtx) || {};
   const _live = live || _gate.live;
+  const isMentor = !!(_live && _live.mode === 'mentor'); // mentor topshiriqni BAJARMAYDI — kuzatadi (F-0819-41)
   const [checked, setChecked] = useState(() => new Set());
   const [done, setDone] = useState(!!(storedAnswer && storedAnswer.solved));
   const toggle = (i) => setChecked(prev => { const s = new Set(prev); if (s.has(i)) s.delete(i); else s.add(i); return s; });
@@ -1741,10 +1768,10 @@ function ScreenLivePractice({ title, task, checklist, screen, storedAnswer, onAn
     if (_live && _live.mode === 'student') _live.submitAnswer(PRACTICE_BASE + screen, 'practice', 0, true, 0);
   };
   return (
-    <Stage eyebrow={tr({ uz: 'Amaliyot · loyiha', ru: 'Практика · проект' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Avval bajaring', ru: 'Сначала выполните' })} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Amaliyot · loyiha', ru: 'Практика · проект' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !isMentor} label={(done || isMentor) ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Avval bajaring', ru: 'Сначала выполните' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr(title)}</h2></div>
-        <Mentor>{tr({ uz: <>Bu topshiriqni <b style={{ color: T.ink }}>o'zingiz</b> bajaring. Har bosqichni belgilab boring. Tugagach <b style={{ color: T.ink }}>«Bajardim»</b> tugmasini bosing — ustoz kuzatib turadi.</>, ru: <>Выполните это задание <b style={{ color: T.ink }}>самостоятельно</b>. Отмечайте каждый шаг по ходу. Закончите — нажмите <b style={{ color: T.ink }}>«Выполнил»</b> — наставник следит.</> })}</Mentor>
+        <Mentor>{isMentor ? tr({ uz: <>O'quvchilar topshiriqni <b style={{ color: T.ink }}>o'z kompyuterida</b> bajarmoqda. Nechtasi tugatgani pastda ko'rinadi — hamma tayyor bo'lgach davom eting.</>, ru: <>Ученики выполняют задание <b style={{ color: T.ink }}>на своих компьютерах</b>. Сколько закончили — видно ниже; продолжайте, когда будут готовы все.</> }) : tr({ uz: <>Bu topshiriqni <b style={{ color: T.ink }}>o'zingiz</b> bajaring. Har bosqichni belgilab boring. Tugagach <b style={{ color: T.ink }}>«Bajardim»</b> tugmasini bosing — ustoz kuzatib turadi.</>, ru: <>Выполните это задание <b style={{ color: T.ink }}>самостоятельно</b>. Отмечайте каждый шаг по ходу. Закончите — нажмите <b style={{ color: T.ink }}>«Выполнил»</b> — наставник следит.</> })}</Mentor>
         <div className="split">
           <Col>
             <div className="lp-task fade-up delay-1">
@@ -1752,6 +1779,7 @@ function ScreenLivePractice({ title, task, checklist, screen, storedAnswer, onAn
               <p className="body" style={{ margin: 0, color: T.ink }}>{tr(task)}</p>
             </div>
             <MentorPracticeStats live={_live} screen={screen} />
+            <StudentPracticePulse live={_live} screen={screen} />
           </Col>
           <Col>
             <p className="flow-label">{tr({ uz: 'Bosqichlar — belgilab boring', ru: 'Шаги — отмечайте по ходу' })}</p>
@@ -1766,10 +1794,10 @@ function ScreenLivePractice({ title, task, checklist, screen, storedAnswer, onAn
                 );
               })}
             </div>
-            <button className={`lp-done-btn ${done ? 'is-done' : ''}`} disabled={done} onClick={complete}>
+            {!isMentor && <button className={`lp-done-btn ${done ? 'is-done' : ''}`} disabled={done} onClick={complete}>
               {done ? tr({ uz: '✓ Bajarildi — ustozni kuting', ru: '✓ Выполнено — ждите наставника' }) : tr({ uz: '✅ Bajardim', ru: '✅ Выполнил' })}
-            </button>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Zo'r! Vazifani bajardingiz. Ustoz tekshirib, keyingi qadamga o'tkazadi.", ru: 'Отлично! Вы выполнили задание. Наставник проверит и переведёт на следующий шаг.' })}</p></div>}
+            </button>}
+            {done && !isMentor && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Juda yaxshi! Vazifani bajardingiz. Ustoz tekshirib, keyingi qadamga o'tkazadi.", ru: 'Отлично! Вы выполнили задание. Наставник проверит и переведёт на следующий шаг.' })}</p></div>}
           </Col>
         </div>
       </div>
@@ -2640,8 +2668,8 @@ export default function DbSqlNosqlLesson({ lang: langProp, onFinished }) {
         .feedback-block.visible { max-height: 800px; opacity: 1; margin-top: clamp(14px,2vw,20px); }
 
         /* === KNOPKALAR === */
-        .btn { font-family: 'Manrope', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.ink}; color: ${T.bg}; border: none; border-radius: 12px; letter-spacing: 0.01em; box-shadow: 0 6px 18px -4px rgba(${T.shadowBase},0.32); padding: clamp(11px,1.6vw,13px) clamp(20px,2.5vw,26px); font-size: clamp(13px,1.6vw,15px); }
-        .btn:hover:not(:disabled) { background: ${T.accent}; box-shadow: 0 10px 24px -4px rgba(255,79,40,0.45); }
+        .btn { font-family: 'Manrope', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.accent}; color: #fff; border: none; border-radius: 12px; letter-spacing: 0.01em; box-shadow: 0 6px 18px -4px rgba(${T.shadowBase},0.32); padding: clamp(11px,1.6vw,13px) clamp(20px,2.5vw,26px); font-size: clamp(13px,1.6vw,15px); }
+        .btn:hover:not(:disabled) { background: #E03E1B; box-shadow: 0 10px 24px -4px rgba(255,79,40,0.45); }
         .btn:disabled { opacity: 0.4; cursor: not-allowed; box-shadow: none; }
         .btn-white-accent { font-family: 'Manrope', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.paper}; color: ${T.accent}; border: none; border-radius: 12px; letter-spacing: 0.01em; box-shadow: 0 8px 22px -4px rgba(255,79,40,0.35), 0 0 0 1px rgba(255,79,40,0.12); }
         .btn-white-accent:hover:not(:disabled) { background: ${T.accent}; color: #fff; box-shadow: 0 12px 28px -6px rgba(255,79,40,0.55); }
@@ -2744,7 +2772,7 @@ export default function DbSqlNosqlLesson({ lang: langProp, onFinished }) {
         .sk-info { background: ${T.paper}; border-radius: 12px; padding: 15px 17px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.16); animation: fade-step 0.3s; }
         .sk-tagbig { display: flex; align-items: center; gap: 9px; flex-wrap: wrap; }
         .sk-wordbadge { font-family: 'Manrope'; font-weight: 700; font-size: 13px; color: ${T.accent}; background: ${T.accentSoft}; padding: 4px 10px; border-radius: 6px; }
-        .hint { background: ${T.bg}; border: 1.5px dashed ${T.ink3}; border-radius: 12px; padding: 14px 16px; font-size: clamp(13px,1.5vw,14px); color: ${T.ink2}; }
+        .hint { background: ${T.bg}; border: 1px solid ${T.line}; border-radius: 12px; padding: 14px 16px; font-size: clamp(13px,1.5vw,14px); color: ${T.ink2}; }
 
         /* === AI CARD === */
         .ai-card { background: ${T.paper}; border-radius: 14px; padding: 15px 17px; display: flex; flex-direction: column; gap: 11px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.14); }
@@ -2918,11 +2946,22 @@ export default function DbSqlNosqlLesson({ lang: langProp, onFinished }) {
         .lp-step.on .lp-check { background: ${T.success}; color: #fff; box-shadow: none; animation: lp-check-pop 0.34s cubic-bezier(.3,1.5,.5,1); }
         @keyframes lp-check-pop { 0% { transform: scale(0.7); } 45% { transform: scale(1.3); } 100% { transform: scale(1); } }
         .lp-step-t { flex: 1; min-width: 0; }
-        .lp-done-btn { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(14px,1.8vw,16px); cursor: pointer; border: none; border-radius: 13px; padding: 14px 20px; background: ${T.ink}; color: ${T.bg}; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.34); transition: all 0.18s; margin-top: 2px; }
-        .lp-done-btn:hover:not(:disabled) { background: ${T.accent}; box-shadow: 0 12px 28px -6px rgba(255,79,40,0.5); }
+        .lp-done-btn { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(14px,1.8vw,16px); cursor: pointer; border: none; border-radius: 13px; padding: 14px 20px; background: ${T.accent}; color: #fff; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.34); transition: all 0.18s; margin-top: 2px; }
+        .lp-done-btn:hover:not(:disabled) { background: #E03E1B; box-shadow: 0 12px 28px -6px rgba(255,79,40,0.5); }
         .lp-done-btn.is-done { background: ${T.successSoft}; color: ${T.success}; box-shadow: inset 0 0 0 1.5px ${T.success}66; cursor: default; animation: lp-done-pop 0.44s cubic-bezier(.3,1.35,.5,1); }
         @keyframes lp-done-pop { 0% { transform: scale(1); } 32% { transform: scale(1.05) translateY(-2px); } 60% { transform: scale(0.98); } 100% { transform: scale(1); } }
         @media (prefers-reduced-motion: reduce) { .lp-step.on .lp-check, .lp-done-btn.is-done { animation: none !important; } }
+        /* 11.15 — jonli nishoni xira turadi: kontentdan diqqat tortmasin va sarlavhani bosmasin;
+           ustiga borilganda yoki fokus tushganda to'liq ochiladi (F-0820-111). */
+        .live-badge { opacity: 0.62; transition: opacity 0.25s ease, box-shadow 0.25s ease; }
+        .live-badge:hover, .live-badge:focus-within { opacity: 1; box-shadow: 0 8px 24px -6px rgba(58,53,48,0.32) !important; }
+        .done-mini { display: inline-flex; align-items: center; gap: 7px; align-self: flex-start; background: ${T.successSoft}; color: ${T.success}; font-family: 'Manrope'; font-weight: 800; font-size: clamp(12.5px,1.5vw,14px); border-radius: 99px; padding: 8px 16px; box-shadow: inset 0 0 0 1.5px ${T.success}44; }
+        .done-mini .dm-sub { font-weight: 600; color: ${T.ink2}; }
+        /* BITTA KLASS — BITTA ROL (F-0820-116). Uch so'zlovchi — uch rang:
+           .ai-badge ko'k (AI) · mentor accent · .peer-badge neytral ink2 (odam-tengdosh).
+           Ilgari «Do'st» .ai-badge ni qayta ishlatib, inline background: T.ink bilan
+           qoraytirilardi — sahifadagi eng og'ir dog' va rol-chalkashligi. */
+        .peer-badge { font-family: 'Manrope'; font-weight: 800; font-size: 11px; color: #fff; background: ${T.ink2}; padding: 3px 9px; border-radius: 99px; letter-spacing: 0.04em; white-space: nowrap; }
         .lp-mstats { background: ${T.blueSoft}; border-radius: 12px; padding: 13px 15px; display: flex; flex-direction: column; gap: 6px; }
 
         /* === 📦 QADOQXONA (drag-drop qadoqlash o'yini) === */
@@ -3224,9 +3263,9 @@ export default function DbSqlNosqlLesson({ lang: langProp, onFinished }) {
         .mstats-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
         .mstats-lbl { font-family: 'Manrope'; font-weight: 800; font-size: 12.5px; letter-spacing: 0.07em; text-transform: uppercase; color: ${T.blue}; }
         .mstats-n { font-family: 'Manrope'; font-size: 13.5px; font-weight: 600; color: ${T.ink2}; }
-        .mstats-reveal { font-family: 'Manrope'; font-weight: 700; font-size: 12.5px; background: ${T.ink}; color: #fff; border: none; border-radius: 99px; padding: 7px 14px; cursor: pointer; white-space: nowrap; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.35); transition: all 0.2s; }
-        .mstats-reveal:hover { background: ${T.accent}; box-shadow: 0 6px 16px -4px rgba(255,79,40,0.5); }
-        .mstats-reveal.ready { background: ${T.accent}; animation: mstats-pulse 1.6s ease-in-out infinite; }
+        .mstats-reveal { font-family: 'Manrope'; font-weight: 700; font-size: 12.5px; background: ${T.paper}; color: ${T.accent}; border: 1px solid ${T.accent}; border-radius: 99px; padding: 7px 14px; cursor: pointer; white-space: nowrap; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.35); transition: all 0.2s; }
+        .mstats-reveal:hover { color: #fff; background: ${T.accent}; box-shadow: 0 6px 16px -4px rgba(255,79,40,0.5); }
+        .mstats-reveal.ready { background: ${T.accent}; color: #fff; animation: mstats-pulse 1.6s ease-in-out infinite; }
         @keyframes mstats-pulse { 0%,100% { box-shadow: 0 4px 12px -4px rgba(255,79,40,0.5); } 50% { box-shadow: 0 4px 18px 0 rgba(255,79,40,0.55); } }
         .mstats-prog { height: 7px; background: rgba(${T.shadowBase},0.09); border-radius: 99px; overflow: hidden; }
         .mstats-prog-fill { display: block; height: 100%; border-radius: 99px; background: ${T.blue}; transition: width 0.6s cubic-bezier(.4,0,.2,1); }
@@ -3288,8 +3327,8 @@ export default function DbSqlNosqlLesson({ lang: langProp, onFinished }) {
         .rc-dot { width: 10px; height: 10px; border-radius: 99px; background: rgba(167,166,162,0.4); cursor: pointer; transition: all 0.25s; border: none; padding: 0; }
         .rc-dot.fill { background: ${T.ink3}; }
         .rc-dot.cur { background: ${T.accent}; width: 26px; }
-        .rc-btn { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(13px,1.7vw,16px); border: none; border-radius: 12px; padding: clamp(11px,1.6vw,14px) clamp(18px,2.6vw,26px); cursor: pointer; background: ${T.ink}; color: ${T.bg}; box-shadow: 0 6px 18px -4px rgba(${T.shadowBase},0.32); transition: all 0.2s; white-space: nowrap; }
-        .rc-btn:hover:not(:disabled) { background: ${T.accent}; }
+        .rc-btn { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(13px,1.7vw,16px); border: none; border-radius: 12px; padding: clamp(11px,1.6vw,14px) clamp(18px,2.6vw,26px); cursor: pointer; background: ${T.accent}; color: #fff; box-shadow: 0 6px 18px -4px rgba(${T.shadowBase},0.32); transition: all 0.2s; white-space: nowrap; }
+        .rc-btn:hover:not(:disabled) { background: #E03E1B; }
         .rc-btn:disabled { opacity: 0.35; cursor: not-allowed; box-shadow: none; }
         .rc-btn.ghost { background: transparent; color: ${T.ink2}; box-shadow: none; }
         .rc-btn.ghost:hover:not(:disabled) { background: ${T.paper}; color: ${T.ink}; }

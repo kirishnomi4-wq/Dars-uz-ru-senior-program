@@ -44,6 +44,17 @@ const ALLOW = [
   // m3-08 `.dbg-line` oilasi (u ham `dbg-code` orqali istisnoda). Quyuq fon bu yerda
   // TAQLID: o'quvchi kodni muharrirdagidek ko'rishi kerak (F-0820-86).
   /^\.cq-b/,
+  // .messy — ATAYLAB tartibsiz kod paneli (4a-01 `NestArchAliveLesson`): darsning
+  // markaziy qarama-qarshiligi «tartibsiz vs tartibli» aynan shu blokda ko'rsatiladi.
+  // Fon CODE.bg — kod muharriri taqlidi, xuddi .code-box kabi (F-0820-243).
+  // ⚠️ `data-dark-ok` bu yerda ISHLAMAYDI: u faqat INLINE style={{background}} uchun.
+  // CSS-qoidasi bilan e'lon qilingan ataylab-quyuq yuza ALLOW ro'yxatiga qo'shiladi.
+  /^\.messy/,
+  // .editor-tab — VS Code oynasining fayl-yorlig'i (#1E1E1E, aynan muharrir foni).
+  // `.cq-b` va `.code-box` bilan bir oila: quyuq fon TAQLID, o'quvchi kodni
+  // muharrirdagidek ko'radi. CTRL_SEL uni `tab` so'zi uchun tugma deb o'ylaydi,
+  // aslida u bosilmaydigan yorliq. CSS-qoidasi -> ALLOW (F-0820-276, 4a-02).
+  /^\.editor-tab/,
   /:hover|:focus|:active/,                             // holat-ranglari
 ];
 
@@ -108,6 +119,23 @@ function collectCss(src) {
 //       Nishon tugma emas — bosiladigan kartaning ichidagi belgi, rangi ma'no kodi.
 const SEMANTIC = new Set(['#1F7A4D', '#17603C', '#E03E1B', '#C2362B', '#B45309']);
 
+// ── BREND — rasmiy texnologiya-ranglari (F-0820-277, 4a-02) ────────────────────
+// SEMANTIC dan AYRIM ro'yxat, chunki sharti boshqacha: SEMANTIC rang HAR JOYDA
+// o'tadi (yashil = muvaffaqiyat, qayerda bo'lmasin), brend rangi esa FAQAT
+// BELGI-KONTEKSTIDA o'tadi.
+//
+// RUXSAT — plastinka · chip · logotip · nishon: rang o'sha texnologiyaning
+//   TANIQLIGI, ya'ni o'quv qiymati (o'quvchi NestJS qizilini keyin hujjatlarda,
+//   konferensiyada, ish e'lonida tanaydi). Accentga o'tkazish bu qiymatni o'chiradi.
+// TOPILMA — tugma · holat-rangi · umumiy fon: u yerda brend rangi ma'no tashimaydi,
+//   shunchaki yana bitta og'ir dog' bo'ladi va accent bilan raqobatlashadi.
+//
+// Yangi rang qo'shilganda IZOHI ham yoziladi (qaysi texnologiya, qaysi dars).
+const BRAND = new Map([
+  ['#E0234E', 'NestJS'],        // 4a-Modul: `T.nest` — plastinka/chip belgisi
+]);
+const BRAND_CTX = /plate|chip|logo|badge|mark|brand|emblem/i;
+
 // «#fff» · «#ffffff» · «white» -> 6 xonali hex. Aniqlab bo'lmasa null.
 function hexOf(v) {
   if (!v) return null;
@@ -152,6 +180,12 @@ function scan(file) {
       const L = lum(hex);
       if (L >= DARK) continue;
       if (SEMANTIC.has(hex.toUpperCase())) continue;
+      // BREND-rangi: belgi-kontekstida ruxsat, tugma/holat sifatida — topilma.
+      if (BRAND.has(hex.toUpperCase())) {
+        if (BRAND_CTX.test(sel)) continue;
+        out.push({ kind: 'brend', sel, hex, L: L.toFixed(3), why: BRAND.get(hex.toUpperCase()) });
+        continue;
+      }
       // Darsning O'Z urg'u rangi «qora» emas — PM darslarida u binafsha (#5B3DE6),
       // yorqinligi past bo'lsa ham bu qoidaning O'ZI, buzilish emas.
       const own = [TOKENS['${T.accent}'], TOKENS['${T.accentVivid}'], TOKENS['${T.success}'], TOKENS['${T.blue}']]
@@ -196,13 +230,33 @@ function scan(file) {
       const decl = m[1];
       const bgm = decl.match(/background(?:Color)?:\s*([^,}]+)/);
       if (!bgm) continue;
-      let val = bgm[1].trim();
-      // T.ink / CODE.bg kabi token-havolalar -> haqiqiy qiymat
-      const tok = val.match(/^(T|CODE|LT)\.(\w+)$/);
-      if (tok) val = TOKENS['${' + tok[1] + '.' + tok[2] + '}'] || val;
-      const hex = (String(val).match(/#[0-9A-Fa-f]{6}/) || [])[0];
+      const val = bgm[1].trim();
+      // TERNARY-ICHI QIYMAT (F-0820-175). Ilgari faqat SOF qiymat tekshirilardi:
+      //     background: T.ink                 -> tutilardi
+      //     background: on ? T.ink : T.accent -> JIM O'TARDI
+      // Ikkinchisida qiymat na token, na hex bo'lgani uchun skaner `continue` qilardi —
+      // ya'ni shart ostidagi har qanday quyuq fon ko'rinmasdi (m4-13 `.vbadge` x2 shundan
+      // o'tgan). Endi qiymatning BARCHA shoxlari yig'iladi va har biri alohida baholanadi:
+      // bittasi ham quyuq bo'lsa — signal, chunki o'quvchi o'sha holatni ko'radi.
+      // ⚠️ ALFA-QO'SHIMCHASI — YOLG'ON SIGNAL QOROVULI. Loyihada tus berish uchun
+      // `(METHODS[m] || T.ink2) + '22'` naqshi ishlatiladi: oxiridagi ikki hex-raqam
+      // SHAFFOFLIK (0x22 = 13%). Rang o'zi quyuq bo'lsa ham, natija OCH tus — fon emas.
+      // Bu qorovulsiz ternary-skani m4-05 `.mbadge` ni noto'g'ri belgilagan edi.
+      if (/\+\s*['"`][0-9A-Fa-f]{2}['"`]|[0-9A-Fa-f]{6}[0-9A-Fa-f]{2}\b/.test(val)) continue;
+      const cands = [];
+      for (const t of val.matchAll(/\b(T|CODE|LT)\.(\w+)\b/g)) {
+        const v = TOKENS['${' + t[1] + '.' + t[2] + '}'];
+        if (v) cands.push(v);
+      }
+      for (const h of val.matchAll(/#[0-9A-Fa-f]{6}\b/g)) cands.push(h[0]);
+      let hex = null, L = 1;
+      for (const c of cands) {
+        const h = (String(c).match(/#[0-9A-Fa-f]{6}/) || [])[0];
+        if (!h) continue;
+        const l = lum(h);
+        if (l < L) { L = l; hex = h; }   // eng quyug'i hisobga olinadi
+      }
       if (!hex) continue;
-      const L = lum(hex);
       if (L >= DARK) continue;
       if (SEMANTIC.has(hex.toUpperCase())) continue;
       const own = [TOKENS['${T.accent}'], TOKENS['${T.accentVivid}'], TOKENS['${T.success}'], TOKENS['${T.blue}']]
@@ -210,6 +264,13 @@ function scan(file) {
       if (own.includes(hex.toUpperCase())) continue;
       // atrofdagi className -> ALLOW ro'yxatiga solishtirish uchun
       const before = jsxAll.slice(Math.max(0, m.index - 160), m.index);
+      // BREND-rangi inline: belgi-konteksti atrofdagi className dan o'qiladi.
+      if (BRAND.has(hex.toUpperCase())) {
+        if (BRAND_CTX.test(before.slice(-120))) continue;
+        const _ln = jsxAll.slice(0, m.index).split(String.fromCharCode(10)).length;
+        out.push({ kind: 'brend', sel: `inline :${_ln}`, hex, L: L.toFixed(3), why: BRAND.get(hex.toUpperCase()) });
+        continue;
+      }
       // JONLI SESSIYA INFRA (P0 dan AYNAN, 122 faylda bir xil, FAQAT mentorga ko'rinadi):
       // bu yerdagi quyuq fonlar dars-kontenti emas, umumiy komponent. Bitta darsda
       // tuzatilmaydi -> KATTA_TOZALASH 1-bandi. Signal bermaymiz, aks holda darvoza
@@ -243,29 +304,65 @@ function scan(file) {
   return out;
 }
 
+// ARXIV — QAMROVDAN TASHQARI (F-0820-197, foydalanuvchi qarori 2026-08-20).
+// `src/eski/` va `src/2-moodull eski/` — `App.jsx` ga ULANMAGAN o'lik nusxalar.
+// Darvoza JONLI kodni qo'riqlaydi; arxiv topilmalari haqiqiy signalni ko'madi.
+// Arxivning taqdiri (o'chirish yoki saqlash) — KATTA_TOZALASH 19-band.
+const SKIP_DIRS = ['2-moodull eski', 'eski'];
 function walk(d, acc = []) {
   for (const e of readdirSync(d)) {
     const p = join(d, e);
-    if (statSync(p).isDirectory()) { if (e !== 'node_modules') walk(p, acc); }
+    if (statSync(p).isDirectory()) { if (e !== 'node_modules' && !SKIP_DIRS.includes(e)) walk(p, acc); }
     else if (e.endsWith('.jsx')) acc.push(p);
   }
   return acc;
 }
 
+// ARGUMENT PAPKA BO'LSA HAM WALK QILINADI (F-0820-88).
+// Ilgari papka to'g'ridan-to'g'ri readFileSync ga tushar, EISDIR istisnosi quyidagi
+// `catch { continue }` da YUTILAR va darvoza «✓ TOZA» deb YOLG'ON gapirar edi:
+//     node dark-lint.mjs src/4-Modull       -> "1 fayl · ✓ TOZA"   ← yolg'on
+//     node dark-lint.mjs src/4-Modull/*.jsx -> 64 topilma          ← haqiqat
+// Yolg'on gapiradigan darvoza — darvoza yo'qligidan battar.
+function expand(list) {
+  const out = [];
+  for (const a of list) {
+    let st;
+    try { st = statSync(a); }
+    catch { console.error(`${RED}✗ topilmadi: ${a}${R}`); process.exitCode = 2; continue; }
+    if (st.isDirectory()) walk(a, out);
+    else out.push(a);
+  }
+  return out;
+}
+
 const args = process.argv.slice(2);
-const files = args.length ? args : walk('src');
+const files = args.length ? expand(args) : walk('src');
 let total = 0;
 console.log(`${B}\nDARK-LINT — og'ir/qora element detektori · ${files.length} fayl${R}`);
 for (const f of files) {
-  let hits; try { hits = scan(f); } catch { continue; }
+  // ISTISNO YUTILMAYDI (F-0820-88): o'qib bo'lmagan fayl ovoz chiqarib aytiladi va
+  // chiqish kodi 2 bo'ladi — aks holda darvoza jim qolib «toza» deb ko'rsatadi.
+  let hits;
+  try { hits = scan(f); }
+  catch (e) { console.error(`${RED}✗ o'qilmadi: ${f} — ${e.code || e.message}${R}`); process.exitCode = 2; continue; }
   const fon = hits.filter(h => h.kind === 'fon');
   const knt = hits.filter(h => h.kind === 'kontrast');
-  if (!fon.length && !knt.length) continue;
-  total += fon.length + knt.length;
-  console.log(`\n${B}${f}${R}  ${RED}${fon.length + knt.length}${R}`);
+  const brn = hits.filter(h => h.kind === 'brend');
+  if (!fon.length && !knt.length && !brn.length) continue;
+  total += fon.length + knt.length + brn.length;
+  console.log(`\n${B}${f}${R}  ${RED}${fon.length + knt.length + brn.length}${R}`);
   fon.forEach(h => console.log(`  ${RED}●${R} ${h.sel.padEnd(30)} ${h.hex}  L=${h.L}  ${DIM}— accent qoidasiga bo'ysundirilsinmi?${R}`));
+  brn.forEach(h => console.log(`  ${RED}◆${R} ${h.sel.padEnd(30)} ${h.hex}  L=${h.L}  ${DIM}— ${h.why} brend-rangi belgi-kontekstidan tashqarida (plastinka/chip/logotip/nishon emas)${R}`));
   knt.forEach(h => console.log(`  ${RED}◐${R} ${h.sel.padEnd(30)} fon ${h.hex} · matn ${h.fg} (${h.base} dan)  ${DIM}— kontrast ${h.ratio}:1, matn ko'rinmaydi; modifikatorga color bering${R}`));
   const btn = [...new Set(hits.filter(h => h.kind === 'btn').map(h => h.sel))];
   if (btn.length) console.log(`  ${DIM}btn-oilasi (qismiy moslik): ${btn.join(' · ')}${R}`);
 }
 console.log(total ? `\n${RED}${B}Jami: ${total} ta topilma${R}\n` : `\n${GRN}✓ TOZA — kutilmagan quyuq fon yo'q.${R}\n`);
+// 🔴 CHIQISH KODI — DARVOZA HALOLLIGI (F-0820-215).
+// Bu skript topilma bo'lsa ham 0 qaytarardi: yakka ishlatilganda muhim emas edi
+// (odam ekranga qaraydi), lekin `npm run gates` chiqish kodlarini yig'a boshlagach
+// darvoza YOLG'ON GAPIRA boshladi — m4-10 da 8 topilma turib «✓ dark» deb ko'rsatdi.
+// `til-lint` va `jsx-lint` allaqachon 1 qaytaradi; `dark-lint` ham shu qatorga qo'shildi.
+// (Yo'q papka xatosi uchun yuqorida process.exitCode = 2 qo'yiladi — u saqlanadi.)
+if (total > 0) process.exitCode = 1;

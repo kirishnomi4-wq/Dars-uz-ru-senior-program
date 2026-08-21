@@ -4,14 +4,14 @@ const MENTOR_IMG = 'https://go.coddycamp.uz/uploads/media_library/c7b711619071c9
 // ============================================================
 // BACKEND MODULI (4-MODUL) · 3-DARS — NODE.JS: BIRINCHI SERVER — PLATFORM STANDARD v16 (AUDIOSIZ)
 // Mavzu: server nima (doim ishlaydigan dastur, so'rov→javob), Node.js (JS serverda — bir til ikki dunyo),
-//        npm (tayyor asboblar do'koni — npm install express), Express (mashhur 5 qatorli server),
-//        endpoint (eshik: GET /salom), NestJS (Express'ning kattaroq, tartibli, professional akasi — kodsiz),
+//        npm (tayyor paketlar to'plami — npm install express), Express (mashhur 5 qatorli server),
+//        endpoint (eshik: GET /salom), NestJS (ko'prik: bitta ustunlik + bitta gap — kodsiz, B1 qarori 2026-08-20),
 //        lokalda yurgizish (node server.js → localhost:3000).
 // Ko'prik: React darsida fetch('server') qildingiz — bugun o'sha JAVOB BERUVCHI serverni o'zingiz quryapsiz.
 //          PEAN restorani: Node = oshxona, Express = ofitsiant, endpoint = xizmat oynasi.
 // MUHIM: kelgusi darslar ro'yxati o'quvchiga AYTILMAYDI — faqat yakunda keyingi dars teaser.
 // KOD TA'MI: Express serveri KO'RSATILADI (qismlari bosiladi); yakunda BITTA endpoint qatori YOZILADI.
-//            Nest'ga urg'u beriladi (nega ancha yaxshi/tartibli), lekin Nest KODI ko'rsatilmaydi.
+//            Nest faqat ko'prik: bitta karta-bosish → bitta ustunlik + «katta loyihalarda keyin tanishasiz»; Nest KODI ko'rsatilmaydi.
 // AUDIOSIZ: ovoz (TTS) yo'q — platforma qarori.
 // Yakuniy ekran (s15): VS Code — server.js, app.get('/salom', ...) endpoint'ini yozib, ▶ Run → brauzerda javob.
 // Toza dizayn — ortiqcha emoji yo'q; ma'no so'z va tipografiya bilan beriladi.
@@ -277,7 +277,7 @@ function LiveBigCode({ pin, onClose }) {
     <div style={overlay}>
       <div style={{ fontSize: 'clamp(13px,2vw,18px)', fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: LT.accent, marginBottom: 'clamp(14px,3vw,28px)' }}>{tr({ uz: "Jonli darsga qo'shilish", ru: 'Присоединиться к живому уроку' })}</div>
       <div style={{ display: 'flex', gap: 'clamp(6px,1.4vw,16px)', justifyContent: 'center', flexWrap: 'wrap' }}>{digits.map((d, i) => <span key={i} style={box}>{d}</span>)}</div>
-      <p style={{ color: '#fff', opacity: 0.85, fontSize: 'clamp(15px,2.2vw,22px)', maxWidth: 640, margin: 'clamp(20px,4vw,36px) 0 0', lineHeight: 1.5 }}>{tr({ uz: <>Shu darsni o'z qurilmangizda oching → <b style={{ color: '#fff' }}>«👨‍🎓 O'quvchiman»</b> → ushbu kodni kiriting.</>, ru: <>Откройте этот урок на своём устройстве → <b style={{ color: '#fff' }}>«👨‍🎓 Я ученик»</b> → введите этот код.</> })}</p>
+      <p style={{ color: '#fff', opacity: 0.85, fontSize: 'clamp(15px,2.2vw,22px)', maxWidth: 640, margin: 'clamp(20px,4vw,36px) 0 0', lineHeight: 1.5 }}>{tr({ uz: <>Shu darsni o'z qurilmangizda oching → <b style={{ color: '#fff' }}>«👨‍🎓 O'quvchiman»</b> → bu kodni kiriting.</>, ru: <>Откройте этот урок на своём устройстве → <b style={{ color: '#fff' }}>«👨‍🎓 Я ученик»</b> → введите этот код.</> })}</p>
       <button onClick={onClose} style={{ marginTop: 'clamp(22px,4vw,40px)', background: LT.accent, color: '#fff', border: 'none', borderRadius: 14, padding: 'clamp(12px,1.6vw,16px) clamp(24px,3vw,36px)', fontSize: 'clamp(15px,1.8vw,18px)', fontWeight: 700, cursor: 'pointer' }}>{tr({ uz: 'Darsni boshlash →', ru: 'Начать урок →' })}</button>
     </div>
   );
@@ -395,8 +395,8 @@ const SCREEN_META = [
   { id: 's13', type: 'exploration', template: 'custom',   scored: false, scope: null },
   { id: 's14', type: 'rule',        template: 'custom',   scored: false, scope: null },
   { id: 's15', type: 'test',        template: 'custom',   scored: true,  scope: 'final' },
-  { id: 's15p',type: 'practice',    template: 'custom',   scored: false, scope: null },
-  { id: 's15b',type: 'stats',       template: 'custom',   scored: false, scope: null },
+  { id: 'practice', type: 'practice', template: 'custom', scored: false, scope: null },
+  { id: 'podium', type: 'stats',    template: 'custom',   scored: false, scope: null },
   { id: 'sflash', type: 'flashcards', template: 'custom', scored: false, scope: null },
   { id: 's16', type: 'summary',     template: 'custom',   scored: false, scope: null }
 ];
@@ -534,16 +534,16 @@ const RECAPS = {
     title: { uz: "Node.js — JavaScript endi serverda ham", ru: 'Node.js — JavaScript теперь и на сервере' },
     cards: [
       { ic: "🌍", h: { uz: "JS faqat brauzerda emas", ru: 'JS не только в браузере' }, body: { uz: <>Ilgari JavaScript faqat brauzer ichida ishlardi. <b>Node.js</b> uni brauzerdan tashqarida — <b>serverda</b> ham ishlatadi.</>, ru: <>Раньше JavaScript работал только внутри браузера. <b>Node.js</b> запускает его и вне браузера — <b>на сервере</b>.</> } },
-      { ic: "🖥️", h: { uz: "node bilan yuriladi", ru: 'Запускается через node' }, body: { uz: <>Terminalga <span className="mono">node app.js</span> deysiz — JS kodi kompyuterda (serverda) ishlaydi, brauzersiz.</>, ru: <>Пишете в терминале <span className="mono">node app.js</span> — JS-код работает на компьютере (сервере), без браузера.</> } },
+      { ic: "🖥️", h: { uz: "node bilan yuriladi", ru: 'Запускается через node' }, body: { uz: <>Terminalga <span className="mono">node server.js</span> deysiz — JS kodi kompyuterda (serverda) ishlaydi, brauzersiz.</>, ru: <>Пишете в терминале <span className="mono">node server.js</span> — JS-код работает на компьютере (сервере), без браузера.</> } },
       { ic: "🔗", h: { uz: "Bir til, ikki dunyo", ru: 'Один язык, два мира' }, body: { uz: <>Siz bilgan JavaScript endi <b>frontend ham, backend ham</b> uchun yaraydi — bitta til, ikki dunyo.</>, ru: <>Знакомый Вам JavaScript теперь годится <b>и для фронтенда, и для бэкенда</b> — один язык, два мира.</> }, ask: { uz: "Server dasturini qaysi tilda yozamiz?", ru: 'На каком языке пишем программу-сервер?' } },
     ]
   },
   6: {
-    title: { uz: "npm — tayyor asboblar do'koni", ru: 'npm — магазин готовых инструментов' },
+    title: { uz: "npm — tayyor paketlar to'plami", ru: 'npm — набор готовых пакетов' },
     cards: [
       { ic: "🛒", h: { uz: "Asboblar do'koni", ru: 'Магазин инструментов' }, body: { uz: <><b>npm</b> — millionlab tayyor paketlar do'koni. Har narsani noldan yozish shart emas.</>, ru: <><b>npm</b> — магазин с миллионами готовых пакетов. Не нужно писать всё с нуля.</> } },
-      { ic: "⬇️", h: "npm install express", body: { uz: <>Bitta buyruq — <span className="mono">npm install express</span> — kerakli asbobni javonga buyurtma qiladi.</>, ru: <>Одна команда — <span className="mono">npm install express</span> — заказывает нужный инструмент на полку.</> } },
-      { ic: "📄", h: { uz: "package.json'ga yoziladi", ru: 'Записывается в package.json' }, body: { uz: <>O'rnatilgan har asbob <span className="mono">package.json</span> ro'yxatiga yoziladi — nima ishlatganingiz ko'rinib turadi.</>, ru: <>Каждый установленный инструмент записывается в список <span className="mono">package.json</span> — видно, чем Вы пользуетесь.</> }, ask: { uz: "express'ni qaysi buyruq bilan o'rnatamiz?", ru: 'Какой командой устанавливаем express?' } },
+      { ic: "⬇️", h: "npm install express", body: { uz: <>Bitta buyruq — <span className="mono">npm install express</span> — kerakli paketni loyihangizga qo'shadi.</>, ru: <>Одна команда — <span className="mono">npm install express</span> — добавляет нужный пакет в Ваш проект.</> } },
+      { ic: "📄", h: { uz: "package.json'ga yoziladi", ru: 'Записывается в package.json' }, body: { uz: <>O'rnatilgan har paket <span className="mono">package.json</span> ro'yxatiga yoziladi — nima ishlatganingiz ko'rinib turadi.</>, ru: <>Каждый установленный пакет записывается в список <span className="mono">package.json</span> — видно, чем Вы пользуетесь.</> }, ask: { uz: "express'ni qaysi buyruq bilan o'rnatamiz?", ru: 'Какой командой устанавливаем express?' } },
     ]
   },
   10: {
@@ -671,7 +671,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
         const level = answered < RECAP_MIN_ANSWERS ? 'few' : pct < RECAP_NEED_PCT ? 'need' : pct < RECAP_GOOD_PCT ? 'maybe' : 'good';
         return (
           <div className={`mstats-verdict ${level}`}>
-            {level === 'need' && <p className="mstats-verdict-t">{tr({ uz: <>⚠️ Faqat <b>{pct}%</b> to'g'ri — bu mavzu sinfga tushunarsiz qolgan. Davom etishdan oldin qisqa takrorlash tavsiya etiladi.</>, ru: <>⚠️ Только <b>{pct}%</b> верных — тема осталась непонятной классу. Перед продолжением рекомендуем короткое повторение.</> })}</p>}
+            {level === 'need' && <p className="mstats-verdict-t">{tr({ uz: <>⚠️ Faqat <b>{pct}%</b> to'g'ri — bu mavzu sinfga tushunarsiz qolgan. Davom etishdan oldin qisqa takrorlang.</>, ru: <>⚠️ Только <b>{pct}%</b> верных — тема осталась непонятной классу. Перед продолжением коротко повторите.</> })}</p>}
             {level === 'maybe' && <p className="mstats-verdict-t">{tr({ uz: <>🟡 <b>{pct}%</b> to'g'ri — yomon emas. Xohlasangiz, davom etishdan oldin qisqa takrorlab oling.</>, ru: <>🟡 <b>{pct}%</b> верных — неплохо. При желании коротко повторите перед продолжением.</> })}</p>}
             {level === 'good' && <p className="mstats-verdict-t">{tr({ uz: <>✅ <b>{pct}%</b> to'g'ri — sinf mavzuni o'zlashtirdi. Bemalol davom eting!</>, ru: <>✅ <b>{pct}%</b> верных — класс усвоил тему. Смело продолжайте!</> })}</p>}
             {level === 'few' && <p className="mstats-verdict-t">{tr({ uz: <>Javob berganlar kam ({answered} ta) — foiz bo'yicha xulosa chiqarish qiyin. O'zingiz baholang.</>, ru: <>Ответивших мало ({answered}) — по процентам судить трудно. Оцените сами.</> })}</p>}
@@ -685,7 +685,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
           {waiting.length > 8 && <span className="mstats-wait-chip more">+{waiting.length - 8}</span>}
         </div>
       )}
-      {reveal && struggling && <p className="mstats-warn">{tr({ uz: "⚠️ Ko'pchilik xato qildi — bu mavzu tushunarsiz bo'lgan ko'rinadi. Qayta tushuntirish tavsiya etiladi.", ru: '⚠️ Большинство ошиблось — похоже, тема осталась непонятной. Рекомендуем объяснить ещё раз.' })}</p>}
+      {reveal && struggling && <p className="mstats-warn">{tr({ uz: "⚠️ Ko'pchilik xato qildi — bu mavzu tushunarsiz bo'lgan ko'rinadi. Yana bir bor tushuntiring.", ru: '⚠️ Большинство ошиблось — похоже, тема осталась непонятной. Объясните ещё раз.' })}</p>}
       {answered === 0 && <p className="mstats-wait">{tr({ uz: "O'quvchilar javoblari shu yerda jonli ko'rinadi…", ru: 'Ответы учеников появятся здесь в реальном времени…' })}</p>}
     </div>
   );
@@ -869,7 +869,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
     { id: 'b', label: { uz: "Internet o'zi avtomatik javob beradi", ru: 'Интернет отвечает автоматически' } },
     { id: 'c', label: { uz: "Narigi tomonda turgan server dasturi — biz quradigan narsa", ru: 'Программа-сервер на той стороне — то, что мы построим' } }
   ];
-  const pick = (v) => { if (picked !== null || !tried) return; setPicked(v); onAnswer(screen, { stage: 'hook', screenIdx: screen, picked: v, correct: true }); };
+  const pick = (v) => { if (picked !== null || !tried) return; setPicked(v); onAnswer(screen, { stage: 'hook', screenIdx: screen, picked: v, correct: v === 'c' }); };
   const audio = useAudio([{ id: 's0', text: `fetch yozganingizda narigi tomonda kim javob beradi? React darsida serverdan ma'lumot oldingiz — lekin so'rovga kim javob berdi? Tugmani bosib, serverni yoqib-o'chirib ko'ring: yoniq bo'lsa javob bor, o'chsa ECONNREFUSED. Keyin ayting — fetch'ga kim javob beradi?`, trigger: 'on_mount', waits_for: { type: 'option_picked' } }]);
   return (
     <Stage eyebrow={tr({ uz: 'Kirish', ru: 'Введение' })} screen={screen} audioState={audio} navContent={<NavNext optionalLive disabled={picked === null} label={tr({ uz: 'Davom etish', ru: 'Продолжить' })} onClick={onNext} />}>
@@ -905,7 +905,9 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
               })}
             </div>
             {!tried && <p className="small" style={{ color: T.ink3, fontStyle: 'italic', margin: 0 }}>{tr({ uz: "Avval serverni yoqib-o'chirib ko'ring ←", ru: 'Сначала повключайте и повыключайте сервер ←' })}</p>}
-            {picked !== null && <p className="hook-ack fade-step">{tr({ uz: <>Aynan! fetch'ga <b>server dasturi</b> javob beradi — o'sha o'chsa, hech kim javob bermaydi (ECONNREFUSED). Bugun shu serverni Node.js bilan o'zingiz yozasiz va yoqasiz.</>, ru: <>Именно! На fetch отвечает <b>программа-сервер</b> — если она выключится, никто не ответит (ECONNREFUSED). Сегодня Вы сами напишете этот сервер на Node.js и запустите его.</> })}</p>}
+            {picked !== null && <p className="hook-ack fade-step">{picked === 'c'
+              ? tr({ uz: <>Aynan! fetch'ga <b>server dasturi</b> javob beradi — o'sha o'chsa, hech kim javob bermaydi (ECONNREFUSED). Bugun shu serverni Node.js bilan o'zingiz yozasiz va yoqasiz.</>, ru: <>Именно! На fetch отвечает <b>программа-сервер</b> — если она выключится, никто не ответит (ECONNREFUSED). Сегодня Вы сами напишете этот сервер на Node.js и запустите его.</> })
+              : tr({ uz: <>Aslida brauzer faqat <b>so'raydi</b> — javobni narigi tomondagi <b>server dasturi</b> beradi. Tugmani eslang: u o'chganda ECONNREFUSED chiqdi. O'sha javob beruvchini bugun o'zingiz qurasiz.</>, ru: <>На самом деле браузер только <b>спрашивает</b> — отвечает <b>программа-сервер</b> на той стороне. Вспомните кнопку: когда она была выключена, появился ECONNREFUSED. Этого отвечающего Вы сегодня построите сами.</> })}</p>}
           </Col>
         </Split>
         </Zoomable>
@@ -919,7 +921,7 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
   const STEPS = [
     { text: { uz: "Server nima — doim ishlaydigan dastur", ru: 'Что такое сервер — программа, которая работает всегда' }, tag: { uz: "so'rov → javob", ru: 'запрос → ответ' } },
     { text: { uz: "Node.js — JS serverda ishlaydi", ru: 'Node.js — JS работает на сервере' }, tag: { uz: 'bir til, ikki dunyo', ru: 'один язык, два мира' } },
-    { text: { uz: "npm — tayyor asboblar do'koni", ru: 'npm — магазин готовых инструментов' }, tag: 'npm install' },
+    { text: { uz: "npm — tayyor paketlar to'plami", ru: 'npm — набор готовых пакетов' }, tag: 'npm install' },
     { text: { uz: "Express — oson server", ru: 'Express — простой сервер' }, tag: 'app.get' },
     { text: { uz: "Endpoint + serverni yurgizish", ru: 'Endpoint + запуск сервера' }, tag: 'localhost:3000' }
   ];
@@ -948,7 +950,7 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: 'Reja', ru: 'План' })} screen={screen} audioState={audio} mentorStatic navContent={<><NavBack onPrev={onPrev} /><NavNext label={tr({ uz: 'Boshlaymiz →', ru: 'Начинаем →' })} onClick={onNext} /></>}>
       <div className="screen">
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Birinchi serveringizni <span className="italic" style={{ color: T.accent }}>5 qadamda</span> quramiz</>, ru: <>Построим Ваш первый сервер <span className="italic" style={{ color: T.accent }}>за 5 шагов</span></> })}</h2></div>
-        <Mentor>{tr({ uz: <>Ishonasizmi — dars oxirida <b style={{ color: T.ink }}>haqiqiy serverni</b> o'zingiz yozib, ishga tushirasiz va brauzerda uning javobini ko'rasiz. Eng zo'r tomoni: server ham <b style={{ color: T.ink }}>JavaScript</b>'da yoziladi — siz buni allaqachon bilasiz!</>, ru: <>Поверите ли — в конце урока Вы сами напишете <b style={{ color: T.ink }}>настоящий сервер</b>, запустите его и увидите его ответ в браузере. Самое классное: сервер тоже пишется на <b style={{ color: T.ink }}>JavaScript</b> — а его Вы уже знаете!</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Ishonasizmi — dars oxirida <b style={{ color: T.ink }}>haqiqiy serverni</b> o'zingiz yozib, ishga tushirasiz va brauzerda uning javobini ko'rasiz. Eng yaxshi tomoni: server ham <b style={{ color: T.ink }}>JavaScript</b>'da yoziladi — siz buni allaqachon bilasiz!</>, ru: <>Поверите ли — в конце урока Вы сами напишете <b style={{ color: T.ink }}>настоящий сервер</b>, запустите его и увидите его ответ в браузере. Самое классное: сервер тоже пишется на <b style={{ color: T.ink }}>JavaScript</b> — а его Вы уже знаете!</> })}</Mentor>
         {!isNarrow ? (
           <Zoomable><Split>{PreviewBlock}{StepsBlock}</Split></Zoomable>
         ) : !showSteps ? (
@@ -1055,7 +1057,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <p className="flow-label">{tr({ uz: 'Brauzer (frontend)', ru: 'Браузер (фронтенд)' })}</p>
             <Win title={tr({ uz: 'brauzer konsoli', ru: 'консоль браузера' })} minH={52}>{ran ? <TLine out={<span style={{ color: CODE.str }}>Salom!</span>} /> : <span style={{ color: T.ink3, fontFamily: 'Georgia, serif', fontStyle: 'italic', fontSize: 13 }}>{tr({ uz: 'kutilmoqda…', ru: 'ожидание…' })}</span>}</Win>
             <p className="flow-label" style={{ marginTop: 2 }}>{tr({ uz: 'Server (Node.js)', ru: 'Сервер (Node.js)' })}</p>
-            <div className="code-box" style={{ padding: '9px 13px', minHeight: 46 }}>{ran ? <TLine cmd="node app.js" /> : <span style={{ color: CODE.comment, fontFamily: "'JetBrains Mono'", fontSize: 12 }}>{tr({ uz: 'terminal…', ru: 'терминал…' })}</span>}{ran && <TLine out={<span style={{ color: CODE.str }}>Salom!</span>} />}</div>
+            <div className="code-box" style={{ padding: '9px 13px', minHeight: 46 }}>{ran ? <TLine cmd="node server.js" /> : <span style={{ color: CODE.comment, fontFamily: "'JetBrains Mono'", fontSize: 12 }}>{tr({ uz: 'terminal…', ru: 'терминал…' })}</span>}{ran && <TLine out={<span style={{ color: CODE.str }}>Salom!</span>} />}</div>
             {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Bir xil JS kodi — brauzerda ham, Node.js bilan serverda ham ishladi! Mana shu Node'ning kuchi: <b>siz bilgan til endi backend uchun ham</b>.</>, ru: <>Один и тот же JS-код сработал и в браузере, и на сервере с Node.js! В этом сила Node: <b>знакомый Вам язык теперь годится и для бэкенда</b>.</> })}</p></div>}
           </Col>
         </div>
@@ -1071,7 +1073,7 @@ const Screen4 = (props) => (
     questionText="Node.js nima imkon beradi?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <><span className="mono" style={{ color: T.accent }}>Node.js</span> nima imkon beradi?</>, ru: <>Что даёт <span className="mono" style={{ color: T.accent }}>Node.js</span>?</> })}</h2></>}
     audioText="Node.js nima imkon beradi? JavaScript endi qayerda ishlaydi deb o'ylaysiz? To'g'ri javobni tanlang."
-    options={[tr({ uz: "JavaScript'ni brauzerdan tashqarida, serverda ishlatish", ru: 'Запускать JavaScript вне браузера — на сервере' }), tr({ uz: "Faqat HTML sahifalarni chiroyli qilib yozish uchun kerak", ru: 'Нужен только чтобы красиво писать HTML-страницы' }), tr({ uz: "Internet tezligini oshirib, barcha saytlarni tezlatadi", ru: 'Ускоряет интернет и все сайты сразу' }), tr({ uz: "Rasm va videolarni professional tahrirlash imkonini beradi", ru: 'Позволяет профессионально редактировать фото и видео' })]} correctIdx={0}
+    options={[tr({ uz: "JavaScript'ni brauzerdan tashqarida, serverda ishlatish", ru: 'Запускать JavaScript вне браузера — на сервере' }), tr({ uz: "Faqat HTML sahifalarni chiroyli qilib yozish uchun kerak", ru: 'Нужен только чтобы красиво писать HTML-страницы' }), tr({ uz: "Internet tezligini oshirib, barcha saytlarni tezlatadi", ru: 'Ускоряет интернет и все сайты сразу' }), tr({ uz: "Rasm va videolarni tahrirlash imkonini beradi", ru: 'Позволяет редактировать фото и видео' })]} correctIdx={0}
     explainCorrect={tr({ uz: "To'g'ri! Node.js JavaScript'ni brauzerdan tashqarida — serverda/kompyuterda ishlatish imkonini beradi. Shuning uchun backend ham JS'da yoziladi.", ru: 'Верно! Node.js позволяет запускать JavaScript вне браузера — на сервере/компьютере. Поэтому бэкенд тоже пишут на JS.' })}
     explainWrong={{
       1: tr({ uz: "Yo'q — Node JS uchun. HTML alohida narsa.", ru: 'Нет — Node для JS. HTML — отдельная история.' }),
@@ -1094,7 +1096,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow="npm" screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "express'ni o'rnating", ru: 'Установите express' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Har narsani <span className="italic" style={{ color: T.accent }}>noldan yozish</span> shartmi?</>, ru: <>Обязательно ли всё <span className="italic" style={{ color: T.accent }}>писать с нуля</span>?</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Yo'q! <b style={{ color: T.ink }}>npm</b> — bu tayyor asboblar do'koni (millionlab paketlar). Bitta buyruq bilan kerakli vositani o'rnatasiz: <span className="mono">npm install express</span>. Buni React darsida ham ko'rgansiz (<span className="mono">npm create vite</span>)! Tugmani bosib, express'ni o'rnating.</>, ru: <>Нет! <b style={{ color: T.ink }}>npm</b> — это магазин готовых инструментов (миллионы пакетов). Одна команда — и нужный инструмент установлен: <span className="mono">npm install express</span>. Вы уже видели это на уроке React (<span className="mono">npm create vite</span>)! Нажмите кнопку и установите express.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Yo'q! <b style={{ color: T.ink }}>npm</b> — bu tayyor paketlar to'plami (millionlab paket). Bitta buyruq bilan kerakli paketni o'rnatasiz: <span className="mono">npm install express</span>. Buni React darsida ham ko'rgansiz (<span className="mono">npm create vite</span>)! Tugmani bosib, express'ni o'rnating.</>, ru: <>Нет! <b style={{ color: T.ink }}>npm</b> — это набор готовых пакетов (миллионы пакетов). Одна команда — и нужный пакет установлен: <span className="mono">npm install express</span>. Вы уже видели это на уроке React (<span className="mono">npm create vite</span>)! Нажмите кнопку и установите express.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
@@ -1108,9 +1110,9 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {phase === 'idle' && <button className="btn fade-up delay-1" style={{ alignSelf: 'flex-start' }} onClick={install}>⬇ npm install express</button>}
           </Col>
           <Col>
-            <p className="flow-label">{tr({ uz: "package.json — o'rnatilgan asboblar", ru: 'package.json — установленные инструменты' })}</p>
+            <p className="flow-label">{tr({ uz: "package.json — o'rnatilgan paketlar", ru: 'package.json — установленные пакеты' })}</p>
             <pre className="code-box">{'{'}{'\n'}{'  '}<At>"dependencies"</At>{': {'}{'\n'}{'    '}{done ? <St>"express": "^4.18.0"</St> : <span style={{ color: CODE.comment }}>{tr({ uz: "// hali bo'sh", ru: '// пока пусто' })}</span>}{'\n'}{'  }'}{'\n'}{'}'}</pre>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>express o'rnatildi va <span className="mono">package.json</span>'ga yozildi. Endi uni kodimizda ishlatsak bo'ladi. npm — sizning <b>asboblar do'koningiz</b>.</>, ru: <>express установлен и записан в <span className="mono">package.json</span>. Теперь его можно использовать в коде. npm — Ваш <b>магазин инструментов</b>.</> })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>express o'rnatildi va <span className="mono">package.json</span>'ga yozildi. Endi uni kodimizda ishlatsak bo'ladi. npm — sizning <b>tayyor paketlar to'plamingiz</b>.</>, ru: <>express установлен и записан в <span className="mono">package.json</span>. Теперь его можно использовать в коде. npm — Ваш <b>набор готовых пакетов</b>.</> })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -1126,11 +1128,11 @@ const Screen5b = (props) => (
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: 'Mustahkamlash', ru: 'Закрепление' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <><span className="mono" style={{ color: T.accent }}>npm</span> nima qiladi?</>, ru: <>Что делает <span className="mono" style={{ color: T.accent }}>npm</span>?</> })}</h2></>}
     audioText="npm nima qiladi? Asboblar do'konini eslang. To'g'ri javobni tanlang."
     options={[tr({ uz: "Ishlab turgan serverni butunlay o'chirib qo'yadi", ru: 'Полностью выключает работающий сервер' }), tr({ uz: "Tayyor asboblarni (paketlarni) o'rnatadi, masalan express", ru: 'Устанавливает готовые инструменты (пакеты), например express' }), tr({ uz: "Yozib qo'ygan barcha kodingizni o'chirib tashlaydi", ru: 'Удаляет весь написанный Вами код' }), tr({ uz: "Kompyuterni internetga ulab, aloqa o'rnatadi", ru: 'Подключает компьютер к интернету' })]} correctIdx={1}
-    explainCorrect={tr({ uz: "To'g'ri! npm (Node Package Manager) — tayyor kutubxonalarni o'rnatadigan asboblar do'koni. npm install express bilan Express'ni o'rnatdik.", ru: 'Верно! npm (Node Package Manager) — магазин инструментов, который устанавливает готовые библиотеки. Командой npm install express мы установили Express.' })}
+    explainCorrect={tr({ uz: "To'g'ri! npm (Node Package Manager) — tayyor paketlarni o'rnatadigan vosita. npm install express bilan Express'ni o'rnatdik.", ru: 'Верно! npm (Node Package Manager) — инструмент, который устанавливает готовые пакеты. Командой npm install express мы установили Express.' })}
     explainWrong={{
       0: tr({ uz: "Yo'q — npm serverni o'chirmaydi. U tayyor paketlarni o'rnatadi.", ru: 'Нет — npm не выключает сервер. Он устанавливает готовые пакеты.' }),
       2: tr({ uz: "Aksincha — npm kod qo'shadi (paket o'rnatadi), o'chirmaydi.", ru: 'Наоборот — npm добавляет код (устанавливает пакеты), а не удаляет.' }),
-      3: tr({ uz: "Yo'q — npm paketlarni o'rnatadi (asboblar do'koni).", ru: 'Нет — npm устанавливает пакеты (магазин инструментов).' }),
+      3: tr({ uz: "Yo'q — npm paketlarni o'rnatadi (tayyor paketlar to'plami).", ru: 'Нет — npm устанавливает пакеты (набор готовых пакетов).' }),
       default: tr({ uz: "npm — tayyor paketlarni o'rnatuvchi.", ru: 'npm — установщик готовых пакетов.' })
     }} />
 );
@@ -1146,13 +1148,13 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   };
   const [active, setActive] = useState(null);
   const [seen, setSeen] = useState(storedAnswer ? new Set(Object.keys(PARTS)) : new Set());
-  const done = seen.size >= 3;
+  const done = seen.size >= 5; // F-0820-155: bitta maxraj — 5 qismning har biri keyin tekshiriladi (listen s12/s14 · get s9 · send arena)
   const tap = (k) => { setActive(k); setSeen(p => { const s = new Set(p); s.add(k); return s; }); };
   const hl = (k) => ({ cursor: 'pointer', borderRadius: 5, padding: '1px 3px', background: active === k ? 'rgba(255,79,40,0.2)' : (seen.has(k) ? 'rgba(31,122,77,0.14)' : 'transparent'), transition: 'all 0.15s' });
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   const audio = useAudio([{ id: 's6', text: `Butun serverni besh qatorda yozsa bo'ladimi? Express bilan — ha. Mana mashhur "Salom, dunyo" serveri: bor-yo'g'i bir necha qator. Har rangli qismni bosib, nima qilishini o'rganing: asbobni chaqir, peshtaxtani (app) yarat, eshik och, javob ber, tabloni yoq.`, trigger: 'on_mount', waits_for: null }]);
   return (
-    <Stage eyebrow="Express" screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : `${seen.size}/3 ${tr({ uz: "qism o'rganildi", ru: '— изучите части' })}`} onClick={onNext} /></>}>
+    <Stage eyebrow="Express" screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : `${seen.size}/5 ${tr({ uz: "qism o'rganildi", ru: '— изучите части' })}`} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Butun serverni <span className="italic" style={{ color: T.accent }}>5 qatorda</span> yozsa bo'ladimi?</>, ru: <>Можно ли написать целый сервер <span className="italic" style={{ color: T.accent }}>в 5 строк</span>?</> })}</h2></div>
         <Mentor>{tr({ uz: <>Ha! <b style={{ color: T.ink }}>Express</b> — serverni juda osonlashtiradi. Mana mashhur "Salom, dunyo" serveri — bor-yo'g'i bir necha qator. Har bir rangli qismni bosib, nima qilishini o'rganing.</>, ru: <>Да! <b style={{ color: T.ink }}>Express</b> делает сервер очень простым. Вот знаменитый сервер «Salom, dunyo» — всего несколько строк. Нажимайте на каждую цветную часть и узнайте, что она делает.</> })}</Mentor>
@@ -1226,42 +1228,30 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   );
 };
 
-// ===== SCREEN 8 — NEST (urg'u: kattaroq, tartibli, professional) =====
+// ===== SCREEN 8 — NEST (ko'prik-ekran: bitta ustunlik + bitta gap — B1 qarori, F-0820-158) =====
 const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const ADV = [
-    { id: 'order', t: { uz: 'Tartib (modullar)', ru: 'Порядок (модули)' }, d: { uz: "Kod papkalar va modullarga ajraladi — katta loyihada ham adashmaysiz.", ru: 'Код делится на папки и модули — не запутаетесь даже в большом проекте.' } },
-    { id: 'team', t: { uz: 'Jamoa uchun', ru: 'Для команды' }, d: { uz: "Ko'p dasturchi birga ishlaganda hamma bir xil tartibga amal qiladi.", ru: 'Когда вместе работает много разработчиков, все следуют одному порядку.' } },
-    { id: 'ts', t: 'TypeScript', d: { uz: "Xatolarni oldindan ushlaydi — ishonchli, professional kod.", ru: 'Ловит ошибки заранее — надёжный, профессиональный код.' } },
-    { id: 'scale', t: { uz: 'Kattalashishga tayyor', ru: 'Готов к росту' }, d: { uz: "Loyiha o'ssa ham chidaydi — yirik kompaniyalar aynan shuni ishlatadi.", ru: 'Выдержит рост проекта — именно его используют крупные компании.' } }
-  ];
-  const [seen, setSeen] = useState(storedAnswer ? new Set(ADV.map(a => a.id)) : new Set());
-  const [active, setActive] = useState(storedAnswer ? 'order' : null);
-  const done = seen.size >= 2 || !!storedAnswer;
-  const tap = (a) => { setActive(a.id); setSeen(p => { const s = new Set(p); s.add(a.id); return s; }); };
-  const cur = ADV.find(a => a.id === active);
+  const [opened, setOpened] = useState(!!storedAnswer);
+  const done = opened;
+  const open = () => setOpened(true);
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
-  const audio = useAudio([{ id: 's8', text: `Loyiha kattalashsa, Express yetadimi? Boshlash uchun u ideal — oson va tez. Lekin katta do'konga tartib kerak bo'ladi. Aynan shu yerda NestJS keladi: u Express ustiga qurilgan, lekin ancha tartibli va kuchli aka — yirik, professional backendlar uchun. Ustunliklarini bosib ko'ring.`, trigger: 'on_mount', waits_for: null }]);
+  const audio = useAudio([{ id: 's8', text: `Loyiha kattalashsa, Express yetadimi? Birinchi server uchun u ayni kerakli. Loyiha kattalashganda esa tartib kerak bo'ladi — buning uchun NestJS bor. Kartani bosib, uning bitta asosiy ustunligini ko'ring.`, trigger: 'on_mount', waits_for: null }]);
   return (
-    <Stage eyebrow="NestJS" screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : `${seen.size}/2 ${tr({ uz: "ustunlik ko'ring", ru: '— смотрите плюсы' })}`} onClick={onNext} /></>}>
+    <Stage eyebrow="NestJS" screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'NestJS kartasini oching', ru: 'Откройте карту NestJS' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Loyiha kattalashsa — <span className="italic" style={{ color: T.accent }}>Express yetadimi</span>?</>, ru: <>А если проект вырастет — <span className="italic" style={{ color: T.accent }}>хватит ли Express</span>?</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Express oson va tez — boshlash uchun ideal. Lekin loyiha <b style={{ color: T.ink }}>kattalashganda</b> tartib kerak bo'ladi. Aynan shu yerda <b style={{ color: T.accent }}>NestJS</b> keladi: u Express ustiga qurilgan, lekin <b style={{ color: T.ink }}>ancha tartibli va kuchli</b> — yirik, professional backendlar uchun. Bugun Express bilan boshlaymiz; lekin jiddiy loyiha = Nest. Ustunliklarini ko'ring.</>, ru: <>Express прост и быстр — идеален для старта. Но когда проект <b style={{ color: T.ink }}>вырастает</b>, нужен порядок. Тут и приходит <b style={{ color: T.accent }}>NestJS</b>: он построен поверх Express, но <b style={{ color: T.ink }}>куда более организованный и мощный</b> — для крупных, профессиональных бэкендов. Сегодня начнём с Express; но серьёзный проект = Nest. Посмотрите его плюсы.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Express oson va tez — birinchi server uchun ayni kerakli. Loyiha <b style={{ color: T.ink }}>kattalashganda</b> esa tartib kerak bo'ladi — buning uchun <b style={{ color: T.accent }}>NestJS</b> bor. Kartani bosib, uning bitta asosiy ustunligini ko'ring.</>, ru: <>Express прост и быстр — для первого сервера то, что нужно. Когда проект <b style={{ color: T.ink }}>вырастает</b>, нужен порядок — для этого есть <b style={{ color: T.accent }}>NestJS</b>. Нажмите на карту и посмотрите его главный плюс.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
             <div className="fade-up delay-1" style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
-              <div className="cmp-card"><p className="cmp-h">Express</p><p className="small" style={{ color: T.ink2, margin: 0 }}>{tr({ uz: "Kichik, tez, oddiy. Birinchi qadam uchun zo'r.", ru: 'Маленький, быстрый, простой. Отличен для первого шага.' })}</p></div>
-              <div className="cmp-card hot"><p className="cmp-h" style={{ color: T.accent }}>NestJS ★</p><p className="small" style={{ color: T.ink2, margin: 0 }}>{tr({ uz: 'Tartibli, kuchli, professional. Katta loyihalar uchun.', ru: 'Организованный, мощный, профессиональный. Для больших проектов.' })}</p></div>
-            </div>
-            <p className="flow-label" style={{ marginTop: 2 }}>{tr({ uz: 'Nest nega yaxshi — bosing', ru: 'Чем хорош Nest — нажимайте' })}</p>
-            <div className="fade-up delay-2" style={{ display: 'flex', flexWrap: 'wrap', gap: 7 }}>
-              {ADV.map(a => <button key={a.id} className={`chip ${active === a.id ? 'chip-on' : ''}`} onClick={() => tap(a)}>{tr(a.t)} {seen.has(a.id) ? '✓' : ''}</button>)}
+              <div className="cmp-card"><p className="cmp-h">Express</p><p className="small" style={{ color: T.ink2, margin: 0 }}>{tr({ uz: 'Kichik, tez, oddiy. Birinchi qadam uchun ayni kerakli.', ru: 'Маленький, быстрый, простой. Для первого шага — то, что нужно.' })}</p></div>
+              <div className={`cmp-card hot cmp-tap ${opened ? 'on' : 'tap-hint'}`} role="button" tabIndex={0} onClick={open} onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); } }}><p className="cmp-h" style={{ color: T.accent }}>NestJS ★</p><p className="small" style={{ color: T.ink2, margin: 0 }}>{tr({ uz: 'Tartibli va kuchli. Katta loyihalar uchun.', ru: 'Организованный и мощный. Для больших проектов.' })}</p></div>
             </div>
           </Col>
           <Col>
-            {cur ? <div className="sk-info" key={cur.id}><span className="sk-tagbig"><span className="sk-wordbadge">{tr(cur.t)}</span></span><p className="body" style={{ color: T.ink, margin: '10px 0 0' }}>{tr(cur.d)}</p></div>
-              : <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Nest ustunligini bosing', ru: 'Нажмите на плюс Nest' })}</p></div>}
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Yodda tuting: <b>Express = birinchi qadam</b> (oson), <b>NestJS = professional daraja</b> (tartibli, kuchli). Keyingi modulda Nest bilan jiddiy backend quramiz. Bugun esa — birinchi Express serverni!</>, ru: <>Запомните: <b>Express = первый шаг</b> (просто), <b>NestJS = профессиональный уровень</b> (порядок, мощь). В следующем модуле построим серьёзный бэкенд на Nest. А сегодня — первый сервер на Express!</> })}</p></div>}
+            {opened ? <div className="sk-info fade-step"><span className="sk-tagbig"><span className="sk-wordbadge">{tr({ uz: 'Tartib (modullar)', ru: 'Порядок (модули)' })}</span></span><p className="body" style={{ color: T.ink, margin: '10px 0 0' }}>{tr({ uz: "Kod papkalar va modullarga ajraladi — katta loyihada ham adashmaysiz.", ru: 'Код делится на папки и модули — не запутаетесь даже в большом проекте.' })}</p></div>
+              : <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'NestJS kartasini bosing', ru: 'Нажмите на карту NestJS' })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Bugun — <b>Express</b> bilan birinchi server. <b>NestJS</b> bilan katta loyihalarda keyin tanishasiz.</>, ru: <>Сегодня — первый сервер на <b>Express</b>. С <b>NestJS</b> познакомитесь позже, в больших проектах.</> })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -1348,7 +1338,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: 'Keyingi qadam · AI', ru: 'Следующий шаг · AI' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "AI'ga endpoint buyuring", ru: 'Закажите endpoint у AI' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Yangi endpoint kerakmi? <span className="italic" style={{ color: T.accent }}>AI'ga buyuring</span> — siz tekshiring.</>, ru: <>Нужен новый endpoint? <span className="italic" style={{ color: T.accent }}>Закажите AI</span> — а проверьте сами.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Endi siz Express kodini <b style={{ color: T.ink }}>o'qiy olasiz</b>! Buyruq bering, AI <span className="mono">app.get(...)</span> yozadi — siz tekshirasiz: manzil to'g'rimi, <span className="mono">res.send</span> bormi. Keyin natijani brauzerda ko'rasiz. Boshliq — siz.</>, ru: <>Теперь Вы <b style={{ color: T.ink }}>умеете читать</b> код Express! Дайте команду — AI напишет <span className="mono">app.get(...)</span>, а Вы проверите: верный ли адрес, есть ли <span className="mono">res.send</span>. Потом посмотрите результат в браузере. Начальник — Вы.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Endi siz Express kodini <b style={{ color: T.ink }}>o'qiy olasiz</b>! Buyruq bering — AI yordamchingiz (Antigravity) <span className="mono">app.get(...)</span> yozadi, siz tekshirasiz: manzil to'g'rimi, <span className="mono">res.send</span> bormi. Keyin natijani brauzerda ko'rasiz. Boshliq — siz.</>, ru: <>Теперь Вы <b style={{ color: T.ink }}>умеете читать</b> код Express! Дайте команду — Ваш AI-помощник (Antigravity) напишет <span className="mono">app.get(...)</span>, а Вы проверите: верный ли адрес, есть ли <span className="mono">res.send</span>. Потом посмотрите результат в браузере. Начальник — Вы.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
@@ -1360,7 +1350,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {cur && (
               <div className="ai-card fade-step" key={task || 'stored'}>
                 <div className="ai-row"><span className="ai-badge">AI</span><span className="ai-bubble">{phase === 'planned' ? tr({ uz: 'Mana endpoint kodi — tasdiqlaysizmi?', ru: 'Вот код endpoint — подтверждаете?' }) : (phase === 'building' ? tr({ uz: 'Yozyapman…', ru: 'Пишу…' }) : tr({ uz: "Qo'shdim — tekshiring", ru: 'Добавил — проверяйте' }))}</span></div>
-                {phase !== 'planned' || true ? <pre className="code-box" style={{ fontSize: 12 }}><At>app</At>{'.'}<Jx>{'get'}</Jx>{'('}<St>{"'" + cur.path + "'"}</St>{', ('}<At>req</At>{', '}<At>res</At>{') => {'}{'\n'}{'  '}<At>res</At>{'.'}<Jx>{'send'}</Jx>{'('}<St>{"'" + cur.reply + "'"}</St>{')'}{'\n'}{'})'}</pre> : null}
+                <pre className="code-box" style={{ fontSize: 12 }}><At>app</At>{'.'}<Jx>{'get'}</Jx>{'('}<St>{"'" + cur.path + "'"}</St>{', ('}<At>req</At>{', '}<At>res</At>{') => {'}{'\n'}{'  '}<At>res</At>{'.'}<Jx>{'send'}</Jx>{'('}<St>{"'" + cur.reply + "'"}</St>{')'}{'\n'}{'})'}</pre>
                 {phase === 'planned' && <button className="btn fade-step" style={{ alignSelf: 'flex-start' }} onClick={approve}>{tr({ uz: "Kodni qo'shish", ru: 'Добавить код' })}</button>}
                 {phase === 'done' && <p className="ai-prompt" style={{ color: T.success, fontStyle: 'normal', fontWeight: 600 }}>{tr({ uz: "✓ endpoint qo'shildi", ru: '✓ endpoint добавлен' })}</p>}
               </div>
@@ -1430,7 +1420,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               {SHUFFLED.map(id => {
                 const o = ORDER.find(x => x.id === id);
                 const used = placed.includes(id);
-                return <button key={id} className={`chip mono ${used ? '' : ''} ${shake === id ? 'shake' : ''}`} disabled={used} style={used ? { opacity: 0.35 } : undefined} onClick={() => click(id)}>{o.label}</button>;
+                return <button key={id} className={`chip mono ${shake === id ? 'shake' : ''}`} disabled={used} style={used ? { opacity: 0.35 } : undefined} onClick={() => click(id)}>{o.label}</button>;
               })}
             </div>
             {!done && nextNeeded && <p className="small" style={{ color: T.ink3, fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Keyingi: ', ru: 'Следующий: ' })}{tr(ORDER[placed.length].hint)}</p>}
@@ -1450,7 +1440,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               ))}
               <StoreSign on={placed.length >= 4} />
             </div>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>To'g'ri tartib! Chaqir → yarat → endpoint → yoq. Mana to'liq serverning skeleti. Endi oxirgi qadam — o'zingiz yozasiz!</>, ru: <>Правильный порядок! Подключи → создай → endpoint → включи. Вот скелет целого сервера. Теперь последний шаг — напишете сами!</> })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>To'g'ri tartib! Chaqir → yarat → endpoint → yoq. Mana butun server — to'rt qadamda. Endi oxirgi qadam — o'zingiz yozasiz!</>, ru: <>Правильный порядок! Подключи → создай → endpoint → включи. Вот целый сервер — в четыре шага. Теперь последний шаг — напишете сами!</> })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -1485,7 +1475,7 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <pre className="code-box" style={{ fontSize: 12.5, boxShadow: 'none' }}>
                 <Jx>{'const'}</Jx>{' '}<At>express</At>{' = '}<Jx>{'require'}</Jx>{'('}<St>{"'express'"}</St>{')'}{'\n'}
                 <Jx>{'const'}</Jx>{' '}<At>app</At>{' = '}<At>express</At>{'()'}{'\n\n'}
-                <At>app</At>{'.'}<Jx>{'get'}</Jx>{'('}<St>{"'/salom'"}</St>{', ('}<At>req</At>{', '}<At>res</At>{') => {'}{'\n'}{'  '}<At>res</At>{'.'}<Jx>{'send'}</Jx>{'('}<St>{"'Salom!'"}</St>{')'}{'\n'}{'})'}
+                <At>app</At>{'.'}<Jx>{'get'}</Jx>{'('}<St>{"'/salom'"}</St>{', ('}<At>req</At>{', '}<At>res</At>{') => {'}{'\n'}{'  '}<At>res</At>{'.'}<Jx>{'send'}</Jx>{'('}<St>{"'Salom, dunyo!'"}</St>{')'}{'\n'}{'})'}
                 {fixed && <div className="el-in" style={{ marginTop: 8 }}><At>app</At>{'.'}<Jx>{'listen'}</Jx>{'('}<St>3000</St>{')   '}<span style={{ color: CODE.str }}>{tr({ uz: "// ✓ qo'shildi", ru: '// ✓ добавлено' })}</span></div>}
               </pre>
               {found && !fixed && <button className="btn fade-step" style={{ alignSelf: 'flex-start' }} onClick={() => setFixed(true)}>{tr({ uz: "🔧 app.listen(3000) qo'shish", ru: '🔧 Добавить app.listen(3000)' })}</button>}
@@ -1505,7 +1495,6 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               {picked && picked !== 'listen' && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Bu qator kodda bor. Yana qarang: serverni <b>yoqadigan</b> qator (app.listen) bormi?</>, ru: <>Эта строка в коде есть. Посмотрите ещё раз: есть ли строка, которая <b>включает</b> сервер (app.listen)?</> })}</p></div>}
             </>}
             {found && !fixed && <div className="frame-warn fade-step"><p className="note-h" style={{ color: T.accent }}>{tr({ uz: '✓ Topdingiz!', ru: '✓ Нашли!' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <><span className="mono">app.listen(3000)</span> yo'q — shuning uchun server umuman <b>yoqilmagan</b>, brauzer ulana olmaydi. Chapdagi tugma bilan qo'shing →</>, ru: <>Нет <span className="mono">app.listen(3000)</span> — поэтому сервер вообще <b>не включён</b>, браузер не может подключиться. Добавьте кнопкой слева →</> })}</p></div>}
-            {fixed && <div className="takeaway fade-step"><div className="ta-bulb">🛠️</div><p className="ta-h">{tr({ uz: 'Topdingiz va tuzatdingiz — bu debugging!', ru: 'Нашли и починили — это и есть дебаггинг!' })}</p><p className="ta-sub">{tr({ uz: "AI tez yozadi, siz tekshirib to'g'irlaysiz", ru: 'AI пишет быстро, а Вы проверяете и исправляете' })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -1600,14 +1589,13 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
   const RECAP = [
     { uz: "Server — doim ishlaydigan dastur: so'rov → javob", ru: 'Сервер — программа, работающая всегда: запрос → ответ' },
     { uz: "Node.js — JavaScript serverda ham ishlaydi", ru: 'Node.js — JavaScript работает и на сервере' },
-    { uz: "npm — tayyor asboblar do'koni (npm install)", ru: 'npm — магазин готовых инструментов (npm install)' },
+    { uz: "npm — tayyor paketlar to'plami (npm install)", ru: 'npm — набор готовых пакетов (npm install)' },
     { uz: "Express — oson server; endpoint = app.get('/manzil')", ru: "Express — простой сервер; endpoint = app.get('/адрес')" },
     { uz: "node server.js → localhost:3000 da yoqiladi", ru: 'node server.js → включается на localhost:3000' }
   ];
   const HOMEWORK = [
     { b: { uz: "O'z serveringiz", ru: 'Свой сервер' }, t: { uz: "— Antigravity bilan Express server yarating va node server.js bilan yoqing", ru: '— создайте Express-сервер с Antigravity и включите его через node server.js' } },
-    { b: { uz: "Yangi endpoint", ru: 'Новый endpoint' }, t: { uz: "— /ism degan endpoint qo'shing, u sizning ismingizni qaytarsin", ru: '— добавьте endpoint /ism, пусть он возвращает Ваше имя' } },
-    { b: { uz: "Nest'ni ko'ring", ru: 'Загляните в Nest' }, t: { uz: "— nestjs.com saytiga kiring, nega u 'professional' deyilishini o'qing", ru: '— зайдите на nestjs.com и прочитайте, почему его называют «профессиональным»' } }
+    { b: { uz: "Yangi endpoint", ru: 'Новый endpoint' }, t: { uz: "— /ism degan endpoint qo'shing, u sizning ismingizni qaytarsin", ru: '— добавьте endpoint /ism, пусть он возвращает Ваше имя' } }
   ];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
@@ -1669,28 +1657,50 @@ const MentorPracticeStats = ({ live, screen }) => {
     return () => { on = false; clearTimeout(t); };
   }, [live && live.pin, screen]);
   if (!live || live.mode !== 'mentor') return null;
-  const players = data.players || [];
+  // 129-qonun: bo'sh apparat ko'rsatilmaydi — birinchi o'quvchi qo'shilgach panel o'zi chiqadi (F-0820-152)
+  if (data.players === null || data.players.length === 0) return null;
+  const players = data.players;
   const doers = players.filter(p => data.doneIds.has(p.id));
   const waiting = players.filter(p => !data.doneIds.has(p.id));
   return (
     <div className="lp-mstats fade-up">
       <div className="card-lbl" style={{ color: T.blue }}>{tr({ uz: '👀 Kim bajardi', ru: '👀 Кто выполнил' })} — {doers.length}/{players.length}</div>
-      {data.players === null ? (
-        <p className="small" style={{ color: T.ink3, margin: 0, fontStyle: 'italic' }}>{tr({ uz: 'Yuklanmoqda…', ru: 'Загружается…' })}</p>
-      ) : players.length === 0 ? (
-        <p className="small" style={{ color: T.ink3, margin: 0, fontStyle: 'italic' }}>{tr({ uz: "Hali hech kim qo'shilmagan.", ru: 'Пока никто не присоединился.' })}</p>
-      ) : (
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
-          {doers.map(p => <span key={p.id} className="mstats-wait-chip" style={{ background: T.successSoft, color: T.success }}>✓ {p.nickname}</span>)}
-          {waiting.map(p => <span key={p.id} className="mstats-wait-chip" style={{ opacity: 0.6 }}>⏳ {p.nickname}</span>)}
-        </div>
-      )}
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
+        {doers.map(p => <span key={p.id} className="mstats-wait-chip" style={{ background: T.successSoft, color: T.success }}>✓ {p.nickname}</span>)}
+        {waiting.map(p => <span key={p.id} className="mstats-wait-chip" style={{ opacity: 0.6 }}>⏳ {p.nickname}</span>)}
+      </div>
+    </div>
+  );
+};
+// O'QUVCHI ko'radigan sinf-holati — sof O'QISH, ball-relsga yozmaydi (m3-09 kanonik nusxa, F-0820-151).
+const StudentPracticePulse = ({ live, screen }) => {
+  const [data, setData] = useState(null);
+  useEffect(() => {
+    if (!live || live.mode !== 'student' || !live.pin) return;
+    let on = true, t = null;
+    const tick = async () => {
+      try {
+        const [players, rows] = await Promise.all([livePlayers(live.pin), liveAnswers(live.pin, PRACTICE_BASE + screen)]);
+        if (on) setData({ total: players.length, done: new Set(rows.map(r => r.player_id)).size });
+      } catch {}
+      if (on) t = setTimeout(tick, 3000);
+    };
+    tick();
+    return () => { on = false; clearTimeout(t); };
+  }, [live && live.pin, screen]);
+  if (!live || live.mode !== 'student' || !data || data.total === 0) return null;
+  const doing = Math.max(0, data.total - data.done);
+  return (
+    <div className="done-mini fade-up">
+      👥 {tr({ uz: 'Sinfda:', ru: 'В классе:' })} <b>{data.done}</b> {tr({ uz: 'bajardi', ru: 'выполнили' })}
+      {doing > 0 && <span className="dm-sub">· ✏️ {doing} {tr({ uz: 'hali bajarmoqda', ru: 'ещё выполняют' })}</span>}
     </div>
   );
 };
 function ScreenLivePractice({ title, task, checklist, screen, storedAnswer, onAnswer, onNext, onPrev, live }) {
   const _gate = useContext(LiveGateCtx) || {};
   const _live = live || _gate.live;
+  const isMentor = !!(_live && _live.mode === 'mentor'); // mentor topshiriqni BAJARMAYDI — kuzatadi (F-0819-41)
   const [checked, setChecked] = useState(() => new Set());
   const [done, setDone] = useState(!!(storedAnswer && storedAnswer.solved));
   const toggle = (i) => setChecked(prev => { const s = new Set(prev); if (s.has(i)) s.delete(i); else s.add(i); return s; });
@@ -1704,10 +1714,10 @@ function ScreenLivePractice({ title, task, checklist, screen, storedAnswer, onAn
   // JONLI: mentor keyingi sahifaga o'tmaguncha NavNext qulf bo'ladi (optionalLive + LiveGateCtx gate). Hozircha done bo'lsa ochiq.
   const audio = useAudio([{ id: `practice_${screen}`, text: `Endi navbat sizda — o'z do'koningizni ochasiz. VS Code'da express'ni o'rnatib, birinchi serveringizni yozasiz: eshik ochasiz, javob berasiz va OCHIQ tablosini yoqasiz. Keyin brauzerda ochib, serveringiz javob berishini ko'rasiz. Har bosqichni bajarib, belgilab boring. Tugagach «Bajardim» tugmasini bosing — ustoz kuzatib turadi.`, trigger: 'on_mount', waits_for: null }]);
   return (
-    <Stage eyebrow={tr({ uz: 'Amaliyot · VS Code', ru: 'Практика · VS Code' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Avval bajaring', ru: 'Сначала выполните' })} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Amaliyot · VS Code', ru: 'Практика · VS Code' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !isMentor} label={(done || isMentor) ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Avval bajaring', ru: 'Сначала выполните' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr(title)}</h2></div>
-        <Mentor>{tr({ uz: <>Bu topshiriqni <b style={{ color: T.ink }}>o'z kompyuteringizda</b> — VS Code'da bajaring. Har bosqichni bajarib, belgilab boring. Tugagach <b style={{ color: T.ink }}>«Bajardim»</b> tugmasini bosing — ustoz kuzatib turadi.</>, ru: <>Выполните это задание <b style={{ color: T.ink }}>на своём компьютере</b> — в VS Code. Отмечайте каждый шаг по мере выполнения. Закончите — нажмите <b style={{ color: T.ink }}>«Выполнил»</b> — наставник следит.</> })}</Mentor>
+        <Mentor>{isMentor ? tr({ uz: <>O'quvchilar topshiriqni <b style={{ color: T.ink }}>o'z kompyuterida</b> bajarmoqda. Nechtasi tugatgani pastda ko'rinadi — hamma tayyor bo'lgach davom eting.</>, ru: <>Ученики выполняют задание <b style={{ color: T.ink }}>на своих компьютерах</b>. Сколько закончили — видно ниже; продолжайте, когда будут готовы все.</> }) : tr({ uz: <>Bu topshiriqni <b style={{ color: T.ink }}>o'z kompyuteringizda</b> — VS Code'da bajaring. Har bosqichni bajarib, belgilab boring. Tugagach <b style={{ color: T.ink }}>«Bajardim»</b> tugmasini bosing — ustoz kuzatib turadi.</>, ru: <>Выполните это задание <b style={{ color: T.ink }}>на своём компьютере</b> — в VS Code. Отмечайте каждый шаг по мере выполнения. Закончите — нажмите <b style={{ color: T.ink }}>«Выполнил»</b> — наставник следит.</> })}</Mentor>
         <div className="split">
           <Col>
             <div className="lp-task fade-up delay-1">
@@ -1715,6 +1725,7 @@ function ScreenLivePractice({ title, task, checklist, screen, storedAnswer, onAn
               <p className="body" style={{ margin: 0, color: T.ink }}>{tr(task)}</p>
             </div>
             <MentorPracticeStats live={_live} screen={screen} />
+            <StudentPracticePulse live={_live} screen={screen} />
           </Col>
           <Col>
             <p className="flow-label">{tr({ uz: 'Bosqichlar — belgilab boring', ru: 'Шаги — отмечайте по ходу' })}</p>
@@ -1729,10 +1740,10 @@ function ScreenLivePractice({ title, task, checklist, screen, storedAnswer, onAn
                 );
               })}
             </div>
-            <button className={`lp-done-btn ${done ? 'is-done' : ''}`} disabled={done} onClick={complete}>
+            {!isMentor && <button className={`lp-done-btn ${done ? 'is-done' : ''}`} disabled={done} onClick={complete}>
               {done ? tr({ uz: '✓ Bajarildi — ustozni kuting', ru: '✓ Выполнено — ждите наставника' }) : tr({ uz: '✅ Bajardim', ru: '✅ Выполнил' })}
-            </button>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Zo'r! Vazifani bajardingiz. Ustoz tekshirib, keyingi qadamga o'tkazadi.", ru: 'Отлично! Задание выполнено. Наставник проверит и переведёт вас к следующему шагу.' })}</p></div>}
+            </button>}
+            {done && !isMentor && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Juda yaxshi! Vazifani bajardingiz. Ustoz tekshirib, keyingi qadamga o'tkazadi.", ru: 'Отлично! Задание выполнено. Наставник проверит и переведёт вас к следующему шагу.' })}</p></div>}
           </Col>
         </div>
       </div>
@@ -1745,7 +1756,7 @@ const ScreenNodePractice = (props) => (
     title={{ uz: "O'z do'koningizni oching", ru: 'Откройте свой магазин' }}
     task={{ uz: "O'z kompyuteringizda, VS Code'da birinchi Express serveringizni ishga tushiring — do'koningizni oching va mijozga javob bering.", ru: 'На своём компьютере, в VS Code, запустите первый Express-сервер — откройте свой магазин и ответьте клиенту.' }}
     checklist={[
-      { uz: "Terminalda `npm install express` — asbobni javonga buyurtma qiling", ru: 'В терминале `npm install express` — закажите инструмент на полку' },
+      { uz: "Terminalda `npm install express` — express paketini loyihaga qo'shing", ru: 'В терминале `npm install express` — добавьте пакет express в проект' },
       { uz: "server.js: `const express = require('express')` va `const app = express()`", ru: "server.js: `const express = require('express')` и `const app = express()`" },
       { uz: "`app.get('/salom', (req, res) => res.send('Salom, dunyo!'))` — eshik oching", ru: "`app.get('/salom', (req, res) => res.send('Salom, dunyo!'))` — откройте дверь" },
       { uz: "`app.listen(3000)` — OCHIQ tablosini yoqing", ru: '`app.listen(3000)` — включите табло ОТКРЫТО' },
@@ -1833,7 +1844,7 @@ function Flashcards({ cards }) {
 const NODE_FLASHCARDS = [
   { front: { uz: "So'rovlarga javob berib, doim ishlab turadigan dastur qanday ataladi?", ru: 'Как называется программа, которая всё время работает и отвечает на запросы?' }, back: { uz: "Server", ru: 'Сервер' }, note: { uz: "eshigi ochiq do'kon: kim kelsa — javob oladi", ru: 'магазин с открытой дверью: кто придёт — получит ответ' } },
   { front: { uz: "JavaScript'ni brauzerdan tashqarida, serverda nima ishga tushiradi?", ru: 'Что запускает JavaScript вне браузера, на сервере?' }, back: "Node.js", note: { uz: "bir til, ikki dunyo: frontend ham, backend ham", ru: 'один язык, два мира: и фронтенд, и бэкенд' } },
-  { front: { uz: "express paketini qaysi buyruq bilan o'rnatasiz?", ru: 'Какой командой Вы устанавливаете пакет express?' }, back: "npm install express", note: { uz: "npm — tayyor paketlar do'koni", ru: 'npm — магазин готовых пакетов' } },
+  { front: { uz: "express paketini qaysi buyruq bilan o'rnatasiz?", ru: 'Какой командой Вы устанавливаете пакет express?' }, back: "npm install express", note: { uz: "npm — tayyor paketlar to'plami", ru: 'npm — набор готовых пакетов' } },
   { front: { uz: "O'rnatgan paketlaringiz ro'yxati qaysi faylda turadi?", ru: 'В каком файле лежит список установленных пакетов?' }, back: "package.json", note: { uz: "nima ishlatganingiz shu yerda ko'rinadi", ru: 'здесь видно, чем Вы пользуетесь' } },
   { front: { uz: "Serverni bir necha qatorda yozishga qaysi paket yordam beradi?", ru: 'Какой пакет помогает написать сервер в несколько строк?' }, back: "Express", note: { uz: "boshlash uchun eng oson yo'l", ru: 'самый простой способ начать' } },
   { front: { uz: "Yirik loyihalarda Express o'rniga qaysi asbob ishlatiladi?", ru: 'Какой инструмент берут вместо Express в крупных проектах?' }, back: "NestJS", note: { uz: "Express ustiga qurilgan, tartibliroq", ru: 'построен поверх Express, более организован' } },
@@ -2560,8 +2571,8 @@ export default function NodeServerLesson({ lang: langProp, onFinished }) {
         .feedback-block.visible { max-height: 800px; opacity: 1; margin-top: clamp(14px,2vw,20px); }
 
         /* === KNOPKALAR === */
-        .btn { font-family: 'Manrope', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.ink}; color: ${T.bg}; border: none; border-radius: 12px; letter-spacing: 0.01em; box-shadow: 0 6px 18px -4px rgba(${T.shadowBase},0.32); padding: clamp(11px,1.6vw,13px) clamp(20px,2.5vw,26px); font-size: clamp(13px,1.6vw,15px); }
-        .btn:hover:not(:disabled) { background: ${T.accent}; box-shadow: 0 10px 24px -4px rgba(255,79,40,0.45); }
+        .btn { font-family: 'Manrope', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.accent}; color: #fff; border: none; border-radius: 12px; letter-spacing: 0.01em; box-shadow: 0 6px 18px -4px rgba(${T.shadowBase},0.32); padding: clamp(11px,1.6vw,13px) clamp(20px,2.5vw,26px); font-size: clamp(13px,1.6vw,15px); }
+        .btn:hover:not(:disabled) { background: #E03E1B; box-shadow: 0 10px 24px -4px rgba(255,79,40,0.45); }
         .btn:disabled { opacity: 0.4; cursor: not-allowed; box-shadow: none; }
         .btn-white-accent { font-family: 'Manrope', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.paper}; color: ${T.accent}; border: none; border-radius: 12px; letter-spacing: 0.01em; box-shadow: 0 8px 22px -4px rgba(255,79,40,0.35), 0 0 0 1px rgba(255,79,40,0.12); }
         .btn-white-accent:hover:not(:disabled) { background: ${T.accent}; color: #fff; box-shadow: 0 12px 28px -6px rgba(255,79,40,0.55); }
@@ -2664,7 +2675,7 @@ export default function NodeServerLesson({ lang: langProp, onFinished }) {
         .sk-info { background: ${T.paper}; border-radius: 12px; padding: 15px 17px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.16); animation: fade-step 0.3s; }
         .sk-tagbig { display: flex; align-items: center; gap: 9px; flex-wrap: wrap; }
         .sk-wordbadge { font-family: 'Manrope'; font-weight: 700; font-size: 13px; color: ${T.accent}; background: ${T.accentSoft}; padding: 4px 10px; border-radius: 6px; }
-        .hint { background: ${T.bg}; border: 1.5px dashed ${T.ink3}; border-radius: 12px; padding: 14px 16px; font-size: clamp(13px,1.5vw,14px); color: ${T.ink2}; }
+        .hint { background: ${T.bg}; border: 1px solid ${T.line}; border-radius: 12px; padding: 14px 16px; font-size: clamp(13px,1.5vw,14px); color: ${T.ink2}; }
 
         /* === AI CARD === */
         .ai-card { background: ${T.paper}; border-radius: 14px; padding: 15px 17px; display: flex; flex-direction: column; gap: 11px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.14); }
@@ -2673,7 +2684,6 @@ export default function NodeServerLesson({ lang: langProp, onFinished }) {
         .ai-line { font-family: 'JetBrains Mono'; font-size: 13px; color: ${CODE.text}; cursor: pointer; padding: 7px 9px; border-radius: 6px; transition: all 0.15s; white-space: pre-wrap; } .ai-line:hover { background: rgba(255,255,255,0.06); }
         .ai-line.bad { background: rgba(255,79,40,0.16); box-shadow: inset 0 0 0 1px ${T.accent}; } .ai-line.ok { background: rgba(31,122,77,0.16); }
         .ai-prompt { font-size: 12px; color: ${T.ink3}; margin: 0; font-style: italic; } .note-h { font-weight: 700; font-size: 13px; margin: 0 0 4px; }
-        .takeaway { background: ${T.accentSoft}; border-radius: 14px; padding: 20px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 5px; } .ta-bulb { font-size: 34px; } .ta-h { font-family: 'Source Serif 4', serif; font-weight: 600; font-size: clamp(16px,2.2vw,20px); color: ${T.ink}; margin: 0; } .ta-sub { color: ${T.accent}; font-weight: 600; font-size: 13px; margin: 0; }
 
         /* === YAKUN === */
         .hero { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
@@ -2704,10 +2714,6 @@ export default function NodeServerLesson({ lang: langProp, onFinished }) {
         @keyframes hw-shine { 0% { left: -60%; } 55%, 100% { left: 130%; } }
         @media (prefers-reduced-motion: reduce) { .hw-big, .hw-big-shine, .hw-big-wrap::before, .hw-tok, .hw-big.charging { animation: none !important; } }
         .hw ul { display: flex; flex-direction: column; gap: 6px; list-style: none; } .hw li { font-size: clamp(13px,1.6vw,15px); color: ${T.ink}; } .hw li b { color: ${T.accent}; } .hw .t { color: ${T.ink2}; } .hw-note.hw-note { margin: 11px 0 0; font-size: 12px; color: ${T.accent}; font-weight: 600; }
-        .gloss { background: ${T.paper}; border-radius: 12px; box-shadow: 0 6px 16px -6px rgba(${T.shadowBase},0.12); overflow: hidden; }
-        .gloss-head { display: flex; align-items: center; justify-content: space-between; padding: 13px 17px; cursor: pointer; } .gloss-head .lbl { font-family: 'Manrope'; font-weight: 700; font-size: 13px; color: ${T.ink}; } .gloss-toggle { font-size: 18px; color: ${T.ink2}; }
-        .gloss-body { padding: 0 17px 15px; font-size: clamp(12.5px,1.5vw,14px); color: ${T.ink2}; line-height: 1.7; animation: fade-step 0.3s; } .gloss-body b { color: ${T.ink}; }
-
         /* === REACT-3 DARS CSS === */
         .bp-bar { background: #f0eee8; padding: 8px 11px; display: flex; align-items: center; gap: 9px; }
         .bb-dots { display: flex; gap: 5px; }
@@ -2716,18 +2722,6 @@ export default function NodeServerLesson({ lang: langProp, onFinished }) {
         .bp-title { font-family: 'JetBrains Mono'; font-size: 11px; color: ${T.ink3}; transition: color 0.3s; }
         .bp-body { padding: clamp(12px,2.2vw,18px); }
         .code-box { background: ${CODE.bg}; color: ${CODE.text}; font-family: 'JetBrains Mono', monospace; font-size: clamp(12px,1.5vw,13.5px); line-height: 1.55; padding: clamp(12px,2.2vw,16px); border-radius: 12px; overflow-x: auto; white-space: pre-wrap; word-break: break-word; margin: 0; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.2); }
-        /* Roblox uslubidagi o'yin kartochkasi */
-        .rocard { border-radius: 12px; background: #fff; box-shadow: 0 4px 14px -4px rgba(0,0,0,0.16); overflow: hidden; border: 1px solid rgba(0,0,0,0.05); transition: transform 0.15s, box-shadow 0.15s; }
-        .rocard:hover { transform: translateY(-2px); box-shadow: 0 8px 20px -5px rgba(0,0,0,0.22); }
-        .rothumb { height: 58px; display: flex; align-items: center; justify-content: center; position: relative; }
-        .rostar { position: absolute; top: 4px; right: 7px; font-size: 14px; filter: drop-shadow(0 1px 2px rgba(0,0,0,0.35)); }
-        .robody { padding: 7px 10px 9px; }
-        .roname { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 12px; color: ${T.ink}; margin: 0 0 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        .rostats { display: flex; align-items: center; gap: 8px; font-family: 'Manrope', sans-serif; font-size: 10.5px; color: ${T.ink3}; font-weight: 600; }
-        .rolike { border: none; background: transparent; cursor: pointer; padding: 0; font-family: 'Manrope', sans-serif; font-size: 10.5px; font-weight: 600; color: ${T.ink3}; transition: color 0.15s; }
-        .rolike.on { color: ${T.success}; font-weight: 800; }
-        @keyframes heart-pop { 0% { transform: scale(1); } 40% { transform: scale(1.45); } 100% { transform: scale(1); } }
-        .hpop { animation: heart-pop 0.4s ease; display: inline-block; }
         /* VS Code muhiti (yakuniy ekran) */
         .vsc { background: #1E1E1E; border-radius: 13px; overflow: hidden; box-shadow: 0 10px 26px -6px rgba(${T.shadowBase},0.3); }
         .vsc-bar { background: #252526; display: flex; align-items: flex-end; }
@@ -2797,6 +2791,9 @@ export default function NodeServerLesson({ lang: langProp, onFinished }) {
         .epdesc { font-family: 'Manrope'; font-size: 12px; color: ${T.ink3}; margin-left: auto; }
         .cmp-card { flex: 1; min-width: 140px; background: ${T.paper}; border-radius: 12px; padding: 13px 15px; box-shadow: 0 5px 14px -6px rgba(${T.shadowBase},0.14); }
         .cmp-card.hot { box-shadow: 0 0 0 2px ${T.accent}, 0 8px 18px -6px rgba(255,79,40,0.22); }
+        .cmp-tap { cursor: pointer; transition: transform 0.18s, box-shadow 0.18s; }
+        .cmp-tap:hover { transform: translateY(-1px); }
+        .cmp-tap.on { background: ${T.accentSoft}; }
         .cmp-h { font-family: 'Manrope'; font-weight: 800; font-size: 14px; color: ${T.ink}; margin: 0 0 5px; }
         .pick-row { display: flex; align-items: center; gap: 11px; width: 100%; text-align: left; background: ${T.paper}; border: none; border-radius: 11px; padding: 11px 14px; cursor: pointer; transition: all 0.18s; box-shadow: 0 5px 14px -6px rgba(${T.shadowBase},0.14); }
         .pick-row:hover { box-shadow: 0 9px 20px -6px rgba(${T.shadowBase},0.2); }
@@ -2826,12 +2823,18 @@ export default function NodeServerLesson({ lang: langProp, onFinished }) {
         .lp-step.on .lp-check { background: ${T.success}; color: #fff; box-shadow: none; animation: lp-check-pop 0.34s cubic-bezier(.3,1.5,.5,1); }
         @keyframes lp-check-pop { 0% { transform: scale(0.7); } 45% { transform: scale(1.3); } 100% { transform: scale(1); } }
         .lp-step-t { flex: 1; min-width: 0; }
-        .lp-done-btn { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(14px,1.8vw,16px); cursor: pointer; border: none; border-radius: 13px; padding: 14px 20px; background: ${T.ink}; color: ${T.bg}; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.34); transition: all 0.18s; margin-top: 2px; }
-        .lp-done-btn:hover:not(:disabled) { background: ${T.accent}; box-shadow: 0 12px 28px -6px rgba(255,79,40,0.5); }
+        .lp-done-btn { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(14px,1.8vw,16px); cursor: pointer; border: none; border-radius: 13px; padding: 14px 20px; background: ${T.accent}; color: #fff; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.34); transition: all 0.18s; margin-top: 2px; }
+        .lp-done-btn:hover:not(:disabled) { background: #E03E1B; box-shadow: 0 12px 28px -6px rgba(255,79,40,0.5); }
         .lp-done-btn.is-done { background: ${T.successSoft}; color: ${T.success}; box-shadow: inset 0 0 0 1.5px ${T.success}66; cursor: default; animation: lp-done-pop 0.44s cubic-bezier(.3,1.35,.5,1); }
         @keyframes lp-done-pop { 0% { transform: scale(1); } 32% { transform: scale(1.05) translateY(-2px); } 60% { transform: scale(0.98); } 100% { transform: scale(1); } }
         @media (prefers-reduced-motion: reduce) { .lp-step.on .lp-check, .lp-done-btn.is-done { animation: none !important; } }
         .lp-mstats { background: ${T.blueSoft}; border-radius: 12px; padding: 13px 15px; display: flex; flex-direction: column; gap: 6px; }
+        /* O'quvchi ko'radigan sinf-pulsi (StudentPracticePulse, 4-Modul standarti) */
+        .done-mini { display: inline-flex; align-items: center; gap: 7px; align-self: flex-start; background: ${T.successSoft}; color: ${T.success}; font-family: 'Manrope'; font-weight: 800; font-size: clamp(12.5px,1.5vw,14px); border-radius: 99px; padding: 8px 16px; box-shadow: inset 0 0 0 1.5px ${T.success}44; }
+        .done-mini .dm-sub { font-weight: 600; color: ${T.ink2}; }
+        /* 130-qonun: jonli-nishon xira turadi, sarlavhani bosmaydi; sichqoncha/fokus kelganda tiniq (F-0820-150) */
+        .live-badge { opacity: 0.62; transition: opacity 0.25s ease, box-shadow 0.25s ease; }
+        .live-badge:hover, .live-badge:focus-within { opacity: 1; box-shadow: 0 8px 24px -6px rgba(58,53,48,0.32) !important; }
 
         /* === 🐞 DEBUG CHALLENGE (reusable) === */
         .dbg { display: flex; flex-direction: column; gap: 10px; }
@@ -3084,9 +3087,9 @@ export default function NodeServerLesson({ lang: langProp, onFinished }) {
         .mstats-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
         .mstats-lbl { font-family: 'Manrope'; font-weight: 800; font-size: 12.5px; letter-spacing: 0.07em; text-transform: uppercase; color: ${T.blue}; }
         .mstats-n { font-family: 'Manrope'; font-size: 13.5px; font-weight: 600; color: ${T.ink2}; }
-        .mstats-reveal { font-family: 'Manrope'; font-weight: 700; font-size: 12.5px; background: ${T.ink}; color: #fff; border: none; border-radius: 99px; padding: 7px 14px; cursor: pointer; white-space: nowrap; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.35); transition: all 0.2s; }
-        .mstats-reveal:hover { background: ${T.accent}; box-shadow: 0 6px 16px -4px rgba(255,79,40,0.5); }
-        .mstats-reveal.ready { background: ${T.accent}; animation: mstats-pulse 1.6s ease-in-out infinite; }
+        .mstats-reveal { font-family: 'Manrope'; font-weight: 700; font-size: 12.5px; background: ${T.paper}; color: ${T.accent}; border: 1px solid ${T.accent}; border-radius: 99px; padding: 7px 14px; cursor: pointer; white-space: nowrap; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.35); transition: all 0.2s; }
+        .mstats-reveal:hover { color: #fff; background: ${T.accent}; box-shadow: 0 6px 16px -4px rgba(255,79,40,0.5); }
+        .mstats-reveal.ready { background: ${T.accent}; color: #fff; animation: mstats-pulse 1.6s ease-in-out infinite; }
         @keyframes mstats-pulse { 0%,100% { box-shadow: 0 4px 12px -4px rgba(255,79,40,0.5); } 50% { box-shadow: 0 4px 18px 0 rgba(255,79,40,0.55); } }
         .mstats-prog { height: 7px; background: rgba(${T.shadowBase},0.09); border-radius: 99px; overflow: hidden; }
         .mstats-prog-fill { display: block; height: 100%; border-radius: 99px; background: ${T.blue}; transition: width 0.6s cubic-bezier(.4,0,.2,1); }
@@ -3149,8 +3152,8 @@ export default function NodeServerLesson({ lang: langProp, onFinished }) {
         .rc-dot { width: 10px; height: 10px; border-radius: 99px; background: rgba(167,166,162,0.4); cursor: pointer; transition: all 0.25s; border: none; padding: 0; }
         .rc-dot.fill { background: ${T.ink3}; }
         .rc-dot.cur { background: ${T.accent}; width: 26px; }
-        .rc-btn { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(13px,1.7vw,16px); border: none; border-radius: 12px; padding: clamp(11px,1.6vw,14px) clamp(18px,2.6vw,26px); cursor: pointer; background: ${T.ink}; color: ${T.bg}; box-shadow: 0 6px 18px -4px rgba(${T.shadowBase},0.32); transition: all 0.2s; white-space: nowrap; }
-        .rc-btn:hover:not(:disabled) { background: ${T.accent}; }
+        .rc-btn { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(13px,1.7vw,16px); border: none; border-radius: 12px; padding: clamp(11px,1.6vw,14px) clamp(18px,2.6vw,26px); cursor: pointer; background: ${T.accent}; color: #fff; box-shadow: 0 6px 18px -4px rgba(${T.shadowBase},0.32); transition: all 0.2s; white-space: nowrap; }
+        .rc-btn:hover:not(:disabled) { background: #E03E1B; }
         .rc-btn:disabled { opacity: 0.35; cursor: not-allowed; box-shadow: none; }
         .rc-btn.ghost { background: transparent; color: ${T.ink2}; box-shadow: none; }
         .rc-btn.ghost:hover:not(:disabled) { background: ${T.paper}; color: ${T.ink}; }
@@ -3179,7 +3182,6 @@ export default function NodeServerLesson({ lang: langProp, onFinished }) {
         .qz-brand.sm { gap: 9px; }
         .qz-wm { font-family: 'Manrope'; font-weight: 800; font-size: clamp(28px,5vw,46px); letter-spacing: -0.03em; color: #F2ECFF; line-height: 1; text-shadow: 0 0 22px rgba(150,95,255,0.4); }
         .qz-wm-h { color: #FF6A3D; }
-        .qz-logo { font-size: clamp(44px,8vw,72px); line-height: 1; }
         .qz-h { font-family: 'Manrope'; font-weight: 800; font-size: clamp(22px,4vw,36px); color: #F2ECFF; margin: 0; text-align: center; letter-spacing: -0.02em; text-shadow: 0 0 24px rgba(150,95,255,0.35); }
         .qz-sub { font-family: 'Manrope'; font-size: clamp(13px,1.9vw,16px); color: #B9A8E6; margin: 0; text-align: center; max-width: 540px; line-height: 1.55; font-weight: 500; }
         .qz-sub b { color: #F2ECFF; }

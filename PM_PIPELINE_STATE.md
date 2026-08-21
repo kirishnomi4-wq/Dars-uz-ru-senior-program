@@ -2838,3 +2838,98 @@ RU'da lotin qoldiq 0.
    UZ shohi tegilmadi.
 
 **Holat:** UNCOMMITTED (commit buyruq bilan).
+
+---
+
+# 🔒 M4-02 `PmLesson11` · AUDIT TAYYOR · TUZATISH KUTMOQDA (2026-08-20)
+
+> **Maqom:** audit to'liq yurgizilgan, **hech narsa tuzatilmagan**. PM-to'lqin ochilganda
+> **qayta audit shart emas** — ish shu hisobotdan boshlanadi.
+> **Sabab:** blok-buyruq auditdan keyin yetib keldi (foydalanuvchi izohi). Hisobot
+> yo'qotilmasin deb to'liq muhrlanadi.
+> **Bahsli bandlar ATAYLAB javobsiz** — PM-to'lqinda birga hal qilinadi.
+
+**Dars:** m4-02 · `src/4-Modull/PmLesson11.jsx` · «Ma'lumot ham mahsulot qarori»
+**Etalon:** m4-01 `DataIntroLesson` · **Audit-manba:** `AUDIT_PROMPT.md` + `PM_DARS_ETALON.md`
+**Boshlang'ich darvozalar:** esbuild ✓ · `lint:jsx` **0** · `lint:til` **1🔴 · 0🟡** · `lint:dark` **2**
+
+## A. PM-UCHLIK — uchtasi ham YO'Q (asosiy klaster)
+
+Dars PM-uchlik qarorlaridan **oldin** qurilgan va ularni hech qachon olmagan.
+
+| F-ID | Muammo (qator) | Kanon (`PmLesson8`) | Muhimlik |
+|---|---|---|---|
+| **F-0820-104** | `.live-badge { opacity: 0.4 }` + faqat `:hover` (**2691–2692**) | `0.62` + **`:focus-within`** + soya (PM8:2825). `focus-within` yo'qligi — **klaviatura bilan yuruvchi nishonni umuman ocholmaydi**; F-77 aynan shuning uchun kiritilgan | **High** |
+| **F-0820-105** | `.wsx { border: 1.5px dashed ${T.ink3}66 }` — uzuq quti (**3045**), **4 joyda** ishlatiladi (1455 · 1459 · 1578 · 1726) | **matn-havola**: `width:auto` · 11.5px · `T.ink2` · `border-bottom` (PM8:3156-3163). **16-qonun ham buziladi** | **Medium** |
+| **F-0820-106** | `.kdpanel { padding: 11px 13px }` (**3075**) · `.kdreq { padding-left: 19px; gap: 4px }` (**3077**) | `14px 18px` · `22px; gap: 7px`. F-74 da bu «**uchinchi** takror» deb belgilangan — m4-02 bilan **to'rtinchisi** | **Medium** |
+
+## B. PM-qonun darvozalari
+
+| F-ID | Muammo (qator) | Muhimlik | Ishonch |
+|---|---|---|---|
+| **F-0820-107** | **129-qonun** — `MentorPracticeStats` (**839**) `0/0` da `null` qaytarmaydi: «Yuklanmoqda…» + «Hali hech kim qo'shilmagan» bo'sh apparati **4 ekranda** (s4 · s8 · s9 · s10 → 1188 · 1465 · 1572 · 1739) | **High** | kod-fakt |
+| **F-0820-108** | **F-29 binafsha ekvivalenti** — `.mstats-reveal` (**3241**) va `.rc-btn` (**3299**) `#1B1630` (`T.ink`). Kanon: `.mstats-reveal` → **kontur-accent** `#5B3DE6`, `.rc-btn` → to'ldirilgan binafsha | **Medium** | kod-fakt |
+| **F-0820-109** | «🛠 **Kompilyatorni** ochish» / «↻ **Kompilyatorni** qayta ochish» (**1746**) → PM qarori: **«Kod oynasini ochish»**. Faqat 1 qator, 2 yorliq | **Medium** | kod-fakt |
+| **F-0820-110** | `lint:til` 🔴 — «**ushbu** kodni kiriting» (**248**) → F-85 bo'yicha «**shu** kodni kiriting» | **Low** | lint-fakt |
+
+⚠️ **F-108 ni bajarganda 132-qonun ishga tushadi:** `.mstats-reveal.ready` (**3243**) faqat
+fonni almashtiradi. Kontur uslubga o'tgach `dark-lint` **`◐`** beradi (accent ustida
+accent, kontrast 1.00:1) — m4-01 da aynan shu yuz bergan. `color: #fff` **bir vaqtda**
+qo'shiladi, keyin emas.
+
+## C. TEGMASLIK KERAK — bu dars m4-01 dan TOZAROQ
+
+- **`isMentor` qorovuli butun darsda bor** — F-0819-41 bu yerda allaqachon hal qilingan
+  (s4 da hatto ipucha-taymeri ham mentor uchun to'xtaydi)
+- **`StudentPracticePulse` 4 ekranda** — B1 qarori bu darsda allaqachon bajarilgan
+- **O'lik identifikator YO'Q** (butun-fayl skani) — m4-01 da 3 ta bor edi
+- **Hook halolligi ✓** — `correct: false` (952), «Topdingiz» yo'q. **100-qonun hurmat
+  qilingan**: hook o'z ekranida yopiladi, tanlov keyin «shaxsiy payoff» qilib qaytarilmaydi
+- **Ipucha-zinapoyasi + rescue klapan** (s4) — pastda alohida band, `KATTA_TOZALASH` **13**
+- Palitra `#5B3DE6` ✓ · `QUIZ_BANK` **3/3/3/3** ✓ · `SCREEN_META` 16 ↔ `screens` 16 ✓ ·
+  `SCORED_IDX` [3,5,7,11] ↔ `Q_LABELS` ✓ · `INLINE_KEYS` 4 sentinel bilan ✓ ·
+  `SCREEN_INTENTS` 16/16 ✓
+
+## Yolg'on signallar (qayta tekshirilmasin)
+
+- **`.mnote-chip`** (2756) va **`.ach-badge.locked`** (3328) uzuq chiziqlari — 16-qonunga
+  **to'g'ri mos** (aside · «hali ochilmagan» zona). PM qarorida ham ataylab qoldirilgan
+- **`justify-content: center` 40 marta** — `.stage-content` da EMAS, karta ichlarida.
+  128-qonunning butun-fayl grep bandi shu kuni tuzatildi (endi faqat `.stage-content`)
+- **`.opt-abc.ok` ikki qoidada** (2731 animatsiya · 2737 rang) — dublikat emas
+- **«kompilyator» 12 joyda** — faqat **1 tasi** ekranda (1746); qolganlari kod-izohi va
+  `SCREEN_INTENTS` hujjati
+
+## 🔷 BAHSLI — ATAYLAB JAVOBSIZ (PM-to'lqinda hal qilinadi)
+
+| # | Masala |
+|---|---|
+| **D1** | **`safe center` ziddiyati.** 128-qonunning yangi matni: `.stage-content` da `justify-content` yo'q → talab yo'q (m4-02 shunday). Lekin PM-oila qarori **F-79**: «`safe center` — endi **uchala PM darsida** bor». Umumiy qonunmi ustun, PM-oila izchilligimi? |
+| **D2** | **`HOOK_KEY` localStorage'ga yoziladi (952), hech qayerda o'qilmaydi.** Kod-izohning o'zi tan oladi («100-qonun: tanlov yoziladi, hech qayerda O'QILMAYDI»). O'chirilsinmi yoki analitikaga ataylab qoldirilganmi? |
+| **D3** | **Nishonlar testdan emas, bajarishdan:** `ACH_TRIGGERS` = s4·s8·s9·s10 (praktika), `SCORED_IDX` esa 3·5·7·11 (testlar). m4-01 da teskari. PM darsi uchun ataylabmi? |
+
+## 🖥 EKRAN-XAVF RO'YXATI (dars yopilgach `MODUL_TUR.md` ga ko'chadi)
+
+Hozir ko'chirilmaydi — dars yopilmagan. PM-to'lqin yakunida `MODUL_TUR.md` ga
+«m4-02» sarlavhasi bilan tushadi.
+
+| # | Band | Sinf |
+|---|---|---|
+| 1 | s4 `split s4` — `Phone` maketi + 5 tugmali panel yonma-yon; telefonda ikki ustun sig'adimi | layout torlik |
+| 2 | `.live-badge` `0.4 → 0.62` bo'lgach — PM binafsha (`#F2F0FA`) fonida farq sezilarlimi | rang-his |
+| 3 | s10 kompilyator to'liq-ekran qobig'i (faylda **12 ta** `position: fixed`) — sarlavhani bosmayaptimi (130-qonun) | layout |
+| 4 | `.wsx` matn-havolaga aylangach — **bosiladigan ekani bilinadimi** (affordance yo'qolmaydimi) | sensor/affordance |
+| 5 | `.kdpanel` `14/18px` bo'lgach — o'ng ustunga sig'adimi, `.kdreq` uch bandi buzilmaydimi | layout torlik |
+| 6 | s4 da har tugma yonidagi `mtg-res` — **beshta** izoh-qator bir vaqtda ko'p emasmi (109-qonun, TMI) | diqqat |
+| 7 | Markaziy metafora «ilova nimani **yozib qo'ysin**» → «**maydon**» — o'smirga tabiiy tuyuladimi | metafora-tabiiylik |
+
+## Ish-tartibi (PM-to'lqin ochilganda)
+
+1. Bahsli D1–D3 hal qilinadi → **[GATE]**
+2. **1-to'lqin:** F-104 · F-107 · F-108 (+132-qonun juftligi bir vaqtda)
+3. **2-to'lqin:** F-105 · F-106 · F-109 · F-110
+4. Har to'lqindan keyin darvozalar · EKRAN-XAVF → `MODUL_TUR.md`
+5. **Istisno:** m4-02 birinchi PM dars **va** `Phone` maketi bu modulda birinchi marta
+   chiqadi (ilgari faqat 6-Modulda bor edi) — ikkala istisno **bitta** mini-turda ko'riladi
+
+**Holat:** AUDIT MUHRLANDI · TUZATISH YO'Q · UNCOMMITTED.

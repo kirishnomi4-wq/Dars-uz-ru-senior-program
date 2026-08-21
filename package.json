@@ -14,7 +14,9 @@
     "lint:dark": "node dark-lint.mjs",
     "smoke": "node _smoke.mjs",
     "build:lms": "node scripts/build-lms.mjs",
-    "smoke:lms": "node scripts/smoke-lms.mjs"
+    "smoke:lms": "node scripts/smoke-lms.mjs",
+    "gate:esbuild": "node esbuild-gate.mjs",
+    "gates": "node gates.mjs"
   },
   "dependencies": {
     "react": "^19.2.7",

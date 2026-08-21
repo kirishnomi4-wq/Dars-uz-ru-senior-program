@@ -252,7 +252,7 @@ function LiveBigCode({ pin, onClose }) {
     <div style={overlay}>
       <div style={{ fontSize: 'clamp(13px,2vw,18px)', fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: LT.accent, marginBottom: 'clamp(14px,3vw,28px)' }}>{tr({ uz: "Jonli darsga qo'shilish", ru: 'Подключение к живому уроку' })}</div>
       <div style={{ display: 'flex', gap: 'clamp(6px,1.4vw,16px)', justifyContent: 'center', flexWrap: 'wrap' }}>{digits.map((d, i) => <span key={i} style={box}>{d}</span>)}</div>
-      <p style={{ color: '#fff', opacity: 0.85, fontSize: 'clamp(15px,2.2vw,22px)', maxWidth: 640, margin: 'clamp(20px,4vw,36px) 0 0', lineHeight: 1.5 }}>{tr({ uz: <>Shu darsni o'z qurilmangizda oching → <b style={{ color: '#fff' }}>«👨‍🎓 O'quvchiman»</b> → ushbu kodni kiriting.</>, ru: <>Откройте этот урок на своём устройстве → <b style={{ color: '#fff' }}>«👨‍🎓 Я ученик»</b> → введите этот код.</> })}</p>
+      <p style={{ color: '#fff', opacity: 0.85, fontSize: 'clamp(15px,2.2vw,22px)', maxWidth: 640, margin: 'clamp(20px,4vw,36px) 0 0', lineHeight: 1.5 }}>{tr({ uz: <>Shu darsni o'z qurilmangizda oching → <b style={{ color: '#fff' }}>«👨‍🎓 O'quvchiman»</b> → bu kodni kiriting.</>, ru: <>Откройте этот урок на своём устройстве → <b style={{ color: '#fff' }}>«👨‍🎓 Я ученик»</b> → введите этот код.</> })}</p>
       <button onClick={onClose} style={{ marginTop: 'clamp(22px,4vw,40px)', background: LT.accent, color: '#fff', border: 'none', borderRadius: 14, padding: 'clamp(12px,1.6vw,16px) clamp(24px,3vw,36px)', fontSize: 'clamp(15px,1.8vw,18px)', fontWeight: 700, cursor: 'pointer' }}>{tr({ uz: 'Darsni boshlash →', ru: 'Начать урок →' })}</button>
     </div>
   );
@@ -368,7 +368,8 @@ const SCREEN_META = [
   { id: 's12', type: 'test',        template: 'MCScreen', scored: true,  scope: 'module-mikro' },
   { id: 's13', type: 'exploration', template: 'custom',   scored: false, scope: null },
   { id: 's14', type: 'rule',        template: 'custom',   scored: false, scope: null },
-  { id: 's15', type: 'practice',    template: 'custom',   scored: false, scope: null },
+  { id: 's15', type: 'test',        template: 'custom',   scored: true,  scope: 'final' },
+  { id: 'practice', type: 'practice', template: 'custom', scored: false, scope: null },
   { id: 'spodium', type: 'stats',   template: 'custom',   scored: false, scope: null },
   { id: 'sflash',  type: 'flashcards', template: 'custom', scored: false, scope: null },
   { id: 's16', type: 'summary',     template: 'custom',   scored: false, scope: null }
@@ -643,7 +644,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
         const level = answered < RECAP_MIN_ANSWERS ? 'few' : pct < RECAP_NEED_PCT ? 'need' : pct < RECAP_GOOD_PCT ? 'maybe' : 'good';
         return (
           <div className={`mstats-verdict ${level}`}>
-            {level === 'need' && <p className="mstats-verdict-t">{tr({ uz: <>⚠️ Faqat <b>{pct}%</b> to'g'ri — bu mavzu sinfga tushunarsiz qolgan. Davom etishdan oldin qisqa takrorlash tavsiya etiladi.</>, ru: <>⚠️ Только <b>{pct}%</b> верно — класс не понял эту тему. Перед продолжением рекомендуем короткое повторение.</> })}</p>}
+            {level === 'need' && <p className="mstats-verdict-t">{tr({ uz: <>⚠️ Faqat <b>{pct}%</b> to'g'ri — bu mavzu sinfga tushunarsiz qolgan. Davom etishdan oldin qisqa takrorlang.</>, ru: <>⚠️ Только <b>{pct}%</b> верно — класс не понял эту тему. Перед продолжением рекомендуем короткое повторение.</> })}</p>}
             {level === 'maybe' && <p className="mstats-verdict-t">{tr({ uz: <>🟡 <b>{pct}%</b> to'g'ri — yomon emas. Xohlasangiz, davom etishdan oldin qisqa takrorlab oling.</>, ru: <>🟡 <b>{pct}%</b> верно — неплохо. Если хотите, коротко повторите тему перед продолжением.</> })}</p>}
             {level === 'good' && <p className="mstats-verdict-t">{tr({ uz: <>✅ <b>{pct}%</b> to'g'ri — sinf mavzuni o'zlashtirdi. Bemalol davom eting!</>, ru: <>✅ <b>{pct}%</b> верно — класс освоил тему. Смело продолжайте!</> })}</p>}
             {level === 'few' && <p className="mstats-verdict-t">{tr({ uz: <>Javob berganlar kam ({answered} ta) — foiz bo'yicha xulosa chiqarish qiyin. O'zingiz baholang.</>, ru: <>Ответивших мало ({answered}) — рано делать выводы по процентам. Оцените сами.</> })}</p>}
@@ -658,7 +659,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
           {waiting.length > 8 && <span className="mstats-wait-chip more">+{waiting.length - 8}</span>}
         </div>
       )}
-      {reveal && struggling && <p className="mstats-warn">{tr({ uz: "⚠️ Ko'pchilik xato qildi — bu mavzu tushunarsiz bo'lgan ko'rinadi. Qayta tushuntirish tavsiya etiladi.", ru: '⚠️ Большинство ошиблось — похоже, тема осталась непонятной. Рекомендуем объяснить её ещё раз.' })}</p>}
+      {reveal && struggling && <p className="mstats-warn">{tr({ uz: "⚠️ Ko'pchilik xato qildi — bu mavzu tushunarsiz bo'lgan ko'rinadi. Yana bir bor tushuntiring.", ru: '⚠️ Большинство ошиблось — похоже, тема осталась непонятной. Рекомендуем объяснить её ещё раз.' })}</p>}
       {answered === 0 && <p className="mstats-wait">{tr({ uz: "O'quvchilar javoblari shu yerda jonli ko'rinadi…", ru: 'Ответы учеников появятся здесь вживую…' })}</p>}
     </div>
   );
@@ -834,7 +835,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
     { id: 'b', label: tr({ uz: "Doim eng birinchi kodni ishga tushiradi", ru: 'Всегда запускает самый первый код' }) },
     { id: 'c', label: tr({ uz: "So'rovning manzili bo'yicha — mos kodni topadi", ru: 'По адресу запроса — находит подходящий код' }) }
   ];
-  const pick = (v) => { if (picked !== null || !tried) return; setPicked(v); onAnswer(screen, { stage: 'hook', screenIdx: screen, picked: v, correct: true }); };
+  const pick = (v) => { if (picked !== null || !tried) return; setPicked(v); onAnswer(screen, { stage: 'hook', screenIdx: screen, picked: v, correct: v === 'c' }); };
   const audio = useAudio([{ id: 's0', text: `Serveringiz katta pochta bo'limiga o'xshaydi — unda o'nlab eshik bor. Kimdir GET /games/3 xatini yuborsa, server qaysi eshikni ochadi va qaysi kodni ishga tushiradi? Avval bir nechta so'rov yuboring, qaysi eshik yonishini ko'ring. Keyin ayting: server to'g'ri eshikni qanday topadi?`, trigger: 'on_mount', waits_for: { type: 'option_picked' } }]);
   return (
     <Stage eyebrow={tr({ uz: 'Kirish', ru: 'Введение' })} screen={screen} audioState={audio} navContent={<NavNext optionalLive disabled={picked === null} label={tr({ uz: 'Davom etish', ru: 'Продолжить' })} onClick={onNext} />}>
@@ -868,7 +869,9 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
               })}
             </div>
             {!tried && <p className="small" style={{ color: T.ink3, fontStyle: 'italic', margin: 0 }}>{tr({ uz: "Avval kamida 2 ta so'rov yuboring ←", ru: 'Сначала отправьте минимум 2 запроса ←' })}</p>}
-            {picked !== null && <p className="hook-ack fade-step">{tr({ uz: <>Aynan! Server so'rovning <b>shtampi va manzili</b> — ya'ni <b>method va path</b> — bo'yicha mos kodni topadi. Bu jarayon <b>routing</b> deyiladi. Bugun uni Nest'da ochamiz.</>, ru: <>Именно! Сервер находит нужный код по <b>штампу и адресу</b> запроса — то есть по <b>method и path</b>. Этот процесс называется <b>роутинг</b>. Сегодня разберём его в Nest.</> })}</p>}
+            {picked !== null && <p className="hook-ack fade-step">{picked === 'c'
+              ? tr({ uz: <>Aynan! Server so'rovning <b>shtampi va manzili</b> — ya'ni <b>method va path</b> — bo'yicha mos kodni topadi. Bu jarayon <b>routing</b> deyiladi. Bugun uni Nest'da ochamiz.</>, ru: <>Именно! Сервер находит нужный код по <b>штампу и адресу</b> запроса — то есть по <b>method и path</b>. Этот процесс называется <b>роутинг</b>. Сегодня разберём его в Nest.</> })
+              : tr({ uz: <>Aslida bu — <b>keng tarqalgan afsona</b>. Server na tasodifan tanlaydi, na doim birinchisini oladi: u so'rovning <b>shtampi va manzili</b> — ya'ni <b>method va path</b> — bo'yicha aynan mos kodni topadi. Bu jarayon <b>routing</b> deyiladi. Dars oxirida shu afsonani <b>birga buzamiz</b> — to'rt qoidada.</>, ru: <>На самом деле это — <b>распространённый миф</b>. Сервер не выбирает наугад и не берёт всегда первый: он находит точное совпадение по <b>штампу и адресу</b> запроса — то есть по <b>method и path</b>. Этот процесс называется <b>роутинг</b>. В конце урока мы <b>вместе разберём</b> этот миф — в четырёх правилах.</> })}</p>}
           </Col>
         </Split>
         </Zoomable>
@@ -1164,13 +1167,13 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   };
   const [active, setActive] = useState(null);
   const [seen, setSeen] = useState(() => new Set(storedAnswer ? Object.keys(PARTS) : []));
-  const done = seen.size >= 3;
+  const done = seen.size >= 5;
   const tap = (k) => { setActive(k); setSeen(p => { const s = new Set(p); s.add(k); return s; }); };
   const hl = (k) => ({ cursor: 'pointer', borderRadius: 5, padding: '1px 3px', background: active === k ? 'rgba(255,79,40,0.2)' : (seen.has(k) ? 'rgba(31,122,77,0.14)' : 'transparent'), transition: 'all 0.15s' });
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   const audio = useAudio([{ id: 's7', text: `Nest routing'ni juda toza yozadi. Har route — klass ichidagi metod. Metod ustidagi dekorator — @Get yoki @Post — eshik tabelkasiday: qaysi so'rovga javob berishini aytadi. Hammasi bitta GamesController ichida — tartibli. Rangli qismlarni bosib o'rganing. @Post tabelkasini dars oxirida o'zingiz yozasiz.`, trigger: 'on_mount', waits_for: null }]);
   return (
-    <Stage eyebrow={tr({ uz: 'Nest controller', ru: 'Nest-контроллер' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: `${seen.size}/3 qism o'rganildi`, ru: `Изучено частей: ${seen.size}/3` })} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Nest controller', ru: 'Nest-контроллер' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: `${seen.size}/5 qism o'rganildi`, ru: `Изучено частей: ${seen.size}/5` })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Nest routing'ni <span className="italic" style={{ color: T.accent }}>qanday yozadi</span>?</>, ru: <>Как Nest <span className="italic" style={{ color: T.accent }}>записывает</span> роутинг?</> })}</h2></div>
         <Mentor>{tr({ uz: <>Nest'da har route — klass ichidagi <b style={{ color: T.ink }}>metod</b>. Metod ustidagi <b style={{ color: T.accent }}>dekorator</b> (<span className="mono">@Get</span>, <span className="mono">@Post</span>) qaysi so'rovga javob berishini aytadi. Hammasi bitta <b style={{ color: T.ink }}>GamesController</b> ichida — toza va tartibli. Rangli qismlarni bosib o'rganing.</>, ru: <>В Nest каждый route — это <b style={{ color: T.ink }}>метод</b> внутри класса. <b style={{ color: T.accent }}>Декоратор</b> над методом (<span className="mono">@Get</span>, <span className="mono">@Post</span>) говорит, на какой запрос тот отвечает. Всё в одном <b style={{ color: T.ink }}>GamesController</b> — чисто и аккуратно. Нажимайте на цветные части и изучайте.</> })}</Mentor>
@@ -1520,12 +1523,12 @@ const Screen14 = ({ screen, onNext, onPrev }) => {
     { ico: '③', h: tr({ uz: 'Nest: dekorator + metod', ru: 'Nest: декоратор + метод' }), d: tr({ uz: <><span className="mono">@Get</span> / <span className="mono">@Post</span> metodni so'rovga bog'laydi — controller ichida, tartibli.</>, ru: <><span className="mono">@Get</span> / <span className="mono">@Post</span> привязывает метод к запросу — внутри контроллера, аккуратно.</> }) },
     { ico: '④', h: tr({ uz: 'Mos kelmasa — 404', ru: 'Нет совпадения — 404' }), d: tr({ uz: <>Method yoki path mos kelmasa, server <b>404 Not Found</b> qaytaradi.</>, ru: <>Если method или path не совпали, сервер вернёт <b>404 Not Found</b>.</> }) }
   ];
-  const audio = useAudio([{ id: 's14', text: `Mana butun darsning yuragi — routingning to'rt qoidasi. Bir: so'rov method va path'dan iborat — shtamp va manzil. Ikki: routing shu ikkisiga mos eshikni topadi. Uch: Nest'da dekorator va metod birga eshikni yasaydi. To'rt: mos kelmasa, server 404 qaytaradi. Shu to'rttasini esda tutsangiz, istalgan backend routingini tushunasiz. Keyingi ekranda birinchi eshigingizni o'zingiz ochasiz.`, trigger: 'on_mount', waits_for: null }]);
+  const audio = useAudio([{ id: 's14', text: `Mana butun darsning o'zagi — routingning to'rt qoidasi. Bir: so'rov method va path'dan iborat — shtamp va manzil. Ikki: routing shu ikkisiga mos eshikni topadi. Uch: Nest'da dekorator va metod birga eshikni yasaydi. To'rt: mos kelmasa, server 404 qaytaradi. Shu to'rttasini esda tutsangiz, istalgan backend routingini tushunasiz. Keyingi ekranda birinchi eshigingizni o'zingiz ochasiz.`, trigger: 'on_mount', waits_for: null }]);
   return (
     <Stage eyebrow={tr({ uz: 'Qoida', ru: 'Правило' })} screen={screen} audioState={audio} mentorStatic navContent={<><NavBack onPrev={onPrev} /><NavNext label={tr({ uz: "Yozishga o'tamiz →", ru: 'Переходим к коду →' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Routing — <span className="italic" style={{ color: T.accent }}>to'rt qoida</span></>, ru: <>Роутинг — <span className="italic" style={{ color: T.accent }}>четыре правила</span></> })}</h2></div>
-        <Mentor>{tr({ uz: <>Mana butun darsning yuragi. Bu to'rt qoidani esda tutsangiz — istalgan backend routingini tushunasiz. Keyingi ekranda birinchi eshigingizni o'zingiz ochasiz.</>, ru: <>Вот сердце всего урока. Запомните эти четыре правила — и поймёте роутинг любого бэкенда. На следующем экране вы сами откроете свою первую дверь.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Mana butun darsning o'zagi. Bu to'rt qoidani esda tutsangiz — istalgan backend routingini tushunasiz. Keyingi ekranda birinchi eshigingizni o'zingiz ochasiz.</>, ru: <>Вот ядро всего урока. Запомните эти четыре правила — и поймёте роутинг любого бэкенда. На следующем экране вы сами откроете свою первую дверь.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           {RULES.map((r, i) => (
@@ -1560,28 +1563,53 @@ const MentorPracticeStats = ({ live, screen }) => {
     return () => { on = false; clearTimeout(t); };
   }, [live && live.pin, screen]);
   if (!live || live.mode !== 'mentor') return null;
-  const players = data.players || [];
+  // 129-qonun (F-0819-57): bo'sh apparat ko'rsatilmaydi. «Yuklanmoqda…» va «0/0 — hech kim
+  // qo'shilmagan» joy egallaydi, lekin hech narsa o'rgatmaydi. Birinchi o'quvchi qo'shilgach
+  // panel o'zi paydo bo'ladi (har 3 s da yangilanadi).
+  if (data.players === null || data.players.length === 0) return null;
+  const players = data.players;
   const doers = players.filter(p => data.doneIds.has(p.id));
   const waiting = players.filter(p => !data.doneIds.has(p.id));
   return (
     <div className="lp-mstats fade-up">
       <div className="card-lbl" style={{ color: T.blue }}>{tr({ uz: '👀 Kim bajardi —', ru: '👀 Кто выполнил —' })} {doers.length}/{players.length}</div>
-      {data.players === null ? (
-        <p className="small" style={{ color: T.ink3, margin: 0, fontStyle: 'italic' }}>{tr({ uz: 'Yuklanmoqda…', ru: 'Загрузка…' })}</p>
-      ) : players.length === 0 ? (
-        <p className="small" style={{ color: T.ink3, margin: 0, fontStyle: 'italic' }}>{tr({ uz: "Hali hech kim qo'shilmagan.", ru: 'Пока никто не подключился.' })}</p>
-      ) : (
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
-          {doers.map(p => <span key={p.id} className="mstats-wait-chip" style={{ background: T.successSoft, color: T.success }}>✓ {p.nickname}</span>)}
-          {waiting.map(p => <span key={p.id} className="mstats-wait-chip" style={{ opacity: 0.6 }}>⏳ {p.nickname}</span>)}
-        </div>
-      )}
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
+        {doers.map(p => <span key={p.id} className="mstats-wait-chip" style={{ background: T.successSoft, color: T.success }}>✓ {p.nickname}</span>)}
+        {waiting.map(p => <span key={p.id} className="mstats-wait-chip" style={{ opacity: 0.6 }}>⏳ {p.nickname}</span>)}
+      </div>
+    </div>
+  );
+};
+// O'QUVCHI ko'radigan sinf-holati (45-qonun) — sof O'QISH, ball-relsga yozmaydi.
+// Manba-etalon: m3-09 `ReactApiPostLesson`; 4-Modulda standart.
+const StudentPracticePulse = ({ live, screen }) => {
+  const [data, setData] = useState(null);
+  useEffect(() => {
+    if (!live || live.mode !== 'student' || !live.pin) return;
+    let on = true, t = null;
+    const tick = async () => {
+      try {
+        const [players, rows] = await Promise.all([livePlayers(live.pin), liveAnswers(live.pin, PRACTICE_BASE + screen)]);
+        if (on) setData({ total: players.length, done: new Set(rows.map(r => r.player_id)).size });
+      } catch {}
+      if (on) t = setTimeout(tick, 3000);
+    };
+    tick();
+    return () => { on = false; clearTimeout(t); };
+  }, [live && live.pin, screen]);
+  if (!live || live.mode !== 'student' || !data || data.total === 0) return null;
+  const doing = Math.max(0, data.total - data.done);
+  return (
+    <div className="done-mini fade-up">
+      👥 {tr({ uz: 'Sinfda:', ru: 'В классе:' })} <b>{data.done}</b> {tr({ uz: 'bajardi', ru: 'выполнили' })}
+      {doing > 0 && <span className="dm-sub">· ✏️ {doing} {tr({ uz: 'hali bajarmoqda', ru: 'ещё выполняют' })}</span>}
     </div>
   );
 };
 function ScreenLivePractice({ title, task, checklist, screen, storedAnswer, onAnswer, onNext, onPrev, live }) {
   const _gate = useContext(LiveGateCtx) || {};
   const _live = live || _gate.live;
+  const isMentor = !!(_live && _live.mode === 'mentor'); // mentor topshiriqni BAJARMAYDI — kuzatadi (F-0819-41)
   const [checked, setChecked] = useState(() => new Set());
   const [done, setDone] = useState(!!(storedAnswer && storedAnswer.solved));
   const toggle = (i) => setChecked(prev => { const s = new Set(prev); if (s.has(i)) s.delete(i); else s.add(i); return s; });
@@ -1593,10 +1621,10 @@ function ScreenLivePractice({ title, task, checklist, screen, storedAnswer, onAn
   };
   const audio = useAudio([{ id: `practice_s${screen}`, text: `Endi bilimni amalda sinaysiz. Bu topshiriqni o'z kompyuteringizda, VS Code'da bajaring. Har bosqichni bajarib belgilab boring. Tugagach, Bajardim tugmasini bosing — ustoz kuzatib turadi. Pochtachi o'z eshigini o'zi ochadi!`, trigger: 'on_mount', waits_for: null }]);
   return (
-    <Stage eyebrow={tr({ uz: 'Amaliyot · VS Code', ru: 'Практика · VS Code' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Avval bajaring', ru: 'Сначала выполните' })} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Amaliyot · VS Code', ru: 'Практика · VS Code' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !isMentor} label={(done || isMentor) ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Avval bajaring', ru: 'Сначала выполните' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr(title)}</h2></div>
-        <Mentor>{tr({ uz: <>Bu topshiriqni <b style={{ color: T.ink }}>o'z kompyuteringizda</b> — VS Code'da bajaring. Har bosqichni bajarib, belgilab boring. Tugagach <b style={{ color: T.ink }}>«Bajardim»</b> tugmasini bosing — ustoz kuzatib turadi. Pochtachi o'z eshigini o'zi ochadi!</>, ru: <>Выполните это задание <b style={{ color: T.ink }}>на своём компьютере</b> — в VS Code. Отмечайте каждый шаг по мере выполнения. Когда закончите, нажмите <b style={{ color: T.ink }}>«Выполнил»</b> — наставник наблюдает. Почтальон сам открывает свою дверь!</> })}</Mentor>
+        <Mentor>{isMentor ? tr({ uz: <>O'quvchilar topshiriqni <b style={{ color: T.ink }}>o'z kompyuterida</b> bajarmoqda. Nechtasi tugatgani pastda ko'rinadi — hamma tayyor bo'lgach davom eting.</>, ru: <>Ученики выполняют задание <b style={{ color: T.ink }}>на своих компьютерах</b>. Сколько закончили — видно ниже; продолжайте, когда будут готовы все.</> }) : tr({ uz: <>Bu topshiriqni <b style={{ color: T.ink }}>o'z kompyuteringizda</b> — VS Code'da bajaring. Har bosqichni bajarib, belgilab boring. Tugagach <b style={{ color: T.ink }}>«Bajardim»</b> tugmasini bosing — ustoz kuzatib turadi. Pochtachi o'z eshigini o'zi ochadi!</>, ru: <>Выполните это задание <b style={{ color: T.ink }}>на своём компьютере</b> — в VS Code. Отмечайте каждый шаг по мере выполнения. Когда закончите, нажмите <b style={{ color: T.ink }}>«Выполнил»</b> — наставник наблюдает. Почтальон сам открывает свою дверь!</> })}</Mentor>
         <div className="split">
           <Col>
             <div className="lp-task fade-up delay-1">
@@ -1604,6 +1632,7 @@ function ScreenLivePractice({ title, task, checklist, screen, storedAnswer, onAn
               <p className="body" style={{ margin: 0, color: T.ink }}>{tr(task)}</p>
             </div>
             <MentorPracticeStats live={_live} screen={screen} />
+            <StudentPracticePulse live={_live} screen={screen} />
           </Col>
           <Col>
             <p className="flow-label">{tr({ uz: 'Bosqichlar — belgilab boring', ru: 'Шаги — отмечайте' })}</p>
@@ -1618,16 +1647,118 @@ function ScreenLivePractice({ title, task, checklist, screen, storedAnswer, onAn
                 );
               })}
             </div>
-            <button className={`lp-done-btn ${done ? 'is-done' : ''}`} disabled={done} onClick={complete}>
+            {!isMentor && <button className={`lp-done-btn ${done ? 'is-done' : ''}`} disabled={done} onClick={complete}>
               {done ? tr({ uz: '✓ Bajarildi — ustozni kuting', ru: '✓ Выполнено — ждите наставника' }) : tr({ uz: '✅ Bajardim', ru: '✅ Выполнил' })}
-            </button>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Zo'r! Yangi eshikni o'zingiz ochdingiz. Ustoz tekshirib, keyingi qadamga o'tkazadi.", ru: 'Отлично! Вы сами открыли новую дверь. Наставник проверит и переведёт вас на следующий шаг.' })}</p></div>}
+            </button>}
+            {done && !isMentor && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Juda yaxshi! Yangi eshikni o'zingiz ochdingiz. Ustoz tekshirib, keyingi qadamga o'tkazadi.", ru: 'Отлично! Вы сами открыли новую дверь. Наставник проверит и переведёт вас на следующий шаг.' })}</p></div>}
           </Col>
         </div>
       </div>
     </Stage>
   );
 }
+// ===== YANGI s15 — FINAL: SO'ROV QAYSI ESHIKKA BORADI? (D1-B) =====
+// s14 «to'rt qoida» sintezi: (1) so'rov = method + path · (2) routing mosini topadi ·
+// (4) mos kelmasa 404. Uch so'rov — ikki eshik va bitta 404 savati.
+// 🔴 MEXANIKA: bosish-bosish, HTML5 draggable EMAS (sensorli ekran uchun). Manba: m4-01 Screen15.
+const DM_REQS = [
+  { id: 'r1', method: 'GET',  path: '/games', to: 'get',
+    ok: { uz: <>✓ Shtamp <span className="mono">GET</span>, manzil <span className="mono">/games</span> — <b>ikkalasi mos</b>, eshik ochildi.</>, ru: <>✓ Штамп <span className="mono">GET</span>, адрес <span className="mono">/games</span> — <b>совпали оба</b>, дверь открылась.</> } },
+  { id: 'r2', method: 'POST', path: '/games', to: 'post',
+    ok: { uz: <>✓ Boshqa shtamp — boshqa eshik. Bitta manzilda ikki xil eshik bo'lishi mumkin.</>, ru: <>✓ Другой штамп — другая дверь. У одного адреса может быть две разные двери.</> } },
+  { id: 'r3', method: 'GET',  path: '/gams',  to: 'nf',
+    ok: { uz: <>✓ Hech qaysi eshik mos kelmadi → <b>404 Not Found</b>. Bitta harf yetdi.</>, ru: <>✓ Ни одна дверь не совпала → <b>404 Not Found</b>. Хватило одной буквы.</> } },
+];
+const DM_TARGETS = [
+  { id: 'get',  ic: '🚪', label: "@Get('/games')" },
+  { id: 'post', ic: '🚪', label: "@Post('/games')" },
+  { id: 'nf',   ic: '🧺', label: '404 Not Found' },
+];
+// Har XATO juftlik o'z matnini oladi — «mos emas» sababsiz qolmaydi (133-qonun).
+const DM_MISS = {
+  'r2>get':  { uz: <><b>Manzil mos keldi, lekin shtamp mos kelmadi</b> — <span className="mono">@Get</span> faqat <span className="mono">GET</span> uchun eshik ochadi.</>, ru: <><b>Адрес совпал, а штамп — нет</b>: <span className="mono">@Get</span> открывает дверь только для <span className="mono">GET</span>.</> },
+  'r2>nf':   { uz: <>Shoshmang: bu yerda <span className="mono">@Post('/games')</span> eshigi <b>bor</b> — so'rov unga yetib boradi.</>, ru: <>Не спешите: здесь <b>есть</b> дверь <span className="mono">@Post('/games')</span> — запрос до неё дойдёт.</> },
+  'r1>post': { uz: <>Manzil to'g'ri, lekin shtamp <span className="mono">GET</span>. <span className="mono">@Post</span> faqat <span className="mono">POST</span> so'roviga eshik ochadi.</>, ru: <>Адрес верный, но штамп — <span className="mono">GET</span>. <span className="mono">@Post</span> открывает дверь только запросу <span className="mono">POST</span>.</> },
+  'r1>nf':   { uz: <>Bu so'rov uchun mos eshik <b>bor</b> — <span className="mono">@Get('/games')</span>. 404 faqat hech qaysi eshik mos kelmaganda.</>, ru: <>Для этого запроса дверь <b>есть</b> — <span className="mono">@Get('/games')</span>. 404 только когда не совпала ни одна.</> },
+  'r3>get':  { uz: <>Diqqat bilan qarang: <span className="mono">/gams</span> va <span className="mono">/games</span> — <b>bir harf</b> farq qiladi. Routing <b>aynan</b> mos kelishni talab qiladi.</>, ru: <>Присмотритесь: <span className="mono">/gams</span> и <span className="mono">/games</span> — разница в <b>одной букве</b>. Роутинг требует <b>точного</b> совпадения.</> },
+  'r3>post': { uz: <>Bu yerda na shtamp, na manzil mos: so'rov <span className="mono">GET</span>, eshik esa <span className="mono">POST</span> uchun; manzil <span className="mono">/gams</span>, eshikniki esa <span className="mono">/games</span>.</>, ru: <>Здесь не совпали ни штамп, ни адрес: запрос <span className="mono">GET</span>, а дверь — для <span className="mono">POST</span>; адрес <span className="mono">/gams</span>, а у двери <span className="mono">/games</span>.</> },
+};
+const ScreenDoorMatch = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
+  const gate = useContext(LiveGateCtx) || {};
+  const live = gate.live;
+  const isMentor = !!(live && live.mode === 'mentor');
+  const [placed, setPlaced] = useState(() => (storedAnswer ? Object.fromEntries(DM_REQS.map(r => [r.id, r.to])) : {}));
+  const [sel, setSel] = useState(null);
+  const [fb, setFb] = useState(null);          // { kind: 'ok'|'miss', node }
+  const [shake, setShake] = useState(null);
+  const wrongRef = useRef(storedAnswer ? (storedAnswer.wrongCount || 0) : 0);
+  const shakeT = useRef(null);
+  useEffect(() => () => clearTimeout(shakeT.current), []);
+  const done = DM_REQS.every(r => placed[r.id]);
+  useEffect(() => {
+    if (done && (storedAnswer === undefined || !storedAnswer.solved)) {
+      // 135-qonun: yakun-signallar HAQIQIY holatdan hisoblanadi, shartsiz yozilmaydi.
+      onAnswer(screen, { stage: 'final', screenIdx: screen, question: tr({ uz: "So'rov qaysi eshikka boradi (3 juftlik)", ru: 'К какой двери идёт запрос (3 пары)' }), solved: true, correct: true, firstAttemptCorrect: wrongRef.current === 0, wrongCount: wrongRef.current, picked: 'matched' });
+    }
+  }, [done]); // eslint-disable-line
+  const tapReq = (id) => { if (isMentor || placed[id]) return; setFb(null); setSel(p => (p === id ? null : id)); };
+  const tapTarget = (tid) => {
+    if (isMentor || sel === null) return;
+    const r = DM_REQS.find(x => x.id === sel);
+    if (r.to === tid) { setPlaced(p => ({ ...p, [r.id]: tid })); setSel(null); setFb({ kind: 'ok', node: tr(r.ok) }); return; }
+    wrongRef.current += 1;
+    setFb({ kind: 'miss', node: tr(DM_MISS[r.id + '>' + tid]) });
+    setShake(tid);
+    clearTimeout(shakeT.current);
+    shakeT.current = setTimeout(() => setShake(null), 480);
+  };
+  const qolgan = DM_REQS.filter(r => !placed[r.id]).length;
+  const navLabel = done || isMentor ? tr({ uz: 'Davom etish', ru: 'Продолжить' })
+    : sel === null ? tr({ uz: "Avval so'rovni bosing", ru: 'Сначала нажмите на запрос' })
+    : tr({ uz: 'Endi joyini bosing', ru: 'Теперь нажмите, куда он идёт' });
+  return (
+    <Stage eyebrow={tr({ uz: 'Yakuniy sinov', ru: 'Итоговая проверка' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !isMentor} label={navLabel} onClick={onNext} /></>}>
+      <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Har so'rov <span className="italic" style={{ color: T.accent }}>qaysi eshikka</span> boradi?</>, ru: <>К <span className="italic" style={{ color: T.accent }}>какой двери</span> идёт каждый запрос?</> })}</h2></div>
+        <Mentor>{tr({ uz: <>Controllerda ikki eshik bor. Uchta so'rov keldi — har birini <b style={{ color: T.ink }}>avval bosing</b>, keyin u boradigan joyni bosing. Mos eshik topilmasa — <span className="mono">404</span> savatiga.</>, ru: <>В контроллере две двери. Пришли три запроса — <b style={{ color: T.ink }}>сначала нажмите</b> на запрос, потом на место, куда он идёт. Если подходящей двери нет — в корзину <span className="mono">404</span>.</> })}</Mentor>
+        <Zoomable>
+        <div className="split">
+          <Col>
+            <p className="flow-label">{tr({ uz: "① So'rovlar — bittasini bosing", ru: '① Запросы — нажмите на один' })}</p>
+            <div className="rq-pool fade-up delay-1">
+              {DM_REQS.map(r => placed[r.id] ? null : (
+                <button key={r.id} type="button" className={`rq-card${sel === r.id ? ' sel' : ''}`} onClick={() => tapReq(r.id)}>
+                  <span className="rq-m">{r.method}</span><span className="mono">{r.path}</span>
+                </button>
+              ))}
+              {qolgan === 0 && <span className="small" style={{ color: T.success, fontWeight: 700 }}>{tr({ uz: "✓ Hamma so'rov joylashdi!", ru: '✓ Все запросы на месте!' })}</span>}
+            </div>
+          </Col>
+          <Col>
+            <p className="flow-label">{tr({ uz: '② Controller — joyini bosing', ru: '② Контроллер — нажмите на место' })}</p>
+            <div className="fade-up delay-2" style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
+              {DM_TARGETS.map(t => {
+                const inside = DM_REQS.filter(r => placed[r.id] === t.id);
+                return (
+                  <button key={t.id} type="button" className={`rq-target${sel !== null ? ' hot' : ''}${shake === t.id ? ' miss' : ''}`} onClick={() => tapTarget(t.id)}>
+                    <span className="rq-t-h"><span>{t.ic}</span><span className="mono">{t.label}</span></span>
+                    <span className="rq-t-in">
+                      {inside.map(r => <i key={r.id}>{r.method} {r.path}</i>)}
+                      {!inside.length && <em className="rq-t-empty">{sel !== null ? tr({ uz: 'shu yergami?', ru: 'сюда?' }) : tr({ uz: "bo'sh", ru: 'пусто' })}</em>}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+          </Col>
+        </div>
+        </Zoomable>
+        {fb && <p className={`rq-fb ${fb.kind}`}>{fb.node}</p>}
+        {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Routing <b>ikkala</b> shartni birga tekshiradi — shtamp va manzil. Bittasi mos kelmasa, mos eshik yo'q → <b>404</b>. Keyingi ekranda <span className="mono">@Post()</span> eshigini <b>o'zingiz</b> ochasiz.</>, ru: <>Роутинг проверяет <b>оба</b> условия сразу — штамп и адрес. Не совпало одно — подходящей двери нет → <b>404</b>. На следующем экране вы <b>сами</b> откроете дверь <span className="mono">@Post()</span>.</> })}</p></div>}
+      </div>
+    </Stage>
+  );
+};
 const ScreenRoutingPractice = (props) => (
   <ScreenLivePractice {...props}
     title={{ uz: "Yangi eshikni o'zingiz oching — @Post()", ru: 'Откройте новую дверь сами — @Post()' }}
@@ -1808,7 +1939,7 @@ const Confetti = () => {
 };
 
 // Podium savol yorliqlari (SCORED_IDX indekslariga mos)
-const Q_LABELS = { 4: "1 — route", 6: "2 — POST", 10: "3 — :id", 13: "4 — 404" };
+const Q_LABELS = { 4: "1 — route", 6: "2 — POST", 10: "3 — :id", 13: "4 — 404", 16: { uz: "5 — eshik yoki 404", ru: '5 — дверь или 404' } };
 const QUIZ_MS = 15000;
 // Kapsula ichida suzuvchi tokenlar — darsning "DNK"si (routing)
 const QZ_BG_SHAPES = [
@@ -2460,7 +2591,7 @@ export default function RoutingLesson({ lang: langProp, onFinished }) {
     if (typeof onFinished === 'function') onFinished(payload);
   };
 
-  const screens = [Screen0, Screen1, Screen2, Screen3, Screen4, Screen5, Screen5b, Screen6, Screen7, Screen8, Screen9, Screen10, Screen11, Screen12, Screen13, Screen14, ScreenRoutingPractice, ScreenPodium, ScreenFlashcards, Screen16];
+  const screens = [Screen0, Screen1, Screen2, Screen3, Screen4, Screen5, Screen5b, Screen6, Screen7, Screen8, Screen9, Screen10, Screen11, Screen12, Screen13, Screen14, ScreenDoorMatch, ScreenRoutingPractice, ScreenPodium, ScreenFlashcards, Screen16];
   const Current = screens[screen];
   return (
     <LangContext.Provider value={lang}>
@@ -2489,8 +2620,8 @@ export default function RoutingLesson({ lang: langProp, onFinished }) {
         .feedback-block.visible { max-height: 800px; opacity: 1; margin-top: clamp(14px,2vw,20px); }
 
         /* === KNOPKALAR === */
-        .btn { font-family: 'Manrope', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.ink}; color: ${T.bg}; border: none; border-radius: 12px; letter-spacing: 0.01em; box-shadow: 0 6px 18px -4px rgba(${T.shadowBase},0.32); padding: clamp(11px,1.6vw,13px) clamp(20px,2.5vw,26px); font-size: clamp(13px,1.6vw,15px); }
-        .btn:hover:not(:disabled) { background: ${T.accent}; box-shadow: 0 10px 24px -4px rgba(255,79,40,0.45); }
+        .btn { font-family: 'Manrope', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.accent}; color: #fff; border: none; border-radius: 12px; letter-spacing: 0.01em; box-shadow: 0 6px 18px -4px rgba(${T.shadowBase},0.32); padding: clamp(11px,1.6vw,13px) clamp(20px,2.5vw,26px); font-size: clamp(13px,1.6vw,15px); }
+        .btn:hover:not(:disabled) { background: #E03E1B; box-shadow: 0 10px 24px -4px rgba(255,79,40,0.45); }
         .btn:disabled { opacity: 0.4; cursor: not-allowed; box-shadow: none; }
         .btn-white-accent { font-family: 'Manrope', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.paper}; color: ${T.accent}; border: none; border-radius: 12px; letter-spacing: 0.01em; box-shadow: 0 8px 22px -4px rgba(255,79,40,0.35), 0 0 0 1px rgba(255,79,40,0.12); }
         .btn-white-accent:hover:not(:disabled) { background: ${T.accent}; color: #fff; box-shadow: 0 12px 28px -6px rgba(255,79,40,0.55); }
@@ -2596,7 +2727,7 @@ export default function RoutingLesson({ lang: langProp, onFinished }) {
         .sk-info { background: ${T.paper}; border-radius: 12px; padding: 15px 17px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.16); animation: fade-step 0.3s; }
         .sk-tagbig { display: flex; align-items: center; gap: 9px; flex-wrap: wrap; }
         .sk-wordbadge { font-family: 'Manrope'; font-weight: 700; font-size: 13px; color: ${T.accent}; background: ${T.accentSoft}; padding: 4px 10px; border-radius: 6px; }
-        .hint { background: ${T.bg}; border: 1.5px dashed ${T.ink3}; border-radius: 12px; padding: 14px 16px; font-size: clamp(13px,1.5vw,14px); color: ${T.ink2}; }
+        .hint { background: ${T.bg}; border: 1px solid ${T.line}; border-radius: 12px; padding: 14px 16px; font-size: clamp(13px,1.5vw,14px); color: ${T.ink2}; }
 
         /* === AI CARD === */
         .ai-card { background: ${T.paper}; border-radius: 14px; padding: 15px 17px; display: flex; flex-direction: column; gap: 11px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.14); }
@@ -2743,11 +2874,17 @@ export default function RoutingLesson({ lang: langProp, onFinished }) {
         .lp-step.on .lp-check { background: ${T.success}; color: #fff; box-shadow: none; animation: lp-check-pop 0.34s cubic-bezier(.3,1.5,.5,1); }
         @keyframes lp-check-pop { 0% { transform: scale(0.7); } 45% { transform: scale(1.3); } 100% { transform: scale(1); } }
         .lp-step-t { flex: 1; min-width: 0; }
-        .lp-done-btn { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(14px,1.8vw,16px); cursor: pointer; border: none; border-radius: 13px; padding: 14px 20px; background: ${T.ink}; color: ${T.bg}; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.34); transition: all 0.18s; margin-top: 2px; }
-        .lp-done-btn:hover:not(:disabled) { background: ${T.accent}; box-shadow: 0 12px 28px -6px rgba(255,79,40,0.5); }
+        .lp-done-btn { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(14px,1.8vw,16px); cursor: pointer; border: none; border-radius: 13px; padding: 14px 20px; background: ${T.accent}; color: #fff; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.34); transition: all 0.18s; margin-top: 2px; }
+        .lp-done-btn:hover:not(:disabled) { background: #E03E1B; box-shadow: 0 12px 28px -6px rgba(255,79,40,0.5); }
         .lp-done-btn.is-done { background: ${T.successSoft}; color: ${T.success}; box-shadow: inset 0 0 0 1.5px ${T.success}66; cursor: default; animation: lp-done-pop 0.44s cubic-bezier(.3,1.35,.5,1); }
         @keyframes lp-done-pop { 0% { transform: scale(1); } 32% { transform: scale(1.05) translateY(-2px); } 60% { transform: scale(0.98); } 100% { transform: scale(1); } }
         @media (prefers-reduced-motion: reduce) { .lp-step.on .lp-check, .lp-done-btn.is-done { animation: none !important; } }
+        /* 11.15 — jonli nishoni xira turadi: kontentdan diqqat tortmasin va sarlavhani bosmasin;
+           ustiga borilganda yoki fokus tushganda to'liq ochiladi (F-0820-123). */
+        .live-badge { opacity: 0.62; transition: opacity 0.25s ease, box-shadow 0.25s ease; }
+        .live-badge:hover, .live-badge:focus-within { opacity: 1; box-shadow: 0 8px 24px -6px rgba(58,53,48,0.32) !important; }
+        .done-mini { display: inline-flex; align-items: center; gap: 7px; align-self: flex-start; background: ${T.successSoft}; color: ${T.success}; font-family: 'Manrope'; font-weight: 800; font-size: clamp(12.5px,1.5vw,14px); border-radius: 99px; padding: 8px 16px; box-shadow: inset 0 0 0 1.5px ${T.success}44; }
+        .done-mini .dm-sub { font-weight: 600; color: ${T.ink2}; }
         .lp-mstats { background: ${T.blueSoft}; border-radius: 12px; padding: 13px 15px; display: flex; flex-direction: column; gap: 6px; }
 
         /* === 🐞 DEBUG CHALLENGE (reusable) === */
@@ -3009,9 +3146,9 @@ export default function RoutingLesson({ lang: langProp, onFinished }) {
         .mstats-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
         .mstats-lbl { font-family: 'Manrope'; font-weight: 800; font-size: 12.5px; letter-spacing: 0.07em; text-transform: uppercase; color: ${T.blue}; }
         .mstats-n { font-family: 'Manrope'; font-size: 13.5px; font-weight: 600; color: ${T.ink2}; }
-        .mstats-reveal { font-family: 'Manrope'; font-weight: 700; font-size: 12.5px; background: ${T.ink}; color: #fff; border: none; border-radius: 99px; padding: 7px 14px; cursor: pointer; white-space: nowrap; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.35); transition: all 0.2s; }
-        .mstats-reveal:hover { background: ${T.accent}; box-shadow: 0 6px 16px -4px rgba(255,79,40,0.5); }
-        .mstats-reveal.ready { background: ${T.accent}; animation: mstats-pulse 1.6s ease-in-out infinite; }
+        .mstats-reveal { font-family: 'Manrope'; font-weight: 700; font-size: 12.5px; background: ${T.paper}; color: ${T.accent}; border: 1px solid ${T.accent}; border-radius: 99px; padding: 7px 14px; cursor: pointer; white-space: nowrap; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.35); transition: all 0.2s; }
+        .mstats-reveal:hover { color: #fff; background: ${T.accent}; box-shadow: 0 6px 16px -4px rgba(255,79,40,0.5); }
+        .mstats-reveal.ready { background: ${T.accent}; color: #fff; animation: mstats-pulse 1.6s ease-in-out infinite; }
         @keyframes mstats-pulse { 0%,100% { box-shadow: 0 4px 12px -4px rgba(255,79,40,0.5); } 50% { box-shadow: 0 4px 18px 0 rgba(255,79,40,0.55); } }
         .mstats-prog { height: 7px; background: rgba(${T.shadowBase},0.09); border-radius: 99px; overflow: hidden; }
         .mstats-prog-fill { display: block; height: 100%; border-radius: 99px; background: ${T.blue}; transition: width 0.6s cubic-bezier(.4,0,.2,1); }
@@ -3074,8 +3211,8 @@ export default function RoutingLesson({ lang: langProp, onFinished }) {
         .rc-dot { width: 10px; height: 10px; border-radius: 99px; background: rgba(167,166,162,0.4); cursor: pointer; transition: all 0.25s; border: none; padding: 0; }
         .rc-dot.fill { background: ${T.ink3}; }
         .rc-dot.cur { background: ${T.accent}; width: 26px; }
-        .rc-btn { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(13px,1.7vw,16px); border: none; border-radius: 12px; padding: clamp(11px,1.6vw,14px) clamp(18px,2.6vw,26px); cursor: pointer; background: ${T.ink}; color: ${T.bg}; box-shadow: 0 6px 18px -4px rgba(${T.shadowBase},0.32); transition: all 0.2s; white-space: nowrap; }
-        .rc-btn:hover:not(:disabled) { background: ${T.accent}; }
+        .rc-btn { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(13px,1.7vw,16px); border: none; border-radius: 12px; padding: clamp(11px,1.6vw,14px) clamp(18px,2.6vw,26px); cursor: pointer; background: ${T.accent}; color: #fff; box-shadow: 0 6px 18px -4px rgba(${T.shadowBase},0.32); transition: all 0.2s; white-space: nowrap; }
+        .rc-btn:hover:not(:disabled) { background: #E03E1B; }
         .rc-btn:disabled { opacity: 0.35; cursor: not-allowed; box-shadow: none; }
         .rc-btn.ghost { background: transparent; color: ${T.ink2}; box-shadow: none; }
         .rc-btn.ghost:hover:not(:disabled) { background: ${T.paper}; color: ${T.ink}; }
@@ -3088,7 +3225,6 @@ export default function RoutingLesson({ lang: langProp, onFinished }) {
         }
 
         /* === ⚔️ CTA (yakun sahifasida) === */
-        .qz-cta { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; border-radius: 18px; }
 
         /* ===== ⚡ ARENA — issiq CoddyCamp muhiti ===== */
         .qz-arena { position: fixed; inset: 0; z-index: 10500; overflow-y: auto; display: flex; align-items: flex-start; justify-content: center; padding: clamp(18px,4vw,44px) clamp(12px,3vw,32px); background: radial-gradient(62% 46% at 10% 6%, rgba(124,58,237,0.30) 0%, rgba(124,58,237,0) 56%), radial-gradient(58% 48% at 92% 12%, rgba(15,166,214,0.14) 0%, rgba(15,166,214,0) 55%), radial-gradient(70% 52% at 78% 104%, rgba(255,79,40,0.14) 0%, rgba(255,79,40,0) 60%), radial-gradient(90% 55% at 50% -8%, #26123F 0%, rgba(38,18,63,0) 54%), #140B30; }
@@ -3104,7 +3240,6 @@ export default function RoutingLesson({ lang: langProp, onFinished }) {
         .qz-brand.sm { gap: 9px; }
         .qz-wm { font-family: 'Manrope'; font-weight: 800; font-size: clamp(28px,5vw,46px); letter-spacing: -0.03em; color: #F2ECFF; line-height: 1; text-shadow: 0 0 22px rgba(150,95,255,0.4); }
         .qz-wm-h { color: #FF6A3D; }
-        .qz-logo { font-size: clamp(44px,8vw,72px); line-height: 1; }
         .qz-h { font-family: 'Manrope'; font-weight: 800; font-size: clamp(22px,4vw,36px); color: #F2ECFF; margin: 0; text-align: center; letter-spacing: -0.02em; text-shadow: 0 0 24px rgba(150,95,255,0.35); }
         .qz-sub { font-family: 'Manrope'; font-size: clamp(13px,1.9vw,16px); color: #B9A8E6; margin: 0; text-align: center; max-width: 540px; line-height: 1.55; font-weight: 500; }
         .qz-sub b { color: #F2ECFF; }
@@ -3193,6 +3328,26 @@ export default function RoutingLesson({ lang: langProp, onFinished }) {
         /* --- CodeStrike bolt FX qatlami --- */
         .qz-fx { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
         .qz-bolt { filter: drop-shadow(0 8px 18px rgba(255,79,40,0.32)); }
+        /* D1-B — bosish-bosish juftlash (HTML5 draggable EMAS: sensorli ekran uchun).
+           Alohida oila: .dd-* s13 sudrashiniki, roli boshqa (134-qonun). */
+        .rq-pool { display: flex; flex-direction: column; gap: 9px; align-items: flex-start; }
+        .rq-card { display: inline-flex; align-items: center; gap: 9px; font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: clamp(12.5px,1.6vw,14px); color: ${T.ink}; background: ${T.paper}; border: 1.5px solid ${T.line}; border-radius: 11px; padding: 10px 14px; cursor: pointer; transition: all .18s; box-shadow: 0 6px 16px -8px rgba(${T.shadowBase},0.2); }
+        .rq-card:hover { border-color: ${T.accent}66; }
+        .rq-card.sel { border-color: ${T.accent}; color: ${T.accent}; box-shadow: 0 8px 20px -6px rgba(255,79,40,0.34), inset 0 0 0 1px ${T.accent}; }
+        .rq-m { font-size: 11px; font-weight: 900; letter-spacing: .06em; color: #fff; background: ${T.ink2}; border-radius: 6px; padding: 2px 7px; }
+        .rq-card.sel .rq-m { background: ${T.accent}; }
+        .rq-target { display: flex; flex-direction: column; gap: 6px; align-items: flex-start; text-align: left; width: 100%; background: ${T.paper}; border: 1.5px solid ${T.line}; border-radius: 13px; padding: 11px 14px; cursor: pointer; transition: all .18s; }
+        .rq-target.hot { border-color: ${T.accent}66; background: ${T.accentSoft}55; }
+        .rq-target.miss { animation: rq-miss .44s ease; border-color: #E24848; }
+        @keyframes rq-miss { 0%,100% { transform: translateX(0); } 25% { transform: translateX(-6px); } 75% { transform: translateX(6px); } }
+        @media (prefers-reduced-motion: reduce) { .rq-target.miss { animation: none; } }
+        .rq-t-h { display: flex; align-items: center; gap: 8px; font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: clamp(12.5px,1.6vw,14px); color: ${T.ink}; }
+        .rq-t-in { display: flex; flex-wrap: wrap; gap: 6px; }
+        .rq-t-in i { font-family: 'JetBrains Mono', monospace; font-style: normal; font-size: 12px; font-weight: 700; color: ${T.success}; background: ${T.successSoft}; border-radius: 7px; padding: 3px 9px; }
+        .rq-t-empty { font-family: Georgia, serif; font-size: 12px; color: ${T.ink3}; }
+        .rq-fb.rq-fb { margin: 0; font-size: clamp(13px,1.5vw,14.5px); line-height: 1.5; border-radius: 12px; padding: 11px 14px; }
+        .rq-fb.rq-fb.ok { color: ${T.ink}; background: ${T.successSoft}; box-shadow: inset 0 0 0 1.5px ${T.success}55; }
+        .rq-fb.rq-fb.miss { color: ${T.ink}; background: ${T.accentSoft}; box-shadow: inset 0 0 0 1.5px ${T.accent}66; }
       `}</style>
       <AchCtx.Provider value={earned}>
       <LiveGateCtx.Provider value={{ locked, live }}>

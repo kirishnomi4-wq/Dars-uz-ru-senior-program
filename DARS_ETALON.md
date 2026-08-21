@@ -1606,8 +1606,27 @@ qaytmaydi. Yechim bitta so'z:
 olam) **umuman yo'q edi** — `PmLesson8` va `PmLesson9` ning ikkalasida ham. 2026-08-20 da
 foydalanuvchi qarori bilan **ikkala olamga ham** majburiy qilindi.
 
-**Tekshirish:** `grep -c "justify-content: safe center" <fayl>` → **1** bo'lishi shart.
-Yangi dars quriladigan bo'lsa, `.stage-content` shu bilan yoziladi.
+**QAMROV ANIQLASHTIRILDI (2026-08-20, F-0820-93 · foydalanuvchi qarori).** Qoida
+`.stage-content` **markazlashtirilgan** bo'lgan darslarga tegishli. Agar faylda
+`justify-content` **umuman yo'q** bo'lsa (default `flex-start`), qonun ogohlantirgan
+kesilish **yuz bermaydi** — bunday faylga `safe center` **qo'shilmaydi**, chunki u
+nuqsonni tuzatmaydi, balki kontent sig'ganda vertikal joylashuvni **o'zgartiradi**.
+
+**Tekshirish (ikki bosqichli) — FAQAT `.stage-content` QOIDASI ICHIDA:**
+1. `.stage-content` qoidasini o'qing. Unda `justify-content` **bormi**?
+   Yo'q bo'lsa — talab yo'q, **topilma emas** (default `flex-start`, kesilish bo'lmaydi).
+2. Bor bo'lsa — u **`safe center`** bo'lishi shart; yalang `center` — 🔴 topilma.
+
+🔴 **Butun-fayl `grep -c "justify-content: center"` ISHLATILMAYDI** — u har qanday
+markazlashtirilgan flex-qutini (karta ichi, tugma, badge) tutadi va o'nlab yolg'on signal
+beradi (m4-02 da **40** ta). Qoida faqat **`.stage-content`** ga tegishli: kesilish
+xavfi sahifa-ustunida bor, karta ichida yo'q.
+
+Yangi dars markazlashtirilgan ustun bilan quriladigan bo'lsa, `.stage-content` darhol
+`safe center` bilan yoziladi.
+
+**Misol (m4-01 `DataIntroLesson`):** `grep` → 0, lekin `.stage-content` da
+`justify-content` yo'q edi — **yolg'on signal**, tegilmadi.
 
 ---
 
@@ -1699,3 +1718,387 @@ asosiy qoidaning matn rangi bilan kontrast hisoblanadi; **3:1 dan past** bo'lsa 
 
 **Umumiy shakl:** rang-juftligining **bir yarmi** o'zgarsa, ikkinchi yarmi ham ko'riladi.
 Bu `background`↔`color` ga ham, `border`↔`background` ga ham tegishli.
+
+---
+
+**133-qonun — TANLOV-MASHQIDA HUKM SABABI BILAN BERILADI (2026-08-20, F-0820-103).**
+
+Ko'p-tanlovli mashqda («qaysi ustunlar kerak?», «qaysilari mos?») tanlangan variantga
+faqat **hukm** yozish yetmaydi: «to'g'ri» / «mos emas» — o'quvchi sababni bilmaydi va
+**taxminlab** oxirigacha boradi. Xato tanlov shu yerda **o'rganish-nuqtasi** bo'lishi kerak.
+
+❌ `{on && <span>{o.ok ? 'to'g'ri' : 'mos emas'}</span>}`
+✅ hukm + **qisqa sabab**: «mos emas — bu `users` jadvaliga tegishli, `comments`'ga emas»
+
+**Sabab-matni ma'lumot-massivida yashaydi** (`{ k, ok, why: { uz, ru } }`), JSX'da emas —
+shunda u tarjimaga tushadi va bir joydan tahrirlanadi. **Sabab yozilgan bo'lsa, u
+RENDER qilinishi shart:** m4-01 da `why` maydoni bor edi, lekin hech qayerda
+ko'rsatilmasdi — o'lik ma'lumot bo'lib turdi va faqat o'zbekcha edi (F-0820-97).
+
+🔴 **JUFT NUQSON — xato tanlov TO'G'RIdek ko'rinmasin.** Bu qonunni qo'llashda m4-01 da
+ochildi: `.pick-row.on` **hamma** tanlangan qatorga `successSoft` (yashil) fon berardi —
+ya'ni `narx` ni tanlagan o'quvchi **yashil** qator va kichkina «mos emas» yozuvini
+ko'rardi. Rang hukmni **inkor qilardi**. Yechim — alohida modifikator:
+
+```css
+.pick-row.on.bad { background: ${T.accentSoft}; box-shadow: …, inset 0 0 0 1.5px ${T.accent}; }
+.pick-row.on.bad .pick-box { box-shadow: inset 0 0 0 2px ${T.accent}; … }
+```
+
+**Tekshirish.** Har tanlov-mashqida: (1) `why`/sabab maydoni bormi va **render
+qilinadimi**; (2) `tr({uz,ru})` da'mi; (3) xato tanlovning **foni** to'g'ri tanlovnikidan
+farq qiladimi. 132-qonunning davomi: u fon↔matn kontrastini himoya qiladi, bu esa
+fon↔**ma'no** mosligini.
+
+---
+
+**134-qonun — BITTA KLASS — BITTA ROL (2026-08-20, F-0820-116).**
+
+Klass **kim gapiryapti** yoki **element nima ish qiladi** degan savolga javob beradi.
+Bir klassni ikkinchi rol uchun qayta ishlatish — undan keyin **inline yamoq** talab qiladi,
+va aynan shu yamoq dizayn tizimini yorib chiqadi.
+
+❌ m4-03 da: `.ai-badge` — **AI so'zlovchisi** uslubi (ko'k `T.blue`). O'sha klass
+   **«Do'st»** (odam-tengdosh) uchun ham ishlatilib, farqni ko'rsatish uchun
+   `style={{ background: T.ink }}` bilan qoraytirilgan edi. Natija: bitta klass, ikki rol,
+   ikki rang — va sahifadagi **eng og'ir dog'** (`dark-lint` `●`).
+✅ Yangi klass: `.peer-badge` (`background: ${T.ink2}`, oq matn). Inline yamoq **butunlay
+   ketadi**, har rol o'z qoidasida yashaydi.
+
+**So'zlovchi-palitrasi (kanon).** Uch rol — uch rang, bir-birini takrorlamaydi:
+
+| Rol | Klass | Rang | Nega |
+|---|---|---|---|
+| AI | `.ai-badge` | ko'k `T.blue` | mashina-ovozi, neytral-texnik |
+| Mentor | mentor bloki | `T.accent` **to'liq** | darsning yetakchi ovozi |
+| Odam-tengdosh | `.peer-badge` | `T.ink2` | neytral; **`T.success` BERILMAYDI** |
+| **O'quvchining o'zi** | **`.you-badge`** | **`T.accent` KONTUR** (oq fon + accent matn/chegara) | **«Siz» suhbatdagi personaj EMAS** — ekran egasining **navbat-signali**. Kursda «sening harakating» tili doim accent. **To'ldirilgan emas:** u yorliq, tugma emas — to'ldirilsa harakat-tugmasi bilan chalkashadi (F-0820-144) |
+
+🔴 **`T.success` so'zlovchiga berilmaydi** — u **hukm-rangi** («to'g'ri», «bajarildi»).
+So'zlovchiga berilsa, o'quvchi uning gapini «to'g'ri javob» deb o'qiydi.
+
+**Tekshirish.** `dark-lint` inline-fon topsa: avval «rangni to'g'rilash» emas, **«bu klass
+qaysi rol uchun?»** deb so'raladi. Inline yamoq — deyarli har doim rol-drift belgisi.
+Grep: `className="<klass>" style={{ background`.
+
+---
+
+**DEBUGGING-EKRANI PRECEDENTIGA ANIQLIK (2026-08-20, F-0820-89 davomi · foydalanuvchi qarori).**
+
+3-Modulda (commit `43bca2b`) Debugging ekranlaridan `takeaway` bloklari olib tashlangan edi.
+Precedent **noto'g'ri o'qilishi mumkin** — go'yo «Debugging ekranida takeaway bo'lmaydi».
+Aslida chegara boshqa joydan o'tadi:
+
+🔴 **Taqiqlangan — BO'SH MAQTOV.** O'quvchi hozirgina qilgan ishni takrorlaydi, yangi narsa
+qo'shmaydi:
+❌ «Topdingiz va tuzatdingiz — bu debugging!»
+❌ «Xatoni o'qib, tuzatdingiz — bu debugging!»
+
+✅ **Qoladi — MAZMUNLI QOIDA-ESLATMA.** Ekranda topilgan narsani **qoidaga** aylantiradi,
+ya'ni o'quvchi keyingi safar ishlata oladigan bilim beradi:
+✅ «Shtamp mos kelmasa — **404**!» (m4-05 `RoutingLesson`)
+✅ «404 ni o'qidingiz, manzilni tuzatdingiz!» (m3-08)
+✅ «Ko'rinmas xatoni ham topdingiz!» (m3-09)
+
+**Sinov savoli:** blokni o'chirsangiz, o'quvchi biror **bilimni** yo'qotadimi?
+Yo'qotsa — qoladi. Faqat maqtov yo'qolsa — ketadi.
+
+Bu 4-bo'lim mezonining («element o'quvchiga biror narsa **tushuntiradimi**?») debugging
+ekraniga tatbiqi — alohida qoida emas, o'sha mezonning aniq holati.
+
+---
+
+**135-qonun — KIRISH-ANIMATSIYA VA HOLAT-ANIMATSIYA BIR ELEMENTGA QO'YILMAYDI (2026-08-20, F-0820-136).**
+
+`.fade-up` elementni `opacity: 0` qilib, ko'rinishni **`animation` xususiyatiga** topshiradi
+(`fade-in-up … forwards`). Shu elementga `animation` beradigan **ikkinchi** klass qo'shilsa
+(`.btn.invite` pulsi, F-0819-34), kaskadda kuchlirog'i butun `animation`ni almashtiradi —
+`fade-in-up` hech qachon ishga tushmaydi va element **abadiy ko'rinmas** qoladi. esbuild,
+`lint:dark`, ko'z bilan kod o'qish — hech biri tutmaydi; faqat ekran (yoki computed `opacity`).
+
+❌ m3-01 da ikki ekran (09 · 10 / 20) shu sabab **o'tib bo'lmas** edi: yagona harakat-tugma
+   `className="btn fade-up delay-2 invite"` — DOMda bor, `opacity = 0`, `animationName = btn-invite`.
+✅ Kirish — **o'rovchida**, holat — **elementning o'zida**:
+   `<div className="fade-up delay-2"><button className="btn invite">…</button></div>`
+
+**Qoida.** Xavfli juftlik — **«ochuvchi» kirish-klass** (bazasida `opacity: 0` **va**
+`animation … forwards|both` — korpusda bu `.fade-up`, 122 faylda) bilan `animation` beradigan
+**har qanday boshqa** klass (`invite` · `pulse` · `.gate.open` · `.rp.full` kabi holat-klasslar)
+bir `className`da turmaydi. Ikkalasi kerak bo'lsa — kirish **ota-elementga** ko'chadi.
+Ikkinchi yo'l — **ta'mir-qoida**, ikkala animatsiyani bitta juft-selektorda berish:
+`.fade-up.shake { animation: fade-in-up 0.4s ease-out forwards, shake 0.4s ease; }` — bu ham
+qonuniy (vosita tan oladi), lekin holat-klass olib tashlanganda kirish qayta boshlanib
+miltillaydi, shuning uchun o'rovchi afzal.
+
+**Qamrov — nima topilma EMAS.** `.fade-step` · `.el-in` kabi **fill'siz** o'tishlar (`opacity: 0`
+bazasi yo'q) bosib o'tilsa, faqat kirish o'ynamaydi — element **ko'rinadi**; bu estetik, xavf
+emas, topilma emas. Shuningdek: holat-qoida o'zi `opacity` bersa yoki uning `@keyframes`i
+`opacity`ni boshqarsa — element ko'rinadi, topilma emas.
+
+**Tekshirish.** `lint:jsx` bandi «KIRISH-ANIMATSIYA + HOLAT-ANIMATSIYA» (faylda 5-raqam,
+izohida `F-0820-136, ETALON 135`): kirish-klasslar ro'yxati **qo'lda emas** — darsning o'z
+CSS'idan (`opacity: 0` + `animation`) yig'iladi; `className` ichida shu klass + CSS'da
+`animation` beradigan boshqa qoida to'liq mos kelsa → topilma. Qo'lda tez tekshiruv:
+`grep -n "fade-up[^\"\`]*invite" <fayl>` = 0.
+
+**Toraytirish tarixi (yolg'on-ijobiy 0 ga yetguncha to'rt shart qo'shildi).**
+1. Selektorning **oxirgi birikmasi** elementga **to'liq** mos kelsin — `.btn.invite` uchun
+   `className`da ikkala klass ham bo'lishi shart (aks holda `.btn` bor har tugma topilma bo'lardi).
+2. Psevdo-element (`::before`), `:hover`/`:active`/`:focus`/`:checked` qoidalari hisobga
+   olinmaydi — ular bazaviy `animation`ni almashtirmaydi.
+3. Qoida o'zi `opacity` bersa yoki `@keyframes`i `opacity`ni boshqarsa — topilma emas.
+4. **Bitta-klassli** holat-qoida faqat `.fade-up`dan **KEYIN** yozilgan bo'lsa ustun keladi
+   (teng aniqlik — keyingisi yutadi); oldin yozilgani yengilmaydi, topilma emas.
+   Qo'shimcha: ta'mir-qoida (`.fade-up.<klass>`) bor bo'lsa — hal qilingan, topilma emas;
+   yopilmagan CSS-blok tahlilga kirmaydi.
+Eski 4-band (F-0803-22) bu sinfni **tutmasdi**: u faqat yakka-klassli selektorlarni ko'rardi,
+`.btn.invite` juftligini esa «muallif ataylab birlashtirgan» deb o'tkazib yuborardi.
+
+**Oxirgi o'lchov (2026-08-20).** `43bca2b` nusxa (bug bilan) → **2** topilma (`:1547` · `:1627`,
+aynan ekranda isbotlangan ikki tugma) · tuzatilgan nusxa → **0** · butun `src/` (142 fayl)
+→ yolg'on-ijobiy **0**, haqiqiy-ehtimoliy **3** (`FullstackConnectPracticeLesson:1040/1292` ·
+`BackendCrudPracticeLesson:900` — holat-klass shakli, ekranda tasdiqlab M4 siklida ko'riladi).
+
+---
+
+**136-qonun — YAKUN-SIGNALLAR HAQIQIY HOLATDAN HISOBLANADI, SHARTSIZ YOZILMAYDI (2026-08-20, F-0820-137).**
+
+Topshiriq bajarilgach serverga yoziladigan signallar — `correct` · `firstAttemptCorrect` ·
+`solved` — **turli savollarga** javob beradi va ularni bir xil `true` bilan to'ldirish
+statistikani yolg'onga aylantiradi.
+
+| Signal | Savol | Qanday hisoblanadi |
+|---|---|---|
+| `solved` | Topshiriq oxirigacha bajarildimi? | ekran «done» holatiga yetdimi |
+| `correct` | Yakuniy natija to'g'rimi? | **haqiqiy shartdan** (`v === 'c'`, hamma juftlik joyidami) |
+| `firstAttemptCorrect` | **Xatosiz** yechdimi? | xato urinishlar sanog'idan: `wrongCount === 0` |
+
+❌ m4-01 `Screen15` (sxemani ulash): uch bog'lanish joylashgach
+   `correct: true, firstAttemptCorrect: true` **shartsiz** yozilardi — o'quvchi necha marta
+   noto'g'ri ulagan bo'lsa ham «birinchi urinishda topdi» deb qayd etilardi.
+✅ Xato urinishlar `useRef` da sanaladi va yakunda: `firstAttemptCorrect: wrongCount === 0`.
+
+**Nega muhim.** Bu 157-korpus-qoidasining («ball bermaslik ≠ halol bo'lmaslik»)
+**ball-davomi**. U yerda gap ekrandagi **matn** haqida edi, bu yerda serverga ketadigan
+**raqam** haqida: mentor paneli, podium va LMS tahlili shu raqamlardan quriladi. Soxta
+`true` — mentorga «sinf tushundi» deb ko'rsatadi, aslida esa yarim sinf uch martadan
+urinib topgan bo'lishi mumkin. **Etalon dars yolg'on statistika yozmaydi** — aks holda
+undan nusxa oladigan darslar ham yozadi.
+
+**Tekshirish.** Har `onAnswer(…)` chaqiruvida qattiq `true` qidiriladi:
+`grep -n "firstAttemptCorrect: true" <fayl>` — topilsa, u **hisoblangan** qiymatga
+almashtiriladi. Bajarish-ekranlarida (`practice` · `koding`) `correct: true` **qonuniy**:
+u yerda «to'g'ri/noto'g'ri» yo'q, faqat «bajarildi» bor — lekin `firstAttemptCorrect`
+u yerda umuman yozilmaydi.
+
+---
+
+**137-qonun — HOOK-EKRANDA «AYNAN!» FAQAT TOPILGANDA (2026-08-20, F-0820-171).**
+
+§157 (`MATN_KORPUS`) ning **hook-ekrandagi maxsus holati**. Alohida raqam olishiga sabab:
+nuqson **to'rt darsda takrorlandi** (m4-01 · m4-03 · m4-04 · m4-05) — ya'ni bu tasodif emas,
+**naqsh**: hook ball bermaydi, shuning uchun «hamma javob to'g'ri» qilib qo'yish oson.
+
+**Uch shart — uchalasi birga:**
+
+1. 🔴 **Har tanlovga bir xil maqtov TAQIQ.** «Aynan!» / «Topdingiz!» / «To'g'ri!» —
+   faqat to'g'ri tanlovga. Xato tanlagan o'quvchi maqtov olsa, **noto'g'ri modeli
+   tasdiqlanib** qoladi va dars davomida shu bilan yuradi.
+2. 🔴 **`correct` faqat HAQIQIY shartdan:** `correct: v === 'c'`, `correct: v === correct`.
+   Qattiq `true` — LMS tahlilini ham buzadi (136-qonun).
+3. ✅ **Xato tanlovga KO'PRIK-GAP**, uyaltirish emas: «Aslida bu — **keng tarqalgan
+   afsona**… dars oxirida uni **birga buzamiz**». Shunda hook **halol** bo'ladi VA
+   keyingi ekranga **intriga** quriladi — dars o'z afsonasini maqtamaydi, **e'lon qiladi**.
+
+**Nega ko'prik shart.** Hook — darsning birinchi ekrani; u yerda «xato» degan hukm
+o'quvchini yopadi. Ko'prik aybni javobga emas, **hali o'rganilmagan mavzuga** yo'naltiradi
+va o'sha mavzuni **va'da** qilib qo'yadi. m4-03 da bu s14 «Mif-buster» ekraniga,
+m4-05 da s14 «to'rt qoida» ekraniga ulandi.
+
+**Istisno — sof so'rovnoma.** Agar hook haqiqatan **fikr so'rasa** (to'g'ri javobi
+yo'q, ikki tomon ham asosli), unda `correct: false` **hammaga** yoziladi va maqtov
+umuman berilmaydi. m4-02 `PmLesson11` shunday — u to'g'ri qilingan.
+
+**Tekshirish.** Har `stage: 'hook'` chaqiruvida: `correct:` qiymati **o'zgaruvchimi**;
+`hook-ack` matni **shoxlanganmi** (`picked === … ? … : …`).
+
+---
+
+**IZOH — NAMUNA VA MUSTAQILLIK (2026-08-20, 2-sessiya nomzodi ⑤, m4-04 B2 qaroridan).**
+
+Bu raqamli qonun emas, **qo'llash izohi**: qaysi ekranda to'liq namuna berish mumkin,
+qaysida o'quvchi o'zi yozishi kerak.
+
+- ✅ **Birinchi-marta-marosim ekranlarida to'liq namuna berish MUMKIN.** O'quvchi
+  atamani, sintaksisni yoki asbobni **birinchi marta** ko'rayotgan bo'lsa — namuna
+  to'siq emas, **kirish zinapoyasi**. Bu yerda «o'zing top» talab qilish o'quvchini
+  mavzuga emas, **taxminga** majbur qiladi.
+- 🔴 **Takror-mavzularda MUSTAQILLIK talab qilinadi.** O'sha tushuncha ikkinchi-uchinchi
+  marta uchrasa, tayyor namuna **o'rganishni almashtiradi**: o'quvchi ko'chiradi va
+  o'tib ketadi. Bunda namuna **qisman** beriladi (skelet, birinchi qator) yoki umuman
+  berilmaydi.
+
+**Chegara qayerda.** Savol «bu dars uchun birinchimi?» emas, «**o'quvchi uchun**
+birinchimi?» — modul-ipi bo'ylab. Shuning uchun qaror `SCREEN_INTENTS` va oldingi
+darslarning mazmuniga qarab qabul qilinadi.
+
+---
+
+**138-qonun — QULF-YORLIQ HARAKATNI AYTADI; QULF HOLATIDA «DAVOM ETISH» TAQIQ (2026-08-20, F-0820-181…187 paketi).**
+
+`NavNext` qulflangan bo'lsa, yorliq **nima qilish kerakligini** aytadi. Qulf holatida
+«Davom etish» yozib qo'yish — o'quvchini **tugma bosishga** chaqiradi, tugma esa
+bosilmaydi: yorliq va xulq bir-birini inkor qiladi.
+
+❌ `disabled={!done} label={done ? 'Davom etish' : 'Davom etish'}`
+✅ `disabled={!done && !rescue} label={(done || rescue) ? 'Davom etish' : '5/5 ustun ko'rildi'}`
+
+**UCH DARAJA — har biri o'zidan oldingisini to'ldiradi:**
+
+| # | Daraja | Qachon | Nima qiladi |
+|---|---|---|---|
+| 1 | **Qulf-yorliq** | doim (qulf holatida) | harakatni **aytadi**: «Zanjirni yuring — 2/5» |
+| 2 | **Ipucha** | 40 s yoki 25 s siljishsiz | **chuqurlashtiradi**: darsning o'z mazmunidan aniq keyingi qadam |
+| 3 | **Rescue** | 110 s yoki 60 s siljishsiz | **yo'l ochadi**: «Davom etish» ochiladi, ball yo'q |
+
+🔴 **Tartib buzilmaydi.** Yorliq nima qilishni aytmasa, ipucha va klapan **o'zi
+yaratgan muammoni davolaydi**: o'quvchi mazmunni bilmagani uchun emas, **UI aytmagani
+uchun** tiqiladi. Shuning uchun 1-daraja majburiy, 2–3 esa qulflangan ekranlarda.
+
+**Tekshirish:** `grep -n "label={done ? { uz: 'Davom etish'" <fayl>` — topilsa, ikkala
+shoxi ham «Davom etish» bo'lgan qulf-yorliq bor demakdir.
+
+**Manba-tatbiq:** m4-08 `BackendCrudPracticeLesson` — 4 ta qulf-yorliq mazmunli qilindi
+va `useStuckValve` bilan ulandi (KATTA_TOZALASH 13-band, birinchi qo'llanish).
+
+**QO'SHIMCHA — YORLIQ QOIDASI RESCUE HOLATIGA HAM TATBIQ ETILADI (2026-08-21, 4a-02).**
+Rescue qulfni ochgach yorliq **avtomat «Davom etish» ga o'tib ketmaydi**. Chegara
+**ekran ballikmi** — shunga qarab:
+
+| Ekran | Rescue holatidagi yorliq | Nega |
+|---|---|---|
+| **Ballsiz** (o'rganish/tadqiqot) | «Davom etish» **to'g'ri** | o'quvchi haqiqatan davom etadi, hech narsa qolmaydi |
+| 🔴 **Ballik** (`INLINE_KEYS` bilan bog'langan) | «Davom etish» **TAQIQ** — harakat-nom yozilsi | «Davom etish» **bajarildi** degan taassurot beradi; aslida topshiriq **oralab o'tildi**, ball ham berilmadi |
+
+✅ Namuna — 4a-02 `NestArchResourceLesson` Screen17 (ballik debugging ekrani):
+`_resc ? tr({ uz: "Qatorlarni birga ko'ramiz →" })` — yorliq keyingi **harakatni**
+aytadi va rescue-matni bilan bir gapiradi («Bu qatorlarni keyinroq birga ko'rib
+chiqamiz»). O'quvchi qamalib qolmaydi, lekin **nima qolganini biladi**.
+
+---
+
+**139-qonun — OSHKOR-BELGI: ✅/❌ TANLOVDAN OLDIN KO'RINMAYDI (2026-08-21, 2-sessiya nomzodi ①, F-0820-299).**
+
+O'quvchi **hukm chiqarishi kerak** bo'lgan elementning yorlig'ida ✅ · ❌ · ✔ · ☑ belgisi
+**hukmdan oldin** turmaydi. Belgi savolga o'quvchi o'rniga **javob berib qo'yadi**:
+ballik savol click-testga aylanadi, o'quvchi mazmunni emas, **belgini** o'qiydi.
+
+**136–137–139 uchligi.** 136-qonun: javob **haqiqiy shartdan** kelib chiqsin.
+137-qonun: xato tanlovga **maqtov berilmasin**. 139-qonun: to'g'ri tanlov **oldindan
+belgilanmasin**. Uchalasi bitta halollikni uch tomondan yopadi — javob, maqtov, savol.
+
+🔴 **TAQIQ zonasi** — o'quvchi tanlaydi/hukm qiladi:
+ballik savol variantlari · hook tanlovi · «qaysi to'g'ri?» ekranlari ·
+to'g'ri-xato bo'yicha saralanadigan `MatchPairs`/sudrash kartalari.
+
+✅ **RUXSAT zonasi** — to'rt holat, chegarasi aniq:
+
+| Holat | Nega ruxsat |
+|---|---|
+| **Hukmdan KEYIN** — reveal, feedback, `mstats` chip, podium | belgi **hukm natijasi**, uni ochib bermaydi |
+| **Tanlov YO'Q kartalar** — RECAPS, flashcard `ic:`, tushuntirish-kartasi | belgi **ikonka**, javob emas |
+| **Tadqiqot tugmasi** — dars **o'zi** «xatosini ham bosing» deb aytgan | belgi **yo'l-ko'rsatkich**: o'quvchi hukm qilmaydi, **ko'rsatmani bajaradi** |
+| **O'quv-qiyoslash** — ❌ eski → ✅ yangi jadvali | belgi **o'quv materialining o'zi** |
+
+**Chegara-savoli bitta:** «bu yerda o'quvchi **hukm qilyaptimi**, yoki **ko'rsatmani
+bajaryaptimi**?» Hukm qilsa — belgi taqiq; bajarsa — belgi foydali.
+
+**Manba-namuna (RUXSAT, tegilmaydi):** 4a-01 `NestArchAliveLesson:1633` va
+4a-02 `NestArchResourceLesson:1205` — `<button>❌ Xato: {…}</button>`. Ikkalasi ham
+**ballsiz tadqiqot ekrani**, ipucha esa o'quvchini ataylab shu tugmaga yuboradi
+(«avval to'g'ri so'rov, keyin ataylab xato»). Belgi bu yerda **tajribaning nomi**.
+
+**O'lchov:** `node` bilan tanlov-massivi ichida belgi qidiriladi
+(`opts|options|VARIANTS|CARDS|CHOICES|answers` massivi ochilishidan yopilishigacha).
+**2026-08-21 holati: butun repoda 0 ta** — ya'ni bu **oldini oluvchi** qonun,
+tozalash-bandi emas.
+
+**Nega darvoza-band emas.** Gate «hukm qilyaptimi / bajaryaptimi» farqini ko'ra olmaydi;
+yuqoridagi ikki tadqiqot tugmasini ham topilma deb baqirar edi. Shuning uchun bu qonun
+**auditda o'qib** tekshiriladi (tekshiruvchi rolining ov-bandi), grep esa faqat **nomzod
+ro'yxatini** beradi.
+
+---
+
+**140-qonun — CHALG'ITUVCHI DARSNING O'Z QOIDASI BO'YICHA HAM NOTO'G'RI BO'LSIN (2026-08-21, 2-sessiya nomzodi ②, F-0820-300).**
+
+Ballik savolda **har bir noto'g'ri variant** shu darsning **o'zi o'rgatgan qoidasi**
+bo'yicha ham noto'g'ri bo'lishi shart. «Kalit emas» — yetarli asos EMAS.
+
+**Nuqson qanday ishlaydi.** Chalg'ituvchi dars o'rgatgan tekshiruvdan **o'tib ketsa**,
+u chalg'ituvchi emas — **ikkinchi to'g'ri javob**. Shunda dars **o'z ta'limotini
+jazolaydi**: qoidani to'g'ri o'zlashtirgan o'quvchi ikkilanadi yoki o'sha variantni
+tanlab, «xato» degan hukm oladi. Bu ballni emas, **ishonchni** buzadi.
+
+**Manba (2-sessiya, 4b-02 `EdgeCasesTestLesson`):** edge-case darsining **finalida**
+chalg'ituvchi darsning o'z `0.5` qorovulidan o'tardi — ya'ni edge-case darsi
+**o'zining edge-case xatosini** yopib ketmoqchi edi.
+
+**Uch savol — har chalg'ituvchiga:**
+
+1. 🔴 **Dars qoidasi bo'yicha ham noto'g'rimi?** Qoidani/qorovulni **variantga qo'llab
+   ko'ring**. O'tib ketsa — variant almashtiriladi (kalit emas!).
+2. 🔴 **Nima uchun noto'g'riligi darsda aytilganmi?** Tushuntirilmagan sabab bilan
+   noto'g'ri variant — **o'rgatilmagan narsani** so'raydi.
+3. ✅ **Ishonarlimi?** Hech kim tanlamaydigan variant — **o'lik yuk**. Yaxshi
+   chalg'ituvchi **aniq bir yanglish tasavvurni** gavdalantiradi, imkon bo'lsa —
+   darsning o'zi nom bergan yanglishni (137-qonundagi «afsona» ko'prigi bilan juftlashadi).
+
+**Tekshirish — o'qib, grep bilan emas.** Bu semantik qonun: variant matnini **dars
+mazmuniga solishtirish** kerak. Shuning uchun u auditning **ballik-savol bandiga** va
+tekshiruvchi rolining ov-ro'yxatiga kiradi.
+
+**Qamrov:** faqat **SCORED** savollar (`INLINE_KEYS` bilan bog'langan) va `QUIZ_BANK`.
+Hook tanlovi 137-qonun bilan yopilgan (u yerda «noto'g'ri» hukmi umuman berilmaydi).
+
+---
+
+**141-qonun — MAROSIM BITTA VA BIRINCHI-MARTA (2026-08-21, uch takrordan keyin muhrlandi).**
+
+**Marosim** — darsning nishonlash lahzasi: `AchCelebrate` to'liq-ekran bayrami,
+`OpeningAct` ochilish lavhasi, konfetti, katta ochilish-animatsiyasi, «birinchi marta
+ishladi!» sahnasi.
+
+🔴 **Bir dars/loyihada marosim BITTA bo'ladi va u BIRINCHI-MARTA lahzasiga qo'yiladi.**
+Takror-ekranlar — **praktika-done · recap · takrorlash · flashcard-yakuni** — marosimni
+**takrorlamaydi**.
+
+**Nega.** Marosim **qiymatini takrordan oladi**: birinchi marta ishlagan narsa hodisa,
+uchinchi marta ishlagani — kutilgan natija. Har «bajarildi» ga bayram qo'yilsa,
+bayram **fon shovqiniga** aylanadi va haqiqiy birinchi-marta lahzasi **ajralib turmaydi**.
+Bu 129-qonun («bo'sh apparat») ning his-tuyg'u tomoni: mazmunsiz marosim ham
+**bo'sh apparat**, faqat u ko'zga yoqimliroq ko'rinadi.
+
+**Takror-ekranda nima bo'ladi.** Marosim emas, **tasdiq**: qisqa `done-mini` yozuvi,
+`frame-success` bloki, keyingi qadamga yo'naltiruvchi bir gap. Ya'ni «bajarildi» aytiladi,
+**nishonlanmaydi**.
+
+| Ekran | Marosim | Nima bo'ladi |
+|---|---|---|
+| **Birinchi-marta** (birinchi ishga tushirish · birinchi yashil test · loyiha ochilishi) | ✅ **HA** | to'liq marosim, bir marta |
+| Praktika-`done` | ❌ yo'q | `done-mini` tasdig'i |
+| Recap · takrorlash · flashcard yakuni | ❌ yo'q | qisqa xulosa |
+| Dars yakuni (`Screen19`) | ✅ **HA** — bu **boshqa** marosim | modul-darajasidagi yakun, dars ichidagisi bilan raqobatlashmaydi |
+
+**Uch pretsedent (shundan qonun raqami oldi):**
+1. **F-0820-193x** (m4-13) — «takrorda mustaqillik»: takror-ekran birinchi-marta kabi
+   bezatilgan edi.
+2. **m4-13 `OpeningAct`** — ochilish lavhasi qayerga tegishli ekani hal qilindi.
+3. **4c-03 B1** — praktika-`done` ga marosim **qo'shilmadi** (to'g'ri qaror, shu qonunni
+   uchinchi marta tasdiqladi).
+
+**Tekshirish (audit-bandi):** darsdagi barcha bayram-chaqiruvlarini sanang
+(`AchCelebrate` · `confetti` · `OpeningAct` · `celebrate` · to'liq-ekran overlay).
+**Ikkitadan ko'p bo'lsa** (dars-ichi + yakun) — har ortiqchasi asoslanishi shart.
+Savol: «bu lahza o'quvchi uchun **birinchi marta**mi?» Yo'q bo'lsa — marosim olib
+tashlanadi, o'rniga tasdiq qoladi.

@@ -33,9 +33,14 @@ const compiled = rules.map(r => ({
 }));
 
 // --- fayllarni yig'ish ---
+// ARXIV — QAMROVDAN TASHQARI (F-0820-197, foydalanuvchi qarori 2026-08-20).
+// `src/eski/` va `src/2-moodull eski/` — `App.jsx` ga ULANMAGAN o'lik nusxalar.
+// Darvoza JONLI kodni qo'riqlaydi; arxiv topilmalari haqiqiy signalni ko'madi.
+// Arxivning taqdiri (o'chirish yoki saqlash) — KATTA_TOZALASH 19-band.
+const SKIP_DIRS = ['2-moodull eski', 'eski'];
 function walk(dir, out) {
   for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
-    if (e.name.startsWith('.') || e.name === 'node_modules') continue;
+    if (e.name.startsWith('.') || e.name === 'node_modules' || SKIP_DIRS.includes(e.name)) continue;
     const p = path.join(dir, e.name);
     if (e.isDirectory()) walk(p, out);
     else if (e.name.endsWith('.jsx')) out.push(p);
@@ -62,6 +67,7 @@ function lintFile(file) {
   const findings = [];
   let inBlockComment = false;
   let inStyle = false;
+  let inRu = false;   // RU-zona holati (F-0820-177)
   for (let i = 0; i < lines.length; i++) {
     const raw = lines[i].replace(/\r$/, ''); // CRLF: \r regex $-ni buzadi
     const t = raw.trim();
@@ -84,9 +90,29 @@ function lintFile(file) {
     // --- <style> CSS-bloki ---
     if (inStyle) { if (st.includes('</style>')) inStyle = false; continue; }
     if (st.includes('<style')) { if (!st.includes('</style>')) inStyle = true; continue; }
+    // --- RU-ZONA (F-0820-177): ko'p qatorli `ru: \`…\`` template-satri ---
+    // `kirill-lotin-matnda` qoidasining `except` i faqat `ru:` bilan BIR QATORDA ishlaydi.
+    // Prompt-namunalari esa ko'p qatorli yoziladi:
+    //     const BACK_PROMPT = { uz: `…`, ru: `1-qator
+    //       • машина въехала …            <- bu qatorda `ru:` YO'Q -> yolg'on signal
+    //       • показать все места` };
+    // m4-13 da 8 ta, m4-14 da 6 ta shunday signal bor edi. Yechim — HOLAT: `ru: \`` dan
+    // yopuvchi backtikgacha «RU-zona», u ichida kirill-qoidalari o'tkaziladi.
+    // ⚠️ Faqat `kirill*` oilasi o'tkaziladi: RU zonada lotin-so'z qoidasi ishlasa —
+    // u haqiqiy topilma (RU matniga o'zbekcha so'z tushib qolgan).
+    let ruOpens = false;
+    if (!inRu) {
+      const om = /\bru\s*:\s*`/.exec(s);
+      // ochilish qatorida yopuvchi backtik yo'q bo'lsa — zona keyingi qatorlarga cho'ziladi
+      if (om && !s.slice(om.index + om[0].length).includes('`')) ruOpens = true;
+    }
+    const inRuNow = inRu || ruOpens;
+    if (inRu && s.includes('`')) inRu = false;
+    else if (ruOpens) inRu = true;
     // --- qoidalar (tozalangan `s` ustida) ---
     for (const r of compiled) {
       if (r.allowFiles && r.allowFiles.some(a => base.includes(a))) continue;
+      if (inRuNow && /^kirill/.test(r.id)) continue;
       if (r.exceptRe && r.exceptRe.test(s)) continue;
       const m = s.match(r.re);
       if (m) {

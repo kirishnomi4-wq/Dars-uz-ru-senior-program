@@ -14,7 +14,7 @@
       "pattern": "\\bretsept",
       "flags": "i",
       "severity": "warn",
-      "suggest": "PM darsda taqiq («1 hikoya — 3 bo'lak»); texnik darsda metafora o'rinliligini ko'rib chiqing",
+      "suggest": "CHEGARA (F-0820-249): PM o'quv-tuzilmasini «retsept» deyish = TAQIQ (uslub-so'z, «1 hikoya — 3 bo'lak»). Olam-predmeti yoki loyiha-nomi = RUXSAT (oshxona retsepti, «Retseptlar sayti» — m4-13 va 4a-01 pretsedenti)",
       "law": "ETALON 41"
     },
     {
@@ -22,7 +22,7 @@
       "pattern": "zanjir",
       "flags": "i",
       "severity": "warn",
-      "except": "else if|if-else|rol-zanjir|prompt-zanjir|agent-zanjir|zanjir-reaksiya",
+      "except": "else if|if-else|rol-zanjir|prompt-zanjir|agent-zanjir|zanjir-reaksiya|so'rov[^.]{0,15}zanjir|zanjir[a-z']{0,8}[^.]{0,30}(Front|bo'g'in)|to'liq zanjir|Zanjirni yuring",
       "suggest": "streak haqida bo'lsa: «ketma-ket kunlar soni / hisob»",
       "law": "lug'at zanjir-qatori (2026-07-24)"
     },
@@ -104,6 +104,7 @@
     {
       "id": "toladi-fe'l",
       "pattern": "to'ladi\\b",
+      "except": "kim to'ladi|to'ladi\\?|оплат",
       "flags": "i",
       "severity": "warn",
       "suggest": "matn/karta haqida bo'lsa «to'ladi» suvni eslatadi — «yozilib chiqadi / yozilgan bo'ladi» (42-qonun: fe'l↔ekran)",
@@ -519,7 +520,7 @@
     },
     {
       "id": "ekran-nomi-tarjimasi",
-      "except": "fayl kengaytma|kengaytmasi(ning)? turi|Brauzerga qo'shiladigan kengaytma|Расширение для браузера|расширения файла|расширение файла|тип файла",
+      "except": "fayl kengaytma|kengaytmasi(ning)? turi|Brauzerga qo'shiladigan kengaytma|Расширение для браузера|расширения файла|расширение файла|тип файла|Editor[^(]{0,14}\\(muharrir\\)|Extensions[^(]{0,14}\\(kengaytma\\)|\\.(yml|yaml|jsx?|tsx?|json|md|css|html|env)\\s*kengaytma",
       "severity": "error",
       "pattern": "\\bmuharrir|\\bkengaytma",
       "flags": "i",
@@ -668,8 +669,9 @@
       "id": "sheva-yuklama-ku",
       "severity": "error",
       "pattern": "[a-z']-ku\\b",
+      "except": "«[^»]{0,80}[a-z']-ku",
       "flags": "i",
-      "suggest": "so'zlashuv yuklamasi «-ku» — olib tashlang: «bosasiz-ku» → «bosasiz»",
+      "suggest": "so'zlashuv yuklamasi «-ku» — olib tashlang: «bosasiz-ku» → «bosasiz». CHEGARA (F-0820-391, KORPUS §159): «…» ichidagi IQTIBOS — olam ovozi, dars ovozi emas — RUXSAT (masalan «Mening kompimda ishlayapti-ku» — dars aynan shu e'tirozga javob beradi)",
       "law": "MATN_ETALONI 1 · MATN_ETALONI 7-C · KORPUS 136 · F-0818-03"
     },
     {
@@ -691,6 +693,7 @@
     {
       "id": "registr-zor-qoyil",
       "severity": "warn",
+      "except": "«Zo'r|«Umuman zo'r|«Qoyil|«zo'r»|\"Zo'r ekan|\"Umuman zo'r|\"zo'r\"|>\"zo'r\"<",
       "pattern": "\\bzo'r\\b|\\bqoyil\\b",
       "flags": "i",
       "suggest": "o'quvchiga «Zo'r!/Qoyil!» — so'zlashuv registri; adabiy: «Yaxshi!», «Juda yaxshi!», «To'g'ri!», «Ajoyib!»; «eng zo'r tomoni» → «eng yaxshi tomoni»",

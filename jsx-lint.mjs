@@ -19,8 +19,15 @@ import { join } from 'node:path';
 
 const RED = '\x1b[31m', YEL = '\x1b[33m', GRN = '\x1b[32m', B = '\x1b[1m', R = '\x1b[0m';
 
+// ARXIV — QAMROVDAN TASHQARI (F-0820-197, foydalanuvchi qarori 2026-08-20).
+// `src/eski/` va `src/2-moodull eski/` — `App.jsx` ga ULANMAGAN o'lik nusxalar.
+// Darvoza JONLI kodni qo'riqlaydi; arxiv topilmalari haqiqiy signalni ko'madi
+// (bu yerda 20 ta, til-lint da 191, dark-lint da 14 topilma arxivdan edi).
+// Arxivning taqdiri (o'chirish yoki saqlash) — KATTA_TOZALASH 19-band.
+const SKIP_DIRS = ['2-moodull eski', 'eski'];
 function walk(dir, out = []) {
   for (const e of readdirSync(dir)) {
+    if (e === 'node_modules' || SKIP_DIRS.includes(e)) continue;
     const p = join(dir, e);
     if (statSync(p).isDirectory()) walk(p, out);
     else if (p.endsWith('.jsx')) out.push(p);
@@ -28,8 +35,23 @@ function walk(dir, out = []) {
   return out;
 }
 
+// ARGUMENT PAPKA BO'LSA HAM WALK QILINADI (F-0820-88) — dark-lint bilan bir xil xulq.
+// Ilgari `node jsx-lint.mjs src/4-Modull` EISDIR bilan qulab tushardi: papka
+// readFileSync ga tushar edi. Darvoza qulasa yoki jim qolsa — ikkalasi ham yolg'on.
+function expand(list) {
+  const out = [];
+  for (const a of list) {
+    let st;
+    try { st = statSync(a); }
+    catch { console.error(`${RED}✗ topilmadi: ${a}${R}`); process.exitCode = 2; continue; }
+    if (st.isDirectory()) walk(a, out);
+    else out.push(a);
+  }
+  return out;
+}
+
 const args = process.argv.slice(2);
-const files = args.length ? args : walk('src');
+const files = args.length ? expand(args) : walk('src');
 
 // Darsning CSS bloklari. IKKI shakl bor va ikkalasi ham tekshirilishi shart:
 //   (1) <style>{`…`}</style>            — 118 darsda
@@ -84,6 +106,28 @@ for (const file of files) {
     });
   }
 
+  // ---- 1c) YETIM `_resc` / `_tip` — KLAPAN ULANMAGAN EKRANDA ISHLATILGAN (F-0820-271) ----
+  // Ommaviy almashtirish (`disabled={!done}` -> `disabled={!done && !_resc}`) klapani
+  // YO'Q komponentga ham tegib ketishi mumkin. Natija: `ReferenceError: _resc is not
+  // defined` -> OQ EKRAN. esbuild toza (sintaksis to'g'ri), dark/til/prompt ham toza —
+  // ya'ni BESHALA DARVOZA HAM o'tkazib yuboradi. 4a-01 da aynan shu yuz berdi:
+  // `ScreenLivePractice` (klapansiz, m4-08 pretsedenti) `_resc` ni ishlatib qoldi.
+  {
+    const cs = [];
+    src.split('\n').forEach((l, i) => { if (/^(const|function)\s+[A-Za-z_$][\w$]*\s*=?\s*[({]/.test(l)) cs.push({ i, n: (l.match(/^(?:const|function)\s+([\w$]+)/) || [])[1] }); });
+    const own = (ln) => { let o = null; for (const c of cs) { if (c.i < ln) o = c; else break; } return o; };
+    const declared = new Set(), used = new Map();
+    src.split('\n').forEach((l, i) => {
+      const o = own(i); if (!o) return;
+      if (/rescue:\s*_resc|tip:\s*_tip/.test(l)) declared.add(o.n);
+      else for (const m of l.matchAll(/\b(_resc|_tip)\b/g)) if (!used.has(o.n)) used.set(o.n, { line: i + 1, id: m[1] });
+    });
+    for (const [comp, v] of used) {
+      if (declared.has(comp)) continue;
+      hits.push({ line: v.line, msg: `'${v.id}' ishlatilgan, lekin '${comp}' da useStuckValve YO'Q — brauzerda ReferenceError (oq ekran). Klapan ulang yoki bu qatorni klapansiz holatga qaytaring` });
+    }
+  }
+
   // ---- 2) bir-qatorli funksiya tanasi ichida `//` izoh ----
   // Naqsh: `=> {` … `//` … va O'SHA qatorda keyin `}` yopilishi kutiladi.
   // ⚠️ Qator-ichidagi satr-literallari hisobga olinadi: kod-namunalaridagi "http://…" va
@@ -130,6 +174,48 @@ for (const file of files) {
       const nMeta = (body.match(/id: '/g) || []).length;
       const nScr = scr[1].split(',').filter(x => x.trim()).length;
       if (nMeta !== nScr) hits.push({ line: src.slice(0, scr.index).split('\n').length, msg: `SCREEN_META (${nMeta}) va screens[] (${nScr}) uzunligi TENG EMAS — ekran-siljishi` });
+    }
+
+    // 🔴 (b3) INLINE_KEYS ↔ SCREEN_META MOSLIGI (F-0820-135, foydalanuvchi qarori D3).
+    //
+    // `INLINE_KEYS` serverga yuklanadigan javob-kalitining bir qismi (`answerKey`), va uning
+    // kalitlari EKRAN-ID lari bilan ataladi. Praktika ekrani esa istisno: u serverga literal
+    // `'practice'` nomi bilan yozadi (`submitAnswer(PRACTICE_BASE + screen, 'practice', …)`).
+    //
+    // Nomoslik IKKI YO'L bilan tug'iladi va ikkalasi ham JIM o'tadi:
+    //   m4-03: ekran id `s15p` ga o'zgargan, kalit `practice` bo'lib qolgan → id yetim
+    //   m4-05: ekran testdan praktikaga aylangan, kalit eski `s15` nomi bilan qolgan → kalit o'lik
+    // Ikkalasida ham esbuild toza, brauzer toza — faqat jonli-ball jimgina noto'g'ri ishlaydi.
+    //
+    // ⚠️ QOIDA TOR YOZILSA — 88 YOLG'ON SIGNAL. Birinchi variant «kalit = ekran-id yoki
+    // 'practice'» edi va 30 faylda kuydirdi: PM darslari kalitni ekran-id emas, BOSQICH-NOMI
+    // bilan ataydi (`koding` · `tugma` · `sinov` · `ustaxona`) va o'sha nomni submitAnswer ga
+    // uzatadi — ya'ni ular MOS. Shuning uchun qonuniy manba ikkita:
+    //   (1) SCREEN_META id'lari, (2) faylda `submitAnswer(…, '<nom>', …)` bilan yuborilgan literal.
+    // Uchinchi nozik hol: kalit MAVJUD id ni ataydi, lekin o'sha ekran BALL BERMAYDI
+    // (`scored: false`). Test-ekranlari serverga o'z id'si bilan yozadi, ball bermaydigan
+    // ekran esa bosqich-nomi bilan — demak bunday kalit hech qachon mos kelmaydi.
+    // m4-05 dalili: `s15` testdan praktikaga aylangan, kalit eski nom bilan qolgan.
+    const ik = /const INLINE_KEYS = \{([^}]*)\}/.exec(src);
+    if (ik) {
+      const scoredIds = new Set(), allIds = new Set();
+      for (const e of body.split('{').slice(1)) {
+        const id = /id: '([^']+)'/.exec(e);
+        if (!id) continue;
+        allIds.add(id[1]);
+        if (/scored: true/.test(e)) scoredIds.add(id[1]);
+      }
+      const sent = new Set();
+      for (const m of src.matchAll(/submitAnswer\([^,]+,\s*'([^']+)'/g)) sent.add(m[1]);
+      const keys = [...ik[1].matchAll(/([A-Za-z_$][\w$]*)\s*:/g)].map(m => m[1]);
+      const ikLine = src.slice(0, ik.index).split('\n').length;
+      for (const k of keys) {
+        if (sent.has(k) || scoredIds.has(k)) continue;
+        const why = allIds.has(k)
+          ? `'${k}' ekrani BALL BERMAYDI (scored: false) va bu nom submitAnswer() ga ham uzatilmaydi — kalit o'lik`
+          : `'${k}' na SCREEN_META id'si, na submitAnswer() ga uzatiladigan nom`;
+        hits.push({ line: ikLine, msg: `INLINE_KEYS kaliti: ${why}. Serverga adashgan kalit yuklanadi; jonli-ball jim buziladi` });
+      }
     }
   }
   // 🔴 (c2) ANIQLANMAGAN `tr()` — bir tilli darsga ikki tilli kod qo'shilsa, esbuild JIM

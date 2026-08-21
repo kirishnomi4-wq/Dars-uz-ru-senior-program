@@ -2273,3 +2273,3408 @@ shu sabab darvoza uni ko'rmasdi. Jumla tuzatildi → «nomlarini yozib qo'ying»
 `lint:prompt` 0.
 
 **Holat:** UNCOMMITTED.
+
+---
+
+## 2026-08-20 · 4-MODUL OCHILDI — vosita-darvozasi + 3-Modul ikki qoidasi yoyildi
+
+### F-0820-88 — `dark-lint`/`jsx-lint` PAPKA ARGUMENTINI QABUL QILMASDI (darvoza yolg'on gapirardi)
+
+**Tashxis (o'lchandi, taxmin emas):**
+```
+node dark-lint.mjs src/4-Modull        ->  "1 fayl · ✓ TOZA"      ← YOLG'ON
+node dark-lint.mjs src/4-Modull/*.jsx  ->  "15 fayl · 64 topilma" ← HAQIQAT
+node jsx-lint.mjs  src/4-Modull        ->  EISDIR bilan QULARDI
+```
+Sabab: `files = args.length ? args : walk('src')` — papka to'g'ridan-to'g'ri `readFileSync`
+ga tushardi; `dark-lint` da istisno `catch { continue }` bilan **yutilardi**, `jsx-lint`
+da esa umuman ushlanmasdi. `til-lint` da bu muammo yo'q (u argumentni `walk` qiladi).
+
+**Tuzatildi:** ikkala vositaga `expand()` — argument papka bo'lsa `walk`, fayl bo'lsa
+o'zi; topilmagan yo'l ovoz chiqarib aytiladi va chiqish kodi **2** bo'ladi.
+`dark-lint` dagi jim `catch` endi faylni nomi bilan xabar qiladi.
+`jsx-lint` ning `walk` iga `node_modules` istisnosi qo'shildi.
+
+**Isbot:** papka va glob **teng** (15 fayl · 64 topilma) · `jsx-lint src/4-Modull` →
+15 fayl ✓ TOZA · argumentsiz regressiya yo'q (142 fayl) · yo'q papka → `✗ topilmadi`, kod 2.
+
+**Yo'l-yo'lakay topilma (TUZATILMADI, ruxsat kutadi):** `node jsx-lint.mjs` argumentsiz
+**27🔴 · 11 fayl** — hammasi 4-Moduldan tashqarida: `src/1-Modull/PmAudienceLesson.jsx`
+(7 ta, 4 tasi F-0803-27 `.lesson-root p` reseti) + `src/eski/` va `src/2-moodull eski/`
+arxiv nusxalari (har birida bir xil 2 ta). Mening tahririmdan oldin ham bor edi.
+
+### `AUDIT_PROMPT.md` — to'liq matn bilan almashtirildi
+`4-MODUL_BOSHLASH.md` 8-bo'limi «repo'da YO'Q» degan edi — **noto'g'ri**, fayl bor edi,
+lekin qisqartirilgan. Foydalanuvchi bergan to'liq matn yozildi (dizayn-drift jadvali,
+metafora-qonun, 16-qonun, `data-dark-ok`, ov-bandlari). `lint:prompt` 0.
+`CLAUDE.md` xaritasida allaqachon qayd etilgan (11-qator + Retsept E).
+
+### F-0820-89 — DEBUGGING EKRANIDAN `takeaway` OLIB TASHLANDI (3-Modul precedenti)
+Manba: commit `43bca2b`, `ReactStateEffectLesson` — xato tuzatilgach chiqadigan
+«Topdingiz va tuzatdingiz — bu debugging!» bloki o'chirilgan edi: u o'quvchi
+hozirgina qilgan ishni takrorlaydi, yangi narsa tushuntirmaydi.
+
+| Fayl | Qator | Matn | CSS |
+|---|---|---|---|
+| `DataIntroLesson` | 1680 | «Topdingiz va tuzatdingiz — bu ham debugging!» | `.takeaway` ham o'chdi (yagona foydalanuvchi edi) |
+| `NodeServerLesson` | 1508 | «Topdingiz va tuzatdingiz — bu debugging!» | `.takeaway` ham o'chdi |
+| `BackendCrudPracticeLesson` | 1468 | «Xatoni o'qib, tuzatdingiz — bu debugging!» | CSS QOLDI (takeaway 4-qadam ekranida ham bor) |
+
+**TEGILMADI (tasdiq kutadi):** `RoutingLesson.jsx:1456` — eyebrow «Vaziyat · debugging»,
+lekin matni **mazmunli qoida**: «Shtamp mos kelmasa — 404!». 3-Modulda ham shunday
+mazmunli takeaway'lar saqlangan (ApiGet «404 ni o'qidingiz…», ApiPost «Ko'rinmas xatoni
+ham topdingiz!»). Bo'sh maqtov emas — shuning uchun o'z-o'zidan o'chirilmadi.
+
+**3-Modul qoldig'i (xabar):** `ReactApiGetLesson:1731` · `ReactApiPostLesson:2043` ·
+`ReactBuildSiteLesson:2357` — uchalasi ham Debugging ekranida takeaway saqlab qolgan.
+
+### F-0819-41 — MENTORGA «✅ BAJARDIM» KO'RSATILMAYDI (11 dars)
+**Nuqson:** `ScreenLivePractice` da `isMentor` qorovuli umuman yo'q edi. Jonli sessiyada
+mentor praktika-ekraniga kelganda `NavNext` **qulf** bo'lardi («Avval bajaring») —
+ya'ni o'qituvchi o'quvchi topshirig'ini soxta «bajarishga» majbur edi.
+
+**Tuzatildi (har faylda 5 nuqta, 3-Modul naqshi bilan bir xil):**
+1. `const isMentor = !!(_live && _live.mode === 'mentor');`
+2. `NavNext` → `disabled={!done && !isMentor}` · `label={(done || isMentor) ? …}`
+3. `<Mentor>` matni ikkiga bo'lindi — mentorga «O'quvchilar … bajarmoqda, nechtasi
+   tugatgani pastda ko'rinadi»
+4. `{!isMentor && <button className="lp-done-btn" …>}`
+5. `{done && !isMentor && <div className="frame-success" …>}`
+
+**Qamrov 11/11:** ApiPostman · AuthEnv · BackendCrudPractice · DataIntro · DbSqlNosql ·
+FullstackConnectPractice · FullstackFeedback · FullstackProjectDay · NodeServer ·
+PostgresCrud · Routing.
+
+**QAMROVDAN TASHQARIDA (sabab bilan):** `PmLesson12` va `PmLesson14` — ularda
+`ScreenLivePractice` yo'q, `lp-done-btn` **`ScreenCoding`** ichida turadi va mentor-holati
+u yerda boshqa mexanizm (`isSelf`) bilan boshqariladi. `PmLesson11`/`PmLesson13` da tugma
+umuman yo'q. 3-Modulda ham `PmLesson8`/`PmLesson10` shu sababdan tegilmagan.
+**Mentor matni** «VS Code» o'rniga neytral «o'z kompyuterida» qilindi — `DbSqlNosqlLesson`
+ning o'quvchi-matni VS Code'ni aytmaydi («o'zingiz bajaring»), 3-Modul matni esa aytardi.
+
+**Darvozalar (15 fayl):** esbuild **15/15 toza** · `lint:jsx` **0** ·
+`lint:dark` **64** (o'zgarmadi — F-29 to'plami, `KATTA_TOZALASH` 1-bandi) ·
+`lint:til` **54🔴 · 65🟡** (o'zgarmadi) · UZ-RU parite buzilmadi (faqat 4 PM darsi
+tarjimasiz, kutilgan). CRLF qator-oxirlari saqlandi.
+
+**Holat:** UNCOMMITTED.
+
+---
+
+## 2026-08-20 · m4-01 `DataIntroLesson` — ETALON SIKLI YOPILDI (F-0820-89…102)
+
+Audit `AUDIT_PROMPT.md` bo'yicha yurgizildi → GAP-hisobot → **[GATE]** foydalanuvchi
+qarorlari → ikki to'lqin. Har to'lqindan keyin darvozalar.
+
+### 1-TO'LQIN
+
+| F-ID | Nima qilindi |
+|---|---|
+| **F-0820-89** | **129-qonun** — `MentorPracticeStats` endi `players === null \|\| length === 0` da `null` qaytaradi. Ilgari mentor «👀 Kim bajardi — 0/0» + «Hali hech kim qo'shilmagan» bo'sh apparatini ko'rardi. Bo'sh-holat ikki shoxi butunlay olib tashlandi |
+| **F-0819-41** | Mentor-qorovuli (oldingi raundda 11 darsga yoyilgan edi) |
+| **F-0820-91** | «izoh» endi FAQAT komment ma'nosida. `posts.izoh` → **`posts.imzo`** — 32 qator (identifikator + UZ proza). RU tegilmadi (u allaqachon «подпись» ≠ «комментарий» deb ajratardi). Qolgan 19 ta «izoh» — hammasi komment ma'nosi yoki kod-izohi |
+| **F-0820-92** | **11.15** — `.live-badge { opacity: 0.62 }` + `:hover/:focus-within { opacity: 1 }` CSS bloki qo'shildi. Klass 6 badge'da bor edi, CSS yo'q edi → nishon to'liq tiniq turib sarlavhani bosardi |
+| **F-0820-94** | Bitta markaziy obraz: **rozetka ◎ / vilka ⌁** g'olib. Screen7 dagi «xuddi pasport raqami kabi» UZ + RU + audio matnidan olib tashlandi |
+| **F-0820-95** | Hook halolligi: `correct: true` → **`correct: v === 'c'`**; javobga qarab ikki matn — xatosiga yumshoq to'g'rilash («Aslida boshqacha…», aybni javobga emas hozirgina ko'rilgan tajribaga yo'naltiradi) |
+| **B1** | `StudentPracticePulse` qo'shildi (manba: m3-09 `ReactApiPostLesson`) + `.done-mini` CSS. **4-Modul standarti** — foydalanuvchi qarori |
+| **B3 (F-29)** | `.btn` · `.lp-done-btn` · `.rc-btn` → `background: ${T.accent}; color: #fff`, hover `#E03E1B`. `.mstats-reveal` → **kontur uslub** (`paper` fon + accent matn + accent kontur), hover'da `color: #fff` |
+
+🔴 **Darvoza 132-qonunni tutdi:** `.mstats-reveal` kontur bo'lgach, `.mstats-reveal.ready`
+modifikatori faqat fonni almashtirardi → `dark-lint` `◐` berdi (kontrast **1.00:1**, matn
+ko'rinmaydi). `color: #fff` qo'shildi. **Bu aynan 132-qonun mavjud bo'lish sababi** —
+F-29 ni qo'llash o'zi yangi ◐ nuqson tug'diradi.
+
+**1-to'lqin darvozalari:** esbuild ✓ · `lint:jsx` 0 · `lint:dark` **4 → 0** ·
+UZ-RU 566↔566.
+
+### 2-TO'LQIN
+
+| F-ID | Nima qilindi |
+|---|---|
+| **F-0820-93** | **16-qonun** — `.hint` `1.5px dashed ${T.ink3}` → `1px solid ${T.line}` (etalon m3-04/m3-09). Uzuq chiziq faqat bo'sh-joy zonasi uchun, to'ldirilgan maslahat qutisi uchun emas |
+| **F-0820-96** | Dublikat `.qz-cta` qoidasi (bayt-baytiga bir xil, @media ichida emas) — ikkinchi nusxa o'chirildi |
+| **F-0820-97** | O'lik: `PASSED` (hisoblanardi, ishlatilmasdi) · `JsonView.hiKeys` propi va uning shoxi (hech bir chaqiruvchi bermasdi) · `OPTIONS[].why` maydoni (render qilinmasdi, faqat UZ) |
+| **F-0820-98** | 4 ta `questionText` + s15 `question` → `tr({uz,ru})`. Ilgari RU rejimdagi o'quvchining LMS-yozuvida savol o'zbekcha qolardi |
+| **F-0820-99** | «ushbu kodni kiriting» → «bu kodni kiriting» · «qisqa takrorlash tavsiya etiladi» → «qisqa takrorlang» · «qayta tushuntirish tavsiya etiladi» → «yana bir bor tushuntiring» |
+| **F-0820-100** | «Zo'r!» ×2 → «Juda yaxshi!» · «Quyidagi» ×5 → «Pastdagi» (RU allaqachon «ниже» derdi) |
+
+**2-to'lqin darvozalari:** esbuild ✓ · `lint:jsx` 0 · `lint:dark` **0** ·
+`lint:til` **0🔴 · 1🟡** · UZ-RU 571↔571.
+
+🟡 **Qolgan yagona sarg'ish — ATAYLAB:** qator 848, `COMMENTS` ichidagi **personaj
+izohi** (`matn: "Zo'r manzara!"`). Bu o'quvchiga murojaat emas, olamning o'z matni —
+`registr-zor-qoyil` qoidasi uchun **yolg'on signal**.
+
+### `OPTIONS[].why` — nima uchun saqlanmadi (sabab so'ralgan edi)
+
+Saqlanmadi, chunki **hozirgi holatida** u o'lik va faqat UZ. Lekin **mazmuni yaxshi edi**
+(«bu users jadvaliga tegishli, comments'ga emas»), Screen13 esa hozir xato tanlovga faqat
+«mos emas» deydi — sababini aytmaydi. **Alohida taklif:** `why` ni `tr({uz,ru})` bilan
+qayta tiklab, xato tanlangan qatorda ko'rsatish. Bu tozalash emas, **yangi xatti-harakat** —
+shuning uchun tasdiqsiz qilinmadi.
+
+### Qonunga muhrlangan topilma-sinflari
+
+- `MATN_KORPUS` **§156** — bitta tushuncha bitta nom; yangi ustun nomi **mashq-mexanikasida
+  noyob** qolishi shart (`posts.matn` varianti 6b sudrash-mashqini buzardi — `comments.matn`
+  bilan to'qnashardi; shu sabab **`imzo`** tanlandi)
+- `MATN_KORPUS` **§157** — hook-ekranda «Topdingiz!» faqat topilganda; ball bermaslik ≠ halol
+  bo'lmaslik; `correct` bayrog'i LMS payloadiga boradi
+- `MATN_KORPUS` **§158** — bitta tushunchaga bitta obraz, ko'priksiz ikkinchi metafora yo'q
+- `DARS_ETALON` **128-qonun** — qamrov aniqlashtirildi: `.stage-content` da
+  `justify-content` **umuman yo'q** bo'lsa, `safe center` qo'shilmaydi (kesilish yuz
+  bermaydi, qo'shilsa layout o'zgaradi). Tekshirish ikki bosqichli bo'ldi
+- `AUDIT_PROMPT` — ⛶ ov-bandi **38px → 30px** (etalon haqiqati: m3-04 va m3-09 da ham 30px);
+  pulse/stats bandiga **manba-etalon** yozildi (`src/3-Modull/ReactApiPostLesson.jsx`)
+- `KATTA_TOZALASH` **12-band** — audio-qatlam taqdiri (111 dars, loyiha-qarori kutadi)
+
+### Modul-darajasidagi regressiya nazorati
+
+| Darvoza | Sikldan oldin | Keyin |
+|---|---|---|
+| esbuild (15 fayl) | 15/15 | **15/15** |
+| `lint:jsx` | 0 | **0** |
+| `lint:dark` | 64 | **60** (−4, hammasi m4-01 dan) |
+| `lint:til` | 54🔴 · 65🟡 | **51🔴 · 58🟡** (−3🔴 −7🟡, hammasi m4-01 dan) |
+
+Boshqa 14 darsda **hech narsa o'zgarmadi**. CRLF saqlandi.
+
+**m4-01 holati: ✅ ETALON — darvozalar toza.** «Ekranda tekshirish kerak» 6 bandi
+foydalanuvchining skrinshot-turida ko'riladi. Qolgan 14 dars shu etalonga tortiladi.
+
+**Holat:** UNCOMMITTED.
+
+### 3-BAND · F-0820-103 — `OPTIONS[].why` TIKLANDI (111-qonun javobi ijobiy)
+
+**Foydalanuvchi qarori:** «mos emas» sababsiz qolsa o'quvchi taxminlab o'tadi — `why`
+bilan xato **o'rganish-nuqtasi** bo'ladi.
+
+**Bajarildi:** 5/5 sabab `tr({uz,ru})` bilan tiklandi (UZ mazmuni asl holicha, RU yangi
+yozildi) va **tanlangan har qatorda** ko'rsatiladi. Tuzilma: `.pick-row` ustunga aylandi —
+ustki qator `.pick-main` (belgi + nom + hukm), pastki qator `.pick-why` (sabab).
+
+> **Nima uchun faqat xato qatorda emas.** Buyruq «xato tanlangan qatorda» edi, lekin
+> `why` faqat ikkita xato variantda render qilinsa, qolgan **uchtasi yana o'lik ma'lumot**
+> bo'lib qolardi — ya'ni endigina tozalagan nuqsonni qaytarardik. Beshalasi ham tirik:
+> to'g'ri tanlovda sabab **tasdiqlaydi**, xatosida **tuzatadi**. Xato qatorning
+> ko'rinishi alohida ajratilgan, ya'ni buyruqning maqsadi to'liq bajarildi. Kesish
+> kerak bo'lsa — bir qatorlik o'zgarish.
+
+🔴 **Yo'l-yo'lakay JUFT NUQSON topildi va tuzatildi:** `.pick-row.on` **hamma** tanlangan
+qatorga `successSoft` (yashil) fon berardi — `narx` ni tanlagan o'quvchi **yashil** qator
+ustida kichkina «mos emas» yozuvini ko'rardi, ya'ni **rang hukmni inkor qilardi**.
+`.pick-row.on.bad` (accentSoft fon + accent kontur + accent belgi) qo'shildi.
+
+**Qonun:** `DARS_ETALON` **133-qonun** — tanlov-mashqida hukm sabab bilan beriladi;
+sabab yozilgan bo'lsa render qilinishi shart; xato tanlov to'g'ridek ko'rinmaydi.
+(132-qonunning davomi: u fon↔matn kontrastini, bu esa fon↔**ma'no** mosligini himoya qiladi.)
+
+**Darvozalar:** esbuild ✓ · `lint:jsx` **0** · `lint:dark` **0** · `lint:til` **0🔴 · 1🟡**
+(848 — personaj izohi, ataylab) · UZ-RU **576↔576** (+5 juft — yangi sabablar).
+
+---
+
+## m4-01 `DataIntroLesson` — 🔒 MUHRLANDI (2026-08-20)
+
+| Darvoza | Holat |
+|---|---|
+| esbuild | ✓ toza |
+| `lint:jsx` | **0** |
+| `lint:dark` | **0** (sikldan oldin 4) |
+| `lint:til` | **0🔴 · 1🟡** (sikldan oldin 3🔴 · 8🟡) — qolgan 🟡 ataylab |
+| UZ-RU parite | **576 ↔ 576** |
+| Jonli relslar | `set_quiz_keys` · `useLiveSession` · `ccProgress` · podium · `INLINE_KEYS` 5/5 · `QUIZ_BANK` 3/3/3/3 · `SCREEN_META` 22 ↔ `screens` 22 |
+
+**Holat: ETALON — 4-Modulning qolgan 14 darsi shunga tortiladi. COMMIT YO'Q** —
+foydalanuvchining skrinshot-turi kutilmoqda.
+
+#### 🖥 SKRINSHOT-TUR RO'YXATI (7 band) — foydalanuvchi ekranda ko'radi
+
+Bular koddan hukm chiqarib bo'lmaydigan bandlar: diqqat qayerga tushadi, mobilda qanday
+ko'rinadi. Audit ularni ataylab **taxmin qilmagan** (`AUDIT_PROMPT` muhim qoidasi).
+
+1. `Screen15` sxema-kanvasi **700×392 qattiq o'lchamda** — telefonda `Zoomable` ichida o'qiladimi
+2. `.cdrag-*` sudrash — HTML5 `draggable` **sensorli ekranda ishlamaydi**; muqobil kerakmi
+3. `Screen10` — 3 ta `TableCard` gorizontal, **560px dan tor** ekranda sig'adimi
+4. `.live-badge` endi **xira (0.62)** — sarlavhani bosmayaptimi (130-qonun)
+5. `Screen11` — RU rejimda jadval nomi ataylab **lotincha** qoladi (`t.uz.split`), g'alati ko'rinmaydimi
+6. `hw-big` kapsulasidagi **suzuvchi so'zlar** sarlavhani o'qishga xalaqit bermaydimi
+7. 🆕 `.pick-row` endi **ikki qatorli** (nom + sabab) — Screen13 da **beshta** qator sig'adimi
+
+> ⚠️ **2026-08-20, KEYINROQ — JARAYON O'ZGARDI, quyidagi blok BEKOR QILINDI.**
+> Foydalanuvchi qarori: dars sikli **skrinshot-tursiz** yuradi; ekran-bandlari
+> `MODUL_TUR.md` ga yig'ilib, **modul oxirida bir yo'la** ko'riladi. Yuqoridagi 7 band
+> o'sha faylga ko'chirildi. Istisno saqlanadi: **m4-02** (birinchi PM dars) va **yangi
+> mock-ilova birinchi chiqqan dars** — ular yopilgach konveyer TO'XTAYDI, 5–6 skrinshotlik
+> mini-tur bo'ladi. Blok endi m4-02 dan **keyin** turadi, oldin emas.
+
+### ~~⛔ m4-02 BLOKLANGAN — skrinshot-tur tugamaguncha boshlanmaydi~~ (BEKOR)
+
+**Foydalanuvchi qarori (2026-08-20):** «Tur tugaguncha commit yo'q, m4-02 boshlanmaydi —
+etalon avval ekranda tasdiqlansin, keyin qolgan 14 dars unga tortiladi.»
+
+Sabab: m4-01 — **modul-etaloni**. Agar skrinshot-turda nuqson chiqsa, u avval etalonda
+tuzatiladi; 14 darsga tortish undan KEYIN boshlanadi. Aks holda nuqson 15 faylga ko'chib,
+qayta ishlash 15 barobar qimmatga tushadi.
+
+**Blokdan chiqish sharti:** 7 bandlik skrinshot-tur yakunlanadi → topilmalar m4-01 da
+tuzatiladi → darvozalar qayta → **keyin** commit → **keyin** m4-02.
+
+### ⏭ NAVBATDAGI DARS (blok ochilgach) — m4-02 `PmLesson11`
+
+**PM olam** — texnik dars naqshlari ko'chirilmaydi:
+
+- **Accent binafsha `#5B3DE6`** (texnik `#FF4F28` EMAS)
+- **F-29 binafsha ekvivalentda** — `.btn` · `.lp-done-btn` · `.mstats-reveal` · `.rc-btn`
+  quyuq fondan binafsha accent + oq matnga. `.mstats-reveal` kontur uslubi ham binafshada.
+  132-qonun darvozasi: modifikator (`.ready` / `.on`) fonni almashtirsa — matn rangi ham
+- **PM-uchlik qarorlari tekshiruvga kiradi:** header `0.62` · `wsx` matn-havola ·
+  kompilyator-raqamlar **PM8 qiymati**
+- `PmLesson11` da `lp-done-btn` **yo'q** (praktika `ScreenCoding` mexanikasi bilan) —
+  F-0819-41 mentor-qorovuli bu darsda boshqa shaklda ko'riladi
+- **RU tarjimasi YO'Q** (`ru:` 0 ta) — dizayn sikliga aralashtirilmaydi, alohida kun
+  (m4-02 · m4-07 · m4-12 · m4-15 birga, `RU_I18N_SPEC.md`)
+- Audit `AUDIT_PROMPT.md` + `PM_DARS_ETALON.md` + `PM_Prompt_v8.md` bilan ochiladi
+
+**Holat:** UNCOMMITTED.
+
+---
+
+# ⛔ 4-MODUL NAVBAT QOIDASI (foydalanuvchi buyrug'i, 2026-08-20)
+
+## PM darslari BLOKLANGAN
+
+**`m4-02` · `m4-07` · `m4-12` · `m4-15`** (`PmLesson11` · `PmLesson12` · `PmLesson13` ·
+`PmLesson14`) — **alohida to'lqinda ochiladi**. Hozir **audit ham, tuzatish ham YO'Q**.
+
+> ⚠️ **m4-02 ISTISNO-HOLATI:** uning auditi blok-buyruqdan **oldin** yurgizilgan va
+> `PM_PIPELINE_STATE.md` ga «AUDIT TAYYOR · TUZATISH KUTMOQDA» maqomi bilan to'liq
+> muhrlangan (F-0820-104…110 + C-bo'lim + D1–D3 bahsli + EKRAN-XAVF 7 band).
+> PM-to'lqin ochilganda **qayta audit shart emas** — ish o'sha hisobotdan boshlanadi.
+> Qolgan uchtasi (07 · 12 · 15) **umuman ochilmagan**.
+
+## FAOL NAVBAT — faqat texnik va proyekt darslar
+
+```
+03 → 04 → 05 → 06 → 08 → 09 → 10 → 11 → 13 → 14
+```
+
+| # | Dars | Fayl | Tur |
+|---|---|---|---|
+| m4-03 | SQL vs NoSQL — PostgreSQL | `DbSqlNosqlLesson.jsx` | Kod |
+| m4-04 | Node.js — birinchi server | `NodeServerLesson.jsx` | Kod |
+| m4-05 | Routing — Express / Nest | `RoutingLesson.jsx` | Kod |
+| m4-06 | PostgreSQL so'rovlari | `PostgresCrudLesson.jsx` | Kod |
+| m4-08 | Praktika: Backend CRUD | `BackendCrudPracticeLesson.jsx` | Proyekt |
+| m4-09 | API nima + Postman | `ApiPostmanLesson.jsx` | Kod |
+| m4-10 | Praktika: React + Node ulash | `FullstackConnectPracticeLesson.jsx` | Proyekt |
+| m4-11 | Autentifikatsiya va .env | `AuthEnvLesson.jsx` | Kod |
+| m4-13 | Fullstack loyiha kuni | `FullstackProjectDayLesson.jsx` | Proyekt |
+| m4-14 | Fikr bo'yicha yaxshilash | `FullstackFeedbackLesson.jsx` | Proyekt |
+
+**Har dars uchun sikl:** `AUDIT_PROMPT.md` bo'yicha to'liq audit (etalon **m4-01**) →
+GAP-hisobot + **EKRAN-XAVF RO'YXATI** → **[GATE]** → ikki to'lqinda tuzatish, har
+to'lqindan keyin darvozalar → darvozalar jadvali + STATE-yozuvi → EKRAN-XAVF bandlari
+`MODUL_TUR.md` ga.
+
+**Skrinshot-tur dars siklida YO'Q** — modul oxirida bir yo'la.
+**Bahsli bandlar o'z-o'zidan hal qilinmaydi** — alohida ro'yxat, tasdiq kutadi.
+**Commit YO'Q** — modul-tur tugagach bitta to'plam bilan.
+
+---
+
+## 2026-08-20 · m4-03 `DbSqlNosqlLesson` — SIKL YOPILDI (F-0820-111…122)
+
+Audit `AUDIT_PROMPT.md` bo'yicha (etalon m4-01) → GAP-hisobot + EKRAN-XAVF → **[GATE]**
+foydalanuvchi qarorlari → ikki to'lqin.
+
+### Foydalanuvchi qarorlari (bahsli bandlar)
+
+- **D1 → `.peer-badge`, rang `T.ink2`.** `T.success` **rad etildi**: u hukm-rangi
+  («to'g'ri», «bajarildi»), so'zlovchiga berilsa o'quvchi uning gapini «to'g'ri javob»
+  deb o'qiydi. **Uch rol — uch rang:** AI ko'k · Mentor accent · Do'st neytral `ink2`
+- **D2 → «PostgreSQL mos keladi»** (idoraviy ohang kurs-ovozida qolmaydi)
+- **F-117 aniqligi:** xato javobga matn s14 «Mif-buster» ekraniga **KO'PRIK** bo'lsin —
+  «Aslida bu keng tarqalgan afsona — dars oxirida uni birga buzamiz» uslubida.
+  Shunda hook **halol** bo'ladi VA s14 ga **intriga** quriladi: dars o'z mifini
+  maqtamaydi, **e'lon qiladi**
+
+### 1-TO'LQIN
+
+| F-ID | Nima qilindi |
+|---|---|
+| **111** | `.live-badge` CSS **umuman yo'q edi** — klass 6 badge'da, qoida 0. `opacity: 0.62` + `:hover/:focus-within` bloki qo'shildi (11.15) |
+| **112** | **129-qonun** — `MentorPracticeStats` endi `players === null \|\| length === 0` da `null` qaytaradi; bo'sh-holat ikki shoxi olib tashlandi |
+| **113** | **`StudentPracticePulse` yo'q edi** — komponent + `.done-mini` CSS qo'shildi, praktika ekranida render qilinadi (4-Modul standarti) |
+| **116** | **Ov-bandi:** `.ai-badge` ga inline `background: T.ink` (1607). Ikki qatlamli: (a) qora dog', (b) **rol-drift** — AI klassi «Do'st» (odam) uchun qayta ishlatilgan. Yangi `.peer-badge` (`T.ink2`), inline yamoq butunlay ketdi |
+| **117** | Hook halolligi: `correct: true` → **`correct: v === 'c'`**; a/b javoblariga s14 ga ko'prik-matn |
+
+🔴 **`lint:jsx` MENING XATOIMNI TUTDI.** F-116 uchun yozgan CSS izohiga backtik qo'yibman
+(`inline \`background: T.ink\``) — bu `<style>{\`…\`}</style>` template-satrini **erta
+yopardi**: `esbuild` qulab tushdi, brauzerda oq ekran bo'lardi. Bu aynan **F-0802-15**
+sinfi va darvozaning mavjud bo'lish sababi. Backtiklar olib tashlandi.
+**Saboq:** CSS izohiga kod-bo'lagi yozilganda backtik ISHLATILMAYDI.
+
+**1-to'lqin darvozalari:** esbuild ✓ · `lint:jsx` **0** (tuzatilgandan keyin).
+
+### 2-TO'LQIN
+
+| F-ID | Nima qilindi |
+|---|---|
+| **114** | **F-29 to'rtligi** — `.btn` · `.lp-done-btn` · `.rc-btn` → `accent` fon + oq matn, hover `#E03E1B`. `.mstats-reveal` → **kontur uslub**. **132-qonun juftligi BIR VAQTDA:** `:hover` va `.ready` ikkalasiga ham `color: #fff` (m4-01 da bu keyin qo'shilib, oraliqda `◐` chiqqan edi) |
+| **115** | **16-qonun** — `.hint` `1.5px dashed ${T.ink3}` → `1px solid ${T.line}` |
+| **118** | «ushbu kodni kiriting» → «bu kodni kiriting» |
+| **119** | «tavsiya etiladi» **uchalasi**: 2 tasi mentor panelida → buyruq shakli; 3-si (o'quvchiga ko'rinadigan natija-qatori) → **«PostgreSQL mos keladi»** / «MongoDB (NoSQL) mos keladi» (D2) |
+| **120** | «zo'r» — **6 haqiqiysi** tuzatildi (mentor matni · frame-success · SQL/NoSQL tavsiflari · mif-buster kartasi · praktika). **Chat-POOL (1305 · 1308) TEGILMADI** — olam kontenti, yolg'on signal |
+| **121** | «Quyidagi fikrlardan…» ×2 → «Pastdagi fikrlardan…» |
+| **122** | `SCREEN_META` praktika id **`s15p` → `practice`** — jonli-kalit literal (`submitAnswer(…, 'practice')`) va `INLINE_KEYS.practice` bilan endi bir xil nom. Ilgari ishlardi, lekin nom ikkiga bo'lingan edi: kim `SCREEN_META[screen].id` ga o'tsa, sentinel **jim yo'qolardi** |
+
+### Darvozalar
+
+| Darvoza | Sikldan oldin | Keyin |
+|---|---|---|
+| esbuild | ✓ | **✓** |
+| `lint:jsx` | 0 | **0** |
+| `lint:dark` | **5** | **0** |
+| `lint:til` | **4🔴 · 10🟡** | **0🔴 · 2🟡** |
+| UZ-RU parite | 594 ↔ 594 | **596 ↔ 596** |
+
+🟡 Qolgan 2 ta — **ataylab**: 1305 · 1308, chat oynasidagi xabar matnlari («Zo'r 🔥»),
+o'quvchiga murojaat emas. Foydalanuvchi qarori bilan tegilmadi.
+
+### Qonunga muhrlandi
+
+**`DARS_ETALON` 134-qonun — BITTA KLASS — BITTA ROL.** Klass «kim gapiryapti / element
+nima qiladi» degan savolga javob beradi; bir klassni ikkinchi rol uchun qayta ishlatish
+**inline yamoq** talab qiladi va aynan shu yamoq dizayn tizimini yorib chiqadi.
+So'zlovchi-palitrasi kanoni: **AI ko'k · Mentor accent · tengdosh `ink2`**;
+🔴 **`T.success` so'zlovchiga berilmaydi** (hukm-rangi). Tekshirish: `dark-lint` inline-fon
+topsa — avval «rangni to'g'rilash» emas, **«bu klass qaysi rol uchun?»** deb so'raladi.
+
+**EKRAN-XAVF 7 bandi** → `MODUL_TUR.md` ga «m4-03» belgisi bilan yozildi.
+
+**Holat:** ✅ YOPILDI · **COMMIT YO'Q** (modul-tur tugagach bitta to'plam bilan).
+
+### ⏭ Navbat
+
+- **Keyingi (shu sessiyada): m4-05 `RoutingLesson`**
+- **m4-04 `NodeServerLesson` — BOSHQA SESSIYADA** (foydalanuvchi qarori). Bu sessiyada
+  tegilmaydi; parallel-seans qoidasi: o'z modulingdan tashqaridagi faylga tegilmaydi,
+  m4-04 esa boshqa seans egaligida
+- Qolgan faol navbat: 06 → 08 → 09 → 10 → 11 → 13 → 14
+
+---
+
+### 📌 ESLATMA — m4-10 `FullstackConnectPracticeLesson`: `INLINE_KEYS.s16` o'lik kaliti
+
+`lint:jsx` ning yangi `INLINE_KEYS ↔ SCREEN_META` bandi (F-0820-135) topdi:
+**`s16` kaliti — o'sha ekran `scored: false` va bu nom `submitAnswer()` ga ham
+uzatilmaydi**, ya'ni serverga adashgan kalit yuklanadi va jonli-ball jimgina buziladi.
+
+**Qayerda hal qilinadi:** `KATTA_TOZALASH` ga **EMAS** — m4-10 **faol navbatda**
+(03 → 04 → 05 → 06 → 08 → 09 → **10** → 11 → 13 → 14), shuning uchun o'z dars-siklida,
+auditi bilan birga tuzatiladi. **Foydalanuvchi qarori, 2026-08-20.**
+
+**m4-10 auditiga kirganda:** bu band GAP-hisobotda allaqachon ma'lum topilma sifatida
+turadi — qayta kashf qilish shart emas, `lint:jsx` uni o'zi ko'rsatadi.
+
+Boshqa modullardagi (M1 · M2 · M3) **7 fayl · 19 kalit** → `KATTA_TOZALASH` **14-band**,
+`DeployLesson` **«tuzilma-qayta-qurilish izi, 7 kalit»** belgisi bilan.
+
+---
+
+## 2026-08-20 · m3-01 `ReactIntroLesson` — 09 va 10/20 EKRANLAR O'TIB BO'LMAS EDI (F-0820-136)
+
+**Topilma (foydalanuvchi: «9-pageda o'tib bo'lmayapti, bosadigan hech narsa ko'rinmayapti»).**
+Screen7 (`09/20`, Sinf jurnali) va Screen8 (`10/20`, Virtual DOM) dagi yagona harakat-tugma
+`className="btn fade-up delay-N invite"` — `.btn.invite` (0,2,0; F-0819-34 pulsi) `.fade-up`
+(0,1,0) ning `animation`ini bosib o'tadi → `fade-in-up` ishlamaydi → `opacity` 0 da qoladi.
+Tugma DOMda bor, ko'rinmas; `tried`/`phase` to'lmaydi → «Davom etish» abadiy o'chiq.
+Commit `43bca2b` bilan prodga chiqqan. Boshqa darslarda `.btn.invite` yo'q (grep 0).
+
+**Isbot.** Headless Chrome (playwright-core, `channel: 'chrome'`, self-rejim + ccProgress):
+tuzatishdan oldin `opacity: "0"`, `animationName: "btn-invite"`; keyin `opacity: "1"`.
+To'liq oqim: 09 → ikki usul → «Davom etish» faol → 10 → «▶ Like bosildi» → 2.8 s → faol.
+(Chrome-kengaytma ulanmagani uchun brauzer-walk headless qilindi.)
+
+**Tuzatish (2 joy, `ReactIntroLesson.jsx:1547` · `:1627`).** `fade-up delay-N` o'rovchi
+`<div>`ga ko'chdi, tugmada faqat `btn` + `invite`. `alignSelf` ham o'rovchiga.
+
+**Darvozalar.** esbuild ✓ · `lint:jsx` ✓ 0 · `lint:dark` ✓ 0.
+
+**Muhrlandi.**
+- `DARS_ETALON.md` **135-qonun** — kirish- va holat-animatsiya bir elementga qo'yilmaydi.
+- `jsx-lint.mjs` **5-band** — `className`da `fade-up` + `animation` beradigan boshqa klass → topilma
+  (HEAD-nusxada 2 topilma beradi, tuzatilganida 0). Qoida CSS'dan o'zi o'qiydi: kirish-klass =
+  `opacity: 0` + `animation` bazasi; ta'mir-qoida (`.fade-up.shake { animation: fade-in-up …, shake … }`)
+  tan olinadi; keyframes `opacity`ni boshqarsa topilma emas. Butun `src/` da yolg'on-ijobiy 0 —
+  **3 ta haqiqiy-ehtimoliy topilma 4-Modulda qoldi (quyidagi eslatma)**.
+- `darslik-tekshiruvchi.md` — F-0820-136 ov-bandi.
+
+**Holat:** ✅ YOPILDI · **COMMIT `06decb1`** (foydalanuvchi buyrug'i) · **PUSH** `origin/main` ·
+**PROD** `coddycamp-3modul.vercel.app` (quyidagi deploy-yozuv). Commitga faqat shu tuzatishga tegishli
+3 fayl kirdi: `ReactIntroLesson.jsx` · `darslik-tekshiruvchi.md` · `jsx-lint.mjs` ning **faqat 5-band hunk'i**
+(`git apply --cached`). `DARS_ETALON.md` (135-qonun) va `PIPELINE_STATE.md` — parallel M4 seansi jonli
+tahrirlayotgani uchun **UNCOMMITTED qoldi**, M4 to'plami bilan ketadi.
+
+### 📌 ESLATMA — M4 seansiga: `lint:jsx` 5-bandi (F-0820-136) 3 joyni ko'rsatdi
+
+Xuddi m3-01 dagi sinf, lekin **holat-klass** shaklida: `fade-up` element keyinroq `opacity`siz
+animatsiya beradigan klass oladi, `.fade-up.<klass>` ta'mir-qoidasi yo'q → `forwards` to'ldiruvi
+yo'qoladi, element `opacity: 0` ga qaytadi (holat yonganda **g'oyib bo'lishi** mumkin):
+
+- `src/4-Modull/FullstackConnectPracticeLesson.jsx:1292` — `.gate.open` (`gate-live`), phase ≥ 3 da
+- `src/4-Modull/FullstackConnectPracticeLesson.jsx:1040` — `.bridge.live` (`gate-live`)
+- `src/4-Modull/BackendCrudPracticeLesson.jsx:900` — `.rp.full` (`rp-full-glow`)
+
+Yechim-namuna o'sha fayllarda allaqachon bor:
+`.fade-up.shake { animation: fade-in-up 0.4s ease-out forwards, shake 0.4s ease; }`.
+**Ekranda tasdiqlab** (holat yonganda element qoladimi?) m4 dars-siklida tuzatiladi. Bu seans M4 ga
+tegmadi (parallel-seans modul chegarasi).
+
+---
+
+# 🔀 PARALLEL SEANS — EGALIK TARTIBI (foydalanuvchi buyrug'i, 2026-08-20)
+
+Ikki seans bir vaqtda ishlayapti. 2026-08-20 da to'qnashuv yuz berdi: parallel seans
+`DARS_ETALON` ga **135-qonun** ni va `jsx-lint` ga unga mos bandni **men ishlayotganda**
+yozdi (`jsx-lint.mjs` 16:06:50 da o'zgardi). Natijada raqamlar band bo'lib qoldi va darvoza
+90 soniyada ikki xil natija berdi. Tartib shu sababdan yozildi.
+
+## Kim nimaga egalik qiladi
+
+| Soha | Egasi |
+|---|---|
+| **Umumiy fayllar** — `DARS_ETALON.md` · `MATN_KORPUS.md` · `KATTA_TOZALASH.md` · `AUDIT_PROMPT.md` · lint-vositalari (`jsx-lint` · `til-lint` · `dark-lint` · `prompt-lint`) | **BU SESSIYA** |
+| `src/4-Modull/` darslari | **har fayl faqat o'z seansiniki**. m4-01 (etalon) — bu sessiya · m4-04 — parallel seans |
+
+**Parallel seans qonun-nomzod va vosita-o'zgarishlarini MUHRLAMAYDI** — ularni o'z
+PIPELINE yozuvida **«NOMZODLAR»** bo'limiga to'playdi; bu sessiya sikl oxirida birlashtiradi.
+
+## Raqam-siyosati
+
+- Bu sessiya **136-raqamdan** davom etadi (`DARS_ETALON`) va **F-0820-137** dan (topilmalar).
+- Parallel seansning **135-qonun** va **F-0820-136** yozuvlari **QOLADI** — o'chirilmaydi.
+  Ular o'qildi, **ziddiyat yo'q**: 135 animatsiya-kaskadi haqida
+  (`fade-up` + holat-klass bir elementda), 136 esa ball-signallari haqida. Sohalar kesishmaydi.
+
+## Ochiq: 135-qonun darvozasining ko'lami
+
+Yangi `jsx-lint` bandi birinchi yurgizganda **butun repoda 211**, 4-Modulda **33** topilma
+berdi (shu jumladan muhrlangan etalon m4-01). 90 soniyadan keyin qoida toraytirildi va
+m4-01 yana toza chiqdi. **`KATTA_TOZALASH` ga HOZIR yozilmaydi** — qoida hali harakatda,
+o'lchov ishonchsiz (foydalanuvchi qarori). **Tartib:** parallel seansdan qoidaning
+**yakuniy matni** kelsin → bu sessiya bir marta butun repo bo'ylab o'lchaydi →
+**«o'lchangan sana»** belgisi bilan yozadi.
+
+---
+
+## 2026-08-20 · F-0820-137 — m4-01 `DataIntroLesson` ETALONI: yolg'on statistika tuzatildi
+
+**Topilma m4-05 D1-B muhokamasida ochildi:** yangi final ekran uchun
+`firstAttemptCorrect: wrongCount === 0` taklif qilinganda ma'lum bo'ldiki, **etalonning
+o'zi** buni shartsiz `true` deb yozarkan.
+
+**Nuqson:** `Screen15` (sxemani ulash) uch bog'lanish joylashgach
+`correct: true, firstAttemptCorrect: true` yozardi — o'quvchi necha marta noto'g'ri ulagan
+bo'lsa ham «birinchi urinishda topdi» deb qayd etilardi. Mentor paneli, podium va LMS
+tahlili shu raqamdan quriladi.
+
+**Tuzatildi:** xato urinishlar `wrongRef` da sanaladi (render'ga ta'sir qilmaydi) →
+`firstAttemptCorrect: wrongRef.current === 0` + `wrongCount` qo'shildi.
+🔴 **`reset` sanog'ni NOLLAMAYDI** — «Qaytadan» bosgan o'quvchining urinishi **birinchi
+urinish emas**; nollansa nuqson boshqa eshikdan qaytardi.
+
+**Qonun:** `DARS_ETALON` **136-qonun** — yakun-signallar (`correct` · `firstAttemptCorrect` ·
+`solved`) **turli savollarga** javob beradi va haqiqiy holatdan hisoblanadi.
+Bu `MATN_KORPUS` **§157** ning **ball-davomi**: u yerda ekrandagi **matn**, bu yerda
+serverga ketadigan **raqam**. Bajarish-ekranlarida (`practice` · `koding`) `correct: true`
+qonuniy — u yerda «to'g'ri/noto'g'ri» yo'q, faqat «bajarildi»; lekin `firstAttemptCorrect`
+u yerda umuman yozilmaydi.
+
+**m4-01 darvozalari (qayta):** esbuild ✓ · `lint:jsx` **0** · `lint:dark` **0** ·
+`lint:til` **0🔴 · 1🟡** (848 — personaj izohi, ataylab) · UZ-RU **576 ↔ 576**.
+Etalon maqomi saqlanadi.
+
+---
+
+## 2026-08-20 · m4-05 `RoutingLesson` — ✅ SIKL YOPILDI (F-0820-123…134 + D1-B)
+
+Ikki to'lqin + D1-B to'plami bajarildi. **Yopish hukmi berilmadi** — sabab pastda.
+
+### 1-TO'LQIN
+
+| F-ID | Nima qilindi |
+|---|---|
+| **123** | `.live-badge` CSS **umuman yo'q edi** (klass 6 badge'da, qoida 0) — `opacity: 0.62` + `:hover/:focus-within` bloki |
+| **124** | **129-qonun** — `MentorPracticeStats` `0/0` da `null`; bo'sh-holat shoxlari olib tashlandi |
+| **125** | **`StudentPracticePulse` yo'q edi** — komponent + `.done-mini` CSS |
+| **129** | Hook halolligi: `correct: v === 'c'` + a/b javoblariga **s14 «to'rt qoida»** ga ko'prik («keng tarqalgan afsona… dars oxirida birga buzamiz») |
+
+### 2-TO'LQIN
+
+| F-ID | Nima qilindi |
+|---|---|
+| **126** | F-29 to'rtligi; `.mstats-reveal` kontur + **132-qonun juftligi bir vaqtda** (`:hover` va `.ready` ga `color: #fff`) |
+| **127** | **16-qonun** — `.hint` solid |
+| **128** | Dublikat `.qz-cta` (bayt-baytiga bir xil) o'chirildi |
+| **130** | **Anatomiya-metaforasi** — «darsning **yuragi**» → «darsning **o'zagi**» (UZ + audio + RU «сердце» → «ядро») |
+| **131 · 132 · 133** | «ushbu»→«bu» · «tavsiya etiladi» ×2 → buyruq · «Zo'r!» → «Juda yaxshi!» |
+
+### D1-B — YANGI FINAL EKRAN `ScreenDoorMatch`
+
+Foydalanuvchi **B variantini** tanladi: custom interaktiv, etalon ustun (m4-01/m4-03 da
+final MC emas, `-1` sentinelli topshiriq).
+
+🔴 **Mexanika — BOSISH-BOSISH, `draggable` EMAS.** Sensor-muammo uch darsga kirmasin
+(MODUL_TUR takrorlanuvchi bandi). Naqsh-manba: m4-01 `Screen15` `clickField`.
+3 so'rov (`GET /games` · `POST /games` · `GET /gams`) → 2 eshik + 404 savati.
+**Har xato juftlik o'z izohini beradi** (6 matn) — «mos emas» sababsiz qolmaydi (133-qonun).
+Kuchli misconception — «manzil mos keldi-ku» — `POST /games → @Get` juftligida qo'lga olinadi.
+Yakun-gap s15 praktikasiga ko'prik: «`@Post()` eshigini **o'zingiz** ochasiz».
+Signal: **`firstAttemptCorrect: wrongCount === 0`** (136-qonun).
+
+**Tuzilma to'plami:** `SCREEN_META` **21** ↔ `screens[]` **21** · praktika id `s15` →
+**`practice`** (⇒ **F-134 yopildi**) · yangi `s15` = `scored: true, scope: 'final'` ·
+`SCORED_IDX` **[4,6,10,13,16]** → podium **5 nuqta** · `Q_LABELS` «5 — eshik yoki 404» ·
+`ACH_TRIGGERS.s15: 'doorbuilder'` joyida · `.rq-*` alohida CSS oilasi (`.dd-*` **tegilmadi**).
+
+### Ikki majburiy chetlanish tasdiqlangan matndan (foydalanuvchi TASDIQLADI)
+
+1. 🔴 **`lint:jsx` tutdi:** `.rq-fb` `<p>` ga qo'yilardi — `.lesson-root p` reseti uning
+   `padding` ini **JIMGINA** o'chirardi (F-0803-27). Selektor `.rq-fb.rq-fb` qilindi.
+2. 🔴 **`lint:til` tutdi:** «`GET` ≠ `POST`, `/gams` ≠ `/games`» — `belgi-formula` taqiqi.
+   To'liq gapga aylantirildi: «so'rov `GET`, eshik esa `POST` uchun; manzil `/gams`,
+   eshikniki esa `/games`».
+
+### Darvozalar
+
+| Darvoza | Sikldan oldin | Hozir |
+|---|---|---|
+| esbuild | ✓ | **✓** |
+| `lint:jsx` | 0 | **0** |
+| `lint:dark` | **4** | **0** |
+| `lint:til` | **5🔴 · 1🟡** | **0🔴 · 0🟡** |
+| UZ-RU parite | 518 ↔ 518 | **543 ↔ 543** |
+
+### 🟡 NEGA YOPILMADI
+
+`jsx-lint` **parallel seans tomonidan bu seans davomida o'zgartirildi** (16:06:50) va
+135-qonun bandi 90 soniya ichida ikki xil natija berdi. **O'zgaruvchan asbob bilan dars
+yopilmaydi** — foydalanuvchi qarori: parallel seansdan «yakuniy» tasdig'i kelgach,
+darvozalar **oxirgi marta** yurgiziladi va toza bo'lsa yopiladi.
+
+Hozirgi asbob-versiyasida m4-05 **toza** — faqat tasdiq kutilmoqda.
+
+---
+
+## 2026-08-20 · DEPLOY — 3-Modul demosi (F-0820-136 tuzatishi bilan)
+
+**URL:** https://coddycamp-3modul.vercel.app (alias saqlandi) · **Deploy:** `coddycamp-3modul-4p8kgxtua-azizbek10.vercel.app`
+→ `target: production`, `status: Ready`. **Git:** `06decb1` → `origin/main`.
+
+**Qurish:** `npx vite build --config vite.m3.config.js` → `dist-m3/` (1.72 s, toza).
+⚠️ `vite build` `dist-m3/`ni **tozalaydi** — `.vercel/project.json` va `index.html` o'chib ketadi.
+Deploy'dan oldin ikkalasi tiklanadi: `project.json` = `{"projectId":"prj_TaMip6SSwe7pkJ5iWjgqsoM4RmwH",
+"orgId":"team_wLZPVKNuvFDTVgcDUKxQU0SD","projectName":"coddycamp-3modul"}` · `cp modul3.html index.html`.
+Deploy: `npx vercel deploy --prod --yes --cwd dist-m3`.
+
+**Tekshiruv — bundle-ichi:**
+
+| | Natija |
+|---|---|
+| Katalog-chunk prod = lokal | `modul3-CIjgPWXi.js` ✅ |
+| `ReactIntroLesson-te0GayWx.js` prod'da | HTTP 200 ✅ · yangi o'rovchi-naqsh 1 · eski `btn fade-up … invite` 0 |
+| Katalog m4 kalitlari | 17 (oldingi prod'da ham 17 — App-katalogi, demo ko'rsatmaydi; o'zgarish yo'q) |
+
+Eslatma: bundle'ga M4 chunk'lari (boshqa seansning uncommitted holati) ham kirgan — oldingi deploy'dagidek,
+3-Modul demosida ochilmaydi.
+
+## 2026-08-20 · 135-QONUN YAKUNLANDI + EGALIK-TARTIBI QABUL QILINDI (F-0820-136 davomi)
+
+**Foydalanuvchi buyrug'i:** umumiy fayllar (ETALON · KORPUS · KATTA_TOZALASH · lint-vositalar ·
+AUDIT_PROMPT) egasi — boshqa seans. Bu seans: 135-qonun va jsx-lint bandini **yakunlaydi**,
+undan keyin vositalarga tegmaydi; yangi qonun-nomzod/vosita-taklif faqat hisobotda
+«NOMZODLAR» bo'limida (raqamsiz), egasi-seans birlashtiradi. m4-04 `NodeServerLesson` — to'liq bu seansniki.
+
+**Holat-tekshiruv.** `jsx-lint` 5-bandi + tekshiruvchi ov-bandi + m3-01 tuzatish — `06decb1` da
+**commitda**, chala joy yo'q. Chala qolgani — `DARS_ETALON.md` 135-qonun matni (uncommitted).
+
+**Yakunlash (DARS_ETALON 135-qonun, faqat shu blok).** Qonun vositaning o'lchangan qamroviga
+**toraytirildi**: taqiq faqat «ochuvchi» kirish-klass (`opacity: 0` + `forwards`, korpusda `.fade-up`,
+122 fayl) uchun; `.fade-step`/`.el-in` (fill'siz) — topilma emas (eski matn ularni ham taqiqlardi —
+vosita bilan zid edi). Qo'shildi: ta'mir-qoida yo'li, «nima topilma emas» bo'limi, toraytirish tarixi
+(4 shart), oxirgi o'lchov. Band-havola F-ID bilan (faylda ikki «5)» sarlavha bor).
+
+**O'lchov.** `43bca2b` (bug) → 2 (`:1547` · `:1627`) · tuzatilgan → 0 · `src/` 142 fayl → yolg'on-ijobiy 0,
+ehtimoliy 3 (M4, ekranda tasdiq kutadi). `lint:prompt` ✓ · esbuild m3-01 ✓ · `lint:dark` m3-01 ✓.
+
+**NOMZODLAR (egasi-seansga, raqamsiz).**
+1. `jsx-lint.mjs` band-raqamlari takrorlangan: «4)» (212 · 318) va «5)» (271 · 335) ikki martadan.
+   Asos: qonun-matnlar bandga raqam bilan havola qiladi — ikki xil band bir raqamda. O'lchov: `grep -n "// ---- [0-9])" jsx-lint.mjs`.
+2. Eski 4-band (F-0803-22) va yangi 5-band (F-0820-136) bir sinfni ikki usulda ko'radi; 4-band juft-selektorni
+   «hal qilingan» deb o'tkazadi. Taklif: 4-bandni 5-bandga singdirish yoki 4-bandga «faqat yakka-selektor» izohi.
+   O'lchov: 4-band alohida topadigan holat bormi — `src/` da hozir 0.
+
+**Holat:** ✅ 135-qonun yakun · **COMMIT YO'Q** · bundan keyin umumiy fayllarga tegilmaydi.
+
+---
+
+## 2026-08-20 · 135-QONUN DARVOZASI — O'LCHOV YAKUNLANDI · BAND KERAK EMAS
+
+**O'lchangan sana: 2026-08-20**, `jsx-lint.mjs` barqaror versiyasi bilan
+(oxirgi tahrir **16:09:10**, o'lchov **16:35** — 26 daqiqa tegilmagan).
+
+### Natija: 211 → **3**
+
+| O'lchov | Vaqt | 135-qonun bandi |
+|---|---|---|
+| Birinchi versiya | 16:06 | **211** topilma · butun repo (4-Modulda 33, shu jumladan muhrlangan etalon m4-01) |
+| **Yakuniy versiya** | **16:35** | **3** topilma · butun repo |
+
+**Shuning uchun `KATTA_TOZALASH` ga band OCHILMADI.** Foydalanuvchi qarori to'g'ri
+chiqdi: qoida harakatda ekan o'lchash — noto'g'ri raqamni muhrlash bo'lardi. Loyiha
+211 bandlik «katta tozalash» ochib, keyin uni yopishga majbur bo'lardi.
+
+### Qolgan 3 topilma — ikkalasi ham FAOL NAVBATDA
+
+| Fayl | Qator | Topilma |
+|---|---|---|
+| `4-Modull/BackendCrudPracticeLesson.jsx` (**m4-08**) | 900 | `fade-up` + `.rp.full` |
+| `4-Modull/FullstackConnectPracticeLesson.jsx` (**m4-10**) | 1040 | `fade-up` + `.bridge.live` |
+| `4-Modull/FullstackConnectPracticeLesson.jsx` (**m4-10**) | 1292 | `fade-up` + `.gate.open` |
+
+Ikkala dars ham navbatda (`… → 08 → 09 → 10 → …`) — **o'z sikllarida** hal qilinadi,
+alohida band shart emas. m4-10 da bu `INLINE_KEYS.s16` bilan birga uchta topilma bo'ladi.
+
+### Nega yakuniy qoida ishonchli
+
+Parallel seans qoidani to'rt aniqlik-sharti bilan toraytirgan: kirish-klasslar ro'yxati
+**qo'lda emas, darsning o'z CSS'idan** yig'iladi (`opacity: 0` + `animation` beruvchi
+yakka-klassli qoidalar) · psevdo-element va `:hover/:active/:focus` hisobga olinmaydi ·
+qoida o'zi `opacity` bersa yoki keyframes'i `opacity`ni boshqarsa — topilma emas ·
+ataylab birlashtirilgan `.fade-up.shake` ta'mir-qoidalari tanib olinadi.
+**O'qib chiqildi, ziddiyat yo'q** — 136-qonun bilan kesishmaydi.
+
+### Repo-holati (o'lchangan 2026-08-20, 16:35)
+
+`lint:jsx` butun repo: **49🔴 · 19 fayl** = 27 (eskidan: `PmAudienceLesson` + `src/eski/`
+va `src/2-moodull eski/` arxiv nusxalari) + **19** (`INLINE_KEYS`, → `KATTA_TOZALASH` 14) +
+**3** (135-qonun, → faol navbat).
+
+---
+
+## ✅ m4-05 `RoutingLesson` — YOPISH IMZOSI (2026-08-20)
+
+Yuqoridagi «yopishga tayyor» yozuvi shu bilan **yopiladi**. Darvozalar barqaror
+`jsx-lint` (16:09:10) bilan **oxirgi marta** yurgizildi — foydalanuvchi shartini bajaradi.
+
+| Darvoza | Sikldan oldin | Yopilganda |
+|---|---|---|
+| esbuild | ✓ | **✓** |
+| `lint:jsx` | 0 | **0** |
+| `lint:dark` | **4** | **0** |
+| `lint:til` | **5🔴 · 1🟡** | **0🔴 · 0🟡** |
+| UZ-RU parite | 518 ↔ 518 | **543 ↔ 543** |
+| Tuzilma | 20 ekran · 4 ball · praktika id `s15` | **21 ekran · 5 ball** (`SCORED_IDX` [4,6,10,13,16]) · praktika id **`practice`** |
+
+**F-134 yopildi** — D1-B to'plami ichida: praktika id `practice` bo'ldi, yangi `s15`
+esa haqiqiy final-test. `INLINE_KEYS` o'zgarmadi, lekin ikkala kaliti ham endi **tirik**.
+
+### Modul-darajasidagi regressiya (o'lchangan 2026-08-20, 16:35)
+
+| Darvoza | m4-03 yopilganda | m4-05 yopilganda |
+|---|---|---|
+| esbuild | 15/15 | **15/15** |
+| `lint:dark` | 55 | **51** (−4, hammasi m4-05 dan) |
+| `lint:til` | 47🔴 · 50🟡 | **42🔴 · 49🟡** (−5🔴 −1🟡, hammasi m4-05 dan) |
+| `lint:jsx` (4-Modul) | — | **4🔴 · 2 fayl** — m4-08 (1) va m4-10 (3), ikkalasi ham **faol navbatda** |
+
+Boshqa darslarda o'zgarish yo'q.
+
+### Shu sikldagi qonun-hosilalari
+
+- `DARS_ETALON` **136-qonun** — yakun-signallar haqiqiy holatdan hisoblanadi
+- `DARS_ETALON` — **Debugging-precedentiga aniqlik**: taqiq bo'sh maqtovga, mazmunli
+  qoida-eslatma qoladi («blokni o'chirsangiz bilim yo'qoladimi?» sinov-savoli)
+- `jsx-lint` — **`INLINE_KEYS ↔ SCREEN_META`** bandi (F-0820-135)
+- `KATTA_TOZALASH` **14-band** — 6 fayl · 18 kalit
+- `PIPELINE_STATE` — **parallel seans egalik-tartibi**
+- **F-0820-137** — m4-01 etalonida yolg'on statistika tuzatildi
+
+**Holat: ✅ YOPILDI · COMMIT YO'Q** (modul-tur tugagach bitta to'plam bilan).
+
+### ⏭ Navbat
+
+Faol navbat: `03 ✅ → 04 (parallel seans) → 05 ✅ → **06** → 08 → 09 → 10 → 11 → 13 → 14`
+
+**Keyingi dars: m4-06 `PostgresCrudLesson`** («PostgreSQL so'rovlari»).
+
+---
+
+## 2026-08-20 · m4-06 `PostgresCrudLesson` — ✅ SIKL YOPILDI (F-0820-138…149)
+
+Audit → GAP-hisobot + EKRAN-XAVF → **[GATE]** → ikki to'lqin.
+
+### Foydalanuvchi qarori (D1)
+
+«Siz» yorlig'i uchun **`.peer-badge` ham, uchinchi rol ham emas — yangi `.you-badge`,
+kontur-accent uslubida**. Asoslash: «Siz» suhbatdagi **personaj emas**, ekran egasining
+**navbat-signali**; kursda «sening harakating» tili doim accent. **To'ldirilgan emas** —
+u yorliq, tugma emas. → `DARS_ETALON` 134-qonun jadvaliga **4-qator**.
+
+### 1-TO'LQIN
+
+| F-ID | Nima qilindi |
+|---|---|
+| **138** | `.live-badge` CSS **yo'q edi** (klass 6 badge'da, qoida 0) — 11.15 bloki qo'shildi |
+| **139** | **129-qonun** — `MentorPracticeStats` `0/0` da `null` |
+| **140** | **`StudentPracticePulse` yo'q edi** — komponent + `.done-mini` CSS |
+| **144** | **134-qonun rol-drifti** — `.ai-badge` (ko'k, AI ovozi) **«Siz»** uchun qayta ishlatilib, inline `background: T.ink` bilan qoraytirilgan edi. Yangi **`.you-badge`** (accent kontur), inline yamoq ketdi. **m4-03 F-116 dan keyin bu sinfning IKKINCHI takrori** |
+
+### 2-TO'LQIN
+
+| F-ID | Nima qilindi |
+|---|---|
+| **141** | F-29 to'rtligi + **132-qonun juftligi bir vaqtda** (`:hover` va `.ready` ga `color: #fff`) |
+| **142** | **16-qonun** — `.hint` solid |
+| **143** | Dublikat `.qz-cta` o'chirildi |
+| **145** | 🔴 **Rang o'zgarmadi — belgi qo'yildi.** 3 ta SQL kod oynasi (`CODE.bg`) `data-dark-ok="kod oynasi"` bilan belgilandi. Faylda bu mexanizm **0 marta** ishlatilgan edi, ya'ni har auditda shu 3 ta qayta ko'tarilardi |
+| **146** | `ekran-nomi-tarjimasi` — «SQL muharriri» → «SQL **Editor** (muharrir)» (birinchi ko'rinish, qavs-gloss), audio: «SQL Editor'iga» |
+| **147 · 148 · 149** | «ushbu»→«bu» · «tavsiya etiladi» ×2 → buyruq · «Zo'r!» → «Juda yaxshi!» |
+
+### 🔴 VOSITA TUZATILDI — qoida o'z tavsiyasiga zid edi
+
+F-146 ni bajargach `til-lint` **hamon** qizarib turdi: `ekran-nomi-tarjimasi` qoidasining
+`suggest` matni «**birinchi ko'rinishda qavsda gloss**» deb tavsiya qiladi, lekin pattern
+(`\bmuharrir`) o'sha sanksiyalangan glossni ham tutardi — ya'ni qoidaga **amal qilishning
+iloji yo'q** edi.
+
+`til-lint-rules.json` ga **tor** istisno qo'shildi:
+`Editor[^(]{0,14}\(muharrir\)|Extensions[^(]{0,14}\(kengaytma\)` — faqat **inglizcha nom
+darhol oldida turgan** qavs-gloss o'tadi, har qanday qavs emas.
+**Tekshirildi:** qoida repoda hali **4 joyda** tutadi, ya'ni o'chib qolmadi.
+
+🔴 **Yo'l-yo'lakay o'z xatoim:** istisnoni shell orqali yozganda `\(` escape'i buzilib
+JSON **yaroqsiz** bo'lib qoldi — va `til-lint` shunda **«✓ TOZA» deb yolg'on ko'rsatdi**
+(vosita qulaganda topilma chiqarmaydi). JSON tiklandi (88 qoida ✓), natija qayta olindi.
+Bu seans boshidagi F-0820-88 bilan **bir xil sinf**: darvoza qulasa yoki jim qolsa —
+ikkalasi ham yolg'on. **Saboq:** `*-rules.json` tahriridan keyin darhol
+`node -e 'require("./til-lint-rules.json")'` bilan parse tekshiriladi.
+
+### Darvozalar
+
+| Darvoza | Sikldan oldin | Yopilganda |
+|---|---|---|
+| esbuild | ✓ | **✓** |
+| `lint:jsx` | 0 | **0** |
+| `lint:dark` | **8** | **0** |
+| `lint:til` | **5🔴 · 1🟡** | **0🔴 · 0🟡** |
+| UZ-RU parite | 541 ↔ 541 | **542 ↔ 542** |
+
+**Modul:** `lint:dark` 51 → **43** · `lint:til` 42🔴/49🟡 → **37🔴/48🟡** — kamayish to'liq
+m4-06 hisobiga. `lint:jsx` **4🔴 · 2 fayl** (m4-08 · m4-10, ikkalasi faol navbatda).
+
+### Tegilmagan (ataylab) — bu dars tug'ma to'g'ri joylari
+
+- **Hook halolligi §157 — ALLAQACHON to'g'ri:** `correct: v === correct` va ack
+  `picked === correct ? … : …` bilan shoxlangan. m4-01/m4-03/m4-05 da tuzatgan nuqson
+  bu yerda **umuman yo'q edi**
+- `isMentor` qorovuli (3 joyda) · o'lik identifikator yo'q · metafora bitta olam
+  (**do'kon · menejer · smena**) · `takeaway` mazmunli qoida («CRUD = do'kon hayoti») →
+  bugungi Debugging-aniqligi bo'yicha qoladi
+
+### Qonun-hosilalari
+
+- `DARS_ETALON` **134-qonun** — so'zlovchi-palitrasiga **4-qator**: `.you-badge` accent-kontur
+- `AUDIT_PROMPT` — **F-145 sinf-eslatmasi**: `dark-lint` topilmasi kod oynasi bo'lsa,
+  yechim **`data-dark-ok` belgisi, rang emas**; belgisiz qolgani auditda qayta ko'tarilaveradi
+- `til-lint-rules.json` — `ekran-nomi-tarjimasi` ga sanksiyalangan qavs-gloss istisnosi
+
+**Holat: ✅ YOPILDI · COMMIT YO'Q.**
+
+### ⏭ Navbat
+
+`03 ✅ → 04 (parallel) → 05 ✅ → 06 ✅ → **08** → 09 → 10 → 11 → 13 → 14`
+
+**Keyingi dars: m4-08 `BackendCrudPracticeLesson`** («Praktika: Backend CRUD»).
+Ma'lum topilma (auditda qayta kashf qilinmaydi): `lint:jsx` **135-qonun** —
+`fade-up` + `.rp.full` bir elementda (qator 900).
+
+## 2026-08-20 · m4-04 `NodeServerLesson` — ✅ SIKL YOPILDI (F-0820-150…166 + B1/B2/B3) · parallel seans
+
+> ⚠️ **F-ID to'qnashuvi va qayta raqamlash.** Audit-hisobot 138–154 bilan chiqqan edi; shu orada
+> egasi-seans m4-06 ni **138…149** bilan yopdi. Shu sababli m4-04 topilmalari **150–166** ga
+> ko'chirildi (kod-izohlar ham). Egasi-seans m4-08 ni **167+** dan boshlasin.
+> Moslik: 138→150 · 139→151 · 140→152 · 141→153 · 142→154 · 143→155 · 144→156 · 145→157 ·
+> 146→158 · 147→159 · 148→160 · 149→161 · 150→162 · 151→163 · 152→164 · 153→165 · 154→166.
+
+Audit `AUDIT_PROMPT.md` bo'yicha (etalon m4-01) → GAP-hisobot (17 topilma + 3 bahsli + 7 EKRAN-XAVF)
+→ **[GATE]** foydalanuvchi qarorlari → ikki to'lqin. Tahrir — aniq-moslik skripti (har naqsh
+1 marta mos kelishi shart, aks holda hech narsa yozilmaydi — atomar; birinchi urinishda bitta
+ko'p-qatorli naqsh 0 moslik berdi, skript to'xtadi, fayl tegilmadi). EOL: indeks ham, ishchi nusxa
+ham LF (`autocrlf=true`), diff EOL-shovqinsiz (106+/103−).
+
+### Foydalanuvchi qarorlari (bahsli bandlar)
+
+- **B1 → TASDIQ.** s8 NestJS: 4 chip + 2 karta + «professional daraja» → **bitta karta-bosish
+  → bitta ustunlik («Tartib — modullar») + ko'prik-gap** («NestJS bilan katta loyihalarda keyin
+  tanishasiz»). Uy vazifasi 3-bandi (nestjs.com) **ketdi**, QUIZ savoli va flashcard **qoldi**.
+  «Professional» 7 taligi shu bilan hal (109-qonun TMI).
+- **B2 → SHUNDAY QOLADI.** s15 yakuniy ekranda mentor to'liq qatorni beradi — birinchi server
+  marosim-lahza, muvaffaqiyat-kafolati to'g'ri. → DARS_ETALON izoh-nomzodi (quyida).
+- **B3 → tegilmaydi.** `.frame-warn` = accent, platforma bo'ylab shunday.
+- **155 (s6 maxraj) → 5/5** tanlandi (3/5 emas): 5 qismning har biri keyin tekshiriladi
+  (`listen` s12/s14 · `get` s9 · `send` arena); 3 da o'tish `listen`ni o'tkazib yuborishga yo'l qo'yardi.
+
+### 1-TO'LQIN (tuzilma / jonli)
+
+| F-ID | Nima qilindi |
+|---|---|
+| **150** | `.live-badge` CSS **yo'q edi** (klass 6 badge'da) — `opacity: 0.62` + `:hover/:focus-within` bloki (etalon 3093–3094) |
+| **151** | `StudentPracticePulse` **yo'q edi** — m3-09 kanonik nusxa + `.done-mini` CSS, praktika ekranida `MentorPracticeStats` ostida render |
+| **152** | **129-qonun** — `MentorPracticeStats` `players === null \|\| length === 0` → `null`; «Yuklanmoqda…»/«Hali hech kim qo'shilmagan» shoxlari ketdi |
+| **153** | Hook halolligi: `correct: true` → **`correct: v === 'c'`**; a/b tanlovga ko'prik-matn «Aslida brauzer faqat so'raydi — javobni narigi tomondagi server dasturi beradi… O'sha javob beruvchini bugun o'zingiz qurasiz» |
+| **156** | `.btn` · `.lp-done-btn` · `.rc-btn` → `accent` + oq, hover `#E03E1B`; `.mstats-reveal` → **kontur**, **132-juftligi bir vaqtda** (`:hover` va `.ready` ga `color: #fff`) |
+| **157** | **16-qonun** — `.hint` `1.5px dashed` → `1px solid ${T.line}` (JSX'da ishlatilmaydi, ov-bandi talabi bilan etalon-shaklda) |
+| **166** | `SCREEN_META` `s15p` → **`practice`**, `s15b` → **`podium`** (etalon nomlari; `INLINE_KEYS.practice` va `submitAnswer(…,'practice')` bilan endi bir nom) |
+
+**1-to'lqin darvozalari:** esbuild ✓ · `lint:jsx` 0 · `lint:dark` **4 → 0** · UZ-RU 560/560.
+
+### 2-TO'LQIN (matn / metafora / tozalash)
+
+| F-ID | Nima qilindi |
+|---|---|
+| **154** | **Metafora to'qnashuvi** — «do'kon» server uchun qoldi; npm-kontekstdan «do'kon/javon» to'liq ketdi. ESKI → YANGI (12 joy): «npm — tayyor asboblar do'koni» → «npm — tayyor paketlar to'plami» (RECAPS.6 sarlavha · s1 STEPS · yakun RECAP · flashcard) · «kerakli asbobni **javonga buyurtma qiladi**» → «kerakli paketni loyihangizga qo'shadi» · «O'rnatilgan har **asbob**» → «har **paket**» · s5 mentor «tayyor asboblar do'koni (millionlab paketlar)… kerakli vositani» → «tayyor paketlar to'plami (millionlab paket)… kerakli paketni» · «package.json — o'rnatilgan asboblar» → «paketlar» · «npm — sizning **asboblar do'koningiz**» → «**tayyor paketlar to'plamingiz**» · s5b «tayyor kutubxonalarni o'rnatadigan asboblar do'koni» → «tayyor paketlarni o'rnatadigan vosita» · s5b xato-3 «(asboblar do'koni)» → «(tayyor paketlar to'plami)» · checklist «asbobni **javonga buyurtma qiling**» → «express paketini loyihaga qo'shing» · RU parallel. «asbob» so'zi faqat Express/require ma'nosida qoldi (s6 PARTS, s13) — u do'kon-obrazga tegmaydi |
+| **155** | s6 ikki maxraj (`n/3` NavNext · `n / 5` ustun) → **bitta, 5/5** |
+| **158** | «ushbu kodni kiriting» → «bu kodni kiriting» · «qisqa takrorlash tavsiya etiladi» → «qisqa takrorlang» · «Qayta tushuntirish tavsiya etiladi» → «Yana bir bor tushuntiring» · s4 variant «professional tahrirlash» → «tahrirlash» · qolgan 6 «professional» s8 qayta qurilishi va uy-vazifa bandi bilan ketdi. **Yolg'on-signal hujjati:** lint ko'rsatgan 1243-qator (`registr-aka-brat` + `professional`) — `useAudio` ichidagi **o'lik TTS-matn** (dars AUDIOSIZ, `useAudio` zaglushka); o'quvchi hech qachon ko'rmaydi. s8 qayta qurilganda u ham yangilandi, lekin sinf sifatida → NOMZOD 5 |
+| **159** | «Eng zo'r tomoni» → «Eng yaxshi tomoni» · «Zo'r! Vazifani bajardingiz» → «Juda yaxshi! …» · «Birinchi qadam uchun zo'r» → «ayni kerakli» |
+| **160** | «Mana to'liq serverning **skeleti**» → «Mana butun server — to'rt qadamda» (anatomiya-metafora) |
+| **161** | `node app.js` ×2 (s3, RECAPS.4) → `node server.js` — bitta fayl-nomi |
+| **162** | s14 AI kodi `'Salom!'` → `'Salom, dunyo!'` (debugging ekranida ortiqcha farq yo'q) |
+| **163** | Antigravity s11 mentorida bir marta nomlandi: «AI yordamchingiz (Antigravity)» (m4-12 pretsedenti); uy vazifasi endi tushunarli |
+| **164** | O'lik kod: `phase !== 'planned' \|\| true ?` va `${used ? '' : ''}` olib tashlandi |
+| **165** | Darsga xos o'lik CSS **14 qator** o'chdi: Roblox-karta oilasi (`.rocard… .hpop`, `@keyframes heart-pop`) + `.gloss*`. Umumiy qatlamdagi 27 o'lik klass — NOMZOD 1 |
+| **B1** | s8 qayta qurildi: `cmp-card hot cmp-tap` (role=button, klaviatura) → `sk-info` bitta ustunlik + `frame-success` ko'prik-gap; yangi CSS `.cmp-tap / :hover / .on`; uy-vazifa 2 band |
+
+### Darvozalar
+
+| Darvoza | Sikldan oldin | Keyin |
+|---|---|---|
+| esbuild | ✓ | **✓** |
+| `lint:jsx` | 0 | **0** |
+| `lint:dark` | **4** | **0** |
+| `lint:til` | **10🔴 · 4🟡** | **0 · 0** |
+| UZ-RU parite | 558 ↔ 558 | **552 ↔ 552** |
+| EOL | LF | **LF** (diff shovqinsiz) |
+
+Residue-grep: `asboblar do'koni|javon` (audio tashqari) — 0 (faqat CSS-izoh «javon→peshtaxta» — server-do'kon konteksti) ·
+`professional|zo'r|skelet|app\.js|ushbu|tavsiya etiladi` — 0 · `s15p|s15b` — 0.
+
+### Tegilmadi (ataylab)
+
+- `FullstackConnectPracticeLesson` / `BackendCrudPracticeLesson` dagi 3 ehtimoliy 135-topilma — o'z egalari siklida.
+- `.frame-warn` accent (B3) · `.frame-dash` uzuq (bo'sh-joy zonasi, 16-qonun ruxsat) · `.vsc-input` uzuq (bo'sh input).
+
+### NOMZODLAR (egasi-seansga, raqamsiz — to'g'ri formatda)
+
+1. **KATTA_TOZALASH — umumiy v18 qatlamida o'lik CSS.** Matn: etalon m4-01 da ham bor 27 klass
+   (`acu-eyebrow · ai-code · ai-line · dbg · dbg-badge · dbg-code · dbg-hint · dbg-line · dbg-ln · dbg-ok ·
+   dbg-txt · delay-4 · frame · gchip · qz-bolt · qz-brand · qz-logo · qz-wm · qz-wm-h · rc-open · rc-open.soft`
+   + template-yolg'onlar `p1/p2/pod-1..3/googleapis`). Asos: 8+ faylda takror, dars siklida tegilmaydi.
+   O'lchov: skript — CSS selektor-klassi JSX'da 0 marta (`(^|[^\w-])klass([^\w-]|$)`).
+2. **KATTA_TOZALASH — `QuestionScreen` `idx` propi.** Matn: uzatiladi, ishlatilmaydi, indeksga mos emas
+   (m4-04 Screen9 `idx=9`, aslida 10; etalonda ham 3 ta). Asos: chalg'ituvchi, ma'no yo'q. O'lchov: `grep -c 'idx={'`.
+3. **Rol-fayl ov-bandi (tekshiruvchi) — bir ekranda ikki maxraj.** Matn: `NavNext` label'dagi `n/X` va
+   ekran ichidagi `n/Y` teng bo'lsin. Asos: m4-04 s6 (3 vs 5). O'lchov: `grep -n "size}/\|size} /"` juftlari.
+4. **DARS_ETALON qonun-nomzodi — hook halolligi.** Matn: hook-ekranda har tanlovga bir xil «Aynan!» taqiq;
+   `correct` faqat to'g'ri tanlovda; xato tanlovga ko'prik-gap (dars o'z javobini e'lon qiladi, maqtamaydi).
+   Asos: m4-03 F-117 · m4-04 F-153 — ikki darsda takror, etalon m4-01 993 da to'g'ri shakl.
+   O'lchov: `grep -n "hook-ack" | grep -v "picked ==="` = 0.
+5. **`til-lint` / KATTA_TOZALASH — o'lik TTS-matn signal beradi.** Matn: AUDIOSIZ darslarda `useAudio([{ text: … }])`
+   satrlari o'quvchiga ko'rinmaydi, lekin lint ularni sanaydi (m4-04 da 1243: `professional` + `aka`).
+   Ikki yo'l: lint `useAudio(` blokini istisno qilsin **yoki** o'lik audio-matnlar ommaviy o'chirilsin.
+   Asos: yolg'on signal vaqt oladi. O'lchov: `grep -c "useAudio(\[{ id"` (m4-04 da 15).
+6. **DARS_ETALON izoh-nomzodi (B2, foydalanuvchi qarori).** Matn: «**Birinchi-marta** ekranlarda (birinchi server,
+   birinchi komponent) to'liq namuna berish mumkin — marosim-lahza, muvaffaqiyat-kafolati; **takrorda** esa
+   mustaqillik: namuna emas, qismlar eslatiladi.» Asos: m4-04 s15 (mentor to'liq qatorni beradi) tasdiqlandi.
+   O'lchov: dars-tartibida shu tushuncha birinchi martami (`grep "birinchi"` sarlavhada) — ha bo'lsa ruxsat.
+
+**EKRAN-XAVF 7 bandi** → `MODUL_TUR.md` ga «m4-04» belgisi bilan yozildi.
+
+**Holat:** ✅ YOPILDI · **COMMIT YO'Q** (modul-tur tugagach bitta to'plam bilan) · umumiy fayllarga tegilmadi.
+
+### ⏭ Navbat (parallel seans)
+
+Egasi-seans navbati: `08 → 09 → 10 → 11 → 13 → 14` (m4-08 dan boshlaydi). Parallel seans uchun
+**keyingi fayl foydalanuvchi tayinlaydi** — to'qnashmaslik uchun o'zim olmayman. Taklif: navbatning
+**oxiridan** (m4-14 `FullstackFeedbackLesson` yoki m4-13) — ikki seans bir-biriga yaqinlashmaydi.
+
+---
+
+## 2026-08-20 · 2-SESSIYA NOMZODLARI — EGASI HUKMI (F-0820-167…172)
+
+Raqam-siyosati: 2-sessiya m4-04 topilmalarini **150–166** ga ko'chirdi; bu sessiya
+**167+** dan davom etadi. Har nomzod **muhrlashdan oldin o'lchandi**.
+
+| # | Nomzod | Hukm | Raqam / joy |
+|---|---|---|---|
+| ① | v18 qatlamida o'lik CSS | ✅ **QABUL — da'vo TUZATILDI** | **F-0820-167** · `KATTA_TOZALASH` **15-band** |
+| ② | `QuestionScreen` `idx` propi | ✅ **QABUL** | **F-0820-168** · `KATTA_TOZALASH` **16-band** |
+| ③ | Ov-bandi: bir ekranda ikki maxraj | ✅ **QABUL** | **F-0820-169** · `darslik-tekshiruvchi.md` |
+| ④ | Qonun-nomzod: hook halolligi | ✅ **QABUL** | **F-0820-171** · `DARS_ETALON` **137-qonun** |
+| ⑤ | O'lik TTS-matn lint-signali | ✅ **QABUL — alohida band EMAS** | **F-0820-172** · `KATTA_TOZALASH` **12-band**ning 3-oqibati |
+| ⑥ | Izoh: namuna vs mustaqillik | ✅ **QABUL** | `DARS_ETALON` — **raqamsiz izoh** (nomzodda ham «izoh» deyilgan) |
+
+### 🔴 ① — da'vo o'lchov bilan TUZATILDI
+
+Nomzodda **«o'lik CSS»** deyilgan edi. O'lchov (`scratchpad/deadcss.mjs`, 20 klass,
+9 modul): **repo bo'ylab to'liq o'lik — atigi BITTA klass, `.qz-logo`** (42 faylda e'lon,
+**0** ishlatilish). Qolgan 19 tasi **tirik**, faqat noto'g'ri joyda: `.ai-code` 39 marta,
+`.ai-line` 98 marta, `.frame` **1327** marta ishlatiladi.
+
+Haqiqiy muammo — **ko'chirma-ortiqchasi**: v18 CSS qatlami har darsga butunlay
+nusxalanadi, shuning uchun **396 ta «klass × fayl» o'lik juftligi** hosil bo'ladi
+(`.acu-eyebrow` 71 e'lon / 2 ishlatilish / **70** o'lik-fayl).
+
+**Oqibat — ish ikkiga bo'lindi:** `.qz-logo` 2-banddan mustaqil, hoziroq o'chirilishi
+mumkin; qolgan 395 juftlik esa 2-band (umumiy CSS moduli) yechilmaguncha tegilmaydi —
+birma-bir o'chirish keyingi ko'chirmada qaytadan paydo bo'ladi.
+
+### 🔴 ⑤ — QABUL, lekin taklif qilingan YECHIM rad etildi
+
+Nomzod ikki yo'l taklif qilgan: (a) `til-lint` `useAudio(` blokini istisno qilsin,
+**yoki** (b) o'lik matnlar o'chirilsin. **(a) rad etildi:** agar audio qaytsa, matnlar
+qoladi va **RU juftligi** kerak bo'ladi — u holda ular **tekshirilishi** shart, istisno
+esa tekshirilmagan o'quvchi-matni yaratadi. Istisno — vaqtinchalik yamoq; ildiz 12-bandda.
+Shuning uchun nomzod alohida band emas, **12-bandning uchinchi oqibati** qilib yozildi.
+
+### ③ — o'lchov nomzodni tasdiqladi va YANGI NUQSON ochdi
+
+Repo bo'ylab skan (`scratchpad/maxraj.mjs`): **1 ta** nomos ekran — va u
+**m4-05 `RoutingLesson:1160`**, ya'ni shu seansda **YOPILGAN** dars. Pastda alohida yozuv.
+
+### Yo'l-yo'lakay: `prompt-lint` QAMROV-TESHIGI (F-0820-170)
+
+Nomzodlarni muhrlayotganda ma'lum bo'ldiki, `prompt-lint` ning `DEFAULT_SCOPE` ida
+**`KATTA_TOZALASH.md` · `MATN_KORPUS.md` · `AUDIT_PROMPT.md` · `MODUL_TUR.md` YO'Q** edi —
+shuning uchun `KATTA_TOZALASH.md:61` dagi kirill «ади» darvozadan **jim o'tib ketgan**.
+To'rttasi qamrovga qo'shildi, topilma `--fix` bilan tuzatildi, darvoza **0**.
+
+⚠️ `PIPELINE_STATE.md` va `PM_PIPELINE_STATE.md` **ataylab kiritilmadi**: ularda **8 ta**
+eski topilma bor va **ikkala seans ham** o'sha fayllarga yozadi — hozir tuzatish
+to'qnashuv xavfini tug'diradi. Parallel seans tugagach qo'shiladi.
+
+---
+
+## 🔓 2026-08-20 · m4-05 `RoutingLesson` — YOPILGANDAN KEYIN NUQSON TOPILDI (F-0820-173)
+
+**Halollik yozuvi:** m4-05 «✅ YOPILDI» deb imzolangan edi. Nomzod ③ ni o'lchayotganda
+o'sha darsda **nuqson topildi** — imzo qo'yilganda u bor edi va men ko'rmadim.
+
+**Nuqson (`RoutingLesson:1160`, «Nest controller» ekrani):** bitta ekranda **uch xil raqam**
+
+| Manba | Qiymat |
+|---|---|
+| `PARTS` — haqiqiy qismlar soni | **5** |
+| `NavNext` yorlig'i | `${seen.size}/`**`3`** qism o'rganildi |
+| Ekran tanasi | `{seen.size} / `**`5`** ko'rildi |
+| Ochilish sharti | `done = seen.size >= `**`3`** |
+
+**Oqibat:** o'quvchi «3/3 tugadi» va «3/5 ko'rildi» ni **bir vaqtda** ko'radi; ekran
+5 qismdan 3 tasida ochiladi, ya'ni **2 qism hech qachon talab qilinmaydi**. Hech bir
+darvoza buni tutmaydi (esbuild toza, uchala lint ham toza).
+
+**Nega imzoda ko'rinmadi:** darvozalar sintaksis, rang va matnni tekshiradi —
+**ekrandagi raqamlarning o'zaro mosligini** hech biri ko'rmasdi. Endi ko'radi:
+ov-bandi `darslik-tekshiruvchi.md` ga yozildi (F-0820-169).
+
+**TUZATILMADI — tasdiq kutadi.** Bu mazmun-qarori: ekran **5/5** talab qilsinmi
+(parallel seans m4-04 da shunday yopgan, F-0820-155) yoki `PARTS` **3** taga
+qisqartirilsinmi? Tavsiyam — **5/5**, chunki: (a) m4-04 precedenti bor, (b) beshala
+qism darsning o'z mazmuni (`controller · get · getid · param · post`), ikkitasini
+tashlab ketish Nest controller tushunchasini yarim qoldiradi.
+
+**Tuzatilgach:** m4-05 darvozalari qayta + `MODUL_TUR` m4-05 yozuviga eslatma.
+
+---
+
+### ⏭ Navbat
+
+Nomzodlar muhrlandi. **Keyingi ish: m4-08 `BackendCrudPracticeLesson` auditi** —
+raqamlar **174+** dan (167–173 shu yozuvda band bo'ldi).
+
+Ma'lum topilmalar (auditda qayta kashf qilinmaydi):
+- `lint:jsx` **135-qonun** — `fade-up` + `.rp.full` bir elementda (qator ~900)
+- Praktika-dars: etalon-solishtirishda **praktika-o'lchovlar** (ipucha-zinapoyasi ·
+  checklist uzunligi · `isMentor` qorovuli) alohida e'tiborda
+
+---
+
+## 2026-08-20 · 2-SESSIYA NOMZODLARI (m4-13) — EGASI HUKMI (F-0820-175…179)
+
+Raqam: eng yuqorisi **173** (bu sessiya) edi; **174** 2-sessiyaga qoldirildi,
+bu paket **175–179**. Har nomzod **muhrlashdan oldin o'lchandi**.
+
+| # | Nomzod | Hukm | Raqam |
+|---|---|---|---|
+| ③ | `dark-lint` ternary-ichi inline fon | ✅ **QABUL — VOSITA TUZATILDI** | **F-0820-175** |
+| ① | `til-lint` «to'ladi» fe'l omonimi | 🟡 **QABUL — o'lchov 2-sessiyaniki** | **F-0820-176** |
+| ② | `til-lint` ko'p qatorli `ru:` template-satr | 🟡 **QABUL — o'lchov 2-sessiyaniki** | **F-0820-177** |
+| ④ | 130-qonunga dalil-qator | ✅ **QABUL** | **F-0820-178** |
+| ⑤ | RU i18n: «Выполнил(а)» vs «Выполнил» | ✅ **QABUL — SHAKL TANLANDI** | **F-0820-179** |
+
+### ③ F-0820-175 — `dark-lint` KO'R NUQTASI YOPILDI (vosita o'zgardi)
+
+**Isbotlandi, taxmin emas.** Sinov fayli bilan:
+
+```jsx
+<span style={{ background: on ? T.ink : T.accent }}>A</span>   // ← JIM O'TARDI
+<span style={{ background: T.ink }}>B</span>                    // ← tutilardi
+```
+
+Sabab: skaner `background:` qiymatini olib, uni **sof token yoki sof hex** deb kutardi.
+Ternary bo'lsa ikkalasi ham mos kelmasdi → `continue`. Ya'ni **shart ostidagi har qanday
+quyuq fon** ko'rinmasdi. Repoda `style={{ … background: X ? A : B … }}` naqshi
+**141 joyda**.
+
+**Tuzatildi:** qiymatning **barcha shoxlari** yig'iladi (token va hex), har biri alohida
+baholanadi, **eng quyug'i** hisobga olinadi — o'quvchi o'sha holatni ko'radi.
+
+🔴 **Tuzatish O'ZI yolg'on signal tug'dirdi va u ham yopildi.** Birinchi versiya
+m4-05 `.mbadge` ni belgiladi: `background: (METHODS[method] || T.ink2) + '22'` —
+oxiridagi `'22'` **shaffoflik** (13%), ya'ni natija **och tus**, quyuq fon emas.
+Alfa-qorovuli qo'shildi: qiymatda `+ '<2 hex>'` bo'lsa — o'tkaziladi.
+
+**Regressiya (o'lchangan):** yopilgan to'rt darsim — m4-01 · m4-03 · m4-05 · m4-06 —
+yangi detektor bilan **hammasi TOZA**.
+
+### ⑤ F-0820-179 — «✅ Bajardim» tugmasi: TO'RT VARIANT, BITTASI TANLANADI
+
+O'lchov: UZ tomonda **`'✅ Bajardim'` 47 fayl**, RU tomonda esa:
+
+| RU variant | Nechta |
+|---|---|
+| `'✅ Выполнил'` | **37** |
+| `'✅ Выполнил(а)'` | 6 |
+| `'✅ Готово'` | 3 |
+| `'✅ Выполнили:'` | 1 |
+
+**TANLOV: «✅ Готово».** Sabab:
+- **«Выполнил»** — faqat erkak shakli; sinfning yarmini **noto'g'ri jinsda** ataydi
+- **«Выполнил(а)»** — qamrovli, lekin tugmada **qavs g'ijim** ko'rinadi
+- **«Готово»** — jinssiz, qisqa, tugma uchun tabiiy, va allaqachon 3 joyda ishlatilgan
+
+🔴 **Farqlanadigan juftlik saqlanadi:** tugma (`Bajardim` → **`Готово`**) va undan
+keyingi holat (`✓ Bajarildi` → **`✓ Выполнено`**) — ikki xil rol, ikki xil matn.
+Ular chalkashtirilmaydi.
+
+**47 faylga tegadi → `KATTA_TOZALASH` 17-band.** Dars siklida ko'tarilmaydi.
+
+### ① F-0820-176 · ② F-0820-177 — qabul, lekin o'lchov 2-sessiyaniki
+
+Ikkalasi ham **m4-13 faylida** aniqlangan; u fayl 2-sessiya egaligida, shuning uchun
+o'lchovni takrorlay olmadim. **Qabul qilinadi, ammo qonun-matni yozilmaydi** — avval:
+
+- ① «to'ladi» — pul-konteksti (`to'ladi?` = «to'lov qilindimi») fe'l-omonimi. `til-lint`
+  qoidasiga **kontekst-istisnosi** kerak bo'ladi. **Talab:** 2-sessiya aniq qator-raqamini
+  va qoida-id sini bersin, shunda istisno **tor** yoziladi (m4-06 dagi
+  `ekran-nomi-tarjimasi` istisnosi kabi — keng istisno qoidani o'ldiradi).
+- ② ko'p qatorli `ru:` template-satr — **7 yolg'on signal**. `til-lint` satr-satr ishlaydi,
+  ko'p qatorli template esa yarim o'qiladi. **Talab:** 7 topilmaning ro'yxati; shundan
+  keyin skaner template-satrni butun holida o'qiydigan qilinadi.
+
+### ④ F-0820-178 — 130-qonunga dalil-qator
+
+`DARS_ETALON` **130-qonun** (`position: fixed` qatlam sarlavhani bosmasin) endi **ikki
+mustaqil dalilga** ega: **m3-13** (F-0820-73) va **m4-13** (F-0820-174) — ikkalasida ham
+aynan `DeliveryTracker`. Ikki darsda takrorlangan nuqson **tasodif emas**: naqsh
+komponent bilan ko'chadi. Dalil-qator qonun matniga qo'shiladi.
+
+## 2026-08-20 · m4-13 `FullstackProjectDayLesson` (AvtoStoyanka · modul toj-darsi) — ✅ SIKL YOPILDI (F-0820-174…188 + B1/B2/B3) · parallel seans
+
+Audit `AUDIT_PROMPT.md` bo'yicha (etalon m4-01 + m3-13 `ReactProjectDayLesson` pretsedentlari) →
+GAP-hisobot (15 topilma + 3 yolg'on-signal + 3 bahsli + 7 EKRAN-XAVF) → **[GATE]** → ikki to'lqin.
+F-ID: 174–188 (repo-maksimum 173 dan keyin; egasi-seans 167–172 bilan 2-sessiya nomzodlarini muhrlagan,
+hook halolligi = **137-qonun**).
+
+### Foydalanuvchi qarorlari (bahsli bandlar)
+
+- **B1 → TASDIQ.** `DeliveryTracker` (fixed lenta, 25 ekranda) **ketdi** — C-pretsedent (m3-13 F-0820-73,
+  130-qonun). Marosim **saqlandi**: `OpeningAct` — 🚦 shlagbaum + «Stoyanka ochildi» + uchqunlar, **oqim ichida**,
+  `ScreenPractice4` done-holatida bir marta (2.8 s). EKRAN-XAVF 7 turda.
+- **B2 → TASDIQ.** s8 ga **aniqlashtiruvchi-beat**: prompt → AI `POST` yozadi, lekin `joylar bandmi=true`
+  **unutilgan** → o'quvchi o'ngdagi «nima qilishi kerak» bilan solishtiradi → **aniqlashtiruvchi prompt
+  (follow-up)** yuboradi → AI qo'shilgan qatorni ajratib ko'rsatadi. Sabab: «birinchi urinishda mukammal AI»
+  m4-14 iteratsiya-modelini buzadi. Atama birinchi chiqishda qavs-gloss: UZ «aniqlashtiruvchi prompt (follow-up)» ·
+  RU «уточняющий промпт (follow-up)».
+- **B3 → TASDIQ.** s16 placeholder `sessiyalar.joy_id = joylar.id` → **`jadval.ustun = jadval.ustun`** (shakl, javob emas);
+  mentor-namuna **qoladi** (ETALON 1932-izoh: birinchi-marta marosim) — ikki daraja.
+
+### 1-TO'LQIN (tuzilma / jonli / dizayn)
+
+| F-ID | Nima qilindi |
+|---|---|
+| **174** | `TRACKER_STEPS` · `DeliveryTracker` · render · `.dtrack*` CSS (≈45 qator) **o'chdi**; o'rniga `OpeningAct` (+`.oact*` CSS, reduced-motion bilan), `ScreenLivePractice`ga `ceremony` propi, faqat p4 uzatadi |
+| **175** | `StudentPracticePulse` (m3-09 kanonik) + `.done-mini` CSS, 4 praktika ekranida `MentorPracticeStats` ostida |
+| **176** | **129-qonun** — `MentorPracticeStats` `players === null \|\| length === 0 → null`; «Yuklanmoqda…» va «Jonli darsda … chiqadi» shoxlari ketdi |
+| **177** | **137-qonun** — hook `correct: v === 'b'`; a/c ga ko'prik-matn («…yechim emas. Qorovulga bir qarashda ko'rinadigan panel kerak — bugun shuni quramiz») |
+| **179** | F-29 to'plami: `.btn` · `.lp-done-btn` · `.rc-btn` → accent + oq, hover `#E03E1B`; `.mstats-reveal` kontur, **132-juftligi** (`:hover`/`.ready`ga `color: #fff`) |
+| **180** | `.vbadge` — inline `T.ink` → avval `T.ink2` (dark-lint **inline ink2 ni ham** og'ir deb topdi, L=0.103) → yakunda **uch klass**: `.t-id` accent · `.t-fk` blue · `.t-col` ink2, inline fon yo'q (134-qonun: bitta klass — bitta rol) |
+| **186** | `.live-badge` `0.4` → **`0.62`** (kanon), `@media (hover: none)` takrori ketdi |
+| **187** | `practice: -1` `INLINE_KEYS` ichiga; ildizdagi `answerKey`dan takror ketdi |
+
+**1-to'lqin darvozalari:** esbuild ✓ · `lint:jsx` 0 · `lint:dark` **4 → 0** · UZ-RU 566/566 · `dtrack` qoldiq 0.
+
+### 2-TO'LQIN (matn / affordance / B2 / B3)
+
+| F-ID | Nima qilindi |
+|---|---|
+| **178** | Hook variantlari teng uzunlikda (shakl-telli yo'q): a «Yana bir daftar va ikkinchi qorovul — ikkalasi yozsin» (47) · c «Joylarni kamaytirish — 8 emas, 4 ta qolsin» (41) · b 47; ko'prik-matn yangi variantlarga moslandi («Ikkinchi daftar chalkashlikni ikki baravar qiladi; joylarni kamaytirish — yechim emas, daromad kamayadi») |
+| **181** | `tap-hint` faqat **birinchi** mos joyda: s11 (`spots.find` bo'sh → band) · s14 (birinchi bo'sh) — 6–8 halqa o'rniga bitta |
+| **182** | s1 mentor: «Jamoangizdagi agentning nomi — **Antigravity**» (UZ+RU, m3-13 band 5 pretsedenti); «Agentga prompt» ×2 → «AI'ga prompt»; «agent» so'zi endi faqat nom-e'lonida |
+| **183** | «ushbu kodni kiriting» → «bu kodni…» · «qisqa takrorlash tavsiya etiladi» → «qisqa takrorlang» · «Qayta tushuntirish tavsiya etiladi» (703, 1962) → «Yana bir bor tushuntiring» / «Ularni qayta tushuntirib o'ting» (RU: «Объясните ещё раз») |
+| **184** | «Zo'r! Vazifani bajardingiz» → «Juda yaxshi! …» |
+| **185** | s5 mentor 332 → **286** belgi: «Bunday bog'lovchi ustunni foreign key deymiz» (UZ+RU) ketdi — `SES_COLS.joy_id.desc` da bor |
+| **188** | `.frame-warn` — o'lik edi, endi s8 da **ishlatiladi** (aniqlashtiruvchi-beat ogohlantirishi); qolgan 7 o'lik klass umumiy qatlam (F-0820-167 / KATTA_TOZALASH 15) |
+| **B2** | s8 qayta qurildi: `phase` 0/1/2 · `AI_V1` (bandmi yo'q) · `frame-warn` taqqos-ko'rsatma · `FOLLOWUP_PROMPT` · `AI_V2` qo'shilgan qator `.ai-line.ok`; NavNext «Kodni tekshiring» oraliq holati; done-matn «Birinchi kod chala edi — siz o'qib topdingiz va aniqlashtiruvchi prompt bilan to'g'riladingiz» |
+| **B3** | placeholder `jadval.ustun = jadval.ustun` |
+
+### Darvozalar
+
+| Darvoza | Sikldan oldin | Keyin |
+|---|---|---|
+| esbuild | ✓ | **✓** |
+| `lint:jsx` | 0 | **0** |
+| `lint:dark` | **4** | **0** |
+| `lint:til` | **4🔴 · 11🟡** | **0🔴 · 11🟡 (hammasi yolg'on-signal, quyida)** |
+| UZ-RU parite | 567 ↔ 567 | **572 ↔ 572** |
+| `SCREEN_META` ↔ `screens` | 25 = 25 | **25 = 25** |
+
+🟡 **11 — ataylab, hujjatlandi:** `toladi-fe'l` ×2 (938, 945 — «kim **to'ladi**» = *to'lamoq*, pul; lint omonimi) ·
+`kant-hisoblanadi` ×1 (986 «tushum hisoblanadi» — arifmetik, qoida istisnosi, m3-13 pretsedenti) ·
+`kirill-lotin` ×8 (1229–1234 — `BACK_PROMPT`/`FOLLOWUP_PROMPT`/`FRONT_PROMPT` ko'p-qatorli template-satrining **`ru:`** qismi).
+
+Residue-grep: `dtrack|DeliveryTracker|TRACKER_STEPS` 0 · `Agentga|ushbu|tavsiya etiladi|Zo'r!|foreign key deymiz|placeholder="sessiyalar` 0 ·
+`aniqlashtiruvchi` 4 · `Antigravity` 3 · `follow-up` 3 (2 matn + 1 kod-izoh).
+
+### Tegilmadi (ataylab)
+- `T.danger` qizil = **band** — domen-konvensiya (stoyanka belgisi), m3-13 band 3 dagi «baho» semantikasi emas → EKRAN-XAVF 3.
+- «Qorovulning daftari» — prop (qorovulniki), «daftaringiz» taqiqi bu emas.
+- `GuardPanel` animatsiyalari (drive-in/out, gst-bump, halqa) — har biri ma'no tashiydi.
+- `.plate-input` / `.vsc-input` / `.frame-dash` uzuq — bo'sh-joy zonalari (16-qonun ruxsat).
+
+### NOMZODLAR (egasi-seansga, raqamsiz — to'g'ri formatda)
+1. **`til-lint` — `toladi-fe'l` omonimi.** Matn: «to'ladi/to'lagan/to'lov» pul ma'nosida (yonida *to'lov · pul · so'm · oplat*) qoida o'tkazsin. Asos: m4-13 da 2 yolg'on signal. O'lchov: `grep -n "to'ladi"` + yonidagi 40 belgida `to'lov|pul|so'm`.
+2. **`til-lint` — ko'p-qatorli `ru:` template-satr.** Matn: `ru: \`…\n…\`` ichidagi kirill qatorlar `kirill-lotin` deb sanaladi (m4-13: 8). Yechim: lint template-satr chegarasini ko'rsin **yoki** qoida: ko'p-qatorli RU `\n` bilan bir qatorda. O'lchov: `grep -c "ru: \`"` (m4-13: 3).
+3. **`dark-lint` — ternary inline `background`.** Matn: `style={{ background: c ? T.accent : T.ink }}` ko'rilmaydi (m4-13 `.vbadge` ×2 auditda qo'lda topildi); `T.ink2` inline esa ko'rinadi → ikkisi bir xil bo'lsin. O'lchov: `grep -n "background: [^}]*? [^}]*: T.ink\b"`.
+4. **DARS_ETALON 130-qonunga dalil-qator + ruxsat etilgan joy.** Matn: «qurilish-holati» lentasi ikki darsda fixed bo'lib chiqdi (m3-13 F-73, m4-13 F-174); ruxsat etilgan shakl — praktika ekranining **oqim-ichi** bloki (`OpeningAct` namunasi).
+5. **RU i18n izchilligi:** «Выполнил(а)» (m4-13) vs «Выполнил» (m4-04, etalon). O'lchov: `grep -c "Выполнил(а)" src/4-Modull/*.jsx`.
+6. **Jarayon — F-ID raqam-poygasi.** Bugun ikki marta (m4-04: 138–154 ↔ 138–149; m4-13: o'z fayl-izohlarim maksimumni ko'tardi, yolg'on-to'qnashuv deb 200-blokka o'tkazib, qaytardim). Taklif: egasi-seans parallel seansga **blok** ajratsin (masalan 2-sessiya = 300–399) — kesishmaydi, qayta raqamlash yo'q. O'lchov: `grep -rhoE "F-0820-[0-9]+" | sort -u | uniq -d` = 0.
+
+**EKRAN-XAVF 7 bandi** → `MODUL_TUR.md` ga «m4-13» belgisi bilan yozildi.
+
+**Holat:** ✅ YOPILDI · **COMMIT YO'Q** · umumiy fayllarga tegilmadi · diff 145+/139− (EOL-shovqinsiz).
+
+### ⏭ Navbat (parallel seans)
+**m4-14 `FullstackFeedbackLesson`** — m4-13 ning davomi («qurilganni yaxshilash»); kontekst: AvtoStoyanka · qorovul · 2 jadval · `OpeningAct` · aniqlashtiruvchi prompt (follow-up) endi m4-13 da bor — m4-14 iteratsiya-modeli shu ustiga quriladi.
+
+---
+
+# 🔓 PROTOKOL — YOPILGAN DARSDA YANGI TOPILMA (rasmiy ish-tartibi, 2026-08-20)
+
+> **Nima uchun kerak.** Darvozalar **o'sib boradi**: yangi qonun muhrlanadi, detektor
+> kuchayadi, ov-bandi qo'shiladi. Shundan keyin **avval yopilgan** dars ham qizarishi
+> mumkin — va bu **normal**, chunki nuqson o'shanda ham bor edi, faqat ko'rilmasdi.
+> Muammo — «yopilgan» so'zi buni yashirib qo'yishi. Protokol shuni ochiq qiladi.
+
+## Qadamlar
+
+| # | Qadam | Nima yoziladi |
+|---|---|---|
+| 1 | **Topilma aniqlanadi** | Yangi darvoza yoki ov-bandi yopilgan darsda signal beradi |
+| 2 | **🔓 OCHIQ-YOZUV** | `PIPELINE_STATE` ga **yangi F-ID** bilan: qaysi dars · qaysi darvoza topdi · **nega imzoda ko'rinmagan** |
+| 3 | **Mazmun-qaror [GATE]** | Tuzatish **avtomatik emas**: ko'pincha mazmun-tanlovi bor (m4-05 da «5/5 mi yoki PARTS 3 taga qisqarsinmi»). Foydalanuvchi tasdig'isiz tegilmaydi |
+| 4 | **Tuzatish** | Faqat tasdiqdan keyin, faqat o'sha band |
+| 5 | **Darvozalar QAYTA** | To'liq to'plam: esbuild · `lint:jsx` · `lint:dark` · `lint:til` · UZ-RU |
+| 6 | **QAYTA-IMZO** | Ochiq-yozuv **yopiladi** (🔓 → ✅), dars-yozuviga «qayta imzolandi» qatori qo'shiladi |
+
+## Qat'iy qoidalar
+
+- 🔴 **«Yopilgan» dars — daxlsiz emas.** Yangi darvoza topsa, dars **ochiladi**.
+  Topilmani «keyingi safar» deb qoldirish — jurnalni yolg'onga aylantiradi.
+- 🔴 **Ochiq-yozuvsiz tuzatish YO'Q.** Avval yozuv (2-qadam), keyin qaror. Aks holda
+  yopilish-imzosi qachon va nima uchun buzilgani tarixda qolmaydi.
+- 🔴 **«Nega imzoda ko'rinmagan» — MAJBURIY qator.** Bu ayb emas, **darvoza-tarixi**:
+  o'sha savol keyingi darvozani tug'diradi.
+- ✅ **Bir vaqtda bir band.** Ochiq-yozuv bitta topilmaga tegishli; ikkinchisi topilsa —
+  ikkinchi yozuv.
+
+## Birinchi misol — F-0820-173 (m4-05 `RoutingLesson`)
+
+| Qadam | Bo'lgani |
+|---|---|
+| 1 | Nomzod ③ ni o'lchayotganda `scratchpad/maxraj.mjs` **1 ta** nomos ekran topdi — va u yopilgan m4-05 da |
+| 2 | 🔓 ochiq-yozuv: `PARTS` **5** · NavNext **`/3`** · tana **`/5`** · ochilish **`>= 3`**. «Nega ko'rinmagan»: darvozalar sintaksis, rang va matnni ko'rardi — **ekrandagi raqamlarning o'zaro mosligini** hech biri ko'rmasdi |
+| 3 | [GATE] → foydalanuvchi **5/5** ni tanladi (m4-04 pretsedenti + beshala qism dars mazmuni) |
+| 4 | Ochilish `>= 5`, NavNext `/5` (uz + ru) |
+| 5 | esbuild ✓ · `lint:jsx` 0 · `lint:dark` 0 · `lint:til` 0🔴/0🟡 · UZ-RU 543↔543 · ov-bandi **0 nomos** |
+| 6 | ✅ qayta imzolandi |
+
+**Ikkinchi misol (o'sha kuni):** F-0820-175 — `dark-lint` ternary-skani qo'shilgach
+to'rt yopilgan dars **qayta yurgizildi**; hammasi toza chiqdi, ya'ni 2-qadamdan
+narisiga o'tish shart bo'lmadi. **Protokol «hech narsa topilmadi» bilan ham tugashi
+mumkin** — muhimi, tekshiruv **o'tkazilishi**.
+
+### 📎 DALIL — egasi-seans so'rovi (F-175…179 muhrlanganda), m4-13 `FullstackProjectDayLesson.jsx`
+
+**① `toladi-fe'l` — ikki yolg'on signal, ikkalasi ham «pul to'lash» ma'nosida.**
+Qoida (`til-lint-rules.json`): `{"id":"toladi-fe'l","pattern":"to'ladi\\b","flags":"i","severity":"warn","law":"ETALON 42"}` — `except` maydoni **yo'q**.
+
+| Qator | Matn (UZ) | RU juftligi | Ma'no |
+|---|---|---|---|
+| **938** | `A2 — 01A123BC — to'ladi? ...` (qorovul daftari satri) | `оплатил? ...` | *to'lamoq* — pul |
+| **945** | `Qog'oz chalkash — qaysi joy bo'sh, kim to'ladi, bilib bo'lmaydi!` | `кто оплатил` | *to'lamoq* — pul |
+
+Qoidaning maqsadi (42-qonun) — *to'lmoq* (suv/karta to'ladi). **Tor istisno taklifi:** `"except": "kim to'ladi|to'ladi\\?|оплат"` —
+«kim to'ladi» / «to'ladi?» shakllari faqat odam-subyektli to'lov ma'nosida uchraydi; `оплат` RU juftligi bir qatorda bo'lsa ham o'tkazadi.
+O'lchov: shu ikki qator 0 signal, `to'ladi` ning karta/matn ma'nosi (masalan «karta to'ladi») tutilishda qoladi.
+
+**② `kirill-lotin-matnda` — ko'p-qatorli `ru:` template-satr. Auditda 7 ta edi, B2 (`FOLLOWUP_PROMPT`) dan keyin 8 ta.**
+Qoida: `pattern "[\\u0400-\\u04FF]"`, `except "ru\\s*:|Раскрываем|«мет"` — istisno **faqat `ru:` bilan bir qatorda** ishlaydi; template-satr keyingi qatorlarga o'tganda `ru:` ko'rinmaydi.
+
+| # | fayl:qator | Template | `ru: \`` boshlangan qator | Matn |
+|---|---|---|---|---|
+| 1 | `FullstackProjectDayLesson.jsx:1229` | `BACK_PROMPT` | 1228 | `• машина въехала — добавить сеанс и занять место` |
+| 2 | `…:1230` | `BACK_PROMPT` | 1228 | `• машина выехала — освободить место и записать оплату` |
+| 3 | `…:1231` | `BACK_PROMPT` | 1228 | `• показать все места и дневную историю\` };` |
+| 4 | `…:1234` | `FOLLOWUP_PROMPT` (B2 da qo'shildi) | 1233 | `• в таблице joylar поставь bandmi = true\` };` |
+| 5 | `…:1323` | `FRONT_PROMPT` | 1322 | `• все места видны сеткой (свободные зелёные, занятые красные)` |
+| 6 | `…:1324` | `FRONT_PROMPT` | 1322 | `• на свободное место — въезд по госномеру машины` |
+| 7 | `…:1325` | `FRONT_PROMPT` | 1322 | `• выезд с занятого места (с оплатой)` |
+| 8 | `…:1326` | `FRONT_PROMPT` | 1322 | `• сверху число свободных/занятых и дневная выручка\` };` |
+
+Auditdagi «7» = 1–3 va 5–8 (4-si keyin paydo bo'ldi). Uchala template bir xil shaklda: `const X = { uz: \`…\n…\`, ru: \`…\n…\` };`.
+**Yechim-taklifi (holatli):** lint `ru:\s*\`` ko'rgan qatordan yopuvchi backtikgacha (`\`\s*[},;]`) **«RU-zona»** deb belgilasin va u ichida
+kirill-qoidani o'tkazsin; matn-qoida muqobili — ko'p-qatorli RU matn `\n` bilan bir qatorda yozilsin (lekin bu 3 template'ni
+qayta terishni talab qiladi, lint-tomon yechimi arzonroq). m4-14 da ham xuddi shu sinf: **6 ta** (`:1345–1346`, `:1410–1411`, +2),
+hammasi `prompt-box` template'lari.
+
+---
+
+## 2026-08-20 · VOSITA-PAKETI — F-0820-176 · 177 · 180 (2-sessiya dalillari asosida)
+
+2-sessiya `PIPELINE_STATE:3529` «📎 DALIL» bo'limida aniq qatorlar va ro'yxatni berdi.
+Har o'zgarish **sinov-fayl bilan isbotlandi** (m4-06 tartibi: istisnodan keyin qoida
+hali tutishini ko'rsatish).
+
+### F-0820-176 — `til-lint` · `toladi-fe'l` pul-konteksti
+
+**Istisno qo'shildi:** `"except": "kim to'ladi|to'ladi\?|оплат"` — 2-sessiya taklifi aynan.
+
+**Isbot** (`/tmp/tl/pay.jsx`):
+
+| Qator | Matn | Natija |
+|---|---|---|
+| 2 | `A2 — 01A123BC — to'ladi?` | ✅ o'tdi (pul) |
+| 3 | `kim to'ladi, bilib bo'lmaydi` | ✅ o'tdi (pul) |
+| 4 | **`Karta ekranda to'ladi va tayyor`** | 🟡 **hamon tutildi** (42-qonun ma'nosi) |
+
+Ya'ni istisno **tor**: qoidaning asl maqsadi (matn/karta «to'ladi» → suvni eslatadi)
+saqlanib qoldi.
+
+### F-0820-177 — `til-lint` · RU-ZONA (holatli skan)
+
+**Nuqson:** `kirill-lotin-matnda` qoidasining `except "ru\s*:"` i **faqat bir qatorda**
+ishlaydi. Prompt-namunalari esa ko'p qatorli: `ru: \`1-qator\n • машина въехала…\``.
+Davomi qatorlarda `ru:` yo'q → **yolg'on signal**. m4-13 da **8**, m4-14 da **6**.
+
+**Yechim — qator-istisno EMAS, HOLAT:** `til-lint` endi `<style>` va izoh-bloklari kabi
+**RU-zonani** ham kuzatadi: `ru: \`` dan yopuvchi backtikgacha. Zona ichida **faqat
+`kirill*` oilasi** o'tkaziladi — lotin-so'z qoidasi ishlayveradi, chunki RU matniga
+o'zbekcha so'z tushib qolsa u **haqiqiy topilma**.
+
+**Isbot** (`/tmp/tl/ruzone2.jsx`):
+
+| Qator | Joy | Natija |
+|---|---|---|
+| 3–4 | RU-zona ichi (`• машина въехала…`) | ✅ o'tdi |
+| **6** | zona tashqarisi (`Ekranда oddiy matn`) | 🟡 **tutildi** |
+
+**Haqiqiy fayllarda:** `FullstackProjectDayLesson` **kirill 0** (edi 8) ·
+`FullstackFeedbackLesson` **kirill 0** (edi 6).
+**Regressiya:** qoida repoda hali **18 faylda** ishlaydi — o'chib qolmadi.
+**Repo jami:** `til-lint` 759🔴 → **745🔴** (aynan 14 yolg'on signal ketdi).
+
+### F-0820-180 — `esbuild-gate.mjs` + `npm run gates`
+
+`KATTA_TOZALASH` **18-band ✅ yopildi**. Batafsil o'sha yerda.
+Qisqasi: esbuild darvozasi `npm run` da **umuman yo'q** edi — qo'lda buyruq sifatida
+yashardi va loader'lar unutilardi. Endi **kodda**: `npm run gate:esbuild` va
+`npm run gates` (to'rt lint + esbuild bitta buyruqda).
+**Isbot:** `node esbuild-gate.mjs src/7-Modull` → **12 fayl ✓ TOZA** (ilgari 12 «qizil»).
+
+### 13-band — 🟡 OCHILDI (foydalanuvchi qarori)
+
+Qamrov: **praktika va qulflangan ekranlar**. m4-08 — birinchi qo'llanish (shu siklda),
+m4-10/m4-14 — o'z sikllarida, yopilgan darslar — modul-turdan keyin mini-to'lqin.
+Klapan ochilganda `solved: true, correct: false` **rost** yoziladi (§157 · 136-qonun).
+
+## 2026-08-20 · m4-14 `FullstackFeedbackLesson` (AvtoStoyanka upgrade · modul finali) — ✅ SIKL YOPILDI (F-0820-189…205 + B1/B2/B3) · parallel seans
+
+Audit `AUDIT_PROMPT.md` bo'yicha (etalon m4-01 + m3-13/m4-13 pretsedentlari) → GAP-hisobot (17 topilma + 2 yolg'on-signal sinfi
++ 3 bahsli + 7 EKRAN-XAVF) → **[GATE]** → ikki to'lqin. m4-13 ning davomi sifatida o'qildi (qorovul · 2 jadval · Demo Day · Aziz).
+
+### Foydalanuvchi qarorlari
+- **B1 → TASDIQ.** Aziz avatari `#E05A2B` → teal **`#3E8E8A`**, Bek `#B45309` → binafsha **`#7C5CBF`**, Q2 «Rejaga ol» chipi `T.amber` →
+  `#7C5CBF`; **`amber` tokeni o'chdi**. Ikki sinfdosh — ikki rang: fikr-egaligini rang kuzatadi (`FEEDBACK` ham, `TRK_LIST` ham).
+- **B2 → `resolved.size > 0` → yakungacha.** `TrackerStrip` birinchi fikr hal bo'lganda (s7) tug'iladi (129-ruhi), 4/4 yakun-dalil bo'lib qoladi;
+  s3–s13 sun'iy chegara ishlatilmadi.
+- **B3 → minimal.** «aniqlashtiruvchi prompt (follow-up)» praktika 4-bandi + s15 «Yodda tuting» kartasiga, «o'tgan darsdagi kabi» havolasi bilan.
+  Yangi beat yo'q (takror-mavzu — mustaqillik).
+
+### 1-TO'LQIN
+| F-ID | Nima qilindi |
+|---|---|
+| **189** | `StudentPracticePulse` (m3-09 kanonik) + `.done-mini` |
+| **190** | 129-qonun — `MentorPracticeStats` 0/0 → `null` |
+| **191** | 137-qonun — hook `correct: v === 'b'`; to'g'ri tanlovga «Aynan!», a/c ga ko'prik («Aziz aybdor emas — panel bir bosishda mashinani chiqarib yubordi. Bosishni taqiqlash ham yechim emas — chiqarish baribir kerak: kamchilik fikr bilan topiladi…») |
+| **193** | B2 — `if (!resolved \|\| resolved.size === 0) return null` |
+| **194** | F-29 to'plami → accent/`#E03E1B`; `.mstats-reveal` kontur + 132-juftligi |
+| **195** | 1432 `tr()`-siz «Agentga prompt» → `tr({uz:"AI'ga prompt", ru:'Промпт ИИ'})` (UZ-RU teshik yopildi); 1341 ham; s1 mentor: «Jamoangizdagi agent — **Antigravity** — yana siz bilan» (UZ+RU) |
+| **197** | B1 ranglari (yuqorida) |
+| **204** | `.live-badge` 0.4 → 0.62 |
+| **205** | `practice: -1` → `INLINE_KEYS` |
+
+**1-to'lqin darvozalari:** esbuild ✓ · jsx 0 · dark **4 → 0** · UZ-RU 635/635 · `amber` 0 · `Agentga` 0.
+
+### 2-TO'LQIN
+| F-ID | Nima qilindi |
+|---|---|
+| **192** | Hook variantlari 52/45/47: a «Hech narsa — Aziz shoshib bosgan, panel aybdor emas» · c «Band joylarni bosib bo'lmaydigan qilib qo'yish»; ko'prik-matn moslandi. ⚠️ Birinchi variantimda «chiqarish kerak**-ku**» — `sheva-yuklama-ku` 🔴 tutdi → «chiqarish baribir kerak» (o'z xatoim, darvoza ishladi) |
+| **196** | B3 — praktika 4-band: «…kod chala chiqsa — o'tgan darsdagi kabi aniqlashtiruvchi prompt (follow-up) bilan so'rang» (RU juftligi); s15 karta: «AI chala yozsa — o'tgan darsdagi kabi aniqlashtiruvchi prompt (follow-up)» |
+| **198** | `tap-hint` faqat **birinchi** kartada: s3 `FbCard` yangi `hint` propi (birinchi ko'rilmagan fikr, faol karta yo'qligida) · s5 `inviteCards && i === 0` |
+| **199** | «ushbu» → «bu» · «tavsiya etiladi» ×2 → «qisqa takrorlang» / «Yana bir bor tushuntiring» (RU: «коротко повторите» / «Объясните ещё раз») · «Zo'r! Vazifani…» → «Juda yaxshi!…» |
+| **200** | s16 placeholder `"confirm"` → `"…"` (mentor `confirm(...)` namunasi qoladi — 1932) |
+| **201** | s5 doska-sarlavhasi: «Foyda / Mehnat doskasi (Impact / Effort)» — flashcard 5 atamasi endi ekranda bor |
+| **202** | `s16p` → `practice`; `spodium` `type: 'podium'` → `'stats'` |
+| **203** | O'lik: `@keyframes el-pop` · `.el-in` · `.pick-on` · `.code-box` CSS (4 qator) + praktikadagi o'lik `useAudio` TTS-satri va `audioState` propi ketdi |
+
+### Darvozalar (yopilish — fayl-darajasida, beshala vosita)
+| Darvoza | Oldin | Keyin |
+|---|---|---|
+| esbuild | ✓ | **✓** |
+| `lint:jsx` | 0 | **0** |
+| `lint:dark` | **4** | **0** |
+| `lint:til` | **3🔴 · 17🟡** | **0🔴 · 9🟡** |
+| `lint:prompt` | — | **✓** |
+| UZ-RU | 632/632 (+1 `tr()`-siz) | **635/635, `tr()`-siz 0** |
+| `SCREEN_META`↔`screens` | 21=21 | 21=21 |
+
+🟡 **9 — ataylab:** `registr-zor-qoyil` ×9 (576, 578, 1079, 1092, 1093, 1176, 1969, 2072, 2073) — «Zo'r ekan!» darsning **o'z o'quv-obyekti**
+(bo'sh maqtov namunasi: RECAPS.4 · s2 `SAMPLES.a` · s2 sarlavha/mentor · s4 variant · flashcard 2 · QUIZ q1/q2). `kirill-lotin` ×6 → **0**
+(egasi RU-zonani muhrladi: m4-13 ham 11🟡 → 1🟡). Residue: `Agentga|ushbu|tavsiya etiladi|Zo'r! Vazifani|placeholder="confirm"|s16p|T.amber|useAudio(` 0.
+Dead CSS 11 — hammasi umumiy qatlam (F-0820-167). Diff 84+/62−.
+
+⚠️ **`npm run gates` bilan yopib bo'lmadi** (foydalanuvchi buyrug'i edi): zanjir **butun `src/`** ni yuradi, fayl-argumentini faqat oxirgi
+bo'g'in (`prompt-lint`) oladi. Bugungi holatda u **hech qaysi dars uchun o'tmaydi**: (1) `esbuild-gate.mjs` `src/2-moodull eski/`
+(yo'lda **bo'shliq**) 5 faylda «Must use outdir when there are multiple input files» — `execFileSync('npx', [...])` Windows'da `.cmd`
+orqali shell'ga tushadi, bo'shliqli yo'l ikkiga bo'linadi; (2) undan keyin ham loyiha-darajasida jsx 49 · dark 398 · til 742🔴
+(`src/eski`, eski modullar). Shuning uchun yopilish beshala vosita bilan **fayl-darajasida** o'lchandi (jadval yuqorida) → NOMZOD 4.
+
+### Tegilmadi (ataylab)
+s2 «foydali vs umumiy» (133 etalon-darajada) · s5 pointer-drag + `CONSEQ` oqibat-simulyatsiyasi · `SettingsDrawer` absolute · `T.danger` = band ·
+«Zo'r ekan!» o'quv-obyekt sifatida.
+
+### NOMZODLAR (egasi-seansga, raqamsiz — to'g'ri formatda)
+1. **`til-lint` — o'quv-obyekt «Zo'r!».** Matn: qo'shtirnoq/«» ichidagi «Zo'r…» (dars bo'sh maqtovni **o'rgatayotganda**) istisno.
+   Asos: m4-14 da 9/10 yolg'on. O'lchov: `grep -c "«Zo'r\|\"Zo'r ekan\|\`\"Umuman zo'r"` = 9, `lint:til` 🟡 → 0.
+2. **`lint:jsx` — `tr()`-siz ko'rinadigan matn.** Matn: `className="flow-label">` (va `h2/p.body`) dan keyin `{tr(` kelmasa va lotin harf bo'lsa → topilma.
+   Asos: m4-14:1432 — parite 632/632 teng turib RU rejimda o'zbekcha yozuv. O'lchov: `grep -n 'flow-label">[A-Za-z]'` (tuzatishdan oldin 1, keyin 0).
+3. **DARS_ETALON qoida-nomzodi — `tap-hint` «bir vaqtda bittadan».** Asos: m4-13 F-181 (2 joy), m4-14 F-198 (2 joy). O'lchov: `tap-hint` berilgan `.map(` ichida indeks/`find` sharti bormi.
+4. **`npm run gates` — fayl/papka argumentini barcha bo'g'inlarga uzatsin** (`gates.mjs` o'rash: `process.argv` ni beshala vositaga bir xil beradi)
+   **va** `esbuild-gate.mjs` bo'shliqli yo'lni qo'llasin (`execFileSync('npx', …, { shell: false })` yoki `npx.cmd` + yo'lni qo'shtirnoqda).
+   Asos: yuqoridagi ⚠️. O'lchov: `npm run gates -- src/4-Modull/FullstackFeedbackLesson.jsx` → 5/5 ✓; `node esbuild-gate.mjs` → 142/142 qurildi.
+
+**EKRAN-XAVF 7 bandi** → `MODUL_TUR.md` ga «m4-14» belgisi bilan.
+
+**Holat:** ✅ YOPILDI · **COMMIT YO'Q** · umumiy fayllarga tegilmadi.
+
+### ⏭ Navbat (parallel seans)
+m4-13 ✅ · m4-14 ✅ — 2-sessiya navbati tugadi. **Keyingi tayinlovni kutaman.**
+
+---
+
+## 2026-08-20 · m4-08 `BackendCrudPracticeLesson` — ✅ SIKL YOPILDI (F-0820-180…192)
+
+### 🆕 13-BAND BIRINCHI QO'LLANISH — `useStuckValve` HOOK
+
+**API (m4-10 · m4-14 shundan oladi):**
+
+```js
+const { tip, rescue, isMentor } = useStuckValve(done, progress)
+```
+
+| Parametr | Ma'nosi |
+|---|---|
+| `done` | ekran ochilish sharti (bool) |
+| `progress` | **siljish o'lchovi** (son): `seen.size` · `step` · bajarilgan amallar soni |
+| `tip` | ipucha ko'rsatiladimi |
+| `rescue` | «Davom etish» ochiladimi |
+| `isMentor` | hook kontekstni **o'zi** o'qiydi — ekranga qo'shimcha qator kerak emas |
+
+**Ikki o'lchov (PmLesson11 · M3-D10 sabog'i):**
+
+| O'lchov | Nima | Chegaralar |
+|---|---|---|
+| `sec` | ekran ochiq turgan vaqt — **bosishga bog'liq emas** | tip **40 s** · rescue **110 s** |
+| `idle` | oxirgi **haqiqiy siljishdan** beri o'tgan vaqt (`progress` o'zgarmasa o'sadi) | tip **25 s** · rescue **60 s** |
+
+🔴 `idle` — «samarasiz urinish» o'lchovining aniq shakli: to'g'ri yo'ldan ketayotgan
+o'quvchi (`progress` o'sib turadi) **hech qachon** «tiqilib qolgan» deb belgilanmaydi.
+Mentor rejimida klapan **umuman ishlamaydi**.
+
+**Qamrov (m4-08):** 4 ta qulflangan o'rganish ekrani — `Screen2` (ustunlar) ·
+`Screen3` (zanjir) · `Screen7` (UPDATE+DELETE) · `Screen11` (C·R·U·D).
+Praktika ekrani klapansiz: u yerda «tiqilish» yo'q — o'quvchi o'zi «Bajardim» bosadi.
+
+**Qonun:** `DARS_ETALON` **138-qonun** — uch daraja (yorliq → ipucha → rescue) va
+🔴 «Davom etish» qulf holatida **taqiq**. Foydalanuvchi asosi qonunga aynan yozildi:
+*yorliq aytmasa, klapan o'zi yaratgan muammoni davolaydi.*
+
+### 1-TO'LQIN
+
+| F-ID | Nima qilindi |
+|---|---|
+| **180** | `StudentPracticePulse` qo'shildi (yo'q edi) |
+| **181** | **129-qonun** — `MentorPracticeStats` `0/0` da `null`; bo'sh-holat ternarisi va `total === 0` shoxi o'lik bo'lgani uchun olib tashlandi |
+| **185** | **134-qonun, UCHINCHI takror** — `.ai-badge` «Siz» uchun → **`.you-badge`** (+CSS) |
+| **186** | **137-qonun** — `correct: v === 'b'` + ko'prik: «Aslida ko'rsatishning o'zi yetmaydi — mashina qo'shilsa, o'chirilsa, saqlanib qolishi kerak. Buni bugun **qurasiz**» |
+| **187** | **135-qonun** — `.rp fade-up` + `.rp.full` bir elementda edi; kirish o'rovchi `<div className="fade-up">` ga ko'chdi |
+| **138-q** | 4 qulf-yorlig'i mazmunli qilindi + klapan |
+
+### 2-TO'LQIN
+
+| F-ID | Nima qilindi |
+|---|---|
+| **182** | F-29 to'rtligi + **132-juftligi bir vaqtda** |
+| **183** | **16-qonun** — `.hint` solid |
+| **184** | `.vbadge` ×2 — **kontur uslub**: `id` → `.pk` (to'ldirilgan accent), qolganlari `paper` fon + `ink2` matn + `ink3` kontur |
+| **188 · 189 · 190 · 192** | «ushbu»→«bu» · «tavsiya etiladi» ×2 · «Quyidagi»→«Pastdagi» · «Zo'r!»→«Juda yaxshi!» |
+| **191** | 🔴 **RAD ETILDI — yolg'on signal** (pastda) |
+
+### 🔴 F-191 rad etildi + qoida toraytirildi
+
+`zanjir-streak` m4-08 da 2 marta yongan edi. **Matn to'g'ri:** «zanjir» bu yerda
+**so'rov zanjiri** (Front → Express → pool.query → PostgreSQL) — darsning markaziy
+metaforasi, «streak» emas. Qoidaning `suggest` i esa streak haqida.
+
+**O'lchov:** repoda **60 ta** «zanjir», ulardan faqat **4 tasi** streak-ma'nosida
+(kun/ketma-ket yaqinida). Ya'ni qoida ko'pincha yolg'on yonadi.
+**Tor istisno qo'shildi** (`so'rov…zanjir` · `zanjir…Front/bo'g'in` · `to'liq zanjir` ·
+`Zanjirni yuring`). **Regressiya:** qoida repoda hali **7 faylda** ishlaydi.
+
+### 🔴 O'Z XATOLARIM — darvoza uchalasini ham tutdi
+
+| Xato | Kim tutdi |
+|---|---|
+| `.vbadge` ga `T.ink2` fon berdim — u hamon quyuq (L=0.103) va `color:#fff` bilan og'ir dog' | `lint:dark` |
+| `.bhint` `<p>` ga qo'yildi — `.lesson-root p` reseti padding'ni jim o'chirardi (F-0803-27) | `lint:jsx` |
+| CSS izohiga backtik yozdim — **shu seansda UCHINCHI marta** (m4-03 · m4-05 · m4-08) | `lint:jsx` |
+
+**Saboq (takrorlanuvchi):** CSS izohiga kod-bo'lagi yozilganda **backtik ishlatilmaydi** —
+`.calm` o'rniga «Modifikator .calm». Uch takror — bu endi odat, e'tibor talab qiladi.
+
+### Darvozalar (`npm run gates` to'plami)
+
+| Darvoza | Sikldan oldin | Yopilganda |
+|---|---|---|
+| `gate:esbuild` | ✓ | **✓** |
+| `lint:jsx` | **1🔴** (135-qonun) | **0** |
+| `lint:dark` | **6** | **0** |
+| `lint:til` | **3🔴 · 4🟡** | **0🔴 · 0🟡** |
+| UZ-RU parite | 482 ↔ 482 | **493 ↔ 493** |
+
+**Modul:** `lint:dark` 40 → **28** · `lint:til` 37🔴 → **17🔴** · `lint:jsx` **3🔴 · 1 fayl**
+(faqat m4-10 — 14-band `s16` kaliti + 135-qonun ×2, hammasi ma'lum).
+
+**Holat: ✅ YOPILDI · COMMIT YO'Q.**
+
+### ⏭ Navbat — m4-10 `FullstackConnectPracticeLesson`
+
+Kutayotganlar (auditda qayta kashf qilinmaydi): **14-band `s16` kaliti** ·
+**135-qonun 2 topilma** (`.bridge.live` :1040 · `.gate.open` :1292) · **klapan**
+(hook endi tayyor, `useStuckValve` shu fayldan ko'chiriladi).
+
+---
+
+## 2026-08-20 · 2-SESSIYA NOMZODLARI (m4-14) — EGASI HUKMI (F-0820-193…196)
+
+| # | Nomzod | Hukm | Raqam |
+|---|---|---|---|
+| ④ | `gates` fayl-argumenti + bo'shliqli yo'l | ✅ **QABUL — BAJARILDI** | **F-0820-193** |
+| ① | `til-lint` o'quv-obyekt «Zo'r!» istisnosi | ✅ **QABUL — BAJARILDI, kengaytirilgan** | **F-0820-194** |
+| ② | `lint:jsx` `tr()`-siz ko'rinadigan matn darvozasi | 🟡 **QABUL — vosita-ishi navbatda** | **F-0820-195** |
+| ③ | `tap-hint` «bir vaqtda bittadan» qonuni | 🟡 **QABUL — qonun-matni navbatda** | **F-0820-196** |
+
+### ④ F-0820-193 — BAJARILDI
+
+**Muammo aniq edi:** `"gates": "node esbuild-gate.mjs && node jsx-lint.mjs && …"` —
+`npm run gates -- <fayl>` da npm argumentni butun satr **oxiriga** qo'shadi, ya'ni u
+faqat zanjirdagi **oxirgi** vositaga tushadi. Qolgan to'rttasi butun `src/` ni skanlaydi:
+«bitta faylni tekshirdim» deb o'ylaysan, hisobotga begona topilmalar aralashadi.
+
+**Yechim:** `gates.mjs` runner — argumentni **beshalasiga** uzatadi.
+`prompt-lint` ataylab istisno: u **MD hujjatlarini** ko'radi, `.jsx` argumenti unga
+ma'nosiz — o'z skopida qoladi (runner `.jsx`/`src` argumentlarini unga bermaydi).
+
+**`esbuild-gate` bo'shliqli yo'l:** Windows'da `npx` — bu `npx.cmd`, uni ishga tushirish
+uchun `shell: true` kerak; shell rejimida esa argumentlar **qayta bo'linadi** va
+`src/2-moodull eski/…` ikkiga yoriladi. Fayl yo'li endi qo'shtirnoqqa olinadi.
+
+**ISBOT 1 — argument beshalasiga yetdi:**
+```
+npm run gates -- src/4-Modull/BackendCrudPracticeLesson.jsx
+  ESBUILD-GATE — 1 fayl · JSX-LINT — 1 fayl · DARK-LINT — 1 fayl · TIL-LINT — 1 fayl
+  5/5 darvoza toza.
+```
+
+**ISBOT 2 — argumentsiz: 142 fayl · 137 qurildi · 🔴 5.**
+🔴 **142/142 BO'LMADI va bu TO'G'RI:** qolgan 5 fayl **haqiqatan buzuq**, loader
+muammosi emas. `src/2-moodull eski/*.jsx` `'../../assets/common/mentor.png'` yozadi,
+lekin u papka `src/` dan **bir** qavat pastda — ya'ni yo'l `<repo>/assets/` ga chiqadi
+(mavjud emas). Solishtiring: `src/eski/lessons/` **ikki** qavat pastda, o'sha yo'l
+u yerda **to'g'ri** ishlaydi. Fayllar `App.jsx` ga **ulanmagan** (arxiv).
+**Ya'ni darvoza yolg'on qizil bermayapti — haqiqiy qizil beryapti.**
+**Qaror kutilmoqda:** (a) 5 faylda `../../` → `../` (bir belgi, o'lik fayllar),
+(b) arxiv papkalari darvoza qamrovidan chiqarilsin, (c) arxiv butunlay o'chirilsin.
+
+### ① F-0820-194 — BAJARILDI, DALILDAN KENGROQ
+
+Istisno: `«Zo'r… · «Umuman zo'r · «Qoyil · «zo'r» · "Zo'r ekan · "Umuman zo'r · "zo'r"`.
+
+**Dalil aynan tasdiqlandi:** m4-14 da **10 → 1**. Lekin qolgan bittasi (**:1092**) ham
+yolg'on chiqdi — `"zo'r"mi yoki aniqmi?` — dars aynan **shu so'z haqida** (fikr-bildirish
+darsi: «zo'r» dedimi yoki aniq aytdimi). Straight-qo'shtirnoqli **sof-so'z iqtibos**
+istisnoga qo'shildi → m4-14 **✓ TOZA**.
+**Regressiya:** qoida repoda hali **73 faylda** ishlaydi (edi 75).
+
+**Sinf:** «o'rgatilayotgan obyekt» — dars bo'sh maqtovni **misol qilib ko'rsatayotganda**,
+o'sha so'z qoida-buzilishi emas, **o'quv materiali**. m4-03 (chat POOL) va m4-01
+(personaj izohi) bilan bir oila.
+
+### ② F-0820-195 · ③ F-0820-196 — qabul, navbatda
+
+- **②** `tr()`-siz ko'rinadigan matn: parite **teng** bo'lsa ham RU rejimda o'zbekcha
+  yozuv qolishi mumkin — parite-hisob buni **ko'rmaydi**. Darvoza kerak:
+  `className="flow-label">` / `h2` / `p.body` dan keyin `{tr(` kelmasa va lotin harf
+  bo'lsa → topilma. **Vosita-ishi, navbatda.**
+- **③** `tap-hint` bir vaqtda bittadan: m4-13 F-181 (2 joy) + m4-14 F-198 (2 joy).
+  4-Modulda `tap-hint` **3–13 marta** har faylda ishlatiladi — ya'ni qoida yozilsa
+  qamrovi katta. **Qonun-matni navbatda**, o'lchov bilan.
+
+### Hujjat-almashinuvi
+
+`CLAUDE.md` (3 joy: B-retsept · E-retsept darvozalari · tamoyillar qatori) va
+`AUDIT_PROMPT.md` (1-bo'lim) endi **`npm run gates -- <fayl>`** ni ko'rsatadi.
+
+🔴 **CLAUDE.md ga o'z-eslatma yozildi:** «CSS izohiga BACKTIK yozilmaydi — shu seansda
+**uch marta** tutildi (m4-03 · m4-05 · m4-08); klass nomini izohda `.calm` emas,
+«Modifikator .calm» deb yozing». To'rtinchisi tug'ilmasin.
+
+---
+
+## 2026-08-20 · ARXIV QAMROVI (F-0820-197) + 2-SESSIYA m4-09 NOMZODLARI (F-0820-210…214)
+
+### F-0820-197 — arxiv to'rt darvozadan ham chiqarildi (variant **b**)
+
+`SKIP_DIRS = ['2-moodull eski', 'eski']` — `esbuild-gate` · `jsx-lint` · `dark-lint` ·
+`til-lint`. Sabab bitta: `App.jsx` ga **ulanmagan** o'lik nusxalar.
+
+| Darvoza | Arxivdan kelgan | Keyin |
+|---|---|---|
+| `esbuild-gate` | 5 (buzuq import) | **130/130 ✓ TOZA** |
+| `til-lint` | **191** | 745🔴 → **548🔴** |
+| `jsx-lint` | **20** | 130 fayl |
+| `dark-lint` | **14** | 392 → **378** |
+
+🔴 **Bashorat 137/137 edi — natija 130/130.** Farq: qamrovdan **5 buzuq fayl emas,
+butun arxiv papkalari** (**12 fayl**) chiqdi. 5 tasi buzuq edi, qolgan 7 tasi soz —
+lekin ular ham o'lik. Sabab bir xil bo'lgani uchun chegara **papka darajasida** o'tkazildi.
+
+`KATTA_TOZALASH` **19-band** — arxiv taqdiri (saqlash / o'chirish / alohida vetka),
+5 buzuq faylning ro'yxati bilan. **O'chirilmadi** — bu foydalanuvchi qarori.
+
+### `MATN_KORPUS` §159 — «O'RGATILAYOTGAN OBYEKT» oilasi hujjatlandi
+
+Uch a'zo, uchalasi ham 4-Modulda topilgan: **personaj matni** (m4-01 `COMMENTS`) ·
+**olam-oqimi** (m4-03 chat xabarlari) · **iqtibos-obyekt** (m4-14 «Zo'r ekan!»).
+
+🔴 **Chegara mezoni yozildi:** «qo'shtirnoq ichida bo'lsa istisno» — **noto'g'ri**
+(JSX'da hamma matn qo'shtirnoqda). To'g'ri savol: **matn darsning ovozimi yoki
+olamning ovozimi?** O'quvchiga murojaat → qoida ishlaydi; olamga tegishli → istisno.
+
+### m4-09 nomzodlari — hukm
+
+| # | Nomzod | Hukm | Raqam |
+|---|---|---|---|
+| ① | «Tekin nishon» — nishon faqat xato-mumkin ekranga | ✅ **QABUL — o'lchandi, qamrov KATTA** | **F-0820-210** |
+| ② | 128-qonunga: birlashtiruvchi ko'prik **ikkala** eski obrazni aytsin | ✅ **QABUL** | **F-0820-211** |
+| ③ | RU «вы/Вы» izchilligi | ✅ **QABUL — 10-bandga birlashtiriladi** | **F-0820-212** |
+| ④ | O'lik TTS ommaviy (m4-09: 16+4) | ✅ **QABUL — 12-bandning 4-dalili** | **F-0820-213** |
+| ⑤ | `tap-hint` qoidasiga istisno: stagger-to'lqin ruxsat | ✅ **QABUL** | **F-0820-214** |
+
+#### ① F-0820-210 — o'lchov nomzoddan KENGROQ chiqdi
+
+Nomzod m4-09 da «2/4 tekin» degan. **Butun 4-Modul o'lchandi** — naqsh 6 darsda takrorlanadi:
+
+| Dars | Nishon | Ball bermaydigan ekranda |
+|---|---|---|
+| `DbSqlNosqlLesson` | 4 | **3** (s3 · s5 · s14) |
+| `BackendCrudPracticeLesson` | 4 | **3** (s5 · s10 · spf) |
+| `RoutingLesson` · `PostgresCrudLesson` · `ApiPostmanLesson` | 4 | **2** (har biri) |
+| **`DataIntroLesson` (etalon)** | 4 | **0** ✅ |
+
+**Jami: 24 nishondan 12 tasi** ball bermaydigan ekranda.
+
+🔴 **Lekin «ball bermaydi» ≠ «tekin».** Sudrash-mashqi yoki debugging ekrani ball
+bermaydi, ammo **xato qilish mumkin** — u yerda nishon haqli. Shuning uchun mezon
+`scored` emas: **ekranda muvaffaqiyatsizlik yo'li bormi?** 12 taning har biri
+**qo'lda** ko'rilishi kerak. Etalon m4-01 da 0 bo'lishi qoidaning to'g'riligini
+tasdiqlaydi.
+
+**Qonun-matni navbatda** — o'lchov usuli aniqlangandan keyin (avtomatik `scored`
+tekshiruvi yetarli emas).
+
+#### ⑤ F-0820-214 — `tap-hint` istisnosi (F-0820-196 ga qo'shiladi)
+
+«Bir vaqtda bittadan» qoidasiga istisno: **sinxron ko'p-puls taqiq**, lekin
+**ketma-ket stagger-to'lqin ruxsat** — u yerda kechikish **tartib-ma'nosini** tashiydi
+(«avval buni, keyin buni»), ya'ni harakat bezak emas, **ko'rsatma**. Ikkalasi bitta
+qonunda yoziladi.
+
+## 2026-08-20 · m4-09 `ApiPostmanLesson` («API nima + Postman» · KOD-dars) — ✅ DARVOZALAR TOZA (F-0820-206…219 + B1/B2/B3) · parallel seans · klapan mini-qadami kutmoqda
+
+Audit `AUDIT_PROMPT.md` bo'yicha (etalon m4-01 · obraz-merosi m3-08/09 · 128-qonun) → GAP-hisobot (14 topilma + 1 yolg'on-signal +
+3 bahsli + 7 EKRAN-XAVF + **qulflangan ekranlar ro'yxati**) → **[GATE]** → ikki to'lqin. Darvozalar **`npm run gates -- <fayl>`**
+bilan (egasi argument-uzatishni tuzatdi, CLAUDE.md yangilandi).
+
+### Foydalanuvchi qarorlari
+- **B1 → TASDIQ.** `METHODS.DELETE` va `STAT[404]` `#C2410C` → **`T.danger #C2362B`** (token faylga qo'shildi), `STAT[400]` `#D97706` (amber) → **`#7C5CBF`**.
+  Ichki rang-til Postman-konvensiyadan ustun — modul-izchillik.
+- **B2 → s3 to'lqin QOLADI.** Stagger tartib-ma'no tashiydi; qoida-nomzodga istisno-band: «taqiq — sinxron ko'p-puls; ruxsat — ketma-ket to'lqin».
+  s2/s10 sinxron pulslar → faqat navbatdagi element.
+- **B3 → IKKALASI.** s1 reja-ko'prigi (UZ+RU) + s2 bir gaplik eslatma («ofitsiant ham, jo'natma ham — shu pochtaning ichida»).
+
+### 1-TO'LQIN
+| F-ID | Nima qilindi |
+|---|---|
+| **206** | `StudentPracticePulse` (m3-09 kanonik) + `.done-mini` |
+| **207** | 129-qonun — `MentorPracticeStats` 0/0 → `null` |
+| **208** | **128-qonun ko'prigi.** s1 mentor: «3-Modulda **ofitsiant** taom olib kelardi (GET), siz **jo'natma** yuborardingiz (POST). Bugun ikkalasini bitta rasmga yig'amiz — **pochta**: har so'rov konvert, har javob shtampli qaytgan xat. Ikki yo'nalish, bitta tizim.» (+RU) · s2 mentor: «…ofitsiant ham, jo'natma ham — shu pochtaning ichida» (+RU). Uchinchi (birlashtiruvchi) obraz endi **aytib** kiritiladi |
+| **209** | F-29 to'plami → accent/`#E03E1B`; `.mstats-reveal` kontur + 132-juftligi |
+| **210** | 16-qonun — `.hint` `1.5px dashed` → `1px solid ${T.line}` (bu darsda 6 ekranda ishlatiladi) |
+| **211** | s15 final: boshlang'ich maslahat **neytral** («Method tanlang va Send bosing — shtamp javob beradi»); method-xaritasi faqat **xato-Send'dan keyin** (mavjud `sent && !isCorrect` shoxiga «Eslatma: GET=o'qish…» qo'shildi) |
+| **212** | `ACH_TRIGGERS`: `envelopeBuilder` s13 (xato qilib bo'lmaydigan 3 Send) → **s3** (konvert yig'ish — noto'g'ri zona rad etiladi); `stampReader` s14 da qoldi (debugging-akt, m4-04 `bugHunter` pretsedenti) |
+| **216** | B1 palitra (yuqorida); izoh yangilandi |
+| **217** | `.live-badge` 0.4 → 0.62 |
+| **218** | `s15p`/`s15b` → `practice`/`podium` |
+
+**1-to'lqin:** `gates` 4/5 (til 4🔴 kutilgan — 2-to'lqin) · dark **4 → 0** · UZ-RU 533/533 · `C2410C|D97706` 0.
+
+### 2-TO'LQIN
+| F-ID | Nima qilindi |
+|---|---|
+| **213** | «ushbu» → «bu» · «tavsiya etiladi» ×2 → «qisqa takrorlang» / «Yana bir bor tushuntiring» (RU ham) · «Zo'r!» → «Juda yaxshi!» · hw-note «API'ni **professional** yozamiz» → «haqiqiy loyihadagidek yozamiz» (RU «профессионально» → «как в настоящем проекте» — lint RU shaklini ham tutdi) |
+| **214** | O'lik TTS: `useAudio([…])` **×16** + `audioText` ×4 + `audioState={audio}` ×16 ketdi (AUDIOSIZ; `QuestionScreen` ichki zaglushkasi qoldi) |
+| **215** | B2 — s2 `apinode` (3 sinxron) va s10 `crud-card` (4 sinxron) → `firstUnseen` bilan faqat navbatdagi; **s3 stagger tegilmadi** |
+| **219** | O'lik CSS `.chip-on` · `.demo-swap` · `.gloss` · `.gloss-head` · `.gloss-body` (5 qator, React-meros) |
+
+### Darvozalar (`npm run gates -- src/4-Modull/ApiPostmanLesson.jsx`)
+| Darvoza | Oldin | Keyin |
+|---|---|---|
+| esbuild | ✓ | **✓** |
+| jsx | 0 | **0** |
+| dark | **4** | **0** |
+| til | **4🔴 · 2🟡** | **0 · 0** |
+| prompt | ✓ | **✓** |
+| **Jami** | 3/5 | **5/5 toza** |
+
+UZ-RU 533/533 · residue (`ushbu|tavsiya etiladi|Zo'r! Vazifani|professional|C2410C|D97706|s15p|s15b|useAudio(\[|audioText=`) **0** ·
+`ofitsiant` 2 · `jo'natma` 2 (ikkalasi ko'prik-matnda) · `pochta` 11 · dead CSS 14 — hammasi umumiy qatlam (F-167). Diff 87+/85−.
+
+### Tegilmadi (ataylab)
+Hook s0 (137 ✓) · s3 sudrash + stagger (B2) · Postman mock (yengil, 7 ekranda bir xil) · shtamp-muhr animatsiyalari · s10 CRUD-ko'prik · s14 debugging yakun-qoidasi.
+
+### 🔒 QULFLANGAN EKRANLAR (klapan uchun ro'yxat — `useStuckValve` m4-08:988 kanonik, 13-band)
+| Ekran | `done` sharti | `progress` o'lchovi (hook uchun) | Xavf |
+|---|---|---|---|
+| s2 | 3 `apinode` | `seen.size` | past |
+| s3 | 5 bo'lak zonada | `nPlaced` | o'rta (sensor-sudrash; tap-fallback bor) |
+| s5 · s6 · s7 · s8 | `Send` → 850 ms | `sent ? 1 : 0` | past |
+| s10 | 4 karta | `seen.size` | past |
+| s11 | ▶ → 7×950 ms interval | `step` | **o'rta** — fon-tab sekinlashtiradi; `↻` bor |
+| s13 | 3 Send + 2 «Keyingi» | `step + (sent ? 1 : 0)` | past |
+| s14 | qator → tuzat → Send | `(found?1:0)+(fixed?1:0)+(sent?1:0)` | past |
+| s15 (final) | POST + Send | `(method?1:0)+(sent?1:0)` | o'rta — xato method 400/200, qayta tanlanadi; **final → rescue'da `correct: false`** (136-qonun) |
+| praktika | «Bajardim» | — | past (klapan kerak emas) |
+
+**Holat:** darvozalar 5/5 toza · **klapan mini-qadami — foydalanuvchi qaroriga** (quyida so'raladi) · **COMMIT YO'Q** · umumiy fayllarga tegilmadi.
+
+### NOMZODLAR (egasi-seansga, raqamsiz — to'g'ri formatda)
+1. **DARS_ETALON — «tekin nishon».** Nishon faqat xato qilish mumkin bo'lgan ekranga (SCORED / rad-mexanikali challenge / final). Asos: m4-14 kod-izohi, m4-09 F-212 (2/4 tekin edi). O'lchov: `ACH_TRIGGERS` id'lari `scored: true` yoki rad-mexanikali (`reject`/`shake`/`wrong`) ekranmi.
+2. **128-qonunga qo'shimcha — birlashtiruvchi obraz.** Yangi dars ikki eski obrazni bitta yangi obrazga yig'sa (pochta = ofitsiant + jo'natma), ko'prik-gap **ikkala** eski obrazni nomlasin. Asos: m4-09 F-208. O'lchov: `grep -c "ofitsiant\|jo'natma"` ≥ 1 ko'prik-matnda.
+3. **RU murojaat izchilligi.** m4-09 «вы» kichik (s0 «по-вашему», s1 «вы через…»), boshqa m4 darslarida «Вы». O'lchov: `grep -c " вы \| по-вашему" src/4-Modull/*.jsx` fayl bo'yicha.
+4. **O'lik TTS ommaviy tozalash** (m4-04 NOMZOD 5 ni kuchaytiradi): m4-09 da 16+4 bor edi, m4-13 0, m4-14 0 — modul ichida notekis. O'lchov: `grep -c "useAudio(\[" src/4-Modull/*.jsx`.
+5. **`tap-hint` qoidasiga istisno-band (B2 formulirovkasi):** «taqiq — sinxron ko'p-puls; ruxsat — ketma-ket to'lqin (stagger)». Asos: m4-09 s3 (5 chip, 0.16 s siljish) tartib-ma'no tashiydi.
+
+**EKRAN-XAVF 7 bandi** → `MODUL_TUR.md` ga «m4-09» belgisi bilan.
+
+### 🔓 m4-09 · KLAPAN MINI-QADAMI — F-0820-220 (tasdiqlandi) → m4-09 ✅ YOPILDI
+
+`useStuckValve` — m4-08 kanonik nusxasi (`BackendCrudPracticeLesson.jsx:988`, 1-sesiya) **so'zma-so'z** ko'chirildi (konstantalar 40/25 s ipucha ·
+110/60 s rescue, mentor rejimida o'chiq) + `.bhint` / `.bhint.calm` CSS. Tatbiq — **10 qulflangan ekran** (qulf-ro'yxatidagi hammasi,
+past-xavfli taymer-qulflar s5–s8 ham — «arzon va tekis qamrov»):
+
+| Ekran | `progress` | Ipucha (UZ) |
+|---|---|---|
+| s2 | `seen.size` | 💡 Uchta qismdan qolganini bosing — har biri o'z ishini aytadi. |
+| s3 | `nPlaced` | 💡 Konvertga hamma bo'lak kerak: so'rovga METHOD, URL, BODY — javobga STATUS, DATA. Bo'lakni bosing, keyin konvertni bosing. *(foydalanuvchi tahriri: uch fikr ajratildi, «sudrang yoki» ikkilanishi ketdi — tap universal)* |
+| s5 · s6 · s7 · s8 | `sent ? 1 : 0` | 💡 «Send» bosing — … (har birida o'z natijasi: konvert ketadi · 201 shtampi · narx yangilanadi · 3-mahsulot o'chadi) |
+| s10 | `seen.size` | 💡 Qolgan method-kartalarni bosing — har biri ortidagi SQL'ni ko'rsatadi. |
+| s11 | `step` | 💡 ▶ tugmasini bosing — konvert 4 bekatdan o'tib qaytadi, kuzating. *(foydalanuvchi tahriri: «7 qadam» raqami ketdi — ekranda o'zi ko'rinadi)* |
+| s13 | `step + (sent ? 1 : 0)` | 💡 Uch so'rov ketma-ket: Send → «Keyingi so'rov» → Send → «Keyingi so'rov» → Send. |
+| s14 | `found + fixed + sent` | 💡 Manzilda bitta harf yetishmaydi — xato qatorni bosing, tuzating va qayta Send. |
+| rescue (hammasi) | — | Qolganini keyinroq birga ko'rib chiqamiz — «Davom etish» ochiq. (m4-08 bilan bir xil) |
+
+RU juftliklari hammasida (UZ-RU 533 → **553**). Mexanika: `NavNext disabled={!done && !_resc}`, label `(done || _resc) ? 'Davom etish' : …`.
+
+🔴 **Ball-halollik qaydi (alohida, foydalanuvchi talabi).** Rescue bilan o'tilganda **`onAnswer` chaqirilmaydi**: `answers[idx]` bo'sh qoladi,
+statistika «topdi» demaydi, **nishon ham berilmaydi** (s3 `envelopeBuilder` rescue'da olinmaydi). Bu darsda klapan faqat **ballsiz** ekranlarda —
+shuning uchun `correct: false` yozuvi ham kerak emas. **s15 final klapansiz** (foydalanuvchi qarori): noto'g'ri method 400/200 beradi, qayta tanlash
+ochiq — o'quvchi chin tiqilmaydi; rescue bilan final-ballni yozish foyda bermaydigan joyga mexanika bo'lardi (m4-08 praktikasi ham klapansiz).
+
+**Darvozalar (`npm run gates -- src/4-Modull/ApiPostmanLesson.jsx`):** 5/5 toza (esbuild · jsx · dark · til · prompt) · UZ-RU 553/553 ·
+`useStuckValve(done` ×10 · `!done && !_resc` ×10 · s15 da 0. Diff 158+/85−.
+
+**Holat:** ✅ **m4-09 YOPILDI** · **COMMIT YO'Q** · umumiy fayllarga tegilmadi. Qulf-ro'yxat va klapan — endi standart audit-bandlar (keyingi darsdan).
+
+### ⏭ Navbat (parallel seans)
+**m4-11 `AuthEnvLesson`** — texnik ro'yxatning oxirgi darsi (m4-10 1-sesiyada). E'tibor: «xavfsizlik» mavzusi PM m4-07 bilan qo'shni —
+obraz/atama merosi PM-to'lqinda; bu seans faqat o'z darsidagi izchillikni ko'radi.
+
+---
+
+## 2026-08-20 · VOSITA-JURNALI · F-0820-215 — `dark-lint` JIM-NOL
+
+🔴 **«Darvoza rost gapiradi» tamoyilining eng nozik holati.** `dark-lint` topilma bo'lsa
+ham **`0` qaytarardi**. Yakka ishlatilganda bu sezilmasdi — odam ekranga qaraydi va
+«Jami: 8 ta topilma» ni o'qiydi. Lekin `npm run gates` chiqish kodlarini **yig'a**
+boshlagach, darvoza yolg'onga aylandi:
+
+```
+m4-10 auditida:  gates → «✓ dark»   ·   dark-lint → «Jami: 8 ta topilma»
+```
+
+`til-lint` va `jsx-lint` allaqachon `1` qaytarardi — `dark-lint` shu qatorga qo'shildi
+(`if (total > 0) process.exitCode = 1`). Yo'q-papka uchun qo'yiladigan `exitCode = 2`
+saqlanadi.
+
+**Regressiya tekshirildi:** yopilgan beshala dars (m4-01 · 03 · 05 · 06 · 08) tuzatishdan
+keyin ham **5/5 toza** — ya'ni jim-nol o'tmishdagi imzolarni yashirmagan.
+
+**Sinf:** bu seansdagi **uchinchi** «darvoza yolg'on gapiradi» holati —
+F-0820-88 (papka argumenti jim yutilardi) · F-0820-193 (argument bir vositaga tushardi) ·
+F-0820-215 (jim-nol). Uchalasining shakli bir xil: **vosita ishlayapti deb ko'rinadi,
+aslida tekshirmayapti.**
+
+---
+
+## 2026-08-20 · m4-10 `FullstackConnectPracticeLesson` — ✅ SIKL YOPILDI (F-0820-216…227)
+
+### 🔴 O'Z-TUZATUV — F-227 buyrug'ining predmeti yo'q edi
+
+Auditda «**7 ta qulf-yorlig'i generik «Davom etish»**» deb yozgan edim va foydalanuvchi
+uni tuzatishga ruxsat bergan edi. **Da'vo noto'g'ri chiqdi.** O'lchov:
+`grep -c "label={done ? … 'Davom etish' … : … 'Davom etish'"` → **0**.
+To'qqizala ekranda yorliq allaqachon harakatni aytadi («Ma'lumot manbasini tanlang» ·
+«AI'ga buyruq bering» · «Uch holatni ko'ring» …). Ya'ni **138-qonun bu darsda
+allaqachon bajarilgan**.
+
+**XATO-SABABI (saboq):** F-217 uchun o'rovchi `<div>` qo'shganimdan keyin qator raqamlari
+**+4 ga siljigan** edi. Men eski raqamlar bilan o'qidim va `<Stage eyebrow=…>` matnini
+qulf-yorlig'i deb ko'rsatdim.
+
+> 🔴 **SABOQ:** o'rovchi/qator qo'shilgandan keyin **qator raqamlari qayta o'qiladi**.
+> Siljigan raqam bilan o'qish — mavjud bo'lmagan nuqsonni «topadi».
+
+**Buyruqni bo'sh bajarish o'rniga aytdim** — 3-to'lqin faqat **klapan**ga qisqardi.
+
+### 1-TO'LQIN
+
+| F-ID | Nima qilindi |
+|---|---|
+| **217** | **135-qonun ×2** — `.bridge` va `.gate`: kirish `fade-up delay-N` **o'rovchi `<div>`** ga chiqdi, holat (`live` · `sending` · `blocked` · `open`) elementda qoldi |
+| **218** | **129-qonun** — `MentorPracticeStats` `0/0` da `null` |
+| **219** | **`StudentPracticePulse`** qo'shildi |
+| **221** | **134-qonun, TO'RTINCHI takror** — «Siz» → `.you-badge` (+CSS). Qo'shimcha: `added ? T.success : T.ink` ×2 → **`ink3`**; «hali qo'shilmagan» holati **qora** edi, qora esa «xato» kabi o'qiladi — aslida u shunchaki «hali emas» |
+| **223** | **137-qonun** — `correct: v === 'b'` + ko'prik darsning o'z mazmunidan: «Aslida sayt **buzilmagan** va mashina **yomon emas**. Front va back — alohida tillarda emas, **bitta tizimda** gaplashadi; hozir ular orasidagi **ulanish** yo'q» |
+
+### 2-TO'LQIN
+
+| F-ID | Nima qilindi |
+|---|---|
+| **216** | O'lik `s16` kaliti chiqdi → repoda `INLINE_KEYS` nomosligi **19 → 18** (14-band bir qadam yopildi) |
+| **220** | **F-29 — BESHTA** tugma (`.scard-btn` ham) + **132-juftligi** |
+| **222 · 224 · 225 · 226** | `.hint` solid · «ushbu»→«bu» · «tavsiya etiladi» ×2 · «Zo'r!»→«Juda yaxshi!» |
+
+### 3-TO'LQIN — KLAPAN (13-band ikkinchi qo'llanish)
+
+`useStuckValve` m4-08 dan ko'chirildi, **9 ta qulflangan ekranga** ulandi.
+To'qqizala ipucha foydalanuvchi tasdig'i bilan **tahrirsiz** yozildi.
+Rescue matni m4-08 bilan **bir xil**.
+
+🔴 **YORLIQ HAM REscUE HOLATINI TANIYDI:** `label={(done || _resc) ? 'Davom etish' : …}`.
+Aks holda tugma ochiq, yozuv esa hamon «Uch holatni ko'ring» deb turardi —
+138-qonunning o'zi buzilardi.
+
+**KLAPAN-MUSTAQILLIGI (ekran-xavf 6-bandiga tasdiq):** hook **komponent ichida**
+yashaydi — `setInterval` faqat o'sha ekran ochiq turganda yuradi va ekran almashganda
+`useEffect` cleanup bilan **to'xtaydi** (`unmount`). Ya'ni bir vaqtda **faqat joriy
+ekranning** ipuchasi ko'rinadi; to'qqizta ipucha to'planib qolmaydi.
+Tartib tekshirildi: **klapan → NavNext → ipucha**, 9 marta, aralashmagan.
+
+### Darvozalar
+
+| Darvoza | Sikldan oldin | Yopilganda |
+|---|---|---|
+| `npm run gates` | **2/5** | **5/5 ✓** |
+| `lint:jsx` | 3🔴 | **0** |
+| `lint:dark` | 8 | **0** |
+| `lint:til` | 3🔴 · 1🟡 | **0 · 0** |
+| UZ-RU parite | 580 ↔ 580 | **600 ↔ 600** |
+
+**Holat: ✅ YOPILDI · COMMIT YO'Q.**
+
+### ⏭ Navbat
+
+**m4-11 — 2-sessiyada, TEGILMAYDI.** Bu sessiyaning keyingi ishi:
+`KATTA_TOZALASH` **ochiq-bandlar inventarizatsiyasi** (modul-yakun hisoboti uchun).
+
+## 2026-08-20 · m4-11 `AuthEnvLesson` («Autentifikatsiya + .env» · KOD-dars, texnik ro'yxat oxiri) — ✅ SIKL YOPILDI (F-0820-221…236 + B1/B2/B3) · parallel seans
+
+Audit `AUDIT_PROMPT.md` bo'yicha (etalon m4-01 · obraz «konsert bilaguzugi» — foydalanuvchi qarori · m4-09 Postman «id33 davomi») →
+GAP-hisobot (15 topilma + 3 bahsli + 7 EKRAN-XAVF + qulf-ro'yxati) → **[GATE]** → ikki to'lqin + klapan. Darvozalar `npm run gates -- <fayl>`.
+PM m4-07 bilan «xavfsizlik» obraz/atama merosi — PM-to'lqinda (bu seans faqat o'z darsini ko'rdi).
+
+### Foydalanuvchi qarorlari
+- **B1 → `#C2362B` / `#7C5CBF`** — modul-toni g'olib; «ikki darsda ikki xil qizil "bir tizim" hissini buzadi». `DELETE → T.danger` token orqali.
+- **B2 → `pm-chrome` BU DARSDA ko'chirildi** (3 JSX + 5 CSS, «id33 davomi» ipi ekranda); kanonik Postman-mock — NOMZOD (theme-band bilan).
+- **B3 → faqat s6** — token birinchi ishlatilgan joy; obraz almashmayapti, qo'shilyapti — bir ko'prik yetadi.
+- Klapan: 10 ekran · s15 final klapansiz (final-pretsedent F-220) · 11 ipucha **tahrirsiz tasdiq** (s6 ikki-bosqichli va s13 sabab-eslatmali alohida qayd).
+
+### 1-TO'LQIN
+| F-ID | Nima qilindi |
+|---|---|
+| **221** | `StudentPracticePulse` (m3-09 kanonik) + `.done-mini` |
+| **222** | 129-qonun — `MentorPracticeStats` 0/0 → `null` |
+| **223** | F-29 to'plami → accent/`#E03E1B`, `.mstats-reveal` kontur + 132; **inline `background: T.danger` ×2 → `.btn.danger` klassi** (hook «😈 Begona», s8 «⬆ push»; hover `#A52D23`) — 134-qonun: xavfli-amal roli klassda |
+| **224** | B1 — `T.danger #C2410C → #C2362B`, `T.purple #7C3AED → #7C5CBF`, `METHODS.DELETE` literal → `T.danger`, `rgba(194,65,12,…)` ×4 → `(194,54,43,…)` |
+| **225** | 16-qonun — `.hint` `1.5px dashed` → `1px solid ${T.line}` (s13·s14·s15 da ishlatiladi) |
+| **226** | `.live-badge` 0.4 → 0.62 |
+| **229** | s15 final: placeholder `JWT_SECRET=super-secret-key-123` (javob) → **`KALIT=qiymat`**; hint misolsiz («…kalit nomi chapdagi kodda turibdi»); mentor-namuna qoldi (1932) |
+| **230** | Hook c «Saytni butunlay yopib qo'yamiz» (31) → «Saytni yopib, mahsulotlarni faqat qog'ozda yuritamiz» (52) — shakl-telli yo'q |
+| **231** | B3 — s6 mentor: «O'tgan darsdagi konvert (so'rov) o'sha — endi uning sarlavhasiga bilaguzukni ilasiz: `Authorization: Bearer <token>`» (+RU) — m4-09 obrazi m4-11 ga **ulandi** |
+| **234** | `spractice`/`spodium` → `practice`/`podium` |
+
+### 2-TO'LQIN
+| F-ID | Nima qilindi |
+|---|---|
+| **227** | «ushbu» → «bu» · «tavsiya etiladi» ×2 → «qisqa takrorlang» / «Yana bir bor tushuntiring» (RU «рекомендуется» → buyruq) · «Zo'r! Loyihangiz…» → «Juda yaxshi!…» · hw-note «professional» → «haqiqiy loyihadagidek» (RU «как в настоящем проекте») |
+| **228** | `tap-hint` sinxron → `firstUnseen`: s2 `authstep` ×3, s5 `chip` ×3 (`['h','p','s'].find`), s10 `envfile` ×3 — stagger yo'q edi, istisno qo'llanmadi |
+| **232** | O'lik TTS `useAudio` ×1 + `audioState` ketdi |
+| **233** | O'lik `dd-*` drag-drop qatlami + `.pechat-404` — **28 qator** ketdi; qolgan 1 ta havola umumiy `dbg` reduced-motion qatorida (aralash selektor, F-167 qamrovi) |
+| **235** | B2 — `pm-chrome` (nuqtalar + «Postman» + URL-tab), m4-09 bilan bir xil |
+
+### 🔓 KLAPAN — F-0820-236
+`useStuckValve` m4-08 kanonik nusxasi + `.bhint`; **10 ekran**: s2 `seen.size` · s3 `done2` · s5 `seen.size` · s6 `hasToken+sentNo+sentYes` · s7 `i` (`doneAll`) ·
+s8 `pushed` · s10 `seen.size` · s11 `step` · s13 `step+(phase==='sent')+mistakes` · s14 `found+fixed`. **s15 final klapansiz.**
+Ipucha-matnlar (11, tasdiqlangan, UZ+RU): s2 «Uch qadamdan qolganini bosing — hujjat, bilaguzuk, zona» · s3 «“→ Kirish” tugmasini bosing — server bilaguzuk beradi» ·
+s5 «Bilaguzukning uch qismini bosing — header, payload, signature» · s6 «Avval tokensiz Send bosing (401 ni ko'ring), keyin katakchani belgilab, yana Send» ·
+s7 «Har bilaguzukni tekshiring: imzo va muddat joyidami? KIRIT yoki RAD ni bosing» *(birinchi variant «hukm bering» — `hukm-buyruq` F-0727-05 tutdi, darvoza ishladi)* ·
+s8 «“⬆ GitHub'ga push qilish” tugmasini bosing — kalit qayerda ko'rinishini ko'ring» · s10 «Uch qutini bosing — .env, process.env, .gitignore» ·
+s11 «▶ tugmasini bosing — oqim login'dan ruxsatgacha o'zi yuradi, kuzating» · s13 «Avval qaror tanlang (xato bo'lsa sabab chiqadi), keyin Send yoki “→ Kirish”» ·
+s14 «Kalit qiymati ochiq yozilgan qatorni bosing, keyin “🔧” bilan tuzating» · rescue — m4-08 bilan bir xil.
+🔴 Ball-halollik: rescue'da `onAnswer` chaqirilmaydi — s7 `gatekeeper` / s13 `tokenforged` nishonlari faqat xatosiz yakunda; mentor rejimida o'chiq.
+
+### Darvozalar (`npm run gates -- src/4-Modull/AuthEnvLesson.jsx`)
+| Darvoza | Oldin | Keyin |
+|---|---|---|
+| esbuild | ✓ | **✓** |
+| jsx | 0 | **0** |
+| dark | **6** (4 tugma + 2 inline) | **0** |
+| til | **4🔴 · 1🟡** | **0 · 0** |
+| prompt | ✓ | **✓** |
+| **Jami** | 3/5 | **5/5 toza** |
+
+UZ-RU 593 → **614/614** · residue (`ushbu|tavsiya etiladi|Zo'r! |professional|spractice|spodium|useAudio(\[|C2410C|7C3AED`) 0 (faqat `.qz-btn.ghost` `#7C3AED` — CodeStrike arena umumiy qatlami, `T.purple` emas) · `useStuckValve(done` ×10 · s15 da 0 · diff 176+/92−.
+
+### Tegilmadi (ataylab)
+s7 «Qo'riqchi smenasi» (5 hukm, xato mumkin, kod-qator ko'rsatkichi) · s13 3-qarorli amaliyot (133 ✓) · s8→s10→s14→s15 «maxfiy kalit» ipi · hook halol (137 ✓) · `.gq-seg` qora tasma = bilaguzuk (ataylab) · `ACH_TRIGGERS` to'rttasi real (F-212 sinfi yo'q).
+
+### NOMZODLAR (egasi-seansga, raqamsiz — to'g'ri formatda)
+1. **KATTA_TOZALASH — `T.danger`/`purple` token qiymatlari** modul bo'ylab: m4-11 `#C2410C`/`#7C3AED` edi (tuzatildi), boshqa darslarda ham bo'lishi mumkin. O'lchov: `grep -c "C2410C\|7C3AED" src/4-Modull/*.jsx` (arena `.qz-btn.ghost` istisno).
+2. **Kanonik Postman-mock** (`pm-chrome` bilan, theme-band) — m4-09/10/11 da uch nusxa. O'lchov: `grep -c "pm-chrome"` fayl bo'yicha (m4-09 3 · m4-11 3 · m4-10 ?).
+3. **RU «вы/Вы»** — m4-11 da 13 «вы» : 2 «Вы» (bir faylda aralash); m4-09 NOMZOD 3 ni kuchaytiradi. O'lchov: `grep -c " вы "` vs `" Вы "` fayl bo'yicha.
+4. **O'lik `dd-*` drag-drop qatlami** boshqa darslarda: O'lchov: `grep -l "^\s*\.dd-slot" src/4-Modull/*.jsx` vs `grep -l 'className="dd'`.
+
+**EKRAN-XAVF 7 bandi** → `MODUL_TUR.md` («m4-11»); 7-band — **hook-mexanika savoli** sifatida alohida belgilandi.
+
+**Holat:** ✅ **m4-11 YOPILDI** · **COMMIT YO'Q** · umumiy fayllarga tegilmadi.
+
+### ⏭ 2-sesiya texnik navbati TUGADI: **04 · 09 · 11 · 13 · 14 ✅**. Yangi tayinlov — foydalanuvchi qarori bilan (PM-to'rtlik).
+
+---
+
+# 🆕 2026-08-20 · YANGI HUDUD — 4a · 4b · 4c MINI-MODULLARI (11 texnik dars)
+
+## ⛔ PM DARSLARI BLOKLANGAN — PM-BANK
+
+`PmLesson15` · `PmLesson16` · `PmLesson17` · `PmLesson18` **va 4c dagi PM-mavzulari** —
+**PM-bankka** qo'shiladi, alohida katta to'lqin bo'ladi. **Hozir audit ham, tuzatish ham
+YO'Q.** (4-Moduldagi m4-02/07/12/15 bloki bilan bir xil tartib.)
+
+## Egalik taqsimoti
+
+| Seans | Darslar |
+|---|---|
+| **BU SESSIYA** | `src/4a-Modull` **to'liq**: `NestArchAliveLesson` → `NestArchResourceLesson` → `NestArchPracticeLesson`; keyin **4c boshi**: `CiCdIntroLesson` → `GithubActionsLesson` |
+| **2-sessiya** | `4b` + `4c` oxiri — **TEGILMAYDI** |
+
+## Hudud haqida ogohlantirish (foydalanuvchi)
+
+Bu hudud **eski naqshda tug'ilgan** — topilma **ko'p bo'ladi (15–20)**, bu **normal**.
+4-Modul texnik o'ntaligida ko'chma qoidalar bosqichma-bosqich yoyilgan edi; bu yerda
+ular **bir vaqtda** chiqadi.
+
+**Birinchi dars: `NestArchAliveLesson` — 4a-ETALONI bo'lib yopiladi**, qolgan ikkitasi
+unga tortiladi (m4-01 usuli).
+
+## Standart sikl-shakli (foydalanuvchi qo'shimchasi bilan)
+
+`audit → GAP + EKRAN-XAVF + **QULF/KLAPAN-JADVALI** → [GATE] → to'lqinlar →
+npm run gates → STATE + MODUL_TUR`
+
+🆕 **Qulf/klapan-jadvali endi audit-hisobotining doimiy bo'limi** — m4-08/m4-10 da u
+alohida to'lqin sifatida kelgan edi; endi auditda birga o'lchanadi.
+
+---
+
+# 🔢 RAQAM-REZERV PROTOKOLI (F-0820-251) — oldingi RAD hukmi BEKOR QILINDI
+
+## O'z-tuzatuv
+
+2-sessiyaning m4-13 ⑥ nomzodini («F-raqam poygasi») **rad etgan** va yechim sifatida
+«**sikl boshida repo-maksimum o'lchanadi**» degan edim. **Hukm noto'g'ri edi.**
+
+🔴 **Nima uchun yetarli emas:** ikki audit **PARALLEL** boshlanganda ikkalasi ham
+**bir xil maksimumni** o'qiydi va **bir xil raqamdan** ketadi. O'lchov to'g'ri, xulosa
+noto'g'ri — men «o'qish» muammosini hal qildim, aslida muammo «**yozish**» da edi.
+
+**Dalil:** shu kuni to'qnashuv **ikki marta** takrorlandi —
+(a) 135-qonun/F-136 (parallel seans men bilan bir vaqtda yozdi),
+(b) 4a-01 auditi: ikkala seans ham **237** dan ketdi.
+
+## Yangi protokol — REZERV (foydalanuvchi taklifi, qabul qilindi)
+
+> **Audit BOSHIDA** — birinchi tuzatishdan **oldin** — seans `PIPELINE_STATE` ga
+> bir qatorlik **rezerv** yozadi:
+> `🔢 REZERV: F-0820-XXX … F-0820-YYY — <seans> · <dars> · <sana>`
+>
+> Ikkinchi seans **shu qatorni o'qiydi** va undan **keyingi** blokdan boshlaydi.
+
+**Nega ishlaydi:** rezerv — **yozuv**, o'lchov emas. Ikki seans bir vaqtda o'qisa ham,
+**birinchi yozgan** blokni egallaydi; ikkinchisi uni ko'radi. Repo-maksimum esa
+faqat «hozirgacha nima ishlatilgan» ni aytadi — **kim nimani rejalashtirganini** emas.
+
+**Blok kattaligi: 16 raqam** (bitta dars-sikli odatda 12–20 topilma beradi).
+Kam qolsa — yangi blok rezerv qilinadi, oraliq bo'sh qolsa — **qoladi** (raqam arzon,
+chalkashlik qimmat).
+
+---
+
+## 🔢 REZERVLAR
+
+| Blok | Seans | Maqsad | Sana |
+|---|---|---|---|
+| **F-0820-237 … 252** | **BU SESSIYA** | 4a-01 `NestArchAliveLesson` + protokol | 2026-08-20 |
+| F-0820-253 … 268 | 2-sessiya | parallel audit (o'zi e'lon qilgan) | 2026-08-20 |
+| **F-0820-269 … 284** | **BU SESSIYA** | 4a-02 · 4a-03 (keyingi darslar) | 2026-08-20 |
+| F-0820-285 … 300 | 2-sessiya | 4b-01 klapan (285) + 4b-02 `EdgeCasesTestLesson` (253–268 to'ldi) | 2026-08-20 |
+| F-0820-301 … 316 | 2-sessiya | 4b-02 klapan (301) + 4c `FullPipelineProjectLesson` (285–300 to'ldi) | 2026-08-21 |
+| F-0820-317 … 332 | 2-sessiya | 4c-03 klapan (317) + 4c `AiPipelineProjectLesson` (301–316 to'ldi; foydalanuvchi tasdig'i) | 2026-08-21 |
+| F-0820-349 … 364 | 2-sessiya | 4c-04 B1 lug'at-almashuv (usta→yordamchi) + klapan (317–332 to'ldi; foydalanuvchi tasdig'i) | 2026-08-21 |
+| F-0820-365 … 380 | 2-sessiya | 4c-05 `FullProPipelineLesson` (4c oxirgisi; foydalanuvchi tasdig'i) | 2026-08-21 |
+
+---
+
+## 2026-08-20 · 2-SESSIYA NOMZODLARI (4B-01) — EGASI HUKMI (F-0820-252 · 269 · 270)
+
+| # | Nomzod | Hukm | Raqam |
+|---|---|---|---|
+| ① | Soxta-o'lchov taqiqi (tiklanishda konstanta) | ✅ **QABUL — YANGI SINF, qamrov katta** | **F-0820-252** |
+| ② | `.editor-tab` / CODE-token dark-istisno | ✅ **QABUL** | **F-0820-269** |
+| ③ | Buyruq-imlo birligi | 🟡 **QABUL — lekin 4a da BUZILISH YO'Q** | **F-0820-270** |
+
+### ① F-0820-252 — SOXTA-O'LCHOV (yangi sinf, §157 · 136 oilasi)
+
+**Nomzod haq va u yangi sinf ochdi.** Naqsh:
+
+```js
+const [seen, setSeen] = useState(storedAnswer ? 2 : 0);      // ← 2 QAYERDAN?
+const [phase, setPhase] = useState(storedAnswer ? 3 : 0);
+```
+
+O'quvchi sahifani qayta yuklaganda holat **haqiqiy yozuvdan emas, QATTIQ
+KONSTANTADAN** tiklanadi. Ya'ni ekran «2 ta ko'rdingiz» deb ko'rsatadi — o'quvchi
+nechtasini ko'rganidan **qat'i nazar**. Bu **o'lchovni to'qib chiqarish**.
+
+**Oila:** §157 (matn yolg'on maqtaydi) · 136-qonun (signal shartsiz `true`) ·
+**252 (o'lchov konstantadan tiklanadi)**. Uchalasining ildizi bitta:
+**ekran haqiqatni emas, qulay qiymatni ko'rsatadi.**
+
+🔴 **QAMROV: 36 fayl** (o'lchangan 2026-08-20). Ya'ni bu **dars-siklida emas**,
+`KATTA_TOZALASH` sinfida. Yechim yo'nalishi: `onAnswer` payloadiga haqiqiy holat
+yoziladi (`seen: [...]` · `step: n`) va tiklashda **o'shandan** o'qiladi.
+🔷 **Lekin har ekranda payload shakli har xil** — avtomatik tuzatib bo'lmaydi.
+**Qonun-matni va qamrov-rejasi alohida ish**, 4a sikllaridan keyin.
+
+### ② F-0820-269 — `.editor-tab` dark-istisnosi
+
+**13 topilma · 5 fayl** (4a-02 · 4a-03 · 4b ×2 · 4c). Muharrir tab-chizig'i — kod
+oynasining bir qismi, **ataylab quyuq**.
+
+🔴 **MUHIM ANIQLIK (bugun 4a-01 da chiqdi):** `data-dark-ok` **faqat INLINE**
+`style={{ background }}` uchun ishlaydi. CSS-qoidasi bilan e'lon qilingan ataylab-quyuq
+yuza `dark-lint` ning **ALLOW ro'yxatiga** qo'shiladi. `.messy` bugun shunday yopildi.
+`.editor-tab` ham **ALLOW** ga qo'shiladi — lekin **o'z darsi siklida** (4a-02), chunki
+u yerda boshqa topilmalar bilan birga ko'riladi.
+
+### ③ F-0820-270 — buyruq-imlo birligi: QABUL, lekin o'lchov BUZILISH KO'RSATMADI
+
+O'lchov (butun repo):
+
+| Buyruq | Fayl |
+|---|---|
+| `npm run dev` | **4** |
+| `npm run start:dev` | **2** |
+| `npm start` · `nest start` · `node index.js` | **0** |
+
+Ikki xil buyruq bor, lekin ular **turli texnologiya** uchun: `npm run dev` — Vite/React,
+`npm run start:dev` — NestJS. Ya'ni bu **imlo-tafovut emas, to'g'ri farq**.
+4a-01 da faqat `start:dev` (16 marta) — **bir dars, bir yozilish** ✓.
+
+**Qoida qabul qilinadi** («bir dars — bir yozilish»), lekin **hozir buzilish yo'q** —
+u **regressiya-qorovuli** sifatida yoziladi, tuzatish ishi emas. Qonun-matni 4a-02/03
+sikllarida yoziladi, agar u yerda haqiqiy tafovut chiqsa.
+
+---
+
+## 2026-08-20 · 4a-01 `NestArchAliveLesson` — ✅ 4a-ETALON MUHRLANDI (F-0820-237…252 · 269…271)
+
+Yangi hududning birinchi darsi. Foydalanuvchi ogohlantirgan edi — «topilma ko'p bo'ladi
+(15–20)»; **18 chiqdi**, ya'ni bashorat aniq edi.
+
+### 1-TO'LQIN
+
+| F-ID | Nima qilindi |
+|---|---|
+| **237 · 238** | 129-qonun (`0/0` null) · `StudentPracticePulse` |
+| **242** | **137-qonun** — `correct: v === 'b'` + ko'prik **restoran-olamidan**: «Aslida **uchinchi yo'l** bor… kod **tartibli joylashtiriladi**: har ish o'z xonasida. Restoranda ham shunday: zal alohida, oshxona alohida, ombor alohida» |
+| **244** | «professional» ×4 → «haqiqiy» · «tayyor, ishlab turgan» · «tajribali» · «tayyor» |
+| **245** | **73-qonun** — «Keyingi darsda…» va'da-qatorlari ×2 qoida-gapga aylandi |
+
+🔴 **F-244 da JUFTLIK-XATOSI:** UZ tomonini tuzatgach `til-lint` **hamon 4🔴** berdi —
+qoida `professional|профессиональн` ni **ikkala tilda** tutadi, men esa **RU juftliklarini
+unutgan edim**. To'rttasi ham yopildi.
+> **SABOQ:** ikki tilli darsda matn-tuzatish **juftlik bilan** qilinadi — bir tomonni
+> tuzatib ikkinchisini unutish eng oson o'tib ketadigan xato.
+
+### 2-TO'LQIN
+
+**239** F-29 (+132) · **240** `.hint` solid · **241** dublikat CSS ×2 · **243** `.messy` ·
+**246** registr · **247** kantselyarit · **248** «quyidagi»
+
+🔴 **F-243 — YECHIM O'ZGARDI.** Avval `data-dark-ok="tartibsiz kod paneli"` qo'ydim —
+**ishlamadi**. Sabab: `dark-lint` da `data-dark-ok` **faqat inline** `style={{background}}`
+uchun tekshiriladi; `.messy` esa **CSS-qoidasi**. To'g'ri mexanizm — **ALLOW ro'yxati**
+(`.code-box` · `.vsc` kabi). Chegara `AUDIT_PROMPT` ga yozildi:
+**inline → atribut · CSS-qoida → ALLOW**.
+
+### 3-TO'LQIN — KLAPAN 12 EKRANGA (13-band uchinchi qo'llanish, eng katta qamrov)
+
+To'qqiztasi tahrirsiz, **Screen3 foydalanuvchi tahriri bilan**: «yozilishi kerak» passiv
+edi → «**terminalga `npm run start:dev` buyrug'ini kiriting**».
+
+**Screen9 tekshiruvi:** yorlig'i `navLabel` — hisoblanadigan ko'p shoxli
+(«Yo'lakni yig'ing (n/6)»). **Generik emas** → 138-qonun bu darsda **to'liq bajarilgan**,
+ESKI→YANGI kerak bo'lmadi.
+
+### 🔴 O'ZIM KIRITGAN RUNTIME-BUG — BESHALA DARVOZA HAM O'TKAZIB YUBORDI (F-0820-271)
+
+Ommaviy almashtirish (`disabled={!done}` → `disabled={!done && !_resc}`) **13** joyga
+tegdi, klapan esa **12** ta. 13-chisi — `ScreenLivePractice` (klapansiz, m4-08 pretsedenti).
+Natija: **`ReferenceError: _resc is not defined` → OQ EKRAN**.
+
+**esbuild toza** (sintaksis to'g'ri) · `jsx` · `dark` · `til` · `prompt` — **hammasi toza**.
+Ya'ni `npm run gates` **5/5** deb ko'rsatdi, dars esa **ochilmasdi**.
+
+**Tuzatildi** (praktika qatori klapansiz holatga qaytarildi) va **darvozaga band qo'shildi**:
+`jsx-lint` **1c-bandi** — komponentda `_resc`/`_tip` ishlatiladi, lekin `useStuckValve`
+yo'q bo'lsa → 🔴. **Sinov-fayl bilan isbotlandi** (buzuq komponent tutildi, soz komponent
+o'tdi); haqiqiy fayllarda **yolg'on signal yo'q**.
+
+> **SABOQ:** ommaviy `split().join()` almashtirish **qamrovni sanaydi** — 13 ≠ 12 bo'lsa,
+> farq **qayerdaligi** aniqlanadi. Sanoq mos kelmasa, almashtirish to'xtatiladi.
+
+### Darvozalar
+
+| Darvoza | Sikldan oldin | Yopilganda |
+|---|---|---|
+| `npm run gates` | **3/5** | **5/5 ✓** |
+| `lint:dark` | 5 | **0** |
+| `lint:til` | 7🔴 · 14🟡 | **0 · 0** |
+| UZ-RU parite | 600 ↔ 600 | **602 ↔ 602** |
+| Yetim `_resc` | — | **12/12 mos** ✓ |
+
+**Holat: ✅ 4a-ETALON · COMMIT YO'Q.**
+Qolgan ikki dars (`NestArchResourceLesson` · `NestArchPracticeLesson`) shunga tortiladi.
+
+### ⏭ Navbat: 4a-02 `NestArchResourceLesson`
+
+Ma'lum topilma (jurnaldan, qayta kashf qilinmaydi): **`.editor-tab` dark-istisnosi**
+(F-0820-269) — ALLOW ro'yxatiga **o'sha siklda** qo'shiladi.
+Rezerv: **F-0820-269 … 284**.
+
+## 2026-08-20 · 4b-01 `JestUnitTestLesson` («Unit-test: Jest» · KOD-dars, 4b-Modul boshi) — ✅ SIKL YOPILDI (F-0820-253…268 + 285 · B1/B2/B3) · parallel seans (2-sessiya)
+
+Audit `AUDIT_PROMPT.md` bo'yicha (etalon m4-01 — 4a-etalon chiqquncha) → GAP-hisobot (16 topilma + 3 bahsli + 7 EKRAN-XAVF + qulf/klapan-jadvali) → **[GATE]** →
+ikki to'lqin + klapan (ipucha [GATE] alohida). Darvozalar `npm run gates -- <fayl>`.
+
+### 🔢 F-ID moslik-jadvali (to'qnashuv: 1-sesiya 4a-01 uchun 237–252 ni oldi; 2-sessiya bloki 253–268)
+| Hisobotda | STATE'da | | Hisobotda | STATE'da |
+|---|---|---|---|---|
+| 237 | **253** Pulse | | 245 | **261** hook-c shakl |
+| 238 | **254** 129-qonun | | 246 | **262** til-to'rtlik |
+| 239 | **255** 137-ko'prik | | 247 | **263** Payoff→tr() |
+| 240 | **256** F-29 + race-cf | | 248 | **264** tap-hint firstUnseen |
+| 241 | **257** mstats + 132 | | 249 | **265** npm-buyruq birligi |
+| 242 | **258** editor-tab token | | 250 | **266** o'lik TTS |
+| 243 | **259** live-badge | | 251 | **267** o'lik amber |
+| 244 | **260** soxta o'lchov | | 252 | **268** RU «Готово» |
+Klapan → **F-0820-285** (253–268 bloki to'ldi; yangi blok **285…300** REZERVLAR jadvaliga yozildi — protokol: «kam qolsa yangi blok»).
+Keyingi darslarda: avval `PIPELINE_STATE.md` REZERVLAR → keyin repo-maksimum.
+
+### Foydalanuvchi qarorlari
+- **B1 → TASDIQ** — s9 «Bloklarni joyiga **bosib** qo'ying (sudrash ham mumkin)», flow-label «bloklar — bosing» (m4-09 pretsedenti). Drag-mexanika qoladi.
+- **B2 → «Burilish» QOLADI** — s16 finalda to'g'ri javobdan keyin «noto'g'ri etalon → qizil» ikkinchi parda ataylab (yutuq-paytida ogohlantirish).
+  📌 **Izoh (foydalanuvchi qarori, keyingi darslarga):** *final ikki pardali bo'lishi mumkin, agar ikkinchi parda darsning yadro-saboqi bo'lsa.* Bu yerda yadro-saboq — «Jestbot o'zi to'g'rini bilmaydi, faqat etalon bilan solishtiradi».
+- **B3 → TASDIQ** — hook-ack «Modul 05'da» → «oldingi modullarda» (raqam 4b-o'quvchiga ma'nosiz).
+
+### 1-TO'LQIN
+| F-ID | Nima qilindi |
+|---|---|
+| **253** | `StudentPracticePulse` (m3-09 kanonik, m4-11 nusxasi) + `.done-mini` |
+| **254** | 129-qonun — `MentorPracticeStats`: o'quvchi yo'q/yuklanmagan → `null`; «Yuklanmoqda…/Hali hech kim…» shoxlari ketdi |
+| **255** | **137-qonun** — hook `correct: v === 'b'`; «Aynan!» faqat b da, a/c da ko'prik: «Qo'lda tekshirish 5 ta hisobda ham charchatadi, tekshirmaslik esa xatoni mijozgacha olib boradi. Uchinchi yo'l bor — test…» (+RU). Oldin a/b/c hammasi «Aynan!» + `correct: true` |
+| **256** | F-29 to'plami — `.btn / .lp-done-btn / .rc-btn / .race-cf` → accent/#fff, hover `#E03E1B` |
+| **257** | `.mstats-reveal` kontur (paper/accent/border) + `:hover/.ready color:#fff` (132) |
+| **258** | `.editor-tab #1E1E1E` → **`.editor-file`** + `CODE.bg/CODE.text` tokenlar. Nom ham o'zgardi: bu **bosilmaydigan fayl-nomi yorlig'i**, «tab» nomi `dark-lint` CTRL_SEL (`tab\b`) ni va o'quvchini tugma deb aldaydi. Egasi F-269 (ALLOW-istisno) ga bog'liq emas — 4b-01 o'z-o'zidan toza |
+| **259** | `.live-badge` 0.4 → 0.62 |
+| **260** | s3 poyga — tiklanishda soxta `taps 10 / ms 38000` → `onAnswer` ga haqiqiy `taps, ms` yoziladi, `storedAnswer` dan o'qiladi; eski yozuvda (`taps` yo'q) raqamsiz matn. Egasi buni **yangi sinf** deb muhrladi (F-252, qamrov 36 fayl) |
+| **261** | Hook c «Hech tekshirmayman, ishonaman» (30) → «Hech tekshirmayman — kod o'zgarganida ham ishlayveradi deb ishonaman» (63) — shakl-telli yo'q |
+
+### 2-TO'LQIN
+| F-ID | Nima qilindi |
+|---|---|
+| **262** | «ushbu» → «bu» · «tavsiya etiladi» ×2 → «qisqa takrorlang» / «Yana bir bor tushuntiring» · «Zo'r! Vazifani…» → «Juda yaxshi!…» |
+| **263** | s13 eyebrow `"Payoff · FAIL"` → `tr({ uz: 'Natija · FAIL', ru: 'Итог · FAIL' })` |
+| **264** | `tap-hint` sinxron → `firstUnseen`: s2 gchip ×3 · s3 race-call ×5 · s6 gchip ×4 · s12 vcard ×3 |
+| **265** | O'rnatish buyrug'i bir yozilishda — `npm i -D jest ts-jest` (s1 tag · s5 terminal+tugma · flashcard · recap · praktika; s5 izoh «-D (--save-dev)») |
+| **266** | O'lik TTS — `useAudio/getAudioEngine` zaglushkasi, QuestionScreen `audioText/audioOk/audioWrong`, praktika `useAudio`, `audioState` ×2 ketdi |
+| **267** | O'lik `T.amber '#B45309'` (0 ishlatilgan) ketdi |
+| **268** | Praktika tugmasi RU «✅ Выполнил» → «✅ Готово» (F-179 egasi-shakli) |
+
+### 🔓 KLAPAN — F-0820-285
+`useStuckValve` m4-08 kanonik nusxasi + `.bhint`; **10 ekran**: s2 `seen.size` · s3 `opened+checked+bot` · s5 `step` · s6 `seen.size` · s7 `prog` · s9 `placed+run` · s10 `ran` · s12 `seen.size` · s13 `broken` · s15 `prog`.
+**s16 final klapansiz** (pretsedent F-220/236). `PickLines` ga `onProgress` prop (har bosish — to'g'ri ham, noto'g'ri ham — siljish); s9 `navLabel` `(done || _resc)`.
+Ipuchalar (10, tasdiqlangan; s3 foydalanuvchi tahriri — uch jumla ikki bo'ldi, m4-09 s3 pretsedenti): s2 «Qolgan misolni bosing — har biri mashinaning kirish → chiqish juftini ko'rsatadi» ·
+s3 «Har hisobni bosib oching va «✓ To'g'ri» bilan tasdiqlang. Hammasi tekshirilgach ▶ Jestbot chiqadi» · s5 «Terminal ostidagi tugmani bosing — avval o'rnatish, keyin "test": "jest" qo'shiladi» ·
+s6 «O'ng tomondagi qolgan qismni bosing — import, describe, it, expect har biri o'z ishini aytadi» · s9 «Blokni bosing — u o'z qatoriga o'zi tushadi: avval describe, keyin it, keyin expect. So'ng ▶ npm test» ·
+s10 «“▶ npm test” tugmasini bosing — Jest test faylini topib, natijani o'ngda ko'rsatadi» · s12 «Qolgan qadamni bosing — Tayyorla, Chaqir, Tekshir: har biri bir kod-qatorga to'g'ri keladi» ·
+s13 «“🔨 Kodni buzish” tugmasini bosing — * o'rniga + bo'ladi va o'ngda test natijasi o'zgaradi» · rescue — m4-08 bilan bir xil.
+
+📌 **NAQSH-NAMUNA (foydalanuvchi belgiladi — keyingi darslar shundan o'rgansin):**
+- **s7 — ikki-daraja printsipi.** Ipucha javobni emas, javobning **turini** aytadi: «Ikki qator kerak: biri funksiyani chaqiradi (natija = …), ikkinchisi natijani expect bilan tekshiradi. Noto'g'ri qatorni bossangiz sabab chiqadi.» Qaysi tugma — aytilmaydi; o'quvchi mezon oladi, javobni emas (138-qonun 2-daraja: «chuqurlashtiradi»).
+- **s15 — misol-raqamli takror.** Mentor bergan ikki savol ipuchada **aniq raqam** bilan qaytadi: «expect bormi? etalondagi raqam to'g'rimi (10000 × 2)? Ikkalasiga «ha» bo'lsa — haqiqiy test.» Takror emas — tekshirish-protokoli, qo'lga olinadigan qilib.
+
+🔴 Ball-halollik: rescue'da `onAnswer` chaqirilmaydi — s9 `greenSuite` / s15 `fakeTestHunter` nishonlari faqat haqiqiy yakunda; mentor rejimida klapan o'chiq.
+
+### Darvozalar (`npm run gates -- src/4b-Modull/JestUnitTestLesson.jsx`)
+| Darvoza | Oldin | Keyin |
+|---|---|---|
+| esbuild | ✓ | **✓** |
+| jsx | 0 | **0** |
+| dark | **6** (.btn · .lp-done-btn · .mstats-reveal · .rc-btn · .editor-tab · .race-cf) | **0** |
+| til | **3🔴 · 1🟡** | **0 · 0** |
+| prompt | ✓ | **✓** |
+| **Jami** | 2/5 | **5/5 toza** |
+
+UZ-RU 538 → **562/562** · residue (`useAudio|audioState|amber|editor-tab|Modul 05|npm install|Выполнил'`) 0 · `useStuckValve(done` ×10 · `!done && !_resc` ×10 · s16 da 0 · diff 177+/74−.
+
+⚠️ **Jarayon-hodisa (halol qayd):** 1-to'lqinda F-255 ni bir-qatorli `pick` funksiyasi **ichiga** `// 137-qonun…` izoh bilan yozdim — izoh qatorning `};` qismini yutdi (CLAUDE.md 4-bo'lim aynan shu sinf). **esbuild tutdi**, `lint:jsx` esa **«toza» dedi** (`});   // izoh` + ` };` shakli detektor naqshiga tushmagan). Bisect bilan topildi (skript har qadamdan keyin esbuild-transform), izoh alohida qatorga chiqdi. → NOMZOD 4.
+
+### Tegilmadi (ataylab)
+Robot-olam (Jestbot · papka · varaqa · etalon kartochkasi · lampa) · bitta misol-ipi `orderTotal` (108 ✓) · yadro-saboq uch pog'onasi s9→s15→s16 · s3 poyga o'lchovi · s13 payoff · `ACH_TRIGGERS` beshtasi xato-mumkin ekranlarda · `.dd-slot.over #FFD380` — CODE.attr, muharrir-palitrasi · s1 «Modul 05» emas, lekin «oldingi modullarda» — B3.
+
+### NOMZODLAR (egasi-seansga, raqamsiz — to'g'ri formatda)
+1. **Tiklanishda soxta o'lchov** — egasi F-252 deb muhrladi (qamrov 36 fayl, KATTA_TOZALASH). 4b-01 da tuzatilgan nusxa: `onAnswer(… taps, ms)` + `storedAnswer.taps ?? 0` + raqamsiz matn-shoxi — **namuna-tatbiq** sifatida havola.
+2. **`.editor-tab` → `.editor-file`** — egasi F-269 ALLOW-yo'lini tanladi; muqobil yo'l: **nom-to'g'rilash** (bosilmaydigan yorliq «tab» deb atalmaydi, 134-qonun ruhi). O'lchov: `grep -c 'className="editor-tab"' src/**/*.jsx` → qaysi darslarda u bosiladigan (haqiqiy tab) va qaysilarida yorliq.
+3. **Buyruq-imlo birligi** — egasi F-270 (4a da buzilish yo'q). 4b-01 da **buzilish BOR EDI** (3 yozilish, tuzatildi F-265): `npm i -D jest` · `npm install --save-dev jest ts-jest` · `npm install -D jest`. O'lchov (4b/4c): `grep -ohE "npm (i|install) (-D|--save-dev)[^'\"\x60<]*" src/4b-Modull/*.jsx src/4c-Modull/*.jsx | sort | uniq -c`.
+4. **`lint:jsx` ko'r nuqtasi — bir-qatorli funksiya ichidagi `//` izoh, `});   // …` + ` };` shakli.** Dalil: 4b-01 1-to'lqin, `const pick = (v) => { … onAnswer(screen, {…});   // izoh };` — jsx ✓ dedi, esbuild «Unexpected export» berdi. O'lchov: sinov-qatori `const f = () => { a(); // x };` detektorga beriladi — topilma 1 bo'lishi kerak.
+5. **Klapan ipucha-darajalari** (foydalanuvchi belgilagan naqsh-namuna): «tur-ipucha» (s7) va «misol-raqamli protokol» (s15) — 138-qonun 2-darajasiga ikki namuna sifatida qo'shish taklifi. O'lchov: ipucha matnida javob-tugmaning nomi yo'q, lekin mezon bor.
+
+**EKRAN-XAVF 7 bandi** → `MODUL_TUR.md` («4b-01»).
+
+**Holat:** ✅ **4b-01 YOPILDI** · **COMMIT YO'Q** · umumiy fayllarga tegilmadi (STATE: raund-yozuv + REZERVLAR qatori).
+
+### ⏭ Navbat (2-sessiya): **4b-02 `EdgeCasesTestLesson`** (4b oxirgi darsi) → 4c oxiri (FullPipelineProject → AiPipelineProject → FullProPipeline). PM darslar — BLOK.
+
+---
+
+### 🔢 REZERV — 4a-02 `NestArchResourceLesson` (2026-08-20)
+
+`F-0820-269 … 284` bloki bu sessiyada band. Undan **269 · 270 · 271** allaqachon
+ishlatilgan (4B-nomzodlari ② ③ + hook-havola darvozasi), shuning uchun **4a-02
+topilmalari 272 dan** boshlanadi. **Etalon: 4a-01** `NestArchAliveLesson` (m4-01 emas —
+restoran-olami, klapan-naqshi, `navLabel` uslubi shundan tekshiriladi).
+
+## 2026-08-21 · 4b-02 `EdgeCasesTestLesson` («Edge cases va error path» · KOD-dars, 4b oxirgi darsi) — ✅ SIKL YOPILDI (F-0820-286…300 + 301 · B1/B2/B3) · parallel seans (2-sessiya) → **4b-Modul TO'LIQ**
+
+Audit `AUDIT_PROMPT.md` bo'yicha (etalon m4-01; 4b-01 egizagi — bir xil skelet, «shumtaka mijoz» obrazi) → GAP (15 topilma + 3 bahsli + 7 EKRAN-XAVF + qulf/klapan) →
+**[GATE]** → ikki to'lqin + klapan (ipucha [GATE] alohida). Darvozalar `npm run gates -- <fayl>`. F-ID: 285…300 bloki (286–300), klapan → **301** (yangi blok **301…316** REZERVLAR jadvaliga).
+
+### Foydalanuvchi qarorlari
+- **B1 → s16 ikkinchi parda QOLADI** («guard eski `toBe(0)` testni buzadi → qizil = yaxshi xabar»). 4b-01 B2 mezoni tatbiq etildi: *ikkinchi parda yadro-saboqning amaliy isboti* — «test o'zgarishni sezadigan to'r».
+- **B2 → `0.5 → 2`** — toza chalg'ituvchi; «butun» sharti savolni murakkablashtirardi. CARD_WHY yangilandi («2 — ishlaydi, lekin eng kichik emas»).
+- **B3 → neytral «Variant A / Variant B»**, ✓/✗ tanlovdan keyin (mavjud boxShadow shoxi + prefiks).
+
+### 🔴 Ikki mazmun-xato (ko'z bilan topildi, lint ko'rmaydi)
+| F-ID | Nima qilindi |
+|---|---|
+| **299** | s7 `❌ Variant A` / `✅ Variant B` — javob tanlovdan OLDIN oshkor edi → neytral sarlavha; `{choice === 'a' ? '✗ ' : ''}` / `{done ? '✓ ' : ''}` tanlovdan keyin |
+| **300** | s16 final chalg'ituvchi `0.5`: guard `quantity <= 0` uni rad etmaydi, 1 dan kichik → savol («eng kichik xato tashlamaydigan quantity») bo'yicha 0.5 ham to'g'ri edi. CARD_WHY[3] buni o'zi tan olardi. → `CARD_OPTS ['0','1','-1','2']`, CARD_WHY «2 — ishlaydi, lekin eng kichik emas: undan kichigi ham xato tashlamaydi» (+RU) |
+
+### 1-TO'LQIN
+| F-ID | Nima qilindi |
+|---|---|
+| **286** | `StudentPracticePulse` + `.done-mini` |
+| **287** | 129-qonun — MPS 0/0 → `null` |
+| **288** | 137-qonun — hook `correct: v === 'b'`; a/c ko'prik «Hisoblab beraversa — do'kon bepul va manfiy buyurtmalarni qabul qiladi; «hech kim qilmaydi» desak — shumtaka mijoz doim topiladi…»; c «Farqi yo'q — haqiqiy mijoz baribir bunday qilmaydi» (36→50). **Izoh alohida qatorda** (4b-01 yutilish-saboqi) |
+| **289** | F-29 — `.btn/.lp-done-btn/.rc-btn` accent + `#E03E1B`; `.mstats-reveal` kontur + `:hover/.ready #fff` (132) |
+| **290** | `.editor-tab` ×2 → `.editor-file` + `CODE.bg/CODE.text` (4b-01 F-258 pretsedenti) |
+| **291** | `.live-badge` 0.62 |
+
+### 2-TO'LQIN
+| F-ID | Nima qilindi |
+|---|---|
+| **292** | `tap-hint` → `firstUnseen`: s0 ×2 · s3 ×3 · s5 ×2 |
+| **293** | O'lik TTS (zaglushka + QS + praktika + `audioState` ×2) ketdi |
+| **294** | O'lik `T.amber` ketdi |
+| **295** | RU «✅ Выполнил» → «✅ Готово» |
+| **296** | Til: «ushbu»→«bu» · «tavsiya etiladi» ×2 → buyruq · «Zo'r!»→«Juda yaxshi!» · «hisoblanadi» ×3 (sifat-ma'no: «ishonchli ishlaydi» / «yetarli» / «tegishli») · «beradi-yu» → «ogohlantiradi, lekin» · «matcher» → «tekshiruvchi (matcher)» ×3. **Pretsedent-tatbiqlar:** s9 «bosib qo'ying (sudrash ham mumkin)» + «bloklar — bosing» (B1 4b-01); s12 «Modul 05'da» → «oldingi modullarda» (B3 4b-01) |
+| **297** | Eyebrow `tr()`: s12 «Xato yo'li · API», s13 «Natija · bug» (s7 `toThrow` — kod-atama, qoldi) |
+| **298** | O'lik CSS: `.frame · .vseen · .role-ico · .role-r` (4b-01 vcard qoldig'i) ketdi |
+
+### 🔓 KLAPAN — F-0820-301
+`useStuckValve` m4-08 kanonik + `.bhint`; **10 ekran**: s2 `show` · s3 `seen.size` · s5 `seen.size` · s6 `show` · s7 `choice` (null/a/b → 0/1/2) · s9 `placed+run` (navLabel) · s10 `a+b` · s12 `show` · s13 `step` · s15 `onProgress`. **s16 final klapansiz.** 10 ipucha tahrirsiz tasdiq.
+Ipuchalar: s2 «“Bu yetarlimi?” tugmasini bosing — happy path testi natijasi o'ngda chiqadi» · s3 «Qolgan chegara-qiymatni bosing — 0, manfiy va 1: har biri mashinaning javobini ko'rsatadi» ·
+s5 «Qolgan g'alati kirishni bosing — matn va null: mashina nima qaytarishini ko'ring» · s6 «“🛡️ Guard (throw) qo'shish” tugmasini bosing — funksiya boshiga tekshiruv qo'shiladi va o'ngda ikki natija chiqadi» ·
+s9 «Blokni bosing — u o'z qatoriga o'zi tushadi: avval shart (if), keyin xato tashlash (throw), keyin hisob (return). So'ng ▶ npm test» · s10 «Ikkala tugmani bosing — “▶ 1 ni sinash” va “▶ 0 ni sinash”: chegaraning ikki tomoni ham yashil bo'lishi kerak» ·
+s12 «“▶ POST /order { quantity: 0 }” tugmasini bosing — API javobi o'ngda chiqadi» · s13 «Tugmani ketma-ket bosing — avval faqat happy-path test, keyin edge test qo'shiladi: ikki natijani solishtiring» · rescue — m4-08.
+
+📌 **NAQSH-AVLOD (foydalanuvchi qaydi — 4b-01 naqshi meros bo'lib ishladi):**
+- **s7 ikki-daraja merosxo'rligi:** «Savol: qaysi variantda funksiya darrov chaqirilmaydi, balki () => ichiga o'ralgan? Noto'g'risini bossangiz sabab chiqadi» — mezon beriladi (o'ralganlik), karta emas.
+- **s15 «chalg'ituvchi nomlangan» protokoli:** «Har testga ikki savol bering: () => bilan o'ralganmi? toThrow ishlatilganmi (toBe emas)? Ikkalasiga «ha» bo'lsa — haqiqiy edge test» — ikki savol + eng xavfli chalg'ituvchi (`toBe`) aniq nomi bilan.
+  4b-01 (s7 tur-ipucha · s15 misol-raqam) → 4b-02 (s7 mezon · s15 nomlangan chalg'ituvchi): bitta naqsh, ikki dars — keyingi darslar shundan davom etsin.
+
+🔴 Ball-halollik: rescue'da `onAnswer` yo'q; s9/s15 nishonlari faqat haqiqiy yakunda; mentor rejimida klapan o'chiq.
+
+### Darvozalar (`npm run gates -- src/4b-Modull/EdgeCasesTestLesson.jsx`)
+| Darvoza | Oldin | Keyin |
+|---|---|---|
+| esbuild | ✓ | **✓** |
+| jsx | 0 | **0** |
+| dark | **5** | **0** |
+| til | **4🔴 · 4🟡** | **0 · 0** |
+| prompt | ✓ | **✓** |
+| **Jami** | 2/5 | **5/5 toza** |
+
+UZ-RU 521 → **545/545** · residue (`useAudio|audioState|amber|editor-tab|Modul 05'da|[❌✅] Variant|'0.5'|hisoblanadi|Выполнил'`) 0 · darsga xos o'lik CSS 0 · `useStuckValve(done` ×10 · s16 da 0 · diff 169+/75−.
+
+### Tegilmadi (ataylab)
+«Shumtaka mijoz» obrazi (4b-01 robot-olamining davomi, o'sha `orderTotal`) · s3→s5→s6→s9 pog'onasi · s10 chegaraning ikki tomoni · s13 payoff («−5 ta = 50 000 qaytim») · s12 API-400 ko'prigi · s13 `storedAnswer ? 2` — done-holat tiklovi (o'lchov emas, F-252 sinfi emas) · s0/s3/s5 `gchip` qizil kontur — ataylab (g'alati buyurtma).
+
+### NOMZODLAR (egasi-seansga, raqamsiz)
+1. **Oshkor-belgi taqiqi** (F-299 sinfi, yangi sinf): variant/karta sarlavhasida ✅/❌/✓/✗ **tanlovdan oldin** bo'lmaydi — belgi tanlov-holatidan keladi. O'lchov: `grep -nE "'[❌✅] (Variant|Вариант)|uz: '✅ [A-D]\b" src/**/*.jsx`.
+2. **Chalg'ituvchi halolligi** (F-300 sinfi, yangi sinf): SCORED savolning har noto'g'ri varianti **darsning o'z qoidasi bo'yicha ham** noto'g'ri bo'lishi shart. O'lchov-belgi: `CARD_WHY`/`explainWrong` matnida «rad etmaydi» / «ishlaydi, lekin» iborasi — chalg'ituvchi aslida to'g'ri ekanining tan olinishi.
+3. **RU «вы/Вы»** — 4b-02 da 6:1; davom.
+4. **Ipucha-naqsh avlodi** — 4b-01 F-285 + 4b-02 F-301: «tur/mezon-ipucha» va «nomlangan-chalg'ituvchi protokoli» 138-qonun 2-darajasiga ikki namuna (4b-01 NOMZOD 5 ni kuchaytiradi).
+
+**EKRAN-XAVF 7 bandi** → `MODUL_TUR.md` («4b-02»).
+
+**Holat:** ✅ **4b-02 YOPILDI → 4b-Modul TO'LIQ (4b-01 · 4b-02)** · **COMMIT YO'Q** · umumiy fayllarga tegilmadi (STATE: raund-yozuv + REZERV qatori).
+
+### ⏭ Navbat (2-sessiya): 4c oxiri — **`FullPipelineProjectLesson`** → `AiPipelineProjectLesson` → `FullProPipelineLesson`. 4c boshi (CiCdIntro · GithubActions) — 1-sesiya; havola bo'lsa «hali auditdan o'tmagan» belgisi. PM — BLOK.
+
+---
+
+## 2026-08-21 · 1-SESSIYA · 4a-02 `NestArchResourceLesson` — TO'LIQ SIKL ✅
+
+**Rezerv:** F-0820-269…284 (269–271 oldin ishlatilgan; bu siklda **272–283**; bo'sh: 284).
+
+### Audit → GAP (3/5 darvoza · UZ-RU 624↔624 · 3440 qator)
+
+| F-ID | Topilma | To'lqin |
+|---|---|---|
+| 272 | `MentorPracticeStats` `0/0` da `null` qaytarmasdi — bo'sh apparat (**129-qonun**) | 1 |
+| 273 | `StudentPracticePulse` **yo'q** edi (45-qonun) | 1 |
+| 274 | `.btn` · `.lp-done-btn` · `.mstats-reveal` · `.rc-btn` = `T.ink` (F-29) + **132-juftligi** | 2 |
+| 275 | `.hint { 1.5px dashed }` → `1px solid ${T.line}` (**16-qonun**) | 2 |
+| 276 | `.editor-tab` `#1E1E1E` → `dark-lint` **ALLOW** (CSS-qoida chegarasi) | 2 |
+| 277 | `.oc-plate-chip` `#E0234E` → **BREND ro'yxati** (quyida) | 2 |
+| 278 | «professional» ×2 → «tajribali» (**RU juftliklari bilan** — F-244 saboqi) | 1 |
+| 279 | «yana kiriting» ×2 → «qayta kiriting» (lug'at F-0727-57) | 1 |
+| 280 | «ushbu» ×1 · «tavsiya etiladi» ×2 → buyruq shakli | 2 |
+| 281 | «Zo'r!» → «Ajoyib!» (registr) | 2 |
+| 282 | Klapan **11 ekranga** (ipucha + rescue + nav ulanishi) | 3 |
+| 283 | 🔴 **4a-01 da** `.done-mini`/`.dm-sub` CSS yo'q — quyida alohida | — |
+
+### F-277 — `dark-lint` da yangi **BRAND** ro'yxati (A varianti)
+
+`SEMANTIC` dan **ayrim**, chunki sharti boshqacha: SEMANTIC rang **har joyda** o'tadi,
+brend rangi esa **faqat belgi-kontekstida**.
+
+```js
+const BRAND = new Map([['#E0234E', 'NestJS']]);          // 4a: T.nest
+const BRAND_CTX = /plate|chip|logo|badge|mark|brand|emblem/i;
+```
+
+- **RUXSAT** — plastinka · chip · logotip · nishon: rang = texnologiya **taniqligi** (o'quv qiymati).
+- **TOPILMA** (`◆` belgisi bilan) — tugma · holat-rangi · umumiy fon.
+
+4b (Jest) va 4c (GitHub Actions) ranglari kelganda **shu ro'yxatga** qo'shiladi, izohi bilan.
+
+🔬 **Sintetik dalil:** `.nest-plate-chip` o'tdi · `.nest-go-btn` topilma ✓.
+⚠️ Birinchi sinov **yolg'on-toza** chiqdi — sinov klassini `.brand-btn` deb nomlagandim,
+«brand» so'zi kontekst-naqshning **o'ziga** tushib ketgan. Saboq: **darvoza sinovida
+sinov-obyekti nomi qoidaning kalit so'zini o'z ichiga olmasin.**
+
+### 3-to'lqin — klapan (11 ekran, 4a-01 naqshi)
+
+`useStuckValve` ×11 · `disabled={!done && !_resc}` ×11 · ipucha-juft ×11 · `.bhint`/`.calm` CSS.
+Ipuchalar **yo'nalish** beradi, javob bermaydi (4b-01 ikki-daraja naqshi).
+
+🔴 **S13 ipuchasi qayta yozildi.** Birinchi variant uch qadamni **tartibi bilan sanardi**
+= javobning o'zi. Ekran-vazifasi **tartib-topish emas** — qulf-yorlig'i har fazada
+qadamni allaqachon nomlaydi; ekran **bog'liqlikni** o'rgatadi (Module AppModule'ga
+ro'yxatga olinmaguncha ishlamaydi). Shuning uchun ipucha **mezon** beradi:
+«O'ylang: mijoz bo'limni topishi uchun undan oldin nima bajarilgan bo'lishi kerak?»
+
+🔴 **S17 (ballik) rescue-yorlig'i** «Davom etish» EMAS:
+`_resc ? "Qatorlarni birga ko'ramiz →"` — **138-qonunning rescue holatiga tatbiqi**
+(qonun matniga qo'shimcha yozildi: ballsiz ekranda «Davom etish» to'g'ri, **ballikda taqiq**).
+
+### Tegilmadi (ataylab)
+
+`retsept` ×7 — hammasi **olam-predmeti** («tayyor retsept kitobi»), F-249 chegarasi bo'yicha RUXSAT ·
+`❌ Xato: {…}` tadqiqot tugmasi (1205) — **139-qonun RUXSAT holati** ·
+S13/S17 shoxlangan `navLabel` — 4a-01 uslubining davomi.
+
+### 🏅 «TUG'MA-TOZA» KUZATUV — `ACK[picked]` = HOOK-HALOLLIKNING ETALON-NAQSHI
+
+4a-02 hook-ekrani **auditsiz ham** 137-qonunga mos edi:
+
+```js
+correct: v === 'b',            // haqiqiy shart (136-qonun)
+{tr(ACK[picked])}              // HAR variantga O'Z javobi — xarita, shoxlangan ternary emas
+```
+
+Bu 4a-01 dagi `picked === 'x' ? … : …` shoxlanishidan **yaxshiroq**: variant qo'shilganda
+ternary o'smaydi, xaritaga bitta qator qo'shiladi — ya'ni naqsh **kengayganda ham halol qoladi**.
+🔴 **Keyingi darslar auditi hook-ekranni shu naqsh bo'yicha tekshirsin**
+(`ACK`/`explainWrong` xaritasi bormi — yo'q bo'lsa, nega yo'qligi asoslansin).
+
+Shu darsda tug'ma to'g'ri bo'lgan boshqa bandlar: `SCREEN_META` 22 ↔ `screens[]` 22 ·
+`SCORED` 6 ↔ `INLINE_KEYS` aynan mos · `QUIZ_BANK` 3/3/3/3 · o'lik id 0 · dublikat CSS 0 ·
+**138-qonun 12/12** (barcha qulf-yorliqlari tug'ma mazmunli) · 135-qonun toza.
+
+### Darvozalar (`npm run gates -- src/4a-Modull/NestArchResourceLesson.jsx`)
+
+| Darvoza | Oldin | Keyin |
+|---|---|---|
+| esbuild | ✓ | **✓** |
+| jsx | 0 | **0** |
+| dark | **6** | **0** |
+| til | **5🔴 · 10🟡** | **0🔴 · 7🟡** (7 = `retsept`, ataylab) |
+| prompt | ✓ | **✓** |
+| **Jami** | **2/5** | **5/5 toza** |
+
+UZ-RU **624↔624 → 648↔648** · qamrov-sanog'i: klapan 11 · nav 11 · ipucha-juft 11 (kutilgan 11 = **teng**, F-271 saboqi).
+
+**EKRAN-XAVF 8 bandi** → `MODUL_TUR.md` («4a-02»), 4-band **metafora-davomiyligi**
+(eshik 9 · retsept 8 · restoran 2) — 4a-03 da tendensiya kuzatiladi.
+
+**Holat:** ✅ **4a-02 YOPILDI** · **COMMIT YO'Q**.
+
+---
+
+## 2026-08-21 · 4a-01 `NestArchAliveLesson` — MUHRDAN KEYINGI MIKRO-TUZATISH
+
+**F-0820-283.** `StudentPracticePulse` `.done-mini` va `.dm-sub` klasslarini ishlatadi,
+lekin 4a-01 da **CSS qoidasi yo'q edi** — reponing 40+ faylida bor, bu faylda tushib qolgan.
+Natijada etalon-darsning sinf-pulsi **bezaksiz oddiy matn** bo'lib chiqardi.
+
+**Qilingan ish:** `.lp-mstats` dan keyin **2 qator** CSS qo'shildi — repodagi mavjud
+konvensiyadan **aynan** ko'chirildi (manba: `4-Modull/ApiPostmanLesson.jsx`), yangi variant
+o'ylab topilmadi. **Mexanika va matnlarga tegilmadi.**
+
+**Darvozalar:** `npm run gates -- src/4a-Modull/NestArchAliveLesson.jsx` → **5/5 toza**.
+
+**Saboq:** komponent ko'chirilganda **CSS'i ham ko'chirilganini tekshirish** kerak —
+esbuild ham, jsx-lint ham «klass bor, qoida yo'q» holatini ko'rmaydi (jim-buzilish sinfi).
+
+---
+
+## 2026-08-21 · QONUN-MUHRLASH (2-sessiya nomzodlari ①②③)
+
+| Nomzod | Hukm | Joy |
+|---|---|---|
+| ① oshkor-belgi | **139-qonun** | `DARS_ETALON.md` + tekshiruvchi ov-bandi |
+| ② chalg'ituvchi halolligi | **140-qonun** | `DARS_ETALON.md` + tekshiruvchi ov-bandi |
+| ③ RU «вы/Вы» | **band, qonun EMAS** | `KATTA_TOZALASH.md` **22-band** |
+
+**139 — o'lchov chegarani ochdi.** Tanlov-massivlari ichida belgi: butun repoda **0 ta**
+→ oldini oluvchi qonun. Lekin o'lchov **RUXSAT holatini** ko'rsatdi: 4a-01:1633 va
+4a-02:1205 da `❌ Xato: {…}` **tugmasi** bor — ballsiz tadqiqot ekrani, ipucha o'quvchini
+ataylab o'sha tugmaga yuboradi. Chegara-savoli qonunga yozildi:
+**«o'quvchi hukm qilyaptimi yoki ko'rsatmani bajaryaptimi?»**
+Darvoza-band ochilmadi — gate bu farqni ko'rmaydi, o'sha ikki tugmaga baqirardi.
+
+**③ o'lchovi (butun repo):** gap ichida katta «Вы…» **222 ta, 19 faylda**; kichik shakl
+1732 ta → nisbat **7.8:1**. Yangi sinf emas — mavjud konvensiyaning qoldig'i.
+⚠️ Birinchi o'lchov **0 ta** deb yolg'on ko'rsatdi: JS `\b` kirillda ishlamaydi
+(`\w` = ASCII) — `/u` + `\p{L}` lookaround bilan qayta o'lchandi. Band matnida qayd etilgan.
+
+**138-qonunga qo'shimcha:** rescue holatidagi yorliq — ballsiz ekranda «Davom etish»
+to'g'ri, **ballik ekranda taqiq** (harakat-nom yoziladi). Namuna: 4a-02 S17.
+
+---
+
+## 🔢 REZERV — 2026-08-21 · 1-SESSIYA · 4a-03
+
+**F-0820-333 … F-0820-348** band qilindi (16 ta) — `NestArchPracticeLesson` sikli.
+
+| Raqam | Holat |
+|---|---|
+| 269–283 | ✅ ishlatilgan (4a-01 · 4a-02) |
+| **284** | 🟡 **zaxira** — 1-sessiyaniki, ishlatilmay turadi |
+| **285** | 🔴 **HECH KIMNIKI EMAS — ishlatilmaydi** |
+| 286–332 | 2-sessiya hududi |
+| **333–348** | 🟢 **1-sessiya · 4a-03** |
+
+---
+
+## 🧪 LINT-NOMZODLAR JURNALI (muhrlanmaydi — takror kutadi)
+
+Bu ro'yxatdagi naqshlar **darvoza qilinmagan**: har biri hali yetarlicha takrorlanmagan
+yoki chegarasi aniq emas. Uchinchi takror kelganda — o'lchanadi va hukm qilinadi.
+🔴 **Bu yerdan hech narsa avtomatik tuzatilmaydi.**
+
+| # | Nomzod | Pretsedentlar | O'lchov buyrug'i |
+|---|---|---|---|
+| **a** | **Off-token rang-sweep** — palitradan tashqari qattiq hex/rgb | 4c-03 (uzatma) | `grep -c "E24848\|18,169,104" src/**/*.jsx` |
+| **b** | **`label="…"` `tr()` siz** — tarjimasiz yorliq | **2 ta:** F-195 (m4-14) · F-314 (4c-03) | `grep -nE 'label="[A-Za-z]' src/**/*.jsx` |
+| **c** | **Jim-buzilish: klass ↔ CSS ayirmasi** | **1 ta:** F-283 (4a-01 `.done-mini`) | JSX'dagi `className` to'plami − fayldagi CSS qoidalari to'plami |
+
+**(c) haqida — nega hozircha nomzod.** Naqsh haqiqiy va **jim** (esbuild ham, jsx-lint ham
+ko'rmaydi), lekin darvoza qilishdan oldin **yolg'on-signal darajasi** o'lchanishi kerak:
+umumiy komponentlardan (`Stage` · `NavNext` · `Mentor`) keladigan klasslar har darsda
+CSSsiz turadi va ular **qonuniy**. Ya'ni ayirma «faylning o'z klasslari» bo'yicha
+olinishi kerak — chegarani aniqlamasdan darvoza qilinsa, u shovqin beradi.
+
+---
+
+## ⏳ MUDDATLI BAND — 4c-01 `CiCdIntroLesson` auditi uchun
+
+🔴 **`POINTS` lug'ati — HOZIRGI 4-NUSXA HOLATINI MUHRLAB QO'YMA.**
+
+4c-01 auditida `POINTS` uchraganda: u **shared-manbaga ko'chadi**
+(`KATTA_TOZALASH` bandi, **ijro 4c-01 yopilgach**). Ya'ni auditda:
+
+- ✅ nusxa-holati **qayd etiladi** (nechta fayl, qiymatlar bir xilmi)
+- ❌ «bu dars uchun to'g'ri» deb **muhrlanmaydi**, nusxa **tekislanmaydi**
+- ❌ qiymatlar **o'zgartirilmaydi** — ko'chirish paytida ular manba bo'ladi
+
+Sabab: hozir tuzatilsa, ko'chirishdan keyin **ikki marta** tegilgan bo'ladi va
+qaysi qiymat asl ekani yo'qoladi.
+
+## 2026-08-21 · 4c-03 `FullPipelineProjectLesson` («Loyiha kuni: to'liq lenta» · PROYEKT-dars, 4c oxiri boshi) — ✅ SIKL YOPILDI (F-0820-302…316 + 317 · B1/B2/B3) · parallel seans (2-sessiya)
+
+Audit `AUDIT_PROMPT.md` bo'yicha (etalon m4-01 + m4-13 proyekt-dars pretsedentlari) → GAP (15 topilma + 3 bahsli + 7 EKRAN-XAVF + qulf/klapan) → **[GATE]** → ikki to'lqin + klapan (ipucha [GATE] alohida).
+Darvozalar `npm run gates -- <fayl>`. F-ID: 301…316 bloki (302–316), klapan → **317** (yangi blok **317…332** REZERVLAR jadvaliga — foydalanuvchi tasdig'i).
+
+**m4-13 pretsedentlari tekshiruvi:** marosim — s6 da in-flow (samolyot + telefon + TABLO, birinchi push) → B1 · sim-agent↔Antigravity — **bu darsda agent yo'q** (AgentCard/prompt 0), tatbiq etilmaydi · «aniqlashtiruvchi prompt» — tatbiq etilmaydi.
+**4c-01/02 havolalari:** `POINTS` lug'ati «CiCdIntroLesson qulflagan» nusxa (4 faylda) — 4c-01/02 **hali auditdan o'tmagan**; lug'at o'zgarsa bu fayl ergashadi (quyida «1-SESIYAGA UZATMA»). **Brend-rang:** GitHub/Actions brend-hex'i yo'q (TABLO modul-tokenlarda) — BREND ro'yxatiga nomzod chiqmadi.
+
+### Foydalanuvchi qarorlari
+- **B1 → marosim QOLSIN** — praktika-done'ga marosim qo'shilmaydi. **Marosim-istisno (uch takror to'ldi → qonun-nomzod):** *birinchi-marta to'liq, takrorda mustaqillik* — 1932-izoh (m4-04 B2) · m4-13 B1 (`OpeningAct` faqat p4) · 4c-03 B1 (s6 marosim, praktika takrorlamaydi). Muhr — 1-sesiya.
+- **B2 → (a)** `PhoneMock` «broken» yuzi s10 rollback'da ishlatildi: `state={solved ? 'old' : 'broken'}` + bir qatorlik izoh («Hozir yo'lovchi ekranida — v3 xatosi» → «Eski yuk qaytdi…»). Yuz/CSS o'chirilmadi.
+- **B3 → TASDIQ** — s13 `stage: 'case'`, `firstAttemptCorrect` ketdi, `correct: true` qoldi (F-305).
+
+### 🔴 Halollik
+| F-ID | Nima qilindi |
+|---|---|
+| **304** | 137-qonun — hook `correct: v === 'b'`; a/c ko'prik: «Qo'lda 5 buyruq — bittasini unutsangiz, yuk tekshirilmay uchadi; faqat Uchirishni tekshirsangiz — avvalgi 4 nuqta ko'r qoladi. Shuning uchun bugun 5 nuqtani bitta LENTAga birlashtiramiz…» (+RU). Izoh alohida qatorda |
+| **305** | 136-qonun — s13 `firstAttemptCorrect: true` shartsiz edi (bajarish-ekrani, SCREEN_META'da `case`/`scored:false`) → olib tashlandi; `stage: 'final'` → `'case'` (haqiqiy final s12 MC) |
+
+### 1-TO'LQIN
+| F-ID | Nima qilindi |
+|---|---|
+| **302** | `StudentPracticePulse` + `.done-mini` |
+| **303** | 129-qonun — MPS («Jonli darsda…» / «O'quvchilar kutilmoqda…») → `null` |
+| **306** | F-29 — `.btn/.lp-done-btn/.rc-btn` accent + `#E03E1B`; `.mstats-reveal` kontur + 132 |
+| **307** | `.editor-tab` ×2 (CodeFile + s13 editor) → `.editor-file` + CODE tokenlar |
+| **308** | `.live-badge` 0.62 |
+| **314** | `NavNext label="Davom etish"` `tr()`-siz — **ikki joyda** (s0 hook + Podium) → `{ uz, ru }` |
+| **315** | Palitra → modul tokenlari: `#E24848/#FBE9E9` ×3 → `T.danger/dangerSoft` (m4-11 B1 «modul-toni»); `rgba(18,169,104)` ×2 → `CODE.ok`-asosli (qora fonda) |
+
+### 2-TO'LQIN
+| F-ID | Nima qilindi |
+|---|---|
+| **309** | `tap-hint` → `firstUnseen`: s4 gchip ×5 · s6 vcard ×4 · s8 vcard ×2 (s6 push-tugmasi yakka — qoldi) |
+| **310** | O'lik TTS zaglushka ketdi |
+| **311** | O'lik tokenlar ×4 (`accentVivid · link · amber · amberSoft`) ketdi |
+| **312** | RU «✅ Выполнил» → «✅ Готово» |
+| **313** | Til: «ushbu» ×2 · «tavsiya etiladi» ×2 → buyruq · «Zo'r!» → «Juda yaxshi!» · «…kerak bo'lmay qoladi, deb hisoblanadi» → «…kerak bo'lmay qoladi» (+RU) · «yoziladi-yu» → «yoziladi, lekin» · «amalga oshirilmagan» → «qilinmagan» · recap «himoya zanjiri» → «himoya ketma-ketligi» (lint `zanjir-streak` yolg'on-signali, 0/0 uchun) |
+| **316** | O'lik CSS: `.frame · .line-empty · .shake`+keyframes (+ reduced-motion ro'yxatidagi `.shake`). `pipe-track::after` reduced-motion **allaqachon bor edi** (2776) — o'zgarish yo'q |
+
+### 🔓 KLAPAN — F-0820-317
+`useStuckValve` m4-08 kanonik + `.bhint`; **7 ekran**: s3 `onProgress` (DebugChallenge har bosish) · s4 `seen.size` · s6 `seenC+built+log+pushed` (navLabel) · s8 `seen.size` · s10 `tries` · s11 `on` · s13 `trig.length+secret.length`. **s12 final MC klapansiz.** 7 ipucha tasdiqlangan (s13 2-joy — so'zsiz (b) shakl, «secrets» ipuchada yo'q).
+Ipuchalar: s3 «Jurnalni yuqoridan pastga o'qing: ✓ — nuqta o'tdi, — — o'tkazib yuborildi. O'tkazib yuborilganlar qaysi nuqtadan KEYIN boshlangan? O'sha qatorni bosing» · s4 «Qolgan nuqtani bosing — chapdagi ci.yml'da uning qatori yorishadi» ·
+s6 «Avval 4 ssenariyni bosib ko'ring — shundan keyin o'ngda quruvchi ochiladi. Bo'lakni bosing yoki sudrang: har slotdagi ipucha qaysi nuqta kerakligini aytadi. Tartib to'g'ri bo'lgach “▶ git push” chiqadi» *(nuqta-tartibi SANALMAGAN — 4a-02 S13 saboqi)* ·
+s8 «Qolgan reysni bosing — biri yo'lovchisiz sinov, ikkinchisi haqiqiy» · s10 «Har versiyaning yorlig'ini o'qing: qaysi biri “oxirgi ishlagan” deb belgilangan? Buzuq v3'dan OLDINGI yashil versiyani qidiring» ·
+s11 «“▶ TABLONI yoqish” tugmasini bosing — o'ngdagi repo sahifasida badge rangi o'zgaradi» · s13 «1-joy: START SIGNALI — yo'l xaritasi ekranidagi ci.yml ning ikkinchi qatorini eslang (on: …). 2-joy: kalitning o'zini emas, SEYFdan o'qish yozuvini — 2-darsda ko'rgansiz».
+
+**138-qonun qo'shimchasi (4a-02 muhri — rescue-yorliq) tekshiruvi:** `INLINE_KEYS = { s2, s5, s7, s9, s12, practice }` — yettala klapanli ekranning (s3·s4·s6·s8·s10·s11·s13) **hech biri INLINE_KEYS bilan bog'lanmagan** (s13 ham: `case`, `scored:false`, kalit yo'q) → **yettalasida ham rescue-yorliq «Davom etish»** (m4-08, ballsiz-oddiy). Harakat-nomli yorliq kerak bo'lgan ekran chiqmadi.
+🔴 Ball-halollik: rescue'da `onAnswer` yo'q; s3/s6/s10 nishonlari faqat haqiqiy yakunda; mentor rejimida klapan o'chiq.
+
+### Darvozalar (`npm run gates -- src/4c-Modull/FullPipelineProjectLesson.jsx`)
+| Darvoza | Oldin | Keyin |
+|---|---|---|
+| esbuild | ✓ | **✓** |
+| jsx | 0 | **0** |
+| dark | **5** | **0** |
+| til | **6🔴 · 3🟡** | **0 · 0** |
+| prompt | ✓ | **✓** |
+| **Jami** | 2/5 | **5/5 toza** |
+
+UZ-RU 553 → **573/573** · residue (`useAudio|amber|T.link|accentVivid|editor-tab|E24848|18,169,104|firstAttemptCorrect: true|label="Davom|Выполнил'`) 0 · darsga xos o'lik CSS 0 · `useStuckValve(` ×7 ekran · s12 da 0 · `secrets` ipuchada 0 · diff 165+/74−.
+
+### Tegilmadi (ataylab)
+«Uchish lentasi» olami + taqiq-ro'yxat (UZ'da buzilmagan; RU'da «КОНВЕЙЕР» — RU lug'at 4c-01 da hal qilinadi) · s6 markaziy quruvchi (marosim in-flow) · s3/s10 DebugChallenge/rollback · s13 bo'sh-joy finali (validatsiya jonli, ipucha neytral) · `pipe-step.fail` ikki holat-animatsiyasi (135 — kirish+holat emas) · `.phone-body #16171B` (kontrol emas).
+
+### 1-SESIYAGA UZATMA (foydalanuvchi yo'naltirdi — men yetkazmayman, faqat yozaman)
+1. **KATTA_TOZALASH — muddatli band:** `POINTS` lug'at-konstantasi shared-manbaga ko'chirish (CiCdIntro · FullPipeline · AiPipeline · FullPro — 4 nusxa). **Ijro 4c-01 auditi yopilgach, 1-sesiya qo'lida.** O'lchov: `grep -l "^const POINTS = \[" src/4c-Modull/*.jsx | wc -l` = 4 → 1.
+2. **Off-token rang sweep** (F-315 sinfi): `grep -c "E24848\|18,169,104" src/**/*.jsx` — 4c-03 da 0 ga tushirildi; boshqa fayllarda topilsa `T.danger/dangerSoft` · `CODE.ok`.
+3. **`label="…"` `tr()`-siz NavNext detektori** (F-195 ov-bandining aniq shakli): `grep -nE 'label="[A-Za-z]' src/**/*.jsx` — 4c-03 da 2 ta edi (s0 + Podium), tuzatildi.
+4. **Marosim-istisno → qonun (uch takror to'ldi), pretsedent-ro'yxati:** ① DARS_ETALON 1932-izoh (m4-04 B2, 2026-08-20: «birinchi-marta ekranlarda to'liq namuna mumkin; takrorda mustaqillik») · ② m4-13 B1 (`DeliveryTracker` lenta ketdi → `OpeningAct` faqat p4 done-holatida) · ③ 4c-03 B1 (s6 birinchi push marosimi; praktika-done'ga takror marosim qo'shilmadi). Muhr — 1-sesiya.
+5. **RU «вы/Вы»** — 4c-03 da 8 : 0 (bir xil) — ijobiy namuna, 10-bandga.
+
+**EKRAN-XAVF 7 bandi** → `MODUL_TUR.md` («4c-03»).
+
+**Holat:** ✅ **4c-03 YOPILDI** · **COMMIT YO'Q** · umumiy fayllarga tegilmadi (STATE: raund-yozuv + REZERV qatori).
+
+### ⏭ Navbat (2-sessiya): **`AiPipelineProjectLesson`** → `FullProPipelineLesson`. 4c boshi (CiCdIntro · GithubActions) — 1-sesiya. PM — BLOK.
+
+## 2026-08-21 · 4c-04 `AiPipelineProjectLesson` («AI bilan lentani boshqarish» · AI-dars, 4c) — ✅ SIKL YOPILDI (F-0820-318…332 + 349 + 350 · B1/B2/B3) · parallel seans (2-sessiya)
+
+Audit `AUDIT_PROMPT.md` + darsga xos bandlar (agent-mavzu · marosim · POINTS · 4c-01/02 havolalari · INLINE_KEYS⇄klapan) → GAP (15 topilma + 3 bahsli + 7 EKRAN-XAVF + qulf/klapan) →
+**[GATE]** → ikki to'lqin + B1 lug'at-almashuv + klapan (ipucha [GATE] alohida). F-ID: 317…332 bloki (318–332), **B1 → 349 · klapan → 350** (yangi blok **349…364** — REZERVLAR jadvalida, foydalanuvchi tasdig'i).
+
+### 🔴 B1 — MARKAZIY OBRAZ ↔ TIL-QONUNI: «LENTA USTASI» → «LENTA YORDAMCHISI» (F-0820-349)
+`til-lint` `usta-sandiqcha` (MATN_ETALONI 4.1 · KORPUS 84 · F-0810-02) darsning markaziy obrazini 66 qatorda tutdi. **Qaror (a):** matn-qatlamda UZ «usta» → «yordamchi»
+(qo'shimchalar saqlanadi: -si/-ga/-dan/-ning/-ni/-lar), «LENTA USTASI» → «LENTA YORDAMCHISI»; RU «Мастер» → «Помощник» (kelishik-qo'shimchalari bir xil: -а/-у/-ом/-е), «МАСТЕР ЛЕНТЫ» → «ПОМОЩНИК ЛЕНТЫ».
+**Qamrov:** UZ **139** + RU **100** almashuv (RU — Unicode-chegarali regex: JS `\b` kirillda ishlamaydi, birinchi o'tishda 0 bo'lgan — qayta yurgizildi).
+**Tegilmadi:** identifikatorlar `USTA_LOG · USTA_CASES · USTA_MODES · WHY_USTA · USTA_STEPS · USTA_ORDER · ustaSays · isUstaRight` (lint `\busta\b` ularni ko'rmaydi — tasdiqlandi), ACH «Mentor Verified» nomi. Natija: `usta` matn-qatlamda **0**, «Мастер» **0**, «yordamchi» 148 · «Помощник» 107.
+
+### Foydalanuvchi qarorlari
+- **B2 → TASDIQ** — sim-agent ↔ Antigravity ko'prigi (m4-13 pretsedenti): s1 mentor «LENTA YORDAMCHISI — darsdagi AI; bu sizning Antigravity agentingizning o'yindagi nomi», praktika va uyga vazifa «Copilot/ChatGPT» → «Antigravity (yoki boshqa AI-yordamchi)» (+RU). «yordamchi» atamasi ikkala joyda bir xil.
+- **B3 → «1-qadam … 5-qadam»** — s15 slot-yozuvlari neytral (F-319).
+
+### 🔴 Halollik
+| F-ID | Nima qilindi |
+|---|---|
+| **318** | 137-qonun — hook `correct: v === 'b'`; a/c ko'prik «Hamma jurnalni o'zingiz o'qisangiz — sekin; tekshirmay ishonsangiz — xato productionga chiqadi. Uchinchi yo'l bor: aniq so'raysiz, taklifni tekshirasiz, qarorni o'zingiz berasiz» (+RU) |
+| **319** | **s15 FINAL (scored, `finalCall`): slot-ipuchalari javob kaliti edi** («keyin nima so'raladi / solishtiriladi / bajariladi…») → «1-qadam … 5-qadam» / «шаг 1 … 5». `firstAttemptCorrect` endi haqiqiy (136 · 4a-02 S13 saboqi — slot-yozuv shakli) |
+| **320** | s9 markaziy: tuzoq («Yordamchi to'g'ri» tanlovi) `correct`ga ta'sir qilmasdi → `verifyWrongEver` ref, `correct: !verifyWrongEver.current`; `mentorVerified` nishoni faqat tuzoqsiz (F-210 sinfi) |
+
+### 1-TO'LQIN
+| F-ID | Nima qilindi |
+|---|---|
+| **321** | `StudentPracticePulse` + `.done-mini` |
+| **322** | 129 — MPS «Yuklanmoqda…/Hali hech kim…» → `null` |
+| **323** | F-29 — `.btn/.lp-done-btn/.rc-btn` accent + `#E03E1B`; `.mstats-reveal` kontur + 132 |
+| **324** | `.live-badge` 0.62 |
+| **325** | `tap-hint` → `firstUnseen`: s2 itm-card ×5 · s5 ×3 · s7 ×5; **s13 — 9 variant-chip pulsi olib tashlandi** (tanlov-to'plami; bittasini pulslatish = javobga ishora), o'rniga birinchi bo'sh guruh yorlig'i `👉` + accent |
+
+### 2-TO'LQIN
+| F-ID | Nima qilindi |
+|---|---|
+| **326** | O'lik TTS (zaglushka + QS `useAudio/audioText/audioOk/audioWrong`) ketdi |
+| **327** | O'lik tokenlar ×3 (`accentVivid · link · amber`) ketdi |
+| **328** | RU «✅ Выполнил» → «✅ Готово» |
+| **329** | Til: «ushbu» · «tavsiya etiladi» ×2 · «Zo'r!» · **«tashxis» ×8 → «sabab» oilasi** («noto'g'ri tashxis qo'ydi» → «sababni noto'g'ri aytdi» va h.k., s5 sarlavha-izohi ham) · **RU gap-boshi «Вы» ×3 — kichik harfga EMAS** (grammatikaga zid), **gap qayta qurildi**: «Зелёный! Скорость Помощника вы использовали…», «Верно! Нужен follow-up… — а затем вы проверяете…», «🎉 Модуль 4c завершён…». ` Вы ` → 0 |
+| **330** | Darsga xos o'lik CSS **10 ta** (`ai-code ai-line ai-line.bad/.ok ai-prompt takeaway/ta-* itm-check itm-fix chips`) ketdi; `.note-h` saqlandi |
+| **331** | Atama (2a): «follow-up so'rov» ×7 → «**aniqlashtiruvchi so'rov (follow-up)**» (m4-13 atamasi; recap-karta, s14, quiz, praktika, yakun-recap); Q_LABELS «4 — Follow-up» va flashcard `back: 'follow-up'` qoldi |
+| **332** | s13 chalg'ituvchilar absurd edi («once», «npm forget», «windows-me») → ishonarli: `on: pull_request / schedule` · `runs-on: windows-latest / my-laptop` · `run: npm start / npm run build` — har biriga sabab-matn (+RU) |
+
+### 🔓 KLAPAN — F-0820-350
+`useStuckValve` m4-08 kanonik + `.bhint`; **9 ekran**: s2 `seen` · s3 `seenBad+seenGood` · s5 `seen` · s6 `seen` · s7 `seen` · s9 `faza-indeks + queryTried.size + wrongPick` · s11 `seen` · s12 `show` · s13 `filled + tries` (yangi hisoblagich).
+**Kalitli ekranlar klapansiz:** `INLINE_KEYS = { s4, s8, s10, s14, s15 }` — MC ×4 + s15 final → **138-qo'shimcha chegarasi ishga tushmaydi, 9/9 rescue-yorliq «Davom etish» (ballsiz)**. 9 ipucha tahrirsiz tasdiq:
+s2 «Qolgan qismni bosing — har biri jurnalning bitta qatoriga ishora qiladi» · s3 «Ikkala tugmani bosing — avval yomon so'rov, keyin yaxshisi: ikki javobni solishtiring» · s5 «Qolgan faylni bosing — yordamchining javobi har safar bir xil aniqlikda emas» ·
+s6 «Ikkinchi rejimni ham bosing — farq yordamchi qancha taklif berishida» · s7 «Qolgan nuqtani bosing — lenta ustida u yashil bo'ladi» ·
+s9 «Har bosqich bitta tugma ochadi — hozir faol tugmani bosing. Tekshirish bosqichida javobni yordamchidan emas, jurnal qatoridan qidiring» *(bosqich-tartibi SANALMAGAN — u s15 finalning javobi)* ·
+s11 «Qolgan foydani bosing — uchtasidan biri yordamchi haqida emas, siz haqingizda» · s12 «“Tekshirsa-chi?” tugmasini bosing — o'sha xato, boshqa dasturchi, boshqa yakun» ·
+s13 «Har bo'shliq uchun o'zingizga savol bering: bu qator lentaga nimani aytadi? Shu ma'noga mos variantni tanlang — xato tanlovda sabab chiqadi» · rescue — m4-08.
+🔴 Ball-halollik: rescue'da `onAnswer` yo'q; s9 `mentorVerified` / s13 `roadmapReviewer` faqat haqiqiy yakunda; mentor rejimida klapan o'chiq.
+
+### Darsga xos bandlar (tayinlov 2a–2e)
+- **2a AGENT:** sim-agent = YORDAMCHI (`ai-card/ai-badge/ai-bubble` pufaklari s3/s9); Antigravity ko'prigi — B2; «aniqlashtiruvchi so'rov (follow-up)» — F-331. AgentCard/AI_V1-V2 naqshi yo'q (bu darsda prompt = «so'rov», tugma-tanlov orqali).
+- **2b MAROSIM → 141-QONUN MUVOFIQLIGI ✓:** marosim **bitta** — s9 markaziy o'yin yakunida `Belt ALL_PASS` + «🎉 Yashil!…» (in-flow, birinchi push). s15 final va praktika-done — faqat matn, **takror yo'q**. Badge-bayram (`AchCelebrate`) — umumiy qatlam, marosim hisobiga kirmaydi. (141-qonun 1-sesiya muhri; pretsedentlar 1932 · m4-13 · 4c-03 · 4c-04.)
+- **2c POINTS:** `POINTS`/`Belt` — 4-nusxaning biri, **tegilmadi** (muddatli band, 1-sesiya).
+- **2d 4c-01/02:** sarlavha «DARS 1 bilan 1:1» lug'ati; s7 «Takrorlash · nuqtalar» = 4c-01 nuqta-ta'riflari — 4c-01 auditidan keyin sinxron (quyida UZATMA).
+- **2e INLINE_KEYS⇄klapan:** yuqorida — kesishuv yo'q.
+
+### Darvozalar (`npm run gates -- src/4c-Modull/AiPipelineProjectLesson.jsx`)
+| Darvoza | Oldin | Keyin |
+|---|---|---|
+| esbuild | ✓ | **✓** |
+| jsx | 0 | **0** |
+| dark | **4** | **0** |
+| til | **69🔴 · 8🟡** | **0 · 0** |
+| prompt | ✓ | **✓** |
+| **Jami** | 2/5 | **5/5 toza** |
+
+**UZ-RU muvozanati:** 599 → 601 (to'lqinlar) → **619/619** (klapan ipuchalari bilan, toza tenglik) · residue (`usta-matn|Мастер|tashxis|Copilot|follow-up so'rov|useAudio|amber|T.link|accentVivid|Выполнил'| Вы `) 0 · darsga xos o'lik CSS 0 (`com`/`googleapis` — URL, `p1-p3/pod-*/acu-eyebrow` — umumiy) · `useStuckValve(` ×9 ekran · kalitli ekranlarda 0 · diff 288+/197−.
+
+### Tegilmadi (ataylab)
+s9 6-fazali markaziy o'yin (tuzoq saqlandi, faqat halollik) · s12 ikki `PhoneMock` (broken/new — ishlatilgan ✓) · s13 `code-box` · `POINTS`/`Belt` · ACH nomlari · quiz mazmuni.
+
+### 1-SESIYAGA UZATMA (foydalanuvchi yo'naltirdi — men yetkazmayman, faqat yozaman)
+1. **POINTS/Belt + s7 «Takrorlash · nuqtalar» sinxron-bandi** (muddatli, 4c-01 auditiga): 4c-01 da nuqta-ta'riflari/emojilar o'zgarsa 4c-03/4c-04/4c-05 ergashadi. O'lchov: `grep -l "^const POINTS = \[" src/4c-Modull/*.jsx | wc -l` = 4 → 1; `diff <(sed -n '/^const POINTS/,/^];/p' CiCdIntroLesson.jsx) <(… AiPipelineProjectLesson.jsx)`.
+2. **Slot-ipucha = javob** sinfi (F-319 pretsedent, §157/136 oilasi): scored DnD'da slot-yozuvi tartibni aytmaydi. O'lchov: `grep -n "hints={\[" src/**/*.jsx` → har hint fe'l-ma'nosiz («1-qadam»); 4c-04 da «so'raladi/solishtiriladi/bajariladi» → «1…5-qadam».
+3. **Chalg'ituvchi-ishonarliligi** bandi (F-300 + F-332 = ikki takror): variant mavjud bo'lmagan buyruq/so'z bo'lmasin; aksincha — darsning o'z qoidasi bo'yicha ham noto'g'ri bo'lsin (0.5 sinfi). O'lchov: `grep -nE "'npm (forget|delete)'|'windows-me'|'once'" src/**/*.jsx`.
+4. **`usta-sandiqcha` qoidasi ↔ dars-obrazi to'qnashuvi (birinchi holat):** qoida «AI-yordamchi» obraz-oilasini ham ushlaydi («usta» = AI helper). 4c-04 yechimi — obrazni qoidaga moslash (yordamchi); qoida-egasiga qayd: AI-persona nomlari uchun lug'at-tavsiya («yordamchi/AI-yordamchi», «usta/robot/sandiqcha» emas).
+
+**EKRAN-XAVF 7 bandi** → `MODUL_TUR.md` («4c-04»).
+
+**Holat:** ✅ **4c-04 YOPILDI** · **COMMIT YO'Q** · umumiy fayllarga tegilmadi (STATE: raund-yozuv + REZERV qatori).
+
+### ⏭ Navbat (2-sessiya): **4c-05 `FullProPipelineLesson`** — 4c va mini-modul to'lqinining oxirgi darsi; audit tayinlovi foydalanuvchidan, o'zim boshlamayman.
+
+---
+
+## 2026-08-21 · 1-SESSIYA · 4a-03 `NestArchPracticeLesson` — TO'LIQ SIKL ✅
+
+**Rezerv:** F-0820-333…348 · bu siklda **333–345** ishlatildi (bo'sh: 346–348).
+
+### Topilmalar
+
+| F-ID | Topilma | To'lqin |
+|---|---|---|
+| 333 | **129-qonun** — `MentorPracticeStats` bo'sh apparat (0 o'quvchida ham panel) | 1 |
+| 334 | `StudentPracticePulse` yo'q — **`.done-mini` CSS bilan BIRGA** qo'shildi (F-283 saboqi) | 1 |
+| 335 | **F-29 to'rtligi** — `.btn` · `.lp-done-btn` · `.mstats-reveal` · `.rc-btn` + **132-juftligi** | 2 |
+| 336 | **16-qonun** — `.hint` uzuq chiziqdan `1px solid` ga | 2 |
+| **337** | 🔴 **137-qonun — hook halol emas** (quyida) | 1 |
+| **338** | 🆕 **141-qonunning birinchi tatbiqi** (quyida) | 2 |
+| 339 | «ushbu kodni kiriting» → «shu» | 1 |
+| 340 | «tavsiya etiladi» ×2 → buyruq shakli | 2 |
+| 341 | «professional» → «dasturchilar ishi» (+RU juftligi) | 1 |
+| 342 | «Zo'r!» → «Ajoyib!» | 2 |
+| 343 | **Klapan 15 joyga** (14 o'rganish + `QuestionScreen`) | 3 |
+| 344 | **Metafora-davomiyligi** — kod-tuzatish YO'Q, `MODUL_TUR` 1-bandi | — |
+| 345 | 🔢 O'lchov-tuzatishi: qulf-joyi 15 emas **16** (quyida) | — |
+
+### F-337 — hook (137-qonun, **beshinchi takror**)
+
+Oldin: `correct: true` (qattiq) + **shoxlanmagan** «Aynan!» — uch variantdan **ikkitasi**
+noto'g'ri bo'lsa ham hammasi maqtov olardi.
+
+Endi 4a-02 naqshi: `correct: v === 'b'` + `ACK` **xaritasi**; «Aynan!» faqat `b` da;
+`a` va `c` ga **ko'prik-gap** (uyaltirish emas, dars nimani ko'rsatishini va'da qiladi):
+
+- `a` → «Bitta ulkan fayl birinchi kunda tez tuyuladi — keyin har o'zgarish uni **chalkashtiradi**…»
+- `c` → «Katta jamoa kerak emas — **tartib** kerak…»
+
+🔴 Sinf endi **m4-01 · m4-03 · m4-04 · m4-05 · 4a-03** — beshta. Hook-halolligi
+**yangi dars auditining birinchi bandi** bo'lib qolishi kerak.
+
+### F-338 — 141-qonun (marosim) birinchi tatbiqi
+
+Ikki bayram ketma-ket edi: arena `phase === 'done'` da `<Confetti />` **va** `ScreenPodium`
+da `<Confetti />`. Bitta hodisa — ikki marosim.
+
+**Yechim (a-variant):** arena-`done` da konfetti olib tashlandi, sarlavha ham
+bayram-emojisiz («🏆 Test yakunlandi!» → «Test yakunlandi»). Yakun-marosimi **podiumda**
+qoladi — sinf ko'radigan oxirgi ekran. Kodda izoh bilan muhrlandi.
+
+✅ Qonunning boshqa tomonlari **tug'ma toza**: praktika-`done` · `Screen20` · flashcard-yakuni —
+uchalasida ham marosim yo'q. Nishon-bayramlari (`ACH_TRIGGERS` s8·s10·s14·s19) faqat
+**haqiqiy yechimda** ishlaydi — bu nishon-tizimi, marosim-takrori emas.
+
+### 3-to'lqin — klapan 15 joy
+
+| Guruh | Soni | Rescue-yorlig'i |
+|---|---|---|
+| O'rganish ekranlari (S1·2·3·4·6·7·9·10·11·13·14·16·17·19) | **14** | «Davom etish» (ballsiz — 138-qo'shimcha bo'yicha to'g'ri) |
+| **`QuestionScreen`** (s5·s8·s12·s15 ni ULASHADI) | **1 joy → 4 ballik ekran** | 🔴 **«Javobni birga ko'ramiz →»** (ballik — «Davom etish» TAQIQ) |
+| Praktika | — | klapan yo'q (pretsedent) |
+
+🔴 **B-variant tanlandi (foydalanuvchi qarori):** umumiy komponentga `tip` **propi** qo'shildi,
+har wrapper (`Screen5/8/12/15`) **o'z ipuchasini** uzatadi. Shunday qilib 138-qonun
+2-darajasi («darsning O'Z mazmunidan aniq keyingi qadam») umumiy komponentda ham
+bajariladi. A-variant (umumiy, mazmunsiz ipucha) **rad etildi**: u naqshni **qog'ozda**
+bajarardi.
+
+**S3 ipuchasi qayta yozildi.** Birinchi variantda «barcha **5** qadam» degan raqam bor edi.
+`CMDS` tekshirildi: uch buyruq **mazmuni** bilan farqlanadi va to'g'risi (`c3`) zanjirni
+matnning o'zida sanab beradi — ya'ni raqam **sanash orqali topish** yo'lini ochardi.
+Yangi matn mezon beradi: «Buyruq agentga hamma qadamni aytyaptimi — yoki bir qismini
+taxminga qoldiryaptimi?»
+
+### F-345 — SABOQ: qulf-o'lchovi SATR emas, qulf-JOYI bo'yicha
+
+Auditda «15 qulflangan ekran» dedim — bu `disabled={!done}` **satrlar** soni edi.
+Komponent bo'yicha sanaganda **16** joy chiqdi: to'rtta ballik ekran (s5·s8·s12·s15)
+o'z NavNext'iga **ega emas** — ular `QuestionScreen` ni ulashadi va `!solved` bilan
+qulflanadi.
+
+> **SABOQ (muhrlanmaydi, qayd):** qulf-o'lchovi **satr** bo'yicha emas, **qulf-joyi**
+> bo'yicha olinadi — **umumiy komponent joylarni yashiradi**. Grep bitta satr ko'rsatadi,
+> o'quvchi esa to'rt ekran ko'radi. Bu F-227 («o'rovchi qo'shilgach qator-raqamlar qayta
+> o'qiladi») va F-271 («ommaviy almashtirish qamrov-sanog'i») bilan bir oila:
+> **o'lchov birligi noto'g'ri tanlansa, hisobot ishonchli ko'rinib turib xato bo'ladi.**
+
+### Darvozalar (`npm run gates -- src/4a-Modull/NestArchPracticeLesson.jsx`)
+
+| Darvoza | Oldin | Keyin |
+|---|---|---|
+| esbuild | ✓ | **✓** |
+| jsx | 0 | **0** |
+| dark | **4** | **0** |
+| til | **4🔴 · 5🟡** | **0🔴 · 2🟡** (`retsept` ×3 · `zanjir` ×1 — ikkalasi ataylab) |
+| prompt | ✓ | **✓** |
+| **Jami** | **2/5** | **5/5 toza** |
+
+UZ-RU **624 → 661/661** (+37: Pulse 3 − eski panel 2 + ACK 2 + 28 ipucha-juft +
+QS-rescue 1 + QS-yorliq 1 + 4 tip-prop). Qamrov-sanog'i: klapan **15** · nav **15** ·
+ipucha-juft **15** · tip-prop **4** — kutilgan bilan **teng**.
+
+**EKRAN-XAVF 7 bandi** → `MODUL_TUR.md` («4a-03»), metafora o'lchov-jadvali bilan birga,
+**o'z vaqtida** (4a-01 saboqi takrorlanmadi).
+
+**Holat:** ✅ **4a-03 YOPILDI → 4a-MODUL TO'LIQ** · **COMMIT YO'Q**.
+
+---
+
+## 📦 4a-MODUL JAMLAMASI — modul-ko'rik materiali (2026-08-21)
+
+### Uch dars
+
+| Dars | Fayl | Topilma | Darvoza | Klapan |
+|---|---|---|---|---|
+| **4a-01** | `NestArchAliveLesson` (4a-ETALON) | **18** (237…252 · 269…271) + **283** muhrdan keyingi mikro-tuzatish | 5/5 | **12** |
+| **4a-02** | `NestArchResourceLesson` | **12** (272…283) | 5/5 | **11** |
+| **4a-03** | `NestArchPracticeLesson` | **13** (333…345) | 5/5 | **15** (14 + `QuestionScreen`) |
+| | | **43 topilma** | **15/15** | **38 joy → 41 ekran** |
+
+### Takrorlangan sinflar (uchala darsda ham chiqdi)
+
+| Sinf | 4a-01 | 4a-02 | 4a-03 |
+|---|---|---|---|
+| **129-qonun** — bo'sh apparat | ✅ | ✅ | ✅ |
+| `StudentPracticePulse` yo'q | ✅ | ✅ | ✅ |
+| **F-29** qora tugmalar + **132** juftligi | ✅ | ✅ | ✅ |
+| **16-qonun** `.hint` uzuq chiziq | ✅ | ✅ | ✅ |
+| «professional» (+RU juftligi) | ✅ | ✅ | ✅ |
+| «tavsiya etiladi» · «Zo'r!» · «ushbu» | ✅ | ✅ | ✅ |
+
+🔴 **Xulosa:** bu olti sinf **yangi dars qurilganda** takrorlanadi — ya'ni ular
+**audit-topilmasi emas, qurilish-shabloni nuqsoni**. Yangi dars shablon-manbasi
+(qaysi fayldan nusxa olinsa) shu oltitasi bilan **birga** ko'chib kelyapti.
+**Tavsiya (modul-ko'rikdan keyin):** shablon-manba faylni bir marta tozalash —
+aks holda 4c va keyingi modullar ham xuddi shu olti topilmani beradi.
+
+### Qonun-tatbiqlar
+
+| Qonun | 4a-01 | 4a-02 | 4a-03 |
+|---|---|---|---|
+| **137** (hook halolligi) | tuzatildi (242) | 🏅 **tug'ma toza** (`ACK` xaritasi) | tuzatildi (337) |
+| **138** (qulf-yorliq) | tug'ma 13/13 | tug'ma 12/12 | tug'ma 16/16 |
+| **138-qo'shimcha** (rescue-yorliq) | — | 🆕 muhrlandi (S17) | tatbiq (`QuestionScreen`) |
+| **139 · 140** (oshkor-belgi · chalg'ituvchi) | RUXSAT-namuna (1633) | RUXSAT-namuna (1205) | toza |
+| **141** (marosim) | — | — | 🆕 birinchi tatbiq (338) |
+
+### Metafora — modul-ko'rikda hukm qilinadi
+
+| So'z | 4a-01 | 4a-02 | 4a-03 |
+|---|---|---|---|
+| **restoran** | **25** | 4 | 6 |
+| smena | 5 | 0 | 0 |
+| eshik | 32 | 15 | **51** |
+| retsept | 12 | 9 | 4 |
+| **mijoz** | 29 | 23 | **43** |
+| **buyurtma** | 20 | 8 | **32** |
+
+«Restoran» **nomi** yo'qolgan, **aholisi** qolgan va o'sgan. Savol ochiq: bu hali ham
+metaforami, yoki NestJS atamasiga aylanganmi. Hukm — ekranda.
+
+### Modul-turga tayyor EKRAN-XAVF bandlari
+
+`MODUL_TUR.md`: **4a-01** 5 band (kech yozilgan, fayldan tiklangan) · **4a-02** 8 band ·
+**4a-03** 7 band = **20 band**.
+
+### ⏭ Navbat: **4c-01 `CiCdIntroLesson`** auditi — uch alohida bo'lim bilan
+
+1. **`POINTS` muddatli-bandi** — shared-manbaga ko'chadi, **hozir muhrlanmaydi** (4 nusxa)
+2. **2-sessiya sinxron-nomzodi** — 4c-04 s7 «Takrorlash · nuqtalar» **4c-01 mazmuniga ergashadi**
+3. **`CiCdIntroLesson` qulflagan `POINTS` lug'ati** — 4 faylda
+
+---
+
+## 🔢 REZERV — 2026-08-21 · 1-SESSIYA · 4c-01
+
+**F-0820-381 … F-0820-396** band qilindi (16 ta) — `CiCdIntroLesson` sikli.
+
+| Raqam | Holat |
+|---|---|
+| 269–283 · 333–345 | ✅ ishlatilgan (4a-01 · 4a-02 · 4a-03) |
+| **284 · 346–348** | 🟡 **zaxira** — 1-sessiyaniki, **ishlatilmaydi** (blok-butunligi) |
+| **285** | 🔴 **HECH KIMNIKI EMAS** |
+| 365–380 | 2-sessiya · 4c-05 |
+| **381–396** | 🟢 **1-sessiya · 4c-01** |
+
+## 2026-08-21 · 4c-05 `FullProPipelineLesson` («Loyiha kuni: ishonchli lenta» · 4c OXIRGISI) — ✅ SIKL YOPILDI (F-0820-365…380 · B1/B2) · parallel seans (2-sessiya)
+
+Audit `AUDIT_PROMPT.md` + darsga xos bandlar (1a POINTS · 1b 4c-01/02 · 1c obraz · 1d 141 · 1e klapan · 1f «pro» xavfi) → GAP (14 topilma + 2 bahsli + 7 EKRAN-XAVF + qulf/klapan) →
+**[GATE]** → ikki to'lqin + B1 atama-almashuv + klapan (ipucha [GATE] alohida). F-ID: **365–380** (blok REZERVLAR `:4317`, aynan 16).
+
+### 🔴 B1 — SARLAVHA-ATAMA ↔ TIL-QONUNI: «PROFESSIONAL LENTA» → «ISHONCHLI LENTA» (F-0820-379)
+`til-lint` `professional-sozi` dars nomi va yadro-atamasini 15 qatorda tutdi (4c-04 «usta»dan keyin **ikkinchi** «atama ↔ qoida» to'qnashuvi). **Qaror (a):** UZ «ishonchli» (s1 mentor ta'rif-jumlasi: «tez, xavfsiz, qaytariladigan — ya'ni ISHONCHLI»), RU «надёжн-» (kelishik saqlanadi, «то есть НАДЁЖНОЙ»).
+Qamrov: UZ **20** + RU **10** almashuv (RU — Unicode-chegarali regex, kirill-`\b` yodnomasi bo'yicha); iboralar qo'lda qayta qurildi («professional darajaga chiqaramiz» → «ishonchli qilamiz», «на профессиональный уровень» → «надёжной»). **Tegilmadi:** `lessonId: 'full-pro-pipeline-4c-04-v18'`, ACH nomlari. Natija: «professional» matn-qatlamda **0**, «профессиональн» **0**.
+
+### Foydalanuvchi qarorlari
+- **B2 → marosim QO'SHILMAYDI.** 📌 **141-muvofiq: 4c-05 da marosim yo'qligi ATAYLAB** — to'rtlikning oxirgi darsi, mustaqillik (4c-03 s6 va 4c-04 s9 birinchi-marta marosimni bergan). Kelajak audit buni nuqson deb ochmasin.
+
+### 🔴 Halollik / tiklanish
+| F-ID | Nima qilindi |
+|---|---|
+| **365** | 137 — hook `correct: v === 'b'`; a/c ko'prik «Productionni bitta muhitga moslasangiz — boshqa serverda yana sinadi; e'tibor bermasangiz — xatoni foydalanuvchi topib beradi. Uchinchi yo'l: bir nechta muhitda parallel tekshirish» (+RU) |
+| **366** | **s15 FINAL (scored, `orderMatters`): slot-ipuchalari javob kaliti edi** («avval nima parallel… / qanday tezlashtiriladi / qayerdan kalit / qayerda sinaladi») → «1-qadam…5-qadam» (F-319 naqshi, ikkinchi holat) |
+| **367** | s3 matrix: qayta yuklashda `done` tiklanar, `status` tiklanmas edi (kartalar «—», o'ngda «Node 18 — qizil») → `storedAnswer ? { node18:'fail', node20:'pass', node22:'pass' } : {}` — ssenariyning qat'iy natijasi, o'lchov emas |
+| **368** | s13 markaziy: `on` tiklanmas edi (done holatda «Chapdan yaxshilashni yoqing ←») → to'rttasi tiklanadi; `PhoneMock state={done ? 'old' : 'broken'}` — rollback'dan keyin eski yuk ko'rinadi (4c-03 B2 naqshi) |
+
+### 1-TO'LQIN
+| F-ID | Nima qilindi |
+|---|---|
+| **369** | `StudentPracticePulse` + `.done-mini` |
+| **370** | 129 — MPS → `null` |
+| **371** | F-29 — `.btn/.lp-done-btn/.rc-btn` accent + `#E03E1B`; `.mstats-reveal` kontur + 132 |
+| **372** | `.live-badge` 0.62 |
+| **373** | `tap-hint` → `firstUnseen`: s2 vcard ×3 · s11 ×2 · s13 ×4 (`firstOff`) |
+
+### 2-TO'LQIN
+| F-ID | Nima qilindi |
+|---|---|
+| **374** | O'lik TTS — zaglushka + QS + **praktika `useAudio`** (4 joy) ketdi |
+| **375** | O'lik tokenlar ×3 (`accentVivid · link · amber`) ketdi |
+| **376** | RU «✅ Выполнил» → «✅ Готово» |
+| **377** | Til: «ushbu» · «tavsiya etiladi» ×2 · «Zo'r!» · `timer-chip` «40 son / 8 son» → «40 s / 8 s» («son» = raqam) |
+| **378** | Darsga xos o'lik CSS — 4c-04 qoldiqlari **22 qator** (`gchip · ai-* · takeaway/ta-* · shake · tempt-btn · itm-check/fix · belt-log ×6 · chips · blank-*`) + tap-hint/reduced-motion ro'yxatlaridagi 3 qoldiq selektor; `.note-h` saqlandi |
+
+### 🔓 KLAPAN — F-0820-380
+`useStuckValve` m4-08 kanonik + `.bhint`; **9 ekran**: s2 `seen` · s3 `running` · s5 `ran` · s6 `ran` · s7 `show` · s9 `openSeen+secured` · s11 `seen` · s12 `broke` · s13 `on.size+rolledBack`.
+**Kalitli beshlik klapansiz:** `INLINE_KEYS = { s4, s8, s10, s14, s15 }` → 138-qo'shimcha chegarasi ishga tushmaydi, **9/9 rescue «Davom etish»**. 9 ipucha tahrirsiz tasdiq (s9 va s13 — ikki bosqichli; hech biri tartib sanamaydi):
+s2 «Qolgan muhitni bosing — har biri lentaning bitta parallel qatori» · s3 «“▶ Matrixni ishga tushirish” tugmasini bosing — uch muhit bir vaqtda aylanadi, qaysi biri qizil bo'lishini kuzating» ·
+s5 «“▶ npm install” tugmasini bosing — o'ngdagi vaqt-chipi keshsiz reysni ko'rsatadi» · s6 «“▶ npm install (kesh bilan)” tugmasini bosing — ikki vaqt-chipini solishtiring» · s7 «“▶ Bu nimani bildiradi?” tugmasini bosing — path va key qatorlari tushuntiriladi» ·
+s9 «Avval “▶ Repo'ni ochiq holda ko'rish” — kalit ochiqda nima bo'lishini ko'ring, keyin “🔐 Seyfga joylash”» · s11 «Qolgan reysni bosing — biri yo'lovchisiz sinov, ikkinchisi haqiqiy» ·
+s12 «“✈️ Yangi yukni production'ga chiqarish” tugmasini bosing — yo'lovchi ekranida nima bo'lishini ko'ring» · s13 «To'rt yaxshilashni birma-bir yoqing — har birida “oldin/keyin” farqi chiqadi. Hammasi yoqilgach, buzuq yukni qaytaradigan tugma paydo bo'ladi» · rescue — m4-08.
+🔴 Ball-halollik: rescue'da `onAnswer` yo'q; nishonlar faqat scored ekranlarda (s4·s10·s14·s15 — klapansiz).
+
+### Darsga xos bandlar
+- **1a POINTS:** 4-nusxaning oxirgisi — **tegilmadi**. 📏 `CiCdIntro` ↔ `FullPro` POINTS bloklari **allaqachon farq qiladi** (`diff` — 6 qator) → sinxron-band shunchaki nusxa emas, mazmun-tekislash. s0 mentor nuqta-ro'yxati «Yig'ish → Skaner → O'rash → Uchirish» (O'lcham ramkasi tushgan) — sinxron-nomzodga.
+- **1b 4c-01/02:** «1-dars bilan 1:1», «Oldingi darslarda» — NOMZOD, tegilmadi.
+- **1c OBRAZ:** «uchish lentasi» olami to'liq; «usta/Мастер/yordamchi» **0** (AI-yordamchi bu darsda yo'q → Antigravity ko'prigi tatbiq etilmaydi); yangi obrazlar «PARALLEL LENTALAR» va «YAQIN JAVON» — olam ichida, s2/s5/s6 ko'priklari (128 ✓); s0 mentor 4c-03 ga ko'prik ✓.
+- **1d 141:** marosim 0 — muvofiq (B2, ataylab).
+- **1f «PRO» xavfi:** takror mexanikalar (`DragDropOrder` — 4c da uchinchi, `PhoneMock`, `Belt`, `itm-card`, `vcard`) — to'liq namuna berilmagan, mustaqillik ✓; s15 slot-yozuvlari F-366 bilan neytral.
+
+### Darvozalar (`npm run gates -- src/4c-Modull/FullProPipelineLesson.jsx`)
+| Darvoza | Oldin | Keyin |
+|---|---|---|
+| esbuild | ✓ | **✓** |
+| jsx | 0 | **0** |
+| dark | **4** | **0** |
+| til | **18🔴 · 1🟡** | **0 · 0** |
+| prompt | ✓ | **✓** |
+| **Jami** | 2/5 | **5/5 toza** |
+
+**UZ-RU muvozanati:** 559 → 561 (to'lqinlar + B1) → **579/579** (klapan bilan, toza tenglik) · residue (`professional|профессиональн|useAudio|amber|T.link|accentVivid|Выполнил'|40 son`) 0 · darsga xos o'lik CSS 0 · `useStuckValve(` ×9 ekran · kalitli beshlikda 0 · diff 178+/109−.
+
+### Tegilmadi (ataylab)
+Matrix/cache/secret/staging/rollback mexanikalari · s9 2-bosqichli seyf (ACH s10 da, halol) · s13 4 toggle (xato yo'li yo'q — `correct: true` qonuniy) · `POINTS`/`Belt` · ACH nomlari · `lessonId`.
+
+### 1-SESIYAGA UZATMA (foydalanuvchi yo'naltirdi — men yetkazmayman, faqat yozaman)
+1. **POINTS/Belt + s0 nuqta-ro'yxati sinxron-band** (muddatli, 4c-01 ga): 4 nusxa, `CiCdIntro`↔`FullPro` bloklari hozir 6 qatorda farq qiladi. Joylar (2-sessiya uchala darsi): FullPipeline `POINTS` 17 · `<Belt` 3 · `ALL_PASS` 4 · `pointOkLine` 3; AiPipeline 12 · 3 · 3 · 0; FullPro 7 · 1 · 2 · 0 → **jami POINTS 36 · Belt 7 · ALL_PASS 9** (4c-01 hisobidagi «14 joy» bilan solishtiriladi — 4c-01 yopilgach).
+2. **4c-01/02 havolalari — uch darsdan yig'ilgan ro'yxat:** 4c-03 sarlavha «CiCdIntroLesson qulflagan», POINTS nusxa · 4c-04 «DARS 1 bilan 1:1», s7 «Takrorlash · nuqtalar» · 4c-05 «1-dars bilan 1:1», s0 «Oldingi darslarda» + nuqta-ro'yxati. 4c-01/02 auditi yopilgach sinxron.
+3. **Tiklanish-ko'rinish sinfi** (F-252 · F-367 · F-368): `storedAnswer` `done`ni tiklasa, **ekran ko'rinishi ham** tiklanadi. O'lchov-grep: `grep -nE "useState\((\(\) => )?new Set\(\)\)|useState\(\{\}\)" src/**/*.jsx` qatorlari yonida `storedAnswer ?` bor-u, ushbu holat mustaqil — nomuvofiq juftlik. Qonun-nomzod, muhr 1-sesiyada.
+4. **«Sarlavha-atama til-lintdan o'tadimi» AUDIT_PROMPT-bandi** — ikkinchi holat (4c-04 «usta» → yordamchi · 4c-05 «professional» → ishonchli); dars nomidagi atama qoidaga mos tanlansin. Muhr AUDIT_PROMPT egasida.
+5. **Kirill-`\b` yodnomasi — ikkinchi takror** (4a-02 «Вы» o'lchovi · 4c-04 RU almashuv; 4c-05 da standart qo'llandi): lint-nomzod «matn-o'lchov/almashuv regexlarida `\b` kirill uchun taqiq; Unicode-chegara standarti — `(^|[^А-Яа-яЁё])…(?![А-Яа-яЁё])` yoki `\p{L}` + `u`». Uchinchi takrorda qonun.
+6. **RU «вы/Вы» 9:0** — ijobiy namuna (4c-03 8:0 bilan bir qatorda).
+
+**EKRAN-XAVF 7 bandi** → `MODUL_TUR.md` («4c-05»).
+
+**Holat:** ✅ **4c-05 YOPILDI** · **COMMIT YO'Q** · umumiy fayllarga tegilmadi.
+
+---
+
+## 📦 4c · 2-SESIYA JAMLAMASI (4c-03 · 4c-04 · 4c-05) — modul-birlashma uchun (4c-01/02 1-sesiyada)
+
+| | 4c-03 `FullPipelineProject` | 4c-04 `AiPipelineProject` | 4c-05 `FullProPipeline` |
+|---|---|---|---|
+| F-ID | 302–316 + 317 | 318–332 + 349 + 350 | 365–380 |
+| Darvozalar | 2/5 → 5/5 | 2/5 (til 69🔴) → 5/5 | 2/5 (til 18🔴) → 5/5 |
+| UZ-RU | 553 → 573 | 599 → 619 | 559 → 579 |
+| Klapan | 7 ekran · s12 final klapansiz | 9 ekran · kalitli 5 klapansiz | 9 ekran · kalitli 5 klapansiz |
+| Rescue-yorliq | 7/7 «Davom etish» | 9/9 «Davom etish» | 9/9 «Davom etish» |
+| Marosim (141) | s6 in-flow, birinchi-marta | s9 in-flow, birinchi-marta | **yo'q — ataylab** (mustaqillik) |
+
+**F-sinflar (uchala darsda takrorlangan):** 137 hook-halollik (304·318·365) · Pulse (302·321·369) · 129 MPS (303·322·370) · F-29 tugmalar (306·323·371) · live-badge (308·324·372) · tap-hint firstUnseen (309·325·373) · o'lik TTS (310·326·374) · o'lik tokenlar (311·327·375) · RU «Готово» (312·328·376) · til-band (313·329·377) · o'lik CSS (316·330·378 — 4c-04→4c-05 nusxa-qoldiq zanjiri).
+**Yangi sinflar:** slot-ipucha = javob (319 → 366, ikki holat) · tekin-nishon tuzoqda (320) · tiklanish-ko'rinish (367·368) · chalg'ituvchi-ishonarliligi (332) · atama↔qoida (349 usta · 379 professional) · s13 `stage:'final'`→`'case'` (305).
+**Qonun-tatbiqlar:** 136 (305·319·366) · 137 (304·318·365) · 138-qo'shimcha (rescue-yorliq: uchala darsda kalitli ekranlar klapansiz → «Davom etish» halol) · 141 (4c-03/04 birinchi-marta, 4c-05 ataylab yo'q) · 129 · 132 · 134 · 1932.
+
+**a. Obraz-zanjiri (uchish lentasi olami, 4c-01 qulflagan):**
+4c-03 — **LENTA** to'liq quriladi (5 nuqta · YO'L XARITASI · START SIGNALI · SEYF · TABLO · SINOV/HAQIQIY REYS · ESKI YUKNI QAYTARISH) → 4c-04 — **LENTA YORDAMCHISI** (AI; «USTA» → «YORDAMCHI», F-349) lentani boshqaradi; «aniqlashtiruvchi so'rov (follow-up)» (F-331); Antigravity ko'prigi (B2) → 4c-05 — **PARALLEL LENTALAR** (matrix) · **YAQIN JAVON** (cache) · **ISHONCHLI LENTA** («PROFESSIONAL» → «ISHONCHLI», F-379).
+Atama-almashuvlar: «usta/Мастер» → «yordamchi/Помощник» (139+100) · «follow-up so'rov» → «aniqlashtiruvchi so'rov (follow-up)» (7) · «tashxis» → «sabab» (8) · «professional/профессиональн-» → «ishonchli/надёжн-» (20+10) · «Copilot/ChatGPT» → «Antigravity (yoki boshqa AI-yordamchi)» (3) · «40 son» → «40 s». Taqiq-ro'yxat (robot/zavod/konveyer UZ) uchala darsda 0; RU «КОНВЕЙЕР» — 4c-01 RU lug'ati bilan hal qilinadi (1-sesiya).
+
+**b. POINTS/Belt qo'llanish-joylari (jami, 3 dars):** `POINTS` 36 (17·12·7) · `<Belt` 7 (3·3·1) · `ALL_PASS` 9 (4·3·2) · `pointOkLine` 3 (faqat 4c-03). `CiCdIntro`↔`FullPro` POINTS bloklari 6 qatorda farq qiladi. 4c-01 «14 joy» bilan solishtirish — 4c-01 yopilgach.
+
+**c. Takror-mexanikalar:** `DragDropOrder` — 4c-03 s6 **birinchi** (slot-ipuchalar ekranda, to'liq yo'l-yo'riq), 4c-04 s15 va 4c-05 s15 — mustaqillik (slot «1…5-qadam», F-319/366) · `PhoneMock` — 4c-03 s6 birinchi (new), 4c-03 s10 / 4c-04 s12 / 4c-05 s12-s13 (broken→old) · `Belt` — 4c-03 s1/s6/s13 birinchi, 4c-04 s7, 4c-05 s1 · `itm-card` — 4c-04 s2 birinchi, 4c-05 s3 · `DebugChallenge` — faqat 4c-03 s3 · `Tablo` — faqat 4c-03. Marosim-istisno hech birida buzilmagan.
+
+**Holat:** 2-sesiya 4c navbati **TUGADI** (03·04·05 ✅). 4c-02 `GithubActions` — 1-sesiya. **KUTISH HOLATI** — yangi tayinlov berilmagan, fayllarga tegilmaydi.
+
+---
+
+## 2026-08-21 · 1-SESSIYA · 4c-01 `CiCdIntroLesson` — TO'LIQ SIKL ✅
+
+**Rezerv:** F-0820-381…396 · bu siklda **381–392** ishlatildi (bo'sh: 393–396).
+
+### Topilmalar
+
+| F-ID | Topilma | Belgi |
+|---|---|---|
+| 381 | `MentorPracticeStats` `0/0` da `null` emas (129-qonun) | 💠 shablon |
+| 382 | `StudentPracticePulse` yo'q (+ `.done-mini` CSS, kanonik nusxa m3-09) | 💠 shablon |
+| 383 | `.btn` · `.lp-done-btn` · `.mstats-reveal` · `.rc-btn` = `T.ink` (F-29 + 132) | 💠 shablon |
+| 384 | `.hint { 1.5px dashed }` → `1px solid ${T.line}` (16-qonun) | 💠 shablon |
+| 385 | «professional» + RU juftligi | 💠 shablon |
+| 386 | «tavsiya etiladi» ×2 · «ushbu» · «Zo'r!» | 💠 shablon |
+| **387** | 🔴 **137-qonun — hook halol emas** (oltinchi takror) | |
+| **388** | **141-qonun — ikki bayram ketma-ket** (ikkinchi takror) | |
+| 389 | Klapan **11 joyga** (9 + `Screen15` + `QuestionScreen`) | |
+| **390** | **POINTS RU-drifti** — QAYD, muhrlanmadi | |
+| **391** | «-ku» — **iqtibos-obyekt**, tegilmadi; til-lint chegarasi qo'yildi | |
+| 392 | «Quyidagi 5 buyumdan…» → «Mana bu 5 buyumdan…» | |
+
+**Statistika:** 12 topilmadan **6 tasi (50%) shablon-sinfi** — darsning o'ziga xos nuqsoni emas
+(`KATTA_TOZALASH` 23-band).
+
+### F-387 — hook (137-qonun, oltinchi takror)
+
+`correct: true` + shoxlanmagan «Aynan!» → `correct: v === 'b'` + `ACK` xaritasi.
+Ko'prik-gaplar **olam ichidan**:
+
+- `a` («qo'lda bajaraman») → «Diqqat charchaydi — beshinchi marta bitta qadam **tushib qoladi**…»
+- `c` («deploy qilmayman») → «Lokalda ishlagani — **faqat sizda** ishlagani…»
+
+🔴 Sinf: **m4-01 · m4-03 · m4-04 · m4-05 · 4a-03 · 4c-01** — oltita, ikki modulda.
+
+### F-391 — til-lint chegarasi (KORPUS §159 ning grep-tomoni)
+
+«Mening kompimda **ishlayapti-ku**» — dasturchilarning mashhur e'tirozi, dars **aynan shunga
+javob beradi**. Olib tashlash — pedagogik yo'qotish (foydalanuvchi hukmi).
+
+`sheva-yuklama-ku` qoidasiga `except` qo'shildi:
+
+```json
+"except": "«[^»]{0,80}[a-z']-ku"
+```
+
+🔬 **Ikki tomonlama sintetik dalil:** oddiy «bosasiz-ku» → **hamon 🔴** · iqtibosdagi
+«ishlayapti-ku» → **o'tadi**. **Repo-regressiya:** qoida boshqa joylarda **8 marta**
+ishlayapti — ko'r qilinmadi.
+
+> Naqsh: qoida **o'chirilmaydi**, unga **chegara** qo'yiladi — F-249 (`retsept`) bilan bir
+> oila. Uchinchi shu turdagi holat chiqsa, «iqtibos-istisnosi» umumiy mexanizm bo'lib
+> ajratilishi kerak.
+
+### F-389 — klapan 11 joy (15 ekran)
+
+| Joy | Ekran | Rescue-yorlig'i |
+|---|---|---|
+| S2·3·5·6·7·9·11·12·13 | 9 | «Davom etish» |
+| **`Screen15`** (`INLINE_KEYS.s15`) | 1 | 🔴 **«Lentani birga yig'amiz →»** |
+| **`QuestionScreen`** (s4·s8·s10·s14) | 4 | 🔴 **«Javobni birga ko'ramiz →»** |
+
+**Screen9 ikki joyda tegildi:** yorlig'i `navLabel` **o'zgaruvchisida** turadi
+(`disabled` bir joyda, `const navLabel = done ? …` boshqa joyda). Skript buni alohida
+hal qildi — naqshni bilmasdan `disabled` ni almashtirsak, yorliq **ochilmay qolardi**.
+
+### Darvozalar
+
+| Darvoza | Oldin | Keyin |
+|---|---|---|
+| esbuild | ✓ | **✓** |
+| jsx | 0 | **0** |
+| dark | **4** | **0** |
+| til | **5🔴 · 2🟡** | **0 · 0** |
+| prompt | ✓ | **✓** |
+| **Jami** | **2/5** | **5/5 toza** |
+
+UZ-RU **579 → 609/609** · qamrov-sanog'i: klapan **11** · nav **11** · ipucha-juft **11** ·
+tip-prop **4** — kutilgan bilan **teng**.
+
+**EKRAN-XAVF 7 bandi** → `MODUL_TUR.md` («4C-MODUL · 4c-01»), olam-lug'ati qaydi bilan.
+
+### 📌 QAYD — 4c-02 auditiga o'tadigan tekshiruvlar
+
+1. **TABLO teskari-tekshiruvi.** 4c-01 da `tablo` = **0** — bu **nomuvofiqlik EMAS**:
+   TABLO = `status badge`, GitHub Actions obyekti, 4c-01 esa CI/CD **tushunchasini**
+   o'rgatadi. 🔴 **4c-02 auditida teskari tekshirilsin:** obyekt **o'sha yerda e'lon
+   qilinadimi** (ta'rif + olam-lug'atiga qo'shilishi), yoki 4c-03 da (44 marta) **e'lonsiz**
+   paydo bo'ladimi.
+2. **4c-01 bilan tutashuv.** 4c-02 da POINTS **yo'q**, lekin «qulflagan lug'at» tutashuvi
+   tekshirilsin: 4c-01 ochgan atamalar (START SIGNALI · SEYF · LENTA JURNALI) 4c-02 da
+   **o'sha nom bilan** ishlatiladimi.
+
+**Holat:** ✅ **4c-01 YOPILDI** · **COMMIT YO'Q**.
+
+---
+
+## 📋 TAKLIF-BAND — POINTS shared-manbaga ko'chirish (F-0820-390)
+
+🔴 **Ijro vaqti va qarori — foydalanuvchiniki.** Bu yerda faqat **variantlar** turadi.
+Bu to'lqinda nuqta-ta'riflari (`label` · `d` · `cmd`) **o'zgartirilmadi** — topilmalar buni
+talab qilmadi va ergashuvchi 3 faylning ikkisi 2-sessiya hududida (4c-05 jonli).
+
+### Muammo — o'lchangan holat
+
+4 faylda 4 nusxa. UZ izchil, **RU'da drift**:
+
+| Fayl | `lint` nuqtasining RU nomi |
+|---|---|
+| `CiCdIntroLesson` (**manba-dars**) | «Рамка» |
+| `AiPipelineProjectLesson` | «Мерная рамка» |
+| `FullPipelineProjectLesson` | «Габарит-рамка» |
+| `FullProPipelineLesson` | «Калибр» |
+
+Bitta tushuncha — **RU'da to'rt nom**. `MATN_KORPUS` §156 buzilishi, faqat RU tomonida.
+
+### (A) Shared-manba shakli — uch variant
+
+| # | Shakl | Foyda | Xarajat |
+|---|---|---|---|
+| **A1** | `src/4c-Modull/_pipelinePoints.js` — modul-ichi umumiy fayl | eng tor qamrov, 4c dan chiqmaydi | yangi fayl, 4 import |
+| **A2** | Mavjud `shared` qatlamiga (LMS `.shared.jsx` yonida) | boshqa modullar ham ishlatishi mumkin | qamrov kengroq — ehtiyot |
+| **A3** | 4c-01 dan **eksport**, qolgan 3 fayl undan import qiladi | yangi fayl yo'q | 4c-01 «manba» bo'lib qoladi — dars-fayllari o'zaro bog'lanadi (🔴 tavsiya qilmayman) |
+
+**Tavsiyam: A1.**
+
+### (B) RU-kanon — to'rt nomdan qaysi biri
+
+| Variant | Nomzod | Izoh |
+|---|---|---|
+| B1 | «Мерная рамка» | UZ «O'lcham ramkasi» ga **eng yaqin** tarjima |
+| B2 | «Габарит-рамка» | aeroport olamiga eng mos (chamadon gabariti) — **obraz bilan uyg'un** |
+| B3 | «Рамка» | eng qisqa, lekin «nima ramkasi?» degan savol qoladi |
+| B4 | «Калибр» | ixcham, lekin olamdan uzoq |
+
+**Tavsiyam: B2** — dars olami aeroport lentasi, «габарит-рамка» aynan o'sha dunyodan va
+`eslint` ning ma'nosini (o'lcham/qoidaga moslik) to'g'ri beradi.
+
+### (C) Sinxron-to'lqin — 14 joy
+
+| Fayl | Joy | Holat |
+|---|---|---|
+| `FullPipelineProjectLesson` (4c-03) | **6** | 2-sessiya hududi |
+| `AiPipelineProjectLesson` (4c-04) | **2** | 2-sessiya hududi |
+| `FullProPipelineLesson` (4c-05) | **6** | 2-sessiya hududi, **jonli** |
+| `CiCdIntroLesson` (4c-01) | manba | 1-sessiya |
+
+🔴 **Shart:** ijro **ikkala sessiya darslari yopilgach**, **bitta qo'lda** — aks holda
+jonli fayl ustida to'qnashuv bo'ladi.
+
+---
+
+## 🔢 REZERV — 2026-08-21 · 1-SESSIYA · 4c-02
+
+**F-0820-397 … F-0820-412** band qilindi (16 ta) — `GithubActionsLesson` sikli,
+**mini-modul to'lqinining oxirgisi**.
+
+| Raqam | Holat |
+|---|---|
+| 269–283 · 333–345 · 381–392 | ✅ ishlatilgan |
+| **284 · 346–348 · 393–396** | 🟡 zaxira — 1-sessiyaniki, ishlatilmaydi |
+| **285** | 🔴 hech kimniki emas |
+| **397–412** | 🟢 **1-sessiya · 4c-02** |
+
+---
+
+## 🧪 LINT-NOMZOD (qo'shimcha) — qulf-yorliq va qulf-shart bitta manbadan
+
+**Manba:** 4c-01 `Screen9` (2026-08-21). **Birinchi holat — muhrlanmaydi, takror kutadi.**
+**Oila:** 138-qonun · **jim-buzilish** sinfi.
+
+**Naqsh.** Yorliq `navLabel` **o'zgaruvchisida**, qulf-sharti esa `NavNext` da:
+
+```jsx
+const navLabel = done ? tr({ uz: 'Davom etish' }) : selected.size === 0 ? … : …;
+…
+<NavNext disabled={!done} label={navLabel} …/>
+```
+
+Klapan ulanganda `disabled={!done && !_resc}` qilinadi — lekin `navLabel` **tegilmasa**,
+rescue qulfni ochadi-yu, yorliq **eski buyruqni** ko'rsatib turadi («Buyumlarni tanlang»).
+O'quvchi ochiq tugmani ko'radi, matn esa boshqa narsa deydi — 138-qonun **buziladi**, hech
+bir darvoza sezmaydi.
+
+**Nomzod-tekshiruv:** `label={<identifikator>}` ko'rinishidagi har `NavNext` uchun o'sha
+identifikatorning ta'rifi topilib, `done`/`solved` shartini **o'zi** hisoblashi tekshiriladi.
+
+🔴 **Qamrov o'lchanmagan** — darvoza qilishdan oldin `label={navLabel}` naqshi repoda
+nechta joyda borligi sanalishi kerak.
+
+---
+
+## 📋 POINTS taklif-bandi — QARORLAR QABUL QILINDI (2026-08-21)
+
+Yuqoridagi taklif-bandga (F-0820-390) foydalanuvchi qarori:
+
+| Bo'lim | Qaror |
+|---|---|
+| **(A) Shakl** | ✅ **A1** — `src/4c-Modull/_pipelinePoints.js` (modul-ichi umumiy fayl) |
+| **(B) RU-kanon** | ✅ **B2** — «**Габарит-рамка**» · UZ «O'lcham ramkasi» **o'zgarmaydi** |
+| **(C) Ijro** | ✅ 4c-02 yopilgach, **1-sessiya bajaradi** alohida **SINXRON-TO'LQIN** sifatida. 🔴 Foydalanuvchi «boshla» demaguncha **TEGILMAYDI** |
+
+### 🔴 IJRO-SHARTI — BIRLIK-KELISHUV JADVALI (F-345 dan)
+
+Sinxron-to'lqin **boshlanishidan oldin** ikki sessiyaning o'lchovi **bitta jadvalda**
+solishtiriladi va **mos kelishi** ko'rsatiladi:
+
+| Fayl | 1-sessiya o'lchovi (**joy** = POINTS matni ekranga chiqadigan nuqta) | 2-sessiya o'lchovi (**qator-hisobi**) | Mos? |
+|---|---|---|---|
+| `FullPipelineProjectLesson` (4c-03) | **6** | **36** | ⬜ |
+| `AiPipelineProjectLesson` (4c-04) | **2** | **7** | ⬜ |
+| `FullProPipelineLesson` (4c-05) | **6** | **9** | ⬜ |
+| `CiCdIntroLesson` (4c-01) | manba | **3** | ⬜ |
+| **Jami** | **14 joy** | **55 qator** | ⬜ |
+
+**Nega shart.** Ikki raqam **turli birlikda**: men **ekranga chiqadigan joy**larni sanadim
+(bitta `POINTS.map(…)` = 1 joy), 2-sessiya esa **`POINTS` uchraydigan qator**larni.
+F-345 saboqi aynan shu: **o'lchov birligi kelishilmaguncha hajm ishonchsiz** — jadval
+to'ldirilib, har fayl uchun «N joy = M qator» munosabati ko'rsatilmasa, to'lqin
+**boshlanmaydi**.
+
+---
+
+## 2026-08-21 · 1-SESSIYA · 4c-02 `GithubActionsLesson` — TO'LIQ SIKL ✅ (TO'LQIN OXIRGISI)
+
+**Rezerv:** F-0820-397…412 · bu siklda **397–407** ishlatildi (bo'sh: 408–412).
+
+### Topilmalar
+
+| F-ID | Topilma | Belgi |
+|---|---|---|
+| 397 | `MentorPracticeStats` `0/0` da `null` emas (129-qonun) | 💠 shablon |
+| 398 | `StudentPracticePulse` yo'q (+ `.done-mini` CSS) | 💠 shablon |
+| 399 | `.btn` · `.mstats-reveal` · `.rc-btn` · `.lp-done-btn` = `T.ink` (F-29 + 132) | 💠 shablon |
+| 400 | «ushbu» · «tavsiya etiladi» ×2 · «Zo'r!» | 💠 shablon |
+| **401** | 🔴 **137-qonun — hook** (yettinchi takror) | |
+| **402** | **141-qonun** — ikki bayram ketma-ket (uchinchi tatbiq) | |
+| **403** | 🔴 **TABLO e'lon qilinmagan** — arena o'rgatilmagan obyektni so'raydi | |
+| **404** | `kengaytma` — **yolg'on signal**, til-lint chegarasi qo'yildi | |
+| 405 | «Quyidagi LENTA JURNALIGA» → «Mana bu…» | |
+| 406 | Klapan **13 joyga** | |
+| **407** | 🆕 **TABLO bloki** — yangi kontent (F-403 yechimi) | |
+
+🔴 **Shablon-oltiligi bu darsda 4/6:** `.hint` klassi **umuman yo'q** · «professional» **0 marta**.
+> **23-band statistikasiga:** oltilik **hamma joyda bir xil emas** — nusxa-manba bitta emas,
+> yoki ba'zi a'zolar keyingi nusxalarda tabiiy ravishda tushib qolgan. Tozalash-hajmi
+> shu sababdan **fayl bo'yicha o'lchanishi** kerak, «6 × N dars» deb emas.
+
+### F-403 → F-407 — TABLO O'Z DARSIDA TUG'ILDI (A-varianti)
+
+**Muammo (uzatma-tekshiruv natijasi).** `status badge=TABLO` faqat **13-qatordagi kod-izohi**
+lug'atida bor edi. Ekranda **0 marta**. Lekin **arena savoli** (1825) TABLO ni so'raydi va
+**4c-03 uni 35 marta** ishlatadi. Ya'ni ballik savol **o'rgatilmagan obyektni** tekshirardi —
+140-qonun qo'shnisi, undan **og'irroq**: bu yerda to'g'ri javob ham o'rgatilmagan.
+
+🔬 **Nazorat-tekshiruvi:** o'sha izohda e'lon qilingan `matrix=PARALLEL LENTALAR` (**5** marta
+ekranda) va `cache=YAQIN JAVON` (**6** marta) — **o'rgatilgan**. Nuqson izoh-lug'atining
+o'ziga emas, **TABLO ga xos**.
+
+**Yechim — qamrov jilovlangan holda:**
+
+- ❌ Yangi ekran **EMAS** — mavjud oqim ichida **ixcham blok** (`frame-soft`), `YAQIN JAVON`
+  ekranining oxirida, ya'ni **arena savolidan OLDIN**.
+- ✅ Obraz ichida: «lenta natijasini **ko'chaga chiqarib qo'yish** — repozitoriya sahifasi
+  boshidagi kichik **TABLO** lenta hozir yashilmi yoki qizilligini yozib turadi».
+- ✅ **EKRAN-XAVF 2-bandi shu yerda hal qilindi** — farq bir gapda:
+  «yashil/qizil **chiroq** — bitta yurishning natijasi; **TABLO** — **oxirgi** yurishni
+  doim ko'rsatib turadigan yorliq».
+- ✅ **4c-03 ga TEGILMADI** — obyekt endi oldingi darsda o'rgatilgani uchun avtomatik izchil.
+
+**Mini-audit (yangi kontent):** til-lint **0** · dark **0** · qulf-ta'siri **yo'q**
+(`done = run && t1 >= 40 && t2 >= 8` o'zgarmadi — blok sof ma'lumot) · yangi klasslar
+(`frame-soft` · `note-h`) **CSS bilan mavjud** (F-283 sinfi yo'q) · UZ-RU juftlik saqlandi.
+
+🔴 **STATE-qaydi:** F-407 — **4c-01 lug'at-e'loni naqshining birinchi majburiy tatbiqi**.
+Naqsh: *atama olam ichida nomlanadi va **O'Z darsida** ochiladi; kod-izohidagi lug'at —
+muallif uchun, o'quvchi uchun emas.*
+
+### F-404 — til-lint chegara-holati №2
+
+«`.yml` **kengaytmasi**» = **fayl kengaytmasi**, VS Code «Extensions» paneli emas.
+`ekran-nomi-tarjimasi` qoidasining `except` iga qo'shildi:
+
+```
+\.(yml|yaml|jsx?|tsx?|json|md|css|html|env)\s*kengaytma
+```
+
+🔬 **Ikki tomonlama dalil:** «VS Code **kengaytma** panelini oching» → **hamon 🔴** ·
+«Fayl `.yml` **kengaytmasi** bilan saqlanadi» → **o'tadi**.
+**Repo-regressiya:** qoida boshqa joylarda **3 marta** ishlayapti.
+
+> **Jurnal:** chegara-holat **№2** (№1 — F-391 `-ku` iqtibos). **Uchinchisida** umumiy
+> **kontekst-istisno mexanizmi** ajratiladi — har qoidaga alohida `except` yozish o'rniga
+> «atama qaysi kontekstda ishlatilyapti» degan umumiy qatlam.
+
+### F-406 — klapan 13 joy (18 ekran)
+
+| Joy | Ekran | Rescue-yorlig'i |
+|---|---|---|
+| S2·3·5·6·8·9·11·12·14·16 | 10 | «Davom etish» |
+| **S17** (`solvedOnce`) | 1 | «Davom etish» |
+| **Screen18** (`INLINE_KEYS.s18`) | 1 | 🔴 **«Jurnalni birga o'qiymiz →»** |
+| **`QuestionScreen`** (s4·s7·s10·s15) | 4 | 🔴 **«Javobni birga ko'ramiz →»** |
+
+⚠️ **Screen17 qulf-sharti `solvedOnce` deb ataladi** — `navLabel`-oilasining **2-takrori**
+(nomzod-jurnalda). Skript uni **nom bo'yicha alohida** ulaydi; umumiy naqsh bilan
+o'tkazilsa, ekran klapansiz qolardi va **hech bir darvoza sezmasdi**.
+
+### Darvozalar
+
+| Darvoza | Oldin | Keyin |
+|---|---|---|
+| esbuild | ✓ | **✓** |
+| jsx | 0 | **0** |
+| dark | **4** | **0** |
+| til | **4🔴 · 2🟡** | **0 · 0** |
+| prompt | ✓ | **✓** |
+| **Jami** | **2/5** | **5/5 toza** |
+
+UZ-RU **641 → 678/678** · qamrov-sanog'i: klapan **13** · nav **13** · ipucha-juft **13** ·
+tip-prop **4** — teng.
+
+⚠️ **Jarayon-saboq (bu siklda tutildi):** `MentorPracticeStats` blokini almashtirganda
+yopuvchi `};` **tushib qoldi** — `jsx-lint` «TOZA» dedi, **esbuild** tutdi. Ikki darvoza
+bir-birini to'ldiradi: jsx-lint **ma'no**ni, esbuild **sintaksis**ni ko'radi; blok-almashtirishdan
+keyin **ikkalasi ham** darhol yurgizilishi kerak.
+
+**EKRAN-XAVF 7 bandi** → `MODUL_TUR.md` («4c-02»).
+
+**Holat:** ✅ **4c-02 YOPILDI → 1-SESSIYA TO'LQINI TUGADI** · **COMMIT YO'Q**.
+
+---
+
+# 📦 1-SESSIYA JAMLAMASI (2026-08-20…21) — modul-xarita uchun
+
+## Besh dars
+
+| Dars | Fayl | Topilma | Darvoza | Klapan (joy) |
+|---|---|---|---|---|
+| **4a-01** | `NestArchAliveLesson` (4a-ETALON) | 18 + F-283 | 5/5 | 12 |
+| **4a-02** | `NestArchResourceLesson` | 12 | 5/5 | 11 |
+| **4a-03** | `NestArchPracticeLesson` | 13 | 5/5 | 15 |
+| **4c-01** | `CiCdIntroLesson` (4c olam-manbasi) | 12 | 5/5 | 11 |
+| **4c-02** | `GithubActionsLesson` | 11 | 5/5 | 13 |
+| | | **66 topilma** | **25/25** | **62 joy** |
+
+## Qonun-muhrlari (bu sessiyada yozilgan)
+
+| Raqam | Qonun | Manba |
+|---|---|---|
+| **139** | Oshkor-belgi: ✅/❌ tanlovdan oldin ko'rinmaydi | 2-sessiya nomzodi ① |
+| **140** | Chalg'ituvchi darsning o'z qoidasi bo'yicha ham noto'g'ri | 2-sessiya nomzodi ② |
+| **141** | Marosim bitta va birinchi-marta | uch takror (m4-13 ×2 · 4c-03) |
+| **138-qo'sh.** | Rescue-yorlig'i ballik ekranda «Davom etish» EMAS | 4a-02 S17 |
+
+## Takrorlanuvchi F-sinflar (modul-ko'rik statistikasi)
+
+| Sinf | 4a-01 | 4a-02 | 4a-03 | 4c-01 | 4c-02 | Jami |
+|---|---|---|---|---|---|---|
+| 💠 **129** bo'sh apparat | ✅ | ✅ | ✅ | ✅ | ✅ | **5/5** |
+| 💠 **Pulse yo'q** | ✅ | ✅ | ✅ | ✅ | ✅ | **5/5** |
+| 💠 **F-29 + 132** | ✅ | ✅ | ✅ | ✅ | ✅ | **5/5** |
+| 💠 **16 `.hint`** | ✅ | ✅ | ✅ | ✅ | — | **4/5** |
+| 💠 «professional» | ✅ | ✅ | ✅ | ✅ | — | **4/5** |
+| 💠 «tavsiya/Zo'r/ushbu» | ✅ | ✅ | ✅ | ✅ | ✅ | **5/5** |
+| 🔴 **137 hook** | ✅ | — (tug'ma toza) | ✅ | ✅ | ✅ | **4/5** |
+| **141 marosim** | — | — | ✅ | ✅ | ✅ | **3/5** |
+
+🔴 **Xulosa:** **66 topilmadan 28 tasi (42%)** shablon-oltiligidan.
+**137-hook** esa oltilikdan **tashqarida** bo'lsa ham 4/5 chiqdi — u ham
+**nusxa bilan ko'chadigan** sinf, `KATTA_TOZALASH` 23-bandiga **yettinchi a'zo** sifatida
+qo'shilishi kerak (foydalanuvchi qaroriga havola).
+
+## Chegara-holatlar (til-lint)
+
+| № | Qoida | Chegara | F-ID |
+|---|---|---|---|
+| 1 | `sheva-yuklama-ku` | «…» ichidagi **iqtibos-obyekt** (§159) | F-391 |
+| 2 | `ekran-nomi-tarjimasi` | **fayl kengaytmasi** (`.yml` va h.k.) | F-404 |
+
+**Uchinchisida** umumiy kontekst-istisno mexanizmi ajratiladi.
+
+## Ochiq bandlar (foydalanuvchi qaroriga)
+
+1. **`KATTA_TOZALASH` 23-band** — shablon-manba tozalash · ijro **modul-ko'rikdan keyin**
+2. **POINTS sinxron-to'lqini** — A1 · B2 «Габарит-рамка» · 14 joy · ijro **«boshla» bilan**,
+   birlik-kelishuv jadvali **oldindan** to'ldiriladi
+3. **22-band** — RU hurmat-kapitali (222 ta, 19 fayl)
+4. **`MODUL_TUR`** — 1-sessiya bo'yicha **34 band** (4a: 20 · 4c: 14)
+
+## ⏭ Navbat
+
+1-sessiya to'lqini **tugadi**. Modul-xarita 2-sessiya jamlamasi bilan **birlashtiriladi**.

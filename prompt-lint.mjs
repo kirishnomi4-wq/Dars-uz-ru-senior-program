@@ -27,6 +27,14 @@ const DEFAULT_SCOPE = [
   'CLAUDE.md', 'PIPELINE.md', 'PM_PIPELINE.md', 'OQUVCHI_DARVOZA.md',
   'DARS_ETALON.md', 'PM_DARS_ETALON.md', 'MATN_ETALONI.md',
   'PM_Prompt_v8.md', 'RU_I18N_SPEC.md',
+  // QAMROV-TESHIGI YOPILDI (F-0820-170, 2026-08-20). Bu to'rttasi ro'yxatda YO'Q edi,
+  // shuning uchun `KATTA_TOZALASH.md:61` dagi kirill «ади» darvozadan jim o'tib ketdi.
+  // MATN_KORPUS va AUDIT_PROMPT — QONUN hujjatlari (matn yozishdan oldin o'qiladi),
+  // KATTA_TOZALASH va MODUL_TUR — HOLAT hujjatlari: ikkalasi ham prompt sifatida o'qiladi.
+  'MATN_KORPUS.md', 'AUDIT_PROMPT.md', 'KATTA_TOZALASH.md', 'MODUL_TUR.md',
+  // ⚠️ `PIPELINE_STATE.md` va `PM_PIPELINE_STATE.md` ATAYLAB KIRITILMADI: ularda 8 ta
+  // eski topilma bor va ikkala seans ham o'sha fayllarga yozadi — tuzatish to'qnashuv
+  // xavfini tug'diradi. Parallel seans tugagach qo'shiladi (o'lchov: 2026-08-20).
 ];
 
 const args = process.argv.slice(2);
