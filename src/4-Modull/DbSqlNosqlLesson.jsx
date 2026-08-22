@@ -3,16 +3,16 @@ const MENTOR_IMG = 'https://go.coddycamp.uz/uploads/media_library/c7b711619071c9
 
 // ============================================================
 // BACKEND MODULI (4-MODUL) · 2-DARS — SQL vs NoSQL / PostgreSQL — PLATFORM STANDARD v16 (AUDIOSIZ)
-// Mavzu: ikki oila (SQL relyatsion / NoSQL hujjatli), shakl (qat'iy jadval vs erkin hujjat),
-//        SQL kuchi (JOIN/bog'lanish + ishonchlilik/tranzaksiya), NoSQL kuchi (miqyos/tezlik — chat),
-//        qaror mezonlari (bog'lanish/shakl/ishonchlilik/miqyos), nega aynan PostgreSQL,
-//        va YAKUNDA: "Qaror kompasi" — loyihaga 4 savol berib, strelka to'g'ri DB'ni ko'rsatadi.
-// Misol: Instagram (1-darsdan davom) + onlayn do'kon (ishonchlilik) + chat (NoSQL miqyos).
+// Mavzu: ikki tur (SQL relyatsion / NoSQL hujjatli), shakl (jadval ustunlari vs hujjat maydonlari),
+//        SQL kuchi (JOIN/bog'lanish + ishonchlilik/tranzaksiya), NoSQL kuchi (hajm/tezlik — chat),
+//        qaror mezonlari (bog'lanish/shakl/ishonchlilik/hajm), nega aynan PostgreSQL,
+//        va YAKUNDA: "Qaror ko'rsatkichi" — 4 mezonga javob berilib, strelka to'g'ri bazani ko'rsatadi.
+// Misol: Instagram (1-darsdan davom) + onlayn do'kon (ishonchlilik) + chat (NoSQL hajm).
 // 1-dars ko'prigi: sxema chizdik — endi uni QAYERDA va QANDAY saqlashni tanlaymiz.
 // MUHIM: kelgusi darslar ro'yxati o'quvchiga AYTILMAYDI — faqat yakunda keyingi dars teaser.
 // SQL TA'MI: bitta SELECT/JOIN so'rovi faqat KO'RSATILADI (yozdirilmaydi) — keyingi darsda yoziladi.
 // AUDIOSIZ: ovoz (TTS) yo'q — platforma qarori.
-// Yakuniy ekran (s15): Qaror kompasi — onlayn do'kon uchun 4 mezonga javob → strelka PostgreSQL'da to'xtaydi.
+// Yakuniy ekran (s15): Qaror ko'rsatkichi — onlayn do'kon uchun 4 mezonga javob → strelka PostgreSQL'da to'xtaydi.
 // Toza dizayn — ortiqcha emoji yo'q; ma'no so'z va tipografiya bilan beriladi.
 // PRODUCTION: <style> ichidagi @import OLIB TASHLANADI — shriftlarni LMS yuklaydi.
 // ============================================================
@@ -504,35 +504,35 @@ const RECAP_MIN_ANSWERS = 3;
 // 📖 QAYTA TUSHUNTIRISH — scored testlar (idx 4/6/10/13) uchun 3 kartadan. Matn/abrazetsni 🎓 Metodist sayqallaydi.
 const RECAPS = {
   4: {
-    title: { uz: "Shakl — qat'iy quti vs erkin paket", ru: 'Форма — жёсткая коробка vs свободный пакет' },
+    title: { uz: 'Shakl — jadval va hujjat farqi', ru: 'Форма — разница таблицы и документа' },
     cards: [
-      { ic: "📦", h: { uz: "SQL = uyachali qattiq quti", ru: 'SQL = жёсткая коробка с ячейками' }, body: { uz: <>SQL jadvalida ustunlar <b>oldindan belgilangan</b> — har qator bir xil uyachalarga ega. Yangi maydon uchun butun qutini qayta yasash kerak.</>, ru: <>В SQL-таблице столбцы <b>заданы заранее</b> — у каждой строки одни и те же ячейки. Ради нового поля придётся пересобрать всю коробку.</> } },
-      { ic: "🧾", h: { uz: "NoSQL = erkin { } paket", ru: 'NoSQL = свободный { } пакет' }, body: { uz: <>NoSQL hujjatiga <b>istalgan maydonni</b> bemalol qo'shasiz — paket kengayadi, boshqa hujjatlar o'zgarmaydi.</>, ru: <>В NoSQL-документ спокойно добавите <b>любое поле</b> — пакет расширится, а остальные документы не изменятся.</> } },
-      { ic: "🎵", h: { uz: "«musiqa» qaysi qadoqqa oson?", ru: 'Куда легко положить «музыку»?' }, body: { uz: <>Har yozuv har xil maydonga ega bo'lsa — <b>NoSQL</b> qulayroq. Shakli qat'iy bo'lsa — <b>SQL</b>.</>, ru: <>Если у каждой записи свои поля — удобнее <b>NoSQL</b>. Если форма строгая — <b>SQL</b>.</> }, ask: { uz: "Shakli tez-tez o'zgaradigan ma'lumot uchun qaysi oila egiluvchanroq?", ru: 'Какое семейство гибче для данных, чья форма часто меняется?' } },
+      { ic: "📋", h: { uz: 'SQL = ustunlari oldindan belgilangan jadval', ru: 'SQL = таблица с заранее заданными столбцами' }, body: { uz: <>SQL jadvalida ustunlar <b>oldindan belgilangan</b> — har qator bir xil ustunlarga ega. Yangi maydon uchun jadval tuzilishini o'zgartirish kerak.</>, ru: <>В SQL-таблице столбцы <b>заданы заранее</b> — у каждой строки одни и те же столбцы. Ради нового поля придётся менять структуру таблицы.</> } },
+      { ic: "🧾", h: { uz: "NoSQL = { } hujjat", ru: 'NoSQL = { } документ' }, body: { uz: <>NoSQL hujjatiga <b>yangi maydon</b> qo'shish osonroq — boshqa hujjatlar o'zgarmaydi.</>, ru: <>В NoSQL-документ <b>новое поле</b> добавить проще — остальные документы не изменятся.</> } },
+      { ic: "🎵", h: { uz: "«musiqa» maydoni qayerga osonroq?", ru: 'Куда проще добавить поле «музыка»?' }, body: { uz: <>Har yozuv har xil maydonga ega bo'lsa — <b>NoSQL</b> qulayroq. Shakli qat'iy bo'lsa — <b>SQL</b>.</>, ru: <>Если у каждой записи свои поля — удобнее <b>NoSQL</b>. Если форма строгая — <b>SQL</b>.</> }, ask: { uz: "Shakli tez-tez o'zgaradigan ma'lumot uchun qaysi tur qulayroq?", ru: 'Какой тип удобнее для данных, чья форма часто меняется?' } },
     ]
   },
   6: {
     title: { uz: "SQL kuchi — JOIN va ishonchlilik", ru: 'Сила SQL — JOIN и надёжность' },
     cards: [
-      { ic: "🔗", h: { uz: "JOIN — ikki qutini id ipi bilan ulaydi", ru: 'JOIN — связывает две коробки нитью id' }, body: { uz: <><b>JOIN</b> ikki jadvalni <span className="mono">user_id</span> orqali bir-biriga bog'laydi — bir so'rovda javob.</>, ru: <><b>JOIN</b> соединяет две таблицы через <span className="mono">user_id</span> — ответ одним запросом.</> } },
+      { ic: "🔗", h: { uz: "JOIN — ikki jadvalni id orqali bog'laydi", ru: 'JOIN — связывает две таблицы через id' }, body: { uz: <><b>JOIN</b> ikki jadvalni <span className="mono">user_id</span> orqali bir-biriga bog'laydi — bir so'rovda javob.</>, ru: <><b>JOIN</b> соединяет две таблицы через <span className="mono">user_id</span> — ответ одним запросом.</> } },
       { ic: "🔒", h: { uz: "Tranzaksiya — ikki marta sotilmaydi", ru: 'Транзакция — дважды не продастся' }, body: { uz: <>SQL bir lahzada faqat bittasiga sotadi — pul va buyurtmada <b>ishonchlilik</b> shu.</>, ru: <>SQL в один миг продаёт только одному — в деньгах и заказах это и есть <b>надёжность</b>.</> } },
-      { ic: "🧩", h: { uz: "Bog'langan ma'lumot — SQL ishi", ru: 'Связанные данные — работа SQL' }, body: { uz: <>users↔posts↔comments bir-biriga bog'langan bo'lsa — <b>SQL (JOIN)</b> qulay.</>, ru: <>Если users↔posts↔comments связаны между собой — удобен <b>SQL (JOIN)</b>.</> }, ask: { uz: "Ko'p bog'langan jadvallar bilan qaysi oila qulayroq?", ru: 'С множеством связанных таблиц какое семейство удобнее?' } },
+      { ic: "🧩", h: { uz: "Bog'langan ma'lumot — SQL ishi", ru: 'Связанные данные — работа SQL' }, body: { uz: <>users↔posts↔comments bir-biriga bog'langan bo'lsa — <b>SQL (JOIN)</b> qulay.</>, ru: <>Если users↔posts↔comments связаны между собой — удобен <b>SQL (JOIN)</b>.</> }, ask: { uz: "Bir-biriga bog'liq ma'lumotlar uchun qaysi tur qulayroq?", ru: 'Для связанных между собой данных какой тип удобнее?' } },
     ]
   },
   10: {
     title: { uz: "Qaror — qaysi loyihaga qaysi baza", ru: 'Решение — какому проекту какая база' },
     cards: [
-      { ic: "🏦", h: { uz: "Bank = bog'langan + ishonchli", ru: 'Банк = связанно + надёжно' }, body: { uz: <>Pul, hisob, o'tkazma bog'langan va xato qimmatga tushadi → <b>SQL</b> (tranzaksiya).</>, ru: <>Деньги, счета и переводы связаны, а ошибка обходится дорого → <b>SQL</b> (транзакции).</> } },
-      { ic: "🧭", h: { uz: "Modaga emas, vazifaga qarab", ru: 'Не по моде, а по задаче' }, body: { uz: <>«Zamonaviyroq» — sabab emas. Tanlov <b>vazifaga</b> bog'liq: bog'lanish/shakl/ishonchlilik/miqyos.</>, ru: <>«Современнее» — не аргумент. Выбор зависит от <b>задачи</b>: связи/форма/надёжность/масштаб.</> } },
-      { ic: "💬", h: { uz: "Ulkan + oddiy oqim = NoSQL", ru: 'Огромный + простой поток = NoSQL' }, body: { uz: <>Millionlab oddiy chat xabari, tezlik kerak, bog'lanish kam → <b>NoSQL</b>.</>, ru: <>Миллионы простых чат-сообщений, нужна скорость, связей мало → <b>NoSQL</b>.</> }, ask: { uz: "Bank ilovasi (pul, hisoblar) uchun qaysi DB to'g'riroq?", ru: 'Какая БД правильнее для банковского приложения (деньги, счета)?' } },
+      { ic: "🏦", h: { uz: "Bank — bog'langan va ishonchli", ru: 'Банк — связанно и надёжно' }, body: { uz: <>Pul, hisob, o'tkazma bog'langan va xato qimmatga tushadi → <b>SQL</b> (tranzaksiya).</>, ru: <>Деньги, счета и переводы связаны, а ошибка обходится дорого → <b>SQL</b> (транзакции).</> } },
+      { ic: "🧭", h: { uz: "Modaga emas, vazifaga qarab", ru: 'Не по моде, а по задаче' }, body: { uz: <>«Zamonaviyroq» — sabab emas. Tanlov <b>vazifaga</b> bog'liq: bog'lanish/shakl/ishonchlilik/hajm.</>, ru: <>«Современнее» — не аргумент. Выбор зависит от <b>задачи</b>: связи/форма/надёжность/объём.</> } },
+      { ic: "💬", h: { uz: "Katta va oddiy oqim — NoSQL", ru: 'Большой и простой поток — NoSQL' }, body: { uz: <>Millionlab oddiy chat xabari, tezlik kerak, bog'lanish kam → <b>NoSQL</b>.</>, ru: <>Миллионы простых чат-сообщений, нужна скорость, связей мало → <b>NoSQL</b>.</> }, ask: { uz: "Bank ilovasi (pul, hisoblar) uchun qaysi tur mos?", ru: 'Какой тип подходит банковскому приложению (деньги, счета)?' } },
     ]
   },
   13: {
     title: { uz: "Nega aynan PostgreSQL", ru: 'Почему именно PostgreSQL' },
     cards: [
-      { ic: "🐘", h: { uz: "PostgreSQL — bizning SQL qutimiz", ru: 'PostgreSQL — наша SQL-коробка' }, body: { uz: <>Relyatsion (JOIN), ishonchli (tranzaksiya), bepul/ochiq kodli.</>, ru: <>Реляционная (JOIN), надёжная (транзакции), бесплатная и с открытым кодом.</> } },
-      { ic: "🔀", h: { uz: "JSON ham saqlaydi", ru: 'Хранит и JSON' }, body: { uz: <>Kerak bo'lsa PostgreSQL <b>JSON</b> ham saqlay oladi — NoSQL egiluvchanligi ham bor.</>, ru: <>Если нужно, PostgreSQL хранит и <b>JSON</b> — гибкость NoSQL тоже на месте.</> } },
-      { ic: "🅿️", h: { uz: "Stackning «P»si", ru: '«P» нашего стека' }, body: { uz: <>React + Node + Express bilan ajoyib ishlaydi — bizning to'plamimiz.</>, ru: <>Отлично работает с React + Node + Express — это наш набор.</> }, ask: { uz: "Nega bizning loyihalar uchun PostgreSQL tanlanadi?", ru: 'Почему для наших проектов выбирают PostgreSQL?' } },
+      { ic: "🐘", h: { uz: "PostgreSQL — bizning SQL bazamiz", ru: 'PostgreSQL — наша SQL-база' }, body: { uz: <>Jadvalli (JOIN bor), ishonchli (tranzaksiya bor), bepul va ochiq kodli.</>, ru: <>Табличная (есть JOIN), надёжная (есть транзакции), бесплатная и с открытым кодом.</> } },
+      { ic: "🔀", h: { uz: "JSON ham saqlaydi", ru: 'Хранит и JSON' }, body: { uz: <>Kerak bo'lsa PostgreSQL <b>har xil shakldagi ma'lumotni</b> JSON ko'rinishida ham saqlaydi.</>, ru: <>Если нужно, PostgreSQL хранит и <b>данные разной формы</b> — в виде JSON.</> } },
+      { ic: "🅿️", h: { uz: "Bizning to'plamimizga mos", ru: 'Подходит нашему набору' }, body: { uz: <>React, Node va Express bilan birga ishlaydi — biz shu to'plamda loyiha quramiz.</>, ru: <>Работает вместе с React, Node и Express — мы строим проекты на этом наборе.</> }, ask: { uz: "Nega aynan PostgreSQL tanlaymiz?", ru: 'Почему мы выбираем именно PostgreSQL?' } },
     ]
   }
 };
@@ -856,7 +856,7 @@ const DataTable = ({ cols, rows, hiRow, hiCol, onCol, onRow, fkCols }) => (
 );
 
 // ===== 4-MODUL · 2-DARS YORDAMCHILAR (SQL vs NoSQL) =====
-// DB oilasi badge'i
+// Baza turi badge'i
 const DbBadge = ({ kind, big }) => {
   const sql = kind === 'sql';
   return (
@@ -889,7 +889,7 @@ const Compass = ({ lean = 0 }) => {
       <line x1="130" y1="120" x2={tx} y2={ty} stroke={T.ink} strokeWidth="4" strokeLinecap="round" style={{ transition: 'all .7s cubic-bezier(.34,1.45,.5,1)' }} />
       <circle cx="130" cy="120" r="8" fill={T.ink} />
       <text x="30" y="140" fontSize="11" fontWeight="700" fill={T.blue} fontFamily="'JetBrains Mono', monospace">NoSQL</text>
-      <text x="188" y="140" fontSize="11" fontWeight="700" fill={T.accent} fontFamily="'JetBrains Mono', monospace">SQL · PG</text>
+      <text x="188" y="140" fontSize="11" fontWeight="700" fill={T.accent} fontFamily="'JetBrains Mono', monospace">SQL</text>
     </svg>
   );
 };
@@ -912,7 +912,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
     <Stage eyebrow={tr({ uz: 'Kirish', ru: 'Введение' })} screen={screen} audioState={audio} navContent={<NavNext optionalLive disabled={picked === null} label={tr({ uz: 'Davom etish', ru: 'Продолжить' })} onClick={onNext} />}>
       <div className="screen">
         <h1 className="title h-title fade-up" style={{ maxWidth: 840 }}>{tr({ uz: <>Bir xil ma'lumotni saqlashning <span className="italic" style={{ color: T.accent }}>ikki yo'li</span> bor. Qaysi biri to'g'ri?</>, ru: <>Есть <span className="italic" style={{ color: T.accent }}>два способа</span> хранить одни и те же данные. Какой из них правильный?</> })}</h1>
-        <Mentor>{tr({ uz: <>O'tgan darsda Instagram sxemasini chizdik. Endi savol: uni qayerda saqlaymiz? Aslida <b style={{ color: T.ink }}>ikkita butunlay boshqacha dunyo</b> bor — <b style={{ color: T.accent }}>SQL</b> (chiroyli jadvallar) va <b style={{ color: T.blue }}>NoSQL</b> (egiluvchan hujjatlar). Ikkala ko'rinishni ko'ring — bu <b style={{ color: T.ink }}>aynan bir xil ma'lumot</b>, faqat boshqacha qadoqlangan.</>, ru: <>На прошлом уроке мы нарисовали схему Instagram. Теперь вопрос: где её хранить? На самом деле есть <b style={{ color: T.ink }}>два совершенно разных мира</b> — <b style={{ color: T.accent }}>SQL</b> (аккуратные таблицы) и <b style={{ color: T.blue }}>NoSQL</b> (гибкие документы). Посмотрите оба вида — это <b style={{ color: T.ink }}>одни и те же данные</b>, просто упакованы по-разному.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>O'tgan darsda Instagram sxemasini chizdik. Endi savol: uni qayerda saqlaymiz? Bir xil ma'lumotni ikki xil ko'rinishda saqlash mumkin: <b style={{ color: T.accent }}>SQL jadvali</b> yoki <b style={{ color: T.blue }}>NoSQL hujjati</b>. Ikkalasini bosib ko'ring — ma'lumot o'sha-o'sha, faqat <b style={{ color: T.ink }}>boshqacha yozilgan</b>.</>, ru: <>На прошлом уроке мы нарисовали схему Instagram. Теперь вопрос: где её хранить? Одни и те же данные можно хранить в двух видах: <b style={{ color: T.accent }}>таблица SQL</b> или <b style={{ color: T.blue }}>документ NoSQL</b>. Нажмите на оба — данные те же, просто <b style={{ color: T.ink }}>записаны по-разному</b>.</> })}</Mentor>
         <Zoomable>
         <Split>
           <Col>
@@ -925,7 +925,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
                 ? <div className="demo-swap"><DataTable cols={['id', 'user_id', 'rasm', 'izoh']} rows={POSTS.slice(0, 3)} fkCols={['user_id']} /></div>
                 : <div className="demo-swap" style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>{POSTS.slice(0, 2).map(p => <JsonView key={p.id} obj={{ id: p.id, user_id: p.user_id, izoh: p.izoh }} />)}</div>}
             </Win>
-            <p className="mono small" style={{ margin: 0, color: view === 'sql' ? T.accent : T.blue }}>{view === 'sql' ? tr({ uz: "qator-ustun — qat'iy tartib", ru: 'строки-столбцы — строгий порядок' }) : tr({ uz: '{ } hujjat — egiluvchan', ru: '{ } документ — гибкий' })}</p>
+            <p className="mono small" style={{ margin: 0, color: view === 'sql' ? T.accent : T.blue }}>{view === 'sql' ? tr({ uz: 'Jadval — har qator bir xil', ru: 'Таблица — все строки одинаковые' }) : tr({ uz: "Hujjat — har biri o'zicha", ru: 'Документ — каждый по-своему' })}</p>
           </Col>
           <Col>
             <p className="eyebrow fade-up delay-2" style={{ color: T.ink2, margin: 0 }}>{tr({ uz: "Sizningcha, qaysi biri to'g'ri saqlash usuli?", ru: 'Как вам кажется, какой способ хранения правильный?' })}</p>
@@ -942,8 +942,8 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
             </div>
             {!tried && <p className="small" style={{ color: T.ink3, fontStyle: 'italic', margin: 0 }}>{tr({ uz: "Avval ikkala ko'rinishni bosib ko'ring ←", ru: 'Сначала нажмите и посмотрите оба вида ←' })}</p>}
             {picked !== null && <p className="hook-ack fade-step">{picked === 'c'
-              ? tr({ uz: <>Aynan! Hech biri "noto'g'ri" emas — <b>ikkalasi ham ishlaydi</b>. Savol shundaki: <b>qaysi vazifa uchun qaysi biri yaxshiroq?</b> Bugun shu tanlovni qilishni o'rganamiz — va nega bizning loyihalarga PostgreSQL mos kelishini ko'ramiz.</>, ru: <>Именно! Ни один не «неправильный» — <b>работают оба</b>. Вопрос в другом: <b>какой лучше для какой задачи?</b> Сегодня научимся делать этот выбор — и увидим, почему нашим проектам подходит PostgreSQL.</> })
-              : tr({ uz: <>Aslida bu — <b>keng tarqalgan afsona</b>. Hech biri o'z-o'zidan "to'g'ri" yoki "zamonaviyroq" emas: <b>ikkalasi ham ishlaydi</b>, gap qaysi vazifa uchun qaysi biri yaxshiroq ekanida. Dars oxirida shu afsonani <b>birga buzamiz</b> — va nega bizning loyihalarga PostgreSQL mos kelishini ko'ramiz.</>, ru: <>На самом деле это — <b>распространённый миф</b>. Ни один из них сам по себе не «правильнее» и не «современнее»: <b>работают оба</b>, вопрос лишь в том, какой лучше под какую задачу. В конце урока мы <b>вместе разберём</b> этот миф — и увидим, почему нашим проектам подходит PostgreSQL.</> })}</p>}
+              ? tr({ uz: <>Aynan! <b>Ikkalasi ham ishlaydi</b> — savol qaysi vazifaga qaysi biri yaxshiroq ekanida. Bugun shu tanlovni o'rganamiz va nega bizga <b>PostgreSQL</b> mosligini ko'ramiz.</>, ru: <>Именно! <b>Работают оба</b> — вопрос в том, какой лучше под какую задачу. Сегодня научимся делать этот выбор и увидим, почему нам подходит <b>PostgreSQL</b>.</> })
+              : tr({ uz: <>Ko'pchilik SQL yoki NoSQL'dan bittasi har doim yaxshiroq deb o'ylaydi. Aslida <b>tanlov vazifaga bog'liq</b> — dars davomida buning sababini ko'ramiz.</>, ru: <>Многие думают, что один из двух всегда лучше. На самом деле <b>выбор зависит от задачи</b> — почему, увидим по ходу урока.</> })}</p>}
           </Col>
         </Split>
         </Zoomable>
@@ -956,8 +956,8 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
 const Screen1 = ({ screen, onNext, onPrev }) => {
   const audio = useAudio([{ id: 's1', text: "Bugun ikki dunyo orasidan to'g'ri tanlashni o'rganamiz. SQL — qattiq uyachali quti, NoSQL — erkin paket. Dars oxirida esa qaror kompasini ishlatib, loyihangizga qaysi biri mosligini o'zingiz aniqlaysiz.", trigger: 'on_mount', waits_for: null }]);
   const STEPS = [
-    { text: tr({ uz: "Ikki oila — SQL va NoSQL", ru: 'Два семейства — SQL и NoSQL' }), tag: 'PostgreSQL · MongoDB' },
-    { text: tr({ uz: "Shakl — qat'iy jadval vs erkin hujjat", ru: 'Форма — строгая таблица vs свободный документ' }), tag: 'shape' },
+    { text: tr({ uz: 'Ikki tur — SQL va NoSQL', ru: 'Два типа — SQL и NoSQL' }), tag: 'PostgreSQL · MongoDB' },
+    { text: tr({ uz: 'Shakl — jadval va hujjat farqi', ru: 'Форма — разница таблицы и документа' }), tag: tr({ uz: 'jadval · hujjat', ru: 'таблица · документ' }) },
     { text: tr({ uz: "Har biri nimada kuchli", ru: 'В чём сильно каждое' }), tag: tr({ uz: "bog'lanish · tezlik", ru: 'связи · скорость' }) },
     { text: tr({ uz: "Qaror mezonlari — qachon qaysi biri", ru: 'Критерии решения — когда какое' }), tag: tr({ uz: '4 savol', ru: '4 вопроса' }) },
     { text: tr({ uz: "Nega bizga PostgreSQL", ru: 'Почему нам PostgreSQL' }), tag: tr({ uz: "bog'langan + ishonchli", ru: 'связанно + надёжно' }) }
@@ -966,11 +966,11 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
   const [showSteps, setShowSteps] = useState(false);
   const PreviewBlock = (
     <Col>
-      <p className="flow-label">{tr({ uz: 'Dars oxirida — siz ishlatadigan qaror kompasi', ru: 'В конце урока — компас решений, которым воспользуетесь вы' })}</p>
-      <Win title={tr({ uz: 'qaror kompasi', ru: 'компас решений' })} minH={172}>
+      <p className="flow-label">{tr({ uz: "Dars oxirida — siz ishlatadigan qaror ko'rsatkichi", ru: 'В конце урока — указатель решения, которым воспользуетесь вы' })}</p>
+      <Win title={tr({ uz: "qaror ko'rsatkichi", ru: 'указатель решения' })} minH={172}>
         <div className="fade-up delay-1" style={{ display: 'flex', justifyContent: 'center' }}><Compass lean={0.7} /></div>
       </Win>
-      <p className="mono small" style={{ color: T.accent, margin: 0 }}>{tr({ uz: "→ loyihaga 4 savol berasiz, strelka to'g'ri DB'ni ko'rsatadi", ru: '→ зададите проекту 4 вопроса — стрелка укажет верную БД' })}</p>
+      <p className="mono small" style={{ color: T.accent, margin: 0 }}>{tr({ uz: "→ 4 ta savolga javob berasiz — qaysi baza mosligini bilib olasiz", ru: '→ ответите на 4 вопроса — узнаете, какая база подходит' })}</p>
     </Col>
   );
   const StepsBlock = (
@@ -984,8 +984,8 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
   return (
     <Stage eyebrow={tr({ uz: 'Reja', ru: 'План' })} screen={screen} mentorStatic audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext label={tr({ uz: 'Boshlaymiz →', ru: 'Начинаем →' })} onClick={onNext} /></>}>
       <div className="screen">
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Ikki dunyo orasidan <span className="italic" style={{ color: T.accent }}>to'g'ri tanlash</span></>, ru: <>Сделать <span className="italic" style={{ color: T.accent }}>верный выбор</span> между двумя мирами</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Ishonasizmi — dars oxirida loyihangiz uchun <b style={{ color: T.ink }}>qaysi ma'lumotlar bazasi to'g'ri kelishini</b> o'zingiz aniqlay olasiz. SQL ham, NoSQL ham yaxshi — gap ularni <b style={{ color: T.ink }}>qachon ishlatishni</b> bilishda. O'ngdagi kompas bizni shu qarorga olib boradi.</>, ru: <>Поверите ли — к концу урока вы сами определите, <b style={{ color: T.ink }}>какая база данных подходит вашему проекту</b>. И SQL, и NoSQL хороши — вся суть в том, чтобы знать, <b style={{ color: T.ink }}>когда какую использовать</b>. Компас справа приведёт нас к этому решению.</> })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Ikki yo'l orasidan <span className="italic" style={{ color: T.accent }}>to'g'ri tanlash</span></>, ru: <>Сделать <span className="italic" style={{ color: T.accent }}>верный выбор</span> между двумя способами</> })}</h2></div>
+        <Mentor>{tr({ uz: <>Dars oxirida loyihangiz uchun <b style={{ color: T.ink }}>qaysi ma'lumotlar bazasi mosligini</b> o'zingiz aniqlay olasiz. SQL ham, NoSQL ham yaxshi — gap ularni <b style={{ color: T.ink }}>qachon ishlatishni</b> bilishda. O'ngdagi ko'rsatkich bizni shu qarorga olib boradi.</>, ru: <>К концу урока вы сами определите, <b style={{ color: T.ink }}>какая база данных подходит вашему проекту</b>. И SQL, и NoSQL хороши — вся суть в том, чтобы знать, <b style={{ color: T.ink }}>когда какую использовать</b>. Указатель справа приведёт нас к этому решению.</> })}</Mentor>
         {!isNarrow ? (
           <Zoomable><Split>{PreviewBlock}{StepsBlock}</Split></Zoomable>
         ) : !showSteps ? (
@@ -1004,12 +1004,12 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
   );
 };
 
-// ===== SCREEN 2 — IKKI OILA =====
+// ===== SCREEN 2 — IKKI TUR =====
 const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const audio = useAudio([{ id: 's2', text: "Dunyodagi barcha bazalar ikki oilaga bo'linadi. SQL — relyatsion, jadvalli qutilar oilasi: PostgreSQL, MySQL. NoSQL — erkin hujjatli paketlar oilasi: MongoDB, Firebase. Ikkalasini bosib, farqini ko'ring.", trigger: 'on_mount', waits_for: null }]);
+  const audio = useAudio([{ id: 's2', text: "Dunyodagi barcha bazalar ikki turga bo'linadi. SQL — relyatsion, jadvalli qutilar turi: PostgreSQL, MySQL. NoSQL — erkin hujjatli paketlar turi: MongoDB, Firebase. Ikkalasini bosib, farqini ko'ring.", trigger: 'on_mount', waits_for: null }]);
   const FAM = {
-    sql: { name: tr({ uz: 'SQL — relyatsion', ru: 'SQL — реляционные' }), members: 'PostgreSQL · MySQL · SQLite', store: tr({ uz: 'Jadvallar (qator/ustun)', ru: 'Таблицы (строки/столбцы)' }), idea: tr({ uz: "Ma'lumot qat'iy jadvallarda, hammasi bog'langan. Excel jadvaliga o'xshaydi — har qatorda bir xil ustunlar.", ru: 'Данные в строгих таблицах, всё связано. Похоже на таблицу Excel — в каждой строке одни и те же столбцы.' }) },
-    nosql: { name: tr({ uz: 'NoSQL — hujjatli', ru: 'NoSQL — документные' }), members: 'MongoDB · Firebase · Redis', store: tr({ uz: 'Hujjatlar (JSON)', ru: 'Документы (JSON)' }), idea: tr({ uz: "Ma'lumot erkin hujjatlarda. Har hujjat o'z shakliga ega bo'lishi mumkin — papkadagi turli qog'ozlar kabi.", ru: 'Данные в свободных документах. У каждого документа может быть своя форма — как разные бумаги в папке.' }) }
+    sql: { name: tr({ uz: 'SQL — jadvalli (relyatsion)', ru: 'SQL — табличные (реляционные)' }), members: 'PostgreSQL · MySQL · SQLite', store: tr({ uz: 'Jadvallar (qator/ustun)', ru: 'Таблицы (строки/столбцы)' }), idea: tr({ uz: "Ma'lumot jadvalda saqlanadi — har qatorda bir xil ustunlar bo'ladi. Excel jadvaliga o'xshaydi.", ru: 'Данные хранятся в таблице — в каждой строке одни и те же столбцы. Похоже на таблицу Excel.' }) },
+    nosql: { name: tr({ uz: 'NoSQL — hujjatli', ru: 'NoSQL — документные' }), members: 'MongoDB · Firebase · Redis', store: tr({ uz: 'Hujjatlar (JSON)', ru: 'Документы (JSON)' }), idea: tr({ uz: "Ma'lumot hujjatlarda saqlanadi — har hujjatda o'z maydonlari bo'lishi mumkin. Papkadagi turli qog'ozlar kabi.", ru: 'Данные хранятся в документах — у каждого документа могут быть свои поля. Как разные бумаги в папке.' }) }
   };
   const [active, setActive] = useState('sql');
   const [seen, setSeen] = useState(storedAnswer ? new Set(['sql', 'nosql']) : new Set(['sql']));
@@ -1018,10 +1018,10 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const cur = FAM[active];
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   return (
-    <Stage eyebrow={tr({ uz: 'Ikki oila', ru: 'Два семейства' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : `${seen.size}/2 ${tr({ uz: "oila ko'rildi", ru: 'семейства просмотрено' })}`} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Ikki tur', ru: 'Два типа' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : `${seen.size}/2 ${tr({ uz: "tur ko'rildi", ru: 'типа просмотрено' })}`} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Ma'lumotlar bazalari <span className="italic" style={{ color: T.accent }}>ikki oilaga</span> bo'linadi</>, ru: <>Базы данных делятся на <span className="italic" style={{ color: T.accent }}>два семейства</span></> })}</h2></div>
-        <Mentor>{tr({ uz: <>Dunyodagi barcha bazalar ikki katta oilaga bo'linadi: <b style={{ color: T.accent }}>SQL</b> (relyatsion — jadvalli) va <b style={{ color: T.blue }}>NoSQL</b> (hujjatli). Har oilada ko'p a'zo bor. Ikkalasini bosib, farqini ko'ring.</>, ru: <>Все базы мира делятся на два больших семейства: <b style={{ color: T.accent }}>SQL</b> (реляционные — табличные) и <b style={{ color: T.blue }}>NoSQL</b> (документные). В каждом семействе много членов. Нажмите на оба и посмотрите разницу.</> })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Ma'lumotlar bazalari <span className="italic" style={{ color: T.accent }}>ikki turga</span> bo'linadi</>, ru: <>Базы данных делятся на <span className="italic" style={{ color: T.accent }}>два типа</span></> })}</h2></div>
+        <Mentor>{tr({ uz: <>Dunyodagi barcha bazalar ikki katta turga bo'linadi: <b style={{ color: T.accent }}>SQL</b> (jadvalli — relyatsion) va <b style={{ color: T.blue }}>NoSQL</b> (hujjatli). Har turda ko'p baza bor. Ikkalasini bosib, farqini ko'ring.</>, ru: <>Все базы мира делятся на два больших типа: <b style={{ color: T.accent }}>SQL</b> (табличные — реляционные) и <b style={{ color: T.blue }}>NoSQL</b> (документные). В каждом типе много баз. Нажмите на оба и посмотрите разницу.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
@@ -1032,9 +1032,9 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <div className="sk-info" key={active}>
               <span className="sk-tagbig"><span className="sk-wordbadge" style={{ background: active === 'sql' ? T.accentSoft : T.blueSoft, color: active === 'sql' ? T.accent : T.blue }}>{cur.name}</span></span>
               <p className="body" style={{ color: T.ink, margin: '11px 0 0' }}>{cur.idea}</p>
-              <p className="small" style={{ color: T.ink2, margin: '8px 0 0' }}>{tr({ uz: "A'zolari:", ru: 'Члены семейства:' })} <span className="mono">{cur.members}</span></p>
+              <p className="small" style={{ color: T.ink2, margin: '8px 0 0' }}>{tr({ uz: 'Masalan:', ru: 'Например:' })} <span className="mono">{cur.members}</span></p>
             </div>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Ikki oila — ikki xil fikrlash. <b>SQL</b> = jadval va qoidalar. <b>NoSQL</b> = erkin hujjatlar. Endi asosiy farqni ko'ramiz: shakl.</>, ru: <>Два семейства — два образа мышления. <b>SQL</b> = таблицы и правила. <b>NoSQL</b> = свободные документы. Теперь посмотрим главное отличие: форму.</> })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Ikki tur — <b>SQL</b> va <b>NoSQL</b>. Endi ular orasidagi asosiy farqni ko'ramiz: <b>shakl</b>.</>, ru: <>Два типа — <b>SQL</b> и <b>NoSQL</b>. Теперь посмотрим главное отличие между ними: <b>форму</b>.</> })}</p></div>}
           </Col>
           <Col>
             <p className="flow-label">{active === 'sql' ? tr({ uz: "Jadval ko'rinishi", ru: 'Вид таблицы' }) : tr({ uz: "Hujjat ko'rinishi", ru: 'Вид документа' })}</p>
@@ -1049,7 +1049,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   );
 };
 
-// ===== 📦 QADOQXONA — Instagram-post kartalarini SQL quti va NoSQL paketga qadoqlash o'yini =====
+// ===== 📦 SHAKL O'YINI — Instagram-post kartalarini SQL jadvali va NoSQL hujjatiga joylash =====
 // Reusable, atomik holat, StrictMode-xavfsiz. HARAKAT (drag soya/snap/shake) sifati ✨ Animatsiya roli.
 const QX_CARDS = [
   { id: 'idc',   label: 'id · 10',       col: 'id',       icon: '🔢' },
@@ -1109,33 +1109,33 @@ function Qadoqxona({ solvedInit, onSolved }) {
     <div className="qx-wrap fade-up">
       <div className="qx-zones">
         <div ref={sqlRef} className="qx-zone sql">
-          <div className="qx-zone-h"><DbBadge kind="sql" /> <span>{tr({ uz: 'uyachali quti — har kartaga aniq uyacha', ru: 'коробка с ячейками — каждой карточке своя ячейка' })}</span></div>
+          <div className="qx-zone-h"><DbBadge kind="sql" /> <span>{tr({ uz: 'ustunlari oldindan belgilangan', ru: 'столбцы заданы заранее' })}</span></div>
           <div className="qx-slots">
             {QX_SLOTS.map(s => {
               const card = QX_CARDS.find(c => c.col === s.col && place[c.id] === 'sql');
               return (
                 <div key={s.col} className={`qx-slot ${card ? 'filled' : ''}`}>
                   <span className="qx-slot-lbl">{s.label}</span>
-                  {card ? cardEl(card.id, 'sql') : <span className="qx-slot-hint">{tr({ uz: "bo'sh uyacha", ru: 'пустая ячейка' })}</span>}
+                  {card ? cardEl(card.id, 'sql') : <span className="qx-slot-hint">{tr({ uz: "bo'sh ustun", ru: 'пустой столбец' })}</span>}
                 </div>
               );
             })}
           </div>
         </div>
         <div ref={nosqlRef} className="qx-zone nosql">
-          <div className="qx-zone-h"><DbBadge kind="nosql" /> <span>{tr({ uz: <>erkin { '{ }' } paket — istalgan karta kengaytiradi</>, ru: <>свободный { '{ }' } пакет — любая карточка расширит его</> })}</span></div>
+          <div className="qx-zone-h"><DbBadge kind="nosql" /> <span>{tr({ uz: <>{ '{ }' } hujjat — yangi maydon qo'shish osonroq</>, ru: <>{ '{ }' } документ — новое поле добавить проще</> })}</span></div>
           <div className="qx-nos-body">
             <span className="qx-brace">{'{'}</span>
-            {nosqlCards.length === 0 && <span className="qx-nos-empty">{tr({ uz: 'bu yerga istalgan kartani — hatto 🎵 ni ham — tashlang', ru: 'бросайте сюда любую карточку — даже 🎵' })}</span>}
+            {nosqlCards.length === 0 && <span className="qx-nos-empty">{tr({ uz: "bu yerga istalgan kartani — hatto 🎵 ni ham — qo'ying", ru: 'кладите сюда любую карточку — даже 🎵' })}</span>}
             {nosqlCards.map(id => cardEl(id, 'nosql'))}
             <span className="qx-brace">{'}'}</span>
           </div>
         </div>
       </div>
       <div className="qx-pool">
-        {pool.length === 0 ? <span className="qx-pool-empty">{tr({ uz: 'Hamma karta qadoqlandi', ru: 'Все карточки упакованы' })}</span> : pool.map(id => cardEl(id, 'pool'))}
+        {pool.length === 0 ? <span className="qx-pool-empty">{tr({ uz: 'Hamma karta joylandi', ru: 'Все карточки разложены' })}</span> : pool.map(id => cardEl(id, 'pool'))}
       </div>
-      {solved && <div className="qx-done">{tr({ uz: "✓ Qadoqlandi! Oddiy maydonlar SQL qutida, 🎵 esa erkin NoSQL paketda — chunki SQL jadvalida bunday ustun yo'q.", ru: '✓ Упаковано! Обычные поля — в SQL-коробке, а 🎵 — в свободном NoSQL-пакете, потому что в SQL-таблице такого столбца нет.' })}</div>}
+      {solved && <div className="qx-done">{tr({ uz: "✓ Tayyor! Oddiy maydonlar SQL jadvalida, 🎵 esa NoSQL hujjatida — chunki bu jadvalda musiqa uchun ustun yo'q.", ru: '✓ Готово! Обычные поля — в SQL-таблице, а 🎵 — в NoSQL-документе, потому что в этой таблице нет столбца для музыки.' })}</div>}
     </div>
   );
 }
@@ -1147,33 +1147,33 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const done = packed;
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   return (
-    <Stage eyebrow={tr({ uz: 'Shakl · qadoqxona', ru: 'Форма · упаковочная' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Kartalarni qadoqlang', ru: 'Упакуйте карточки' })} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Shakl · jadval va hujjat', ru: 'Форма · таблица и документ' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Kartalarni joylang', ru: 'Разложите карточки' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Bir xil ma'lumot — <span className="italic" style={{ color: T.accent }}>ikki xil qadoq</span></>, ru: <>Одни данные — <span className="italic" style={{ color: T.accent }}>две разные упаковки</span></> })}</h2></div>
-        <Mentor>{tr({ uz: <>Siz — qadoqlovchisiz. Instagram-post kartalarini ikki stansiyaga taqsimlang. <b style={{ color: T.accent }}>SQL quti</b>ning uyachalari oldindan belgilangan — har karta o'z uyachasiga tushadi. Lekin <b style={{ color: T.ink }}>🎵 musiqa</b> uchun uyacha yo'q! Uni <b style={{ color: T.blue }}>NoSQL paket</b>iga tashlang — u istalgan maydonni bemalol qabul qiladi. Kartani <b style={{ color: T.ink }}>sudrab</b> yoki <b style={{ color: T.ink }}>bosib</b> joylang.</>, ru: <>Вы — упаковщик. Разложите карточки Instagram-поста по двум станциям. Ячейки <b style={{ color: T.accent }}>SQL-коробки</b> заданы заранее — каждая карточка ложится в свою ячейку. Но для <b style={{ color: T.ink }}>🎵 музыки</b> ячейки нет! Бросьте её в <b style={{ color: T.blue }}>NoSQL-пакет</b> — он спокойно примет любое поле. Карточку можно <b style={{ color: T.ink }}>перетащить</b> или <b style={{ color: T.ink }}>нажать</b>.</> })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Bir xil ma'lumot — <span className="italic" style={{ color: T.accent }}>ikki xil shakl</span></>, ru: <>Одни данные — <span className="italic" style={{ color: T.accent }}>две разные формы</span></> })}</h2></div>
+        <Mentor>{tr({ uz: <>Mana bitta post haqidagi ma'lumotlar. <b style={{ color: T.accent }}>SQL jadval</b>ining ustunlari oldindan belgilangan — har karta o'z ustuniga tushadi. Lekin bu jadvalda <b style={{ color: T.ink }}>🎵 musiqa</b> uchun ustun yo'q. Uni <b style={{ color: T.blue }}>NoSQL hujjat</b>iga qo'ying — hujjatga yangi maydon qo'shish osonroq. Kartani <b style={{ color: T.ink }}>sudrab</b> yoki <b style={{ color: T.ink }}>bosib</b> joylang.</>, ru: <>Вот данные одного поста. Столбцы <b style={{ color: T.accent }}>SQL-таблицы</b> заданы заранее — каждая карточка ложится в свой столбец. Но в этой таблице нет столбца для <b style={{ color: T.ink }}>🎵 музыки</b>. Положите её в <b style={{ color: T.blue }}>NoSQL-документ</b> — в документ проще добавить новое поле. Карточку можно <b style={{ color: T.ink }}>перетащить</b> или <b style={{ color: T.ink }}>нажать</b>.</> })}</Mentor>
         <Qadoqxona solvedInit={!!storedAnswer} onSolved={() => setPacked(true)} />
       </div>
     </Stage>
   );
 };
 
-// ===== SCREEN 4 — TEST 1 (egiluvchanlik) =====
+// ===== SCREEN 4 — TEST 1 (shakl: ustun vs maydon) =====
 const Screen4 = (props) => (
   <QuestionScreen {...props} idx={4} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 1-savol', ru: 'Практика · вопрос 1' })}
     audioText="Bir yozuvga «musiqa» kabi g'alati maydon kerak bo'lsa — qaysi qadoq oson kengayadi? SQL qutining uyachalari oldindan qat'iy belgilangan, NoSQL paketi esa istalgan maydonni bemalol qabul qiladi. Javobni tanlang."
-    questionText="Har element har xil maydonga ega bo'lishi mumkin bo'lsa, qaysi oila qulayroq?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Shakli tez-tez o'zgaradigan, har xil ma'lumot uchun <span className="italic" style={{ color: T.accent }}>qaysi oila</span> egiluvchanroq?</>, ru: <>Для разных данных с часто меняющейся формой <span className="italic" style={{ color: T.accent }}>какое семейство</span> гибче?</> })}</h2></>}
-    options={[tr({ uz: "SQL — har qator bir xil ustun bo'lishi shart", ru: 'SQL — в каждой строке должны быть одни и те же столбцы' }), tr({ uz: 'Ikkalasi ham bir xil darajada egiluvchan', ru: 'Оба одинаково гибкие' }), tr({ uz: "NoSQL — har hujjat o'z maydonlariga ega bo'la oladi", ru: 'NoSQL — у каждого документа могут быть свои поля' }), tr({ uz: "Hech biri yangi maydon qo'sha olmaydi", ru: 'Ни одно не может добавить новое поле' })]} correctIdx={2}
-    explainCorrect={tr({ uz: "To'g'ri! NoSQL hujjatlari erkin shaklga ega — har biriga turli maydon qo'shsa bo'ladi. SQL'da esa ustunlar oldindan qat'iy belgilangan.", ru: 'Верно! Документы NoSQL свободной формы — в каждый можно добавить разные поля. А в SQL столбцы жёстко заданы заранее.' })}
+    questionText="Shakli tez-tez o'zgaradigan ma'lumot uchun qaysi tur qulayroq?"
+    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Shakli tez-tez o'zgaradigan ma'lumot uchun <span className="italic" style={{ color: T.accent }}>qaysi tur</span> qulayroq?</>, ru: <>Для данных с часто меняющейся формой <span className="italic" style={{ color: T.accent }}>какой тип</span> удобнее?</> })}</h2></>}
+    options={[tr({ uz: "SQL — jadvaldagi hamma qatorda bir xil ustunlar bo'ladi", ru: 'SQL — во всех строках таблицы одни и те же столбцы' }), tr({ uz: "Ikkalasi ham bir xil — farqi yo'q", ru: 'Оба одинаковые — разницы нет' }), tr({ uz: "NoSQL — har hujjatda maydonlar boshqacha bo'lishi mumkin", ru: 'NoSQL — в каждом документе поля могут быть разными' }), tr({ uz: "Hech biri yangi maydon qo'sha olmaydi", ru: 'Ни одно не может добавить новое поле' })]} correctIdx={2}
+    explainCorrect={tr({ uz: "To'g'ri! NoSQL hujjatlarida maydonlar har xil bo'lishi mumkin — har biriga boshqa maydon qo'shsa bo'ladi. SQL jadvalida esa ustunlar oldindan belgilangan.", ru: 'Верно! В документах NoSQL поля могут быть разными — в каждый можно добавить другие. А в таблице SQL столбцы заданы заранее.' })}
     explainWrong={{
-      0: tr({ uz: "Aksincha — SQL qat'iy: har qator bir xil ustunga ega bo'lishi shart. Egiluvchanlik NoSQL'da.", ru: 'Наоборот — SQL строгий: у каждой строки должны быть одни и те же столбцы. Гибкость — у NoSQL.' }),
-      1: tr({ uz: "Yo'q — farqi katta: SQL qat'iy, NoSQL erkin shaklli.", ru: 'Нет — разница большая: SQL строгий, NoSQL свободной формы.' }),
+      0: tr({ uz: "Aksincha — SQL jadvalida hamma qatorda bir xil ustunlar bo'ladi. Maydonlari har xil bo'la oladigani — NoSQL.", ru: 'Наоборот — в таблице SQL во всех строках одни и те же столбцы. Разные поля бывают у NoSQL.' }),
+      1: tr({ uz: "Yo'q — farqi katta: SQL'da ustunlar oldindan belgilangan, NoSQL'da esa har hujjatda boshqacha bo'lishi mumkin.", ru: 'Нет — разница большая: в SQL столбцы заданы заранее, а в NoSQL в каждом документе они могут быть другими.' }),
       3: tr({ uz: "Yo'q — ikkalasi ham qo'sha oladi, lekin NoSQL buni osonroq qiladi (jadvalni qayta tuzmasdan).", ru: 'Нет — добавить могут оба, но NoSQL делает это проще (без перестройки таблицы).' }),
-      default: tr({ uz: "Egiluvchan shakl — NoSQL'ning kuchi.", ru: 'Гибкая форма — сила NoSQL.' })
+      default: tr({ uz: "Maydonlari har xil bo'la olishi — NoSQL'ning kuchi.", ru: 'Разные поля — сила NoSQL.' })
     }} />
 );
 
-// ===== SCREEN 5 — SQL KUCHI: JOIN IPI (ikki qutini id bilan ulash) =====
+// ===== SCREEN 5 — SQL KUCHI: JOIN IPI (ikki jadvalni id bilan ulash) =====
 const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const audio = useAudio([{ id: 's5', text: "SQL qutining eng kuchli tomoni — JOIN. Avval posts qutisidagi user_id ipini, keyin users qutisidagi id uyachasini bosing — ip ulanadi va har postga egasi qo'shiladi. Erkin paketlarda bunday ip ulanmaydi.", trigger: 'on_mount', waits_for: null }]);
   const [armed, setArmed] = useState(false); // posts.user_id bosildi, endi users.id kutilyapti
@@ -1189,7 +1189,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       const c = boxesRef.current, a = fkRef.current, b = pkRef.current;
       if (!c || !a || !b) return;
       const cr = c.getBoundingClientRect(), ar = a.getBoundingClientRect(), br = b.getBoundingClientRect();
-      // FK (posts) markazidan PK (users) markaziga — qutilar joylashuviga qarab yon tanlanadi
+      // FK (posts) markazidan PK (users) markaziga — jadvallar joylashuviga qarab yon tanlanadi
       const aRight = ar.left + ar.width / 2 < br.left + br.width / 2;
       const x1 = (aRight ? ar.right : ar.left) - cr.left, y1 = ar.top + ar.height / 2 - cr.top;
       const x2 = (aRight ? br.left : br.right) - cr.left, y2 = br.top + br.height / 2 - cr.top;
@@ -1202,10 +1202,10 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const clickFk = () => { if (joined) return; setArmed(true); };
   const clickPk = () => { if (joined || !armed) return; setJoined(true); setArmed(false); };
   return (
-    <Stage eyebrow={tr({ uz: 'SQL kuchi · JOIN', ru: 'Сила SQL · JOIN' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Ikki qutini id ipi bilan ulang', ru: 'Свяжите две коробки нитью id' })} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'SQL kuchi · JOIN', ru: 'Сила SQL · JOIN' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "Ikki jadvalni id orqali bog'lang", ru: 'Свяжите две таблицы через id' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Ikki qutini <span className="italic" style={{ color: T.accent }}>id ipi bilan ulang</span> — bu SQL'ning kuchi</>, ru: <>Свяжите две коробки <span className="italic" style={{ color: T.accent }}>нитью id</span> — это сила SQL</> })}</h2></div>
-        <Mentor>{tr({ uz: <>SQL'ning eng kuchli tomoni — <b style={{ color: T.ink }}>JOIN</b>: ikki qutini (jadvalni) <span className="mono">id</span> orqali bog'laydi. Avval <span className="mono">posts</span> qutisidagi <b style={{ color: T.accent }}>user_id</b> ipini bosing, keyin <span className="mono">users</span> qutisidagi <b style={{ color: T.blue }}>id</b> uyachasini bosing — ip ulanadi va har postga egasi qo'shiladi. Erkin NoSQL paketlarda bunday ip ulanmaydi.</>, ru: <>Самая сильная сторона SQL — <b style={{ color: T.ink }}>JOIN</b>: он связывает две коробки (таблицы) через <span className="mono">id</span>. Сначала нажмите нить <b style={{ color: T.accent }}>user_id</b> в коробке <span className="mono">posts</span>, затем ячейку <b style={{ color: T.blue }}>id</b> в коробке <span className="mono">users</span> — нить соединится, и к каждому посту добавится владелец. В свободных NoSQL-пакетах такая нить не протягивается.</> })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Ikki jadvalni <span className="italic" style={{ color: T.accent }}>id orqali bog'lang</span></>, ru: <>Свяжите две таблицы <span className="italic" style={{ color: T.accent }}>через id</span></> })}</h2></div>
+        <Mentor>{tr({ uz: <><b style={{ color: T.ink }}>JOIN</b> — SQL'ning eng foydali imkoniyatlaridan biri: u <b style={{ color: T.ink }}>turli jadvallardagi bog'liq ma'lumotlarni birlashtiradi</b>. <span className="mono">posts</span> jadvalidagi <b style={{ color: T.accent }}>user_id</b> ni <span className="mono">users</span> jadvalidagi <b style={{ color: T.blue }}>id</b> bilan bog'lang va har postning egasi qanday topilishini ko'ring.</>, ru: <><b style={{ color: T.ink }}>JOIN</b> — одна из самых полезных возможностей SQL: он <b style={{ color: T.ink }}>объединяет связанные данные из разных таблиц</b>. Свяжите <b style={{ color: T.accent }}>user_id</b> из таблицы <span className="mono">posts</span> с <b style={{ color: T.blue }}>id</b> из таблицы <span className="mono">users</span> и посмотрите, как находится владелец каждого поста.</> })}</Mentor>
         <Zoomable>
         <div className="jn-wrap">
           <div ref={boxesRef} className="jn-boxes">
@@ -1228,10 +1228,10 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               </svg>
             )}
           </div>
-          {!joined && <p className="jn-hint">{armed ? tr({ uz: 'Endi users qutisidagi id uyachasini bosing', ru: 'Теперь нажмите ячейку id в коробке users' }) : tr({ uz: "posts qutisidagi user_id ipini bosing", ru: 'Нажмите нить user_id в коробке posts' })}</p>}
+          {!joined && <p className="jn-hint">{armed ? tr({ uz: 'Endi users jadvalidagi id ustunini bosing', ru: 'Теперь нажмите столбец id в таблице users' }) : tr({ uz: "posts jadvalidagi user_id ustunini bosing", ru: 'Нажмите столбец user_id в таблице posts' })}</p>}
           <SqlCode q={"SELECT users.username, posts.izoh\nFROM posts\nJOIN users ON posts.user_id = users.id"} />
           {joined && <><DataTable cols={['username', 'izoh']} rows={result} />
-            <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Mana SQL'ning kuchi: ip ulandi va ikkita jadval <b>bir qatorda</b> birlashdi. Ko'p bog'langan ma'lumot — aynan SQL uchun yaratilgan.</>, ru: <>Вот сила SQL: нить соединилась, и две таблицы объединились <b>в одной строке</b>. Сильно связанные данные — именно то, для чего создан SQL.</> })}</p></div></>}
+            <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Mana SQL'ning kuchi: u <b>bog'liq ma'lumotlarni birlashtirib</b>, bitta natija qaytaradi.</>, ru: <>Вот сила SQL: он <b>объединяет связанные данные</b> и возвращает один результат.</> })}</p></div></>}
         </div>
         </Zoomable>
       </div>
@@ -1242,16 +1242,16 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // ===== SCREEN 5b — TEST 2 (bog'langan ma'lumot) =====
 const Screen5b = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow={tr({ uz: 'Tekshiruv', ru: 'Проверка' })}
-    audioText="users, posts va comments bir-biriga bog'langan bo'lsa — qaysi oila qulay? SQL bu qutilarni id ipi bilan, JOIN orqali ulaydi va bir so'rovda javob beradi. Javobni tanlang."
-    questionText="Ko'p bog'langan ma'lumot (users, posts, comments) bilan qaysi oila qulayroq?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: 'Mustahkamlash', ru: 'Закрепление' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Ko'p <span className="italic" style={{ color: T.accent }}>bog'langan</span> jadvallar bilan ishlashda qaysi oila qulayroq?</>, ru: <>С множеством <span className="italic" style={{ color: T.accent }}>связанных</span> таблиц какое семейство удобнее?</> })}</h2></>}
-    options={[tr({ uz: "SQL — JOIN bilan jadvallarni oson bog'laydi", ru: 'SQL — легко связывает таблицы через JOIN' }), tr({ uz: 'NoSQL — har narsa alohida hujjatda saqlanadi', ru: 'NoSQL — всё хранится в отдельных документах' }), tr({ uz: "Bog'lanish ikkalasida ham umuman yo'q", ru: 'Связей нет ни в одном из них' }), tr({ uz: "Faqat qo'lda hisoblashga to'g'ri keladi", ru: 'Придётся считать только вручную' })]} correctIdx={0}
-    explainCorrect={tr({ uz: "To'g'ri! SQL aynan bog'langan ma'lumot uchun yaratilgan — JOIN bilan jadvallarni bir-biriga ulab, murakkab savollarga bir so'rovda javob beradi.", ru: 'Верно! SQL создан именно для связанных данных — соединяет таблицы через JOIN и отвечает на сложные вопросы одним запросом.' })}
+    audioText="users, posts va comments bir-biriga bog'langan bo'lsa — qaysi tur qulay? SQL bu qutilarni id ipi bilan, JOIN orqali ulaydi va bir so'rovda javob beradi. Javobni tanlang."
+    questionText="Bir-biriga bog'liq ma'lumotlar uchun qaysi tur qulayroq?"
+    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: 'Mustahkamlash', ru: 'Закрепление' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Bir-biriga <span className="italic" style={{ color: T.accent }}>bog'liq</span> ma'lumotlar uchun qaysi tur qulayroq?</>, ru: <>Для <span className="italic" style={{ color: T.accent }}>связанных</span> между собой данных какой тип удобнее?</> })}</h2></>}
+    options={[tr({ uz: "SQL — bog'liq ma'lumotlarni birlashtira oladi", ru: 'SQL — умеет объединять связанные данные' }), tr({ uz: 'NoSQL — har narsa alohida hujjatda saqlanadi', ru: 'NoSQL — всё хранится в отдельных документах' }), tr({ uz: "Bog'lanish ikkalasida ham umuman yo'q", ru: 'Связей нет ни в одном из них' }), tr({ uz: "Faqat qo'lda hisoblashga to'g'ri keladi", ru: 'Придётся считать только вручную' })]} correctIdx={0}
+    explainCorrect={tr({ uz: "To'g'ri! SQL bog'liq ma'lumotlar bilan ishlashda juda kuchli. JOIN yordamida bir nechta jadvaldagi ma'lumotlarni birlashtira oladi.", ru: 'Верно! SQL очень силён в работе со связанными данными. С помощью JOIN он объединяет данные из нескольких таблиц.' })}
     explainWrong={{
       1: tr({ uz: "NoSQL'da bog'lanish qiyinroq — ko'pincha ma'lumotni takrorlashga to'g'ri keladi.", ru: 'В NoSQL связи сложнее — часто приходится дублировать данные.' }),
-      2: tr({ uz: "Bog'lanish bor — SQL uni JOIN bilan, juda qulay qiladi.", ru: 'Связи есть — SQL делает их очень удобными через JOIN.' }),
+      2: tr({ uz: "Bog'lanish bor — SQL uni JOIN orqali bajaradi.", ru: 'Связи есть — SQL выполняет их через JOIN.' }),
       3: tr({ uz: "Yo'q — SQL JOIN buni avtomatik bajaradi.", ru: 'Нет — SQL JOIN делает это автоматически.' }),
-      default: tr({ uz: "Bog'langan ma'lumot — SQL'ning kuchli tomoni (JOIN).", ru: 'Связанные данные — сильная сторона SQL (JOIN).' })
+      default: tr({ uz: "Bog'liq ma'lumot — SQL'ning kuchli tomoni (JOIN).", ru: 'Связанные данные — сильная сторона SQL (JOIN).' })
     }} />
 );
 
@@ -1264,8 +1264,8 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return (
     <Stage eyebrow={tr({ uz: 'SQL kuchi · ishonchlilik', ru: 'Сила SQL · надёжность' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "Vaziyatni sinab ko'ring", ru: 'Испытайте ситуацию' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Oxirgi mahsulotni <span className="italic" style={{ color: T.accent }}>2 kishi bir vaqtda</span> sotib olsa-chi?</>, ru: <>А если последний товар купят <span className="italic" style={{ color: T.accent }}>2 человека одновременно</span>?</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Do'konda <b style={{ color: T.ink }}>bitta</b> telefon qoldi. Ali va Vali aynan bir lahzada "Sotib olish" bosdi. Agar baza ehtiyot bo'lmasa — <b style={{ color: T.ink }}>ikkovi ham</b> sotib olib qo'yadi (xato!). SQL bu yerda <b style={{ color: T.accent }}>tranzaksiya</b> bilan himoya qiladi: faqat bittasiga sotadi. Pul va buyurtmada bunday <b style={{ color: T.ink }}>ishonchlilik</b> hayotiy muhim.</>, ru: <>В магазине остался <b style={{ color: T.ink }}>один</b> телефон. Али и Вали нажали «Купить» в один и тот же миг. Если база неосторожна — купят <b style={{ color: T.ink }}>оба</b> (ошибка!). SQL защищает здесь <b style={{ color: T.accent }}>транзакцией</b>: продаёт только одному. В деньгах и заказах такая <b style={{ color: T.ink }}>надёжность</b> жизненно важна.</> })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Oxirgi mahsulotni <span className="italic" style={{ color: T.accent }}>ikki kishi bir vaqtda</span> sotib olmoqchi bo'lsa-chi?</>, ru: <>А если последний товар <span className="italic" style={{ color: T.accent }}>два человека одновременно</span> захотят купить?</> })}</h2></div>
+        <Mentor>{tr({ uz: <>Do'konda <b style={{ color: T.ink }}>bitta</b> telefon qoldi. Ali va Vali aynan bir lahzada "Sotib olish" bosdi. Agar baza buni tekshirmasa — <b style={{ color: T.ink }}>ikkovi ham</b> sotib olib qo'yadi (xato!). SQL bu holatda <b style={{ color: T.accent }}>maxsus nazorat</b> ishlatadi: mahsulot faqat bitta xaridorga sotiladi. Pul va buyurtmada bunday <b style={{ color: T.ink }}>ishonchlilik</b> hayotiy muhim.</>, ru: <>В магазине остался <b style={{ color: T.ink }}>один</b> телефон. Али и Вали нажали «Купить» в один и тот же миг. Если база это не проверит — купят <b style={{ color: T.ink }}>оба</b> (ошибка!). SQL включает здесь <b style={{ color: T.accent }}>особый контроль</b>: товар продаётся только одному покупателю. В деньгах и заказах такая <b style={{ color: T.ink }}>надёжность</b> жизненно важна.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
@@ -1278,15 +1278,15 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 </div>
               </div>
             </Win>
-            {!ran && <button className="btn fade-up delay-1" style={{ alignSelf: 'flex-start' }} onClick={() => setRan(true)}>{tr({ uz: '🛒 Ali va Vali bir vaqtda bosdi', ru: '🛒 Али и Вали нажали одновременно' })}</button>}
+            {!ran && <button className="btn fade-up delay-1" style={{ alignSelf: 'flex-start' }} onClick={() => setRan(true)}>{tr({ uz: "🛒 Ali va Vali bir vaqtda «Sotib olish» bosdi", ru: '🛒 Али и Вали одновременно нажали «Купить»' })}</button>}
           </Col>
           <Col>
             <p className="flow-label">{tr({ uz: 'Natija — SQL nazorati', ru: 'Результат — контроль SQL' })}</p>
             {ran ? (
               <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-                <div className="frame-success" style={{ padding: '11px 14px' }}><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <><b style={{ color: T.success }}>✓ Ali</b> sotib oldi — tranzaksiya birinchi unga yetib bordi.</>, ru: <><b style={{ color: T.success }}>✓ Али</b> купил — транзакция первой дошла до него.</> })}</p></div>
-                <div className="frame-warn" style={{ padding: '11px 14px' }}><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <><b style={{ color: T.accent }}>✗ Vali</b> "Kechirasiz, mahsulot tugadi" xabarini oldi.</>, ru: <><b style={{ color: T.accent }}>✗ Вали</b> получил сообщение «Извините, товар закончился».</> })}</p></div>
-                <div className="sk-info"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>SQL bir lahzada faqat bittasiga sotdi — <b>ikki marta sotilmadi</b>. Bank, to'lov, buyurtma kabi joylarda bu xususiyat — eng muhimi.</>, ru: <>SQL за один миг продал только одному — <b>двойной продажи не случилось</b>. В банках, платежах и заказах это свойство — самое важное.</> })}</p></div>
+                <div className="frame-success" style={{ padding: '11px 14px' }}><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <><b style={{ color: T.success }}>✓ Ali</b> mahsulotni sotib oldi.</>, ru: <><b style={{ color: T.success }}>✓ Али</b> купил товар.</> })}</p></div>
+                <div className="frame-warn" style={{ padding: '11px 14px' }}><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <><b style={{ color: T.accent }}>✗ Vali</b> "Kechirasiz, mahsulot tugagan" xabarini oldi.</>, ru: <><b style={{ color: T.accent }}>✗ Вали</b> получил сообщение «Извините, товар закончился».</> })}</p></div>
+                <div className="sk-info"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>SQL bir mahsulot <b>ikki marta sotilib ketishining oldini oladi</b> — bu mexanizm <b style={{ color: T.accent }}>tranzaksiya</b> deb ataladi. Shuning uchun bank, to'lov va buyurtma tizimlarida ishonchlilik juda muhim.</>, ru: <>SQL <b>не даёт продать один товар дважды</b> — этот механизм называется <b style={{ color: T.accent }}>транзакция</b>. Поэтому в банках, платежах и заказах надёжность так важна.</> })}</p></div>
               </div>
             ) : <div className="frame-dash" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: 100 }}><p className="small" style={{ color: T.ink3, fontStyle: 'italic', textAlign: 'center', margin: 0 }}>{tr({ uz: "← Tugmani bosing — SQL nima qilishini ko'ring", ru: '← Нажмите кнопку — посмотрите, что сделает SQL' })}</p></div>}
           </Col>
@@ -1319,10 +1319,10 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   };
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   return (
-    <Stage eyebrow={tr({ uz: 'NoSQL kuchi · miqyos', ru: 'Сила NoSQL · масштаб' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "Xabarlar oqimini ko'ring", ru: 'Посмотрите поток сообщений' })} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'NoSQL kuchi · hajm', ru: 'Сила NoSQL · объём' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "Xabarlar oqimini ko'ring", ru: 'Посмотрите поток сообщений' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Millionlab chat xabari — bu yerda <span className="italic" style={{ color: T.blue }}>NoSQL</span> porlaydi</>, ru: <>Миллионы чат-сообщений — здесь <span className="italic" style={{ color: T.blue }}>NoSQL</span> сияет</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Endi NoSQL kuchini ko'raylik. Telegram'simon chatda har soniyada <b style={{ color: T.ink }}>minglab xabar</b> keladi. Har xabar — oddiy hujjat (kim, matn, vaqt), murakkab bog'lanish yo'q. Bunday <b style={{ color: T.ink }}>ulkan miqyos + tezlik + oddiy shakl</b> uchun NoSQL ideal. Tugmani bosib, oqimni kuzating.</>, ru: <>Теперь посмотрим силу NoSQL. В чате вроде Telegram каждую секунду приходят <b style={{ color: T.ink }}>тысячи сообщений</b>. Каждое сообщение — простой документ (кто, текст, время), сложных связей нет. Для такого <b style={{ color: T.ink }}>огромного масштаба + скорости + простой формы</b> NoSQL идеален. Нажмите кнопку и наблюдайте за потоком.</> })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Millionlab chat xabari uchun <span className="italic" style={{ color: T.blue }}>NoSQL</span> qulay</>, ru: <>Для миллионов чат-сообщений удобен <span className="italic" style={{ color: T.blue }}>NoSQL</span></> })}</h2></div>
+        <Mentor>{tr({ uz: <>Endi NoSQL kuchini ko'raylik. Telegram'simon chatda har soniyada <b style={{ color: T.ink }}>minglab xabar</b> keladi. Har xabar — oddiy hujjat (kim, matn, vaqt), murakkab bog'lanish yo'q. Bunday <b style={{ color: T.ink }}>katta hajm, tez oqim va oddiy tuzilish</b> uchun NoSQL ko'pincha qulay tanlov bo'ladi. Tugmani bosib, oqimni kuzating.</>, ru: <>Теперь посмотрим силу NoSQL. В чате вроде Telegram каждую секунду приходят <b style={{ color: T.ink }}>тысячи сообщений</b>. Каждое сообщение — простой документ (кто, текст, время), сложных связей нет. Для такого <b style={{ color: T.ink }}>большого объёма, быстрого потока и простой структуры</b> NoSQL часто оказывается удобным выбором. Нажмите кнопку и наблюдайте за потоком.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
@@ -1340,7 +1340,7 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <p className="flow-label">{tr({ uz: 'Jami xabarlar', ru: 'Всего сообщений' })}</p>
             <div className="bigcount">{count.toLocaleString('en-US')}</div>
             <p className="small" style={{ color: T.ink2, margin: 0 }}>{tr({ uz: <>Har xabar — oddiy hujjat: <span className="mono">{'{ kim, matn, vaqt }'}</span>. Bog'lanish kam, soni ulkan, tezlik shart.</>, ru: <>Каждое сообщение — простой документ: <span className="mono">{'{ кто, текст, время }'}</span>. Связей мало, объём огромный, скорость обязательна.</> })}</p>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>NoSQL ulkan, oddiy va tez ma'lumot uchun juda yaxshi. <span className="mono">(Masalan, o'yin inventari ham har o'yinchida har xil — NoSQL egiluvchanligi shu yerda ham yordam beradi.)</span></>, ru: <>NoSQL хорош для огромных, простых и быстрых данных. <span className="mono">(Например, игровой инвентарь у каждого игрока свой — гибкость NoSQL пригодится и здесь.)</span></> })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>NoSQL <b>ko'p sonli va tez keladigan</b> ma'lumotlarni saqlashda qulay. Chat xabarlari bunga yaxshi misol.</>, ru: <>NoSQL удобен для хранения <b>многочисленных и быстро поступающих</b> данных. Чат-сообщения — хороший тому пример.</> })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -1349,14 +1349,14 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   );
 };
 
-// ===== SCREEN 8 — QAROR MEZONLARI (4 savol + mini kompas) =====
+// ===== SCREEN 8 — QAROR MEZONLARI (4 savol + ko'rsatkich) =====
 const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const audio = useAudio([{ id: 's8', text: "Qaysi qadoqni tanlashni to'rt savol hal qiladi: ma'lumot bir-biriga bog'langanmi, shakli qat'iymi, xato qimmatga tushadimi, va ulkan-oddiy-tez kerakmi. Har savolni bosing — kompas strelkasi javobga qarab suriladi.", trigger: 'on_mount', waits_for: null }]);
   const CRIT = [
     { id: 'rel', q: tr({ uz: "Ma'lumotlar bir-biriga bog'langanmi?", ru: 'Данные связаны между собой?' }), side: 'sql', note: tr({ uz: "Bog'langan bo'lsa → SQL (JOIN)", ru: 'Связаны → SQL (JOIN)' }) },
     { id: 'shape', q: tr({ uz: "Shakli qat'iy (hamma yozuv bir xil)mi?", ru: 'Форма строгая (все записи одинаковые)?' }), side: 'sql', note: tr({ uz: "Qat'iy shakl → SQL", ru: 'Строгая форма → SQL' }) },
     { id: 'safe', q: tr({ uz: "Xatolik pul/buyurtmaga zarar qiladimi?", ru: 'Ошибка навредит деньгам/заказам?' }), side: 'sql', note: tr({ uz: "Ishonchlilik shart → SQL", ru: 'Нужна надёжность → SQL' }) },
-    { id: 'scale', q: tr({ uz: "Ulkan + juda oddiy + faqat tezlik kerakmi?", ru: 'Огромно + очень просто + нужна только скорость?' }), side: 'nosql', note: tr({ uz: "Ulkan & oddiy → NoSQL", ru: 'Огромно и просто → NoSQL' }) }
+    { id: 'scale', q: tr({ uz: "Ma'lumot juda katta hajmdami va tezlik muhimmi?", ru: 'Данных очень много и важна скорость?' }), side: 'nosql', note: tr({ uz: "Katta hajm + oddiy tuzilish → NoSQL", ru: 'Большой объём + простая структура → NoSQL' }) }
   ];
   const [seen, setSeen] = useState(storedAnswer ? new Set(CRIT.map(c => c.id)) : new Set());
   const [active, setActive] = useState(null);
@@ -1369,8 +1369,8 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return (
     <Stage eyebrow={tr({ uz: 'Qaror mezonlari', ru: 'Критерии решения' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : `${seen.size}/4 ${tr({ uz: "mezon ko'rildi", ru: 'критерия просмотрено' })}`} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Qaysi birini tanlash — <span className="italic" style={{ color: T.accent }}>4 savol</span> hal qiladi</>, ru: <>Что выбрать — решают <span className="italic" style={{ color: T.accent }}>4 вопроса</span></> })}</h2></div>
-        <Mentor>{tr({ uz: <>Tanlovni 4 ta savol osonlashtiradi. Har birini bosing — u qaysi tomonni ko'rsatishini ko'ring. O'ngdagi kompas javoblarga qarab suriladi. Ko'pchilik oddiy loyihalarda javoblar <b style={{ color: T.accent }}>SQL</b> tomon og'adi.</>, ru: <>Выбор упрощают 4 вопроса. Нажмите на каждый — посмотрите, в какую сторону он указывает. Компас справа сдвигается по вашим ответам. В большинстве простых проектов ответы склоняются к <b style={{ color: T.accent }}>SQL</b>.</> })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>SQL va NoSQL tanlashda <span className="italic" style={{ color: T.accent }}>4 savol</span> yordam beradi</>, ru: <>Выбрать между SQL и NoSQL помогут <span className="italic" style={{ color: T.accent }}>4 вопроса</span></> })}</h2></div>
+        <Mentor>{tr({ uz: <>SQL va NoSQL orasida tanlashni 4 ta savol osonlashtiradi. Har birini bosing — u qaysi tomonni ko'rsatishini ko'ring. Har bir savol sizni <b style={{ color: T.accent }}>SQL</b> yoki <b style={{ color: T.blue }}>NoSQL</b> tomonga yaqinlashtiradi.</>, ru: <>Выбрать между SQL и NoSQL помогают 4 вопроса. Нажмите на каждый — посмотрите, в какую сторону он указывает. Каждый вопрос приближает вас к <b style={{ color: T.accent }}>SQL</b> или <b style={{ color: T.blue }}>NoSQL</b>.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
@@ -1385,8 +1385,8 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {active && <div className="hint fade-step"><p className="small" style={{ margin: 0, color: T.ink2 }}>{CRIT.find(c => c.id === active).note}</p></div>}
           </Col>
           <Col>
-            <p className="flow-label">{tr({ uz: 'Kompas — javoblarga qarab suriladi', ru: 'Компас — сдвигается по ответам' })}</p>
-            <Win title={tr({ uz: 'qaror kompasi', ru: 'компас решений' })} minH={172}>
+            <p className="flow-label">{tr({ uz: "Ko'rsatkich — javoblarga qarab siljiydi", ru: 'Указатель — сдвигается по ответам' })}</p>
+            <Win title={tr({ uz: "qaror ko'rsatkichi", ru: 'указатель решения' })} minH={172}>
               <div style={{ display: 'flex', justifyContent: 'center' }}><Compass lean={lean} /></div>
             </Win>
             {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>4 mezondan 3 tasi <b>SQL</b> tomon, 1 tasi NoSQL tomon. Demak ko'p loyihalar uchun boshlang'ich tanlov — SQL. Endi nega aynan <b>PostgreSQL</b> ekanini ko'ramiz.</>, ru: <>Из 4 критериев 3 указывают на <b>SQL</b>, 1 — на NoSQL. Значит, для многих проектов стартовый выбор — SQL. Теперь посмотрим, почему именно <b>PostgreSQL</b>.</> })}</p></div>}
@@ -1402,27 +1402,27 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const Screen9 = (props) => (
   <QuestionScreen {...props} idx={9} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 3-savol', ru: 'Практика · вопрос 3' })}
     audioText="Bank ilovasida pul, hisoblar va o'tkazmalar bir-biriga bog'langan, bitta xato esa qimmatga tushadi. Ishonchli qattiq quti kerakmi, yoki tez erkin paket? Javobni tanlang."
-    questionText="Bank ilovasi (pul, hisoblar, o'tkazmalar) uchun qaysi DB to'g'riroq?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Bank ilovasi — pul, hisoblar, o'tkazmalar. <span className="italic" style={{ color: T.accent }}>Qaysi DB</span>?</>, ru: <>Банковское приложение — деньги, счета, переводы. <span className="italic" style={{ color: T.accent }}>Какая БД</span>?</> })}</h2></>}
-    options={[tr({ uz: 'NoSQL — chunki u ancha tezroq ishlaydi', ru: 'NoSQL — потому что работает заметно быстрее' }), tr({ uz: "Aslida ikkalasining ham farqi yo'q", ru: 'На самом деле разницы никакой' }), tr({ uz: 'Bunga hech qanday DB kerak emas', ru: 'Тут вообще не нужна никакая БД' }), tr({ uz: "SQL — bog'langan + ishonchlilik shart", ru: 'SQL — связанно + обязательна надёжность' })]} correctIdx={3}
+    questionText="Bank ilovasi (pul, hisoblar, o'tkazmalar) uchun qaysi tur mos?"
+    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Bank ilovasi — pul, hisoblar, o'tkazmalar. <span className="italic" style={{ color: T.accent }}>Qaysi tur</span> mos?</>, ru: <>Банковское приложение — деньги, счета, переводы. <span className="italic" style={{ color: T.accent }}>Какой тип</span> подходит?</> })}</h2></>}
+    options={[tr({ uz: "NoSQL — katta hajmli oddiy ma'lumot uchun qulay", ru: 'NoSQL — удобен для больших и простых данных' }), tr({ uz: "Aslida ikkalasining ham farqi yo'q", ru: 'На самом деле разницы никакой' }), tr({ uz: 'Bunga hech qanday baza kerak emas', ru: 'Тут вообще не нужна никакая база' }), tr({ uz: "SQL — ma'lumotlar bog'langan va ishonchlilik muhim", ru: 'SQL — данные связаны и важна надёжность' })]} correctIdx={3}
     explainCorrect={tr({ uz: "To'g'ri! Bankda ma'lumot bog'langan (hisob↔o'tkazma) va xato qimmatga tushadi — pul yo'qolmasligi kerak. Bu SQL'ning aynan kuchli tomoni (tranzaksiya, ishonchlilik).", ru: 'Верно! В банке данные связаны (счёт↔перевод), а ошибка обходится дорого — деньги не должны теряться. Это как раз сильная сторона SQL (транзакции, надёжность).' })}
     explainWrong={{
-      0: tr({ uz: "Tezlik bu yerda asosiy emas — pulda xato bo'lmasligi muhimroq. Bu SQL.", ru: 'Скорость тут не главное — важнее, чтобы в деньгах не было ошибок. Это SQL.' }),
+      0: tr({ uz: "Bu rost, lekin bank ma'lumoti bog'langan va xato qimmatga tushadi — bu yerda SQL kerak.", ru: 'Это верно, но данные банка связаны, а ошибка обходится дорого — здесь нужен SQL.' }),
       1: tr({ uz: "Farqi katta: bankka ishonchlilik va bog'lanish kerak → SQL.", ru: 'Разница большая: банку нужны надёжность и связи → SQL.' }),
       2: tr({ uz: "Albatta kerak — va bunday muhim ma'lumot uchun SQL (masalan PostgreSQL).", ru: 'Конечно нужна — и для таких важных данных это SQL (например, PostgreSQL).' }),
-      default: tr({ uz: "Bank = bog'langan + ishonchli → SQL.", ru: 'Банк = связанно + надёжно → SQL.' })
+      default: tr({ uz: "Bank ma'lumoti bog'langan va ishonchlilik shart → SQL.", ru: 'Данные банка связаны и нужна надёжность → SQL.' })
     }} />
 );
 
 // ===== SCREEN 10 — NEGA POSTGRESQL =====
 const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const audio = useAudio([{ id: 's10', text: "SQL oilasida ko'p a'zo bor, biz esa PostgreSQL qutisini tanlaymiz. Chunki u bog'langan, ishonchli, bepul — va kerak bo'lsa JSON paketini ham saqlaydi, ya'ni NoSQL egiluvchanligi ham bor. Sabablarni bosib ko'ring.", trigger: 'on_mount', waits_for: null }]);
+  const audio = useAudio([{ id: 's10', text: "SQL turiga ko'p baza kiradi, biz esa PostgreSQL qutisini tanlaymiz. Chunki u bog'langan, ishonchli, bepul — va kerak bo'lsa JSON paketini ham saqlaydi, ya'ni NoSQL egiluvchanligi ham bor. Sabablarni bosib ko'ring.", trigger: 'on_mount', waits_for: null }]);
   const FEATS = [
-    { id: 'rel', t: tr({ uz: 'Relyatsion (SQL)', ru: 'Реляционная (SQL)' }), d: tr({ uz: "Jadvallar va JOIN — bog'langan ma'lumot bilan juda yaxshi ishlaydi.", ru: 'Таблицы и JOIN — отлично работает со связанными данными.' }) },
+    { id: 'rel', t: tr({ uz: 'Jadvalli (relyatsion)', ru: 'Табличная (реляционная)' }), d: tr({ uz: "Jadvallar va JOIN — bog'langan ma'lumot bilan juda yaxshi ishlaydi.", ru: 'Таблицы и JOIN — отлично работает со связанными данными.' }) },
     { id: 'safe', t: tr({ uz: 'Ishonchli', ru: 'Надёжная' }), d: tr({ uz: "Tranzaksiyalar — pul va buyurtmada xato bo'lmaydi.", ru: 'Транзакции — в деньгах и заказах не будет ошибок.' }) },
-    { id: 'free', t: tr({ uz: 'Bepul + ochiq kodli', ru: 'Бесплатная + открытый код' }), d: tr({ uz: "Hech kim pul so'ramaydi, butun dunyo ishlatadi.", ru: 'Никто не просит денег, пользуется весь мир.' }) },
-    { id: 'json', t: tr({ uz: 'JSON ham saqlaydi', ru: 'Хранит и JSON' }), d: tr({ uz: "Kerak bo'lsa, NoSQL kabi egiluvchan JSON ham saqlay oladi — ikki dunyodan eng yaxshisi!", ru: 'При необходимости хранит и гибкий JSON, как NoSQL — лучшее из двух миров!' }) },
-    { id: 'stack', t: tr({ uz: 'PERN/PEAN stackning "P"si', ru: '«P» стека PERN/PEAN' }), d: tr({ uz: "React + Node + Express bilan ajoyib ishlaydi — bizning to'plamimiz.", ru: 'Отлично работает с React + Node + Express — это наш набор.' }) }
+    { id: 'free', t: tr({ uz: 'Bepul + ochiq kodli', ru: 'Бесплатная + открытый код' }), d: tr({ uz: "Ishlatish uchun pul to'lanmaydi, kodi ham ochiq — xohlagan odam uni ko'rishi va o'zgartirishi mumkin.", ru: 'За использование не платят, а код открыт — любой может его посмотреть и изменить.' }) },
+    { id: 'json', t: tr({ uz: 'JSON ham saqlaydi', ru: 'Хранит и JSON' }), d: tr({ uz: "Kerak bo'lsa, har xil shakldagi ma'lumotni ham JSON ko'rinishida saqlaydi. Shu sabab PostgreSQL SQL ishonchliligi bilan birga NoSQL qulayliklaridan ham beradi.", ru: 'При необходимости хранит и данные разной формы — в виде JSON. Поэтому PostgreSQL даёт надёжность SQL и часть удобств NoSQL.' }) },
+    { id: 'stack', t: tr({ uz: "Bizning to'plamimizga mos", ru: 'Подходит нашему набору' }), d: tr({ uz: "React, Node va Express bilan birga ishlaydi — biz shu to'plamda loyiha quramiz.", ru: 'Работает вместе с React, Node и Express — мы строим проекты на этом наборе.' }) }
   ];
   const [seen, setSeen] = useState(storedAnswer ? new Set(FEATS.map(f => f.id)) : new Set());
   const [active, setActive] = useState(storedAnswer ? 'json' : null);
@@ -1434,13 +1434,13 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: 'Nega PostgreSQL', ru: 'Почему PostgreSQL' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : `${seen.size}/3 ${tr({ uz: "sabab ko'ring", ru: 'причины — изучите' })}`} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Nega bizning loyihalarga aynan <span className="italic" style={{ color: T.accent }}>PostgreSQL</span>?</>, ru: <>Почему нашим проектам именно <span className="italic" style={{ color: T.accent }}>PostgreSQL</span>?</> })}</h2></div>
-        <Mentor>{tr({ uz: <>SQL oilasida ko'p a'zo bor — nega aynan <b style={{ color: T.accent }}>PostgreSQL</b>? Chunki u bizning loyihalarga (Instagram, do'kon, planner) juda mos: bog'langan, ishonchli, bepul — va kerak bo'lsa <b style={{ color: T.ink }}>JSON</b> ham saqlay oladi (ya'ni NoSQL egiluvchanligi ham bor!). Sabablarni bosib ko'ring.</>, ru: <>В семействе SQL много членов — почему именно <b style={{ color: T.accent }}>PostgreSQL</b>? Потому что он очень подходит нашим проектам (Instagram, магазин, планировщик): связи, надёжность, бесплатность — а при необходимости хранит и <b style={{ color: T.ink }}>JSON</b> (то есть есть и гибкость NoSQL!). Нажмите на причины и посмотрите.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>SQL turiga ko'p baza kiradi — nega aynan <b style={{ color: T.accent }}>PostgreSQL</b>? Chunki u bizning loyihalarga (Instagram, do'kon, planner) juda mos: bog'langan, ishonchli, bepul — va kerak bo'lsa <b style={{ color: T.ink }}>har xil shakldagi ma'lumotni</b> JSON ko'rinishida ham saqlaydi. Sabablarni bosib ko'ring.</>, ru: <>К типу SQL относится много баз — почему именно <b style={{ color: T.accent }}>PostgreSQL</b>? Потому что он очень подходит нашим проектам (Instagram, магазин, планировщик): связи, надёжность, бесплатность — а при необходимости хранит и <b style={{ color: T.ink }}>данные разной формы</b> — в виде JSON. Нажмите на причины и посмотрите.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
             <div style={{ display: 'flex', alignItems: 'center', gap: 12 }} className="fade-up delay-1">
               <div className="pg-logo">🐘</div>
-              <div><p className="body" style={{ margin: 0, fontWeight: 700, color: T.ink }}>PostgreSQL</p><p className="small mono" style={{ margin: '2px 0 0', color: T.accent }}>{tr({ uz: 'relyatsion · ishonchli · bepul', ru: 'реляционная · надёжная · бесплатная' })}</p></div>
+              <div><p className="body" style={{ margin: 0, fontWeight: 700, color: T.ink }}>PostgreSQL</p><p className="small mono" style={{ margin: '2px 0 0', color: T.accent }}>{tr({ uz: 'jadvalli · ishonchli · bepul', ru: 'табличная · надёжная · бесплатная' })}</p></div>
             </div>
             <div className="fade-up delay-2" style={{ display: 'flex', flexWrap: 'wrap', gap: 7 }}>
               {FEATS.map(f => <button key={f.id} className={`chip ${active === f.id ? 'chip-on' : ''}`} onClick={() => tap(f)}>{f.t} {seen.has(f.id) ? '✓' : ''}</button>)}
@@ -1452,9 +1452,9 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <p className="flow-label">{tr({ uz: 'Taqqoslash', ru: 'Сравнение' })}</p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
               <div className="cmp-row"><DbBadge kind="sql" /><span className="small" style={{ color: T.ink }}>{tr({ uz: <>bog'langan + ishonchli + JSON ham — <b style={{ color: T.accent }}>bizga mos</b></>, ru: <>связанно + надёжно + ещё и JSON — <b style={{ color: T.accent }}>подходит нам</b></> })}</span></div>
-              <div className="cmp-row"><DbBadge kind="nosql" /><span className="small" style={{ color: T.ink2 }}>{tr({ uz: "ulkan oddiy oqim uchun juda yaxshi, lekin bog'lanish qiyin", ru: 'хорош для огромного простого потока, но связи даются трудно' })}</span></div>
+              <div className="cmp-row"><DbBadge kind="nosql" /><span className="small" style={{ color: T.ink2 }}>{tr({ uz: "katta va oddiy oqim uchun qulay, lekin bog'lanish qiyin", ru: 'удобен для большого и простого потока, но связи даются трудно' })}</span></div>
             </div>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>PostgreSQL — SQL kuchini va NoSQL egiluvchanligini birlashtiradi. Shuning uchun bizning butun moduldagi tanlovimiz — <b>PostgreSQL</b>.</>, ru: <>PostgreSQL объединяет силу SQL и гибкость NoSQL. Поэтому наш выбор на весь модуль — <b>PostgreSQL</b>.</> })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>PostgreSQL — SQL ishonchliligi bilan birga <b>har xil shakldagi ma'lumotni</b> ham saqlay oladi. Shuning uchun bizning butun moduldagi tanlovimiz — <b>PostgreSQL</b>.</>, ru: <>PostgreSQL даёт надёжность SQL и при этом умеет хранить <b>данные разной формы</b>. Поэтому наш выбор на весь модуль — <b>PostgreSQL</b>.</> })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -1463,13 +1463,13 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   );
 };
 
-// ===== SCREEN 11 — VIBECODING (AI'dan DB tavsiyasi) =====
+// ===== SCREEN 11 — VIBECODING (AI'dan baza tavsiyasi) =====
 const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const audio = useAudio([{ id: 's11', text: "Endi siz tanlov mantig'ini bilasiz. Loyihangizni ayting, AI baza tavsiya qiladi va sababini aytadi — siz esa tekshirasiz: sabab to'g'rimi? Bog'langanmi, ishonchlilik kerakmi, yoki ulkan-oddiy oqimmi? Boshliq — siz.", trigger: 'on_mount', waits_for: null }]);
   const APPS = [
     { id: 'shop', label: tr({ uz: "Onlayn do'kon yasamoqchiman", ru: 'Хочу сделать онлайн-магазин' }), db: 'sql', why: tr({ uz: "Buyurtma↔mahsulot↔to'lov bog'langan, pulda xato bo'lmasligi kerak → PostgreSQL.", ru: 'Заказ↔товар↔оплата связаны, в деньгах нельзя ошибаться → PostgreSQL.' }) },
     { id: 'chat', label: tr({ uz: 'Oddiy chat ilovasi yasamoqchiman', ru: 'Хочу сделать простой чат' }), db: 'nosql', why: tr({ uz: "Millionlab oddiy xabar, tezlik kerak, bog'lanish kam → NoSQL (MongoDB).", ru: 'Миллионы простых сообщений, нужна скорость, связей мало → NoSQL (MongoDB).' }) },
-    { id: 'blog', label: tr({ uz: 'Blog platformasi yasamoqchiman', ru: 'Хочу сделать блог-платформу' }), db: 'sql', why: tr({ uz: "Muallif↔maqola↔izoh bog'langan, qat'iy shakl → PostgreSQL.", ru: 'Автор↔статья↔комментарий связаны, строгая форма → PostgreSQL.' }) }
+    { id: 'blog', label: tr({ uz: 'Blog platformasi yasamoqchiman', ru: 'Хочу сделать блог-платформу' }), db: 'sql', why: tr({ uz: "Muallif↔maqola↔izoh bog'langan, hamma yozuvda bir xil maydonlar → PostgreSQL.", ru: 'Автор↔статья↔комментарий связаны, у всех записей одни поля → PostgreSQL.' }) }
   ];
   const [app, setApp] = useState(null);
   const [phase, setPhase] = useState(storedAnswer ? 'done' : 'idle');
@@ -1483,8 +1483,8 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return (
     <Stage eyebrow={tr({ uz: 'Keyingi qadam · AI', ru: 'Следующий шаг · AI' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "AI'dan tavsiya so'rang", ru: 'Спросите совета у AI' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Loyihangizga DB'ni <span className="italic" style={{ color: T.accent }}>AI tavsiya</span> qilsin — siz tekshiring</>, ru: <>Пусть <span className="italic" style={{ color: T.accent }}>AI посоветует</span> БД для проекта — а вы проверьте</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Endi siz tanlov mantig'ini bilasiz! Loyihangizni ayting, AI <b style={{ color: T.ink }}>DB tavsiya qiladi va sababini aytadi</b> — siz esa tekshirasiz: sabab to'g'rimi? Bog'langanmi, ishonchlilik kerakmi, yoki ulkan-oddiy oqimmi? Boshliq — siz.</>, ru: <>Теперь вы знаете логику выбора! Назовите проект — AI <b style={{ color: T.ink }}>посоветует БД и объяснит причину</b>, а вы проверите: причина верна? Есть связи, нужна надёжность или это огромный простой поток? Начальник — вы.</> })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Loyiha uchun <span className="italic" style={{ color: T.accent }}>mos bazani</span> tanlab ko'ring</>, ru: <>Подберите <span className="italic" style={{ color: T.accent }}>подходящую базу</span> для проекта</> })}</h2></div>
+        <Mentor>{tr({ uz: <>Endi mezonlarni bilasiz. Loyihani tanlang — AI <b style={{ color: T.ink }}>baza taklif qiladi va sababini aytadi</b>. Siz esa sababni mezon bilan solishtiring: ma'lumotlar bog'langanmi? Ishonchlilik muhimmi? Yoki juda katta hajm va tezlik kerakmi? Oxirgi qaror — sizniki.</>, ru: <>Теперь вы знаете критерии. Выберите проект — AI <b style={{ color: T.ink }}>предложит базу и объяснит причину</b>. А вы сверьте причину с критериями: данные связаны? важна надёжность? или нужен большой объём и скорость? Последнее слово — за вами.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
@@ -1495,26 +1495,26 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {!cur && <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Yuqoridan bitta loyihani tanlang', ru: 'Выберите один проект выше' })}</p></div>}
             {cur && (
               <div className="ai-card fade-step" key={app || 'stored'}>
-                <div className="ai-row"><span className="ai-badge">AI</span><span className="ai-bubble">{phase === 'planned' ? tr({ uz: 'Mana tahlilim — tasdiqlaysizmi?', ru: 'Вот мой анализ — подтверждаете?' }) : (phase === 'building' ? tr({ uz: 'Tahlil qilyapman…', ru: 'Анализирую…' }) : tr({ uz: 'Tavsiyam tayyor', ru: 'Мой совет готов' }))}</span></div>
+                <div className="ai-row"><span className="ai-badge">AI</span><span className="ai-bubble">{phase === 'planned' ? tr({ uz: "Taklifim bor — ko'rasizmi?", ru: 'У меня есть предложение — посмотрите?' }) : (phase === 'building' ? tr({ uz: "O'ylayapman…", ru: 'Думаю…' }) : tr({ uz: 'Taklifim tayyor', ru: 'Моё предложение готово' }))}</span></div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
                   {phase !== 'planned' && <DbBadge kind={cur.db} />}
-                  <span className="small" style={{ color: T.ink }}>{phase === 'planned' ? tr({ uz: 'Loyihani tahlil qildim.', ru: 'Я проанализировал проект.' }) : cur.why}</span>
+                  <span className="small" style={{ color: T.ink }}>{phase === 'planned' ? tr({ uz: "Loyihangizni ko'rdim.", ru: 'Я посмотрел ваш проект.' }) : cur.why}</span>
                 </div>
-                {phase === 'planned' && <button className="btn fade-step" style={{ alignSelf: 'flex-start' }} onClick={approve}>{tr({ uz: "Tahlilni ko'rsat", ru: 'Показать анализ' })}</button>}
+                {phase === 'planned' && <button className="btn fade-step" style={{ alignSelf: 'flex-start' }} onClick={approve}>{tr({ uz: "Taklifni ko'rsat", ru: 'Показать предложение' })}</button>}
               </div>
             )}
           </Col>
           <Col>
-            <p className="flow-label">{tr({ uz: '2. Tavsiya natijasi', ru: '2. Результат совета' })}</p>
-            <Win title={cur ? `${cur.id}${tr({ uz: '-loyiha — DB tavsiyasi', ru: '-проект — совет по БД' })}` : tr({ uz: 'tavsiya', ru: 'совет' })} minH={130}>
+            <p className="flow-label">{tr({ uz: '2. Taklif natijasi', ru: '2. Результат предложения' })}</p>
+            <Win title={cur ? `${cur.id}${tr({ uz: '-loyiha — baza taklifi', ru: '-проект — предложение по базе' })}` : tr({ uz: 'tavsiya', ru: 'совет' })} minH={130}>
               {done && cur ? (
                 <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 10, alignItems: 'center' }}>
                   <DbBadge kind={cur.db} big />
                   <p className="small" style={{ color: T.ink2, textAlign: 'center', margin: 0 }}>{cur.db === 'sql' ? tr({ uz: 'PostgreSQL mos keladi', ru: 'Подходит PostgreSQL' }) : tr({ uz: 'MongoDB (NoSQL) mos keladi', ru: 'Подходит MongoDB (NoSQL)' })}</p>
                 </div>
-              ) : <p style={{ color: T.ink3, fontStyle: 'italic', margin: 0, fontFamily: 'Georgia, serif', fontSize: 13 }}>{tr({ uz: 'Loyihani tanlang va tahlilni tasdiqlang…', ru: 'Выберите проект и подтвердите анализ…' })}</p>}
+              ) : <p style={{ color: T.ink3, fontStyle: 'italic', margin: 0, fontFamily: 'Georgia, serif', fontSize: 13 }}>{tr({ uz: "Loyihani tanlang va taklifni ko'ring…", ru: 'Выберите проект и посмотрите предложение…' })}</p>}
             </Win>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>AI tavsiya berdi, siz <b>sababini tekshirdingiz</b>. Do'kon va blog — bog'langan → SQL. Chat — ulkan oddiy oqim → NoSQL. Mantiq to'g'ri!</>, ru: <>AI дал совет, а вы <b>проверили причину</b>. Магазин и блог — связаны → SQL. Чат — огромный простой поток → NoSQL. Логика верна!</> })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Tanlov <b>sababga asoslandi</b>: do'kon va blogda ma'lumotlar bog'langan → SQL. Chatda esa katta hajmdagi oddiy oqim bo'ladi — bunday ilovalarda NoSQL ko'p ishlatiladi.</>, ru: <>Выбор <b>опирается на причину</b>: в магазине и блоге данные связаны → SQL. В чате — большой поток простых данных, в таких приложениях чаще используют NoSQL.</> })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -1527,26 +1527,26 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const Screen12 = (props) => (
   <QuestionScreen {...props} idx={12} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 4-savol', ru: 'Практика · вопрос 4' })}
     audioText="Nega bizning loyihalar uchun aynan PostgreSQL — bizning qutimiz? Chunki u bog'langan, ishonchli, bepul, va kerak bo'lsa JSON paketini ham saqlaydi. Javobni tanlang."
-    questionText="Nega bizning loyihalar uchun PostgreSQL tanlanadi?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Nega bizning loyihalar uchun <span className="italic" style={{ color: T.accent }}>PostgreSQL</span>?</>, ru: <>Почему для наших проектов <span className="italic" style={{ color: T.accent }}>PostgreSQL</span>?</> })}</h2></>}
-    options={[tr({ uz: 'Chunki u eng yangi va modaviy baza', ru: 'Потому что это самая новая и модная база' }), tr({ uz: "Bog'langan, ishonchli, bepul + JSON ham", ru: 'Связи, надёжность, бесплатно + ещё и JSON' }), tr({ uz: "Chunki boshqa hech qanday baza yo'q", ru: 'Потому что других баз не существует' }), tr({ uz: 'Chunki u faqat kichik loyihalarga mos', ru: 'Потому что подходит только мелким проектам' })]} correctIdx={1}
-    explainCorrect={tr({ uz: "To'g'ri! PostgreSQL relyatsion (bog'lanish), ishonchli (tranzaksiya), bepul/ochiq kodli, va hatto JSON ham saqlaydi — bizning loyihalarga ideal.", ru: 'Верно! PostgreSQL реляционная (связи), надёжная (транзакции), бесплатная с открытым кодом, и даже JSON хранит — идеальна для наших проектов.' })}
+    questionText="Nega aynan PostgreSQL tanlaymiz?"
+    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Nega aynan <span className="italic" style={{ color: T.accent }}>PostgreSQL</span> tanlaymiz?</>, ru: <>Почему мы выбираем именно <span className="italic" style={{ color: T.accent }}>PostgreSQL</span>?</> })}</h2></>}
+    options={[tr({ uz: 'Chunki u eng yangi va zamonaviy baza', ru: 'Потому что это самая новая и современная база' }), tr({ uz: "Bog'langan, ishonchli, bepul va JSON ham saqlaydi", ru: 'Связи, надёжность, бесплатно и хранит JSON' }), tr({ uz: "Chunki boshqa hech qanday baza yo'q", ru: 'Потому что других баз не существует' }), tr({ uz: 'Chunki u faqat kichik loyihalarga mos', ru: 'Потому что подходит только мелким проектам' })]} correctIdx={1}
+    explainCorrect={tr({ uz: "To'g'ri! PostgreSQL jadvalli (bog'lanish bor), ishonchli (tranzaksiya bor), bepul va ochiq kodli, ustiga har xil shakldagi ma'lumotni JSON ko'rinishida ham saqlaydi.", ru: 'Верно! PostgreSQL табличная (есть связи), надёжная (есть транзакции), бесплатная и с открытым кодом, а ещё хранит данные разной формы в виде JSON.' })}
     explainWrong={{
-      0: tr({ uz: "Tanlov modaga emas, vazifaga bog'liq. PostgreSQL — bog'langan + ishonchli + bepul + JSON ham.", ru: 'Выбор зависит не от моды, а от задачи. PostgreSQL — связи + надёжность + бесплатно + ещё и JSON.' }),
+      0: tr({ uz: "Tanlov modaga emas, vazifaga bog'liq. PostgreSQL bog'langan ma'lumot bilan yaxshi ishlaydi, ishonchli va bepul.", ru: 'Выбор зависит не от моды, а от задачи. PostgreSQL хорошо работает со связанными данными, надёжна и бесплатна.' }),
       2: tr({ uz: "Bazalar ko'p (MySQL, MongoDB...). PostgreSQL aniq sabablarga ko'ra tanlanadi.", ru: 'Баз много (MySQL, MongoDB...). PostgreSQL выбирают по конкретным причинам.' }),
-      3: tr({ uz: "Aksincha — PostgreSQL ulkan loyihalarni ham ko'taradi.", ru: 'Наоборот — PostgreSQL тянет и огромные проекты.' }),
-      default: tr({ uz: "PostgreSQL: bog'langan + ishonchli + bepul + JSON ham.", ru: 'PostgreSQL: связи + надёжность + бесплатно + ещё и JSON.' })
+      3: tr({ uz: "Aksincha — PostgreSQL katta loyihalarni ham ko'taradi.", ru: 'Наоборот — PostgreSQL справляется и с большими проектами.' }),
+      default: tr({ uz: "PostgreSQL: bog'langan ma'lumot uchun qulay, ishonchli, bepul va JSON ham saqlaydi.", ru: 'PostgreSQL: удобна для связанных данных, надёжна, бесплатна и хранит JSON.' })
     }} />
 );
 
-// ===== SCREEN 13 — AMALIYOT: LOYIHA → DB MOSLASHTIRISH O'YINI =====
+// ===== SCREEN 13 — AMALIYOT: LOYIHA → BAZA MOSLASHTIRISH O'YINI =====
 const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const audio = useAudio([{ id: 's13', text: "Endi o'zingiz qaror qiling. Har loyiha uchun SQL quti yoki NoSQL paketini tanlang. O'ylang: bog'langanmi, ishonchlilik kerakmi, yoki ulkan-oddiy-tezmi? To'g'ri tanlasangiz — yashil bo'ladi.", trigger: 'on_mount', waits_for: null }]);
   const PROJECTS = [
-    { id: 'bank', label: tr({ uz: 'Bank ilovasi', ru: 'Банковское приложение' }), db: 'sql', why: tr({ uz: "pul, bog'langan, ishonchlilik", ru: 'деньги, связи, надёжность' }) },
-    { id: 'chat', label: tr({ uz: 'Chat ilovasi', ru: 'Чат-приложение' }), db: 'nosql', why: tr({ uz: 'millionlab oddiy xabar, tezlik', ru: 'миллионы простых сообщений, скорость' }) },
-    { id: 'shop', label: tr({ uz: "Onlayn do'kon", ru: 'Онлайн-магазин' }), db: 'sql', why: tr({ uz: "buyurtma↔mahsulot, to'lov", ru: 'заказ↔товар, оплата' }) },
-    { id: 'logs', label: tr({ uz: 'Server loglari', ru: 'Логи сервера' }), db: 'nosql', why: tr({ uz: "ulkan, oddiy, bog'lanishsiz", ru: 'огромные, простые, без связей' }) }
+    { id: 'bank', label: tr({ uz: 'Bank ilovasi', ru: 'Банковское приложение' }), db: 'sql', why: tr({ uz: "hisoblar bog'langan, xato qimmatga tushadi", ru: 'счета связаны, ошибка обходится дорого' }), hint: tr({ uz: "Bankda hisob va o'tkazma bir-biriga bog'langan, xato qimmatga tushadi.", ru: 'В банке счёт и перевод связаны, а ошибка обходится дорого.' }) },
+    { id: 'chat', label: tr({ uz: 'Chat ilovasi', ru: 'Чат-приложение' }), db: 'nosql', why: tr({ uz: "juda ko'p oddiy xabar, tezlik kerak", ru: 'очень много простых сообщений, нужна скорость' }), hint: tr({ uz: "Chatda xabarlar juda ko'p va oddiy, bog'lanish esa kam.", ru: 'В чате сообщений очень много и они простые, а связей мало.' }) },
+    { id: 'shop', label: tr({ uz: "Onlayn do'kon", ru: 'Онлайн-магазин' }), db: 'sql', why: tr({ uz: "buyurtma, mahsulot va to'lov bog'langan", ru: 'заказ, товар и оплата связаны' }), hint: tr({ uz: "Do'konda buyurtma, mahsulot va to'lov bir-biriga bog'langan.", ru: 'В магазине заказ, товар и оплата связаны между собой.' }) },
+    { id: 'logs', label: tr({ uz: 'Server loglari', ru: 'Логи сервера' }), db: 'nosql', why: tr({ uz: "juda ko'p, oddiy va bog'lanmagan", ru: 'очень много, простые и без связей' }), hint: tr({ uz: "Loglar juda ko'p va oddiy, bir-biriga bog'lanmagan.", ru: 'Логов очень много, они простые и не связаны между собой.' }) }
   ];
   const [assign, setAssign] = useState(storedAnswer ? Object.fromEntries(PROJECTS.map(p => [p.id, p.db])) : {});
   const allRight = PROJECTS.every(p => assign[p.id] === p.db);
@@ -1558,7 +1558,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: 'Amaliyot · moslashtirish', ru: 'Практика · сопоставление' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : `${okCount}/4 ${tr({ uz: "to'g'ri", ru: 'верно' })}`} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Har loyihaga <span className="italic" style={{ color: T.accent }}>to'g'ri bazani</span> tanlang</>, ru: <>Выберите <span className="italic" style={{ color: T.accent }}>верную базу</span> каждому проекту</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Endi o'zingiz qaror qiling! Har bir loyiha uchun <b style={{ color: T.accent }}>SQL</b> yoki <b style={{ color: T.blue }}>NoSQL</b> tugmasini bosing. O'ylang: bog'langanmi? ishonchlilik kerakmi? yoki ulkan-oddiy-tezmi? To'g'ri tanlasangiz — yashil bo'ladi.</>, ru: <>Теперь решайте сами! Для каждого проекта нажмите кнопку <b style={{ color: T.accent }}>SQL</b> или <b style={{ color: T.blue }}>NoSQL</b>. Подумайте: есть связи? нужна надёжность? или огромно-просто-быстро? Выберете верно — станет зелёным.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Endi o'zingiz qaror qiling! Har bir loyiha uchun <b style={{ color: T.accent }}>SQL</b> yoki <b style={{ color: T.blue }}>NoSQL</b> tugmasini bosing. O'ylang: ma'lumotlar bog'langanmi? Ishonchlilik muhimmi? Yoki juda katta hajm va tezlik kerakmi? To'g'ri tanlasangiz — yashil bo'ladi.</>, ru: <>Теперь решайте сами! Для каждого проекта нажмите кнопку <b style={{ color: T.accent }}>SQL</b> или <b style={{ color: T.blue }}>NoSQL</b>. Подумайте: данные связаны? важна надёжность? или нужен большой объём и скорость? Выберете верно — станет зелёным.</> })}</Mentor>
         <Zoomable>
         <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 10, maxWidth: 640, margin: '0 auto', width: '100%' }}>
           {PROJECTS.map(p => {
@@ -1568,7 +1568,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <div key={p.id} className="matchrow">
                 <div style={{ flex: 1, minWidth: 0 }}>
                   <p className="body" style={{ margin: 0, fontWeight: 700, color: T.ink }}>{p.label}</p>
-                  {a && <p className="small" style={{ margin: '2px 0 0', color: correct ? T.success : T.accent }}>{correct ? `✓ ${p.why}` : tr({ uz: "qayta o'ylang", ru: 'подумайте ещё' })}</p>}
+                  {a && <p className="small" style={{ margin: '2px 0 0', color: correct ? T.success : T.accent }}>{correct ? `✓ ${p.why}` : p.hint}</p>}
                 </div>
                 <div className={!a ? 'taphint' : undefined} style={{ display: 'flex', gap: 7 }}>
                   <button className={`mbtn ${a === 'sql' ? (correct ? 'ok' : 'bad') : ''}`} onClick={() => choose(p.id, 'sql')}>📦 SQL</button>
@@ -1579,7 +1579,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           })}
         </div>
         </Zoomable>
-        {done && <div className="frame-success fade-step" style={{ maxWidth: 640, margin: '0 auto', width: '100%' }}><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Hammasi to'g'ri! Bank va do'kon — bog'langan + ishonchli → <b>SQL</b>. Chat va loglar — ulkan + oddiy → <b>NoSQL</b>. Tanlov vazifaga bog'liq.</>, ru: <>Всё верно! Банк и магазин — связанно + надёжно → <b>SQL</b>. Чат и логи — огромно + просто → <b>NoSQL</b>. Выбор зависит от задачи.</> })}</p></div>}
+        {done && <div className="frame-success fade-step" style={{ maxWidth: 640, margin: '0 auto', width: '100%' }}><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Hammasi to'g'ri! Bank va do'kon — ma'lumot bog'langan va ishonchlilik shart → <b>SQL</b>. Chat va loglar — juda ko'p va oddiy → <b>NoSQL</b>. Tanlov vazifaga bog'liq.</>, ru: <>Всё верно! Банк и магазин — данные связаны и нужна надёжность → <b>SQL</b>. Чат и логи — очень много и просто → <b>NoSQL</b>. Выбор зависит от задачи.</> })}</p></div>}
       </div>
     </Stage>
   );
@@ -1621,10 +1621,10 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </Col>
           <Col>
             {!found && ((picked && picked !== 'myth')
-              ? <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Bu fikr to'g'ri. Yana qarang: qaysi fikr DB'ni <b>modaga qarab</b> ("zamonaviyroq") tanlamoqda?</>, ru: <>Это утверждение верно. Посмотрите ещё: какое выбирает БД <b>по моде</b> («современнее»)?</> })}</p></div>
+              ? <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Bu fikr to'g'ri. Yana qarang: qaysi fikr bazani <b>modaga qarab</b> ("zamonaviyroq") tanlamoqda?</>, ru: <>Это утверждение верно. Посмотрите ещё: какое выбирает базу <b>по моде</b> («современнее»)?</> })}</p></div>
               : <div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: 'Maslahat: "zamonaviyroq" — bu sabab emas. Do\'kon ma\'lumoti bog\'langan va ishonchli bo\'lishi kerak.', ru: 'Подсказка: «современнее» — это не причина. Данные магазина должны быть связанными и надёжными.' })}</p></div>)}
             {found && !fixed && <div className="frame-warn fade-step"><p className="note-h" style={{ color: T.accent }}>{tr({ uz: '✓ Topdingiz!', ru: '✓ Нашли!' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>"Zamonaviyroq" — yaxshi sabab emas. Do'konda buyurtma, mahsulot va to'lov <b>bog'langan</b> hamda <b>ishonchlilik</b> shart — bu <b>SQL</b> (PostgreSQL) ishi. Chapdagi tugma bilan to'g'irlang →</>, ru: <>«Современнее» — не аргумент. В магазине заказ, товар и оплата <b>связаны</b>, а <b>надёжность</b> обязательна — это работа <b>SQL</b> (PostgreSQL). Исправьте кнопкой слева →</> })}</p></div>}
-            {fixed && <div className="takeaway fade-step"><div className="ta-bulb">🧭</div><p className="ta-h">{tr({ uz: 'DB modaga emas, vazifaga qarab tanlanadi', ru: 'БД выбирают не по моде, а по задаче' })}</p><p className="ta-sub">{tr({ uz: "Bog'langan + ishonchli → SQL · ulkan + oddiy → NoSQL", ru: 'Связанно + надёжно → SQL · огромно + просто → NoSQL' })}</p></div>}
+            {fixed && <div className="takeaway fade-step"><div className="ta-bulb">🧭</div><p className="ta-h">{tr({ uz: 'Baza modaga emas, vazifaga qarab tanlanadi', ru: 'Базу выбирают не по моде, а по задаче' })}</p><p className="ta-sub">{tr({ uz: "Bog'langan va ishonchli → SQL · katta va oddiy → NoSQL", ru: 'Связанно и надёжно → SQL · большое и простое → NoSQL' })}</p></div>}
           </Col>
         </div>
       </div>
@@ -1635,9 +1635,9 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // ===== SCREEN 15 — YAKUNIY: QAROR KOMPASI =====
 const FINAL_CRIT = [
   { id: 'rel', q: { uz: "Buyurtma, mahsulot va xaridor bir-biriga bog'langanmi?", ru: 'Заказ, товар и покупатель связаны между собой?' }, sql: 'ha' },
-  { id: 'shape', q: { uz: "Har buyurtmada bir xil maydonlar bo'ladimi (qat'iy shakl)?", ru: 'В каждом заказе одни и те же поля (строгая форма)?' }, sql: 'ha' },
+  { id: 'shape', q: { uz: "Har buyurtmada bir xil maydonlar bo'ladimi?", ru: 'В каждом заказе одни и те же поля?' }, sql: 'ha' },
   { id: 'safe', q: { uz: "To'lovda xatolik qimmatga tushadimi?", ru: 'Ошибка в оплате обойдётся дорого?' }, sql: 'ha' },
-  { id: 'scale', q: { uz: "Ma'lumot ulkan + juda oddiy + faqat tezlik kerakmi?", ru: 'Данные огромные + очень простые + нужна только скорость?' }, sql: 'yoq' }
+  { id: 'scale', q: { uz: "Ma'lumot juda katta hajmdami va tezlik muhimmi?", ru: 'Данных очень много и важна скорость?' }, sql: 'yoq' }
 ];
 const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const audio = useAudio([{ id: 's15', text: "Mana sizning loyihangiz — onlayn do'kon. To'rt savolga rostini javob bering, har javob kompas strelkasini suradi. To'g'ri fikrlasangiz, strelka PostgreSQL qutisi tomon to'xtaydi.", trigger: 'on_mount', waits_for: null }]);
@@ -1650,15 +1650,15 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const passed = allAnswered && lean >= 0.5; // do'kon → SQL/PostgreSQL
   const wrongLean = allAnswered && !passed;
   useEffect(() => {
-    if (passed && !storedAnswer) onAnswer(screen, { stage: 'final', screenIdx: screen, question: "Loyiha uchun DB tanlash (qaror kompasi)", correct: true, firstAttemptCorrect: true, solved: true, picked: 'postgresql' });
+    if (passed && !storedAnswer) onAnswer(screen, { stage: 'final', screenIdx: screen, question: "Loyiha uchun baza tanlash (qaror ko'rsatkichi)", correct: true, firstAttemptCorrect: true, solved: true, picked: 'postgresql' });
   }, [passed]);
   const setA = (id, v) => setAns(a => ({ ...a, [id]: v }));
   const reset = () => setAns({});
   return (
-    <Stage eyebrow={tr({ uz: 'Yakuniy · qaror kompasi', ru: 'Финал · компас решений' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!passed} label={passed ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : `${answered}/4 ${tr({ uz: 'javob', ru: 'ответа' })}`} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: "Yakuniy · qaror ko'rsatkichi", ru: 'Финал · указатель решения' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!passed} label={passed ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : `${answered}/4 ${tr({ uz: 'javob', ru: 'ответа' })}`} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(8px,1.4vw,14px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Oxirgi qadam: <span className="italic" style={{ color: T.accent }}>onlayn do'kon</span> uchun DB tanlang.</>, ru: <>Последний шаг: выберите БД для <span className="italic" style={{ color: T.accent }}>онлайн-магазина</span>.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Mana sizning loyihangiz — <b style={{ color: T.ink }}>onlayn do'kon</b>. 4 ta savolga rostini javob bering. Har javob kompas strelkasini suradi. To'g'ri fikrlasangiz — strelka <b style={{ color: T.accent }}>PostgreSQL</b> tomon to'xtaydi.</>, ru: <>Вот ваш проект — <b style={{ color: T.ink }}>онлайн-магазин</b>. Честно ответьте на 4 вопроса. Каждый ответ сдвигает стрелку компаса. Будете рассуждать верно — стрелка остановится на <b style={{ color: T.accent }}>PostgreSQL</b>.</> })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Oxirgi qadam: <span className="italic" style={{ color: T.accent }}>onlayn do'kon</span> uchun baza tanlang.</>, ru: <>Последний шаг: выберите базу для <span className="italic" style={{ color: T.accent }}>онлайн-магазина</span>.</> })}</h2></div>
+        <Mentor>{tr({ uz: <>Mana sizning loyihangiz — <b style={{ color: T.ink }}>onlayn do'kon</b>. To'rt savolga o'ylab javob bering — har javob ko'rsatkich strelkasini siljitadi. To'rtalasidan keyin strelka <b style={{ color: T.ink }}>qaysi tomonda</b> to'xtashini ko'ring.</>, ru: <>Вот ваш проект — <b style={{ color: T.ink }}>онлайн-магазин</b>. Ответьте на четыре вопроса не спеша — каждый ответ сдвигает стрелку указателя. После четвёртого посмотрите, <b style={{ color: T.ink }}>на какой стороне</b> она остановится.</> })}</Mentor>
         <div className="split" style={{ gridTemplateColumns: 'minmax(0,1.15fr) minmax(0,1fr)', alignItems: 'start' }}>
           <Col>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
@@ -1675,14 +1675,14 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {wrongLean && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Hmm — do'kon ma'lumotlari <b>bog'langan</b> va to'lov <b>ishonchli</b> bo'lishi kerak. Javoblarni qayta ko'rib chiqing.</>, ru: <>Хм — данные магазина <b>связаны</b>, а оплата должна быть <b>надёжной</b>. Пересмотрите ответы.</> })}</p></div>}
           </Col>
           <Col>
-            <Win title={passed ? tr({ uz: 'natija: PostgreSQL ✓', ru: 'результат: PostgreSQL ✓' }) : tr({ uz: 'qaror kompasi', ru: 'компас решений' })} minH={172} hotTitle={passed}>
+            <Win title={passed ? tr({ uz: 'natija: PostgreSQL ✓', ru: 'результат: PostgreSQL ✓' }) : tr({ uz: "qaror ko'rsatkichi", ru: 'указатель решения' })} minH={172} hotTitle={passed}>
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6 }}>
                 <Compass lean={lean} />
                 {passed && <DbBadge kind="sql" big />}
               </div>
             </Win>
             {passed
-              ? <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>🎉 Mukammal! Strelka <b>PostgreSQL</b>'da to'xtadi. Siz loyiha uchun to'g'ri bazani — mezonlar asosida — o'zingiz tanladingiz!</>, ru: <>🎉 Отлично! Стрелка остановилась на <b>PostgreSQL</b>. Вы сами — по критериям — выбрали проекту верную базу!</> })}</p></div>
+              ? <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>🎉 Strelka <b>PostgreSQL</b>'da to'xtadi. Siz qarorni moda yoki taxmin bilan emas, <b>mezonlar asosida</b> qabul qildingiz — shuning uchun PostgreSQL tanlandi.</>, ru: <>🎉 Стрелка остановилась на <b>PostgreSQL</b>. Вы приняли решение не по моде и не наугад, а <b>по критериям</b> — поэтому и выбран PostgreSQL.</> })}</p></div>
               : <button className="btn-soft" style={{ alignSelf: 'flex-start' }} onClick={reset}>{tr({ uz: '↻ Qaytadan', ru: '↻ Заново' })}</button>}
           </Col>
         </div>
@@ -1807,14 +1807,14 @@ function ScreenLivePractice({ title, task, checklist, screen, storedAnswer, onAn
 const ScreenDbPractice = (props) => (
   <ScreenLivePractice {...props}
     title={{ uz: 'Loyihangizga bazani tanlang va sxemasini chizing', ru: 'Выберите базу для проекта и нарисуйте схему' }}
-    task={{ uz: "O'z loyiha g'oyangizni oling. 4 mezon (bog'lanish / shakl / ishonchlilik / miqyos) bo'yicha SQL yoki NoSQL tanlab, bir jumla bilan asoslang. SQL bo'lsa — 2-3 ustunli jadval sxemasini yozing (namuna: Instagram — users(id, username)). Kod yozilmaydi — daftar yoki og'zaki bo'ladi.", ru: 'Возьмите идею своего проекта. По 4 критериям (связи / форма / надёжность / масштаб) выберите SQL или NoSQL и обоснуйте одним предложением. Если SQL — напишите схему таблицы из 2-3 столбцов (пример: Instagram — users(id, username)). Код не пишется — в тетради или устно.' }}
+    task={{ uz: "O'z loyiha g'oyangizni oling. 4 mezon (bog'lanish / shakl / ishonchlilik / hajm) bo'yicha SQL yoki NoSQL tanlab, bir jumla bilan asoslang. SQL bo'lsa — 2 ta bog'langan jadvalning nomi va ustunlarini yozing (namuna: users(id, username) va posts(id, user_id, izoh)). Kod yozilmaydi — daftar yoki og'zaki bo'ladi.", ru: 'Возьмите идею своего проекта. По 4 критериям (связи / форма / надёжность / объём) выберите SQL или NoSQL и обоснуйте одним предложением. Если SQL — напишите названия и столбцы двух связанных таблиц (пример: users(id, username) и posts(id, user_id, izoh)). Код не пишется — в тетради или устно.' }}
     checklist={[
       { uz: "Loyiha g'oyangizni bir jumlada yozing (masalan: onlayn do'kon)", ru: 'Запишите идею проекта одним предложением (например: онлайн-магазин)' },
-      { uz: "Bog'lanish bormi? — `SQL` yoki `NoSQL` tanlang", ru: 'Есть связи? — выберите `SQL` или `NoSQL`' },
-      { uz: "Shakli qat'iymi? — javob bering", ru: 'Форма строгая? — ответьте' },
-      { uz: "Ishonchlilik (pul/buyurtma) muhimmi? — javob bering", ru: 'Надёжность (деньги/заказы) важна? — ответьте' },
-      { uz: "Ulkan + oddiy + tezlik kerakmi? — javob bering", ru: 'Огромно + просто + нужна скорость? — ответьте' },
-      { uz: "Yakuniy tanlov + 2-3 ustunli jadval sxemasini yozing (SQL bo'lsa)", ru: 'Финальный выбор + схема таблицы из 2-3 столбцов (если SQL)' },
+      { uz: "Ma'lumotlar bir-biriga bog'langanmi? — javob bering", ru: 'Данные связаны между собой? — ответьте' },
+      { uz: "Hamma yozuvda bir xil maydonlar bo'ladimi? — javob bering", ru: 'У всех записей одни и те же поля? — ответьте' },
+      { uz: "Xatolik pul yoki buyurtmaga zarar qiladimi? — javob bering", ru: 'Ошибка навредит деньгам или заказам? — ответьте' },
+      { uz: "Ma'lumot juda katta hajmdami va tezlik muhimmi? — javob bering", ru: 'Данных очень много и важна скорость? — ответьте' },
+      { uz: "Yakuniy tanlov: SQL yoki NoSQL — va SQL bo'lsa, 2 ta bog'langan jadvalni yozing", ru: 'Финальный выбор: SQL или NoSQL — и если SQL, напишите две связанные таблицы' },
     ]} />
 );
 
@@ -1895,16 +1895,16 @@ function Flashcards({ cards }) {
 }
 // 🃏 SQL vs NoSQL FLASHCARD KARTALARI (front=savol, back=qisqa javob)
 const DB_FLASHCARDS = [
-  { front: { uz: "Ma'lumotni ustunli jadvalda saqlaydigan bazalar oilasi qaysi?", ru: 'Какое семейство баз хранит данные в таблице со столбцами?' }, back: "SQL", note: { uz: "qattiq uyachali quti: PostgreSQL, MySQL", ru: 'жёсткая коробка с ячейками: PostgreSQL, MySQL' } },
-  { front: { uz: "Ma'lumotni erkin { } hujjatda saqlaydigan oila qaysi?", ru: 'Какое семейство хранит данные в свободном документе { }?' }, back: "NoSQL", note: { uz: "erkin paket: MongoDB, Firebase", ru: 'свободный пакет: MongoDB, Firebase' } },
+  { front: { uz: "Ma'lumotni ustunli jadvalda saqlaydigan bazalar turi qaysi?", ru: 'Какой тип баз хранит данные в таблице со столбцами?' }, back: "SQL", note: { uz: 'ustunli jadval: PostgreSQL, MySQL', ru: 'таблица со столбцами: PostgreSQL, MySQL' } },
+  { front: { uz: "Ma'lumotni erkin { } hujjatda saqlaydigan tur qaysi?", ru: 'Какой тип хранит данные в свободном документе { }?' }, back: "NoSQL", note: { uz: "{ } hujjat: MongoDB, Firebase", ru: '{ } документ: MongoDB, Firebase' } },
   { front: { uz: "Biz o'z loyihalarimizga qaysi SQL bazani tanlaymiz?", ru: 'Какую SQL-базу мы выбираем для своих проектов?' }, back: "PostgreSQL 🐘", note: { uz: "bog'langan, ishonchli va bepul", ru: 'связанная, надёжная и бесплатная' } },
   { front: { uz: "Eng mashhur NoSQL bazasi qaysi?", ru: 'Какая NoSQL-база самая известная?' }, back: "MongoDB", note: { uz: "har yozuvni { } hujjat qilib saqlaydi", ru: 'хранит каждую запись как документ { }' } },
   { front: { uz: "SQL jadvalidagi bitta yozuv nima deb ataladi?", ru: 'Как называется одна запись в SQL-таблице?' }, back: { uz: "Qator", ru: 'Строка' }, note: { uz: "har qatorda bir xil ustunlar bor", ru: 'в каждой строке одни и те же столбцы' } },
   { front: { uz: "Ikki jadvalni id orqali bitta so'rovda birlashtiradigan amal qaysi?", ru: 'Какое действие соединяет две таблицы через id в одном запросе?' }, back: "JOIN", note: "posts.user_id ↔ users.id" },
   { front: { uz: "Oxirgi telefon ikki xaridorga sotilmasligini nima kafolatlaydi?", ru: 'Что не даёт продать последний телефон сразу двум покупателям?' }, back: { uz: "Tranzaksiya", ru: 'Транзакция' }, note: { uz: "SQL bir lahzada faqat bittasiga sotadi", ru: 'SQL в один миг продаёт только одному' } },
-  { front: { uz: "Har soniyada minglab oddiy chat xabari uchun qaysi oila qulay?", ru: 'Какое семейство удобно для тысяч простых сообщений в секунду?' }, back: "NoSQL", note: { uz: "ulkan miqyos va tezlik uning kuchi", ru: 'огромный масштаб и скорость — его сила' } },
-  { front: { uz: "Bank ilovasi — pul va hisoblar uchun qaysi oila to'g'ri keladi?", ru: 'Какое семейство подходит банковскому приложению — деньгам и счетам?' }, back: "SQL", note: { uz: "hammasi bog'langan, xato qimmatga tushadi", ru: 'всё связано, а ошибка обходится дорого' } },
-  { front: { uz: "Baza tanlashda qaysi to'rt savolga javob berasiz?", ru: 'На какие четыре вопроса Вы отвечаете при выборе базы?' }, back: { uz: "Bog'lanish · shakl · ishonchlilik · miqyos", ru: 'Связи · форма · надёжность · масштаб' }, note: { uz: "qaror kompasining to'rt savoli", ru: 'четыре вопроса компаса решения' } },
+  { front: { uz: "Har soniyada minglab oddiy chat xabari uchun qaysi tur qulay?", ru: 'Какой тип удобно для тысяч простых сообщений в секунду?' }, back: "NoSQL", note: { uz: "katta hajm va tezlik uning kuchi", ru: 'большой объём и скорость — его сила' } },
+  { front: { uz: "Bank ilovasi — pul va hisoblar uchun qaysi tur to'g'ri keladi?", ru: 'Какой тип подходит банковскому приложению — деньгам и счетам?' }, back: "SQL", note: { uz: "hammasi bog'langan, xato qimmatga tushadi", ru: 'всё связано, а ошибка обходится дорого' } },
+  { front: { uz: "Baza tanlashda qaysi to'rt savolga javob berasiz?", ru: 'На какие четыре вопроса Вы отвечаете при выборе базы?' }, back: { uz: "Bog'lanish · shakl · ishonchlilik · hajm", ru: 'Связи · форма · надёжность · объём' }, note: { uz: "qaror ko'rsatkichining to'rt savoli", ru: 'четыре вопроса указателя решения' } },
   { front: { uz: "PostgreSQL SQL bo'lsa ham qanday erkin ma'lumotni saqlay oladi?", ru: 'Какие свободные данные умеет хранить PostgreSQL, хоть он и SQL?' }, back: "JSON", note: { uz: "kerak bo'lsa egiluvchanligi ham bor", ru: 'при необходимости он тоже гибкий' } },
   { front: { uz: "«NoSQL yangiroq, demak doim yaxshiroq» — bu to'g'rimi?", ru: '«NoSQL новее, значит всегда лучше» — это верно?' }, back: { uz: "Yo'q, bu mif", ru: 'Нет, это миф' }, note: { uz: "tanlov modaga emas, vazifaga bog'liq", ru: 'выбор зависит не от моды, а от задачи' } },
 ];
@@ -1923,10 +1923,10 @@ const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) =>
 
 // ===== 🏅 BADGES (nishonlar) — dars davomidagi REAL bosqichlar uchun (tekin emas) =====
 const ACHIEVEMENTS = {
-  packageMaster: { icon: '📦', name: 'Package Master', desc: { uz: "Qadoqxonada kartalarni to'g'ri qadoqladingiz", ru: 'Вы правильно упаковали карточки на упаковочной станции' } },
-  connector:     { icon: '🔗', name: 'The Connector', desc: { uz: "Ikki jadvalni id ipi bilan ulab JOIN qildingiz", ru: 'Вы связали две таблицы нитью id и сделали JOIN' } },
+  packageMaster: { icon: '📦', name: 'Package Master', desc: { uz: "Kartalarni to'g'ri ustun va maydonlarga joyladingiz", ru: 'Вы разложили карточки по нужным столбцам и полям' } },
+  connector:     { icon: '🔗', name: 'The Connector', desc: { uz: "Ikki jadvalni id orqali bog'lab JOIN qildingiz", ru: 'Вы связали две таблицы через id и сделали JOIN' } },
   mythBuster:    { icon: '💥', name: 'Myth Buster',   desc: { uz: "Noto'g'ri fikrni topib to'g'irladingiz", ru: 'Вы нашли и исправили ошибочное утверждение' } },
-  compassReader: { icon: '🧭', name: 'Compass Reader', desc: { uz: "Qaror kompasini o'qib to'g'ri bazani tanladingiz", ru: 'Вы прочли компас решений и выбрали верную базу' } },
+  compassReader: { icon: '🎯', name: 'Decision Maker', desc: { uz: "To'rt mezon bo'yicha to'g'ri bazani tanladingiz", ru: 'Вы выбрали верную базу по четырём критериям' } },
 };
 // Ekran id → nishon (recordAnswer'da, faqat REAL solve bilan: challenge/final)
 const ACH_TRIGGERS = { s3: 'packageMaster', s5: 'connector', s14: 'mythBuster', s15: 'compassReader' };
@@ -1983,7 +1983,7 @@ const Confetti = () => {
 };
 
 // Podium savol yorliqlari (SCORED_IDX indekslariga mos)
-const Q_LABELS = { 4: { uz: "1 — shakl", ru: '1 — форма' }, 6: "2 — JOIN", 10: { uz: "3 — ishonchlilik", ru: '3 — надёжность' }, 13: "4 — PostgreSQL", 16: { uz: "5 — kompas", ru: '5 — компас' } };
+const Q_LABELS = { 4: { uz: "1 — shakl", ru: '1 — форма' }, 6: "2 — JOIN", 10: { uz: "3 — ishonchlilik", ru: '3 — надёжность' }, 13: "4 — PostgreSQL", 16: { uz: '5 — qaror', ru: '5 — решение' } };
 const QUIZ_MS = 15000;
 // Kapsula ichida suzuvchi tokenlar — darsning "DNK"si (SELECT / { } / JOIN / PostgreSQL)
 const QZ_BG_SHAPES = [
@@ -2000,17 +2000,17 @@ const QZ_BG_SHAPES = [
 ];
 // ⚔️ Mustahkamlash-jang savollari (12: 3 shakl / 3 SQL kuchi / 3 NoSQL kuchi / 3 qaror) — 🎓 Metodist sayqallaydi.
 const QUIZ_BANK = [
-  { q: { uz: "G'alati «musiqa» maydonini qaysi qadoqqa qo'shish oson?", ru: 'В какую упаковку легко добавить странное поле «музыка»?' }, opts: [{ uz: "Ikkalasiga ham qo'shib bo'lmaydi", ru: 'Ни в одну не добавить' }, { uz: "SQL — jadval o'zi ustun qo'shadi", ru: 'SQL — таблица сама добавит столбец' }, { uz: "NoSQL — { } paket bemalol kengayadi", ru: 'NoSQL — пакет { } спокойно расширится' }, { uz: "Faqat qo'lda, birma-bir yoziladi", ru: 'Только вручную, по одной' }], correct: 2 },
+  { q: { uz: "G'alati «musiqa» maydonini qayerga qo'shish oson?", ru: 'Куда легко добавить странное поле «музыка»?' }, opts: [{ uz: "Ikkalasiga ham qo'shib bo'lmaydi", ru: 'Ни в одну не добавить' }, { uz: "SQL — jadval o'zi ustun qo'shadi", ru: 'SQL — таблица сама добавит столбец' }, { uz: "NoSQL — { } hujjatga yangi maydon qo'shiladi", ru: 'NoSQL — в документ { } добавится новое поле' }, { uz: "Faqat qo'lda, birma-bir yoziladi", ru: 'Только вручную, по одной' }], correct: 2 },
   { q: { uz: "SQL jadvaliga yangi ustun qo'shsa nima bo'ladi?", ru: 'Что будет, если добавить новый столбец в SQL-таблицу?' }, opts: [{ uz: "Faqat NoSQL'da mumkin", ru: 'Это возможно только в NoSQL' }, { uz: "Hech narsa — avtomatik qo'shiladi", ru: 'Ничего — добавится автоматически' }, { uz: "Baza o'chib qoladi", ru: 'База удалится' }, { uz: "Jadval tuzilishini o'zgartirish kerak", ru: 'Придётся изменить структуру таблицы' }], correct: 3 },
-  { q: { uz: "«Har yozuv har xil maydonga ega» — bu qaysi oila?", ru: '«У каждой записи свои поля» — какое это семейство?' }, opts: [{ uz: "SQL (qat'iy jadval)", ru: 'SQL (строгая таблица)' }, { uz: "NoSQL (erkin { } hujjat)", ru: 'NoSQL (свободный { } документ)' }, { uz: "Ikkalasi bir xil", ru: 'Оба одинаковы' }, { uz: "Hech biri", ru: 'Ни одно' }], correct: 1 },
+  { q: { uz: "«Har yozuv har xil maydonga ega» — bu qaysi tur?", ru: '«У каждой записи свои поля» — какой это тип?' }, opts: [{ uz: "SQL (qat'iy jadval)", ru: 'SQL (строгая таблица)' }, { uz: "NoSQL (erkin { } hujjat)", ru: 'NoSQL (свободный { } документ)' }, { uz: "Ikkalasi bir xil", ru: 'Оба одинаковы' }, { uz: "Hech biri", ru: 'Ни одно' }], correct: 1 },
   { q: { uz: "`JOIN` nima qiladi?", ru: 'Что делает `JOIN`?' }, opts: [{ uz: "Ikki jadvalni id orqali ulaydi", ru: 'Связывает две таблицы через id' }, { uz: "Barcha fayllarni o'chirib tashlaydi", ru: 'Удаляет все файлы' }, { uz: "Noldan yangi bo'sh baza yaratadi", ru: 'Создаёт новую пустую базу с нуля' }, { uz: "Sahifani qaytadan yuklab beradi", ru: 'Перезагружает страницу' }], correct: 0 },
-  { q: { uz: "Bank ilovasi (pul, hisoblar) uchun qaysi to'g'riroq?", ru: 'Что правильнее для банковского приложения (деньги, счета)?' }, opts: [{ uz: "SQL — bog'langan + ishonchli", ru: 'SQL — связанно + надёжно' }, { uz: "NoSQL — javob tezroq keladi", ru: 'NoSQL — ответ приходит быстрее' }, { uz: "Ikkalasining ham farqi yo'q", ru: 'Разницы никакой' }, { uz: "Bunga baza umuman kerak emas", ru: 'База тут вообще не нужна' }], correct: 0 },
+  { q: { uz: "Bank ilovasi (pul, hisoblar) uchun qaysi to'g'riroq?", ru: 'Что правильнее для банковского приложения (деньги, счета)?' }, opts: [{ uz: "SQL — bog'langan va ishonchli", ru: 'SQL — связанно и надёжно' }, { uz: "NoSQL — javob tezroq keladi", ru: 'NoSQL — ответ приходит быстрее' }, { uz: "Ikkalasining ham farqi yo'q", ru: 'Разницы никакой' }, { uz: "Bunga baza umuman kerak emas", ru: 'База тут вообще не нужна' }], correct: 0 },
   { q: { uz: "users↔posts bog'langan ma'lumot uchun qaysi qulay?", ru: 'Что удобнее для связанных данных users↔posts?' }, opts: [{ uz: "NoSQL — takrorlab yozamiz", ru: 'NoSQL — будем дублировать' }, { uz: "Ikkalasi ham qiyin", ru: 'Оба сложны' }, { uz: "SQL — JOIN bilan ulaydi", ru: 'SQL — свяжет через JOIN' }, { uz: "Faqat qo'lda", ru: 'Только вручную' }], correct: 2 },
   { q: { uz: "Millionlab oddiy chat xabari uchun qaysi ideal?", ru: 'Что идеально для миллионов простых чат-сообщений?' }, opts: [{ uz: "SQL — har xabar JOIN bilan", ru: 'SQL — каждое сообщение через JOIN' }, { uz: "NoSQL — ulkan, oddiy, tez", ru: 'NoSQL — огромно, просто, быстро' }, { uz: "Faqat qog'ozda", ru: 'Только на бумаге' }, { uz: "Hech qanday", ru: 'Никакое' }], correct: 1 },
-  { q: { uz: "«Ulkan + juda oddiy + faqat tezlik» — qaysi oila?", ru: '«Огромно + очень просто + только скорость» — какое семейство?' }, opts: ["SQL", { uz: "Ikkalasi teng", ru: 'Оба поровну' }, { uz: "Hech biri", ru: 'Ни одно' }, "NoSQL"], correct: 3 },
-  { q: { uz: "Server loglari (ulkan, bog'lanishsiz) uchun qaysi?", ru: 'Что подходит для логов сервера (огромные, без связей)?' }, opts: [{ uz: "SQL — tranzaksiya kerak", ru: 'SQL — нужны транзакции' }, { uz: "Faqat Excel", ru: 'Только Excel' }, { uz: "DB kerak emas", ru: 'БД не нужна' }, { uz: "NoSQL — miqyos va tezlik", ru: 'NoSQL — масштаб и скорость' }], correct: 3 },
+  { q: { uz: "«Katta hajm, oddiy tuzilish, tezlik» — qaysi tur?", ru: '«Большой объём, простая структура, скорость» — какой тип?' }, opts: ["SQL", { uz: "Ikkalasi teng", ru: 'Оба поровну' }, { uz: "Hech biri", ru: 'Ни одно' }, "NoSQL"], correct: 3 },
+  { q: { uz: "Server loglari (ulkan, bog'lanishsiz) uchun qaysi?", ru: 'Что подходит для логов сервера (огромные, без связей)?' }, opts: [{ uz: "SQL — tranzaksiya kerak", ru: 'SQL — нужны транзакции' }, { uz: "Faqat Excel", ru: 'Только Excel' }, { uz: "Baza kerak emas", ru: 'База не нужна' }, { uz: "NoSQL — katta hajm va tezlik", ru: 'NoSQL — большой объём и скорость' }], correct: 3 },
   { q: { uz: "Nega bizning loyihalar uchun PostgreSQL?", ru: 'Почему для наших проектов PostgreSQL?' }, opts: [{ uz: "Bog'langan, ishonchli, bepul, JSON ham", ru: 'Связи, надёжность, бесплатно, плюс JSON' }, { uz: "Boshqa hech qanday baza yo'qligidan", ru: 'Потому что других баз не существует' }, { uz: "Faqat kichik loyihalarga mosligidan", ru: 'Потому что годится лишь для мелких проектов' }, { uz: "Eng modaviy va yangi bo'lgani uchun", ru: 'Потому что самая модная и новая' }], correct: 0 },
-  { q: { uz: "DB modaga qarab («zamonaviyroq») tanlanadimi?", ru: 'БД выбирают по моде («посовременнее»)?' }, opts: [{ uz: "Ha, doim yangisi yaxshi", ru: 'Да, новое всегда лучше' }, { uz: "Ha, NoSQL har doim ustun", ru: 'Да, NoSQL всегда впереди' }, { uz: "Yo'q — vazifaga qarab tanlanadi", ru: 'Нет — выбирают по задаче' }, { uz: "Faqat narxga qarab", ru: 'Только по цене' }], correct: 2 },
+  { q: { uz: "Baza modaga qarab («zamonaviyroq») tanlanadimi?", ru: 'Базу выбирают по моде («посовременнее»)?' }, opts: [{ uz: "Ha, doim yangisi yaxshi", ru: 'Да, новое всегда лучше' }, { uz: "Ha, NoSQL har doim ustun", ru: 'Да, NoSQL всегда впереди' }, { uz: "Yo'q — vazifaga qarab tanlanadi", ru: 'Нет — выбирают по задаче' }, { uz: "Faqat narxga qarab", ru: 'Только по цене' }], correct: 2 },
   { q: { uz: "PostgreSQL JSON ham saqlay oladimi?", ru: 'PostgreSQL умеет хранить и JSON?' }, opts: [{ uz: "Yo'q, faqat jadval", ru: 'Нет, только таблицы' }, { uz: "Ha — kerak bo'lsa JSON ham", ru: 'Да — при необходимости и JSON' }, { uz: "Yo'q, umuman imkonsiz", ru: 'Нет, это вообще невозможно' }, { uz: "Faqat MongoDB saqlaydi", ru: 'Только MongoDB хранит' }], correct: 1 },
 ];
 const CsNeonBolt = ({ flip }) => (
@@ -2504,15 +2504,15 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
     setArenaSolo(studentSolo); setArena(true);
   };
   const RECAP = [
-    tr({ uz: "Ikki oila: SQL (jadval) va NoSQL (hujjat)", ru: 'Два семейства: SQL (таблицы) и NoSQL (документы)' }),
+    tr({ uz: 'Ikki tur: SQL (jadval) va NoSQL (hujjat)', ru: 'Два типа: SQL (таблицы) и NoSQL (документы)' }),
     tr({ uz: "SQL — qat'iy shakl, bog'lanish (JOIN), ishonchlilik", ru: 'SQL — строгая форма, связи (JOIN), надёжность' }),
-    tr({ uz: "NoSQL — erkin shakl, ulkan miqyos, tezlik", ru: 'NoSQL — свободная форма, огромный масштаб, скорость' }),
+    tr({ uz: "NoSQL — har hujjatda o'z maydonlari, katta hajm, tezlik", ru: 'NoSQL — свои поля у каждого документа, большой объём, скорость' }),
     tr({ uz: "Tanlov modaga emas, vazifaga bog'liq", ru: 'Выбор зависит от задачи, а не от моды' }),
     tr({ uz: "Bizning loyihalarga — PostgreSQL (+ JSON ham qiladi)", ru: 'Нашим проектам — PostgreSQL (+ умеет и JSON)' })
   ];
   const HOMEWORK = [
     { b: tr({ uz: "Orzu ilovangiz", ru: 'Приложение мечты' }), t: tr({ uz: "— sevimli ilova g'oyangizni tanlang va unga SQL yoki NoSQL'ni 4 mezon bo'yicha tanlang", ru: '— возьмите идею любимого приложения и подберите ему SQL или NoSQL по 4 критериям' }) },
-    { b: tr({ uz: "Sababini yozing", ru: 'Запишите причину' }), t: tr({ uz: "— nega aynan shu DB? (bog'langanmi, ishonchlilikmi, yoki ulkan-oddiymi)", ru: '— почему именно эта БД? (связи, надёжность или огромно-просто)' }) },
+    { b: tr({ uz: "Sababini yozing", ru: 'Запишите причину' }), t: tr({ uz: "— nega aynan shu baza? (bog'langanmi, ishonchlilikmi, yoki katta hajmmi)", ru: '— почему именно эта база? (связи, надёжность или большой объём)' }) },
     { b: tr({ uz: "PostgreSQL'ni ko'ring", ru: 'Посмотрите PostgreSQL' }), t: tr({ uz: "— postgresql.org saytiga kiring va 🐘 logotipini toping", ru: '— зайдите на postgresql.org и найдите логотип 🐘' }) }
   ];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
@@ -2537,7 +2537,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
             <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni bajarish →', ru: 'Выполнить практическое задание →' })}</span>
           </button>
         </div>
-        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: "O'z loyihangiz uchun DB tanlang:", ru: 'Выберите БД для своего проекта:' })}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{h.b}</b> <span className="t">{h.t}</span></li>))}</ul><p className="hw-note">{tr({ uz: "Keyingi darsda PostgreSQL'da haqiqiy jadval yaratamiz — CREATE TABLE! 🚀", ru: 'На следующем уроке создадим настоящую таблицу в PostgreSQL — CREATE TABLE! 🚀' })}</p></div>}
+        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: "O'z loyihangiz uchun baza tanlang:", ru: 'Выберите базу для своего проекта:' })}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{h.b}</b> <span className="t">{h.t}</span></li>))}</ul><p className="hw-note">{tr({ uz: "Keyingi darsda PostgreSQL'da haqiqiy jadval yaratamiz — CREATE TABLE! 🚀", ru: 'На следующем уроке создадим настоящую таблицу в PostgreSQL — CREATE TABLE! 🚀' })}</p></div>}
         {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🏅 Nishonlaringiz', ru: '🏅 Ваши значки' })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">

@@ -5678,3 +5678,675 @@ qo'shilishi kerak (foydalanuvchi qaroriga havola).
 ## ⏭ Navbat
 
 1-sessiya to'lqini **tugadi**. Modul-xarita 2-sessiya jamlamasi bilan **birlashtiriladi**.
+
+---
+
+# 🔵 m4-03 `DbSqlNosqlLesson` · EKRAN-BA-EKRAN KO'RIK · 1-page (2026-08-22)
+
+**Rejim:** foydalanuvchi bilan birga, ekran-ba-ekran. Har topilma — tashxis → taklif →
+tasdiq → tuzatish. Fayl: `src/4-Modull/DbSqlNosqlLesson.jsx` (3451 q · 21 ekran · UZ-RU).
+
+## Seans-boshi holati (tegilmasdan o'lchandi)
+
+Darvozalar **5/5 toza**. Til-lintda 2 🟡 warn (`registr-zor-qoyil`, q. 1305/1308) —
+**korpus §159 a'zo #2** sifatida allaqachon istisno deb muhrlangan (chat oynasidagi
+olam-oqimi matni). Tuzilma: `SCREEN_META` 21 ↔ `screens` 21 · `INLINE_KEYS` ↔
+`correctIdx` beshalasi mos · `RECAPS{4,6,10,13}` ↔ `SCORED_IDX{4,6,10,13,16}` ·
+`ACH_TRIGGERS` to'rtalasi haqiqiy-yechim lahzasida · ov-bandlari (`.hint` solid ·
+zoom-btn 30px · `.live-badge` xira+hover · `MentorPracticeStats` 0/0→null ·
+`StudentPracticePulse`) — hammasi joyida. Mentor matnlari eng uzuni 299 belgi (TMI yo'q).
+
+## 1-page (s0 · hook) — 2 topilma, ikkalasi TUZATILDI
+
+| F-ID | Topildi | Qilindi | Muhrlandi |
+|---|---|---|---|
+| **F-0822-01** | `:928` izoh-satri: «qator-ustun — qat'iy tartib» / «{ } hujjat — egiluvchan». Ikki xato: (a) «qator-ustun» s0 da **o'rgatilmagan** atama (s2/s3 da ochiladi); (b) «qat'iy/egiluvchan» — **mavhum sifat**, ko'z ko'rmaydi | «**Jadval — har qator bir xil**» / «**Hujjat — har biri o'zicha**» + RU juftlik. Sifat faktga almashtirildi; Mentorning o'z nomi (jadval/hujjat) saqlandi — §105 | `MATN_KORPUS` **§160** |
+| **F-0822-02** | `:944–946` javob-matni: noto'g'ri shox 330 belgi, to'g'ri shox 215 — xato javob berganga **ko'proq matn** tushardi | 142 / 155 belgiga qisqartirildi, ikki shox bir shaklga keltirildi | `MATN_KORPUS` **§161** |
+| **F-0822-03** | 1-tuzatishimda «afsona» so'zi s16 ga ip deb **saqlab qolingandi**. Foydalanuvchi e'tirozi: «afsona» 12–17 yosh lug'atida yo'q, tushunish yukini oshiradi | Ip **fikr** bilan qayta tutildi: «Ko'pchilik … **bittasi har doim yaxshiroq** deb o'ylaydi. Aslida **tanlov vazifaga bog'liq**…». Bu s16 mifini (**«NoSQL zamonaviyroq…»**) aynan aytadi — ip kuchaydi | `MATN_KORPUS` **§161** (qayta yozildi) |
+
+| **F-0822-04** | `:915` s0 Mentor: F-0822-01 da izoh-satrdan olib tashlangan **«egiluvchan»** o'sha ekran Mentorida qolib ketgan (foydalanuvchi tutdi). Yonida **«chiroyli jadvallar»** — bo'sh maqtov, va «ikkita butunlay boshqacha dunyo» — mavhum da'vo | Mentor foydalanuvchi matni bilan qayta yozildi: «Bir xil ma'lumotni ikki xil ko'rinishda saqlash mumkin: **SQL jadvali** yoki **NoSQL hujjati**». Oxirgi gapdagi takror («aynan bir xil ma'lumot») → «ma'lumot o'sha-o'sha»; «**qadoqlangan**» urug'i saqlandi. UZ 265→243, RU 255→218 | `MATN_KORPUS` **§160 kengaytmasi** |
+
+### «mif / afsona» so'z-oilasi — qolgan joylar (1-page dan tashqari, HALI TEGILMAGAN)
+
+| Qator | Joy | Matn |
+|---|---|---|
+| `:1602` | s14 **ekran nomi** (eyebrow) | «Mif-buster» / «Разрушитель мифов» |
+| `:1605` | s14 Mentor | «Bu — **mif**!» |
+| `:1909` | flashcard javobi | «Yo'q, bu **mif**» / «Нет, это миф» |
+| `:1590` | s14 `audioText` | «Bu — mif» — **AUDIOSIZ dars, render bo'lmaydi** (o'lik matn) |
+
+Nishon nomi `Myth Buster` — inglizcha nishon nomlari konvensiyasi bo'yicha **qoladi**.
+Foydalanuvchi qarori: bu joylar **s14 ga yetganda** ko'riladi (ekran-ba-ekran tartibi buzilmaydi).
+
+**Rad etilgan taklif (sabab bilan yozib qo'yildi):** izoh-satrga 📋/📦 emoji va
+«Tartibli jadval / Moslashuvchan hujjat». Emoji — fayl-boshi «ortiqcha emoji yo'q»
+qarori va AUDIT_PROMPT 4-bandi. Sifat-yumshatish — §160 dagi 🔴 band: muammoning
+ikkinchi yarmi (mavhumlik) qolardi.
+
+**Darvozalar tahrirdan keyin: 5/5 toza** (warn'lar o'zgarmadi) · `lint:prompt` ✅.
+
+## 2-page (s1 · reja) — 5 topilma: 4 tuzatildi, 1 RAD
+
+| F-ID | Topildi | Qilindi | Muhrlandi |
+|---|---|---|---|
+| **F-0822-06** | Sarlavha «**Ikki dunyo** orasidan…» — s0 «ikki **yo'l** bor» deb so'ragan edi, s1 esa boshqa so'z bilan javob berardi; «dunyo» mavhum obraz va bitta tushunchaga **uchinchi nom** | «**Ikki yo'l** orasidan to'g'ri tanlash» (foydalanuvchi tanlovi) · RU «между двумя **способами**» — RU s0 dagi «два способа» ga ulandi | `MATN_KORPUS` **§163** |
+| **F-0822-05a** | Mentor «**Ishonasizmi** — …» — sotuv/reklama ohangi | Olib tashlandi; «to'g'ri kelishini» → «**mosligini**» | `MATN_KORPUS` **§162** |
+| **F-0822-05b** | 02-qadam «Shakl — **qat'iy** jadval vs **erkin** hujjat» — §160 sinfi (mavhum sifat) | «Shakl — **jadval va hujjat farqi**» | §162 jadvali |
+| **F-0822-05c** | 02-qadam yorlig'i `tag: 'shape'` — **inglizcha qoldiq**, beshta yorliqdan yagona tarjimasizi (RU rejimida ham `shape` chiqardi). Foydalanuvchi ko'rmagan, audit topdi | `tr({ uz: 'jadval · hujjat', ru: 'таблица · документ' })` | §162 🔴 bandi: **yorliq ham o'quvchi matni** |
+| **F-0822-05d** | Kompas izohi «loyihaga 4 savol berasiz, strelka to'g'ri **DB'ni** ko'rsatadi» — jargon qisqartma; ustiga **mexanika teskari** aytilgan: s16 da o'quvchi savol bermaydi, savolga javob beradi | «4 ta savolga javob berasiz — qaysi **baza** mosligini bilib olasiz» | §162 jadvali |
+
+**🔴 RAD ETILDI — «kompas ortiqcha dekormi?»** Yo'q. Dalil: kompas **uch ekranda** ishlaydi
+(s1 anons · s8 jonli strelka · **s16 — darsning yagona ballanadigan final ekrani**,
+o'tish sharti `lean >= 0.5`), ustiga 🧭 **Compass Reader** nishoni va flashcard savoli.
+Uni olib tashlash = s16 ni olib tashlash. Foydalanuvchining tashvishi o'rinli, lekin
+manzili boshqa: dars **ikki obrazda** (qadoq **+** kompas) — §158 ko'prik-gap talab qiladi.
+Ikkovi bir tushunchaga da'vogar emas (qadoq = **shakl**, kompas = **qaror**), shuning
+uchun qonuniy. **s8 da ko'riladi.**
+
+**Darvozalar har tahrirdan keyin: 5/5 toza.**
+
+## DARS-BO'YLAB SWEEP — «oila» → «tur» (F-0822-07, 2026-08-22)
+
+**Kelib chiqishi:** foydalanuvchi s2 sarlavhasi uchun «Ma'lumotlar bazalari ikki **turga**
+bo'linadi» ni so'radi — «shtobe oila emasda». (Xabarda «2-page» deyilgan, aslida s2 =
+3-page; niyat bir ma'noli edi, aniqlashtirilib davom etildi.)
+
+**Nega bir satr bilan chegaralanmadi:** «oila» darsda **28 marta** (RU «семейство» 20),
+**11 ekranda**. Sarlavhani almashtirib qolganini qoldirish §105 ni buzardi — ya'ni
+tuzatishdan oldingi holat yaxshiroq bo'lardi.
+
+**Yon-lug'at:** «oila» o'zi bilan **«a'zo»** ni tortdi (`Har oilada ko'p a'zo bor` ·
+`A'zolari:` · `SQL oilasida ko'p a'zo bor`) va RU `члены` ni. Ular alohida qayta yozildi:
+«Har **turda** ko'p **baza** bor» · «**Masalan:**» · «SQL **turiga** ko'p **baza** kiradi».
+
+**Hajmi:** 45 tahrir · UZ 28 + RU 20 o'rin + 2 kod-izohi. Qamrov: reja 01-qadam · s2
+(eyebrow · sarlavha · Mentor · yorliq · tugma · xulosa) · s4 · s5b · s10 · RECAPS(4,6) ·
+flashcard ×4 · arena ×2 · yakun-xulosasi · o'lik audio ×2.
+
+**Qidiruvda tutilgan 4 tuzoq** (korpus §164 jadvaliga muhrlandi): tugma yorlig'i
+shablon-satr ichida · RU `какое **это** семейство` (so'z tartibi) · `Какое` bosh harf ·
+kod izohi `// SCREEN 2 — IKKI OILA`.
+
+**Yakuniy tekshiruv:** `grep -ci "oila|a'zo|семейств|член"` → **0**.
+**Darvozalar: 5/5 toza.**
+
+## 4-page (s3) + DARS-BO'YLAB SWEEP — «qadoq» metaforasi olib tashlandi (F-0822-08)
+
+**Foydalanuvchi hukmi:** «metafora haddan tashqari ko'payib ketgan ekran». Bitta Mentor
+gapida to'rt yangi obraz: **qadoqlovchi · stansiya · quti · paket** (+ **uyacha**).
+Qaror: **darsdan butunlay** olib tashlash, haqiqiy atamalarda qolish.
+
+**Hal qiluvchi dalil (audit qo'shdi):** o'sha ekranda SQL zonasida `id · user_id · rasm ·
+izoh` degan **haqiqiy ustun nomlari**, NoSQL zonasida **haqiqiy `{ }`** turardi. Ko'z
+jadval va hujjatni ko'rar, quloq «quti va paket»ni eshitardi. Demak metaforani olib
+tashlash vizual jihatdan hech narsani buzmasdi — **o'yin mexanikasi ham o'zgarmadi**.
+
+### 🔴 Ikki XATO (uslub emas — noto'g'ri model)
+
+| # | Nima yolg'on o'rgatardi | Tuzatildi |
+|---|---|---|
+| **1** | «🎵 musiqa uchun **uyacha yo'q**» + karta SQL zonasiga tashlanganda **silkitib qaytariladi** → o'quvchi «**SQL musiqani saqlay olmaydi**» deb tushunardi | «**Bu jadvalda** musiqa uchun **ustun yo'q**». Mexanikaga tegilmadi — rad etish o'zi rost, xato **so'zlarda** edi |
+| **2** | «u **istalgan** maydonni **bemalol** qabul qiladi» — mutlaq da'vo | «hujjatga **yangi maydon qo'shish osonroq**» — solishtirma, ya'ni rost |
+
+⚠️ 1-xatoning qiziq tomoni: o'yin tugagach chiqadigan matn allaqachon **to'g'ri** gapni
+aytardi («chunki SQL jadvalida bunday ustun yo'q») — to'g'ri tushuntirish **bor**, lekin
+**kech** kelardi. Harakat bir narsani, matn boshqa narsani o'rgatardi.
+
+### Sweep hajmi — 3 bosqich, har biridan keyin darvoza
+
+| Bosqich | Qamrov | Tahrir |
+|---|---|---|
+| **A** | s3 butunlay: sarlavha · eyebrow · tugma · Mentor · ikki zona sarlavhasi · slot-yorliqlari · yakuniy xabar | 12 |
+| **B** | s0 oxirgi gapi · s5 (sarlavha · Mentor · 2 ishora · tugma) · RECAPS 4 · RECAPS 13 · flashcard ×2 · arena savoli · 📦 nishon izohi | 21 |
+| **C** | RECAPS 4 RU · RECAPS 6 · arena javob-varianti · 3 kod-izohi | 6 |
+
+**Almashtirish lug'ati:** quti→**jadval** · paket→**hujjat** · uyacha→**ustun** ·
+qadoq→**shakl** · stansiya/qadoqlovchi→**olib tashlandi**.
+RU: коробка→**таблица** · пакет→**документ** · ячейка→**столбец** · упаковка→**форма**.
+
+**Yon-qarorlar:** `Package Master` nishon **nomi** inglizcha konvensiya bo'yicha qoldi,
+**izohi** qayta yozildi («Kartalarni to'g'ri ustun va maydonlarga joyladingiz») — nom va
+izoh ikki xil qoidaga bo'ysunadi · s3 eyebrow «Shakl · **qadoqxona**» → «Shakl · **jadval
+va hujjat**» · NoSQL kartasidagi «o'z **shakliga** ega» → «o'z **maydonlari**» (s3 ning
+bosh so'zi «shakl» boshqa ma'noda ishlatilmasin).
+
+**Yakuniy tekshiruv:** tirik matnda `qadoq|quti|paket|uyacha|stansiya` va RU juftliklari
+→ **0 qoldiq**. **Darvozalar 5/5 toza** (A-bosqichda esbuild bir marta yiqildi — qochirilmagan
+apostrof `qo'ying`, darhol tuzatildi).
+
+**Muhrlandi:** `MATN_KORPUS` **§165** + **§165a** (metafora mexanikani yolg'on o'rgatmasin —
+har «mumkin emas» ni tekshirish) + **§165b** (sweep miqyosi).
+
+## 5-page (s4 · 1-test) — 3 topilma, ekran to'liq qayta o'qildi (F-0822-09)
+
+**Foydalanuvchi topgani:** sarlavhada **«egiluvchanroq»** qaytib kelgan (yuqori ustuvorlik) ·
+A-variant texnikroq · C-variantda **«ega bo'la oladi»** kitobiy (past ustuvorlik).
+
+**Audit kengaytmasi:** «egiluvchan/qat'iy/erkin» bu ekranda **bitta emas, 5 joyda** edi —
+sarlavha · B-variant · A-izohi · default izoh · **RECAPS sinf-savoli**. Faqat sarlavhani
+tuzatish §160 kengaytmasining aynan rad etgan holati bo'lardi, shuning uchun ekran
+**to'liq** qayta o'qildi: 11 tahrir (+ 2 kod-izohi).
+
+| Joy | Edi | Bo'ldi |
+|---|---|---|
+| Sarlavha | Shakli tez-tez o'zgaradigan, har xil ma'lumot uchun qaysi tur **egiluvchanroq**? | Shakli tez-tez o'zgaradigan ma'lumot uchun qaysi tur **qulayroq**? |
+| A | SQL — har qator bir xil ustun **bo'lishi shart** | SQL — **jadvaldagi hamma qatorda** bir xil ustunlar bo'ladi |
+| B | Ikkalasi ham bir xil darajada **egiluvchan** | Ikkalasi ham bir xil — **farqi yo'q** |
+| C | NoSQL — har hujjat o'z maydonlariga **ega bo'la oladi** | NoSQL — har hujjatda maydonlar **boshqacha bo'lishi mumkin** |
+| ✓ izoh | NoSQL hujjatlari **erkin shaklga ega** … ustunlar oldindan **qat'iy** belgilangan | NoSQL hujjatlarida **maydonlar har xil bo'lishi mumkin** … ustunlar **oldindan belgilangan** |
+| A-izohi | Aksincha — SQL **qat'iy** … **Egiluvchanlik** NoSQL'da | Aksincha — SQL jadvalida hamma qatorda bir xil ustunlar bo'ladi. **Maydonlari har xil bo'la oladigani** — NoSQL |
+| B-izohi | farqi katta: SQL **qat'iy**, NoSQL **erkin shaklli** | farqi katta: SQL'da ustunlar oldindan belgilangan, NoSQL'da esa har hujjatda boshqacha bo'lishi mumkin |
+| default | **Egiluvchan shakl** — NoSQL'ning kuchi | **Maydonlari har xil bo'la olishi** — NoSQL'ning kuchi |
+| RECAPS ask | …qaysi tur **egiluvchanroq**? | …qaysi tur **qulayroq**? |
+
+🔴 **Yangi ov-bandi:** test tuzatilganda `RECAPS[<idx>].cards[*].ask` ham tekshiriladi —
+u fayl boshida, ekran kodidan uzoqda yotadi va ekran-tahririda ko'zdan qochadi.
+
+**D-variant («Hech biri yangi maydon qo'sha olmaydi») va uning izohi TEGILMADI** — izoh
+allaqachon to'g'ri va §165a ga mos: «ikkalasi ham qo'sha oladi, lekin NoSQL buni osonroq
+qiladi (jadvalni qayta tuzmasdan)» — mutlaq da'vo emas.
+
+**Darvozalar 5/5 toza.** Yo'lda esbuild ikki marta yiqildi — ikkalasi ham bir sabab:
+bir tirnoq ichidagi qochirilmagan apostrof (`bo'ladi` · `bo'lishi`). Yechim: bunday
+satrlar qo'sh tirnoqqa o'tkaziladi.
+
+**⚠️ 7-page uchun eslatma:** s4 sarlavhasi endi «qaysi tur **qulayroq**?» — s5b (7-page)
+sarlavhasi ham «…qaysi tur **qulayroq**?». Ketma-ket ikki test bir savol-qolipida.
+s5b ga yetganda uni farqlash kerak.
+
+**Muhrlandi:** `MATN_KORPUS` **§166** — «tushuncha ekrani tuzatilsa, uni tekshiradigan
+test ekrani ham tuzatiladi». Tekshirish: `SCREEN_META` dan keyingi `type: 'test'` ekranni
+topib, beshta joyini o'qish (sarlavha · variantlar · izohlar · questionText · RECAPS.ask).
+
+## 6-page (s5 · JOIN) — «id ipi» metaforasi olib tashlandi (F-0822-10)
+
+**Foydalanuvchi tashxisi:** «muammo alohida so'zlarda emas, butun tushuntirish modelida».
+s3/s4 da jadval · ustun · hujjat · maydon o'rgatildi, s5 da esa birdan **ip · ulanadi**
+metaforasi kiradi. Uch zarari: (1) «id ipi» **mavjud bo'lmagan atama**; (2) `FK`/`PK`/
+`bog'lanish` ga tayyorlamaydi; (3) «ulang» — **mexanika, maqsad emas**.
+
+| Joy | Edi | Bo'ldi |
+|---|---|---|
+| Sarlavha | Ikki jadvalni **id ipi bilan ulang** — bu SQL'ning kuchi | Ikki jadvalni **id orqali bog'lang** |
+| Mentor | SQL'ning eng kuchli tomoni — JOIN: … **ip ulanadi** va har postga egasi qo'shiladi. NoSQL hujjatlarida bunday **ip ulanmaydi** | **JOIN** — SQL'ning eng foydali imkoniyatlaridan biri: u **turli jadvallardagi bog'liq ma'lumotlarni birlashtiradi**. … har postning egasi qanday topilishini ko'ring |
+| Yashil blok | **ip ulandi** va ikkita jadval **bir qatorda** birlashdi | u **bog'liq ma'lumotlarni birlashtirib**, bitta natija qaytaradi |
+| Tugma | Ikki jadvalni id **ipi bilan ulang** | Ikki jadvalni id **orqali bog'lang** |
+| RECAPS 6 | JOIN — ikki jadvalni id **ipi bilan ulaydi** | JOIN — ikki jadvalni id **orqali bog'laydi** |
+| 🔗 nishon izohi | Ikki jadvalni id **ipi bilan ulab** JOIN qildingiz | Ikki jadvalni id **orqali bog'lab** JOIN qildingiz |
+
+**Audit qo'shgan ikki fakt:**
+
+1. **Eyebrow-takrori.** Eyebrow oilasi izchil: `SQL kuchi · JOIN` · `SQL kuchi ·
+   ishonchlilik` · `NoSQL kuchi · miqyos`. Demak foydalanuvchining A-varianti
+   («**SQL kuchi** — jadvallarni bog'lash») eyebrow bilan bir so'zni ikki marta aytardi —
+   va hozirgi sarlavhaning oxiri («— bu **SQL'ning kuchi**») ham xuddi shu takror edi.
+   A-variantning **lug'ati** olindi, **takrori** tashlandi. → `MATN_KORPUS` **§167a**
+2. **Rasm haqiqiy, nomi metafora.** Bu ekranda SVG chiziq **haqiqatan** chiziladi, ya'ni
+   «ip» bo'sh so'z emas. Lekin chiziqning haqiqiy nomi bor — **bog'lanish**. §165 dagi
+   bilan bir xil xulosa: **rasm qoladi, nom almashadi**.
+
+**Tegilmagan (ataylab):** interaktiv ishora matnlari («posts jadvalidagi user_id ustunini
+bosing») — foydalanuvchi «yaxshi, qoldirish mumkin» dedi va ular allaqachon toza
+atamalarda · SVG chiziq va uning animatsiyasi.
+
+**Yakuniy tekshiruv:** tirik matnda `id ipi | ip ulan | нитью id` → **0**.
+(Qidiruv-tuzog'i: ruscha `хранить`/`соединиться` ichida «нить» borligi yolg'on signal beradi —
+aniqroq naqsh kerak.) **Darvozalar 5/5 toza.**
+
+### 🔴 OCHIQ TOPILMA — `FK` va `PK` izohsiz turibdi
+
+Ekranda `FK` va `PK` nishonlari **ko'rinadi** (2 joyda), matnda esa **hech qayerda**
+nomlanmagan (0 marta) — §104/§126 buzilishi. Ilgari metafora ularning o'rnini egallab
+turardi; endi metafora ketdi va bo'shliq ochiq qoldi. Ikki yo'l: (a) qisqa izoh qo'shish
+(Mentor uzayadi), (b) nishonlarni olib tashlash va `FK`/`PK` ni keyingi darsga
+(CREATE TABLE) qoldirish. **Foydalanuvchi qaroriga qo'yildi.**
+
+## 7-page (s5b · 2-test) — 3 topilma tuzatildi + ekran to'liq o'qildi (F-0822-11)
+
+Foydalanuvchi bahosi: «7-page birinchi marta **haqiqiy SQL tili** bilan gapiryapti —
+katta qayta yozish kerak emas». Faqat soddalashtirish.
+
+| Joy | Edi | Bo'ldi |
+|---|---|---|
+| Savol | **Ko'p bog'langan jadvallar bilan ishlashda** qaysi tur qulayroq? | **Bir-biriga bog'liq ma'lumotlar uchun** qaysi tur qulayroq? |
+| A-variant | SQL — JOIN bilan jadvallarni **oson** bog'laydi | SQL — **bog'liq ma'lumotlarni birlashtira oladi** |
+| ✓ izoh | SQL **aynan bog'langan ma'lumot uchun yaratilgan** — JOIN bilan jadvallarni bir-biriga **ulab**… | SQL bog'liq ma'lumotlar bilan ishlashda **juda kuchli**. JOIN yordamida bir nechta jadvaldagi ma'lumotlarni birlashtira oladi |
+
+**Nega ✓ izoh muhim edi:** «aynan bog'langan ma'lumot uchun yaratilgan» — **texnik jihatdan
+noto'g'ri** (SQL faqat shu uchun yaratilmagan). §165a oilasidagi mutlaq-da'vo xatosi, faqat
+bu safar **ortiqcha kuchaytirish** shaklida. Yangi matn kuchni saqlaydi, da'voni tashlaydi.
+
+**§166 bo'yicha ekranning qolgani ham o'qildi (foydalanuvchi so'ramagan):**
+C-izohi «SQL uni JOIN bilan, **juda qulay qiladi**» → «JOIN **orqali bajaradi**» (uslub) ·
+default izoh «**Bog'langan** ma'lumot» → «**Bog'liq** ma'lumot» (yangi savol bilan izchil) ·
+`questionText` va **RECAPS 6 sinf-savoli** sarlavhaga moslandi.
+
+**B · C · D variantlari va ularning izohlari TEGILMADI** — ular allaqachon toza va
+distraktor sifatida ishlaydi.
+
+### ⚠️ Oldingi eslatma yopildi (o'z-o'zidan)
+
+5-page yozuvida «s4 va s5b ikkalasi ham *qaysi tur qulayroq?* — farqlash kerak» deb
+belgilangan edi. Yangi matn bilan bu **kamchilik emas, izchillik** bo'lib qoldi:
+s4 «**Shakli tez-tez o'zgaradigan** ma'lumot uchun qaysi tur qulayroq?» ·
+s5b «**Bir-biriga bog'liq** ma'lumotlar uchun qaysi tur qulayroq?» — bir qolip, ikki
+mezon. Dars mantig'i («4 mezon → qaysi tur») aynan shuni talab qiladi. **Farqlash shart emas.**
+
+### 🔴 YANGI OCHIQ MASALA — «bog'langan» / «bog'liq»
+
+Darsda ikki shakl yonma-yon yashaydi: `bog'lan-` o'zagi **57 marta** (qaror mezoni
+«Ma'lumotlar bir-biriga **bog'langanmi**?», RECAPS, arena savollari), `bog'liq` **17 marta**
+(s5 va s5b ning yangi matnlari). Bular metafora emas — **bir o'zakning ikki shakli**,
+shuning uchun §105 buzilishi deb baholanmadi. Lekin s8 (qaror mezonlari) ga yetganda
+qaysi shakl **kanonik** bo'lishi hal qilinishi kerak, aks holda §164 dagi yarim-sweep
+holati takrorlanadi. **Foydalanuvchi qaroriga qo'yildi.**
+
+## 8-page (s6 · ishonchlilik) — 5 topilma + 2 audit-topilmasi (F-0822-12)
+
+| Joy | Edi | Bo'ldi |
+|---|---|---|
+| Sarlavha | Oxirgi mahsulotni 2 kishi bir vaqtda **sotib olsa-chi?** | …ikki kishi bir vaqtda **sotib olmoqchi bo'lsa-chi?** |
+| Mentor | SQL bu yerda **tranzaksiya bilan** himoya qiladi | SQL bu holatda **maxsus nazorat** ishlatadi: mahsulot faqat bitta xaridorga sotiladi |
+| Tugma | 🛒 Ali va Vali bir vaqtda **bosdi** | 🛒 Ali va Vali bir vaqtda **«Sotib olish» bosdi** |
+| Natija | ✓ Ali sotib oldi — **tranzaksiya birinchi unga yetib bordi** | ✓ Ali **mahsulotni sotib oldi** |
+| Natija | ✗ Vali «mahsulot **tugadi**» | ✗ Vali «mahsulot **tugagan**» |
+| Xulosa | SQL bir lahzada faqat bittasiga sotdi — ikki marta sotilmadi | SQL bir mahsulot **ikki marta sotilib ketishining oldini oladi** — **bu mexanizm tranzaksiya deb ataladi**. Shuning uchun… |
+
+**Asosiy o'zgarish — atama tartibi.** «Tranzaksiya» endi Mentorda **emas**, o'quvchi
+tugmani bosib natijani **ko'rgandan keyin** nomlanadi. Ma'no → harakat → nom.
+→ `MATN_KORPUS` **§168**
+
+### Audit qo'shgan 2 topilma (foydalanuvchi aytmagan)
+
+**1. §28 buzilishi (mavjud korpus qoidasi).** «Agar baza **ehtiyot bo'lmasa**» — jonsiz
+narsaga odam-fe'l. → «Agar baza **buni tekshirmasa**». RU: «база **неосторожна**» →
+«база **это не проверит**».
+
+**2. 🔴 `RECAPS[6]` tartib buzadi.** s5b testi (**7-page**) da xato javob berilsa
+ochiladigan recap oynasining 2-kartasi «**Tranzaksiya** — ikki marta sotilmaydi» deydi —
+ya'ni atamani **s6 tanishtirishidan oldin** ko'rsatadi. Ustiga u **off-target**: recap
+s5b ni («bog'liq ma'lumot → SQL») qayta tushuntirishi kerak, tranzaksiya esa boshqa mezon.
+**Tuzatilmadi — foydalanuvchi qaroriga qo'yildi.** Taklif: 2-kartani s5 (JOIN) materialidan
+olingan karta bilan almashtirish.
+
+**Atama tartibi tekshirildi:** «tranzaksiya» endi birinchi marta `:1289` (s6 xulosasi) da
+nomlanadi; keyingi uchrashuvlar — s10 FEATS · s12 izohi · flashcard — hammasi **keyin**.
+Yagona istisno — yuqoridagi `RECAPS[6]`.
+
+**Darvozalar 5/5 toza.**
+
+## 9-page (s7 · NoSQL miqyos) — marketing tili olib tashlandi (F-0822-13)
+
+Foydalanuvchi bahosi: «texnik xato yo'q, lekin **marketing tili** hali qolgan». Asosiy
+topilma — **uch blok bir narsani uch bo'sh so'z bilan** aytardi: sarlavha «**porlaydi**» →
+Mentor «**ideal**» → xulosa «**juda yaxshi**».
+
+| Blok | Edi | Bo'ldi | Endi vazifasi |
+|---|---|---|---|
+| Sarlavha | Millionlab chat xabari — bu yerda NoSQL **porlaydi** | Millionlab chat xabari uchun NoSQL **qulay** | holat + javob |
+| Mentor | Bunday **ulkan miqyos + tezlik + oddiy shakl** uchun NoSQL **ideal** | Bunday **katta hajm, tez oqim va oddiy tuzilish** uchun NoSQL **ko'pincha qulay tanlov bo'ladi** | **nega** — mezonlar bilan |
+| Yashil blok | NoSQL ulkan, oddiy va tez ma'lumot uchun **juda yaxshi** | NoSQL **ko'p sonli va tez keladigan** ma'lumotlarni saqlashda qulay. **Chat xabarlari bunga yaxshi misol** | umumlashma + misol |
+
+→ `MATN_KORPUS` **§169**
+
+### Audit qo'shgan 2 topilma
+
+**1. Proza monoshriftda.** Yashil blokdagi qavs `className="mono"` ichida edi — butun gap
+JetBrains Mono da chiqardi (skrinshotda ko'rinadi). Mono kod uchun. → `MATN_KORPUS` **§169a**
++ grep-bandi: `className="mono">` dan keyin 25+ belgi kelsa — tekshirish. Butun fayl
+skanlandi, boshqa holat **yo'q**.
+
+**2. Ikkinchi misol-ip (108-qonun).** O'sha qavsda «o'yin inventari» misoli siqib kiritilgan
+edi — bir dars, bitta misol-ip. Ustiga u yerda yana **«egiluvchanligi»** turardi.
+Qavs butunlay olib tashlandi.
+
+### ⚠️ Yangi ochiq masala — «miqyos»
+
+Mentor matnidan «ulkan **miqyos**» olib tashlandi va «katta hajm» qo'yildi (o'quvchiga
+tushunarliroq). Lekin **«miqyos» — darsning to'rt qaror-mezonidan biri** va yana **4 tirik
+joyda** turibdi: s7 eyebrow · praktika topshirig'i · flashcard javobi («Bog'lanish · shakl ·
+ishonchlilik · miqyos») · yakun-xulosasi. Ya'ni hozir bitta mezon **ikki nom** bilan yuradi.
+
+10-page (**s8 — Qaror mezonlari**) aynan mezonlar rasman e'lon qilinadigan ekran. «Miqyos»
+qoladimi yoki «hajm» ga o'tadimi — **o'sha yerda hal qilinadi**. Bu `bog'langan/bog'liq`
+masalasi bilan **bir xil kategoriya** va bir vaqtda yopilishi kerak.
+
+**Darvozalar 5/5 toza.**
+
+## 10-page (s8 · qaror mezonlari) — «kompas» olib tashlandi + mezon-lug'ati birlashtirildi (F-0822-14)
+
+### 🔴 AUDIT O'Z QARORINI O'ZGARTIRDI
+
+6-pageda audit kompasni **himoya qilgan** edi: «dekor emas — s16 ning ballanadigan
+asbobi». Bu dalil hali ham rost, lekin **xulosa noto'g'ri** edi: asbobning kerakligi
+uning **nomini** oqlamaydi. Foydalanuvchi buni ochdi. Ikki dalil:
+(1) «kompas» — DB tanlashda **mavjud bo'lmagan tushuncha**, o'quvchi yolg'on model yasaydi;
+(2) kompas **yo'nalishni** ko'rsatadi, bu asbob esa **javoblarni tortadi** — ya'ni metafora
+**metafora sifatida ham** noto'g'ri edi. → `MATN_KORPUS` **§170**
+
+**Sweep — 18 tahrir:** Win sarlavhasi ×3 (s1 · s8 · s16) · s1 flow-label · s1 Mentor ·
+s8 flow-label · **s8 Mentor** · s16 eyebrow · s16 Mentor · s16 payload · flashcard izohi ·
+🧭 **Compass Reader** → 🎯 **Decision Maker** (nom + izoh) · podium yorlig'i «5 — kompas» →
+«5 — qaror» · 3 kod-izohi. UZ «qaror **ko'rsatkichi**» · RU «**указатель решения**».
+
+### 10-pagening qolgan 5 bandi
+
+| Joy | Edi | Bo'ldi |
+|---|---|---|
+| Sarlavha | **Qaysi birini** tanlash — 4 savol hal qiladi | **SQL va NoSQL tanlashda** 4 savol yordam beradi |
+| Mentor | **Tanlovni** 4 ta savol osonlashtiradi… **Ko'pchilik oddiy loyihalarda javoblar SQL tomon og'adi** | **SQL va NoSQL orasida tanlashni** 4 ta savol osonlashtiradi… **Har bir savol sizni SQL yoki NoSQL tomonga yaqinlashtiradi** |
+| 4-mezon | **Ulkan + juda oddiy + faqat tezlik kerakmi?** | **Ma'lumot juda katta hajmdami va tezlik muhimmi?** |
+| 4-mezon izohi | Ulkan & oddiy → NoSQL | **Katta hajm + oddiy tuzilish** → NoSQL |
+| SVG yorlig'i | SQL · **PG** | SQL |
+
+«SQL tomon og'adi» ni olib tashlash **§168 bilan ham izchil**: xulosa harakatdan **keyin**
+keladi — va u allaqachon bor: o'quvchi 4 mezonni bosib bo'lgach chiqadigan yashil blok
+«4 mezondan 3 tasi SQL tomon…» deydi. Mentor uni **oldindan aytib qo'yardi**.
+
+`PG` — dars matnida **hech qayerda** ochilmagan qisqartma edi. → `MATN_KORPUS` **§170b**
+
+### Ikki ochiq masala YOPILDI
+
+**1. «miqyos» → «hajm» (13 o'rin, 6 ekran).** 4-mezon «katta hajm» ga o'tgach, «miqyos»
+mezon-to'plamida yolg'iz qolardi. Almashtirildi: s7 eyebrow · praktika topshirig'i ·
+**praktika ro'yxatining 4-bandi** (mezon bilan so'zma-so'z bir xil qilindi) · flashcard
+javobi («Bog'lanish · shakl · ishonchlilik · **hajm**») · flashcard izohi · arena varianti ·
+RECAPS 10 · yakun-xulosasi · 3 kod-izohi. Tirik matnda qoldiq **0**.
+→ `MATN_KORPUS` **§170a**
+
+**2. «bog'langan» / «bog'liq» — sweep SHART EMAS.** Foydalanuvchi 1-mezonni
+(«Ma'lumotlar bir-biriga **bog'langanmi**?») «zo'r» deb baholadi. Xulosa: bular **bir
+o'zakning ikki grammatik shakli**, ikki nom emas — savol-shaklida `bog'langanmi?`, ot-shaklida
+`bog'liq ma'lumotlar`. §105 buzilmaydi. **Masala yopildi.**
+
+**Darvozalar 5/5 toza.** (Sweep paytida s8 Mentori bir marta o'tkazib yuborildi — naqsh
+`O'ngdagi kompas…` edi, tuzatildi.)
+
+## 11-page (s9 · 3-test) — 3 topilma + «DB» sweep (F-0822-15)
+
+| Joy | Edi | Bo'ldi |
+|---|---|---|
+| Sarlavha | Bank ilovasi — pul, hisoblar, o'tkazmalar. **Qaysi DB?** | …**Qaysi tur mos?** |
+| A-variant | NoSQL — **chunki u ancha tezroq ishlaydi** | NoSQL — **katta hajmli oddiy ma'lumot uchun qulay** |
+| A-izohi | **Tezlik bu yerda asosiy emas** — pulda xato bo'lmasligi muhimroq | **Bu rost, lekin** bank ma'lumoti bog'langan va xato qimmatga tushadi — bu yerda SQL kerak |
+| D-variant | SQL — **bog'langan + ishonchlilik shart** | SQL — **ma'lumotlar bog'langan va ishonchlilik muhim** |
+| default izoh | **Bank = bog'langan + ishonchli → SQL** | Bank ma'lumoti bog'langan va ishonchlilik shart → SQL |
+| RECAPS 10 ask | …qaysi **DB** to'g'riroq? | …qaysi **tur** mos? |
+
+**A-variant nega muhim edi.** Eski matn «NoSQL ancha tezroq» degan **yolg'on modelni**
+fakt shaklida aytardi — va uni **tanlamagan** o'quvchi izohni ko'rmaydi, lekin gapni
+o'qib bo'ladi. Ustiga bu darsning o'zi s16 (mif-buster) da rad etadigan mif edi. Yangi
+variant **rost, lekin mos emas** turiga o'tdi — o'quvchi uni **mezon bilan** rad etadi.
+→ `MATN_KORPUS` **§171** (+ 🔴 «variant almashsa, izohi ham almashadi»)
+
+D-variant — **mentor-qisqartmasi** (`+` uslubi) test variantida yolg'iz o'qiladi.
+→ `MATN_KORPUS` **§171a**
+
+### «DB» SWEEP — 19 o'rin, 8 ekran
+
+`DB` dars matnida **hech qayerda ochilmagan** lotin qisqartmasi edi (19 marta), yonida esa
+darsning o'z so'zi turardi: `baza` (24 marta). §170b (chizmadagi `PG`) bilan bir kunda
+topilgan, bir xil sinf. Almashtirildi: `DB` → **`baza`**, savol-qolipida → **`tur`**;
+RU `БД` → **`база`**.
+
+Qamrov: s9 (sarlavha · questionText · C-variant · RECAPS ask) · s11 (sarlavha · Mentor ·
+Win sarlavhasi) · s14 (ishora · takeaway) · s16 (sarlavha · payload) · arena ×2 ·
+uyga vazifa ×2 · 4 kod-izohi. **Tirik matnda qoldiq 0.**
+→ `MATN_KORPUS` **§171b** + tekshiruv-bandi: darsdagi har lotin qisqartma sanaladi
+(`DB` · `PG` · `FK` · `PK` · `JSON`) va har biriga «matnda ochilganmi?» savoli beriladi.
+
+⚠️ Shu tekshiruvdan **`FK`/`PK` hali ochiq** (6-page topilmasi) — ular ekranda ko'rinadi,
+matnda ochilmagan. `JSON` esa s10 da ochiladi.
+
+**Darvozalar 5/5 toza.**
+
+## 12-page (s10 · nega PostgreSQL) — 3 topilma + 4 audit-topilmasi (F-0822-16)
+
+| Joy | Edi | Bo'ldi |
+|---|---|---|
+| «Bepul» izohi | **Hech kim pul so'ramaydi, butun dunyo ishlatadi** | Ishlatish uchun pul to'lanmaydi, **kodi ham ochiq — xohlagan odam uni ko'rishi va o'zgartirishi mumkin** |
+| «JSON» izohi | Kerak bo'lsa, NoSQL kabi **egiluvchan** JSON ham saqlay oladi — **ikki dunyodan eng yaxshisi!** | Kerak bo'lsa, **har xil shakldagi ma'lumotni** ham JSON ko'rinishida saqlaydi. **Shu sabab** PostgreSQL SQL ishonchliligi bilan birga NoSQL qulayliklaridan ham beradi |
+| 5-chip | **PERN/PEAN stackning "P"si** | **Bizning to'plamimizga mos** |
+| 5-chip izohi | React + Node + Express bilan **ajoyib ishlaydi** | React, Node va Express bilan birga ishlaydi — **biz shu to'plamda loyiha quramiz** |
+
+→ `MATN_KORPUS` **§172** (xususiyat-kartasi foydani aytadi) + **§172a** (ekotizim-fakti
+xususiyat emas; 🔴 yechim — **o'chirish emas, nomlash**: chip mazmuni qimmatli edi
+(modul-ipi — o'quvchi React'ni biladi), faqat **yorlig'i** qisqartma edi)
+
+### Audit qo'shgan 4 topilma
+
+**1. 🔴 «Egiluvchanlik» ipi yo'qolgan edi (§172b).** Foydalanuvchi buni «jiddiyroq» deb
+belgiladi va haq edi: dars bo'ylab `egiluvchan` sifati tozalanganda (§160), u **ko'targan
+g'oya** ham — «PostgreSQL = SQL ishonchliligi + NoSQL qulayligi» — urg'usiz qolgan edi.
+Yechim: sifatni **faktga** aylantirish, g'oyani tashlab yuborish emas → «**har xil
+shakldagi ma'lumotni** ham saqlaydi». Uch joyda tiklandi: JSON chipi · Mentor qavsi ·
+yashil xulosa.
+
+**2. `Relyatsion (SQL)` → `Jadvalli (relyatsion)`.** 3-page qarori (sodda so'z oldinda,
+atama qavsda) bu chipga yetmagan edi. PostgreSQL ostidagi satr ham: `relyatsion ·
+ishonchli · bepul` → `jadvalli · ishonchli · bepul`.
+
+**3. Taqqoslash qatori (§169).** «**ulkan** oddiy oqim uchun **juda yaxshi**» →
+«**katta va oddiy** oqim uchun **qulay**».
+
+**4. `RECAPS[13]` — yashiringan nusxa (§166).** 14-pagedagi testda xato javob berilganda
+ochiladigan recap **shu ekranning kartalarini aynan takrorlaydi**. Uchala kartasi ham
+moslandi: «Relyatsion (JOIN)…» → «Jadvalli (JOIN bor)…» · «NoSQL **egiluvchanligi** ham
+bor» → «**har xil shakldagi ma'lumotni** JSON ko'rinishida» · «**Stackning «P»si**» →
+«**Bizning to'plamimizga mos**».
+
+**Darvozalar 5/5 toza.**
+
+## 13-page (s11 · AI taklifi) — AI vakolati qisqartirildi (F-0822-17)
+
+**Foydalanuvchi hukmi:** «AI hech narsani mustaqil hal qilmayapti» — 3 tayyor variantdan
+biri bosiladi va **oldindan yozilgan** javob chiqadi. Matn esa buni «tahlil» va «tavsiya»
+deb atardi. Yon-eslatma: **AI ni butunlay olib tashlamaslik**.
+
+| Joy | Edi | Bo'ldi |
+|---|---|---|
+| Sarlavha | Loyihangizga bazani **AI tavsiya qilsin** — siz tekshiring | Loyiha uchun **mos bazani tanlab ko'ring** |
+| Mentor | …AI baza **tavsiya qiladi**… **Boshliq — siz** | …AI baza **taklif qiladi**… sababni **mezon bilan solishtiring**… **Oxirgi qaror — sizniki** |
+| Yashil xulosa | **AI tavsiya berdi**, siz sababini tekshirdingiz… Chat — ulkan oddiy oqim **→ NoSQL**. **Mantiq to'g'ri!** | **Tanlov sababga asoslandi**: … Chatda katta hajmdagi oddiy oqim bo'ladi — bunday ilovalarda NoSQL **ko'p ishlatiladi** |
+| AI kartasi ×6 | **tahlilim** · **tahlil qilyapman** · **tavsiyam** · **tahlil qildim** · «**Tahlilni** ko'rsat» · «**Tavsiya** natijasi» | **taklifim** · **o'ylayapman** · **taklifim** · **ko'rdim** · «**Taklifni** ko'rsat» · «**Taklif** natijasi» |
+| blog sababi | Muallif↔maqola↔izoh bog'langan, **qat'iy shakl** | …**hamma yozuvda bir xil maydonlar** |
+
+**AI ekranda qoldi** (eyebrow «Keyingi qadam · AI», AI kartasi, chip-dialog) — faqat
+vakolati kamaydi. Fe'l-shkalasi: `hal qiladi` ❌ · `tavsiya qiladi` 🟡 · **`taklif qiladi`** ✅.
+Xulosa-blok endi AI ni **umuman tilga olmaydi** — u **sababni** aytadi.
+→ `MATN_KORPUS` **§173** · **§173a** (tayyor javobga «tahlil» deyilmaydi) ·
+**§173b** (misol-javob qat'iy qoidaga aylanmasin: «Chat → NoSQL» → «ko'p ishlatiladi»)
+
+### 🔴 OCHIQ QOLDI — «tekshirish» harakati hali mexanikada yo'q
+
+Matn endi rost gapiradi, lekin ekranda **haqiqiy tekshirish qadami** hali yo'q: o'quvchi
+«Taklifni ko'rsat» tugmasini bosadi va sababni **o'qiydi**, xolos. Bu audit boshida ham
+belgilangan edi (seans-boshi ro'yxatining 3-bandi).
+
+**Taklif:** AI taklifidan keyin 4 mezonni belgilanadigan qator qilib chiqarish
+(«bog'langanmi? · shakli bir xilmi? · ishonchlilik? · katta hajm?») — o'quvchi ularni
+belgilab, o'z xulosasini AI taklifi bilan solishtiradi. Bu **kod o'zgarishi**, shuning
+uchun **foydalanuvchi qaroriga qo'yildi**.
+
+**Darvozalar 5/5 toza.**
+
+## 14-page (s12 · 4-test) — foydalanuvchi «yashil» dedi, audit 3 qatlam topdi (F-0822-18)
+
+Foydalanuvchi bahosi: «jiddiy pedagogik yoki til muammosi ko'rinmayapti · ✅ o'tadi».
+Variantlar bo'yicha audit ham rozi. Lekin §166 bo'yicha **izohlar** o'qildi — ular
+faqat **xato javob berilganda** chiqadi, shuning uchun skrinshotda ko'rinmaydi.
+
+| Joy | Edi | Bo'ldi |
+|---|---|---|
+| Sarlavha | Nega **bizning loyihalar uchun** PostgreSQL? | Nega **aynan PostgreSQL tanlaymiz?** |
+| A-variant | Chunki u eng yangi va **modaviy** baza | …va **zamonaviy** baza |
+| B (to'g'ri) | Bog'langan, ishonchli, bepul **+** JSON ham | Bog'langan, ishonchli, bepul **va JSON ham saqlaydi** |
+| ✓ izoh | PostgreSQL **relyatsion**… — bizning loyihalarga **ideal** | PostgreSQL **jadvalli**… ustiga **har xil shakldagi ma'lumotni** JSON ko'rinishida ham saqlaydi |
+| A-izohi | PostgreSQL — bog'langan **+** ishonchli **+** bepul **+** JSON ham | PostgreSQL **bog'langan ma'lumot bilan yaxshi ishlaydi, ishonchli va bepul** |
+| D-izohi | **ulkan** loyihalarni ham ko'taradi | **katta** loyihalarni ham ko'taradi |
+| default izoh | bog'langan **+** ishonchli **+** bepul **+** JSON ham | bog'langan ma'lumot uchun qulay, ishonchli, bepul **va JSON ham saqlaydi** |
+
+**Sarlavha nega o'zgardi:** eskisi s10 sarlavhasi bilan deyarli bir xil edi («Nega bizning
+loyihalarga aynan PostgreSQL?»). Yangisi takrorni ham yechadi. `questionText` va
+`RECAPS[13].ask` ham moslandi.
+
+**«modaviy» → «zamonaviy»:** foydalanuvchi «mashhur» taklif qilgandi, lekin `zamonaviy` —
+darsning **o'z mif-so'zi** (s0 B-varianti · s16 mifi · arena savoli). Distraktor shu ip
+bilan bog'lanib turgani yaxshiroq (§102).
+
+### 🔴 SKRINSHOTDAN TASHQARIDA — MEZON MATNI YAKUNIY EKRANDA ESKI QOLGAN
+
+`+` qisqartmasini butun fayl bo'ylab skanlaganda chiqdi: 10-pageda qayta yozilgan
+**4-mezon** boshqa joylarda **eski shaklda** qolgan edi — jumladan **s16, ya'ni darsning
+yagona ball beradigan ekrani**:
+
+| Ekran | Edi | Bo'ldi |
+|---|---|---|
+| **s16 · 4-mezon (ballanadi)** | Ma'lumot **ulkan + juda oddiy + faqat tezlik kerakmi?** | Ma'lumot **juda katta hajmdami va tezlik muhimmi?** |
+| **s16 · 2-mezon (ballanadi)** | Har buyurtmada bir xil maydonlar bo'ladimi **(qat'iy shakl)?** | Har buyurtmada bir xil maydonlar bo'ladimi? |
+| arena savoli | «**Ulkan + juda oddiy + faqat tezlik**» — qaysi tur? | «**Katta hajm, oddiy tuzilish, tezlik**» — qaysi tur? |
+| arena varianti | SQL — bog'langan **+** ishonchli | SQL — bog'langan **va** ishonchli |
+| RECAPS 10 ×2 | Bank **=** bog'langan + ishonchli · **Ulkan** + oddiy oqim **=** NoSQL | Bank **—** bog'langan **va** ishonchli · **Katta va oddiy** oqim — NoSQL |
+| s14 takeaway | Bog'langan + ishonchli → SQL · **ulkan** + oddiy → NoSQL | Bog'langan **va** ishonchli → SQL · **katta va oddiy** → NoSQL |
+
+→ `MATN_KORPUS` **§174** (mezon matni hamma joyda so'zma-so'z bir xil; 🔴 eng xavfli joy —
+**yakuniy ekran**) + **§174a** (qisqartma-uslub qayerda mumkin: reja-yorlig'i ✅ ·
+test varianti ❌ · **mezon savoli ❌** · RECAPS/takeaway 🟡).
+
+⚠️ s16 (17-page) va arena (21-page) **o'z navbatida yana ko'riladi** — bu yerda faqat
+**mezon-lug'ati** birlashtirildi.
+
+**Darvozalar 5/5 toza.**
+
+## 15-page (s13 · moslashtirish) — xato-fidbek sabab beradigan bo'ldi (F-0822-19)
+
+Foydalanuvchi bahosi: «o'tadi · ikkita mayda tavsiya». Ikkalasi ham bajarildi.
+
+**1. «qayta o'ylang» → loyihaga xos sabab.** `PROJECTS` ga yangi `hint` maydoni qo'shildi
+va feedback satri unga ulandi.
+
+| Loyiha | ✓ to'g'ri javobda | ✗ xato javobda (yangi) |
+|---|---|---|
+| Bank | hisoblar bog'langan, xato qimmatga tushadi | Bankda hisob va o'tkazma bir-biriga bog'langan, xato qimmatga tushadi |
+| Chat | juda ko'p oddiy xabar, tezlik kerak | Chatda xabarlar juda ko'p va oddiy, bog'lanish esa kam |
+| Do'kon | buyurtma, mahsulot va to'lov bog'langan | Do'konda buyurtma, mahsulot va to'lov bir-biriga bog'langan |
+| Loglar | juda ko'p, oddiy va bog'lanmagan | Loglar juda ko'p va oddiy, bir-biriga bog'lanmagan |
+
+🔴 **Foydalanuvchi taklifidan chetga chiqildi (sabab bilan).** Taklif «Do'konda buyurtva
+to'lovlar uchun **SQL xavfsizroq**» edi — ya'ni **javobni aytish**. Bu ekranda esa
+**hamma javob to'g'ri bo'lmaguncha o'tib bo'lmaydi**, demak o'quvchi baribir ikkinchi
+tugmani bosadi. Fidbek javobni aytsa — u **ko'chirib olinadi**; **mezon-faktini** aytsa —
+o'quvchi qoidani **qo'llaydi**. Shuning uchun `hint` larning **hech biri** `SQL`/`NoSQL`
+so'zini aytmaydi. → `MATN_KORPUS` **§175**
+
+**2. Mentor jumlasi** mezon-savollari bilan **so'zma-so'z** birlashtirildi (§174):
+«bog'langanmi? ishonchlilik kerakmi? yoki **ulkan-oddiy-tezmi**?» → «ma'lumotlar
+bog'langanmi? Ishonchlilik muhimmi? Yoki **juda katta hajm va tezlik kerakmi**?»
+
+**Audit qo'shgani:** to'g'ri-javob matnlari sanoq-uslubidan gapga o'tkazildi
+(«pul, bog'langan, ishonchlilik» → «hisoblar bog'langan, xato qimmatga tushadi») ·
+yashil xulosadagi `+` va «ulkan» tozalandi (§174a).
+
+**Darvozalar 5/5 toza.**
+
+## 17-page (s15 · yakuniy ko'rsatkich) — 2 matn tuzatildi + 1 QAROR KUTMOQDA (F-0822-20)
+
+### ✅ «3-savolda mantiqiy muammo» — XATO YO'Q (tekshirildi)
+
+Foydalanuvchi «To'lovda xatolik qimmatga tushadimi?» savolida **Yo'q** bosilganda
+PostgreSQL chiqyapti deb o'yladi. **Kod va simulyatsiya buni rad etadi:**
+`{ id: 'safe', …, sql: 'ha' }` — ya'ni **«Ha»** SQL tomon suradi.
+
+| Holat | lean | Natija |
+|---|---|---|
+| 1-skrinshot: Ha · Ha · Ha · Yo'q | 1.00 | ✅ PostgreSQL |
+| 2-skrinshot: Ha · Yo'q · Yo'q · Yo'q | 0.00 | ❌ qaytadan |
+
+Skrinshotda 3-qatorda **«Ha» tugmasi to'q rangda** (`ynbtn.on` = tanlangan) — natija
+shundan chiqqan. Kod to'g'ri ishlayapti.
+
+### Tuzatilgan matnlar
+
+| Joy | Edi | Bo'ldi |
+|---|---|---|
+| Mentor | 4 ta savolga **rostini** javob bering… **To'g'ri fikrlasangiz — strelka PostgreSQL tomon to'xtaydi** | To'rt savolga **o'ylab** javob bering… To'rtalasidan keyin strelka **qaysi tomonda** to'xtashini ko'ring |
+| Yakuniy tabrik | **Mukammal!** Strelka PostgreSQL'da to'xtadi. Siz … mezonlar asosida o'zingiz tanladingiz! | Strelka PostgreSQL'da to'xtadi. Siz qarorni **moda yoki taxmin bilan emas, mezonlar asosida** qabul qildingiz — shuning uchun PostgreSQL tanlandi |
+
+🔴 **Mentor javobni oldindan aytardi.** «To'g'ri fikrlasangiz — strelka **PostgreSQL** tomon
+to'xtaydi» — darsning **yagona ballanadigan** ekrani o'z javobini savoldan oldin aytib
+qo'yardi. Bu 10-pagedagi «Ko'pchilik … javoblar SQL tomon og'adi» bilan **bir xil sinf**
+(§168: xulosa harakatdan keyin).
+
+### 🔴 QAROR KUTMOQDA — bitta mezonni xato qilib ham o'tib ketiladi
+
+Simulyatsiya (`lean >= 0.5` amaldagi shart):
+
+| Xato qilingan mezon | lean | Natija |
+|---|---|---|
+| bog'lanish | 0.50 | ✅ **baribir o'tadi** |
+| shakl | 0.50 | ✅ **baribir o'tadi** |
+| **ishonchlilik** | 0.50 | ✅ **baribir o'tadi** |
+| hajm | 0.50 | ✅ **baribir o'tadi** |
+| hammasi to'g'ri | 1.00 | ✅ |
+
+4 mezonda `lean` faqat **1.0 · 0.5 · 0.0 · −0.5 · −1.0** qiymatlarini oladi, ya'ni tanlov
+**binar**: `>= 0.5` (**3/4** yetadi) yoki `>= 1` (**4/4** shart).
+
+Ayniqsa **ishonchlilik** mezonini xato qilib o'tish og'ir: butun dars «pul va buyurtmada
+xato bo'lmasligi kerak → SQL» degan xulosaga qurilgan. **Foydalanuvchi qaroriga qo'yildi**
+(seans boshida ham «bahsli» ro'yxatida belgilangan edi).
+
+**Darvozalar 5/5 toza.**
+
+## 18-page (praktika · loyiha) — noaniqlik yechildi + mezonlar birlashtirildi (F-0822-21)
+
+**Foydalanuvchi savoli:** «2-3 **ustunli** jadval sxemasi» — 2-3 ta jadvalmi yoki bitta
+jadvalning 2-3 ustunimi? **Noaniqlik matnning o'zida edi:** namuna
+(`users(id, username)`) **bitta** jadval va **ikkita** ustunni ko'rsatardi, matn esa
+ko'plikda o'qilardi.
+
+**Qaysi o'qish to'g'ri — DARS hal qildi:** m4-03 ning markaziy SQL-dalili **bog'langan
+ma'lumot**, 6-page (JOIN) aynan **ikki jadvalni** ulaydi. Bitta jadvalning ustunlarini
+yozish darsning asosiy g'oyasini sinamaydi.
+
+| Joy | Edi | Bo'ldi |
+|---|---|---|
+| Topshiriq | SQL bo'lsa — **2-3 ustunli jadval sxemasini** yozing (namuna: Instagram — `users(id, username)`) | SQL bo'lsa — **2 ta bog'langan jadvalning nomi va ustunlarini** yozing (namuna: `users(id, username)` va `posts(id, user_id, izoh)`) |
+| 6-bosqich | Yakuniy tanlov **+ 2-3 ustunli jadval sxemasi** | Yakuniy tanlov: SQL yoki NoSQL — va SQL bo'lsa, **2 ta bog'langan jadvalni** yozing |
+
+🔴 Yangi namuna **darsning o'z misoli** — o'quvchi `users` ↔ `posts.user_id` juftligini
+JOIN ekranida allaqachon ko'rgan. → `MATN_KORPUS` **§176**
+
+### Audit qo'shgani — bosqich-ro'yxati mezonlar bilan birlashtirildi (§174)
+
+| # | Edi | Bo'ldi |
+|---|---|---|
+| 2 | **Bog'lanish bormi?** — `SQL` yoki `NoSQL` **tanlang** | **Ma'lumotlar bir-biriga bog'langanmi?** — javob bering |
+| 3 | **Shakli qat'iymi?** — javob bering | **Hamma yozuvda bir xil maydonlar bo'ladimi?** — javob bering |
+| 4 | **Ishonchlilik (pul/buyurtma) muhimmi?** — javob bering | **Xatolik pul yoki buyurtmaga zarar qiladimi?** — javob bering |
+
+2-bosqich ustiga **mantiqan ham noto'g'ri** edi: u 2-qadamdayoq `SQL/NoSQL` **tanlashni**
+so'rardi, holbuki yakuniy tanlov 6-bosqichda. Endi 2–5 — **to'rt mezon**, 6 — **qaror**.
+
+**Darvozalar 5/5 toza.**
+
+## Keyingi ekranlarga navbatga qo'yilgan topilmalar (hali tegilmagan)
+
+| # | Joy | Nima | Muhimlik |
+|---|---|---|---|
+| 1 | `:1307` s7 | `done = count >= 1240505`, bitta oqim aynan **1240504** beradi (hisoblab tekshirildi) → «Davom etish» tugmani **ikkinchi marta** bosmaguncha ochilmaydi, sababi aytilmaydi | **High** |
+| 2 | `:1244` s5b | Savol raqamida teshik: 1-savol → «Tekshiruv» → 3-savol → 4-savol; podium esa uni «2 — JOIN» deydi | Medium |
+| 3 | `:1486` s11 | Sarlavha «AI tavsiya qilsin — **siz tekshiring**», lekin tekshirish harakati yo'q (yagona tugma «Tahlilni ko'rsat») | Medium |
+| 4 | `:669,1403,1528` | `QuestionScreen` `idx` propini olib ishlatmaydi; Screen9 `idx={9}` (aslida 10), Screen12 `idx={12}` (aslida 13) — o'lik va **noto'g'ri** | Low |
+
+**Bahsli (tasdiq kutadi):** s15 kompas **3/4** to'g'ri javob bilan ham o'tkazadi
+(`lean >= 0.5`) — ataylabmi? · dars ikki obrazda (qadoq **+** kompas) — ko'prik s1-rejada
+bor, lekin §158 bo'yicha ko'rilishi kerak.
+
+**Ekranda tekshirish kerak:** s14 va s15 `Zoomable` bilan **o'ralmagan** (qolgan 9 ekran
+o'ralgan) — mobilda `.split` qanday tushishi koddan bilinmaydi · `:928` izoh-satri
+`className="mono small"` da qoldi (endi proza matn — monoshrift o'rinlimi?).
+
+**Commit YO'Q** (buyruqsiz). ⚠️ Repoda parallel seans ishlayapti: `.gitignore` ·
+`PmLesson12/13/14` · `frontend-backend.html` · `src/fb-demo/` · `tools/ru-*.mjs` ·
+`vite.fb.config.js` — bularga tegilmadi.

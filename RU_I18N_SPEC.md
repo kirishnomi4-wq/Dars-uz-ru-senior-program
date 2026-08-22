@@ -225,3 +225,18 @@ ko'chiriladi, shunda ular jimgina o'tib ketmaydi.
 `` `${tr(...)} ${n}${tr(...)}` `` qilib yozish kanonik natijani o'zgartiradi — butun shablonni
 `tr({uz: \`…\`, ru: \`…\`})` ichiga oling. Xuddi shunday, JSX matn tugunini shablon-satrga
 aylantirmang: `{i+1}-kadr` → `tr({uz: <>{i+1}-kadr</>, ru: <>Кадр {i+1}</>})`.
+
+### 4a/4b/4c-Modul PM darslari (M4a-D2 · M4b-D2 · M4c-D2 · M4c-D6)
+> 2026-08-22: `PmLesson15–18` UZ-RU. Har biri `tools/ru-gate.mjs` da **✓ TENG** (UZ matn bayt-aynan),
+> `tools/ru-walk.mjs` da **32 yuklash (16 ekran × 2 til) toza**, `lint:jsx` 0 topilma.
+> Etalon-nusxalar: `arxiv/pm15-18-uz-baseline-2026-08-22/` (ataylab kiritilgan o'zgarishlar README'da sabab bilan).
+> Yangi vosita: **`tools/ru-tm.mjs`** — tarjima-xotira; tarjima qilingan darsdan (base→translated) qator-blok
+> juftliklarini yig'ib yangi faylga qo'yadi, LEKIN faqat `normalize(yangi) === eski` bo'lsa (UZ-shohi o'zgarmasa).
+> Shu darvoza bo'lmasa donor darsning KODI ham ko'chib qolardi — bu seansda tutildi.
+
+| Dars | Infra (tr/__lang) | Kontent RU | Izoh |
+|---|---|---|---|
+| `4a/PmLesson15.jsx` (M4a-D2) | ✅ | ✅ | 605 `ru:` (2026-08-22). **MAXSUS:** s8 sabab-belgilari (`OGIR_BELGI`/`YENGIL_BELGI`/`BOSH_SOZ`) ikki tilli — RU'da o'quvchi javobi hech qachon tanilmasdi; `normQism` kirill-diapazoni bilan (aks holda ikki xil ruscha nom «takror» bo'lardi). Arena canvas `TOK` ro'yxati `tr({uz:[…],ru:[…]})`. `key={d.q}`/`key={c.h}` → `key={i}` |
+| `4b/PmLesson16.jsx` (M4b-D2) | ✅ | ✅ | 613 `ru:` (2026-08-22). **MAXSUS:** s8 `HARAKAT_RE`/`NATIJA_RE`/`BOSH_RE` ikki tilli (`anyRe`); VS Code kod-fayllari (`narx.spec.ts`, `narx.ts`) `{uz,ru}` — faqat IZOHLAR va `it()` nomi tarjima qilindi, identifikatorlar aslicha |
+| `4c/PmLesson17.jsx` (M4c-D2) | ✅ | ✅ | 618 `ru:` (2026-08-22). **MAXSUS:** s8 `KATTA_SOZ`/`HARAKAT`/`NATIJA`/`AKTIV` ikki tilli; `KOD_STARTER` `{uz,ru}` (kod-izohlari tarjima, `bolaklar`/`SIGIM` nomlari o'zgarmagan); `RAUNDLAR` nomzod-matnlari va `ok_txt` obyektga o'tdi |
+| `4c/PmLesson18.jsx` (M4c-D6) | ✅ | ✅ | 610 `ru:` (2026-08-22). **MAXSUS:** `HODISA`/`OLCHAGICH`/`CHEGARA` o'lchov-qiymatlari (`'0,4 s'`, `'100 dan 1 tasi xato'`) ham `{uz,ru}` — ular ekranda RAQAM bo'lib ko'rinadi, lekin ichida so'z bor; `gaugeHolat` ternar shakli saqlanib, `tr()` faqat qiymatga qo'yildi; `kodMatn(nom)` `tr({uz,ru})` qaytaradi |

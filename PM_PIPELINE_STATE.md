@@ -2933,3 +2933,79 @@ Hozir ko'chirilmaydi — dars yopilmagan. PM-to'lqin yakunida `MODUL_TUR.md` ga
    chiqadi (ilgari faqat 6-Modulda bor edi) — ikkala istisno **bitta** mini-turda ko'riladi
 
 **Holat:** AUDIT MUHRLANDI · TUZATISH YO'Q · UNCOMMITTED.
+
+---
+
+## 2026-08-21 · M4 PM darslari UZ-RU + «Frontend-Backend» prod-demosi
+
+**Ish:** `PmLesson11–14` (M4-D2 · D7 · D12 · D15) UZ→UZ-RU; yangi Vercel loyihasi
+`coddycamp-frontend-backend` (4-Modul = lokal 3-Modull · 5-Modul = lokal 4-Modull, foydalanuvchi nomlagan raqamlar).
+
+| Dars | `ru:` | gates | ru-gate (UZ-regressiya) | ru-walk |
+|---|---|---|---|---|
+| PmLesson11 | 411 | baseline-profil o'zgarmadi | 3 blok — hammasi atayin | 32/32, qoldiq «Yo'l» (qo'shiq nomi) |
+| PmLesson12 | 398 | baseline-profil o'zgarmadi | 6 blok — hammasi atayin | 32/32 TOZA |
+| PmLesson13 | 442 | baseline-profil o'zgarmadi | 3 blok — hammasi atayin | 32/32 TOZA |
+| PmLesson14 | 403 | baseline-profil o'zgarmadi | 4 blok — hammasi atayin | 32/32 TOZA |
+
+**Yangi vositalar:** `tools/ru-gate.mjs` (esbuild-kanonik UZ-regressiya darvozasi + RU-qoldiq skaneri;
+salbiy sinov 5/5 tutdi: so'z / «—» / «!» / `correctIdx` o'zgarishi) · `tools/ru-walk.mjs`
+(brauzerda har ekran × 2 til, `file://` bundle, dev-server shart emas). Baseline:
+`arxiv/pm11-14-uz-baseline-2026-08-21/`.
+
+**ru-gate farq-bloklarining sinflari (hammasi atayin, UZ matn 0 o'zgarish):**
+1. React `key` obyekt-tuzog'i — `key={c.h}`/`key={m}`/`key={q.nom}`/`key={g.t}` → `key={i}`
+   (maydon `{uz,ru}` obyektga aylangach kalit `[object Object]` bo'lardi).
+2. Ko'rinadigan-matnga bog'langan tekshiruvlar ikki tilga ochildi — `anyTest(re, t)` helper
+   (`UMUMIY_SOZ`, `ODAM_RE`, `BAHO_SOZ`) va `texnikSoz()` (`TEXNIK_RE {uz,ru}`).
+3. Matn-normalizatorlarga kirill qo'shildi — `[^a-z0-9 ]` → `[^a-z0-9\u0400-\u04FF ]`
+   (aks holda RU javob bo'sh satrga aylanib «takror/nusxa» deb rad etilardi).
+
+**Yangi qonun-nomzodi (takror bug-sinfi, 3 darsda ham chiqdi):** darsni UZ-RU qilganda
+matn-normalizator regexlari kirill diapazonini **`\u0400-\u04FF` escape shaklida** olishi shart —
+literal `а-яё` yozilsa til-lint homoglif-ogohlantirish beradi, umuman qoldirilsa RU javob rad etiladi.
+
+**Artefakt-zanjiri tekshirildi:** `pm-m4d2-data` (11→12) va `pm-m4d7-ishonch` (12→13) —
+ikkalasi ham `tr()` bilan MATN saqlaydi, obyekt emas (`nom: tr(cur.nom)`); qabul qiluvchi
+tomonda `tr(u.nom)` string ham, `{uz,ru}` ham qabul qiladi.
+
+**Deploy:** https://coddycamp-frontend-backend.vercel.app — chunk-paritet ✓, 4 PM chunk HTTP 200,
+prodda 4 dars RU'da ochildi (xato 0). Tafsilot: memory `fb-demo-deploy-tartibi`.
+
+**Holat:** 4 dars UZ-RU TAYYOR · prodda · **UNCOMMITTED** (commit buyrug'i kutilmoqda).
+Ochiq: PM11 «Yo'l» qo'shiq nomi RU'da lotin holicha (ataylab — kod-topshiriq bilan bog'langan);
+katalog-sarlavha ↔ dars-sarlavha farqi (be-02, be-07) App.jsx bilan bir xil qoldirildi.
+
+## 2026-08-22 · RAUND: PmLesson15–18 UZ-RU + FB-demoga 6-Modul
+
+**So'rov:** coddycamp-frontend-backend.vercel.app ga lokal 4a/4b/4c modullari
+**«6-Modul · Backend: NestJS + Testlash + CI/CD Deploy»** nomi bilan, UZ-RU holida qo'shilsin.
+
+**Tashxis (ish boshida):** 10 ta kod/proyekt darsi allaqachon UZ-RU (uz/ru kalit-sanog'i teng),
+4 ta PM dars (`PmLesson15–18`) esa bitta `ru:` maydonisiz — ya'ni RU tanlansa o'zbekcha ochilardi.
+[GATE] foydalanuvchi: hammasi hozir o'girilsin · bitta ro'yxat 1–15 · tugagach deploy.
+
+**Bajarildi**
+1. **Tarjima-xotira vositasi** `tools/ru-tm.mjs` — tarjima qilingan PM11–14 dan (base→translated)
+   qator-blok juftliklari yig'ilib yangi faylga qo'yiladi. Juftlik FAQAT `normalize(yangi) === eski`
+   bo'lsa qabul qilinadi. **Bu darvoza shu seansda o'zini oqladi:** tekshiruvsiz variant donor darsning
+   KODINI ham (`useState(!1)`→`!0`, `<ol>`→`<ul>`, CSS, kontent) ko'chirib kelgan edi — ru-gate tutdi.
+2. **PmLesson15–18 to'liq tarjima:** 605 + 613 + 618 + 610 = **2 446 `ru:` maydon**.
+3. **Darvozalar (4/4 fayl):** esbuild toza · `ru-gate` **✓ TENG** (UZ matn bayt-aynan) ·
+   `ru-walk` **32 yuklash (16 ekran × 2 til) toza** · `lint:jsx` 0 · `lint:til` faqat tarjimadan
+   OLDIN ham bor bo'lgan UZ-topilmalar (249-qatordagi platforma matni «ushbu kodni», M16 s0 «bo'ldi-da»).
+4. **6-Modul FB-demoga qo'shildi** — `src/fb-demo/FbDemoApp.jsx`: 15 dars (4a 4 + 4b 3 + 4c 8),
+   ketma-ket raqamlangan bitta ro'yxat, hash `nb-01…nb-15`, katalog matnlari UZ-RU.
+5. **Deploy:** `vite build --config vite.fb.config.js` → `dist-fb` → prod.
+   Prod tekshiruvi: kirish-chunk lokal bilan aynan, 6 ta yangi dars-chunk HTTP 200,
+   brauzerda RU rejim kirill (74 belgi), UZ rejim lotin, JS xato yo'q.
+
+**Yangi bug-sinflar (keyingi tarjimalarga majburiy band)**
+- **O'quvchi YOZADIGAN matnni tekshiradigan regex** — RU rejimda hech qachon mos kelmaydi.
+  Yechim: `{uz, ru}` juftlik + `anyTest(pair, s)`. Bu darsda 4 faylda ham uchradi.
+- **`normX` funksiyalarining `[^a-z0-9 ]+` filtri** kirill matnni butunlay yeb qo'yadi →
+  ikki xil ruscha javob bir-birining «takror»i bo'lib ko'rinadi. `Ѐ-ӿ` (`Ѐ-ӿ`) qo'shiladi.
+- **O'lchov-qiymatlari ham matn** (`'0,4 s'`, `'100 dan 1 tasi xato'`, `'ochilmayapti'`) — ular
+  raqamdek ko'rinadi, lekin ichida so'z bor: `{uz,ru}` bo'lishi shart (PmLesson18 `HODISA`/`OLCHAGICH`).
+
+**Holat:** UNCOMMITTED — commit foydalanuvchi buyrug'i bilan.

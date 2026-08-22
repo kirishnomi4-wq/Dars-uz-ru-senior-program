@@ -2747,3 +2747,647 @@ istisnodan keyin qoida repoda hali **73 faylda** ishlaydi.
 
 **Umumlashma:** bu sinf faqat «zo'r» ga tegishli emas. Har qanday til-qoidasi uchun
 savol bitta: **matn darsning ovozimi yoki olamning ovozimi?** Ikkinchisiga qoida tegmaydi.
+
+## 160. IZOH-SATR MAVHUM SIFAT EMAS, KO'RINADIGAN FAKTNI AYTADI (F-0822-01, m4-03 s0)
+
+Rasm/oyna ostidagi izoh-satrning vazifasi — o'quvchi **hozir ko'rib turgan narsani**
+nomlash. Sifat bilan xulosa chiqarish emas: sifatni o'quvchi hali o'zi ko'rmagan.
+
+❌ «qator-ustun — qat'iy tartib» · «{ } hujjat — egiluvchan»
+✅ «Jadval — har qator bir xil» · «Hujjat — har biri o'zicha»
+
+**Ikki xato bir satrda edi:**
+
+1. **O'rgatilmagan atama.** «qator-ustun» — jadval anatomiyasi, u s2/s3 da ochiladi.
+   Hook ekranida o'quvchi bilmagan so'z bilan tanishtirilardi.
+2. **Mavhum sifat.** «qat'iy» / «egiluvchan» — ko'z ko'radigan narsa emas, xulosa.
+   §27/§46 sinfi: sifat mavhum bo'lsa, o'smir gapni ikki marta o'qiydi.
+
+🔴 **Yumshatish yechim EMAS.** «Tartibli jadval / Moslashuvchan hujjat» registrni
+pasaytiradi, lekin muammoning ikkinchi yarmini qoldiradi — bular ham baribir mavhum
+sifat, faqat soddaroq aytilgani. Sifatni **almashtirish** emas, **faktga almashtirish**
+kerak: «har qator bir xil» ni o'quvchi ekranda **sanab** ko'radi.
+
+**Yon-shart (§105):** izoh-satr Mentorning o'z nomini ishlatsin. Bu yerda Mentor
+«jadval/hujjat» deydi — izoh «quti/paket» deganida bir ekranda **uchta nom** paydo
+bo'lardi. Markaziy metafora (qadoq) o'z ekranida (s3 qadoqxona) ochiladi.
+
+**Tekshirish:** izoh-satrni o'qib, «buni men ekranda ko'rsata olamanmi?» deb so'rang.
+Yo'q bo'lsa — u izoh emas, xulosa; xulosa esa harakatdan **keyin** turadi.
+### §160 kengaytmasi — BITTA EKRANDA UCH ISH, UCHTASI BIR GAPNI TAKRORLAMAYDI (F-0822-04)
+
+Sifatni faktga almashtirish **yarim ish**: o'sha sifat ekranning boshqa joyida qolib
+ketmasin. m4-03 s0 da izoh-satrdan «egiluvchan» olib tashlandi, lekin **o'sha ekran
+Mentorida** turaverdi — foydalanuvchi tutdi.
+
+❌ Mentor: «ikkita **butunlay boshqacha dunyo** bor — SQL (**chiroyli** jadvallar) va
+   NoSQL (**egiluvchan** hujjatlar). Ikkala ko'rinishni ko'ring — bu **aynan bir xil
+   ma'lumot**, faqat boshqacha qadoqlangan.»
+   *(«butunlay boshqacha dunyo» — mavhum da'vo · «chiroyli» — bo'sh maqtov, SQL haqida
+   hech narsa aytmaydi · «egiluvchan» — §160 rad etgan sifat)*
+✅ «**Bir xil ma'lumotni ikki xil ko'rinishda saqlash mumkin: SQL jadvali yoki NoSQL
+   hujjati.** Ikkalasini bosib ko'ring — ma'lumot o'sha-o'sha, faqat **boshqacha
+   qadoqlangan**.»
+
+**Ish taqsimoti — bir ekranda uch qatlam, uch xil vazifa:**
+
+| Qatlam | Vazifasi | m4-03 s0 |
+|---|---|---|
+| **Mentor** | ikki nomni **beradi** | «SQL jadvali yoki NoSQL hujjati» |
+| **Izoh-satr** | farqni **ko'rsatadi** | «Jadval — har qator bir xil» / «Hujjat — har biri o'zicha» |
+| **Interaktiv** | farqni **isbotlaydi** | switch: o'sha ma'lumot ikki ko'rinishda |
+
+🔴 **Takror-tuzoq.** Yangi Mentor-gapi «bir xil ma'lumot» ni aytgani uchun uning **oxirgi
+gapidagi** «bu aynan bir xil ma'lumot» ortiqcha bo'lib qoldi → «ma'lumot o'sha-o'sha»
+ga qisqartirildi. Matn almashtirilganda **qo'shni gaplar qayta o'qiladi**: ko'chirilgan
+fikr eskisining o'rnini bosgan bo'lishi mumkin.
+
+**Saqlanadigan narsa:** «boshqacha **qadoqlangan**» — bu s3 (qadoqxona) markaziy
+metaforasining **urug'i**. Soddalashtirish paytida ip-urug'lar ajratib olinadi (§161).
+
+**Tekshirish:** sifatni tuzatgandan keyin **o'sha ekranning hamma matnini** qayta o'qing —
+Mentor · sarlavha · izoh-satr · tugma yorlig'i · javob-matni. Bitta joyni tuzatib
+qo'shnisini qoldirish — takror uchraydigan xato.
+
+## 161. IP SO'ZGA EMAS, FIKRGA BOG'LANADI (F-0822-02, m4-03 s0 → s16)
+
+Ekrandan ekranga tashlanadigan ip (setup → payoff) **atama** bilan emas, **oddiy fikr**
+bilan tutiladi. Ipni saqlash uchun qiyin so'zni ushlab qolish — noto'g'ri savdo:
+o'quvchi so'zni tushunmasa, ip ham baribir uzilgan bo'ladi.
+
+❌ «Bu — keng tarqalgan **afsona**: … Dars oxirida shu **afsonani** birga buzamiz.»
+   *(«afsona» — 12–17 yosh kundalik nutqida yo'q; o'quvchi «afsona nima edi?» deb
+   bir soniya chalg'iydi, ekran maqsadi esa boshqa narsa edi)*
+✅ «**Ko'pchilik** SQL yoki NoSQL'dan **bittasi har doim yaxshiroq** deb o'ylaydi. Aslida
+   **tanlov vazifaga bog'liq** — dars davomida buning sababini ko'ramiz.»
+
+**Nega ikkinchisi ipni KUCHLIROQ tutadi.** s16 (mif-buster) da fosh qilinadigan fikr —
+«NoSQL zamonaviyroq, shuning uchun do'konga ham NoSQL kerak», ya'ni **«bittasi har doim
+yaxshiroq»**. ✅ variant o'sha fikrni **aynan** aytadi; ❌ variant esa uni «afsona» degan
+yorliq ostiga yashiradi. Payoff-ekranga tayyorlov — **fikrni oldindan aytish**, unga
+nom qo'yish emas.
+
+🔴 **Ikki xatoni ajrating.** «Qisqartirdim, lekin ip uzilmasin» — to'g'ri tashvish.
+«Shuning uchun qiyin so'zni qoldiraman» — noto'g'ri yechim. To'g'ri yechim: **ipni oddiy
+so'z bilan qayta ayting**. Qisqartirish va soddalashtirish bir yo'nalishda ishlaydi,
+qarama-qarshi emas.
+
+**Yon-band — ikki shox bir shaklda.** Hook savolining to'g'ri va noto'g'ri javob matnlari
+bir uzunlik va bir tuzilishda bo'lsin (bu yerda 330/215 → 155/142 belgi); biri sezilarli
+uzun bo'lsa, xato javob bergan o'quvchi **ko'proq matn** o'qiydi — jazo kabi tuyuladi.
+
+**Tekshirish:** «bu gapdagi qaysi so'z boshqa ekranda qaytadi?» — bu **birinchi** savol.
+Ikkinchisi va hal qiluvchisi: **«o'sha so'zning o'zi 13 yoshlining lug'atida bormi?»**
+Yo'q bo'lsa — so'zni emas, **uning ortidagi fikrni** olib o'ting.
+
+## 162. REJA EKRANI VA'DA BERADI, REKLAMA QILMAYDI (F-0822-05, m4-03 s1)
+
+Reja/anons ekranining vazifasi — o'quvchi dars oxirida **nima qila olishini** aytish.
+Uni **ishontirishga urinish** shart emas: u allaqachon darsga kirgan.
+
+❌ «**Ishonasizmi** — dars oxirida loyihangiz uchun qaysi ma'lumotlar bazasi **to'g'ri
+   kelishini** o'zingiz aniqlay olasiz…»
+✅ «Dars oxirida loyihangiz uchun qaysi ma'lumotlar bazasi **mosligini** o'zingiz aniqlay
+   olasiz…»
+
+«Ishonasizmi / Tasavvur qiling / Hayron qolasiz» — **sotuv qurilmasi**. Darsda u ikki
+zarar keltiradi: (1) va'da ustiga urg'u qo'yib, va'daning o'ziga shubha soladi;
+(2) o'quvchining o'z vaqtini bir necha so'zga sarflaydi — TMI (109-qonun).
+
+**Reja-ekranining qolgan uch a'zosi (hammasi m4-03 s1 da, bir seansda):**
+
+| A'zo | ❌ | ✅ | Sabab |
+|---|---|---|---|
+| Qadam-matni | «Shakl — **qat'iy** jadval vs **erkin** hujjat» | «Shakl — jadval va hujjat farqi» | §160 — mavhum sifat |
+| Qadam-yorlig'i | `tag: 'shape'` | `tag: tr({ uz: 'jadval · hujjat', … })` | **inglizcha qoldiq**; beshta yorliqdan faqat shu bittasi tarjima qilinmagan edi — RU rejimida ham `shape` chiqardi |
+| Izoh-satr | «loyihaga 4 savol berasiz, strelka to'g'ri **DB'ni** ko'rsatadi» | «4 ta savolga javob berasiz — qaysi **baza** mosligini bilib olasiz» | jargon qisqartma + mexanika noto'g'ri aytilgan: o'quvchi savol **bermaydi**, savolga **javob beradi** |
+
+🔴 **Yorliq/tag ham o'quvchi matni.** Chip · badge · tag · kichkina kulrang yozuv — bularning
+hammasi ekranda ko'rinadi, demak til-qonuni ularga ham tegishli. Inglizcha qoldiq aynan
+shu joylarda uzoq yashaydi, chunki ko'z ularni «dekor» deb o'tkazib yuboradi.
+
+**Tekshirish:** reja-ekranidagi har qadamni o'qib so'rang — «bu qadam tugagach o'quvchi
+nimani **qila oladi**?» Javob chiqmasa, qadam sifat sanayapti, ish emas.
+
+## 163. SARLAVHA ZANJIRI — KEYINGI SARLAVHA OLDINGISINING SAVOLIGA JAVOB BERADI (F-0822-06, m4-03 s0→s1)
+
+Hook ekrani savol qo'ysa, keyingi ekran sarlavhasi o'sha savolning **o'z so'zlari bilan**
+javob bersin. Yangi obraz kiritilsa, zanjir uziladi va o'quvchi ikki ekranni bog'lamaydi.
+
+❌ s0: «Bir xil ma'lumotni saqlashning **ikki yo'li** bor. Qaysi biri to'g'ri?»
+   s1: «**Ikki dunyo** orasidan to'g'ri tanlash» — «yo'l» → «dunyo», so'z almashdi
+✅ s1: «**Ikki yo'l** orasidan to'g'ri tanlash» — savol va javob bir so'z bilan ulanadi
+
+**Nega «dunyo» yomon:** u mavhum obraz, ekranda hech narsa uni ko'rsatmaydi, va §105
+bo'yicha bitta tushunchaga **uchinchi nom** bo'lib qoladi (s0 da «yo'l» va «ko'rinish»
+bor edi). «Ikki usul» ham xuddi shu sababga ko'ra rad etildi — u ham to'rtinchi nom.
+
+**Tanlov mezoni — nomni QAYERDAN olish kerak:** yangi so'z o'ylab topmang, **oldingi
+ekran sarlavhasidan** oling. Sarlavhalar shunda zanjir bo'lib o'qiladi:
+savol → javob → keyingi savol.
+
+**Tekshirish:** ketma-ket ikki sarlavhani **yonma-yon** qo'yib o'qing. Ikkinchisi
+birinchisiga javob bo'lib eshitilmasa — zanjir uzilgan.
+
+## 164. METAFORA-ATAMA O'ZI BILAN BUTUN LUG'ATINI TORTADI (F-0822-07, m4-03 «oila» → «tur»)
+
+Tushunchaga metafora-nom berilsa, o'sha metaforaning **yon so'zlari** ham matnga kiradi
+va ular bilan birga yashaydi. Nomni almashtirganda **butun lug'atni** almashtirish kerak —
+aks holda eski metaforaning parchalari qolib, matn chalkash bo'ladi.
+
+❌ «Ma'lumotlar bazalari ikki **oilaga** bo'linadi» · «Har **oilada** ko'p **a'zo** bor» ·
+   «**A'zolari:** PostgreSQL · MySQL» · «SQL **oilasida** ko'p **a'zo** bor»
+✅ «Ma'lumotlar bazalari ikki **turga** bo'linadi» · «Har **turda** ko'p **baza** bor» ·
+   «**Masalan:** PostgreSQL · MySQL» · «SQL **turiga** ko'p **baza** kiradi»
+
+**Nega «oila» rad etildi:** (1) bazalarning oilasi bo'lmaydi — metafora hech narsa
+tushuntirmaydi, faqat yodda saqlanadigan obraz sonini oshiradi (§158: darsda allaqachon
+**qadoq** va **kompas** bor edi — «oila» uchinchisi); (2) «tur» — o'quvchi kundalik
+nutqida bor, izohsiz tushunarli.
+
+🔴 **Yon-lug'at ro'yxati almashtirishdan OLDIN tuziladi.** «Oila» → `a'zo` · `a'zolari` ·
+`oilasida` · `oilaga` · `oilasi`. Faqat bosh so'zni grep qilish **yetmaydi**: m4-03 da
+`a'zo` uchta joyda, RU `члены` uchta joyda alohida turardi va bosh so'z bilan bir
+qidiruvga tushmasdi.
+
+**Miqyos (dalil sifatida):** bitta so'z-almashtirish = **45 tahrir** · UZ 28 + RU 20
+o'rin · 11 ekran (reja · s2 · s4 · s5b · s10 · RECAPS · flashcard · arena savollari ·
+yakun-xulosasi). Shuning uchun bunday almashtirish **yarim** qilinmaydi: sarlavha «tur»,
+qolgani «oila» bo'lib qolsa — §105 buziladi, ya'ni tuzatishdan oldingi holat yaxshiroq
+bo'lardi.
+
+**Qidiruv-tuzoqlari (m4-03 da tutilgani):**
+
+| Tuzoq | Dalil | Yechim |
+|---|---|---|
+| Tugma **yorlig'i** ichida | `${seen.size}/2 «oila ko'rildi»` — shablon-satr ichida yashiringan | butun faylni qayta grep, sarlavhalarni emas |
+| RU **so'z tartibi** | `какое семейство` almashtirildi, lekin `какое **это** семейство` (arena) tushmay qoldi | qisqaroq o'zak bilan qidirish (`семейств`) |
+| **Bosh harf** | `Какое семейство` (flashcard) — kichik harfli naqsh tutmadi | `grep -i` bilan yakuniy tekshiruv |
+| **Kod izohi** | `// SCREEN 2 — IKKI OILA` — o'quvchi ko'rmaydi, lekin keyingi muharrirni chalg'itadi | izohlar ham ro'yxatga kiradi |
+
+**Tekshirish:** almashtirish tugagach — `grep -ci "<eski so'z>\|<yon so'z>"` **0** bo'lsin.
+Nol bo'lmaguncha ish tugamagan.
+
+## 165. METAFORA O'ZINI OQLAMASA — ATAMANING O'ZI TUSHUNARLIROQ (F-0822-08, m4-03 «qadoq» qatlami)
+
+Metafora **notanish narsani tanish narsa orqali** tushuntirish uchun qo'yiladi. Agar
+o'rgatilayotgan atamaning o'zi metaforadan **sodda** bo'lsa, metafora yordam bermaydi —
+u o'quvchiga **yana bitta yodlanadigan narsa** qo'shadi.
+
+❌ m4-03 s3: bitta Mentor gapida **to'rt yangi obraz**: «Siz — **qadoqlovchisiz**.
+   Kartalarni ikki **stansiyaga** taqsimlang. **SQL quti**ning **uyachalari** oldindan
+   belgilangan… Uni **NoSQL paketiga** tashlang»
+✅ «Mana bitta post haqidagi ma'lumotlar. **SQL jadvali**ning **ustunlari** oldindan
+   belgilangan — har karta o'z **ustuniga** tushadi. Lekin bu jadvalda 🎵 musiqa uchun
+   **ustun** yo'q. Uni **NoSQL hujjatiga** qo'ying…»
+
+**Hal qiluvchi dalil — RASM ALLAQACHON HAQIQIY EDI.** O'sha ekranda SQL zonasida
+`id · user_id · rasm · izoh` degan **haqiqiy ustun nomlari**, NoSQL zonasida **haqiqiy
+`{ }`** turardi. Ya'ni ko'z **jadval va hujjatni** ko'rar, quloq esa «quti va paket»ni
+eshitardi. Metaforani olib tashlash vizual jihatdan **hech narsani buzmadi** — o'yin
+mexanikasi ham o'zgarmadi, faqat so'zlar almashdi.
+
+**Tekshirish savoli:** metafora-so'z bilan atama-so'zni yonma-yon qo'ying. Qaysi biri
+13 yoshlining lug'atida bor? `uyacha` ↔ `ustun` · `quti` ↔ `jadval` · `paket` ↔ `hujjat` —
+uchalasida ham **atama** yutdi. Metafora faqat atama **haqiqatan qiyin** bo'lganda
+(tranzaksiya, indeks) o'zini oqlaydi.
+
+### §165a — METAFORA MEXANIKANI YOLG'ON O'RGATIB QO'YMASIN (kritik)
+
+Metafora-so'z bilan birga **noto'g'ri model** ham kirib keladi va uni topish qiyin,
+chunki matn «chiroyli» eshitiladi.
+
+❌ «🎵 musiqa uchun **uyacha yo'q**» + karta SQL zonasiga tashlanganda **silkitib
+   qaytariladi** → o'quvchi «**SQL musiqani saqlay olmaydi**» deb tushunadi. Bu **yolg'on**.
+✅ «**Bu jadvalda** musiqa uchun **ustun yo'q**» — rad etish o'sha-o'sha, lekin sabab to'g'ri.
+
+Mexanikaga tegilmadi: ustun bo'lmagan joyga qiymat qo'yib bo'lmasligi **rost**. Xato
+**so'zlarda** edi. Qiziq tomoni: o'yin tugagach chiqadigan matn allaqachon to'g'ri gapni
+aytardi («chunki SQL jadvalida bunday ustun yo'q») — ya'ni to'g'ri tushuntirish **bor**
+edi, lekin **kech** kelardi: harakat bir narsani, matn boshqa narsani o'rgatardi.
+
+❌ «u **istalgan** maydonni **bemalol** qabul qiladi» — mutlaq da'vo
+✅ «hujjatga **yangi maydon qo'shish osonroq**» — solishtirma, ya'ni rost
+
+**Umumiy qoida:** darsdagi har «mumkin emas» ni tekshiring — u **haqiqatan imkonsiz**mi,
+yoki **shu holatda yo'q**mi? Ikkinchisini birinchisi qilib aytish — eng ko'p uchraydigan
+soddalashtirish-xatosi va uni keyin **tuzatish qiyin**: o'quvchi noto'g'ri modelni
+yodlab oladi.
+
+### §165b — SWEEP MIQYOSI
+
+«Qadoq» qatlami darsda: `quti` 38 · `paket` 24 · `qadoq` 22 · `uyacha` 18 · `stansiya` 2
+(RU 45 o'rin). Tirik matn: s0 oxirgi gapi · **s3 butunlay** · s5 sarlavha va Mentor ·
+RECAPS 4 va 6 va 13 · flashcard ×2 · arena savoli va javob-varianti · 📦 nishon izohi ·
+3 kod-izohi. Jami **~40 tahrir**, uch bosqichda, har bosqichdan keyin darvoza.
+
+🔴 Nishon **nomi** (`Package Master`) inglizcha konvensiya bo'yicha qoldi, **izohi** esa
+qayta yozildi — nom va izoh **ikki xil qoidaga** bo'ysunadi.
+
+## 166. TUSHUNCHA EKRANI TUZATILSA — UNI TEKSHIRADIGAN TEST EKRANI HAM TUZATILADI (F-0822-09, m4-03 s3→s4)
+
+Test ekrani o'zi tushuntirmaydi — u **oldingi ekranning lug'atini qaytaradi**. Shuning
+uchun tushuncha ekranidagi so'z almashtirilsa, uni **tekshiradigan** ekran ham darhol
+qayta o'qiladi. Aks holda eski so'z aynan **savol matnida** tirilib qoladi — va bu joy
+eng yomoni, chunki o'quvchi u yerda **baholanadi**.
+
+❌ s3 tozalandi («qadoq/uyacha» → «jadval/ustun»), lekin keyingi ekran s4 hali
+   «qaysi tur **egiluvchanroq**?» deb so'rardi — foydalanuvchi keyingi ekrandayoq tutdi.
+✅ s4 sarlavhasi · to'rt variant · to'rt izoh · `questionText` · RECAPS sinf-savoli —
+   **hammasi bir raundda** qayta yozildi (11 tahrir).
+
+**«Egiluvchan» bitta ekranda 5 joyda edi:** sarlavha · B-variant · A-izohi · default izoh ·
+RECAPS sinf-savoli. Faqat sarlavhani tuzatish §160 kengaytmasining aynan rad etgan holati.
+
+🔴 **RECAPS/flashcard — yashirin nusxa.** Test ekranining savoli **RECAPS oynasida ham**
+takrorlanadi (xato javob berilganda ochiladi). U kod ichida boshqa joyda (`RECAPS` obyekti,
+fayl boshida) yotadi va ekran-tahririda **ko'zdan qochadi**. Har test tuzatilganda
+`RECAPS[<idx>].cards[*].ask` ham tekshiriladi.
+
+**Yon-topilma — kitobiy tuzilma testda:** «har hujjat o'z maydonlariga **ega bo'la oladi**»
+→ «har hujjatda maydonlar **boshqacha bo'lishi mumkin**». Test varianti — o'quvchi
+**vaqt bosimi ostida** o'qiydigan matn; u yerda kitobiy qurilma eng qimmatga tushadi.
+
+**Tekshirish:** har tushuncha-ekrani tuzatilgandan keyin `SCREEN_META` dan **keyingi
+`type: 'test'`** ekranini toping va uning beshta joyini o'qing: sarlavha · variantlar ·
+izohlar · `questionText` · `RECAPS[...].ask`.
+
+## 167. METAFORA ATAMANING MA'NOSINI YASHIRIB QO'YMASIN (F-0822-10, m4-03 s5 «id ipi»)
+
+§165 metafora **ortiqcha** bo'lgan holatni ko'rsatgan edi. Bu band og'irrog'i haqida:
+metafora atamani **almashtirib qo'yganda**. Unda o'quvchi tushunchani emas, **metaforani**
+o'rganadi — va keyingi darsda haqiqiy atamani ko'rganda uni tanimaydi.
+
+❌ «Ikki jadvalni **id ipi bilan ulang**» · «**ip ulanadi** va har postga egasi qo'shiladi» ·
+   «NoSQL hujjatlarida bunday **ip ulanmaydi**»
+✅ «Ikki jadvalni **id orqali bog'lang**» · «**JOIN** turli jadvallardagi **bog'liq
+   ma'lumotlarni birlashtiradi**»
+
+**Uch zarari (foydalanuvchi tashxisi):**
+
+1. **«id ipi» — mavjud bo'lmagan atama.** Keyingi darslarda ham, hujjatlarda ham
+   uchramaydi; o'quvchi uni faqat shu darsda ishlatadi va tashlab yuboradi.
+2. **`FK` · `PK` · `bog'lanish` ga tayyorlamaydi.** Bu ekranda `FK`/`PK` nishonlari
+   **ekranda ko'rinadi**, lekin matn ularni **hech qayerda nomlamaydi** — metafora
+   ularning o'rnini egallab olgan.
+3. **«ulang» — mexanika, maqsad emas.** O'quvchi *nima* ulayotganini bilmaydi. To'g'ri
+   maqsad: **bog'liq ma'lumotlarni birlashtirish**.
+
+🔴 **Rasm haqiqiy bo'lsa ham, nomi metafora bo'lishi mumkin.** Bu ekranda SVG chiziq
+**haqiqatan** chiziladi — demak «ip» bo'sh so'z emas, ko'rinadigan narsa. Lekin o'sha
+chiziqning **haqiqiy nomi bor**: `bog'lanish`. §165 dagi bilan bir xil xulosa —
+**rasm qoladi, nom almashadi**.
+
+### §167a — SARLAVHA EYEBROW NI TAKRORLAMAYDI
+
+Eyebrow oilasi (`SQL kuchi · JOIN` · `SQL kuchi · ishonchlilik` · `NoSQL kuchi · miqyos`)
+darsning tuzilmasini ko'rsatadi. Sarlavha o'sha so'zni qaytarsa, ekranning eng katta
+shrifti **yangi ma'lumot bermaydi**.
+
+❌ eyebrow «SQL kuchi · JOIN» + sarlavha «…ulang — **bu SQL'ning kuchi**»
+❌ taklif qilingan «**SQL kuchi** — jadvallarni bog'lash» — xuddi shu takror
+✅ eyebrow «SQL kuchi · JOIN» + sarlavha «Ikki jadvalni **id orqali bog'lang**»
+
+Interaktivi bor ekranda sarlavha **buyruq** bo'lgani ma'qul: o'quvchi nima qilishini
+sarlavhadan biladi, **nega** qilishini esa eyebrow va Mentor aytadi.
+
+**Tekshirish:** eyebrow va sarlavhani ketma-ket o'qing — bir so'z ikki marta chiqsa,
+sarlavhadan olib tashlanadi (eyebrow oilasi buzilmaydi, u butun dars bo'ylab izchil).
+
+## 168. ATAMA HARAKATDAN KEYIN NOMLANADI (F-0822-12, m4-03 s6 «tranzaksiya»)
+
+Yangi atamani **tanishtirish tartibi** uch qadam: (1) **ma'no** — oddiy so'z bilan nima
+bo'layotgani · (2) **harakat** — o'quvchi buni ekranda ko'radi · (3) **nom** — endi atama
+beriladi. Atamani birinchi qadamda berish — o'quvchini bo'sh yorliq yodlashga majburlash.
+
+❌ Mentor (harakatdan **oldin**): «SQL bu yerda **tranzaksiya** bilan himoya qiladi:
+   faqat bittasiga sotadi.»
+✅ Mentor (ma'no): «SQL bu holatda **maxsus nazorat** ishlatadi: mahsulot faqat bitta
+   xaridorga sotiladi.» → o'quvchi tugmani bosadi, natijani ko'radi →
+   xulosa (nom): «SQL bir mahsulot ikki marta sotilib ketishining oldini oladi — **bu
+   mexanizm tranzaksiya deb ataladi**.»
+
+**Farqi:** ❌ da atama **va'da**, ✅ da atama **xulosa**. Ikkinchisida o'quvchi so'zni
+eshitganda uning ortida allaqachon **o'z tajribasi** turadi.
+
+**Bog'liq, lekin boshqa naqsh (§160 oilasi):** atama va gloss **bir joyda** turganda,
+sodda so'z oldinga chiqadi — «SQL — **jadvalli** (relyatsion)», «relyatsion — jadvalli»
+emas. Bu band esa atamani **butunlay boshqa qadamga** suradi. Qaysi biri? Atama darsning
+**markaziy tushunchasi** bo'lsa (tranzaksiya · JOIN) — uch qadam; **yon-nom** bo'lsa
+(relyatsion) — qavs yetadi.
+
+🔴 **Tartib buzilishini `RECAPS` yashiradi.** Atama qaysi ekranda tanishtirilishini
+belgilagach, uning **oldingi** ekranlarining `RECAPS` kartalarini tekshiring: m4-03 da
+`RECAPS[6]` (s5b testi, s6 dan **oldin**) «**Tranzaksiya** — ikki marta sotilmaydi»
+kartasini ko'rsatardi. O'quvchi xato javob bersa, atamani **tanishtirilishidan oldin**
+ko'rardi. Recap faqat **o'tilgan** materialni takrorlashi kerak.
+
+### §168a — SARLAVHA VOQEANI TO'G'RI AYTSIN
+
+❌ «Oxirgi mahsulotni 2 kishi bir vaqtda **sotib olsa-chi?**» — grammatik shakl
+   **ikkovi ham sotib oldi** degan ma'no beradi, ekranda esa aynan buning **oldi olinadi**.
+✅ «Oxirgi mahsulotni ikki kishi bir vaqtda **sotib olmoqchi bo'lsa-chi?**»
+
+Sarlavha savol bersa, u **ekranda haqiqatan bo'ladigan** voqeani aytsin. Bu §165a ning
+sarlavhadagi ko'rinishi: model xato bo'lsa, o'quvchi javobni ham xato kutadi.
+
+## 169. UCH BLOK — UCH VAZIFA, BIR MAQTOV EMAS (F-0822-13, m4-03 s7)
+
+Bitta ekranning sarlavhasi · Mentori · xulosa-bloki **uch xil ish** qiladi. Uchalasi ham
+bir xulosani bo'sh sifat bilan qaytarsa, ekran uch marta gapiradi-yu, **bir marta ham
+tushuntirmaydi**.
+
+❌ sarlavha «…bu yerda NoSQL **porlaydi**» → Mentor «…uchun NoSQL **ideal**» →
+   xulosa «NoSQL … uchun **juda yaxshi**»
+✅ sarlavha **holatni va javobni** aytadi: «Millionlab chat xabari uchun **NoSQL qulay**» →
+   Mentor **sababni** aytadi: «Bunday **katta hajm, tez oqim va oddiy tuzilish** uchun
+   NoSQL ko'pincha qulay tanlov bo'ladi» → xulosa **umumlashtiradi**: «NoSQL ko'p sonli va
+   tez keladigan ma'lumotlarni saqlashda qulay. **Chat xabarlari bunga yaxshi misol**.»
+
+| Blok | Vazifasi |
+|---|---|
+| Sarlavha | holat + javob |
+| Mentor | **nega** — mezonlar bilan |
+| Xulosa-blok | umumlashma: qoida + misol |
+
+🔴 **Maqtov-so'z sabab emas.** «porlaydi · ideal · juda yaxshi · eng zo'r» — o'quvchiga
+**hech narsa bermaydi** va ustiga mutlaq hukm beradi. Har biri **mezonga** bog'lanishi
+kerak: bu darsda — katta hajm · tez oqim · oddiy tuzilish. «Ko'pincha qulay tanlov» —
+rost; «ideal» — rost emas (§165a mutlaq-da'vo oilasi).
+
+**Tekshirish:** ekranning uch blokini ketma-ket o'qing. Ikkitasi bir gapni aytayotgan
+bo'lsa — bittasi ortiqcha yoki noto'g'ri vazifada.
+
+### §169a — PROZA MONOSHRIFTDA YOZILMAYDI
+
+`className="mono"` (JetBrains Mono) — **kod uchun**: atama, so'rov, maydon nomi, qiymat.
+Butun gap mono bo'lsa, o'quvchi uni **kod deb o'qiydi** va tushunishga urinadi.
+
+❌ `<span className="mono">(Masalan, o'yin inventari ham har o'yinchida har xil — NoSQL
+   egiluvchanligi shu yerda ham yordam beradi.)</span>`
+✅ mono faqat kod-bo'lagida: `{ kim, matn, vaqt }`
+
+**Yon-topilma (108-qonun):** o'sha qavs ichida darsning **ikkinchi misol-ipi** (o'yin
+inventari) siqib kiritilgan edi — bir dars, bitta misol-ip. Qavs ichidagi «qo'shimcha
+misol» — TMI ning eng ko'p uchraydigan yashirin joyi.
+
+**Grep-bandi:** `className="mono">` dan keyin **25 belgidan uzun** matn kelsa — tekshiring.
+
+## 170. ASBOB QOLADI, NOMI ALMASHADI — «QAROR KOMPASI» (F-0822-14, m4-03)
+
+§165 va §167 ning uchinchi va eng qiyin holati: metafora **ishlaydigan asbobni** nomlab
+turganda. m4-03 da «qaror kompasi» — darsning **imtihon asbobi**: s16 da o'quvchi 4 mezonga
+javob beradi, strelka suriladi, `lean >= 0.5` bo'lsa dars **o'tilgan** hisoblanadi.
+
+Shu sababli audit dastlab uni **himoya qildi** («dekor emas, asbob»). Bu **noto'g'ri
+xulosa** edi: asbobning kerakligi uning **nomini** oqlamaydi.
+
+❌ «qaror **kompasi**» · «**kompas** javoblarga qarab suriladi» · «Har javob **kompas**
+   strelkasini suradi» · nishon «**Compass Reader**» 🧭
+✅ «qaror **ko'rsatkichi**» · «**ko'rsatkich** javoblarga qarab siljiydi» · «Har javob
+   **ko'rsatkich** strelkasini siljitadi» · nishon «**Decision Maker**» 🎯
+
+**Ikki dalil:**
+
+1. **Ortiqcha model.** «Kompas» — DB tanlashda mavjud bo'lmagan tushuncha. O'quvchi
+   «SQL tanlash uchun kompas bormi?» degan **yolg'on model** yasaydi (§167 oilasi).
+2. **Metafora mexanikaga ham mos emas.** Kompas **yo'nalishni** ko'rsatadi (shimol qayerda).
+   Bu asbob esa **javoblarni tortadi** — o'lchov-ko'rsatkichi. Ya'ni metafora hatto
+   metafora sifatida ham noto'g'ri edi.
+
+🔴 **Audit-saboq:** «bu element ishlaydimi?» va «bu element **to'g'ri nomlanganmi**?» —
+**ikki boshqa savol**. Birinchisiga «ha» deyish ikkinchisini yopmaydi. m4-03 da audit
+6-pageda birinchi savolga javob berib to'xtagan; foydalanuvchi 10-pageda ikkinchisini
+so'ragan.
+
+### §170a — MEZON-TO'PLAMI BITTA LUG'ATDA YASHAYDI
+
+Dars **nomlangan mezon-to'plami** bilan ishlasa (bu yerda: bog'lanish · shakl ·
+ishonchlilik · **hajm**), o'sha nomlar **to'plam sifatida** sanaladigan hamma joyda bir xil
+bo'lishi shart: mezon-savoli · flashcard javobi · praktika topshirig'i · yakun-xulosasi ·
+arena varianti · RECAPS kartasi.
+
+❌ mezon-savoli «Ma'lumot juda katta **hajmdami**…?» ↔ flashcard «Bog'lanish · shakl ·
+   ishonchlilik · **miqyos**» — o'quvchi ikkovini bir-biriga bog'lay olmaydi
+✅ ikkalasi ham **hajm**
+
+**Miqyos (dalil):** bitta mezon nomini almashtirish m4-03 da **13 o'rin** (UZ 7 + RU 6)
+va **6 ekran**ga tegdi. Mezon-nomi — darsning **skeleti**, uni yakka o'zgartirib bo'lmaydi.
+
+### §170b — TANISHTIRILMAGAN QISQARTMA CHIZMADA HAM TURMAYDI
+
+❌ SVG yorlig'i «SQL · **PG**» — `PG` dars matnida **hech qayerda** ochilmagan
+✅ «SQL»
+
+Chizma · diagramma · o'q yorliqlari — o'quvchi matni. Qisqartma matnda tanishtirilmagan
+bo'lsa, chizmada ham ishlatilmaydi.
+
+## 171. DISTRAKTOR YOLG'ON MODEL EKMASIN (F-0822-15, m4-03 s9)
+
+Ko'p variantli testda **noto'g'ri variantning matni ham o'qiladi** — hatto tanlanmaganda
+ham. Shuning uchun distraktor «umumiy afsona» ni **fakt shaklida** aytmasligi kerak:
+uni tanlamagan o'quvchi izohni **hech qachon ko'rmaydi**, lekin gapni **o'qib bo'ladi**.
+
+❌ «NoSQL — chunki u **ancha tezroq ishlaydi**» *(o'quvchi «NoSQL har doim SQL'dan tez»
+   degan yolg'on modelni olib ketishi mumkin — va bu darsning o'zi s16 da rad etadigan mif)*
+✅ «NoSQL — **katta hajmli oddiy ma'lumot uchun qulay**» *(rost gap, lekin bu vazifaga
+   mos emas — o'quvchi mezon bo'yicha rad etadi, fakt bo'yicha emas)*
+
+**Ikki xil distraktor:**
+
+| Tur | Misol | Baho |
+|---|---|---|
+| **Rost, lekin mos emas** | «NoSQL — katta hajmli oddiy ma'lumot uchun qulay» (bank uchun) | ✅ o'quvchini **mezon bilan** ishlashga majbur qiladi |
+| **Yolg'on fakt** | «NoSQL ancha tezroq ishlaydi» | ❌ tanlanmasa ham **o'qiladi** va yodda qoladi |
+
+🔴 **Variant almashsa — izohi ham almashadi.** «Rost, lekin mos emas» variantining izohi
+inkor bilan boshlanmaydi: ❌ «Tezlik bu yerda asosiy emas» → ✅ «**Bu rost, lekin** bank
+ma'lumoti bog'langan va xato qimmatga tushadi — bu yerda SQL kerak.»
+
+### §171a — TEST VARIANTI MENTOR-QISQARTMASIDA YOZILMAYDI
+
+Mentor matnida qisqartma-uslub (`+` · `&` · `→`) o'rinli — u yonida to'liq izoh bilan
+turadi. **Test varianti esa yolg'iz o'qiladi.**
+
+❌ «SQL — bog'langan + ishonchlilik shart» · «Bank = bog'langan + ishonchli → SQL»
+✅ «SQL — **ma'lumotlar bog'langan va ishonchlilik muhim**» · «Bank ma'lumoti bog'langan
+   va ishonchlilik shart → SQL»
+
+### §171b — QISQARTMA («DB») MATNDA OCHILMAGAN BO'LSA, ISHLATILMAYDI
+
+§170b ning matn-tomoni. m4-03 da `DB` **19 marta** ishlatilardi — sarlavhalarda, test
+variantlarida, uyga vazifada — lekin **hech qayerda ochilmagan**. Yonida esa darsning
+o'z so'zi bor edi: `baza` (24 marta) va `ma'lumotlar bazasi`.
+
+✅ Sweep: `DB` → **`baza`** (yoki savol-qolipida **`tur`**) · RU `БД` → **`база`**.
+**19 o'rin, 8 ekran** — s9 · s11 · s14 · s16 · arena ×2 · uyga vazifa · 4 kod-izohi.
+
+**Tekshirish:** darsdagi har lotin qisqartmani sanang (`DB` · `PG` · `FK` · `PK` · `JSON`)
+va har biriga savol bering — **matnda ochilganmi?** Ochilmagani yo ochiladi, yo darsning
+o'z so'zi bilan almashtiriladi.
+
+## 172. XUSUSIYAT-KARTASI FAKTNI EMAS, FOYDANI AYTADI (F-0822-16, m4-03 s10)
+
+«Nega aynan X?» ekranidagi har karta **ikki qismdan** iborat: **nomi** (xususiyat) va
+**izohi** (o'quvchiga nima beradi). Izoh faktni qaytarsa yoki xalqona gapga aylansa,
+karta bo'sh qoladi.
+
+❌ «Bepul + ochiq kodli» → «**Hech kim pul so'ramaydi, butun dunyo ishlatadi.**»
+   *(xalqona; «ochiq kod» nima ekani aytilmagan — o'quvchi hech narsa o'rganmaydi)*
+✅ «Ishlatish uchun pul to'lanmaydi, **kodi ham ochiq — xohlagan odam uni ko'rishi va
+   o'zgartirishi mumkin**.»
+
+❌ «JSON ham saqlaydi» → «Kerak bo'lsa, NoSQL kabi **egiluvchan** JSON ham saqlay oladi —
+   **ikki dunyodan eng yaxshisi!**» *(fakt + maqtov; foydasi aytilmagan)*
+✅ «Kerak bo'lsa, **har xil shakldagi ma'lumotni** ham JSON ko'rinishida saqlaydi.
+   **Shu sabab** PostgreSQL SQL ishonchliligi bilan birga NoSQL qulayliklaridan ham beradi.»
+
+**Tekshirish:** karta izohini o'qib so'rang — «o'quvchi bundan **nimani bilib oldi**?»
+Javob kartaning nomini qaytarsa, izoh hali yozilmagan.
+
+### §172a — EKOTIZIM-FAKTI XUSUSIYAT EMAS
+
+❌ chip «**PERN/PEAN stackning "P"si**» — qolgan to'rt chip (jadvalli · ishonchli · bepul ·
+   JSON) **xususiyat**, bu esa qisqartma va ekotizim-fakti. 13 yoshli uchun deyarli hech
+   narsa anglatmaydi.
+✅ chip «**Bizning to'plamimizga mos**» → izoh «React, Node va Express bilan birga
+   ishlaydi — biz shu to'plamda loyiha quramiz.»
+
+🔴 **Yechim — o'chirish emas, nomlash.** Chipning **mazmuni qimmatli** edi (modul-ipi:
+o'quvchi React'ni allaqachon o'rgangan). Faqat **yorlig'i** qisqartma edi. Qimmatli
+mazmunni qisqartma yashirib qo'ysa — qisqartma olib tashlanadi, mazmun qoladi (§167).
+
+### §172b — YO'QOLGAN IP: «EGILUVCHANLIK»
+
+Dars bo'ylab abstrakt sifat tozalanganda (§160), o'sha sifat **ko'targan g'oya** ham
+tasodifan yo'qolishi mumkin. m4-03 da «egiluvchan» olib tashlangach, PostgreSQL ekranida
+darsning **markaziy xulosasi** («SQL ishonchliligi + NoSQL qulayligi») urg'usiz qolgan edi.
+
+**To'g'ri yechim — sifatni faktga aylantirish, g'oyani tashlab yuborish EMAS:**
+❌ «NoSQL **egiluvchanligi** ham bor» → ✅ «**har xil shakldagi ma'lumotni** ham saqlaydi»
+
+**Tekshirish:** sifat olib tashlangach so'rang — «u ko'targan **g'oya** matnda qoldimi?»
+Qolmagan bo'lsa, g'oyani **aniq so'z bilan** qaytaring.
+
+## 173. AI GA VAKOLAT BERILMAYDI — QAROR O'QUVCHINIKI (F-0822-17, m4-03 s11)
+
+Darsda AI ishtirok etsa, u **taklif beradi**, o'quvchi esa **qaror qiladi**. Matn buni
+teskari aytsa, darsning butun maqsadi (o'quvchi mezon bilan tanlashni o'rgansin) buziladi:
+o'quvchi «qarorni AI qiladi» degan signalni oladi.
+
+❌ sarlavha «Loyihangizga bazani **AI tavsiya qilsin** — siz tekshiring» →
+   xulosa «**AI tavsiya berdi**, siz sababini tekshirdingiz»
+✅ sarlavha «Loyiha uchun **mos bazani tanlab ko'ring**» →
+   Mentor «AI baza **taklif qiladi**… **Oxirgi qaror — sizniki**» →
+   xulosa «**Tanlov sababga asoslandi**: …»
+
+**Fe'l-shkalasi:** `hal qiladi` ❌ · `tavsiya qiladi` 🟡 · **`taklif qiladi`** ✅.
+Xulosa-blok esa AI ni **umuman tilga olmasin** — u **sababni** aytsin. Kim aytgani emas,
+**nega shunday** ekani esda qoladi.
+
+🔴 **AI ni butunlay olib tashlash ham yechim emas** (foydalanuvchi qarori): dasturchi
+haqiqatan AI'dan so'raydi — bu **hayotiy ko'nikma**. To'g'ri model: **AI taklif → odam
+mezon bilan tekshiradi → odam qaror qiladi**.
+
+### §173a — «TAHLIL» SO'ZI TAYYOR JAVOBGA ISHLATILMAYDI
+
+Ekranda 3 ta tayyor variantdan biri bosilib, **oldindan yozilgan** javob chiqsa, uni
+«tahlil» deb atash — o'quvchiga mexanikani noto'g'ri ko'rsatish (§165a oilasi).
+
+❌ «Mana **tahlilim** — tasdiqlaysizmi?» · «**Tahlil qilyapman**…» · tugma «**Tahlilni
+   ko'rsat**» · «Loyihani **tahlil qildim**»
+✅ «**Taklifim** bor — ko'rasizmi?» · «**O'ylayapman**…» · «**Taklifni ko'rsat**» ·
+   «Loyihangizni **ko'rdim**»
+
+**Tekshirish:** ekrandagi har «aqlli» fe'lga savol bering — **kod haqiqatan shuni
+qiladimi?** Yo'q bo'lsa, kamtarroq fe'l tanlanadi.
+
+### §173b — MISOL-JAVOB QAT'IY QOIDAGA AYLANMASIN
+
+❌ «Chat — ulkan oddiy oqim **→ NoSQL**» *(o'quvchi «chat = NoSQL» degan qat'iy qoida
+   yodlab oladi)*
+✅ «Chatda katta hajmdagi oddiy oqim bo'ladi — bunday ilovalarda NoSQL **ko'p ishlatiladi**»
+
+§165a (mutlaq-da'vo) ning **misol-tomondagi** ko'rinishi: bitta misolning javobi
+**umumiy qonun** qilib aytilmaydi.
+
+## 174. MEZON MATNI HAMMA JOYDA SO'ZMA-SO'Z BIR XIL (F-0822-18, m4-03 s8 ↔ s16)
+
+§170a mezon **nomlari** haqida edi (bog'lanish · shakl · ishonchlilik · hajm). Bu band
+mezonning **savol-matni** haqida: o'quvchi mezonni bir ekranda o'rganib, boshqasida
+**qo'llaydi**. Ikki joyda boshqacha yozilsa, u ikkalasini bir mezon deb tanimaydi.
+
+❌ s8 (o'rgatish): «Ma'lumot **juda katta hajmdami va tezlik muhimmi?**»
+   s16 (**yakuniy ballanadigan** ekran): «Ma'lumot **ulkan + juda oddiy + faqat tezlik
+   kerakmi?**» — eski shakl, boshqa so'zlar, qisqartma-uslub
+✅ ikkalasi ham: «Ma'lumot **juda katta hajmdami va tezlik muhimmi?**»
+
+🔴 **Eng xavfli joy — yakuniy ekran.** O'rgatish-ekrani tuzatilib, imtihon-ekrani eski
+qolsa, o'quvchi **baholanadigan** joyda tanimaydigan matnni o'qiydi. m4-03 da aynan shu
+yuz bergan: 10-page mezonlari qayta yozilgan, 17-pagening **ball beradigan** ro'yxati
+esa eski holida qolgan edi.
+
+**Mezon-matni yashaydigan joylar ro'yxati** (m4-03 da tekshirilgani):
+o'rgatish-ekrani (s8) · **yakuniy ekran** (s16) · praktika ro'yxati · flashcard javobi ·
+arena savoli va varianti · RECAPS kartalari · yakun-xulosasi · takeaway.
+
+**Grep-bandi:** mezon o'zgartirilganda uning **eski kalit-so'zini** (bu yerda `ulkan` ·
+`juda oddiy` · `faqat tezlik`) butun fayl bo'ylab qidiring — mezon matni ko'pincha
+qisqartirilgan holda boshqa ekranlarga **nusxalangan** bo'ladi.
+
+### §174a — QISQARTMA-USLUB (`+` · `=` · `→`) QAYERDA MUMKIN
+
+| Joy | `+` uslubi | Sabab |
+|---|---|---|
+| Reja-yorlig'i · chip · mezon-izohi | ✅ | yonida to'liq matn turadi |
+| **Test/arena varianti** | ❌ | **yolg'iz o'qiladi** (§171a) |
+| **Mezon savoli** | ❌ | o'quvchi uni **javob berish uchun** o'qiydi |
+| RECAPS karta sarlavhasi · takeaway | 🟡 | `+` → `va`, `=` → tire — bir xil uzunlik, ravonroq |
+
+## 175. XATO-FIDBEK MEZONNI ESLATADI, JAVOBNI AYTMAYDI (F-0822-19, m4-03 s13)
+
+Amaliyot-ekranida noto'g'ri tanlov qilinsa, fidbek **uchta ish** qilishi mumkin — faqat
+bittasi to'g'ri:
+
+| Fidbek | Misol | Baho |
+|---|---|---|
+| Hech narsa aytmaslik | «**qayta o'ylang**» | ❌ o'quvchi nima uchun xato qilganini bilmaydi va **tasodifan** bosishga o'tadi |
+| Javobni aytish | «Do'konda **SQL xavfsizroq**» | ❌ ekran o'tish-tugmasiga aylanadi — o'quvchi o'ylamay ikkinchi tugmani bosadi |
+| **Mezon-faktini eslatish** | «Do'konda **buyurtma, mahsulot va to'lov bir-biriga bog'langan**» | ✅ fakt beriladi, **xulosani o'quvchi chiqaradi** |
+
+🔴 **Nega «javobni aytish» ham yomon:** bu ekranda **hamma javob to'g'ri bo'lmaguncha
+o'tib bo'lmaydi**. Ya'ni o'quvchi baribir ikkinchi tugmani bosadi. Fidbek javobni aytsa,
+u shunchaki **ko'chirib olinadi**; mezon-faktini aytsa — o'quvchi qoidani **qo'llaydi**.
+
+✅ m4-03 da har loyihaga `hint` qo'shildi (bank · chat · do'kon · loglar) — hech biri
+`SQL`/`NoSQL` so'zini aytmaydi, faqat loyihaning **mezon bo'yicha xususiyatini** aytadi.
+
+**Yon-band:** to'g'ri javobdagi qisqartma-yozuv ham jonlantirildi — «pul, bog'langan,
+ishonchlilik» → «**hisoblar bog'langan, xato qimmatga tushadi**» (§174a: sanoq emas, gap).
+
+**Tekshirish:** xato-fidbekni o'qib so'rang — «bu matnni ko'rgan o'quvchi **o'ylashi**
+kerakmi, yoki **ko'chirishi** yetadimi?»
+
+## 176. TOPSHIRIQ MIQDORI IKKI MA'NOLI YOZILMAYDI (F-0822-21, m4-03 praktika)
+
+Topshiriqda son ishlatilsa, u **nimaning** soni ekani bir ma'noli bo'lsin. Namuna esa
+matnga **mos** bo'lsin — ular ziddiyatga tushsa, o'quvchi qaysi biriga ishonishni bilmaydi.
+
+❌ «SQL bo'lsa — **2-3 ustunli jadval** sxemasini yozing (namuna: Instagram —
+   `users(id, username)`)»
+   *(«2-3 ustunli jadval» — 2-3 ta jadvalmi yoki bitta jadvalning 2-3 ustunimi? Namuna esa
+   **bitta** jadval va **ikkita** ustun — ya'ni matn ko'plikda, namuna birlikda)*
+✅ «SQL bo'lsa — **2 ta bog'langan jadvalning nomi va ustunlarini** yozing (namuna:
+   `users(id, username)` va `posts(id, user_id, izoh)`)»
+
+**Qaysi o'qish to'g'ri ekanini DARS hal qiladi:** m4-03 ning markaziy SQL-dalili —
+**bog'langan ma'lumot** (JOIN ekrani ikki jadvalni ulaydi). Demak topshiriq ham
+**ikki jadval** so'rashi kerak; bitta jadvalning ustunlarini yozish darsning asosiy
+g'oyasini sinamaydi.
+
+🔴 **Namuna darsning o'z misolidan olinsin.** Yangi namuna (`users` ↔ `posts.user_id`) —
+o'quvchi uni **JOIN ekranida allaqachon ko'rgan**. Yangi misol o'ylab topish o'rniga
+tanish misolni qayta ishlatish topshiriqni bir necha barobar yengillashtiradi.
+
+**Tekshirish:** topshiriqdagi har sonni o'qib so'rang — «**nimaning** soni?» Javob
+ikkita bo'lsa, gap qayta yoziladi. Keyin namunani sonlar bilan **solishtiring**.
