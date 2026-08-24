@@ -1228,7 +1228,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   const audio = useAudio([{ id: 's5', text: `Bola komponent otasiga ma'lumot yubora oladimi? Fabrika konveyeri faqat bir tomonga aylanadi: tepada App varaqa tashlaydi, pastdan kartochkalar chiqadi. Avval pastga tugmasini bosing, keyin kartochkani teshikka qaytarib sudrang.`, trigger: 'on_mount', waits_for: null }]);
   return (
-    <Stage eyebrow={tr({ uz: 'Bir tomonlama konveyer', ru: 'Односторонний конвейер' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "Ikkala yo'nalishni sinang", ru: 'Проверьте оба направления' })} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Bir tomonlama konveyer', ru: 'Односторонний конвейер' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : flow < 2 ? tr({ uz: 'Avval pastga yuboring', ru: 'Сначала отправьте вниз' }) : tr({ uz: "Endi tepaga sinab ko'ring", ru: 'Теперь попробуйте наверх' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Bola komponent otasiga ma'lumot <span className="italic" style={{ color: T.accent }}>yubora oladimi</span>?</>, ru: <>Может ли дочерний компонент <span className="italic" style={{ color: T.accent }}>отправить данные</span> родителю?</> })}</h2></div>
         <Mentor>{tr({ uz: <>Fabrika konveyeri <b style={{ color: T.ink }}>faqat bir tomonga</b> aylanadi. Tepada <b style={{ color: T.ink }}>App (ota)</b> varaqa tashlaydi, pastdan <b style={{ color: T.ink }}>3 ta bola kartochka</b> chiqadi. <b style={{ color: T.ink }}>Pastga</b> tugmasini bosing, keyin kartochkani <b style={{ color: T.ink }}>teshikka qaytarib</b> sudrang.</>, ru: <>Конвейер фабрики крутится <b style={{ color: T.ink }}>только в одну сторону</b>. Сверху <b style={{ color: T.ink }}>App (родитель)</b> бросает слип, снизу выходят <b style={{ color: T.ink }}>3 дочерние карточки</b>. Нажмите <b style={{ color: T.ink }}>Вниз</b>, а потом попробуйте затащить карточку <b style={{ color: T.ink }}>обратно в щель</b>.</> })}</Mentor>
@@ -1246,8 +1246,8 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <Col>
             <p className="flow-label">{tr({ uz: "Ma'lumotni yuborib ko'ring", ru: 'Попробуйте отправить данные' })}</p>
             <div className="fade-up delay-2" style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
-              <button className="btn" style={{ alignSelf: 'flex-start' }} onClick={sendDown} disabled={running}>{tr({ uz: "⬇ App'dan bolalarga yuborish", ru: '⬇ Отправить от App детям' })} {flow >= 2 ? '✓' : ''}</button>
-              <button className="btn-soft" style={{ alignSelf: 'flex-start' }} onClick={sendUp} disabled={flow < 2} title={flow < 2 ? tr({ uz: 'Avval pastga yuboring', ru: 'Сначала отправьте вниз' }) : undefined}>{tr({ uz: "⬆ Boladan otaga yuborib ko'rish", ru: '⬆ Попробовать от ребёнка родителю' })} {reversed ? '✓' : ''}</button>
+              <button className={flow >= 2 ? 'btn-soft btn-did' : 'btn btn-turn'} style={{ alignSelf: 'flex-start' }} onClick={sendDown} disabled={running}>{tr({ uz: "⬇ App'dan bolalarga yuborish", ru: '⬇ Отправить от App детям' })} {flow >= 2 ? '✓' : ''}</button>
+              <button className={reversed ? 'btn-soft btn-did' : (flow >= 2 ? 'btn btn-turn' : 'btn-soft')} style={{ alignSelf: 'flex-start' }} onClick={sendUp} disabled={flow < 2} title={flow < 2 ? tr({ uz: 'Avval pastga yuboring', ru: 'Сначала отправьте вниз' }) : undefined}>{tr({ uz: "⬆ Boladan otaga yuborib ko'rish", ru: '⬆ Попробовать от ребёнка родителю' })} {reversed ? '✓' : ''}</button>
             </div>
             {flow >= 2 && !reversed && <div className="hint fade-step"><p className="body" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: <>Varaqa pastga tushdi: App → 3 ta bola, har biri o'z props'ini oldi. Endi kartochkani <b style={{ color: T.ink }}>teshikka qaytarib</b> sudrang ↑</>, ru: <>Слип упал вниз: App → 3 ребёнка, каждый получил свои props. Теперь затащите карточку <b style={{ color: T.ink }}>обратно в щель</b> ↑</> })}</p></div>}
             {reversed && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>❌ Konveyer orqaga aylanmaydi. Bola otaga props uzata <b>olmaydi</b> — React'da ma'lumot <b>faqat yuqoridan pastga</b>.</>, ru: <>❌ Конвейер не крутится назад. Ребёнок <b>не может</b> передать props родителю — в React данные идут <b>только сверху вниз</b>.</> })}</p></div>}
@@ -1302,7 +1302,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   const audio = useAudio([{ id: 's6', text: `Komponent o'ziga kelgan props'ni o'zgartira oladimi? Ikki tugmani sinang. Birinchisi: kartochka ichkaridan o'z nomini o'zgartirmoqchi. Ikkinchisi: App yangi nom yuboradi. Qaysi biri ishlaydi — ko'ramiz.`, trigger: 'on_mount', waits_for: null }]);
   return (
-    <Stage eyebrow={tr({ uz: "Faqat o'qish", ru: 'Только чтение' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Ikkala usulni sinang', ru: 'Проверьте оба способа' })} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: "Faqat o'qish", ru: 'Только чтение' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : !triedMutate ? tr({ uz: '1-usulni sinang', ru: 'Попробуйте способ 1' }) : tr({ uz: '2-usulni sinang', ru: 'Попробуйте способ 2' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Komponent o'ziga kelgan props'ni <span className="italic" style={{ color: T.accent }}>o'zgartira oladimi</span>?</>, ru: <>Может ли компонент <span className="italic" style={{ color: T.accent }}>изменить</span> пришедшие props?</> })}</h2></div>
         <Mentor>{tr({ uz: <>Sinab ko'raylik! 1-tugma: kartochka <b style={{ color: T.ink }}>ichkaridan</b> o'z nomini o'zgartirmoqchi. 2-tugma: <b style={{ color: T.ink }}>App (ota)</b> yangi nom yuboradi. Qaysi biri ishlaydi?</>, ru: <>Проверим! Кнопка 1: карточка хочет <b style={{ color: T.ink }}>изнутри</b> поменять своё имя. Кнопка 2: <b style={{ color: T.ink }}>App (родитель)</b> отправляет новое имя. Какая сработает?</> })}</Mentor>
@@ -1310,8 +1310,8 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <div className="split">
           <Col>
             <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
-              <button className="btn-soft" style={{ alignSelf: 'flex-start' }} onClick={mutate}>{tr({ uz: '1 · Ichkaridan: props.name = "Yangi"', ru: '1 · Изнутри: props.name = "Новое"' })} {triedMutate ? '✓' : ''}</button>
-              <button className="btn" style={{ alignSelf: 'flex-start' }} onClick={fromParent}>{tr({ uz: "2 · App'dan yangi name yuborish", ru: '2 · Отправить новый name из App' })} {parentSent ? '✓' : ''}</button>
+              <button className={triedMutate ? 'btn-soft btn-did' : 'btn btn-turn'} style={{ alignSelf: 'flex-start' }} onClick={mutate}>{tr({ uz: '1 · Ichkaridan: props.name = "Yangi"', ru: '1 · Изнутри: props.name = "Новое"' })} {triedMutate ? '✓' : ''}</button>
+              <button className={parentSent ? 'btn-soft btn-did' : (triedMutate ? 'btn btn-turn' : 'btn-soft')} style={{ alignSelf: 'flex-start' }} onClick={fromParent}>{tr({ uz: "2 · App'dan yangi name yuborish", ru: '2 · Отправить новый name из App' })} {parentSent ? '✓' : ''}</button>
             </div>
             <p className="flow-label" style={{ margin: 0 }}>{tr({ uz: 'Konsol', ru: 'Консоль' })}</p>
             <div className="code-box" style={{ padding: '9px 13px', minHeight: 64 }}>
@@ -2799,9 +2799,16 @@ export default function ReactPropsReuseLesson({ lang: langProp, onFinished }) {
         .btn-ghost { font-family: 'Manrope', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.2s; background: transparent; color: ${T.ink}; border: none; border-radius: 12px; box-shadow: none; }
         .btn-ghost:hover:not(:disabled) { background: ${T.paper}; box-shadow: 0 6px 18px -6px rgba(${T.shadowBase},0.18); }
         .btn-ghost:disabled { opacity: 0.4; cursor: not-allowed; }
-        .btn-soft { font-family: 'Manrope'; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.bg}; color: ${T.ink}; border: none; border-radius: 10px; padding: 9px 15px; font-size: 13px; }
-        .btn-soft:hover:not(:disabled) { box-shadow: 0 6px 14px -5px rgba(${T.shadowBase},0.2); }
-        .btn-soft:disabled { opacity: 0.5; cursor: not-allowed; }
+        .btn-soft { font-family: 'Manrope'; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.paper}; color: ${T.ink}; border: 1px solid ${T.line}; border-radius: 10px; padding: 9px 15px; font-size: 13px; box-shadow: 0 2px 8px -4px rgba(${T.shadowBase},0.18); }
+        .btn-soft:hover:not(:disabled) { border-color: ${T.ink3}; transform: translateY(-1px); box-shadow: 0 6px 14px -5px rgba(${T.shadowBase},0.24); }
+        .btn-soft:disabled { opacity: 0.5; cursor: not-allowed; box-shadow: none; }
+        /* Navbat ko'rsatkichi: hozir bosilishi kerak bo'lgan tugma nafas oladi */
+        .btn-turn { animation: btn-turn-pulse 1.9s ease-in-out infinite; }
+        @keyframes btn-turn-pulse { 0%, 100% { box-shadow: 0 6px 18px -4px rgba(255,79,40,0.32), 0 0 0 0 rgba(255,79,40,0.36); } 55% { box-shadow: 0 8px 22px -4px rgba(255,79,40,0.42), 0 0 0 8px rgba(255,79,40,0); } }
+        /* Bajarilgan qadam: sokin yashil, e'tibor tortmaydi */
+        .btn-did { background: ${T.successSoft}; color: ${T.success}; border-color: rgba(31,122,77,0.22); box-shadow: none; }
+        .btn-did:hover:not(:disabled) { background: ${T.successSoft}; color: ${T.success}; border-color: rgba(31,122,77,0.38); box-shadow: none; transform: none; }
+        @media (prefers-reduced-motion: reduce) { .btn-turn { animation: none !important; } }
 
         /* === OPSIYALAR === */
         .option { background: ${T.paper}; cursor: pointer; transition: all 0.2s; font-family: 'Manrope', sans-serif; font-weight: 500; line-height: 1.45; text-align: left; border-radius: 12px; width: 100%; border: none; color: ${T.ink}; box-shadow: 0 6px 16px -6px rgba(${T.shadowBase},0.14); }
@@ -3039,6 +3046,14 @@ export default function ReactPropsReuseLesson({ lang: langProp, onFinished }) {
         .lp-step.on .lp-check { background: ${T.success}; color: #fff; box-shadow: none; animation: lp-check-pop 0.34s cubic-bezier(.3,1.5,.5,1); }
         @keyframes lp-check-pop { 0% { transform: scale(0.7); } 45% { transform: scale(1.3); } 100% { transform: scale(1); } }
         .lp-step-t { flex: 1; min-width: 0; }
+        /* 144-qonun (F-0824-06 naqshi, NodeServerLesson dan): ko'chirib yoziladigan kod.
+           Umumiy qcode sinfida white-space nowrap turadi — qisqa chip uchun to'g'ri,
+           lekin uzun chip kartadan tashqariga chiqib ketadi (bu darsda 1-bosqich 70 belgi).
+           pre-wrap — kodning o'z bo'shliqlari saqlanadi, bo'shliq joyida ko'chadi;
+           break-word — bitta uzluksiz so'z qatordan uzun bo'lsa, himoya to'ri;
+           liga 0 va calt 0 — ligatura o'chadi, aks holda ikki-uch belgi bitta glifga
+           qo'shilib chiziladi va o'quvchi uni klaviaturadan qidiradi. */
+        .lp-step .qcode { white-space: pre-wrap; overflow-wrap: break-word; font-feature-settings: "liga" 0, "calt" 0; }
         .lp-done-btn { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(14px,1.8vw,16px); cursor: pointer; border: none; border-radius: 13px; padding: 14px 20px; background: ${T.accent}; color: ${T.bg}; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.34); transition: all 0.18s; margin-top: 2px; }
         .lp-done-btn:hover:not(:disabled) { background: #E03E1B; box-shadow: 0 12px 28px -6px rgba(255,79,40,0.5); }
         .lp-done-btn.is-done { background: ${T.successSoft}; color: ${T.success}; box-shadow: inset 0 0 0 1.5px ${T.success}66; cursor: default; animation: lp-done-pop 0.44s cubic-bezier(.3,1.35,.5,1); }

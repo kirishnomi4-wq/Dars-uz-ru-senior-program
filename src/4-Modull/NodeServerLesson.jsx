@@ -918,12 +918,18 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
 
 // ===== SCREEN 1 — REJA =====
 const Screen1 = ({ screen, onNext, onPrev }) => {
+  // F-0824-05: reja dars OXIRIning lug'atida yozilgan edi — beshta qadamdan to'rttasi
+  // atama bilan boshlanardi (Node.js · npm · Express · Endpoint), 01-qadam esa 2-ekranning
+  // kashfiyotini («server — bu dastur») oldindan aytib qo'yardi, 04-qadam esa darsning o'zi
+  // bilan ziddiyatda edi (Express — server emas, server yozish asbobi).
+  // Endi har qadam ISHNI aytadi; atama yorliqqa, ikkinchi darajaga tushadi — nom
+  // ko'rinadi (backend kursi ekani sezilib turadi), lekin unga hech narsa bog'lanmaydi.
   const STEPS = [
-    { text: { uz: "Server nima — doim ishlaydigan dastur", ru: 'Что такое сервер — программа, которая работает всегда' }, tag: { uz: "so'rov → javob", ru: 'запрос → ответ' } },
-    { text: { uz: "Node.js — JS serverda ishlaydi", ru: 'Node.js — JS работает на сервере' }, tag: { uz: 'bir til, ikki dunyo', ru: 'один язык, два мира' } },
-    { text: { uz: "npm — tayyor paketlar to'plami", ru: 'npm — набор готовых пакетов' }, tag: 'npm install' },
-    { text: { uz: "Express — oson server", ru: 'Express — простой сервер' }, tag: 'app.get' },
-    { text: { uz: "Endpoint + serverni yurgizish", ru: 'Endpoint + запуск сервера' }, tag: 'localhost:3000' }
+    { text: { uz: 'Server qanday javob beradi?', ru: 'Как сервер отвечает?' }, tag: { uz: "so'rov → javob", ru: 'запрос → ответ' } },
+    { text: { uz: 'JavaScript bilan backend yozamiz', ru: 'Пишем бэкенд на JavaScript' }, tag: 'Node.js' },
+    { text: { uz: "Kerakli paketlarni o'rnatamiz", ru: 'Устанавливаем нужные пакеты' }, tag: 'npm install' },
+    { text: { uz: 'Birinchi serverni yozamiz', ru: 'Пишем первый сервер' }, tag: 'Express' },
+    { text: { uz: 'Serverni ishga tushirib tekshiramiz', ru: 'Запускаем сервер и проверяем' }, tag: 'localhost:3000' }
   ];
   const isNarrow = useIsMobile(768);
   const [showSteps, setShowSteps] = useState(false);
@@ -945,12 +951,12 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
       </ol>
     </Col>
   );
-  const audio = useAudio([{ id: 's1', text: `Ishonasizmi — dars oxirida haqiqiy serverni o'zingiz yozib, ishga tushirasiz va brauzerda uning javobini ko'rasiz. Buning kaliti bitta: server ham JavaScript'da yoziladi, siz buni allaqachon bilasiz. Bugun shuni besh qadamda o'rganamiz.`, trigger: 'on_mount', waits_for: null }]);
+  const audio = useAudio([{ id: 's1', text: `Dars oxirida brauzerda localhost:3000/salom ni ochib, Salom, dunyo! javobini ko'rasiz. Shu javobni beradigan dasturni bugun o'zingiz yozasiz — u ham JavaScript'da ishlaydi. Bugungi yo'l besh qadam.`, trigger: 'on_mount', waits_for: null }]);
   return (
     <Stage eyebrow={tr({ uz: 'Reja', ru: 'План' })} screen={screen} audioState={audio} mentorStatic navContent={<><NavBack onPrev={onPrev} /><NavNext label={tr({ uz: 'Boshlaymiz →', ru: 'Начинаем →' })} onClick={onNext} /></>}>
       <div className="screen">
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Birinchi serveringizni <span className="italic" style={{ color: T.accent }}>5 qadamda</span> quramiz</>, ru: <>Построим Ваш первый сервер <span className="italic" style={{ color: T.accent }}>за 5 шагов</span></> })}</h2></div>
-        <Mentor>{tr({ uz: <>Ishonasizmi — dars oxirida <b style={{ color: T.ink }}>haqiqiy serverni</b> o'zingiz yozib, ishga tushirasiz va brauzerda uning javobini ko'rasiz. Eng yaxshi tomoni: server ham <b style={{ color: T.ink }}>JavaScript</b>'da yoziladi — siz buni allaqachon bilasiz!</>, ru: <>Поверите ли — в конце урока Вы сами напишете <b style={{ color: T.ink }}>настоящий сервер</b>, запустите его и увидите его ответ в браузере. Самое классное: сервер тоже пишется на <b style={{ color: T.ink }}>JavaScript</b> — а его Вы уже знаете!</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Dars oxirida brauzerda <span className="mono">localhost:3000/salom</span> ni ochib, «<b style={{ color: T.ink }}>Salom, dunyo!</b>» javobini ko'rasiz. Shu javobni beradigan dasturni bugun o'zingiz yozasiz — u ham <b style={{ color: T.ink }}>JavaScript</b>'da ishlaydi.</>, ru: <>В конце урока Вы откроете в браузере <span className="mono">localhost:3000/salom</span> и увидите ответ «<b style={{ color: T.ink }}>Salom, dunyo!</b>». Программу, которая даёт этот ответ, сегодня Вы напишете сами — она тоже работает на <b style={{ color: T.ink }}>JavaScript</b>.</> })}</Mentor>
         {!isNarrow ? (
           <Zoomable><Split>{PreviewBlock}{StepsBlock}</Split></Zoomable>
         ) : !showSteps ? (
@@ -1590,7 +1596,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
     { uz: "Server — doim ishlaydigan dastur: so'rov → javob", ru: 'Сервер — программа, работающая всегда: запрос → ответ' },
     { uz: "Node.js — JavaScript serverda ham ishlaydi", ru: 'Node.js — JavaScript работает и на сервере' },
     { uz: "npm — tayyor paketlar to'plami (npm install)", ru: 'npm — набор готовых пакетов (npm install)' },
-    { uz: "Express — oson server; endpoint = app.get('/manzil')", ru: "Express — простой сервер; endpoint = app.get('/адрес')" },
+    { uz: "Express — serverni osonlashtiruvchi asbob; endpoint = app.get('/manzil')", ru: "Express — инструмент, упрощающий сервер; endpoint = app.get('/адрес')" },
     { uz: "node server.js → localhost:3000 da yoqiladi", ru: 'node server.js → включается на localhost:3000' }
   ];
   const HOMEWORK = [
@@ -2823,6 +2829,15 @@ export default function NodeServerLesson({ lang: langProp, onFinished }) {
         .lp-step.on .lp-check { background: ${T.success}; color: #fff; box-shadow: none; animation: lp-check-pop 0.34s cubic-bezier(.3,1.5,.5,1); }
         @keyframes lp-check-pop { 0% { transform: scale(0.7); } 45% { transform: scale(1.3); } 100% { transform: scale(1); } }
         .lp-step-t { flex: 1; min-width: 0; }
+        /* F-0824-06: ko'chirib yoziladigan kod. Umumiy qcode sinfida white-space nowrap
+           turadi — qisqa chip uchun to'g'ri (npm install o'rtasidan uzilmasin), lekin
+           uzun chip kartadan tashqariga chiqib ketardi. Bu yerda, ya'ni o'quvchi kodni
+           VS Code ga QO'L bilan ko'chiradigan ro'yxatda, uchta o'zgarish:
+           pre-wrap — kodning o'z bo'shliqlari saqlanadi, lekin bo'shliq joyida ko'chadi;
+           break-word — bitta uzluksiz so'z qatordan uzun bo'lsa, himoya to'ri;
+           liga 0 va calt 0 — JetBrains Mono ligaturasi o'chadi, aks holda ikki belgi
+           bitta strelka bo'lib chiziladi va o'quvchi uni klaviaturadan qidiradi. */
+        .lp-step .qcode { white-space: pre-wrap; overflow-wrap: break-word; font-feature-settings: "liga" 0, "calt" 0; }
         .lp-done-btn { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(14px,1.8vw,16px); cursor: pointer; border: none; border-radius: 13px; padding: 14px 20px; background: ${T.accent}; color: #fff; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.34); transition: all 0.18s; margin-top: 2px; }
         .lp-done-btn:hover:not(:disabled) { background: #E03E1B; box-shadow: 0 12px 28px -6px rgba(255,79,40,0.5); }
         .lp-done-btn.is-done { background: ${T.successSoft}; color: ${T.success}; box-shadow: inset 0 0 0 1.5px ${T.success}66; cursor: default; animation: lp-done-pop 0.44s cubic-bezier(.3,1.35,.5,1); }

@@ -516,3 +516,13 @@ Foydalanuvchi buyrug'i (2026-08-03) barcha darslarga tegishli: **bir dars — bi
 (108) va **ortiqcha matn taqiqi** (109). To'liq matn: `DARS_ETALON.md` 11-B bo'lim; matn-mezonlar:
 `MATN_KORPUS.md` 74-75-bo'lim. PM darslarda bu ayniqsa keys-tanloviga tegadi: bitta dars —
 bitta keys-olam, mentor maks 2 gap, reja-ekran ta'rif aytmaydi.
+
+---
+
+## 143-qonun (ko'rsatkich) — 🖥 mentor rejimi: blok ko'rinsin, javob doskaga chiqsin
+
+PM darslar jonli rejimda proyektorda ishlaydi, shuning uchun bu qonun ularga to'liq
+tegishli: `isMentor` bilan bloklangan har element `disabled` bo'ladi, vazifa-yorlig'i
+mentor uchun almashadi, va har tekshiruv-ekranida javobni doskaga chiqarish tugmasi
+(`.mstats-reveal` naqshi) bo'lishi shart. Pretsedent — `PmLesson9` 9-ekrani (F-0824-02).
+To'liq matn: `DARS_ETALON.md` 11-G bo'limi.

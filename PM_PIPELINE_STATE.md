@@ -3009,3 +3009,157 @@ katalog-sarlavha ↔ dars-sarlavha farqi (be-02, be-07) App.jsx bilan bir xil qo
   raqamdek ko'rinadi, lekin ichida so'z bor: `{uz,ru}` bo'lishi shart (PmLesson18 `HODISA`/`OLCHAGICH`).
 
 **Holat:** UNCOMMITTED — commit foydalanuvchi buyrug'i bilan.
+
+---
+
+## 2026-08-24 — F-0824-02 · `PmLesson9` (m3-10) 9-ekran: mentor rejimida jim blok
+
+**Topildi (foydalanuvchi):** «kartalarni bosayapman, hech nima bo'lmayapti».
+Tashxis — kod buzuq emas: foydalanuvchi **mentor rejimida** edi (skrinshotda
+«Kod: 406 960 · 👥 0» paneli). `:1591` da `if (done || isMentor) return;` — ataylab
+qo'yilgan, chunki topshiriqni o'quvchilar o'z qurilmasida bajaradi.
+
+**Ikki haqiqiy nuqson:**
+1. Blok **jim** edi — `qstep` kartalarida `disabled` yo'q, hover va kursor tirik.
+   Shu faylning qolgan joyida (`:760` · `:975` · `:2532`) mentor-bloki `disabled` bilan
+   ko'rinadigan qilingan; bitta ekran naqshdan chetga chiqib qolgan.
+2. Mentor rejimida chiziq `? — — — —` holida **abadiy** qolardi — to'g'ri tartibni
+   doskaga chiqarish imkoni yo'q edi, holbuki ekranning ma'nosi oxirgi muhokamada.
+
+**Qilindi (Yechim B, foydalanuvchi tasdig'i bilan):**
+- `:1632` karta → `disabled={isMentor}` + `.qstep:disabled` uslubi (`:3148`, xiralik 0.5,
+  hover o'chadi).
+- Vazifa-yorlig'i mentorda almashadi: «✋ Qaysi qadam …?» → «👀 Bu topshiriqni
+  o'quvchilar bajaradi — siz kuzatasiz» (ko'k, `T.blue`).
+- Yangi «✅ To'g'ri tartibni ko'rsatish» tugmasi (mentor-only, `.mstats-reveal` —
+  mavjud `MentorTestStats` reveal naqshi). Chiziq **qadam-baqadam** to'ladi (620ms),
+  sinf ketma-ketlikni kuzatadi. Tugma `done` bo'lgach yo'qoladi.
+- `onAnswer` effektiga `!isMentor` qo'shildi — reveal mentor nomidan javob yozmaydi.
+
+**Darvozalar:** `npm run gates -- src/3-Modull/PmLesson9.jsx` → **5/5 toza**.
+🟡 til-lint 2 ta warn (`:1427`, `:1429` kirill homoglif) — **oldindan bor edi**,
+bu ish bilan bog'liq emas, tegilmadi.
+
+**Muhrlandi:** `DARS_ETALON.md` **143-qonun** (11-G) + `PM_DARS_ETALON.md` ga
+ko'rsatkich-yozuv.
+
+**Ekranda tekshirish kerak:** mentor rejimida reveal tugmasi bosilgach chiziq to'lishi
+(620ms qadam) · reveal tugagach «Davom etish» va `bdone` xulosasi to'g'ri chiqishi ·
+o'quvchi rejimida hech narsa o'zgarmaganini tasdiqlash (kartalar avvalgidek).
+
+**Commit YO'Q** (buyruqsiz).
+
+---
+
+## 2026-08-24 — F-0824-04 · `PmLesson9` (m3-10) koding: kod oynasi past ekranda qirqilardi
+
+**Topildi (foydalanuvchi):** «kod oynasiga o'tsa 100% zoomda sahifa tiqilib qoladi,
+80% zoomda yaxshi; bir mashinada shunday, boshqasida to'g'ri».
+
+**Tashxis:** kompilyator geometriyasi qat'iy — `.hc-split` 62dvh, qolgan qismlar
+(sarlavha · tavsif · 3 chip · `.hc-msg` qat'iy 40px · pastki tugmalar) piksel bilan
+≈360px va qisqarmaydi. Sig'ish sharti `0.62·H + 360 ≤ H` → **H ≥ ~950 CSS px**.
+Dars masshtabi `--lz` esa `Math.max(1, …)` tufayli **1 dan pastga tushmaydi** —
+past ekran hech qachon shuncha maydon olmaydi. `justify-content:center` +
+`overflow:hidden` bo'lgani uchun ortiqcha kontent **ikki tomondan** qirqiladi:
+tepadan sarlavha, pastdan «Davom etish» — o'quvchi mashqni **tugata olmaydi**.
+Bu mashinaga bog'liq emas: chegara juda tor, ko'p noutbuk undan o'tolmaydi
+(Windows displey masshtabi 125% da — kafolatli).
+
+**Qilindi (Yechim 1 — qamrovi tor, foydalanuvchi tasdig'i bilan):**
+`:1781` — kod oynasi qobig'iga (`:1906`) **alohida** `--lz` beriladi:
+`min(1, max(0.62, innerHeight / 1000))`. Natijada `.hc-root` doim ~1000 CSS px
+maydon oladi, `zoom` esa uni oynaga fizik sig'diradi — qo'lda 80% zoom qilishning
+avtomatik va **faqat kompilyatorga tegadigan** varianti. `resize` da qayta hisoblanadi.
+
+🔴 **Ehtiyot shart:** dars masshtabi 1 dan katta bo'lsa (keng VA baland ekran)
+**hech narsa qilinmaydi** — `.lesson-root` (`:3863`) ham `zoom: var(--lz,1)` qo'llaydi
+va qobiq uning ICHIDA, ya'ni ikki zoom ko'payib ketardi. O'sha ekranlarda muammo ham
+yo'q (`lessonZ >= 1` ⇔ `innerHeight >= 1000`). `HtmlCompiler.jsx` **TEGILMADI**,
+qolgan 96 fayldagi `--lz` formulasi ham tegilmadi.
+
+**Darvozalar:** `npm run gates -- src/3-Modull/PmLesson9.jsx` → **5/5 toza**.
+🟡 til-lint 2 warn (`:1427`, `:1429`) — oldindan bor, bu ish bilan bog'liq emas.
+
+**Yozib qo'yildi:** `KATTA_TOZALASH.md` **24-band** — haqiqiy tuzatish (kompilyatorda
+`.hc-split` → `flex:1 1 auto`, `.hc-root` → past ekranda `flex-start`), 30 dars qamrovi.
+Shu band bajarilgach bu yamoqni olib tashlash mumkin.
+
+🔴 **O'lchov kutilmoqda.** `~950` va `1000` konstantalari **koddan hisoblangan**,
+brauzerda o'lchanmagan (Chrome kengaytmasi ulanmagan edi). Muammo ko'ringan mashinada
+kod oynasi ochiq turganda:
+`const r=document.querySelector('.hc-root'); r.scrollHeight - r.clientHeight`
+— aynan nechta piksel yetmasligini beradi; konstanta shundan keyin aniqlanadi.
+
+**Ekranda tekshirish kerak:** past oynada kod oynasi to'liq ko'rinishi (eyebrow +
+sarlavha + «Davom etish») · matn juda kichrayib ketmaganini baholash (0.62 poli) ·
+baland ekranda hech narsa o'zgarmaganini tasdiqlash · oyna o'lchamini o'zgartirganda
+qayta hisoblanishi.
+
+**Commit YO'Q** (buyruqsiz).
+
+---
+
+## 2026-08-24 — F-0824-08 · KOD OYNASI MASSHTABI: yagona naqsh (5 dars, kompilyator TEGILMADI)
+
+**Kelib chiqishi:** F-0824-04 (m3-10 past ekranda qirqilardi) tuzatilgandan keyin
+foydalanuvchi so'radi: shu yamoqni 3/4/4a/4b/4c modullariga ham tarqatamizmi?
+
+**Tekshiruvda uchta narsa ochildi:**
+1. Loyihada **boshqa** yamoq allaqachon bor edi — `zoom: 'calc(1 / var(--lz, 1))'`,
+   ota `.lesson-root` zoomini bekor qiladi (baland ekrandagi qo'sh-zoom). 6 faylda.
+   `PM_PIPELINE_STATE:2017` (2026-08-18) da 25 fayllik sweep sifatida qayd etilgan,
+   foydalanuvchi «hozircha hech qaysi» degan edi.
+2. Ya'ni bitta muammoning **ikki yarmi**ga ikki xil yamoq bor edi, va men F-0824-04 da
+   uchinchi xatti-harakat qo'shgan edim. Uch xil xulq: A(6) · B(1) · hech nima(23).
+3. **A va B bitta elementda urishadi:** elementga qo'yilgan `--lz` o'sha elementning
+   `zoom: calc(1/var(--lz))` e'loniga ham ko'rinadi — kompensatsiya o'zini bekor qiladi.
+
+**Yechim — matematik hosil qilindi.** Kompilyator tashqaridan atigi ikki narsani o'qiydi
+(`var(--lz,1)` va ota-zoom), ikkalasi ham darsning qo'lida:
+```
+yakuniy masshtab = L x Z x V   ·   balandlik = 100dvh / V  (ekranda H x L x Z)
+ekranni to'ldirish:  L x Z = 1  ->  Z = 1/L          (naqsh A ning isboti)
+1000 CSS px ish-maydoni:  H / V >= 1000  ->  V <= H/1000
+```
+`H >= 1000` bo'lganda `V = L` olinadi — natija naqsh A bilan **piksel-piksel bir xil**,
+ya'ni 4a/4c dagi tuzatilgan darslar buzilmaydi.
+
+**Qilindi (foydalanuvchi tasdig'i bilan, kompilyator TEGILMADI):**
+- Yangi yordamchi: **`src/compilator/useCompilerScale.js`** — `zoom` (raqam, `calc/var`
+  EMAS — mina shunda) va `--lz` ni qaytaradi; `resize` da qayta hisoblanadi; boshlang'ich
+  qiymat darrov hisoblanadi (aks holda birinchi kadrda qo'sh-zoom chaqnaydi); SSR-xavfsiz.
+- 5 dars o'tkazildi: `PmLesson9` (B yamog'i **olib tashlandi**) · `PmLesson11` · `PmLesson13`
+  (hech narsasi yo'q edi) · `PmLesson15` · `PmLesson17` (A **olib tashlandi**).
+  Har birida 3 o'zgarish: import · `ScreenCoding` da `const hcScale = useCompilerScale()` ·
+  qobiqda `...hcScale`.
+
+🔴 **LMS xavfsizligi tekshirildi:** `scripts/build-lms.mjs:75` da tashqi-modul filtri
+aynan `compilator[\/]HtmlCompiler` — yangi fayl unga **tushmaydi**, bundle'ga normal
+kiradi. `:51`/`:80` dagi «kompilyator ishlatadimi» aniqlagichi ham o'zgarmaydi.
+
+**Yo'lda topilgan, tuzatilgan (mening ishimdan EMAS):** 4 darsda jonli-PIN ekranida
+«oynasida **ushbu** kodni…» — `ushbu` kantselyarit taqiq-ro'yxatida, til-darvozasini
+🔴 error bilan yiqitardi. `PmLesson9` da allaqachon «**shu** kodni» edi — o'shanga
+tenglashtirildi (4 fayl).
+
+**Darvozalar (5 fayl birga):** esbuild ✓ · jsx ✓ · til ✓ · prompt ✓ · **dark 🔴 8 topilma**.
+🔴 **Dark — OLDINDAN bor, isbotlandi:** `git show HEAD:` bilan asl nusxalar chiqarilib,
+o'sha darvozalar ularga yurgizildi — **aynan o'sha 8 topilma** (`.mstats-reveal` va
+`.rc-btn` = `#1B1630`, har faylda 2 tadan, `PmLesson11·13·15·17`). Til topilmalari ham
+bir xil, faqat qator raqami +1 surilgan (men qo'shgan import qatori). Ya'ni bu ish
+**bironta yangi topilma kiritmadi**. `PmLesson9` alohida **5/5 toza**.
+Dark — 4 darsning vizual qarori (to'q tugma foni), qamrovdan tashqarida, tegilmadi.
+
+**Hujjatlar:** `KATTA_TOZALASH.md` **27-band** (qolgan 21 fayl + 4 eski-naqsh fayli,
+tartib va o'lchov bilan) · `PM_KEYS_MEXANIKA_REGISTRI.md` **:387 va :429 yangilandi** —
+yangi darslar endi eski `calc(1 / var(--lz,1))` bilan emas, `useCompilerScale()` bilan
+tug'iladi (aks holda m5-11/m6-06/m6-14 superseded naqsh bilan qurilardi).
+
+⚠️ **Diqqat:** `lms/PmLesson9.jsx` va `lms/PmLesson9.shared.jsx` endi **eskirgan**
+(F-0824-04 dan beri). Qayta qurish kerakmi — foydalanuvchi qaroriga qoldi.
+
+🔴 **O'lchov hali kutilmoqda:** `HC_NEED = 1000` koddan hisoblangan. Muammo ko'ringan
+mashinada: `const r=document.querySelector('.hc-root'); r.scrollHeight - r.clientHeight`.
+
+**Commit YO'Q** (buyruqsiz).

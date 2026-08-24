@@ -2869,6 +2869,12 @@ shu joylarda uzoq yashaydi, chunki ko'z ularni «dekor» deb o'tkazib yuboradi.
 **Tekshirish:** reja-ekranidagi har qadamni o'qib so'rang — «bu qadam tugagach o'quvchi
 nimani **qila oladi**?» Javob chiqmasa, qadam sifat sanayapti, ish emas.
 
+🔴 **Ikkinchi pretsedent (F-0824-05, m4-04 s1).** «Ishonasizmi» shu qonun muhrlangandan
+keyin **boshqa darsda qaytadan** topildi — ya'ni qonun bir darsga qo'llanib, qolganiga
+yoyilmagan. Butun loyiha grep'i: `Ishonasizmi|Tasavvur qiling|Поверите ли|Представьте`
+→ **40 fayl** (nomzodlar ro'yxati, hammasi buzilish emas: rolli topshiriqdagi «tasavvur
+qiling» o'rinli). Ish `KATTA_TOZALASH.md` 25-bandiga yozildi.
+
 ## 163. SARLAVHA ZANJIRI — KEYINGI SARLAVHA OLDINGISINING SAVOLIGA JAVOB BERADI (F-0822-06, m4-03 s0→s1)
 
 Hook ekrani savol qo'ysa, keyingi ekran sarlavhasi o'sha savolning **o'z so'zlari bilan**
@@ -3391,3 +3397,146 @@ tanish misolni qayta ishlatish topshiriqni bir necha barobar yengillashtiradi.
 
 **Tekshirish:** topshiriqdagi har sonni o'qib so'rang — «**nimaning** soni?» Javob
 ikkita bo'lsa, gap qayta yoziladi. Keyin namunani sonlar bilan **solishtiring**.
+
+---
+
+## 177. SODDALASHTIRISH YOLG'ON MODEL YASAMASIN (F-0824-03, m3-07 s18)
+
+Metafora tushuntirish uchun qisqartiriladi — lekin qisqartma **noto'g'ri da'voga**
+aylansa, o'quvchi keyinchalik qayta o'rganishi kerak bo'ladi. Bu qisqartma emas, xato.
+
+❌ «`push` eski ro'yxatni **buzadi**, yangisini yasamaydi»
+✅ «`push` o'sha eski ro'yxatning **o'ziga** qo'shadi, yangi ro'yxat yasamaydi»
+
+**Sabab:** `push` hech narsani buzmaydi — u **to'g'ri ishlaydi**, element massivga
+haqiqatan qo'shiladi. Nosozlik `push` da emas, **havola o'zgarmaganida**. «Buzadi»
+degan so'z o'quvchida «`push` — xavfli funksiya» degan yolg'on model qoldiradi,
+holbuki u JS darslarida bemalol ishlatilgan.
+
+🔴 **Sabab-oqibat bir qadamga siqilmaydi.** Ikki qadamli hodisani bitta jumlaga
+tiqish — soddalashtirish emas, ma'lumot yo'qotish. To'g'ri shakl — zanjir:
+
+> **①** `games.push(yangi)` — o'sha eski ro'yxatning **o'ziga** qo'shadi, yangi ro'yxat
+> yasamaydi. **②** `setGames(games)` React'ga **o'sha eski ro'yxatni** uzatadi —
+> React uchun hech narsa o'zgarmagan, shuning uchun qayta chizmaydi.
+
+🔴 **«Yaqin» javobga halol munosabat.** O'quvchi haqiqiy sababga tegib ketsa
+(bu yerda — `setGames(games)`), «o'zi xato emas» deb o'tib ketilmaydi:
+❌ «o'zi xato emas, lekin oldingi qator ro'yxatni allaqachon buzgan»
+✅ «Yaqin! Bu qator o'zi xato emas — muammo unga **o'sha eski ro'yxat**
+uzatilayotganida. Uni o'sha holicha kim qoldirdi?»
+
+🔴 **Eng og'ir joyi — test varianti.** Yolg'on model maslahat-matnida qolsa bir gap,
+**baholanadigan to'g'ri javobda** qolsa — o'quvchi uni tanlagani uchun **ball oladi**
+va model xotirada muhrlanadi. m3-07 da aynan shunday edi (`:2031`).
+
+**Tekshirish:** darsda tabiiy tilda aytilgan har texnik da'voni ajratib o'qing va
+so'rang: «bu **so'zma-so'z** to'g'rimi?» Keyin o'sha da'vo **flashcard izohi** va
+**test variantlarida** takrorlanmaganini grep bilan tasdiqlang — bir xato odatda
+3–5 joyda ko'chirilgan bo'ladi.
+
+---
+
+## 178. REJA-EKRANI KASHFIYOTNI OLDINDAN AYTMAYDI · ATAMA YASHIRILMAYDI, PASAYTIRILADI (F-0824-05, m4-04 s1)
+
+§162 reja-ekranining **ohangini** belgilagan edi. Bu band uning **mazmunini** belgilaydi:
+qadam-matnida nima turishi mumkin va nima turmasligi kerak.
+
+### a) Reja darsning o'z kashfiyotini buzmaydi (spoyler taqiqi)
+❌ 01-qadam: «Server nima — **doim ishlaydigan dastur**»
+✅ 01-qadam: «Server qanday javob beradi?»
+
+**Sabab:** 2-ekran butunlay shu ochilish uchun qurilgan — sarlavhasi «Server **aslida
+nima** — maxsus mashinami?», yechimi «aslida server — bu **dastur**!». Reja esa javobni
+ekrandan **oldin** aytib bo'lgan. O'quvchi «aaa, server dastur ekan» degan kashfiyotni
+qilishi kerak edi; reja uni oddiy mundarija-qatoriga aylantirdi.
+
+**Tekshirish:** reja qadamini keyingi ekranlarning **sarlavhalari** bilan solishtiring.
+Qadam biror ekranning savoliga **javob** berayotgan bo'lsa — spoyler, qayta yoziladi.
+
+### b) Atama sarlavhada emas, yorliqda turadi
+❌ «npm — tayyor paketlar to'plami» · «Express — oson server» · «Endpoint + serverni yurgizish»
+✅ «Kerakli paketlarni o'rnatamiz» + yorliq `npm install`
+✅ «Birinchi serverni yozamiz» + yorliq `Express`
+
+🔴 **Qaysi atama sarlavhada QOLISHI mumkin — ikki shart birgalikda.** «paket» qoldi,
+«npm · Express · endpoint» esa yorliqqa tushdi. Farqi:
+1. **So'z kundalik tilda bormi?** «paket» — bor (o'quvchi so'zning o'zidan qo'rqmaydi,
+   faqat kontekstini o'rganadi). «endpoint» — yo'q, u butunlay yangi tovush.
+2. **Dars ichida AYNAN shu so'z ishlatiladimi?** npm-ekrani (`:1105`) «kerakli **paketni**
+   o'rnatasiz» deydi — reja endi u bilan so'zma-so'z bir xil (§174).
+Ikkala shart bajarilsa — atama sarlavhada qolishi mumkin va qolgani **yaxshiroq**:
+reja va dars bitta lug'atda gapiradi. Bittasi bajarilmasa — yorliqqa tushadi.
+(Pretsedent: birinchi tahrirda «Tayyor asboblarni o'rnatamiz» yozilgan edi — atama
+yo'qolgani uchun foydalanuvchi uni «Kerakli paketlarni o'rnatamiz» ga qaytardi.)
+
+Reja **qiziqtirishi** kerak, qo'rqitmasligi. 12–17 yoshli o'quvchi darsning birinchi
+daqiqasida `npm` · `paket` · `Express` · `endpoint` ni ketma-ket o'qisa — beshta qadamdan
+to'rttasi unga «bilmayman» deb qaytadi.
+
+🔴 **Lekin atamani O'CHIRIB tashlash ham xato.** Backend kursida o'quvchi `npm` nomini
+**eshitishi kerak** — ertaga u shu nom bilan ishlaydi. To'g'ri yechim — yashirish emas,
+**ikkinchi darajaga tushirish**: nom kichik kulrang yorliqqa ko'chadi. U ko'rinadi
+(kurs qanaqa ekani sezilib turadi), lekin **sarlavha emas** — tushunish unga bog'lanmaydi.
+Yorliqqa izoh yozilmaydi: reja-ekran ta'rif aytmaydi (§162).
+
+### c) Reja darsning o'z ekranlari bilan ziddiyatda bo'lmaydi
+❌ Reja: «Express — oson **server**» · 6-ekran: «Express **asbobini** kodga chaqiramiz»
+✅ Ikkalasi ham: Express — serverni osonlashtiruvchi **asbob**
+
+Bu §177 ning reja-ekrandagi ko'rinishi: bitta xato da'vo odatda **bir necha joyda**
+ko'chirilgan bo'ladi. m4-04 da u reja va **yakun-RECAP**da turgan edi (test va flashcard
+esa to'g'ri aytardi) — ya'ni dars o'zi bilan uch xil gapirardi.
+
+**Tekshirish:** reja qadamidagi har atamani grep qiling va dars ichidagi ta'rifi bilan
+solishtiring — **so'zma-so'z** bir xil bo'lsin (§174).
+
+---
+
+## 179. O'ZGARISH KO'RSATILADI, AYTILMAYDI — «OLDIN» EKRANDA QOLSIN (F-0824-07, m4-09 s9/s10)
+
+§135-A «matn ekranga zid bo'lmasin» edi. Bu — uning qo'shnisi: matn zid emas, lekin
+**ekranda ko'rinmagan narsani da'vo qilyapti**. O'quvchi uchun farqi yo'q: ikkalasida ham
+«menga aytishdi, men ko'rmadim».
+
+❌ Yashil quti: «Klaviatura narxi **120 000** → 99 000 bo'ldi»
+    — holbuki `120 000` butun ekranda **yo'q** edi (grep bilan tasdiqlandi).
+✅ Ekranda uch qator turadi, Send'dan keyin **birinchisi** o'zgaradi: eski narx ustiga
+    chizilib qoladi, yangisi yashil bo'ladi, qolgan ikkitasi qimirlamaydi.
+    Matn esa endi **ko'rsatilganni nomlaydi**: «qolgan ikki mahsulot o'zgarmadi».
+
+⚠️ **Nomlash so'zi ham tekshiriladi.** Birinchi tahrirda «qolgan ikki mahsulot
+**qimirlamadi**» yozilgan edi — foydalanuvchi rad etdi: «qimirlamoq» jismoniy harakat,
+ma'lumot esa joyidan siljimaydi, u **o'zgaradi yoki o'zgarmaydi**. Ekranni to'g'rilash
+yetarli emas: uni nomlaydigan so'z ham dars atamasi bilan (bu yerda «o'zgartirish» =
+UPDATE) **bir o'zakdan** bo'lsin. Lug'atga qo'shildi: `MATN_ETALONI.md` 3-bo'lim.
+
+### 🔴 Diagnostika: «javobda o'quvchi YOZMAGAN narsa bormi?»
+Interaktiv ekranning tirik yoki o'lik ekanini shu savol ochadi. m4-09 ning to'rt CRUD
+ekrani bir xil maketda edi, lekin:
+
+| Ekran | Javobda yangilik | Hukm |
+|---|---|---|
+| GET | butun ro'yxat | ✅ tirik |
+| POST | `id: 4` — serverning o'zi bergan | ✅ tirik |
+| **PUT** | **yo'q** — o'zi yuborgan `99000` qaytdi | ❌ o'lik |
+| DELETE | `{ochirildi:true}` shtampi bor, lekin **qaysi** mahsulot ko'rinmaydi | 🟡 yarim |
+
+Foydalanuvchi e'tirozi aynan PUT'ga tushgani tasodif emas — u yagona ekran bo'lib,
+javob **hech qanday yangi ma'lumot olib kelmasdi**.
+
+### 🔴 «Oldin» yo'qolib ketmasin
+O'zgarishni ko'rsatishning eng keng tarqalgan xatosi — eski qiymatni **almashtirib
+qo'yish**. Bu yana raqam almashuvi bo'ladi: ko'zini uzgan o'quvchi hech narsa sezmaydi.
+Eski qiymat **ustiga chizilgan holda qoladi** (PUT), o'chirilgan qator esa **xiralashib
+turadi** (DELETE) — «bor edi, endi yo'q» ni ko'rsatadigan yagona usul shu.
+
+### 🔴 O'zgarmagan qismlar ham dalil
+Uchta qatordan faqat bittasi o'zgargani — `WHERE id=1` ning **eng yaxshi tushuntirishi**.
+Ilgari buni mentor so'z bilan aytardi («URL'dagi /1 qaysi qatorni aytdi»); endi o'quvchi
+buni ko'zi bilan ko'radi. **Qo'shni, o'zgarmagan elementlarni ekrandan olib tashlamang** —
+ular fon emas, dalil.
+
+**Tekshirish:** ekrandagi har «o'zgardi / bo'ldi / yangilandi / o'chirildi» so'zini toping
+va so'rang: «bu o'zgarishning **oldingi holati** shu ekranda ko'rinadimi?» Yo'q bo'lsa —
+matn artefakt o'rnida ishlayapti, ya'ni ekranning ishini matn bajaryapti.

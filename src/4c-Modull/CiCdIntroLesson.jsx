@@ -2832,6 +2832,19 @@ export default function CiCdIntroLesson({ lang: langProp, onFinished }) {
         .frame-warn { background: ${T.dangerSoft}; border-left: 4px solid ${T.danger}; border-radius: 12px; padding: 12px 15px; box-shadow: 0 6px 16px -8px rgba(194,54,43,0.22); }
         .frame-dash { border: 1.5px dashed ${T.ink3}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); }
 
+        /* F-0824-10: bu blok tushib qolgan edi. JSX vcard / role-ico / vlbl / vseen
+           sinflarini ishlatardi, e'loni esa faylda YO'Q edi — brauzer standart tugmani
+           chizardi (matn markazda, ichki bo'shliqsiz, soyasiz) va ✓ o'ngga ketmasdi.
+           Qiymatlar 4c-modulining o'z darsidan (FullPipelineProjectLesson) ko'chirildi —
+           o'ylab topilmadi, shuning uchun modul bo'ylab ko'rinish bir xil bo'ladi. */
+        .vcard { display: flex; align-items: center; gap: 10px; width: 100%; text-align: left; background: ${T.paper}; border: none; border-radius: 12px; padding: 11px 14px; cursor: pointer; transition: all 0.18s; box-shadow: 0 5px 14px -6px rgba(${T.shadowBase},0.16); }
+        .vcard:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 9px 20px -7px rgba(${T.shadowBase},0.24); }
+        .vcard:disabled { cursor: default; }
+        .role-ico { font-size: 20px; flex-shrink: 0; }
+        .vlbl { font-family: 'Manrope'; font-weight: 700; font-size: 13.5px; color: ${T.ink}; }
+        .vseen { margin-left: auto; font-weight: 700; }
+        @media (prefers-reduced-motion: reduce) { .vcard, .vcard:hover:not(:disabled) { transition: none; transform: none; } }
+
         /* === LAYOUT === */
         .screen { flex: 1 0 auto; min-height: 0; display: flex; flex-direction: column; gap: clamp(14px,2vw,20px); }
         /* F-0725-04 · 60-qonun: kontent sig'masa ekran-bloklari SIQILMAYDI — stage-content skroll beradi.

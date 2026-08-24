@@ -6350,3 +6350,286 @@ o'ralgan) — mobilda `.split` qanday tushishi koddan bilinmaydi · `:928` izoh-
 **Commit YO'Q** (buyruqsiz). ⚠️ Repoda parallel seans ishlayapti: `.gitignore` ·
 `PmLesson12/13/14` · `frontend-backend.html` · `src/fb-demo/` · `tools/ru-*.mjs` ·
 `vite.fb.config.js` — bularga tegilmadi.
+
+---
+
+## 2026-08-24 — F-0824-01 · `ReactPropsReuseLesson` 8-ekran: ko'rinmas tugma
+
+**Topildi (foydalanuvchi skrinshoti, 08/21-ekran):** «nimani bosish bilinmayapti».
+Tashxis — `.btn-soft` sinfida `background: ${T.bg}` = sahifa fonining aynan o'zi,
+`border: none`, rest-holatda soyasiz → tugma matnga aylangan. Sinf faylda **3 joyda**
+(`:1068` ikkilamchi «↩ Natijani ko'rish» · `:1250` 5-ekranning 2-qadami ·
+`:1313` 8-ekranning 1-qadami — ikkalasi ham `NavNext` ni bloklaydigan majburiy harakat).
+
+**Ikkilamchi oqibat:** 8-ekranda o'quvchi faqat ko'rinadigan 2-tugmani bosgan →
+1-qadam (ataylab xato beradigan) o'tkazib yuborilgan → `frame-warn` («props — sovg'a
+kabi») hech qachon chiqmagan, dars mantig'i teskari aylangan. Pastki tugma esa
+«Ikkala usulni sinang» deb turgan — qaysi biri qolganini aytmagan.
+
+**Qilindi (3 qatlam, foydalanuvchi tasdig'i bilan):**
+1. `.btn-soft` → oq yuza + `1px solid T.line` + yengil soya, hoverda ko'tariladi
+   (3 joy ham bir vaqtda tuzaldi).
+2. Yangi sinflar `.btn-turn` (navbat — accent + pulsatsiya) va `.btn-did`
+   (bajarilgan — sokin yashil + ✓), `prefers-reduced-motion` da pulsatsiya o'chadi.
+   Naqsh 8-ekranda (`:1313/1314`) **va** 5-ekranda (`:1249/1250`) qo'llandi —
+   bir xil bug-sinf, ikkovi ham majburiy ikki-qadamli.
+3. Bloklangan `NavNext` yorlig'i qolgan qadamni atab aytadi:
+   8-ekran «1-usulni sinang / 2-usulni sinang» · 5-ekran «Avval pastga yuboring /
+   Endi tepaga sinab ko'ring».
+
+**Darvozalar:** `npm run gates -- src/3-Modull/ReactPropsReuseLesson.jsx` → **5/5 toza**
+(esbuild · jsx · dark · til · prompt).
+
+**Muhrlandi:** `DARS_ETALON.md` **142-qonun** (11-F bo'limi) — (a) bosiladigan narsa
+fondan farq qilsin, (b) navbat ko'rsatkichi, (c) bloklangan yorliq qadamni atab aytsin
++ audit-bandi grep bilan.
+
+**Ekranda tekshirish kerak:** brauzerda 8-ekran — 1-tugma pulsatsiyasi, bosilgach yashil
+✓ ga o'tishi, keyin 2-tugmaga navbat ko'chishi; 5-ekranda `disabled` holdagi 2-tugma
+(`opacity: 0.5` + oq yuza) hali ham bosilmasdek ko'rinadimi.
+
+**Commit YO'Q** (buyruqsiz).
+
+---
+
+## 2026-08-24 — F-0824-03 · `ReactCrudPracticeLesson` (m3-07) 18-ekran: yolg'on model «push buzadi»
+
+**Topildi (foydalanuvchi):** «misol React'ga mos emas — push to'g'ri ishlaydi, faqat
+React immutability talab qiladi». Tekshirildi — **haq**.
+
+**Tashxis:** ekranning asosiy mantig'i to'g'ri edi (mentor matni `:1547`, xato-topildi
+izohi `:1577`), lekin bitta so'z — «buzadi» (ru «ломает») — yolg'on aqliy model bergan.
+`push` hech narsani buzmaydi: massivga element haqiqatan qo'shiladi, nosozlik
+**havola o'zgarmaganida**. Ustiga ekran ichida ziddiyat bor edi: `:1575` «buzadi»,
+`:1577` esa ikki qator pastda to'g'ri tushuntirardi. So'z **5 joyda** ko'chirilgan,
+shundan biri — **baholanadigan test javobi** (`:2031`), ya'ni o'quvchi yolg'on da'voni
+tanlagani uchun ball olardi.
+
+**Qilindi (a + bahsli-1, foydalanuvchi tasdig'i bilan):**
+- `:1560` kod-izohi: «// ro'yxatga tiqib qo'ydi» → «// o'sha ro'yxatning o'ziga qo'shdi»
+  (so'zlashuv ohangi ham ketdi).
+- `:1574` «yaqin» javobi qayta yozildi: `setGames(games)` bosgan o'quvchiga endi
+  «o'zi xato emas, lekin oldingi qator buzgan» emas, «**Yaqin!** — muammo unga o'sha
+  eski ro'yxat uzatilayotganida» deyiladi; ternary ikki aniq shoxga bo'lindi.
+- `:1575` maslahat: «buzadi» → «o'sha eski ro'yxatning **o'ziga** qo'shadi».
+- `:1577` asosiy izoh **ikki qadamli zanjirga** aylandi (① push — o'sha ro'yxat,
+  yangisi yo'q · ② setGames(games) — React'ga o'sha havola → qayta chizmaydi).
+- `:1846` flashcard izohi va `:2031` **test to'g'ri varianti** tuzatildi
+  (`correct: 2` indeksi o'zgarmadi, faqat matn).
+
+**Darvozalar:** `npm run gates -- src/3-Modull/ReactCrudPracticeLesson.jsx` → **5/5 toza**.
+Qoldiq-grep (`buzadi|buzgan|buziladi|ломает|сломал`) → **0 topilma**.
+
+**Muhrlandi:** `MATN_KORPUS.md` **§177** — soddalashtirish yolg'on model yasamasin
+(❌→✅ juftliklar, sabab-oqibat zanjiri qoidasi, «yaqin javobga halol munosabat»,
+test-variantidagi yolg'on modelning og'irligi + grep-li tekshiruv).
+
+**Ekranda tekshirish kerak:** yangi `:1577` izohi ①② bilan ikki qatorga sig'adimi
+(matn oldingisidan uzunroq — `frame-warn` ramkasi kengayadi) · test `:2031` variantining
+yangi matni plitkada kesilmaydimi (eski variantdan ~20 belgi uzun).
+
+**Bahsli-3 qilinmadi** (foydalanuvchi tasdig'i yo'q): akvariumda «massivda 3 · ekranda 2»
+ko'rsatkichi — «ma'lumot joyida, ekran orqada» modelini qo'l bilan ushlatardi.
+
+**Commit YO'Q** (buyruqsiz).
+
+---
+
+## 2026-08-24 — F-0824-05 · `NodeServerLesson` (m4-04) 2-ekran: reja o'quvchi tilida emas edi
+
+**Topildi (foydalanuvchi, skrinshot + tahlil):** «o'ng tomondagi 5 qadamdan 3 tasi yangi
+termin, 2 tasi yarim tushunarli — 12–17 yoshli o'quvchi npm/paket/Express/endpoint nima
+ekanini bilmaydi». Tekshirildi — **haq**, ustiga yana ikkita narsa chiqdi.
+
+**Uchta topilma:**
+1. **Atama sarlavhada.** Beshta qadamdan to'rttasi atama bilan boshlanardi. `MATN_KORPUS`
+   **§162** testidan («bu qadam tugagach o'quvchi nimani QILA OLADI?») **birontasi ham
+   o'tmasdi** — hammasi bilim sanardi, ish emas.
+2. **Spoyler.** 01-qadam «Server nima — doim ishlaydigan dastur» — 2-ekranning butun
+   kashfiyotini («server aslida — dastur, mashina emas») oldindan aytib qo'yardi.
+3. **Ziddiyat.** «Express — oson server», holbuki 6-ekran «Express **asbobini** kodga
+   chaqiramiz» deydi. Express server emas, server yozish asbobi.
+   Qoldiq-grep bu da'voni **yakun-RECAP**da ham topdi (`:1599`) — test (`:1962`) va
+   flashcard (`:1855`) esa to'g'ri aytardi, ya'ni dars o'zi bilan uch xil gapirardi.
+
+**Bonus-topilma:** mentor matni «**Ishonasizmi** —» bilan boshlanardi — bu §162 da
+nomma-nom **taqiqlangan** (sotuv qurilmasi). Qonun 2026-08-22 da m4-03 dan muhrlangan,
+m4-04 ga yetib bormagan.
+
+**Qilindi (foydalanuvchi tanlagan yakuniy variant):**
+- Qadamlar `:927–933`: 01 «Server qanday javob beradi?» · 02 «JavaScript bilan backend
+  yozamiz» · 03 «Kerakli paketlarni o'rnatamiz» · 04 «Birinchi serverni yozamiz» ·
+  05 «Serverni ishga tushirib tekshiramiz». Atamalar **o'chirilmadi** — yorliqqa tushdi
+  (`Node.js` · `npm install` · `Express` · `localhost:3000`), ya'ni ko'rinadi, lekin
+  sarlavha emas.
+- Mentor `:958`: «Ishonasizmi» ketdi; matn chap paneldagi rasm bilan tutashdi
+  (`localhost:3000/salom` → «Salom, dunyo!»), «haqiqiy server» o'rniga «shu javobni
+  beradigan dastur» — 2-ekran kashfiyoti buzilmaydi.
+- Audio-matn `:955` bir xil qilindi.
+- RECAP `:1599`: «Express — oson server» → «Express — serverni **osonlashtiruvchi
+  asbob**» (test variantining so'zma-so'z o'zi, §174).
+
+⚠️ **Foydalanuvchi matnida bitta o'zgarish qildim:** tanlangan mentor matni **3 gap**
+edi, «mentor maks 2 gap» qoidasi bor (`DARS_ETALON.md:781`). 2- va 3-gapni tire bilan
+birlashtirdim — **bironta so'z o'zgarmadi**. Uch gap ma'qul bo'lsa — qaytaraman.
+
+**Darvozalar:** `npm run gates -- src/4-Modull/NodeServerLesson.jsx` → **5/5 toza**.
+Qoldiq-grep (`Ishonasizmi|Поверите ли|oson server|простой сервер`) → **0**.
+
+**Muhrlandi:** `MATN_KORPUS.md` **§178** (reja-ekran mazmuni: spoyler taqiqi · atama
+yashirilmaydi, yorliqqa pasaytiriladi · reja dars bilan ziddiyatda bo'lmaydi) +
+**§162 ga ikkinchi pretsedent qatori**.
+**Yozib qo'yildi:** `KATTA_TOZALASH.md` **25-band** — «Ishonasizmi/Tasavvur qiling»
+butun loyihada **40 fayl** (nomzodlar; rolli topshiriqdagi «tasavvur qiling» o'rinli,
+ommaviy almashtirish qilinmaydi).
+
+**Ekranda tekshirish kerak:** yangi RECAP qatori (`:1599`) eskisidan ~14 belgi uzun —
+yakun-ekranida kesilmasligi · reja yorliqlari (`Node.js` · `Express`) `.step-tag` da
+kod-yorliqlar bilan bir xil ko'rinishi.
+
+**Commit YO'Q** (buyruqsiz).
+
+---
+
+## 2026-08-24 — F-0824-06 · `NodeServerLesson` (m4-04) 18-ekran: kod chipi kartadan chiqib ketgan
+
+**Topildi (foydalanuvchi skrinshoti):** VS Code amaliyoti, 3-bosqichdagi kod karta
+chegarasidan tashqariga chiqib ketgan.
+
+**Tashxis:** `:2918` da `.qcode { … white-space: nowrap }`. Bu **qisqa chip uchun
+to'g'ri** (`npm install` o'rtasidan uzilmasin), lekin uzun chip ko'chirilmaydi va
+`.lp-step` da `overflow` cheklovi yo'qligi uchun tashqariga chiqadi. Uzilish faqat
+chiplar **orasida** bo'ladi. Chip-uzunliklari sanaldi: 1→19 · 2→34+21 · **3→58** ·
+4→16 · 5→14 · 6→20+4 belgi — faqat 3-bosqich sig'maydi, o'lchov shuni tasdiqladi.
+
+**Ikkinchi topilma (so'ralmagan, o'sha kartada):** manbada `=>` yozilgan, ekranda `⇒`
+ko'rinadi — JetBrains Mono ligaturasi. Bu ekran o'quvchi kodni VS Code'ga **qo'l bilan
+ko'chiradigan** joy; bola klaviaturadan `⇒` ni qidirishi mumkin. Loyihada pretsedent
+bor edi: `HtmlCompiler.jsx:2532` klaviatura tugmalarida ligatura o'chirilgan, `.qcode`
+da esa o'chirilmagan.
+
+**Qilindi (foydalanuvchi tasdig'i bilan), `:2832` — bitta qator:**
+```
+.lp-step .qcode { white-space: pre-wrap; overflow-wrap: break-word;
+                  font-feature-settings: "liga" 0, "calt" 0; }
+```
+- `pre-wrap` (`normal` EMAS) — kodning o'z bo'shliqlari saqlanadi, lekin bo'shliq
+  joyida ko'chadi: 3-bosqich tabiiy joyda uziladi.
+- `break-word` — bitta uzluksiz so'z qatordan uzun bo'lsa, himoya to'ri.
+- `liga 0 · calt 0` — `=>` aynan `=>` bo'lib ko'rinadi.
+
+🔴 **Qamrov ataylab tor:** `.lp-step` bilan juftlangan. Test, flashcard va proza ichidagi
+qisqa chiplarga tegilmadi — u yerda kod **o'qiladi**, ko'chirilmaydi.
+CSS izohida **backtik yo'q** (tekshirildi: 0) — CLAUDE.md ogohlantirishi.
+
+**Darvozalar:** `npm run gates -- src/4-Modull/NodeServerLesson.jsx` → **5/5 toza**.
+
+**Muhrlandi:** `DARS_ETALON.md` **144-qonun** (11-H) — (a) chip idishidan chiqmasin,
+`nowrap` → aynan `pre-wrap`, (b) ko'chiriladigan joyda ligatura o'chadi, (c) qamrov
+faqat ko'chiriladigan kontekst + audit-bandi (45 belgi chegarasi).
+**Yozib qo'yildi:** `KATTA_TOZALASH.md` **26-band** — 48 faylga rollout + `lint:jsx`
+ga «chip 45 belgidan uzun» ov-bandi + ligaturani umumiy sinfda o'chirish savoli
+(98 fayl, foydalanuvchi qarori kerak).
+
+**Ekranda tekshirish kerak:** 3-bosqich endi ikki qatorga tushadi — karta balandligi
+o'sadi, o'ng ustunga oltala bosqich sig'ishi · uzilish joyi tabiiy ko'rinishi
+(`app.get('/salom',` dan keyin) · `=>` aynan ikki belgi bo'lib chizilishi.
+
+**Commit YO'Q** (buyruqsiz).
+
+---
+
+## 2026-08-24 — F-0824-07 · `ApiPostmanLesson` (m4-09) 9- va 10-ekran: o'zgarish ko'rinmasdi
+
+**Topildi (foydalanuvchi):** «PUT ekranida shunchaki visually hech nima o'zgarmadi».
+Tekshirildi — **so'zma-so'z rost**.
+
+**Tashxis:** yashil quti «Klaviatura narxi **120 000** → 99 000 bo'ldi» derdi, lekin
+`120 000` shu ekranda **umuman yo'q** edi (grep: butun faylda ikki joyda — ma'lumot
+massivi `:840` va o'sha quti matni). O'quvchi ko'radigan hamma raqam: BODY'da `99000`,
+javobda yana `99000` — ya'ni **o'zi yuborgan qiymat o'zi qaytdi**.
+
+**Nega aynan PUT** (to'rt CRUD ekrani bir xil maketda, farqi javobda):
+GET → butun ro'yxat ✅ · POST → `id: 4` serverning o'zi bergan ✅ ·
+**PUT → hech qanday yangilik yo'q ❌** · DELETE → shtamp bor, lekin qaysi mahsulot
+o'chgani ko'rinmaydi 🟡. Ya'ni nuqson tuzilmaviy, did masalasi emas.
+
+**Qilindi (V1, qamrov b — PUT + DELETE, foydalanuvchi tasdig'i bilan):**
+- CSS (`:2960`) — mavjud do'kon maketiga ustun ko'rinishi va holat sinflari qo'shildi
+  (`.shopmock.col` · `.shop-card.hit` · `.shop-card.gone` · `.narx-old` · `.narx-new`),
+  `prefers-reduced-motion` guard bilan. Do'kon maketi **0-ekranda allaqachon
+  tanishtirilgan** — yangi obraz kiritilmadi (108-qonun).
+- **PUT** (`:1333`): o'ng ustunda uch qator turadi. Send'dan keyin **birinchi** qator
+  yonadi, eski narx **ustiga chizilib qoladi**, yangisi yashil bo'ladi; ikkinchi va
+  uchinchi qator qimirlamaydi. Narx `body.narx` dan olinadi — bitta manba.
+- **DELETE** (`:1378`): uchinchi qator xiralashib, ustiga chizilib qoladi.
+- Ikkala yashil quti matni qayta yozildi: endi **ko'rsatilganni nomlaydi**
+  («qolgan ikki mahsulot o'zgarmadi» · «qolgan ikkitasi joyida»), da'vo qilmaydi.
+  🔴 Keyingi tuzatish (o'sha kun): «qimirlamadi» → «o'zgarmadi» — foydalanuvchi e'tirozi,
+  «qimirlamoq» jismoniy harakat, ma'lumot esa o'zgaradi. Lug'atga muhrlandi.
+
+🔴 **Eski qiymat ataylab QOLDIRILDI** (o'chirilib almashtirilmadi): almashtirilsa yana
+oddiy raqam almashuvi bo'lardi va ko'zini uzgan o'quvchi hech narsa sezmasdi.
+Xuddi shu sabab DELETE'da qator butunlay yo'qolmaydi, xiralashadi. Agar «o'chgan narsa
+ko'rinmasligi kerak» degan qaror ma'qul bo'lsa — bir qatorda o'zgartiriladi.
+
+**Texnik eslatma:** bu fayl **CRLF** yakunli. Ko'p qatorli almashtirish avval mos
+kelmadi; patch-skript satr-yakunini faylga moslaydigan qilindi va butun fayl bir xil
+yakunga keltirildi (LF-only: 16 → 0). Diff toza: **+42 / −2**.
+
+**Darvozalar:** `npm run gates -- src/4-Modull/ApiPostmanLesson.jsx` → **5/5 toza**.
+
+**Muhrlandi:** `MATN_KORPUS.md` **§179** — o'zgarish ko'rsatiladi, aytilmaydi:
+«javobda o'quvchi YOZMAGAN narsa bormi?» diagnostikasi (to'rt CRUD ekrani jadvali) ·
+«oldin» yo'qolib ketmasin · o'zgarmagan qo'shni elementlar fon emas, **dalil**.
+
+**Ekranda tekshirish kerak:** uch qator o'ng ustunga sig'ishi (skrinshotda o'sha joy bo'sh
+edi) · eski narx ustiga chizilgani mayda shriftda o'qilishi · `hit` yonishi 0.75s da
+sezilishi, lekin bezovta qilmasligi · DELETE'da xira qator «o'chgan» deb o'qilishi.
+
+**Qilinmadi:** V2 (narxni o'quvchi tanlashi) va (c) qamrov (to'rtala CRUD ekraniga
+umumiy panel) — GET va POST hozir ham javobda yangilik ko'rsatadi, foydasi kam.
+
+**Commit YO'Q** (buyruqsiz).
+
+---
+
+## 2026-08-24 — F-0824-09 · Kod chipi kartadan chiqishi: sinf bo'ylab yopildi (6 dars)
+
+**Topildi (foydalanuvchi, FB-demo `#nb-07`):** `EdgeCasesTestLesson` (m4b) 18-ekranida
+kod chipi kartadan chiqib ketgan — F-0824-06 (m4-04) bilan **bir xil sinf**, ya'ni
+144-qonun ikkinchi marta ishlagan.
+
+**Tashxis:** `.qcode { white-space: nowrap }` + `.lp-step` da `overflow` cheklovi yo'q.
+Bu darsda 1-bosqich chipi **70 belgi**
+(`if (typeof quantity !== 'number' || quantity <= 0) throw new Error(...)`).
+Ustiga ligatura: `!==` ekranda `≠=`, `<=` → `≤`, `=>` → `⇒` — bu «VS Code'da o'zingiz
+yozing» ro'yxati, ya'ni 144-b bandi to'g'ridan-to'g'ri tegishli.
+
+**Qilindi — avval bitta dars, keyin SINF:**
+1. `EdgeCasesTestLesson` ga 144-qonun qatori qo'shildi (`.lp-step .qcode` — `pre-wrap` +
+   `break-word` + `liga 0 / calt 0`).
+2. So'ng **o'lchov skaneri** yozildi: har faylning `checklist={[ … ]}` bloklaridagi
+   teskari-apostrof orasidagi matnlar ajratilib, uzunligi sanaladi.
+
+**O'lchov natijasi (butun loyiha):** ko'chirish-ro'yxati bo'lgan **42** dars, shundan
+chipi 45 belgidan uzun — **9** ta. Ya'ni «48 fayl» degan oldingi taxmin noto'g'ri edi:
+sinadigan fayl 9 ta, qolgani xavfsiz.
+
+**Tuzatilgan 6 fayl** (har biriga bitta CSS qatori, `npm run gates` → **5/5 toza**):
+`NodeServerLesson` (58) · `EdgeCasesTestLesson` (70) · **`BackendCrudPracticeLesson` (94!)** ·
+`ReactPropsReuseLesson` (57) · `ReactCrudPracticeLesson` (55) · `DataIntroLesson` (46).
+`BackendCrudPracticeLesson` — loyihadagi eng uzun chip (`CREATE TABLE cars (…)`), ya'ni
+foydalanuvchi topganidan ham yomonroq holat, hali hech kim ko'rmagan edi.
+
+**Natija:** 3-, 4-, 4a-, 4b-, 4c-modullarda (FB-demo) **xavfli fayl qolmadi**.
+
+⚠️ **Qamrovdan tashqarida qoldi — foydalanuvchi qaroriga:** 3 fayl, ikkalasi ham boshqa
+demo-yuzasida — `5-Modull/BotAiProjectLesson` (54) · `6-Modull/ReactNativeAppLesson` (53) ·
+`5-Modull/BotAiBrainLesson` (49). Tuzatma aynan bir xil bitta qator.
+
+**Hujjat:** `KATTA_TOZALASH.md` **26-band** o'lchangan raqamlar bilan qayta yozildi
+(taxmin → fakt), tuzatilgan/qolgan jadvali va o'lchash usuli bilan — o'sha mantiq
+`lint:jsx` ov-bandiga aynan ko'chiriladi.
+
+**Commit YO'Q** (buyruqsiz).

@@ -3217,6 +3217,14 @@ export default function DataIntroLesson({ lang: langProp, onFinished }) {
         .lp-step.on .lp-check { background: ${T.success}; color: #fff; box-shadow: none; animation: lp-check-pop 0.34s cubic-bezier(.3,1.5,.5,1); }
         @keyframes lp-check-pop { 0% { transform: scale(0.7); } 45% { transform: scale(1.3); } 100% { transform: scale(1); } }
         .lp-step-t { flex: 1; min-width: 0; }
+        /* 144-qonun (F-0824-06 naqshi, NodeServerLesson dan): ko'chirib yoziladigan kod.
+           Umumiy qcode sinfida white-space nowrap turadi — qisqa chip uchun to'g'ri,
+           lekin uzun chip kartadan tashqariga chiqib ketadi (bu darsda 1-bosqich 70 belgi).
+           pre-wrap — kodning o'z bo'shliqlari saqlanadi, bo'shliq joyida ko'chadi;
+           break-word — bitta uzluksiz so'z qatordan uzun bo'lsa, himoya to'ri;
+           liga 0 va calt 0 — ligatura o'chadi, aks holda ikki-uch belgi bitta glifga
+           qo'shilib chiziladi va o'quvchi uni klaviaturadan qidiradi. */
+        .lp-step .qcode { white-space: pre-wrap; overflow-wrap: break-word; font-feature-settings: "liga" 0, "calt" 0; }
         .lp-done-btn { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(14px,1.8vw,16px); cursor: pointer; border: none; border-radius: 13px; padding: 14px 20px; background: ${T.accent}; color: #fff; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.34); transition: all 0.18s; margin-top: 2px; }
         .lp-done-btn:hover:not(:disabled) { background: #E03E1B; box-shadow: 0 12px 28px -6px rgba(255,79,40,0.5); }
         .lp-done-btn.is-done { background: ${T.successSoft}; color: ${T.success}; box-shadow: inset 0 0 0 1.5px ${T.success}66; cursor: default; animation: lp-done-pop 0.44s cubic-bezier(.3,1.35,.5,1); }

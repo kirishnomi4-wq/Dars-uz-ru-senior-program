@@ -384,8 +384,11 @@ Yozuvchi shaklni O'ZGARTIRMAYDI; taklifi bo'lsa senariyning 14-bo'limiga (GATE S
 - **Modul-ipi:** o'quvchining O'Z Telegram-boti (M5 texnik darslarida qurilgan) — uch darsda ham
   bitta ip (108-qonun); zanjir M5 ni yopadi: birinchi 20 foydalanuvchi → intervyu → qaytish raqami.
 - **Koding R1 navbati (o'zgarmaydi):** m5-02 🖥 kompilyator · m5-08 ⌨️ VS Code · m5-11 🖥 kompilyator.
-  m5-11 kompilyator qobig'iga `zoom: 'calc(1 / var(--lz, 1))'` bekori MAJBURIY (PmLesson15/17 naqshi) —
-  25 fayllik sweep hali ochiq, yangi dars tuzatilgan naqsh bilan tug'iladi.
+  m5-11 kompilyator qobig'iga masshtab-naqshi MAJBURIY. 🔴 **NAQSH ALMASHDI (2026-08-24, F-0824-08):**
+  eski `zoom: 'calc(1 / var(--lz, 1))'` o'rniga endi `useCompilerScale()` ishlatiladi —
+  `import { useCompilerScale } from '../compilator/useCompilerScale.js'` + qobiqda `...hcScale`.
+  U eski bekorni ICHIGA oladi (baland ekranda natija piksel-piksel bir xil) va ustiga past
+  ekrandagi qirqilishni ham yopadi. Yangi dars SHU naqsh bilan tug'iladi; sweep hali ochiq.
 - **Takror-xavfi ogohlantirishlari (yozuvchi shapkada farq-dalilini beradi):** m5-08 ↔ M1-D2 auditoriya /
   M2-D2 (bu dars — jonli intervyu O'TKAZISH, auditoriyani TA'RIFLASH emas) va M2-D13 «so'z-elagi»
   (u SO'Z ni elaydi, «savol-elak» SAVOL-TURINI) · m5-11 ↔ `src/pm/PmMetricsLesson.jsx` + M3-D10
@@ -426,7 +429,7 @@ Yozuvchi shaklni O'ZGARTIRMAYDI; taklifi bo'lsa senariyning 14-bo'limiga (GATE S
   `m6-04` AI-agent · `m6-05/07` Claude Skills · `m6-08` to'liq pipeline · `m6-09…11` mobil versiya · `m6-13` loyiha kuni).
   To'rt darsda bitta ip (108-qonun): hujjat → chegara → yo'l → sahna.
 - **Koding R1 navbati (o'zgarmaydi):** m6-02 ⌨️ VS Code · m6-06 🖥 kompilyator · m6-12 ⌨️ VS Code · m6-14 🖥 kompilyator.
-  🔴 Ikkala kompilyator-darsi (`m6-06`, `m6-14`) `zoom: 'calc(1 / var(--lz, 1))'` bekori bilan tug'iladi (25 fayllik
+  🔴 Ikkala kompilyator-darsi (`m6-06`, `m6-14`) `useCompilerScale()` naqshi bilan tug'iladi (F-0824-08 — eski `zoom: 'calc(1 / var(--lz, 1))'` bekorining o'rnini bosadi) (sweep
   sweep hali ochiq — yangi dars tuzatilgan naqsh bilan quriladi; etalon PmLesson15/17).
 - **Keys burchaklari (B5):** K7 Microsoft — burchak **«hujjat sotuvdan keyin yozildi»** (PRD ning tug'ilish sababi) ·
   m6-06 ⛔ **ZAXIRA ILGAK** (keys yo'q — M4-D7 naqshi: shapkada sabab + ilgak yoziladi) · K17 Tesla — burchak

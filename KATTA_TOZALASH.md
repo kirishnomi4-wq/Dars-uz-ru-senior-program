@@ -919,3 +919,177 @@ O'lchangan asos: 1-sessiyaning **66 topilmasidan 28 tasi (42%)** shu sinflardan 
 
 **Bog'liq:** 4a-jamlama (`PIPELINE_STATE.md`, 2026-08-21) · 22-band (RU hurmat-kapitali) —
 ikkalasi ham «bir marta tozala, keyin takrorlanmasin» toifasidan.
+
+---
+
+## 24 ⬜ KOD OYNASI PAST EKRANDA QIRQILADI — qat'iy geometriya (30 dars)
+
+**Pretsedent:** F-0824-04, m3-10 (`PmLesson9`) koding-ekrani. Foydalanuvchi xabari:
+«100% zoomda sahifa tiqilib qoladi, 80% da yaxshi». Ikki mashinada ikki xil ochilgan.
+
+**Sabab — `HtmlCompiler.jsx` geometriyasi qat'iy:**
+```
+:2335  .hc-root  { height: calc(100dvh / var(--lz,1)); overflow:hidden;
+                   display:flex; flex-direction:column; justify-content:center; }
+:2363  .hc-split { flex:none; height: calc(62dvh / var(--lz,1)); }
+```
+Muharrir balandlikning **62%** ini oladi; qolgan qismlar — sarlavha, tavsif, 3 chip,
+`.hc-msg` (**qat'iy 40px**), pastki tugmalar — **piksel** bilan o'lchanadi va past
+ekranda qisqarmaydi. Taxminiy hisob: o'zgarmas qism ≈ **360px**, demak
+`0.62·H + 360 ≤ H` → **H ≥ ~950 CSS px** kerak. Noutbukda 100% zoomda odatda 650–800px;
+Windows displey masshtabi 125% bo'lsa — kafolatli sinadi.
+
+**Oqibat bloklovchi:** `justify-content:center` + `overflow:hidden` → ortiqcha kontent
+**ikki tomondan** qirqiladi: tepadan eyebrow va sarlavha, pastdan «Davom etish».
+O'quvchi mashqni **tugata olmaydi**.
+
+**Qamrov:**
+```
+HtmlCompiler'ni import qiladigan fayllar:  30
+'--lz' formulasining nusxasi (97 fayl):    Math.max(1, ...) — pastga tushmaydi
+```
+Ya'ni **har koding-ekrani** shu latent nuqson bilan yuribdi.
+
+**Yechim (kompilyatorda 2 qator):**
+1. `.hc-split` → `flex:1 1 auto; min-height:240px` — joy yetmasa **muharrir** qisqarsin,
+   tugmalar emas.
+2. `.hc-root` → past ekranda `justify-content:flex-start` (naqsh tayyor: `:2540` da
+   `max-width:860px` uchun allaqachon shunday qilingan — faqat **balandlik** bo'yicha
+   himoya yo'q edi). Masalan `@media (max-height:960px)`.
+
+**Vaqtinchalik yamoq allaqachon qo'yilgan (faqat m3-10):** `PmLesson9.jsx:1781` — kod
+oynasi qobig'iga alohida `--lz` beriladi (dars masshtabi 1 dan katta bo'lsa TEGILMAYDI,
+chunki `.lesson-root` ham zoom qo'llaydi — ikkovi ko'payib ketmasligi kerak). Bu chegarani
+suradi, ildizni olmaydi; shu band bajarilgach yamoqni **olib tashlash mumkin**.
+
+🔴 **Avval o'lchov.** `~950` — koddan hisoblangan, o'lchanmagan raqam. Kod oynasi ochiq
+turganda konsolda:
+```js
+const r = document.querySelector('.hc-root');
+({ kerak: r.scrollHeight, bor: r.clientHeight, yetmaydi: r.scrollHeight - r.clientHeight })
+```
+Konstantalar (`min-height`, `max-height` chegarasi) shu o'lchovdan keyin qo'yiladi.
+
+**Bog'liq:** umumiy faylga tegish tartibi — avval ishoralar ro'yxati, keyin tuzatish,
+oxirida bog'liq kirish nuqtalari qurilishi (30 ta dars + demo-konfiglar).
+
+---
+
+## 25 ⬜ «ISHONASIZMI / TASAVVUR QILING» — sotuv qurilmasi (40 fayl, nomzod)
+
+**Qoida tayyor:** `MATN_KORPUS.md` **§162** — reja/anons ekrani **va'da beradi, reklama
+qilmaydi**. «Ishonasizmi · Tasavvur qiling · Hayron qolasiz» — sotuv qurilmasi; darsda
+ikki zarar: va'daga shubha soladi va o'quvchi vaqtini bekorga oladi (109-qonun).
+
+**Nega ro'yxatga tushdi:** qonun 2026-08-22 da m4-03 dan muhrlangan edi, lekin
+**2026-08-24 da m4-04 s1 da qaytadan topildi** (F-0824-05) — ya'ni bir darsga qo'llanib,
+qolganiga yoyilmagan.
+
+**Qamrov (grep, nomzodlar):**
+```
+grep -rln "Ishonasizmi\|Tasavvur qiling\|Поверите ли\|Представьте" src/    →  40 fayl
+```
+
+🔴 **Bu ro'yxat buzilishlar ro'yxati EMAS.** Grep — nomzodlar. «Tasavvur qiling» rolli
+topshiriqda («o'zingizni buyurtmachi o'rniga qo'ying») **o'rinli**; taqiq faqat
+**reja/anons/hook** ekranidagi ishontirish-ohangiga tegishli. Har topilma alohida
+ko'riladi, ommaviy avto-almashtirish **qilinmaydi**.
+
+**Tartib:** fayl-ro'yxatini modullab bo'lib chiqing → har birida iborani atrofidagi
+ekran turini aniqlang (reja/anons/hook = buzilish · rolli topshiriq = o'rinli) →
+buzilishlarni §162 dagi ❌→✅ juftligi bo'yicha qayta yozing → `npm run lint:til`.
+
+**Keyingi qadam (ixtiyoriy):** ibora `til-lint-rules.json` ga **kontekstsiz** qoida
+sifatida qo'shib bo'lmaydi (o'rinli holatlar bor). Agar qo'shilsa — faqat 🟡 warn
+darajasida, «tekshiring» ma'nosida.
+
+**Bog'liq:** `MATN_KORPUS.md` §162 (ohang) · §178 (reja-ekran mazmuni).
+
+---
+
+## 26 ⬜ KO'CHIRILADIGAN KOD CHIPI IDISHDAN CHIQADI (48 fayl) + ligatura savoli (98 fayl)
+
+**Qoida tayyor:** `DARS_ETALON.md` **144-qonun** (11-H) — ko'chirib yoziladigan kod
+sig'sin va aynan ko'rinsin.
+
+**Pretsedent:** F-0824-06, m4-04 s18. Uchinchi bosqichdagi 58 belgilik chip
+(`app.get('/salom', (req, res) => res.send('Salom, dunyo!'))`) karta chegarasidan
+chiqib ketgan; `=>` esa ligatura tufayli `⇒` bo'lib chizilgan.
+
+**Qamrov — O'LCHANDI (2026-08-24, F-0824-09):**
+```
+.qcode { … white-space: nowrap }      →  98 fayl
+ko'chirish ro'yxati bo'lgan darslar    →  42 fayl
+shundan chipi 45 belgidan uzun        →   9 fayl   ← faqat shular sinadi
+```
+
+| Holat | Soni | Fayllar |
+|---|---|---|
+| ✅ tuzatilgan | **6** | `NodeServerLesson` · `EdgeCasesTestLesson` · `BackendCrudPracticeLesson` (chip **94** belgi!) · `ReactPropsReuseLesson` · `ReactCrudPracticeLesson` · `DataIntroLesson` |
+| ⬜ qolgan | **3** | `5-Modull/BotAiProjectLesson` (54) · `6-Modull/ReactNativeAppLesson` (53) · `5-Modull/BotAiBrainLesson` (49) |
+
+3-, 4-, 4a-, 4b-, 4c-modullarda (FB-demo) **xavfli fayl qolmadi**. Qolgan 3 tasi
+5- va 6-modulda — alohida demo-yuzasi.
+
+**O'lchash usuli (takrorlanadi):** har faylning `checklist={[ … ]}` bloklaridagi
+teskari-apostrof orasidagi matnlar ajratiladi va uzunligi sanaladi; 45 dan uzuni —
+xavfli. Shu mantiq `lint:jsx` ov-bandiga aynan ko'chiriladi.
+
+**Ish (48 fayl):** har darsning CSS blokiga bitta qator qo'shiladi —
+```
+.lp-step .qcode { white-space: pre-wrap; overflow-wrap: break-word;
+                  font-feature-settings: "liga" 0, "calt" 0; }
+```
+m4-04 da allaqachon qo'yilgan (`NodeServerLesson.jsx:2832`) — namuna shundan olinadi.
+
+**Detektor qo'shiladi (shundan keyin sinf qaytmaydi):** `lint:jsx` ga ov-bandi —
+`checklist` massividagi teskari-apostrof orasidagi matn **45 belgidan uzun** bo'lsa
+🟡 warn. Bu grep bilan tutiladigan sinf, ya'ni avtomatlashtiriladi.
+
+🔴 **Ochiq qaror — ligaturani qayerda o'chirish.** Hozir faqat ko'chirish-ro'yxatida
+o'chirildi (144-c). Umuman butun chip-sinfida o'chirish **izchilroq** bo'lardi, lekin
+bu 98 faylga tegadigan vizual qaror: test va proza ichidagi kod ham ko'rinishini
+o'zgartiradi. **Foydalanuvchi qarori kerak**, avtomatik qilinmaydi.
+
+**Bog'liq:** 24-band (kod oynasi past ekranda qirqiladi) — ikkalasi ham «umumiy CSS
+sinfi bitta kontekstga to'g'ri, boshqasiga noto'g'ri» toifasidan.
+
+---
+
+## 27 🟡 KOD OYNASI MASSHTABI — yagona naqshga o'tkazish (21 fayl qoldi)
+
+**Qoida/naqsh tayyor:** `src/compilator/useCompilerScale.js` (F-0824-08, 2026-08-24).
+Kompilyator **tegilmaydi** — u tashqaridan atigi ikki narsani o'qiydi (`var(--lz,1)` va
+ota-zoom), ikkalasi ham darsning qo'lida. Naqsh ikkala nuqsonni bir vaqtda yopadi:
+baland ekrandagi **qo'sh-zoom** va past ekrandagi **qirqilish**.
+
+**Dars tomonida ikki qator:**
+```
+import { useCompilerScale } from '../compilator/useCompilerScale.js';
+const hcScale = useCompilerScale();            // ScreenCoding ichida
+<div style={{ position:'fixed', inset:0, zIndex:2000, background:T.bg, ...hcScale }}>
+```
+
+**Holat (2026-08-24):** 30 ta fixed-qobiqdan —
+
+| Holat | Soni | Fayllar |
+|---|---|---|
+| ✅ yangi naqsh | **5** | `PmLesson9 · 11 · 13 · 15 · 17` (3 · 4 · 4a · 4c moduli) |
+| 🟡 eski naqsh A (`calc(1 / var(--lz,1))`) | **4** | `PmLesson19 · 21 · 23 · 25` (5 · 6 moduli) |
+| ⬜ hech narsa | **21** | butun 1-Modul (11) · butun 2-Modul (9) · `pm/PmUserStoryLesson` (P0!) |
+
+**Tartib:** eski naqsh A bor 4 fayl — `zoom: 'calc(1 / var(--lz, 1))'` o'chiriladi,
+o'rniga `...hcScale` (natija baland ekranda **bir xil**, past ekranda tuzaladi).
+Qolgan 21 faylga naqsh qo'shiladi. Har fayldan keyin `npm run gates -- <fayl>`.
+
+🔴 **A va yangi naqshni BITTA elementda aralashtirmang.** `zoom: calc(1/var(--lz))` +
+o'sha elementga `--lz` qo'yilsa, zoom **yangi** qiymatni o'qib o'zini bekor qiladi.
+Shuning uchun naqshda `zoom` — JS'dan **raqam**, `calc/var` emas.
+
+🔴 **Konstanta o'lchanmagan.** `HC_NEED = 1000` koddan hisoblangan. O'lchov (kod oynasi
+ochiq turganda): `const r=document.querySelector('.hc-root'); r.scrollHeight - r.clientHeight`
+— 0 dan katta bo'lsa `HC_NEED` ko'tariladi (bitta joyda, yordamchi faylda).
+
+**Bu band 24-bandni ALMASHTIRMAYDI.** 24-band (`.hc-split` flex, `justify-content`)
+kompilyatorning ichki geometriyasini tuzatadi va **juda past** oynalarda (0.62 polidan
+pastda) kerak bo'ladi. Bu band esa kompilyatorga tegmasdan chegarani suradi.

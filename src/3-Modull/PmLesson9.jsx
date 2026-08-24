@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef, useMemo, createContext, useContext,
 // Kod kompilyatori — UMUMIY modul (F-0809-05 · GATE S 3-qarori). Tugma bilan ochiladigan
 // to'liq-ekran asbob, shuning uchun CodeStrike brendida (PM_DARS_ETALON 1-bo'lim istisnosi).
 import HtmlCompiler, { checks as C } from '../compilator/HtmlCompiler.jsx';
+import { useCompilerScale } from '../compilator/useCompilerScale.js';
 const MENTOR_IMG = 'https://go.coddycamp.uz/uploads/media_library/c7b711619071c92bef604c7ad68380dd.png';
 
 // ============================================================
@@ -1581,8 +1582,24 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => () => clearTimeout(missT.current), []);
   const done = placed.length === QADAMLAR.length;
   const qolgan = S9_ARALASH.filter(id => !placed.includes(id));
+  // F-0824-02: mentor rejimida topshiriqni o'quvchilar bajaradi (tryPlace bloklangan),
+  // lekin oxirgi muhokama uchun to'g'ri tartib doskada ko'rinishi kerak edi — imkoni yo'q edi.
+  // Shu tugma chiziqni qadam-baqadam to'ldiradi. Javob mentor nomidan YOZILMAYDI.
+  const [revealing, setRevealing] = useState(false);
+  const revT = useRef(null);
+  useEffect(() => () => clearTimeout(revT.current), []);
+  const mentorReveal = () => {
+    if (revealing || done) return;
+    setRevealing(true);
+    const step = (k) => {
+      setPlaced(QADAMLAR.slice(0, k).map(q => q.id));
+      if (k < QADAMLAR.length) revT.current = setTimeout(() => step(k + 1), 620);
+      else setRevealing(false);
+    };
+    step(1);
+  };
   useEffect(() => {
-    if (done && (storedAnswer === undefined || !storedAnswer.solved)) {
+    if (done && !isMentor && (storedAnswer === undefined || !storedAnswer.solved)) {
       onAnswer(screen, { stage: 'tartib', screenIdx: screen, placed, solved: true, correct: true });
       if (live && live.mode === 'student') live.submitAnswer(PRACTICE_BASE + screen, 'tartib', 0, true, 0);
     }
@@ -1608,10 +1625,12 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <Mentor>{tr({ uz: <>Ishni qabul qilish tartibi aralashib ketdi. Chiziqda <b style={{ color: T.ink }}>?</b> turgan katak — hozir shuni qidiryapmiz. Mos kartani bosing.</>, ru: <>Порядок приёмки работы перемешался. Клетка со знаком <b style={{ color: T.ink }}>?</b> на линии — её мы сейчас и ищем. Нажмите подходящую карточку.</> })}</Mentor>
         {!done && (
           <div className="itray">
-            <span className="itray-lbl">✋ {tr({ uz: `Qaysi qadam ${tr(S9_ORD[placed.length])} bo'ladi?`, ru: `Какой шаг идёт ${tr(S9_ORD[placed.length])}?` })} <span className="itray-arrow">↓</span></span>
+            {isMentor
+              ? <span className="itray-lbl" style={{ color: T.blue }}>👀 {tr({ uz: "Bu topshiriqni o'quvchilar bajaradi — siz kuzatasiz", ru: 'Это задание выполняют ученики — вы наблюдаете' })}</span>
+              : <span className="itray-lbl">✋ {tr({ uz: `Qaysi qadam ${tr(S9_ORD[placed.length])} bo'ladi?`, ru: `Какой шаг идёт ${tr(S9_ORD[placed.length])}?` })} <span className="itray-arrow">↓</span></span>}
             <div className="ipool">
               {S9_ARALASH.map(id => placed.includes(id) ? null : (
-                <button key={id} type="button" className={`qstep${miss === id ? ' miss' : ''}${turnCls(lit, id, qolgan.length > 1)}`} onClick={() => tryPlace(id)}>
+                <button key={id} type="button" disabled={isMentor} className={`qstep${miss === id ? ' miss' : ''}${turnCls(lit, id, qolgan.length > 1)}`} onClick={() => tryPlace(id)}>
                   <span className="qstep-ic">{Q_BY_ID[id].ic}</span><span className="qstep-t">{tr(Q_BY_ID[id].t)}</span>
                 </button>
               ))}
@@ -1631,6 +1650,12 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             );
           })}
         </div>
+        {/* Mentor uchun yagona harakat: javobni doskaga chiqarish (naqsh — MentorTestStats reveal) */}
+        {isMentor && !done && (
+          <button className="mstats-reveal" style={{ alignSelf: 'flex-start' }} onClick={mentorReveal} disabled={revealing}>
+            ✅ {tr({ uz: "To'g'ri tartibni ko'rsatish", ru: 'Показать правильный порядок' })}
+          </button>
+        )}
         {/* YORDAM-savoli ekran boshida TURMAYDI: faqat birinchi xatodan keyin ochiladi */}
         {missedOnce && !done && (
           <div className="col" style={{ gap: 7 }}>
@@ -1745,6 +1770,9 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   }));
   const { code, done } = st;
   useEffect(() => () => clearTimeout(missT.current), []);
+  // F-0824-08: kod oynasi masshtabi — qo'sh-zoom va past-ekran qirqilishi, ikkalasi
+  // bitta joyda. Batafsil izoh: src/compilator/useCompilerScale.js
+  const hcScale = useCompilerScale();
   const gateOk = GATE_ITEMS.every(g => marks[g.id] !== undefined);
   const stage2 = gateOk || isMentor || done;
   const openHint = useTurnHint(stage2 && !done && !open && !isMentor);
@@ -1858,7 +1886,7 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       {/* To'liq-ekran qobiq (Htmllesson1 naqshi): kompilyator `.stage-content` ichida qisilib
           qolsa, shart-chiplari (.hc-top) va «Davom etish» (.hc-bottom) ekrandan tashqarida qoladi. */}
       {open && (
-        <div style={{ position: 'fixed', inset: 0, zIndex: 2000, background: T.bg }}>
+        <div style={{ position: 'fixed', inset: 0, zIndex: 2000, background: T.bg, ...hcScale }}>
           <HtmlCompiler lang={__lang} task={KOD_TASK} starterCode={code || tr(KOD_STARTER)} storageKey={`${KODING_KEY}:code`}
             onContinue={finishPractice} onBack={() => { setOpen(false); writeKodingOpen(false); }} />
         </div>
@@ -3120,6 +3148,9 @@ const CSS_LESSON = `
   .qstep { display: inline-flex; align-items: center; gap: 8px; text-align: left; background: ${T.paper}; border: none; border-radius: 12px; padding: 9px 13px; cursor: pointer; box-shadow: 0 7px 16px -7px rgba(${T.shadowBase},0.28), inset 0 0 0 1.5px ${T.line}; transition: transform 0.14s, box-shadow 0.14s; min-width: 0; max-width: 100%; }
   .qstep:hover { transform: translateY(-2px); box-shadow: 0 12px 22px -8px rgba(${T.shadowBase},0.34), inset 0 0 0 1.5px ${T.accent}66; }
   .qstep:active { transform: translateY(0) scale(0.98); }
+  /* 142-qonun: mentor rejimida karta bosilmaydi — bu KO'RINIB tursin, jim qaytmasin */
+  .qstep:disabled { cursor: default; opacity: 0.5; box-shadow: 0 3px 8px -7px rgba(${T.shadowBase},0.2), inset 0 0 0 1.5px ${T.line}; }
+  .qstep:disabled:hover { transform: none; box-shadow: 0 3px 8px -7px rgba(${T.shadowBase},0.2), inset 0 0 0 1.5px ${T.line}; }
   /* Rad etilgan karta yuqoriga sakrab QAYTADI — «qabul qilinmadi» ko'z bilan ko'rinadi.
      Ilgari faqat silkinardi va joyidan qimirlamasdi: «hech narsa bo'lmadi» taassuroti. */
   .qstep.miss { box-shadow: inset 0 0 0 2px ${T.err}; background: ${T.errSoft}; animation: qstep-reject 0.46s cubic-bezier(.3,1.2,.5,1); }

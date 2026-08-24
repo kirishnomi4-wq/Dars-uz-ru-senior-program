@@ -1330,8 +1330,20 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </Col>
           <Col>
             <div className="maprow"><MethodBadge method="PUT" big /><span className="maparrow">=</span><span className="mono" style={{ color: T.ink }}>{tr({ uz: "UPDATE (o'zgartirish)", ru: 'UPDATE (изменение)' })}</span></div>
+            <p className="flow-label" style={{ margin: '2px 0 0' }}>{tr({ uz: "Do'kon sayti — /api/products", ru: 'Сайт магазина — /api/products' })}</p>
+            <div className="shopmock col">
+              {PRODUCTS.map(p => {
+                const hit = sent && p.id === 1;
+                return (
+                  <div key={p.id} className={`shop-card${hit ? ' hit' : ''}`}>
+                    <span className="shop-name">{p.nom}</span>
+                    <span className="shop-narx">{hit && <span className="narx-old">{fmtNarx(p.narx)}</span>}<span className={hit ? 'narx-new' : ''}>{fmtNarx(hit ? body.narx : p.narx)}</span> {tr({ uz: "so'm", ru: 'сум' })}</span>
+                  </div>
+                );
+              })}
+            </div>
             {sent
-              ? <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Klaviatura narxi 120 000 → <b>99 000</b> bo'ldi. URL'dagi <b>/1</b> serverga qaysi qatorni o'zgartirishni aytdi (bazadagi WHERE id=1 kabi).</>, ru: <>Цена клавиатуры стала 120 000 → <b>99 000</b>. <b>/1</b> в URL сказал серверу, какую строку менять (как WHERE id=1 в базе).</> })}</p></div>
+              ? <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Klaviatura narxi yangilandi — qolgan ikki mahsulot <b>o'zgarmadi</b>. URL'dagi <b>/1</b> serverga aynan qaysi qatorni o'zgartirishni aytdi (bazadagi WHERE id=1 kabi).</>, ru: <>Цена клавиатуры обновилась — два других товара <b>не изменились</b>. <b>/1</b> в URL сказал серверу, какую именно строку менять (как WHERE id=1 в базе).</> })}</p></div>
               : <div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: <>URL oxiridagi <b>/1</b> — bu mahsulotning id'si. PUT'da u shart: aks holda qaysisini yangilashni server bilmaydi.</>, ru: <><b>/1</b> в конце URL — это id товара. Для PUT он обязателен: иначе сервер не знает, что обновлять.</> })}</p></div>}
           </Col>
         </div>
@@ -1365,8 +1377,20 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </Col>
           <Col>
             <div className="maprow"><MethodBadge method="DELETE" big /><span className="maparrow">=</span><span className="mono" style={{ color: T.ink }}>{tr({ uz: "DELETE (o'chirish)", ru: 'DELETE (удаление)' })}</span></div>
+            <p className="flow-label" style={{ margin: '2px 0 0' }}>{tr({ uz: "Do'kon sayti — /api/products", ru: 'Сайт магазина — /api/products' })}</p>
+            <div className="shopmock col">
+              {PRODUCTS.map(p => {
+                const gone = sent && p.id === 3;
+                return (
+                  <div key={p.id} className={`shop-card${gone ? ' gone' : ''}`}>
+                    <span className="shop-name">{p.nom}</span>
+                    <span className="shop-narx">{fmtNarx(p.narx)} {tr({ uz: "so'm", ru: 'сум' })}</span>
+                  </div>
+                );
+              })}
+            </div>
             {sent
-              ? <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "3-mahsulot (Quloqchin) o'chirildi. DELETE'da ham URL'dagi id juda muhim — aks holda noto'g'ri narsa o'chib ketishi mumkin.", ru: 'Товар 3 (Quloqchin) удалён. В DELETE id в URL тоже очень важен — иначе можно удалить не то.' })}</p></div>
+              ? <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Uchinchi qator — <b>Quloqchin</b> — ro'yxatdan chiqdi, qolgan ikkitasi joyida. DELETE'da URL'dagi id juda muhim: noto'g'ri raqam — noto'g'ri mahsulot o'chadi.</>, ru: <>Третья строка — <b>Quloqchin</b> — ушла из списка, остальные две на месте. В DELETE id в URL очень важен: неверный номер — удалится не тот товар.</> })}</p></div>
               : <div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: 'DELETE — eng "xavfli" method. Shuning uchun id aniq bo\'lishi shart.', ru: 'DELETE — самый «опасный» метод. Поэтому id должен быть точным.' })}</p></div>}
           </Col>
         </div>
@@ -2957,6 +2981,22 @@ export default function ApiPostmanLesson({ lang: langProp, onFinished }) {
         .shop-card { flex: 1; min-width: 84px; background: #fff; border-radius: 11px; padding: 11px; box-shadow: 0 4px 14px -6px rgba(${T.shadowBase},0.18); display: flex; flex-direction: column; gap: 5px; align-items: flex-start; }
         .shop-name { font-family: 'Source Serif 4', serif; font-weight: 600; font-size: 13.5px; color: ${T.ink}; }
         .shop-narx { font-family: 'JetBrains Mono'; font-size: 11.5px; color: ${T.accent}; font-weight: 700; }
+        /* F-0824-07: PUT va DELETE ekranlarida o'zgarish KO'RSATILADI, aytilmaydi.
+           Ilgari yashil quti «narxi 120 000 dan 99 000 ga tushdi» derdi, lekin eski narx
+           ekranda umuman yo'q edi — o'quvchi faqat o'zi yuborgan raqamni ko'rardi.
+           Do'kon maketi 0-ekranda tanishtirilgan, ya'ni yangi obraz kiritilmayapti.
+           Ustun ko'rinishi: uchta qator, faqat bittasi o'zgaradi — bu WHERE id=1 ni
+           so'zsiz tushuntiradi. Eski qiymat ustiga chizilib QOLADI: yo'qolib ketsa,
+           o'quvchi uchun bu yana oddiy raqam almashuvi bo'lardi. */
+        .shopmock.col { flex-direction: column; gap: 7px; }
+        .shopmock.col .shop-card { flex: none; width: 100%; flex-direction: row; align-items: center; justify-content: space-between; gap: 10px; transition: box-shadow 0.25s, opacity 0.45s, transform 0.45s; }
+        .shop-card.hit { box-shadow: inset 0 0 0 2px ${T.success}, 0 6px 18px -7px rgba(${T.shadowBase},0.24); animation: shop-hit 0.75s cubic-bezier(.3,1.2,.5,1); }
+        @keyframes shop-hit { 0% { transform: scale(1); } 34% { transform: scale(1.035); } 100% { transform: scale(1); } }
+        .shop-card.gone { opacity: 0.34; transform: translateX(14px); box-shadow: none; }
+        .shop-card.gone .shop-name, .shop-card.gone .shop-narx { text-decoration: line-through; color: ${T.ink3}; }
+        .narx-old { color: ${T.ink3}; text-decoration: line-through; font-weight: 600; margin-right: 7px; }
+        .narx-new { color: ${T.success}; }
+        @media (prefers-reduced-motion: reduce) { .shop-card.hit { animation: none; } .shopmock.col .shop-card { transition: none; } }
         .flyrow { display: flex; align-items: center; gap: 10px; }
         .flynode { font-family: 'Manrope'; font-weight: 700; font-size: 12px; color: ${T.ink}; background: ${T.paper}; padding: 8px 12px; border-radius: 9px; box-shadow: 0 4px 12px -6px rgba(${T.shadowBase},0.16); }
         .flytrack { position: relative; flex: 1; height: 26px; }

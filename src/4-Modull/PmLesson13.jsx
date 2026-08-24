@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef, createContext, useContext, useCallb
 // Kod kompilyatori — UMUMIY modul (F-0809-05 · GATE S 3-qarori). Tugma bilan ochiladigan
 // to'liq-ekran asbob, shuning uchun CodeStrike brendida (PM_DARS_ETALON 1-bo'lim istisnosi).
 import HtmlCompiler, { checks as C } from '../compilator/HtmlCompiler.jsx';
+import { useCompilerScale } from '../compilator/useCompilerScale.js';
 const MENTOR_IMG = 'https://go.coddycamp.uz/uploads/media_library/c7b711619071c92bef604c7ad68380dd.png';
 
 // ============================================================
@@ -246,7 +247,7 @@ function LiveBigCode({ pin, onClose }) {
     <div style={overlay}>
       <div style={{ fontSize: 'clamp(13px,2vw,18px)', fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: LT.accent, marginBottom: 'clamp(14px,3vw,28px)' }}>{tr({ uz: "Jonli darsga qo'shilish", ru: 'Подключение к живому уроку' })}</div>
       <div style={{ display: 'flex', gap: 'clamp(6px,1.4vw,16px)', justifyContent: 'center', flexWrap: 'wrap' }}>{digits.map((d, i) => <span key={i} style={box}>{d}</span>)}</div>
-      <p style={{ color: '#fff', opacity: 0.85, fontSize: 'clamp(15px,2.2vw,22px)', maxWidth: 640, margin: 'clamp(20px,4vw,36px) 0 0', lineHeight: 1.5 }}>{tr({ uz: <>Shu darsni o'z qurilmangizda oching → <b style={{ color: '#fff' }}>«Darsga qo'shilish»</b> oynasida ushbu kodni va ismingizni kiriting.</>, ru: <>Откройте этот урок на своём устройстве → в окне <b style={{ color: '#fff' }}>«Подключиться к уроку»</b> введите этот код и своё имя.</> })}</p>
+      <p style={{ color: '#fff', opacity: 0.85, fontSize: 'clamp(15px,2.2vw,22px)', maxWidth: 640, margin: 'clamp(20px,4vw,36px) 0 0', lineHeight: 1.5 }}>{tr({ uz: <>Shu darsni o'z qurilmangizda oching → <b style={{ color: '#fff' }}>«Darsga qo'shilish»</b> oynasida shu kodni va ismingizni kiriting.</>, ru: <>Откройте этот урок на своём устройстве → в окне <b style={{ color: '#fff' }}>«Подключиться к уроку»</b> введите этот код и своё имя.</> })}</p>
       <button onClick={onClose} style={{ marginTop: 'clamp(22px,4vw,40px)', background: LT.accent, color: '#fff', border: 'none', borderRadius: 14, padding: 'clamp(12px,1.6vw,16px) clamp(24px,3vw,36px)', fontSize: 'clamp(15px,1.8vw,18px)', fontWeight: 700, cursor: 'pointer' }}>{tr({ uz: 'Darsni boshlash →', ru: 'Начать урок →' })}</button>
     </div>
   );
@@ -1751,6 +1752,9 @@ const KOD_TASK = {
 };
 
 const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
+  // F-0824-08: kod oynasi masshtabi — qo'sh-zoom va past-ekran qirqilishi, ikkalasi
+  // bitta joyda. Batafsil izoh: src/compilator/useCompilerScale.js
+  const hcScale = useCompilerScale();
   const gate = useContext(LiveGateCtx) || {};
   const live = gate.live;
   const isMentor = !!(live && live.mode === 'mentor');
@@ -1865,7 +1869,7 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       {/* To'liq-ekran qobiq (Htmllesson1 naqshi): kompilyator `.stage-content` ichida qisilib
           qolsa, shart-chiplari va «Davom etish» ekrandan tashqarida qoladi. */}
       {open && (
-        <div style={{ position: 'fixed', inset: 0, zIndex: 2000, background: T.bg }}>
+        <div style={{ position: 'fixed', inset: 0, zIndex: 2000, background: T.bg, ...hcScale }}>
           <HtmlCompiler lang={__lang} task={KOD_TASK} starterCode={code || tr(KOD_STARTER)} storageKey={`${KODING_KEY}:code`}
             onContinue={finishPractice} onBack={() => { setOpen(false); writeKodingOpen(false); }} />
         </div>

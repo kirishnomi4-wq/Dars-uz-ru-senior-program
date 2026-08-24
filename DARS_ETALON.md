@@ -2102,3 +2102,154 @@ Bu 129-qonun («bo'sh apparat») ning his-tuyg'u tomoni: mazmunsiz marosim ham
 **Ikkitadan ko'p bo'lsa** (dars-ichi + yakun) — har ortiqchasi asoslanishi shart.
 Savol: «bu lahza o'quvchi uchun **birinchi marta**mi?» Yo'q bo'lsa — marosim olib
 tashlanadi, o'rniga tasdiq qoladi.
+
+---
+
+## 11-F. 👆 142-QONUN: MAJBURIY HARAKAT KO'RINSIN VA NAVBAT AYTILSIN (2026-08-24, F-0824-01)
+
+**Kelib chiqishi:** `ReactPropsReuseLesson` 8-ekrani. `.btn-soft` sinfida
+`background: ${T.bg}` (sahifa fonining AYNAN o'zi) + `border: none` edi — tugma
+pikselda oddiy matnga aylangan. O'quvchi faqat ko'rinadigan ikkinchi tugmani bosgan,
+birinchisi (ataylab **muvaffaqiyatsiz** bo'ladigan qadam) o'tkazib yuborilgan.
+Natija: dars dramaturgiyasi (xato → xulosa → to'g'ri yo'l) yo'qolgan, pastki tugma
+esa `disabled` holda «Ikkala usulni sinang» deb turgan — **qaysi biri qolganini
+aytmagan**. O'quvchi tiqilib qolgan.
+
+### a) Bosiladigan narsa fondan farq qilishi SHART
+Har `<button>` uchun kamida bittasi bo'lsin: **to'ldirilgan rang** · **oq yuza + 1px
+ramka** · **ko'rinadigan soya**. Taqiq: `background` sahifa foniga teng VA `border: none`
+VA soyasiz — bu uchlik affordansni nolga tushiradi. Ikkilamchi tugma «sokin» bo'lishi
+mumkin, lekin **ko'rinmas** bo'lolmaydi.
+
+### b) Navbat ko'rsatkichi — e'tibor faqat KEYINGI qadamda
+Ekran 2+ harakatni talab qilsa va `NavNext` shunga bog'lansa:
+
+| Qadam holati | Ko'rinishi |
+|---|---|
+| Navbat shu qadamda | asosiy (accent) + yengil pulsatsiya (`.btn-turn`) |
+| Hali navbat kelmagan | sokin ikkilamchi (`.btn-soft`) |
+| Bajarilgan | sokin yashil + ✓ (`.btn-did`), e'tibor tortmaydi |
+
+Naqsh: `className={done1 ? 'btn-soft btn-did' : 'btn btn-turn'}`. Holat tugma-tartibiga
+emas, **bajarilganlik holatiga** bog'lanadi — o'quvchi tartibni buzib bossa ham
+ko'rsatkich o'zini to'g'rilaydi. Pulsatsiya `prefers-reduced-motion: reduce` da o'chadi,
+rang-farq qoladi.
+
+### c) Bloklangan `NavNext` yorlig'i qolgan qadamni ATAB aytadi
+❌ «Ikkala usulni sinang» → ✅ «1-usulni sinang» / «2-usulni sinang».
+Yorliq — yagona bosilmaydigan element, shuning uchun u **ayblov emas, ko'rsatma**
+bo'lishi kerak.
+
+**Tekshirish (audit-bandi):** darsdagi har CSS tugma-sinfini fon rangi bilan solishtiring
+(`grep -n "btn-\w*\s*{" <fayl>` → `background` qiymati `T.bg` bo'lsa — buzuq).
+So'ng `disabled={!done}` bo'lgan har `NavNext` uchun: yorlig'i qolgan qadamni nomma-nom
+aytyaptimi? Yo'q bo'lsa — 142-c buzilgan.
+
+---
+
+## 11-G. 🖥 143-QONUN: MENTOR REJIMIDA BLOK KO'RINSIN, JAVOB DOSKAGA CHIQSIN (2026-08-24, F-0824-02)
+
+**Kelib chiqishi:** `PmLesson9` (m3-10) 9-ekrani. Mentor rejimida `tryPlace` boshida
+`if (done || isMentor) return;` turadi — bu **to'g'ri qaror** (topshiriqni o'quvchilar
+o'z qurilmasida bajaradi, mentor ekrani — proyektor). Lekin kartalarda `disabled`
+atributi yo'q edi: hover ishlaydi, kursor ko'rsatkich, ko'rinishi tirik. Mentor bosadi —
+javob yo'q. Xulosa: «dars buzuq». Shu faylning o'zida boshqa hamma joyda
+(`:760` test varianti · `:975` ilgak · `:2532` arena plitkasi) mentor-bloki `disabled`
+bilan **ko'rinadigan** qilingan — bitta ekran naqshdan chetga chiqib qolgan.
+
+### a) `isMentor` bilan bloklangan har element `disabled` ham bo'lsin
+Mantiqiy blok (`if (isMentor) return`) **hech qachon yolg'iz turmaydi**. Uning yonida
+doim: `disabled={isMentor}` + sinfda `:disabled` uslubi (kursor, xiralik, hover o'chadi).
+Jim qaytadigan `onClick` — bu buzuq mahsulot signali, boshqa emas.
+
+### b) Mentor nima uchun bloklanganini O'QISHI kerak
+Vazifa-yorlig'i mentor rejimida almashadi: «✋ Qaysi qadam birinchi bo'ladi?» →
+«👀 Bu topshiriqni o'quvchilar bajaradi — siz kuzatasiz». `MentorNote` ichidagi uzun
+xatboshi buni **hisobga olmaydi** — u ekranning pastida, blok esa tepada.
+
+### c) Har tekshiruv-ekranida mentorga JAVOBNI OCHISH yo'li bo'lsin
+Ekranning ma'nosi ko'pincha oxirgi sinf-muhokamasida. Agar mentor to'g'ri javobni
+doskaga chiqara olmasa — muhokama o'tkazib bo'lmaydi. Naqsh tayyor:
+`MentorTestStats` → `onReveal` (`.mstats-reveal` tugmasi). Yangi mexanika o'ylab
+topilmaydi, shu rels ishlatiladi. Ochilish **qadam-baqadam** bo'lsin (bir zumda emas) —
+sinf ketma-ketlikni ko'zi bilan kuzatsin.
+
+### d) Reveal javobni MENTOR nomidan yozmaydi
+Ochish `onAnswer` / `live.submitAnswer` ni ishga tushirmasligi shart
+(`if (done && !isMentor && …)`) — aks holda mentor statistikasi o'z-o'zini bo'yaydi.
+
+**Tekshirish (audit-bandi):** `grep -n "isMentor" <fayl>` → har `return` li blok uchun
+o'sha elementda `disabled` bormi? Keyin: `disabled={!done && !isMentor}` bo'lgan har
+tekshiruv-ekranida mentor javobni ocha oladimi? Yo'q bo'lsa — 143-c buzilgan.
+
+---
+
+## 11-H. ⌨️ 144-QONUN: KO'CHIRIB YOZILADIGAN KOD SIG'SIN VA AYNAN KO'RINSIN (2026-08-24, F-0824-06)
+
+**Kelib chiqishi:** `NodeServerLesson` (m4-04) 18-ekrani — VS Code amaliyoti. O'quvchi
+oltita bosqichni o'z kompyuteriga **qo'l bilan ko'chiradi**. Uchinchi bosqichdagi kod
+karta chegarasidan chiqib ketgan, ustiga `=>` ekranda `⇒` bo'lib chizilgan.
+
+### a) Kod-chipi idishidan chiqmasin
+Umumiy chip-sinfida `white-space: nowrap` turadi va bu **qisqa chip uchun to'g'ri** —
+`npm install` o'rtasidan uzilmasligi kerak. Lekin chip qatordan uzun bo'lsa, u
+**ko'chirilmaydi va idishdan tashqariga chiqadi** (idishda `overflow` cheklovi yo'q).
+Uzilish faqat chiplar **orasida** bo'ladi, chipning **ichida** hech qachon.
+
+Ko'chirish-ro'yxatida qoida qayta yoziladi:
+```
+white-space: pre-wrap;        /* kodning o'z bo'shliqlari saqlanadi, bo'shliqda ko'chadi */
+overflow-wrap: break-word;    /* bitta uzluksiz so'z qatordan uzun bo'lsa — himoya to'ri */
+```
+🔴 `nowrap` ni `normal` ga almashtirish **xato**: kod ichidagi ketma-ket bo'shliqlar
+yig'ilib ketadi va tekislash buziladi. Aynan `pre-wrap`.
+
+### b) Ligatura ko'chiriladigan joyda o'chadi
+JetBrains Mono `=>` ni bitta `⇒` glifiga qo'shadi. O'qish uchun chiroyli, **ko'chirish
+uchun zararli**: o'quvchi klaviaturadan `⇒` ni qidiradi. Ko'chiriladigan har joyda:
+```
+font-feature-settings: "liga" 0, "calt" 0;
+```
+Pretsedent tayyor edi: `HtmlCompiler.jsx` klaviatura tugmalarida shu allaqachon qo'yilgan.
+
+### c) Chegara — faqat KO'CHIRILADIGAN kontekst
+Test, flashcard va proza ichidagi qisqa chiplarga tegilmaydi: u yerda kod **o'qiladi**,
+ko'chirilmaydi; `nowrap` ham, ligatura ham zarar qilmaydi. Shuning uchun qoida umumiy
+chip-sinfiga emas, ro'yxat-sinfi bilan **juftlab** yoziladi (`.lp-step .qcode` kabi).
+
+**Tekshirish (audit-bandi):** amaliyot/ko'chirish ro'yxatidagi har chipni sanang —
+**45 belgidan uzun** bo'lsa, ustunga sig'ishi ekranda tekshiriladi. Kodda `=>` `->`
+`>=` `!==` `===` bo'lsa — ligatura o'chirilganini tasdiqlang.
+
+---
+
+## 11-I. 🧩 145-QONUN: `className` E'LONI BILAN JUFT YURADI (2026-08-24, F-0824-10)
+
+**Kelib chiqishi:** m4c-05 (`AiPipelineProjectLesson`) 7-ekrani. Ikki tugma `vcard` ·
+`role-ico` · `vlbl` · `vseen` sinflarini ishlatardi — faylda to'rttasining ham e'loni
+**nol** edi. Brauzer standart `<button>` ni chizdi: matn markazda, ichki bo'shliqsiz,
+soyasiz, radiussiz; `.vseen { margin-left: auto }` yo'qligi uchun ✓ o'ngga ketmadi.
+Foydalanuvchi savoli aynan shu edi: «dizayni shunaqami yoki CSS berilmay qolganmi?»
+
+### a) Sinf ishlatilsa — o'sha faylda e'lon qilinishi SHART
+Har dars o'z `<style>` blokini olib yuradi (LMS uchun mustaqil bo'lishi kerak). Demak
+boshqa darsdan sinf **meros olinmaydi**: nusxa ko'chirilgan JSX bilan birga uning CSS
+bloki ham ko'chirilishi kerak. Aks holda ekran «biroz boshqacha» emas, **bezaksiz**
+chiqadi.
+
+### b) Bu JIM buzilish — hech bir darvoza ko'rmaydi
+`esbuild` ✓ · `lint:jsx` ✓ · `lint:dark` ✓ · `lint:til` ✓ — hammasi toza, ekran esa
+buzuq. Sabab: yo'q sinf JS xatosi emas, u shunchaki hech narsa qilmaydi. Shuning uchun
+bu sinf **faqat ko'z bilan** yoki maxsus detektor bilan tutiladi.
+
+### c) Tuzatishda qiymat O'YLAB TOPILMAYDI
+Sinf loyihada allaqachon mavjud bo'lsa (`.vcard` — **26 darsda**), qiymatlar **o'sha
+modulning** darsidan ko'chiriladi. Yangi dizayn o'ylash — modul ichida ikkinchi xil
+ko'rinish yaratadi. m4c-05 uchun manba: `4c-Modull/FullPipelineProjectLesson.jsx`.
+
+**Tekshirish (audit-bandi):** faylning `className` larini yig'ing va `<style>` dagi
+e'lonlar bilan solishtiring:
+```
+className="X" bor · .X e'loni yo'q  →  jim buzilish
+```
+Bu grep bilan tutiladigan sinf — `lint:jsx` ga ov-bandi bo'ladi (`KATTA_TOZALASH` 28-band).
