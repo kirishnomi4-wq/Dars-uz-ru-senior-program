@@ -28,11 +28,14 @@ const idOf = (file) =>
 const args = process.argv.slice(2);
 // html-compiler.jsx (tashqi modul) va *.shared.jsx (tashqi-modulli darslar) bu
 // smoke'ga mos emas — ular scripts/smoke-shared.mjs bilan tekshiriladi.
-const targets = args.length
-  ? [args[0].replace(/\\/g, '/')]
-  : readdirSync('lms')
-    .filter((f) => f.endsWith('.jsx') && f !== 'html-compiler.jsx' && !f.endsWith('.shared.jsx'))
-    .map((f) => 'lms/' + f);
+// Chiqish MODUL-papkalariga bo'lingan (lms/3-M, lms/4-M, lms/5-M) — shuning uchun
+// ildiz ham, papkalar ham ko'riladi (2026-08-25). Usiz papkadagi darslar JIMGINA
+// tekshiruvdan tushib qolardi: `.endsWith('.jsx')` papka nomiga tushmaydi, xato ham bermaydi.
+const walk = (dir) => readdirSync(dir, { withFileTypes: true }).flatMap((d) =>
+  d.isDirectory() ? walk(dir + '/' + d.name)
+    : (d.name.endsWith('.jsx') && d.name !== 'html-compiler.jsx' && !d.name.endsWith('.shared.jsx'))
+      ? [dir + '/' + d.name] : []);
+const targets = args.length ? [args[0].replace(/\\/g, '/')] : walk('lms');
 
 const browser = await chromium.launch({ executablePath: CHROME, headless: true });
 
@@ -64,10 +67,30 @@ createRoot(document.getElementById('root')).render(React.createElement(Lesson, {
     `<script>${res.outputFiles[0].text}<\/script></body></html>`;
 
   writeFileSync(page404, mkPage(''), 'utf8');
-  // 2-tekshiruv sahifasi: saqlangan praktika-holati bilan ochiladi — shunda dars
-  // yuklanishi bilan KOMPILYATOR qatlamini chizadi (aynan biz qo'shgan qism).
-  const pageCompiler = join(TMP, `page${i}-compiler.html`);
-  writeFileSync(pageCompiler, mkPage(`localStorage.setItem('ccPractice:${lessonId}','{"kind":"hw"}')`), 'utf8');
+  // 2-tekshiruv sahifalari: saqlangan holat bilan ochiladi — shunda dars yuklanishi
+  // bilan KOMPILYATOR qatlamini chizadi. Kompilyatorga yetishning IKKI naqshi bor
+  // (2026-08-25: PM naqshi smoke-shared.mjs dan ko'chirildi — usiz PmLesson1/2/3/4/9/
+  // 11/13/15/17 «KOMPILYATOR OCHILMADI» berardi, holbuki darsning o'zi butun edi):
+  //   · texnik darslar: `ccPractice:<id>` = {kind:'hw'} — uy-vazifa oqimi kompilyatorni ochadi
+  //   · PM darslar (hw yo'q): KODING-ekranga sakrash (ccProgress) + `<KODING_KEY>` = {open:true}
+  const lessonSrc = readFileSync(target, 'utf8');
+  const kodingKey = (/KODING_KEY\d*\s*=\s*['"]([^'"]+)['"]/.exec(lessonSrc) || [])[1];
+  const metaBody = (/SCREEN_META\d*\s*=\s*\[([\s\S]*?)\n\];/.exec(lessonSrc) || [])[1] || '';
+  const metaRows = metaBody.split('\n').filter((l) => /\{\s*id:/.test(l));
+  const kodingIdx = metaRows.findIndex((l) => /type:\s*['"]koding['"]/.test(l));
+  // KODING-ekran `type:'koding'` deb belgilanmagan darslar — nomzodlar: practice-qatorlar
+  // OXIRIDAN (KODING odatda oxirgi praktika); birinchi ochilgan nomzod yetadi.
+  const kodingCandidates = kodingIdx !== -1 ? [kodingIdx]
+    : metaRows.map((l, k) => (/type:\s*['"]practice['"]/.test(l) ? k : -1)).filter((k) => k !== -1).reverse();
+  const seedFor = (idx) => (kodingKey && idx !== -1)
+    ? `localStorage.setItem('ccProgress:${lessonId}',JSON.stringify({screen:${idx},answers:{},earned:[],startedAt:Date.now(),total:${metaRows.length},savedAt:Date.now()}));` +
+      `localStorage.setItem(${JSON.stringify(kodingKey)},'{"open":true}');`
+    : `localStorage.setItem('ccPractice:${lessonId}','{"kind":"hw"}')`;
+  const compilerPages = (kodingKey && kodingCandidates.length ? kodingCandidates : [-1]).map((idx, k) => {
+    const p = join(TMP, `page${i}-compiler${k || ''}.html`);
+    writeFileSync(p, mkPage(seedFor(idx)), 'utf8');
+    return p;
+  });
 
   // 2) Brauzerda ochamiz
   const ctx = await browser.newContext({ viewport: { width: 1280, height: 800 } });
@@ -102,16 +125,26 @@ createRoot(document.getElementById('root')).render(React.createElement(Lesson, {
   const noCompiler = !/hc-root/.test(readFileSync(target, 'utf8').replace(/^\/\/.*$/gm, ''));   // izoh-sarlavhasiz (u HtmlCompiler'ni har doim tilga oladi)
   let hc = noCompiler;
   const shotHc = join(TMP, basename(target) + '-kompilyator.png');
-  if (noCompiler) { /* o'tkazildi */ } else try {
-    const p2 = await ctx.newPage();
-    p2.on('pageerror', (e) => errs.push('PAGEERROR(kompilyator): ' + String(e.message).slice(0, 110)));
-    await p2.goto('file:///' + pageCompiler.replace(/\\/g, '/'), { waitUntil: 'domcontentloaded', timeout: 20000 });
-    await p2.waitForSelector('.hc-root', { timeout: 15000 });
-    await p2.waitForTimeout(600);
-    hc = await p2.evaluate(() => !!document.querySelector('.hc-root textarea.hc-code'));
-    await p2.screenshot({ path: shotHc });
-  } catch (e) {
-    errs.push('KOMPILYATOR OCHILMADI: ' + String(e.message).split('\n')[0].slice(0, 90));
+  if (noCompiler) { /* o'tkazildi */ } else {
+    let last = '';
+    for (const cp of compilerPages) {            // nomzod-urug'lar: birinchi ochilgani yetadi
+      const p2 = await ctx.newPage();
+      const before = errs.length;
+      p2.on('pageerror', (e) => errs.push('PAGEERROR(kompilyator): ' + String(e.message).slice(0, 110)));
+      try {
+        await p2.goto('file:///' + cp.replace(/\\/g, '/'), { waitUntil: 'domcontentloaded', timeout: 20000 });
+        await p2.waitForSelector('.hc-root', { timeout: compilerPages.length > 1 ? 8000 : 15000 });
+        await p2.waitForTimeout(600);
+        hc = await p2.evaluate(() => !!document.querySelector('.hc-root textarea.hc-code'));
+        await p2.screenshot({ path: shotHc });
+      } catch (e) {
+        last = 'KOMPILYATOR OCHILMADI: ' + String(e.message).split('\n')[0].slice(0, 90);
+      }
+      await p2.close();
+      if (hc) break;
+      errs.length = before;                      // ochilmagan nomzodning xatolari hisobga olinmaydi
+    }
+    if (!hc && last) errs.push(last);
   }
   await ctx.close();
 

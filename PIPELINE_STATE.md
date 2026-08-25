@@ -6633,3 +6633,125 @@ demo-yuzasida — `5-Modull/BotAiProjectLesson` (54) · `6-Modull/ReactNativeApp
 `lint:jsx` ov-bandiga aynan ko'chiriladi.
 
 **Commit YO'Q** (buyruqsiz).
+
+---
+
+## 2026-08-24 — F-0824-10 · m4c-05 tugmalari bezaksiz edi: CSS bloki tushib qolgan
+
+**Foydalanuvchi savoli (m4c-05, 7-ekran):** «bu tugmalarning dizayni shunaqami o'zi yoki
+CSS lari berilmay qolganmi?» — **CSS berilmay qolgan.**
+
+**Tashxis:** JSX `vcard` · `role-ico` · `vlbl` · `vseen` sinflarini ishlatardi, faylda
+to'rttasining ham e'loni **nol**. Brauzer standart `<button>` ni chizdi (matn markazda,
+ichki bo'shliqsiz, soyasiz); `.vseen { margin-left: auto }` yo'qligi uchun ✓ yorliqqa
+yopishib qolgan edi. Foydalanuvchi ta'rifi aniq edi: «bitta shu boshqacha bo'p qopti».
+
+**Qamrov tekshiruvi:** `.vcard` loyihada **26 darsda** e'lon qilingan, **11 tasida**
+ishlatiladi. Ishlatib, e'lon qilmaydigan aynan **ikkita** fayl bor edi, ikkalasi ham 4c da:
+`AiPipelineProjectLesson` (m4c-05) va `CiCdIntroLesson` (m4c-01, ikki joyda).
+
+**Qilindi:** ikkala faylga ham blok qo'shildi. Qiymatlar **o'ylab topilmadi** —
+`4c-Modull/FullPipelineProjectLesson.jsx` dan ko'chirildi, ya'ni modul bo'ylab ko'rinish
+bir xil bo'ladi. Ustiga `:hover` soyasi va `prefers-reduced-motion` guard qo'shildi.
+**Darvozalar:** `npm run gates` (2 fayl) → **5/5 toza**.
+
+🔴 **Bu JIM buzilish edi:** esbuild · jsx · dark · til — **hammasi toza** o'tardi, ekran
+esa bezaksiz. Mavjud darvozalarning birortasi ko'rmaydi.
+
+**Shuning uchun detektor yozildi** va butun loyiha skanerlandi: 133 fayl · **64 tasida
+teshik** · jami **164** e'lonsiz sinf. Eng og'iri —
+`5-Modull/BotFeedbackIterationLesson` (**29** sinf; `.fs-basket` 7 marta ishlatilgan,
+e'loni yo'q — butun bir mexanika bezaksiz). Qo'lda tasdiqlandi.
+⚠️ Skaner hozircha **kam** ko'rsatadi (e'lonlarni butun fayldan yig'adi, `T.paper` kabi
+maydonlar ham «e'lon» sanaladi) — `lint:jsx` ga o'tkazilganda raqam oshadi.
+
+**Muhrlandi:** `DARS_ETALON.md` **145-qonun** (11-I) — (a) sinf o'sha faylda e'lon
+qilinsin (dars mustaqil, meros yo'q), (b) bu jim buzilish, darvoza ko'rmaydi,
+(c) tuzatishda qiymat o'ylab topilmaydi, **o'sha modulning** darsidan ko'chiriladi.
+**Yozib qo'yildi:** `KATTA_TOZALASH.md` **28-band** — 64 fayllik sweep, eng og'irlari
+ro'yxati, skanerning cheklovi va `lint:jsx` ga ov-bandi qilish tartibi bilan.
+
+**Commit YO'Q** (buyruqsiz).
+
+---
+
+## 2026-08-25 — LMS: 3 · 4 · 4a · 4b · 4c modullar yig'ildi (43 dars)
+
+**Vazifa:** foydalanuvchi 43 darsni LMS'ga (CRM) yuklamoqchi. Savol: `src/…` fayllarini
+to'g'ridan-to'g'ri yuklasa bo'ladimi — **yo'q**, avval `build-lms` dan o'tishi shart.
+
+**Tashxis (yuklashdan oldin topilgan uchta to'siq):**
+1. **5 dars umumiy kompilyatorni import qiladi** — `PmLesson9` (3-M) · `PmLesson11`,
+   `PmLesson13` (4-M) · `PmLesson15` (4a) · `PmLesson17` (4c). Qo'lda ko'chirilsa
+   `__lang` takror e'lon bo'lib **oq ekran** beradi; esbuild ularni avtomatik ajratadi.
+2. **`scripts/build-lms.mjs` `SRC_DIRS` faqat 1/2/3-Modull ni ko'rardi** — 4/4a/4b/4c
+   avto-skanerdan tashqarida qolgan. Ro'yxatga qo'shildi.
+3. 🔴 **`PmLesson7` umuman yig'ilmasdi:** `No loader is configured for ".png"` —
+   `../assets/common/mentor.png` (1024×1024, **1.6 MB**) 40px avatar uchun import
+   qilinardi. Loyihada esa allaqachon konvensiya bor: 1-Modul darslari mentor rasmini
+   `MENTOR_IMG` konstantasi bilan **LMS media URL** dan oladi. PmLesson7 yagona istisno edi.
+
+**Qilindi (foydalanuvchi qarori bilan):**
+- **Kompilyator rejimi = ICHIGA QO'SHIB** (`--shared` emas). Sabab: LMS tashqi-modul
+  yo'li hali tasdiqlanmagan (`LMS_TASHQI_MODUL_TZ_v2.md`), ichiga qo'shilgan dars
+  o'zi-yetarli va kafolatli ochiladi. Narxi: 5 dars 443–475 KB.
+- **`PmLesson7`** konvensiyaga tortildi (3 qator): png-import → `MENTOR_IMG` URL
+  (`…/media_library/c7b711619071c92bef604c7ad68380dd.png`), `object-fit: contain +
+  scale(1.12)` → boshqa darslardagidek `object-fit: cover`.
+  `npm run gates` → 4/5; qolgan `dark` topilmasi (`.btn` #0E0E10) **avvaldan bor**,
+  bu tahrirga aloqasiz (diff 3 qator, `.btn` ga tegilmagan).
+- **43 dars yig'ildi** → `lms/*.jsx` (299–475 KB), hammasi 1 ta `react` importi bilan.
+
+🔴 **Yo'l-yo'lakay topilgan JIM darvoza-teshigi:** `smoke:lms` 9 ta PM darsni
+«KOMPILYATOR OCHILMADI» deb qizil qilardi — **PmLesson1/2/3/4 ham**, ya'ni allaqachon
+LMS'da turgan darslar. Sabab darsda emas, harnessda: `smoke-lms.mjs` kompilyatorga
+faqat **texnik** naqsh bilan yetardi (`ccPractice` = `{kind:'hw'}`), PM darslarda esa
+hw yo'q — KODING-ekranga `ccProgress` bilan sakrash + `<KODING_KEY>` = `{open:true}`
+kerak. O'sha urug' `smoke-shared.mjs` da bor edi, `smoke-lms.mjs` da yo'q.
+**Ko'chirildi** (nomzod-urug'lar ketma-ket sinaladi, birinchi ochilgani yetadi).
+**Natija: `npm run smoke:lms` → 68/68 toza** (43 yangi + 25 eski, jumladan PmLesson1–4).
+
+**Yuklashda diqqat:** `lms/PmLesson9.shared.jsx` — **eski tashqi-modulli variant, yuklanmasin**;
+o'rniga `lms/PmLesson9.jsx`.
+
+**Commit YO'Q** (buyruqsiz).
+
+### 2026-08-25 (davomi) — LMS chiqishi MODUL-papkalarga bo'lindi + o'lik dars fosh bo'ldi
+
+**So'rov:** `lms/` ichida `3-M` · `4-M` · `5-M` papkalari bo'lsin, foydalanuvchi to'g'ridan-to'g'ri
+o'shalardan CRM'ga yuklab ketsin. Savol: «shunaqa qilganimiz xavfsizmi?»
+
+**Halol javob — fayllarning o'zi uchun papka farq qilmaydi** (har biri o'zi-yetarli, faqat
+`import … from "react"`). Xavf boshqa joyda edi va ikkitasi haqiqiy bo'lib chiqdi:
+
+1. 🔴 **Ikki nusxa xavfi.** Fayllarni papkaga shunchaki KO'CHIRSAK, `build-lms` keyingi safar
+   yana **ildizga** yozardi — papkadagi nusxa eskirib qolardi va o'sha eski fayl yuklanib
+   ketishi mumkin edi. **Yechim:** yig'uvning chiqish MANZILI o'zgartirildi (`OUT_MAP`,
+   `outDirFor()`) — dars endi to'g'ridan-to'g'ri o'z modul-papkasiga tushadi, ildizda nusxa
+   **qolmaydi**. 43 ta eski ildiz-nusxa o'chirildi (shundan `lms/PmLesson9.jsx` kuzatuvda edi).
+2. 🔴 **Jim tushib qolish.** `smoke-lms.mjs` `readdirSync('lms')` bilan faqat ildizni ko'rardi;
+   papkadagi darslar `.endsWith('.jsx')` filtridan o'tmay, **xato ham bermay** tekshiruvdan
+   chiqib ketardi. `walk()` bilan rekursiv qilindi.
+3. 🔴 **`PmLesson7` — O'LIK DARS.** `src/App.jsx:45`: «PM pipeline P0 (**eski PmLesson7
+   o'rnida**)» — o'sha slotda `src/pm/PmUserStoryLesson.jsx` turadi; `FbDemoApp.jsx` ham
+   PmLesson7 ni umuman chaqirmaydi (yagona ishlatuvchi — `solishtir` dev-vositasi).
+   Ya'ni uni yuklash = **User Story darsining ESKI versiyasini** LMS'ga chiqarish.
+   Chiqishdan olib tashlandi, o'rniga `PmUserStoryLesson` yig'ildi (478 KB ⚙).
+   ⚠️ Shu bilan yuqoridagi yozuvdagi «PmLesson7 tuzatildi» ishi **o'lik faylga** qilingan
+   bo'lib chiqdi — zarari yo'q (fayl konvensiyaga tortildi), lekin LMS'ga aloqasi yo'q.
+
+**Dars TARTIBI o'ylab topilmadi** — `src/fb-demo/FbDemoApp.jsx` dan olindi (n:1…N, tur, sarlavha).
+Shundan ma'lum bo'ldiki kursda bu modullar **4-Modul · 5-Modul · 6-Modul** deb yuritiladi
+(papka nomi foydalanuvchiniki: `3-M` → 4-Modul, `4-M` → 5-Modul, `5-M` → 6-Modul).
+
+**Papka nomlari (foydalanuvchi qarori, o'sha kuni):** chalkashlik bo'lmasin deb papka
+nomi LMS kursidagi modul raqamiga tenglashtirildi — `4-M` · `5-M` · `6-M`
+(lokal `src/3-Modull` → `4-M` · `src/4-Modull` → `5-M` · `src/4a+4b+4c` → `6-M`).
+Nom ikki joyda yashaydi: `scripts/build-lms.mjs` `OUT_MAP` va `scripts/pack-lms.mjs` `FOLDER`.
+
+**Yakuniy holat:** `lms/4-M` 14 dars · `lms/5-M` 15 · `lms/6-M` 14 = **43**.
+Har papkada **`_YUKLASH.md`** — tartib, fayl, dars nomi, `lessonId`, hajm, ⚙ belgisi va
+qayta yig'ish buyrug'i. Ro'yxat generatori: `npm run pack:lms` (`scripts/pack-lms.mjs`).
+**`npm run smoke:lms` → 68/68 toza** (43 yangi papkalarda + 25 eski ildizda).
+
+**Commit YO'Q** (buyruqsiz).

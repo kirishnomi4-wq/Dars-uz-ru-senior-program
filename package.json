@@ -15,6 +15,7 @@
     "smoke": "node _smoke.mjs",
     "build:lms": "node scripts/build-lms.mjs",
     "smoke:lms": "node scripts/smoke-lms.mjs",
+    "pack:lms": "node scripts/pack-lms.mjs",
     "gate:esbuild": "node esbuild-gate.mjs",
     "gates": "node gates.mjs"
   },

@@ -1093,3 +1093,50 @@ ochiq turganda): `const r=document.querySelector('.hc-root'); r.scrollHeight - r
 **Bu band 24-bandni ALMASHTIRMAYDI.** 24-band (`.hc-split` flex, `justify-content`)
 kompilyatorning ichki geometriyasini tuzatadi va **juda past** oynalarda (0.62 polidan
 pastda) kerak bo'ladi. Bu band esa kompilyatorga tegmasdan chegarani suradi.
+
+---
+
+## 28 ⬜ E'LON QILINMAGAN CSS SINFLARI — jim buzilish (64 fayl, 164 sinf)
+
+**Qoida tayyor:** `DARS_ETALON.md` **145-qonun** (11-I) — `className` e'loni bilan juft
+yuradi. Har dars o'z `<style>` blokini olib yuradi, ya'ni sinf boshqa darsdan **meros
+olinmaydi**; nusxa ko'chirilgan JSX bilan CSS bloki ham ko'chirilishi shart.
+
+**Pretsedent:** F-0824-10 — m4c-05 va m4c-01 da `vcard/role-ico/vlbl/vseen` (4 sinf,
+e'lon nol). Ikkalasi ham tuzatildi: qiymatlar `4c-Modull/FullPipelineProjectLesson.jsx`
+dan ko'chirildi, `npm run gates` → 5/5 toza.
+
+🔴 **Nega bu alohida band:** bu **jim** buzilish — `esbuild` · `lint:jsx` · `lint:dark` ·
+`lint:til` **hammasi toza** o'tadi, ekran esa bezaksiz chiqadi. Hech bir mavjud darvoza
+uni ko'rmaydi.
+
+**Skaner natijasi (2026-08-24):** 133 fayl · **64 tasida teshik** · jami **164** e'lonsiz
+sinf. Eng og'irlari:
+
+```
+29  5-Modull\BotFeedbackIterationLesson.jsx        fs · fs-pool · fs-pool-done · fs-chip-wrap · fs-chip · fs-quick · fs-quick-btn · fs-wrong-why · fs-baskets · fs-basket · fs-basket-h · fs-basket-body · fs-placed · fn-row · fn-lbl · fn-track · fn-fill · agent-card · agent-lbl · agent-msg · fs-preview · fs-preview-chip · fn-funnel · fn-step · fn-step-n · fn-step-l · prompt-card · prompt-who · prompt-text
+10  5-Modull\BotApiButtonsLesson.jsx               editor · editor-bar · editor-tab · editor-body · editor-code · gloss · gloss-head · lbl · gloss-toggle · gloss-body
+ 6  1-Modull\GitLesson.jsx                         term · term-row · term-prompt · term-cmd · term-ok · term-out
+ 6  2-Modull\PracticeLesson2.jsx                   lp-draft · lg-dot · takeaway · ta-bulb · ta-h · ta-sub
+ 6  3-Modull\ReactFirstComponentLesson.jsx         prop-flow · prop-arrow · prop-step · prop-dot · prop-txt · prop-token
+ 5  2-Modull\PracticeLesson4.jsx                   takeaway · ta-bulb · ta-h · ta-sub · in
+ 4  1-Modull\Htmllesson1.jsx                       tg-post · ladder-stair · hw-sky · hw-tok
+ 4  3-Modull\PmLesson8.jsx                         no · karta · rang · hw
+ 3  1-Modull\CssLesson1.jsx                        in · hw-sky · hw-tok
+```
+
+`BotFeedbackIterationLesson` qo'lda tasdiqlandi: `.fs-basket` **7 marta** ishlatilgan,
+e'loni **yo'q** — ya'ni butun bir mexanika bezaksiz turibdi. O'sha faylda `.vcard` esa
+bor, demak skaner to'g'ri ajratyapti.
+
+⚠️ **Skaner hozircha KAM ko'rsatadi.** E'lonlarni butun fayldan `.nom` naqshi bilan
+yig'adi, shuning uchun `T.paper` kabi obyekt-maydonlari ham «e'lon» deb sanaladi va
+ba'zi haqiqiy teshiklar yashirinadi. `lint:jsx` ga ov-bandi qilinganda e'lonlar faqat
+`<style>` bloki ichidan olinishi kerak — o'shanda raqam **oshadi**.
+
+**Tartib:** har fayl uchun — sinf loyihada boshqa darsda bormi? Bor bo'lsa **o'sha
+modulning** darsidan ko'chiriladi (o'ylab topilmaydi, 145-c). Yo'q bo'lsa: sinf haqiqatan
+keraksizmi (JSX'dan olib tashlanadi) yoki yangi blok yoziladi — bu dizayn qarori.
+
+**Bog'liq:** 23-band (shablon-manba tozalash) — ikkalasi ham «nusxa ko'chirishda bir
+bo'lak tushib qolgan» toifasidan.

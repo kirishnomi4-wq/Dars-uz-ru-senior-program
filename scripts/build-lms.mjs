@@ -34,7 +34,27 @@ import { join, basename } from 'node:path';
 import { mergeReactImports } from './react-merge.mjs';
 
 const OUT_DIR = 'lms';
-const SRC_DIRS = ['src/1-Modull', 'src/2-Modull', 'src/3-Modull'];
+// ── Modul → LMS papkasi (2026-08-25) ────────────────────────────────────────
+//  Foydalanuvchi CRM'ga papka-papka yuklaydi, shuning uchun chiqish MODUL bo'yicha
+//  ajratiladi. MUHIM: chiqish MANZILI bitta — ildizda ham, papkada ham nusxa
+//  turmasin, aks holda qayta yig'ilganda eskisi papkada qolib, YANGISI ildizga
+//  tushadi va eski fayl yuklanib ketadi.
+//  Papka nomi = LMS kursidagi modul raqami (foydalanuvchi qarori, 2026-08-25):
+//  lokal src/3-Modull → 4-M · src/4-Modull → 5-M · src/4a+4b+4c → 6-M.
+const OUT_MAP = [
+  ['src/3-Modull', '4-M'],           // LMS kursidagi 4-Modul (Frontend: React)
+  ['src/pm/PmUserStoryLesson.jsx', '4-M'],   // 4-Modul 2-dars (eski PmLesson7 o'rnida)
+  ['src/4-Modull', '5-M'],           // LMS kursidagi 5-Modul (Backend: Node + PostgreSQL)
+  ['src/4a-Modull', '6-M'],          // LMS kursidagi 6-Modul (Nest + test + CI/CD)
+  ['src/4b-Modull', '6-M'],
+  ['src/4c-Modull', '6-M'],
+];
+const outDirFor = (entry) => {
+  const e = entry.replace(/\\/g, '/');
+  const hit = OUT_MAP.find(([pref]) => e === pref || e.startsWith(pref + '/'));
+  return hit ? join(OUT_DIR, hit[1]) : OUT_DIR;
+};
+const SRC_DIRS = ['src/1-Modull', 'src/2-Modull', 'src/3-Modull', 'src/4-Modull', 'src/4a-Modull', 'src/4b-Modull', 'src/4c-Modull'];
 const COMPILER = 'src/compilator/HtmlCompiler.jsx';
 
 const RED = '\x1b[31m', GRN = '\x1b[32m', DIM = '\x1b[2m', B = '\x1b[1m', R = '\x1b[0m';
@@ -92,7 +112,9 @@ async function one(entry, sharedSpec) {
 
   const merged = mergeReactImports(res.outputFiles[0].text);
   const outName = sharedSpec ? name.replace(/\.jsx$/, '.shared.jsx') : name;
-  const outPath = join(OUT_DIR, outName);
+  const dir = outDirFor(entry);
+  mkdirSync(dir, { recursive: true });
+  const outPath = join(dir, outName);
   writeFileSync(outPath, banner + merged, 'utf8');
 
   const kb = (Buffer.byteLength(banner + merged) / 1024).toFixed(0);
