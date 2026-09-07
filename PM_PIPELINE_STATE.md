@@ -3163,3 +3163,440 @@ tug'iladi (aks holda m5-11/m6-06/m6-14 superseded naqsh bilan qurilardi).
 mashinada: `const r=document.querySelector('.hc-root'); r.scrollHeight - r.clientHeight`.
 
 **Commit YO'Q** (buyruqsiz).
+---
+
+## 2026-08-26 — UYGA VAZIFA PILOTI (branch: `uyga-vazifa-pilot`) — Htmllesson1 (Tex) + PmLesson2 (PM)
+
+**Maqsad:** har darsga uyga vazifa tizimi. Pilot 2 dars: Tex = shart-export + mavjud
+kompilyator; PM = alohida bosqichli homework-JSX (mezon: 5 bosqichdan ≥4 = «Bajarildi»).
+
+**Tex — `src/1-Modull/Htmllesson1.jsx`:**
+- Tashxis: bitta ekranda IKKITA «Uyga vazifa» tugmasi; shart-karta «2–3 paragraf» va'da
+  qilardi, kompilyator esa TASK_FINAL (1 p yetarli) ochardi; karta izohi eski oqim
+  («AI'ga tekshirtiring / platformaga yuklang») edi. [GATE] foydalanuvchi tasdiqladi.
+- Yechim: yangi `TASK_HW`+`STARTER_HW` (shart-kartaga aynan mos 4 avto-check: h1 ism ·
+  ≥2 p · ≥2 li · a href) · `openHomeworkPractice` endi TASK_HW ochadi · ikki tugma BITTA
+  oqimga birlashtirildi (tugma → shart-karta → karta ichida «Vazifani bajarish →») ·
+  karta izohi kompilyator-oqimiga yangilandi · `export const HOMEWORK` (LMS statik o'qiydi).
+- Darvozalar: yangi qo'shimchalar toza; qolgan dark=9 · til 6🔴/15🟡 — `git show HEAD:`
+  bilan isbotlangan ESKI qarz (baseline 6🔴/16🟡 edi — 1 warn qoidaga bo'ysundirilib kamaydi).
+  Eski qarz MODUL_TUR mavzusi, pilotda tegilmadi.
+
+**PM — `src/1-Modull/PmLesson2.homework.jsx` (YANGI, 753 qator shared):**
+- 5 bosqich: Joy (o'z olami, 95-qonun) → Bo'limlar (namuna-moslash: poyabzal ustaxonasi)
+  → Yozish (5 maydon, min/max harf-mezon) → Tartib (DragDropOrder + Sinov mijozi,
+  konversiya) → Savollar (2 test, retry). Natija-ekran: ro'yxat + o'z-sayt preview +
+  topshirish. `ccHomework:pm-m1-06` TTLsiz saqlov · UZ-RU to'liq · PM-STUDIA palitra ·
+  jonli-sessiya YO'Q. `onFinished({lessonId,kind:'homework',done,stages,place,durationSec})`.
+- 👦 1-o'qish topilmalari TUZATILDI: (1) 🔴 3-bosqichsiz 4-bosqich bo'sh matnda ham
+  konversiya berib yozuvsiz 4/5 chiqarardi → 4-bosqichga writeReady-darvoza qo'yildi;
+  (2) «saytni kim ochadi?» ikki ma'noli → «kim kirib ko'radi?»; (3) «kamida to'liq bir
+  gap» va'dasi vs 20-belgi mezoni → sanagich `n/20` ko'rsatiladi; (4) sanagich «ball»
+  deb o'qilardi → Mentor «sanagich harflarni sanaydi» deb aytadi; (5) konversiya gloss
+  qo'shildi; (6) 4/5 qoidasi endi 1-bosqich Mentorida OLDINDAN aytiladi.
+- Brauzer-sinov (lokal esbuild-preview, Chrome): to'liq oqim 5/5 → payload done:true ·
+  0/5 «tugatilmadi» yo'li + done:false payload · xato-yo'llar (moslash-xato, test-xato,
+  noto'g'ri tartib retry) · reload-persistensiya · RU tili · 4-bosqich darvozasi — hammasi ✓.
+  Layout-nuqson (nav pastda yo'qolardi) → hw-root height:100dvh.
+- Darvozalar: **5/5 toza** (dark 0 — yangi faylda qora tugma yo'q, accent-gradient).
+
+**LMS:** `lms/Htmllesson1.shared.jsx` qayta yig'ildi (HOMEWORK eksporti bilan, smoke ✓) ·
+`lms/PmLesson2.homework.shared.jsx` YANGI (61 KB, default + HOMEWORK eksport, esbuild ✓).
+
+**Ochiq:** foydalanuvchi LMS'da sinaydi [GATE] → keyin qonunlashtirish (HOMEWORK-naqsh
+DARS_ETALON/PM_DARS_ETALONga muhrlanadi) va qolgan darslarga batch-konveyer.
+**Commit YO'Q** (buyruqsiz; branch `uyga-vazifa-pilot`).
+---
+
+## 2026-08-26 (2) — PmLesson2.homework v2 — ETALON-QAYTA QURISH (branch: uyga-vazifa-pilot)
+
+**Foydalanuvchi fidbeki:** (a) 2-bosqichdagi begona poyabzal-keys ipni uzadi (o'quvchi
+tushunmaydi); (b) skroll ko'p, ortiqcha elementlar; (c) tanlagani bilan misollar bog'lanmagan.
+
+**v2 yechimi:** 5→4 bosqich (poyabzal-moslash O'CHDI), mezon 4/5→**3/4**. Yangi yadro-g'oya:
+**misol-paketi tanlangan joy-turiga ergashadi** — PLACES[5] (novvoyxona/oshxona/telefon
+ustaxonasi/sartaroshxona/kanstovar), har birida nom/kim-kiradi/5 bo'lim placeholder'lari
+(uz+ru) — begona keys muammosi teskarisiga yechildi (109-qonun: bitta misol-ip).
+Tartiblash-chiplarida endi bo'lim nomi emas **o'quvchining O'Z GAPI** (ma'no bo'yicha
+tartiblaydi). Yangi topilma yopildi: slotlar to'lmaguncha mijoz-sahifasi TO'G'RI javobni
+ko'rsatib turardi (javob-sizish) → endi bo'sh o'rinlar «n-o'rin — hali bo'sh». Dizayn
+ixcham: yozish 5 karta→bitta jadval-karta, savollar yonma-yon grid, mentor/padding kichik.
+Saqlov v2 (eski v1 bekor).
+
+**👦 2-o'qish:** ip butun, darvoza ishlaydi, 3/4 boshida ma'lum; 5 topilma TUZATILDI:
+«sayti halol chiqadi» g'aliz → «yozganlaringiz rost chiqadi» · chip tanlanmagan holatda
+misollar 1-turdan-u chip yonmagan → 1-tur boshidan tanlangan ko'rinadi · «soch turmagi» →
+«soch olish» · ru «Письмо»→«Текст» · ru «снимает»→«решает».
+
+**Sinov (JS-DOM orqali; Chrome oynasi yig'iq — skrinshot yo'q):** default-chip ✓ misollar
+turga ergashishi ✓ (novvoyxona→sartaroshxona almashdi) · 2-bosqich 5/5 sanagich ✓ ·
+3-bosqich darvozasi ✓ · chiplarda o'z gapi, aralash, tap-tartiblash solved ✓ · savollar
+xato-yo'l + retry ✓ · natija-hisob ✓. Mijoz-yurish animatsiyasi yig'iq oynada Chrome
+taymer-throttling tufayli tekshirilmadi (kod v1 bilan aynan, v1 jonli tasdiqlangan) —
+foydalanuvchi ochiq oynada bir marta ko'rib qo'yishi tavsiya.
+
+**Darvozalar 5/5 toza** · lms/PmLesson2.homework.shared.jsx qayta yig'ildi (esbuild ✓).
+**Commit YO'Q** (buyruqsiz).
+**2026-08-26 (3) — F-0826-01 va v2.1:** foydalanuvchi jonli sinovda KLON-BUG tutdi
+(chip o'z slotiga qaytarilsa pool'da nusxasi qoladi) — homework'da tuzatildi; naqsh
+20 faylda bor → `KATTA_TOZALASH.md` 28-band (19 fayl sweep). Qo'shimcha: 3-bosqich
+keng ekranda yonma-yon (.ogrid — chapda tartiblash, o'ngda mijoz-sahifa jonli) ·
+Natija-ekranga REFLEKSIYA («Mentorga bir gap: qaysi bo'lim eng qiyin bo'ldi — nega?»,
+mezonga kirmaydi, payload.reflection bilan mentorga boradi). Darvozalar 5/5 ·
+shared qayta yig'ildi. Commit YO'Q.
+**2026-08-26 (4) — Vercel-demo:** PmLesson2.homework alohida saytga chiqarildi —
+**https://coddycamp-uyga-vazifa.vercel.app** (loyiha: coddycamp-uyga-vazifa, azizbek10
+jamoasi). Naqsh: `vite.hw.config.js` → `dist-hw/` (hw-demo.html → index.html avto-rename,
+mentor-naqsh) · kirish: `hw-demo.html` + `src/hw-demo/main.jsx` (UZ/RU almashtirgich,
+tanlov localStorage'da). Qayta deploy: `npx vite build --config vite.hw.config.js` →
+`cd dist-hw && vercel deploy --prod --yes`. Diqqat: build dist-hw ni qayta yozadi,
+.vercel/.env.local dist-hw ichida — build ularni o'chirsa qayta `vercel link` kerak
+(m3-demo pretsedenti). Commit YO'Q.
+**2026-08-27 — F-0827-01/02 (v2.2, dizayn-affordance):** foydalanuvchi demo-saytda ikki
+topilma berdi: (1) joy-turi chiplari oddiy yozuvga o'xshaydi — tanlanishi bilinmaydi;
+(2) yuqori o'ngdagi bosqich-chiplar (Joy/Yozish/Tartib/Savollar) ko'zga tashlanmaydi,
+nomi o'rniga «1-bosqich…» bo'lsin (ru «1-этап»). **Tashxis:** ikkalasi bitta ildiz —
+DARS_ETALON 11.7 (bosiladigan joylar ko'rinsin) homework'ga qo'llanmagan: `.chip` va
+`.hw-step` `border: none` + sahifa-fon rangida. **Tuzatildi** (tasdiqdan keyin):
+chiplar → tanlov-karta (radio-doira ○/● + belgi 🍞🍲📱✂️✏️ + chegara, hover accent,
+`role=radiogroup/radio`), yorliq «👆 … bittasini bosing»; bosqichlar → stepper
+(raqam-doira + «N-bosqich» + bog'lovchi chiziq; tugagan yashil ✓ / joriy accent /
+kelgusi oq; ≤640px yorliq yashirin, Natija qoladi). Ball/mezon/saqlov/payload tegilmadi.
+**Darvozalar 5/5 toza** · shared qayta yig'ildi (823 q, 64 KB) · `dist-hw` qayta build
+(.vercel/.env.local zaxira-tiklash bilan) · Playwright-skrinshot: UZ fresh · UZ 1-bosqich
+tugagan (3 holat) · RU · 420px mobil — hammasi ✓. **Muhrlandi:** DARS_ETALON **146-qonun**
+(11-J: tanlov-karta + stepper). Vercel deploy bu seansda ruxsat-klassifikator sabab
+bajarilmadi — foydalanuvchi `cd dist-hw && npx vercel deploy --prod --yes` bilan chiqaradi.
+Commit YO'Q.
+**2026-08-27 (2) — F-0827-03 (lokal ko'rik, http://localhost:4179):** 1-bosqichda ikki
+maydonning placeholder'lari («Masalan: «Uslub» sartaroshxonasi» / «…yigit») va ostidagi
+«0/3 Nom yozildi» · «0/20 Kim kirishi yozildi» sanagich-qatorlari foydalanuvchi qarori
+bilan OLIB TASHLANDI; yorliq «👆 Joy-turidan bittasini bosing — misollar…» → «Joy turlaridan
+birini tanlang» (ru «Выберите один из типов места»). Mezon (nom ≥3 · kim-kiradi ≥20)
+o'zgarmadi — endi matnsiz ko'rsatiladi: maydon yetarli to'lganda chegara yashil
+(`.inp.ok`, PM_DARS_ETALON 25: talab UI-affordance orqali). `namePh/visitorPh` PLACES'da
+qoldi (ishlatilmaydi, 2-bosqich `ex` ishlatiladi). Darvozalar 5/5 · shared 825 q ·
+dist-hw qayta build · skrinshot bo'sh/to'lgan ✓. Commit YO'Q.
+**2026-08-27 (3) — F-0827-04:** 3-bosqich mijoz-sahifasi ustidagi «Foydalanuvchi —
+sahifangizni birinchi marta ochgan odam» yorlig'i (`.flow-label`, yagona ishlatilish)
+foydalanuvchi qarori bilan OLIB TASHLANDI — CSS e'loni ham (o'lik kod qolmasin).
+Darvozalar 5/5 · shared · dist-hw qayta yig'ildi. Commit YO'Q.
+**2026-08-27 (4) — F-0827-05 (4-bosqich → birma-bir, Kahoot-uslubi):** foydalanuvchi:
+«testlar bitta-bitta kelsin — topsa o'tib ketsin, ortidan boshqasi kelsin, qiziqarli
+dizayn». Tasdiqdan keyin qurildi: `StageQuiz` qayta yozildi — bitta karta (≤640px),
+yo'l-nuqtalari «● ○ ○ · n/3 savol»; to'g'ri → chegara yashil + ✓ pop + izoh 1.5s → karta
+chapga uchadi (`qz-out`), o'ngdan keyingisi (`qz-in`); xato → silkinish (`qz-shake`,
+remount-key) + qizil + «Yana urinib ko'ring», o'sha savol qoladi; yakun-karta «3/3 —
+hammasi to'g'ri!» + konfetti (faqat shu seansda tugatilsa — reload'da konfetti YO'Q).
+Saqlov naqshi (`ans`) va `quizDone` o'zgarmadi — reload birinchi yechilmagan savoldan
+davom etadi. **3-savol qo'shildi** (harakat tugmasi NEGA oxirida — 5-bo'lim ipining
+oxirgi halqasi). Q1/Q2 chalg'ituvchilari to'liq gapga uzaytirildi (uzunlik-tell 2.2× →
+≤1.1×, PM_DARS_ETALON 9). `.qgrid` o'chdi; qz-card'da fade-up YO'Q (F-0803-22 bitta
+animation-klass). reduced-motion: uchish/silkinish o'chadi. Playwright: xato → to'g'ri →
+2-savol kirdi → 3/3 yakun + konfetti + stepper 4 ✓ + Natija 1/4 · reload qisman → 3-savol ·
+reload to'liq → yakun-karta konfettisiz — hammasi ✓. Darvozalar 5/5 · shared 892 q ·
+dist-hw qayta build. Commit YO'Q.
+**2026-08-27 (5) — F-0827-06 (yakun-ekran → «sayt ochilish marosimi»):** foydalanuvchi:
+refleksiya-bloki («Mentorga bir gap») UI'ni to'ldiradi — olib tashlansin; yakun «vauv»
+bo'lsin, o'z sayti ko'rinsin. Tasdiqdan keyin `StageResult` qayta yozildi. **O'tganga
+(≥3/4):** kirishda konfetti (bir marta) + 🏆 nishon `fin-pop` + «{Joy} sayti tayyor!» +
+«bajarildi — n/4» + 4 bosqich-chip (yashil ✓; chala bo'lsa sariq, bosiladi) + O'Z SAYTI
+bosh qahramon (Preview 720px, bo'limlar `fin-reveal` bilan 0.2s oraliqda pardadan chiqadi)
++ g'urur-satri «5 bo'lim · N so'z · hammasini siz yozdingiz» + katta «Vazifani topshirish»
+→ bosilgach yashil «✓ Topshirildi — mentor natijangizni ko'radi». **O'tmaganga:** sokin
+ro'yxat + «Tugatish →» + «Shu holatda topshirish» (konfettisiz). Refleksiya butunlay
+o'chdi — `onFinished` payload'dan `reflection` maydoni CHIQDI (LMS/mentor-tomon shu
+maydonga tayanmasin). reduced-motion: nishon/parda o'chadi. Playwright: 4/4 marosim ✓ ·
+topshirish → payload `{done:true, stages:"4/4", place:"Beshqozon"}` (reflection yo'q) ✓ ·
+RU ✓ · 2/4 sokin ✓. Darvozalar 5/5 · shared 924 q · dist-hw qayta build. Commit YO'Q.
+**2026-08-27 (6) — F-0827-07 (yakun halolligi):** foydalanuvchi 3/4 holatda (1-bosqich
+chala) «Saytingiz tayyor!» yozuvi ostida sayt ko'rinmasligini tutdi. Sabab: preview
+`placeName` ga bog'langan edi. Tuzatildi: sayt **2-bosqich yozilgan** bo'lsa ko'rinadi
+(`hasSite = writeDone`), nom bo'lmasa brendda «Saytingiz»; sarlavha uch holatli — nom bor
+→ «{Joy} sayti tayyor!» · sayt bor, nom yo'q → «Saytingiz tayyor!» · sayt materiali yo'q →
+«Uyga vazifa bajarildi!» («sayt» so'zi faqat sayt ko'rinsa); g'urur-satri ham `hasSite`
+ga bog'landi. Playwright (3/4, joy yo'q): sarlavha «Saytingiz tayyor!» · preview ✓ · brend
+«Saytingiz» ✓. Darvozalar 5/5 · shared 925 q · dist-hw qayta build. Commit YO'Q.
+**2026-08-27 (7) — F-0827-08:** yakun-ekrandagi g'urur-satri «5 bo'lim · N so'z · hammasini
+siz yozdingiz» foydalanuvchi qarori bilan OLIB TASHLANDI (`.fin-stats` + `words` hisobi —
+o'lik kod qolmadi). Darvozalar 5/5 · shared · dist-hw qayta yig'ildi. Commit YO'Q.
+**2026-08-27 (8) — F-0827-09:** yuqori chap yorliq «Uyga vazifa · Sayt bo'limlari tartibi»
+→ «Uyga vazifa» (ru «Домашнее задание») — mavzu-qo'shimchasi foydalanuvchi qarori bilan
+olib tashlandi. Darvozalar 5/5 · shared · dist-hw qayta yig'ildi. Commit YO'Q.
+**2026-08-27 (9) — F-0827-10 («vauv» yo'q edi):** foydalanuvchi: yakunda konfetti «tepadan
+tushishi» oldingi ekranlardagi bilan bir xil — nishon olgandagidek to'liq-ekran bayram kerak.
+Qurildi: `FinCelebrate` — PmLesson2 `AchCelebrate` sahnasi aynan (CSS `.acu-*` nusxa: qorong'u
+parda, aylanuvchi nurlar, medal-portlash + shine, 2 zarba-halqa, 14 uchqun, «bosib davom
+eting»), matn: eyebrow «Uyga vazifa bajarildi» · nom «Shipped It!» · desc «{Joy} sayti tuzildi
+— buni siz qildingiz». Natija-ekranga kirganda (≥3/4) BIR MARTA: 4.2s yoki bosish bilan
+yopiladi, saqlovga `celebrated:true` (reload'da takrorlanmaydi). Natija-sahifadagi konfetti
+OLIB TASHLANDI (bayram = sahna, sahifa = sokin). Playwright: overlay ✓ · tap → yopildi +
+saqlov ✓ · reload → chiqmaydi ✓. Darvozalar 5/5 · shared 989 q / 79 KB · dist-hw qayta
+build. Commit YO'Q.
+**2026-08-27 (10) — F-0827-11:** bayram-sahnada matn bitta satrga tushdi — «Uyga vazifa
+bajarildi!» (katta, `.acu-name`); «Shipped It!» nomi va «{Joy} sayti tuzildi — buni siz
+qildingiz» tavsifi foydalanuvchi qarori bilan OLIB TASHLANDI (`.acu-eyebrow` CSS ham).
+Darvozalar 5/5 · shared · dist-hw qayta yig'ildi. Commit YO'Q.
+**2026-08-27 (11) — F-0827-12:** topshirilgandan keyingi yashil xabar «✓ Topshirildi — mentor
+natijangizni ko'radi.» → «✓ Topshirildi» (ru «✓ Сдано») — foydalanuvchi qarori. Darvozalar
+5/5 · shared · dist-hw qayta yig'ildi. Commit YO'Q. (Ochiq taklif F-0827-13: bayram-parda
+rangi — och sahifa ustida zaytun-yashil artefakt → to'q indigo parda; tasdiq kutilmoqda.)
+**2026-08-27 (12) — PM-fidbek paketi F-0827-13…20 (1-bosqich + nav + bayram-rangi), tasdiq
+bilan bir yo'la:** F-13 bayram-parda → to'q indigo (zaytun-yashil aralashma yo'q), nurlar
+0.16→0.22 · F-14 «joy»→«biznes» (sarlavha «Qaysi biznes uchun sayt yasaymiz?», «Biznes
+turini tanlang», «Biznes nomi», Mentor-matni) · F-15 «kim kirib ko'radi?» → «Asosiy mijoz
+kim? Bir gap.» · F-16 placeholder QAYTDI (F-03 bekor, foydalanuvchi qarori) — tanlangan
+turga ergashadi, oshxona = «Masalan: Beshqozon» / «online ovqat buyurtma qiluvchilar»,
+qolgan 4 tur yangilandi · F-17 chipdagi radio-doira O'CHDI (F-01 qismi bekor; 146-qonun
+(a) ga tuzatma-izoh) · F-18 nav: asosiy «Davom etish →» doim, bosqich tugamaguncha nofaol
+(title bilan), «Keyinroq tugataman →» kichik kulrang ikkilamchi chapda (tugagach yo'qoladi)
+· F-19 chip 2 qatorli karta: belgi + nom + hint («Non sotadigan joy» …, 5 tur uz+ru) ·
+F-20 birinchi bo'sh majburiy input pulsatsiya (`.inp.hint`, focus'da/to'lgach to'xtaydi,
+navbat keyingisiga, reduced-motion statik). Playwright: Davom nofaol + skip ✓ · oshxona
+tanlanganda placeholder Beshqozon/online… ✓ · pulse nom→mijoz ko'chdi ✓ · to'lgach Davom
+faol + skip yo'qoldi ✓ · bayram indigo ✓. Darvozalar 5/5 · shared 1002 q / 80 KB · dist-hw
+qayta build. Commit YO'Q.
+**2026-08-27 (13) — F-0827-21 (1-bosqich tozalash):** foydalanuvchi qarori: chip ostidagi
+hint-qatorlar OLIB TASHLANDI (F-19 bekor, `.chip-hint/.chip-tx` CSS ham) · biznes turlari
+5→**3** (Novvoyxona · Oshxona · Kanstovar; telefon ustaxonasi va sartaroshxona o'chdi,
+eski saqlovdagi cat 2/3 → 0 himoyasi) · Mentor-matni to'liq almashdi: «O'zingiz yaxshi
+biladigan biznesni tanlang. Keyingi bosqichlarda uning sayti uchun asosiy bo'limlarni
+tayyorlaysiz.» (ru mos) — ⚠️ 3/4 qoidasi endi 1-bosqichda aytilmaydi (👦 1-o'qish (6)
+topilmasi bekor bo'ldi; qoida Natija-ekranda «tugatilmadi — k/4» bilan ko'rinadi) ·
+«Asosiy mijoz kim? Bir gap.» → «Asosiy mijoz kim?». Darvozalar 5/5 · shared · dist-hw
+qayta build · Playwright ✓. Commit YO'Q.
+**2026-08-27 (13) — F-0827-21 (1-bosqich tozalash):** foydalanuvchi qarori: chip ostidagi
+hint-qatorlar OLIB TASHLANDI (F-19 bekor, `.chip-hint/.chip-tx` CSS ham) · biznes turlari
+5→**3** (Novvoyxona · Oshxona · Kanstovar; telefon ustaxonasi va sartaroshxona o'chdi,
+eski saqlovdagi cat 2/3 → 0 himoyasi) · Mentor-matni to'liq almashdi: «O'zingiz yaxshi
+biladigan biznesni tanlang. Keyingi bosqichlarda uning sayti uchun asosiy bo'limlarni
+tayyorlaysiz.» (ru mos) — ⚠️ 3/4 qoidasi endi 1-bosqichda aytilmaydi (👦 1-o'qish (6)
+topilmasi bekor bo'ldi; qoida Natija-ekranda «tugatilmadi — k/4» bilan ko'rinadi) ·
+«Asosiy mijoz kim? Bir gap.» → «Asosiy mijoz kim?». Darvozalar 5/5 · shared 970 q ·
+dist-hw qayta build · Playwright ✓. Commit YO'Q.
+**2026-08-27 (14) — F-0827-22 (2-bosqich):** Mentor-kartasi («Har bo'limga bittadan gap…
+Sanagich yashil ✓…») foydalanuvchi qarori bilan OLIB TASHLANDI (sarlavha o'zgarmadi);
+Oshxona-turi misollari foydalanuvchi matniga almashdi: hero «Sevimli taomlaringizni onlayn
+buyurtma qiling» · muammo «Navbat kutishga hojat yo'q» · yechim «Menyudan tanlang va
+buyurtma bering» · isbot «100 000+ buyurtma» · harakat «Buyurtma berish» (ru mos).
+Novvoyxona/Kanstovar misollari o'zgarmadi. Darvozalar 5/5 · shared · dist-hw qayta build.
+Commit YO'Q. Ochiq kuzatuv: 2-bosqich mezoni faqat uzunlik («1111…» ham o'tadi) — qaror
+kutilmoqda.
+**2026-08-27 (15) — F-0827-23 (3-bosqich):** Mentor-kartasi («Tartib foydalanuvchini
+qadam-baqadam…») OLIB TASHLANDI · sarlavha «Gaplaringizni to'g'ri tartibga qo'ying» →
+«Bo'limlaringizni to'g'ri tartibga joylashtiring» (ru «Расставьте разделы в верном
+порядке») · konversiya-xabari «Foydalanuvchi ishonch bilan tugmangizni bosdi — bu
+konversiya…» → «Foydalanuvchi saytingizni oson tushundi.» (ru mos) — foydalanuvchi matni
+(«konversiya» atamasi va glossi shu bilan homework'dan chiqdi). Darvozalar 5/5 · shared ·
+dist-hw qayta build. Commit YO'Q.
+**2026-08-27 (16) — F-0827-24 (4-bosqich):** sarlavha «Oxirgi tekshiruv — 3 savol» →
+«Bilimingizni sinab ko'ring» (ru «Проверьте свои знания») · Mentor-kartasi OLIB TASHLANDI ·
+3 savolning variantlari foydalanuvchi matniga almashdi (to'g'ri javob indekslari o'zgarmadi:
+q1=A, q2=B, q3=B; uzunlik-tell: q1 52/43=1.2× · q2 49/50 · q3 40/44 — ≤1.4×), ru mos.
+Darvozalar 5/5 · shared · dist-hw qayta build. Commit YO'Q.
+**2026-08-27 (17) — F-0827-25 (Mentor-siz bosqichlar dizayni):** 2·3·4-bosqich sarlavhalari
+(+ 3-bosqich darvoza-ekrani) `h-center` oldi — markazda, kattaroq (24–32px), ostida 46px
+aksent-gradient chiziq, kontentgacha havo; 1-bosqich (Mentor bilan) va Natija o'zgarmadi.
+Darvozalar 5/5 · shared · dist-hw qayta build · Playwright 3 ekran ✓. Commit YO'Q.
+**(17-a) F-0827-25 tuzatma:** `.h-center` max-width olib tashlandi (22ch→34ch ham eng uzun
+sarlavhani bo'lardi) — sarlavha bitta qatorda, `text-wrap: balance` faqat tor ekranda
+bo'lganda tekis bo'ladi. Darvozalar 5/5 · shared · dist-hw qayta build.
+**2026-08-27 (18) — F-0827-26 (3-bosqich darvoza-ekrani):** sariq `frame-warn` ogohlantirish
+va «Avval gaplaringiz kerak / Bu bosqichda O'ZINGIZ yozgan 5 gap…» matnlari OLIB TASHLANDI;
+o'rniga sokin markaziy blok: qulf-ikonka (yangi `Ico.lock`, accentSoft doira) + bitta gap
+«Bu bosqich ochilishi uchun avval 2-bosqichni to'ldiring.» (ru mos, `h-center`) + «2-bosqichga
+o'tish →». `.frame-warn` Natija-ekranda hali ishlatiladi (qoldi). Darvozalar 5/5 · shared ·
+dist-hw qayta build. Commit YO'Q.
+**2026-08-27 (19) — F-0827-27 (3-bosqich xato-xabari):** «Foydalanuvchi shu bo'limga kelganda
+adashdi va chiqib ketdi — bo'lim o'z o'rnida emas. Tartibni tuzatib, yana sinab ko'ring.» →
+«Foydalanuvchi saytingizni tushunishda qiynaldi. Bo'limlarni to'g'ri tartibda joylashtiring.»
+(ru mos) — foydalanuvchi matni; muvaffaqiyat-xabari (F-23) bilan juft ohang. Darvozalar 5/5 ·
+shared · dist-hw qayta build. Commit YO'Q.
+**(19-a) F-0827-28:** 3-bosqich sarlavhasi «Bo'limlaringizni to'g'ri tartibga joylashtiring» →
+«Bo'limlarni to'g'ri tartibda joylashtiring» (grammatika: «tartibda joylashtirish»; xato-xabar
+bilan bir xil ifoda). Darvozalar 5/5 · shared · dist-hw qayta build.
+**2026-08-27 (20) — F-0827-29 (demo-qobiq):** `src/hw-demo/main.jsx` dagi UZ/RU almashtirgich
+chap-pastda «← Orqaga»ni to'sardi → pastki panel o'rtasiga (fixed, 50%) ko'chirildi, ixcham
+(bg #F2F0FA, soyasiz). Faqat Vercel-demo qobig'i — LMS'da bu element YO'Q (til LMS'dan keladi).
+dist-hw qayta build. Commit YO'Q.
+**2026-08-27 (21) — F-0827-30 (4-bosqich yakun-karta):** «4-bosqich tugadi. Natija ekranida
+vazifani topshirasiz.» → «4-bosqich tugadi. Keyingi ekranda natijangizni ko'rasiz.» (ru mos).
+Darvozalar 5/5 · shared · dist-hw qayta build. Commit YO'Q.
+**(21-a) F-0827-31:** 1-bosqich sarlavhasi «Qaysi biznes uchun sayt yasaymiz?» → «Qaysi biznes
+uchun sayt tayyorlaymiz?» (ru «…подготовим сайт?»). Darvozalar 5/5 · shared · dist-hw.
+**2026-08-27 (22) — F-0827-32 (1-bosqich dizayn-tizimga o'tdi):** sarlavha `h-center`
+(markazda, kattaroq, aksent-chiziq); Mentor-kartasi OLIB TASHLANDI → o'rniga markaziy bir
+qatorli kulrang izoh `.h-sub` («O'zingiz yaxshi biladigan biznesni tanlang — keyingi
+bosqichlarda uning sayti uchun bo'limlar tayyorlaysiz.», ru mos). Homework'da Mentor-avatar
+umuman qolmadi → `Mentor` komponenti, `MENTOR_IMG`, `.mentor-*` CSS o'lik kod sifatida
+o'chirildi. Endi 4 bosqich + Natija bitta tizim: markaziy sarlavha → (izoh) → ish-maydoni.
+Darvozalar 5/5 · shared · dist-hw qayta build · Playwright ✓. Commit YO'Q.
+**2026-08-27 (23) — F-0827-33 (Natija, o'tmagan holat):** «…kamida 3 bosqich tugashi kerak.
+Yuqoridagi ro'yxatdan chala bosqichga qaytib, tugating.» → «Vazifa qabul qilinishi uchun
+kamida 3 ta bosqichni tugating. Yuqoridagi ro'yxatdan tugatilmagan bosqichni tanlab, davom
+eting.» («chala» — o'quvchiga tushunarsiz, ru mos). Yo'l-yo'lakay: bosqich nomi «Joy» →
+«Biznes» (F-14 qoldig'i; ro'yxat, `title` va HOMEWORK eksportida). Darvozalar 5/5 · shared ·
+dist-hw qayta build. Commit YO'Q.
+**2026-08-27 (24) — F-0827-34:** Natija (o'tmagan holat)dagi «Shu holatda topshirish» tugmasi
+OLIB TASHLANDI — foydalanuvchi qarori: 3/4 ga yetmasa vazifa topshirilmaydi. Oqibat: `onFinished`
+endi faqat `done:true` bilan chaqiriladi (LMS-tomon «tugatilmadi» payload'ini kutmasin —
+JAVOB/integratsiya hujjatida kind:'homework' done:false yo'q deb hisoblansin). Darvozalar 5/5 ·
+shared · dist-hw qayta build. Commit YO'Q.
+**2026-08-27 (25) — DEPLOY:** https://coddycamp-uyga-vazifa.vercel.app yangilandi (prod,
+bundle `hw-demo-TsGblkOE.js` — lokal build bilan aynan; jonli tekshiruv: «sayt tayyorlaymiz»,
+«Bilimingizni sinab ko'ring», «Uyga vazifa bajarildi!» bor). Tarkib: F-0827-01…34 (bugungi
+barcha fidbeklar). `dist-hw/.vercel` + `.env.local` joyida. Commit hali YO'Q — buyruq kutilmoqda.
+## 2026-08-28 — M1 PM UY VAZIFALARI ×2: m1-02 Auditoriya + m1-12 Demo Day (branch: uyga-vazifa-pilot)
+
+**Buyruq:** «m1-02 va m1-12 ga ham uyga vazifa qilaylik … etalon PmLesson2.homework'dagiday, o'quvchiga
+tushunarli». Ertalab PmLesson2.homework etaloni to'liq ko'rikdan o'tdi (5/5 darvoza, shared/deploy sinxron,
+commit cf05cc8) — foydalanuvchi qarori: **etalon shu holida qoladi** (F-14 «joy→biznes» qoldiqlari
+`:127/:415/:1004–1006` + o'lik CSS `.acu-desc/.ck` — keyinroq, tegilmadi). Takrorlash (m1-14) uy vazifasi
+BOR ekani tasdiqlandi (paket `uyga-vazifa/m1-14-…`, TASK_HW, HOMEWORK export — Htmllesson1 bilan aynan).
+
+**Senariylar (GATE S — chatda tasdiq):** `pm-senariylar/M1-D2-Auditoriya-UY.md` · `M1-D12-Pitch-UY.md`.
+Ikkalasi darsning O'Z shartnomasidan o'sadi (Auditoriya 12-ekran «2 real odam»; Demo Day yakun-karta
+«uyda ayting · do'st tushundimi · manzil»). Qarorlar: mikrofon-yozuv YO'Q (ruxsat-to'sig'i, TMI) ·
+demo-saytda 3-lik vazifa-tanlov · avval m1-02, keyin m1-12.
+
+**Qurildi (etalon nusxa-naqsh: stepper 146-b, tanlov-karta 146-a, `.inp.hint` pulsatsiya, nav Davom/Keyinroq,
+Kahoot-test 3 savol, FinCelebrate indigo, payload faqat done:true, UZ-RU):**
+- `src/1-Modull/PmAudienceLesson.homework.jsx` (HW_ID `pm-m1-02`): 1 Karta (KIM/MUAMMO/YECHIM, darsdagi
+  `pm-m1d2-cards` avto-to'ladi, «hamma/barcha» validatori darsdan) · 2/3 Suhbat (kim bilan 4 karta ·
+  kirarmidi Ha/Yo'q/Bilmadim · «U nima dedi?» ≥15) · 4 Xulosa (KIM o'zgarmadi / aniqlashdi + yangi KIM;
+  test mode tanlanguncha xira) · Natija: karta preview (eski KIM chizilgan → yangi) + suhbat-chiplar.
+  payload.place = yakuniy KIM.
+- `src/1-Modull/PmLesson3.homework.jsx` (HW_ID `pm-m1-14`): 1 Nutq 6 bo'lak (`ccPitch3` avto-to'ladi,
+  ≥8 belgi) · 2 Repetitsiya (3:00 taymer, bo'laklar 20·30·25·60·25·20 s navbat bilan yonadi, «Nutq tugadi»
+  90 s dan keyin, oxirida «qaysi bo'lakda to'xtab qoldingiz?» — mezonga ta'sir qilmaydi, 1 urinish yetadi;
+  1-bosqich to'lmaguncha darvoza) · 3 Tinglovchi (kimga · tushundimi · qanday savol ≥10) · 4 Manzil
+  (URL-tekshiruv) + 3 test · Natija: nutq-karta + manzil. payload.place = manzil.
+- `src/hw-demo/main.jsx`: UZ/RU yonida M1-02 / M1-05 / M1-12 tanlov (localStorage `hwDemoHw`); ≤640px
+  pastga (sarlavhani to'smasin).
+
+**Darvozalar:** ikkala fayl 5/5 (til: A-faylda `kartangizdagi KIM` → slot-ichki-atama tuzatildi, kirill-regex
+`ru:` maydoniga ko'chdi; B-faylda «Aka-uka yoki opa-singlim» registr-aka-brat WARN — yolg'on signal, qoldi).
+**Sinov (Playwright, localhost:4179):** ikkala vazifa bosqichma-bosqich — bo'sh holatda Davom nofaol ✓ ·
+«hamma» ogohlantirish ✓ · test xato→silkinish→to'g'ri→keyingisi ✓ · bayram → natija → topshirish ✓ · payload
+`{pm-m1-02, 4/4, place:"5–7-sinf o'quvchilari, velosipedi bor"}` / `{pm-m1-14, 4/4, place:URL}` ✓ · RU ✓ ·
+420px ✓ · reload-davomiylik (bosqich+chip+input) ✓ · darsdagi karta/nutq avto-to'lishi ✓ · taymer 25 s da
+«Nutq tugadi» nofaol, 95 s da faol ✓. Bitta bug tutildi: `cardDone` karta obyektini emas o'ramni kutgan
+(Davom hech qachon yonmasdi) — tuzatildi.
+**Chiqish:** `lms/PmAudienceLesson.homework.shared.jsx` (732 q) · `lms/PmLesson3.homework.shared.jsx` (803 q) ·
+dist-hw qayta build (.vercel/.env.local zaxira-tiklash) · **deploy ✓** coddycamp-uyga-vazifa.vercel.app
+(bundle DocVRtaO = lokal). **Commit YO'Q** (buyruqsiz). Ochiq: LMS'ga 2 yangi shared-modulni yuklash;
+etalon-qoldiqlar (yuqorida); F-22 uzunlik-mezoni qarori.
+**2026-08-28 (2) — F-0828-01…03 (foydalanuvchi lokal ko'rigi, http://localhost:4179):**
+- **F-0828-01 (mezon-teshigi):** foydalanuvchi etalonda 3-bosqichni (tartiblash — yagona haqiqiy tekshiruv)
+  o'tkazib yuborib 3/4 bilan «Vazifani topshirish»ni bosdi — LMS qabul qildi. Tashxis: `HW_PASS_MIN = 3`.
+  Qaror: **to'rttala bosqich** tugagandagina topshirish (`HW_PASS_MIN = 4`) — uchala vazifada bir xil
+  (m1-02 da 2-suhbat ham majburiy bo'ldi; «qisqa variant» bekor). Matn: «…kamida 3 ta bosqichni» →
+  «…to'rttala bosqichni tugating» (ru «все четыре этапа»), HOMEWORK brief «To'rttala bosqich tugasa — vazifa
+  qabul qilinadi». Playwright: etalon 1·2·4 tugagan, 3 chala → Natija «3/4», topshirish tugmasi YO'Q, bayram YO'Q ✓.
+- **F-0828-02 (fon `#1F2A37` sinovi):** foydalanuvchi «fon ko'zni qisyapti» degan fikr keltirdi. Halol
+  javob: to'q fon och palitraga (qora matn/oq karta, dark-lint darvozasi) zid — lekin ko'rmasdan rad etilmadi:
+  demo-qobiqqa (`src/hw-demo/main.jsx`) **«Fon: och / to'q»** tugmasi qo'shildi — faqat override-CSS,
+  dars-fayllariga tegilmagan. Qaror foydalanuvchi ko'rigidan keyin.
+- **F-0828-03 (rang-kamalak):** 2-bosqich bo'lim-chiplari 5 xil rangda (darsdagi SECDATA) — foydalanuvchiga
+  yoqmadi. Qaror: kirish-jadval chiplari va natija-kartalardagi rangli chiziqlar **bitta aksent** (accentSoft/
+  accent) — uchala vazifada; belgilar (ikonka) ajratib turadi. `SECDATA.color/soft` etalonda faqat Preview/
+  CustomerRun uslubida qoldi.
+Darvozalar 3×5/5 · shared ×3 qayta yig'ildi · dist-hw qayta build (lokal 4179, deploy hali YO'Q — foydalanuvchi
+ko'rigi davom etmoqda). Commit YO'Q.
+**Ochiq tashxis (tasdiq kutilmoqda):** 3-bosqich o'ng paneli (mijoz-sahifasi) har chipni bo'lim-TURI uslubida
+ko'rsatadi (logo+sarlavha = hero, qalqon = isbot, tugma = harakat) — bu to'g'ri tartibni oldindan aytib qo'yadi
+(javob-sizish). Taklif: sinovdan oldin qatorlar oddiy matn, uslub faqat «Sahifani sinab ko'rish»dan keyin.
+**2026-08-28 (3) — F-0828-02 davomi + F-0828-04/05 (etalon PmLesson2.homework, lokal ko'rik):**
+- **F-02 fon:** foydalanuvchi «och» ham to'q dedi → `T.bg #F2F0FA → #F7F6FC` (faylda). Demo-qobiqda sinov-
+  tugmalar 3 holatli: och · oq-kulrang (`#F8F9FB`/ichki `#F0F2F5`) · indigo (`#241C4F`, `#1F2A37` o'rniga —
+  brend-rang oilasi). Yakuniy qaror hali YO'Q (foydalanuvchi ko'rmoqda).
+- **F-04 chip-yorlig'i:** bo'lim-chiplari qora-bold (`T.ink`, 12.5px), ikonka aksentda (`.wf-ic`), fon
+  och-binafsha (`accentSoft`, kulrang variant RAD) — «yorliq, bezak emas».
+- **F-05 to'lgan-holat tili:** 1-bosqich inputlarida yashil chegara (`.inp.ok`) → 2-bosqich bilan bir xil:
+  chegara o'zgarmaydi, o'ngda `n/min → ✓` (`.wf-ck`). `.inp.ok` CSS o'chdi (o'lik kod yo'q).
+Darvozalar 5/5 · shared (975 q) · **deploy ✓** coddycamp-uyga-vazifa.vercel.app (bundle aGAWI4ft = lokal;
+demo-qobiqda fon-sinov tugmalari hozircha turibdi). m1-02/m1-12 ga F-04/05 hali o'tkazilmadi — fon-qarori
+bilan bir yo'la. Ochiq: fon · input-sharti (F-22) · 3-bosqich javob-sizish tashxisi. Commit YO'Q.
+**2026-08-28 (4) — F-0828-06/07:** F-06 demo-qobiq (`src/hw-demo/main.jsx`) faqat PmLesson2.homework + UZ/RU ga
+qaytdi — vazifa-tanlov va fon-sinov tugmalari OLIB TASHLANDI (foydalanuvchi qarori; fon `#F7F6FC` faylda qoldi,
+oq-kulrang/indigo RAD). F-07 stepper: joriy bosqich binafsha → **yashil to'la fon** (tugagan = yashil kontur ✓ ·
+joriy = yashil to'la · kelgusi = kulrang). Darvozalar 5/5 · shared 976 q · deploy ✓ (bundle BZGnWBjo). Commit YO'Q.
+**2026-08-28 (5) — F-0828-08 (test-karta «soyasi»):** oxirgi savol to'g'ri yechilganda eski karta chapga uchib
+xiralashayotganda yakun-karta qat'iy taymer (380 ms) bilan kirib kelardi — brauzer kechiksa eski kartaning xira
+«soyasi» chapda/pastda bir lahza qolardi. Tuzatildi: almashish `onAnimationEnd` (qz-out tugagach) bilan;
+zaxira-taymer QZ_OUT_MS+250 (reduced-motion — hodisa kelmaydi), `advancedRef` ikki marta chaqirilishni to'sadi.
+Uchala homework'da bir xil (bir sinf-bug). Playwright: 3 savol → har lahzada 1 karta, yakun-karta ✓, Davom faol ✓.
+Darvozalar 3×5/5 · shared ×3 · deploy ✓ (bundle Cxe_3pMm). Commit YO'Q.
+## 2026-08-28 (6) — m1-02 va m1-12 UY VAZIFALARI ETALONGA TORTILDI (buyruq: «pmlesson 1 va 3 homeworklarniyam qivol, shoshilmasdan, halol»)
+
+**Halol topilma:** ertalabki m1-02 vazifasi ESKI `PmAudienceLesson.jsx` (App'dan 2026-07-28 da o'chirilgan)
+asosida qurilgan edi; haqiqiy m1-02 = `PmLesson1.jsx` (App.jsx `key: 'm1-02' → PmLesson1`). Farqlar: karta-saqlov
+MASSIV (`pm-m1d2-cards` = [{kim,muammo,yechim}], 2 tagacha) · misol-olami maktab yonidagi LAVASH DO'KONI ·
+validator `cardFull` (KIM ≥3 · MUAMMO/YECHIM ≥6) + `wideKim` (^hamma|barcha|hammasi|hech kim|все…) · uy-vazifa
+izohi: «2 ta tanishingizga ko'rsating … KIM va MUAMMO qatorlarini aniqroq qayta yozing».
+**Qayta qurildi:** `src/1-Modull/PmLesson1.homework.jsx` (HW_VER 2, eski saqlov bekor; PmAudienceLesson.homework.jsx
+va uning shared'i O'CHIRILDI). 1 Karta (massivdan avto-to'ladi, darsdagi validator/ogohlantirish matni) ·
+2/3 Suhbat («tanishingiz») · 4 Xulosa: «O'zgarmadi / Aniqlashdi →» + yangi KIM va/yoki MUAMMO (kamida bittasi
+o'zgargan bo'lishi shart) + 3 test (q3: «KIM va MUAMMO qatorlarini aniqroq yozaman») · Natija: karta (eski →
+yangi, ikkala qator) + suhbat-chiplar. HOMEWORK brief darsning izohiga mos.
+**Ikkalasiga etalon-qarorlar (bugungi):** 4/4 · qora-bold chip (`.wf-chip/.wf-ic`) · ✓-belgi (`.inp.ok` yo'q) ·
+fon `#F7F6FC` · stepper joriy yashil · test-almashish onAnimationEnd · karta/nutq-karta yorliqlari qora, ikonka
+aksent (`.ac-k svg`, `.pc-k svg`).
+**Darvozalar:** ikkalasi 5/5 · shared: PmLesson1.homework (784 q) · PmLesson3.homework (817 q).
+**Sinov (Playwright, esbuild-sahifa):** l1 — bo'sh Davom nofaol ✓ · «hamma» ogohlantirish ✓ · 4-bosqich test mode
+tanlanguncha xira ✓ · «aniqlashdi» bo'sh → Davom nofaol ✓ · yangi KIM → 3 test → Davom ✓ · bayram → natija →
+payload `{pm-m1-02, 4/4, place:"7-9-sinf o'quvchilari, tanaffusda lavash oladigan"}` ✓ · darsdagi MASSIV-kartadan
+avto-to'lish ✓ · RU ✓ · 420px ✓. l3 — 6 blok → taymer 95 s → «Nutq tugadi» → «Hech qayerda» → tinglovchi → manzil →
+3 test → payload `{pm-m1-14, 4/4, place:URL}` ✓. Xato yo'q.
+Senariylar yangilandi (`M1-D2-Auditoriya-UY.md` → PmLesson1, 4/4; `M1-D12-Pitch-UY.md` 4/4). Demo-saytda
+faqat PmLesson2 (F-06) — ikkalasi LMS'ga shared orqali. **Commit YO'Q.**
+**2026-08-28 (7) — F-0828-09 (PmLesson3.homework, 3-bosqich ohangi):** «3 daqiqada tushundimi?» → «tushunishdimi?»
+(ota-onaga hurmat-shakli, foydalanuvchi topilmasi); shu bosqichda bir ohang: «Ha, tushunishdi / Yo'q, tushunishmadi»,
+«Qanday savol berishdi?» (ru «Поняли / поняли / не поняли / задали»). Darvozalar 5/5 · shared 818 q. Lokal ko'rik:
+`scripts/_hw-preview.tmp.mjs` (vaqtincha) → http://localhost:4181/pm1.html · pm3.html. Commit YO'Q.
+**2026-08-28 (8) — F-0828-10 (PmLesson1.homework, sansirash):** «U qanday qiyinchilik bilan keladi?» → «Ular qanday
+qiyinchilik bilan kelishadi?» (mijoz haqida hurmat-shakl, foydalanuvchi topilmasi); bir ohang: «Shunday saytga
+kirarmidilar?», «Nima deyishdi?», test q2/q3 «Kartani ko'rsatib, nimani so'raysiz?» / «Ikkalasi ham «kirmasdim» deyishsa»
++ izohlar (ru mos). Darvozalar 5/5 · shared. Commit YO'Q.
+**2026-09-02 — M2 PM uy vazifalari (3 ta, etalon-naqshda):** foydalanuvchi uchala rejani birga tasdiqladi.
+`PmLesson4.homework.jsx` (pm-m2-02, senariy `M2-D2-Imkoniyat-UY.md`) — juftliklar (avto: pm-m2d2-features) →
+2 yangi band-juftlik (darsdagi 4 keraksiz band, 2-bosqichda olingani 3-da o'chiq) → 3 savol; FLAT/DECOR
+validatorlari darsdan aynan. `PmLesson5.homework.jsx` (pm-m2-07, `M2-D7-Dekompozitsiya-UY.md`) — ro'yxat
+(avto: pm-m2d7-mvp.v1) → foyda-qatorlar → yangi imkoniyat + tarozi (levelOf darsdan aynan, daraja o'zi chiqadi;
+v1 chiqsa halol izoh «3 joy band») → 3 savol. `PmLesson6.homework.jsx` (pm-m2-13, `M2-D13-Pitch-UY.md`) —
+pitch 5 bo'lak (avto: pm-m2d13-pitch; findJargon + peshtaxta/oshpaz/javon-talabi darsdan aynan) → suhbat
+(kim · 🙂/😐/😕 · nima deyishdi) → qayta yozish (😐/😕 da «o'zgartirmayman» qulf — halol-yo'l) → 3 savol.
+**Darvozalar:** uchalasi 5/5 · shared 721/707/818 q · smoke-shared PASS. **Sinov (Playwright):** l4 — 22/22
+(FLAT-blok, band-qulf, payload pm-m2-02 4/4, reload, RU) · l5 — 18/18 (avto-v1, tarozi nice+day→v2 va
+must+day→v1-izoh, payload pm-m2-07) · l6 — 21/21 (jargon-elak «bazadan», o'xshatish-talabi, eski-matn rad,
+halol-qulf, eski→yangi karta, payload pm-m2-13). F-0828-09 hurmat-shakl relsi l6 ga qo'llandi
+(«tushunishdimi/deyishdi», ru «Вас поняли?»). Til-topilma: «professional» (ru) → «жаргон». Commit YO'Q.
+**2026-09-02 (2) — M3 PM uy vazifalari (4 ta, etalon-naqshda):** foydalanuvchi to'rttala rejani tasdiqladi
+(«shoshilmasdan yaxshilab»). `PmUserStoryLesson.homework.jsx` (pm-m3-02, src/pm/, senariy `M3-D2-UserStory-UY.md`) —
+hikoyalarim (avto: pm-m3d2-stories) → odam (avto: pm-m3d2-hw-target + ta'rif) → 2 yangi hikoya (KIM oldindan
+to'lgan, NIMA-takror taqiq) → 5 tadan 3 ta ⭐ + 3 savol; validateStory/canSave darsdan aynan. `PmLesson8.homework.jsx`
+(pm-m3-05, `M3-D5-Kataklar-UY.md`) — kataklarim (avto: pm-m3d5-board) → 2 yangi ish (ikki savol chip, katak
+bahoKatak bilan O'ZI chiqadi, BAHO_SABAB darsdan) → rejadagi ishni bo'lish (rejada ish bo'lmasa halol o'tadi) + 3 savol.
+`PmLesson9.homework.jsx` (pm-m3-10, `M3-D10-Shartlar-UY.md`) — shartlarim (avto: pm-m3d10-shartlar) → «qanday
+tekshiraman» ×3 → kutilmagan-holat 4-sharti (EDGE-so'z validatori) → son-tekshiruvi (kamida bitta sonli shart;
+harakat-fe'l avto-aniqlanmaydi — qaror senariyda ochiq) + 3 savol; juftlikOxshash/BAHO_SOZ darsdan (warn, blok emas).
+`PmLesson10.homework.jsx` (pm-m3-14, `M3-D14-Korsatuv-UY.md`) — 3 kadrim (avto: pm-m3d14-pitch) → haqiqiy sinov
+(🙂/😕) → tuzatish (😕 da «o'zgartirmayman» qulf, faqat mos kelmagan kadr taklifda) + 3 savol; ekranniTakror warn,
+harakat 1–5 so'z darsdan aynan.
+**Darvozalar:** to'rttalasi 5/5 (topilmalar: daftar-referenti ×2 → «Siz 5 ta hikoya yozdingiz», apostrof-qochirish ×2) ·
+shared 748/725/704/731 q · smoke-shared PASS. **Sinov (Playwright):** l-02 — 25/25 · l-05 — 20/20 · l-10 — 22/22 ·
+l-14 — 20/20 (avto-to'lish, dars-validatorlari, halol-qulflar, payload 4/4, reload, RU — hammasi jonli bosildi,
+brauzer-xato nol). P0 dars-fayliga tegilmadi (kalitlar faqat o'qildi). Commit YO'Q.
+**2026-09-02 (3) — M4 PM uy vazifalari (4 ta, etalon-naqshda):** foydalanuvchi to'rttala rejani tasdiqladi.
+`PmLesson11.homework.jsx` (pm-m4-02, `M4-D2-Maydonlar-UY.md`) — maydonlarim (avto: pm-m4d2-data) → har maydonga
+«bo'lmasa nima yo'qoladi?» (javobda BO'LIM NOMI shart — so'z-qidiruv validatori) → saqlanmaydigan narsa → 3 savol;
+UMUMIY_SOZ/normBolim darsdan. `PmLesson12.homework.jsx` (pm-m4-07, `M4-D7-Ishonch-UY.md`) — qatorlarim (avto:
+pm-m4d7-ishonch) → do'kon-ro'yxati (o'z ilovasi + 3 band) → belgi+sabab (ODAM_RE/BAHO_SOZ/sababOxshash darsdan;
+kamida bitta 🔒 — mentor-mezoni, uchchala 👁 da halol eslatma) → 3 savol. `PmLesson13.homework.jsx` (pm-m4-12,
+`M4-D12-Sxema-UY.md`) — sxemam (avto: pm-m4d12-sxema) → yangi savol→yangi ustun (takrorNom/juftOxshash darsdan) →
+uch shart (halol chip; o'tmagani izoh bilan) → 3 savol. `PmLesson14.homework.jsx` (pm-m4-15, `M4-D15-UchQavat-UY.md`) —
+uch gapim (avto: pm-m4d15-pitch; TEXNIK_RE elagi topilgan so'zni ko'rsatadi) → suhbat (hurmat-shakl: tushunishdi/
+qayta so'rashdi, F-0828-09) → tuzatish (halol-qulf, faqat qayta so'ralgan gap taklifda) → 3 savol.
+**Darvozalar:** to'rttalasi 5/5 (topilmalar: apostrof ×1, «sehr» taqiqi ×1 → «o'zicha bilmaydi») · shared
+694/712/719/709 q · smoke PASS. **Sinov (Playwright):** l-02 17/17 · l-07 19/19 · l-12 19/19 · l-15 17/17 —
+avto-to'lish, dars-validatorlari, halol-qulflar, payload 4/4, reload, RU; brauzer-xato nol. Commit YO'Q.

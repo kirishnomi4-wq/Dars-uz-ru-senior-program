@@ -6755,3 +6755,299 @@ qayta yig'ish buyrug'i. Ro'yxat generatori: `npm run pack:lms` (`scripts/pack-lm
 **`npm run smoke:lms` → 68/68 toza** (43 yangi papkalarda + 25 eski ildizda).
 
 **Commit YO'Q** (buyruqsiz).
+### 2026-08-25 (davomi 2) — LMS'ga YUKLANDI: Frontend-React moduli (14 dars × 2 til = 28 yozuv)
+
+**Kim qildi:** foydalanuvchi dostup berdi (CRM + brauzer), yuklashni bosh-agent brauzer-avtomatikasi
+bilan bajardi. Oqim foydalanuvchi ko'rsatdi: dars sahifasi → «Yangi savol» → `Tanlash: JSX dars
+(Lesson Runner)` → `Til` → `.jsx` fayl → «Qo'shish». Har dars IKKI marta: `uz` va `ru` —
+**bitta va o'sha faylning o'zi** (fayllarimiz ikki tilli, `lang` propi bilan).
+
+**Manba:** `lms/4-M/` · nishon: CRM `Frontend-React` moduli (`detail_part/74`).
+
+| # | CRM qatori | Fayl | uz / ru yozuv |
+|---|---|---|---|
+| 1 | 2445 | ReactIntroLesson.jsx | 16356 / 16357 |
+| 2 | 2446 | PmUserStoryLesson.jsx ⚙ | 16358 / 16359 |
+| 3 | 2447 | ReactFirstComponentLesson.jsx | 16360 / 16361 |
+| 4 | 2448 | ReactStateEffectLesson.jsx | 16362 / 16363 |
+| 5 | 2449 | PmLesson8.jsx | 16364 / 16365 |
+| 6 | 2450 | ReactPropsReuseLesson.jsx | 16366 / 16367 |
+| 7 | 2451 | ReactCrudPracticeLesson.jsx | 16368 / 16369 |
+| 8 | 2453 | ReactApiGetLesson.jsx | 16370 / 16371 |
+| 9 | 2455 | ReactApiPostLesson.jsx | 16372 / 16373 |
+| 10 | 2456 | PmLesson9.jsx ⚙ | 16374 / 16375 |
+| 11 | 2458 | ReactRouterPracticeLesson.jsx | 16376 / 16377 |
+| 12 | 2459 | ReactProjectDayLesson.jsx | 16378 / 16379 |
+| 13 | 2460 | ReactBuildSiteLesson.jsx | 16380 / 16381 |
+| 14 | 2461 | PmLesson10.jsx | 16382 / 16383 |
+
+**Ishga tushishi tasdiqlandi** (LMS runner `lms.coddycamp.uz/preview?jsx=…`): `ReactIntroLesson`
+(oddiy) va **`PmLesson9`** (444 KB, kompilyator ichida) — ikkalasi ham chizildi, oq ekran yo'q.
+Ekranda bizning «Darsga qo'shilish» (PIN + ism) darvozamiz chiqadi — kutilgan holat.
+
+**Yo'l-yo'lakay:** 2445-qatorning o'zbekcha sarlavhasi noto'g'ri edi («Bitta kartochka — o'nta
+kartochka» — bu 2450 ning nomi) → **«React: nima uchun kerak?»** (ruschasi bilan mos).
+
+🔴 **Ikki tuzoq — keyingi modullarda takrorlanmasin:**
+1. **KOORDINATA bilan bosmaslik.** Brauzer oynasi o'lchami o'zgarsa (726 → 772 px) koordinata
+   suriladi va «Qo'shish» nishonga tegmaydi: modal ochiq qoladi, keyingi bosish esa uni
+   yopib, kiritilgan ma'lumotni yo'q qiladi (2446 da shu bo'ldi, zarar yo'q — qayta qilindi).
+   **Har tugma NOMI bo'yicha (`find` → ref) bosiladi.**
+2. **Saqlashdan keyin jadval kech yangilanadi** (5–15 s). `get_page_text` eski holatni
+   ko'rsatishi mumkin — «saqlanmadi» deb xulosa qilib, qayta yuborilsa TAKROR paydo bo'ladi.
+   **Tasdiq faqat kutib olingan skrinshot bilan.** (2448 da shu adashish bo'lishiga oz qoldi.)
+   Yakuniy holat tekshirildi: har darsda **aniq 2 qator** (uz + ru), takror yo'q.
+
+**Repo'ga tegilmadi** — brauzer faqat `lms/4-M/*.jsx` fayllarini O'QIDI.
+**Qolgan ish:** `lms/5-M` (15 dars) → CRM `5-Modul` · `lms/6-M` (14 dars) → CRM `6-Modul`.
+Status hamma yozuvda `Draft` — nashrga chiqarish foydalanuvchi qaroriga qoldirildi.
+
+**Commit YO'Q** (buyruqsiz).
+### 2026-08-25 (davomi 3) — 5-M yuklash TO'XTATILDI: CRM formasi beqaror ishlayapti
+
+**Holat (aniq):** `lms/5-M` dan 15 darsdan **2 tasi to'liq**, 1 tasi **yarim**:
+
+| CRM qatori | Fayl | Natija |
+|---|---|---|
+| 2462 | DataIntroLesson | ✅ 16384 uz · 16385 ru |
+| 2463 | PmLesson11 | ✅ 16386 uz · 16387 ru |
+| 2464 | DbSqlNosqlLesson | ⚠️ **16388 uz** · ru YO'Q (6 urinish) |
+| 2465 | NodeServerLesson | ❌ hech narsa saqlanmadi |
+| 2466–2477 | — | boshlanmagan |
+
+**Nosozlik tavsifi:** «Yangi savol» → tur/til/fayl → «Qo'shish» bosilganda modal yopiladi,
+brauzer **POST yuboradi va server 200 qaytaradi**, lekin **yozuv yaratilmaydi**
+(`Hammasi` ham, `Ru` filtri ham bo'sh). Ba'zan o'sha amal ikkinchi urinishda o'tadi —
+qat'iy naqsh yo'q, taxminan **50/50**. Ikkinchi kuzatilgan nosozlik: muvaffaqiyatsiz
+urinishdan keyin «Yangi savol» bosilsa modal **umuman ochilmaydi** (DOM'da bor, ko'rinmaydi) —
+sahifani yangilash kerak.
+
+**Tekshirilgan va rad etilgan sabablar:** koordinata-siljish (endi hamma tugma ref bilan
+bosiladi) · fayl hajmi (307 KB ham, 478 KB ham ikkalasi ham sinadi va o'tadi) · kutish
+vaqti (2 s dan 12 s gacha — farq bermadi) · til-filtri (Ru filtrida ham yo'q) ·
+til/tur qiymatlari (har safar aniq qo'yilgan).
+
+🟢 **TAKROR YO'Q:** har muvaffaqiyatsiz urinish HECH NARSA yaratmagan — jadval har
+tekshiruvda aniq holatni ko'rsatdi. 4-Modul (14 dars, 28 yozuv) to'liq va toza.
+
+**Nima uchun 4-Modulda muammo bo'lmagan:** o'sha yerda ham ikki marta sindi (2446, 2448),
+lekin qayta urinish darrov o'tgan. 5-Modulda sinish chastotasi keskin oshdi — bu
+foydalanuvchi tomonidagi o'zgarish emas, server/forma xatti-harakati.
+
+**Brauzer aybdor emas — tekshirildi (foydalanuvchi taklifi bilan):** Chrome butunlay yopilib
+qayta ochildi, yangi tab, yangi sahifa → **ayni natija**. Ikki xil darsda (2464 ru, 2465 uz),
+ikki xil faylda (324 KB, 307 KB) — ikkalasi ham sinadi. O'sha fayllar bir necha daqiqa
+oldin muvaffaqiyatli yuklangan edi.
+
+**Avval yuklanganlar butun:** `uploads/lessons/lesson_runner/d3678…jsx` to'liq va to'g'ri
+qaytadi (ochib ko'rildi). Ya'ni saqlanган ma'lumot yo'qolmagan — faqat YANGI yozuv
+yaratilmayapti.
+
+**Xulosa:** nosozlik server tomonida va **vaqt bo'yicha boshlangan** — bugungi 31 yozuvdan
+oxirgi muvaffaqiyatlisi **16388** (2464 uz). Undan keyingi hamma urinish sinadi.
+Ehtimoliy sabab: fayl-saqlash yo'li (disk/huquq/worker) ishlamay qolgan, sahifa esa
+baribir 200 qaytaraveradi.
+
+**Foydalanuvchi qaroriga qo'yildi:** (a) LMS jamoasiga xato-hisoboti (yuqoridagi dalillar
+bilan), (b) vaqti-vaqti bilan qayta urinish, (c) qo'lda yuklash.
+
+**Commit YO'Q** (buyruqsiz).
+### 2026-08-25 (davomi 4) — 6-M mavzulari + 🔴 TOPILMA: CRM formasi dasturiy kiritishni sezmaydi
+
+**Vaziyat:** 6-Modul (CRM `detail_part/90`) bo'm-bo'sh edi. Avval 14 ta mavzu yaratilishi,
+keyin ichiga JSX yuklanishi kerak. Mavzu nomlari o'ylab topilmadi — `src/fb-demo/FbDemoApp.jsx`
+dan (uz+ru juftligi bilan) olindi, uslub 4/5-Modul bilan bir xil.
+
+🔴 **Sabab topildi (avvalgi «server sinmoqda» xulosasi noto'g'ri edi):**
+`form_input` bilan **dasturiy** qo'yilgan matn ilova tomonidan **sezilmaydi** — forma bo'sh
+ketadi, POST 200 qaytadi, yozuv yaratilmaydi. **Haqiqiy klaviatura bilan yozilganda
+(`click` → `type`) — saqlanadi.** Shu usul bilan 2761 nomi darrov saqlandi.
+Ya'ni ilova (jQuery/select2 qatlami) `.value` o'zgarishiga emas, **foydalanuvchi
+hodisalariga** (input/change) tayanadi.
+
+**Amaliy qoida (keyingi seanslarga):** CRM formalarida matn maydonlariga **faqat `type`**
+bilan yoziladi; `form_input` faqat `<select>` uchun ishlaydi. Fayl maydoni esa `file_upload`
+dan boshqa yo'l bilan to'ldirilmaydi — shuning uchun fayl yuklash baribir beqaror qoladi.
+
+**Ikkinchi tuzoq:** «Yangi mavzu» oynasida `Turi` ko'rinishda `Class` bo'lib turadi, lekin
+tegilmasa **`Learn`** bo'lib saqlanadi (2762 shunday chiqdi → tahrir orqali `Class` qilindi).
+Yaratishdan oldin `Turi` ni **`select` orqali** aniq qo'yish kerak — lekin uni yaratish
+oynasida o'zgartirilsa saqlash sinishi kuzatildi; ishonchli yo'l: yaratib, keyin tahrirda
+`Class` qilish.
+
+**Bajarilgani:** `2761` = 1-dars (nomi to'g'rilandi, `Class`) · `2762` = 2-dars (yaratildi,
+`Class`). 3–14 yaratilmadi — saqlash yana sinib qoldi (beqarorlik saqlanmoqda).
+
+**Foydalanuvchiga topshirildi:** `lms/6-M/_CRM_MOSLIK.md` — 14 mavzu nomi (uz+ru, tayyor
+ko'chirib qo'yiladigan) + qaysi darsga qaysi fayl. `lms/5-M/_CRM_MOSLIK.md` ham shunday
+(5-Modul foydalanuvchi tomonidan qo'lda yuklab bo'lindi).
+
+**Commit YO'Q** (buyruqsiz).
+### 2026-08-25 (davomi 5) — Uch modul Draft → Active (129 ta o'zgartirish)
+
+**Vazifa (foydalanuvchi):** 74 · 75 · 90 modullarida hamma narsa `Draft` turibdi — `Active` qilinsin.
+Mexanika foydalanuvchi ko'rsatdi: `Draft` yorlig'i bosiladi → ostida yashil `Active` chiqadi (~31 px
+pastda) → o'sha bosiladi. Chegara: shu uch moduldan tashqariga chiqilmaydi, hech narsa o'chirilmaydi.
+
+**Bajarildi:**
+
+| Daraja | Soni | Holat |
+|---|---|---|
+| Mavzu qatorlari (4-M 14 · 5-M 15 · 6-M 14) | **43** | ✅ Active |
+| Dars yozuvlari (43 dars × uz+ru) | **86** | ✅ Active |
+| **Jami** | **129** | ✅ |
+
+Arxiv qatorlar (`2452`, `2454`, `2457`, `2470`) **tegilmadi** — `Archive` holida qoldi.
+
+**Texnik xulosa (keyingi safar uchun):** bu ish faqat **koordinata-bosish** bilan bo'ladi —
+`Draft` yorlig'i va ochiladigan `Active` DOM'da alohida element sifatida ishonchli
+topilmaydi. Shuning uchun **har sahifada skrinshot olib, joylashuv o'lchanadi**: dars
+sarlavhasi uzun bo'lsa nav-yo'l ikki qatorga tushadi va jadval **+17 px** pastga suriladi;
+`STATUS` ustunining X koordinatasi esa fayl nomi uzunligiga qarab suriladi. Bitta universal
+koordinata YO'Q. Har o'zgartirishdan keyin `get_page_text` bilan tasdiqlandi.
+
+⚠️ **Tegilmagan (foydalanuvchi qaroriga):** kurs ro'yxatidagi **modul qatorlari** (`74`, `75`, `90`)
+hamon `Draft`. Bu eng tashqi daraja — o'quvchiga butun modul ko'rinishini ochadi.
+
+**Yo'l-yo'lakay ko'rilgan uch mayda nuqson (tuzatilmadi, xabar qilindi):**
+`2464` ruscha sarlavhasi tarjima qilinmagan · `2477` o'zbekcha sarlavhada kirill «питч» ·
+`16403` (2472 · uz) yozuvida «Sarlavha» maydoniga fayl nomi yozilib qolgan.
+
+**Commit YO'Q** (buyruqsiz).
+## 2026-08-25 — MENTOR YUZASI qurildi (LMS yiqilganda ishlaydigan zaxira sayt)
+
+**So'rov:** mentorlar uchun Vercel'da alohida sayt — LMS ochilmay qolsa shu yerdan dars
+o'tishadi. Real sayt ko'rinishida bo'lsin, «yoyilib yotmasin». Modullar o'quv rejasi bo'yicha
+**2-Moduldan** boshlanadi (1-Modul = Foundation, bizniki emas).
+
+**Qurildi:** `src/mentor/` — `MentorApp.jsx` (sayt) · `lessons.jsx` (avto-yig'ilgan ma'lumot) ·
+`MentorMain.jsx` · `mentor.html` · `vite.mentor.config.js` → **`dist-mentor/`** (21 MB).
+Buyruqlar: **`npm run gen:mentor`** (ma'lumotni qayta yig'ish) · **`npm run build:mentor`**.
+
+**Raqamlash (yangi):** 2 HTML/CSS · 3 JavaScript · 4 React · 5 Express+PostgreSQL ·
+6 NestJS+Test+CI/CD. **70 dars** (+8 Rezerv/Demo qatori — fayl talab qilmaydi).
+
+**Ma'lumot QO'LDA ko'chirilmadi.** `scripts/gen-mentor.mjs` ikki mavjud demodan
+(`m1-demo` + `fb-demo`) lazy-importlar va modul bloklarini o'qib, faqat modul raqami va
+sarlavhasini yangi rejaga moslaydi. Har darsning **`lessonId`** i dars faylining o'zidan
+olinadi (70/70). Ya'ni dars tartibi va nomlari — kursning haqiqiy manbasidan.
+
+**Uch qatlamli tuzilma (eski demo bitta uzun ro'yxat edi — «yoyilib yotgan» joyi shu):**
+bosh sahifa (5 modul-karta, har biri o'z rangida) → modul sahifasi (faqat o'sha dars ro'yxati,
+oldingi/keyingi modul) → dars to'liq ekranda. Qidiruv ikki tilda ishlaydi (`/` tugmasi bilan
+fokus), natijada dars qaysi modulniki ekani ko'rsatiladi.
+
+🔴 **Men qilgan xato va tuzatilishi (foydalanuvchi to'xtatdi).** Dastlab PIN darvozasi
+«to'siq» deb hisoblanib, dars ochilishidan oldin `liveSession:<lessonId>` = `{mode:'self'}`
+urug'langan edi. **Bu noto'g'ri edi:** saytning butun ma'nosi — mentor jonli sessiya ochib,
+**havolani guruhga tashlashi**, o'quvchilar shu havoladan PIN bilan kirib **darsda
+qatnashishi**. Urug'lash aynan shu jonli qatnashuvni o'ldirardi.
+
+**To'g'ri yechim:** dars ochilishiga **umuman aralashilmaydi** — LMS'dagi oqim aynan saqlanadi
+(dars → 🧑‍🏫 mentor kodi → PIN → o'quvchilar qo'shiladi). `liveSession` ga tegadigan kod
+butunlay olib tashlandi. O'rniga mentorga kerak bo'lgan yagona qulaylik qo'shildi:
+dars ichidagi **⧉ tugmasi dars havolasini nusxalaydi** (bosilganda ✓ ga aylanadi) —
+mentor uni to'g'ridan-to'g'ri guruhga tashlaydi. Dars faylining birortasiga TEGILMADI.
+
+**Vercel tayyorligi:** `input` mentor.html bo'lgani uchun chiqishda ham mentor.html bo'lardi;
+oldingi demolarda buni qo'lda `index.html` ga aylantirishardi va unutilardi. Endi
+`vite.mentor.config.js` da `closeBundle` bilan **avtomatik** qayta nomlanadi.
+
+**Tekshirildi (brauzerda, `vite preview`):** bosh sahifa · modul sahifasi · dars ochilishi
+(PIN darvozasi LMS'dagidek chiqadi) · havola nusxalash (✓) · dars ichida UZ↔RU almashishi
+(butun dars tarjimasi bilan) · qidiruv ·
+2-Modul renomerlanishi (HTML/CSS, 14 dars, keyingisi 3-Modul JavaScript). Darvozalar:
+`MentorApp.jsx` **5/5 toza**.
+
+⚠️ **Ikki til-topilmasi — MEROS, foydalanuvchi qaroriga:** `lessons.jsx` da til-lint 2 ta
+error beradi va ikkalasi ham `m1-demo` dan ko'chib kelgan kurs sarlavhalari:
+«VS Code — **professional** start» va «Loyiha kuni: saytga **jon**» (CSS darsida «jon» —
+JS so'zi). Sarlavhalar o'zboshimchalik bilan o'zgartirilmadi: tuzatilsa manbada
+(`M1DemoApp.jsx`) tuzatiladi va `npm run gen:mentor` qayta yuriladi.
+
+**Palitra (foydalanuvchi tuzatishi):** dastlabki krem fon (`#F6F4EF`) Claude'nikiga o'xshab
+ketgani aytildi → sayt **oppoq** qilindi: fon `#FFFFFF`, chiziq `#E8E8EC`, kichik yuzalar uchun
+alohida `tint: #F5F5F7` (aks holda oq fonda yo'qolardi), kulranglar iliqdan neytralga
+o'tkazildi, kartalarga juda yengil soya. Brend-accent (`#FF4F28`) va modul ranglari saqlandi.
+DARSLARNING o'z ko'rinishiga tegilmadi — ular o'z palitrasida qoladi (bu qobiq, dars emas).
+
+**Ikkinchi tuzatish to'plami (foydalanuvchi ko'rgandan keyin):**
+1. Statistika qatori (`5 modul · 70 dars · 2 til`) olib tashlandi — keraksiz edi.
+2. Sarlavha: «Barcha darslar — bir joyda» → **«Barcha darslar shu yerda»** (ru: «Все уроки — здесь»).
+3. Yorliq: «Mentor yuzasi» → **«Mentor uchun»** (ru: «Для ментора»); brauzer sarlavhasi ham.
+4. **Dizayn klassikaga o'tkazildi** — «Claude qilib qo'yibdi» degan taassurot bo'lmasin:
+   suzuvchi karta-gridi o'rniga **tartibli modul indeksi** (serif raqam + nom + izoh + soni,
+   chiziq bilan ajratilgan qatorlar); dars ro'yxati ham kartasiz, faqat ajratuvchi chiziqlar;
+   bo'lim sarlavhalari ostida qalin chiziq (`MODULLAR`, `DARSLAR`); raqamlar `01`, `02` shaklida
+   serifda; rang keskin kamaytirildi — faqat modul raqami va dars turi rangda, qolgani qora-oq;
+   burchaklar o'tkirroq (18px → 6-7px), soyalar olib tashlandi.
+
+**Uchinchi tuzatish (foydalanuvchi: «juda oppoq, kartalar bilinmayapti, ijod kerak»):**
+klassik-oq variant quruq chiqdi — kartalar oq fonda ko'rinmay ketgan edi. Yechim:
+fon **yengil kulrang** (`#F5F6F8`) qilindi — shunda OQ kartalar ajralib turadi va qatlam
+seziladi. Har modulga to'liq rang-to'plami berildi (to'q rang + yengil fon + hover-soyasi):
+2 to'q sariq · 3 amber · 4 ko'k · 5 yashil · 6 binafsha. Modul kartasida rangli sarlavha-tasma,
+katta serif raqam; dars kartasida **chap chekkada dars turi rangidagi tasma**, rangli raqam-nishon
+va yorliq (Kod/PM/Proyekt) — mentor ro'yxatni bir qarashda o'qiydi. Kartalar ochilishida
+navbat bilan yumshoq chiqadi (`prefers-reduced-motion` da o'chadi), hover'da ko'tariladi va
+o'z rangida soya beradi.
+
+🔴 **Ikki jim xato tutildi:** (a) karta sarlavhalari **ko'k** chiqayotgan edi — `<a>` ning
+brauzer-rangi meros bo'lgan, uchta konteynerga `color` qo'yildi; (b) izohda aralash-yozuv
+ketgan edi («sezil**ади**») — loyihada aynan taqiqlangan xato-sinf, tuzatildi va butun fayl
+lotin+kirill yopishuviga skanerlandi (0 topilma).
+
+**DEPLOY QILINDI (foydalanuvchi buyrug'i bilan):**
+**https://coddycamp-mentor.vercel.app** — Vercel loyihasi `coddycamp-mentor`
+(jamoa `azizbek10`), chiqish papkasi `dist-mentor/`, muhit **Production**, holat Ready.
+
+Tartib (boshqa demolar bilan bir xil):
+```
+npm run gen:mentor      # dars ma'lumotini qayta yig'ish (kerak bo'lsa)
+npm run build:mentor    # dist-mentor/ + index.html avtomatik
+cd dist-mentor && vercel deploy --prod --yes --scope azizbek10
+```
+`vercel link` `dist-mentor/.env.local` yaratadi (papka gitignore'da — muammo yo'q).
+
+**Jonli tekshirildi:** bosh sahifa · dars ochilishi (PIN darvozasi LMS'dagidek chiqdi) ·
+suzuvchi panel (⌂ ← ⧉ UZ/RU) joyida. Dars havolasi shakli:
+`https://coddycamp-mentor.vercel.app/#/l/<kalit>` — mentor shuni guruhga tashlaydi.
+
+**Commit YO'Q** (buyruqsiz).
+---
+
+## 2026-08-26 — M1 UYGA VAZIFA TIZIMI (branch: `uyga-vazifa-pilot`) — 10 Tex dars
+
+**Maqsad:** har M1 Tex darsiga uy vazifasi: dars-JSX'da shart + LMS-paket (qo'lda kiritish
+uchun) + namuna-rasm. Pilot-naqsh (Htmllesson1) shu seans avvalida tasdiqlangan edi.
+
+**Naqsh (7 kompilyator-dars: m1-04 Htmllesson2 · m1-14 Takrorlash · m1-06/07 Css1-2 ·
+m1-08 HtmlPractice · m1-10 CssPractice + m1-03 avvaldan):**
+- `TASK_HW` — shart-kartaga AYNAN mos avto-tekshiruv (avval hammasi sinf-praktikasini
+  qayta ochardi — shart↔tekshiruv nomos edi) · `openHomeworkPractice` → TASK_HW ·
+- ikki «Uyga vazifa» tugma BITTA oqimga birlashtirildi (tugma → shart-karta → karta
+  ichida «Vazifani bajarish →») · karta izohlari kompilyator-oqimiga yangilandi ·
+- `export const HOMEWORK` (type:'tex', title/brief/items/task/starter).
+
+**m1-15 VsCode (type:'file'):** vazifaning mohiyati VS Code'da ishlash — kompilyator-tugma
+OLIB TASHLANDI (TASK_STYLE yo'li o'chdi, hw-restore bekor), karta izohi skrinshot-yuklashga
+moslandi, HOMEWORK export type:'file'.
+
+**m1-01 Internet · m1-09 Git · m1-11 Deploy (type:'text'):** kod yo'q — yozma javob/havola.
+HOMEWORK export + karta izohlari «platformadagi vazifa-savoliga yuborasiz»ga moslandi
+(Deploy'da 2 joyda «mentorga yuboring» eski oqim edi).
+
+**Darvozalar:** har faylda esbuild/jsx/prompt ✓; dark/til topilmalari `git show HEAD:`
+baseline bilan solishtirildi — **bironta yangi topilma kiritilmadi** (3 faylda warn −1;
+HtmlPractice'da mening «skelet» so'zim anatomiya-taqiqiga ilindi → «shablon»ga tuzatildi).
+Eski qarzlar (har faylda 2–10 error) — MODUL_TUR mavzusi, tegilmadi.
+
+**LMS-paketlar:** `uyga-vazifa/` — 11 dars uchun md (Savol + AI prompt, uz/ru; VsCode —
+Fayl yuklash maydonlari; Internet/Git/Deploy — Text) + **16 namuna-rasm**
+(`<kod>-uyga-vazifa-uz/ru.png`, headless Chrome bilan render).
+
+**LMS-modullar qayta yig'ildi:** 7 ta .shared.jsx + 3 ta .jsx (Internet/Git/Deploy),
+hammasida HOMEWORK-eksport, esbuild-sintaksis ✓.
+
+**Ochiq:** foydalanuvchi LMS'da kiritib sinaydi → keyin HOMEWORK-naqsh DARS_ETALON'ga
+muhrlanadi va M2+ modullarga konveyer. **Commit YO'Q** (buyruqsiz).
