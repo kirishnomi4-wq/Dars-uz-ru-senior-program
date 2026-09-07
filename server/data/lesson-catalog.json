@@ -1,0 +1,811 @@
+{
+  "generated_at": "2026-09-07T09:53:25.189Z",
+  "count": 115,
+  "lessons": [
+    {
+      "lesson_id": "agent-arch-06-04-v18",
+      "title_uz": "AI-agent nima — detektiv metaforasi",
+      "title_ru": "Что такое AI-агент",
+      "version": "v18",
+      "source": "src/6-Modull/AgentArchitectureLesson.jsx"
+    },
+    {
+      "lesson_id": "api-postman-04-06-v18",
+      "title_uz": "API va Postman — front backend bilan qanday gaplashadi",
+      "title_ru": "API и Postman — как фронт говорит с бэком",
+      "version": "v18",
+      "source": "src/4-Modull/ApiPostmanLesson.jsx"
+    },
+    {
+      "lesson_id": "arch-patterns-06-03-v18",
+      "title_uz": "Arxitektura patternlari",
+      "title_ru": "Паттерны архитектуры",
+      "version": "v18",
+      "source": "src/6-Modull/ArchPatternsLesson.jsx"
+    },
+    {
+      "lesson_id": "auth-env-04-07-v18",
+      "title_uz": "Autentifikatsiya va .env — login, JWT, maxfiy kalitlar",
+      "title_ru": "Аутентификация и .env — логин, JWT, секреты",
+      "version": "v18",
+      "source": "src/4-Modull/AuthEnvLesson.jsx"
+    },
+    {
+      "lesson_id": "backend-crud-practice-p1-v18",
+      "title_uz": "Praktika: Backend CRUD — AvtoIjara",
+      "title_ru": "Практика: Backend CRUD — AvtoIjara",
+      "version": "v18",
+      "source": "src/4-Modull/BackendCrudPracticeLesson.jsx"
+    },
+    {
+      "lesson_id": "bot-ai-agent-05-10-v18",
+      "title_uz": "Botjon ish bajaradi — AI-agent",
+      "title_ru": "Бот выполняет задачи — AI-агент",
+      "version": "v18",
+      "source": "src/5-Modull/BotAiAgentLesson.jsx"
+    },
+    {
+      "lesson_id": "bot-ai-brain-05-04-v18",
+      "title_uz": "Botjon o'ylay boshlaydi — Maslahatchi (AI)",
+      "title_ru": "Бот начинает думать",
+      "version": "v18",
+      "source": "src/5-Modull/BotAiBrainLesson.jsx"
+    },
+    {
+      "lesson_id": "bot-ai-project-05-05-v18",
+      "title_uz": "Loyiha kuni: AI bilan istalgan bot",
+      "title_ru": "Проектный день: бот с ИИ",
+      "version": "v18",
+      "source": "src/5-Modull/BotAiProjectLesson.jsx"
+    },
+    {
+      "lesson_id": "bot-api-buttons-05-02-v18",
+      "title_uz": "Bot API + tugmalar: Botjon muloqot qiladi",
+      "title_ru": "Bot API и кнопки: Ботик общается",
+      "version": "v18",
+      "source": "src/5-Modull/BotApiButtonsLesson.jsx"
+    },
+    {
+      "lesson_id": "bot-feedback-05-06-v18",
+      "title_uz": "Foydalanuvchi fikri va iteratsiya",
+      "title_ru": "Обратная связь и итерации",
+      "version": "v18",
+      "source": "src/5-Modull/BotFeedbackIterationLesson.jsx"
+    },
+    {
+      "lesson_id": "bot-full-project-05-07-v18",
+      "title_uz": "Botjon doim yashaydi — to'liq loyiha va doimiy joy",
+      "title_ru": "Полный проект бота и хостинг",
+      "version": "v18",
+      "source": "src/5-Modull/BotFullProjectLesson.jsx"
+    },
+    {
+      "lesson_id": "bot-intro-05-01-v18",
+      "title_uz": "Bot nima — signal va amal",
+      "title_ru": "Что такое бот",
+      "version": "v18",
+      "source": "src/5-Modull/BotIntroLesson.jsx"
+    },
+    {
+      "lesson_id": "bot-stateful-memory-05-03-v18",
+      "title_uz": "Botjon eslab qoladi — stateful logika va PostgreSQL",
+      "title_ru": "Bot запоминает — stateful логика и PostgreSQL",
+      "version": "v18",
+      "source": "src/5-Modull/BotStatefulMemoryLesson.jsx"
+    },
+    {
+      "lesson_id": "cicd-ai-pipeline-4c-05-v18",
+      "title_uz": "AI bilan lentani boshqarish",
+      "title_ru": "Управление конвейером с AI",
+      "version": "v18",
+      "source": "src/4c-Modull/AiPipelineProjectLesson.jsx"
+    },
+    {
+      "lesson_id": "cicd-full-pipeline-4c-03-v18",
+      "title_uz": "cicd-full-pipeline-4c-03-v18",
+      "title_ru": "Проектный день — построение полного конвейера",
+      "version": "v18",
+      "source": "src/4c-Modull/FullPipelineProjectLesson.jsx"
+    },
+    {
+      "lesson_id": "cicd-intro-4c-01-v18",
+      "title_uz": "CI/CD nima va nega kerak",
+      "title_ru": "Что такое CI/CD и зачем",
+      "version": "v18",
+      "source": "src/4c-Modull/CiCdIntroLesson.jsx"
+    },
+    {
+      "lesson_id": "claude-skills-06-05-v18",
+      "title_uz": "Claude Skills — nima",
+      "title_ru": "Claude Skills",
+      "version": "v18",
+      "source": "src/6-Modull/ClaudeSkillsLesson.jsx"
+    },
+    {
+      "lesson_id": "css-01-v17",
+      "title_uz": "CSS asoslari: ranglar, shriftlar, bo'shliqlar",
+      "title_ru": "CSS руками — часть 1",
+      "version": "v17",
+      "source": "src/1-Modull/CssLesson1.jsx"
+    },
+    {
+      "lesson_id": "css-02-v18",
+      "title_uz": "CSS: layout, flexbox, DevTools",
+      "title_ru": "CSS руками — часть 2",
+      "version": "v18",
+      "source": "src/1-Modull/CssLesson2.jsx"
+    },
+    {
+      "lesson_id": "css-practice-portfolio-v3",
+      "title_uz": "CSS Praktika — Portfolioni bezaymiz",
+      "title_ru": "CSS практика — стилизуем портфолио",
+      "version": "v3",
+      "source": "src/1-Modull/CssPractice.jsx"
+    },
+    {
+      "lesson_id": "data-intro-04-01-v18",
+      "title_uz": "data-intro-04-01-v18",
+      "title_ru": "Данные и связи: JSON, таблицы, схема",
+      "version": "v18",
+      "source": "src/4-Modull/DataIntroLesson.jsx"
+    },
+    {
+      "lesson_id": "db-sql-nosql-04-02-v18",
+      "title_uz": "SQL vs NoSQL — nega PostgreSQL",
+      "title_ru": "SQL vs NoSQL — почему PostgreSQL",
+      "version": "v18",
+      "source": "src/4-Modull/DbSqlNosqlLesson.jsx"
+    },
+    {
+      "lesson_id": "edge-cases-04b-02-v18",
+      "title_uz": "Edge cases va error path",
+      "title_ru": "Граничные случаи и обработка ошибок",
+      "version": "v18",
+      "source": "src/4b-Modull/EdgeCasesTestLesson.jsx"
+    },
+    {
+      "lesson_id": "full-pro-pipeline-4c-04-v18",
+      "title_uz": "full-pro-pipeline-4c-04-v18",
+      "title_ru": "Проектный день: надёжная лента",
+      "version": "v18",
+      "source": "src/4c-Modull/FullProPipelineLesson.jsx"
+    },
+    {
+      "lesson_id": "full-system-06-13-v18",
+      "title_uz": "full-system-06-13-v18",
+      "title_ru": "Проектный день: полная система",
+      "version": "v18",
+      "source": "src/6-Modull/FullSystemProjectLesson.jsx"
+    },
+    {
+      "lesson_id": "fullstack-connect-practice-p2-v18",
+      "title_uz": "Praktika: Fullstack ulash — AvtoIjara",
+      "title_ru": "Практика: Fullstack связка — AvtoIjara",
+      "version": "v18",
+      "source": "src/4-Modull/FullstackConnectPracticeLesson.jsx"
+    },
+    {
+      "lesson_id": "fullstack-feedback-p4-v18",
+      "title_uz": "Praktika: Feedback bilan yaxshilash — AvtoStoyanka",
+      "title_ru": "Практика: Доработка по фидбеку — AvtoStoyanka",
+      "version": "v18",
+      "source": "src/4-Modull/FullstackFeedbackLesson.jsx"
+    },
+    {
+      "lesson_id": "fullstack-projectday-p3-v18",
+      "title_uz": "Praktika: Loyiha kuni — AvtoStoyanka",
+      "title_ru": "Практика: Проектный день — AvtoStoyanka",
+      "version": "v18",
+      "source": "src/4-Modull/FullstackProjectDayLesson.jsx"
+    },
+    {
+      "lesson_id": "git-github-v19",
+      "title_uz": "Git va GitHub — kodni internetga chiqaramiz",
+      "title_ru": "Git и GitHub — выкладываем код в интернет",
+      "version": "v19",
+      "source": "src/1-Modull/GitLesson.jsx"
+    },
+    {
+      "lesson_id": "github-actions-4c-02-v18",
+      "title_uz": "github-actions-4c-02-v18",
+      "title_ru": "GitHub Actions — написание карты маршрута",
+      "version": "v18",
+      "source": "src/4c-Modull/GithubActionsLesson.jsx"
+    },
+    {
+      "lesson_id": "html-01-v17",
+      "title_uz": "HTML asoslari",
+      "title_ru": "Основы HTML",
+      "version": "v17",
+      "source": "src/1-Modull/Htmllesson1.jsx"
+    },
+    {
+      "lesson_id": "html-02-v16",
+      "title_uz": "HTML: rasm, struktura, forma, DevTools",
+      "title_ru": "HTML: картинки, структура, формы, DevTools",
+      "version": "v16",
+      "source": "src/1-Modull/Htmllesson2.jsx"
+    },
+    {
+      "lesson_id": "html-practice-portfolio-v2",
+      "title_uz": "HTML Praktika — Portfolio sayt",
+      "title_ru": "HTML практика — портфолио",
+      "version": "v2",
+      "source": "src/1-Modull/HtmlPractice.jsx"
+    },
+    {
+      "lesson_id": "html-takrorlash-01-05-v2",
+      "title_uz": "Takrorlash: HTML ustaxonasi",
+      "title_ru": "Повторение: мастерская HTML",
+      "version": "v2",
+      "source": "src/1-Modull/HtmlTakrorlashLesson.jsx"
+    },
+    {
+      "lesson_id": "internet-01-v18",
+      "title_uz": "Internet qanday ishlaydi",
+      "title_ru": "Как устроен интернет",
+      "version": "v18",
+      "source": "src/1-Modull/InternetLesson.jsx"
+    },
+    {
+      "lesson_id": "jest-unit-04b-01-v18",
+      "title_uz": "Unit-test: Jest",
+      "title_ru": "Юнит-тесты: Jest",
+      "version": "v18",
+      "source": "src/4b-Modull/JestUnitTestLesson.jsx"
+    },
+    {
+      "lesson_id": "js-cond-01-v16",
+      "title_uz": "JavaScript — if/else",
+      "title_ru": "JavaScript — if/else",
+      "version": "v16",
+      "source": "src/2-moodull eski/JsConditionsLesson.jsx"
+    },
+    {
+      "lesson_id": "js-cond-01-v18",
+      "title_uz": "JavaScript — if/else",
+      "title_ru": "JavaScript — if/else",
+      "version": "v18",
+      "source": "src/2-Modull/JsConditionsLesson.jsx"
+    },
+    {
+      "lesson_id": "js-functions-01-v16",
+      "title_uz": "JavaScript — Funksiya, parametr, return",
+      "title_ru": "JavaScript — Функция, параметры, return",
+      "version": "v16",
+      "source": "src/2-moodull eski/JsFunctionsLesson.jsx"
+    },
+    {
+      "lesson_id": "js-functions-01-v18",
+      "title_uz": "JavaScript — Funksiya, parametr, return",
+      "title_ru": "JavaScript — Функция, параметры, return",
+      "version": "v18",
+      "source": "src/2-Modull/JsFunctionsLesson.jsx"
+    },
+    {
+      "lesson_id": "js-intro-01-v16",
+      "title_uz": "Sistema va Algoritm",
+      "title_ru": "Система и алгоритм",
+      "version": "v16",
+      "source": "src/2-moodull eski/JsIntroLesson.jsx"
+    },
+    {
+      "lesson_id": "js-intro-01-v18",
+      "title_uz": "Sistema va Algoritm",
+      "title_ru": "Система и алгоритм",
+      "version": "v18",
+      "source": "src/2-Modull/JsIntroLesson.jsx"
+    },
+    {
+      "lesson_id": "js-loops-01-v16",
+      "title_uz": "JavaScript — Sikllar (for, while)",
+      "title_ru": "JavaScript — Циклы (for, while)",
+      "version": "v16",
+      "source": "src/2-moodull eski/JsLoopsLesson.jsx"
+    },
+    {
+      "lesson_id": "js-loops-01-v18",
+      "title_uz": "JavaScript — Sikllar (for, while)",
+      "title_ru": "JavaScript — Циклы (for, while)",
+      "version": "v18",
+      "source": "src/2-Modull/JsLoopsLesson.jsx"
+    },
+    {
+      "lesson_id": "js-vars-01-v16",
+      "title_uz": "js-vars-01-v16",
+      "title_ru": "JavaScript — Переменные",
+      "version": "v16",
+      "source": "src/2-moodull eski/JsVarsLesson (2).jsx"
+    },
+    {
+      "lesson_id": "js-vars-01-v18",
+      "title_uz": "js-vars-01-v18",
+      "title_ru": "JavaScript — Переменные",
+      "version": "v18",
+      "source": "src/2-Modull/JsVarsLesson.jsx"
+    },
+    {
+      "lesson_id": "kod-mvp-arch-v16",
+      "title_uz": "Mini-MVP arxitekturasi — chizma birinchi",
+      "title_ru": "Архитектура mini-MVP",
+      "version": "v16",
+      "source": "src/7-Modull/MvpArchLesson.jsx"
+    },
+    {
+      "lesson_id": "mobile-practice-06-11-v18",
+      "title_uz": "Praktika: mobil ilova (mini-do'kon)",
+      "title_ru": "Практика: мобильное приложение",
+      "version": "v18",
+      "source": "src/6-Modull/MobileAppPracticeLesson.jsx"
+    },
+    {
+      "lesson_id": "mvp-build1-101-v16",
+      "title_uz": "MVP v1: AI bilan vibe coding",
+      "title_ru": "MVP v1: вайб-кодинг с ИИ",
+      "version": "v16",
+      "source": "src/7-Modull/MvpBuild1Lesson.jsx"
+    },
+    {
+      "lesson_id": "mvp-build2-103-v16",
+      "title_uz": "MVP v2: oxiriga yetkazish va SHIP",
+      "title_ru": "MVP v2: завершить и запустить",
+      "version": "v16",
+      "source": "src/7-Modull/MvpBuild2Lesson.jsx"
+    },
+    {
+      "lesson_id": "mvp-iterate-105-v16",
+      "title_uz": "Fidbek iteratsiyasi",
+      "title_ru": "Итерация по обратной связи",
+      "version": "v16",
+      "source": "src/7-Modull/MvpIterateLesson.jsx"
+    },
+    {
+      "lesson_id": "nest-arch-alive-4a-01-v18",
+      "title_uz": "Nest arxitektura — tirik ko'rish",
+      "title_ru": "Nest архитектура — живой обзор",
+      "version": "v18",
+      "source": "src/4a-Modull/NestArchAliveLesson.jsx"
+    },
+    {
+      "lesson_id": "nest-arch-practice-4a-03-v18",
+      "title_uz": "Praktika — KitobShop backend",
+      "title_ru": "Практика — бэкенд KitobShop",
+      "version": "v18",
+      "source": "src/4a-Modull/NestArchPracticeLesson.jsx"
+    },
+    {
+      "lesson_id": "nest-arch-resource-4a-02-v18",
+      "title_uz": "Birinchi resursni qo'lda qo'shish — mashinalar",
+      "title_ru": "Добавляем первый ресурс вручную — машины",
+      "version": "v18",
+      "source": "src/4a-Modull/NestArchResourceLesson.jsx"
+    },
+    {
+      "lesson_id": "nest-routing-04-04-v18",
+      "title_uz": "Routing: server so'rovni qanday topadi",
+      "title_ru": "Роутинг: как сервер находит запрос",
+      "version": "v18",
+      "source": "src/4-Modull/RoutingLesson.jsx"
+    },
+    {
+      "lesson_id": "netlify-deploy-v19",
+      "title_uz": "Netlify va deploy",
+      "title_ru": "Netlify и деплой",
+      "version": "v19",
+      "source": "src/1-Modull/DeployLesson.jsx"
+    },
+    {
+      "lesson_id": "node-server-04-03-v18",
+      "title_uz": "Node.js — birinchi serveringiz",
+      "title_ru": "Node.js — первый сервер",
+      "version": "v18",
+      "source": "src/4-Modull/NodeServerLesson.jsx"
+    },
+    {
+      "lesson_id": "pean-stack-01-v18",
+      "title_uz": "PERN Stack — 4 texnologiya, bitta jamoa",
+      "title_ru": "PERN Stack — 4 технологии, одна команда",
+      "version": "v18",
+      "source": "src/2-Modull/PeanStackLesson.jsx"
+    },
+    {
+      "lesson_id": "pg-crud-04-05-v18",
+      "title_uz": "PostgreSQL so'rovlar — CRUD + AI bilan",
+      "title_ru": "Запросы PostgreSQL — CRUD + ИИ",
+      "version": "v18",
+      "source": "src/4-Modull/PostgresCrudLesson.jsx"
+    },
+    {
+      "lesson_id": "pipeline-project-06-08-v18",
+      "title_uz": "pipeline-project-06-08-v18",
+      "title_ru": "Практика: полный pipeline",
+      "version": "v18",
+      "source": "src/6-Modull/PipelineProjectLesson.jsx"
+    },
+    {
+      "lesson_id": "pm-analysis-31-v16",
+      "title_uz": "Tahlil + MVP chegarasi — kesish san'ati",
+      "title_ru": "Анализ интервью + границы MVP",
+      "version": "v16",
+      "source": "src/7-Modull/PmLesson31.jsx"
+    },
+    {
+      "lesson_id": "pm-analytics-32-v16",
+      "title_uz": "Analitika birinchi kundan — ko'zoynak kiyish",
+      "title_ru": "Аналитика с первого дня",
+      "version": "v16",
+      "source": "src/7-Modull/PmLesson32.jsx"
+    },
+    {
+      "lesson_id": "pm-custdev-29-v16",
+      "title_uz": "Custdev: savol berish — Mom Test",
+      "title_ru": "Custdev: как задавать вопросы — Mom Test",
+      "version": "v16",
+      "source": "src/7-Modull/PmLesson29.jsx"
+    },
+    {
+      "lesson_id": "pm-design-33-v16",
+      "title_uz": "Dizayn va nasmotrennost",
+      "title_ru": "Дизайн и насмотренность",
+      "version": "v16",
+      "source": "src/7-Modull/PmLesson33.jsx"
+    },
+    {
+      "lesson_id": "pm-interviews-30-v16",
+      "title_uz": "5 real intervyu — ekspeditsiya",
+      "title_ru": "5 реальных интервью — экспедиция",
+      "version": "v16",
+      "source": "src/7-Modull/PmLesson30.jsx"
+    },
+    {
+      "lesson_id": "pm-m1d2-v1",
+      "title_uz": "Kim mening foydalanuvchim? — auditoriya",
+      "title_ru": "Кто мой пользователь? — аудитория",
+      "version": "v1",
+      "source": "src/1-Modull/PmAudienceLesson.jsx"
+    },
+    {
+      "lesson_id": "pm-m1d6-v1",
+      "title_uz": "Struktura — foydalanuvchi uchun qilingan qulaylik",
+      "title_ru": "Структура — удобство для пользователя",
+      "version": "v1",
+      "source": "src/1-Modull/PmLesson2.jsx"
+    },
+    {
+      "lesson_id": "pm-m2d13-v1",
+      "title_uz": "Sistemani qanday pitch qilish",
+      "title_ru": "Как рассказать о системе",
+      "version": "v1",
+      "source": "src/2-Modull/PmLesson6.jsx"
+    },
+    {
+      "lesson_id": "pm-m2d2-v1",
+      "title_uz": "Muammodan yechimga",
+      "title_ru": "От проблемы к решению",
+      "version": "v1",
+      "source": "src/2-Modull/PmLesson4.jsx"
+    },
+    {
+      "lesson_id": "pm-m2d7-v1",
+      "title_uz": "pm-m2d7-v1",
+      "title_ru": "Декомпозиция — список к открытию",
+      "version": "v1",
+      "source": "src/2-Modull/PmLesson5.jsx"
+    },
+    {
+      "lesson_id": "pm-m3d10-v1",
+      "title_uz": "Qachon «tayyor» deb ayta olamiz?",
+      "title_ru": "Когда можно сказать «готово»?",
+      "version": "v1",
+      "source": "src/3-Modull/PmLesson9.jsx"
+    },
+    {
+      "lesson_id": "pm-m3d14-v1",
+      "title_uz": "pm-m3d14-v1",
+      "title_ru": "Как показать свой работающий сайт?",
+      "version": "v1",
+      "source": "src/3-Modull/PmLesson10.jsx"
+    },
+    {
+      "lesson_id": "pm-m3d2-v3",
+      "title_uz": "User Story: kim va nima uchun?",
+      "title_ru": "User Story",
+      "version": "v3",
+      "source": "src/pm/PmUserStoryLesson.jsx"
+    },
+    {
+      "lesson_id": "pm-m3d5-v1",
+      "title_uz": "pm-m3d5-v1",
+      "title_ru": "Какую задачу сделаете первой?",
+      "version": "v1",
+      "source": "src/3-Modull/PmLesson8.jsx"
+    },
+    {
+      "lesson_id": "pm-m4a2-v1",
+      "title_uz": "Hamma birdan kirsa, sayt chidaydimi?",
+      "title_ru": "Выдержит ли сайт, если все зайдут разом?",
+      "version": "v1",
+      "source": "src/4a-Modull/PmLesson15.jsx"
+    },
+    {
+      "lesson_id": "pm-m4b2-v1",
+      "title_uz": "Bitta xato — nechta odam ketadi?",
+      "title_ru": "Одна ошибка — сколько людей уйдёт?",
+      "version": "v1",
+      "source": "src/4b-Modull/PmLesson16.jsx"
+    },
+    {
+      "lesson_id": "pm-m4c2-v1",
+      "title_uz": "pm-m4c2-v1",
+      "title_ru": "Выпустить всё разом — или по кусочку каждую неделю?",
+      "version": "v1",
+      "source": "src/4c-Modull/PmLesson17.jsx"
+    },
+    {
+      "lesson_id": "pm-m4c6-v1",
+      "title_uz": "Saytingiz hozir ochilyaptimi?",
+      "title_ru": "Ваш сайт сейчас открывается?",
+      "version": "v1",
+      "source": "src/4c-Modull/PmLesson18.jsx"
+    },
+    {
+      "lesson_id": "pm-m4d12-v1",
+      "title_uz": "Ilova nimani yozib qoladi?",
+      "title_ru": "Что приложение записывает?",
+      "version": "v1",
+      "source": "src/4-Modull/PmLesson13.jsx"
+    },
+    {
+      "lesson_id": "pm-m4d15-v1",
+      "title_uz": "«Qanday ishlaydi?» deb so'rashsa",
+      "title_ru": "Если спросят: «Как это работает?»",
+      "version": "v1",
+      "source": "src/4-Modull/PmLesson14.jsx"
+    },
+    {
+      "lesson_id": "pm-m4d2-v1",
+      "title_uz": "Ilova nimani eslab qolsin?",
+      "title_ru": "Что приложению запомнить?",
+      "version": "v1",
+      "source": "src/4-Modull/PmLesson11.jsx"
+    },
+    {
+      "lesson_id": "pm-m4d7-v1",
+      "title_uz": "Sinfdoshingiz sahifangizni ochsa, nimani ko'radi?",
+      "title_ru": "Что увидит одноклассник, открыв вашу страницу?",
+      "version": "v1",
+      "source": "src/4-Modull/PmLesson12.jsx"
+    },
+    {
+      "lesson_id": "pm-m5d11-v1",
+      "title_uz": "Kecha kelgan odam bugun ham keldimi?",
+      "title_ru": null,
+      "version": "v1",
+      "source": "src/5-Modull/PmLesson21.jsx"
+    },
+    {
+      "lesson_id": "pm-m5d2-v1",
+      "title_uz": "Botingizni birinchi kim ochadi?",
+      "title_ru": null,
+      "version": "v1",
+      "source": "src/5-Modull/PmLesson19.jsx"
+    },
+    {
+      "lesson_id": "pm-m5d8-v1",
+      "title_uz": "pm-m5d8-v1",
+      "title_ru": null,
+      "version": "v1",
+      "source": "src/5-Modull/PmLesson20.jsx"
+    },
+    {
+      "lesson_id": "pm-m6d12-v1",
+      "title_uz": "Bugun qaysi ish boshlanadi?",
+      "title_ru": null,
+      "version": "v1",
+      "source": "src/6-Modull/PmLesson24.jsx"
+    },
+    {
+      "lesson_id": "pm-m6d14-v1",
+      "title_uz": "Raqamingiz nimani isbotlaydi?",
+      "title_ru": null,
+      "version": "v1",
+      "source": "src/6-Modull/PmLesson25.jsx"
+    },
+    {
+      "lesson_id": "pm-m6d2-v1",
+      "title_uz": "Bitta gapni uch kishi bir xil tushunadimi?",
+      "title_ru": null,
+      "version": "v1",
+      "source": "src/6-Modull/PmLesson22.jsx"
+    },
+    {
+      "lesson_id": "pm-m6d6-v1",
+      "title_uz": "pm-m6d6-v1",
+      "title_ru": null,
+      "version": "v1",
+      "source": "src/6-Modull/PmLesson23.jsx"
+    },
+    {
+      "lesson_id": "pm-m7d2-v2",
+      "title_uz": "Jobs-to-be-Done: odamlar nimani sotib oladi?",
+      "title_ru": "Jobs-to-be-Done",
+      "version": "v2",
+      "source": "src/pm/PmJtbdLesson.jsx"
+    },
+    {
+      "lesson_id": "pm-m8d1-v2",
+      "title_uz": "Metrika nima: DAU, retention, North Star",
+      "title_ru": "Metriki",
+      "version": "v2",
+      "source": "src/pm/PmMetricsLesson.jsx"
+    },
+    {
+      "lesson_id": "pm-pitch-03-v19",
+      "title_uz": "Demo Day — 3 daqiqalik nutq",
+      "title_ru": "Демо-день — трёхминутная речь",
+      "version": "v19",
+      "source": "src/1-Modull/PmLesson3.jsx"
+    },
+    {
+      "lesson_id": "pm-problemhunt-28-v16",
+      "title_uz": "Muammoni qanday izlash — ov boshlandi",
+      "title_ru": "Как искать проблему — охота началась",
+      "version": "v16",
+      "source": "src/7-Modull/PmLesson28.jsx"
+    },
+    {
+      "lesson_id": "pm-product-26-v16",
+      "title_uz": "Mahsulot vs loyiha — Akselerator boshlanishi",
+      "title_ru": "Продукт vs проект — старт акселератора",
+      "version": "v16",
+      "source": "src/7-Modull/PmLesson26.jsx"
+    },
+    {
+      "lesson_id": "pm-usability-34-v16",
+      "title_uz": "Real odam bilan test — gapirma, kuzat",
+      "title_ru": "Юзабилити-тест",
+      "version": "v16",
+      "source": "src/7-Modull/PmLesson34.jsx"
+    },
+    {
+      "lesson_id": "pm-user-story-07-v16",
+      "title_uz": "User Story — kim va nima uchun",
+      "title_ru": "User Story — кто и зачем",
+      "version": "v16",
+      "source": "src/3-Modull/PmLesson7.jsx"
+    },
+    {
+      "lesson_id": "practice-01-jonlantirish-v18",
+      "title_uz": "Praktika 1 — Saytni jonlantiramiz",
+      "title_ru": "Практика 1 — Оживляем сайт",
+      "version": "v18",
+      "source": "src/2-Modull/PracticeLesson1.jsx"
+    },
+    {
+      "lesson_id": "practice-02-ai-promo-v18",
+      "title_uz": "Praktika 2 — AI bilan tez sayt",
+      "title_ru": "Практика 2 — Быстрый сайт через AI",
+      "version": "v18",
+      "source": "src/2-Modull/PracticeLesson2.jsx"
+    },
+    {
+      "lesson_id": "practice-03-decompose-v18",
+      "title_uz": "Praktika 3 — Dekompozitsiya (mini-do'kon)",
+      "title_ru": "Практика 3 — Декомпозиция (мини-магазин)",
+      "version": "v18",
+      "source": "src/2-Modull/PracticeLesson3.jsx"
+    },
+    {
+      "lesson_id": "practice-04-mvp-deploy-v18",
+      "title_uz": "Praktika 4 — MVP tayyor (deploy)",
+      "title_ru": "Практика 4 — MVP готов (деплой)",
+      "version": "v18",
+      "source": "src/2-Modull/PracticeLesson4.jsx"
+    },
+    {
+      "lesson_id": "react-api-get-05-v18",
+      "title_uz": "react-api-get-05-v18",
+      "title_ru": "Работа с API — GET",
+      "version": "v18",
+      "source": "src/3-Modull/ReactApiGetLesson.jsx"
+    },
+    {
+      "lesson_id": "react-api-post-06-v18",
+      "title_uz": "react-api-post-06-v18",
+      "title_ru": "Работа с API — POST/PUT/DELETE",
+      "version": "v18",
+      "source": "src/3-Modull/ReactApiPostLesson.jsx"
+    },
+    {
+      "lesson_id": "react-build-site-final-p4-v18",
+      "title_uz": "Praktika: Istalgan saytni qurish — bo'laklash + aniq prompt",
+      "title_ru": "Практика: Сборка любого сайта — декомпозиция + точный промпт",
+      "version": "v18",
+      "source": "src/3-Modull/ReactBuildSiteLesson.jsx"
+    },
+    {
+      "lesson_id": "react-crud-practice-p1-v18",
+      "title_uz": "react-crud-practice-p1-v18",
+      "title_ru": "Практика: CRUD — управляемое приложение",
+      "version": "v18",
+      "source": "src/3-Modull/ReactCrudPracticeLesson.jsx"
+    },
+    {
+      "lesson_id": "react-first-component-02-v18",
+      "title_uz": "Birinchi komponent: Vite, JSX, props",
+      "title_ru": "Первый компонент: Vite, JSX, props",
+      "version": "v18",
+      "source": "src/3-Modull/ReactFirstComponentLesson.jsx"
+    },
+    {
+      "lesson_id": "react-intro-01-v18",
+      "title_uz": "React nima va nima uchun?",
+      "title_ru": "Что такое React и зачем",
+      "version": "v18",
+      "source": "src/3-Modull/ReactIntroLesson.jsx"
+    },
+    {
+      "lesson_id": "react-project-day-p3-v18",
+      "title_uz": "Praktika: Loyiha kuni — AvtoIjara",
+      "title_ru": "Практика: Проектный день — AvtoIjara",
+      "version": "v18",
+      "source": "src/3-Modull/ReactProjectDayLesson.jsx"
+    },
+    {
+      "lesson_id": "react-props-reuse-04-v18",
+      "title_uz": "Props va qayta ishlatish",
+      "title_ru": "Props и переиспользование",
+      "version": "v18",
+      "source": "src/3-Modull/ReactPropsReuseLesson.jsx"
+    },
+    {
+      "lesson_id": "react-router-practice-p2-v18",
+      "title_uz": "react-router-practice-p2-v18",
+      "title_ru": "Практика: React Router — многостраничное приложение",
+      "version": "v18",
+      "source": "src/3-Modull/ReactRouterPracticeLesson.jsx"
+    },
+    {
+      "lesson_id": "react-state-effect-03-v18",
+      "title_uz": "State va Effect: useState + useEffect",
+      "title_ru": "State и Effect: useState + useEffect",
+      "version": "v18",
+      "source": "src/3-Modull/ReactStateEffectLesson.jsx"
+    },
+    {
+      "lesson_id": "rn-app-06-10-v18",
+      "title_uz": "RN: komponent, navigatsiya, API",
+      "title_ru": "RN: компоненты, навигация, API",
+      "version": "v18",
+      "source": "src/6-Modull/ReactNativeAppLesson.jsx"
+    },
+    {
+      "lesson_id": "rn-basics-06-09-v18",
+      "title_uz": "React Native — asoslari",
+      "title_ru": "React Native — основы",
+      "version": "v18",
+      "source": "src/6-Modull/ReactNativeBasicsLesson.jsx"
+    },
+    {
+      "lesson_id": "sys-arch-06-01-v18",
+      "title_uz": "Komponentlardan tizim",
+      "title_ru": "Система из компонентов",
+      "version": "v18",
+      "source": "src/6-Modull/SystemArchitectureLesson.jsx"
+    },
+    {
+      "lesson_id": "vscode-start-01-v1",
+      "title_uz": "VS Code — professional start",
+      "title_ru": "VS Code — профессиональный старт",
+      "version": "v1",
+      "source": "src/1-Modull/VsCodeLesson.jsx"
+    },
+    {
+      "lesson_id": "write-skill-06-07-v18",
+      "title_uz": "write-skill-06-07-v18",
+      "title_ru": "Создаём свой Skill",
+      "version": "v18",
+      "source": "src/6-Modull/WriteSkillLesson.jsx"
+    }
+  ]
+}

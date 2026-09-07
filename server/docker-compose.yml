@@ -1,0 +1,24 @@
+# Lokal ishlab chiqish uchun PostgreSQL 16 (prod bilan bir xil major versiya).
+# Ishga tushirish:  docker compose up -d      To'xtatish: docker compose down
+# Ma'lumot saqlanadi (volume). Butunlay tozalash: docker compose down -v
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: dars-postgres
+    environment:
+      POSTGRES_USER: dars
+      POSTGRES_PASSWORD: dars
+      POSTGRES_DB: dars_dev
+    ports:
+      - "127.0.0.1:5433:5432"   # 5433 — mashinadagi boshqa PostgreSQL bilan to'qnashmasin
+    volumes:
+      - dars-pgdata:/var/lib/postgresql/data
+      - ./docker/initdb:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U dars -d dars_dev"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+volumes:
+  dars-pgdata:

@@ -1,0 +1,561 @@
+openapi: 3.1.0
+info:
+  title: Coddy Camp LMS — Dars-platforma Integration API
+  version: 1.1.0
+  description: >-
+    Изолированный контракт выпуска JWT для входа в урок и идемпотентного
+    приёма результатов с частичным сохранением и защищённой проверкой event_id.
+    Универсальный School Data API остаётся read-only.
+servers:
+  - url: https://school-api.coddycamp.uz
+security:
+  - bearerAuth: []
+paths:
+  /api/v1/integrations/dars-platform/live-token:
+    post:
+      operationId: issueDarsPlatformLiveToken
+      summary: Выпустить короткоживущий JWT входа в урок
+      description: Требует способности API-клиента `live_tokens.issue`.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - $ref: '#/components/schemas/StudentLiveTokenRequest'
+                - $ref: '#/components/schemas/MentorLiveTokenRequest'
+            examples:
+              student:
+                value:
+                  role: student
+                  subject_id: 34174
+              mentor:
+                value:
+                  role: mentor
+                  subject_id: 145
+                  group_id: 861
+      responses:
+        '200':
+          description: JWT выпущен
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LiveTokenResponse'
+        '401':
+          $ref: '#/components/responses/Unauthenticated'
+        '403':
+          description: Нет способности или личность не допущена
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '422':
+          $ref: '#/components/responses/ValidationFailed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/Unavailable'
+  /api/v1/integrations/dars-platform/lesson-results:
+    post:
+      operationId: storeDarsPlatformLessonResult
+      summary: Сохранить результат урока
+      description: Требует способности API-клиента `lesson_results.submit`.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LessonResultRequest'
+      responses:
+        '200':
+          description: Идентичное событие уже принято
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LessonResultResponse'
+        '201':
+          description: Новое событие сохранено
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LessonResultResponse'
+        '401':
+          $ref: '#/components/responses/Unauthenticated'
+        '403':
+          description: У API-клиента нет способности
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '409':
+          description: event_id уже использован с другим содержанием
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '422':
+          $ref: '#/components/responses/ValidationFailed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/Unavailable'
+  /api/v1/integrations/dars-platform/lesson-results/{eventId}:
+    get:
+      operationId: getDarsPlatformLessonResult
+      summary: Получить ранее отправленный результат
+      description: >-
+        Требует способности `lesson_results.read` и возвращает только событие,
+        созданное тем же API-клиентом.
+      parameters:
+        - name: eventId
+          in: path
+          required: true
+          schema:
+            type: string
+            maxLength: 128
+            pattern: '^[A-Za-z0-9][A-Za-z0-9._:@-]*$'
+      responses:
+        '200':
+          description: Результат найден
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LessonResultDetailResponse'
+        '401':
+          $ref: '#/components/responses/Unauthenticated'
+        '403':
+          description: У API-клиента нет способности `lesson_results.read`
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Событие отсутствует или принадлежит другому API-клиенту
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: sapi_<64 hex>
+  responses:
+    Unauthenticated:
+      description: Токен отсутствует, недействителен, истёк или отозван
+      headers:
+        WWW-Authenticate:
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    ValidationFailed:
+      description: Ошибка структуры или бизнес-инварианта
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ValidationError'
+    TooManyRequests:
+      description: Превышен лимит API-клиента
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unavailable:
+      description: Временная недоступность legacy DB или JWT-конфигурации
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    StudentLiveTokenRequest:
+      type: object
+      additionalProperties: false
+      required: [role, subject_id]
+      properties:
+        role:
+          const: student
+        subject_id:
+          type: integer
+          minimum: 1
+          maximum: 9999999999
+          description: student_students.id текущего LMS-пользователя
+    MentorLiveTokenRequest:
+      type: object
+      additionalProperties: false
+      required: [role, subject_id, group_id]
+      properties:
+        role:
+          const: mentor
+        subject_id:
+          type: integer
+          minimum: 1
+          maximum: 9999999999
+          description: teacher_list.ID текущего наставника
+        group_id:
+          type: integer
+          minimum: 1
+          maximum: 9999999999
+          description: group_list.ID группы запуска
+    LiveTokenResponse:
+      type: object
+      required: [data]
+      properties:
+        data:
+          type: object
+          required: [live_token, token_type, expires_at]
+          properties:
+            live_token:
+              type: string
+            token_type:
+              const: JWT
+            expires_at:
+              type: string
+              format: date-time
+    LessonResultRequest:
+      type: object
+      additionalProperties: false
+      required:
+        - event_id
+        - lesson_id
+        - lesson_title
+        - mode
+        - started_at
+        - finished_at
+        - total_questions
+        - students
+      properties:
+        event_id:
+          type: string
+          maxLength: 128
+          pattern: '^[A-Za-z0-9][A-Za-z0-9._:@-]*$'
+        lesson_id:
+          type: string
+          maxLength: 128
+          pattern: '^[A-Za-z0-9][A-Za-z0-9._:@-]*$'
+        lesson_title:
+          type: string
+          maxLength: 255
+        mode:
+          type: string
+          enum: [live, solo]
+        group_id:
+          type: integer
+          minimum: 1
+          maximum: 9999999999
+        teacher_id:
+          type: integer
+          minimum: 1
+          maximum: 9999999999
+        started_at:
+          type: string
+          format: date-time
+        finished_at:
+          type: string
+          format: date-time
+        total_questions:
+          type: integer
+          minimum: 1
+          maximum: 1000
+        students:
+          type: array
+          minItems: 1
+          maxItems: 100
+          items:
+            $ref: '#/components/schemas/StudentResult'
+      allOf:
+        - if:
+            properties:
+              mode:
+                const: live
+          then:
+            properties:
+              group_id:
+                type: integer
+                minimum: 1
+                maximum: 9999999999
+              teacher_id:
+                type: integer
+                minimum: 1
+                maximum: 9999999999
+            required: [group_id, teacher_id]
+        - if:
+            properties:
+              mode:
+                const: solo
+          then:
+            properties:
+              students:
+                minItems: 1
+                maxItems: 1
+            not:
+              anyOf:
+                - properties:
+                    group_id: {}
+                  required: [group_id]
+                - properties:
+                    teacher_id: {}
+                  required: [teacher_id]
+    StudentResult:
+      type: object
+      additionalProperties: false
+      required:
+        - student_id
+        - id_type
+        - correct_answers
+        - answered
+        - rank
+        - badges
+        - badges_count
+        - duration_sec
+        - completed
+      properties:
+        student_id:
+          type: integer
+          minimum: 1
+          maximum: 9999999999
+        id_type:
+          type: string
+          enum: [lms, crm]
+        correct_answers:
+          type: integer
+          minimum: 0
+          maximum: 1000
+        answered:
+          type: integer
+          minimum: 0
+          maximum: 1000
+        rank:
+          oneOf:
+            - type: integer
+              minimum: 1
+              maximum: 3
+            - type: 'null'
+        badges:
+          type: array
+          maxItems: 50
+          uniqueItems: true
+          items:
+            type: string
+            maxLength: 64
+            pattern: '^[a-z0-9]+(?:_[a-z0-9]+)*$'
+        badges_count:
+          type: integer
+          minimum: 0
+          maximum: 50
+        duration_sec:
+          type: integer
+          minimum: 0
+          maximum: 86400
+        completed:
+          type: boolean
+    LessonResultResponse:
+      type: object
+      required: [data]
+      properties:
+        data:
+          type: object
+          required:
+            - event_id
+            - accepted
+            - duplicate
+            - students_received
+            - students_accepted
+            - students_rejected
+            - rejected_students
+            - reward_status
+          properties:
+            event_id:
+              type: string
+            accepted:
+              const: true
+            duplicate:
+              type: boolean
+            students_received:
+              type: integer
+              minimum: 1
+            students_accepted:
+              type: integer
+              minimum: 0
+            students_rejected:
+              type: integer
+              minimum: 0
+            rejected_students:
+              type: array
+              items:
+                $ref: '#/components/schemas/RejectedStudent'
+            reward_status:
+              const: pending_policy
+    RejectedStudent:
+      type: object
+      additionalProperties: false
+      required: [student_id, id_type, reason]
+      properties:
+        student_id:
+          type: integer
+          minimum: 1
+        id_type:
+          type: string
+          enum: [lms, crm]
+        reason:
+          const: identity_not_found_or_unavailable
+    StoredStudentResult:
+      type: object
+      additionalProperties: false
+      required:
+        - student_id
+        - id_type
+        - crm_student_id
+        - lms_student_id
+        - correct_answers
+        - answered
+        - rank
+        - badges
+        - badges_count
+        - duration_sec
+        - completed
+      properties:
+        student_id:
+          type: integer
+          minimum: 1
+        id_type:
+          type: string
+          enum: [lms, crm]
+        crm_student_id:
+          oneOf:
+            - type: integer
+              minimum: 1
+            - type: 'null'
+        lms_student_id:
+          oneOf:
+            - type: integer
+              minimum: 1
+            - type: 'null'
+        correct_answers:
+          type: integer
+          minimum: 0
+          maximum: 1000
+        answered:
+          type: integer
+          minimum: 0
+          maximum: 1000
+        rank:
+          oneOf:
+            - type: integer
+              minimum: 1
+              maximum: 3
+            - type: 'null'
+        badges:
+          type: array
+          maxItems: 50
+          uniqueItems: true
+          items:
+            type: string
+            maxLength: 64
+            pattern: '^[a-z0-9]+(?:_[a-z0-9]+)*$'
+        badges_count:
+          type: integer
+          minimum: 0
+          maximum: 50
+        duration_sec:
+          type: integer
+          minimum: 0
+          maximum: 86400
+        completed:
+          type: boolean
+    LessonResultDetailResponse:
+      type: object
+      required: [data]
+      properties:
+        data:
+          type: object
+          required:
+            - event_id
+            - lesson_id
+            - lesson_title
+            - mode
+            - group_id
+            - teacher_id
+            - started_at
+            - finished_at
+            - total_questions
+            - received_at
+            - reward_status
+            - students_received
+            - students_accepted
+            - students_rejected
+            - students
+            - rejected_students
+          properties:
+            event_id:
+              type: string
+            lesson_id:
+              type: string
+            lesson_title:
+              type: string
+            mode:
+              type: string
+              enum: [live, solo]
+            group_id:
+              oneOf:
+                - type: integer
+                  minimum: 1
+                - type: 'null'
+            teacher_id:
+              oneOf:
+                - type: integer
+                  minimum: 1
+                - type: 'null'
+            started_at:
+              type: string
+              format: date-time
+            finished_at:
+              type: string
+              format: date-time
+            total_questions:
+              type: integer
+              minimum: 1
+            received_at:
+              type: string
+              format: date-time
+            reward_status:
+              const: pending_policy
+            students_received:
+              type: integer
+              minimum: 1
+            students_accepted:
+              type: integer
+              minimum: 0
+            students_rejected:
+              type: integer
+              minimum: 0
+            students:
+              type: array
+              items:
+                $ref: '#/components/schemas/StoredStudentResult'
+            rejected_students:
+              type: array
+              items:
+                $ref: '#/components/schemas/RejectedStudent'
+    Error:
+      type: object
+      required: [message]
+      properties:
+        message:
+          type: string
+    ValidationError:
+      allOf:
+        - $ref: '#/components/schemas/Error'
+        - type: object
+          properties:
+            errors:
+              type: object
+              additionalProperties:
+                type: array
+                items:
+                  type: string

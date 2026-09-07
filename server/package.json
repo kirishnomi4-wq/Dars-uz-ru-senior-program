@@ -1,0 +1,36 @@
+{
+  "name": "dars-api",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Dars-platforma backend: jonli-dars API (Supabase o'rnini bosadi) + LMS-ko'prik + o'quvchi-holat",
+  "type": "module",
+  "engines": {
+    "node": ">=22.12"
+  },
+  "scripts": {
+    "dev": "node --watch --env-file=.env src/index.js",
+    "start": "node src/index.js",
+    "migrate": "node --env-file-if-exists=.env src/db/migrate-cli.js",
+    "migrate:status": "node --env-file-if-exists=.env src/db/migrate-cli.js --status",
+    "seed:catalog": "node --env-file-if-exists=.env tools/seed-catalog.mjs",
+    "mint": "node --env-file-if-exists=.env tools/mint-token.mjs",
+    "test": "node --test \"test/unit/**/*.test.js\"",
+    "test:int": "node --env-file-if-exists=.env.test --test --test-concurrency=1 \"test/integration/**/*.test.js\"",
+    "test:all": "npm test && npm run test:int",
+    "lint": "oxlint src test"
+  },
+  "dependencies": {
+    "@fastify/cors": "^11.0.0",
+    "@fastify/rate-limit": "^10.0.0",
+    "fastify": "^5.0.0",
+    "fastify-plugin": "^5.0.0",
+    "jose": "^6.2.10",
+    "pg": "^8.13.0",
+    "pino": "^9.0.0"
+  },
+  "devDependencies": {
+    "autocannon": "^8.0.0",
+    "oxlint": "^1.0.0",
+    "pino-pretty": "^13.0.0"
+  }
+}

@@ -1,0 +1,51 @@
+# /etc/caddy/Caddyfile — dars-api (prod + staging) bitta dropletda.
+# Caddy sertifikatni o'zi oladi va yangilaydi (Let's Encrypt). DNS: api / staging-api → droplet IP (A-yozuv).
+# Node faqat 127.0.0.1 da tinglaydi; tashqi kirish faqat shu yerdan.
+
+(dars_common) {
+	encode zstd gzip
+
+	header {
+		Strict-Transport-Security "max-age=31536000; includeSubDomains"
+		X-Content-Type-Options "nosniff"
+		Referrer-Policy "no-referrer"
+		-Server
+	}
+
+	# Polling (2,5 s × har o'quvchi) kirish-logga yozilmaydi — foydasiz hajm; qolgan hamma so'rov yoziladi
+	@poll path /api/v1/live/session/* /api/v1/health
+	log_skip @poll
+
+	# Kirish-log: Authorization (JWT) va Cookie hech qachon diskka tushmasin (LMS §10, §13-21)
+	log {
+		output file /var/log/caddy/{args[0]}.access.log {
+			roll_size 50mb
+			roll_keep 7
+			roll_keep_for 336h
+		}
+		format filter {
+			wrap json
+			fields {
+				request>headers>Authorization delete
+				request>headers>Cookie delete
+				request>headers>X-Forwarded-For delete
+			}
+		}
+	}
+
+	reverse_proxy 127.0.0.1:{args[1]} {
+		# Node 10 s ichida yopiladi; uzoq so'rov yo'q
+		transport http {
+			dial_timeout 3s
+			response_header_timeout 15s
+		}
+	}
+}
+
+api.azizbek.site {
+	import dars_common prod 3001
+}
+
+staging-api.azizbek.site {
+	import dars_common staging 3002
+}

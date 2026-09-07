@@ -1,0 +1,46 @@
+# /etc/systemd/system/dars-api@.service — shablon: dars-api@prod, dars-api@staging
+# Env-fayl: /etc/dars-api/<env>.env (root:dars-api 640). Kod: /opt/dars-api/<env>/repo/server
+[Unit]
+Description=dars-api (%i)
+Documentation=https://github.com/kirishnomi4-wq/internetLesson
+After=network-online.target postgresql.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=dars-api
+Group=dars-api
+WorkingDirectory=/opt/dars-api/%i/repo/server
+EnvironmentFile=/etc/dars-api/%i.env
+Environment=NODE_ENV=production
+ExecStart=/usr/bin/node src/index.js
+Restart=always
+RestartSec=3
+# Nazokatli yopish: SIGTERM → app.close() (ochiq so'rovlar tugaydi) → 10 s ichida chiqadi
+KillSignal=SIGTERM
+TimeoutStopSec=15
+LimitNOFILE=65536
+
+# Qattiqlashtirish — jarayon faqat o'z papkasini o'qiydi, tizimga yozmaydi
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+PrivateDevices=true
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+RestrictSUIDSGID=true
+LockPersonality=true
+MemoryDenyWriteExecute=false
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
+CapabilityBoundingSet=
+AmbientCapabilities=
+
+# Loglar journald'ga (pino JSON); jurnal hajmi /etc/systemd/journald.conf da cheklanadi
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=dars-api-%i
+
+[Install]
+WantedBy=multi-user.target

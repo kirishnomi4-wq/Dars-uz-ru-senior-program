@@ -1,0 +1,167 @@
+import { test } from 'node:test';
+import assert from 'node:assert/strict';
+import {
+  buildLivePayloads, buildSoloPayload, validatePayload, assignRanks, badgesFor, studentStats,
+  lessonQuestions, arenaQuestions, liveEventId, soloEventId,
+} from '../../src/modules/results/result-builder.js';
+import { nextDelayMs, isRetryable, MAX_SEND_ATTEMPTS } from '../../src/modules/results/retry.js';
+
+const keys = [{ question_id: 's4' }, { question_id: 's9' }, { question_id: 's15' }, { question_id: 'quiz-0' }, { question_id: 'quiz-1' }];
+const T0 = new Date('2026-09-03T09:00:12Z');
+const min = (m) => new Date(T0.getTime() + m * 60_000);
+const ans = (pid, qid, screen, correct, elapsed, m) => ({ player_id: pid, question_id: qid, screen_idx: screen, correct, elapsed_ms: elapsed, answered_at: min(m) });
+
+// Sinf: pA, pB (LMS), pC (LMS, kam), pD (LMS, hech narsa), pPIN (PIN bilan kirgan — LMS emas, lekin podiumda!)
+function liveInput() {
+  const answersByPlayer = new Map([
+    ['pA', [ans('pA', 's4', 4, true, 2000, 5), ans('pA', 's9', 9, true, 1500, 10), ans('pA', 's15', 15, true, 1800, 20), ans('pA', 'quiz-0', 100, true, 900, 30), ans('pA', 'quiz-1', 101, true, 1100, 31)]],
+    ['pB', [ans('pB', 's4', 4, false, 3000, 5), ans('pB', 's9', 9, true, 2500, 10), ans('pB', 's15', 15, true, 2200, 20), ans('pB', 'quiz-0', 100, true, 1900, 30), ans('pB', 'quiz-1', 101, true, 2100, 31)]],
+    ['pC', [ans('pC', 's4', 4, false, 4000, 5), ans('pC', 's9', 9, false, 4100, 10)]],
+    ['pD', []],
+    // PIN-o'quvchi: 3/3 to'g'ri, pA dan TEZROQ → ekranda 1-o'rin
+    ['pPIN', [ans('pPIN', 's4', 4, true, 1000, 5), ans('pPIN', 's9', 9, true, 1000, 10), ans('pPIN', 's15', 15, true, 1000, 20), ans('pPIN', 'quiz-0', 100, false, 500, 30)]],
+  ]);
+  return {
+    session: { pin: '811222', lesson_id: 'internet-01-v18', gid: 861, teacher_id: 145, started_at: T0, finished_at: min(60) },
+    lessonTitle: 'Internet qanday ishlaydi',
+    keys,
+    players: [
+      { id: 'pA', joined_at: T0 }, { id: 'pB', joined_at: min(1) }, { id: 'pC', joined_at: T0 }, { id: 'pD', joined_at: T0 }, { id: 'pPIN', joined_at: min(2) },
+    ],
+    participants: [
+      { subject_id: 34174, player_id: 'pA', joined_at: T0, reached_end: true },
+      { subject_id: 34175, player_id: 'pB', joined_at: min(1), reached_end: true },
+      { subject_id: 34176, player_id: 'pC', joined_at: T0, reached_end: false },
+      { subject_id: 34177, player_id: 'pD', joined_at: T0, reached_end: false },
+    ],
+    answersByPlayer,
+  };
+}
+
+test('event_id qoliplari (LMS §7.3) va uzunlik', () => {
+  assert.equal(liveEventId('811222', T0), 'sess_811222_20260903T090012Z');
+  assert.equal(liveEventId('811222', T0, 2), 'sess_811222_20260903T090012Z_p2');
+  assert.match(soloEventId(34174, 'js-conditions-02-v18', T0), /^solo_34174_js-conditions-02-v18_20260903T090012Z$/);
+  assert.ok(soloEventId(1, 'x'.repeat(300), T0).length <= 128);
+  assert.match(soloEventId(1, 'bad id!', T0), /^solo_1_bad-id-_/);
+});
+
+test('savol-to\'plamlari: count = dars-testlari (arena tashqari), arena alohida', () => {
+  assert.deepEqual([...lessonQuestions(keys)], ['s4', 's9', 's15']);
+  assert.deepEqual([...arenaQuestions(keys)], ['quiz-0', 'quiz-1']);
+});
+
+test('studentStats: takror savol sanalmaydi, faqat to\'plamdagi savollar', () => {
+  const q = lessonQuestions(keys);
+  const s = studentStats([ans('p', 's4', 4, true, 1000, 1), ans('p', 's4', 4, false, 1, 2), ans('p', 'yoq', 7, true, 1, 3), ans('p', 'quiz-0', 100, true, 1, 4)], q);
+  assert.deepEqual([s.answered, s.correct, s.elapsedTotal], [1, 1, 1000]);
+});
+
+test('assignRanks — ekran-podium bilan bir xil: to\'g\'ri ↓, vaqt ↑, tenglikda avval qo\'shilgan; 0 to\'g\'ri ham (3 tadan kam bo\'lsa)', () => {
+  const rows = [
+    { id: 'a', joinedAt: 1, stats: { correct: 3, elapsedTotal: 5000, answered: 3 } },
+    { id: 'b', joinedAt: 2, stats: { correct: 3, elapsedTotal: 4000, answered: 3 } },
+    { id: 'c', joinedAt: 3, stats: { correct: 1, elapsedTotal: 100, answered: 1 } },
+    { id: 'd', joinedAt: 4, stats: { correct: 0, elapsedTotal: 0, answered: 0 } },
+    { id: 'e', joinedAt: 5, stats: { correct: 2, elapsedTotal: 100, answered: 2 } },
+  ];
+  const r = assignRanks(rows);
+  assert.deepEqual([r.get('b'), r.get('a'), r.get('e'), r.get('c'), r.get('d')], [1, 2, 3, undefined, undefined]);
+  // 2 ta o'yinchi + 1 ta javobsiz → ekranda 🥉 0/N — biz ham shunday
+  const small = assignRanks(rows.slice(0, 2).concat(rows[3]));
+  assert.equal(small.get('d'), 3);
+  // arena: javob bermaganlar podiumga kirmaydi
+  const arena = assignRanks(rows, { requireAnswered: true });
+  assert.equal(arena.get('d'), undefined);
+  // tenglik: bir xil to'g'ri va vaqt → avval qo'shilgan
+  const tie = assignRanks([{ id: 'x', joinedAt: 9, stats: { correct: 1, elapsedTotal: 10, answered: 1 } }, { id: 'y', joinedAt: 1, stats: { correct: 1, elapsedTotal: 10, answered: 1 } }]);
+  assert.deepEqual([tie.get('y'), tie.get('x')], [1, 2]);
+});
+
+test('badgesFor: all_correct/first_try/top/graduate/speedster/comeback/arena_top qoidalari', () => {
+  const full = { answered: 5, correct: 5, avgElapsed: 1000, firstHalfCorrect: 1 };
+  assert.deepEqual(badgesFor({ stats: full, total: 5, rank: 1, completed: true, groupMedianAvg: 2000, arenaRank: 2 }), ['all_correct', 'first_try', 'speedster', 'top_1', 'graduate', 'arena_top_2']);
+  const cb = { answered: 6, correct: 5, avgElapsed: 3000, firstHalfCorrect: 1 / 3 };
+  assert.deepEqual(badgesFor({ stats: cb, total: 6, rank: null, completed: false, groupMedianAvg: 2000 }), ['comeback']);
+  const none = { answered: 2, correct: 0, avgElapsed: 500, firstHalfCorrect: 0 };
+  assert.deepEqual(badgesFor({ stats: none, total: 5, rank: null, completed: false, groupMedianAvg: 2000 }), []);
+});
+
+test('buildLivePayloads: count = dars-testlari; podium HAMMA o\'yinchi (PIN 1-o\'rin → LMS-o\'quvchilar 2/3); arena nishon', () => {
+  const [ev] = buildLivePayloads(liveInput());
+  assert.equal(ev.event_id, 'sess_811222_20260903T090012Z');
+  const p = ev.payload;
+  assert.equal(p.mode, 'live');
+  assert.equal(p.group_id, 861);
+  assert.equal(p.teacher_id, 145);
+  assert.equal(p.total_questions, 3, 'faqat s4, s9, s15 — arena kirmaydi');
+  assert.equal(p.started_at, '2026-09-03T09:00:12Z');
+  assert.equal(p.finished_at, '2026-09-03T10:00:12Z');
+  assert.deepEqual(p.students.map((s) => s.student_id), [34174, 34175, 34176, 34177], 'PIN-o\'quvchi payloadda YO\'Q');
+  const [a, b, c, d] = p.students;
+  // ekran: pPIN 3/3 (3000 ms) → 1; pA 3/3 (5300 ms) → 2; pB 2/3 → 3; pC 0/2; pD 0/0
+  assert.deepEqual([a.correct_answers, a.answered, a.rank, a.completed], [3, 3, 2, true]);
+  assert.deepEqual([b.correct_answers, b.answered, b.rank], [2, 3, 3]);
+  assert.deepEqual([c.correct_answers, c.answered, c.rank, c.completed], [0, 2, null, false]);
+  assert.deepEqual([d.correct_answers, d.answered, d.rank], [0, 0, null]);
+  assert.ok(a.badges.includes('all_correct') && a.badges.includes('top_2') && a.badges.includes('graduate'));
+  assert.ok(a.badges.includes('arena_top_1'), `arena: pA 2/2 → arena_top_1; keldi ${a.badges}`);
+  assert.ok(b.badges.includes('arena_top_2'));
+  assert.ok(!c.badges.some((x) => x.startsWith('arena_')), 'arenaga javob bermagan → arena nishoni yo\'q');
+  assert.equal(a.duration_sec, 31 * 60);
+  assert.equal(a.badges_count, a.badges.length);
+  assert.deepEqual(validatePayload(p), []);
+});
+
+test('buildLivePayloads: players berilmasa participants\'dan; LMS-o\'quvchisi yo\'q → bo\'sh; 100+ → bo\'laklar', () => {
+  const inp = liveInput();
+  const [ev] = buildLivePayloads({ ...inp, players: undefined });
+  assert.equal(ev.payload.students[0].rank, 1, 'PIN yo\'q → pA 1-o\'rin');
+  assert.deepEqual(buildLivePayloads({ ...inp, participants: [] }), []);
+  const many = { ...inp, players: undefined, participants: Array.from({ length: 150 }, (_, i) => ({ subject_id: 10000 + i, player_id: `p${i}`, joined_at: T0 })), answersByPlayer: new Map() };
+  const evs = buildLivePayloads(many);
+  assert.equal(evs.length, 2);
+  assert.equal(evs[0].payload.students.length, 100);
+  assert.equal(evs[1].payload.students.length, 50);
+  assert.equal(evs[1].event_id, 'sess_811222_20260903T090012Z_p2');
+  for (const e of evs) assert.deepEqual(validatePayload(e.payload), []);
+});
+
+test('buildSoloPayload: dars-testlari, rank null, group/teacher yo\'q, completed = reached_end', () => {
+  const ev = buildSoloPayload({
+    attempt: { started_at: T0, finished_at: min(25), reached_end: true },
+    subjectId: 34176, lessonId: 'internet-01-v18', lessonTitle: 'Internet', keys,
+    answers: [ans('p', 's4', 4, true, 1000, 1), ans('p', 's9', 9, false, 1000, 2), ans('p', 'quiz-0', 100, true, 1000, 3)],
+  });
+  const p = ev.payload;
+  assert.equal(p.mode, 'solo');
+  assert.ok(!('group_id' in p) && !('teacher_id' in p));
+  assert.equal(p.total_questions, 3);
+  const s = p.students[0];
+  assert.deepEqual([s.student_id, s.correct_answers, s.answered, s.rank, s.completed, s.duration_sec], [34176, 1, 2, null, true, 1500]);
+  assert.ok(s.badges.includes('graduate'));
+  assert.deepEqual(validatePayload(p), []);
+  const half = buildSoloPayload({ attempt: { started_at: T0, finished_at: T0, reached_end: false }, subjectId: 1, lessonId: 'l', lessonTitle: 'L', keys: [], answers: [] });
+  assert.deepEqual([half.payload.students[0].completed, half.payload.total_questions], [false, 1]);
+  assert.deepEqual(validatePayload(half.payload), []);
+});
+
+test('validatePayload: buzilgan holatlarni topadi', () => {
+  const [ev] = buildLivePayloads(liveInput());
+  const p = JSON.parse(JSON.stringify(ev.payload));
+  p.students[0].rank = 3; // dup rank bilan 34175
+  p.students[1].correct_answers = 9; // > answered
+  p.students[2].badges = ['Bad-Key'];
+  p.students[2].badges_count = 1;
+  const errs = validatePayload(p);
+  assert.ok(errs.some((e) => e.startsWith('dup rank')));
+  assert.ok(errs.some((e) => e.startsWith('counts')));
+  assert.ok(errs.some((e) => e.startsWith('badge key')));
+});
+
+test('retry: jadval 1-3-10 s → daqiqalar → soat; 429/5xx/tarmoq qayta, 4xx emas', () => {
+  assert.deepEqual([1, 2, 3, 4, 5, 6, 7, 30].map(nextDelayMs), [1000, 3000, 10000, 60000, 300000, 900000, 3600000, 3600000]);
+  assert.ok(isRetryable(null) && isRetryable(429) && isRetryable(500) && isRetryable(503));
+  assert.ok(!isRetryable(401) && !isRetryable(403) && !isRetryable(409) && !isRetryable(422) && !isRetryable(404));
+  assert.ok(MAX_SEND_ATTEMPTS >= 20);
+});

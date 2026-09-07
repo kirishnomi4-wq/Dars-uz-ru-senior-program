@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="uz">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex" />
+    <title>LMS-simulyator · dars + liveToken</title>
+    <!--
+      Faqat ISHLAB CHIQISH uchun (vite dev). LMS o'rnida turadi: darsni ochadi, liveToken'ni
+      LMS kabi KECHIKIB beradi (avval null, keyin prop). Prod build'ga kirmaydi (vite faqat index.html yig'adi).
+        /lms-harness.html?lesson=m1-01&lang=uz&delay=600#token=<JWT>
+      Token URL fragmentida (#) — serverga ketmaydi, log'ga tushmaydi.
+    -->
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/lms-harness/main.jsx"></script>
+  </body>
+</html>

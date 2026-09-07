@@ -1,0 +1,44 @@
+Ответ на JAVOB v5 — Coddy Camp LMS ↔ Dars-platforma
+Дата: 2026-09-03
+
+S-2a — CODDYCAMP_LIVE_JWT_ISSUER (iss)
+coddycamp-lms
+
+S-2b — CODDYCAMP_LIVE_JWT_AUDIENCE (aud)
+dars-platform
+
+S-2c — CODDYCAMP_LIVE_JWT_KEY_ID (kid)
+v1
+
+S-2d — Используют ли mentor-token и student-token одинаковые iss, kid и secret?
+Да, student и mentor используют одинаковые iss, kid и secret.
+
+S-3a — Лимит клиента результатов (lesson_results.*)
+600 запросов в минуту.
+
+S-3b — Лимит контекстного клиента (integration-context)
+600 запросов в минуту.
+
+S-3c — Передаётся ли Retry-After в секундах?
+Да, Retry-After передаётся в секундах.
+
+S-4a — Домен JSX при открытии наставником из CRM
+https://lms.coddycamp.uz
+
+S-4b — Домен JSX при открытии учеником из LMS
+https://lms.coddycamp.uz
+
+S-4c — Staging или mobile origin
+Для этой интеграции отдельный staging/mobile origin сейчас не используется.
+
+S-6a — Как выбирается lang="uz" или lang="ru"?
+Для наставника выбирается отдельный RU/UZ-материал, а язык берётся из student_questions.lang. Для ученика используется выбранный язык LMS.
+
+S-6b — Одинаково ли выбирается язык для наставника и ученика?
+Нет, источник выбора языка различается.
+
+F-1 — OpenAPI
+К этому ответу приложен новый файл dars-platform-openapi.yaml версии 1.2.
+
+Важно:
+JWT secret, sapi-токены, пароли и другие секретные значения в этот файл не включены.

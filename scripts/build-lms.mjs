@@ -85,6 +85,9 @@ async function one(entry, sharedSpec) {
     jsx: 'preserve',            // JSX chiqishda SAQLANADI — LMS o'zi kompilyatsiya qiladi
     charset: 'utf8',            // o'zbekcha/ruscha matn \uXXXX ga aylanmasin
     external: ['react', 'react-dom', 'react/jsx-runtime'],
+    // Jonli-dars API manzili (src/live/liveClient.js). Bo'sh → prod. Staging uchun:
+    //   DARS_API_URL=https://staging-api.azizbek.site node scripts/build-lms.mjs <fayl>
+    define: { __DARS_API_URL__: JSON.stringify(process.env.DARS_API_URL || '') },
     legalComments: 'inline',
     write: false,               // birlashtirishdan keyin o'zimiz yozamiz
     logLevel: 'silent',
