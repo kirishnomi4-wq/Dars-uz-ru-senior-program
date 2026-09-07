@@ -1811,18 +1811,15 @@ const Screen17 = ({ screen, answers, achievements, onReset, onPrev, onFinish, on
             <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni bajarish →', ru: 'Выполнить практическое задание →' })}</span>
           </button>
         </div>
-        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>🎨 {tr({ uz: 'Uyga vazifa', ru: 'Домашнее задание' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: "Portfolioni o'zingizniki qiling:", ru: 'Сделайте портфолио своим:' })}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: "HTML struktura beradi, CSS go'zallik — endi ikkisini ham bilasiz! 🚀", ru: 'HTML даёт структуру, CSS — красоту. Теперь вы знаете и то, и другое! 🚀' })}</p></div>}
-        {/* 🏠 UYGA VAZIFA — amaliy topshiriq kompilyatorda bajariladi. Mentor proyektorida
-            KO'RSATILMAYDI: uy ishi shaxsiy (sahna ↔ daftar tamoyili). */}
-        {!isMentorL && onHomework && (
-          <div className="hw-big-wrap fade-up d4">
-            <button className="hw-big" onClick={onHomework}>
-              <span className="hw-big-shine" aria-hidden="true" />
-              <span className="hw-big-t">{tr({ uz: 'Uyga vazifa', ru: 'Домашнее задание' })}</span>
-              <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni boshlash →', ru: 'Начать практическое задание →' })}</span>
+        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>🎨 {tr({ uz: 'Uyga vazifa', ru: 'Домашнее задание' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: "Portfolioni o'zingizniki qiling:", ru: 'Сделайте портфолио своим:' })}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: "Vazifa kompilyatorda bajariladi — har talab avtomatik tekshiriladi. HTML struktura beradi, CSS go'zallik — endi ikkisini ham bilasiz! 🚀", ru: 'Задание выполняется в компиляторе — каждое требование проверяется автоматически. HTML даёт структуру, CSS — красоту. Теперь вы знаете и то, и другое! 🚀' })}</p>
+          {/* 🏠 Vazifani boshlash — kompilyator ochiladi (LMS'da onPractice, lokalda overlay).
+              Mentor proyektorida KO'RSATILMAYDI: uy ishi shaxsiy (sahna ↔ daftar tamoyili). */}
+          {!isMentorL && onHomework && (
+            <button className="btn" onClick={onHomework} style={{ marginTop: 14, background: T.accent, boxShadow: '0 8px 22px -6px rgba(255,79,40,0.5)' }}>
+              {tr({ uz: 'Vazifani bajarish →', ru: 'Выполнить задание →' })}
             </button>
-          </div>
-        )}
+          )}
+        </div>}
         {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>🏅 {tr({ uz: 'Nishonlaringiz', ru: 'Ваши награды' })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">
@@ -2492,6 +2489,39 @@ const TASK_BUTTON = {
     { id: 'pad', label: { uz: ".btn — padding (ichki bo'shliq)", ru: '.btn — padding (внутренний отступ)' }, check: C.cssProp('.btn', 'padding', { uz: "`.btn { padding: 10px 20px; }` — ichki bo'shliq", ru: '`.btn { padding: 10px 20px; }` — внутренний отступ' }) },
   ],
 };
+// — 🏠 UYGA VAZIFA (yakun-sahifadagi tugma) — shart-kartaga AYNAN mos avto-tekshiruv.
+//   TASK_BUTTON bilan adashtirmang: u sinf-praktikasi (bitta tugma); uy vazifasi — mini
+//   portfolioga O'Z rang-palitrasini berish + tugmani bezash (karta va'dasi bilan bir xil).
+const TASK_HW = {
+  eyebrow: { uz: 'Uyga vazifa', ru: 'Домашнее задание' },
+  title: { uz: "Portfolioga o'z ranglaringizni bering", ru: 'Дайте портфолио свои цвета' },
+  brief: {
+    uz: "index.html da mini-portfolio tayyor turibdi — matnlarini o'zingizga moslang. style.css da esa ranglarni O'ZINGIZGA yoqqanidan tanlab bering: bu sizning saytingiz, sizning didingiz. Hech bir rang «to'g'ri» yoki «noto'g'ri» emas.",
+    ru: 'В index.html уже готово мини-портфолио — подгоните тексты под себя. А в style.css выберите цвета, которые нравятся ВАМ: это ваш сайт и ваш вкус. Нет «правильных» и «неправильных» цветов.',
+  },
+  files: [
+    { name: 'index.html', lang: 'html', starter: { uz: '<h1>Mening portfoliom</h1>\n<p>Bu yerga o\'zingiz haqingizda gap yozing.</p>\n<a class="btn">Menga yozing</a>', ru: '<h1>Моё портфолио</h1>\n<p>Напишите здесь фразу о себе.</p>\n<a class="btn">Напишите мне</a>' } },
+    { name: 'style.css', lang: 'css', starter: { uz: '/* Bu yerga yozing */\n', ru: '/* Пишите здесь */\n' } },
+  ],
+  requirements: [
+    { id: 'bg', label: { uz: 'body — background-color (sahifa foni)', ru: 'body — background-color (фон страницы)' }, check: C.cssProp('body', 'background-color', { uz: "`body { background-color: ...; }` — o'zingizga yoqqan fon rangi", ru: 'Задайте свой фон: `body { background-color: ...; }`' }) },
+    { id: 'h1c', label: { uz: 'h1 — color (sarlavha rangi)', ru: 'h1 — color (цвет заголовка)' }, check: C.cssProp('h1', 'color', { uz: "`h1 { color: ...; }` — sarlavhaga rang tanlang", ru: 'Выберите цвет заголовка: `h1 { color: ...; }`' }) },
+    { id: 'btnbg', label: { uz: '.btn — background-color (tugma foni)', ru: '.btn — background-color (фон кнопки)' }, check: C.cssProp('.btn', 'background-color', { uz: "`.btn { background-color: ...; }` — tugma fon rangi", ru: 'Фон кнопки: `.btn { background-color: ...; }`' }) },
+    { id: 'btnc', label: { uz: '.btn — color (tugma matni rangi)', ru: '.btn — color (цвет текста кнопки)' }, check: C.cssProp('.btn', 'color', { uz: "`.btn { color: ...; }` — fon bilan o'qilishi oson bo'lsin", ru: '`.btn { color: ...; }` — чтобы читалось на фоне' }) },
+    { id: 'btnp', label: { uz: ".btn — padding (tugma ichki bo'shlig'i)", ru: '.btn — padding (внутренний отступ кнопки)' }, check: C.cssProp('.btn', 'padding', { uz: "`.btn { padding: 10px 20px; }` — havola tugmaga aylanadi", ru: '`.btn { padding: 10px 20px; }` — ссылка станет кнопкой' }) },
+  ],
+};
+
+// 🏠 LMS uchun statik uy-vazifa deklaratsiyasi (Htmllesson1 naqshi).
+export const HOMEWORK = {
+  type: 'tex',
+  title: TASK_HW.title,
+  brief: TASK_HW.brief,
+  items: TASK_HW.requirements.map(r => r.label),
+  task: TASK_HW,
+  starter: '',
+};
+
 // Praktika handoff: shu ekran indeksidan KEYIN ochiladi (5=sarlavha · 7=menyu · 12=aloqa tugmasi).
 const PRACTICE_AFTER = {
   5:  { task: TASK_HEADER, starter: '' },
@@ -2702,7 +2732,7 @@ export default function CssPractice({ lang: langProp, onFinished, onPractice }) 
   // Dars-ichi mashqidan farqi: keyingi ekranga O'TKAZMAYDI (oxirgi sahifa) va serverga
   // «bajardim» signali YUBORMAYDI — bu uy ishi, sinf ishi emas.
   const openHomeworkPractice = () => {
-    const entry = { task: TASK_BUTTON, starter: '' };
+    const entry = { task: TASK_HW, starter: '' };
     if (typeof onPractice === 'function') Promise.resolve(onPractice(entry.task)).catch(() => {});
     else {
       pracWrite(LESSON_META.lessonId, { kind: 'hw' });

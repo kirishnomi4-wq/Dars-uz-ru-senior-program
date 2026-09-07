@@ -1969,18 +1969,15 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish, on
             <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni bajarish →', ru: 'Выполнить практическое задание →' })}</span>
           </button>
         </div>
-        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>🎨 {tr({ uz: 'Uyga vazifa', ru: 'Домашнее задание' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: 'HTML sahifangizni CSS bilan bezang:', ru: 'Украсьте свою HTML-страницу с помощью CSS:' })}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: 'Keyingi darsda chegaralar, soyalar va joylashuvni o\'rganamiz!', ru: 'На следующем уроке — рамки, тени и расположение!' })}</p></div>}
-        {/* 🏠 UYGA VAZIFA — amaliy topshiriq kompilyatorda bajariladi. Mentor proyektorida
-            KO'RSATILMAYDI: uy ishi shaxsiy (sahna ↔ daftar tamoyili). */}
-        {!isMentorL && onHomework && (
-          <div className="hw-big-wrap fade-up d4">
-            <button className="hw-big" onClick={onHomework}>
-              <span className="hw-big-shine" aria-hidden="true" />
-              <span className="hw-big-t">{tr({ uz: 'Uyga vazifa', ru: 'Домашнее задание' })}</span>
-              <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni boshlash →', ru: 'Начать практическое задание →' })}</span>
+        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>🎨 {tr({ uz: 'Uyga vazifa', ru: 'Домашнее задание' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: 'HTML sahifangizni CSS bilan bezang:', ru: 'Украсьте свою HTML-страницу с помощью CSS:' })}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: "Vazifa kompilyatorda bajariladi — har talab avtomatik tekshiriladi. Keyingi darsda chegaralar, soyalar va joylashuvni o'rganamiz!", ru: 'Задание выполняется в компиляторе — каждое требование проверяется автоматически. На следующем уроке — рамки, тени и расположение!' })}</p>
+          {/* 🏠 Vazifani boshlash — kompilyator ochiladi (LMS'da onPractice, lokalda overlay).
+              Mentor proyektorida KO'RSATILMAYDI: uy ishi shaxsiy (sahna ↔ daftar tamoyili). */}
+          {!isMentorL && onHomework && (
+            <button className="btn" onClick={onHomework} style={{ marginTop: 14, background: T.accent, boxShadow: '0 8px 22px -6px rgba(255,79,40,0.5)' }}>
+              {tr({ uz: 'Vazifani bajarish →', ru: 'Выполнить задание →' })}
             </button>
-          </div>
-        )}
+          )}
+        </div>}
         {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>🏅 {tr({ uz: 'Nishonlaringiz', ru: 'Ваши значки' })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">
@@ -2755,6 +2752,40 @@ const TASK_BOX = {
     { id: 'margin', label: { uz: '.box — margin (tashqi)', ru: '.box — margin (внешний)' }, check: C.cssProp('.box', 'margin', { uz: "`.box { margin: 20px; }` — tashqi bo'shliq", ru: '`.box { margin: 20px; }` — внешний отступ' }) },
   ],
 };
+// — 🏠 UYGA VAZIFA (yakun-sahifadagi tugma) — shart-kartaga AYNAN mos avto-tekshiruv.
+//   TASK_BOX bilan adashtirmang: u sinf-praktikasi (bitta quti); uy vazifasi — o'z
+//   sahifasini TO'LIQ bezash: ranglar + shrift + bo'shliqlar (karta va'dasi bilan bir xil).
+const TASK_HW = {
+  eyebrow: { uz: 'Uyga vazifa', ru: 'Домашнее задание' },
+  title: { uz: 'Sahifangizni CSS bilan bezang', ru: 'Украсьте свою страницу с помощью CSS' },
+  brief: {
+    uz: "HTML darslarida yozgan «men haqimda» sahifangizni eslaysizmi? Endi unga jon kiritasiz: chapdagi index.html ichiga o'z sahifangizni yozing (yoki namunani o'zgartiring), style.css da esa bezak bering. Har talab bajarilganda belgi yashil yonadi.",
+    ru: 'Помните страницу «обо мне» из уроков HTML? Теперь вы её оживите: слева в index.html напишите свою страницу (или измените заготовку), а в style.css задайте оформление. Когда требование выполнено, метка загорается зелёным.',
+  },
+  files: [
+    { name: 'index.html', lang: 'html', starter: { uz: '<h1>Men haqimda</h1>\n<p>Bu yerga o\'zingiz haqingizda gap yozing.</p>\n<p>Yana bitta gap.</p>', ru: '<h1>Обо мне</h1>\n<p>Напишите здесь фразу о себе.</p>\n<p>Ещё одна фраза.</p>' } },
+    { name: 'style.css', lang: 'css', starter: { uz: '/* Bu yerga yozing */\n', ru: '/* Пишите здесь */\n' } },
+  ],
+  requirements: [
+    { id: 'bg', label: { uz: 'body — background-color (sahifa foni)', ru: 'body — background-color (фон страницы)' }, check: C.cssProp('body', 'background-color', { uz: "`body { background-color: ...; }` — sahifa foniga rang bering", ru: 'Задайте фон страницы: `body { background-color: ...; }`' }) },
+    { id: 'color', label: { uz: 'h1 — color (sarlavha rangi)', ru: 'h1 — color (цвет заголовка)' }, check: C.cssProp('h1', 'color', { uz: "`h1 { color: ...; }` — sarlavhaga rang bering", ru: 'Задайте цвет заголовка: `h1 { color: ...; }`' }) },
+    { id: 'font', label: { uz: 'body — font-family (shrift)', ru: 'body — font-family (шрифт)' }, check: C.cssProp('body', 'font-family', { uz: "`body { font-family: Arial, sans-serif; }` kabi shrift tanlang", ru: 'Выберите шрифт вроде `body { font-family: Arial, sans-serif; }`' }) },
+    { id: 'size', label: { uz: 'h1 — font-size (o\'lcham)', ru: 'h1 — font-size (размер)' }, check: C.cssProp('h1', 'font-size', { uz: "`h1 { font-size: 40px; }` kabi o'lcham bering", ru: 'Задайте размер вроде `h1 { font-size: 40px; }`' }) },
+    { id: 'padding', label: { uz: 'body — padding (ichki bo\'shliq)', ru: 'body — padding (внутренний отступ)' }, check: C.cssProp('body', 'padding', { uz: "`body { padding: 20px; }` — sahifa chetlariga havo bering", ru: 'Дайте воздух краям страницы: `body { padding: 20px; }`' }) },
+    { id: 'margin', label: { uz: 'p — margin (tashqi bo\'shliq)', ru: 'p — margin (внешний отступ)' }, check: C.cssProp('p', 'margin', { uz: "`p { margin: 12px 0; }` — paragraflar orasini oching", ru: 'Раздвиньте абзацы: `p { margin: 12px 0; }`' }) },
+  ],
+};
+
+// 🏠 LMS uchun statik uy-vazifa deklaratsiyasi (Htmllesson1 naqshi).
+export const HOMEWORK = {
+  type: 'tex',
+  title: TASK_HW.title,
+  brief: TASK_HW.brief,
+  items: TASK_HW.requirements.map(r => r.label),
+  task: TASK_HW,
+  starter: '',
+};
+
 // Praktika handoff: shu ekran indeksidan KEYIN ochiladi (7=Rang formatlari · 9=Qalinlik · 12=margin)
 const PRACTICE_AFTER = {
   8:  { task: TASK_COLOR, starter: '' },
@@ -2818,7 +2849,7 @@ export default function HtmlLesson({ lang: langProp, onFinished, onPractice }) {
   // Dars-ichi mashqidan farqi: keyingi ekranga O'TKAZMAYDI (oxirgi sahifa) va serverga
   // «bajardim» signali YUBORMAYDI — bu uy ishi, sinf ishi emas.
   const openHomeworkPractice = () => {
-    const entry = { task: TASK_BOX, starter: '' };
+    const entry = { task: TASK_HW, starter: '' };
     if (typeof onPractice === 'function') Promise.resolve(onPractice(entry.task)).catch(() => {});
     else {
       pracWrite(LESSON_META.lessonId, { kind: 'hw' });

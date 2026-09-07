@@ -436,6 +436,23 @@ function useAudio(segments) {
 // AUDIOSIZ: AudioIndicator (ovoz/replay tugmalari) olib tashlandi — ovoz o'chirilgan, ikonka kerak emas.
 
 const LESSON_META = { lessonId: 'git-github-v19', lessonTitle: { uz: 'Git va GitHub — kodni internetga chiqaramiz', ru: 'Git и GitHub — выкладываем код в интернет' } };
+
+// 🏠 LMS uchun statik uy-vazifa deklaratsiyasi. Bu darsda vazifa kompilyatorda emas —
+// o'quvchi uyda 3 qadamni (fayl → commit → push) takrorlab, GitHub repo HAVOLASINI
+// platformadagi «Text» savoliga yozib yuboradi. Yakun-kartaga 1:1 mos.
+export const HOMEWORK = {
+  type: 'text',
+  title: { uz: 'Uch qadamni yana bir marta takrorlang', ru: 'Повторите три шага ещё раз' },
+  brief: {
+    uz: "Uyda repo'ga yangi sahifa qo'shib, GitHub havolangizni platformadagi vazifa-savoliga yozib yuborasiz.",
+    ru: 'Дома добавите в репо новую страницу и отправите ссылку на GitHub в задание на платформе.',
+  },
+  items: [
+    { uz: "Yangi fayl qo'shing — repo papkasiga about.html yarating", ru: 'Добавьте новый файл — создайте about.html в папке репо' },
+    { uz: 'Nuqtani belgilang — izoh yozing: about sahifasi', ru: 'Отметьте точку — напишите комментарий: about sahifasi' },
+    { uz: "Internetga yuboring — repo sahifangizda fayl paydo bo'lsin", ru: 'Отправьте в интернет — пусть файл появится на странице репо' },
+  ],
+};
 const HW_TOKENS = [
   { t: { uz: 'amaliyot', ru: 'практика' }, l: 8, tp: 22, s: 13, d: 6 },
   { t: { uz: 'loyiha', ru: 'проект' }, l: 68, tp: 16, s: 12, d: 7.5 },
@@ -1857,7 +1874,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
             <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni bajarish →', ru: 'Выполнить практическое задание →' })}</span>
           </button>
         </div>
-        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>🔎 {tr({ uz: 'Uyga vazifa', ru: 'Домашнее задание' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: 'Uch qadamni yana bir marta takrorlang:', ru: 'Повторите три шага ещё раз:' })}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: "Repo havolasini sinfdoshingizga yuboring — u brauzerda ochib sahifangizni ko'radi.", ru: 'Отправьте ссылку на репо однокласснику — он откроет вашу страницу в браузере.' })}</p></div>}
+        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>🔎 {tr({ uz: 'Uyga vazifa', ru: 'Домашнее задание' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: 'Uch qadamni yana bir marta takrorlang:', ru: 'Повторите три шага ещё раз:' })}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: "Repo havolangizni platformadagi vazifa-savoliga yozib yuboring. Sinfdoshingizga ham yuboring — u brauzerda ochib sahifangizni ko'radi.", ru: 'Отправьте ссылку на репо в задание на платформе. И однокласснику тоже — он откроет вашу страницу в браузере.' })}</p></div>}
         {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>🏅 {tr({ uz: 'Nishonlaringiz', ru: 'Ваши значки' })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">

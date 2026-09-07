@@ -1140,3 +1140,13 @@ keraksizmi (JSX'dan olib tashlanadi) yoki yangi blok yoziladi — bu dizayn qaro
 
 **Bog'liq:** 23-band (shablon-manba tozalash) — ikkalasi ham «nusxa ko'chirishda bir
 bo'lak tushib qolgan» toifasidan.
+## 28. DragDropOrder klon-bug sweep (F-0826-01) — 19 fayl
+**Topilma:** chip O'Z slotining ustiga sudrab qaytarilsa `occ === id` bo'lib pool'ga
+nusxasi qo'shiladi (6 chip; yakun-hisobda ortiqcha klon qoladi). Foydalanuvchi
+PmLesson2.homework'da jonli tutdi; naqsh `const occ = ns[slotIdx]` bilan 20 faylga
+ko'chirilgan, homework'da tuzatildi — qolgan 19 fayl kutmoqda.
+**Tuzatish (bir xil, 2 qator):** `place()` boshiga
+`if (typeof from === 'number' && from === slotIdx) return { pool, slots };`
+va `if (occ)` sharti → `if (occ && occ !== id)`.
+**Fayllar:** `grep -rln "const occ = ns\[slotIdx\]" src/` (PmLesson2.homework.jsx dan
+tashqari hammasi). Har faylda tuzatishdan keyin esbuild + tegishli .shared qayta yig'ish.

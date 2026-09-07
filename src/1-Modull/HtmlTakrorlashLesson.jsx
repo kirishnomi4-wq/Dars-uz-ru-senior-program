@@ -2085,18 +2085,15 @@ const ScreenFinal = ({ screen, answers, achievements, onReset, onPrev, onFinish,
             <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni bajarish →', ru: 'Выполнить практическое задание →' })}</span>
           </button>
         </div>
-        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>📝 {tr({ uz: 'Uyga vazifa', ru: 'Домашнее задание' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: "Xuddi shunday sahifani O'Z mavzuingizda yasang:", ru: 'Сделайте такую же страницу на СВОЮ тему:' })}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{h.b}</b> <span className="t">{h.t}</span></li>))}</ul><p className="hw-note">{tr({ uz: "Avval o'z qo'lingiz bilan yozing. Tayyor bo'lsa mentoringizga ko'rsating — u baholab, maslahat beradi.", ru: 'Сначала напишите своими руками. Когда будет готово, покажите ментору — он оценит и подскажет.' })}</p></div>}
-        {/* 🏠 UYGA VAZIFA — amaliy topshiriq kompilyatorda bajariladi. Mentor proyektorida
-            KO'RSATILMAYDI: uy ishi shaxsiy (sahna ↔ daftar tamoyili). */}
-        {!isMentorL && onHomework && (
-          <div className="hw-big-wrap fade-up d4">
-            <button className="hw-big" onClick={onHomework}>
-              <span className="hw-big-shine" aria-hidden="true" />
-              <span className="hw-big-t">{tr({ uz: 'Uyga vazifa', ru: 'Домашнее задание' })}</span>
-              <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni boshlash →', ru: 'Начать практическое задание →' })}</span>
+        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>📝 {tr({ uz: 'Uyga vazifa', ru: 'Домашнее задание' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: "Xuddi shunday sahifani O'Z mavzuingizda yasang:", ru: 'Сделайте такую же страницу на СВОЮ тему:' })}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{h.b}</b> <span className="t">{h.t}</span></li>))}</ul><p className="hw-note">{tr({ uz: "Vazifa kompilyatorda bajariladi — har talab avtomatik tekshiriladi. Dars tugagach istalgan payt qaytib kirib davom etsangiz bo'ladi.", ru: 'Задание выполняется в компиляторе — каждое требование проверяется автоматически. После урока можно вернуться и продолжить в любой момент.' })}</p>
+          {/* 🏠 Vazifani boshlash — kompilyator ochiladi (LMS'da onPractice, lokalda overlay).
+              Mentor proyektorida KO'RSATILMAYDI: uy ishi shaxsiy (sahna ↔ daftar tamoyili). */}
+          {!isMentorL && onHomework && (
+            <button className="btn" onClick={onHomework} style={{ marginTop: 14, background: T.accent, boxShadow: '0 8px 22px -6px rgba(255,79,40,0.5)' }}>
+              {tr({ uz: 'Vazifani bajarish →', ru: 'Выполнить задание →' })}
             </button>
-          </div>
-        )}
+          )}
+        </div>}
         {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>🏅 {tr({ uz: 'Nishonlaringiz', ru: 'Ваши значки' })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">
@@ -2823,6 +2820,36 @@ const TASK_FINAL = {
 };
 const STARTER_FINAL = { uz: `<!-- Bu yerga yozing -->\n`, ru: `<!-- Пишите здесь -->\n` };
 
+// — 🏠 UYGA VAZIFA (yakun-sahifadagi tugma) — shart-kartaga AYNAN mos avto-tekshiruv.
+//   TASK_FINAL bilan adashtirmang: u sinf-yakuni («Chempionlar» jamoasi); uy vazifasi —
+//   xuddi shunday sahifa, lekin O'QUVCHINING O'Z mavzusida (o'yin, musiqa, kitob…).
+const TASK_HW = {
+  eyebrow: { uz: 'Uyga vazifa', ru: 'Домашнее задание' },
+  title: { uz: "Xuddi shunday sahifa — o'z mavzuingizda", ru: 'Такая же страница — на свою тему' },
+  brief: {
+    uz: "Darsda «Chempionlar» sahifasini yig'dingiz — endi xuddi shunday sahifani o'zingiz tanlagan mavzuda yasaysiz: sevimli o'yin, musiqa yoki kitob. Rasm manzilini internetdan toping (rasm ustiga o'ng tugma → «Copy image address»).",
+    ru: 'На уроке вы собрали страницу «Чемпионы» — теперь сделайте такую же на свою тему: любимая игра, музыка или книга. Адрес картинки найдите в интернете (правая кнопка по картинке → «Copy image address»).',
+  },
+  requirements: [
+    { id: 'h1', label: { uz: '<h1> — mavzu nomi', ru: '<h1> — название темы' }, check: C.text('h1', { uz: "`<h1>` ichiga mavzuingiz nomini yozing", ru: 'Напишите название темы внутри `<h1>`' }) },
+    { id: 'p2', label: { uz: 'kamida 2 ta <p> — tanishuv', ru: 'минимум 2 <p> — знакомство' }, check: C.count('p', 2, { uz: "Mavzu haqida kamida 2 ta `<p>` gap yozing", ru: 'Напишите о теме минимум 2 абзаца `<p>`' }) },
+    { id: 'li3', label: { uz: "ro'yxatda kamida 3 ta <li>", ru: 'в списке минимум 3 <li>' }, check: C.count('li', 3, { uz: "`<ul>` ichida kamida 3 ta `<li>` band yozing", ru: 'Напишите минимум 3 пункта `<li>` внутри `<ul>`' }) },
+    { id: 'a', label: { uz: '<a> — bitta sayt havolasi', ru: '<a> — одна ссылка на сайт' }, check: C.attr('a', 'href', { uz: "Mavzuga oid saytga `<a href=\"https://...\">nomi</a>` havola qo'shing", ru: 'Добавьте ссылку на сайт по теме: `<a href="https://...">имя</a>`' }) },
+    { id: 'img', label: { uz: '<img> — rasm, src va alt bilan', ru: '<img> — картинка, с src и alt' }, check: C.attrs('img', ['src', 'alt'], { uz: "`<img>` da `src` va `alt` ikkalasini to'ldiring", ru: 'Заполните у `<img>` оба атрибута: `src` и `alt`' }) },
+  ],
+};
+const STARTER_HW = { uz: `<!-- Bu yerga yozing -->\n`, ru: `<!-- Пишите здесь -->\n` };
+
+// 🏠 LMS uchun statik uy-vazifa deklaratsiyasi (Htmllesson1 naqshi).
+export const HOMEWORK = {
+  type: 'tex',
+  title: TASK_HW.title,
+  brief: TASK_HW.brief,
+  items: TASK_HW.requirements.map(r => r.label),
+  task: TASK_HW,
+  starter: STARTER_HW,
+};
+
 // Praktika handoff xaritasi: shu ekran INDEKSIDAN keyin qaysi kompilyator ochiladi.
 // ⚠️ Bu darsda senariy talabi bo'yicha 5 bosqich-kompilyator bor (har bosqich = bitta qurol).
 const PRACTICE_AFTER = {
@@ -2939,7 +2966,7 @@ export default function HtmlTakrorlashLesson({ lang: langProp, onFinished, onPra
   // Dars-ichi mashqidan farqi: keyingi ekranga O'TKAZMAYDI (oxirgi sahifa) va serverga
   // «bajardim» signali YUBORMAYDI — bu uy ishi, sinf ishi emas.
   const openHomeworkPractice = () => {
-    const entry = { task: TASK_FINAL, starter: STARTER_FINAL };
+    const entry = { task: TASK_HW, starter: STARTER_HW };
     if (typeof onPractice === 'function') Promise.resolve(onPractice(entry.task)).catch(() => {});
     else {
       pracWrite(LESSON_META.lessonId, { kind: 'hw' });

@@ -2253,3 +2253,31 @@ e'lonlar bilan solishtiring:
 className="X" bor · .X e'loni yo'q  →  jim buzilish
 ```
 Bu grep bilan tutiladigan sinf — `lint:jsx` ga ov-bandi bo'ladi (`KATTA_TOZALASH` 28-band).
+## 11-J. 👆 146-QONUN: TANLOV VA BOSQICH-NAVIGATSIYA — YOZUVGA O'XSHAMASIN (2026-08-27, F-0827-01/02)
+
+**Kelib chiqishi:** PmLesson2.homework 1-bosqichi. Joy-turi chiplari (`border: none`, sahifa
+foni bilan bir xil och fon, belgisiz) oddiy yorliqdek ko'rinardi — o'quvchi ularni bosish
+mumkinligini bilmasdi. Yuqoridagi bosqich-chiplar («Joy · Yozish · Tartib · Savollar», 12px,
+chegarasiz) esa sarlavha-panelda yo'qolib, 4 bosqichli yo'l ekani sezilmasdi. 11.7 («bosiladigan
+joylar ko'rinsin») shu ikki elementga qo'llanmagan edi.
+
+### a) Bittasini tanlaydigan element = TANLOV-KARTA, rang bilan farqlash yetarli emas
+Radio-ma'noli chip (joy-turi, variant, rejim) uchun **uch belgi birga** bo'lishi shart:
+- **radio-doira** (○ → tanlanganda ●) — «bittasini tanlaysiz» umumjahon belgisi;
+- **ko'rinadigan chegara** (`1.5px T.line`, fon `T.paper`, hover'da accent-chegara) — sahifa
+  fonidan ajralib turadi;
+- **belgi/ikonka** (🍞 🍲 📱 ✂️ ✏️ kabi) — 13 yoshli tez o'qiydi.
+Yorliqda ishora: «👆 … bittasini bosing». Semantika: `role="radiogroup"` + `role="radio"`
+`aria-checked`. ❌ faqat tanlangani rangli, qolgani fon-rangda tekis yozuv.
+
+### b) Bosqich-navigatsiya = STEPPER, nom emas «N-bosqich»
+Ko'p bosqichli vazifada yuqori navigatsiya **raqam-doira + «N-bosqich» yorlig'i** (ru:
+«N-этап»), oraliqda **bog'lovchi chiziq** (yo'l ekani ko'rinsin), yakunda «Natija · k/N».
+Uch holat aniq farqlanadi: **tugagan** = yashil ✓ (chiziq ham yashil) · **joriy** = accent
+to'la fon · **kelgusi** = oq fon, kulrang chegara, raqam. Bosqichning mazmun-nomi (Joy/
+Yozish…) chipda emas — ekran sarlavhasida va `title` da. ≤640px da yorliq yashirinadi,
+raqam-doira qoladi (Natija yorlig'i qoladi).
+
+**Tekshirish (audit-bandi):** tanlov-chiplarda `.chip { border: none }` yoki fon `T.bg` —
+RAD; bosqich-navigatsiyada bosqich nomlari («Joy», «Yozish») — RAD. Namuna:
+`src/1-Modull/PmLesson2.homework.jsx` (`.chip/.chip-rd/.chip-ic`, `.hw-step/.hw-num/.hw-ln`).

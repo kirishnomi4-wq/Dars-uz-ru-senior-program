@@ -1008,18 +1008,15 @@ const Screen17 = ({ screen, answers, achievements, onReset, onPrev, onFinish, on
             <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni bajarish →', ru: 'Выполнить практическое задание →' })}</span>
           </button>
         </div>
-        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>🔧 {tr({ uz: 'Uyga vazifa', ru: 'Домашнее задание' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: "Saytingizni o'zingizniki qiling:", ru: 'Сделайте сайт по-настоящему своим:' })}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: 'Keyingi darsda aynan shu portfolioga CSS bilan jon kiritamiz! 🎨', ru: 'На следующем уроке именно это портфолио оживим с помощью CSS! 🎨' })}</p></div>}
-        {/* 🏠 UYGA VAZIFA — amaliy topshiriq kompilyatorda bajariladi. Mentor proyektorida
-            KO'RSATILMAYDI: uy ishi shaxsiy (sahna ↔ daftar tamoyili). */}
-        {!isMentorL && onHomework && (
-          <div className="hw-big-wrap fade-up d4">
-            <button className="hw-big" onClick={onHomework}>
-              <span className="hw-big-shine" aria-hidden="true" />
-              <span className="hw-big-t">{tr({ uz: 'Uyga vazifa', ru: 'Домашнее задание' })}</span>
-              <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni boshlash →', ru: 'Начать практическое задание →' })}</span>
+        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>🔧 {tr({ uz: 'Uyga vazifa', ru: 'Домашнее задание' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: "Saytingizni o'zingizniki qiling:", ru: 'Сделайте сайт по-настоящему своим:' })}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: "Vazifa kompilyatorda bajariladi — har talab avtomatik tekshiriladi. Keyingi darsda aynan shu portfolioga CSS bilan jon kiritamiz! 🎨", ru: 'Задание выполняется в компиляторе — каждое требование проверяется автоматически. На следующем уроке именно это портфолио оживим с помощью CSS! 🎨' })}</p>
+          {/* 🏠 Vazifani boshlash — kompilyator ochiladi (LMS'da onPractice, lokalda overlay).
+              Mentor proyektorida KO'RSATILMAYDI: uy ishi shaxsiy (sahna ↔ daftar tamoyili). */}
+          {!isMentorL && onHomework && (
+            <button className="btn" onClick={onHomework} style={{ marginTop: 14, background: T.accent, boxShadow: '0 8px 22px -6px rgba(255,79,40,0.5)' }}>
+              {tr({ uz: 'Vazifani bajarish →', ru: 'Выполнить задание →' })}
             </button>
-          </div>
-        )}
+          )}
+        </div>}
         {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>🏅 {tr({ uz: 'Nishonlaringiz', ru: 'Ваши значки' })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">
@@ -2628,6 +2625,36 @@ const TASK_FINAL = {
 const STARTER_FINAL = `<!-- Bu yerga yozing -->
 `;
 
+// — 🏠 UYGA VAZIFA (yakun-sahifadagi tugma) — shart-kartaga AYNAN mos avto-tekshiruv.
+//   TASK_FINAL bilan adashtirmang: u sinf-yakuni; uy vazifasi — portfolioni O'ZINIKI
+//   qilish: «Men haqimda» o'z matni + loyihalar ro'yxatiga yangi ish (karta va'dasi).
+const TASK_HW = {
+  eyebrow: { uz: 'Uyga vazifa', ru: 'Домашнее задание' },
+  title: { uz: "Portfolioni o'zingizniki qiling", ru: 'Сделайте портфолио по-настоящему своим' },
+  brief: {
+    uz: "Darsda portfolio shablonini yig'dingiz — endi uni o'z so'zlaringiz bilan to'ldirasiz: «Men haqimda»ni o'zingiz haqingizda yozing, loyihalar ro'yxatiga yana bitta ish qo'shing. Keyingi darsda aynan shu saytga CSS beramiz.",
+    ru: 'На уроке вы собрали шаблон портфолио — теперь наполните его своими словами: напишите «Обо мне» о себе, добавьте в список проектов ещё одну работу. На следующем уроке дадим этому сайту CSS.',
+  },
+  requirements: [
+    { id: 'h1', label: { uz: '<h1> — ismingiz', ru: '<h1> — ваше имя' }, check: C.text('h1', { uz: "`<h1>` ichiga ismingizni yozing", ru: 'Напишите своё имя внутри `<h1>`' }) },
+    { id: 'p2', label: { uz: "kamida 2 ta <p> — «Men haqimda» o'z matningiz", ru: 'минимум 2 <p> — свой текст «Обо мне»' }, check: C.count('p', 2, { uz: "O'zingiz haqingizda kamida 2 ta `<p>` gap yozing", ru: 'Напишите о себе минимум 2 абзаца `<p>`' }) },
+    { id: 'li3', label: { uz: "loyihalarda kamida 3 ta <li>", ru: 'в проектах минимум 3 <li>' }, check: C.count('li', 3, { uz: "Loyihalar ro'yxatiga yana bitta ish qo'shing — kamida 3 ta `<li>`", ru: 'Добавьте в список проектов ещё одну работу — минимум 3 `<li>`' }) },
+    { id: 'a', label: { uz: '<a> havola — href bilan', ru: '<a> ссылка — с href' }, check: C.attr('a', 'href', { uz: "`<a href=\"https://...\">matn</a>` havola qo'shing", ru: 'Добавьте ссылку `<a href="https://...">текст</a>`' }) },
+  ],
+};
+const STARTER_HW = `<!-- Bu yerga yozing -->
+`;
+
+// 🏠 LMS uchun statik uy-vazifa deklaratsiyasi (Htmllesson1 naqshi).
+export const HOMEWORK = {
+  type: 'tex',
+  title: TASK_HW.title,
+  brief: TASK_HW.brief,
+  items: TASK_HW.requirements.map(r => r.label),
+  task: TASK_HW,
+  starter: STARTER_HW,
+};
+
 // Praktika handoff xaritasi: shu ekran INDEKSIDAN keyin qaysi praktika chaqiriladi.
 const PRACTICE_AFTER = {
   3:  { task: TASK_HEADER, starter: STARTER_HEADER }, // 1) Header (h1/p)
@@ -2698,7 +2725,7 @@ export default function HtmlPractice({ lang: langProp, onFinished, onPractice })
   // Dars-ichi mashqidan farqi: keyingi ekranga O'TKAZMAYDI (oxirgi sahifa) va serverga
   // «bajardim» signali YUBORMAYDI — bu uy ishi, sinf ishi emas.
   const openHomeworkPractice = () => {
-    const entry = { task: TASK_FINAL, starter: STARTER_FINAL };
+    const entry = { task: TASK_HW, starter: STARTER_HW };
     if (typeof onPractice === 'function') Promise.resolve(onPractice(entry.task)).catch(() => {});
     else {
       pracWrite(LESSON_META.lessonId, { kind: 'hw' });

@@ -16,6 +16,8 @@
     "build:lms": "node scripts/build-lms.mjs",
     "smoke:lms": "node scripts/smoke-lms.mjs",
     "pack:lms": "node scripts/pack-lms.mjs",
+    "gen:mentor": "node scripts/gen-mentor.mjs",
+    "build:mentor": "vite build --config vite.mentor.config.js",
     "gate:esbuild": "node esbuild-gate.mjs",
     "gates": "node gates.mjs"
   },

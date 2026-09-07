@@ -430,6 +430,22 @@ function useAudio(segments) {
 // AUDIOSIZ: AudioIndicator (ovoz/replay tugmalari) olib tashlandi — ovoz o'chirilgan, ikonka kerak emas.
 
 const LESSON_META = { lessonId: 'netlify-deploy-v19', lessonTitle: { uz: 'Netlify va deploy', ru: 'Netlify и деплой' } };
+
+// 🏠 LMS uchun statik uy-vazifa deklaratsiyasi. Bu darsda vazifa kompilyatorda emas —
+// o'quvchi jonli saytining HAVOLASINI platformadagi «Text» savoliga yozib yuboradi.
+export const HOMEWORK = {
+  type: 'text',
+  title: { uz: 'Saytingizni tugatib, havolasini yuboring', ru: 'Доделайте сайт и отправьте ссылку' },
+  brief: {
+    uz: "Uyda saytni tugatasiz va jonli havolangizni (https://...netlify.app) platformadagi vazifa-savoliga yozib yuborasiz.",
+    ru: 'Дома доделаете сайт и отправите живую ссылку (https://...netlify.app) в задание на платформе.',
+  },
+  items: [
+    { uz: 'Saytni uyda tugating — kontent va bezakni yakunlang', ru: 'Доделайте сайт дома — контент и оформление' },
+    { uz: 'Jonli havolani tekshiring — telefonda ham ochilsin', ru: 'Проверьте живую ссылку — пусть открывается и на телефоне' },
+    { uz: 'Havolani platformadagi vazifa-savoliga yozib yuboring', ru: 'Отправьте ссылку в задание на платформе' },
+  ],
+};
 const HW_TOKENS = [
   { t: { uz: 'amaliyot', ru: 'практика' }, l: 8, tp: 22, s: 13, d: 6 },
   { t: { uz: 'loyiha', ru: 'проект' }, l: 68, tp: 16, s: 12, d: 7.5 },
@@ -1690,7 +1706,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <div className="card hw fade-up delay-1">
             <div className="card-lbl" style={{ color: T.accent }}>📝 {tr({ uz: 'Uyga vazifa', ru: 'Домашнее задание' })}</div>
             <ul>{TASKS.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul>
-            <p className="hw-note">{tr({ uz: 'Havolani mentorga yuborsangiz, vazifa bajarilgan hisoblanadi.', ru: 'Задание считается выполненным, когда вы отправите ссылку ментору.' })}</p>
+            <p className="hw-note">{tr({ uz: 'Havolani platformadagi vazifa-savoliga yuborsangiz, vazifa bajarilgan hisoblanadi.', ru: 'Задание считается выполненным, когда вы отправите ссылку в задание на платформе.' })}</p>
           </div>
           <Col>
             <p className="flow-label">{tr({ uz: 'Yuboriladigan havola', ru: 'Ссылка, которую нужно отправить' })}</p>
@@ -1868,7 +1884,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
         {!isMentorL && hwOpen && <div className="card hw fade-up d4">
             <div className="card-lbl" style={{ color: T.accent }}>🔗 {tr({ uz: 'Sizning havolangiz', ru: 'Ваша ссылка' })}</div>
             <p className="mono" style={{ margin: '0 0 10px', color: url ? T.success : T.ink3, wordBreak: 'break-all', fontSize: 14 }}>{url || tr({ uz: 'havola hali saqlanmagan', ru: 'ссылка пока не сохранена' })}</p>
-            <p className="hw-note">{tr({ uz: 'Uyda saytni tugatib, havolani mentorga yuboring.', ru: 'Доделайте сайт дома и отправьте ссылку ментору.' })}</p>
+            <p className="hw-note">{tr({ uz: 'Uyda saytni tugatib, havolani platformadagi vazifa-savoliga yozib yuboring.', ru: 'Доделайте сайт дома и отправьте ссылку в задание на платформе.' })}</p>
           </div>}
         {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>🏅 {tr({ uz: 'Nishonlaringiz', ru: 'Ваши значки' })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>

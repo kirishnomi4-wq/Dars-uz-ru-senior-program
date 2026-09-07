@@ -462,6 +462,24 @@ function useAudio(segments) {
 
 const LESSON_META = { lessonId: 'vscode-start-01-v1', lessonTitle: { uz: 'VS Code — professional start', ru: 'VS Code — профессиональный старт' } };
 
+// 🏠 LMS uchun statik uy-vazifa deklaratsiyasi. Bu darsda vazifa KOMPILYATORDA EMAS:
+// card uy kompyuterida VS Code'da boyitiladi, skrinshoti LMS'ga «Fayl yuklash» savoli
+// orqali topshiriladi (type: 'file'). Yakun-ekrandagi shart-karta bilan 1:1 mos.
+export const HOMEWORK = {
+  type: 'file',
+  title: { uz: "Cardingizni VS Code'da boyiting", ru: 'Обогатите свою карточку в VS Code' },
+  brief: {
+    uz: "Darsda yasagan card'ingizni uy kompyuteringizda VS Code'da ochib boyitasiz — har o'zgarishdan keyin Ctrl+S, brauzer o'zi yangilanadi. Tayyor card'ning skrinshotini platformaga yuklaysiz.",
+    ru: 'Карточку с урока откройте дома в VS Code и обогатите — после каждого изменения Ctrl+S, браузер обновится сам. Скриншот готовой карточки загрузите на платформу.',
+  },
+  items: [
+    { uz: "Hobbi ro'yxati — card ichiga ul/li bilan 3 ta hobbi", ru: 'Список хобби — 3 хобби внутри карточки через ul/li' },
+    { uz: 'Havola — Telegram yoki sevimli saytingizga a href', ru: 'Ссылка — a href на Telegram или любимый сайт' },
+    { uz: "Rang tajribasi — fonni boshqa rangga o'zgartirish", ru: 'Эксперимент с цветом — другой цвет фона' },
+    { uz: 'Sahifa nomi — title ichiga ismingiz', ru: 'Имя страницы — ваше имя в title' },
+  ],
+};
+
 // 🏁 DEMO DAY LOYIHA-IPI (F-0803-30): PmLesson1 da tanlangan muammo-loyiha shu kalitda yashaydi
 // (TTLsiz). Bu darsda mentor har o'quvchidan loyihasini so'raydi; keyin Deploy uni saytga
 // aylantiradi, PmLesson3 esa nutqqa. Shakl: { muammo, yechim, manba, holat, savedAt }.
@@ -2374,7 +2392,7 @@ const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) =>
 };
 
 // ===== EKRAN — YAKUN (summary) =====
-const ScreenSummary = ({ screen, answers, achievements, onReset, onPrev, onFinish, onHomework }) => {
+const ScreenSummary = ({ screen, answers, achievements, onReset, onPrev, onFinish }) => {
   // F-0803-08: uyga vazifa kapsulasi — bosilganda topshiriq kartasi ochiladi
   const [hwOpen, setHwOpen] = useState(false);
   const [hwCharge, setHwCharge] = useState(false);
@@ -2436,18 +2454,7 @@ const ScreenSummary = ({ screen, answers, achievements, onReset, onPrev, onFinis
             <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni bajarish →', ru: 'Выполнить практическое задание →' })}</span>
           </button>
         </div>
-        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>📝 {tr({ uz: 'Uyga vazifa', ru: 'Домашнее задание' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: "Cardingizni VS Code'da boyiting:", ru: 'Обогатите свою карточку в VS Code:' })}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{h.b}</b> <span className="t">{fmtCode(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: "Har o'zgarishdan keyin Ctrl+S bosing — brauzer o'zi yangilanadi. Tayyor cardingizni keyingi darsga olib keling: mentor jonli ko'radi.", ru: 'После каждого изменения нажимайте Ctrl+S — браузер обновится сам. Готовую карточку принесите на следующий урок: ментор посмотрит вживую.' })}</p></div>}
-        {/* 🏠 UYGA VAZIFA — amaliy topshiriq kompilyatorda bajariladi. Mentor proyektorida
-            KO'RSATILMAYDI: uy ishi shaxsiy (sahna ↔ daftar tamoyili). */}
-        {!isMentorL && onHomework && (
-          <div className="hw-big-wrap fade-up d4">
-            <button className="hw-big" onClick={onHomework}>
-              <span className="hw-big-shine" aria-hidden="true" />
-              <span className="hw-big-t">{tr({ uz: 'Uyga vazifa', ru: 'Домашнее задание' })}</span>
-              <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni boshlash →', ru: 'Начать практическое задание →' })}</span>
-            </button>
-          </div>
-        )}
+        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>📝 {tr({ uz: 'Uyga vazifa', ru: 'Домашнее задание' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: "Cardingizni VS Code'da boyiting:", ru: 'Обогатите свою карточку в VS Code:' })}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{h.b}</b> <span className="t">{fmtCode(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: "Bu vazifa kompilyatorda EMAS — o'z kompyuteringizda, VS Code'da bajariladi: aynan shu darsda o'rgangan ish uslubingiz. Har o'zgarishdan keyin Ctrl+S bosing — brauzer o'zi yangilanadi. Tayyor card'ning skrinshotini platformaga yuklang va keyingi darsga ham olib keling: mentor jonli ko'radi.", ru: 'Это задание выполняется НЕ в компиляторе, а на своём компьютере в VS Code — тем самым способом, который вы освоили на уроке. После каждого изменения нажимайте Ctrl+S — браузер обновится сам. Скриншот готовой карточки загрузите на платформу и принесите на следующий урок: ментор посмотрит вживую.' })}</p></div>}
         {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>🏅 {tr({ uz: 'Nishonlaringiz', ru: 'Ваши значки' })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">
@@ -3379,24 +3386,16 @@ export default function VsCodeLesson({ lang: langProp, onFinished, onPractice })
   };
   // "Davom etish" bosilganda: shu ekrandan keyin praktika bo'lsa — compilatorni ochadi,
   // bajarilgach keyingi ekranga o'tadi. Aks holda oddiy o'tadi.
-  // 🏠 UYGA VAZIFA PRAKTIKASI (yakun-sahifadagi tugma) — yakuniy topshiriq.
-  // Dars-ichi mashqidan farqi: keyingi ekranga O'TKAZMAYDI (oxirgi sahifa) va serverga
-  // «bajardim» signali YUBORMAYDI — bu uy ishi, sinf ishi emas.
-  const openHomeworkPractice = () => {
-    const entry = { task: TASK_STYLE, starter: null };
-    if (typeof onPractice === 'function') Promise.resolve(onPractice(entry.task)).catch(() => {});
-    else {
-      pracWrite(LESSON_META.lessonId, { kind: 'hw' });
-      setPractice({ ...entry, codeKey: codeKeyOf(LESSON_META.lessonId, 'hw'), done: () => { pracClear(LESSON_META.lessonId); setPractice(null); } });
-    }
-  };
+  // 🏠 UYGA VAZIFA bu darsda KOMPILYATORDA EMAS: card VS Code'da (uy kompyuterida)
+  // boyitiladi, skrinshoti LMS'ga «Fayl yuklash» savoli orqali topshiriladi. Shu sabab
+  // yakun-sahifada kompilyator-tugma yo'q (eski TASK_STYLE-yo'li olib tashlangan).
   // F-0801-01: qayta yuklanishda ochiq praktika tiklanadi (qaysi biri ochilgan bo'lsa — o'sha
   // qayta quriladi; `done` shu yerda yangidan bog'lanadi).
   useEffect(() => {
     if (typeof onPractice === 'function') return; // production: overlay ishlatilmaydi
     const p = pracRead(LESSON_META.lessonId);
     if (!p) return;
-    if (p.kind === 'hw') { openHomeworkPractice(); return; }
+    if (p.kind === 'hw') { pracClear(LESSON_META.lessonId); return; } // eski hw-saqlov — bekor
     const entry = PRACTICE_AFTER[p.screen];
     if (entry) runPractice(entry, p.screen);
     else pracClear(LESSON_META.lessonId); // dars o'zgargan — eskirgan saqlov tashlanadi
@@ -4789,7 +4788,7 @@ export default function VsCodeLesson({ lang: langProp, onFinished, onPractice })
             <LiveGate live={live} title={tr({ uz: '1-Modul', ru: 'Модуль 1' })} />
           ) : (
             <>
-              <Current screen={screen} storedAnswer={answers[screen]} answers={answers} achievements={earned} onAnswer={recordAnswer} onNext={next} onPrev={prev} onReset={reset} onFinish={finishLesson} onHomework={openHomeworkPractice} />
+              <Current screen={screen} storedAnswer={answers[screen]} answers={answers} achievements={earned} onAnswer={recordAnswer} onNext={next} onPrev={prev} onReset={reset} onFinish={finishLesson} />
               {live.mode !== 'mentor' && <AchToasts toasts={achToasts} onDone={(k) => setAchToasts(t => t.filter(x => x.k !== k))} />}
               <LiveBadge live={live} total={TOTAL_SCREENS} />
             </>

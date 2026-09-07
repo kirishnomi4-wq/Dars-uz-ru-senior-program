@@ -1882,18 +1882,15 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish, on
             <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni bajarish →', ru: 'Выполнить практическое задание →' })}</span>
           </button>
         </div>
-        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>🧩 {tr({ uz: 'Uyga vazifa', ru: 'Домашнее задание' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: 'Saytingiz menyusini Flexbox bilan yasang:', ru: 'Сделайте меню своего сайта на Flexbox:' })}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: 'Flexbox — deyarli har bir zamonaviy saytda ishlatiladi!', ru: 'Flexbox используется почти на каждом современном сайте!' })}</p></div>}
-        {/* 🏠 UYGA VAZIFA — amaliy topshiriq kompilyatorda bajariladi. Mentor proyektorida
-            KO'RSATILMAYDI: uy ishi shaxsiy (sahna ↔ daftar tamoyili). */}
-        {!isMentorL && onHomework && (
-          <div className="hw-big-wrap fade-up d4">
-            <button className="hw-big" onClick={onHomework}>
-              <span className="hw-big-shine" aria-hidden="true" />
-              <span className="hw-big-t">{tr({ uz: 'Uyga vazifa', ru: 'Домашнее задание' })}</span>
-              <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni boshlash →', ru: 'Начать практическое задание →' })}</span>
+        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>🧩 {tr({ uz: 'Uyga vazifa', ru: 'Домашнее задание' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: 'Saytingiz menyusini Flexbox bilan yasang:', ru: 'Сделайте меню своего сайта на Flexbox:' })}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: "Vazifa kompilyatorda bajariladi — har talab avtomatik tekshiriladi. DevTools bandini o'z brauzeringizda sinaysiz (F12 → Styles). Flexbox — deyarli har bir zamonaviy saytda ishlatiladi!", ru: 'Задание выполняется в компиляторе — каждое требование проверяется автоматически. Пункт про DevTools попробуйте в своём браузере (F12 → Styles). Flexbox используется почти на каждом современном сайте!' })}</p>
+          {/* 🏠 Vazifani boshlash — kompilyator ochiladi (LMS'da onPractice, lokalda overlay).
+              Mentor proyektorida KO'RSATILMAYDI: uy ishi shaxsiy (sahna ↔ daftar tamoyili). */}
+          {!isMentorL && onHomework && (
+            <button className="btn" onClick={onHomework} style={{ marginTop: 14, background: T.accent, boxShadow: '0 8px 22px -6px rgba(255,79,40,0.5)' }}>
+              {tr({ uz: 'Vazifani bajarish →', ru: 'Выполнить задание →' })}
             </button>
-          </div>
-        )}
+          )}
+        </div>}
         {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>🏅 {tr({ uz: 'Nishonlaringiz', ru: 'Ваши значки' })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">
@@ -2680,6 +2677,37 @@ const TASK_COLUMN = {
     { id: 'col', label: '.menu — flex-direction: column', check: C.cssValue('.menu', 'flex-direction', 'column', { uz: "`.menu { flex-direction: column; }` — ustunga tizadi", ru: '`.menu { flex-direction: column; }` — выстроит в столбик' }) },
   ],
 };
+// — 🏠 UYGA VAZIFA (yakun-sahifadagi tugma) — shart-kartaga AYNAN mos avto-tekshiruv.
+//   TASK_COLUMN bilan adashtirmang: u sinf-praktikasi (ustun); uy vazifasi — O'Z sayti
+//   menyusini Flexbox bilan qatorga tizib markazlash (karta va'dasi bilan bir xil).
+const TASK_HW = {
+  eyebrow: { uz: 'Uyga vazifa', ru: 'Домашнее задание' },
+  title: { uz: 'Saytingiz menyusini Flexbox bilan yasang', ru: 'Сделайте меню своего сайта на Flexbox' },
+  brief: {
+    uz: "Har saytning tepasida menyu bor — endi o'zingiznikini yasaysiz. index.html da menyu bandlarini o'z sahifangizga moslab o'zgartiring, style.css da esa ularni qatorga tizib, markazga qo'ying.",
+    ru: 'Наверху каждого сайта есть меню — теперь сделаете своё. В index.html переименуйте пункты под свой сайт, а в style.css выстройте их в ряд и поставьте по центру.',
+  },
+  files: [
+    { name: 'index.html', lang: 'html', starter: { uz: '<nav class="menu">\n  <a href="#">Bosh sahifa</a>\n  <a href="#">Loyihalar</a>\n  <a href="#">Aloqa</a>\n</nav>', ru: '<nav class="menu">\n  <a href="#">Главная</a>\n  <a href="#">Проекты</a>\n  <a href="#">Контакты</a>\n</nav>' } },
+    { name: 'style.css', lang: 'css', starter: { uz: '/* Bu yerga yozing */\n', ru: '/* Пишите здесь */\n' } },
+  ],
+  requirements: [
+    { id: 'flex', label: '.menu — display: flex', check: C.cssValue('.menu', 'display', 'flex', { uz: "`.menu { display: flex; }` yozing — bandlar qatorga tiziladi", ru: 'Напишите `.menu { display: flex; }` — пункты встанут в ряд' }) },
+    { id: 'center', label: '.menu — justify-content: center', check: C.cssValue('.menu', 'justify-content', 'center', { uz: "`.menu { justify-content: center; }` — menyu markazga", ru: '`.menu { justify-content: center; }` — меню по центру' }) },
+    { id: 'gap', label: { uz: '.menu — gap (bandlar orasi)', ru: '.menu — gap (между пунктами)' }, check: C.cssProp('.menu', 'gap', { uz: "`.menu { gap: 20px; }` — bandlar orasini oching", ru: 'Раздвиньте пункты: `.menu { gap: 20px; }`' }) },
+  ],
+};
+
+// 🏠 LMS uchun statik uy-vazifa deklaratsiyasi (Htmllesson1 naqshi).
+export const HOMEWORK = {
+  type: 'tex',
+  title: TASK_HW.title,
+  brief: TASK_HW.brief,
+  items: TASK_HW.requirements.map(r => r.label),
+  task: TASK_HW,
+  starter: '',
+};
+
 // Praktika handoff: shu ekran indeksidan KEYIN ochiladi (5=flex-direction · 9=align-items · 12=justify)
 const PRACTICE_AFTER = {
   // 9.4 pedagogik tartib: FLEX praktikasi gap o'rgatilgan s6 (idx 8) dan KEYIN — display:flex + gap ikkalasi ham o'tilgan bo'ladi.
@@ -2745,7 +2773,7 @@ export default function HtmlLesson({ lang: langProp, onFinished, onPractice }) {
   // Dars-ichi mashqidan farqi: keyingi ekranga O'TKAZMAYDI (oxirgi sahifa) va serverga
   // «bajardim» signali YUBORMAYDI — bu uy ishi, sinf ishi emas.
   const openHomeworkPractice = () => {
-    const entry = { task: TASK_COLUMN, starter: '' };
+    const entry = { task: TASK_HW, starter: '' };
     if (typeof onPractice === 'function') Promise.resolve(onPractice(entry.task)).catch(() => {});
     else {
       pracWrite(LESSON_META.lessonId, { kind: 'hw' });

@@ -1732,6 +1732,42 @@ const STARTER_FINAL = {
   ru: `<!-- Пишите здесь -->
 ` };
 
+// — 🏠 UYGA VAZIFA (yakun-sahifadagi tugma) — shart-kartaga AYNAN mos avto-tekshiruv.
+//   TASK_FINAL bilan adashtirmang: u sinf-praktikasi; uy vazifasi — 1-darsdagi saytni
+//   bugungi bilimlar bilan boyitish (struktura + rasm + forma), karta va'dasi bilan bir xil.
+const TASK_HW = {
+  eyebrow: { uz: 'Uyga vazifa', ru: 'Домашнее задание' },
+  title: { uz: '1-darsdagi saytingizni boyiting', ru: 'Обогатите свой сайт из 1-го урока' },
+  brief: {
+    uz: "1-darsda o'zingiz haqingizda sahifa yozgansiz — endi o'sha saytni bugungi bilimlar bilan boyitasiz: bo'limlarga ajrating, rasm va aloqa formasi qo'shing. Har talab bajarilganda belgi yashil yonadi.",
+    ru: 'На 1-м уроке вы написали страницу о себе — теперь обогатите этот сайт сегодняшними знаниями: разделите на секции, добавьте картинку и форму связи. Когда требование выполнено, метка загорается зелёным.',
+  },
+  requirements: [
+    { id: 'header', label: { uz: '<header> — sarlavha bo\'limi', ru: '<header> — раздел заголовка' }, check: C.text('header', { uz: "`<header>` ichiga sayt sarlavhasini yozing", ru: 'Напишите заголовок сайта внутри `<header>`' }) },
+    { id: 'main', label: { uz: '<main> — asosiy kontent', ru: '<main> — основной контент' }, check: C.text('main', { uz: "Asosiy matnni `<main>` ichiga joylang", ru: 'Поместите основной текст внутрь `<main>`' }) },
+    { id: 'footer', label: { uz: '<footer> — pastki bo\'lim', ru: '<footer> — нижний раздел' }, check: C.text('footer', { uz: "`<footer>` ichiga pastki matn yozing (masalan ismingiz)", ru: 'Напишите нижний текст внутри `<footer>` (например, имя)' }) },
+    { id: 'img', label: { uz: '<img> — rasm, src va alt bilan', ru: '<img> — картинка, с src и alt' }, check: C.attrs('img', ['src', 'alt'], { uz: "`<img>` da `src` va `alt` ikkalasini to'ldiring", ru: 'Заполните у `<img>` оба атрибута: `src` и `alt`' }) },
+    { id: 'form', label: { uz: '<form> — aloqa formasi', ru: '<form> — форма связи' }, check: C.nested('form', 'input', { uz: "`<form>` qo'shing va ichiga `<input>` joylang", ru: 'Добавьте `<form>` и поместите внутрь `<input>`' }) },
+    { id: 'input2', label: { uz: 'kamida 2 ta <input> — ism va email', ru: 'минимум 2 <input> — имя и email' }, check: C.count('input', 2, { uz: "Ism va email uchun 2 ta `<input>` yozing", ru: 'Напишите 2 `<input>`: для имени и email' }) },
+  ],
+};
+const STARTER_HW = {
+  uz: `<!-- Bu yerga yozing -->
+`,
+  ru: `<!-- Пишите здесь -->
+`,
+};
+
+// 🏠 LMS uchun statik uy-vazifa deklaratsiyasi (Htmllesson1 naqshi).
+export const HOMEWORK = {
+  type: 'tex',
+  title: TASK_HW.title,
+  brief: TASK_HW.brief,
+  items: TASK_HW.requirements.map(r => r.label),
+  task: TASK_HW,
+  starter: STARTER_HW,
+};
+
 // Praktika handoff xaritasi: shu ekran indeksidan KEYIN qaysi praktika chaqiriladi.
 // Dars sahifa qo'shmaydi — tugma onPractice(task)'ni chaqiradi, compilator alohida
 // qatlam (lokalda overlay, productionda LMS compilatori) bo'lib chiqadi.
@@ -2507,18 +2543,15 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish, on
             <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni bajarish →', ru: 'Выполнить практическое задание →' })}</span>
           </button>
         </div>
-        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>📝 {tr({ uz: 'Uyga vazifa', ru: 'Домашнее задание' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: '1-darsdagi saytingizni boyiting:', ru: 'Обогатите свой сайт из 1-го урока:' })}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: "Avval o'z qo'lingiz bilan yozing, keyin DevTools bilan tekshiring. Tayyor bo'lsa platformaga yuklang.", ru: 'Сначала напишите своими руками, потом проверьте через DevTools. Когда готово — загрузите на платформу.' })}</p></div>}
-        {/* 🏠 UYGA VAZIFA — amaliy topshiriq kompilyatorda bajariladi. Mentor proyektorida
-            KO'RSATILMAYDI: uy ishi shaxsiy (sahna ↔ daftar tamoyili). */}
-        {!isMentorL && onHomework && (
-          <div className="hw-big-wrap fade-up d4">
-            <button className="hw-big" onClick={onHomework}>
-              <span className="hw-big-shine" aria-hidden="true" />
-              <span className="hw-big-t">{tr({ uz: 'Uyga vazifa', ru: 'Домашнее задание' })}</span>
-              <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni bajarish →', ru: 'Выполнить практическое задание →' })}</span>
+        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>📝 {tr({ uz: 'Uyga vazifa', ru: 'Домашнее задание' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: '1-darsdagi saytingizni boyiting:', ru: 'Обогатите свой сайт из 1-го урока:' })}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: "Vazifa kompilyatorda bajariladi — har talab avtomatik tekshiriladi. DevTools bandini esa o'z brauzeringizda sinaysiz (F12).", ru: 'Задание выполняется в компиляторе — каждое требование проверяется автоматически. Пункт про DevTools попробуйте в своём браузере (F12).' })}</p>
+          {/* 🏠 Vazifani boshlash — kompilyator ochiladi (LMS'da onPractice, lokalda overlay).
+              Mentor proyektorida KO'RSATILMAYDI: uy ishi shaxsiy (sahna ↔ daftar tamoyili). */}
+          {!isMentorL && onHomework && (
+            <button className="btn" onClick={onHomework} style={{ marginTop: 14, background: T.accent, boxShadow: '0 8px 22px -6px rgba(255,79,40,0.5)' }}>
+              {tr({ uz: 'Vazifani bajarish →', ru: 'Выполнить задание →' })}
             </button>
-          </div>
-        )}
+          )}
+        </div>}
         {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>🏅 {tr({ uz: 'Nishonlaringiz', ru: 'Ваши значки' })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">
@@ -2666,7 +2699,7 @@ export default function HtmlLesson({ lang: langProp, onFinished, onPractice }) {
   // Dars-ichi mashqidan farqi: keyingi ekranga O'TKAZMAYDI (oxirgi sahifa) va serverga
   // «bajardim» signali YUBORMAYDI — bu uy ishi, sinf ishi emas.
   const openHomeworkPractice = () => {
-    const entry = { task: TASK_FINAL, starter: STARTER_FINAL };
+    const entry = { task: TASK_HW, starter: STARTER_HW };
     if (typeof onPractice === 'function') Promise.resolve(onPractice(entry.task)).catch(() => {});
     else {
       pracWrite(LESSON_META.lessonId, { kind: 'hw' });
