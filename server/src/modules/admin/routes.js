@@ -68,6 +68,16 @@ export async function adminRoutes(app) {
     return rows[0];
   });
 
+  // LMS §13-20: yuborilgan hodisani School API tomonida tasdiqlash (GET lesson-results/{event_id}, natija-token bilan, serverdan)
+  app.get('/api/results/:id/verify', { config: { rateLimit: false } }, async (req) => {
+    const { rows } = await app.db.query('select event_id, status, last_http_status from result_events where event_id = $1', [req.params.id]);
+    if (!rows[0]) throw notFound('Hodisa topilmadi.');
+    if (!app.schoolApi) return { event_id: rows[0].event_id, local: rows[0], remote: null, note: "LMS-ko'prik o'chiq" };
+    const r = await app.schoolApi.getLessonResult(rows[0].event_id);
+    req.log.info({ eventId: rows[0].event_id, status: r.status, requestId: r.requestId }, 'admin: School API tekshiruvi');
+    return { event_id: rows[0].event_id, local: rows[0], remote: { status: r.status, found: r.status === 200, data: r.status === 200 ? r.body?.data ?? null : null, message: r.status !== 200 ? r.body?.message ?? null : null } };
+  });
+
   app.post('/api/results/:id/requeue', { config: { rateLimit: false } }, async (req) => {
     const ok = await app.results.requeue(req.params.id);
     if (!ok) throw notFound('Hodisa topilmadi yoki allaqachon yetkazilgan.');

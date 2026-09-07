@@ -132,8 +132,12 @@ export function loadConfig(env = process.env) {
   // Ko'prik yoqiqmi: hamma kerakli qiymat bor bo'lsa
   cfg.lmsBridgeEnabled = !!(cfg.jwt.secret && cfg.jwt.issuer && cfg.jwt.audience && cfg.jwt.keyId && cfg.contextApiToken && cfg.tokenEncKey);
 
-  if (isProdLike && cfg.host !== '127.0.0.1' && cfg.host !== 'localhost') {
-    problems.push('HOST: prod/staging da faqat 127.0.0.1 bo\'lsin (Caddy orqasida, tashqariga ochilmaydi)');
+  // Prod/staging: yo 127.0.0.1 (systemd + Caddy), yo 0.0.0.0 KONTEYNER ichida — bunda proksi ortida ekani
+  // (TRUST_PROXY=true) shart; compose portni faqat 127.0.0.1 ga chiqaradi. Boshqa manzil — xato.
+  const hostLocal = cfg.host === '127.0.0.1' || cfg.host === 'localhost';
+  const hostContainer = cfg.host === '0.0.0.0' && cfg.trustProxy;
+  if (isProdLike && !hostLocal && !hostContainer) {
+    problems.push('HOST: prod/staging da 127.0.0.1 (proksi orqasida) yoki 0.0.0.0 faqat TRUST_PROXY=true bilan (konteyner)');
   }
   if (isProdLike && cfg.corsOrigins && cfg.corsOrigins.some((o) => o.startsWith('http://'))) {
     problems.push('CORS_ORIGINS: prod/staging da faqat https origin');

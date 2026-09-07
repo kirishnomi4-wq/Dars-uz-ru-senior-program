@@ -49,11 +49,21 @@ test('CORS origin faqat sxema+host; yo\'l bilan rad', () => {
 
 test('prod: HOST faqat 127.0.0.1, CORS faqat https, mentor-kod ≥6', () => {
   const prod = { DARS_ENV: 'prod', DATABASE_URL: 'postgres://u:p@h/db', CORS_ORIGINS: 'http://x.uz', LIVE_MENTOR_CODE: 'abc', HOST: '0.0.0.0' };
-  assert.throws(() => loadConfig(prod), (e) => {
+  // proksisiz 0.0.0.0 — HOST xatosi
+  assert.throws(() => loadConfig({ ...prod, TRUST_PROXY: 'false' }), (e) => {
     const p = e.problems.join('\n');
     assert.match(p, /HOST: prod\/staging/);
     assert.match(p, /faqat https/);
     assert.match(p, /kamida 6 belgi/);
+    return true;
+  });
+  // konteyner: 0.0.0.0 faqat TRUST_PROXY=true bilan — HOST muammosi bo'lmasin (boshqa muammolar qolsa ham)
+  assert.throws(() => loadConfig({ ...prod, TRUST_PROXY: 'true' }), (e) => {
+    assert.doesNotMatch(e.problems.join('\n'), /HOST:/);
+    return true;
+  });
+  assert.throws(() => loadConfig({ ...prod, HOST: '10.0.0.5', TRUST_PROXY: 'true' }), (e) => {
+    assert.match(e.problems.join('\n'), /HOST:/);
     return true;
   });
   // prod'da LMS-ko'prik ham majburiy

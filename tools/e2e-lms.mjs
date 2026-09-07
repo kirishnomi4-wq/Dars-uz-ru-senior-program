@@ -149,6 +149,28 @@ try {
     return `screen=${prog.screen} answers=${Object.keys(prog.answers).join(',')}`;
   });
 
+  await step('Sobir 4-ekranda (test s4) variantni bosadi → record_attempt: ball-qatori + urinish (solo\'da submit_answer YO\'Q)', async () => {
+    // Oldingi ekranlar interaktiv — serverdan to'g'ridan-to'g'ri 4-ekranga o'tkazamiz; yangi qurilma server-progress'dan 4-ekranni tiklaydi
+    const put = await fetch(`${API}/api/v1/me/progress`, { method: 'PUT', headers: { authorization: `Bearer ${sobirToken}`, 'content-type': 'application/json' },
+      body: JSON.stringify({ lesson_id: 'internet-01-v18', attempt_id: soloJoin.attempt.id, screen: 4, total: 22, answers: { 0: { picked: 1 } }, earned: [], client_ts: Date.now() + 1000 }) });
+    if (!put.ok) throw new Error(`progress PUT ${put.status}`);
+    const dev = await open('sobir-quiz', mint(['--role', 'student', '--sub', SOBIR, '--name', 'Sobir Karimov']));
+    await dev.page.waitForSelector('[data-live="badge-solo"]', { timeout: 15000 });
+    const opts = dev.page.locator('button.option:not([disabled])');
+    await opts.first().waitFor({ timeout: 15000 });
+    await opts.nth(1).click({ force: true });
+    let rows = [];
+    for (let i = 0; i < 16; i++) {
+      const r = await fetch(`${API}/api/v1/live/answers/${soloJoin.pin}?screen=4`);
+      rows = await r.json();
+      if (Array.isArray(rows) && rows.length) break;
+      await new Promise((res) => setTimeout(res, 500));
+    }
+    if (!Array.isArray(rows) || !rows.length) throw new Error('4-ekran javobi serverga yetmadi (record_attempt chaqirilmadi)');
+    await dev.ctx.close();
+    return `live_answers screen=4 picked=${rows[0].picked} correct=${rows[0].correct}`;
+  });
+
   await step('Sobir boshqa qurilmadan (localStorage bo\'sh, yangi jti) → o\'sha ekrandan davom (server-progress)', async () => {
     const dev2 = await open('sobir-dev2', mint(['--role', 'student', '--sub', SOBIR, '--name', 'Sobir Karimov']));
     await dev2.page.waitForSelector('[data-live="badge-solo"]', { timeout: 15000 });

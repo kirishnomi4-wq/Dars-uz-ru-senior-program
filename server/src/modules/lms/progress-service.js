@@ -149,6 +149,14 @@ export async function putProgress(c, attempt, body) {
     [attempt.id, body.screen, body.total ?? null, answersJson, JSON.stringify(Array.isArray(body.earned) ? body.earned : []), body.started_at_ms ?? null, clientTs],
   );
   const saved = rows[0];
+  // Yutuq-vaqtlari (0005): earned ro'yxatidagi har yangi id birinchi ko'ringan paytida yoziladi (idempotent)
+  const earnedIds = (Array.isArray(body.earned) ? body.earned : []).map(String).filter((x) => /^[a-z0-9_-]{1,32}$/.test(x)).slice(0, 50);
+  if (earnedIds.length) {
+    await c.query(
+      `insert into achievement_events (attempt_id, achievement_id) select $1, x from unnest($2::text[]) as x on conflict do nothing`,
+      [attempt.id, earnedIds],
+    );
+  }
   const reachedEnd = Number.isInteger(body.total) && body.total > 0 && body.screen >= body.total - 1;
   let a = attempt;
   if (reachedEnd && !attempt.reached_end) {

@@ -1,0 +1,81 @@
+# dars-api — LMS serverida ishga tushirish (prod yoki staging; ikkalasi alohida papka + alohida .env bilan).
+#   docker compose -f docker-compose.deploy.yml --env-file .env.deploy up -d --build
+# Tartib: postgres (sog'lom) → migrate (bir marta, muvaffaqiyatli) → api. backup har kecha dump oladi.
+# Tashqariga faqat 127.0.0.1:${API_PORT} chiqadi — LMS reverse-proxy shu portga HTTPS bilan yo'naltiradi.
+services:
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: dars
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?POSTGRES_PASSWORD kerak}
+      POSTGRES_DB: ${POSTGRES_DB:-dars_prod}
+    volumes:
+      - dars-pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U dars -d ${POSTGRES_DB:-dars_prod}"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+    mem_limit: 512m
+
+  migrate:
+    build:
+      context: .
+      args:
+        GIT_SHA: ${GIT_SHA:-unknown}
+    image: dars-api:${IMAGE_TAG:-latest}
+    env_file: ${ENV_FILE:-.env.deploy}
+    environment:
+      DATABASE_URL: postgres://dars:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB:-dars_prod}
+    command: ["node", "src/db/migrate-cli.js"]
+    restart: "no"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  api:
+    image: dars-api:${IMAGE_TAG:-latest}
+    restart: unless-stopped
+    env_file: ${ENV_FILE:-.env.deploy}
+    environment:
+      DATABASE_URL: postgres://dars:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB:-dars_prod}
+      HOST: 0.0.0.0
+      PORT: "3001"
+      TRUST_PROXY: "true"
+    ports:
+      - "127.0.0.1:${API_PORT:-3001}:3001"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      migrate:
+        condition: service_completed_successfully
+    mem_limit: 768m
+    logging:
+      driver: json-file
+      options: { max-size: "20m", max-file: "5" }
+
+  backup:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      PGPASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB:-dars_prod}
+      KEEP_DAYS: ${BACKUP_KEEP_DAYS:-14}
+    volumes:
+      - dars-backups:/backups
+    depends_on:
+      postgres:
+        condition: service_healthy
+    # Har 24 soatda pg_dump (-Fc), 14 kun saqlanadi. Tiklash: pg_restore -U dars -d <baza> /backups/<fayl>
+    command: >
+      sh -c 'while true; do
+        f=/backups/dars_$$(date -u +%Y%m%dT%H%M%SZ).dump;
+        if pg_dump -h postgres -U dars -Fc "$$POSTGRES_DB" > "$$f"; then echo "backup ok $$f"; else echo "backup XATO"; rm -f "$$f"; fi;
+        find /backups -name "dars_*.dump" -mtime +$$KEEP_DAYS -delete;
+        sleep 86400; done'
+    mem_limit: 128m
+
+volumes:
+  dars-pgdata:
+  dars-backups:

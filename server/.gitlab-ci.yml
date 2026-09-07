@@ -1,0 +1,55 @@
+# dars-api — GitLab CI shabloni: test → image → deploy.
+# `deploy` bosqichi LMS serveriga bog'liq (runner/SSH) — LMS jamoasi o'z tartibiga moslaydi.
+stages: [test, build, deploy]
+
+variables:
+  IMAGE: $CI_REGISTRY_IMAGE
+  TEST_DATABASE_URL: postgres://dars:dars@postgres:5432/dars_test
+
+test:
+  stage: test
+  image: node:22-alpine
+  services:
+    - name: postgres:16-alpine
+      alias: postgres
+      variables:
+        POSTGRES_USER: dars
+        POSTGRES_PASSWORD: dars
+        POSTGRES_DB: dars_test
+  script:
+    - npm ci --no-audit --no-fund
+    - npm run lint
+    - npm test
+    - npm run test:int
+
+build:
+  stage: build
+  image: docker:27
+  services: [docker:27-dind]
+  needs: [test]
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main" || $CI_COMMIT_BRANCH == "staging"
+  script:
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    - docker build --build-arg GIT_SHA=$CI_COMMIT_SHORT_SHA -t $IMAGE:$CI_COMMIT_SHORT_SHA -t $IMAGE:$CI_COMMIT_BRANCH .
+    - docker push $IMAGE:$CI_COMMIT_SHORT_SHA
+    - docker push $IMAGE:$CI_COMMIT_BRANCH
+
+# Namuna: runner serverning o'zida (shell executor) bo'lsa. staging shoxi → staging papka, main → prod papka.
+# HOZIRCHA QO'LDA (when: manual): server-runner sozlanguncha umumiy runner'da ishga tushmasin.
+# Server-runner tayyor bo'lgach: `when: manual` qatorlarini olib tashlang va runner'ga `tags: [dars-server]` qo'ying.
+deploy:
+  stage: deploy
+  needs: [build]
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main"
+      variables: { DEPLOY_DIR: /srv/dars-api/prod }
+      when: manual
+    - if: $CI_COMMIT_BRANCH == "staging"
+      variables: { DEPLOY_DIR: /srv/dars-api/staging }
+      when: manual
+  script:
+    - cd $DEPLOY_DIR
+    - IMAGE_TAG=$CI_COMMIT_SHORT_SHA GIT_SHA=$CI_COMMIT_SHORT_SHA docker compose -f docker-compose.deploy.yml --env-file .env.deploy pull
+    - IMAGE_TAG=$CI_COMMIT_SHORT_SHA GIT_SHA=$CI_COMMIT_SHORT_SHA docker compose -f docker-compose.deploy.yml --env-file .env.deploy up -d
+    - sleep 8 && curl -fsS http://127.0.0.1:${API_PORT:-3001}/api/v1/health

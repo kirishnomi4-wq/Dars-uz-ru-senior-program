@@ -44,6 +44,22 @@ const server = createServer(async (req, res) => {
     } });
   }
 
+  // GET lesson-results/{event_id} — LMS §8/§13-20: faqat shu klient yuborgan hodisa, aks holda 404
+  let g = /^\/api\/v1\/integrations\/dars-platform\/lesson-results\/([^/]+)$/.exec(url.pathname);
+  if (req.method === 'GET' && g) {
+    const id = decodeURIComponent(g[1]);
+    const raw = seenEvents.get(id);
+    if (!raw) return json(res, 404, { message: 'Not found' });
+    const p = JSON.parse(raw);
+    return json(res, 200, { data: {
+      event_id: id, lesson_id: p.lesson_id, lesson_title: p.lesson_title, mode: p.mode,
+      group_id: p.group_id ?? null, teacher_id: p.teacher_id ?? null, started_at: p.started_at, finished_at: p.finished_at,
+      total_questions: p.total_questions, received_at: new Date().toISOString(), reward_status: 'pending_policy',
+      students_received: p.students.length, students_accepted: p.students.length, students_rejected: 0,
+      students: p.students.map((s) => ({ ...s, crm_student_id: null, lms_student_id: s.id_type === 'lms' ? s.student_id : null })), rejected_students: [],
+    } });
+  }
+
   // Sinov uchun: qabul qilingan natijalar ro'yxati (haqiqiy School API'da yo'q)
   if (req.method === 'GET' && url.pathname === '/_debug/results') {
     return json(res, 200, [...seenEvents.entries()].map(([id, body]) => ({ event_id: id, payload: JSON.parse(body) })));

@@ -93,5 +93,18 @@ export function createSchoolApi({ baseUrl, contextToken, resultsToken, fetchImpl
         retryAfter: r.status === 429 ? (Number(r.headers.get('retry-after')) || null) : null,
       };
     },
+
+    /**
+     * GET lesson-results/{event_id} (LMS §8, §13-20) — yuborilgan hodisani School API tomonida tasdiqlash (admin uchun).
+     * HTTP kodlarni tashlamaydi: 200 → data, 404 → topilmadi/begona klient, boshqasi → holicha.
+     * @returns {Promise<{ status: number, body: any, requestId: string|null }>}
+     */
+    async getLessonResult(eventId) {
+      const path = `/api/v1/integrations/dars-platform/lesson-results/${encodeURIComponent(String(eventId))}`;
+      const r = await request(path, resultsToken, { method: 'GET' });
+      let body = null;
+      try { body = await r.json(); } catch { /* tanasiz */ }
+      return { status: r.status, body, requestId: r.headers.get('x-request-id') || null };
+    },
   };
 }

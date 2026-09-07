@@ -11,6 +11,13 @@ let resultMode = 'ok'; // ok | dup | 422 | 429 | 500 | net
 const GROUPS = { 3001: [861], 3002: [861], 3003: [862], 3004: [] };
 const ctxFetch = fakeSchoolApi(GROUPS);
 async function fetchStub(url, init) {
+  const g = /\/integrations\/dars-platform\/lesson-results\/([^/?]+)$/.exec(String(url));
+  if (g && (!init || !init.method || init.method === 'GET')) {
+    const id = decodeURIComponent(g[1]);
+    const ev = received.find((p) => p.event_id === id);
+    if (!ev) return new Response(JSON.stringify({ message: 'Not found' }), { status: 404, headers: { 'content-type': 'application/json' } });
+    return new Response(JSON.stringify({ data: { event_id: id, mode: ev.mode, students_received: ev.students.length } }), { status: 200, headers: { 'content-type': 'application/json', 'x-request-id': 'req-get' } });
+  }
   if (String(url).endsWith('/integrations/dars-platform/lesson-results')) {
     const payload = JSON.parse(init.body);
     received.push(payload);
@@ -240,6 +247,27 @@ test('tarmoq xatosi → retry_wait; admin overview/results; auth yo\'q → 401',
   assert.match(noauth.headers['www-authenticate'], /Basic/);
   const wrong = await t.app.inject({ method: 'GET', url: '/admin/api/overview', headers: { authorization: 'Basic ' + Buffer.from('admin:yomon').toString('base64') } });
   assert.equal(wrong.statusCode, 401);
+});
+
+test("admin: /api/results/:id/verify — School API'da GET bilan tasdiq (§13-20); noma'lum id → 404", async () => {
+  resultMode = 'ok';
+  let delivered = (await events("where status = 'delivered'"))[0];
+  if (!delivered) {
+    const any = (await events())[0];
+    assert.ok(any, 'hodisa kerak');
+    await t.app.inject({ method: 'POST', url: `/admin/api/results/${encodeURIComponent(any.event_id)}/requeue`, headers: { authorization: 'Basic ' + Buffer.from('admin:test-admin-parol-12').toString('base64') } });
+    await t.app.results.runOnce();
+    delivered = (await events(`where event_id = '${any.event_id}' and status = 'delivered'`))[0];
+  }
+  assert.ok(delivered, 'yetkazilgan hodisa kerak');
+  const v = await adminGet(`/admin/api/results/${encodeURIComponent(delivered.event_id)}/verify`);
+  assert.equal(v.statusCode, 200, v.body);
+  const j = v.json();
+  assert.equal(j.remote.found, true);
+  assert.equal(j.remote.data.event_id, delivered.event_id);
+  assert.equal(j.local.status, 'delivered');
+  const missing = await adminGet('/admin/api/results/yoq-hodisa/verify');
+  assert.equal(missing.statusCode, 404);
 });
 
 test('admin o\'chiq (env yo\'q) → 404', async () => {

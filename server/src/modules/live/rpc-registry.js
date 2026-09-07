@@ -80,6 +80,34 @@ export const RPC = Object.freeze({
       p_elapsed_ms: { type: 'integer', minimum: 0, maximum: 2147483647 }, // SQL 0..3 600 000 ga qirqadi
     }),
   },
+  // Har urinish tarixi (0005): birinchi urinishda ball-qatorini ham qo'yadi (solo nuqsoni yopiq). Qaytaradi: urinish № (0 = limit).
+  record_attempt: {
+    args: ['p_pin', 'p_player_id', 'p_token', 'p_screen', 'p_question_id', 'p_picked', 'p_elapsed_ms', 'p_texts'],
+    returns: 'scalar',
+    body: obj(
+      {
+        p_pin: PIN,
+        p_player_id: UUID,
+        p_token: TOKEN,
+        p_screen: { type: 'integer', minimum: 0, maximum: 9999 },
+        p_question_id: { type: 'string', maxLength: 64 },
+        p_picked: { type: 'integer', minimum: -1, maximum: 999 },
+        p_elapsed_ms: { type: 'integer', minimum: 0, maximum: 2147483647 },
+        p_texts: {
+          type: 'object',
+          additionalProperties: false,
+          properties: {
+            question: { type: 'string', maxLength: 300 },
+            options: { type: 'array', maxItems: 6, items: { type: 'string', maxLength: 300 } },
+            picked: { type: 'string', maxLength: 300 },
+            correct: { type: 'string', maxLength: 300 },
+            lang: { type: 'string', enum: ['uz', 'ru'] },
+          },
+        },
+      },
+      ['p_pin', 'p_player_id', 'p_token', 'p_screen', 'p_question_id', 'p_picked', 'p_elapsed_ms'],
+    ),
+  },
   set_quiz_keys: {
     args: ['p_lesson_id', 'p_mentor_code', 'p_keys'],
     returns: 'scalar',
