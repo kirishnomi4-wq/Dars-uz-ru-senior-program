@@ -40,7 +40,7 @@ Har band uchun dalil: skrinshot (belgi/darvoza) + bizda log-satr yoki admin-yozu
 | 17 | Aynan takror → `200` + `duplicate: true` | Admin'da «qayta yubor» | `last_http_status = 200`, `response.data.duplicate = true` | admin skrinshot |
 | 18 | O'zgartirilgan takror → `409` | LMS bilan kelishib: o'sha `event_id` bilan boshqa payload (faqat staging, qo'lda curl) | `409`, bizda `manual_review` + Telegram | admin skrinshot |
 | 19 | Qisman noto'g'ri guruh → to'g'rilari saqlanadi, rad etilganlar qaytadi | LMS test-bazasida O-2 ni «topilmaydigan» qiladi (yoki soxta ID) → «Erkin qilish» | `delivered`, `response.data.rejected_students` da o'sha ID | admin skrinshot |
-| 20 | `GET /lesson-results/{event_id}` tasdiqlaydi | Biz curl (results-token bilan, serverdan) | `200`, `data.event_id` mos | terminal skrinshoti (token yashirilgan) |
+| 20 | `GET /lesson-results/{event_id}` tasdiqlaydi | Admin: `GET /admin/api/results/<event_id>/verify` (server o'zi results-token bilan School API'dan so'raydi) | `remote.found = true`, `remote.data.event_id` mos | admin-javob skrinshoti (token ko'rinmaydi) |
 | 21 | Frontend/URL/loglarda `sapi_`, JWT secret, JWT yo'q | Brauzer DevTools (Network/Application), Caddy va journald loglari, URL | Hech qayerda yo'q (Authorization sarlavhasi Caddy logidan o'chiriladi) | grep natijasi skrinshoti |
 
 ## 2. Bizning qo'shimcha 5 band
