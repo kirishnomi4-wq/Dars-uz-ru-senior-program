@@ -29,292 +29,17 @@ const T = {
   shadowBase: '40, 34, 82'
 };
 
-// ============================================================
-// JONLI SESSIYA INFRA (P0 dan AYNAN — TEGILMAYDI)
-// ============================================================
-const LIVE_SUPABASE_URL = 'https://dwoubexcexzsinogojiu.supabase.co';
-const LIVE_SUPABASE_KEY = 'sb_publishable_cijLMhCDDdo6dlXs05thyw__oH-YgKX';
-const LIVE_ENABLED = !!(LIVE_SUPABASE_URL && LIVE_SUPABASE_KEY);
-const LIVE_POLL_MS = 2500, LIVE_POLL_MAX_MS = 15000, LIVE_HEARTBEAT_MS = 10000, LIVE_STALE_MS = 180000;
-const LT = { bg: '#F2F0FA', ink: '#1B1630', ink2: '#565073', ink3: '#9C97B4', paper: '#FFFFFF', accent: '#5B3DE6', accentSoft: '#EBE5FD', success: '#12A968' };
-const _liveHdr = { apikey: LIVE_SUPABASE_KEY, Authorization: `Bearer ${LIVE_SUPABASE_KEY}` };
-async function liveRpc(fn, body) {
-  const r = await fetch(`${LIVE_SUPABASE_URL}/rest/v1/rpc/${fn}`, { method: 'POST', headers: { ..._liveHdr, 'Content-Type': 'application/json' }, body: JSON.stringify(body || {}) });
-  if (!r.ok) {
-    let msg = '';
-    try { msg = JSON.parse(await r.text()).message || ''; } catch {}
-    throw new Error(msg || `${fn}: ${r.status}`);
-  }
-  const t = await r.text(); return t ? JSON.parse(t) : null;
-}
-async function liveGet(pin) {
-  const r = await fetch(`${LIVE_SUPABASE_URL}/rest/v1/live_sessions?pin=eq.${encodeURIComponent(pin)}&select=*`, { headers: _liveHdr });
-  if (!r.ok) throw new Error(`get: ${r.status}`);
-  const rows = await r.json(); return (rows && rows[0]) || null;
-}
-const _lsKey = (id) => `liveSession:${id}`;
-const liveRead = (id) => { try { return JSON.parse(localStorage.getItem(_lsKey(id)) || 'null'); } catch { return null; } };
-const liveStore = (id, o) => { try { localStorage.setItem(_lsKey(id), JSON.stringify(o)); } catch {} };
-const liveClear = (id) => { try { localStorage.removeItem(_lsKey(id)); } catch {} };
-const fmtPin = (p) => (p ? String(p).replace(/(\d{3})(\d{3})/, '$1 $2') : '');
-// Sahifa-holat saqlovi (F-0730-01): reload'da o'quvchi o'z ekraniga qaytadi.
-const PROG_TTL_MS = 6 * 60 * 60 * 1000;
-const _progKey = (id) => `ccProgress:${id}`;
-const progRead = (id, total) => {
-  try {
-    const p = JSON.parse(localStorage.getItem(_progKey(id)) || 'null');
-    if (!p || p.total !== total || Date.now() - (p.savedAt || 0) > PROG_TTL_MS) return null;
-    return p;
-  } catch { return null; }
-};
-const progWrite = (id, o) => { try { localStorage.setItem(_progKey(id), JSON.stringify(o)); } catch {} };
-const progClear = (id) => { try { localStorage.removeItem(_progKey(id)); } catch {} };
-const LIVE_NICK_KEY = 'liveNickname';
-const nickRead = () => { try { return localStorage.getItem(LIVE_NICK_KEY) || ''; } catch { return ''; } };
-const nickStore = (n) => { try { localStorage.setItem(LIVE_NICK_KEY, n); } catch {} };
-async function liveList(path) {
-  const r = await fetch(`${LIVE_SUPABASE_URL}/rest/v1/${path}`, { headers: _liveHdr });
-  if (!r.ok) throw new Error(`list: ${r.status}`);
-  return r.json();
-}
-const livePlayers = (pin) => liveList(`live_players?pin=eq.${encodeURIComponent(pin)}&select=id,nickname,joined_at&order=joined_at.asc`);
-const liveAnswers = (pin, screenIdx) => liveList(`live_answers?pin=eq.${encodeURIComponent(pin)}${screenIdx == null ? '&screen_idx=lt.100' : `&screen_idx=eq.${screenIdx}`}&select=player_id,screen_idx,picked,correct,elapsed_ms`);
-const liveQuizAnswers = (pin) => liveList(`live_answers?pin=eq.${encodeURIComponent(pin)}&screen_idx=gte.100&select=player_id,screen_idx,picked,correct,elapsed_ms`);
+// Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
+import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers } from '../live/index.js';
 
-function useLiveSession(lessonId, answerKey) {
-  const keyRef = useRef(answerKey); keyRef.current = answerKey;
-  const initRef = useRef(undefined);
-  if (initRef.current === undefined) initRef.current = LIVE_ENABLED ? liveRead(lessonId) : null;
-  const init = initRef.current;
-  const [mode, setMode] = useState(() => {
-    if (!LIVE_ENABLED) return 'self';
-    if (init?.mode === 'self') return 'self';
-    if (init?.mode === 'student') return 'student';
-    if (init?.mode === 'mentor') return 'mentor';
-    return 'choosing';
-  });
-  const [pin, setPin] = useState(init?.pin || null);
-  const tokenRef = useRef(init?.token || null);
-  const playerRef = useRef(init?.playerId ? { id: init.playerId, token: init.playerToken } : null);
-  const nickRef = useRef(init?.nickname || '');
-  const [mentorScreen, setMentorScreen] = useState(init?.lastScreen || 0);
-  const [mentorMax, setMentorMax] = useState(init?.maxScreen ?? init?.lastScreen ?? 0);
-  const [status, setStatus] = useState('live');
-  const [mentorAlive, setMentorAlive] = useState(true);
-  const [connected, setConnected] = useState(true);
-  const [ended, setEnded] = useState(false);
-  const [joinError, setJoinError] = useState('');
-  const [busy, setBusy] = useState(false);
-  const [quiz, setQuiz] = useState({ state: 'off', q: -1 });
-  const [revealScreen, setRevealScreen] = useState(-1);
-  const lastSeenRef = useRef(Date.now());
-  const lastUpdatedRef = useRef(null);
-  const mentorScreenOf = (row) => (typeof row.cur_screen === 'number' ? row.cur_screen : row.max_screen);
-  const syncQuiz = useCallback((row) => {
-    const qs = row?.quiz_state || 'off', qq = row?.quiz_q ?? -1;
-    setQuiz(p => (p.state === qs && p.q === qq) ? p : { state: qs, q: qq });
-    const rv = row?.reveal_screen ?? -1;
-    setRevealScreen(p => p === rv ? p : rv);
-  }, []);
 
-  useEffect(() => {
-    if (mode !== 'student' || !pin) return;
-    let on = true, timer = null, delay = LIVE_POLL_MS;
-    const schedule = () => { if (on) timer = setTimeout(tick, delay); };
-    const tick = async () => {
-      if (typeof document !== 'undefined' && document.hidden) { schedule(); return; }
-      try {
-        const row = await liveGet(pin);
-        if (!on) return;
-        delay = LIVE_POLL_MS; setConnected(true);
-        if (!row) { setStatus(p => p === 'ended' ? p : 'ended'); schedule(); return; }
-        const mScr = mentorScreenOf(row);
-        const mMax = Math.max(row.max_screen ?? 0, mScr);
-        setMentorScreen(p => p === mScr ? p : mScr);
-        setMentorMax(p => (mMax > p ? mMax : p));
-        setStatus(p => p === row.status ? p : row.status);
-        syncQuiz(row);
-        if (row.updated_at !== lastUpdatedRef.current) { lastUpdatedRef.current = row.updated_at; lastSeenRef.current = Date.now(); liveStore(lessonId, { mode: 'student', pin, lastScreen: mScr, maxScreen: mMax, playerId: playerRef.current?.id, playerToken: playerRef.current?.token, nickname: nickRef.current }); }
-        const alive = Date.now() - lastSeenRef.current < LIVE_STALE_MS;
-        setMentorAlive(p => p === alive ? p : alive);
-      } catch { if (!on) return; setConnected(false); delay = Math.min(delay * 2, LIVE_POLL_MAX_MS); }
-      schedule();
-    };
-    tick();
-    const onVis = () => { if (!document.hidden) { clearTimeout(timer); delay = LIVE_POLL_MS; tick(); } };
-    if (typeof document !== 'undefined') document.addEventListener('visibilitychange', onVis);
-    return () => { on = false; clearTimeout(timer); if (typeof document !== 'undefined') document.removeEventListener('visibilitychange', onVis); };
-  }, [mode, pin, lessonId]); // eslint-disable-line
 
-  useEffect(() => {
-    if (mode !== 'mentor' || !pin) return;
-    let on = true;
-    liveGet(pin).then(row => {
-      if (!on) return;
-      if (!row || row.status === 'ended') { liveClear(lessonId); setPin(null); tokenRef.current = null; setMode('choosing'); setEnded(false); return; }
-      syncQuiz(row);
-    }).catch(() => {});
-    const beat = () => { liveRpc('session_heartbeat', { p_pin: pin, p_token: tokenRef.current }).catch(() => {}); };
-    beat();
-    const id = setInterval(beat, LIVE_HEARTBEAT_MS);
-    const onVis = () => { if (typeof document !== 'undefined' && !document.hidden) beat(); };
-    if (typeof document !== 'undefined') document.addEventListener('visibilitychange', onVis);
-    return () => { on = false; clearInterval(id); if (typeof document !== 'undefined') document.removeEventListener('visibilitychange', onVis); };
-  }, [mode, pin, lessonId]); // eslint-disable-line
 
-  const startMentor = useCallback(async (mentorCode) => {
-    setBusy(true); setJoinError('');
-    try {
-      const res = await liveRpc('create_session', { p_lesson_id: lessonId, p_mentor_code: (mentorCode || '').trim() });
-      const row = Array.isArray(res) ? res[0] : res;
-      if (!row?.pin) throw new Error('no pin');
-      tokenRef.current = row.token; setPin(row.pin); setMode('mentor'); setEnded(false);
-      liveStore(lessonId, { mode: 'mentor', pin: row.pin, token: row.token });
-      if (keyRef.current) liveRpc('set_quiz_keys', { p_lesson_id: lessonId, p_mentor_code: (mentorCode || '').trim(), p_keys: keyRef.current }).catch(() => {});
-    } catch { setJoinError("Mentor kodi noto'g'ri yoki ulanishda xato."); }
-    finally { setBusy(false); }
-  }, [lessonId]);
 
-  const joinStudent = useCallback(async (raw, rawNick) => {
-    const p = (raw || '').replace(/\D/g, '');
-    const nick = (rawNick || '').trim();
-    if (p.length < 4) { setJoinError("Kodni to'liq kiriting."); return; }
-    if (nick.length < 2) { setJoinError('Ismingizni kiriting (kamida 2 harf).'); return; }
-    setBusy(true); setJoinError('');
-    try {
-      const row = await liveGet(p);
-      if (!row) { setJoinError('Bunday kod topilmadi.'); setBusy(false); return; }
-      if (row.lesson_id && row.lesson_id !== lessonId) { setJoinError('Bu kod boshqa darsga tegishli.'); setBusy(false); return; }
-      if (row.status !== 'live') { setJoinError('Bu dars allaqachon yakunlangan.'); setBusy(false); return; }
-      const res = await liveRpc('join_session', { p_pin: p, p_nickname: nick });
-      const player = Array.isArray(res) ? res[0] : res;
-      if (!player?.player_id) throw new Error('no player');
-      playerRef.current = { id: player.player_id, token: player.token };
-      nickRef.current = nick; nickStore(nick);
-      lastUpdatedRef.current = row.updated_at; lastSeenRef.current = Date.now();
-      const jScr = mentorScreenOf(row), jMax = Math.max(row.max_screen ?? 0, jScr);
-      setPin(p); setMentorScreen(jScr); setMentorMax(jMax); setStatus(row.status); setMode('student');
-      liveStore(lessonId, { mode: 'student', pin: p, lastScreen: jScr, maxScreen: jMax, playerId: player.player_id, playerToken: player.token, nickname: nick });
-    } catch (e) {
-      const m = String(e?.message || '');
-      setJoinError(/ism|band|kod|dars|belgi/i.test(m) ? m : "Ulanib bo'lmadi. Internetni tekshiring.");
-    }
-    finally { setBusy(false); }
-  }, [lessonId]);
-
-  const selfStudy = useCallback(() => { setMode('self'); liveStore(lessonId, { mode: 'self' }); }, [lessonId]);
-  const reportScreen = useCallback((idx) => { if (mode === 'mentor' && pin) liveRpc('advance_session', { p_pin: pin, p_token: tokenRef.current, p_screen: idx }).catch(() => {}); }, [mode, pin]);
-  const endSession = useCallback(() => { if (mode === 'mentor' && pin) { liveRpc('end_session', { p_pin: pin, p_token: tokenRef.current }).catch(() => {}); setEnded(true); } }, [mode, pin]);
-
-  const submitAnswer = useCallback((screenIdx, questionId, picked, correct, elapsedMs) => {
-    if (mode !== 'student' || !pin || !playerRef.current) return;
-    const body = {
-      p_pin: pin, p_player_id: playerRef.current.id, p_token: playerRef.current.token,
-      p_screen: screenIdx, p_question_id: questionId || '', p_picked: picked,
-      p_correct: !!correct, p_elapsed_ms: Math.max(0, Math.round(elapsedMs || 0))
-    };
-    const attempt = (n) => { liveRpc('submit_answer', body).catch(() => { if (n < 3) setTimeout(() => attempt(n + 1), 3000 * (n + 1)); }); };
-    attempt(0);
-  }, [mode, pin]);
-
-  const quizControl = useCallback(async (state, q) => {
-    if (mode !== 'mentor' || !pin) throw new Error('mentor emas');
-    await liveRpc('quiz_control', { p_pin: pin, p_token: tokenRef.current, p_state: state, p_q: q ?? -1 });
-    setQuiz({ state, q: q ?? -1 });
-  }, [mode, pin]);
-
-  const mentorReveal = useCallback((screenIdx) => {
-    if (mode !== 'mentor' || !pin) return;
-    setRevealScreen(screenIdx);
-    liveRpc('reveal_screen', { p_pin: pin, p_token: tokenRef.current, p_screen: screenIdx }).catch(() => {});
-  }, [mode, pin]);
-
-  return { mode, pin, mentorScreen, mentorMax, status, mentorAlive, connected, ended, joinError, busy, startMentor, joinStudent, selfStudy, reportScreen, endSession, submitAnswer, quiz, quizControl, revealScreen, mentorReveal, playerId: playerRef.current?.id || null, nickname: nickRef.current };
-}
-
-const _liveBtnPri = { background: LT.accent, color: '#fff', border: 'none', borderRadius: 12, padding: '14px 20px', fontSize: 16, fontWeight: 700, cursor: 'pointer' };
-const _liveBadgeS = { position: 'fixed', top: 10, left: '50%', transform: 'translateX(-50%)', zIndex: 9998, background: LT.paper, border: `1px solid ${LT.ink3}55`, borderRadius: 99, padding: '6px 14px', fontSize: 13, fontWeight: 600, color: LT.ink2, boxShadow: '0 2px 10px rgba(40,34,82,0.12)', display: 'flex', alignItems: 'center', gap: 8, whiteSpace: 'nowrap', maxWidth: '92vw' };
-const _liveDot = (c) => ({ width: 8, height: 8, borderRadius: 99, background: c, display: 'inline-block' });
-
-function LiveBigCode({ pin, onClose }) {
-  const digits = String(pin || '').split('');
-  const overlay = { position: 'fixed', inset: 0, zIndex: 10000, background: LT.ink, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: 'clamp(16px,4vw,40px)', textAlign: 'center' };
-  const box = { background: LT.paper, color: LT.ink, borderRadius: 'clamp(10px,1.6vw,18px)', fontFamily: 'monospace', fontWeight: 800, lineHeight: 1, fontSize: 'clamp(48px,13vw,150px)', padding: 'clamp(10px,2vw,28px) clamp(12px,2.2vw,30px)', boxShadow: '0 10px 40px -10px rgba(0,0,0,0.5)' };
-  return (
-    <div style={overlay}>
-      <div style={{ fontSize: 'clamp(13px,2vw,18px)', fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: LT.accent, marginBottom: 'clamp(14px,3vw,28px)' }}>Jonli darsga qo'shilish</div>
-      <div style={{ display: 'flex', gap: 'clamp(6px,1.4vw,16px)', justifyContent: 'center', flexWrap: 'wrap' }}>{digits.map((d, i) => <span key={i} style={box}>{d}</span>)}</div>
-      <p style={{ color: '#fff', opacity: 0.85, fontSize: 'clamp(15px,2.2vw,22px)', maxWidth: 640, margin: 'clamp(20px,4vw,36px) 0 0', lineHeight: 1.5 }}>Shu darsni o'z qurilmangizda oching → <b style={{ color: '#fff' }}>«Darsga qo'shilish»</b> oynasida shu kodni va ismingizni kiriting.</p>
-      <button onClick={onClose} style={{ marginTop: 'clamp(22px,4vw,40px)', background: LT.accent, color: '#fff', border: 'none', borderRadius: 14, padding: 'clamp(12px,1.6vw,16px) clamp(24px,3vw,36px)', fontSize: 'clamp(15px,1.8vw,18px)', fontWeight: 700, cursor: 'pointer' }}>Darsni boshlash →</button>
-    </div>
-  );
-}
-
-function LiveGate({ live, title = 'Jonli dars' }) {
-  const [code, setCode] = useState('');
-  const [nick, setNick] = useState(() => nickRead());
-  const [mentorCode, setMentorCode] = useState('');
-  const [role, setRole] = useState('student');
-  const card = { position: 'relative', width: '100%', maxWidth: 420, background: LT.paper, borderRadius: 20, padding: 'clamp(24px,4vw,36px)', boxShadow: '0 10px 40px -12px rgba(40,34,82,0.22)', display: 'flex', flexDirection: 'column', gap: 18 };
-  const wrap = { minHeight: 'calc(100dvh / var(--lz, 1))', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 24 };
-  const link = { background: 'none', border: 'none', color: LT.ink3, fontSize: 13, cursor: 'pointer', alignSelf: 'center' };
-  if (role === 'mentor') {
-    return (<div style={wrap}><div style={card}>
-      <div style={{ textAlign: 'center' }}><h2 style={{ fontFamily: 'Georgia, serif', fontSize: 'clamp(22px,3vw,28px)', color: LT.ink, margin: '0 0 4px' }}>🧑‍🏫 Mentor kirishi</h2><p style={{ color: LT.ink2, fontSize: 14, margin: 0 }}>Mentor kodini kiriting.</p></div>
-      <input value={mentorCode} onChange={e => setMentorCode(e.target.value)} type="password" autoFocus placeholder="Mentor kodi" onKeyDown={e => { if (e.key === 'Enter') live.startMentor(mentorCode); }} style={{ width: '100%', padding: '14px', border: `2px solid ${LT.ink3}55`, borderRadius: 14, fontSize: 18, fontWeight: 600, textAlign: 'center', outline: 'none' }} />
-      <button onClick={() => live.startMentor(mentorCode)} disabled={live.busy} style={_liveBtnPri}>{live.busy ? 'Tekshirilmoqda…' : 'Kirish →'}</button>
-      {live.joinError && <div style={{ color: LT.accent, fontSize: 13, textAlign: 'center' }}>{live.joinError}</div>}
-      <button onClick={() => { setRole('student'); setMentorCode(''); }} style={link}>← Orqaga</button>
-    </div></div>);
-  }
-  return (<div style={wrap}><div style={card}>
-    <div style={{ textAlign: 'center' }}><div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: LT.accent }}>{title}</div><h2 style={{ fontFamily: 'Georgia, serif', fontSize: 'clamp(22px,3vw,28px)', color: LT.ink, margin: '6px 0 4px' }}>Darsga qo'shilish</h2><p style={{ color: LT.ink2, fontSize: 14, margin: 0 }}>Mentor bergan kodni va ismingizni kiriting.</p></div>
-    <input value={code} onChange={e => setCode(e.target.value)} inputMode="numeric" autoFocus placeholder="483 920" style={{ width: '100%', padding: '16px 14px', border: `2px solid ${LT.ink3}55`, borderRadius: 14, fontSize: 28, fontFamily: 'monospace', fontWeight: 700, letterSpacing: '0.12em', textAlign: 'center', outline: 'none' }} />
-    <input value={nick} onChange={e => setNick(e.target.value)} maxLength={24} placeholder="Ismingiz (masalan: Ali)" onKeyDown={e => { if (e.key === 'Enter') live.joinStudent(code, nick); }} style={{ width: '100%', padding: '13px 14px', border: `2px solid ${LT.ink3}55`, borderRadius: 14, fontSize: 17, fontWeight: 600, textAlign: 'center', outline: 'none' }} />
-    <button onClick={() => live.joinStudent(code, nick)} disabled={live.busy} style={_liveBtnPri}>{live.busy ? 'Ulanmoqda…' : 'Qo\'shilish →'}</button>
-    {live.joinError && <div style={{ color: LT.accent, fontSize: 13, textAlign: 'center' }}>{live.joinError}</div>}
-    <button onClick={() => { setRole('mentor'); setCode(''); }} title="Mentor" aria-label="Mentor" style={{ position: 'absolute', bottom: 10, right: 12, background: 'none', border: 'none', fontSize: 16, opacity: 0.3, cursor: 'pointer', lineHeight: 1, padding: 4 }}>🧑‍🏫</button>
-  </div></div>);
-}
-
-function LiveBadge({ live, total }) {
-  const [bigOpen, setBigOpen] = useState(false);
-  const [nPlayers, setNPlayers] = useState(null);
-  useEffect(() => {
-    if (live.mode !== 'mentor' || !live.pin || live.ended) return;
-    let on = true, t = null;
-    const tick = async () => {
-      try { const rows = await livePlayers(live.pin); if (on) setNPlayers(rows.length); } catch {}
-      if (on) t = setTimeout(tick, 6000);
-    };
-    tick();
-    return () => { on = false; clearTimeout(t); };
-  }, [live.mode, live.pin, live.ended]);
-  if (live.mode === 'mentor') {
-    if (live.ended) return <div className="live-badge" style={_liveBadgeS}><span style={_liveDot(LT.ink3)} /> 🔓 O'quvchilar erkin qilindi</div>;
-    return (<>
-      {bigOpen && <LiveBigCode pin={live.pin} onClose={() => setBigOpen(false)} />}
-      <div className="live-badge" style={_liveBadgeS}>
-        <span style={_liveDot(LT.success)} /> Kod: <b style={{ fontFamily: 'monospace', letterSpacing: '0.08em' }}>{fmtPin(live.pin)}</b>
-        {nPlayers !== null && <span style={{ color: LT.ink2 }}>👥 {nPlayers}</span>}
-        <button onClick={() => setBigOpen(true)} title="Kodni katta ko'rsatish" style={{ marginLeft: 6, background: LT.ink, color: '#fff', border: 'none', borderRadius: 99, padding: '4px 10px', fontSize: 12, fontWeight: 700, cursor: 'pointer', whiteSpace: 'nowrap' }}>📺 Ko'rsatish</button>
-        <button onClick={() => { if (window.confirm("O'quvchilarni ozod qilasizmi? Ular o'zlari erkin davom etadi.")) live.endSession(); }} style={{ background: LT.accentSoft, color: LT.accent, border: 'none', borderRadius: 99, padding: '4px 10px', fontSize: 12, fontWeight: 700, cursor: 'pointer', whiteSpace: 'nowrap' }}>🔓 Erkin qilish</button>
-      </div>
-    </>);
-  }
-  if (live.mode === 'student') {
-    if (live.status === 'ended') return <div className="live-badge" style={_liveBadgeS}><span style={_liveDot(LT.success)} /> 🔓 Erkin rejim — o'zingiz davom eting</div>;
-    if (!live.mentorAlive) return <div className="live-badge" style={_liveBadgeS}><span style={_liveDot(LT.ink3)} /> ⚠️ Mentor uzildi — erkin rejim</div>;
-    if (!live.connected) return <div className="live-badge" style={_liveBadgeS}><span style={_liveDot('#FFD380')} /> 🔄 Qayta ulanmoqda…</div>;
-    return <div className="live-badge" style={_liveBadgeS}><span style={_liveDot(LT.success)} /> 👨‍🏫 Mentor: {Math.min(live.mentorScreen + 1, total)} / {total}{live.nickname && <span style={{ color: LT.ink3 }}>· {live.nickname}</span>}</div>;
-  }
-  return null;
-}
 
 const LangContext = createContext('uz');
 const MentorCtx = createContext(null);
 const AchCtx = createContext(null);
-const LiveGateCtx = createContext(null);
 
 const fmtCode = (s) => (typeof s === 'string' && s.includes('`'))
   ? s.split('`').map((p, i) => i % 2 ? <code className="qcode" key={i}>{p}</code> : p)
@@ -718,6 +443,8 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
       if (isCorrect) setSolved(true);
       onAnswer(screen, { stage: scope, screenIdx: screen, question: questionText, options, correctIndex: correctIdx, correctAnswer: options[correctIdx], picked: i, studentAnswerIndex: i, studentAnswer: options[i], correct: firstCorrectRef.current, firstAttemptCorrect: firstCorrectRef.current, solved: isCorrect, lastPicked: i });
     }
+    // Har urinish tarixga (LMS analitika, 0005): ball emas, yozuv; modulsiz eski darsda recordAttempt yo'q
+    if (live && live.recordAttempt) live.recordAttempt(screen, SCREEN_META[screen]?.id || `s${screen}`, i, Date.now() - mountTs.current, { question: questionText, options: options, picked: options[i], correct: options[correctIdx], lang: 'uz' });
   };
   const wrongLocked = oneShot && solved && picked !== correctIdx;
   const revealed = !oneShot || !!(live && (live.revealScreen === screen || (live.mentorMax ?? live.mentorScreen) > screen || live.status === 'ended' || !live.mentorAlive));
@@ -3704,7 +3431,7 @@ const CSS_ARENA = `
 
 // ============================================================ LESSON ROOT
 // ============================================================ LESSON ROOT
-export default function PmLesson22({ lang: langProp, onFinished }) {
+export default function PmLesson22({ lang: langProp, onFinished, liveToken }) {
   const lang = langProp || 'uz';
   const savedRef = useRef(undefined);
   if (savedRef.current === undefined) {
@@ -3735,7 +3462,8 @@ export default function PmLesson22({ lang: langProp, onFinished }) {
     upd(); window.addEventListener('resize', upd); return () => window.removeEventListener('resize', upd);
   }, []);
   const answerKey = { ...INLINE_KEYS, ...Object.fromEntries(QUIZ_BANK.map((q, i) => [`quiz-${i}`, q.correct])) };
-  const live = useLiveSession(LESSON_META.lessonId, answerKey);
+  const live = useLiveSession(LESSON_META.lessonId, answerKey, { liveToken }); // liveToken — LMS'dan (avval null, keyin keladi)
+  useServerProgress(live, { setScreen, setAnswers, setEarned, earnedRef, startTimeRef, total: TOTAL_SCREENS }); // server-progress: davom / ko'rish / toza boshlash
   const isStudentLive = live.mode === 'student' && live.status !== 'ended' && live.mentorAlive;
   const locked = isStudentLive && (screen + 1 > live.mentorScreen);
   useEffect(() => { live.reportScreen(screen); }, [screen, live.mode, live.pin]); // eslint-disable-line

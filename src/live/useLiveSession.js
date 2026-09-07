@@ -173,6 +173,28 @@ export function useLiveSession(lessonId, answerKey, opts = {}) {
     attempt(0);
   }, [mode, pin]);
 
+  // Har urinish TARIXGA (LMS analitika, 0005): ball emas, yozuv. Jonli va solo rejimda. Birinchi urinishda server
+  // ball-qatorini ham qo'yadi — shuning uchun solo'da submitAnswer chaqirilmasa ham natija to'g'ri chiqadi.
+  // texts — savol/variant matni (faqat ko'rsatish uchun), 300 belgigacha qirqiladi.
+  const recordAttempt = useCallback((screenIdx, questionId, picked, elapsedMs, texts) => {
+    if ((mode !== 'student' && mode !== 'solo') || !pin || !playerRef.current) return;
+    const cut = (v) => (typeof v === 'string' ? v.slice(0, 300) : undefined);
+    const t = texts && typeof texts === 'object' ? {
+      question: cut(texts.question),
+      options: Array.isArray(texts.options) ? texts.options.slice(0, 6).map((o) => cut(String(o ?? ''))) : undefined,
+      picked: cut(texts.picked), correct: cut(texts.correct),
+      lang: texts.lang === 'ru' ? 'ru' : 'uz',
+    } : undefined;
+    if (t) for (const k of Object.keys(t)) if (t[k] === undefined) delete t[k];
+    const body = {
+      p_pin: pin, p_player_id: playerRef.current.id, p_token: playerRef.current.token,
+      p_screen: screenIdx, p_question_id: questionId || '', p_picked: picked,
+      p_elapsed_ms: Math.max(0, Math.round(elapsedMs || 0)), ...(t ? { p_texts: t } : {}),
+    };
+    const attempt = (n) => { liveRpc('record_attempt', body).catch(() => { if (n < 3) setTimeout(() => attempt(n + 1), 3000 * (n + 1)); }); };
+    attempt(0);
+  }, [mode, pin]);
+
   // Mustahkamlash-jang boshqaruvi (faqat mentor): 'lobby' | 'q' | 'r' | 'done'
   const quizControl = useCallback(async (state, q) => {
     if (mode !== 'mentor' || !pin) throw new Error('mentor emas');
@@ -285,7 +307,7 @@ export function useLiveSession(lessonId, answerKey, opts = {}) {
 
   return {
     mode, pin, mentorScreen, mentorMax, status, mentorAlive, connected, ended, joinError, busy,
-    startMentor, joinStudent, selfStudy, reportScreen, endSession, submitAnswer, quiz, quizControl, revealScreen, mentorReveal,
+    startMentor, joinStudent, selfStudy, reportScreen, endSession, submitAnswer, recordAttempt, quiz, quizControl, revealScreen, mentorReveal,
     playerId: playerRef.current?.id || null, nickname: nickRef.current,
     lms, joinWithToken, hasLmsToken: !!liveToken, attempt, serverProgress, restartAttempt,
   };

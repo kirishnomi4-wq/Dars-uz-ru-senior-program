@@ -11,7 +11,7 @@ const app = readFileSync('src/App.jsx', 'utf8');
 const KEYS = [...app.matchAll(/\{ key: '([a-z0-9-]+)'[^\n]*/g)].filter(m => /comp:\s*\w/.test(m[0])).map(m => m[1]);
 const IDS = readFileSync('_lessonids.txt', 'utf8').split(NL).map(s => s.trim()).filter(Boolean);
 
-const browser = await chromium.launch({ executablePath: 'C:/Program Files/Google/Chrome/Application/chrome.exe', headless: true });
+const browser = await chromium.launch({ executablePath: process.env.CHROME || 'C:/Program Files/Google/Chrome/Application/chrome.exe', headless: true });
 
 async function one(key) {
   const ctx = await browser.newContext({ viewport: { width: 1280, height: 773 } });
