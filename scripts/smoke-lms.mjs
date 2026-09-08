@@ -17,7 +17,7 @@ import { writeFileSync, readFileSync, readdirSync, mkdtempSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, resolve, basename } from 'node:path';
 
-const CHROME = 'C:/Program Files/Google/Chrome/Application/chrome.exe';
+const CHROME = process.env.CHROME || 'C:/Program Files/Google/Chrome/Application/chrome.exe'; // Kali: CHROME=/usr/bin/google-chrome
 const RED = '\x1b[31m', GRN = '\x1b[32m', DIM = '\x1b[2m', B = '\x1b[1m', R = '\x1b[0m';
 const TMP = mkdtempSync(join(tmpdir(), 'lms-smoke-'));
 
@@ -35,7 +35,7 @@ const walk = (dir) => readdirSync(dir, { withFileTypes: true }).flatMap((d) =>
   d.isDirectory() ? walk(dir + '/' + d.name)
     : (d.name.endsWith('.jsx') && d.name !== 'html-compiler.jsx' && !d.name.endsWith('.shared.jsx'))
       ? [dir + '/' + d.name] : []);
-const targets = args.length ? [args[0].replace(/\\/g, '/')] : walk('lms');
+const targets = args.length ? [args[0].replace(/\\/g, '/')] : walk(process.env.LMS_DIR || 'lms'); // LMS_DIR — mashq papkasi
 
 const browser = await chromium.launch({ executablePath: CHROME, headless: true });
 
@@ -58,6 +58,7 @@ createRoot(document.getElementById('root')).render(React.createElement(Lesson, {
       loader: 'jsx',
     },
     bundle: true, format: 'iife', jsx: 'automatic',
+    nodePaths: [resolve('node_modules')], // fayl repo tashqarisida (mashq-papka) bo'lsa ham react shu yerdan
     charset: 'utf8', write: false, logLevel: 'silent',
   });
 
@@ -86,9 +87,16 @@ createRoot(document.getElementById('root')).render(React.createElement(Lesson, {
     ? `localStorage.setItem('ccProgress:${lessonId}',JSON.stringify({screen:${idx},answers:{},earned:[],startedAt:Date.now(),total:${metaRows.length},savedAt:Date.now()}));` +
       `localStorage.setItem(${JSON.stringify(kodingKey)},'{"open":true}');`
     : `localStorage.setItem('ccPractice:${lessonId}','{"kind":"hw"}')`;
-  const compilerPages = (kodingKey && kodingCandidates.length ? kodingCandidates : [-1]).map((idx, k) => {
+  // Uchinchi yo'l (2026-09-08, VsCodeLesson): dars `ccPractice` {kind:'hw'} ni ATAYLAB bekor qiladi (uy-vazifa
+  // kompilyatorda emas) — kompilyator faqat dars-ichi praktikasi (PRACTICE_AFTER[N]) orqali ochiladi. Seed: darsning
+  // o'zi yozadigan shakl {kind:'sN', screen:N} → qayta-yuklash effekti praktikani tiklaydi (F-0801-01).
+  const practiceAfterBody = (/(?:const|let|var) PRACTICE_AFTER\d*\s*=\s*\{([\s\S]*?)\n\};/.exec(lessonSrc) || [])[1] || ''; // yig'mada esbuild const→var qiladi
+  const practiceAfterScreen = (/^\s*(\d+)\s*:/m.exec(practiceAfterBody) || [])[1];
+  const seeds = (kodingKey && kodingCandidates.length ? kodingCandidates : [-1]).map(seedFor);
+  if (practiceAfterScreen !== undefined) seeds.push(`localStorage.setItem('ccPractice:${lessonId}',JSON.stringify({kind:'s${practiceAfterScreen}',screen:${practiceAfterScreen}}))`);
+  const compilerPages = seeds.map((seed, k) => {
     const p = join(TMP, `page${i}-compiler${k || ''}.html`);
-    writeFileSync(p, mkPage(seedFor(idx)), 'utf8');
+    writeFileSync(p, mkPage(seed), 'utf8');
     return p;
   });
 

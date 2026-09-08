@@ -33,7 +33,7 @@ import { readFileSync, writeFileSync, readdirSync, mkdirSync, statSync } from 'n
 import { join, basename } from 'node:path';
 import { mergeReactImports } from './react-merge.mjs';
 
-const OUT_DIR = 'lms';
+const OUT_DIR = process.env.LMS_OUT_DIR || 'lms'; // LMS_OUT_DIR — mashq/sinov uchun boshqa papka (lms/ ga tegmasdan)
 // ── Modul → LMS papkasi (2026-08-25) ────────────────────────────────────────
 //  Foydalanuvchi CRM'ga papka-papka yuklaydi, shuning uchun chiqish MODUL bo'yicha
 //  ajratiladi. MUHIM: chiqish MANZILI bitta — ildizda ham, papkada ham nusxa

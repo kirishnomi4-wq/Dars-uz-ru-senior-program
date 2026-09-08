@@ -27,9 +27,9 @@ import { chromium } from 'playwright-core';
 import { writeFileSync, readFileSync, mkdtempSync, copyFileSync } from 'node:fs';
 import { createServer } from 'node:http';
 import { tmpdir } from 'node:os';
-import { join, basename } from 'node:path';
+import { join, basename, resolve } from 'node:path';
 
-const CHROME = 'C:/Program Files/Google/Chrome/Application/chrome.exe';
+const CHROME = process.env.CHROME || 'C:/Program Files/Google/Chrome/Application/chrome.exe'; // Kali: CHROME=/usr/bin/google-chrome
 const RED = '\x1b[31m', GRN = '\x1b[32m', DIM = '\x1b[2m', B = '\x1b[1m', R = '\x1b[0m';
 
 const lessonFile = (process.argv[2] || 'lms/JsVarsLesson.shared.jsx').replace(/\\/g, '/');
@@ -57,7 +57,7 @@ export { React, ReactDOM, createRoot };
 `,
     resolveDir: process.env.REACT_DIR || process.cwd(), sourcefile: 'vendor-entry.js', loader: 'js',
   },
-  bundle: true, format: 'esm', platform: 'browser', charset: 'utf8',
+  bundle: true, nodePaths: [resolve('node_modules')], format: 'esm', platform: 'browser', charset: 'utf8',
   write: false, logLevel: 'silent',
 });
 writeFileSync(join(TMP, 'vendor.js'), vendor.outputFiles[0].text, 'utf8');
@@ -152,7 +152,13 @@ const seedFor = (idx) => (kodingKey && idx !== -1)
   ? `localStorage.setItem('ccProgress:${lessonId}',JSON.stringify({screen:${idx},answers:{},earned:[],startedAt:Date.now(),total:${metaRows.length},savedAt:Date.now()}));` +
     `localStorage.setItem(${JSON.stringify(kodingKey)},'{"open":true}');`
   : `localStorage.setItem('ccPractice:${lessonId}','{"kind":"hw"}')`;
-const compilerPages = (kodingKey && kodingCandidates.length ? kodingCandidates : [-1]).map((idx, k) => mkPage(`compiler${k ? k : ''}.html`, seedFor(idx)));
+// Uchinchi yo'l (2026-09-08, VsCodeLesson): dars {kind:'hw'} ni ataylab bekor qiladi — kompilyator faqat dars-ichi
+// praktikasi (PRACTICE_AFTER[N]) orqali; seed = darsning o'z shakli {kind:'sN', screen:N} (qayta-yuklash effekti tiklaydi).
+const practiceAfterBody = (/(?:const|let|var) PRACTICE_AFTER\d*\s*=\s*\{([\s\S]*?)\n\};/.exec(lessonSrc) || [])[1] || ''; // yig'mada esbuild const→var qiladi
+const practiceAfterScreen = (/^\s*(\d+)\s*:/m.exec(practiceAfterBody) || [])[1];
+const seeds = (kodingKey && kodingCandidates.length ? kodingCandidates : [-1]).map(seedFor);
+if (practiceAfterScreen !== undefined) seeds.push(`localStorage.setItem('ccPractice:${lessonId}',JSON.stringify({kind:'s${practiceAfterScreen}',screen:${practiceAfterScreen}}))`);
+const compilerPages = seeds.map((seed, k) => mkPage(`compiler${k ? k : ''}.html`, seed));
 
 // ── 4) Lokal HTTP-server: file:// da module-skriptlar CORS bilan to'siladi ──
 const MIME = { html: 'text/html', js: 'text/javascript', json: 'application/json' };
