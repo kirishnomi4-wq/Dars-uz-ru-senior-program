@@ -143,7 +143,8 @@ await check('catalog', async () => {
 });
 
 await check('features', async () => {
-  const f = health.features || {};
+  if (!health.features) throw new Warn('health\'da features yo\'q (eski image) — ko\'prik holati bridge_401/mentor_flow bandlaridan ko\'rinadi');
+  const f = health.features;
   if (!f.lms_bridge) throw new Error('LMS-ko\'prik O\'CHIQ — CODDYCAMP_* / TOKEN_ENC_KEY env-faylda yetmayapti');
   const want = ENV.RESULT_DETAILS || 'off';
   const notes = [];

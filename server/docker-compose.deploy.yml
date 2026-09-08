@@ -24,19 +24,31 @@ services:
       context: .
       args:
         GIT_SHA: ${GIT_SHA:-unknown}
-    image: dars-api:${IMAGE_TAG:-latest}
+    image: ${IMAGE_REPO:-dars-api}:${IMAGE_TAG:-latest}
     env_file: ${ENV_FILE:-.env.deploy}
     environment:
       DATABASE_URL: postgres://dars:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB:-dars_prod}
-    # sxema + dars-katalogi (lesson_catalog) — ikkalasi idempotent; katalogsiz har join «dars topilmadi» beradi
-    command: ["sh", "-c", "node src/db/migrate-cli.js && node tools/seed-catalog.mjs"]
+    command: ["node", "src/db/migrate-cli.js"]
     restart: "no"
     depends_on:
       postgres:
         condition: service_healthy
 
+  # Katalogni bazaga yozadi (idempotent). migrate'dan keyin, api'dan oldin:
+  # katalogda yo'q darsni backend ochmaydi, shuning uchun bo'sh lesson_catalog = ishlamaydigan xizmat.
+  seed:
+    image: ${IMAGE_REPO:-dars-api}:${IMAGE_TAG:-latest}
+    env_file: ${ENV_FILE:-.env.deploy}
+    environment:
+      DATABASE_URL: postgres://dars:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB:-dars_prod}
+    command: ["node", "tools/seed-catalog.mjs"]
+    restart: "no"
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+
   api:
-    image: dars-api:${IMAGE_TAG:-latest}
+    image: ${IMAGE_REPO:-dars-api}:${IMAGE_TAG:-latest}
     restart: unless-stopped
     env_file: ${ENV_FILE:-.env.deploy}
     environment:
@@ -50,6 +62,8 @@ services:
       postgres:
         condition: service_healthy
       migrate:
+        condition: service_completed_successfully
+      seed:
         condition: service_completed_successfully
     mem_limit: 768m
     logging:

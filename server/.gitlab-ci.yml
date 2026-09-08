@@ -35,21 +35,75 @@ build:
     - docker push $IMAGE:$CI_COMMIT_SHORT_SHA
     - docker push $IMAGE:$CI_COMMIT_BRANCH
 
-# Namuna: runner serverning o'zida (shell executor) bo'lsa. staging shoxi → staging papka, main → prod papka.
-# HOZIRCHA QO'LDA (when: manual): server-runner sozlanguncha umumiy runner'da ishga tushmasin.
-# Server-runner tayyor bo'lgach: `when: manual` qatorlarini olib tashlang va runner'ga `tags: [dars-server]` qo'ying.
+# deploy — LMS serverida turgan shell-runner (tag: dars-server).
+# staging shoxi → /srv/dars-api/staging, main → /srv/dars-api/prod. Ikkalasi ham avtomatik:
+# test → build o'tgach deploy o'zi ketadi. Health javob bermasa — oldingi tasvirga QAYTADI.
+# Qo'lda rollback: eski commit'ning deploy bosqichini qayta ishga tushirish (tasvir tegi = SHA).
 deploy:
   stage: deploy
   needs: [build]
+  tags: [dars-server]
   rules:
-    - if: $CI_COMMIT_BRANCH == "main"
-      variables: { DEPLOY_DIR: /srv/dars-api/prod }
-      when: manual
     - if: $CI_COMMIT_BRANCH == "staging"
       variables: { DEPLOY_DIR: /srv/dars-api/staging }
-      when: manual
+    - if: $CI_COMMIT_BRANCH == "main"
+      variables: { DEPLOY_DIR: /srv/dars-api/prod }
   script:
-    - cd $DEPLOY_DIR
-    - IMAGE_TAG=$CI_COMMIT_SHORT_SHA GIT_SHA=$CI_COMMIT_SHORT_SHA docker compose -f docker-compose.deploy.yml --env-file .env.deploy pull
-    - IMAGE_TAG=$CI_COMMIT_SHORT_SHA GIT_SHA=$CI_COMMIT_SHORT_SHA docker compose -f docker-compose.deploy.yml --env-file .env.deploy up -d
-    - sleep 8 && curl -fsS http://127.0.0.1:${API_PORT:-3001}/api/v1/health
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" "$CI_REGISTRY"
+    - cd "$DEPLOY_DIR"
+    - test -s .env.deploy || { echo ".env.deploy yo'q — .env.deploy.example ga qarang"; exit 1; }
+    # compose faylini repo'dagi holatiga tenglashtirish: deploy faqat tasvirni yangilaydi,
+    # shuning uchun compose o'zgarsa (masalan yangi xizmat) serverdagi nusxa eskirib qolardi.
+    # Ish `gitlab-runner` nomidan ketadi, papkaga yozish huquqi yo'q (.env.deploy himoyalangan);
+    # faylning o'ziga ACL berilgan, shuning uchun ustiga yozamiz — install/chown emas.
+    - cp "$CI_PROJECT_DIR/docker-compose.deploy.yml" "$DEPLOY_DIR/docker-compose.deploy.yml"
+    # IMAGE_REPO registry'ni ko'rsatadi; usiz compose Docker Hub'dan `dars-api` ni qidiradi va yiqiladi.
+    - export IMAGE_REPO="$CI_REGISTRY_IMAGE" IMAGE_TAG="$CI_COMMIT_SHORT_SHA" GIT_SHA="$CI_COMMIT_SHORT_SHA"
+    - |
+      # ВНИМАНИЕ: этот блок GitLab прогоняет через eval, поэтому одиночных апострофов
+      # в тексте быть не должно (узбекское yo`q ломало кавычки и блок не запускался).
+      # Комментарии тут по-русски именно поэтому.
+      LOG=/var/log/dars-api/deploy.log
+      exec > >(tee -a "$LOG") 2>&1
+      echo "===== $(date -u +%FT%TZ)  ${CI_COMMIT_BRANCH}  ${CI_COMMIT_SHORT_SHA}  job=${CI_JOB_ID} ====="
+
+      PROJ=$(awk -F= '/^COMPOSE_PROJECT_NAME=/{print $2}' .env.deploy)
+      PORT=$(awk -F= '/^API_PORT=/{print $2}' .env.deploy)
+      # Точка возврата: образ, который работает прямо сейчас. Годится только из registry —
+      # в локально собранных старых образах нет data/, и шаг seed их не пропустит.
+      PREV=$(docker inspect "${PROJ}-api-1" --format '{{.Config.Image}}' 2>/dev/null || true)
+      case "$PREV" in "$CI_REGISTRY_IMAGE":*) ;; *) PREV="" ;; esac
+      echo "deploy: ${CI_COMMIT_SHORT_SHA} -> ${DEPLOY_DIR} (port ${PORT}); tochka vozvrata: ${PREV:-net}"
+
+      if ! docker compose -f docker-compose.deploy.yml --env-file .env.deploy pull; then
+        echo "PULL UPAL — ничего не менялось, сервис остался на прежнем образе"
+        exit 1
+      fi
+      docker compose -f docker-compose.deploy.yml --env-file .env.deploy up -d
+
+      ok=0
+      for i in $(seq 1 20); do
+        if curl -fsS "http://127.0.0.1:${PORT}/api/v1/health"; then echo; ok=1; break; fi
+        sleep 3
+      done
+
+      if [ "$ok" = 1 ]; then
+        echo "health ok — ${CI_COMMIT_SHORT_SHA} на месте"
+      else
+        echo "HEALTH NE OTVETIL ZA 60 SEKUND"
+        docker compose -f docker-compose.deploy.yml --env-file .env.deploy logs --tail=50 api || true
+        if [ -n "$PREV" ]; then
+          echo "VOZVRASHCHAEM: ${PREV}"
+          IMAGE_REPO="${PREV%:*}" IMAGE_TAG="${PREV##*:}" \
+            docker compose -f docker-compose.deploy.yml --env-file .env.deploy up -d
+          for i in $(seq 1 20); do
+            curl -fsS "http://127.0.0.1:${PORT}/api/v1/health" >/dev/null 2>&1 && { echo "vernuli: ${PREV}"; break; }
+            sleep 3
+          done
+        else
+          echo "точки возврата нет — сервис остался в этом состоянии"
+        fi
+      fi
+      # exit посреди блока не ставим: GitLab shell-executor должен дочитать скрипт
+      # до конца, иначе успешный джоб помечается красным. Итог — последняя строка.
+      [ "$ok" = 1 ]

@@ -9,7 +9,9 @@
 `X-Forwarded-For` va `X-Forwarded-Proto` uzatilsin (ilovada `TRUST_PROXY=true`).
 
 **Har deploy (CI yoki qo'lda):** `docker compose -f docker-compose.deploy.yml --env-file .env.deploy up -d --build`.
-Tartib o'zi: postgres sog'lom → `migrate` (bir marta: sxema + dars-katalogi `seed:catalog`; xato bo'lsa api ko'tarilmaydi) → `api`.
+Tartib o'zi: postgres sog'lom → `migrate` (sxema) → `seed` (dars-katalogi, idempotent) → `api`; birortasi yiqilsa api ko'tarilmaydi.
+Tasvir manzili `IMAGE_REPO` (CI'da GitLab registry; lokal `--build` da default `dars-api`). CI (Kristina, 2026-09-08): `staging` shoxi → avtomatik
+deploy `/srv/dars-api/staging`; `main` → `/srv/dars-api/prod` qo'lda tasdiq bilan (GitLab job). Rollback = eski commit'ning deploy-job'ini qayta ishga tushirish.
 Tekshiruv: `curl http://127.0.0.1:3001/api/v1/health` → 200, `checks.db = ok`, `checks.catalog` ≥ 1.
 
 **Tashqaridan qabul (biz):** `node --env-file=.env.deploy.staging tools/staging-check.mjs https://<API-manzil>` — 19 band

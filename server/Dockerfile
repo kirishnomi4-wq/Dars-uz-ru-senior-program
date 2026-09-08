@@ -14,6 +14,7 @@ COPY package.json ./
 COPY src ./src
 COPY migrations ./migrations
 COPY tools ./tools
+# lesson_catalog seed manbasi — tools/seed-catalog.mjs shu faylni o'qiydi.
 COPY data ./data
 ARG GIT_SHA=unknown
 ENV GIT_SHA=$GIT_SHA
