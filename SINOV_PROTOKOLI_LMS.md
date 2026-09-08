@@ -1,6 +1,6 @@
 # SINOV PROTOKOLI — LMS ↔ Dars-platforma (birgalikdagi qabul sinovi)
 
-**Asos:** LMS v1.2 §13 (21 band) + bizning 5 band · **Muhit:** avval `staging-api.azizbek.site`, keyin prod · **Sana:** to'ldiriladi
+**Asos:** LMS v1.2 §13 (21 band) + bizning 5 band · **Muhit:** avval `staging-dars-api.coddycamp.uz`, keyin prod `dars-api.coddycamp.uz` · **Sana:** to'ldiriladi
 **Ishtirokchilar:** LMS jamoasi (test-akkauntlar, CRM), biz (backend, admin-sahifa, loglar)
 
 ## 0. Tayyorgarlik (sinovdan oldin)

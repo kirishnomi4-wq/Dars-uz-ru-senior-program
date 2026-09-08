@@ -1,7 +1,7 @@
 # CRM'ga yuklash ro'yxati — `lms/` yig'malari (2026-09-07 holati, cutover'da qayta yig'iladi)
 
 **Qoida (S-6):** bitta darsning UZ va RU materiali CRM'da BIR XIL faylga (bir xil `lesson_id`) ishora qilsin — til `lang` prop bilan keladi.
-**2026-09-08 (cutover-mashqi):** `PmLesson9.shared.jsx` va `PmUserStoryLesson.shared.jsx` manbasi 3-Modul/pm — `build-lms` ularni `lms/4-M/` ga yig'adi (OUT_MAP). Ro'yxat shunga to'g'rilandi; `lms/` ildizidagi eski nusxalari cutover kuni O'CHIRILADI (aks holda eskisi yuklanadi). Yig'ish+tekshiruv: `node scripts/cutover-mashq.mjs --url <manzil> --out lms --smoke`.
+**2026-09-08 (cutover-mashqi):** `PmLesson9.shared.jsx` va `PmUserStoryLesson.shared.jsx` manbasi 3-Modul/pm — `build-lms` ularni `lms/4-M/` ga yig'adi (OUT_MAP). Ro'yxat shunga to'g'rilandi; `lms/` ildizidagi eski nusxalari 2026-09-08 da O'CHIRILDI (endi faqat `4-M/` da). Yig'ish+tekshiruv: `node scripts/cutover-mashq.mjs --url <manzil> --out lms --smoke`.
 
 **Cutover kuni:** `DARS_API_URL=<Kristina manzili> node scripts/build-lms.mjs <src fayl>` → `lms/` → CRM Media → material. `.shared.jsx` = umumiy kompilyator moduli bilan; `yakka` = kompilyatorsiz.
 

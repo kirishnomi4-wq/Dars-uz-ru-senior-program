@@ -7,9 +7,10 @@
 
 | # | Nima | Holat |
 |---|---|---|
-| 0.1 | ✅ 2026-09-08 14:06: staging = 91c93f6e, qabul 18 ✓ / 0 ✗. GitLab akkaunt tasdiqlandi (shared-runner sharti). `server/` o'zgarishlari GitLab `dars-api-coddy` ga sinxron: `bash scripts/sync-dars-api.sh staging` (buyruq bilan). **Kristina CI'si (2026-09-08 13:14, 302baef): `staging` shoxiga push → staging AVTOMATIK deploy; `main` shoxiga push → prod ham AVTOMATIK (health 60 s javob bermasa oldingi tasvirga o'zi qaytadi, log `/var/log/dars-api/deploy.log`). 🔴 `sync-dars-api.sh main` = darhol prod-deploy — faqat cutover qarori bilan.** Sync'dan oldin uning infra-commitlari (`.gitlab-ci.yml`, compose `seed` xizmati, `IMAGE_REPO`) `server/` ga qabul qilinadi — aks holda sync ularni yo'qotadi | ⬜ bugungi kod kutmoqda; infra qabul qilindi |
-| 0.2 | **Env o'zgarishi = Kristinaga Telegram'da yozamiz, u qo'yadi (kelishuv 2026-09-08).** Env-fayllar Kristinada: `.env.deploy.staging` / `.env.deploy.prod` (2026-09-07 yuborilgan). Yangi kalitlar ixtiyoriy: `RESULT_DETAILS=off` (default), `TRUST_PROXY=1` (faqat `proxy_ip` ⚠ desa) | ✅ yuborilgan |
+| 0.1 | ✅ 2026-09-08 14:06: staging = 91c93f6e, qabul 18 ✓ / 0 ✗; 15:30: staging c9d30b5 va **prod 97e8792 (Kristina merge, avto)** 17 ✓ / 0 ✗ / 0 ⚠. GitLab akkaunt tasdiqlandi (shared-runner sharti). **Kristina GitLab'da KODNI ham tahrirlaydi** (config.js, compose, staging-check) → har sync'dan OLDIN `bash scripts/pull-dars-api.sh staging` (uning o'zgarishlarini `server/` ga oladi), sync-skript begona commit ko'rsa to'xtaydi. `server/` o'zgarishlari GitLab `dars-api-coddy` ga sinxron: `bash scripts/sync-dars-api.sh staging` (buyruq bilan). **Kristina CI'si (2026-09-08 13:14, 302baef): `staging` shoxiga push → staging AVTOMATIK deploy; `main` shoxiga push → prod ham AVTOMATIK (health 60 s javob bermasa oldingi tasvirga o'zi qaytadi, log `/var/log/dars-api/deploy.log`). 🔴 `sync-dars-api.sh main` = darhol prod-deploy — faqat cutover qarori bilan.** Sync'dan oldin uning infra-commitlari (`.gitlab-ci.yml`, compose `seed` xizmati, `IMAGE_REPO`) `server/` ga qabul qilinadi — aks holda sync ularni yo'qotadi | ⬜ bugungi kod kutmoqda; infra qabul qilindi |
+| 0.2 | **Env o'zgarishi = Kristinaga Telegram'da yozamiz, u qo'yadi (kelishuv 2026-09-08).** Env-fayllar Kristinada: `.env.deploy.staging` / `.env.deploy.prod` (2026-09-07 yuborilgan). Yangi kalitlar ixtiyoriy: `RESULT_DETAILS=off` (default), `TRUST_PROXY=loopback,172.16.0.0/12` (compose default'i ham shu, 2026-09-08) | ✅ yuborilgan |
 | 0.3 | Sinov-bazasi shart emas — tekshiruv tashqaridan, HTTPS orqali | — |
+| 0.4 | **Telegram-ogohlantirish** (natija `manual_review`, LMS rad etgan o'quvchi): foydalanuvchi @BotFather'da bot yaratadi (`/newbot` → token), tokenni `server/.env.deploy.staging` va `.prod` ga `TELEGRAM_BOT_TOKEN=` qatoriga (# siz) yozadi, botga `/start` yozadi (yoki guruhga qo'shib xabar yozadi), `node --env-file=.env.deploy.staging tools/telegram-check.mjs` → `chat_id` → `TELEGRAM_CHAT_ID=` → `--send` bilan sinov → ikkala faylni Kristinaga (u qo'yadi, api qayta ishga tushadi). Token chatga yozilmaydi | ⬜ foydalanuvchi |
 
 ## 1. Manzil keldi
 
@@ -42,7 +43,7 @@ Kutilgan yakun: `Qabul: server tayyor` va `0 ✗`. Ruxsatli ⚠ (to'xtatmaydi):
 | ⚠ | Ma'nosi | Nima qilamiz |
 |---|---|---|
 | `version` GIT_SHA yo'q | CI `--build-arg GIT_SHA` uzatmagan | Kristinaga eslatma; keyingi deploy'da `--sha <qisqa>` bilan tekshiramiz |
-| `proxy_ip` XFF soxtalanadi | `TRUST_PROXY=true` hamma zanjirga ishonadi | Apache yagona proksi bo'lsa env'da `TRUST_PROXY=1`, keyingi deploy |
+| `proxy_ip` XFF soxtalanadi | `TRUST_PROXY=true` hamma zanjirga ishonadi | env'da `TRUST_PROXY=loopback,172.16.0.0/12` (ishonchli tarmoqlar; **son bermang** — docker-proxy tufayli req.ip hammaga bitta bo'lib qoladi, Kristina 2026-09-08 serverda topdi). Hozir ikkala serverda shu ✓ |
 | `admin` o'chiq | `ADMIN_*` env'da yo'q | Yuborilgan faylda bor — Kristina eski faylni qo'ygan; so'raymiz |
 | `catalog` soni farq | serverdagi image eski katalog bilan | keyingi deploy yangilaydi, to'xtatmaydi |
 
@@ -63,7 +64,7 @@ Kutilgan yakun: `Qabul: server tayyor` va `0 ✗`. Ruxsatli ⚠ (to'xtatmaydi):
 | `body_path` 413/403 | `LimitRequestBody`/WAF | Kristina | kamida 128 KB |
 | `bridge_401` 503 | ko'prik o'chiq | Kristina | env |
 | `jwt_reject` 401 emas | verifikator ishlamayapti (2xx/5xx) | biz | log |
-| `proxy_ip` xususiy IP | Apache `X-Forwarded-For` uzatmayapti — butun maktab bitta IP | Kristina | `ProxyPreserveHost On` + `RequestHeader set X-Forwarded-Proto` (TZ 4.1 namunasi) |
+| `proxy_ip` xususiy IP | Apache `X-Forwarded-For` uzatmayapti YOKI `TRUST_PROXY` son berilgan (docker ko'prigi) — butun maktab bitta IP | Kristina | `ProxyPreserveHost On` + XFF (TZ 4.1); `TRUST_PROXY=loopback,172.16.0.0/12` |
 | `admin` parol bilan 401 | serverdagi env boshqa | Kristina | faylni qayta qo'yish |
 | `mentor_flow` token rad | JWT env serverda boshqa | Kristina | `.env.deploy.staging` aynan |
 | `mentor_flow` dars yo'q | katalog | Kristina | `catalog` bandi |
@@ -94,8 +95,7 @@ Keyin: CRM «Umumiy modullar» → `lms/InternetLesson.jsx` → test-material (`
 CHROME=/usr/bin/google-chrome node scripts/cutover-mashq.mjs --url $PROD --out lms --smoke
 ```
 `CRM_YUKLASH_ROYXATI.md` bo'yicha 90 faylni yig'adi (yakka + shared), har birini tekshiradi (manba/lesson_id/katalog/API-manzil/Supabase yo'q)
-va brauzerda ochadi (kompilyator qatlami bilan). 2026-09-08 mashqida 90/90 o'tgan. Yig'ishdan OLDIN `lms/` ildizidagi eski
-`PmLesson9.shared.jsx` va `PmUserStoryLesson.shared.jsx` o'chiriladi (ular endi `lms/4-M/` ga tushadi). Keyin CRM'ga papka-papka yuklash.
+va brauzerda ochadi (kompilyator qatlami bilan). 2026-09-08 mashqida 90/90 o'tgan. (`lms/` ildizidagi eski `PmLesson9.shared.jsx` va `PmUserStoryLesson.shared.jsx` 2026-09-08 da o'chirilgan — endi `lms/4-M/` da.) Keyin CRM'ga papka-papka yuklash.
 
 ## 5. Prod (keyinroq, alohida kun)
 
