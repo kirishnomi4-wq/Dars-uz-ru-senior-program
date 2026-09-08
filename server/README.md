@@ -89,6 +89,11 @@ ssh dars@api.azizbek.site 'sudo /opt/dars-api/bin/deploy.sh prod v0.3.0'
 commit `/opt/dars-api/<env>/PREV` da, qaytish buyrug'i chiqadi. Loglar: `journalctl -u dars-api@prod -f`.
 Caddy kirish-logida Authorization/Cookie o'chirib yoziladi (`deploy/caddy/Caddyfile`). Zaxira: `deploy/backup.sh` (03:00, 14 kun).
 
+## Deploy qilingan serverni tashqaridan tekshirish
+
+`node --env-file=.env.deploy.staging tools/staging-check.mjs https://<manzil>` — 19 band, chiqish kodi = ✗ soni.
+`--read-only` (prod), `--local` (127.0.0.1), `--sha <qisqa>`, `--lesson <id>`. Tartib va ✗ → kimga jadvali: `../STAGING_QABUL_UZ.md`.
+
 ## Yuklama-sinov (2026-09-03, lokal Windows + Docker PG — droplet'da 2–3 barobar past bo'lishi mumkin)
 
 `LOG_LEVEL=warn RATE_LIMIT_SCALE=100 node --env-file=.env src/index.js` → `node tools/loadtest.mjs` (10 guruh × 30 o'quvchi):

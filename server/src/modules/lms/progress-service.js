@@ -150,7 +150,8 @@ export async function putProgress(c, attempt, body) {
   );
   const saved = rows[0];
   // Yutuq-vaqtlari (0005): earned ro'yxatidagi har yangi id birinchi ko'ringan paytida yoziladi (idempotent)
-  const earnedIds = (Array.isArray(body.earned) ? body.earned : []).map(String).filter((x) => /^[a-z0-9_-]{1,32}$/.test(x)).slice(0, 50);
+  // id kichik harfga keltiriladi: darslarda camelCase (`firstWin`) ko'p — cheklov [a-z0-9_-] (LMS'ga va'da qilingan qolip)
+  const earnedIds = [...new Set((Array.isArray(body.earned) ? body.earned : []).map((x) => String(x).toLowerCase()))].filter((x) => /^[a-z0-9_-]{1,32}$/.test(x)).slice(0, 50);
   if (earnedIds.length) {
     await c.query(
       `insert into achievement_events (attempt_id, achievement_id) select $1, x from unnest($2::text[]) as x on conflict do nothing`,

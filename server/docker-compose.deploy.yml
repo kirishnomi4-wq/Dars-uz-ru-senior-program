@@ -28,7 +28,8 @@ services:
     env_file: ${ENV_FILE:-.env.deploy}
     environment:
       DATABASE_URL: postgres://dars:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB:-dars_prod}
-    command: ["node", "src/db/migrate-cli.js"]
+    # sxema + dars-katalogi (lesson_catalog) — ikkalasi idempotent; katalogsiz har join «dars topilmadi» beradi
+    command: ["sh", "-c", "node src/db/migrate-cli.js && node tools/seed-catalog.mjs"]
     restart: "no"
     depends_on:
       postgres:

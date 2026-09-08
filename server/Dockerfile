@@ -14,6 +14,7 @@ COPY package.json ./
 COPY src ./src
 COPY migrations ./migrations
 COPY tools ./tools
+COPY data ./data
 ARG GIT_SHA=unknown
 ENV GIT_SHA=$GIT_SHA
 # Konteyner ichida hamma interfeysga tinglaydi; tashqariga faqat compose/proksi chiqaradi.

@@ -20,13 +20,14 @@ try {
   let upserted = 0;
   for (const l of lessons) {
     const r = await client.query(
-      `insert into lesson_catalog (lesson_id, title_uz, title_ru, version, active, updated_at)
-       values ($1, $2, $3, $4, true, now())
+      `insert into lesson_catalog (lesson_id, title_uz, title_ru, version, achievements, active, updated_at)
+       values ($1, $2, $3, $4, $5::jsonb, true, now())
        on conflict (lesson_id) do update
-         set title_uz = excluded.title_uz, title_ru = excluded.title_ru, version = excluded.version, active = true, updated_at = now()
-         where (lesson_catalog.title_uz, lesson_catalog.title_ru, lesson_catalog.version, lesson_catalog.active)
-               is distinct from (excluded.title_uz, excluded.title_ru, excluded.version, true)`,
-      [l.lesson_id, l.title_uz, l.title_ru, l.version],
+         set title_uz = excluded.title_uz, title_ru = excluded.title_ru, version = excluded.version, achievements = excluded.achievements,
+             active = true, updated_at = now()
+         where (lesson_catalog.title_uz, lesson_catalog.title_ru, lesson_catalog.version, lesson_catalog.achievements, lesson_catalog.active)
+               is distinct from (excluded.title_uz, excluded.title_ru, excluded.version, excluded.achievements, true)`,
+      [l.lesson_id, l.title_uz, l.title_ru, l.version, JSON.stringify(Array.isArray(l.achievements) ? l.achievements : [])],
     );
     upserted += r.rowCount;
   }

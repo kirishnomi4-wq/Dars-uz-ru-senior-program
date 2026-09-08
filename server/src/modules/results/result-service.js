@@ -1,10 +1,35 @@
 // Natija-xizmat: manbadan (sessiya / urinish) payload yig'ib result_events'ga «pending» yozadi.
 // Sweeper: yopilgan-lekin-hodisasiz jonli sessiyalar va tugagan solo urinishlar → navbat (idempotent: UNIQUE indekslar).
 // Kim chaqiradi: worker tick (har 5 s) va end_session RPC'dan keyin darhol.
-import { buildLivePayloads, buildSoloPayload, validatePayload } from './result-builder.js';
+import { buildLivePayloads, buildSoloPayload, finalizePayload } from './result-builder.js';
+
+/** Detallar uchun qo'shimcha manba (RESULT_DETAILS=a): urinish-tarixi, yutuq-vaqtlari, katalogdagi yutuq-ta'riflari */
+async function loadDetailsSource(pool, { pin, playerId = null, sessionId = null, attemptId = null, lessonId }) {
+  const { rows: attempts } = await pool.query(
+    `select player_id, screen_idx, attempt_no, picked, correct, elapsed_ms, texts, answered_at
+       from answer_attempts where pin = $1 and ($2::uuid is null or player_id = $2) and screen_idx < 500
+      order by screen_idx, attempt_no`,
+    [pin, playerId],
+  );
+  const { rows: achievements } = sessionId
+    ? await pool.query(
+      `select p.player_id, ae.achievement_id, ae.earned_at
+         from achievement_events ae join lms_participants p on p.attempt_id = ae.attempt_id
+        where p.session_id = $1 and p.role = 'student' order by ae.earned_at`,
+      [sessionId],
+    )
+    : await pool.query('select achievement_id, earned_at from achievement_events where attempt_id = $1 order by earned_at', [attemptId]);
+  const { rows: cat } = await pool.query('select achievements from lesson_catalog where lesson_id = $1', [lessonId]);
+  const catalog = Array.isArray(cat[0]?.achievements) ? cat[0].achievements : [];
+  const attemptsByPlayer = new Map();
+  for (const a of attempts) { if (!attemptsByPlayer.has(a.player_id)) attemptsByPlayer.set(a.player_id, []); attemptsByPlayer.get(a.player_id).push(a); }
+  const achievementsByPlayer = new Map();
+  for (const e of achievements) { if (!achievementsByPlayer.has(e.player_id)) achievementsByPlayer.set(e.player_id, []); achievementsByPlayer.get(e.player_id).push(e); }
+  return { attempts, achievements, catalog, attemptsByPlayer, achievementsByPlayer };
+}
 
 /** Sessiya uchun manba-ma'lumot */
-async function loadLiveSource(pool, sessionId) {
+async function loadLiveSource(pool, sessionId, opts = {}) {
   const { rows: srows } = await pool.query(
     `select s.id, s.pin, s.lesson_id, s.gid, s.teacher_id, s.started_at, coalesce(s.finished_at, ls.updated_at) as finished_at,
             lc.title_uz, lc.title_ru
@@ -25,14 +50,15 @@ async function loadLiveSource(pool, sessionId) {
   );
   // HAMMA o'yinchi (PIN bilan kirganlar ham) — podium ekran bilan bir xil bo'lishi uchun
   const { rows: players } = await pool.query('select id, joined_at from live_players where pin = $1 order by joined_at asc', [session.pin]);
-  const { rows: keys } = await pool.query('select question_id from quiz_keys where lesson_id = $1', [session.lesson_id]);
+  const { rows: keys } = await pool.query('select question_id, correct_idx from quiz_keys where lesson_id = $1', [session.lesson_id]);
   const { rows: answers } = await pool.query(
-    'select player_id, screen_idx, question_id, correct, elapsed_ms, answered_at from live_answers where pin = $1 and screen_idx < 500',
+    'select player_id, screen_idx, question_id, picked, correct, elapsed_ms, answered_at from live_answers where pin = $1 and screen_idx < 500',
     [session.pin],
   );
   const answersByPlayer = new Map();
   for (const a of answers) { if (!answersByPlayer.has(a.player_id)) answersByPlayer.set(a.player_id, []); answersByPlayer.get(a.player_id).push(a); }
-  return { session, players, participants, keys, answersByPlayer, lessonTitle: session.title_uz || session.lesson_id };
+  const details = opts.details ? await loadDetailsSource(pool, { pin: session.pin, sessionId, lessonId: session.lesson_id }) : null;
+  return { session, players, participants, keys, answersByPlayer, details, lessonTitle: session.title_uz || session.lesson_id };
 }
 
 /**
@@ -70,8 +96,8 @@ async function insertEvent(pool, { event_id, mode, session_id = null, attempt_id
  * Jonli sessiya uchun hodisa(lar) yaratish. LMS-o'quvchisi bo'lmasa (faqat PIN bilan kirganlar) — hodisa yo'q.
  * @returns {Promise<{ created: number, skipped: string|null }>}
  */
-export async function enqueueLiveSession(pool, log, sessionId) {
-  const src = await loadLiveSource(pool, sessionId);
+export async function enqueueLiveSession(pool, log, sessionId, opts = {}) {
+  const src = await loadLiveSource(pool, sessionId, opts);
   if (!src) return { created: 0, skipped: 'no_session' };
   if (!src.participants.length) {
     // hodisa yo'q, lekin sweeper qayta-qayta urinmasin — bo'sh belgi (payload yo'q) o'rniga sessiyaga izoh qoldiramiz
@@ -81,24 +107,25 @@ export async function enqueueLiveSession(pool, log, sessionId) {
   const events = buildLivePayloads(src);
   let created = 0;
   for (const ev of events) {
-    const problems = validatePayload(ev.payload);
+    const { payload, problems, detailsDropped } = finalizePayload(ev.payload);
+    if (detailsDropped) log.warn({ sessionId, eventId: ev.event_id, reason: detailsDropped }, 'natija-detallari tashlandi (asosiy payload ketadi)');
     if (problems.length) {
       log.error({ sessionId, eventId: ev.event_id, problems }, 'natija payload noto\'g\'ri — manual_review');
       await pool.query(
         `insert into result_events (event_id, mode, session_id, lesson_id, payload, students_count, status, last_error)
          values ($1, 'live', $2, $3, $4::jsonb, $5, 'manual_review', $6) on conflict do nothing`,
-        [ev.event_id, sessionId, src.session.lesson_id, JSON.stringify(ev.payload), ev.payload.students.length, `validate: ${problems.join(', ')}`],
+        [ev.event_id, sessionId, src.session.lesson_id, JSON.stringify(payload), payload.students.length, `validate: ${problems.join(', ')}`],
       );
       continue;
     }
-    if (await insertEvent(pool, { event_id: ev.event_id, mode: 'live', session_id: sessionId, lesson_id: src.session.lesson_id, payload: ev.payload })) created++;
+    if (await insertEvent(pool, { event_id: ev.event_id, mode: 'live', session_id: sessionId, lesson_id: src.session.lesson_id, payload })) created++;
   }
   if (created) log.info({ sessionId, created, students: src.participants.length }, 'natija navbatga qo\'yildi (live)');
   return { created, skipped: null };
 }
 
 /** Solo urinish uchun hodisa (completed yoki auto_7d). restarted — yuborilmaydi. */
-export async function enqueueSoloAttempt(pool, log, attemptId) {
+export async function enqueueSoloAttempt(pool, log, attemptId, opts = {}) {
   const { rows } = await pool.query(
     `select a.*, p.player_id, p.joined_at, s.pin, lc.title_uz
        from attempts a
@@ -116,23 +143,25 @@ export async function enqueueSoloAttempt(pool, log, attemptId) {
     log.info({ attemptId, lessonId: a.lesson_id }, 'solo natija yuborilmadi: bu dars uchun tanga-hodisa allaqachon bor');
     return { created: 0, skipped: 'already_rewarded' };
   }
-  const { rows: keys } = await pool.query('select question_id from quiz_keys where lesson_id = $1', [a.lesson_id]);
+  const { rows: keys } = await pool.query('select question_id, correct_idx from quiz_keys where lesson_id = $1', [a.lesson_id]);
   const { rows: answers } = await pool.query(
-    'select player_id, screen_idx, question_id, correct, elapsed_ms, answered_at from live_answers where pin = $1 and player_id = $2 and screen_idx < 500',
+    'select player_id, screen_idx, question_id, picked, correct, elapsed_ms, answered_at from live_answers where pin = $1 and player_id = $2 and screen_idx < 500',
     [a.pin, a.player_id],
   );
-  const ev = buildSoloPayload({ attempt: a, subjectId: Number(a.subject_id), lessonId: a.lesson_id, lessonTitle: a.title_uz || a.lesson_id, keys, answers });
-  const problems = validatePayload(ev.payload);
+  const details = opts.details ? await loadDetailsSource(pool, { pin: a.pin, playerId: a.player_id, attemptId, lessonId: a.lesson_id }) : null;
+  const ev = buildSoloPayload({ attempt: a, subjectId: Number(a.subject_id), lessonId: a.lesson_id, lessonTitle: a.title_uz || a.lesson_id, keys, answers, details });
+  const { payload, problems, detailsDropped } = finalizePayload(ev.payload);
+  if (detailsDropped) log.warn({ attemptId, eventId: ev.event_id, reason: detailsDropped }, 'natija-detallari tashlandi (asosiy payload ketadi)');
   if (problems.length) {
     log.error({ attemptId, problems }, 'solo payload noto\'g\'ri — manual_review');
     await pool.query(
       `insert into result_events (event_id, mode, attempt_id, lesson_id, payload, students_count, status, last_error)
        values ($1, 'solo', $2, $3, $4::jsonb, 1, 'manual_review', $5) on conflict do nothing`,
-      [ev.event_id, attemptId, a.lesson_id, JSON.stringify(ev.payload), `validate: ${problems.join(', ')}`],
+      [ev.event_id, attemptId, a.lesson_id, JSON.stringify(payload), `validate: ${problems.join(', ')}`],
     );
     return { created: 0, skipped: 'invalid' };
   }
-  const created = await insertEvent(pool, { event_id: ev.event_id, mode: 'solo', attempt_id: attemptId, lesson_id: a.lesson_id, payload: ev.payload });
+  const created = await insertEvent(pool, { event_id: ev.event_id, mode: 'solo', attempt_id: attemptId, lesson_id: a.lesson_id, payload });
   if (created) log.info({ attemptId, eventId: ev.event_id }, 'natija navbatga qo\'yildi (solo)');
   return { created: created ? 1 : 0, skipped: null };
 }
@@ -142,7 +171,7 @@ export async function enqueueSoloAttempt(pool, log, attemptId) {
  *  - live: lms_sessions mode=live, status=ended YOKI live_sessions ended (mentor «Erkin qilish», auto_replaced, stale), hodisasiz
  *  - solo: attempts finished (completed|auto_7d), hodisasiz
  */
-export async function sweepResults(pool, log) {
+export async function sweepResults(pool, log, opts = {}) {
   const out = { live: 0, solo: 0 };
   const { rows: liveRows } = await pool.query(
     `select s.id
@@ -157,7 +186,7 @@ export async function sweepResults(pool, log) {
     // lms_sessions ham yopiq bo'lsin (stale-closer faqat live_sessions'ni yopadi)
     await pool.query(`update lms_sessions set status = 'ended', end_reason = coalesce(end_reason, 'stale'), finished_at = coalesce(finished_at, now()), updated_at = now() where id = $1 and status = 'live'`, [r.id]);
     await pool.query(`update attempts set status = 'finished', finish_reason = 'live_ended', finished_at = now(), updated_at = now() where session_id = $1 and kind = 'live' and status = 'active'`, [r.id]);
-    const res = await enqueueLiveSession(pool, log, r.id);
+    const res = await enqueueLiveSession(pool, log, r.id, opts);
     out.live += res.created;
   }
   const { rows: soloRows } = await pool.query(
@@ -168,7 +197,7 @@ export async function sweepResults(pool, log) {
       order by a.finished_at asc limit 50`,
   );
   for (const r of soloRows) {
-    const res = await enqueueSoloAttempt(pool, log, r.id);
+    const res = await enqueueSoloAttempt(pool, log, r.id, opts);
     out.solo += res.created;
   }
   return out;

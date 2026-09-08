@@ -32,12 +32,14 @@ const server = createServer(async (req, res) => {
   if (req.method === 'POST' && url.pathname === '/api/v1/integrations/dars-platform/lesson-results') {
     let body = '';
     for await (const chunk of req) body += chunk;
+    if (Buffer.byteLength(body, 'utf8') > 1_000_000) return json(res, 413, { message: 'Payload too large (1 MB)' });
     let p; try { p = JSON.parse(body); } catch { return json(res, 422, { message: 'Invalid JSON' }); }
     const prev = seenEvents.get(p.event_id);
     if (prev && prev !== body) return json(res, 409, { message: 'event_id reused with different payload' });
     seenEvents.set(p.event_id, body);
     const students = Array.isArray(p.students) ? p.students : [];
-    console.log(`[fake-school] result ${p.event_id} (${p.mode}) students=${students.length}${prev ? ' duplicate' : ''}`);
+    const withDetails = students.filter((s) => Array.isArray(s.questions)).length;
+    console.log(`[fake-school] result ${p.event_id} (${p.mode}) students=${students.length}${withDetails ? ` details=${withDetails} (q=${students.reduce((n, s) => n + (s.questions?.length || 0), 0)}, ach=${students.reduce((n, s) => n + (s.achievements?.length || 0), 0)})` : ''}${prev ? ' duplicate' : ''}`);
     return json(res, prev ? 200 : 201, { data: {
       event_id: p.event_id, accepted: true, duplicate: !!prev,
       students_received: students.length, students_accepted: students.length, students_rejected: 0, rejected_students: [], reward_status: 'pending_policy',

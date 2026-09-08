@@ -1,811 +1,3329 @@
 {
-  "generated_at": "2026-09-07T14:17:09.221Z",
-  "count": 115,
+  "generated_at": "2026-09-08T05:32:52.734Z",
+  "count": 110,
   "lessons": [
     {
       "lesson_id": "agent-arch-06-04-v18",
       "title_uz": "AI-agent nima — detektiv metaforasi",
       "title_ru": "Что такое AI-агент",
       "version": "v18",
-      "source": "src/6-Modull/AgentArchitectureLesson.jsx"
+      "source": "src/6-Modull/AgentArchitectureLesson.jsx",
+      "achievements": [
+        {
+          "id": "theagent",
+          "name": "The Agent",
+          "title_uz": "Ma'lumot byurosi ↔ detektiv farqini ajratdingiz",
+          "title_ru": "Вы различили справочное бюро ↔ детектива"
+        },
+        {
+          "id": "accesspass",
+          "name": "Access Pass",
+          "title_uz": "Detektiv ruxsatnomalar bilan ishlashini bildingiz",
+          "title_ru": "Вы узнали: детектив работает по пропускам"
+        },
+        {
+          "id": "withwarrant",
+          "name": "With a Warrant",
+          "title_uz": "Detektivning vakolat chegarasini tushundingiz",
+          "title_ru": "Вы поняли рамки полномочий детектива"
+        },
+        {
+          "id": "missionloop",
+          "name": "Mission Loop",
+          "title_uz": "Detektiv ish oqimini to'g'ri tartibda yig'dingiz",
+          "title_ru": "Вы собрали рабочий поток детектива в правильном порядке"
+        }
+      ]
     },
     {
       "lesson_id": "api-postman-04-06-v18",
       "title_uz": "API va Postman — front backend bilan qanday gaplashadi",
       "title_ru": "API и Postman — как фронт говорит с бэком",
       "version": "v18",
-      "source": "src/4-Modull/ApiPostmanLesson.jsx"
+      "source": "src/4-Modull/ApiPostmanLesson.jsx",
+      "achievements": [
+        {
+          "id": "envelopebuilder",
+          "name": "Envelope Builder!",
+          "title_uz": "Konvertlarni o'zingiz yig'ib jo'natdingiz",
+          "title_ru": "Вы сами собрали и отправили конверты"
+        },
+        {
+          "id": "stampreader",
+          "name": "Stamp Reader!",
+          "title_uz": "404 shtampini o'qib, xatoni topib tuzatdingiz",
+          "title_ru": "Вы прочитали штамп 404, нашли и исправили ошибку"
+        },
+        {
+          "id": "testmaster",
+          "name": "Test Master!",
+          "title_uz": "Method va CRUD mosligini to'g'ri aniqladingiz",
+          "title_ru": "Вы верно сопоставили методы и операции CRUD"
+        },
+        {
+          "id": "levelup",
+          "name": "Level Up!",
+          "title_uz": "To'g'ri so'rovni yig'ib, yangi mahsulot qo'shdingiz",
+          "title_ru": "Вы собрали правильный запрос и добавили новый товар"
+        }
+      ]
     },
     {
       "lesson_id": "arch-patterns-06-03-v18",
       "title_uz": "Arxitektura patternlari",
       "title_ru": "Паттерны архитектуры",
       "version": "v18",
-      "source": "src/6-Modull/ArchPatternsLesson.jsx"
+      "source": "src/6-Modull/ArchPatternsLesson.jsx",
+      "achievements": [
+        {
+          "id": "cityplanner",
+          "name": "City Planner",
+          "title_uz": "Peshtoq, Dispetcher, Arxiv rollarini joyladingiz",
+          "title_ru": "Вы распределили роли: Витрина, Диспетчер, Архив"
+        },
+        {
+          "id": "onetowervsdistrict",
+          "name": "One Tower vs District",
+          "title_uz": "Monolit va mikroservisni ajratdingiz",
+          "title_ru": "Вы разделили монолит и микросервисы"
+        },
+        {
+          "id": "splitblock",
+          "name": "Split the Block",
+          "title_uz": "Katta yukda binoni bo'lish kerakligini bildingiz",
+          "title_ru": "Вы поняли: при большой нагрузке здание делят"
+        },
+        {
+          "id": "trafficroute",
+          "name": "Traffic Route",
+          "title_uz": "Oqimni tizdingiz: Peshtoq → Dispetcher → Arxiv",
+          "title_ru": "Собрали поток: Витрина → Диспетчер → Архив"
+        }
+      ]
     },
     {
       "lesson_id": "auth-env-04-07-v18",
       "title_uz": "Autentifikatsiya va .env — login, JWT, maxfiy kalitlar",
       "title_ru": "Аутентификация и .env — логин, JWT, секреты",
       "version": "v18",
-      "source": "src/4-Modull/AuthEnvLesson.jsx"
+      "source": "src/4-Modull/AuthEnvLesson.jsx",
+      "achievements": [
+        {
+          "id": "gatekeeper",
+          "name": "Gatekeeper!",
+          "title_uz": "Qo'riqchi smenasini to'liq to'g'ri o'tdingiz",
+          "title_ru": "Вы прошли смену охранника без единой ошибки"
+        },
+        {
+          "id": "tokenforged",
+          "name": "Token Forged!",
+          "title_uz": "Login → token → 201 yo'lini xatosiz bosib o'tdingiz",
+          "title_ru": "Вы прошли путь логин → токен → 201 без ошибок"
+        },
+        {
+          "id": "secretkeeper",
+          "name": "Secret Keeper!",
+          "title_uz": "Kodda ochiq qolgan maxfiy kalitni topib tuzatdingiz",
+          "title_ru": "Вы нашли и исправили открытый секретный ключ в коде"
+        },
+        {
+          "id": "vaultsealed",
+          "name": "Vault Sealed!",
+          "title_uz": "Maxfiy kalitni .env'ga muhrladingiz",
+          "title_ru": "Вы запечатали секретный ключ в .env"
+        }
+      ]
     },
     {
       "lesson_id": "backend-crud-practice-p1-v18",
       "title_uz": "Praktika: Backend CRUD — AvtoIjara",
       "title_ru": "Практика: Backend CRUD — AvtoIjara",
       "version": "v18",
-      "source": "src/4-Modull/BackendCrudPracticeLesson.jsx"
+      "source": "src/4-Modull/BackendCrudPracticeLesson.jsx",
+      "achievements": [
+        {
+          "id": "blueprint",
+          "name": "Blueprint!",
+          "title_uz": "Sxema savolini to'g'ri yechdingiz",
+          "title_ru": "Вы верно решили вопрос по схеме"
+        },
+        {
+          "id": "director",
+          "name": "Director's Cut!",
+          "title_uz": "AI'ga eng aniq promptni tanladingiz",
+          "title_ru": "Вы выбрали для AI самый точный промпт"
+        },
+        {
+          "id": "catcher",
+          "name": "Nice Catch!",
+          "title_uz": "price xatosini narx'ga tuzatdingiz (500 → 201)",
+          "title_ru": "Вы исправили price на narx (500 → 201)"
+        },
+        {
+          "id": "finisher",
+          "name": "Ship It!",
+          "title_uz": "AvtoIjara backend'ini VS Code'da o'zingiz qurdingiz",
+          "title_ru": "Вы сами собрали backend AvtoIjara в VS Code"
+        }
+      ]
     },
     {
       "lesson_id": "bot-ai-agent-05-10-v18",
       "title_uz": "Botjon ish bajaradi — AI-agent",
       "title_ru": "Бот выполняет задачи — AI-агент",
       "version": "v18",
-      "source": "src/5-Modull/BotAiAgentLesson.jsx"
+      "source": "src/5-Modull/BotAiAgentLesson.jsx",
+      "achievements": [
+        {
+          "id": "cyclebuilder",
+          "name": "Cycle Builder",
+          "title_uz": "Idrok → qaror → amal rejasini yig'dingiz",
+          "title_ru": "Вы собрали план: восприятие → решение → действие"
+        },
+        {
+          "id": "toolpicker",
+          "name": "Tool Picker",
+          "title_uz": "Vaziyatga to'g'ri asbobni (tool-call) tanladingiz",
+          "title_ru": "Вы выбрали верный инструмент (tool-call)"
+        },
+        {
+          "id": "guardkeeper",
+          "name": "Guardrail Keeper",
+          "title_uz": "Agentga chegara (guardrail) qo'ydingiz",
+          "title_ru": "Вы поставили агенту ограничение (guardrail)"
+        },
+        {
+          "id": "safeactor",
+          "name": "Safe Actor",
+          "title_uz": "Qaysi amal odam ruxsatini so'rashini bildingiz",
+          "title_ru": "Вы поняли, какое действие требует разрешения"
+        }
+      ]
     },
     {
       "lesson_id": "bot-ai-brain-05-04-v18",
       "title_uz": "Botjon o'ylay boshlaydi — Maslahatchi (AI)",
       "title_ru": "Бот начинает думать",
       "version": "v18",
-      "source": "src/5-Modull/BotAiBrainLesson.jsx"
+      "source": "src/5-Modull/BotAiBrainLesson.jsx",
+      "achievements": [
+        {
+          "id": "rulewriter",
+          "name": "Rule Writer",
+          "title_uz": "Maslahatchiga aniq yo'riqnoma yozdingiz",
+          "title_ru": "Вы написали Советчику точную инструкцию"
+        },
+        {
+          "id": "tablemanager",
+          "name": "Table Manager",
+          "title_uz": "Muhim ma'lumotni daftarga ko'chirdingiz",
+          "title_ru": "Вы перенесли важные данные в тетрадь"
+        },
+        {
+          "id": "dialmaster",
+          "name": "Dial Master",
+          "title_uz": "Erkinlik murvatini to'g'ri sozladingiz",
+          "title_ru": "Вы верно настроили ручку свободы"
+        },
+        {
+          "id": "factchecker",
+          "name": "Fact Checker",
+          "title_uz": "O'ylab topilgan pitsani menyu bilan tutdingiz",
+          "title_ru": "Вы поймали выдуманную пиццу, сверив с меню"
+        }
+      ]
     },
     {
       "lesson_id": "bot-ai-project-05-05-v18",
       "title_uz": "Loyiha kuni: AI bilan istalgan bot",
       "title_ru": "Проектный день: бот с ИИ",
       "version": "v18",
-      "source": "src/5-Modull/BotAiProjectLesson.jsx"
+      "source": "src/5-Modull/BotAiProjectLesson.jsx",
+      "achievements": [
+        {
+          "id": "promptsmith",
+          "name": "Prompt Smith",
+          "title_uz": "Noaniq va aniq topshiriqni farqladingiz",
+          "title_ru": "Вы отличили расплывчатое задание от точного"
+        },
+        {
+          "id": "bugcatcher",
+          "name": "Bug Catcher",
+          "title_uz": "Yetishmagan handlerni test bilan topdingiz",
+          "title_ru": "Вы нашли тестом недостающий обработчик"
+        },
+        {
+          "id": "handlerpro",
+          "name": "Handler Pro",
+          "title_uz": "Bot jim qolgani sababini aniqladingiz",
+          "title_ru": "Вы определили, почему бот молчит"
+        },
+        {
+          "id": "director",
+          "name": "Director",
+          "title_uz": "Reja → prompt → kod → test siklini yig'dingiz",
+          "title_ru": "Вы собрали цикл: план → промпт → код → тест"
+        }
+      ]
     },
     {
       "lesson_id": "bot-api-buttons-05-02-v18",
       "title_uz": "Bot API + tugmalar: Botjon muloqot qiladi",
       "title_ru": "Bot API и кнопки: Ботик общается",
       "version": "v18",
-      "source": "src/5-Modull/BotApiButtonsLesson.jsx"
+      "source": "src/5-Modull/BotApiButtonsLesson.jsx",
+      "achievements": [
+        {
+          "id": "buttonmaster",
+          "name": "Button Master",
+          "title_uz": "Tugmalar taxtasini to'liq ulab, ishga tushirdingiz",
+          "title_ru": "Полностью подключили панель кнопок и запустили её"
+        },
+        {
+          "id": "rightenvelope",
+          "name": "Right Envelope",
+          "title_uz": "Konvert manzili xatosini topib to'g'riladingiz",
+          "title_ru": "Нашли и исправили ошибку в адресе конверта"
+        },
+        {
+          "id": "neversilent",
+          "name": "Never Silent",
+          "title_uz": "Fallback qo'shib, Botjonni jim qoldirmadingiz",
+          "title_ru": "Добавили fallback — Ботик больше не молчит"
+        },
+        {
+          "id": "commandwriter",
+          "name": "Command Writer",
+          "title_uz": "Buyruqlar ro'yxatini xatosiz to'ldirdingiz",
+          "title_ru": "Заполнили список команд без ошибок"
+        }
+      ]
     },
     {
       "lesson_id": "bot-feedback-05-06-v18",
       "title_uz": "Foydalanuvchi fikri va iteratsiya",
       "title_ru": "Обратная связь и итерации",
       "version": "v18",
-      "source": "src/5-Modull/BotFeedbackIterationLesson.jsx"
+      "source": "src/5-Modull/BotFeedbackIterationLesson.jsx",
+      "achievements": [
+        {
+          "id": "signalfinder",
+          "name": "Signal Finder",
+          "title_uz": "Qimmatli va foydasiz fikrlarni to'g'ri saraladingiz",
+          "title_ru": "Вы верно разобрали ценные и бесполезные отзывы"
+        },
+        {
+          "id": "funnelreader",
+          "name": "Funnel Reader",
+          "title_uz": "Voronkadagi eng katta yo'qotishni topdingiz",
+          "title_ru": "Вы нашли, где в воронке самая большая потеря"
+        },
+        {
+          "id": "rightfixfirst",
+          "name": "Right Fix First",
+          "title_uz": "Eng ta'sirli tuzatishni birinchi tanladingiz",
+          "title_ru": "Вы первым выбрали самое влиятельное исправление"
+        },
+        {
+          "id": "loopcloser",
+          "name": "Loop Closer",
+          "title_uz": "Aylanani yopib, yangi versiyani chiqardingiz",
+          "title_ru": "Вы замкнули круг и выпустили новую версию"
+        }
+      ]
     },
     {
       "lesson_id": "bot-full-project-05-07-v18",
       "title_uz": "Botjon doim yashaydi — to'liq loyiha va doimiy joy",
       "title_ru": "Полный проект бота и хостинг",
       "version": "v18",
-      "source": "src/5-Modull/BotFullProjectLesson.jsx"
+      "source": "src/5-Modull/BotFullProjectLesson.jsx",
+      "achievements": [
+        {
+          "id": "assemblemaster",
+          "name": "Assemble Master",
+          "title_uz": "To'liq Botjonni o'zingiz yig'dingiz",
+          "title_ru": "Вы сами собрали полного Ботжона"
+        },
+        {
+          "id": "keymaster",
+          "name": "Key Master",
+          "title_uz": "Kalitni qulfli tortmaga (.env) qo'ydingiz",
+          "title_ru": "Вы положили ключ в запертый ящик (.env)"
+        },
+        {
+          "id": "linkmaster",
+          "name": "Link Master",
+          "title_uz": "Botjonga to'g'ri aloqa usulini tanladingiz",
+          "title_ru": "Вы выбрали верный способ связи для бота"
+        },
+        {
+          "id": "checkmaster",
+          "name": "Check Master",
+          "title_uz": "Ko'chirishdan oldin tekshiruvni bajardingiz",
+          "title_ru": "Вы прошли проверку перед переносом"
+        }
+      ]
     },
     {
       "lesson_id": "bot-intro-05-01-v18",
       "title_uz": "Bot nima — signal va amal",
       "title_ru": "Что такое бот",
       "version": "v18",
-      "source": "src/5-Modull/BotIntroLesson.jsx"
+      "source": "src/5-Modull/BotIntroLesson.jsx",
+      "achievements": [
+        {
+          "id": "keymaster",
+          "name": "Key Master",
+          "title_uz": "Kalitni bekor qilib, yangisini qo'ydingiz",
+          "title_ru": "Отозвали ключ и положили новый в ящик"
+        },
+        {
+          "id": "sheetmaster",
+          "name": "Sheet Master",
+          "title_uz": "Tungi smenani 4/4 bajardingiz",
+          "title_ru": "Ночная смена 4/4 — обслужены все клиенты"
+        },
+        {
+          "id": "neversilent",
+          "name": "Never Silent",
+          "title_uz": "Fallback qo'shdingiz — hamma javob oldi",
+          "title_ru": "Добавили fallback — все получили ответ"
+        },
+        {
+          "id": "sheetwriter",
+          "name": "Sheet Writer",
+          "title_uz": "Qoidalar varag'ini xatosiz yozdingiz",
+          "title_ru": "Записали лист правил без ошибок"
+        }
+      ]
     },
     {
       "lesson_id": "bot-stateful-memory-05-03-v18",
       "title_uz": "Botjon eslab qoladi — stateful logika va PostgreSQL",
       "title_ru": "Bot запоминает — stateful логика и PostgreSQL",
       "version": "v18",
-      "source": "src/5-Modull/BotStatefulMemoryLesson.jsx"
+      "source": "src/5-Modull/BotStatefulMemoryLesson.jsx",
+      "achievements": [
+        {
+          "id": "safenotes",
+          "name": "Safe Notes",
+          "title_uz": "Yo'qolmaydigan saqlash turini tanladingiz",
+          "title_ru": "Вы выбрали хранилище, которое не теряется"
+        },
+        {
+          "id": "nomixup",
+          "name": "No Mix-Up",
+          "title_uz": "Ikki suhbat aralashib ketgan sababini topdingiz",
+          "title_ru": "Вы нашли причину путаницы двух диалогов"
+        },
+        {
+          "id": "memorykeeper",
+          "name": "Memory Keeper",
+          "title_uz": "Buyurtmani boshidan oxirigacha olib bordingiz",
+          "title_ru": "Вы провели заказ от начала до конца"
+        },
+        {
+          "id": "sqlwriter",
+          "name": "SQL Writer",
+          "title_uz": "SQL bo'shliqlarini xatosiz to'ldirdingiz",
+          "title_ru": "Вы заполнили все SQL-пропуски без ошибок"
+        }
+      ]
     },
     {
       "lesson_id": "cicd-ai-pipeline-4c-05-v18",
       "title_uz": "AI bilan lentani boshqarish",
       "title_ru": "Управление конвейером с AI",
       "version": "v18",
-      "source": "src/4c-Modull/AiPipelineProjectLesson.jsx"
+      "source": "src/4c-Modull/AiPipelineProjectLesson.jsx",
+      "achievements": [
+        {
+          "id": "logreader",
+          "name": "Log Reader",
+          "title_uz": "Jurnalni o'zingiz o'qib, sababni topa oldingiz",
+          "title_ru": "Вы сами прочитали журнал и нашли причину"
+        },
+        {
+          "id": "mentorverified",
+          "name": "Mentor Verified",
+          "title_uz": "Yordamchining xato taklifini tutdingiz",
+          "title_ru": "Вы поймали неверное предложение Помощника"
+        },
+        {
+          "id": "roadmapreviewer",
+          "name": "Roadmap Reviewer",
+          "title_uz": "Yo'l xaritasini xatosiz tekshirdingiz",
+          "title_ru": "Вы без ошибок проверили маршрутную карту"
+        },
+        {
+          "id": "finalcall",
+          "name": "Final Call",
+          "title_uz": "Tuzatish tartibini 1-urinishda to'g'ri terdingiz",
+          "title_ru": "Вы собрали порядок починки верно с первой попытки"
+        }
+      ]
     },
     {
       "lesson_id": "cicd-full-pipeline-4c-03-v18",
       "title_uz": "cicd-full-pipeline-4c-03-v18",
       "title_ru": "Проектный день — построение полного конвейера",
       "version": "v18",
-      "source": "src/4c-Modull/FullPipelineProjectLesson.jsx"
+      "source": "src/4c-Modull/FullPipelineProjectLesson.jsx",
+      "achievements": [
+        {
+          "id": "blackbox",
+          "name": "Black Box",
+          "title_uz": "LENTA JURNALIDAN qizil chiroq sababini topdingiz",
+          "title_ru": "Вы нашли в ЖУРНАЛЕ КОНВЕЙЕРА причину красного сигнала"
+        },
+        {
+          "id": "pipelinearchitect",
+          "name": "Pipeline Architect",
+          "title_uz": "5 nuqtani tizib, lentani ishga tushirdingiz",
+          "title_ru": "Вы выстроили 5 точек и запустили конвейер"
+        },
+        {
+          "id": "safereturn",
+          "name": "Safe Return",
+          "title_uz": "Oxirgi yashil versiyaga to'g'ri qaytardingiz",
+          "title_ru": "Вы правильно откатились к последней зелёной версии"
+        },
+        {
+          "id": "boardingcomplete",
+          "name": "Boarding Complete",
+          "title_uz": "Yakuniy savolda bilimingizni tasdiqladingiz",
+          "title_ru": "Вы подтвердили знания в финальном вопросе"
+        }
+      ]
     },
     {
       "lesson_id": "cicd-intro-4c-01-v18",
       "title_uz": "CI/CD nima va nega kerak",
       "title_ru": "Что такое CI/CD и зачем",
       "version": "v18",
-      "source": "src/4c-Modull/CiCdIntroLesson.jsx"
+      "source": "src/4c-Modull/CiCdIntroLesson.jsx",
+      "achievements": [
+        {
+          "id": "redlight",
+          "name": "Red Light",
+          "title_uz": "Nega lenta to'xtashini tushundingiz",
+          "title_ru": "Вы поняли, почему лента останавливается"
+        },
+        {
+          "id": "clearedfortakeoff",
+          "name": "Cleared for Takeoff",
+          "title_uz": "Barcha buyumlarni tuzatib, samolyotni ko'tardingiz",
+          "title_ru": "Вы исправили все вещи и подняли самолёт"
+        },
+        {
+          "id": "routereader",
+          "name": "Route Reader",
+          "title_uz": "Yo'l xaritasini xatosiz o'qidingiz",
+          "title_ru": "Вы прочитали маршрутную карту без ошибок"
+        },
+        {
+          "id": "ordermatters",
+          "name": "Order Matters",
+          "title_uz": "Lenta tartibini 1-urinishda to'g'ri terdingiz",
+          "title_ru": "Вы собрали порядок ленты с первой попытки"
+        }
+      ]
     },
     {
       "lesson_id": "claude-skills-06-05-v18",
       "title_uz": "Claude Skills — nima",
       "title_ru": "Claude Skills",
       "version": "v18",
-      "source": "src/6-Modull/ClaudeSkillsLesson.jsx"
+      "source": "src/6-Modull/ClaudeSkillsLesson.jsx",
+      "achievements": [
+        {
+          "id": "powercard",
+          "name": "Power Card",
+          "title_uz": "Qahramonga to'g'ri kartani jihozladingiz",
+          "title_ru": "Вы экипировали герою верную карту суперсилы"
+        },
+        {
+          "id": "righttrigger",
+          "name": "Right Trigger",
+          "title_uz": "Kuch qaysi vaziyatda yonishini to'g'ri tanladingiz",
+          "title_ru": "Вы верно выбрали ситуацию, в которой срабатывает сила"
+        },
+        {
+          "id": "beforeafter",
+          "name": "Before/After",
+          "title_uz": "Kartasiz va karta bilan farqni ko'rdingiz",
+          "title_ru": "Вы увидели разницу без карты и с картой"
+        },
+        {
+          "id": "cardmaster",
+          "name": "Card Master",
+          "title_uz": "Skill ishlash oqimini to'g'ri tartibda yig'dingiz",
+          "title_ru": "Вы собрали поток работы Skill в верном порядке"
+        }
+      ]
     },
     {
       "lesson_id": "css-01-v17",
       "title_uz": "CSS asoslari: ranglar, shriftlar, bo'shliqlar",
       "title_ru": "CSS руками — часть 1",
       "version": "v17",
-      "source": "src/1-Modull/CssLesson1.jsx"
+      "source": "src/1-Modull/CssLesson1.jsx",
+      "achievements": [
+        {
+          "id": "rang",
+          "name": "Painted It!",
+          "title_uz": "Matn va fon ranglarini o'zgartirdingiz",
+          "title_ru": "Вы поменяли цвета текста и фона"
+        },
+        {
+          "id": "bezak",
+          "name": "Styled It!",
+          "title_uz": "Elementni CSS bilan chiroyli qildingiz",
+          "title_ru": "Вы украсили элемент с помощью CSS"
+        },
+        {
+          "id": "debugger",
+          "name": "Nice Catch!",
+          "title_uz": "Buzuq CSS kodini topib tuzatdingiz",
+          "title_ru": "Вы нашли и починили сломанный CSS"
+        },
+        {
+          "id": "graduate",
+          "name": "Level Up!",
+          "title_uz": "CSS 1-darsini to'liq yakunladingiz",
+          "title_ru": "Вы полностью прошли урок CSS 1"
+        }
+      ]
     },
     {
       "lesson_id": "css-02-v18",
       "title_uz": "CSS: layout, flexbox, DevTools",
       "title_ru": "CSS руками — часть 2",
       "version": "v18",
-      "source": "src/1-Modull/CssLesson2.jsx"
+      "source": "src/1-Modull/CssLesson2.jsx",
+      "achievements": [
+        {
+          "id": "flexbox",
+          "name": "Lined Up!",
+          "title_uz": "display: flex bilan elementlarni qatorga tizdingiz",
+          "title_ru": "Вы выстроили элементы в ряд с display: flex"
+        },
+        {
+          "id": "markaz",
+          "name": "Bullseye!",
+          "title_uz": "Elementlarni to'liq markazga qo'ydingiz",
+          "title_ru": "Вы поставили элементы точно по центру"
+        },
+        {
+          "id": "debugger",
+          "name": "Nice Catch!",
+          "title_uz": "Buzuq CSS kodini topib tuzatdingiz",
+          "title_ru": "Вы нашли и починили сломанный CSS-код"
+        },
+        {
+          "id": "graduate",
+          "name": "Level Up!",
+          "title_uz": "CSS 2-darsini to'liq yakunladingiz",
+          "title_ru": "Вы полностью завершили урок CSS 2"
+        }
+      ]
     },
     {
       "lesson_id": "css-practice-portfolio-v3",
       "title_uz": "CSS Praktika — Portfolioni bezaymiz",
       "title_ru": "CSS практика — стилизуем портфолио",
       "version": "v3",
-      "source": "src/1-Modull/CssPractice.jsx"
+      "source": "src/1-Modull/CssPractice.jsx",
+      "achievements": [
+        {
+          "id": "color",
+          "name": "Color Master",
+          "title_uz": "Matnga rang berishni o'rgandingiz",
+          "title_ru": "Вы научились задавать цвет тексту"
+        },
+        {
+          "id": "layout",
+          "name": "Lined Up!",
+          "title_uz": "display: flex bilan menyuni qatorga tizdingiz",
+          "title_ru": "Вы выстроили меню в ряд с display: flex"
+        },
+        {
+          "id": "spacer",
+          "name": "Spacer",
+          "title_uz": "padding va margin farqini bildingiz",
+          "title_ru": "Вы поняли разницу между padding и margin"
+        },
+        {
+          "id": "graduate",
+          "name": "Designer",
+          "title_uz": "CSS praktikani to'liq yakunladingiz",
+          "title_ru": "Вы полностью завершили CSS практику"
+        }
+      ]
     },
     {
       "lesson_id": "data-intro-04-01-v18",
       "title_uz": "data-intro-04-01-v18",
       "title_ru": "Данные и связи: JSON, таблицы, схема",
       "version": "v18",
-      "source": "src/4-Modull/DataIntroLesson.jsx"
+      "source": "src/4-Modull/DataIntroLesson.jsx",
+      "achievements": [
+        {
+          "id": "jsonreader",
+          "name": "JSON Reader",
+          "title_uz": "JSON tuzilishini to'g'ri tanidingiz",
+          "title_ru": "Вы верно распознали строение JSON"
+        },
+        {
+          "id": "tablelinker",
+          "name": "Table Linker",
+          "title_uz": "Jadvallar bog'lanishini aniqladingiz",
+          "title_ru": "Вы определили связь таблиц"
+        },
+        {
+          "id": "fkdetective",
+          "name": "FK Detective",
+          "title_uz": "Bog'lovchi (FK) ustun rolini topdingiz",
+          "title_ru": "Вы нашли роль связующего столбца (FK)"
+        },
+        {
+          "id": "schemaarchitect",
+          "name": "Schema Architect",
+          "title_uz": "Ilova sxemasini o'zingiz ulab chizdingiz",
+          "title_ru": "Вы сами соединили схему приложения"
+        }
+      ]
     },
     {
       "lesson_id": "db-sql-nosql-04-02-v18",
       "title_uz": "SQL vs NoSQL — nega PostgreSQL",
       "title_ru": "SQL vs NoSQL — почему PostgreSQL",
       "version": "v18",
-      "source": "src/4-Modull/DbSqlNosqlLesson.jsx"
+      "source": "src/4-Modull/DbSqlNosqlLesson.jsx",
+      "achievements": [
+        {
+          "id": "packagemaster",
+          "name": "Package Master",
+          "title_uz": "Kartalarni to'g'ri ustun va maydonlarga joyladingiz",
+          "title_ru": "Вы разложили карточки по нужным столбцам и полям"
+        },
+        {
+          "id": "connector",
+          "name": "The Connector",
+          "title_uz": "Ikki jadvalni id orqali bog'lab JOIN qildingiz",
+          "title_ru": "Вы связали две таблицы через id и сделали JOIN"
+        },
+        {
+          "id": "mythbuster",
+          "name": "Myth Buster",
+          "title_uz": "Noto'g'ri fikrni topib to'g'irladingiz",
+          "title_ru": "Вы нашли и исправили ошибочное утверждение"
+        },
+        {
+          "id": "compassreader",
+          "name": "Decision Maker",
+          "title_uz": "To'rt mezon bo'yicha to'g'ri bazani tanladingiz",
+          "title_ru": "Вы выбрали верную базу по четырём критериям"
+        }
+      ]
     },
     {
       "lesson_id": "edge-cases-04b-02-v18",
       "title_uz": "Edge cases va error path",
       "title_ru": "Граничные случаи и обработка ошибок",
       "version": "v18",
-      "source": "src/4b-Modull/EdgeCasesTestLesson.jsx"
+      "source": "src/4b-Modull/EdgeCasesTestLesson.jsx",
+      "achievements": [
+        {
+          "id": "firstedge",
+          "name": "First Edge",
+          "title_uz": "Birinchi edge case savolini to'g'ri topdingiz",
+          "title_ru": "Вы верно ответили на первый вопрос про edge case"
+        },
+        {
+          "id": "guardbuilder",
+          "name": "Guard Builder",
+          "title_uz": "Guardni o'zingiz yig'dingiz (if → throw → return)",
+          "title_ru": "Вы сами собрали guard (if → throw → return)"
+        },
+        {
+          "id": "blindspotfinder",
+          "name": "Blind Spot Finder",
+          "title_uz": "Faqat happy-path yetarli emasligini angladingiz",
+          "title_ru": "Вы поняли, что одного happy-path недостаточно"
+        },
+        {
+          "id": "fakeedgehunter",
+          "name": "Fake Edge Hunter",
+          "title_uz": "Haqiqiy edge testlarni yolg'onlardan ajratdingiz",
+          "title_ru": "Вы отличили настоящие edge-тесты от фальшивых"
+        },
+        {
+          "id": "boundarymaster",
+          "name": "Boundary Master",
+          "title_uz": "Chegara qiymatini to'g'ri topdingiz",
+          "title_ru": "Вы верно нашли граничное значение"
+        }
+      ]
     },
     {
       "lesson_id": "full-pro-pipeline-4c-04-v18",
       "title_uz": "full-pro-pipeline-4c-04-v18",
       "title_ru": "Проектный день: надёжная лента",
       "version": "v18",
-      "source": "src/4c-Modull/FullProPipelineLesson.jsx"
+      "source": "src/4c-Modull/FullProPipelineLesson.jsx",
+      "achievements": [
+        {
+          "id": "multirunner",
+          "name": "Multi-Runner",
+          "title_uz": "Parallel lentalar (matrix) nima ekanini tushundingiz",
+          "title_ru": "Вы разобрались, что такое параллельные ленты (matrix)"
+        },
+        {
+          "id": "vaultkeeper",
+          "name": "Vault Keeper",
+          "title_uz": "Maxfiy kalit qayerda turishini topdingiz",
+          "title_ru": "Вы нашли, где хранить секретный ключ"
+        },
+        {
+          "id": "propipeline",
+          "name": "Pro Pipeline",
+          "title_uz": "Muammo chiqqanda rollbackni tanladingiz",
+          "title_ru": "При проблеме вы выбрали rollback"
+        },
+        {
+          "id": "ordermatters",
+          "name": "Order Matters",
+          "title_uz": "Lenta tartibini 1-urinishda terdingiz",
+          "title_ru": "Вы собрали порядок ленты с 1-й попытки"
+        }
+      ]
     },
     {
       "lesson_id": "full-system-06-13-v18",
       "title_uz": "full-system-06-13-v18",
       "title_ru": "Проектный день: полная система",
       "version": "v18",
-      "source": "src/6-Modull/FullSystemProjectLesson.jsx"
+      "source": "src/6-Modull/FullSystemProjectLesson.jsx",
+      "achievements": [
+        {
+          "id": "grandopening",
+          "name": "Grand Opening",
+          "title_uz": "Ko'p darvoza — bitta shahar g'oyasini topdingiz",
+          "title_ru": "Много ворот — один город: вы поняли идею"
+        },
+        {
+          "id": "fullsystem",
+          "name": "Full System",
+          "title_uz": "End-to-end — butun tizimni sinashni bildingiz",
+          "title_ru": "End-to-end — вы поняли, как проверять систему"
+        },
+        {
+          "id": "citylive",
+          "name": "City Live",
+          "title_uz": "Integratsiya bug'i chokda bo'lishini topdingiz",
+          "title_ru": "Вы поняли: баг интеграции живёт на шве"
+        },
+        {
+          "id": "launchday",
+          "name": "Launch Day",
+          "title_uz": "Test o'tsa — ship g'oyasini o'zlashtirdingiz",
+          "title_ru": "Тест прошёл — значит ship: вы усвоили идею"
+        }
+      ]
     },
     {
       "lesson_id": "fullstack-connect-practice-p2-v18",
       "title_uz": "Praktika: Fullstack ulash — AvtoIjara",
       "title_ru": "Практика: Fullstack связка — AvtoIjara",
       "version": "v18",
-      "source": "src/4-Modull/FullstackConnectPracticeLesson.jsx"
+      "source": "src/4-Modull/FullstackConnectPracticeLesson.jsx",
+      "achievements": [
+        {
+          "id": "connected",
+          "name": "Connected!",
+          "title_uz": "Front va backni fetch bilan uladingiz",
+          "title_ru": "Вы соединили фронт и бэк через fetch"
+        },
+        {
+          "id": "bothonline",
+          "name": "Both Online!",
+          "title_uz": "Ikkalasi ishlab turishi shartligini bildingiz",
+          "title_ru": "Вы поняли: работать должны и фронт, и бэк"
+        },
+        {
+          "id": "fullcircle",
+          "name": "Full Circle!",
+          "title_uz": "To'liq yo'lni o'zlashtirdingiz: forma→baza→ekran",
+          "title_ru": "Вы освоили путь: форма→база→экран"
+        },
+        {
+          "id": "fullstack",
+          "name": "Full Stack!",
+          "title_uz": "Frontni backendga o'zingiz uladingiz",
+          "title_ru": "Вы сами подключили фронт к бэкенду"
+        }
+      ]
     },
     {
       "lesson_id": "fullstack-feedback-p4-v18",
       "title_uz": "Praktika: Feedback bilan yaxshilash — AvtoStoyanka",
       "title_ru": "Практика: Доработка по фидбеку — AvtoStoyanka",
       "version": "v18",
-      "source": "src/4-Modull/FullstackFeedbackLesson.jsx"
+      "source": "src/4-Modull/FullstackFeedbackLesson.jsx",
+      "achievements": [
+        {
+          "id": "prioritizer",
+          "name": "Prioritizer!",
+          "title_uz": "Fikrlarni Foyda/Mehnat doskasiga joyladingiz",
+          "title_ru": "Вы разложили отзывы на доске Польза/Усилия"
+        },
+        {
+          "id": "configurator",
+          "name": "Configurator!",
+          "title_uz": "Mavjud narxni o'zgartirish UPDATE ekanini topdingiz",
+          "title_ru": "Вы определили, что изменение существующей цены — это UPDATE"
+        },
+        {
+          "id": "shipper",
+          "name": "Shipper!",
+          "title_uz": "Mahsulotni yaxshilash siklini to'g'ri ko'rsatdingiz",
+          "title_ru": "Вы правильно указали цикл улучшения продукта"
+        },
+        {
+          "id": "guardian",
+          "name": "Guardian!",
+          "title_uz": "Chiqishda tasdiqni (confirm) o'zingiz yozdingiz",
+          "title_ru": "Вы сами написали подтверждение (confirm) при выезде"
+        }
+      ]
     },
     {
       "lesson_id": "fullstack-projectday-p3-v18",
       "title_uz": "Praktika: Loyiha kuni — AvtoStoyanka",
       "title_ru": "Практика: Проектный день — AvtoStoyanka",
       "version": "v18",
-      "source": "src/4-Modull/FullstackProjectDayLesson.jsx"
+      "source": "src/4-Modull/FullstackProjectDayLesson.jsx",
+      "achievements": [
+        {
+          "id": "architect",
+          "name": "Schema Master!",
+          "title_uz": "Jadval ustuni va tipini to'g'ri tanladingiz",
+          "title_ru": "Вы верно выбрали столбец и тип таблицы"
+        },
+        {
+          "id": "wired",
+          "name": "Wired Up!",
+          "title_uz": "Kirish amalini (POST) to'g'ri topdingiz",
+          "title_ru": "Вы верно нашли операцию въезда (POST)"
+        },
+        {
+          "id": "joiner",
+          "name": "Join Champ!",
+          "title_uz": "JOIN bilan ikki jadvalni birlashtirishni bildingiz",
+          "title_ru": "Вы разобрались, как объединять две таблицы через JOIN"
+        },
+        {
+          "id": "opened",
+          "name": "Grand Opening!",
+          "title_uz": "Bog'lanish shartini o'zingiz yozdingiz",
+          "title_ru": "Вы сами написали условие связи"
+        }
+      ]
     },
     {
       "lesson_id": "git-github-v19",
       "title_uz": "Git va GitHub — kodni internetga chiqaramiz",
       "title_ru": "Git и GitHub — выкладываем код в интернет",
       "version": "v19",
-      "source": "src/1-Modull/GitLesson.jsx"
+      "source": "src/1-Modull/GitLesson.jsx",
+      "achievements": [
+        {
+          "id": "installed",
+          "name": "Setup Done!",
+          "title_uz": "Git dasturini kompyuteringizga o'rnatdingiz",
+          "title_ru": "Вы установили программу Git на свой компьютер"
+        },
+        {
+          "id": "quizace",
+          "name": "Bullseye!",
+          "title_uz": "Birinchi urinishda to'g'ri javob berdingiz",
+          "title_ru": "Вы ответили верно с первой попытки"
+        },
+        {
+          "id": "shipped",
+          "name": "Code Online!",
+          "title_uz": "Kodingizni internetga chiqardingiz",
+          "title_ru": "Вы вывели свой код в интернет"
+        },
+        {
+          "id": "graduate",
+          "name": "Level Up!",
+          "title_uz": "Git va GitHub darsini to'liq yakunladingiz",
+          "title_ru": "Вы полностью завершили урок Git и GitHub"
+        }
+      ]
     },
     {
       "lesson_id": "github-actions-4c-02-v18",
       "title_uz": "github-actions-4c-02-v18",
       "title_ru": "GitHub Actions — написание карты маршрута",
       "version": "v18",
-      "source": "src/4c-Modull/GithubActionsLesson.jsx"
+      "source": "src/4c-Modull/GithubActionsLesson.jsx",
+      "achievements": [
+        {
+          "id": "greenlight",
+          "name": "Green Light",
+          "title_uz": "Yo'l xaritasi faylining aniq manzilini topdingiz",
+          "title_ru": "Вы нашли точный адрес файла карты маршрута"
+        },
+        {
+          "id": "runwayclear",
+          "name": "Runway Clear",
+          "title_uz": "uses va run farqini aniqladingiz",
+          "title_ru": "Вы определили разницу между uses и run"
+        },
+        {
+          "id": "routewriter",
+          "name": "Route Writer",
+          "title_uz": "Yo'l xaritangizni yozib, lentani aylantirdingiz",
+          "title_ru": "Вы написали свою карту и запустили ленту"
+        },
+        {
+          "id": "logdetective",
+          "name": "Log Detective",
+          "title_uz": "Qizil chiroq sababini jurnaldan topdingiz",
+          "title_ru": "Вы нашли в журнале причину красного света"
+        }
+      ]
     },
     {
       "lesson_id": "html-01-v17",
       "title_uz": "HTML asoslari",
       "title_ru": "Основы HTML",
       "version": "v17",
-      "source": "src/1-Modull/Htmllesson1.jsx"
+      "source": "src/1-Modull/Htmllesson1.jsx",
+      "achievements": [
+        {
+          "id": "skelet",
+          "name": "Built It!",
+          "title_uz": "Sahifa skeletini o'zingiz yig'dingiz",
+          "title_ru": "Вы сами собрали скелет страницы"
+        },
+        {
+          "id": "firsttag",
+          "name": "Tag It!",
+          "title_uz": "Yopuvchi tegni yozdingiz",
+          "title_ru": "Вы написали закрывающий тег"
+        },
+        {
+          "id": "debugger",
+          "name": "Nice Catch!",
+          "title_uz": "Buzuq kodni topib tuzatdingiz",
+          "title_ru": "Вы нашли и починили сломанный код"
+        },
+        {
+          "id": "graduate",
+          "name": "Level Up!",
+          "title_uz": "Birinchi HTML darsini to'liq yakunladingiz",
+          "title_ru": "Вы полностью прошли первый урок HTML"
+        }
+      ]
     },
     {
       "lesson_id": "html-02-v16",
       "title_uz": "HTML: rasm, struktura, forma, DevTools",
       "title_ru": "HTML: картинки, структура, формы, DevTools",
       "version": "v16",
-      "source": "src/1-Modull/Htmllesson2.jsx"
+      "source": "src/1-Modull/Htmllesson2.jsx",
+      "achievements": [
+        {
+          "id": "struktura",
+          "name": "Room by Room!",
+          "title_uz": "Sahifani header, main, footerga ajratdingiz",
+          "title_ru": "Вы разделили страницу на header, main, footer"
+        },
+        {
+          "id": "forma",
+          "name": "Sent It!",
+          "title_uz": "Formani to'ldirib yubordingiz",
+          "title_ru": "Вы заполнили и отправили форму"
+        },
+        {
+          "id": "debugger",
+          "name": "Nice Catch!",
+          "title_uz": "DevTools bilan buzuq kodni topib tuzatdingiz",
+          "title_ru": "Вы нашли и починили сломанный код через DevTools"
+        },
+        {
+          "id": "graduate",
+          "name": "Level Up!",
+          "title_uz": "Ikkinchi HTML darsini to'liq yakunladingiz",
+          "title_ru": "Вы полностью прошли второй урок HTML"
+        }
+      ]
     },
     {
       "lesson_id": "html-practice-portfolio-v2",
       "title_uz": "HTML Praktika — Portfolio sayt",
       "title_ru": "HTML практика — портфолио",
       "version": "v2",
-      "source": "src/1-Modull/HtmlPractice.jsx"
+      "source": "src/1-Modull/HtmlPractice.jsx",
+      "achievements": [
+        {
+          "id": "built",
+          "name": "Built It!",
+          "title_uz": "Portfolio skeletini o'zingiz yig'dingiz",
+          "title_ru": "Вы сами собрали скелет портфолио"
+        },
+        {
+          "id": "coder",
+          "name": "Tag It!",
+          "title_uz": "Birinchi kodni o'z qo'lingiz bilan yozdingiz",
+          "title_ru": "Вы своими руками написали первый код"
+        },
+        {
+          "id": "debugger",
+          "name": "Nice Catch!",
+          "title_uz": "Buzuq kodni topib tuzatdingiz",
+          "title_ru": "Вы нашли и исправили сломанный код"
+        },
+        {
+          "id": "graduate",
+          "name": "Level Up!",
+          "title_uz": "Portfolio praktikasini yakunladingiz",
+          "title_ru": "Вы завершили практику портфолио"
+        }
+      ]
     },
     {
       "lesson_id": "html-takrorlash-01-05-v2",
       "title_uz": "Takrorlash: HTML ustaxonasi",
       "title_ru": "Повторение: мастерская HTML",
       "version": "v2",
-      "source": "src/1-Modull/HtmlTakrorlashLesson.jsx"
+      "source": "src/1-Modull/HtmlTakrorlashLesson.jsx",
+      "achievements": [
+        {
+          "id": "bugfix",
+          "name": "Nice Catch!",
+          "title_uz": "Koddagi ikkala xatoni topib tuzatdingiz",
+          "title_ru": "Вы нашли и починили обе ошибки в коде"
+        },
+        {
+          "id": "architect",
+          "name": "Blueprint Pro!",
+          "title_uz": "Sahifa qobig'ini to'g'ri tartibda yig'dingiz",
+          "title_ru": "Вы собрали оболочку страницы в верном порядке"
+        },
+        {
+          "id": "built",
+          "name": "Built It!",
+          "title_uz": "«Chempionlar» sahifasini oxirigacha yasadingiz",
+          "title_ru": "Вы доделали страницу «Чемпионов» до конца"
+        },
+        {
+          "id": "graduate",
+          "name": "Level Up!",
+          "title_uz": "Takrorlash darsini to'liq yakunladingiz",
+          "title_ru": "Вы полностью прошли урок повторения"
+        }
+      ]
     },
     {
       "lesson_id": "internet-01-v18",
       "title_uz": "Internet qanday ishlaydi",
       "title_ru": "Как устроен интернет",
       "version": "v18",
-      "source": "src/1-Modull/InternetLesson.jsx"
+      "source": "src/1-Modull/InternetLesson.jsx",
+      "achievements": [
+        {
+          "id": "firstwin",
+          "name": "Bullseye!",
+          "title_uz": "Birinchi test savoliga to'g'ri javob berdingiz",
+          "title_ru": "Вы правильно ответили на первый вопрос теста"
+        },
+        {
+          "id": "packet",
+          "name": "Special Delivery!",
+          "title_uz": "So'rovni to'g'ri serverga yetkazdingiz",
+          "title_ru": "Вы доставили запрос на нужный сервер"
+        },
+        {
+          "id": "router",
+          "name": "Right Track!",
+          "title_uz": "So'rov bosqichlarini to'g'ri tartibladingiz",
+          "title_ru": "Вы верно расставили этапы запроса"
+        },
+        {
+          "id": "graduate",
+          "name": "Level Up!",
+          "title_uz": "Internet darsini to'liq yakunladingiz",
+          "title_ru": "Вы полностью прошли урок об интернете"
+        }
+      ]
     },
     {
       "lesson_id": "jest-unit-04b-01-v18",
       "title_uz": "Unit-test: Jest",
       "title_ru": "Юнит-тесты: Jest",
       "version": "v18",
-      "source": "src/4b-Modull/JestUnitTestLesson.jsx"
-    },
-    {
-      "lesson_id": "js-cond-01-v16",
-      "title_uz": "JavaScript — if/else",
-      "title_ru": "JavaScript — if/else",
-      "version": "v16",
-      "source": "src/2-moodull eski/JsConditionsLesson.jsx"
+      "source": "src/4b-Modull/JestUnitTestLesson.jsx",
+      "achievements": [
+        {
+          "id": "firstgreen",
+          "name": "First Green",
+          "title_uz": "Birinchi yashil PASS — testni tushundingiz",
+          "title_ru": "Первый зелёный PASS — вы поняли тест"
+        },
+        {
+          "id": "greensuite",
+          "name": "Green Suite",
+          "title_uz": "Varaqani yig'dingiz: describe → it → expect",
+          "title_ru": "Вы собрали бланк: describe → it → expect"
+        },
+        {
+          "id": "breakcatch",
+          "name": "Break & Catch",
+          "title_uz": "Buzilgan kodni FAIL orqali ushladingiz",
+          "title_ru": "Поймали сломанный код через FAIL"
+        },
+        {
+          "id": "faketesthunter",
+          "name": "Fake Test Hunter",
+          "title_uz": "Yolg'on testni topdingiz — expectsiz",
+          "title_ru": "Нашли ложный тест — без expect"
+        },
+        {
+          "id": "expectmaster",
+          "name": "Expect Master",
+          "title_uz": "Etalon kartochkasini to'g'ri qo'ydingiz",
+          "title_ru": "Верно заполнили карточку-эталон"
+        }
+      ]
     },
     {
       "lesson_id": "js-cond-01-v18",
       "title_uz": "JavaScript — if/else",
       "title_ru": "JavaScript — if/else",
       "version": "v18",
-      "source": "src/2-Modull/JsConditionsLesson.jsx"
-    },
-    {
-      "lesson_id": "js-functions-01-v16",
-      "title_uz": "JavaScript — Funksiya, parametr, return",
-      "title_ru": "JavaScript — Функция, параметры, return",
-      "version": "v16",
-      "source": "src/2-moodull eski/JsFunctionsLesson.jsx"
+      "source": "src/2-Modull/JsConditionsLesson.jsx",
+      "achievements": [
+        {
+          "id": "builder",
+          "name": "Gatekeeper",
+          "title_uz": "Turniket shartini o'zingiz tuzdingiz",
+          "title_ru": "Вы сами собрали условие турникета"
+        },
+        {
+          "id": "debugger",
+          "name": "Nice Catch!",
+          "title_uz": "= va === xatosini topib tuzatdingiz",
+          "title_ru": "Вы нашли и починили ошибку = и ==="
+        },
+        {
+          "id": "firstif",
+          "name": "Logic Master",
+          "title_uz": "Birinchi if shartingizni o'zingiz yozdingiz",
+          "title_ru": "Вы сами написали своё первое условие if"
+        },
+        {
+          "id": "graduate",
+          "name": "Level Up!",
+          "title_uz": "if/else darsini to'liq yakunladingiz",
+          "title_ru": "Вы полностью прошли урок if/else"
+        }
+      ]
     },
     {
       "lesson_id": "js-functions-01-v18",
       "title_uz": "JavaScript — Funksiya, parametr, return",
       "title_ru": "JavaScript — Функция, параметры, return",
       "version": "v18",
-      "source": "src/2-Modull/JsFunctionsLesson.jsx"
-    },
-    {
-      "lesson_id": "js-intro-01-v16",
-      "title_uz": "Sistema va Algoritm",
-      "title_ru": "Система и алгоритм",
-      "version": "v16",
-      "source": "src/2-moodull eski/JsIntroLesson.jsx"
+      "source": "src/2-Modull/JsFunctionsLesson.jsx",
+      "achievements": [
+        {
+          "id": "builder",
+          "name": "Machine Builder",
+          "title_uz": "Funksiya mashinasini o'zingiz yig'dingiz",
+          "title_ru": "Вы сами собрали машину-функцию"
+        },
+        {
+          "id": "coder",
+          "name": "Code Writer",
+          "title_uz": "3 bosqichda funksiyani qo'lda yozdingiz",
+          "title_ru": "Вы написали функцию вручную за 3 шага"
+        },
+        {
+          "id": "returnmaster",
+          "name": "Return Master",
+          "title_uz": "zarar funksiyasini yoddan yozdingiz",
+          "title_ru": "Вы написали функцию zarar по памяти"
+        },
+        {
+          "id": "graduate",
+          "name": "Level Up!",
+          "title_uz": "JS funksiyalar darsini to'liq yakunladingiz",
+          "title_ru": "Вы полностью прошли урок про функции JS"
+        }
+      ]
     },
     {
       "lesson_id": "js-intro-01-v18",
       "title_uz": "Sistema va Algoritm",
       "title_ru": "Система и алгоритм",
       "version": "v18",
-      "source": "src/2-Modull/JsIntroLesson.jsx"
-    },
-    {
-      "lesson_id": "js-loops-01-v16",
-      "title_uz": "JavaScript — Sikllar (for, while)",
-      "title_ru": "JavaScript — Циклы (for, while)",
-      "version": "v16",
-      "source": "src/2-moodull eski/JsLoopsLesson.jsx"
+      "source": "src/2-Modull/JsIntroLesson.jsx",
+      "achievements": [
+        {
+          "id": "scout",
+          "name": "System Scout",
+          "title_uz": "Atrofdagi sistemani tanidingiz",
+          "title_ru": "Вы распознали систему вокруг себя"
+        },
+        {
+          "id": "recipe",
+          "name": "Algorithm Master",
+          "title_uz": "Algoritm — qadamlar tartibini o'zlashtirdingiz",
+          "title_ru": "Вы освоили алгоритм — порядок шагов"
+        },
+        {
+          "id": "bughunter",
+          "name": "Bug Hunter",
+          "title_uz": "Chalkash dasturni tuzatib RUN qildingiz",
+          "title_ru": "Вы починили запутанную программу и нажали RUN"
+        },
+        {
+          "id": "graduate",
+          "name": "Level Up!",
+          "title_uz": "Sistema va algoritm darsini to'liq yakunladingiz",
+          "title_ru": "Вы полностью прошли урок о системе и алгоритме"
+        }
+      ]
     },
     {
       "lesson_id": "js-loops-01-v18",
       "title_uz": "JavaScript — Sikllar (for, while)",
       "title_ru": "JavaScript — Циклы (for, while)",
       "version": "v18",
-      "source": "src/2-Modull/JsLoopsLesson.jsx"
-    },
-    {
-      "lesson_id": "js-vars-01-v16",
-      "title_uz": "js-vars-01-v16",
-      "title_ru": "JavaScript — Переменные",
-      "version": "v16",
-      "source": "src/2-moodull eski/JsVarsLesson (2).jsx"
+      "source": "src/2-Modull/JsLoopsLesson.jsx",
+      "achievements": [
+        {
+          "id": "loopstarter",
+          "name": "Loop Starter",
+          "title_uz": "Birinchi sikl testini yechdingiz",
+          "title_ru": "Вы решили первый тест по циклам"
+        },
+        {
+          "id": "infinitytamer",
+          "name": "Infinity Tamer",
+          "title_uz": "Cheksiz siklni topib to'xtatdingiz",
+          "title_ru": "Вы нашли и остановили бесконечный цикл"
+        },
+        {
+          "id": "assemblymaster",
+          "name": "Assembly Master",
+          "title_uz": "Birinchi siklingizni o'zingiz yozdingiz",
+          "title_ru": "Вы сами написали свой первый цикл"
+        },
+        {
+          "id": "graduate",
+          "name": "Level Up!",
+          "title_uz": "Sikllar darsini to'liq yakunladingiz",
+          "title_ru": "Вы полностью завершили урок о циклах"
+        }
+      ]
     },
     {
       "lesson_id": "js-vars-01-v18",
       "title_uz": "js-vars-01-v18",
       "title_ru": "JavaScript — Переменные",
       "version": "v18",
-      "source": "src/2-Modull/JsVarsLesson.jsx"
+      "source": "src/2-Modull/JsVarsLesson.jsx",
+      "achievements": [
+        {
+          "id": "boxkeeper",
+          "name": "Box Keeper",
+          "title_uz": "O'zgaruvchi — nomlangan quti ekanini bildingiz",
+          "title_ru": "Вы узнали, что переменная — коробка с именем"
+        },
+        {
+          "id": "lockmaster",
+          "name": "Lock Master",
+          "title_uz": "const bilan qutini qulflashni o'rgandingiz",
+          "title_ru": "Вы научились запирать коробку через const"
+        },
+        {
+          "id": "typedetective",
+          "name": "Type Detective",
+          "title_uz": "Ma'lumot turini (matn / raqam) aniqladingiz",
+          "title_ru": "Вы определили тип данных (текст / число)"
+        },
+        {
+          "id": "graduate",
+          "name": "Level Up!",
+          "title_uz": "Birinchi JavaScript darsini to'liq yakunladingiz",
+          "title_ru": "Вы полностью прошли первый урок JavaScript"
+        }
+      ]
     },
     {
       "lesson_id": "kod-mvp-arch-v16",
       "title_uz": "Mini-MVP arxitekturasi — chizma birinchi",
       "title_ru": "Архитектура mini-MVP",
       "version": "v16",
-      "source": "src/7-Modull/MvpArchLesson.jsx"
+      "source": "src/7-Modull/MvpArchLesson.jsx",
+      "achievements": []
     },
     {
       "lesson_id": "mobile-practice-06-11-v18",
       "title_uz": "Praktika: mobil ilova (mini-do'kon)",
       "title_ru": "Практика: мобильное приложение",
       "version": "v18",
-      "source": "src/6-Modull/MobileAppPracticeLesson.jsx"
+      "source": "src/6-Modull/MobileAppPracticeLesson.jsx",
+      "achievements": [
+        {
+          "id": "ontour",
+          "name": "On Tour",
+          "title_uz": "Web bo'lakni mobil sahnaga ko'chirdingiz",
+          "title_ru": "Вы перенесли веб-часть на мобильную сцену"
+        },
+        {
+          "id": "dressrehearsal",
+          "name": "Dress Rehearsal",
+          "title_uz": "Aniq buyurib, kodni o'qishni bildingiz",
+          "title_ru": "Вы поняли: точная команда, чтение кода"
+        },
+        {
+          "id": "finalpolish",
+          "name": "Final Polish",
+          "title_uz": "Buyurtma o'sha pipeline'ga tushishini bildingiz",
+          "title_ru": "Вы поняли: заказ идёт по тому же конвейеру"
+        },
+        {
+          "id": "premierenight",
+          "name": "Premiere Night",
+          "title_uz": "Ilovani Expo Go bilan telefonda sinadingiz",
+          "title_ru": "Вы протестировали приложение через Expo Go"
+        }
+      ]
     },
     {
       "lesson_id": "mvp-build1-101-v16",
       "title_uz": "MVP v1: AI bilan vibe coding",
       "title_ru": "MVP v1: вайб-кодинг с ИИ",
       "version": "v16",
-      "source": "src/7-Modull/MvpBuild1Lesson.jsx"
+      "source": "src/7-Modull/MvpBuild1Lesson.jsx",
+      "achievements": []
     },
     {
       "lesson_id": "mvp-build2-103-v16",
       "title_uz": "MVP v2: oxiriga yetkazish va SHIP",
       "title_ru": "MVP v2: завершить и запустить",
       "version": "v16",
-      "source": "src/7-Modull/MvpBuild2Lesson.jsx"
+      "source": "src/7-Modull/MvpBuild2Lesson.jsx",
+      "achievements": []
     },
     {
       "lesson_id": "mvp-iterate-105-v16",
       "title_uz": "Fidbek iteratsiyasi",
       "title_ru": "Итерация по обратной связи",
       "version": "v16",
-      "source": "src/7-Modull/MvpIterateLesson.jsx"
+      "source": "src/7-Modull/MvpIterateLesson.jsx",
+      "achievements": []
     },
     {
       "lesson_id": "nest-arch-alive-4a-01-v18",
       "title_uz": "Nest arxitektura — tirik ko'rish",
       "title_ru": "Nest архитектура — живой обзор",
       "version": "v18",
-      "source": "src/4a-Modull/NestArchAliveLesson.jsx"
+      "source": "src/4a-Modull/NestArchAliveLesson.jsx",
+      "achievements": [
+        {
+          "id": "secretkeeper",
+          "name": "Secret Keeper",
+          "title_uz": "Maxfiy kalitlar joyini bilib oldingiz",
+          "title_ru": "Вы узнали, где живут секретные ключи"
+        },
+        {
+          "id": "fullflow",
+          "name": "Full Flow",
+          "title_uz": "3 mijozni ham oxirigacha olib bordingiz",
+          "title_ru": "Вы провели всех 3 клиентов до конца"
+        },
+        {
+          "id": "fivesteps",
+          "name": "Five Steps",
+          "title_uz": "Yangi bo'limning 5 qadamini aniqladingiz",
+          "title_ru": "Вы определили 5 шагов нового раздела"
+        },
+        {
+          "id": "rightplace",
+          "name": "Right Place",
+          "title_uz": "Noto'g'ri xonadagi qatorni 1-urinishda topdingiz",
+          "title_ru": "Вы нашли строку не в той комнате с первой попытки"
+        }
+      ]
     },
     {
       "lesson_id": "nest-arch-practice-4a-03-v18",
       "title_uz": "Praktika — KitobShop backend",
       "title_ru": "Практика — бэкенд KitobShop",
       "version": "v18",
-      "source": "src/4a-Modull/NestArchPracticeLesson.jsx"
+      "source": "src/4a-Modull/NestArchPracticeLesson.jsx",
+      "achievements": [
+        {
+          "id": "shelf",
+          "name": "Shelf Master!",
+          "title_uz": "Javon chizmasini toza yig'dingiz",
+          "title_ru": "Вы чисто собрали чертёж стеллажа"
+        },
+        {
+          "id": "guard",
+          "name": "Guard Up!",
+          "title_uz": "Qaysi eshik ochiq, qaysi biri qulf — aniq bilasiz.",
+          "title_ru": "Вы точно знаете, какая дверь открыта, а какая под замком."
+        },
+        {
+          "id": "catcher",
+          "name": "Nice Catch!",
+          "title_uz": "AI qo'yib yuborgan xatoni dalil bilan topdingiz.",
+          "title_ru": "Вы нашли ошибку ИИ по уликам."
+        },
+        {
+          "id": "owner",
+          "name": "Shop Owner!",
+          "title_uz": "Ochiq qolgan eshikni topdingiz — KitobShop ochildi!",
+          "title_ru": "Вы нашли незапертую дверь — KitobShop открылся!"
+        }
+      ]
     },
     {
       "lesson_id": "nest-arch-resource-4a-02-v18",
       "title_uz": "Birinchi resursni qo'lda qo'shish — mashinalar",
       "title_ru": "Добавляем первый ресурс вручную — машины",
       "version": "v18",
-      "source": "src/4a-Modull/NestArchResourceLesson.jsx"
+      "source": "src/4a-Modull/NestArchResourceLesson.jsx",
+      "achievements": [
+        {
+          "id": "blueprintdrafter",
+          "name": "Blueprint Drafter",
+          "title_uz": "Entity — javon chizmasini to'g'ri o'qidingiz",
+          "title_ru": "Вы правильно прочитали Entity — чертёж стеллажа"
+        },
+        {
+          "id": "recipemaster",
+          "name": "Recipe Master",
+          "title_uz": "BaseService — tayyor retsept kitobini tushundingiz",
+          "title_ru": "Вы поняли BaseService — готовую книгу рецептов"
+        },
+        {
+          "id": "detective404",
+          "name": "404 Detective",
+          "title_uz": "Agent kodidagi begona qatorni topdingiz",
+          "title_ru": "Вы нашли чужую строку в коде агента"
+        },
+        {
+          "id": "grandopening",
+          "name": "Grand Opening",
+          "title_uz": "Mashinalar bo'limini ochdingiz — /car tirik",
+          "title_ru": "Вы открыли отдел машин — /car живёт"
+        }
+      ]
     },
     {
       "lesson_id": "nest-routing-04-04-v18",
       "title_uz": "Routing: server so'rovni qanday topadi",
       "title_ru": "Роутинг: как сервер находит запрос",
       "version": "v18",
-      "source": "src/4-Modull/RoutingLesson.jsx"
+      "source": "src/4-Modull/RoutingLesson.jsx",
+      "achievements": [
+        {
+          "id": "postman",
+          "name": "Postman!",
+          "title_uz": "Birinchi xatni to'g'ri eshikka yetkazdingiz",
+          "title_ru": "Вы доставили первое письмо в правильную дверь"
+        },
+        {
+          "id": "sorter",
+          "name": "Sorter!",
+          "title_uz": "Barcha xatlarni to'g'ri sortladingiz",
+          "title_ru": "Вы правильно рассортировали все письма"
+        },
+        {
+          "id": "returnsender",
+          "name": "Return to Sender!",
+          "title_uz": "404 xatoni topib tabelkani tuzatdingiz",
+          "title_ru": "Вы нашли ошибку 404 и исправили табличку"
+        },
+        {
+          "id": "doorbuilder",
+          "name": "Doorbuilder!",
+          "title_uz": "Yangi eshikni o'zingiz ochdingiz (@Post)",
+          "title_ru": "Вы сами открыли новую дверь (@Post)"
+        }
+      ]
     },
     {
       "lesson_id": "netlify-deploy-v19",
       "title_uz": "Netlify va deploy",
       "title_ru": "Netlify и деплой",
       "version": "v19",
-      "source": "src/1-Modull/DeployLesson.jsx"
+      "source": "src/1-Modull/DeployLesson.jsx",
+      "achievements": [
+        {
+          "id": "hostpick",
+          "name": "Host Pick!",
+          "title_uz": "Netlify nima qilishini aniqladingiz",
+          "title_ru": "Вы определили, что делает Netlify"
+        },
+        {
+          "id": "filefind",
+          "name": "File Finder!",
+          "title_uz": "Bosh sahifa qaysi fayl ekanini bildingiz",
+          "title_ru": "Вы узнали, какой файл является главной страницей"
+        },
+        {
+          "id": "shipit",
+          "name": "Ship It!",
+          "title_uz": "Sayt chiqarish tartibini ko'rsatdingiz",
+          "title_ru": "Вы указали порядок публикации сайта"
+        },
+        {
+          "id": "graduate",
+          "name": "Level Up!",
+          "title_uz": "Deploy darsini yakunladingiz",
+          "title_ru": "Вы завершили урок деплоя"
+        }
+      ]
     },
     {
       "lesson_id": "node-server-04-03-v18",
       "title_uz": "Node.js — birinchi serveringiz",
       "title_ru": "Node.js — первый сервер",
       "version": "v18",
-      "source": "src/4-Modull/NodeServerLesson.jsx"
+      "source": "src/4-Modull/NodeServerLesson.jsx",
+      "achievements": [
+        {
+          "id": "serverarchitect",
+          "name": "Server Architect!",
+          "title_uz": "Server qismlarini to'g'ri tartibda yig'dingiz",
+          "title_ru": "Вы собрали части сервера в правильном порядке"
+        },
+        {
+          "id": "bughunter",
+          "name": "Bug Hunter!",
+          "title_uz": "app.listen yetishmasligini topib tuzatdingiz",
+          "title_ru": "Вы нашли и починили пропавший app.listen"
+        },
+        {
+          "id": "shopopener",
+          "name": "Shop Opener!",
+          "title_uz": "Birinchi endpoint yozib serverni ochdingiz",
+          "title_ru": "Вы написали первый endpoint и открыли сервер"
+        },
+        {
+          "id": "lightningclerk",
+          "name": "Lightning Clerk!",
+          "title_uz": "Arenada ketma-ket to'g'ri javoblar berdingiz",
+          "title_ru": "Вы дали серию верных ответов подряд на арене"
+        }
+      ]
     },
     {
       "lesson_id": "pean-stack-01-v18",
       "title_uz": "PERN Stack — 4 texnologiya, bitta jamoa",
       "title_ru": "PERN Stack — 4 технологии, одна команда",
       "version": "v18",
-      "source": "src/2-Modull/PeanStackLesson.jsx"
+      "source": "src/2-Modull/PeanStackLesson.jsx",
+      "achievements": [
+        {
+          "id": "teambuilder",
+          "name": "Team Builder",
+          "title_uz": "Mini-do'kon jamoasini o'zingiz tuzdingiz",
+          "title_ru": "Вы сами собрали команду мини-магазина"
+        },
+        {
+          "id": "fullstack",
+          "name": "Full Stack Explorer",
+          "title_uz": "So'rov sayohatini boshidan oxirigacha qurdingiz",
+          "title_ru": "Вы построили путь запроса от начала до конца"
+        },
+        {
+          "id": "striker",
+          "name": "Code Striker",
+          "title_uz": "CodeStrike arenasini yakunladingiz",
+          "title_ru": "Вы прошли арену CodeStrike"
+        },
+        {
+          "id": "graduate",
+          "name": "Level Up!",
+          "title_uz": "PERN xaritasini to'liq yakunladingiz",
+          "title_ru": "Вы полностью прошли карту PERN"
+        }
+      ]
     },
     {
       "lesson_id": "pg-crud-04-05-v18",
       "title_uz": "PostgreSQL so'rovlar — CRUD + AI bilan",
       "title_ru": "Запросы PostgreSQL — CRUD + ИИ",
       "version": "v18",
-      "source": "src/4-Modull/PostgresCrudLesson.jsx"
+      "source": "src/4-Modull/PostgresCrudLesson.jsx",
+      "achievements": [
+        {
+          "id": "shopmanager",
+          "name": "Shop Manager",
+          "title_uz": "Do'kon jadvaliga mahsulot qo'shishni bildingiz",
+          "title_ru": "Вы научились добавлять товары в таблицу магазина"
+        },
+        {
+          "id": "crudmaster",
+          "name": "CRUD Master",
+          "title_uz": "Menejer navbatida 4 CRUD amalini boshqardingiz",
+          "title_ru": "На смене менеджера вы справились с 4 действиями CRUD"
+        },
+        {
+          "id": "bughunter",
+          "name": "Bug Hunter",
+          "title_uz": "AI kodidagi xatoni topib tuzatdingiz",
+          "title_ru": "Вы нашли и исправили ошибку в коде ИИ"
+        },
+        {
+          "id": "dataarchitect",
+          "name": "Data Architect",
+          "title_uz": "O'z INSERT so'rovingizni yozib bazaga qo'shdingiz",
+          "title_ru": "Вы написали свой INSERT и добавили запись в базу"
+        }
+      ]
     },
     {
       "lesson_id": "pipeline-project-06-08-v18",
       "title_uz": "pipeline-project-06-08-v18",
       "title_ru": "Практика: полный pipeline",
       "version": "v18",
-      "source": "src/6-Modull/PipelineProjectLesson.jsx"
+      "source": "src/6-Modull/PipelineProjectLesson.jsx",
+      "achievements": [
+        {
+          "id": "fullpipeline",
+          "name": "Full Pipeline",
+          "title_uz": "Pipeline — 5 qism bitta tizimda ekanini bildingiz",
+          "title_ru": "Вы поняли: pipeline — 5 частей в одной системе"
+        },
+        {
+          "id": "endtoend",
+          "name": "End to End",
+          "title_uz": "Aniq promptni tanidingiz: nima, qayer, format",
+          "title_ru": "Вы узнали точный промпт: что, где, формат"
+        },
+        {
+          "id": "allconnected",
+          "name": "All Connected",
+          "title_uz": "Integratsiya bug'ini test bilan tutishni bildingiz",
+          "title_ru": "Вы поняли, как ловить баг интеграции тестом"
+        },
+        {
+          "id": "citylive",
+          "name": "City Live",
+          "title_uz": "Ariza sayohatini tartibladingiz — shahar tirik!",
+          "title_ru": "Вы верно выстроили путь заявки — город ожил!"
+        }
+      ]
     },
     {
       "lesson_id": "pm-analysis-31-v16",
       "title_uz": "Tahlil + MVP chegarasi — kesish san'ati",
       "title_ru": "Анализ интервью + границы MVP",
       "version": "v16",
-      "source": "src/7-Modull/PmLesson31.jsx"
+      "source": "src/7-Modull/PmLesson31.jsx",
+      "achievements": []
     },
     {
       "lesson_id": "pm-analytics-32-v16",
       "title_uz": "Analitika birinchi kundan — ko'zoynak kiyish",
       "title_ru": "Аналитика с первого дня",
       "version": "v16",
-      "source": "src/7-Modull/PmLesson32.jsx"
+      "source": "src/7-Modull/PmLesson32.jsx",
+      "achievements": []
     },
     {
       "lesson_id": "pm-custdev-29-v16",
       "title_uz": "Custdev: savol berish — Mom Test",
       "title_ru": "Custdev: как задавать вопросы — Mom Test",
       "version": "v16",
-      "source": "src/7-Modull/PmLesson29.jsx"
+      "source": "src/7-Modull/PmLesson29.jsx",
+      "achievements": []
     },
     {
       "lesson_id": "pm-design-33-v16",
       "title_uz": "Dizayn va nasmotrennost",
       "title_ru": "Дизайн и насмотренность",
       "version": "v16",
-      "source": "src/7-Modull/PmLesson33.jsx"
+      "source": "src/7-Modull/PmLesson33.jsx",
+      "achievements": []
     },
     {
       "lesson_id": "pm-interviews-30-v16",
       "title_uz": "5 real intervyu — ekspeditsiya",
       "title_ru": "5 реальных интервью — экспедиция",
       "version": "v16",
-      "source": "src/7-Modull/PmLesson30.jsx"
+      "source": "src/7-Modull/PmLesson30.jsx",
+      "achievements": []
     },
     {
       "lesson_id": "pm-m1d2-v1",
-      "title_uz": "Kim mening foydalanuvchim? — auditoriya",
-      "title_ru": "Кто мой пользователь? — аудитория",
+      "title_uz": "Kim mening foydalanuvchim?",
+      "title_ru": "Кто мой пользователь?",
       "version": "v1",
-      "source": "src/1-Modull/PmAudienceLesson.jsx"
+      "source": "src/1-Modull/PmLesson1.jsx",
+      "achievements": [
+        {
+          "id": "audience",
+          "name": "Audience Found!",
+          "title_uz": "O'z auditoriya-kartangizni yozdingiz",
+          "title_ru": "Вы написали свою карточку аудитории"
+        },
+        {
+          "id": "thinker",
+          "name": "Product Mind!",
+          "title_uz": "Mahsulot menejeridek to'g'ri javob berdingiz",
+          "title_ru": "Вы ответили верно, как продакт-менеджер"
+        },
+        {
+          "id": "builder",
+          "name": "Full Card!",
+          "title_uz": "KIM + MUAMMO + YECHIM — kartani to'liq yig'dingiz",
+          "title_ru": "КТО + ПРОБЛЕМА + РЕШЕНИЕ — вы собрали карточку полностью"
+        },
+        {
+          "id": "graduate",
+          "name": "Level Up!",
+          "title_uz": "Mahsulot menejeri darsini to'liq yakunladingiz",
+          "title_ru": "Вы полностью прошли урок продакт-менеджера"
+        }
+      ]
     },
     {
       "lesson_id": "pm-m1d6-v1",
       "title_uz": "Struktura — foydalanuvchi uchun qilingan qulaylik",
       "title_ru": "Структура — удобство для пользователя",
       "version": "v1",
-      "source": "src/1-Modull/PmLesson2.jsx"
+      "source": "src/1-Modull/PmLesson2.jsx",
+      "achievements": [
+        {
+          "id": "firstwin",
+          "name": "First Win!",
+          "title_uz": "Birinchi testni to'g'ri yechdingiz",
+          "title_ru": "Вы верно решили первый тест"
+        },
+        {
+          "id": "builder",
+          "name": "In Order!",
+          "title_uz": "Bo'limlarni to'g'ri tartibga keltirdingiz",
+          "title_ru": "Вы выстроили разделы в верном порядке"
+        },
+        {
+          "id": "strategist",
+          "name": "Shipped It!",
+          "title_uz": "Yakuniy sahifa tuzilishini o'zingiz qurdingiz",
+          "title_ru": "Вы сами собрали структуру итоговой страницы"
+        },
+        {
+          "id": "graduate",
+          "name": "Level Up!",
+          "title_uz": "Struktura darsini to'liq yakunladingiz",
+          "title_ru": "Вы полностью прошли урок о структуре"
+        }
+      ]
     },
     {
       "lesson_id": "pm-m2d13-v1",
       "title_uz": "Sistemani qanday pitch qilish",
       "title_ru": "Как рассказать о системе",
       "version": "v1",
-      "source": "src/2-Modull/PmLesson6.jsx"
+      "source": "src/2-Modull/PmLesson6.jsx",
+      "achievements": [
+        {
+          "id": "jargon",
+          "name": "Jargon Buster!",
+          "title_uz": "So'z-elagida uchala kasbiy so'zni o'zingiz topdingiz",
+          "title_ru": "Вы сами нашли все три профессиональных слова в сите слов"
+        },
+        {
+          "id": "plain",
+          "name": "Plain Talker!",
+          "title_uz": "Pitchni kasbiy so'zlarsiz yozdingiz",
+          "title_ru": "Вы написали питч без профессиональных слов"
+        },
+        {
+          "id": "ear",
+          "name": "Good Ear!",
+          "title_uz": "Uchala kartaga to'g'ri hukm chiqardingiz",
+          "title_ru": "Вы верно оценили все три карточки"
+        },
+        {
+          "id": "speaker",
+          "name": "System Speaker!",
+          "title_uz": "Sistemaning uch qatlamini kodda ko'rsatdingiz",
+          "title_ru": "Вы показали три слоя системы в коде"
+        }
+      ]
     },
     {
       "lesson_id": "pm-m2d2-v1",
       "title_uz": "Muammodan yechimga",
       "title_ru": "От проблемы к решению",
       "version": "v1",
-      "source": "src/2-Modull/PmLesson4.jsx"
+      "source": "src/2-Modull/PmLesson4.jsx",
+      "achievements": [
+        {
+          "id": "pairfinder",
+          "name": "Pair Finder!",
+          "title_uz": "Imkoniyatlarni qiyinchiliklarga bog'ladingiz",
+          "title_ru": "Вы связали возможности с трудностями"
+        },
+        {
+          "id": "matchmaster",
+          "name": "Match Master!",
+          "title_uz": "Uchala imkoniyatni o'z qiyinchiligiga qo'ydingiz",
+          "title_ru": "Вы поставили все три возможности к своей трудности"
+        },
+        {
+          "id": "cardwriter",
+          "name": "Card Writer!",
+          "title_uz": "Uchta juftlik-kartangizni yozib bo'ldingiz",
+          "title_ru": "Вы дописали все три карточки-пары"
+        },
+        {
+          "id": "pagemaker",
+          "name": "Page Maker!",
+          "title_uz": "Juftliklarni ko'rsatadigan kodni yozdingiz",
+          "title_ru": "Вы написали код, который показывает пары"
+        }
+      ]
     },
     {
       "lesson_id": "pm-m2d7-v1",
       "title_uz": "pm-m2d7-v1",
       "title_ru": "Декомпозиция — список к открытию",
       "version": "v1",
-      "source": "src/2-Modull/PmLesson5.jsx"
+      "source": "src/2-Modull/PmLesson5.jsx",
+      "achievements": [
+        {
+          "id": "splitter",
+          "name": "Splitter!",
+          "title_uz": "Katta ishni oltita bo'lakka bo'ldingiz",
+          "title_ru": "Вы разбили большую работу на шесть частей"
+        },
+        {
+          "id": "weigher",
+          "name": "Weigh In!",
+          "title_uz": "Oltala imkoniyatni tarozidan o'tkazdingiz",
+          "title_ru": "Вы взвесили все шесть возможностей"
+        },
+        {
+          "id": "launcher",
+          "name": "Launch List!",
+          "title_uz": "Ochilish ro'yxatini tuzib saqladingiz",
+          "title_ru": "Вы составили и сохранили список к открытию"
+        },
+        {
+          "id": "sharpeye",
+          "name": "Sharp Eye!",
+          "title_uz": "Noto'g'ri joydagi kartani topdingiz",
+          "title_ru": "Вы нашли карточку не на своём месте"
+        }
+      ]
     },
     {
       "lesson_id": "pm-m3d10-v1",
       "title_uz": "Qachon «tayyor» deb ayta olamiz?",
       "title_ru": "Когда можно сказать «готово»?",
       "version": "v1",
-      "source": "src/3-Modull/PmLesson9.jsx"
+      "source": "src/3-Modull/PmLesson9.jsx",
+      "achievements": [
+        {
+          "id": "bughunter",
+          "name": "Bug Hunter!",
+          "title_uz": "Uch nosozlikni o'zingiz topdingiz",
+          "title_ru": "Вы сами нашли три неполадки"
+        },
+        {
+          "id": "clearterms",
+          "name": "Clear Terms!",
+          "title_uz": "Uchta tekshiriladigan shart yozdingiz",
+          "title_ru": "Вы написали три проверяемых условия"
+        },
+        {
+          "id": "rightorder",
+          "name": "Right Order!",
+          "title_uz": "Qabul tartibini to'g'ri joyladingiz",
+          "title_ru": "Вы верно разложили порядок приёмки"
+        },
+        {
+          "id": "codechecker",
+          "name": "Code Checker!",
+          "title_uz": "Shartlarni kodga aylantirdingiz",
+          "title_ru": "Вы превратили условия в код"
+        }
+      ]
     },
     {
       "lesson_id": "pm-m3d14-v1",
       "title_uz": "pm-m3d14-v1",
       "title_ru": "Как показать свой работающий сайт?",
       "version": "v1",
-      "source": "src/3-Modull/PmLesson10.jsx"
+      "source": "src/3-Modull/PmLesson10.jsx",
+      "achievements": [
+        {
+          "id": "silentwatch",
+          "name": "Silent Watch!",
+          "title_uz": "Gapsiz ko'rsatuvni ochib chiqdingiz",
+          "title_ru": "Вы открыли показ без слов до конца"
+        },
+        {
+          "id": "threeframes",
+          "name": "Three Frames!",
+          "title_uz": "Uch kadrlik ko'rsatuv yozdingiz",
+          "title_ru": "Вы написали показ из трёх кадров"
+        },
+        {
+          "id": "spoton",
+          "name": "Spot On!",
+          "title_uz": "Ko'rsatiladigan harakatni topdingiz",
+          "title_ru": "Вы нашли действие, которое показывают"
+        },
+        {
+          "id": "liveproof",
+          "name": "Live Proof!",
+          "title_uz": "Natijani ekranda ko'rinadigan qildingiz",
+          "title_ru": "Вы сделали результат видимым на экране"
+        }
+      ]
     },
     {
       "lesson_id": "pm-m3d2-v3",
       "title_uz": "User Story: kim va nima uchun?",
       "title_ru": "User Story",
       "version": "v3",
-      "source": "src/pm/PmUserStoryLesson.jsx"
+      "source": "src/pm/PmUserStoryLesson.jsx",
+      "achievements": [
+        {
+          "id": "storybuilder",
+          "name": "Story Pro!",
+          "title_uz": "Ustaxonada 3/3 User Story yozdingiz",
+          "title_ru": "Вы написали 3/3 User Story в мастерской"
+        },
+        {
+          "id": "hotspotace",
+          "name": "Nice Catch!",
+          "title_uz": "3 hikoyadagi xatoni ham to'g'ri topdingiz",
+          "title_ru": "Вы верно нашли ошибку во всех 3 историях"
+        },
+        {
+          "id": "toolmaker",
+          "name": "Tool Maker!",
+          "title_uz": "User Story yig'uvchini kod bilan qurdingiz",
+          "title_ru": "Вы собрали кодом сборщик User Story"
+        },
+        {
+          "id": "graduate",
+          "name": "Level Up!",
+          "title_uz": "User Story darsini yakunladingiz",
+          "title_ru": "Вы прошли урок про User Story"
+        }
+      ]
     },
     {
       "lesson_id": "pm-m3d5-v1",
       "title_uz": "pm-m3d5-v1",
       "title_ru": "Какую задачу сделаете первой?",
       "version": "v1",
-      "source": "src/3-Modull/PmLesson8.jsx"
+      "source": "src/3-Modull/PmLesson8.jsx",
+      "achievements": [
+        {
+          "id": "boardmaster",
+          "name": "Board Master!",
+          "title_uz": "Olti ishni kataklarga joylashtirdingiz",
+          "title_ru": "Вы разложили шесть задач по клеткам"
+        },
+        {
+          "id": "quickwin",
+          "name": "Quick Win!",
+          "title_uz": "Birinchi ishingizni tanladingiz",
+          "title_ru": "Вы выбрали свою первую задачу"
+        },
+        {
+          "id": "planchanger",
+          "name": "Plan Changer!",
+          "title_uz": "Vaqt o'zgargach qarorni yangiladingiz",
+          "title_ru": "Время изменилось — и вы обновили решение"
+        },
+        {
+          "id": "codepainter",
+          "name": "Code Painter!",
+          "title_uz": "Kartalarni rangi bilan chiqardingiz",
+          "title_ru": "Вы вывели карточки в их цветах"
+        }
+      ]
     },
     {
       "lesson_id": "pm-m4a2-v1",
       "title_uz": "Hamma birdan kirsa, sayt chidaydimi?",
       "title_ru": "Выдержит ли сайт, если все зайдут разом?",
       "version": "v1",
-      "source": "src/4a-Modull/PmLesson15.jsx"
+      "source": "src/4a-Modull/PmLesson15.jsx",
+      "achievements": [
+        {
+          "id": "loadtester",
+          "name": "Load Tester!",
+          "title_uz": "Birinchi sinadigan qismni o'zingiz topdingiz",
+          "title_ru": "Вы сами нашли часть, которая ломается первой"
+        },
+        {
+          "id": "wisebuilder",
+          "name": "Wise Builder!",
+          "title_uz": "Uch qarorni sabab bilan yozdingiz",
+          "title_ru": "Вы записали три решения с причинами"
+        },
+        {
+          "id": "rankmaster",
+          "name": "Rank Master!",
+          "title_uz": "Sinish tartibini to'g'ri topdingiz",
+          "title_ru": "Вы верно нашли порядок поломки"
+        },
+        {
+          "id": "loadcoder",
+          "name": "Load Coder!",
+          "title_uz": "Sinadigan qismlarni kod bilan topdingiz",
+          "title_ru": "Вы нашли ломающиеся части с помощью кода"
+        }
+      ]
     },
     {
       "lesson_id": "pm-m4b2-v1",
       "title_uz": "Bitta xato — nechta odam ketadi?",
       "title_ru": "Одна ошибка — сколько людей уйдёт?",
       "version": "v1",
-      "source": "src/4b-Modull/PmLesson16.jsx"
+      "source": "src/4b-Modull/PmLesson16.jsx",
+      "achievements": [
+        {
+          "id": "cheapfix",
+          "name": "Cheap Fix!",
+          "title_uz": "Nosozlik narxini uch nuqtada ko'rdingiz",
+          "title_ru": "Вы увидели цену поломки в трёх точках"
+        },
+        {
+          "id": "bugreporter",
+          "name": "Bug Reporter!",
+          "title_uz": "Uch sharhni karta qilib yozdingiz",
+          "title_ru": "Вы превратили три отзыва в карточки"
+        },
+        {
+          "id": "prioritycall",
+          "name": "Priority Call!",
+          "title_uz": "To'rt kartaga to'g'ri hukm berdingiz",
+          "title_ru": "Вы верно вынесли приговор четырём карточкам"
+        },
+        {
+          "id": "redtogreen",
+          "name": "Red to Green!",
+          "title_uz": "Testni avval qizil, keyin yashil qildingiz",
+          "title_ru": "Вы сделали тест сначала красным, потом зелёным"
+        }
+      ]
     },
     {
       "lesson_id": "pm-m4c2-v1",
       "title_uz": "pm-m4c2-v1",
       "title_ru": "Выпустить всё разом — или по кусочку каждую неделю?",
       "version": "v1",
-      "source": "src/4c-Modull/PmLesson17.jsx"
+      "source": "src/4c-Modull/PmLesson17.jsx",
+      "achievements": [
+        {
+          "id": "pacesetter",
+          "name": "Pace Setter!",
+          "title_uz": "Poygani oxirigacha o'tkazdingiz",
+          "title_ru": "Вы провели гонку до конца"
+        },
+        {
+          "id": "fastshipper",
+          "name": "Fast Shipper!",
+          "title_uz": "Uch haftalik rejangizni yozdingiz",
+          "title_ru": "Вы записали свой план на три недели"
+        },
+        {
+          "id": "gatekeeper",
+          "name": "Gate Keeper!",
+          "title_uz": "Uch bo'lakni haftaga sig'dirdingiz",
+          "title_ru": "Вы уместили три кусочка в неделю"
+        },
+        {
+          "id": "weekplanner",
+          "name": "Week Planner!",
+          "title_uz": "Ishni haftalarga kod bilan bo'lib chiqdingiz",
+          "title_ru": "Вы разбили задачу по неделям с помощью кода"
+        }
+      ]
     },
     {
       "lesson_id": "pm-m4c6-v1",
       "title_uz": "Saytingiz hozir ochilyaptimi?",
       "title_ru": "Ваш сайт сейчас открывается?",
       "version": "v1",
-      "source": "src/4c-Modull/PmLesson18.jsx"
+      "source": "src/4c-Modull/PmLesson18.jsx",
+      "achievements": [
+        {
+          "id": "eagleeye",
+          "name": "Eagle Eye!",
+          "title_uz": "Uch sonni sinab, farqini ko'rdingiz",
+          "title_ru": "Вы попробовали три числа и увидели разницу"
+        },
+        {
+          "id": "rulewriter",
+          "name": "Rule Writer!",
+          "title_uz": "Uch qoidani sabab bilan yozdingiz",
+          "title_ru": "Вы записали три правила с причинами"
+        },
+        {
+          "id": "coolhead",
+          "name": "Cool Head!",
+          "title_uz": "To'rt signalning yo'lini tanladingiz",
+          "title_ru": "Вы выбрали путь для четырёх сигналов"
+        },
+        {
+          "id": "sitechecker",
+          "name": "Site Checker!",
+          "title_uz": "Saytingizni kod bilan o'lchadingiz",
+          "title_ru": "Вы измерили свой сайт кодом"
+        }
+      ]
     },
     {
       "lesson_id": "pm-m4d12-v1",
       "title_uz": "Ilova nimani yozib qoladi?",
       "title_ru": "Что приложение записывает?",
       "version": "v1",
-      "source": "src/4-Modull/PmLesson13.jsx"
+      "source": "src/4-Modull/PmLesson13.jsx",
+      "achievements": [
+        {
+          "id": "threadmaster",
+          "name": "Thread Master!",
+          "title_uz": "To'rt gapni to'rt ustunga uladingiz",
+          "title_ru": "Вы соединили четыре фразы с четырьмя столбцами"
+        },
+        {
+          "id": "schemamaker",
+          "name": "Schema Maker!",
+          "title_uz": "Uch ustunli sxemangizni tuzdingiz",
+          "title_ru": "Вы составили схему из трёх столбцов"
+        },
+        {
+          "id": "rulekeeper",
+          "name": "Rule Keeper!",
+          "title_uz": "Sxemani uch shartdan o'tkazdingiz",
+          "title_ru": "Вы проверили схему по трём условиям"
+        },
+        {
+          "id": "recordbuilder",
+          "name": "Record Builder!",
+          "title_uz": "Yozuvni sxema bo'yicha to'ldirdingiz",
+          "title_ru": "Вы заполнили запись по схеме"
+        }
+      ]
     },
     {
       "lesson_id": "pm-m4d15-v1",
       "title_uz": "«Qanday ishlaydi?» deb so'rashsa",
       "title_ru": "Если спросят: «Как это работает?»",
       "version": "v1",
-      "source": "src/4-Modull/PmLesson14.jsx"
+      "source": "src/4-Modull/PmLesson14.jsx",
+      "achievements": [
+        {
+          "id": "threefloors",
+          "name": "Three Floors!",
+          "title_uz": "Uch qavatning ishini ochib chiqdingiz",
+          "title_ru": "Вы открыли дело трёх этажей"
+        },
+        {
+          "id": "plaintalk",
+          "name": "Plain Talk!",
+          "title_uz": "Uch qavatga oddiy gap yozdingiz",
+          "title_ru": "Вы написали простые фразы для трёх этажей"
+        },
+        {
+          "id": "goodreason",
+          "name": "Good Reason!",
+          "title_uz": "Uchala qarorga mos sababni topdingiz",
+          "title_ru": "Вы нашли подходящую причину для всех трёх решений"
+        },
+        {
+          "id": "onscreen",
+          "name": "On Screen!",
+          "title_uz": "Ko'rinmas qavatni ekranda ko'rsatdingiz",
+          "title_ru": "Вы показали невидимый этаж на экране"
+        }
+      ]
     },
     {
       "lesson_id": "pm-m4d2-v1",
       "title_uz": "Ilova nimani eslab qolsin?",
       "title_ru": "Что приложению запомнить?",
       "version": "v1",
-      "source": "src/4-Modull/PmLesson11.jsx"
+      "source": "src/4-Modull/PmLesson11.jsx",
+      "achievements": [
+        {
+          "id": "memorymaker",
+          "name": "Memory Maker!",
+          "title_uz": "Beshta tugmani sinab ko'rdingiz",
+          "title_ru": "Вы попробовали все пять переключателей"
+        },
+        {
+          "id": "fieldwriter",
+          "name": "Field Writer!",
+          "title_uz": "Uch maydonni bo'limi bilan yozdingiz",
+          "title_ru": "Вы написали три поля вместе с разделами"
+        },
+        {
+          "id": "sectionbuilder",
+          "name": "Section Builder!",
+          "title_uz": "Uch bo'limni jadvaldan qurdingiz",
+          "title_ru": "Вы построили три раздела из таблицы"
+        },
+        {
+          "id": "datacoder",
+          "name": "Data Coder!",
+          "title_uz": "Yoqqan qo'shiqlarni kod ajratdi",
+          "title_ru": "Код отобрал понравившиеся песни"
+        }
+      ]
     },
     {
       "lesson_id": "pm-m4d7-v1",
       "title_uz": "Sinfdoshingiz sahifangizni ochsa, nimani ko'radi?",
       "title_ru": "Что увидит одноклассник, открыв вашу страницу?",
       "version": "v1",
-      "source": "src/4-Modull/PmLesson12.jsx"
+      "source": "src/4-Modull/PmLesson12.jsx",
+      "achievements": [
+        {
+          "id": "eyesopen",
+          "name": "Eyes Open!",
+          "title_uz": "Uch qatorni sinfdoshdan yopdingiz",
+          "title_ru": "Вы закрыли три строки от одноклассника"
+        },
+        {
+          "id": "clearreasons",
+          "name": "Clear Reasons!",
+          "title_uz": "Uchala qatorga sababini yozdingiz",
+          "title_ru": "Вы написали причину для всех трёх строк"
+        },
+        {
+          "id": "cleanmessage",
+          "name": "Clean Message!",
+          "title_uz": "Xabardan ortiqchasini olib tashladingiz",
+          "title_ru": "Вы убрали лишнее из сообщения"
+        },
+        {
+          "id": "columnpicker",
+          "name": "Column Picker!",
+          "title_uz": "So'rovni kerakli ustunlarga qisqartirdingiz",
+          "title_ru": "Вы сократили запрос до нужных столбцов"
+        }
+      ]
     },
     {
       "lesson_id": "pm-m5d11-v1",
       "title_uz": "Kecha kelgan odam bugun ham keldimi?",
       "title_ru": null,
       "version": "v1",
-      "source": "src/5-Modull/PmLesson21.jsx"
+      "source": "src/5-Modull/PmLesson21.jsx",
+      "achievements": [
+        {
+          "id": "daytwo",
+          "name": "Day Two!",
+          "title_uz": "Kunlarni ochib ikki sonni yonma-yon ko'rdingiz",
+          "title_ru": null
+        },
+        {
+          "id": "countkeeper",
+          "name": "Count Keeper!",
+          "title_uz": "Uch kunning hisobini yozdingiz",
+          "title_ru": null
+        },
+        {
+          "id": "twoinarow",
+          "name": "Two In A Row!",
+          "title_uz": "To'rt qatorda qaytish kunlarini belgiladingiz",
+          "title_ru": null
+        },
+        {
+          "id": "codecounter",
+          "name": "Code Counter!",
+          "title_uz": "Qaytganlarni kod bilan sanadingiz",
+          "title_ru": null
+        }
+      ]
     },
     {
       "lesson_id": "pm-m5d2-v1",
       "title_uz": "Botingizni birinchi kim ochadi?",
       "title_ru": null,
       "version": "v1",
-      "source": "src/5-Modull/PmLesson19.jsx"
+      "source": "src/5-Modull/PmLesson19.jsx",
+      "achievements": [
+        {
+          "id": "innercircle",
+          "name": "Map Pro!",
+          "title_uz": "Uch halqani ochib solishtirdingiz",
+          "title_ru": null
+        },
+        {
+          "id": "twentyplan",
+          "name": "My Plan!",
+          "title_uz": "Uchta joyni odam soni bilan yozdingiz",
+          "title_ru": null
+        },
+        {
+          "id": "fullhouse",
+          "name": "20 Done!",
+          "title_uz": "Yigirmata odamni yig'ib bo'ldingiz",
+          "title_ru": null
+        },
+        {
+          "id": "headcount",
+          "name": "Code Master!",
+          "title_uz": "Kodingiz uch joyni sanab berdi",
+          "title_ru": null
+        }
+      ]
     },
     {
       "lesson_id": "pm-m5d8-v1",
       "title_uz": "pm-m5d8-v1",
       "title_ru": null,
       "version": "v1",
-      "source": "src/5-Modull/PmLesson20.jsx"
+      "source": "src/5-Modull/PmLesson20.jsx",
+      "achievements": [
+        {
+          "id": "goodlistener",
+          "name": "Good Listener!",
+          "title_uz": "To'rt javobni oxirigacha eshitdingiz",
+          "title_ru": null
+        },
+        {
+          "id": "notetaker",
+          "name": "Note Taker!",
+          "title_uz": "Uch savol va uch javobni yozdingiz",
+          "title_ru": null
+        },
+        {
+          "id": "sharpsifter",
+          "name": "Sharp Sifter!",
+          "title_uz": "To'rt savolning to'sig'ini tanladingiz",
+          "title_ru": null
+        },
+        {
+          "id": "sheetmaker",
+          "name": "Sheet Maker!",
+          "title_uz": "Suhbat varag'ini kod bilan chiqardingiz",
+          "title_ru": null
+        }
+      ]
     },
     {
       "lesson_id": "pm-m6d12-v1",
       "title_uz": "Bugun qaysi ish boshlanadi?",
       "title_ru": null,
       "version": "v1",
-      "source": "src/6-Modull/PmLesson24.jsx"
+      "source": "src/6-Modull/PmLesson24.jsx",
+      "achievements": [
+        {
+          "id": "roadbuilder",
+          "name": "Road Builder!",
+          "title_uz": "Uch ufq yo'lini oxirigacha yurdingiz",
+          "title_ru": null
+        },
+        {
+          "id": "planwriter",
+          "name": "Plan Writer!",
+          "title_uz": "Uch ufqqa uchta ishni yozdingiz",
+          "title_ru": null
+        },
+        {
+          "id": "horizonmaster",
+          "name": "Horizon Master!",
+          "title_uz": "Oltita ishni ufqlarga joyladingiz",
+          "title_ru": null
+        },
+        {
+          "id": "codeplanner",
+          "name": "Code Planner!",
+          "title_uz": "Rejani kod bilan ufqlarga ajratdingiz",
+          "title_ru": null
+        }
+      ]
     },
     {
       "lesson_id": "pm-m6d14-v1",
       "title_uz": "Raqamingiz nimani isbotlaydi?",
       "title_ru": null,
       "version": "v1",
-      "source": "src/6-Modull/PmLesson25.jsx"
+      "source": "src/6-Modull/PmLesson25.jsx",
+      "achievements": [
+        {
+          "id": "slidetalker",
+          "name": "Slide Talker!",
+          "title_uz": "Slaydning uch qatorini o'zingiz ochdingiz",
+          "title_ru": null
+        },
+        {
+          "id": "prooffinder",
+          "name": "Proof Finder!",
+          "title_uz": "Ikki rost raqamdan isbot beradiganini topdingiz",
+          "title_ru": null
+        },
+        {
+          "id": "stageready",
+          "name": "Stage Ready!",
+          "title_uz": "Sahnaga chiqadigan slaydni yozdingiz",
+          "title_ru": null
+        },
+        {
+          "id": "numberduel",
+          "name": "Number Duel!",
+          "title_uz": "Uch juftlikda raqamni tanladingiz",
+          "title_ru": null
+        }
+      ]
     },
     {
       "lesson_id": "pm-m6d2-v1",
       "title_uz": "Bitta gapni uch kishi bir xil tushunadimi?",
       "title_ru": null,
       "version": "v1",
-      "source": "src/6-Modull/PmLesson22.jsx"
+      "source": "src/6-Modull/PmLesson22.jsx",
+      "achievements": [
+        {
+          "id": "rightquestion",
+          "name": "Right Question!",
+          "title_uz": "To'rt savolni murabbiydan o'zingiz so'radingiz",
+          "title_ru": null
+        },
+        {
+          "id": "onepager",
+          "name": "One Pager!",
+          "title_uz": "To'rt katakni ham to'ldirdingiz",
+          "title_ru": null
+        },
+        {
+          "id": "sharpeye",
+          "name": "Sharp Eye!",
+          "title_uz": "Uch varaqni ham to'g'ri o'qib chiqdingiz",
+          "title_ru": null
+        },
+        {
+          "id": "codecheck",
+          "name": "Code Check!",
+          "title_uz": "Kod endi bo'sh katakni o'zi topadi",
+          "title_ru": null
+        }
+      ]
     },
     {
       "lesson_id": "pm-m6d6-v1",
       "title_uz": "pm-m6d6-v1",
       "title_ru": null,
       "version": "v1",
-      "source": "src/6-Modull/PmLesson23.jsx"
+      "source": "src/6-Modull/PmLesson23.jsx",
+      "achievements": [
+        {
+          "id": "mirrorcheck",
+          "name": "Mirror Check!",
+          "title_uz": "Qaror kimga tegishini o'zingiz ko'rdingiz",
+          "title_ru": null
+        },
+        {
+          "id": "rulemaker",
+          "name": "Rule Maker!",
+          "title_uz": "Uch chegarani odami bilan yozdingiz",
+          "title_ru": null
+        },
+        {
+          "id": "pairfinder",
+          "name": "Pair Finder!",
+          "title_uz": "To'rt qarorni odamiga qo'shdingiz",
+          "title_ru": null
+        },
+        {
+          "id": "limitcoder",
+          "name": "Limit Coder!",
+          "title_uz": "Chegara kerak ishlarni kod bilan topdingiz",
+          "title_ru": null
+        }
+      ]
     },
     {
       "lesson_id": "pm-m7d2-v2",
       "title_uz": "Jobs-to-be-Done: odamlar nimani sotib oladi?",
       "title_ru": "Jobs-to-be-Done",
       "version": "v2",
-      "source": "src/pm/PmJtbdLesson.jsx"
+      "source": "src/pm/PmJtbdLesson.jsx",
+      "achievements": [
+        {
+          "id": "cardmaster",
+          "name": "Card Master!",
+          "title_uz": "Ustaxonada 3/3 JTBD-karta tuzdingiz",
+          "title_ru": null
+        },
+        {
+          "id": "jobhunter",
+          "name": "Job Hunter!",
+          "title_uz": "3 tekshiruvni ham yechib chiqdingiz",
+          "title_ru": null
+        },
+        {
+          "id": "toolmaker",
+          "name": "Tool Maker!",
+          "title_uz": "JtbdCard React-komponentini yasadingiz",
+          "title_ru": null
+        },
+        {
+          "id": "graduate",
+          "name": "Level Up!",
+          "title_uz": "Jobs-to-be-Done darsini yakunladingiz",
+          "title_ru": null
+        }
+      ]
     },
     {
       "lesson_id": "pm-m8d1-v2",
       "title_uz": "Metrika nima: DAU, retention, North Star",
       "title_ru": "Metriki",
       "version": "v2",
-      "source": "src/pm/PmMetricsLesson.jsx"
+      "source": "src/pm/PmMetricsLesson.jsx",
+      "achievements": [
+        {
+          "id": "panelpro",
+          "name": "Panel Pro!",
+          "title_uz": "North Star va 3 metrika-kartani yozdingiz",
+          "title_ru": null
+        },
+        {
+          "id": "dataeye",
+          "name": "Data Eye!",
+          "title_uz": "3 testni ham to'g'ri yechdingiz",
+          "title_ru": null
+        },
+        {
+          "id": "calcmaster",
+          "name": "Calc Master!",
+          "title_uz": "Retention foizini kodda hisobladingiz",
+          "title_ru": null
+        },
+        {
+          "id": "graduate",
+          "name": "Level Up!",
+          "title_uz": "Metrika darsini yakunladingiz",
+          "title_ru": null
+        }
+      ]
     },
     {
       "lesson_id": "pm-pitch-03-v19",
       "title_uz": "Demo Day — 3 daqiqalik nutq",
       "title_ru": "Демо-день — трёхминутная речь",
       "version": "v19",
-      "source": "src/1-Modull/PmLesson3.jsx"
+      "source": "src/1-Modull/PmLesson3.jsx",
+      "achievements": [
+        {
+          "id": "finder",
+          "name": "Problem Finder!",
+          "title_uz": "Saytingiz kimga foyda berishini aniqladingiz",
+          "title_ru": "Вы определили, кому помогает ваш сайт"
+        },
+        {
+          "id": "demoman",
+          "name": "Demo Ready!",
+          "title_uz": "Demoda nima ko'rsatishni tanladingiz",
+          "title_ru": "Вы выбрали, что показать в демо"
+        },
+        {
+          "id": "nextlvl",
+          "name": "Next Level!",
+          "title_uz": "JavaScript nima qo'shishini to'g'ri topdingiz",
+          "title_ru": "Вы верно нашли, что добавляет JavaScript"
+        },
+        {
+          "id": "stage",
+          "name": "Stage Ready!",
+          "title_uz": "3 daqiqalik nutqingizni to'liq yozdingiz",
+          "title_ru": "Вы полностью записали свою трёхминутную речь"
+        },
+        {
+          "id": "graduate",
+          "name": "Level Up!",
+          "title_uz": "Demo Day tayyorgarligini to'liq yakunladingiz",
+          "title_ru": "Вы полностью завершили подготовку к Демо-дню"
+        }
+      ]
     },
     {
       "lesson_id": "pm-problemhunt-28-v16",
       "title_uz": "Muammoni qanday izlash — ov boshlandi",
       "title_ru": "Как искать проблему — охота началась",
       "version": "v16",
-      "source": "src/7-Modull/PmLesson28.jsx"
+      "source": "src/7-Modull/PmLesson28.jsx",
+      "achievements": []
     },
     {
       "lesson_id": "pm-product-26-v16",
       "title_uz": "Mahsulot vs loyiha — Akselerator boshlanishi",
       "title_ru": "Продукт vs проект — старт акселератора",
       "version": "v16",
-      "source": "src/7-Modull/PmLesson26.jsx"
+      "source": "src/7-Modull/PmLesson26.jsx",
+      "achievements": []
     },
     {
       "lesson_id": "pm-usability-34-v16",
       "title_uz": "Real odam bilan test — gapirma, kuzat",
       "title_ru": "Юзабилити-тест",
       "version": "v16",
-      "source": "src/7-Modull/PmLesson34.jsx"
+      "source": "src/7-Modull/PmLesson34.jsx",
+      "achievements": []
     },
     {
       "lesson_id": "pm-user-story-07-v16",
       "title_uz": "User Story — kim va nima uchun",
       "title_ru": "User Story — кто и зачем",
       "version": "v16",
-      "source": "src/3-Modull/PmLesson7.jsx"
+      "source": "src/3-Modull/PmLesson7.jsx",
+      "achievements": []
     },
     {
       "lesson_id": "practice-01-jonlantirish-v18",
       "title_uz": "Praktika 1 — Saytni jonlantiramiz",
       "title_ru": "Практика 1 — Оживляем сайт",
       "version": "v18",
-      "source": "src/2-Modull/PracticeLesson1.jsx"
+      "source": "src/2-Modull/PracticeLesson1.jsx",
+      "achievements": [
+        {
+          "id": "spark",
+          "name": "It's Alive!",
+          "title_uz": "Hodisa → reaksiya mantig'ini to'g'ri angladingiz",
+          "title_ru": "Вы верно поняли логику событие → реакция"
+        },
+        {
+          "id": "coder",
+          "name": "Code It!",
+          "title_uz": "JavaScript yozib, vositani ishga tushirdingiz",
+          "title_ru": "Вы написали JavaScript и запустили инструмент"
+        },
+        {
+          "id": "logician",
+          "name": "Nice Logic!",
+          "title_uz": "Shart (if/else) savolini to'g'ri yechdingiz",
+          "title_ru": "Вы верно решили вопрос про условие (if/else)"
+        },
+        {
+          "id": "graduate",
+          "name": "Level Up!",
+          "title_uz": "Praktikani yakunladingiz",
+          "title_ru": "Вы завершили практику"
+        }
+      ]
     },
     {
       "lesson_id": "practice-02-ai-promo-v18",
       "title_uz": "Praktika 2 — AI bilan tez sayt",
       "title_ru": "Практика 2 — Быстрый сайт через AI",
       "version": "v18",
-      "source": "src/2-Modull/PracticeLesson2.jsx"
+      "source": "src/2-Modull/PracticeLesson2.jsx",
+      "achievements": [
+        {
+          "id": "prompt",
+          "name": "Prompt Pro",
+          "title_uz": "Yaxshi promptni yomonidan ajratdingiz",
+          "title_ru": "Вы отличили хороший промпт от плохого"
+        },
+        {
+          "id": "best",
+          "name": "Best Brief",
+          "title_uz": "Eng aniq buyruqni tanladingiz",
+          "title_ru": "Вы выбрали самую точную команду"
+        },
+        {
+          "id": "iterate",
+          "name": "Iterator",
+          "title_uz": "Iteratsiya bilan natijani yaxshiladingiz",
+          "title_ru": "Вы улучшили результат итерацией"
+        },
+        {
+          "id": "builder",
+          "name": "Ship It!",
+          "title_uz": "O'z promo saytingizni qurib nashr qildingiz",
+          "title_ru": "Вы построили и опубликовали свой промо-сайт"
+        }
+      ]
     },
     {
       "lesson_id": "practice-03-decompose-v18",
       "title_uz": "Praktika 3 — Dekompozitsiya (mini-do'kon)",
       "title_ru": "Практика 3 — Декомпозиция (мини-магазин)",
       "version": "v18",
-      "source": "src/2-Modull/PracticeLesson3.jsx"
+      "source": "src/2-Modull/PracticeLesson3.jsx",
+      "achievements": [
+        {
+          "id": "mvp",
+          "name": "MVP!",
+          "title_uz": "MVP — eng kichik ishlaydigan versiyani tushundingiz",
+          "title_ru": "Вы поняли MVP — минимальную работающую версию"
+        },
+        {
+          "id": "planner",
+          "name": "Planner!",
+          "title_uz": "Qadamlarni to'g'ri tartibga sudrab qo'ydingiz",
+          "title_ru": "Вы перетащили шаги в правильный порядок"
+        },
+        {
+          "id": "architect",
+          "name": "Architect!",
+          "title_uz": "Nimadan boshlashni bildingiz — poydevordan",
+          "title_ru": "Вы узнали, с чего начинать — с фундамента"
+        },
+        {
+          "id": "graduate",
+          "name": "Level Up!",
+          "title_uz": "Dekompozitsiya praktikasini yakunladingiz",
+          "title_ru": "Вы завершили практику по декомпозиции"
+        }
+      ]
     },
     {
       "lesson_id": "practice-04-mvp-deploy-v18",
       "title_uz": "Praktika 4 — MVP tayyor (deploy)",
       "title_ru": "Практика 4 — MVP готов (деплой)",
       "version": "v18",
-      "source": "src/2-Modull/PracticeLesson4.jsx"
+      "source": "src/2-Modull/PracticeLesson4.jsx",
+      "achievements": [
+        {
+          "id": "builder",
+          "name": "Built It!",
+          "title_uz": "Savat va jami narxni qurdingiz",
+          "title_ru": "Вы построили корзину и итоговую цену"
+        },
+        {
+          "id": "fixer",
+          "name": "Nice Fix!",
+          "title_uz": "AI'ning xatosini aniq tushuntirib tuzatdingiz",
+          "title_ru": "Вы точно объяснили и починили ошибку ИИ"
+        },
+        {
+          "id": "shipper",
+          "name": "Shipped It!",
+          "title_uz": "MVP'ni dunyoga chiqardingiz",
+          "title_ru": "Вы выпустили MVP в мир"
+        },
+        {
+          "id": "planner",
+          "name": "Master Plan!",
+          "title_uz": "Universal yo'lni o'zingiz tartibladingiz",
+          "title_ru": "Вы сами выстроили универсальный путь"
+        }
+      ]
     },
     {
       "lesson_id": "react-api-get-05-v18",
       "title_uz": "react-api-get-05-v18",
       "title_ru": "Работа с API — GET",
       "version": "v18",
-      "source": "src/3-Modull/ReactApiGetLesson.jsx"
+      "source": "src/3-Modull/ReactApiGetLesson.jsx",
+      "achievements": [
+        {
+          "id": "firstfetch",
+          "name": "First Fetch!",
+          "title_uz": "Birinchi fetch so'rovini yubordingiz",
+          "title_ru": "Вы отправили первый fetch-запрос"
+        },
+        {
+          "id": "served",
+          "name": "Order Served!",
+          "title_uz": "Ma'lumotni setGames bilan ekranga chiqardingiz",
+          "title_ru": "Вы вывели данные на экран через setGames"
+        },
+        {
+          "id": "detective",
+          "name": "404 Detective!",
+          "title_uz": "Xato manzilni topib tuzatdingiz",
+          "title_ru": "Вы нашли и исправили неверный адрес"
+        },
+        {
+          "id": "headwaiter",
+          "name": "Head Waiter!",
+          "title_uz": "So'rov kodini o'zingiz yozdingiz",
+          "title_ru": "Вы сами написали код запроса"
+        }
+      ]
     },
     {
       "lesson_id": "react-api-post-06-v18",
       "title_uz": "react-api-post-06-v18",
       "title_ru": "Работа с API — POST/PUT/DELETE",
       "version": "v18",
-      "source": "src/3-Modull/ReactApiPostLesson.jsx"
+      "source": "src/3-Modull/ReactApiPostLesson.jsx",
+      "achievements": [
+        {
+          "id": "poster",
+          "name": "Shipped It!",
+          "title_uz": "Birinchi POST — serverga yozuv qo'shdingiz",
+          "title_ru": "Первый POST — Вы добавили запись на сервер"
+        },
+        {
+          "id": "packer",
+          "name": "Packed & Sealed",
+          "title_uz": "body'ni JSON.stringify bilan qadoqladingiz",
+          "title_ru": "Вы упаковали body с помощью JSON.stringify"
+        },
+        {
+          "id": "dispatcher",
+          "name": "Dispatcher!",
+          "title_uz": "Pultda 3 posilkani to'g'ri jo'natdingiz",
+          "title_ru": "Вы правильно отправили 3 посылки с пульта"
+        },
+        {
+          "id": "graduate",
+          "name": "Level Up!",
+          "title_uz": "API POST/PUT/DELETE darsini yakunladingiz",
+          "title_ru": "Вы завершили урок API POST/PUT/DELETE"
+        }
+      ]
     },
     {
       "lesson_id": "react-build-site-final-p4-v18",
       "title_uz": "Praktika: Istalgan saytni qurish — bo'laklash + aniq prompt",
       "title_ru": "Практика: Сборка любого сайта — декомпозиция + точный промпт",
       "version": "v18",
-      "source": "src/3-Modull/ReactBuildSiteLesson.jsx"
+      "source": "src/3-Modull/ReactBuildSiteLesson.jsx",
+      "achievements": [
+        {
+          "id": "sniper",
+          "name": "Prompt Sniper!",
+          "title_uz": "Eng aniq promptni 1-urinishda topdingiz",
+          "title_ru": "Вы нашли самый точный промпт с 1-й попытки"
+        },
+        {
+          "id": "debugger",
+          "name": "Nice Catch!",
+          "title_uz": "AI xatosini aniqlashtiruvchi prompt bilan tuzatdingiz",
+          "title_ru": "Вы исправили ошибку ИИ уточняющим промптом"
+        },
+        {
+          "id": "builder",
+          "name": "Block Builder!",
+          "title_uz": "TaomCard komponentini o'zingiz e'lon qildingiz",
+          "title_ru": "Вы сами объявили компонент TaomCard"
+        },
+        {
+          "id": "graduate",
+          "name": "Site Shipped!",
+          "title_uz": "Modulning yakuniy darsini to'liq yakunladingiz",
+          "title_ru": "Вы полностью прошли финальный урок модуля"
+        }
+      ]
     },
     {
       "lesson_id": "react-crud-practice-p1-v18",
       "title_uz": "react-crud-practice-p1-v18",
       "title_ru": "Практика: CRUD — управляемое приложение",
       "version": "v18",
-      "source": "src/3-Modull/ReactCrudPracticeLesson.jsx"
+      "source": "src/3-Modull/ReactCrudPracticeLesson.jsx",
+      "achievements": [
+        {
+          "id": "builder",
+          "name": "Full CRUD!",
+          "title_uz": "Qo'shdingiz, o'zgartirdingiz, o'chirdingiz",
+          "title_ru": "Вы добавили, изменили и удалили"
+        },
+        {
+          "id": "debugger",
+          "name": "Nice Catch!",
+          "title_uz": "push mutatsiya xatosini topib, spread'ga tuzatdingiz",
+          "title_ru": "Нашли ошибку-мутацию push и исправили её на spread"
+        },
+        {
+          "id": "finisher",
+          "name": "Ship It!",
+          "title_uz": "Qo'shish kodini VS Code'da o'zingiz yozdingiz",
+          "title_ru": "Сами написали код добавления в VS Code"
+        },
+        {
+          "id": "graduate",
+          "name": "Level Up!",
+          "title_uz": "CRUD praktikasini to'liq yakunladingiz",
+          "title_ru": "Полностью завершили практику CRUD"
+        }
+      ]
     },
     {
       "lesson_id": "react-first-component-02-v18",
       "title_uz": "Birinchi komponent: Vite, JSX, props",
       "title_ru": "Первый компонент: Vite, JSX, props",
       "version": "v18",
-      "source": "src/3-Modull/ReactFirstComponentLesson.jsx"
+      "source": "src/3-Modull/ReactFirstComponentLesson.jsx",
+      "achievements": [
+        {
+          "id": "sharp",
+          "name": "JSX Master!",
+          "title_uz": "Komponent qoidasi testidan o'tdingiz",
+          "title_ru": "Вы прошли тест на правило компонента"
+        },
+        {
+          "id": "debugger",
+          "name": "Nice Catch!",
+          "title_uz": "AI kodidagi class→className xatosini tuzatdingiz",
+          "title_ru": "Вы исправили ошибку class→className в коде AI"
+        },
+        {
+          "id": "builder",
+          "name": "First Component!",
+          "title_uz": "Birinchi komponent chaqiruvini o'zingiz yozdingiz",
+          "title_ru": "Вы сами написали первый вызов компонента"
+        },
+        {
+          "id": "graduate",
+          "name": "Level Up!",
+          "title_uz": "Birinchi komponent darsini to'liq yakunladingiz",
+          "title_ru": "Вы полностью завершили урок о первом компоненте"
+        }
+      ]
     },
     {
       "lesson_id": "react-intro-01-v18",
       "title_uz": "React nima va nima uchun?",
       "title_ru": "Что такое React и зачем",
       "version": "v18",
-      "source": "src/3-Modull/ReactIntroLesson.jsx"
+      "source": "src/3-Modull/ReactIntroLesson.jsx",
+      "achievements": [
+        {
+          "id": "builder",
+          "name": "Built It!",
+          "title_uz": "Saytni komponent bloklaridan yig'dingiz",
+          "title_ru": "Вы собрали сайт из блоков-компонентов"
+        },
+        {
+          "id": "debugger",
+          "name": "Nice Catch!",
+          "title_uz": "AI kodidagi xatoni topib tuzatdingiz",
+          "title_ru": "Вы нашли и исправили ошибку в коде ИИ"
+        },
+        {
+          "id": "flow",
+          "name": "Flow Master!",
+          "title_uz": "React yangilash oqimini to'g'ri tuzdingiz",
+          "title_ru": "Вы верно выстроили поток обновления React"
+        },
+        {
+          "id": "graduate",
+          "name": "Level Up!",
+          "title_uz": "React'ga kirish darsini to'liq yakunladingiz",
+          "title_ru": "Вы полностью прошли вводный урок React"
+        }
+      ]
     },
     {
       "lesson_id": "react-project-day-p3-v18",
       "title_uz": "Praktika: Loyiha kuni — AvtoIjara",
       "title_ru": "Практика: Проектный день — AvtoIjara",
       "version": "v18",
-      "source": "src/3-Modull/ReactProjectDayLesson.jsx"
+      "source": "src/3-Modull/ReactProjectDayLesson.jsx",
+      "achievements": [
+        {
+          "id": "lead",
+          "name": "In Command!",
+          "title_uz": "Agentni buyur → reja → tasdiq bilan boshqardingiz",
+          "title_ru": "Вы управляли агентом: поручи → план → одобри"
+        },
+        {
+          "id": "builder",
+          "name": "Shipped It!",
+          "title_uz": "To'liq AvtoIjara mantiqini ishga tushirdingiz",
+          "title_ru": "Вы запустили полную логику AvtoIjara"
+        },
+        {
+          "id": "debugger",
+          "name": "Bug Hunter!",
+          "title_uz": "jami = kun × narx xatosini topib tuzatdingiz",
+          "title_ru": "Вы нашли и исправили ошибку «итог = дни × цена»"
+        },
+        {
+          "id": "graduate",
+          "name": "Level Up!",
+          "title_uz": "Loyiha kuni capstone darsini yakunladingiz",
+          "title_ru": "Вы завершили capstone-урок проектного дня"
+        }
+      ]
     },
     {
       "lesson_id": "react-props-reuse-04-v18",
       "title_uz": "Props va qayta ishlatish",
       "title_ru": "Props и переиспользование",
       "version": "v18",
-      "source": "src/3-Modull/ReactPropsReuseLesson.jsx"
+      "source": "src/3-Modull/ReactPropsReuseLesson.jsx",
+      "achievements": [
+        {
+          "id": "sharp",
+          "name": "Props Master!",
+          "title_uz": "Props read-only qoidasi testidan o'tdingiz",
+          "title_ru": "Вы прошли тест на правило props read-only"
+        },
+        {
+          "id": "debugger",
+          "name": "Nice Catch!",
+          "title_uz": "map ichida yo'qolgan name={g} xatosini tuzatdingiz",
+          "title_ru": "Вы исправили потерянный name={g} внутри map"
+        },
+        {
+          "id": "builder",
+          "name": "Catalog Builder!",
+          "title_uz": "Konveyer qatorini yozib katalogni ochdingiz",
+          "title_ru": "Вы написали строку конвейера и открыли каталог"
+        },
+        {
+          "id": "graduate",
+          "name": "Level Up!",
+          "title_uz": "Props darsini yakunladingiz",
+          "title_ru": "Вы завершили урок про Props"
+        }
+      ]
     },
     {
       "lesson_id": "react-router-practice-p2-v18",
       "title_uz": "react-router-practice-p2-v18",
       "title_ru": "Практика: React Router — многостраничное приложение",
       "version": "v18",
-      "source": "src/3-Modull/ReactRouterPracticeLesson.jsx"
+      "source": "src/3-Modull/ReactRouterPracticeLesson.jsx",
+      "achievements": [
+        {
+          "id": "builder",
+          "name": "Router Built!",
+          "title_uz": "AI bilan Router'ni qurdingiz",
+          "title_ru": "Вы построили Router вместе с AI"
+        },
+        {
+          "id": "debugger",
+          "name": "Nice Catch!",
+          "title_uz": "AI kodidagi <a>→<Link> xatosini tuzatdingiz",
+          "title_ru": "Вы исправили ошибку <a>→<Link> в коде AI"
+        },
+        {
+          "id": "router",
+          "name": "Route Master!",
+          "title_uz": "Route qatorini o'zingiz yozdingiz",
+          "title_ru": "Вы сами написали строку Route"
+        },
+        {
+          "id": "graduate",
+          "name": "Level Up!",
+          "title_uz": "Router praktikasini to'liq yakunladingiz",
+          "title_ru": "Вы полностью завершили практику Router"
+        }
+      ]
     },
     {
       "lesson_id": "react-state-effect-03-v18",
       "title_uz": "State va Effect: useState + useEffect",
       "title_ru": "State и Effect: useState + useEffect",
       "version": "v18",
-      "source": "src/3-Modull/ReactStateEffectLesson.jsx"
+      "source": "src/3-Modull/ReactStateEffectLesson.jsx",
+      "achievements": [
+        {
+          "id": "reactive",
+          "name": "Reactive!",
+          "title_uz": "State siklini o'zlashtirdingiz",
+          "title_ru": "Вы освоили цикл state"
+        },
+        {
+          "id": "effectpro",
+          "name": "Effect Pro!",
+          "title_uz": "useEffect qachon ishlashini bildingiz",
+          "title_ru": "Вы узнали, когда срабатывает useEffect"
+        },
+        {
+          "id": "builder",
+          "name": "State Builder!",
+          "title_uz": "useState qatorini o'zingiz yozdingiz",
+          "title_ru": "Вы сами написали строку useState"
+        },
+        {
+          "id": "graduate",
+          "name": "Level Up!",
+          "title_uz": "State va Effect darsini to'liq yakunladingiz",
+          "title_ru": "Вы полностью прошли урок State и Effect"
+        }
+      ]
     },
     {
       "lesson_id": "rn-app-06-10-v18",
       "title_uz": "RN: komponent, navigatsiya, API",
       "title_ru": "RN: компоненты, навигация, API",
       "version": "v18",
-      "source": "src/6-Modull/ReactNativeAppLesson.jsx"
+      "source": "src/6-Modull/ReactNativeAppLesson.jsx",
+      "achievements": [
+        {
+          "id": "fullhouse",
+          "name": "Full House",
+          "title_uz": "FlatList massovkasini tanladingiz",
+          "title_ru": "Верно выбрали массовку FlatList"
+        },
+        {
+          "id": "scenechanger",
+          "name": "Scene Changer",
+          "title_uz": "navigation.navigate bilan sahnani almashtirdingiz",
+          "title_ru": "Меняете сцену через navigation.navigate"
+        },
+        {
+          "id": "livefeed",
+          "name": "Live Feed",
+          "title_uz": "Tirik ma'lumot fetch bilan kelishini bildingiz",
+          "title_ru": "Поняли: живые данные приходят через fetch"
+        },
+        {
+          "id": "backstagepass",
+          "name": "Backstage Pass",
+          "title_uz": "Ilova ish oqimini to'g'ri tartibda yig'dingiz",
+          "title_ru": "Собрали рабочий поток в верном порядке"
+        }
+      ]
     },
     {
       "lesson_id": "rn-basics-06-09-v18",
       "title_uz": "React Native — asoslari",
       "title_ru": "React Native — основы",
       "version": "v18",
-      "source": "src/6-Modull/ReactNativeBasicsLesson.jsx"
+      "source": "src/6-Modull/ReactNativeBasicsLesson.jsx",
+      "achievements": [
+        {
+          "id": "stagedebut",
+          "name": "Stage Debut",
+          "title_uz": "React Native — mobil sahna ekanini topdingiz",
+          "title_ru": "Поняли: React Native — мобильная сцена"
+        },
+        {
+          "id": "nativestage",
+          "name": "Native Stage",
+          "title_uz": "Text — aktyor replikasi qoidasini topdingiz",
+          "title_ru": "Нашли правило: Text — реплика актёра"
+        },
+        {
+          "id": "ticketscanned",
+          "name": "Ticket Scanned",
+          "title_uz": "Expo Go — QR-chipta bilan sahnaga chiqdingiz",
+          "title_ru": "Разобрались: Expo Go выводит на сцену по QR"
+        },
+        {
+          "id": "curtainup",
+          "name": "Curtain Up",
+          "title_uz": "React ssenariysi o'sha ishlashini tasdiqladingiz",
+          "title_ru": "Подтвердили: сценарий React работает тот же"
+        }
+      ]
     },
     {
       "lesson_id": "sys-arch-06-01-v18",
       "title_uz": "Komponentlardan tizim",
       "title_ru": "Система из компонентов",
       "version": "v18",
-      "source": "src/6-Modull/SystemArchitectureLesson.jsx"
+      "source": "src/6-Modull/SystemArchitectureLesson.jsx",
+      "achievements": [
+        {
+          "id": "citybuilder",
+          "name": "City Builder",
+          "title_uz": "Arxiv — shahar xotirasi ekanini topdingiz",
+          "title_ru": "Вы поняли: Архив — постоянная память города"
+        },
+        {
+          "id": "requestroute",
+          "name": "Request Route",
+          "title_uz": "Arizaning idoradan idoraga to'g'ri yo'lini bildingiz",
+          "title_ru": "Вы знаете верный путь заявки от ведомства к ведомству"
+        },
+        {
+          "id": "cityonline",
+          "name": "Shahar Online",
+          "title_uz": "Ko'p darvoza, bitta shahar — g'oyani tushundingiz",
+          "title_ru": "Много ворот, один город — вы усвоили идею"
+        },
+        {
+          "id": "powergrid",
+          "name": "Power Grid",
+          "title_uz": "Markazga yangi darvoza (mobil) qo'shdingiz",
+          "title_ru": "Вы добавили новые ворота (мобильное) к центру"
+        }
+      ]
     },
     {
       "lesson_id": "vscode-start-01-v1",
       "title_uz": "VS Code — professional start",
       "title_ru": "VS Code — профессиональный старт",
       "version": "v1",
-      "source": "src/1-Modull/VsCodeLesson.jsx"
+      "source": "src/1-Modull/VsCodeLesson.jsx",
+      "achievements": [
+        {
+          "id": "installed",
+          "name": "Geared Up!",
+          "title_uz": "VS Code'ni kompyuteringizga o'rnatdingiz",
+          "title_ru": "Вы установили VS Code на свой компьютер"
+        },
+        {
+          "id": "pilot",
+          "name": "Cockpit Pro!",
+          "title_uz": "VS Code oynasining 4 qismini o'rganib chiqdingiz",
+          "title_ru": "Вы изучили 4 части окна VS Code"
+        },
+        {
+          "id": "cardmaster",
+          "name": "Card Wizard!",
+          "title_uz": "Card yasab, unga stil berdingiz",
+          "title_ru": "Вы сделали card и оформили её"
+        },
+        {
+          "id": "graduate",
+          "name": "Level Up!",
+          "title_uz": "VS Code darsini to'liq tugatdingiz",
+          "title_ru": "Вы полностью прошли урок VS Code"
+        }
+      ]
     },
     {
       "lesson_id": "write-skill-06-07-v18",
       "title_uz": "write-skill-06-07-v18",
       "title_ru": "Создаём свой Skill",
       "version": "v18",
-      "source": "src/6-Modull/WriteSkillLesson.jsx"
+      "source": "src/6-Modull/WriteSkillLesson.jsx",
+      "achievements": [
+        {
+          "id": "cleartrigger",
+          "name": "Clear Trigger",
+          "title_uz": "«Qachon ishlaydi» maydonini tanladingiz",
+          "title_ru": "Выбрали точное поле «когда срабатывает»"
+        },
+        {
+          "id": "cardwriter",
+          "name": "Card Writer",
+          "title_uz": "Kuchli qadamlar sirini 1-urinishda topdingiz",
+          "title_ru": "С первой попытки нашли секрет сильных шагов"
+        },
+        {
+          "id": "fieldmaster",
+          "name": "Field Master",
+          "title_uz": "Karta maydonlarini kodda xatosiz to'ldirdingiz",
+          "title_ru": "Заполнили поля карты в коде без ошибок"
+        },
+        {
+          "id": "testedskill",
+          "name": "Tested Skill",
+          "title_uz": "Karta strukturasini to'g'ri yig'dingiz",
+          "title_ru": "Собрали структуру карты в верном порядке"
+        }
+      ]
     }
   ]
 }

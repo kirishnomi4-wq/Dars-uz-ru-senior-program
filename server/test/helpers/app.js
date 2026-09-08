@@ -91,8 +91,8 @@ export async function makeTestApp(envOverrides = {}, opts = {}) {
   return {
     app,
     db,
-    async seedCatalog(ids) {
-      for (const id of ids) await db.query(`insert into lesson_catalog (lesson_id, title_uz, title_ru) values ($1, $2, $3) on conflict do nothing`, [id, `Dars ${id}`, `Урок ${id}`]);
+    async seedCatalog(ids, { achievements = [] } = {}) {
+      for (const id of ids) await db.query(`insert into lesson_catalog (lesson_id, title_uz, title_ru, achievements) values ($1, $2, $3, $4::jsonb) on conflict do nothing`, [id, `Dars ${id}`, `Урок ${id}`, JSON.stringify(achievements)]);
     },
     async close() { await app.close(); await db.end(); },
   };

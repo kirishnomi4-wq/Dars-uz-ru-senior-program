@@ -9,8 +9,9 @@ import { nextDelayMs, isRetryable, MAX_SEND_ATTEMPTS } from './retry.js';
  * @param {{ pool: import('pg').Pool, log: import('pino').Logger, schoolApi: { submitLessonResult: Function },
  *           notify?: (text: string) => Promise<void>, batch?: number }} deps
  */
-export function createResultWorker({ pool, log, schoolApi, notify, batch = 10 }) {
+export function createResultWorker({ pool, log, schoolApi, notify, batch = 10, details = false }) {
   let running = false;
+  const sweepOpts = { details: !!details };
 
   async function claimDue(client) {
     const { rows } = await client.query(
@@ -80,7 +81,7 @@ export function createResultWorker({ pool, log, schoolApi, notify, batch = 10 })
     running = true;
     const out = { swept: null, sent: 0 };
     try {
-      try { out.swept = await sweepResults(pool, log); } catch (e) { log.error({ err: e }, 'sweeper xato'); }
+      try { out.swept = await sweepResults(pool, log, sweepOpts); } catch (e) { log.error({ err: e }, 'sweeper xato'); }
       const client = await pool.connect();
       try {
         await client.query('begin');

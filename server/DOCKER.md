@@ -9,8 +9,11 @@
 `X-Forwarded-For` va `X-Forwarded-Proto` uzatilsin (ilovada `TRUST_PROXY=true`).
 
 **Har deploy (CI yoki qo'lda):** `docker compose -f docker-compose.deploy.yml --env-file .env.deploy up -d --build`.
-Tartib o'zi: postgres sog'lom → `migrate` (bir marta, xato bo'lsa api ko'tarilmaydi) → `api`.
-Tekshiruv: `curl http://127.0.0.1:3001/api/v1/health` → 200, `checks.db = ok`.
+Tartib o'zi: postgres sog'lom → `migrate` (bir marta: sxema + dars-katalogi `seed:catalog`; xato bo'lsa api ko'tarilmaydi) → `api`.
+Tekshiruv: `curl http://127.0.0.1:3001/api/v1/health` → 200, `checks.db = ok`, `checks.catalog` ≥ 1.
+
+**Tashqaridan qabul (biz):** `node --env-file=.env.deploy.staging tools/staging-check.mjs https://<API-manzil>` — 19 band
+(health, migratsiya/katalog soni, soat, TLS, CORS, JWT, proksi-IP, admin, mentor-oqim, School API ulanishi). Tartib: `STAGING_QABUL_UZ.md`.
 
 **Zaxira:** `backup` xizmati har 24 soatda `pg_dump -Fc` → `dars-backups` volume, 14 kun. Tiklash:
 `docker compose exec -T postgres pg_restore -U dars -d dars_prod --clean --if-exists < dump`.

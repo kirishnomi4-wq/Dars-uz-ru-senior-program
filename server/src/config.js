@@ -24,6 +24,16 @@ const parseBool = (raw) => {
 
 const parseList = (raw) => raw.split(',').map((s) => s.trim()).filter(Boolean);
 
+// true/false yoki proksi SONI (1 = faqat Apache). Raqam berilsa X-Forwarded-For'dagi mijoz-IP soxtalab bo'lmaydi
+// (rate-limit shu IP bo'yicha); `true` hamma proksi zanjiriga ishonadi — topologiya noma'lum bo'lsa boshlang'ich qiymat.
+const parseTrustProxy = (raw) => {
+  if (raw === 'true') return true;
+  if (raw === 'false' || raw === '0') return false;
+  const n = Number(raw);
+  if (Number.isInteger(n) && n >= 1 && n <= 10) return n;
+  throw new Error("true, false yoki proksi soni 1..10 bo'lsin");
+};
+
 // Origin = faqat sxema + host (+ port). Yo'l, so'rov, fragment bo'lmasin: brauzer Origin sarlavhasi shunday keladi.
 const parseOrigins = (raw) => {
   const items = parseList(raw);
@@ -84,7 +94,7 @@ export function loadConfig(env = process.env) {
     host: read('HOST', { def: '127.0.0.1' }),
     port: read('PORT', { def: 3001, parse: parseInt_(1, 65535) }),
     logLevel: read('LOG_LEVEL', { def: isProdLike ? 'info' : 'debug', enums: LOG_LEVELS }),
-    trustProxy: read('TRUST_PROXY', { def: isProdLike, parse: parseBool }),
+    trustProxy: read('TRUST_PROXY', { def: isProdLike, parse: parseTrustProxy }),
     databaseUrl: read('DATABASE_URL', { required: true }),
     migrateDatabaseUrl: read('MIGRATE_DATABASE_URL'),
     dbPoolMax: read('DB_POOL_MAX', { def: 10, parse: parseInt_(1, 100) }),
@@ -117,6 +127,10 @@ export function loadConfig(env = process.env) {
     // Tashlandiq jonli sessiya: mentor heartbeat'i shuncha daqiqa kelmasa yopiladi (natija tangaga ketadi).
     // 30 daqiqa = 15 daqiqalik tanaffusni qamraydi; kamaytirmang (tanaffusda dars yopilib ketadi).
     staleSessionMinutes: read('STALE_SESSION_MINUTES', { def: 30, parse: parseInt_(5, 720) }),
+
+    // Natija-detallari (TZ_LESSON_RESULT_DETAILS_RU): off = faqat asosiy StudentResult · a = A-variant (lang, questions[],
+    // achievements[] o'sha hodisa ichida). LMS kontraktni tasdiqlaguncha OFF; tasdiqlangach env'da `a`.
+    resultDetails: read('RESULT_DETAILS', { def: 'off', enums: ['off', 'a'] }),
 
     // ---- Natija-navbat ishchisi va kuzatuv
     resultsWorkerEnabled: read('RESULTS_WORKER_ENABLED', { def: true, parse: parseBool }),

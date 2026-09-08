@@ -92,7 +92,15 @@ test('LMS-ko\'prik: dev\'da ixtiyoriy (o\'chiq), rotatsiya juftligi, enc-kalit u
 });
 
 test('TRUST_PROXY va butun sonlar qat\'iy', () => {
-  assert.throws(() => loadConfig({ ...base, TRUST_PROXY: 'yes' }), /true yoki false/);
+  assert.throws(() => loadConfig({ ...base, TRUST_PROXY: 'yes' }), /true, false yoki proksi soni/);
+  assert.equal(loadConfig({ ...base, TRUST_PROXY: '1' }).trustProxy, 1, 'raqam = proksi soni (Fastify hop count)');
+  assert.equal(loadConfig({ ...base, TRUST_PROXY: '0' }).trustProxy, false);
   assert.throws(() => loadConfig({ ...base, RATE_LIMIT_PER_MIN: '5' }), /10\.\.100000/);
   assert.equal(loadConfig({ ...base, TRUST_PROXY: '1', DB_POOL_MAX: '3' }).dbPoolMax, 3);
+});
+
+test('RESULT_DETAILS: off (default) | a; boshqasi xato', () => {
+  assert.equal(loadConfig(base).resultDetails, 'off');
+  assert.equal(loadConfig({ ...base, RESULT_DETAILS: 'a' }).resultDetails, 'a');
+  assert.throws(() => loadConfig({ ...base, RESULT_DETAILS: 'b' }), /off \| a/);
 });

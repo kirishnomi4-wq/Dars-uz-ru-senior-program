@@ -89,6 +89,7 @@ test('mentor «Erkin qilish» (end_session RPC) → sweeper → payload to\'g\'r
   assert.deepEqual([v.correct_answers, v.answered, v.rank], [1, 2, 3]);
   assert.ok(a.badges.includes('all_correct') && a.badges.includes('top_1'));
   assert.ok(a.badges.includes('arena_top_1'), `arena nishoni: ${a.badges}`);
+  assert.ok(!('questions' in a) && !('lang' in a) && !('achievements' in a), 'RESULT_DETAILS=off (default) — detallar yo\'q');
   assert.equal(ev.response.data.students_rejected, 1);
   assert.equal(ev.response.data.rejected_students[0].student_id, 3002);
   // urinishlar yopildi va hodisaga bog'landi

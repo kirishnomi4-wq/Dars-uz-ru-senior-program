@@ -138,6 +138,7 @@ export function buildLivePayloads(input) {
   const total = Math.max(1, lessonQ.size, ...rows.map((r) => r.row.stats.answered));
   const groupMedianAvg = median(allRows.map((r) => r.stats.avgElapsed));
 
+  const details = input.details || null; // { attemptsByPlayer, achievementsByPlayer, catalog } — RESULT_DETAILS=a
   const students = rows.map(({ subjectId, p, row }) => {
     const { stats } = row;
     const rank = ranks.get(p.player_id) ?? null;
@@ -145,7 +146,7 @@ export function buildLivePayloads(input) {
     const badges = badgesFor({ stats, total, rank, completed, groupMedianAvg, arenaRank: arenaRanks.get(p.player_id) ?? null });
     const end = Math.max(stats.lastAnsweredAt, row.arena.lastAnsweredAt, 0) || finishedAt.getTime();
     const duration = clamp(Math.round((Math.min(end, finishedAt.getTime()) - new Date(p.joined_at).getTime()) / 1000), 0, 86400);
-    return {
+    const base = {
       student_id: subjectId,
       id_type: 'lms',
       correct_answers: clamp(stats.correct, 0, total),
@@ -156,6 +157,11 @@ export function buildLivePayloads(input) {
       duration_sec: Number.isFinite(duration) ? duration : 0,
       completed,
     };
+    if (!details) return base;
+    return { ...base, ...buildStudentDetails({
+      answers: answersByPlayer.get(p.player_id) || [], attempts: details.attemptsByPlayer?.get(p.player_id) || [],
+      keys, achievements: details.achievementsByPlayer?.get(p.player_id) || [], catalog: details.catalog,
+    }) };
   });
 
   const out = [];
@@ -197,6 +203,23 @@ export function buildSoloPayload(input) {
   const badges = badgesFor({ stats, total, rank: null, completed, groupMedianAvg: Infinity });
   const duration = clamp(Math.round((finishedAt.getTime() - startedAt.getTime()) / 1000), 0, 86400);
   const eventId = soloEventId(subjectId, lessonId, startedAt);
+  const student = {
+    student_id: Number(subjectId),
+    id_type: 'lms',
+    correct_answers: clamp(stats.correct, 0, total),
+    answered: clamp(stats.answered, stats.correct, total),
+    rank: null,
+    badges,
+    badges_count: badges.length,
+    duration_sec: duration,
+    completed,
+  };
+  if (input.details) {
+    Object.assign(student, buildStudentDetails({
+      answers: answers || [], attempts: input.details.attempts || [], keys,
+      achievements: input.details.achievements || [], catalog: input.details.catalog,
+    }));
+  }
   return {
     event_id: eventId,
     payload: {
@@ -207,17 +230,7 @@ export function buildSoloPayload(input) {
       started_at: isoUtc(startedAt),
       finished_at: isoUtc(finishedAt < startedAt ? startedAt : finishedAt),
       total_questions: clamp(total, 1, 1000),
-      students: [{
-        student_id: Number(subjectId),
-        id_type: 'lms',
-        correct_answers: clamp(stats.correct, 0, total),
-        answered: clamp(stats.answered, stats.correct, total),
-        rank: null,
-        badges,
-        badges_count: badges.length,
-        duration_sec: duration,
-        completed,
-      }],
+      students: [student],
     },
   };
 }
@@ -250,6 +263,199 @@ export function validatePayload(p) {
     if (!Array.isArray(s.badges) || s.badges_count !== s.badges.length || new Set(s.badges).size !== s.badges.length) errs.push(`badges ${k}`);
     if (s.badges.some((b) => !/^[a-z0-9]+(?:_[a-z0-9]+)*$/.test(b) || b.length > 64)) errs.push(`badge key ${k}`);
     if (!(s.duration_sec >= 0 && s.duration_sec <= 86400)) errs.push(`duration ${k}`);
+    errs.push(...validateStudentDetails(s));
   }
   return errs;
+}
+
+// ---------------------------------------------------------------------------------------------------------------
+// NATIJA-DETALLARI (TZ_LESSON_RESULT_DETAILS_RU §4, A-variant): StudentResult'ga ixtiyoriy `lang`, `questions[]`,
+// `achievements[]`. Bayroq RESULT_DETAILS=a bilan yoqiladi (config). Manbalar: live_answers (ball, birinchi urinish),
+// answer_attempts (har bosish, texts), achievement_events + lesson_catalog.achievements (nom/ta'rif).
+// QOIDA: detallar hech qachon tanga-yetkazishni to'smaydi — noto'g'ri/katta bo'lsa tashlanadi, asosiy payload ketadi (finalizePayload).
+// ---------------------------------------------------------------------------------------------------------------
+
+export const DETAILS_LIMITS = Object.freeze({
+  questions: 200, attempts: 10, options: 6, text: 300, questionId: 64,
+  achievements: 20, name: 40, title: 200, elapsedMs: 3_600_000, payloadBytes: 1_000_000,
+});
+const ACH_ID_RE = /^[a-z0-9_-]{1,32}$/;
+
+const qNum = (id) => { const m = /^(?:s|quiz-)(\d+)([a-z]*)$/i.exec(id); return m ? [Number(m[1]), m[2]] : null; };
+const cutStr = (v, n) => (typeof v === 'string' ? v.slice(0, n) : undefined);
+const dropUndefined = (o) => { for (const k of Object.keys(o)) if (o[k] === undefined) delete o[k]; return o; };
+
+/**
+ * Savol tartibi darsda (1..N): dars-testlari ekran raqami bo'yicha (s4 < s5b < s9), keyin arena (quiz-0 < quiz-1);
+ * qolipsiz id'lar o'z guruhida oxirida, alifbo bo'yicha. Kalitlar (quiz_keys) manba — darsning o'zi belgilagan.
+ * @returns {Map<string, number>}
+ */
+export function questionOrder(keys) {
+  const ids = [...new Set((keys || []).map((k) => k && k.question_id).filter((x) => typeof x === 'string' && x))];
+  const cmp = (a, b) => {
+    const na = qNum(a), nb = qNum(b);
+    if (na && nb) return (na[0] - nb[0]) || na[1].localeCompare(nb[1]);
+    if (na) return -1;
+    if (nb) return 1;
+    return a.localeCompare(b);
+  };
+  const map = new Map();
+  [...ids.filter((id) => !isArenaQ(id)).sort(cmp), ...ids.filter(isArenaQ).sort(cmp)].forEach((id, i) => map.set(id, i + 1));
+  return map;
+}
+
+/**
+ * Bitta o'quvchi detallari (SOF).
+ * @param {{ answers: Array<any>, attempts: Array<{screen_idx:number, attempt_no:number, picked:number, correct:boolean, elapsed_ms:number, texts?:object|null, answered_at:any}>,
+ *           keys: Array<{question_id:string, correct_idx?:number}>, achievements: Array<{achievement_id?:string, id?:string, earned_at:any}>,
+ *           catalog?: Array<{id:string, name:string, title_uz?:string, title_ru?:string}>, lang?: 'uz'|'ru' }} input
+ * @returns {{ lang: 'uz'|'ru', questions: Array<object>, achievements: Array<object> }}
+ */
+export function buildStudentDetails({ answers, attempts, keys, achievements, catalog, lang: langHint }) {
+  const L = DETAILS_LIMITS;
+  const order = questionOrder(keys);
+  const correctIdx = new Map((keys || []).filter((k) => k && typeof k.question_id === 'string').map((k) => [k.question_id, Number.isInteger(k.correct_idx) ? k.correct_idx : null]));
+
+  const byScreen = new Map();
+  const langCount = { uz: 0, ru: 0 };
+  for (const a of attempts || []) {
+    const sc = Number(a.screen_idx);
+    if (!byScreen.has(sc)) byScreen.set(sc, []);
+    byScreen.get(sc).push(a);
+    const l = a.texts && a.texts.lang;
+    if (l === 'ru' || l === 'uz') langCount[l]++;
+  }
+  for (const list of byScreen.values()) list.sort((x, y) => x.attempt_no - y.attempt_no);
+  const lang = langCount.ru > langCount.uz ? 'ru' : (langCount.uz > 0 || langHint !== 'ru' ? 'uz' : 'ru');
+
+  // studentStats bilan bir xil tanlov: har savolning BIRINCHI qatori (ball), faqat kalitdagi savollar
+  const seen = new Map();
+  for (const a of answers || []) { if (!order.has(a.question_id) || seen.has(a.question_id)) continue; seen.set(a.question_id, a); }
+  const questions = [...seen.values()]
+    .sort((x, y) => order.get(x.question_id) - order.get(y.question_id))
+    .slice(0, L.questions)
+    .map((a) => {
+      const hist = (byScreen.get(Number(a.screen_idx)) || []).slice(0, L.attempts);
+      const texts = (hist.find((h) => h.texts && typeof h.texts === 'object') || {}).texts;
+      const mk = (h, i) => dropUndefined({
+        n: i + 1, option: Number.isInteger(Number(h.picked)) ? Number(h.picked) : -1, answer: cutStr(h.texts && h.texts.picked, L.text), correct: h.correct === true,
+        elapsed_ms: clamp(Number(h.elapsed_ms) || 0, 0, L.elapsedMs), at: isoUtc(h.answered_at || a.answered_at || 0),
+      });
+      // tarix yo'q (eski dars / arena / tarmoq) → ball-qatorining o'zi bitta urinish
+      const atts = hist.length ? hist.map(mk) : [mk({ picked: a.picked, correct: a.correct, elapsed_ms: a.elapsed_ms, answered_at: a.answered_at }, 0)];
+      const ci = correctIdx.get(a.question_id);
+      return dropUndefined({
+        question_id: a.question_id,
+        kind: isArenaQ(a.question_id) ? 'arena' : 'test',
+        order: order.get(a.question_id),
+        question: cutStr(texts && texts.question, L.text),
+        options: texts && Array.isArray(texts.options) ? texts.options.slice(0, L.options).map((o) => String(o ?? '').slice(0, L.text)) : undefined,
+        correct_option: Number.isInteger(ci) && ci >= 0 && ci <= 5 ? ci : undefined,
+        correct_answer: cutStr(texts && texts.correct, L.text),
+        correct: a.correct === true,
+        solved: a.correct === true || atts.some((x) => x.correct),
+        attempts: atts,
+      });
+    });
+
+  const cat = new Map((catalog || []).filter((c) => c && c.id).map((c) => [String(c.id).toLowerCase(), c]));
+  const seenAch = new Set();
+  const achs = (achievements || [])
+    .map((e) => ({ id: String(e.achievement_id ?? e.id ?? '').toLowerCase(), at: new Date(e.earned_at || 0) }))
+    .filter((e) => ACH_ID_RE.test(e.id) && e.at.getTime() > 0 && !seenAch.has(e.id) && seenAch.add(e.id))
+    .sort((x, y) => x.at - y.at)
+    .slice(0, L.achievements)
+    .map((e) => {
+      const c = cat.get(e.id);
+      const title = c ? (lang === 'ru' ? (c.title_ru || c.title_uz) : c.title_uz) : null;
+      return { id: e.id, name: String((c && c.name) || e.id).slice(0, L.name), title: String(title || (c && c.name) || e.id).slice(0, L.title), earned_at: isoUtc(e.at) };
+    });
+
+  return { lang, questions, achievements: achs };
+}
+
+/** StudentResult'dagi detallar (bo'lsa) TZ §4 qoidalari va invariantlariga mosmi. @returns {string[]} */
+export function validateStudentDetails(s) {
+  const L = DETAILS_LIMITS;
+  const errs = [];
+  const k = `${s.id_type}:${s.student_id}`;
+  const isStr = (v, n) => typeof v === 'string' && v.length <= n;
+  if (s.lang !== undefined && !['uz', 'ru'].includes(s.lang)) errs.push(`lang ${k}`);
+  if (s.questions !== undefined) {
+    if (!Array.isArray(s.questions) || s.questions.length > L.questions) errs.push(`questions ${k}`);
+    else {
+      let testN = 0, testCorrect = 0;
+      const ids = new Set();
+      for (const q of s.questions) {
+        const qid = String(q.question_id);
+        if (!isStr(q.question_id, L.questionId) || !q.question_id || ids.has(qid)) errs.push(`q id ${qid}`);
+        ids.add(qid);
+        if (!['test', 'arena'].includes(q.kind)) errs.push(`q kind ${qid}`);
+        if (!(Number.isInteger(q.order) && q.order >= 1)) errs.push(`q order ${qid}`);
+        if (q.question !== undefined && !isStr(q.question, L.text)) errs.push(`q question ${qid}`);
+        if (q.correct_answer !== undefined && !isStr(q.correct_answer, L.text)) errs.push(`q correct_answer ${qid}`);
+        if (q.options !== undefined && (!Array.isArray(q.options) || q.options.length > L.options || q.options.some((o) => !isStr(o, L.text)))) errs.push(`q options ${qid}`);
+        if (q.correct_option !== undefined && !(Number.isInteger(q.correct_option) && q.correct_option >= 0 && q.correct_option <= 5)) errs.push(`q correct_option ${qid}`);
+        if (typeof q.correct !== 'boolean' || typeof q.solved !== 'boolean') errs.push(`q flags ${qid}`);
+        if (!Array.isArray(q.attempts) || q.attempts.length < 1 || q.attempts.length > L.attempts) errs.push(`q attempts ${qid}`);
+        else {
+          let prev = 0;
+          q.attempts.forEach((a, i) => {
+            if (a.n !== i + 1 || !Number.isInteger(a.option) || typeof a.correct !== 'boolean' || !(a.elapsed_ms >= 0 && a.elapsed_ms <= L.elapsedMs)) errs.push(`q attempt ${qid}#${i + 1}`);
+            if (a.answer !== undefined && !isStr(a.answer, L.text)) errs.push(`q answer ${qid}#${i + 1}`);
+            const t = new Date(a.at).getTime();
+            if (!(t > 0) || t < prev) errs.push(`q at ${qid}#${i + 1}`);
+            prev = Math.max(prev, t || 0);
+          });
+          if (q.attempts[0].correct !== q.correct) errs.push(`q first ${qid}`);
+          if (q.solved !== q.attempts.some((a) => a.correct === true)) errs.push(`q solved ${qid}`);
+        }
+        if (q.kind === 'test') { testN++; if (q.correct === true) testCorrect++; }
+      }
+      if (testN !== s.answered) errs.push(`answered≠questions ${k}`);
+      if (testCorrect !== s.correct_answers) errs.push(`correct≠questions ${k}`);
+    }
+  }
+  if (s.achievements !== undefined) {
+    if (!Array.isArray(s.achievements) || s.achievements.length > L.achievements) errs.push(`achievements ${k}`);
+    else {
+      const ids = new Set();
+      for (const a of s.achievements) {
+        if (!ACH_ID_RE.test(String(a.id)) || ids.has(a.id)) errs.push(`ach id ${a.id}`);
+        ids.add(a.id);
+        if (!isStr(a.name, L.name) || !a.name) errs.push(`ach name ${a.id}`);
+        if (!isStr(a.title, L.title) || !a.title) errs.push(`ach title ${a.id}`);
+        if (!(new Date(a.earned_at).getTime() > 0)) errs.push(`ach earned_at ${a.id}`);
+      }
+    }
+  }
+  return errs;
+}
+
+export function hasDetails(p) {
+  return (p.students || []).some((s) => 'questions' in s || 'achievements' in s || 'lang' in s);
+}
+export function stripDetails(p) {
+  return { ...p, students: (p.students || []).map(({ lang: _l, questions: _q, achievements: _a, ...rest }) => rest) };
+}
+export function payloadBytes(p) { return Buffer.byteLength(JSON.stringify(p), 'utf8'); }
+
+/**
+ * Yuborishdan oldingi yakuniy tekshiruv. Detallar bo'lsa va ular (yoki hajm ≤1 MB) buzilsa — detallar TASHLANADI,
+ * asosiy payload tekshiruvdan o'tsa ketadi. Asosiy payload buzuq bo'lsa — problems qaytadi (manual_review).
+ * @returns {{ payload: object, problems: string[], detailsDropped: string|null }}
+ */
+export function finalizePayload(p) {
+  if (!hasDetails(p)) return { payload: p, problems: validatePayload(p), detailsDropped: null };
+  const problems = validatePayload(p);
+  if (!problems.length) {
+    const bytes = payloadBytes(p);
+    if (bytes <= DETAILS_LIMITS.payloadBytes) return { payload: p, problems: [], detailsDropped: null };
+    const base = stripDetails(p);
+    return { payload: base, problems: validatePayload(base), detailsDropped: `size:${bytes}` };
+  }
+  const base = stripDetails(p);
+  const baseProblems = validatePayload(base);
+  if (baseProblems.length) return { payload: p, problems, detailsDropped: null };
+  return { payload: base, problems: [], detailsDropped: problems.join(', ') };
 }

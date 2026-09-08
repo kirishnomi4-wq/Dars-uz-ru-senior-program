@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import {
   buildLivePayloads, buildSoloPayload, validatePayload, assignRanks, badgesFor, studentStats,
   lessonQuestions, arenaQuestions, liveEventId, soloEventId,
+  questionOrder, buildStudentDetails, validateStudentDetails, finalizePayload, stripDetails, hasDetails, payloadBytes, DETAILS_LIMITS,
 } from '../../src/modules/results/result-builder.js';
 import { nextDelayMs, isRetryable, MAX_SEND_ATTEMPTS } from '../../src/modules/results/retry.js';
 
@@ -164,4 +165,127 @@ test('retry: jadval 1-3-10 s → daqiqalar → soat; 429/5xx/tarmoq qayta, 4xx e
   assert.ok(isRetryable(null) && isRetryable(429) && isRetryable(500) && isRetryable(503));
   assert.ok(!isRetryable(401) && !isRetryable(403) && !isRetryable(409) && !isRetryable(422) && !isRetryable(404));
   assert.ok(MAX_SEND_ATTEMPTS >= 20);
+});
+
+// ---------------------------------------------------------------------------------------------------------------
+// NATIJA-DETALLARI (TZ_LESSON_RESULT_DETAILS_RU §4, A-variant) — RESULT_DETAILS=a
+
+const dKeys = [{ question_id: 's4', correct_idx: 1 }, { question_id: 's5b', correct_idx: 2 }, { question_id: 's12', correct_idx: 0 }, { question_id: 'quiz-1', correct_idx: 3 }, { question_id: 'quiz-0', correct_idx: 1 }];
+const att = (screen, n, picked, correct, elapsed, m, texts) => ({ screen_idx: screen, attempt_no: n, picked, correct, elapsed_ms: elapsed, texts, answered_at: min(m) });
+const tx = (lang = 'uz') => ({ question: 'Internet nima?', options: ['Bitta kompyuter', "Kompyuterlar tarmog'i", 'Brauzer', 'Sayt'], picked: 'Bitta kompyuter', correct: "Kompyuterlar tarmog'i", lang });
+const CATALOG = [
+  { id: 'firstwin', name: 'Bullseye!', title_uz: "Birinchi test savoliga to'g'ri javob berdingiz", title_ru: 'Вы правильно ответили на первый вопрос теста' },
+  { id: 'graduate', name: 'Level Up!', title_uz: 'Darsni to\'liq yakunladingiz', title_ru: null },
+];
+
+test('questionOrder: dars-testlari ekran raqami bo\'yicha, keyin arena; qolipsiz id oxirida', () => {
+  const o = questionOrder([...dKeys, { question_id: 'zeta' }, { question_id: 'alpha' }]);
+  assert.deepEqual([...o.entries()], [['s4', 1], ['s5b', 2], ['s12', 3], ['alpha', 4], ['zeta', 5], ['quiz-0', 6], ['quiz-1', 7]]);
+});
+
+test('buildStudentDetails: 2 urinish (noto\'g\'ri→to\'g\'ri) → correct=false, solved=true; tarixsiz savol → ball-qatoridan 1 urinish; arena kind; lang ko\'pchilikdan', () => {
+  const answers = [
+    { question_id: 's4', screen_idx: 4, picked: 0, correct: false, elapsed_ms: 4200, answered_at: min(1) },
+    { question_id: 's12', screen_idx: 12, picked: 0, correct: true, elapsed_ms: 900, answered_at: min(3) }, // record_attempt yo'q (eski dars)
+    { question_id: 'quiz-0', screen_idx: 100, picked: 1, correct: true, elapsed_ms: 500, answered_at: min(5) },
+    { question_id: 's99', screen_idx: 99, picked: 0, correct: true, elapsed_ms: 1, answered_at: min(6) }, // kalitda yo'q → kirmaydi
+  ];
+  const attempts = [
+    att(4, 1, 0, false, 4200, 1, tx('ru')), att(4, 2, 1, true, 9800, 2, { ...tx('ru'), picked: "Kompyuterlar tarmog'i" }),
+    att(4, 3, 1, true, 9900, 2, undefined),
+  ];
+  const d = buildStudentDetails({ answers, attempts, keys: dKeys, achievements: [{ achievement_id: 'graduate', earned_at: min(9) }, { achievement_id: 'FIRSTWIN', earned_at: min(1) }, { achievement_id: 'graduate', earned_at: min(10) }, { achievement_id: 'Bad Id!', earned_at: min(1) }], catalog: CATALOG });
+  assert.equal(d.lang, 'ru');
+  assert.deepEqual(d.questions.map((q) => [q.question_id, q.kind, q.order, q.correct, q.solved, q.attempts.length]), [['s4', 'test', 1, false, true, 3], ['s12', 'test', 3, true, true, 1], ['quiz-0', 'arena', 4, true, true, 1]]);
+  const q4 = d.questions[0];
+  assert.deepEqual([q4.question, q4.options.length, q4.correct_option, q4.correct_answer], ['Internet nima?', 4, 1, "Kompyuterlar tarmog'i"]);
+  assert.deepEqual(q4.attempts.map((a) => [a.n, a.option, a.correct, a.elapsed_ms, a.answer]), [[1, 0, false, 4200, 'Bitta kompyuter'], [2, 1, true, 9800, "Kompyuterlar tarmog'i"], [3, 1, true, 9900, undefined]]);
+  assert.equal(q4.attempts[0].at, '2026-09-03T09:01:12Z');
+  const q12 = d.questions[1];
+  assert.ok(!('question' in q12) && !('options' in q12), 'texts yo\'q → matn maydonlari yo\'q');
+  assert.deepEqual(q12.attempts, [{ n: 1, option: 0, correct: true, elapsed_ms: 900, at: '2026-09-03T09:03:12Z' }]);
+  assert.equal(d.questions[2].correct_option, 1);
+  // yutuqlar: kichik harf, vaqt bo'yicha, takror/yaroqsiz id tashlanadi, ru title (ru yo'q bo'lsa uz)
+  assert.deepEqual(d.achievements, [
+    { id: 'firstwin', name: 'Bullseye!', title: 'Вы правильно ответили на первый вопрос теста', earned_at: '2026-09-03T09:01:12Z' },
+    { id: 'graduate', name: 'Level Up!', title: 'Darsni to\'liq yakunladingiz', earned_at: '2026-09-03T09:09:12Z' },
+  ]);
+  // katalogda yo'q id → name=title=id
+  const u = buildStudentDetails({ answers: [], attempts: [], keys: dKeys, achievements: [{ achievement_id: 'mystery', earned_at: min(1) }], catalog: CATALOG });
+  assert.deepEqual([u.lang, u.questions, u.achievements[0].name, u.achievements[0].title], ['uz', [], 'mystery', 'mystery']);
+});
+
+test('detallar payload ichida: live + solo invariantlar (correct_answers = test&correct, answered = test soni), validatePayload toza', () => {
+  const inp = liveInput();
+  const attemptsByPlayer = new Map([['pB', [att(4, 1, 0, false, 3000, 5, tx()), att(4, 2, 1, true, 3500, 6, tx())]]]);
+  const achievementsByPlayer = new Map([['pA', [{ achievement_id: 'firstwin', earned_at: min(5) }]]]);
+  const [ev] = buildLivePayloads({ ...inp, details: { attemptsByPlayer, achievementsByPlayer, catalog: CATALOG } });
+  assert.deepEqual(validatePayload(ev.payload), []);
+  for (const s of ev.payload.students) {
+    assert.equal(s.lang, 'uz');
+    assert.equal(s.questions.filter((q) => q.kind === 'test').length, s.answered);
+    assert.equal(s.questions.filter((q) => q.kind === 'test' && q.correct).length, s.correct_answers);
+  }
+  const b = ev.payload.students.find((s) => s.student_id === 34175); // pB
+  assert.deepEqual([b.questions[0].question_id, b.questions[0].attempts.length, b.questions[0].correct, b.questions[0].solved], ['s4', 2, false, true]);
+  assert.equal(ev.payload.students.find((s) => s.student_id === 34174).achievements[0].name, 'Bullseye!'); // pA
+  const d = ev.payload.students.find((s) => s.student_id === 34177); // pD — hech narsa qilmagan
+  assert.deepEqual([d.answered, d.questions, d.achievements, d.lang], [0, [], [], 'uz']);
+  // detalsiz (bayroq off) — maydonlar umuman yo'q
+  const [plain] = buildLivePayloads(inp);
+  assert.ok(plain.payload.students.every((s) => !('questions' in s) && !('lang' in s) && !('achievements' in s)));
+  assert.ok(!hasDetails(plain.payload) && hasDetails(ev.payload));
+  assert.deepEqual(stripDetails(ev.payload), plain.payload);
+
+  const solo = buildSoloPayload({
+    attempt: { started_at: T0, finished_at: min(30), reached_end: true }, subjectId: 3003, lessonId: 'internet-01-v18', lessonTitle: 'Internet', keys,
+    answers: [ans('pS', 's4', 4, false, 4200, 1)],
+    details: { attempts: [att(4, 1, 0, false, 4200, 1, tx()), att(4, 2, 1, true, 8000, 2, tx())], achievements: [{ achievement_id: 'graduate', earned_at: min(30) }], catalog: CATALOG },
+  });
+  assert.deepEqual(validatePayload(solo.payload), []);
+  const st = solo.payload.students[0];
+  assert.deepEqual([st.correct_answers, st.answered, st.questions.length, st.questions[0].solved, st.achievements.length], [0, 1, 1, true, 1]);
+});
+
+test('validateStudentDetails: invariant buzilishlari topiladi', () => {
+  const base = { id_type: 'lms', student_id: 1, correct_answers: 1, answered: 1, lang: 'uz' };
+  const q = (over = {}) => ({ question_id: 's4', kind: 'test', order: 1, correct: true, solved: true, attempts: [{ n: 1, option: 1, correct: true, elapsed_ms: 10, at: '2026-09-03T09:00:00Z' }], ...over });
+  assert.deepEqual(validateStudentDetails({ ...base, questions: [q()], achievements: [] }), []);
+  assert.ok(validateStudentDetails({ ...base, lang: 'en' }).some((e) => e.startsWith('lang')));
+  assert.ok(validateStudentDetails({ ...base, questions: [q({ correct: false, solved: false })] }).some((e) => e.startsWith('q first')));
+  assert.ok(validateStudentDetails({ ...base, questions: [q({ solved: false })] }).some((e) => e.startsWith('q solved')));
+  assert.ok(validateStudentDetails({ ...base, answered: 2, questions: [q()] }).some((e) => e.startsWith('answered≠')));
+  assert.ok(validateStudentDetails({ ...base, correct_answers: 0, questions: [q()] }).some((e) => e.startsWith('correct≠')));
+  assert.ok(validateStudentDetails({ ...base, questions: [q({ attempts: [{ n: 1, option: 1, correct: true, elapsed_ms: 10, at: '2026-09-03T09:00:10Z' }, { n: 2, option: 0, correct: false, elapsed_ms: 10, at: '2026-09-03T09:00:00Z' }] })] }).some((e) => e.startsWith('q at')));
+  assert.ok(validateStudentDetails({ ...base, questions: [q({ kind: 'bonus' })] }).some((e) => e.startsWith('q kind')));
+  assert.ok(validateStudentDetails({ ...base, questions: [q({ options: Array(7).fill('x') })] }).some((e) => e.startsWith('q options')));
+  assert.ok(validateStudentDetails({ ...base, questions: [q({ question: 'x'.repeat(301) })] }).some((e) => e.startsWith('q question')));
+  assert.ok(validateStudentDetails({ ...base, questions: [q(), q()] , answered: 2, correct_answers: 2 }).some((e) => e.startsWith('q id')));
+  assert.ok(validateStudentDetails({ ...base, achievements: [{ id: 'Bad', name: 'x', title: 'y', earned_at: '2026-09-03T09:00:00Z' }] }).some((e) => e.startsWith('ach id')));
+  assert.ok(validateStudentDetails({ ...base, achievements: [{ id: 'ok', name: 'x'.repeat(41), title: 'y', earned_at: '2026-09-03T09:00:00Z' }] }).some((e) => e.startsWith('ach name')));
+  assert.ok(validateStudentDetails({ ...base, achievements: Array.from({ length: 21 }, (_, i) => ({ id: `a${i}`, name: 'n', title: 't', earned_at: '2026-09-03T09:00:00Z' })) }).some((e) => e.startsWith('achievements')));
+});
+
+test('finalizePayload: detallar buzuq → detallar tashlanadi, asosiy ketadi; hajm > 1 MB → tashlanadi; asosiy buzuq → problems', () => {
+  const [ev] = buildLivePayloads({ ...liveInput(), details: { attemptsByPlayer: new Map(), achievementsByPlayer: new Map(), catalog: [] } });
+  const ok = finalizePayload(ev.payload);
+  assert.deepEqual([ok.problems, ok.detailsDropped, hasDetails(ok.payload)], [[], null, true]);
+  // detal buzuq (solved yolg'on)
+  const bad = structuredClone(ev.payload); bad.students[0].questions[0].solved = !bad.students[0].questions[0].solved;
+  const r = finalizePayload(bad);
+  assert.deepEqual([r.problems, hasDetails(r.payload)], [[], false]);
+  assert.match(r.detailsDropped, /q solved/);
+  // hajm
+  const big = structuredClone(ev.payload); big.students[0].questions[0].question = 'x'.repeat(DETAILS_LIMITS.text);
+  big.students[0].achievements = Array.from({ length: 20 }, (_, i) => ({ id: `a${i}`, name: 'n'.repeat(40), title: 't'.repeat(200), earned_at: '2026-09-03T09:00:00Z' }));
+  big.students = Array.from({ length: 100 }, (_, i) => ({ ...structuredClone(big.students[0]), student_id: 5000 + i, rank: null, badges: big.students[0].badges.filter((b) => !b.startsWith('top_')), badges_count: big.students[0].badges.filter((b) => !b.startsWith('top_')).length }));
+  for (const s of big.students) for (const q of s.questions) { q.options = Array(6).fill('o'.repeat(300)); q.question = 'q'.repeat(300); q.correct_answer = 'c'.repeat(300); for (const a of q.attempts) a.answer = 'a'.repeat(300); }
+  assert.ok(payloadBytes(big) > DETAILS_LIMITS.payloadBytes, `hajm ${payloadBytes(big)}`);
+  const sz = finalizePayload(big);
+  assert.deepEqual([sz.problems, hasDetails(sz.payload)], [[], false]);
+  assert.match(sz.detailsDropped, /^size:/);
+  // asosiy buzuq — detallar bilan birga problems (manual_review)
+  const broken = structuredClone(ev.payload); broken.total_questions = 0;
+  const br = finalizePayload(broken);
+  assert.ok(br.problems.includes('total_questions') && br.detailsDropped === null && hasDetails(br.payload));
 });
