@@ -73,7 +73,13 @@ School API `lesson-results` ga yuboradi: 201/200 → `delivered` · tarmoq/429 (
 kirmaydi (identifikatsiya yo'q). Payload qoidalari `modules/results/result-builder.js` (sof, unit-test) + `validatePayload`.
 Admin: `/admin` (basic auth, `ADMIN_USER`/`ADMIN_PASSWORD`) — navbat, e'tibor kerak, «qayta yubor».
 
-## Serverga chiqarish (DigitalOcean, Ubuntu 24.04)
+## Serverga chiqarish — LMS serverida Docker (2026-09-07 qarori; DigitalOcean varianti BEKOR)
+
+Haqiqiy tartib: `DOCKER.md` (compose: postgres → migrate → seed → api → backup) + `STAGING_QABUL_UZ.md` (qabul, runbook).
+Deploy = GitLab `dars-api-coddy` ga push (`bash scripts/sync-dars-api.sh staging|main`) → CI o'zi deploy qiladi (`main` = prod, avtomatik!).
+Manzillar: staging `https://staging-dars-api.coddycamp.uz`, prod `https://dars-api.coddycamp.uz`. Env-o'zgarish — Kristinaga yoziladi.
+
+### (arxiv) DigitalOcean varianti — ishlatilmaydi, `deploy/` skriptlari zaxira sifatida qoldi
 
 Bir marta (root): `deploy/setup-droplet.sh` — PostgreSQL 16 (ikki baza, owner/app rollar), Node 22, Caddy, systemd,
 sparse-clone (`/opt/dars-api/{prod,staging}/repo`, faqat `server/`), ufw, fail2ban, backup-cron, `/etc/dars-api/*.env` shablonlar.
@@ -121,7 +127,7 @@ Serverda: `/var/backups/dars-api/dars_prod-<sana>.dump` → yangi dropletda `set
 
 | Belgi | Nima qilish |
 |---|---|
-| Health 503 / o'quvchilarda «Qayta ulanmoqda…» | `ssh dars@api.azizbek.site` → `systemctl status dars-api@prod` → `journalctl -u dars-api@prod -n 100`; baza: `systemctl status postgresql`. Restart: `sudo systemctl restart dars-api@prod` (3 s). |
+| Health 503 / o'quvchilarda «Qayta ulanmoqda…» | `tools/staging-check.mjs <prod>` → Kristinaga yozish (log: Dozzle / `docker compose logs api`); GitLab'da oxirgi yashil deploy-job'ni qayta ishga tushirish = restart/rollback. (eski droplet: `journalctl -u dars-api@prod -n 100`; baza: `systemctl status postgresql`. Restart: `sudo systemctl restart dars-api@prod` (3 s). |
 | Server umuman javob bermaydi | DO panelida droplet holati; qayta ishga tushirish. Dars davomida: mentor **PIN-yo'l** bilan davom etadi (dars fayli oq ekran bermaydi, «Qayta ulanmoqda» ko'rsatadi); o'quvchilar javoblari 3 marta qayta uriniladi. |
 | LMS-token bilan kirish ishlamayapti, PIN ishlayapti | `journalctl -u dars-api@prod | grep "token rad"` → reason (kid/iss/aud/expired). LMS jamoasiga reason yuboriladi. Dars PIN bilan davom etadi. |
 | Natija LMS'ga ketmayapti | `/admin` → `manual_review`/`retry_wait` → `last_http_status`, `last_error`. 401/403 → `sapi_` token; 422 → payload (LMS bilan); 5xx/429 → o'zi qayta uradi. «Qayta yubor» tugmasi. |

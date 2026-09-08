@@ -24,17 +24,25 @@ const parseBool = (raw) => {
 
 const parseList = (raw) => raw.split(',').map((s) => s.trim()).filter(Boolean);
 
-// true/false yoki proksi SONI (1 = faqat Apache). Raqam berilsa X-Forwarded-For'dagi mijoz-IP soxtalab bo'lmaydi
-// (rate-limit shu IP bo'yicha); `true` hamma proksi zanjiriga ishonadi — topologiya noma'lum bo'lsa boshlang'ich qiymat.
+// TRUST_PROXY. To'g'ri qiymat — ISHONCHLI TARMOQLAR ro'yxati (masalan `loopback,172.16.0.0/12`).
+// Nega son emas: konteyner oldida docker-proxy turadi va soket manzili doim docker ko'prigi
+// (172.x.0.1). Fastify 5 da son berilsa req.ip o'sha ko'prik bo'lib qoladi — YA'NI HAMMA MIJOZ
+// BITTA req.ip ga tushadi va rate-limit hammaga bitta chelak bo'ladi (jonli darsda hamma 429 oladi).
+// `true` esa mijoz o'zi yuborgan X-Forwarded-For ning eng chap qiymatini oladi — soxtalash mumkin.
+// Ro'yxat berilsa: ko'prik ishonchli, undan chapdagi birinchi ishonchsiz manzil = haqiqiy mijoz.
+// Son va `true` moslik uchun qoldirilgan, lekin prod uchun tavsiya etilmaydi.
+const TRUST_PRESETS = new Set(['loopback', 'linklocal', 'uniquelocal']);
 const parseTrustProxy = (raw) => {
   if (raw === 'true') return true;
   if (raw === 'false' || raw === '0') return false;
   const n = Number(raw);
   if (Number.isInteger(n) && n >= 1 && n <= 10) return n;
-  throw new Error("true, false yoki proksi soni 1..10 bo'lsin");
+  const list = raw.split(',').map((s) => s.trim()).filter(Boolean);
+  const ok = list.length > 0 && list.every((v) => TRUST_PRESETS.has(v) || /^[0-9a-fA-F.:]+(\/\d{1,3})?$/.test(v));
+  if (ok) return list;
+  throw new Error("true, false yoki proksi soni 1..10, yoki ishonchli tarmoqlar ro'yxati bo'lsin");
 };
 
-// Origin = faqat sxema + host (+ port). Yo'l, so'rov, fragment bo'lmasin: brauzer Origin sarlavhasi shunday keladi.
 const parseOrigins = (raw) => {
   const items = parseList(raw);
   return items.map((o) => {

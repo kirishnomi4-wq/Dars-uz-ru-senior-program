@@ -55,7 +55,10 @@ services:
       DATABASE_URL: postgres://dars:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB:-dars_prod}
       HOST: 0.0.0.0
       PORT: "3001"
-      TRUST_PROXY: "true"
+      # Muhim: bu blok env_file dan USTUN — .env.deploy dagi qiymat faqat ${...} orqali yetadi.
+      # Default: ishonchli tarmoqlar. Son BERMANG — docker-proxy tufayli soket manzili doim
+      # ko`prik (172.x.0.1) va Fastify 5 da req.ip hammaga bitta bo`lib qoladi.
+      TRUST_PROXY: "${TRUST_PROXY:-loopback,172.16.0.0/12}"
     ports:
       - "127.0.0.1:${API_PORT:-3001}:3001"
     depends_on:

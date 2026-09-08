@@ -104,3 +104,12 @@ test('RESULT_DETAILS: off (default) | a; boshqasi xato', () => {
   assert.equal(loadConfig({ ...base, RESULT_DETAILS: 'a' }).resultDetails, 'a');
   assert.throws(() => loadConfig({ ...base, RESULT_DETAILS: 'b' }), /off \| a/);
 });
+
+test("TRUST_PROXY: ishonchli tarmoqlar ro`yxati", () => {
+  // Prod uchun to`g`ri shakl. Son bermang: docker-proxy tufayli soket manzili doim
+  // ko`prik bo`ladi va Fastify 5 da req.ip hammaga bitta bo`lib qoladi.
+  assert.deepStrictEqual(loadConfig({ ...base, TRUST_PROXY: "loopback,172.16.0.0/12" }).trustProxy,
+    ["loopback", "172.16.0.0/12"]);
+  assert.deepStrictEqual(loadConfig({ ...base, TRUST_PROXY: "uniquelocal" }).trustProxy, ["uniquelocal"]);
+  assert.throws(() => loadConfig({ ...base, TRUST_PROXY: "not-a-net" }), /ishonchli tarmoqlar/);
+});

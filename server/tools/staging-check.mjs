@@ -8,7 +8,7 @@
 //    lokal:  node --env-file=.env tools/staging-check.mjs http://127.0.0.1:3001 --local
 //
 //  Env'dan (deploy-fayl bilan bir xil bo'lishi kerak — aynan shu solishtiriladi):
-//    DARS_ENV · CODDYCAMP_LIVE_JWT_SECRET/ISSUER/AUDIENCE/KEY_ID (sinov-token yasash) · CORS_ORIGINS · ADMIN_USER/ADMIN_PASSWORD · RESULT_DETAILS
+//    DARS_ENV · CODDYCAMP_LIVE_JWT_SECRET/ISSUER/AUDIENCE/KEY_ID (sinov-token yasash) · _NEXT juftligi (rotatsiya: jwt_next) · CORS_ORIGINS · ADMIN_USER/ADMIN_PASSWORD · RESULT_DETAILS
 //  Bayroqlar:
 //    --read-only     sessiya yaratmaydi, token ro'yxatga olmaydi (prod uchun)
 //    --local         proksi/TLS talablari yo'q (127.0.0.1)
@@ -229,6 +229,18 @@ await check('jwt_reject', async () => {
   return 'muddati o\'tgan · begona secret · noma\'lum kid → 401';
 });
 
+await check('jwt_next', async () => {
+  // Rotatsiya (SIRLAR_ROTATSIYASI_UZ.md): env-faylda _NEXT juftligi bo'lsa, kid=v2 token serverda QABUL qilinishi kerak.
+  // Yon ta'sirsiz tekshiruv: /lms/me — 401 = rad, 404 «Ochiq sessiya yo'q» yoki 200 = qabul.
+  const secretNext = ENV.CODDYCAMP_LIVE_JWT_SECRET_NEXT, kidNext = ENV.CODDYCAMP_LIVE_JWT_KEY_ID_NEXT;
+  if (!secretNext || !kidNext) throw new Skip('env-faylda _NEXT juftligi yo\'q (rotatsiya boshlanmagan)');
+  const tok = await mint({ role: 'mentor', sub: SUB_MENTOR, gid: GID, name: 'Rotatsiya tekshiruvi', secret: secretNext, kid: kidNext });
+  const r = await req(`${API}/lms/me?lesson_id=${encodeURIComponent(LESSON)}`, { headers: bearer(tok) });
+  if (r.status === 401) throw new Error(`kid=${kidNext} token RAD (${r.json?.error}) — serverdagi env'da _NEXT juftligi yo'q yoki secret boshqa`);
+  if (r.status !== 404 && r.status !== 200) throw new Error(`kutilmagan HTTP ${r.status}: ${r.text.slice(0, 100)}`);
+  return `kid=${kidNext} qabul (HTTP ${r.status}) — ikkala kalit parallel ishlayapti`;
+});
+
 await check('proxy_ip', async () => {
   const plain = (await req(`${API}/health`)).json?.client;
   const spoof = (await req(`${API}/health`, { headers: { 'x-forwarded-for': '203.0.113.9' } })).json?.client;
@@ -236,7 +248,11 @@ await check('proxy_ip', async () => {
   const priv = /^(127\.|10\.|192\.168\.|172\.(1[6-9]|2\d|3[01])\.|::1$|fc|fd)/i.test(plain.ip || '');
   if (LOCAL) return `ip ${plain.ip} (lokal)`;
   if (!plain.forwarded || priv) throw new Error(`server mijozni ${plain.ip} deb ko'ryapti (forwarded=${plain.forwarded}) — proksi X-Forwarded-For uzatmayapti: butun maktab bitta IP → rate-limit hamma uchun`);
-  if (spoof.ip === '203.0.113.9') throw new Warn(`X-Forwarded-For soxtalanadi (TRUST_PROXY=true hamma zanjirga ishonadi) — bitta proksi bo'lsa env'da TRUST_PROXY=1 qo'ying; hozircha faqat rate-limit aylanib o'tiladi`);
+  // DIQQAT: bu yerda SON tavsiya qilinmaydi. Konteyner oldida docker-proxy turadi,
+  // soket manzili doim docker ko'prigi bo'ladi va Fastify 5 da sonli trustProxy da
+  // req.ip o'sha ko'prik bo'lib qoladi — ya'ni yuqoridagi tekshiruv aynan shu xatoni
+  // ushlaydi: butun maktab bitta IP. To'g'ri qiymat — ishonchli tarmoqlar ro'yxati.
+  if (spoof.ip === '203.0.113.9') throw new Warn(`X-Forwarded-For soxtalanadi (TRUST_PROXY=true hamma zanjirga ishonadi) — env'da TRUST_PROXY=loopback,172.16.0.0/12 qo'ying (SON BERMANG: req.ip hammaga bitta bo'lib qoladi); hozircha faqat rate-limit aylanib o'tiladi`);
   return `mijoz-IP ${plain.ip} · soxta XFF rad`;
 });
 
