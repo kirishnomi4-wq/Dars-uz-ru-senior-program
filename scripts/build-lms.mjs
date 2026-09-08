@@ -44,6 +44,7 @@ const OUT_DIR = process.env.LMS_OUT_DIR || 'lms'; // LMS_OUT_DIR — mashq/sinov
 const OUT_MAP = [
   ['src/3-Modull', '4-M'],           // LMS kursidagi 4-Modul (Frontend: React)
   ['src/pm/PmUserStoryLesson.jsx', '4-M'],   // 4-Modul 2-dars (eski PmLesson7 o'rnida)
+  ['src/pm/PmUserStoryLesson.homework.jsx', '4-M'], // uning uy-vazifasi ham 4-M (2026-09-08)
   ['src/4-Modull', '5-M'],           // LMS kursidagi 5-Modul (Backend: Node + PostgreSQL)
   ['src/4a-Modull', '6-M'],          // LMS kursidagi 6-Modul (Nest + test + CI/CD)
   ['src/4b-Modull', '6-M'],
