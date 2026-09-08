@@ -441,3 +441,7 @@ Droplet 2 GB $12 · Spaces $5 · domen ~$3/yil · **≈ $17/oy**. 4 GB kerak bo'
 - `scripts/smoke-onfinished.mjs` — darsni oxirgi ekranga seed qilib «Darsni yakunlash → Tamom» bosadi, payload'ni ushlaydi: InternetLesson, JsVars, PmUserStory, PmLesson2, PmLesson11 — hammasida `lang`+`questions`+`achievements` ✓, eski maydonlar saqlangan.
 - Hujjat: TZ_LESSON_RESULT_DETAILS_RU §9 (Axadulla uchun), SINOV B6/B7 dalil-manbasi onFinished JSON. Server `RESULT_DETAILS=off` qoladi (A-variant kodi rezervda). Arena savollari hozircha yuborilmaydi. M7 13 dars (jonli modulsiz) — o'z payload'ida allaqachon savol-matnlari bor, lekin §4 shakli yo'q — M7 konveyerida.
 - Qolgan: pilot va 90 LMS-yig'ma qayta yig'iladi (cutover-mashq buni qamraydi; pilot hozir qayta yig'ildi).
+
+**2026-09-08 (kun yakuni) — commit/push/sync + Kristina CI: prod yana qo'lda.**
+- Monorepo: af7b8fe (onFinished detallari, 97 dars) · 2081e3b (admin sessiyalar) · 1cc4e80 (docs) · d9aa9ab (Kristina CI 8333ddd: prod `when: manual` — LMS jamoasi bilan kelishuv, «main'ga merge ham, prod ham bizning signal bilan»). GitHub main = d9aa9ab. Sync-darvozasi haqiqiy topilma ushladi (Kristinaning 16:02 commiti) → `pull-dars-api.sh` bilan olindi → GitLab staging = 16f8284.
+- Ertaga (2026-09-09) birinchi ish: staging-check 16f8284 (kuzatuvchi yurgizdi) → **LMS pilot-sinovi** (foydalanuvchi: mentor + o'quvchi test-akkaunt, `lms/InternetLesson.jsx` yangi nusxa CRM'da; biz admin «Sessiyalar» + Dozzle kuzatuvi) → Axadulla'dan onFinished JSON tasdig'i → §13 to'liq.
