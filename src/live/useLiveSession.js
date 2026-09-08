@@ -7,6 +7,7 @@
 //   review (tugagan urinish — javoblar ko'rinadi, yozilmaydi) · self (kodsiz, o'zi ko'radi) · choosing (darvoza)
 // Darslar 'student'/'mentor' bo'lmagan har rejimni 'self' kabi ko'radi — solo/review shu tufayli qo'shimcha kodsiz ishlaydi.
 import { useState, useEffect, useRef, useCallback, createContext, useContext } from 'react';
+import { logAttempt, resetResultDetails } from './resultDetails.js';
 import { tr } from './i18n.js';
 import {
   LIVE_ENABLED, LIVE_POLL_MS, LIVE_POLL_MAX_MS, LIVE_HEARTBEAT_MS, LIVE_STALE_MS,
@@ -177,6 +178,7 @@ export function useLiveSession(lessonId, answerKey, opts = {}) {
   // ball-qatorini ham qo'yadi — shuning uchun solo'da submitAnswer chaqirilmasa ham natija to'g'ri chiqadi.
   // texts — savol/variant matni (faqat ko'rsatish uchun), 300 belgigacha qirqiladi.
   const recordAttempt = useCallback((screenIdx, questionId, picked, elapsedMs, texts) => {
+    logAttempt(lessonId, screenIdx, { picked, texts, elapsedMs }); // onFinished detallari uchun — har rejimda (self ham)
     if ((mode !== 'student' && mode !== 'solo') || !pin || !playerRef.current) return;
     const cut = (v) => (typeof v === 'string' ? v.slice(0, 300) : undefined);
     const t = texts && typeof texts === 'object' ? {
@@ -284,6 +286,7 @@ export function useLiveSession(lessonId, answerKey, opts = {}) {
 
   // Ko'rishdan / tugagan solo'dan — yangi urinish (server yangi solo sessiya ochadi, progress toza)
   const restartAttempt = useCallback(async () => {
+    resetResultDetails(lessonId); // urinishlar tarixi va yutuq-vaqtlari yangi urinish uchun tozalanadi
     const tok = lmsTokenRef.current;
     if (!tok) return false;
     setBusy(true);

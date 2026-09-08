@@ -3,6 +3,7 @@
 // Sahifa yopilayotganda (pagehide / yashirin) kutilayotgan yozuv keepalive bilan darhol ketadi.
 // localStorage yozuvi (kesh) o'zgarishsiz qoladi — server yo'q bo'lsa ham dars ishlayveradi.
 import { progressPut, setProgWriteHook } from './liveClient.js';
+import { noteEarned } from './resultDetails.js';
 
 const DEBOUNCE_MS = 2000;
 /** @type {Map<string, Channel>} */
@@ -27,6 +28,7 @@ export function progressChannelStatus(lessonId) {
 
 /** progWrite'dan: obj = { screen, answers, earned, startedAt, total, savedAt } */
 export function queueProgress(lessonId, obj) {
+  if (obj && Array.isArray(obj.earned)) noteEarned(lessonId, obj.earned); // yutuq birinchi ko'ringan vaqt — server bo'lmasa ham
   const ch = channels.get(lessonId);
   if (!ch || ch.status !== 'active' || !obj) return;
   ch.pending = {

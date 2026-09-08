@@ -166,6 +166,103 @@ var nickStore = (n) => {
   }
 };
 
+// src/live/i18n.js
+import React from "react";
+var liveLang = "uz";
+var setLiveLang = (lang) => {
+  liveLang = lang === "ru" ? "ru" : "uz";
+};
+var getLiveLang = () => liveLang;
+var tr = (node) => {
+  if (node === null || node === void 0) return "";
+  if (typeof node === "string") return node;
+  if (React.isValidElement(node)) return node;
+  return node[liveLang] ?? node.uz ?? node.ru ?? "";
+};
+
+// src/live/resultDetails.js
+var LIM = { questions: 200, attempts: 10, options: 6, text: 300, achievements: 20, name: 40, title: 200, elapsed: 36e5 };
+var cut = (v, n) => typeof v === "string" ? v.slice(0, n) : void 0;
+var iso = (t) => new Date(t || Date.now()).toISOString().replace(/\.\d{3}Z$/, "Z");
+var optText = (o, lang) => o && typeof o === "object" ? String(o[lang] ?? o.uz ?? "") : String(o ?? "");
+var attemptsByLesson = /* @__PURE__ */ new Map();
+var earnedAtByLesson = /* @__PURE__ */ new Map();
+function logAttempt(lessonId, screenIdx, { picked, texts, elapsedMs } = {}) {
+  if (!lessonId || !Number.isInteger(screenIdx)) return;
+  if (!attemptsByLesson.has(lessonId)) attemptsByLesson.set(lessonId, /* @__PURE__ */ new Map());
+  const m = attemptsByLesson.get(lessonId);
+  if (!m.has(screenIdx)) m.set(screenIdx, []);
+  const list = m.get(screenIdx);
+  if (list.length >= LIM.attempts) return;
+  list.push({ option: Number.isInteger(picked) ? picked : -1, answer: cut(texts && texts.picked, LIM.text), elapsed_ms: Math.max(0, Math.min(LIM.elapsed, Math.round(elapsedMs || 0))), at: Date.now() });
+}
+function noteEarned(lessonId, ids) {
+  if (!lessonId || !Array.isArray(ids)) return;
+  if (!earnedAtByLesson.has(lessonId)) earnedAtByLesson.set(lessonId, /* @__PURE__ */ new Map());
+  const m = earnedAtByLesson.get(lessonId);
+  const now = Date.now();
+  for (const raw of ids) {
+    const id = String(raw);
+    if (!m.has(id)) m.set(id, now);
+  }
+}
+function resetResultDetails(lessonId) {
+  attemptsByLesson.delete(lessonId);
+  earnedAtByLesson.delete(lessonId);
+}
+function buildResultDetails({ lessonId, screenMeta, answers, earned, achievements, lang: langIn, now } = {}) {
+  const lang = langIn === "ru" || langIn === "uz" ? langIn : getLiveLang();
+  const finish = now || Date.now();
+  const log = attemptsByLesson.get(lessonId) || /* @__PURE__ */ new Map();
+  const questions = [];
+  (screenMeta || []).forEach((meta, i) => {
+    if (!meta || !meta.scored) return;
+    const a = answers && answers[i];
+    if (!a || typeof a !== "object" || !Number.isInteger(a.picked)) return;
+    if (questions.length >= LIM.questions) return;
+    const correctIdx = Number.isInteger(a.correctIndex) ? a.correctIndex : Number.isInteger(a.correctIdx) ? a.correctIdx : null;
+    const raw = (log.get(i) || []).slice().sort((x, y) => x.at - y.at).slice(0, LIM.attempts);
+    const options = Array.isArray(a.options) ? a.options.slice(0, LIM.options).map((o) => optText(o, lang).slice(0, LIM.text)) : void 0;
+    const attempts = (raw.length ? raw : [{ option: a.picked, answer: cut(a.studentAnswer, LIM.text), elapsed_ms: 0, at: Number.isInteger(a.at) ? a.at : finish }]).map((t, n) => {
+      const o = { n: n + 1, option: t.option, correct: correctIdx !== null ? t.option === correctIdx : n === 0 ? a.correct === true : false, elapsed_ms: t.elapsed_ms, at: iso(t.at) };
+      const ans = t.answer ?? (options && t.option >= 0 ? options[t.option] : void 0);
+      if (typeof ans === "string") o.answer = ans.slice(0, LIM.text);
+      return o;
+    });
+    const correct = a.correct === true;
+    if (attempts[0]) attempts[0].correct = correct;
+    const q = {
+      question_id: meta.id && String(meta.id) || `s${i}`,
+      kind: "test",
+      order: questions.length + 1,
+      correct,
+      solved: a.solved === true || correct || attempts.some((t) => t.correct),
+      attempts
+    };
+    const qt = cut(typeof a.question === "string" ? a.question : optText(a.question, lang), LIM.text);
+    if (qt) q.question = qt;
+    if (options) q.options = options;
+    if (correctIdx !== null && correctIdx >= 0 && correctIdx <= 5) q.correct_option = correctIdx;
+    const ca = cut(typeof a.correctAnswer === "string" ? a.correctAnswer : options && correctIdx !== null ? options[correctIdx] : void 0, LIM.text);
+    if (ca) q.correct_answer = ca;
+    questions.push(q);
+  });
+  const at = earnedAtByLesson.get(lessonId) || /* @__PURE__ */ new Map();
+  const seen = /* @__PURE__ */ new Set();
+  const list = [];
+  for (const raw of earned instanceof Set ? [...earned] : Array.isArray(earned) ? earned : []) {
+    const id = String(raw).toLowerCase();
+    if (!/^[a-z0-9_-]{1,32}$/.test(id) || seen.has(id)) continue;
+    seen.add(id);
+    const def = achievements && (achievements[raw] || achievements[id]) || null;
+    const desc = def && def.desc;
+    const title = typeof desc === "string" ? desc : desc && (desc[lang] || desc.uz) || def && def.name || id;
+    list.push({ id, name: String(def && def.name || id).slice(0, LIM.name), title: String(title).slice(0, LIM.title), earned_at: iso(at.get(String(raw)) ?? at.get(id) ?? finish) });
+  }
+  list.sort((x, y) => x.earned_at < y.earned_at ? -1 : x.earned_at > y.earned_at ? 1 : 0);
+  return { lang, questions, achievements: list.slice(0, LIM.achievements) };
+}
+
 // src/live/progressSync.js
 var DEBOUNCE_MS = 2e3;
 var channels = /* @__PURE__ */ new Map();
@@ -182,6 +279,7 @@ function setProgressChannel(lessonId, ch) {
   channels.set(lessonId, { ...ch, timer: null, pending: null, inFlight: false });
 }
 function queueProgress(lessonId, obj) {
+  if (obj && Array.isArray(obj.earned)) noteEarned(lessonId, obj.earned);
   const ch = channels.get(lessonId);
   if (!ch || ch.status !== "active" || !obj) return;
   ch.pending = {
@@ -240,19 +338,6 @@ if (typeof window !== "undefined") {
   });
 }
 setProgWriteHook(queueProgress);
-
-// src/live/i18n.js
-import React from "react";
-var liveLang = "uz";
-var setLiveLang = (lang) => {
-  liveLang = lang === "ru" ? "ru" : "uz";
-};
-var tr = (node) => {
-  if (node === null || node === void 0) return "";
-  if (typeof node === "string") return node;
-  if (React.isValidElement(node)) return node;
-  return node[liveLang] ?? node.uz ?? node.ru ?? "";
-};
 
 // src/live/useLiveSession.js
 import { useState, useEffect, useRef, useCallback, createContext, useContext } from "react";
@@ -489,13 +574,14 @@ function useLiveSession(lessonId, answerKey, opts = {}) {
     attempt2(0);
   }, [mode, pin]);
   const recordAttempt = useCallback((screenIdx, questionId, picked, elapsedMs, texts) => {
+    logAttempt(lessonId, screenIdx, { picked, texts, elapsedMs });
     if (mode !== "student" && mode !== "solo" || !pin || !playerRef.current) return;
-    const cut = (v) => typeof v === "string" ? v.slice(0, 300) : void 0;
+    const cut2 = (v) => typeof v === "string" ? v.slice(0, 300) : void 0;
     const t = texts && typeof texts === "object" ? {
-      question: cut(texts.question),
-      options: Array.isArray(texts.options) ? texts.options.slice(0, 6).map((o) => cut(String(o ?? ""))) : void 0,
-      picked: cut(texts.picked),
-      correct: cut(texts.correct),
+      question: cut2(texts.question),
+      options: Array.isArray(texts.options) ? texts.options.slice(0, 6).map((o) => cut2(String(o ?? ""))) : void 0,
+      picked: cut2(texts.picked),
+      correct: cut2(texts.correct),
       lang: texts.lang === "ru" ? "ru" : "uz"
     } : void 0;
     if (t) {
@@ -628,6 +714,7 @@ function useLiveSession(lessonId, answerKey, opts = {}) {
     }
   }, [lessonId, lessonVersion, applyServerSession]);
   const restartAttempt = useCallback(async () => {
+    resetResultDetails(lessonId);
     const tok = lmsTokenRef.current;
     if (!tok) return false;
     setBusy(true);
@@ -739,9 +826,9 @@ function LiveGate({ live, title = "Jonli dars" }) {
     </div></div>;
   }
   if (lms.state === "choose" && !pinFallback && Array.isArray(lms.choices)) {
-    const when = (iso) => {
+    const when = (iso2) => {
       try {
-        return new Date(iso).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+        return new Date(iso2).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
       } catch {
         return "";
       }
@@ -3999,7 +4086,8 @@ function HtmlLesson({ lang: langProp, onFinished, liveToken }) {
       finalScore: finalCorrect,
       finalTotal: finalMeta.length,
       passed: finalMeta.length ? finalCorrect / finalMeta.length >= 0.6 : scoredMeta.length ? correctAnswers / scoredMeta.length >= 0.6 : false,
-      answers: SCREEN_META.map((s, i) => answers[i]).filter(Boolean)
+      answers: SCREEN_META.map((s, i) => answers[i]).filter(Boolean),
+      ...buildResultDetails({ lessonId: LESSON_META.lessonId, screenMeta: SCREEN_META, answers, earned, achievements: ACHIEVEMENTS })
     };
     if (typeof onFinished === "function") onFinished(payload);
   };

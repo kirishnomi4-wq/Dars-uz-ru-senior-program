@@ -30,7 +30,7 @@ const METHODS = { GET: T.success, POST: T.accent, PUT: T.blue, DELETE: T.danger 
 const STAT = { 200: ['200 OK', T.success], 201: ['201 Created', T.success], 404: ['404 Not Found', T.danger], 400: ['400 Bad Request', '#7C5CBF'] }; // B1: to'q sariq (amber) taqiq → binafsha (m4-14 ikkinchi rangi)
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
-import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang } from '../live/index.js';
+import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails } from '../live/index.js';
 
 
 
@@ -2366,7 +2366,8 @@ export default function ApiPostmanLesson({ lang: langProp, onFinished, liveToken
       scorePercent: scoredMeta.length ? Math.round((correctAnswers / scoredMeta.length) * 100) : 0,
       finalScore: finalCorrect, finalTotal: finalMeta.length,
       passed: finalMeta.length ? finalCorrect / finalMeta.length >= 0.6 : (scoredMeta.length ? correctAnswers / scoredMeta.length >= 0.6 : false),
-      answers: SCREEN_META.map((s, i) => answers[i]).filter(Boolean)
+      answers: SCREEN_META.map((s, i) => answers[i]).filter(Boolean),
+      ...buildResultDetails({ lessonId: LESSON_META.lessonId, screenMeta: SCREEN_META, answers, earned, achievements: ACHIEVEMENTS })
     };
     if (typeof onFinished === 'function') onFinished(payload);
   };
