@@ -48,6 +48,10 @@ deploy:
       variables: { DEPLOY_DIR: /srv/dars-api/staging }
     - if: $CI_COMMIT_BRANCH == "main"
       variables: { DEPLOY_DIR: /srv/dars-api/prod }
+      # Prod faqat qo'lda: LMS jamoasi bilan kelishuv (2026-09-08) — main ga merge
+      # ham, prod ga chiqarish ham ularning signali bilan. Ikkita mustaqil to'siq:
+      # merge qilinmasa prod qimirlamaydi, va main ga tasodifiy push ham o'zi ketmaydi.
+      when: manual
   script:
     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" "$CI_REGISTRY"
     - cd "$DEPLOY_DIR"
