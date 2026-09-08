@@ -87,7 +87,7 @@ async function one(entry, sharedSpec) {
     charset: 'utf8',            // o'zbekcha/ruscha matn \uXXXX ga aylanmasin
     external: ['react', 'react-dom', 'react/jsx-runtime'],
     // Jonli-dars API manzili (src/live/liveClient.js). Bo'sh → prod. Staging uchun:
-    //   DARS_API_URL=https://staging-api.azizbek.site node scripts/build-lms.mjs <fayl>
+    //   DARS_API_URL=https://staging-dars-api.coddycamp.uz node scripts/build-lms.mjs <fayl>   (bo'sh → prod dars-api.coddycamp.uz)
     define: { __DARS_API_URL__: JSON.stringify(process.env.DARS_API_URL || '') },
     legalComments: 'inline',
     write: false,               // birlashtirishdan keyin o'zimiz yozamiz

@@ -1,9 +1,10 @@
 // Jonli-dars mijozi — toza fetch, kutubxonasiz. Server: dars-api (server/), Supabase o'rnini bosadi.
-// URL bundler'dan keladi (vite/esbuild `define` → __DARS_API_URL__); berilmasa prod.
+// URL bundler'dan keladi (vite/esbuild `define` → __DARS_API_URL__); berilmasa PROD (LMS serveri, Kristina 2026-09-08).
+// Staging: DARS_API_URL=https://staging-dars-api.coddycamp.uz (build-lms / vite). Lokal: http://127.0.0.1:3001.
 // O'chirish: DARS_API_URL='' emas — modul har doim yoqiq; oddiy rejim uchun dars «self» ni tanlaydi.
 /* global __DARS_API_URL__ */
 
-const DEFAULT_API_URL = 'https://api.azizbek.site';
+const DEFAULT_API_URL = 'https://dars-api.coddycamp.uz';
 export const LIVE_API_URL = (typeof __DARS_API_URL__ !== 'undefined' && __DARS_API_URL__)
   ? String(__DARS_API_URL__).replace(/\/+$/, '')
   : DEFAULT_API_URL;
