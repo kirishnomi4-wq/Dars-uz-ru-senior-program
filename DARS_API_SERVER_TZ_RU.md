@@ -32,7 +32,7 @@ api ──► https://school-api.coddycamp.uz
 | Сервис | Что делает |
 |---|---|
 | `postgres` | PostgreSQL 16, volume `dars-pgdata`, healthcheck |
-| `migrate` | Запускается один раз, обновляет схему. При ошибке `api` не поднимается |
+| `migrate` | Запускается один раз: обновляет схему и загружает каталог уроков. При ошибке `api` не поднимается |
 | `api` | Приложение, порт 3001 только на `127.0.0.1`, healthcheck, логи JSON в stdout, ротация 5×20 МБ |
 | `backup` | Каждые 24 ч `pg_dump -Fc` → volume `dars-backups`, хранение 14 дней |
 

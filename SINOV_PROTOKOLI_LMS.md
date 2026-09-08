@@ -5,15 +5,17 @@
 
 ## 0. Tayyorgarlik (sinovdan oldin)
 
+`<STAGING>` = Kristina bergan manzil (masalan `https://staging-dars-api.coddycamp.uz`). To'liq tartib: `STAGING_QABUL_UZ.md`.
+
 | # | Kim | Nima | Tekshiruv |
 |---|---|---|---|
-| T1 | Biz | `https://staging-api.azizbek.site/api/v1/health` → 200, `checks.db = ok` | curl |
-| T2 | Biz | `/etc/dars-api/staging.env`: haqiqiy `CODDYCAMP_*` (iss=coddycamp-lms, aud=dars-platform, kid=v1), `CORS_ORIGINS=https://lms.coddycamp.uz` | health + log'da «LMS-ko'prik o'chiq» YO'Q |
-| T3 | Biz | `npm run seed:catalog` staging'da (115 dars) | `select count(*) from lesson_catalog` |
-| T4 | Biz | Pilot-fayl: `DARS_API_URL=https://staging-api.azizbek.site node scripts/build-lms.mjs src/1-Modull/InternetLesson.jsx` → `lms/InternetLesson.jsx` | smoke-lms o'tdi |
-| T5 | LMS / biz | Pilot-faylni CRM «Umumiy modullar» → test-materialga (`type=jsx`) G-1 va G-2 sahifalariga | O-1 LMS'da ko'radi, M-1 CRM'da ko'radi |
-| T6 | LMS | Test-akkauntlar (S-1): O-1, O-2 (G-1 faol) · O-3 (G-1 muzlatilgan) · O-4 (G-2) · O-5 (G-1+G-2) · M-1 (TEACHER G-1) · M-2 (TEACHER G-2) · T-1 (TA G-1) · X-1 (tayinlanmagan) · V-1 (vaqtincha mentor, muddat ichida) | login/parol + ID + guruh xavfsiz kanal orqali |
-| T7 | Biz | Admin-sahifa `https://staging-api.azizbek.site/admin` ochiq (basic auth) | ko'rinadi |
+| T1 | Biz | `cd server && node --env-file=.env.deploy.staging tools/staging-check.mjs <STAGING>` — 19 band bir yo'la: health, env, migratsiya/katalog soni, soat (JWT ±60 s), TLS, 404-JSON, CORS, tana-yo'li, ko'prik, JWT rad, proksi-IP, admin, mentor-oqim (join → ETag/304 → heartbeat → me → end), School API ulanishi, kechikish | «Qabul: server tayyor», 0 ✗ |
+| T2 | Kristina | Serverdagi env-fayl = yuborilgan `.env.deploy.staging` (`CORS_ORIGINS=https://lms.coddycamp.uz`, iss/aud/kid, tokenlar) | T1 dagi `env`, `features`, `cors_allow`, `mentor_flow` ✓ |
+| T3 | avto | Katalog `migrate` xizmatida yuklanadi (`migrate && seed:catalog`, compose 2026-09-08) | T1 dagi `catalog` = 115 |
+| T4 | Biz | Pilot: `DARS_API_URL=<STAGING> node scripts/build-lms.mjs src/1-Modull/InternetLesson.jsx` → `lms/InternetLesson.jsx`; `CHROME=/usr/bin/google-chrome node scripts/smoke-lms.mjs lms/InternetLesson.jsx` | smoke o'tdi, faylda `<STAGING>` bor, eski manzil yo'q |
+| T5 | Biz | Pilot-faylni CRM «Umumiy modullar» → test-materialga (`type=jsx`) G-1 va G-2 sahifalariga | O-1 LMS'da ko'radi, M-1 CRM'da ko'radi |
+| T6 | Foydalanuvchi | Test-akkauntlar (S-1): O-1, O-2 (G-1 faol) · O-3 (G-1 muzlatilgan) · O-4 (G-2) · O-5 (G-1+G-2) · M-1 (TEACHER G-1) · M-2 (TEACHER G-2) · T-1 (TA G-1) · X-1 (tayinlanmagan) · V-1 (vaqtincha mentor, muddat ichida) | login/parol + ID + guruh xavfsiz kanal orqali |
+| T7 | Biz | Admin-sahifa `<STAGING>/admin` ochiq (basic auth) | T1 dagi `admin` ✓ |
 
 ## 1. Bandlar (LMS §13) — kim bosadi, nima kutiladi, dalil
 
@@ -43,7 +45,7 @@ Har band uchun dalil: skrinshot (belgi/darvoza) + bizda log-satr yoki admin-yozu
 | 20 | `GET /lesson-results/{event_id}` tasdiqlaydi | Admin: `GET /admin/api/results/<event_id>/verify` (server o'zi results-token bilan School API'dan so'raydi) | `remote.found = true`, `remote.data.event_id` mos | admin-javob skrinshoti (token ko'rinmaydi) |
 | 21 | Frontend/URL/loglarda `sapi_`, JWT secret, JWT yo'q | Brauzer DevTools (Network/Application), Caddy va journald loglari, URL | Hech qayerda yo'q (Authorization sarlavhasi Caddy logidan o'chiriladi) | grep natijasi skrinshoti |
 
-## 2. Bizning qo'shimcha 5 band
+## 2. Bizning qo'shimcha 7 band
 
 | # | Band | Qadamlar | Kutilgan |
 |---|---|---|---|
@@ -52,6 +54,8 @@ Har band uchun dalil: skrinshot (belgi/darvoza) + bizda log-satr yoki admin-yozu
 | B3 | `rejected_students` saqlanadi va ko'rinadi | (19) dan keyin | admin `results/:id` da `response` ichida |
 | B4 | Rotatsiya `kid v1 + v2` | LMS ikkinchi secret bilan `kid=v2` token beradi (yoki staging'da biz `_NEXT` env) | Ikkala kid ham qabul |
 | B5 | **Maqsad-sinov:** M-1 CRM'da bosadi (kod yo'q) → O-1 LMS'da bosadi (PIN yo'q, o'z ismi) → O-4 kira olmaydi → T-1 ochadi → X-1 ocha olmaydi | ketma-ket | Hammasi bir o'tirishda, 15 daqiqa |
+| B6 | Natija-detallari: savollar (`RESULT_DETAILS=a`, TZ_LESSON_RESULT_DETAILS_RU §4) | O-1 bitta savolda avval noto'g'ri, keyin to'g'ri bosadi; dars tugaydi | LMS'dagi hodisada `questions[]`: shu savolda 2 urinish, `correct=false`, `solved=true`; matnlar o'quvchi tilida; `correct_answers`/`answered` ekrandagi «N / jami» bilan bir xil |
+| B7 | Natija-detallari: yutuqlar | O-1 darsda kamida 2 yutuq oladi (masalan «Bullseye!» + «Level Up!») | hodisada `achievements[]`: id kichik harfda, `name`/`title` darsdagi bilan bir xil, `earned_at` o'sib boradi |
 
 ## 3. Uyga-qaytish (bizning F-0903-01)
 

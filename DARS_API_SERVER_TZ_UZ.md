@@ -33,7 +33,7 @@ Compose'dagi xizmatlar (biz beramiz):
 | Xizmat | Nima qiladi |
 |---|---|
 | `postgres` | PostgreSQL 16, `dars-pgdata` volume, healthcheck |
-| `migrate` | Bir marta yuriydi, sxemani yangilaydi. Xato bo'lsa `api` ko'tarilmaydi |
+| `migrate` | Bir marta yuriydi: sxemani yangilaydi va dars-katalogini yuklaydi. Xato bo'lsa `api` ko'tarilmaydi |
 | `api` | Ilova, port 3001 faqat `127.0.0.1` da, healthcheck, log JSON stdout'ga, rotatsiya 5×20 MB |
 | `backup` | Har 24 soatda `pg_dump -Fc` → `dars-backups` volume, 14 kun |
 

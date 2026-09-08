@@ -1,9 +1,11 @@
 # CRM'ga yuklash ro'yxati — `lms/` yig'malari (2026-09-07 holati, cutover'da qayta yig'iladi)
 
 **Qoida (S-6):** bitta darsning UZ va RU materiali CRM'da BIR XIL faylga (bir xil `lesson_id`) ishora qilsin — til `lang` prop bilan keladi.
+**2026-09-08 (cutover-mashqi):** `PmLesson9.shared.jsx` va `PmUserStoryLesson.shared.jsx` manbasi 3-Modul/pm — `build-lms` ularni `lms/4-M/` ga yig'adi (OUT_MAP). Ro'yxat shunga to'g'rilandi; `lms/` ildizidagi eski nusxalari cutover kuni O'CHIRILADI (aks holda eskisi yuklanadi). Yig'ish+tekshiruv: `node scripts/cutover-mashq.mjs --url <manzil> --out lms --smoke`.
+
 **Cutover kuni:** `DARS_API_URL=<Kristina manzili> node scripts/build-lms.mjs <src fayl>` → `lms/` → CRM Media → material. `.shared.jsx` = umumiy kompilyator moduli bilan; `yakka` = kompilyatorsiz.
 
-## 4-M — 14 fayl
+## 4-M — 16 fayl
 
 | lms fayl | lesson_id | Sarlavha (uz) | Manba | Tur |
 |---|---|---|---|---|
@@ -21,6 +23,8 @@
 | `4-M/ReactPropsReuseLesson.jsx` | `react-props-reuse-04-v18` | Props va qayta ishlatish | `src/3-Modull/ReactPropsReuseLesson.jsx` | yakka |
 | `4-M/ReactRouterPracticeLesson.jsx` | `react-router-practice-p2-v18` | react-router-practice-p2-v18 | `src/3-Modull/ReactRouterPracticeLesson.jsx` | yakka |
 | `4-M/ReactStateEffectLesson.jsx` | `react-state-effect-03-v18` | State va Effect: useState + useEffect | `src/3-Modull/ReactStateEffectLesson.jsx` | yakka |
+| `4-M/PmLesson9.shared.jsx` | `pm-m3d10-v1` | Qachon «tayyor» deb ayta olamiz? | `src/3-Modull/PmLesson9.jsx` | shared |
+| `4-M/PmUserStoryLesson.shared.jsx` | `pm-m3d2-v3` | User Story: kim va nima uchun? | `src/pm/PmUserStoryLesson.jsx` | shared |
 
 ## 5-M — 15 fayl
 
@@ -61,7 +65,7 @@
 | `6-M/PmLesson17.jsx` | `pm-m4c2-v1` | pm-m4c2-v1 | `src/4c-Modull/PmLesson17.jsx` | yakka |
 | `6-M/PmLesson18.jsx` | `pm-m4c6-v1` | Saytingiz hozir ochilyaptimi? | `src/4c-Modull/PmLesson18.jsx` | yakka |
 
-## (ildiz: M1–M2) — 47 fayl
+## (ildiz: M1–M2) — 45 fayl
 
 | lms fayl | lesson_id | Sarlavha (uz) | Manba | Tur |
 |---|---|---|---|---|
@@ -93,8 +97,8 @@
 | `JsVarsLesson.shared.jsx` | `js-vars-01-v18` | js-vars-01-v18 | `src/2-Modull/JsVarsLesson.jsx` | shared |
 | `PeanStackLesson.jsx` | `pean-stack-01-v18` | PERN Stack — 4 texnologiya, bitta jamoa | `src/2-Modull/PeanStackLesson.jsx` | yakka |
 | `PeanStackLesson.shared.jsx` | `pean-stack-01-v18` | PERN Stack — 4 texnologiya, bitta jamoa | `src/2-Modull/PeanStackLesson.jsx` | shared |
-| `PmLesson1.jsx` | `pm-m1d2-v1` (katalogda PmAudienceLesson bilan TAKROR — cutover'gacha alohida id beriladi) | PM 1-dars | `src/1-Modull/PmLesson1.jsx` | yakka |
-| `PmLesson1.shared.jsx` | `pm-m1d2-v1` (takror, yuqoridagi kabi) | PM 1-dars | `src/1-Modull/PmLesson1.jsx` | shared |
+| `PmLesson1.jsx` | `pm-m1d2-v1` | PM 1-dars | `src/1-Modull/PmLesson1.jsx` | yakka |
+| `PmLesson1.shared.jsx` | `pm-m1d2-v1` | PM 1-dars | `src/1-Modull/PmLesson1.jsx` | shared |
 | `PmLesson2.jsx` | `pm-m1d6-v1` | Struktura — foydalanuvchi uchun qilingan qulaylik | `src/1-Modull/PmLesson2.jsx` | yakka |
 | `PmLesson2.shared.jsx` | `pm-m1d6-v1` | Struktura — foydalanuvchi uchun qilingan qulaylik | `src/1-Modull/PmLesson2.jsx` | shared |
 | `PmLesson3.jsx` | `pm-pitch-03-v19` | Demo Day — 3 daqiqalik nutq | `src/1-Modull/PmLesson3.jsx` | yakka |
@@ -103,8 +107,6 @@
 | `PmLesson4.shared.jsx` | `pm-m2d2-v1` | Muammodan yechimga | `src/2-Modull/PmLesson4.jsx` | shared |
 | `PmLesson5.shared.jsx` | `pm-m2d7-v1` | pm-m2d7-v1 | `src/2-Modull/PmLesson5.jsx` | shared |
 | `PmLesson6.shared.jsx` | `pm-m2d13-v1` | Sistemani qanday pitch qilish | `src/2-Modull/PmLesson6.jsx` | shared |
-| `PmLesson9.shared.jsx` | `pm-m3d10-v1` | Qachon «tayyor» deb ayta olamiz? | `src/3-Modull/PmLesson9.jsx` | shared |
-| `PmUserStoryLesson.shared.jsx` | `pm-m3d2-v3` | User Story: kim va nima uchun? | `src/pm/PmUserStoryLesson.jsx` | shared |
 | `PracticeLesson1.jsx` | `practice-01-jonlantirish-v18` | Praktika 1 — Saytni jonlantiramiz | `src/2-Modull/PracticeLesson1.jsx` | yakka |
 | `PracticeLesson1.shared.jsx` | `practice-01-jonlantirish-v18` | Praktika 1 — Saytni jonlantiramiz | `src/2-Modull/PracticeLesson1.jsx` | shared |
 | `PracticeLesson2.jsx` | `practice-02-ai-promo-v18` | Praktika 2 — AI bilan tez sayt | `src/2-Modull/PracticeLesson2.jsx` | yakka |
