@@ -271,6 +271,38 @@ test("admin: /api/results/:id/verify — School API'da GET bilan tasdiq (§13-20
   assert.equal(missing.statusCode, 404);
 });
 
+test('admin: /api/sessions ro\'yxati va /api/sessions/:id tafsiloti (ismsiz: ID, sonlar, natija-holati)', async () => {
+  const list = await adminGet('/admin/api/sessions?limit=50');
+  assert.equal(list.statusCode, 200, list.body);
+  const rows = list.json();
+  assert.ok(rows.length >= 2, `kamida jonli + solo sessiya: ${rows.length}`);
+  const live = rows.find((r) => r.mode === 'live' && r.gid === 861 && r.teacher_id === 145 && r.students === 2);
+  assert.ok(live, 'birinchi jonli sessiya (861/145, 2 o\'quvchi) ro\'yxatda');
+  assert.equal(live.title_uz, `Dars ${LESSON}`);
+  assert.equal(live.players, 3, '2 LMS + 1 PIN o\'yinchi');
+  assert.equal(live.status, 'ended');
+  assert.ok(String(live.result_status || '').includes('delivered'), `natija-holati: ${live.result_status}`);
+  assert.ok(!Object.keys(live).some((k) => /name|nick/i.test(k)), 'ro\'yxatda ism-ustuni yo\'q');
+  const ended = await adminGet('/admin/api/sessions?status=ended&limit=5');
+  assert.ok(ended.json().every((r) => r.status === 'ended'));
+  const bad = await adminGet('/admin/api/sessions?status=yomon');
+  assert.equal(bad.statusCode, 400);
+
+  const det = await adminGet(`/admin/api/sessions/${live.id}`);
+  assert.equal(det.statusCode, 200, det.body);
+  const d = det.json();
+  assert.equal(d.session.pin, live.pin);
+  assert.equal(d.pin_players, 3);
+  const students = d.participants.filter((p) => p.role === 'student').map((p) => p.subject_id).sort();
+  assert.deepEqual(students, [3001, 3002]);
+  const ali = d.participants.find((p) => p.subject_id === 3001);
+  assert.deepEqual([ali.answers, ali.correct, ali.attempt_status, ali.finish_reason], [2, 2, 'finished', 'live_ended']);
+  assert.ok(!d.participants.some((p) => 'display_name' in p || 'nickname' in p), 'tafsilotda ism yo\'q');
+  assert.ok(d.results.length === 1 && d.results[0].status === 'delivered');
+  const missing = await adminGet('/admin/api/sessions/00000000-0000-0000-0000-000000000000');
+  assert.equal(missing.statusCode, 404);
+});
+
 test('admin o\'chiq (env yo\'q) → 404', async () => {
   const off = await makeTestApp({}, { lms: true, fetchImpl: fetchStub });
   try {

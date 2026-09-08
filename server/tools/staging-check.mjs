@@ -266,8 +266,10 @@ await check('admin', async () => {
   if (ok.status !== 200 || !ok.json?.queue) throw new Error(`parol bilan → HTTP ${ok.status} — env-fayldagi ADMIN_PASSWORD serverdagidan farq qiladi?`);
   const page = await req(`${BASE}/admin`, { headers: auth });
   if (!/text\/html/.test(h(page, 'content-type') || '')) throw new Warn(`/admin sahifasi HTML emas (${page.status})`);
+  const ses = await req(`${BASE}/admin/api/sessions?limit=5`, { headers: auth });
+  const sesNote = ses.status === 200 && Array.isArray(ses.json) ? `sessiyalar ✓ (${ses.json.length})` : `sessiyalar-endpoint yo'q (${ses.status}, eski image)`;
   const q = Object.entries(ok.json.queue).map(([k, v]) => `${k} ${v}`).join(', ') || 'bo\'sh';
-  return `401 ✓ · kirish ✓ · navbat: ${q} · faol: live ${ok.json.active_sessions?.live} solo ${ok.json.active_sessions?.solo}`;
+  return `401 ✓ · kirish ✓ · ${sesNote} · navbat: ${q} · faol: live ${ok.json.active_sessions?.live} solo ${ok.json.active_sessions?.solo}`;
 });
 
 let mentorSession = null;
