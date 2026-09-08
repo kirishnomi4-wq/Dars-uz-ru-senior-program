@@ -92,6 +92,9 @@ test('mentor «Erkin qilish» (end_session RPC) → sweeper → payload to\'g\'r
   assert.ok(!('questions' in a) && !('lang' in a) && !('achievements' in a), 'RESULT_DETAILS=off (default) — detallar yo\'q');
   assert.equal(ev.response.data.students_rejected, 1);
   assert.equal(ev.response.data.rejected_students[0].student_id, 3002);
+  // F-0908-01: mentor yopgan sessiya 'mentor' deb belgilanadi ('stale' emas — staging pilotida shu chiqqan edi)
+  const { rows: [ls] } = await t.db.query(`select status, end_reason from lms_sessions where pin = $1`, [mentor.pin]);
+  assert.deepEqual([ls.status, ls.end_reason], ['ended', 'mentor']);
   // urinishlar yopildi va hodisaga bog'landi
   const at = (await t.db.query(`select status, finish_reason, result_event_id from attempts where subject_id in (3001, 3002) order by subject_id`)).rows;
   assert.ok(at.every((x) => x.status === 'finished' && x.finish_reason === 'live_ended'));

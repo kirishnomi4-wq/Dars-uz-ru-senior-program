@@ -67,6 +67,21 @@ Har band uchun dalil: skrinshot (belgi/darvoza) + bizda log-satr yoki admin-yozu
 
 ## 4. Natija-jadval (to'ldiriladi)
 
+### Pilot 2026-09-08 (staging 16f8284, InternetLesson, test-guruh gid 1070, mentor 165, o'quvchi 37069) — foydalanuvchi o'tkazdi, biz admin/sessiyalar orqali kuzatdik
+
+| Band | Natija | Dalil |
+|---|---|---|
+| Mentor CRM'dan ochadi → jonli sessiya, PIN yo'q, «Kod: 782 030 · 1» belgisi | ✅ | skrinshot (mentor), admin: live gid=1070 t=165 |
+| O'quvchi (guruh a'zosi) LMS'da ochadi → PIN so'ralmaydi, «Mentor: 1/22 · test», ergashadi | ✅ | skrinshot, admin: students=1, ekran 21/21 ga birga yetdi |
+| Begona o'quvchi (guruhda emas) → «Mustaqil rejim», ismi JWT'dan | ✅ | skrinshot, admin: solo sessiya |
+| Javoblar/urinishlar/yutuqlar serverda | ✅ | tafsilot: javob 5, to'g'ri 1, urinish 5, yutuq 4, oxirigacha ✓ |
+| Natija School API'ga | ✅ | `sess_782030_20260908T125804Z` delivered, HTTP 201, LMS GET topildi (rank 1, students_accepted 1) |
+| LMS'da tanga | ✅ | o'quvchi ekranida 🪙 40 (LMS `reward_status: pending_policy` → tanga berildi) |
+| CodeStrike (kompilyator) darsda | ✅ | foydalanuvchi ko'rdi |
+| Topilma | ⚠ | `end_reason=stale` (mentor tugatgan bo'lsa ham) — F-0908-01, tuzatildi (live end_session → 'mentor') |
+| Ochiq | — | onFinished JSON'da `questions/achievements` borligini Axadulla ko'rsatadi; qolgan akkauntlar (O-3/O-4/O-5/T-1/X-1) bilan §13 to'liq |
+
+
 | Band | Holat (✅/❌) | Sana | Dalil (fayl/havola) | Izoh |
 |---|---|---|---|---|
 | 1 … 21 | | | | |

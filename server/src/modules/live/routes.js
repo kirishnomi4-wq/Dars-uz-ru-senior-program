@@ -29,8 +29,12 @@ export async function liveRoutes(app) {
     }, async (req, reply) => {
       const params = def.args.map((a) => (req.body[a] === undefined ? null : req.body[a]));
       const { rows } = await app.db.query(sql, params);
-      // Mentor «Erkin qilish» — LMS sessiyasi bo'lsa natija darhol navbatga (sweeper 5 s kutmasin)
-      if (fn === 'end_session' && app.results) setTimeout(() => app.results.runOnce().catch(() => {}), 200);
+      // Mentor «Erkin qilish» / darsni tugatish — LMS sessiyasi bo'lsa: sabab 'mentor' (sweeper 'stale' deb yozmasin, F-0908-01)
+      // va natija darhol navbatga (sweeper 5 s kutmasin)
+      if (fn === 'end_session') {
+        await app.db.query(`update lms_sessions set status = 'ended', end_reason = coalesce(end_reason, 'mentor'), finished_at = coalesce(finished_at, now()), updated_at = now() where pin = $1 and mode = 'live' and status = 'live'`, [req.body.p_pin]).catch((e) => req.log.warn({ err: e }, 'lms_sessions end_reason'));
+        if (app.results) setTimeout(() => app.results.runOnce().catch(() => {}), 200);
+      }
       if (def.returns === 'void') return reply.code(204).send();
       if (def.returns === 'scalar') return reply.send(rows[0]?.result ?? null);
       return reply.send(rows);
