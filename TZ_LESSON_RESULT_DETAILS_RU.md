@@ -182,3 +182,25 @@ AchievementResult:
 После ответов по п. 7: сервер (таблица попыток, сборка `questions`/`achievements`) — 1 день; уроки (фиксация каждой попытки, 101 урок одним скриптом) — 1 день; тесты и проверка отправки на ваш тестовый контур School API — 1 день. Итого 3 рабочих дня. К совместному приёмочному тесту добавляются два пункта: детали по вопросам пришли и совпадают с экраном ученика; достижения пришли.
 
 До согласования формата код не пишем, чтобы не переделывать.
+
+## 9. Решение 2026-09-08 — вариант C: тот же объект через `onFinished`
+
+По ответу Axadulla (School API остаётся без изменений, детали — через `onFinished`, при необходимости позже — отдельный endpoint):
+
+- В payload `onFinished` (то, что урок уже отдаёт LMS-фронту при завершении) добавляются **три поля верхнего уровня**, ровно как в §4:
+  `lang` (`uz` | `ru`), `questions[]`, `achievements[]`. Все прежние поля payload (`lessonId`, `correctAnswers`, `totalQuestions`, `answers`, …) остаются без изменений.
+- `questions[]`: только вопросы, на которые ученик отвечал; `kind = "test"` (арена пока не передаём); `attempts[]` — каждое нажатие с `elapsed_ms` и `at`;
+  `correct` = первая попытка (совпадает с `correctAnswers` в основном событии School API); `solved` — дошёл ли до правильного.
+- `achievements[]`: `id` в нижнем регистре, `name`, `title` на языке `lang`, `earned_at`.
+- Тексты — на языке, на котором ученик проходил урок. Ограничения те же (≤200 вопросов, ≤10 попыток, ≤6 вариантов, ≤300 символов, ≤20 достижений).
+- Событие в School API (`lesson-results`) не меняется; `RESULT_DETAILS` на нашем сервере остаётся выключенным.
+- Реализовано в общем модуле уроков (`src/live/resultDetails.js`), подключено во все 97 уроков с живым модулем; проверено в браузере на 5 уроках разных типов.
+
+Пример payload `onFinished` (фрагмент):
+```json
+{ "lessonId": "internet-01-v18", "correctAnswers": 1, "totalQuestions": 5, "answers": [ … ],
+  "lang": "uz",
+  "questions": [ { "question_id": "s4", "kind": "test", "order": 1, "question": "…", "options": ["A","B","C","D"], "correct_option": 1, "correct_answer": "B",
+                   "correct": true, "solved": true, "attempts": [ { "n": 1, "option": 1, "answer": "B", "correct": true, "elapsed_ms": 4200, "at": "2026-09-08T11:55:00Z" } ] } ],
+  "achievements": [ { "id": "firstwin", "name": "Bullseye!", "title": "Birinchi test savoliga to'g'ri javob berdingiz", "earned_at": "2026-09-08T11:55:00Z" } ] }
+```

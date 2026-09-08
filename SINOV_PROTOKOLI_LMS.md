@@ -15,7 +15,7 @@
 | T4 | Biz | Pilot: `DARS_API_URL=<STAGING> node scripts/build-lms.mjs src/1-Modull/InternetLesson.jsx` → `lms/InternetLesson.jsx`; `CHROME=/usr/bin/google-chrome node scripts/smoke-lms.mjs lms/InternetLesson.jsx` | smoke o'tdi, faylda `<STAGING>` bor, eski manzil yo'q |
 | T5 | Biz | Pilot-faylni CRM «Umumiy modullar» → test-materialga (`type=jsx`) G-1 va G-2 sahifalariga | O-1 LMS'da ko'radi, M-1 CRM'da ko'radi |
 | T6 | Foydalanuvchi | Test-akkauntlar (S-1): O-1, O-2 (G-1 faol) · O-3 (G-1 muzlatilgan) · O-4 (G-2) · O-5 (G-1+G-2) · M-1 (TEACHER G-1) · M-2 (TEACHER G-2) · T-1 (TA G-1) · X-1 (tayinlanmagan) · V-1 (vaqtincha mentor, muddat ichida) | login/parol + ID + guruh xavfsiz kanal orqali |
-| T7 | Biz | Admin-sahifa `<STAGING>/admin` ochiq (basic auth) | T1 dagi `admin` ✓ |
+| T7 | Biz | Admin-sahifa `<STAGING>/admin` ochiq (basic auth). **Dalil-manba:** «Sessiyalar» jadvali (dars, guruh, mentor, o'quvchi soni, javoblar, ekran, holat, natija) + «batafsil» (ishtirokchilar subject_id, javob/to'g'ri/urinish soni, oxirigacha yetdimi, natija-hodisa) — ismsiz | T1 dagi `admin` ✓ (sessiyalar-endpoint bilan) |
 
 ## 1. Bandlar (LMS §13) — kim bosadi, nima kutiladi, dalil
 
@@ -54,8 +54,8 @@ Har band uchun dalil: skrinshot (belgi/darvoza) + bizda log-satr yoki admin-yozu
 | B3 | `rejected_students` saqlanadi va ko'rinadi | (19) dan keyin | admin `results/:id` da `response` ichida |
 | B4 | Rotatsiya `kid v1 + v2` | LMS ikkinchi secret bilan `kid=v2` token beradi (yoki staging'da biz `_NEXT` env) | Ikkala kid ham qabul |
 | B5 | **Maqsad-sinov:** M-1 CRM'da bosadi (kod yo'q) → O-1 LMS'da bosadi (PIN yo'q, o'z ismi) → O-4 kira olmaydi → T-1 ochadi → X-1 ocha olmaydi | ketma-ket | Hammasi bir o'tirishda, 15 daqiqa |
-| B6 | Natija-detallari: savollar (`RESULT_DETAILS=a`, TZ_LESSON_RESULT_DETAILS_RU §4) | O-1 bitta savolda avval noto'g'ri, keyin to'g'ri bosadi; dars tugaydi | LMS'dagi hodisada `questions[]`: shu savolda 2 urinish, `correct=false`, `solved=true`; matnlar o'quvchi tilida; `correct_answers`/`answered` ekrandagi «N / jami» bilan bir xil |
-| B7 | Natija-detallari: yutuqlar | O-1 darsda kamida 2 yutuq oladi (masalan «Bullseye!» + «Level Up!») | hodisada `achievements[]`: id kichik harfda, `name`/`title` darsdagi bilan bir xil, `earned_at` o'sib boradi |
+| B6 | Natija-detallari: savollar (**onFinished** payload'ida `questions[]`, TZ §9, 2026-09-08 — School API emas) | O-1 bitta savolda avval noto'g'ri, keyin to'g'ri bosadi; dars tugaydi («Tamom») | LMS saqlagan onFinished JSON'da (Axadulla ko'rsatadi) `questions[]`: shu savolda 2 urinish, `correct=false`, `solved=true`; matnlar o'quvchi tilida; School API hodisasidagi `correct_answers` ekrandagi «N / jami» bilan bir xil |
+| B7 | Natija-detallari: yutuqlar (onFinished `achievements[]`) | O-1 darsda kamida 2 yutuq oladi (masalan «Bullseye!» + «Level Up!») | onFinished JSON'da `achievements[]`: id kichik harfda, `name`/`title` darsdagi bilan bir xil, `earned_at` o'sib boradi |
 
 ## 3. Uyga-qaytish (bizning F-0903-01)
 
