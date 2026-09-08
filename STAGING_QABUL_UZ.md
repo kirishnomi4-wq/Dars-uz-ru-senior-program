@@ -7,8 +7,8 @@
 
 | # | Nima | Holat |
 |---|---|---|
-| 0.1 | `server/` o'zgarishlari GitLab `dars-api-coddy` ga sinxron: `bash scripts/sync-dars-api.sh staging` (buyruq bilan) | ⬜ 2026-09-08 o'zgarishlari kutmoqda |
-| 0.2 | Env-fayllar Kristinada: `.env.deploy.staging` / `.env.deploy.prod` (2026-09-07 yuborilgan). Yangi kalitlar ixtiyoriy: `RESULT_DETAILS=off` (default), `TRUST_PROXY=1` (faqat `proxy_ip` ⚠ desa) | ✅ yuborilgan |
+| 0.1 | ✅ 2026-09-08 14:06: staging = 91c93f6e, qabul 18 ✓ / 0 ✗. GitLab akkaunt tasdiqlandi (shared-runner sharti). `server/` o'zgarishlari GitLab `dars-api-coddy` ga sinxron: `bash scripts/sync-dars-api.sh staging` (buyruq bilan). **Kristina CI'si (2026-09-08 13:14, 302baef): `staging` shoxiga push → staging AVTOMATIK deploy; `main` shoxiga push → prod ham AVTOMATIK (health 60 s javob bermasa oldingi tasvirga o'zi qaytadi, log `/var/log/dars-api/deploy.log`). 🔴 `sync-dars-api.sh main` = darhol prod-deploy — faqat cutover qarori bilan.** Sync'dan oldin uning infra-commitlari (`.gitlab-ci.yml`, compose `seed` xizmati, `IMAGE_REPO`) `server/` ga qabul qilinadi — aks holda sync ularni yo'qotadi | ⬜ bugungi kod kutmoqda; infra qabul qilindi |
+| 0.2 | **Env o'zgarishi = Kristinaga Telegram'da yozamiz, u qo'yadi (kelishuv 2026-09-08).** Env-fayllar Kristinada: `.env.deploy.staging` / `.env.deploy.prod` (2026-09-07 yuborilgan). Yangi kalitlar ixtiyoriy: `RESULT_DETAILS=off` (default), `TRUST_PROXY=1` (faqat `proxy_ip` ⚠ desa) | ✅ yuborilgan |
 | 0.3 | Sinov-bazasi shart emas — tekshiruv tashqaridan, HTTPS orqali | — |
 
 ## 1. Manzil keldi
@@ -21,8 +21,11 @@ Kristina ikki shakldan birini beradi:
   `liveClient` manzilni o'zgartirmasdan oxiriga `/api/v1/live` qo'shadi.
 
 ```
-STAGING=https://staging-dars-api.coddycamp.uz     # Kristina bergan manzil, oxirida / yo'q
+STAGING=https://staging-dars-api.coddycamp.uz     # Kristina 2026-09-08: → 127.0.0.1:3002 (tasdiqlandi)
+PROD=https://dars-api.coddycamp.uz                # → 127.0.0.1:3001 (tasdiqlandi)
 ```
+**2026-09-08 birinchi tekshiruv (eski image, kod sync'siz):** ikkalasida ham Apache/TLS/301/CORS/ETag-304/JWT/admin/School API ✓,
+kechikish p95 ≈140 ms. ✗ faqat `migrations`/`catalog` (health'da maydon yo'q — eski image), sync + deploy'dan keyin qayta tekshiriladi.
 
 ## 2. Qabul-tekshiruv (bitta buyruq)
 
@@ -99,7 +102,8 @@ va brauzerda ochadi (kompilyator qatlami bilan). 2026-09-08 mashqida 90/90 o'tga
 ```
 node --env-file=.env.deploy.prod tools/staging-check.mjs https://dars-api.coddycamp.uz --read-only --sha <qisqa>
 ```
-`--read-only` sessiya yaratmaydi va token ro'yxatga olmaydi. Prod oldidan: sirlar rotatsiyasi (kid v2 + yangi `sapi_`),
+`--read-only` sessiya yaratmaydi va token ro'yxatga olmaydi. Prod'ga chiqarish = `bash scripts/sync-dars-api.sh main` (CI o'zi deploy qiladi,
+rollback avtomatik) — faqat staging'da §13 sinovi o'tgach. Prod oldidan: sirlar rotatsiyasi (kid v2 + yangi `sapi_`),
 `src/live/liveClient.js` `DEFAULT_API_URL` = prod manzil, `build-lms` 90 fayl (`CRM_YUKLASH_ROYXATI.md`).
 
 ## 6. Skript nimani TEKSHIRMAYDI (faqat serverda ko'rinadi — TZ §6)

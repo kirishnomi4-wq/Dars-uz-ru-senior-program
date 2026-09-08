@@ -116,3 +116,26 @@
 | `VsCodeLesson.shared.jsx` | `vscode-start-01-v1` | VS Code — professional start | `src/1-Modull/VsCodeLesson.jsx` | shared |
 
 Jami 90 fayl; katalogda topilmagan: 0 (PmLesson1 takror-id bilan qo'lda belgilandi)
+
+## Uy-vazifa yig'malari — PM darslari (12 fayl, 2026-09-08 yig'ildi)
+
+Bular API-manzilga bog'liq EMAS (jonli modul yo'q) — cutover'da qayta yig'ilmaydi. Yig'ish: `node scripts/build-lms.mjs --shared <spec> <manba>`;
+tekshiruv: `CHROME=/usr/bin/google-chrome node scripts/smoke-hw.mjs lms/5-M/*.homework.shared.jsx lms/6-M/*.homework.shared.jsx`.
+Oldindan ko'rish: `https://coddycamp-uyga-vazifa.vercel.app/?hw=<HW_ID>`. Darsga biriktiriladi (o'sha darsning `lesson_id`).
+
+| lms fayl | HW_ID | Dars (kalit · lesson_id) | Manba |
+|---|---|---|---|
+| `4-M/PmUserStoryLesson.homework.shared.jsx` | `pm-m3-02` | m3-02 · `pm-m3d2-v3` — User Story: kim va nima uchun? | `src/pm/PmUserStoryLesson.homework.jsx` |
+| `4-M/PmLesson8.homework.shared.jsx` | `pm-m3-05` | m3-05 · `pm-m3d5-v1` — Qaysi ishni birinchi qilasiz? | `src/3-Modull/PmLesson8.homework.jsx` |
+| `4-M/PmLesson9.homework.shared.jsx` | `pm-m3-10` | m3-10 · `pm-m3d10-v1` — Qachon «tayyor» deb ayta olamiz? | `src/3-Modull/PmLesson9.homework.jsx` |
+| `4-M/PmLesson10.homework.shared.jsx` | `pm-m3-14` | m3-14 · `pm-m3d14-v1` — Ishlayotgan saytingizni qanday ko'rsatasiz? | `src/3-Modull/PmLesson10.homework.jsx` |
+| `5-M/PmLesson11.homework.shared.jsx` | `pm-m4-02` | m4-02 · `pm-m4d2-v1` — Ilova nimani eslab qolsin? | `src/4-Modull/PmLesson11.homework.jsx` |
+| `5-M/PmLesson12.homework.shared.jsx` | `pm-m4-07` | m4-07 · `pm-m4d7-v1` — Sinfdoshingiz sahifangizni ochsa, nimani ko'radi? | `src/4-Modull/PmLesson12.homework.jsx` |
+| `5-M/PmLesson13.homework.shared.jsx` | `pm-m4-12` | m4-12 · `pm-m4d12-v1` — Ilova nimani yozib qoladi? | `src/4-Modull/PmLesson13.homework.jsx` |
+| `5-M/PmLesson14.homework.shared.jsx` | `pm-m4-15` | m4-15 · `pm-m4d15-v1` — «Qanday ishlaydi?» deb so'rashsa | `src/4-Modull/PmLesson14.homework.jsx` |
+| `6-M/PmLesson15.homework.shared.jsx` | `pm-m4a-02` | m4a-02 · `pm-m4a2-v1` — Hamma birdan kirsa, sayt chidaydimi? | `src/4a-Modull/PmLesson15.homework.jsx` |
+| `6-M/PmLesson16.homework.shared.jsx` | `pm-m4b-02` | m4b-02 · `pm-m4b2-v1` — Bitta xato — nechta odam ketadi? | `src/4b-Modull/PmLesson16.homework.jsx` |
+| `6-M/PmLesson17.homework.shared.jsx` | `pm-m4c-02` | m4c-02 · `pm-m4c2-v1` — Hammasini birdan chiqaraymi — yoki har hafta bo'lak-bo'lak? | `src/4c-Modull/PmLesson17.homework.jsx` |
+| `6-M/PmLesson18.homework.shared.jsx` | `pm-m4c-06` | m4c-06 · `pm-m4c6-v1` — Saytingiz hozir ochilyaptimi? | `src/4c-Modull/PmLesson18.homework.jsx` |
+
+M1 PM uy-vazifalari (`PmLesson1/2/3.homework`) yig'malari ham repoda yo'q — kerak bo'lsa shu buyruq bilan yig'iladi.
