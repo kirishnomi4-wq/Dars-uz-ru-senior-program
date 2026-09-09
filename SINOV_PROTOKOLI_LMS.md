@@ -206,4 +206,21 @@ Manba: `JAVOB_XABAR_AXADULLA_2026-09-09_UZ.md` (11:40). Har band bizning kodga q
 | **F-0909-03** | 4 noto'g'ri javobda `solved = true` | Jonli darsda bitta urinish: dars `solved: true` = «savol yopildi»; LMS `solved` = «oxirida to'g'riga yetdi» — ikki ma'no to'qnashgan | `solved = attempts.some(correct)` (server `result-builder.js:356/411` qoidasi bilan bir xil); jonli xato → `false`; tarix yo'q + birinchi xato + oxirida to'g'ri → 2 urinish (birinchisi `option: -1`) | test «F-0909-03 …» va «zaxira-yo'l …» |
 | **F-0909-04** | `→` belgisi `?` bo'lib kelgan (s15 variantlari) | LMS tomoni: manba va CRM yig'masida `→` (U+2192) 4 joyda; front obyektni JS'dan oladi; namunada `—` (U+2014, cp1252'da bor) saqlangan, `→` (cp1252'da yo'q) yo'qolgan → MariaDB ustun/ulanish `latin1/cp1252` | Bizda o'zgarish yo'q; Axadulla'ga `utf8mb4` so'rovi (`javob-axadulla-2026-09-09-2.md` §4) | `grep -c 'Brauzer → DNS → Server → Ekran' lms/InternetLesson.jsx` = 4 |
 
+### 7.1 Axadulla javobi №3 (2026-09-09, ~15:00) — Unicode tuzatuvi deploy qilindi
+
+LMS tomonida saqlash tuzatildi: `student_question_log.answer` ustunida `→` kabi belgilar yo'qolmaydi.
+API payload formati o'zgarmadi, **bizda o'zgarish yo'q** (F-0909-04 yopilishga tayyor, kechki sinovda tasdiqlanadi).
+
+**Ular so'ragan tartib:** yangi yig'ma CRM test-materialiga qo'yiladi → **bitta to'liq test darsi** o'tkaziladi →
+ularga yuboriladi: (1) yangi `event_id`, (2) biz yuborgan `onFinished` JSON, (3) o'quvchi ID.
+Ular tekshiradi: `elapsed_ms` · har urinishning `at` · `achievements[].earned_at` · `solved` · `→` va boshqa Unicode.
+Eski yozuvlardagi `?` tiklanmaydi — tekshiruv faqat yangi natija bilan.
+
+**Shart (kechki §5.2 ga bog'landi):**
+- **T5 majburiy** — CRM test-materiali **yangi yig'ma** bilan almashtirilmasa, F-0909-02/03 tuzatishlari sinovda bo'lmaydi
+  va Axadulla tekshiradigan 4 maydonning hammasi yana eski natija beradi.
+- 9-qadamda o'quvchi **s15** savoliga javob bersin (variantlarida `Brauzer → DNS → Server → Ekran` — Unicode dalili shu yerdan chiqadi),
+  bitta savolda avval xato→keyin to'g'ri (`solved` dalili), 2+ yutuq, oxirigacha (`earned_at`, `elapsed_ms` dalillari).
+- 10-qadamdan keyin biz admin'dan uch narsani yig'amiz: `event_id` (`results/<id>`), yuborilgan `onFinished` JSON, `student_id`.
+
 **Yig'ma:** `lms/InternetLesson.jsx` staging manzili bilan qayta yig'ildi (14:20): `ccDetails` bor, `→` 4, prod-manzil 0, smoke tokensiz ✓ va muddati o'tgan token ✓, oxlint toza. **Foydalanuvchi:** CRM test-materialini shu yangi nusxa bilan almashtiradi (T5). **Qolgan 90+ yig'ma** eski `resultDetails` bilan — cutover-mashqdagi to'liq qayta yig'ishda yangilanadi (KATTA_TOZALASH).
