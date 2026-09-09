@@ -223,4 +223,30 @@ Eski yozuvlardagi `?` tiklanmaydi — tekshiruv faqat yangi natija bilan.
   bitta savolda avval xato→keyin to'g'ri (`solved` dalili), 2+ yutuq, oxirigacha (`earned_at`, `elapsed_ms` dalillari).
 - 10-qadamdan keyin biz admin'dan uch narsani yig'amiz: `event_id` (`results/<id>`), yuborilgan `onFinished` JSON, `student_id`.
 
+### 7.2 Dalil yig'ish tartibi (2026-09-09 tayyorlandi) — `server/tools/sinov-natija.mjs`
+
+**Muhim farq:** `onFinished` JSON **serverda saqlanmaydi**. Axadulla C-variantni tanlagan — detallar
+(`questions`/`achievements`) o'quvchi brauzeridan to'g'ridan-to'g'ri LMS frontiga boradi
+(staging `features.result_details = off` — ataylab shunday). Serverda faqat School API payload'i
+(`result_events.payload`: rank/badges/answered) turadi. Shuning uchun ikki manba ikki xil olinadi:
+
+| Nima | Qayerdan | Qanday |
+|---|---|---|
+| `event_id`, tanga-yetkazish, LMS tasdig'i | admin API | skript o'zi oladi |
+| **`onFinished` JSON** | **o'quvchi brauzeri** | dars boshlashdan oldin DevTools → Network → **Preserve log** yoqiladi; dars tugagach LMS frontining so'rovini topib, **Request payload** ni faylga saqlanadi |
+
+**Zaxira yo'l:** agar so'rov qo'lga tushmasa — LMS jamoasi o'z bazasidan (`student_question_log`) chiqarib bera oladi.
+
+**Buyruq (dars tugagach, `server/` ichidan):**
+```
+node --env-file=.env.deploy.staging tools/sinov-natija.mjs https://staging-dars-api.coddycamp.uz \
+  --gid 1071 --onfinished <brauzerdan-olingan.json>
+```
+Chiqishi `feedback/lms-sinov-2026-09-09/` ga: `sinov-<pin>-sessiya.json` · `-schoolapi-<event>.json` ·
+`-verify-<event>.json` · `-onFinished.json` · `-xabar-axadulla.md` (yuborishga tayyor matn).
+
+**O'z-o'zini tekshiruv** (Axadulla tekshiradigan 5 maydon) — hammasi ✓ bo'lmasa xabar yuborilmaydi:
+`elapsed_ms > 0` · har xil `at` · har xil `earned_at` · kamida bitta `solved:false` · matnlarda `→` bor.
+Pilot namunasida (2026-09-08) beshtasi ham ✗ edi — skript ularni qayta topib tasdiqladi (regressiya-nazorat).
+
 **Yig'ma:** `lms/InternetLesson.jsx` staging manzili bilan qayta yig'ildi (14:20): `ccDetails` bor, `→` 4, prod-manzil 0, smoke tokensiz ✓ va muddati o'tgan token ✓, oxlint toza. **Foydalanuvchi:** CRM test-materialini shu yangi nusxa bilan almashtiradi (T5). **Qolgan 90+ yig'ma** eski `resultDetails` bilan — cutover-mashqdagi to'liq qayta yig'ishda yangilanadi (KATTA_TOZALASH).
