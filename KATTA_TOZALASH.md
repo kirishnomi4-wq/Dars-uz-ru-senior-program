@@ -1158,4 +1158,10 @@ Faqat `lms/InternetLesson.jsx` (CRM test-materiali) staging manzili bilan qayta 
 **Tuzatish:** cutover kuni to'liq qayta yig'ish — `node server/tools/cutover-mashq.mjs --url https://dars-api.coddycamp.uz --out lms --smoke`
 (prod manzili). Staging'da ko'proq dars sinab ko'rish kerak bo'lsa — `DARS_API_URL=<staging> node scripts/build-lms.mjs <fayl>`.
 **Tekshiruv:** har yig'mada `grep -c 'ccDetails:'` = 1; `smoke-lms` ✓; eski manzil 0.
+**QURUQ MASHQ O'TDI (2026-09-09 16:10)** — `SCRATCH=<tmp> node scripts/cutover-mashq.mjs --url <staging> --out <tmp>/lms-mashq`
+(`lms/` ga tegilmadi): **90/90 yig'ildi** (3 s, 34 MB, 0 xato) · `ccDetails:` **90/90** · `solved: attempts.some` **90/90** ·
+supabase qoldig'i 0 · manzil 90/90. Brauzer-smoke: `CHROME=/usr/bin/google-chrome LMS_DIR=<mashq> node scripts/smoke-lms.mjs`
+→ **68/68 ✓**; `smoke-shared.mjs` bilan 22 ta `.shared.jsx` → **22/22 ✓**. Ya'ni cutover kuni bu ish **bir buyruq** —
+faqat `--url` prod manziliga va `--out lms` ga almashadi. Eslatma: Kali'da `CHROME` env majburiy (skriptlarda Windows yo'li yozilgan).
+
 **Bog'liq:** SINOV_PROTOKOLI_LMS.md §7 · memory/holat-2026-09-09.
