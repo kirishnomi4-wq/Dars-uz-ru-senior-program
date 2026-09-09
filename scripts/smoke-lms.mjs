@@ -10,6 +10,13 @@
 //  Ishlatish:
 //    node scripts/smoke-lms.mjs lms/JsVarsLesson.jsx js-vars-01-v18
 //    node scripts/smoke-lms.mjs                       — hamma yig'ilgan fayl
+//
+//  LMS-ko'prik rejimi (2026-09-09, SINOV_PROTOKOLI band 3 biz-variant): dars LMS'dan kelgan liveToken bilan ochiladi —
+//  «self» urug'i QO'YILMAYDI (LMS toza boshlaydi), darvoza/belgi holati hisobotga chiqadi, kompilyator qadami o'tkaziladi.
+//    LMS_TOKEN=<jwt> node scripts/smoke-lms.mjs lms/InternetLesson.jsx --expect "Avtomatik kirish bo'lmadi" --shot feedback/.../03.png
+//    (--token <jwt> ham bo'ladi, lekin env afzal — argv jarayon-ro'yxatida ko'rinadi)
+//  Token-rejimda brauzer --disable-web-security bilan ochiladi: sahifa file:// dan yuklanadi (origin «null»), u staging
+//  CORS ro'yxatida yo'q; CORS'ning o'zi server/tools/staging-check.mjs `cors` bandida tekshiriladi.
 // ============================================================
 import { build } from 'esbuild';
 import { chromium } from 'playwright-core';
@@ -25,7 +32,13 @@ const TMP = mkdtempSync(join(tmpdir(), 'lms-smoke-'));
 const idOf = (file) =>
   (/lessonId:\s*['"]([^'"]+)['"]/.exec(readFileSync(file, 'utf8')) || [])[1] || '';
 
-const args = process.argv.slice(2);
+const argv = process.argv.slice(2);
+const optOf = (k) => { const i = argv.indexOf(k); return i >= 0 ? argv[i + 1] : undefined; };
+const OPTS = new Set(['--token', '--expect', '--shot']);
+const TOKEN = optOf('--token') || process.env.LMS_TOKEN || null;   // LMS-ko'prik rejimi
+const EXPECT = optOf('--expect') || null;                           // sahifa matnida bo'lishi shart
+const SHOT = optOf('--shot') || null;                               // skrinshot nusxasi (dalil-papkaga)
+const args = argv.filter((a, i) => !OPTS.has(a) && !OPTS.has(argv[i - 1]));
 // html-compiler.jsx (tashqi modul) va *.shared.jsx (tashqi-modulli darslar) bu
 // smoke'ga mos emas — ular scripts/smoke-shared.mjs bilan tekshiriladi.
 // Chiqish MODUL-papkalariga bo'lingan (lms/3-M, lms/4-M, lms/5-M) — shuning uchun
@@ -37,7 +50,7 @@ const walk = (dir) => readdirSync(dir, { withFileTypes: true }).flatMap((d) =>
       ? [dir + '/' + d.name] : []);
 const targets = args.length ? [args[0].replace(/\\/g, '/')] : walk(process.env.LMS_DIR || 'lms'); // LMS_DIR — mashq papkasi
 
-const browser = await chromium.launch({ executablePath: CHROME, headless: true });
+const browser = await chromium.launch({ executablePath: CHROME, headless: true, args: TOKEN ? ['--disable-web-security'] : [] });
 
 async function one(target, i) {
   const lessonId = args[1] || idOf(target);
@@ -51,7 +64,7 @@ async function one(target, i) {
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import Lesson from ${JSON.stringify(resolve(target).replace(/\\/g, '/'))};
-createRoot(document.getElementById('root')).render(React.createElement(Lesson, { lang: 'uz' }));
+createRoot(document.getElementById('root')).render(React.createElement(Lesson, { lang: 'uz'${TOKEN ? `, liveToken: ${JSON.stringify(TOKEN)}` : ''} }));
 `,
       resolveDir: process.cwd(),
       sourcefile: 'smoke-entry.jsx',
@@ -64,7 +77,7 @@ createRoot(document.getElementById('root')).render(React.createElement(Lesson, {
 
   const mkPage = (seed) =>
     `<!doctype html><html><head><meta charset="utf-8"></head><body><div id="root"></div>` +
-    `<script>localStorage.setItem('liveSession:${lessonId}','{"mode":"self"}');${seed}<\/script>` +
+    `<script>${TOKEN ? '' : `localStorage.setItem('liveSession:${lessonId}','{"mode":"self"}');`}${seed}<\/script>` +
     `<script>${res.outputFiles[0].text}<\/script></body></html>`;
 
   writeFileSync(page404, mkPage(''), 'utf8');
@@ -113,16 +126,31 @@ createRoot(document.getElementById('root')).render(React.createElement(Lesson, {
   });
 
   let out = { root: false, text: 0 };
+  let lms = null; // token-rejim: darvoza/belgi holati
   const shot = join(TMP, basename(target) + '.png');
   try {
     await page.goto('file:///' + page404.replace(/\\/g, '/'), { waitUntil: 'domcontentloaded', timeout: 20000 });
     await page.waitForSelector('.lesson-root', { timeout: 15000 });
     await page.waitForTimeout(700);
+    if (TOKEN) {
+      // «Darsga ulanmoqda…» kartasi ketguncha (server javobi) kutamiz; 15 s da ketmasa — shu ham topilma
+      await page.waitForSelector('[data-live="lms-joining"]', { state: 'detached', timeout: 15000 }).catch(() => {});
+      await page.waitForTimeout(400);
+      lms = await page.evaluate(() => ({
+        joining: !!document.querySelector('[data-live="lms-joining"]'),
+        note: (document.querySelector('[data-live="lms-note"]')?.innerText || '').trim(),
+        badge: (document.querySelector('.live-badge')?.innerText || '').trim(),
+        pin: !!document.querySelector('input[placeholder="483 920"]'),
+        self: !!document.querySelector('[data-live="self"]'),
+        text: (document.body.innerText || ''),
+      }));
+    }
     out = await page.evaluate(() => ({
       root: !!document.querySelector('.lesson-root'),
       text: (document.querySelector('.lesson-root')?.innerText || '').trim().length,
     }));
     await page.screenshot({ path: shot });
+    if (SHOT) await page.screenshot({ path: SHOT });
   } catch (e) {
     errs.push('YUKLANMADI: ' + String(e.message).split('\n')[0].slice(0, 110));
   }
@@ -130,7 +158,7 @@ createRoot(document.getElementById('root')).render(React.createElement(Lesson, {
   // ── 3) KOMPILYATOR qatlami ochiladimi (yig'uvning butun ma'nosi shu) ──
   // Kompilyatorsiz darslar (Internet/Git/Deploy/JsIntro/Practice2-4 — bundle'da HtmlCompiler yo'q): 3-qadam
   // o'tkaziladi, dars-ochilish + xato-yo'qligi yetadi (2026-08-17, yakuniy yig'ish).
-  const noCompiler = !/hc-root/.test(readFileSync(target, 'utf8').replace(/^\/\/.*$/gm, ''));   // izoh-sarlavhasiz (u HtmlCompiler'ni har doim tilga oladi)
+  const noCompiler = !!TOKEN || !/hc-root/.test(readFileSync(target, 'utf8').replace(/^\/\/.*$/gm, ''));   // izoh-sarlavhasiz (u HtmlCompiler'ni har doim tilga oladi); token-rejimda o'tkaziladi
   let hc = noCompiler;
   const shotHc = join(TMP, basename(target) + '-kompilyator.png');
   if (noCompiler) { /* o'tkazildi */ } else {
@@ -156,9 +184,14 @@ createRoot(document.getElementById('root')).render(React.createElement(Lesson, {
   }
   await ctx.close();
 
+  if (TOKEN && lms) {
+    if (lms.joining) errs.push('LMS: «Darsga ulanmoqda…» 15 s da ketmadi (server javob bermadi)');
+    if (EXPECT && !lms.text.includes(EXPECT)) errs.push(`KUTILGAN MATN YO'Q: «${EXPECT}»`);
+  } else if (TOKEN) errs.push('LMS holati o\'qilmadi');
   const ok = out.root && out.text > 20 && hc && !errs.length;
   console.log(`  ${ok ? GRN + '✓' : RED + '✗'}${R} ${basename(target).padEnd(26)} ` +
-    `${DIM}dars: ${out.root ? 'ha' : "yo'q"} (${out.text} belgi) · kompilyator: ${noCompiler ? 'kutilmaydi' : hc ? 'ha' : "yo'q"}${R}`);
+    `${DIM}dars: ${out.root ? 'ha' : "yo'q"} (${out.text} belgi) · kompilyator: ${noCompiler ? (TOKEN ? 'o\'tkazildi (token-rejim)' : 'kutilmaydi') : hc ? 'ha' : "yo'q"}${R}`);
+  if (lms) console.log(`     ${DIM}LMS: darvoza-izoh «${lms.note || '—'}» · belgi «${lms.badge || '—'}» · PIN-maydon: ${lms.pin ? 'ha' : "yo'q"} · kodsiz-yo'l: ${lms.self ? 'ha' : "yo'q"}${EXPECT ? ` · kutilgan «${EXPECT}»: ${lms.text.includes(EXPECT) ? 'bor' : "YO'Q"}` : ''}${R}`);
   if (errs.length) errs.forEach((e) => console.log(`     ${RED}${e}${R}`));
   else console.log(`     ${DIM}skrinshot: ${shot}${R}`);
   return ok;

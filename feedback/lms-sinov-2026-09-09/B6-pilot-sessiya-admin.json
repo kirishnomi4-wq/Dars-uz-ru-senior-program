@@ -1,0 +1,88 @@
+{
+  "at": "2026-09-09T08:07:59.319Z",
+  "session": {
+    "id": "804836d7-b6ae-4668-9413-2eba3d0608dd",
+    "pin": "782030",
+    "mode": "live",
+    "lesson_id": "internet-01-v18",
+    "title_uz": "Internet qanday ishlaydi",
+    "gid": 1070,
+    "teacher_id": 165,
+    "status": "ended",
+    "end_reason": "stale",
+    "started_at": "2026-09-08T12:58:04.774Z",
+    "finished_at": "2026-09-08T13:07:35.664Z",
+    "cur_screen": 21,
+    "max_screen": 21,
+    "live_status": "ended",
+    "live_updated_at": "2026-09-08T13:09:40.226Z",
+    "students": 1,
+    "players": 1,
+    "answers": 5,
+    "result_status": "delivered"
+  },
+  "detail": {
+    "session": {
+      "id": "804836d7-b6ae-4668-9413-2eba3d0608dd",
+      "pin": "782030",
+      "mode": "live",
+      "lesson_id": "internet-01-v18",
+      "lesson_version": null,
+      "gid": 1070,
+      "teacher_id": 165,
+      "status": "ended",
+      "end_reason": "stale",
+      "started_at": "2026-09-08T12:58:04.774Z",
+      "finished_at": "2026-09-08T13:07:35.664Z",
+      "title_uz": "Internet qanday ishlaydi",
+      "cur_screen": 21,
+      "max_screen": 21,
+      "live_status": "ended",
+      "quiz_state": "done",
+      "live_updated_at": "2026-09-08T13:09:40.226Z"
+    },
+    "participants": [
+      {
+        "role": "student",
+        "subject_id": 37069,
+        "crm_id": 20047,
+        "joined_at": "2026-09-08T12:58:16.748Z",
+        "attempt_id": "816210b3-1773-4807-81f7-ccb768df6b58",
+        "attempt_status": "finished",
+        "finish_reason": "live_ended",
+        "reached_end": true,
+        "answers": 5,
+        "correct": 1,
+        "attempts": 5,
+        "achievements": 4
+      },
+      {
+        "role": "mentor",
+        "subject_id": 165,
+        "crm_id": null,
+        "joined_at": "2026-09-08T12:58:04.774Z",
+        "attempt_id": null,
+        "attempt_status": null,
+        "finish_reason": null,
+        "reached_end": null,
+        "answers": 0,
+        "correct": 0,
+        "attempts": 0,
+        "achievements": 0
+      }
+    ],
+    "pin_players": 1,
+    "results": [
+      {
+        "event_id": "sess_782030_20260908T125804Z",
+        "status": "delivered",
+        "students_count": 1,
+        "send_attempts": 1,
+        "last_http_status": 201,
+        "last_error": null,
+        "delivered_at": "2026-09-08T13:07:35.679Z",
+        "updated_at": "2026-09-08T13:07:35.679Z"
+      }
+    ]
+  }
+}

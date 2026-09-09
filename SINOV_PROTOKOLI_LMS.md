@@ -11,7 +11,7 @@
 |---|---|---|---|
 | T1 | Biz | `cd server && node --env-file=.env.deploy.staging tools/staging-check.mjs <STAGING>` — 19 band bir yo'la: health, env, migratsiya/katalog soni, soat (JWT ±60 s), TLS, 404-JSON, CORS, tana-yo'li, ko'prik, JWT rad, proksi-IP, admin, mentor-oqim (join → ETag/304 → heartbeat → me → end), School API ulanishi, kechikish | «Qabul: server tayyor», 0 ✗ |
 | T2 | Kristina | Serverdagi env-fayl = yuborilgan `.env.deploy.staging` (`CORS_ORIGINS=https://lms.coddycamp.uz`, iss/aud/kid, tokenlar) | T1 dagi `env`, `features`, `cors_allow`, `mentor_flow` ✓ |
-| T3 | avto | Katalog `migrate` xizmatida yuklanadi (`migrate && seed:catalog`, compose 2026-09-08) | T1 dagi `catalog` = 115 |
+| T3 | avto | Katalog `migrate` xizmatida yuklanadi (`migrate && seed:catalog`, compose 2026-09-08) | T1 dagi `catalog` = 110 (lokal `data/lesson-catalog.json` bilan bir xil) |
 | T4 | Biz | Pilot: `DARS_API_URL=<STAGING> node scripts/build-lms.mjs src/1-Modull/InternetLesson.jsx` → `lms/InternetLesson.jsx`; `CHROME=/usr/bin/google-chrome node scripts/smoke-lms.mjs lms/InternetLesson.jsx` | smoke o'tdi, faylda `<STAGING>` bor, eski manzil yo'q |
 | T5 | Biz | Pilot-faylni CRM «Umumiy modullar» → test-materialga (`type=jsx`) G-1 va G-2 sahifalariga | O-1 LMS'da ko'radi, M-1 CRM'da ko'radi |
 | T6 | Foydalanuvchi | Test-akkauntlar (S-1): O-1, O-2 (G-1 faol) · O-3 (G-1 muzlatilgan) · O-4 (G-2) · O-5 (G-1+G-2) · M-1 (TEACHER G-1) · M-2 (TEACHER G-2) · T-1 (TA G-1) · X-1 (tayinlanmagan) · V-1 (vaqtincha mentor, muddat ichida) | login/parol + ID + guruh xavfsiz kanal orqali |
@@ -79,8 +79,20 @@ Har band uchun dalil: skrinshot (belgi/darvoza) + bizda log-satr yoki admin-yozu
 | LMS'da tanga | ✅ | o'quvchi ekranida 🪙 40 (LMS `reward_status: pending_policy` → tanga berildi) |
 | CodeStrike (kompilyator) darsda | ✅ | foydalanuvchi ko'rdi |
 | Topilma | ⚠ | `end_reason=stale` (mentor tugatgan bo'lsa ham) — F-0908-01, tuzatildi (live end_session → 'mentor') |
-| Ochiq | — | onFinished JSON'da `questions/achievements` borligini Axadulla ko'rsatadi; qolgan akkauntlar (O-3/O-4/O-5/T-1/X-1) bilan §13 to'liq |
+| Ochiq | — | Axadulla javobi 2026-09-09 (`JAVOB_XABAR_AXADULLA_2026-09-09_UZ.md`): onFinished C tasdiqlandi, 37069 uchun real JSON-namuna keyin keladi (prod yozuv tekshirilgach); akkauntlar xavfsiz kanal orqali keladi → §5.2; F-0909-01 LMS tomonida tuzatiladi |
 
+
+### 2026-09-09 — §5.1 (biz, akkauntsiz, staging 8d24e53)
+
+| Band | Natija | Dalil |
+|---|---|---|
+| 4 qo'shimcha: `aud=x` · `iss=x` · `alg=none` · bo'sh Bearer → 401 | ✅ | `feedback/lms-sinov-2026-09-09/04-jwt-aud-iss-alg.txt` (10:38): 4/4 → 401, `invalid_token` / `unauthorized`; Dozzle `04-03-dozzle-token-rad-etildi.png` (13:02): 10:38:04 va 10:38:25 da `reason="aud"`, `"iss"`, `"alg"` — 6 satr, env=staging |
+| 20 `GET /lesson-results/{event_id}` tasdiqlaydi | ✅ | `feedback/lms-sinov-2026-09-09/20-verify-sess_782030_20260908T125804Z.json`: `remote.found = true`, `event_id` mos, `students_accepted 1`, `rank 1`, `badges 3` |
+| 17 Aynan takror → 200 + `duplicate: true` | ✅ | A-yo'l (qo'lda, serverdan tashqaridan, admin satridagi payload AYNAN — worker ham qayta yuborishda shu JSONB'dan oladi): `17-oldin-admin-row.json` (1 urinish, 201) · `17-oldin-school-get.json` · **`17-yubor-school-post.json`: HTTP 200, `accepted: true, duplicate: true`, students 1/1/0** (foydalanuvchi `!` bilan yurgizdi, 11:1x) · `17-keyin-school-get.json`: 9 maydon va `students` oldingi bilan BIR XIL, `received_at 13:07:35Z` o'zgarmadi → ikkinchi yozuv yo'q. Admin «qayta yubor» yetkazilganni yubormaydi — bu ataylab, o'zgartirilmaydi |
+| 3 (biz-variant) Muddati o'tgan token → darvoza + PIN yo'li | ✅ | `scripts/smoke-lms.mjs` token-rejimi (`LMS_TOKEN`/`--token`, `--expect`, `--shot`; self-urug'i yo'q, kompilyator o'tkaziladi, faqat sinov-brauzerida CORS o'chiq). `mint-token --exp-past` (student 900001) → staging join 401 → darvoza: izoh «Avtomatik kirish bo'lmadi. Kod bilan kiring.», PIN-maydon ha, «Kodsiz, o'zim ko'raman» ha, oq ekran yo'q, konsol-xato yo'q. Skrinshot `03-expired-token-darvoza.png` (11:44). Salbiy sinov: `--expect "Mustaqil rejim"` → ✗ (tasdiq ishlaydi). Tokensiz regressiya ✓. Dozzle `04-03-dozzle-token-rad-etildi.png`: 11:44:06 va 11:44:25 da `reason="expired"` (ikkinchi satr — salbiy sinov) |
+| 16 tayyorgarlik: eski (ko'prikgacha) JSX | 🟡 tayyor | Manba aniqlandi: `177ee1a` (2026-08-17, 8ececf6 dan oldingi oxirgi `lms/InternetLesson.jsx`), nusxa `16-eski-InternetLesson-177ee1a.jsx` (423 KB; `liveToken`/`lms/join` yo'q, API-host: https://go.coddycamp.uz). Smoke: tokensiz ✓ · LMS-token bilan ✓ — darvoza «Darsga qo'shilish», PIN-maydon ha, oq ekran yo'q, xato yo'q; «Kodsiz» yo'li yo'q (F-0903-01 dan oldingi, kutilgan). Skrinshot `16-eski-yigma-token-bilan.png`. Qoldi: foydalanuvchi shu faylni CRM test-materialiga qo'yadi → O-1 ochadi (§5.2 16-qadam) |
+| 21 (bizning qism) Loglarda sir yo'q | ✅ | Dozzle, `dars-api-staging-api-1`, «searched all logs»: `sapi_` → No matches (`21-dozzle-sapi.png`, 13:01) · `eyJ` → No matches (`21-dozzle-eyJ.png`, 13:01). `token rad etildi` qidiruvida 11 satr — faqat `reqId`/`reason`, token yo'q. DevTools-Network qismi (Authorization faqat bizning API'ga) — O-1 bilan §5.2 da |
+| Topilma F-0909-01 (LMS tomoni) | ⚠ | School API'da `started_at 07:58:04Z / finished_at 08:07:35Z`, biz `12:58:04Z / 13:07:35Z` yuborganmiz (DB va payload bir xil, `isoUtc`); `received_at 13:07:35Z` to'g'ri. LMS bizning `Z` vaqtini Toshkent-lokal deb o'qib 5 soat ayirgan ko'rinadi → Axadulla'ga |
 
 | Band | Holat (✅/❌) | Sana | Dalil (fayl/havola) | Izoh |
 |---|---|---|---|---|
@@ -90,3 +102,80 @@ Har band uchun dalil: skrinshot (belgi/darvoza) + bizda log-satr yoki admin-yozu
 
 **Qabul mezoni:** 21 + 5 + 3 bandning hammasi ✅, `manual_review` da sinovga aloqasiz hodisa yo'q, loglarda sir yo'q (21).
 **Prod'ga o'tish:** shu protokol prod'da 2, 11, 13, 16, 17, 21 bandlari bilan qisqa takrorlanadi (haqiqiy bitta guruh, mentor roziligi bilan).
+
+## 5. O'tkazish-tartibi — qolgan bandlar (2026-09-09 tuzildi)
+
+**Pilotdan (2026-09-08) yopilgan:** 2, 6 (G-1 qismi), 10, 12, 16. **Kutilmoqda:** B6/B7 (Axadulla onFinished JSON).
+**Ma'lum ID'lar:** G-1 = gid 1070 · M-1 = teacher 165 · O-1 = 37069 · pilot-sessiya `804836d7…`, natija `sess_782030_20260908T125804Z` · begona o'quvchi solo-sessiyasi `d82426f8…` (hali `live`).
+**Kerak (Axadulla, S-1):** O-2 (G-1), O-3 (G-1 muzlatilgan), O-4 (G-2), O-5 (G-1+G-2), M-2 (TEACHER G-2), T-1 (TA G-1), X-1 (tayinlanmagan), V-1 (vaqtincha mentor G-1, START..END). Guruh G-2 ning gid'i.
+
+**Dalil-oqimi (har seansda birinchi buyruq, biz):**
+```
+cd server && node --env-file=.env.deploy.staging tools/lms-watch.mjs https://staging-dars-api.coddycamp.uz --out ../feedback/lms-sinov-2026-09-09/watch.log
+```
+Har o'zgarish (yangi sessiya, ishtirokchi, javob/urinish/yutuq, ekran, holat, natija HTTP) vaqt-tamg'asi bilan satr bo'ladi — §4 jadvalining «Dalil» ustuni shu satrlar + foydalanuvchi skrinshotlari (o'sha papkaga).
+
+### 5.1 Hozir, akkauntsiz — biz (≈20 daqiqa)
+
+| Band | Qanday | Dalil |
+|---|---|---|
+| 4 | `staging-check` `jwt_reject` allaqachon: muddati o'tgan · begona secret · noma'lum kid → 401 (2026-09-09 09:09 ✓). Qo'shimcha: `mint --aud x`, `mint --iss x` → `POST /api/v1/lms/join` → 401 `invalid_token` | staging-check satri; Dozzle `token rad etildi reason=aud/iss` |
+| 17 | admin → pilot natijasi → «qayta yubor» (`POST /admin/api/results/<id>/requeue`) → worker → School API `200` + `duplicate: true` | admin `results/<id>`: `last_http_status 200`, `response.data.duplicate` |
+| 20 | `GET /admin/api/results/<id>/verify` → `remote.found = true`, `remote.data.event_id` mos | admin-javob (token ko'rinmaydi) |
+| 21 (bizning qism) | Dozzle'da `sapi_` va `eyJ` qidiruv → 0 satr; brauzer DevTools → Network: `Authorization` faqat bizning API'ga, URL'da token yo'q | qidiruv-skrinshoti |
+| 3 (biz-variant) | `mint --exp-past` tokeni bilan LMS-yig'mani ochish: harness `scripts/smoke-lms.mjs` token-rejimi (`LMS_TOKEN`, 2026-09-09 qo'shildi) → darvoza «Avtomatik kirish bo'lmadi», PIN yo'li ochiq | skrinshot; log `reason=expired` |
+
+### 5.2 Bir o'tirish — foydalanuvchi akkauntlar bilan, biz `lms-watch` bilan (≈30 daqiqa, B5 kengaytirilgan)
+
+Tartib muhim: **T-1 va V-1 M-1 sessiyasini almashtiradi (§6.6 auto_replaced)** — ular «Erkin qilish»dan KEYIN.
+
+| # | Kim | Nima | Kutilgan (watch'da) | Band |
+|---|---|---|---|---|
+| 1 | M-1 | CRM'dan G-1 darsni ochadi | `YANGI live … gid 1070 · mentor 165`; belgi «Kod: ###» | 6a |
+| 2 | O-1 | LMS'da ochadi | `qo'shildi student 37069`, PIN so'ralmaydi, ism LMS'dan | 2 |
+| 3 | O-1 | F5; keyin inkognito-oynada qayta ochadi | `player` soni o'zgarmaydi; ikkalasida o'sha o'yinchi | 13 |
+| 4 | O-2 | LMS'da ochadi | `qo'shildi student <O-2>`, PIN yo'q | 11 |
+| 5 | O-3 | (muzlatilgan) ochadi | LMS token bermaydi → **watch'da hech narsa yo'q**; ekranda tushunarli xabar, oq ekran emas | 5, B1 |
+| 6 | O-4 | (G-2) ochadi | `YANGI solo …`, «📘 Mustaqil rejim»; G-1 sessiyasida ko'rinmaydi | 12 (takror) |
+| 7 | X-1 | ochadi | LMS token bermaydi → PIN-darvoza; watch'da yo'q | 9a |
+| 8 | M-1 | G-2 sahifasidan urinadi | LMS token bermaydi; G-1 sessiyasi davom etadi | 6b |
+| 9 | O-1 | bitta savolda avval noto'g'ri, keyin to'g'ri; 2+ yutuq; oxirigacha | `urinish` o'sadi, `yutuq ≥2`, `oxiriga yetdi ✓` | B6, B7 (JSON — Axadulla) |
+| 10 | M-1 | «Erkin qilish» | `holat ended (mentor)` → `natija … delivered · HTTP 201` | 16 |
+| 10b | Biz | admin `results/<id>/verify` | `remote.data.started_at/finished_at` = biz yuborgan `Z` vaqt (F-0909-01 LMS tuzatuvi tekshiruvi, Axadulla 2026-09-09 §1) | F-0909-01 |
+| 11 | T-1 | CRM'dan G-1 ochadi | `YANGI live … mentor <T-1>`; eskisi `auto_replaced` | 7 |
+| 12 | V-1 | (muddat ichida) ochadi | `YANGI live … mentor <V-1>` | 8 |
+| 13 | O-1 | darsni LMS'da qayta ochadi (10-qadamdan keyin) | «👁 Ko'rish rejimi», javoblari ko'rinadi | U1 |
+| 14 | O-1 | «↻ Qaytadan boshlash» → 3-ekranda yopadi → boshqa qurilma/inkognito | `YANGI solo`; 3-ekrandan davom | U2, U3 |
+| 15 | Foydalanuvchi | CRM test-materialiga ikkinchi dars (`lms/…HtmlLesson1…`) → O-1 ochadi | ishlaydi | 14 |
+| 16 | Foydalanuvchi | CRM'ga eski (ko'prikgacha) JSX → O-1 ochadi. Fayl tayyor: `feedback/lms-sinov-2026-09-09/16-eski-InternetLesson-177ee1a.jsx` | PIN-darvoza, oq ekran yo'q (lokal smoke bilan oldindan tasdiqlandi, 2026-09-09) | 1 |
+
+### 5.3 LMS-jamoasi bilan kelishib (alohida vaqt — Axadulla 2026-09-09 §5: to'rt band uchun alohida vaqt kelishiladi, rozilik bor)
+
+| Band | Kim bilan | Nima |
+|---|---|---|
+| 15 | Kristina (yoki biz) | staging api 1 daqiqa to'xtaydi → O-1 ochadi → darvoza + PIN. Kristinasiz variant: Chrome DevTools → Network → «Block request URL» `*/api/v1/lms/*` |
+| 3 (LMS-variant) | Axadulla | LMS 13 soatlik eski token beradi (yoki O-1 sahifasi 12+ soat ochiq turib F5) |
+| 9b | Axadulla | V-1 ning END sanasini o'tmishga qo'yadi → V-1 ochadi → token yo'q |
+| 18 | Axadulla | o'sha `event_id` bilan boshqa payload → 409; bizda `manual_review` + Telegram (0.4 tayyor bo'lsa) |
+| 19, B3 | Axadulla | O-2 ni LMS test-bazasida «topilmaydigan» qiladi → «Erkin qilish» → `rejected_students` |
+| B2 | M-1 + M-2 | ikkala guruhda bir vaqtda dars → O-5 «Qaysi darsga kirasiz?» |
+| B4 | Axadulla | rotatsiya (`SIRLAR_ROTATSIYASI_UZ.md` §5 xat) → `kid v2` → `jwt_next` ✓ |
+
+## 6. Axadulla javobi 2026-09-09 — kod bilan solishtiruv (biz)
+
+Manba: `JAVOB_XABAR_AXADULLA_2026-09-09_UZ.md` (11:40). Har band bizning kodga qarab tekshirildi:
+
+| Javob-bandi | Bizda | Hukm |
+|---|---|---|
+| §1 vaqt zonasi — LMS tomonida tuzatiladi, biz `Z` bilan davom etamiz | `resultDetails.iso()` va payload `Z` bilan | ✅ o'zgarish yo'q; tekshiruv §5.2 10b |
+| §2 onFinished C: `lang`, `questions[]`, `achievements[]` yuqori darajada, eski maydonlar o'zgarmaydi | `src/live/resultDetails.js` → `buildResultDetails`, dars payload'iga `...` bilan qo'shiladi | ✅ |
+| §2 tekshirish-ro'yxati: `question_id`, `attempts[]` raqamlari, `correct`/`solved`, `elapsed_ms`/`at`, `achievements[].earned_at` | `question_id`, `attempts[].n`, `correct`, `solved`, `elapsed_ms`, `at` (ISO Z), `earned_at` | ✅ hammasi bor |
+| §3-2 `question`, `options[]`, `correct_answer` kerak | `q.question`, `q.options`, `q.correct_option`, `q.correct_answer` | ✅ |
+| §3-3 faqat `kind="test"`, arena yo'q | `kind: 'test'`, faqat `meta.scored` ekranlar; arena kirmaydi | ✅ |
+| §3-4 live: bitta urinish, ball birinchi urinish | invariant `attempts[0].correct = correct`; darsda `correct: firstCorrectRef.current`, `solved: isCorrect` (InternetLesson.jsx:355) | ✅ |
+| §3-5 limitlar 200/10/6/20/300 | `LIM = { questions: 200, attempts: 10, options: 6, text: 300, achievements: 20 }` | ✅ bir xil |
+| §3-7 detallar coin'ga ta'sir qilmaydi; lesson-runner coin/point 0 | bizga tegmaydi; pilotda 🪙 40 School API `lesson-results` orqali | ℹ️ eslatma |
+| «`correctAnswers` = birinchi urinishda to'g'ri» | `correctAnswers = scoredAnswers.filter(a => a.correct).length`, `a.correct` = birinchi urinish | ✅ |
+| §5 yopishdan oldin: 37069 saqlangan onFinished JSON ↔ dars ekranidagi natija | Bizning taraf tayyor: `feedback/lms-sinov-2026-09-09/B6-pilot-sessiya-admin.json` (server-yozuv: 5 javob · 1 to'g'ri · 5 urinish · 4 yutuq · oxiriga yetdi). Namuna kelganda `questions[]`/`achievements[]` shu bilan solishtiriladi | 🟡 namuna kutilmoqda |
+
+**Hech qanday kod-o'zgarish talab qilinmaydi.** Kutilayotgan: (1) 37069 JSON-namunasi, (2) akkauntlar va G-2 gid, (3) qo'shma sinov vaqti.

@@ -1,0 +1,18 @@
+{
+  "at": "2026-09-09T06:39:33.512Z",
+  "note": "QO'LDA, serverdan tashqaridan, admin satridagi payload AYNAN (JSON.stringify), 1-yuborish 2026-09-08 13:07:35Z HTTP 201",
+  "http": 200,
+  "request_id": "9b94bf66-ab38-4449-a5f6-1ed6ad6974e6",
+  "body": {
+    "data": {
+      "event_id": "sess_782030_20260908T125804Z",
+      "accepted": true,
+      "duplicate": true,
+      "students_received": 1,
+      "students_accepted": 1,
+      "students_rejected": 0,
+      "rejected_students": [],
+      "reward_status": "pending_policy"
+    }
+  }
+}

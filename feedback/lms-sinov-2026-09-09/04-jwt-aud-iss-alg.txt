@@ -1,0 +1,6 @@
+# Band 4 qo'shimcha — staging 8d24e53, 2026-09-09 10:38 +05
+# POST /api/v1/lms/join, lesson_id=internet-01-v18; token yaroqli secret bilan, faqat bitta maydon buzuq
+✓ aud=x            → HTTP 401  {"error":"invalid_token","message":"Kirish tokeni yaroqsiz. Sahifani yangilab qayta urinib ko'ring."}
+✓ iss=x            → HTTP 401  {"error":"invalid_token","message":"Kirish tokeni yaroqsiz. Sahifani yangilab qayta urinib ko'ring."}
+✓ alg=none         → HTTP 401  {"error":"invalid_token","message":"Kirish tokeni yaroqsiz. Sahifani yangilab qayta urinib ko'ring."}
+✓ bo'sh Bearer     → HTTP 401  {"error":"unauthorized","message":"Kirish tokeni berilmagan."}
