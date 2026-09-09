@@ -187,32 +187,89 @@ var iso = (t) => new Date(t || Date.now()).toISOString().replace(/\.\d{3}Z$/, "Z
 var optText = (o, lang) => o && typeof o === "object" ? String(o[lang] ?? o.uz ?? "") : String(o ?? "");
 var attemptsByLesson = /* @__PURE__ */ new Map();
 var earnedAtByLesson = /* @__PURE__ */ new Map();
+var KEY = (lessonId) => `ccDetails:${lessonId}`;
+var store = () => {
+  try {
+    return typeof localStorage !== "undefined" ? localStorage : null;
+  } catch {
+    return null;
+  }
+};
+var loaded = /* @__PURE__ */ new Set();
+function load(lessonId) {
+  if (loaded.has(lessonId)) return;
+  loaded.add(lessonId);
+  const st = store();
+  if (!st) return;
+  let o = null;
+  try {
+    o = JSON.parse(st.getItem(KEY(lessonId)) || "null");
+  } catch {
+    return;
+  }
+  if (!o || typeof o !== "object") return;
+  const am = attemptsByLesson.get(lessonId) || /* @__PURE__ */ new Map();
+  for (const [k, list] of Object.entries(o.attempts || {})) {
+    const idx = Number(k);
+    if (!Number.isInteger(idx) || !Array.isArray(list) || am.has(idx)) continue;
+    am.set(idx, list.filter((t) => t && typeof t === "object" && Number.isFinite(t.at)).slice(0, LIM.attempts));
+  }
+  attemptsByLesson.set(lessonId, am);
+  const em = earnedAtByLesson.get(lessonId) || /* @__PURE__ */ new Map();
+  for (const [id, t] of Object.entries(o.earnedAt || {})) if (Number.isFinite(t) && !em.has(id)) em.set(id, t);
+  earnedAtByLesson.set(lessonId, em);
+}
+function persist(lessonId) {
+  const st = store();
+  if (!st) return;
+  const attempts = {};
+  for (const [k, v] of attemptsByLesson.get(lessonId) || []) attempts[k] = v;
+  const earnedAt = Object.fromEntries(earnedAtByLesson.get(lessonId) || []);
+  try {
+    st.setItem(KEY(lessonId), JSON.stringify({ v: 1, attempts, earnedAt }));
+  } catch {
+  }
+}
 function logAttempt(lessonId, screenIdx, { picked, texts, elapsedMs } = {}) {
   if (!lessonId || !Number.isInteger(screenIdx)) return;
+  load(lessonId);
   if (!attemptsByLesson.has(lessonId)) attemptsByLesson.set(lessonId, /* @__PURE__ */ new Map());
   const m = attemptsByLesson.get(lessonId);
   if (!m.has(screenIdx)) m.set(screenIdx, []);
   const list = m.get(screenIdx);
   if (list.length >= LIM.attempts) return;
   list.push({ option: Number.isInteger(picked) ? picked : -1, answer: cut(texts && texts.picked, LIM.text), elapsed_ms: Math.max(0, Math.min(LIM.elapsed, Math.round(elapsedMs || 0))), at: Date.now() });
+  persist(lessonId);
 }
 function noteEarned(lessonId, ids) {
   if (!lessonId || !Array.isArray(ids)) return;
+  load(lessonId);
   if (!earnedAtByLesson.has(lessonId)) earnedAtByLesson.set(lessonId, /* @__PURE__ */ new Map());
   const m = earnedAtByLesson.get(lessonId);
   const now = Date.now();
+  let changed = false;
   for (const raw of ids) {
     const id = String(raw);
-    if (!m.has(id)) m.set(id, now);
+    if (!m.has(id)) {
+      m.set(id, now);
+      changed = true;
+    }
   }
+  if (changed) persist(lessonId);
 }
 function resetResultDetails(lessonId) {
   attemptsByLesson.delete(lessonId);
   earnedAtByLesson.delete(lessonId);
+  loaded.delete(lessonId);
+  try {
+    store()?.removeItem(KEY(lessonId));
+  } catch {
+  }
 }
 function buildResultDetails({ lessonId, screenMeta, answers, earned, achievements, lang: langIn, now } = {}) {
   const lang = langIn === "ru" || langIn === "uz" ? langIn : getLiveLang();
   const finish = now || Date.now();
+  load(lessonId);
   const log = attemptsByLesson.get(lessonId) || /* @__PURE__ */ new Map();
   const questions = [];
   (screenMeta || []).forEach((meta, i) => {
@@ -223,20 +280,26 @@ function buildResultDetails({ lessonId, screenMeta, answers, earned, achievement
     const correctIdx = Number.isInteger(a.correctIndex) ? a.correctIndex : Number.isInteger(a.correctIdx) ? a.correctIdx : null;
     const raw = (log.get(i) || []).slice().sort((x, y) => x.at - y.at).slice(0, LIM.attempts);
     const options = Array.isArray(a.options) ? a.options.slice(0, LIM.options).map((o) => optText(o, lang).slice(0, LIM.text)) : void 0;
-    const attempts = (raw.length ? raw : [{ option: a.picked, answer: cut(a.studentAnswer, LIM.text), elapsed_ms: 0, at: Number.isInteger(a.at) ? a.at : finish }]).map((t, n) => {
-      const o = { n: n + 1, option: t.option, correct: correctIdx !== null ? t.option === correctIdx : n === 0 ? a.correct === true : false, elapsed_ms: t.elapsed_ms, at: iso(t.at) };
+    const correct = a.correct === true;
+    const last = Number.isInteger(a.lastPicked) ? a.lastPicked : a.picked;
+    const eventually = correctIdx !== null ? last === correctIdx : a.solved === true;
+    const baseAt = Number.isInteger(a.at) ? a.at : finish;
+    const fallback = correct || !eventually ? [{ option: last, answer: cut(a.studentAnswer, LIM.text), elapsed_ms: 0, at: baseAt }] : [{ option: -1, elapsed_ms: 0, at: baseAt, correct: false }, { option: last, answer: cut(a.studentAnswer, LIM.text), elapsed_ms: 0, at: baseAt, correct: true }];
+    const attempts = (raw.length ? raw : fallback).map((t, n) => {
+      const o = { n: n + 1, option: t.option, correct: typeof t.correct === "boolean" ? t.correct : correctIdx !== null ? t.option === correctIdx : false, elapsed_ms: t.elapsed_ms, at: iso(t.at) };
       const ans = t.answer ?? (options && t.option >= 0 ? options[t.option] : void 0);
       if (typeof ans === "string") o.answer = ans.slice(0, LIM.text);
       return o;
     });
-    const correct = a.correct === true;
     if (attempts[0]) attempts[0].correct = correct;
+    if (correctIdx === null && eventually && !attempts.some((t) => t.correct)) attempts[attempts.length - 1].correct = true;
     const q = {
       question_id: meta.id && String(meta.id) || `s${i}`,
       kind: "test",
       order: questions.length + 1,
       correct,
-      solved: a.solved === true || correct || attempts.some((t) => t.correct),
+      solved: attempts.some((t) => t.correct),
+      // F-0909-03: dars bayrog'i emas, urinish-dalili (server result-builder.js:356 bilan bir xil)
       attempts
     };
     const qt = cut(typeof a.question === "string" ? a.question : optText(a.question, lang), LIM.text);
@@ -987,15 +1050,15 @@ var AudioEngine = class {
   }
   initVoices() {
     if (typeof window === "undefined" || !window.speechSynthesis) return;
-    const load = () => {
+    const load2 = () => {
       const v = window.speechSynthesis.getVoices();
       if (!v.length) return;
       this.voicesByLang.ru = v.find((x) => x.lang.startsWith("ru")) || v[0];
       this.voicesByLang.uz = v.find((x) => x.lang.startsWith("uz")) || v.find((x) => x.lang.startsWith("ru")) || v[0];
       this.voicesReady = true;
     };
-    load();
-    if (window.speechSynthesis.onvoiceschanged !== void 0) window.speechSynthesis.onvoiceschanged = load;
+    load2();
+    if (window.speechSynthesis.onvoiceschanged !== void 0) window.speechSynthesis.onvoiceschanged = load2;
   }
   setLang(l) {
     this.currentLang = l;
@@ -2580,13 +2643,13 @@ var Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [jstep, setJstep] = useState3(storedAnswer?.picked ? DONE : -1);
   const [turn, setTurn] = useState3(storedAnswer?.picked ? 360 : 0);
   const [running, setRunning] = useState3(false);
-  const [loaded, setLoaded] = useState3(storedAnswer?.picked || null);
+  const [loaded2, setLoaded] = useState3(storedAnswer?.picked || null);
   const timer = useRef3(null);
   const baseRef = useRef3(storedAnswer?.picked ? 360 : 0);
   const isMobile = useIsMobile();
   const animRef = useRef3(null);
   const resultRef = useRef3(null);
-  const done = loaded !== null;
+  const done = loaded2 !== null;
   useEffect4(() => () => clearTimeout(timer.current), []);
   const send = (target) => {
     const s = siteInfo(target || url);
@@ -2666,8 +2729,8 @@ var Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </div>
           <div className="col" ref={resultRef}>
             <div className="flow-label">{tr2({ uz: "Natija", ru: "Результат" })}</div>
-            <Preview title={loaded || tr2({ uz: "sayt", ru: "сайт" })} minH={150}>
-              {running ? <p className="mono" style={{ color: T.ink2, textAlign: "center", margin: 0 }}><span className="gen-line">{tr2({ uz: "Yuklanmoqda", ru: "Загрузка" })}</span></p> : loaded ? <div className="fade-step"><SiteMock site={site} /><p className="mono small" style={{ color: T.success, margin: "10px 0 0", textAlign: "center" }}>✓ {site?.name || loaded} {tr2({ uz: "ochildi", ru: "открылся" })}</p></div> : <p style={{ fontFamily: "Georgia, serif", color: T.ink3, fontStyle: "italic", margin: 0, textAlign: "center" }}>{tr2({ uz: "Manzil yuboring — sayt shu yerda ochiladi", ru: "Отправьте адрес — сайт откроется здесь" })}</p>}
+            <Preview title={loaded2 || tr2({ uz: "sayt", ru: "сайт" })} minH={150}>
+              {running ? <p className="mono" style={{ color: T.ink2, textAlign: "center", margin: 0 }}><span className="gen-line">{tr2({ uz: "Yuklanmoqda", ru: "Загрузка" })}</span></p> : loaded2 ? <div className="fade-step"><SiteMock site={site} /><p className="mono small" style={{ color: T.success, margin: "10px 0 0", textAlign: "center" }}>✓ {site?.name || loaded2} {tr2({ uz: "ochildi", ru: "открылся" })}</p></div> : <p style={{ fontFamily: "Georgia, serif", color: T.ink3, fontStyle: "italic", margin: 0, textAlign: "center" }}>{tr2({ uz: "Manzil yuboring — sayt shu yerda ochiladi", ru: "Отправьте адрес — сайт откроется здесь" })}</p>}
             </Preview>
           </div>
         </div>
@@ -2952,7 +3015,7 @@ var ScreenPodium = ({ screen, answers, onNext, onPrev }) => {
   const livePin = live ? live.pin : null;
   const [players, setPlayers] = useState3([]);
   const [rows, setRows] = useState3([]);
-  const [loaded, setLoaded] = useState3(false);
+  const [loaded2, setLoaded] = useState3(false);
   useEffect4(() => {
     if (!isLive || !livePin) return;
     let on = true, t = null;
@@ -2991,7 +3054,7 @@ var ScreenPodium = ({ screen, answers, onNext, onPrev }) => {
         {!isLive ? <div className="fade-up" style={{ display: "flex", flexDirection: "column", gap: 16, alignItems: "center" }}>
             <ScoreRing correct={selfCorrect} total={totalQ} />
             <div className="frame-soft" style={{ maxWidth: 480 }}><p className="body" style={{ margin: 0 }}>{tr2({ uz: "Siz mustaqil rejimdasiz. Jonli darsda bu yerda butun guruh reytingi — 🥇🥈🥉 podium chiqadi.", ru: "Вы в самостоятельном режиме. На живом уроке здесь появится рейтинг всей группы — 🥇🥈🥉 подиум." })}</p></div>
-          </div> : !loaded ? <p className="mono small fade-up" style={{ color: T.ink2 }}>{tr2({ uz: "Natijalar yuklanmoqda…", ru: "Результаты загружаются…" })}</p> : board.length === 0 ? <div className="frame-soft fade-up"><p className="body" style={{ margin: 0 }}>{tr2({ uz: "Bu sessiyaga hali hech kim qo'shilmagan.", ru: "К этой сессии пока никто не присоединился." })}</p></div> : <>
+          </div> : !loaded2 ? <p className="mono small fade-up" style={{ color: T.ink2 }}>{tr2({ uz: "Natijalar yuklanmoqda…", ru: "Результаты загружаются…" })}</p> : board.length === 0 ? <div className="frame-soft fade-up"><p className="body" style={{ margin: 0 }}>{tr2({ uz: "Bu sessiyaga hali hech kim qo'shilmagan.", ru: "К этой сессии пока никто не присоединился." })}</p></div> : <>
             <Confetti />
             {
     /* Podium — 2-1-3 tartibida (o'rtada g'olib, balandroq) */

@@ -1150,3 +1150,12 @@ ko'chirilgan, homework'da tuzatildi — qolgan 19 fayl kutmoqda.
 va `if (occ)` sharti → `if (occ && occ !== id)`.
 **Fayllar:** `grep -rln "const occ = ns\[slotIdx\]" src/` (PmLesson2.homework.jsx dan
 tashqari hammasi). Har faylda tuzatishdan keyin esbuild + tegishli .shared qayta yig'ish.
+## 29. LMS yig'malarini yangi `resultDetails.js` bilan qayta yig'ish (F-0909-02/03) — 100 fayl
+**Topilma:** `src/live/resultDetails.js` 2026-09-09 da tuzatildi (urinishlar tarixi localStorage'da
+saqlanadi; `solved = attempts.some(correct)`). Umumiy modul har LMS yig'masiga ICHIGA kiradi, shuning
+uchun `lms/` dagi 100 fayl (ildiz + 4-M/5-M/6-M, .shared.jsx ham) hali ESKI mantiq bilan turibdi.
+Faqat `lms/InternetLesson.jsx` (CRM test-materiali) staging manzili bilan qayta yig'ildi.
+**Tuzatish:** cutover kuni to'liq qayta yig'ish — `node server/tools/cutover-mashq.mjs --url https://dars-api.coddycamp.uz --out lms --smoke`
+(prod manzili). Staging'da ko'proq dars sinab ko'rish kerak bo'lsa — `DARS_API_URL=<staging> node scripts/build-lms.mjs <fayl>`.
+**Tekshiruv:** har yig'mada `grep -c 'ccDetails:'` = 1; `smoke-lms` ✓; eski manzil 0.
+**Bog'liq:** SINOV_PROTOKOLI_LMS.md §7 · memory/holat-2026-09-09.

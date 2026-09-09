@@ -1,0 +1,11 @@
+# F-0909-02/03 — brauzer-tekshiruv, 2026-09-09 14:33, lms/InternetLesson.jsx (staging yig'ma, resultDetails.js tuzatilgan)
+# Skript: scratchpad/f0909-02-check.mjs (Playwright + esbuild). Self-rejim, s4 test-ekrani (04 → «05 / 22»).
+ekran matni: MASHQ · 1-SAVOL 🏅 0 /4 05 / 22 TO'G'RI JAVOBNI TANLANG Internetdagi saytlarni ochib, ekranga chiqaradigan dastur qanday nomlanadi? A Server B Brauzer C Domen D
+saqlov (bosishdan oldin): null
+bosildi Domen
+1-bosishdan keyin: {"v":1,"attempts":{"4":[{"option":2,"answer":"Domen","elapsed_ms":2468,"at":1788943209542}]},"earnedAt":{}}
+bosildi Brauzer
+2-bosishdan keyin: {"v":1,"attempts":{"4":[{"option":2,"answer":"Domen","elapsed_ms":2468,"at":1788943209542},{"option":1,"answer":"Brauzer","elapsed_ms":3009,"at":1788943210083}]},"earnedAt":{}}
+F5 dan keyin saqlov: (o'zgarmadi — ikkala urinish turibdi)
+XULOSA: urinishlar=2 · variantlar=2,1 · elapsed_ms=2468,3009 · at farqi=541 ms · sahifa xatolari: yo'q
+# Birlik-testlar: node --test src/live/resultDetails.test.mjs → 5/5 (F-0909-03 jonli xato → solved:false; zaxira-yo'l; saqlov/F5; reset).

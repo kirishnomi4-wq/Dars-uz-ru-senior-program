@@ -1,7 +1,11 @@
 // node --test src/live/resultDetails.test.mjs
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { buildResultDetails, logAttempt, noteEarned, resetResultDetails } from './resultDetails.js';
+import { buildResultDetails, logAttempt, noteEarned, resetResultDetails, _forgetMemory } from './resultDetails.js';
+
+// Brauzer saqlovi o'rnida (F-0909-02): modul localStorage'ga faqat chaqiruv paytida murojaat qiladi
+const mem = new Map();
+globalThis.localStorage = { getItem: (k) => (mem.has(k) ? mem.get(k) : null), setItem: (k, v) => { mem.set(k, String(v)); }, removeItem: (k) => { mem.delete(k); } };
 
 const META = [{ id: 's0' }, { id: 's1' }, { id: 's4', scored: true }, { id: 's5b', scored: true }, { id: 's9', scored: true }];
 const ACH = { firstWin: { name: 'Bullseye!', desc: { uz: 'Birinchi savol', ru: 'Первый вопрос' } }, graduate: { name: 'Level Up!', desc: 'Darsni tugatdingiz' } };
@@ -49,4 +53,52 @@ test('ru tili: ta\'rif ru, variantlar ru; earned_at noteEarned dan; takror/yaroq
   // bo'sh
   const e = buildResultDetails({ lessonId: 'L3', screenMeta: META, answers: {}, lang: 'uz' });
   assert.deepEqual(e, { lang: 'uz', questions: [], achievements: [] });
+});
+
+test('F-0909-03: jonli dars (bitta urinish) — xato javobda dars solved:true yozsa ham LMS uchun solved=false', () => {
+  resetResultDetails('L4');
+  logAttempt('L4', 2, { picked: 0, texts: { picked: 'A' }, elapsedMs: 3100 });
+  const answers = { 2: { question: 'Q', options: ['A', 'B'], correctIndex: 1, correctAnswer: 'B', picked: 0, lastPicked: 0, studentAnswer: 'A', correct: false, firstAttemptCorrect: false, solved: true } };
+  const q = buildResultDetails({ lessonId: 'L4', screenMeta: META, answers, lang: 'uz', now: T0 }).questions[0];
+  assert.deepEqual([q.correct, q.solved, q.attempts.length, q.attempts[0].correct, q.attempts[0].elapsed_ms], [false, false, 1, false, 3100]);
+  // to'g'ri javob — ikkalasi true
+  resetResultDetails('L4');
+  logAttempt('L4', 2, { picked: 1, elapsedMs: 900 });
+  const ok = buildResultDetails({ lessonId: 'L4', screenMeta: META, answers: { 2: { correctIndex: 1, picked: 1, lastPicked: 1, correct: true, solved: true } }, lang: 'uz', now: T0 }).questions[0];
+  assert.deepEqual([ok.correct, ok.solved, ok.attempts.length], [true, true, 1]);
+});
+
+test('zaxira-yo\'l (tarix yo\'q): birinchi xato + oxirida to\'g\'ri → 2 urinish (birinchisi noma\'lum), solved=true; yechilmagan → 1 urinish, solved=false', () => {
+  resetResultDetails('L5');
+  const a = { options: ['A', 'B', 'C'], correctIndex: 1, correctAnswer: 'B', picked: 1, lastPicked: 1, studentAnswer: 'B', correct: false, solved: true };
+  const q = buildResultDetails({ lessonId: 'L5', screenMeta: META, answers: { 2: a }, lang: 'uz', now: T0 }).questions[0];
+  assert.deepEqual([q.correct, q.solved], [false, true]);
+  assert.deepEqual(q.attempts.map((t) => [t.n, t.option, t.correct, t.answer]), [[1, -1, false, undefined], [2, 1, true, 'B']]);
+  const u = buildResultDetails({ lessonId: 'L5', screenMeta: META, answers: { 2: { ...a, picked: 2, lastPicked: 2, studentAnswer: 'C', solved: false } }, lang: 'uz', now: T0 }).questions[0];
+  assert.deepEqual([u.correct, u.solved, u.attempts.length, u.attempts[0].option], [false, false, 1, 2]);
+});
+
+test('F-0909-02: saqlov — sahifa yangilansa urinishlar (elapsed_ms, at) va earned_at birinchi vaqti qoladi; reset saqlovni ham tozalaydi', () => {
+  resetResultDetails('L6');
+  const before = Date.now();
+  logAttempt('L6', 2, { picked: 0, texts: { picked: 'A' }, elapsedMs: 4200 });
+  logAttempt('L6', 2, { picked: 1, texts: { picked: 'B' }, elapsedMs: 7700 });
+  noteEarned('L6', ['firstWin']);
+  assert.ok(mem.has('ccDetails:L6'), 'saqlovga yozildi');
+  _forgetMemory('L6'); // «sahifa yangilandi»
+  const answers = { 2: { options: ['A', 'B'], correctIndex: 1, picked: 1, lastPicked: 1, correct: false, solved: true } };
+  const later = T0 + 3_600_000;
+  const d = buildResultDetails({ lessonId: 'L6', screenMeta: META, answers, earned: ['firstWin', 'graduate'], achievements: ACH, lang: 'uz', now: later });
+  assert.deepEqual(d.questions[0].attempts.map((t) => [t.n, t.option, t.correct, t.elapsed_ms]), [[1, 0, false, 4200], [2, 1, true, 7700]], 'tarix saqlovdan tiklandi');
+  assert.ok(Date.parse(d.questions[0].attempts[0].at) >= Math.floor(before / 1000) * 1000, 'at — haqiqiy bosish vaqti, tugash vaqti emas');
+  const fw = d.achievements.find((x) => x.id === 'firstwin');
+  const fwAt = Date.parse(fw.earned_at);
+  assert.ok(fwAt >= Math.floor(before / 1000) * 1000 && fwAt <= Date.now() + 1000, 'earned_at — noteEarned chaqirilgan real vaqt');
+  assert.notEqual(fw.earned_at, new Date(later).toISOString().replace(/\.\d{3}Z$/, 'Z'), 'earned_at tugash vaqtiga tenglashib qolmadi');
+  assert.equal(d.achievements.find((x) => x.id === 'graduate').earned_at, new Date(later).toISOString().replace(/\.\d{3}Z$/, 'Z'), 'saqlovda yo\'q yutuq → yakun vaqti');
+  resetResultDetails('L6');
+  assert.equal(mem.has('ccDetails:L6'), false, 'reset saqlovni tozaladi');
+  _forgetMemory('L6');
+  const e = buildResultDetails({ lessonId: 'L6', screenMeta: META, answers, lang: 'uz', now: later }).questions[0];
+  assert.deepEqual([e.attempts.length, e.attempts[0].elapsed_ms, e.solved], [2, 0, true], 'saqlovsiz → zaxira-yo\'l');
 });
