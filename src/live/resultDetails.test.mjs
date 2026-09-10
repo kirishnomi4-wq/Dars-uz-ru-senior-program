@@ -1,7 +1,7 @@
 // node --test src/live/resultDetails.test.mjs
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { buildResultDetails, logAttempt, noteEarned, resetResultDetails, _forgetMemory } from './resultDetails.js';
+import { buildResultDetails, logAttempt, logArena, noteEarned, resetResultDetails, _forgetMemory } from './resultDetails.js';
 
 // Brauzer saqlovi o'rnida (F-0909-02): modul localStorage'ga faqat chaqiruv paytida murojaat qiladi
 const mem = new Map();
@@ -101,4 +101,39 @@ test('F-0909-02: saqlov — sahifa yangilansa urinishlar (elapsed_ms, at) va ear
   _forgetMemory('L6');
   const e = buildResultDetails({ lessonId: 'L6', screenMeta: META, answers, lang: 'uz', now: later }).questions[0];
   assert.deepEqual([e.attempts.length, e.attempts[0].elapsed_ms, e.solved], [2, 0, true], 'saqlovsiz → zaxira-yo\'l');
+});
+
+test('arena (2026-09-10): jonli arena javoblari testlardan KEYIN kind=arena; matnlar bank\'dan (uz/ru); bank yo\'q → matnsiz; birinchi javob qoladi; saqlovdan tiklanadi; reset tozalaydi', () => {
+  resetResultDetails('L7');
+  logAttempt('L7', 2, { picked: 1, texts: { picked: 'B' }, elapsedMs: 1000 });
+  assert.equal(logArena('L7', 'quiz-3', { picked: 2, correct: true, elapsedMs: 4120 }), true);
+  assert.equal(logArena('L7', 'quiz-0', { picked: 1, correct: false, elapsedMs: 2500 }), true);
+  assert.equal(logArena('L7', 'quiz-0', { picked: 0, correct: true, elapsedMs: 9000 }), false, 'takror javob — jonli qoida: bir urinish');
+  assert.equal(logArena('L7', 's4', { picked: 0, correct: true, elapsedMs: 10 }), false, 'test-savol arena emas');
+  const answers = { 2: { options: ['A', 'B'], correctIndex: 1, picked: 1, lastPicked: 1, correct: true, solved: true } };
+  const BANK = [
+    { q: { uz: 'Savol 0', ru: 'Вопрос 0' }, opts: [{ uz: 'a', ru: 'а' }, { uz: 'b', ru: 'б' }], correct: 0 },
+    null, null,
+    { q: 'Savol 3', opts: ['x', 'y', 'z'], correct: 2 },
+  ];
+  _forgetMemory('L7'); // «sahifa yangilandi» — saqlovdan tiklanadi
+  const d = buildResultDetails({ lessonId: 'L7', screenMeta: META, answers, earned: [], achievements: ACH, lang: 'uz', arenaBank: BANK });
+  assert.deepEqual(d.questions.map((q) => [q.question_id, q.kind, q.order]), [['s4', 'test', 1], ['quiz-0', 'arena', 2], ['quiz-3', 'arena', 3]], 'tartib: testlar, keyin arena raqam bo\'yicha');
+  const q0 = d.questions[1];
+  assert.equal(q0.correct, false); assert.equal(q0.solved, false);
+  assert.deepEqual(q0.attempts.map((t) => [t.n, t.option, t.correct, t.elapsed_ms, t.answer]), [[1, 1, false, 2500, 'b']]);
+  assert.match(q0.attempts[0].at, /^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\dZ$/);
+  assert.equal(q0.question, 'Savol 0'); assert.deepEqual(q0.options, ['a', 'b']); assert.equal(q0.correct_option, 0); assert.equal(q0.correct_answer, 'a');
+  const q3 = d.questions[2];
+  assert.equal(q3.correct, true); assert.equal(q3.solved, true); assert.equal(q3.attempts[0].answer, 'z'); assert.equal(q3.correct_answer, 'z'); assert.equal(q3.question, 'Savol 3');
+  const ru = buildResultDetails({ lessonId: 'L7', screenMeta: META, answers, earned: [], achievements: ACH, lang: 'ru', arenaBank: BANK });
+  assert.equal(ru.questions[1].question, 'Вопрос 0'); assert.deepEqual(ru.questions[1].options, ['а', 'б']);
+  const noBank = buildResultDetails({ lessonId: 'L7', screenMeta: META, answers, earned: [], achievements: ACH, lang: 'uz' });
+  assert.equal(noBank.questions.length, 3);
+  assert.equal(noBank.questions[1].question, undefined); assert.equal(noBank.questions[1].options, undefined); assert.equal(noBank.questions[1].correct_option, undefined);
+  assert.equal(noBank.questions[1].attempts[0].option, 1);
+  resetResultDetails('L7');
+  assert.equal(mem.has('ccDetails:L7'), false);
+  const after = buildResultDetails({ lessonId: 'L7', screenMeta: META, answers: {}, earned: [], achievements: ACH, lang: 'uz', arenaBank: BANK });
+  assert.equal(after.questions.length, 0, 'reset arena tarixini ham tozaladi');
 });

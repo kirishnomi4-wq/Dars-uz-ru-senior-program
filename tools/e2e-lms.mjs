@@ -242,6 +242,39 @@ try {
     return `live ${live.event_id} (${ids.length} o'quvchi) · solo ${solo.event_id}`;
   });
 
+  // F-0910-01: o'quvchi mentordan OLDIN kirgan (solo) → mentor keyin dars ochdi → o'quvchi F5'siz jonliga o'tadi
+  await step('F-0910-01: Dilnoza (guruh 862) solo\'da → mentor 862 darsni ochdi → 25 s ichida jonliga o\'tdi, belgi «Mentor darsni boshladi», mentor ro\'yxatida', async () => {
+    const hdr = (tok) => ({ authorization: `Bearer ${tok}`, 'content-type': 'application/json' });
+    // tozalash: 862 da oldingi yugurishdan qolgan sessiya bo'lsa yopiladi; Dilnozaning eski urinishi → yangi solo
+    const mtok = mint(['--role', 'mentor', '--sub', '146', '--gid', '862', '--name', 'Mentor 862']);
+    const old = await (await fetch(`${API}/api/v1/lms/join`, { method: 'POST', headers: hdr(mtok), body: JSON.stringify({ lesson_id: 'internet-01-v18' }) })).json();
+    if (old.pin) await fetch(`${API}/api/v1/live/rpc/end_session`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ p_pin: old.pin, p_token: old.token }) });
+    const DIL = '34176';
+    const dilTok = mint(['--role', 'student', '--sub', DIL, '--name', 'Dilnoza Karimova']);
+    await fetch(`${API}/api/v1/lms/restart`, { method: 'POST', headers: hdr(dilTok), body: JSON.stringify({ lesson_id: 'internet-01-v18' }) }).catch(() => {});
+    const dil = await open('dilnoza', dilTok);
+    await dil.page.waitForSelector('[data-live="badge-solo"]', { timeout: 15000 });
+    const before = await (await fetch(`${API}/api/v1/me/progress?lesson_id=internet-01-v18`, { headers: hdr(dilTok) })).json();
+    if (before.attempt.kind !== 'solo' || before.attempt.status !== 'active') throw new Error(`oldin: ${JSON.stringify(before.attempt)}`);
+    // mentor 862 darsni ochadi (o'quvchidan KEYIN)
+    const t0 = Date.now();
+    const mentor2 = await open('mentor862', mint(['--role', 'mentor', '--sub', '146', '--gid', '862', '--name', 'Mentor 862', '--jti', `m862-${Date.now()}`]));
+    await waitBadge(mentor2.page, /Kod:/);
+    const pin2 = (await mentor2.page.locator('.live-badge b').first().innerText()).replace(/\D/g, '');
+    // o'quvchi F5 bosmaydi — 20 s so'rov bilan o'zi o'tadi
+    await dil.page.waitForSelector('[data-live="badge-joined"]', { timeout: 30000 });
+    const secs = ((Date.now() - t0) / 1000).toFixed(1);
+    const after = await (await fetch(`${API}/api/v1/me/progress?lesson_id=internet-01-v18`, { headers: hdr(dilTok) })).json();
+    if (after.attempt.kind !== 'live' || after.attempt.status !== 'active' || after.attempt.id === before.attempt.id) throw new Error(`keyin: ${JSON.stringify(after.attempt)}`);
+    const players = await (await fetch(`${API}/api/v1/live/players/${pin2}`)).json();
+    if (!players.some((p) => p.nickname === 'Dilnoza Karimova')) throw new Error(`mentor ro'yxati: ${JSON.stringify(players).slice(0, 200)}`);
+    await waitBadge(dil.page, /Mentor:\s*1\s*\//, 12000); // 8 s dan keyin oddiy «Mentor: 1 / N» belgisi
+    await mentor2.page.click('text=Erkin qilish'); // tozalash — keyingi yugurishda 862 da dars bo'lmasin
+    await waitBadge(dil.page, /Erkin rejim/);
+    await dil.ctx.close(); await mentor2.ctx.close();
+    return `${secs} s da o'tdi · solo ${before.attempt.id.slice(0, 8)} → live ${after.attempt.id.slice(0, 8)} · PIN ${pin2}`;
+  });
+
   await step('konsol/sahifa xatolari yo\'q', async () => { if (errors.length) throw new Error(errors.join(' | ')); });
 } catch {
   // step() yozdi

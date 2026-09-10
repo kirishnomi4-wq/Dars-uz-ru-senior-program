@@ -7,10 +7,10 @@
 //   review (tugagan urinish — javoblar ko'rinadi, yozilmaydi) · self (kodsiz, o'zi ko'radi) · choosing (darvoza)
 // Darslar 'student'/'mentor' bo'lmagan har rejimni 'self' kabi ko'radi — solo/review shu tufayli qo'shimcha kodsiz ishlaydi.
 import { useState, useEffect, useRef, useCallback, createContext, useContext } from 'react';
-import { logAttempt, resetResultDetails } from './resultDetails.js';
+import { logAttempt, logArena, resetResultDetails } from './resultDetails.js';
 import { tr } from './i18n.js';
 import {
-  LIVE_ENABLED, LIVE_POLL_MS, LIVE_POLL_MAX_MS, LIVE_HEARTBEAT_MS, LIVE_STALE_MS,
+  LIVE_ENABLED, LIVE_POLL_MS, LIVE_POLL_MAX_MS, LIVE_HEARTBEAT_MS, LIVE_STALE_MS, LMS_SOLO_RECHECK_MS,
   liveRpc, liveGet, liveRead, liveStore, liveClear, nickStore,
   lmsJoin, lmsRestart, peekTokenRole,
 } from './liveClient.js';
@@ -164,6 +164,8 @@ export function useLiveSession(lessonId, answerKey, opts = {}) {
   // O'quvchi javobini serverga yozish — birinchi javob qotadi (server unique). Jonli VA solo rejimda.
   // Tarmoq uzilsa 3 martagacha qayta uriniladi (javob yo'qolmasin).
   const submitAnswer = useCallback((screenIdx, questionId, picked, correct, elapsedMs) => {
+    // Arena (quiz-N) javobi — onFinished detallariga ham (2026-09-10), faqat jonli o'quvchi; solo'da arena mashq, bu yerga kelmaydi
+    if (mode === 'student') logArena(lessonId, questionId, { picked, correct, elapsedMs });
     if ((mode !== 'student' && mode !== 'solo') || !pin || !playerRef.current) return;
     const body = {
       p_pin: pin, p_player_id: playerRef.current.id, p_token: playerRef.current.token,
@@ -172,7 +174,7 @@ export function useLiveSession(lessonId, answerKey, opts = {}) {
     };
     const attempt = (n) => { liveRpc('submit_answer', body).catch(() => { if (n < 3) setTimeout(() => attempt(n + 1), 3000 * (n + 1)); }); };
     attempt(0);
-  }, [mode, pin]);
+  }, [mode, pin, lessonId]);
 
   // Har urinish TARIXGA (LMS analitika, 0005): ball emas, yozuv. Jonli va solo rejimda. Birinchi urinishda server
   // ball-qatorini ham qo'yadi — shuning uchun solo'da submitAnswer chaqirilmasa ham natija to'g'ri chiqadi.
@@ -305,6 +307,41 @@ export function useLiveSession(lessonId, answerKey, opts = {}) {
     joinWithToken();
   }, [liveToken, joinWithToken]);
 
+  // F-0910-01: o'quvchi mentordan OLDIN kirgan bo'lsa server unga solo beradi. Mentor keyin dars ochsa, server faol solo'ni
+  // yopib o'quvchini jonli sessiyaga kiritadi (join-service 1-qadam) — buni klient har LMS_SOLO_RECHECK_MS da JIMGINA so'raydi:
+  // lms.state tegilmaydi (darvoza-karta chiqmaydi), javob solo bo'lsa hech narsa o'zgarmaydi. Fon-tabda so'ramaydi,
+  // tab qaytganda darhol so'raydi. `choose` javobi (o'quvchi ikki guruhda, ikkalasida jonli dars) e'tiborsiz — solo davom.
+  const [liveJoinedNote, setLiveJoinedNote] = useState(false); // «Mentor darsni boshladi» belgisi (LiveBadge, 8 s)
+  const attemptId = attempt?.id || null, attemptStatus = attempt?.status || null;
+  useEffect(() => {
+    if (mode !== 'solo' || lms.state !== 'joined' || !attemptId || attemptStatus !== 'active') return;
+    const tok = lmsTokenRef.current;
+    if (!tok || peekTokenRole(tok) !== 'student') return;
+    let on = true, inFlight = false;
+    const recheck = async () => {
+      if (!on || inFlight || (typeof document !== 'undefined' && document.hidden)) return;
+      inFlight = true;
+      try {
+        const body = { lesson_id: lessonId };
+        if (lessonVersion) body.lesson_version = lessonVersion;
+        const res = await lmsJoin(tok, body);
+        if (!on || !res || res.mode !== 'student') return;
+        resetResultDetails(lessonId); // solo urinishning tarixi jonli urinishga aralashmasin
+        if (applyServerSession(res, tok)) setLiveJoinedNote(true);
+      } catch { /* tarmoq/server xatosi — solo davom etadi, keyingi so'rovda yana */ }
+      finally { inFlight = false; }
+    };
+    const id = setInterval(recheck, LMS_SOLO_RECHECK_MS);
+    const onVis = () => { if (typeof document !== 'undefined' && !document.hidden) recheck(); };
+    if (typeof document !== 'undefined') document.addEventListener('visibilitychange', onVis);
+    return () => { on = false; clearInterval(id); if (typeof document !== 'undefined') document.removeEventListener('visibilitychange', onVis); };
+  }, [mode, lms.state, attemptId, attemptStatus, lessonId, lessonVersion, applyServerSession]);
+  useEffect(() => {
+    if (!liveJoinedNote) return;
+    const t = setTimeout(() => setLiveJoinedNote(false), 8000);
+    return () => clearTimeout(t);
+  }, [liveJoinedNote]);
+
   // Komponent yopilsa — kutilayotgan progress darhol ketadi, kanal yopiladi
   useEffect(() => () => setProgressChannel(lessonId, null), [lessonId]);
 
@@ -312,6 +349,6 @@ export function useLiveSession(lessonId, answerKey, opts = {}) {
     mode, pin, mentorScreen, mentorMax, status, mentorAlive, connected, ended, joinError, busy,
     startMentor, joinStudent, selfStudy, reportScreen, endSession, submitAnswer, recordAttempt, quiz, quizControl, revealScreen, mentorReveal,
     playerId: playerRef.current?.id || null, nickname: nickRef.current,
-    lms, joinWithToken, hasLmsToken: !!liveToken, attempt, serverProgress, restartAttempt,
+    lms, joinWithToken, hasLmsToken: !!liveToken, attempt, serverProgress, restartAttempt, liveJoinedNote,
   };
 }

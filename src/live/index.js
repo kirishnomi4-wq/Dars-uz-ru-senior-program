@@ -3,7 +3,7 @@
 import './progressSync.js'; // progWrite → server-sinxron (yon ta'sir: hook ro'yxatdan o'tadi)
 export { setLiveLang, getLiveLang, tr as liveTr } from './i18n.js';
 export {
-  LIVE_API_URL, LIVE_ENABLED, LIVE_POLL_MS, LIVE_POLL_MAX_MS, LIVE_HEARTBEAT_MS, LIVE_STALE_MS,
+  LIVE_API_URL, LIVE_ENABLED, LIVE_POLL_MS, LIVE_POLL_MAX_MS, LIVE_HEARTBEAT_MS, LIVE_STALE_MS, LMS_SOLO_RECHECK_MS,
   liveRpc, liveGet, livePlayers, liveAnswers, liveQuizAnswers,
   liveRead, liveStore, liveClear, fmtPin,
   progRead, progWrite, progClear,

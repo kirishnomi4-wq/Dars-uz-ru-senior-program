@@ -16,6 +16,8 @@ export const LIVE_POLL_MS = 2500;
 export const LIVE_POLL_MAX_MS = 15000;
 export const LIVE_HEARTBEAT_MS = 10000;
 export const LIVE_STALE_MS = 180000;
+// F-0910-01: solo rejimda «guruhda jonli dars boshlandimi?» so'rovi oralig'i (o'quvchi mentordan oldin kirgan holat)
+export const LMS_SOLO_RECHECK_MS = 20000;
 
 const API = `${LIVE_API_URL}/api/v1/live`;
 

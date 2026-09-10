@@ -13,6 +13,10 @@
 //   F-0909-03 — jonli darsda dars `solved: true` ni «savol yopildi» ma'nosida yozadi; LMS uchun `solved` = «oxirida to'g'riga yetdi».
 //               Endi `solved` darsning bayrog'idan emas, urinishlardan hisoblanadi (server result-builder.js bilan bir xil qoida:
 //               `solved === attempts.some(correct)`); jonli darsdagi xato javob → `solved: false`.
+// 2026-09-10 — ARENA (CodeStrike) ham ketadi: jonli darsda o'quvchining arena javoblari (useLiveSession.submitAnswer → logArena)
+//   testlardan KEYIN `kind: "arena"` bilan chiqadi (server result-builder.js tartibi bilan bir xil: s4 < s5b < … < quiz-0 < quiz-1).
+//   Ballga kirmaydi (totalQuestions/correctAnswers faqat testlar). Bir savolga bitta javob (jonli qoida), takrori e'tiborsiz.
+//   Mustaqil rejimda arena mashq — yozilmaydi (submitAnswer chaqirilmaydi). Matnlar `arenaBank` (darsning QUIZ_BANK) berilsa qo'shiladi.
 import { getLiveLang } from './i18n.js';
 
 const LIM = { questions: 200, attempts: 10, options: 6, text: 300, achievements: 20, name: 40, title: 200, elapsed: 3_600_000 };
@@ -24,6 +28,10 @@ const optText = (o, lang) => (o && typeof o === 'object' ? String(o[lang] ?? o.u
 const attemptsByLesson = new Map();
 /** @type {Map<string, Map<string, number>>} */
 const earnedAtByLesson = new Map();
+/** Arena (jonli): dars-ID → (savol-raqami → bitta javob) */
+/** @type {Map<string, Map<number, {option:number, correct:boolean, elapsed_ms:number, at:number}>>} */
+const arenaByLesson = new Map();
+const ARENA_Q = /^quiz-(\d+)$/;
 
 // ---- Saqlov (F-0909-02): xotira + localStorage. Hammasi jim yiqiladi (private rejim, iframe, kvota).
 const KEY = (lessonId) => `ccDetails:${lessonId}`;
@@ -46,13 +54,22 @@ function load(lessonId) {
   const em = earnedAtByLesson.get(lessonId) || new Map();
   for (const [id, t] of Object.entries(o.earnedAt || {})) if (Number.isFinite(t) && !em.has(id)) em.set(id, t);
   earnedAtByLesson.set(lessonId, em);
+  const ar = arenaByLesson.get(lessonId) || new Map();
+  for (const [k, e] of Object.entries(o.arena || {})) {
+    const qi = Number(k);
+    if (!Number.isInteger(qi) || ar.has(qi) || !e || typeof e !== 'object' || !Number.isFinite(e.at)) continue;
+    ar.set(qi, { option: Number.isInteger(e.option) ? e.option : -1, correct: e.correct === true, elapsed_ms: Number.isFinite(e.elapsed_ms) ? e.elapsed_ms : 0, at: e.at });
+  }
+  arenaByLesson.set(lessonId, ar);
 }
 function persist(lessonId) {
   const st = store(); if (!st) return;
   const attempts = {};
   for (const [k, v] of attemptsByLesson.get(lessonId) || []) attempts[k] = v;
   const earnedAt = Object.fromEntries(earnedAtByLesson.get(lessonId) || []);
-  try { st.setItem(KEY(lessonId), JSON.stringify({ v: 1, attempts, earnedAt })); } catch { /* kvota / private — jim */ }
+  const arena = {};
+  for (const [k, v] of arenaByLesson.get(lessonId) || []) arena[k] = v;
+  try { st.setItem(KEY(lessonId), JSON.stringify({ v: 1, attempts, earnedAt, arena })); } catch { /* kvota / private — jim */ }
 }
 
 /** recordAttempt'dan: har bosish (rejimdan qat'i nazar). */
@@ -66,6 +83,23 @@ export function logAttempt(lessonId, screenIdx, { picked, texts, elapsedMs } = {
   if (list.length >= LIM.attempts) return;
   list.push({ option: Number.isInteger(picked) ? picked : -1, answer: cut(texts && texts.picked, LIM.text), elapsed_ms: Math.max(0, Math.min(LIM.elapsed, Math.round(elapsedMs || 0))), at: Date.now() });
   persist(lessonId);
+}
+
+/**
+ * submitAnswer'dan (faqat jonli o'quvchi): arena savoliga javob — bitta, birinchisi qoladi (jonli qoida: bir urinish).
+ * questionId `quiz-N` bo'lmasa — hech narsa. Mustaqil rejimda chaqirilmaydi (arena mashq).
+ */
+export function logArena(lessonId, questionId, { picked, correct, elapsedMs } = {}) {
+  const m = ARENA_Q.exec(String(questionId || ''));
+  if (!lessonId || !m) return false;
+  const qi = Number(m[1]);
+  load(lessonId);
+  if (!arenaByLesson.has(lessonId)) arenaByLesson.set(lessonId, new Map());
+  const ar = arenaByLesson.get(lessonId);
+  if (ar.has(qi) || ar.size >= LIM.questions) return false;
+  ar.set(qi, { option: Number.isInteger(picked) ? picked : -1, correct: correct === true, elapsed_ms: Math.max(0, Math.min(LIM.elapsed, Math.round(elapsedMs || 0))), at: Date.now() });
+  persist(lessonId);
+  return true;
 }
 
 /** progressSync'dan: earned ro'yxati — har id birinchi ko'ringan vaqt. Saqlov tufayli sahifa yangilanganda ham birinchi vaqt qoladi (F-0909-02). */
@@ -82,22 +116,24 @@ export function noteEarned(lessonId, ids) {
 
 /** Qaytadan boshlashda (restart) tarix tozalanadi — xotira ham, saqlov ham. */
 export function resetResultDetails(lessonId) {
-  attemptsByLesson.delete(lessonId); earnedAtByLesson.delete(lessonId); loaded.delete(lessonId);
+  attemptsByLesson.delete(lessonId); earnedAtByLesson.delete(lessonId); arenaByLesson.delete(lessonId); loaded.delete(lessonId);
   try { store()?.removeItem(KEY(lessonId)); } catch { /* jim */ }
 }
 
 /** Test uchun: hozirgi holatni ko'rish. */
-export const _detailsState = () => ({ attemptsByLesson, earnedAtByLesson });
+export const _detailsState = () => ({ attemptsByLesson, earnedAtByLesson, arenaByLesson });
 /** Test uchun: «sahifa yangilandi» — xotira unutiladi, saqlov qoladi. */
-export const _forgetMemory = (lessonId) => { attemptsByLesson.delete(lessonId); earnedAtByLesson.delete(lessonId); loaded.delete(lessonId); };
+export const _forgetMemory = (lessonId) => { attemptsByLesson.delete(lessonId); earnedAtByLesson.delete(lessonId); arenaByLesson.delete(lessonId); loaded.delete(lessonId); };
 
 /**
  * onFinished payload'iga qo'shiladigan obyekt.
  * @param {{ lessonId: string, screenMeta: Array<{id?:string, scored?:boolean}>, answers: Record<number, any>|any[],
- *           earned?: Set<string>|string[], achievements?: Record<string, {name?:string, desc?:any}>, lang?: 'uz'|'ru', now?: number }} p
+ *           earned?: Set<string>|string[], achievements?: Record<string, {name?:string, desc?:any}>, lang?: 'uz'|'ru', now?: number,
+ *           arenaBank?: Array<{q?:any, question?:any, opts?:any[], options?:any[], correct?:number}> }} p
+ *   arenaBank — darsning QUIZ_BANK'i (matnlar uchun, ixtiyoriy); berilmasa arena savollari matnsiz (id + variant raqami) ketadi.
  * @returns {{ lang: 'uz'|'ru', questions: object[], achievements: object[] }}
  */
-export function buildResultDetails({ lessonId, screenMeta, answers, earned, achievements, lang: langIn, now } = {}) {
+export function buildResultDetails({ lessonId, screenMeta, answers, earned, achievements, lang: langIn, now, arenaBank } = {}) {
   const lang = langIn === 'ru' || langIn === 'uz' ? langIn : getLiveLang();
   const finish = now || Date.now();
   load(lessonId);
@@ -147,6 +183,25 @@ export function buildResultDetails({ lessonId, screenMeta, answers, earned, achi
     if (ca) q.correct_answer = ca;
     questions.push(q);
   });
+
+  // ARENA (2026-09-10): testlardan keyin, savol-raqami bo'yicha; bitta urinish; ballga kirmaydi
+  const arena = [...(arenaByLesson.get(lessonId) || new Map()).entries()].sort((x, y) => x[0] - y[0]);
+  for (const [qi, e] of arena) {
+    if (questions.length >= LIM.questions) break;
+    const bank = Array.isArray(arenaBank) ? arenaBank[qi] : null;
+    const rawOpts = bank && (Array.isArray(bank.opts) ? bank.opts : (Array.isArray(bank.options) ? bank.options : null));
+    const options = rawOpts ? rawOpts.slice(0, LIM.options).map((o) => optText(o, lang).slice(0, LIM.text)) : undefined;
+    const correctIdx = bank && Number.isInteger(bank.correct) ? bank.correct : null;
+    const attempt = { n: 1, option: e.option, correct: e.correct, elapsed_ms: e.elapsed_ms, at: iso(e.at) };
+    if (options && e.option >= 0 && e.option < options.length) attempt.answer = options[e.option];
+    const q = { question_id: `quiz-${qi}`, kind: 'arena', order: questions.length + 1, correct: e.correct, solved: e.correct, attempts: [attempt] };
+    const qt = bank ? cut(typeof (bank.q ?? bank.question) === 'string' ? (bank.q ?? bank.question) : optText(bank.q ?? bank.question, lang), LIM.text) : undefined;
+    if (qt) q.question = qt;
+    if (options) q.options = options;
+    if (correctIdx !== null && correctIdx >= 0 && correctIdx <= 5) q.correct_option = correctIdx;
+    if (options && correctIdx !== null && options[correctIdx]) q.correct_answer = options[correctIdx];
+    questions.push(q);
+  }
 
   const at = earnedAtByLesson.get(lessonId) || new Map();
   const seen = new Set();

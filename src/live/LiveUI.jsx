@@ -130,6 +130,8 @@ export function LiveBadge({ live, total }) {
     </div>);
   }
   if (live.mode === 'student') {
+    // F-0910-01: solo'dan jonliga o'tgan zahoti 8 s — o'quvchi nima bo'lganini tushunsin
+    if (live.liveJoinedNote) return <div data-tour="live" data-live="badge-joined" className="live-badge" style={_liveBadgeS}><span style={_liveDot(LT.success)} /> {tr({ uz: '🎉 Mentor darsni boshladi — jonli darsga ulandingiz', ru: '🎉 Ментор начал урок — вы подключены к живому уроку' })}</div>;
     if (live.status === 'ended') return <div data-tour="live" className="live-badge" style={_liveBadgeS}><span style={_liveDot(LT.success)} /> {tr({ uz: '🔓 Erkin rejim — o\'zingiz davom eting', ru: '🔓 Свободный режим — продолжайте сами' })}</div>;
     if (!live.mentorAlive) return <div data-tour="live" className="live-badge" style={_liveBadgeS}><span style={_liveDot(LT.ink3)} /> {tr({ uz: '⚠️ Mentor uzildi — erkin rejim', ru: '⚠️ Ментор отключился — свободный режим' })}</div>;
     if (!live.connected) return <div data-tour="live" className="live-badge" style={_liveBadgeS}><span style={_liveDot('#FFD380')} /> {tr({ uz: '🔄 Qayta ulanmoqda…', ru: '🔄 Переподключение…' })}</div>;

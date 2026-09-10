@@ -15,6 +15,7 @@ var LIVE_POLL_MS = 2500;
 var LIVE_POLL_MAX_MS = 15e3;
 var LIVE_HEARTBEAT_MS = 1e4;
 var LIVE_STALE_MS = 18e4;
+var LMS_SOLO_RECHECK_MS = 2e4;
 var API = `${LIVE_API_URL}/api/v1/live`;
 async function errorFrom(r, fallback) {
   let msg = "";
@@ -187,6 +188,8 @@ var iso = (t) => new Date(t || Date.now()).toISOString().replace(/\.\d{3}Z$/, "Z
 var optText = (o, lang) => o && typeof o === "object" ? String(o[lang] ?? o.uz ?? "") : String(o ?? "");
 var attemptsByLesson = /* @__PURE__ */ new Map();
 var earnedAtByLesson = /* @__PURE__ */ new Map();
+var arenaByLesson = /* @__PURE__ */ new Map();
+var ARENA_Q = /^quiz-(\d+)$/;
 var KEY = (lessonId) => `ccDetails:${lessonId}`;
 var store = () => {
   try {
@@ -218,6 +221,13 @@ function load(lessonId) {
   const em = earnedAtByLesson.get(lessonId) || /* @__PURE__ */ new Map();
   for (const [id, t] of Object.entries(o.earnedAt || {})) if (Number.isFinite(t) && !em.has(id)) em.set(id, t);
   earnedAtByLesson.set(lessonId, em);
+  const ar = arenaByLesson.get(lessonId) || /* @__PURE__ */ new Map();
+  for (const [k, e] of Object.entries(o.arena || {})) {
+    const qi = Number(k);
+    if (!Number.isInteger(qi) || ar.has(qi) || !e || typeof e !== "object" || !Number.isFinite(e.at)) continue;
+    ar.set(qi, { option: Number.isInteger(e.option) ? e.option : -1, correct: e.correct === true, elapsed_ms: Number.isFinite(e.elapsed_ms) ? e.elapsed_ms : 0, at: e.at });
+  }
+  arenaByLesson.set(lessonId, ar);
 }
 function persist(lessonId) {
   const st = store();
@@ -225,8 +235,10 @@ function persist(lessonId) {
   const attempts = {};
   for (const [k, v] of attemptsByLesson.get(lessonId) || []) attempts[k] = v;
   const earnedAt = Object.fromEntries(earnedAtByLesson.get(lessonId) || []);
+  const arena = {};
+  for (const [k, v] of arenaByLesson.get(lessonId) || []) arena[k] = v;
   try {
-    st.setItem(KEY(lessonId), JSON.stringify({ v: 1, attempts, earnedAt }));
+    st.setItem(KEY(lessonId), JSON.stringify({ v: 1, attempts, earnedAt, arena }));
   } catch {
   }
 }
@@ -240,6 +252,18 @@ function logAttempt(lessonId, screenIdx, { picked, texts, elapsedMs } = {}) {
   if (list.length >= LIM.attempts) return;
   list.push({ option: Number.isInteger(picked) ? picked : -1, answer: cut(texts && texts.picked, LIM.text), elapsed_ms: Math.max(0, Math.min(LIM.elapsed, Math.round(elapsedMs || 0))), at: Date.now() });
   persist(lessonId);
+}
+function logArena(lessonId, questionId, { picked, correct, elapsedMs } = {}) {
+  const m = ARENA_Q.exec(String(questionId || ""));
+  if (!lessonId || !m) return false;
+  const qi = Number(m[1]);
+  load(lessonId);
+  if (!arenaByLesson.has(lessonId)) arenaByLesson.set(lessonId, /* @__PURE__ */ new Map());
+  const ar = arenaByLesson.get(lessonId);
+  if (ar.has(qi) || ar.size >= LIM.questions) return false;
+  ar.set(qi, { option: Number.isInteger(picked) ? picked : -1, correct: correct === true, elapsed_ms: Math.max(0, Math.min(LIM.elapsed, Math.round(elapsedMs || 0))), at: Date.now() });
+  persist(lessonId);
+  return true;
 }
 function noteEarned(lessonId, ids) {
   if (!lessonId || !Array.isArray(ids)) return;
@@ -260,13 +284,14 @@ function noteEarned(lessonId, ids) {
 function resetResultDetails(lessonId) {
   attemptsByLesson.delete(lessonId);
   earnedAtByLesson.delete(lessonId);
+  arenaByLesson.delete(lessonId);
   loaded.delete(lessonId);
   try {
     store()?.removeItem(KEY(lessonId));
   } catch {
   }
 }
-function buildResultDetails({ lessonId, screenMeta, answers, earned, achievements, lang: langIn, now } = {}) {
+function buildResultDetails({ lessonId, screenMeta, answers, earned, achievements, lang: langIn, now, arenaBank } = {}) {
   const lang = langIn === "ru" || langIn === "uz" ? langIn : getLiveLang();
   const finish = now || Date.now();
   load(lessonId);
@@ -310,6 +335,23 @@ function buildResultDetails({ lessonId, screenMeta, answers, earned, achievement
     if (ca) q.correct_answer = ca;
     questions.push(q);
   });
+  const arena = [...(arenaByLesson.get(lessonId) || /* @__PURE__ */ new Map()).entries()].sort((x, y) => x[0] - y[0]);
+  for (const [qi, e] of arena) {
+    if (questions.length >= LIM.questions) break;
+    const bank = Array.isArray(arenaBank) ? arenaBank[qi] : null;
+    const rawOpts = bank && (Array.isArray(bank.opts) ? bank.opts : Array.isArray(bank.options) ? bank.options : null);
+    const options = rawOpts ? rawOpts.slice(0, LIM.options).map((o) => optText(o, lang).slice(0, LIM.text)) : void 0;
+    const correctIdx = bank && Number.isInteger(bank.correct) ? bank.correct : null;
+    const attempt = { n: 1, option: e.option, correct: e.correct, elapsed_ms: e.elapsed_ms, at: iso(e.at) };
+    if (options && e.option >= 0 && e.option < options.length) attempt.answer = options[e.option];
+    const q = { question_id: `quiz-${qi}`, kind: "arena", order: questions.length + 1, correct: e.correct, solved: e.correct, attempts: [attempt] };
+    const qt = bank ? cut(typeof (bank.q ?? bank.question) === "string" ? bank.q ?? bank.question : optText(bank.q ?? bank.question, lang), LIM.text) : void 0;
+    if (qt) q.question = qt;
+    if (options) q.options = options;
+    if (correctIdx !== null && correctIdx >= 0 && correctIdx <= 5) q.correct_option = correctIdx;
+    if (options && correctIdx !== null && options[correctIdx]) q.correct_answer = options[correctIdx];
+    questions.push(q);
+  }
   const at = earnedAtByLesson.get(lessonId) || /* @__PURE__ */ new Map();
   const seen = /* @__PURE__ */ new Set();
   const list = [];
@@ -618,6 +660,7 @@ function useLiveSession(lessonId, answerKey, opts = {}) {
     }
   }, [mode, pin]);
   const submitAnswer = useCallback((screenIdx, questionId, picked, correct, elapsedMs) => {
+    if (mode === "student") logArena(lessonId, questionId, { picked, correct, elapsedMs });
     if (mode !== "student" && mode !== "solo" || !pin || !playerRef.current) return;
     const body = {
       p_pin: pin,
@@ -635,7 +678,7 @@ function useLiveSession(lessonId, answerKey, opts = {}) {
       });
     };
     attempt2(0);
-  }, [mode, pin]);
+  }, [mode, pin, lessonId]);
   const recordAttempt = useCallback((screenIdx, questionId, picked, elapsedMs, texts) => {
     logAttempt(lessonId, screenIdx, { picked, texts, elapsedMs });
     if (mode !== "student" && mode !== "solo" || !pin || !playerRef.current) return;
@@ -796,6 +839,44 @@ function useLiveSession(lessonId, answerKey, opts = {}) {
     lmsTokenRef.current = liveToken;
     joinWithToken();
   }, [liveToken, joinWithToken]);
+  const [liveJoinedNote, setLiveJoinedNote] = useState(false);
+  const attemptId = attempt?.id || null, attemptStatus = attempt?.status || null;
+  useEffect(() => {
+    if (mode !== "solo" || lms.state !== "joined" || !attemptId || attemptStatus !== "active") return;
+    const tok = lmsTokenRef.current;
+    if (!tok || peekTokenRole(tok) !== "student") return;
+    let on = true, inFlight = false;
+    const recheck = async () => {
+      if (!on || inFlight || typeof document !== "undefined" && document.hidden) return;
+      inFlight = true;
+      try {
+        const body = { lesson_id: lessonId };
+        if (lessonVersion) body.lesson_version = lessonVersion;
+        const res = await lmsJoin(tok, body);
+        if (!on || !res || res.mode !== "student") return;
+        resetResultDetails(lessonId);
+        if (applyServerSession(res, tok)) setLiveJoinedNote(true);
+      } catch {
+      } finally {
+        inFlight = false;
+      }
+    };
+    const id = setInterval(recheck, LMS_SOLO_RECHECK_MS);
+    const onVis = () => {
+      if (typeof document !== "undefined" && !document.hidden) recheck();
+    };
+    if (typeof document !== "undefined") document.addEventListener("visibilitychange", onVis);
+    return () => {
+      on = false;
+      clearInterval(id);
+      if (typeof document !== "undefined") document.removeEventListener("visibilitychange", onVis);
+    };
+  }, [mode, lms.state, attemptId, attemptStatus, lessonId, lessonVersion, applyServerSession]);
+  useEffect(() => {
+    if (!liveJoinedNote) return;
+    const t = setTimeout(() => setLiveJoinedNote(false), 8e3);
+    return () => clearTimeout(t);
+  }, [liveJoinedNote]);
   useEffect(() => () => setProgressChannel(lessonId, null), [lessonId]);
   return {
     mode,
@@ -826,7 +907,8 @@ function useLiveSession(lessonId, answerKey, opts = {}) {
     hasLmsToken: !!liveToken,
     attempt,
     serverProgress,
-    restartAttempt
+    restartAttempt,
+    liveJoinedNote
   };
 }
 
@@ -988,6 +1070,7 @@ function LiveBadge({ live, total }) {
     </div>;
   }
   if (live.mode === "student") {
+    if (live.liveJoinedNote) return <div data-tour="live" data-live="badge-joined" className="live-badge" style={_liveBadgeS}><span style={_liveDot(LT.success)} /> {tr({ uz: "🎉 Mentor darsni boshladi — jonli darsga ulandingiz", ru: "🎉 Ментор начал урок — вы подключены к живому уроку" })}</div>;
     if (live.status === "ended") return <div data-tour="live" className="live-badge" style={_liveBadgeS}><span style={_liveDot(LT.success)} /> {tr({ uz: "🔓 Erkin rejim — o'zingiz davom eting", ru: "🔓 Свободный режим — продолжайте сами" })}</div>;
     if (!live.mentorAlive) return <div data-tour="live" className="live-badge" style={_liveBadgeS}><span style={_liveDot(LT.ink3)} /> {tr({ uz: "⚠️ Mentor uzildi — erkin rejim", ru: "⚠️ Ментор отключился — свободный режим" })}</div>;
     if (!live.connected) return <div data-tour="live" className="live-badge" style={_liveBadgeS}><span style={_liveDot("#FFD380")} /> {tr({ uz: "🔄 Qayta ulanmoqda…", ru: "🔄 Переподключение…" })}</div>;
@@ -4150,7 +4233,7 @@ function HtmlLesson({ lang: langProp, onFinished, liveToken }) {
       finalTotal: finalMeta.length,
       passed: finalMeta.length ? finalCorrect / finalMeta.length >= 0.6 : scoredMeta.length ? correctAnswers / scoredMeta.length >= 0.6 : false,
       answers: SCREEN_META.map((s, i) => answers[i]).filter(Boolean),
-      ...buildResultDetails({ lessonId: LESSON_META.lessonId, screenMeta: SCREEN_META, answers, earned, achievements: ACHIEVEMENTS })
+      ...buildResultDetails({ lessonId: LESSON_META.lessonId, screenMeta: SCREEN_META, answers, earned, achievements: ACHIEVEMENTS, arenaBank: QUIZ_BANK })
     };
     if (typeof onFinished === "function") onFinished(payload);
   };
