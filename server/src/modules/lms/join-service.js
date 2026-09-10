@@ -3,8 +3,10 @@
 // Javob shakli darsdagi `liveStore` shakliga TENG + attempt/progress — dars uni saqlab, rejimga o'tadi.
 //
 // O'quvchi qaror-daraxti:
-//   0) faol urinish bor → davom (live: sessiya tirik bo'lsa; solo: har doim)
-//   1) guruhlarida jonli sessiya → kiradi (1 ta) / tanlov (ko'p)
+//   0) faol urinish bor → davom (live: sessiya tirik bo'lsa; solo: 1-qadam tekshirilgach — F-0910-01)
+//   1) guruhlarida jonli sessiya → kiradi (1 ta) / tanlov (ko'p). Faol SOLO bo'lsa ham shu qadam ishlaydi:
+//      o'quvchi mentordan oldin kirgan bo'lishi mumkin — solo 'live_started' bilan yopiladi (natija yuborilmaydi),
+//      o'quvchi jonliga o'tadi (klient buni 20 s da bir so'rab turadi). Jonli sessiya yo'q → solo davom.
 //   2) tugagan urinish bor → KO'RISH rejimi (javoblar saqlangan, natija ko'rinadi, yozilmaydi)
 //   3) aks holda → SOLO (shaxsiy sessiya, server-ball, oxirgi ekranda tugaydi)
 import { withTransaction } from '../../db/pool.js';
@@ -44,10 +46,12 @@ async function registerToken(c, claims) {
   return { boundSessionId: t.session_id };
 }
 
-async function bindToken(c, jti, sessionId) {
+/** jti sessiyaga bog'lanadi. `fromSessionId` — solo→jonli o'tishda eski solo sessiyadan qayta bog'lashga ruxsat (F-0910-01). */
+async function bindToken(c, jti, sessionId, fromSessionId = null) {
   const r = await c.query(
-    'update lms_tokens set session_id = $2 where jti = $1 and (session_id is null or session_id = $2)',
-    [jti, sessionId],
+    `update lms_tokens set session_id = $2
+      where jti = $1 and (session_id is null or session_id = $2 or ($3::uuid is not null and session_id = $3::uuid))`,
+    [jti, sessionId, fromSessionId],
   );
   if (r.rowCount === 0) throw conflict(TOKEN_BOUND_ELSEWHERE);
 }
@@ -200,7 +204,11 @@ async function participationOf(c, attempt) {
   return rows[0] || null;
 }
 
-/** Faol urinishni qaytaradi (live tirik bo'lsa / solo) yoki uni yopadi va null qaytaradi. */
+/**
+ * Faol urinishni qaytaradi yoki uni yopadi va null qaytaradi.
+ * Qaytadi: { payload, solo } — `solo` faqat faol SOLO urinishda ({ attemptId, sessionId }): joinStudent avval guruhda
+ * jonli dars boshlanmaganini tekshiradi (F-0910-01), keyin solo'ni davom ettiradi.
+ */
 async function resumeActive(c, deps, claims, lessonId, boundSessionId) {
   const { encKey } = deps;
   const active = await activeAttempt(c, claims.sub, lessonId);
@@ -215,11 +223,14 @@ async function resumeActive(c, deps, claims, lessonId, boundSessionId) {
       return null;
     }
     await bindToken(c, claims.jti, part.session_id);
-    return studentPayload(part, decryptText(encKey, part.session_token_enc), active, await getProgress(c, active.id));
+    return { payload: studentPayload(part, decryptText(encKey, part.session_token_enc), active, await getProgress(c, active.id)), solo: null };
   }
-  // solo — har doim davom
+  // solo — davom (jonli dars boshlangan-boshlanmaganini joinStudent hal qiladi)
   await bindToken(c, claims.jti, part.session_id);
-  return soloPayload({ pin: part.pin, playerId: part.player_id, playerToken: decryptText(encKey, part.session_token_enc), nickname: part.display_name }, active, await getProgress(c, active.id));
+  return {
+    payload: soloPayload({ pin: part.pin, playerId: part.player_id, playerToken: decryptText(encKey, part.session_token_enc), nickname: part.display_name }, active, await getProgress(c, active.id)),
+    solo: { attemptId: active.id, sessionId: part.session_id },
+  };
 }
 
 async function liveSessionsFor(c, lessonId, groups) {
@@ -236,7 +247,7 @@ async function liveSessionsFor(c, lessonId, groups) {
   return rows;
 }
 
-async function enterLive(c, deps, claims, lessonId, target) {
+async function enterLive(c, deps, claims, lessonId, target, { fromSolo = null } = {}) {
   const { encKey, log } = deps;
   const { playerId, token, nick } = await joinLivePlayer(c, target.pin, claims);
   const attempt = await createAttempt(c, { subjectId: claims.sub, lessonId, kind: 'live', sessionId: target.id });
@@ -245,8 +256,8 @@ async function enterLive(c, deps, claims, lessonId, target) {
      values ($1, 'student', $2, $3, $4, $5, $6, $7)`,
     [target.id, claims.sub, playerId, encryptText(encKey, token), claims.crmId, nick, attempt.id],
   );
-  await bindToken(c, claims.jti, target.id);
-  log.info({ sessionId: target.id, lessonId, attemptId: attempt.id }, "lms: o'quvchi jonli darsga qo'shildi");
+  await bindToken(c, claims.jti, target.id, fromSolo);
+  log.info({ sessionId: target.id, lessonId, attemptId: attempt.id, fromSolo: !!fromSolo }, "lms: o'quvchi jonli darsga qo'shildi");
   return studentPayload({ ...target, session_id: target.id, player_id: playerId, display_name: nick }, token, attempt, null);
 }
 
@@ -273,13 +284,23 @@ export async function joinStudent(deps, claims, body) {
     await lockStudentLesson(c, claims.sub, lessonId);
     const { boundSessionId } = await registerToken(c, claims);
 
-    // 0) faol urinish
+    // 0) faol urinish — jonli bo'lsa darhol davom; solo bo'lsa avval 1-qadam (F-0910-01)
     const resumed = await resumeActive(c, deps, claims, lessonId, boundSessionId);
-    if (resumed) return resumed;
+    if (resumed && !resumed.solo) return resumed.payload;
 
     // 1) guruhlarida jonli sessiya
-    const { groups, found } = await groupsFor(deps, c, claims);
-    if (!found) throw forbidden("LMS'da profilingiz topilmadi. Administratorga murojaat qiling.");
+    // Faol solo bor: School API xatosi yoki profil topilmasa — solo buzilmasin (klient 20 s da yana so'raydi).
+    let ctx;
+    try { ctx = await groupsFor(deps, c, claims); } catch (e) {
+      if (!resumed) throw e;
+      deps.log.warn({ lessonId, err: e && e.message }, "lms: solo'da guruh-kontekst olinmadi — solo davom");
+      return resumed.payload;
+    }
+    const { groups, found } = ctx;
+    if (!found) {
+      if (resumed) return resumed.payload;
+      throw forbidden("LMS'da profilingiz topilmadi. Administratorga murojaat qiling.");
+    }
     const sessions = await liveSessionsFor(c, lessonId, groups);
     if (sessions.length) {
       let target = sessions[0];
@@ -290,9 +311,17 @@ export async function joinStudent(deps, claims, body) {
         target = sessions.find((s) => s.id === body.session_id);
         if (!target) throw notFound('Tanlangan sessiya topilmadi yoki yopilgan.');
       }
-      if (boundSessionId && boundSessionId !== target.id) throw conflict(TOKEN_BOUND_ELSEWHERE);
-      return enterLive(c, deps, claims, lessonId, target);
+      const fromSolo = resumed ? resumed.solo.sessionId : null;
+      if (boundSessionId && boundSessionId !== target.id && boundSessionId !== fromSolo) throw conflict(TOKEN_BOUND_ELSEWHERE);
+      if (resumed) {
+        // Mentor o'quvchidan keyin dars ochdi: solo yopiladi (natija-navbatga tushmaydi), jonli urinish ochiladi
+        const fin = await finishAttempt(c, resumed.solo.attemptId, 'live_started');
+        await closeSoloSession(c, fin, 'live_started');
+        deps.log.info({ lessonId, soloAttemptId: resumed.solo.attemptId, sessionId: target.id }, "lms: solo → jonli (mentor keyin ochdi)");
+      }
+      return enterLive(c, deps, claims, lessonId, target, { fromSolo });
     }
+    if (resumed) return resumed.payload; // solo davom
 
     // 2) tugagan urinish → ko'rish rejimi
     const last = await latestFinishedAttempt(c, claims.sub, lessonId);

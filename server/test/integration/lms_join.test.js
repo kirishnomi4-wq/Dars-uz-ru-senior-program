@@ -167,6 +167,79 @@ test('o\'quvchi: guruhida sessiya yo\'q → SOLO; guruhsiz → SOLO; LMS\'da yo\
   assert.equal(r.json().error, 'school_api_error');
 });
 
+// F-0910-01: o'quvchi mentordan OLDIN kirdi (solo) → mentor keyin ochdi → o'quvchi qayta so'raganda jonliga o'tadi
+test('solo→jonli: faol solo paytida mentor dars ochsa — solo live_started bilan yopiladi, o\'quvchi jonliga kiradi, jti qayta bog\'lanadi', async () => {
+  // holat: 1002 ning OTHER darsida faol solo bor (oldingi test), jti 's-1002' solo sessiyaga bog'langan
+  const before = (await t.db.query(`select id, session_id from attempts where subject_id = 1002 and lesson_id = $1 and status = 'active'`, [OTHER])).rows[0];
+  assert.ok(before, 'faol solo bor');
+  assert.equal((await t.db.query('select session_id from lms_tokens where jti = $1', ['s-1002'])).rows[0].session_id, before.session_id);
+  // solo davom etadi (jonli hali yo'q) — klientning 20 s so'rovi
+  let r = await join(await mintToken({ role: 'student', sub: 1002, jti: 's-1002' }), { lesson_id: OTHER });
+  assert.equal(r.statusCode, 200, r.body);
+  assert.equal(r.json().mode, 'solo');
+  assert.equal(r.json().attempt.id, before.id);
+
+  // mentor (gid 861) OTHER darsini ochdi
+  const m = await join(await mentorTok({ jti: 'm-jti-other' }), { lesson_id: OTHER });
+  assert.equal(m.statusCode, 200, m.body);
+  const ms = m.json();
+
+  // o'quvchi (o'sha jti — solo sessiyaga bog'langan) qayta so'raydi → jonli
+  r = await join(await mintToken({ role: 'student', sub: 1002, name: 'Ali Valiyev', jti: 's-1002' }), { lesson_id: OTHER });
+  assert.equal(r.statusCode, 200, r.body);
+  const st = r.json();
+  assert.equal(st.mode, 'student');
+  assert.equal(st.pin, ms.pin);
+  assert.equal(st.session_id, ms.session_id);
+  assert.equal(st.attempt.kind, 'live');
+  assert.equal(st.attempt.status, 'active');
+  assert.notEqual(st.attempt.id, before.id);
+  assert.equal(st.progress.fresh, true, 'jonli urinish toza boshlanadi');
+
+  // solo urinish yopildi: live_started (natija-navbatga tushmaydi), solo sessiyasi ended/live_started
+  const solo = (await t.db.query('select status, finish_reason, result_event_id from attempts where id = $1', [before.id])).rows[0];
+  assert.deepEqual(solo, { status: 'finished', finish_reason: 'live_started', result_event_id: null });
+  const ss = (await t.db.query('select status, end_reason from lms_sessions where id = $1', [before.session_id])).rows[0];
+  assert.deepEqual(ss, { status: 'ended', end_reason: 'live_started' });
+  // faqat bitta faol urinish, jti endi jonli sessiyaga bog'langan
+  const act = (await t.db.query(`select count(*)::int as n from attempts where subject_id = 1002 and lesson_id = $1 and status = 'active'`, [OTHER])).rows[0].n;
+  assert.equal(act, 1);
+  assert.equal((await t.db.query('select session_id from lms_tokens where jti = $1', ['s-1002'])).rows[0].session_id, ms.session_id);
+  // ishtirokchi jonli sessiyada, mentor ro'yxatida ko'rinadi
+  const players = await t.app.inject({ method: 'GET', url: `/api/v1/live/players/${ms.pin}` });
+  assert.equal(players.statusCode, 200);
+  assert.ok(players.json().some((p) => p.nickname === 'Ali Valiyev'), 'o\'quvchi mentor ro\'yxatida');
+  // yana so'rasa — o'sha jonli urinish (resume), yangi jti bilan ham
+  r = await join(await mintToken({ role: 'student', sub: 1002, jti: 's-1002-b' }), { lesson_id: OTHER });
+  assert.equal(r.statusCode, 200, r.body);
+  assert.equal(r.json().mode, 'student');
+  assert.equal(r.json().attempt.id, st.attempt.id);
+  // sweeper live_started solo'ga tegmaydi
+  const { sweepResults } = await import('../../src/modules/results/result-service.js');
+  await sweepResults(t.app.db, t.app.log);
+  const ev = (await t.db.query('select count(*)::int as n from result_events where attempt_id = $1', [before.id])).rows[0].n;
+  assert.equal(ev, 0, 'live_started solo natija-hodisasi yo\'q');
+});
+
+test('solo davomida School API xatosi / profil topilmadi → solo buzilmaydi (200, solo)', async () => {
+  GROUPS[1008] = [];
+  let r = await join(await mintToken({ role: 'student', sub: 1008, jti: 's-1008' }), { lesson_id: OTHER });
+  assert.equal(r.statusCode, 200, r.body);
+  assert.equal(r.json().mode, 'solo');
+  const attemptId = r.json().attempt.id;
+  await t.db.query('delete from context_cache where subject_id = 1008'); // kesh emas, haqiqiy chaqiruv bo'lsin
+  GROUPS[1008] = 500;
+  r = await join(await mintToken({ role: 'student', sub: 1008, jti: 's-1008' }), { lesson_id: OTHER });
+  assert.equal(r.statusCode, 200, r.body);
+  assert.equal(r.json().mode, 'solo');
+  assert.equal(r.json().attempt.id, attemptId);
+  GROUPS[1008] = 'missing';
+  r = await join(await mintToken({ role: 'student', sub: 1008, jti: 's-1008' }), { lesson_id: OTHER });
+  assert.equal(r.statusCode, 200, r.body);
+  assert.equal(r.json().mode, 'solo');
+  assert.equal(r.json().attempt.id, attemptId);
+});
+
 test('jti boshqa sessiyaga bog\'langan → 409', async () => {
   // s-1003 token 862-sessiyaga bog'langan; endi shu jti bilan (soxta) 861 ga urinamiz — bu faqat token o'g'irlanganda bo'ladi
   const r = await join(await mintToken({ role: 'student', sub: 1003, name: 'Ali Valiyev', jti: 's-1003' }), { lesson_id: LESSON, session_id: s1.session_id });

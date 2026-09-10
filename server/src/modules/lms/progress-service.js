@@ -114,15 +114,15 @@ export async function createSoloAttempt(c, deps, claims, lessonId) {
   return { attempt, session: { pin, playerId, playerToken: token, nickname: nick } };
 }
 
-/** Solo sessiyani yopish (urinish tugaganda) */
+/** Solo sessiyani yopish (urinish tugaganda). reason 'live_started' (F-0910-01) sessiyada ham shu nom bilan qoladi, qolgani 'solo_done'. */
 export async function closeSoloSession(c, attempt, reason) {
   if (!attempt?.session_id) return;
+  const endReason = reason === 'live_started' ? 'live_started' : 'solo_done';
   await c.query(
-    `update lms_sessions set status = 'ended', end_reason = 'solo_done', finished_at = coalesce(finished_at, now()), updated_at = now()
+    `update lms_sessions set status = 'ended', end_reason = $2, finished_at = coalesce(finished_at, now()), updated_at = now()
       where id = $1 and status = 'live'`,
-    [attempt.session_id],
+    [attempt.session_id, endReason],
   );
-  void reason;
 }
 
 /**
