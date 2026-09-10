@@ -1,0 +1,409 @@
+{
+  "lessonId": "internet-01-v18",
+  "lessonTitle": {
+    "uz": "Internet qanday ishlaydi",
+    "ru": "Как устроен интернет"
+  },
+  "nickname": "Nigora Rakhmanova",
+  "livePin": "140613",
+  "liveMode": "solo",
+  "durationSec": 3273,
+  "totalQuestions": 5,
+  "correctAnswers": 1,
+  "scorePercent": 20,
+  "finalScore": 0,
+  "finalTotal": 1,
+  "passed": false,
+  "answers": [
+    {
+      "stage": "hook",
+      "picked": "b",
+      "correct": true,
+      "screenIdx": 0
+    },
+    {
+      "correct": true,
+      "picked": true
+    },
+    {
+      "correct": true,
+      "picked": "firefox"
+    },
+    {
+      "stage": "module-mikro",
+      "screenIdx": 4,
+      "question": "Internetdagi saytlarni ochib beradigan dastur qanday nomlanadi?",
+      "options": [
+        "Server",
+        "Brauzer",
+        "Domen",
+        "DNS"
+      ],
+      "correctIndex": 1,
+      "correctAnswer": "Brauzer",
+      "picked": 1,
+      "studentAnswerIndex": 1,
+      "studentAnswer": "Brauzer",
+      "correct": true,
+      "firstAttemptCorrect": true,
+      "solved": true,
+      "lastPicked": 1
+    },
+    {
+      "correct": true,
+      "picked": "wikipedia.org"
+    },
+    {
+      "stage": "module-mikro",
+      "screenIdx": 6,
+      "question": "youtube.com, coddycamp.uz — bunday sayt manzili nima deb ataladi?",
+      "options": [
+        "Brauzer",
+        "Parol",
+        "Domen",
+        "Server"
+      ],
+      "correctIndex": 2,
+      "correctAnswer": "Domen",
+      "picked": 2,
+      "studentAnswerIndex": 2,
+      "studentAnswer": "Domen",
+      "correct": false,
+      "firstAttemptCorrect": false,
+      "solved": true,
+      "lastPicked": 2
+    },
+    {
+      "correct": true,
+      "picked": true
+    },
+    {
+      "correct": true,
+      "picked": true,
+      "q": "coddycamp.uz"
+    },
+    {
+      "correct": true,
+      "picked": true
+    },
+    {
+      "stage": "module-mikro",
+      "screenIdx": 10,
+      "question": "Domen nomini IP raqamiga kim aylantiradi?",
+      "options": [
+        "Brauzer",
+        "Domen",
+        "Server",
+        "DNS"
+      ],
+      "correctIndex": 3,
+      "correctAnswer": "DNS",
+      "picked": 3,
+      "studentAnswerIndex": 3,
+      "studentAnswer": "DNS",
+      "correct": false,
+      "firstAttemptCorrect": false,
+      "solved": true,
+      "lastPicked": 3
+    },
+    {
+      "correct": true,
+      "picked": true
+    },
+    {
+      "correct": true,
+      "picked": true
+    },
+    {
+      "stage": "module-mikro",
+      "screenIdx": 13,
+      "question": "Server brauzerga aniq nima qaytaradi?",
+      "options": [
+        "Saytning domen nomi",
+        "Sahifa kodi (HTML)",
+        "DNS server manzili",
+        "Boshqa brauzer dasturi"
+      ],
+      "correctIndex": 1,
+      "correctAnswer": "Sahifa kodi (HTML)",
+      "picked": 1,
+      "studentAnswerIndex": 1,
+      "studentAnswer": "Sahifa kodi (HTML)",
+      "correct": false,
+      "firstAttemptCorrect": false,
+      "solved": true,
+      "lastPicked": 1
+    },
+    {
+      "correct": true,
+      "picked": "wikipedia.org"
+    },
+    {
+      "correct": true,
+      "picked": true
+    },
+    {
+      "correct": true,
+      "picked": true
+    },
+    {
+      "correct": true,
+      "picked": true
+    },
+    {
+      "stage": "final",
+      "screenIdx": 18,
+      "question": "youtube.com yozganda so'rov qaysi tartibda boradi?",
+      "options": [
+        "Server → DNS → Brauzer → Ekran",
+        "DNS → Brauzer → Server → Ekran",
+        "Brauzer → DNS → Server → Ekran",
+        "Brauzer → Server → DNS → Ekran"
+      ],
+      "correctIndex": 2,
+      "correctAnswer": "Brauzer → DNS → Server → Ekran",
+      "picked": 2,
+      "studentAnswerIndex": 2,
+      "studentAnswer": "Brauzer → DNS → Server → Ekran",
+      "correct": false,
+      "firstAttemptCorrect": false,
+      "solved": true,
+      "lastPicked": 2
+    },
+    {
+      "correct": true,
+      "picked": true
+    }
+  ],
+  "lang": "uz",
+  "questions": [
+    {
+      "question_id": "s4",
+      "kind": "test",
+      "order": 1,
+      "correct": true,
+      "solved": true,
+      "attempts": [
+        {
+          "n": 1,
+          "option": 1,
+          "correct": true,
+          "elapsed_ms": 786,
+          "at": "2026-09-10T10:20:48Z",
+          "answer": "Brauzer"
+        }
+      ],
+      "question": "Internetdagi saytlarni ochib beradigan dastur qanday nomlanadi?",
+      "options": [
+        "Server",
+        "Brauzer",
+        "Domen",
+        "DNS"
+      ],
+      "correct_option": 1,
+      "correct_answer": "Brauzer"
+    },
+    {
+      "question_id": "s5b",
+      "kind": "test",
+      "order": 2,
+      "correct": false,
+      "solved": true,
+      "attempts": [
+        {
+          "n": 1,
+          "option": 1,
+          "correct": false,
+          "elapsed_ms": 1046,
+          "at": "2026-09-10T10:20:53Z",
+          "answer": "Parol"
+        },
+        {
+          "n": 2,
+          "option": 3,
+          "correct": false,
+          "elapsed_ms": 3831,
+          "at": "2026-09-10T10:20:56Z",
+          "answer": "Server"
+        },
+        {
+          "n": 3,
+          "option": 2,
+          "correct": true,
+          "elapsed_ms": 4335,
+          "at": "2026-09-10T10:20:56Z",
+          "answer": "Domen"
+        }
+      ],
+      "question": "youtube.com, coddycamp.uz — bunday sayt manzili nima deb ataladi?",
+      "options": [
+        "Brauzer",
+        "Parol",
+        "Domen",
+        "Server"
+      ],
+      "correct_option": 2,
+      "correct_answer": "Domen"
+    },
+    {
+      "question_id": "s9",
+      "kind": "test",
+      "order": 3,
+      "correct": false,
+      "solved": true,
+      "attempts": [
+        {
+          "n": 1,
+          "option": 1,
+          "correct": false,
+          "elapsed_ms": 775,
+          "at": "2026-09-10T10:21:05Z",
+          "answer": "Domen"
+        },
+        {
+          "n": 2,
+          "option": 3,
+          "correct": true,
+          "elapsed_ms": 2200,
+          "at": "2026-09-10T10:21:07Z",
+          "answer": "DNS"
+        }
+      ],
+      "question": "Domen nomini IP raqamiga kim aylantiradi?",
+      "options": [
+        "Brauzer",
+        "Domen",
+        "Server",
+        "DNS"
+      ],
+      "correct_option": 3,
+      "correct_answer": "DNS"
+    },
+    {
+      "question_id": "s12",
+      "kind": "test",
+      "order": 4,
+      "correct": false,
+      "solved": true,
+      "attempts": [
+        {
+          "n": 1,
+          "option": 2,
+          "correct": false,
+          "elapsed_ms": 950,
+          "at": "2026-09-10T10:21:24Z",
+          "answer": "DNS server manzili"
+        },
+        {
+          "n": 2,
+          "option": 3,
+          "correct": false,
+          "elapsed_ms": 2455,
+          "at": "2026-09-10T10:21:25Z",
+          "answer": "Boshqa brauzer dasturi"
+        },
+        {
+          "n": 3,
+          "option": 2,
+          "correct": false,
+          "elapsed_ms": 2991,
+          "at": "2026-09-10T10:21:26Z",
+          "answer": "DNS server manzili"
+        },
+        {
+          "n": 4,
+          "option": 1,
+          "correct": true,
+          "elapsed_ms": 3311,
+          "at": "2026-09-10T10:21:26Z",
+          "answer": "Sahifa kodi (HTML)"
+        }
+      ],
+      "question": "Server brauzerga aniq nima qaytaradi?",
+      "options": [
+        "Saytning domen nomi",
+        "Sahifa kodi (HTML)",
+        "DNS server manzili",
+        "Boshqa brauzer dasturi"
+      ],
+      "correct_option": 1,
+      "correct_answer": "Sahifa kodi (HTML)"
+    },
+    {
+      "question_id": "s15",
+      "kind": "test",
+      "order": 5,
+      "correct": false,
+      "solved": true,
+      "attempts": [
+        {
+          "n": 1,
+          "option": 1,
+          "correct": false,
+          "elapsed_ms": 1302,
+          "at": "2026-09-10T10:21:56Z",
+          "answer": "DNS → Brauzer → Server → Ekran"
+        },
+        {
+          "n": 2,
+          "option": 0,
+          "correct": false,
+          "elapsed_ms": 1910,
+          "at": "2026-09-10T10:21:56Z",
+          "answer": "Server → DNS → Brauzer → Ekran"
+        },
+        {
+          "n": 3,
+          "option": 3,
+          "correct": false,
+          "elapsed_ms": 3054,
+          "at": "2026-09-10T10:21:58Z",
+          "answer": "Brauzer → Server → DNS → Ekran"
+        },
+        {
+          "n": 4,
+          "option": 2,
+          "correct": true,
+          "elapsed_ms": 3413,
+          "at": "2026-09-10T10:21:58Z",
+          "answer": "Brauzer → DNS → Server → Ekran"
+        }
+      ],
+      "question": "youtube.com yozganda so'rov qaysi tartibda boradi?",
+      "options": [
+        "Server → DNS → Brauzer → Ekran",
+        "DNS → Brauzer → Server → Ekran",
+        "Brauzer → DNS → Server → Ekran",
+        "Brauzer → Server → DNS → Ekran"
+      ],
+      "correct_option": 2,
+      "correct_answer": "Brauzer → DNS → Server → Ekran"
+    }
+  ],
+  "achievements": [
+    {
+      "id": "firstwin",
+      "name": "Bullseye!",
+      "title": "Birinchi test savoliga to'g'ri javob berdingiz",
+      "earned_at": "2026-09-10T10:20:48Z"
+    },
+    {
+      "id": "packet",
+      "name": "Special Delivery!",
+      "title": "So'rovni to'g'ri serverga yetkazdingiz",
+      "earned_at": "2026-09-10T10:21:40Z"
+    },
+    {
+      "id": "router",
+      "name": "Right Track!",
+      "title": "So'rov bosqichlarini to'g'ri tartibladingiz",
+      "earned_at": "2026-09-10T10:21:50Z"
+    },
+    {
+      "id": "graduate",
+      "name": "Level Up!",
+      "title": "Internet darsini to'liq yakunladingiz",
+      "earned_at": "2026-09-10T10:22:03Z"
+    }
+  ]
+}

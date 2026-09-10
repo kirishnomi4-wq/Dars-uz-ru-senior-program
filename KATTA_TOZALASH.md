@@ -1164,4 +1164,18 @@ supabase qoldig'i 0 · manzil 90/90. Brauzer-smoke: `CHROME=/usr/bin/google-chro
 → **68/68 ✓**; `smoke-shared.mjs` bilan 22 ta `.shared.jsx` → **22/22 ✓**. Ya'ni cutover kuni bu ish **bir buyruq** —
 faqat `--url` prod manziliga va `--out lms` ga almashadi. Eslatma: Kali'da `CHROME` env majburiy (skriptlarda Windows yo'li yozilgan).
 
+**2026-09-10 F-0910-01:** `src/live/` yana o'zgardi (`useLiveSession.js` solo→jonli 20 s so'rov, `LiveUI.jsx` belgi, `liveClient.js` `LMS_SOLO_RECHECK_MS`) — o'sha qayta yig'ish shu tuzatishni ham olib chiqadi (tekshiruv: `grep -c LMS_SOLO_RECHECK_MS` ≥ 1). Pilot `lms/InternetLesson.jsx` staging bilan qayta yig'ildi.
+
 **Bog'liq:** SINOV_PROTOKOLI_LMS.md §7 · memory/holat-2026-09-09.
+
+## 30. onFinished arena-matnlari — 96 darsga `arenaBank: QUIZ_BANK` (2026-09-10)
+**Topilma:** arena (CodeStrike) javoblari onFinished `questions[]` ga `kind: "arena"` bilan qo'shildi — umumiy modulda
+(`src/live/resultDetails.js` `logArena`, `useLiveSession.submitAnswer`), shuning uchun 97 darsda ham ishlaydi (hammasi
+`submitAnswer(QUIZ_BASE_IDX + qi, \`quiz-${qi}\`, i, correct, elapsed)` naqshida). Lekin savol/variant MATNI darsning
+`QUIZ_BANK`idan olinadi — u `buildResultDetails({ …, arenaBank: QUIZ_BANK })` bilan uzatiladi. Hozir faqat pilot
+`InternetLesson.jsx` da; qolgan 96 darsda arena savollari matnsiz (id + variant raqami) ketadi — yaroqli, lekin to'liq emas.
+**Tuzatish (bir buyruq, 97 satr bir xil):**
+`grep -l "achievements: ACHIEVEMENTS })" src/*/*.jsx | xargs sed -i 's/achievements: ACHIEVEMENTS })/achievements: ACHIEVEMENTS, arenaBank: QUIZ_BANK })/'`
+— faqat `QUIZ_BANK` nomi darsda borligi tekshiriladi (`grep -L "const QUIZ_BANK"` bo'sh bo'lsin), keyin `npm run lint:jsx` + esbuild 97/97.
+Cutover qayta-yig'ish (§29) bilan birga chiqadi. Tekshiruv: yig'mada `grep -c "arenaBank: QUIZ_BANK"` = 1.
+**Bog'liq:** TZ_LESSON_RESULT_DETAILS_RU §9 · `feedback/lms-sinov-2026-09-10/xabar-axadulla-2026-09-10-arena.md`.

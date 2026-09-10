@@ -1,0 +1,41 @@
+{
+  "mode": "live",
+  "event_id": "sess_956510_20260910T091454Z",
+  "group_id": 1072,
+  "students": [
+    {
+      "rank": 2,
+      "badges": [
+        "top_2",
+        "graduate",
+        "arena_top_1"
+      ],
+      "id_type": "lms",
+      "answered": 5,
+      "completed": true,
+      "student_id": 31352,
+      "badges_count": 3,
+      "duration_sec": 641,
+      "correct_answers": 0
+    },
+    {
+      "rank": 1,
+      "badges": [
+        "top_1"
+      ],
+      "id_type": "lms",
+      "answered": 2,
+      "completed": false,
+      "student_id": 31422,
+      "badges_count": 1,
+      "duration_sec": 270,
+      "correct_answers": 2
+    }
+  ],
+  "lesson_id": "internet-01-v18",
+  "started_at": "2026-09-10T09:14:54Z",
+  "teacher_id": 240,
+  "finished_at": "2026-09-10T09:27:38Z",
+  "lesson_title": "Internet qanday ishlaydi",
+  "total_questions": 5
+}

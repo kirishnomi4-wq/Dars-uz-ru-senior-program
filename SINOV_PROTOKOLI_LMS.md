@@ -103,6 +103,30 @@ Har band uchun dalil: skrinshot (belgi/darvoza) + bizda log-satr yoki admin-yozu
 **Qabul mezoni:** 21 + 5 + 3 bandning hammasi ✅, `manual_review` da sinovga aloqasiz hodisa yo'q, loglarda sir yo'q (21).
 **Prod'ga o'tish:** shu protokol prod'da 2, 11, 13, 16, 17, 21 bandlari bilan qisqa takrorlanadi (haqiqiy bitta guruh, mentor roziligi bilan).
 
+### 2026-09-10 — foydalanuvchi sinovi (G-2 1072, M-2 + O-?): topilma F-0910-01
+
+| Band | Natija | Dalil |
+|---|---|---|
+| **F-0910-01** o'quvchi mentordan OLDIN kirdi → «Mustaqil rejim»; mentor keyin ochdi (kod 088114) → o'quvchi ulanmadi, mentor belgisida 👥 0 | ❌ → ✅ tuzatildi va **qayta sinovda o'tdi (14:15)** | Skrinshotlar (foydalanuvchi, LMS o'quvchi-tab + preview mentor-tab + guruh 1072); `feedback/lms-sinov-2026-09-10/watch.log` 10:01:09 `YANGI solo … student 31347`; `lms-watch --once` 12:01: `live live … gid 1072 · mentor 240 · kod 088114 · o'quvchi 0` + solo `cab51064` hali faol. Sabab: `join-service.js` 0-qoida «faol solo → har doim davom» — 1-qadam (guruhda jonli sessiya) faol solo'da ishlamagan; klient solo'da qayta so'ramagan. Tuzatish: server (solo → avval jonli qidiruv → `live_started`, 0007 migratsiya) + klient (20 s jim `join`, «🎉 Mentor darsni boshladi» belgisi). Dalil: int 69/69, E2E 18/18 (yangi qadam 19.7 s), qayta sinov §5.2 6b. **Qayta sinov 14:15 (foydalanuvchi, staging 3f75129, yangi yig'ma CRM'da):** M-2 kod 956510 → o'quvchi (Nigora) F5'siz «Mentor: 1 / 22 · Nigora Rakhmanova», mentor belgisida 👥 1 (skrinshotlar chatda); `lms-watch --once` 14:16: solo `37b70787` **`ended (live_started)`**, jonli `6b4192f0` gid 1072 mentor 240 o'quvchi 1 |
+
+### 2026-09-10 14:15–15:25 — §5.2 foydalanuvchi bilan (G-2 1072, M-2 = mentor 240, o'quvchilar Nigora 31352 / Sherzod 31422, staging 3f75129)
+
+| Qadam | Natija | Dalil |
+|---|---|---|
+| 6b solo→jonli (F-0910-01) | ✅ | yuqorida |
+| 3 F5 / inkognito | ✅ (foydalanuvchi «done») | mentor belgisida 👥 1 qoldi |
+| 4 ikkinchi o'quvchi | ✅ | watch 14:24 `student 31422: javob 2 (to'g'ri 2)`; ikkalasi mentorni ergashdi (skrinshot «Mentor: 2 / 22 · Sherzod Rasulov») |
+| 9 javoblar + yutuq + oxirigacha + arena | ✅ | Nigora javob 5 (to'g'ri 0) urinish 5 yutuq 3, «oxiriga yetdi ✓»; arena podium Nigora 2582 ball 3/12, Sherzod 0/12 (skrinshot) |
+| 10 «Erkin qilish» → natija | ✅ | 14:27:43 `holat ended (mentor) · natija delivered`; `sess_956510_20260910T091454Z` HTTP 201, o'quvchi 2 |
+| 10b verify (LMS'da topildi) | ✅ | `sinov-956510-verify-*.json`: Sherzod 1-o'rin (2/2), Nigora 2-o'rin (0/5, nishon 3); vaqtlar `Z` |
+| 13 ko'rish rejimi | ✅ (server) | HAR-2: 10:22:29 `join` → `review` (jonli urinish tugagach) |
+| 14 «Qaytadan boshlash» → solo | ✅ | 14:27:55 `YANGI solo` 31352, 14:28:23 31422 (foydalanuvchi tasdig'i kutilmoqda: tugmani o'zi bosganmi) |
+| U2 solo oxirigacha | ✅ | 15:20–15:22 solo 140613: javob 5 (to'g'ri 1) urinish 14 yutuq 4 → `ended (solo_done)`, `attempt completed`; natija-hodisa YO'Q — **Qoida 3** (jonli natijadan tanga olingan, `already_rewarded`) — kutilgan |
+| Klient 20 s qayta-so'rov (staging'da) | ✅ | HAR-2: `/lms/join` 10:20:40, :21:00, :21:20, :21:40, :22:00 → `solo` (aynan 20 s) |
+| B6/B7 onFinished JSON (brauzerdan) | ✅ | LMS front uni **`POST go.coddycamp.uz/app/index.php?action=question_try`** `{question_id:16594, answer:"<JSON>"}` bilan yuboradi (LMS 200, `student_id 31352`), keyin `next_lesson_access {completed_lesson_id:2848}`. Fayl: `feedback/lms-sinov-2026-09-10/onfinished-nigora-solo-140613.json` (solo, 5 savol, 14 urinish, 4 yutuq). **F-0909-02 ✅** (`elapsed_ms` 786…4335 har xil, `at` har xil), **F-0909-03 ✅** (`solved` = oxir-oqibat to'g'ri, `correct` = birinchi urinish; correctAnswers 1, scorePercent 20). HAR'lar o'chirildi (tokenlar) |
+| HAR-1 (jonli) | 🟡 | DevTools yozuvi 09:26:45 da to'xtagan (record o'chgan) — «Tamom» so'rovi tushmadi; xulosa `oquvchi-nigora-har-xulosa.md`. Jonli onFinished JSON — Axadulla bazasidan (question_try, 31352, ~09:26Z) yoki keyingi jonli sinovda |
+| Ochiq | ❓ | «Tamom»dan keyin LMS 2849-darsga o'tdi (`lesson_runner/26d4ae2d…jsx`, `join internet-01-v18 → review`) va `robo-error.png` yuklandi — foydalanuvchidan: 2849 qaysi fayl, ekranda xato ko'rindimi? |
+
 ## 5. O'tkazish-tartibi — qolgan bandlar (2026-09-09 tuzildi)
 
 **Pilotdan (2026-09-08) yopilgan:** 2, 6 (G-1 qismi), 10, 12, 16. **Kutilmoqda:** B6/B7 (Axadulla onFinished JSON).
@@ -155,6 +179,7 @@ oxirgi qadamga ko'chdi. **Berilmagan:** X-1 (guruhsiz o'quvchi → band 9a) va V
 | 4 | O-2 | LMS'da ochadi | `qo'shildi student <O-2>`, PIN yo'q | 11 |
 | 5 | O-3 | (muzlatilgan) ochadi | LMS token bermaydi → **watch'da hech narsa yo'q**; ekranda tushunarli xabar, oq ekran emas | 5, B1 |
 | 6 | O-4 | (G-2) ochadi | `YANGI solo …`, «📘 Mustaqil rejim»; G-1 sessiyasida ko'rinmaydi | 12 (takror) |
+| 6b | M-2 | O-4 darsni OCHIB TURGANDA (6-qadam) M-2 CRM'dan G-2 darsni ochadi — O-4 F5 bosmaydi | ≤25 s ichida O-4 belgisi «🎉 Mentor darsni boshladi — jonli darsga ulandingiz» → 8 s dan keyin «👨‍🏫 Mentor: 1 / 22»; M-2 belgisida 👥 1; watch: O-4 solo `ended (live_started)`, `qo'shildi student` M-2 sessiyasida. **Shart:** CRM test-materialida 2026-09-10 yig'masi (`grep LMS_SOLO_RECHECK_MS`) | **F-0910-01** |
 | 7 | X-1 | ochadi | LMS token bermaydi → PIN-darvoza; watch'da yo'q | 9a |
 | 8 | M-1 | G-2 sahifasidan urinadi | LMS token bermaydi; G-1 sessiyasi davom etadi | 6b |
 | 9 | O-1 | bitta savolda avval noto'g'ri, keyin to'g'ri; 2+ yutuq; oxirigacha | `urinish` o'sadi, `yutuq ≥2`, `oxiriga yetdi ✓` | B6, B7 (JSON — Axadulla) |
