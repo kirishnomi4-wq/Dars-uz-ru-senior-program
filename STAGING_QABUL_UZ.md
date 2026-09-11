@@ -109,3 +109,12 @@ node --env-file=.env.deploy.prod tools/staging-check.mjs https://dars-api.coddyc
 ## 6. Skript nimani TEKSHIRMAYDI (faqat serverda ko'rinadi — TZ §6)
 
 Zaxira-dump (`dars-backups`), log-rotatsiya, konteyner resurs-limitlari, `.env.deploy` Git'da yo'qligi, rollback. Bular Kristinaning qabul-checklisti.
+
+**✅ Zaxira-dump YOPILDI (2026-09-11).** Kristina Dozzle'ga yo'naltirdi; `dars-api-prod-backup-1`
+(postgres:16-alpine, 2026-09-08 05:29 Z dan beri ishlaydi, sutkada bir marta `pg_dump -Fc`) logi:
+`backup ok /backups/dars_20260908T052936Z.dump` · `…20260909…` · `…20260910…` · `…20260911T052937Z.dump`
+— to'rt kun ketma-ket, xatosiz. Eskilarini `find -mtime +KEEP_DAYS -delete` tozalaydi.
+Staging'da ham alohida `dars-api-staging-backup-1` bor. **Dozzle'dan log o'qish (v10.10):**
+`GET /api/hosts/<hostId>/containers/<id>/logs?stdout=1&stderr=1&everything=true` (basic auth;
+konteyner ro'yxati — `GET /api/events/stream` dagi `containers-changed` hodisasi).
+O'sha kuni prod API logi: deploydan keyin 11 qator, hammasi `info`, xato/ogohlantirish yo'q.
