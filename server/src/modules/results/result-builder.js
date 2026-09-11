@@ -67,15 +67,18 @@ export function studentStats(answers, questions) {
 }
 
 /**
- * Podium — ekran (ScreenPodium) bilan bir xil: to'g'ri ↓, vaqt ↑, tenglikda avval qo'shilgan. HAMMA o'yinchi.
- * 0 to'g'ri ham ro'yxatda (ekranda ham shunday: 3 tadan kam bo'lsa 🥉 0/N chiqadi).
+ * Podium — tartib ekran (ScreenPodium) bilan bir xil: to'g'ri ↓, vaqt ↑, tenglikda avval qo'shilgan.
+ * Ekrandan FARQI (F-0911-02, 2026-09-11 qarori): LMS'ga ketadigan rank/`top_N` faqat kamida bitta
+ * TO'G'RI javob bergan o'quvchiga beriladi — tanga haqiqiy natijaga berilsin. Ekranda esa hamma
+ * ko'rinaveradi (rag'bat uchun 🥉 0/N), u tegilmaydi.
  * @param {Array<{ id: string, joinedAt: number, stats: {correct:number, elapsedTotal:number, answered:number} }>} rows
- * @param {{ requireAnswered?: boolean }} [opts]  arena uchun: javob bermaganlar podiumga kirmaydi
+ * @param {{ requireAnswered?: boolean, requireCorrect?: boolean }} [opts]  arena: javob bermaganlar kirmaydi · dars-podiumi: 0 to'g'ri kirmaydi
  * @returns {Map<string, number>} player id → 1..3
  */
 export function assignRanks(rows, opts = {}) {
   const list = rows
     .filter((r) => !opts.requireAnswered || r.stats.answered > 0)
+    .filter((r) => !opts.requireCorrect || r.stats.correct > 0)
     .sort((a, b) => (b.stats.correct - a.stats.correct) || (a.stats.elapsedTotal - b.stats.elapsedTotal) || (a.joinedAt - b.joinedAt) || String(a.id).localeCompare(String(b.id)));
   const map = new Map();
   list.slice(0, 3).forEach((r, i) => map.set(r.id, i + 1));
@@ -127,7 +130,7 @@ export function buildLivePayloads(input) {
     stats: studentStats(answersByPlayer.get(p.id) || [], lessonQ),
     arena: studentStats(answersByPlayer.get(p.id) || [], arenaQ),
   }));
-  const ranks = assignRanks(allRows);
+  const ranks = assignRanks(allRows, { requireCorrect: true }); // F-0911-02: 0 to'g'ri → rank yo'q (correct_answers baribir ketadi)
   const arenaRanks = arenaQ.size ? assignRanks(allRows.map((r) => ({ id: r.id, joinedAt: r.joinedAt, stats: r.arena })), { requireAnswered: true }) : new Map();
   const byPlayer = new Map(allRows.map((r) => [r.id, r]));
 

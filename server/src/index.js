@@ -7,7 +7,7 @@ import { createPool } from './db/pool.js';
 import { pendingMigrations } from './db/migrate.js';
 import { buildApp } from './app.js';
 import { syncAppConfig } from './modules/live/app-config.js';
-import { startMaintenance, closeStaleSessionsJob } from './modules/live/maintenance.js';
+import { startMaintenance, closeStaleSessionsJob, closeOrphanLmsSessionsJob } from './modules/live/maintenance.js';
 import { runLmsMaintenance } from './modules/lms/maintenance.js';
 
 let config;
@@ -45,7 +45,10 @@ const maintenance = startMaintenance({
   log: logger,
   jobs: [
     { name: 'close_stale_sessions', run: (p, l) => closeStaleSessionsJob(p, l, config.staleSessionMinutes) },
-    ...(config.lmsBridgeEnabled ? [{ name: 'lms_attempts', run: runLmsMaintenance }] : []),
+    ...(config.lmsBridgeEnabled ? [
+      { name: 'close_orphan_lms_sessions', run: closeOrphanLmsSessionsJob },   // F-0911-01
+      { name: 'lms_attempts', run: runLmsMaintenance },
+    ] : []),
   ],
 });
 

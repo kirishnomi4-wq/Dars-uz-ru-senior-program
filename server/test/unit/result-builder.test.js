@@ -74,6 +74,9 @@ test('assignRanks — ekran-podium bilan bir xil: to\'g\'ri ↓, vaqt ↑, tengl
   // arena: javob bermaganlar podiumga kirmaydi
   const arena = assignRanks(rows, { requireAnswered: true });
   assert.equal(arena.get('d'), undefined);
+  // F-0911-02: LMS'ga ketadigan dars-podiumi — 0 to'g'ri yechgan rank olmaydi (javob bergan bo'lsa ham)
+  const strict = assignRanks(rows.slice(0, 2).concat([{ id: 'z', joinedAt: 6, stats: { correct: 0, elapsedTotal: 10, answered: 4 } }, rows[3]]), { requireCorrect: true });
+  assert.deepEqual([strict.get('b'), strict.get('a'), strict.get('z'), strict.get('d')], [1, 2, undefined, undefined]);
   // tenglik: bir xil to'g'ri va vaqt → avval qo'shilgan
   const tie = assignRanks([{ id: 'x', joinedAt: 9, stats: { correct: 1, elapsedTotal: 10, answered: 1 } }, { id: 'y', joinedAt: 1, stats: { correct: 1, elapsedTotal: 10, answered: 1 } }]);
   assert.deepEqual([tie.get('y'), tie.get('x')], [1, 2]);
@@ -88,7 +91,7 @@ test('badgesFor: all_correct/first_try/top/graduate/speedster/comeback/arena_top
   assert.deepEqual(badgesFor({ stats: none, total: 5, rank: null, completed: false, groupMedianAvg: 2000 }), []);
 });
 
-test('buildLivePayloads: count = dars-testlari; podium HAMMA o\'yinchi (PIN 1-o\'rin → LMS-o\'quvchilar 2/3); arena nishon', () => {
+test('buildLivePayloads: count = dars-testlari; podiumda PIN-o\'quvchi ham hisobda (u 1-o\'rin → LMS-o\'quvchilar 2/3); arena nishon', () => {
   const [ev] = buildLivePayloads(liveInput());
   assert.equal(ev.event_id, 'sess_811222_20260903T090012Z');
   const p = ev.payload;
@@ -112,6 +115,19 @@ test('buildLivePayloads: count = dars-testlari; podium HAMMA o\'yinchi (PIN 1-o\
   assert.equal(a.duration_sec, 31 * 60);
   assert.equal(a.badges_count, a.badges.length);
   assert.deepEqual(validatePayload(p), []);
+});
+
+test('F-0911-02: ikki o\'quvchi, biri 0 to\'g\'ri → unga rank/top_N berilmaydi (2026-09-10 dalili)', () => {
+  const inp = liveInput();
+  const keep = (id) => ['pA', 'pC'].includes(id);
+  inp.players = inp.players.filter((p) => keep(p.id));
+  inp.participants = inp.participants.filter((p) => keep(p.player_id));
+  const [ev] = buildLivePayloads(inp);
+  const [a, c] = ev.payload.students;
+  assert.deepEqual([a.correct_answers, a.rank], [3, 1], 'to\'g\'ri yechgan 1-o\'rin');
+  assert.deepEqual([c.correct_answers, c.answered, c.rank], [0, 2, null], 'ilgari bu o\'quvchi Top2 bo\'lardi');
+  assert.ok(!c.badges.some((b) => b.startsWith('top_')), `top_N bo'lmasin, keldi ${c.badges}`);
+  assert.deepEqual(validatePayload(ev.payload), []);
 });
 
 test('buildLivePayloads: players berilmasa participants\'dan; LMS-o\'quvchisi yo\'q → bo\'sh; 100+ → bo\'laklar', () => {

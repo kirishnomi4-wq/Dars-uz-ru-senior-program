@@ -3,6 +3,7 @@ import { test, before, after } from 'node:test';
 import assert from 'node:assert/strict';
 import { makeTestApp, post, bearer, mintToken, fakeSchoolApi } from '../helpers/app.js';
 import { runLmsMaintenance } from '../../src/modules/lms/maintenance.js';
+import { closeOrphanLmsSessionsJob } from '../../src/modules/live/maintenance.js';
 import pino from 'pino';
 
 const LESSON = 'internet-01-v18';
@@ -197,4 +198,27 @@ test('maintenance: 7 kunlik solo → auto_7d; jonli sessiyasi yopilgan live urin
   const out3 = await runLmsMaintenance(t.db, log);
   assert.ok(out3.tokensPurged >= 1 && out3.contextPurged >= 1, JSON.stringify(out3));
   assert.equal((await t.db.query(`select count(*)::int as n from lms_tokens where jti in ('old-jti', 'fresh-jti')`)).rows[0].n, 1);
+});
+
+test('F-0911-01: jonli qatori yopilgan, o\'quvchisiz qolgan LMS sessiyasi «faol» bo\'lib qolmaydi', async () => {
+  const log = pino({ level: 'silent' });
+  // (1) mentor 861 ga dars ochadi, HECH KIM qo'shilmaydi; jonli qatori yopiladi (stale-closer shuni qiladi)
+  const bosh = await join(await mintToken({ role: 'mentor', sub: 145, gid: 861, jti: 'orphan-m1' }), { lesson_id: LESSON });
+  await t.db.query(`update live_sessions set status = 'ended' where pin = $1`, [bosh.json().pin]);
+  // (2) mentor 862 ga dars ochadi va unga o'quvchi kiradi — bu sweeper'niki, bu ish tegmasligi kerak
+  const bilan = await join(await mintToken({ role: 'mentor', sub: 146, gid: 862, jti: 'orphan-m2' }), { lesson_id: LESSON });
+  const o = await join(await stu(2003), { lesson_id: LESSON });
+  assert.equal(o.json().mode, 'student');
+  await t.db.query(`update live_sessions set status = 'ended' where pin = $1`, [bilan.json().pin]);
+
+  const closed = await closeOrphanLmsSessionsJob(t.db, log);
+  assert.ok(closed >= 1, `kamida bitta yopilishi kerak, yopildi ${closed}`);
+  const bosh_ = (await t.db.query(`select status, end_reason, finished_at from lms_sessions where pin = $1`, [bosh.json().pin])).rows[0];
+  assert.equal(bosh_.status, 'ended');
+  assert.equal(bosh_.end_reason, 'stale');
+  assert.ok(bosh_.finished_at);
+  const bilan_ = (await t.db.query(`select status from lms_sessions where pin = $1`, [bilan.json().pin])).rows[0];
+  assert.equal(bilan_.status, 'live', 'o\'quvchisi bor sessiyani sweeper yopadi (natija bilan) — bu ish tegmaydi');
+  // ikkinchi yurish: yopadigan narsa qolmadi
+  assert.equal(await closeOrphanLmsSessionsJob(t.db, log), 0);
 });

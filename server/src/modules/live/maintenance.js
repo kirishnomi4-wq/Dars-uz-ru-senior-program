@@ -11,11 +11,32 @@ export async function closeStaleSessionsJob(pool, log, minutes = 30) {
 }
 
 /**
+ * F-0911-01: jonli qatori yopilgan, ammo O'QUVCHISIZ qolgan `lms_sessions` abadiy «live» bo'lib turardi —
+ * sweeper ularga tegmaydi (uning sharti: kamida bitta student ishtirokchi), shuning uchun admin panelidagi
+ * «faol» hisoblagichi yolg'on ko'rsatardi. O'quvchisi borlarini sweeper yopadi (natija bilan birga) — bu ish
+ * faqat bo'sh qolganlarini tozalaydi.
+ */
+export async function closeOrphanLmsSessionsJob(pool, log) {
+  const { rowCount } = await pool.query(
+    `update lms_sessions s
+        set status = 'ended', end_reason = coalesce(s.end_reason, 'stale'), finished_at = coalesce(s.finished_at, now()), updated_at = now()
+      from live_sessions ls
+      where ls.pin = s.pin and s.mode = 'live' and s.status = 'live' and ls.status = 'ended'
+        and not exists (select 1 from lms_participants p where p.session_id = s.id and p.role = 'student')`,
+  );
+  if (rowCount > 0) log.info({ closed: rowCount }, 'o\'quvchisiz qolgan LMS sessiyalari yopildi');
+  return rowCount;
+}
+
+/**
  * @param {{ pool: import('pg').Pool, log: import('pino').Logger, jobs?: Array<{ name: string, run: (pool, log) => Promise<any> }>,
  *           intervalMs?: number, initialDelayMs?: number }} opts
  */
 export function startMaintenance({ pool, log, jobs, intervalMs = 15 * 60_000, initialDelayMs = 60_000 }) {
-  const list = jobs ?? [{ name: 'close_stale_sessions', run: closeStaleSessionsJob }];
+  const list = jobs ?? [
+    { name: 'close_stale_sessions', run: closeStaleSessionsJob },
+    { name: 'close_orphan_lms_sessions', run: closeOrphanLmsSessionsJob },
+  ];
   let running = false;
   let interval = null;
 
