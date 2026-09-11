@@ -479,3 +479,22 @@ Diff-tozaligi tekshirildi: `src/` dagi 97 faylda faqat `arenaBank` satri + M7 o'
 shunday** (namuna 3 fayl), bugungi tahrir matn/CSS'ga tegmagan (yomonlashmadi-mezoni). **Topilma (vosita):** `tools/e2e-lms.mjs` faqat pilot uchun —
 `lesson_id: 'internet-01-v18'`, ekran 4/22 qattiq yozilgan; m2-04 bilan yugurtirilsa 2-qadamda `.lesson-root` chiqmaydi (mahsulot nuqsoni EMAS).
 Nomzod: KEY → manbadagi lessonId + ekran-soni bilan umumiylashtirish (cutover'ga shart emas). E2E stack va PG to'xtatildi. Kutish-ro'yxati: SINOV_PROTOKOLI §8.
+
+**2026-09-11 — PROD CHIQDI (foydalanuvchi buyrug'i: «bugun to'liq prodga»).** Ketma-ketlik va dalillar:
+(1) Darvozalar boshidan: unit **52/52** · int **69/69** (yangi PG 17 klaster, migratsiya 7/7, katalog 110) · E2E LMS m1-01 **18/18**
+(F-0910-01 qadami 19.9 s) · jsx-lint **0** · esbuild **156/156** · smoke **109/109** · `vite build` ✓ · staging-check staging **19 ✓ 0 ✗**.
+Topilma (vosita, mahsulot emas): `_smoke.mjs` da Chrome yo'li Windows'niki — Linux'da `CHROME=/usr/bin/google-chrome` berish kerak.
+(2) Commit `fe40820` (96 dars arenaBank + esbuild-gate + hujjatlar) → GitHub `main` push (9 commit; ishchi daraxt toza).
+(3) GitLab `main` `8333ddd → 3f75129` fast-forward (Kristina commitlari saqlandi), prod deploy-job QO'LDA — foydalanuvchi bosdi.
+Prod ~30 s uzilish (Apache 503) → `0.1.0+3f751291`. Prod qabul: **19 ✓ 0 ✗** (`--read-only`siz: mentor-oqim PIN 471933, ETag/304,
+heartbeat, yopish ✓; School API ulanishi prod serveridan 161 ms ✓; migratsiya 7/7; katalog 110; p50 123 ms).
+(4) **F-0911-01** (prod dalili bilan topildi): jonli qatori yopilgan, ammo o'quvchisiz qolgan `lms_sessions` abadiy «live» —
+sweeper sharti (`result-service.js:179`) kamida bitta student ishtirokchini talab qiladi, shuning uchun admin «faol» hisoblagichi
+yolg'on ko'rsatardi (prodda 25 soatlik sinov sessiyasi). Yechim: `closeOrphanLmsSessionsJob` (15 daqiqalik xizmat-ishlar ro'yxatida,
+faqat `lms_bridge` yoqilganda) — o'quvchisi borlariga TEGMAYDI (ular sweeper'da, natija bilan). Int test +1 (ikki sessiya: bo'sh yopiladi,
+o'quvchili qoladi, ikkinchi yurish 0).
+(5) **F-0911-02** (foydalanuvchi qarori): LMS'ga ketadigan `rank`/`top_N` faqat kamida bitta TO'G'RI javob bergan o'quvchiga.
+Dalil: 2026-09-10 sinovida `correct_answers: 0` bo'lgan o'quvchi `top_2` olgan (o'yinchi 3 tadan kam → hamma podiumda).
+`assignRanks(..., { requireCorrect: true })`; `correct_answers` hammaga baribir ketadi; arena qoidasi (`requireAnswered`) tegilmadi.
+**Dars ekranidagi podium ataylab o'zgarmadi** — u rag'bat uchun hammani ko'rsatadi (farq koddagi izohda). Unit +2 (53/53), int 70/70.
+(6) Commit `5c4dd5b` → GitLab staging `c04a84b` (avto-deploy, staging-check **19 ✓ 0 ✗**) → `main` ff-merge → prod deploy (qo'lda).

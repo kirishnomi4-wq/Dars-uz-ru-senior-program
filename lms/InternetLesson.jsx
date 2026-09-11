@@ -9,7 +9,7 @@
 import React3, { useState as useState3, useEffect as useEffect4, useRef as useRef3, useCallback as useCallback2, useMemo, createContext as createContext2, useContext as useContext2 } from "react";
 
 // src/live/liveClient.js
-var LIVE_API_URL = "https://staging-dars-api.coddycamp.uz" ? String("https://staging-dars-api.coddycamp.uz").replace(/\/+$/, "") : DEFAULT_API_URL;
+var LIVE_API_URL = "https://dars-api.coddycamp.uz" ? String("https://dars-api.coddycamp.uz").replace(/\/+$/, "") : DEFAULT_API_URL;
 var LIVE_ENABLED = !!LIVE_API_URL;
 var LIVE_POLL_MS = 2500;
 var LIVE_POLL_MAX_MS = 15e3;

@@ -132,6 +132,23 @@ Har band uchun dalil: skrinshot (belgi/darvoza) + bizda log-satr yoki admin-yozu
 `2-HtmlLesson1-YANGI-2026-09-10.jsx` (15-qadam, staging manzili) · `3-Internet-ESKI-177ee1a.jsx` (16-qadam). Belgilar `OQING.md` da.
 Keyingi jonli sinovda o'quvchi brauzerida DevTools → Network → **Preserve log** — HAR-1 (jonli onFinished) shu yerdan olinadi.
 
+### 2026-09-11 — PROD DEPLOY (biz; foydalanuvchi GitLab'da deploy tugmasini bosdi)
+
+| Qadam | Dalil | Hukm |
+|---|---|---|
+| Darvozalar (boshidan) | unit 52/52 · int 69/70 · E2E LMS 18/18 · jsx-lint 0 · esbuild 156/156 · smoke 109/109 · vite build ✓ | ✅ |
+| Staging qabul (eski kod) | `staging-check` 19 ✓ 0 ✗ (3f751291) | ✅ |
+| GitHub | `fe40820` push, ishchi daraxt toza | ✅ |
+| GitLab `main` | `8333ddd → 3f75129` ff-merge; prod deploy QO'LDA bosildi | ✅ |
+| Prod deploy #1 | `0.1.0+3f751291`, ~30 s 503, migratsiya 6 → **7/7** | ✅ |
+| Prod qabul (to'liq) | 19 ✓ 0 ✗ — mentor-oqim PIN 471933 (ETag/304, heartbeat, yopish), School API 161 ms, p50 123 ms | ✅ |
+| F-0911-01 | prodda 25 soat osilgan o'quvchisiz sessiya → `closeOrphanLmsSessionsJob` (int +1) | tuzatildi |
+| F-0911-02 | 0 to'g'ri yechgan `top_2` olgan edi (10-sentabr dalili) → rank faqat ≥1 to'g'ri bilan (unit +2) | tuzatildi |
+| Prod deploy #2 | `c04a84b` (staging avto → 19 ✓ → main ff-merge) | pastda |
+
+**Ochiq qolgani:** CRM'ga 90 fayl (foydalanuvchi) · sirlar rotatsiyasi (Axadulla, prod'dan keyin kelishuv bilan) ·
+§5.2/§5.3 qolgan bandlari (cutoverdan keyin qarori) · M7 13 dars.
+
 ## 5. O'tkazish-tartibi — qolgan bandlar (2026-09-09 tuzildi)
 
 **Pilotdan (2026-09-08) yopilgan:** 2, 6 (G-1 qismi), 10, 12, 16. **Kutilmoqda:** B6/B7 (Axadulla onFinished JSON).
@@ -296,7 +313,7 @@ Bizning tomonda buyruqsiz qiladigan ish QOLMADI: kod, testlar, yig'malar, mashq 
 | 7 | §5.3 bandlari: 3 (eski token) · 9b (V-1 END) · 18 (takror 409) · 19/B3 (rejected_students) · 15 (api 1 daqiqa to'xtaydi — Kristina) | Axadulla + Kristina | alohida vaqt kelishuvi (roziligi bor) | birga o'tkazamiz, dalil yig'amiz | server tomoni int-testlarda yopilgan |
 | 8 | Sirlar rotatsiyasi (JWT kid v2 + `sapi_`) — prod'dan OLDIN shart (sirlar ochiq chatda kelgan) | Axadulla (`SIRLAR_ROTATSIYASI_UZ.md` §5 xati) | yangi kalitlar xavfsiz kanal orqali | `jwt_next` → almashtirish → eskisini o'chirish (runbook) | `jwt_next` kodda |
 | 9 | Birinchi zaxira-dump dalili (TZ §6) | Kristina / foydalanuvchi Dozzle'dan | backup-konteyner logi | `STAGING_QABUL_UZ.md` ga yozamiz | — |
-| 10 | Commit (bugungi UNCOMMITTED: 97 dars + 2 vosita + 3 hujjat) va push (8 commit) | Foydalanuvchi buyrug'i | «commit» · `! git push origin main` | commit qilamiz | darvozalar o'tgan |
-| 11 | Prod cutover | 1, 3, 5, 7, 8 dan keyin — bizning signal | — | `sync main` → GitLab deploy → `cutover-mashq --url prod --out lms --smoke` → CRM 90 fayl → Vercel | mashq 90/90 |
+| 10 | ~~Commit va push~~ | — | — | ✅ 2026-09-11: `fe40820` + `5c4dd5b`, GitHub push, daraxt toza | — |
+| 11 | Prod cutover | **server qismi ✅ 2026-09-11** (`3f751291` → `c04a84b`, qabul 19 ✓) | qolgani: 90 fayl CRM'ga | `cutover-mashq --url prod --out lms --smoke` → CRM 90 fayl → Vercel | mashq 90/90 |
 | 12 | M7: 13 dars jonli-modulsiz (v16) | Foydalanuvchi qarori (qachon) | — | darslik-jonli konveyeri | birinchi cutover'ga shart emas |
 | 13 | Uyga vazifa paketlari (42 tex + 17 PM) LMS'ga | Foydalanuvchi ko'rigi | — | yuklash ro'yxati | darvozalar o'tgan |
