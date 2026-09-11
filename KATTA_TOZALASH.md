@@ -1168,7 +1168,7 @@ faqat `--url` prod manziliga va `--out lms` ga almashadi. Eslatma: Kali'da `CHRO
 
 **Bog'liq:** SINOV_PROTOKOLI_LMS.md §7 · memory/holat-2026-09-09.
 
-## 30. onFinished arena-matnlari — 96 darsga `arenaBank: QUIZ_BANK` (2026-09-10)
+## 30. ✅ onFinished arena-matnlari — 96 darsga `arenaBank: QUIZ_BANK` (2026-09-10, BAJARILDI 20:15)
 **Topilma:** arena (CodeStrike) javoblari onFinished `questions[]` ga `kind: "arena"` bilan qo'shildi — umumiy modulda
 (`src/live/resultDetails.js` `logArena`, `useLiveSession.submitAnswer`), shuning uchun 97 darsda ham ishlaydi (hammasi
 `submitAnswer(QUIZ_BASE_IDX + qi, \`quiz-${qi}\`, i, correct, elapsed)` naqshida). Lekin savol/variant MATNI darsning
@@ -1179,3 +1179,17 @@ faqat `--url` prod manziliga va `--out lms` ga almashadi. Eslatma: Kali'da `CHRO
 — faqat `QUIZ_BANK` nomi darsda borligi tekshiriladi (`grep -L "const QUIZ_BANK"` bo'sh bo'lsin), keyin `npm run lint:jsx` + esbuild 97/97.
 Cutover qayta-yig'ish (§29) bilan birga chiqadi. Tekshiruv: yig'mada `grep -c "arenaBank: QUIZ_BANK"` = 1.
 **Bog'liq:** TZ_LESSON_RESULT_DETAILS_RU §9 · `feedback/lms-sinov-2026-09-10/xabar-axadulla-2026-09-10-arena.md`.
+
+**BAJARILDI (2026-09-10 20:15, UNCOMMITTED):** bir buyruq bilan 96 darsga qo'shildi (oldindan tekshiruv: 96 faylda naqsh
+aynan 1 marta, `const QUIZ_BANK` hammasida bor). Darvozalar: `arenaBank: QUIZ_BANK` 97/97 (har faylda 1) · eski naqsh 0 ·
+unit `resultDetails.test.mjs` 6/6 · `lint:jsx` 156 fayl toza · `esbuild-gate` src/** — 96 tahrirlangan fayl toza ·
+`npm run smoke` 109/109 · `smoke-onfinished` JsConditions + ApiPostman payload ✓. **Yon topilma (tegilmadi, tahrirdan
+oldin ham bor edi — HEAD'da stash bilan tasdiqlandi):** `esbuild-gate src/main.jsx` qizil — `src/7-Modull/MvpBuild2Lesson.jsx:127`
+`'\''` va `"'"` bir xil kalit (esbuild `duplicate-object-key` ogohlantirishi, darvoza uni xato deb sanaydi). M7 konveyeriga
+(darslik-jonli, 13 dars) qo'shib yechiladi; bitta kalitni o'chirish kifoya. Cutover qayta-yig'ish (§29) endi arena-matnlarini
+ham olib chiqadi (tekshiruv: yig'mada `grep -c "arenaBank: QUIZ_BANK"` = 1).
+**21:00 qo'shimcha:** yon topilma yopildi — `MvpBuild2Lesson.jsx` dagi `map` obyekti umuman ishlatilmagan (o'lik kod, slug regex bilan
+olinadi) → satr o'chirildi. Keyin `esbuild-gate src/main.jsx` boshqa sababdan qizil chiqdi: darvoza `--outfile=/dev/null` ga yozadi,
+CSS import qiladigan kirish-nuqta esa `/dev/null.css` ga yozmoqchi bo'lib «permission denied» beradi (YOLG'ON QIZIL, 18-band sinfi).
+Tuzatildi: `esbuild-gate.mjs` endi tmp-papkaga yozadi va oxirida o'chiradi → **butun `src/**` 156/156 toza**. Cutover quruq mashqi
+qayta o'tdi: 90/90 yig'ildi, smoke 68 yakka + 22 shared, har yig'mada `arenaBank` 1 · `LMS_SOLO_RECHECK_MS` ≥ 1 · `ccDetails` 1 · supabase 0.

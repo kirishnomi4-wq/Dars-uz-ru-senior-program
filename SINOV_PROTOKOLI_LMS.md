@@ -127,6 +127,11 @@ Har band uchun dalil: skrinshot (belgi/darvoza) + bizda log-satr yoki admin-yozu
 | HAR-1 (jonli) | 🟡 | DevTools yozuvi 09:26:45 da to'xtagan (record o'chgan) — «Tamom» so'rovi tushmadi; xulosa `oquvchi-nigora-har-xulosa.md`. Jonli onFinished JSON — Axadulla bazasidan (question_try, 31352, ~09:26Z) yoki keyingi jonli sinovda |
 | Ochiq | ❓ | «Tamom»dan keyin LMS 2849-darsga o'tdi (`lesson_runner/26d4ae2d…jsx`, `join internet-01-v18 → review`) va `robo-error.png` yuklandi — foydalanuvchidan: 2849 qaysi fayl, ekranda xato ko'rindimi? |
 
+**20:15 — CRM test-materiali uchun yig'malar tayyor** (`feedback/lms-sinov-2026-09-10/CRM-yuklash/`, foydalanuvchi yuklaydi):
+`1-Internet-YANGI-2026-09-10.jsx` (arena onFinished'da + 20 s qayta-so'rov; CRM'dagi hozirgi nusxa arena qo'shilishidan oldingi) ·
+`2-HtmlLesson1-YANGI-2026-09-10.jsx` (15-qadam, staging manzili) · `3-Internet-ESKI-177ee1a.jsx` (16-qadam). Belgilar `OQING.md` da.
+Keyingi jonli sinovda o'quvchi brauzerida DevTools → Network → **Preserve log** — HAR-1 (jonli onFinished) shu yerdan olinadi.
+
 ## 5. O'tkazish-tartibi — qolgan bandlar (2026-09-09 tuzildi)
 
 **Pilotdan (2026-09-08) yopilgan:** 2, 6 (G-1 qismi), 10, 12, 16. **Kutilmoqda:** B6/B7 (Axadulla onFinished JSON).
@@ -275,3 +280,23 @@ Chiqishi `feedback/lms-sinov-2026-09-09/` ga: `sinov-<pin>-sessiya.json` · `-sc
 Pilot namunasida (2026-09-08) beshtasi ham ✗ edi — skript ularni qayta topib tasdiqladi (regressiya-nazorat).
 
 **Yig'ma:** `lms/InternetLesson.jsx` staging manzili bilan qayta yig'ildi (14:20): `ccDetails` bor, `→` 4, prod-manzil 0, smoke tokensiz ✓ va muddati o'tgan token ✓, oxlint toza. **Foydalanuvchi:** CRM test-materialini shu yangi nusxa bilan almashtiradi (T5). **Qolgan 90+ yig'ma** eski `resultDetails` bilan — cutover-mashqdagi to'liq qayta yig'ishda yangilanadi (KATTA_TOZALASH).
+
+## 8. Kutish-ro'yxati — kimdan nima, kelganda nima bo'ladi (2026-09-10 21:00, shafof)
+
+Bizning tomonda buyruqsiz qiladigan ish QOLMADI: kod, testlar, yig'malar, mashq — hammasi o'tgan. Qolgani boshqalarning qo'lida:
+
+| # | Nima | Kimdan | Aniq nima kutiladi | Kelganda biz nima qilamiz | Bizda tayyor |
+|---|---|---|---|---|---|
+| 1 | Batafsil analitika (A-variant) + arena `kind: "arena"` | Axadulla | 4 savolga javob (`feedback/lms-sinov-2026-09-10/xabar-axadulla-2026-09-10-arena.md`); 09-08 da bir marta rad etilgan — «yo'q» ham ehtimol | «ha»: Kristina'ga `RESULT_DETAILS=a` (staging) → 1 test-dars → verify → prod env. «yo'q»: hech narsa o'zgarmaydi, arena onFinished orqali ketaveradi | server kodi, 97 dars `arenaBank`, unit/int |
+| 2 | Jonli darsning onFinished JSON dalili | Axadulla (bazadan: `question_try`, 31352, ~09:26Z) yoki keyingi jonli sinov (Preserve log) | payload fayli | `server/tools/sinov-natija.mjs --onfinished` bilan tekshiruv, B6/B7 jonli qatori | vosita tayyor |
+| 3 | X-1 (guruhsiz o'quvchi) va V-1 (vaqtinchalik mentor) akkauntlari | IT-jamoa (so'rov №2 `feedback/lms-sinov-2026-09-09/akkaunt-sorovi-2-X1-V1.md`) | 2 login | §5.2 7, 8, 12-qadamlar (bandlar 9a, 6b, 8) | lms-watch, protokol |
+| 4 | CRM test-materialini yangilash | Foydalanuvchi | `CRM-yuklash/1-Internet-YANGI-2026-09-10.jsx` CRM'ga; `2-HtmlLesson1-…` 15-qadam uchun | keyingi jonli sinovda arena onFinished'da ko'rinadi | papka + `OQING.md` |
+| 5 | §5.2 qolgan qadamlar: 5 (O-3 muzlatilgan) · 11 (T-1 auto_replaced) · 15 (ikkinchi dars) · 16 (eski JSX) · B2 (ikki guruh, O-5) | Foydalanuvchi (akkauntlar bor), biz lms-watch bilan | bir o'tirish ≈20 daqiqa | natija-jadvalga dalil bilan yozamiz | hammasi tayyor |
+| 6 | Bugungi ikki ochiq savol: 2849-dars / `robo-error.png`; 14-qadamda «Qaytadan boshlash»ni kim bosdi | Foydalanuvchi | javob | jadvalga yozamiz | — |
+| 7 | §5.3 bandlari: 3 (eski token) · 9b (V-1 END) · 18 (takror 409) · 19/B3 (rejected_students) · 15 (api 1 daqiqa to'xtaydi — Kristina) | Axadulla + Kristina | alohida vaqt kelishuvi (roziligi bor) | birga o'tkazamiz, dalil yig'amiz | server tomoni int-testlarda yopilgan |
+| 8 | Sirlar rotatsiyasi (JWT kid v2 + `sapi_`) — prod'dan OLDIN shart (sirlar ochiq chatda kelgan) | Axadulla (`SIRLAR_ROTATSIYASI_UZ.md` §5 xati) | yangi kalitlar xavfsiz kanal orqali | `jwt_next` → almashtirish → eskisini o'chirish (runbook) | `jwt_next` kodda |
+| 9 | Birinchi zaxira-dump dalili (TZ §6) | Kristina / foydalanuvchi Dozzle'dan | backup-konteyner logi | `STAGING_QABUL_UZ.md` ga yozamiz | — |
+| 10 | Commit (bugungi UNCOMMITTED: 97 dars + 2 vosita + 3 hujjat) va push (8 commit) | Foydalanuvchi buyrug'i | «commit» · `! git push origin main` | commit qilamiz | darvozalar o'tgan |
+| 11 | Prod cutover | 1, 3, 5, 7, 8 dan keyin — bizning signal | — | `sync main` → GitLab deploy → `cutover-mashq --url prod --out lms --smoke` → CRM 90 fayl → Vercel | mashq 90/90 |
+| 12 | M7: 13 dars jonli-modulsiz (v16) | Foydalanuvchi qarori (qachon) | — | darslik-jonli konveyeri | birinchi cutover'ga shart emas |
+| 13 | Uyga vazifa paketlari (42 tex + 17 PM) LMS'ga | Foydalanuvchi ko'rigi | — | yuklash ro'yxati | darvozalar o'tgan |

@@ -16,8 +16,9 @@
 //   node esbuild-gate.mjs <fayl…>         → aniq fayllar
 // Chiqish kodi: xato bor=1, yo'q=0.
 // ============================================================================
-import { readdirSync, statSync } from 'node:fs';
+import { readdirSync, statSync, mkdtempSync, rmSync } from 'node:fs';
 import { join } from 'node:path';
+import { tmpdir } from 'node:os';
 import { execFileSync } from 'node:child_process';
 
 const RED = '\x1b[31m', GRN = '\x1b[32m', DIM = '\x1b[2m', B = '\x1b[1m', R = '\x1b[0m';
@@ -61,6 +62,10 @@ const LOADERS = [
   '--loader:.woff=dataurl', '--loader:.woff2=dataurl',
 ];
 
+// CHIQISH — vaqtinchalik papka, /dev/null EMAS (2026-09-10). `--outfile=/dev/null` bilan CSS import
+// qiladigan kirish-nuqta (src/main.jsx → index.css) yiqiladi: esbuild CSS'ni `/dev/null.css` ga yozmoqchi
+// bo'ladi → «permission denied» → YOLG'ON QIZIL. Endi har fayl tmp-papkaga yoziladi, oxirida o'chiriladi.
+const OUT = mkdtempSync(join(tmpdir(), 'esbuild-gate-'));
 let bad = 0;
 console.log(`${B}\nESBUILD-GATE — ${files.length} fayl${R}`);
 for (const f of files) {
@@ -72,7 +77,7 @@ for (const f of files) {
     // rejimida fayl yo'li qo'shtirnoqqa olinadi.
     const win = process.platform === 'win32';
     const arg = win ? `"${f}"` : f;
-    execFileSync('npx', ['esbuild', arg, ...LOADERS, '--bundle', '--external:react', '--external:react-dom', '--outfile=' + (win ? 'NUL' : '/dev/null')],
+    execFileSync('npx', ['esbuild', arg, ...LOADERS, '--bundle', '--external:react', '--external:react-dom', '--outfile=' + join(OUT, 'out.js')],
       { stdio: 'pipe', shell: win });
   } catch (e) {
     bad++;
@@ -81,4 +86,5 @@ for (const f of files) {
   }
 }
 console.log(bad ? `\n${RED}${B}🔴 ${bad} fayl qurilmadi${R}\n` : `${GRN}✓ TOZA — hammasi qurildi.${R}\n`);
+rmSync(OUT, { recursive: true, force: true });
 process.exit(bad ? 1 : 0);
