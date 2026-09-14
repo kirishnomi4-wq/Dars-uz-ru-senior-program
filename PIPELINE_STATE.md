@@ -7751,3 +7751,59 @@ Eng og'ir: m4a-03 (9 ekran, 9 kritik) · m4-10 · m7-07 · m7-08 (5 kritikdan).
 Naqshlar: izoh qutisi · amaliyot «Bajardim» · uzun forma (7-modul s16) · sudraladigan hovuz · maket/kod oynasi.
 
 **Tuzatish YO'Q** — hisobot foydalanuvchi tasdig'ini kutadi. **Commit YO'Q.**
+
+
+## 2026-09-14 — §34 PILOT · m4a-03 (NestArchResourceLesson) · Mentor yig'iladi + asbob kalibrovkasi
+
+**Buyruq (foydalanuvchi):** «commit qil, keyin §34 ni boshla» → commit `4d4975c` (67 fayl, push YO'Q).
+**Qaror (foydalanuvchi, savol-javob):** joy yetmasa — Mentor kompyuterda ham birinchi bosishda yig'iladi.
+
+### Tashxis (m4a-03 · uz self 1366: 44 holat, 10 ekran)
+Ko'rinadigan balandlik 614px. ru'da sarlavha 84 + Mentor 98–123 + taxta 74–84 + oraliqlar 48 →
+ustunlarga 275–310px qoladi. Aybdorlar: agent-karta chap ustun tagida (s3/5/6/8/10/13) · «tayyor»
+izohi ikki marta (s3/10/12) · so'rov yo'li 8 bekat tik (s15) · «Bajardim» 6 qadam ostida (s18) ·
+«~40 qator» kod namunasi (s8).
+
+### Tuzatish (bitta fayl, matn o'zgarmagan)
+| Naqsh | Yechim |
+|---|---|
+| Agent-karta | ustundan chiqdi → Ochilish taxtasi sarlavhasida `<details>` (summary absolyut) |
+| Takror izoh | PickLines `doneText` — bitta quti · s6/s8 da «b» natija qutisi ichida |
+| s15 bekatlar | belgi + nom bir qatorda (grid) |
+| s18 «Bajardim» | bo'sh chap ustunga |
+| s8 uzun kod | `CodeFile maxH` — ichki skroll |
+| s6 «a» oxirgi bosilsa | jadval o'rnida xulosa qutisi |
+| Mentor | `collapseOn = !mentorStatic` (ilgari faqat ≤768px) |
+| Ixchamlash | kod qator oralig'i 1.6 · pick-row / lp-step / taxta ichki chegarasi · s13 o'ng ustun oralig'i |
+
+### Asbob kalibrovkasi (`layout-lint.mjs`) — isbot bilan
+1. **Yig'ilgan Mentor = o'quvchi ochgan panel.** Isbot (ru s13, bosish tartibi takrorlandi): asbob 2- va
+   4-qadamda `DIV.mentor.is-collapsed` ni bosib qayta ochgan → «84px»; yig'ilgan holatda haqiqiy qoldiq
+   36px edi. Ekran boshiga bir marta (`body.dataset.ccMentorDone`). ⚠ Birinchi kalibrovka urinishi
+   noto'g'ri edi: yig'ilganda React yangi «▾» yozuvini chizadi, u qayta tanlanib asbob haqiqiy tugmalarga
+   YETMAGAN (ru «7 holat» yolg'on-toza). Tutildi va tuzatildi.
+2. **Ko'rinmas matn D-detektordan chiqariladi** (ota `opacity:0` yoki nol balandlikda qirqilgan). Dalil:
+   s10 — yig'ilgan Mentor matni ustida agent tugmasi «61% yopdi»; skrinshotda matn ko'rinmaydi.
+Selftest (m1-03): kiritilgan toshish ushlandi (574–1028px) — detektor tirik.
+
+### Natija — 8 kombinatsiya (uz/ru × self/mentor × 1280x773/1366x768)
+Haqiqiy E: **44 → 0**. Har kombinatsiyada `realFound=false`, sahifa xatosi 0, 22/22 ekran.
+Qolgani faqat s21 yakun-skroll (ataylab). Darvozalar 5/5.
+
+### Halol qaydlar
+- **Ko'r nuqta:** asbob faqat yangi ochilgan ekranni o'lchaydi. Bajarilgan ekranga «Orqaga» bilan
+  qaytilganda Mentor ochiq chiziladi → ru s13 268px · s6 96px · s10 80px pastda (birinchi bosish yoki
+  skrollda yig'iladi). O'lchanmagan.
+- Ish hajmi: bitta dars bir necha soat oldi. 92 dars uchun naqsh-darajasidagi umumiy yechim kerak
+  (Mentor qatori 108 faylda bir xil).
+- Qonunga muhrlanmagan: Mentor-yig'ish qarori va ikki kalibrovka `DARS_ETALON.md` 147 (e) ga —
+  foydalanuvchi roziligi bilan.
+- **Commit YO'Q** (2 fayl: dars + asbob).
+
+### Davomi (2026-09-14) — Mentor-yig'ish KURSGA YOYILDI
+Foydalanuvchi: «mayli boshla». 109 dars faylida bitta qator → `collapseOn = !mentorStatic` (107 bir xil
+qator + InternetLesson `mentorCollapse` va PracticeLesson2 `mentorCollapsible` — ilgari faqat ayrim
+ekranlarda). Eski qator 0 qoldi, yangi 110 (m4a-03 bilan). Darvozalar `src` bo'yicha oldin/keyin aynan
+bir xil: esbuild ✓ · jsx ✓ · dark 303 va til 336 (avvaldan qizil, o'zgarmagan).
+Kurs qayta o'lchovi (self × 1366 · uz → ru, `--resume`) fonda boshlandi — natija keyingi yozuvda.
+Commit — foydalanuvchi buyrug'i bilan (push YO'Q).

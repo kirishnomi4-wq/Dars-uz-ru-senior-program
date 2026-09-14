@@ -356,6 +356,16 @@ const MEASURE = () => {
       if (el.closest('[aria-hidden="true"]')) continue;
       const texts = [...el.childNodes].filter((n) => n.nodeType === 3 && n.textContent.trim());
       if (!texts.length) continue;
+      // KO'RINMAS MATN (§34 kalibrovkasi, 2026-09-14): otasi `opacity:0` yoki nol balandlikda qirqilgan —
+      // matn tugunining koordinatasi joyida qoladi, lekin ko'zga ko'rinmaydi. Dalil: m4a-03 s10 — yig'ilgan
+      // Mentor matni (max-height:0, opacity:0) ustiga taxta sarlavhasidagi agent tugmasi «61% yopdi» deyilgan.
+      let hidden = false;
+      for (let n = el; n && n !== root; n = n.parentElement) {
+        const ns = getComputedStyle(n);
+        if (+ns.opacity === 0) { hidden = true; break; }
+        if (/(hidden|clip)/.test(ns.overflowY + ' ' + ns.overflow) && n.getBoundingClientRect().height < 1) { hidden = true; break; }
+      }
+      if (hidden) continue;
       if (isMoving(el)) continue;                                             // harakatdagi sprayt
       if (isRotated(el)) continue;                                            // burilgan matn — rect yolg'on
       // 🔴 CHIZILISH TARTIBI. Faqat `z-index` ni solishtirish YETMAYDI: teng bo'lsa
@@ -569,6 +579,9 @@ async function auditLesson(key, mode, vp) {
             if (el.dataset.ccHit) return false;
             if (getComputedStyle(el).cursor !== 'pointer') return false;
             if (el.closest('.stage-nav') || el.classList.contains('zoom-btn')) return false;
+            // Mentor ekran boshiga bir marta: yig'ilganda React yangi «▾» yozuvini chizadi —
+            // belgisiz tugun qayta tanlanib, asbob haqiqiy tugmalarga yetmay qolardi (sahifa har ekranda qayta yuklanadi)
+            if (document.body.dataset.ccMentorDone && el.closest('.mentor')) return false;
             const b = el.getBoundingClientRect();
             return b.width > 8 && b.height > 8 && b.top >= 0 && b.bottom <= innerHeight + 200;
           });
@@ -578,8 +591,13 @@ async function auditLesson(key, mode, vp) {
           // panel keyingi hamma holatni «pastga tushgan» qilib, haqiqiy nuqsonni yashiradi.
           const isSum = el.tagName === 'SUMMARY';
           if (isSum) el.dataset.ccOpen = '1';
-          try { el.click(); } catch { return null; }
-          return (isSum ? 'SUMMARY|' : '') + (el.innerText || el.className || 'element').trim().slice(0, 30);
+          // YIG'ILGAN MENTOR (§34 kalibrovkasi, 2026-09-14): «ko'rsatmani ochish ▾» — o'quvchi o'zi
+          // ochadigan panel. Isbot (m4a-03 ru s13): asbob uni 2- va 4-qadamda qayta ochib, 84px
+          // «nuqson» yozgan; yig'ilgan holatda haqiqiy qoldiq 36px edi. Butun daraxt bir marta bosiladi.
+          const mentorEl = el.closest('.mentor.is-collapsed');
+          if (mentorEl) document.body.dataset.ccMentorDone = '1';
+          try { (mentorEl || el).click(); } catch { return null; }
+          return (isSum ? 'SUMMARY|' : mentorEl ? 'MENTOR|' : '') + (el.innerText || el.className || 'element').trim().slice(0, 30);
         });
         if (!hit) break;
         clicks++;
@@ -588,8 +606,14 @@ async function auditLesson(key, mode, vp) {
         const open = await page.evaluate(() => !!document.querySelector('.hc-root'));
         if (open) break;                                   // kompilyator ochildi — chiqamiz
         const after = await page.evaluate(() => (document.querySelector('.lesson-root')?.innerText || '').slice(0, 80));
-        const isPanel = hit.startsWith('SUMMARY|');
+        const isPanel = hit.startsWith('SUMMARY|') || hit.startsWith('MENTOR|');
         await take(step, isPanel);
+        if (hit.startsWith('MENTOR|')) {
+          // Qayta yig'ish: kontent maydonining bo'sh joyiga bosish (Stage onContentClick)
+          await page.evaluate(() => { const c = document.querySelector('.stage-content'); if (c) c.click(); });
+          await settle(page);
+          continue;
+        }
         // 🔴 OCHILGAN PANEL YOPILADI (F-0913-02 kalibrovkasi). m1-09 s3: asbob 🛟 panelini ochib,
         // keyingi 5 holatning hammasida «253px pastga tushdi» degan — sababi bitta ochiq panel.
         if (isPanel) {

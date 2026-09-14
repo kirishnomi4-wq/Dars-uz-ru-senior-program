@@ -254,7 +254,7 @@ function AchCounter() {
 const Stage = ({ children, eyebrow, screen, totalScreens = TOTAL_SCREENS, navContent, narrow, mentorStatic, mentorCollapse }) => {
   const isMobile = useIsMobile();
   const isNarrow = useIsMobile(768); // mobil: Mentor yig'ilish rejimi
-  const collapseOn = (isNarrow || mentorCollapse) && !mentorStatic; // mentorCollapse — desktopda ham yig'iladi
+  const collapseOn = !mentorStatic; // §34 (2026-09-14): Mentor kompyuterda ham yig'iladi (ilgari faqat mentorCollapse ekranlarida)
   const padH = isMobile ? 12 : 60; // desktop: 100 → 60 (kontent kengaydi, shriftlar o'z o'lchamida)
   const [mCollapsed, setMCollapsed] = useState(false);
   const contentRef = useRef(null);

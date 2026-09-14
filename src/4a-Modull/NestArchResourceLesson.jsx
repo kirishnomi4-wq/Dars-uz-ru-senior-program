@@ -190,7 +190,9 @@ function AchCounter() {
 const Stage = ({ children, eyebrow, screen, totalScreens = TOTAL_SCREENS, navContent, narrow, mentorStatic, scrollSignal }) => {
   const isMobile = useIsMobile();
   const isNarrow = useIsMobile(768);
-  const collapseOn = isNarrow && !mentorStatic;
+  // §34 (2026-09-14, foydalanuvchi qarori): Mentor kompyuterda ham birinchi bosishda yig'iladi —
+  // 1366x768 da ustunlarga 275–310px qolardi; yig'ilgan Mentor «ko'rsatmani ochish ▾» bilan qaytadi
+  const collapseOn = !mentorStatic;
   const padH = isMobile ? 12 : 60; // 11.11 layout standarti: 1100px + 60px
   const [mCollapsed, setMCollapsed] = useState(false);
   const contentRef = useRef(null);
@@ -552,20 +554,21 @@ const St = ({ children }) => <span style={{ color: CODE.str }}>{children}</span>
 const Cm = ({ children }) => <span style={{ color: CODE.comment, fontStyle: 'italic' }}>{children}</span>;
 
 // ===== MOCK VS CODE EDITOR =====
-const CodeFile = ({ name, children, minH }) => (
+// maxH — uzun namuna (s8 «~40 qator») ichida skroll bo'ladi, ekranni pastga surmaydi (§34)
+const CodeFile = ({ name, children, minH, maxH }) => (
   <div className="editor">
     <div className="editor-bar"><span className="bb-dots"><i /><i /><i /></span><span className="editor-tab">{name}</span></div>
-    <div className="editor-body" style={{ minHeight: minH }}><pre className="editor-code">{children}</pre></div>
+    <div className="editor-body" style={{ minHeight: minH, maxHeight: maxH, overflowY: maxH ? 'auto' : undefined }}><pre className="editor-code">{children}</pre></div>
   </div>
 );
 
 // ===== AGENT PROMPT (Praktikaga ko'prik) =====
-const AgentCard = ({ children }) => (
-  <div className="agent-card">
-    <span className="agent-lbl">{tr({ uz: "💬 Agentni shunday yo'naltiring", ru: '💬 Направьте агента так' })}</span>
-    <p className="agent-msg">{children}</p>
-  </div>
-);
+// §34: ko'rsatma ustunda joy olmaydi — matn Ochilish taxtasi sarlavhasidagi tugmaga beriladi
+const AgentCard = ({ children }) => {
+  const { setAgent } = useBoard();
+  useEffect(() => { setAgent(children); return () => setAgent(null); }, [children]); // eslint-disable-line
+  return null;
+};
 
 // ===== MOCK SWAGGER (Car) =====
 const M_COLOR = { GET: T.blue, POST: T.success, PATCH: T.amber, DELETE: T.danger };
@@ -607,7 +610,8 @@ const CarSwagger = ({ available, openId, onToggle, triedIds, onTry }) => (
 );
 
 // ===== PICK LINES — "qaysi qator shu faylga tegishli?" (qatlamlarni ajratish) =====
-const PickLines = ({ fileName, scaffoldTop, scaffoldBottom, candidates, agent, instruction, onComplete, completedInit }) => {
+// §34: tugagach nomzodlar ro'yxati bitta xulosa qutisiga yig'iladi (doneText) — ekran ostida ikkinchi quti yo'q
+const PickLines = ({ fileName, scaffoldTop, scaffoldBottom, candidates, agent, instruction, onComplete, completedInit, doneText }) => {
   const correct = candidates.filter(c => c.correct);
   const [picked, setPicked] = useState(() => completedInit ? new Set(correct.map(c => c.id)) : new Set());
   const [shakeId, setShakeId] = useState(null);
@@ -625,7 +629,6 @@ const PickLines = ({ fileName, scaffoldTop, scaffoldBottom, candidates, agent, i
     <Zoomable>
     <div className="split">
       <Col>
-        <p className="flow-label">{fileName}</p>
         <CodeFile name={fileName} minH={120}>
           {scaffoldTop}{'\n'}
           {pickedCorrect.length === 0
@@ -637,16 +640,16 @@ const PickLines = ({ fileName, scaffoldTop, scaffoldBottom, candidates, agent, i
       </Col>
       <Col>
         <p className="flow-label">{instruction || tr({ uz: 'Shu faylga tegishli qatorlarni tanlang', ru: 'Выберите строки, относящиеся к этому файлу' })}</p>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 7 }}>
+        {!done && <div style={{ display: 'flex', flexDirection: 'column', gap: 5 }}>
           {candidates.map(c => (
             <button key={c.id} className={`pick-row ${picked.has(c.id) ? 'picked' : ''} ${shakeId === c.id ? 'shake' : ''}`} disabled={picked.has(c.id)} onClick={() => tap(c)}>
               <span style={{ flex: 1 }}>{c.label}</span>
               <span className="pick-plus">{picked.has(c.id) ? '✓' : '+'}</span>
             </button>
           ))}
-        </div>
+        </div>}
         {why && !done && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{why}</p></div>}
-        {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "✓ Fayl tayyor — har qator o'z joyida. Begona qatorlar boshqa qatlamga tegishli edi.", ru: '✓ Файл готов — каждая строка на своём месте. Чужие строки были из другого слоя.' })}</p></div>}
+        {done && <div className="frame-success fade-step"><p className="note-h" style={{ color: T.success }}>{tr({ uz: "✓ Fayl tayyor — har qator o'z joyida. Begona qatorlar boshqa qatlamga tegishli edi.", ru: '✓ Файл готов — каждая строка на своём месте. Чужие строки были из другого слоя.' })}</p>{doneText && <p className="body" style={{ margin: 0, color: T.ink }}>{doneText}</p>}</div>}
       </Col>
     </div>
     </Zoomable>
@@ -675,9 +678,9 @@ const BOARD_SLOTS = [
   { k: 'module',     ic: '📑', name: { uz: 'shtat jadvali', ru: 'штатное расписание' },  file: 'car.module.ts' },
   { k: 'plate',      ic: '🪧', name: { uz: 'KIRISH TAXTASI', ru: 'ВЫВЕСКА У ВХОДА' }, file: 'app.module.ts', plate: true }
 ];
-const useBoard = () => useContext(BoardCtx) || { board: {}, fill: () => {}, plus: false, plusOn: () => {} };
+const useBoard = () => useContext(BoardCtx) || { board: {}, fill: () => {}, plus: false, plusOn: () => {}, agent: null, setAgent: () => {} };
 const OpeningBoard = () => {
-  const { board, plus } = useBoard();
+  const { board, plus, agent } = useBoard();
   const done = BOARD_SLOTS.filter(s => board[s.k]).length;
   return (
     <div className="oc-board fade-up" aria-label={tr({ uz: 'Ochilish taxtasi', ru: 'Доска открытия' })}>
@@ -685,6 +688,11 @@ const OpeningBoard = () => {
         <span className="oc-board-t">{tr({ uz: "🚗 MASHINALAR BO'LIMI — ochilishga tayyorgarlik", ru: '🚗 ОТДЕЛ МАШИН — подготовка к открытию' })}</span>
         <span className={`oc-board-n ${done >= BOARD_SLOTS.length ? 'full' : ''}`}>{done}/{BOARD_SLOTS.length}</span>
       </div>
+      {/* summary sarlavha qatorida (absolyut), ochilgan matn taxta ichida qatorlar ostida */}
+      {agent && <details className="oc-agent" key={agent}>
+        <summary className="oc-agent-btn">{tr({ uz: "💬 Agentni shunday yo'naltiring", ru: '💬 Направьте агента так' })}</summary>
+        <p className="agent-msg oc-agent-msg">{agent}</p>
+      </details>}
       <div className="oc-strip">
         {BOARD_SLOTS.map((s, i) => {
           const on = !!board[s.k];
@@ -900,8 +908,8 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           instruction={tr({ uz: 'car.entity.ts ga qaysi qatorlar tegishli?', ru: 'Какие строки относятся к car.entity.ts?' })}
           completedInit={!!storedAnswer}
           onComplete={() => { setDone(true); fill('entity'); if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }}
+          doneText={tr({ uz: <>1-fayl tayyor! Lekin <span className="mono">/car</span> hali yo'q — bitta fayl yetmaydi. Keyingi qadam: ma'lumot qoidalari (DTO).</>, ru: <>Первый файл готов! Но <span className="mono">/car</span> ещё нет — одного файла мало. Следующий шаг: правила данных (DTO).</> })}
         />
-        {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>1-fayl tayyor! Lekin <span className="mono">/car</span> hali yo'q — bitta fayl yetmaydi. Keyingi qadam: ma'lumot qoidalari (DTO).</>, ru: <>Первый файл готов! Но <span className="mono">/car</span> ещё нет — одного файла мало. Следующий шаг: правила данных (DTO).</> })}</p></div>}
         {_tip && !done && <p className="bhint fade-step">{tr({ uz: "💡 Har qatorni o'qing: u mashinaning ustunimi? Ustun bo'lmasa — bu fayl uniki emas.", ru: '💡 Прочитайте каждую строку: это столбец машины? Если нет — строка не из этого файла.' })}</p>}
         {_resc && !done && <p className="bhint calm fade-step">{tr({ uz: "Qolganini keyinroq birga ko'rib chiqamiz — «Davom etish» ochiq.", ru: 'Остальное разберём вместе позже — «Продолжить» открыто.' })}</p>}
       </div>
@@ -985,6 +993,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const { tip: _tip, rescue: _resc } = useStuckValve(done, seen.size);   // 13-band klapan
   const choose = (k) => { setCur(k); setSc(n => n + 1); setSeen(prev => { const s = new Set(prev); s.add(k); return s; }); };
   useEffect(() => { if (storedAnswer) plusOn(); }, []); // eslint-disable-line
+  const doneMsg = tr({ uz: 'Bitta qator — tahrirlash anketasi tayyor. Bir xil kodni ikki marta yozmaslik — tajribali dasturchilarning odati (DRY).', ru: 'Одна строка — и анкета редактирования готова. Не писать один и тот же код дважды — привычка опытных разработчиков (DRY).' });
   useEffect(() => { if (done) { plusOn(); if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); } }, [done]); // eslint-disable-line
   return (
     <Stage eyebrow={tr({ uz: '2-qadam · Update DTO', ru: 'Шаг 2 · Update DTO' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !_resc} label={(done || _resc) ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: `Ikkala variantni sinang (${seen.size}/2)`, ru: `Попробуйте оба варианта (${seen.size}/2)` })} onClick={onNext} /></>}>
@@ -1028,12 +1037,13 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <Col>
             <p className="flow-label">{tr({ uz: 'natija', ru: 'результат' })} · PATCH /car/:id  {`{ price: 12000 }`}</p>
             {cur === 'full' && <div className="frame-warn fade-step"><p className="note-h" style={{ color: T.danger }}>{tr({ uz: '✗ 400 — rad etildi', ru: '✗ 400 — отклонено' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>To'liq anketada <span className="mono">brand</span> va <span className="mono">model</span> ham majburiy. Mijoz faqat narxni yubordi — anketa chala, so'rov o'tmadi.</>, ru: <>В полной анкете <span className="mono">brand</span> и <span className="mono">model</span> тоже обязательны. Клиент отправил только цену — анкета неполная, запрос не прошёл.</> })}</p></div>}
-            {cur === 'partial' && <div className="frame-success fade-step"><p className="note-h" style={{ color: T.success }}>{tr({ uz: "✓ 200 — o'zgartirildi", ru: '✓ 200 — изменено' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>PartialType create anketasini olib, har katakchani <b>ixtiyoriy</b> qildi. Faqat <span className="mono">price</span> yetarli.</>, ru: <>PartialType взял анкету create и сделал каждое поле <b>необязательным</b>. Достаточно одного <span className="mono">price</span>.</> })}</p></div>}
-            <div className="frame" style={{ padding: 14 }}>
+            {cur === 'partial' && <div className="frame-success fade-step"><p className="note-h" style={{ color: T.success }}>{tr({ uz: "✓ 200 — o'zgartirildi", ru: '✓ 200 — изменено' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>PartialType create anketasini olib, har katakchani <b>ixtiyoriy</b> qildi. Faqat <span className="mono">price</span> yetarli.</>, ru: <>PartialType взял анкету create и сделал каждое поле <b>необязательным</b>. Достаточно одного <span className="mono">price</span>.</> })}</p>{done && <p className="body" style={{ margin: '8px 0 0', color: T.ink }}>{doneMsg}</p>}</div>}
+            {!(done && cur === 'full') && <div className="frame" style={{ padding: 10 }}>
               <div className="ent-row siz">brand, model, price <span>{tr({ uz: "← create'da majburiy", ru: '← обязательны в create' })}</span></div>
               {seen.has('partial') && <><div className="ent-row free el-in">{tr({ uz: 'brand? (ixtiyoriy)', ru: 'brand? (необязательно)' })} <span>← PartialType</span></div><div className="ent-row free el-in">{tr({ uz: 'price? (ixtiyoriy)', ru: 'price? (необязательно)' })} <span>← PartialType</span></div></>}
-            </div>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: 'Bitta qator — tahrirlash anketasi tayyor. Bir xil kodni ikki marta yozmaslik — tajribali dasturchilarning odati (DRY).', ru: 'Одна строка — и анкета редактирования готова. Не писать один и тот же код дважды — привычка опытных разработчиков (DRY).' })}</p></div>}
+            </div>}
+            {/* §34: «b» ochiq bo'lsa xulosa natija qutisi ichida; «a» oxirgi bosilganda jadval o'rnida alohida quti */}
+            {done && cur !== 'partial' && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{doneMsg}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -1071,6 +1081,7 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const { tip: _tip, rescue: _resc } = useStuckValve(done, seen.size);   // 13-band klapan
   const choose = (k) => { setCur(k); setSc(n => n + 1); setSeen(prev => { const s = new Set(prev); s.add(k); return s; }); };
   useEffect(() => { if (storedAnswer) fill('service'); }, []); // eslint-disable-line
+  const doneMsg = tr({ uz: "5 ta CRUD metod — bittasini ham yozmadingiz, BaseService'dan keldi. O'ziga xos mantiq kerak bo'lsagina qo'shasiz (mashinada kerak emas).", ru: '5 CRUD-методов — вы не написали ни одного, все пришли из BaseService. Свою логику добавляете, только когда она нужна (машинам — не нужна).' });
   useEffect(() => { if (done) { fill('service'); if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); } }, [done]); // eslint-disable-line
   return (
     <Stage eyebrow={tr({ uz: '3-qadam · Service', ru: 'Шаг 3 · Service' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !_resc} label={(done || _resc) ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: `Ikkala yo'lni ko'ring (${seen.size}/2)`, ru: `Посмотрите оба пути (${seen.size}/2)` })} onClick={onNext} /></>}>
@@ -1092,7 +1103,7 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               </button>
             </div>
             {cur === 'manual' && (
-              <CodeFile name={tr({ uz: 'src/api/car/car.service.ts  ·  ~40 qator', ru: 'src/api/car/car.service.ts  ·  ~40 строк' })} minH={210}>
+              <CodeFile name={tr({ uz: 'src/api/car/car.service.ts  ·  ~40 qator', ru: 'src/api/car/car.service.ts  ·  ~40 строк' })} minH={190} maxH={190}>
                 <At>@Injectable</At>{'()'}{'\n'}
                 <Jx>export class</Jx>{' CarService {'}{'\n'}
                 {'  create(dto) { '}<Jx>return</Jx>{' this.carRepo.save(dto); }'}{'\n'}
@@ -1109,7 +1120,7 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               </CodeFile>
             )}
             {cur === 'base' && (
-              <CodeFile name={tr({ uz: 'src/api/car/car.service.ts  ·  4 qator', ru: 'src/api/car/car.service.ts  ·  4 строки' })} minH={210}>
+              <CodeFile name={tr({ uz: 'src/api/car/car.service.ts  ·  4 qator', ru: 'src/api/car/car.service.ts  ·  4 строки' })} minH={190}>
                 <At>@Injectable</At>{'()'}{'\n'}
                 <Jx>export class</Jx>{' CarService'}{'\n'}
                 {'  '}<Jx>extends</Jx>{' BaseService<CreateCarDto, UpdateCarDto, CarEntity> {'}{'\n'}
@@ -1125,9 +1136,10 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <Col>
             <p className="flow-label">{tr({ uz: 'natija', ru: 'результат' })}</p>
             {cur === 'manual' && <div className="frame-warn fade-step"><p className="note-h" style={{ color: T.danger }}>{tr({ uz: "~40 qator qo'l mehnati", ru: '~40 строк ручного труда' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "5 metodni o'zingiz yozasiz — va keyingi resursda (mijoz, buyurtma) HAMMASI qaytadan.", ru: 'Все 5 методов пишете сами — а в следующем ресурсе (клиент, заказ) ВСЁ заново.' })}</p></div>}
-            {cur === 'base' && <div className="frame-success fade-step"><p className="note-h" style={{ color: T.success }}>{tr({ uz: '4 qator — 5 metod tekin', ru: '4 строки — 5 методов бесплатно' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Oshpaz har taomni noldan o'ylab topmaydi — tayyor retsept kitobidan oladi.", ru: 'Повар не выдумывает каждое блюдо с нуля — берёт его из готовой книги рецептов.' })}</p></div>}
+            {cur === 'base' && <div className="frame-success fade-step"><p className="note-h" style={{ color: T.success }}>{tr({ uz: '4 qator — 5 metod tekin', ru: '4 строки — 5 методов бесплатно' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Oshpaz har taomni noldan o'ylab topmaydi — tayyor retsept kitobidan oladi.", ru: 'Повар не выдумывает каждое блюдо с нуля — берёт его из готовой книги рецептов.' })}</p>{done && <p className="body" style={{ margin: '8px 0 0', color: T.ink }}>{doneMsg}</p>}</div>}
             {seen.has('base') && <div className="fade-up" style={{ display: 'flex', flexWrap: 'wrap', gap: 7 }}>{FREE_METHODS.map(m => <span key={m} className="gchip" style={{ boxShadow: `inset 0 0 0 1.5px ${T.success}`, color: T.success }}>✓ {m}()</span>)}</div>}
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "5 ta CRUD metod — bittasini ham yozmadingiz, BaseService'dan keldi. O'ziga xos mantiq kerak bo'lsagina qo'shasiz (mashinada kerak emas).", ru: '5 CRUD-методов — вы не написали ни одного, все пришли из BaseService. Свою логику добавляете, только когда она нужна (машинам — не нужна).' })}</p></div>}
+            {/* §34: «b» ochiq bo'lsa yakuniy xulosa o'sha qutining ichida — alohida quti faqat «a» oxirgi bosilganda */}
+            {done && cur !== 'base' && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{doneMsg}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -1183,8 +1195,8 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           instruction={tr({ uz: 'car.controller.ts ga qaysi qatorlar tegishli?', ru: 'Какие строки относятся к car.controller.ts?' })}
           completedInit={!!storedAnswer}
           onComplete={() => { setDone(true); fill('controller'); if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }}
+          doneText={tr({ uz: <>5 ta eshik tayyor. Controller faqat <b>qabul qilib chaqiradi</b> — asosiy ishni service/BaseService bajaradi. Oxirgi qadam: Module.</>, ru: <>5 дверей готовы. Controller только <b>принимает и вызывает</b> — основную работу делает service/BaseService. Последний шаг: Module.</> })}
         />
-        {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>5 ta eshik tayyor. Controller faqat <b>qabul qilib chaqiradi</b> — asosiy ishni service/BaseService bajaradi. Oxirgi qadam: Module.</>, ru: <>5 дверей готовы. Controller только <b>принимает и вызывает</b> — основную работу делает service/BaseService. Последний шаг: Module.</> })}</p></div>}
         {_tip && !done && <p className="bhint fade-step">{tr({ uz: "💡 Har qatorga qarang: u tashqaridan keladigan so'rovni qabul qiladimi?", ru: '💡 Посмотрите на каждую строку: принимает ли она запрос извне?' })}</p>}
         {_resc && !done && <p className="bhint calm fade-step">{tr({ uz: "Qolganini keyinroq birga ko'rib chiqamiz — «Davom etish» ochiq.", ru: 'Остальное разберём вместе позже — «Продолжить» открыто.' })}</p>}
       </div>
@@ -1235,8 +1247,8 @@ const Screen12 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           instruction={tr({ uz: 'car.module.ts ga qaysi qatorlar tegishli?', ru: 'Какие строки относятся к car.module.ts?' })}
           completedInit={!!storedAnswer}
           onComplete={() => { setDone(true); fill('module'); if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }}
+          doneText={tr({ uz: <>5 fayl tayyor: Entity, DTO, Service, Controller, Module. Lekin bitta oxirgi ulanish qoldi — usiz <span className="mono">/car</span> baribir ishlamaydi!</>, ru: <>5 файлов готовы: Entity, DTO, Service, Controller, Module. Но осталось одно последнее соединение — без него <span className="mono">/car</span> всё равно не работает!</> })}
         />
-        {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>5 fayl tayyor: Entity, DTO, Service, Controller, Module. Lekin bitta oxirgi ulanish qoldi — usiz <span className="mono">/car</span> baribir ishlamaydi!</>, ru: <>5 файлов готовы: Entity, DTO, Service, Controller, Module. Но осталось одно последнее соединение — без него <span className="mono">/car</span> всё равно не работает!</> })}</p></div>}
         {_tip && !done && <p className="bhint fade-step">{tr({ uz: "💡 Module — ro'yxatlar joyi: nimani ulash kerakligini sanaydi, kod yozmaydi.", ru: '💡 Module — место списков: он перечисляет, что подключить, а не пишет код.' })}</p>}
         {_resc && !done && <p className="bhint calm fade-step">{tr({ uz: "Qolganini keyinroq birga ko'rib chiqamiz — «Davom etish» ochiq.", ru: 'Остальное разберём вместе позже — «Продолжить» открыто.' })}</p>}
       </div>
@@ -1327,7 +1339,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             </div>
             <AgentCard>{tr({ uz: "CarModule'ni AppModule'ning imports ro'yxatiga qo'sh — endpointlar tirik bo'lsin.", ru: 'Добавь CarModule в список imports у AppModule — пусть эндпоинты оживут.' })}</AgentCard>
           </Col>
-          <Col>
+          <Col gap={12}>
             <CodeFile name="src/api/app.module.ts" minH={120}>
               <At>@Module</At>{'({'}{'\n'}
               {'  imports: ['}{'\n'}
@@ -1340,7 +1352,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <Jx>export class</Jx>{' AppModule {}'}
             </CodeFile>
             <p className="flow-label">{tr({ uz: 'GET /car natijasi', ru: 'результат GET /car' })}</p>
-            {phase === 0 && <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Mijozni kiriting ←', ru: 'Впустите посетителя ←' })}</p></div>}
+            {phase === 0 && <div className="frame-dash" style={{ padding: '8px 12px' }}><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Mijozni kiriting ←', ru: 'Впустите посетителя ←' })}</p></div>}
             {phase === 1 && <div className="frame-warn fade-step"><p className="note-h" style={{ color: T.danger }}>{tr({ uz: '✗ 404 — topilmadi', ru: '✗ 404 — не найдено' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Fayllar bor, xodimlar joyida — lekin mijoz bo'limni topa olmadi. Taxtada «Mashinalar» yo'q. Chapdagi taxtachani sudrab, kirish taxtasiga oling.", ru: 'Файлы есть, сотрудники на местах — но посетитель не нашёл отдел. На вывеске нет «Машины». Перетащите табличку слева на вывеску у входа.' })}</p></div>}
             {phase === 2 && <div className="frame-success fade-step"><p className="note-h" style={{ color: T.success }}>{tr({ uz: '🪧 Taxtacha osildi', ru: '🪧 Табличка повешена' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Kodda <span className="mono">CarModule,</span> qatori paydo bo'ldi. Endi mijozni qayta kiriting — bo'limni topadimi?</>, ru: <>В коде появилась строка <span className="mono">CarModule,</span>. Теперь впустите посетителя снова — найдёт ли он отдел?</> })}</p></div>}
             {done && <>
@@ -2128,6 +2140,11 @@ function ScreenLivePractice({ title, task, checklist, screen, storedAnswer, onAn
               <div className="lp-task-h"><span className="lp-task-badge">{tr({ uz: 'TOPSHIRIQ', ru: 'ЗАДАНИЕ' })}</span></div>
               <p className="body" style={{ margin: 0, color: T.ink }}>{tr(task)}</p>
             </div>
+            {/* §34: tugma bo'sh chap ustunda — 6 qadamdan keyin pastki chiziqdan tushmaydi */}
+            <button className={`lp-done-btn ${done ? 'is-done' : ''}`} disabled={done} onClick={complete} style={{ alignSelf: 'flex-start' }}>
+              {done ? tr({ uz: '✓ Bajarildi — ustozni kuting', ru: '✓ Выполнено — ждите наставника' }) : tr({ uz: '✅ Bajardim', ru: '✅ Выполнил' })}
+            </button>
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Ajoyib! Vazifani bajardingiz. Ustoz tekshirib, keyingi qadamga o'tkazadi.", ru: 'Отлично! Задание выполнено. Наставник проверит и переведёт вас на следующий шаг.' })}</p></div>}
             <MentorPracticeStats live={_live} screen={screen} />
             <StudentPracticePulse live={_live} screen={screen} />
           </Col>
@@ -2144,10 +2161,6 @@ function ScreenLivePractice({ title, task, checklist, screen, storedAnswer, onAn
                 );
               })}
             </div>
-            <button className={`lp-done-btn ${done ? 'is-done' : ''}`} disabled={done} onClick={complete}>
-              {done ? tr({ uz: '✓ Bajarildi — ustozni kuting', ru: '✓ Выполнено — ждите наставника' }) : tr({ uz: '✅ Bajardim', ru: '✅ Выполнил' })}
-            </button>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Ajoyib! Vazifani bajardingiz. Ustoz tekshirib, keyingi qadamga o'tkazadi.", ru: 'Отлично! Задание выполнено. Наставник проверит и переведёт вас на следующий шаг.' })}</p></div>}
           </Col>
         </div>
       </div>
@@ -2458,7 +2471,8 @@ export default function NestArchResourceLesson({ lang: langProp, onFinished, liv
   const [plus, setPlus] = useState(false);
   const fill = useCallback((k) => setBoard(b => (b[k] ? b : { ...b, [k]: true })), []);
   const plusOn = useCallback(() => { setPlus(p => p || true); setBoard(b => (b.dto ? b : { ...b, dto: true })); }, []);
-  const boardVal = { board, fill, plus, plusOn };
+  const [agent, setAgent] = useState(null);   // §34: joriy ekranning agent-ko'rsatmasi taxta sarlavhasida turadi
+  const boardVal = { board, fill, plus, plusOn, agent, setAgent };
 
   // 🏅 Nishonlar
   const earnedRef = useRef(new Set(saved?.earned || []));
@@ -2650,20 +2664,28 @@ export default function NestArchResourceLesson({ lang: langProp, onFinished, liv
         .editor { border-radius: 12px; overflow: hidden; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.2); }
         .editor-bar { background: #2D2D2D; padding: 7px 11px; display: flex; align-items: center; gap: 9px; }
         .editor-tab { font-family: 'JetBrains Mono'; font-size: 11px; color: #C9D1D9; background: #1E1E1E; padding: 4px 11px; border-radius: 6px 6px 0 0; word-break: break-all; }
-        .editor-body { background: ${CODE.bg}; padding: 12px 14px; }
-        .editor-code { font-family: 'JetBrains Mono'; font-size: clamp(11px,1.4vw,12.5px); line-height: 1.75; color: ${CODE.text}; white-space: pre-wrap; word-break: break-word; margin: 0; }
+        .editor-body { background: ${CODE.bg}; padding: 9px 14px; }
+        .editor-code { font-family: 'JetBrains Mono'; font-size: clamp(11px,1.4vw,12.5px); line-height: 1.6; color: ${CODE.text}; white-space: pre-wrap; word-break: break-word; margin: 0; }
         .line-empty { color: ${CODE.comment}; font-style: italic; }
 
         /* PICK LINES */
-        .pick-row { display: flex; align-items: center; gap: 10px; width: 100%; text-align: left; background: ${T.paper}; border: none; border-radius: 10px; padding: 10px 12px; cursor: pointer; transition: all 0.16s; box-shadow: 0 4px 12px -6px rgba(${T.shadowBase},0.16); font-family: 'JetBrains Mono'; font-size: 11.5px; color: ${T.ink}; }
+        .pick-row { display: flex; align-items: center; gap: 10px; width: 100%; text-align: left; background: ${T.paper}; border: none; border-radius: 10px; padding: 7px 12px; cursor: pointer; transition: all 0.16s; box-shadow: 0 4px 12px -6px rgba(${T.shadowBase},0.16); font-family: 'JetBrains Mono'; font-size: 11.5px; color: ${T.ink}; }
         .pick-row:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 8px 18px -6px rgba(${T.shadowBase},0.22); }
         .pick-row.picked { background: ${T.successSoft}; color: ${T.success}; box-shadow: inset 0 0 0 1.5px ${T.success}; cursor: default; }
         .pick-row:disabled { cursor: default; }
         .pick-plus { margin-left: auto; font-weight: 700; color: ${T.ink3}; } .pick-row.picked .pick-plus { color: ${T.success}; }
 
         /* AGENT CARD */
-        .agent-card { background: ${T.blueSoft}; border-left: 4px solid ${T.blue}; border-radius: 10px; padding: 11px 14px; }
-        .agent-lbl { font-family: 'Manrope'; font-weight: 800; font-size: 11px; color: ${T.blue}; display: block; margin-bottom: 4px; }
+        .oc-board { position: relative; }
+        .oc-agent { margin-top: -6px; }
+        .oc-agent-btn { position: absolute; top: 7px; right: 64px; list-style: none; user-select: none; font-family: 'Manrope'; font-weight: 800; font-size: 11px; color: ${T.blue}; background: ${T.blueSoft}; border-radius: 99px; padding: 4px 11px; cursor: pointer; }
+        .oc-agent-btn::-webkit-details-marker { display: none; }
+        .oc-agent-btn::after { content: ' ▸'; }
+        .oc-agent[open] > .oc-agent-btn::after { content: ' ▾'; }
+        .oc-agent-btn:hover { box-shadow: inset 0 0 0 1.5px ${T.blue}; }
+        .oc-agent[open] { margin-top: 0; }
+        @media (max-width: 760px) { .oc-agent-btn { position: static; display: inline-block; } .oc-agent { margin-top: 0; } .oc-agent[open] .oc-agent-msg { margin-top: 6px; } }
+        .oc-agent-msg.oc-agent-msg { background: ${T.blueSoft}; border-left: 4px solid ${T.blue}; border-radius: 10px; padding: 8px 12px; }
         .agent-msg { font-family: 'JetBrains Mono'; font-size: 12px; color: ${T.ink}; margin: 0; line-height: 1.55; }
         .prompt-box { background: ${T.blueSoft}; border-left: 4px solid ${T.blue}; border-radius: 10px; padding: 12px 15px; }
 
@@ -2705,9 +2727,10 @@ export default function NestArchResourceLesson({ lang: langProp, onFinished, liv
 
         /* SO'ROV YO'LI */
         .flow-rail { display: flex; flex-direction: column; gap: 2px; }
-        .flow-stop { display: flex; flex-direction: column; align-items: flex-start; transition: opacity 0.3s; }
+        .flow-stop { display: grid; grid-template-columns: 30px 1fr; align-items: center; column-gap: 10px; transition: opacity 0.3s; }
         .flow-stop > span { display: inline-flex; }
-        .flow-ico { width: 34px; height: 34px; border-radius: 9px; align-items: center; justify-content: center; font-size: 17px; box-shadow: 0 4px 12px -6px rgba(${T.shadowBase},0.2); transition: all 0.3s; }
+        .flow-stop > .flow-down { grid-column: 1; justify-content: center; }
+        .flow-ico { width: 30px; height: 30px; border-radius: 9px; align-items: center; justify-content: center; font-size: 15px; box-shadow: 0 4px 12px -6px rgba(${T.shadowBase},0.2); transition: all 0.3s; }
         .flow-k { font-family: 'JetBrains Mono'; font-weight: 700; font-size: 12px; margin: 3px 0 0 6px; }
         .flow-down { font-size: 15px; margin: 1px 0 1px 9px; line-height: 1; transition: color 0.3s; }
 
@@ -2759,14 +2782,14 @@ export default function NestArchResourceLesson({ lang: langProp, onFinished, liv
         .qcode { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 0.92em; background: rgba(20,17,14,0.08); border-radius: 6px; padding: 1px 6px; white-space: nowrap; }
 
         /* === 🪧 OCHILISH TAXTASI (strip) — 🎨 Dizayn sayqallaydi === */
-        .oc-board { background: ${T.paper}; border-radius: 14px; padding: 11px 13px; box-shadow: 0 6px 18px -8px rgba(${T.shadowBase},0.18); display: flex; flex-direction: column; gap: 8px; }
-        .oc-board-h { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+        .oc-board { background: ${T.paper}; border-radius: 14px; padding: 8px 13px; box-shadow: 0 6px 18px -8px rgba(${T.shadowBase},0.18); display: flex; flex-direction: column; gap: 8px; }
+        .oc-board-h { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
         .oc-board-t { font-family: 'Manrope'; font-weight: 800; font-size: 11px; letter-spacing: 0.08em; color: ${T.ink2}; text-transform: uppercase; }
         .oc-board-n { font-family: 'JetBrains Mono'; font-weight: 700; font-size: 12px; color: ${T.ink3}; background: ${T.bg}; border-radius: 99px; padding: 2px 9px; }
         .oc-board-n.full { color: ${T.success}; background: ${T.successSoft}; }
         .oc-strip { display: flex; align-items: stretch; gap: 7px; flex-wrap: wrap; }
         .oc-sep { display: flex; align-items: center; color: ${T.ink3}; font-weight: 700; }
-        .oc-slot { flex: 1; min-width: 96px; display: flex; align-items: center; gap: 6px; border: 1.5px dashed ${T.ink3}; border-radius: 10px; padding: 7px 9px; background: ${T.bg}; transition: all 0.25s; }
+        .oc-slot { flex: 1; min-width: 96px; display: flex; align-items: center; gap: 6px; border: 1.5px dashed ${T.ink3}; border-radius: 10px; padding: 5px 9px; background: ${T.bg}; transition: all 0.25s; }
         .oc-slot.on { background: ${T.paper}; border: 1.5px solid transparent; border-left: 4px solid ${T.success}; box-shadow: 0 5px 14px -7px rgba(${T.shadowBase},0.2); }
         .oc-slot.plate { min-width: 118px; }
         .oc-slot.plate.on { border-left-color: ${T.nest}; }
@@ -2995,8 +3018,8 @@ export default function NestArchResourceLesson({ lang: langProp, onFinished, liv
         .lp-task { background: ${T.paper}; border-radius: 14px; padding: 15px 17px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.14); display: flex; flex-direction: column; gap: 9px; border-left: 4px solid ${T.accent}; }
         .lp-task-h { display: flex; align-items: center; gap: 8px; }
         .lp-task-badge { font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: 10.5px; letter-spacing: 0.12em; color: #fff; background: ${T.accent}; padding: 3px 9px; border-radius: 6px; }
-        .lp-steps { display: flex; flex-direction: column; gap: 8px; }
-        .lp-step { display: flex; align-items: center; gap: 11px; width: 100%; text-align: left; background: ${T.paper}; border: none; border-radius: 11px; padding: 11px 13px; font-family: 'Manrope', sans-serif; font-weight: 500; font-size: clamp(13px,1.6vw,15px); color: ${T.ink}; cursor: pointer; transition: all 0.16s; box-shadow: 0 5px 14px -7px rgba(${T.shadowBase},0.16); }
+        .lp-steps { display: flex; flex-direction: column; gap: 6px; }
+        .lp-step { display: flex; align-items: center; gap: 11px; width: 100%; text-align: left; background: ${T.paper}; border: none; border-radius: 11px; padding: 8px 13px; font-family: 'Manrope', sans-serif; font-weight: 500; font-size: clamp(13px,1.6vw,15px); color: ${T.ink}; cursor: pointer; transition: all 0.16s; box-shadow: 0 5px 14px -7px rgba(${T.shadowBase},0.16); }
         .lp-step:hover:not(.on) { box-shadow: 0 8px 18px -7px rgba(${T.shadowBase},0.24); }
         .lp-step.on { background: ${T.successSoft}; color: ${T.success}; box-shadow: inset 0 0 0 1.5px ${T.success}55; }
         .lp-check { width: 22px; height: 22px; border-radius: 50%; flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 12px; background: ${T.bg}; color: ${T.ink3}; box-shadow: inset 0 0 0 1.5px ${T.ink3}55; transition: all 0.16s; }

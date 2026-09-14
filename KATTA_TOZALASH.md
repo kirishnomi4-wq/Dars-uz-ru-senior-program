@@ -1323,6 +1323,14 @@ Yopilgandan keyin `lint:til` da bu qoida 🔴 ga ko'tariladi (aks holda qaytadi)
 > 92 dars:** kritik (>80px) 130 · o'rta 184 · kichik (≤10) 21. 28 namuna: cut↔scrollHeight
 > ziddiyat 0/28, 12 tasi skrinshotda ko'z bilan tasdiqlandi (yolg'on topilmadi). To'liq jadval va
 > naqshlar — hisobot-sahifada; yozuv `PIPELINE_STATE.md` (2026-09-13 → 14 §34).
+>
+> **PILOT — m4a-03 YOPILDI (2026-09-14, commit YO'Q).** Eng og'ir dars: 44 holat → **0** (uz/ru ×
+> self/mentor × 1280/1366, `realFound=false` hammasida). Foydalanuvchi qarori: **Mentor kompyuterda ham
+> birinchi bosishda yig'iladi** (`collapseOn = !mentorStatic` — 108 faylda bir xil qator, kursga ko'chirish
+> shu yerdan). Asbobga 2 kalibrovka (yig'ilgan Mentor = panel · ko'rinmas matn D-dan chiqadi), selftest tirik.
+> ⚠ Ko'r nuqta: bajarilgan ekranga «Orqaga» bilan qaytilgan holat o'lchanmaydi (ru s13 268px).
+> Keyingi: Mentor-yig'ishni kursga yoyish → qolgan 91 dars qayta o'lchov → naqshma-naqsh.
+> Tafsilot: `PIPELINE_STATE.md` «2026-09-14 — §34 PILOT».
 
 **Topilishi (2026-09-13):** foydalanuvchi «GitHub darsida qirqilgan joy bor, debugging sahifasini
 tekshir» dedi. 109 darslik layout-audit bu darslarni «toza» degan edi. Qo'lda skrinshot bilan

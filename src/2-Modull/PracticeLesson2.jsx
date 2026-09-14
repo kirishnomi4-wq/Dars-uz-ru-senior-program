@@ -183,7 +183,7 @@ const Stage = ({ children, eyebrow, screen, totalScreens = TOTAL_SCREENS, navCon
   const isMobile = useIsMobile();
   const isNarrow = useIsMobile(768);
   // mentorCollapsible: desktopda ham mentor yig'ilsin (pastki qism bosilganda/skroll qilinganda)
-  const collapseOn = (isNarrow || mentorCollapsible) && !mentorStatic;
+  const collapseOn = !mentorStatic; // §34 (2026-09-14): endi hamma ekranda (ilgari faqat mentorCollapsible)
   const padH = isMobile ? 12 : 60; // InternetLesson layout standarti: 1100px + 60px
   const [mCollapsed, setMCollapsed] = useState(false);
   const contentRef = useRef(null);
