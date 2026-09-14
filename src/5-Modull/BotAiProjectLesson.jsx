@@ -1009,9 +1009,9 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {!started && <p className="small" style={{ color: T.ink3, fontStyle: 'italic', margin: 0 }}>{tr({ uz: '"▶ Boshlash" tugmasini bosing ←', ru: 'Нажмите кнопку «▶ Начать» ←' })}</p>}
           </Col>
           <Col>
-            {!bugSeen && started && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>⚠️ "Boshlash" ishladi, lekin <b>A/B/C tugmalarini bosing</b> — nima bo'ladi?</>, ru: <>⚠️ «Начать» сработала, но <b>нажмите кнопки A/B/C</b> — что произойдёт?</> })}</p></div>}
+            {!bugSeen && started && <div className="frame-warn fade-step"><p className="body zb-notch" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>⚠️ "Boshlash" ishladi, lekin <b>A/B/C tugmalarini bosing</b> — nima bo'ladi?</>, ru: <>⚠️ «Начать» сработала, но <b>нажмите кнопки A/B/C</b> — что произойдёт?</> })}</p></div>}
             {bugSeen && diag !== 'ok' && <>
-              <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>🐞 Tugmani bosdingiz — bot <b>javob bermadi</b>! Sababi nima deb o'ylaysiz?</>, ru: <>🐞 Вы нажали кнопку — бот <b>не ответил</b>! Как думаете, в чём причина?</> })}</p></div>
+              <div className="frame-warn fade-step"><p className="body zb-notch" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>🐞 Tugmani bosdingiz — bot <b>javob bermadi</b>! Sababi nima deb o'ylaysiz?</>, ru: <>🐞 Вы нажали кнопку — бот <b>не ответил</b>! Как думаете, в чём причина?</> })}</p></div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 7 }}>
                 {DIAG.map(d => <button key={d.id} className={`pick-row ${diag === d.id && !d.correct ? 'sel' : ''}`} onClick={() => pickDiag(d.id)}><span style={{ flex: 1 }}>{tr(d.label)}</span></button>)}
               </div>
@@ -2281,6 +2281,10 @@ export default function BotAiProjectLesson({ lang: langProp, onFinished, liveTok
         .mentor { display: flex; gap: 12px; align-items: flex-start; }
         .zoomable { position: relative; }
         .zoom-btn { position: absolute; top: 6px; right: 6px; z-index: 5; width: 30px; height: 30px; border-radius: 8px; border: none; background: rgba(255,255,255,0.82); color: ${T.ink2}; font-size: 14px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.22); transition: all 0.2s; }
+        /* F-0912-09 · 147-qonun (a): matn zoom tugmasi burchagini AYLANIB o'tadi —
+           faqat tugma yonidagi qator qisqaradi. Notch qutining HAMMA holat-matniga
+           qo'yiladi: qaysi holat ekranda turgani tilga bog'liq (ruscha jumla uzunroq). */
+        .zb-notch::before { content: ''; float: right; width: 28px; height: 28px; }
         .zoom-btn:hover { background: ${T.paper}; color: ${T.accent}; transform: scale(1.08); }
         .zoom-backdrop { position: fixed; inset: 0; background: rgba(14,14,16,0.55); z-index: 1000; animation: fade-step 0.25s ease; }
         .zoom-on { position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%); width: min(880px,94vw); max-height: 90vh; overflow: auto; z-index: 1001; background: ${T.paper}; border-radius: 18px; padding: clamp(20px,4vw,42px); box-shadow: 0 30px 80px -20px rgba(${T.shadowBase},0.5); animation: zoom-pop 0.3s cubic-bezier(.34,1.3,.4,1); }

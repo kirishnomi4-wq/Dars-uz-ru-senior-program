@@ -125,7 +125,24 @@ export function useLiveSession(lessonId, answerKey, opts = {}) {
       liveStore(lessonId, { mode: 'mentor', pin: row.pin, token: row.token });
       // Javob kalitini serverga avto-yuklash (mentor-kod bilan) — bu dars uchun endi kalit SQL SHART EMAS
       if (keyRef.current) liveRpc('set_quiz_keys', { p_lesson_id: lessonId, p_mentor_code: (mentorCode || '').trim(), p_keys: keyRef.current }).catch(() => {});
-    } catch { setJoinError(tr({ uz: "Mentor kodi noto'g'ri yoki ulanishda xato.", ru: 'Неверный код ментора или ошибка подключения.' })); }
+    } catch (e) {
+      // 🔴 F-0912-07: UCH SABAB — UCH XABAR. Ilgari hammasi bitta qatorga yig'ilgandi
+      // («kod noto'g'ri YOKI ulanishda xato»), va server yetib bo'lmaganda mentor kodni
+      // qidirib vaqt yo'qotardi. O'quvchi yo'li (joinStudent) allaqachon shunday ajratadi.
+      // Status YO'Q = fetch otildi (tarmoq uzuq, CORS, server o'chiq) — bunda mentorga
+      // zaxira-yo'l aytiladi: jonli rejimsiz ham dars o'tish mumkin (3-daraja).
+      const st = e && e.status;
+      setJoinError(
+        (st === 401 || st === 403)
+          ? tr({ uz: "Mentor kodi noto'g'ri.", ru: 'Неверный код ментора.' })
+          : st
+            ? tr({ uz: `Server javob bermadi (xato ${st}). Birozdan keyin urinib ko'ring.`, ru: `Сервер не ответил (ошибка ${st}). Попробуйте чуть позже.` })
+            : tr({
+                uz: "Serverga ulanib bo'lmadi. Internetni tekshiring — yoki «← Orqaga» bosib, «Kodsiz, o'zim ko'raman» bilan darsni jonli rejimsiz o'tkazing.",
+                ru: 'Не удалось подключиться к серверу. Проверьте интернет — или нажмите «← Назад» и выберите «Без кода, смотрю сам», чтобы провести урок без живого режима.',
+              })
+      );
+    }
     finally { setBusy(false); }
   }, [lessonId]);
 

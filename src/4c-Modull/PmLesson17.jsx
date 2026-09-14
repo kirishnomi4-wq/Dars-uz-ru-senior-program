@@ -898,7 +898,7 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 return (
                   <span key={w.n} className="pyg-cell on fade-step">
                     <span className="pyg-w mono">{w.n}-hafta</span><span className="pyg-ic">{KATTA_YAKUN.ic}</span>
-                    <span className="pyg-nm">{KATTA_YAKUN.nom}</span><span className="pyg-odam mono">{KATTA_YAKUN.odam} kishi</span>
+                    <span className="pyg-nm">{tr(KATTA_YAKUN.nom)}</span><span className="pyg-odam mono">{KATTA_YAKUN.odam} kishi</span>
                   </span>
                 );
               })}
@@ -913,7 +913,7 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 return (
                   <span key={w.n} className="pyg-cell on fade-step">
                     <span className="pyg-w mono">{w.n}-hafta</span><span className="pyg-ic">{w.ic}</span>
-                    <span className="pyg-nm">{w.nom}</span><span className="pyg-odam mono">{w.odam} kishi</span>
+                    <span className="pyg-nm">{tr(w.nom)}</span><span className="pyg-odam mono">{w.odam} kishi</span>
                   </span>
                 );
               })}
@@ -946,7 +946,7 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                   <span className="pygd-bildi fade-step">🔎 {h === HAFTA_SONI ? tr({ uz: <>1-marta bilib oldi: {tr(KATTA_YAKUN.bildi)}</>, ru: <>Узнал в 1-й раз: {tr(KATTA_YAKUN.bildi)}</> }) : tr({ uz: "Hali hech narsa bilgani yo'q — 0 marta", ru: 'Пока ничего не узнал — 0 раз' })}</span>
                   <span className="pygd-row kichik fade-step">
                     <b>🧩 {tr(YOL_KICHIK)}</b>
-                    <i>{cur.ic} {cur.nom} — {cur.odam} kishi</i>
+                    <i>{cur.ic} {tr(cur.nom)} — {cur.odam} kishi</i>
                   </span>
                   <span className="pygd-bildi fade-step">🔎 {tr({ uz: <>{cur.n}-marta bilib oldi: {tr(cur.bildi)}</>, ru: <>Узнал в {cur.n}-й раз: {tr(cur.bildi)}</> })}</span>
                 </>

@@ -101,5 +101,5 @@ Har dars uchun:
 ## 5. Sinov va joriy etish
 
 - **Avval BITTA darsda to'liq sinash** (`CssLesson2` — etalon 13-tartibda navbatda), promptlarni sozlash, keyin qolgan 19 darsga.
-- Har dars yakunida **QO'LDA jonli sinov**: yangi PIN, 2 o'quvchi, podium/arena ballari 0 EMAS (mentor-kod **MENTOR-2026**). Buni subagent qila olmaydi — foydalanuvchi/asosiy agent qo'lda.
+- Har dars yakunida **QO'LDA jonli sinov**: yangi PIN, 2 o'quvchi, podium/arena ballari 0 EMAS. Mentor-kod 2026-09-07 da almashgan: joriy qiymat `server/.env.deploy.prod` / `.env.deploy.staging` da (lokal dev — `server/.env`); **kodning o'zi hujjatga yozilmaydi**. Buni subagent qila olmaydi — foydalanuvchi/asosiy agent qo'lda.
 - Ko'chirish tartibi va har dars retsepti: `DARS_ETALON.md` 13-bo'lim.

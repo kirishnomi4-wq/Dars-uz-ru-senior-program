@@ -2145,7 +2145,12 @@ export default function MobileAppPracticeLesson({ lang: langProp, onFinished, li
 
         /* === PHONE (mobil ilova) === */
         .phone { width: 196px; max-width: 100%; background: #11161F; border-radius: 30px; padding: 9px; box-shadow: 0 22px 46px -14px rgba(${T.shadowBase},0.42), inset 0 0 0 2px #2a3344; position: relative; flex-shrink: 0; }
-        .phone-notch { position: absolute; top: 9px; left: 50%; transform: translateX(-50%); width: 62px; height: 15px; background: #11161F; border-radius: 0 0 12px 12px; z-index: 3; }
+                /* F-0912-14 · 147-qonun (a-2): tishcha EKRAN ustiga tushmaydi — ramka ichida turadi.
+           Avval 62x15 edi va y 9..24 ni egallardi; ekran esa y 9 dan boshlanadi, ya'ni
+           brauzer manzili «mini-dokon.uz» ning 32% i tishcha ostida qolardi (m6-11 s0,
+           o'lchandi). Yangi o'lcham repodagi boshqa sakkiz darsnikiga teng: 52x5 tasma,
+           ramkaning 9px chekinishiga to'liq sig'adi. */
+        .phone-notch { position: absolute; top: 2px; left: 50%; transform: translateX(-50%); width: 52px; height: 5px; background: #3a4660; border-radius: 99px; z-index: 3; }
         .phone-screen { background: ${T.bg}; border-radius: 23px; height: 348px; overflow: hidden; display: flex; flex-direction: column; position: relative; }
         @keyframes phone-wake { 0% { opacity: .2; transform: scale(.95); } 100% { opacity: 1; transform: scale(1); } }
         .phone-wake { animation: phone-wake .6s cubic-bezier(.2,.7,.2,1); }
@@ -2192,7 +2197,7 @@ export default function MobileAppPracticeLesson({ lang: langProp, onFinished, li
         @keyframes qr-pulse { 0%,100% { box-shadow: 0 8px 20px -8px rgba(${T.shadowBase},0.3); } 50% { box-shadow: 0 0 0 4px ${T.blue}44, 0 8px 20px -8px rgba(${T.shadowBase},0.3); } }
 
         /* === PLINK (s6) === */
-        .plink { display: flex; align-items: center; gap: 10px; width: 100%; border: none; border-radius: 11px; padding: 11px 13px; background: ${T.paper}; cursor: pointer; transition: all 0.16s; box-shadow: 0 5px 14px -8px rgba(${T.shadowBase},0.16); }
+        .plink { display: flex; align-items: center; gap: 10px; width: 100%; border: none; border-radius: 11px; padding: 11px 40px 11px 13px; background: ${T.paper}; cursor: pointer; transition: all 0.16s; box-shadow: 0 5px 14px -8px rgba(${T.shadowBase},0.16); }
         .plink:hover { transform: translateY(-1px); }
         .plink-on { background: ${T.grapeSoft}; box-shadow: inset 0 0 0 1.5px ${T.grape}; }
         .plink-box { width: 22px; height: 22px; min-width: 22px; border-radius: 7px; display: inline-flex; align-items: center; justify-content: center; background: ${T.grape}; color: #fff; }

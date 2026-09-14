@@ -1535,7 +1535,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             )}
           </div>
           <div className="col" style={{ gap: 8 }}>
-            <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between' }}>
+            <div className="zb-gap" style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between' }}>
               <div className="flow-label">{tr({ uz: 'HTML kodi', ru: 'HTML-код' })}</div>
               <span className="small mono" style={{ color: explored ? T.success : T.ink3 }}>{clicked.size} / 4 {tr({ uz: "ko'rildi", ru: 'просмотрено' })}</span>
             </div>
@@ -3051,21 +3051,32 @@ export default function HtmlLesson({ lang: langProp, onFinished, onPractice, liv
       if (live && live.mode === 'student') live.submitAnswer(PRACTICE_DONE_BASE + fromScreen, `practice-${fromScreen}`, 0, true, 0);
       pracClear(LESSON_META.lessonId); setPractice(null); advance();
     };
-    if (typeof onPractice === 'function') {
-      Promise.resolve(onPractice(entry.task)).then(done); // production: LMS compilatori
-    } else {
+    // F-0912-04 (2026-09-12): LMS praktika-yo'li yiqilsa — o'quvchi qotib qolmasin.
+    // Ilgari `.then(done)` da rad-etish TUTILMASDI: LMS tomoni yiqilsa (tarmoq uzilishi,
+    // chunk yuklanmasligi, postMessage xatosi) praktika ochilmas, xato jim yutilar va dars
+    // ham oldinga ketmasdi — 20 o'quvchidan 1 tasida aynan shu. Endi xato tutiladi va
+    // darsning O'Z kompilyatoriga tushiladi: mashq baribir bajariladi, signal ham ketadi.
+    const openLocal = () => {
       pracWrite(LESSON_META.lessonId, { kind: `s${fromScreen}`, screen: fromScreen });
       setPractice({ ...entry, done, codeKey: codeKeyOf(LESSON_META.lessonId, `s${fromScreen}`) }); // lokal: overlay compilatori
-    }
+    };
+    if (typeof onPractice !== 'function') { openLocal(); return; }
+    try { Promise.resolve(onPractice(entry.task)).then(done, openLocal); }
+    catch { openLocal(); }
   };
   // 🏠 UYGA VAZIFA PRAKTIKASI (yakun-sahifadagi tugma) — TASK_HW: o'zi haqida sahifa.
   // Dars-ichi praktikasidan farqi: keyingi ekranga o'tkazmaydi (bu oxirgi sahifa) va
   // serverga «bajardim» signali yubormaydi — bu uy ishi, sinf ishi emas.
   const openHomeworkPractice = () => {
     const entry = { task: TASK_HW, starter: STARTER_HW };
-    if (typeof onPractice === 'function') { Promise.resolve(onPractice(entry.task)).catch(() => {}); return; }
-    pracWrite(LESSON_META.lessonId, { kind: 'hw' });
-    setPractice({ ...entry, codeKey: codeKeyOf(LESSON_META.lessonId, 'hw'), done: () => { pracClear(LESSON_META.lessonId); setPractice(null); } });
+    // F-0912-04: LMS yo'li yiqilsa — uyga vazifa ham darsning o'z kompilyatorida ochiladi.
+    const openLocal = () => {
+      pracWrite(LESSON_META.lessonId, { kind: 'hw' });
+      setPractice({ ...entry, codeKey: codeKeyOf(LESSON_META.lessonId, 'hw'), done: () => { pracClear(LESSON_META.lessonId); setPractice(null); } });
+    };
+    if (typeof onPractice !== 'function') { openLocal(); return; }
+    try { Promise.resolve(onPractice(entry.task)).catch(openLocal); }
+    catch { openLocal(); }
   };
   // F-0801-01: qayta yuklanishda ochiq praktika tiklanadi (yuqoridagi ikki yo'lning qaysi biri
   // ochilgan bo'lsa — o'sha qayta quriladi; `done` shu yerda yangidan bog'lanadi).
@@ -3125,7 +3136,7 @@ export default function HtmlLesson({ lang: langProp, onFinished, onPractice, liv
   const isStudentLive = live.mode === 'student' && live.status !== 'ended' && live.mentorAlive;
   const locked = isStudentLive && (screen + 1 > live.mentorScreen);
   useEffect(() => { live.reportScreen(screen); }, [screen, live.mode, live.pin]); // eslint-disable-line
-  // 👋 Onboarding — rejim tanlangач bir marta (rolga qarab, localStorage'da eslab qolinadi)
+  // 👋 Onboarding — rejim tanlangach bir marta (rolga qarab, localStorage'da eslab qolinadi)
   const [onboard, setOnboard] = useState(false);
   const onboardShownRef = useRef(false);
   const onboardRole = live.mode === 'mentor' ? 'mentor' : 'learner';
@@ -3194,6 +3205,10 @@ export default function HtmlLesson({ lang: langProp, onFinished, onPractice, liv
         /* Kattalashtirish (zoom) — animatsiyani katta ekranda ko'rish */
         .zoomable { position: relative; }
         .zoom-btn { position: absolute; top: 6px; right: 6px; z-index: 5; width: 30px; height: 30px; border-radius: 8px; border: none; background: rgba(255,255,255,0.82); color: ${T.ink2}; font-size: 14px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.22); transition: all 0.2s; }
+        /* F-0912-03 · 147-qonun: ⛶ tugmasi turgan burchakda JOY. Tugma o'ng yuqorida
+           (6px chekinish + 30px) — shu burchakka tushadigan qator zb-gap oladi, aks holda
+           tugma yozuvni yopadi (m1-03 da «0 / 4 ko'rildi» ning 31% i ko'rinmasdi). */
+        .zb-gap { padding-right: 40px; }
         .zoom-btn:hover { background: ${T.paper}; color: ${T.accent}; transform: scale(1.08); }
         .zoom-backdrop { position: fixed; inset: 0; background: rgba(14,14,16,0.55); z-index: 1000; animation: fade-step 0.25s ease; }
         .zoom-on { position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%); width: min(880px,94vw); max-height: calc(90vh / var(--lz, 1)); overflow: auto; z-index: 1001; background: ${T.paper}; border-radius: 18px; padding: clamp(20px,4vw,42px); box-shadow: 0 30px 80px -20px rgba(${T.shadowBase},0.5); animation: zoom-pop 0.3s cubic-bezier(.34,1.3,.4,1); }

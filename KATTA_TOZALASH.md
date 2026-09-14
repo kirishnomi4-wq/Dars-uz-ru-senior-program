@@ -1193,3 +1193,158 @@ olinadi) → satr o'chirildi. Keyin `esbuild-gate src/main.jsx` boshqa sababdan 
 CSS import qiladigan kirish-nuqta esa `/dev/null.css` ga yozmoqchi bo'lib «permission denied» beradi (YOLG'ON QIZIL, 18-band sinfi).
 Tuzatildi: `esbuild-gate.mjs` endi tmp-papkaga yozadi va oxirida o'chiradi → **butun `src/**` 156/156 toza**. Cutover quruq mashqi
 qayta o'tdi: 90/90 yig'ildi, smoke 68 yakka + 22 shared, har yig'mada `arenaBank` 1 · `LMS_SOLO_RECHECK_MS` ≥ 1 · `ccDetails` 1 · supabase 0.
+
+## 31 ⬜ RU'DA O'ZBEKCHA QO'SHIMCHA — «{n}-hafta» (≈58 nomzod, 15+ fayl)
+
+**Topilishi (F-0912-12, 2026-09-13):** 4-modul layout auditida `PmLesson17` s?
+`<span className="pyg-w mono">{w.n}-hafta</span>` — qo'shimcha `tr()` dan **tashqarida**.
+Ruscha rejimda o'quvchi «3-hafta» deb o'zbekcha ko'radi.
+
+**O'lchov (grep, `eski` papkalarsiz):**
+- `}-hafta|kun|karta|kishi|soat|daqiqa|marta|qadam|bosqich` — jami **149** hit
+- shundan `tr({` yozuvi bo'lmagan qatorda — **58** (nomzod; qolgani `tr()` ning uz-tarmog'ida,
+  ya'ni to'g'ri)
+- eng ko'p: `PmLesson21` (10) · `PmLesson17` (7) · `PmMetricsLesson` (5) · `PmJtbdLesson` (3) ·
+  `PmLesson19/20/22/23/24/25` (2 tadan)
+
+**Nega bu yerda:** 15+ faylga tegadi — dars ustida ishlaganda ko'tarilmaydi (CLAUDE.md).
+**Qanday yopiladi:** har nomzod qo'lda ko'riladi (qaysi biri chindan ham `tr()` dan tashqarida),
+so'ng `tr({ uz: `${n}-hafta`, ru: `${n}-я неделя` })` shakliga o'tkaziladi. Son-kelishik
+ruschada murakkab (1-я / 2-я / 5-я) — shuning uchun **avtomatik almashtirish RAD**, qo'lda.
+**Darvoza:** yopilgandan keyin shu grep 0 bermasa ham bo'ladi (uz-tarmoqlari qoladi) —
+tekshiruv `npm run lint:layout --lang ru` va ko'z bilan.
+
+## 32 ⬜ {uz,ru} OBYEKTI tr() SIZ CHIZILADI — DARSNI YIQITADI (2 ta tasdiqlangan, 95 nomzod)
+
+**Topilishi (F-0912-13, 2026-09-13):** 4a/4b/4c layout sivirmasida audit **sahifa-xatosini**
+qayd etdi: `Objects are not valid as a React child (found: object with keys {uz, ru})`.
+Bu — layout emas, **ishlashdagi buzilish**: React o'sha daraxtni chiza olmaydi.
+
+**Tasdiqlangan va TUZATILGAN (4 joy, 2 dars):**
+- `PmLesson16.jsx:1269,1270` — `{cur.kmsg}` · `{cur.omsg}` (ish stoli: noto'g'ri javobdan keyingi izoh)
+- `PmLesson16.jsx:1379,1409` — `<b>{k.ic} {k.t}</b>` (ikki tarmoqda: mentor-ochilishi va yakun)
+- `PmLesson17.jsx:901,916,949` — `{KATTA_YAKUN.nom}` · `{w.nom}` · `{cur.nom}` (poyga kataklari)
+
+**🔴 NEGA HECH KIM SEZMAGAN.** Xato faqat **aniq bosish ketma-ketligida** chiqadi (m4b-02:
+8-ekran → «Hammada» → «Ba'zilarda»). To'g'ridan-to'g'ri o'sha ekranga o'tilsa — chiqmaydi.
+Ya'ni qo'lda sinash bu sinfni tutmaydi; uni **audit interaktiv yurishi** tutdi.
+
+**Asbob:** `raw-tr-scan.mjs` (repoda) — fayl ichida `maydon: { uz: … }` deb e'lon qilingan
+nomlarni yig'adi, so'ng JSX-bola o'rnida `{X.maydon}` ni `tr()` siz qidiradi.
+Shablon-satr (`${…}` — CSS) va prop-o'rni (`q={x.q}`) tashlab yuboriladi.
+
+**Holat:** 95 nomzod. **Yolg'on ulushi yuqori** — ko'p faylda ma'lumot ta'rifining O'ZIDA
+`tr()` bor (`label: tr({ uz… })`), skaner esa buni bir xil nom bo'yicha ajrata olmaydi
+(masshtab tahlili kerak). Shuning uchun ro'yxat **qo'lda** ko'riladi: har nomzod uchun
+«bu maydon qaysi massivdan keladi va u yerda `tr()` bormi» savoli beriladi.
+
+**Ishonchli detektor — audit.** `npm run lint:layout` har yurishda sahifa-xatolarini
+ro'yxatlaydi (`⚠️ sahifa-xatolari`). 1–4-modullarda bu bo'lim **bo'sh** — ya'ni o'sha
+modullarda bu sinf yo'q (yurilgan yo'llar bo'yicha).
+
+## 33 ✅ ARALASH YOZUV DARS MATNIDA — o'zbekcha so'z ichida kirill harflar (YOPILDI 2026-09-13 · F-0913-01)
+
+> **YOPILISH (2026-09-13, F-0913-01):** 321 so'z almashtirildi — 7-modul 6 dars (MvpIterate 94 ·
+> PmLesson34 93 · MvpBuild2 75 · PmLesson33 30 · MvpBuild1 19 · PmLesson32 8) + 2 kod izohi
+> (Htmllesson1:3139, PmJtbdLesson:3865). Har o'zgargan qator ko'zdan o'tkazildi.
+> **Raqam aniqlashtirildi:** pastdagi «233 · 18 fayl» `kirill-lotin-matnda` qoidasining keng
+> sanog'i edi (qonuniy ruscha matn ham kirgan); so'z-darajasidagi aniq sanoq — **322**, shundan
+> 1 tasi qonuniy (`PmLesson6` regex'ida `вс` + lotin `e`). 7-moduldan tashqaridagi qolgan 133
+> «aralash» tokenning hammasi qonuniy (`\n` + ruscha so'z, `ru:` ichida) — tegilmadi.
+> **Darvoza:** rejadagi «🟡→🔴 ko'tarish» o'rniga **yangi tor qoida** `aralash-yozuv-soz` 🔴
+> qo'shildi (sabab va sinov: `MATN_KORPUS.md` §180). Darvozalar: 8 faylda esbuild ✓ jsx ✓ prompt ✓,
+> `dark`/`til` 🔴 soni tahrirdan oldingi bilan bir xil (faqat 🟡 ogohlantirishlar kamaydi).
+> **Aloqasiz, tegilmagan imlo:** `MvpBuild2:891` «Aziznang» · `PmLesson34:462` «qaerda».
+
+**Topilishi (F-0912-15, 2026-09-13):** 7-modul layout auditida topilma matni o'qilganda
+ko'rindi: «3/5 sinov**чи**da qoqildi». Tekshirilganda — bu yakka holat emas.
+
+**Dalillar (o'quvchi ekranda shunday ko'radi):**
+- `MvpIterateLesson:127` — «Metrik**ага** qara: yaxshilandimi?»
+- `MvpIterateLesson:147` — «5 sinovchidan 3 tasi bir xil joy**да** qoqildi»
+- `MvpIterateLesson:148` — «Metrika yoki pattern**га** bog'liq emas»
+
+**O'lchov (`npm run lint:til`, `kirill-lotin-matnda` qoidasi):**
+
+| Fayl | Soni | Fayl | Soni |
+|---|---|---|---|
+| `7-Modull/PmLesson34` | 59 | `7-Modull/PmLesson32` | 8 |
+| `7-Modull/MvpIterateLesson` | 54 | `1-Modull/PmLesson1` | 6 |
+| `7-Modull/MvpBuild2Lesson` | 46 | `pm/PmUserStoryLesson` | 4 |
+| `7-Modull/PmLesson33` | 20 | qolgan 11 fayl | 1–3 tadan |
+| `7-Modull/MvpBuild1Lesson` | 17 | **JAMI** | **233 · 18 fayl** |
+
+**204 tasi 7-modulda** — ya'ni bu modul yozilganda matn ruscha manbadan ko'chirilgan va
+harflar aralashib qolgan.
+
+**Nega darvoza to'xtatmagan:** `lint:til` buni 🟡 (ogohlantirish) darajasida beradi, chunki
+qoida `ru:` maydonlaridagi qonuniy kirill bilan farqni aniq ajrata olmaydi. Ya'ni darvoza
+**ko'rgan, lekin to'xtatmagan**.
+
+**Qanday yopiladi:** avtomatik almashtirish **ehtiyot bilan** — bu homoglif emas,
+transliteratsiya (`ч→ch`, `ш→sh`, `ў→o'`, `қ→q`, `ғ→g'`, `ҳ→h`, `и→i`, `н→n`, `а→a`, `с→s`).
+`ru:` maydonlariga TEGILMAYDI — ular chin kirill. Har o'zgargan qator qo'lda ko'riladi.
+Yopilgandan keyin `lint:til` da bu qoida 🔴 ga ko'tariladi (aks holda qaytadi).
+
+## 34 🔄 JAVOBDAN KEYINGI HOLAT PASTKI CHIZIQDAN TUSHADI — butun kurs sivirmasi (F-0913-02)
+
+> **JARAYONDA (2026-09-13, foydalanuvchi: «§34 ni boshla, butun kursni tekshir»).**
+> Asbob tayyor va kalibrlangan (`DARS_ETALON.md` 147 (e) «Asbob yopildi»). Sivirma: 109 dars ×
+> **eng og'ir kombinatsiya** — `self` × `1366x768` × uz/ru (GitHub o'lchovida 1366 har holatda 1280 dan
+> ~5px, self mentordan 10–40px ko'p toshgan). Topilgan har ekran keyin 8 kombinatsiyada tekshiriladi.
+> Tuzatish — hisobot va foydalanuvchi tasdig'idan keyin.
+>
+> **1-urinish YAROQSIZ deb topildi (2026-09-13 22:24).** uz sivirmasi «288 ekran · 84 dars» dedi;
+> namuna skrinshot bilan tekshirilganda ikki asbob-nuqsoni chiqdi: (1) bo'sh `min-height` li `div`
+> chiziqni belgilagan (m1-05 s7 — yolg'on); (2) m2-05 da ekran-hisoblagich o'rniga «0 / 30»
+> olingani uchun `progRead` yozuvni rad etgan — 19 ekran o'rniga 1-ekran 19 marta o'lchangan.
+> Kalibrovka-7 + navigatsiya tasdig'i qo'shildi (`DARS_ETALON.md` 147 (e)). Isbot: m2-05 — 19 turli
+> ekran, `NAV` 0 · m1-05 s7 yolg'oni yo'qoldi · m1-02 s11 haqiqiy qoldi · GitHub ikki darsi toza ·
+> selftest tirik. Ruscha 1-urinish xotira tanqisligidan o'ldi. **2-urinish (uz+ru) boshlandi;**
+> asbob endi har guruhdan keyin natijani diskka yozadi.
+>
+> **Uzilish sababi aniqlandi (22:55):** `systemd-oomd` foydalanuvchi sessiyasini kuzatadi — xotira
+> bosimi **20 s davomida 50%** dan oshsa eng katta cgroup'ni o'ldiradi (Claude fon ishlari + vite
+> birga ketadi). Bo'sh xotira 4 GB bo'lsa ham bo'ladi — mezon bosim, hajm emas. Tizim sozlamasiga
+> tegilmadi. Yechim: `--par 1` + **`--resume`** (natija faylidagi dars × rejim × ekran o'tkazib
+> yuboriladi) — o'ldirilsa, xuddi shu buyruq qolgan joyidan davom etadi. 2-urinish 6 darsda
+> o'ldirildi; shu joydan `--resume` bilan davom ettirildi.
+>
+> **uz 2-urinish TUGADI (2026-09-14 01:46) — oraliq, skrinshot-tasdig'isiz raqamlar:** 109 dars ·
+> 2078 ekran · 9092 bosish. **Haqiqiy E: 269 ekran · 84 dars** (≤10px 19 · 11–30 68 · 31–80 74 ·
+> 81–200 83 · >200 25; boshlang'ich holatda 126, bosishdan keyin 143). Eng katta sinflar: izoh
+> qutilari `frame-success/soft/frame` 117 · amaliyot «Bajardim» `lp-done-btn` 25 (10 tasi 7–8px
+> chegarada) · `dd-pool` 13 · `bp-window` 13. Panel 2 · yakun-skroll 100 dars. A–D: 1 (m2-05 s15 cover).
+> ⚠ m1-05 (12/17 ekran) va m1-14 (14/18) — 22:54 dagi o'ldirishda chala qolgan, qayta o'lchanadi.
+> ru 2-urinish 01:46 da boshlandi. Namuna-tasdiq ru tugagach (brauzerli ishlar parallel emas).
+>
+> **O'LCHOV YOPILDI (2026-09-14 ~05:10) — tuzatish tasdiq kutadi.** uz 270 ekran · 84 dars · ru 327
+> ekran · 92 dars (chala yurish 0, NAV 0; m1-05/m1-14 qayta o'lchandi). **Birlashma 335 ekran ·
+> 92 dars:** kritik (>80px) 130 · o'rta 184 · kichik (≤10) 21. 28 namuna: cut↔scrollHeight
+> ziddiyat 0/28, 12 tasi skrinshotda ko'z bilan tasdiqlandi (yolg'on topilmadi). To'liq jadval va
+> naqshlar — hisobot-sahifada; yozuv `PIPELINE_STATE.md` (2026-09-13 → 14 §34).
+
+**Topilishi (2026-09-13):** foydalanuvchi «GitHub darsida qirqilgan joy bor, debugging sahifasini
+tekshir» dedi. 109 darslik layout-audit bu darslarni «toza» degan edi. Qo'lda skrinshot bilan
+ko'rilganda uchta ekran chiqdi: m4c-03 s18 (xato javobda izoh 7–29 px) · m4c-03 s17 (yuborish
+tugmasi 140–158 px pastda) · m1-09 s13 (5-qadam + zaxira-panel 56–94 px). Uchalasi tuzatildi.
+
+**Nega audit ko'rmadi** (`DARS_ETALON.md` 147-qonun (e)):
+1. `layout-lint.mjs` o'lchovdan oldin skrollni 0 ga qaytaradi va `.stage-content` toshishini
+   o'lchamaydi — matn o'z qutisidan chiqmasa, ekran pastidan tushishi «toza».
+2. Har ekranda **birinchi** bosiladigan element bosiladi; test ekranida bu ko'pincha to'g'ri
+   javob — **xato javob holati** (izoh + «📖 Qisqa takrorlash») hech bir darsda o'lchanmagan.
+
+**Nima qilinadi (buyruq bilan):**
+- `layout-lint.mjs` ga E-detektor: ustunlar pastki cheti − `.stage-content` pastki cheti
+  (ota-qirqish va yopiq `<details>` hisobga olinadi; yakun/summary ekranlari ataylab skroll —
+  alohida bo'limda) + test ekranida **har variant** bosilib o'lchanadi.
+- `--selftest` ga pastga toshiruvchi holat qo'shiladi.
+- 109 dars uz/ru × self/mentor × 1280/1366 qayta yuritiladi; topilma sinfma-sinf tuzatiladi.
+
+**Hajm taxmini:** GitHub ikki darsida 44 ekrandan 3 tasi haqiqiy (yakun ekranlaridan tashqari).
+Shu nisbatda kursda ~15–25 ekran kutiladi — o'lchanmaguncha raqam aytilmaydi.
+
+**Tayyor skretch-asboblar (seans skretchida, repoga olinmagan):** `overflow-sweep.mjs` (skroll
+nomzodlari) · `precise.mjs`/`inspect.mjs` (ota-qirqishli aniq o'lchov) · `prog.mjs` (DoSteps
+qadam-holatlari) · `fbinner.mjs` (izoh qutisi ichki qirqilishi — GitHub darslarida 0).

@@ -1266,8 +1266,8 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 {uzun && !nusxa && bosh && <p className="sfb ask">{tr({ uz: "🤔 Bu hali karta emas. Odam nimani bosdi? Keyin nima bo'lmadi? Shuni yozing.", ru: '🤔 Это ещё не карточка. Что человек нажал? Что после этого не произошло? Вот это и напишите.' })}</p>}
                 {uzun && !nusxa && !bosh && !faktBor && <p className="sfb ask">{tr({ uz: "🤔 Bitta harakat va bitta natija bo'lsin: nima bosildi — nima bo'ldi.", ru: '🤔 Пусть будет одно действие и один результат: что нажали — что произошло.' })}</p>}
                 {uzun && !nusxa && faktBor && !zid && <p className="sfb ok">{tr({ uz: "✅ Kartada fakt bor — dasturchi xuddi shu xatoni o'zida ko'ra oladi.", ru: '✅ В карточке есть факт — программист сможет повторить эту же ошибку у себя.' })}</p>}
-                {zidK && <p className="sfb ask">🤔 {cur.kmsg}</p>}
-                {!zidK && zidO && <p className="sfb ask">🤔 {cur.omsg}</p>}
+                {zidK && <p className="sfb ask">🤔 {tr(cur.kmsg)}</p>}
+                {!zidK && zidO && <p className="sfb ask">🤔 {tr(cur.omsg)}</p>}
                 {!uzun && draft.trim().length > 0 && <p className="sfb ask">{tr({ uz: "🤔 Qisqa qoldi: nima bosilganini ham, nima bo'lganini ham yozing.", ru: '🤔 Слишком коротко: напишите и что нажали, и что произошло.' })}</p>}
                 <div className="wsp-saverow">
                   <button type="button" className="wsp-save" disabled={!canSave} onClick={save}>{edit === null ? tr({ uz: '✓ Saqlash', ru: '✓ Сохранить' }) : tr({ uz: '✓ Yangilash', ru: '✓ Обновить' })}</button>
@@ -1376,7 +1376,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 <span className="nq-lbl">{tr({ uz: "Jamoadan kelgan to'rt karta", ru: 'Четыре карточки от команды' })}</span>
                 {NAV_KARTA.map(k => (
                   <span key={k.id} className="nq-pair">
-                    <b>{k.ic} {k.t}</b>
+                    <b>{k.ic} {tr(k.t)}</b>
                     <span className="nq-slot">{mReveal ? `${JAVONLAR.find(j => j.k === k.javon).ic} ${tr(JAVONLAR.find(j => j.k === k.javon).nom)} — ${tr(k.sabab)}` : tr({ uz: "🙈 «Natijani ochish»da ko'rinadi", ru: '🙈 Появится после «Показать результат»' })}</span>
                   </span>
                 ))}
@@ -1406,7 +1406,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 <span className="nq-lbl">{tr({ uz: "To'rt karta — uch javon", ru: 'Четыре карточки — три полки' })}</span>
                 {NAV_KARTA.map(k => (
                   <span key={k.id} className="nq-pair ok">
-                    <b>{k.ic} {k.t}</b>
+                    <b>{k.ic} {tr(k.t)}</b>
                     <span className="nq-slot">{JAVONLAR.find(j => j.k === k.javon).ic} {tr(JAVONLAR.find(j => j.k === k.javon).nom)} — {tr(k.sabab)}</span>
                   </span>
                 ))}

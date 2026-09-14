@@ -803,7 +803,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           {SAMPLES.map(s => {
             const a = ans[s.id];
             return (
-              <div key={s.id} className="frame" style={{ padding: '12px 14px', boxShadow: a === undefined ? undefined : `inset 0 0 0 1.5px ${a === s.good ? T.success : T.accent}` }}>
+              <div key={s.id} className="frame" style={{ padding: '12px 40px 12px 14px', boxShadow: a === undefined ? undefined : `inset 0 0 0 1.5px ${a === s.good ? T.success : T.accent}` }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
                   <span className="body" style={{ flex: 1, minWidth: 180, color: T.ink }}>"{tr(s.text)}"</span>
                   {a === undefined

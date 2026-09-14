@@ -1038,9 +1038,9 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </Col>
           <Col>
             {show
-              ? <div className="sk-info fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <><span className="mono">path</span> — qaysi papka saqlanadi (<span className="mono">node_modules</span>). <span className="mono">key</span> — paketlar ro'yxati o'zgarmagan bo'lsa, oldingi keshdan foydalaniladi.</>, ru: <><span className="mono">path</span> — какая папка сохраняется (<span className="mono">node_modules</span>). <span className="mono">key</span> — если список пакетов не менялся, используется прежний кеш.</> })}</p></div>
-              : <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Tugmani bosing ←', ru: 'Нажмите кнопку ←' })}</p></div>}
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <><span className="mono">package-lock.json</span> o'zgarsa — kalit ham o'zgaradi, kesh yangilanadi. O'zgarmasa — eski keshdan foydalaniladi.</>, ru: <>Если <span className="mono">package-lock.json</span> изменится — изменится и ключ, кеш обновится. Не изменится — берётся старый кеш.</> })}</p></div>}
+              ? <div className="sk-info fade-step"><p className="body zb-notch" style={{ margin: 0, color: T.ink }}>{tr({ uz: <><span className="mono">path</span> — qaysi papka saqlanadi (<span className="mono">node_modules</span>). <span className="mono">key</span> — paketlar ro'yxati o'zgarmagan bo'lsa, oldingi keshdan foydalaniladi.</>, ru: <><span className="mono">path</span> — какая папка сохраняется (<span className="mono">node_modules</span>). <span className="mono">key</span> — если список пакетов не менялся, используется прежний кеш.</> })}</p></div>
+              : <div className="frame-dash"><p className="small zb-notch" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Tugmani bosing ←', ru: 'Нажмите кнопку ←' })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body zb-notch" style={{ margin: 0, color: T.ink }}>{tr({ uz: <><span className="mono">package-lock.json</span> o'zgarsa — kalit ham o'zgaradi, kesh yangilanadi. O'zgarmasa — eski keshdan foydalaniladi.</>, ru: <>Если <span className="mono">package-lock.json</span> изменится — изменится и ключ, кеш обновится. Не изменится — берётся старый кеш.</> })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -1097,9 +1097,9 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {openSeen && !secured && <button className="btn" style={{ alignSelf: 'flex-start' }} onClick={secure}>{tr({ uz: '🔐 Seyfga joylash', ru: '🔐 Положить в сейф' })}</button>}
           </Col>
           <Col>
-            {!openSeen && <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Tugmani bosing ←', ru: 'Нажмите кнопку ←' })}</p></div>}
-            {openSeen && !secured && <div className="frame-warn fade-step"><p className="note-h" style={{ color: T.danger }}>{tr({ uz: "😱 Repo ochiq — kalit ko'rinib turibdi!", ru: '😱 Репозиторий открыт — ключ на виду!' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Har kim repo'ni ko'rib, kalitni <b>nusxalab olishi</b> mumkin. Bu — xavfsizlik teshigi. Endi seyfga joylab tuzating.</>, ru: <>Любой может открыть репозиторий и <b>скопировать ключ</b>. Это дыра в безопасности. Теперь исправьте — положите его в сейф.</> })}</p></div>}
-            {secured && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Endi kalit seyfda — kod ichida faqat <span className="mono">{'${{ secrets.API_KEY }}'}</span> ko'rinadi, haqiqiy qiymat hech qayerda ochiq yozilmaydi va lenta jurnalida ham yulduzchalar bilan yashiriladi.</>, ru: <>Теперь ключ в сейфе — в коде видно только <span className="mono">{'${{ secrets.API_KEY }}'}</span>, настоящее значение нигде не записано открыто, и даже в журнале ленты оно закрыто звёздочками.</> })}</p></div>}
+            {!openSeen && <div className="frame-dash"><p className="small zb-notch" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Tugmani bosing ←', ru: 'Нажмите кнопку ←' })}</p></div>}
+            {openSeen && !secured && <div className="frame-warn fade-step"><p className="note-h" style={{ color: T.danger }}>{tr({ uz: "😱 Repo ochiq — kalit ko'rinib turibdi!", ru: '😱 Репозиторий открыт — ключ на виду!' })}</p><p className="body zb-notch" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Har kim repo'ni ko'rib, kalitni <b>nusxalab olishi</b> mumkin. Bu — xavfsizlik teshigi. Endi seyfga joylab tuzating.</>, ru: <>Любой может открыть репозиторий и <b>скопировать ключ</b>. Это дыра в безопасности. Теперь исправьте — положите его в сейф.</> })}</p></div>}
+            {secured && <div className="frame-success fade-step"><p className="body zb-notch" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Endi kalit seyfda — kod ichida faqat <span className="mono">{'${{ secrets.API_KEY }}'}</span> ko'rinadi, haqiqiy qiymat hech qayerda ochiq yozilmaydi va lenta jurnalida ham yulduzchalar bilan yashiriladi.</>, ru: <>Теперь ключ в сейфе — в коде видно только <span className="mono">{'${{ secrets.API_KEY }}'}</span>, настоящее значение нигде не записано открыто, и даже в журнале ленты оно закрыто звёздочками.</> })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -2375,6 +2375,10 @@ export default function FullProPipelineLesson({ lang: langProp, onFinished, live
         .mentor { display: flex; gap: 12px; align-items: flex-start; }
         .zoomable { position: relative; }
         .zoom-btn { position: absolute; top: 6px; right: 6px; z-index: 5; width: 30px; height: 30px; border-radius: 8px; border: none; background: rgba(255,255,255,0.82); color: ${T.ink2}; font-size: 14px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.22); transition: all 0.2s; }
+        /* F-0912-09 · 147-qonun (a): matn zoom tugmasi burchagini aylanib o'tadi.
+           Notch qutining HAMMA holat-matniga qo'yiladi — qaysi holat ekranda turgani
+           tilga bog'liq (ruscha jumla uzunroq, uz da sig'gani ru da tugma ostiga tushadi). */
+        .zb-notch::before { content: ''; float: right; width: 28px; height: 28px; }
         .zoom-btn:hover { background: ${T.paper}; color: ${T.accent}; transform: scale(1.08); }
         .zoom-backdrop { position: fixed; inset: 0; background: rgba(14,14,16,0.55); z-index: 1000; animation: fade-step 0.25s ease; }
         .zoom-on { position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%); width: min(880px,94vw); max-height: 90vh; overflow: auto; z-index: 1001; background: ${T.paper}; border-radius: 18px; padding: clamp(20px,4vw,42px); box-shadow: 0 30px 80px -20px rgba(${T.shadowBase},0.5); animation: zoom-pop 0.3s cubic-bezier(.34,1.3,.4,1); }

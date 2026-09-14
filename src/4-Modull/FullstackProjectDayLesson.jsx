@@ -2530,7 +2530,10 @@ export default function FullstackProjectDayLesson({ lang: langProp, onFinished, 
         .ai-card { background: ${T.paper}; border-radius: 14px; padding: 15px 17px; display: flex; flex-direction: column; gap: 11px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.14); }
         .ai-row { display: flex; align-items: center; gap: 9px; } .ai-badge { font-family: 'Manrope'; font-weight: 800; font-size: 11px; color: #fff; background: ${T.blue}; padding: 3px 9px; border-radius: 6px; } .ai-bubble { font-size: 13px; color: ${T.ink2}; }
         .ai-code { background: ${CODE.bg}; border-radius: 9px; padding: 10px 12px; display: flex; flex-direction: column; gap: 3px; }
-        .ai-line { font-family: 'JetBrains Mono'; font-size: 12px; color: ${CODE.text}; padding: 7px 9px; border-radius: 6px; white-space: pre-wrap; line-height: 1.6; }
+        .ai-line { font-family: 'JetBrains Mono'; font-size: 12px; color: ${CODE.text}; padding: 7px 9px; border-radius: 6px; white-space: pre-wrap; line-height: 1.6; overflow-wrap: anywhere; }
+        /* 147-qonun: pre-wrap uzun TOKENni sindirmaydi — uzun kod qatori qutidan
+           7px chiqib ketardi (m4-13 s11, o'lchandi). Modifikator overflow-wrap: anywhere
+           faqat sig'magan qatorni ko'chiradi, qolgan kod ko'rinishiga tegmaydi. */
         .ai-line.ok { background: rgba(31,122,77,0.16); }
         .note-h { font-weight: 700; font-size: 13px; margin: 0 0 4px; }
         .takeaway { background: ${T.accentSoft}; border-radius: 14px; padding: 20px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 5px; } .ta-bulb { font-size: 34px; } .ta-h { font-family: 'Source Serif 4', serif; font-weight: 600; font-size: clamp(16px,2.2vw,20px); color: ${T.ink}; margin: 0; } .ta-sub { color: ${T.accent}; font-weight: 600; font-size: 13px; margin: 0; }

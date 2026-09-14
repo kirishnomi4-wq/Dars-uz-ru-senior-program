@@ -3862,7 +3862,7 @@ export default function PmJtbdLesson({ lang: langProp, onFinished, liveToken }) 
 
         /* === 🔎 KODING PROP-OV (s10) — yetishmagan propni topish mikro-mashqi === */
         .kdq { background: ${T.paper}; border-radius: 13px; border-left: 4px solid ${T.accent}; padding: 12px 14px; display: flex; flex-direction: column; gap: 9px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.14); transition: border-color 0.3s; }
-        /* F-0727-52: test topilmagunча yumshoq puls («meni yech»); qulf-tugma bosilsa kuchli chaqnash */
+        /* F-0727-52: test topilmaguncha yumshoq puls («meni yech»); qulf-tugma bosilsa kuchli chaqnash */
         .kdq.hunt { animation: kdq-hunt 1.7s ease-in-out infinite; }
         @keyframes kdq-hunt { 0%, 100% { box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.14), 0 0 0 0 rgba(110,75,255,0.45); } 50% { box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.14), 0 0 0 10px rgba(110,75,255,0); } }
         .kdq.flash { animation: kdq-flash 0.6s ease-in-out 3; }

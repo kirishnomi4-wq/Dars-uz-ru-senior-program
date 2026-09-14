@@ -10,6 +10,13 @@
 > darsning o'z siklida tuzatiladi. Bu faylga «ehtimol muammodir» deb yozib qo'yish —
 > tuzatishdan qochish emas: agar kod-fakt bo'lsa, joyi bu yer emas.
 >
+> **📐 2026-09-12 dan (147-qonun, F-0912-03):** «layout torlik» ning bir qismi endi
+> KO'Z bilan emas, O'LCHOV bilan tekshiriladi — `npm run lint:layout`. U to'rt narsani
+> o'lchaydi: matn qirqilgan · bloklar ustma-ust · matn qutisidan chiqqan · boshqaruv
+> (⛶ kabi) matnni yopgan. Modul yakunida `uz`/`ru` x `self`/`mentor` bo'yicha yuritiladi
+> va chiqqan ro'yxat shu faylga emas, **darsning o'z siklida** tuzatiladi (u endi kod-fakt).
+> Ko'z uchun qoladigani: rang-his, metafora-tabiiyligi, diqqat qayerga tushishi.
+>
 > **Jarayon (foydalanuvchi qarori, 2026-08-20):** dars sikli **skrinshot-tursiz** yuradi.
 > Istisno — birinchi PM dars (m4-02) va yangi mock-ilova birinchi chiqqan dars: ular
 > yopilgach konveyer **TO'XTAYDI**, 5–6 skrinshotlik mini-tur bo'ladi, keyin davom etadi.

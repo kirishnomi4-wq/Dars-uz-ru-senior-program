@@ -7051,3 +7051,703 @@ hammasida HOMEWORK-eksport, esbuild-sintaksis ✓.
 
 **Ochiq:** foydalanuvchi LMS'da kiritib sinaydi → keyin HOMEWORK-naqsh DARS_ETALON'ga
 muhrlanadi va M2+ modullarga konveyer. **Commit YO'Q** (buyruqsiz).
+
+## 2026-09-12 — F-0912-04 · Praktika ochilmay qolishi (20 o'quvchidan 1 tasida) — 14 dars
+
+**Topilma (foydalanuvchi, sinf kuzatuvi):** «praktika kompilyatorga o'tish» tugmasi bosilganda
+ba'zi o'quvchilarda praktika ochilmay qolyapti — guruhda 20 bola bo'lsa 19 tasida ochiladi,
+1 tasida yo'q. Xato xabari ham chiqmaydi, dars ham oldinga ketmaydi.
+
+**Sabab (kodda):** `runPractice` da LMS yo'li himoyasiz edi —
+`Promise.resolve(onPractice(entry.task)).then(done);` · **`catch` YO'Q**. Uchta yiqilish yo'li
+ham tutilmasdan qolardi: (1) `onPractice` sinxron otilsa — xato `runPractice` dan chiqib ketadi;
+(2) promise rad etilsa — tutilmagan rad-etish, brauzerda jim yutiladi; (3) `done()` chaqirilmaydi,
+demak `advance()` ham yo'q. Natija: o'quvchi ekranda qotadi, sababni bilmaydi.
+Yonidagi `openHomeworkPractice` da `.catch(() => {})` bor edi — u xatoni tutadi, lekin **yutadi**:
+o'quvchiga baribir hech narsa ochilmaydi.
+
+**Nega 20 dan 1 tasida:** yiqilish muhitga bog'liq (tarmoq uzilishi, chunk yuklanmasligi,
+`postMessage`), shuning uchun sinovda ko'rinmaydi — faqat jonli sinfda chiqadi.
+
+**Tuzatildi (14 dars: M1 ning 8 tasi + M2 ning 6 tasi):**
+- `const openLocal = () => { …darsning o'z compilatori… }` ajratildi;
+- `if (typeof onPractice !== 'function') { openLocal(); return; }`
+- `try { Promise.resolve(onPractice(entry.task)).then(done, openLocal); } catch { openLocal(); }`
+- uyga vazifa yo'li: `.catch(() => {})` → `.catch(openLocal)` (13 dars; `VsCodeLesson` da bu yo'l yo'q — vazifasi `type:'file'`).
+- 🔴 **Timeout QO'YILMADI** — `onPractice` promise'i praktika TUGAGANDA hal bo'ladi, ochilganda emas;
+  timeout ochiq praktika ustiga ikkinchi compilator ochib yuborardi.
+
+**Xatti-harakat o'zgarishi:** LMS ishlab turganda — **hech narsa o'zgarmaydi** (o'sha yo'l, o'sha signal).
+Faqat LMS yiqilganda darsning o'z compilatori ochiladi: mashq bajariladi, «tugatdim» signali ham
+ketadi (`PRACTICE_DONE_BASE + fromScreen`), mentor paneli to'g'ri sanaydi.
+
+**Darvozalar:** 14/14 faylda esbuild ✓ · jsx ✓ · prompt ✓. `dark`/`til` topilmalari
+`git show HEAD:` baseline bilan raqamma-raqam solishtirildi — **bironta yangi topilma yo'q**
+(eski qarzlar: til 0–10, dark 4–12 — MODUL_TUR mavzusi, tegilmadi).
+
+**Dalil-sinovi:** `runPractice` va `openHomeworkPractice` tanasi dars-fayllaridan AJRATIB OLINIB
+(nusxa emas) to'rt holatda yurgizildi — LMS yo'q · ishladi · rad etdi · sinxron otdi.
+Eski kod (HEAD): **8 holat yiqildi**, 2 ta tutilmagan rad-etish. Yangi kod: **108/108 o'tdi**,
+tutilmagan rad-etish **0**.
+
+**Qonunga muhrlandi:** `DARS_ETALON.md` 9.3 — namuna-kod yangilandi + **9.3-A** yangi band
+(uch yiqilish yo'li, timeout taqiqi, tekshiruv-grep).
+
+**Ochiq:** `lms/` yig'malari hali qayta yig'ilmagan (F-0912-05 bilan birga bir yo'la yig'iladi).
+**Commit YO'Q** (buyruqsiz).
+
+## 2026-09-12 — F-0912-03 · «Qisilib/yopishib/chiqib ketgan matn» — O'LCHOV + 3 tuzatish + 147-qonun
+
+**Topilma (foydalanuvchi):** «ba'zi darslarda so'zlar qisilib qolgan, yopishib qolayotgan
+yoki chiqib ketayotgan». Talab: ko'rilgan joyda emas — **bitta general yechim**.
+
+### 1. Asbob tirildi va tuzatildi
+
+`_clip-audit.mjs` (F-0802-16) yozilgan, lekin **hech qachon yurgizilmagan** —
+`PM_PIPELINE_STATE.md` da ikki marta «⏸ foydalanuvchi javobini kutmoqda» bo'lib to'xtagan.
+Yurgizishga urinilganda uchta nuqson chiqdi:
+
+| Nuqson | Oqibati |
+|---|---|
+| Chrome yo'li `C:/Program Files/...` ga qadalgan | Linux'da umuman ishlamaydi |
+| Ekran soni `N / M` ning BIRINCHI mosligidan | nishon-hisoblagichi (🏅 0/4) o'qilib, **18 ekranlik dars 4 ekrani bilan** «toza» deb baholanardi |
+| Ustma-ust = `a.bottom > b.top` | bitta qatordagi yonma-yon inline'lar ham sanalardi — **28 yolg'on signal** |
+
+### 2. O'lchov kengaytirildi — ikki yangi detektor
+
+Asl asbob faqat vertikal qirqilish va `.screen` bevosita bolalarining ustma-ustini ko'rardi,
+ya'ni foydalanuvchi aytgan ikkala sinfni KO'RMASDI. Qo'shildi:
+**C** matn qutisidan chiqadi (matn tugunlari `Range` bilan o'lchanadi — `scrollWidth` transform
+tufayli yolg'on beradi) · **D** boshqaruv matn ustida (⛶ kabi absolyut qatlam).
+
+**Kalibrovka** (busiz ro'yxat ishlatib bo'lmaydi): shaffof qatlam (halqa-konturi, chiziq
+chizadigan `svg`) matnni yopa olmaydi · ekran yarmidan ko'pini yopadigan modal ataylab yopadi ·
+`backface-visibility: hidden` yuz (flashcard) · `overflow-x: auto` ataylab skroll.
+Kalibrovkasiz `m1-01` yolg'iz o'zi **30 ta yolg'on signal** berardi.
+
+**Determinizm:** `fade-up` animatsiyasi tugamasdan o'lchansa yolg'on ustma-ust chiqardi
+(`pre.code-box.fade-up / div.frame-dash` ikki yurgizishdan faqat bittasida). Endi o'lchovdan
+oldin `document.getAnimations()` tugashi kutiladi. **O'z-o'zini sinov** (`--selftest`):
+ataylab toshiruvchi CSS kiritiladi — detektor tutmasa, «toza» hukmiga ishonilmaydi.
+
+### 3. 1-modul o'lchandi — 1056 ekran-o'lchov
+
+14 dars (m1-13 komponentsiz «Demo Day», dars emas) × ~19 ekran × uz/ru × self/mentor.
+**Uchta haqiqiy nuqson**, ikkalasi ham UZ va RU da bir xil (ya'ni til masalasi emas):
+
+| Dars | Nuqson | Dalil |
+|---|---|---|
+| `m1-12` PmLesson3 s2 | vaqt-lentasi nomlari kesilgan | uz 6/5 · ru 6/4 nomi o'qilmaydi |
+| `m1-03` Htmllesson1 s6 | ⛶ «0 / 4 ko'rildi» ni yopgan | matnning **31%** i |
+| `m1-01` InternetLesson s16 | ⛶ «Qadam» hisoblagichini yopgan | **32%** |
+| `m1-05` PmLesson2 s8 | ⛶ iqtibosni yopgan | 14% |
+
+**Nuqson EMAS:** `span.mono.img-url` (+249px) — `text-overflow: ellipsis` + `title` tooltip
+bilan ataylab qisqartirilgan URL, yonida nusxalash tugmasi bor.
+
+### 4. Tuzatildi (foydalanuvchi qarori: 1a + 2a)
+
+- **`PmLesson3`** — nom karta ICHIDAN chiqarildi. Karta kengligi vaqtga proporsional
+  (`flex: b.sec`), eng qisqa bo'lak ~36px matn joyi beradi — «Keyingi qadam» u yerga hech
+  qachon sig'maydi. Endi kartada rangli chiziq + vaqt, nomlar esa pastdagi `tl-keys`
+  ro'yxatida (kengligi matnga qarab). Faol holat ikkala joyda: `.tl-seg.now` halqa +
+  `.tl-key.now` nuqta/rang. Tekshirildi: uz · ru · `big` varianti · taymer yurgan holat.
+- **`Htmllesson1`** — sarlavha-qatoriga `zb-gap` (`padding-right: 40px` = 36px tugma + 4).
+- **`InternetLesson`** — 🔴 tuzatma ALLAQACHON bor edi, lekin `@media (max-width: 560px)`
+  ICHIDA: kimdir uni telefonda ko'rib o'sha yerda yopgan, 1280px da qolib ketgan.
+  Media-so'rovdan chiqarildi, `zb-gap` bilan hamma kenglikka yoyildi.
+- **`PmLesson2`** — qator `padding` ni INLINE beradi, ya'ni CSS sinfi bekor bo'lardi;
+  chekinish inline obyektga qo'shildi (`paddingRight: 40`). Beshala qator bir tekis siljidi.
+
+🔴 **Rad etilgan yo'l:** `.zoomable` ga `padding-top` berib ⛶ ga alohida qator ochish —
+butun kontentni pastga suradi, dars bir ekranga sig'ishi shart (60-qonun).
+
+**Darvozalar:** 4 faylda esbuild ✓ jsx ✓ prompt ✓; `dark`/`til` `git show HEAD:` baseline
+bilan raqamma-raqam solishtirildi — **bironta yangi topilma yo'q**. (PmLesson3 da CSS izohiga
+backtik yozib yuborgandim — esbuild darhol tutdi, CLAUDE.md ogohlantirgan tuzoq.)
+
+### 5. Qonun va darvoza
+
+- `DARS_ETALON.md` → **11-K · 147-qonun**: (a) absolyut boshqaruv o'z burchagini band qiladi,
+  40px zaxira, inline `padding` sinfni yutishi haqida ogohlantirish, `padding-top` taqiqi;
+  (b) o'lchami ma'lumotga bog'liq idishga matn qo'yilmaydi, `ellipsis` — yechim emas niqob;
+  (c) bu sinf grep bilan tutilmaydi — brauzerda o'lchanadi, kalibrovka va selftest majburiy.
+  Ichida **«ko'rilgan joyda tuzatish — tuzatish emas»** sabog'i (InternetLesson dalili bilan).
+- `layout-lint.mjs` repoga qo'shildi + `npm run lint:layout`. `npm run gates` ga QO'YILMADI:
+  vite kerak va daqiqalar ketadi, gates tez qolishi shart. Modul yakunida yuritiladi.
+- `MODUL_TUR.md` — «layout torlik» ning o'lchanadigan qismi endi avtomat, ko'z uchun
+  rang-his va metafora qoladi.
+
+### 6. Tasdiq-o'lchovi — 1-modul TOZA
+
+Tuzatishdan keyin matritsa qayta yurgizildi (14 dars x 4 kombinatsiya = **1056 ekran-o'lchov**):
+
+| Kombinatsiya | Natija |
+|---|---|
+| uz/self · uz/mentor · ru/self | faqat ataylab qisqartirilgan URL — **haqiqiy nuqson YO'Q** |
+| ru/mentor | o'sha + `div.live-badge` (quyida, qaror kutilmoqda) |
+
+Beshinchi tuzatish yo'lda topildi: **`m1-08` HtmlPractice s15 — foydalanuvchi aytgan
+«debugging sahifasi»**. Ruschada ⛶ tugmasi ipucha matnining «код» so'zini yopgan (28%).
+Yechim — **float-notch**: matn burchakni AYLANIB o'tadi, faqat tugma yonidagi qator
+qisqaradi, qolganlari to'liq kenglikda qoladi (`padding-right` dan ko'ra chiroyliroq).
+
+**«Ellipsis = ataylab» ajratmasi** asbobga qo'shildi: `text-overflow: ellipsis` + `nowrap`
+muallifning ongli qarori (yonida `title` tooltip yoki nusxalash tugmasi) — u ALOHIDA
+bo'limda ko'rsatiladi va chiqish kodini yiqitmaydi. Tekshirildi: ataylab → 0, haqiqiy → 1.
+
+### 7. Ochiq
+
+🔴 **Qaror kutilmoqda — `div.live-badge`** (`src/live/LiveUI.jsx`, 109 darsga tegadi):
+jonli-dars lavhasi (`position: fixed`, yuqori markaz) mentor rejimida dars sarlavha-tasmasining
+oxirini yopadi (`m1-02` s8, ruscha — rus matni markazgacha yetadi). Variantlar: (a) tasmaga
+chegara, (b) lavha pastroqqa, (c) jonli rejimda tasma bir qator pastga.
+
+⚠️ **O'lchovning ikki chegarasi (halol qayd):**
+1. **Faqat boshlang'ich holat.** Tugma bosilgandan keyingi ko'rinishlar o'lchovga kirmaydi.
+   Foydalanuvchining dastlabki shikoyati («xato to'g'rilansa bloklar ustma-ust») aynan shu
+   zonada — `m1-08` ning «tuzatildi» holati QO'LDA tekshirildi va toza chiqdi, lekin 109 dars
+   uchun avtomat yo'q.
+2. **Faqat bitta ekran o'lchami** (1280x773). Dars `--lz` bilan masshtablanadi, o'quvchi
+   noutbuki 1366x768 yoki kichikroq bo'lishi mumkin.
+
+**Keyin:** qolgan 95 darsga yoyish (yuqoridagi ikki chegara hal bo'lgach).
+**Commit YO'Q** (buyruqsiz).
+
+## 2026-09-12 — F-0912-06 · Jonli-dars lavhasi sarlavhani yopishi (109 dars, bitta fayl)
+
+**Topilma:** F-0912-03 o'lchovida «qaror kutilmoqda» bo'lib qolgan band yopildi.
+`.live-badge` (`src/live/LiveUI.jsx`) — jonli dars paytida ekran tepasida suzib turadigan
+lavha (mentorda: PIN kod + «Ko'rsatish»/«Qo'yib yuborish»; o'quvchida: «Mentor: 8 / 18» kabi
+holatlar; yakka ishlayotgan o'quvchida umuman yo'q). U dars sarlavhasini yopardi:
+`m1-02` s8, ruscha, mentor — matnning **18%** i.
+
+**O'lchov (tuzatishdan oldin):** lavha `y 10..46` (balandlik 36) · sarlavha `div.chrome >
+.eyebrow` **doim** `y 34..51` — m1/m2/m4 · 1280 · 1366 · 1024 da bir xil (tasma `--lz` bilan
+masshtablanmaydi). Kesishuv **12 px — har doim bor**, faqat sarlavha matni lavhaning chap
+chetiga yetganda ko'rinadi. 🔴 **Kichik ekranda yomonroq:** lavha 1280 da `x 492` dan,
+1024 da `x 361` dan boshlanadi → `m1-02` 1024 px da **4-ekranidayoq** to'qnashardi.
+
+**Ko'rilgan va rad etilgan yo'llar (dalil bilan):**
+| Variant | Nega rad etildi |
+|---|---|
+| Sarlavhaga `max-width` | matn 1280 da 106 px, 1024 da 200+ px qisqarardi → `ellipsis` = niqob (147-qonun b); ustiga 109 darsning CSS'iga tegilardi |
+| Kontentni pastga surish | `scrollHeight == viewport` (773 == 773) — surilsa pastdagi «Продолжить» qirqiladi (60-qonun) |
+| Lavhani pastki markazga | yuqori bo'shardi, lekin pastki tasma har ekranda boshqacha → 109 dars uchun yangi o'lchov kerak; mentor ko'zi yuqoriga o'rgangan |
+
+**Tuzatildi (bitta fayl, `src/live/LiveUI.jsx:10`):** `top: 10 → 2`, chekinish `6px → 2px`
+→ balandlik `36 → 28`, ya'ni lavha endi `y 2..30`. Sarlavha siyohigacha **4 px** zaxira.
+Tugmalar **22 px bo'yicha tegilmadi** (bosish qulayligi saqlandi), dars kontenti qimirlamadi.
+Darslardagi `.live-badge` qoidalari faqat `opacity` beradi (93 fayl tekshirildi) — ziddiyat yo'q.
+
+**Tasdiq-o'lchovi (tuzatishdan keyin):**
+| Kombinatsiya | Natija |
+|---|---|
+| 1-modul to'liq · ru/mentor (13 dars, 245 ekran) | **lavha-topilmasi 0** (m1-14 da faqat ataylab qisqartirilgan URL) |
+| Modullar namunasi · ru/mentor (m2,m3,m4,m4a,m4b,m4c,m5,m6 — 10 dars, 172 ekran) | lavha-topilmasi 0 |
+| Kichik ekran 1024x640 · ru/mentor (4 dars, 72 ekran) | **toza** — asosiy holat yopildi |
+| uz/mentor namuna (4 dars, 74 ekran) | lavha-topilmasi 0 |
+| Rejimlar: `student` · `solo` · `review` | lavha `y 2..26`/`2..26`/`2..30` — hammasi sarlavhadan yuqorida |
+
+**Darvozalar:** `npm run gates -- src/live/LiveUI.jsx` → **5/5 toza** (esbuild · jsx · dark · til · prompt).
+
+**Qonunga muhrlandi:** `DARS_ETALON.md` 11-K → **147-qonun (d)**: suzuvchi qatlam tushadigan
+yo'lak o'lchanadi; balandlik ichki chekinishdan qisqartiriladi, boshqaruv o'lchamidan emas;
+yo'lakda matnsiz element ham bo'ladi; kontentni surib joy ochish rad.
+
+**HALOL QAYDLAR — nima YOPILMADI:**
+1. 🔴 **Progress-chizig'i (`y 18..21`) hamon lavha ostida.** Bu **ilgari ham shunday edi**
+   (eski lavha `y 10..46` uni butunlay yopardi) — regressiya emas, lekin yechim ham emas:
+   mentor to'ldirish chizig'ining o'rtadagi qismini ko'rmaydi. Yuqorida 18 px dan baland
+   bo'sh joy yo'q, ya'ni bu yo'lakda hal bo'lmaydi — alohida qaror kerak.
+2. `_liveBadgeS` da `whiteSpace: nowrap` + `maxWidth: 92vw`, `overflow` yo'q — uzun ruscha
+   holat («🎉 Ментор начал урок — вы подключены…») tor ekranda qutidan chiqishi mumkin.
+   Taklif qilingan edi, foydalanuvchi bu safar faqat asosiy tuzatishni tasdiqladi. OCHIQ.
+3. **M2 da `zoom-btn` (⛶) matnni yopishi bor** — `m2-03` (uz va ru), `m2-11` (ru).
+   `git stash` bilan tekshirildi: **HEAD'da ham bor**, bu tuzatishga aloqasi yo'q.
+   F-0912-03 dagi sinfning M2 dagi davomi — 2-modul o'lchovi hali qilinmagan.
+4. **`m3-05` o'lchovga kirmadi** — asbob 1 ekrandan nariga o'tolmadi («lessonId topilmadi»).
+   Asbobning qamrov-teshigi, alohida tekshiriladi.
+5. O'lchov chegaralari o'zgarmadi: faqat **boshlang'ich holat** (tugma bosilgandan keyingi
+   ko'rinishlar emas) va ro'yxatdagi ekran o'lchamlari.
+
+**Ochiq:** `lms/` yig'malari hali eski (09-11 10:55) — bu tuzatish ham, F-0912-03/04 ham
+LMS nusxalariga tushmagan. **Commit YO'Q** (buyruqsiz).
+
+## 2026-09-12 (davomi) — F-0912-03 · asbob kuchaytirildi + F-0912-06 tekshirildi
+
+### F-0912-06 — foydalanuvchining o'z tuzatmasi TEKSHIRILDI ✅
+
+Foydalanuvchi `src/live/LiveUI.jsx` ni VS Code'da o'zi tuzatgan (10:09): jonli lavha
+`top: 10 → 2`, `padding: 6px → 2px` (balandlik 36 → 28). Ya'ni gorizontal chegara emas,
+**vertikal ajratish** — bu taklif qilingan (a) variantidan yaxshiroq: sarlavha matni
+umuman qisqarmaydi va hech narsa siljimaydi.
+
+**O'lchov bilan tasdiqlandi (9 dars x 3 ekran o'lchami):** lavha y 2..30, sarlavha y 34..48,
+bo'shliq 4px — m1/m2/m4, 1280 · 1366 · 1024 da bir xil. Izohdagi «y 34..51» ham to'g'ri:
+`m4-01` da 1024x700 da aynan shunday (eng yomon holat o'lchangan).
+**Regressiya yo'q:** lavha 8px yuqoriga surildi (y 2..10 yangi yopildi) — o'sha tasmada
+matn ham, tugma ham yo'q, faqat konteynerlar (`.stage`, `.stage-header`). Progress-chizig'i
+(y 18..21) ilgari ham lavha ostida edi. **Xato topilmadi, tegilmadi.**
+
+### Asbobga ikki qo'shimcha (foydalanuvchi topshirig'i)
+
+1. **Ko'p ekran o'lchami** — `--vp 1280x773,1366x768` (standart).
+2. **Interaktiv holatlar** — `--interact 6` (standart): har ekranda bosiladigan elementlar
+   ketma-ket bosiladi, har bosishdan keyin qayta o'lchanadi.
+
+**Isbotlandi, ishonch bilan aytilmadi:** `m1-08` da 20 ekranda **87 bosish**; selftest bilan
+topilmalar **0·1·2·3·4-qadamlarda** chiqdi (ya'ni bosishdan keyingi holatlar haqiqatan
+o'lchanadi); bosish 0 bo'lsa hisobot **ogohlantiradi** («o'lchov yarim!»).
+
+### Interaktiv o'lchov DARHOL uchta yangi sinf topdi — uchalasi ham YOLG'ON edi
+
+Boshlang'ich o'lchovda ko'rinmagan topilmalar chiqdi; har birini ajratib tekshirdim:
+
+| Topilma | Hukm | Sabab |
+|---|---|---|
+| `span.ip-type` +144px | 🟡 yolg'on | `ip-typing` 0,9 s animatsiya; 900 ms shift qisqa edi (900 ms → kenglik 0, 2000 ms → 168px toza) |
+| `span.dc-arrow / span.dc-dns` | 🟡 yolg'on | `dc-flow` **infinite** — harakatdagi bezak |
+| `div.rg-sky → span.rg-meat` | 🟡 yolg'on | dinozavr o'yini foni DOM'da spraytdan OLDIN — demak PASTDA chiziladi |
+
+**Uchta kalibrovka qoidasi qo'shildi** (147-qonunga muhrlandi): chekli animatsiya oxirigacha
+kutiladi · cheksiz animatsiya bilan yuruvchi element umuman o'lchanmaydi · chizilish tartibi
+`z-index` teng bo'lsa DOM tartibi bilan hal qilinadi (matnning eng yaqin pozitsiyalangan
+otasi bo'yicha).
+
+### D detektori kalibrovkadan keyin ham TIRIK — isbot
+
+Kalibrovka haqiqiy nuqsonni ham o'chirib yubormaganini tekshirish uchun `zb-gap` tuzatmasi
+brauzerda VAQTINCHA bekor qilindi:
+
+| Holat | Natija |
+|---|---|
+| tuzatma joyida | to'qnashuv yo'q |
+| tuzatma bekor qilindi | `button.zoom-btn → span.small.mono` **31%** «ko'rildi» — asl nuqson qaytdi |
+
+Ya'ni nuqsonning yo'qolishi tuzatma tufayli, o'lchov ko'rmay qolgani uchun emas.
+
+### Yana ikki ishonch-mexanizmi (sivirma paytida topilgan muammolardan)
+
+**Tinch kadrda o'lchash.** Bosish elementni ko'rinishga tortadi va kontentni suradi; surilgan
+matn `fixed` lavha ostiga kelib qoladi. Bu SKROLL holati, layout nuqsoni EMAS — shundan
+`uz/mentor` da **33 ta soxta topilma** chiqqan edi (0-qadamda bittasi ham yo'q, 1-qadamdan
+keyin paydo bo'lgan). Endi har o'lchovdan oldin skroll tiklanadi. Dars bir ekranga sig'ishi
+shart (60-qonun), demak tinch kadr — to'g'ri o'lchov nuqtasi.
+
+**Tasdiq-qarash.** Topilma IKKINCHI o'lchovda ham turishi shart. Sababi: `m1-03` da
+`live-badge → mentor-msg` topilmasi chiqdi, geometriya esa lavha y 2..30, matn y 162..236 —
+kesishmaydi, ya'ni o'tkinchi lahza (kechikkan transition/reflow) edi. Bir marta ko'rilgan
+narsa endi hisobga olinmaydi.
+
+**Ikkalasidan keyin detektor TIRIK ekani qayta isbotlandi:** `--selftest` → 15 topilma;
+`zb-gap` vaqtincha bekor qilinsa → asl nuqson qaytadi (`zoom-btn → span.small.mono`, 29%).
+
+### YAKUNIY SIVIRMA — 1-MODUL TOZA ✅
+
+| Kombinatsiya | Ekran-o'lchov | Interaktiv bosish | Haqiqiy nuqson |
+|---|---|---|---|
+| uz / self | 528 | 2012 | **0** |
+| uz / mentor | 528 | 1284 | **0** |
+| ru / self | 528 | 2012 | **0** |
+| ru / mentor | 528 | 1284 | **0** |
+| **Jami** | **2112** | **6592** | **0** |
+
+Qamrov: 14 dars x 2 ekran o'lchami (1280x773 · 1366x768) x 2 til x 2 rejim x 6 interaktiv
+qadam. Yagona qoladigan topilma — `span.mono.img-url` (ataylab qisqartirilgan URL, `title`
+tooltip va nusxalash tugmasi bilan), u alohida ro'yxatda va darvozani yiqitmaydi.
+
+**Vizual hisobot:** oltita oldin/keyin juftligi bilan sahifa chiqarildi (artifact).
+
+**Ochiq:** qolgan 95 darsga yoyish. **Commit YO'Q** (buyruqsiz).
+**LMS yig'masiga TEGILMADI** (foydalanuvchi qarori: «shoshilma»).
+
+## 2026-09-12 — F-0912-07 · Mentor darvozasi: uch sabab bitta xabarga yig'ilgandi
+
+**Kelib chiqishi (foydalanuvchi, jonli holat):** `localhost:5300/#/lesson/m4-11` da mentor
+kodini kiritdi, «Mentor kodi noto'g'ri yoki ulanishda xato» chiqdi. Foydalanuvchi kodni
+qidira boshladi — aslida kod umuman tekshirilmagan edi.
+
+**Tashxis (o'lchov bilan):** `dars-api` tirik (health 200), lekin CORS faqat LMS domenini
+qabul qiladi:
+
+| Origin | `access-control-allow-origin` |
+|---|---|
+| `https://lms.coddycamp.uz` | ✅ bor |
+| `http://localhost:5300` | ❌ YO'Q → brauzer so'rovni bloklaydi |
+
+Ya'ni mahalliy kompyuterdan mentor darvozasi **hech qanday kod bilan ham ochilmaydi**.
+Staging'da ham shu holat (ikkalasi tekshirildi).
+
+**Ikkinchi topilma — hujjat qarzi:** `MENTOR-2026` 8 joyda (`PIPELINE.md`, `PM_PIPELINE.md`,
+`*_STATE.md`, `B3/B4_B5_DAVOM.md`) yozib qolgan, lekin `SIRLAR_ROTATSIYASI_UZ.md` bo'yicha
+`LIVE_MENTOR_CODE` **2026-09-07 da qayta yaratilgan** va faqat Kristinaga fayl sifatida ketgan.
+Repoda joriy qiymat yo'q (`.env.coddycamp.local` da faqat `CODDYCAMP_*` sirlari bor).
+
+**Kod nuqsoni:** `startMentor` barcha xatolarni bitta `catch` ga yig'ardi va bitta xabar berardi.
+O'quvchi yo'li (`joinStudent`) esa allaqachon to'g'ri ajratadi («Bunday kod topilmadi» ·
+«boshqa darsga tegishli» · «Ulanib bo'lmadi. Internetni tekshiring»).
+
+**Tuzatildi:**
+- `liveClient.js` → `errorFrom` endi HTTP holatini xato-obyektiga ilaydi (`e.status`).
+  Busiz chaqiruvchi 401 (kod noto'g'ri) bilan tarmoq/CORS (fetch otiladi, status YO'Q) ni
+  ajrata olmaydi.
+- `useLiveSession.js` → `startMentor` **uch xabar**: 401/403 → «Mentor kodi noto'g'ri» ·
+  boshqa status → «Server javob bermadi (xato N)» · status yo'q → **zaxira-yo'l aytiladi**:
+  «Serverga ulanib bo'lmadi… «← Orqaga» → «Kodsiz, o'zim ko'raman» bilan darsni jonli
+  rejimsiz o'tkazing».
+
+Uchinchisi muhim: sinfda server yiqilsa mentor kodni qidirib vaqt yo'qotmaydi, balki
+3-darajaga (mustaqil rejim) o'tadi.
+
+**Tekshirildi brauzerda** (aynan foydalanuvchi holati — `localhost`, CORS bloklangan):
+uz → «Serverga ulanib bo'lmadi. Internetni tekshiring — yoki «← Orqaga» bosib, «Kodsiz,
+o'zim ko'raman» bilan darsni jonli rejimsiz o'tkazing.» · ru → mos tarjimasi. Karta ichiga
+sig'adi, toshmaydi.
+
+**Darvozalar:** esbuild ✓ (ikkala fayl) · `lint:jsx` 156 fayl **TOZA** · `lint:til`
+`useLiveSession.js` **0 topilma** · InternetLesson baseline 4 → 4 (yangi topilma yo'q).
+
+### ZAXIRA-ZANJIR — kodda tasdiqlangan (foydalanuvchi eslatdi, tekshirildi)
+
+| Daraja | Holat | Nima ishlaydi |
+|---|---|---|
+| 1 | hammasi joyida | LMS `liveToken` → avtomat qo'shilish → jonli dars + analitika |
+| 2 | avtomat kirish ishlamadi | mentor 🧑‍🏫 → **kod** → `create_session` → **PIN** → o'quvchilar PIN bilan; analitika baribir ketadi. O'quvchi ekranida sabab yoziladi («Автоматический вход не удался. Войдите по коду.») |
+| 3 | `dars-api` yiqilgan | na avtomat, na PIN — **«Kodsiz, o'zim ko'raman»** (mustaqil rejim). LMS ham yiqilsa: `dist-mentor/` zaxira sayti |
+
+2-daraja — foydalanuvchi eslagan qo'lbola yo'l; u kodda bor va to'g'ri ishlaydi.
+
+**Ochiq (Kristinaga):** staging'da `CORS_ORIGINS` ga `http://localhost:5300` + joriy
+`LIVE_MENTOR_CODE` (yopiq kanal). 🔴 Prodga `localhost` QO'SHILMAYDI.
+**Commit YO'Q** (buyruqsiz).
+
+## 2026-09-12 — F-0912-08 · 🔴 Eski Vercel saytlari hali Supabase'da — Supabase o'chsa sinf to'xtaydi
+
+**Kelib chiqishi:** foydalanuvchi savoli — «mentorlar eski versiyada `MENTOR-2026` bilan
+kirishadi; tizim yiqilsa shu kod ishlayveradimi?»
+
+**O'lchov (brauzerda, haqiqiy tarmoq so'rovlari):** har sayt ochilib, darsga kirildi,
+jonli modul qaysi hostga so'rov yuborishi ushlandi:
+
+| Sayt | Backend |
+|---|---|
+| `coddycamp-1-2-modul-senior` (mentor relizi, 2026-08-09) | **Supabase** `dwoubexcexzsinogojiu` |
+| `coddycamp-1modul` | **Supabase** |
+| `coddycamp-texnik-darslar` | **Supabase** |
+| `coddycamp-3-4-modul-senior` · `coddycamp-mentor` | tasdiqlanmadi (marshrut topilmadi); qayta qurilmagan |
+
+Supabase tirik (`/rest/v1` → 401, ya'ni ishlayapti). Unda `MENTOR-2026` turibdi → mentorlar
+hozir kirganida ishlaydi.
+
+**Xavf:** `BACKEND_REJA_UZ.md:203` cutover rejasi: «…Vercel demo/mentor saytlar qayta build →
+Supabase 7 kun o'qish-rejimida, keyin o'chadi». Prod 2026-09-11 da chiqdi; **Vercel saytlari
+qayta QURILMAGAN** (hammasi Supabase'ga qaraydi). Supabase o'chgan kuni (~2026-09-18, aniq
+sana hujjatda YO'Q) eski saytlarda mentor kodi ham, o'quvchi PIN'i ham ishlamaydi — faqat
+«Kodsiz, o'zim ko'raman».
+
+**Kerak (foydalanuvchi qarori):**
+1. Vercel saytlarini `dars-api` bilan qayta qurish → mentorlarga **yangi 17 belgilik kod**
+   (`server/.env.deploy.prod`) yopiq kanal orqali aytiladi.
+2. Kristina bilan: Supabase aniq qachon o'chadi? Vercel qayta qurilib, mentorlar yangi kodni
+   olmaguncha **o'chirilmasin**.
+
+**Tuzatilgan noto'g'ri xulosam:** avval «Kristinaga xat keraksiz» degandim — asos noto'g'ri
+edi (kodni `server/` ichida qidirmagandim). Endi xat KERAK, lekin mazmuni boshqa: Supabase
+muddati + Vercel qayta qurish kelishuvi. Qoralama shunga qayta yozildi.
+**Commit YO'Q** (buyruqsiz).
+
+**F-0912-08 davomi — foydalanuvchi qarori (12.09):** Vercel saytlariga **UMUMAN TEGILMAYDI**
+(build/deploy/env/CORS — hech narsa). Mentorlar eski versiyada (Supabase, `MENTOR-2026`) ishlab
+turadi; yangi versiya Kristina bilan **to'liq** tayyorlanadi, keyin **bir yo'la** prodga chiqadi.
+Demak Supabase muddati «7 kun» emas — biz «tayyor» demagunimizcha ochiq. Kristinaga xat shunga
+moslab 3-versiyaga o'tkazildi (`feedback/xabar-kristina-2026-09-12.md`). Qoida xotiraga yozildi.
+
+**F-0912-08 yakuni (foydalanuvchi qarori, 12.09):** Supabase **bizniki** — Kristina uni
+boshqarmaydi; unga xat YOZILMAYDI, qoralama o'chirildi. **Backend: faqat dars-api.** Supabase
+zaxira-backend sifatida qo'shilmaydi: API bir xil bo'lsa ham (11 RPC nomi mos) silliq o'tish
+yo'q (sessiya bitta backendda — qulasa sinf qaytadan boshlaydi), analitika yo'qoladi, ikki
+sxema/ikki kod; loyiha darvozalari (`cutover-mashq`, `codemod`) Supabase qoldig'iga FAIL beradi.
+Qulash holati 3-daraja bilan yopilgan (F-0912-07 mentor xabari shu yo'lni ko'rsatadi).
+Ishonchlilik backend tomonidan (Docker restart, kunlik zaxira, health) — Kristinada.
+Supabase o'chirilishi: barcha yangi JSX CRM'ga yuklangach + Vercel qayta qurilgach — foydalanuvchi.
+
+
+## 2026-09-12 (2-seans) — F-0912-08 hujjat-qarzi YOPILDI · eskirgan mentor-kod
+
+**Kelib chiqishi:** F-0912-08 ning ikkinchi topilmasi (yuqorida) — `MENTOR-2026` hujjatlarda
+yozib qolgan, lekin `LIVE_MENTOR_CODE` **2026-09-07 da qayta yaratilgan**. Kim o'sha kodni
+o'qib sinovga kirsa — 401 oladi va sababini tushunmaydi.
+
+**O'lchov (grep, butun repo `*.md` + rol-fayllari):** 6 fayl · 10 hit. Ikkiga ajratildi:
+
+| Sinf | Fayllar | Qaror |
+|---|---|---|
+| **Faol yo'riqnoma** — har ishda o'qiladi, harakatga undaydi | `PIPELINE.md:104` · `PM_PIPELINE.md:84` · `DARS_ETALON.md:24,1474` · `PM_DARS_ETALON.md:489` · `.claude/agents/role/darslik-verifikator.md:16` · `.claude/agents/role/darslik-jonli.md:52` | **Tuzatildi** (6 hit) |
+| **Tarix** — raund-yozuv, o'tgan holatni qayd etadi | `PIPELINE_STATE.md` · `PM_PIPELINE_STATE.md` · `B3_DAVOM.md` · `B4_B5_DAVOM.md` · `arxiv/` | **TEGILMADI** — jurnal o'zgartirilmaydi |
+
+**Yozuv naqshi (kodning o'zi hujjatga qaytmasligi uchun):** kod — «`server/.env.deploy.prod` /
+`.env.deploy.staging` da (lokal dev — `server/.env`); **kodning o'zi hujjatga yozilmaydi**».
+Ya'ni hujjat endi qiymatni emas, **manzilni** ko'rsatadi — rotatsiya bo'lganda hujjat eskirmaydi.
+
+**Darvoza:** `npm run lint:prompt` ✅ 0 topilma. **Commit YO'Q** (buyruqsiz).
+
+
+## 2026-09-12 (3-seans) — F-0912-09: 2-MODUL LAYOUT AUDITI YOPILDI (13 dars)
+
+**Kelib chiqishi:** F-0912-03 (so'z qisilgan/yopishgan/chiqib ketgan) 1-modulda yopilgandan keyin
+o'sha o'lchov 2-modulga olib borildi. Seans o'rtasida internet uzilib, yakuniy sivirma
+1366x768 [4/13] da to'xtab qolgandi — shu yerdan davom ettirildi.
+
+**O'lchov:** 13 dars × `self`/`mentor` × `1280x773`/`1366x768` × `uz`/`ru`.
+
+| Bosqich | Natija |
+|---|---|
+| 1-sivirma (uz, self) | 13 darsdan **6 tasida** topilma: m2-03 · m2-04 · m2-06 · m2-07 · m2-09 · m2-11 |
+| Kalibrovka-2 (`layout-lint.mjs`) | m2-07 (`rotate(±4deg)` tarozi) va m2-09 (`rotate(1.4deg)` sarlavha + ikki qatorga o'ralgan `<span>`) — **geometriya yolg'on gapirgan**, ekranda buzilish YO'Q. Ikki qoida qo'shildi, `DARS_ETALON` 147-qonun (c) ga muhrlandi |
+| Tuzatish (4 haqiqiy) | notch: m2-03 s15 · m2-04 s15 · m2-06 s15 · o'ng zaxira 40px: m2-03 s8 · m2-11 s3/s12 |
+| `--selftest` (kalibrovka o'zgargani uchun MAJBURIY) | detektor ataylab toshirilgan CSS ni **tutdi** (17 topilma) — «toza» hukmiga ishonsa bo'ladi |
+| Yakuniy uz-sivirma | 1280 va 1366 · self+mentor — **52/52 toza** |
+| Yakuniy ru-sivirma | **m2-06 da YANGI topilma** (quyida) → tuzatildi → 12/12 qayta toza |
+
+**🔴 RU-SIVIRMANING TOPILMASI — yangi sinf.** `JsFunctionsLesson` s15 da uz-holat tuzatilgan edi,
+ammo ruschada **boshqa holat-matni** chiqdi: «А ошибка — <b>во внутренней строке</b>» ning **95%**
+i ⛶ tugmasi ostida (to'rtala kombinatsiyada). Sababi: ishora-qutisi bitta, lekin ichidagi matn
+holatga qarab almashadi (ipucha · noto'g'ri tanlov · topildi), o'lchov esa ekranni **bitta**
+holatda tutadi. Demak tuzatish holatga emas, **qutining hamma holatiga** beriladi.
+Uchala darsda (m2-03 · m2-04 · m2-06) qolgan tarmoqlar ham yopildi — har fayl `zb-notch` = 4
+(1 CSS + 3 holat). Qonun: `DARS_ETALON.md` 147-qonun (a), «BIR QUTI — BIR NECHA HOLAT-MATNI».
+
+**Darvozalar:** uchala faylda esbuild ✓ · jsx ✓ · prompt ✓. `dark` va `til` qizil — ammo
+tuzatishdan OLDINGI nusxa bilan chiqish **belgi-ba-belgi bir xil** (dark 6 · til 🔴7 🟡5):
+eski qarz, bu seansda kirmagan. **Commit YO'Q** (buyruqsiz).
+
+**Navbat:** 3-modul (14 dars) sivirmasi ketmoqda → keyin m4 (15) · m4a/b/c (14) · m5 (11) ·
+m6 (14) · m7 (13) · m8 (1). Jami qolgani **82 dars**.
+
+
+## 2026-09-12 (3-seans, davomi) — F-0912-10: 3-MODUL LAYOUT AUDITI (14 dars)
+
+**O'lchov:** 14 dars × `self`/`mentor` × `1280x773`/`1366x768` × `uz`/`ru` — 112 yurish,
+2120 ekran-o'lchov, ~8000 interaktiv bosish.
+
+**Birinchi sivirma:** 5 darsda topilma (m3-01 · m3-02 · m3-03 · m3-06 · m3-07) + bitta ⚠.
+Ajratilgandan keyin **faqat bittasi haqiqiy** bo'lib chiqdi:
+
+| Dars | Topilma | Hukm |
+|---|---|---|
+| m3-01 s11 | `reload-cover` postni 100% yopgan | **ATAYLAB** — «sahifa qayta yuklanmoqda» pardasi, darsning sabog'i |
+| m3-06 s0 | `xray-ov` kartani 100% yopgan | **ATAYLAB** — rentgen qatlami |
+| m3-02 s1 | `silo-lbl` / `silo-fill` 11–14px kesishgan | **ATAYLAB** — bitta `grid-area: 1/1`, yorliq so'nadi |
+| m3-03 · m3-06 | `cm-body`/`cm-chute` 2px kesishgan | **ATAYLAB** — `margin-top: -2px`, voronka shakli |
+| **m3-07** s5/s10 | ⛶ hisoblagichni **51%** yopgan («2 ta»…«6 ta») | 🔴 **HAQIQIY** → `paddingRight: 40` |
+| **m3-07** s3 (faqat ru) | ⛶ `<b>Показать</b>` 23% · `<b>Удалить</b>` 13% | 🔴 **HAQIQIY** → `zb-notch` ikki `sk-info` ga |
+
+**Kalibrovka-3** (uch qoida) `layout-lint.mjs` ga qo'shildi va `DARS_ETALON` 147-qonun (c) ga
+muhrlandi. `--selftest` qayta yurgizildi — detektor **tirik** (23 topilma).
+
+**🔴 KO'R NUQTA — `m3-05` umuman auditdan o'tmagan.** Dars «Darsga qo'shilish» darvozasi bilan
+ochiladi; audit uni `_lessonids.txt` id'si bilan o'tadi, `pm-m3d5-v1` esa o'sha QO'LDA yuritiladigan
+ro'yxatda yo'q edi → 17 ekranlik dars **1 ekrani** bilan «toza» deb baholangan. Ro'yxat endi
+manbadan ham to'ldiriladi (`lessonId` grep, `eski` papkalarsiz). Tuzatilgach m3-05: 17 ekran,
+uz — toza. Sinf qonunga muhrlandi: **hisobotdagi ⚠ «toza» dan kuchliroq**.
+
+**Yakuniy holat (uz+ru, self+mentor, 2 ekran):** m3-01 · 02 · 03 · 06 · 07 — **0 nuqson**.
+Darvozalar: `ReactCrudPracticeLesson` **5/5 toza**.
+
+**⏳ QAROR KUTAYOTGAN (foydalanuvchi):** `m3-06` `p.roname` — o'yin nomlari ellipsis bilan
+qirqiladi (kartaning matn joyi 52–61px): «Bee Swarm» 6px · «Blox Fruits» 4px · «Brookhaven» 12px.
+147-qonun (b) bo'yicha **nom qisqartirilmaydi**, lekin bu Roblox-maketi — haqiqiy Roblox ham
+shunday qiladi. Uch yo'l: (a) nom ikki qatorga o'tsin (karta ~14px o'sadi) · (b) shrift 12,5→11px ·
+(c) qoldiriladi (maket sadoqati). **Commit YO'Q.**
+
+
+## 2026-09-13 — F-0912-11: 4-MODUL LAYOUT AUDITI YOPILDI (15 dars)
+
+**O'lchov:** 15 dars × `self`/`mentor` × `1280x773`/`1366x768` × `uz`/`ru` — 2384 ekran-o'lchov,
+8336 interaktiv bosish.
+
+| Dars | Topilma | Hukm |
+|---|---|---|
+| m4-14 s9 | `drawer` (yon menyu) tablo raqamlarini 100% yopgan | **ATAYLAB** — chetdan chiqadigan panel |
+| m4-04 s2 | `store-cust.cust-sad` qo'shnisi bilan 22px kesishgan | **ATAYLAB** — «xafa mijoz ketyapti»: 26px chetga + 0,25 shaffoflik |
+| **m4-01** s3 · **m4-04** s7 · **m4-05** s8 | ⛶ hisoblagichni 31–35% yopgan | 🔴 **HAQIQIY** → `paddingRight: 40` |
+| **m4-14** s2 | ⛶ «Umumiy» chipi va tugmasini yopgan | 🔴 **HAQIQIY** → qator-ro'yxatga 40px zaxira |
+| **m4-13** s11 | kod qatori qutidan 7px chiqqan | 🔴 **YARIM** — `overflow-wrap: anywhere` qo'shildi, qolgan 7px esa O'LCHOV yolg'oni (pastda) |
+| **m4-01** s16 · **m4-05** s12 (faqat ru) | ⛶ `p.body` ni 11–16% yopgan | 🔴 **HAQIQIY** → `zb-notch` qutining hamma tarmog'iga |
+
+**Kalibrovka-4 — ikki qoida** (`DARS_ETALON` 147-qonun (c) da): chetdan chiqadigan panel ·
+so'nib ketayotgan element (`opacity < 0.35`).
+
+**🔴 UCHINCHI TUZATISH — O'LCHOV SIYOH BO'YICHA YURITILADI.** `m4-13` s11 da `overflow-wrap`
+qo'shilgandan KEYIN ham «7px chiqdi» deb turaverdi. Sabab: `white-space: pre-wrap` qator
+sinadigan joydagi bo'shliqni SAQLAYDI va u quti tashqarisiga osiladi — CSS shunday ishlaydi,
+ko'zga hech narsa ko'rinmaydi (bo'shliqda siyoh yo'q). Dalil: 12px monoshriftda «chiqish» aynan
+**7px = bitta bo'shliq eni**. C detektori endi shubha tug'ilgandagina (over > 2) belgima-belgi
+qayta o'lchaydi va bo'sh belgilarni tashlab yuboradi. `--selftest` ikki marta yurgizildi —
+detektor tirik (31 topilma).
+
+**Yakuniy holat:** m4-01 · 04 · 05 · 13 · 14 — uz **0 nuqson**, ru **0 nuqson**. Darvozalar:
+beshala faylda **5/5 toza**.
+
+**Eslatma (o'z xatom):** `FullstackProjectDayLesson` CSS izohiga backtik yozib qo'ygandim —
+shablon-satr erta yopilib, esbuild va jsx darvozalari qizil berdi. CLAUDE.md aynan shundan
+ogohlantiradi; darvoza tutdi, izoh backtiksiz qayta yozildi. **Commit YO'Q.**
+
+
+## 2026-09-13 — F-0912-11/12/13: 4a·4b·4c MODULLARI (14 dars) — LAYOUT + IKKI YIQILISH
+
+**Layout (uz+ru, self/mentor, 2 ekran — 2192 ekran-o'lchov):**
+
+| Dars | Topilma | Tuzatish |
+|---|---|---|
+| m4c-03 s13 | zoom tugmasi «✓ o'tdi» yozuvini 55% yopgan | `.matrix-lane` ga o'ngdan 40px zaxira (hamma yo'lakka birdek) |
+| m4c-07 s7 · s9 (faqat ru) | zoom tugmasi `p.body` ni 74% va 23% yopgan | `zb-notch` — qutining oltala holat-matniga |
+
+Yakuniy: m4b-02 · m4c-02 · m4c-03 · m4c-07 — uz **0**, ru **0**. Darvozalar 5/5.
+
+**🔴 LAYOUTDAN JIDDIYROQ TOPILMA — IKKI DARS YIQILADI (F-0912-13).** Audit `pageerror` ni ham
+yozib boradi; shu yerda birinchi marta chiqdi:
+`Objects are not valid as a React child (found: object with keys {uz, ru})`.
+
+Ya'ni ikki tilli obyekt `tr()` siz chizilgan — React o'sha daraxtni **umuman chiza olmaydi**.
+Yetti joy topildi va tuzatildi: `PmLesson16` 1269 · 1270 · 1379 · 1409 (izoh-matnlari va
+yakuniy ro'yxat) · `PmLesson17` 901 · 916 · 949 (poyga kataklari).
+
+**Nega hech kim sezmagan:** xato faqat **aniq bosish ketma-ketligida** chiqadi — m4b-02 da
+8-ekran → «Hammada» → «Ba'zilarda». O'sha ekranga to'g'ridan-to'g'ri o'tilsa chiqmaydi
+(tekshirildi). Demak qo'lda sinash bu sinfni tutmaydi; uni auditning **interaktiv yurishi**
+tutdi. 1–4-modullarning barcha jurnallarida `sahifa-xatolari` bo'limi bo'sh.
+
+**Ikki yangi KATTA_TOZALASH bandi:**
+- **§31** — ruschada o'zbekcha qo'shimcha (`{n}-hafta`), 58 nomzod, 15+ fayl
+- **§32** — shu yiqilish sinfi + `raw-tr-scan.mjs` asbobi (95 nomzod, yolg'on ulushi yuqori,
+  qo'lda ko'riladi; ishonchli detektor — auditning o'zi)
+
+**Commit YO'Q.** Navbat: 5-modul (11) → 6-modul (14) → 7-modul (13) → 8-modul (1).
+
+
+## 2026-09-13 — F-0912-14/15/16: 5·6·7·8-MODULLAR + BUTUN KURS YOPILDI (109 dars)
+
+**5-modul (11 dars):** `BotStatefulMemoryLesson` s5/s6 · `BotAiProjectLesson` s7 — zoom tugmasi
+matnni 20–76% yopgan (s6 va s7 faqat **ruschada** chiqdi). `zb-notch` qutining hamma
+holat-matniga. Yakun: uz 0 · ru 0.
+
+**6-modul (14 dars):** `MobileAppPracticeLesson` —
+1. s0: telefon maketining tishchasi (`62x15`, `top:9px`) soxta brauzer manzilining **32%** ini
+   yopgan. Repodagi boshqa **sakkiz** darsda bu bezak `52x5` tasma va ramka ichida turadi —
+   ya'ni nuqson **oiladan chiqib turgani** bilan bilindi. Qonun: 147-qonun **(a-2)**.
+2. s7: `plink` qatorlariga o'ngdan 40px zaxira.
+Yakun: uz 0 · ru 0.
+
+**7-modul (13 dars) — eng katta topilma: BITTA SHABLON 11 DARSDA.**
+«Sarlavha … N/M» hisoblagich qatori (`space-between`) modulning **12 fayliga 16 nusxa**
+ko'chirilgan va har birida ⛶ tugmasi hisoblagichni **63%** yopgan (356 holat). Hammasi bir
+buyruqda yopildi (`paddingRight: 40`), shu jumladan auditda yurilmagan `m7-10` — u ham
+`Zoomable` ichida, ya'ni bir xil xavf ostida edi. Yana: `m7-13` s3 notch.
+Yakun: uz 0 · ru 0.
+
+**8-modul (1 dars):** uz 0 · ru 0 (tegilmadi).
+
+**🔴 KALIBROVKA-5 — QOIDA DETEKTORGA EMAS, SABABGA BOG'LANADI.** `m7-01` s0 «16px qirqildi»
+dedi: «QABUL QILINDINGIZ» muhri `rotate(-8deg)`, chegara-qutisi **166px** (haqiqiy balandligi
+~45px). Kalibrovka-2 burilish qoidasini B/C/D ga qo'ygan, A esa chetda qolgan edi.
+**Skrinshot bilan tekshirildi — muhr to'liq ko'rinadi**, ya'ni yolg'on. Qoida A ga ham
+qo'shildi, tuzatishim (chekinishni qisqartirish) **qaytarib olindi** — nuqson yo'q joyga
+tegilmaydi. `--selftest` qayta yurgizildi: detektor tirik.
+
+**Yangi KATTA_TOZALASH bandi §33 — ARALASH YOZUV (233 ta, 18 fayl).** 7-modul matnini o'qiyotib
+ko'rindi: «3/5 sinov**чи**da», «Metrik**ага** qara», «joy**да** qoqildi» — o'zbekcha so'z ichida
+kirill harflar. **204 tasi 7-modulda.** `lint:til` buni ko'radi, lekin 🟡 darajada — to'xtatmaydi.
+Foydalanuvchiga ko'rsatildi, buyrug'i kutilmoqda.
+
+**BUTUN KURS YAKUNI (F-0912-03 … F-0912-16):**
+
+| | Soni |
+|---|---|
+| O'lchangan dars | **109** (m1 14 · m2 13 · m3 14 · m4 15 · m4abc 14 · m5 11 · m6 14 · m7 13 · m8 1) |
+| Kombinatsiya | uz/ru × self/mentor × 1280x773/1366x768 |
+| Tuzatilgan dars | **24** |
+| Qonunga muhrlangan kalibrovka | **5 to'plam** (13 qoida) + siyoh-o'lchovi |
+| Aniqlangan yiqilish (React) | **7 joy, 2 dars** |
+| Ko'r nuqta | 1 (m3-05 — 17 ekranlik dars 1 ekrani bilan «toza» chiqqan) |
+| Yangi ro'yxat-bandi | §31 (ru'da uz qo'shimcha) · §32 (xom obyekt) · §33 (aralash yozuv) |
+
+**Commit YO'Q** (buyruqsiz).
+
+
+## 2026-09-13 (2-seans) — F-0913-01/02/03 · GitHub darslari pastki qirqilish · §33 aralash yozuv · m3-06 nomlar
+
+**Buyruq (foydalanuvchi):** «GitHub darsida qirqilgani bor, debugging sahifasini to'liq, halol
+tekshir va to'g'rila → keyin §33 → keyin m3-06 ga (b)».
+
+### F-0913-02 — pastki chiziqdan tushadigan kontent (audit ko'rmagan sinf)
+| Ekran | Nuqson | Tuzatish |
+|---|---|---|
+| m4c-03 s18 (debugging) | xato/to'g'ri javobda izoh 7–29 px qirqilgan | izoh jurnal ostiga, telefon o'rniga |
+| m4c-03 s17 (markaziy) | `ci.yml` + «🚀 Lentaga qo'ying» boshlang'ichda 140–158 px pastda | o'ng ustunga, natija ustiga («4 · YO'L XARITANGIZ») |
+| m1-09 s13 (amaliyot) | 5-qadam + 🛟 panel 56–94 px pastda | panel chap ustunga; kutayotgan/bajarilgan qadam ixcham |
+
+Nega 109-darslik audit ko'rmadi: skroll 0 da o'lchanadi va `.stage-content` toshishi tekshirilmaydi;
+har ekranda birinchi tugma bosiladi (xato javob holati hech qachon o'lchanmagan). Qonun:
+`DARS_ETALON.md` 147 (e). Butun kurs: `KATTA_TOZALASH.md` §34 (buyruq kutadi).
+Rad etilgan gumon: izoh qutisi `max-height` bilan ichidan qirqiladi — o'lchandi, ikkala darsda 0.
+
+### F-0913-03 — `GitLesson` terminal-maketi uslubsiz edi (HEAD da ham)
+`.term*` sinflari ishlatilgan, CSS yo'q → s3/s9/s13 da qatorlar yopishgan matn. DeployLesson naqshi
+ko'chirildi. Kurs bo'yicha: `className="term"` bor 21 fayl — hozir hammasida uslub bor.
+
+### F-0913-01 — §33 aralash yozuv YOPILDI
+321 so'z (7-modul 6 dars + 2 izoh), har qator ko'rildi. Yangi 🔴 `aralash-yozuv-soz` (kurs 0 · eski
+nusxada 59). Muhr: `MATN_KORPUS.md` §180 · `KATTA_TOZALASH.md` §33 ✅.
+
+### m3-06 `.roname` (qaror b)
+11 px YETMADI (Brookhaven +3 px), 10,5 px ham (+0,47 px — `scrollWidth` «0» degan, skrinshot uch
+nuqta ko'rsatdi). `Range` bilan o'lchab: faqat `.cf-slot .roname` 10 px, keng kartalar 12,5 px.
+
+### Tekshiruv
+- Darvozalar: ReactPropsReuse 5/5 · GithubActions 5/5 (oldingi bilan bir xil) · GitLesson va 7-modul
+  fayllari — esbuild ✓ jsx ✓ prompt ✓, dark/til 🔴 soni tahrirdan oldingi bilan bir xil.
+- `lint:layout`: m1-09+m4c-03 uz/ru — 16 yurish 0 · m7-08…13 uz/ru — 48 yurish, 864 ekran, 0.
+- Aniq o'lchov (32 kombinatsiya) + skrinshot: s17/s18 hamma holat sig'adi; s13 qadam 1→5 hamma
+  holat (min zaxira 11 px). Bahsli, tegilmagan: 🛟 panel OCHILGANDA skroll · yakun ekranlari skroll.
+- ⚠️ Seansda 4 brauzer parallel → xotira tugab jarayonlar o'ldi; qayta ketma-ket yuritildi.
+
+**Commit YO'Q** (buyruqsiz).
+
+
+## 2026-09-13 → 14 — §34 · BUTUN KURS: PASTKI CHIZIQDAN TUSHADIGAN KONTENT (o'lchov, tuzatish YO'Q)
+
+**Buyruq (foydalanuvchi):** «§34 ni boshla, butun kursni tekshir»; tunda «har 40 daqiqada tekshir,
+halol va shoshilmasdan».
+
+### Asbob (`layout-lint.mjs`)
+E-detektor (eng pastki ko'rinadigan element − `.stage-content` pastki cheti) · test ekranida
+2–4-variant ham · `<summary>` panel o'lchovdan keyin yopiladi (kalibrovka-6) · faqat ko'rinadigan
+chizmali element chiziqni belgilaydi (kalibrovka-7) · ekranlar soni ikki xonali ekran-hisoblagichidan
++ har ekranda `NAV` tasdig'i · natija har guruhdan keyin diskka · `--resume`. Selftest tirik;
+eski GitHub nusxasida s13/s17/s18 ushlandi, tuzatilganida haqiqiy bo'lim bo'sh.
+
+### Uch halol qayd
+1. **1-uz urinish bekor:** «288 ekran» — namuna skrinshotida bo'sh `div` yolg'oni (m1-05 s7) va
+   m2-05 da 19 ekran o'rniga 1-ekran 19 marta (xabar-hisoblagichi «0 / 30» → `progRead` rad etgan).
+2. **`systemd-oomd`** bosim 50%/20s da fon ishlarini ikki marta o'ldirdi → `--par 1` + `--resume`.
+3. m1-05, m1-14 o'ldirishda chala qolgan — alohida qayta o'lchandi (17/17, 18/18).
+
+### Natija (self × 1366×768)
+| | uz | ru |
+|---|---|---|
+| Ekran / bosish | 2078 / 9092 | 2087 / 9122 |
+| Haqiqiy E | 270 ekran · 84 dars | 327 ekran · 92 dars |
+| Yakun-skroll (chiqarilgan) | 100 dars | 102 dars |
+
+**Birlashma: 335 ekran · 92 dars** — kritik (>80px) **130** · o'rta (11–80) **184** · kichik (≤10) **21**.
+Ochilganda 158 · bosishdan keyin 177. Faqat ru 65 · faqat uz 8.
+**Tasdiq:** 28 tabaqalangan namuna `verify34.mjs` bilan — cut↔scrollHeight ziddiyat **0/28**; 12 tasi
+skrinshotda ko'z bilan: m4-08 s15 (7-qadam + «Bajardim» yashirin) · m1-08 s2 (sudraladigan bo'laklar
+ko'rinmaydi) · m7-10 s16 / m7-07 s16 (forma oxiri) · m6-11 s14 · m4-10 s10 · m4-14 s7 — haqiqiy;
+m4-01 s19 (7px), m7-08 s10 (5px) — chegara, matn o'qiladi.
+Eng og'ir: m4a-03 (9 ekran, 9 kritik) · m4-10 · m7-07 · m7-08 (5 kritikdan).
+Naqshlar: izoh qutisi · amaliyot «Bajardim» · uzun forma (7-modul s16) · sudraladigan hovuz · maket/kod oynasi.
+
+**Tuzatish YO'Q** — hisobot foydalanuvchi tasdig'ini kutadi. **Commit YO'Q.**

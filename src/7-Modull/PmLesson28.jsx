@@ -622,7 +622,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </Col>
           <Col>
             <div className="fade-up delay-1">
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6 }}><span className="flow-label" style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}><span className="radar" /> Radar skaneri</span><span className="mono" style={{ fontSize: 12, fontWeight: 700, color: done ? T.success : T.accent }}>{okCount}/{MOMENTS.length}</span></div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6, paddingRight: 40 }}><span className="flow-label" style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}><span className="radar" /> Radar skaneri</span><span className="mono" style={{ fontSize: 12, fontWeight: 700, color: done ? T.success : T.accent }}>{okCount}/{MOMENTS.length}</span></div>
               <div className="fmeter-track"><div className="fmeter-fill" style={{ width: `${(okCount / MOMENTS.length) * 100}%` }} /></div>
             </div>
             {last ? (
@@ -943,7 +943,7 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <Zoomable><div className="split" ref={workRef}>
           <Col>
             <div className="fade-up delay-1">
-              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6 }}><span className="flow-label" style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}><span className="radar" /> Ov varag'i</span><span className="mono" style={{ fontSize: 12, fontWeight: 700, color: passed ? T.success : T.accent }}>{completeCount}/10</span></div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6, paddingRight: 40 }}><span className="flow-label" style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}><span className="radar" /> Ov varag'i</span><span className="mono" style={{ fontSize: 12, fontWeight: 700, color: passed ? T.success : T.accent }}>{completeCount}/10</span></div>
               <div className="fmeter-track"><div className="fmeter-fill" style={{ width: `${(completeCount / 10) * 100}%` }} /></div>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 7 }}>

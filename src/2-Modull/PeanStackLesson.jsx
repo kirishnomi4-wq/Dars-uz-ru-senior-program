@@ -2664,18 +2664,28 @@ export default function PeanStackLesson({ lang: langProp, onFinished, onPractice
       earn('coder'); // 🏅 o'z qo'li bilan kod yozib, ishga tushirdi
       pracClear(LESSON_META.lessonId); setPractice(null); advance();
     };
-    if (typeof onPractice === 'function') Promise.resolve(onPractice(entry.task)).then(done);
-    else { pracWrite(LESSON_META.lessonId, { kind: `s${fromScreen}`, screen: fromScreen }); setPractice({ ...entry, done, codeKey: codeKeyOf(LESSON_META.lessonId, `s${fromScreen}`) }); }
+    // F-0912-04 (2026-09-12): LMS praktika-yo'li yiqilsa — o'quvchi qotib qolmasin.
+    // Ilgari `.then(done)` da rad-etish TUTILMASDI: LMS tomoni yiqilsa (tarmoq uzilishi,
+    // chunk yuklanmasligi, postMessage xatosi) praktika ochilmas, xato jim yutilar va dars
+    // ham oldinga ketmasdi — 20 o'quvchidan 1 tasida aynan shu. Endi xato tutiladi va
+    // darsning O'Z kompilyatoriga tushiladi: mashq baribir bajariladi, signal ham ketadi.
+    const openLocal = () => { pracWrite(LESSON_META.lessonId, { kind: `s${fromScreen}`, screen: fromScreen }); setPractice({ ...entry, done, codeKey: codeKeyOf(LESSON_META.lessonId, `s${fromScreen}`) }); };
+    if (typeof onPractice !== 'function') { openLocal(); return; }
+    try { Promise.resolve(onPractice(entry.task)).then(done, openLocal); }
+    catch { openLocal(); }
   };
   // 🏠 UYGA VAZIFA PRAKTIKASI (yakun-sahifadagi tugma) — yakuniy topshiriq.
   // Dars-ichi mashqidan farqi: keyingi ekranga O'TKAZMAYDI va serverga signal YUBORMAYDI.
   const openHomeworkPractice = () => {
     const entry = { task: HW_TASK, starter: '' };
-    if (typeof onPractice === 'function') Promise.resolve(onPractice(entry.task)).catch(() => {});
-    else {
+    // F-0912-04: LMS yo'li yiqilsa — uyga vazifa ham darsning o'z kompilyatorida ochiladi.
+    const openLocal = () => {
       pracWrite(LESSON_META.lessonId, { kind: 'hw' });
       setPractice({ ...entry, codeKey: codeKeyOf(LESSON_META.lessonId, 'hw'), done: () => { pracClear(LESSON_META.lessonId); setPractice(null); } });
-    }
+    };
+    if (typeof onPractice !== 'function') { openLocal(); return; }
+    try { Promise.resolve(onPractice(entry.task)).catch(openLocal); }
+    catch { openLocal(); }
   };
   // F-0801-01 (102-qonun): qayta yuklanishda ochiq praktika tiklanadi.
   useEffect(() => {

@@ -145,7 +145,7 @@ const SMAP = { vanity: { emoji: '🎈', label: 'MAQTANCHOQ', color: T.honey }, a
 
 // s5 — Shimoliy yulduz nomzodlari
 const NORTHSTAR = [
-  { id: 'n1', ic: '📥', label: 'Umumiy ro\'yxatdan o\'tganlar', verdict: 'no', d: 'Bir marta o\'sadi va to\'xtaydi. Odam mahsulotni tashlab ketsa ham bu raqam kamaymaydi — ya\'ni mahsulot o\'lса ham «yashil» ko\'rinadi. Bu yulduz emas, maqtanchoq raqam.' },
+  { id: 'n1', ic: '📥', label: 'Umumiy ro\'yxatdan o\'tganlar', verdict: 'no', d: 'Bir marta o\'sadi va to\'xtaydi. Odam mahsulotni tashlab ketsa ham bu raqam kamaymaydi — ya\'ni mahsulot o\'lsa ham «yashil» ko\'rinadi. Bu yulduz emas, maqtanchoq raqam.' },
   { id: 'n2', ic: '👀', label: 'Sahifa ko\'rishlar soni', verdict: 'no', d: 'Qiymatga bog\'liq emas: odam adashib ko\'p sahifa ochishi mumkin. Ko\'rish ≠ foyda. Bu ham yulduzligiga da\'vogar emas.' },
   { id: 'n3', ic: '⭐', label: 'Haftada 3+ marta avtobus tekshirgan foydalanuvchilar', verdict: 'yes', d: 'MANA U! Bitta raqamda hammasi jam: odam BOR (foydalanuvchi), qiymat OLDI (tekshirdi), ODAT bo\'ldi (3+ marta). O\'ssa — biznes sog\'lom; tushsa — muammo bor. Butun jamoa aynan shuni o\'stiradi.' }
 ];
@@ -184,14 +184,14 @@ const LEAK_ID = 'f3'; // 620 → 210: eng katta tushish (66%)
 // s11 — dashboard o'qish drilli
 const READ_DRILL = [
   { id: 'd1', label: '1000 ochdi, lekin ertasi kuni atigi 95 (9%) qaytdi', emoji: '🪣', color: T.blue,
-    opts: ['Ko\'proq reklama berish — 1000 ni 5000 qilish', 'Teshik ochilishда emas — QAYTISHda; avval retention\'ni tuzat, keyin reklama', 'Ilovani yopib boshqa g\'oya qidirish'],
+    opts: ['Ko\'proq reklama berish — 1000 ni 5000 qilish', 'Teshik ochilishda emas — QAYTISHda; avval retention\'ni tuzat, keyin reklama', 'Ilovani yopib boshqa g\'oya qidirish'],
     correct: 1, why: 'Teshik chelakka ko\'proq suv quyish — behuda. Avval teshikni yoping: nega qaytmayapti? Retention tuzalmasa, reklama pulni yoqadi.' },
   { id: 'd2', label: 'Eslatma yoqqanlar 5× ko\'proq qaytadi', emoji: '🔔', color: T.honey,
     opts: ['Hammani majburan obuna qilish', 'Eslatma yoqishni birinchi ochishda OSON va tabiiy qilish — aktivatsiyani kuchaytir', 'Eslatmani umuman olib tashlash'],
     correct: 1, why: 'Bu — sehrli raqam: aktivatsiya lahzasi topildi. Majburlash emas — yoqishni oson va foydali qilib, ko\'proq odamni «aha» lahzasiga olib boring.' },
   { id: 'd3', label: '620 tekshirdi, lekin faqat 210 eslatma yoqdi', emoji: '📉', color: T.grape,
     opts: ['Muammo yo\'q, 620 zo\'r-ku', 'Voronkaning shu bosqichida katta tushish bor — nega yarmisi eslatma yoqmaydi? Shu qadamni sodda qil', 'Eslatma tugmasini kattaroq qizil qilish (taxminan)'],
-    correct: 1, why: 'Eng katta tushish — eng katta imkoniyat. «Nega tushyapti?» degan savolni bering (kuzating/so\'rang), taxminга emas — dalilga qarab tuzating.' }
+    correct: 1, why: 'Eng katta tushish — eng katta imkoniyat. «Nega tushyapti?» degan savolni bering (kuzating/so\'rang), taxminga emas — dalilga qarab tuzating.' }
 ];
 
 const STAGES = [
@@ -578,7 +578,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </Col>
           <Col>
             <div className="fade-up delay-1">
-              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6 }}><span className="flow-label">💎 Harakatli topildi</span><span className="mono" style={{ fontSize: 12, fontWeight: 700, color: done ? T.success : T.accent }}>{okCount}/{SORT_METRICS.length}</span></div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6, paddingRight: 40 }}><span className="flow-label">💎 Harakatli topildi</span><span className="mono" style={{ fontSize: 12, fontWeight: 700, color: done ? T.success : T.accent }}>{okCount}/{SORT_METRICS.length}</span></div>
               <div className="fmeter-track"><div className="fmeter-fill" style={{ width: `${(okCount / SORT_METRICS.length) * 100}%` }} /></div>
             </div>
             {last ? (
@@ -643,7 +643,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <p className="note-h" style={{ color: cur.verdict === 'yes' ? T.honey : T.accent }}>{cur.ic} {cur.verdict === 'yes' ? 'SHIMOLIY YULDUZ!' : 'Yulduz emas'}</p>
               <p className="body" style={{ margin: 0, color: T.ink }}>{cur.d}</p>
             </div>) : (!isNarrow ? <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>Nomzodni bosing</p></div> : null)}
-            {done && <div className="frame-soft fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Yaxshi Shimoliy yulduzning uch belgisi: (1) core qiymatni o'lchaydi, (2) foydalanuvchi bilan bog'liq, (3) o'sса biznes ham o'sadi. «Ro'yxatdan o'tish» uchalasidan ham yiqiladi.</p></div>}
+            {done && <div className="frame-soft fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Yaxshi Shimoliy yulduzning uch belgisi: (1) core qiymatni o'lchaydi, (2) foydalanuvchi bilan bog'liq, (3) o'ssa biznes ham o'sadi. «Ro'yxatdan o'tish» uchalasidan ham yiqiladi.</p></div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -658,7 +658,7 @@ const Screen5b = (props) => (
     question={<><p className="eyebrow" style={{ color: T.accent }}>Mustahkamlash</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Yaxshi <span className="italic" style={{ color: T.honey }}>Shimoliy yulduz</span> nimani o'lchaydi?</h2></>}
     options={['Umumiy ro\'yxatdan o\'tganlar sonini', 'Foydalanuvchilar core qiymatni olayotganini (masalan: haftada 3+ marta tekshirdi)', 'App Store yulduzini', 'Ijtimoiy tarmoqdagi obunachilar sonini']} correctIdx={1}
     explainCorrect="To'g'ri! Shimoliy yulduz = core qiymat lahzasini o'lchaydigan bitta raqam. U o'ssa — odamlar mahsulotdan foyda ko'ryapti; tushsa — muammo bor. Airbnb: bron qilingan kechalar; sizniki: takror tekshirgan foydalanuvchilar."
-    explainWrong={{ 0: 'Ro\'yxatdan o\'tish faqat o\'sadi va mahsulot o\'lса ham kamaymaydi — maqtanchoq.', 2: 'Yulduz — kam sonli, tanish baholaridan; core qiymatni o\'lchamaydi.', 3: 'Obunachi mahsulotni ishlatishni ko\'rsatmaydi.', default: 'Yulduz = core qiymatni o\'lchaydi.' }} />
+    explainWrong={{ 0: 'Ro\'yxatdan o\'tish faqat o\'sadi va mahsulot o\'lsa ham kamaymaydi — maqtanchoq.', 2: 'Yulduz — kam sonli, tanish baholaridan; core qiymatni o\'lchamaydi.', 3: 'Obunachi mahsulotni ishlatishni ko\'rsatmaydi.', default: 'Yulduz = core qiymatni o\'lchaydi.' }} />
 );
 
 // ===== SCREEN 6 — HODISA (EVENT): RAQAM QAYERDAN KELADI =====
@@ -743,7 +743,7 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </Col>
           <Col>
             <div className="fade-up delay-1">
-              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6 }}><span className="flow-label">🎯 Hodisalar tozalandi</span><span className="mono" style={{ fontSize: 12, fontWeight: 700, color: done ? T.success : T.accent }}>{okCount}/{EVENTS.length}</span></div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6, paddingRight: 40 }}><span className="flow-label">🎯 Hodisalar tozalandi</span><span className="mono" style={{ fontSize: 12, fontWeight: 700, color: done ? T.success : T.accent }}>{okCount}/{EVENTS.length}</span></div>
               <div className="fmeter-track"><div className="fmeter-fill" style={{ width: `${(okCount / EVENTS.length) * 100}%` }} /></div>
             </div>
             {last ? (
@@ -781,7 +781,7 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             </div>
             <div key={v} className="frame demo-swap" style={{ padding: 'clamp(16px,2.5vw,22px)', borderLeft: `4px solid ${isFb ? T.blue : T.honey}` }}>
               <p style={{ fontFamily: G, fontSize: 'clamp(14px,1.9vw,16px)', color: T.ink, margin: 0, lineHeight: 1.55 }}>{isFb
-                ? 'Facebook o\'sish jamoasi ma\'lumotni titkiladi va bitta naqsh topdi: «birinchi 10 kunда 7 ta do\'st qo\'shgan» foydalanuvchi deyarli hech qachon ketmaydi. Mana — sehrli raqam. Shundan keyin butun mahsulot bitta maqsadga qaratildi: yangi odamni tezroq 7 do\'stga yetkazish.'
+                ? 'Facebook o\'sish jamoasi ma\'lumotni titkiladi va bitta naqsh topdi: «birinchi 10 kunda 7 ta do\'st qo\'shgan» foydalanuvchi deyarli hech qachon ketmaydi. Mana — sehrli raqam. Shundan keyin butun mahsulot bitta maqsadga qaratildi: yangi odamni tezroq 7 do\'stga yetkazish.'
                 : 'Sizning dashboardingiz ham naqsh ko\'rsatdi: «eslatmani yoqqan» foydalanuvchi eslatma yoqmaganidan ~5 barobar ko\'proq qaytadi. Demak aktivatsiya lahzangiz = eslatmani yoqish. Vazifa: birinchi ochishda eslatma yoqishni oson va tabiiy qilish.'}</p>
             </div>
           </Col>
@@ -898,7 +898,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow="Mashq · dashboard o'qish" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? 'Davom etish' : `Harakatni toping (${okCount}/${READ_DRILL.length})`} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">Raqam ko'rdingiz — <span className="italic" style={{ color: T.accent }}>endi nima qilasiz?</span></h2></div>
-        <Mentor>Yomon founder raqamга qarab bosh irg'aydi. Yaxshi founder har raqamdan <b style={{ color: T.ink }}>bitta harakat</b> chiqaradi. Uch holat — har biriga to'g'ri harakatni tanlang.</Mentor>
+        <Mentor>Yomon founder raqamga qarab bosh irg'aydi. Yaxshi founder har raqamdan <b style={{ color: T.ink }}>bitta harakat</b> chiqaradi. Uch holat — har biriga to'g'ri harakatni tanlang.</Mentor>
         <MentorCollapseScroll targetRef={workRef} />
         <div ref={workRef} className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
           {READ_DRILL.map(d => {
@@ -972,7 +972,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <FeedbackBlock show={picked !== null} isCorrect={solved}>
           <p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: solved ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>{solved ? 'To\'g\'ri maslahat' : 'Yana o\'ylang'}</p>
           <p className="body" style={{ margin: 0 }}>{solved
-            ? 'Aziz uch maqtanchoq raqamга suyanyapti (yuklab olish, yulduz, like) — hech biri «mahsulot yashaydimi?» degan savolga javob bermaydi. Reklama tikishdan oldin u teshik chelakni topishi kerak: nechta odam CORE jobni bajardi va qaytdi? Bugundan hodisa yozmasa — bu savol abadiy javobsiz qoladi.'
+            ? 'Aziz uch maqtanchoq raqamga suyanyapti (yuklab olish, yulduz, like) — hech biri «mahsulot yashaydimi?» degan savolga javob bermaydi. Reklama tikishdan oldin u teshik chelakni topishi kerak: nechta odam CORE jobni bajardi va qaytdi? Bugundan hodisa yozmasa — bu savol abadiy javobsiz qoladi.'
             : (picked === 0 ? 'Bu — samolyot qulayotganda gazni bosish. Teshik chelakka ko\'proq suv quyish pulni yoqadi. Avval retention.' : 'Yuklab olish — maqtanchoq raqam. 300 ham, 1000 ham «mahsulot yashaydimi?» degan savolga javob bermaydi. Muhimi son emas — qaytish.')}</p>
         </FeedbackBlock>
       </div>

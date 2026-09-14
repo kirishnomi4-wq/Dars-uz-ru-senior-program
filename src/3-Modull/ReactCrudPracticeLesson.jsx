@@ -768,7 +768,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 );
               })}
             </div>
-            {active && <div className="sk-info" key={active}><p className="body" style={{ margin: 0, color: T.ink }}><b style={{ color: T.accent }}>{tr(OPS.find(o => o.key === active).amal)}</b> — {tr(OPS.find(o => o.key === active).eff)}.</p></div>}
+            {active && <div className="sk-info" key={active}><p className="body zb-notch" style={{ margin: 0, color: T.ink }}><b style={{ color: T.accent }}>{tr(OPS.find(o => o.key === active).amal)}</b> — {tr(OPS.find(o => o.key === active).eff)}.</p></div>}
           </Col>
           <Col>
             <p className="flow-label">{tr({ uz: "Tirik akvarium — suv = ma'lumot (state), oyna = ekran", ru: 'Живой аквариум — вода = данные (state), стекло = экран' })}</p>
@@ -844,7 +844,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <Col>
             {!done ? (
               <>
-                <div className="sk-info" key={taskIdx}><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <><b style={{ color: T.accent }}>{tr(cur.amal)}</b> ({cur.en}) bosilganda <span className="mono">games</span> ro'yxatiga nima bo'ladi?</>, ru: <>Что произойдёт со списком <span className="mono">games</span> при нажатии <b style={{ color: T.accent }}>{tr(cur.amal)}</b> ({cur.en})?</> })}</p></div>
+                <div className="sk-info" key={taskIdx}><p className="body zb-notch" style={{ margin: 0, color: T.ink }}>{tr({ uz: <><b style={{ color: T.accent }}>{tr(cur.amal)}</b> ({cur.en}) bosilganda <span className="mono">games</span> ro'yxatiga nima bo'ladi?</>, ru: <>Что произойдёт со списком <span className="mono">games</span> при нажатии <b style={{ color: T.accent }}>{tr(cur.amal)}</b> ({cur.en})?</> })}</p></div>
                 <p className="flow-label" style={{ margin: 0 }}>{tr({ uz: 'Natijani tanlang', ru: 'Выберите результат' })}</p>
                 <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
                   {EFFECTS.map(e => {
@@ -913,7 +913,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             </pre>
           </Col>
           <Col>
-            <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between' }}>
+            <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', paddingRight: 40 }}>
               <p className="flow-label" style={{ margin: 0 }}>{tr({ uz: "Mening o'yinlarim", ru: 'Мои игры' })}</p>
               <span className="mono small" style={{ color: T.ink3 }}>{tr({ uz: `${list.length} ta`, ru: `${list.length} шт.` })}</span>
             </div>
@@ -1015,7 +1015,7 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             </div>
           </Col>
           <Col>
-            <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between' }}>
+            <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', paddingRight: 40 }}>
               <p className="flow-label" style={{ margin: 0 }}>{tr({ uz: "Mening o'yinlarim", ru: 'Мои игры' })}</p>
               <span className="mono small" style={{ color: T.ink3 }}>{tr({ uz: `${list.length} ta`, ru: `${list.length} шт.` })}</span>
             </div>
@@ -2458,6 +2458,11 @@ export default function ReactCrudPracticeLesson({ lang: langProp, onFinished, li
         .mentor { display: flex; gap: 12px; align-items: flex-start; }
         .zoomable { position: relative; }
         .zoom-btn { position: absolute; top: 6px; right: 6px; z-index: 5; width: 30px; height: 30px; border-radius: 8px; border: none; background: rgba(255,255,255,0.82); color: ${T.ink2}; font-size: 14px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.22); transition: all 0.2s; }
+        /* F-0912-09 · 147-qonun (m1 da muhrlangan naqsh): matn ⛶ tugmasi burchagini
+           AYLANIB o'tadi — faqat tugma yonidagi qator qisqaradi, qolganlari to'liq
+           kenglikda qoladi. Tugma o'ngdan 6+30=36px egallaydi, 28px nafas bilan olinadi.
+           Ruscha «Показать/Удалить» uzunroq — uz da sig'gan qator ru da tugma ostiga tushadi. */
+        .zb-notch::before { content: ''; float: right; width: 28px; height: 28px; }
         .zoom-btn:hover { background: ${T.paper}; color: ${T.accent}; transform: scale(1.08); }
         .zoom-backdrop { position: fixed; inset: 0; background: rgba(14,14,16,0.55); z-index: 1000; animation: fade-step 0.25s ease; }
         .zoom-on { position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%); width: min(880px,94vw); max-height: calc(90vh / var(--lz, 1)); overflow: auto; z-index: 1001; background: ${T.paper}; border-radius: 18px; padding: clamp(20px,4vw,42px); box-shadow: 0 30px 80px -20px rgba(${T.shadowBase},0.5); animation: zoom-pop 0.3s cubic-bezier(.34,1.3,.4,1); }

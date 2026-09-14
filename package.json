@@ -19,7 +19,8 @@
     "gen:mentor": "node scripts/gen-mentor.mjs",
     "build:mentor": "vite build --config vite.mentor.config.js",
     "gate:esbuild": "node esbuild-gate.mjs",
-    "gates": "node gates.mjs"
+    "gates": "node gates.mjs",
+    "lint:layout": "node layout-lint.mjs"
   },
   "dependencies": {
     "react": "^19.2.7",

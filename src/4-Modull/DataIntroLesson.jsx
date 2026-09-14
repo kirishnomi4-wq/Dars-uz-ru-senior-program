@@ -819,7 +819,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <div className="hint fade-up delay-2"><p className="small" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: <>O'qilishi: "username degan kalitning qiymati <b>ali_dev</b>, sarlavha degan kalitniki <b>Tog' sayohati</b>".</>, ru: <>Читается так: «значение ключа username — <b>ali_dev</b>, а ключа sarlavha — <b>Tog' sayohati</b>».</> })}</p></div>
           </Col>
           <Col>
-            <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between' }}>
+            <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', paddingRight: 40 }}>
               <p className="flow-label" style={{ margin: 0 }}>{tr({ uz: 'Qismlar', ru: 'Части' })}</p>
               <span className="small mono" style={{ color: done ? T.success : T.ink3 }}>{seen.size} / 3 {tr({ uz: 'topildi', ru: 'найдено' })}</span>
             </div>
@@ -1368,10 +1368,10 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <Col>
             {!found && (
               (picked && picked !== 'bad')
-                ? <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Bu bog'lanish to'g'ri. Yana qarang: <span className="mono">post_id</span> nomli ustun qaysi jadvalga ulanishi kerak — users'gami yoki posts'gami?</>, ru: <>Эта связь верная. Посмотрите ещё раз: к какой таблице должен подключаться столбец <span className="mono">post_id</span> — к users или к posts?</> })}</p></div>
-                : <div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: <>Maslahat: ustun nomi <span className="mono">post_id</span> — demak u <b style={{ color: T.ink }}>posts</b> jadvaliga ulanishi kerak, users'ga emas.</>, ru: <>Подсказка: столбец называется <span className="mono">post_id</span> — значит, он должен подключаться к таблице <b style={{ color: T.ink }}>posts</b>, а не к users.</> })}</p></div>
+                ? <div className="frame-warn fade-step"><p className="body zb-notch" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Bu bog'lanish to'g'ri. Yana qarang: <span className="mono">post_id</span> nomli ustun qaysi jadvalga ulanishi kerak — users'gami yoki posts'gami?</>, ru: <>Эта связь верная. Посмотрите ещё раз: к какой таблице должен подключаться столбец <span className="mono">post_id</span> — к users или к posts?</> })}</p></div>
+                : <div className="hint"><p className="body zb-notch" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: <>Maslahat: ustun nomi <span className="mono">post_id</span> — demak u <b style={{ color: T.ink }}>posts</b> jadvaliga ulanishi kerak, users'ga emas.</>, ru: <>Подсказка: столбец называется <span className="mono">post_id</span> — значит, он должен подключаться к таблице <b style={{ color: T.ink }}>posts</b>, а не к users.</> })}</p></div>
             )}
-            {found && !fixed && <div className="frame-warn fade-step"><p className="note-h" style={{ color: T.accent }}>{tr({ uz: '✓ Topdingiz!', ru: '✓ Нашли!' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <><span className="mono">comments.post_id</span> — bu izoh qaysi <b>postga</b> tegishli ekanini ko'rsatadi, shuning uchun <b>posts</b> jadvaliga ulanishi kerak, users'ga emas. Chapdagi tugma bilan to'g'rilang →</>, ru: <><span className="mono">comments.post_id</span> показывает, к какому <b>посту</b> относится комментарий, поэтому он должен подключаться к таблице <b>posts</b>, а не к users. Исправьте кнопкой слева →</> })}</p></div>}
+            {found && !fixed && <div className="frame-warn fade-step"><p className="note-h" style={{ color: T.accent }}>{tr({ uz: '✓ Topdingiz!', ru: '✓ Нашли!' })}</p><p className="body zb-notch" style={{ margin: 0, color: T.ink }}>{tr({ uz: <><span className="mono">comments.post_id</span> — bu izoh qaysi <b>postga</b> tegishli ekanini ko'rsatadi, shuning uchun <b>posts</b> jadvaliga ulanishi kerak, users'ga emas. Chapdagi tugma bilan to'g'rilang →</>, ru: <><span className="mono">comments.post_id</span> показывает, к какому <b>посту</b> относится комментарий, поэтому он должен подключаться к таблице <b>posts</b>, а не к users. Исправьте кнопкой слева →</> })}</p></div>}
             {fixed && (
               <>
                 <p className="flow-label" style={{ margin: 0 }}>{tr({ uz: "To'g'ri sxema", ru: 'Верная схема' })}</p>
@@ -2709,6 +2709,11 @@ export default function DataIntroLesson({ lang: langProp, onFinished, liveToken 
         .mentor { display: flex; gap: 12px; align-items: flex-start; }
         .zoomable { position: relative; }
         .zoom-btn { position: absolute; top: 6px; right: 6px; z-index: 5; width: 30px; height: 30px; border-radius: 8px; border: none; background: rgba(255,255,255,0.82); color: ${T.ink2}; font-size: 14px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.22); transition: all 0.2s; }
+        /* F-0912-09 · 147-qonun: matn ⛶ tugmasi burchagini AYLANIB o'tadi — faqat
+           tugma yonidagi qator qisqaradi. Tugma o'ngdan 6+30=36px egallaydi, 28px nafas.
+           Notch qutining HAMMA holat-matniga qo'yiladi: qaysi holat ekranda turgani
+           tilga bog'liq (ruscha jumla uzunroq — uz da sig'gani ru da tugma ostiga tushadi). */
+        .zb-notch::before { content: ''; float: right; width: 28px; height: 28px; }
         .zoom-btn:hover { background: ${T.paper}; color: ${T.accent}; transform: scale(1.08); }
         .zoom-backdrop { position: fixed; inset: 0; background: rgba(14,14,16,0.55); z-index: 1000; animation: fade-step 0.25s ease; }
         .zoom-on { position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%); width: min(880px,94vw); max-height: 90vh; overflow: auto; z-index: 1001; background: ${T.paper}; border-radius: 18px; padding: clamp(20px,4vw,42px); box-shadow: 0 30px 80px -20px rgba(${T.shadowBase},0.5); animation: zoom-pop 0.3s cubic-bezier(.34,1.3,.4,1); }

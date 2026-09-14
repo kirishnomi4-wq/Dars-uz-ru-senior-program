@@ -125,7 +125,7 @@ const readProductName = () => {
 // ===== KONSEPT LEKSIKONI =====
 // s3/s5 — Prompt anatomiyasi (4 qism)
 const PROMPT_PARTS = [
-  { id: 'ctx', label: 'KONTEKST', ic: '🧭', color: T.blue, soft: T.blueSoft, text: 'React + Express (PERN) da avtobus-tracker MVP qilyapman.', why: 'AI vaziyatni bilsa — mos stekда, mos uslubda yozadi. Bilmasa — taxmin qiladi.' },
+  { id: 'ctx', label: 'KONTEKST', ic: '🧭', color: T.blue, soft: T.blueSoft, text: 'React + Express (PERN) da avtobus-tracker MVP qilyapman.', why: 'AI vaziyatni bilsa — mos stekda, mos uslubda yozadi. Bilmasa — taxmin qiladi.' },
   { id: 'task', label: 'VAZIFA', ic: '🎯', color: T.accent, soft: T.accentSoft, text: 'Bitta ekran qil: foydalanuvchi maktab yo\'nalishini tanlaydi va avtobus necha daqiqada kelishini ko\'radi.', why: 'Aniq vazifa = aniq natija. «Sahifa qil» — juda umumiy, AI o\'zicha to\'qiydi.' },
   { id: 'lim', label: 'CHEKLOV', ic: '✂️', color: T.grape, soft: T.grapeSoft, text: 'Faqat 1 yo\'nalish, oddiy web-sahifa, ro\'yxatdan o\'tishsiz (98-dars MVP qarori).', why: 'Cheklovsiz AI ortiqcha narsa qo\'shadi. Chegara — MVP\'ni tor va tez qiladi.' },
   { id: 'ex', label: 'NAMUNA', ic: '🖼️', color: T.honey, soft: T.honeySoft, text: 'Ko\'rinishi: markazda katta raqam «7 daqiqa», ostida yo\'nalish nomi.', why: 'Namuna berish — AI\'ga «shunga o\'xshatib» deyish. Aniqlik keskin oshadi.' }
@@ -150,10 +150,10 @@ const GATE_LINES = [
 // s10 — AI-kod tekshiruv checklisti (xatoni top)
 const REVIEW_DRILL = [
   { id: 'r1', code: (<><Kw>const</Kw> API_KEY = <St>"sk-abc123xyz..."</St></>), emoji: '🔑', color: T.accent,
-    opts: ['Muammo yo\'q', 'Maxfiy kalit kodда ochiq — .env ga ko\'chirish kerak (45-dars!)', 'Rang noto\'g\'ri'], correct: 1,
+    opts: ['Muammo yo\'q', 'Maxfiy kalit kodda ochiq — .env ga ko\'chirish kerak (45-dars!)', 'Rang noto\'g\'ri'], correct: 1,
     why: 'AI ko\'pincha kalitni to\'g\'ridan-to\'g\'ri yozadi. Xavfli! .env ga ko\'chiring — 4-moduldan bilamiz.' },
   { id: 'r2', code: (<><Fn>fetch</Fn>(url).<Fn>then</Fn>(r <Pn>=&gt;</Pn> r.<Fn>json</Fn>()) <Cm>// catch yo'q</Cm></>), emoji: '💥', color: T.honey,
-    opts: ['Xatolik ushlanmagan — internet uzilса ilova sinadi (oq ekran)', 'Muammo yo\'q', 'Juda tez ishlaydi'], correct: 0,
+    opts: ['Xatolik ushlanmagan — internet uzilsa ilova sinadi (oq ekran)', 'Muammo yo\'q', 'Juda tez ishlaydi'], correct: 0,
     why: 'AI ko\'pincha «baxtli yo\'l»ni yozadi. Xato bo\'lsa? .catch() qo\'shing — aks holda oq ekran (buzilish detektivi, 99!).' },
   { id: 'r3', code: (<><Kw>const</Kw> daqiqa = <St>7</St> <Cm>// qotirib qo'yilgan</Cm></>), emoji: '📌', color: T.blue,
     opts: ['Muammo yo\'q, 7 zo\'r', 'Qiymat hardcode — hamma uchun DOIM «7» ko\'rinadi, serverdan kelmaydi', 'Rang xato'], correct: 1,
@@ -484,14 +484,14 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <div key={v} className="frame demo-swap" style={{ padding: 'clamp(16px,2.5vw,22px)', borderLeft: `4px solid ${isOld ? T.ink2 : T.grape}` }}>
               <p style={{ fontFamily: G, fontSize: 'clamp(14px,1.9vw,16px)', color: T.ink, margin: 0, lineHeight: 1.55 }}>{isOld
                 ? 'Har bir qatorni o\'zingiz yozasiz: sintaksis, qavslar, nuqta-vergul... 100 qator kod = 100 marta xato qilish imkoni. Sekin, lekin har qatorni bilasiz.'
-                : 'AI\'ga niyatingizni aytasiz: «avtobus vaqti ekranini qil». U 100 qatorni soniyalarда yozadi. Tez va kuchli — LEKIN u yozgan narsani tushunmasangiz, egasi emas, sayohatchisiz.'}</p>
+                : 'AI\'ga niyatingizni aytasiz: «avtobus vaqti ekranini qil». U 100 qatorni soniyalarda yozadi. Tez va kuchli — LEKIN u yozgan narsani tushunmasangiz, egasi emas, sayohatchisiz.'}</p>
             </div>
           </Col>
           <Col>
             {isOld
               ? <div className="frame-warn fade-step" key="o"><p className="body" style={{ margin: 0, color: T.ink }}>Eski usul yomon emas — lekin MVP tezligida raqobatlashib bo'lmaydi. Bugun founderlar g'oyani bir kunda sinaydi.</p></div>
               : <div className="frame-success fade-step" key="v"><p className="body" style={{ margin: 0, color: T.ink }}>Vibe coding kuchi haqiqiy. Lekin kapitan siz: AI — kuchli dvigatel, yo'nalishni SIZ belgilaysiz va asboblarni SIZ o'qiysiz.</p></div>}
-            {done && <div className="frame-soft fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Kalit farq: eski usulда tushunish MAJBUR edi (yozolmasang, ishlamaydi). Vibe coding'да tushunish IXTIYORIY bo'lib qoladi — va aynan shu tuzoq. Biz tushunishni majburiy qilamiz: «tushuntir» darvozasi.</p></div>}
+            {done && <div className="frame-soft fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Kalit farq: eski usulda tushunish MAJBUR edi (yozolmasang, ishlamaydi). Vibe coding'da tushunish IXTIYORIY bo'lib qoladi — va aynan shu tuzoq. Biz tushunishni majburiy qilamiz: «tushuntir» darvozasi.</p></div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -542,7 +542,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const Screen4 = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow="Mashq · 1-savol"
     questionText="Yaxshi promptni nima kuchli qiladi?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Kuchli promptда <span className="italic" style={{ color: T.accent }}>nima bo'ladi</span>?</h2></>}
+    question={<><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Kuchli promptda <span className="italic" style={{ color: T.accent }}>nima bo'ladi</span>?</h2></>}
     options={['«Zo\'r sahifa qil» — qisqa va umumiy', 'Kontekst + aniq vazifa + cheklov + namuna', 'Iloji boricha ko\'proq so\'z', 'Faqat texnik atamalar']} correctIdx={1}
     explainCorrect="To'g'ri! Kuchli prompt = 4 qism: vaziyat (kontekst), aniq vazifa, chegara (cheklov) va namuna. Shunda AI taxmin qilmaydi — aynan kerakli narsani yozadi."
     explainWrong={{ 0: '«Zo\'r sahifa» — AI o\'zicha to\'qiydi, sizga kerak bo\'lmagan narsa chiqadi.', 2: 'Ko\'p so\'z ≠ aniq so\'z. Muhimi — 4 qism to\'liqligi.', 3: 'Texnik atama shart emas — aniqlik va cheklov muhim.', default: '4 qism: kontekst + vazifa + cheklov + namuna.' }} />
@@ -578,7 +578,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </Col>
           <Col>
             <div className="fade-up delay-1">
-              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6 }}><span className="flow-label">🪄 Prompt sifati</span><span className="mono" style={{ fontSize: 12, fontWeight: 700, color: done ? T.success : T.accent }}>{quality}%</span></div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6, paddingRight: 40 }}><span className="flow-label">🪄 Prompt sifati</span><span className="mono" style={{ fontSize: 12, fontWeight: 700, color: done ? T.success : T.accent }}>{quality}%</span></div>
               <div className="fmeter-track"><div className="fmeter-fill" style={{ width: `${quality}%`, background: done ? T.success : undefined }} /></div>
             </div>
             <CodeCard file="prompt.txt">
@@ -601,7 +601,7 @@ const Screen5b = (props) => (
     questionText="AI kutilmagan, noto'g'ri sahifa yozsa — birinchi sabab nima?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>Mustahkamlash</p><h2 className="title h-ask" style={{ marginTop: 8 }}>AI <span className="italic" style={{ color: T.accent }}>noto'g'ri</span> yozsa — birinchi tekshiring?</h2></>}
     options={['AI yomon — boshqasiga o\'ting', 'Promptingiz zaif bo\'lgan — kontekst/cheklov/namuna yetishmagan', 'Kompyuter sekin', 'Internet uzilgan']} correctIdx={1}
-    explainCorrect="To'g'ri! Ko'pincha ayb AI'da emas — zaif promptда. Aniqroq kontekst, cheklov va namuna bering — natija keskin yaxshilanadi. «Axlat kirsa — axlat chiqadi»."
+    explainCorrect="To'g'ri! Ko'pincha ayb AI'da emas — zaif promptda. Aniqroq kontekst, cheklov va namuna bering — natija keskin yaxshilanadi. «Axlat kirsa — axlat chiqadi»."
     explainWrong={{ 0: 'AI\'ni almashtirish oldin — promptni kuchaytiring; ko\'pincha muammo shu.', 2: 'Tezlik masalasi emas — aniqlik masalasi.', 3: 'Internet emas — buyruq aniqligi.', default: 'Avval promptni kuchaytiring: kontekst + cheklov + namuna.' }} />
 );
 
@@ -613,7 +613,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow="AI-kodni o'qish" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!seen} label={seen ? 'Davom etish' : 'Kodni ko\'rib chiqing'} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">AI javob berdi. <span className="italic" style={{ color: T.accent }}>Endi o'qiymiz.</span></h2></div>
-        <Mentor>Kuchli promptdan AI shu kodni yozdi — avtobus vaqti ekrani. Qo'rqmang: har qatorni oddiy so'z bilan tushunish mumkin. Keyingi ekranда har qatorni izohlaysiz.</Mentor>
+        <Mentor>Kuchli promptdan AI shu kodni yozdi — avtobus vaqti ekrani. Qo'rqmang: har qatorni oddiy so'z bilan tushunish mumkin. Keyingi ekranda har qatorni izohlaysiz.</Mentor>
         <Zoomable><div className="split">
           <Col>
             <CodeCard file="AvtobusEkrani.jsx">
@@ -632,10 +632,10 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <Col>
             <div className="frame fade-up delay-1" style={{ padding: 'clamp(14px,2.2vw,18px)', borderLeft: `4px solid ${T.grape}` }}>
               <p className="note-h" style={{ color: T.grape }}>🔍 Kod qo'rqinchli emas</p>
-              <p className="body" style={{ margin: 0, color: T.ink }}>Har qator — bitta oddiy ish: xotira ochish, serverdan so'rash, hodisani yozish, ekranга chiqarish. Ingliz tili + biroz belgilar, xolos.</p>
+              <p className="body" style={{ margin: 0, color: T.ink }}>Har qator — bitta oddiy ish: xotira ochish, serverdan so'rash, hodisani yozish, ekranga chiqarish. Ingliz tili + biroz belgilar, xolos.</p>
             </div>
             <button className="btn" style={{ alignSelf: 'flex-start' }} onClick={() => setSeen(true)}>Kodni tushundim — davom</button>
-            {seen && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>E'tibor bering: AI <b>track('avtobus_tekshirildi')</b> ni ham yozibdi — bu 100-darsdagi hodisa! (Odatda AI buni unutadi; bu safar promptда aytilgan.) Endi darvoza: har qatorni izohlang.</p></div>}
+            {seen && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>E'tibor bering: AI <b>track('avtobus_tekshirildi')</b> ni ham yozibdi — bu 100-darsdagi hodisa! (Odatda AI buni unutadi; bu safar promptda aytilgan.) Endi darvoza: har qatorni izohlang.</p></div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -685,7 +685,7 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               </div>
             );
           })}
-          {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Endi bu kod SIZniki: har qatorini tushunasiz. Buzilса — qayerni ochishni bilasiz; kengaytirmoqchi bo'lsangiz — qayerga qo'shishni bilasiz. Mana shu — vibe coding'ni xavfsiz qiladigan darvoza.</p></div>}
+          {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Endi bu kod SIZniki: har qatorini tushunasiz. Buzilsa — qayerni ochishni bilasiz; kengaytirmoqchi bo'lsangiz — qayerga qo'shishni bilasiz. Mana shu — vibe coding'ni xavfsiz qiladigan darvoza.</p></div>}
         </div>
       </div>
     </Stage>
@@ -714,7 +714,7 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <div key={v} className="frame demo-swap" style={{ padding: 'clamp(16px,2.5vw,22px)', borderLeft: `4px solid ${isBlind ? T.accent : T.success}` }}>
               <p style={{ fontFamily: G, fontSize: 'clamp(14px,1.9vw,16px)', color: T.ink, margin: 0, lineHeight: 1.55 }}>{isBlind
                 ? 'Ilova buzildi — oq ekran. Founder kodni o\'qimagan, hech narsa tushunmaydi. AI\'ga «tuzat» deydi — AI boshqa joyni buzadi. Aylanib, aylanib... loyiha to\'xtaydi. Har buzilish — halokat.'
-                : 'Ilova buzildi. Founder buzilish detektivini ishlatadi (99-dars): «bu — fetch qatori, catch yo\'q ekan». AI\'ga ANIQ aytadi: «fetch\'ga catch qo\'sh». 2 daqiqada tuzaladi. Nazorat — undа.'}</p>
+                : 'Ilova buzildi. Founder buzilish detektivini ishlatadi (99-dars): «bu — fetch qatori, catch yo\'q ekan». AI\'ga ANIQ aytadi: «fetch\'ga catch qo\'sh». 2 daqiqada tuzaladi. Nazorat — unda.'}</p>
             </div>
           </Col>
           <Col>
@@ -734,7 +734,7 @@ const Screen9 = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow="Mashq · 2-savol"
     questionText="«Tushuntir» darvozasi nima uchun kerak?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>«Tushuntir» darvozasi <span className="italic" style={{ color: T.accent }}>nima beradi</span>?</h2></>}
-    options={['Kodni chiroyliroq qiladi', 'AI kodini tushunib qabul qilasiz — buzilса o\'zingiz tuzatasiz, aniq so\'rov bera olasiz', 'AI\'ni tezlashtiradi', 'Kodni qisqartiradi']} correctIdx={1}
+    options={['Kodni chiroyliroq qiladi', 'AI kodini tushunib qabul qilasiz — buzilsa o\'zingiz tuzatasiz, aniq so\'rov bera olasiz', 'AI\'ni tezlashtiradi', 'Kodni qisqartiradi']} correctIdx={1}
     explainCorrect="To'g'ri! Darvoza — tushunishni majburiy qiladi. Tushunsangiz: buzilganda tuzatasiz, kengaytirasiz va AI'ga ANIQ muammoni aytasiz. Tushunmasangiz — har buzilish halokat."
     explainWrong={{ 0: 'Chiroy emas — NAZORAT. Tushunish sizga boshqaruvni beradi.', 2: 'AI tezligiga aloqasi yo\'q — SIZning tushunchangizga.', 3: 'Qisqartirmaydi — tushuntiradi.', default: 'Tushunish = nazorat: tuzatish, kengaytirish, aniq so\'rov.' }} />
 );
@@ -816,7 +816,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </Col>
           <Col>
             {cur ? (<div className="sk-info fade-step" key={active}><span className="sk-wordbadge" style={{ color: cur.color, background: `${cur.color}1A` }}>{cur.t}</span><p style={{ fontFamily: G, fontSize: 'clamp(13.5px,1.8vw,15px)', color: T.ink, margin: '12px 0 0', lineHeight: 1.55 }}>{cur.d}</p></div>) : (<div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>Qadamni bosing</p></div>)}
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Muhim: <b>«qayta»</b> qadamda AI'ga ANIQ ayting — «catch qo'sh», «kalitni .env ga ol». Umumiy «tuzat» emas. Aniq so'rov = aniq tuzatish. Bu tushunishдан keladi.</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Muhim: <b>«qayta»</b> qadamda AI'ga ANIQ ayting — «catch qo'sh», «kalitni .env ga ol». Umumiy «tuzat» emas. Aniq so'rov = aniq tuzatish. Bu tushunishdan keladi.</p></div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -855,7 +855,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <Mentor>Aziz vibe coding bilan tez ekran qurdi (qoyil!). Lekin kodni o'qimadi. Endi ilova buzildi va u boshi berk ko'chada…</Mentor>
         <div className="fade-up delay-1 frame" style={{ padding: 'clamp(16px,2.5vw,22px)', borderLeft: `4px solid ${T.grape}` }}>
           <p className="mono small" style={{ margin: '0 0 8px', color: T.grape, fontWeight: 700 }}>💬 DO'STINGIZ AZIZ</p>
-          <p style={{ fontFamily: G, fontSize: 'clamp(14px,1.9vw,16px)', color: T.ink, margin: 0, lineHeight: 1.55, fontStyle: 'italic' }}>«Bir soatда AI 300 qator kod yozib berdi — ishladi! Zo'r! Lekin bugun oq ekran chiqyapti. AI'ga 10 marta "tuzat" dedim — har safar boshqa joyi buzilyapti. Kodni umuman tushunmayman. Nima qilay?»</p>
+          <p style={{ fontFamily: G, fontSize: 'clamp(14px,1.9vw,16px)', color: T.ink, margin: 0, lineHeight: 1.55, fontStyle: 'italic' }}>«Bir soatda AI 300 qator kod yozib berdi — ishladi! Zo'r! Lekin bugun oq ekran chiqyapti. AI'ga 10 marta "tuzat" dedim — har safar boshqa joyi buzilyapti. Kodni umuman tushunmayman. Nima qilay?»</p>
         </div>
         <div className="fade-up delay-2" style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
           {OPTS.map(o => {
@@ -869,7 +869,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: solved ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>{solved ? 'To\'g\'ri maslahat' : 'Yana o\'ylang'}</p>
           <p className="body" style={{ margin: 0 }}>{solved
             ? 'Azizning aslida bitta muammosi bor: u darvozadan o\'tmagan. AI\'ga «tuzat» deb aylanish — ko\'r-ko\'rona. Yechim: kodni o\'qib, har qatorni izohlash. Shunda «voy, fetch\'da catch yo\'q ekan» degan aniq muammo topiladi — va AI\'ga aniq buyruq beriladi. Tushunish — AI\'ni foydali qiladi.'
-            : (picked === 0 ? 'Qaytadan yozdirish — o\'sha muammoni yana yaratadi. Aziz baribir tushunmaydi, keyingi buzilishda yana shu holat.' : 'Voz kechish — taslim bo\'lish. Muammo fichada emas — Azizning kodni tushunmasligida. Uni bitta marta hal qilса, hamma ficha ochiladi.')}</p>
+            : (picked === 0 ? 'Qaytadan yozdirish — o\'sha muammoni yana yaratadi. Aziz baribir tushunmaydi, keyingi buzilishda yana shu holat.' : 'Voz kechish — taslim bo\'lish. Muammo fichada emas — Azizning kodni tushunmasligida. Uni bitta marta hal qilsa, hamma ficha ochiladi.')}</p>
         </FeedbackBlock>
       </div>
     </Stage>
@@ -959,7 +959,7 @@ const BADGES = [
 ];
 const Screen16 = ({ screen, answers, onReset, onPrev, onFinish }) => {
   const RECAP = ['Prompt anatomiyasi: kontekst + vazifa + cheklov + namuna', '«Tushuntir» darvozasi: izohlay olmasang, kod hali seniki emas', 'AI xato qiladi: .env · catch · hardcode · analitika hodisasi', 'Iteratsiya sikli: aniq so\'rov bilan qayta-qayta yaxshila'];
-  const GLOSSARY = [{ b: 'Vibe coding', t: '— niyatni aytib, AI\'ga kod yozdirish' }, { b: 'Prompt', t: '— AI\'ga aniq buyruq (4 qism)' }, { b: '«Tushuntir» darvozasi', t: '— kodni izohlamaguncha oldinga o\'tmaslik' }, { b: 'Hardcode', t: '— qiymatni kodга qotirib qo\'yish' }, { b: '.env', t: '— maxfiy kalitlar joyi (kodда emas)' }, { b: 'catch', t: '— xatolikni ushlash; oq ekrandan saqlaydi' }, { b: 'Iteratsiya', t: '— prompt → kod → tushun → tekshir → qayta' }];
+  const GLOSSARY = [{ b: 'Vibe coding', t: '— niyatni aytib, AI\'ga kod yozdirish' }, { b: 'Prompt', t: '— AI\'ga aniq buyruq (4 qism)' }, { b: '«Tushuntir» darvozasi', t: '— kodni izohlamaguncha oldinga o\'tmaslik' }, { b: 'Hardcode', t: '— qiymatni kodga qotirib qo\'yish' }, { b: '.env', t: '— maxfiy kalitlar joyi (kodda emas)' }, { b: 'catch', t: '— xatolikni ushlash; oq ekrandan saqlaydi' }, { b: 'Iteratsiya', t: '— prompt → kod → tushun → tekshir → qayta' }];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
   const PASSED = (total ? correct / total : 0) >= 0.6;

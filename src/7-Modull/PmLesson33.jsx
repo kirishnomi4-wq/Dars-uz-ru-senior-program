@@ -138,7 +138,7 @@ const MockBus = ({ big = false, spaced = false, contrast = false, oneColor = fal
   );
 };
 
-// s5 — Yaxshi/yomon UI o'yini (har raund bitta tamoyilда farq qiladi)
+// s5 — Yaxshi/yomon UI o'yini (har raund bitta tamoyilda farq qiladi)
 const ALLGOOD = { big: true, spaced: true, contrast: true, oneColor: true };
 const UI_ROUNDS = [
   { id: 'u1', principle: 'IYERARXIYA', color: T.accent, better: 'B',
@@ -156,7 +156,7 @@ const UI_ROUNDS = [
 const PRINCIPLES = [
   { id: 'p1', label: 'IYERARXIYA', ic: '📊', color: T.accent, prop: 'big',
     def: 'Eng muhim narsa eng katta va quyuq bo\'lsin — ko\'z avval unga tushsin.',
-    tip: 'Avtobus-trackerда «7 daqiqa» — bosh qahramon. Uni kattalashtiring, qolgani kichrayadi.' },
+    tip: 'Avtobus-trackerda «7 daqiqa» — bosh qahramon. Uni kattalashtiring, qolgani kichrayadi.' },
   { id: 'p2', label: 'BO\'SH JOY', ic: '🌬️', color: T.blue, prop: 'spaced',
     def: 'Elementlar orasida nafas qoldiring. Tiqilinch = chalkashlik va arzonlik.',
     tip: 'Har blok atrofida joy bo\'lsin. Bo\'sh joy — «bo\'shlik» emas, tartibning o\'zi.' },
@@ -171,7 +171,7 @@ const PRINCIPLES = [
 // s7 — Pattern galereyasi
 const PATTERNS = [
   { id: 'card', label: 'Karta (card)', ic: '🃏', color: T.blue,
-    d: 'Bog\'liq ma\'lumotни bitta «qog\'oz»ga yig\'ish — fondan ajralib, guruh bo\'lib ko\'rinadi.',
+    d: 'Bog\'liq ma\'lumotni bitta «qog\'oz»ga yig\'ish — fondan ajralib, guruh bo\'lib ko\'rinadi.',
     use: 'Har avtobus yo\'nalishi — alohida karta. Instagram post, mahsulot kartasi — hammasi shu pattern.' },
   { id: 'empty', label: 'Bo\'sh holat (empty state)', ic: '📭', color: T.grape,
     d: 'Ma\'lumot yo\'q bo\'lganda ham chiroyli xabar + keyingi qadam ko\'rsatish.',
@@ -193,14 +193,14 @@ const DRESS_STEPS = [
 
 // s11 — dizayn drilli
 const DESIGN_DRILL = [
-  { id: 'x1', label: 'Ekranда 6 xil rang, 4 xil tugma shakli — ko\'z chalkashadi', emoji: '🌈', color: T.honey,
+  { id: 'x1', label: 'Ekranda 6 xil rang, 4 xil tugma shakli — ko\'z chalkashadi', emoji: '🌈', color: T.honey,
     opts: ['Kontrastni oshirish', 'Izchillik: bitta asosiy rang va bitta tugma uslubi', 'Ko\'proq rang qo\'shish'], correct: 1,
     why: 'Kamalak — havaskorlik belgisi. Bitta asosiy rangga qaytaring, tugmalarni bir xil qiling — darrov professional ko\'rinadi.' },
-  { id: 'x2', label: 'Hamma matn bir xil o\'lchamда — nima muhimligi bilinmaydi', emoji: '📏', color: T.accent,
+  { id: 'x2', label: 'Hamma matn bir xil o\'lchamda — nima muhimligi bilinmaydi', emoji: '📏', color: T.accent,
     opts: ['Iyerarxiya: muhim narsani kattalashtir, qolganini kichrayt', 'Rangni o\'zgartirish', 'Barchasini kichraytirish'], correct: 0,
     why: 'Ko\'z avval kattaga tushadi. «7 daqiqa»ni katta qiling, yorliqlarni kichik — muhimi darrov ko\'rinadi.' },
-  { id: 'x3', label: 'Och-kulrang matn oq fonда — o\'qib bo\'lmaydi', emoji: '👁️', color: T.grape,
-    opts: ['Matnni yana ochroq qilish', 'Kontrast: matnni to\'q rangга o\'tkazish', 'Shrift o\'lchamини kichraytirish'], correct: 1,
+  { id: 'x3', label: 'Och-kulrang matn oq fonda — o\'qib bo\'lmaydi', emoji: '👁️', color: T.grape,
+    opts: ['Matnni yana ochroq qilish', 'Kontrast: matnni to\'q rangga o\'tkazish', 'Shrift o\'lchamini kichraytirish'], correct: 1,
     why: 'Chiroyli ko\'ringan och-kulrang — o\'qish uchun dushman. To\'q rang oling: dizayn avvalo O\'QILISHI kerak.' }
 ];
 
@@ -492,7 +492,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow="Nasmotrennost" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!seen} label={seen ? 'Davom etish' : 'Ikkalasini solishtiring'} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">Odam saytni <span className="italic" style={{ color: T.accent }}>0.05 soniyada</span> baholaydi</h2></div>
-        <Mentor>Google tadqiqoti: foydalanuvchi sahifага qaragan zahoti — ilk 50 millisekundда — «ishonaman/ishonmayman» qарорini qiladi. Ikki xom vs chiroyli ekranни solishtiring.</Mentor>
+        <Mentor>Google tadqiqoti: foydalanuvchi sahifaga qaragan zahoti — ilk 50 millisekundda — «ishonaman/ishonmayman» qarorini qiladi. Ikki xom vs chiroyli ekranni solishtiring.</Mentor>
         <Zoomable><div className="split">
           <Col>
             <p className="flow-label" style={{ color: T.accent }}>🙈 Xom (101-dagi AI ekran)</p>
@@ -506,7 +506,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <button className="btn" style={{ alignSelf: 'flex-start' }} onClick={() => setSeen(true)}>Farqni ko'rdim</button>
           </Col>
         </div></Zoomable>
-        {seen && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Muhimi: farq <b>ma'lumotда emas — taqdimotда</b>. Aynan bir xil narsa, lekin biri ishonch uyg'otadi, biri yo'q. Nasmotrennost — shu farqni ko'radigan ko'z. Uni 4 tamoyil bilan qo'lга olamiz.</p></div>}
+        {seen && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Muhimi: farq <b>ma'lumotda emas — taqdimotda</b>. Aynan bir xil narsa, lekin biri ishonch uyg'otadi, biri yo'q. Nasmotrennost — shu farqni ko'radigan ko'z. Uni 4 tamoyil bilan qo'lga olamiz.</p></div>}
       </div>
     </Stage>
   );
@@ -525,7 +525,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow="4 tamoyil" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? 'Davom etish' : `Tamoyillarni oching (${seen.size}/4)`} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">Dizaynning <span className="italic" style={{ color: T.accent }}>4 ustuni</span></h2></div>
-        <Mentor>Chiroyli dizayn sirli iste'dod emas — 4 tamoyil. Har birini bosing va o'ngда ekran qanday o'zgarishini ko'ring.</Mentor>
+        <Mentor>Chiroyli dizayn sirli iste'dod emas — 4 tamoyil. Har birini bosing va o'ngda ekran qanday o'zgarishini ko'ring.</Mentor>
         <Zoomable><div className="split">
           <Col>
             <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
@@ -544,7 +544,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 <div style={{ flex: 1, background: T.bg, borderRadius: 11, padding: 10, display: 'flex', flexDirection: 'column', gap: 6, alignItems: 'center' }}><span className="mono" style={{ fontSize: 9, color: T.accent, fontWeight: 700 }}>❌ TAMOYILSIZ</span><MockBus {...badProps} /></div>
                 <div style={{ flex: 1, background: '#F0EEE8', borderRadius: 11, padding: 10, display: 'flex', flexDirection: 'column', gap: 6, alignItems: 'center' }}><span className="mono" style={{ fontSize: 9, color: T.success, fontWeight: 700 }}>✓ {cur.label}</span><MockBus {...ALLGOOD} /></div>
               </div>
-              <div className="sk-info" style={{ marginTop: 11 }}><span className="sk-wordbadge" style={{ color: cur.color, background: `${cur.color}1A` }}>{cur.ic} {cur.label}</span><p style={{ fontFamily: G, fontSize: 'clamp(13px,1.8vw,14.5px)', color: T.ink, margin: '10px 0 0', lineHeight: 1.55 }}>{cur.def}</p><p style={{ fontFamily: G, fontSize: 'clamp(12.5px,1.7vw,14px)', color: T.ink2, margin: '7px 0 0', lineHeight: 1.5 }}><b>Amalда:</b> {cur.tip}</p></div>
+              <div className="sk-info" style={{ marginTop: 11 }}><span className="sk-wordbadge" style={{ color: cur.color, background: `${cur.color}1A` }}>{cur.ic} {cur.label}</span><p style={{ fontFamily: G, fontSize: 'clamp(13px,1.8vw,14.5px)', color: T.ink, margin: '10px 0 0', lineHeight: 1.55 }}>{cur.def}</p><p style={{ fontFamily: G, fontSize: 'clamp(12.5px,1.7vw,14px)', color: T.ink2, margin: '7px 0 0', lineHeight: 1.5 }}><b>Amalda:</b> {cur.tip}</p></div>
             </div>) : (<div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>Tamoyilni bosing — ekran o'zgaradi</p></div>)}
             {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>To'rttasi birga ishlaydi: <b>iyerarxiya</b> yo'l ko'rsatadi, <b>bo'sh joy</b> tinchlik beradi, <b>kontrast</b> o'qitadi, <b>izchillik</b> ishonch uyg'otadi. Endi ko'zingizni sinaymiz.</p></div>}
           </Col>
@@ -581,7 +581,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow="Yaxshi/yomon UI · o'yin" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? 'Davom etish' : `Yaxshirog'ini toping (${okCount}/${UI_ROUNDS.length})`} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">Qaysi ekran <span className="italic" style={{ color: T.accent }}>yaxshiroq?</span> Nega?</h2></div>
-        <Mentor>Ikki variantни taqqoslang va yaxshirog'ini tanlang. Ko'zingizni ishonting — keyin nega ekanini o'qing. Har raundда bitta tamoyil farq qiladi.</Mentor>
+        <Mentor>Ikki variantni taqqoslang va yaxshirog'ini tanlang. Ko'zingizni ishonting — keyin nega ekanini o'qing. Har raundda bitta tamoyil farq qiladi.</Mentor>
         <MentorCollapseScroll targetRef={workRef} />
         <div ref={workRef} className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
           {UI_ROUNDS.map((r, ri) => {
@@ -618,7 +618,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // ===== SCREEN 5b — TEST 2 =====
 const Screen5b = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow="Tekshiruv"
-    questionText="Ekranда eng muhim ma'lumot yo'qolib ketgan bo'lsa — qaysi tamoyil?"
+    questionText="Ekranda eng muhim ma'lumot yo'qolib ketgan bo'lsa — qaysi tamoyil?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>Mustahkamlash</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Eng muhim narsa <span className="italic" style={{ color: T.accent }}>ko'rinmayapti</span> — nima yetishmayapti?</h2></>}
     options={['Ko\'proq rang', 'Iyerarxiya — muhim narsani kattalashtir, quyuqlashtir', 'Ko\'proq tugma', 'Kichikroq shrift']} correctIdx={1}
     explainCorrect="To'g'ri! Iyerarxiya — ko'zga yo'l ko'rsatadi. Muhim narsa (avtobus vaqti) katta va quyuq bo'lsa, ko'z darrov unga tushadi. Hamma bir xil o'lchamda bo'lsa — muhimi yo'qoladi."
@@ -647,7 +647,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             </div>
             <div key={v} className="frame demo-swap" style={{ padding: 'clamp(16px,2.5vw,22px)', borderLeft: `4px solid ${isScratch ? T.accent : T.success}` }}>
               <p style={{ fontFamily: G, fontSize: 'clamp(14px,1.9vw,16px)', color: T.ink, margin: 0, lineHeight: 1.55 }}>{isScratch
-                ? 'Bo\'sh ekranга qarab «qanday qilsam?» deb soatlab o\'ylash. Natija: ehtimol yomon va o\'ziga xos «g\'alati» dizayn. Foydalanuvchi tanish naqshlarni izlaydi — siz esa yangisini majburlaysiz.'
+                ? 'Bo\'sh ekranga qarab «qanday qilsam?» deb soatlab o\'ylash. Natija: ehtimol yomon va o\'ziga xos «g\'alati» dizayn. Foydalanuvchi tanish naqshlarni izlaydi — siz esa yangisini majburlaysiz.'
                 : 'Mobbin/Dribbble ochib, 10 ta transport ilovasi ekranini ko\'rasiz. Naqshlar takrorlanadi — chunki ular ISHLAYDI. Eng yaxshi 3 tasini oling, o\'zingizga moslang. Tez va sifatli.'}</p>
             </div>
           </Col>
@@ -656,7 +656,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <p className="flow-label">Referens kutubxonalari</p>
               {LIBS.map((l, i) => (<div key={i} className="frame" style={{ padding: '10px 13px', display: 'flex', alignItems: 'center', gap: 10, boxShadow: `0 4px 12px -7px rgba(${T.shadowBase},0.16)` }}><span style={{ fontSize: 16 }}>🖼️</span><span style={{ fontWeight: 700, fontSize: 13, color: T.ink, minWidth: 70 }}>{l.n}</span><span className="small" style={{ color: T.ink2 }}>{l.d}</span></div>))}
             </div>}
-            {isScratch && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Noldan ixtiro — vaqt isrofi va xavf. Foydalanuvchi «qanday ishlatishни» qaytadan o'rganishга majbur bo'ladi. Tanishlik — qulaylik.</p></div>}
+            {isScratch && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Noldan ixtiro — vaqt isrofi va xavf. Foydalanuvchi «qanday ishlatishni» qaytadan o'rganishga majbur bo'ladi. Tanishlik — qulaylik.</p></div>}
             {done && <div className="frame-soft fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Qoida: <b>yaxshi rassomlar nusxa oladi, buyuklari o'g'irlaydi</b> (— Pikasso). Ko'chirish emas — 3 referensdan eng yaxshi g'oyalarni yig'ib, o'zingizniki qilish.</p></div>}
           </Col>
         </div></Zoomable>
@@ -703,7 +703,7 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <span className="sk-wordbadge" style={{ color: cur.color, background: `${cur.color}1A` }}>{cur.ic} {cur.label}</span>
               <div style={{ margin: '12px 0', background: T.bg, borderRadius: 11, padding: 13 }}><PatternViz id={cur.id} /></div>
               <p style={{ fontFamily: G, fontSize: 'clamp(13px,1.8vw,14.5px)', color: T.ink, margin: 0, lineHeight: 1.55 }}>{cur.d}</p>
-              <p style={{ fontFamily: G, fontSize: 'clamp(12.5px,1.7vw,14px)', color: T.ink2, margin: '7px 0 0', lineHeight: 1.5 }}><b>Bizда:</b> {cur.use}</p>
+              <p style={{ fontFamily: G, fontSize: 'clamp(12.5px,1.7vw,14px)', color: T.ink2, margin: '7px 0 0', lineHeight: 1.5 }}><b>Bizda:</b> {cur.use}</p>
             </div>) : (<div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>Patternni bosing</p></div>)}
             {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Bu patternlar — dizayn alifbosi. Foydalanuvchi ularni allaqachon biladi (boshqa ilovalardan). Ularni ishlatib, mahsulotingizni <b>darrov tanish va qulay</b> qilasiz.</p></div>}
           </Col>
@@ -725,7 +725,7 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow="Bo'sh joy" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? 'Davom etish' : 'Ikkalasini ko\'ring'} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">Bo'sh joy — <span className="italic" style={{ color: T.accent }}>bepul, lekin qimmatbaho</span></h2></div>
-        <Mentor>Yangi boshlovchilar ekranни to'ldirishга harakat qiladi. Professionallar bo'sh joy qoldiradi. Nega? Toggle bilan his qiling.</Mentor>
+        <Mentor>Yangi boshlovchilar ekranni to'ldirishga harakat qiladi. Professionallar bo'sh joy qoldiradi. Nega? Toggle bilan his qiling.</Mentor>
         <Zoomable><div className="split">
           <Col>
             <div className="fade-up delay-1" style={{ display: 'flex', gap: 8 }}>
@@ -755,7 +755,7 @@ const Screen9 = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow="Mashq · 2-savol"
     questionText="Noldan dizayn o'ylash o'rniga nima qilish yaxshiroq?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Yaxshi dizayn uchun <span className="italic" style={{ color: T.accent }}>eng tez yo'l</span>?</h2></>}
-    options={['Bo\'sh ekranга qarab noldan o\'ylash', 'Mobbin/Dribbble\'da ishlaydigan patternlarni ko\'rib, o\'zingizga moslash', 'Iloji boricha ko\'proq rang va ficha qo\'shish', 'Boshqa ilovani aynan nusxa ko\'chirish']} correctIdx={1}
+    options={['Bo\'sh ekranga qarab noldan o\'ylash', 'Mobbin/Dribbble\'da ishlaydigan patternlarni ko\'rib, o\'zingizga moslash', 'Iloji boricha ko\'proq rang va ficha qo\'shish', 'Boshqa ilovani aynan nusxa ko\'chirish']} correctIdx={1}
     explainCorrect="To'g'ri! «Rassomdek o'g'irlash»: yaxshi referenslarni ko'rib, tamoyillarini o'rganib, o'zingizga moslash. Bu tez va sifatli — foydalanuvchiga tanish, sizga oson."
     explainWrong={{ 0: 'Noldan o\'ylash — sekin va xavfli; g\'alati natija.', 2: 'Ko\'proq ≠ yaxshiroq. Bo\'sh joy va izchillik muhim.', 3: 'Aynan nusxa — o\'g\'rilik; g\'oyani oling, moslang.', default: 'Referensdan o\'rganib, o\'zingizga moslang.' }} />
 );
@@ -788,7 +788,7 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               ); })}
             </div>
             <div className="fade-up">
-              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6 }}><span className="flow-label">✨ Dizayn darajasi</span><span className="mono" style={{ fontSize: 12, fontWeight: 700, color: done ? T.success : T.accent }}>{Math.round((count / DRESS_STEPS.length) * 100)}%</span></div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6, paddingRight: 40 }}><span className="flow-label">✨ Dizayn darajasi</span><span className="mono" style={{ fontSize: 12, fontWeight: 700, color: done ? T.success : T.accent }}>{Math.round((count / DRESS_STEPS.length) * 100)}%</span></div>
               <div className="fmeter-track"><div className="fmeter-fill" style={{ width: `${(count / DRESS_STEPS.length) * 100}%`, background: done ? T.success : undefined }} /></div>
             </div>
           </Col>
@@ -844,7 +844,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               </div>
             );
           })}
-          {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Endi sizда tashxis ko'zi bor: chalkash → izchillik, muhimi yo'q → iyerarxiya, o'qib bo'lmaydi → kontrast. Muammoni nomlay olsangiz — yechimni ham bilasiz.</p></div>}
+          {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Endi sizda tashxis ko'zi bor: chalkash → izchillik, muhimi yo'q → iyerarxiya, o'qib bo'lmaydi → kontrast. Muammoni nomlay olsangiz — yechimni ham bilasiz.</p></div>}
         </div>
       </div>
     </Stage>
@@ -879,11 +879,11 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow="Vaziyat" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!solved} label={solved ? 'Davom etish' : 'To\'g\'ri maslahatni toping'} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,1.8vw,18px)' }}>
         <div className="head"><h2 className="title h-title fade-up">Aziz: <span className="italic" style={{ color: T.accent }}>«Kamalak qildim — dizayn bu-da!»</span></h2></div>
-        <Mentor>Aziz dizaynга qo'l urdi (qoyil!) — lekin «chiroyli» degani ko'p rang deb tushundi. Natijasini ko'ring…</Mentor>
+        <Mentor>Aziz dizaynga qo'l urdi (qoyil!) — lekin «chiroyli» degani ko'p rang deb tushundi. Natijasini ko'ring…</Mentor>
         <div className="split">
           <div className="fade-up delay-1 frame" style={{ padding: 'clamp(16px,2.5vw,22px)', borderLeft: `4px solid ${T.grape}` }}>
             <p className="mono small" style={{ margin: '0 0 8px', color: T.grape, fontWeight: 700 }}>💬 DO'STINGIZ AZIZ</p>
-            <p style={{ fontFamily: G, fontSize: 'clamp(14px,1.9vw,16px)', color: T.ink, margin: 0, lineHeight: 1.55, fontStyle: 'italic' }}>«Ekranга 6 xil rang, 5 xil shrift, har tugma boshqa shakl qildim! Bir tugma yashil, biri pushti, biri gradient! Rang-barang — juda jonli, to'g'rimi?»</p>
+            <p style={{ fontFamily: G, fontSize: 'clamp(14px,1.9vw,16px)', color: T.ink, margin: 0, lineHeight: 1.55, fontStyle: 'italic' }}>«Ekranga 6 xil rang, 5 xil shrift, har tugma boshqa shakl qildim! Bir tugma yashil, biri pushti, biri gradient! Rang-barang — juda jonli, to'g'rimi?»</p>
           </div>
           <div className="fade-up delay-2" style={{ background: T.bg, borderRadius: 12, padding: 12, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6 }}><span className="mono" style={{ fontSize: 9, color: T.accent, fontWeight: 700 }}>AZIZNING EKRANI</span><MockBus big spaced contrast oneColor={false} /></div>
         </div>

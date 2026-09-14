@@ -1427,6 +1427,10 @@ const Screen17 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 7 }}>
               {RB_CAND.map(c => <button key={c.id} className="pick-row" style={{ width: 'auto', boxShadow: steps.includes(c.id) ? `inset 0 0 0 1.5px ${T.success}` : undefined }} onClick={() => toggleStep(c.id)}><span>{tr(c.label)}</span><span className="pick-plus">{steps.includes(c.id) ? '✓' : '+'}</span></button>)}
             </div>
+          </Col>
+          <Col>
+            {/* ci.yml va yuborish tugmasi O'NG ustunda: chapda tanlovlar ostida ekrandan 140–158px pastga tushib, tugma ko'rinmasdi (s17, F-0913-02) */}
+            <p className="flow-label">{tr({ uz: "4 · YO'L XARITANGIZ (ci.yml)", ru: '4 · ВАША КАРТА МАРШРУТА (ci.yml)' })}</p>
             <CodeFile name=".github/workflows/ci.yml" minH={100}>
               <At>on</At>{': '}{trigger ? <Kw>{trigger}</Kw> : <span className="line-empty">___</span>}{'\n'}
               <At>runs-on</At>{': '}{runner ? <Kw>{runner}</Kw> : <span className="line-empty">___</span>}{'\n'}
@@ -1436,9 +1440,7 @@ const Screen17 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 : steps.map((sid, i) => <React.Fragment key={i}>{i > 0 ? '\n' : ''}{'      - '}{tr(RB_LABEL[sid])}</React.Fragment>)}
             </CodeFile>
             <button className="btn" style={{ alignSelf: 'flex-start' }} disabled={sending} onClick={send}>{sending ? tr({ uz: '● Lenta aylanmoqda…', ru: '● Лента крутится…' }) : tr({ uz: "🚀 Lentaga qo'ying", ru: '🚀 Положить на ленту' })}</button>
-          </Col>
-          <Col>
-            <p className="flow-label">{tr({ uz: 'natija', ru: 'результат' })}</p>
+            <p className="flow-label" style={{ marginTop: 6 }}>{tr({ uz: 'natija', ru: 'результат' })}</p>
             {sending
               ? <div className="belt-run spin sending">
                   <span className="belt-light off" />
@@ -1507,7 +1509,12 @@ const Screen18 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <div className="term-bar"><span className="bb-dots"><i /><i /><i /></span><span className="term-title">{tr({ uz: 'Lenta jurnali — run #22', ru: 'Журнал ленты — run #22' })}</span></div>
               <div className="term-body">{S18_JOURNAL.map((l, i) => { const lt = tr(l); return <TLine key={i} out={lt} col={lt.includes('💥') ? '#FF8A7A' : lt.includes('✓') ? CODE.str : undefined} />; })}</div>
             </div>
-            <PhonePreview state="bad" />
+            {/* Javobdan keyin izoh jurnal OSTIDA, telefon o'rnida: o'ng ustunda variantlar ostiga tushsa pastdan qirqilardi (s18, F-0913-02) */}
+            {done
+              ? <div className={picked === correctIdx ? 'frame-success fade-step' : 'frame-warn fade-step'}><p className="body" style={{ margin: 0, color: T.ink }}>{picked === correctIdx ? tr({ uz: "To'g'ri! Jurnalda 🔍 SKANER umuman ko'rinmaydi — u tashlab ketilgan, shuning uchun buzuq yuk to'g'ridan-to'g'ri uchib ketdi.", ru: 'Верно! В журнале 🔍 СКАНЕР вообще не появился — его пропустили, поэтому сломанный груз улетел без проверки.' }) : tr(S18_EXPLAIN[picked] || S18_EXPLAIN.default)}</p>
+                  {picked !== correctIdx && <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: "📖 Qisqa takrorlash — mavzuni yana bir ko'rish", ru: '📖 Короткое повторение — взглянуть на тему ещё раз' })}</button>}
+                </div>
+              : <PhonePreview state="bad" />}
           </Col>
           <Col>
             <p className="flow-label">{tr({ uz: 'Nega qizil chiroq yondi?', ru: 'Почему загорелся красный свет?' })}</p>
@@ -1523,9 +1530,6 @@ const Screen18 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 );
               })}
             </div>
-            {done && <div className={picked === correctIdx ? 'frame-success fade-step' : 'frame-warn fade-step'}><p className="body" style={{ margin: 0, color: T.ink }}>{picked === correctIdx ? tr({ uz: "To'g'ri! Jurnalda 🔍 SKANER umuman ko'rinmaydi — u tashlab ketilgan, shuning uchun buzuq yuk to'g'ridan-to'g'ri uchib ketdi.", ru: 'Верно! В журнале 🔍 СКАНЕР вообще не появился — его пропустили, поэтому сломанный груз улетел без проверки.' }) : tr(S18_EXPLAIN[picked] || S18_EXPLAIN.default)}</p>
-              {picked !== correctIdx && <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr({ uz: "📖 Qisqa takrorlash — mavzuni yana bir ko'rish", ru: '📖 Короткое повторение — взглянуть на тему ещё раз' })}</button>}
-            </div>}
           </Col>
         </Split>
         {recapOpen && RECAPS[screen] && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} />}
@@ -2699,8 +2703,11 @@ export default function GithubActionsLesson({ lang: langProp, onFinished, liveTo
         .phone-t { font-family: 'Manrope'; font-weight: 700; font-size: 10.5px; color: ${T.ink}; line-height: 1.3; }
 
         /* PARALLEL LENTALAR (matrix) */
+        /* F-0912-09 · 147-qonun (a): o'ngdan 40px zaxira HAMMA yo'lakka — burchakdagi
+           zoom tugmasi (o'ngdan 6+30=36px) birinchi yo'lakning «o'tdi» yozuvini 55%
+           yopardi (m4c-03 s13, o'lchandi). Zaxira birdek beriladi: yo'laklar tekis qoladi. */
         .matrix-lanes { display: flex; flex-direction: column; gap: 10px; }
-        .matrix-lane { display: flex; align-items: center; gap: 10px; background: ${T.paper}; border-radius: 12px; padding: 10px 14px; box-shadow: 0 5px 14px -6px rgba(${T.shadowBase},0.16); opacity: 0; }
+        .matrix-lane { display: flex; align-items: center; gap: 10px; background: ${T.paper}; border-radius: 12px; padding: 10px 40px 10px 14px; box-shadow: 0 5px 14px -6px rgba(${T.shadowBase},0.16); opacity: 0; }
         .matrix-lane.go { animation: fade-in-up 0.4s ease-out forwards; }
         .matrix-v { min-width: 62px; font-weight: 700; color: ${T.ink}; }
         .matrix-track { flex: 1; height: 8px; background: ${T.bg}; border-radius: 99px; overflow: hidden; position: relative; }

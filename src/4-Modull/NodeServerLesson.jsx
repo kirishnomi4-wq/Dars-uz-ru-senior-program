@@ -880,7 +880,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             </pre>
           </Col>
           <Col>
-            <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between' }}>
+            <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', paddingRight: 40 }}>
               <p className="flow-label" style={{ margin: 0 }}>{tr({ uz: 'Qismni bosing', ru: 'Нажмите на часть' })}</p>
               <span className="small mono" style={{ color: done ? T.success : T.ink3 }}>{seen.size} / 5 {tr({ uz: "ko'rildi", ru: 'просмотрено' })}</span>
             </div>

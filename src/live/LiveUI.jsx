@@ -7,7 +7,17 @@ import { livePlayers, fmtPin, nickRead } from './liveClient.js';
 export const LT = { bg: '#F6F4EF', ink: '#0E0E10', ink2: '#5A5A60', ink3: '#A7A6A2', paper: '#FFFFFF', accent: '#FF4F28', accentSoft: '#FFE8E1', success: '#1F7A4D' };
 
 const _liveBtnPri = { background: LT.accent, color: '#fff', border: 'none', borderRadius: 12, padding: '14px 20px', fontSize: 16, fontWeight: 700, cursor: 'pointer' };
-const _liveBadgeS = { position: 'fixed', top: 10, left: '50%', transform: 'translateX(-50%)', zIndex: 9998, background: LT.paper, border: `1px solid ${LT.ink3}55`, borderRadius: 99, padding: '6px 14px', fontSize: 13, fontWeight: 600, color: LT.ink2, boxShadow: '0 2px 10px rgba(58,53,48,0.12)', display: 'flex', alignItems: 'center', gap: 8, whiteSpace: 'nowrap', maxWidth: '92vw' };
+// 🔴 LAVHA BALANDLIGI — O'LCHOVGA BOG'LIQ, «chiroyli ko'ringani uchun» emas (147-qonun, F-0912-06).
+// Dars sarlavhasi (div.chrome > .eyebrow) HAR darsda, har ekran o'lchamida AYNAN y 34..51 da turadi
+// (m1/m2/m4 · 1280 · 1366 · 1024 da o'lchandi — raqam o'zgarmaydi, chunki tasma --lz bilan masshtablanmaydi).
+// Lavha esa `fixed`: eski qiymatlarda (top 10 + balandlik 36) u y 10..46 ni egallab, sarlavha bilan
+// 12 px ni BO'LISHIB olardi — ruscha uzun sarlavha lavha ostida qolardi (m1-02 s8 da matnning 18% i).
+// Ekran kichrayganda holat yomonlashadi: 1280 da lavha x 492 dan, 1024 da x 361 dan boshlanadi,
+// ya'ni kichik noutbukda ko'proq darsda to'qnashadi.
+// Yechim: balandlik 36 → 28 (chekinish 6 → 2; tugmalar 22 px bo'yicha TEGILMAYDI) va top 10 → 2.
+// Endi lavha y 2..30 da — sarlavha siyohigacha 4 px zaxira qoladi, dars kontenti esa QIMIRLAMAYDI.
+// Progress-chizig'i (y 18..21) lavha ostida qoladi — bu ILGARI HAM shunday edi, o'zgarish emas.
+const _liveBadgeS = { position: 'fixed', top: 2, left: '50%', transform: 'translateX(-50%)', zIndex: 9998, background: LT.paper, border: `1px solid ${LT.ink3}55`, borderRadius: 99, padding: '2px 14px', fontSize: 13, fontWeight: 600, color: LT.ink2, boxShadow: '0 2px 10px rgba(58,53,48,0.12)', display: 'flex', alignItems: 'center', gap: 8, whiteSpace: 'nowrap', maxWidth: '92vw' };
 const _liveDot = (c) => ({ width: 8, height: 8, borderRadius: 99, background: c, display: 'inline-block' });
 
 export function LiveBigCode({ pin, onClose }) {

@@ -3,8 +3,8 @@ import mentorImg from '../assets/common/mentor.png';
 
 // ============================================================
 // MODUL 10 · KOD/PROYEKT-AI — FIDBEK ITERATSIYASI — v16 (AUDIOSIZ)
-// G'oya: mahsulot — aylanuvchi charx (qur→o'lcha→o'rgan). Fidbekни prioritetlab, AI bilan tuzat, metrikани o'lcha.
-// Hook: Slack pivoti — o'yin quladi, chat qoldi (fidbekни eshitish).
+// G'oya: mahsulot — aylanuvchi charx (qur→o'lcha→o'rgan). Fidbekni prioritetlab, AI bilan tuzat, metrikani o'lcha.
+// Hook: Slack pivoti — o'yin quladi, chat qoldi (fidbekni eshitish).
 // Signature 1: Fidbek → prioritet matritsasi (ta'sir × mehnat 2×2).
 // Signature 2: Signal vs shovqin o'yini (pattern/metrika vs bitta ovoz).
 // Signature 3: Sikl yopiladi — Shimoliy yulduz metrikasi count-up bilan ko'tariladi.
@@ -124,7 +124,7 @@ const readProductName = () => {
 // s2 — qur → o'lcha → o'rgan sikli
 const LOOP_NODES = [
   { id: 'build', t: 'QUR', ic: '🔨', color: T.accent, d: 'Kichik o\'zgarish yasa (bitta tuzatish, bitta ficha).' },
-  { id: 'measure', t: 'O\'LCHA', ic: '📊', color: T.blue, d: 'Metrikага qara: yaxshilandimi? (analitika, 100-dars).' },
+  { id: 'measure', t: 'O\'LCHA', ic: '📊', color: T.blue, d: 'Metrikaga qara: yaxshilandimi? (analitika, 100-dars).' },
   { id: 'learn', t: 'O\'RGAN', ic: '💡', color: T.grape, d: 'Xulosa chiqar: ishladimi? Keyin nima? — va yana QUR.' }
 ];
 
@@ -144,11 +144,11 @@ const FEEDBACK_ITEMS = [
 
 // s7 — signal vs shovqin o'yini (SIGNATURE 2)
 const SIGNAL_ITEMS = [
-  { id: 's1', t: '5 sinovchidan 3 tasi bir xil joyда qoqildi', ans: 'signal', why: 'Pattern — takror = signal. Dizayn muammosi, harakat qilamiz.' },
-  { id: 's2', t: 'Bitta user «menga qizil rang yoqmaydi» dedi', ans: 'noise', why: 'Bir ovoz + shaxsiy did. Metrika yoki patternга bog\'liq emas — belgilab qo\'yamiz.' },
-  { id: 's3', t: 'Aktivatsiya metrikasi hafta ichида tushib ketdi (100)', ans: 'signal', why: 'Metrika — obyektiv signal. Nima buzildi? Darrov tekshiramiz.' },
-  { id: 's4', t: 'Do\'stim «AI chatbot qo\'sh» deб maslahat berdi', ans: 'noise', why: 'Mavzudan tashqari + bir ovoz. Core job — avtobus vaqti; chatbot boshqa mahsulot.' },
-  { id: 's5', t: 'Ko\'p user eslatma bosqichида voronkадан chiqib ketyapti', ans: 'signal', why: 'Pattern + metrika birga. Kuchli signal — aynan shu bosqichni tuzatamiz.' },
+  { id: 's1', t: '5 sinovchidan 3 tasi bir xil joyda qoqildi', ans: 'signal', why: 'Pattern — takror = signal. Dizayn muammosi, harakat qilamiz.' },
+  { id: 's2', t: 'Bitta user «menga qizil rang yoqmaydi» dedi', ans: 'noise', why: 'Bir ovoz + shaxsiy did. Metrika yoki patternga bog\'liq emas — belgilab qo\'yamiz.' },
+  { id: 's3', t: 'Aktivatsiya metrikasi hafta ichida tushib ketdi (100)', ans: 'signal', why: 'Metrika — obyektiv signal. Nima buzildi? Darrov tekshiramiz.' },
+  { id: 's4', t: 'Do\'stim «AI chatbot qo\'sh» deb maslahat berdi', ans: 'noise', why: 'Mavzudan tashqari + bir ovoz. Core job — avtobus vaqti; chatbot boshqa mahsulot.' },
+  { id: 's5', t: 'Ko\'p user eslatma bosqichida voronkadan chiqib ketyapti', ans: 'signal', why: 'Pattern + metrika birga. Kuchli signal — aynan shu bosqichni tuzatamiz.' },
   { id: 's6', t: 'Bitta user «zo\'r, hech nima o\'zgartirma» dedi', ans: 'noise', why: 'Maqtov — yoqimli, lekin harakat uchun ma\'lumot bermaydi. Belgilab qo\'yamiz.' }
 ];
 const SGMAP = { signal: { emoji: '🔊', label: 'SIGNAL', color: T.success }, noise: { emoji: '🔇', label: 'SHOVQIN', color: T.ink2 } };
@@ -173,7 +173,7 @@ const ITER_FIELDS = [
   { key: 'prompt', label: 'AI fix prompt (qisqacha)', emoji: '🪄', color: T.grape, min: 10, hint: 'Eslatma tugmasini ekran tepasiga, katta va aniq' },
   { key: 'metric', label: 'Qaysi metrika ko\'tariladi (kutilgan)', emoji: '📈', color: T.blue, min: 5, hint: 'Aktivatsiya (eslatma yoqqanlar) %' },
   { key: 'noise', label: 'E\'tiborsiz qoldiradigan shovqin', emoji: '🔇', color: T.ink2, min: 5, hint: 'Bitta userning rang haqidagi fikri' },
-  { key: 'loop', label: 'Qanday bilaman ishlаganини (keyingi o\'lchov)', emoji: '🔁', color: T.success, min: 6, hint: 'Bir haftадан keyin aktivatsiya %ini qayta o\'lchayman' }
+  { key: 'loop', label: 'Qanday bilaman ishlaganini (keyingi o\'lchov)', emoji: '🔁', color: T.success, min: 6, hint: 'Bir haftadan keyin aktivatsiya %ini qayta o\'lchayman' }
 ];
 
 const Split = ({ children, refEl }) => <div className="split" ref={refEl}>{children}</div>;
@@ -403,7 +403,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
   const [picked, setPicked] = useState(storedAnswer?.picked ?? null);
   const OPTS = [
     { id: 'a', label: 'O\'yinni davom ettirsin — ko\'proq mehnat qilsin' },
-    { id: 'b', label: 'Fidbekni eshitsin — chat vositasига o\'tsin' },
+    { id: 'b', label: 'Fidbekni eshitsin — chat vositasiga o\'tsin' },
     { id: 'c', label: 'Kompaniyani yopsin' }
   ];
   const pick = (id) => { if (picked !== null) return; setPicked(id); onAnswer(screen, { stage: 'hook', screenIdx: screen, picked: id, correct: true }); };
@@ -424,7 +424,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
             <div className="fade-up delay-3" style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
               {OPTS.map(o => { const on = picked === o.id; return (<button key={o.id} className={`hook-option ${on ? 'on' : ''}`} disabled={picked !== null} onClick={() => pick(o.id)}><span className="radio">{on && <span className="radio-dot" />}</span><span>{o.label}</span></button>); })}
             </div>
-            {picked !== null && <p className="hook-ack fade-step">{picked === 'b' ? 'Aynan! ' : ''}Ular o'yinni tashlab, <b>chat vositasini mahsulotга aylantirdi</b>. Nomini <b>Slack</b> qo'yishdi — bugun u milliardlab dollarlik kompaniya. Sirri: <b>fidbekni eshitdi</b> — nima ishlayotganini ko'rib, o'sha tomonga burildi. Bugun shu san'atni o'rganamiz: fidbek → yaxshilanish.</p>}
+            {picked !== null && <p className="hook-ack fade-step">{picked === 'b' ? 'Aynan! ' : ''}Ular o'yinni tashlab, <b>chat vositasini mahsulotga aylantirdi</b>. Nomini <b>Slack</b> qo'yishdi — bugun u milliardlab dollarlik kompaniya. Sirri: <b>fidbekni eshitdi</b> — nima ishlayotganini ko'rib, o'sha tomonga burildi. Bugun shu san'atni o'rganamiz: fidbek → yaxshilanish.</p>}
           </Col>
         </Split></Zoomable>
       </div>
@@ -448,7 +448,7 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
       <p className="flow-label">Bugungi maqsad</p>
       <div className="fade-up frame" style={{ padding: 'clamp(16px,2.5vw,22px)', display: 'flex', alignItems: 'center', gap: 14 }}>
         <IcoChip size={50} color={T.grape} soft={T.grapeSoft}>{Ico.loop(26)}</IcoChip>
-        <div><p style={{ fontFamily: "'Source Serif 4',serif", fontWeight: 600, color: T.ink, margin: 0, fontSize: 'clamp(16px,2.2vw,19px)' }}>Fidbekni yaxshilanishga</p><p className="body" style={{ margin: '2px 0 0', color: T.ink2 }}>104-friction'larни prioritetlab, AI bilan tuzatib, metrikани o'lchaymiz.</p></div>
+        <div><p style={{ fontFamily: "'Source Serif 4',serif", fontWeight: 600, color: T.ink, margin: 0, fontSize: 'clamp(16px,2.2vw,19px)' }}>Fidbekni yaxshilanishga</p><p className="body" style={{ margin: '2px 0 0', color: T.ink2 }}>104-friction'larni prioritetlab, AI bilan tuzatib, metrikani o'lchaymiz.</p></div>
       </div>
       <ArcStrip />
       <p className="mono small" style={{ color: T.accent, margin: 0 }}>→ Isbot qil bosqichi · 1-dars. Keyingisi: pitch 🎤</p>
@@ -478,7 +478,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow="Lean sikli" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? 'Davom etish' : `Siklni oching (${seen.size}/3)`} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">Charxning uch tishi: <span className="italic" style={{ color: T.accent }}>qur → o'lcha → o'rgan</span></h2></div>
-        <Mentor>Eric Ries («Lean Startup») bu siklni mashhur qildi. Bir marta emas — DOIM aylanadi. Har tishни bosing.</Mentor>
+        <Mentor>Eric Ries («Lean Startup») bu siklni mashhur qildi. Bir marta emas — DOIM aylanadi. Har tishni bosing.</Mentor>
         <Zoomable><div className="split">
           <Col>
             <div className="loop-ring fade-up delay-1">
@@ -512,24 +512,24 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow="Fidbek vazni" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!seen} label={seen ? 'Davom etish' : 'Ikki o\'lchovni ko\'ring'} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">Hamma fidbek <span className="italic" style={{ color: T.accent }}>teng emas</span></h2></div>
-        <Mentor>Yuzlab fidbek keladi — hammasini tuzatib bo'lmaydi. Qaysи biri muhim? Ikki o'lchov yordam beradi.</Mentor>
+        <Mentor>Yuzlab fidbek keladi — hammasini tuzatib bo'lmaydi. Qaysi biri muhim? Ikki o'lchov yordam beradi.</Mentor>
         <Zoomable><div className="split">
           <Col>
             <div className="frame fade-up delay-1" style={{ padding: 'clamp(14px,2.2vw,18px)', borderLeft: `4px solid ${T.accent}` }}>
               <p className="note-h" style={{ color: T.accent }}>1️⃣ Nechta odam? (chastota)</p>
-              <p className="body" style={{ margin: 0, color: T.ink }}>3/5 sinovчи bir xil muammoни aytdimi (104)? Bu — pattern, kuchli. 1/5 — kuchsizroq. Ko'p takror = muhimroq.</p>
+              <p className="body" style={{ margin: 0, color: T.ink }}>3/5 sinovchi bir xil muammoni aytdimi (104)? Bu — pattern, kuchli. 1/5 — kuchsizroq. Ko'p takror = muhimroq.</p>
             </div>
             <div className="frame fade-up delay-2" style={{ padding: 'clamp(14px,2.2vw,18px)', borderLeft: `4px solid ${T.blue}` }}>
-              <p className="note-h" style={{ color: T.blue }}>2️⃣ Metrikага ta'siri? (Shimoliy yulduz)</p>
-              <p className="body" style={{ margin: 0, color: T.ink }}>Bu muammo aktivatsiya yoki retention'ni tushiryaptimi (100)? Metrikани qimirlatadigan fidbek — eng qimmatli.</p>
+              <p className="note-h" style={{ color: T.blue }}>2️⃣ Metrikaga ta'siri? (Shimoliy yulduz)</p>
+              <p className="body" style={{ margin: 0, color: T.ink }}>Bu muammo aktivatsiya yoki retention'ni tushiryaptimi (100)? Metrikani qimirlatadigan fidbek — eng qimmatli.</p>
             </div>
           </Col>
           <Col>
             <div className="frame fade-up delay-2" style={{ padding: 'clamp(14px,2.2vw,18px)', background: T.grapeSoft, boxShadow: 'none' }}>
-              <p style={{ fontFamily: G, fontSize: 'clamp(14px,1.9vw,16px)', color: T.ink, margin: 0, lineHeight: 1.55 }}>Ikki o'lchov birlashса — kuchli signal: <b>«eslatma tugmasi» 3/5 sinovчида qoqildi VA aktivatsiyani tushiryapti</b>. Mana — birinchi tuzatiladigan narsa.</p>
+              <p className="zb-notch" style={{ fontFamily: G, fontSize: 'clamp(14px,1.9vw,16px)', color: T.ink, margin: 0, lineHeight: 1.55 }}>Ikki o'lchov birlashsa — kuchli signal: <b>«eslatma tugmasi» 3/5 sinovchida qoqildi VA aktivatsiyani tushiryapti</b>. Mana — birinchi tuzatiladigan narsa.</p>
             </div>
             <button className="btn" style={{ alignSelf: 'flex-start' }} onClick={() => setSeen(true)}>Tushundim</button>
-            {seen && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Bu ikki o'lchov — sizning filtringiz. «Menга yoqmadi» degan bitta ovoz — kuchsiz. «Ko'p odam + metrika» — kuchli. Endi buni matritsага solamiz.</p></div>}
+            {seen && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Bu ikki o'lchov — sizning filtringiz. «Menga yoqmadi» degan bitta ovoz — kuchsiz. «Ko'p odam + metrika» — kuchli. Endi buni matritsaga solamiz.</p></div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -542,7 +542,7 @@ const Screen4 = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow="Mashq · 1-savol"
     questionText="Qur → o'lcha → o'rgan sikli nima uchun?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Iteratsiya sikli <span className="italic" style={{ color: T.accent }}>nima beradi</span>?</h2></>}
-    options={['Mahsulotни bir marta mukammal qilish', 'Kichik o\'zgarish → o\'lchov → saboq → yana; har aylanish mahsulotni yaxshilaydi', 'Ko\'proq ficha qo\'shish', 'Fidbekni e\'tiborsiz qoldirish']} correctIdx={1}
+    options={['Mahsulotni bir marta mukammal qilish', 'Kichik o\'zgarish → o\'lchov → saboq → yana; har aylanish mahsulotni yaxshilaydi', 'Ko\'proq ficha qo\'shish', 'Fidbekni e\'tiborsiz qoldirish']} correctIdx={1}
     explainCorrect="To'g'ri! Qur→o'lcha→o'rgan — aylanuvchi sikl. Kichik o'zgarish yasaysiz, metrikani o'lchaysiz, saboq chiqarasiz va yana aylantirasiz. Slack shunday topildi. Ko'p va tez aylantirgan g'olib."
     explainWrong={{ 0: 'Bir marta mukammal — mumkin emas. Iteratsiya — doimiy.', 2: 'Ko\'proq ficha emas — o\'lchanadigan yaxshilanish.', 3: 'Aksincha — fidbekni eshitib, o\'rganadi.', default: 'Qur → o\'lcha → o\'rgan → yana.' }} />
 );
@@ -562,9 +562,9 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     setLast({ id: f.id, ok, why: f.why, ans: f.ans });
   };
   return (
-    <Stage eyebrow="Prioritet matritsasi · o'yin" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? 'Davom etish' : `Matritsага joylang (${okCount}/${FEEDBACK_ITEMS.length})`} onClick={onNext} /></>}>
+    <Stage eyebrow="Prioritet matritsasi · o'yin" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? 'Davom etish' : `Matritsaga joylang (${okCount}/${FEEDBACK_ITEMS.length})`} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Har fidbekни <span className="italic" style={{ color: T.accent }}>ta'sir × mehnat</span> bo'yicha joylang</h2></div>
+        <div className="head"><h2 className="title h-title fade-up">Har fidbekni <span className="italic" style={{ color: T.accent }}>ta'sir × mehnat</span> bo'yicha joylang</h2></div>
         <Mentor>Ikki savol: <b style={{ color: T.ink }}>ta'siri katta-mi?</b> (metrika/chastota) va <b style={{ color: T.ink }}>mehnat kam-mi?</b> Katta ta'sir + kam mehnat = 🔥 HOZIR QIL.</Mentor>
         <MentorCollapseScroll targetRef={workRef} />
         <Zoomable><div className="split" ref={workRef}>
@@ -591,7 +591,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <div className="mcell" style={{ '--mc': T.blue }}><span className="memoji">⚡</span><b>TEZ QILIB QO'Y</b><span>kam ta'sir<br />kam mehnat</span></div>
               <div className="mcell" style={{ '--mc': T.ink3 }}><span className="memoji">🗑️</span><b>TASHLA</b><span>kam ta'sir<br />ko'p mehnat</span></div>
             </div>
-            {last && <div className={`${last.ok ? 'frame-success' : 'frame-warn'} fade-step`} key={last.id + String(last.ok)} style={{ marginTop: 4 }}><p className="note-h" style={{ color: last.ok ? T.success : T.accent }}>{last.ok ? `✓ ${QMAP[last.ans].emoji} ${QMAP[last.ans].label}` : '✗ Qayta o\'ylang'}</p><p className="body" style={{ margin: 0, color: T.ink }}>{last.ok ? last.why : 'Ta\'siri katta-mi (metrika/chastota)? Mehnat kam-mi? Ikkalasига javob bering.'}</p></div>}
+            {last && <div className={`${last.ok ? 'frame-success' : 'frame-warn'} fade-step`} key={last.id + String(last.ok)} style={{ marginTop: 4 }}><p className="note-h" style={{ color: last.ok ? T.success : T.accent }}>{last.ok ? `✓ ${QMAP[last.ans].emoji} ${QMAP[last.ans].label}` : '✗ Qayta o\'ylang'}</p><p className="body" style={{ margin: 0, color: T.ink }}>{last.ok ? last.why : 'Ta\'siri katta-mi (metrika/chastota)? Mehnat kam-mi? Ikkalasiga javob bering.'}</p></div>}
             {done && <div className="frame-soft fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Birinchi navbatda — <b>🔥 HOZIR QIL</b> kvadranti (eslatma tugmasi). Katta foyda, kam mehnat. Boshqa hammasi kutadi. Prioritet — dalilga asoslangan.</p></div>}
           </Col>
         </div></Zoomable>
@@ -605,7 +605,7 @@ const Screen5b = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow="Tekshiruv"
     questionText="Qaysi fidbekni birinchi tuzatasiz?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>Mustahkamlash</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Birinchi <span className="italic" style={{ color: T.accent }}>nimani tuzatasiz</span>?</h2></>}
-    options={['Katta ta\'sir, lekin ko\'p mehnat talab qiladigани', 'Katta ta\'sir + kam mehnat (🔥 hozir qil)', 'Kam ta\'sir, lekin qiziq bo\'lgани', 'Eng oxirgi kelgani']} correctIdx={1}
+    options={['Katta ta\'sir, lekin ko\'p mehnat talab qiladigani', 'Katta ta\'sir + kam mehnat (🔥 hozir qil)', 'Kam ta\'sir, lekin qiziq bo\'lgani', 'Eng oxirgi kelgani']} correctIdx={1}
     explainCorrect="To'g'ri! «Hozir qil» kvadranti — katta ta'sir + kam mehnat. Eng katta foyda, eng kam kuch: eng aqlli birinchi qadam. Katta+ko'p mehnat — rejaga; kam ta'sir — kutadi."
     explainWrong={{ 0: 'Katta ta\'sir yaxshi, lekin ko\'p mehnat — rejaga qo\'yiladi, birinchi emas.', 2: 'Qiziqlik — mezon emas. Ta\'sir va mehnat.', 3: 'Kelish tartibi ahamiyatsiz — ta\'sir muhim.', default: 'Katta ta\'sir + kam mehnat = birinchi.' }} />
 );
@@ -631,15 +631,15 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             </div>
             <div key={v} className="frame demo-swap" style={{ padding: 'clamp(16px,2.5vw,22px)', borderLeft: `4px solid ${isNoise ? T.ink3 : T.success}` }}>
               <p style={{ fontFamily: G, fontSize: 'clamp(14px,1.9vw,16px)', color: T.ink, margin: 0, lineHeight: 1.55 }}>{isNoise
-                ? 'Bitta baland ovoz: «Menга bu rang yoqmaydi! AI chatbot qo\'shing! Darhol!» — u ko\'p gapiradi, lekin U BITTA odam va shaxsiy did. Metrika ham, pattern ham buni tasdiqlamaydi. Bu — shovqin.'
-                : 'Ko\'pchilikда takrorlangan yoki metrikада ko\'ringan: «5 dан 3 tasi eslatма tugmасида qoqildi VA aktivatsiya tushdi». Hech kim baqirmaydi — lekin DALIL kuchli. Bu — signal.'}</p>
+                ? 'Bitta baland ovoz: «Menga bu rang yoqmaydi! AI chatbot qo\'shing! Darhol!» — u ko\'p gapiradi, lekin U BITTA odam va shaxsiy did. Metrika ham, pattern ham buni tasdiqlamaydi. Bu — shovqin.'
+                : 'Ko\'pchilikda takrorlangan yoki metrikada ko\'ringan: «5 dan 3 tasi eslatma tugmasida qoqildi VA aktivatsiya tushdi». Hech kim baqirmaydi — lekin DALIL kuchli. Bu — signal.'}</p>
             </div>
           </Col>
           <Col>
             {isNoise
-              ? <div className="frame-warn fade-step" key="n"><p className="body" style={{ margin: 0, color: T.ink }}>Shovqin ortidan quvsangiz — signalни boy berasiz. Baland talab qiluvchи 1 kishi uchun 3/5 pattern e'tiborsiz qoladi. Ovoz balandligiга aldanmang.</p></div>
-              : <div className="frame-success fade-step" key="s"><p className="body" style={{ margin: 0, color: T.ink }}>Signal jim bo'lishi mumkin — metrikада, patternда. Sizning ishingiz — baqiroqni emas, DALILNI eshitish. Raqam va takror gapiradi.</p></div>}
-            {done && <div className="frame-soft fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Filtr: <b>pattern bormi? metrikага bog'liqmi?</b> Ha — signal. Bitta ovoz + shaxsiy did + metrikасиз — shovqin. Endi o'yinда mashq qilamiz.</p></div>}
+              ? <div className="frame-warn fade-step" key="n"><p className="body" style={{ margin: 0, color: T.ink }}>Shovqin ortidan quvsangiz — signalni boy berasiz. Baland talab qiluvchi 1 kishi uchun 3/5 pattern e'tiborsiz qoladi. Ovoz balandligiga aldanmang.</p></div>
+              : <div className="frame-success fade-step" key="s"><p className="body" style={{ margin: 0, color: T.ink }}>Signal jim bo'lishi mumkin — metrikada, patternda. Sizning ishingiz — baqiroqni emas, DALILNI eshitish. Raqam va takror gapiradi.</p></div>}
+            {done && <div className="frame-soft fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Filtr: <b>pattern bormi? metrikaga bog'liqmi?</b> Ha — signal. Bitta ovoz + shaxsiy did + metrikasiz — shovqin. Endi o'yinda mashq qilamiz.</p></div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -665,7 +665,7 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow="Signal vs shovqin · o'yin" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? 'Davom etish' : `Ajrating (${okCount}/${SIGNAL_ITEMS.length})`} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">Har fidbek: <span className="italic" style={{ color: T.accent }}>🔊 signal yoki 🔇 shovqin?</span></h2></div>
-        <Mentor>Savol: <b style={{ color: T.ink }}>«Pattern bormi (ko'p odam) yoki metrikага bog'liqmi?»</b> Ha — signal (harakat). Bitta ovoz / shaxsiy did / maqtov — shovqin (belgilab qo'y).</Mentor>
+        <Mentor>Savol: <b style={{ color: T.ink }}>«Pattern bormi (ko'p odam) yoki metrikaga bog'liqmi?»</b> Ha — signal (harakat). Bitta ovoz / shaxsiy did / maqtov — shovqin (belgilab qo'y).</Mentor>
         <MentorCollapseScroll targetRef={workRef} />
         <Zoomable><div className="split" ref={workRef}>
           <Col>
@@ -685,7 +685,7 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </Col>
           <Col>
             <div className="fade-up delay-1">
-              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6 }}><span className="flow-label">🔊 Signal ajratildi</span><span className="mono" style={{ fontSize: 12, fontWeight: 700, color: done ? T.success : T.accent }}>{okCount}/{SIGNAL_ITEMS.length}</span></div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6, paddingRight: 40 }}><span className="flow-label">🔊 Signal ajratildi</span><span className="mono" style={{ fontSize: 12, fontWeight: 700, color: done ? T.success : T.accent }}>{okCount}/{SIGNAL_ITEMS.length}</span></div>
               <div className="fmeter-track"><div className="fmeter-fill" style={{ width: `${(okCount / SIGNAL_ITEMS.length) * 100}%` }} /></div>
             </div>
             {last ? (
@@ -694,7 +694,7 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 <p className="body" style={{ margin: 0, color: T.ink }}>{last.ok ? last.why : 'Pattern (ko\'p odam) yoki metrika bormi? Ha — signal. Bitta ovoz/did/maqtov — shovqin.'}</p>
               </div>
             ) : <div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>Fidbek yonidagi 🔊 yoki 🔇 ni bosing.</p></div>}
-            {done && <div className="frame-soft fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>3 signal (pattern/metrika) — harakat qilamiz; 3 shovqin (bir ovoz/did/maqtov) — belgilab qo'yamiz. Signalни eshit, shovqinга aldanma. Endi eng kuchli signalни AI bilan tuzatamiz.</p></div>}
+            {done && <div className="frame-soft fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>3 signal (pattern/metrika) — harakat qilamiz; 3 shovqin (bir ovoz/did/maqtov) — belgilab qo'yamiz. Signalni eshit, shovqinga aldanma. Endi eng kuchli signalni AI bilan tuzatamiz.</p></div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -731,9 +731,9 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </Col>
           <Col>
             {isRewrite
-              ? <div className="frame-warn fade-step" key="r"><p className="body" style={{ margin: 0, color: T.ink }}>«Qayta yoz» — xavfli: AI ishlab turgan narsani ham buzadi, yangi xatolar keladi, tushunish qiyinlashadi. Bir muammoни tuzatаман deб o'ntасини yaratasiz.</p></div>
+              ? <div className="frame-warn fade-step" key="r"><p className="body" style={{ margin: 0, color: T.ink }}>«Qayta yoz» — xavfli: AI ishlab turgan narsani ham buzadi, yangi xatolar keladi, tushunish qiyinlashadi. Bir muammoni tuzataman deb o'ntasini yaratasiz.</p></div>
               : <div className="frame-success fade-step" key="p"><p className="body" style={{ margin: 0, color: T.ink }}>«Aniq tuzat» — xavfsiz: bitta aniq o'zgarish, qolgani tegilmaydi. Osongina tekshirasiz, «tushuntir» darvozasidan o'tkazasiz (101). Kichik, nazoratli qadam.</p></div>}
-            {done && <div className="frame-soft fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Iteratsiya qoidasi: <b>kichik, aniq o'zgarishlar</b> — katta qayta yozish emas. Har fixдан keyin «tushuntir» darvozasi va checklist (101). Endi tuzatishni qo'llab, metrikани o'lchaymiz.</p></div>}
+            {done && <div className="frame-soft fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Iteratsiya qoidasi: <b>kichik, aniq o'zgarishlar</b> — katta qayta yozish emas. Har fixdan keyin «tushuntir» darvozasi va checklist (101). Endi tuzatishni qo'llab, metrikani o'lchaymiz.</p></div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -746,7 +746,7 @@ const Screen9 = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow="Mashq · 2-savol"
     questionText="Friction'ni AI bilan qanday tuzatasiz?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>AI'ga <span className="italic" style={{ color: T.accent }}>qanday</span> tuzatish beraman?</h2></>}
-    options={['«Butun ilovani chiroyliroq qayta yoz»', 'Aniq, kichik o\'zgarish: «shu tugmani tepaga, kattaroq — boshqasini tegма»', 'Hech narsani o\'zgartirmayman', 'Barcha fichalarni birdan qayta yozaman']} correctIdx={1}
+    options={['«Butun ilovani chiroyliroq qayta yoz»', 'Aniq, kichik o\'zgarish: «shu tugmani tepaga, kattaroq — boshqasini tegma»', 'Hech narsani o\'zgartirmayman', 'Barcha fichalarni birdan qayta yozaman']} correctIdx={1}
     explainCorrect="To'g'ri! Aniq, kichik o'zgarish — iteratsiya kaliti. «Qayta yoz» ishlab turgan narsani buzadi. Bitta aniq fix → tekshir → «tushuntir» darvozasi (101) → o'lcha. Kichik qadamlar, katta natija."
     explainWrong={{ 0: '«Qayta yoz» — ishlaganini ham buzadi, yangi xatolar keladi.', 2: 'Signal bo\'lsa — tuzatish kerak; e\'tiborsizlik xato.', 3: 'Barchasini birdan — chalkashlik. Bittadan, aniq.', default: 'Kichik, aniq o\'zgarish qil.' }} />
 );
@@ -762,7 +762,7 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow="Sikl yopiladi · jonli" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? 'Davom etish' : 'Tuzatishni qo\'llang'} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">Tuzatding — endi <span className="italic" style={{ color: T.success }}>metrika gapiradi</span></h2></div>
-        <Mentor>Mana butun modulning sehri bir joyда: 104-friction → 105-fix → 100-metrika. Tuzatishni qo'llang va Shimoliy yulduzни kuzating.</Mentor>
+        <Mentor>Mana butun modulning sehri bir joyda: 104-friction → 105-fix → 100-metrika. Tuzatishni qo'llang va Shimoliy yulduzni kuzating.</Mentor>
         <MentorCollapseScroll targetRef={workRef} />
         <Zoomable><div className="split" ref={workRef}>
           <Col>
@@ -782,7 +782,7 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <p className="small" style={{ margin: '8px 0 0', color: T.ink2 }}>{applied ? '620 dan 380 tasi eslatma yoqdi — oldin 210 edi!' : '620 dan atigi 210 tasi eslatma yoqadi (tugma yashirin)'}</p>
             </div>
             {!applied && <button className="btn" style={{ alignSelf: 'flex-start' }} onClick={() => setApplied(true)}>🔥 Tuzatishni qo'lla va o'lcha</button>}
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Charх bir marta aylandi: <b>+27% aktivatsiya!</b> Endi taxmin emas — DALIL. Bir kichik tuzatish, o'lchanadigan natija. Mana nega analitika, usability va AI birga ishlaydi.</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Charx bir marta aylandi: <b>+27% aktivatsiya!</b> Endi taxmin emas — DALIL. Bir kichik tuzatish, o'lchanadigan natija. Mana nega analitika, usability va AI birga ishlaydi.</p></div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -797,7 +797,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return (
     <Stage eyebrow="Doimiy sikl" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!seen} label={seen ? 'Davom etish' : 'Davomini ko\'ring'} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">Bir marta emas — <span className="italic" style={{ color: T.accent }}>cheksiz charх</span></h2></div>
+        <div className="head"><h2 className="title h-title fade-up">Bir marta emas — <span className="italic" style={{ color: T.accent }}>cheksiz charx</span></h2></div>
         <Mentor>Bugun charxni bir marta aylantirdingiz. Lekin haqiqiy mahsulot — bu doimiy jarayon. Nega kichik va tez-tez yaxshiroq?</Mentor>
         <Zoomable><div className="split">
           <Col>
@@ -807,7 +807,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             </div>
             <div className="frame fade-up delay-2" style={{ padding: 'clamp(14px,2.2vw,18px)', borderLeft: `4px solid ${T.success}` }}>
               <p className="note-h" style={{ color: T.success }}>🐇 Kichik, tez-tez iteratsiya</p>
-              <p className="body" style={{ margin: 0, color: T.ink }}>Har hafta kichik tuzatish → o'lchov → saboq. Xato bo'lsa — bir haftalik yo'qotish. Tez o'rganish, kam xavf. Charх tez aylanadi.</p>
+              <p className="body" style={{ margin: 0, color: T.ink }}>Har hafta kichik tuzatish → o'lchov → saboq. Xato bo'lsa — bir haftalik yo'qotish. Tez o'rganish, kam xavf. Charx tez aylanadi.</p>
             </div>
           </Col>
           <Col>
@@ -815,7 +815,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <p style={{ fontFamily: G, fontStyle: 'italic', fontSize: 'clamp(14px,1.9vw,16px)', color: T.ink, margin: 0, lineHeight: 1.55 }}>«Katta muvaffaqiyat — minglab kichik iteratsiyalar yig'indisi.»</p>
             </div>
             <button className="btn" style={{ alignSelf: 'flex-start' }} onClick={() => setSeen(true)}>Tushundim</button>
-            {seen && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Founder odati: har hafta charxni aylantiring. Fidbek yig'ing → prioritetlang → tuzating → o'lchang. Mahsulot har hafta 1% yaxshilanса — bir yilда tanib bo'lmaydigan darajada o'sadi.</p></div>}
+            {seen && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Founder odati: har hafta charxni aylantiring. Fidbek yig'ing → prioritetlang → tuzating → o'lchang. Mahsulot har hafta 1% yaxshilansa — bir yilda tanib bo'lmaydigan darajada o'sadi.</p></div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -828,9 +828,9 @@ const Screen12 = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow="Mashq · 3-savol"
     questionText="Tuzatgandan keyin qanday bilasiz — ishladimi?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Tuzatish <span className="italic" style={{ color: T.accent }}>ishladimi</span> — qanday bilasiz?</h2></>}
-    options={['O\'zimga chiroyli tuyulса — ishladi', 'Metrikани qayta o\'lchayman — aktivatsiya/retention ko\'tarildimi?', 'Do\'stlarга yoqса', 'Hech qanday — shunchaki tuzataveraman']} correctIdx={1}
-    explainCorrect="To'g'ri! Sikl yopiladi: tuzatding → metrikани qayta o'lcha. Aktivatsiya 34%→61% ko'tarildimi? Ha — ishladi, saboq oldi. Yo'q — boshqa gipoteza. O'lchovsiz iteratsiya — ko'r iteratsiya."
-    explainWrong={{ 0: 'O\'z didingiz — subyektiv. Metrika obyektiv.', 2: 'Do\'stlar maqtovi — ma\'lumot emas. Raqam kerak.', 3: 'O\'lchamasangiz — o\'rganmaysiz. Sikl yopilmaydi.', default: 'Metrikани qayta o\'lcha — ishladimi?' }} />
+    options={['O\'zimga chiroyli tuyulsa — ishladi', 'Metrikani qayta o\'lchayman — aktivatsiya/retention ko\'tarildimi?', 'Do\'stlarga yoqsa', 'Hech qanday — shunchaki tuzataveraman']} correctIdx={1}
+    explainCorrect="To'g'ri! Sikl yopiladi: tuzatding → metrikani qayta o'lcha. Aktivatsiya 34%→61% ko'tarildimi? Ha — ishladi, saboq oldi. Yo'q — boshqa gipoteza. O'lchovsiz iteratsiya — ko'r iteratsiya."
+    explainWrong={{ 0: 'O\'z didingiz — subyektiv. Metrika obyektiv.', 2: 'Do\'stlar maqtovi — ma\'lumot emas. Raqam kerak.', 3: 'O\'lchamasangiz — o\'rganmaysiz. Sikl yopilmaydi.', default: 'Metrikani qayta o\'lcha — ishladimi?' }} />
 );
 
 // ===== SCREEN 13 — CASE: AZIZ #12 =====
@@ -838,9 +838,9 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [picked, setPicked] = useState(storedAnswer?.lastPicked ?? null);
   const [solved, setSolved] = useState(!!storedAnswer);
   const OPTS = [
-    { id: 0, t: '«Baland ovoz — muhim! Hammasini tashlab, o\'sha AI chatbotни qur»' },
-    { id: 1, t: '«Bu — bitta ovoz (shovqin). 3/5 sinovчи aytgan "eslatma tugmasi" — pattern (signal). Signalni tuzat, shovqinni belgilab qo\'y»' },
-    { id: 2, t: '«Ikkalasини ham darrov qur»' }
+    { id: 0, t: '«Baland ovoz — muhim! Hammasini tashlab, o\'sha AI chatbotni qur»' },
+    { id: 1, t: '«Bu — bitta ovoz (shovqin). 3/5 sinovchi aytgan "eslatma tugmasi" — pattern (signal). Signalni tuzat, shovqinni belgilab qo\'y»' },
+    { id: 2, t: '«Ikkalasini ham darrov qur»' }
   ];
   const pick = (id) => {
     if (solved) return;
@@ -851,7 +851,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow="Vaziyat" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!solved} label={solved ? 'Davom etish' : 'To\'g\'ri maslahatni toping'} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,1.8vw,18px)' }}>
         <div className="head"><h2 className="title h-title fade-up">Aziz: <span className="italic" style={{ color: T.accent }}>«Bitta odam AI chatbot so'rayapti — darrov qilaman!»</span></h2></div>
-        <Mentor>Aziz fidbek to'pladi. Lekin bittasiga mahliyo bo'lib qoldi. Xabarини o'qing…</Mentor>
+        <Mentor>Aziz fidbek to'pladi. Lekin bittasiga mahliyo bo'lib qoldi. Xabarini o'qing…</Mentor>
         <div className="fade-up delay-1 frame" style={{ padding: 'clamp(16px,2.5vw,22px)', borderLeft: `4px solid ${T.grape}` }}>
           <p className="mono small" style={{ margin: '0 0 8px', color: T.grape, fontWeight: 700 }}>💬 DO'STINGIZ AZIZ</p>
           <p style={{ fontFamily: G, fontSize: 'clamp(14px,1.9vw,16px)', color: T.ink, margin: 0, lineHeight: 1.55, fontStyle: 'italic' }}>«Bitta foydalanuvchi juda qattiq turib oldi: "AI chatbot qo'shing, bu shart!" — 5 marta yozdi. Shuning uchun bir haftा shuni quraman. Eslatma tugmasi-chi? A, u 3 kishi aytgan, keyinroq...»</p>
@@ -867,8 +867,8 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <FeedbackBlock show={picked !== null} isCorrect={solved}>
           <p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: solved ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>{solved ? 'To\'g\'ri maslahat' : 'Yana o\'ylang'}</p>
           <p className="body" style={{ margin: 0 }}>{solved
-            ? 'Aziz «vokal ozchilik» tuzog\'iga tushdi: bitta baqiroq ovoz uni chalg\'itdi. 5 marta yozgan 1 kishi — hali ham 1 kishi, va chatbot core jobga aloqasiz (shovqin). «Eslatma tugmasi» esa 3/5 pattern + aktivatsiyani tushiryapti (signal). Ovoz balandligiга emas, DALILга (pattern + metrika) qarab tuzatadi. Aziz signalни tuzatib, shovqinni belgilab qo\'yishi kerak.'
-            : (picked === 0 ? 'Baland ovoz ≠ signal. Chatbot 1 kishi + core jobga aloqasiz. Signalни (3/5 pattern) boy berasiz.' : 'Ikkalasi ham emas — prioritet kerak. Signalni (eslatма) tuzat, shovqinни (chatbot) belgila. Cheklangan vaqt.')}</p>
+            ? 'Aziz «vokal ozchilik» tuzog\'iga tushdi: bitta baqiroq ovoz uni chalg\'itdi. 5 marta yozgan 1 kishi — hali ham 1 kishi, va chatbot core jobga aloqasiz (shovqin). «Eslatma tugmasi» esa 3/5 pattern + aktivatsiyani tushiryapti (signal). Ovoz balandligiga emas, DALILga (pattern + metrika) qarab tuzatadi. Aziz signalni tuzatib, shovqinni belgilab qo\'yishi kerak.'
+            : (picked === 0 ? 'Baland ovoz ≠ signal. Chatbot 1 kishi + core jobga aloqasiz. Signalni (3/5 pattern) boy berasiz.' : 'Ikkalasi ham emas — prioritet kerak. Signalni (eslatma) tuzat, shovqinni (chatbot) belgila. Cheklangan vaqt.')}</p>
         </FeedbackBlock>
       </div>
     </Stage>
@@ -891,7 +891,7 @@ const Screen14 = ({ screen, onNext, onPrev }) => (
         <Col>
           <p className="flow-label">4 narsani unutmang</p>
           <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-            {[{ ic: Ico.loop(18), c: T.grape, t: 'SIKL — qur → o\'lcha → o\'rgan → yana' }, { ic: Ico.grid(18), c: T.accent, t: 'PRIORITET — ta\'sir × mehnat; 🔥 hozir qil' }, { ic: Ico.volume(18), c: T.blue, t: 'SIGNAL — pattern/metrika; baland ovoz emas' }, { ic: Ico.chart(18), c: T.success, t: 'O\'LCHA — tuzatding? metrikани qayta o\'lcha' }].map((s, i) => (<React.Fragment key={i}><div style={{ display: 'flex', alignItems: 'center', gap: 11, background: T.paper, borderRadius: 11, padding: '10px 13px', boxShadow: `0 5px 14px -8px rgba(${T.shadowBase},0.16)` }}><span style={{ color: s.c, display: 'inline-flex' }}>{s.ic}</span><span style={{ fontFamily: "'Manrope',sans-serif", fontWeight: 600, color: T.ink, fontSize: 13.5 }}>{s.t}</span></div>{i < 3 && <span style={{ color: T.ink3, textAlign: 'center', fontSize: 11 }}>↓</span>}</React.Fragment>))}
+            {[{ ic: Ico.loop(18), c: T.grape, t: 'SIKL — qur → o\'lcha → o\'rgan → yana' }, { ic: Ico.grid(18), c: T.accent, t: 'PRIORITET — ta\'sir × mehnat; 🔥 hozir qil' }, { ic: Ico.volume(18), c: T.blue, t: 'SIGNAL — pattern/metrika; baland ovoz emas' }, { ic: Ico.chart(18), c: T.success, t: 'O\'LCHA — tuzatding? metrikani qayta o\'lcha' }].map((s, i) => (<React.Fragment key={i}><div style={{ display: 'flex', alignItems: 'center', gap: 11, background: T.paper, borderRadius: 11, padding: '10px 13px', boxShadow: `0 5px 14px -8px rgba(${T.shadowBase},0.16)` }}><span style={{ color: s.c, display: 'inline-flex' }}>{s.ic}</span><span style={{ fontFamily: "'Manrope',sans-serif", fontWeight: 600, color: T.ink, fontSize: 13.5 }}>{s.t}</span></div>{i < 3 && <span style={{ color: T.ink3, textAlign: 'center', fontSize: 11 }}>↓</span>}</React.Fragment>))}
           </div>
         </Col>
       </div></Zoomable>
@@ -924,7 +924,7 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow="Yakuniy ish · iteratsiya rejasi" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!passed} label={passed ? 'Davom etish' : `To'ldiring (${completeCount}/${ITER_FIELDS.length})`} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">ITERATSIYA REJASI: <span className="italic" style={{ color: T.accent }}>portfolio 13-sahifa</span></h2></div>
-        <Mentor>104-test topilmalarингиздан iteratsiya rejasini tuzing{productName ? <> (mahsulotingiz: <b style={{ color: T.ink }}>{productName}</b>)</> : ''}. Prioritetlang, fix promptини yozing va qanday o'lchashни belgilang.</Mentor>
+        <Mentor>104-test topilmalaringizdan iteratsiya rejasini tuzing{productName ? <> (mahsulotingiz: <b style={{ color: T.ink }}>{productName}</b>)</> : ''}. Prioritetlang, fix promptini yozing va qanday o'lchashni belgilang.</Mentor>
         <MentorCollapseScroll targetRef={workRef} />
         <Zoomable><div className="split" ref={workRef}>
           <Col>
@@ -940,7 +940,7 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {docRows.length === 0
               ? <div className="spec-card" style={{ minHeight: 150, justifyContent: 'center' }}><p className="spec-text" style={{ color: '#6B7585', fontStyle: 'italic', textAlign: 'center' }}>To'ldiring — reja shu yerda yig'iladi…</p></div>
               : <div style={{ position: 'relative' }}><IterDoc rows={docRows} />{passed && <span className="seal">CHARX AYLANDI 🔁</span>}</div>}
-            {passed && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Charxни aylantirishni o'rgandingiz — mahsulot endi dalilга asoslanib o'sadi. Keyingi darsda butun yo'lni PITCHга aylantiramiz: muammo → yechim → foydalanuvchi → metrika. 🎤</p></div>}
+            {passed && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Charxni aylantirishni o'rgandingiz — mahsulot endi dalilga asoslanib o'sadi. Keyingi darsda butun yo'lni PITCHga aylantiramiz: muammo → yechim → foydalanuvchi → metrika. 🎤</p></div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -957,8 +957,8 @@ const BADGES = [
   { t: 'Founder', l: 'Demo Day (108)' }
 ];
 const Screen16 = ({ screen, answers, onReset, onPrev, onFinish }) => {
-  const RECAP = ['Qur → o\'lcha → o\'rgan: mahsulot aylanuvchi charх', 'Prioritet: ta\'sir × mehnat — 🔥 hozir qil birinchi', 'Signal (pattern/metrika) vs shovqin (bir ovoz)', 'Kichik AI-fix → metrikани qayta o\'lcha (34%→61%)'];
-  const GLOSSARY = [{ b: 'Iteratsiya', t: '— qur → o\'lcha → o\'rgan sikli' }, { b: 'Prioritet matritsasi', t: '— ta\'sir × mehnat 2×2' }, { b: 'Signal', t: '— pattern yoki metrikага bog\'liq fidbek' }, { b: 'Shovqin', t: '— bitta ovoz / shaxsiy did / maqtov' }, { b: 'Vokal ozchilik', t: '— baqiroq 1 kishi tuzog\'i' }, { b: 'Build-measure-learn', t: '— Eric Ries, Lean Startup sikli' }];
+  const RECAP = ['Qur → o\'lcha → o\'rgan: mahsulot aylanuvchi charx', 'Prioritet: ta\'sir × mehnat — 🔥 hozir qil birinchi', 'Signal (pattern/metrika) vs shovqin (bir ovoz)', 'Kichik AI-fix → metrikani qayta o\'lcha (34%→61%)'];
+  const GLOSSARY = [{ b: 'Iteratsiya', t: '— qur → o\'lcha → o\'rgan sikli' }, { b: 'Prioritet matritsasi', t: '— ta\'sir × mehnat 2×2' }, { b: 'Signal', t: '— pattern yoki metrikaga bog\'liq fidbek' }, { b: 'Shovqin', t: '— bitta ovoz / shaxsiy did / maqtov' }, { b: 'Vokal ozchilik', t: '— baqiroq 1 kishi tuzog\'i' }, { b: 'Build-measure-learn', t: '— Eric Ries, Lean Startup sikli' }];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
   const PASSED = (total ? correct / total : 0) >= 0.6;
@@ -970,12 +970,12 @@ const Screen16 = ({ screen, answers, onReset, onPrev, onFinish }) => {
     <Stage eyebrow="Isbot qil bosqichi · 1/4 tamom" screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>Qaytadan</button><button className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>Yakunlash</button></>}>
       <div className="screen" style={{ position: 'relative' }}>
         {PASSED && <div className="confetti" aria-hidden="true">{Array.from({ length: 16 }).map((_, i) => (<span key={i} className="cf" style={{ left: `${(i * 6.3 + 2) % 100}%`, background: [T.accent, T.honey, T.grape, T.blue, T.success][i % 5], animationDelay: `${(i % 8) * 0.16}s` }} />))}</div>}
-        <div className="hero"><div className="hero-l"><span className="done-chip fade-up"><span className="tick">{Ico.loop(12)}</span> Charх aylandi · Isbot qil boshlandi</span><h2 className="title h-title fade-up d1">Mahsulot endi <span className="italic" style={{ color: T.accent }}>o'sadi.</span></h2>{/* 54-qonun (P0 PmUserStory · PmLesson2 qarori): h-sub qatori YO'Q — sarlavha o'zi yetadi. */}</div><ScoreRing correct={correct} total={total} /></div>
+        <div className="hero"><div className="hero-l"><span className="done-chip fade-up"><span className="tick">{Ico.loop(12)}</span> Charx aylandi · Isbot qil boshlandi</span><h2 className="title h-title fade-up d1">Mahsulot endi <span className="italic" style={{ color: T.accent }}>o'sadi.</span></h2>{/* 54-qonun (P0 PmUserStory · PmLesson2 qarori): h-sub qatori YO'Q — sarlavha o'zi yetadi. */}</div><ScoreRing correct={correct} total={total} /></div>
         <div className="split">
           <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span style={{ color: T.success, display: 'inline-flex' }}>{Ico.check(15)}</span> Endi siz bilasiz</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck" style={{ display: 'inline-flex' }}>{Ico.check(15)}</span><span>{r}</span></li>))}</ul></div>
-          <div className="card fade-up d4"><div className="card-lbl" style={{ color: T.honey }}>🏅 Nishonlar yo'li</div><div style={{ display: 'flex', flexWrap: 'wrap', gap: 7 }}>{BADGES.map((b, i) => (<span key={i} className={`badge-chip ${i <= 3 ? 'badge-done' : ''} ${i === 4 ? 'badge-next' : ''}`}>{i === 0 ? '🏹' : (i === 1 ? '🎖️' : (i === 2 ? '🔨' : (i === 3 ? '🧪' : '👑')))} {b.t}<span className="badge-when" style={i <= 3 ? { color: 'rgba(255,255,255,0.85)' } : undefined}>· {b.l}</span></span>))}</div><p className="small" style={{ margin: '10px 0 0', color: T.ink2 }}>Oxirgi nishon — <b style={{ color: T.honey }}>👑 Founder</b>: Demo Day'да butun yo'lni namoyish qilganда (108-dars).</p></div>
+          <div className="card fade-up d4"><div className="card-lbl" style={{ color: T.honey }}>🏅 Nishonlar yo'li</div><div style={{ display: 'flex', flexWrap: 'wrap', gap: 7 }}>{BADGES.map((b, i) => (<span key={i} className={`badge-chip ${i <= 3 ? 'badge-done' : ''} ${i === 4 ? 'badge-next' : ''}`}>{i === 0 ? '🏹' : (i === 1 ? '🎖️' : (i === 2 ? '🔨' : (i === 3 ? '🧪' : '👑')))} {b.t}<span className="badge-when" style={i <= 3 ? { color: 'rgba(255,255,255,0.85)' } : undefined}>· {b.l}</span></span>))}</div><p className="small" style={{ margin: '10px 0 0', color: T.ink2 }}>Oxirgi nishon — <b style={{ color: T.honey }}>👑 Founder</b>: Demo Day'da butun yo'lni namoyish qilganda (108-dars).</p></div>
         </div>
-        <div className="frame-success fade-up d4" style={{ display: 'flex', alignItems: 'center', gap: 14 }}><span style={{ fontSize: 30 }}>🔁</span><div><p style={{ fontFamily: "'Source Serif 4',serif", fontWeight: 600, margin: 0, color: T.ink, fontSize: 'clamp(15px,2vw,18px)' }}>Uyga vazifa — charxni aylantiring</p><p className="body" style={{ margin: '2px 0 0', color: T.ink2 }}>104-testда topgan friction'laringizni oling. Ta'sir × mehnat bo'yicha tartiblang, eng kritik 1-2 tasini AI bilan aniq tuzating («qayta yoz» emas!), «tushuntir» darvozasidan o'tkazing va bir haftadan keyin metrikani qayta o'lchang. Keyingi dars: pitch — muammo→yechim→foydalanuvchi→metrika 🎤.</p></div></div>
+        <div className="frame-success fade-up d4" style={{ display: 'flex', alignItems: 'center', gap: 14 }}><span style={{ fontSize: 30 }}>🔁</span><div><p style={{ fontFamily: "'Source Serif 4',serif", fontWeight: 600, margin: 0, color: T.ink, fontSize: 'clamp(15px,2vw,18px)' }}>Uyga vazifa — charxni aylantiring</p><p className="body" style={{ margin: '2px 0 0', color: T.ink2 }}>104-testda topgan friction'laringizni oling. Ta'sir × mehnat bo'yicha tartiblang, eng kritik 1-2 tasini AI bilan aniq tuzating («qayta yoz» emas!), «tushuntir» darvozasidan o'tkazing va bir haftadan keyin metrikani qayta o'lchang. Keyingi dars: pitch — muammo→yechim→foydalanuvchi→metrika 🎤.</p></div></div>
         <div ref={glossRef} className="gloss fade-up d4" style={{ scrollMarginBottom: 16 }}><div className="gloss-head" onClick={toggleGloss}><span className="lbl">Kalit so'zlar (takrorlash)</span><span className="gloss-toggle">{open ? '−' : '+'}</span></div>{open && (<div className="gloss-body">{GLOSSARY.map((g, i) => (<span key={i}><b>{g.b}</b> {g.t}{i < GLOSSARY.length - 1 ? ' · ' : ''}</span>))}</div>)}</div>
       </div>
     </Stage>
@@ -1153,6 +1153,8 @@ export default function MvpIterateLesson({ lang: langProp, onFinished }) {
         .mentor { display: flex; gap: 12px; align-items: flex-start; }
         .zoomable { position: relative; }
         .zoom-btn { position: absolute; top: 6px; right: 6px; z-index: 5; width: 30px; height: 30px; border-radius: 8px; border: none; background: rgba(255,255,255,0.82); color: ${T.ink2}; font-size: 14px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.22); transition: all 0.2s; }
+        /* F-0912-09 · 147-qonun (a): matn zoom tugmasi burchagini aylanib o'tadi. */
+        .zb-notch::before { content: ''; float: right; width: 28px; height: 28px; }
         .zoom-btn:hover { background: ${T.paper}; color: ${T.accent}; transform: scale(1.08); }
         .zoom-backdrop { position: fixed; inset: 0; background: rgba(14,14,16,0.55); z-index: 1000; animation: fade-step 0.25s ease; }
         .zoom-on { position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%); width: min(880px,94vw); max-height: 90vh; overflow: auto; z-index: 1001; background: ${T.paper}; border-radius: 18px; padding: clamp(20px,4vw,42px); box-shadow: 0 30px 80px -20px rgba(${T.shadowBase},0.5); animation: zoom-pop 0.3s cubic-bezier(.34,1.3,.4,1); }

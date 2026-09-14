@@ -2671,6 +2671,10 @@ export default function ReactPropsReuseLesson({ lang: langProp, onFinished, live
         .robar-fill { display: block; height: 100%; background: #5FA77F; transition: width 0.4s ease; }
         .robody { padding: 8px 11px 10px; }
         .roname { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 12.5px; color: ${T.ink}; margin: 0 0 5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        /* Fabrika lotogidagi tor karta (matn joyi ~61px): 12,5px da «Brookhaven» 12px qirqilardi.
+           10px — eng uzun nom 2px zaxira bilan to'liq sig'adigan o'lcham (Range bilan o'lchangan).
+           Keng kartalar 12,5px da qoladi. */
+        .cf-slot .roname { font-size: 10px; }
         .rostats { display: flex; align-items: center; gap: 9px; font-family: 'Manrope', sans-serif; font-size: 11px; color: ${T.ink3}; font-weight: 700; }
         .rolike-static { color: ${T.success}; font-weight: 700; display: inline-flex; align-items: center; gap: 3px; }
         .roplayers { color: ${T.ink3}; display: inline-flex; align-items: center; gap: 3px; }

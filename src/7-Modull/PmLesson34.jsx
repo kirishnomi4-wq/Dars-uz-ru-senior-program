@@ -120,18 +120,18 @@ const SESSION = [
   { id: 'm1', txt: 'Malika sahifani ochdi', detail: 'Bemalol — sahifa yuklandi.', friction: false },
   { id: 'm2', txt: 'Yo\'nalish ro\'yxatini ko\'rdi, o\'zinikini tanladi', detail: 'Ravon — ro\'yxat tushunarli.', friction: false },
   { id: 'm3', txt: 'Katta «7 daqiqa» raqamini ko\'rdi — tushundi', detail: '«Voy, ishlayapti-ku!» Core job bajarildi.', friction: false },
-  { id: 'm4', txt: 'Eslatma yoqmoqchi — lekin TUGMANI TOPOLMAYDI…', detail: '3 marta boshqa joyni bosdi, 10 soniya ekranга tikildi, «qayerda bu?» deb g\'udrandi.', friction: true, note: 'Eslatma tugmasi ko\'rinmaydi / tushunarsiz joyда' },
-  { id: 'm5', txt: 'Nihoyat pastдан, kichik matnдан topdi va yoqdi', detail: 'Topdi — lekin qийinchilik bilan. Bu — friction.', friction: false }
+  { id: 'm4', txt: 'Eslatma yoqmoqchi — lekin TUGMANI TOPOLMAYDI…', detail: '3 marta boshqa joyni bosdi, 10 soniya ekranga tikildi, «qayerda bu?» deb g\'udrandi.', friction: true, note: 'Eslatma tugmasi ko\'rinmaydi / tushunarsiz joyda' },
+  { id: 'm5', txt: 'Nihoyat pastdan, kichik matndan topdi va yoqdi', detail: 'Topdi — lekin qiyinchilik bilan. Bu — friction.', friction: false }
 ];
 
 // s7 — Test protokoli quruvchi
 const PROTOCOL_ITEMS = [
   { id: 'a1', t: '«Keyingi avtobus qachon kelishini toping» — aniq VAZIFA bering', ans: 'in', why: 'Vazifa beradi, yo\'l ko\'rsatmaydi. Real xatti-harakatni kuzatasiz.' },
   { id: 'a2', t: '«Yoqdimi? Chiroylimi?» deb so\'rash', ans: 'out', why: 'Yetaklovchi savol — xushmuomala yolg\'on chaqiradi (Mom Test, 96-dars).' },
-  { id: 'a3', t: 'Adashса — jim turib kuzatish', ans: 'in', why: 'Sukut — eng qimmatli ma\'lumot. Qoqilish joyи = tuzatiladigan joy.' },
+  { id: 'a3', t: 'Adashsa — jim turib kuzatish', ans: 'in', why: 'Sukut — eng qimmatli ma\'lumot. Qoqilish joyi = tuzatiladigan joy.' },
   { id: 'a4', t: '«Yo\'q, u tugmani bosing» deb yordam berish', ans: 'out', why: 'Aralashsangiz — muammoni YO\'QOTASIZ. U to\'g\'ri yo\'lni topib beradi, siz esa hech narsa bilmaysiz.' },
-  { id: 'a5', t: '«Ovoz chiqarib o\'ylang» deб so\'rash (think-aloud)', ans: 'in', why: 'Fikrini eshitasiz — «bu nima ekan?» — lekin yetaklamaysiz. Oltin usul.' },
-  { id: 'a6', t: 'Do\'stlarni chaqirib, maqtovини olish', ans: 'out', why: 'Do\'stlar maqtaydi. Begona, maqsad-guruh vakili kerak — Malika, Karim aka.' }
+  { id: 'a5', t: '«Ovoz chiqarib o\'ylang» deb so\'rash (think-aloud)', ans: 'in', why: 'Fikrini eshitasiz — «bu nima ekan?» — lekin yetaklamaysiz. Oltin usul.' },
+  { id: 'a6', t: 'Do\'stlarni chaqirib, maqtovini olish', ans: 'out', why: 'Do\'stlar maqtaydi. Begona, maqsad-guruh vakili kerak — Malika, Karim aka.' }
 ];
 const PMAP = { in: { emoji: '✅', label: 'KIRITAMIZ', color: T.success }, out: { emoji: '❌', label: 'CHIQARAMIZ', color: T.accent } };
 
@@ -147,14 +147,14 @@ const USERS_5 = [
 // s11 — friction drilli (chastota bo'yicha prioritet)
 const PRIO_DRILL = [
   { id: 'd1', label: '«Eslatma tugmasini topolmadi» — 5 sinovchidan 3 tasi', emoji: '🔴', color: T.accent,
-    opts: ['E\'tibor bermayman — 3 ta oz', 'Eng kritik — 3/5 takrorlandi; birinchi shuni tuzataman', 'Faqat 1 kishi aytса tuzataman'], correct: 1,
+    opts: ['E\'tibor bermayman — 3 ta oz', 'Eng kritik — 3/5 takrorlandi; birinchi shuni tuzataman', 'Faqat 1 kishi aytsa tuzataman'], correct: 1,
     why: 'Takror = pattern = kritik. 3/5 — bu shaxsiy emas, dizayn muammosi. Birinchi navbatda shu.' },
   { id: 'd2', label: '«Matn kichik» — 1 sinovchi (buvi)', emoji: '🟡', color: T.honey,
     opts: ['Darrov hamma matnni kattalashtiraman', 'Belgilab qo\'yaman, lekin 3/5 muammodan keyin; balki yosh xususiyati', 'Umuman e\'tibor bermayman'], correct: 1,
-    why: '1/5 — belgilab qo\'yiladi, lekin kritik emas. Avval ko\'p takrorlangани tuzatiladi. Prioritet — chastota.' },
+    why: '1/5 — belgilab qo\'yiladi, lekin kritik emas. Avval ko\'p takrorlangani tuzatiladi. Prioritet — chastota.' },
   { id: 'd3', label: 'Test tugadi — endi nima?', emoji: '📋', color: T.grape,
     opts: ['Hammasini birdaniga tuzataman', 'Friction\'larni chastota bo\'yicha tartiblab, eng kritik 1-2 tasidan boshlayman (105-dars)', 'Hech narsa qilmayman'], correct: 1,
-    why: 'Test topilma beradi — tuzatishни emas. Chastota bo\'yicha prioritet qo\'ying; keyingi darsda iteratsiya qilamiz.' }
+    why: 'Test topilma beradi — tuzatishni emas. Chastota bo\'yicha prioritet qo\'ying; keyingi darsda iteratsiya qilamiz.' }
 ];
 
 const STAGES = [
@@ -170,8 +170,8 @@ const TEST_FIELDS = [
   { key: 'friction1', label: 'Topilgan friction 1', emoji: '⚠️', color: T.honey, min: 5, hint: 'Eslatma tugmasini topolmadi' },
   { key: 'friction2', label: 'Friction 2', emoji: '⚠️', color: T.honey, min: 5, hint: 'Matn kichik' },
   { key: 'friction3', label: 'Friction 3', emoji: '⚠️', color: T.honey, min: 5, hint: 'Yo\'nalish nomi chalkash' },
-  { key: 'critical', label: 'Eng kritik (nechta sinovchidа takrorlandi)', emoji: '🔴', color: T.accent, min: 5, hint: '3/5 — eslatma tugmasi' },
-  { key: 'next', label: 'Keyingi qadam (tuzatish — 105-dars)', emoji: '➡️', color: T.success, min: 6, hint: 'Eslatma tugmasini kattaroq, ko\'rinadigan joyга' }
+  { key: 'critical', label: 'Eng kritik (nechta sinovchida takrorlandi)', emoji: '🔴', color: T.accent, min: 5, hint: '3/5 — eslatma tugmasi' },
+  { key: 'next', label: 'Keyingi qadam (tuzatish — 105-dars)', emoji: '➡️', color: T.success, min: 6, hint: 'Eslatma tugmasini kattaroq, ko\'rinadigan joyga' }
 ];
 
 const Split = ({ children, refEl }) => <div className="split" ref={refEl}>{children}</div>;
@@ -374,20 +374,20 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
   const [picked, setPicked] = useState(storedAnswer?.picked ?? null);
   const OPTS = [
     { id: 'a', label: '«U tugmani bosing» deb darrov yordam bering' },
-    { id: 'b', label: 'Jim turib kuzating — u qayerда qoqilyaptи?' },
-    { id: 'c', label: '«Noto\'g\'ri qilyapsiz» deб to\'g\'rilang' }
+    { id: 'b', label: 'Jim turib kuzating — u qayerda qoqilyapti?' },
+    { id: 'c', label: '«Noto\'g\'ri qilyapsiz» deb to\'g\'rilang' }
   ];
   const pick = (id) => { if (picked !== null) return; setPicked(id); onAnswer(screen, { stage: 'hook', screenIdx: screen, picked: id, correct: true }); };
   return (
     <Stage eyebrow="Modul 10 · Qur bosqichi · FINAL" screen={screen} navContent={<NavNext disabled={picked === null} label="Davom etish" onClick={onNext} />}>
       <div className="screen">
         <h1 className="title h-title fade-up" style={{ maxWidth: 900 }}>«Bu-ku <span className="italic" style={{ color: T.accent }}>ravshan!</span>» — deb o'ylaysiz. Real odam esa…</h1>
-        <Mentor>MVP chiqdi (103-dars)! 🎉 Endi eng qimmatli, lekin eng kamtar qiladigan qadam: real odam uni ishlatganини kuzatish.</Mentor>
+        <Mentor>MVP chiqdi (103-dars)! 🎉 Endi eng qimmatli, lekin eng kamtar qiladigan qadam: real odam uni ishlatganini kuzatish.</Mentor>
         <Zoomable><Split>
           <Col>
             <div className="fade-up delay-1 frame" style={{ padding: 'clamp(16px,2.5vw,22px)', borderLeft: `4px solid ${T.grape}` }}>
               <p className="mono small" style={{ margin: '0 0 8px', color: T.grape, fontWeight: 700 }}>👵 BUVINGIZ ILOVANGIZNI SINAYAPTI</p>
-              <p style={{ fontFamily: G, fontSize: 'clamp(14px,1.9vw,16px)', color: T.ink, margin: 0, lineHeight: 1.55 }}>Buvingizga telefonни berib, «avtobus vaqtини top» dedingiz. U ekranга qaraydi, qaraydi… «ravshan» deб o'ylagan tugmani <b>topolmaydi</b>, boshqa joyni bosaveradi. Sizning yuragingiz siqiladi: «axir shundoq turibdi-ku!»</p>
+              <p style={{ fontFamily: G, fontSize: 'clamp(14px,1.9vw,16px)', color: T.ink, margin: 0, lineHeight: 1.55 }}>Buvingizga telefonni berib, «avtobus vaqtini top» dedingiz. U ekranga qaraydi, qaraydi… «ravshan» deb o'ylagan tugmani <b>topolmaydi</b>, boshqa joyni bosaveradi. Sizning yuragingiz siqiladi: «axir shundoq turibdi-ku!»</p>
             </div>
           </Col>
           <Col>
@@ -395,7 +395,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
             <div className="fade-up delay-3" style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
               {OPTS.map(o => { const on = picked === o.id; return (<button key={o.id} className={`hook-option ${on ? 'on' : ''}`} disabled={picked !== null} onClick={() => pick(o.id)}><span className="radio">{on && <span className="radio-dot" />}</span><span>{o.label}</span></button>); })}
             </div>
-            {picked !== null && <p className="hook-ack fade-step">{picked === 'b' ? 'Aynan! ' : ''}<b>Jim turib kuzating.</b> Buvining qoqilishi — bu sizning aybingiz emas, buvining aybi ham emas: bu <b>ILOVA muammosi</b> va u — eng qimmatli topilma. Yordam bersangiz, muammo yashirinadi. Bugun o'rganamiz: <b>gapirma — kuzat</b>. Uyaltiradi, lekin oltinга teng.</p>}
+            {picked !== null && <p className="hook-ack fade-step">{picked === 'b' ? 'Aynan! ' : ''}<b>Jim turib kuzating.</b> Buvining qoqilishi — bu sizning aybingiz emas, buvining aybi ham emas: bu <b>ILOVA muammosi</b> va u — eng qimmatli topilma. Yordam bersangiz, muammo yashirinadi. Bugun o'rganamiz: <b>gapirma — kuzat</b>. Uyaltiradi, lekin oltinga teng.</p>}
           </Col>
         </Split></Zoomable>
       </div>
@@ -430,7 +430,7 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
     <Stage eyebrow="Reja" screen={screen} mentorStatic navContent={<><NavBack onPrev={onPrev} /><NavNext label="Boshlaymiz →" onClick={onNext} /></>}>
       <div className="screen">
         <div className="head"><h2 className="title h-title fade-up">Test: <span className="italic" style={{ color: T.accent }}>gapirma, kuzat</span></h2></div>
-        <Mentor>Eng katta xato — foydalanuvchidan «yoqdimi?» deб so'rash. Odamlar xushmuomala yolg'on gapiradi (Mom Test, 96!). Haqiqatни bilishning yagona yo'li — <b style={{ color: T.ink }}>vazifa berib, jim kuzatish</b>.</Mentor>
+        <Mentor>Eng katta xato — foydalanuvchidan «yoqdimi?» deb so'rash. Odamlar xushmuomala yolg'on gapiradi (Mom Test, 96!). Haqiqatni bilishning yagona yo'li — <b style={{ color: T.ink }}>vazifa berib, jim kuzatish</b>.</Mentor>
         {!isNarrow ? (<Zoomable><Split>{IdeaBlock}{StepsBlock}</Split></Zoomable>) : !showSteps ? (<div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px,2vw,16px)' }}>{IdeaBlock}<button className="btn" style={{ alignSelf: 'flex-start' }} onClick={() => setShowSteps(true)}>5 qadamni ko'rish</button></div>) : (<div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px,2vw,16px)' }}><button className="btn-soft" style={{ alignSelf: 'flex-start' }} onClick={() => setShowSteps(false)}>↩ Maqsadni ko'rish</button>{StepsBlock}</div>)}
       </div>
     </Stage>
@@ -458,15 +458,15 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             </div>
             <div key={v} className="frame demo-swap" style={{ padding: 'clamp(16px,2.5vw,22px)', borderLeft: `4px solid ${isAsk ? T.accent : T.success}` }}>
               <p style={{ fontFamily: G, fontSize: 'clamp(14px,1.9vw,16px)', color: T.ink, margin: 0, lineHeight: 1.55 }}>{isAsk
-                ? '«Ilovam yoqdimi?» — «Ha, zo\'r!» deydi (sizni xafa qilgisi kelmaydi). Siz xursand, lekin HECH NARSA bilmadingiz. Ertasi kuni u ilovani ochmaydi ham. Xushmuomala yolg\'on — Mom Test saboqи.'
-                : '«Keyingi avtobus qachon kelishini toping» — vazifa berasiz va JIM turasiz. U qaerда qoqiladi, qaysi tugmани topolmaydi — hammasi ko\'z oldingizda. Bu — haqiqat, maqtov emas.'}</p>
+                ? '«Ilovam yoqdimi?» — «Ha, zo\'r!» deydi (sizni xafa qilgisi kelmaydi). Siz xursand, lekin HECH NARSA bilmadingiz. Ertasi kuni u ilovani ochmaydi ham. Xushmuomala yolg\'on — Mom Test saboqi.'
+                : '«Keyingi avtobus qachon kelishini toping» — vazifa berasiz va JIM turasiz. U qaerda qoqiladi, qaysi tugmani topolmaydi — hammasi ko\'z oldingizda. Bu — haqiqat, maqtov emas.'}</p>
             </div>
           </Col>
           <Col>
             {isAsk
               ? <div className="frame-warn fade-step" key="a"><p className="body" style={{ margin: 0, color: T.ink }}>Fikr so'rash — nol qiymat: odamlar taxmin qiladi, xushmuomalalik qiladi, o'zini bilimliroq ko'rsatadi. So'z arzon.</p></div>
-              : <div className="frame-success fade-step" key="w"><p className="body" style={{ margin: 0, color: T.ink }}>Kuzatish — oltin: xatti-harakat yolg'on gapirmaydi. Odam nima QILGANI — nima degani emas — haqiqatни ko'rsatadi.</p></div>}
-            {done && <div className="frame-soft fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Qoida: <b>«yoqdimi?» so'ramang — vazifa berib, kuzating.</b> Intervyuдаgidek (96-dars): fikr emas, xatti-harakat. Bu safar so'z emas — sichqoncha gapiradi.</p></div>}
+              : <div className="frame-success fade-step" key="w"><p className="body" style={{ margin: 0, color: T.ink }}>Kuzatish — oltin: xatti-harakat yolg'on gapirmaydi. Odam nima QILGANI — nima degani emas — haqiqatni ko'rsatadi.</p></div>}
+            {done && <div className="frame-soft fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Qoida: <b>«yoqdimi?» so'ramang — vazifa berib, kuzating.</b> Intervyudagidek (96-dars): fikr emas, xatti-harakat. Bu safar so'z emas — sichqoncha gapiradi.</p></div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -482,12 +482,12 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow="Eng qiyin qoida" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!seen} label={seen ? 'Davom etish' : 'Qoidani ko\'ring'} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">Eng qiyin qoida: <span className="italic" style={{ color: T.accent }}>yordam berma</span></h2></div>
-        <Mentor>Odam qoqilganда, sizning butun vujudingiz «yordam beray!» deydi. Aynan shu lahzada tishingizni tishlab, jim turing. Nega?</Mentor>
+        <Mentor>Odam qoqilganda, sizning butun vujudingiz «yordam beray!» deydi. Aynan shu lahzada tishingizni tishlab, jim turing. Nega?</Mentor>
         <Zoomable><div className="split">
           <Col>
             <div className="frame fade-up delay-1" style={{ padding: 'clamp(14px,2.2vw,18px)', borderLeft: `4px solid ${T.accent}` }}>
               <p className="note-h" style={{ color: T.accent }}>🙋 Aralashsangiz…</p>
-              <p className="body" style={{ margin: 0, color: T.ink }}>«U tugmani bosing» dedingiz — odam yo'lni topdi, xursand. Lekin siz muammoni <b>YO'QOTDINGIZ</b>: real hayotда siz uning yonida turmaysiz. Yordam = ma'lumotni o'chirish.</p>
+              <p className="body" style={{ margin: 0, color: T.ink }}>«U tugmani bosing» dedingiz — odam yo'lni topdi, xursand. Lekin siz muammoni <b>YO'QOTDINGIZ</b>: real hayotda siz uning yonida turmaysiz. Yordam = ma'lumotni o'chirish.</p>
             </div>
             <div style={{ textAlign: 'center', color: T.ink3, fontSize: 18 }}>vs</div>
             <div className="frame fade-up delay-2" style={{ padding: 'clamp(14px,2.2vw,18px)', borderLeft: `4px solid ${T.success}` }}>
@@ -497,7 +497,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </Col>
           <Col>
             <div className="frame fade-up delay-2" style={{ padding: 'clamp(14px,2.2vw,18px)', background: T.grapeSoft, boxShadow: 'none' }}>
-              <p style={{ fontFamily: G, fontStyle: 'italic', fontSize: 'clamp(14px,1.9vw,16px)', color: T.ink, margin: 0, lineHeight: 1.55 }}>«Agar foydalanuvchiga qanday ishlatishни tushuntirishga majbur bo'lsangiz — dizayn muvaffaqiyatsiz.»</p>
+              <p style={{ fontFamily: G, fontStyle: 'italic', fontSize: 'clamp(14px,1.9vw,16px)', color: T.ink, margin: 0, lineHeight: 1.55 }}>«Agar foydalanuvchiga qanday ishlatishni tushuntirishga majbur bo'lsangiz — dizayn muvaffaqiyatsiz.»</p>
               <p className="small" style={{ margin: '8px 0 0', color: T.ink2, fontWeight: 600 }}>— Steve Krug, «Don't Make Me Think»</p>
             </div>
             <button className="btn" style={{ alignSelf: 'flex-start' }} onClick={() => setSeen(true)}>Tushundim — jim turaman</button>
@@ -514,7 +514,7 @@ const Screen4 = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow="Mashq · 1-savol"
     questionText="Usability test nima?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Usability test — bu <span className="italic" style={{ color: T.accent }}>nima</span>?</h2></>}
-    options={['Foydalanuvchidan «yoqdimi?» deб so\'rash', 'Vazifa berib, odam ishlatganini JIM kuzatish va friction\'larni topish', 'Ilovaga baho qo\'yish', 'Do\'stlardan maqtov olish']} correctIdx={1}
+    options={['Foydalanuvchidan «yoqdimi?» deb so\'rash', 'Vazifa berib, odam ishlatganini JIM kuzatish va friction\'larni topish', 'Ilovaga baho qo\'yish', 'Do\'stlardan maqtov olish']} correctIdx={1}
     explainCorrect="To'g'ri! Usability test — fikr so'rash emas. Real odamga vazifa berasiz, jim kuzatasiz va qayerda qoqilishini (friction) topasiz. Xatti-harakat yolg'on gapirmaydi."
     explainWrong={{ 0: '«Yoqdimi?» — xushmuomala yolg\'on chaqiradi (Mom Test).', 2: 'Baho — subyektiv fikr; xatti-harakat muhim.', 3: 'Do\'stlar maqtaydi — bu test emas.', default: 'Vazifa ber + jim kuzat + friction top.' }} />
 );
@@ -537,7 +537,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <MentorCollapseScroll targetRef={workRef} />
         <Zoomable><div className="split" ref={workRef}>
           <Col>
-            <p className="flow-label">🎥 Sessiya yozuvи</p>
+            <p className="flow-label">🎥 Sessiya yozuvi</p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
               {SESSION.slice(0, idx).map((m) => (
                 <div key={m.id} className={`sess-row fade-step ${m.friction ? 'sess-friction' : ''}`}>
@@ -545,7 +545,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                   <div style={{ flex: 1 }}>
                     <p style={{ fontWeight: 700, fontSize: 13, color: T.ink, margin: 0 }}>{m.txt}</p>
                     <p className="small" style={{ margin: '2px 0 0', color: m.friction ? T.accent : T.ink2, fontStyle: 'italic' }}>{m.detail}</p>
-                    {m.friction && !frictionFound && <button className="friction-btn" onClick={() => setFrictionFound(true)}>⚠️ Bu yerда qoqildi — FRICTION deб belgilash</button>}
+                    {m.friction && !frictionFound && <button className="friction-btn" onClick={() => setFrictionFound(true)}>⚠️ Bu yerda qoqildi — FRICTION deb belgilash</button>}
                     {m.friction && frictionFound && <span className="friction-tag">✓ Friction: {m.note}</span>}
                   </div>
                 </div>
@@ -554,12 +554,12 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {!revealedAll && <button className="btn" style={{ alignSelf: 'flex-start', marginTop: 4 }} onClick={advance}>Keyingi lahza ▶</button>}
           </Col>
           <Col>
-            <button className="help-btn" onClick={() => setHelped(true)}>🙋 Malikaга yordam ber</button>
+            <button className="help-btn" onClick={() => setHelped(true)}>🙋 Malikaga yordam ber</button>
             {helped
-              ? <div className="frame-warn fade-step"><p className="note-h" style={{ color: T.accent }}>✗ Aralashdingiz!</p><p className="body" style={{ margin: 0, color: T.ink }}>Malika yo'lni topdi — lekin real hayotда siz yonида turmaysiz. Muammoni YO'QOTDINGIZ. Endi qайта: jim turing, faqat kuzating.</p></div>
-              : <div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>Vasvasага berilmang: «Yordam ber» tugmasi bosilса, friction ko'rinmay qoladi. Faqat kuzating.</p></div>}
-            {revealedAll && !frictionFound && <div className="frame-soft fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Sessiya tugadi. Malika bir joyда aniq qoqildi — chapдан o'sha lahzani toping va «friction» deб belgilang.</p></div>}
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Topdingiz! Malika 3 qadamни ravon o'tdi, lekin <b>eslatma tugmасида qotib qoldi</b>. Siz gapirmadingiz — shuning uchun muammoни KO'RDINGIZ. Mana usability testning kuchi.</p></div>}
+              ? <div className="frame-warn fade-step"><p className="note-h" style={{ color: T.accent }}>✗ Aralashdingiz!</p><p className="body" style={{ margin: 0, color: T.ink }}>Malika yo'lni topdi — lekin real hayotda siz yonida turmaysiz. Muammoni YO'QOTDINGIZ. Endi qayta: jim turing, faqat kuzating.</p></div>
+              : <div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>Vasvasaga berilmang: «Yordam ber» tugmasi bosilsa, friction ko'rinmay qoladi. Faqat kuzating.</p></div>}
+            {revealedAll && !frictionFound && <div className="frame-soft fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Sessiya tugadi. Malika bir joyda aniq qoqildi — chapdan o'sha lahzani toping va «friction» deb belgilang.</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Topdingiz! Malika 3 qadamni ravon o'tdi, lekin <b>eslatma tugmasida qotib qoldi</b>. Siz gapirmadingiz — shuning uchun muammoni KO'RDINGIZ. Mana usability testning kuchi.</p></div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -570,11 +570,11 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // ===== SCREEN 5b — TEST 2 =====
 const Screen5b = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow="Tekshiruv"
-    questionText="Test paytida foydalanuvchi qoqilса nima qilasiz?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>Mustahkamlash</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Odam qoqilса — <span className="italic" style={{ color: T.accent }}>siz nima qilasiz</span>?</h2></>}
-    options={['Darrov yordam beraman — yo\'lni ko\'rsataman', 'Jim turaman va kuzataman — bu qoqilish ASOSIY topilma', 'Testни to\'xtataman', 'Undan uzr so\'rayman']} correctIdx={1}
-    explainCorrect="To'g'ri! Qoqilish — bu muvaffaqiyatsizlik emas, ENG QIMMATLI topilma. Jim turing: real hayotда siz yonида bo'lmaysiz. Yordam bersangiz — muammoni yashirasiz. Sukut = ma'lumot."
-    explainWrong={{ 0: 'Yordam — muammoni yo\'qotadi. Real user yolg\'iz qoladi.', 2: 'To\'xtatmang — aynan shu lahza oltin.', 3: 'Uzr shart emas — muammo ilovada, odamда emas.', default: 'Jim turing — qoqilish topilma.' }} />
+    questionText="Test paytida foydalanuvchi qoqilsa nima qilasiz?"
+    question={<><p className="eyebrow" style={{ color: T.accent }}>Mustahkamlash</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Odam qoqilsa — <span className="italic" style={{ color: T.accent }}>siz nima qilasiz</span>?</h2></>}
+    options={['Darrov yordam beraman — yo\'lni ko\'rsataman', 'Jim turaman va kuzataman — bu qoqilish ASOSIY topilma', 'Testni to\'xtataman', 'Undan uzr so\'rayman']} correctIdx={1}
+    explainCorrect="To'g'ri! Qoqilish — bu muvaffaqiyatsizlik emas, ENG QIMMATLI topilma. Jim turing: real hayotda siz yonida bo'lmaysiz. Yordam bersangiz — muammoni yashirasiz. Sukut = ma'lumot."
+    explainWrong={{ 0: 'Yordam — muammoni yo\'qotadi. Real user yolg\'iz qoladi.', 2: 'To\'xtatmang — aynan shu lahza oltin.', 3: 'Uzr shart emas — muammo ilovada, odamda emas.', default: 'Jim turing — qoqilish topilma.' }} />
 );
 
 // ===== SCREEN 6 — VAZIFAGA ASOSLANGAN TEST =====
@@ -589,7 +589,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow="Vazifaga asoslangan" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? 'Davom etish' : 'Ikkalasini ko\'ring'} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">Ekskursiya emas — <span className="italic" style={{ color: T.accent }}>real vazifa</span> bering</h2></div>
-        <Mentor>Foydalanuvchiga «mana bu tugma, mana buni bosing» deб ekskursiya qilib bermang. Real vazifa bering va yo'lni O'ZI topsin.</Mentor>
+        <Mentor>Foydalanuvchiga «mana bu tugma, mana buni bosing» deb ekskursiya qilib bermang. Real vazifa bering va yo'lni O'ZI topsin.</Mentor>
         <Zoomable><div className="split">
           <Col>
             <div className="fade-up delay-1" style={{ display: 'flex', gap: 8 }}>
@@ -598,15 +598,15 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             </div>
             <div key={v} className="frame demo-swap" style={{ padding: 'clamp(16px,2.5vw,22px)', borderLeft: `4px solid ${isTask ? T.success : T.accent}` }}>
               <p style={{ fontFamily: G, fontSize: 'clamp(14px,1.9vw,16px)', color: T.ink, margin: 0, lineHeight: 1.55, fontStyle: 'italic' }}>{isTask
-                ? '«Tasavvur qiling, ertaga maktabга borasiz. Keyingi avtobus qachon kelishini shu ilovадан toping.»'
-                : '«Bu — bosh sahifa. Bu tugma yo\'nalish tanlaydi. Buni bossangiz vaqt chiqadi. Bu yerда eslatma bor…»'}</p>
+                ? '«Tasavvur qiling, ertaga maktabga borasiz. Keyingi avtobus qachon kelishini shu ilovadan toping.»'
+                : '«Bu — bosh sahifa. Bu tugma yo\'nalish tanlaydi. Buni bossangiz vaqt chiqadi. Bu yerda eslatma bor…»'}</p>
             </div>
           </Col>
           <Col>
             {isTask
-              ? <div className="frame-success fade-step" key="t"><p className="body" style={{ margin: 0, color: T.ink }}>Vazifa: real maqsad beradi, yo'lni ko'rsatmaydi. Odam qanday o'ylayди, qayerда adashadi — hammasi ko'rinadi. Sof kuzatuv.</p></div>
-              : <div className="frame-warn fade-step" key="e"><p className="body" style={{ margin: 0, color: T.ink }}>Ekskursiya: siz hamma yo'lni ko'rsatдingiz — endi u adashmaydi (chunki siz aytдingiz). Test buzildi: siz o'zингизни sinаdingiz, ilovани emas.</p></div>}
-            {done && <div className="frame-soft fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Yaxshi vazifa: real hayotdan, aniq natijали («X ni top»), yo'lni aytmaydigan. Keyin — jim. Vazifa + sukut = sof ma'lumot.</p></div>}
+              ? <div className="frame-success fade-step" key="t"><p className="body" style={{ margin: 0, color: T.ink }}>Vazifa: real maqsad beradi, yo'lni ko'rsatmaydi. Odam qanday o'ylaydi, qayerda adashadi — hammasi ko'rinadi. Sof kuzatuv.</p></div>
+              : <div className="frame-warn fade-step" key="e"><p className="body" style={{ margin: 0, color: T.ink }}>Ekskursiya: siz hamma yo'lni ko'rsatdingiz — endi u adashmaydi (chunki siz aytdingiz). Test buzildi: siz o'zingizni sinadingiz, ilovani emas.</p></div>}
+            {done && <div className="frame-soft fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Yaxshi vazifa: real hayotdan, aniq natijali («X ni top»), yo'lni aytmaydigan. Keyin — jim. Vazifa + sukut = sof ma'lumot.</p></div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -632,7 +632,7 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow="Test protokoli · o'yin" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? 'Davom etish' : `Protokolni tuzing (${okCount}/${PROTOCOL_ITEMS.length})`} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">Test protokoli: <span className="italic" style={{ color: T.accent }}>✅ kiritamiz · ❌ chiqaramiz</span></h2></div>
-        <Mentor>Yaxshi test protokoli — oldindan tayyorlangan reja. Har qatorга savol: <b style={{ color: T.ink }}>«Bu sof kuzatuvга yordam beradimi, yoki natijани buzadimi?»</b></Mentor>
+        <Mentor>Yaxshi test protokoli — oldindan tayyorlangan reja. Har qatorga savol: <b style={{ color: T.ink }}>«Bu sof kuzatuvga yordam beradimi, yoki natijani buzadimi?»</b></Mentor>
         <MentorCollapseScroll targetRef={workRef} />
         <Zoomable><div className="split" ref={workRef}>
           <Col>
@@ -652,16 +652,16 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </Col>
           <Col>
             <div className="fade-up delay-1">
-              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6 }}><span className="flow-label">🎙️ Protokol tayyor</span><span className="mono" style={{ fontSize: 12, fontWeight: 700, color: done ? T.success : T.accent }}>{okCount}/{PROTOCOL_ITEMS.length}</span></div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6, paddingRight: 40 }}><span className="flow-label">🎙️ Protokol tayyor</span><span className="mono" style={{ fontSize: 12, fontWeight: 700, color: done ? T.success : T.accent }}>{okCount}/{PROTOCOL_ITEMS.length}</span></div>
               <div className="fmeter-track"><div className="fmeter-fill" style={{ width: `${(okCount / PROTOCOL_ITEMS.length) * 100}%` }} /></div>
             </div>
             {last ? (
               <div className={`${last.ok ? 'frame-success' : 'frame-warn'} fade-step`} key={last.id + String(last.ok)}>
                 <p className="note-h" style={{ color: last.ok ? T.success : T.accent }}>{last.ok ? `✓ ${PMAP[last.ans].emoji} ${PMAP[last.ans].label}` : '✗ Qayta o\'ylang'}</p>
-                <p className="body" style={{ margin: 0, color: T.ink }}>{last.ok ? last.why : 'Savol: bu sof kuzatuvга yordam beradimi (✅), yoki yetaklaydi/aralashadi (❌)?'}</p>
+                <p className="body" style={{ margin: 0, color: T.ink }}>{last.ok ? last.why : 'Savol: bu sof kuzatuvga yordam beradimi (✅), yoki yetaklaydi/aralashadi (❌)?'}</p>
               </div>
             ) : <div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>Qator yonidagi ✅ yoki ❌ ni bosing.</p></div>}
-            {done && <div className="frame-soft fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Protokol tayyor: <b>real vazifa + think-aloud + sukut</b>. Chiqarildi: «yoqdimi?», yordam berish, do'stlar maqtovi. Endi 5 sinovчиni chaqiramiz.</p></div>}
+            {done && <div className="frame-soft fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Protokol tayyor: <b>real vazifa + think-aloud + sukut</b>. Chiqarildi: «yoqdimi?», yordam berish, do'stlar maqtovi. Endi 5 sinovchini chaqiramiz.</p></div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -732,7 +732,7 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow="Friction taxtasi · o'yin" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? 'Davom etish' : `5 sinovchini kuzating (${seen.size}/5)`} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">5 sinovchi — <span className="italic" style={{ color: T.accent }}>takrorlangani kritik</span></h2></div>
-        <Mentor>Har sinovchini kuzating va friction'ini taxtага yozing. O'ng tomondagi hisoblagichni kuzating: <b style={{ color: T.ink }}>qaysi muammo TAKRORLANyapti?</b></Mentor>
+        <Mentor>Har sinovchini kuzating va friction'ini taxtaga yozing. O'ng tomondagi hisoblagichni kuzating: <b style={{ color: T.ink }}>qaysi muammo TAKRORLANyapti?</b></Mentor>
         <Zoomable><div className="split">
           <Col>
             <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
@@ -798,7 +798,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                   })}
                 </div>
                 {solved && <p className="small fade-step" style={{ margin: '9px 0 0', color: T.success, fontWeight: 600 }}>✓ {d.why}</p>}
-                {!solved && p !== undefined && wrong[d.id] && <p className="small fade-step" style={{ margin: '9px 0 0', color: T.accent, fontWeight: 600 }}>Chastotага qarang — nechta sinovchida takrorlandi?</p>}
+                {!solved && p !== undefined && wrong[d.id] && <p className="small fade-step" style={{ margin: '9px 0 0', color: T.accent, fontWeight: 600 }}>Chastotaga qarang — nechta sinovchida takrorlandi?</p>}
               </div>
             );
           })}
@@ -813,8 +813,8 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const Screen12 = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow="Mashq · 3-savol"
     questionText="Qaysi friction'ni birinchi tuzatasiz?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Friction'larни <span className="italic" style={{ color: T.accent }}>qanday tartiblab</span> tuzatasiz?</h2></>}
-    options={['Menga eng qiziq tuyulganini', 'Eng ko\'p sinovchида takrorlangani (chastota) — birinchi', 'Eng oson tuzatiladiganини', 'Hammasini birdaniga']} correctIdx={1}
+    question={<><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Friction'larni <span className="italic" style={{ color: T.accent }}>qanday tartiblab</span> tuzatasiz?</h2></>}
+    options={['Menga eng qiziq tuyulganini', 'Eng ko\'p sinovchida takrorlangani (chastota) — birinchi', 'Eng oson tuzatiladiganini', 'Hammasini birdaniga']} correctIdx={1}
     explainCorrect="To'g'ri! Chastota — prioritet: 3/5 takrorlangan friction — dizayn muammosi, birinchi navbatda. 1/5 — belgilanadi, lekin keyin. Test topilma beradi; chastota bo'yicha tartiblang."
     explainWrong={{ 0: 'Qiziqish — subyektiv. Chastota — dalil.', 2: 'Osonlik emas — TA\'SIR (chastota) muhim.', 3: 'Birdaniga — chalkashlik. Bittadan, eng kritikdan.', default: 'Chastota bo\'yicha: ko\'p takrorlangani birinchi.' }} />
 );
@@ -825,7 +825,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [solved, setSolved] = useState(!!storedAnswer);
   const OPTS = [
     { id: 0, t: '«Zo\'r! Hamma "ha, yoqdi" dedi — demak mahsulot mukammal, hech narsa o\'zgartirma»' },
-    { id: 1, t: '«"Yoqdimi?" — foydasiz savol. Aniq VAZIFA ber ("avtobus vaqtини top") va JIM kuzat — qayerда qoqilishini ko\'r»' },
+    { id: 1, t: '«"Yoqdimi?" — foydasiz savol. Aniq VAZIFA ber ("avtobus vaqtini top") va JIM kuzat — qayerda qoqilishini ko\'r»' },
     { id: 2, t: '«Do\'stlar oz — 100 kishidan so\'ra»' }
   ];
   const pick = (id) => {
@@ -837,10 +837,10 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow="Vaziyat" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!solved} label={solved ? 'Davom etish' : 'To\'g\'ri maslahatni toping'} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,1.8vw,18px)' }}>
         <div className="head"><h2 className="title h-title fade-up">Aziz: <span className="italic" style={{ color: T.accent }}>«5 do'stimga ko'rsatdim — hammaga yoqdi!»</span></h2></div>
-        <Mentor>Aziz MVP'ini sinadi (qoyil!). Lekin usulини ko'ring…</Mentor>
+        <Mentor>Aziz MVP'ini sinadi (qoyil!). Lekin usulini ko'ring…</Mentor>
         <div className="fade-up delay-1 frame" style={{ padding: 'clamp(16px,2.5vw,22px)', borderLeft: `4px solid ${T.grape}` }}>
           <p className="mono small" style={{ margin: '0 0 8px', color: T.grape, fontWeight: 700 }}>💬 DO'STINGIZ AZIZ</p>
-          <p style={{ fontFamily: G, fontSize: 'clamp(14px,1.9vw,16px)', color: T.ink, margin: 0, lineHeight: 1.55, fontStyle: 'italic' }}>«5 do'stimga ilovani ko'rsatib, "yoqdimi?" deб so'radim. Hammasi "ha, zo'r, chiroyli!" dedi. Demak mahsulotim tayyor — hech qanday muammo yo'q ekan!»</p>
+          <p style={{ fontFamily: G, fontSize: 'clamp(14px,1.9vw,16px)', color: T.ink, margin: 0, lineHeight: 1.55, fontStyle: 'italic' }}>«5 do'stimga ilovani ko'rsatib, "yoqdimi?" deb so'radim. Hammasi "ha, zo'r, chiroyli!" dedi. Demak mahsulotim tayyor — hech qanday muammo yo'q ekan!»</p>
         </div>
         <div className="fade-up delay-2" style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
           {OPTS.map(o => {
@@ -853,8 +853,8 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <FeedbackBlock show={picked !== null} isCorrect={solved}>
           <p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: solved ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>{solved ? 'To\'g\'ri maslahat' : 'Yana o\'ylang'}</p>
           <p className="body" style={{ margin: 0 }}>{solved
-            ? 'Aziz ikki xato qildi: (1) «yoqdimi?» so\'radi — do\'stlar xushmuomala yolg\'on aytdi (Mom Test, 96); (2) do\'stlarni tanladi — ular xafa qilmaydi. Yechim: begonaroq odamga ANIQ vazifa berib, JIM kuzatish. Ko\'rsatishда «yoqdi» — hech narsa; ishlatishда qoqilish — oltin. Aziz 0 friction topdi, chunki noto\'g\'ri savol berdi.'
-            : (picked === 0 ? '«Ha, yoqdi» — maqtov, ma\'lumot emas. Kuzatmagunча muammoni ko\'rmaysiz.' : 'Muammo son emas — USUL. 100 kishidan «yoqdimi?» so\'rasa ham 0 topilma. 5 kishini KUZATish kerak.')}</p>
+            ? 'Aziz ikki xato qildi: (1) «yoqdimi?» so\'radi — do\'stlar xushmuomala yolg\'on aytdi (Mom Test, 96); (2) do\'stlarni tanladi — ular xafa qilmaydi. Yechim: begonaroq odamga ANIQ vazifa berib, JIM kuzatish. Ko\'rsatishda «yoqdi» — hech narsa; ishlatishda qoqilish — oltin. Aziz 0 friction topdi, chunki noto\'g\'ri savol berdi.'
+            : (picked === 0 ? '«Ha, yoqdi» — maqtov, ma\'lumot emas. Kuzatmaguncha muammoni ko\'rmaysiz.' : 'Muammo son emas — USUL. 100 kishidan «yoqdimi?» so\'rasa ham 0 topilma. 5 kishini KUZATish kerak.')}</p>
         </FeedbackBlock>
       </div>
     </Stage>
@@ -866,12 +866,12 @@ const Screen14 = ({ screen, onNext, onPrev }) => (
   <Stage eyebrow="Qoida" screen={screen} mentorStatic navContent={<><NavBack onPrev={onPrev} /><NavNext label="Test yozuviga →" onClick={onNext} /></>}>
     <div className="screen">
       <div className="head"><h2 className="title h-title fade-up">Test qoidasi: <span className="italic" style={{ color: T.accent }}>vazifa ber, jim kuzat</span></h2></div>
-      <Mentor>Amaliyotdan oldin kompas. 4 qoida — keyin test yozuvингизни to'ldirasiz.</Mentor>
+      <Mentor>Amaliyotdan oldin kompas. 4 qoida — keyin test yozuvingizni to'ldirasiz.</Mentor>
       <Zoomable><div className="split">
         <Col>
           <div className="frame fade-up" style={{ display: 'flex', alignItems: 'center', gap: 16, padding: 'clamp(18px,2.6vw,26px)' }}>
             <span style={{ fontSize: 40 }}>🤫</span>
-            <div><p style={{ fontFamily: "'Source Serif 4',serif", fontWeight: 600, margin: 0, color: T.ink, fontSize: 'clamp(18px,2.4vw,22px)' }}>Sukut — ma'lumot</p><p className="body" style={{ margin: '3px 0 0', color: T.ink2 }}>Noqulaylikка chidang: har qoqilish — tuzatiladigan real topilma.</p></div>
+            <div><p style={{ fontFamily: "'Source Serif 4',serif", fontWeight: 600, margin: 0, color: T.ink, fontSize: 'clamp(18px,2.4vw,22px)' }}>Sukut — ma'lumot</p><p className="body" style={{ margin: '3px 0 0', color: T.ink2 }}>Noqulaylikka chidang: har qoqilish — tuzatiladigan real topilma.</p></div>
           </div>
         </Col>
         <Col>
@@ -926,7 +926,7 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {docRows.length === 0
               ? <div className="spec-card" style={{ minHeight: 150, justifyContent: 'center' }}><p className="spec-text" style={{ color: '#6B7585', fontStyle: 'italic', textAlign: 'center' }}>To'ldiring — yozuv shu yerda yig'iladi…</p></div>
               : <div style={{ position: 'relative' }}><TestDoc rows={docRows} />{passed && <span className="seal">SINOVDAN O'TDI ✓</span>}</div>}
-            {passed && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Real fidbek qo'lда! Endi mahsulotingiz taxminга emas — DALILга asoslangan. Keyingi darsda (Isbot qil bosqichi!) bu friction'larni iteratsiya bilan tuzatamiz. 🔁</p></div>}
+            {passed && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Real fidbek qo'lda! Endi mahsulotingiz taxminga emas — DALILga asoslangan. Keyingi darsda (Isbot qil bosqichi!) bu friction'larni iteratsiya bilan tuzatamiz. 🔁</p></div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -944,7 +944,7 @@ const BADGES = [
 ];
 const Screen16 = ({ screen, answers, onReset, onPrev, onFinish }) => {
   const RECAP = ['Test = kuzatish, «yoqdimi?» so\'rash emas (Mom Test)', '«Yordam berma»: sukut — eng qimmatli ma\'lumot', 'Vazifa ber (real maqsad), ekskursiya qilma', '5 kishi = 85% muammo; chastota bo\'yicha prioritet'];
-  const GLOSSARY = [{ b: 'Usability test', t: '— odam ishlatganини kuzatib muammo topish' }, { b: 'Friction', t: '— foydalanuvchi qoqilgan joy' }, { b: 'Think-aloud', t: '— «ovoz chiqarib o\'ylang» usuli' }, { b: '«Yordam berma»', t: '— jim tur, aralashma' }, { b: 'Nielsen qoidasi', t: '— 5 kishi = ~85% muammo' }, { b: 'Chastota', t: '— nechta sinovчида takrorlandi (prioritet)' }];
+  const GLOSSARY = [{ b: 'Usability test', t: '— odam ishlatganini kuzatib muammo topish' }, { b: 'Friction', t: '— foydalanuvchi qoqilgan joy' }, { b: 'Think-aloud', t: '— «ovoz chiqarib o\'ylang» usuli' }, { b: '«Yordam berma»', t: '— jim tur, aralashma' }, { b: 'Nielsen qoidasi', t: '— 5 kishi = ~85% muammo' }, { b: 'Chastota', t: '— nechta sinovchida takrorlandi (prioritet)' }];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
   const PASSED = (total ? correct / total : 0) >= 0.6;
@@ -960,7 +960,7 @@ const Screen16 = ({ screen, answers, onReset, onPrev, onFinish }) => {
         <div className="hero"><div className="hero-l"><span className="done-chip fade-up"><span className="tick">{Ico.eye(12)}</span> Real fidbek olindi · Qur yakunlandi</span><h2 className="title h-title fade-up d1">Endi mahsulot <span className="italic" style={{ color: T.accent }}>dalilga asoslanadi.</span></h2>{/* 54-qonun (P0 PmUserStory · PmLesson2 qarori): h-sub qatori YO'Q — sarlavha o'zi yetadi. */}</div><ScoreRing correct={correct} total={total} /></div>
         <div className="split">
           <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span style={{ color: T.success, display: 'inline-flex' }}>{Ico.check(15)}</span> Endi siz bilasiz</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck" style={{ display: 'inline-flex' }}>{Ico.check(15)}</span><span>{r}</span></li>))}</ul></div>
-          <div className="card fade-up d4"><div className="card-lbl" style={{ color: T.honey }}>🏅 Nishonlar yo'li</div><div style={{ display: 'flex', flexWrap: 'wrap', gap: 7 }}>{BADGES.map((b, i) => (<span key={i} className={`badge-chip ${i <= 3 ? 'badge-done' : ''} ${i === 4 ? 'badge-next' : ''}`}>{i === 0 ? '🏹' : (i === 1 ? '🎖️' : (i === 2 ? '🔨' : (i === 3 ? '🧪' : '👑')))} {b.t}<span className="badge-when" style={i <= 3 ? { color: 'rgba(255,255,255,0.85)' } : undefined}>· {b.l}</span></span>))}</div><p className="small" style={{ margin: '10px 0 0', color: T.ink2 }}>Oxirgi nishon — <b style={{ color: T.honey }}>👑 Founder</b>: Demo Day'да butun yo'lni namoyish qilganда (108-dars).</p></div>
+          <div className="card fade-up d4"><div className="card-lbl" style={{ color: T.honey }}>🏅 Nishonlar yo'li</div><div style={{ display: 'flex', flexWrap: 'wrap', gap: 7 }}>{BADGES.map((b, i) => (<span key={i} className={`badge-chip ${i <= 3 ? 'badge-done' : ''} ${i === 4 ? 'badge-next' : ''}`}>{i === 0 ? '🏹' : (i === 1 ? '🎖️' : (i === 2 ? '🔨' : (i === 3 ? '🧪' : '👑')))} {b.t}<span className="badge-when" style={i <= 3 ? { color: 'rgba(255,255,255,0.85)' } : undefined}>· {b.l}</span></span>))}</div><p className="small" style={{ margin: '10px 0 0', color: T.ink2 }}>Oxirgi nishon — <b style={{ color: T.honey }}>👑 Founder</b>: Demo Day'da butun yo'lni namoyish qilganda (108-dars).</p></div>
         </div>
         <div className="frame-success fade-up d4" style={{ display: 'flex', alignItems: 'center', gap: 14 }}><span style={{ fontSize: 30 }}>🧪</span><div><p style={{ fontFamily: "'Source Serif 4',serif", fontWeight: 600, margin: 0, color: T.ink, fontSize: 'clamp(15px,2vw,18px)' }}>Uyga vazifa — HAQIQATAN sinang</p><p className="body" style={{ margin: '2px 0 0', color: T.ink2 }}>MVP'ingizni 3-5 real odamga bering (oila, sinfdosh, qo'shni). Aniq vazifa bering va JIM turib kuzating — hech yordam bermang! Har qoqilishni yozing, keyin chastota bo'yicha tartiblang. Eng ko'p takrorlangan — keyingi darsda birinchi tuzatiladi. Isbot qil bosqichi boshlanadi: fidbek iteratsiyasi 🔁.</p></div></div>
         <div ref={glossRef} className="gloss fade-up d4" style={{ scrollMarginBottom: 16 }}><div className="gloss-head" onClick={toggleGloss}><span className="lbl">Kalit so'zlar (takrorlash)</span><span className="gloss-toggle">{open ? '−' : '+'}</span></div>{open && (<div className="gloss-body">{GLOSSARY.map((g, i) => (<span key={i}><b>{g.b}</b> {g.t}{i < GLOSSARY.length - 1 ? ' · ' : ''}</span>))}</div>)}</div>

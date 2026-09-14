@@ -3077,11 +3077,17 @@ export default function VsCodeLesson({ lang: langProp, onFinished, onPractice, l
       if (fromScreen === 10) earn('cardmaster'); // 🏅 card CSS praktikasi tugadi — Card Wizard!
       pracClear(LESSON_META.lessonId); setPractice(null); advance();
     };
-    if (typeof onPractice === 'function') {
-      Promise.resolve(onPractice(entry.task)).then(done); // production: LMS compilatori
-    } else {
+    // F-0912-04 (2026-09-12): LMS praktika-yo'li yiqilsa — o'quvchi qotib qolmasin.
+    // Ilgari `.then(done)` da rad-etish TUTILMASDI: LMS tomoni yiqilsa (tarmoq uzilishi,
+    // chunk yuklanmasligi, postMessage xatosi) praktika ochilmas, xato jim yutilar va dars
+    // ham oldinga ketmasdi — 20 o'quvchidan 1 tasida aynan shu. Endi xato tutiladi va
+    // darsning O'Z kompilyatoriga tushiladi: mashq baribir bajariladi, signal ham ketadi.
+    const openLocal = () => {
       pracWrite(LESSON_META.lessonId, { kind: `s${fromScreen}`, screen: fromScreen }); setPractice({ ...entry, done, codeKey: codeKeyOf(LESSON_META.lessonId, `s${fromScreen}`) }); // lokal: overlay compilatori
-    }
+    };
+    if (typeof onPractice !== 'function') { openLocal(); return; }
+    try { Promise.resolve(onPractice(entry.task)).then(done, openLocal); }
+    catch { openLocal(); }
   };
   // "Davom etish" bosilganda: shu ekrandan keyin praktika bo'lsa — compilatorni ochadi,
   // bajarilgach keyingi ekranga o'tadi. Aks holda oddiy o'tadi.

@@ -281,6 +281,15 @@
       "except": "ru\\s*:|Раскрываем|«мет"
     },
     {
+      "id": "aralash-yozuv-soz",
+      "pattern": "(?<!\\\\)[A-Za-z][\\u0400-\\u04FF]|[\\u0400-\\u04FF][A-Za-z]",
+      "flags": "",
+      "severity": "error",
+      "suggest": "bitta so'z ichida lotin va kirill harfi yonma-yon (ekranга, deб) — o'zbekchada bo'lmaydi; kirill harflarni lotinga o'giring (F-0913-01, KATTA §33)",
+      "law": "MATN_KORPUS §180",
+      "except": "ru\\s*:|Раскрываем|«мет"
+    },
+    {
       "id": "sen-forma",
       "pattern": "\\b(sen|senga|seni|sening|sendan)\\b",
       "flags": "i",

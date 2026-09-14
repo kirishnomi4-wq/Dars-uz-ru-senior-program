@@ -785,10 +785,11 @@ const DoScreen = ({ screen, storedAnswer, onAnswer, onNext, onPrev, eyebrow, tit
           <Col>
             <p className="flow-label">{resultLabel || tr({ uz: 'Ekraningizda shunday chiqadi', ru: 'На вашем экране будет так' })}</p>
             <div className="demo-swap" key={cur.id}>{cur.res()}</div>
+            {/* 🛟 zaxira-panel CHAP ustunda: o'ngda qadamlar kartasi ostida pastga tushib, ko'rinmay qolardi (m1-09 s13, F-0913-02) */}
+            {fallback}
           </Col>
           <Col>
             <DoSteps screen={screen} storedAnswer={storedAnswer} onAnswer={onAnswer} steps={steps} taskLabel={taskLabel} practice={practice} onStep={setView} />
-            {fallback}
           </Col>
         </Split>
       </div>
@@ -3179,7 +3180,7 @@ export default function GitLesson({ lang: langProp, onFinished, liveToken }) {
         .qz-q .qcode { background: rgba(203,173,255,0.18); color: #F2ECFF; }
 
         /* === ✅ «O'ZIM QILDIM» QADAM-OQIMI (DoSteps) — qadamlar bittalab ochiladi === */
-        .dsx { display: flex; flex-direction: column; gap: 8px; background: ${T.paper}; border-radius: 16px; padding: 14px 15px; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.14); }
+        .dsx { display: flex; flex-direction: column; gap: 6px; background: ${T.paper}; border-radius: 16px; padding: 11px 15px; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.14); }
         .dsx-head { display: flex; align-items: center; gap: 10px; }
         .dsx-lbl { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 12.5px; color: ${T.ink2}; letter-spacing: 0.01em; }
         .dsx-count { margin-left: auto; font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 700; color: ${T.ink3}; background: ${T.bg}; border-radius: 99px; padding: 3px 10px; }
@@ -3187,6 +3188,9 @@ export default function GitLesson({ lang: langProp, onFinished, liveToken }) {
         .dsx-row { display: flex; align-items: flex-start; gap: 11px; border-radius: 12px; padding: 10px 12px; background: ${T.bg}; transition: background 0.25s, opacity 0.25s; }
         .dsx-row.open { background: ${T.accentSoft}; box-shadow: inset 0 0 0 1.5px rgba(255,79,40,0.35); animation: fade-step 0.3s ease-out; }
         .dsx-row.on { background: ${T.successSoft}; }
+        /* Kutayotgan va bajarilgan qadam ixcham, faol qadam to'liq: 5 qadamli karta ekranga sig'sin (m1-09 s13 ruscha 1366 da 26px toshardi, F-0913-02) */
+        .dsx-row.lock, .dsx-row.on { padding-top: 5px; padding-bottom: 5px; }
+        .dsx-row.open .dsx-body { gap: 5px; }
         .dsx-row.lock { opacity: 0.45; }
         .dsx-num { width: 24px; height: 24px; flex-shrink: 0; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 700; background: ${T.paper}; color: ${T.ink2}; box-shadow: 0 3px 9px -4px rgba(${T.shadowBase},0.25); }
         .dsx-row.on .dsx-num { background: ${T.success}; color: #fff; }
@@ -3204,6 +3208,10 @@ export default function GitLesson({ lang: langProp, onFinished, liveToken }) {
         .dsx-fb-t { margin: 0; font-size: clamp(12.5px,1.45vw,13.5px); line-height: 1.5; color: ${T.ink2}; }
         .dsx-fb-h { margin: 3px 0 0; font-weight: 700; font-size: clamp(12.5px,1.45vw,13.5px); color: ${T.ink}; }
         .dsx-fb-ol { margin: 0; padding-left: 19px; display: flex; flex-direction: column; gap: 5px; font-size: clamp(12.5px,1.45vw,13.5px); line-height: 1.5; color: ${T.ink2}; }
+        /* Terminal-maket: sinflar ishlatilgan-u uslubi yo'q edi, qatorlar yopishgan oddiy matn bo'lib chiqardi (F-0913-03). Naqsh DeployLesson dan */
+        .term { background: ${CODE.bg}; border-radius: 12px; padding: 14px 16px; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.2); display: flex; flex-direction: column; gap: 5px; font-family: 'JetBrains Mono', monospace; font-size: clamp(12px,1.6vw,13.5px); line-height: 1.5; overflow-x: auto; }
+        .term-row { white-space: pre-wrap; word-break: break-word; }
+        .term-prompt { color: ${CODE.str}; } .term-cmd { color: ${CODE.attr}; } .term-out { color: ${CODE.punct}; } .term-ok { color: ${CODE.str}; }
         .dsx-help { font-size: 12px; color: ${T.ink2}; }
         .dsx-help summary { cursor: pointer; font-weight: 600; color: ${T.accent}; list-style: none; }
         .dsx-help summary::-webkit-details-marker { display: none; }

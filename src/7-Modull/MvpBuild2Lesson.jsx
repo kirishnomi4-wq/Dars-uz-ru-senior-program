@@ -139,7 +139,7 @@ const BUILD_FEATURES = [
     prompt: (<>Foydalanuvchi ro'yxatdan <b>1 maktab yo'nalishini</b> tanlaydi (98-qaror: faqat 1 yo'nalish).</>),
     done: 'Tanlovsiz qaysi avtobus vaqtini ko\'rsatishni bilmaymiz. Zarur bo\'g\'in.' },
   { id: 'f3', ic: '📱', name: 'Oddiy web-sahifa (telefon)', tag: 'yetkazish', color: T.grape,
-    prompt: (<>Mobil telefonда ochiladigan <b>bitta oddiy web-sahifa</b>. App Store shart emas — havola yubordingiz, ishladi.</>),
+    prompt: (<>Mobil telefonda ochiladigan <b>bitta oddiy web-sahifa</b>. App Store shart emas — havola yubordingiz, ishladi.</>),
     done: 'Eng tez yetkazish yo\'li. Havola = mahsulot foydalanuvchi qo\'lida.' }
 ];
 
@@ -147,12 +147,12 @@ const BUILD_FEATURES = [
 const SHIP_TASKS = [
   { id: 't1', t: 'Avtobus vaqti ishlaydi (core)', ans: 'ship', why: 'Core job — bu bo\'lmasa MVP yo\'q. Albatta hozir chiqaramiz.' },
   { id: 't2', t: 'Bitta yo\'nalish tanlanadi', ans: 'ship', why: 'Core oqim uchun zarur bo\'g\'in. Ship.' },
-  { id: 't3', t: 'Telefonда ochiladi', ans: 'ship', why: 'Foydalanuvchi telefonда ishlatadi — zarur. Ship.' },
+  { id: 't3', t: 'Telefonda ochiladi', ans: 'ship', why: 'Foydalanuvchi telefonda ishlatadi — zarur. Ship.' },
   { id: 't4', t: 'Qorong\'i rejim (dark mode)', ans: 'later', why: 'Chiroyli, lekin core emas. Birorta foydalanuvchi so\'ramagan. v2 ga.' },
   { id: 't5', t: 'Push-eslatma «avtobus 5 daqiqada»', ans: 'later', why: 'Foydali! Lekin core ishlagandan keyin. v2 — aynan shu ficha kutadi.' },
   { id: 't6', t: '10 shahar barcha transporti', ans: 'never', why: 'MVP qotili: 100 barobar ish, core jobga foyda deyarli nol. Hech qachon (bu MVP uchun).' },
   { id: 't7', t: 'AI ovozli yordamchi', ans: 'never', why: 'Over-engineering: muammoga aloqasi yo\'q. Bu boshqa mahsulot.' },
-  { id: 't8', t: 'Har piksel mukammal animatsiya', ans: 'never', why: 'Perfeksionizm tuzog\'i — chiqishni haftalarга kechiktiradi, foyda nol.' }
+  { id: 't8', t: 'Har piksel mukammal animatsiya', ans: 'never', why: 'Perfeksionizm tuzog\'i — chiqishni haftalarga kechiktiradi, foyda nol.' }
 ];
 const TMAP = { ship: { emoji: '✅', label: 'HOZIR CHIQARAMIZ', color: T.success }, later: { emoji: '⏳', label: 'v2 KEYIN', color: T.honey }, never: { emoji: '❌', label: 'HECH QACHON', color: T.accent } };
 
@@ -178,7 +178,7 @@ const SHIP_FIELDS = [
   { key: 'url', label: 'MVP havolasi / qayerda joylashgan', emoji: '🔗', color: T.accent, min: 5, hint: 'avtobus-tracker.vercel.app' },
   { key: 'f1', label: 'Chiqarilgan ficha 1 (core)', emoji: '✅', color: T.success, min: 4, hint: 'Avtobus vaqtini ko\'rsatish' },
   { key: 'f2', label: 'Chiqarilgan ficha 2', emoji: '✅', color: T.success, min: 4, hint: 'Yo\'nalish tanlash' },
-  { key: 'f3', label: 'Chiqarilgan ficha 3', emoji: '✅', color: T.success, min: 4, hint: 'Telefonда ochiladi' },
+  { key: 'f3', label: 'Chiqarilgan ficha 3', emoji: '✅', color: T.success, min: 4, hint: 'Telefonda ochiladi' },
   { key: 'freeze', label: 'Nimani «keyin»ga qoldirdim (freeze)', emoji: '⏳', color: T.honey, min: 5, hint: 'Push-eslatma, dark mode' },
   { key: 'feeling', label: 'Chiqargandagi hissim (bir jumla)', emoji: '🚀', color: T.grape, min: 6, hint: 'Biroz qo\'rqinchli, lekin g\'ururlanaman!' }
 ];
@@ -405,7 +405,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
             <div className="fade-up delay-1 frame" style={{ padding: 'clamp(16px,2.5vw,22px)', borderLeft: `4px solid ${T.grape}` }}>
               <p className="mono small" style={{ margin: '0 0 8px', color: T.grape, fontWeight: 700 }}>💼 REID HOFFMAN · LINKEDIN ASOSCHISI</p>
               <p style={{ fontFamily: G, fontSize: 'clamp(15px,2vw,17px)', color: T.ink, margin: 0, lineHeight: 1.55, fontStyle: 'italic' }}>«Agar mahsulotingizning birinchi versiyasidan UYALMASANGIZ — juda kech chiqargansiz.»</p>
-              <p style={{ fontFamily: G, fontSize: 'clamp(13.5px,1.8vw,15px)', color: T.ink2, margin: '10px 0 0', lineHeight: 1.5 }}>Bir founderда ishlaydigan MVP bor. Lekin u «hali tayyor emas, yana 5 ficha qo'shay» deydi…</p>
+              <p style={{ fontFamily: G, fontSize: 'clamp(13.5px,1.8vw,15px)', color: T.ink2, margin: '10px 0 0', lineHeight: 1.5 }}>Bir founderda ishlaydigan MVP bor. Lekin u «hali tayyor emas, yana 5 ficha qo'shay» deydi…</p>
             </div>
           </Col>
           <Col>
@@ -477,13 +477,13 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <div key={v} className="frame demo-swap" style={{ padding: 'clamp(16px,2.5vw,22px)', borderLeft: `4px solid ${isPerf ? T.accent : T.success}` }}>
               <p style={{ fontFamily: G, fontSize: 'clamp(14px,1.9vw,16px)', color: T.ink, margin: 0, lineHeight: 1.55 }}>{isPerf
                 ? '«Hali tayyor emas. Yana bu ficha, yana o\'sha tugma, yana bir hafta...» 3 oy o\'tadi. Mahsulot hech qachon chiqmaydi. Nol foydalanuvchi, nol fidbek, nol o\'rganish. Mukammallik — chiqmaslikning chiroyli bahonasi.'
-                : '«Ishlaydi? Chiqaramiz.» Biroz uyaltiradi, lekin REAL foydalanuvchi qo\'lда. Birinchi kunдаyoq fidbek keladi: nima ishlaydi, nima yo\'q. Har hafta yaxshilanadi. Harakatда o\'rganadi.'}</p>
+                : '«Ishlaydi? Chiqaramiz.» Biroz uyaltiradi, lekin REAL foydalanuvchi qo\'lda. Birinchi kundayoq fidbek keladi: nima ishlaydi, nima yo\'q. Har hafta yaxshilanadi. Harakatda o\'rganadi.'}</p>
             </div>
           </Col>
           <Col>
             {isPerf
               ? <div className="frame-warn fade-step" key="p"><p className="body" style={{ margin: 0, color: T.ink }}>Perfeksionizm — yashirin qo'rquv. «Mukammal emas» degani aslida «tanqiddan qo'rqaman». Lekin chiqmagan mahsulot — o'lik mahsulot.</p></div>
-              : <div className="frame-success fade-step" key="s"><p className="body" style={{ margin: 0, color: T.ink }}>Shipper haqiqatni tanlaydi: real dunyoда sinaladigan v1 — boshда tasavvur qilingan «mukammal» v10 dan qimmatliroq. Chunki v10 taxmin, v1 — dalil.</p></div>}
+              : <div className="frame-success fade-step" key="s"><p className="body" style={{ margin: 0, color: T.ink }}>Shipper haqiqatni tanlaydi: real dunyoda sinaladigan v1 — boshda tasavvur qilingan «mukammal» v10 dan qimmatliroq. Chunki v10 taxmin, v1 — dalil.</p></div>}
             {done && <div className="frame-soft fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Yodda tuting: <b>chiqarilmagan mukammal mahsulot — 0 ga teng.</b> Chiqarilgan «yetarlicha yaxshi» mahsulot — cheksiz o'rganish boshlanishi. Bugun shipper bo'lamiz.</p></div>}
           </Col>
         </div></Zoomable>
@@ -499,7 +499,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const DONE = [
     { ic: '✅', t: 'Core job boshidan oxirigacha ISHLAYDI', c: T.success },
     { ic: '✅', t: 'Foydalanuvchi muammosiga JAVOB oladi', c: T.success },
-    { ic: '✅', t: 'Internetда ochiladi (havola bor)', c: T.success }
+    { ic: '✅', t: 'Internetda ochiladi (havola bor)', c: T.success }
   ];
   const NOT = [
     { ic: '❌', t: 'Har piksel mukammal', c: T.ink3 },
@@ -510,7 +510,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow="«Done» nima" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!seen} label={seen ? 'Davom etish' : 'Ta\'rifni ko\'ring'} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">«Tayyor» degani <span className="italic" style={{ color: T.accent }}>«mukammal» emas</span></h2></div>
-        <Mentor>Facebook devorида yozuv bor edi: <b style={{ color: T.ink }}>«Done is better than perfect»</b>. MVP uchun «tayyor»ning aniq ta'rifi bor — uni bilib olaylik.</Mentor>
+        <Mentor>Facebook devorida yozuv bor edi: <b style={{ color: T.ink }}>«Done is better than perfect»</b>. MVP uchun «tayyor»ning aniq ta'rifi bor — uni bilib olaylik.</Mentor>
         <Zoomable><div className="split">
           <Col>
             <div className="frame fade-up delay-1" style={{ padding: 'clamp(14px,2.2vw,18px)', borderLeft: `4px solid ${T.success}` }}>
@@ -524,7 +524,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>{NOT.map((d, i) => (<div key={i} style={{ display: 'flex', alignItems: 'center', gap: 9 }}><span style={{ fontSize: 15, opacity: 0.6 }}>{d.ic}</span><span style={{ fontSize: 13.5, fontWeight: 500, color: T.ink3, textDecoration: 'line-through' }}>{d.t}</span></div>))}</div>
             </div>
             <button className="btn" style={{ alignSelf: 'flex-start' }} onClick={() => setSeen(true)}>Tushundim</button>
-            {seen && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>«Tayyor» = core job ishlaydi + odam javob oladi + internetда. Shu uchtasi bo'lsa — CHIQARING. Qolgani v2, v3, v10 da yaxshilanadi.</p></div>}
+            {seen && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>«Tayyor» = core job ishlaydi + odam javob oladi + internetda. Shu uchtasi bo'lsa — CHIQARING. Qolgani v2, v3, v10 da yaxshilanadi.</p></div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -537,9 +537,9 @@ const Screen4 = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow="Mashq · 1-savol"
     questionText="MVP «tayyor» qachon hisoblanadi?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>MVP <span className="italic" style={{ color: T.accent }}>«tayyor»</span> qachon?</h2></>}
-    options={['Barcha rejalashtirilgan fichalar qo\'shilganда', 'Core job ishlaganда + odam javob olganда + internetда bo\'lganда', 'Hech qanday kamchilik qolmaganда', 'Dizayn 100% mukammal bo\'lganда']} correctIdx={1}
-    explainCorrect="To'g'ri! «Tayyor» = core job boshidan oxirigacha ishlaydi, foydalanuvchi muammosiga javob oladi va u internetда ochiladi. Perfeksionizm emas — ishlaydigan minimal. «Done > perfect»."
-    explainWrong={{ 0: 'Barcha ficha — bu v10, MVP emas. Core yetarli.', 2: 'Kamchilik doim bo\'ladi — v2 da tuzatiladi. Kutmang.', 3: 'Dizayn muhim, lekin 100% mukammallik — chiqmaslik bahonasi.', default: 'Core ishlaydi + javob + internetда = tayyor.' }} />
+    options={['Barcha rejalashtirilgan fichalar qo\'shilganda', 'Core job ishlaganda + odam javob olganda + internetda bo\'lganda', 'Hech qanday kamchilik qolmaganda', 'Dizayn 100% mukammal bo\'lganda']} correctIdx={1}
+    explainCorrect="To'g'ri! «Tayyor» = core job boshidan oxirigacha ishlaydi, foydalanuvchi muammosiga javob oladi va u internetda ochiladi. Perfeksionizm emas — ishlaydigan minimal. «Done > perfect»."
+    explainWrong={{ 0: 'Barcha ficha — bu v10, MVP emas. Core yetarli.', 2: 'Kamchilik doim bo\'ladi — v2 da tuzatiladi. Kutmang.', 3: 'Dizayn muhim, lekin 100% mukammallik — chiqmaslik bahonasi.', default: 'Core ishlaydi + javob + internetda = tayyor.' }} />
 );
 
 // ===== SCREEN 5 — FICHA → AI-PROMPT (SIGNATURE 1) =====
@@ -569,7 +569,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               ); })}
             </div>
             <div className="fade-up">
-              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6 }}><span className="flow-label">🔧 MVP qurilmoqda</span><span className="mono" style={{ fontSize: 12, fontWeight: 700, color: done ? T.success : T.accent }}>{built.size}/3</span></div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6, paddingRight: 40 }}><span className="flow-label">🔧 MVP qurilmoqda</span><span className="mono" style={{ fontSize: 12, fontWeight: 700, color: done ? T.success : T.accent }}>{built.size}/3</span></div>
               <div className="fmeter-track"><div className="fmeter-fill" style={{ width: `${(built.size / 3) * 100}%`, background: done ? T.success : undefined }} /></div>
             </div>
           </Col>
@@ -581,7 +581,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               </CodeCard>
               <div className="frame-success" style={{ marginTop: 10 }}><p className="body" style={{ margin: 0, color: T.ink }}><b>✓ Qurildi.</b> {cur.done}</p></div>
             </div>) : (<div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>Fichani bosing — prompt paydo bo'ladi</p></div>)}
-            {done && <div className="frame-soft fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>3 ficha ham qurildi! Diqqat: har prompt <b>bitta aniq ishга</b> qaratilgan — «hammasini qil» emas. Kichik, aniq promptlar = AI aniq kod yozadi. Endi ularni ulaymiz.</p></div>}
+            {done && <div className="frame-soft fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>3 ficha ham qurildi! Diqqat: har prompt <b>bitta aniq ishga</b> qaratilgan — «hammasini qil» emas. Kichik, aniq promptlar = AI aniq kod yozadi. Endi ularni ulaymiz.</p></div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -594,9 +594,9 @@ const Screen5b = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow="Tekshiruv"
     questionText="Katta ficha uchun AI'ga qanday prompt berish yaxshiroq?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>Mustahkamlash</p><h2 className="title h-ask" style={{ marginTop: 8 }}>AI'ga fichalarni <span className="italic" style={{ color: T.accent }}>qanday</span> qurdirasiz?</h2></>}
-    options={['«Butun ilovani bir promptда qil» deb aytaman', 'Har fichaga alohida, aniq prompt beraman — kichik bo\'laklab', 'Prompt bermay, o\'zim qo\'lда yozaman', 'Faqat «chiroyli qil» deyman']} correctIdx={1}
+    options={['«Butun ilovani bir promptda qil» deb aytaman', 'Har fichaga alohida, aniq prompt beraman — kichik bo\'laklab', 'Prompt bermay, o\'zim qo\'lda yozaman', 'Faqat «chiroyli qil» deyman']} correctIdx={1}
     explainCorrect="To'g'ri! Katta ishni kichik, aniq promptlarga bo'ling. Har ficha — alohida prompt. AI kichik, aniq vazifani mukammal bajaradi; «hammasini qil» desangiz — chalkash, xato kod yozadi."
-    explainWrong={{ 0: '«Butun ilova» — AI chalkashadi, tekshirib bo\'lmaydigan katta kod chiqadi.', 2: 'Qo\'lда — sekin; AI kuchini ishlating, lekin tushunib.', 3: '«Chiroyli qil» — juda umumiy, natija taxminiy.', default: 'Kichik, aniq promptlarga bo\'ling.' }} />
+    explainWrong={{ 0: '«Butun ilova» — AI chalkashadi, tekshirib bo\'lmaydigan katta kod chiqadi.', 2: 'Qo\'lda — sekin; AI kuchini ishlating, lekin tushunib.', 3: '«Chiroyli qil» — juda umumiy, natija taxminiy.', default: 'Kichik, aniq promptlarga bo\'ling.' }} />
 );
 
 // ===== SCREEN 6 — 3 FICHA → BITTA OQIM =====
@@ -635,7 +635,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <div style={{ marginTop: 3 }}><span style={{ color: CODE.attr }}>Database</span> <span style={{ color: CODE.punct }}>→</span> yo'nalishlar saqlanadi</div>
             </CodeCard>
             <button className="btn" style={{ alignSelf: 'flex-start' }} onClick={() => setSeen(true)}>Oqim ulandi — tekshir</button>
-            {seen && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Ulashда «tushuntir» darvozasi (101): har o'tishни izohlang — tanlovдан vaqt qanday keladi? Oqim uzluksiz bo'lsagina MVP «ishlaydi». Bitta bo'g'in uzilsa — butun sayohat to'xtaydi.</p></div>}
+            {seen && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Ulashda «tushuntir» darvozasi (101): har o'tishni izohlang — tanlovdan vaqt qanday keladi? Oqim uzluksiz bo'lsagina MVP «ishlaydi». Bitta bo'g'in uzilsa — butun sayohat to'xtaydi.</p></div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -661,7 +661,7 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow="Feature-freeze · o'yin" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? 'SHIP\'ga tayyor →' : `Chegaralang (${okCount}/${SHIP_TASKS.length})`} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">Chiqarishdan oldin: <span className="italic" style={{ color: T.accent }}>✅ hozir · ⏳ v2 · ❌ hech qachon</span></h2></div>
-        <Mentor>Bu — <b style={{ color: T.ink }}>feature-freeze</b>: chiqarishдан oldin ro'yxatni muzlatasiz. Har vazifага savol: <b style={{ color: T.ink }}>«Core job ishlashi uchun HOZIR shartmi?»</b> Yo'q bo'lsa — keyinга.</Mentor>
+        <Mentor>Bu — <b style={{ color: T.ink }}>feature-freeze</b>: chiqarishdan oldin ro'yxatni muzlatasiz. Har vazifaga savol: <b style={{ color: T.ink }}>«Core job ishlashi uchun HOZIR shartmi?»</b> Yo'q bo'lsa — keyinga.</Mentor>
         <MentorCollapseScroll targetRef={workRef} />
         <Zoomable><div className="split" ref={workRef}>
           <Col>
@@ -681,7 +681,7 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </Col>
           <Col>
             <div className="fade-up delay-1">
-              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6 }}><span className="flow-label">✂️ Freeze intizomi</span><span className="mono" style={{ fontSize: 12, fontWeight: 700, color: done ? T.success : T.accent }}>{okCount}/{SHIP_TASKS.length}</span></div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6, paddingRight: 40 }}><span className="flow-label">✂️ Freeze intizomi</span><span className="mono" style={{ fontSize: 12, fontWeight: 700, color: done ? T.success : T.accent }}>{okCount}/{SHIP_TASKS.length}</span></div>
               <div className="fmeter-track"><div className="fmeter-fill" style={{ width: `${(okCount / SHIP_TASKS.length) * 100}%` }} /></div>
             </div>
             {last ? (
@@ -690,7 +690,7 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 <p className="body" style={{ margin: 0, color: T.ink }}>{last.ok ? last.why : 'Savol: core job ishlashi uchun HOZIR shartmi? Ha — ✅; foydali-yu shoshilmas — ⏳; over-engineering — ❌.'}</p>
               </div>
             ) : <div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>Vazifa yonidagi ✅ / ⏳ / ❌ ni bosing.</p></div>}
-            {done && <div className="frame-soft fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Natija: MVP = <b>3 core ficha</b>. Qolgani muzlatildi (v2) yoki tashlandi. Freeze — chiqarishни ta'minlaydi: chegarasiz «yana bitta» cheksiz cho'ziladi.</p></div>}
+            {done && <div className="frame-soft fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Natija: MVP = <b>3 core ficha</b>. Qolgani muzlatildi (v2) yoki tashlandi. Freeze — chiqarishni ta'minlaydi: chegarasiz «yana bitta» cheksiz cho'ziladi.</p></div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -706,27 +706,27 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow="Deploy" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!seen} label={seen ? 'SHIP\'ga →' : 'Deploy nimaligini ko\'ring'} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">«Internetga chiqarish» — <span className="italic" style={{ color: T.accent }}>deploy</span></h2></div>
-        <Mentor>Hozircha MVP faqat sizning kompyuteringizда ishlaydi. <b style={{ color: T.ink }}>Deploy</b> — uni internetга joylashtirish: shunda dunyoning istalgan joyидан havola orqali ochiladi (Modul 1-deploy esimizда).</Mentor>
+        <Mentor>Hozircha MVP faqat sizning kompyuteringizda ishlaydi. <b style={{ color: T.ink }}>Deploy</b> — uni internetga joylashtirish: shunda dunyoning istalgan joyidan havola orqali ochiladi (Modul 1-deploy esimizda).</Mentor>
         <Zoomable><div className="split">
           <Col>
             <div className="frame fade-up delay-1" style={{ padding: 'clamp(14px,2.2vw,18px)', borderLeft: `4px solid ${T.ink3}` }}>
-              <p className="note-h" style={{ color: T.ink3 }}>💻 Faqat kompyuterимда</p>
+              <p className="note-h" style={{ color: T.ink3 }}>💻 Faqat kompyuterimda</p>
               <p className="body" style={{ margin: 0, color: T.ink }}>localhost:3000 — faqat men ko'raman. Foydalanuvchiga yubora olmayman. Mahsulot go'yo mavjud emas.</p>
             </div>
             <div style={{ textAlign: 'center', color: T.accent, fontSize: 20 }}>↓ deploy ↓</div>
             <div className="frame fade-up delay-2" style={{ padding: 'clamp(14px,2.2vw,18px)', borderLeft: `4px solid ${T.success}` }}>
-              <p className="note-h" style={{ color: T.success }}>🌍 Internetда, hamma uchun</p>
-              <p className="body" style={{ margin: 0, color: T.ink }}>avtobus-tracker.vercel.app — havola yubordim, ishladi. Malika telefonида ochadi. Mahsulot JONLI.</p>
+              <p className="note-h" style={{ color: T.success }}>🌍 Internetda, hamma uchun</p>
+              <p className="body" style={{ margin: 0, color: T.ink }}>avtobus-tracker.vercel.app — havola yubordim, ishladi. Malika telefonida ochadi. Mahsulot JONLI.</p>
             </div>
           </Col>
           <Col>
             <div className="frame fade-up delay-2" style={{ padding: 'clamp(14px,2.2vw,18px)' }}>
               <p className="flow-label" style={{ marginBottom: 9 }}>🚀 Bir-klik deploy asboblari</p>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>{[{ n: 'Vercel', d: 'React/web uchun eng ommabop' }, { n: 'Netlify', d: 'oddiy va bepul' }].map((x, i) => (<div key={i} style={{ display: 'flex', alignItems: 'center', gap: 10 }}><span style={{ display: 'inline-flex', color: T.accent }}>{Ico.cloud(18)}</span><span style={{ fontWeight: 700, fontSize: 13, minWidth: 60 }}>{x.n}</span><span className="small" style={{ color: T.ink2 }}>{x.d}</span></div>))}</div>
-              <p className="small" style={{ margin: '10px 0 0', color: T.ink2 }}>Kodni ulaysiz — ular avtomatik internetга chiqaradi va havola beradi. Bepul, bir necha daqiqa.</p>
+              <p className="small" style={{ margin: '10px 0 0', color: T.ink2 }}>Kodni ulaysiz — ular avtomatik internetga chiqaradi va havola beradi. Bepul, bir necha daqiqa.</p>
             </div>
             <button className="btn" style={{ alignSelf: 'flex-start' }} onClick={() => setSeen(true)}>Tayyorman — SHIP!</button>
-            {seen && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Havola bo'lsa — mahsulot REAL. Endi eng zavqli qadam: uchishдан oldingi tekshiruv va deploy tugmasi. 🚀</p></div>}
+            {seen && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>Havola bo'lsa — mahsulot REAL. Endi eng zavqli qadam: uchishdan oldingi tekshiruv va deploy tugmasi. 🚀</p></div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -739,9 +739,9 @@ const Screen9 = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow="Mashq · 2-savol"
     questionText="Feature-freeze nima uchun kerak?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>«Feature-freeze» <span className="italic" style={{ color: T.accent }}>nima beradi</span>?</h2></>}
-    options={['Kodni muzlatib, sekinlashtiradi', 'Chiqarishдан oldin ro\'yxatni muzlatadi — «yana bitta ficha» cheksizligини to\'xtatadi', 'Yangi fichalarни taqiqlaydi butunlay', 'Dizaynни o\'zgartiradi']} correctIdx={1}
-    explainCorrect="To'g'ri! Feature-freeze — chiqarishдан oldin «bas, shu 3 ficha bilan chiqamiz» deb chegara chizish. Bu «yana bitta ficha» cheksiz tuzog'ini to'xtatadi va SHIP'ni ta'minlaydi. Qolgani v2 da."
-    explainWrong={{ 0: 'Sekinlashtirmaydi — aksincha, chiqarishni tezlashtiradi.', 2: 'Butunlay taqiqlamaydi — v2 ga qoldiradi.', 3: 'Dizaynга aloqasi yo\'q — ficha ro\'yxatini muzlatadi.', default: 'Freeze = chegara chizib, chiqishни ta\'minlash.' }} />
+    options={['Kodni muzlatib, sekinlashtiradi', 'Chiqarishdan oldin ro\'yxatni muzlatadi — «yana bitta ficha» cheksizligini to\'xtatadi', 'Yangi fichalarni taqiqlaydi butunlay', 'Dizaynni o\'zgartiradi']} correctIdx={1}
+    explainCorrect="To'g'ri! Feature-freeze — chiqarishdan oldin «bas, shu 3 ficha bilan chiqamiz» deb chegara chizish. Bu «yana bitta ficha» cheksiz tuzog'ini to'xtatadi va SHIP'ni ta'minlaydi. Qolgani v2 da."
+    explainWrong={{ 0: 'Sekinlashtirmaydi — aksincha, chiqarishni tezlashtiradi.', 2: 'Butunlay taqiqlamaydi — v2 ga qoldiradi.', 3: 'Dizaynga aloqasi yo\'q — ficha ro\'yxatini muzlatadi.', default: 'Freeze = chegara chizib, chiqishni ta\'minlash.' }} />
 );
 
 // ===== SCREEN 10 — SHIP! (SIGNATURE 3) =====
@@ -764,8 +764,8 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow="SHIP · uchirish" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? 'Davom etish →' : 'Deploy qiling'} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)', position: 'relative' }}>
         {done && <div className="confetti" aria-hidden="true">{Array.from({ length: 18 }).map((_, i) => (<span key={i} className="cf" style={{ left: `${(i * 5.6 + 2) % 100}%`, background: [T.accent, T.honey, T.grape, T.blue, T.success][i % 5], animationDelay: `${(i % 9) * 0.14}s` }} />))}</div>}
-        <div className="head"><h2 className="title h-title fade-up">{done ? <>Mahsulotingiz <span className="italic" style={{ color: T.success }}>JONLI!</span> 🎉</> : <>Uchishдан oldingi <span className="italic" style={{ color: T.accent }}>tekshiruv</span></>}</h2></div>
-        {!done && <Mentor>Uchuvchilar kabi: uchishдан oldin checklistдан o'tamiz. Har bandни bosib tasdiqlang — hammasi yashil bo'lgach, deploy tugmasi ochiladi.</Mentor>}
+        <div className="head"><h2 className="title h-title fade-up">{done ? <>Mahsulotingiz <span className="italic" style={{ color: T.success }}>JONLI!</span> 🎉</> : <>Uchishdan oldingi <span className="italic" style={{ color: T.accent }}>tekshiruv</span></>}</h2></div>
+        {!done && <Mentor>Uchuvchilar kabi: uchishdan oldin checklistdan o'tamiz. Har bandni bosib tasdiqlang — hammasi yashil bo'lgach, deploy tugmasi ochiladi.</Mentor>}
         <MentorCollapseScroll targetRef={workRef} />
         <Zoomable><div ref={workRef}>
           {phase === 'check' && (
@@ -796,7 +796,7 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
               <div className="browser">
                 <div className="browser-bar"><span className="cdot" style={{ background: '#FF605C' }} /><span className="cdot" style={{ background: '#FFBD44' }} /><span className="cdot" style={{ background: '#00CA4E' }} /><span className="url-pill"><span style={{ color: T.success }}>🔒</span> {slug}.vercel.app</span></div>
-                <div className="browser-body"><span className="live-dot" /> <b>JONLI</b> — dunyoning istalgan joyидан ochiladi</div>
+                <div className="browser-body"><span className="live-dot" /> <b>JONLI</b> — dunyoning istalgan joyidan ochiladi</div>
               </div>
               <div className="medal-wrap">
                 <div className="medal">🔨</div>
@@ -815,14 +815,14 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [seen, setSeen] = useState(storedAnswer ? true : false);
   useEffect(() => { if (seen && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [seen]);
   return (
-    <Stage eyebrow="Chiqarishдан keyin" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!seen} label={seen ? 'Davom etish' : 'Davomini ko\'ring'} onClick={onNext} /></>}>
+    <Stage eyebrow="Chiqarishdan keyin" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!seen} label={seen ? 'Davom etish' : 'Davomini ko\'ring'} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">SHIP — bu <span className="italic" style={{ color: T.accent }}>finish emas, START</span></h2></div>
         <Mentor>Ko'p yangi founder o'ylaydi: «chiqardim — tamom». Aslida aksincha: chiqarish — HAQIQIY ishning boshlanishi. Nega?</Mentor>
         <Zoomable><div className="split">
           <Col>
             <div className="frame fade-up delay-1" style={{ padding: 'clamp(16px,2.5vw,22px)', borderLeft: `4px solid ${T.grape}` }}>
-              <p style={{ fontFamily: G, fontSize: 'clamp(14px,1.9vw,16px)', color: T.ink, margin: 0, lineHeight: 1.55 }}>Endi mahsulot jonli — va birinchi marta <b>REAL foydalanuvchilar</b> keladi. Ular sizning taxminlaringizni sinaydi: qaysi ficha ishlaydi, qayerда adashadi, nimани so'raydi.</p>
+              <p style={{ fontFamily: G, fontSize: 'clamp(14px,1.9vw,16px)', color: T.ink, margin: 0, lineHeight: 1.55 }}>Endi mahsulot jonli — va birinchi marta <b>REAL foydalanuvchilar</b> keladi. Ular sizning taxminlaringizni sinaydi: qaysi ficha ishlaydi, qayerda adashadi, nimani so'raydi.</p>
               <p style={{ fontFamily: G, fontSize: 'clamp(14px,1.9vw,16px)', color: T.ink, margin: '10px 0 0', lineHeight: 1.55 }}>Uyat tuyg'usi tez o'tadi. O'rniga qimmatbaho narsa keladi: <b>haqiqiy ma'lumot</b>. Endi taxmin qilmaysiz — kuzatasiz.</p>
             </div>
           </Col>
@@ -848,9 +848,9 @@ const Screen12 = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow="Mashq · 3-savol"
     questionText="MVP'ni chiqargandan keyin nima bo'ladi?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>SHIP — bu <span className="italic" style={{ color: T.accent }}>finishmi</span>?</h2></>}
-    options={['Ha, chiqardim — ish tugadi', 'Yo\'q — endi real foydalanuvchilar keladi va HAQIQIY o\'rganish boshlanadi', 'Endi 6 oy dam olaman', 'Endi barcha fichalarни qo\'shaman']} correctIdx={1}
+    options={['Ha, chiqardim — ish tugadi', 'Yo\'q — endi real foydalanuvchilar keladi va HAQIQIY o\'rganish boshlanadi', 'Endi 6 oy dam olaman', 'Endi barcha fichalarni qo\'shaman']} correctIdx={1}
     explainCorrect="To'g'ri! Chiqarish — start, finish emas. Endi real foydalanuvchilar taxminlaringizni sinaydi: fidbek, kuzatuv, o'rganish boshlanadi. v1 mukammal bo'lish uchun emas — o'rganish uchun chiqadi."
-    explainWrong={{ 0: 'Aksincha — chiqarish bilan asosiy ish (o\'rganish) boshlanadi.', 2: 'Dam olish emas — endi foydalanuvchilarni kuzatasiz.', 3: 'Barcha ficha emas — fidbekга qarab eng muhimini.', default: 'SHIP = o\'rganishning boshlanishi.' }} />
+    explainWrong={{ 0: 'Aksincha — chiqarish bilan asosiy ish (o\'rganish) boshlanadi.', 2: 'Dam olish emas — endi foydalanuvchilarni kuzatasiz.', 3: 'Barcha ficha emas — fidbekga qarab eng muhimini.', default: 'SHIP = o\'rganishning boshlanishi.' }} />
 );
 
 // ===== SCREEN 13 — CASE: AZIZ #10 =====
@@ -874,7 +874,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <Mentor>Aziznang MVP'si aslida ishlaydi. Lekin u hech qachon chiqarmaydi. Xabarini o'qing…</Mentor>
         <div className="fade-up delay-1 frame" style={{ padding: 'clamp(16px,2.5vw,22px)', borderLeft: `4px solid ${T.grape}` }}>
           <p className="mono small" style={{ margin: '0 0 8px', color: T.grape, fontWeight: 700 }}>💬 DO'STINGIZ AZIZ</p>
-          <p style={{ fontFamily: G, fontSize: 'clamp(14px,1.9vw,16px)', color: T.ink, margin: 0, lineHeight: 1.55, fontStyle: 'italic' }}>«3 oydan beri ustида ishlayapman. Core ishlaydi, lekin hali chiqarmadim — dark mode qo'shishim kerak, animatsiyalarni silliqlashim kerak, yana 5 ta ficha rejalashtirdim… Odamlarga ko'rsatishga uyalaman, mukammal bo'lsin!»</p>
+          <p style={{ fontFamily: G, fontSize: 'clamp(14px,1.9vw,16px)', color: T.ink, margin: 0, lineHeight: 1.55, fontStyle: 'italic' }}>«3 oydan beri ustida ishlayapman. Core ishlaydi, lekin hali chiqarmadim — dark mode qo'shishim kerak, animatsiyalarni silliqlashim kerak, yana 5 ta ficha rejalashtirdim… Odamlarga ko'rsatishga uyalaman, mukammal bo'lsin!»</p>
         </div>
         <div className="fade-up delay-2" style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
           {OPTS.map(o => {
@@ -887,8 +887,8 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <FeedbackBlock show={picked !== null} isCorrect={solved}>
           <p className="small mono" style={{ margin: '0 0 6px', fontWeight: 600, color: solved ? T.success : T.accent, textTransform: 'uppercase', letterSpacing: '0.08em' }}>{solved ? 'To\'g\'ri maslahat' : 'Yana o\'ylang'}</p>
           <p className="body" style={{ margin: 0 }}>{solved
-            ? 'Aziz perfeksionizm tuzog\'ida: «mukammal bo\'lsin» aslida «tanqiddan qo\'rqaman» degani. Core ishlar ekan — bugun chiqarishi kerak. Uyat 5 daqiqa, o\'rganish esa cheksiz. Har qo\'shilgan ficha — real fidbeksiz yasалган yana bir taxmin. Reid Hoffman: birinchi versiyangdan uyalmasang, kech chiqargansan.'
-            : (picked === 0 ? 'Bu — yana bir oylik kechikish, keyin yana bir oy... Perfeksionizm shunday cho\'zadi. Core ishlar ekan — chiqarsin.' : 'Loyiha yaxshi, muammo unда emas — Aziznang qo\'rquvida. Tashlash emas — CHIQARISH kerak.')}</p>
+            ? 'Aziz perfeksionizm tuzog\'ida: «mukammal bo\'lsin» aslida «tanqiddan qo\'rqaman» degani. Core ishlar ekan — bugun chiqarishi kerak. Uyat 5 daqiqa, o\'rganish esa cheksiz. Har qo\'shilgan ficha — real fidbeksiz yasalgan yana bir taxmin. Reid Hoffman: birinchi versiyangdan uyalmasang, kech chiqargansan.'
+            : (picked === 0 ? 'Bu — yana bir oylik kechikish, keyin yana bir oy... Perfeksionizm shunday cho\'zadi. Core ishlar ekan — chiqarsin.' : 'Loyiha yaxshi, muammo unda emas — Aziznang qo\'rquvida. Tashlash emas — CHIQARISH kerak.')}</p>
         </FeedbackBlock>
       </div>
     </Stage>
@@ -900,18 +900,18 @@ const Screen14 = ({ screen, onNext, onPrev }) => (
   <Stage eyebrow="Qoida" screen={screen} mentorStatic navContent={<><NavBack onPrev={onPrev} /><NavNext label="SHIP yozuviga →" onClick={onNext} /></>}>
     <div className="screen">
       <div className="head"><h2 className="title h-title fade-up">SHIP qoidasi: <span className="italic" style={{ color: T.accent }}>chiqarilgan yaxshiroq, mukammaldan</span></h2></div>
-      <Mentor>Amaliyotdan oldin kompas. 4 qoida — keyin SHIP yozuvингизни to'ldirasiz.</Mentor>
+      <Mentor>Amaliyotdan oldin kompas. 4 qoida — keyin SHIP yozuvingizni to'ldirasiz.</Mentor>
       <Zoomable><div className="split">
         <Col>
           <div className="frame fade-up" style={{ display: 'flex', alignItems: 'center', gap: 16, padding: 'clamp(18px,2.6vw,26px)' }}>
             <span style={{ fontSize: 40 }}>🚀</span>
-            <div><p style={{ fontFamily: "'Source Serif 4',serif", fontWeight: 600, margin: 0, color: T.ink, fontSize: 'clamp(18px,2.4vw,22px)' }}>Siz — quruvchi</p><p className="body" style={{ margin: '3px 0 0', color: T.ink2 }}>G'oyani jonli mahsulotga aylantirdingiz. Endi u dunyoда yashaydi.</p></div>
+            <div><p style={{ fontFamily: "'Source Serif 4',serif", fontWeight: 600, margin: 0, color: T.ink, fontSize: 'clamp(18px,2.4vw,22px)' }}>Siz — quruvchi</p><p className="body" style={{ margin: '3px 0 0', color: T.ink2 }}>G'oyani jonli mahsulotga aylantirdingiz. Endi u dunyoda yashaydi.</p></div>
           </div>
         </Col>
         <Col>
           <p className="flow-label">4 narsani unutmang</p>
           <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-            {[{ ic: Ico.flag(18), c: T.success, t: 'DONE > PERFECT — core ishlaydi = tayyor' }, { ic: Ico.scissors(18), c: T.grape, t: 'FREEZE — ro\'yxatni muzlat, «yana bitta»ni to\'xtat' }, { ic: Ico.cloud(18), c: T.blue, t: 'DEPLOY — havola bo\'lsa, mahsulot REAL' }, { ic: Ico.loop(18), c: T.accent, t: 'SHIP = START — chiqarish o\'rganishни boshlaydi' }].map((s, i) => (<React.Fragment key={i}><div style={{ display: 'flex', alignItems: 'center', gap: 11, background: T.paper, borderRadius: 11, padding: '10px 13px', boxShadow: `0 5px 14px -8px rgba(${T.shadowBase},0.16)` }}><span style={{ color: s.c, display: 'inline-flex' }}>{s.ic}</span><span style={{ fontFamily: "'Manrope',sans-serif", fontWeight: 600, color: T.ink, fontSize: 13.5 }}>{s.t}</span></div>{i < 3 && <span style={{ color: T.ink3, textAlign: 'center', fontSize: 11 }}>↓</span>}</React.Fragment>))}
+            {[{ ic: Ico.flag(18), c: T.success, t: 'DONE > PERFECT — core ishlaydi = tayyor' }, { ic: Ico.scissors(18), c: T.grape, t: 'FREEZE — ro\'yxatni muzlat, «yana bitta»ni to\'xtat' }, { ic: Ico.cloud(18), c: T.blue, t: 'DEPLOY — havola bo\'lsa, mahsulot REAL' }, { ic: Ico.loop(18), c: T.accent, t: 'SHIP = START — chiqarish o\'rganishni boshlaydi' }].map((s, i) => (<React.Fragment key={i}><div style={{ display: 'flex', alignItems: 'center', gap: 11, background: T.paper, borderRadius: 11, padding: '10px 13px', boxShadow: `0 5px 14px -8px rgba(${T.shadowBase},0.16)` }}><span style={{ color: s.c, display: 'inline-flex' }}>{s.ic}</span><span style={{ fontFamily: "'Manrope',sans-serif", fontWeight: 600, color: T.ink, fontSize: 13.5 }}>{s.t}</span></div>{i < 3 && <span style={{ color: T.ink3, textAlign: 'center', fontSize: 11 }}>↓</span>}</React.Fragment>))}
           </div>
         </Col>
       </div></Zoomable>
@@ -944,7 +944,7 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow="Yakuniy ish · SHIP yozuvi" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!passed} label={passed ? 'Davom etish' : `To'ldiring (${completeCount}/${SHIP_FIELDS.length})`} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">SHIP YOZUVI: <span className="italic" style={{ color: T.accent }}>portfolio 11-sahifa</span></h2></div>
-        <Mentor>Tarixiy lahza — birinchi chiqarishingizni yozib qo'ying{productName ? <> (mahsulotingiz: <b style={{ color: T.ink }}>{productName}</b>)</> : ''}. Bu sahifага bir yildan keyin qaytib qarash yoqimli bo'ladi.</Mentor>
+        <Mentor>Tarixiy lahza — birinchi chiqarishingizni yozib qo'ying{productName ? <> (mahsulotingiz: <b style={{ color: T.ink }}>{productName}</b>)</> : ''}. Bu sahifaga bir yildan keyin qaytib qarash yoqimli bo'ladi.</Mentor>
         <MentorCollapseScroll targetRef={workRef} />
         <Zoomable><div className="split" ref={workRef}>
           <Col>
@@ -977,8 +977,8 @@ const BADGES = [
   { t: 'Founder', l: 'Demo Day' }
 ];
 const Screen16 = ({ screen, answers, onReset, onPrev, onFinish }) => {
-  const RECAP = ['Done > perfect: core ishlaydi + javob + internetда = tayyor', 'Feature-freeze: ro\'yxatni muzlat, «yana bitta»ni to\'xtat', 'Deploy: havola bo\'lsa — mahsulot REAL (Vercel/Netlify)', 'SHIP = start: chiqarish haqiqiy o\'rganishni boshlaydi'];
-  const GLOSSARY = [{ b: 'SHIP', t: '— mahsulotni internetга chiqarish' }, { b: 'Deploy', t: '— kodni internetга joylashtirish' }, { b: 'Done > perfect', t: '— ishlaydigan v1 kutilgan v10 dan yaxshi' }, { b: 'Feature-freeze', t: '— chiqarishдан oldin ro\'yxatni muzlatish' }, { b: 'Perfeksionizm tuzog\'i', t: '— «yana bitta ficha» cheksizligi' }, { b: 'v2', t: '— keyingi versiya (muzlatilgan fichalar)' }];
+  const RECAP = ['Done > perfect: core ishlaydi + javob + internetda = tayyor', 'Feature-freeze: ro\'yxatni muzlat, «yana bitta»ni to\'xtat', 'Deploy: havola bo\'lsa — mahsulot REAL (Vercel/Netlify)', 'SHIP = start: chiqarish haqiqiy o\'rganishni boshlaydi'];
+  const GLOSSARY = [{ b: 'SHIP', t: '— mahsulotni internetga chiqarish' }, { b: 'Deploy', t: '— kodni internetga joylashtirish' }, { b: 'Done > perfect', t: '— ishlaydigan v1 kutilgan v10 dan yaxshi' }, { b: 'Feature-freeze', t: '— chiqarishdan oldin ro\'yxatni muzlatish' }, { b: 'Perfeksionizm tuzog\'i', t: '— «yana bitta ficha» cheksizligi' }, { b: 'v2', t: '— keyingi versiya (muzlatilgan fichalar)' }];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
   const PASSED = (total ? correct / total : 0) >= 0.6;
@@ -994,9 +994,9 @@ const Screen16 = ({ screen, answers, onReset, onPrev, onFinish }) => {
         <div className="hero"><div className="hero-l"><span className="done-chip fade-up"><span className="tick">{Ico.rocket(12)}</span> MVP chiqarildi · 5-dars tamom</span><h2 className="title h-title fade-up d1">Siz endi <span className="italic" style={{ color: T.accent }}>chiqargan founder</span>.</h2>{/* 54-qonun (P0 PmUserStory · PmLesson2 qarori): h-sub qatori YO'Q — sarlavha o'zi yetadi. */}</div><ScoreRing correct={correct} total={total} /></div>
         <div className="split">
           <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span style={{ color: T.success, display: 'inline-flex' }}>{Ico.check(15)}</span> Endi siz bilasiz</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck" style={{ display: 'inline-flex' }}>{Ico.check(15)}</span><span>{r}</span></li>))}</ul></div>
-          <div className="card fade-up d4"><div className="card-lbl" style={{ color: T.honey }}>🏅 Nishonlar yo'li</div><div style={{ display: 'flex', flexWrap: 'wrap', gap: 7 }}>{BADGES.map((b, i) => (<span key={i} className={`badge-chip ${i <= 2 ? 'badge-done' : ''} ${i === 3 ? 'badge-next' : ''}`}>{i === 0 ? '🏹' : (i === 1 ? '🎖️' : (i === 2 ? '🔨' : (i === 3 ? '🧪' : '👑')))} {b.t}<span className="badge-when" style={i <= 2 ? { color: 'rgba(255,255,255,0.85)' } : undefined}>· {b.l}</span></span>))}</div><p className="small" style={{ margin: '10px 0 0', color: T.ink2 }}>Keyingi nishon — <b style={{ color: T.honey }}>🧪 Sinovchi</b>: real odam mahsulotингизни sinaganда (104-dars).</p></div>
+          <div className="card fade-up d4"><div className="card-lbl" style={{ color: T.honey }}>🏅 Nishonlar yo'li</div><div style={{ display: 'flex', flexWrap: 'wrap', gap: 7 }}>{BADGES.map((b, i) => (<span key={i} className={`badge-chip ${i <= 2 ? 'badge-done' : ''} ${i === 3 ? 'badge-next' : ''}`}>{i === 0 ? '🏹' : (i === 1 ? '🎖️' : (i === 2 ? '🔨' : (i === 3 ? '🧪' : '👑')))} {b.t}<span className="badge-when" style={i <= 2 ? { color: 'rgba(255,255,255,0.85)' } : undefined}>· {b.l}</span></span>))}</div><p className="small" style={{ margin: '10px 0 0', color: T.ink2 }}>Keyingi nishon — <b style={{ color: T.honey }}>🧪 Sinovchi</b>: real odam mahsulotingizni sinaganda (104-dars).</p></div>
         </div>
-        <div className="frame-success fade-up d4" style={{ display: 'flex', alignItems: 'center', gap: 14 }}><span style={{ fontSize: 30 }}>🚀</span><div><p style={{ fontFamily: "'Source Serif 4',serif", fontWeight: 600, margin: 0, color: T.ink, fontSize: 'clamp(15px,2vw,18px)' }}>Uyga vazifa — HAQIQATAN chiqaring</p><p className="body" style={{ margin: '2px 0 0', color: T.ink2 }}>MVP'ingizni Vercel yoki Netlify'ga yuklang (bepul, 10 daqiqa) va jonli havolani oling. Keyin uni <b>3 kishига</b> yuboring — do'st, oila, sinfdosh. Uyaltiradi? Demak to'g'ri vaqtда chiqaryapsiz. Keyingi dars: real odam bilan test 🧪.</p></div></div>
+        <div className="frame-success fade-up d4" style={{ display: 'flex', alignItems: 'center', gap: 14 }}><span style={{ fontSize: 30 }}>🚀</span><div><p style={{ fontFamily: "'Source Serif 4',serif", fontWeight: 600, margin: 0, color: T.ink, fontSize: 'clamp(15px,2vw,18px)' }}>Uyga vazifa — HAQIQATAN chiqaring</p><p className="body" style={{ margin: '2px 0 0', color: T.ink2 }}>MVP'ingizni Vercel yoki Netlify'ga yuklang (bepul, 10 daqiqa) va jonli havolani oling. Keyin uni <b>3 kishiga</b> yuboring — do'st, oila, sinfdosh. Uyaltiradi? Demak to'g'ri vaqtda chiqaryapsiz. Keyingi dars: real odam bilan test 🧪.</p></div></div>
         <div ref={glossRef} className="gloss fade-up d4" style={{ scrollMarginBottom: 16 }}><div className="gloss-head" onClick={toggleGloss}><span className="lbl">Kalit so'zlar (takrorlash)</span><span className="gloss-toggle">{open ? '−' : '+'}</span></div>{open && (<div className="gloss-body">{GLOSSARY.map((g, i) => (<span key={i}><b>{g.b}</b> {g.t}{i < GLOSSARY.length - 1 ? ' · ' : ''}</span>))}</div>)}</div>
       </div>
     </Stage>

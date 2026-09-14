@@ -977,7 +977,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             const ok = b === correctBucket(f);
             const wrong = b && !ok;
             return (
-              <div key={f.id} className="frame" style={{ padding: '11px 14px', display: 'flex', flexDirection: 'column', gap: wrong ? 7 : 0, boxShadow: ok ? `inset 0 0 0 2px ${T.success}, 0 6px 16px -6px rgba(31,122,77,0.2)` : `0 6px 16px -6px rgba(${T.shadowBase},0.14)` }}>
+              <div key={f.id} className="frame" style={{ padding: '11px 40px 11px 14px', display: 'flex', flexDirection: 'column', gap: wrong ? 7 : 0, boxShadow: ok ? `inset 0 0 0 2px ${T.success}, 0 6px 16px -6px rgba(31,122,77,0.2)` : `0 6px 16px -6px rgba(${T.shadowBase},0.14)` }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
                   <span style={{ flex: 1, fontWeight: 600, fontSize: 'clamp(13px,1.7vw,15px)', color: T.ink, minWidth: 130 }}>{ok && <span style={{ color: T.success, marginRight: 6 }}>✓</span>}{tr(f.label)}</span>
                   <div style={{ display: 'flex', gap: 7 }}>
@@ -1280,7 +1280,7 @@ const MvpRows = ({ items, placed, setPlaced }) => {
         const ok = b === cb(f);
         const wrong = b && !ok;
         return (
-          <div key={f.id} className="frame" style={{ padding: '11px 14px', display: 'flex', flexDirection: 'column', gap: wrong ? 7 : 0, boxShadow: ok ? `inset 0 0 0 2px ${T.success}, 0 6px 16px -6px rgba(31,122,77,0.2)` : `0 6px 16px -6px rgba(${T.shadowBase},0.14)` }}>
+          <div key={f.id} className="frame" style={{ padding: '11px 40px 11px 14px', display: 'flex', flexDirection: 'column', gap: wrong ? 7 : 0, boxShadow: ok ? `inset 0 0 0 2px ${T.success}, 0 6px 16px -6px rgba(31,122,77,0.2)` : `0 6px 16px -6px rgba(${T.shadowBase},0.14)` }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
               <span style={{ flex: 1, fontWeight: 600, fontSize: 'clamp(13px,1.7vw,15px)', color: T.ink, minWidth: 120 }}>{ok && <span style={{ color: T.success, marginRight: 6 }}>✓</span>}{tr(f.label)}</span>
               <div style={{ display: 'flex', gap: 7 }}>

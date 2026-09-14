@@ -81,5 +81,5 @@ Texnik pipeline Htmllesson1'dan tug'ilgani kabi, PM pipeline P0 darsdan tug'ilad
 ## 4. Holat va jonli sinov
 
 - Holat: `PM_PIPELINE_STATE.md` (P0 boshlanganda ochiladi; format PIPELINE_STATE.md kabi).
-- Har dars yakunida QO'LDA jonli sinov: yangi PIN, 2 o'quvchi, podium/arena 0 EMAS (MENTOR-2026).
+- Har dars yakunida QO'LDA jonli sinov: yangi PIN, 2 o'quvchi, podium/arena 0 EMAS. Mentor-kod 2026-09-07 da almashgan: joriy qiymat `server/.env.deploy.*` da, hujjatga yozilmaydi.
 - Commit faqat foydalanuvchi buyrug'i bilan (8-qoida).

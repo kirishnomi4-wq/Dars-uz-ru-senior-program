@@ -21,7 +21,7 @@
 
 1. Har darsni quyidagi bo'limlar bo'yicha ketma-ket tekshir.
 2. Har o'zgarishdan keyin **build toza** ekanini tekshir: `npx esbuild <fayl> --loader:.jsx=jsx --outfile=/dev/null` (yoki `--outfile` scratch faylga).
-3. Jonli qismni **yangi PIN bilan** sinash SHART (2 o'quvchi → podium/arena ballari 0 EMAS). Mentor-kod test uchun: **MENTOR-2026**.
+3. Jonli qismni **yangi PIN bilan** sinash SHART (2 o'quvchi → podium/arena ballari 0 EMAS). Mentor-kod 2026-09-07 da almashgan — joriy qiymat `server/.env.deploy.prod` / `.env.deploy.staging` da (lokal dev — `server/.env`); **kodning o'zi hujjatga yozilmaydi**.
 4. Oxirida **14-bo'lim (tekshiruv ro'yxati)**ni to'ldir.
 
 ---
@@ -542,10 +542,30 @@ const runPractice = (entry, fromScreen) => {
     if (live && live.mode === 'student') live.submitAnswer(PRACTICE_DONE_BASE + fromScreen, `practice-${fromScreen}`, 0, true, 0);
     setPractice(null); advance();
   };
-  if (typeof onPractice === 'function') Promise.resolve(onPractice(entry.task)).then(done); // production: LMS
-  else setPractice({ ...entry, done });                                                     // lokal: overlay
+  // 🔴 F-0912-04: LMS yo'li HAR DOIM tutiladi — sinxron otilish ham, rad-etish ham.
+  const openLocal = () => setPractice({ ...entry, done });          // zaxira: darsning o'z compilatori
+  if (typeof onPractice !== 'function') { openLocal(); return; }    // lokal: overlay
+  try { Promise.resolve(onPractice(entry.task)).then(done, openLocal); } // production: LMS
+  catch { openLocal(); }
 };
 ```
+
+> 🔴 **9.3-A PRAKTIKA-YO'LI TUTILMASDAN QOLMAYDI (F-0912-04, 2026-09-12).**
+> ❌ `Promise.resolve(onPractice(entry.task)).then(done);` — `catch` YO'Q.
+> LMS tomoni yiqilsa (tarmoq uzilishi, chunk yuklanmasligi, `postMessage` xatosi) rad-etish
+> **jim yutilardi**: praktika ochilmas, xato ko'rinmas, `done()` chaqirilmas — dars ham oldinga
+> ketmasdi. O'quvchi ekranda qotib qolardi va nima bo'lganini bilmasdi. Sinfda 20 o'quvchidan
+> 1 tasida chiqardi (2026-09-11 darslari) — muhitga bog'liq, shuning uchun sinovda ko'rinmasdi.
+> ✅ Qoida: **`onPractice` ning HAR uch yiqilish yo'li zaxira-yo'lga tushadi** —
+> (1) sinxron otilish → `try/catch`, (2) rad-etish → `.then(done, openLocal)`, (3) `onPractice` yo'q → `openLocal()`.
+> Zaxira-yo'l = darsning O'Z compilatori (u baribir faylga yig'ilgan) — mashq bajariladi,
+> «tugatdim» signali ham ketadi, mentor paneli to'g'ri sanaydi.
+> ⚠️ **Timeout QO'YILMAYDI:** `onPractice` promise'i praktika OCHILGANDA emas, **TUGAGANDA** hal
+> bo'ladi — o'quvchi mashqda 10 daqiqa o'tirishi normal. Timeout ochiq praktika ustiga ikkinchi
+> compilator ochib yuborardi.
+> Uyga vazifa yo'li (`openHomeworkPractice`) ham shu qoidaga bo'ysunadi: ❌ `.catch(() => {})`
+> (xatoni yutadi, o'quvchiga hech narsa ochilmaydi) → ✅ `.catch(openLocal)`.
+> **Tekshiruv:** `grep -c "then(done);" <fayl>` → **0** · `grep -c "catch(() => {})" <fayl>` → **0**.
 - **O'quvchi / self:** "Praktika →" → compilator overlay → shartlar bajarilgach `done()` → signal + keyingi ekran.
 - **Jonli mentor:** o'zi compilator ochmaydi — `MentorPracticeOverlay` paneli chiqadi:
   1. *watch* ko'rinishi: «👨‍🎓 Praktikani tugatdi» jonli chiplar («✏️ Ali» → «✓ Ali»), «Tugatdi: N/M» progress, 3s polling `liveAnswers(pin, 500+fromScreen)`;
@@ -1451,7 +1471,7 @@ PRAKTIKA-DARVOZASI VA MENTOR EKRANI (2026-07-28)
 
 YAKUNIY
 [ ] ✔    build toza: npx esbuild <fayl> --outfile=<scratch>
-[ ] ✔    JONLI SINOV: yangi PIN → 2 o'quvchi → podium/arena ballari 0 EMAS (MENTOR-2026)
+[ ] ✔    JONLI SINOV: yangi PIN → 2 o'quvchi → podium/arena ballari 0 EMAS (mentor-kod: `server/.env.deploy.*`)
 ```
 
 ---
@@ -2281,3 +2301,306 @@ raqam-doira qoladi (Natija yorlig'i qoladi).
 **Tekshirish (audit-bandi):** tanlov-chiplarda `.chip { border: none }` yoki fon `T.bg` —
 RAD; bosqich-navigatsiyada bosqich nomlari («Joy», «Yozish») — RAD. Namuna:
 `src/1-Modull/PmLesson2.homework.jsx` (`.chip/.chip-rd/.chip-ic`, `.hw-step/.hw-num/.hw-ln`).
+
+---
+
+## 11-K. 📐 147-QONUN: MATN USTIGA HECH NARSA TUSHMAYDI, MATN IDISHIDAN CHIQMAYDI (2026-09-12, F-0912-03)
+
+**Kelib chiqishi:** foydalanuvchi sinf kuzatuvi — «ba'zi darslarda so'zlar qisilib qolgan,
+yopishib qolgan yoki chiqib ketgan». Ilgari bunday topilma **ko'rilgan darsda** tuzatilardi;
+sinf bo'ylab yopilmasdi. O'lchov buni fosh qildi (quyida).
+
+### a) Absolyut boshqaruv o'z burchagini BAND QILADI — kontent u yerga kirmaydi
+
+`.zoom-btn` (⛶) `.zoomable` ning o'ng yuqori burchagida turadi: `top: 6px; right: 6px`,
+o'lchami `30x30` — ya'ni o'ngdan **36px** ni egallaydi. Shu burchakka tushadigan qator
+**40px** o'ng chekinish oladi (36 + 4px nafas):
+
+```
+.zb-gap { padding-right: 40px; }     /* qator SINFDA bo'lsa */
+paddingRight: 40                     /* qator `padding` ni INLINE bersa (sinf bekor qilinadi) */
+```
+
+🔴 **Inline `padding` qisqartmasi CSS sinfini yutadi.** Qator `style={{ padding: '7px 13px' }}`
+bilan yozilgan bo'lsa, `.zb-gap` ishlamaydi — chekinish **o'sha inline obyektga** qo'shiladi
+(`paddingRight: 40`). Bu PmLesson2 da tutildi.
+
+🔴 **Chegara: kontent SILJIMAYDI.** Zoomable'ning o'ziga `padding-top` berish ⛶ ga alohida
+qator ochadi, lekin butun kontentni pastga suradi — dars bir ekranga sig'ishi shart
+(60-qonun), shuning uchun bu yo'l RAD. Joy faqat **to'qnashgan qatorda** ajratiladi.
+
+**Ikki usul — to'qnashgan narsa MATNmi yoki TUGMAmi (F-0912-09, 2-modul auditi):**
+
+| To'qnashgan narsa | Usul | Nega |
+|---|---|---|
+| **Matn** (`p.body` ishora-qutida) | **float-notch**: `.zb-notch::before { content:''; float:right; width:28px; height:28px; }` | Matn tugmani AYLANIB o'tadi — faqat tugma yonidagi qator qisqaradi, qolganlari to'liq kenglikda qoladi. Kenglik hisobi: idishning o'z o'ng chekinishi 15–16px → 36−16=20px yetishmaydi, 28px nafas bilan |
+| **Tugma/chip** (qator-ro'yxatning o'ng chekkasida) | **bir xil o'ng zaxira**: `paddingRight: 40` HAMMA qatorga | Notch tugmaga ta'sir qilmaydi (u oqimdagi matn emas). Zaxira faqat BIRINCHI qatorga berilsa tugmalar qiyshayadi — shuning uchun hammasiga BIRDEK beriladi: ustma-ust tekis qoladi, ⛶ bo'sh yo'lakda o'tiradi |
+
+Qamrov (2026-09-12): m1 — `HtmlPractice` (notch); m2 — `JsVarsLesson` s15 · `JsConditionsLesson` s15 ·
+`JsFunctionsLesson` s15 (notch), `JsVarsLesson` s8 · `PracticeLesson3` s3/s12/s15 (zaxira);
+m3 — `ReactCrudPracticeLesson` s3 (notch, ikki `sk-info`) · s5/s10 (zaxira, hisoblagich qatori);
+m4 — `DataIntroLesson` s3 · `NodeServerLesson` s7 · `RoutingLesson` s8 · `FullstackFeedbackLesson` s2 (zaxira);
+m4c — `GithubActionsLesson` s13 (zaxira) · `FullProPipelineLesson` s7/s9 (notch); m5 —
+`BotStatefulMemoryLesson` s5/s6 · `BotAiProjectLesson` s7 (notch); m6 — `MobileAppPracticeLesson` s7
+(zaxira); m7 — **16 nusxa, 12 fayl** (hisoblagich qatori — butun modulga ko'chirilgan shablon).
+
+🔴 **Hisoblagich qatori — takroriy shablon.** «Sarlavha … N / M topildi» qatori
+(`display:flex; justify-content:space-between`) 9 faylda uchraydi va o'ng chekkasi aynan ⛶
+tugmasi ostiga tushadi. Repoda 12 nusxa bor, ammo **hammasi emas** — faqat `.zoomable` ning
+BIRINCHI qatori bo'lgani to'qnashadi. Shuning uchun sivirma «hammasini tuzat» demaydi:
+o'lchangani tuzatiladi, qolgani o'lchovda toza chiqqan (m1 va m3 nusxalari).
+
+🔴 **BIR QUTI — BIR NECHA HOLAT-MATNI: chekinish HAMMASIGA qo'yiladi** (F-0912-09 · ru-sivirma,
+2026-09-12). Ishora-qutisi bitta joyda turadi, lekin ichidagi matn holatga qarab almashadi
+(`!picked` ipucha · `picked` noto'g'ri tanlov · `found` topildi · `fixed` yakun). O'lchov ekranni
+**bitta holatda** tutadi — o'sha holatga notch qo'yilsa, qolganlari **himoyasiz qoladi** va til
+almashganda chiqadi.
+
+**Dalil:** `JsFunctionsLesson` s15 — uz-sivirmada ipucha-holati tutilib tuzatilgan edi; ru-sivirmada
+esa **boshqa** holat chiqdi: «А ошибка — <b>во внутренней строке</b>» ning **95%** i ⛶ ostida
+(1280 va 1366 · self va mentor — to'rttasida ham). Sababi: ruscha jumla uzunroq, shuning uchun
+`<b>` boshqa qatorga tushadi. Xuddi shu naqsh `JsConditionsLesson` va `JsVarsLesson` da ham bor edi
+— har birida faqat **o'lchov tutgan** holat yopilgan.
+
+✅ Qoida: notch bitta holatga emas, **o'sha qutining hamma holat-matniga** qo'yiladi (uchala
+tarmoq: ipucha · noto'g'ri tanlov · topildi). Tekshiruv: `grep -c "zb-notch"` = CSS qoidasi (1) +
+holatlar soni. Umumiy sabab: **o'lchov — namuna, kafolat emas**; u qaysi holatni tutgani tasodif,
+tuzatish esa qutining o'ziga (hamma holatiga) beriladi.
+
+> **🔴 DARS: «KO'RILGAN JOYDA TUZATISH» — TUZATISH EMAS.** `InternetLesson` da bu nuqson
+> allaqachon tuzatilgan edi — ammo `@media (max-width: 560px)` ICHIDA: kimdir uni telefonda
+> ko'rgan, o'sha yerda yopgan. 1280px da «Qadam» hisoblagichining **32%** i tugma ostida
+> yotardi va hech kim ko'rmagan. Qoida: to'qnashuv **o'lchanadi**, keyin qamrov bo'yicha
+> yopiladi — bitta ekranda ko'rilgani bilan yopilmaydi (60-qonun (c) bilan bir xil saboq).
+
+### a-2) MAKET BEZAGI KONTENT USTIGA TUSHMAYDI (F-0912-14, 6-modul auditi)
+
+Telefon maketining «tishchasi», brauzer sarlavha-tasmasi, soat-paneli — bularning hammasi
+**bezak**. Bezak maket ICHIDAGI matnni yopsa, o'quvchi o'sha matnni o'qiy olmaydi, ammo hech
+qanday darvoza buni ko'rmaydi (CSS to'g'ri, JSX to'g'ri).
+
+**Dalil.** `MobileAppPracticeLesson` s0 — `.phone-notch` (`position:absolute; top:9px;
+62x15px`) `y 9..24` ni egallaydi; telefon ekrani esa ramkaning 9px chekinishidan, ya'ni
+`y 9` dan boshlanadi. Natijada soxta brauzer manzili «🔒 mini-dokon.uz» ning **32%** i
+tishcha ostida qolgan.
+
+🔴 **Oila bilan solishtirish — eng tez tekshiruv.** Repoda `.phone-notch` to'qqiz darsda bor:
+sakkiztasida u **52x5 yoki 34x5 tasma** (ramka chekinishiga sig'adi), bittasida — 62x15
+ekranga tushadigan «tishcha». Ya'ni nomzod nuqson **oiladan chiqib turgani** bilan bilinadi.
+Qoida: bir xil nomli bezak darslararo bir xil o'lchamda bo'ladi; farq qilsa — sabab so'raladi.
+
+✅ Yechim: bezak **ramka chekinishi ichida** joylashtiriladi (`top: 2px; height: 5px`),
+kontent surilmaydi (60-qonun: dars bitta ekranga sig'ishi shart).
+
+### b) Proporsional kenglikdagi kartada MATN turmaydi
+
+`PmLesson3` vaqt-lentasida karta kengligi vaqtga proporsional (`flex: b.sec`) — eng qisqa
+bo'lak 20 soniya, ya'ni ~36px matn joyi. «Keyingi qadam» u yerga hech qachon sig'maydi;
+`overflow: hidden` uni kesardi va o'quvchi 6 ta bo'limdan 5 tasining nomini o'qiy olmasdi
+(uz va ru — ikkalasida ham, ya'ni til masalasi EMAS).
+
+✅ Qoida: **o'lchami ma'lumotga bog'liq idishga matn qo'yilmaydi.** Idishda faqat o'lcham-
+signali qoladi (rangli chiziq, raqam), nomlar esa **tashqaridagi ro'yxatda** — kengligi
+matnga qarab o'lchanadi va sig'masa keyingi qatorga o'tadi. Faol holat ikkala joyda ham
+ko'rsatiladi (`.tl-seg.now` karta halqasi + `.tl-key.now` nuqta va rang).
+
+🔴 `text-overflow: ellipsis` — **yechim emas, niqob.** U matnni «chiroyli» kesadi, lekin
+o'quvchi baribir o'qiy olmaydi. Ataylab qisqartirish faqat **takrorlanadigan/ikkinchi darajali**
+ma'lumotga ruxsat (masalan `title` tooltip + nusxalash tugmasi bor URL — `HtmlTakrorlashLesson`
+dagi `.img-url`). Nom, sarlavha, topshiriq matni — hech qachon.
+
+### c) Tekshirish — KO'Z bilan emas, O'LCHOV bilan
+
+Bu sinf grep bilan tutilmaydi: CSS to'g'ri, JSX to'g'ri, hamma darvoza toza — buzilish faqat
+**chizilgandan keyin** ko'rinadi. Shuning uchun o'lchov brauzerda yuritiladi (`_clip-audit.mjs`
+avlodi): har dars, har ekran, `uz`/`ru` x `self`/`mentor`. To'rt detektor:
+
+| | Nimani o'lchaydi |
+|---|---|
+| A | vertikal qirqilish — `overflow: hidden` idishda oqimdagi matn tubidan oshgan |
+| B | blok ustma-ust — ikki quti IKKALA o'q bo'yicha kesishgan (bir qatordagi inline'lar EMAS) |
+| C | matn qutisidan chiqqan — matn tugunlari `Range` bilan o'lchanadi, `scrollWidth` EMAS |
+| D | boshqaruv matn ustida — absolyut qatlam matnning >8% ini yopgan |
+
+🔴 **Kalibrovka majburiy (yolg'on signalsiz ro'yxatgina ishlatiladi):** shaffof qatlam
+(halqa-konturi, ulanish chizig'ini chizadigan `svg`) matnni yopa OLMAYDI — sanalmaydi;
+ekranning yarmidan ko'pini yopadigan modal (nishon-bayrami) ataylab yopadi — sanalmaydi;
+`backface-visibility: hidden` yuz (flashcard orqasi) — sanalmaydi. Kalibrovkasiz `m1-01`
+bitta darsda **30 ta** yolg'on signal berardi.
+
+🔴 **Kalibrovka-2 (F-0912-09, 2-modul auditi) — GEOMETRIYANING O'ZI yolg'on gapiradi:**
+
+| Qoida | Nega | Dalil |
+|---|---|---|
+| **Burilgan element o'lchanmaydi** (B, C, D detektorlari; ota-element ham sanaladi) | `getBoundingClientRect()` doim O'QQA PARALLEL to'rtburchak qaytaradi — element burilgan bo'lsa bu to'rtburchak haqiqiy egallagan joyidan katta, burchaklari qo'shnisiga kirib turadi. Ya'ni «ustma-ust» geometriyadan chiqadi, ekranda hech narsa buzilmagan | `m2-07` s5/s8 — `.tz-beam` qiyaladigan tarozi (`rotate(±4deg)`) qo'shni kartaga 8px kiradi; `m2-09` s5/s12/s15 — «SAYT» sarlavhasi `rotate(1.4deg)`, bu ATAYLAB qiyshiq qoralama, sabog'ning o'zi |
+| **Ko'p qatorga o'ralgan inline element o'lchanmaydi** (C detektori) | O'ralgan inline uchun `getBoundingClientRect()` qator-bo'laklarning BIRLASHMASINI beradi; gorizontal `padding` esa faqat BIRINCHI bo'lakning chapiga va OXIRGI bo'lakning o'ngiga qo'yiladi. Paddingni birlashmadan ayirish — padding yo'q chekkadan ham ayirish — aynan padding qiymaticha soxta «chiqish» beradi | `m2-09` s3 — `<span>` «tugma va kartalar», ikki qator, `padding: 0 5px` → `over = 5` |
+
+Xavfsizlik: o'ralgan matn ta'rifiga ko'ra o'z birlashma-qutisidan chiqa OLMAYDI (o'ralgan bo'lsa —
+demak sig'gan), shuning uchun bu qoida haqiqiy nuqsonni yashirmaydi. Aniqlash: 2D matritsa
+`matrix(a,b,c,d,e,f)` da sof siljish/masshtabda `b` va `c` NOL; burilish yoki qiyshaytirish
+ularni noldan chiqaradi (`matrix3d` da 2- va 5-o'rinda).
+
+🔴 **Kalibrovka-3 (F-0912-10, 3-modul auditi) — ATAYLAB QO'YILGAN NARSA NUQSON EMAS:**
+
+| Qoida | Nega | Dalil |
+|---|---|---|
+| **Bitta grid katakchasi — sanalmaydi** (B detektori) | `grid-area: 1 / 1` — muallif ikkovini ONGLI ravishda bir katakka qo'ygan: biri so'nadi, ikkinchisi qoladi. Geometriya esa «kesishdi» deydi | `m3-02` s1 — `silo-lbl` (so'nuvchi yorliq) `silo-fill` ustida, 11–14px |
+| **Manfiy chekinish bilan ulangan shakl — sanalmaydi** (B, kesishuv ≤ 3px) | `margin-top: -2px` ikki bo'lakni ataylab YOPISHTIRADI (voronka tanasi + nayi). 2px hech qanday matnni yemaydi | `m3-03` s8/s9/s11/s13 · `m3-06` s2…s11 — `cm-body`/`cm-chute`, `cf-body`/`cf-chute` |
+| **Idishning O'Z pardasi — sanalmaydi** (D detektori, ≥ 92%) | Qatlam o'z idishini deyarli to'liq yopsa — bu HOLAT-pardasi: yuklanish («sahifa qayta yuklanmoqda» — darsning sabog'i) yoki rentgen qatlami. Ostidagi matn yopilgani — o'sha holatning MA'NOSI. Tasodifiy qoplama (⛶) idishning burchagini egallaydi, 92% ini emas | `m3-01` s11 — `reload-cover` postni 100% yopadi · `m3-06` s0 — `xray-ov` kartani 100% yopadi |
+
+> **🔴 DARS: «TOZA» HUKMI NECHTA EKRAN KO'RILGANIGA BOG'LIQ.** `m3-05` (PmLesson8) auditda
+> **bitta** ekran bilan «toza» chiqqan edi: dars «Darsga qo'shilish» darvozasi bilan ochiladi,
+> audit uni `_lessonids.txt` dagi id bilan o'tadi — o'sha ro'yxat esa **qo'lda** yuritiladi va
+> `pm-m3d5-v1` unga tushmay qolgan. Ya'ni 17 ekranlik dars **1 ekrani** bilan baholangan.
+> Yechim: ro'yxat endi **manbadan ham** to'ldiriladi (`lessonId: '...'` grep, `eski` papkalarsiz) —
+> yangi dars qo'shilsa o'zi kiradi. Umumiy qoida: **hisobotdagi ⚠ ogohlantirish «toza» dan
+> kuchliroq** — ekran soni kutilganidan kam bo'lsa, hukm emas, tergov boshlanadi.
+
+🔴 **Kalibrovka-4 (F-0912-11, 4-modul auditi):**
+
+| Qoida | Nega | Dalil |
+|---|---|---|
+| **Chetdan chiqadigan PANEL — sanalmaydi** (D detektori: idishning butun bo'yiga/eniga cho'zilgan va yarmidan ko'pini egallagan qatlam) | Yon menyu ataylab ostidagini yopadi — ochilishining MA'NOSI shu. Tasodifiy qoplama esa ikkala o'lchamda kichik: burchakni egallaydi, butun qirrani emas | `m4-14` s9 — telefon maketidagi `drawer` (`top:0; height:100%; width:82%`) tablo raqamlarini 100% yopadi |
+| **So'nib ketayotgan element o'lchanmaydi** (B detektori, `opacity < 0.35`) | Animatsiya `both` bilan tugagach element OXIRGI kadrda qotadi. «Xafa mijoz» 26px chetga suriladi va 0,25 shaffoflikka tushadi — ya'ni KETYAPTI. Qo'shnisi bilan kesishuvi — sahnaning o'zi | `m4-04` s2 — `store-cust.cust-sad` / `store-cust`, 22px |
+
+🔴 **Kalibrovka-5 (F-0912-16, 7-modul auditi) — BURILISH QOIDASI A DETEKTORIGA HAM TEGISHLI.**
+Kalibrovka-2 burilgan elementni B, C, D dan chiqargan edi; A (qirqilish) esa chetda qolgan va
+o'sha yolg'onni qaytadan berdi. Dalil: `m7-01` s0 — «QABUL QILINDINGIZ» muhri `rotate(-8deg)`,
+chegara-qutisi **166px** (haqiqiy balandligi ~45px) va «16px qirqildi» degan hukm chiqardi.
+Skrinshot bilan tekshirildi: muhr **to'liq ko'rinadi**. Umumiy saboq: kalibrovka qoidasi
+**bitta detektorga emas, sababga** bog'lanadi — sabab («o'qqa parallel quti burilgan elementda
+yolg'on») to'rttasiga ham tegishli.
+
+🔴 **Kalibrovkani o'zgartirgach — `--selftest` MAJBURIY.** Yangi «sanalmaydi» qoidasi
+detektorni jimgina o'ldirishi mumkin, natija esa «toza» bo'lib ko'rinaveradi. Selftest ataylab
+toshiruvchi CSS kiritadi va topilma sonini qaytaradi — u o'zgarmasa, detektor tirik.
+
+🔴 **Determinizm — ANIMATSIYA IKKI XIL:** kirish-animatsiyasi (`fade-up` — translateY)
+tugamasdan o'lchansa blok o'z joyida bo'lmaydi va yolg'on ustma-ust chiqadi
+(`pre.code-box.fade-up / div.frame-dash` ikki yurgizishdan faqat bittasida chiqqan edi).
+Shuning uchun:
+- **CHEKLI** animatsiya (`iterations !== Infinity`) — OXIRIGACHA kutiladi. Qat'iy shift
+  qo'yish XATO: `ip-typing` (0,9 s, kechikish bilan boshlanadi) 900 ms da hali kenglik `0`
+  beradi va **+144px yolg'on toshish** chiqadi (m1-01 s7 da o'lchandi: 900 ms → kenglik 0;
+  2000 ms → 168px, toshish yo'q).
+- **CHEKSIZ** animatsiya (`infinite`) — kutilmaydi, chunki hech qachon tugamaydi; ammo
+  u bilan yuruvchi element **umuman o'lchanmaydi**: harakatdagi bezakning qo'shnisi bilan
+  kesishuvi layout nuqsoni EMAS. Dalil: `.dc-arrow` (`dc-flow`, 0,85 s infinite) qo'shni
+  `.dc-dns` chipi ustidan o'tadi — o'lchov qaysi lahzada tushishiga qarab goh chiqadi,
+  goh chiqmaydi. Ota-element ham sanaladi (undagi transform bolalarini qimirlatadi).
+
+🔴 **CHIZILISH TARTIBI — `z-index` ni solishtirish YETMAYDI.** Ikki qatlamning `z-index` i
+teng bo'lsa (ikkalasi ham `auto`), DOM'da **KEYIN** turgani ustida chiziladi. Buni hisobga
+olmaslik butun bir o'yinni «nuqson» deb ko'rsatadi: dinozavr o'yinida `.rg-sky` (fon,
+`absolute; inset:0`) geometrik jihatdan 🍖 ustida turadi, lekin DOM'da undan OLDIN keladi —
+demak fon pastda, sprayt ko'rinadi. Solishtirish matnning eng yaqin **pozitsiyalangan otasi**
+bo'yicha yuritiladi (pozitsiyasiz kontent har doim pastda).
+
+🔴 **INTERAKTIV HOLATLAR o'lchovga KIRADI.** Foydalanuvchi shikoyati aynan «xato
+TO'G'RILANGANDAN keyin bloklar ustma-ust» edi — bu holat bosilgandan keyin paydo bo'ladi va
+boshlang'ich o'lchovda UMUMAN ko'rinmaydi. Har ekran ochilgach bosiladigan elementlar
+ketma-ket bosiladi va har bosishdan keyin qayta o'lchanadi (to'xtash: element qolmadi ·
+ekran almashdi · kompilyator ochildi). ⚠️ Bosish soni **0** bo'lsa hisobot ogohlantiradi —
+aks holda «toza» hukmi yarim bo'lib qoladi va buni hech kim sezmaydi.
+
+🔴 **BIR NECHTA EKRAN O'LCHAMI.** Dars `--lz` bilan masshtablanadi, ya'ni layout har
+o'lchamda boshqacha. Standart: `1280x773` (sinf kompyuteri) va `1366x768` (arzon noutbuk).
+
+🔴 **O'lchov o'zini sinaydi:** `--selftest` ataylab toshiruvchi CSS kiritadi; detektor uni
+TUTMASA, «toza» hukmiga ishonilmaydi. Asbob o'lik bo'lib qolishi mumkin — masalan ekranlar
+soni `N / M` ning BIRINCHI mosligidan olinardi va nishon-hisoblagichi (`🏅 0/4`) o'qilib,
+18 ekranlik dars **4 ekrani** bilan «toza» deb baholanardi.
+
+### d) SUZUVCHI QATLAM (`position: fixed`) tushadigan YO'LAK o'lchanadi (F-0912-06, 2026-09-12)
+
+Burchakdagi tugma bitta darsning ichida yashaydi; **suzuvchi qatlam esa bitta fayldan
+turib 109 darsning ustiga tushadi**. Shuning uchun uning balandligi «chiroyli ko'ringani
+uchun» emas, **u tushadigan yo'lakning o'lchovi bo'yicha** tanlanadi.
+
+**Dalil.** Jonli-dars lavhasi (`.live-badge`, `src/live/LiveUI.jsx`) `top: 10` + balandligi
+36 edi, ya'ni `y 10..46` ni egallardi. Dars sarlavhasi (`div.chrome > .eyebrow`) esa **har
+darsda, har ekran o'lchamida aynan `y 34..51`** da turadi (m1/m2/m4 · 1280 · 1366 · 1024 da
+o'lchandi — tasma `--lz` bilan masshtablanmaydi, raqam o'zgarmaydi). Ikkisi **12 px ni
+bo'lishib** olardi: ruscha uzun sarlavha lavha ostida qolardi.
+
+🔴 **Kichik ekran — yomonroq, teskari emas.** Lavha markazda: 1280 da `x 492` dan,
+**1024 da `x 361`** dan boshlanadi, sarlavha esa doim chapdan boshlanadi. Ya'ni ekran
+kichraygani sari to'qnashuv **ko'payadi** — o'quvchining kichik noutbuki eng yomon holat.
+Bitta katta ekranda ko'rib «toza» deyish mumkin emas.
+
+**Qoida:**
+1. Suzuvchi qatlamning `top` + balandligi yig'indisi u tushadigan birinchi matn qatorining
+   yuqori chetidan **kichik** bo'lsin (zaxira ≥ 3 px). O'lchov brauzerda olinadi.
+2. Balandlik **ichki chekinishdan** qisqartiriladi, **boshqaruv o'lchamidan emas** — tugma
+   22 px bo'lib qolsin (bosish qulayligi 147-qonun hisobiga yo'qotilmaydi).
+3. Yo'lakda matnsiz element ham bo'lishi mumkin (progress-chizig'i `y 18..21`) — u
+   `innerText` bilan izlanmaydi, shuning uchun yo'lak **hamma element** bo'yicha ko'riladi.
+4. Kontentni pastga surib joy ochish **RAD** — sahifa balandligi aynan ekranga teng
+   (`scrollHeight == viewport`), surilsa pastdagi tugma qirqiladi (60-qonun).
+
+### e) JAVOBDAN KEYINGI HOLAT HAM PASTKI CHIZIQQA SIG'ADI (F-0913-02, 2026-09-13)
+
+Ekran boshlang'ich holatda sig'ishi **yetmaydi**: izoh qutisi, «📖 Qisqa takrorlash» tugmasi,
+ochilgan qadam — hammasi BOSILGANDAN keyin qo'shiladi va aynan shular navigatsiya chizig'i
+ostiga tushadi. O'quvchi buni «pastda qirqilib qolgan» deb ko'radi.
+
+**Dalil (GitHub darslari):**
+
+| Ekran | Nima qirqilardi | Qancha |
+|---|---|---|
+| m4c-03 s18 (debugging) | xato javobda izoh + takrorlash tugmasi | 7–29 px |
+| m4c-03 s17 (markaziy) | `ci.yml` va «🚀 Lentaga qo'ying» — **boshlang'ich holatda ham** | 140–158 px |
+| m1-09 s13 (amaliyot) | 5-qadam matni + 🛟 zaxira-panel butunlay | 56–94 px |
+
+**Yechim naqshlari (qo'llangan):**
+1. **Bo'sh ustunga ko'chirish** — ikki ustunli ekranda bir ustun toshsa, ikkinchisida odatda
+   150–240 px bo'sh joy bor. Izoh o'zi haqida gapirgan artefakt OSTIGA qo'yiladi (s18: jurnal
+   haqidagi izoh jurnal ostida, telefon o'rnida), yuborish tugmasi natija ustiga (s17).
+2. **Kutayotgan qadam ixcham, faol qadam to'liq** — yopiq/bajarilgan qatorning ichki
+   chekinishi kichrayadi, faol qadam o'z o'lchamida qoladi (m1-09 s13). Faol qadam 1→N
+   siljiganda HAR holat alohida o'lchanadi — eng baland holat ko'pincha o'rtada (yordam
+   qatori bor qadam).
+3. 🔴 **RAD:** shriftni kichraytirib sig'dirish (o'qilish yo'qoladi) va «baribir skroll bor»
+   deb qoldirish (60-qonun).
+
+**O'lchov (brauzerda) — uch yolg'on joy, uchalasi shu seansda tutildi:**
+- `scrollHeight − clientHeight` pastki chekinishni (`padding-bottom`) to'liq qo'shmaydi —
+  «−34 px» tuzatmasi noto'g'ri chiqdi. To'g'ri o'lchov: ustunlarning `getBoundingClientRect().bottom`
+  minus `.stage-content` pastki cheti.
+- Yopiq `<details>` tanasi (`.dsx-fb-body`) koordinatada 265 px pastda turadi, lekin ko'rinmaydi —
+  ota-qirqishni hisobga olmagan o'lchov yolg'on «qirqilgan» beradi.
+- `scrollWidth > clientWidth` butun pikselga yumaloqlanadi: 0,47 px toshish «0» chiqadi, ekranda
+  esa uch nuqta turadi (m3-06 «Brookhav…»). Matn eni `Range` bilan o'lchanadi.
+
+🔴 **ASBOBNING KO'R NUQTASI (halol qayd).** `layout-lint.mjs` 109 darsni «toza» degan, lekin bu
+sinfni ko'rmagan, chunki: (1) har o'lchovdan oldin skrollni `0` ga qaytaradi va `.stage-content`
+toshishini tekshirmaydi; (2) har ekranda **birinchi** bosiladigan elementni bosadi — test
+ekranida bu ko'pincha to'g'ri javob, ya'ni **xato javob holati hech qachon o'lchanmagan**.
+Butun kurs bo'yicha sivirma: `KATTA_TOZALASH.md` §34.
+
+**Asbob yopildi (2026-09-13, §34):** `layout-lint.mjs` ga **E-detektor** (`.screen` ichidagi eng
+pastki ko'rinadigan element − `.stage-content` pastki cheti, ota-qirqish va yopiq `<details>`
+hisobga olinadi) + test ekranida **2–4-variant ham** ekran qayta ochilib bosiladi. Hisobotda
+uch bo'lim: **haqiqiy** (chiqish kodini yiqitadi) · **o'quvchi ochgan panel** · **yakun ekrani**.
+Kalibrovka isboti: tahrirdan oldingi GitHub nusxasida s13/s17/s18 (v1–v3 — xato javob) ushlandi,
+tuzatilgan nusxada haqiqiy bo'lim bo'sh; `--selftest` sarlavhani 900px cho'zadi — 13 ekranda ushlandi.
+🔴 **Kalibrovka-6 — ochilgan akkordeon yopiladi.** Asbob `<summary>` ni bosib panelni ochsa,
+o'lchovdan keyin qayta yopadi: aks holda bitta ochiq panel keyingi hamma holatni «pastga tushgan»
+qilib, haqiqiy nuqsonni yashiradi (m1-09 s3: 5 holat «253px» — sababi bitta ochiq 🛟 panel).
+🔴 **Kalibrovka-7 — chiziqni faqat ko'rinadigan narsa belgilaydi.** Eng pastki element sifatida
+faqat o'z matni, rasm/maydon/tugma, fon, chegara yoki soyasi borlar olinadi; bo'sh o'rovchi `div`
+va shaffof (`opacity: 0`) ota ichidagilar sanalmaydi. Dalil: m1-05 s7 — ekranda hammasi sig'adi,
+asbob esa `min-height` li 298px bo'sh `div` ni «pastga tushgan» degan.
+🔴 **KO'R NUQTA — NAVIGATSIYA JIM YIQILADI (m2-05).** Asbob ekranlar sonini «eng katta N / M
+maxraji»dan olardi. m2-05 1-ekranida «0 / 30» xabar-hisoblagichi bor → `total: 30` yozildi;
+`progRead` esa `p.total !== TOTAL_SCREENS` bo'lsa yozuvni **jimgina rad etadi** va dars 1-ekrandan
+ochiladi. Natija: 19 ekranlik dars 19 marta **bitta ekran** bilan o'lchangan, xato ham chiqmagan.
+Tuzatish: ekranlar soni ikki xonali ekran-hisoblagichidan («01 / 19», 109 darsdan 108 tasida bor)
+olinadi; har ekranga o'tgach hisoblagich tekshiriladi — mos kelmasa `NAV:` ogohlantirishi yoziladi.
+Umumiy saboq (m3-05 dan keyin ikkinchi marta): **asbob o'lchagan ekran — so'ralgan ekranmi,
+buni har safar TASDIQLASH shart; «xato chiqmadi» — «to'g'ri o'lchandi» degani emas.**
+
+**Yonma-yon topilgan eski nuqson (F-0913-03):** `GitLesson` terminal-maketi `.term*` sinflari
+bilan yozilgan, lakin fayl ichida uslubi YO'Q edi — uch ekranda qatorlar yopishgan oddiy matn
+bo'lib chiqardi (HEAD da ham shunday). Tekshiruv: `className="term"` ishlatgan har fayl
+`.term {` qoidasini ham saqlashi shart — kursda 21 fayl, hozir hammasi toza.

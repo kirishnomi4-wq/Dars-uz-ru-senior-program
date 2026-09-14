@@ -1831,7 +1831,7 @@ const Screen13b = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <Zoomable>
         <div className="frame frame-col fade-up delay-2">
           {/* Inventar — paket nimani tashiydi */}
-          <div className="net-hud">
+          <div className="net-hud zb-gap">
             <span className={`net-slot ${hasIP ? 'on' : ''}`}><span className="net-slot-ic">📇</span>{hasIP ? <span className="net-hud-ip">{target.ip}</span> : tr({ uz: "IP-manzil yo'q", ru: 'Нет IP-адреса' })}</span>
             <span className={`net-slot ${hasPage ? 'on' : ''}`}><span className="net-slot-ic">📄</span>{hasPage ? tr({ uz: 'Sahifa ✓', ru: 'Страница ✓' }) : tr({ uz: "Sahifa yo'q", ru: 'Нет страницы' })}</span>
             <span className="net-moves">{tr({ uz: 'Qadam:', ru: 'Шагов:' })} {moves}</span>
@@ -3074,6 +3074,10 @@ export default function HtmlLesson({ lang: langProp, onFinished, liveToken }) {
         /* Kattalashtirish (zoom) — animatsiyani katta ekranda ko'rish */
         .zoomable { position: relative; }
         .zoom-btn { position: absolute; top: 6px; right: 6px; z-index: 5; width: 30px; height: 30px; border-radius: 8px; border: none; background: rgba(255,255,255,0.82); color: ${T.ink2}; font-size: 14px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.22); transition: all 0.2s; }
+        /* F-0912-03 · 147-qonun: ⛶ tugmasi turgan burchakda JOY. Ilgari bu faqat
+           max-width:560px ichida edi — mobilda tuzatilgan, ish stolida qolib ketgan:
+           1280px da «Qadam» hisoblagichining 32% i tugma ostida yotardi. */
+        .zb-gap { padding-right: 40px; }
         .zoom-btn:hover { background: ${T.paper}; color: ${T.accent}; transform: scale(1.08); }
         .zoom-backdrop { position: fixed; inset: 0; background: rgba(14,14,16,0.55); z-index: 1000; animation: fade-step 0.25s ease; }
         .zoom-on { position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%); width: min(880px,94vw); max-height: calc(90vh / var(--lz, 1)); overflow: auto; z-index: 1001; background: ${T.paper}; border-radius: 18px; padding: clamp(20px,4vw,42px); box-shadow: 0 30px 80px -20px rgba(${T.shadowBase},0.5); animation: zoom-pop 0.3s cubic-bezier(.34,1.3,.4,1); }
@@ -3775,7 +3779,6 @@ export default function HtmlLesson({ lang: langProp, onFinished, liveToken }) {
         .net-hint { font-family: 'Georgia, serif'; font-style: italic; color: ${T.ink3}; font-size: clamp(12.5px,1.5vw,13.5px); text-align: center; margin: 0; }
         /* Mobil: 3 server tik ustunda — xarita balandroq bo'lsin, tugunlar kichrayadi, IP yorliqlari ustma-ust tushmaydi */
         @media (max-width: 560px) {
-          .net-hud { padding-right: 38px; } /* "Qadam" hisoblagichi ⛶ tugma ortida qolmasin */
           .net-map { aspect-ratio: 3 / 4; max-height: 380px; }
           .net-node { width: clamp(48px,15vw,62px); gap: 2px; }
           .net-node-ic { width: clamp(33px,8.5vw,40px); height: clamp(33px,8.5vw,40px); font-size: clamp(15px,4vw,19px); }

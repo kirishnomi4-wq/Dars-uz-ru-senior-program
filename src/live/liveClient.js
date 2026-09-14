@@ -26,7 +26,12 @@ const API = `${LIVE_API_URL}/api/v1/live`;
 async function errorFrom(r, fallback) {
   let msg = '';
   try { msg = (await r.json()).message || ''; } catch { /* JSON emas */ }
-  return new Error(msg || fallback);
+  const e = new Error(msg || fallback);
+  // 🔴 F-0912-07: HTTP holati XATO OBYEKTIGA ilinadi. Busiz chaqiruvchi «kod noto'g'ri» (401)
+  // bilan «serverga yetib bo'lmadi» (tarmoq/CORS — fetch umuman otiladi) ni ajrata olmaydi va
+  // ikkalasiga bitta xabar beradi. Sinfda server yiqilganda mentor kodni qidirib vaqt yo'qotadi.
+  e.status = r.status;
+  return e;
 }
 
 /** POST /rpc/<fn> — setof → massiv, scalar → qiymat, void → null (204). */

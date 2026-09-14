@@ -1078,7 +1078,10 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             const correct = ans[i] === c.a;
             const wrong = ans[i] && ans[i] !== c.a;
             return (
-              <div key={i} className={correct ? 'ring-green' : ''} style={{ display: 'flex', alignItems: 'center', gap: 12, background: T.paper, borderRadius: 12, padding: '12px 15px', boxShadow: `0 6px 16px -6px rgba(${T.shadowBase},0.14)`, flexWrap: 'wrap' }}>
+              // F-0912-09 · 147-qonun (a): o'ngdan 40px zaxira — ⛶ tugmasi (o'ngdan 6+30=36px) BIRINCHI
+              // qatorning `const` tugmasi ustiga tushardi. Zaxira hamma qatorga BIRDEK
+              // beriladi: tugmalar ustma-ust tekis qoladi, ⛶ bo'sh yo'lakda o'tiradi.
+              <div key={i} className={correct ? 'ring-green' : ''} style={{ display: 'flex', alignItems: 'center', gap: 12, background: T.paper, borderRadius: 12, padding: '12px 40px 12px 15px', boxShadow: `0 6px 16px -6px rgba(${T.shadowBase},0.14)`, flexWrap: 'wrap' }}>
                 <span style={{ flex: 1, minWidth: 140, fontFamily: "'Manrope',sans-serif", fontWeight: 600, color: T.ink }}>{tr(c.t)}</span>
                 {correct ? (
                   <span className="mono pop-in" style={{ color: T.success, fontWeight: 700, fontSize: 14 }}>✓ {c.a} — {tr(c.why)}</span>
@@ -1353,10 +1356,10 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <Col>
             {!found && (
               picked && picked !== 'ism'
-                ? (<div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Bu qator to'g'ri. Yana qarang: qaysi matn qiymatida <b>qo'shtirnoq yetishmayapti</b>?</>, ru: <>Эта строка верная. Посмотрите ещё: какому текстовому значению <b>не хватает кавычек</b>?</> })}</p></div>)
-                : (<div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: <>Eslang: matn qiymati doim <b style={{ color: T.ink }}>qo'shtirnoq ichida</b> bo'lishi kerak. Qaysi qatorda yo'q?</>, ru: <>Вспомните: текстовое значение всегда должно быть <b style={{ color: T.ink }}>в кавычках</b>. В какой строке их нет?</> })}</p></div>)
+                ? (<div className="frame-warn fade-step"><p className="body zb-notch" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Bu qator to'g'ri. Yana qarang: qaysi matn qiymatida <b>qo'shtirnoq yetishmayapti</b>?</>, ru: <>Эта строка верная. Посмотрите ещё: какому текстовому значению <b>не хватает кавычек</b>?</> })}</p></div>)
+                : (<div className="hint"><p className="body zb-notch" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: <>Eslang: matn qiymati doim <b style={{ color: T.ink }}>qo'shtirnoq ichida</b> bo'lishi kerak. Qaysi qatorda yo'q?</>, ru: <>Вспомните: текстовое значение всегда должно быть <b style={{ color: T.ink }}>в кавычках</b>. В какой строке их нет?</> })}</p></div>)
             )}
-            {found && !fixed && (<div className="frame-warn fade-step"><p className="note-h" style={{ color: T.accent }}>{tr({ uz: '✓ Topdingiz!', ru: '✓ Нашли!' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <><span className="mono">Aziza</span> qo'shtirnoqsiz — kompyuter uni o'zgaruvchi deb o'ylab, topolmayapti. To'g'risi: <span className="mono">"Aziza"</span>. Chap tugmani bosing →</>, ru: <><span className="mono">Aziza</span> без кавычек — компьютер думает, что это переменная, и не может её найти. Правильно: <span className="mono">"Aziza"</span>. Нажмите кнопку слева →</> })}</p></div>)}
+            {found && !fixed && (<div className="frame-warn fade-step"><p className="note-h" style={{ color: T.accent }}>{tr({ uz: '✓ Topdingiz!', ru: '✓ Нашли!' })}</p><p className="body zb-notch" style={{ margin: 0, color: T.ink }}>{tr({ uz: <><span className="mono">Aziza</span> qo'shtirnoqsiz — kompyuter uni o'zgaruvchi deb o'ylab, topolmayapti. To'g'risi: <span className="mono">"Aziza"</span>. Chap tugmani bosing →</>, ru: <><span className="mono">Aziza</span> без кавычек — компьютер думает, что это переменная, и не может её найти. Правильно: <span className="mono">"Aziza"</span>. Нажмите кнопку слева →</> })}</p></div>)}
             {fixed && (<>
               <p className="flow-label">{tr({ uz: 'Endi ishlaydi', ru: 'Теперь работает' })}</p>
               <div style={{ display: 'flex', justifyContent: 'center' }}><VarBox name="ism" value={'"Aziza"'} valColor={CODE.str} small /></div>
@@ -2429,19 +2432,29 @@ export default function JsVarsLesson({ lang: langProp, onFinished, onPractice, l
       earn('coder'); // 🏅 praktikada o'z qo'li bilan kod yozdi
       pracClear(LESSON_META.lessonId); setPractice(null); advance();
     };
-    if (typeof onPractice === 'function') Promise.resolve(onPractice(entry.task)).then(done);
-    else { pracWrite(LESSON_META.lessonId, { kind: `s${fromScreen}`, screen: fromScreen }); setPractice({ ...entry, done, codeKey: codeKeyOf(LESSON_META.lessonId, `s${fromScreen}`) }); }
+    // F-0912-04 (2026-09-12): LMS praktika-yo'li yiqilsa — o'quvchi qotib qolmasin.
+    // Ilgari `.then(done)` da rad-etish TUTILMASDI: LMS tomoni yiqilsa (tarmoq uzilishi,
+    // chunk yuklanmasligi, postMessage xatosi) praktika ochilmas, xato jim yutilar va dars
+    // ham oldinga ketmasdi — 20 o'quvchidan 1 tasida aynan shu. Endi xato tutiladi va
+    // darsning O'Z kompilyatoriga tushiladi: mashq baribir bajariladi, signal ham ketadi.
+    const openLocal = () => { pracWrite(LESSON_META.lessonId, { kind: `s${fromScreen}`, screen: fromScreen }); setPractice({ ...entry, done, codeKey: codeKeyOf(LESSON_META.lessonId, `s${fromScreen}`) }); };
+    if (typeof onPractice !== 'function') { openLocal(); return; }
+    try { Promise.resolve(onPractice(entry.task)).then(done, openLocal); }
+    catch { openLocal(); }
   };
   // 🏠 UYGA VAZIFA PRAKTIKASI (yakun-sahifadagi tugma) — yakuniy topshiriq (TASK_QUTILAR).
   // Dars-ichi mashqidan farqi: keyingi ekranga O'TKAZMAYDI (oxirgi sahifa) va serverga
   // «bajardim» signali YUBORMAYDI — bu uy ishi, sinf ishi emas.
   const openHomeworkPractice = () => {
     const entry = { task: TASK_QUTILAR, starter: '' };
-    if (typeof onPractice === 'function') Promise.resolve(onPractice(entry.task)).catch(() => {});
-    else {
+    // F-0912-04: LMS yo'li yiqilsa — uyga vazifa ham darsning o'z kompilyatorida ochiladi.
+    const openLocal = () => {
       pracWrite(LESSON_META.lessonId, { kind: 'hw' });
       setPractice({ ...entry, codeKey: codeKeyOf(LESSON_META.lessonId, 'hw'), done: () => { pracClear(LESSON_META.lessonId); setPractice(null); } });
-    }
+    };
+    if (typeof onPractice !== 'function') { openLocal(); return; }
+    try { Promise.resolve(onPractice(entry.task)).catch(openLocal); }
+    catch { openLocal(); }
   };
   // F-0801-01 (102-qonun): qayta yuklanishda ochiq praktika tiklanadi.
   useEffect(() => {
@@ -2529,6 +2542,11 @@ export default function JsVarsLesson({ lang: langProp, onFinished, onPractice, l
         @keyframes fade-step { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
         .zoomable { position: relative; }
         .zoom-btn { position: absolute; top: 6px; right: 6px; z-index: 5; width: 30px; height: 30px; border-radius: 8px; border: none; background: rgba(255,255,255,0.82); color: ${T.ink2}; font-size: 14px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.22); transition: all 0.2s; }
+        /* F-0912-09 · 147-qonun (m1 da muhrlangan naqsh): ⛶ tugmasi burchagini matn
+           AYLANIB o'tadi — faqat tugma yonidagi qator qisqaradi, qolganlari to'liq
+           kenglikda qoladi. Hisob: tugma o'ngdan 6+30=36px egallaydi, idishning o'z
+           o'ng chekinishi 15–16px → ~20px yetishmaydi, 28px nafas bilan olinadi. */
+        .zb-notch::before { content: ''; float: right; width: 28px; height: 28px; }
         .zoom-btn:hover { background: ${T.paper}; color: ${T.accent}; transform: scale(1.08); }
         .zoom-backdrop { position: fixed; inset: 0; background: rgba(14,14,16,0.55); z-index: 1000; animation: fade-step 0.25s ease; }
         .zoom-on { position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%); width: min(880px,94vw); max-height: calc(90vh / var(--lz, 1)); overflow: auto; z-index: 1001; background: ${T.paper}; border-radius: 18px; padding: clamp(20px,4vw,42px); box-shadow: 0 30px 80px -20px rgba(${T.shadowBase},0.5); animation: zoom-pop 0.3s cubic-bezier(.34,1.3,.4,1); }

@@ -918,7 +918,7 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             </pre>
           </Col>
           <Col>
-            <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between' }}>
+            <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', paddingRight: 40 }}>
               <p className="flow-label" style={{ margin: 0 }}>{tr({ uz: 'Qismni bosing', ru: 'Нажмите на часть' })}</p>
               <span className="small mono" style={{ color: done ? T.success : T.ink3 }}>{seen.size} / 5 {tr({ uz: "ko'rildi", ru: 'просмотрено' })}</span>
             </div>
@@ -1180,7 +1180,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </Col>
           <Col>
             {!done
-              ? <div className="frame-warn fade-step"><p className="note-h" style={{ color: T.accent }}>📭 <span className="pechat-404">{tr({ uz: '404 · Vozvrat', ru: '404 · Возврат' })}</span> {tr({ uz: 'pechati', ru: '— печать' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Path to'g'ri (<span className="mono">/games</span>), lekin xat shtampi (<span className="mono">POST</span>) tabelkaga mos kelmasa — server baribir <b style={{ color: T.accent }}>404</b> qaytaradi. Tabelkani xat shtampiga moslang.</>, ru: <>Path верный (<span className="mono">/games</span>), но если штамп письма (<span className="mono">POST</span>) не совпадает с табличкой — сервер всё равно вернёт <b style={{ color: T.accent }}>404</b>. Приведите табличку в соответствие со штампом.</> })}</p></div>
+              ? <div className="frame-warn fade-step"><p className="note-h" style={{ color: T.accent }}>📭 <span className="pechat-404">{tr({ uz: '404 · Vozvrat', ru: '404 · Возврат' })}</span> {tr({ uz: 'pechati', ru: '— печать' })}</p><p className="body zb-notch" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Path to'g'ri (<span className="mono">/games</span>), lekin xat shtampi (<span className="mono">POST</span>) tabelkaga mos kelmasa — server baribir <b style={{ color: T.accent }}>404</b> qaytaradi. Tabelkani xat shtampiga moslang.</>, ru: <>Path верный (<span className="mono">/games</span>), но если штамп письма (<span className="mono">POST</span>) не совпадает с табличкой — сервер всё равно вернёт <b style={{ color: T.accent }}>404</b>. Приведите табличку в соответствие со штампом.</> })}</p></div>
               : <div className="takeaway fade-step"><div className="ta-bulb">🚪</div><p className="ta-h">{tr({ uz: 'Shtamp mos kelmasa — 404!', ru: 'Штамп не совпал — 404!' })}</p><p className="ta-sub">{tr({ uz: "Eshik tabelkasi (dekorator) xat shtampiga (method) to'g'ri kelishi shart", ru: 'Табличка двери (декоратор) должна совпадать со штампом письма (method)' })}</p></div>}
           </Col>
         </div>
@@ -2379,6 +2379,11 @@ export default function RoutingLesson({ lang: langProp, onFinished, liveToken })
         .mentor { display: flex; gap: 12px; align-items: flex-start; }
         .zoomable { position: relative; }
         .zoom-btn { position: absolute; top: 6px; right: 6px; z-index: 5; width: 30px; height: 30px; border-radius: 8px; border: none; background: rgba(255,255,255,0.82); color: ${T.ink2}; font-size: 14px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.22); transition: all 0.2s; }
+        /* F-0912-09 · 147-qonun: matn ⛶ tugmasi burchagini AYLANIB o'tadi — faqat
+           tugma yonidagi qator qisqaradi. Tugma o'ngdan 6+30=36px egallaydi, 28px nafas.
+           Notch qutining HAMMA holat-matniga qo'yiladi: qaysi holat ekranda turgani
+           tilga bog'liq (ruscha jumla uzunroq — uz da sig'gani ru da tugma ostiga tushadi). */
+        .zb-notch::before { content: ''; float: right; width: 28px; height: 28px; }
         .zoom-btn:hover { background: ${T.paper}; color: ${T.accent}; transform: scale(1.08); }
         .zoom-backdrop { position: fixed; inset: 0; background: rgba(14,14,16,0.55); z-index: 1000; animation: fade-step 0.25s ease; }
         .zoom-on { position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%); width: min(880px,94vw); max-height: 90vh; overflow: auto; z-index: 1001; background: ${T.paper}; border-radius: 18px; padding: clamp(20px,4vw,42px); box-shadow: 0 30px 80px -20px rgba(${T.shadowBase},0.5); animation: zoom-pop 0.3s cubic-bezier(.34,1.3,.4,1); }

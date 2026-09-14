@@ -801,16 +801,33 @@ const BLOKS = [
 const BMAP = {}; BLOKS.forEach(b => { BMAP[b.key] = b; });
 
 // Vaqt-chizig'i — 6 bo'lak, kengligi o'z vaqtiga mos. Dars davomida to'lib boradi.
+//
+// 🔴 F-0912-03 (2026-09-12): YOZUV KARTA ICHIDAN CHIQARILDI.
+// Karta kengligi VAQTGA proporsional (`flex: b.sec`) — eng qisqa bo'lak 20 soniya, ya'ni
+// atigi ~36px matn joyi. «Keyingi qadam» u yerga sig'masdi va `overflow: hidden` uni
+// kesardi: o'quvchi 6 ta bo'limdan 5 tasining nomini o'qiy olmasdi (uz va ru — ikkalasida).
+// Endi kartada FAQAT rangli chiziq va vaqt qoladi (ikkalasi tor kartaga ham sig'adi),
+// nomlar esa pastdagi ro'yxatda — kengligi MATNGA qarab o'lchanadi, vaqtga emas.
+// Shunday qilib vaqt-proporsiyasi ham ko'rinadi, nom ham to'liq o'qiladi.
 const TimeLine = ({ active = -1, progress = 0, big }) => (
-  <div className={`tl ${big ? 'big' : ''} fade-up`}>
-    {BLOKS.map((b, i) => (
-      <div key={b.key} className={`tl-seg ${active === i ? 'now' : ''}`} style={{ flex: b.sec, '--tlc': b.color }}>
-        <span className="tl-bar" />
-        <span className="tl-lb">{tr(b.label)}</span>
-        <span className="tl-t mono">{fmtSec(b.sec)}</span>
-      </div>
-    ))}
-    {progress > 0 && <span className="tl-run" style={{ left: `${Math.min(100, progress * 100)}%` }} />}
+  <div className={`tl-wrap ${big ? 'big' : ''} fade-up`}>
+    <div className="tl">
+      {BLOKS.map((b, i) => (
+        <div key={b.key} className={`tl-seg ${active === i ? 'now' : ''}`} style={{ flex: b.sec, '--tlc': b.color }}>
+          <span className="tl-bar" />
+          <span className="tl-t mono">{fmtSec(b.sec)}</span>
+        </div>
+      ))}
+      {progress > 0 && <span className="tl-run" style={{ left: `${Math.min(100, progress * 100)}%` }} />}
+    </div>
+    <ul className="tl-keys">
+      {BLOKS.map((b, i) => (
+        <li key={b.key} className={`tl-key ${active === i ? 'now' : ''}`} style={{ '--tlc': b.color }}>
+          <span className="tl-dot" />
+          <span className="tl-lb">{tr(b.label)}</span>
+        </li>
+      ))}
+    </ul>
   </div>
 );
 
@@ -3499,17 +3516,26 @@ export default function PmLesson3({ lang: langProp, onFinished, liveToken }) {
         @keyframes pc-light { 0% { opacity: 0; transform: translateY(7px) scale(0.99); filter: brightness(1.9); } 55% { filter: brightness(1.35); } 100% { opacity: 1; transform: translateY(0) scale(1); filter: brightness(1); } }
 
         /* === ⏱️ VAQT-CHIZIG'I — 3 daqiqa 6 bo'lakka bo'linadi === */
+        /* F-0912-03: kartada rangli chiziq + vaqt; nomlar pastdagi tl-keys ro'yxatida. */
+        .tl-wrap { display: flex; flex-direction: column; gap: 9px; }
         .tl { display: flex; gap: 5px; position: relative; align-items: stretch; }
         .tl-seg { display: flex; flex-direction: column; gap: 4px; min-width: 0; padding: 8px 7px 9px; border-radius: 11px; background: ${T.paper}; box-shadow: 0 5px 14px -9px rgba(${T.shadowBase},0.18); transition: all 0.3s; }
         .tl-bar { display: block; height: 5px; border-radius: 99px; background: var(--tlc); opacity: 0.35; transition: opacity 0.3s, height 0.3s; }
-        .tl-lb { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 11px; color: ${T.ink2}; line-height: 1.25; overflow: hidden; text-overflow: ellipsis; }
         .tl-t { font-size: 10px; color: ${T.ink3}; }
-        .tl.big .tl-seg { padding: 12px 11px 13px; }
-        .tl.big .tl-lb { font-size: 12.5px; color: ${T.ink}; }
-        .tl.big .tl-bar { height: 7px; }
+        /* Nomlar-ro'yxati: kengligi MATNGA qarab (vaqtga emas) — shuning uchun hech qachon
+           kesilmaydi. Sig'masa keyingi qatorga o'tadi; overflow va ellipsis YO'Q (F-0912-03). */
+        .tl-keys { display: flex; flex-wrap: wrap; gap: 5px 14px; list-style: none; margin: 0; padding: 0; }
+        .tl-key { display: flex; align-items: center; gap: 6px; min-width: 0; }
+        .tl-dot { width: 8px; height: 8px; border-radius: 99px; background: var(--tlc); opacity: 0.4; flex-shrink: 0; transition: opacity 0.3s, transform 0.3s; }
+        .tl-lb { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 11px; color: ${T.ink2}; line-height: 1.25; }
+        .tl-key.now .tl-dot { opacity: 1; transform: scale(1.3); }
+        .tl-key.now .tl-lb { color: var(--tlc); }
+        .tl-wrap.big .tl-seg { padding: 12px 11px 13px; }
+        .tl-wrap.big .tl-lb { font-size: 12.5px; color: ${T.ink}; }
+        .tl-wrap.big .tl-dot { width: 9px; height: 9px; }
+        .tl-wrap.big .tl-bar { height: 7px; }
         .tl-seg.now { background: ${T.bg}; box-shadow: inset 0 0 0 2px var(--tlc), 0 10px 22px -10px rgba(${T.shadowBase},0.28); transform: translateY(-2px); }
         .tl-seg.now .tl-bar { opacity: 1; height: 8px; }
-        .tl-seg.now .tl-lb { color: var(--tlc); }
         .tl-run { position: absolute; top: -3px; bottom: -3px; width: 2px; background: ${T.accent}; border-radius: 99px; box-shadow: 0 0 8px 1px rgba(91,61,230,0.5); transition: left 1s linear; }
 
         /* === 🎤 MIKROFON-QUTISI === */

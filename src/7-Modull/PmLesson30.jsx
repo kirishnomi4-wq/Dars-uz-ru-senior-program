@@ -636,7 +636,7 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </Col>
           <Col>
             <div className="fade-up delay-1">
-              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6 }}><span className="flow-label">🔬 Tahlil</span><span className="mono" style={{ fontSize: 12, fontWeight: 700, color: done ? T.success : T.accent }}>{okCount}/{TRANSCRIPT.length}</span></div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6, paddingRight: 40 }}><span className="flow-label">🔬 Tahlil</span><span className="mono" style={{ fontSize: 12, fontWeight: 700, color: done ? T.success : T.accent }}>{okCount}/{TRANSCRIPT.length}</span></div>
               <div className="fmeter-track"><div className="fmeter-fill" style={{ width: `${(okCount / TRANSCRIPT.length) * 100}%` }} /></div>
             </div>
             {last ? (
@@ -898,7 +898,7 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <Zoomable><div className="split" ref={workRef}>
           <Col>
             <div className="fade-up delay-1">
-              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6 }}><span className="flow-label">🗺️ Reja</span><span className="mono" style={{ fontSize: 12, fontWeight: 700, color: passed ? T.success : T.accent }}>{completeCount}/5</span></div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6, paddingRight: 40 }}><span className="flow-label">🗺️ Reja</span><span className="mono" style={{ fontSize: 12, fontWeight: 700, color: passed ? T.success : T.accent }}>{completeCount}/5</span></div>
               <div className="fmeter-track"><div className="fmeter-fill" style={{ width: `${(completeCount / 5) * 100}%` }} /></div>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 7 }}>

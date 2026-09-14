@@ -3540,3 +3540,34 @@ ular fon emas, dalil.
 **Tekshirish:** ekrandagi har «o'zgardi / bo'ldi / yangilandi / o'chirildi» so'zini toping
 va so'rang: «bu o'zgarishning **oldingi holati** shu ekranda ko'rinadimi?» Yo'q bo'lsa —
 matn artefakt o'rnida ishlayapti, ya'ni ekranning ishini matn bajaryapti.
+
+## 180. BITTA SO'Z — BITTA ALIFBO: o'zbekcha so'z ichida kirill harf bo'lmaydi (F-0913-01, KATTA §33)
+
+Matn ruscha manbadan yoki kirill klaviaturada yozilganda qo'shimchalar kirillcha qolib ketadi.
+Ekranda ko'pincha sezilmaydi (`а` va `a` bir xil ko'rinadi), lekin so'z **buzuq**: qidiruv
+topmaydi, ekran o'quvchi noto'g'ri o'qiydi, `ч`/`д`/`г` kabi harflar esa ko'zga ham tashlanadi.
+
+| ❌ Eski (7-modul, 2026-09-13 gacha) | ✅ Yangi |
+|---|---|
+| «3/5 sinov**чи** bir xil muammo**ни** aytdimi» | «3/5 sinovchi bir xil muammoni aytdimi» |
+| «10 soniya ekran**га** tikildi» | «10 soniya ekranga tikildi» |
+| «Nihoyat past**дан**, kichik matn**дан** topdi» | «Nihoyat pastdan, kichik matndan topdi» |
+| ««yoqdimi?» de**б** so'rash» | ««yoqdimi?» deb so'rash» |
+| «Char**х** bir marta aylandi» | «Charx bir marta aylandi» |
+
+**Qamrov:** 321 so'z · 6 dars (m7-08…m7-13) + 2 kod izohi. O'zbekcha **butunlay kirillcha** so'z
+topilmadi — faqat qo'shimcha aralashgan.
+
+**Sabab-qoida:** bitta so'z ichida lotin va kirill harfi **yonma-yon** turishi o'zbekchada ham,
+ruschada ham bo'lmaydi — demak bu ishonchli signal (yolg'on topilma bermaydi).
+
+**Darvoza:** `til-lint-rules.json` → `aralash-yozuv-soz` 🔴 (yangi, tor). Eski keng qoida
+`kirill-lotin-matnda` 🟡 bo'lib qoldi: u qatorda `ru:` bo'lmasa har kirillni ushlaydi va
+kursda ~40 ta qonuniy ruscha matnga tushadi (homework, ko'p qatorli ru-satr) — 🔴 qilinsa
+30+ fayl yolg'on sabab bilan yiqilardi. Tor qoida sinaldi: kursda 0 · eski nusxada 59.
+
+**Qo'lda istisno (tegilmaydi):** qator ko'chirish belgisidan keyin ruscha so'z (`\n` + `Всё` —
+`\` bilan chiqariladi) · `ru:` maydonidagi `set` + `Значение`, `route` + `'ов` · `PmLesson6`
+regex'idagi `вс` + lotin `e` (lotin harfi bilan yozilgan javobni ham ushlash uchun ataylab).
+
+**Tekshirish:** matn yozilgach `npm run lint:til <fayl>` — `aralash-yozuv-soz` 0 bo'lishi shart.

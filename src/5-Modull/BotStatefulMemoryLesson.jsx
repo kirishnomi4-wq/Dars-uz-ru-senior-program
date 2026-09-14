@@ -917,8 +917,8 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </Col>
           <Col>
             {show
-              ? <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>❌ <b>Bu obyekt RAM'da — dasturning cho'ntagida</b> yashaydi. Server o'chsa yoki qayta ishga tushsa — cho'ntak bo'shab qoladi. Barcha bosqichlar <b>g'oyib bo'ladi</b>, yuzlab mijoz suhbat o'rtasida qolib ketadi.</>, ru: <>❌ <b>Этот объект живёт в RAM — в кармане программы</b>. Если сервер выключится или перезапустится — карман опустеет. Все этапы <b>исчезнут</b>, сотни клиентов зависнут посреди диалога.</> })}</p></div>
-              : <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Tugmani bosing ←', ru: 'Нажмите кнопку ←' })}</p></div>}
+              ? <div className="frame-warn fade-step"><p className="body zb-notch" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>❌ <b>Bu obyekt RAM'da — dasturning cho'ntagida</b> yashaydi. Server o'chsa yoki qayta ishga tushsa — cho'ntak bo'shab qoladi. Barcha bosqichlar <b>g'oyib bo'ladi</b>, yuzlab mijoz suhbat o'rtasida qolib ketadi.</>, ru: <>❌ <b>Этот объект живёт в RAM — в кармане программы</b>. Если сервер выключится или перезапустится — карман опустеет. Все этапы <b>исчезнут</b>, сотни клиентов зависнут посреди диалога.</> })}</p></div>
+              : <div className="frame-dash"><p className="small zb-notch" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Tugmani bosing ←', ru: 'Нажмите кнопку ←' })}</p></div>}
             {done && <div className="agent-card fade-step"><span className="agent-lbl">{tr({ uz: '📍 YECHIM', ru: '📍 РЕШЕНИЕ' })}</span><p className="agent-msg">{tr({ uz: <>Cho'ntak emas — <b>javondagi doimiy daftar</b> kerak. Mana shu yerda <b>PostgreSQL</b> kiradi.</>, ru: <>Нужен не карман, а <b>постоянный блокнот на полке шкафа</b>. Вот тут и вступает <b>PostgreSQL</b>.</> })}</p></div>}
           </Col>
         </div></Zoomable>
@@ -954,9 +954,9 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </Col>
           <Col>
             {restarted
-              ? <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Ko'rdingizmi? Cho'ntak bo'shab qoldi, lekin <b>javondagi daftar joyida</b>. Shuning uchun bosqichni ham, ma'lumotni ham javonga (PostgreSQL'ga) yozamiz.</>, ru: <>Видели? Карман опустел, а <b>блокнот в шкафу на месте</b>. Поэтому и этап, и данные мы пишем в шкаф (в PostgreSQL).</> })}</p></div>
-              : <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Tugmani bosing — restart qiling ←', ru: 'Нажмите кнопку — сделайте перезапуск ←' })}</p></div>}
-            {done && <div className="sk-info fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Xulosa: <b>cho'ntak — vaqtinchalik</b>, <b>javon — doimiy</b>. Ishonchli bot ma'lumotni javonga yozadi.</>, ru: <>Вывод: <b>карман — временный</b>, <b>шкаф — постоянный</b>. Надёжный бот пишет данные в шкаф.</> })}</p></div>}
+              ? <div className="frame-success fade-step"><p className="body zb-notch" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Ko'rdingizmi? Cho'ntak bo'shab qoldi, lekin <b>javondagi daftar joyida</b>. Shuning uchun bosqichni ham, ma'lumotni ham javonga (PostgreSQL'ga) yozamiz.</>, ru: <>Видели? Карман опустел, а <b>блокнот в шкафу на месте</b>. Поэтому и этап, и данные мы пишем в шкаф (в PostgreSQL).</> })}</p></div>
+              : <div className="frame-dash"><p className="small zb-notch" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Tugmani bosing — restart qiling ←', ru: 'Нажмите кнопку — сделайте перезапуск ←' })}</p></div>}
+            {done && <div className="sk-info fade-step"><p className="body zb-notch" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Xulosa: <b>cho'ntak — vaqtinchalik</b>, <b>javon — doimiy</b>. Ishonchli bot ma'lumotni javonga yozadi.</>, ru: <>Вывод: <b>карман — временный</b>, <b>шкаф — постоянный</b>. Надёжный бот пишет данные в шкаф.</> })}</p></div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -2333,6 +2333,9 @@ export default function BotStatefulMemoryLesson({ lang: langProp, onFinished, li
         .mentor { display: flex; gap: 12px; align-items: flex-start; }
         .zoomable { position: relative; }
         .zoom-btn { position: absolute; top: 6px; right: 6px; z-index: 5; width: 30px; height: 30px; border-radius: 8px; border: none; background: rgba(255,255,255,0.82); color: ${T.ink2}; font-size: 14px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.22); transition: all 0.2s; }
+        /* F-0912-09 · 147-qonun (a): matn zoom tugmasi burchagini aylanib o'tadi.
+           Notch qutining hamma holat-matniga qo'yiladi — qaysi holat ekranda turgani tilga bog'liq. */
+        .zb-notch::before { content: ''; float: right; width: 28px; height: 28px; }
         .zoom-btn:hover { background: ${T.paper}; color: ${T.accent}; transform: scale(1.08); }
         .zoom-backdrop { position: fixed; inset: 0; background: rgba(14,14,16,0.55); z-index: 1000; animation: fade-step 0.25s ease; }
         .zoom-on { position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%); width: min(880px,94vw); max-height: 90vh; overflow: auto; z-index: 1001; background: ${T.paper}; border-radius: 18px; padding: clamp(20px,4vw,42px); box-shadow: 0 30px 80px -20px rgba(${T.shadowBase},0.5); animation: zoom-pop 0.3s cubic-bezier(.34,1.3,.4,1); }

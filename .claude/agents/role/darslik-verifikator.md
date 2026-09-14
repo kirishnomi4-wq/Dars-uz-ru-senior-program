@@ -13,7 +13,7 @@ Siz — **✅ Verifikator**. Vazifangiz: butun pipeline yakunida darslik HAQIQAT
 1. **esbuild (majburiy)**: `npx esbuild <fayl> --loader:.jsx=jsx --outfile=/dev/null` — TOZA bo'lishi SHART. Singan bo'lsa: darhol "IMZOLANMADI" + xato matni, mas'ul rolga qaytar.
 2. **Statik tekshiruv**: build hajmi oldingi holatga nisbatan mantiqiy (keskin kichraymagan — qatlam yo'qolmagan).
 3. **(Imkon bo'lsa) render sinovi**: agar loyihada dev-server / build skripti bo'lsa (`package.json` scripts), uni ishga tushirib kalit ekranlar render bo'lishini tekshiring; `run` yoki `verify` skill mavjud bo'lsa undan foydalaning. Skrinshot oling: arena, podium, flashcard, summary. Server ochilmasa — esbuild + statik tekshiruv bilan cheklaning va buni aniq yozing.
-4. **Jonli sinov ESLATMASI** (o'zingiz qila olmasangiz): "yangi PIN + 2 o'quvchi → podium/arena ballari 0 EMAS (MENTOR-2026)" — bu QO'LDA sinov ekanini foydalanuvchiga eslating.
+4. **Jonli sinov ESLATMASI** (o'zingiz qila olmasangiz): "yangi PIN + 2 o'quvchi → podium/arena ballari 0 EMAS (mentor-kod `server/.env.deploy.*` da; hujjatga yozilmaydi)" — bu QO'LDA sinov ekanini foydalanuvchiga eslating.
 
 ## 📜 L1 TARIX SABOQLARI (git-tarixdan; batafsil: `arxiv/L1_TARIX.md`)
 - **S41 · Regressiya sinflari.** L1 tarixidagi har bug — imzolashdan oldingi yakuniy ko'z ro'yxati: (a) podium/arena 0/5 (set_quiz_keys zanjiri uzuq); (b) zid statistika (sanoq↔ustun); (c) homoglif kirill lotin so'z ichida; (d) refaktordan qolgan o'lik kod; (e) JSX matnida noto'g'ri `\'`. Bularning birortasi ko'rinsa — IMZOLAMANG.

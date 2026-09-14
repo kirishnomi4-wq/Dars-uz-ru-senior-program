@@ -1360,10 +1360,10 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <Col>
             {!found && (
               picked && picked !== 'if'
-                ? (<div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Bu qator to'g'ri — bu yerda <span className="mono">=</span> o'rinli (quti yaratyapti). Xato esa <b>shart ichida</b>.</>, ru: <>Эта строка верна — здесь <span className="mono">=</span> уместен (создаёт коробку). А ошибка — <b>внутри условия</b>.</> })}</p></div>)
-                : (<div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: <>Eslang: shart ichida tenglik <b style={{ color: T.ink }}>=== </b> bilan tekshiriladi. Qaysi qatorda <span className="mono">=</span> noto'g'ri ishlatilgan?</>, ru: <>Вспомните: внутри условия равенство проверяется через <b style={{ color: T.ink }}>=== </b>. В какой строке <span className="mono">=</span> использован неверно?</> })}</p></div>)
+                ? (<div className="frame-warn fade-step"><p className="body zb-notch" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Bu qator to'g'ri — bu yerda <span className="mono">=</span> o'rinli (quti yaratyapti). Xato esa <b>shart ichida</b>.</>, ru: <>Эта строка верна — здесь <span className="mono">=</span> уместен (создаёт коробку). А ошибка — <b>внутри условия</b>.</> })}</p></div>)
+                : (<div className="hint"><p className="body zb-notch" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: <>Eslang: shart ichida tenglik <b style={{ color: T.ink }}>=== </b> bilan tekshiriladi. Qaysi qatorda <span className="mono">=</span> noto'g'ri ishlatilgan?</>, ru: <>Вспомните: внутри условия равенство проверяется через <b style={{ color: T.ink }}>=== </b>. В какой строке <span className="mono">=</span> использован неверно?</> })}</p></div>)
             )}
-            {found && !fixed && (<div className="frame-warn fade-step"><p className="note-h" style={{ color: T.accent }}>✓ {tr({ uz: 'Topdingiz!', ru: 'Нашли!' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Shartda <span className="mono">=</span> — qiymat soladi, tekshirmaydi. To'g'risi: <span className="mono">===</span>. Chap tugmani bosing →</>, ru: <>В условии <span className="mono">=</span> кладёт значение, а не проверяет. Правильно: <span className="mono">===</span>. Нажмите кнопку слева →</> })}</p></div>)}
+            {found && !fixed && (<div className="frame-warn fade-step"><p className="note-h" style={{ color: T.accent }}>✓ {tr({ uz: 'Topdingiz!', ru: 'Нашли!' })}</p><p className="body zb-notch" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Shartda <span className="mono">=</span> — qiymat soladi, tekshirmaydi. To'g'risi: <span className="mono">===</span>. Chap tugmani bosing →</>, ru: <>В условии <span className="mono">=</span> кладёт значение, а не проверяет. Правильно: <span className="mono">===</span>. Нажмите кнопку слева →</> })}</p></div>)}
             {fixed && (<div className="takeaway fade-step"><div className="ta-bulb">🛠️</div><p className="ta-h">{tr({ uz: 'Topdingiz va tuzatdingiz — bu debugging!', ru: 'Нашли и починили — это дебаггинг!' })}</p><p className="ta-sub">{tr({ uz: 'Shartda doim === (tekshirish), = emas', ru: 'В условии всегда === (проверка), а не =' })}</p></div>)}
           </Col>
         </div>
@@ -2503,18 +2503,28 @@ export default function JsConditionsLesson({ lang: langProp, onFinished, onPract
       earn('logician'); // 🏅 o'z qo'li bilan kod yozib, ishga tushirdi
       pracClear(LESSON_META.lessonId); setPractice(null); advance();
     };
-    if (typeof onPractice === 'function') Promise.resolve(onPractice(entry.task)).then(done);
-    else { pracWrite(LESSON_META.lessonId, { kind: `s${fromScreen}`, screen: fromScreen }); setPractice({ ...entry, done, codeKey: codeKeyOf(LESSON_META.lessonId, `s${fromScreen}`) }); }
+    // F-0912-04 (2026-09-12): LMS praktika-yo'li yiqilsa — o'quvchi qotib qolmasin.
+    // Ilgari `.then(done)` da rad-etish TUTILMASDI: LMS tomoni yiqilsa (tarmoq uzilishi,
+    // chunk yuklanmasligi, postMessage xatosi) praktika ochilmas, xato jim yutilar va dars
+    // ham oldinga ketmasdi — 20 o'quvchidan 1 tasida aynan shu. Endi xato tutiladi va
+    // darsning O'Z kompilyatoriga tushiladi: mashq baribir bajariladi, signal ham ketadi.
+    const openLocal = () => { pracWrite(LESSON_META.lessonId, { kind: `s${fromScreen}`, screen: fromScreen }); setPractice({ ...entry, done, codeKey: codeKeyOf(LESSON_META.lessonId, `s${fromScreen}`) }); };
+    if (typeof onPractice !== 'function') { openLocal(); return; }
+    try { Promise.resolve(onPractice(entry.task)).then(done, openLocal); }
+    catch { openLocal(); }
   };
   // 🏠 UYGA VAZIFA PRAKTIKASI (yakun-sahifadagi tugma) — yakuniy topshiriq.
   // Dars-ichi mashqidan farqi: keyingi ekranga O'TKAZMAYDI va serverga signal YUBORMAYDI.
   const openHomeworkPractice = () => {
     const entry = { task: HW_TASK, starter: '' };
-    if (typeof onPractice === 'function') Promise.resolve(onPractice(entry.task)).catch(() => {});
-    else {
+    // F-0912-04: LMS yo'li yiqilsa — uyga vazifa ham darsning o'z kompilyatorida ochiladi.
+    const openLocal = () => {
       pracWrite(LESSON_META.lessonId, { kind: 'hw' });
       setPractice({ ...entry, codeKey: codeKeyOf(LESSON_META.lessonId, 'hw'), done: () => { pracClear(LESSON_META.lessonId); setPractice(null); } });
-    }
+    };
+    if (typeof onPractice !== 'function') { openLocal(); return; }
+    try { Promise.resolve(onPractice(entry.task)).catch(openLocal); }
+    catch { openLocal(); }
   };
   // F-0801-01 (102-qonun): qayta yuklanishda ochiq praktika tiklanadi.
   useEffect(() => {
@@ -2618,6 +2628,11 @@ export default function JsConditionsLesson({ lang: langProp, onFinished, onPract
         @keyframes fade-step { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
         .zoomable { position: relative; }
         .zoom-btn { position: absolute; top: 6px; right: 6px; z-index: 5; width: 30px; height: 30px; border-radius: 8px; border: none; background: rgba(255,255,255,0.82); color: ${T.ink2}; font-size: 14px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.22); transition: all 0.2s; }
+        /* F-0912-09 · 147-qonun (m1 da muhrlangan naqsh): ⛶ tugmasi burchagini matn
+           AYLANIB o'tadi — faqat tugma yonidagi qator qisqaradi, qolganlari to'liq
+           kenglikda qoladi. Hisob: tugma o'ngdan 6+30=36px egallaydi, idishning o'z
+           o'ng chekinishi 15–16px → ~20px yetishmaydi, 28px nafas bilan olinadi. */
+        .zb-notch::before { content: ''; float: right; width: 28px; height: 28px; }
         .zoom-btn:hover { background: ${T.paper}; color: ${T.accent}; transform: scale(1.08); }
         .zoom-backdrop { position: fixed; inset: 0; background: rgba(14,14,16,0.55); z-index: 1000; animation: fade-step 0.25s ease; }
         .zoom-on { position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%); width: min(880px,94vw); max-height: calc(90vh / var(--lz, 1)); overflow: auto; z-index: 1001; background: ${T.paper}; border-radius: 18px; padding: clamp(20px,4vw,42px); box-shadow: 0 30px 80px -20px rgba(${T.shadowBase},0.5); animation: zoom-pop 0.3s cubic-bezier(.34,1.3,.4,1); }
