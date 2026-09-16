@@ -160,7 +160,7 @@ function AchCounter() {
 const Stage = ({ children, eyebrow, screen, totalScreens = TOTAL_SCREENS, navContent, narrow, mentorStatic }) => {
   const isMobile = useIsMobile();
   const isNarrow = useIsMobile(768);
-  const collapseOn = !mentorStatic; // §34 (2026-09-14): Mentor kompyuterda ham birinchi bosishda yig'iladi
+  const collapseOn = isNarrow && !mentorStatic; // F-0914-08 (foydalanuvchi): kompyuterda Mentor doim ochiq, faqat tor ekranda yig'iladi
   const padH = isMobile ? 12 : 60;
   const [mCollapsed, setMCollapsed] = useState(false);
   const contentRef = useRef(null);
@@ -430,7 +430,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
       <div className="screen" style={{ justifyContent: isMentorLive ? 'flex-start' : 'center', gap: 'clamp(16px,2.5vw,24px)' }}>
         <div className="fade-up">{question}</div>
         {oneShot && !solved && <p className="small mono fade-up" style={{ margin: '-8px 0 0', color: T.accent, fontWeight: 600 }}>⚡ Jonli dars — bitta urinish, o'ylab bosing!</p>}
-        <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 11 }}>
+        <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: picked !== null ? 8 : 11 }}>
           {options.map((opt, i) => {
             let cls = 'option';
             if (isMentorLive) {
@@ -444,7 +444,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
             const showRedLetter = cls.includes('option-picked-wrong');
             const showDimLetter = cls.includes('option-wrong') && !showGreenLetter && !showRedLetter;
             return (
-              <button key={i} className={cls} disabled={solved || isMentorLive} onClick={() => pick(i)} style={{ padding: 'clamp(13px,1.9vw,17px) clamp(15px,2.2vw,20px)', fontSize: 'clamp(15px,1.85vw,17px)', display: 'flex', alignItems: 'center', gap: 12 }}>
+              <button key={i} className={cls} disabled={solved || isMentorLive} onClick={() => pick(i)} style={{ padding: picked !== null ? 'clamp(9px,1.3vw,12px) clamp(15px,2.2vw,20px)' : 'clamp(13px,1.9vw,17px) clamp(15px,2.2vw,20px)', fontSize: 'clamp(15px,1.85vw,17px)', display: 'flex', alignItems: 'center', gap: 12 }}>
                 <span className={`mq-abc ${showGreenLetter ? 'ok' : showRedLetter ? 'bad' : showDimLetter ? 'dim' : ''}`}>{showGreenLetter ? '✓' : showRedLetter ? '✗' : String.fromCharCode(65 + i)}</span>
                 <span style={{ flex: 1 }}>{fmtCode(opt)}</span>
               </button>
@@ -667,7 +667,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
   return (
     <Stage eyebrow="Kirish · Duolingo so'rovi" screen={screen} navContent={<NavNext optionalLive disabled={picked === null && !isMentor} label={picked !== null || isMentor ? 'Davom etish' : 'Avval ovoz bering'} onClick={onNext} />}>
       <div className="screen" style={{ gap: 'clamp(14px,2.2vw,20px)' }}>
-        <div className="hook-hero fade-up"><span className="hook-cup">🦉</span></div>
+        <div className={`hook-hero fade-up ${revealViz ? 'is-voted' : ''}`}><span className="hook-cup">🦉</span></div>
         <div className="head"><h2 className="title h-title fade-up" style={{ textAlign: 'center' }}>Odamlar Duolingo'ni nega <span className="italic" style={{ color: T.accent }}>har kuni</span> ochaveradi?</h2></div>
         <Mentor>Duolingo'dagi odamlar hatto vaqti yo'q kunlarda ham ilovani ochib, <b style={{ color: T.ink }}>kichik dars qilib qo'yadi</b> — sizningcha, ularni <b style={{ color: T.ink }}>nima majbur qiladi</b>? Ovoz bering — sababini birozdan keyin birga bilib olamiz.</Mentor>
         <MentorNote>O'quvchilar ovoz berib belgilashadi — siz faqat kuzatasiz. Javobni AYTMANG: «birozdan keyin birga bilib olamiz» deb qiziqishni saqlang. 2 daqiqadan oshirmang.</MentorNote>
@@ -1082,8 +1082,8 @@ const ScreenMetricWorkshop = ({ screen, storedAnswer, onAnswer, onNext, onPrev }
   const isMentor = !!(live && live.mode === 'mentor');
   const [st, setSt] = useState(() => {
     const m = readMetrics() || {};
-    const savedNs = storedAnswer?.northStar ?? (validateNorthStar(m.northStar || '').full ? m.northStar : '');
-    const cards = (storedAnswer?.cards || savedMetricCards()).slice(0, 3);
+    const savedNs = typeof storedAnswer?.northStar === 'string' ? storedAnswer.northStar : (validateNorthStar(m.northStar || '').full ? m.northStar : ''); /* F-0915-02: northStar matn bo'lmasa .trim yiqilardi (probe 16.09) */
+    const cards = (Array.isArray(storedAnswer?.cards) ? storedAnswer.cards : savedMetricCards()).slice(0, 3); /* F-0915-02 */
     // 🔴 Reload-QULFI (F-0726-02): F5 dan keyin North Star + 3 karta localStorage'dan tiklanadi,
     // lekin done=false qolardi. allSaved=true bo'lgani uchun muharrir ham ko'rinmasdi → saveDraft()
     // hech qachon chaqirilmasdi → «Davom etish» BUTUNLAY qulflanib qolardi (mustaqil rejimda chiqish yo'q).
@@ -1305,7 +1305,7 @@ const ScreenPeer = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const isMentor = !!(live && live.mode === 'mentor');
   const [st, setSt] = useState(() => ({
     idx: storedAnswer && storedAnswer.solved ? MPEER_N : 0,
-    verdicts: (storedAnswer && storedAnswer.verdicts) || [],
+    verdicts: Array.isArray(storedAnswer?.verdicts) ? storedAnswer.verdicts : [], // F-0914-10: saqlangan javob massiv bo'lmasa — bo'sh (oq ekran himoyasi)
     done: !!(storedAnswer && storedAnswer.solved),
   }));
   const [asking, setAsking] = useState(false); // ✕ bosilgan — sabab-chiplar ochiq
@@ -1423,7 +1423,7 @@ const ScreenClinic = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const gate = useContext(LiveGateCtx) || {};
   const live = gate.live;
   const isMentor = !!(live && live.mode === 'mentor');
-  const [st, setSt] = useState(() => ({ placed: storedAnswer?.placed || [null, null, null], sel: -1, shake: -1, trapMsg: null, burned: storedAnswer?.burned || [] }));
+  const [st, setSt] = useState(() => ({ placed: (Array.isArray(storedAnswer?.placed) ? storedAnswer.placed : [null, null, null]), sel: -1, shake: -1, trapMsg: null, burned: (Array.isArray(storedAnswer?.burned) ? storedAnswer.burned : []) })); // F-0914-10: saqlangan javob massiv bo'lmasa — bo'sh (oq ekran himoyasi)
   const { placed, sel, shake, trapMsg, burned } = st;
   const done = placed.every(p => p !== null);
   const leftN = placed.filter(p => p === null).length;
@@ -3038,10 +3038,15 @@ export default function PmMetricsLesson({ lang: langProp, onFinished, liveToken 
         @keyframes mmx-burst-fly { 0% { opacity: 0; transform: rotate(var(--ba)) translateY(0) scale(0.4); } 30% { opacity: 1; } 100% { opacity: 0; transform: rotate(var(--ba)) translateY(-42px) scale(1); } }
         @media (prefers-reduced-motion: reduce) { .match-target.ok, .match-target.droppable, .match-slot-chip, .match-slot-chip.ok, .match-chip.dragging { animation: none; } .mmx-burst { display: none; } .match-chip:hover:not(:disabled) { transform: none; } }
         .hook-hero { display: flex; justify-content: center; }
-        .hook-cup { font-size: clamp(48px,10vw,86px); line-height: 1; filter: drop-shadow(0 10px 18px rgba(91,61,230,0.28)); animation: float-sm 2.6s ease-in-out infinite; }
+        .hook-cup { font-size: clamp(48px,10vw,86px); line-height: 1; filter: drop-shadow(0 10px 18px rgba(91,61,230,0.28)); animation: float-sm 2.6s ease-in-out infinite; transition: font-size 0.3s ease; }
+        /* F-0916-01 Q2: ovoz berilgach boyo'g'li kichrayib sarlavha yoniga (chap-yuqori burchak) o'tadi — vertikal joy egallamaydi, pastdagi natija paneli (D qatori + izoh) ekranga sig'adi */
+        .screen:has(> .hook-hero.is-voted) { position: relative; }
+        .hook-hero.is-voted { position: absolute; top: 0; left: 0; }
+        .hook-hero.is-voted .hook-cup { font-size: 48px; }
+        @media (max-width: 900px) { .hook-hero.is-voted { display: none; } }
         @keyframes float-sm { 0%,100% { transform: translateY(0) rotate(-3deg); } 50% { transform: translateY(-8px) rotate(3deg); } }
 
-        .h-title { font-size: clamp(22px,4vw,38px); }
+        .h-title { font-size: clamp(22px,4vw,36px); letter-spacing: -0.015em; text-wrap: balance; }
         .body { font-size: clamp(14px,1.6vw,16px); line-height: 1.5; }
         .eyebrow { font-size: clamp(11px,1.3vw,12px); letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600; }
         .small { font-size: clamp(12.5px,1.4vw,13.5px); }
@@ -3472,7 +3477,6 @@ export default function PmMetricsLesson({ lang: langProp, onFinished, liveToken 
         .wsx-toggle { width: 100%; text-align: left; background: none; border: none; padding: 10px 13px; font-family: 'Manrope'; font-weight: 700; font-size: 13px; color: ${T.accent}; cursor: pointer; }
         .wsx-body { padding: 0 13px 11px; display: flex; flex-direction: column; gap: 6px; animation: fade-step 0.25s ease-out; }
         .wsx-body p { font-size: 13px; color: ${T.ink2}; margin: 0; line-height: 1.45; } .wsx-body b { color: ${T.ink}; }
-
         /* === ⚛️ KODING (s10): VS Code-mockup + jonli MetrikaPanel-preview + qadam-checklist === */
         .vsc { background: #1E1E1E; border-radius: 14px; overflow: hidden; box-shadow: 0 14px 30px -10px rgba(${T.shadowBase},0.35); }
         .vsc-bar { background: #252526; display: flex; align-items: center; gap: 2px; padding-right: 8px; }
@@ -3494,7 +3498,9 @@ export default function PmMetricsLesson({ lang: langProp, onFinished, liveToken 
         }
         .lp-done-btn.locked { cursor: pointer; opacity: 1; }
         @media (prefers-reduced-motion: reduce) { .calcw.hunt, .calcw.flash { animation: none; } }
-        .vsc-body { padding: 12px 14px 14px 6px; font-family: 'JetBrains Mono', monospace; font-size: clamp(11px,1.35vw,12.5px); color: #D4D4D4; line-height: 1.85; overflow-x: auto; }
+        .vsc-body { padding: 12px 14px 14px 6px; font-family: 'JetBrains Mono', monospace; font-size: clamp(11px,1.35vw,12.5px); color: #D4D4D4; line-height: 1.85; overflow: auto; max-height: clamp(170px, 28vh, 320px); scrollbar-width: thin; scrollbar-color: #4A4A4A #1E1E1E; }
+        /* 147 (e): uzun kod ichki skroll bilan (PmLesson16 naqshi); tor ekranda cheklov yo'q */
+        @media (max-width: 620px) { .vsc-body { max-height: none; overflow-y: visible; } }
         .vsc-line { display: flex; align-items: baseline; min-width: max-content; }
         .vsc-ln { color: #6E7681; min-width: 26px; text-align: right; margin-right: 14px; font-size: 10.5px; flex-shrink: 0; user-select: none; }
         .vsc-code { white-space: pre; }

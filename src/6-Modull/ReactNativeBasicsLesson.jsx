@@ -163,7 +163,7 @@ function AchCounter() {
 const Stage = ({ children, eyebrow, screen, totalScreens = TOTAL_SCREENS, navContent, narrow, mentorStatic, scrollSignal }) => {
   const isMobile = useIsMobile();
   const isNarrow = useIsMobile(768); // mobil: Mentor yig'ilish rejimi
-  const collapseOn = !mentorStatic; // §34 (2026-09-14): Mentor kompyuterda ham birinchi bosishda yig'iladi
+  const collapseOn = isNarrow && !mentorStatic; // F-0914-08 (foydalanuvchi): kompyuterda Mentor doim ochiq, faqat tor ekranda yig'iladi
   const padH = isMobile ? 12 : 60; // InternetLesson layout standarti: 1100px + 60px
   const [mCollapsed, setMCollapsed] = useState(false);
   const contentRef = useRef(null);
@@ -470,7 +470,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
       <div className="screen" style={{ justifyContent: isMentorLive ? 'flex-start' : 'center', gap: 'clamp(16px,2.5vw,24px)' }}>
         <div className="fade-up">{question}</div>
         {oneShot && !solved && <p className="small mono fade-up" style={{ margin: '-8px 0 0', color: T.accent, fontWeight: 600 }}>{tr({ uz: "⚡ Jonli dars — bitta urinish, o'ylab bosing!", ru: '⚡ Живой урок — одна попытка, жмите обдуманно!' })}</p>}
-        <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 11 }}>
+        <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: picked !== null ? 8 : 11 }}>
           {options.map((opt, i) => {
             let cls = 'option';
             if (isMentorLive) {
@@ -482,7 +482,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
             else if (i === picked) cls += ' option-picked-wrong';
             const showGreenLetter = isMentorLive ? (mReveal && i === correctIdx) : (solved && revealed && i === correctIdx);
             return (
-              <button key={i} className={cls} disabled={solved || isMentorLive} onClick={() => pick(i)} style={{ padding: 'clamp(13px,1.9vw,17px) clamp(15px,2.2vw,20px)', fontSize: 'clamp(15px,1.85vw,17px)', display: 'flex', alignItems: 'center', gap: 12 }}>
+              <button key={i} className={cls} disabled={solved || isMentorLive} onClick={() => pick(i)} style={{ padding: picked !== null ? 'clamp(9px,1.3vw,12px) clamp(15px,2.2vw,20px)' : 'clamp(13px,1.9vw,17px) clamp(15px,2.2vw,20px)', fontSize: 'clamp(15px,1.85vw,17px)', display: 'flex', alignItems: 'center', gap: 12 }}>
                 <span className="mono small" style={{ minWidth: 20, color: showGreenLetter ? T.success : T.ink3 }}>{String.fromCharCode(65 + i)}</span>
                 <span style={{ flex: 1 }}>{fmtCode(tr(opt))}</span>
               </button>
@@ -709,7 +709,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
   return (
     <Stage eyebrow={tr({ uz: 'Dars · kirish', ru: 'Урок · вступление' })} screen={screen} scrollSignal={sc} navContent={<NavNext disabled={picked === null} label={{ uz: 'Davom etish', ru: 'Продолжить' }} onClick={onNext} />}>
       <div className="screen">
-        <h1 className="title h-title fade-up" style={{ maxWidth: 880 }}>{tr({ uz: <>Web shouingiz tayyor. Mijoz uni <span className="italic" style={{ color: T.accent }}>telefon sahnasida</span> istaydi. Gastrolga chiqa olasizmi?</>, ru: <>Ваше веб-шоу готово. Заказчик хочет его <span className="italic" style={{ color: T.accent }}>на сцене телефона</span>. Сможете поехать на гастроли?</> })}</h1>
+        <h1 className="title h-title fade-up">{tr({ uz: <>Web shouingiz tayyor. Mijoz uni <span className="italic" style={{ color: T.accent }}>telefon sahnasida</span> istaydi. Gastrolga chiqa olasizmi?</>, ru: <>Ваше веб-шоу готово. Заказчик хочет его <span className="italic" style={{ color: T.accent }}>на сцене телефона</span>. Сможете поехать на гастроли?</> })}</h1>
         <Mentor>{tr({ uz: "Modul 3'da React o'rgandingiz — bu sizning ssenariyingiz. Endi savol: telefon sahnasi uchun hammasini noldan o'rganasizmi? Tugmani bosing — javobni ko'ring.", ru: 'В модуле 3 вы выучили React — это ваш сценарий. Вопрос: для сцены телефона придётся учить всё заново? Нажмите кнопку — увидите ответ.' })}</Mentor>
         <Zoomable><Split>
           <Col>
@@ -829,12 +829,12 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             </div>
           </Col>
           <Col>
-            <div style={{ display: 'flex', justifyContent: 'center' }}>
+            <div className="ph-sm">
               <Phone label={live ? { uz: '📱 Tirik sahna (mobil) — native', ru: '📱 Живая сцена (мобильное) — native' } : { uz: '🪟 Shisha ortida (web) — proyeksiya', ru: '🪟 За стеклом (веб) — проекция' }} lit={live}>
                 <div className={`rn-view ${live ? 'on' : ''}`}><div className="rn-text title">{tr({ uz: 'mini-do\'kon', ru: 'мини-магазин' })}</div><div className="rn-text">{tr({ uz: '📱 Telefon — 2 500 000', ru: '📱 Телефон — 2 500 000' })}</div><div className="rn-text btn">{tr({ uz: 'Sotib olish', ru: 'Купить' })}</div></div>
               </Phone>
+            <button className="btn-soft" onClick={() => { setLive(v => !v); setSc(n => n + 1); }}>{live ? tr({ uz: '🪟 Shisha ortida (web) ko\'rish', ru: '🪟 Посмотреть за стеклом (веб)' }) : tr({ uz: '📱 Tirik sahnaga (mobil) o\'tish', ru: '📱 Перейти на живую сцену (мобильное)' })}</button>
             </div>
-            <button className="btn-soft" style={{ alignSelf: 'center' }} onClick={() => { setLive(v => !v); setSc(n => n + 1); }}>{live ? tr({ uz: '🪟 Shisha ortida (web) ko\'rish', ru: '🪟 Посмотреть за стеклом (веб)' }) : tr({ uz: '📱 Tirik sahnaga (mobil) o\'tish', ru: '📱 Перейти на живую сцену (мобильное)' })}</button>
             {cur
               ? <div className="sk-info fade-step" key={active}><p className="note-h"><span style={{ fontSize: 17, marginRight: 6 }}>{cur.ico}</span><span className="mono" style={{ color: T.accent }}>{cur.web} → {cur.rn}</span></p><p className="body" style={{ margin: '6px 0 0', color: T.ink }}>{tr(cur.desc)}</p></div>
               : <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Tarjimani bosing ←', ru: 'Нажмите на перевод ←' })}</p></div>}
@@ -2245,7 +2245,7 @@ export default function ReactNativeBasicsLesson({ lang: langProp, onFinished, li
         .hook-ack { margin: 2px 0 0; font-family: 'Manrope', sans-serif; font-weight: 500; font-size: clamp(13px,1.5vw,14.5px); color: ${T.ink2}; }
 
 
-        .h-title { font-size: clamp(22px,4vw,38px); }
+        .h-title { font-size: clamp(22px,4vw,36px); letter-spacing: -0.015em; text-wrap: balance; }
         .h-sub { font-size: clamp(17px,2.5vw,22px); }
         .h-ask { font-size: clamp(19px,2.6vw,27px); line-height: 1.32; letter-spacing: -0.01em; text-wrap: balance; }
         .body { font-size: clamp(14px,1.6vw,16px); line-height: 1.5; }
@@ -2825,6 +2825,14 @@ export default function ReactNativeBasicsLesson({ lang: langProp, onFinished, li
         .phone-notch { width: 52px; height: 5px; background: #3a4660; border-radius: 99px; margin: 2px auto 9px; }
         .phone-screen { background: ${T.bg}; border-radius: 17px; min-height: 178px; padding: 13px 11px; display: flex; flex-direction: column; gap: 8px; transition: opacity 0.35s; }
         .phone-label { text-align: center; color: ${T.ink2}; font-family: 'Manrope'; font-weight: 600; font-size: 11px; margin-top: 9px; }
+        /* F-0916-01 Q6 (s3 «shisha ↔ tirik»): telefon maketi ~70% — ikki ustun ham to'la edi, xulosa 120px pastda; faqat shu ekran (ph-sm) */
+        .ph-sm .phone { width: clamp(118px,30vw,140px); border-radius: 22px; padding: 9px 7px 11px; }
+        .ph-sm .phone-notch { margin: 1px auto 6px; }
+        .ph-sm .phone-screen { min-height: 122px; padding: 9px 8px; gap: 6px; border-radius: 13px; }
+        .ph-sm .phone-label { margin-top: 6px; }
+        .ph-sm { display: grid; grid-template-columns: auto minmax(0,1fr); align-items: center; gap: 12px 14px; justify-items: start; }
+        .ph-sm .rn-view { padding: 8px; gap: 5px; } .ph-sm .rn-text { font-size: 11.5px; } .ph-sm .rn-text.title { font-size: 13px; } .ph-sm .rn-text.btn { padding: 6px; }
+        @media (max-width: 560px) { .ph-sm { grid-template-columns: 1fr; justify-items: center; } }
         .rn-view { background: ${T.paper}; border-radius: 11px; padding: 12px; display: flex; flex-direction: column; gap: 8px; box-shadow: 0 5px 14px -6px rgba(${T.shadowBase},0.18); transition: all 0.3s; }
         .rn-view.on { box-shadow: inset 0 0 0 1.5px ${T.accent}, 0 5px 14px -6px rgba(255,79,40,0.22); }
         .rn-text { font-family: 'Manrope'; font-weight: 500; font-size: 13px; color: ${T.ink}; animation: el-pop 0.32s ease; }
@@ -2860,7 +2868,8 @@ export default function ReactNativeBasicsLesson({ lang: langProp, onFinished, li
         /* tap-hint affordance — bosilmagan kartalar "meni bos" deb pulslaydi. Bosilgach pulsatsiya TO'XTAYDI = progress signali. */
         .gchip.tap-hint, .btn-soft.tap-hint, .itm-card.tap-hint { animation: tap-hint-pulse 1.9s ease-in-out infinite; }
 
-        .dd { display: flex; flex-direction: column; gap: 13px; }
+        .dd { display: grid; grid-template-columns: minmax(0,1.15fr) minmax(0,1fr); gap: 13px; align-items: start; } /* §34: keng ekranda uyalar chapda, hovuz o'ngda */
+        @media (max-width: 760px) { .dd { grid-template-columns: 1fr; } }
         .dd-slots { display: flex; flex-direction: column; gap: 9px; position: relative; }
         .dd-slot { display: flex; align-items: center; gap: 12px; min-height: 58px; border-radius: 14px; border: 2px dashed ${T.ink3}66; background: ${T.paper}; padding: 8px 12px; box-shadow: 0 5px 14px -9px rgba(${T.shadowBase},0.2); transition: border-color .18s, background .18s, box-shadow .18s; }
         .dd-slot.filled { border-style: solid; border-color: ${T.line}; box-shadow: 0 8px 18px -10px rgba(${T.shadowBase},0.26); }

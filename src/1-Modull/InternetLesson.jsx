@@ -254,7 +254,7 @@ function AchCounter() {
 const Stage = ({ children, eyebrow, screen, totalScreens = TOTAL_SCREENS, navContent, narrow, mentorStatic, mentorCollapse }) => {
   const isMobile = useIsMobile();
   const isNarrow = useIsMobile(768); // mobil: Mentor yig'ilish rejimi
-  const collapseOn = !mentorStatic; // §34 (2026-09-14): Mentor kompyuterda ham yig'iladi (ilgari faqat mentorCollapse ekranlarida)
+  const collapseOn = isNarrow && !mentorStatic; // F-0914-08 (foydalanuvchi): kompyuterda Mentor doim ochiq, faqat tor ekranda yig'iladi
   const padH = isMobile ? 12 : 60; // desktop: 100 → 60 (kontent kengaydi, shriftlar o'z o'lchamida)
   const [mCollapsed, setMCollapsed] = useState(false);
   const contentRef = useRef(null);
@@ -372,7 +372,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
       <div className="screen" style={{ justifyContent: isMentorLive ? 'flex-start' : 'safe center', gap: 'clamp(16px,2.5vw,24px)' }}>
         <div className="fade-up">{tr(question)}</div>
         {oneShot && !solved && <p className="small mono fade-up" style={{ margin: '-8px 0 0', color: T.accent, fontWeight: 600 }}>{tr({ uz: '⚡ Jonli dars — bitta urinish, o\'ylab bosing!', ru: '⚡ Живой урок — одна попытка, думайте перед выбором!' })}</p>}
-        <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 11 }}>
+        <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: picked !== null ? 8 : 11 }}>
           {options.map((opt, i) => {
             let cls = 'option';
             if (isMentorLive) {
@@ -384,7 +384,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
             else if (i === picked) cls += ' option-picked-wrong';
             const showGreenLetter = isMentorLive ? (mReveal && i === correctIdx) : (solved && revealed && i === correctIdx);
             return (
-              <button key={i} className={cls} disabled={solved || isMentorLive} onClick={() => pick(i)} style={{ padding: 'clamp(13px,1.9vw,17px) clamp(15px,2.2vw,20px)', fontSize: 'clamp(15px,1.85vw,17px)', display: 'flex', alignItems: 'center', gap: 12 }}>
+              <button key={i} className={cls} disabled={solved || isMentorLive} onClick={() => pick(i)} style={{ padding: picked !== null ? 'clamp(9px,1.3vw,12px) clamp(15px,2.2vw,20px)' : 'clamp(13px,1.9vw,17px) clamp(15px,2.2vw,20px)', fontSize: 'clamp(15px,1.85vw,17px)', display: 'flex', alignItems: 'center', gap: 12 }}>
                 <span className="mono small" style={{ minWidth: 20, color: showGreenLetter ? T.success : T.ink3 }}>{String.fromCharCode(65 + i)}</span>
                 <span style={{ flex: 1 }}>{fmtCode(tr(opt))}</span>
               </button>
@@ -869,7 +869,7 @@ const BrowserLogo = ({ k, size = 30 }) => {
 const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const audio = useAudio([{ id: 's3', text: `Saytlarni ochish uchun maxsus dastur kerak — bu brauzer. Chrome, Safari, Firefox — bularning hammasi brauzer. Siz manzilni yozasiz, brauzer internetdan saytni topib keltiradi va ekranga chiroyli qilib chizadi. Brauzerni tanlab ko'ring.`, trigger: 'on_mount', waits_for: null }]);
   const BROWSERS = [{ k: 'chrome', l: 'Chrome', color: '#1A73E8' }, { k: 'safari', l: 'Safari', color: '#1574E0' }, { k: 'firefox', l: 'Firefox', color: '#FF6611' }, { k: 'edge', l: 'Edge', color: '#1B9DE2' }];
-  const [br, setBr] = useState(storedAnswer?.picked || null);
+  const [br, setBr] = useState(() => (BROWSERS.some(b => b.k === storedAnswer?.picked) ? storedAnswer.picked : null)); /* F-0915-02 */
   const done = br !== null;
   const cur = BROWSERS.find(b => b.k === br);
   const pick = (k) => { setBr(k); if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: k }); };
@@ -924,7 +924,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     { full: 'coddycamp.uz', name: 'coddycamp', tld: '.uz', note: { uz: ".uz — O'zbekiston saytlari uchun. Bizning maktabimiz ham shu zonada.", ru: ".uz — для сайтов Узбекистана. Наша школа тоже в этой зоне." } },
     { full: 'wikipedia.org', name: 'wikipedia', tld: '.org', note: { uz: '.org — tashkilotlar uchun.', ru: '.org — для организаций.' } }
   ];
-  const [sel, setSel] = useState(storedAnswer?.picked || null);
+  const [sel, setSel] = useState(() => (DOMAINS.some(d => d.full === storedAnswer?.picked) ? storedAnswer.picked : null)); /* F-0915-02 */
   const done = sel !== null;
   const cur = DOMAINS.find(d => d.full === sel);
   const pick = (f) => { setSel(f); if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: f }); };
@@ -3164,7 +3164,7 @@ export default function HtmlLesson({ lang: langProp, onFinished, liveToken }) {
         .bp-title { font-family: 'JetBrains Mono'; font-size: 11px; color: ${T.ink3}; }
         .bp-body { padding: clamp(12px,2.2vw,18px); }
 
-        .h-title { font-size: clamp(22px,4vw,38px); }
+        .h-title { font-size: clamp(22px,4vw,36px); letter-spacing: -0.015em; text-wrap: balance; }
         .h-sub { font-size: clamp(17px,2.5vw,22px); }
         .h-ask { font-size: clamp(19px,2.6vw,27px); line-height: 1.32; letter-spacing: -0.01em; text-wrap: balance; }
         .body { font-size: clamp(14px,1.6vw,16px); line-height: 1.5; }
@@ -3594,7 +3594,11 @@ export default function HtmlLesson({ lang: langProp, onFinished, liveToken }) {
         .jr-ring { position: relative; width: min(300px, 100%); aspect-ratio: 1 / 1; margin: 2px auto; }
         /* Sim (15-page): desktopda skrol bo'lmasligi uchun animatsiya ~10% kichikroq */
         .jr-sim { gap: clamp(8px,1.6vw,12px); padding: clamp(12px,2.4vw,20px); }
-        .jr-sim .jr-ring { width: min(270px, 100%); }
+        .jr-sim .jr-ring { width: min(186px, 100%); }
+        .jr-sim { padding: 12px 16px; gap: 8px; }
+        /* F-0916-01 Q13 (s14 jr-sim): aylana ~25% kichik (270→200), bekat-belgilari mos — DNS belgisi pastki chiziqqa tegardi (84px); yozuvlar o'sha */
+        .jr-sim .jr-ic { width: 42px; height: 42px; font-size: 21px; }
+        .jr-sim .jr-st { width: 70px; gap: 4px; }
         .jr-ring-circle { position: absolute; left: 50%; top: 50%; width: 76%; height: 76%; transform: translate(-50%,-50%); border-radius: 50%; border: 2px dashed rgba(${T.shadowBase},0.25); }
         .jr-hub { position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); display: flex; flex-direction: column; align-items: center; gap: 2px; }
         .jr-hub-ic { font-size: 20px; }
@@ -4204,9 +4208,10 @@ export default function HtmlLesson({ lang: langProp, onFinished, liveToken }) {
         /* === 🧲 DRAG&DROP (reusable) === */
         .sk-buildbox { display: flex; flex-direction: column; animation: sk-swapin 0.5s cubic-bezier(.34,1.3,.4,1); }
         @keyframes sk-swapin { from { opacity: 0; transform: translateY(12px) scale(0.96); } to { opacity: 1; transform: none; } }
-        .dd { display: flex; flex-direction: column; gap: 13px; }
+        .dd { display: grid; grid-template-columns: minmax(0,1.15fr) minmax(0,1fr); gap: 13px; align-items: start; } /* §34: keng ekranda uyalar chapda, hovuz o'ngda */
+        @media (max-width: 760px) { .dd { grid-template-columns: 1fr; } }
         .dd-slots { display: flex; flex-direction: column; gap: 9px; }
-        .dd-slot { display: flex; align-items: center; gap: 12px; min-height: 56px; border-radius: 14px; border: 2px dashed ${T.ink3}66; background: ${T.paper}; padding: 8px 12px; transition: border-color .18s, background .18s; }
+        .dd-slot { display: flex; align-items: center; gap: 12px; min-height: 46px; border-radius: 14px; border: 2px dashed ${T.ink3}66; background: ${T.paper}; padding: 8px 12px; transition: border-color .18s, background .18s; }
         .dd-slot.filled { border-style: solid; border-color: ${T.ink3}66; }
         .dd-slot.ok { border-color: ${T.success}; background: ${T.successSoft}; }
         .dd-slot.bad { border-color: #E24848; background: #FBE9E9; animation: dd-shake .4s; }

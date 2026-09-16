@@ -195,7 +195,7 @@ function AchCounter() {
 const Stage = ({ children, eyebrow, screen, totalScreens = TOTAL_SCREENS, navContent, narrow, mentorStatic, scrollSignal }) => {
   const isMobile = useIsMobile();
   const isNarrow = useIsMobile(768);
-  const collapseOn = !mentorStatic; // §34 (2026-09-14): Mentor kompyuterda ham birinchi bosishda yig'iladi
+  const collapseOn = isNarrow && !mentorStatic; // F-0914-08 (foydalanuvchi): kompyuterda Mentor doim ochiq, faqat tor ekranda yig'iladi
   const padH = isMobile ? 12 : 60;
   const [mCollapsed, setMCollapsed] = useState(false);
   const contentRef = useRef(null);
@@ -490,7 +490,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
       <div className="screen" style={{ justifyContent: isMentorLive ? 'flex-start' : 'center', gap: 'clamp(16px,2.5vw,24px)' }}>
         <div className="fade-up">{question}</div>
         {oneShot && !solved && <p className="small mono fade-up" style={{ margin: '-8px 0 0', color: T.accent, fontWeight: 600 }}>⚡ {tr({ uz: "Jonli dars — bitta urinish, o'ylab bosing!", ru: 'Живой урок — одна попытка, нажимайте обдуманно!' })}</p>}
-        <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 11 }}>
+        <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: picked !== null ? 8 : 11 }}>
           {options.map((opt, i) => {
             let cls = 'option';
             if (isMentorLive) {
@@ -502,7 +502,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
             else if (i === picked) cls += ' option-picked-wrong';
             const showGreenLetter = isMentorLive ? (mReveal && i === correctIdx) : (solved && revealed && i === correctIdx);
             return (
-              <button key={i} className={cls} disabled={solved || isMentorLive} onClick={() => pick(i)} style={{ padding: 'clamp(13px,1.9vw,17px) clamp(15px,2.2vw,20px)', fontSize: 'clamp(15px,1.85vw,17px)', display: 'flex', alignItems: 'center', gap: 12 }}>
+              <button key={i} className={cls} disabled={solved || isMentorLive} onClick={() => pick(i)} style={{ padding: picked !== null ? 'clamp(9px,1.3vw,12px) clamp(15px,2.2vw,20px)' : 'clamp(13px,1.9vw,17px) clamp(15px,2.2vw,20px)', fontSize: 'clamp(15px,1.85vw,17px)', display: 'flex', alignItems: 'center', gap: 12 }}>
                 <span className="mono small" style={{ minWidth: 20, color: showGreenLetter ? T.success : T.ink3 }}>{String.fromCharCode(65 + i)}</span>
                 <span style={{ flex: 1 }}>{fmtCode(opt)}</span>
               </button>
@@ -596,10 +596,11 @@ const Spot = ({ spot, onClick, flash, dim, small }) => (
     {!small && spot.bandmi && spot.mashina && <span className="spot-plate">{spot.mashina}</span>}
   </button>
 );
-const GuardPanel = ({ spots, onSpotClick, tushum, dash, cols = 4, flashId, onSettings }) => {
+// F-0916-01 Q8: `compact` — joylar ixcham (spot-sm), `note` — xulosa panel ICHIDA, joylar ostida (147 (e): xulosa artefakt yonida qoladi)
+const GuardPanel = ({ spots, onSpotClick, tushum, dash, cols = 4, flashId, onSettings, compact = false, note = null }) => {
   const band = spots.filter(s => s.bandmi).length;
   const bosh = spots.length - band;
-  const small = spots.length > 12;
+  const small = compact || spots.length > 12;
   return (
     <div className="guard">
       <div className="guard-top">
@@ -618,6 +619,7 @@ const GuardPanel = ({ spots, onSpotClick, tushum, dash, cols = 4, flashId, onSet
       )}
       <div className="guard-body">
         <div className="pgrid" style={{ gridTemplateColumns: `repeat(${cols},1fr)` }}>{spots.map(s => <Spot key={s.id} spot={s} onClick={onSpotClick ? () => onSpotClick(s) : undefined} flash={flashId === s.id} small={small} />)}</div>
+        {note && <div className="guard-note">{note}</div>}
       </div>
       {!dash && tushum != null && <div className="guard-foot"><span>{tr({ uz: 'Bugungi tushum:', ru: 'Выручка за сегодня:' })} <b>{sp(tushum)} {tr({ uz: "so'm", ru: 'сум' })}</b></span></div>}
     </div>
@@ -698,7 +700,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
   return (
     <Stage eyebrow={tr({ uz: 'Demo Day · kirish', ru: 'Demo Day · введение' })} screen={screen} scrollSignal={sc} navContent={<NavNext optionalLive disabled={picked === null} label={tr({ uz: 'Davom etish', ru: 'Продолжить' })} onClick={onNext} />}>
       <div className="screen">
-        <h1 className="title h-title fade-up" style={{ maxWidth: 880 }}>{tr({ uz: <>Siz qurdingiz — lekin u boshqaga <span className="italic" style={{ color: T.accent }}>qulaymi</span>?</>, ru: <>Вы построили — но <span className="italic" style={{ color: T.accent }}>удобно ли</span> это другому?</> })}</h1>
+        <h1 className="title h-title fade-up">{tr({ uz: <>Siz qurdingiz — lekin u boshqaga <span className="italic" style={{ color: T.accent }}>qulaymi</span>?</>, ru: <>Вы построили — но <span className="italic" style={{ color: T.accent }}>удобно ли</span> это другому?</> })}</h1>
         <Mentor>{tr({ uz: <>Demo Day: sinfdoshingiz <b style={{ color: T.ink }}>Aziz</b> panelni sinab ko'ryapti. Band joyni bossa nima bo'larkin? Bitta <b style={{ color: T.ink }}>band (🟥)</b> joyni bosib ko'ring — Azizning o'rnida.</>, ru: <>Demo Day: Ваш одноклассник <b style={{ color: T.ink }}>Aziz</b> тестирует панель. Что будет, если нажать на занятое место? Нажмите на одно <b style={{ color: T.ink }}>занятое (🟥)</b> место — побудьте на месте Aziza.</> })}</Mentor>
         <Zoomable>
         <Split>
@@ -1147,12 +1149,12 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <Col>
             <p className="flow-label">{built ? tr({ uz: "Natija — ⚙ ni bosib ko'ring", ru: 'Результат — нажмите ⚙' }) : tr({ uz: 'Natija', ru: 'Результат' })}</p>
             <div style={{ position: 'relative' }}>
-              <GuardPanel spots={mkSpots()} tushum={20000} dash onSettings={built ? open : undefined} />
+              <GuardPanel spots={mkSpots()} tushum={20000} dash onSettings={built ? open : undefined} compact={done && !drawer}
+                note={done && !drawer ? <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Mana yondan ochiladigan Sozlamalar paneli! Endi narx va joylar sonini shu yerda boshqarasiz — keyingi qadamda o'zingiz sinab ko'rasiz.", ru: 'Вот боковая панель Настроек! Теперь цена и число мест управляются здесь — на следующем шаге попробуете сами.' })}</p></div> : null} />
               <SettingsDrawer open={drawer} narx={narx} setNarx={setNarx} count={count} setCount={setCount} dirty onSave={() => setDrawer(false)} onClose={() => setDrawer(false)} />
             </div>
             {!built && <p className="small" style={{ color: T.ink3, fontStyle: 'italic', margin: 0 }}>{tr({ uz: "Prompt yuborilgach, panelda ⚙ paydo bo'ladi.", ru: 'После отправки промпта на панели появится ⚙.' })}</p>}
             {built && !opened && <p className="small" style={{ color: T.accent, fontStyle: 'italic', margin: 0 }}>{tr({ uz: "Yuqori o'ngdagi ⚙ ni bosing — panel yondan ochiladi.", ru: 'Нажмите ⚙ справа вверху — панель откроется сбоку.' })}</p>}
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Mana yondan ochiladigan Sozlamalar paneli! Endi narx va joylar sonini shu yerda boshqarasiz — keyingi qadamda o'zingiz sinab ko'rasiz.", ru: 'Вот боковая панель Настроек! Теперь цена и число мест управляются здесь — на следующем шаге попробуете сами.' })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -1347,7 +1349,7 @@ const Screen15 = ({ screen, onNext, onPrev }) => (
 
 // ===== SCREEN 16 — YAKUNIY (VS Code: chiqishda tasdiq — confirm) =====
 const Screen16 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const [value, setValue] = useState(storedAnswer?.picked || '');
+  const [value, setValue] = useState(typeof storedAnswer?.picked === 'string' ? storedAnswer.picked : ''); // F-0914-10: saqlangan javob matn bo'lmasa — bo'sh (oq ekran himoyasi)
   const [passed, setPassed] = useState(!!storedAnswer?.correct);
   const norm = value.replace(/\s+/g, '').trim();
   const valid = /^confirm$/i.test(norm);
@@ -1555,6 +1557,10 @@ function ScreenLivePractice({ title, task, checklist, screen, storedAnswer, onAn
               <div className="lp-task-h"><span className="lp-task-badge">{tr({ uz: 'TOPSHIRIQ', ru: 'ЗАДАНИЕ' })}</span></div>
               <p className="body" style={{ margin: 0, color: T.ink }}>{tr(task)}</p>
             </div>
+            {!isMentor && <button className={`lp-done-btn ${done ? 'is-done' : ''}`} disabled={done} onClick={complete}>
+              {done ? tr({ uz: '✓ Bajarildi — ustozni kuting', ru: '✓ Выполнено — ждите наставника' }) : tr({ uz: '✅ Bajardim', ru: '✅ Выполнил' })}
+            </button>}
+            {done && !isMentor && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Juda yaxshi! Vazifani bajardingiz. Ustoz tekshirib, keyingi qadamga o'tkazadi.", ru: 'Отлично! Задание выполнено. Наставник проверит и переведёт Вас на следующий шаг.' })}</p></div>}
             <MentorPracticeStats live={_live} screen={screen} />
             <StudentPracticePulse live={_live} screen={screen} />
           </Col>
@@ -1571,10 +1577,6 @@ function ScreenLivePractice({ title, task, checklist, screen, storedAnswer, onAn
                 );
               })}
             </div>
-            {!isMentor && <button className={`lp-done-btn ${done ? 'is-done' : ''}`} disabled={done} onClick={complete}>
-              {done ? tr({ uz: '✓ Bajarildi — ustozni kuting', ru: '✓ Выполнено — ждите наставника' }) : tr({ uz: '✅ Bajardim', ru: '✅ Выполнил' })}
-            </button>}
-            {done && !isMentor && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Juda yaxshi! Vazifani bajardingiz. Ustoz tekshirib, keyingi qadamga o'tkazadi.", ru: 'Отлично! Задание выполнено. Наставник проверит и переведёт Вас на следующий шаг.' })}</p></div>}
           </Col>
         </div>
       </div>
@@ -2449,7 +2451,7 @@ export default function FullstackFeedbackLesson({ lang: langProp, onFinished, li
         .radio-dot { width: 10px; height: 10px; border-radius: 50%; background: ${T.accent}; }
         .hook-ack { margin: 2px 0 0; font-family: 'Manrope', sans-serif; font-weight: 500; font-size: clamp(13px,1.5vw,14.5px); color: ${T.ink2}; }
 
-        .h-title { font-size: clamp(22px,4vw,38px); }
+        .h-title { font-size: clamp(22px,4vw,36px); letter-spacing: -0.015em; text-wrap: balance; }
         .h-sub { font-size: clamp(17px,2.5vw,22px); }
         .h-ask { font-size: clamp(19px,2.6vw,27px); line-height: 1.32; letter-spacing: -0.01em; text-wrap: balance; }
         .body { font-size: clamp(14px,1.6vw,16px); line-height: 1.5; }
@@ -2498,13 +2500,13 @@ export default function FullstackFeedbackLesson({ lang: langProp, onFinished, li
         .sk-info { background: ${T.paper}; border-radius: 12px; padding: 13px 16px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.16); animation: fade-step 0.3s; }
 
         /* === AI CARD / PROMPT === */
-        .ai-card { background: ${T.paper}; border-radius: 14px; padding: 15px 17px; display: flex; flex-direction: column; gap: 11px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.14); }
+        .ai-card { background: ${T.paper}; border-radius: 14px; padding: 13px 15px; display: flex; flex-direction: column; gap: 9px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.14); }
         .ai-row { display: flex; align-items: center; gap: 9px; } .ai-badge { font-family: 'Manrope'; font-weight: 800; font-size: 11px; color: #fff; background: ${T.blue}; padding: 3px 9px; border-radius: 6px; } .ai-bubble { font-size: 13px; color: ${T.ink2}; }
-        .ai-code { background: ${CODE.bg}; border-radius: 9px; padding: 10px 12px; display: flex; flex-direction: column; gap: 3px; }
+        .ai-code { background: ${CODE.bg}; border-radius: 9px; padding: 9px 12px; display: flex; flex-direction: column; gap: 3px; }
         .ai-line { font-family: 'JetBrains Mono'; font-size: 12.5px; color: ${CODE.text}; padding: 7px 9px; border-radius: 6px; white-space: pre-wrap; line-height: 1.6; }
         .ai-line.ok { background: rgba(31,122,77,0.16); }
         .note-h { font-weight: 700; font-size: 13px; margin: 0 0 4px; }
-        .prompt-box { background: #FFF8F3; border-left: 4px solid ${T.accent}; border-radius: 12px; padding: 13px 15px; margin: 0; font-family: 'JetBrains Mono', monospace; font-size: clamp(11.5px,1.4vw,13px); line-height: 1.7; color: ${T.ink}; white-space: pre-wrap; word-break: break-word; box-shadow: 0 6px 16px -8px rgba(${T.shadowBase},0.18); }
+        .prompt-box { background: #FFF8F3; border-left: 4px solid ${T.accent}; border-radius: 12px; padding: 11px 15px; margin: 0; font-family: 'JetBrains Mono', monospace; font-size: clamp(11.5px,1.4vw,13px); line-height: 1.7; color: ${T.ink}; white-space: pre-wrap; word-break: break-word; box-shadow: 0 6px 16px -8px rgba(${T.shadowBase},0.18); }
         .takeaway { background: ${T.accentSoft}; border-radius: 14px; padding: 20px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 5px; } .ta-bulb { font-size: 34px; } .ta-h { font-family: 'Source Serif 4', serif; font-weight: 600; font-size: clamp(16px,2.2vw,20px); color: ${T.ink}; margin: 0; } .ta-sub { color: ${T.accent}; font-weight: 600; font-size: 13px; margin: 0; }
 
         /* === YAKUN === */
@@ -2543,6 +2545,8 @@ export default function FullstackFeedbackLesson({ lang: langProp, onFinished, li
         .guard-title { font-family: 'Manrope'; font-weight: 800; font-size: 13.5px; } .guard-title small { font-weight: 500; color: ${CODE.punct}; }
         .guard-stats { display: flex; gap: 8px; } .gst { font-family: 'Manrope'; font-weight: 800; font-size: 12px; padding: 3px 9px; border-radius: 99px; } .gst.free { background: rgba(31,122,77,0.25); } .gst.busy { background: rgba(194,54,43,0.3); }
         .guard-body { padding: 12px; }
+        /* F-0916-01 Q8 (s9): xulosa qorovul paneli ichida, joylar ostida (sozlamalar yopilgach joylar ixcham) — ilgari panel ostida, ekrandan 113px tashqarida */
+        .guard-note { margin-top: 10px; } .guard-note .frame-success { padding: 10px 12px; } .guard-note p { font-size: 13.5px; line-height: 1.45; }
         .guard-foot { padding: 9px 14px; background: ${T.bg}; font-family: 'Manrope'; font-weight: 600; font-size: 12.5px; color: ${T.ink2}; } .guard-foot b { color: ${T.ink}; }
         .gear { border: none; background: rgba(255,255,255,0.15); color: #fff; width: 28px; height: 28px; border-radius: 8px; font-size: 15px; cursor: pointer; transition: all 0.18s; display: inline-flex; align-items: center; justify-content: center; }
         .gear:hover { background: ${T.accent}; transform: rotate(45deg); }
@@ -2689,7 +2693,7 @@ export default function FullstackFeedbackLesson({ lang: langProp, onFinished, li
         .lp-task-h { display: flex; align-items: center; gap: 8px; }
         .lp-task-badge { font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: 10.5px; letter-spacing: 0.12em; color: #fff; background: ${T.accent}; padding: 3px 9px; border-radius: 6px; }
         .lp-steps { display: flex; flex-direction: column; gap: 8px; }
-        .lp-step { display: flex; align-items: center; gap: 11px; width: 100%; text-align: left; background: ${T.paper}; border: none; border-radius: 11px; padding: 11px 13px; font-family: 'Manrope', sans-serif; font-weight: 500; font-size: clamp(13px,1.6vw,15px); color: ${T.ink}; cursor: pointer; transition: all 0.16s; box-shadow: 0 5px 14px -7px rgba(${T.shadowBase},0.16); }
+        .lp-step { display: flex; align-items: center; gap: 11px; width: 100%; text-align: left; background: ${T.paper}; border: none; border-radius: 11px; padding: 8px 12px; font-family: 'Manrope', sans-serif; font-weight: 500; font-size: clamp(13px,1.6vw,15px); color: ${T.ink}; cursor: pointer; transition: all 0.16s; box-shadow: 0 5px 14px -7px rgba(${T.shadowBase},0.16); }
         .lp-step:hover:not(.on) { box-shadow: 0 8px 18px -7px rgba(${T.shadowBase},0.24); }
         .lp-step.on { background: ${T.successSoft}; color: ${T.success}; box-shadow: inset 0 0 0 1.5px ${T.success}55; }
         .lp-check { width: 22px; height: 22px; border-radius: 50%; flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 12px; background: ${T.bg}; color: ${T.ink3}; box-shadow: inset 0 0 0 1.5px ${T.ink3}55; transition: all 0.16s; }

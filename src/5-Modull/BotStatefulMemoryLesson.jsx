@@ -162,7 +162,7 @@ function AchCounter() {
 const Stage = ({ children, eyebrow, screen, totalScreens = TOTAL_SCREENS, navContent, narrow, mentorStatic, scrollSignal }) => {
   const isMobile = useIsMobile();
   const isNarrow = useIsMobile(768); // mobil: Mentor yig'ilish rejimi
-  const collapseOn = !mentorStatic; // §34 (2026-09-14): Mentor kompyuterda ham birinchi bosishda yig'iladi
+  const collapseOn = isNarrow && !mentorStatic; // F-0914-08 (foydalanuvchi): kompyuterda Mentor doim ochiq, faqat tor ekranda yig'iladi
   const padH = isMobile ? 12 : 60; // InternetLesson layout standarti: 1100px + 60px
   const [mCollapsed, setMCollapsed] = useState(false);
   const contentRef = useRef(null);
@@ -472,7 +472,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
       <div className="screen" style={{ justifyContent: isMentorLive ? 'flex-start' : 'center', gap: 'clamp(16px,2.5vw,24px)' }}>
         <div className="fade-up">{question}</div>
         {oneShot && !solved && <p className="small mono fade-up" style={{ margin: '-8px 0 0', color: T.accent, fontWeight: 600 }}>{tr({ uz: "⚡ Jonli dars — bitta urinish, o'ylab bosing!", ru: '⚡ Живой урок — одна попытка, жмите обдуманно!' })}</p>}
-        <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 11 }}>
+        <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: picked !== null ? 8 : 11 }}>
           {options.map((opt, i) => {
             let cls = 'option';
             if (isMentorLive) {
@@ -484,7 +484,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
             else if (i === picked) cls += ' option-picked-wrong';
             const showGreenLetter = isMentorLive ? (mReveal && i === correctIdx) : (solved && revealed && i === correctIdx);
             return (
-              <button key={i} className={cls} disabled={solved || isMentorLive} onClick={() => pick(i)} style={{ padding: 'clamp(13px,1.9vw,17px) clamp(15px,2.2vw,20px)', fontSize: 'clamp(15px,1.85vw,17px)', display: 'flex', alignItems: 'center', gap: 12 }}>
+              <button key={i} className={cls} disabled={solved || isMentorLive} onClick={() => pick(i)} style={{ padding: picked !== null ? 'clamp(9px,1.3vw,12px) clamp(15px,2.2vw,20px)' : 'clamp(13px,1.9vw,17px) clamp(15px,2.2vw,20px)', fontSize: 'clamp(15px,1.85vw,17px)', display: 'flex', alignItems: 'center', gap: 12 }}>
                 <span className="mono small" style={{ minWidth: 20, color: showGreenLetter ? T.success : T.ink3 }}>{String.fromCharCode(65 + i)}</span>
                 <span style={{ flex: 1 }}>{fmtCode(opt)}</span>
               </button>
@@ -724,7 +724,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
   return (
     <Stage eyebrow={tr({ uz: 'Dars · kirish', ru: 'Урок · введение' })} screen={screen} scrollSignal={sc} navContent={<NavNext optionalLive disabled={picked === null} label={{ uz: 'Davom etish', ru: 'Продолжить' }} onClick={onNext} />}>
       <div className="screen">
-        <h1 className="title h-title fade-up" style={{ maxWidth: 880 }}>{tr({ uz: <>Bola Botjonga <span className="italic" style={{ color: T.accent }}>«Pepperoni»</span> deydi. Botjon: <span className="italic" style={{ color: T.accent }}>«Nima pepperoni? Tushunmadim.»</span> Nega?</>, ru: <>Подросток пишет Ботжону: <span className="italic" style={{ color: T.accent }}>«Пепперони»</span>. Ботжон: <span className="italic" style={{ color: T.accent }}>«Какое пепперони? Не понял.»</span> Почему?</> })}</h1>
+        <h1 className="title h-title fade-up">{tr({ uz: <>Bola Botjonga <span className="italic" style={{ color: T.accent }}>«Pepperoni»</span> deydi. Botjon: <span className="italic" style={{ color: T.accent }}>«Nima pepperoni? Tushunmadim.»</span> Nega?</>, ru: <>Подросток пишет Ботжону: <span className="italic" style={{ color: T.accent }}>«Пепперони»</span>. Ботжон: <span className="italic" style={{ color: T.accent }}>«Какое пепперони? Не понял.»</span> Почему?</> })}</h1>
         <Mentor>{tr({ uz: <>Botjon savolga javob bera oladi va muloqot qiladi (o'tgan darslarda ko'rdingiz) — lekin u <b style={{ color: T.ink }}>bir necha soniya oldin nima gaplashganini eslay olmaydi</b>. Tugmani bosing va o'z ko'zingiz bilan ko'ring.</>, ru: <>Ботжон умеет отвечать и общаться (Вы видели это в прошлых уроках) — но он <b style={{ color: T.ink }}>не помнит, о чём говорил несколько секунд назад</b>. Нажмите кнопку и убедитесь сами.</> })}</Mentor>
         <Zoomable><Split>
           <Col>
@@ -769,14 +769,14 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
         <Bubble from="bot">{tr({ uz: "Yana xush kelibsiz, Aziza! 😊 O'tgan safargi Margaritani yana olasizmi?", ru: 'С возвращением, Азиза! 😊 Возьмёте ту же Маргариту, что в прошлый раз?' })}</Bubble>
       </TgChat>
       <div className="sk-info"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Botjon ismni va o'tgan buyurtmani esladi — chunki ularni <b>daftarga</b> yozib qo'ygan. Mana shuni quramiz.</>, ru: <>Ботжон вспомнил имя и прошлый заказ — ведь он записал их <b>в блокнот</b>. Именно это мы и построим.</> })}</p></div>
+      <p className="flow-label" style={{ marginTop: 4 }}>{tr({ uz: 'Jihozlar paneli — bugun 3-uyacha yonadi', ru: 'Панель снаряжения — сегодня загорается 3-я ячейка' })}</p>
+      <GearPanel active={['key', 'sheet', 'btn', 'env', 'note']} />
     </Col>
   );
   const StepsB = (
     <Col>
       <p className="flow-label">{tr({ uz: 'Bugungi 4 qadam', ru: '4 шага сегодня' })}</p>
       <ol className="roadmap">{STEPS.map((s, i) => (<li key={i} className="step-card fade-up" style={{ animationDelay: `${0.08 + i * 0.05}s` }}><span className="step-num">{String(i + 1).padStart(2, '0')}</span><span className="step-body"><span className="step-text">{tr(s.text)}</span><span className="step-tag">{tr(s.tag)}</span></span></li>))}</ol>
-      <p className="flow-label" style={{ marginTop: 4 }}>{tr({ uz: 'Jihozlar paneli — bugun 3-uyacha yonadi', ru: 'Панель снаряжения — сегодня загорается 3-я ячейка' })}</p>
-      <GearPanel active={['key', 'sheet', 'btn', 'env', 'note']} />
     </Col>
   );
   return (
@@ -2357,7 +2357,7 @@ export default function BotStatefulMemoryLesson({ lang: langProp, onFinished, li
         .hook-ack { margin: 2px 0 0; font-family: 'Manrope', sans-serif; font-weight: 500; font-size: clamp(13px,1.5vw,14.5px); color: ${T.ink2}; }
 
 
-        .h-title { font-size: clamp(22px,4vw,38px); }
+        .h-title { font-size: clamp(22px,4vw,36px); letter-spacing: -0.015em; text-wrap: balance; }
         .h-sub { font-size: clamp(17px,2.5vw,22px); }
         .h-ask { font-size: clamp(19px,2.6vw,27px); line-height: 1.32; letter-spacing: -0.01em; text-wrap: balance; }
         .body { font-size: clamp(14px,1.6vw,16px); line-height: 1.5; }
@@ -2925,7 +2925,7 @@ export default function BotStatefulMemoryLesson({ lang: langProp, onFinished, li
 
         /* ===== 🎒 JIHOZLAR PANELI ===== */
         .gear-panel { display: flex; flex-wrap: wrap; gap: 8px; }
-        .gear-slot { display: flex; flex-direction: column; align-items: center; gap: 4px; min-width: 76px; background: ${T.paper}; border-radius: 12px; padding: 10px 9px; box-shadow: 0 5px 14px -7px rgba(${T.shadowBase},0.16); opacity: 0.4; }
+        .gear-slot { display: flex; flex-direction: column; align-items: center; gap: 4px; min-width: 64px; background: ${T.paper}; border-radius: 12px; padding: 6px 7px; box-shadow: 0 5px 14px -7px rgba(${T.shadowBase},0.16); opacity: 0.4; }
         .gear-slot.on { opacity: 1; box-shadow: inset 0 0 0 1.5px ${T.success}, 0 6px 16px -6px rgba(31,122,77,0.26); background: ${T.successSoft}; }
         .gear-ico { font-size: 20px; } .gear-lbl { font-family: 'Manrope'; font-weight: 700; font-size: 10px; color: ${T.ink}; text-align: center; }
 
@@ -2954,7 +2954,8 @@ export default function BotStatefulMemoryLesson({ lang: langProp, onFinished, li
         /* tap-hint affordance — bosilmagan kartalar "meni bos" deb pulslaydi. Bosilgach pulsatsiya TO'XTAYDI = progress signali. */
         .gchip.tap-hint, .btn-soft.tap-hint { animation: tap-hint-pulse 1.9s ease-in-out infinite; }
 
-        .dd { display: flex; flex-direction: column; gap: 13px; }
+        .dd { display: grid; grid-template-columns: minmax(0,1.15fr) minmax(0,1fr); gap: 13px; align-items: start; } /* §34: keng ekranda uyalar chapda, hovuz o'ngda */
+        @media (max-width: 760px) { .dd { grid-template-columns: 1fr; } }
         .dd-slots { display: flex; flex-direction: column; gap: 9px; position: relative; }
         .dd-slot { display: flex; align-items: center; gap: 12px; min-height: 58px; border-radius: 14px; border: 2px dashed ${T.ink3}66; background: ${T.paper}; padding: 8px 12px; box-shadow: 0 5px 14px -9px rgba(${T.shadowBase},0.2); transition: border-color .18s, background .18s, box-shadow .18s; }
         .dd-slot.filled { border-style: solid; border-color: ${T.line}; box-shadow: 0 8px 18px -10px rgba(${T.shadowBase},0.26); }

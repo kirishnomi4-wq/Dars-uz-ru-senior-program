@@ -158,7 +158,7 @@ function AchCounter() {
 const Stage = ({ children, eyebrow, screen, totalScreens = TOTAL_SCREENS, navContent, narrow, mentorStatic, scrollSignal }) => {
   const isMobile = useIsMobile();
   const isNarrow = useIsMobile(768);
-  const collapseOn = !mentorStatic; // §34 (2026-09-14): Mentor kompyuterda ham birinchi bosishda yig'iladi
+  const collapseOn = isNarrow && !mentorStatic; // F-0914-08 (foydalanuvchi): kompyuterda Mentor doim ochiq, faqat tor ekranda yig'iladi
   const padH = isMobile ? 12 : 60;
   const [mCollapsed, setMCollapsed] = useState(false);
   const contentRef = useRef(null);
@@ -451,7 +451,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
       <div className="screen" style={{ justifyContent: isMentorLive ? 'flex-start' : 'center', gap: 'clamp(16px,2.5vw,24px)' }}>
         <div className="fade-up">{question}</div>
         {oneShot && !solved && <p className="small mono fade-up" style={{ margin: '-8px 0 0', color: T.accent, fontWeight: 600 }}>{tr({ uz: "⚡ Jonli dars — bitta urinish, o'ylab bosing!", ru: '⚡ Живой урок — одна попытка, подумайте перед нажатием!' })}</p>}
-        <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 11 }}>
+        <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: picked !== null ? 8 : 11 }}>
           {options.map((opt, i) => {
             let cls = 'option';
             if (isMentorLive) {
@@ -463,7 +463,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
             else if (i === picked) cls += ' option-picked-wrong';
             const showGreenLetter = isMentorLive ? (mReveal && i === correctIdx) : (solved && revealed && i === correctIdx);
             return (
-              <button key={i} className={cls} disabled={solved || isMentorLive} onClick={() => pick(i)} style={{ padding: 'clamp(13px,1.9vw,17px) clamp(15px,2.2vw,20px)', fontSize: 'clamp(15px,1.85vw,17px)', display: 'flex', alignItems: 'center', gap: 12 }}>
+              <button key={i} className={cls} disabled={solved || isMentorLive} onClick={() => pick(i)} style={{ padding: picked !== null ? 'clamp(9px,1.3vw,12px) clamp(15px,2.2vw,20px)' : 'clamp(13px,1.9vw,17px) clamp(15px,2.2vw,20px)', fontSize: 'clamp(15px,1.85vw,17px)', display: 'flex', alignItems: 'center', gap: 12 }}>
                 <span className="mono small" style={{ minWidth: 20, color: showGreenLetter ? T.success : T.ink3 }}>{String.fromCharCode(65 + i)}</span>
                 <span style={{ flex: 1 }}>{fmtCode(tr(opt))}</span>
               </button>
@@ -678,7 +678,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
   return (
     <Stage eyebrow={tr({ uz: 'Kirish', ru: 'Введение' })} screen={screen} scrollSignal={sc} navContent={<NavNext optionalLive disabled={picked === null} label={{ uz: 'Davom etish', ru: 'Продолжить' }} onClick={onNext} />}>
       <div className="screen">
-        <h1 className="title h-title fade-up" style={{ maxWidth: 880 }}>{tr({ uz: <>1-darsda Botjonning sxemasini chizdingiz. Lekin u qog'ozda. Haqiqiy Botjon <span className="italic" style={{ color: T.accent }}>qanday tug'iladi</span>?</>, ru: <>На 1-м уроке вы нарисовали схему Ботика. Но она на бумаге. А как <span className="italic" style={{ color: T.accent }}>рождается</span> настоящий Ботик?</> })}</h1>
+        <h1 className="title h-title fade-up">{tr({ uz: <>1-darsda Botjonning sxemasini chizdingiz. Lekin u qog'ozda. Haqiqiy Botjon <span className="italic" style={{ color: T.accent }}>qanday tug'iladi</span>?</>, ru: <>На 1-м уроке вы нарисовали схему Ботика. Но она на бумаге. А как <span className="italic" style={{ color: T.accent }}>рождается</span> настоящий Ботик?</> })}</h1>
         <Mentor>{tr({ uz: <>Telegram'da bot yaratadigan rasmiy bot bor — <b style={{ color: T.ink }}>@BotFather</b>. U bilan suhbatlashib Botjoningizni ochasiz. Tugmani bosib, butun jarayonni ko'ring.</>, ru: <>В Telegram есть официальный бот, который создаёт ботов — <b style={{ color: T.ink }}>@BotFather</b>. Поговорив с ним, вы откроете своего Ботика. Нажмите кнопку и посмотрите весь процесс.</> })}</Mentor>
         <Zoomable><Split>
           <Col>
@@ -973,12 +973,12 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <Col>
             {mode === 'inline' ? <>
               <div className="sk-info"><p className="note-h" style={{ color: T.accent }}>{tr({ uz: '🔘 Xabar ustidagi tugma', ru: '🔘 Кнопка под сообщением' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Xabarning tagiga yopishadi. Bosilganda matn YUBORMAYDI — yashirin <b>signal</b> jo'natadi. Botjon uni <span className="mono">bot.action(...)</span> bilan ushlaydi.</>, ru: <>Прилипает под сообщением. При нажатии текст НЕ отправляет — шлёт скрытый <b>сигнал</b>. Ботик ловит его через <span className="mono">bot.action(...)</span>.</> })}</p></div>
-              {cb ? <div className="frame-success fade-step" key={cb.data}><p className="body mono" style={{ margin: 0, color: T.ink, fontSize: 13 }}>{tr({ uz: '⚡ signal keldi →', ru: '⚡ пришёл сигнал →' })} <b style={{ color: T.success }}>action: '{cb.data}'</b><br />{tr({ uz: "(chat tarixiga yangi xabar qo'shilmadi)", ru: '(в историю чата новое сообщение не добавилось)' })}</p></div>
-                : <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Chapdagi tugmani bosing ←', ru: 'Нажмите кнопку слева ←' })}</p></div>}
+              {!done && (cb ? <div className="frame-success fade-step" key={cb.data}><p className="body mono" style={{ margin: 0, color: T.ink, fontSize: 13 }}>{tr({ uz: '⚡ signal keldi →', ru: '⚡ пришёл сигнал →' })} <b style={{ color: T.success }}>action: '{cb.data}'</b><br />{tr({ uz: "(chat tarixiga yangi xabar qo'shilmadi)", ru: '(в историю чата новое сообщение не добавилось)' })}</p></div>
+                : <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Chapdagi tugmani bosing ←', ru: 'Нажмите кнопку слева ←' })}</p></div>)}
             </> : <>
               <div className="sk-info"><p className="note-h" style={{ color: T.accent }}>{tr({ uz: '⌨️ Pastdagi tugmalar taxtasi', ru: '⌨️ Нижняя панель кнопок' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Klaviatura o'rnida turadi. Bosilganda u oddiy <b>matn xabar</b> sifatida yuboriladi. Botjon uni <span className="mono">bot.hears(...)</span> bilan ushlaydi.</>, ru: <>Стоит на месте клавиатуры. При нажатии отправляется как обычное <b>текстовое сообщение</b>. Ботик ловит его через <span className="mono">bot.hears(...)</span>.</> })}</p></div>
-              {sent.length > 0 ? <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Ko'rdingizmi — bosilgan tugma <b>mijozning xabari</b> bo'lib chatga qo'shildi. Xabar ustidagi tugmada bunday bo'lmagandi.</>, ru: <>Видите — нажатая кнопка добавилась в чат как <b>сообщение клиента</b>. С кнопкой под сообщением такого не было.</> })}</p></div>
-                : <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Pastdagi tugmani bosing ←', ru: 'Нажмите кнопку внизу ←' })}</p></div>}
+              {!done && (sent.length > 0 ? <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Ko'rdingizmi — bosilgan tugma <b>mijozning xabari</b> bo'lib chatga qo'shildi. Xabar ustidagi tugmada bunday bo'lmagandi.</>, ru: <>Видите — нажатая кнопка добавилась в чат как <b>сообщение клиента</b>. С кнопкой под сообщением такого не было.</> })}</p></div>
+                : <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Pastdagi tugmani bosing ←', ru: 'Нажмите кнопку внизу ←' })}</p></div>)}
             </>}
             {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Qoida: tez tanlov/menyu uchun <b>xabar ustidagi tugma</b>, doimiy klaviatura (asosiy buyruqlar) uchun <b>pastdagi taxta</b> ishlatiladi.</>, ru: <>Правило: для быстрого выбора и меню берут <b>кнопку под сообщением</b>, а для постоянной клавиатуры (основные команды) — <b>нижнюю панель</b>.</> })}</p></div>}
           </Col>
@@ -2478,7 +2478,7 @@ export default function BotApiButtonsLesson({ lang: langProp, onFinished, liveTo
         .radio-dot { width: 10px; height: 10px; border-radius: 50%; background: ${T.accent}; }
         .hook-ack { margin: 2px 0 0; font-family: 'Manrope', sans-serif; font-weight: 500; font-size: clamp(13px,1.5vw,14.5px); color: ${T.ink2}; }
 
-        .h-title { font-size: clamp(22px,4vw,38px); }
+        .h-title { font-size: clamp(22px,4vw,36px); letter-spacing: -0.015em; text-wrap: balance; }
         .h-sub { font-size: clamp(17px,2.5vw,22px); }
         .h-ask { font-size: clamp(19px,2.6vw,27px); line-height: 1.32; letter-spacing: -0.01em; text-wrap: balance; }
         .body { font-size: clamp(14px,1.6vw,16px); line-height: 1.5; }
@@ -3069,7 +3069,8 @@ export default function BotApiButtonsLesson({ lang: langProp, onFinished, liveTo
         .shake { animation: shake 0.4s ease; }
 
         /* ===== DRAG & DROP (DragDropOrder — reusable) ===== */
-        .dd { display: flex; flex-direction: column; gap: 13px; }
+        .dd { display: grid; grid-template-columns: minmax(0,1.15fr) minmax(0,1fr); gap: 13px; align-items: start; } /* §34: keng ekranda uyalar chapda, hovuz o'ngda */
+        @media (max-width: 760px) { .dd { grid-template-columns: 1fr; } }
         .dd-slots { display: flex; flex-direction: column; gap: 9px; position: relative; }
         .dd-slot { display: flex; align-items: center; gap: 12px; min-height: 58px; border-radius: 14px; border: 2px dashed ${T.ink3}66; background: ${T.paper}; padding: 8px 12px; box-shadow: 0 5px 14px -9px rgba(${T.shadowBase},0.2); transition: border-color .18s, background .18s, box-shadow .18s; }
         .dd-slot.filled { border-style: solid; border-color: ${T.line}; box-shadow: 0 8px 18px -10px rgba(${T.shadowBase},0.26); }

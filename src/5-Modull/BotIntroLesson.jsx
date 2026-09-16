@@ -163,7 +163,7 @@ function AchCounter() {
 const Stage = ({ children, eyebrow, screen, totalScreens = TOTAL_SCREENS, navContent, narrow, mentorStatic, scrollSignal }) => {
   const isMobile = useIsMobile();
   const isNarrow = useIsMobile(768); // mobil: Mentor yig'ilish rejimi
-  const collapseOn = !mentorStatic; // §34 (2026-09-14): Mentor kompyuterda ham birinchi bosishda yig'iladi
+  const collapseOn = isNarrow && !mentorStatic; // F-0914-08 (foydalanuvchi): kompyuterda Mentor doim ochiq, faqat tor ekranda yig'iladi
   const padH = isMobile ? 12 : 60; // InternetLesson layout standarti: 1100px + 60px
   const [mCollapsed, setMCollapsed] = useState(false);
   const contentRef = useRef(null);
@@ -471,7 +471,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
       <div className="screen" style={{ justifyContent: isMentorLive ? 'flex-start' : 'center', gap: 'clamp(16px,2.5vw,24px)' }}>
         <div className="fade-up">{question}</div>
         {oneShot && !solved && <p className="small mono fade-up" style={{ margin: '-8px 0 0', color: T.accent, fontWeight: 600 }}>{tr({ uz: "⚡ Jonli dars — bitta urinish, o'ylab bosing!", ru: '⚡ Живой урок — одна попытка, подумайте перед нажатием!' })}</p>}
-        <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 11 }}>
+        <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: picked !== null ? 8 : 11 }}>
           {options.map((opt, i) => {
             let cls = 'option';
             if (isMentorLive) {
@@ -483,7 +483,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
             else if (i === picked) cls += ' option-picked-wrong';
             const showGreenLetter = isMentorLive ? (mReveal && i === correctIdx) : (solved && revealed && i === correctIdx);
             return (
-              <button key={i} className={cls} disabled={solved || isMentorLive} onClick={() => pick(i)} style={{ padding: 'clamp(13px,1.9vw,17px) clamp(15px,2.2vw,20px)', fontSize: 'clamp(15px,1.85vw,17px)', display: 'flex', alignItems: 'center', gap: 12 }}>
+              <button key={i} className={cls} disabled={solved || isMentorLive} onClick={() => pick(i)} style={{ padding: picked !== null ? 'clamp(9px,1.3vw,12px) clamp(15px,2.2vw,20px)' : 'clamp(13px,1.9vw,17px) clamp(15px,2.2vw,20px)', fontSize: 'clamp(15px,1.85vw,17px)', display: 'flex', alignItems: 'center', gap: 12 }}>
                 <span className="mono small" style={{ minWidth: 20, color: showGreenLetter ? T.success : T.ink3 }}>{String.fromCharCode(65 + i)}</span>
                 <span style={{ flex: 1 }}>{fmtCode(opt)}</span>
               </button>
@@ -722,7 +722,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
   return (
     <Stage eyebrow={tr({ uz: 'Kirish', ru: 'Вступление' })} screen={screen} scrollSignal={sc} navContent={<NavNext optionalLive disabled={picked === null} label={tr({ uz: 'Davom etish', ru: 'Продолжить' })} onClick={onNext} />}>
       <div className="screen">
-        <h1 className="title h-title fade-up" style={{ maxWidth: 880 }}>{tr({ uz: <>Soat <span className="mono" style={{ color: T.accent }}>03:00</span>. Siz uxlayapsiz. Mijoz botga yozdi — <span className="italic" style={{ color: T.accent }}>kim javob beradi</span>?</>, ru: <><span className="mono" style={{ color: T.accent }}>03:00</span>. Вы спите. Клиент написал боту — <span className="italic" style={{ color: T.accent }}>кто ответит</span>?</> })}</h1>
+        <h1 className="title h-title fade-up">{tr({ uz: <>Soat <span className="mono" style={{ color: T.accent }}>03:00</span>. Siz uxlayapsiz. Mijoz botga yozdi — <span className="italic" style={{ color: T.accent }}>kim javob beradi</span>?</>, ru: <><span className="mono" style={{ color: T.accent }}>03:00</span>. Вы спите. Клиент написал боту — <span className="italic" style={{ color: T.accent }}>кто ответит</span>?</> })}</h1>
         <Mentor>{tr({ uz: "Tasavvur qiling: kechasi mijoz savol beradi. Siz uxlayapsiz. Tugmani bosing — nima bo'lishini ko'ring.", ru: 'Представьте: ночью клиент задаёт вопрос. Вы спите. Нажмите кнопку — посмотрите, что будет.' })}</Mentor>
         <Zoomable><Split>
           <Col>
@@ -768,14 +768,14 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
       <p className="flow-label">{tr({ uz: "Botjonning butun mantig'i — bitta jumlada", ru: 'Вся логика Ботика — в одном предложении' })}</p>
       <SignalFlow sig="/start" sIco="🚀" act={{ uz: 'Salom! 👋', ru: 'Привет! 👋' }} aIco="👋" playKey={1} />
       <div className="sk-info"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Signal keladi → Botjon <b>qoidalar varag'idan</b> mos qatorni qidiradi → amal bajaradi. Shu — botning butun ishi. Mana shu darsda buni to'liq ochamiz.</>, ru: <>Приходит сигнал → Ботик ищет подходящую строку <b>в листе правил</b> → выполняет действие. Вот и вся работа бота. На этом уроке разберём её полностью.</> })}</p></div>
+      <p className="flow-label" style={{ marginTop: 4 }}>{tr({ uz: 'Jihozlar paneli — bugun 2 tasi yonadi', ru: 'Панель снаряжения — сегодня загорятся 2' })}</p>
+      <GearPanel active={['key', 'sheet']} />
     </Col>
   );
   const StepsB = (
     <Col>
       <p className="flow-label">{tr({ uz: 'Bugungi 4 qadam', ru: '4 шага сегодня' })}</p>
       <ol className="roadmap">{STEPS.map((s, i) => (<li key={i} className="step-card fade-up" style={{ animationDelay: `${0.08 + i * 0.05}s` }}><span className="step-num">{String(i + 1).padStart(2, '0')}</span><span className="step-body"><span className="step-text">{tr(s.text)}</span><span className="step-tag">{tr(s.tag)}</span></span></li>))}</ol>
-      <p className="flow-label" style={{ marginTop: 4 }}>{tr({ uz: 'Jihozlar paneli — bugun 2 tasi yonadi', ru: 'Панель снаряжения — сегодня загорятся 2' })}</p>
-      <GearPanel active={['key', 'sheet']} />
     </Col>
   );
   return (
@@ -1134,6 +1134,7 @@ function NightShift({ onSolved }) {
 
   return (
     <div className="ns fade-up">
+      <div className="ns-main">
       <div className="ns-sheet">
         <p className="flow-label">{tr({ uz: "📋 qoidalar varag'i (siz yozasiz)", ru: '📋 лист правил (заполняете вы)' })}</p>
         {rows.map((r, i) => (
@@ -1145,6 +1146,13 @@ function NightShift({ onSolved }) {
           </div>
         ))}
       </div>
+      {/* 147 (e) 1-naqsh: varaq haqidagi natija-izoh varaq ostida (bo'sh chap ustun) */}
+      {results && !running && <p className="mono small" style={{ color: T.ink2, margin: 0 }}>{tr({ uz: "Xizmat ko'rsatildi", ru: 'Обслужено' })} <b>{served}/4</b> · {tr({ uz: 'Ketib qoldi', ru: 'Ушли' })} <b>{4 - served}</b></p>}
+      {results && !running && !allOk && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Varaqni to'g'rilang: har signalga <b>to'g'ri</b> amal ulanishi kerak, va hech biriga mos kelmagan signal uchun oxirgi (fallback) qator kerak.</>, ru: <>Поправьте лист: каждому сигналу должно соответствовать <b>верное</b> действие, а для сигнала, который ни к чему не подошёл, нужна последняя строка (fallback).</> })}</p></div>}
+      {allOk && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "✓ 4/4! Barcha mijoz xizmat oldi — hatto Sardor ham, chunki siz fallback qatorini qo'shdingiz.", ru: '✓ 4/4! Все клиенты обслужены — даже Сардор, потому что вы добавили строку fallback.' })}</p></div>}
+      </div>
+      {/* 147 (e): varaq chapda, hovuzlar + tugma + smena natijasi o'ng ustunda — mijoz-kartalari pastki chiziqdan tushmaydi */}
+      <div className="ns-side">
       <div className="ns-pools">
         <div className="ns-pool"><span className="flow-label">{tr({ uz: 'signallar', ru: 'сигналы' })}</span><div className="ns-pool-row">{sigPool.map(id => <button key={id} className="ns-chip sig pool" onPointerDown={(e) => drag(e, id, 'pool', 'sig')}>{bySig(id).ico} {tr(bySig(id).label)}</button>)}</div></div>
         <div className="ns-pool"><span className="flow-label">{tr({ uz: 'amallar', ru: 'действия' })}</span><div className="ns-pool-row">{actPool.map(id => <button key={id} className="ns-chip act pool" onPointerDown={(e) => drag(e, id, 'pool', 'act')}>{byAct(id).ico} {tr(byAct(id).label)}</button>)}</div></div>
@@ -1164,11 +1172,9 @@ function NightShift({ onSolved }) {
               );
             })}
           </div>
-          {!running && <p className="mono small" style={{ color: T.ink2 }}>{tr({ uz: "Xizmat ko'rsatildi", ru: 'Обслужено' })} <b>{served}/4</b> · {tr({ uz: 'Ketib qoldi', ru: 'Ушли' })} <b>{4 - served}</b></p>}
-          {!running && !allOk && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Varaqni to'g'rilang: har signalga <b>to'g'ri</b> amal ulanishi kerak, va hech biriga mos kelmagan signal uchun oxirgi (fallback) qator kerak.</>, ru: <>Поправьте лист: каждому сигналу должно соответствовать <b>верное</b> действие, а для сигнала, который ни к чему не подошёл, нужна последняя строка (fallback).</> })}</p></div>}
-          {allOk && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "✓ 4/4! Barcha mijoz xizmat oldi — hatto Sardor ham, chunki siz fallback qatorini qo'shdingiz.", ru: '✓ 4/4! Все клиенты обслужены — даже Сардор, потому что вы добавили строку fallback.' })}</p></div>}
         </div>
       )}
+      </div>
     </div>
   );
 }
@@ -2564,7 +2570,7 @@ export default function BotIntroLesson({ lang: langProp, onFinished, liveToken }
         .hook-ack { margin: 2px 0 0; font-family: 'Manrope', sans-serif; font-weight: 500; font-size: clamp(13px,1.5vw,14.5px); color: ${T.ink2}; }
 
 
-        .h-title { font-size: clamp(22px,4vw,38px); }
+        .h-title { font-size: clamp(22px,4vw,36px); letter-spacing: -0.015em; text-wrap: balance; }
         .h-sub { font-size: clamp(17px,2.5vw,22px); }
         .h-ask { font-size: clamp(19px,2.6vw,27px); line-height: 1.32; letter-spacing: -0.01em; text-wrap: balance; }
         .body { font-size: clamp(14px,1.6vw,16px); line-height: 1.5; }
@@ -3166,7 +3172,7 @@ export default function BotIntroLesson({ lang: langProp, onFinished, liveToken }
 
         /* ===== 🎒 JIHOZLAR PANELI ===== */
         .gear-panel { display: flex; flex-wrap: wrap; gap: 8px; }
-        .gear-slot { display: flex; flex-direction: column; align-items: center; gap: 4px; min-width: 76px; background: ${T.paper}; border-radius: 12px; padding: 10px 9px; box-shadow: 0 5px 14px -7px rgba(${T.shadowBase},0.16); opacity: 0.4; }
+        .gear-slot { display: flex; flex-direction: column; align-items: center; gap: 4px; min-width: 64px; background: ${T.paper}; border-radius: 12px; padding: 6px 7px; box-shadow: 0 5px 14px -7px rgba(${T.shadowBase},0.16); opacity: 0.4; }
         .gear-slot.on { opacity: 1; box-shadow: inset 0 0 0 1.5px ${T.success}, 0 6px 16px -6px rgba(31,122,77,0.26); background: ${T.successSoft}; }
         .gear-ico { font-size: 20px; } .gear-lbl { font-family: 'Manrope'; font-weight: 700; font-size: 10px; color: ${T.ink}; text-align: center; }
 
@@ -3193,10 +3199,17 @@ export default function BotIntroLesson({ lang: langProp, onFinished, liveToken }
         @media (prefers-reduced-motion: reduce) { .bot-status.danger { animation: none; } }
 
         /* ===== 📋 TUNGI SMENA (s7 markaziy) ===== */
-        .ns-sheet { display: flex; flex-direction: column; gap: 6px; background: ${T.paper}; border-radius: 14px; padding: 12px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.14); }
+        /* 147 (e): varaq chapda, hovuzlar va smena natijasi o'ngda; tor ekranda bitta ustun (split bilan bir xil 760px) */
+        .ns { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: clamp(14px,2.4vw,24px); align-items: start; }
+        .ns-main, .ns-side { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+        .ns-side .btn { padding-top: 10px; padding-bottom: 10px; }
+        @media (max-width: 760px) { .ns { grid-template-columns: 1fr; } .ns-shift-cards { grid-template-columns: 1fr; } }
+        /* F-0916-01 Q3: ru da «Varaqni to'g'rilang» izohi 3 qator — chap ustun 21px ortiq edi; faqat shu ekranda ichki bo'shliq 4px kam */
+        .ns-main .frame-warn { padding: 10px 13px; } .ns-main .frame-warn p { line-height: 1.45; }
+        .ns-sheet { display: flex; flex-direction: column; gap: 5px; background: ${T.paper}; border-radius: 14px; padding: 10px 12px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.14); }
         .ns-row { display: flex; align-items: center; gap: 8px; }
         .ns-rown { width: 20px; height: 20px; border-radius: 6px; background: ${T.bg}; color: ${T.ink3}; font-weight: 800; font-size: 11px; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
-        .ns-cell { flex: 1; min-height: 40px; border-radius: 10px; border: 1.5px dashed ${T.ink3}66; display: flex; align-items: center; padding: 4px 6px; }
+        .ns-cell { flex: 1; min-height: 38px; border-radius: 10px; border: 1.5px dashed ${T.ink3}66; display: flex; align-items: center; padding: 4px 6px; }
         .ns-cell.filled { border-style: solid; border-color: ${T.line}; }
         .ns-eq { color: ${T.ink3}; font-weight: 800; }
         .ns-hint { color: ${T.ink3}; font-style: italic; font-size: 11.5px; margin: 0 auto; }
@@ -3205,13 +3218,14 @@ export default function BotIntroLesson({ lang: langProp, onFinished, liveToken }
         .ns-chip.sig { background: linear-gradient(170deg, #FF8A3D, ${T.accent}); color: #fff; }
         .ns-chip.act { background: linear-gradient(170deg, #34B27A, ${T.success}); color: #fff; }
         .ns-chip.pool { width: auto; }
-        .ns-pools { display: flex; flex-direction: column; gap: 8px; }
-        .ns-pool-row { display: flex; flex-wrap: wrap; gap: 6px; min-height: 36px; padding: 8px; border-radius: 12px; background: ${T.bg}; }
+        .ns-pools { display: flex; flex-direction: column; gap: 6px; }
+        .ns-pool-row { display: flex; flex-wrap: wrap; gap: 6px; min-height: 36px; padding: 6px 8px; border-radius: 12px; background: ${T.bg}; }
         .ns-shift { display: flex; flex-direction: column; gap: 8px; }
-        .ns-shift-cards { display: flex; flex-direction: column; gap: 7px; }
-        .ns-cust { display: flex; align-items: center; justify-content: space-between; gap: 10px; background: ${T.paper}; border-radius: 11px; padding: 10px 13px; box-shadow: 0 5px 14px -7px rgba(${T.shadowBase},0.14); transition: all 0.4s ease; }
-        .ns-cust-name { font-family: 'Manrope'; font-weight: 700; font-size: 12.5px; color: ${T.ink}; }
-        .ns-cust-msg { font-family: 'Manrope'; font-weight: 600; font-size: 12px; }
+        /* F-0916-01 Q3: smenadan keyin 4 mijoz kartasi 2×2 to'rda — o'ng ustun pastki chiziqdan tushmaydi (kartalar matni o'zgarmagan) */
+        .ns-shift-cards { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 7px; }
+        .ns-cust { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; background: ${T.paper}; border-radius: 11px; padding: 6px 10px; box-shadow: 0 5px 14px -7px rgba(${T.shadowBase},0.14); transition: all 0.4s ease; min-width: 0; }
+        .ns-cust-name { font-family: 'Manrope'; font-weight: 700; font-size: 12px; color: ${T.ink}; }
+        .ns-cust-msg { font-family: 'Manrope'; font-weight: 600; font-size: 11.5px; }
         .ns-cust.ok { box-shadow: inset 0 0 0 1.5px ${T.success}; } .ns-cust.ok .ns-cust-msg { color: ${T.success}; }
         .ns-cust.wrong { box-shadow: inset 0 0 0 1.5px #E8A13A; } .ns-cust.wrong .ns-cust-msg { color: #B45309; }
         .ns-cust.silent { opacity: 0.45; transform: translateY(4px) grayscale(1); box-shadow: inset 0 0 0 1.5px ${T.ink3}; } .ns-cust.silent .ns-cust-msg { color: ${T.ink3}; }
@@ -3270,7 +3284,8 @@ export default function BotIntroLesson({ lang: langProp, onFinished, liveToken }
         /* tap-hint affordance — bosilmagan kartalar "meni bos" deb pulslaydi. Bosilgach pulsatsiya TO'XTAYDI = progress signali. */
         .gchip.tap-hint, .btn-soft.tap-hint, .itm-card.tap-hint { animation: tap-hint-pulse 1.9s ease-in-out infinite; }
 
-        .dd { display: flex; flex-direction: column; gap: 13px; }
+        .dd { display: grid; grid-template-columns: minmax(0,1.15fr) minmax(0,1fr); gap: 13px; align-items: start; } /* §34: keng ekranda uyalar chapda, hovuz o'ngda */
+        @media (max-width: 760px) { .dd { grid-template-columns: 1fr; } }
         .dd-slots { display: flex; flex-direction: column; gap: 9px; position: relative; }
         .dd-slot { display: flex; align-items: center; gap: 12px; min-height: 58px; border-radius: 14px; border: 2px dashed ${T.ink3}66; background: ${T.paper}; padding: 8px 12px; box-shadow: 0 5px 14px -9px rgba(${T.shadowBase},0.2); transition: border-color .18s, background .18s, box-shadow .18s; }
         .dd-slot.filled { border-style: solid; border-color: ${T.line}; box-shadow: 0 8px 18px -10px rgba(${T.shadowBase},0.26); }

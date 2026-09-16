@@ -112,13 +112,13 @@ const SCREEN_META = [
 const TOTAL_SCREENS = SCREEN_META.length;
 const SCORED_IDX = SCREEN_META.map((m, i) => (m.scored ? i : null)).filter(i => i !== null);
 
-const Split = ({ children }) => <div className="split">{children}</div>;
+const Split = ({ children, three }) => <div className={three ? 'split split3' : 'split'}>{children}</div>; // §34: three — uch ustun (s0)
 const Col = ({ children, gap }) => <div className="col" style={gap ? { gap } : undefined}>{children}</div>;
 
 const Stage = ({ children, eyebrow, screen, totalScreens = TOTAL_SCREENS, navContent, narrow, mentorStatic }) => {
   const isMobile = useIsMobile();
   const isNarrow = useIsMobile(768);
-  const collapseOn = !mentorStatic; // §34 (2026-09-14): Mentor kompyuterda ham birinchi bosishda yig'iladi
+  const collapseOn = isNarrow && !mentorStatic; // F-0914-08 (foydalanuvchi): kompyuterda Mentor doim ochiq, faqat tor ekranda yig'iladi
   const padH = isMobile ? 12 : 60; // InternetLesson layout standarti: 1100px + 60px
   const [mCollapsed, setMCollapsed] = useState(false);
   const contentRef = useRef(null);
@@ -538,7 +538,7 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
       <div className="screen" style={{ justifyContent: isMentorLive ? 'flex-start' : 'safe center', gap: 'clamp(16px,2.5vw,24px)' }}>
         <div className="fade-up">{question}</div>
         {oneShot && !solved && <p className="small mono fade-up" style={{ margin: '-8px 0 0', color: T.accent, fontWeight: 600 }}>⚡ {tr({ uz: "Jonli dars — bitta urinish, o'ylab bosing!", ru: 'Живой урок — одна попытка, думайте перед кликом!' })}</p>}
-        <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 11 }}>
+        <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: picked !== null ? 8 : 11 }}>
           {options.map((opt, i) => {
             let cls = 'option';
             if (isMentorLive) {
@@ -550,7 +550,7 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
             else if (i === picked) cls += ' option-picked-wrong';
             const showGreenLetter = isMentorLive ? (mReveal && i === correctIdx) : (solved && revealed && i === correctIdx);
             return (
-              <button key={i} className={cls} disabled={solved || isMentorLive} onClick={() => pick(i)} style={{ padding: 'clamp(13px,1.9vw,17px) clamp(15px,2.2vw,20px)', fontSize: 'clamp(15px,1.85vw,17px)', display: 'flex', alignItems: 'center', gap: 12 }}>
+              <button key={i} className={cls} disabled={solved || isMentorLive} onClick={() => pick(i)} style={{ padding: picked !== null ? 'clamp(9px,1.3vw,12px) clamp(15px,2.2vw,20px)' : 'clamp(13px,1.9vw,17px) clamp(15px,2.2vw,20px)', fontSize: 'clamp(15px,1.85vw,17px)', display: 'flex', alignItems: 'center', gap: 12 }}>
                 <span className="mono small" style={{ minWidth: 20, color: showGreenLetter ? T.success : T.ink3 }}>{String.fromCharCode(65 + i)}</span>
                 <span style={{ flex: 1 }}>{fmtCode(tr(opt))}</span>
               </button>
@@ -627,10 +627,10 @@ const Mentor = ({ children }) => {
 };
 
 // Terminal (console.log natijasi)
-const Terminal = ({ lines, empty = { uz: '// natija shu yerda chiqadi…', ru: '// результат появится здесь…' }, title = 'console' }) => (
+const Terminal = ({ lines, empty = { uz: '// natija shu yerda chiqadi…', ru: '// результат появится здесь…' }, title = 'console', maxH }) => (
   <div className="term">
     <div className="term-bar"><span className="term-dot" style={{ background: '#FF5F56' }} /><span className="term-dot" style={{ background: '#FFBD2E' }} /><span className="term-dot" style={{ background: '#27C93F' }} /><span className="term-title">{tr(title)}</span></div>
-    <div className="term-body">
+    <div className="term-body" style={maxH ? { maxHeight: maxH, overflowY: 'auto' } : undefined}>
       {lines.length === 0 ? <p className="term-empty">{tr(empty)}</p> : lines.map((l, i) => (
         <div key={i} className="term-line"><span className="term-arrow">›</span><span>{l}</span></div>
       ))}
@@ -715,6 +715,8 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
   const NEED = 30;
   const [count, setCount] = useState(0);
   const [picked, setPicked] = useState(storedAnswer?.picked ?? null);
+  const listRef = useRef(null); // §34: ro'yxat ichki skroll — oxirgi xabar ko'rinsin
+  useEffect(() => { const el = listRef.current; if (el) el.scrollTop = el.scrollHeight; }, [count]);
   const OPTS = [
     { id: 'a', label: { uz: "Bittalab — 1000 marta qo'lda yozaman", ru: 'По одному — напишу вручную 1000 раз' } },
     { id: 'b', label: { uz: "Sikl bilan — bir marta yozib, takrorlataman", ru: 'Циклом — напишу один раз и заставлю повторять' } },
@@ -725,13 +727,13 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
   return (
     <Stage eyebrow={tr({ uz: 'Kirish', ru: 'Введение' })} screen={screen} navContent={<NavNext optionalLive disabled={picked === null} label={tr({ uz: 'Davom etish', ru: 'Продолжить' })} onClick={onNext} />}>
       <div className="screen">
-        <h1 className="title h-title fade-up" style={{ maxWidth: 780 }}>{tr({ uz: <>30 ta do'stingizga bir xil xabarni <span className="italic" style={{ color: T.accent }}>bittalab</span> yozasizmi?</>, ru: <>Будете писать 30 друзьям одно и то же <span className="italic" style={{ color: T.accent }}>по одному</span>?</> })}</h1>
+        <h1 className="title h-title fade-up">{tr({ uz: <>30 ta do'stingizga bir xil xabarni <span className="italic" style={{ color: T.accent }}>bittalab</span> yozasizmi?</>, ru: <>Будете писать 30 друзьям одно и то же <span className="italic" style={{ color: T.accent }}>по одному</span>?</> })}</h1>
         <Mentor>{tr({ uz: <>Tasavvur qiling: bayramda 30 ta sinfdoshingizga <b style={{ color: T.ink }}>"Bayram muborak!"</b> deb yozmoqchisiz. Bittalab yozsangiz — qo'lingiz charchaydi. Tugmani bir necha marta bosing-chi, qancha zerikarli ekanini his qiling.</>, ru: <>Представьте: на праздник вы хотите написать 30 одноклассникам <b style={{ color: T.ink }}>«С праздником!»</b>. Писать по одному — рука устанет. Понажимайте кнопку несколько раз и почувствуйте, насколько это скучно.</> })}</Mentor>
         <Zoomable>
-        <Split>
+        <Split three>
           <Col>
             <p className="flow-label">{tr({ uz: "Qo'lda yuborilgan xabarlar", ru: 'Сообщения, отправленные вручную' })}</p>
-            <div className="msg-list fade-up delay-1">
+            <div className="msg-list fade-up delay-1" ref={listRef} style={{ maxHeight: 96 }}>
               {count === 0 ? (
                 <p style={{ color: T.ink3, fontStyle: 'italic', margin: 0, fontFamily: "'JetBrains Mono',monospace", fontSize: 13 }}>{tr({ uz: '// hali bittasi ham yuborilmadi', ru: '// пока не отправлено ни одного' })}</p>
               ) : Array.from({ length: count }).map((_, i) => (
@@ -750,11 +752,13 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
               <div className="fatigue"><div className="fatigue-bar" style={{ width: `${(count / NEED) * 100}%`, color: count < NEED * 0.5 ? T.success : count < NEED * 0.8 ? '#E6A100' : T.accent, background: count < NEED * 0.5 ? T.success : count < NEED * 0.8 ? '#E6A100' : T.accent }} /></div>
             </div>
             {count >= 5 && count < NEED && <p className="hook-ack fade-step">{tr({ uz: <>Hali <b>{NEED - count} ta</b> qoldi… va bu atigi 30 ta. 1000 ta bo'lsa-chi? 😅</>, ru: <>Осталось ещё <b>{NEED - count}</b>… и это всего 30. А если 1000? 😅</> })}</p>}
-            <div className="fade-up delay-2"><SiklZavodi count={count} max={NEED} init="i = 1" cond={`i <= ${NEED}`} step="i++" load={Array.from({ length: NEED }, (_, k) => k + 1)} manual onAuto={() => setCount(NEED)} done={count >= NEED} compact /></div>
             {count >= NEED && <p className="hook-ack fade-step">{tr({ uz: <>⚡ Bir zarbada 30 tasi tayyor! Mana <b>sikl</b> — mehnatni kompyuterga o'tkazadi.</>, ru: <>⚡ Одним махом готовы все 30! Вот что такое <b>цикл</b> — он перекладывает труд на компьютер.</> })}</p>}
           </Col>
           <Col>
-            <p className="eyebrow fade-up delay-2" style={{ color: T.ink2, margin: 0 }}>{tr({ uz: 'Dasturchi 1000 ta xabarni qanday yozadi?', ru: 'Как программист напишет 1000 сообщений?' })}</p>
+            <div className="fade-up delay-2"><SiklZavodi count={count} max={NEED} init="i = 1" cond={`i <= ${NEED}`} step="i++" load={Array.from({ length: NEED }, (_, k) => k + 1)} manual onAuto={() => setCount(NEED)} done={count >= NEED} compact /></div>
+          </Col>
+          <Col>
+            <p className="eyebrow fade-up delay-2" style={{ color: T.ink2, margin: 0, paddingRight: 40 }}>{tr({ uz: 'Dasturchi 1000 ta xabarni qanday yozadi?', ru: 'Как программист напишет 1000 сообщений?' })}</p>
             <div className="fade-up delay-3" style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
               {OPTS.map(o => {
                 const on = picked === o.id;
@@ -1001,6 +1005,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <div style={{ paddingLeft: 18 }}><FN>console</FN>.<FN>log</FN>(i)</div>
               <div>{'}'}</div>
             </div>
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ Ko'rdingizmi? Bitta sonni o'zgartirdingiz — butun natija o'zgardi. Qadam <b>2</b> bo'lsa, sikl sonlarni <b>sakrab</b> o'tadi. Sikl moslashuvchan!</>, ru: <>✓ Видели? Поменяли одно число — изменился весь результат. Если шаг <b>2</b>, цикл идёт по числам <b>прыжками</b>. Цикл гибкий!</> })}</p></div>}
           </Col>
           <Col>
             <p className="flow-label">{tr({ uz: <>Natija — {nums.length} ta son</>, ru: <>Результат — чисел: {nums.length}</> })}</p>
@@ -1009,8 +1014,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 <span key={n} className={`num-cell ${nums.includes(n) ? 'hit' : ''}`}>{n}</span>
               ))}
             </div>
-            <Terminal lines={nums.map(String)} />
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ Ko'rdingizmi? Bitta sonni o'zgartirdingiz — butun natija o'zgardi. Qadam <b>2</b> bo'lsa, sikl sonlarni <b>sakrab</b> o'tadi. Sikl moslashuvchan!</>, ru: <>✓ Видели? Поменяли одно число — изменился весь результат. Если шаг <b>2</b>, цикл идёт по числам <b>прыжками</b>. Цикл гибкий!</> })}</p></div>}
+            <Terminal lines={nums.map(String)} maxH={150} />
           </Col>
         </div>
         </Zoomable>
@@ -1085,6 +1089,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <span className="loop-count-n">{iter}</span>
               <span className="loop-count-l">{tr({ uz: 'aylanish bajarildi', ru: 'итераций выполнено' })}</span>
             </div>
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ Idish to'ldi — sikl 5 marta ishladi. Biz sanamadik: <b>Tekshiruvchi</b> shart yolg'on bo'lgan lahzada o'zi to'xtatdi.</>, ru: <>✓ Сосуд полон — цикл сработал 5 раз. Мы не считали: <b>Проверяющий</b> сам остановил его в момент, когда условие стало ложным.</> })}</p></div>}
           </Col>
           <Col>
             <div className="glass-wrap fade-up delay-1">
@@ -1099,7 +1104,6 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <p className="mono small" style={{ color: T.ink3, margin: 0 }}>{tr({ uz: `${iter}-aylanish`, ru: `итерация ${iter}` })}</p>
             </div>
             <div className="fade-up delay-2"><SiklZavodi count={iter} max={5} whileMode init="suv = 0" cond="suv < 100" step="suv += 20" done={done} compact /></div>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ Idish to'ldi — sikl 5 marta ishladi. Biz sanamadik: <b>Tekshiruvchi</b> shart yolg'on bo'lgan lahzada o'zi to'xtatdi.</>, ru: <>✓ Сосуд полон — цикл сработал 5 раз. Мы не считали: <b>Проверяющий</b> сам остановил его в момент, когда условие стало ложным.</> })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -1308,13 +1312,15 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <Zoomable>
         <div className="split">
           <Col>
-            <div className="codebox fade-up delay-1" style={{ lineHeight: 2 }}>
+            <div className="codebox fade-up delay-1" style={{ lineHeight: 1.7 }}>
               <div><KW>const</KW> dostlar = [<STR>"Ali"</STR>, <STR>"Laylo"</STR>, <STR>"Bobur"</STR>]</div>
               <div style={{ marginTop: 10 }}><KW>for</KW> (<KW>let</KW> i = <NUM>0</NUM>; i &lt; dostlar.<FN>length</FN>; i++) {'{'}</div>
               <div style={{ paddingLeft: 16 }}><FN>console</FN>.<FN>log</FN>(<STR>{tr({ uz: '"Bayram muborak, "', ru: '"С праздником, "' })}</STR> + dostlar[i])</div>
               <div>{'}'}</div>
             </div>
+            <Terminal maxH={90} lines={out} empty={{ uz: '// ▶ tugmani bosing', ru: '// ▶ нажмите кнопку' }} title={{ uz: 'xabarlar', ru: 'сообщения' }} />
             <button className="btn" onClick={run} disabled={running} style={{ alignSelf: 'flex-start' }}>{running ? tr({ uz: 'Yuborilmoqda…', ru: 'Отправляется…' }) : (done ? tr({ uz: '↻ Yana yuborish', ru: '↻ Отправить ещё раз' }) : tr({ uz: '🎉 Hammaga tabrik yuborish', ru: '🎉 Отправить всем поздравление' }))}</button>
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ 3 ta shaxsiy tabrik — <b>bitta sikl bilan</b>! Ro'yxatda 1000 ta nom bo'lsa ham, kod aynan shu qoladi. Mana dasturchining "dangasaligi" — aslida zukkolik!</>, ru: <>✓ 3 личных поздравления — <b>одним циклом</b>! Даже если в списке 1000 имён, код останется тем же. Вот она, «лень» программиста — на самом деле смекалка!</> })}</p></div>}
           </Col>
           <Col>
             <p className="flow-label">{tr({ uz: "Sikl har bir do'stga yuboryapti", ru: 'Цикл отправляет каждому другу' })}</p>
@@ -1330,9 +1336,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 );
               })}
             </div>
-            <Terminal lines={out} empty={{ uz: '// ▶ tugmani bosing', ru: '// ▶ нажмите кнопку' }} title={{ uz: 'xabarlar', ru: 'сообщения' }} />
             <div className="fade-up delay-2"><SiklZavodi count={out.length} max={N} init="i = 0" cond="i < dostlar.length" step="i++" load={NAMES} done={done} compact /></div>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ 3 ta shaxsiy tabrik — <b>bitta sikl bilan</b>! Ro'yxatda 1000 ta nom bo'lsa ham, kod aynan shu qoladi. Mana dasturchining "dangasaligi" — aslida zukkolik!</>, ru: <>✓ 3 личных поздравления — <b>одним циклом</b>! Даже если в списке 1000 имён, код останется тем же. Вот она, «лень» программиста — на самом деле смекалка!</> })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -1454,7 +1458,7 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {!fixed ? (
               <div className="term fade-up delay-2">
                 <div className="term-bar"><span className="term-dot" style={{ background: '#FF5F56' }} /><span className="term-dot" style={{ background: '#FFBD2E' }} /><span className="term-dot" style={{ background: '#27C93F' }} /><span className="term-title">console</span></div>
-                <div className="term-body">{[1, 0, -1, -2].map((v, k) => <div key={k} className="term-line"><span className="term-arrow" style={{ color: T.accent }}>›</span><span>{v}</span></div>)}<div className="term-line warn-pulse" style={{ color: T.accent }}><span className="term-arrow" style={{ color: T.accent }}>›</span><span>⋮</span></div><p className="term-empty warn-pulse" style={{ color: T.accent }}>⚠️ {tr({ uz: 'i kamayyapti — 5 ga hech yetmaydi, cheksiz!', ru: 'i уменьшается — до 5 не дойдёт никогда, бесконечно!' })}</p></div>
+                <div className="term-body" style={{ padding: '8px 14px', gap: 3 }}>{[1, 0, -1, -2].map((v, k) => <div key={k} className="term-line"><span className="term-arrow" style={{ color: T.accent }}>›</span><span>{v}</span></div>)}<div className="term-line warn-pulse" style={{ color: T.accent }}><span className="term-arrow" style={{ color: T.accent }}>›</span><span>⋮</span></div><p className="term-empty warn-pulse" style={{ color: T.accent }}>⚠️ {tr({ uz: 'i kamayyapti — 5 ga hech yetmaydi, cheksiz!', ru: 'i уменьшается — до 5 не дойдёт никогда, бесконечно!' })}</p></div>
               </div>
             ) : (
               <div className="term fade-step">
@@ -2544,7 +2548,8 @@ export default function JsLoopsLesson({ lang: langProp, onFinished, onPractice, 
   const next = () => {
     const entry = PRACTICE_AFTER[screen];
     if (!entry) { advance(); return; }
-    if (!(live && (live.mode === 'mentor' || (live.mode === 'student' && live.status !== 'ended' && live.mentorAlive)))) { advance(); return; }
+    // F-0914-11 (2026-09-15): mentor 180 s jim bo'lsa ham (mentorAlive=false) mashq OCHILADI — ilgari shu lahzada bosgan o'quvchida jimgina tashlab ketilardi.
+    if (!(live && (live.mode === 'mentor' || (live.mode === 'student' && live.status !== 'ended')))) { advance(); return; }
     if (live.mode === 'mentor') { setMentorPractice({ ...entry, fromScreen: screen }); advance(); }
     else runPractice(entry, screen);
   };
@@ -2675,7 +2680,7 @@ export default function JsLoopsLesson({ lang: langProp, onFinished, onPractice, 
         .radio-dot { width: 10px; height: 10px; border-radius: 50%; background: ${T.accent}; }
         .hook-ack { margin: 2px 0 0; font-family: 'Manrope', sans-serif; font-weight: 500; font-size: clamp(13px,1.5vw,14.5px); color: ${T.ink2}; }
 
-        .h-title { font-size: clamp(22px,4vw,38px); }
+        .h-title { font-size: clamp(22px,4vw,36px); letter-spacing: -0.015em; text-wrap: balance; }
         .h-sub { font-size: clamp(17px,2.5vw,22px); }
         .h-ask { font-size: clamp(19px,2.6vw,27px); line-height: 1.32; letter-spacing: -0.01em; text-wrap: balance; }
         .body { font-size: clamp(14px,1.6vw,16px); line-height: 1.5; }
@@ -2708,6 +2713,9 @@ export default function JsLoopsLesson({ lang: langProp, onFinished, onPractice, 
         .screen > * { flex-shrink: 0; }
         .head { display: flex; flex-direction: column; gap: 6px; }
         .split { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: clamp(18px,3vw,36px); align-items: start; }
+        .split3 { grid-template-columns: minmax(0,1.1fr) minmax(0,1fr) minmax(0,1fr); gap: clamp(14px,2vw,24px); } /* §34 s0: xabarlar · zavod · savol */
+        .split3 .hook-option { padding: clamp(9px,1.3vw,12px) clamp(13px,1.8vw,16px); }
+        @media (max-width: 1000px) { .split3 { grid-template-columns: minmax(0,1fr) minmax(0,1fr); } }
         .col { display: flex; flex-direction: column; gap: clamp(12px,2vw,16px); min-width: 0; }
         @media (max-width: 760px) { .split { grid-template-columns: 1fr; gap: clamp(14px,3vw,20px); } }
         .flow-label { font-family: 'Manrope'; font-weight: 700; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: ${T.ink2}; }
@@ -2779,8 +2787,8 @@ export default function JsLoopsLesson({ lang: langProp, onFinished, onPractice, 
         .arr-idx { font-family: 'JetBrains Mono'; font-size: 11px; font-weight: 700; color: ${T.accent}; }
 
         /* === GLASS (while) === */
-        .glass-wrap { display: flex; flex-direction: column; align-items: center; gap: 9px; background: ${T.paper}; border-radius: 16px; padding: 20px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.14); }
-        .glass { position: relative; width: 86px; height: 124px; border: 3px solid ${T.ink3}; border-top: none; border-radius: 6px 6px 16px 16px; overflow: hidden; background: rgba(1,154,203,0.04); }
+        .glass-wrap { display: flex; flex-direction: column; align-items: center; gap: 6px; background: ${T.paper}; border-radius: 16px; padding: 12px 16px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.14); }
+        .glass { position: relative; width: 86px; height: 96px; border: 3px solid ${T.ink3}; border-top: none; border-radius: 6px 6px 16px 16px; overflow: hidden; background: rgba(1,154,203,0.04); }
         .glass-fill { position: absolute; bottom: 0; left: 0; width: 100%; background: linear-gradient(180deg, #4FC3E8, #019ACB); transition: height 0.45s cubic-bezier(.4,0,.2,1); }
         .glass-pct { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono'; font-weight: 700; font-size: 18px; color: ${T.ink}; mix-blend-mode: difference; filter: invert(1); }
 
@@ -2822,14 +2830,14 @@ export default function JsLoopsLesson({ lang: langProp, onFinished, onPractice, 
 
         /* === 🏭 SIKL ZAVODI (konveyer mashina skeleti) === */
         .zavod { position: relative; display: flex; flex-direction: column; gap: 12px; background: linear-gradient(160deg, #FFFFFF, #F1EDE4); border: 1.5px solid ${T.line}; border-radius: 18px; padding: 16px; box-shadow: 0 12px 30px -14px rgba(${T.shadowBase},0.22); transition: border-color 0.3s, box-shadow 0.3s, background 0.3s; }
-        .zavod-sm { padding: 12px; gap: 9px; }
+        .zavod-sm { padding: 8px; gap: 6px; }
         /* F-0807-05: panel silkinishi (zv-shake) OLIB TASHLANDI. Bu ekranda o'quvchi kodni
            diqqat bilan o'qib xatoni (i--) topishi kerak — to'xtovsiz harakat o'qishga
            raqobat qilardi. Xavf-signali qizil ramka, fon va ⚠️ yozuv bilan beriladi. */
         .zavod.zavod-cheksiz { border-color: ${T.accent}; background: linear-gradient(160deg, #FFF3EF, #FFE1D7); box-shadow: 0 0 0 3px ${T.accentSoft}, 0 14px 34px -12px rgba(255,79,40,0.4); }
         .zavod.zavod-done { border-color: ${T.success}; background: linear-gradient(160deg, #FFFFFF, #EAF6EE); }
         .zavod-levers { display: flex; gap: 8px; }
-        .zv-lever { position: relative; flex: 1; display: flex; flex-direction: column; align-items: center; gap: 3px; border-radius: 11px; padding: 10px 6px 8px; text-align: center; overflow: hidden; }
+        .zv-lever { position: relative; flex: 1; display: flex; flex-direction: column; align-items: center; gap: 3px; border-radius: 11px; padding: 7px 6px 5px; text-align: center; overflow: hidden; }
         .zv-lever::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
         .zv-lever .zv-lbl { font-family: 'Manrope'; font-weight: 800; font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.04em; }
         .zv-lever .zv-code { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 13px; color: ${T.ink}; }
@@ -3065,7 +3073,7 @@ export default function JsLoopsLesson({ lang: langProp, onFinished, onPractice, 
         /* S6 — stakan qo'shimchalari */
         .glass-wave { position: absolute; top: -5px; left: -4%; width: 108%; height: 11px; background: #5BC8EC; border-radius: 50%; animation: bob 1.05s ease-in-out infinite; }
         @keyframes bob { 0%,100%{transform: scaleX(1.05) translateY(0);} 50%{transform: scaleX(0.95) translateY(2px);} }
-        .tap-emoji { font-size: 30px; position: relative; display: inline-block; }
+        .tap-emoji { font-size: 24px; position: relative; display: inline-block; }
         .drip { position: absolute; left: 50%; top: 88%; font-size: 14px; animation: dripfall 0.5s linear infinite; }
         @keyframes dripfall { 0%{ opacity: 0; transform: translate(-50%, 0);} 20%{opacity:1;} 100%{ opacity: 0; transform: translate(-50%, 46px);} }
         .splash { position: absolute; top: 10px; left: 50%; font-family: 'JetBrains Mono'; font-weight: 700; font-size: 15px; color: ${T.blue}; animation: floatup 0.72s ease-out; }
@@ -3088,7 +3096,7 @@ export default function JsLoopsLesson({ lang: langProp, onFinished, onPractice, 
         .ex-row { animation: el-pop 0.32s ease-out both; }
 
         /* S11 — do'stlar */
-        .friend-card { display: flex; align-items: center; gap: 11px; background: ${T.paper}; border-radius: 12px; padding: 10px 14px; box-shadow: 0 6px 16px -6px rgba(${T.shadowBase},0.14); transition: all 0.4s cubic-bezier(.4,0,.2,1); opacity: 0.5; }
+        .friend-card { display: flex; align-items: center; gap: 11px; background: ${T.paper}; border-radius: 12px; padding: 7px 14px; box-shadow: 0 6px 16px -6px rgba(${T.shadowBase},0.14); transition: all 0.4s cubic-bezier(.4,0,.2,1); opacity: 0.5; }
         .friend-card.got { opacity: 1; box-shadow: inset 0 0 0 1.5px ${T.success}, 0 8px 20px -6px rgba(31,122,77,0.25); }
         .friend-ava { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; background: ${T.accentSoft}; flex-shrink: 0; transition: background 0.35s; }
         .friend-card.got .friend-ava { background: ${T.successSoft}; animation: hop 0.5s ease; }

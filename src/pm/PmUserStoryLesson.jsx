@@ -161,7 +161,7 @@ function AchCounter() {
 const Stage = ({ children, eyebrow, screen, totalScreens = TOTAL_SCREENS, navContent, narrow, mentorStatic }) => {
   const isMobile = useIsMobile();
   const isNarrow = useIsMobile(768);
-  const collapseOn = !mentorStatic; // §34 (2026-09-14): Mentor kompyuterda ham birinchi bosishda yig'iladi
+  const collapseOn = isNarrow && !mentorStatic; // F-0914-08 (foydalanuvchi): kompyuterda Mentor doim ochiq, faqat tor ekranda yig'iladi
   const padH = isMobile ? 12 : 60;
   const [mCollapsed, setMCollapsed] = useState(false);
   const contentRef = useRef(null);
@@ -925,7 +925,7 @@ const FORMULA_WORDS = {
 // Bo'laklar ATAY aralash tartibda (slot-tartibi emas) va rang-ishorasiz chiqadi — haqiqiy sinov.
 const FRAG_ORDER = [1, 2, 0]; // FRAG_POOL indekslari (barqaror permutatsiya — StrictMode-safe, Math.random YO'Q)
 const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const [st, setSt] = useState(() => ({ placed: storedAnswer?.placed || [null, null, null], sel: -1, shake: -1 }));
+  const [st, setSt] = useState(() => ({ placed: (Array.isArray(storedAnswer?.placed) ? storedAnswer.placed : [null, null, null]), sel: -1, shake: -1 })); // F-0914-10: saqlangan javob massiv bo'lmasa — bo'sh (oq ekran himoyasi)
   const done = st.placed.every(p => p !== null);
   // Chipni tanlash (yoki tanlovni bekor qilish) — hali rang bermaydi
   const pickChip = (idx) => {
@@ -1150,7 +1150,7 @@ const ScreenStoryWorkshop = ({ screen, storedAnswer, onAnswer, onNext, onPrev })
   const live = gate.live;
   const isMentorW = !!(live && live.mode === 'mentor');
   const [st, setSt] = useState(() => {
-    const src = storedAnswer?.cards || readStories() || [];
+    const src = (Array.isArray(storedAnswer?.cards) ? storedAnswer.cards : readStories()) || []; // F-0914-10: saqlangan javob massiv bo'lmasa — bo'sh (oq ekran himoyasi)
     const saved = src.filter(c => c && validateStory(c.kim, c.nima, c.natija).full).slice(0, 3)
       .map(c => ({ kim: c.kim, nima: c.nima, natija: c.natija, star: c.star || 0 }));
     return { saved, draft: emptyCard(), editIdx: -1, done: !!(storedAnswer && storedAnswer.solved) || saved.length >= 3 };
@@ -1435,7 +1435,7 @@ const ScreenClinic = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const gate = useContext(LiveGateCtx) || {};
   const live = gate.live;
   const isMentorB = !!(live && live.mode === 'mentor');
-  const [tried, setTried] = useState(() => new Set(storedAnswer?.tried || []));
+  const [tried, setTried] = useState(() => new Set(Array.isArray(storedAnswer?.tried) ? storedAnswer.tried : [])); // F-0914-10: saqlangan javob massiv bo'lmasa — bo'sh (oq ekran himoyasi)
   const [sel, setSel] = useState(null);       // tanlangan so'rov id'si
   const [phase, setPhase] = useState('idle'); // idle | read | out
   const [step, setStep] = useState(-1);       // dasturchi hozir o'qiyotgan bo'lak
@@ -1752,7 +1752,7 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [st, setSt] = useState(() => {
     const saved = readKoding();
     return {
-      code: storedAnswer?.code || (saved && saved.code) || '',
+      code: (typeof storedAnswer?.code === 'string' ? storedAnswer.code : null) || (saved && saved.code) || '', // F-0914-10: saqlangan javob matn bo'lmasa — zaxira-zanjir (oq ekran himoyasi)
       done: !!(storedAnswer && storedAnswer.solved) || !!(saved && saved.done),
     };
   });
@@ -2934,7 +2934,7 @@ export default function PmUserStoryLesson({ lang: langProp, onFinished, liveToke
         .hvote-pct { min-width: 38px; text-align: right; font-size: 12px; font-weight: 700; color: ${T.ink2}; }
         @media (prefers-reduced-motion: reduce) { .hvote-fill { transition: none; } }
 
-        .h-title { font-size: clamp(22px,4vw,38px); }
+        .h-title { font-size: clamp(22px,4vw,36px); letter-spacing: -0.015em; text-wrap: balance; }
         .h-sub { font-size: clamp(17px,2.5vw,22px); }
         .h-ask { font-size: clamp(19px,2.6vw,27px); line-height: 1.32; letter-spacing: -0.01em; text-wrap: balance; }
         .body { font-size: clamp(14px,1.6vw,16px); line-height: 1.5; }

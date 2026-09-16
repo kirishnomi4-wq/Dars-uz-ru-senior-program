@@ -173,7 +173,7 @@ function AchCounter() {
 const Stage = ({ children, eyebrow, screen, totalScreens = TOTAL_SCREENS, navContent, narrow, mentorStatic, scrollSignal }) => {
   const isMobile = useIsMobile();
   const isNarrow = useIsMobile(768); // mobil: Mentor yig'ilish rejimi
-  const collapseOn = !mentorStatic; // §34 (2026-09-14): Mentor kompyuterda ham birinchi bosishda yig'iladi
+  const collapseOn = isNarrow && !mentorStatic; // F-0914-08 (foydalanuvchi): kompyuterda Mentor doim ochiq, faqat tor ekranda yig'iladi
   const padH = isMobile ? 12 : 60; // InternetLesson layout standarti: 1100px + 60px
   const [mCollapsed, setMCollapsed] = useState(false);
   const contentRef = useRef(null);
@@ -480,7 +480,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
       <div className="screen" style={{ justifyContent: isMentorLive ? 'flex-start' : 'center', gap: 'clamp(16px,2.5vw,24px)' }}>
         <div className="fade-up">{question}</div>
         {oneShot && !solved && <p className="small mono fade-up" style={{ margin: '-8px 0 0', color: T.accent, fontWeight: 600 }}>{tr({ uz: "⚡ Jonli dars — bitta urinish, o'ylab bosing!", ru: '⚡ Живой урок — одна попытка, подумайте перед нажатием!' })}</p>}
-        <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 11 }}>
+        <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: picked !== null ? 8 : 11 }}>
           {options.map((opt, i) => {
             let cls = 'option';
             if (isMentorLive) {
@@ -492,7 +492,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
             else if (i === picked) cls += ' option-picked-wrong';
             const showGreenLetter = isMentorLive ? (mReveal && i === correctIdx) : (solved && revealed && i === correctIdx);
             return (
-              <button key={i} className={cls} disabled={solved || isMentorLive} onClick={() => pick(i)} style={{ padding: 'clamp(13px,1.9vw,17px) clamp(15px,2.2vw,20px)', fontSize: 'clamp(15px,1.85vw,17px)', display: 'flex', alignItems: 'center', gap: 12 }}>
+              <button key={i} className={cls} disabled={solved || isMentorLive} onClick={() => pick(i)} style={{ padding: picked !== null ? 'clamp(9px,1.3vw,12px) clamp(15px,2.2vw,20px)' : 'clamp(13px,1.9vw,17px) clamp(15px,2.2vw,20px)', fontSize: 'clamp(15px,1.85vw,17px)', display: 'flex', alignItems: 'center', gap: 12 }}>
                 <span className="mono small" style={{ minWidth: 20, color: showGreenLetter ? T.success : T.ink3 }}>{String.fromCharCode(65 + i)}</span>
                 <span style={{ flex: 1 }}>{fmtCode(opt)}</span>
               </button>
@@ -769,7 +769,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
   return (
     <Stage eyebrow={tr({ uz: 'Loyiha · kirish', ru: 'Проект · вступление' })} screen={screen} scrollSignal={sc} navContent={<NavNext disabled={picked === null} label={tr({ uz: 'Davom etish', ru: 'Продолжить' })} onClick={onNext} />}>
       <div className="screen">
-        <h1 className="title h-title fade-up" style={{ maxWidth: 880 }}>{tr({ uz: <>AI-bot «buyurtmani yubordim» dedi. Lekin daftarda <span className="italic" style={{ color: T.accent }}>hech narsa yo'q</span>. Nima yetishmaydi?</>, ru: <>AI-бот сказал «заказ отправил». Но в тетради <span className="italic" style={{ color: T.accent }}>ничего нет</span>. Чего не хватает?</> })}</h1>
+        <h1 className="title h-title fade-up">{tr({ uz: <>AI-bot «buyurtmani yubordim» dedi. Lekin daftarda <span className="italic" style={{ color: T.accent }}>hech narsa yo'q</span>. Nima yetishmaydi?</>, ru: <>AI-бот сказал «заказ отправил». Но в тетради <span className="italic" style={{ color: T.accent }}>ничего нет</span>. Чего не хватает?</> })}</h1>
         <Mentor>{tr({ uz: "O'tgan darsni eslang: AI-bot chiroyli javob yozadi, lekin amal qilmaydi. Tugmani bosing — bir vaziyatda AI-bot va AI-agent qanday farq qilishini ko'ring.", ru: 'Вспомните прошлый урок: AI-бот пишет красивый ответ, но ничего не делает. Нажмите кнопку — посмотрите, чем AI-бот и AI-агент отличаются в одной и той же ситуации.' })}</Mentor>
         <Zoomable><Split>
           <Col>
@@ -777,7 +777,6 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
               <Bubble from="user">{tr({ uz: 'Buyurtmamni rasmiylashtir', ru: 'Оформи мой заказ' })}</Bubble>
               {tried && <Bubble from="bot">{tr({ uz: 'Albatta, rasmiylashtirdim ✅', ru: 'Конечно, оформил ✅' })}</Bubble>}
             </TgChat>
-            {tried && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>📓 Daftar: <b>hech narsa yozilmadi</b> — faqat matn chiqdi.</>, ru: <>📓 Тетрадь: <b>ничего не записано</b> — вышел только текст.</> })}</p></div>}
             <TgChat title={tr({ uz: 'AI-agent (amal qiladi)', ru: 'AI-агент (действует)' })} ava="🧰" status={tr({ uz: 'bot · proaktiv', ru: 'бот · проактивный' })} minH={110}>
               <Bubble from="user">{tr({ uz: 'Buyurtmamni rasmiylashtir', ru: 'Оформи мой заказ' })}</Bubble>
               {tried && <Bubble from="bot">{tr({ uz: 'saveOrder() ✅ Buyurtma daftarga yozildi, arrangeDelivery() ✅ yetkazish rejalashtirildi 📦', ru: 'saveOrder() ✅ Заказ записан в тетрадь, arrangeDelivery() ✅ доставка запланирована 📦' })}</Bubble>}
@@ -794,6 +793,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
             </div>
             {!tried && <p className="small" style={{ color: T.ink3, fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Avval tugmani bosing ←', ru: 'Сначала нажмите кнопку ←' })}</p>}
             {picked !== null && <p className="hook-ack fade-step">{tr({ uz: <>Aynan! AI-bot — og'iz (gapiradi). <b>AI-agent</b> — og'iz + 🧰 sumka (asboblar bilan AMAL qiladi). Bugun botingizga maqsad, asboblar va sikl beramiz.</>, ru: <>Именно! AI-бот — это рот (говорит). <b>AI-агент</b> — рот + 🧰 сумка (ДЕЙСТВУЕТ инструментами). Сегодня дадим Вашему боту цель, инструменты и цикл.</> })}</p>}
+            {tried && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>📓 Daftar: <b>hech narsa yozilmadi</b> — faqat matn chiqdi.</>, ru: <>📓 Тетрадь: <b>ничего не записано</b> — вышел только текст.</> })}</p></div>}
           </Col>
         </Split></Zoomable>
       </div>
@@ -819,13 +819,13 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
         <Bubble from="bot">{tr({ uz: 'Tekshirdim ✓ saqladim ✓ yetkazishni rejaladim ✓ — 30 daqiqada yetkazamiz 📦', ru: 'Проверил ✓ сохранил ✓ доставку запланировал ✓ — привезём за 30 минут 📦' })}</Bubble>
       </TgChat>
       <div className="sk-info"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Siz bitta maqsad berdingiz — agent o'zi qadamlarni topib, hammasini bajardi. Mana shuni quramiz.", ru: 'Вы дали одну цель — агент сам нашёл шаги и всё выполнил. Вот это мы и построим.' })}</p></div>
+      <GearPanel active={['key', 'sheet', 'btn', 'env', 'note', 'menu', 'tools']} />
     </Col>
   );
   const StepsB = (
     <Col>
       <p className="flow-label">{tr({ uz: 'Bugungi 4 qadam', ru: '4 шага на сегодня' })}</p>
       <ol className="roadmap">{STEPS.map((s, i) => (<li key={i} className="step-card fade-up" style={{ animationDelay: `${0.08 + i * 0.05}s` }}><span className="step-num">{String(i + 1).padStart(2, '0')}</span><span className="step-body"><span className="step-text">{tr(s.text)}</span><span className="step-tag">{tr(s.tag)}</span></span></li>))}</ol>
-      <GearPanel active={['key', 'sheet', 'btn', 'env', 'note', 'menu', 'tools']} />
     </Col>
   );
   return (
@@ -2318,7 +2318,7 @@ export default function BotAiAgentLesson({ lang: langProp, onFinished, liveToken
         .hook-ack { margin: 2px 0 0; font-family: 'Manrope', sans-serif; font-weight: 500; font-size: clamp(13px,1.5vw,14.5px); color: ${T.ink2}; }
 
 
-        .h-title { font-size: clamp(22px,4vw,38px); }
+        .h-title { font-size: clamp(22px,4vw,36px); letter-spacing: -0.015em; text-wrap: balance; }
         .h-sub { font-size: clamp(17px,2.5vw,22px); }
         .h-ask { font-size: clamp(19px,2.6vw,27px); line-height: 1.32; letter-spacing: -0.01em; text-wrap: balance; }
         .body { font-size: clamp(14px,1.6vw,16px); line-height: 1.5; }
@@ -2923,7 +2923,7 @@ export default function BotAiAgentLesson({ lang: langProp, onFinished, liveToken
 
         /* ===== 🎒 JIHOZLAR PANELI ===== */
         .gear-panel { display: flex; flex-wrap: wrap; gap: 8px; }
-        .gear-slot { display: flex; flex-direction: column; align-items: center; gap: 4px; min-width: 76px; background: ${T.paper}; border-radius: 12px; padding: 10px 9px; box-shadow: 0 5px 14px -7px rgba(${T.shadowBase},0.16); opacity: 0.4; }
+        .gear-slot { display: flex; flex-direction: column; align-items: center; gap: 4px; min-width: 64px; background: ${T.paper}; border-radius: 12px; padding: 6px 7px; box-shadow: 0 5px 14px -7px rgba(${T.shadowBase},0.16); opacity: 0.4; }
         .gear-slot.on { opacity: 1; box-shadow: inset 0 0 0 1.5px ${T.success}, 0 6px 16px -6px rgba(31,122,77,0.26); background: ${T.successSoft}; }
         .gear-ico { font-size: 20px; } .gear-lbl { font-family: 'Manrope'; font-weight: 700; font-size: 10px; color: ${T.ink}; text-align: center; }
 
@@ -2993,7 +2993,7 @@ export default function BotAiAgentLesson({ lang: langProp, onFinished, liveToken
         .role-ico { font-size: 20px; flex-shrink: 0; }
 
         /* ===== PICK ROWS (sxema ulash) ===== */
-        .pick-row { display: flex; align-items: center; gap: 10px; width: 100%; text-align: left; background: ${T.paper}; border: none; border-radius: 10px; padding: 11px 13px; cursor: pointer; transition: all 0.16s; box-shadow: 0 4px 12px -6px rgba(${T.shadowBase},0.16); font-family: 'Manrope'; font-weight: 600; font-size: clamp(12.5px,1.5vw,14px); color: ${T.ink}; }
+        .pick-row { display: flex; align-items: center; gap: 10px; width: 100%; text-align: left; background: ${T.paper}; border: none; border-radius: 10px; padding: 8px 12px; cursor: pointer; transition: all 0.16s; box-shadow: 0 4px 12px -6px rgba(${T.shadowBase},0.16); font-family: 'Manrope'; font-weight: 600; font-size: clamp(12.5px,1.5vw,14px); color: ${T.ink}; }
         .pick-row:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 8px 18px -6px rgba(${T.shadowBase},0.22); }
         .pick-row.sel { box-shadow: inset 0 0 0 1.5px ${T.accent}, 0 8px 18px -6px rgba(255,79,40,0.28); background: ${T.accentSoft}; }
         .pick-row.picked { background: ${T.successSoft}; color: ${T.success}; box-shadow: inset 0 0 0 1.5px ${T.success}; cursor: default; }
@@ -3027,7 +3027,8 @@ export default function BotAiAgentLesson({ lang: langProp, onFinished, liveToken
         /* tap-hint affordance — bosilmagan kartalar "meni bos" deb pulslaydi. Bosilgach pulsatsiya TO'XTAYDI = progress signali. */
         .gchip.tap-hint, .btn-soft.tap-hint, .itm-card.tap-hint { animation: tap-hint-pulse 1.9s ease-in-out infinite; }
 
-        .dd { display: flex; flex-direction: column; gap: 13px; }
+        .dd { display: grid; grid-template-columns: minmax(0,1.15fr) minmax(0,1fr); gap: 13px; align-items: start; } /* §34: keng ekranda uyalar chapda, hovuz o'ngda */
+        @media (max-width: 760px) { .dd { grid-template-columns: 1fr; } }
         .dd-slots { display: flex; flex-direction: column; gap: 9px; position: relative; }
         .dd-slot { display: flex; align-items: center; gap: 12px; min-height: 58px; border-radius: 14px; border: 2px dashed ${T.ink3}66; background: ${T.paper}; padding: 8px 12px; box-shadow: 0 5px 14px -9px rgba(${T.shadowBase},0.2); transition: border-color .18s, background .18s, box-shadow .18s; }
         .dd-slot.filled { border-style: solid; border-color: ${T.line}; box-shadow: 0 8px 18px -10px rgba(${T.shadowBase},0.26); }

@@ -189,10 +189,10 @@ const Pr = ({ children }) => <span style={{ color: CODE.punct }}>{children}</spa
 const Se = ({ children }) => <span style={{ color: CODE.tag }}>{children}</span>;      // selektor
 const Pp = ({ children }) => <span style={{ color: CODE.attr }}>{children}</span>;     // xususiyat (property)
 const Vl = ({ children }) => <span style={{ color: CODE.str }}>{children}</span>;      // qiymat (value)
-const Preview = ({ children, title = 'portfolio.html', minH }) => (
-  <div className="bp-window"><div className="bp-bar"><span className="bb-dots"><i /><i /><i /></span><span className="bp-title">{title}</span></div><div className="bp-body" style={{ minHeight: minH }}>{children}</div></div>
+const Preview = ({ children, title = 'portfolio.html', minH, maxH }) => (
+  <div className="bp-window"><div className="bp-bar"><span className="bb-dots"><i /><i /><i /></span><span className="bp-title">{title}</span></div><div className="bp-body" style={{ minHeight: minH, maxHeight: maxH, overflowY: maxH ? 'auto' : undefined }}>{children}</div></div>
 );
-const Split = ({ children }) => <div className="split">{children}</div>;
+const Split = ({ children, three }) => <div className={three ? 'split split3' : 'split'}>{children}</div>; // §34: three — uch ustun (s0)
 const Col = ({ children, gap }) => <div className="col" style={gap ? { gap } : undefined}>{children}</div>;
 
 // ===== fmtCode — matn ichidagi `kod` bo'laklarini chip qiladi (11.8) =====
@@ -234,7 +234,7 @@ function AchCounter() {
 const Stage = ({ children, eyebrow, screen, totalScreens = TOTAL_SCREENS, navContent, narrow, mentorStatic }) => {
   const isMobile = useIsMobile();
   const isNarrow = useIsMobile(768);
-  const collapseOn = !mentorStatic; // §34 (2026-09-14): Mentor kompyuterda ham birinchi bosishda yig'iladi
+  const collapseOn = isNarrow && !mentorStatic; // F-0914-08 (foydalanuvchi): kompyuterda Mentor doim ochiq, faqat tor ekranda yig'iladi
   const padH = isMobile ? 12 : 60; // InternetLesson layout standarti: 1100px + 60px
   const [mCollapsed, setMCollapsed] = useState(false);
   const contentRef = useRef(null);
@@ -573,7 +573,7 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
       <div className="screen" style={{ justifyContent: isMentorLive ? 'flex-start' : 'center', gap: 'clamp(16px,2.5vw,24px)' }}>
         <div className="fade-up">{question}</div>
         {oneShot && !solved && <p className="small mono fade-up" style={{ margin: '-8px 0 0', color: T.accent, fontWeight: 600 }}>⚡ {tr({ uz: "Jonli dars — bitta urinish, o'ylab bosing!", ru: 'Живой урок — одна попытка, думайте перед нажатием!' })}</p>}
-        <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 11 }}>
+        <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: picked !== null ? 8 : 11 }}>
           {options.map((opt, i) => {
             let cls = 'option';
             if (isMentorLive) {
@@ -585,7 +585,7 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
             else if (i === picked) cls += ' option-picked-wrong';
             const showGreenLetter = isMentorLive ? (mReveal && i === correctIdx) : (solved && revealed && i === correctIdx);
             return (
-              <button key={i} className={cls} disabled={solved || isMentorLive} onClick={() => pick(i)} style={{ padding: 'clamp(13px,1.9vw,17px) clamp(15px,2.2vw,20px)', fontSize: 'clamp(15px,1.85vw,17px)', display: 'flex', alignItems: 'center', gap: 12 }}>
+              <button key={i} className={cls} disabled={solved || isMentorLive} onClick={() => pick(i)} style={{ padding: picked !== null ? 'clamp(9px,1.3vw,12px) clamp(15px,2.2vw,20px)' : 'clamp(13px,1.9vw,17px) clamp(15px,2.2vw,20px)', fontSize: 'clamp(15px,1.85vw,17px)', display: 'flex', alignItems: 'center', gap: 12 }}>
                 <span className="mono small" style={{ minWidth: 20, color: showGreenLetter ? T.success : T.ink3 }}>{String.fromCharCode(65 + i)}</span>
                 <span style={{ flex: 1 }}>{fmtCode(tr(opt))}</span>
               </button>
@@ -760,18 +760,20 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
   return (
     <Stage eyebrow={tr({ uz: 'CSS Praktika · kirish', ru: 'CSS практика · введение' })} screen={screen} audioState={audio} navContent={<NavNext optionalLive disabled={picked === null} label={{ uz: 'Boshlaymiz →', ru: 'Начинаем →' }} onClick={onNext} />}>
       <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
-        <h1 className="title h-title fade-up" style={{ maxWidth: 800 }}>{tr({ uz: <>Bir xil sayt — nega biri <span className="italic" style={{ color: T.accent }}>chiroyli</span>?</>, ru: <>Один и тот же сайт — почему один <span className="italic" style={{ color: T.accent }}>красивый</span>?</> })}</h1>
+        <h1 className="title h-title fade-up">{tr({ uz: <>Bir xil sayt — nega biri <span className="italic" style={{ color: T.accent }}>chiroyli</span>?</>, ru: <>Один и тот же сайт — почему один <span className="italic" style={{ color: T.accent }}>красивый</span>?</> })}</h1>
         <Mentor>{tr({ uz: <>O'tgan darsda portfolioni HTML bilan qurdingiz — oddiy, bezaksiz. Bugun <b style={{ color: T.ink }}>CSS bilan jon kiritamiz!</b> Quyidagi ikkala saytning <b style={{ color: T.ink }}>HTML kodi bir xil</b> — lekin biri chiroyli. Buni nima qilyapti?</>, ru: <>В прошлом уроке вы построили портфолио на HTML — простое, без оформления. Сегодня <b style={{ color: T.ink }}>оживим его с помощью CSS!</b> У обоих сайтов ниже <b style={{ color: T.ink }}>одинаковый HTML-код</b> — но один красивый. Что это делает?</> })}</Mentor>
         <Zoomable>
-        <Split>
+        <Split three>
           <Col>
             <p className="flow-label">{tr({ uz: "Hozir — CSS'siz (bezaksiz)", ru: 'Сейчас — без CSS (без оформления)' })}</p>
-            <Preview title="portfolio.html" minH={150}><StyledSite parts={['header', 'about']} on={[]} /></Preview>
+            <Preview title="portfolio.html" minH={150} maxH={200}><StyledSite parts={['header', 'about']} on={[]} /></Preview>
           </Col>
           <Col>
             <p className="flow-label">{tr({ uz: 'CSS bilan — bezatilgan', ru: 'С CSS — оформленный' })}</p>
-            <div ref={resultRef}><Preview title="portfolio.html" minH={150}>{picked !== null ? <div className="fade-step"><StyledSite parts={['header', 'about']} on={['page', 'head', 'nav', 'about']} /></div> : <p style={{ fontFamily: 'Georgia, serif', color: T.ink3, fontStyle: 'italic', margin: 0, textAlign: 'center' }}>{tr({ uz: "Javobni tanlang — bezatilgan ko'rinish chiqadi", ru: 'Выберите ответ — появится оформленный вид' })}</p>}</Preview></div>
-            <div className="fade-up delay-2" style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+            <div ref={resultRef}><Preview title="portfolio.html" minH={150} maxH={200}>{picked !== null ? <div className="fade-step"><StyledSite parts={['header', 'about']} on={['page', 'head', 'nav', 'about']} /></div> : <p style={{ fontFamily: 'Georgia, serif', color: T.ink3, fontStyle: 'italic', margin: 0, textAlign: 'center' }}>{tr({ uz: "Javobni tanlang — bezatilgan ko'rinish chiqadi", ru: 'Выберите ответ — появится оформленный вид' })}</p>}</Preview></div>
+          </Col>
+          <Col>
+            <div className="fade-up delay-2" style={{ display: 'flex', flexDirection: 'column', gap: 8, paddingTop: 34 }}>
               {OPTS.map(o => { const on = picked === o.id; return (<button key={o.id} className={`hook-option ${on ? 'on' : ''}`} disabled={picked !== null} onClick={() => pick(o.id)}><span className="radio">{on && <span className="radio-dot" />}</span><span>{tr(o.label)}</span></button>); })}
             </div>
           </Col>
@@ -801,7 +803,7 @@ const Screen1 = ({ screen, answers, onNext, onPrev }) => {
   const PreviewBlock = (
     <Col>
       <p className="flow-label">{tr({ uz: "Tayyor sayt — dars oxirida shunday bo'ladi", ru: 'Готовый сайт — таким он станет к концу урока' })}</p>
-      <Preview title="portfolio.html" minH={196}><StyledSite name={pf.name} role={pf.role} parts={['header', 'about', 'projects', 'contact', 'footer']} on={['page', 'center', 'head', 'nav', 'about', 'list', 'btn']} /></Preview>
+      <Preview title="portfolio.html" minH={196} maxH={190}><StyledSite name={pf.name} role={pf.role} parts={['header', 'about', 'projects', 'contact', 'footer']} on={['page', 'center', 'head', 'nav', 'about', 'list', 'btn']} /></Preview>
     </Col>
   );
   const StepsBlock = (
@@ -932,7 +934,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Ismingizni bo'yash uchun nima <span className="italic" style={{ color: T.accent }}>yozamiz</span>?</>, ru: <>Что мы <span className="italic" style={{ color: T.accent }}>пишем</span>, чтобы покрасить ваше имя?</> })}</h2></div>
         <Mentor>{tr({ uz: <>Bezashdan oldin bitta narsani bilamiz: CSS <b style={{ color: T.ink }}>buyrug'i</b> doim uch qismdan iborat — <b style={{ color: T.ink }}>selektor</b> (nimani), <b style={{ color: T.ink }}>xususiyat</b> (nimasini), <b style={{ color: T.ink }}>qiymat</b> (qanday). Avval uch qismni bosib ko'ring, so'ng qoidani <b style={{ color: T.ink }}>o'zingiz yig'ing</b>.</>, ru: <>Перед оформлением узнаем одну вещь: <b style={{ color: T.ink }}>команда</b> CSS всегда состоит из трёх частей — <b style={{ color: T.ink }}>селектор</b> (что), <b style={{ color: T.ink }}>свойство</b> (что именно), <b style={{ color: T.ink }}>значение</b> (каким будет). Сначала нажмите на три части, затем <b style={{ color: T.ink }}>соберите правило сами</b>.</> })}</Mentor>
         <Zoomable>
-        <div className="split">
+        <div className="split split3">
           <div className="col">
             <pre className="code-box fade-up delay-2" style={{ fontSize: 'clamp(14px,2vw,18px)', textAlign: 'center', lineHeight: 2 }}>
               <span className={`cpart ${seen.has('sel') ? 'on' : ''}`} style={{ color: CODE.tag }} onClick={() => clickPart('sel')}>h1</span>{' '}<Pr>{'{'}</Pr>{' '}<span className={`cpart ${seen.has('prop') ? 'on' : ''}`} style={{ color: CODE.attr }} onClick={() => clickPart('prop')}>color</span><Pr>:</Pr>{' '}<span className={`cpart ${seen.has('val') ? 'on' : ''}`} style={{ color: CODE.str }} onClick={() => clickPart('val')}>#FF4F28</span><Pr>;</Pr>{' '}<Pr>{'}'}</Pr>
@@ -940,6 +942,8 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <div className="clegend fade-up delay-3">
               {Object.entries(PARTS).map(([k, v]) => (<span key={k} className={`ctab ${seen.has(k) ? 'done' : ''}`}>{seen.has(k) ? '✓' : '•'} {tr(v.label)}</span>))}
             </div>
+          </div>
+          <div className="col">
             {explored && (
               <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
                 <div className="flow-label">{tr({ uz: "endi o'zingiz yig'ing — to'g'ri tartibda", ru: 'теперь соберите сами — в правильном порядке' })}</div>
@@ -1292,7 +1296,7 @@ const Screen15 = ({ screen, answers, storedAnswer, onAnswer, onNext, onPrev }) =
           </div>
           <div className="col">
             <div className="flow-label">{pf.name} — {tr({ uz: 'portfolio', ru: 'портфолио' })}</div>
-            <Preview title="portfolio.html" minH={230}><StyledSite name={pf.name} role={pf.role} parts={['header', 'about', 'projects', 'contact', 'footer']} on={on} /></Preview>
+            <Preview title="portfolio.html" minH={230} maxH={230}><StyledSite name={pf.name} role={pf.role} parts={['header', 'about', 'projects', 'contact', 'footer']} on={on} /></Preview>
             <div ref={endRef} aria-hidden="true" />
           </div>
         </div>
@@ -1305,7 +1309,7 @@ const Screen15 = ({ screen, answers, storedAnswer, onAnswer, onNext, onPrev }) =
 // ===== SCREEN 16 — YAKUNIY (qo'lda CSS yozish) =====
 const Screen16 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const audio = useAudio([{ id: 's16', text: `Oxirgi qadam — endi o'zingiz CSS yozasiz! Ismingiz, ya'ni h1 ga rang bering. Pastdagi yordamchi tugmalardan foydalanib, to'liq qoidani yozing: h1, qavs, color, rang, nuqta-vergul, qavs. To'g'ri yozsangiz, ismingiz o'sha rangga bo'yaladi!`, trigger: 'on_mount', waits_for: { type: 'typed_ok' } }]);
-  const [val, setVal] = useState(storedAnswer?.text ?? '');
+  const [val, setVal] = useState(typeof storedAnswer?.text === 'string' ? storedAnswer.text : ''); // F-0914-10: saqlangan javob matn bo'lmasa — bo'sh (oq ekran himoyasi)
   const inputRef = useRef(null);
   const okRef = useRef(!!storedAnswer);
   const hasSel = /h1/i.test(val);
@@ -2467,10 +2471,11 @@ export default function CssPractice({ lang: langProp, onFinished, onPractice, li
     const entry = PRACTICE_AFTER[screen];
     if (!entry) { advance(); return; }
     // 🔴 DARS-ICHI PRAKTIKASI FAQAT JONLI DARSDA (2026-07-29): mashq faqat o'quvchi mentorga
-    // ULANGAN va sessiya davom etayotganda ochiladi. Mentor «Erkin qilish»ni bossa, uzilib qolsa
+    // ULANGAN va sessiya davom etayotganda ochiladi. Mentor «Erkin qilish»ni bossa
     // yoki bola mustaqil o'qiyotgan bo'lsa — mashq OCHILMAYDI, u yakun-sahifadagi «Uyga vazifa»
     // tugmasi orqali bajaradi.
-    if (!(live && (live.mode === 'mentor' || (live.mode === 'student' && live.status !== 'ended' && live.mentorAlive)))) { advance(); return; }
+    // F-0914-11 (2026-09-15): mentor 180 s jim bo'lsa ham (mentorAlive=false) mashq OCHILADI — ilgari shu lahzada bosgan o'quvchida jimgina tashlab ketilardi.
+    if (!(live && (live.mode === 'mentor' || (live.mode === 'student' && live.status !== 'ended')))) { advance(); return; }
     if (live && live.mode === 'mentor') { setMentorPractice({ ...entry, fromScreen: screen }); advance(); }
     else runPractice(entry, screen);
   };
@@ -2713,7 +2718,7 @@ export default function CssPractice({ lang: langProp, onFinished, onPractice, li
         .bp-title { font-family: 'JetBrains Mono'; font-size: 11px; color: ${T.ink3}; }
         .bp-body { padding: clamp(12px,2.2vw,18px); }
 
-        .h-title { font-size: clamp(22px,4vw,38px); }
+        .h-title { font-size: clamp(22px,4vw,36px); letter-spacing: -0.015em; text-wrap: balance; }
         .h-sub { font-size: clamp(17px,2.5vw,22px); }
         .h-ask { font-size: clamp(19px,2.6vw,27px); line-height: 1.32; letter-spacing: -0.01em; text-wrap: balance; }
         .body { font-size: clamp(14px,1.6vw,16px); line-height: 1.5; }
@@ -2740,6 +2745,9 @@ export default function CssPractice({ lang: langProp, onFinished, onPractice, li
         .screen > * { flex-shrink: 0; }
         .head { display: flex; flex-direction: column; gap: 6px; }
         .split { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: clamp(18px,3vw,36px); align-items: start; }
+        .split3 { grid-template-columns: minmax(0,1fr) minmax(0,1fr) minmax(0,0.95fr); gap: clamp(14px,2vw,24px); } /* §34 s0: ikki maket + variantlar */
+        .split3 .hook-option { padding: clamp(9px,1.3vw,12px) clamp(13px,1.8vw,16px); }
+        @media (max-width: 1000px) { .split3 { grid-template-columns: minmax(0,1fr) minmax(0,1fr); } }
         .col { display: flex; flex-direction: column; gap: clamp(12px,2vw,16px); min-width: 0; }
         @media (max-width: 760px) { .split { grid-template-columns: 1fr; gap: clamp(14px,3vw,20px); } }
         .flow-label { font-family: 'Manrope'; font-weight: 700; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: ${T.ink2}; }
@@ -2858,9 +2866,10 @@ export default function CssPractice({ lang: langProp, onFinished, onPractice, li
         @media (prefers-reduced-motion: reduce) { .confetti { display: none; } }
         /* ===== 🏗️ QURUVCHI QATLAMI CSS (ko'chirilgan) ===== */
         /* === 🧩 DRAG-DROP ORDER (s3b — qoida ustaxonasi) === */
-        .dd { display: flex; flex-direction: column; gap: 13px; }
+        .dd { display: grid; grid-template-columns: minmax(0,1.15fr) minmax(0,1fr); gap: 13px; align-items: start; } /* §34: keng ekranda uyalar chapda, hovuz o'ngda */
+        @media (max-width: 760px) { .dd { grid-template-columns: 1fr; } }
         .dd-slots { display: flex; flex-direction: column; gap: 9px; }
-        .dd-slot { display: flex; align-items: center; gap: 12px; min-height: 56px; border-radius: 14px; border: 2px dashed ${T.ink3}66; background: ${T.paper}; padding: 8px 12px; transition: border-color .18s, background .18s; }
+        .dd-slot { display: flex; align-items: center; gap: 12px; min-height: 46px; border-radius: 14px; border: 2px dashed ${T.ink3}66; background: ${T.paper}; padding: 8px 12px; transition: border-color .18s, background .18s; }
         .dd-slot.filled { border-style: solid; border-color: ${T.line}; }
         .dd-slot.ok { border-color: ${T.success}; background: ${T.successSoft}; }
         .dd-slot.bad { border-color: #E24848; background: #FBE9E9; animation: dd-shake .4s; }

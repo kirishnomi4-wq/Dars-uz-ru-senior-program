@@ -154,18 +154,19 @@ const HW_TOKENS = [
   { t: { uz: 'natija', ru: 'результат' }, l: 78, tp: 68, s: 13, d: 6.8 }
 ];
 const SCREEN_META = [
+  // F-0914-07: 1-QISM amaliyot (~1 soat: Demo Day sayti) → 2-QISM Netlify (~30 daqiqa: papkani sudrab tashlash)
   { id: 's0',     type: 'hook',        template: 'custom',   scored: false, scope: 'hook' },
-  { id: 's1',     type: 'exploration', template: 'custom',   scored: false, scope: null },
-  { id: 's2',     type: 'test',        template: 'MCScreen', scored: true,  scope: 'module-mikro' },
+  { id: 'sreja',  type: 'rule',        template: 'custom',   scored: false, scope: null },
   { id: 's3',     type: 'practice',    template: 'custom',   scored: false, scope: null },
+  { id: 'spages', type: 'practice',    template: 'custom',   scored: false, scope: null },
   { id: 's4',     type: 'practice',    template: 'custom',   scored: false, scope: null },
   { id: 's5',     type: 'practice',    template: 'custom',   scored: false, scope: null },
   { id: 's6',     type: 'test',        template: 'MCScreen', scored: true,  scope: 'module-mikro' },
-  { id: 's7',     type: 'practice',    template: 'custom',   scored: false, scope: null },
+  { id: 'simprove', type: 'practice',  template: 'custom',   scored: false, scope: null },
+  { id: 's1',     type: 'exploration', template: 'custom',   scored: false, scope: null },
+  { id: 's2',     type: 'test',        template: 'MCScreen', scored: true,  scope: 'module-mikro' },
   { id: 's8',     type: 'practice',    template: 'custom',   scored: false, scope: null },
-  { id: 's9',     type: 'practice',    template: 'custom',   scored: false, scope: null },
-  { id: 's10',    type: 'test',        template: 'MCScreen', scored: true,  scope: 'module-mikro' },
-  { id: 's11',    type: 'practice',    template: 'custom',   scored: false, scope: null },
+  { id: 'sdrop',  type: 'practice',    template: 'custom',   scored: false, scope: null },
   { id: 's12',    type: 'test',        template: 'MCScreen', scored: true,  scope: 'final' },
   { id: 's13',    type: 'rule',        template: 'custom',   scored: false, scope: null },
   { id: 's14b',   type: 'stats',       template: 'custom',   scored: false, scope: null },
@@ -201,11 +202,11 @@ const MiniSite = ({ name = 'Aziza' }) => (
 const ACHIEVEMENTS = {
   hostpick: { icon: '🌐', name: 'Host Pick!',   desc: { uz: "Netlify nima qilishini aniqladingiz", ru: "Вы определили, что делает Netlify" } },
   filefind: { icon: '📄', name: 'File Finder!', desc: { uz: 'Bosh sahifa qaysi fayl ekanini bildingiz', ru: 'Вы узнали, какой файл является главной страницей' } },
-  shipit:   { icon: '🚀', name: 'Ship It!',     desc: { uz: "Sayt chiqarish tartibini ko'rsatdingiz", ru: "Вы указали порядок публикации сайта" } },
+  shipit:   { icon: '🚀', name: 'Ship It!',     desc: { uz: "Saytni do'stingizga qanday ulashishni bildingiz", ru: 'Вы узнали, как поделиться сайтом с другом' } },
   graduate: { icon: '🏆', name: 'Level Up!',    desc: { uz: "Deploy darsini yakunladingiz", ru: "Вы завершили урок деплоя" } },
 };
 // Ekran id -> nishon (recordAnswer'da avtomatik beriladi). FAQAT scored testlar — nishon tekin berilmaydi.
-const ACH_TRIGGERS = { s2: 'hostpick', s6: 'filefind', s10: 'shipit' };
+const ACH_TRIGGERS = { s2: 'hostpick', s6: 'filefind', s12: 'shipit' }; // F-0914-07: s10 (deploy tartibi) olib tashlandi
 
 function AchCounter() {
   const earned = useContext(AchCtx);
@@ -240,7 +241,7 @@ function AchCounter() {
 const Stage = ({ children, eyebrow, screen, totalScreens = TOTAL_SCREENS, navContent, narrow, mentorStatic }) => {
   const isMobile = useIsMobile();
   const isNarrow = useIsMobile(768); // mobil: Mentor yig'ilish rejimi
-  const collapseOn = !mentorStatic; // §34 (2026-09-14): Mentor kompyuterda ham birinchi bosishda yig'iladi
+  const collapseOn = isNarrow && !mentorStatic; // F-0914-08 (foydalanuvchi): kompyuterda Mentor doim ochiq, faqat tor ekranda yig'iladi
   const padH = isMobile ? 12 : 60; // InternetLesson layout standarti: 1100px + 60px
   const [mCollapsed, setMCollapsed] = useState(false);
   const contentRef = useRef(null);
@@ -309,18 +310,18 @@ const RECAP_MIN_ANSWERS = 3; // foizga ishonch uchun kamida shuncha javob kerak
 // 📖 QAYTA TUSHUNTIRISH (recap) — test natijasi past chiqsa mentor proyektorda
 // ochib, og'zaki qayta tushuntiradi (server sinxronsiz — o'quvchilar qulflangan,
 // proyektorga qaraydi). Xato qilgan o'quvchi o'z qurilmasida ham ochishi mumkin.
-// Kalitlar — scored test ekranlarining indekslari (4, 6, 10, 13).
+// Kalitlar — scored test ekranlarining indekslari (6, 9; yakuniy 12 — kartasiz).
 // Har karta: ic (katta emoji), h (sarlavha), body (1-2 gap), vis (ko'rgazma),
 // ask (mentor sinfga og'zaki beradigan savol — jonli muloqot uchun).
 // ============================================================
 const RcFlow = ({ items, sep = '→' }) => (
   <div className="rc-flow">{items.map((t, i) => <React.Fragment key={i}><span className="rc-chip">{tr(t)}</span>{sep && i < items.length - 1 && <span className="rc-arr">{sep}</span>}</React.Fragment>)}</div>
 );
-// RECAPS kontenti — baholanadigan testlar uchun qayta tushuntirish (idx 2/6/10).
+// RECAPS kontenti — baholanadigan testlar uchun qayta tushuntirish (idx 6/9 · F-0914-07 tartibi).
 // Xato javob bergan o'quvchi mavzuni 3 ta qisqa kartada qayta ko'radi.
 const RECAPS = {
-  // idx 2 — s2: «Netlify nima qiladi?»
-  2: {
+  // idx 9 — s2: «Netlify nima qiladi?» (F-0914-07: amaliyotdan keyin)
+  9: {
     title: { uz: 'Netlify — saytning internetdagi joyi', ru: 'Netlify — место сайта в интернете' }, cards: [
       { ic: '📁', h: { uz: 'Netlify nima qiladi?', ru: 'Что делает Netlify?' },
         body: { uz: <><b>Netlify</b> sayt papkangizni <b>doimo yonib turgan</b> kompyuterda saqlaydi va sizga <b>havola</b> beradi. Havolani bilgan har kim saytni ochadi.</>, ru: <><b>Netlify</b> хранит папку вашего сайта на <b>всегда включённом</b> компьютере и выдаёт вам <b>ссылку</b>. Сайт откроет каждый, кто знает ссылку.</> },
@@ -342,24 +343,10 @@ const RECAPS = {
         vis: <RcFlow items={['index.html', { uz: '= bosh sahifa', ru: '= главная страница' }]} sep="" /> },
       { ic: '🗂️', h: { uz: 'Qaysi fayl nima qiladi', ru: 'Какой файл за что отвечает' },
         body: { uz: <><span className="mono">index.html</span> — bosh sahifa, <span className="mono">style.css</span> — bezak, qolgan <span className="mono">.html</span> fayllar — menyudagi boshqa sahifalar.</>, ru: <><span className="mono">index.html</span> — главная страница, <span className="mono">style.css</span> — оформление, остальные <span className="mono">.html</span> — другие страницы из меню.</> },
-        vis: <RcFlow items={['index.html', 'style.css', 'menyu.html']} sep="·" /> },
+        vis: <RcFlow items={['index.html', 'style.css', '….html']} sep="·" /> },
       { ic: '☝️', h: { uz: 'Nom bitta harf ham farq qilmasin', ru: 'Имя не должно отличаться ни на букву' },
         body: { uz: <>AI bergan fayl nomini <b>aynan</b> ko'chiring. <span className="mono">Index.html</span> yoki <span className="mono">home.html</span> deb saqlansa, sayt ochilmaydi.</>, ru: <>Копируйте имя файла от AI <b>точь-в-точь</b>. Если сохранить как <span className="mono">Index.html</span> или <span className="mono">home.html</span>, сайт не откроется.</> },
         ask: { uz: 'Bosh sahifa fayli qanday nomlanadi?', ru: 'Как называется файл главной страницы?' } },
-    ]
-  },
-  // idx 10 — s10: «Sayt qanday tartibda internetga chiqadi?»
-  10: {
-    title: { uz: 'Deploy tartibi', ru: 'Порядок деплоя' }, cards: [
-      { ic: '🧭', h: { uz: "To'rt qadam, aniq tartibda", ru: 'Четыре шага, строгий порядок' },
-        body: { uz: <>Kod <b>GitHub</b>ga boradi → Netlify o'sha <b>reponi</b> tanlaydi → <b>deploy</b> qiladi → sizga <b>havola</b> beradi.</>, ru: <>Код уходит на <b>GitHub</b> → Netlify выбирает этот <b>репозиторий</b> → делает <b>деплой</b> → выдаёт вам <b>ссылку</b>.</> },
-        vis: <RcFlow items={['GitHub', { uz: 'repo tanlash', ru: 'выбор репо' }, 'deploy', { uz: 'havola', ru: 'ссылка' }]} /> },
-      { ic: '⬆️', h: { uz: 'Nega avval GitHub?', ru: 'Почему сначала GitHub?' },
-        body: { uz: <>Netlify kodni kompyuteringizdan emas, <b>GitHub repodan</b> oladi. Repo bo'sh bo'lsa, u sayt qura olmaydi.</>, ru: <>Netlify забирает код не с вашего компьютера, а <b>из репозитория GitHub</b>. Если репозиторий пуст, собирать нечего.</> },
-        vis: <RcFlow items={[{ uz: 'git push', ru: 'git push' }, { uz: "kod GitHub'da", ru: 'код на GitHub' }]} sep="→" /> },
-      { ic: '🔗', h: { uz: 'Havola — eng oxirida', ru: 'Ссылка — в самом конце' },
-        body: { uz: <>Havola deploy <b>natijasi</b>: «Site is live» yozuvi bilan birga chiqadi. Undan oldin havola bo'lmaydi.</>, ru: <>Ссылка — <b>результат</b> деплоя: она появляется вместе с надписью «Site is live». Раньше её нет.</> },
-        ask: { uz: "Havola qachon paydo bo'ladi?", ru: 'Когда появляется ссылка?' } },
     ]
   },
 };
@@ -603,7 +590,7 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
       <div className="screen" style={{ justifyContent: isMentorLive ? 'flex-start' : 'safe center', gap: 'clamp(16px,2.5vw,24px)' }}>
         <div className="fade-up">{question}</div>
         {oneShot && !solved && <p className="small mono fade-up" style={{ margin: '-8px 0 0', color: T.accent, fontWeight: 600 }}>⚡ {tr({ uz: "Jonli dars — bitta urinish, o'ylab bosing!", ru: 'Живой урок — одна попытка, думайте перед кликом!' })}</p>}
-        <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 11 }}>
+        <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: picked !== null ? 8 : 11 }}>
           {options.map((opt, i) => {
             let cls = 'option';
             if (isMentorLive) {
@@ -615,7 +602,7 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
             else if (i === picked) cls += ' option-picked-wrong';
             const showGreenLetter = isMentorLive ? (mReveal && i === correctIdx) : (solved && revealed && i === correctIdx);
             return (
-              <button key={i} className={cls} disabled={solved || isMentorLive} onClick={() => pick(i)} style={{ padding: 'clamp(13px,1.9vw,17px) clamp(15px,2.2vw,20px)', fontSize: 'clamp(15px,1.85vw,17px)', display: 'flex', alignItems: 'center', gap: 12 }}>
+              <button key={i} className={cls} disabled={solved || isMentorLive} onClick={() => pick(i)} style={{ padding: picked !== null ? 'clamp(9px,1.3vw,12px) clamp(15px,2.2vw,20px)' : 'clamp(13px,1.9vw,17px) clamp(15px,2.2vw,20px)', fontSize: 'clamp(15px,1.85vw,17px)', display: 'flex', alignItems: 'center', gap: 12 }}>
                 <span className="mono small" style={{ minWidth: 20, color: showGreenLetter ? T.success : T.ink3 }}>{String.fromCharCode(65 + i)}</span>
                 <span style={{ flex: 1 }}>{fmtCode(tr(opt))}</span>
               </button>
@@ -727,6 +714,8 @@ const projWrite = (patch) => { try { const cur = projRead() || {}; localStorage.
 // 🏁 DEMO DAY LOYIHA-IPI (F-0803-30): PmLesson1/VsCode'da tanlangan muammo-loyiha. Bor bo'lsa —
 // loyiha tanlovida BIRINCHI karta bo'lib chiqadi (shablonlar zaxira qoladi).
 const demoRead = () => { try { return JSON.parse(localStorage.getItem('ccDemoDay') || 'null'); } catch { return null; } };
+// F-0914-07: g'oyasi saqlanmagan o'quvchi uni shu darsda yozadi — PmLesson1 bilan bir xil shaklda saqlanadi
+const demoWrite = (patch) => { try { localStorage.setItem('ccDemoDay', JSON.stringify({ ...(demoRead() || {}), ...patch, savedAt: Date.now() })); } catch { /* saqlab bo'lmadi */ } };
 const siteUrlRead = () => { try { return localStorage.getItem(SITE_URL_KEY) || ''; } catch { return ''; } };
 // Havola IKKI joyga yoziladi: o'z kaliti + ccPitch3.link (Demo Day darsi o'qiydi).
 // ccPitch3 ichidagi boshqa maydonlar saqlanadi: o'qi -> yoy -> faqat link'ni yoz.
@@ -863,7 +852,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
   return (
     <Stage eyebrow={tr({ uz: 'Kirish', ru: 'Введение' })} screen={screen} navContent={<NavNext optionalLive disabled={picked === null} label={tr({ uz: 'Davom etish', ru: 'Продолжить' })} onClick={onNext} />}>
       <div className="screen">
-        <h1 className="title h-title fade-up" style={{ maxWidth: 780 }}>{tr({ uz: <>Saytingiz faqat kompyuteringizda turibdi. Do'stingizga <span className="italic" style={{ color: T.accent }}>qanday</span> ko'rsatasiz?</>, ru: <>Ваш сайт лежит только на вашем компьютере. <span className="italic" style={{ color: T.accent }}>Как</span> вы покажете его другу?</> })}</h1>
+        <h1 className="title h-title fade-up">{tr({ uz: <>Saytingiz faqat kompyuteringizda turibdi. Do'stingizga <span className="italic" style={{ color: T.accent }}>qanday</span> ko'rsatasiz?</>, ru: <>Ваш сайт лежит только на вашем компьютере. <span className="italic" style={{ color: T.accent }}>Как</span> вы покажете его другу?</> })}</h1>
         <Mentor>{tr({ uz: 'Pastdagi uch javobdan bittasini tanlang.', ru: 'Выберите один из трёх ответов ниже.' })}</Mentor>
         <Split>
           <Col>
@@ -898,7 +887,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
                 );
               })}
             </div>
-            {picked !== null && <p className="hook-ack fade-step">{tr({ uz: <>Javob — ikkinchisi. Sayt internetga chiqsa, bitta <b>havola</b> yetadi: do'stingiz uni telefonida ochadi. Bugun shuni qilamiz.</>, ru: <>Ответ — второй. Когда сайт в интернете, хватает одной <b>ссылки</b>: друг откроет её на телефоне. Сегодня мы это и сделаем.</> })}</p>}
+            {picked !== null && <p className="hook-ack fade-step">{tr({ uz: <>Javob — ikkinchisi. Sayt internetga chiqsa, bitta <b>havola</b> yetadi: do'stingiz uni telefonida ochadi. Bugun avval Demo Day saytingizni yasaysiz, keyin shunday havola olasiz.</>, ru: <>Ответ — второй. Когда сайт в интернете, хватает одной <b>ссылки</b>: друг откроет её на телефоне. Сегодня сначала сделаете сайт для Demo Day, потом получите такую ссылку.</> })}</p>}
           </Col>
         </Split>
       </div>
@@ -911,7 +900,7 @@ const Screen1 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const STEPS = [
     { ic: '📁', h: { uz: 'Sayt papkangiz', ru: 'Папка вашего сайта' }, s: 'index.html, style.css' },
     { ic: '🌐', h: { uz: 'Netlify', ru: 'Netlify' }, s: { uz: "hech qachon o'chmaydigan kompyuter", ru: 'компьютер, который никогда не выключается' } },
-    { ic: '🔗', h: { uz: 'Havola', ru: 'Ссылка' }, s: { uz: 'har kim ochadi', ru: 'откроет каждый' } }
+    { ic: '🔗', h: { uz: 'Havola', ru: 'Ссылка' }, s: { uz: 'saytingiz barchaga ochiladi', ru: 'сайт откроется всем' } }
   ];
   const [step, setStep] = useState(storedAnswer ? STEPS.length : 0);
   const [running, setRunning] = useState(false);
@@ -973,89 +962,188 @@ const Screen2 = (props) => (
     }} />
 );
 
-// ===== SCREEN 3 — LOYIHANGIZNI TANLANG + SAHIFALARINI YOZING =====
-// 94-qonun: avval faqat loyiha kartalari; tanlangach bir qatorga yig'iladi va sahifa maydonlari ochiladi.
-const PROJECTS = [
-  { id: 'lavash', ic: '🌯', name: { uz: "Lavash do'koni", ru: 'Лавашная' }, sub: { uz: 'menyu, narxlar, manzil', ru: 'меню, цены, адрес' } },
-  { id: 'klub', ic: '🎮', name: { uz: "O'yin-klub", ru: 'Игровой клуб' }, sub: { uz: "o'yinlar, narxlar, jadval", ru: 'игры, цены, расписание' } },
-  { id: 'ozim', ic: '🙋', name: { uz: "O'zim haqimda", ru: 'Обо мне' }, sub: { uz: 'ishlarim, qiziqishlarim', ru: 'мои работы, интересы' } },
-  { id: 'togarak', ic: '🏫', name: { uz: "Maktab to'garagi", ru: 'Школьный кружок' }, sub: { uz: 'darslar, jamoa, aloqa', ru: 'занятия, команда, контакты' } },
+// ===== SCREEN REJA — BUGUN 3 QADAM (F-0914-08: vizual kartalar · vaqt taqsimoti faqat mentor panelida) =====
+const PLAN = [
+  { ic: '⭐', h: { uz: 'Demo Day saytingizni yasaysiz', ru: 'Делаете сайт для Demo Day' }, s: { uz: "AI yordamida, 4–5 sahifa", ru: 'с помощью AI, 4–5 страниц' } },
+  { ic: '🌐', h: { uz: 'Netlify bilan tanishasiz', ru: 'Знакомитесь с Netlify' }, s: { uz: 'saytlar internetda shu yerda turadi', ru: 'здесь сайты живут в интернете' } },
+  { ic: '🚀', h: { uz: "Saytingizni internetga chiqarasiz", ru: 'Выкладываете сайт в интернет' }, s: { uz: "havolasini do'stlaringizga yuborasiz", ru: 'отправляете ссылку друзьям' } },
 ];
+const ScreenReja = ({ screen, onNext, onPrev }) => {
+  const _gate = useContext(LiveGateCtx) || {};
+  const isMentorLive = !!(_gate.live && _gate.live.mode === 'mentor');
+  return (
+    <Stage eyebrow={tr({ uz: 'Reja', ru: 'План' })} screen={screen} mentorStatic navContent={<><NavBack onPrev={onPrev} /><NavNext label={tr({ uz: 'Boshlaymiz →', ru: 'Начинаем →' })} onClick={onNext} /></>}>
+      <div className="screen" style={{ gap: 'clamp(14px,2.4vw,22px)' }}>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Bugun <span className="italic" style={{ color: T.accent }}>nima</span> qilamiz?</>, ru: <><span className="italic" style={{ color: T.accent }}>Что</span> сегодня делаем?</> })}</h2></div>
+        <Mentor>{tr({ uz: "Dars oxirida saytingiz internetda turadi — havolasini istagan odamga yubora olasiz.", ru: 'К концу урока ваш сайт будет в интернете — ссылку можно отправить кому угодно.' })}</Mentor>
+        <div className="rj-row">
+          {PLAN.map((p, i) => (
+            <React.Fragment key={i}>
+              <div className="rj-card fade-up" style={{ animationDelay: `${0.12 + i * 0.12}s` }}>
+                <span className="rj-num">{i + 1}</span>
+                <span className="rj-ic">{p.ic}</span>
+                <span className="rj-h">{tr(p.h)}</span>
+                <span className="rj-s">{tr(p.s)}</span>
+              </div>
+              {i < PLAN.length - 1 && <span className="rj-arrow fade-up" style={{ animationDelay: `${0.2 + i * 0.12}s` }} aria-hidden="true">→</span>}
+            </React.Fragment>
+          ))}
+        </div>
+        {isMentorLive && (
+          <div className="frame-soft fade-up delay-3">
+            <p className="body" style={{ margin: 0, color: T.ink }}>🧑‍🏫 {tr({ uz: <><b>Faqat mentorga:</b> darsning 1 soati — Demo Day sayti (1-qadam), qolgan 30 daqiqa — Netlify va deploy (2–3-qadam).</>, ru: <><b>Только для ментора:</b> 1 час урока — сайт для Demo Day (шаг 1), оставшиеся 30 минут — Netlify и деплой (шаги 2–3).</> })}</p>
+          </div>
+        )}
+      </div>
+    </Stage>
+  );
+};
+
+// ===== SCREEN 3 — DEMO DAY G'OYASI → SAHIFALAR + JONLI SAYT MAKETI (F-0914-08) =====
+// 1-bosqich: muammo + yechim. «Tayyor» bosilgach forma animatsiya bilan chiqib ketadi va o'rniga
+// chapda sahifa nomlari, o'ngda shu g'oyadan yig'ilgan jonli sayt maketi keladi.
+// G'oya 2-darsda (PmLesson1) saqlangan bo'lsa — to'g'ridan-to'g'ri 2-bosqichdan boshlanadi.
 const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const saved = projRead() || {};
-  const [turi, setTuri] = useState(saved.turi || null);
+  const demo0 = demoRead() || {};
+  const hadIdea = !!(demo0.muammo && demo0.yechim);
+  const [muammo, setMuammo] = useState(demo0.muammo || '');
+  const [yechim, setYechim] = useState(demo0.yechim || '');
+  const [stage, setStage] = useState(hadIdea ? 'pages' : 'idea'); // 'idea' | 'leaving' | 'pages'
   const [pages, setPages] = useState(() => {
     const p = Array.isArray(saved.sahifalar) ? saved.sahifalar.slice(0, PAGE_SLOTS) : [];
     while (p.length < PAGE_SLOTS) p.push('');
     return p;
   });
+  const timer = useRef(null);
+  useEffect(() => () => clearTimeout(timer.current), []);
   const filled = pages.filter(p => p.trim().length > 1);
-  // F-0803-30: PmLesson1/VsCode'da tanlangan Demo Day loyihasi birinchi karta bo'lib chiqadi
-  const demo = demoRead();
-  const projList = demo && demo.muammo
-    ? [{ id: 'demo', ic: '⭐', name: { uz: 'Demo Day loyiham', ru: 'Мой проект Demo Day' }, sub: { uz: demo.yechim || '', ru: demo.yechim || '' } }, ...PROJECTS]
-    : PROJECTS;
-  const proj = projList.find(p => p.id === turi);
-  const done = !!proj && filled.length >= MIN_PAGES;
-  const choose = (id) => { setTuri(id); projWrite({ turi: id }); };
+  const ideaOk = muammo.trim().length >= 8 && yechim.trim().length >= 4;
+  const done = ideaOk && stage === 'pages' && filled.length >= MIN_PAGES;
+  // F-0914-09: navbatdagi bo'sh maydon pulslanadi — «yozadigan joy mana shu» (foydalanuvchi: «inputlar jonsiz»)
+  const nextIdea = muammo.trim().length < 8 ? 'm' : yechim.trim().length < 4 ? 'y' : null;
+  const nextPage = pages.findIndex((v, i) => i < MIN_PAGES && v.trim().length <= 1);
+  const confirmIdea = () => {
+    if (!ideaOk) return;
+    demoWrite({ muammo: muammo.trim(), yechim: yechim.trim(), manba: demo0.manba || 'ozim', holat: demo0.holat || 'tanlangan' });
+    setStage('leaving');
+    timer.current = setTimeout(() => setStage('pages'), 460);
+  };
   const setPage = (i, v) => {
     const n = pages.slice(); n[i] = v; setPages(n);
-    projWrite({ sahifalar: n.filter(x => x.trim()).map(x => x.trim()) });
+    projWrite({ turi: 'demo', sahifalar: n.filter(x => x.trim()).map(x => x.trim()) });
   };
   useEffect(() => { if (done && !(storedAnswer && storedAnswer.correct)) onAnswer(screen, { correct: true, picked: filled.length, stage: 'artefakt', screenIdx: screen }); }, [done]); // eslint-disable-line
-  const navLabel = !proj ? tr({ uz: 'Loyihani tanlang', ru: 'Выберите проект' })
+  const navLabel = stage !== 'pages' ? tr({ uz: "G'oyangizni yozing", ru: 'Впишите свою идею' })
     : !done ? tr({ uz: `Yana ${MIN_PAGES - filled.length} ta sahifa nomi`, ru: `Ещё названий страниц: ${MIN_PAGES - filled.length}` })
       : tr({ uz: 'Davom etish', ru: 'Продолжить' });
   return (
-    <Stage eyebrow={tr({ uz: 'Sizning loyihangiz', ru: 'Ваш проект' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={navLabel} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Demo Day loyihasi', ru: 'Проект Demo Day' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={navLabel} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Bugun <span className="italic" style={{ color: T.accent }}>qanday</span> sayt quramiz?</>, ru: <>Какой сайт мы <span className="italic" style={{ color: T.accent }}>соберём</span> сегодня?</> })}</h2></div>
-        {/* F-0803-30: `!proj` sharti — turi saqlanib, lekin ro'yxatdan topilmasa (masalan
-            demo-g'oya o'chirilgan bo'lsa) tanlov qaytadan ochiladi, proj.ic da qulamaydi. */}
-        <Mentor>{!proj
-          ? tr({ uz: "Loyihangizni tanlang — shu sayt dars oxirida internetda turadi.", ru: 'Выберите свой проект — этот сайт к концу урока окажется в интернете.' })
-          : tr({ uz: "Endi sayt qaysi sahifalardan iborat bo'lishini yozing. Kamida to'rttasi kerak: masalan «Bosh sahifa».", ru: 'Теперь напишите, из каких страниц состоит сайт. Нужно минимум четыре: например «Главная».' })}</Mentor>
-        <Split>
-          <Col>
-            {!proj ? (
-              <div className="prj-grid fade-up delay-1">
-                {projList.map(p => (
-                  <button key={p.id} className="prj-card" onClick={() => choose(p.id)}>
-                    <span className="prj-ic">{p.ic}</span>
-                    <span className="prj-nm">{tr(p.name)}</span>
-                    <span className="prj-sub">{tr(p.sub)}</span>
-                  </button>
-                ))}
-              </div>
-            ) : (
-              <>
-                <div className="pick-row fade-step">
-                  <span style={{ fontSize: 20 }}>{proj.ic}</span>
-                  <span className="body" style={{ margin: 0 }}>{tr({ uz: 'Loyiha:', ru: 'Проект:' })} <b>{tr(proj.name)}</b></span>
-                  <button className="pick-redo" onClick={() => { setTuri(null); projWrite({ turi: null }); }}>↻ {tr({ uz: "o'zgartirish", ru: 'изменить' })}</button>
+        {stage !== 'pages' ? (
+          <>
+            <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Demo Day saytingiz <span className="italic" style={{ color: T.accent }}>qanday muammoni</span> hal qiladi?</>, ru: <><span className="italic" style={{ color: T.accent }}>Какую проблему</span> решает ваш сайт для Demo Day?</> })}</h2></div>
+            <Mentor>{tr({ uz: "Ikki qatorni to'ldiring: qanday muammo bor va saytingiz uni qanday hal qiladi.", ru: 'Заполните две строки: какая есть проблема и как ваш сайт её решает.' })}</Mentor>
+            <div className={stage === 'leaving' ? 'idea-out' : ''} style={{ display: 'flex', justifyContent: 'center' }}>
+            <div className="idea-card fade-up delay-1">
+              <p className="flow-label">{tr({ uz: 'Muammo', ru: 'Проблема' })}</p>
+              <label className={`wf ${muammo.trim().length >= 8 ? 'filled' : ''} ${nextIdea === 'm' ? 'next' : ''}`}>
+                <span className="wf-ic" aria-hidden="true">{muammo.trim().length >= 8 ? '✅' : '✏️'}</span>
+                <input className="wf-input" autoFocus value={muammo} maxLength={90} onChange={e => setMuammo(e.target.value)} placeholder={tr({ uz: "masalan: to'garak jadvalini uydan ko'rib bo'lmaydi", ru: 'например: расписание кружка не посмотреть из дома' })} />
+              </label>
+              <p className="flow-label">{tr({ uz: 'Yechim — saytingiz', ru: 'Решение — ваш сайт' })}</p>
+              <label className={`wf ${yechim.trim().length >= 4 ? 'filled' : ''} ${nextIdea === 'y' ? 'next' : ''}`}>
+                <span className="wf-ic" aria-hidden="true">{yechim.trim().length >= 4 ? '✅' : '✏️'}</span>
+                <input className="wf-input" value={yechim} maxLength={60} onChange={e => setYechim(e.target.value)} placeholder={tr({ uz: "masalan: to'garak jadvali sayti", ru: 'например: сайт с расписанием кружка' })} />
+              </label>
+              <button className="btn" style={{ alignSelf: 'flex-end' }} disabled={!ideaOk || stage === 'leaving'} onClick={confirmIdea}>{tr({ uz: 'Tayyor →', ru: 'Готово →' })}</button>
+            </div>
+            </div>
+          </>
+        ) : (
+          <>
+            <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Saytingiz <span className="italic" style={{ color: T.accent }}>qaysi sahifalardan</span> iborat?</>, ru: <>Из <span className="italic" style={{ color: T.accent }}>каких страниц</span> состоит ваш сайт?</> })}</h2></div>
+            <Mentor>{tr({ uz: "Sahifa nomlarini yozing — kamida to'rttasi. O'ngda saytingiz shu zahoti yig'ilib boradi.", ru: 'Напишите названия страниц — минимум четыре. Справа ваш сайт сразу собирается.' })}</Mentor>
+            <Split>
+              <Col>
+                <div className="idea-chip fade-up">
+                  <span style={{ fontSize: 18 }}>⭐</span>
+                  <span className="small" style={{ flex: 1, color: T.ink, fontWeight: 700 }}>{yechim}</span>
+                  <button className="pick-redo" onClick={() => setStage('idea')}>↻ {tr({ uz: "o'zgartirish", ru: 'изменить' })}</button>
                 </div>
-                <div className="pg-list fade-step">
+                <div className="pg-list fade-up delay-1">
                   {pages.map((v, i) => (
                     <div key={i} className={`pg-row ${v.trim().length > 1 ? 'on' : ''}`}>
                       <span className="pg-n">{v.trim().length > 1 ? '✓' : i + 1}</span>
-                      <input className="text-input" value={v} maxLength={28} onChange={e => setPage(i, e.target.value)}
-                        placeholder={i < MIN_PAGES ? tr({ uz: 'Sahifa nomi…', ru: 'Название страницы…' }) : tr({ uz: 'Sahifa nomi (ixtiyoriy)…', ru: 'Название страницы (не обязательно)…' })} />
+                      <label className={`wf ${v.trim().length > 1 ? 'filled' : ''} ${nextPage === i ? 'next' : ''}`}>
+                        <span className="wf-ic" aria-hidden="true">{v.trim().length > 1 ? '✅' : '✏️'}</span>
+                        <input className="wf-input" value={v} maxLength={28} onChange={e => setPage(i, e.target.value)}
+                          placeholder={i === 0 ? tr({ uz: 'masalan: Bosh sahifa', ru: 'например: Главная' }) : i < MIN_PAGES ? tr({ uz: 'Sahifa nomini yozing…', ru: 'Напишите название страницы…' }) : tr({ uz: 'Sahifa nomi (ixtiyoriy)…', ru: 'Название страницы (не обязательно)…' })} />
+                      </label>
                     </div>
                   ))}
                 </div>
-              </>
-            )}
+              </Col>
+              <Col>
+                <div className="fade-up delay-2">
+                  <Preview title="demo-day.netlify.app" minH={230}>
+                    <div className="site-mock">
+                      <div className="menu-mock">
+                        {(filled.length ? filled : [tr({ uz: 'Bosh sahifa', ru: 'Главная' }), '…']).map((p, i) => <span key={i} className={`menu-tab ${i === 0 ? 'on' : ''} site-tab-in`} style={{ animationDelay: `${i * 0.06}s` }}>{p.trim()}</span>)}
+                      </div>
+                      <div className="site-hero">
+                        <h3 className="site-h">{yechim}</h3>
+                        <p className="site-p">{muammo}</p>
+                        <span className="site-btn">{tr({ uz: 'Batafsil', ru: 'Подробнее' })}</span>
+                      </div>
+                    </div>
+                  </Preview>
+                </div>
+              </Col>
+            </Split>
+          </>
+        )}
+      </div>
+    </Stage>
+  );
+};
+
+// ===== SCREEN PAGES — HAR SAHIFADA NIMA BO'LADI (F-0914-07: prompt aniqroq bo'ladi) =====
+// 👦 o'qish: namuna sahifa NOMIGA bog'lanmagan edi (2-sahifa «Biz haqimizda» bo'lsa ham «jadval» chiqardi) — endi umumiy
+const PAGE_EX = [
+  { uz: "masalan: katta sarlavha, muammo haqida bir gap va tugma", ru: 'например: крупный заголовок, фраза о проблеме и кнопка' },
+  { uz: "masalan: nima turadi — matn, rasm, jadval yoki tugma", ru: 'например: что там будет — текст, картинки, таблица или кнопка' },
+];
+const ScreenPages = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
+  const saved = projRead() || {};
+  const names = Array.isArray(saved.sahifalar) && saved.sahifalar.length ? saved.sahifalar : [tr({ uz: 'Bosh sahifa', ru: 'Главная' })];
+  const [desc, setDesc] = useState(() => names.map((_, i) => (Array.isArray(saved.mazmun) && saved.mazmun[i]) || ''));
+  const okN = desc.filter(d => d.trim().length >= 5).length;
+  const done = okN >= names.length;
+  const setD = (i, v) => { const n = desc.slice(); n[i] = v; setDesc(n); projWrite({ mazmun: n.map(x => x.trim()) }); };
+  useEffect(() => { if (done && !(storedAnswer && storedAnswer.correct)) onAnswer(screen, { correct: true, picked: okN, stage: 'artefakt', screenIdx: screen }); }, [done]); // eslint-disable-line
+  return (
+    <Stage eyebrow={tr({ uz: 'Demo Day loyihasi', ru: 'Проект Demo Day' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: `Yozildi: ${okN}/${names.length}`, ru: `Заполнено: ${okN}/${names.length}` })} onClick={onNext} /></>}>
+      <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Har sahifada <span className="italic" style={{ color: T.accent }}>nima</span> bo'ladi?</>, ru: <><span className="italic" style={{ color: T.accent }}>Что</span> будет на каждой странице?</> })}</h2></div>
+        <Mentor>{tr({ uz: "Har sahifaga bir qator yozing: unda nima turadi. Qancha aniq yozsangiz, AI shuncha mos sayt quradi.", ru: 'Напишите по строке на каждую страницу: что на ней будет. Чем точнее напишете, тем точнее AI соберёт сайт.' })}</Mentor>
+        <Split>
+          <Col>
+            <div className="pg-list fade-up delay-1">
+              {names.map((nm, i) => (
+                <div key={i} className={`pg-row ${desc[i].trim().length >= 5 ? 'on' : ''}`}>
+                  <span className="pg-n">{desc[i].trim().length >= 5 ? '✓' : i + 1}</span>
+                  <span className="small" style={{ minWidth: 92, maxWidth: 120, fontWeight: 700, color: T.ink, overflowWrap: 'anywhere' }}>{nm}</span>
+                  <input className="text-input" value={desc[i]} maxLength={70} onChange={e => setD(i, e.target.value)} placeholder={tr(PAGE_EX[i === 0 ? 0 : 1])} />
+                </div>
+              ))}
+            </div>
           </Col>
           <Col>
-            <p className="flow-label">{tr({ uz: 'Sayt menyusi shunday chiqadi', ru: 'Меню сайта получится таким' })}</p>
-            <Preview title={turi ? `${turi}.netlify.app` : tr({ uz: 'hali tanlanmadi', ru: 'пока не выбрано' })} minH={150}>
-              {filled.length === 0
-                ? <p style={{ fontFamily: 'Georgia, serif', color: T.ink3, fontStyle: 'italic', margin: 0, textAlign: 'center' }}>{tr({ uz: "Sahifa nomlarini yozing — menyu shu yerda yig'iladi", ru: 'Напишите названия страниц — меню соберётся здесь' })}</p>
-                : (<>
-                  <div className="menu-mock">{filled.map((p, i) => <span key={i} className={`menu-tab ${i === 0 ? 'on' : ''}`}>{p.trim()}</span>)}</div>
-                  <p className="body" style={{ margin: '12px 0 0', color: T.ink2 }}>{tr({ uz: 'Har nomga bitta sahifa. Hammasi shu menyu orqali bir-biriga ulanadi.', ru: 'На каждое название — своя страница. Все они связаны через это меню.' })}</p>
-                </>)}
-            </Preview>
+            <p className="flow-label">{tr({ uz: 'AI shu rejani oladi', ru: 'AI получит этот план' })}</p>
+            <div className="pr-panel">
+              <pre className="pr-body">{names.map((nm, i) => `• ${nm}${desc[i].trim() ? ' — ' + desc[i].trim() : ''}`).join('\n')}</pre>
+            </div>
           </Col>
         </Split>
       </div>
@@ -1074,24 +1162,21 @@ const STYLES = [
   { id: 'gradient', ic: '🌈', name: { uz: 'Gradient', ru: 'Градиент' }, sub: { uz: "rang o'tishlari", ru: 'переливы цвета' },
     desc: { uz: "binafsha va pushti rang o'tishli fonlar, yumshoq soyalar, dumaloq burchaklar.", ru: 'фоны с фиолетово-розовыми переходами, мягкие тени, скруглённые углы.' } },
 ];
-const PROJ_TITLE = {
-  lavash: { uz: "Lavash do'koni sayti", ru: 'Сайт лавашной' },
-  klub: { uz: "O'yin-klub sayti", ru: 'Сайт игрового клуба' },
-  ozim: { uz: "O'zim haqimda sayt", ru: 'Сайт обо мне' },
-  togarak: { uz: "Maktab to'garagi sayti", ru: 'Сайт школьного кружка' },
-};
+// F-0914-07: topshiriq o'quvchining Demo Day g'oyasi (muammo + yechim) va har sahifa mazmuni bilan yig'iladi.
 const buildPrompt = (proj, style) => {
-  const pages = (proj && Array.isArray(proj.sahifalar) && proj.sahifalar.length ? proj.sahifalar : ['Bosh sahifa']).join(', ');
-  // F-0803-30: Demo Day loyihasi tanlangan bo'lsa, sarlavha o'quvchining O'Z yechimi bo'ladi
-  const demo = proj && proj.turi === 'demo' ? demoRead() : null;
-  const ttl = demo && demo.yechim ? { uz: demo.yechim, ru: demo.yechim }
-    : PROJ_TITLE[proj && proj.turi] || { uz: 'Mening saytim', ru: 'Мой сайт' };
+  const demo = demoRead() || {};
+  const names = proj && Array.isArray(proj.sahifalar) && proj.sahifalar.length ? proj.sahifalar : ['Bosh sahifa'];
+  const mazmun = proj && Array.isArray(proj.mazmun) ? proj.mazmun : [];
+  const pageLines = names.map((n, i) => `- ${n}${mazmun[i] ? ' — ' + mazmun[i] : ''}`);
   // Har qator UZ va RU juftligi bilan — o'quvchi qaysi tilda o'qisa, topshiriq ham shu tilda.
   return [
-    tr({ uz: "Men veb-sayt qurmoqchiman. Menga uning to'liq kodini yozib ber.", ru: 'Я хочу сделать веб-сайт. Напиши мне его полный код.' }),
+    tr({ uz: "Men Demo Day uchun veb-sayt qurmoqchiman. Menga uning to'liq kodini yozib ber.", ru: 'Я хочу сделать веб-сайт для Demo Day. Напиши мне его полный код.' }),
     '',
-    tr({ uz: 'LOYIHA: ' + ttl.uz, ru: 'ПРОЕКТ: ' + ttl.ru }),
-    tr({ uz: 'SAHIFALAR: ' + pages, ru: 'СТРАНИЦЫ: ' + pages }),
+    tr({ uz: 'MUAMMO: ' + (demo.muammo || '—'), ru: 'ПРОБЛЕМА: ' + (demo.muammo || '—') }),
+    tr({ uz: 'SAYTIM (YECHIM): ' + (demo.yechim || 'Mening saytim'), ru: 'МОЙ САЙТ (РЕШЕНИЕ): ' + (demo.yechim || 'Мой сайт') }),
+    '',
+    tr({ uz: 'SAHIFALAR:', ru: 'СТРАНИЦЫ:' }),
+    ...pageLines,
     '',
     tr({ uz: 'SHARTLAR:', ru: 'УСЛОВИЯ:' }),
     tr({ uz: '1. Faqat HTML va CSS ishlat. JavaScript ISHLATMA.', ru: '1. Используй только HTML и CSS. JavaScript НЕ используй.' }),
@@ -1102,7 +1187,7 @@ const buildPrompt = (proj, style) => {
     tr({ uz: "6. Animatsiya qo'sh: tugma va havolalarda hover-effekt, silliq o'tishlar, sahifa ochilganda matn va rasmlar yumshoq paydo bo'lsin.", ru: '6. Добавь анимацию: hover-эффект на кнопках и ссылках, плавные переходы, мягкое появление текста и картинок при открытии страницы.' }),
     tr({ uz: "7. Rasmlar o'rniga https://picsum.photos/600/400 havolalaridan foydalan.", ru: '7. Вместо картинок используй ссылки https://picsum.photos/600/400.' }),
     tr({ uz: '8. Uslub: ' + style.desc.uz, ru: '8. Стиль: ' + style.desc.ru }),
-    tr({ uz: "9. Kod toza va o'qiladigan bo'lsin, muhim joylariga izoh yoz.", ru: '9. Код должен быть чистым и читаемым, в важных местах — комментарии.' }),
+    tr({ uz: "9. Matnlar muammo va yechimim haqida bo'lsin — umumiy namuna matn yozma.", ru: '9. Тексты должны быть про мою проблему и решение — не пиши общий шаблонный текст.' }),
     tr({ uz: "10. Har faylni alohida ko'rsat va tepasiga fayl nomini yoz.", ru: '10. Покажи каждый файл отдельно и напиши сверху его имя.' })
   ].join('\n');
 };
@@ -1166,20 +1251,21 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const Screen5 = (props) => {
   const STEPS = [
     { id: 'ai', nav: { uz: 'AI', ru: 'AI' },
-      t: { uz: "Nusxalagan topshiriqni AI chatiga qo'ying va yuboring", ru: 'Вставьте скопированное задание в чат AI и отправьте' },
-      d: { uz: 'Javobda har fayl alohida chiqadi: index.html, style.css va qolganlari.', ru: 'В ответе каждый файл будет отдельно: index.html, style.css и остальные.' },
+      t: { uz: "`gemini.google.com` saytini oching, nusxalagan topshiriqni qo'ying va yuboring", ru: 'Откройте сайт `gemini.google.com`, вставьте скопированное задание и отправьте' },
+      // 👦 o'qish: «qaysi AI?» → foydalanuvchi qarori (2026-09-14): sinfda Gemini ishlatiladi
+      d: { uz: "Google hisobingiz bilan kiring. Javobda har fayl alohida chiqadi: index.html, style.css va qolganlari.", ru: 'Войдите через свой аккаунт Google. В ответе каждый файл будет отдельно: index.html, style.css и остальные.' },
       help: { uz: "Javob chala tugasa — «davom et» deb yozing, AI qolgan fayllarni beradi.", ru: 'Если ответ оборвался — напишите «продолжи», и AI выдаст остальные файлы.' },
-      res: () => <Preview title="AI chat" minH={150}><div style={{ ...winBox, minHeight: 112, alignItems: 'stretch' }}><span className="mono small" style={{ color: T.ink3 }}>{tr({ uz: 'siz:', ru: 'вы:' })}</span><span className="mono small" style={{ background: T.bg, borderRadius: 8, padding: '7px 10px' }}>{tr({ uz: 'Men veb-sayt qurmoqchiman…', ru: 'Я хочу сделать веб-сайт…' })}</span><span className="mono small" style={{ color: T.success, fontWeight: 700 }}>AI: index.html · style.css · …</span></div></Preview> },
+      res: () => <Preview title="gemini.google.com" minH={150}><div style={{ ...winBox, minHeight: 112, alignItems: 'stretch' }}><span className="mono small" style={{ color: T.ink3 }}>{tr({ uz: 'siz:', ru: 'вы:' })}</span><span className="mono small" style={{ background: T.bg, borderRadius: 8, padding: '7px 10px' }}>{tr({ uz: 'Men veb-sayt qurmoqchiman…', ru: 'Я хочу сделать веб-сайт…' })}</span><span className="mono small" style={{ color: T.success, fontWeight: 700 }}>AI: index.html · style.css · …</span></div></Preview> },
     { id: 'folder', nav: { uz: 'papka', ru: 'папка' },
-      t: { uz: "VS Code'da yangi papka oching: `mening-saytim`", ru: 'Откройте в VS Code новую папку: `mening-saytim`' },
-      d: { uz: "File → Open Folder. Papka bo'sh bo'lsin.", ru: 'File → Open Folder. Папка должна быть пустой.' },
-      help: { uz: "Papkani avval ish stolida yarating, keyin VS Code'dan oching.", ru: 'Сначала создайте папку на рабочем столе, потом откройте её из VS Code.' },
+      t: { uz: "Ish stolida `mening-saytim` papkasini yarating va uni VS Code'da oching", ru: 'Создайте на рабочем столе папку `mening-saytim` и откройте её в VS Code' },
+      d: { uz: "Ish stolida sichqonchaning o'ng tugmasi → Yangi papka. Keyin VS Code'da File → Open Folder → shu papka.", ru: 'На рабочем столе правая кнопка мыши → Новая папка. Потом в VS Code: File → Open Folder → эта папка.' },
+      help: { uz: "Open Folder papka yaratmaydi — faqat ochadi. Shuning uchun papkani avval ish stolida yarating.", ru: 'Open Folder не создаёт папку — только открывает. Поэтому сначала создайте её на рабочем столе.' },
       res: () => <div className="term"><span className="term-row"><span className="term-out">mening-saytim/</span></span><span className="term-row"><span className="term-cmd">  {tr({ uz: "(hozircha bo'sh)", ru: '(пока пусто)' })}</span></span></div> },
     { id: 'files', nav: { uz: 'fayllar', ru: 'файлы' },
-      t: { uz: 'Har fayl uchun shu nomdagi fayl yarating va kodini nusxalang', ru: 'Создайте файл с таким же именем и вставьте в него код' },
-      d: { uz: 'index.html, style.css va menyudagi har sahifa uchun bittadan .html fayl.', ru: 'index.html, style.css и по одному .html на каждую страницу меню.' },
+      t: { uz: "AI bergan har fayl uchun shu nomdagi fayl yarating va uning kodini ichiga qo'ying", ru: 'Для каждого файла от AI создайте файл с таким же именем и вставьте в него код' },
+      d: { uz: "index.html, style.css va har sahifa uchun bittadan .html fayl — nomlarini AI javobidan oling.", ru: 'index.html, style.css и по одному .html на каждую страницу — имена берите из ответа AI.' },
       help: { uz: "Fayl nomi AI yozgani bilan aynan bir xil bo'lsin: bitta harf farq qilsa, sahifa ochilmaydi.", ru: 'Имя файла должно точно совпадать с тем, что написал AI: одна буква разницы — и страница не откроется.' },
-      res: () => <div className="term"><span className="term-row"><span className="term-out">mening-saytim/</span></span><span className="term-row"><span className="term-cmd">  index.html</span></span><span className="term-row"><span className="term-cmd">  style.css</span></span><span className="term-row"><span className="term-cmd">  menyu.html</span></span></div> },
+      res: () => <div className="term"><span className="term-row"><span className="term-out">mening-saytim/</span></span><span className="term-row"><span className="term-cmd">  index.html</span></span><span className="term-row"><span className="term-cmd">  style.css</span></span><span className="term-row"><span className="term-cmd">  … {tr({ uz: '(har sahifa uchun .html)', ru: '(.html на каждую страницу)' })}</span></span></div> },
     { id: 'open', nav: { uz: 'brauzer', ru: 'браузер' },
       t: { uz: "index.html'ni brauzerda oching", ru: 'Откройте index.html в браузере' },
       d: { uz: 'Sayt chiqdimi? Menyudagi havolalarni bosib, sahifalarni tekshiring.', ru: 'Сайт открылся? Нажмите ссылки в меню и проверьте страницы.' },
@@ -1196,8 +1282,8 @@ const Screen5 = (props) => {
 // ===== SCREEN 6 — TEST 2 =====
 const Screen6 = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow={tr({ uz: 'Tekshiruv · 2-savol', ru: 'Проверка · вопрос 2' })}
-    questionText="Sayt papkasi ochilganda brauzer birinchi qaysi faylni qidiradi?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: 'Sayt papkasi ochilganda brauzer birinchi qaysi faylni qidiradi?', ru: 'Какой файл браузер ищет первым, когда открывает папку сайта?' })}</h2></>}
+    questionText="Saytning bosh sahifasi fayli qanday nomlanadi?"
+    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: 'Saytning bosh sahifasi fayli qanday nomlanadi?', ru: 'Как называется файл главной страницы сайта?' })}</h2></>}
     options={[
       { uz: '`style.css`', ru: '`style.css`' },
       { uz: '`rasm.jpg`', ru: '`rasm.jpg`' },
@@ -1213,35 +1299,74 @@ const Screen6 = (props) => (
     }} />
 );
 
-// ===== SCREEN 7 — GITHUB'GA QO'YISH (o'quvchi o'zi qiladi) =====
-const Screen7 = (props) => {
-  const STEPS = [
-    { id: 'repo', nav: { uz: 'repo', ru: 'репо' },
-      t: { uz: 'github.com da yangi repo oching: `mening-saytim`', ru: 'Создайте на github.com новый репозиторий: `mening-saytim`' },
-      d: { uz: '«+» → New repository → nomni yozing → Public → Create.', ru: '«+» → New repository → впишите имя → Public → Create.' },
-      help: { uz: 'Repo — bitta loyiha kodi turadigan GitHub papkasi. Uni Git darsida ochgansiz.', ru: 'Репозиторий — папка GitHub, где лежит код одного проекта. Вы создавали такой на уроке Git.' },
-      res: () => <Preview title="github.com/new" minH={150}><div className="repo" style={{ boxShadow: 'none' }}><div className="repo-top">📦 <b>mening-saytim</b> <span style={{ marginLeft: 'auto', color: T.ink3, fontSize: 11 }}>Public</span></div><div className="repo-row" style={{ cursor: 'default' }}>{tr({ uz: "hozircha fayl yo'q", ru: 'файлов пока нет' })}</div></div></Preview> },
-    { id: 'commit', nav: { uz: 'commit', ru: 'коммит' },
-      t: { uz: 'VS Code terminalida: `git init` → `git add .` → `git commit -m "sayt"`', ru: 'В терминале VS Code: `git init` → `git add .` → `git commit -m "sayt"`' },
-      d: { uz: 'Terminalni ochish: Terminal → New Terminal.', ru: 'Открыть терминал: Terminal → New Terminal.' },
-      help: { uz: "«nothing to commit» chiqsa — papkada fayl yo'q. Fayllar aynan shu papkada ekanini tekshiring.", ru: 'Если пишет «nothing to commit» — в папке нет файлов. Проверьте, что файлы лежат именно в этой папке.' },
-      res: () => <div className="term"><span className="term-row"><span className="term-prompt">$ </span><span className="term-cmd">git add .</span></span><span className="term-row"><span className="term-prompt">$ </span><span className="term-cmd">git commit -m "sayt"</span></span><span className="term-row"><span className="term-ok">[main 7f3a19c] sayt</span></span></div> },
-    { id: 'remote', nav: { uz: 'ulash', ru: 'связать' },
-      t: { uz: 'Repo havolasini ulang: `git remote add origin <havola>` va `git branch -M main`', ru: 'Свяжите с репозиторием: `git remote add origin <ссылка>` и `git branch -M main`' },
-      d: { uz: 'Havolani GitHub sahifasidagi yashil «Code» tugmasidan nusxalaysiz.', ru: 'Ссылку копируете с зелёной кнопки «Code» на странице GitHub.' },
-      help: { uz: "«remote origin already exists» chiqsa — bu qadam allaqachon bajarilgan, keyingisiga o'ting.", ru: 'Если пишет «remote origin already exists» — шаг уже выполнен, идите дальше.' },
-      res: () => <div className="term"><span className="term-row"><span className="term-prompt">$ </span><span className="term-cmd">git remote add origin https://github.com/…/mening-saytim.git</span></span><span className="term-row"><span className="term-prompt">$ </span><span className="term-cmd">git branch -M main</span></span></div> },
-    { id: 'push', nav: { uz: 'push', ru: 'push' },
-      t: { uz: "`git push -u origin main` — fayllarni GitHub'ga yuboring", ru: '`git push -u origin main` — отправьте файлы на GitHub' },
-      d: { uz: "GitHub sahifasini yangilang: fayllaringiz ro'yxatda ko'rinadi.", ru: 'Обновите страницу GitHub: ваши файлы появятся в списке.' },
-      help: { uz: "Parol so'rasa — brauzerda ochilgan oynadan GitHub hisobingizga kiring.", ru: 'Если просит пароль — войдите в свой GitHub в открывшемся окне браузера.' },
-      res: () => <Preview title="github.com/…/mening-saytim" minH={150}><div className="repo" style={{ boxShadow: 'none' }}><div className="repo-top">📦 <b>mening-saytim</b></div><div className="repo-row" style={{ cursor: 'default' }}>📄 index.html</div><div className="repo-row" style={{ cursor: 'default' }}>🎨 style.css</div><div className="repo-row" style={{ cursor: 'default' }}>🕐 1 commit</div></div></Preview> },
-  ];
-  return <DoScreen {...props} practice steps={STEPS}
-    eyebrow={tr({ uz: 'Amaliyot · GitHub', ru: 'Практика · GitHub' })}
-    taskLabel={tr({ uz: "Saytni GitHub'ga qo'yish", ru: 'Загрузка сайта на GitHub' })}
-    title={tr({ uz: <>Sayt fayllarini <span className="italic" style={{ color: T.accent }}>GitHub'ga</span> qo'ying</>, ru: <>Положите файлы сайта <span className="italic" style={{ color: T.accent }}>на GitHub</span></> })}
-    mentor={tr({ uz: "Bu Git darsining davomi. Netlify kodni aynan GitHub'dan oladi.", ru: 'Это продолжение урока Git. Код Netlify забирает именно с GitHub.' })} />;
+// ===== SCREEN IMPROVE — TEKSHIRISH RO'YXATI + YAXSHILASH TOPSHIRIG'I (F-0914-07) =====
+const CHECKS = [
+  { id: 'menu', t: { uz: "Menyudagi har havola o'z sahifasini ochadi", ru: 'Каждая ссылка в меню открывает свою страницу' }, fix: { uz: "Menyudagi ba'zi havolalar ishlamayapti — hamma sahifa bir-biriga to'g'ri ulansin.", ru: 'Некоторые ссылки меню не работают — пусть все страницы правильно связаны между собой.' } },
+  { id: 'phone', t: { uz: "Kichik oynada ham chiroyli (brauzer oynasini chetidan tortib kichraytiring)", ru: 'Красиво и в маленьком окне (потяните край окна браузера, чтобы сузить)' }, fix: { uz: "Tor ekranda sayt buziladi — telefonda ham chiroyli ko'rinsin.", ru: 'На узком экране сайт ломается — пусть красиво выглядит и на телефоне.' } },
+  { id: 'img', t: { uz: 'Rasmlar chiqyapti', ru: 'Картинки отображаются' }, fix: { uz: "Ba'zi rasmlar chiqmayapti — ishlaydigan rasm havolalarini qo'y.", ru: 'Некоторые картинки не показываются — поставь рабочие ссылки на картинки.' } },
+  { id: 'text', t: { uz: 'Matn mening loyiham haqida', ru: 'Текст — о моём проекте' }, fix: { uz: "Matnlar umumiy — ularni muammo va yechimim haqida qilib qayta yoz.", ru: 'Тексты общие — перепиши их про мою проблему и решение.' } },
+  { id: 'look', t: { uz: "Ko'rinishi menga yoqadi", ru: 'Внешний вид мне нравится' }, fix: { uz: "Dizaynni jonliroq qil: sarlavhalar kattaroq, bo'limlar orasi kengroq bo'lsin.", ru: 'Сделай дизайн живее: заголовки крупнее, между блоками больше места.' } },
+];
+const markBtn = (on, col) => ({ border: 'none', borderRadius: 8, padding: '6px 12px', fontWeight: 700, fontSize: 14, cursor: 'pointer', background: on ? col : T.paper, color: on ? '#fff' : T.ink2, boxShadow: on ? 'none' : `inset 0 0 0 1.5px ${T.ink3}`, flexShrink: 0 });
+const ScreenImprove = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
+  const [marks, setMarks] = useState(() => (storedAnswer && storedAnswer.marks) || {});
+  const [copied, setCopied] = useState(false);
+  const rated = CHECKS.filter(c => marks[c.id]).length;
+  const done = rated >= CHECKS.length;
+  const problems = CHECKS.filter(c => marks[c.id] === 'bad');
+  const setMark = (id, v) => {
+    const n = { ...marks, [id]: v }; setMarks(n); setCopied(false);
+    onAnswer(screen, { correct: CHECKS.every(c => n[c.id]), marks: n, picked: Object.keys(n).length, stage: 'practice', screenIdx: screen });
+  };
+  const text = [
+    tr({ uz: 'Sen yozgan saytni tekshirdim. Mana bularni tuzat:', ru: 'Я проверил сайт, который ты написал. Исправь вот это:' }),
+    ...(problems.length
+      ? problems.map((c, i) => `${i + 1}. ${tr(c.fix)}`)
+      : [tr({ uz: "1. Hammasi ishlayapti — endi dizaynni jonliroq qil va har sahifaga bittadan chiroyli bo'lim qo'sh.", ru: '1. Всё работает — теперь сделай дизайн живее и добавь на каждую страницу по красивому блоку.' })]),
+    '',
+    tr({ uz: "O'zgargan har faylni to'liq qayta yoz va tepasiga fayl nomini yoz.", ru: 'Каждый изменённый файл напиши полностью заново и сверху укажи имя файла.' }),
+  ].join('\n');
+  const copy = () => {
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text);
+      else { const ta = document.createElement('textarea'); ta.value = text; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta); }
+      setCopied(true); setTimeout(() => setCopied(false), 2200);
+    } catch {}
+  };
+  return (
+    <Stage eyebrow={tr({ uz: 'Amaliyot · yaxshilash', ru: 'Практика · улучшение' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: `Tekshiring: ${rated}/${CHECKS.length}`, ru: `Проверьте: ${rated}/${CHECKS.length}` })} onClick={onNext} /></>}>
+      <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Saytingizni tekshiring va <span className="italic" style={{ color: T.accent }}>yaxshilang</span></>, ru: <>Проверьте сайт и <span className="italic" style={{ color: T.accent }}>улучшите</span> его</> })}</h2></div>
+        <Mentor>{tr({ uz: "Saytni brauzerda ochib, har bandga ✓ yoki ✗ qo'ying. Keyin tayyor topshiriqni AI'ga bering va yangi kodni fayllaringizga almashtiring.", ru: 'Откройте сайт в браузере и поставьте каждому пункту ✓ или ✗. Потом отдайте готовое задание AI и замените код в своих файлах на новый.' })}</Mentor>
+        <Split>
+          <Col>
+            <div className="pg-list fade-up delay-1">
+              {CHECKS.map(c => (
+                <div key={c.id} className={`pg-row ${marks[c.id] === 'ok' ? 'on' : ''}`}>
+                  <span className="body" style={{ flex: 1, margin: 0, fontSize: 14, color: T.ink }}>{tr(c.t)}</span>
+                  <button style={markBtn(marks[c.id] === 'ok', T.success)} onClick={() => setMark(c.id, 'ok')} aria-label={tr({ uz: 'Ishlayapti', ru: 'Работает' })}>✓</button>
+                  <button style={markBtn(marks[c.id] === 'bad', T.accent)} onClick={() => setMark(c.id, 'bad')} aria-label={tr({ uz: 'Tuzatish kerak', ru: 'Нужно исправить' })}>✗</button>
+                </div>
+              ))}
+            </div>
+          </Col>
+          <Col>
+            {done ? (
+              <div className="pr-panel fade-step">
+                <div className="pr-head">
+                  <span className="pr-lbl">📝 {tr({ uz: 'AI uchun yaxshilash topshirig\'i', ru: 'Задание AI на улучшение' })}</span>
+                  <button className={`pr-copy ${copied ? 'ok' : ''}`} onClick={copy}>{copied ? tr({ uz: '✓ Nusxalandi', ru: '✓ Скопировано' }) : tr({ uz: '📋 Nusxa olish', ru: '📋 Копировать' })}</button>
+                </div>
+                <pre className="pr-body">{text}</pre>
+              </div>
+            ) : (
+              <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Har bandni belgilang — topshiriq shu yerda chiqadi', ru: 'Отметьте каждый пункт — задание появится здесь' })}</p></div>
+            )}
+          </Col>
+        </Split>
+      </div>
+    </Stage>
+  );
 };
 
 // ===== SCREEN 8 — NETLIFY: GITHUB BILAN KIRISH (o'quvchi o'zi qiladi) =====
@@ -1258,13 +1383,13 @@ const Screen8 = (props) => {
       res: () => <NetWin title="app.netlify.com"><span className="nfy-row on">🐙 Log in with GitHub</span><span className="nfy-row">✉️ Log in with email</span></NetWin> },
     { id: 'auth', nav: { uz: 'ruxsat', ru: 'доступ' },
       t: { uz: 'GitHub sahifasida «Authorize Netlify» tugmasini bosing', ru: 'На странице GitHub нажмите «Authorize Netlify»' },
-      d: { uz: "Shu bilan Netlify'ga repolaringizni ko'rishga ruxsat berasiz.", ru: 'Так вы разрешаете Netlify видеть ваши репозитории.' },
+      d: { uz: "Shu bilan Netlify'ga GitHub hisobingiz orqali kirishga ruxsat berasiz.", ru: 'Так вы разрешаете входить в Netlify через ваш аккаунт GitHub.' },
       help: { uz: "Sahifa GitHub parolini so'rasa — hisobingizga kiring va tugmani qayta bosing.", ru: 'Если страница просит пароль GitHub — войдите в аккаунт и нажмите кнопку снова.' },
       res: () => <Preview title="github.com/login/oauth" minH={150}><div style={{ ...winBox, minHeight: 112 }}><span style={{ fontSize: 24 }}>🐙</span><span className="body" style={{ margin: 0 }}>Authorize Netlify</span><span style={{ background: T.success, color: '#fff', borderRadius: 8, padding: '7px 16px', fontWeight: 700, fontSize: 13 }}>Authorize</span></div></Preview> },
     { id: 'panel', nav: { uz: 'panel', ru: 'панель' },
       t: { uz: 'Netlify boshqaruv paneli ochildi — bu sizning hisobingiz', ru: 'Открылась панель Netlify — это ваш аккаунт' },
-      d: { uz: 'Tepada «Add new site» tugmasi turadi. Keyingi ekranda shundan boshlaymiz.', ru: 'Сверху есть кнопка «Add new site». С неё начнём на следующем экране.' },
-      res: () => <NetWin title="app.netlify.com"><span className="nfy-live">✓ {tr({ uz: 'kirdingiz', ru: 'вы вошли' })}</span><span className="nfy-btn">Add new site</span><span className="nfy-row">{tr({ uz: "hali sayt yo'q", ru: 'сайтов пока нет' })}</span></NetWin> },
+      d: { uz: "Projects sahifasi ochiladi. Keyingi ekranda saytingizni shu sahifaga qo'yamiz.", ru: 'Откроется страница Projects. На следующем экране положим туда ваш сайт.' },
+      res: () => <NetWin title="app.netlify.com"><span className="nfy-live">✓ {tr({ uz: 'kirdingiz', ru: 'вы вошли' })}</span><span className="nfy-row on">Projects</span><span className="nfy-row">{tr({ uz: "hali sayt yo'q", ru: 'сайтов пока нет' })}</span></NetWin> },
   ];
   return <DoScreen {...props} practice steps={STEPS}
     eyebrow={tr({ uz: 'Amaliyot · Netlify', ru: 'Практика · Netlify' })}
@@ -1273,96 +1398,67 @@ const Screen8 = (props) => {
     mentor={tr({ uz: 'Yangi hisob ochmaysiz — GitHub hisobingiz bilan kirasiz.', ru: 'Новый аккаунт заводить не нужно — вы войдёте своим GitHub.' })} />;
 };
 
-// ===== SCREEN 9 — DEPLOY: REPO TANLASH -> HAVOLA (o'quvchi o'zi qiladi) =====
-const Screen9 = (props) => {
-  const STEPS = [
-    { id: 'add', nav: { uz: 'Add new site', ru: 'Add new site' },
-      t: { uz: '«Add new site» → «Import an existing project»', ru: '«Add new site» → «Import an existing project»' },
-      d: { uz: "Bu — tayyor loyihani GitHub'dan olib kelish yo'li.", ru: 'Это путь «взять готовый проект с GitHub».' },
-      res: () => <NetWin><span className="nfy-btn">Add new site ▾</span><span className="nfy-row on">Import an existing project</span><span className="nfy-row">Deploy manually</span></NetWin> },
-    { id: 'provider', nav: { uz: 'GitHub', ru: 'GitHub' },
-      t: { uz: '«Deploy with GitHub» ni tanlang', ru: 'Выберите «Deploy with GitHub»' },
-      d: { uz: "Netlify sizning repolaringiz ro'yxatini ko'rsatadi.", ru: 'Netlify покажет список ваших репозиториев.' },
-      help: { uz: "Ro'yxat bo'sh bo'lsa — «Configure the Netlify app» ni bosib, repongizga ruxsat bering.", ru: 'Если список пуст — нажмите «Configure the Netlify app» и дайте доступ к своему репозиторию.' },
-      res: () => <NetWin><span className="nfy-row on">🐙 Deploy with GitHub</span><span className="nfy-row">GitLab</span><span className="nfy-row">Bitbucket</span></NetWin> },
-    { id: 'repo', nav: { uz: 'repo', ru: 'репо' },
-      t: { uz: "Ro'yxatdan `mening-saytim` repongizni bosing", ru: 'Нажмите в списке свой репозиторий `mening-saytim`' },
-      d: { uz: 'Sayt aynan shu repodagi fayllardan quriladi.', ru: 'Сайт соберётся именно из файлов этого репозитория.' },
-      res: () => <NetWin><span className="nfy-row on">📦 mening-saytim</span><span className="nfy-row">📦 birinchi-sayt</span><span className="nfy-row">📦 test-repo</span></NetWin> },
-    { id: 'deploy', nav: { uz: 'Deploy', ru: 'Deploy' },
-      t: { uz: 'Pastdagi «Deploy» tugmasini bosing va kuting', ru: 'Нажмите кнопку «Deploy» внизу и подождите' },
-      d: { uz: 'Sozlamalarga tegmaysiz — ular tayyor. Kutish 1-2 daqiqa.', ru: 'Настройки не трогайте — они уже готовы. Ожидание 1–2 минуты.' },
-      help: { uz: "«Failed» chiqsa — repoda `index.html` bor-yo'qligini tekshiring, keyin «Retry deploy».", ru: 'Если пишет «Failed» — проверьте, есть ли в репозитории `index.html`, затем «Retry deploy».' },
-      res: () => <NetWin><span className="nfy-row">⏳ Building…</span><span className="nfy-row">📦 {tr({ uz: "fayllar ko'chirilmoqda", ru: 'файлы копируются' })}</span></NetWin> },
-    { id: 'live', nav: { uz: 'havola', ru: 'ссылка' },
-      t: { uz: '«Site is live» yozuvi va havola chiqadi — havolani nusxalang', ru: 'Появится «Site is live» и ссылка — скопируйте её' },
-      d: { uz: "Havola shunday ko'rinishda bo'ladi: `nomi.netlify.app`.", ru: 'Ссылка выглядит так: `nomi.netlify.app`.' },
-      help: { uz: 'Havolani keyin ham topasiz: Netlify panelida sayt nomini bossangiz, u tepada turadi.', ru: 'Ссылку можно найти и позже: нажмите имя сайта в панели Netlify — она сверху.' },
-      res: () => <NetWin><span className="nfy-live">✓ Site is live</span><span className="nfy-link">https://mening-saytim.netlify.app</span><span className="nfy-row">{tr({ uz: 'havolani nusxalang', ru: 'скопируйте ссылку' })} 📋</span></NetWin> },
-  ];
-  return <DoScreen {...props} practice steps={STEPS}
-    eyebrow={tr({ uz: 'Amaliyot · deploy', ru: 'Практика · деплой' })}
-    taskLabel={tr({ uz: 'Deploy va havola', ru: 'Деплой и ссылка' })}
-    title={tr({ uz: <>Reponi tanlang va saytni <span className="italic" style={{ color: T.accent }}>internetga chiqaring</span></>, ru: <>Выберите репозиторий и <span className="italic" style={{ color: T.accent }}>опубликуйте сайт</span></> })}
-    mentor={tr({ uz: <>Saytni serverga joylab internetga chiqarish <b style={{ color: T.ink }}>deploy</b> deyiladi. Besh qadamdan keyin havolangiz tayyor.</>, ru: <>Разместить сайт на сервере и открыть в интернете — это <b style={{ color: T.ink }}>деплой</b>. Через пять шагов ссылка будет готова.</> })} />;
-};
-
-// ===== SCREEN 10 — TEST 3 =====
-const Screen10 = (props) => (
-  <QuestionScreen {...props} scope="module-mikro" eyebrow={tr({ uz: 'Tekshiruv · 3-savol', ru: 'Проверка · вопрос 3' })}
-    questionText="Sayt Netlify orqali internetga qanday tartibda chiqadi?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri tartibni tanlang", ru: 'Выберите верный порядок' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: 'Sayt Netlify orqali internetga qanday tartibda chiqadi?', ru: 'В каком порядке сайт выходит в интернет через Netlify?' })}</h2></>}
-    options={[
-      { uz: "Netlify'ga kirish → deploy → kodni yozish → GitHub", ru: 'Войти в Netlify → деплой → написать код → GitHub' },
-      { uz: "Kodni GitHub'ga qo'yish → Netlify'da reponi tanlash → deploy → havola", ru: 'Положить код на GitHub → выбрать репо в Netlify → деплой → ссылка' },
-      { uz: "Havolani olish → deploy → kodni GitHub'ga qo'yish", ru: 'Получить ссылку → деплой → положить код на GitHub' },
-      { uz: "Sayt papkasini Telegram'ga tashlash → havolani olish", ru: 'Скинуть папку сайта в Telegram → получить ссылку' }
-    ]} correctIdx={1}
-    explainCorrect={{ uz: "To'g'ri! Avval kod GitHub'da bo'ladi, keyin Netlify o'sha repodan kodni oladi, deploy qiladi va havola beradi. Bugun siz aynan shu tartibda ishladingiz.", ru: 'Верно! Сначала код попадает на GitHub, потом Netlify забирает его из репозитория, делает деплой и выдаёт ссылку. Сегодня вы работали именно в этом порядке.' }}
-    explainWrong={{
-      0: { uz: "Kod avval yoziladi va GitHub'ga qo'yiladi: Netlify bo'sh repodan sayt qura olmaydi.", ru: 'Сначала пишут код и кладут на GitHub: из пустого репозитория Netlify сайт не соберёт.' },
-      2: { uz: 'Havola eng oxirida chiqadi: u deploy natijasi.', ru: 'Ссылка появляется в самом конце: это результат деплоя.' },
-      3: { uz: "Telegram fayl yuboradi, sayt ochmaydi. Kod GitHub'ga, keyin Netlify'ga boradi.", ru: 'Telegram пересылает файл, а не публикует сайт. Код идёт на GitHub, потом в Netlify.' },
-      default: { uz: "Kodni GitHub'ga qo'yish → Netlify'da reponi tanlash → deploy → havola.", ru: 'Положить код на GitHub → выбрать репо в Netlify → деплой → ссылка.' }
-    }} />
-);
-
-// ===== SCREEN 11 — HAVOLANI SINASH VA SAQLASH =====
-const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
+// ===== SCREEN DROP — PAPKANI NETLIFY'GA SUDRAB TASHLASH -> HAVOLA -> SAQLASH (F-0914-07) =====
+// Netlify hujjati (2026-09-14 tekshirildi): kirgandan keyin Projects sahifasining PASTIDAGI maydon yoki
+// app.netlify.com/drop. Yangilash — o'sha saytning Deploys sahifasidagi maydonga papkani qayta tashlash.
+// Aniq tugma yozuvi hujjatda yo'q — shuning uchun qadamlar joyni tasvirlaydi, yozuvni taxmin qilmaydi.
+const DROP_STEPS = [
+  { id: 'page', nav: { uz: 'maydon', ru: 'зона' },
+    t: { uz: "Netlify'dagi Projects sahifasining eng pastiga tushing", ru: 'Спуститесь в самый низ страницы Projects в Netlify' },
+    d: { uz: 'U yerda sayt papkasini tashlash uchun katta maydon turadi.', ru: 'Там есть большая зона, куда бросают папку сайта.' },
+    help: { uz: 'Maydonni topolmasangiz — brauzerda `app.netlify.com/drop` manzilini oching: u yerda ham shunday maydon bor.', ru: 'Не нашли зону — откройте в браузере `app.netlify.com/drop`: там такая же зона.' },
+    res: () => <NetWin title="app.netlify.com"><span className="nfy-row">Projects</span><span className="nfy-row on">📂 {tr({ uz: 'papkani shu yerga tashlang', ru: 'бросьте папку сюда' })}</span></NetWin> },
+  { id: 'drag', nav: { uz: 'sudrash', ru: 'перетащить' },
+    t: { uz: '`mening-saytim` papkasini shu maydonga sudrab tashlang', ru: 'Перетащите папку `mening-saytim` в эту зону' },
+    d: { uz: "Papkaning o'zini tashlang, ichidagi fayllarni birma-bir emas. Bir necha soniya kutasiz.", ru: 'Бросайте саму папку, а не файлы по одному. Подождите несколько секунд.' },
+    help: { uz: "Sayt ochilmasa — `index.html` papkaning o'zida turganini tekshiring, ichki papkada emas.", ru: 'Если сайт не открылся — проверьте, что `index.html` лежит прямо в папке, а не во вложенной.' },
+    res: () => <NetWin title="app.netlify.com"><span className="nfy-row on">📂 mening-saytim</span><span className="nfy-row">⏳ {tr({ uz: 'yuklanmoqda…', ru: 'загрузка…' })}</span></NetWin> },
+  { id: 'live', nav: { uz: 'havola', ru: 'ссылка' },
+    t: { uz: 'Havola chiqadi — uni nusxalang va bosib, saytingiz ochilishini tekshiring', ru: 'Появится ссылка — скопируйте её и откройте, чтобы проверить сайт' },
+    d: { uz: "Havola oxiri `.netlify.app` bo'ladi, boshidagi nomni Netlify o'zi tanlaydi.", ru: 'Ссылка заканчивается на `.netlify.app`, имя в начале Netlify выбирает сам.' },
+    help: { uz: "Nomni keyin sayt sozlamalarida o'zgartirsa bo'ladi.", ru: 'Имя потом можно поменять в настройках сайта.' },
+    res: () => <NetWin title="app.netlify.com"><span className="nfy-live">✓ {tr({ uz: 'sayt internetda', ru: 'сайт в интернете' })}</span><span className="nfy-link">https://…….netlify.app</span></NetWin> },
+];
+const ScreenDrop = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const _gate = useContext(LiveGateCtx) || {};
   const isMentorLive = !!(_gate.live && _gate.live.mode === 'mentor');
-  const [url, setUrl] = useState(() => storedAnswer?.picked || siteUrlRead());
+  const [view, setView] = useState(0);
+  const [url, setUrl] = useState(() => siteUrlRead());
   const [saved, setSaved] = useState(false);
+  const doneIds = storedAnswer?.doneIds || (storedAnswer?.correct ? DROP_STEPS.map(s => s.id) : []);
+  const allDone = doneIds.length >= DROP_STEPS.length;
   const clean = url.trim();
   const looksOk = /\./.test(clean) && clean.length > 6;
-  const save = () => {
-    siteUrlWrite(clean);
-    setSaved(true);
-    onAnswer(screen, { correct: true, picked: clean, stage: 'artefakt', screenIdx: screen });
-    setTimeout(() => setSaved(false), 2200);
-  };
-  useEffect(() => { if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: '' }); }, []); // eslint-disable-line
+  // Havola saqlanganda onAnswer CHAQIRILMAYDI — aks holda qadamlar holati (doneIds) ustidan yozilib ketardi
+  const save = () => { siteUrlWrite(clean); setSaved(true); setTimeout(() => setSaved(false), 2200); };
+  const waitIdx = Math.max(0, DROP_STEPS.findIndex(s => !doneIds.includes(s.id)));
+  const navLabel = (allDone || isMentorLive)
+    ? tr({ uz: 'Davom etish', ru: 'Продолжить' })
+    : tr({ uz: `${waitIdx + 1}-qadam: ${tr(DROP_STEPS[waitIdx].nav)}`, ru: `Шаг ${waitIdx + 1}: ${tr(DROP_STEPS[waitIdx].nav)}` });
+  const cur = DROP_STEPS[Math.min(view, DROP_STEPS.length - 1)];
   return (
-    <Stage eyebrow={tr({ uz: 'Havolangiz', ru: 'Ваша ссылка' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive label={tr({ uz: 'Davom etish', ru: 'Продолжить' })} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Amaliyot · Netlify', ru: 'Практика · Netlify' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={isMentorLive ? false : !allDone} label={navLabel} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Havolani <span className="italic" style={{ color: T.accent }}>telefonda</span> oching</>, ru: <>Откройте ссылку <span className="italic" style={{ color: T.accent }}>на телефоне</span></> })}</h2></div>
-        <Mentor>{tr({ uz: "Havolani telefoningizda oching va do'stingizga yuboring. Keyin uni pastdagi maydonga yozib qo'ying.", ru: 'Откройте ссылку на телефоне и отправьте другу. Потом впишите её в поле ниже.' })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Papkani tashlang — sayt <span className="italic" style={{ color: T.accent }}>internetga chiqadi</span></>, ru: <>Бросьте папку — сайт <span className="italic" style={{ color: T.accent }}>выйдет в интернет</span></> })}</h2></div>
+        <Mentor>{tr({ uz: <>Saytni internetga chiqarish <b style={{ color: T.ink }}>deploy</b> deyiladi. Netlify'da buning uchun sayt papkasini sudrab tashlash yetadi.</>, ru: <>Выложить сайт в интернет — это <b style={{ color: T.ink }}>деплой</b>. В Netlify для этого достаточно перетащить папку сайта.</> })}</Mentor>
         <Split>
           <Col>
-            <p className="flow-label">{tr({ uz: "Telefonda shunday ko'rinadi", ru: 'На телефоне это выглядит так' })}</p>
-            <div className="phone fade-up delay-1">
-              <div className="phone-scr">
-                <div className="phone-bar">{clean || 'mening-saytim.netlify.app'}</div>
-                <MiniSite name="Aziza" />
-              </div>
-            </div>
+            {allDone && !isMentorLive ? (
+              <>
+                <p className="flow-label">{tr({ uz: "Netlify bergan havolani shu yerga qo'ying", ru: 'Вставьте сюда ссылку от Netlify' })}</p>
+                <input className="text-input fade-up" value={url} onChange={e => setUrl(e.target.value)} spellCheck={false} autoCapitalize="off" autoCorrect="off" placeholder="https://…….netlify.app" />
+                <button className="btn" style={{ alignSelf: 'flex-start' }} disabled={!looksOk} onClick={save}>{saved ? tr({ uz: '✓ Saqlandi', ru: '✓ Сохранено' }) : tr({ uz: 'Saqlash', ru: 'Сохранить' })}</button>
+                <p className="small" style={{ color: T.ink2, margin: 0 }}>{tr({ uz: 'Bu havola Demo Day darsida kerak bo\'ladi.', ru: 'Эта ссылка понадобится на уроке Demo Day.' })}</p>
+              </>
+            ) : (
+              <>
+                <p className="flow-label">{tr({ uz: 'Ekraningizda shunday chiqadi', ru: 'На вашем экране будет так' })}</p>
+                <div className="demo-swap" key={cur.id}>{cur.res()}</div>
+              </>
+            )}
           </Col>
           <Col>
-            <p className="flow-label">{tr({ uz: "Havolangizni saqlab qo'ying", ru: 'Сохраните свою ссылку' })}</p>
-            <input className="text-input fade-up delay-1" value={url} onChange={e => setUrl(e.target.value)} spellCheck={false} autoCapitalize="off" autoCorrect="off" placeholder="mening-saytim.netlify.app" />
-            <button className="btn" style={{ alignSelf: 'flex-start' }} disabled={!looksOk || isMentorLive} onClick={save}>{saved ? tr({ uz: '✓ Saqlandi', ru: '✓ Сохранено' }) : tr({ uz: 'Saqlash', ru: 'Сохранить' })}</button>
-            <p className="small" style={{ color: T.ink2, margin: 0 }}>{tr({ uz: "Maydon ixtiyoriy: sayt hali tayyor bo'lmasa ham davom etasiz.", ru: 'Поле не обязательное: даже если сайт ещё не готов, вы идёте дальше.' })}</p>
-            {clean && looksOk && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Endi shu havolani bilgan <b>har kim</b> saytingizni ochadi.</>, ru: <>Теперь ваш сайт откроет <b>каждый</b>, кто знает эту ссылку.</> })}</p></div>}
+            <DoSteps screen={screen} storedAnswer={storedAnswer} onAnswer={onAnswer} steps={DROP_STEPS} taskLabel={tr({ uz: "Saytni Netlify'ga qo'yish", ru: 'Размещение сайта на Netlify' })} practice onStep={setView} />
           </Col>
         </Split>
       </div>
@@ -1396,15 +1492,15 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, []); // eslint-disable-line
   const TASKS = [
     { b: { uz: 'Saytni tugating', ru: 'Доведите сайт до конца' }, t: { uz: '— hamma sahifa ochilsin, menyu ishlasin', ru: '— чтобы открывались все страницы и работало меню' } },
-    { b: { uz: "Matnni o'zingiznikiga almashtiring", ru: 'Замените текст на свой' }, t: { uz: "— AI yozgan namuna matn o'rniga", ru: '— вместо примерного текста от AI' } },
-    { b: { uz: 'Qayta push qiling', ru: 'Сделайте push ещё раз' }, t: { uz: "— `git add .` → `git commit` → `git push`, sayt o'zi yangilanadi", ru: '— `git add .` → `git commit` → `git push`, сайт обновится сам' } },
+    { b: { uz: 'Matnni tekshiring', ru: 'Проверьте тексты' }, t: { uz: '— har gap loyihangiz haqida bo\'lsin', ru: '— каждая фраза должна быть о вашем проекте' } },
+    { b: { uz: 'Saytni yangilang', ru: 'Обновите сайт' }, t: { uz: "— Netlify'da saytingiz nomini bosing, Deploys bo'limini oching va o'zgargan papkani o'sha yerga qayta sudrab tashlang", ru: '— в Netlify нажмите на имя сайта, откройте раздел Deploys и снова перетащите туда изменённую папку' } },
     { b: { uz: 'Havolani yuboring', ru: 'Отправьте ссылку' }, t: { uz: "— mentorga va do'stlaringizga", ru: '— ментору и друзьям' } },
   ];
   return (
-    <Stage eyebrow={tr({ uz: 'Uyga vazifa', ru: 'Домашнее задание' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext label={tr({ uz: 'Amaliy topshiriqni bajarish →', ru: 'Выполнить практическое задание →' })} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Uyga vazifa', ru: 'Домашнее задание' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext label={tr({ uz: 'Davom etish', ru: 'Продолжить' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Uyda: saytni tugating va <span className="italic" style={{ color: T.accent }}>havolani yuboring</span></>, ru: <>Дома: доделайте сайт и <span className="italic" style={{ color: T.accent }}>отправьте ссылку</span></> })}</h2></div>
-        <Mentor>{tr({ uz: "Sayt bugun bitmagan bo'lsa ham xavotir olmang: uyda tugatasiz. Topshiriq bitta — havolani yuborish.", ru: 'Если сайт сегодня не закончен, ничего страшного: доделаете дома. Задание одно — отправить ссылку.' })}</Mentor>
+        <Mentor>{tr({ uz: "Sayt bugun bitmagan bo'lsa ham xavotir olmang: uyda tugatasiz. Oxirida platformaga bitta narsa yuborasiz — havolani.", ru: 'Если сайт сегодня не закончен, ничего страшного: доделаете дома. В конце отправляете на платформу одно — ссылку.' })}</Mentor>
         <Split>
           <div className="card hw fade-up delay-1">
             <div className="card-lbl" style={{ color: T.accent }}>📝 {tr({ uz: 'Uyga vazifa', ru: 'Домашнее задание' })}</div>
@@ -1427,16 +1523,16 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // 🃏 FLASHCARDS — aktiv takrorlash (3D flip + o'z-o'zini baholash).
 const DEPLOY_FLASHCARDS = [
   { front: { uz: 'Sayt papkangizni internetda saqlab, havola beradigan xizmat qaysi?', ru: 'Какая служба хранит папку вашего сайта в интернете и выдаёт ссылку?' }, back: 'Netlify', note: { uz: 'Unga GitHub hisobingiz bilan kiriladi', ru: 'Входят в неё своим аккаунтом GitHub' } },
-  { front: { uz: 'Saytni serverga joylab internetga chiqarish qanday ataladi?', ru: 'Как называется размещение сайта на сервере и вывод его в интернет?' }, back: { uz: 'Deploy', ru: 'Деплой' }, note: { uz: 'Deploydan keyin sayt havola orqali ochiladi', ru: 'После деплоя сайт открывается по ссылке' } },
-  { front: { uz: 'Brauzer sayt papkasidan birinchi qaysi faylni qidiradi?', ru: 'Какой файл браузер ищет в папке сайта первым?' }, back: 'index.html', note: { uz: 'Bosh sahifa doim shu nom bilan', ru: 'Главная страница всегда с этим именем' } },
-  { front: { uz: 'Kodingiz internetda saqlanadigan joy qaysi?', ru: 'Где в интернете хранится ваш код?' }, back: 'GitHub', note: { uz: 'Netlify kodni aynan shu yerdan oladi', ru: 'Netlify забирает код именно оттуда' } },
-  { front: { uz: 'Bitta loyiha kodi turadigan GitHub papkasi qanday ataladi?', ru: 'Как называется папка GitHub с кодом одного проекта?' }, back: { uz: 'Repo', ru: 'Репозиторий' }, note: { uz: 'Deploy qilishda aynan shu repo tanlanadi', ru: 'При деплое выбирают именно этот репозиторий' } },
+  { front: { uz: 'Saytni internetga chiqarish qanday ataladi?', ru: 'Как называется выкладка сайта в интернет?' }, back: { uz: 'Deploy', ru: 'Деплой' }, note: { uz: 'Deploydan keyin sayt havola orqali ochiladi', ru: 'После деплоя сайт открывается по ссылке' } },
+  { front: { uz: 'Bosh sahifa fayli qanday nomlanadi?', ru: 'Как называется файл главной страницы?' }, back: 'index.html', note: { uz: 'Bosh sahifa doim shu nom bilan', ru: 'Главная страница всегда с этим именем' } },
+  { front: { uz: "Saytni Netlify'ga qanday qo'yamiz?", ru: 'Как положить сайт на Netlify?' }, back: { uz: 'Papkani sudrab tashlab', ru: 'Перетащив папку' }, note: { uz: 'Projects sahifasining pastidagi maydonga', ru: 'в зону внизу страницы Projects' } },
+  { front: { uz: "AI yozgan saytni qanday yaxshilaymiz?", ru: 'Как улучшить сайт, который написал AI?' }, back: { uz: 'Tekshirib, yaxshilash topshirig\'ini beramiz', ru: 'Проверяем и даём задание на улучшение' }, note: { uz: '✗ qo\'yilgan bandlar topshiriqqa tushadi', ru: 'пункты с ✗ попадают в задание' } },
   { front: { uz: "Netlify uchun alohida parol o'ylab topish kerakmi?", ru: 'Нужно ли придумывать отдельный пароль для Netlify?' }, back: { uz: "Yo'q — GitHub bilan kiriladi", ru: 'Нет — вход через GitHub' }, note: { uz: '«Log in with GitHub» tugmasi', ru: 'Кнопка «Log in with GitHub»' } },
-  { front: { uz: "Kodni GitHub'ga yuboradigan buyruq qaysi?", ru: 'Какая команда отправляет код на GitHub?' }, back: 'git push', note: { uz: 'Undan oldin: git add . va git commit', ru: 'Перед ней: git add . и git commit' } },
+  { front: { uz: "Saytni o'zgartirsangiz, internetdagisini qanday yangilaysiz?", ru: 'Как обновить сайт в интернете после изменений?' }, back: { uz: 'Papkani qayta sudrab tashlaysiz', ru: 'Снова перетаскиваете папку' }, note: { uz: "saytning Deploys sahifasiga", ru: 'на страницу Deploys сайта' } },
   { front: { uz: 'Deploydan keyin Netlify sizga nima beradi?', ru: 'Что выдаёт Netlify после деплоя?' }, back: { uz: 'Havola', ru: 'Ссылку' }, note: { uz: "Ko'rinishi: nomi.netlify.app", ru: 'Выглядит так: nomi.netlify.app' } },
   { front: { uz: 'Sayt sahifalarini bir-biriga nima ulaydi?', ru: 'Что связывает страницы сайта между собой?' }, back: { uz: 'Menyudagi havolalar', ru: 'Ссылки в меню' }, note: { uz: 'Menyu har sahifada bir xil turadi', ru: 'Меню одинаковое на каждой странице' } },
   { front: { uz: "AI'dan kod so'raganda unga nima berasiz?", ru: 'Что вы даёте AI, когда просите код?' }, back: { uz: 'Aniq topshiriq', ru: 'Точное задание' }, note: { uz: "Shart qancha aniq bo'lsa, kod shuncha mos chiqadi", ru: 'Чем точнее условия, тем точнее код' } },
-  { front: { uz: "Sayt telefonda ham chiroyli ko'rinishi nima deyiladi?", ru: 'Как называется то, что сайт красиво смотрится и на телефоне?' }, back: 'responsive', note: { uz: 'Topshiriqda shu shartni alohida yozdik', ru: 'Мы записали это условие в задании отдельно' } },
+  { front: { uz: "Sayt telefonda ham chiroyli chiqishi uchun AI topshirig'iga nima yozdik?", ru: 'Что мы написали в задании для AI, чтобы сайт красиво выглядел и на телефоне?' }, back: { uz: "Telefonda ham, kompyuterda ham chiroyli ko'rinsin", ru: 'Пусть красиво выглядит и на телефоне, и на компьютере' }, note: { uz: 'Topshiriqdagi 5-shart', ru: '5-е условие в задании' } },
   { front: { uz: "Deploydan keyin saytni kim ko'ra oladi?", ru: 'Кто сможет увидеть сайт после деплоя?' }, back: { uz: 'Havolani bilgan har kim', ru: 'Каждый, кто знает ссылку' }, note: { uz: "Boshqa shahardagi do'stingiz ham", ru: 'И друг из другого города тоже' } },
 ];
 // F-0803-13/14: KARTA JAVOBI UZUNLIKKA MOSLASHADI.
@@ -1551,10 +1647,10 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
   const url = siteUrlRead();
   const RECAP = [
     { uz: 'Netlify sayt papkasini internetda saqlaydi va havola beradi', ru: 'Netlify хранит папку сайта в интернете и выдаёт ссылку' },
-    { uz: "AI'ga aniq topshiriq berib, sayt kodini olish", ru: 'Получение кода сайта по точному заданию для AI' },
-    { uz: "Kodni GitHub repoga qo'yish: add, commit, push", ru: 'Загрузка кода в репозиторий GitHub: add, commit, push' },
+    { uz: "Demo Day saytini AI'ga aniq topshiriq berib qurish", ru: 'Сборка сайта для Demo Day по точному заданию для AI' },
+    { uz: 'AI javobini tekshirib, yaxshilatish', ru: 'Проверка ответа AI и улучшение' },
     { uz: "Netlify'ga GitHub hisobi bilan kirish", ru: 'Вход в Netlify через аккаунт GitHub' },
-    { uz: 'Reponi tanlab deploy qilish va havolani olish', ru: 'Выбор репозитория, деплой и получение ссылки' },
+    { uz: 'Papkani sudrab tashlab deploy qilish va havolani olish', ru: 'Деплой перетаскиванием папки и получение ссылки' },
   ];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
@@ -1608,7 +1704,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
 
 // ============================================================ LESSON ROOT — ({ lang, onFinished })
 // Podium yorliqlari (scored indeks -> qisqa nom)
-const Q_LABELS = { 2: { uz: 'Netlify vazifasi', ru: 'Задача Netlify' }, 6: { uz: 'Bosh sahifa fayli', ru: 'Файл главной страницы' }, 10: { uz: 'Deploy tartibi', ru: 'Порядок деплоя' }, 12: { uz: 'Havola (yakuniy)', ru: 'Ссылка (финал)' } };
+const Q_LABELS = { 6: { uz: 'Bosh sahifa fayli', ru: 'Файл главной страницы' }, 9: { uz: 'Netlify vazifasi', ru: 'Задача Netlify' }, 12: { uz: 'Havola (yakuniy)', ru: 'Ссылка (финал)' } };
 
 const Confetti = () => {
   const COLORS = [T.accent, T.success, T.blue, '#FFD380', '#FF7755', '#7DD181'];
@@ -1633,7 +1729,7 @@ const Confetti = () => {
 
 // Server-baholash javob kaliti (mentor darsni ochganda avto-yuklanadi).
 // Praktika ekranlari -1 sentinel: ular ballanmaydi, faqat «bajardim» signali boradi.
-const INLINE_KEYS = { s2: 0, s6: 2, s10: 1, s12: 3 }; // o'lik mashq-kalitlar olib tashlandi (jsx-lint, 2026-09-07): s3, s4, s5, s7, s8, s9, s11
+const INLINE_KEYS = { s2: 0, s6: 2, s12: 3 }; // F-0914-07: s10 (deploy tartibi) olib tashlandi · o'lik mashq-kalitlar (2026-09-07) yo'q
 
 const ScreenPodium = ({ screen, answers, onNext, onPrev }) => {
   const gate = useContext(LiveGateCtx) || {};
@@ -1674,7 +1770,7 @@ const ScreenPodium = ({ screen, answers, onNext, onPrev }) => {
   return (
     <Stage eyebrow={tr({ uz: 'Natijalar', ru: 'Результаты' })} screen={screen} narrow navContent={<><NavBack onPrev={onPrev} /><NavNext label={tr({ uz: 'Davom etish', ru: 'Продолжить' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(14px,2.2vw,20px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Kim <span className="italic" style={{ color: T.accent }}>g'olib</span>?</>, ru: <>Кто <span className="italic" style={{ color: T.accent }}>победитель</span>?</> })}</h2></div>
+        <div className="head"><h2 className="title h-title fade-up">{isLive ? tr({ uz: <>Bugungi <span className="italic" style={{ color: T.accent }}>g'oliblarimiz</span></>, ru: <>Наши <span className="italic" style={{ color: T.accent }}>победители</span> сегодня</> }) : tr({ uz: <>Bugungi <span className="italic" style={{ color: T.accent }}>natijangiz</span></>, ru: <>Ваш <span className="italic" style={{ color: T.accent }}>результат</span> сегодня</> })}</h2></div>
         {!isLive ? (
           <div className="fade-up" style={{ display: 'flex', flexDirection: 'column', gap: 16, alignItems: 'center' }}>
             <ScoreRing correct={selfCorrect} total={totalQ} />
@@ -1730,7 +1826,7 @@ const QUIZ_COLORS = ['#FF5A2C', '#0FA6D6', '#F5A623', '#22A05C']; // CodeStrike 
 const QUIZ_SHAPES = ['▲', '◆', '●', '■'];
 // Arena foni: suzuvchi deploy tokenlari (dars mavzusi — hosting/deploy hissi)
 const QZ_BG_SHAPES = [
-  { ch: 'git push', l: 5,  t: 12, s: 34, c: 'rgba(203,173,255,0.16)', d: 19, dl: 0 },
+  { ch: 'AI prompt', l: 5, t: 12, s: 34, c: 'rgba(203,173,255,0.16)', d: 19, dl: 0 },
   { ch: '.app',     l: 85, t: 9,  s: 40, c: 'rgba(255,110,70,0.14)',  d: 23, dl: 1.5 },
   { ch: 'netlify',  l: 8,  t: 72, s: 30, c: 'rgba(80,200,255,0.13)',  d: 27, dl: 0.8 },
   { ch: 'index.html', l: 76, t: 68, s: 26, c: 'rgba(203,173,255,0.11)', d: 21, dl: 2.2 },
@@ -1743,16 +1839,16 @@ const QZ_BG_SHAPES = [
 ];
 const QUIZ_BANK = [
   { q: { uz: 'Netlify nima qiladi?', ru: 'Что делает Netlify?' }, opts: [{ uz: 'Sayt papkasini internetda saqlab, havola beradi', ru: 'Хранит папку сайта в интернете и выдаёт ссылку' }, { uz: 'Kodni chiroyli ranglar bilan bezaydi', ru: 'Красиво раскрашивает код' }, { uz: 'Internet tezligini oshiradi', ru: 'Увеличивает скорость интернета' }, { uz: 'Telefonni zaryadlaydi', ru: 'Заряжает телефон' }], correct: 0 },
-  { q: { uz: 'Brauzer sayt papkasidan birinchi qaysi faylni qidiradi?', ru: 'Какой файл браузер ищет в папке сайта первым?' }, opts: ['style.css', 'index.html', 'rasm.jpg', 'netlify.txt'], correct: 1 },
-  { q: { uz: 'Saytni serverga joylab internetga chiqarish qanday ataladi?', ru: 'Как называется размещение сайта на сервере и вывод его в интернет?' }, opts: [{ uz: 'Commit', ru: 'Коммит' }, { uz: 'Restart', ru: 'Рестарт' }, { uz: 'Deploy', ru: 'Деплой' }, { uz: 'Zoom', ru: 'Zoom' }], correct: 2 },
+  { q: { uz: 'AI bergan bosh sahifa faylini qaysi nom bilan saqlaysiz?', ru: 'Под каким именем сохраните файл главной страницы от AI?' }, opts: ['style.css', 'index.html', 'rasm.jpg', 'netlify.txt'], correct: 1 },
+  { q: { uz: 'Saytni internetga chiqarish qanday ataladi?', ru: 'Как называется выкладка сайта в интернет?' }, opts: [{ uz: 'Nusxalash', ru: 'Копирование' }, { uz: 'Restart', ru: 'Рестарт' }, { uz: 'Deploy', ru: 'Деплой' }, { uz: 'Zoom', ru: 'Zoom' }], correct: 2 },
   { q: { uz: "Netlify'ga qanday kiriladi?", ru: 'Как входят в Netlify?' }, opts: [{ uz: "Yangi parol o'ylab topib", ru: 'Придумав новый пароль' }, { uz: 'SMS kod bilan', ru: 'По коду из SMS' }, { uz: 'Bank kartasi bilan', ru: 'По банковской карте' }, { uz: 'GitHub hisobi bilan', ru: 'Через аккаунт GitHub' }], correct: 3 },
-  { q: { uz: 'Netlify sayt kodini qayerdan oladi?', ru: 'Откуда Netlify берёт код сайта?' }, opts: [{ uz: 'Telegram kanalidan', ru: 'Из Telegram-канала' }, { uz: 'Elektron pochtadan', ru: 'Из электронной почты' }, { uz: 'GitHub repodan', ru: 'Из репозитория GitHub' }, { uz: 'Flesh kartadan', ru: 'С флешки' }], correct: 2 },
-  { q: { uz: "Kodni GitHub'ga yuboradigan buyruq qaysi?", ru: 'Какая команда отправляет код на GitHub?' }, opts: ['git push', 'git open', 'git send', 'git deploy'], correct: 0 },
+  { q: { uz: "Bugun saytni Netlify'ga qanday qo'ydik?", ru: 'Как мы сегодня положили сайт на Netlify?' }, opts: [{ uz: 'Telegram orqali yuborib', ru: 'Отправив через Telegram' }, { uz: 'Elektron pochtaga yozib', ru: 'Написав на электронную почту' }, { uz: 'Sayt papkasini sudrab tashlab', ru: 'Перетащив папку сайта' }, { uz: 'Flesh kartaga yozib', ru: 'Записав на флешку' }], correct: 2 },
+  { q: { uz: "Saytni o'zgartirdingiz. Internetdagi versiya qanday yangilanadi?", ru: 'Вы изменили сайт. Как обновится версия в интернете?' }, opts: [{ uz: 'Papkani Netlify\'ga qayta sudrab tashlayman', ru: 'Снова перетаскиваю папку в Netlify' }, { uz: 'Havolani o\'chirib qayta yozaman', ru: 'Удаляю и заново пишу ссылку' }, { uz: "Kompyuterni o'chirib yoqaman", ru: 'Перезагружаю компьютер' }, { uz: "O'z-o'zidan, hech narsa qilmayman", ru: 'Само собой, ничего не делаю' }], correct: 0 },
   { q: { uz: 'Deploydan keyin Netlify sizga nima beradi?', ru: 'Что выдаёт Netlify после деплоя?' }, opts: [{ uz: 'Yangi kompyuter', ru: 'Новый компьютер' }, { uz: 'Sayt havolasini', ru: 'Ссылку на сайт' }, { uz: 'Yangi parol', ru: 'Новый пароль' }, { uz: 'Bepul internet', ru: 'Бесплатный интернет' }], correct: 1 },
   { q: { uz: "Do'stingiz saytni telefonida ochishi uchun unga nima yuborasiz?", ru: 'Что вы отправите другу, чтобы он открыл сайт на телефоне?' }, opts: [{ uz: 'index.html faylini', ru: 'Файл index.html' }, { uz: 'GitHub parolimni', ru: 'Свой пароль от GitHub' }, { uz: 'Sayt papkasini arxiv qilib', ru: 'Папку сайта архивом' }, { uz: 'Sayt havolasini', ru: 'Ссылку на сайт' }], correct: 3 },
   { q: { uz: 'Sayt sahifalari bir-biriga nima orqali ulanadi?', ru: 'Через что страницы сайта связаны между собой?' }, opts: [{ uz: 'Menyudagi havolalar orqali', ru: 'Через ссылки в меню' }, { uz: 'Rasmlar orqali', ru: 'Через картинки' }, { uz: 'Parol orqali', ru: 'Через пароль' }, { uz: 'Fayl hajmi orqali', ru: 'Через размер файла' }], correct: 0 },
   { q: { uz: "AI'ga sayt topshirig'ini yozganda nima ko'rsatiladi?", ru: 'Что указывают в задании для AI при заказе сайта?' }, opts: [{ uz: 'Faqat sevimli rang', ru: 'Только любимый цвет' }, { uz: 'Faqat ism', ru: 'Только имя' }, { uz: "Sahifalar ro'yxati va shartlar", ru: 'Список страниц и условия' }, { uz: 'Hech narsa', ru: 'Ничего' }], correct: 2 },
-  { q: { uz: "Sayt telefonda ham chiroyli ko'rinishi qanday ataladi?", ru: 'Как называется то, что сайт красиво смотрится и на телефоне?' }, opts: ['deploy', 'commit', 'hosting', 'responsive'], correct: 3 },
+  { q: { uz: "Sayt telefonda ham chiroyli chiqishi uchun AI topshirig'iga nima yozasiz?", ru: 'Что написать в задании для AI, чтобы сайт красиво выглядел и на телефоне?' }, opts: [{ uz: "Hamma sahifa bitta faylda bo'lsin", ru: 'Все страницы в одном файле' }, { uz: "Rasm umuman qo'yma", ru: 'Вообще не ставь картинки' }, { uz: 'Faqat kompyuter uchun qil', ru: 'Сделай только для компьютера' }, { uz: "Telefonda ham, kompyuterda ham chiroyli ko'rinsin", ru: 'Пусть красиво выглядит и на телефоне, и на компьютере' }], correct: 3 },
   { q: { uz: "Deploydan keyin saytni kim ko'ra oladi?", ru: 'Кто сможет увидеть сайт после деплоя?' }, opts: [{ uz: "Faqat men, o'z kompyuterimda", ru: 'Только я, на своём компьютере' }, { uz: 'Havolani bilgan har kim', ru: 'Каждый, кто знает ссылку' }, { uz: 'Faqat mentor', ru: 'Только ментор' }, { uz: 'Faqat GitHub xodimlari', ru: 'Только сотрудники GitHub' }], correct: 1 },
 ];
 const quizPts = (elapsedMs) => elapsedMs <= 500 ? 1000 : Math.max(0, Math.round(1000 * (1 - (Math.min(elapsedMs, QUIZ_MS) / QUIZ_MS) / 2)));
@@ -2327,7 +2423,7 @@ export default function DeployLesson({ lang: langProp, onFinished, liveToken }) 
     if (typeof onFinished === 'function') onFinished(payload);
   };
 
-  const screens = [Screen0, Screen1, Screen2, Screen3, Screen4, Screen5, Screen6, Screen7, Screen8, Screen9, Screen10, Screen11, Screen12, Screen13, ScreenPodium, ScreenFlashcards, Screen16];
+  const screens = [Screen0, ScreenReja, Screen3, ScreenPages, Screen4, Screen5, Screen6, ScreenImprove, Screen1, Screen2, Screen8, ScreenDrop, Screen12, Screen13, ScreenPodium, ScreenFlashcards, Screen16];
   const Current = screens[screen];
   return (
     <LangContext.Provider value={lang}>
@@ -2428,7 +2524,7 @@ export default function DeployLesson({ lang: langProp, onFinished, liveToken }) 
         .bp-title { font-family: 'JetBrains Mono'; font-size: 11px; color: ${T.ink3}; }
         .bp-body { padding: clamp(12px,2.2vw,18px); }
 
-        .h-title { font-size: clamp(22px,4vw,38px); }
+        .h-title { font-size: clamp(22px,4vw,36px); letter-spacing: -0.015em; text-wrap: balance; }
         .h-sub { font-size: clamp(17px,2.5vw,22px); }
         .h-ask { font-size: clamp(19px,2.6vw,27px); line-height: 1.32; letter-spacing: -0.01em; text-wrap: balance; }
         .body { font-size: clamp(14px,1.6vw,16px); line-height: 1.5; }
@@ -3158,6 +3254,40 @@ export default function DeployLesson({ lang: langProp, onFinished, liveToken }) 
         .pg-row { display: flex; align-items: center; gap: 10px; }
         .pg-n { width: 22px; height: 22px; flex-shrink: 0; border-radius: 50%; background: ${T.bg}; color: ${T.ink2}; font-family: 'JetBrains Mono', monospace; font-size: 11.5px; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; }
         .pg-row.on .pg-n { background: ${T.success}; color: #fff; }
+        /* F-0914-08 — Reja kartalari (2-sahifa) */
+        .rj-row { display: flex; align-items: stretch; justify-content: center; gap: clamp(8px,1.4vw,14px); flex-wrap: wrap; }
+        .rj-card { position: relative; flex: 1 1 200px; max-width: 280px; background: ${T.paper}; border-radius: 18px; padding: clamp(18px,2.4vw,26px) clamp(14px,2vw,20px); display: flex; flex-direction: column; align-items: center; text-align: center; gap: 8px; box-shadow: 0 10px 26px -10px rgba(${T.shadowBase},0.22); }
+        .rj-num { position: absolute; top: 12px; left: 14px; width: 24px; height: 24px; border-radius: 50%; background: ${T.accentSoft}; color: ${T.accent}; font-weight: 800; font-size: 13px; display: flex; align-items: center; justify-content: center; }
+        .rj-ic { font-size: clamp(34px,4.4vw,46px); line-height: 1; }
+        .rj-h { font-family: 'Source Serif 4', serif; font-weight: 600; font-size: clamp(17px,2vw,20px); color: ${T.ink}; line-height: 1.2; }
+        .rj-s { font-size: clamp(13px,1.5vw,14.5px); color: ${T.ink2}; line-height: 1.4; }
+        .rj-arrow { align-self: center; font-size: 26px; color: ${T.accent}; font-weight: 700; }
+        @media (max-width: 760px) { .rj-arrow { transform: rotate(90deg); flex-basis: 100%; text-align: center; } .rj-card { max-width: none; } }
+        /* F-0914-08 — G'oya formasi chiqib ketadi, sahifalar + jonli sayt maketi kiradi (3-sahifa) */
+        .idea-card { max-width: 620px; width: 100%; align-self: center; background: ${T.paper}; border-radius: 18px; padding: clamp(18px,2.6vw,26px); display: flex; flex-direction: column; gap: 10px; box-shadow: 0 12px 30px -12px rgba(${T.shadowBase},0.25); }
+        .idea-out { animation: idea-out .46s cubic-bezier(.4,0,.2,1) forwards; pointer-events: none; }
+        @keyframes idea-out { to { opacity: 0; transform: translateY(-18px) scale(.94); } }
+        .idea-chip { display: flex; align-items: center; gap: 10px; background: ${T.accentSoft}; border-radius: 12px; padding: 8px 12px; }
+        .site-mock { display: flex; flex-direction: column; gap: 14px; }
+        .site-hero { background: linear-gradient(135deg, ${T.accentSoft}, ${T.paper}); border-radius: 12px; padding: 18px 16px; display: flex; flex-direction: column; gap: 8px; animation: fade-in-up .5s ease both; }
+        .site-h { font-family: 'Source Serif 4', serif; font-weight: 700; font-size: clamp(18px,2.2vw,22px); color: ${T.ink}; margin: 0; line-height: 1.2; overflow-wrap: anywhere; }
+        .site-p { font-size: 13.5px; color: ${T.ink2}; margin: 0; line-height: 1.45; overflow-wrap: anywhere; }
+        .site-btn { align-self: flex-start; background: ${T.accent}; color: #fff; font-weight: 700; font-size: 12.5px; padding: 6px 14px; border-radius: 8px; }
+        .site-tab-in { animation: fade-in-up .35s ease both; }
+        @media (prefers-reduced-motion: reduce) { .idea-out, .site-hero, .site-tab-in, .rj-card, .rj-arrow { animation: none !important; } }
+        /* F-0914-09 — Jonli yozish maydoni: ramka, qalam belgisi, navbatdagi maydon pulsi, to'lganda yashil */
+        .wf { position: relative; display: flex; align-items: center; gap: 10px; width: 100%; background: ${T.paper}; border-radius: 12px; padding: 0 14px; box-shadow: inset 0 0 0 2px ${T.ink3}77; transition: box-shadow .2s ease, background .2s ease; cursor: text; }
+        .wf:hover { box-shadow: inset 0 0 0 2px ${T.accent}99; }
+        .wf.filled { background: ${T.successSoft}; box-shadow: inset 0 0 0 2px ${T.success}; }
+        .wf:focus-within { background: ${T.paper}; box-shadow: inset 0 0 0 2px ${T.accent}, 0 10px 24px -10px rgba(255,79,40,0.45); }
+        .wf.next { animation: wf-pulse 1.8s ease-in-out infinite; }
+        .wf.next:focus-within { animation: none; }
+        @keyframes wf-pulse { 0%, 100% { box-shadow: inset 0 0 0 2px ${T.accent}99, 0 0 0 0 rgba(255,79,40,0.30); } 50% { box-shadow: inset 0 0 0 2px ${T.accent}, 0 0 0 7px rgba(255,79,40,0); } }
+        .wf-ic { font-size: 16px; line-height: 1; opacity: .8; flex-shrink: 0; }
+        .wf.filled .wf-ic { opacity: 1; }
+        .wf-input { flex: 1; min-width: 0; border: none; outline: none; background: transparent; font-family: 'Manrope', sans-serif; font-size: clamp(15px,1.8vw,16px); font-weight: 600; color: ${T.ink}; padding: 12px 0; }
+        .wf-input::placeholder { color: ${T.ink3}; font-weight: 500; font-style: italic; }
+        @media (prefers-reduced-motion: reduce) { .wf.next { animation: none; } }
         .menu-mock { display: flex; flex-wrap: wrap; gap: 8px; }
         .menu-tab { font-family: 'Manrope', sans-serif; font-weight: 600; font-size: 12.5px; padding: 6px 12px; border-radius: 99px; background: ${T.bg}; color: ${T.ink2}; }
         .menu-tab.on { background: ${T.accent}; color: #fff; }

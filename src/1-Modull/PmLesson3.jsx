@@ -231,7 +231,7 @@ const Col = ({ children, gap }) => <div className="col" style={gap ? { gap } : u
 const Stage = ({ children, eyebrow, screen, totalScreens = TOTAL_SCREENS, navContent, narrow, mentorStatic }) => {
   const isMobile = useIsMobile();
   const isNarrow = useIsMobile(768);
-  const collapseOn = !mentorStatic; // §34 (2026-09-14): Mentor kompyuterda ham birinchi bosishda yig'iladi
+  const collapseOn = isNarrow && !mentorStatic; // F-0914-08 (foydalanuvchi): kompyuterda Mentor doim ochiq, faqat tor ekranda yig'iladi
   const padH = isMobile ? 12 : 60; // InternetLesson layout standarti: 1100px + 60px
   const [mCollapsed, setMCollapsed] = useState(false);
   const contentRef = useRef(null);
@@ -690,7 +690,7 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
       <div className="screen" style={{ justifyContent: isMentorLive ? 'flex-start' : 'safe center', gap: 'clamp(16px,2.5vw,24px)' }}>
         <div className="fade-up">{tr(question)}</div>
         {oneShot && !solved && <p className="small mono fade-up" style={{ margin: '-8px 0 0', color: T.accent, fontWeight: 600 }}>{tr({ uz: "⚡ Jonli dars — bitta urinish, o'ylab bosing!", ru: '⚡ Живой урок — одна попытка, жмите обдуманно!' })}</p>}
-        <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 11 }}>
+        <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: picked !== null ? 8 : 11 }}>
           {options.map((opt, i) => {
             let cls = 'option';
             if (isMentorLive) {
@@ -702,7 +702,7 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
             else if (i === picked) cls += ' option-picked-wrong';
             const showGreenLetter = isMentorLive ? (mReveal && i === correctIdx) : (solved && revealed && i === correctIdx);
             return (
-              <button key={i} className={cls} disabled={solved || isMentorLive} onClick={() => pick(i)} style={{ padding: 'clamp(13px,1.9vw,17px) clamp(15px,2.2vw,20px)', fontSize: 'clamp(15px,1.85vw,17px)', display: 'flex', alignItems: 'center', gap: 12 }}>
+              <button key={i} className={cls} disabled={solved || isMentorLive} onClick={() => pick(i)} style={{ padding: picked !== null ? 'clamp(9px,1.3vw,12px) clamp(15px,2.2vw,20px)' : 'clamp(13px,1.9vw,17px) clamp(15px,2.2vw,20px)', fontSize: 'clamp(15px,1.85vw,17px)', display: 'flex', alignItems: 'center', gap: 12 }}>
                 <span className="mono small" style={{ minWidth: 20, color: showGreenLetter ? T.success : T.ink3 }}>{String.fromCharCode(65 + i)}</span>
                 <span style={{ flex: 1 }}>{fmtCode(tr(opt))}</span>
               </button>
@@ -1127,7 +1127,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
   return (
     <Stage eyebrow={tr({ uz: 'Kirish', ru: 'Вступление' })} screen={screen} audioState={audio} navContent={<NavNext optionalLive disabled={picked === null} label={{ uz: 'Davom etish', ru: 'Продолжить' }} onClick={onNext} />}>
       <div className="screen">
-        <h1 className="title h-title fade-up" style={{ maxWidth: 800 }}>{tr({ uz: <>Ota-onangiz oldida <span className="italic" style={{ color: T.accent }}>birinchi gapingiz</span> qanday bo'ladi?</>, ru: <>Какой будет ваша <span className="italic" style={{ color: T.accent }}>первая фраза</span> перед родителями?</> })}</h1>
+        <h1 className="title h-title fade-up">{tr({ uz: <>Ota-onangiz oldida <span className="italic" style={{ color: T.accent }}>birinchi gapingiz</span> qanday bo'ladi?</>, ru: <>Какой будет ваша <span className="italic" style={{ color: T.accent }}>первая фраза</span> перед родителями?</> })}</h1>
         <Mentor>{tr({ uz: "Zalda ota-onangiz o'tiribdi, siz sahnadasiz. Bitta kitob do'koni sayti — ikki xil aytilgan. Ikkalasini bosib o'qing.", ru: 'В зале сидят ваши родители, вы на сцене. Один и тот же сайт книжного магазина — рассказан двумя способами. Нажмите и прочитайте оба.' })}</Mentor>
         <Zoomable>
         <Split>
@@ -1391,10 +1391,11 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   }, [done]); // eslint-disable-line
   const saveLink = (v) => { setLink(v); patch({ link: v.trim() }); };
   return (
-    <Stage eyebrow={tr({ uz: 'Jonli demo', ru: 'Живое демо' })} screen={screen} narrow audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `Qadamlarni oching (${open.size}/3)`, ru: `Откройте шаги (${open.size}/3)` }} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Jonli demo', ru: 'Живое демо' })} screen={screen} narrow={!done} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `Qadamlarni oching (${open.size}/3)`, ru: `Откройте шаги (${open.size}/3)` }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Saytingizni sahnada <span className="italic" style={{ color: T.accent }}>qanday</span> ko'rsatasiz?</>, ru: <><span className="italic" style={{ color: T.accent }}>Как</span> вы покажете свой сайт на сцене?</> })}</h2></div>
         <Mentor>{tr({ uz: "Jonli demo — nutqingizning eng uzun qismi, bir daqiqa. Uni uchga bo'lib qo'ysangiz, sahnada adashmaysiz. Har qadamni bosib oching.", ru: 'Живое демо — самая длинная часть речи, целая минута. Разделите её на три шага — и на сцене не собьётесь. Нажмите и раскройте каждый шаг.' })}</Mentor>
+        <div className={done ? 'split' : undefined}>{/* §34: manzil-maydoni qadamlar yonida */}
         <div className="dstep-list">
           {DEMO_STEPS.map(st => {
             const on = open.has(st.key);
@@ -1416,6 +1417,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <input className="fld-inp mono" value={link} onChange={e => saveLink(e.target.value)} placeholder={tr({ uz: 'masalan: mening-saytim.netlify.app', ru: 'например: moy-sayt.netlify.app' })} />
           </div>
         )}
+        </div>
       </div>
     </Stage>
   );
@@ -1779,7 +1781,7 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [open, setOpen] = useState(() => { const s = readKoding(); return !!(s && s.open); });
   const [st, setSt] = useState(() => {
     const saved = readKoding();
-    return { code: storedAnswer?.code || (saved && saved.code) || '', done: !!(storedAnswer && storedAnswer.solved) || !!(saved && saved.done) };
+    return { code: (typeof storedAnswer?.code === 'string' ? storedAnswer.code : null) || (saved && saved.code) || '', done: !!(storedAnswer && storedAnswer.solved) || !!(saved && saved.done) }; // F-0914-10: saqlangan javob matn bo'lmasa — zaxira-zanjir (oq ekran himoyasi)
   });
   const { code, done } = st;
   // Navbat (88-qonun): kompilyator ochilmagan bo'lsa tugma o'zi chorlaydi. Kompilyator
@@ -1887,7 +1889,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   }, [txt, passed]); // eslint-disable-line
   useEffect(() => { if (!passed) setEdit(true); }, [passed]);
   return (
-    <Stage eyebrow={tr({ uz: 'Repetitsiya', ru: 'Репетиция' })} screen={screen} narrow audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={isMentorLive ? false : !passed} label={isMentorLive ? { uz: 'Davom etish', ru: 'Продолжить' } : (passed ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `To'ldiring (${filled}/6)`, ru: `Заполните (${filled}/6)` })} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Repetitsiya', ru: 'Репетиция' })} screen={screen} narrow={!edit} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={isMentorLive ? false : !passed} label={isMentorLive ? { uz: 'Davom etish', ru: 'Продолжить' } : (passed ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `To'ldiring (${filled}/6)`, ru: `Заполните (${filled}/6)` })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Endi nutqingizni <span className="italic" style={{ color: T.accent }}>ovoz chiqarib</span> ayting</>, ru: <>Теперь произнесите свою речь <span className="italic" style={{ color: T.accent }}>вслух</span></> })}</h2></div>
         <Mentor>{tr({ uz: "Nutqingiz yig'ildi. Uni bir marta o'qib chiqing, so'ng taymerni bosing va ovoz chiqarib ayting — mikrofon yozib oladi.", ru: 'Ваша речь собрана. Прочитайте её один раз, потом нажмите таймер и произнесите вслух — микрофон запишет.' })}</Mentor>
@@ -1907,7 +1909,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             ))}
           </div>
         ) : (
-          <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
+          <div className="fade-step" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: 9 }}>{/* §34: bloklar ikki ustunda */}
             {BLOKS.map(b => {
               const ok = (txt[b.key] || '').trim().length >= 3;
               return (
@@ -1921,7 +1923,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 </div>
               );
             })}
-            {passed && <button className="btn-soft" style={{ alignSelf: 'flex-start' }} onClick={() => setEdit(false)}>{tr({ uz: "✓ Tayyor — nutqni ko'rish", ru: '✓ Готово — посмотреть речь' })}</button>}
+            {passed && <button className="btn-soft" style={{ justifySelf: 'start', gridColumn: '1 / -1' }} onClick={() => setEdit(false)}>{tr({ uz: "✓ Tayyor — nutqni ko'rish", ru: '✓ Готово — посмотреть речь' })}</button>}
           </div>
         )}
 
@@ -3122,7 +3124,7 @@ export default function PmLesson3({ lang: langProp, onFinished, liveToken }) {
         .radio-dot { width: 10px; height: 10px; border-radius: 50%; background: ${T.accent}; }
         .hook-ack { margin: 2px 0 0; font-family: 'Manrope', sans-serif; font-weight: 500; font-size: clamp(13px,1.5vw,14.5px); color: ${T.ink2}; }
 
-        .h-title { font-size: clamp(22px,4vw,38px); }
+        .h-title { font-size: clamp(22px,4vw,36px); letter-spacing: -0.015em; text-wrap: balance; }
         .h-sub { font-size: clamp(17px,2.5vw,22px); }
         .h-ask { font-size: clamp(19px,2.6vw,27px); line-height: 1.32; letter-spacing: -0.01em; text-wrap: balance; }
         .body { font-size: clamp(14px,1.6vw,16px); line-height: 1.5; }
@@ -3491,7 +3493,8 @@ export default function PmLesson3({ lang: langProp, onFinished, liveToken }) {
         .qz-q .qcode { background: rgba(203,173,255,0.18); color: #F2ECFF; }
 
         /* === 🎬 TREYLER-MONTAJ (DragDrop) === */
-        .dd { display: flex; flex-direction: column; gap: 13px; }
+        .dd { display: grid; grid-template-columns: minmax(0,1.15fr) minmax(0,1fr); gap: 13px; align-items: start; } /* §34: keng ekranda uyalar chapda, hovuz o'ngda */
+        @media (max-width: 760px) { .dd { grid-template-columns: 1fr; } }
         /* === 📜 TELEPROMPTER — repetitsiyada nutq o'qish uchun (yozish uchun emas) === */
         .tp { background: ${T.paper}; border-radius: 16px; padding: clamp(14px,2vw,20px); display: flex; flex-direction: column; gap: 11px; box-shadow: 0 10px 26px -16px rgba(${T.shadowBase},0.22); }
         .tp-h { display: flex; align-items: center; gap: 10px; padding-bottom: 9px; border-bottom: 1px solid ${T.line}; }
