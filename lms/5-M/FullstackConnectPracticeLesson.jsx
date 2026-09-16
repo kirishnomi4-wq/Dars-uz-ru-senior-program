@@ -9,7 +9,8 @@
 import React3, { useState as useState3, useEffect as useEffect4, useRef as useRef3, createContext as createContext2, useContext as useContext2, useCallback as useCallback2, useMemo } from "react";
 
 // src/live/liveClient.js
-var LIVE_API_URL = "https://dars-api.coddycamp.uz" ? String("https://dars-api.coddycamp.uz").replace(/\/+$/, "") : DEFAULT_API_URL;
+var DEFAULT_API_URL = "https://dars-api.coddycamp.uz";
+var LIVE_API_URL = "" ? String("").replace(/\/+$/, "") : DEFAULT_API_URL;
 var LIVE_ENABLED = !!LIVE_API_URL;
 var LIVE_POLL_MS = 2500;
 var LIVE_POLL_MAX_MS = 15e3;
@@ -23,7 +24,9 @@ async function errorFrom(r, fallback) {
     msg = (await r.json()).message || "";
   } catch {
   }
-  return new Error(msg || fallback);
+  const e = new Error(msg || fallback);
+  e.status = r.status;
+  return e;
 }
 async function liveRpc(fn, body) {
   const r = await fetch(`${API}/rpc/${fn}`, {
@@ -586,8 +589,14 @@ function useLiveSession(lessonId, answerKey, opts = {}) {
       liveStore(lessonId, { mode: "mentor", pin: row.pin, token: row.token });
       if (keyRef.current) liveRpc("set_quiz_keys", { p_lesson_id: lessonId, p_mentor_code: (mentorCode || "").trim(), p_keys: keyRef.current }).catch(() => {
       });
-    } catch {
-      setJoinError(tr({ uz: "Mentor kodi noto'g'ri yoki ulanishda xato.", ru: "Неверный код ментора или ошибка подключения." }));
+    } catch (e) {
+      const st = e && e.status;
+      setJoinError(
+        st === 401 || st === 403 ? tr({ uz: "Mentor kodi noto'g'ri.", ru: "Неверный код ментора." }) : st ? tr({ uz: `Server javob bermadi (xato ${st}). Birozdan keyin urinib ko'ring.`, ru: `Сервер не ответил (ошибка ${st}). Попробуйте чуть позже.` }) : tr({
+          uz: "Serverga ulanib bo'lmadi. Internetni tekshiring — yoki «← Orqaga» bosib, «Kodsiz, o'zim ko'raman» bilan darsni jonli rejimsiz o'tkazing.",
+          ru: "Не удалось подключиться к серверу. Проверьте интернет — или нажмите «← Назад» и выберите «Без кода, смотрю сам», чтобы провести урок без живого режима."
+        })
+      );
     } finally {
       setBusy(false);
     }
@@ -942,7 +951,7 @@ function useServerProgress(live, refs) {
 import React2, { useState as useState2, useEffect as useEffect3 } from "react";
 var LT = { bg: "#F6F4EF", ink: "#0E0E10", ink2: "#5A5A60", ink3: "#A7A6A2", paper: "#FFFFFF", accent: "#FF4F28", accentSoft: "#FFE8E1", success: "#1F7A4D" };
 var _liveBtnPri = { background: LT.accent, color: "#fff", border: "none", borderRadius: 12, padding: "14px 20px", fontSize: 16, fontWeight: 700, cursor: "pointer" };
-var _liveBadgeS = { position: "fixed", top: 10, left: "50%", transform: "translateX(-50%)", zIndex: 9998, background: LT.paper, border: `1px solid ${LT.ink3}55`, borderRadius: 99, padding: "6px 14px", fontSize: 13, fontWeight: 600, color: LT.ink2, boxShadow: "0 2px 10px rgba(58,53,48,0.12)", display: "flex", alignItems: "center", gap: 8, whiteSpace: "nowrap", maxWidth: "92vw" };
+var _liveBadgeS = { position: "fixed", top: 2, left: "50%", transform: "translateX(-50%)", zIndex: 9998, background: LT.paper, border: `1px solid ${LT.ink3}55`, borderRadius: 99, padding: "2px 14px", fontSize: 13, fontWeight: 600, color: LT.ink2, boxShadow: "0 2px 10px rgba(58,53,48,0.12)", display: "flex", alignItems: "center", gap: 8, whiteSpace: "nowrap", maxWidth: "92vw" };
 var _liveDot = (c) => ({ width: 8, height: 8, borderRadius: 99, background: c, display: "inline-block" });
 function LiveBigCode({ pin, onClose }) {
   const digits = String(pin || "").split("");
@@ -1157,7 +1166,7 @@ var SCREEN_META = [
 ];
 var TOTAL_SCREENS = SCREEN_META.length;
 var SCORED_IDX = SCREEN_META.map((m, i) => m.scored ? i : null).filter((i) => i !== null);
-var Split = ({ children }) => <div className="split">{children}</div>;
+var Split = ({ children, three }) => <div className={three ? "split split3" : "split"}>{children}</div>;
 var Col = ({ children, gap }) => <div className="col" style={gap ? { gap } : void 0}>{children}</div>;
 function AchCounter() {
   const earned = useContext2(AchCtx);
@@ -1478,7 +1487,7 @@ var QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, opt
       <div className="screen" style={{ justifyContent: isMentorLive ? "flex-start" : "center", gap: "clamp(16px,2.5vw,24px)" }}>
         <div className="fade-up">{question}</div>
         {oneShot && !solved && <p className="small mono fade-up" style={{ margin: "-8px 0 0", color: T.accent, fontWeight: 600 }}>{tr2({ uz: "⚡ Jonli dars — bitta urinish, o'ylab bosing!", ru: "⚡ Живой урок — одна попытка, подумайте перед нажатием!" })}</p>}
-        <div className="fade-up delay-1" style={{ display: "flex", flexDirection: "column", gap: 11 }}>
+        <div className="fade-up delay-1" style={{ display: "flex", flexDirection: "column", gap: picked !== null ? 8 : 11 }}>
           {options.map((opt, i) => {
     let cls = "option";
     if (isMentorLive) {
@@ -1496,7 +1505,7 @@ var QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, opt
       }
     } else if (i === picked) cls += " option-picked-wrong";
     const showGreenLetter = isMentorLive ? mReveal && i === correctIdx : solved && revealed && i === correctIdx;
-    return <button key={i} className={cls} disabled={solved || isMentorLive} onClick={() => pick(i)} style={{ padding: "clamp(13px,1.9vw,17px) clamp(15px,2.2vw,20px)", fontSize: "clamp(15px,1.85vw,17px)", display: "flex", alignItems: "center", gap: 12 }}>
+    return <button key={i} className={cls} disabled={solved || isMentorLive} onClick={() => pick(i)} style={{ padding: picked !== null ? "clamp(9px,1.3vw,12px) clamp(15px,2.2vw,20px)" : "clamp(13px,1.9vw,17px) clamp(15px,2.2vw,20px)", fontSize: "clamp(15px,1.85vw,17px)", display: "flex", alignItems: "center", gap: 12 }}>
                 <span className="mono small" style={{ minWidth: 20, color: showGreenLetter ? T.success : T.ink3 }}>{String.fromCharCode(65 + i)}</span>
                 <span style={{ flex: 1 }}>{fmtCode(tr2(opt))}</span>
               </button>;
@@ -1577,7 +1586,7 @@ var Jx = ({ children }) => <span style={{ color: CODE.tag }}>{children}</span>;
 var At = ({ children }) => <span style={{ color: CODE.attr }}>{children}</span>;
 var St = ({ children }) => <span style={{ color: CODE.str }}>{children}</span>;
 var Cm = ({ children }) => <span style={{ color: CODE.comment, fontStyle: "italic" }}>{children}</span>;
-var Win = ({ title, children, minH }) => <div className="bp-window"><div className="bp-bar"><span className="bb-dots"><i /><i /><i /></span><span className="bp-title">{title}</span></div><div className="bp-body" style={{ minHeight: minH, position: "relative" }}>{children}</div></div>;
+var Win = ({ title, children, minH, maxH }) => <div className="bp-window"><div className="bp-bar"><span className="bb-dots"><i /><i /><i /></span><span className="bp-title">{title}</span></div><div className="bp-body" style={{ minHeight: minH, maxHeight: maxH, overflowY: maxH ? "auto" : void 0, position: "relative" }}>{children}</div></div>;
 var TLine = ({ cmd, out, dim }) => <div className="el-in" style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "clamp(11.5px,1.4vw,13px)", lineHeight: 1.7, color: dim ? CODE.comment : CODE.text }}>
     {cmd ? <><span style={{ color: CODE.str }}>$</span> <span style={{ color: CODE.text }}>{cmd}</span></> : out}
   </div>;
@@ -1689,7 +1698,7 @@ var Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
   };
   return <Stage eyebrow={tr2({ uz: "Kirish", ru: "Вступление" })} screen={screen} scrollSignal={sc} navContent={<NavNext optionalLive disabled={picked === null} label={tr2({ uz: "Davom etish", ru: "Продолжить" })} onClick={onNext} />}>
       <div className="screen">
-        <h1 className="title h-title fade-up" style={{ maxWidth: 880 }}>{tr2({ uz: <>Bazaga mashina qo'shdik — lekin saytda <span className="italic" style={{ color: T.accent }}>ko'rinmayapti</span>. Nega?</>, ru: <>Добавили машину в базу — а на сайте её <span className="italic" style={{ color: T.accent }}>не видно</span>. Почему?</> })}</h1>
+        <h1 className="title h-title fade-up">{tr2({ uz: <>Bazaga mashina qo'shdik — lekin saytda <span className="italic" style={{ color: T.accent }}>ko'rinmayapti</span>. Nega?</>, ru: <>Добавили машину в базу — а на сайте её <span className="italic" style={{ color: T.accent }}>не видно</span>. Почему?</> })}</h1>
         <Mentor>{tr2({ uz: <>Praktika 1'da Postman orqali bazaga <b style={{ color: T.ink }}>Chevrolet Spark</b>'ni qo'shgan edingiz — o'ngda, bazada u bor. Lekin chapdagi AvtoIjara saytida Spark <b style={{ color: T.ink }}>yo'q</b>! Saytni yangilab ko'ring (🔄) — paydo bo'ladimi?</>, ru: <>В Практике 1 вы через Postman добавили в базу <b style={{ color: T.ink }}>Chevrolet Spark</b> — справа, в базе, он есть. А на сайте AvtoIjara слева его <b style={{ color: T.ink }}>нет</b>! Попробуйте обновить сайт (🔄) — появится ли?</> })}</Mentor>
         <div className="wire cut fade-up delay-1">
           <span className="wire-end"><span className="wire-ico">💻</span><span className="wire-t">{tr2({ uz: "Sayt — vitrina", ru: "Сайт — витрина" })}<small>localhost:5173</small></span></span>
@@ -1704,21 +1713,23 @@ var Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
           <span className="wire-end"><span className="wire-ico">🗄️</span><span className="wire-t">{tr2({ uz: "Baza — ombor", ru: "База — склад" })}<small>localhost:3000</small></span></span>
         </div>
         <Zoomable>
-        <Split>
+        <Split three>
           <Col>
             <div className="fade-up delay-1" style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
               <p className="flow-label" style={{ margin: 0 }}>{tr2({ uz: "Sayt — front (localhost:5173)", ru: "Сайт — фронт (localhost:5173)" })}</p>
-              <button className={`chip ${shaking ? "shake" : ""} ${!tried ? "tap-hint" : ""}`} onClick={refresh} style={{ padding: "7px 13px", fontSize: 13 }}>{tr2({ uz: "🔄 Yangilash", ru: "🔄 Обновить" })}</button>
+              <button className={`chip ${shaking ? "shake" : ""} ${!tried ? "tap-hint" : ""}`} onClick={refresh} style={{ padding: "5px 10px", fontSize: 12.5, flexShrink: 0, whiteSpace: "nowrap" }}>{tr2({ uz: "🔄 Yangilash", ru: "🔄 Обновить" })}</button>
             </div>
-            <div className={`fade-up delay-1 ${shaking ? "shake" : ""}`}><Win title="avtoijara.uz" minH={150}><AvtoSite cars={CARS} cols={2} /></Win></div>
+            <div className={`fade-up delay-1 ${shaking ? "shake" : ""}`}><Win title="avtoijara.uz" minH={150} maxH={180}><AvtoSite cars={CARS} cols={1} /></Win></div>
             {tried && <p className="small fade-step" style={{ color: T.accent, fontStyle: "italic", margin: 0 }}>{tr2({ uz: "Yangiladingiz — lekin baribir 3 ta mashina. Spark yo'q!", ru: "Обновили — а машин всё равно 3. Spark так и нет!" })}</p>}
           </Col>
           <Col>
             <p className="flow-label fade-up delay-2" style={{ margin: 0 }}>{tr2({ uz: "Baza — back (localhost:3000)", ru: "База — бэк (localhost:3000)" })}</p>
             <div className="fade-up delay-2"><DbTable rows={CARS_DB} flashId={SPARK.id} /></div>
-            <p className="eyebrow fade-up delay-3" style={{ color: T.ink2, margin: "4px 0 0" }}>{tr2({ uz: "Sayt 3 ta, baza 4 ta. Nega ular bir xil emas?", ru: "На сайте 3, в базе 4. Почему не совпадают?" })}</p>
+          </Col>
+          <Col>
+            <p className="eyebrow fade-up delay-3" style={{ color: T.ink2, margin: "4px 0 0", paddingRight: 40 }}>{tr2({ uz: "Sayt 3 ta, baza 4 ta. Nega ular bir xil emas?", ru: "На сайте 3, в базе 4. Почему не совпадают?" })}</p>
             <div className="fade-up delay-3" style={{ display: "flex", flexDirection: "column", gap: 9 }}>
-              {OPTS.map((o) => {
+              {OPTS.filter((o) => picked === null || o.id === picked).map((o) => {
     const on = picked === o.id;
     return <button key={o.id} className={`hook-option ${on ? "on" : ""}`} disabled={picked !== null || !tried} style={{ opacity: !tried ? 0.55 : 1 }} onClick={() => pick(o.id)}>
                     <span className="radio">{on && <span className="radio-dot" />}</span>
@@ -1745,7 +1756,7 @@ var Screen1 = ({ screen, onNext, onPrev }) => {
   const [showSteps, setShowSteps] = useState3(false);
   const PreviewBlock = <Col>
       <p className="flow-label">{tr2({ uz: "Dars oxirida — sayt serverdan o'qiydi", ru: "К концу урока — сайт читает с сервера" })}</p>
-      <Win title="avtoijara.uz" minH={150}><AvtoSite cars={CARS_DB} newId={SPARK.id} cols={2} /></Win>
+      <Win title="avtoijara.uz" minH={150} maxH={230}><AvtoSite cars={CARS_DB} newId={SPARK.id} cols={2} /></Win>
       <p className="mono small" style={{ color: T.success, margin: 0 }}>{tr2({ uz: "→ Spark paydo bo'ldi! Sayt endi bazadagi 4 mashinani ko'rsatadi", ru: "→ Spark появился! Сайт теперь показывает 4 машины из базы" })}</p>
     </Col>;
   const StepsBlock = <Col>
@@ -2019,12 +2030,12 @@ var Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                   <span className="vseen" style={{ color: seen.has(s.k) ? T.success : T.ink3 }}>{seen.has(s.k) ? "✓" : ""}</span>
                 </button>)}
             </div>
-            <div className="sk-info" key={st}><p className="body" style={{ margin: 0, color: T.ink }}>{tr2(STATES.find((s) => s.k === st).note)}</p></div>
+            {!done && <div className="sk-info" key={st}><p className="body" style={{ margin: 0, color: T.ink }}>{tr2(STATES.find((s) => s.k === st).note)}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr2({ uz: <>Uch holat ham tayyor! <span className="mono">if (loading)</span> → skeleton, <span className="mono">if (error)</span> → xabar, aks holda → kartochkalar. Foydalanuvchi hech qachon "buzuq" sayt ko'rmaydi.</>, ru: <>Все три состояния готовы! <span className="mono">if (loading)</span> → skeleton, <span className="mono">if (error)</span> → сообщение, иначе → карточки. Пользователь никогда не увидит «сломанный» сайт.</> })}</p></div>}
           </Col>
           <Col>
             <p className="flow-label">{tr2({ uz: "Sayt — shu holatda", ru: "Сайт — в этом состоянии" })}</p>
-            <Win title="avtoijara.uz" minH={150}><AvtoSite cars={CARS_DB} state={st} cols={2} /></Win>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr2({ uz: <>Uch holat ham tayyor! <span className="mono">if (loading)</span> → skeleton, <span className="mono">if (error)</span> → xabar, aks holda → kartochkalar. Foydalanuvchi hech qachon "buzuq" sayt ko'rmaydi.</>, ru: <>Все три состояния готовы! <span className="mono">if (loading)</span> → skeleton, <span className="mono">if (error)</span> → сообщение, иначе → карточки. Пользователь никогда не увидит «сломанный» сайт.</> })}</p></div>}
+            <Win title="avtoijara.uz" minH={150} maxH={200}><AvtoSite cars={CARS_DB} state={st} cols={2} /></Win>
           </Col>
         </div>
         </Zoomable>
@@ -2113,16 +2124,16 @@ var Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               {phase === 3 && <span style={{ color: CODE.str }}>{tr2({ uz: "✓ GET /api/cars → 200 OK (4 mashina yuklandi)", ru: "✓ GET /api/cars → 200 OK (загружено 4 машины)" })}</span>}
             </Konsol>
             <p className="flow-label" style={{ margin: "2px 0 0" }}>server.js</p>
-            <pre className="code-box" style={{ padding: "10px 13px", lineHeight: 1.85 }}>
+            {!done && <pre className="code-box" style={{ padding: "8px 13px", lineHeight: 1.6 }}>
               {phase < 3 ? <><Cm>{tr2({ uz: "// CORS hali ruxsat berilmagan", ru: "// CORS пока не разрешён" })}</Cm>{"\n"}<Jx>{"const"}</Jx>{" app = express();"}</> : <><Jx>{"const"}</Jx>{" app = express();"}{"\n"}<span style={{ background: "rgba(31,122,77,0.18)", borderRadius: 5, padding: "1px 5px" }}>{"app.use("}<At>cors()</At>{");"}</span>{"  "}<Cm>{tr2({ uz: "// ✓ :5173 ga ruxsat", ru: "// ✓ доступ для :5173" })}</Cm></>}
-            </pre>
+            </pre>}
+            {done && <div className="takeaway ok fade-step"><div className="ta-bulb">🎉</div><p className="ta-h">{tr2({ uz: "Sayt endi serverdan o'qiyapti!", ru: "Сайт теперь читает с сервера!" })}</p><p className="ta-sub">{tr2({ uz: "Spark ham paydo bo'ldi — S0'dagi muammo hal bo'ldi.", ru: "Spark появился — проблема с первого экрана решена." })}</p></div>}
             {phase === 2 && <button className="btn fade-step tap-hint" style={{ alignSelf: "flex-start", background: T.success }} onClick={fix}>{tr2({ uz: "🔧 app.use(cors()) qo'shish", ru: "🔧 Добавить app.use(cors())" })}</button>}
           </Col>
           <Col>
             <p className="flow-label">{tr2({ uz: "Sayt — front (localhost:5173)", ru: "Сайт — фронт (localhost:5173)" })}</p>
-            <Win title="avtoijara.uz" minH={160}><AvtoSite cars={siteCars} state={siteState} newId={SPARK.id} cols={2} /></Win>
+            <Win title="avtoijara.uz" minH={160} maxH={190}><AvtoSite cars={siteCars} state={siteState} newId={SPARK.id} cols={2} /></Win>
             {phase === 2 && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr2({ uz: <>Katalog bo'sh — lekin xato matni aniq aytyapti: <b>CORS policy</b> to'sib qo'ygan. Chap tomondagi tugma bilan tuzating →</>, ru: <>Каталог пуст — но текст ошибки говорит прямо: заблокировала <b>CORS policy</b>. Почините кнопкой слева →</> })}</p></div>}
-            {done && <div className="takeaway ok fade-step"><div className="ta-bulb">🎉</div><p className="ta-h">{tr2({ uz: "Sayt endi serverdan o'qiyapti!", ru: "Сайт теперь читает с сервера!" })}</p><p className="ta-sub">{tr2({ uz: "Spark ham paydo bo'ldi — S0'dagi muammo hal bo'ldi.", ru: "Spark появился — проблема с первого экрана решена." })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -2166,19 +2177,19 @@ var Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <div className="form-row"><span className="form-lbl">{tr2({ uz: "Yil", ru: "Год" })}</span><span className="form-val">2024</span></div>
               <button className={`btn ${added ? "" : "tap-hint"}`} disabled={added} onClick={post} style={{ marginTop: 10, width: "100%", background: added ? T.success : T.ink3 }}>{added ? tr2({ uz: "✓ POST yuborildi (201)", ru: "✓ POST отправлен (201)" }) : tr2({ uz: "Qo'shish — POST /api/cars", ru: "Добавить — POST /api/cars" })}</button>
             </div>
-            <pre className="code-box" style={{ padding: "10px 13px", lineHeight: 1.8 }}>
+            {!done && <pre className="code-box" style={{ padding: "8px 13px", lineHeight: 1.6 }}>
               {"fetch("}<St>'/api/cars'</St>{", {"}{"\n"}
               {"  method: "}<St>'POST'</St>{","}{"\n"}
               {"  body: JSON.stringify(yangi)"}{"\n"}
               {"}).then(() => "}<At>yana_fetch()</At>{");"}
-            </pre>
-            <button className={`btn-soft ${added && !refreshed ? "tap-hint" : ""}`} disabled={!added || refreshed} onClick={refresh} style={{ alignSelf: "flex-start" }}>{refreshed ? tr2({ uz: "✓ Yangilandi — Tracker joyida", ru: "✓ Обновили — Tracker на месте" }) : tr2({ uz: "🔄 Sahifani yangilash", ru: "🔄 Обновить страницу" })}</button>
+            </pre>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr2({ uz: <>Yangilandi — Tracker baribir joyida! Chunki u faqat ekranda emas, <b>bazada</b> saqlangan. Mana to'liq ulanish: forma → POST → baza → qayta GET → ekran.</>, ru: <>Обновили — а Tracker всё равно на месте! Потому что он сохранён не только на экране, а <b>в базе</b>. Вот полная связка: форма → POST → база → повторный GET → экран.</> })}</p></div>}
           </Col>
           <Col>
-            <p className="flow-label">{tr2({ uz: "Sayt — front (localhost:5173)", ru: "Сайт — фронт (localhost:5173)" })}</p>
-            <Win title="avtoijara.uz" minH={160}><AvtoSite cars={cars} newId={added ? TRACKER.id : void 0} cols={2} /></Win>
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10, flexWrap: "wrap" }}><p className="flow-label">{tr2({ uz: "Sayt — front (localhost:5173)", ru: "Сайт — фронт (localhost:5173)" })}</p><button className={`btn-soft ${added && !refreshed ? "tap-hint" : ""}`} disabled={!added || refreshed} onClick={refresh} style={{ flexShrink: 0 }}>{refreshed ? tr2({ uz: "✓ Yangilandi — Tracker joyida", ru: "✓ Обновили — Tracker на месте" }) : tr2({ uz: "🔄 Sahifani yangilash", ru: "🔄 Обновить страницу" })}</button>
+</div>
+            <Win title="avtoijara.uz" minH={160} maxH={220}><AvtoSite cars={cars} newId={added ? TRACKER.id : void 0} cols={2} /></Win>
             {added && !refreshed && <p className="small fade-step" style={{ color: T.success, fontStyle: "italic", margin: 0 }}>{tr2({ uz: "Tracker chiqdi! Endi 🔄 yangilang — saqlanib qoladimi?", ru: "Tracker появился! Теперь обновите 🔄 — сохранится ли?" })}</p>}
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr2({ uz: <>Yangilandi — Tracker baribir joyida! Chunki u faqat ekranda emas, <b>bazada</b> saqlangan. Mana to'liq ulanish: forma → POST → baza → qayta GET → ekran.</>, ru: <>Обновили — а Tracker всё равно на месте! Потому что он сохранён не только на экране, а <b>в базе</b>. Вот полная связка: форма → POST → база → повторный GET → экран.</> })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -2249,16 +2260,18 @@ var Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <div className="split">
           <Col>
             <p className="flow-label">{tr2({ uz: "Amallar", ru: "Действия" })}</p>
+            <div className="fade-up delay-1" style={{ display: "flex", gap: 8, flexWrap: "wrap", alignItems: "center" }}>
             <button className="btn-soft" disabled style={{ alignSelf: "flex-start", opacity: 1 }}>{tr2({ uz: "✓ Serverdan yuklandi (avtomatik)", ru: "✓ Загружено с сервера (автоматически)" })}</button>
             <button className={`btn ${didAdd ? "" : "tap-hint"}`} disabled={didAdd} onClick={add} style={{ alignSelf: "flex-start", background: didAdd ? T.success : T.ink3 }}>{didAdd ? tr2({ uz: "✓ Qo'shildi (POST)", ru: "✓ Добавлено (POST)" }) : tr2({ uz: "Mashina qo'shish — POST", ru: "Добавить машину — POST" })}</button>
             <button className={`btn-soft ${didAdd && !didRefresh ? "tap-hint" : ""}`} disabled={!didAdd || didRefresh} onClick={refresh} style={{ alignSelf: "flex-start" }}>{didRefresh ? tr2({ uz: "✓ Saqlanib qoldi", ru: "✓ Сохранилось" }) : tr2({ uz: "🔄 Sahifani yangilash", ru: "🔄 Обновить страницу" })}</button>
+            </div>
             <p className="flow-label" style={{ margin: "4px 0 0" }}>{tr2({ uz: "Bajarildi", ru: "Выполнено" })}</p>
             <div style={{ display: "flex", flexWrap: "wrap", gap: 7 }}><Tick ok={didLoad} label={tr2({ uz: "Yuklandi", ru: "Загрузилось" })} /><Tick ok={didAdd} label={tr2({ uz: "Qo'shdim", ru: "Добавили" })} /><Tick ok={didRefresh} label={tr2({ uz: "Saqlandi", ru: "Сохранилось" })} /></div>
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr2({ uz: "🎉 Fullstack ilova tayyor! Sayt serverdan o'qiydi, formaga yozsangiz bazaga yoziladi, refresh'da yo'qolmaydi. Front + back + baza — bittasi bo'lib ishlaydi.", ru: "🎉 Fullstack-приложение готово! Сайт читает с сервера, запись из формы попадает в базу и не теряется при refresh. Фронт + бэк + база работают как одно целое." })}</p></div>}
           </Col>
           <Col>
             <p className="flow-label">{tr2({ uz: "Sizning saytingiz", ru: "Ваш сайт" })}</p>
-            <Win title="avtoijara.uz" minH={170}><AvtoSite cars={cars} newId={didAdd ? TRACKER.id : void 0} cols={2} /></Win>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr2({ uz: "🎉 Fullstack ilova tayyor! Sayt serverdan o'qiydi, formaga yozsangiz bazaga yoziladi, refresh'da yo'qolmaydi. Front + back + baza — bittasi bo'lib ishlaydi.", ru: "🎉 Fullstack-приложение готово! Сайт читает с сервера, запись из формы попадает в базу и не теряется при refresh. Фронт + бэк + база работают как одно целое." })}</p></div>}
+            <Win title="avtoijara.uz" minH={170} maxH={230}><AvtoSite cars={cars} newId={didAdd ? TRACKER.id : void 0} cols={2} /></Win>
           </Col>
         </div>
         </Zoomable>
@@ -2395,6 +2408,10 @@ function ScreenLivePractice({ title, task, checklist, screen, storedAnswer, onAn
               <div className="lp-task-h"><span className="lp-task-badge">{tr2({ uz: "TOPSHIRIQ", ru: "ЗАДАНИЕ" })}</span></div>
               <p className="body" style={{ margin: 0, color: T.ink }}>{tr2(task)}</p>
             </div>
+            {!isMentor && <button className={`lp-done-btn ${done ? "is-done" : ""}`} disabled={done} onClick={complete}>
+              {done ? tr2({ uz: "✓ Bajarildi — ustozni kuting", ru: "✓ Готово — ждите наставника" }) : tr2({ uz: "✅ Bajardim", ru: "✅ Готово" })}
+            </button>}
+            {done && !isMentor && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr2({ uz: "Juda yaxshi! Saytingizni serverga o'zingiz uladingiz. Ustoz tekshirib, keyingi qadamga o'tkazadi.", ru: "Отлично! Вы сами подключили свой сайт к серверу. Наставник проверит и переведёт на следующий шаг." })}</p></div>}
             <MentorPracticeStats live={_live} screen={screen} />
             <StudentPracticePulse live={_live} screen={screen} />
           </Col>
@@ -2409,10 +2426,6 @@ function ScreenLivePractice({ title, task, checklist, screen, storedAnswer, onAn
                   </button>;
   })}
             </div>
-            {!isMentor && <button className={`lp-done-btn ${done ? "is-done" : ""}`} disabled={done} onClick={complete}>
-              {done ? tr2({ uz: "✓ Bajarildi — ustozni kuting", ru: "✓ Готово — ждите наставника" }) : tr2({ uz: "✅ Bajardim", ru: "✅ Готово" })}
-            </button>}
-            {done && !isMentor && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr2({ uz: "Juda yaxshi! Saytingizni serverga o'zingiz uladingiz. Ustoz tekshirib, keyingi qadamga o'tkazadi.", ru: "Отлично! Вы сами подключили свой сайт к серверу. Наставник проверит и переведёт на следующий шаг." })}</p></div>}
           </Col>
         </div>
       </div>
@@ -3407,7 +3420,7 @@ function FullstackConnectPracticeLesson({ lang: langProp, onFinished, liveToken 
 
         .bp-window { border-radius: 13px; overflow: hidden; background: #fff; box-shadow: 0 10px 26px -6px rgba(${T.shadowBase},0.16); }
 
-        .h-title { font-size: clamp(22px,4vw,38px); }
+        .h-title { font-size: clamp(22px,4vw,36px); letter-spacing: -0.015em; text-wrap: balance; }
         .h-sub { font-size: clamp(17px,2.5vw,22px); }
         .h-ask { font-size: clamp(19px,2.6vw,27px); line-height: 1.32; letter-spacing: -0.01em; text-wrap: balance; }
         .body { font-size: clamp(14px,1.6vw,16px); line-height: 1.5; }
@@ -3439,6 +3452,9 @@ function FullstackConnectPracticeLesson({ lang: langProp, onFinished, liveToken 
         .screen > * { flex-shrink: 0; }
         .head { display: flex; flex-direction: column; gap: 6px; }
         .split { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: clamp(18px,3vw,36px); align-items: start; }
+        .split3 { grid-template-columns: minmax(0,1.14fr) minmax(0,1.19fr) minmax(0,1fr); gap: clamp(14px,2vw,24px); } /* §34 s0: sayt · baza · savol — uch ustun */
+        .split3 .hook-option { padding: clamp(9px,1.3vw,12px) clamp(13px,1.8vw,16px); } .split3 .db-row { gap: 6px; }
+        @media (max-width: 1000px) { .split3 { grid-template-columns: minmax(0,1fr) minmax(0,1fr); } }
         .col { display: flex; flex-direction: column; gap: clamp(12px,2vw,16px); min-width: 0; }
         @media (max-width: 760px) { .split { grid-template-columns: 1fr; gap: clamp(14px,3vw,20px); } }
         .flow-label { font-family: 'Manrope'; font-weight: 700; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: ${T.ink2}; }
@@ -3462,7 +3478,7 @@ function FullstackConnectPracticeLesson({ lang: langProp, onFinished, liveToken 
         .ai-line { font-family: 'JetBrains Mono'; font-size: 12.5px; color: ${CODE.text}; padding: 7px 9px; border-radius: 6px; white-space: pre-wrap; line-height: 1.6; }
         .ai-line.ok { background: rgba(31,122,77,0.16); }
         .ai-prompt { font-size: 12px; color: ${T.ink3}; margin: 0; font-style: italic; } .note-h { font-weight: 700; font-size: 13px; margin: 0 0 4px; }
-        .takeaway { background: ${T.accentSoft}; border-radius: 14px; padding: 20px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 5px; } .ta-bulb { font-size: 34px; } .ta-h { font-family: 'Source Serif 4', serif; font-weight: 600; font-size: clamp(16px,2.2vw,20px); color: ${T.ink}; margin: 0; } .ta-sub { color: ${T.accent}; font-weight: 600; font-size: 13px; margin: 0; }
+        .takeaway { background: ${T.accentSoft}; border-radius: 14px; padding: 14px 16px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 5px; } .ta-bulb { font-size: 26px; } .ta-h { font-family: 'Source Serif 4', serif; font-weight: 600; font-size: clamp(16px,2.2vw,20px); color: ${T.ink}; margin: 0; } .ta-sub { color: ${T.accent}; font-weight: 600; font-size: 13px; margin: 0; }
         /* ✅ ijobiy natija (ulanish tiklandi) — yashil, xato-qizil EMAS */
         .takeaway.ok { background: ${T.successSoft}; box-shadow: 0 8px 20px -8px rgba(31,122,77,0.3); }
         .takeaway.ok .ta-sub { color: ${T.success}; }
@@ -3556,7 +3572,7 @@ function FullstackConnectPracticeLesson({ lang: langProp, onFinished, liveToken 
         .run-port { font-family: 'JetBrains Mono'; font-size: 11px; color: ${T.ink3}; background: ${T.bg}; padding: 2px 8px; border-radius: 6px; }
 
         /* === 🔌 SIM (uzilgan ulanish — s0 hook) === */
-        .wire { display: flex; align-items: center; gap: clamp(10px,2vw,18px); background: ${T.paper}; border-radius: 14px; padding: 11px clamp(13px,2vw,18px); box-shadow: 0 6px 16px -6px rgba(${T.shadowBase},0.16); }
+        .wire { display: flex; align-items: center; gap: clamp(10px,2vw,18px); background: ${T.paper}; border-radius: 14px; padding: 8px clamp(13px,2vw,18px); box-shadow: 0 6px 16px -6px rgba(${T.shadowBase},0.16); }
         .wire-end { display: flex; align-items: center; gap: 9px; flex-shrink: 0; }
         .wire-ico { font-size: 21px; }
         .wire-t { display: flex; flex-direction: column; line-height: 1.25; font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 12px; color: ${T.ink}; }
@@ -3722,9 +3738,10 @@ function FullstackConnectPracticeLesson({ lang: langProp, onFinished, liveToken 
         .mentor-cue { font-family: 'Manrope'; font-weight: 600; font-size: 11px; color: ${T.accent}; letter-spacing: 0.01em; }
 
         /* ===== ⚡ v18 QATLAM CSS (drag-drop · debug · flashcard · badge · podium · recap · mstats · CodeStrike arena) ===== */
-        .dd { display: flex; flex-direction: column; gap: 13px; }
+        .dd { display: grid; grid-template-columns: minmax(0,1.15fr) minmax(0,1fr); gap: 13px; align-items: start; } /* §34: keng ekranda uyalar chapda, hovuz o'ngda */
+        @media (max-width: 760px) { .dd { grid-template-columns: 1fr; } }
         .dd-slots { display: flex; flex-direction: column; gap: 9px; }
-        .dd-slot { display: flex; align-items: center; gap: 12px; min-height: 56px; border-radius: 14px; border: 2px dashed ${T.ink3}66; background: ${T.paper}; padding: 8px 12px; transition: border-color .18s, background .18s; }
+        .dd-slot { display: flex; align-items: center; gap: 12px; min-height: 46px; border-radius: 14px; border: 2px dashed ${T.ink3}66; background: ${T.paper}; padding: 8px 12px; transition: border-color .18s, background .18s; }
         .dd-slot.filled { border-style: solid; border-color: ${T.line}; }
         .dd-slot.ok { border-color: ${T.success}; background: ${T.successSoft}; animation: dd-door-open .62s cubic-bezier(.34,1.3,.4,1); }
         /* 🚪 to'g'ri eshik: ochilish burilishi + yashil nur */
@@ -3759,7 +3776,7 @@ function FullstackConnectPracticeLesson({ lang: langProp, onFinished, liveToken 
         .lp-task-h { display: flex; align-items: center; gap: 8px; }
         .lp-task-badge { font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: 10.5px; letter-spacing: 0.12em; color: #fff; background: ${T.accent}; padding: 3px 9px; border-radius: 6px; }
         .lp-steps { display: flex; flex-direction: column; gap: 8px; }
-        .lp-step { display: flex; align-items: center; gap: 11px; width: 100%; text-align: left; background: ${T.paper}; border: none; border-radius: 11px; padding: 11px 13px; font-family: 'Manrope', sans-serif; font-weight: 500; font-size: clamp(13px,1.6vw,15px); color: ${T.ink}; cursor: pointer; transition: all 0.16s; box-shadow: 0 5px 14px -7px rgba(${T.shadowBase},0.16); }
+        .lp-step { display: flex; align-items: center; gap: 11px; width: 100%; text-align: left; background: ${T.paper}; border: none; border-radius: 11px; padding: 8px 12px; font-family: 'Manrope', sans-serif; font-weight: 500; font-size: clamp(13px,1.6vw,15px); color: ${T.ink}; cursor: pointer; transition: all 0.16s; box-shadow: 0 5px 14px -7px rgba(${T.shadowBase},0.16); }
         .lp-step:hover:not(.on) { box-shadow: 0 8px 18px -7px rgba(${T.shadowBase},0.24); }
         .lp-step.on { background: ${T.successSoft}; color: ${T.success}; box-shadow: inset 0 0 0 1.5px ${T.success}55; }
         .lp-check { width: 22px; height: 22px; border-radius: 50%; flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 12px; background: ${T.bg}; color: ${T.ink3}; box-shadow: inset 0 0 0 1.5px ${T.ink3}55; transition: all 0.16s; }

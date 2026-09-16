@@ -2621,7 +2621,8 @@ function StyleTag() {
 var HtmlCompiler_default = HtmlCompiler;
 
 // src/live/liveClient.js
-var LIVE_API_URL = "https://dars-api.coddycamp.uz" ? String("https://dars-api.coddycamp.uz").replace(/\/+$/, "") : DEFAULT_API_URL;
+var DEFAULT_API_URL = "https://dars-api.coddycamp.uz";
+var LIVE_API_URL = "" ? String("").replace(/\/+$/, "") : DEFAULT_API_URL;
 var LIVE_ENABLED = !!LIVE_API_URL;
 var LIVE_POLL_MS = 2500;
 var LIVE_POLL_MAX_MS = 15e3;
@@ -2635,7 +2636,9 @@ async function errorFrom(r, fallback) {
     msg = (await r.json()).message || "";
   } catch {
   }
-  return new Error(msg || fallback);
+  const e = new Error(msg || fallback);
+  e.status = r.status;
+  return e;
 }
 async function liveRpc(fn, body) {
   const r = await fetch(`${API}/rpc/${fn}`, {
@@ -3198,8 +3201,14 @@ function useLiveSession(lessonId, answerKey, opts = {}) {
       liveStore(lessonId, { mode: "mentor", pin: row.pin, token: row.token });
       if (keyRef.current) liveRpc("set_quiz_keys", { p_lesson_id: lessonId, p_mentor_code: (mentorCode || "").trim(), p_keys: keyRef.current }).catch(() => {
       });
-    } catch {
-      setJoinError(tr2({ uz: "Mentor kodi noto'g'ri yoki ulanishda xato.", ru: "Неверный код ментора или ошибка подключения." }));
+    } catch (e) {
+      const st = e && e.status;
+      setJoinError(
+        st === 401 || st === 403 ? tr2({ uz: "Mentor kodi noto'g'ri.", ru: "Неверный код ментора." }) : st ? tr2({ uz: `Server javob bermadi (xato ${st}). Birozdan keyin urinib ko'ring.`, ru: `Сервер не ответил (ошибка ${st}). Попробуйте чуть позже.` }) : tr2({
+          uz: "Serverga ulanib bo'lmadi. Internetni tekshiring — yoki «← Orqaga» bosib, «Kodsiz, o'zim ko'raman» bilan darsni jonli rejimsiz o'tkazing.",
+          ru: "Не удалось подключиться к серверу. Проверьте интернет — или нажмите «← Назад» и выберите «Без кода, смотрю сам», чтобы провести урок без живого режима."
+        })
+      );
     } finally {
       setBusy(false);
     }
@@ -3554,7 +3563,7 @@ function useServerProgress(live, refs) {
 import React2, { useState as useState3, useEffect as useEffect4 } from "react";
 var LT = { bg: "#F6F4EF", ink: "#0E0E10", ink2: "#5A5A60", ink3: "#A7A6A2", paper: "#FFFFFF", accent: "#FF4F28", accentSoft: "#FFE8E1", success: "#1F7A4D" };
 var _liveBtnPri = { background: LT.accent, color: "#fff", border: "none", borderRadius: 12, padding: "14px 20px", fontSize: 16, fontWeight: 700, cursor: "pointer" };
-var _liveBadgeS = { position: "fixed", top: 10, left: "50%", transform: "translateX(-50%)", zIndex: 9998, background: LT.paper, border: `1px solid ${LT.ink3}55`, borderRadius: 99, padding: "6px 14px", fontSize: 13, fontWeight: 600, color: LT.ink2, boxShadow: "0 2px 10px rgba(58,53,48,0.12)", display: "flex", alignItems: "center", gap: 8, whiteSpace: "nowrap", maxWidth: "92vw" };
+var _liveBadgeS = { position: "fixed", top: 2, left: "50%", transform: "translateX(-50%)", zIndex: 9998, background: LT.paper, border: `1px solid ${LT.ink3}55`, borderRadius: 99, padding: "2px 14px", fontSize: 13, fontWeight: 600, color: LT.ink2, boxShadow: "0 2px 10px rgba(58,53,48,0.12)", display: "flex", alignItems: "center", gap: 8, whiteSpace: "nowrap", maxWidth: "92vw" };
 var _liveDot = (c) => ({ width: 8, height: 8, borderRadius: 99, background: c, display: "inline-block" });
 function LiveBigCode({ pin, onClose }) {
   const digits = String(pin || "").split("");
@@ -4379,7 +4388,7 @@ var QuestionScreen = ({ screen, scope, eyebrow, question, questionText, options,
       <div className="screen" style={{ justifyContent: isMentorLive ? "flex-start" : "safe center", gap: "clamp(16px,2.5vw,24px)" }}>
         <div className="fade-up">{question}</div>
         {oneShot && !solved && <p className="small mono fade-up" style={{ margin: "-8px 0 0", color: T.accent, fontWeight: 600 }}>⚡ {tr3({ uz: "Jonli dars — bitta urinish, o'ylab bosing!", ru: "Живой урок — одна попытка, думайте перед кликом!" })}</p>}
-        <div className="fade-up delay-1" style={{ display: "flex", flexDirection: "column", gap: 11 }}>
+        <div className="fade-up delay-1" style={{ display: "flex", flexDirection: "column", gap: picked !== null ? 8 : 11 }}>
           {options.map((opt, i) => {
     let cls = "option";
     if (isMentorLive) {
@@ -4397,7 +4406,7 @@ var QuestionScreen = ({ screen, scope, eyebrow, question, questionText, options,
       }
     } else if (i === picked) cls += " option-picked-wrong";
     const showGreenLetter = isMentorLive ? mReveal && i === correctIdx : solved && revealed && i === correctIdx;
-    return <button key={i} className={cls} disabled={solved || isMentorLive} onClick={() => pick(i)} style={{ padding: "clamp(13px,1.9vw,17px) clamp(15px,2.2vw,20px)", fontSize: "clamp(15px,1.85vw,17px)", display: "flex", alignItems: "center", gap: 12 }}>
+    return <button key={i} className={cls} disabled={solved || isMentorLive} onClick={() => pick(i)} style={{ padding: picked !== null ? "clamp(9px,1.3vw,12px) clamp(15px,2.2vw,20px)" : "clamp(13px,1.9vw,17px) clamp(15px,2.2vw,20px)", fontSize: "clamp(15px,1.85vw,17px)", display: "flex", alignItems: "center", gap: 12 }}>
                 <span className="mono small" style={{ minWidth: 20, color: showGreenLetter ? T.success : T.ink3 }}>{String.fromCharCode(65 + i)}</span>
                 <span style={{ flex: 1 }}>{fmtCode(tr3(opt))}</span>
               </button>;
@@ -4513,7 +4522,7 @@ var Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
   };
   return <Stage eyebrow={tr3({ uz: "Kirish", ru: "Введение" })} screen={screen} audioState={audio} navContent={<NavNext disabled={picked === null} label={tr3({ uz: "Davom etish", ru: "Продолжить" })} onClick={onNext} />}>
       <div className="screen">
-        <h1 className="title h-title fade-up" style={{ maxWidth: 760 }}>{tr3({ uz: <>Bir xil matn — nega biri <span className="italic" style={{ color: T.accent }}>chiroyli</span>?</>, ru: <>Одинаковый текст — почему один <span className="italic" style={{ color: T.accent }}>красивый</span>?</> })}</h1>
+        <h1 className="title h-title fade-up">{tr3({ uz: <>Bir xil matn — nega biri <span className="italic" style={{ color: T.accent }}>chiroyli</span>?</>, ru: <>Одинаковый текст — почему один <span className="italic" style={{ color: T.accent }}>красивый</span>?</> })}</h1>
         <Mentor>{tr3({ uz: <>Mana ikkita sahifa. Ichidagi matn — <b style={{ color: T.ink }}>bir xil</b>, bitta harf ham farq qilmaydi. Lekin biri oddiy, biri chiroyli. Tugmani bosib, farqni ko'ring.</>, ru: <>Вот две страницы. Текст внутри — <b style={{ color: T.ink }}>одинаковый</b>, ни одна буква не отличается. Но одна простая, а другая красивая. Нажмите кнопку и посмотрите разницу.</> })}</Mentor>
         <Zoomable>
         <Split>
@@ -4898,7 +4907,7 @@ var Screen5b = (props) => <QuestionScreen
 var Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const audio = useAudio([{ id: "s6", text: `Rangni ikki xil yozish mumkin: nom bilan, masalan red, yoki maxsus hex kod bilan, masalan panjara FF4F28. Nomlar oson, lekin kam. Hex kod esa millionlab rangni aniq beradi. Ranglardan birini bosib, ikkala yozuvini ko'ring.`, trigger: "on_mount", waits_for: null }]);
   const COLORS = [{ n: "red", hex: "#E03131" }, { n: "orange", hex: "#FF4F28" }, { n: "gold", hex: "#F59F00" }, { n: "green", hex: "#2F9E44" }, { n: "teal", hex: "#0CA678" }, { n: "blue", hex: "#1971C2" }, { n: "purple", hex: "#7048E8" }, { n: "pink", hex: "#E64980" }];
-  const [sel, setSel] = useState4(storedAnswer ? storedAnswer.sel ?? 1 : null);
+  const [sel, setSel] = useState4(() => storedAnswer ? Number.isInteger(storedAnswer.sel) && COLORS[storedAnswer.sel] ? storedAnswer.sel : 1 : null);
   const done = sel !== null;
   const cur = sel !== null ? COLORS[sel] : null;
   const pick = (i) => {
@@ -4932,8 +4941,8 @@ var Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const audio = useAudio([{ id: "s7", text: `Shrift sahifaning ovozi kabi. font-family shrift turini, font-size esa o'lchamini belgilaydi. Turini va o'lchamini almashtirib, matn qanday o'zgarishini ko'ring.`, trigger: "on_mount", waits_for: null }]);
   const FONTS = [{ k: "sans", l: "Sans", css: "sans-serif", ff: "'Manrope', sans-serif" }, { k: "serif", l: "Serif", css: "serif", ff: "Georgia, serif" }, { k: "mono", l: "Mono", css: "monospace", ff: "'JetBrains Mono', monospace" }];
   const SIZES = [{ l: { uz: "Kichik", ru: "Мелкий" }, v: 16 }, { l: { uz: "O'rta", ru: "Средний" }, v: 24 }, { l: { uz: "Katta", ru: "Крупный" }, v: 34 }];
-  const [font, setFont] = useState4(storedAnswer?.font || "sans");
-  const [size, setSize] = useState4(storedAnswer?.size || 24);
+  const [font, setFont] = useState4(() => FONTS.some((f) => f.k === storedAnswer?.font) ? storedAnswer.font : "sans");
+  const [size, setSize] = useState4(() => Number.isFinite(storedAnswer?.size) ? storedAnswer.size : 24);
   const [touched, setTouched] = useState4(!!storedAnswer);
   const done = touched;
   const cur = FONTS.find((f) => f.k === font);
@@ -5203,7 +5212,7 @@ var Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 };
 var Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const audio = useAudio([{ id: "s15", text: `Oxirgi qadam — o'zingiz yozasiz. h1 sarlavhani qizil qiling: to'liq CSS qoidasini yozing — selektor, qavs, xususiyat, qiymat va nuqta-vergul. Hammasini o'zingiz tering; pastdagi ro'yxat qaysi qadam bajarilganini ko'rsatib turadi.`, trigger: "on_mount", waits_for: { type: "typed_ok" } }]);
-  const [value, setValue] = useState4(storedAnswer?.picked || "");
+  const [value, setValue] = useState4(typeof storedAnswer?.picked === "string" ? storedAnswer.picked : "");
   const [passed, setPassed] = useState4(!!storedAnswer?.correct);
   const hasSel = /h1/i.test(value);
   const hasOpen = value.includes("{");
@@ -6298,22 +6307,37 @@ function HtmlLesson({ lang: langProp, onFinished, onPractice, liveToken }) {
       setPractice(null);
       advance();
     };
-    if (typeof onPractice === "function") Promise.resolve(onPractice(entry.task)).then(done);
-    else {
+    const openLocal = () => {
       pracWrite(LESSON_META.lessonId, { kind: `s${fromScreen}`, screen: fromScreen });
       setPractice({ ...entry, done, codeKey: codeKeyOf(LESSON_META.lessonId, `s${fromScreen}`) });
+    };
+    if (typeof onPractice !== "function") {
+      openLocal();
+      return;
+    }
+    try {
+      Promise.resolve(onPractice(entry.task)).then(done, openLocal);
+    } catch {
+      openLocal();
     }
   };
   const openHomeworkPractice = () => {
     const entry = { task: TASK_HW, starter: "" };
-    if (typeof onPractice === "function") Promise.resolve(onPractice(entry.task)).catch(() => {
-    });
-    else {
+    const openLocal = () => {
       pracWrite(LESSON_META.lessonId, { kind: "hw" });
       setPractice({ ...entry, codeKey: codeKeyOf(LESSON_META.lessonId, "hw"), done: () => {
         pracClear(LESSON_META.lessonId);
         setPractice(null);
       } });
+    };
+    if (typeof onPractice !== "function") {
+      openLocal();
+      return;
+    }
+    try {
+      Promise.resolve(onPractice(entry.task)).catch(openLocal);
+    } catch {
+      openLocal();
     }
   };
   useEffect5(() => {
@@ -6334,7 +6358,7 @@ function HtmlLesson({ lang: langProp, onFinished, onPractice, liveToken }) {
       advance();
       return;
     }
-    if (!(live && (live.mode === "mentor" || live.mode === "student" && live.status !== "ended" && live.mentorAlive))) {
+    if (!(live && (live.mode === "mentor" || live.mode === "student" && live.status !== "ended"))) {
       advance();
       return;
     }
@@ -6495,7 +6519,7 @@ function HtmlLesson({ lang: langProp, onFinished, onPractice, liveToken }) {
         .bp-title { font-family: 'JetBrains Mono'; font-size: 11px; color: ${T.ink3}; }
         .bp-body { padding: clamp(12px,2.2vw,18px); }
 
-        .h-title { font-size: clamp(22px,4vw,38px); }
+        .h-title { font-size: clamp(22px,4vw,36px); letter-spacing: -0.015em; text-wrap: balance; }
         .h-sub { font-size: clamp(17px,2.5vw,22px); }
         .h-ask { font-size: clamp(19px,2.6vw,27px); line-height: 1.32; letter-spacing: -0.01em; text-wrap: balance; }
         .body { font-size: clamp(14px,1.6vw,16px); line-height: 1.5; }
@@ -7208,9 +7232,10 @@ function HtmlLesson({ lang: langProp, onFinished, onPractice, liveToken }) {
         /* === 🧲 DRAG&DROP (reusable) === */
         .sk-buildbox { display: flex; flex-direction: column; animation: sk-swapin 0.5s cubic-bezier(.34,1.3,.4,1); }
         @keyframes sk-swapin { from { opacity: 0; transform: translateY(12px) scale(0.96); } to { opacity: 1; transform: none; } }
-        .dd { display: flex; flex-direction: column; gap: 13px; }
+        .dd { display: grid; grid-template-columns: minmax(0,1.15fr) minmax(0,1fr); gap: 13px; align-items: start; } /* §34: keng ekranda uyalar chapda, hovuz o'ngda */
+        @media (max-width: 760px) { .dd { grid-template-columns: 1fr; } }
         .dd-slots { display: flex; flex-direction: column; gap: 9px; }
-        .dd-slot { display: flex; align-items: center; gap: 12px; min-height: 56px; border-radius: 14px; border: 2px dashed ${T.ink3}66; background: ${T.paper}; padding: 8px 12px; transition: border-color .18s, background .18s; }
+        .dd-slot { display: flex; align-items: center; gap: 12px; min-height: 46px; border-radius: 14px; border: 2px dashed ${T.ink3}66; background: ${T.paper}; padding: 8px 12px; transition: border-color .18s, background .18s; }
         .dd-slot.filled { border-style: solid; border-color: ${T.line}; }
         .dd-slot.ok { border-color: ${T.success}; background: ${T.successSoft}; }
         .dd-slot.bad { border-color: #E24848; background: #FBE9E9; animation: dd-shake .4s; }

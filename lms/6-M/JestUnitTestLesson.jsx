@@ -9,7 +9,8 @@
 import React3, { useState as useState3, useEffect as useEffect4, useRef as useRef3, createContext as createContext2, useContext as useContext2, useCallback as useCallback2, useMemo } from "react";
 
 // src/live/liveClient.js
-var LIVE_API_URL = "https://dars-api.coddycamp.uz" ? String("https://dars-api.coddycamp.uz").replace(/\/+$/, "") : DEFAULT_API_URL;
+var DEFAULT_API_URL = "https://dars-api.coddycamp.uz";
+var LIVE_API_URL = "" ? String("").replace(/\/+$/, "") : DEFAULT_API_URL;
 var LIVE_ENABLED = !!LIVE_API_URL;
 var LIVE_POLL_MS = 2500;
 var LIVE_POLL_MAX_MS = 15e3;
@@ -23,7 +24,9 @@ async function errorFrom(r, fallback) {
     msg = (await r.json()).message || "";
   } catch {
   }
-  return new Error(msg || fallback);
+  const e = new Error(msg || fallback);
+  e.status = r.status;
+  return e;
 }
 async function liveRpc(fn, body) {
   const r = await fetch(`${API}/rpc/${fn}`, {
@@ -586,8 +589,14 @@ function useLiveSession(lessonId, answerKey, opts = {}) {
       liveStore(lessonId, { mode: "mentor", pin: row.pin, token: row.token });
       if (keyRef.current) liveRpc("set_quiz_keys", { p_lesson_id: lessonId, p_mentor_code: (mentorCode || "").trim(), p_keys: keyRef.current }).catch(() => {
       });
-    } catch {
-      setJoinError(tr({ uz: "Mentor kodi noto'g'ri yoki ulanishda xato.", ru: "Неверный код ментора или ошибка подключения." }));
+    } catch (e) {
+      const st = e && e.status;
+      setJoinError(
+        st === 401 || st === 403 ? tr({ uz: "Mentor kodi noto'g'ri.", ru: "Неверный код ментора." }) : st ? tr({ uz: `Server javob bermadi (xato ${st}). Birozdan keyin urinib ko'ring.`, ru: `Сервер не ответил (ошибка ${st}). Попробуйте чуть позже.` }) : tr({
+          uz: "Serverga ulanib bo'lmadi. Internetni tekshiring — yoki «← Orqaga» bosib, «Kodsiz, o'zim ko'raman» bilan darsni jonli rejimsiz o'tkazing.",
+          ru: "Не удалось подключиться к серверу. Проверьте интернет — или нажмите «← Назад» и выберите «Без кода, смотрю сам», чтобы провести урок без живого режима."
+        })
+      );
     } finally {
       setBusy(false);
     }
@@ -942,7 +951,7 @@ function useServerProgress(live, refs) {
 import React2, { useState as useState2, useEffect as useEffect3 } from "react";
 var LT = { bg: "#F6F4EF", ink: "#0E0E10", ink2: "#5A5A60", ink3: "#A7A6A2", paper: "#FFFFFF", accent: "#FF4F28", accentSoft: "#FFE8E1", success: "#1F7A4D" };
 var _liveBtnPri = { background: LT.accent, color: "#fff", border: "none", borderRadius: 12, padding: "14px 20px", fontSize: 16, fontWeight: 700, cursor: "pointer" };
-var _liveBadgeS = { position: "fixed", top: 10, left: "50%", transform: "translateX(-50%)", zIndex: 9998, background: LT.paper, border: `1px solid ${LT.ink3}55`, borderRadius: 99, padding: "6px 14px", fontSize: 13, fontWeight: 600, color: LT.ink2, boxShadow: "0 2px 10px rgba(58,53,48,0.12)", display: "flex", alignItems: "center", gap: 8, whiteSpace: "nowrap", maxWidth: "92vw" };
+var _liveBadgeS = { position: "fixed", top: 2, left: "50%", transform: "translateX(-50%)", zIndex: 9998, background: LT.paper, border: `1px solid ${LT.ink3}55`, borderRadius: 99, padding: "2px 14px", fontSize: 13, fontWeight: 600, color: LT.ink2, boxShadow: "0 2px 10px rgba(58,53,48,0.12)", display: "flex", alignItems: "center", gap: 8, whiteSpace: "nowrap", maxWidth: "92vw" };
 var _liveDot = (c) => ({ width: 8, height: 8, borderRadius: 99, background: c, display: "inline-block" });
 function LiveBigCode({ pin, onClose }) {
   const digits = String(pin || "").split("");
@@ -1485,7 +1494,7 @@ var QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, opt
       <div className="screen" style={{ justifyContent: isMentorLive ? "flex-start" : "center", gap: "clamp(16px,2.5vw,24px)" }}>
         <div className="fade-up">{question}</div>
         {oneShot && !solved && <p className="small mono fade-up" style={{ margin: "-8px 0 0", color: T.accent, fontWeight: 600 }}>{tr2({ uz: "⚡ Jonli dars — bitta urinish, o'ylab bosing!", ru: "⚡ Живой урок — одна попытка, подумайте перед нажатием!" })}</p>}
-        <div className="fade-up delay-1" style={{ display: "flex", flexDirection: "column", gap: 11 }}>
+        <div className="fade-up delay-1" style={{ display: "flex", flexDirection: "column", gap: picked !== null ? 8 : 11 }}>
           {options.map((opt, i) => {
     let cls = "option";
     if (isMentorLive) {
@@ -1503,7 +1512,7 @@ var QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, opt
       }
     } else if (i === picked) cls += " option-picked-wrong";
     const showGreenLetter = isMentorLive ? mReveal && i === correctIdx : solved && revealed && i === correctIdx;
-    return <button key={i} className={cls} disabled={solved || isMentorLive} onClick={() => pick(i)} style={{ padding: "clamp(13px,1.9vw,17px) clamp(15px,2.2vw,20px)", fontSize: "clamp(15px,1.85vw,17px)", display: "flex", alignItems: "center", gap: 12 }}>
+    return <button key={i} className={cls} disabled={solved || isMentorLive} onClick={() => pick(i)} style={{ padding: picked !== null ? "clamp(9px,1.3vw,12px) clamp(15px,2.2vw,20px)" : "clamp(13px,1.9vw,17px) clamp(15px,2.2vw,20px)", fontSize: "clamp(15px,1.85vw,17px)", display: "flex", alignItems: "center", gap: 12 }}>
                 <span className="mono small" style={{ minWidth: 20, color: showGreenLetter ? T.success : T.ink3 }}>{String.fromCharCode(65 + i)}</span>
                 <span style={{ flex: 1 }}>{fmtCode(tr2(opt))}</span>
               </button>;
@@ -1621,7 +1630,7 @@ var JestRun = ({ status, testName = "2 kitob narxini hisoblaydi", expected = "20
       <div className="jest-sum">Tests: <b style={{ color: CODE.err }}>1 failed</b>, 1 total</div>
     </JestWindow>;
 };
-var PickLines = ({ fileName, scaffoldTop, scaffoldBottom, candidates, agent, instruction, onComplete, completedInit, onProgress }) => {
+var PickLines = ({ fileName, scaffoldTop, scaffoldBottom, candidates, agent, instruction, onComplete, completedInit, onProgress, doneNote }) => {
   const correct = candidates.filter((c) => c.correct);
   const [picked, setPicked] = useState3(() => completedInit ? new Set(correct.map((c) => c.id)) : /* @__PURE__ */ new Set());
   const [shakeId, setShakeId] = useState3(null);
@@ -1664,14 +1673,17 @@ var PickLines = ({ fileName, scaffoldTop, scaffoldBottom, candidates, agent, ins
       </Col>
       <Col>
         <p className="flow-label">{tr2(instruction || { uz: "Testga tegishli qatorlarni tanlang", ru: "Выберите строки, относящиеся к тесту" })}</p>
-        <div style={{ display: "flex", flexDirection: "column", gap: 7 }}>
+        {
+    /* bajarilgach tanlanmagan qatorlar ixcham (147 (e) 2-naqsh) — to'g'ri tanlanganlar va xulosa to'liq qoladi */
+  }
+        <div className={`pick-list${done ? " is-done" : ""}`} style={{ display: "flex", flexDirection: "column", gap: done ? 5 : 7 }}>
           {candidates.map((c) => <button key={c.id} className={`pick-row ${picked.has(c.id) ? "picked" : ""} ${shakeId === c.id ? "shake" : ""}`} disabled={picked.has(c.id)} onClick={() => tap(c)}>
               <span style={{ flex: 1 }}>{c.label}</span>
               <span className="pick-plus">{picked.has(c.id) ? "✓" : "+"}</span>
             </button>)}
         </div>
         {why && !done && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr2(why)}</p></div>}
-        {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr2({ uz: "✓ Test tayyor — chaqirdik va natijani tekshirdik.", ru: "✓ Тест готов — вызвали функцию и проверили результат." })}</p></div>}
+        {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{doneNote || tr2({ uz: "✓ Test tayyor — chaqirdik va natijani tekshirdik.", ru: "✓ Тест готов — вызвали функцию и проверили результат." })}</p></div>}
       </Col>
     </div>
     </Zoomable>;
@@ -1733,7 +1745,7 @@ var Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
   };
   return <Stage eyebrow={tr2({ uz: "Kirish", ru: "Введение" })} screen={screen} scrollSignal={sc} navContent={<NavNext optionalLive disabled={picked === null} label={{ uz: "Davom etish", ru: "Продолжить" }} onClick={onNext} />}>
       <div className="screen">
-        <h1 className="title h-title fade-up" style={{ maxWidth: 880 }}>{tr2({ uz: <>Narx kodini o'zgartirdingiz — biror narsa <span className="italic" style={{ color: T.accent }}>buzilib qolmadimi</span>? Qanday bilasiz?</>, ru: <>Вы изменили код цены — вдруг что-то <span className="italic" style={{ color: T.accent }}>сломалось</span>? Как это узнать?</> })}</h1>
+        <h1 className="title h-title fade-up">{tr2({ uz: <>Narx kodini o'zgartirdingiz — biror narsa <span className="italic" style={{ color: T.accent }}>buzilib qolmadimi</span>? Qanday bilasiz?</>, ru: <>Вы изменили код цены — вдруг что-то <span className="italic" style={{ color: T.accent }}>сломалось</span>? Как это узнать?</> })}</h1>
         <Mentor>{tr2({ uz: <>KitobShop'da buyurtma summasini hisoblovchi funksiya bor. Uni o'zgartirdingiz. <b style={{ color: T.ink }}>Hisob hali ham to'g'rimi?</b> Funksiyani bosib, javobni tekshirib ko'ring.</>, ru: <>В KitobShop есть функция, которая считает сумму заказа. Вы её изменили. <b style={{ color: T.ink }}>Расчёт всё ещё верный?</b> Нажмите на функцию и проверьте ответ.</> })}</Mentor>
         <Zoomable>
         <Split>
@@ -2433,9 +2445,12 @@ var Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <Mentor>{tr2({ uz: <>AI tez yozadi — <b style={{ color: T.ink }}>siz tekshirasiz</b>. Ikkita savol bering: (1) etalon kartochkasi — <span className="mono">expect</span> bormi? (2) etalondagi <b style={{ color: T.ink }}>raqam to'g'rimi</b>? Faqat haqiqiy testlarni varaqaga oling.</>, ru: <>ИИ пишет быстро — <b style={{ color: T.ink }}>проверяете вы</b>. Задайте два вопроса: (1) есть ли карточка-эталон — <span className="mono">expect</span>? (2) <b style={{ color: T.ink }}>верное ли число</b> в эталоне? Берите в бланк только настоящие тесты.</> })}</Mentor>
         {_tip && !done && <p className="bhint fade-step">{tr2({ uz: "💡 Har testga ikki savol bering: expect bormi? etalondagi raqam to'g'rimi (10000 × 2)? Ikkalasiga «ha» bo'lsa — haqiqiy test.", ru: "💡 Задайте каждому тесту два вопроса: есть ли expect? верное ли число в эталоне (10000 × 2)? Если оба «да» — тест настоящий." })}</p>}
         {_resc && !done && <p className="bhint calm fade-step">{tr2({ uz: "Qolganini keyinroq birga ko'rib chiqamiz — «Davom etish» ochiq.", ru: "Остальное разберём вместе позже — «Продолжить» открыто." })}</p>}
-        <AgentCard>{{ uz: "orderTotal funksiyasiga Jest testlarini yoz.", ru: "Напиши Jest-тесты для функции orderTotal." }}</AgentCard>
+        {
+    /* 147 (e) 1-naqsh: agent-karta butun eni o'rniga bo'sh chap ustunda, kod ostida (qo'shni EdgeCases darsidagi kabi) */
+  }
         <PickLines
     fileName="order.spec.ts"
+    agent={{ uz: "orderTotal funksiyasiga Jest testlarini yoz.", ru: "Напиши Jest-тесты для функции orderTotal." }}
     scaffoldTop={<><At>describe</At>{"("}<St>'orderTotal'</St>{", () => {"}</>}
     scaffoldBottom={<>{"});"}</>}
     candidates={candidates}
@@ -2446,8 +2461,8 @@ var Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       setDone(true);
       if (storedAnswer === void 0) onAnswer(screen, { correct: true, picked: true });
     }}
+    doneNote={tr2({ uz: <>Ikki haqiqiy testni topdingiz. Yolg'onlar: <span className="mono">expect</span>siz test (doim yashil), noto'g'ri etalon (10002) va <span className="mono">console.log</span>. AI yozsa ham — etalonni <b>siz</b> tekshirasiz.</>, ru: <>Вы нашли два настоящих теста. Ложные: тест без <span className="mono">expect</span> (всегда зелёный), неверный эталон (10002) и <span className="mono">console.log</span>. Даже если пишет ИИ — эталон проверяете <b>вы</b>.</> })}
   />
-        {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr2({ uz: <>Ikki haqiqiy testni topdingiz. Yolg'onlar: <span className="mono">expect</span>siz test (doim yashil), noto'g'ri etalon (10002) va <span className="mono">console.log</span>. AI yozsa ham — etalonni <b>siz</b> tekshirasiz.</>, ru: <>Вы нашли два настоящих теста. Ложные: тест без <span className="mono">expect</span> (всегда зелёный), неверный эталон (10002) и <span className="mono">console.log</span>. Даже если пишет ИИ — эталон проверяете <b>вы</b>.</> })}</p></div>}
       </div>
     </Stage>;
 };
@@ -3629,7 +3644,7 @@ function JestUnitTestLesson({ lang: langProp, onFinished, liveToken }) {
         .hook-ack { margin: 2px 0 0; font-family: 'Manrope', sans-serif; font-weight: 500; font-size: clamp(13px,1.5vw,14.5px); color: ${T.ink2}; }
 
 
-        .h-title { font-size: clamp(22px,4vw,38px); }
+        .h-title { font-size: clamp(22px,4vw,36px); letter-spacing: -0.015em; text-wrap: balance; }
         .h-sub { font-size: clamp(17px,2.5vw,22px); }
         .h-ask { font-size: clamp(19px,2.6vw,27px); line-height: 1.32; letter-spacing: -0.01em; text-wrap: balance; }
         .body { font-size: clamp(14px,1.6vw,16px); line-height: 1.5; }
@@ -4173,6 +4188,7 @@ function JestUnitTestLesson({ lang: langProp, onFinished, liveToken }) {
         .pick-row:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 8px 18px -6px rgba(${T.shadowBase},0.22); }
         .pick-row.picked { background: ${T.successSoft}; color: ${T.success}; box-shadow: inset 0 0 0 1.5px ${T.success}; cursor: default; }
         .pick-row:disabled { cursor: default; }
+        .pick-list.is-done .pick-row:not(.picked) { padding: 5px 12px; }
         .pick-plus { margin-left: auto; font-weight: 700; color: ${T.ink3}; } .pick-row.picked .pick-plus { color: ${T.success}; }
 
         /* AGENT CARD */

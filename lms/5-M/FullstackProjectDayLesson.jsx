@@ -9,7 +9,8 @@
 import React3, { useState as useState3, useEffect as useEffect4, useRef as useRef3, createContext as createContext2, useContext as useContext2, useCallback as useCallback2, useMemo } from "react";
 
 // src/live/liveClient.js
-var LIVE_API_URL = "https://dars-api.coddycamp.uz" ? String("https://dars-api.coddycamp.uz").replace(/\/+$/, "") : DEFAULT_API_URL;
+var DEFAULT_API_URL = "https://dars-api.coddycamp.uz";
+var LIVE_API_URL = "" ? String("").replace(/\/+$/, "") : DEFAULT_API_URL;
 var LIVE_ENABLED = !!LIVE_API_URL;
 var LIVE_POLL_MS = 2500;
 var LIVE_POLL_MAX_MS = 15e3;
@@ -23,7 +24,9 @@ async function errorFrom(r, fallback) {
     msg = (await r.json()).message || "";
   } catch {
   }
-  return new Error(msg || fallback);
+  const e = new Error(msg || fallback);
+  e.status = r.status;
+  return e;
 }
 async function liveRpc(fn, body) {
   const r = await fetch(`${API}/rpc/${fn}`, {
@@ -586,8 +589,14 @@ function useLiveSession(lessonId, answerKey, opts = {}) {
       liveStore(lessonId, { mode: "mentor", pin: row.pin, token: row.token });
       if (keyRef.current) liveRpc("set_quiz_keys", { p_lesson_id: lessonId, p_mentor_code: (mentorCode || "").trim(), p_keys: keyRef.current }).catch(() => {
       });
-    } catch {
-      setJoinError(tr({ uz: "Mentor kodi noto'g'ri yoki ulanishda xato.", ru: "Неверный код ментора или ошибка подключения." }));
+    } catch (e) {
+      const st = e && e.status;
+      setJoinError(
+        st === 401 || st === 403 ? tr({ uz: "Mentor kodi noto'g'ri.", ru: "Неверный код ментора." }) : st ? tr({ uz: `Server javob bermadi (xato ${st}). Birozdan keyin urinib ko'ring.`, ru: `Сервер не ответил (ошибка ${st}). Попробуйте чуть позже.` }) : tr({
+          uz: "Serverga ulanib bo'lmadi. Internetni tekshiring — yoki «← Orqaga» bosib, «Kodsiz, o'zim ko'raman» bilan darsni jonli rejimsiz o'tkazing.",
+          ru: "Не удалось подключиться к серверу. Проверьте интернет — или нажмите «← Назад» и выберите «Без кода, смотрю сам», чтобы провести урок без живого режима."
+        })
+      );
     } finally {
       setBusy(false);
     }
@@ -942,7 +951,7 @@ function useServerProgress(live, refs) {
 import React2, { useState as useState2, useEffect as useEffect3 } from "react";
 var LT = { bg: "#F6F4EF", ink: "#0E0E10", ink2: "#5A5A60", ink3: "#A7A6A2", paper: "#FFFFFF", accent: "#FF4F28", accentSoft: "#FFE8E1", success: "#1F7A4D" };
 var _liveBtnPri = { background: LT.accent, color: "#fff", border: "none", borderRadius: 12, padding: "14px 20px", fontSize: 16, fontWeight: 700, cursor: "pointer" };
-var _liveBadgeS = { position: "fixed", top: 10, left: "50%", transform: "translateX(-50%)", zIndex: 9998, background: LT.paper, border: `1px solid ${LT.ink3}55`, borderRadius: 99, padding: "6px 14px", fontSize: 13, fontWeight: 600, color: LT.ink2, boxShadow: "0 2px 10px rgba(58,53,48,0.12)", display: "flex", alignItems: "center", gap: 8, whiteSpace: "nowrap", maxWidth: "92vw" };
+var _liveBadgeS = { position: "fixed", top: 2, left: "50%", transform: "translateX(-50%)", zIndex: 9998, background: LT.paper, border: `1px solid ${LT.ink3}55`, borderRadius: 99, padding: "2px 14px", fontSize: 13, fontWeight: 600, color: LT.ink2, boxShadow: "0 2px 10px rgba(58,53,48,0.12)", display: "flex", alignItems: "center", gap: 8, whiteSpace: "nowrap", maxWidth: "92vw" };
 var _liveDot = (c) => ({ width: 8, height: 8, borderRadius: 99, background: c, display: "inline-block" });
 function LiveBigCode({ pin, onClose }) {
   const digits = String(pin || "").split("");
@@ -1525,7 +1534,7 @@ var QuestionScreen = ({ screen, scope, eyebrow, question, questionText, options,
       <div className="screen" style={{ justifyContent: isMentorLive ? "flex-start" : "safe center", gap: "clamp(16px,2.5vw,24px)" }}>
         <div className="fade-up">{question}</div>
         {oneShot && !solved && <p className="small mono fade-up" style={{ margin: "-8px 0 0", color: T.accent, fontWeight: 600 }}>{tr2({ uz: "⚡ Jonli dars — bitta urinish, o'ylab bosing!", ru: "⚡ Живой урок — одна попытка, подумайте перед нажатием!" })}</p>}
-        <div className="fade-up delay-1" style={{ display: "flex", flexDirection: "column", gap: 11 }}>
+        <div className="fade-up delay-1" style={{ display: "flex", flexDirection: "column", gap: picked !== null ? 8 : 11 }}>
           {options.map((opt, i) => {
     let cls = "option";
     if (isMentorLive) {
@@ -1543,7 +1552,7 @@ var QuestionScreen = ({ screen, scope, eyebrow, question, questionText, options,
       }
     } else if (i === picked) cls += " option-picked-wrong";
     const showGreenLetter = isMentorLive ? mReveal && i === correctIdx : solved && revealed && i === correctIdx;
-    return <button key={i} className={cls} disabled={solved || isMentorLive} onClick={() => pick(i)} style={{ padding: "clamp(13px,1.9vw,17px) clamp(15px,2.2vw,20px)", fontSize: "clamp(15px,1.85vw,17px)", display: "flex", alignItems: "center", gap: 12 }}>
+    return <button key={i} className={cls} disabled={solved || isMentorLive} onClick={() => pick(i)} style={{ padding: picked !== null ? "clamp(9px,1.3vw,12px) clamp(15px,2.2vw,20px)" : "clamp(13px,1.9vw,17px) clamp(15px,2.2vw,20px)", fontSize: "clamp(15px,1.85vw,17px)", display: "flex", alignItems: "center", gap: 12 }}>
                 <span className="mono small" style={{ minWidth: 20, color: showGreenLetter ? T.success : T.ink3 }}>{String.fromCharCode(65 + i)}</span>
                 <span style={{ flex: 1 }}>{fmtCode(opt)}</span>
               </button>;
@@ -1688,7 +1697,7 @@ var Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
   };
   return <Stage eyebrow={tr2({ uz: "Loyiha kuni · kirish", ru: "Проектный день · введение" })} screen={screen} scrollSignal={sc} navContent={<NavNext optionalLive disabled={picked === null} label={{ uz: "Davom etish", ru: "Продолжить" }} onClick={onNext} />}>
       <div className="screen">
-        <h1 className="title h-title fade-up" style={{ maxWidth: 880 }}>{tr2({ uz: <>Qorovul qaysi joy bo'shligini <span className="italic" style={{ color: T.accent }}>qog'ozda</span> kuzatib bo'ladimi?</>, ru: <>Сможет ли охранник уследить <span className="italic" style={{ color: T.accent }}>на бумаге</span>, какое место свободно?</> })}</h1>
+        <h1 className="title h-title fade-up">{tr2({ uz: <>Qorovul qaysi joy bo'shligini <span className="italic" style={{ color: T.accent }}>qog'ozda</span> kuzatib bo'ladimi?</>, ru: <>Сможет ли охранник уследить <span className="italic" style={{ color: T.accent }}>на бумаге</span>, какое место свободно?</> })}</h1>
         <Mentor>{tr2({ uz: <>Tasavvur qiling: siz <b style={{ color: T.ink }}>qorovulsiz</b>. Mashinalar kirib-chiqyapti, siz hammasini qog'ozga yozyapsiz. Bitta joyga ikki mashina yozilib qolyapti, kim to'laganini esdan chiqaryapsiz. Qog'ozni bosib ko'ring — u yordam beradimi?</>, ru: <>Представьте: Вы — <b style={{ color: T.ink }}>охранник</b>. Машины въезжают и выезжают, а Вы всё записываете на бумагу. На одно место записываются две машины, Вы забываете, кто оплатил. Нажмите на листок — поможет ли он?</> })}</Mentor>
         <Zoomable>
         <Split>
@@ -1907,7 +1916,6 @@ var Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                   <span className={`vseen ${seen.has(c.key) ? "on" : ""}`} style={{ color: seen.has(c.key) ? T.success : T.ink3 }}>{seen.has(c.key) ? "✓" : ""}</span>
                 </button>)}
             </div>
-            {cur && <div className="sk-info" key={active}><p className="body" style={{ margin: 0, color: T.ink }}><b className="mono" style={{ color: cur.fk ? T.blue : T.accent }}>{cur.key}</b> — {tr2(cur.desc)}</p></div>}
           </Col>
           <Col>
             <p className="flow-label">{tr2({ uz: "Ikki jadval — bog'lanish", ru: "Две таблицы — связь" })}</p>
@@ -1916,6 +1924,7 @@ var Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <div className="rel-link"><span className="rel-key" style={{ color: T.blue }}>joy_id</span><span className="rel-arr">►</span><span className="rel-to mono">joylar.id</span></div>
               <div className="rel-box" style={{ boxShadow: `inset 0 0 0 1.5px ${T.blue}55` }}><b>sessiyalar</b><span className="mono" style={{ color: T.blue }}>joy_id ↗</span><span className="mono">mashina</span><span className="mono">tolov</span></div>
             </div>
+            {cur && !done && <div className="sk-info" key={active}><p className="body" style={{ margin: 0, color: T.ink }}><b className="mono" style={{ color: cur.fk ? T.blue : T.accent }}>{cur.key}</b> — {tr2(cur.desc)}</p></div>}
             {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr2({ uz: <><span className="mono" style={{ color: T.blue }}>joy_id</span> — ko'prik: har bir yozuvni o'z joyiga ulaydi. Endi kunlik tarix saqlanadi: qaysi joy, qaysi mashina, qancha to'lov.</>, ru: <><span className="mono" style={{ color: T.blue }}>joy_id</span> — мост: соединяет каждую запись со своим местом. Теперь дневная история сохраняется: какое место, какая машина, какая оплата.</> })}</p></div>}
           </Col>
         </div>
@@ -2009,16 +2018,16 @@ var Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <div className="split">
           <Col>
             <p className="flow-label">{tr2({ uz: "AI'ga prompt — backend", ru: "Промпт ИИ — бэкенд" })}</p>
-            <pre className="prompt-box fade-up delay-1">{tr2(BACK_PROMPT)}</pre>
+            <pre className="prompt-box fade-up delay-1" style={phase >= 1 ? { maxHeight: 44, overflowY: "auto" } : void 0}>{tr2(BACK_PROMPT)}</pre>
             {phase === 0 && <button className="btn fade-step" style={{ alignSelf: "flex-start" }} onClick={() => setPhase(1)}>{tr2({ uz: "📤 Promptni AI'ga yuborish", ru: "📤 Отправить промпт ИИ" })}</button>}
             {phase === 1 && <>
-              <div className="ai-card fade-step"><div className="ai-row"><span className="ai-badge">AI</span><span className="ai-bubble">{tr2({ uz: "Endpointlar yozildi:", ru: "Endpoint-ы написаны:" })}</span></div><div className="ai-code"><div className="ai-line" style={{ whiteSpace: "pre-wrap" }}>{AI_V1}</div></div></div>
+              <div className="ai-card fade-step" style={{ maxHeight: phase >= 2 ? 60 : 96, overflowY: "auto" }}><div className="ai-row"><span className="ai-badge">AI</span><span className="ai-bubble">{tr2({ uz: "Endpointlar yozildi:", ru: "Endpoint-ы написаны:" })}</span></div><div className="ai-code"><div className="ai-line" style={{ whiteSpace: "pre-wrap" }}>{AI_V1}</div></div></div>
               <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr2({ uz: <>Kodni o'ngdagi «nima qilishi kerak» bilan solishtiring: <b>kirishda</b> ikkita amal bo'lishi kerak edi — sessiyaga yozish <b>va</b> joyni band qilish. Bittasi yetishmayapti.</>, ru: <>Сравните код с «что должен делать» справа: при <b>въезде</b> должно быть два действия — запись сеанса <b>и</b> занятие места. Одного не хватает.</> })}</p></div>
               <p className="flow-label">{tr2({ uz: "Aniqlashtiruvchi prompt (follow-up)", ru: "Уточняющий промпт (follow-up)" })}</p>
-              <pre className="prompt-box fade-step">{tr2(FOLLOWUP_PROMPT)}</pre>
+              <pre className="prompt-box fade-step" style={{ maxHeight: phase >= 2 ? 44 : 72, overflowY: "auto" }}>{tr2(FOLLOWUP_PROMPT)}</pre>
               <button className="btn fade-step" style={{ alignSelf: "flex-start" }} onClick={() => setPhase(2)}>{tr2({ uz: "🔁 Aniqlashtiruvchi promptni yuborish", ru: "🔁 Отправить уточняющий промпт" })}</button>
             </>}
-            {phase >= 2 && <div className="ai-card fade-step"><div className="ai-row"><span className="ai-badge">AI</span><span className="ai-bubble">{tr2({ uz: "To'g'riladim — kirishda joy ham band bo'ladi:", ru: "Исправил — при въезде место тоже занимается:" })}</span></div><div className="ai-code"><div className="ai-line" style={{ whiteSpace: "pre-wrap" }}>{AI_V2_HEAD}</div><div className="ai-line ok" style={{ whiteSpace: "pre-wrap" }}>{AI_V2_FIX}</div><div className="ai-line" style={{ whiteSpace: "pre-wrap" }}>{AI_V2_TAIL}</div></div></div>}
+            {phase >= 2 && <div className="ai-card fade-step" style={{ maxHeight: 150, overflowY: "auto" }}><div className="ai-row"><span className="ai-badge">AI</span><span className="ai-bubble">{tr2({ uz: "To'g'riladim — kirishda joy ham band bo'ladi:", ru: "Исправил — при въезде место тоже занимается:" })}</span></div><div className="ai-code"><div className="ai-line" style={{ whiteSpace: "pre-wrap" }}>{AI_V2_HEAD}</div><div className="ai-line ok" style={{ whiteSpace: "pre-wrap" }}>{AI_V2_FIX}</div><div className="ai-line" style={{ whiteSpace: "pre-wrap" }}>{AI_V2_TAIL}</div></div></div>}
           </Col>
           <Col>
             <p className="flow-label">{tr2({ uz: "Bu backend nima qilishi kerak", ru: "Что должен делать этот бэкенд" })}</p>
@@ -2087,8 +2096,8 @@ var Screen9b = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <div className="split">
           <Col>
             <p className="flow-label">{tr2({ uz: "AI'ga prompt — frontend", ru: "Промпт ИИ — фронтенд" })}</p>
-            <pre className="prompt-box fade-up delay-1">{tr2(FRONT_PROMPT)}</pre>
-            {!done ? <button className="btn fade-step" style={{ alignSelf: "flex-start" }} onClick={() => setDone(true)}>{tr2({ uz: "📤 Promptni AI'ga yuborish", ru: "📤 Отправить промпт ИИ" })}</button> : <div className="ai-card fade-step"><div className="ai-row"><span className="ai-badge">AI</span><span className="ai-bubble">{tr2({ uz: "Panel komponenti yozildi:", ru: "Компонент панели написан:" })}</span></div><div className="ai-code"><div className="ai-line ok" style={{ cursor: "default", whiteSpace: "pre-wrap" }}>{"function Panel(){\n  const [joylar,setJoylar]=useState([]);\n  const yukla=()=>fetch('/api/joylar')...;  // joylarni olish\n  useEffect(()=>{ yukla(); },[]);\n  const kirgiz=(joy_id,mashina)=>fetch(...);  // POST → yukla\n  const chiqar=(id,joy_id)=>fetch(...);  // PUT → yukla\n  return <Grid joylar={joylar} .../>;\n}"}</div></div></div>}
+            <pre className="prompt-box fade-up delay-1" style={done ? { maxHeight: 90, overflowY: "auto" } : void 0}>{tr2(FRONT_PROMPT)}</pre>
+            {!done ? <button className="btn fade-step" style={{ alignSelf: "flex-start" }} onClick={() => setDone(true)}>{tr2({ uz: "📤 Promptni AI'ga yuborish", ru: "📤 Отправить промпт ИИ" })}</button> : <div className="ai-card fade-step" style={{ maxHeight: 150, overflowY: "auto" }}><div className="ai-row"><span className="ai-badge">AI</span><span className="ai-bubble">{tr2({ uz: "Panel komponenti yozildi:", ru: "Компонент панели написан:" })}</span></div><div className="ai-code"><div className="ai-line ok" style={{ cursor: "default", whiteSpace: "pre-wrap" }}>{"function Panel(){\n  const [joylar,setJoylar]=useState([]);\n  const yukla=()=>fetch('/api/joylar')...;  // joylarni olish\n  useEffect(()=>{ yukla(); },[]);\n  const kirgiz=(joy_id,mashina)=>fetch(...);  // POST → yukla\n  const chiqar=(id,joy_id)=>fetch(...);  // PUT → yukla\n  return <Grid joylar={joylar} .../>;\n}"}</div></div></div>}
           </Col>
           <Col>
             <p className="flow-label">{done ? tr2({ uz: "Natija — qorovul paneli", ru: "Результат — панель охранника" }) : tr2({ uz: "Front nimani quradi", ru: "Что строит фронт" })}</p>
@@ -2383,7 +2392,7 @@ var Screen15 = ({ screen, onNext, onPrev }) => <Stage eyebrow={tr2({ uz: "Qoida 
     </div>
   </Stage>;
 var Screen16 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const [value, setValue] = useState3(storedAnswer?.picked || "");
+  const [value, setValue] = useState3(typeof storedAnswer?.picked === "string" ? storedAnswer.picked : "");
   const [passed, setPassed] = useState3(!!storedAnswer?.correct);
   const norm = value.replace(/\s+/g, " ").trim();
   const valid = /^(sessiyalar|s)\s*\.\s*joy_id\s*=\s*(joylar|j)\s*\.\s*id$/i.test(norm) || /^(joylar|j)\s*\.\s*id\s*=\s*(sessiyalar|s)\s*\.\s*joy_id$/i.test(norm);
@@ -3343,6 +3352,10 @@ function ScreenLivePractice({ title, task, checklist, screen, storedAnswer, onAn
               <div className="lp-task-h"><span className="lp-task-badge">{tr2({ uz: "TOPSHIRIQ", ru: "ЗАДАНИЕ" })}</span></div>
               <p className="body" style={{ margin: 0, color: T.ink }}>{tr2(task)}</p>
             </div>
+            {!isMentor && <button className={`lp-done-btn ${done ? "is-done" : ""}`} disabled={done} onClick={complete}>
+              {done ? tr2({ uz: "✓ Bajarildi — ustozni kuting", ru: "✓ Выполнено — ждите наставника" }) : tr2({ uz: "✅ Bajardim", ru: "✅ Выполнил(а)" })}
+            </button>}
+            {done && !isMentor && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr2({ uz: "Juda yaxshi! Vazifani bajardingiz. Ustoz tekshirib, keyingi qadamga o'tkazadi.", ru: "Отлично! Задание выполнено. Наставник проверит и переведёт Вас на следующий шаг." })}</p></div>}
             <MentorPracticeStats live={_live} screen={screen} />
             <StudentPracticePulse live={_live} screen={screen} />
           </Col>
@@ -3357,10 +3370,6 @@ function ScreenLivePractice({ title, task, checklist, screen, storedAnswer, onAn
                   </button>;
   })}
             </div>
-            {!isMentor && <button className={`lp-done-btn ${done ? "is-done" : ""}`} disabled={done} onClick={complete}>
-              {done ? tr2({ uz: "✓ Bajarildi — ustozni kuting", ru: "✓ Выполнено — ждите наставника" }) : tr2({ uz: "✅ Bajardim", ru: "✅ Выполнил(а)" })}
-            </button>}
-            {done && !isMentor && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr2({ uz: "Juda yaxshi! Vazifani bajardingiz. Ustoz tekshirib, keyingi qadamga o'tkazadi.", ru: "Отлично! Задание выполнено. Наставник проверит и переведёт Вас на следующий шаг." })}</p></div>}
             {done && !isMentor && ceremony && <OpeningAct />}
           </Col>
         </div>
@@ -3598,7 +3607,7 @@ function FullstackProjectDayLesson({ lang: langProp, onFinished, liveToken }) {
         .radio-dot { width: 10px; height: 10px; border-radius: 50%; background: ${T.accent}; }
         .hook-ack { margin: 2px 0 0; font-family: 'Manrope', sans-serif; font-weight: 500; font-size: clamp(13px,1.5vw,14.5px); color: ${T.ink2}; }
 
-        .h-title { font-size: clamp(22px,4vw,38px); }
+        .h-title { font-size: clamp(22px,4vw,36px); letter-spacing: -0.015em; text-wrap: balance; }
         .h-sub { font-size: clamp(17px,2.5vw,22px); }
         .h-ask { font-size: clamp(19px,2.6vw,27px); line-height: 1.32; letter-spacing: -0.01em; text-wrap: balance; }
         .body { font-size: clamp(14px,1.6vw,16px); line-height: 1.5; }
@@ -3650,7 +3659,10 @@ function FullstackProjectDayLesson({ lang: langProp, onFinished, liveToken }) {
         .ai-card { background: ${T.paper}; border-radius: 14px; padding: 15px 17px; display: flex; flex-direction: column; gap: 11px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.14); }
         .ai-row { display: flex; align-items: center; gap: 9px; } .ai-badge { font-family: 'Manrope'; font-weight: 800; font-size: 11px; color: #fff; background: ${T.blue}; padding: 3px 9px; border-radius: 6px; } .ai-bubble { font-size: 13px; color: ${T.ink2}; }
         .ai-code { background: ${CODE.bg}; border-radius: 9px; padding: 10px 12px; display: flex; flex-direction: column; gap: 3px; }
-        .ai-line { font-family: 'JetBrains Mono'; font-size: 12px; color: ${CODE.text}; padding: 7px 9px; border-radius: 6px; white-space: pre-wrap; line-height: 1.6; }
+        .ai-line { font-family: 'JetBrains Mono'; font-size: 12px; color: ${CODE.text}; padding: 7px 9px; border-radius: 6px; white-space: pre-wrap; line-height: 1.6; overflow-wrap: anywhere; }
+        /* 147-qonun: pre-wrap uzun TOKENni sindirmaydi — uzun kod qatori qutidan
+           7px chiqib ketardi (m4-13 s11, o'lchandi). Modifikator overflow-wrap: anywhere
+           faqat sig'magan qatorni ko'chiradi, qolgan kod ko'rinishiga tegmaydi. */
         .ai-line.ok { background: rgba(31,122,77,0.16); }
         .note-h { font-weight: 700; font-size: 13px; margin: 0 0 4px; }
         .takeaway { background: ${T.accentSoft}; border-radius: 14px; padding: 20px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 5px; } .ta-bulb { font-size: 34px; } .ta-h { font-family: 'Source Serif 4', serif; font-weight: 600; font-size: clamp(16px,2.2vw,20px); color: ${T.ink}; margin: 0; } .ta-sub { color: ${T.accent}; font-weight: 600; font-size: 13px; margin: 0; }
@@ -4275,7 +4287,7 @@ function FullstackProjectDayLesson({ lang: langProp, onFinished, liveToken }) {
         .lp-task-h { display: flex; align-items: center; gap: 8px; }
         .lp-task-badge { font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: 10.5px; letter-spacing: 0.12em; color: #fff; background: ${T.accent}; padding: 3px 9px; border-radius: 6px; }
         .lp-steps { display: flex; flex-direction: column; gap: 8px; }
-        .lp-step { display: flex; align-items: center; gap: 11px; width: 100%; text-align: left; background: ${T.paper}; border: none; border-radius: 11px; padding: 11px 13px; font-family: 'Manrope', sans-serif; font-weight: 500; font-size: clamp(13px,1.6vw,15px); color: ${T.ink}; cursor: pointer; transition: all 0.16s; box-shadow: 0 5px 14px -7px rgba(${T.shadowBase},0.16); }
+        .lp-step { display: flex; align-items: center; gap: 11px; width: 100%; text-align: left; background: ${T.paper}; border: none; border-radius: 11px; padding: 8px 12px; font-family: 'Manrope', sans-serif; font-weight: 500; font-size: clamp(13px,1.6vw,15px); color: ${T.ink}; cursor: pointer; transition: all 0.16s; box-shadow: 0 5px 14px -7px rgba(${T.shadowBase},0.16); }
         .lp-step:hover:not(.on) { box-shadow: 0 8px 18px -7px rgba(${T.shadowBase},0.24); }
         .lp-step.on { background: ${T.successSoft}; color: ${T.success}; box-shadow: inset 0 0 0 1.5px ${T.success}55; }
         .lp-check { width: 22px; height: 22px; border-radius: 50%; flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 12px; background: ${T.bg}; color: ${T.ink3}; box-shadow: inset 0 0 0 1.5px ${T.ink3}55; transition: all 0.16s; }

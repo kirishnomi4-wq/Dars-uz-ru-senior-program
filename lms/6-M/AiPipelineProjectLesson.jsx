@@ -9,7 +9,8 @@
 import React3, { useState as useState3, useEffect as useEffect4, useLayoutEffect, useRef as useRef3, createContext as createContext2, useContext as useContext2, useCallback as useCallback2, useMemo } from "react";
 
 // src/live/liveClient.js
-var LIVE_API_URL = "https://dars-api.coddycamp.uz" ? String("https://dars-api.coddycamp.uz").replace(/\/+$/, "") : DEFAULT_API_URL;
+var DEFAULT_API_URL = "https://dars-api.coddycamp.uz";
+var LIVE_API_URL = "" ? String("").replace(/\/+$/, "") : DEFAULT_API_URL;
 var LIVE_ENABLED = !!LIVE_API_URL;
 var LIVE_POLL_MS = 2500;
 var LIVE_POLL_MAX_MS = 15e3;
@@ -23,7 +24,9 @@ async function errorFrom(r, fallback) {
     msg = (await r.json()).message || "";
   } catch {
   }
-  return new Error(msg || fallback);
+  const e = new Error(msg || fallback);
+  e.status = r.status;
+  return e;
 }
 async function liveRpc(fn, body) {
   const r = await fetch(`${API}/rpc/${fn}`, {
@@ -586,8 +589,14 @@ function useLiveSession(lessonId, answerKey, opts = {}) {
       liveStore(lessonId, { mode: "mentor", pin: row.pin, token: row.token });
       if (keyRef.current) liveRpc("set_quiz_keys", { p_lesson_id: lessonId, p_mentor_code: (mentorCode || "").trim(), p_keys: keyRef.current }).catch(() => {
       });
-    } catch {
-      setJoinError(tr({ uz: "Mentor kodi noto'g'ri yoki ulanishda xato.", ru: "Неверный код ментора или ошибка подключения." }));
+    } catch (e) {
+      const st = e && e.status;
+      setJoinError(
+        st === 401 || st === 403 ? tr({ uz: "Mentor kodi noto'g'ri.", ru: "Неверный код ментора." }) : st ? tr({ uz: `Server javob bermadi (xato ${st}). Birozdan keyin urinib ko'ring.`, ru: `Сервер не ответил (ошибка ${st}). Попробуйте чуть позже.` }) : tr({
+          uz: "Serverga ulanib bo'lmadi. Internetni tekshiring — yoki «← Orqaga» bosib, «Kodsiz, o'zim ko'raman» bilan darsni jonli rejimsiz o'tkazing.",
+          ru: "Не удалось подключиться к серверу. Проверьте интернет — или нажмите «← Назад» и выберите «Без кода, смотрю сам», чтобы провести урок без живого режима."
+        })
+      );
     } finally {
       setBusy(false);
     }
@@ -942,7 +951,7 @@ function useServerProgress(live, refs) {
 import React2, { useState as useState2, useEffect as useEffect3 } from "react";
 var LT = { bg: "#F6F4EF", ink: "#0E0E10", ink2: "#5A5A60", ink3: "#A7A6A2", paper: "#FFFFFF", accent: "#FF4F28", accentSoft: "#FFE8E1", success: "#1F7A4D" };
 var _liveBtnPri = { background: LT.accent, color: "#fff", border: "none", borderRadius: 12, padding: "14px 20px", fontSize: 16, fontWeight: 700, cursor: "pointer" };
-var _liveBadgeS = { position: "fixed", top: 10, left: "50%", transform: "translateX(-50%)", zIndex: 9998, background: LT.paper, border: `1px solid ${LT.ink3}55`, borderRadius: 99, padding: "6px 14px", fontSize: 13, fontWeight: 600, color: LT.ink2, boxShadow: "0 2px 10px rgba(58,53,48,0.12)", display: "flex", alignItems: "center", gap: 8, whiteSpace: "nowrap", maxWidth: "92vw" };
+var _liveBadgeS = { position: "fixed", top: 2, left: "50%", transform: "translateX(-50%)", zIndex: 9998, background: LT.paper, border: `1px solid ${LT.ink3}55`, borderRadius: 99, padding: "2px 14px", fontSize: 13, fontWeight: 600, color: LT.ink2, boxShadow: "0 2px 10px rgba(58,53,48,0.12)", display: "flex", alignItems: "center", gap: 8, whiteSpace: "nowrap", maxWidth: "92vw" };
 var _liveDot = (c) => ({ width: 8, height: 8, borderRadius: 99, background: c, display: "inline-block" });
 function LiveBigCode({ pin, onClose }) {
   const digits = String(pin || "").split("");
@@ -1500,7 +1509,7 @@ var QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, opt
       <div className="screen" style={{ justifyContent: isMentorLive ? "flex-start" : "center", gap: "clamp(16px,2.5vw,24px)" }}>
         <div className="fade-up">{question}</div>
         {oneShot && !solved && <p className="small mono fade-up" style={{ margin: "-8px 0 0", color: T.accent, fontWeight: 600 }}>{tr2({ uz: "⚡ Jonli dars — bitta urinish, o'ylab bosing!", ru: "⚡ Живой урок — одна попытка, сначала подумайте!" })}</p>}
-        <div className="fade-up delay-1" style={{ display: "flex", flexDirection: "column", gap: 11 }}>
+        <div className="fade-up delay-1" style={{ display: "flex", flexDirection: "column", gap: picked !== null ? 8 : 11 }}>
           {options.map((opt, i) => {
     let cls = "option";
     if (isMentorLive) {
@@ -1518,7 +1527,7 @@ var QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, opt
       }
     } else if (i === picked) cls += " option-picked-wrong";
     const showGreenLetter = isMentorLive ? mReveal && i === correctIdx : solved && revealed && i === correctIdx;
-    return <button key={i} className={cls} disabled={solved || isMentorLive} onClick={() => pick(i)} style={{ padding: "clamp(13px,1.9vw,17px) clamp(15px,2.2vw,20px)", fontSize: "clamp(15px,1.85vw,17px)", display: "flex", alignItems: "center", gap: 12 }}>
+    return <button key={i} className={cls} disabled={solved || isMentorLive} onClick={() => pick(i)} style={{ padding: picked !== null ? "clamp(9px,1.3vw,12px) clamp(15px,2.2vw,20px)" : "clamp(13px,1.9vw,17px) clamp(15px,2.2vw,20px)", fontSize: "clamp(15px,1.85vw,17px)", display: "flex", alignItems: "center", gap: 12 }}>
                 <span className="mono small" style={{ minWidth: 20, color: showGreenLetter ? T.success : T.ink3 }}>{String.fromCharCode(65 + i)}</span>
                 <span style={{ flex: 1 }}>{fmtCode(tr2(opt))}</span>
               </button>;
@@ -1784,7 +1793,7 @@ var Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
   };
   return <Stage eyebrow={tr2({ uz: "Kirish", ru: "Введение" })} screen={screen} scrollSignal={sc} navContent={<NavNext optionalLive disabled={picked === null} label={{ uz: "Davom etish", ru: "Продолжить" }} onClick={onNext} />}>
       <div className="screen">
-        <h1 className="title h-title fade-up" style={{ maxWidth: 880 }}>{tr2({ uz: <>🚦 Lentada qizil chiroq yondi. Jurnal <span className="italic" style={{ color: T.accent }}>uzun va chalkash</span> — nima qilasiz?</>, ru: <>🚦 На ленте загорелся красный свет. Журнал <span className="italic" style={{ color: T.accent }}>длинный и запутанный</span> — что будете делать?</> })}</h1>
+        <h1 className="title h-title fade-up">{tr2({ uz: <>🚦 Lentada qizil chiroq yondi. Jurnal <span className="italic" style={{ color: T.accent }}>uzun va chalkash</span> — nima qilasiz?</>, ru: <>🚦 На ленте загорелся красный свет. Журнал <span className="italic" style={{ color: T.accent }}>длинный и запутанный</span> — что будете делать?</> })}</h1>
         <Mentor>{tr2({ uz: "Push qildingiz — Skaner nuqtasida qizil chiroq yondi. Lenta jurnali ochildi, lekin qatorlar juda ko'p. Yonimizda LENTA YORDAMCHISI bor — u jurnalni tez o'qib, sababni ayta oladi. Bir martani sinab ko'ring.", ru: "Вы сделали push — и на точке Сканер загорелся красный свет. Журнал ленты открыт, но строк очень много. Рядом с нами ПОМОЩНИК ЛЕНТЫ — он быстро читает журнал и может назвать причину. Попробуйте разок." })}</Mentor>
         <Zoomable><Split>
           <Col>
@@ -2311,7 +2320,7 @@ var Screen12 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <Zoomable>
         <div className="split">
           <Col>
-            <div className="frame" style={{ borderLeft: `4px solid ${T.danger}` }}>
+            <div className="frame ph-row" style={{ borderLeft: `4px solid ${T.danger}` }}>
               <p className="note-h" style={{ color: T.danger }}>❌ {tr2({ uz: "Tekshirmadi", ru: "Не проверил" })}</p>
               <p className="body" style={{ margin: 0, color: T.ink }}>{tr2({ uz: 'Yordamchi "manfiy son tekshiruvi kerak" dedi. Dasturchi darhol shunday tuzatib push qildi. Lekin haqiqiy sabab boshqa edi — test yana qizil chiqdi, vaqt behuda ketdi.', ru: "Помощник сказал: «нужна проверка на отрицательные числа». Программист сразу так и исправил и сделал push. Но настоящая причина была другой — тест снова стал красным, время ушло впустую." })}</p>
               <PhoneMock state="broken" />
@@ -2322,7 +2331,7 @@ var Screen12 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   }}>{show ? tr2({ uz: "✓ Ko'rdingiz", ru: "✓ Просмотрено" }) : tr2({ uz: "Tekshirsa-chi?", ru: "А если проверить?" })}</button>
           </Col>
           <Col>
-            {show ? <div className="frame fade-step" style={{ borderLeft: `4px solid ${T.success}` }}>
+            {show ? <div className="frame ph-row fade-step" style={{ borderLeft: `4px solid ${T.success}` }}>
                   <p className="note-h" style={{ color: T.success }}>✅ {tr2({ uz: "Tekshirdi", ru: "Проверил" })}</p>
                   <p className="body" style={{ margin: 0, color: T.ink }}>{tr2({ uz: `Boshqa dasturchi taklifni jurnal bilan solishtirdi — "manfiy son" haqida gap yo'qligini ko'rdi. Haqiqiy sababni (string × son) topib, birinchi urinishda to'g'ri tuzatdi.`, ru: "Другой программист сверил предложение с журналом — и увидел, что про «отрицательные числа» там ни слова. Нашёл настоящую причину (строка × число) и починил верно с первой попытки." })}</p>
                   <PhoneMock state="new" />
@@ -3571,7 +3580,7 @@ function AiPipelineProjectLesson({ lang: langProp, onFinished, liveToken }) {
         .hook-ack { margin: 2px 0 0; font-family: 'Manrope', sans-serif; font-weight: 500; font-size: clamp(13px,1.5vw,14.5px); color: ${T.ink2}; }
 
 
-        .h-title { font-size: clamp(22px,4vw,38px); }
+        .h-title { font-size: clamp(22px,4vw,36px); letter-spacing: -0.015em; text-wrap: balance; }
         .h-sub { font-size: clamp(17px,2.5vw,22px); }
         .h-ask { font-size: clamp(19px,2.6vw,27px); line-height: 1.32; letter-spacing: -0.01em; text-wrap: balance; }
         .body { font-size: clamp(14px,1.6vw,16px); line-height: 1.5; }
@@ -4171,14 +4180,18 @@ function AiPipelineProjectLesson({ lang: langProp, onFinished, liveToken }) {
         .shake { animation: rz-shake 0.4s ease; }
 
         /* 📱 TELEFON MOCK — foydalanuvchi ekrani (doim ko'rinadi) */
-        .phone-mock { display: flex; flex-direction: column; align-items: center; gap: 8px; }
-        .phone-body { position: relative; width: clamp(96px,14vw,128px); height: clamp(176px,24vw,232px); background: #16171B; border-radius: 22px; padding: 8px; box-shadow: 0 14px 30px -12px rgba(${T.shadowBase},0.4), inset 0 0 0 2px #2A2B31; }
+        /* F-0916-01 Q7 (s12): telefon maketi ~60% va matn YONIDA (ph-row to'ri) — ikki ustunda ramka + maket pastki chiziqdan tushardi (uz 41 / ru 89); ichidagi matn o'sha */
+        .ph-row { display: grid; grid-template-columns: minmax(0,1fr) auto; gap: 6px 12px; align-items: center; }
+        .ph-row .note-h { grid-column: 1 / -1; }
+        @media (max-width: 560px) { .ph-row { grid-template-columns: 1fr; justify-items: center; } .ph-row .body { justify-self: stretch; } }
+        .phone-mock { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+        .phone-body { position: relative; width: clamp(72px,9vw,80px); height: clamp(120px,15vw,140px); background: #16171B; border-radius: 22px; padding: 8px; box-shadow: 0 14px 30px -12px rgba(${T.shadowBase},0.4), inset 0 0 0 2px #2A2B31; }
         .phone-notch { position: absolute; top: 8px; left: 50%; transform: translateX(-50%); width: 34px; height: 5px; border-radius: 99px; background: #2A2B31; z-index: 2; }
         .phone-screen { position: relative; width: 100%; height: 100%; border-radius: 15px; overflow: hidden; background: ${T.bg}; }
         .phone-face { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; text-align: center; padding: 8px; opacity: 0; transition: opacity 0.5s ease; }
-        .phone-face span:first-child { font-size: 26px; }
-        .phone-face p { margin: 0; font-family: 'Manrope'; font-weight: 800; font-size: 11px; color: ${T.ink}; }
-        .phone-ok { font-family: 'JetBrains Mono'; font-size: 9px; font-weight: 700; }
+        .phone-face span:first-child { font-size: 20px; }
+        .phone-face p { margin: 0; font-family: 'Manrope'; font-weight: 800; font-size: 10px; color: ${T.ink}; }
+        .phone-ok { font-family: 'JetBrains Mono'; font-size: 8.5px; font-weight: 700; }
         .phone-screen.old .old-face { opacity: 1; }
         .phone-screen.new .new-face { opacity: 1; }
         .phone-screen.broken .broken-face { opacity: 1; }
@@ -4219,7 +4232,8 @@ function AiPipelineProjectLesson({ lang: langProp, onFinished, liveToken }) {
         /* tap-hint affordance — bosilmagan kartalar "meni bos" deb pulslaydi. Bosilgach pulsatsiya TO'XTAYDI = progress signali. */
         .gchip.tap-hint, .btn-soft.tap-hint, .itm-card.tap-hint, .btn.tap-hint { animation: tap-hint-pulse 1.9s ease-in-out infinite; }
 
-        .dd { display: flex; flex-direction: column; gap: 13px; }
+        .dd { display: grid; grid-template-columns: minmax(0,1.15fr) minmax(0,1fr); gap: 13px; align-items: start; } /* §34: keng ekranda uyalar chapda, hovuz o'ngda */
+        @media (max-width: 760px) { .dd { grid-template-columns: 1fr; } }
         .dd-slots { display: flex; flex-direction: column; gap: 9px; position: relative; }
         .dd-slot { display: flex; align-items: center; gap: 12px; min-height: 58px; border-radius: 14px; border: 2px dashed ${T.ink3}66; background: ${T.paper}; padding: 8px 12px; box-shadow: 0 5px 14px -9px rgba(${T.shadowBase},0.2); transition: border-color .18s, background .18s, box-shadow .18s; }
         .dd-slot.filled { border-style: solid; border-color: ${T.line}; box-shadow: 0 8px 18px -10px rgba(${T.shadowBase},0.26); }

@@ -2622,7 +2622,8 @@ function StyleTag() {
 var HtmlCompiler_default = HtmlCompiler;
 
 // src/live/liveClient.js
-var LIVE_API_URL = "https://dars-api.coddycamp.uz" ? String("https://dars-api.coddycamp.uz").replace(/\/+$/, "") : DEFAULT_API_URL;
+var DEFAULT_API_URL = "https://dars-api.coddycamp.uz";
+var LIVE_API_URL = "" ? String("").replace(/\/+$/, "") : DEFAULT_API_URL;
 var LIVE_ENABLED = !!LIVE_API_URL;
 var LIVE_POLL_MS = 2500;
 var LIVE_POLL_MAX_MS = 15e3;
@@ -2636,7 +2637,9 @@ async function errorFrom(r, fallback) {
     msg = (await r.json()).message || "";
   } catch {
   }
-  return new Error(msg || fallback);
+  const e = new Error(msg || fallback);
+  e.status = r.status;
+  return e;
 }
 async function liveRpc(fn, body) {
   const r = await fetch(`${API}/rpc/${fn}`, {
@@ -3199,8 +3202,14 @@ function useLiveSession(lessonId, answerKey, opts = {}) {
       liveStore(lessonId, { mode: "mentor", pin: row.pin, token: row.token });
       if (keyRef.current) liveRpc("set_quiz_keys", { p_lesson_id: lessonId, p_mentor_code: (mentorCode || "").trim(), p_keys: keyRef.current }).catch(() => {
       });
-    } catch {
-      setJoinError(tr2({ uz: "Mentor kodi noto'g'ri yoki ulanishda xato.", ru: "Неверный код ментора или ошибка подключения." }));
+    } catch (e) {
+      const st = e && e.status;
+      setJoinError(
+        st === 401 || st === 403 ? tr2({ uz: "Mentor kodi noto'g'ri.", ru: "Неверный код ментора." }) : st ? tr2({ uz: `Server javob bermadi (xato ${st}). Birozdan keyin urinib ko'ring.`, ru: `Сервер не ответил (ошибка ${st}). Попробуйте чуть позже.` }) : tr2({
+          uz: "Serverga ulanib bo'lmadi. Internetni tekshiring — yoki «← Orqaga» bosib, «Kodsiz, o'zim ko'raman» bilan darsni jonli rejimsiz o'tkazing.",
+          ru: "Не удалось подключиться к серверу. Проверьте интернет — или нажмите «← Назад» и выберите «Без кода, смотрю сам», чтобы провести урок без живого режима."
+        })
+      );
     } finally {
       setBusy(false);
     }
@@ -3555,7 +3564,7 @@ function useServerProgress(live, refs) {
 import React2, { useState as useState3, useEffect as useEffect4 } from "react";
 var LT = { bg: "#F6F4EF", ink: "#0E0E10", ink2: "#5A5A60", ink3: "#A7A6A2", paper: "#FFFFFF", accent: "#FF4F28", accentSoft: "#FFE8E1", success: "#1F7A4D" };
 var _liveBtnPri = { background: LT.accent, color: "#fff", border: "none", borderRadius: 12, padding: "14px 20px", fontSize: 16, fontWeight: 700, cursor: "pointer" };
-var _liveBadgeS = { position: "fixed", top: 10, left: "50%", transform: "translateX(-50%)", zIndex: 9998, background: LT.paper, border: `1px solid ${LT.ink3}55`, borderRadius: 99, padding: "6px 14px", fontSize: 13, fontWeight: 600, color: LT.ink2, boxShadow: "0 2px 10px rgba(58,53,48,0.12)", display: "flex", alignItems: "center", gap: 8, whiteSpace: "nowrap", maxWidth: "92vw" };
+var _liveBadgeS = { position: "fixed", top: 2, left: "50%", transform: "translateX(-50%)", zIndex: 9998, background: LT.paper, border: `1px solid ${LT.ink3}55`, borderRadius: 99, padding: "2px 14px", fontSize: 13, fontWeight: 600, color: LT.ink2, boxShadow: "0 2px 10px rgba(58,53,48,0.12)", display: "flex", alignItems: "center", gap: 8, whiteSpace: "nowrap", maxWidth: "92vw" };
 var _liveDot = (c) => ({ width: 8, height: 8, borderRadius: 99, background: c, display: "inline-block" });
 function LiveBigCode({ pin, onClose }) {
   const digits = String(pin || "").split("");
@@ -3933,7 +3942,7 @@ var SCORED_IDX = SCREEN_META.map((m, i) => m.scored ? i : null).filter((i) => i 
 var Tg = ({ children }) => <span style={{ color: CODE.tag }}>{children}</span>;
 var At = ({ children }) => <span style={{ color: CODE.attr }}>{children}</span>;
 var Sr = ({ children }) => <span style={{ color: CODE.str }}>{children}</span>;
-var Preview = ({ children, title = "portfolio.html", minH }) => <div className="bp-window"><div className="bp-bar"><span className="bb-dots"><i /><i /><i /></span><span className="bp-title">{title}</span></div><div className="bp-body" style={{ minHeight: minH }}>{children}</div></div>;
+var Preview = ({ children, title = "portfolio.html", minH, maxH }) => <div className="bp-window"><div className="bp-bar"><span className="bb-dots"><i /><i /><i /></span><span className="bp-title">{title}</span></div><div className="bp-body" style={{ minHeight: minH, maxHeight: maxH, overflowY: maxH ? "auto" : void 0 }}>{children}</div></div>;
 var Split = ({ children }) => <div className="split">{children}</div>;
 var Col = ({ children, gap }) => <div className="col" style={gap ? { gap } : void 0}>{children}</div>;
 var Stage = ({ children, eyebrow, screen, totalScreens = TOTAL_SCREENS, navContent, narrow, mentorStatic }) => {
@@ -4065,7 +4074,7 @@ var QuestionScreen = ({ screen, scope, eyebrow, question, questionText, options,
       <div className="screen" style={{ justifyContent: isMentorLive ? "flex-start" : "center", gap: "clamp(16px,2.5vw,24px)" }}>
         <div className="fade-up">{question}</div>
         {oneShot && !solved && <p className="small mono fade-up" style={{ margin: "-8px 0 0", color: T.accent, fontWeight: 600 }}>⚡ {tr3({ uz: "Jonli dars — bitta urinish, o'ylab bosing!", ru: "Живой урок — одна попытка, думайте перед кликом!" })}</p>}
-        <div className="fade-up delay-1" style={{ display: "flex", flexDirection: "column", gap: 11 }}>
+        <div className="fade-up delay-1" style={{ display: "flex", flexDirection: "column", gap: picked !== null ? 8 : 11 }}>
           {options.map((opt, i) => {
     let cls = "option";
     if (isMentorLive) {
@@ -4083,7 +4092,7 @@ var QuestionScreen = ({ screen, scope, eyebrow, question, questionText, options,
       }
     } else if (i === picked) cls += " option-picked-wrong";
     const showGreenLetter = isMentorLive ? mReveal && i === correctIdx : solved && revealed && i === correctIdx;
-    return <button key={i} className={cls} disabled={solved || isMentorLive} onClick={() => pick(i)} style={{ padding: "clamp(13px,1.9vw,17px) clamp(15px,2.2vw,20px)", fontSize: "clamp(15px,1.85vw,17px)", display: "flex", alignItems: "center", gap: 12 }}>
+    return <button key={i} className={cls} disabled={solved || isMentorLive} onClick={() => pick(i)} style={{ padding: picked !== null ? "clamp(9px,1.3vw,12px) clamp(15px,2.2vw,20px)" : "clamp(13px,1.9vw,17px) clamp(15px,2.2vw,20px)", fontSize: "clamp(15px,1.85vw,17px)", display: "flex", alignItems: "center", gap: 12 }}>
                 <span className="mono small" style={{ minWidth: 20, color: showGreenLetter ? T.success : T.ink3 }}>{String.fromCharCode(65 + i)}</span>
                 <span style={{ flex: 1 }}>{fmtCode(tr3(opt))}</span>
               </button>;
@@ -4206,7 +4215,7 @@ var Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
   };
   return <Stage eyebrow={tr3({ uz: "Praktika · kirish", ru: "Практика · вход" })} screen={screen} audioState={audio} navContent={<NavNext optionalLive disabled={picked === null} label={{ uz: "Boshlaymiz →", ru: "Начинаем →" }} onClick={onNext} />}>
       <div className="screen">
-        <h1 className="title h-title fade-up" style={{ maxWidth: 800 }}>{tr3({ uz: <>O'zingizni dunyoga qanday <span className="italic" style={{ color: T.accent }}>tanishtirasiz</span>?</>, ru: <>Как вы <span className="italic" style={{ color: T.accent }}>представите</span> себя миру?</> })}</h1>
+        <h1 className="title h-title fade-up">{tr3({ uz: <>O'zingizni dunyoga qanday <span className="italic" style={{ color: T.accent }}>tanishtirasiz</span>?</>, ru: <>Как вы <span className="italic" style={{ color: T.accent }}>представите</span> себя миру?</> })}</h1>
         <Mentor>{tr3({ uz: <>Bugun siz o'zingizning <b style={{ color: T.ink }}>portfolio saytingizni</b> noldan quryapsiz — faqat HTML bilan. Keyingi darsda uni CSS bilan bezaymiz. Avval ayting: portfolio sayt nima uchun kerak?</>, ru: <>Сегодня вы строите свой <b style={{ color: T.ink }}>сайт-портфолио</b> с нуля — только на HTML. На следующем уроке украсим его с помощью CSS. Сначала скажите: зачем нужен сайт-портфолио?</> })}</Mentor>
         <Zoomable>
         <Split>
@@ -4248,7 +4257,7 @@ var Screen1 = ({ screen, onNext, onPrev }) => {
   };
   const PreviewBlock = <Col>
       <p className="flow-label">{tr3({ uz: "Tayyor sayt — dars oxirida shunday bo'ladi", ru: "Готовый сайт — таким он будет в конце урока" })}</p>
-      <Preview title="portfolio.html" minH={200}>
+      <Preview title="portfolio.html" minH={200} maxH={190}>
         <SiteRender name="Aziza Karimova" role={tr3({ uz: "Frontend dasturchi", ru: "Frontend-разработчик" })} parts={["header", "nav", "about", "projects", "contact", "footer"]} />
       </Preview>
     </Col>;
@@ -4314,8 +4323,8 @@ var Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 };
 var Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const audio = useAudio([{ id: "s3", text: `Birinchi blok — sarlavha. Bu yerda ikkita narsa bor: ismingiz va kasbingiz. Ismingizni eng katta sarlavha — h1 teg ichiga, kasbingizni esa oddiy matn — p teg ichiga yozamiz. Ismingiz va kasbingizni yozing, keyin "Headerni qo'shish" tugmasini bosing.`, trigger: "on_mount", waits_for: null }]);
-  const [name, setName] = useState4(storedAnswer?.name ?? "");
-  const [role, setRole] = useState4(storedAnswer?.role ?? "");
+  const [name, setName] = useState4(typeof storedAnswer?.name === "string" ? storedAnswer.name : "");
+  const [role, setRole] = useState4(typeof storedAnswer?.role === "string" ? storedAnswer.role : "");
   const [done, setDone] = useState4(!!storedAnswer);
   const dispName = name.trim() || "Aziza Karimova";
   const dispRole = role.trim() || tr3({ uz: "Frontend dasturchi", ru: "Frontend-разработчик" });
@@ -4482,7 +4491,7 @@ var Screen8 = (props) => <QuestionScreen
 var Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const audio = useAudio([{ id: "s9", text: `Loyihalar bo'limini ro'yxat bilan yasaymiz. Tartibsiz ro'yxat — ul, va har bir loyiha alohida element — li ichida, bosish uchun havola — a bilan. Pastdagi loyihalarni bosib, ro'yxatga qo'shing. Kamida ikkita qo'shing.`, trigger: "on_mount", waits_for: null }]);
   const POOL = [{ uz: "To-Do ilova", ru: "To-Do приложение" }, { uz: "Ob-havo sayti", ru: "Сайт погоды" }, { uz: "Kalkulyator", ru: "Калькулятор" }, { uz: "Shaxsiy blog", ru: "Личный блог" }];
-  const [added, setAdded] = useState4(storedAnswer?.added ?? []);
+  const [added, setAdded] = useState4(Array.isArray(storedAnswer?.added) ? storedAnswer.added : []);
   const done = added.length >= 2;
   useEffect5(() => {
     if (done && storedAnswer === void 0) onAnswer(screen, { correct: true, added });
@@ -4661,7 +4670,7 @@ var Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             </div>
           </div>
           <div className="col">
-            {!done ? <div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>{tr3({ uz: <>Endi siz teglarni bilasiz — AI yozgan kodni <b style={{ color: T.ink }}>tekshira olasiz</b>. Qaysi teg ochilib, yopilmagan?</>, ru: <>Теперь вы знаете теги — значит, можете <b style={{ color: T.ink }}>проверить</b> код, написанный AI. Какой тег открылся, но не закрылся?</> })}</p></div> : <>
+            {!done ? <div className="hint"><p className="body zb-notch" style={{ margin: 0, color: T.ink2 }}>{tr3({ uz: <>Endi siz teglarni bilasiz — AI yozgan kodni <b style={{ color: T.ink }}>tekshira olasiz</b>. Qaysi teg ochilib, yopilmagan?</>, ru: <>Теперь вы знаете теги — значит, можете <b style={{ color: T.ink }}>проверить</b> код, написанный AI. Какой тег открылся, но не закрылся?</> })}</p></div> : <>
               <div className="flow-label">{tr3({ uz: "Endi sahifa to'g'ri ishlaydi", ru: "Теперь страница работает правильно" })}</div>
               <Preview title="portfolio.html" minH={110}><div className="raw fade-step"><h2>{tr3({ uz: "Men haqimda", ru: "Обо мне" })}</h2><p>{tr3({ uz: "Salom! Men HTML o'rganyapman.", ru: "Привет! Я изучаю HTML." })}</p></div></Preview>
               <div className="takeaway fade-step"><div className="ta-bulb">🛠️</div><p className="ta-h">{tr3({ uz: "Topdingiz va tuzatdingiz — bu debugging!", ru: "Нашли и исправили — это и есть дебаггинг!" })}</p><p className="ta-sub">{tr3({ uz: "AI tez yozadi, siz tekshirib tuzatasiz — zo'r jamoa", ru: "AI быстро пишет, вы проверяете и чините — отличная команда" })}</p></div>
@@ -6233,22 +6242,37 @@ function HtmlPractice({ lang: langProp, onFinished, onPractice, liveToken }) {
       setPractice(null);
       advance();
     };
-    if (typeof onPractice === "function") Promise.resolve(onPractice(entry.task)).then(done);
-    else {
+    const openLocal = () => {
       pracWrite(LESSON_META.lessonId, { kind: `s${fromScreen}`, screen: fromScreen });
       setPractice({ ...entry, done, codeKey: codeKeyOf(LESSON_META.lessonId, `s${fromScreen}`) });
+    };
+    if (typeof onPractice !== "function") {
+      openLocal();
+      return;
+    }
+    try {
+      Promise.resolve(onPractice(entry.task)).then(done, openLocal);
+    } catch {
+      openLocal();
     }
   };
   const openHomeworkPractice = () => {
     const entry = { task: TASK_HW, starter: STARTER_HW };
-    if (typeof onPractice === "function") Promise.resolve(onPractice(entry.task)).catch(() => {
-    });
-    else {
+    const openLocal = () => {
       pracWrite(LESSON_META.lessonId, { kind: "hw" });
       setPractice({ ...entry, codeKey: codeKeyOf(LESSON_META.lessonId, "hw"), done: () => {
         pracClear(LESSON_META.lessonId);
         setPractice(null);
       } });
+    };
+    if (typeof onPractice !== "function") {
+      openLocal();
+      return;
+    }
+    try {
+      Promise.resolve(onPractice(entry.task)).catch(openLocal);
+    } catch {
+      openLocal();
     }
   };
   useEffect5(() => {
@@ -6269,7 +6293,7 @@ function HtmlPractice({ lang: langProp, onFinished, onPractice, liveToken }) {
       advance();
       return;
     }
-    if (!(live && (live.mode === "mentor" || live.mode === "student" && live.status !== "ended" && live.mentorAlive))) {
+    if (!(live && (live.mode === "mentor" || live.mode === "student" && live.status !== "ended"))) {
       advance();
       return;
     }
@@ -6368,6 +6392,11 @@ function HtmlPractice({ lang: langProp, onFinished, onPractice, liveToken }) {
         @keyframes fade-step { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
         .zoomable { position: relative; }
         .zoom-btn { position: absolute; top: 6px; right: 6px; z-index: 5; width: 30px; height: 30px; border-radius: 8px; border: none; background: rgba(255,255,255,0.82); color: ${T.ink2}; font-size: 14px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.22); transition: all 0.2s; }
+        /* F-0912-03 · 147-qonun: ⛶ tugmasi burchagini matn AYLANIB o'tadi — faqat
+           tugma yonidagi qator qisqaradi, qolganlari to'liq kenglikda qoladi.
+           Hisob: .hint ning o'ng chekinishi 16px, tugma o'ngdan 36px ni egallaydi
+           → 20px yetishmaydi, 28px nafas bilan olinadi. */
+        .zb-notch::before { content: ''; float: right; width: 28px; height: 28px; }
         .zoom-btn:hover { background: ${T.paper}; color: ${T.accent}; transform: scale(1.08); }
         .zoom-backdrop { position: fixed; inset: 0; background: rgba(14,14,16,0.55); z-index: 1000; animation: fade-step 0.25s ease; }
         .zoom-on { position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%); width: min(880px,94vw); max-height: calc(90vh / var(--lz, 1)); overflow: auto; z-index: 1001; background: ${T.paper}; border-radius: 18px; padding: clamp(20px,4vw,42px); box-shadow: 0 30px 80px -20px rgba(${T.shadowBase},0.5); animation: zoom-pop 0.3s cubic-bezier(.34,1.3,.4,1); }
@@ -6430,7 +6459,7 @@ function HtmlPractice({ lang: langProp, onFinished, onPractice, liveToken }) {
         .bp-title { font-family: 'JetBrains Mono'; font-size: 11px; color: ${T.ink3}; }
         .bp-body { padding: clamp(12px,2.2vw,18px); }
 
-        .h-title { font-size: clamp(22px,4vw,38px); }
+        .h-title { font-size: clamp(22px,4vw,36px); letter-spacing: -0.015em; text-wrap: balance; }
         .h-sub { font-size: clamp(17px,2.5vw,22px); }
         .h-ask { font-size: clamp(19px,2.6vw,27px); line-height: 1.32; letter-spacing: -0.01em; text-wrap: balance; }
         .body { font-size: clamp(14px,1.6vw,16px); line-height: 1.5; }
@@ -6699,9 +6728,10 @@ function HtmlPractice({ lang: langProp, onFinished, onPractice, liveToken }) {
         /* === 🧲 DRAG&DROP (reusable) === */
         .sk-buildbox { display: flex; flex-direction: column; animation: sk-swapin 0.5s cubic-bezier(.34,1.3,.4,1); }
         @keyframes sk-swapin { from { opacity: 0; transform: translateY(12px) scale(0.96); } to { opacity: 1; transform: none; } }
-        .dd { display: flex; flex-direction: column; gap: 13px; }
+        .dd { display: grid; grid-template-columns: minmax(0,1.15fr) minmax(0,1fr); gap: 13px; align-items: start; } /* §34: keng ekranda uyalar chapda, hovuz o'ngda */
+        @media (max-width: 760px) { .dd { grid-template-columns: 1fr; } }
         .dd-slots { display: flex; flex-direction: column; gap: 9px; }
-        .dd-slot { display: flex; align-items: center; gap: 12px; min-height: 56px; border-radius: 14px; border: 2px dashed ${T.ink3}66; background: ${T.paper}; padding: 8px 12px; transition: border-color .18s, background .18s; }
+        .dd-slot { display: flex; align-items: center; gap: 12px; min-height: 46px; border-radius: 14px; border: 2px dashed ${T.ink3}66; background: ${T.paper}; padding: 8px 12px; transition: border-color .18s, background .18s; }
         .dd-slot.filled { border-style: solid; border-color: ${T.line}; }
         .dd-slot.ok { border-color: ${T.success}; background: ${T.successSoft}; }
         .dd-slot.bad { border-color: #E24848; background: #FBE9E9; animation: dd-shake .4s; }

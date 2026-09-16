@@ -9,7 +9,8 @@
 import React3, { useState as useState3, useEffect as useEffect4, useRef as useRef3, useCallback as useCallback2, createContext as createContext2, useContext as useContext2 } from "react";
 
 // src/live/liveClient.js
-var LIVE_API_URL = "https://dars-api.coddycamp.uz" ? String("https://dars-api.coddycamp.uz").replace(/\/+$/, "") : DEFAULT_API_URL;
+var DEFAULT_API_URL = "https://dars-api.coddycamp.uz";
+var LIVE_API_URL = "" ? String("").replace(/\/+$/, "") : DEFAULT_API_URL;
 var LIVE_ENABLED = !!LIVE_API_URL;
 var LIVE_POLL_MS = 2500;
 var LIVE_POLL_MAX_MS = 15e3;
@@ -23,7 +24,9 @@ async function errorFrom(r, fallback) {
     msg = (await r.json()).message || "";
   } catch {
   }
-  return new Error(msg || fallback);
+  const e = new Error(msg || fallback);
+  e.status = r.status;
+  return e;
 }
 async function liveRpc(fn, body) {
   const r = await fetch(`${API}/rpc/${fn}`, {
@@ -586,8 +589,14 @@ function useLiveSession(lessonId, answerKey, opts = {}) {
       liveStore(lessonId, { mode: "mentor", pin: row.pin, token: row.token });
       if (keyRef.current) liveRpc("set_quiz_keys", { p_lesson_id: lessonId, p_mentor_code: (mentorCode || "").trim(), p_keys: keyRef.current }).catch(() => {
       });
-    } catch {
-      setJoinError(tr({ uz: "Mentor kodi noto'g'ri yoki ulanishda xato.", ru: "Неверный код ментора или ошибка подключения." }));
+    } catch (e) {
+      const st = e && e.status;
+      setJoinError(
+        st === 401 || st === 403 ? tr({ uz: "Mentor kodi noto'g'ri.", ru: "Неверный код ментора." }) : st ? tr({ uz: `Server javob bermadi (xato ${st}). Birozdan keyin urinib ko'ring.`, ru: `Сервер не ответил (ошибка ${st}). Попробуйте чуть позже.` }) : tr({
+          uz: "Serverga ulanib bo'lmadi. Internetni tekshiring — yoki «← Orqaga» bosib, «Kodsiz, o'zim ko'raman» bilan darsni jonli rejimsiz o'tkazing.",
+          ru: "Не удалось подключиться к серверу. Проверьте интернет — или нажмите «← Назад» и выберите «Без кода, смотрю сам», чтобы провести урок без живого режима."
+        })
+      );
     } finally {
       setBusy(false);
     }
@@ -942,7 +951,7 @@ function useServerProgress(live, refs) {
 import React2, { useState as useState2, useEffect as useEffect3 } from "react";
 var LT = { bg: "#F6F4EF", ink: "#0E0E10", ink2: "#5A5A60", ink3: "#A7A6A2", paper: "#FFFFFF", accent: "#FF4F28", accentSoft: "#FFE8E1", success: "#1F7A4D" };
 var _liveBtnPri = { background: LT.accent, color: "#fff", border: "none", borderRadius: 12, padding: "14px 20px", fontSize: 16, fontWeight: 700, cursor: "pointer" };
-var _liveBadgeS = { position: "fixed", top: 10, left: "50%", transform: "translateX(-50%)", zIndex: 9998, background: LT.paper, border: `1px solid ${LT.ink3}55`, borderRadius: 99, padding: "6px 14px", fontSize: 13, fontWeight: 600, color: LT.ink2, boxShadow: "0 2px 10px rgba(58,53,48,0.12)", display: "flex", alignItems: "center", gap: 8, whiteSpace: "nowrap", maxWidth: "92vw" };
+var _liveBadgeS = { position: "fixed", top: 2, left: "50%", transform: "translateX(-50%)", zIndex: 9998, background: LT.paper, border: `1px solid ${LT.ink3}55`, borderRadius: 99, padding: "2px 14px", fontSize: 13, fontWeight: 600, color: LT.ink2, boxShadow: "0 2px 10px rgba(58,53,48,0.12)", display: "flex", alignItems: "center", gap: 8, whiteSpace: "nowrap", maxWidth: "92vw" };
 var _liveDot = (c) => ({ width: 8, height: 8, borderRadius: 99, background: c, display: "inline-block" });
 function LiveBigCode({ pin, onClose }) {
   const digits = String(pin || "").split("");
@@ -1195,7 +1204,7 @@ function AchCounter() {
 var Stage = ({ children, eyebrow, screen, totalScreens = TOTAL_SCREENS, navContent, narrow, mentorStatic }) => {
   const isMobile = useIsMobile();
   const isNarrow = useIsMobile(768);
-  const collapseOn = isNarrow && !mentorStatic;
+  const collapseOn = !mentorStatic;
   const padH = isMobile ? 12 : 60;
   const [mCollapsed, setMCollapsed] = useState3(false);
   const contentRef = useRef3(null);
@@ -1482,7 +1491,7 @@ var QuestionScreen = ({ screen, scope, eyebrow, question, questionText, options,
       <div className="screen" style={{ justifyContent: isMentorLive ? "flex-start" : "safe center", gap: "clamp(16px,2.5vw,24px)" }}>
         <div className="fade-up">{question}</div>
         {oneShot && !solved && <p className="small mono fade-up" style={{ margin: "-8px 0 0", color: T.accent, fontWeight: 600 }}>{tr2({ uz: "⚡ Jonli dars — bitta urinish, o'ylab bosing!", ru: "⚡ Живой урок — одна попытка, нажимайте обдуманно!" })}</p>}
-        <div className="fade-up delay-1" style={{ display: "flex", flexDirection: "column", gap: 11 }}>
+        <div className="fade-up delay-1" style={{ display: "flex", flexDirection: "column", gap: picked !== null ? 8 : 11 }}>
           {options.map((opt, i) => {
     let cls = "option";
     if (isMentorLive) {
@@ -1500,7 +1509,7 @@ var QuestionScreen = ({ screen, scope, eyebrow, question, questionText, options,
       }
     } else if (i === picked) cls += " option-picked-wrong";
     const showGreenLetter = isMentorLive ? mReveal && i === correctIdx : solved && revealed && i === correctIdx;
-    return <button key={i} className={cls} disabled={solved || isMentorLive} onClick={() => pick(i)} style={{ padding: "clamp(13px,1.9vw,17px) clamp(15px,2.2vw,20px)", fontSize: "clamp(15px,1.85vw,17px)", display: "flex", alignItems: "center", gap: 12 }}>
+    return <button key={i} className={cls} disabled={solved || isMentorLive} onClick={() => pick(i)} style={{ padding: picked !== null ? "clamp(9px,1.3vw,12px) clamp(15px,2.2vw,20px)" : "clamp(13px,1.9vw,17px) clamp(15px,2.2vw,20px)", fontSize: "clamp(15px,1.85vw,17px)", display: "flex", alignItems: "center", gap: 12 }}>
                 <span className="mono small" style={{ minWidth: 20, color: showGreenLetter ? T.success : T.ink3 }}>{String.fromCharCode(65 + i)}</span>
                 <span style={{ flex: 1 }}>{fmtCode(opt)}</span>
               </button>;
@@ -1730,7 +1739,7 @@ var Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
   };
   return <Stage eyebrow={tr2({ uz: "Kirish", ru: "Введение" })} screen={screen} audioState={audio} navContent={<NavNext disabled={picked === null} label={tr2({ uz: "Davom etish", ru: "Продолжить" })} onClick={onNext} />}>
       <div className="screen">
-        <h1 className="title h-title fade-up" style={{ maxWidth: 780 }}>{tr2({ uz: <>Bitta buyruq <span className="italic" style={{ color: T.accent }}>butun loyihani</span> yaratib beradimi?</>, ru: <>Одна команда создаст <span className="italic" style={{ color: T.accent }}>целый проект</span>?</> })}</h1>
+        <h1 className="title h-title fade-up">{tr2({ uz: <>Bitta buyruq <span className="italic" style={{ color: T.accent }}>butun loyihani</span> yaratib beradimi?</>, ru: <>Одна команда создаст <span className="italic" style={{ color: T.accent }}>целый проект</span>?</> })}</h1>
         <Mentor>{tr2({ uz: <>Roblox Studio'da yangi o'yin boshlasangiz — <b style={{ color: T.ink }}>tayyor maydoncha</b> keladi: yer, osmon, yorug'lik. Axir hammasini noldan qurmaysiz! Sayt qurishda ham shunday yordamchi bor. <b style={{ color: T.ink }}>Enter'ni bosing</b> — kompyuteringizda nima paydo bo'lishini kuzating.</>, ru: <>Начнёте новую игру в Roblox Studio — приходит <b style={{ color: T.ink }}>готовая площадка</b>: земля, небо, свет. Вы же не строите всё с нуля! В создании сайтов есть такой же помощник. <b style={{ color: T.ink }}>Нажмите Enter</b> — и смотрите, что появится на вашем компьютере.</> })}</Mentor>
         <Zoomable>
         <Split>
@@ -2075,6 +2084,11 @@ var Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               {"  );"}{"\n"}
               {"}"}
             </pre>
+            {!done && (active ? <div className="sk-info" key={active}>
+                <span className="sk-tagbig"><span className="sk-wordbadge">{tr2(PARTS[active].word)}</span></span>
+                <p className="body" style={{ color: T.ink, margin: "11px 0 0" }}>{tr2(PARTS[active].info)}</p>
+              </div> : <div className="frame-dash" style={{ padding: "10px 14px" }}><p className="small" style={{ color: T.ink3, textAlign: "center", fontStyle: "italic", margin: 0 }}>{tr2({ uz: "Koddan bir qismni bosing", ru: "Нажмите на часть кода" })}</p></div>)}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr2({ uz: <>Komponent = <b>Katta harfli funksiya + return JSX</b>. Tamom — butun formula shu!</>, ru: <>Компонент = <b>функция с Заглавной буквы + return JSX</b>. Всё — вот и вся формула!</> })}</p></div>}
           </Col>
           <Col>
             <p className="flow-label">{tr2({ uz: "Bloxy-Press — kod = mashina", ru: "Bloxy-Press — код = машина" })}</p>
@@ -2083,11 +2097,6 @@ var Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <p className="flow-label" style={{ margin: 0 }}>{tr2({ uz: "Qismlar", ru: "Части" })}</p>
               <span className="small mono" style={{ color: done ? T.success : T.ink3 }}>{seen.size} / 3 {tr2({ uz: "topildi", ru: "найдено" })}</span>
             </div>
-            {active ? <div className="sk-info" key={active}>
-                <span className="sk-tagbig"><span className="sk-wordbadge">{tr2(PARTS[active].word)}</span></span>
-                <p className="body" style={{ color: T.ink, margin: "11px 0 0" }}>{tr2(PARTS[active].info)}</p>
-              </div> : <div className="frame-dash" style={{ padding: "10px 14px" }}><p className="small" style={{ color: T.ink3, textAlign: "center", fontStyle: "italic", margin: 0 }}>{tr2({ uz: "Koddan bir qismni bosing", ru: "Нажмите на часть кода" })}</p></div>}
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr2({ uz: <>Komponent = <b>Katta harfli funksiya + return JSX</b>. Tamom — butun formula shu!</>, ru: <>Компонент = <b>функция с Заглавной буквы + return JSX</b>. Всё — вот и вся формула!</> })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -2119,11 +2128,11 @@ var Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               {"  );"}{"\n"}
               {"}"}
             </pre>
+            {done && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr2({ uz: <>Ishladi! Lekin bir muammo bor: hamma kartochka <b>bir xil — Adopt Me!</b>. Blox Fruits va Brookhaven qani? Keyingi ekranda yechamiz.</>, ru: <>Работает! Но есть проблема: все карточки <b>одинаковые — Adopt Me!</b>. А где Blox Fruits и Brookhaven? Решим на следующем экране.</> })}</p></div>}
           </Col>
           <Col>
             <p className="flow-label">{tr2({ uz: "Bloxy-Press — har TORT = bitta chaqiruv", ru: "Bloxy-Press — каждое ТЯНИ = один вызов" })}</p>
             <CardMachine mode="lever" n={n} onPull={add} />
-            {done && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr2({ uz: <>Ishladi! Lekin bir muammo bor: hamma kartochka <b>bir xil — Adopt Me!</b>. Blox Fruits va Brookhaven qani? Keyingi ekranda yechamiz.</>, ru: <>Работает! Но есть проблема: все карточки <b>одинаковые — Adopt Me!</b>. А где Blox Fruits и Brookhaven? Решим на следующем экране.</> })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -2165,11 +2174,11 @@ var Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               {cards.map((nm, i) => <React3.Fragment key={i}><Jx>{"<GameCard "}</Jx><At>name</At>=<St>"{nm}"</St><Jx>{" />"}</Jx>{"\n"}</React3.Fragment>)}
             </pre>
             <span className="tagpill fade-step" key={cards.length} style={{ color: T.success }}>{tr2({ uz: "Komponent kodi: 1 dona", ru: "Код компонента: 1" })} · {tr2({ uz: "chaqiruv:", ru: "вызовов:" })} {cards.length}</span>
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr2({ uz: <><b>Props</b> — komponentga uzatiladigan ma'lumot. Kartochkalar har xil bo'ldi, kod esa bitta. 1-darsdagi va'da bajarildi: <b>bir marta yoz — ming marta ishlat</b>!</>, ru: <><b>Props</b> — данные, которые передают компоненту. Карточки стали разными, а код один. Обещание из 1-го урока выполнено: <b>напиши один раз — используй тысячу раз</b>!</> })}</p></div>}
           </Col>
           <Col>
             <p className="flow-label">{tr2({ uz: "Bloxy-Press — nom-kapsula = props", ru: "Bloxy-Press — капсула-имя = props" })}</p>
             <CardMachine mode="capsule" cards={cards} />
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr2({ uz: <><b>Props</b> — komponentga uzatiladigan ma'lumot. Kartochkalar har xil bo'ldi, kod esa bitta. 1-darsdagi va'da bajarildi: <b>bir marta yoz — ming marta ishlat</b>!</>, ru: <><b>Props</b> — данные, которые передают компоненту. Карточки стали разными, а код один. Обещание из 1-го урока выполнено: <b>напиши один раз — используй тысячу раз</b>!</> })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -2240,10 +2249,11 @@ var Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                   </React3.Fragment>;
   })}
             </div>
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr2({ uz: <>Yo'l aniq: <span className="mono">name="Blox Fruits"</span> → <span className="mono">props</span> → <span className="mono">{"{props.name}"}</span> → ekranda <b>Blox Fruits</b>!</>, ru: <>Путь ясен: <span className="mono">name="Blox Fruits"</span> → <span className="mono">props</span> → <span className="mono">{"{props.name}"}</span> → на экране <b>Blox Fruits</b>!</> })}</p></div>}
           </Col>
           <Col>
             <p className="flow-label">{tr2({ uz: "Kod ichida", ru: "Внутри кода" })}</p>
-            <pre className="code-box fade-up delay-2" style={{ lineHeight: 1.9 }}>
+            <pre className="code-box fade-up delay-2" style={{ lineHeight: 1.6 }}>
               <span style={{ borderRadius: 5, padding: "1px 4px", background: phase === 1 ? "rgba(255,79,40,0.22)" : "transparent", boxShadow: phase === 1 ? `inset 0 0 0 1px ${T.accent}` : "none", transition: "all 0.3s" }}><Jx>{"<GameCard "}</Jx><At>name</At>=<St>"Blox Fruits"</St><Jx>{" />"}</Jx></span>{"\n\n"}
               <span style={{ borderRadius: 5, padding: "1px 4px", background: phase === 2 ? "rgba(255,79,40,0.22)" : "transparent", boxShadow: phase === 2 ? `inset 0 0 0 1px ${T.accent}` : "none", transition: "all 0.3s" }}><Jx>{"function"}</Jx> <At>GameCard</At>{"("}<At>props</At>{") {"}</span>{"\n"}
               {"  "}<Jx>{"return"}</Jx>{" "}<span style={{ borderRadius: 5, padding: "1px 4px", background: phase === 3 ? "rgba(31,122,77,0.25)" : "transparent", boxShadow: phase === 3 ? `inset 0 0 0 1px ${T.success}` : "none", transition: "all 0.3s" }}><Jx>{"<h3>"}</Jx>{"{"}<At>props.name</At>{"}"}<Jx>{"</h3>"}</Jx></span>{";"}{"\n"}
@@ -2251,7 +2261,6 @@ var Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             </pre>
             <p className="flow-label" style={{ marginTop: 2 }}>{tr2({ uz: "Bloxy-Press — rentgen rejimi", ru: "Bloxy-Press — режим рентгена" })}</p>
             <CardMachine mode="xray" phase={phase} running={running} />
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr2({ uz: <>Yo'l aniq: <span className="mono">name="Blox Fruits"</span> → <span className="mono">props</span> → <span className="mono">{"{props.name}"}</span> → ekranda <b>Blox Fruits</b>!</>, ru: <>Путь ясен: <span className="mono">name="Blox Fruits"</span> → <span className="mono">props</span> → <span className="mono">{"{props.name}"}</span> → на экране <b>Blox Fruits</b>!</> })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -3309,7 +3318,7 @@ var Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 };
 var Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const audio = useAudio([{ id: "s15", text: `Oxirgi qadam — endi to'liq o'zingiz! Mana haqiqiy dasturchi muhiti: VS Code'da App.jsx ochiq, to'rtinchi qatorda komponent chaqiruvi yetishmayapti. GameCard'ni istalgan o'yin nomi bilan chaqirib yozing — yozishingiz bilan o'ngda kartochka jonlanadi.`, trigger: "on_mount", waits_for: { type: "typed_ok" } }]);
-  const [value, setValue] = useState3(storedAnswer?.picked || "");
+  const [value, setValue] = useState3(() => typeof storedAnswer?.picked === "string" ? storedAnswer.picked : "");
   const [passed, setPassed] = useState3(!!storedAnswer?.correct);
   const norm = value.replace(/\s+/g, " ").trim();
   const m = norm.match(/^<\s*GameCard\s+name\s*=\s*"([^"]{2,20})"\s*\/\s*>$/);
@@ -3647,7 +3656,7 @@ function ReactFirstComponentLesson({ lang: langProp, onFinished, liveToken }) {
 
         .bp-window { border-radius: 13px; overflow: hidden; background: #fff; box-shadow: 0 10px 26px -6px rgba(${T.shadowBase},0.16); }
 
-        .h-title { font-size: clamp(22px,4vw,38px); }
+        .h-title { font-size: clamp(22px,4vw,36px); letter-spacing: -0.015em; text-wrap: balance; }
         .h-sub { font-size: clamp(17px,2.5vw,22px); }
         .h-ask { font-size: clamp(19px,2.6vw,27px); line-height: 1.32; letter-spacing: -0.01em; text-wrap: balance; }
         .body { font-size: clamp(14px,1.6vw,16px); line-height: 1.5; }

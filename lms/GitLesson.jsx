@@ -9,7 +9,8 @@
 import React3, { useState as useState3, useEffect as useEffect4, useRef as useRef3, useCallback as useCallback2, createContext as createContext2, useContext as useContext2 } from "react";
 
 // src/live/liveClient.js
-var LIVE_API_URL = "https://dars-api.coddycamp.uz" ? String("https://dars-api.coddycamp.uz").replace(/\/+$/, "") : DEFAULT_API_URL;
+var DEFAULT_API_URL = "https://dars-api.coddycamp.uz";
+var LIVE_API_URL = "" ? String("").replace(/\/+$/, "") : DEFAULT_API_URL;
 var LIVE_ENABLED = !!LIVE_API_URL;
 var LIVE_POLL_MS = 2500;
 var LIVE_POLL_MAX_MS = 15e3;
@@ -23,7 +24,9 @@ async function errorFrom(r, fallback) {
     msg = (await r.json()).message || "";
   } catch {
   }
-  return new Error(msg || fallback);
+  const e = new Error(msg || fallback);
+  e.status = r.status;
+  return e;
 }
 async function liveRpc(fn, body) {
   const r = await fetch(`${API}/rpc/${fn}`, {
@@ -586,8 +589,14 @@ function useLiveSession(lessonId, answerKey, opts = {}) {
       liveStore(lessonId, { mode: "mentor", pin: row.pin, token: row.token });
       if (keyRef.current) liveRpc("set_quiz_keys", { p_lesson_id: lessonId, p_mentor_code: (mentorCode || "").trim(), p_keys: keyRef.current }).catch(() => {
       });
-    } catch {
-      setJoinError(tr({ uz: "Mentor kodi noto'g'ri yoki ulanishda xato.", ru: "Неверный код ментора или ошибка подключения." }));
+    } catch (e) {
+      const st = e && e.status;
+      setJoinError(
+        st === 401 || st === 403 ? tr({ uz: "Mentor kodi noto'g'ri.", ru: "Неверный код ментора." }) : st ? tr({ uz: `Server javob bermadi (xato ${st}). Birozdan keyin urinib ko'ring.`, ru: `Сервер не ответил (ошибка ${st}). Попробуйте чуть позже.` }) : tr({
+          uz: "Serverga ulanib bo'lmadi. Internetni tekshiring — yoki «← Orqaga» bosib, «Kodsiz, o'zim ko'raman» bilan darsni jonli rejimsiz o'tkazing.",
+          ru: "Не удалось подключиться к серверу. Проверьте интернет — или нажмите «← Назад» и выберите «Без кода, смотрю сам», чтобы провести урок без живого режима."
+        })
+      );
     } finally {
       setBusy(false);
     }
@@ -942,7 +951,7 @@ function useServerProgress(live, refs) {
 import React2, { useState as useState2, useEffect as useEffect3 } from "react";
 var LT = { bg: "#F6F4EF", ink: "#0E0E10", ink2: "#5A5A60", ink3: "#A7A6A2", paper: "#FFFFFF", accent: "#FF4F28", accentSoft: "#FFE8E1", success: "#1F7A4D" };
 var _liveBtnPri = { background: LT.accent, color: "#fff", border: "none", borderRadius: 12, padding: "14px 20px", fontSize: 16, fontWeight: 700, cursor: "pointer" };
-var _liveBadgeS = { position: "fixed", top: 10, left: "50%", transform: "translateX(-50%)", zIndex: 9998, background: LT.paper, border: `1px solid ${LT.ink3}55`, borderRadius: 99, padding: "6px 14px", fontSize: 13, fontWeight: 600, color: LT.ink2, boxShadow: "0 2px 10px rgba(58,53,48,0.12)", display: "flex", alignItems: "center", gap: 8, whiteSpace: "nowrap", maxWidth: "92vw" };
+var _liveBadgeS = { position: "fixed", top: 2, left: "50%", transform: "translateX(-50%)", zIndex: 9998, background: LT.paper, border: `1px solid ${LT.ink3}55`, borderRadius: 99, padding: "2px 14px", fontSize: 13, fontWeight: 600, color: LT.ink2, boxShadow: "0 2px 10px rgba(58,53,48,0.12)", display: "flex", alignItems: "center", gap: 8, whiteSpace: "nowrap", maxWidth: "92vw" };
 var _liveDot = (c) => ({ width: 8, height: 8, borderRadius: 99, background: c, display: "inline-block" });
 function LiveBigCode({ pin, onClose }) {
   const digits = String(pin || "").split("");
@@ -1753,7 +1762,7 @@ var QuestionScreen = ({ screen, scope, eyebrow, question, questionText, options,
       <div className="screen" style={{ justifyContent: isMentorLive ? "flex-start" : "safe center", gap: "clamp(16px,2.5vw,24px)" }}>
         <div className="fade-up">{question}</div>
         {oneShot && !solved && <p className="small mono fade-up" style={{ margin: "-8px 0 0", color: T.accent, fontWeight: 600 }}>⚡ {tr2({ uz: "Jonli dars — bitta urinish, o'ylab bosing!", ru: "Живой урок — одна попытка, думайте перед кликом!" })}</p>}
-        <div className="fade-up delay-1" style={{ display: "flex", flexDirection: "column", gap: 11 }}>
+        <div className="fade-up delay-1" style={{ display: "flex", flexDirection: "column", gap: picked !== null ? 8 : 11 }}>
           {options.map((opt, i) => {
     let cls = "option";
     if (isMentorLive) {
@@ -1771,7 +1780,7 @@ var QuestionScreen = ({ screen, scope, eyebrow, question, questionText, options,
       }
     } else if (i === picked) cls += " option-picked-wrong";
     const showGreenLetter = isMentorLive ? mReveal && i === correctIdx : solved && revealed && i === correctIdx;
-    return <button key={i} className={cls} disabled={solved || isMentorLive} onClick={() => pick(i)} style={{ padding: "clamp(13px,1.9vw,17px) clamp(15px,2.2vw,20px)", fontSize: "clamp(15px,1.85vw,17px)", display: "flex", alignItems: "center", gap: 12 }}>
+    return <button key={i} className={cls} disabled={solved || isMentorLive} onClick={() => pick(i)} style={{ padding: picked !== null ? "clamp(9px,1.3vw,12px) clamp(15px,2.2vw,20px)" : "clamp(13px,1.9vw,17px) clamp(15px,2.2vw,20px)", fontSize: "clamp(15px,1.85vw,17px)", display: "flex", alignItems: "center", gap: 12 }}>
                 <span className="mono small" style={{ minWidth: 20, color: showGreenLetter ? T.success : T.ink3 }}>{String.fromCharCode(65 + i)}</span>
                 <span style={{ flex: 1 }}>{fmtCode(tr2(opt))}</span>
               </button>;
@@ -1911,10 +1920,13 @@ var DoScreen = ({ screen, storedAnswer, onAnswer, onNext, onPrev, eyebrow, title
           <Col>
             <p className="flow-label">{resultLabel || tr2({ uz: "Ekraningizda shunday chiqadi", ru: "На вашем экране будет так" })}</p>
             <div className="demo-swap" key={cur.id}>{cur.res()}</div>
+            {
+    /* 🛟 zaxira-panel CHAP ustunda: o'ngda qadamlar kartasi ostida pastga tushib, ko'rinmay qolardi (m1-09 s13, F-0913-02) */
+  }
+            {fallback}
           </Col>
           <Col>
             <DoSteps screen={screen} storedAnswer={storedAnswer} onAnswer={onAnswer} steps={steps} taskLabel={taskLabel} practice={practice} onStep={setView} />
-            {fallback}
           </Col>
         </Split>
       </div>
@@ -1936,7 +1948,7 @@ var ScreenHook = ({ screen, storedAnswer, onAnswer, onNext }) => {
   };
   return <Stage eyebrow={tr2({ uz: "Kirish", ru: "Введение" })} screen={screen} navContent={<NavNext optionalLive disabled={picked === null} label={tr2({ uz: "Davom etish", ru: "Продолжить" })} onClick={onNext} />}>
       <div className="screen">
-        <h1 className="title h-title fade-up" style={{ maxWidth: 780 }}>{tr2({ uz: <>Kompyuteringiz buzilsa, yozgan kodingiz <span className="italic" style={{ color: T.accent }}>qayerda</span> qoladi?</>, ru: <><span className="italic" style={{ color: T.accent }}>Где</span> останется написанный вами код, если компьютер сломается?</> })}</h1>
+        <h1 className="title h-title fade-up">{tr2({ uz: <>Kompyuteringiz buzilsa, yozgan kodingiz <span className="italic" style={{ color: T.accent }}>qayerda</span> qoladi?</>, ru: <><span className="italic" style={{ color: T.accent }}>Где</span> останется написанный вами код, если компьютер сломается?</> })}</h1>
         <Mentor>{tr2({ uz: <>Pastdagi uch javobdan bittasini tanlang.</>, ru: <>Выберите один из трёх ответов ниже.</> })}</Mentor>
         <Split>
           <Col>
@@ -2217,7 +2229,7 @@ var ScreenAdd = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     { n: "style.css", ch: true },
     { n: "eski-nusxa.txt", ch: false }
   ];
-  const [sel, setSel] = useState3(storedAnswer?.sel || []);
+  const [sel, setSel] = useState3(Array.isArray(storedAnswer?.sel) ? storedAnswer.sel : []);
   const need = FILES.filter((f) => f.ch).map((f) => f.n);
   const done = need.every((n) => sel.includes(n));
   const tap = (n) => {
@@ -3476,7 +3488,7 @@ function GitLesson({ lang: langProp, onFinished, liveToken }) {
         .bp-title { font-family: 'JetBrains Mono'; font-size: 11px; color: ${T.ink3}; }
         .bp-body { padding: clamp(12px,2.2vw,18px); }
 
-        .h-title { font-size: clamp(22px,4vw,38px); }
+        .h-title { font-size: clamp(22px,4vw,36px); letter-spacing: -0.015em; text-wrap: balance; }
         .h-sub { font-size: clamp(17px,2.5vw,22px); }
         .h-ask { font-size: clamp(19px,2.6vw,27px); line-height: 1.32; letter-spacing: -0.01em; text-wrap: balance; }
         .body { font-size: clamp(14px,1.6vw,16px); line-height: 1.5; }
@@ -4347,7 +4359,7 @@ function GitLesson({ lang: langProp, onFinished, liveToken }) {
         .qz-q .qcode { background: rgba(203,173,255,0.18); color: #F2ECFF; }
 
         /* === ✅ «O'ZIM QILDIM» QADAM-OQIMI (DoSteps) — qadamlar bittalab ochiladi === */
-        .dsx { display: flex; flex-direction: column; gap: 8px; background: ${T.paper}; border-radius: 16px; padding: 14px 15px; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.14); }
+        .dsx { display: flex; flex-direction: column; gap: 6px; background: ${T.paper}; border-radius: 16px; padding: 11px 15px; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.14); }
         .dsx-head { display: flex; align-items: center; gap: 10px; }
         .dsx-lbl { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 12.5px; color: ${T.ink2}; letter-spacing: 0.01em; }
         .dsx-count { margin-left: auto; font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 700; color: ${T.ink3}; background: ${T.bg}; border-radius: 99px; padding: 3px 10px; }
@@ -4355,6 +4367,9 @@ function GitLesson({ lang: langProp, onFinished, liveToken }) {
         .dsx-row { display: flex; align-items: flex-start; gap: 11px; border-radius: 12px; padding: 10px 12px; background: ${T.bg}; transition: background 0.25s, opacity 0.25s; }
         .dsx-row.open { background: ${T.accentSoft}; box-shadow: inset 0 0 0 1.5px rgba(255,79,40,0.35); animation: fade-step 0.3s ease-out; }
         .dsx-row.on { background: ${T.successSoft}; }
+        /* Kutayotgan va bajarilgan qadam ixcham, faol qadam to'liq: 5 qadamli karta ekranga sig'sin (m1-09 s13 ruscha 1366 da 26px toshardi, F-0913-02) */
+        .dsx-row.lock, .dsx-row.on { padding-top: 5px; padding-bottom: 5px; }
+        .dsx-row.open .dsx-body { gap: 5px; }
         .dsx-row.lock { opacity: 0.45; }
         .dsx-num { width: 24px; height: 24px; flex-shrink: 0; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 700; background: ${T.paper}; color: ${T.ink2}; box-shadow: 0 3px 9px -4px rgba(${T.shadowBase},0.25); }
         .dsx-row.on .dsx-num { background: ${T.success}; color: #fff; }
@@ -4372,6 +4387,10 @@ function GitLesson({ lang: langProp, onFinished, liveToken }) {
         .dsx-fb-t { margin: 0; font-size: clamp(12.5px,1.45vw,13.5px); line-height: 1.5; color: ${T.ink2}; }
         .dsx-fb-h { margin: 3px 0 0; font-weight: 700; font-size: clamp(12.5px,1.45vw,13.5px); color: ${T.ink}; }
         .dsx-fb-ol { margin: 0; padding-left: 19px; display: flex; flex-direction: column; gap: 5px; font-size: clamp(12.5px,1.45vw,13.5px); line-height: 1.5; color: ${T.ink2}; }
+        /* Terminal-maket: sinflar ishlatilgan-u uslubi yo'q edi, qatorlar yopishgan oddiy matn bo'lib chiqardi (F-0913-03). Naqsh DeployLesson dan */
+        .term { background: ${CODE.bg}; border-radius: 12px; padding: 14px 16px; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.2); display: flex; flex-direction: column; gap: 5px; font-family: 'JetBrains Mono', monospace; font-size: clamp(12px,1.6vw,13.5px); line-height: 1.5; overflow-x: auto; }
+        .term-row { white-space: pre-wrap; word-break: break-word; }
+        .term-prompt { color: ${CODE.str}; } .term-cmd { color: ${CODE.attr}; } .term-out { color: ${CODE.punct}; } .term-ok { color: ${CODE.str}; }
         .dsx-help { font-size: 12px; color: ${T.ink2}; }
         .dsx-help summary { cursor: pointer; font-weight: 600; color: ${T.accent}; list-style: none; }
         .dsx-help summary::-webkit-details-marker { display: none; }

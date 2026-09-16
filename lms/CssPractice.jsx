@@ -2621,7 +2621,8 @@ function StyleTag() {
 var HtmlCompiler_default = HtmlCompiler;
 
 // src/live/liveClient.js
-var LIVE_API_URL = "https://dars-api.coddycamp.uz" ? String("https://dars-api.coddycamp.uz").replace(/\/+$/, "") : DEFAULT_API_URL;
+var DEFAULT_API_URL = "https://dars-api.coddycamp.uz";
+var LIVE_API_URL = "" ? String("").replace(/\/+$/, "") : DEFAULT_API_URL;
 var LIVE_ENABLED = !!LIVE_API_URL;
 var LIVE_POLL_MS = 2500;
 var LIVE_POLL_MAX_MS = 15e3;
@@ -2635,7 +2636,9 @@ async function errorFrom(r, fallback) {
     msg = (await r.json()).message || "";
   } catch {
   }
-  return new Error(msg || fallback);
+  const e = new Error(msg || fallback);
+  e.status = r.status;
+  return e;
 }
 async function liveRpc(fn, body) {
   const r = await fetch(`${API}/rpc/${fn}`, {
@@ -3198,8 +3201,14 @@ function useLiveSession(lessonId, answerKey, opts = {}) {
       liveStore(lessonId, { mode: "mentor", pin: row.pin, token: row.token });
       if (keyRef.current) liveRpc("set_quiz_keys", { p_lesson_id: lessonId, p_mentor_code: (mentorCode || "").trim(), p_keys: keyRef.current }).catch(() => {
       });
-    } catch {
-      setJoinError(tr2({ uz: "Mentor kodi noto'g'ri yoki ulanishda xato.", ru: "Неверный код ментора или ошибка подключения." }));
+    } catch (e) {
+      const st = e && e.status;
+      setJoinError(
+        st === 401 || st === 403 ? tr2({ uz: "Mentor kodi noto'g'ri.", ru: "Неверный код ментора." }) : st ? tr2({ uz: `Server javob bermadi (xato ${st}). Birozdan keyin urinib ko'ring.`, ru: `Сервер не ответил (ошибка ${st}). Попробуйте чуть позже.` }) : tr2({
+          uz: "Serverga ulanib bo'lmadi. Internetni tekshiring — yoki «← Orqaga» bosib, «Kodsiz, o'zim ko'raman» bilan darsni jonli rejimsiz o'tkazing.",
+          ru: "Не удалось подключиться к серверу. Проверьте интернет — или нажмите «← Назад» и выберите «Без кода, смотрю сам», чтобы провести урок без живого режима."
+        })
+      );
     } finally {
       setBusy(false);
     }
@@ -3554,7 +3563,7 @@ function useServerProgress(live, refs) {
 import React2, { useState as useState3, useEffect as useEffect4 } from "react";
 var LT = { bg: "#F6F4EF", ink: "#0E0E10", ink2: "#5A5A60", ink3: "#A7A6A2", paper: "#FFFFFF", accent: "#FF4F28", accentSoft: "#FFE8E1", success: "#1F7A4D" };
 var _liveBtnPri = { background: LT.accent, color: "#fff", border: "none", borderRadius: 12, padding: "14px 20px", fontSize: 16, fontWeight: 700, cursor: "pointer" };
-var _liveBadgeS = { position: "fixed", top: 10, left: "50%", transform: "translateX(-50%)", zIndex: 9998, background: LT.paper, border: `1px solid ${LT.ink3}55`, borderRadius: 99, padding: "6px 14px", fontSize: 13, fontWeight: 600, color: LT.ink2, boxShadow: "0 2px 10px rgba(58,53,48,0.12)", display: "flex", alignItems: "center", gap: 8, whiteSpace: "nowrap", maxWidth: "92vw" };
+var _liveBadgeS = { position: "fixed", top: 2, left: "50%", transform: "translateX(-50%)", zIndex: 9998, background: LT.paper, border: `1px solid ${LT.ink3}55`, borderRadius: 99, padding: "2px 14px", fontSize: 13, fontWeight: 600, color: LT.ink2, boxShadow: "0 2px 10px rgba(58,53,48,0.12)", display: "flex", alignItems: "center", gap: 8, whiteSpace: "nowrap", maxWidth: "92vw" };
 var _liveDot = (c) => ({ width: 8, height: 8, borderRadius: 99, background: c, display: "inline-block" });
 function LiveBigCode({ pin, onClose }) {
   const digits = String(pin || "").split("");
@@ -3954,8 +3963,8 @@ var Pr = ({ children }) => <span style={{ color: CODE.punct }}>{children}</span>
 var Se = ({ children }) => <span style={{ color: CODE.tag }}>{children}</span>;
 var Pp = ({ children }) => <span style={{ color: CODE.attr }}>{children}</span>;
 var Vl = ({ children }) => <span style={{ color: CODE.str }}>{children}</span>;
-var Preview = ({ children, title = "portfolio.html", minH }) => <div className="bp-window"><div className="bp-bar"><span className="bb-dots"><i /><i /><i /></span><span className="bp-title">{title}</span></div><div className="bp-body" style={{ minHeight: minH }}>{children}</div></div>;
-var Split = ({ children }) => <div className="split">{children}</div>;
+var Preview = ({ children, title = "portfolio.html", minH, maxH }) => <div className="bp-window"><div className="bp-bar"><span className="bb-dots"><i /><i /><i /></span><span className="bp-title">{title}</span></div><div className="bp-body" style={{ minHeight: minH, maxHeight: maxH, overflowY: maxH ? "auto" : void 0 }}>{children}</div></div>;
+var Split = ({ children, three }) => <div className={three ? "split split3" : "split"}>{children}</div>;
 var Col = ({ children, gap }) => <div className="col" style={gap ? { gap } : void 0}>{children}</div>;
 var fmtCode = (s) => typeof s === "string" && s.includes("`") ? s.split("`").map((p, i) => i % 2 ? <code className="qcode" key={i}>{p}</code> : p) : s;
 function AchCounter() {
@@ -4372,7 +4381,7 @@ var QuestionScreen = ({ screen, scope, eyebrow, question, questionText, options,
       <div className="screen" style={{ justifyContent: isMentorLive ? "flex-start" : "center", gap: "clamp(16px,2.5vw,24px)" }}>
         <div className="fade-up">{question}</div>
         {oneShot && !solved && <p className="small mono fade-up" style={{ margin: "-8px 0 0", color: T.accent, fontWeight: 600 }}>⚡ {tr3({ uz: "Jonli dars — bitta urinish, o'ylab bosing!", ru: "Живой урок — одна попытка, думайте перед нажатием!" })}</p>}
-        <div className="fade-up delay-1" style={{ display: "flex", flexDirection: "column", gap: 11 }}>
+        <div className="fade-up delay-1" style={{ display: "flex", flexDirection: "column", gap: picked !== null ? 8 : 11 }}>
           {options.map((opt, i) => {
     let cls = "option";
     if (isMentorLive) {
@@ -4390,7 +4399,7 @@ var QuestionScreen = ({ screen, scope, eyebrow, question, questionText, options,
       }
     } else if (i === picked) cls += " option-picked-wrong";
     const showGreenLetter = isMentorLive ? mReveal && i === correctIdx : solved && revealed && i === correctIdx;
-    return <button key={i} className={cls} disabled={solved || isMentorLive} onClick={() => pick(i)} style={{ padding: "clamp(13px,1.9vw,17px) clamp(15px,2.2vw,20px)", fontSize: "clamp(15px,1.85vw,17px)", display: "flex", alignItems: "center", gap: 12 }}>
+    return <button key={i} className={cls} disabled={solved || isMentorLive} onClick={() => pick(i)} style={{ padding: picked !== null ? "clamp(9px,1.3vw,12px) clamp(15px,2.2vw,20px)" : "clamp(13px,1.9vw,17px) clamp(15px,2.2vw,20px)", fontSize: "clamp(15px,1.85vw,17px)", display: "flex", alignItems: "center", gap: 12 }}>
                 <span className="mono small" style={{ minWidth: 20, color: showGreenLetter ? T.success : T.ink3 }}>{String.fromCharCode(65 + i)}</span>
                 <span style={{ flex: 1 }}>{fmtCode(tr3(opt))}</span>
               </button>;
@@ -4541,18 +4550,20 @@ var Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
   };
   return <Stage eyebrow={tr3({ uz: "CSS Praktika · kirish", ru: "CSS практика · введение" })} screen={screen} audioState={audio} navContent={<NavNext optionalLive disabled={picked === null} label={{ uz: "Boshlaymiz →", ru: "Начинаем →" }} onClick={onNext} />}>
       <div className="screen" style={{ gap: "clamp(12px,2vw,18px)" }}>
-        <h1 className="title h-title fade-up" style={{ maxWidth: 800 }}>{tr3({ uz: <>Bir xil sayt — nega biri <span className="italic" style={{ color: T.accent }}>chiroyli</span>?</>, ru: <>Один и тот же сайт — почему один <span className="italic" style={{ color: T.accent }}>красивый</span>?</> })}</h1>
+        <h1 className="title h-title fade-up">{tr3({ uz: <>Bir xil sayt — nega biri <span className="italic" style={{ color: T.accent }}>chiroyli</span>?</>, ru: <>Один и тот же сайт — почему один <span className="italic" style={{ color: T.accent }}>красивый</span>?</> })}</h1>
         <Mentor>{tr3({ uz: <>O'tgan darsda portfolioni HTML bilan qurdingiz — oddiy, bezaksiz. Bugun <b style={{ color: T.ink }}>CSS bilan jon kiritamiz!</b> Quyidagi ikkala saytning <b style={{ color: T.ink }}>HTML kodi bir xil</b> — lekin biri chiroyli. Buni nima qilyapti?</>, ru: <>В прошлом уроке вы построили портфолио на HTML — простое, без оформления. Сегодня <b style={{ color: T.ink }}>оживим его с помощью CSS!</b> У обоих сайтов ниже <b style={{ color: T.ink }}>одинаковый HTML-код</b> — но один красивый. Что это делает?</> })}</Mentor>
         <Zoomable>
-        <Split>
+        <Split three>
           <Col>
             <p className="flow-label">{tr3({ uz: "Hozir — CSS'siz (bezaksiz)", ru: "Сейчас — без CSS (без оформления)" })}</p>
-            <Preview title="portfolio.html" minH={150}><StyledSite parts={["header", "about"]} on={[]} /></Preview>
+            <Preview title="portfolio.html" minH={150} maxH={200}><StyledSite parts={["header", "about"]} on={[]} /></Preview>
           </Col>
           <Col>
             <p className="flow-label">{tr3({ uz: "CSS bilan — bezatilgan", ru: "С CSS — оформленный" })}</p>
-            <div ref={resultRef}><Preview title="portfolio.html" minH={150}>{picked !== null ? <div className="fade-step"><StyledSite parts={["header", "about"]} on={["page", "head", "nav", "about"]} /></div> : <p style={{ fontFamily: "Georgia, serif", color: T.ink3, fontStyle: "italic", margin: 0, textAlign: "center" }}>{tr3({ uz: "Javobni tanlang — bezatilgan ko'rinish chiqadi", ru: "Выберите ответ — появится оформленный вид" })}</p>}</Preview></div>
-            <div className="fade-up delay-2" style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+            <div ref={resultRef}><Preview title="portfolio.html" minH={150} maxH={200}>{picked !== null ? <div className="fade-step"><StyledSite parts={["header", "about"]} on={["page", "head", "nav", "about"]} /></div> : <p style={{ fontFamily: "Georgia, serif", color: T.ink3, fontStyle: "italic", margin: 0, textAlign: "center" }}>{tr3({ uz: "Javobni tanlang — bezatilgan ko'rinish chiqadi", ru: "Выберите ответ — появится оформленный вид" })}</p>}</Preview></div>
+          </Col>
+          <Col>
+            <div className="fade-up delay-2" style={{ display: "flex", flexDirection: "column", gap: 8, paddingTop: 34 }}>
               {OPTS.map((o) => {
     const on = picked === o.id;
     return <button key={o.id} className={`hook-option ${on ? "on" : ""}`} disabled={picked !== null} onClick={() => pick(o.id)}><span className="radio">{on && <span className="radio-dot" />}</span><span>{tr3(o.label)}</span></button>;
@@ -4584,7 +4595,7 @@ var Screen1 = ({ screen, answers, onNext, onPrev }) => {
   };
   const PreviewBlock = <Col>
       <p className="flow-label">{tr3({ uz: "Tayyor sayt — dars oxirida shunday bo'ladi", ru: "Готовый сайт — таким он станет к концу урока" })}</p>
-      <Preview title="portfolio.html" minH={196}><StyledSite name={pf.name} role={pf.role} parts={["header", "about", "projects", "contact", "footer"]} on={["page", "center", "head", "nav", "about", "list", "btn"]} /></Preview>
+      <Preview title="portfolio.html" minH={196} maxH={190}><StyledSite name={pf.name} role={pf.role} parts={["header", "about", "projects", "contact", "footer"]} on={["page", "center", "head", "nav", "about", "list", "btn"]} /></Preview>
     </Col>;
   const StepsBlock = <Col>
       <p className="flow-label">{tr3({ uz: "6 bezash qadami", ru: "6 шагов оформления" })}</p>
@@ -4745,7 +4756,7 @@ var Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <div className="head"><h2 className="title h-title fade-up">{tr3({ uz: <>Ismingizni bo'yash uchun nima <span className="italic" style={{ color: T.accent }}>yozamiz</span>?</>, ru: <>Что мы <span className="italic" style={{ color: T.accent }}>пишем</span>, чтобы покрасить ваше имя?</> })}</h2></div>
         <Mentor>{tr3({ uz: <>Bezashdan oldin bitta narsani bilamiz: CSS <b style={{ color: T.ink }}>buyrug'i</b> doim uch qismdan iborat — <b style={{ color: T.ink }}>selektor</b> (nimani), <b style={{ color: T.ink }}>xususiyat</b> (nimasini), <b style={{ color: T.ink }}>qiymat</b> (qanday). Avval uch qismni bosib ko'ring, so'ng qoidani <b style={{ color: T.ink }}>o'zingiz yig'ing</b>.</>, ru: <>Перед оформлением узнаем одну вещь: <b style={{ color: T.ink }}>команда</b> CSS всегда состоит из трёх частей — <b style={{ color: T.ink }}>селектор</b> (что), <b style={{ color: T.ink }}>свойство</b> (что именно), <b style={{ color: T.ink }}>значение</b> (каким будет). Сначала нажмите на три части, затем <b style={{ color: T.ink }}>соберите правило сами</b>.</> })}</Mentor>
         <Zoomable>
-        <div className="split">
+        <div className="split split3">
           <div className="col">
             <pre className="code-box fade-up delay-2" style={{ fontSize: "clamp(14px,2vw,18px)", textAlign: "center", lineHeight: 2 }}>
               <span className={`cpart ${seen.has("sel") ? "on" : ""}`} style={{ color: CODE.tag }} onClick={() => clickPart("sel")}>h1</span>{" "}<Pr>{"{"}</Pr>{" "}<span className={`cpart ${seen.has("prop") ? "on" : ""}`} style={{ color: CODE.attr }} onClick={() => clickPart("prop")}>color</span><Pr>:</Pr>{" "}<span className={`cpart ${seen.has("val") ? "on" : ""}`} style={{ color: CODE.str }} onClick={() => clickPart("val")}>#FF4F28</span><Pr>;</Pr>{" "}<Pr>{"}"}</Pr>
@@ -4753,6 +4764,8 @@ var Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <div className="clegend fade-up delay-3">
               {Object.entries(PARTS).map(([k, v]) => <span key={k} className={`ctab ${seen.has(k) ? "done" : ""}`}>{seen.has(k) ? "✓" : "•"} {tr3(v.label)}</span>)}
             </div>
+          </div>
+          <div className="col">
             {explored && <div className="fade-step" style={{ display: "flex", flexDirection: "column", gap: 8 }}>
                 <div className="flow-label">{tr3({ uz: "endi o'zingiz yig'ing — to'g'ri tartibda", ru: "теперь соберите сами — в правильном порядке" })}</div>
                 <DragDropOrder items={RULE_PIECES} hints={[{ uz: "qaysi element", ru: "какой элемент" }, { uz: "qoida boshlanadi", ru: "правило начинается" }, { uz: "qaysi xususiyat", ru: "какое свойство" }, { uz: "qiymat", ru: "значение" }, { uz: "satr tugaydi", ru: "строка заканчивается" }, { uz: "qoida tugaydi", ru: "правило заканчивается" }]} onSolved={() => setAssembled(true)} />
@@ -5103,7 +5116,7 @@ var Screen15 = ({ screen, answers, storedAnswer, onAnswer, onNext, onPrev }) => 
           </div>
           <div className="col">
             <div className="flow-label">{pf.name} — {tr3({ uz: "portfolio", ru: "портфолио" })}</div>
-            <Preview title="portfolio.html" minH={230}><StyledSite name={pf.name} role={pf.role} parts={["header", "about", "projects", "contact", "footer"]} on={on} /></Preview>
+            <Preview title="portfolio.html" minH={230} maxH={230}><StyledSite name={pf.name} role={pf.role} parts={["header", "about", "projects", "contact", "footer"]} on={on} /></Preview>
             <div ref={endRef} aria-hidden="true" />
           </div>
         </div>
@@ -5113,7 +5126,7 @@ var Screen15 = ({ screen, answers, storedAnswer, onAnswer, onNext, onPrev }) => 
 };
 var Screen16 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const audio = useAudio([{ id: "s16", text: `Oxirgi qadam — endi o'zingiz CSS yozasiz! Ismingiz, ya'ni h1 ga rang bering. Pastdagi yordamchi tugmalardan foydalanib, to'liq qoidani yozing: h1, qavs, color, rang, nuqta-vergul, qavs. To'g'ri yozsangiz, ismingiz o'sha rangga bo'yaladi!`, trigger: "on_mount", waits_for: { type: "typed_ok" } }]);
-  const [val, setVal] = useState4(storedAnswer?.text ?? "");
+  const [val, setVal] = useState4(typeof storedAnswer?.text === "string" ? storedAnswer.text : "");
   const inputRef = useRef4(null);
   const okRef = useRef4(!!storedAnswer);
   const hasSel = /h1/i.test(val);
@@ -6213,22 +6226,37 @@ function CssPractice({ lang: langProp, onFinished, onPractice, liveToken }) {
       setPractice(null);
       advance();
     };
-    if (typeof onPractice === "function") Promise.resolve(onPractice(entry.task)).then(done);
-    else {
+    const openLocal = () => {
       pracWrite(LESSON_META.lessonId, { kind: `s${fromScreen}`, screen: fromScreen });
       setPractice({ ...entry, done, codeKey: codeKeyOf(LESSON_META.lessonId, `s${fromScreen}`) });
+    };
+    if (typeof onPractice !== "function") {
+      openLocal();
+      return;
+    }
+    try {
+      Promise.resolve(onPractice(entry.task)).then(done, openLocal);
+    } catch {
+      openLocal();
     }
   };
   const openHomeworkPractice = () => {
     const entry = { task: TASK_HW, starter: "" };
-    if (typeof onPractice === "function") Promise.resolve(onPractice(entry.task)).catch(() => {
-    });
-    else {
+    const openLocal = () => {
       pracWrite(LESSON_META.lessonId, { kind: "hw" });
       setPractice({ ...entry, codeKey: codeKeyOf(LESSON_META.lessonId, "hw"), done: () => {
         pracClear(LESSON_META.lessonId);
         setPractice(null);
       } });
+    };
+    if (typeof onPractice !== "function") {
+      openLocal();
+      return;
+    }
+    try {
+      Promise.resolve(onPractice(entry.task)).catch(openLocal);
+    } catch {
+      openLocal();
     }
   };
   useEffect5(() => {
@@ -6249,7 +6277,7 @@ function CssPractice({ lang: langProp, onFinished, onPractice, liveToken }) {
       advance();
       return;
     }
-    if (!(live && (live.mode === "mentor" || live.mode === "student" && live.status !== "ended" && live.mentorAlive))) {
+    if (!(live && (live.mode === "mentor" || live.mode === "student" && live.status !== "ended"))) {
       advance();
       return;
     }
@@ -6510,7 +6538,7 @@ function CssPractice({ lang: langProp, onFinished, onPractice, liveToken }) {
         .bp-title { font-family: 'JetBrains Mono'; font-size: 11px; color: ${T.ink3}; }
         .bp-body { padding: clamp(12px,2.2vw,18px); }
 
-        .h-title { font-size: clamp(22px,4vw,38px); }
+        .h-title { font-size: clamp(22px,4vw,36px); letter-spacing: -0.015em; text-wrap: balance; }
         .h-sub { font-size: clamp(17px,2.5vw,22px); }
         .h-ask { font-size: clamp(19px,2.6vw,27px); line-height: 1.32; letter-spacing: -0.01em; text-wrap: balance; }
         .body { font-size: clamp(14px,1.6vw,16px); line-height: 1.5; }
@@ -6537,6 +6565,9 @@ function CssPractice({ lang: langProp, onFinished, onPractice, liveToken }) {
         .screen > * { flex-shrink: 0; }
         .head { display: flex; flex-direction: column; gap: 6px; }
         .split { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: clamp(18px,3vw,36px); align-items: start; }
+        .split3 { grid-template-columns: minmax(0,1fr) minmax(0,1fr) minmax(0,0.95fr); gap: clamp(14px,2vw,24px); } /* §34 s0: ikki maket + variantlar */
+        .split3 .hook-option { padding: clamp(9px,1.3vw,12px) clamp(13px,1.8vw,16px); }
+        @media (max-width: 1000px) { .split3 { grid-template-columns: minmax(0,1fr) minmax(0,1fr); } }
         .col { display: flex; flex-direction: column; gap: clamp(12px,2vw,16px); min-width: 0; }
         @media (max-width: 760px) { .split { grid-template-columns: 1fr; gap: clamp(14px,3vw,20px); } }
         .flow-label { font-family: 'Manrope'; font-weight: 700; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: ${T.ink2}; }
@@ -6655,9 +6686,10 @@ function CssPractice({ lang: langProp, onFinished, onPractice, liveToken }) {
         @media (prefers-reduced-motion: reduce) { .confetti { display: none; } }
         /* ===== 🏗️ QURUVCHI QATLAMI CSS (ko'chirilgan) ===== */
         /* === 🧩 DRAG-DROP ORDER (s3b — qoida ustaxonasi) === */
-        .dd { display: flex; flex-direction: column; gap: 13px; }
+        .dd { display: grid; grid-template-columns: minmax(0,1.15fr) minmax(0,1fr); gap: 13px; align-items: start; } /* §34: keng ekranda uyalar chapda, hovuz o'ngda */
+        @media (max-width: 760px) { .dd { grid-template-columns: 1fr; } }
         .dd-slots { display: flex; flex-direction: column; gap: 9px; }
-        .dd-slot { display: flex; align-items: center; gap: 12px; min-height: 56px; border-radius: 14px; border: 2px dashed ${T.ink3}66; background: ${T.paper}; padding: 8px 12px; transition: border-color .18s, background .18s; }
+        .dd-slot { display: flex; align-items: center; gap: 12px; min-height: 46px; border-radius: 14px; border: 2px dashed ${T.ink3}66; background: ${T.paper}; padding: 8px 12px; transition: border-color .18s, background .18s; }
         .dd-slot.filled { border-style: solid; border-color: ${T.line}; }
         .dd-slot.ok { border-color: ${T.success}; background: ${T.successSoft}; }
         .dd-slot.bad { border-color: #E24848; background: #FBE9E9; animation: dd-shake .4s; }

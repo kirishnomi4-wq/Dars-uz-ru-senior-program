@@ -2621,7 +2621,8 @@ function StyleTag() {
 var HtmlCompiler_default = HtmlCompiler;
 
 // src/live/liveClient.js
-var LIVE_API_URL = "https://dars-api.coddycamp.uz" ? String("https://dars-api.coddycamp.uz").replace(/\/+$/, "") : DEFAULT_API_URL;
+var DEFAULT_API_URL = "https://dars-api.coddycamp.uz";
+var LIVE_API_URL = "" ? String("").replace(/\/+$/, "") : DEFAULT_API_URL;
 var LIVE_ENABLED = !!LIVE_API_URL;
 var LIVE_POLL_MS = 2500;
 var LIVE_POLL_MAX_MS = 15e3;
@@ -2635,7 +2636,9 @@ async function errorFrom(r, fallback) {
     msg = (await r.json()).message || "";
   } catch {
   }
-  return new Error(msg || fallback);
+  const e = new Error(msg || fallback);
+  e.status = r.status;
+  return e;
 }
 async function liveRpc(fn, body) {
   const r = await fetch(`${API}/rpc/${fn}`, {
@@ -3197,8 +3200,14 @@ function useLiveSession(lessonId, answerKey, opts = {}) {
       liveStore(lessonId, { mode: "mentor", pin: row.pin, token: row.token });
       if (keyRef.current) liveRpc("set_quiz_keys", { p_lesson_id: lessonId, p_mentor_code: (mentorCode || "").trim(), p_keys: keyRef.current }).catch(() => {
       });
-    } catch {
-      setJoinError(tr2({ uz: "Mentor kodi noto'g'ri yoki ulanishda xato.", ru: "Неверный код ментора или ошибка подключения." }));
+    } catch (e) {
+      const st = e && e.status;
+      setJoinError(
+        st === 401 || st === 403 ? tr2({ uz: "Mentor kodi noto'g'ri.", ru: "Неверный код ментора." }) : st ? tr2({ uz: `Server javob bermadi (xato ${st}). Birozdan keyin urinib ko'ring.`, ru: `Сервер не ответил (ошибка ${st}). Попробуйте чуть позже.` }) : tr2({
+          uz: "Serverga ulanib bo'lmadi. Internetni tekshiring — yoki «← Orqaga» bosib, «Kodsiz, o'zim ko'raman» bilan darsni jonli rejimsiz o'tkazing.",
+          ru: "Не удалось подключиться к серверу. Проверьте интернет — или нажмите «← Назад» и выберите «Без кода, смотрю сам», чтобы провести урок без живого режима."
+        })
+      );
     } finally {
       setBusy(false);
     }
@@ -3553,7 +3562,7 @@ function useServerProgress(live, refs) {
 import React2, { useState as useState3, useEffect as useEffect4 } from "react";
 var LT = { bg: "#F6F4EF", ink: "#0E0E10", ink2: "#5A5A60", ink3: "#A7A6A2", paper: "#FFFFFF", accent: "#FF4F28", accentSoft: "#FFE8E1", success: "#1F7A4D" };
 var _liveBtnPri = { background: LT.accent, color: "#fff", border: "none", borderRadius: 12, padding: "14px 20px", fontSize: 16, fontWeight: 700, cursor: "pointer" };
-var _liveBadgeS = { position: "fixed", top: 10, left: "50%", transform: "translateX(-50%)", zIndex: 9998, background: LT.paper, border: `1px solid ${LT.ink3}55`, borderRadius: 99, padding: "6px 14px", fontSize: 13, fontWeight: 600, color: LT.ink2, boxShadow: "0 2px 10px rgba(58,53,48,0.12)", display: "flex", alignItems: "center", gap: 8, whiteSpace: "nowrap", maxWidth: "92vw" };
+var _liveBadgeS = { position: "fixed", top: 2, left: "50%", transform: "translateX(-50%)", zIndex: 9998, background: LT.paper, border: `1px solid ${LT.ink3}55`, borderRadius: 99, padding: "2px 14px", fontSize: 13, fontWeight: 600, color: LT.ink2, boxShadow: "0 2px 10px rgba(58,53,48,0.12)", display: "flex", alignItems: "center", gap: 8, whiteSpace: "nowrap", maxWidth: "92vw" };
 var _liveDot = (c) => ({ width: 8, height: 8, borderRadius: 99, background: c, display: "inline-block" });
 function LiveBigCode({ pin, onClose }) {
   const digits = String(pin || "").split("");
@@ -4367,7 +4376,7 @@ var QuestionScreen = ({ screen, scope, eyebrow, question, questionText, options,
       <div className="screen" style={{ justifyContent: isMentorLive ? "flex-start" : "safe center", gap: "clamp(16px,2.5vw,24px)" }}>
         <div className="fade-up">{tr3(question)}</div>
         {oneShot && !solved && <p className="small mono fade-up" style={{ margin: "-8px 0 0", color: T.accent, fontWeight: 600 }}>{tr3({ uz: "⚡ Jonli dars — bitta urinish, o'ylab bosing!", ru: "⚡ Живой урок — одна попытка, жмите обдуманно!" })}</p>}
-        <div className="fade-up delay-1" style={{ display: "flex", flexDirection: "column", gap: 11 }}>
+        <div className="fade-up delay-1" style={{ display: "flex", flexDirection: "column", gap: picked !== null ? 8 : 11 }}>
           {options.map((opt, i) => {
     let cls = "option";
     if (isMentorLive) {
@@ -4385,7 +4394,7 @@ var QuestionScreen = ({ screen, scope, eyebrow, question, questionText, options,
       }
     } else if (i === picked) cls += " option-picked-wrong";
     const showGreenLetter = isMentorLive ? mReveal && i === correctIdx : solved && revealed && i === correctIdx;
-    return <button key={i} className={cls} disabled={solved || isMentorLive} onClick={() => pick(i)} style={{ padding: "clamp(13px,1.9vw,17px) clamp(15px,2.2vw,20px)", fontSize: "clamp(15px,1.85vw,17px)", display: "flex", alignItems: "center", gap: 12 }}>
+    return <button key={i} className={cls} disabled={solved || isMentorLive} onClick={() => pick(i)} style={{ padding: picked !== null ? "clamp(9px,1.3vw,12px) clamp(15px,2.2vw,20px)" : "clamp(13px,1.9vw,17px) clamp(15px,2.2vw,20px)", fontSize: "clamp(15px,1.85vw,17px)", display: "flex", alignItems: "center", gap: 12 }}>
                 <span className="mono small" style={{ minWidth: 20, color: showGreenLetter ? T.success : T.ink3 }}>{String.fromCharCode(65 + i)}</span>
                 <span style={{ flex: 1 }}>{fmtCode(tr3(opt))}</span>
               </button>;
@@ -4538,6 +4547,16 @@ var Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
       <div className="screen" style={{ gap: "clamp(14px,2.2vw,20px)" }}>
         <div className="head"><h2 className="title h-title fade-up">{tr3({ uz: <>Qaysi sayt <span className="italic" style={{ color: T.accent }}>ko'proq chipta</span> sotadi?</>, ru: <>Какой сайт продаст <span className="italic" style={{ color: T.accent }}>больше билетов</span>?</> })}</h2></div>
         <Mentor>{tr3({ uz: <>Tasavvur qiling: bitta kinoteatr uchun ikkita turli sayt tayyorlandi. Quyida har birida nima borligi yozilgan — o'qing va sizningcha ko'proq chipta sotadiganini tanlang.</>, ru: <>Представьте: для одного кинотеатра сделали два разных сайта. Ниже написано, что есть на каждом — прочитайте и выберите тот, который, по-вашему, продаст больше билетов.</> })}</Mentor>
+        {
+    /* F-0916-01 Q12: payoff-quti kartalar USTIDA — ovozdan keyin izoh birinchi ko'rinadi, kartalar pastda qoladi (ilgari 107px pastda edi); matn o'zgarmagan */
+  }
+        {pick && <div className="frame-soft fade-step">
+            <p className="body" style={{ margin: "0 0 9px" }}>{tr3({ uz: <>B-saytdagi <b style={{ color: T.ink }}>har bir band</b> odamning bitta savoliga javob beradi:</>, ru: <>Каждый пункт сайта Б отвечает на <b style={{ color: T.ink }}>один вопрос</b> человека:</> })}</p>
+            <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+              {HOOK_PAYOFF.map((p, i) => <p key={i} className="body" style={{ margin: 0, color: T.ink2 }}><b style={{ color: T.ink }}>{tr3(p.feat)}</b> → {tr3(p.q)}</p>)}
+            </div>
+            <p className="body" style={{ margin: "9px 0 0" }}>{tr3({ uz: <>A-saytdagilar esa hech qanday savolga javob bermaydi.</>, ru: <>А пункты сайта А не отвечают ни на один вопрос.</> })}</p>
+          </div>}
         <div className="hk-row fade-up delay-1">
           {HOOK_LISTS.map((l, i) => <button key={l.id} className={`hk-card ${pick === l.id ? "picked" : ""} ${pick && pick !== l.id ? "dim" : ""}${!pick && waveOn ? " turn-ring" : ""}`} disabled={!!pick} onClick={() => choose(l.id)}>
               <span className="hk-name">{tr3(l.name)}</span>
@@ -4547,13 +4566,6 @@ var Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
               <span className="hk-vote">{pick === l.id ? tr3({ uz: "✓ Sizning ovozingiz", ru: "✓ Ваш голос" }) : tr3({ uz: "Shuni tanlayman", ru: "Выбираю этот" })}</span>
             </button>)}
         </div>
-        {pick && <div className="frame-soft fade-step">
-            <p className="body" style={{ margin: "0 0 9px" }}>{tr3({ uz: <>B-saytdagi <b style={{ color: T.ink }}>har bir band</b> odamning bitta savoliga javob beradi:</>, ru: <>Каждый пункт сайта Б отвечает на <b style={{ color: T.ink }}>один вопрос</b> человека:</> })}</p>
-            <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-              {HOOK_PAYOFF.map((p, i) => <p key={i} className="body" style={{ margin: 0, color: T.ink2 }}><b style={{ color: T.ink }}>{tr3(p.feat)}</b> → {tr3(p.q)}</p>)}
-            </div>
-            <p className="body" style={{ margin: "9px 0 0" }}>{tr3({ uz: <>A-saytdagilar esa hech qanday savolga javob bermaydi.</>, ru: <>А пункты сайта А не отвечают ни на один вопрос.</> })}</p>
-          </div>}
         <MentorNote>{tr3({ uz: "Ovozlar bo'linib ketsa muhokamani cho'zmang — payoff-qator o'zi ochadi. «A» degan o'quvchiga qarshi chiqmang: uning tanlovi keys ekranida qaytariladi.", ru: "Если голоса разделились, не затягивайте обсуждение — строка-ответ откроется сама. Не спорьте с теми, кто выбрал «А»: их выбор вернётся на экране с кейсом." })}</MentorNote>
       </div>
     </Stage>;
@@ -4586,7 +4598,7 @@ var OPEN_CARDS = [
 ];
 var Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [open, setOpen] = useState4({});
-  const [seen, setSeen] = useState4(() => storedAnswer && storedAnswer.seen || []);
+  const [seen, setSeen] = useState4(() => Array.isArray(storedAnswer?.seen) ? storedAnswer.seen : []);
   const allSeen = seen.length >= OPEN_CARDS.length;
   const toggle = (id) => {
     setOpen((p) => ({ ...p, [id]: !p[id] }));
@@ -4832,7 +4844,7 @@ var Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     return Array.isArray(a) ? a.map((c) => c && typeof c.muammo === "string" ? c.muammo.trim() : "").filter((x) => x.length > 3).slice(0, 6) : [];
   }, []);
   const rows = useMemo2(() => [...own.map((t, i) => ({ key: `o${i}`, text: t, own: true })), ...FALLBACK_PAINS.map((p, i) => ({ key: `f${i}`, text: p, own: false }))], [own]);
-  const [sel, setSel] = useState4(() => storedAnswer && storedAnswer.sel || []);
+  const [sel, setSel] = useState4(() => Array.isArray(storedAnswer?.sel) ? storedAnswer.sel : []);
   const enough = sel.length >= 3;
   const toggle = (key) => setSel((p) => p.includes(key) ? p.filter((x) => x !== key) : p.length >= 3 ? p : [...p, key]);
   useEffect5(() => {
@@ -5030,8 +5042,8 @@ var ScreenClean = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const live = gate.live;
   const isMentor = !!(live && live.mode === "mentor");
   const [open, setOpen] = useState4({});
-  const [seen, setSeen] = useState4(() => storedAnswer && storedAnswer.seen || []);
-  const [shelf, setShelf] = useState4(() => storedAnswer && storedAnswer.shelf || []);
+  const [seen, setSeen] = useState4(() => Array.isArray(storedAnswer?.seen) ? storedAnswer.seen : []);
+  const [shelf, setShelf] = useState4(() => Array.isArray(storedAnswer?.shelf) ? storedAnswer.shelf : []);
   const [warn, setWarn] = useState4(null);
   const doneAll = CLEAN_ITEMS.filter((i) => i.extra).every((i) => shelf.includes(i.id));
   const toggle = (id) => {
@@ -5207,7 +5219,7 @@ var ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const mine = useMemo2(() => readFeatures(), []);
   const [st, setSt] = useState4(() => {
     const saved = readKoding();
-    return { code: storedAnswer && storedAnswer.code || saved && saved.code || kodStarter(), done: !!(storedAnswer && storedAnswer.solved) || !!(saved && saved.done) };
+    return { code: (typeof storedAnswer?.code === "string" ? storedAnswer.code : null) || saved && saved.code || kodStarter(), done: !!(storedAnswer && storedAnswer.solved) || !!(saved && saved.done) };
   });
   const { code, done } = st;
   const openHint = useTurnHint(!done && !open && !isMentor);
@@ -6076,7 +6088,7 @@ function PmLesson4({ lang: langProp, onFinished, liveToken }) {
         .mentor-name { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 13px; color: ${T.accent}; letter-spacing: 0.01em; }
         .mentor-msg { background: ${T.paper}; border-radius: 4px 14px 14px 14px; padding: 13px 16px; color: ${T.ink}; box-shadow: 0 6px 18px -7px rgba(${T.shadowBase},0.16); }
 
-        .h-title { font-size: clamp(22px,4vw,38px); }
+        .h-title { font-size: clamp(22px,4vw,36px); letter-spacing: -0.015em; text-wrap: balance; }
         .h-sub { font-size: clamp(17px,2.5vw,22px); }
         .h-ask { font-size: clamp(19px,2.6vw,27px); line-height: 1.32; letter-spacing: -0.01em; text-wrap: balance; }
         .body { font-size: clamp(14px,1.6vw,16px); line-height: 1.5; }

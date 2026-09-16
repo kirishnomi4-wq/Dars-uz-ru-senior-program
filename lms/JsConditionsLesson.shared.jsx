@@ -1,16 +1,16 @@
 // ============================================================
 //  AVTO-YIG'ILGAN FAYL — QO'LDA TAHRIRLAMANG.
 //  Manba:  src/2-Modull/JsConditionsLesson.jsx
-//  Kompilyator: TASHQI MODUL — https://go.coddycamp.uz/uploads/course_artifacts/81a985c6a19b3e7f7d39be9fda07af4e.jsx
-//  Qayta yig'ish:  node scripts/build-lms.mjs --shared https://go.coddycamp.uz/uploads/course_artifacts/81a985c6a19b3e7f7d39be9fda07af4e.jsx src/2-Modull/JsConditionsLesson.jsx
+//  Kompilyator: TASHQI MODUL — react
+//  Qayta yig'ish:  node scripts/build-lms.mjs --shared react src/2-Modull/JsConditionsLesson.jsx
 //  Tahrir MANBAGA kiritiladi, keyin shu buyruq qayta yuriladi.
 // ============================================================
 // src/2-Modull/JsConditionsLesson.jsx
-import React3, { useState as useState3, useEffect as useEffect4, useRef as useRef3, useMemo, useCallback as useCallback2, createContext as createContext2, useContext as useContext2 } from "react";
-import HtmlCompiler, { checks as C } from "https://go.coddycamp.uz/uploads/course_artifacts/81a985c6a19b3e7f7d39be9fda07af4e.jsx";
+import React3, { useState as useState3, useEffect as useEffect4, useRef as useRef3, useMemo, useCallback as useCallback2, createContext as createContext2, useContext as useContext2, checks as C, default as HtmlCompiler } from "react";
 
 // src/live/liveClient.js
-var LIVE_API_URL = "https://dars-api.coddycamp.uz" ? String("https://dars-api.coddycamp.uz").replace(/\/+$/, "") : DEFAULT_API_URL;
+var DEFAULT_API_URL = "https://dars-api.coddycamp.uz";
+var LIVE_API_URL = "" ? String("").replace(/\/+$/, "") : DEFAULT_API_URL;
 var LIVE_ENABLED = !!LIVE_API_URL;
 var LIVE_POLL_MS = 2500;
 var LIVE_POLL_MAX_MS = 15e3;
@@ -24,7 +24,9 @@ async function errorFrom(r, fallback) {
     msg = (await r.json()).message || "";
   } catch {
   }
-  return new Error(msg || fallback);
+  const e = new Error(msg || fallback);
+  e.status = r.status;
+  return e;
 }
 async function liveRpc(fn, body) {
   const r = await fetch(`${API}/rpc/${fn}`, {
@@ -587,8 +589,14 @@ function useLiveSession(lessonId, answerKey, opts = {}) {
       liveStore(lessonId, { mode: "mentor", pin: row.pin, token: row.token });
       if (keyRef.current) liveRpc("set_quiz_keys", { p_lesson_id: lessonId, p_mentor_code: (mentorCode || "").trim(), p_keys: keyRef.current }).catch(() => {
       });
-    } catch {
-      setJoinError(tr({ uz: "Mentor kodi noto'g'ri yoki ulanishda xato.", ru: "Неверный код ментора или ошибка подключения." }));
+    } catch (e) {
+      const st = e && e.status;
+      setJoinError(
+        st === 401 || st === 403 ? tr({ uz: "Mentor kodi noto'g'ri.", ru: "Неверный код ментора." }) : st ? tr({ uz: `Server javob bermadi (xato ${st}). Birozdan keyin urinib ko'ring.`, ru: `Сервер не ответил (ошибка ${st}). Попробуйте чуть позже.` }) : tr({
+          uz: "Serverga ulanib bo'lmadi. Internetni tekshiring — yoki «← Orqaga» bosib, «Kodsiz, o'zim ko'raman» bilan darsni jonli rejimsiz o'tkazing.",
+          ru: "Не удалось подключиться к серверу. Проверьте интернет — или нажмите «← Назад» и выберите «Без кода, смотрю сам», чтобы провести урок без живого режима."
+        })
+      );
     } finally {
       setBusy(false);
     }
@@ -943,7 +951,7 @@ function useServerProgress(live, refs) {
 import React2, { useState as useState2, useEffect as useEffect3 } from "react";
 var LT = { bg: "#F6F4EF", ink: "#0E0E10", ink2: "#5A5A60", ink3: "#A7A6A2", paper: "#FFFFFF", accent: "#FF4F28", accentSoft: "#FFE8E1", success: "#1F7A4D" };
 var _liveBtnPri = { background: LT.accent, color: "#fff", border: "none", borderRadius: 12, padding: "14px 20px", fontSize: 16, fontWeight: 700, cursor: "pointer" };
-var _liveBadgeS = { position: "fixed", top: 10, left: "50%", transform: "translateX(-50%)", zIndex: 9998, background: LT.paper, border: `1px solid ${LT.ink3}55`, borderRadius: 99, padding: "6px 14px", fontSize: 13, fontWeight: 600, color: LT.ink2, boxShadow: "0 2px 10px rgba(58,53,48,0.12)", display: "flex", alignItems: "center", gap: 8, whiteSpace: "nowrap", maxWidth: "92vw" };
+var _liveBadgeS = { position: "fixed", top: 2, left: "50%", transform: "translateX(-50%)", zIndex: 9998, background: LT.paper, border: `1px solid ${LT.ink3}55`, borderRadius: 99, padding: "2px 14px", fontSize: 13, fontWeight: 600, color: LT.ink2, boxShadow: "0 2px 10px rgba(58,53,48,0.12)", display: "flex", alignItems: "center", gap: 8, whiteSpace: "nowrap", maxWidth: "92vw" };
 var _liveDot = (c) => ({ width: 8, height: 8, borderRadius: 99, background: c, display: "inline-block" });
 function LiveBigCode({ pin, onClose }) {
   const digits = String(pin || "").split("");
@@ -1323,14 +1331,14 @@ var SCREEN_META = [
   { id: "s4", type: "test", template: "MCScreen", scored: true, scope: "module-mikro" },
   { id: "s5", type: "exploration", template: "custom", scored: false, scope: null },
   { id: "s5b", type: "test", template: "MCScreen", scored: true, scope: "module-mikro" },
-  { id: "s6", type: "exploration", template: "custom", scored: false, scope: null },
-  { id: "s7", type: "exploration", template: "custom", scored: false, scope: null },
+  // F-0914: boolean (ID-karta ipi) else testidan keyin — o'sha misol davom etadi
   { id: "s8", type: "exploration", template: "custom", scored: false, scope: null },
-  { id: "s9", type: "test", template: "MCScreen", scored: true, scope: "module-mikro" },
-  { id: "s10", type: "exploration", template: "custom", scored: false, scope: null },
+  { id: "s7", type: "exploration", template: "custom", scored: false, scope: null },
   { id: "s11", type: "exploration", template: "custom", scored: false, scope: null },
-  { id: "s12", type: "test", template: "MCScreen", scored: true, scope: "module-mikro" },
   { id: "s13", type: "case", template: "custom", scored: false, scope: null },
+  // F-0914-06: = va == debuggingdan oldin (testi bilan birga); s10/s12 (ichma-ich) olib tashlandi
+  { id: "s6", type: "exploration", template: "custom", scored: false, scope: null },
+  { id: "s9", type: "test", template: "MCScreen", scored: true, scope: "module-mikro" },
   { id: "s14", type: "case", template: "custom", scored: false, scope: null },
   { id: "s15", type: "test", template: "custom", scored: true, scope: "final" },
   { id: "selse", type: "case", template: "custom", scored: false, scope: null },
@@ -1469,17 +1477,17 @@ var RECAPS = {
     title: { uz: "if qachon ishlaydi?", ru: "Когда работает if?" },
     cards: [
       {
-        ic: "🎡",
-        h: { uz: "if — bu turniket sharti", ru: "if — это условие турникета" },
-        body: { uz: <>if — bu <b>attraksion turniketi</b>. U shartni tekshiradi: agar shart <b>rost (true)</b> bo'lsa — turniket ochiladi va ichidagi kod ishlaydi. Rost bo'lmasa — yopiq turadi, kod o'tmaydi.</>, ru: <>if — это <b>турникет аттракциона</b>. Он проверяет условие: если условие <b>истинно (true)</b> — турникет открывается и код внутри работает. Если нет — остаётся закрытым, код не проходит.</> },
+        ic: "🔋",
+        h: { uz: "if — shart rost bo'lsagina", ru: "if — только если условие истинно" },
+        body: { uz: <>Telefon zaryad <b>20% dan kam</b> bo'lsa ogohlantiradi. if ham shunday: shart <b>rost (true)</b> bo'lsa — ichidagi kod ishlaydi, yolg'on bo'lsa — o'tkazib yuboriladi.</>, ru: <>Телефон предупреждает, когда заряд <b>меньше 20%</b>. if работает так же: если условие <b>истинно (true)</b> — код внутри работает, если ложно — пропускается.</> },
         vis: <RcFlow items={[{ uz: "Shart", ru: "Условие" }, { uz: "rost (true)?", ru: "истина (true)?" }, { uz: "kod ishlaydi", ru: "код работает" }]} />,
-        ask: { uz: "Attraksionga faqat kim kiradi — bo'yi yetganmi, yetmaganmi?", ru: "Кто попадёт на аттракцион — тот, у кого рост подходит, или нет?" }
+        ask: { uz: "Zaryad 50% bo'lsa, telefon ogohlantiradimi?", ru: "Если заряд 50%, телефон предупредит?" }
       },
       {
-        ic: "🎢",
-        h: { uz: "Rost bo'lsagina ichkariga", ru: "Внутрь — только если истина" },
-        body: { uz: <>Attraksion turniketi: <b>bo'yi 120 dan baland</b> bo'lsa — turniket ochiladi (rost). Past bo'lsa — yopiq turadi. if ham xuddi shunday: <b>faqat shart bajarilsa</b> ichidagi kod bajariladi.</>, ru: <>Турникет аттракциона: если <b>рост выше 120</b> — турникет открывается (истина). Если ниже — остаётся закрытым. if работает так же: код внутри выполняется, <b>только если условие выполнено</b>.</> },
-        vis: <RcFlow items={[{ uz: "bo'y 130", ru: "рост 130" }, { uz: "130 > 120 rost", ru: "130 > 120 истина" }, { uz: "kiradi", ru: "проходит" }]} />
+        ic: "🔒",
+        h: { uz: "PIN-kod to'g'ri bo'lsagina ochiladi", ru: "Открывается, только если PIN-код верный" },
+        body: { uz: <>Telefon PIN-kodni tekshiradi: <b>to'g'ri</b> bo'lsa — ochiladi (rost), noto'g'ri bo'lsa — qulf turadi. if ham <b>faqat shart bajarilsa</b> ichidagi kodni ishga tushiradi.</>, ru: <>Телефон проверяет PIN-код: <b>верный</b> — открывается (истина), неверный — остаётся заблокированным. if тоже запускает код внутри, <b>только если условие выполнено</b>.</> },
+        vis: <RcFlow items={[{ uz: "PIN-kod 1234", ru: "PIN-код 1234" }, { uz: "to'g'ri → true", ru: "верный → true" }, { uz: "ochiladi", ru: "открывается" }]} />
       },
       {
         ic: "🙅",
@@ -1512,51 +1520,27 @@ var RECAPS = {
       }
     ]
   },
-  // s9 — "Ikki qiymat tengligini tekshirish uchun qaysi belgi?" (to'g'ri: ===)
-  10: {
-    title: { uz: "=== tenglikni tekshiradi", ru: "=== проверяет равенство" },
+  // s9 — "Ikki qiymat tengligini tekshirish uchun qaysi belgi?" (to'g'ri: ==) — ekran 12-indeksda (F-0914-06)
+  12: {
+    title: { uz: "== tenglikni tekshiradi", ru: "== проверяет равенство" },
     cards: [
       {
         ic: "⚖️",
-        h: { uz: '=== — bu "tengmi?" savoli', ru: "=== — это вопрос «равно ли?»" },
-        body: { uz: <>Uch teng belgi <b>===</b> ikki qiymatni solishtiradi va <b>«tengmi?»</b> deb so'raydi. Javob rost yoki yolg'on bo'ladi. Masalan <b>ball === 100</b> — ball roppa-rosa 100mi?</>, ru: <>Три знака равно <b>===</b> сравнивают два значения и спрашивают: <b>«равны ли?»</b>. Ответ — истина или ложь. Например <b>ball === 100</b> — ball ровно 100?</> },
-        vis: <RcFlow items={["ball", "===", "100 ?"]} />,
-        ask: { uz: "10 === 10 — bu rostmi yoki yolg'onmi?", ru: "10 === 10 — это истина или ложь?" }
+        h: { uz: '== — bu "tengmi?" savoli', ru: "== — это вопрос «равно ли?»" },
+        body: { uz: <>Ikki teng belgi <b>==</b> ikki qiymatni solishtiradi va <b>«tengmi?»</b> deb so'raydi. Javob rost yoki yolg'on bo'ladi. Masalan <b>pin == 1234</b> — kiritilgan PIN-kod aynan 1234mi?</>, ru: <>Два знака равно <b>==</b> сравнивают два значения и спрашивают: <b>«равны ли?»</b>. Ответ — истина или ложь. Например <b>pin == 1234</b> — введённый PIN-код ровно 1234?</> },
+        vis: <RcFlow items={["pin", "==", "1234 ?"]} />,
+        ask: { uz: "7 == 7 — bu rostmi yoki yolg'onmi?", ru: "7 == 7 — это истина или ложь?" }
       },
       {
         ic: "📥",
-        h: { uz: "= esa qiymat SOLADI", ru: "А = КЛАДЁТ значение" },
-        body: { uz: <>Bitta teng <b>=</b> — bu tekshirish emas, <b>qutiga qiymat solish</b>: <b>ball = 100</b> degani «ball qutisiga 100 ni joyla». Tekshirmoqchi bo'lsangiz har doim === ishlating, aks holda xatoga tushasiz.</>, ru: <>Один знак <b>=</b> — это не проверка, а <b>укладка значения в коробку</b>: <b>ball = 100</b> значит «положи 100 в коробку ball». Хотите проверить — всегда пишите ===, иначе попадёте в ошибку.</> },
-        vis: <RcFlow items={[{ uz: "= soladi", ru: "= кладёт" }, { uz: "=== tekshiradi", ru: "=== проверяет" }]} sep="·" />
+        h: { uz: "= esa qiymat BERADI", ru: "А = ДАЁТ значение" },
+        body: { uz: <>Bitta teng <b>=</b> — bu tekshirish emas, <b>qutiga qiymat solish</b>: <b>score = 100</b> degani «score qutisiga 100 ni joyla». Tekshirmoqchi bo'lsangiz — <b>==</b> yozing.</>, ru: <>Один знак <b>=</b> — это не проверка, а <b>укладка значения в коробку</b>: <b>score = 100</b> значит «положи 100 в коробку score». Хотите проверить — пишите <b>==</b>.</> },
+        vis: <RcFlow items={[{ uz: "= beradi", ru: "= даёт" }, { uz: "== tekshiradi", ru: "== проверяет" }]} sep="·" />
       },
       {
         ic: "🧩",
         h: { uz: "Boshqa belgilar boshqa ish", ru: "Другие знаки — другая работа" },
-        body: { uz: <>+ belgisi <b>qo'shadi</b>, =&gt; esa strelka (funksiya) uchun. Tenglikni tekshirishga faqat <b>===</b> yaraydi. Shartda «tengmi?» so'ramoqchi bo'lsangiz — <b>===</b> yozing.</>, ru: <>Знак + <b>складывает</b>, а =&gt; — стрелка (для функций). Для проверки равенства годится только <b>===</b>. Хотите спросить в условии «равно ли?» — пишите <b>===</b>.</> }
-      }
-    ]
-  },
-  // s12 — "if ichiga yana bitta if yozilsa, bu nima deyiladi?" (to'g'ri: Ichma-ich/nested shart)
-  13: {
-    title: { uz: "Ichma-ich (nested) shart", ru: "Вложенное (nested) условие" },
-    cards: [
-      {
-        ic: "🪆",
-        h: { uz: "if ichida yana if", ru: "if внутри if" },
-        body: { uz: <>Bitta if ichiga <b>yana bir if</b> qo'ysangiz — bu <b>ichma-ich (nested) shart</b> deyiladi. Xuddi <b>matryoshka</b> qo'g'irchog'idek: kattasini ochsangiz, ichidan kichigi chiqadi.</>, ru: <>Если внутрь одного if положить <b>ещё один if</b> — это называется <b>вложенное (nested) условие</b>. Как <b>матрёшка</b>: открываете большую — внутри поменьше.</> },
-        vis: <RcFlow items={[{ uz: "tashqi if", ru: "внешний if" }, { uz: "ichida", ru: "внутри" }, { uz: "yana if", ru: "ещё if" }]} />,
-        ask: { uz: "Matryoshkaning ichidagisiga yetish uchun avval nimani ochasiz?", ru: "Что вы откроете сначала, чтобы добраться до внутренней матрёшки?" }
-      },
-      {
-        ic: "🚪",
-        h: { uz: "Ikki bosqichli tekshiruv", ru: "Проверка в два шага" },
-        body: { uz: <>«Agar <b>chipta bo'lsa</b> → (agar <b>joy bo'lsa</b> → kiritamiz).» Ichkaridagi shart faqat <b>tashqi shart rost bo'lganda</b> tekshiriladi. Ikki eshikni ketma-ket o'tgandek.</>, ru: <>«Если <b>есть билет</b> → (если <b>есть место</b> → впускаем).» Внутреннее условие проверяется, <b>только когда внешнее истинно</b>. Как пройти две двери подряд.</> },
-        vis: <RcFlow items={[{ uz: "chipta bor?", ru: "билет есть?" }, { uz: "joy bor?", ru: "место есть?" }, { uz: "kiradi", ru: "проходит" }]} />
-      },
-      {
-        ic: "🔎",
-        h: { uz: "Bu sikl ham, o'zgaruvchi ham emas", ru: "Это не цикл и не переменная" },
-        body: { uz: <>Ichma-ich shart — bu takrorlash (sikl) emas va qiymat saqlash (o'zgaruvchi) ham emas. Bu shunchaki <b>shart ichidagi shart</b> — bir savoldan keyin ikkinchi savol.</>, ru: <>Вложенное условие — это не повторение (цикл) и не хранение значения (переменная). Это просто <b>условие внутри условия</b> — второй вопрос после первого.</> }
+        body: { uz: <>+ belgisi <b>qo'shadi</b>, &lt; esa <b>kichikligini</b> tekshiradi. Shartda «tengmi?» deb so'ramoqchi bo'lsangiz — <b>==</b> yozing.</>, ru: <>Знак + <b>складывает</b>, а &lt; проверяет «<b>меньше</b>». Хотите спросить в условии «равно ли?» — пишите <b>==</b>.</> }
       }
     ]
   }
@@ -1735,7 +1719,7 @@ var QuestionScreen = ({ screen, scope, eyebrow, question, questionText, options,
       <div className="screen" style={{ justifyContent: isMentorLive ? "flex-start" : "safe center", gap: "clamp(16px,2.5vw,24px)" }}>
         <div className="fade-up">{question}</div>
         {oneShot && !solved && <p className="small mono fade-up" style={{ margin: "-8px 0 0", color: T.accent, fontWeight: 600 }}>⚡ {tr2({ uz: "Jonli dars — bitta urinish, o'ylab bosing!", ru: "Живой урок — одна попытка, думайте перед кликом!" })}</p>}
-        <div className="fade-up delay-1" style={{ display: "flex", flexDirection: "column", gap: 11 }}>
+        <div className="fade-up delay-1" style={{ display: "flex", flexDirection: "column", gap: picked !== null ? 8 : 11 }}>
           {options.map((opt, i) => {
     let cls = "option";
     if (isMentorLive) {
@@ -1753,7 +1737,7 @@ var QuestionScreen = ({ screen, scope, eyebrow, question, questionText, options,
       }
     } else if (i === picked) cls += " option-picked-wrong";
     const showGreenLetter = isMentorLive ? mReveal && i === correctIdx : solved && revealed && i === correctIdx;
-    return <button key={i} className={cls} disabled={solved || isMentorLive} onClick={() => pick(i)} style={{ padding: "clamp(13px,1.9vw,17px) clamp(15px,2.2vw,20px)", fontSize: "clamp(15px,1.85vw,17px)", display: "flex", alignItems: "center", gap: 12 }}>
+    return <button key={i} className={cls} disabled={solved || isMentorLive} onClick={() => pick(i)} style={{ padding: picked !== null ? "clamp(9px,1.3vw,12px) clamp(15px,2.2vw,20px)" : "clamp(13px,1.9vw,17px) clamp(15px,2.2vw,20px)", fontSize: "clamp(15px,1.85vw,17px)", display: "flex", alignItems: "center", gap: 12 }}>
                 <span className="mono small" style={{ minWidth: 20, color: showGreenLetter ? T.success : T.ink3 }}>{String.fromCharCode(65 + i)}</span>
                 <span style={{ flex: 1 }}>{fmtCode(tr2(opt))}</span>
               </button>;
@@ -1835,15 +1819,16 @@ var Zoomable = ({ children }) => {
       </div>
     </>;
 };
+var HOOK_PINS = ["0000", "1234", "4321"];
 var Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
-  const audio = useAudio([{ id: "s0", text: `Attraksionga yozuv osilgan: "12 yoshdan oshganlar chiqadi". Turniket sizning yoshingizga qarab ochiladi yoki yopiq qoladi. Dastur bu qarorni qanday qabul qiladi? Yoshni o'zgartirib, turniketni sinab ko'ring.`, trigger: "on_mount", waits_for: { type: "option_picked" } }]);
+  const audio = useAudio([{ id: "s0", text: `Telefoningizning PIN-kodi 1234. Har xil PIN-kod kiritib ko'ring: telefon qachon ochiladi, qachon yo'q? Telefon bu qarorni qanday qabul qiladi?`, trigger: "on_mount", waits_for: { type: "option_picked" } }]);
   const [picked, setPicked] = useState3(storedAnswer?.picked ?? null);
-  const [age, setAge] = useState3(10);
-  const allowed = age >= 12;
+  const [pin, setPin] = useState3("0000");
+  const unlocked = pin === "1234";
   const OPTS = [
-    { id: "a", label: { uz: "Tasodifan — goh ochadi, goh yo'q", ru: "Случайно — то откроет, то нет" } },
-    { id: "b", label: { uz: "Shartni tekshiradi: yosh 12 dan oshganmi?", ru: "Проверяет условие: возраст больше 12?" } },
-    { id: "c", label: { uz: "Hamma uchun doim ochiq", ru: "Всегда открыт для всех" } }
+    { id: "a", label: { uz: "Tasodifan — goh ochiladi, goh yo'q", ru: "Случайно — то откроется, то нет" } },
+    { id: "b", label: { uz: "Tekshiradi: kiritilgan PIN-kod to'g'rimi?", ru: "Проверяет: введённый PIN-код верный?" } },
+    { id: "c", label: { uz: "Har qanday PIN-kod bilan ochiladi", ru: "Открывается с любым PIN-кодом" } }
   ];
   const pick = (v) => {
     if (picked !== null) return;
@@ -1853,23 +1838,22 @@ var Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
   };
   return <Stage eyebrow={tr2({ uz: "Kirish", ru: "Введение" })} screen={screen} audioState={audio} navContent={<NavNext optionalLive disabled={picked === null} label={{ uz: "Davom etish", ru: "Продолжить" }} onClick={onNext} />}>
       <div className="screen">
-        <h1 className="title h-title fade-up" style={{ maxWidth: 760 }}>{tr2({ uz: <>Turniket <span className="italic" style={{ color: T.accent }}>qachon</span> ochiladi?</>, ru: <><span className="italic" style={{ color: T.accent }}>Когда</span> откроется турникет?</> })}</h1>
-        <Mentor>{tr2({ uz: <><b style={{ color: T.ink }}>Turniket</b> — bu kirish darvozasi. Attraksionda yozuv: <b style={{ color: T.ink }}>"12 yoshdan oshganlar chiqadi"</b>. Demak darvoza <b style={{ color: T.ink }}>yoshni tekshiradi</b>: yetarli bo'lsa ochiladi, bo'lmasa yopiq qoladi. Yoshni o'zgartirib, sinab ko'ring.</>, ru: <><b style={{ color: T.ink }}>Турникет</b> — это входные ворота. На аттракционе табличка: <b style={{ color: T.ink }}>«Катаются те, кому больше 12»</b>. Значит ворота <b style={{ color: T.ink }}>проверяют возраст</b>: подходит — откроются, нет — останутся закрытыми. Меняйте возраст и проверьте.</> })}</Mentor>
+        <h1 className="title h-title fade-up">{tr2({ uz: <>PIN-kodni kiritsangiz, telefon <span className="italic" style={{ color: T.accent }}>qachon</span> ochiladi?</>, ru: <><span className="italic" style={{ color: T.accent }}>Когда</span> телефон откроется после ввода PIN-кода?</> })}</h1>
+        <Mentor>{tr2({ uz: <>Telefoningizning PIN-kodi — <b style={{ color: T.ink }}>1234</b>. Har xil PIN-kod kiritib ko'ring: telefon <b style={{ color: T.ink }}>qachon ochiladi</b>, qachon yo'q?</>, ru: <>PIN-код вашего телефона — <b style={{ color: T.ink }}>1234</b>. Попробуйте разные PIN-коды: <b style={{ color: T.ink }}>когда телефон откроется</b>, а когда нет?</> })}</Mentor>
         <Zoomable>
         <Split>
           <Col>
-            <p className="flow-label">{tr2({ uz: "Yoshingizni tanlang", ru: "Выберите свой возраст" })}</p>
+            <p className="flow-label">{tr2({ uz: "PIN-kodni kiriting", ru: "Введите PIN-код" })}</p>
             <div className="fade-up delay-1" style={{ display: "flex", gap: 8 }}>
-              {[8, 12, 15].map((a) => <button key={a} className={`chip ${age === a ? "chip-on" : ""}`} onClick={() => setAge(a)}>{a} {tr2({ uz: "yosh", ru: "лет" })}</button>)}
+              {HOOK_PINS.map((p) => <button key={p} className={`chip ${pin === p ? "chip-on" : ""}`} onClick={() => setPin(p)}><span className="mono">{p}</span></button>)}
             </div>
-            <div style={{ background: allowed ? T.successSoft : T.accentSoft, borderRadius: 16, padding: "22px 16px", textAlign: "center", boxShadow: `0 8px 20px -6px rgba(${T.shadowBase},0.16)`, transition: "background 0.35s ease" }}>
-              <div className="gate-wrap"><span className="gate-post l" /><span className="gate-post r" /><span className={`gate-bar ${allowed ? "open" : "shut"}`} /></div>
-              <p className="demo-swap" key={age} style={{ fontFamily: "Georgia, serif", fontWeight: 700, color: allowed ? T.success : T.accent, margin: "16px 0 2px", fontSize: "clamp(16px,2.4vw,20px)" }}>{allowed ? tr2({ uz: "✅ Turniket ochildi!", ru: "✅ Турникет открылся!" }) : tr2({ uz: "⛔ Turniket yopiq", ru: "⛔ Турникет закрыт" })}</p>
-              <p className="mono small" style={{ color: T.ink2, margin: 0 }}>yosh = {age} · {age} {">="} 12 → {String(allowed)}</p>
+            <div style={{ background: unlocked ? T.successSoft : T.accentSoft, borderRadius: 16, padding: "18px 16px", textAlign: "center", boxShadow: `0 8px 20px -6px rgba(${T.shadowBase},0.16)`, transition: "background 0.35s ease" }}>
+              <div className={`lock-phone ${unlocked ? "open" : "shut"}`} key={pin}><span className="lock-ic">{unlocked ? "🔓" : "🔒"}</span><span className="lock-pin mono">{pin}</span></div>
+              <p className="demo-swap" key={pin + "t"} style={{ fontFamily: "Georgia, serif", fontWeight: 700, color: unlocked ? T.success : T.accent, margin: "12px 0 2px", fontSize: "clamp(16px,2.4vw,20px)" }}>{unlocked ? tr2({ uz: "✅ Telefon ochildi!", ru: "✅ Телефон открылся!" }) : tr2({ uz: "⛔ PIN-kod noto'g'ri", ru: "⛔ Неверный PIN-код" })}</p>
             </div>
           </Col>
           <Col>
-            <p className="eyebrow fade-up delay-2" style={{ color: T.ink2, margin: 0 }}>{tr2({ uz: "Dastur turniketni qanday hal qiladi?", ru: "Как программа решает вопрос турникета?" })}</p>
+            <p className="eyebrow fade-up delay-2" style={{ color: T.ink2, margin: 0 }}>{tr2({ uz: "Telefon qanday qaror qiladi?", ru: "Как телефон принимает решение?" })}</p>
             <div className="fade-up delay-3" style={{ display: "flex", flexDirection: "column", gap: 9 }}>
               {OPTS.map((o) => {
     const on = picked === o.id;
@@ -1879,7 +1863,7 @@ var Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
                   </button>;
   })}
             </div>
-            {picked !== null && <p className="hook-ack fade-step">{tr2({ uz: <>To'g'ri yo'nalish! Dastur <b>shartni</b> tekshiradi. Buni <span className="mono">if</span> bilan yozamiz — bugun shuni o'rganamiz.</>, ru: <>Верное направление! Программа проверяет <b>условие</b>. Мы запишем это через <span className="mono">if</span> — этому сегодня и научимся.</> })}</p>}
+            {picked !== null && <p className="hook-ack fade-step">{picked === "b" ? tr2({ uz: <>To'g'ri! Telefon <b>shartni</b> tekshiradi: PIN-kod to'g'rimi? Buni <span className="mono">if</span> bilan yozamiz — bugun shuni o'rganamiz.</>, ru: <>Верно! Телефон проверяет <b>условие</b>: PIN-код верный? Мы запишем это через <span className="mono">if</span> — этому сегодня и научимся.</> }) : tr2({ uz: <>Aslida telefon <b>shartni</b> tekshiradi: PIN-kod to'g'rimi? Buni <span className="mono">if</span> bilan yozamiz — bugun shuni o'rganamiz.</>, ru: <>На самом деле телефон проверяет <b>условие</b>: PIN-код верный? Мы запишем это через <span className="mono">if</span> — этому сегодня и научимся.</> })}</p>}
           </Col>
         </Split>
         </Zoomable>
@@ -1887,19 +1871,19 @@ var Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
     </Stage>;
 };
 var Screen1 = ({ screen, onNext, onPrev }) => {
-  const audio = useAudio([{ id: "s1", text: `Algoritm darsida "agar... bo'lsa..." degandik, esingizdami? Bugun aynan shuni haqiqiy kodga aylantiramiz — if va else. Dasturingiz endi qaror qabul qila oladi. 5 qadamda o'rganamiz.`, trigger: "on_mount", waits_for: null }]);
+  const audio = useAudio([{ id: "s1", text: `Hayot shartlarga to'la: 16 yosh bo'lsa, ID-karta olasiz, aks holda yoshingiz hali kichik. Kod ham xuddi shunday "agar... bo'lsa..." deb o'ylaydi. Buni if va else bilan yozamiz.`, trigger: "on_mount", waits_for: null }]);
   const STEPS = [
     { text: { uz: "if — shart bajarilsa, kod ishlaydi", ru: "if — код работает, если условие выполнено" }, tag: "if" },
-    { text: { uz: "Taqqoslash operatorlari", ru: "Операторы сравнения" }, tag: "> < >= ===" },
+    { text: { uz: "Taqqoslash operatorlari", ru: "Операторы сравнения" }, tag: "> < >= ==" },
     { text: { uz: "else — aks holda", ru: "else — иначе" }, tag: "else" },
     { text: { uz: "Bir nechta yo'l", ru: "Несколько путей" }, tag: "else if" },
-    { text: { uz: "Ichma-ich shartlar + o'zing yoz", ru: "Вложенные условия + напишите сами" }, tag: "nested" }
+    { text: { uz: "= va == farqi, keyin o'zingiz yozasiz", ru: "Разница = и ==, потом пишете сами" }, tag: "= · ==" }
   ];
   const isNarrow = useIsMobile(768);
   const [showSteps, setShowSteps] = useState3(false);
   const PreviewBlock = <Col>
       <p className="flow-label">{tr2({ uz: "Bugun shunday kod yozasiz", ru: "Сегодня вы напишете такой код" })}</p>
-      <pre className="code-box fade-up" style={{ fontSize: "clamp(12.5px,1.9vw,14.5px)" }}><Kw>if</Kw> (<Vr>yosh</Vr> <Op>{">="}</Op> <Nm>12</Nm>) {"{"}{"\n"}{"  "}<Vr>console</Vr>.<Vr>log</Vr>(<St>{tr2({ uz: '"Kiring!"', ru: '"Входите!"' })}</St>){"\n"}{"}"} <Kw>else</Kw> {"{"}{"\n"}{"  "}<Vr>console</Vr>.<Vr>log</Vr>(<St>{tr2({ uz: `"Ruxsat yo'q"`, ru: '"Нет доступа"' })}</St>){"\n"}{"}"}</pre>
+      <pre className="code-box fade-up" style={{ fontSize: "clamp(12.5px,1.9vw,14.5px)" }}><Kw>if</Kw> (<Vr>age</Vr> <Op>{">="}</Op> <Nm>16</Nm>) {"{"}{"\n"}{"  "}<Vr>console</Vr>.<Vr>log</Vr>(<St>{tr2({ uz: '"ID-karta olishingiz mumkin"', ru: '"Можно получить ID-карту"' })}</St>){"\n"}{"}"} <Kw>else</Kw> {"{"}{"\n"}{"  "}<Vr>console</Vr>.<Vr>log</Vr>(<St>{tr2({ uz: '"Yoshingiz hali kichik"', ru: '"Вы ещё слишком молоды"' })}</St>){"\n"}{"}"}</pre>
       <p className="mono small" style={{ color: T.accent, margin: 0 }}>→ {tr2({ uz: "dastur qaror qabul qiladi", ru: "программа принимает решение" })}</p>
     </Col>;
   const StepsBlock = <Col>
@@ -1913,7 +1897,7 @@ var Screen1 = ({ screen, onNext, onPrev }) => {
         <div className="head">
           <h2 className="title h-title fade-up">{tr2({ uz: <>Kod endi <span className="italic" style={{ color: T.accent }}>o'zi tanlaydi</span></>, ru: <>Теперь код <span className="italic" style={{ color: T.accent }}>выбирает сам</span></> })}</h2>
         </div>
-        <Mentor>{tr2({ uz: <>Hayotda doim shart bilan ish qilamiz: <b style={{ color: T.ink }}>yomg'ir yog'sa</b> — soyabon olasiz, <b style={{ color: T.ink }}>aks holda</b> — yo'q. Kod ham xuddi shunday <b style={{ color: T.ink }}>"agar... bo'lsa..."</b> deb o'ylaydi — buni <span className="mono">if</span> va <span className="mono">else</span> bilan yozamiz. 5 qadamda o'rganamiz.</>, ru: <>В жизни мы всё время действуем по условию: <b style={{ color: T.ink }}>идёт дождь</b> — берёте зонт, <b style={{ color: T.ink }}>иначе</b> — нет. Код думает так же: <b style={{ color: T.ink }}>«если... то...»</b> — мы запишем это через <span className="mono">if</span> и <span className="mono">else</span>. Освоим за 5 шагов.</> })}</Mentor>
+        <Mentor>{tr2({ uz: <>Hayot shartlarga to'la: <b style={{ color: T.ink }}>16 yosh bo'lsa</b> — ID-karta olasiz, <b style={{ color: T.ink }}>aks holda</b> — yoshingiz hali kichik. Kod ham shunday <b style={{ color: T.ink }}>"agar... bo'lsa..."</b> deb o'ylaydi — buni <span className="mono">if</span> va <span className="mono">else</span> bilan yozamiz.</>, ru: <>Жизнь полна условий: <b style={{ color: T.ink }}>исполнилось 16</b> — получаете ID-карту, <b style={{ color: T.ink }}>иначе</b> — вы ещё слишком молоды. Код думает так же: <b style={{ color: T.ink }}>«если... то...»</b> — мы запишем это через <span className="mono">if</span> и <span className="mono">else</span>.</> })}</Mentor>
         {!isNarrow ? <Zoomable><Split>{PreviewBlock}{StepsBlock}</Split></Zoomable> : !showSteps ? <div className="fade-step" style={{ display: "flex", flexDirection: "column", gap: "clamp(12px,2vw,16px)" }}>
             {PreviewBlock}
             <button className="btn" style={{ alignSelf: "flex-start" }} onClick={() => setShowSteps(true)}>📋 {tr2({ uz: "Bugungi 5 qadamni ko'rish", ru: "Посмотреть 5 шагов на сегодня" })}</button>
@@ -1925,42 +1909,42 @@ var Screen1 = ({ screen, onNext, onPrev }) => {
     </Stage>;
 };
 var Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const audio = useAudio([{ id: "s2", text: `if degani "agar" degani. Qavs ichiga shart yozasiz, figurali qavs ichiga esa kod. Qoida oddiy: agar shart rost — true bo'lsa, ichidagi kod ishlaydi. Yolg'on — false bo'lsa, o'tkazib yuboriladi. Yoshni o'zgartirib, kod ishlaydimi yoki yo'qmi, ko'ring.`, trigger: "on_mount", waits_for: null }]);
-  const [age, setAge] = useState3(10);
+  const audio = useAudio([{ id: "s2", text: `if degani "agar". Telefon zaryad 20 foizdan kam bo'lsagina ogohlantiradi. Shart rost bo'lsa, figurali qavs ichidagi kod ishlaydi. Zaryadni o'zgartiring.`, trigger: "on_mount", waits_for: null }]);
+  const [battery, setBattery] = useState3(50);
   const [touched, setTouched] = useState3(false);
-  const cond = age >= 12;
+  const cond = battery < 20;
   const done = touched;
-  const setA = (a) => {
-    setAge(a);
+  const setB = (b) => {
+    setBattery(b);
     setTouched(true);
   };
   useEffect4(() => {
     if (done && storedAnswer === void 0) onAnswer(screen, { correct: true, picked: true });
   }, [done]);
-  return <Stage eyebrow="if" screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: "Davom etish", ru: "Продолжить" } : { uz: "Yoshni o'zgartiring", ru: "Измените возраст" }} onClick={onNext} /></>}>
+  return <Stage eyebrow="if" screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: "Davom etish", ru: "Продолжить" } : { uz: "Zaryadni o'zgartiring", ru: "Измените заряд" }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: "clamp(10px,1.6vw,16px)" }}>
         <div className="head"><h2 className="title h-title fade-up">{tr2({ uz: <>Dastur <span className="italic" style={{ color: T.accent }}>qachon</span> kodni bajaradi?</>, ru: <><span className="italic" style={{ color: T.accent }}>Когда</span> программа выполняет код?</> })}</h2></div>
-        <Mentor>{tr2({ uz: <><span className="mono">if</span> degani <b style={{ color: T.ink }}>"agar"</b>. Qavs ichiga <b style={{ color: T.ink }}>shart</b>, figurali qavs <span className="mono">{"{ }"}</span> ichiga <b style={{ color: T.ink }}>kod</b> yoziladi. Shart <b style={{ color: T.ink }}>rost (true)</b> bo'lsa — kod ishlaydi. Yoshni o'zgartiring.</>, ru: <><span className="mono">if</span> значит <b style={{ color: T.ink }}>«если»</b>. В скобках пишется <b style={{ color: T.ink }}>условие</b>, в фигурных скобках <span className="mono">{"{ }"}</span> — <b style={{ color: T.ink }}>код</b>. Если условие <b style={{ color: T.ink }}>истинно (true)</b> — код работает. Меняйте возраст.</> })}</Mentor>
+        <Mentor>{tr2({ uz: <><span className="mono">if</span> degani <b style={{ color: T.ink }}>"agar"</b>. Telefon zaryad <b style={{ color: T.ink }}>20% dan kam</b> bo'lsagina ogohlantiradi: shart <b style={{ color: T.ink }}>rost (true)</b> bo'lsa, figurali qavs <span className="mono">{"{ }"}</span> ichidagi kod ishlaydi. Zaryadni o'zgartiring.</>, ru: <><span className="mono">if</span> значит <b style={{ color: T.ink }}>«если»</b>. Телефон предупреждает, только когда заряд <b style={{ color: T.ink }}>меньше 20%</b>: если условие <b style={{ color: T.ink }}>истинно (true)</b>, код в фигурных скобках <span className="mono">{"{ }"}</span> работает. Меняйте заряд.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
-            <p className="flow-label">yosh = {age}</p>
+            <p className="flow-label">battery = {battery}</p>
             <div className="fade-up delay-1" style={{ display: "flex", gap: 8 }}>
-              {[10, 15].map((a) => <button key={a} className={`chip ${age === a ? "chip-on" : ""}`} onClick={() => setA(a)}>{a} {tr2({ uz: "yosh", ru: "лет" })}</button>)}
+              {[50, 15].map((b) => <button key={b} className={`chip ${battery === b ? "chip-on" : ""}`} onClick={() => setB(b)}>🔋 {b}%</button>)}
             </div>
             <pre className="code-box fade-up delay-2" style={{ fontSize: "clamp(13px,2vw,15px)" }}>
-              <Kw>if</Kw> (<Vr>yosh</Vr> <Op>{">="}</Op> <Nm>12</Nm>) {"{"}  <Cm>{`// ${age} >= 12 → ${cond}`}</Cm>{"\n"}
-              <span style={{ background: cond ? "rgba(31,122,77,0.25)" : "transparent", borderRadius: 4, opacity: cond ? 1 : 0.4 }}>{"  "}<Vr>console</Vr>.<Vr>log</Vr>(<St>{tr2({ uz: '"Kiring!"', ru: '"Входите!"' })}</St>)</span>{"\n"}
+              <Kw>if</Kw> (<Vr>battery</Vr> <Op>{"<"}</Op> <Nm>20</Nm>) {"{"}  <Cm>{`// ${battery} < 20 → ${cond}`}</Cm>{"\n"}
+              <span style={{ background: cond ? "rgba(31,122,77,0.25)" : "transparent", borderRadius: 4, opacity: cond ? 1 : 0.4 }}>{"  "}<Vr>console</Vr>.<Vr>log</Vr>(<St>{tr2({ uz: '"Quvvatlagichga ulang"', ru: '"Подключите зарядку"' })}</St>)</span>{"\n"}
               {"}"}
             </pre>
           </Col>
           <Col>
             <p className="flow-label">{tr2({ uz: "Natija", ru: "Результат" })}</p>
-            <div className="demo-swap" key={age + "r"} style={{ background: T.paper, borderRadius: 14, padding: "18px", textAlign: "center", boxShadow: `0 8px 20px -6px rgba(${T.shadowBase},0.14)` }}>
+            <div className="demo-swap" key={battery + "r"} style={{ background: T.paper, borderRadius: 14, padding: "18px", textAlign: "center", boxShadow: `0 8px 20px -6px rgba(${T.shadowBase},0.14)` }}>
               <BoolPill value={cond} />
-              <p className="body" style={{ margin: "12px 0 0", color: T.ink }}>{cond ? tr2({ uz: "✅ Shart rost → kod ishladi: «Kiring!»", ru: "✅ Условие истинно → код сработал: «Входите!»" }) : tr2({ uz: "⛔ Shart yolg'on → kod o'tkazib yuborildi", ru: "⛔ Условие ложно → код пропущен" })}</p>
+              <p className="body" style={{ margin: "12px 0 0", color: T.ink }}>{cond ? tr2({ uz: "✅ Shart rost → kod ishladi: «Quvvatlagichga ulang»", ru: "✅ Условие истинно → код сработал: «Подключите зарядку»" }) : tr2({ uz: "⛔ Shart yolg'on → kod o'tkazib yuborildi", ru: "⛔ Условие ложно → код пропущен" })}</p>
             </div>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr2({ uz: <>✓ <b>if</b> — bu darvoza: shart <b>true</b> bo'lsagina ichidagi kodga yo'l ochiladi.</>, ru: <>✓ <b>if</b> — это ворота: путь к коду внутри открывается, только если условие <b>true</b>.</> })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr2({ uz: <>✓ <b>if</b> — shart <b>true</b> bo'lsagina ichidagi kod ishlaydi.</>, ru: <>✓ <b>if</b> — код внутри работает, только если условие <b>true</b>.</> })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -1975,8 +1959,8 @@ var Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     { op: "<", res: A < B, name: { uz: "kichik", ru: "меньше" } },
     { op: ">=", res: A >= B, name: { uz: "katta yoki teng", ru: "больше или равно" } },
     { op: "<=", res: A <= B, name: { uz: "kichik yoki teng", ru: "меньше или равно" } },
-    { op: "===", res: A === B, name: { uz: "teng", ru: "равно" } },
-    { op: "!==", res: A !== B, name: { uz: "teng emas", ru: "не равно" } }
+    { op: "==", res: A === B, name: { uz: "teng", ru: "равно" } },
+    { op: "!=", res: A !== B, name: { uz: "teng emas", ru: "не равно" } }
   ];
   const [active, setActive] = useState3(null);
   const [seen, setSeen] = useState3(/* @__PURE__ */ new Set());
@@ -2015,7 +1999,7 @@ var Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 </div>
                 <div className="sk-info"><span className="sk-tagbig"><span className="sk-wordbadge mono">{cur.op}</span><span style={{ fontWeight: 600, color: T.ink }}>{tr2(cur.name)}</span></span><p className="body" style={{ color: T.ink, margin: "9px 0 0" }}>{tr2({ uz: `14 ${tr2(cur.name)} 12? Javob: ${cur.res ? "ha (true)" : "yo'q (false)"}.`, ru: `14 ${tr2(cur.name)} 12? Ответ: ${cur.res ? "да (true)" : "нет (false)"}.` })}</p></div>
               </div> : !isNarrow ? <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: "center", fontStyle: "italic", margin: 0 }}>{tr2({ uz: "Operatorni bosing", ru: "Нажмите на оператор" })}</p></div> : null}
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr2({ uz: <>✓ Esda saqlang: <span className="mono">===</span> teng, <span className="mono">!==</span> teng emas, <span className="mono">{">="}</span> katta yoki teng. Hammasi true/false beradi.</>, ru: <>✓ Запомните: <span className="mono">===</span> равно, <span className="mono">!==</span> не равно, <span className="mono">{">="}</span> больше или равно. Все дают true/false.</> })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr2({ uz: <>✓ Esda saqlang: <span className="mono">==</span> teng, <span className="mono">!=</span> teng emas, <span className="mono">{">="}</span> katta yoki teng. Hammasi true/false beradi.</>, ru: <>✓ Запомните: <span className="mono">==</span> равно, <span className="mono">!=</span> не равно, <span className="mono">{">="}</span> больше или равно. Все дают true/false.</> })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -2036,10 +2020,10 @@ var Screen4 = (props) => <QuestionScreen
   explainWrong={{ 0: { uz: "Yo'q — doim emas. Faqat shart `true` bo'lganda ishlaydi.", ru: "Нет — не всегда. Только когда условие `true`." }, 1: { uz: "Yo'q — shart `true` bo'lsa ishlaydi.", ru: "Нет — он работает, когда условие `true`." }, 2: { uz: "Aksincha — `false` bo'lsa o'tkazib yuboriladi. `true` bo'lsa ishlaydi.", ru: "Наоборот — при `false` он пропускается. Работает при `true`." }, default: { uz: "`if` ichidagi kod shart `true` bo'lganda ishlaydi.", ru: "Код внутри `if` работает, когда условие `true`." } }}
 />;
 var Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const audio = useAudio([{ id: "s5", text: `Agar shart bajarilmasa-chi? Buning uchun else bor — "aks holda" degani. if rost bo'lsa, birinchi blok ishlaydi; aks holda else bloki ishlaydi. Ikkalasidan bittasi doim ishlaydi. Yoshni o'zgartirib, qaysi yo'l tanlanishini ko'ring.`, trigger: "on_mount", waits_for: null }]);
-  const [age, setAge] = useState3(10);
-  const [seen, setSeen] = useState3(/* @__PURE__ */ new Set([10]));
-  const allowed = age >= 12;
+  const audio = useAudio([{ id: "s5", text: `Shart bajarilmasa-chi? Buning uchun else bor — "aks holda" degani. 16 yosh bo'lsa ID-karta olasiz, aks holda yoshingiz hali kichik. Yoshni o'zgartirib, qaysi yo'l tanlanishini ko'ring.`, trigger: "on_mount", waits_for: null }]);
+  const [age, setAge] = useState3(14);
+  const [seen, setSeen] = useState3(/* @__PURE__ */ new Set([14]));
+  const allowed = age >= 16;
   const done = seen.size >= 2;
   const setA = (a) => {
     setAge(a);
@@ -2055,29 +2039,29 @@ var Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return <Stage eyebrow="else" screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: "Davom etish", ru: "Продолжить" } : { uz: "Ikkala yo'lni ko'ring", ru: "Посмотрите оба пути" }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: "clamp(10px,1.6vw,16px)" }}>
         <div className="head"><h2 className="title h-title fade-up">{tr2({ uz: <>Shart bajarilmasa, dastur <span className="italic" style={{ color: T.accent }}>nima qiladi</span>?</>, ru: <>Если условие не выполнено, <span className="italic" style={{ color: T.accent }}>что делает</span> программа?</> })}</h2></div>
-        <Mentor>{tr2({ uz: <><span className="mono">else</span> — bu <b style={{ color: T.ink }}>"aks holda"</b>, ya'ni <b style={{ color: T.ink }}>ikkinchi yo'l</b> (tugadi degani emas!). Shart <b style={{ color: T.ink }}>rost</b> bo'lsa — if bloki, <b style={{ color: T.ink }}>yolg'on</b> bo'lsa — else bloki ishlaydi. Doim ikkitadan bittasi. Yoshni o'zgartiring.</>, ru: <><span className="mono">else</span> — это <b style={{ color: T.ink }}>«иначе»</b>, то есть <b style={{ color: T.ink }}>второй путь</b> (а не «конец»!). Условие <b style={{ color: T.ink }}>истинно</b> — работает блок if, <b style={{ color: T.ink }}>ложно</b> — блок else. Всегда один из двух. Меняйте возраст.</> })}</Mentor>
+        <Mentor>{tr2({ uz: <><span className="mono">else</span> — bu <b style={{ color: T.ink }}>"aks holda"</b>, ya'ni <b style={{ color: T.ink }}>ikkinchi yo'l</b>. Shart <b style={{ color: T.ink }}>rost</b> bo'lsa — if bloki, <b style={{ color: T.ink }}>yolg'on</b> bo'lsa — else bloki ishlaydi, doim ikkitadan bittasi. Yoshni o'zgartiring.</>, ru: <><span className="mono">else</span> — это <b style={{ color: T.ink }}>«иначе»</b>, то есть <b style={{ color: T.ink }}>второй путь</b>. Условие <b style={{ color: T.ink }}>истинно</b> — работает блок if, <b style={{ color: T.ink }}>ложно</b> — блок else, всегда один из двух. Меняйте возраст.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
             <div className="fade-up delay-1" style={{ display: "flex", gap: 8 }}>
-              {[10, 15].map((a) => <button key={a} className={`chip ${age === a ? "chip-on" : ""}`} onClick={() => setA(a)}>{a} {tr2({ uz: "yosh", ru: "лет" })}</button>)}
+              {[14, 17].map((a) => <button key={a} className={`chip ${age === a ? "chip-on" : ""}`} onClick={() => setA(a)}>{a} {tr2({ uz: "yosh", ru: "лет" })}</button>)}
             </div>
             <pre className="code-box fade-up delay-2" style={{ fontSize: "clamp(12.5px,1.9vw,14.5px)" }}>
-              <Kw>if</Kw> (<Vr>yosh</Vr> <Op>{">="}</Op> <Nm>12</Nm>) {"{"}{"\n"}
-              <span style={{ background: allowed ? "rgba(31,122,77,0.25)" : "transparent", borderRadius: 4, opacity: allowed ? 1 : 0.4, transition: "background 0.35s, opacity 0.35s" }}>{"  "}<Vr>console</Vr>.<Vr>log</Vr>(<St>{tr2({ uz: '"Kiring!"', ru: '"Входите!"' })}</St>)</span>{"\n"}
+              <Kw>if</Kw> (<Vr>age</Vr> <Op>{">="}</Op> <Nm>16</Nm>) {"{"}{"\n"}
+              <span style={{ background: allowed ? "rgba(31,122,77,0.25)" : "transparent", borderRadius: 4, opacity: allowed ? 1 : 0.4, transition: "background 0.35s, opacity 0.35s" }}>{"  "}<Vr>console</Vr>.<Vr>log</Vr>(<St>{tr2({ uz: '"ID-karta olishingiz mumkin"', ru: '"Можно получить ID-карту"' })}</St>)</span>{"\n"}
               {"}"} <Kw>else</Kw> {"{"}{"\n"}
-              <span style={{ background: !allowed ? "rgba(255,79,40,0.22)" : "transparent", borderRadius: 4, opacity: !allowed ? 1 : 0.4, transition: "background 0.35s, opacity 0.35s" }}>{"  "}<Vr>console</Vr>.<Vr>log</Vr>(<St>{tr2({ uz: `"Ruxsat yo'q"`, ru: '"Нет доступа"' })}</St>)</span>{"\n"}
+              <span style={{ background: !allowed ? "rgba(255,79,40,0.22)" : "transparent", borderRadius: 4, opacity: !allowed ? 1 : 0.4, transition: "background 0.35s, opacity 0.35s" }}>{"  "}<Vr>console</Vr>.<Vr>log</Vr>(<St>{tr2({ uz: '"Yoshingiz hali kichik"', ru: '"Вы ещё слишком молоды"' })}</St>)</span>{"\n"}
               {"}"}
             </pre>
           </Col>
           <Col>
             <p className="flow-label">{tr2({ uz: "Natija", ru: "Результат" })}</p>
             <div className="demo-swap" key={age} style={{ background: allowed ? T.successSoft : T.accentSoft, borderRadius: 14, padding: "20px", textAlign: "center", boxShadow: `0 8px 20px -6px rgba(${T.shadowBase},0.14)`, transition: "background 0.35s" }}>
-              <div className="pop-num" style={{ fontSize: 36 }}>{allowed ? "✅" : "⛔"}</div>
-              <p className="mono" style={{ margin: "8px 0 0", fontWeight: 700, color: allowed ? T.success : T.accent }}>{allowed ? tr2({ uz: '"Kiring!"', ru: '"Входите!"' }) : tr2({ uz: `"Ruxsat yo'q"`, ru: '"Нет доступа"' })}</p>
+              <div className="pop-num" style={{ fontSize: 36 }}>{allowed ? "🪪" : "⏳"}</div>
+              <p className="mono" style={{ margin: "8px 0 0", fontWeight: 700, color: allowed ? T.success : T.accent }}>{allowed ? tr2({ uz: '"ID-karta olishingiz mumkin"', ru: '"Можно получить ID-карту"' }) : tr2({ uz: '"Yoshingiz hali kichik"', ru: '"Вы ещё слишком молоды"' })}</p>
               <p className="small" style={{ margin: "6px 0 0", color: T.ink2 }}>{allowed ? tr2({ uz: "↑ if bloki ishladi", ru: "↑ сработал блок if" }) : tr2({ uz: "↓ else bloki ishladi", ru: "↓ сработал блок else" })}</p>
             </div>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr2({ uz: <>✓ <b>if / else</b> — ikki yo'lli ayri: rost bo'lsa biri, yolg'on bo'lsa ikkinchisi. Hech qachon ikkalasi birga emas.</>, ru: <>✓ <b>if / else</b> — развилка на два пути: истина — один, ложь — другой. Никогда оба сразу.</> })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr2({ uz: <>✓ <b>if / else</b> — ikki yo'l: rost bo'lsa biri, yolg'on bo'lsa ikkinchisi. Hech qachon ikkalasi birga emas.</>, ru: <>✓ <b>if / else</b> — развилка на два пути: истина — один, ложь — другой. Никогда оба сразу.</> })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -2102,7 +2086,7 @@ var Screen5b = (props) => <QuestionScreen
   }}
 />;
 var Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const audio = useAudio([{ id: "s6", text: `Endi eng muhim sirni aytaman — yangi boshlovchilar shu yerda ko'p adashadi. Bitta teng belgisi qiymatni qutiga soladi, o'zlashtiradi. Uchta teng belgisi esa savol beradi: bular tengmi? va true yoki false qaytaradi. Shart yozganda doim uchta teng belgisi ishlatasiz. Ikkala kartani bosib solishtiring.`, trigger: "on_mount", waits_for: null }]);
+  const audio = useAudio([{ id: "s6", text: `Bu yerda ko'pchilik adashadi. Bitta teng belgisi qiymatni qutiga soladi. Ikki teng belgisi esa so'raydi: bular tengmi? va true yoki false qaytaradi. Ikkala kartani bosib solishtiring.`, trigger: "on_mount", waits_for: null }]);
   const [active, setActive] = useState3(null);
   const [seen, setSeen] = useState3(/* @__PURE__ */ new Set());
   const isNarrow = useIsMobile(768);
@@ -2118,27 +2102,27 @@ var Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect4(() => {
     if (done && storedAnswer === void 0) onAnswer(screen, { correct: true, picked: true });
   }, [done]);
-  return <Stage eyebrow={tr2({ uz: "=== va =", ru: "=== и =" })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: "Davom etish", ru: "Продолжить" } : { uz: "Ikkalasini ko'ring", ru: "Посмотрите оба" }} onClick={onNext} /></>}>
+  return <Stage eyebrow={tr2({ uz: "= va ==", ru: "= и ==" })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: "Davom etish", ru: "Продолжить" } : { uz: "Ikkalasini ko'ring", ru: "Посмотрите оба" }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: "clamp(10px,1.6vw,16px)" }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr2({ uz: <><span className="italic" style={{ color: T.accent }}>=</span> va <span className="italic" style={{ color: T.accent }}>===</span> — farqi nimada?</>, ru: <><span className="italic" style={{ color: T.accent }}>=</span> и <span className="italic" style={{ color: T.accent }}>===</span> — в чём разница?</> })}</h2></div>
-        <Mentor>{tr2({ uz: <>Bu yerda yangi boshlovchilar ko'p adashadi! <b style={{ color: T.ink }}>=</b> qiymatni qutiga <b style={{ color: T.ink }}>soladi</b>. <b style={{ color: T.ink }}>===</b> esa savol beradi: <b style={{ color: T.ink }}>tengmi?</b> va true/false qaytaradi. Shartda doim <span className="mono">===</span> ishlatasiz! Ikkala kartani bosing.</>, ru: <>Здесь новички часто путаются! <b style={{ color: T.ink }}>=</b> <b style={{ color: T.ink }}>кладёт</b> значение в коробку. А <b style={{ color: T.ink }}>===</b> задаёт вопрос: <b style={{ color: T.ink }}>равно ли?</b> — и возвращает true/false. В условии всегда используйте <span className="mono">===</span>! Нажмите обе карточки.</> })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr2({ uz: <><span className="italic" style={{ color: T.accent }}>=</span> va <span className="italic" style={{ color: T.accent }}>==</span> — farqi nimada?</>, ru: <><span className="italic" style={{ color: T.accent }}>=</span> и <span className="italic" style={{ color: T.accent }}>==</span> — в чём разница?</> })}</h2></div>
+        <Mentor>{tr2({ uz: <>Bu yerda ko'pchilik adashadi: <b style={{ color: T.ink }}>=</b> qiymatni qutiga <b style={{ color: T.ink }}>soladi</b>, <b style={{ color: T.ink }}>==</b> esa so'raydi — <b style={{ color: T.ink }}>tengmi?</b> Ikkala kartani bosing.</>, ru: <>Здесь многие путаются: <b style={{ color: T.ink }}>=</b> <b style={{ color: T.ink }}>кладёт</b> значение в коробку, а <b style={{ color: T.ink }}>==</b> спрашивает — <b style={{ color: T.ink }}>равно ли?</b> Нажмите обе карточки.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
             <button onClick={() => tap("assign")} className="fade-up delay-1" style={{ textAlign: "left", cursor: "pointer", border: "none", width: "100%", borderRadius: 14, padding: "15px 17px", background: T.paper, boxShadow: active === "assign" ? `inset 0 0 0 2px ${T.accent}, 0 8px 20px -6px rgba(255,79,40,0.22)` : `0 6px 16px -6px rgba(${T.shadowBase},0.14)`, transition: "all 0.18s", marginBottom: 10 }}>
-              <p className="mono" style={{ margin: "0 0 6px", fontSize: 16, color: T.ink }}><Vr>ball</Vr> <Op>=</Op> <Nm>10</Nm></p>
-              <p className="small" style={{ margin: 0, color: T.ink2 }}>📥 {tr2({ uz: `O'zlashtirish — "10 ni ball qutisiga sol"`, ru: "Присваивание — «положи 10 в коробку ball»" })} {seen.has("assign") && "✓"}</p>
+              <p className="mono" style={{ margin: "0 0 6px", fontSize: 16, color: T.ink }}><Vr>score</Vr> <Op>=</Op> <Nm>10</Nm></p>
+              <p className="small" style={{ margin: 0, color: T.ink2 }}>📥 {tr2({ uz: 'Qiymat berish — "10 ni score qutisiga sol"', ru: "Присваивание — «положи 10 в коробку score»" })} {seen.has("assign") && "✓"}</p>
             </button>
             <button onClick={() => tap("compare")} className="fade-up delay-1" style={{ textAlign: "left", cursor: "pointer", border: "none", width: "100%", borderRadius: 14, padding: "15px 17px", background: T.paper, boxShadow: active === "compare" ? `inset 0 0 0 2px ${T.accent}, 0 8px 20px -6px rgba(255,79,40,0.22)` : `0 6px 16px -6px rgba(${T.shadowBase},0.14)`, transition: "all 0.18s" }}>
-              <p className="mono" style={{ margin: "0 0 6px", fontSize: 16, color: T.ink }}><Vr>ball</Vr> <Op>===</Op> <Nm>10</Nm></p>
-              <p className="small" style={{ margin: 0, color: T.ink2 }}>❓ {tr2({ uz: 'Taqqoslash — "ball 10 ga tengmi?" → true/false', ru: "Сравнение — «ball равно 10?» → true/false" })} {seen.has("compare") && "✓"}</p>
+              <p className="mono" style={{ margin: "0 0 6px", fontSize: 16, color: T.ink }}><Vr>score</Vr> <Op>==</Op> <Nm>10</Nm></p>
+              <p className="small" style={{ margin: 0, color: T.ink2 }}>❓ {tr2({ uz: 'Tekshirish — "score 10 ga tengmi?" → true/false', ru: "Проверка — «score равно 10?» → true/false" })} {seen.has("compare") && "✓"}</p>
             </button>
           </Col>
           <Col>
             {active ? <div className="sk-info fade-step" key={active}>
-                {active === "assign" ? <><span className="sk-tagbig"><span className="sk-wordbadge mono">=</span><span style={{ fontWeight: 600, color: T.ink }}>{tr2({ uz: "o'zlashtirish", ru: "присваивание" })}</span></span><p className="body" style={{ color: T.ink, margin: "10px 0 0" }}>{tr2({ uz: "Quti yaratganda ishlatamiz (1-darsdan). Hech narsa tekshirmaydi — shunchaki qiymat soladi.", ru: "Используем при создании коробки (с 1-го урока). Ничего не проверяет — просто кладёт значение." })}</p><div className="pop-in" style={{ marginTop: 12, display: "flex", alignItems: "center", justifyContent: "center", gap: 10 }}><span className="mono" style={{ fontWeight: 700, color: T.ink }}>10</span><span className="flow-x" style={{ color: T.accent, fontWeight: 700, fontSize: 18 }}>→</span><span className="var-box" style={{ minWidth: 92 }}><span className="var-name">ball</span><span className="var-val" style={{ fontSize: 18, color: T.ink }}>10</span></span></div></> : <><span className="sk-tagbig"><span className="sk-wordbadge mono">===</span><span style={{ fontWeight: 600, color: T.ink }}>{tr2({ uz: "taqqoslash", ru: "сравнение" })}</span></span><p className="body" style={{ color: T.ink, margin: "10px 0 4px" }}>{tr2({ uz: <>Ikki qiymatni solishtiradi va <b>true</b> yoki <b>false</b> qaytaradi.</>, ru: <>Сравнивает два значения и возвращает <b>true</b> или <b>false</b>.</> })}</p><div className="pop-in" style={{ margin: "10px 0", display: "flex", alignItems: "center", justifyContent: "center", gap: 11, flexWrap: "wrap" }}><span className="mono" style={{ color: T.ink2 }}>10 === 10</span><span className="flow-x" style={{ color: T.ink3, fontSize: 18 }}>→</span><BoolPill value={true} pulse /></div><p className="body" style={{ margin: 0, color: T.ink }}><b style={{ color: T.accent }}>{tr2({ uz: "Shartlarda (if) doim shu — ===.", ru: "В условиях (if) всегда он — ===." })}</b></p></>}
+                {active === "assign" ? <><span className="sk-tagbig"><span className="sk-wordbadge mono">=</span><span style={{ fontWeight: 600, color: T.ink }}>{tr2({ uz: "qiymat berish", ru: "присваивание" })}</span></span><p className="body" style={{ color: T.ink, margin: "10px 0 0" }}>{tr2({ uz: "Quti yaratganda ishlatamiz (o'zgaruvchilar darsidan). Hech narsa tekshirmaydi — shunchaki qiymat soladi.", ru: "Используем при создании коробки (с урока о переменных). Ничего не проверяет — просто кладёт значение." })}</p><div className="pop-in" style={{ marginTop: 12, display: "flex", alignItems: "center", justifyContent: "center", gap: 10 }}><span className="mono" style={{ fontWeight: 700, color: T.ink }}>10</span><span className="flow-x" style={{ color: T.accent, fontWeight: 700, fontSize: 18 }}>→</span><span className="var-box" style={{ minWidth: 92 }}><span className="var-name">score</span><span className="var-val" style={{ fontSize: 18, color: T.ink }}>10</span></span></div></> : <><span className="sk-tagbig"><span className="sk-wordbadge mono">==</span><span style={{ fontWeight: 600, color: T.ink }}>{tr2({ uz: "tekshirish", ru: "проверка" })}</span></span><p className="body" style={{ color: T.ink, margin: "10px 0 4px" }}>{tr2({ uz: <>Ikki qiymatni solishtiradi va <b>true</b> yoki <b>false</b> qaytaradi.</>, ru: <>Сравнивает два значения и возвращает <b>true</b> или <b>false</b>.</> })}</p><div className="pop-in" style={{ margin: "10px 0", display: "flex", alignItems: "center", justifyContent: "center", gap: 11, flexWrap: "wrap" }}><span className="mono" style={{ color: T.ink2 }}>10 == 10</span><span className="flow-x" style={{ color: T.ink3, fontSize: 18 }}>→</span><BoolPill value={true} pulse /></div><p className="body" style={{ margin: 0, color: T.ink }}><b style={{ color: T.accent }}>{tr2({ uz: "Shartda (if) tekshirish — ==.", ru: "В условии (if) проверка — ==." })}</b></p></>}
               </div> : !isNarrow ? <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: "center", fontStyle: "italic", margin: 0 }}>{tr2({ uz: "Bir kartani bosing", ru: "Нажмите на карточку" })}</p></div> : null}
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr2({ uz: <><b>Qoida:</b> qiymat berish — <span className="mono">=</span>, tekshirish — <span className="mono">===</span>. Aralashtirmang!</>, ru: <><b>Правило:</b> положить значение — <span className="mono">=</span>, проверить — <span className="mono">===</span>. Не путайте!</> })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr2({ uz: <><b>Qoida:</b> qiymat berish — <span className="mono">=</span>, tekshirish — <span className="mono">==</span>. AI yozgan kodda <span className="mono">===</span> ni ham ko'rasiz — bu ham tekshirish belgisi.</>, ru: <><b>Правило:</b> дать значение — <span className="mono">=</span>, проверить — <span className="mono">==</span>. В коде от AI встретите и <span className="mono">===</span> — это тоже знак проверки.</> })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -2146,7 +2130,7 @@ var Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     </Stage>;
 };
 var Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const audio = useAudio([{ id: "s7", text: `Ba'zan ikki emas, bir nechta yo'l bo'ladi. Masalan imtihon bahosi: ball 90 dan oshsa — besh, 70 dan — to'rt, 60 dan — uch, aks holda — ikki. Buning uchun else if ishlatamiz — ya'ni "aks holda, agar...". Ballni o'zgartirib, qaysi baho chiqishini ko'ring.`, trigger: "on_mount", waits_for: null }]);
+  const audio = useAudio([{ id: "s7", text: `Ba'zan ikki emas, bir nechta yo'l bo'ladi. Masalan imtihon bahosi: ball 90 va undan yuqori — besh, 70 va undan yuqori — to'rt, 60 va undan yuqori — uch, aks holda — ikki. Buning uchun else if ishlatamiz — ya'ni "aks holda, agar...". Ballni o'zgartirib, qaysi baho chiqishini ko'ring.`, trigger: "on_mount", waits_for: null }]);
   const BALLS = [95, 80, 65, 40];
   const [ball, setBall] = useState3(95);
   const [seen, setSeen] = useState3(/* @__PURE__ */ new Set([95]));
@@ -2162,10 +2146,10 @@ var Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     });
   };
   const LINES = [
-    { c: <><Kw>if</Kw> (<Vr>ball</Vr> <Op>{">="}</Op> <Nm>90</Nm>) {"{"} <Vr>baho</Vr> <Op>=</Op> <Nm>5</Nm> {"}"}</> },
-    { c: <><Kw>else if</Kw> (<Vr>ball</Vr> <Op>{">="}</Op> <Nm>70</Nm>) {"{"} <Vr>baho</Vr> <Op>=</Op> <Nm>4</Nm> {"}"}</> },
-    { c: <><Kw>else if</Kw> (<Vr>ball</Vr> <Op>{">="}</Op> <Nm>60</Nm>) {"{"} <Vr>baho</Vr> <Op>=</Op> <Nm>3</Nm> {"}"}</> },
-    { c: <><Kw>else</Kw> {"{"} <Vr>baho</Vr> <Op>=</Op> <Nm>2</Nm> {"}"}</> }
+    { c: <><Kw>if</Kw> (<Vr>score</Vr> <Op>{">="}</Op> <Nm>90</Nm>) {"{"} <Vr>grade</Vr> <Op>=</Op> <Nm>5</Nm> {"}"}</> },
+    { c: <><Kw>else if</Kw> (<Vr>score</Vr> <Op>{">="}</Op> <Nm>70</Nm>) {"{"} <Vr>grade</Vr> <Op>=</Op> <Nm>4</Nm> {"}"}</> },
+    { c: <><Kw>else if</Kw> (<Vr>score</Vr> <Op>{">="}</Op> <Nm>60</Nm>) {"{"} <Vr>grade</Vr> <Op>=</Op> <Nm>3</Nm> {"}"}</> },
+    { c: <><Kw>else</Kw> {"{"} <Vr>grade</Vr> <Op>=</Op> <Nm>2</Nm> {"}"}</> }
   ];
   useEffect4(() => {
     if (done && storedAnswer === void 0) onAnswer(screen, { correct: true, picked: true });
@@ -2177,7 +2161,7 @@ var Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <Zoomable>
         <div className="split">
           <Col>
-            <p className="flow-label">ball = {ball}</p>
+            <p className="flow-label">score = {ball}</p>
             <div className="fade-up delay-1" style={{ display: "flex", gap: 7, flexWrap: "wrap" }}>
               {BALLS.map((b) => <button key={b} className={`chip ${ball === b ? "chip-on" : ""}`} onClick={() => setB(b)}>{b}</button>)}
             </div>
@@ -2199,10 +2183,10 @@ var Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     </Stage>;
 };
 var Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const audio = useAudio([{ id: "s8", text: `Bir sirni payqadingizmi: taqqoslashning natijasi — bu o'sha boolean, ya'ni true yoki false. Birinchi darsdagi true/false esingizdami? Demak shartni qutiga ham solib qo'yish mumkin. Yoshni o'zgartirib, katta degan qutiga nima tushishini ko'ring.`, trigger: "on_mount", waits_for: null }]);
-  const [age, setAge] = useState3(15);
+  const audio = useAudio([{ id: "s8", text: `Taqqoslashning natijasi — true yoki false. Demak shart natijasini qutiga solib qo'yish mumkin. Yoshni o'zgartirib, canGetId qutisiga nima tushishini ko'ring.`, trigger: "on_mount", waits_for: null }]);
+  const [age, setAge] = useState3(14);
   const [touched, setTouched] = useState3(false);
-  const val = age >= 18;
+  const val = age >= 16;
   const done = touched;
   const setA = (a) => {
     setAge(a);
@@ -2214,23 +2198,23 @@ var Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return <Stage eyebrow={tr2({ uz: "Shart natijasi", ru: "Результат условия" })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: "Davom etish", ru: "Продолжить" } : { uz: "Yoshni o'zgartiring", ru: "Измените возраст" }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: "clamp(10px,1.6vw,16px)" }}>
         <div className="head"><h2 className="title h-title fade-up">{tr2({ uz: <>Shart <span className="italic" style={{ color: T.accent }}>true/false</span> beradi — buni saqlasa bo'ladimi?</>, ru: <>Условие даёт <span className="italic" style={{ color: T.accent }}>true/false</span> — можно ли это сохранить?</> })}</h2></div>
-        <Mentor>{tr2({ uz: <>E'tibor bering: taqqoslash (<span className="mono">yosh {">="} 18</span>) natijasi — bu o'sha <b style={{ color: T.ink }}>true yoki false</b> (1-darsdagi boolean!). Demak uni <b style={{ color: T.ink }}>o'zgaruvchiga saqlash</b> mumkin. Yoshni o'zgartirib, <span className="mono">katta</span> o'zgaruvchisiga nima yozilishini ko'ring.</>, ru: <>Обратите внимание: результат сравнения (<span className="mono">yosh {">="} 18</span>) — это те самые <b style={{ color: T.ink }}>true или false</b> (boolean из 1-го урока!). Значит его можно <b style={{ color: T.ink }}>сохранить в переменную</b>. Меняйте возраст и смотрите, что запишется в переменную <span className="mono">katta</span>.</> })}</Mentor>
+        <Mentor>{tr2({ uz: <>Taqqoslash natijasi (<span className="mono">age {">="} 16</span>) — o'sha <b style={{ color: T.ink }}>true yoki false</b>. Demak uni <b style={{ color: T.ink }}>o'zgaruvchiga saqlash</b> mumkin: yoshni o'zgartirib, <span className="mono">canGetId</span> ga nima yozilishini ko'ring.</>, ru: <>Результат сравнения (<span className="mono">age {">="} 16</span>) — те самые <b style={{ color: T.ink }}>true или false</b>. Значит его можно <b style={{ color: T.ink }}>сохранить в переменную</b>: меняйте возраст и смотрите, что запишется в <span className="mono">canGetId</span>.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
             <div className="fade-up delay-1" style={{ display: "flex", gap: 8 }}>
-              {[15, 20].map((a) => <button key={a} className={`chip ${age === a ? "chip-on" : ""}`} onClick={() => setA(a)}>{a} {tr2({ uz: "yosh", ru: "лет" })}</button>)}
+              {[14, 17].map((a) => <button key={a} className={`chip ${age === a ? "chip-on" : ""}`} onClick={() => setA(a)}>{a} {tr2({ uz: "yosh", ru: "лет" })}</button>)}
             </div>
-            <pre className="code-box fade-up delay-2" style={{ fontSize: "clamp(13px,2vw,15px)" }}><Kw>let</Kw> <Vr>yosh</Vr> <Op>=</Op> <Nm>{age}</Nm>{"\n"}<Kw>let</Kw> <Vr>katta</Vr> <Op>=</Op> <Vr>yosh</Vr> <Op>{">="}</Op> <Nm>18</Nm>{"\n"}<Cm>{`// katta = ${val}`}</Cm></pre>
+            <pre className="code-box fade-up delay-2" style={{ fontSize: "clamp(13px,2vw,15px)" }}><Kw>let</Kw> <Vr>age</Vr> <Op>=</Op> <Nm>{age}</Nm>{"\n"}<Kw>let</Kw> <Vr>canGetId</Vr> <Op>=</Op> <Vr>age</Vr> <Op>{">="}</Op> <Nm>16</Nm>{"\n"}<Cm>{`// canGetId = ${val}`}</Cm></pre>
           </Col>
           <Col>
             <p className="flow-label">{tr2({ uz: "Taqqoslash natijasi o'zgaruvchiga tushadi", ru: "Результат сравнения попадает в переменную" })}</p>
             <div className="demo-swap" key={age} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 8, padding: "6px 0" }}>
-              <span className="mono pop-in" style={{ fontSize: 15, color: T.ink2 }}>{age} {">="} 18 → <b style={{ color: val ? T.success : T.accent }}>{String(val)}</b></span>
+              <span className="mono pop-in" style={{ fontSize: 15, color: T.ink2 }}>{age} {">="} 16 → <b style={{ color: val ? T.success : T.accent }}>{String(val)}</b></span>
               <span className="flow-x" style={{ color: T.ink3, fontSize: 22 }}>↓</span>
-              <div className={`var-box ${val ? "ring-green" : "ring-red"}`} style={{ minWidth: 150 }}><div className="var-name">{tr2({ uz: "o'zgaruvchi: katta", ru: "переменная: katta" })}</div><div className="var-val pop-num" style={{ color: val ? T.success : T.accent }}>{String(val)}</div></div>
+              <div className={`var-box ${val ? "ring-green" : "ring-red"}`} style={{ minWidth: 150 }}><div className="var-name">{tr2({ uz: "o'zgaruvchi: canGetId", ru: "переменная: canGetId" })}</div><div className="var-val pop-num" style={{ color: val ? T.success : T.accent }}>{String(val)}</div></div>
             </div>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr2({ uz: <>✓ Ko'rdingizmi — <span className="mono">yosh {">="} 18</span> shunchaki <b>true/false</b>. Shart va boolean — bir narsa!</>, ru: <>✓ Видите — <span className="mono">yosh {">="} 18</span> это просто <b>true/false</b>. Условие и boolean — одно и то же!</> })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr2({ uz: <>✓ Ko'rdingizmi — <span className="mono">age {">="} 16</span> shunchaki <b>true/false</b> beradi, uni o'zgaruvchida saqlash mumkin.</>, ru: <>✓ Видите — <span className="mono">age {">="} 16</span> просто даёт <b>true/false</b>, и это можно сохранить в переменной.</> })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -2239,72 +2223,21 @@ var Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 };
 var Screen9 = (props) => <QuestionScreen
   {...props}
-  idx={9}
   scope="module-mikro"
   eyebrow={tr2({ uz: "Mashq · 2-savol", ru: "Практика · вопрос 2" })}
   audioText="Ikki qiymat teng ekanini tekshirish uchun shartda qaysi belgi ishlatiladi?"
   questionText="Ikki qiymat tengligini tekshirish uchun shartda qaysi belgi ishlatiladi?"
   question={<><p className="eyebrow" style={{ color: T.accent }}>{tr2({ uz: "To'g'ri javobni tanlang", ru: "Выберите верный ответ" })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr2({ uz: <>Ikki qiymat <span className="italic" style={{ color: T.accent }}>tengligini</span> tekshirish uchun qaysi belgi?</>, ru: <>Какой знак проверяет <span className="italic" style={{ color: T.accent }}>равенство</span> двух значений?</> })}</h2></>}
-  options={["`===`", "`=`", "`+`", "`=>`"]}
+  options={["`==`", "`=`", "`+`", "`<`"]}
   correctIdx={0}
-  explainCorrect={{ uz: "To'g'ri! `===` ikki qiymatni taqqoslab, `true` yoki `false` qaytaradi. Shartlarda doim shu ishlatiladi.", ru: "Верно! `===` сравнивает два значения и возвращает `true` или `false`. В условиях всегда используется он." }}
+  explainCorrect={{ uz: "To'g'ri! `==` ikki qiymatni taqqoslab, `true` yoki `false` qaytaradi.", ru: "Верно! `==` сравнивает два значения и возвращает `true` или `false`." }}
   explainWrong={{
-    1: { uz: "`=` qiymatni qutiga soladi (o'zlashtirish), tekshirmaydi. Tenglikni `===` tekshiradi.", ru: "`=` кладёт значение в коробку (присваивание), а не проверяет. Равенство проверяет `===`." },
-    2: { uz: "`+` qo'shish amali, taqqoslash emas. Tenglik — `===`.", ru: "`+` — сложение, а не сравнение. Равенство — `===`." },
-    3: { uz: "`=>` bunday taqqoslash belgisi emas. Tenglik — `===`.", ru: "`=>` — не знак сравнения. Равенство — `===`." },
-    default: { uz: "Tenglikni `===` tekshiradi.", ru: "Равенство проверяет `===`." }
+    1: { uz: "`=` qiymatni qutiga soladi, tekshirmaydi. Tenglikni `==` tekshiradi.", ru: "`=` кладёт значение в коробку, а не проверяет. Равенство проверяет `==`." },
+    2: { uz: "`+` qo'shish amali, taqqoslash emas. Tenglik — `==`.", ru: "`+` — сложение, а не сравнение. Равенство — `==`." },
+    3: { uz: "`<` kichikligini tekshiradi, tenglikni emas. Tenglik — `==`.", ru: "`<` проверяет «меньше», а не равенство. Равенство — `==`." },
+    default: { uz: "Tenglikni `==` tekshiradi.", ru: "Равенство проверяет `==`." }
   }}
 />;
-var Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const audio = useAudio([{ id: "s10", text: `Ba'zan bitta shart yetmaydi. Attraksionga kirish uchun: avval yosh yetarli bo'lishi, keyin chiptasi ham bo'lishi kerak. Demak if ichiga yana bitta if yozamiz — bunga ichma-ich shart deyiladi. Yosh va chiptani o'zgartirib, qaysi yo'l ochilishini ko'ring.`, trigger: "on_mount", waits_for: null }]);
-  const [age, setAge] = useState3(10);
-  const [ticket, setTicket] = useState3(false);
-  const [touch, setTouch] = useState3(0);
-  const ageOk = age >= 12;
-  const done = touch >= 2;
-  const bump = (fn) => {
-    fn();
-    setTouch((t) => t + 1);
-  };
-  const result = !ageOk ? { ic: "⛔", t: { uz: "Ruxsat yo'q — 12 yoshdan kichik", ru: "Нет доступа — младше 12 лет" }, c: T.accent } : ticket ? { ic: "🎢", t: { uz: "Marhamat, chiqing!", ru: "Пожалуйста, проходите!" }, c: T.success } : { ic: "🎫", t: { uz: "Avval chipta oling", ru: "Сначала купите билет" }, c: T.blue };
-  useEffect4(() => {
-    if (done && storedAnswer === void 0) onAnswer(screen, { correct: true, picked: true });
-  }, [done]);
-  return <Stage eyebrow={tr2({ uz: "Ichma-ich shart", ru: "Вложенное условие" })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: "Davom etish", ru: "Продолжить" } : { uz: "Sozlamalarni sinang", ru: "Попробуйте настройки" }} onClick={onNext} /></>}>
-      <div className="screen" style={{ gap: "clamp(10px,1.6vw,16px)" }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr2({ uz: <>Bir shart ichida <span className="italic" style={{ color: T.accent }}>yana bir shart</span> bo'lsa-chi?</>, ru: <>А если внутри условия — <span className="italic" style={{ color: T.accent }}>ещё одно условие</span>?</> })}</h2></div>
-        <Mentor>{tr2({ uz: <>Attraksionga kirish uchun: avval <b style={{ color: T.ink }}>yosh</b> yetarli, keyin <b style={{ color: T.ink }}>chipta</b> ham kerak. Demak <span className="mono">if</span> ichiga yana <span className="mono">if</span> yozamiz — <b style={{ color: T.ink }}>ichma-ich shart</b>. Sozlamalarni o'zgartiring.</>, ru: <>Чтобы попасть на аттракцион: сначала подходит <b style={{ color: T.ink }}>возраст</b>, потом нужен ещё и <b style={{ color: T.ink }}>билет</b>. Значит внутрь <span className="mono">if</span> пишем ещё один <span className="mono">if</span> — <b style={{ color: T.ink }}>вложенное условие</b>. Меняйте настройки.</> })}</Mentor>
-        <Zoomable>
-        <div className="split">
-          <Col>
-            <div className="fade-up delay-1" style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-              <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap" }}><span className="flow-label" style={{ minWidth: 54 }}>{tr2({ uz: "Yosh", ru: "Возраст" })}</span>{[10, 15].map((a) => <button key={a} className={`chip ${age === a ? "chip-on" : ""}`} onClick={() => bump(() => setAge(a))}>{a}</button>)}</div>
-              <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap" }}><span className="flow-label" style={{ minWidth: 54 }}>{tr2({ uz: "Chipta", ru: "Билет" })}</span><button className={`chip ${ticket ? "chip-on" : ""}`} onClick={() => bump(() => setTicket((t) => !t))}>{ticket ? tr2({ uz: "🎫 Bor", ru: "🎫 Есть" }) : tr2({ uz: "✖ Yo'q", ru: "✖ Нет" })}</button></div>
-            </div>
-            <pre className="code-box fade-up delay-2" style={{ fontSize: "clamp(11px,1.7vw,13px)" }}>
-              <span style={{ display: "block", background: ageOk ? "transparent" : "rgba(255,79,40,0.18)", borderRadius: 4, transition: "background 0.35s" }}><Kw>if</Kw> (<Vr>yosh</Vr> <Op>{">="}</Op> <Nm>12</Nm>) {"{"}</span>
-              <span style={{ display: "block", opacity: ageOk ? 1 : 0.4, transition: "opacity 0.35s" }}>{"  "}<Kw>if</Kw> (<Vr>chiptaBor</Vr>) {"{"} <Cm>{tr2({ uz: "kir", ru: "проходи" })}</Cm> {"}"}</span>
-              <span style={{ display: "block", opacity: ageOk ? 1 : 0.4, transition: "opacity 0.35s" }}>{"  "}<Kw>else</Kw> {"{"} <Cm>{tr2({ uz: "chipta ol", ru: "купи билет" })}</Cm> {"}"}</span>
-              <span style={{ display: "block" }}>{"}"} <Kw>else</Kw> {"{"} <Cm>{tr2({ uz: "ruxsat yo'q", ru: "нет доступа" })}</Cm> {"}"}</span>
-            </pre>
-          </Col>
-          <Col>
-            <p className="flow-label">{tr2({ uz: "Ikkala shart ham kerak", ru: "Нужны оба условия" })}</p>
-            <div className="fade-up" style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
-              <span className="mono" style={{ fontWeight: 700, fontSize: 13, padding: "6px 12px", borderRadius: 99, background: ageOk ? T.successSoft : T.accentSoft, color: ageOk ? T.success : T.accent, transition: "all 0.3s" }}>{ageOk ? "✓" : "✗"} {tr2({ uz: "yosh", ru: "возраст" })} ≥ 12</span>
-              <span className="mono" style={{ fontWeight: 700, fontSize: 13, padding: "6px 12px", borderRadius: 99, background: ticket ? T.successSoft : T.accentSoft, color: ticket ? T.success : T.accent, transition: "all 0.3s" }}>{ticket ? "✓" : "✗"} {tr2({ uz: "chipta", ru: "билет" })}</span>
-            </div>
-            <div className="demo-swap" key={`${age}-${ticket}`} style={{ background: T.paper, borderRadius: 14, padding: "20px", textAlign: "center", boxShadow: `0 8px 20px -6px rgba(${T.shadowBase},0.14)` }}>
-              <div className="pop-num" style={{ fontSize: 38 }}>{result.ic}</div>
-              <p style={{ fontFamily: "Georgia, serif", fontWeight: 700, margin: "8px 0 0", color: result.c, fontSize: "clamp(15px,2.2vw,18px)" }}>{tr2(result.t)}</p>
-            </div>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr2({ uz: <>✓ <b>Ichma-ich shart</b>: tashqi if rost bo'lsagina, ichki if tekshiriladi. Bosqichma-bosqich qaror.</>, ru: <>✓ <b>Вложенное условие</b>: внутренний if проверяется, только если внешний истинен. Решение шаг за шагом.</> })}</p></div>}
-          </Col>
-        </div>
-        </Zoomable>
-      </div>
-    </Stage>;
-};
 var Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const audio = useAudio([{ id: "s11", text: `Keling, hamma narsani birga ishlatamiz. Kino chiptasi narxi yoshga bog'liq: 7 yoshgacha bolalar tekin, 18 gacha o'quvchilar yarim narx, kattalar to'liq. Yoshni o'zgartirib, narx qanday hisoblanishini ko'ring.`, trigger: "on_mount", waits_for: null }]);
   const AGES = [5, 14, 30];
@@ -2322,9 +2255,9 @@ var Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     });
   };
   const LINES = [
-    <><Kw>if</Kw> (<Vr>yosh</Vr> <Op>{"<"}</Op> <Nm>7</Nm>) {"{"} <Vr>narx</Vr> <Op>=</Op> <Nm>0</Nm> {"}"}</>,
-    <><Kw>else if</Kw> (<Vr>yosh</Vr> <Op>{"<"}</Op> <Nm>18</Nm>) {"{"} <Vr>narx</Vr> <Op>=</Op> <Nm>25000</Nm> {"}"}</>,
-    <><Kw>else</Kw> {"{"} <Vr>narx</Vr> <Op>=</Op> <Nm>50000</Nm> {"}"}</>
+    <><Kw>if</Kw> (<Vr>age</Vr> <Op>{"<"}</Op> <Nm>7</Nm>) {"{"} <Vr>price</Vr> <Op>=</Op> <Nm>0</Nm> {"}"}</>,
+    <><Kw>else if</Kw> (<Vr>age</Vr> <Op>{"<"}</Op> <Nm>18</Nm>) {"{"} <Vr>price</Vr> <Op>=</Op> <Nm>25000</Nm> {"}"}</>,
+    <><Kw>else</Kw> {"{"} <Vr>price</Vr> <Op>=</Op> <Nm>50000</Nm> {"}"}</>
   ];
   useEffect4(() => {
     if (done && storedAnswer === void 0) onAnswer(screen, { correct: true, picked: true });
@@ -2336,7 +2269,7 @@ var Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <Zoomable>
         <div className="split">
           <Col>
-            <p className="flow-label">yosh = {age}</p>
+            <p className="flow-label">age = {age}</p>
             <div className="fade-up delay-1" style={{ display: "flex", gap: 8 }}>
               {AGES.map((a) => <button key={a} className={`chip ${age === a ? "chip-on" : ""}`} onClick={() => setA(a)}>{a} {tr2({ uz: "yosh", ru: "лет" })}</button>)}
             </div>
@@ -2357,63 +2290,45 @@ var Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       </div>
     </Stage>;
 };
-var Screen12 = (props) => <QuestionScreen
-  {...props}
-  idx={12}
-  scope="module-mikro"
-  eyebrow={tr2({ uz: "Mashq · 3-savol", ru: "Практика · вопрос 3" })}
-  audioText="if blokining ichiga yana bitta if yozilsa, bu nima deyiladi?"
-  questionText="if ichiga yana bitta if yozilsa, bu nima deyiladi?"
-  question={<><p className="eyebrow" style={{ color: T.accent }}>{tr2({ uz: "To'g'ri javobni tanlang", ru: "Выберите верный ответ" })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr2({ uz: "if ichiga yana bitta if yozilsa, bu nima deyiladi?", ru: "Как называется if, записанный внутри другого if?" })}</h2></>}
-  options={[{ uz: "Takrorlash sikli", ru: "Цикл повторения" }, { uz: "Alohida o'zgaruvchi", ru: "Отдельная переменная" }, { uz: "Ichma-ich (nested) shart", ru: "Вложенное (nested) условие" }, { uz: "Ketma-ket taqqoslash", ru: "Последовательное сравнение" }]}
-  correctIdx={2}
-  explainCorrect={{ uz: "To'g'ri! Shart ichidagi shart — ichma-ich (nested) shart. Bosqichma-bosqich, chuqurroq tekshiruv.", ru: "Верно! Условие внутри условия — вложенное (nested) условие. Проверка шаг за шагом, глубже." }}
-  explainWrong={{
-    0: { uz: "Yo'q — sikl takrorlash uchun. Shart ichidagi shart — ichma-ich shart.", ru: "Нет — цикл нужен для повторения. Условие внутри условия — вложенное условие." },
-    1: { uz: "Yo'q — o'zgaruvchi qiymat saqlaydi. Bu — ichma-ich shart.", ru: "Нет — переменная хранит значение. А это — вложенное условие." },
-    3: { uz: "Yo'q — taqqoslash bu `>` `<` `===`. Shart ichidagi shart — ichma-ich (nested).", ru: "Нет — сравнение это `>` `<` `===`. Условие внутри условия — вложенное (nested)." },
-    default: { uz: "Shart ichidagi shart — ichma-ich (nested) shart.", ru: "Условие внутри условия — вложенное (nested) условие." }
-  }}
-/>;
 var Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const audio = useAudio([{ id: "s13", text: `Endi o'zingiz shart tuzasiz. Operator va sonni tanlang — turniket shartini quring. So'ng pastdagi yoshlar bilan sinab ko'ring: shartingiz to'g'ri ishlayaptimi?`, trigger: "on_mount", waits_for: null }]);
-  const OPS = [">", ">=", "==="];
-  const NUMS = [7, 12, 18];
+  const audio = useAudio([{ id: "s13", text: `Endi shartni o'zingiz tuzasiz. Operator va sonni tanlang, keyin har xil zaryadni sinab ko'ring: telefon qachon ogohlantiradi?`, trigger: "on_mount", waits_for: null }]);
+  const OPS = ["<", "<=", ">"];
+  const NUMS = [10, 20, 50];
   const [op, setOp] = useState3(null);
   const [num, setNum] = useState3(null);
   const [test, setTest] = useState3(null);
   const ready = op && num;
   const done = ready;
   const evalCond = (t) => {
-    if (op === ">") return t > num;
-    if (op === ">=") return t >= num;
-    return t === num;
+    if (op === "<") return t < num;
+    if (op === "<=") return t <= num;
+    return t > num;
   };
   useEffect4(() => {
     if (done && storedAnswer === void 0) onAnswer(screen, { correct: true, picked: true });
   }, [done]);
-  return <Stage eyebrow={tr2({ uz: "Amaliyot · shart tuz", ru: "Практика · соберите условие" })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: "Davom etish", ru: "Продолжить" } : { uz: "Shart tuzing", ru: "Соберите условие" }} onClick={onNext} /></>}>
+  return <Stage eyebrow={tr2({ uz: "Amaliyot · shart tuzing", ru: "Практика · соберите условие" })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: "Davom etish", ru: "Продолжить" } : { uz: "Shart tuzing", ru: "Соберите условие" }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: "clamp(10px,1.6vw,16px)" }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr2({ uz: <>Turniket shartini <span className="italic" style={{ color: T.accent }}>o'zingiz tuzing</span></>, ru: <>Соберите условие турникета <span className="italic" style={{ color: T.accent }}>сами</span></> })}</h2></div>
-        <Mentor>{tr2({ uz: <>Endi o'zingiz shart tuzasiz. <b style={{ color: T.ink }}>Operator</b> va <b style={{ color: T.ink }}>son</b>ni tanlang — turniket shartini quring. So'ng yoshlar bilan sinab ko'ring.</>, ru: <>Теперь вы сами соберёте условие. Выберите <b style={{ color: T.ink }}>оператор</b> и <b style={{ color: T.ink }}>число</b> — постройте условие турникета. Потом проверьте его на разных возрастах.</> })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr2({ uz: <>Zaryad shartini <span className="italic" style={{ color: T.accent }}>o'zingiz tuzing</span></>, ru: <>Соберите условие заряда <span className="italic" style={{ color: T.accent }}>сами</span></> })}</h2></div>
+        <Mentor>{tr2({ uz: <>Endi shartni o'zingiz tuzasiz: <b style={{ color: T.ink }}>operator</b> va <b style={{ color: T.ink }}>son</b>ni tanlang. Keyin zaryadni sinab ko'ring — telefon qachon ogohlantiradi?</>, ru: <>Теперь вы сами соберёте условие: выберите <b style={{ color: T.ink }}>оператор</b> и <b style={{ color: T.ink }}>число</b>. Потом проверьте заряд — когда телефон предупредит?</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
             <p className="flow-label">{tr2({ uz: "Operator", ru: "Оператор" })}</p>
             <div className="fade-up delay-1" style={{ display: "flex", gap: 7 }}>{OPS.map((o) => <button key={o} className={`chip ${op === o ? "chip-on" : ""}`} onClick={() => setOp(o)}><span className="mono">{o}</span></button>)}</div>
-            <p className="flow-label">{tr2({ uz: "Son (yosh chegarasi)", ru: "Число (порог возраста)" })}</p>
+            <p className="flow-label">{tr2({ uz: "Son (zaryad chegarasi, %)", ru: "Число (порог заряда, %)" })}</p>
             <div className="fade-up delay-1" style={{ display: "flex", gap: 7 }}>{NUMS.map((n) => <button key={n} className={`chip ${num === n ? "chip-on" : ""}`} onClick={() => setNum(n)}>{n}</button>)}</div>
-            <pre className="code-box fade-up delay-2" style={{ fontSize: "clamp(12.5px,1.9vw,15px)" }}><Kw>if</Kw> (<Vr>yosh</Vr> <span className="pop-num" key={op} style={{ color: op ? CODE.punct : CODE.comment, fontWeight: 700 }}>{op || "?"}</span> <span className="pop-num" key={num} style={{ color: num != null ? CODE.num : CODE.comment, fontWeight: 700 }}>{num ?? "?"}</span>) {"{"} <Cm>{tr2({ uz: "kir", ru: "проходи" })}</Cm> {"}"}</pre>
+            <pre className="code-box fade-up delay-2" style={{ fontSize: "clamp(12.5px,1.9vw,15px)" }}><Kw>if</Kw> (<Vr>battery</Vr> <span className="pop-num" key={op} style={{ color: op ? CODE.punct : CODE.comment, fontWeight: 700 }}>{op || "?"}</span> <span className="pop-num" key={num} style={{ color: num != null ? CODE.num : CODE.comment, fontWeight: 700 }}>{num ?? "?"}</span>) {"{"} <Cm>{tr2({ uz: "ogohlantirish", ru: "предупредить" })}</Cm> {"}"}</pre>
           </Col>
           <Col>
             <p className="flow-label">{tr2({ uz: "Shartingizni sinab ko'ring", ru: "Проверьте своё условие" })}</p>
             {ready ? <div className="fade-step" style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-                <div style={{ display: "flex", gap: 7 }}>{[8, 12, 16].map((t) => <button key={t} className={`chip ${test === t ? "chip-on" : ""}`} onClick={() => setTest(t)}>{t} {tr2({ uz: "yosh", ru: "лет" })}</button>)}</div>
+                <div style={{ display: "flex", gap: 7 }}>{[15, 20, 80].map((t) => <button key={t} className={`chip ${test === t ? "chip-on" : ""}`} onClick={() => setTest(t)}>🔋 {t}%</button>)}</div>
                 {test !== null && <div className={`demo-swap ${evalCond(test) ? "ring-green" : "ring-red"}`} key={test} style={{ background: evalCond(test) ? T.successSoft : T.accentSoft, borderRadius: 14, padding: "16px", textAlign: "center", boxShadow: `0 8px 20px -6px rgba(${T.shadowBase},0.14)` }}>
                     <p className="mono small" style={{ margin: "0 0 6px", color: T.ink2 }}>{test} {op} {num} → <b style={{ color: evalCond(test) ? T.success : T.accent }}>{String(evalCond(test))}</b></p>
-                    <p className="pop-num" style={{ fontWeight: 700, margin: 0, color: evalCond(test) ? T.success : T.accent }}>{evalCond(test) ? tr2({ uz: "✅ Turniket ochildi", ru: "✅ Турникет открылся" }) : tr2({ uz: "⛔ Yopiq", ru: "⛔ Закрыт" })}</p>
+                    <p className="pop-num" style={{ fontWeight: 700, margin: 0, color: evalCond(test) ? T.success : T.accent }}>{evalCond(test) ? tr2({ uz: "🔋 Ogohlantirish chiqdi", ru: "🔋 Появилось предупреждение" }) : tr2({ uz: "— Telefon jim turadi", ru: "— Телефон молчит" })}</p>
                   </div>}
-                <div className="frame-success"><p className="body" style={{ margin: 0, color: T.ink }}>{tr2({ uz: "✓ Shartingiz tayyor! Yoshlarni sinab, qanday ishlashini ko'ring.", ru: "✓ Ваше условие готово! Проверьте разные возрасты и посмотрите, как оно работает." })}</p></div>
+                <div className="frame-success"><p className="body" style={{ margin: 0, color: T.ink }}>{tr2({ uz: "✓ Shartingiz tayyor! Har xil zaryadni sinab ko'ring.", ru: "✓ Ваше условие готово! Проверьте разный заряд." })}</p></div>
               </div> : <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: "center", fontStyle: "italic", margin: 0 }}>{tr2({ uz: "Operator va sonni tanlang", ru: "Выберите оператор и число" })}</p></div>}
           </Col>
         </div>
@@ -2422,7 +2337,7 @@ var Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     </Stage>;
 };
 var Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const audio = useAudio([{ id: "s14", text: `AI shart yozdi, lekin xato qilibdi. Diqqat bilan qarang: shartda bitta teng belgisi ishlatilibdi — bu qiymatni o'zlashtiradi, tekshirmaydi. Tekshirish uchun uchta teng kerak. Xato qatorni toping va bosing.`, trigger: "on_mount", waits_for: { type: "error_found" } }]);
+  const audio = useAudio([{ id: "s14", text: `AI PIN-kod tekshiruvini yozdi, lekin xato qilibdi: noto'g'ri PIN-kod bilan ham telefon ochilyapti. Shartda bitta teng belgisi turibdi — u qiymat soladi, tekshirmaydi. Xato qatorni toping va bosing.`, trigger: "on_mount", waits_for: { type: "error_found" } }]);
   const [picked, setPicked] = useState3(storedAnswer ? "if" : null);
   const [fixed, setFixed] = useState3(!!storedAnswer);
   const found = picked === "if";
@@ -2433,7 +2348,7 @@ var Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     audio.triggerEvent("error_found");
     if (!audio.muted) setTimeout(() => {
       const e = getAudioEngine();
-      if (e && !audio.muted) e.pushOneOff(`Topdingiz! Shartda bitta teng — o'zlashtirish. Uni uchta tengga almashtiramiz.`);
+      if (e && !audio.muted) e.pushOneOff(`Topdingiz! Shartda bitta teng — u qiymat beradi. Uni ikki tengga almashtiramiz.`);
     }, 300);
   };
   const fix = () => {
@@ -2448,26 +2363,26 @@ var Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   }, [done]);
   return <Stage eyebrow="Debugging" screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: "Davom etish", ru: "Продолжить" } : found ? { uz: "Endi tuzating", ru: "Теперь почините" } : { uz: "Xatoni toping", ru: "Найдите ошибку" }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: "clamp(10px,1.6vw,16px)" }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr2({ uz: <>10 yoshli bola ham <span className="italic" style={{ color: T.accent }}>"katta"</span> chiqyapti — nega?</>, ru: <>Даже 10-летний выходит <span className="italic" style={{ color: T.accent }}>«взрослым»</span> — почему?</> })}</h2></div>
-        <Mentor>{tr2({ uz: <>AI shart yozdi, lekin xato qilibdi: yoshi <b style={{ color: T.ink }}>10</b> bo'lsa ham natija doim <b style={{ color: T.ink }}>"katta"</b>! Sababi — shartda <b style={{ color: T.ink }}>bitta teng belgisi</b> ishlatilibdi: u qiymatni o'zlashtiradi, <b style={{ color: T.ink }}>tekshirmaydi</b>. Tekshirish uchun <span className="mono">===</span> kerak. Xato qatorni toping.</>, ru: <>AI написал условие, но ошибся: даже при возрасте <b style={{ color: T.ink }}>10</b> результат всегда <b style={{ color: T.ink }}>«взрослый»</b>! Причина — в условии стоит <b style={{ color: T.ink }}>один знак равно</b>: он присваивает значение, а <b style={{ color: T.ink }}>не проверяет</b>. Для проверки нужен <span className="mono">===</span>. Найдите строку с ошибкой.</> })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr2({ uz: <>Noto'g'ri PIN-kod bilan ham telefon <span className="italic" style={{ color: T.accent }}>ochilyapti</span> — nega?</>, ru: <>Телефон <span className="italic" style={{ color: T.accent }}>открывается</span> даже с неверным PIN-кодом — почему?</> })}</h2></div>
+        <Mentor>{tr2({ uz: <>AI kod yozdi, lekin xato qilibdi: PIN-kod <b style={{ color: T.ink }}>1111</b> bo'lsa ham telefon ochilyapti! Shartda <b style={{ color: T.ink }}>bitta teng belgisi</b> turibdi — u qiymat soladi, <b style={{ color: T.ink }}>tekshirmaydi</b>. Xato qatorni toping.</>, ru: <>AI написал код, но ошибся: даже с PIN-кодом <b style={{ color: T.ink }}>1111</b> телефон открывается! В условии стоит <b style={{ color: T.ink }}>один знак равно</b> — он кладёт значение, а <b style={{ color: T.ink }}>не проверяет</b>. Найдите строку с ошибкой.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
             <div className="ai-card fade-up delay-1">
-              <div className="ai-row"><span className="ai-badge">AI</span><span className="ai-bubble">{tr2({ uz: "Yosh tekshiruvi:", ru: "Проверка возраста:" })}</span></div>
+              <div className="ai-row"><span className="ai-badge">AI</span><span className="ai-bubble">{tr2({ uz: "PIN-kod tekshiruvi:", ru: "Проверка PIN-кода:" })}</span></div>
               <div className="ai-code">
-                <div className="ai-line" style={{ cursor: "default" }}><Kw>let</Kw> <Vr>yosh</Vr> <Op>=</Op> <Nm>10</Nm></div>
-                <div className={`ai-line ${found ? fixed ? "ok" : "bad" : ""}`} onClick={pickIf}><Kw>if</Kw> (<Vr>yosh</Vr> <Op>{fixed ? "===" : "="}</Op> <Nm>18</Nm>) {"{"} <Cm>{tr2({ uz: "katta", ru: "взрослый" })}</Cm> {"}"} {!fixed && <Cm>// ?</Cm>}</div>
+                <div className="ai-line" style={{ cursor: "default" }}><Kw>let</Kw> <Vr>pin</Vr> <Op>=</Op> <Nm>1111</Nm></div>
+                <div className={`ai-line ${found ? fixed ? "ok" : "bad" : ""}`} onClick={pickIf}><Kw>if</Kw> (<Vr>pin</Vr> <Op>{fixed ? "==" : "="}</Op> <Nm>1234</Nm>) {"{"} <Cm>{tr2({ uz: "ochildi", ru: "открыт" })}</Cm> {"}"} {!fixed && <Cm>// ?</Cm>}</div>
               </div>
               {!found && <p className="ai-prompt">{tr2({ uz: "Qaysi qatorda xato? Bosing.", ru: "В какой строке ошибка? Нажмите." })}</p>}
-              {found && !fixed && <button className="btn fade-step" style={{ alignSelf: "flex-start" }} onClick={fix}>🔧 {tr2({ uz: "= ni === ga almashtirish", ru: "Заменить = на ===" })}</button>}
+              {found && !fixed && <button className="btn fade-step" style={{ alignSelf: "flex-start" }} onClick={fix}>🔧 {tr2({ uz: "= ni == ga almashtirish", ru: "Заменить = на ==" })}</button>}
               {fixed && <p className="ai-prompt" style={{ color: T.success, fontStyle: "normal", fontWeight: 600 }}>✓ {tr2({ uz: "Tuzatildi — endi shart to'g'ri tekshiradi!", ru: "Починено — теперь условие проверяет правильно!" })}</p>}
             </div>
           </Col>
           <Col>
-            {!found && (picked && picked !== "if" ? <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr2({ uz: <>Bu qator to'g'ri — bu yerda <span className="mono">=</span> o'rinli (quti yaratyapti). Xato esa <b>shart ichida</b>.</>, ru: <>Эта строка верна — здесь <span className="mono">=</span> уместен (создаёт коробку). А ошибка — <b>внутри условия</b>.</> })}</p></div> : <div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>{tr2({ uz: <>Eslang: shart ichida tenglik <b style={{ color: T.ink }}>=== </b> bilan tekshiriladi. Qaysi qatorda <span className="mono">=</span> noto'g'ri ishlatilgan?</>, ru: <>Вспомните: внутри условия равенство проверяется через <b style={{ color: T.ink }}>=== </b>. В какой строке <span className="mono">=</span> использован неверно?</> })}</p></div>)}
-            {found && !fixed && <div className="frame-warn fade-step"><p className="note-h" style={{ color: T.accent }}>✓ {tr2({ uz: "Topdingiz!", ru: "Нашли!" })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr2({ uz: <>Shartda <span className="mono">=</span> — qiymat soladi, tekshirmaydi. To'g'risi: <span className="mono">===</span>. Chap tugmani bosing →</>, ru: <>В условии <span className="mono">=</span> кладёт значение, а не проверяет. Правильно: <span className="mono">===</span>. Нажмите кнопку слева →</> })}</p></div>}
-            {fixed && <div className="takeaway fade-step"><div className="ta-bulb">🛠️</div><p className="ta-h">{tr2({ uz: "Topdingiz va tuzatdingiz — bu debugging!", ru: "Нашли и починили — это дебаггинг!" })}</p><p className="ta-sub">{tr2({ uz: "Shartda doim === (tekshirish), = emas", ru: "В условии всегда === (проверка), а не =" })}</p></div>}
+            {!found && <div className="hint"><p className="body zb-notch" style={{ margin: 0, color: T.ink2 }}>{tr2({ uz: <>Eslang: shartda tenglik <b style={{ color: T.ink }}>==</b> bilan tekshiriladi. Qaysi qatorda <span className="mono">=</span> noto'g'ri ishlatilgan?</>, ru: <>Вспомните: в условии равенство проверяется через <b style={{ color: T.ink }}>==</b>. В какой строке <span className="mono">=</span> использован неверно?</> })}</p></div>}
+            {found && !fixed && <div className="frame-warn fade-step"><p className="note-h" style={{ color: T.accent }}>✓ {tr2({ uz: "Topdingiz!", ru: "Нашли!" })}</p><p className="body zb-notch" style={{ margin: 0, color: T.ink }}>{tr2({ uz: <>Shartda <span className="mono">=</span> — qiymat soladi, tekshirmaydi. To'g'risi: <span className="mono">==</span>. Chap tugmani bosing →</>, ru: <>В условии <span className="mono">=</span> кладёт значение, а не проверяет. Правильно: <span className="mono">==</span>. Нажмите кнопку слева →</> })}</p></div>}
+            {fixed && <div className="takeaway fade-step"><div className="ta-bulb">🛠️</div><p className="ta-h">{tr2({ uz: "Topdingiz va tuzatdingiz — bu debugging!", ru: "Нашли и починили — это дебаггинг!" })}</p><p className="ta-sub">{tr2({ uz: "Shartda doim == (tekshirish), = emas", ru: "В условии всегда == (проверка), а не =" })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -2475,17 +2390,17 @@ var Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     </Stage>;
 };
 var Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const audio = useAudio([{ id: "s15", text: `Mana, oxirgi qadam — o'zingiz if yozasiz. Ball 90 dan katta bo'lsa tekshiradigan shart yozing. if, qavs ichida ball katta 90, va figurali qavs ochilsin. Masalan: if qavs ball katta 90 qavs figurali qavs.`, trigger: "on_mount", waits_for: { type: "typed_ok" } }]);
-  const [value, setValue] = useState3(storedAnswer?.picked || "");
+  const audio = useAudio([{ id: "s15", text: `Mana, oxirgi qadam — o'zingiz if yozasiz. Ball 90 dan katta bo'lsa tekshiradigan shart yozing. if, qavs ichida score katta 90, va figurali qavs ochilsin. Masalan: if qavs score katta 90 qavs figurali qavs.`, trigger: "on_mount", waits_for: { type: "typed_ok" } }]);
+  const [value, setValue] = useState3(typeof storedAnswer?.picked === "string" ? storedAnswer.picked : "");
   const [passed, setPassed] = useState3(!!storedAnswer?.correct);
   const _gate = useContext2(LiveGateCtx) || {};
   const isMentorLive = !!(_gate.live && _gate.live.mode === "mentor");
   const v = value.trim();
   const hasIf = /^if\b/.test(v);
   const hasParen = /^if\s*\(.+\)/.test(v);
-  const hasOp = /(>=|<=|===|!==|>|<)/.test(v);
+  const hasOp = /(>=|<=|===|!==|==|!=|>|<)/.test(v);
   const hasBrace = /\{/.test(v);
-  const valid = /^if\s*\([^)]*(>=|<=|===|!==|>|<)[^)]*\)\s*\{/.test(v);
+  const valid = /^if\s*\([^)]*(>=|<=|===|!==|==|!=|>|<)[^)]*\)\s*\{/.test(v);
   useEffect4(() => {
     if (valid && !passed) {
       setPassed(true);
@@ -2493,25 +2408,25 @@ var Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       audio.triggerEvent("typed_ok");
       if (!audio.muted) setTimeout(() => {
         const e = getAudioEngine();
-        if (e && !audio.muted) e.pushOneOff(`Zo'r! Birinchi shartingizni o'zingiz yozdingiz. Tabriklayman!`);
+        if (e && !audio.muted) e.pushOneOff(`Ajoyib! Birinchi shartingizni o'zingiz yozdingiz. Tabriklayman!`);
       }, 300);
     }
   }, [valid]);
   return <Stage eyebrow={tr2({ uz: "Yakuniy · amaliy", ru: "Финал · практика" })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={isMentorLive ? false : !passed} label={isMentorLive ? { uz: "Davom etish", ru: "Продолжить" } : passed ? { uz: "Davom etish", ru: "Продолжить" } : { uz: "Shartni yozing", ru: "Напишите условие" }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: "clamp(10px,1.6vw,16px)" }}>
         <div className="head"><h2 className="title h-title fade-up">{tr2({ uz: <>Oxirgi qadam: <span className="italic" style={{ color: T.accent }}>if</span> ni o'zingiz yozing.</>, ru: <>Последний шаг: напишите <span className="italic" style={{ color: T.accent }}>if</span> сами.</> })}</h2></div>
-        <Mentor>{tr2({ uz: <>Ball 90 dan katta bo'lsa tekshiradigan shart yozing: <span className="mono">if</span>, qavs ichida <span className="mono">ball {">"} 90</span>, va <span className="mono">{"{"}</span> oching. Masalan: <span className="mono">{"if (ball > 90) {"}</span></>, ru: <>Напишите условие, которое проверяет, что балл больше 90: <span className="mono">if</span>, в скобках <span className="mono">ball {">"} 90</span>, и откройте <span className="mono">{"{"}</span>. Например: <span className="mono">{"if (ball > 90) {"}</span></> })}</Mentor>
+        <Mentor>{tr2({ uz: <>Ball 90 dan katta ekanini tekshiradigan shart yozing: <span className="mono">if</span>, qavs ichida <span className="mono">score {">"} 90</span>, va <span className="mono">{"{"}</span> oching. Masalan: <span className="mono">{"if (score > 90) {"}</span></>, ru: <>Напишите условие, которое проверяет, что балл больше 90: <span className="mono">if</span>, в скобках <span className="mono">score {">"} 90</span>, и откройте <span className="mono">{"{"}</span>. Например: <span className="mono">{"if (score > 90) {"}</span></> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
-            <input className="fade-up delay-1" value={value} onChange={(e) => setValue(e.target.value)} placeholder={"if (ball > 90) {"} spellCheck={false} autoCapitalize="off" autoCorrect="off" style={{ width: "100%", fontFamily: "'JetBrains Mono', monospace", fontSize: 16, padding: "14px 16px", borderRadius: 12, border: "none", background: T.paper, color: T.ink, outline: "none", transition: "box-shadow 0.2s", boxShadow: valid ? `0 0 0 2px ${T.success}, 0 8px 20px -8px rgba(${T.shadowBase},0.2)` : `0 4px 14px -6px rgba(${T.shadowBase},0.16)` }} />
+            <input className="fade-up delay-1" value={value} onChange={(e) => setValue(e.target.value)} placeholder={"if (score > 90) {"} spellCheck={false} autoCapitalize="off" autoCorrect="off" style={{ width: "100%", fontFamily: "'JetBrains Mono', monospace", fontSize: 16, padding: "14px 16px", borderRadius: 12, border: "none", background: T.paper, color: T.ink, outline: "none", transition: "box-shadow 0.2s", boxShadow: valid ? `0 0 0 2px ${T.success}, 0 8px 20px -8px rgba(${T.shadowBase},0.2)` : `0 4px 14px -6px rgba(${T.shadowBase},0.16)` }} />
             <div className="fade-up delay-2" style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
               <span className="tagpill" style={{ opacity: hasIf ? 1 : 0.4 }}>{hasIf ? "✓" : "1"} if</span>
               <span className="tagpill" style={{ opacity: hasParen ? 1 : 0.4 }}>{hasParen ? "✓" : "2"} {tr2({ uz: "( shart )", ru: "( условие )" })}</span>
               <span className="tagpill" style={{ opacity: hasOp ? 1 : 0.4 }}>{hasOp ? "✓" : "3"} {tr2({ uz: "taqqoslash", ru: "сравнение" })}</span>
               <span className="tagpill" style={{ opacity: hasBrace ? 1 : 0.4 }}>{hasBrace ? "✓" : "4"} {"{"}</span>
             </div>
-            {passed ? <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr2({ uz: "✓ Zo'r! Bu to'g'ri shart — dasturingiz endi qaror qabul qila oladi!", ru: "✓ Отлично! Это верное условие — теперь ваша программа умеет принимать решения!" })}</p></div> : <p className="body" style={{ margin: 0, color: T.ink3, fontSize: 13 }}>{tr2({ uz: <>Taqqoslash operatori: {">"}, {"<"}, {">="}, yoki ===. Oxirida {"{"} ochishni unutmang.</>, ru: <>Оператор сравнения: {">"}, {"<"}, {">="} или ===. Не забудьте открыть {"{"} в конце.</> })}</p>}
+            {passed ? <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr2({ uz: "✓ Ajoyib! Bu to'g'ri shart — dasturingiz endi qaror qabul qila oladi!", ru: "✓ Отлично! Это верное условие — теперь ваша программа умеет принимать решения!" })}</p></div> : <p className="body" style={{ margin: 0, color: T.ink3, fontSize: 13 }}>{tr2({ uz: <>Taqqoslash operatori: {">"}, {"<"}, {">="} yoki ==. Oxirida {"{"} ochishni unutmang.</>, ru: <>Оператор сравнения: {">"}, {"<"}, {">="} или ==. Не забудьте открыть {"{"} в конце.</> })}</p>}
           </Col>
           <Col>
             <p className="flow-label">{tr2({ uz: "natija", ru: "результат" })}</p>
@@ -2526,7 +2441,7 @@ var Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 };
 var ScreenElseWrite = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const audio = useAudio([{ id: "selse", text: `if ni yozdingiz — endi unga else qo'shing. if blokini yopib, else va yangi blok oching: yopiq figurali qavs, else, ochiq figurali qavs.`, trigger: "on_mount", waits_for: { type: "typed_ok" } }]);
-  const [value, setValue] = useState3(storedAnswer?.picked || "");
+  const [value, setValue] = useState3(typeof storedAnswer?.picked === "string" ? storedAnswer.picked : "");
   const [passed, setPassed] = useState3(!!storedAnswer?.correct);
   const _gate = useContext2(LiveGateCtx) || {};
   const isMentorLive = !!(_gate.live && _gate.live.mode === "mentor");
@@ -2550,7 +2465,7 @@ var ScreenElseWrite = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <div className="split">
           <Col>
             <pre className="code-box fade-up" style={{ fontSize: "clamp(12.5px,1.9vw,14.5px)" }}>
-              <Kw>if</Kw> (<Vr>ball</Vr> <Op>{">"}</Op> <Nm>90</Nm>) {"{"}{"\n"}
+              <Kw>if</Kw> (<Vr>score</Vr> <Op>{">"}</Op> <Nm>90</Nm>) {"{"}{"\n"}
               {"  "}<Vr>console</Vr>.<Vr>log</Vr>(<St>{tr2({ uz: '"Ajoyib!"', ru: '"Отлично!"' })}</St>){"\n"}
               <span style={{ color: CODE.comment }}>{tr2({ uz: "▼ shu qatorni siz yozasiz ▼", ru: "▼ эту строку пишете вы ▼" })}</span>
             </pre>
@@ -2564,7 +2479,7 @@ var ScreenElseWrite = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <span className="tagpill" style={{ opacity: hasElse ? 1 : 0.4 }}>{hasElse ? "✓" : "2"} else</span>
               <span className="tagpill" style={{ opacity: hasOpen ? 1 : 0.4 }}>{hasOpen ? "✓" : "3"} {"{"} — {tr2({ uz: "yangi blok", ru: "новый блок" })}</span>
             </div>
-            {passed ? <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr2({ uz: "✓ Zo'r! Endi dasturingizda ikkala yo'l ham bor: rost bo'lsa — maqtov, yolg'on bo'lsa — dalda.", ru: "✓ Отлично! Теперь в вашей программе есть оба пути: истина — похвала, ложь — поддержка." })}</p></div> : <p className="body" style={{ margin: 0, color: T.ink3, fontSize: 13 }}>{tr2({ uz: <>Uch qism: {"}"} keyin else keyin {"{"} — hammasi bitta qatorda.</>, ru: <>Три части: {"}"} потом else потом {"{"} — всё в одной строке.</> })}</p>}
+            {passed ? <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr2({ uz: `✓ Ajoyib! Endi dasturingizda ikkala yo'l ham bor: rost bo'lsa — "Ajoyib!", yolg'on bo'lsa — "Yana urinib ko'ring".`, ru: "✓ Отлично! Теперь в вашей программе есть оба пути: истина — «Отлично!», ложь — «Попробуйте ещё раз»." })}</p></div> : <p className="body" style={{ margin: 0, color: T.ink3, fontSize: 13 }}>{tr2({ uz: <>Uch qism: {"}"} keyin else keyin {"{"} — hammasi bitta qatorda.</>, ru: <>Три части: {"}"} потом else потом {"{"} — всё в одной строке.</> })}</p>}
           </Col>
           <Col>
             <p className="flow-label">{tr2({ uz: "natija", ru: "результат" })}</p>
@@ -2580,13 +2495,13 @@ var ScreenElseWrite = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 var JS_FLASHCARDS = [
   { front: { uz: "Shart rost bo'lganda kodni ishga tushiradigan so'z qaysi?", ru: "Какое слово запускает код, когда условие истинно?" }, back: "if", note: { uz: "if (shart) { ... }", ru: "if (условие) { ... }" } },
   { front: { uz: "Shart yolg'on bo'lsa, qaysi so'z ishlaydi?", ru: "Какое слово срабатывает, если условие ложно?" }, back: "else", note: { uz: "«aks holda» degani — if dan keyin keladi", ru: "значит «иначе» — идёт после if" } },
-  { front: { uz: "Bir nechta yo'ldan birini tanlash uchun qaysi so'z ishlatiladi?", ru: "Каким словом выбирают один путь из нескольких?" }, back: "else if", note: { uz: "90+ → 5, 70+ → 4, qolgani → 3", ru: "90+ → 5, 70+ → 4, остальное → 3" } },
-  { front: { uz: "Ikki qiymat tengligini qaysi belgi tekshiradi?", ru: "Каким знаком проверяют равенство двух значений?" }, back: "===", note: { uz: "10 === 10 → true", ru: "10 === 10 → true" } },
-  { front: { uz: "Qutiga qiymat solish uchun qaysi belgi ishlatiladi?", ru: "Каким знаком кладут значение в коробку?" }, back: "=", note: { uz: "ball = 10 — bu tekshiruv emas", ru: "ball = 10 — это не проверка" } },
-  { front: { uz: "Teng EMASligini qaysi belgi tekshiradi?", ru: "Какой знак проверяет, что значения НЕ равны?" }, back: "!==", note: { uz: "10 !== 7 → true", ru: "10 !== 7 → true" } },
-  { front: { uz: "«Katta yoki teng»ni qaysi belgi bildiradi?", ru: "Какой знак означает «больше или равно»?" }, back: ">=", note: { uz: "yosh >= 12 — 12 yosh ham o'tadi", ru: "yosh >= 12 — 12 лет тоже проходит" } },
+  { front: { uz: "Bir nechta yo'ldan birini tanlash uchun qaysi so'z ishlatiladi?", ru: "Каким словом выбирают один путь из нескольких?" }, back: "else if", note: { uz: "90+ → 5, 70+ → 4, 60+ → 3, qolgani → 2", ru: "90+ → 5, 70+ → 4, 60+ → 3, остальное → 2" } },
+  { front: { uz: "Ikki qiymat tengligini qaysi belgi tekshiradi?", ru: "Каким знаком проверяют равенство двух значений?" }, back: "==", note: { uz: "10 == 10 → true", ru: "10 == 10 → true" } },
+  { front: { uz: "Qutiga qiymat berish uchun qaysi belgi ishlatiladi?", ru: "Каким знаком дают значение коробке?" }, back: "=", note: { uz: "score = 10 — bu tekshiruv emas", ru: "score = 10 — это не проверка" } },
+  { front: { uz: "Teng EMASligini qaysi belgi tekshiradi?", ru: "Какой знак проверяет, что значения НЕ равны?" }, back: "!=", note: { uz: "10 != 7 → true", ru: "10 != 7 → true" } },
+  { front: { uz: "«Katta yoki teng»ni qaysi belgi bildiradi?", ru: "Какой знак означает «больше или равно»?" }, back: ">=", note: { uz: "age >= 16 — 16 yosh ham o'tadi", ru: "age >= 16 — 16 лет тоже проходит" } },
   { front: { uz: "Shart tekshiruvi qanday natija qaytaradi?", ru: "Какой результат возвращает проверка условия?" }, back: "true / false", note: { uz: "boolean qiymat — rost yoki yolg'on", ru: "значение boolean — истина или ложь" } },
-  { front: { uz: "if ichida yana bitta if yozilsa, bu qanday ataladi?", ru: "Как называется if, записанный внутри другого if?" }, back: { uz: "Ichma-ich (nested) shart", ru: "Вложенное (nested) условие" }, note: { uz: "avval tashqi shart tekshiriladi", ru: "сначала проверяется внешнее условие" } },
+  { front: { uz: "«Kichik»ni qaysi belgi bildiradi?", ru: "Какой знак означает «меньше»?" }, back: "<", note: { uz: "battery < 20 — zaryad kam", ru: "battery < 20 — заряд низкий" } },
   { front: { uz: "Shart bajarilganda ishlaydigan kod nima ichiga yoziladi?", ru: "Во что записывают код, который работает при выполнении условия?" }, back: "{ }", note: { uz: "figurali qavs — kod bloki", ru: "фигурные скобки — блок кода" } },
   { front: { uz: "if/else da bir vaqtda nechta blok ishlaydi?", ru: "Сколько блоков работает в if/else одновременно?" }, back: { uz: "Faqat bittasi", ru: "Только один" }, note: { uz: "yo if, yo else — ikkalasi birga emas", ru: "либо if, либо else — не оба сразу" } },
   { front: { uz: "14 > 12 ifodasi qanday qiymat qaytaradi?", ru: "Какое значение вернёт выражение 14 > 12?" }, back: "true", note: { uz: "taqqoslash doim true yoki false beradi", ru: "сравнение всегда даёт true или false" } }
@@ -2699,9 +2614,9 @@ var Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish, onHo
     setArenaSolo(studentSolo);
     setArena(true);
   };
-  const audio = useAudio([{ id: "s16", text: "Tabriklaymiz — endi dasturingiz qaror qabul qila oladi! Eslab qoling: if shart rost bo'lsa ishlaydi, else aks holda, else if bir nechta yo'l uchun, taqqoslash operatorlari true yoki false beradi, va shartlarni ichma-ich yozish mumkin. Keyingi darsda kompyuterni ko'p marta takrorlatishni — sikllarni o'rganamiz.", trigger: "on_mount", waits_for: null }]);
-  const RECAP = [{ uz: "if — shart rost bo'lsa kod ishlaydi", ru: "if — код работает, если условие истинно" }, { uz: "Taqqoslash: > < >= <= === !==", ru: "Сравнение: > < >= <= === !==" }, { uz: "else — aks holda", ru: "else — иначе" }, { uz: "else if — bir nechta yo'l", ru: "else if — несколько путей" }, { uz: "Ichma-ich (nested) shartlar · === vs =", ru: "Вложенные (nested) условия · === vs =" }];
-  const HOMEWORK = [{ b: "yosh", t: { uz: '— if/else bilan "katta/kichik" ni aniqlang', ru: "— определите «взрослый/ребёнок» через if/else" } }, { b: "baho", t: { uz: "— else if bilan ball → 5/4/3/2", ru: "— балл → 5/4/3/2 через else if" } }, { b: "parol", t: { uz: "— === bilan to'g'ri/xato tekshiring", ru: "— проверьте верно/неверно через ===" } }];
+  const audio = useAudio([{ id: "s16", text: "Tabriklaymiz — endi dasturingiz qaror qabul qila oladi! Eslab qoling: if shart rost bo'lsa ishlaydi, else aks holda, else if bir nechta yo'l uchun, taqqoslash operatorlari true yoki false beradi, bitta teng qiymat beradi, ikki teng tekshiradi. Keyingi darsda kompyuterni ko'p marta takrorlatishni — sikllarni o'rganamiz.", trigger: "on_mount", waits_for: null }]);
+  const RECAP = [{ uz: "if — shart rost bo'lsa kod ishlaydi", ru: "if — код работает, если условие истинно" }, { uz: "Taqqoslash: > < >= <= == !=", ru: "Сравнение: > < >= <= == !=" }, { uz: "else — aks holda", ru: "else — иначе" }, { uz: "else if — bir nechta yo'l", ru: "else if — несколько путей" }, { uz: "= qiymat beradi, == tekshiradi", ru: "= даёт значение, == проверяет" }];
+  const HOMEWORK = [{ b: "age", t: { uz: `— if/else bilan "ID-karta olsa bo'ladimi?" ni aniqlang`, ru: "— через if/else определите «можно ли получить ID-карту?»" } }, { b: "score", t: { uz: "— else if bilan ball → 5/4/3/2", ru: "— балл → 5/4/3/2 через else if" } }, { b: "pin", t: { uz: "— == bilan PIN-kod to'g'ri/xato ekanini tekshiring", ru: "— проверьте через ==, верный PIN-код или нет" } }];
   const correct = SCORED_IDX.filter((i) => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
   const PASSED = (total ? correct / total : 0) >= 0.6;
@@ -2731,7 +2646,7 @@ var Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish, onHo
             <span className="hw-big-s">{tr2({ uz: "Amaliy topshiriqni bajarish →", ru: "Выполнить практическое задание →" })}</span>
           </button>
         </div>
-        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>📝 {tr2({ uz: "Uyga vazifa", ru: "Домашнее задание" })}</div><p className="body" style={{ margin: "0 0 10px", color: T.ink }}>{tr2({ uz: "Quyidagi shartlarni yozib ko'ring:", ru: "Попробуйте написать эти условия:" })}</p><ul>{HOMEWORK.map((h, i) => <li key={i}><b className="mono">{h.b}</b> <span className="t">{tr2(h.t)}</span></li>)}</ul><p className="hw-note">{tr2({ uz: "Keyingi darsda kompyuterni ko'p marta takrorlatamiz — sikllar! 🔁", ru: "На следующем уроке заставим компьютер повторять много раз — циклы! 🔁" })}</p></div>}
+        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>📝 {tr2({ uz: "Uyga vazifa", ru: "Домашнее задание" })}</div><p className="body" style={{ margin: "0 0 10px", color: T.ink }}>{tr2({ uz: "Mana bu shartlarni yozib ko'ring:", ru: "Попробуйте написать эти условия:" })}</p><ul>{HOMEWORK.map((h, i) => <li key={i}><b className="mono">{h.b}</b> <span className="t">{tr2(h.t)}</span></li>)}</ul><p className="hw-note">{tr2({ uz: "Keyingi darsda kompyuterni ko'p marta takrorlatamiz — sikllar! 🔁", ru: "На следующем уроке заставим компьютер повторять много раз — циклы! 🔁" })}</p></div>}
         {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>🏅 {tr2({ uz: "Nishonlaringiz", ru: "Ваши значки" })} — {achievements ? achievements.size : 0}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">
@@ -2748,7 +2663,7 @@ var Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish, onHo
       </div>
     </Stage>;
 };
-var Q_LABELS = { 4: { uz: "1 — if qachon ishlaydi", ru: "1 — когда работает if" }, 6: { uz: "2 — else (false)", ru: "2 — else (false)" }, 10: { uz: "3 — === tenglik", ru: "3 — === равенство" }, 13: { uz: "4 — Nested shart", ru: "4 — Nested условие" }, 16: { uz: "5 — if yoz", ru: "5 — напишите if" } };
+var Q_LABELS = { 4: { uz: "1 — if qachon ishlaydi", ru: "1 — когда работает if" }, 6: { uz: "2 — else (false)", ru: "2 — else (false)" }, 12: { uz: "3 — == tenglik", ru: "3 — == равенство" }, 14: { uz: "4 — if yozing", ru: "4 — напишите if" } };
 var Confetti = () => {
   const COLORS = [T.accent, T.success, T.blue, "#FFD380", "#FF7755", "#7DD181"];
   return <div className="confetti" aria-hidden="true">
@@ -2768,8 +2683,8 @@ var Confetti = () => {
     </div>;
 };
 var ACHIEVEMENTS = {
-  builder: { icon: "🎢", name: "Gatekeeper", desc: { uz: "Turniket shartini o'zingiz tuzdingiz", ru: "Вы сами собрали условие турникета" } },
-  debugger: { icon: "🐞", name: "Nice Catch!", desc: { uz: "= va === xatosini topib tuzatdingiz", ru: "Вы нашли и починили ошибку = и ===" } },
+  builder: { icon: "🔋", name: "Rule Maker", desc: { uz: "Zaryad shartini o'zingiz tuzdingiz", ru: "Вы сами собрали условие заряда" } },
+  debugger: { icon: "🐞", name: "Nice Catch!", desc: { uz: "= va == xatosini topib tuzatdingiz", ru: "Вы нашли и починили ошибку = и ==" } },
   firstif: { icon: "🚦", name: "Logic Master", desc: { uz: "Birinchi if shartingizni o'zingiz yozdingiz", ru: "Вы сами написали своё первое условие if" } },
   graduate: { icon: "🏆", name: "Level Up!", desc: { uz: "if/else darsini to'liq yakunladingiz", ru: "Вы полностью прошли урок if/else" } }
 };
@@ -2803,7 +2718,7 @@ function AchToasts({ toasts, onDone }) {
   if (!a) return null;
   return <AchCelebrate key={t.k} ach={a} onDone={() => onDone(t.k)} />;
 }
-var INLINE_KEYS = { s4: 3, s5b: 1, s9: 0, s12: 2, s15: -1 };
+var INLINE_KEYS = { s4: 3, s5b: 1, s9: 0, s15: -1 };
 var ScreenPodium = ({ screen, answers, onNext, onPrev }) => {
   const gate = useContext2(LiveGateCtx) || {};
   const live = gate.live;
@@ -2846,7 +2761,7 @@ var ScreenPodium = ({ screen, answers, onNext, onPrev }) => {
   const selfCorrect = SCORED_IDX.filter((i) => answers[i]?.correct).length;
   return <Stage eyebrow={tr2({ uz: "Natijalar", ru: "Результаты" })} screen={screen} narrow navContent={<><NavBack onPrev={onPrev} /><NavNext label={{ uz: "Davom etish", ru: "Продолжить" }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: "clamp(14px,2.2vw,20px)" }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr2({ uz: <>Kim <span className="italic" style={{ color: T.accent }}>g'olib</span>?</>, ru: <>Кто <span className="italic" style={{ color: T.accent }}>победитель</span>?</> })}</h2></div>
+        <div className="head"><h2 className="title h-title fade-up">{isLive ? tr2({ uz: <>Bugungi <span className="italic" style={{ color: T.accent }}>g'oliblarimiz</span></>, ru: <>Наши <span className="italic" style={{ color: T.accent }}>победители</span> сегодня</> }) : tr2({ uz: <>Bugungi <span className="italic" style={{ color: T.accent }}>natijangiz</span></>, ru: <>Ваш <span className="italic" style={{ color: T.accent }}>результат</span> сегодня</> })}</h2></div>
         {!isLive ? <div className="fade-up" style={{ display: "flex", flexDirection: "column", gap: 16, alignItems: "center" }}>
             <ScoreRing correct={selfCorrect} total={totalQ} />
             <div className="frame-soft" style={{ maxWidth: 480 }}><p className="body" style={{ margin: 0 }}>{tr2({ uz: "Siz mustaqil rejimdasiz. Jonli darsda bu yerda butun guruh reytingi — 🥇🥈🥉 podium chiqadi.", ru: "Вы в самостоятельном режиме. На живом уроке здесь появится рейтинг всей группы — подиум 🥇🥈🥉." })}</p></div>
@@ -2914,26 +2829,26 @@ var QZ_BG_SHAPES = [
   { ch: "if", l: 6, t: 18, s: 40, c: "rgba(203,173,255,0.16)", d: 19, dl: 0 },
   { ch: "{ }", l: 84, t: 12, s: 34, c: "rgba(203,173,255,0.13)", d: 23, dl: 1.5 },
   { ch: "else", l: 9, t: 74, s: 30, c: "rgba(255,110,70,0.15)", d: 27, dl: 0.8 },
-  { ch: "===", l: 78, t: 70, s: 28, c: "rgba(203,173,255,0.11)", d: 21, dl: 2.2 },
+  { ch: "==", l: 78, t: 70, s: 28, c: "rgba(203,173,255,0.11)", d: 21, dl: 2.2 },
   { ch: "true", l: 46, t: 86, s: 30, c: "rgba(120,235,175,0.13)", d: 25, dl: 1.1 },
   { ch: ">=", l: 66, t: 24, s: 22, c: "rgba(80,200,255,0.14)", d: 17, dl: 0.4 },
   { ch: "false", l: 24, t: 36, s: 26, c: "rgba(203,173,255,0.12)", d: 20, dl: 1.9 },
   { ch: "else if", l: 92, t: 46, s: 24, c: "rgba(203,173,255,0.10)", d: 24, dl: 1.3 },
-  { ch: "!==", l: 2, t: 46, s: 24, c: "rgba(203,173,255,0.14)", d: 26, dl: 2.6 }
+  { ch: "!=", l: 2, t: 46, s: 24, c: "rgba(203,173,255,0.14)", d: 26, dl: 2.6 }
 ];
 var QUIZ_BANK = [
-  { q: { uz: "`if (yosh >= 12)` — yosh 10 bo'lsa, ichidagi kod ishlaydimi?", ru: "`if (yosh >= 12)` — если yosh равен 10, код внутри сработает?" }, opts: [{ uz: "Ha, ishlaydi", ru: "Да, сработает" }, { uz: "Xato beradi", ru: "Выдаст ошибку" }, { uz: "Yo'q — shart `false`", ru: "Нет — условие `false`" }, { uz: "Ba'zan", ru: "Иногда" }], correct: 2 },
-  { q: { uz: "`14 > 12` ifodasi qanday qiymat qaytaradi?", ru: "Какое значение вернёт выражение `14 > 12`?" }, opts: ["`true`", "`14`", "`false`", "`12`"], correct: 0 },
-  { q: { uz: "`=` va `===` o'rtasidagi farq nima?", ru: "В чём разница между `=` и `===`?" }, opts: [{ uz: "Farqi yo'q", ru: "Разницы нет" }, { uz: "`=` qiymat soladi, `===` tekshiradi", ru: "`=` кладёт значение, `===` проверяет" }, { uz: "`=` tekshiradi, `===` soladi", ru: "`=` проверяет, `===` кладёт" }, { uz: "`===` faqat raqamlar uchun", ru: "`===` только для чисел" }], correct: 1 },
+  { q: { uz: "`if (age >= 16)` — age 14 bo'lsa, ichidagi kod ishlaydimi?", ru: "`if (age >= 16)` — если age равен 14, код внутри сработает?" }, opts: [{ uz: "Ha, ishlaydi", ru: "Да, сработает" }, { uz: "Xato beradi", ru: "Выдаст ошибку" }, { uz: "Yo'q — shart `false`", ru: "Нет — условие `false`" }, { uz: "Ba'zan", ru: "Иногда" }], correct: 2 },
+  { q: { uz: "`20 > 15` ifodasi qanday qiymat qaytaradi?", ru: "Какое значение вернёт выражение `20 > 15`?" }, opts: ["`true`", "`20`", "`false`", "`15`"], correct: 0 },
+  { q: { uz: "`=` va `==` o'rtasidagi farq nima?", ru: "В чём разница между `=` и `==`?" }, opts: [{ uz: "Farqi yo'q", ru: "Разницы нет" }, { uz: "`=` qiymat beradi, `==` tekshiradi", ru: "`=` даёт значение, `==` проверяет" }, { uz: "`=` tekshiradi, `==` qiymat beradi", ru: "`=` проверяет, `==` даёт значение" }, { uz: "`==` faqat raqamlar uchun", ru: "`==` только для чисел" }], correct: 1 },
   { q: { uz: "`if` bloki ishlamasa, o'rniga qaysi blok ishlaydi?", ru: "Если блок `if` не сработал, какой блок работает вместо него?" }, opts: [{ uz: "Yana `if`", ru: "Ещё один `if`" }, { uz: "Hech biri", ru: "Никакой" }, { uz: "Sikl", ru: "Цикл" }, { uz: "`else` bloki", ru: "Блок `else`" }], correct: 3 },
-  { q: { uz: "`!==` operatori nimani bildiradi?", ru: "Что означает оператор `!==`?" }, opts: [{ uz: "Teng", ru: "Равно" }, { uz: "Teng emas", ru: "Не равно" }, { uz: "Katta", ru: "Больше" }, { uz: "Kichik yoki teng", ru: "Меньше или равно" }], correct: 1 },
-  { q: { uz: "`10 === 10` natijasi qanday?", ru: "Каков результат `10 === 10`?" }, opts: ["`true`", "`false`", "`10`", { uz: "Xato", ru: "Ошибка" }], correct: 0 },
-  { q: { uz: "Bir nechta shartni ketma-ket tekshirish uchun nima ishlatiladi?", ru: "Что используется для проверки нескольких условий по очереди?" }, opts: ["`else`", "nested `var`", { uz: "`===` ketma-ket", ru: "`===` подряд" }, "`else if`"], correct: 3 },
-  { q: { uz: "`if` ichida yana `if` yozish nima deb ataladi?", ru: "Как называется `if`, записанный внутри другого `if`?" }, opts: [{ uz: "Takrorlash sikli", ru: "Цикл повторения" }, { uz: "Ichma-ich (nested) shart", ru: "Вложенное (nested) условие" }, { uz: "Ketma-ket `else if`", ru: "`else if` подряд" }, { uz: "Ichki funksiya", ru: "Внутренняя функция" }], correct: 1 },
-  { q: { uz: "`if (ball >= 90)` da ball 90 bo'lsa, shart `true` bo'ladimi?", ru: "В `if (ball >= 90)` при ball равном 90 условие будет `true`?" }, opts: [{ uz: "Yo'q, faqat 91+ da", ru: "Нет, только при 91+" }, { uz: "Xato beradi", ru: "Выдаст ошибку" }, { uz: "Ha — `>=` tenglikni ham qamraydi", ru: "Да — `>=` включает и равенство" }, { uz: "Faqat ball 100 da", ru: "Только при ball 100" }], correct: 2 },
+  { q: { uz: "`!=` operatori nimani bildiradi?", ru: "Что означает оператор `!=`?" }, opts: [{ uz: "Teng", ru: "Равно" }, { uz: "Teng emas", ru: "Не равно" }, { uz: "Katta", ru: "Больше" }, { uz: "Kichik yoki teng", ru: "Меньше или равно" }], correct: 1 },
+  { q: { uz: "`7 == 9` natijasi qanday?", ru: "Каков результат `7 == 9`?" }, opts: ["`false`", "`true`", "`9`", { uz: "Xato", ru: "Ошибка" }], correct: 0 },
+  { q: { uz: "Bir nechta shartni ketma-ket tekshirish uchun nima ishlatiladi?", ru: "Что используется для проверки нескольких условий по очереди?" }, opts: ["`else`", "`let`", { uz: "`==` ketma-ket", ru: "`==` подряд" }, "`else if`"], correct: 3 },
+  { q: { uz: "`let battery = 30` bo'lsa, `if (battery < 20)` ichidagi kod ishlaydimi?", ru: "Если `let battery = 30`, код внутри `if (battery < 20)` сработает?" }, opts: [{ uz: "Ha — 30 katta son", ru: "Да — 30 большое число" }, { uz: "Yo'q — `30 < 20` bu `false`", ru: "Нет — `30 < 20` это `false`" }, { uz: "Faqat zaryad 20 bo'lganda", ru: "Только при заряде 20" }, { uz: "Xato beradi", ru: "Выдаст ошибку" }], correct: 1 },
+  { q: { uz: "`if (score >= 90)` da score 90 bo'lsa, shart `true` bo'ladimi?", ru: "В `if (score >= 90)` при score равном 90 условие будет `true`?" }, opts: [{ uz: "Yo'q, faqat 91+ da", ru: "Нет, только при 91+" }, { uz: "Xato beradi", ru: "Выдаст ошибку" }, { uz: "Ha — `>=` tenglikni ham qamraydi", ru: "Да — `>=` включает и равенство" }, { uz: "Faqat score 100 da", ru: "Только при score 100" }], correct: 2 },
   { q: { uz: "`5 <= 3` ifodasi nima qaytaradi?", ru: "Что вернёт выражение `5 <= 3`?" }, opts: ["`true`", "`5`", "`3`", "`false`"], correct: 3 },
   { q: { uz: "`if/else` da bir vaqtda nechta blok ishlaydi?", ru: "Сколько блоков работает в `if/else` одновременно?" }, opts: [{ uz: "Faqat bittasi", ru: "Только один" }, { uz: "Ikkalasi ham", ru: "Оба" }, { uz: "Hech biri", ru: "Ни одного" }, { uz: "Uchtasi", ru: "Три" }], correct: 0 },
-  { q: { uz: "Shart yozganda to'g'ri tenglik belgisi qaysi?", ru: "Какой знак равенства верен в условии?" }, opts: ["`=`", "`==`", "`===`", "`=>`"], correct: 2 }
+  { q: { uz: "Shartda tenglikni qaysi belgi bilan tekshiramiz?", ru: "Каким знаком проверяем равенство в условии?" }, opts: ["`=`", "`<`", "`==`", "`+`"], correct: 2 }
 ];
 var quizPts = (elapsedMs) => elapsedMs <= 500 ? 1e3 : Math.max(0, Math.round(1e3 * (1 - Math.min(elapsedMs, QUIZ_MS) / QUIZ_MS / 2)));
 var quizScore = (rows) => {
@@ -3035,7 +2950,7 @@ function QzFX() {
     };
     size();
     window.addEventListener("resize", size);
-    const TOK = ["if", "else", "===", ">=", "true", "false", "{ }", "else if"];
+    const TOK = ["if", "else", "==", ">=", "true", "false", "{ }", "else if"];
     const em = [], toks = [];
     for (let i = 0; i < 26; i++) em.push({ x: Math.random() * W, y: Math.random() * H, z: 0.3 + Math.random() * 0.7, ph: Math.random() * 6.28, sw: 0.3 + Math.random() * 0.6 });
     for (let i = 0; i < 9; i++) toks.push({ x: Math.random() * W, y: Math.random() * H, z: 0.4 + Math.random() * 0.9, vx: (Math.random() - 0.5) * 0.16, t: TOK[i % TOK.length], r: (Math.random() - 0.5) * 0.5 });
@@ -3467,54 +3382,58 @@ function MentorPracticeOverlay({ entry, live, onClose }) {
       </div>
     </div>;
 }
-var TASK_IF = {
-  eyebrow: { uz: "Praktika · if", ru: "Практика · if" },
-  title: { uz: "Birinchi shartingizni yozing", ru: "Напишите своё первое условие" },
-  brief: { uz: "`let ball = 80` yozing. Keyin shart qo'ying: agar `ball` 60 dan katta yoki teng bo'lsa, konsolga `Ajoyib` chiqsin.", ru: "Напишите `let ball = 80`. Затем поставьте условие: если `ball` больше или равен 60, в консоль выводится `Ajoyib`." },
+var TASK_RADAR = {
+  eyebrow: { uz: "Praktika · if / else", ru: "Практика · if / else" },
+  title: { uz: "Radar: jarima bormi?", ru: "Радар: есть штраф?" },
+  brief: { uz: "Yo'lda «60» belgisi turibdi. Birinchi qator tayyor: `let speed = 75` (tezlik, km/soat). Agar `speed` 60 dan katta bo'lsa — konsolga `Siz jarimaga tushdingiz`, aks holda — `Jarima yo'q` chiqsin. Tezlik 75 bo'lgani uchun konsolda `Siz jarimaga tushdingiz` chiqadi.", ru: "На дороге знак «60». Первая строка готова: `let speed = 75` (скорость, км/ч). Если `speed` больше 60 — в консоль `Siz jarimaga tushdingiz`, иначе — `Jarima yo'q`. Так как скорость 75, в консоли появится `Siz jarimaga tushdingiz`." },
+  files: [
+    { name: "script.js", lang: "js", starter: `let speed = 75
+
+// if ... else ni shu yerga yozing
+` }
+  ],
+  requirements: [
+    { id: "if", label: { uz: "if sharti yozildi", ru: "условие if написано" }, check: C.js(/if\s*\(/, { uz: "`if (speed > 60) {` deb yozing", ru: "Напишите `if (speed > 60) {`" }) },
+    { id: "else", label: { uz: "else qismi yozildi", ru: "часть else написана" }, check: C.js(/\belse\b/, { uz: "Shartdan keyin `} else {` qo'shing", ru: "После условия добавьте `} else {`" }) },
+    { id: "log", label: { uz: "konsolda: Siz jarimaga tushdingiz", ru: "в консоли: Siz jarimaga tushdingiz" }, check: C.logs("Siz jarimaga tushdingiz", { uz: 'Shart ichida `console.log("Siz jarimaga tushdingiz")` yozing', ru: 'Внутри условия напишите `console.log("Siz jarimaga tushdingiz")`' }) }
+  ]
+};
+var TASK_TRANSLATE = {
+  eyebrow: { uz: "Praktika · ==", ru: "Практика · ==" },
+  title: { uz: "Ilova qaysi tilda salomlashadi?", ru: "На каком языке приложение здоровается?" },
+  brief: { uz: '`let lang = "en"` yozing. Agar `lang` `"uz"` ga teng bo\'lsa (`==`) — konsolga `Salom`, aks holda — `Hello` chiqsin. Til "en" bo\'lgani uchun konsolda `Hello` chiqadi.', ru: 'Напишите `let lang = "en"`. Если `lang` равен `"uz"` (`==`) — в консоль `Salom`, иначе — `Hello`. Так как язык "en", в консоли появится `Hello`.' },
   files: [
     { name: "script.js", lang: "js", starter: `// Bu yerga yozing
 ` }
   ],
   requirements: [
-    { id: "if", label: { uz: "if sharti yozildi", ru: "условие if написано" }, check: C.js(/if\s*\(/, { uz: "`if (ball >= 60) {` deb yozing", ru: "Напишите `if (ball >= 60) {`" }) },
-    { id: "log", label: { uz: "konsolda Ajoyib", ru: "в консоли Ajoyib" }, check: C.logs("Ajoyib", { uz: 'Shart ichida `console.log("Ajoyib")` yozing', ru: 'Внутри условия напишите `console.log("Ajoyib")`' }) }
+    { id: "eq", label: { uz: "== bilan tekshirildi", ru: "проверено через ==" }, check: C.js(/==/, { uz: 'Shartni `if (lang == "uz") {` deb yozing', ru: 'Напишите условие `if (lang == "uz") {`' }) },
+    { id: "else", label: { uz: "else qismi yozildi", ru: "часть else написана" }, check: C.js(/\belse\b/, { uz: "Shartdan keyin `} else {` qo'shing", ru: "После условия добавьте `} else {`" }) },
+    { id: "log", label: { uz: "konsolda Hello", ru: "в консоли Hello" }, check: C.logs("Hello", { uz: '`else` ichida `console.log("Hello")` yozing', ru: 'Внутри `else` напишите `console.log("Hello")`' }) }
   ]
 };
-var TASK_ELSE = {
-  eyebrow: { uz: "Praktika · else", ru: "Практика · else" },
-  title: { uz: "Dasturga ikkinchi yo'lni bering", ru: "Дайте программе второй путь" },
-  brief: { uz: "`let yosh = 12` yozing. Agar `yosh` 18 dan katta yoki teng bo'lsa — konsolga `Mumkin`, aks holda (`else`) — `Kichik` chiqsin. Yosh 12 bo'lgani uchun konsolda `Kichik` chiqadi.", ru: "Напишите `let yosh = 12`. Если `yosh` больше или равен 18 — в консоль `Mumkin`, иначе (`else`) — `Kichik`. Так как возраст 12, в консоли появится `Kichik`." },
-  files: [
-    { name: "script.js", lang: "js", starter: `// Bu yerga yozing
-` }
-  ],
-  requirements: [
-    { id: "else", label: { uz: "else shoxi yozildi", ru: "ветка else написана" }, check: C.js(/\belse\b/, { uz: "Shartdan keyin `} else {` qo'shing", ru: "После условия добавьте `} else {`" }) },
-    { id: "log", label: { uz: "konsolda Kichik", ru: "в консоли Kichik" }, check: C.logs("Kichik", { uz: '`else` ichida `console.log("Kichik")` yozing', ru: 'Внутри `else` напишите `console.log("Kichik")`' }) }
-  ]
-};
-var TASK_ELSEIF = {
+var TASK_RADAR_LEVELS = {
   eyebrow: { uz: "Praktika · else if", ru: "Практика · else if" },
-  title: { uz: "Uchta yo'lli shart yozing", ru: "Напишите условие с тремя путями" },
-  brief: { uz: "`let ball = 45` yozing. Uch yo'l: 90 dan yuqori — `Oltin`, 60 dan yuqori — `Kumush`, aks holda — `Mashq`. Ball 45 bo'lgani uchun konsolda `Mashq` chiqadi.", ru: "Напишите `let ball = 45`. Три пути: выше 90 — `Oltin`, выше 60 — `Kumush`, иначе — `Mashq`. Так как балл 45, в консоли появится `Mashq`." },
+  title: { uz: "Radar: uch xil javob", ru: "Радар: три разных ответа" },
+  brief: { uz: "`let speed = 85` yozing. Uch yo'l: 60 yoki undan kam (`<= 60`) — `Jarima yo'q`, 80 yoki undan kam (`<= 80`) — `Ogohlantirish`, aks holda — `Katta jarima`. Tezlik 85 bo'lgani uchun konsolda `Katta jarima` chiqadi.", ru: "Напишите `let speed = 85`. Три пути: 60 или меньше (`<= 60`) — `Jarima yo'q`, 80 или меньше (`<= 80`) — `Ogohlantirish`, иначе — `Katta jarima`. Так как скорость 85, в консоли появится `Katta jarima`." },
   files: [
     { name: "script.js", lang: "js", starter: `// Bu yerga yozing
 ` }
   ],
   requirements: [
-    { id: "elseif", label: { uz: "else if ishlatildi", ru: "использован else if" }, check: C.js(/else\s+if\s*\(/, { uz: "Ikkinchi yo'l uchun `} else if (ball >= 60) {` yozing", ru: "Для второго пути напишите `} else if (ball >= 60) {`" }) },
-    { id: "log", label: { uz: "konsolda Mashq", ru: "в консоли Mashq" }, check: C.logs("Mashq", { uz: 'Oxirgi `else` ichida `console.log("Mashq")` yozing', ru: 'В последнем `else` напишите `console.log("Mashq")`' }) }
+    { id: "elseif", label: { uz: "else if ishlatildi", ru: "использован else if" }, check: C.js(/else\s+if\s*\(/, { uz: "Ikkinchi yo'l uchun `} else if (speed <= 80) {` yozing", ru: "Для второго пути напишите `} else if (speed <= 80) {`" }) },
+    { id: "log", label: { uz: "konsolda Katta jarima", ru: "в консоли Katta jarima" }, check: C.logs("Katta jarima", { uz: 'Oxirgi `else` ichida `console.log("Katta jarima")` yozing', ru: 'В последнем `else` напишите `console.log("Katta jarima")`' }) }
   ]
 };
 var PRACTICE_AFTER = {
-  6: { task: TASK_IF, starter: "" },
-  // 1) bitta shart
-  13: { task: TASK_ELSE, starter: "" },
-  // 2) if/else — ikki yo'l
-  17: { task: TASK_ELSEIF, starter: "" }
-  // 3) yakuniy: else if — uch yo'l
+  6: { task: TASK_RADAR, starter: "" },
+  // 1) else testidan keyin — radar if/else
+  12: { task: TASK_TRANSLATE, starter: "" },
+  // 2) == testidan keyin — tarjima
+  15: { task: TASK_RADAR_LEVELS, starter: "" }
+  // 3) else-yozish mashqidan keyin — radar else if (yakuniy)
 };
-var HW_TASK = TASK_ELSEIF;
+var HW_TASK = TASK_RADAR_LEVELS;
 function JsConditionsLesson({ lang: langProp, onFinished, onPractice, liveToken }) {
   const lang = langProp || "uz";
   __lang = lang;
@@ -3569,22 +3488,37 @@ function JsConditionsLesson({ lang: langProp, onFinished, onPractice, liveToken 
       setPractice(null);
       advance();
     };
-    if (typeof onPractice === "function") Promise.resolve(onPractice(entry.task)).then(done);
-    else {
+    const openLocal = () => {
       pracWrite(LESSON_META.lessonId, { kind: `s${fromScreen}`, screen: fromScreen });
       setPractice({ ...entry, done, codeKey: codeKeyOf(LESSON_META.lessonId, `s${fromScreen}`) });
+    };
+    if (typeof onPractice !== "function") {
+      openLocal();
+      return;
+    }
+    try {
+      Promise.resolve(onPractice(entry.task)).then(done, openLocal);
+    } catch {
+      openLocal();
     }
   };
   const openHomeworkPractice = () => {
     const entry = { task: HW_TASK, starter: "" };
-    if (typeof onPractice === "function") Promise.resolve(onPractice(entry.task)).catch(() => {
-    });
-    else {
+    const openLocal = () => {
       pracWrite(LESSON_META.lessonId, { kind: "hw" });
       setPractice({ ...entry, codeKey: codeKeyOf(LESSON_META.lessonId, "hw"), done: () => {
         pracClear(LESSON_META.lessonId);
         setPractice(null);
       } });
+    };
+    if (typeof onPractice !== "function") {
+      openLocal();
+      return;
+    }
+    try {
+      Promise.resolve(onPractice(entry.task)).catch(openLocal);
+    } catch {
+      openLocal();
     }
   };
   useEffect4(() => {
@@ -3605,7 +3539,7 @@ function JsConditionsLesson({ lang: langProp, onFinished, onPractice, liveToken 
       advance();
       return;
     }
-    if (!(live && (live.mode === "mentor" || live.mode === "student" && live.status !== "ended" && live.mentorAlive))) {
+    if (!(live && (live.mode === "mentor" || live.mode === "student" && live.status !== "ended"))) {
       advance();
       return;
     }
@@ -3675,7 +3609,7 @@ function JsConditionsLesson({ lang: langProp, onFinished, onPractice, liveToken 
     };
     if (typeof onFinished === "function") onFinished(payload);
   };
-  const screens = [Screen0, Screen1, Screen2, Screen3, Screen4, Screen5, Screen5b, Screen6, Screen7, Screen8, Screen9, Screen10, Screen11, Screen12, Screen13, Screen14, Screen15, ScreenElseWrite, ScreenPodium, ScreenFlashcards, Screen16];
+  const screens = [Screen0, Screen1, Screen2, Screen3, Screen4, Screen5, Screen5b, Screen8, Screen7, Screen11, Screen13, Screen6, Screen9, Screen14, Screen15, ScreenElseWrite, ScreenPodium, ScreenFlashcards, Screen16];
   const Current = screens[screen];
   return <LangContext.Provider value={lang}>
       <style>{`
@@ -3704,6 +3638,11 @@ function JsConditionsLesson({ lang: langProp, onFinished, onPractice, liveToken 
         @keyframes fade-step { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
         .zoomable { position: relative; }
         .zoom-btn { position: absolute; top: 6px; right: 6px; z-index: 5; width: 30px; height: 30px; border-radius: 8px; border: none; background: rgba(255,255,255,0.82); color: ${T.ink2}; font-size: 14px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.22); transition: all 0.2s; }
+        /* F-0912-09 · 147-qonun (m1 da muhrlangan naqsh): ⛶ tugmasi burchagini matn
+           AYLANIB o'tadi — faqat tugma yonidagi qator qisqaradi, qolganlari to'liq
+           kenglikda qoladi. Hisob: tugma o'ngdan 6+30=36px egallaydi, idishning o'z
+           o'ng chekinishi 15–16px → ~20px yetishmaydi, 28px nafas bilan olinadi. */
+        .zb-notch::before { content: ''; float: right; width: 28px; height: 28px; }
         .zoom-btn:hover { background: ${T.paper}; color: ${T.accent}; transform: scale(1.08); }
         .zoom-backdrop { position: fixed; inset: 0; background: rgba(14,14,16,0.55); z-index: 1000; animation: fade-step 0.25s ease; }
         .zoom-on { position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%); width: min(880px,94vw); max-height: calc(90vh / var(--lz, 1)); overflow: auto; z-index: 1001; background: ${T.paper}; border-radius: 18px; padding: clamp(20px,4vw,42px); box-shadow: 0 30px 80px -20px rgba(${T.shadowBase},0.5); animation: zoom-pop 0.3s cubic-bezier(.34,1.3,.4,1); }
@@ -3723,12 +3662,14 @@ function JsConditionsLesson({ lang: langProp, onFinished, onPractice, liveToken 
         .ring-green { animation: ring-green 1.3s ease-out; } .ring-red { animation: ring-red 1.3s ease-out; }
         @keyframes flow-x { 0% { transform: translate(-3px,0); opacity: .45; } 50% { transform: translate(3px,0); opacity: 1; } 100% { transform: translate(-3px,0); opacity: .45; } }
         .flow-x { animation: flow-x 1.1s ease-in-out infinite; display: inline-block; }
-        /* Turniket darvozasi */
-        .gate-wrap { position: relative; width: 92px; height: 56px; margin: 0 auto; }
-        .gate-post { position: absolute; top: 0; width: 8px; height: 56px; border-radius: 4px; background: ${T.ink}; } .gate-post.l { left: 0; } .gate-post.r { right: 0; }
-        .gate-bar { position: absolute; top: 24px; left: 8px; width: 76px; height: 8px; border-radius: 4px; transform-origin: left center; transition: transform .55s cubic-bezier(.34,1.3,.4,1), background .3s; }
-        .gate-bar.open { transform: rotate(-74deg); background: ${T.success}; }
-        .gate-bar.shut { transform: rotate(0deg); background: ${T.accent}; }
+        /* Telefon qulfi (hook, F-0914-02) */
+        .lock-phone { width: 76px; height: 104px; margin: 0 auto; border-radius: 16px; background: ${T.paper}; box-shadow: inset 0 0 0 3px ${T.ink}; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; animation: lock-pop .35s cubic-bezier(.34,1.3,.4,1); }
+        .lock-phone.open { box-shadow: inset 0 0 0 3px ${T.success}; }
+        .lock-phone.shut { box-shadow: inset 0 0 0 3px ${T.accent}; }
+        .lock-ic { font-size: 30px; line-height: 1; }
+        .lock-pin { font-size: 13px; font-weight: 700; letter-spacing: 0.12em; color: ${T.ink}; }
+        @keyframes lock-pop { from { transform: scale(.92); } to { transform: scale(1); } }
+        @media (prefers-reduced-motion: reduce) { .lock-phone { animation: none; } }
 
         .feedback-block { max-height: 0; opacity: 0; overflow: hidden; transition: max-height 0.4s ease-out, opacity 0.3s ease-out 0.1s, margin-top 0.4s ease-out; margin-top: 0; }
         .feedback-block.visible { max-height: 800px; opacity: 1; margin-top: clamp(14px,2vw,20px); }
@@ -3780,7 +3721,7 @@ function JsConditionsLesson({ lang: langProp, onFinished, onPractice, liveToken 
         .var-name { background: ${T.ink}; color: ${T.bg}; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: 12.5px; padding: 8px 14px; letter-spacing: 0.03em; }
         .var-val { padding: 16px 14px; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; text-align: center; font-size: clamp(18px,3vw,24px); }
 
-        .h-title { font-size: clamp(22px,4vw,38px); }
+        .h-title { font-size: clamp(22px,4vw,36px); letter-spacing: -0.015em; text-wrap: balance; }
         .h-sub { font-size: clamp(17px,2.5vw,22px); }
         .h-ask { font-size: clamp(19px,2.6vw,27px); line-height: 1.32; letter-spacing: -0.01em; text-wrap: balance; }
         .body { font-size: clamp(14px,1.6vw,16px); line-height: 1.5; }

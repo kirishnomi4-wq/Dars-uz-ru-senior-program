@@ -9,7 +9,8 @@
 import React3, { useState as useState3, useEffect as useEffect4, useRef as useRef3, createContext as createContext2, useContext as useContext2, useCallback as useCallback2 } from "react";
 
 // src/live/liveClient.js
-var LIVE_API_URL = "https://dars-api.coddycamp.uz" ? String("https://dars-api.coddycamp.uz").replace(/\/+$/, "") : DEFAULT_API_URL;
+var DEFAULT_API_URL = "https://dars-api.coddycamp.uz";
+var LIVE_API_URL = "" ? String("").replace(/\/+$/, "") : DEFAULT_API_URL;
 var LIVE_ENABLED = !!LIVE_API_URL;
 var LIVE_POLL_MS = 2500;
 var LIVE_POLL_MAX_MS = 15e3;
@@ -23,7 +24,9 @@ async function errorFrom(r, fallback) {
     msg = (await r.json()).message || "";
   } catch {
   }
-  return new Error(msg || fallback);
+  const e = new Error(msg || fallback);
+  e.status = r.status;
+  return e;
 }
 async function liveRpc(fn, body) {
   const r = await fetch(`${API}/rpc/${fn}`, {
@@ -586,8 +589,14 @@ function useLiveSession(lessonId, answerKey, opts = {}) {
       liveStore(lessonId, { mode: "mentor", pin: row.pin, token: row.token });
       if (keyRef.current) liveRpc("set_quiz_keys", { p_lesson_id: lessonId, p_mentor_code: (mentorCode || "").trim(), p_keys: keyRef.current }).catch(() => {
       });
-    } catch {
-      setJoinError(tr({ uz: "Mentor kodi noto'g'ri yoki ulanishda xato.", ru: "Неверный код ментора или ошибка подключения." }));
+    } catch (e) {
+      const st = e && e.status;
+      setJoinError(
+        st === 401 || st === 403 ? tr({ uz: "Mentor kodi noto'g'ri.", ru: "Неверный код ментора." }) : st ? tr({ uz: `Server javob bermadi (xato ${st}). Birozdan keyin urinib ko'ring.`, ru: `Сервер не ответил (ошибка ${st}). Попробуйте чуть позже.` }) : tr({
+          uz: "Serverga ulanib bo'lmadi. Internetni tekshiring — yoki «← Orqaga» bosib, «Kodsiz, o'zim ko'raman» bilan darsni jonli rejimsiz o'tkazing.",
+          ru: "Не удалось подключиться к серверу. Проверьте интернет — или нажмите «← Назад» и выберите «Без кода, смотрю сам», чтобы провести урок без живого режима."
+        })
+      );
     } finally {
       setBusy(false);
     }
@@ -942,7 +951,7 @@ function useServerProgress(live, refs) {
 import React2, { useState as useState2, useEffect as useEffect3 } from "react";
 var LT = { bg: "#F6F4EF", ink: "#0E0E10", ink2: "#5A5A60", ink3: "#A7A6A2", paper: "#FFFFFF", accent: "#FF4F28", accentSoft: "#FFE8E1", success: "#1F7A4D" };
 var _liveBtnPri = { background: LT.accent, color: "#fff", border: "none", borderRadius: 12, padding: "14px 20px", fontSize: 16, fontWeight: 700, cursor: "pointer" };
-var _liveBadgeS = { position: "fixed", top: 10, left: "50%", transform: "translateX(-50%)", zIndex: 9998, background: LT.paper, border: `1px solid ${LT.ink3}55`, borderRadius: 99, padding: "6px 14px", fontSize: 13, fontWeight: 600, color: LT.ink2, boxShadow: "0 2px 10px rgba(58,53,48,0.12)", display: "flex", alignItems: "center", gap: 8, whiteSpace: "nowrap", maxWidth: "92vw" };
+var _liveBadgeS = { position: "fixed", top: 2, left: "50%", transform: "translateX(-50%)", zIndex: 9998, background: LT.paper, border: `1px solid ${LT.ink3}55`, borderRadius: 99, padding: "2px 14px", fontSize: 13, fontWeight: 600, color: LT.ink2, boxShadow: "0 2px 10px rgba(58,53,48,0.12)", display: "flex", alignItems: "center", gap: 8, whiteSpace: "nowrap", maxWidth: "92vw" };
 var _liveDot = (c) => ({ width: 8, height: 8, borderRadius: 99, background: c, display: "inline-block" });
 function LiveBigCode({ pin, onClose }) {
   const digits = String(pin || "").split("");
@@ -1493,7 +1502,7 @@ var QuestionScreen = ({ screen, scope, eyebrow, question, questionText, options,
       <div className="screen" style={{ justifyContent: isMentorLive ? "flex-start" : "center", gap: "clamp(16px,2.5vw,24px)" }}>
         <div className="fade-up">{question}</div>
         {oneShot && !solved && <p className="small mono fade-up" style={{ margin: "-8px 0 0", color: T.accent, fontWeight: 600 }}>{tr2({ uz: "⚡ Jonli dars — bitta urinish, o'ylab bosing!", ru: "⚡ Живой урок — одна попытка, подумайте перед нажатием!" })}</p>}
-        <div className="fade-up delay-1" style={{ display: "flex", flexDirection: "column", gap: 11 }}>
+        <div className="fade-up delay-1" style={{ display: "flex", flexDirection: "column", gap: picked !== null ? 8 : 11 }}>
           {options.map((opt, i) => {
     let cls = "option";
     if (isMentorLive) {
@@ -1511,7 +1520,7 @@ var QuestionScreen = ({ screen, scope, eyebrow, question, questionText, options,
       }
     } else if (i === picked) cls += " option-picked-wrong";
     const showGreenLetter = isMentorLive ? mReveal && i === correctIdx : solved && revealed && i === correctIdx;
-    return <button key={i} className={cls} disabled={solved || isMentorLive} onClick={() => pick(i)} style={{ padding: "clamp(13px,1.9vw,17px) clamp(15px,2.2vw,20px)", fontSize: "clamp(15px,1.85vw,17px)", display: "flex", alignItems: "center", gap: 12 }}>
+    return <button key={i} className={cls} disabled={solved || isMentorLive} onClick={() => pick(i)} style={{ padding: picked !== null ? "clamp(9px,1.3vw,12px) clamp(15px,2.2vw,20px)" : "clamp(13px,1.9vw,17px) clamp(15px,2.2vw,20px)", fontSize: "clamp(15px,1.85vw,17px)", display: "flex", alignItems: "center", gap: 12 }}>
                 <span className="mono small" style={{ minWidth: 20, color: showGreenLetter ? T.success : T.ink3 }}>{String.fromCharCode(65 + i)}</span>
                 <span style={{ flex: 1 }}>{fmtCode(tr2(opt))}</span>
               </button>;
@@ -1592,14 +1601,18 @@ var Jx = ({ children }) => <span style={{ color: CODE.tag }}>{children}</span>;
 var At = ({ children }) => <span style={{ color: CODE.attr }}>{children}</span>;
 var St = ({ children }) => <span style={{ color: CODE.str }}>{children}</span>;
 var Cm = ({ children }) => <span style={{ color: CODE.comment, fontStyle: "italic" }}>{children}</span>;
-var CodeFile = ({ name, children, minH }) => <div className="editor">
+var CodeFile = ({ name, children, minH, maxH }) => <div className="editor">
     <div className="editor-bar"><span className="bb-dots"><i /><i /><i /></span><span className="editor-tab">{name}</span></div>
-    <div className="editor-body" style={{ minHeight: minH }}><pre className="editor-code">{children}</pre></div>
+    <div className="editor-body" style={{ minHeight: minH, maxHeight: maxH, overflowY: maxH ? "auto" : void 0 }}><pre className="editor-code">{children}</pre></div>
   </div>;
-var AgentCard = ({ children }) => <div className="agent-card">
-    <span className="agent-lbl">{tr2({ uz: "💬 Agentni shunday yo'naltiring", ru: "💬 Направьте агента так" })}</span>
-    <p className="agent-msg">{children}</p>
-  </div>;
+var AgentCard = ({ children }) => {
+  const { setAgent } = useBoard();
+  useEffect4(() => {
+    setAgent(children);
+    return () => setAgent(null);
+  }, [children]);
+  return null;
+};
 var M_COLOR = { GET: T.blue, POST: T.success, PATCH: T.amber, DELETE: T.danger };
 var CAR_EPS = [
   { m: "POST", path: "/car", sum: { uz: "Yangi mashina", ru: "Новая машина" }, resp: '{\n  "statusCode": 201,\n  "message": "success",\n  "data": { "id": "c1a...", "brand": "Chevrolet", "model": "Cobalt", "price": 15000, "is_available": true }\n}' },
@@ -1627,7 +1640,7 @@ var CarSwagger = ({ available, openId, onToggle, triedIds, onTry }) => <div clas
         </div>;
 })}
   </div>;
-var PickLines = ({ fileName, scaffoldTop, scaffoldBottom, candidates, agent, instruction, onComplete, completedInit }) => {
+var PickLines = ({ fileName, scaffoldTop, scaffoldBottom, candidates, agent, instruction, onComplete, completedInit, doneText }) => {
   const correct = candidates.filter((c) => c.correct);
   const [picked, setPicked] = useState3(() => completedInit ? new Set(correct.map((c) => c.id)) : /* @__PURE__ */ new Set());
   const [shakeId, setShakeId] = useState3(null);
@@ -1659,7 +1672,6 @@ var PickLines = ({ fileName, scaffoldTop, scaffoldBottom, candidates, agent, ins
   return <Zoomable>
     <div className="split">
       <Col>
-        <p className="flow-label">{fileName}</p>
         <CodeFile name={fileName} minH={120}>
           {scaffoldTop}{"\n"}
           {pickedCorrect.length === 0 ? <span className="line-empty">{tr2({ uz: "  // qatorlarni o'ng tomondan tanlang →", ru: "  // выберите строки справа →" })}</span> : pickedCorrect.map((c, i) => <React3.Fragment key={c.id}>{i > 0 ? "\n" : ""}{"  "}{c.node}</React3.Fragment>)}
@@ -1669,14 +1681,14 @@ var PickLines = ({ fileName, scaffoldTop, scaffoldBottom, candidates, agent, ins
       </Col>
       <Col>
         <p className="flow-label">{instruction || tr2({ uz: "Shu faylga tegishli qatorlarni tanlang", ru: "Выберите строки, относящиеся к этому файлу" })}</p>
-        <div style={{ display: "flex", flexDirection: "column", gap: 7 }}>
+        {!done && <div style={{ display: "flex", flexDirection: "column", gap: 5 }}>
           {candidates.map((c) => <button key={c.id} className={`pick-row ${picked.has(c.id) ? "picked" : ""} ${shakeId === c.id ? "shake" : ""}`} disabled={picked.has(c.id)} onClick={() => tap(c)}>
               <span style={{ flex: 1 }}>{c.label}</span>
               <span className="pick-plus">{picked.has(c.id) ? "✓" : "+"}</span>
             </button>)}
-        </div>
+        </div>}
         {why && !done && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{why}</p></div>}
-        {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr2({ uz: "✓ Fayl tayyor — har qator o'z joyida. Begona qatorlar boshqa qatlamga tegishli edi.", ru: "✓ Файл готов — каждая строка на своём месте. Чужие строки были из другого слоя." })}</p></div>}
+        {done && <div className="frame-success fade-step"><p className="note-h" style={{ color: T.success }}>{tr2({ uz: "✓ Fayl tayyor — har qator o'z joyida. Begona qatorlar boshqa qatlamga tegishli edi.", ru: "✓ Файл готов — каждая строка на своём месте. Чужие строки были из другого слоя." })}</p>{doneText && <p className="body" style={{ margin: 0, color: T.ink }}>{doneText}</p>}</div>}
       </Col>
     </div>
     </Zoomable>;
@@ -1701,15 +1713,23 @@ var BOARD_SLOTS = [
 ];
 var useBoard = () => useContext2(BoardCtx) || { board: {}, fill: () => {
 }, plus: false, plusOn: () => {
+}, agent: null, setAgent: () => {
 } };
 var OpeningBoard = () => {
-  const { board, plus } = useBoard();
+  const { board, plus, agent } = useBoard();
   const done = BOARD_SLOTS.filter((s) => board[s.k]).length;
   return <div className="oc-board fade-up" aria-label={tr2({ uz: "Ochilish taxtasi", ru: "Доска открытия" })}>
       <div className="oc-board-h">
         <span className="oc-board-t">{tr2({ uz: "🚗 MASHINALAR BO'LIMI — ochilishga tayyorgarlik", ru: "🚗 ОТДЕЛ МАШИН — подготовка к открытию" })}</span>
         <span className={`oc-board-n ${done >= BOARD_SLOTS.length ? "full" : ""}`}>{done}/{BOARD_SLOTS.length}</span>
       </div>
+      {
+    /* summary sarlavha qatorida (absolyut), ochilgan matn taxta ichida qatorlar ostida */
+  }
+      {agent && <details className="oc-agent" key={agent}>
+        <summary className="oc-agent-btn">{tr2({ uz: "💬 Agentni shunday yo'naltiring", ru: "💬 Направьте агента так" })}</summary>
+        <p className="agent-msg oc-agent-msg">{agent}</p>
+      </details>}
       <div className="oc-strip">
         {BOARD_SLOTS.map((s, i) => {
     const on = !!board[s.k];
@@ -1782,7 +1802,7 @@ var Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
   };
   return <Stage eyebrow={tr2({ uz: "Kirish", ru: "Введение" })} screen={screen} scrollSignal={sc} navContent={<NavNext optionalLive disabled={picked === null} label={tr2({ uz: "Davom etish", ru: "Продолжить" })} onClick={onNext} />}>
       <div className="screen">
-        <h1 className="title h-title fade-up" style={{ maxWidth: 880 }}>{tr2({ uz: <>Admin tizimi tayyor — lekin avtosalon <span className="italic" style={{ color: T.accent }}>mashinalarini</span> qayerda saqlaydi?</>, ru: <>Админка готова — но где автосалон хранит свои <span className="italic" style={{ color: T.accent }}>машины</span>?</> })}</h1>
+        <h1 className="title h-title fade-up">{tr2({ uz: <>Admin tizimi tayyor — lekin avtosalon <span className="italic" style={{ color: T.accent }}>mashinalarini</span> qayerda saqlaydi?</>, ru: <>Админка готова — но где автосалон хранит свои <span className="italic" style={{ color: T.accent }}>машины</span>?</> })}</h1>
         <Mentor>{tr2({ uz: <>Dars 1'da clone qilgan skeletda <b style={{ color: T.ink }}>admin</b> tizimi ishlayapti. Endi admin avtosalon mashinalarini boshqarishi kerak — lekin hozir mashinalar jadvali yo'q. Pastdagi <span className="mono">POST /car</span> ni bosib sinab ko'ring — nima bo'larkan?</>, ru: <>На скелете, который вы клонировали на уроке 1, уже работает система <b style={{ color: T.ink }}>admin</b>. Теперь админ должен управлять машинами автосалона — но таблицы машин пока нет. Нажмите ниже <span className="mono">POST /car</span> и попробуйте — что получится?</> })}</Mentor>
         <Zoomable>
         <Split>
@@ -1920,8 +1940,8 @@ var Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       fill("entity");
       if (storedAnswer === void 0) onAnswer(screen, { correct: true, picked: true });
     }}
+    doneText={tr2({ uz: <>1-fayl tayyor! Lekin <span className="mono">/car</span> hali yo'q — bitta fayl yetmaydi. Keyingi qadam: ma'lumot qoidalari (DTO).</>, ru: <>Первый файл готов! Но <span className="mono">/car</span> ещё нет — одного файла мало. Следующий шаг: правила данных (DTO).</> })}
   />
-        {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr2({ uz: <>1-fayl tayyor! Lekin <span className="mono">/car</span> hali yo'q — bitta fayl yetmaydi. Keyingi qadam: ma'lumot qoidalari (DTO).</>, ru: <>Первый файл готов! Но <span className="mono">/car</span> ещё нет — одного файла мало. Следующий шаг: правила данных (DTO).</> })}</p></div>}
         {_tip && !done && <p className="bhint fade-step">{tr2({ uz: "💡 Har qatorni o'qing: u mashinaning ustunimi? Ustun bo'lmasa — bu fayl uniki emas.", ru: "💡 Прочитайте каждую строку: это столбец машины? Если нет — строка не из этого файла." })}</p>}
         {_resc && !done && <p className="bhint calm fade-step">{tr2({ uz: "Qolganini keyinroq birga ko'rib chiqamiz — «Davom etish» ochiq.", ru: "Остальное разберём вместе позже — «Продолжить» открыто." })}</p>}
       </div>
@@ -2023,6 +2043,7 @@ var Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect4(() => {
     if (storedAnswer) plusOn();
   }, []);
+  const doneMsg = tr2({ uz: "Bitta qator — tahrirlash anketasi tayyor. Bir xil kodni ikki marta yozmaslik — tajribali dasturchilarning odati (DRY).", ru: "Одна строка — и анкета редактирования готова. Не писать один и тот же код дважды — привычка опытных разработчиков (DRY)." });
   useEffect4(() => {
     if (done) {
       plusOn();
@@ -2066,12 +2087,15 @@ var Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <Col>
             <p className="flow-label">{tr2({ uz: "natija", ru: "результат" })} · PATCH /car/:id  {`{ price: 12000 }`}</p>
             {cur === "full" && <div className="frame-warn fade-step"><p className="note-h" style={{ color: T.danger }}>{tr2({ uz: "✗ 400 — rad etildi", ru: "✗ 400 — отклонено" })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr2({ uz: <>To'liq anketada <span className="mono">brand</span> va <span className="mono">model</span> ham majburiy. Mijoz faqat narxni yubordi — anketa chala, so'rov o'tmadi.</>, ru: <>В полной анкете <span className="mono">brand</span> и <span className="mono">model</span> тоже обязательны. Клиент отправил только цену — анкета неполная, запрос не прошёл.</> })}</p></div>}
-            {cur === "partial" && <div className="frame-success fade-step"><p className="note-h" style={{ color: T.success }}>{tr2({ uz: "✓ 200 — o'zgartirildi", ru: "✓ 200 — изменено" })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr2({ uz: <>PartialType create anketasini olib, har katakchani <b>ixtiyoriy</b> qildi. Faqat <span className="mono">price</span> yetarli.</>, ru: <>PartialType взял анкету create и сделал каждое поле <b>необязательным</b>. Достаточно одного <span className="mono">price</span>.</> })}</p></div>}
-            <div className="frame" style={{ padding: 14 }}>
+            {cur === "partial" && <div className="frame-success fade-step"><p className="note-h" style={{ color: T.success }}>{tr2({ uz: "✓ 200 — o'zgartirildi", ru: "✓ 200 — изменено" })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr2({ uz: <>PartialType create anketasini olib, har katakchani <b>ixtiyoriy</b> qildi. Faqat <span className="mono">price</span> yetarli.</>, ru: <>PartialType взял анкету create и сделал каждое поле <b>необязательным</b>. Достаточно одного <span className="mono">price</span>.</> })}</p>{done && <p className="body" style={{ margin: "8px 0 0", color: T.ink }}>{doneMsg}</p>}</div>}
+            {!(done && cur === "full") && <div className="frame" style={{ padding: 10 }}>
               <div className="ent-row siz">brand, model, price <span>{tr2({ uz: "← create'da majburiy", ru: "← обязательны в create" })}</span></div>
               {seen.has("partial") && <><div className="ent-row free el-in">{tr2({ uz: "brand? (ixtiyoriy)", ru: "brand? (необязательно)" })} <span>← PartialType</span></div><div className="ent-row free el-in">{tr2({ uz: "price? (ixtiyoriy)", ru: "price? (необязательно)" })} <span>← PartialType</span></div></>}
-            </div>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr2({ uz: "Bitta qator — tahrirlash anketasi tayyor. Bir xil kodni ikki marta yozmaslik — tajribali dasturchilarning odati (DRY).", ru: "Одна строка — и анкета редактирования готова. Не писать один и тот же код дважды — привычка опытных разработчиков (DRY)." })}</p></div>}
+            </div>}
+            {
+    /* §34: «b» ochiq bo'lsa xulosa natija qutisi ichida; «a» oxirgi bosilganda jadval o'rnida alohida quti */
+  }
+            {done && cur !== "partial" && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{doneMsg}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -2116,6 +2140,7 @@ var Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect4(() => {
     if (storedAnswer) fill("service");
   }, []);
+  const doneMsg = tr2({ uz: "5 ta CRUD metod — bittasini ham yozmadingiz, BaseService'dan keldi. O'ziga xos mantiq kerak bo'lsagina qo'shasiz (mashinada kerak emas).", ru: "5 CRUD-методов — вы не написали ни одного, все пришли из BaseService. Свою логику добавляете, только когда она нужна (машинам — не нужна)." });
   useEffect4(() => {
     if (done) {
       fill("service");
@@ -2140,7 +2165,7 @@ var Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 <span className="pick-plus">{seen.has("base") ? "✓" : "?"}</span>
               </button>
             </div>
-            {cur === "manual" && <CodeFile name={tr2({ uz: "src/api/car/car.service.ts  ·  ~40 qator", ru: "src/api/car/car.service.ts  ·  ~40 строк" })} minH={210}>
+            {cur === "manual" && <CodeFile name={tr2({ uz: "src/api/car/car.service.ts  ·  ~40 qator", ru: "src/api/car/car.service.ts  ·  ~40 строк" })} minH={190} maxH={190}>
                 <At>@Injectable</At>{"()"}{"\n"}
                 <Jx>export class</Jx>{" CarService {"}{"\n"}
                 {"  create(dto) { "}<Jx>return</Jx>{" this.carRepo.save(dto); }"}{"\n"}
@@ -2155,7 +2180,7 @@ var Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 <Cm>{tr2({ uz: "  // ...va bu HAR resursda qaytadan takrorlanadi", ru: "  // ...и это повторяется заново в КАЖДОМ ресурсе" })}</Cm>{"\n"}
                 {"}"}
               </CodeFile>}
-            {cur === "base" && <CodeFile name={tr2({ uz: "src/api/car/car.service.ts  ·  4 qator", ru: "src/api/car/car.service.ts  ·  4 строки" })} minH={210}>
+            {cur === "base" && <CodeFile name={tr2({ uz: "src/api/car/car.service.ts  ·  4 qator", ru: "src/api/car/car.service.ts  ·  4 строки" })} minH={190}>
                 <At>@Injectable</At>{"()"}{"\n"}
                 <Jx>export class</Jx>{" CarService"}{"\n"}
                 {"  "}<Jx>extends</Jx>{" BaseService<CreateCarDto, UpdateCarDto, CarEntity> {"}{"\n"}
@@ -2170,9 +2195,12 @@ var Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <Col>
             <p className="flow-label">{tr2({ uz: "natija", ru: "результат" })}</p>
             {cur === "manual" && <div className="frame-warn fade-step"><p className="note-h" style={{ color: T.danger }}>{tr2({ uz: "~40 qator qo'l mehnati", ru: "~40 строк ручного труда" })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr2({ uz: "5 metodni o'zingiz yozasiz — va keyingi resursda (mijoz, buyurtma) HAMMASI qaytadan.", ru: "Все 5 методов пишете сами — а в следующем ресурсе (клиент, заказ) ВСЁ заново." })}</p></div>}
-            {cur === "base" && <div className="frame-success fade-step"><p className="note-h" style={{ color: T.success }}>{tr2({ uz: "4 qator — 5 metod tekin", ru: "4 строки — 5 методов бесплатно" })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr2({ uz: "Oshpaz har taomni noldan o'ylab topmaydi — tayyor retsept kitobidan oladi.", ru: "Повар не выдумывает каждое блюдо с нуля — берёт его из готовой книги рецептов." })}</p></div>}
+            {cur === "base" && <div className="frame-success fade-step"><p className="note-h" style={{ color: T.success }}>{tr2({ uz: "4 qator — 5 metod tekin", ru: "4 строки — 5 методов бесплатно" })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr2({ uz: "Oshpaz har taomni noldan o'ylab topmaydi — tayyor retsept kitobidan oladi.", ru: "Повар не выдумывает каждое блюдо с нуля — берёт его из готовой книги рецептов." })}</p>{done && <p className="body" style={{ margin: "8px 0 0", color: T.ink }}>{doneMsg}</p>}</div>}
             {seen.has("base") && <div className="fade-up" style={{ display: "flex", flexWrap: "wrap", gap: 7 }}>{FREE_METHODS.map((m) => <span key={m} className="gchip" style={{ boxShadow: `inset 0 0 0 1.5px ${T.success}`, color: T.success }}>✓ {m}()</span>)}</div>}
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr2({ uz: "5 ta CRUD metod — bittasini ham yozmadingiz, BaseService'dan keldi. O'ziga xos mantiq kerak bo'lsagina qo'shasiz (mashinada kerak emas).", ru: "5 CRUD-методов — вы не написали ни одного, все пришли из BaseService. Свою логику добавляете, только когда она нужна (машинам — не нужна)." })}</p></div>}
+            {
+    /* §34: «b» ochiq bo'lsa yakuniy xulosa o'sha qutining ichida — alohida quti faqat «a» oxirgi bosilganda */
+  }
+            {done && cur !== "base" && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{doneMsg}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -2231,8 +2259,8 @@ var Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       fill("controller");
       if (storedAnswer === void 0) onAnswer(screen, { correct: true, picked: true });
     }}
+    doneText={tr2({ uz: <>5 ta eshik tayyor. Controller faqat <b>qabul qilib chaqiradi</b> — asosiy ishni service/BaseService bajaradi. Oxirgi qadam: Module.</>, ru: <>5 дверей готовы. Controller только <b>принимает и вызывает</b> — основную работу делает service/BaseService. Последний шаг: Module.</> })}
   />
-        {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr2({ uz: <>5 ta eshik tayyor. Controller faqat <b>qabul qilib chaqiradi</b> — asosiy ishni service/BaseService bajaradi. Oxirgi qadam: Module.</>, ru: <>5 дверей готовы. Controller только <b>принимает и вызывает</b> — основную работу делает service/BaseService. Последний шаг: Module.</> })}</p></div>}
         {_tip && !done && <p className="bhint fade-step">{tr2({ uz: "💡 Har qatorga qarang: u tashqaridan keladigan so'rovni qabul qiladimi?", ru: "💡 Посмотрите на каждую строку: принимает ли она запрос извне?" })}</p>}
         {_resc && !done && <p className="bhint calm fade-step">{tr2({ uz: "Qolganini keyinroq birga ko'rib chiqamiz — «Davom etish» ochiq.", ru: "Остальное разберём вместе позже — «Продолжить» открыто." })}</p>}
       </div>
@@ -2286,8 +2314,8 @@ var Screen12 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       fill("module");
       if (storedAnswer === void 0) onAnswer(screen, { correct: true, picked: true });
     }}
+    doneText={tr2({ uz: <>5 fayl tayyor: Entity, DTO, Service, Controller, Module. Lekin bitta oxirgi ulanish qoldi — usiz <span className="mono">/car</span> baribir ishlamaydi!</>, ru: <>5 файлов готовы: Entity, DTO, Service, Controller, Module. Но осталось одно последнее соединение — без него <span className="mono">/car</span> всё равно не работает!</> })}
   />
-        {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr2({ uz: <>5 fayl tayyor: Entity, DTO, Service, Controller, Module. Lekin bitta oxirgi ulanish qoldi — usiz <span className="mono">/car</span> baribir ishlamaydi!</>, ru: <>5 файлов готовы: Entity, DTO, Service, Controller, Module. Но осталось одно последнее соединение — без него <span className="mono">/car</span> всё равно не работает!</> })}</p></div>}
         {_tip && !done && <p className="bhint fade-step">{tr2({ uz: "💡 Module — ro'yxatlar joyi: nimani ulash kerakligini sanaydi, kod yozmaydi.", ru: "💡 Module — место списков: он перечисляет, что подключить, а не пишет код." })}</p>}
         {_resc && !done && <p className="bhint calm fade-step">{tr2({ uz: "Qolganini keyinroq birga ko'rib chiqamiz — «Davom etish» ochiq.", ru: "Остальное разберём вместе позже — «Продолжить» открыто." })}</p>}
       </div>
@@ -2393,7 +2421,7 @@ var Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             </div>
             <AgentCard>{tr2({ uz: "CarModule'ni AppModule'ning imports ro'yxatiga qo'sh — endpointlar tirik bo'lsin.", ru: "Добавь CarModule в список imports у AppModule — пусть эндпоинты оживут." })}</AgentCard>
           </Col>
-          <Col>
+          <Col gap={12}>
             <CodeFile name="src/api/app.module.ts" minH={120}>
               <At>@Module</At>{"({"}{"\n"}
               {"  imports: ["}{"\n"}
@@ -2404,7 +2432,7 @@ var Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <Jx>export class</Jx>{" AppModule {}"}
             </CodeFile>
             <p className="flow-label">{tr2({ uz: "GET /car natijasi", ru: "результат GET /car" })}</p>
-            {phase === 0 && <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: "center", fontStyle: "italic", margin: 0 }}>{tr2({ uz: "Mijozni kiriting ←", ru: "Впустите посетителя ←" })}</p></div>}
+            {phase === 0 && <div className="frame-dash" style={{ padding: "8px 12px" }}><p className="small" style={{ color: T.ink3, textAlign: "center", fontStyle: "italic", margin: 0 }}>{tr2({ uz: "Mijozni kiriting ←", ru: "Впустите посетителя ←" })}</p></div>}
             {phase === 1 && <div className="frame-warn fade-step"><p className="note-h" style={{ color: T.danger }}>{tr2({ uz: "✗ 404 — topilmadi", ru: "✗ 404 — не найдено" })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr2({ uz: "Fayllar bor, xodimlar joyida — lekin mijoz bo'limni topa olmadi. Taxtada «Mashinalar» yo'q. Chapdagi taxtachani sudrab, kirish taxtasiga oling.", ru: "Файлы есть, сотрудники на местах — но посетитель не нашёл отдел. На вывеске нет «Машины». Перетащите табличку слева на вывеску у входа." })}</p></div>}
             {phase === 2 && <div className="frame-success fade-step"><p className="note-h" style={{ color: T.success }}>{tr2({ uz: "🪧 Taxtacha osildi", ru: "🪧 Табличка повешена" })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr2({ uz: <>Kodda <span className="mono">CarModule,</span> qatori paydo bo'ldi. Endi mijozni qayta kiriting — bo'limni topadimi?</>, ru: <>В коде появилась строка <span className="mono">CarModule,</span>. Теперь впустите посетителя снова — найдёт ли он отдел?</> })}</p></div>}
             {done && <>
@@ -3253,6 +3281,13 @@ function ScreenLivePractice({ title, task, checklist, screen, storedAnswer, onAn
               <div className="lp-task-h"><span className="lp-task-badge">{tr2({ uz: "TOPSHIRIQ", ru: "ЗАДАНИЕ" })}</span></div>
               <p className="body" style={{ margin: 0, color: T.ink }}>{tr2(task)}</p>
             </div>
+            {
+    /* §34: tugma bo'sh chap ustunda — 6 qadamdan keyin pastki chiziqdan tushmaydi */
+  }
+            <button className={`lp-done-btn ${done ? "is-done" : ""}`} disabled={done} onClick={complete} style={{ alignSelf: "flex-start" }}>
+              {done ? tr2({ uz: "✓ Bajarildi — ustozni kuting", ru: "✓ Выполнено — ждите наставника" }) : tr2({ uz: "✅ Bajardim", ru: "✅ Выполнил" })}
+            </button>
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr2({ uz: "Ajoyib! Vazifani bajardingiz. Ustoz tekshirib, keyingi qadamga o'tkazadi.", ru: "Отлично! Задание выполнено. Наставник проверит и переведёт вас на следующий шаг." })}</p></div>}
             <MentorPracticeStats live={_live} screen={screen} />
             <StudentPracticePulse live={_live} screen={screen} />
           </Col>
@@ -3267,10 +3302,6 @@ function ScreenLivePractice({ title, task, checklist, screen, storedAnswer, onAn
                   </button>;
   })}
             </div>
-            <button className={`lp-done-btn ${done ? "is-done" : ""}`} disabled={done} onClick={complete}>
-              {done ? tr2({ uz: "✓ Bajarildi — ustozni kuting", ru: "✓ Выполнено — ждите наставника" }) : tr2({ uz: "✅ Bajardim", ru: "✅ Выполнил" })}
-            </button>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr2({ uz: "Ajoyib! Vazifani bajardingiz. Ustoz tekshirib, keyingi qadamga o'tkazadi.", ru: "Отлично! Задание выполнено. Наставник проверит и переведёт вас на следующий шаг." })}</p></div>}
           </Col>
         </div>
       </div>
@@ -3567,7 +3598,8 @@ function NestArchResourceLesson({ lang: langProp, onFinished, liveToken }) {
     setPlus((p) => p || true);
     setBoard((b) => b.dto ? b : { ...b, dto: true });
   }, []);
-  const boardVal = { board, fill, plus, plusOn };
+  const [agent, setAgent] = useState3(null);
+  const boardVal = { board, fill, plus, plusOn, agent, setAgent };
   const earnedRef = useRef3(new Set(saved?.earned || []));
   const [earned, setEarned] = useState3(() => new Set(saved?.earned || []));
   const [achToasts, setAchToasts] = useState3([]);
@@ -3722,7 +3754,7 @@ function NestArchResourceLesson({ lang: langProp, onFinished, liveToken }) {
         .radio-dot { width: 10px; height: 10px; border-radius: 50%; background: ${T.accent}; }
         .hook-ack { margin: 2px 0 0; font-family: 'Manrope'; font-weight: 500; font-size: clamp(13px,1.5vw,14.5px); color: ${T.ink2}; }
 
-        .h-title { font-size: clamp(22px,4vw,38px); } .h-sub { font-size: clamp(17px,2.5vw,22px); }
+        .h-title { font-size: clamp(22px,4vw,36px); letter-spacing: -0.015em; text-wrap: balance; } .h-sub { font-size: clamp(17px,2.5vw,22px); }
         .h-ask { font-size: clamp(19px,2.6vw,27px); line-height: 1.32; letter-spacing: -0.01em; text-wrap: balance; }
         .body { font-size: clamp(14px,1.6vw,16px); line-height: 1.5; }
         .eyebrow { font-size: clamp(11px,1.3vw,12px); letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600; }
@@ -3771,20 +3803,28 @@ function NestArchResourceLesson({ lang: langProp, onFinished, liveToken }) {
         .editor { border-radius: 12px; overflow: hidden; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.2); }
         .editor-bar { background: #2D2D2D; padding: 7px 11px; display: flex; align-items: center; gap: 9px; }
         .editor-tab { font-family: 'JetBrains Mono'; font-size: 11px; color: #C9D1D9; background: #1E1E1E; padding: 4px 11px; border-radius: 6px 6px 0 0; word-break: break-all; }
-        .editor-body { background: ${CODE.bg}; padding: 12px 14px; }
-        .editor-code { font-family: 'JetBrains Mono'; font-size: clamp(11px,1.4vw,12.5px); line-height: 1.75; color: ${CODE.text}; white-space: pre-wrap; word-break: break-word; margin: 0; }
+        .editor-body { background: ${CODE.bg}; padding: 9px 14px; }
+        .editor-code { font-family: 'JetBrains Mono'; font-size: clamp(11px,1.4vw,12.5px); line-height: 1.6; color: ${CODE.text}; white-space: pre-wrap; word-break: break-word; margin: 0; }
         .line-empty { color: ${CODE.comment}; font-style: italic; }
 
         /* PICK LINES */
-        .pick-row { display: flex; align-items: center; gap: 10px; width: 100%; text-align: left; background: ${T.paper}; border: none; border-radius: 10px; padding: 10px 12px; cursor: pointer; transition: all 0.16s; box-shadow: 0 4px 12px -6px rgba(${T.shadowBase},0.16); font-family: 'JetBrains Mono'; font-size: 11.5px; color: ${T.ink}; }
+        .pick-row { display: flex; align-items: center; gap: 10px; width: 100%; text-align: left; background: ${T.paper}; border: none; border-radius: 10px; padding: 7px 12px; cursor: pointer; transition: all 0.16s; box-shadow: 0 4px 12px -6px rgba(${T.shadowBase},0.16); font-family: 'JetBrains Mono'; font-size: 11.5px; color: ${T.ink}; }
         .pick-row:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 8px 18px -6px rgba(${T.shadowBase},0.22); }
         .pick-row.picked { background: ${T.successSoft}; color: ${T.success}; box-shadow: inset 0 0 0 1.5px ${T.success}; cursor: default; }
         .pick-row:disabled { cursor: default; }
         .pick-plus { margin-left: auto; font-weight: 700; color: ${T.ink3}; } .pick-row.picked .pick-plus { color: ${T.success}; }
 
         /* AGENT CARD */
-        .agent-card { background: ${T.blueSoft}; border-left: 4px solid ${T.blue}; border-radius: 10px; padding: 11px 14px; }
-        .agent-lbl { font-family: 'Manrope'; font-weight: 800; font-size: 11px; color: ${T.blue}; display: block; margin-bottom: 4px; }
+        .oc-board { position: relative; }
+        .oc-agent { margin-top: -6px; }
+        .oc-agent-btn { position: absolute; top: 7px; right: 64px; list-style: none; user-select: none; font-family: 'Manrope'; font-weight: 800; font-size: 11px; color: ${T.blue}; background: ${T.blueSoft}; border-radius: 99px; padding: 4px 11px; cursor: pointer; }
+        .oc-agent-btn::-webkit-details-marker { display: none; }
+        .oc-agent-btn::after { content: ' ▸'; }
+        .oc-agent[open] > .oc-agent-btn::after { content: ' ▾'; }
+        .oc-agent-btn:hover { box-shadow: inset 0 0 0 1.5px ${T.blue}; }
+        .oc-agent[open] { margin-top: 0; }
+        @media (max-width: 760px) { .oc-agent-btn { position: static; display: inline-block; } .oc-agent { margin-top: 0; } .oc-agent[open] .oc-agent-msg { margin-top: 6px; } }
+        .oc-agent-msg.oc-agent-msg { background: ${T.blueSoft}; border-left: 4px solid ${T.blue}; border-radius: 10px; padding: 8px 12px; }
         .agent-msg { font-family: 'JetBrains Mono'; font-size: 12px; color: ${T.ink}; margin: 0; line-height: 1.55; }
         .prompt-box { background: ${T.blueSoft}; border-left: 4px solid ${T.blue}; border-radius: 10px; padding: 12px 15px; }
 
@@ -3826,9 +3866,10 @@ function NestArchResourceLesson({ lang: langProp, onFinished, liveToken }) {
 
         /* SO'ROV YO'LI */
         .flow-rail { display: flex; flex-direction: column; gap: 2px; }
-        .flow-stop { display: flex; flex-direction: column; align-items: flex-start; transition: opacity 0.3s; }
+        .flow-stop { display: grid; grid-template-columns: 30px 1fr; align-items: center; column-gap: 10px; transition: opacity 0.3s; }
         .flow-stop > span { display: inline-flex; }
-        .flow-ico { width: 34px; height: 34px; border-radius: 9px; align-items: center; justify-content: center; font-size: 17px; box-shadow: 0 4px 12px -6px rgba(${T.shadowBase},0.2); transition: all 0.3s; }
+        .flow-stop > .flow-down { grid-column: 1; justify-content: center; }
+        .flow-ico { width: 30px; height: 30px; border-radius: 9px; align-items: center; justify-content: center; font-size: 15px; box-shadow: 0 4px 12px -6px rgba(${T.shadowBase},0.2); transition: all 0.3s; }
         .flow-k { font-family: 'JetBrains Mono'; font-weight: 700; font-size: 12px; margin: 3px 0 0 6px; }
         .flow-down { font-size: 15px; margin: 1px 0 1px 9px; line-height: 1; transition: color 0.3s; }
 
@@ -3880,14 +3921,14 @@ function NestArchResourceLesson({ lang: langProp, onFinished, liveToken }) {
         .qcode { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 0.92em; background: rgba(20,17,14,0.08); border-radius: 6px; padding: 1px 6px; white-space: nowrap; }
 
         /* === 🪧 OCHILISH TAXTASI (strip) — 🎨 Dizayn sayqallaydi === */
-        .oc-board { background: ${T.paper}; border-radius: 14px; padding: 11px 13px; box-shadow: 0 6px 18px -8px rgba(${T.shadowBase},0.18); display: flex; flex-direction: column; gap: 8px; }
-        .oc-board-h { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+        .oc-board { background: ${T.paper}; border-radius: 14px; padding: 8px 13px; box-shadow: 0 6px 18px -8px rgba(${T.shadowBase},0.18); display: flex; flex-direction: column; gap: 8px; }
+        .oc-board-h { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
         .oc-board-t { font-family: 'Manrope'; font-weight: 800; font-size: 11px; letter-spacing: 0.08em; color: ${T.ink2}; text-transform: uppercase; }
         .oc-board-n { font-family: 'JetBrains Mono'; font-weight: 700; font-size: 12px; color: ${T.ink3}; background: ${T.bg}; border-radius: 99px; padding: 2px 9px; }
         .oc-board-n.full { color: ${T.success}; background: ${T.successSoft}; }
         .oc-strip { display: flex; align-items: stretch; gap: 7px; flex-wrap: wrap; }
         .oc-sep { display: flex; align-items: center; color: ${T.ink3}; font-weight: 700; }
-        .oc-slot { flex: 1; min-width: 96px; display: flex; align-items: center; gap: 6px; border: 1.5px dashed ${T.ink3}; border-radius: 10px; padding: 7px 9px; background: ${T.bg}; transition: all 0.25s; }
+        .oc-slot { flex: 1; min-width: 96px; display: flex; align-items: center; gap: 6px; border: 1.5px dashed ${T.ink3}; border-radius: 10px; padding: 5px 9px; background: ${T.bg}; transition: all 0.25s; }
         .oc-slot.on { background: ${T.paper}; border: 1.5px solid transparent; border-left: 4px solid ${T.success}; box-shadow: 0 5px 14px -7px rgba(${T.shadowBase},0.2); }
         .oc-slot.plate { min-width: 118px; }
         .oc-slot.plate.on { border-left-color: ${T.nest}; }
@@ -4116,8 +4157,8 @@ function NestArchResourceLesson({ lang: langProp, onFinished, liveToken }) {
         .lp-task { background: ${T.paper}; border-radius: 14px; padding: 15px 17px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.14); display: flex; flex-direction: column; gap: 9px; border-left: 4px solid ${T.accent}; }
         .lp-task-h { display: flex; align-items: center; gap: 8px; }
         .lp-task-badge { font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: 10.5px; letter-spacing: 0.12em; color: #fff; background: ${T.accent}; padding: 3px 9px; border-radius: 6px; }
-        .lp-steps { display: flex; flex-direction: column; gap: 8px; }
-        .lp-step { display: flex; align-items: center; gap: 11px; width: 100%; text-align: left; background: ${T.paper}; border: none; border-radius: 11px; padding: 11px 13px; font-family: 'Manrope', sans-serif; font-weight: 500; font-size: clamp(13px,1.6vw,15px); color: ${T.ink}; cursor: pointer; transition: all 0.16s; box-shadow: 0 5px 14px -7px rgba(${T.shadowBase},0.16); }
+        .lp-steps { display: flex; flex-direction: column; gap: 6px; }
+        .lp-step { display: flex; align-items: center; gap: 11px; width: 100%; text-align: left; background: ${T.paper}; border: none; border-radius: 11px; padding: 8px 13px; font-family: 'Manrope', sans-serif; font-weight: 500; font-size: clamp(13px,1.6vw,15px); color: ${T.ink}; cursor: pointer; transition: all 0.16s; box-shadow: 0 5px 14px -7px rgba(${T.shadowBase},0.16); }
         .lp-step:hover:not(.on) { box-shadow: 0 8px 18px -7px rgba(${T.shadowBase},0.24); }
         .lp-step.on { background: ${T.successSoft}; color: ${T.success}; box-shadow: inset 0 0 0 1.5px ${T.success}55; }
         .lp-check { width: 22px; height: 22px; border-radius: 50%; flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 12px; background: ${T.bg}; color: ${T.ink3}; box-shadow: inset 0 0 0 1.5px ${T.ink3}55; transition: all 0.16s; }
