@@ -1890,6 +1890,10 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                   : <span className="calcw-wait">retention(keldi, qaytdi) → ?</span>}
               </div>
             </div>
+            <MentorPracticeStats live={live} screen={screen} label="⚛️ Panelni kodlaganlar" />
+            <button className={`lp-done-btn ${done ? 'is-done' : ''} ${!calcOk && !done ? 'locked' : ''}`} disabled={done} onClick={done ? undefined : calcOk ? complete : goToCalc}>
+              {done ? '✓ Bajarildi' : calcOk ? "✅ Bajardim — kod yozildi, foiz chiqdi" : "🔒 Avval jonli sinovni ishlating — bosing, ko'rsataman"}
+            </button>
             <div className={`wsx ${helpOpen ? 'open' : ''}`}>
               <button className="wsx-toggle" onClick={() => setHelpOpen(o => !o)}>💡 Yordam — bu so'zlar nima? {helpOpen ? '▾' : '▸'}</button>
               {helpOpen && <div className="wsx-body">
@@ -1904,11 +1908,6 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <button className="wsx-toggle" onClick={() => setStarOpen(o => !o)}>⭐ Yulduzcha vazifa — kuchlilar uchun {starOpen ? '▾' : '▸'}</button>
               {starOpen && <div className="wsx-body"><p>MAU kartasini qo'shib, <span className="mono">DAU/MAU</span> nisbatini (bo'linmasini) chiqaring — «qanchalik tez-tez qaytishadi» ko'rsatkichi.</p></div>}
             </div>
-            <MentorPracticeStats live={live} screen={screen} label="⚛️ Panelni kodlaganlar" />
-            <button className={`lp-done-btn ${done ? 'is-done' : ''} ${!calcOk && !done ? 'locked' : ''}`} disabled={done} onClick={done ? undefined : calcOk ? complete : goToCalc}>
-              {done ? '✓ Bajarildi' : calcOk ? "✅ Bajardim — kod yozildi, foiz chiqdi" : "🔒 Avval jonli sinovni ishlating — bosing, ko'rsataman"}
-            </button>
-            {done && <div className="done-mini fade-step">✅ MetrikaPanel loyihangizda <span className="dm-sub">— retention endi kodda hisoblanadi</span></div>}
           </Col>
           <Col>
             <div className="vsc no-copy fade-up delay-2" onCopy={e => e.preventDefault()} onCut={e => e.preventDefault()} onContextMenu={e => e.preventDefault()}>
@@ -1923,6 +1922,8 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 ))}
               </div>
             </div>
+            {/* F-0916-01 Q1-B: «Bajarildi» chipi kod ostida — chap ustunda tugma Yordam/⭐ USTIDA (PmJtbd bilan juft) */}
+            {done && <div className="done-mini fade-step">✅ MetrikaPanel loyihangizda <span className="dm-sub">— retention endi kodda hisoblanadi</span></div>}
           </Col>
         </div>
         <MentorNote>Kodni o'quvchilar yozadi — «⚛️ Panelni kodlaganlar» ro'yxatida kuzatasiz; «Davom etish» siz uchun ochiq. Vaqt: 8-10 daqiqa, ulgurmagan uyda tugatadi. Eng ko'p adashish — qavslar va katta harf (MetrikaPanel). Sinfga savol: keldi 0 bo'lsa nima bo'ladi?</MentorNote>

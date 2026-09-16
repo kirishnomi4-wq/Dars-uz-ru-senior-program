@@ -1817,6 +1817,9 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <div className={`jkd-panel fade-up delay-2 ${done ? 'is-done' : ''}`}>
               {/* F-0727-51: 4-bandlik checklist O'CHDI — bitta halol «Bajardim» tugmasi (mentor-statistika signali shu tugmadan) */}
               <p className="flow-label">Kodni VS Code'da terib, brauzerda 3 kartangizni ko'ring — keyin tasdiqlang</p>
+              <button className={`lp-done-btn ${done ? 'is-done' : ''} ${!found && !done ? 'locked' : ''}`} disabled={done} onClick={done ? undefined : found ? complete : goToQuiz}>
+                {done ? '✓ Bajarildi' : found ? "✅ Bajardim — kod yozildi, kartalarim ko'rindi" : "🔒 Avval kod-savolini yeching — bosing, ko'rsataman"}
+              </button>
               <div className={`wsx star ${starOpen ? 'open' : ''}`}>
                 <button className="wsx-toggle" onClick={() => setStarOpen(o => !o)}>💡 Yordam {starOpen ? '▾' : '▸'}</button>
                 {starOpen && <div className="wsx-body">
@@ -1825,10 +1828,6 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                   <p>⭐ Qo'shimcha: 3 kartani <b>map</b> bilan birdaniga chiqaring: <span className="mono">{'jobs.map(j => <JtbdCard ... />)'}</span></p>
                 </div>}
               </div>
-              <button className={`lp-done-btn ${done ? 'is-done' : ''} ${!found && !done ? 'locked' : ''}`} disabled={done} onClick={done ? undefined : found ? complete : goToQuiz}>
-                {done ? '✓ Bajarildi' : found ? "✅ Bajardim — kod yozildi, kartalarim ko'rindi" : "🔒 Avval kod-savolini yeching — bosing, ko'rsataman"}
-              </button>
-              {done && <div className="done-mini fade-step">✅ JtbdCard tayyor <span className="dm-sub">— {isOwn ? '3 kartangiz' : 'namunaviy 3 karta'} endi loyihangizda</span></div>}
             </div>
             <MentorPracticeStats live={live} screen={screen} label="⚛️ Komponentni qurganlar" />
           </Col>
@@ -1865,6 +1864,8 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               </div>
             </div>
             </div>
+            {/* F-0916-01 Q1-B: «Bajarildi» chipi kod ostida — panelda tugma Yordam USTIDA (PmMetrics bilan juft) */}
+            {done && <div className="done-mini fade-step">✅ JtbdCard tayyor <span className="dm-sub">— {isOwn ? '3 kartangiz' : 'namunaviy 3 karta'} endi loyihangizda</span></div>}
           </Col>
         </div>
         <MentorNote>Bu kodingni o'quvchilar bajaradi — «⚛️ Komponentni qurganlar» panelida kuzatasiz; «Davom etish» siz uchun ochiq. Eng ko'p adashish — ma'lumot nomlari va Katta harf (JtbdCard). Ulgurmagan o'quvchi uyda tugatadi (qisqa uy-vazifa). Xohlasangiz proyektorda o'z VS Code'ingizda jonli ko'rsating.</MentorNote>
