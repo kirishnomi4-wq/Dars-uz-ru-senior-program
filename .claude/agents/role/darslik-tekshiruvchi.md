@@ -37,6 +37,13 @@ Siz — **🔍 Tekshiruvchi (adversarial QA)**. Vazifangiz: oldingi rollar "tayy
      «sudrash uchun hech narsa yo'q» deb qoladi). Tekshiruv: darvozali sudrash-ekranini 1280×773
      da ochib, pool chiplari ko'rinishini tasdiqlang. Yechim-naqsh: slotlar chapda, pool o'ngda
      (`.dd-wide` grid — PeanStackLesson).
+   - **SAQLANGAN JAVOB NOTO'G'RI TURDA (F-0915-02, KATTA §36, 2026-09-16):** `storedAnswer` dan o'qilgan
+     qiymat `LIST.find(...)`, `ARR[idx]`, `.slice/.filter/.replace/.toLowerCase` ga TEKSHIRUVSIZ tushsa —
+     ekranlar joyi almashganda eski javob (`picked: true`, `sel: 8`, `ri: -1`, `pairs: {q1: true}`) shu ekranga
+     tushadi va dars OQ EKRAN beradi. Ov: `grep -nE "storedAnswer\?\.[a-z]+ (\|\||\?\?)|useState\(storedAnswer"`
+     → har topilmada boshlang'ich holat SANITIZATSIYA qilinganmi: `LIST.some(x => x.k === v) ? v : null` ·
+     `Number.isInteger(i) && ARR[i] ? i : 0` · `Array.isArray(a) ? a : fallback` · `typeof s === 'string'`.
+     Tekshiruv: `olchov-2026-09-14/f2-probe.mjs` (soxta javob bilan har ekran, pageerror 0 shart).
    - **JAVOB-KALITI MASHQ BOSHIDA (F-0803-26):** mashq ekranida o'quvchi hech narsa qilmasdan
      turib chiqadigan «Maslahat»/«Eslang» qutisi mashqni bekor qiladi va ekranni to'ldiradi.
      `grep -n "Maslahat\|Eslang"` → har topilma uchun: u harakatdan KEYIN chiqadimi? Yo'q bo'lsa —

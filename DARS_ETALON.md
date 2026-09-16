@@ -205,6 +205,7 @@ bir-biriga yopishadi. Etalon o'lchov repo ichida bor: **arena** `.qz-q` (28px / 
 ```
 - Savol-sarlavhasi: `className="title h-ask"` (ilgari `title h-sub` / PM darslarda `title h-title`).
 - `.h-title` va `.h-sub` ga **tegilmaydi** — ular sarlavha va yakun-subtitr uchun qoladi.
+  (2026-09-15: `.h-title` o'lchami 150-qonun bilan 36px ga o'zgardi — 11-N; bu band savol-sarlavhasi `.h-ask` haqida.)
 - Variant tugmasi: `font-size: clamp(15px,1.85vw,17px)` · `line-height: 1.45` ·
   padding `clamp(13px,1.9vw,17px) clamp(15px,2.2vw,20px)` · variantlar orasi **11px**.
 - Savol÷variant nisbati **2.4× → 1.6×** (asosiy ish — variantlarni o'qish — mayda qolmaydi).
@@ -533,6 +534,8 @@ const PRACTICE_AFTER = { <screenIdx>: { task, starter }, ... }; // shu ekrandan 
 const next = () => {
   const entry = PRACTICE_AFTER[screen];
   if (!entry) { advance(); return; }
+  // 🔴 149-qonun (F-0914-11): jonli sinfda sessiya tugamagan ekan mashq ochiladi — `mentorAlive` bu shartga KIRMAYDI
+  if (!(live && (live.mode === 'mentor' || (live.mode === 'student' && live.status !== 'ended')))) { advance(); return; }
   if (live && live.mode === 'mentor') { setMentorPractice({ ...entry, fromScreen: screen }); advance(); }
   else runPractice(entry, screen);
 };
@@ -796,6 +799,15 @@ bilan emas, o'sha ipning KENGAYISHI bilan ochiladi.
 - **Tekshiruv (grep-lanadigan):** darsdagi funksiya/o'zgaruvchi nomlarini yig'ib sanang —
   asosiy tushuntirish-ekranlarida 1 ta nom-oila bo'lishi shart. Eski ip qoldig'i:
   `grep "salomBer\|kvadrat\|narxHisobla\|qoshish\|ayir" <fayl>` → 0.
+- 🔴 **ISTISNO — SHART DARSI (if/else, m2-04; foydalanuvchi qarori 2026-09-14, F-0914-01).**
+  Foydalanuvchi hukmi: «misollar bir xil» — butun dars `yosh >= 12` atrofida aylangan va o'quvchi
+  yangi tushuncha kelganini sezmagan. Shart **tabiatan** har joyda uchraydi, darsning sabog'i aynan
+  shu. Shuning uchun bu darsda **har bosqich o'z hayotiy misoli** bilan ochiladi va misol **o'sha
+  ekranning o'zida** to'liq yakunlanadi (hook — telefon PIN · if — zaryad < 20% · else va boolean —
+  ID-karta 16 yosh · else if — baho · debugging — PIN · praktika — radar, tarjima).
+  Ip o'rniga **ko'prik** qoladi: debugging hook'dagi PIN'ga qaytadi, boolean else'dagi ID-kartani
+  davom ettiradi, shart quruvchi if'dagi zaryadni. Istisno boshqa darslarga **o'z-o'zidan
+  tarqalmaydi** — 108-qonun JsVars/JsLoops/JsFunctions uchun kuchida.
 
 **109-qonun — TMI (ortiqcha matn) TAQIQI.** Matn-mezonlari `MATN_KORPUS.md` 74-75-bo'limda
 (mentor maks 2 gap · reja-ekran ta'rif aytmaydi · olib tashlash testi · bir g'oya maks
@@ -1426,7 +1438,7 @@ JONLI / BALL (🔴 statistika buglari shu yerdan)
 [ ] 3    submitAnswer imzosi o'zgarmagan; indeks konvensiyasi (<100 / >=100 / 500+)
 [ ] 4    SCREEN_META.length == screens.length; PRACTICE_AFTER/Q_LABELS indekslari to'g'ri
 [ ] 4.1  dars oqimi skeletga mos: hook → reja → (exploration→test→praktika)× → builder → debugging → podium → flashcard → summary
-[ ] 4.2  summary standart: ScoreRing + CodeStrike CTA + RECAP/Uyga vazifa + 🏅 kolleksiya + glossary
+[ ] 4.2  summary standart: ScoreRing + CodeStrike CTA + RECAP/Uyga vazifa + 🏅 kolleksiya (glossary YO'Q — 193-qator qoidasi; F-0916-02: ziddiyat yopildi, 22 darsdagi glossary KATTA §39)
 [ ] 5    QuestionScreen: 1-urinish qotiriladi (firstCorrectRef), oneShot
 [ ] 5.5  animatsiya/mashq ekranlarida NavNext optionalLive (testlarda YO'Q; erkin rejimda majburiy)
 [ ] 5.7  Kahoot-reveal: reveal_screen RPC + revealed formula + o'quvchida neytral kutish (option-wait) + mentor NavNext reveal'gacha qulf
@@ -2561,7 +2573,7 @@ ostiga tushadi. O'quvchi buni «pastda qirqilib qolgan» deb ko'radi.
    siljiganda HAR holat alohida o'lchanadi — eng baland holat ko'pincha o'rtada (yordam
    qatori bor qadam).
 3. 🔴 **RAD:** shriftni kichraytirib sig'dirish (o'qilish yo'qoladi) va «baribir skroll bor»
-   deb qoldirish (60-qonun).
+   deb qoldirish (60-qonun). Istisno faqat `.h-title` uchun — 150-qonun (11-N): 36px, pastki chegara 34px.
 
 **O'lchov (brauzerda) — uch yolg'on joy, uchalasi shu seansda tutildi:**
 - `scrollHeight − clientHeight` pastki chekinishni (`padding-bottom`) to'liq qo'shmaydi —
@@ -2604,3 +2616,136 @@ buni har safar TASDIQLASH shart; «xato chiqmadi» — «to'g'ri o'lchandi» deg
 bilan yozilgan, lakin fayl ichida uslubi YO'Q edi — uch ekranda qatorlar yopishgan oddiy matn
 bo'lib chiqardi (HEAD da ham shunday). Tekshiruv: `className="term"` ishlatgan har fayl
 `.term {` qoidasini ham saqlashi shart — kursda 21 fayl, hozir hammasi toza.
+
+🔴 **Kalibrovka-8 — yig'ilgan Mentor = o'quvchi ochgan panel (§34 pilot m4a-03, 2026-09-14).** Asbob har
+ekranda bosiladigan elementlarni yurib chiqadi; yig'ilgan `DIV.mentor.is-collapsed` ham «bosiladigan»
+bo'lgani uchun uni qayta ochib, so'ng «pastga tushgan» deb o'lchardi (ru s13: «84px», yig'ilgan holatda
+haqiqiy qoldiq 36px). Qoida: Mentorni ochish — o'quvchi ochgan panel, ekran boshiga bir marta
+(`body.dataset.ccMentorDone`), «haqiqiy» bo'limga kirmaydi.
+Saboq: birinchi kalibrovka **yolg'on-toza** berdi — yig'ilganda React yangi «▾» tugunini chizadi, u qayta
+tanlanib asbob haqiqiy tugmalarga yetmagan («7 holat» birdan yo'qolgan). Shuning uchun har kalibrovkadan
+keyin bosish tartibi probe bilan tekshiriladi (`probe_mentor.mjs`); «xato chiqmadi» — «to'g'ri o'lchandi» degani emas.
+
+🔴 **Kalibrovka-9 — ko'rinmas matn D-detektordan chiqariladi.** Ota `opacity: 0` bo'lgan yoki nol balandlikda
+qirqilgan matn ustiga boshqa element tushsa, bu «yopib qo'yish» emas — o'quvchi o'sha matnni baribir ko'rmaydi.
+Dalil: m4a-03 s10 — yig'ilgan Mentor matni ustida agent tugmasi «61% yopdi», skrinshotda matn yo'q.
+
+🔴 **Ko'r nuqta (ochiq, halol qayd):** asbob faqat yangi ochilgan ekranni o'lchaydi. Bajarilgan ekranga
+«Orqaga» bilan qaytilganda ekran boshlang'ich emas, javobdan keyingi holatda chiziladi — bu holat
+o'lchanmagan (m4a-03 ru s13 268px · s6 96px · s10 80px). Yopilishi: asbobga «orqaga-yurish» rejimi.
+
+Eslatma: 148-qonun bilan (quyida) Mentor kompyuterda ochiq — Kalibrovka-8 endi faqat tor ekran va
+7-modul o'lchovida ishga tushadi, lekin o'z kuchida qoladi.
+
+## 11-L. 🧑‍🏫 148-QONUN: MENTOR KOMPYUTERDA OCHIQ TURADI — JOY YETMASA JOYLASHUV O'ZGARADI, MENTOR EMAS (2026-09-14, F-0914-08)
+
+**Kelib chiqishi:** §34 pilotida (m4a-03) joy tanqisligi Mentor qatorini «kompyuterda ham birinchi bosishda
+yig'iladi» (`collapseOn = !mentorStatic`) qilib yopilgan, keyin 110 darsga yoyilgan edi. Foydalanuvchi
+darsni o'zi ko'rib qaytardi: «desktopda Mentor yig'ilmasin, mobileda mumkin» (F-0914-08). 7-moduldan
+tashqari 98 dars qaytarildi; InternetLesson/PracticeLesson2 ning eski «faqat ayrim ekranlarda» istisnosi
+ham olib tashlandi («desktopda yig'ilishi shart emas»).
+
+**Qoida:**
+1. Kompyuter kengligida Mentor qatori **ochiq** turadi. Yig'ilish faqat tor ekranda:
+   ```
+   collapseOn = isNarrow && !mentorStatic
+   ```
+   Bu qator kursda bir xil — **96 fayl**; InternetLesson (`mentorCollapse`) va PracticeLesson2 (`mentorCollapsible`)
+   o'z nomi bilan, mazmuni shu (jami 98). **7-modul (12 fayl, `collapseOn = !mentorStatic`) hali qayta yig'iladi —
+   hozir unga e'tibor berilmaydi** (foydalanuvchi, 2026-09-14); qayta yig'ilganda shu qonun bilan quriladi.
+2. Ekran sig'masa — **147 (e) naqshlari** bilan yopiladi: bo'sh ustunga ko'chirish · kutayotgan qadam ixcham,
+   faol qadam to'liq · uzun kod `CodeFile maxH` (ichki skroll) · takror izoh bitta qutida · bekatlar bir
+   qatorda (grid) · agent-karta `<details>` ga. **Mentorni yig'ish — yechim sifatida RAD.**
+3. RAD (avvalgidek): shrift kichraytirish · «baribir skroll bor» (60-qonun). `.h-title` uchun yagona istisno —
+   150-qonun (11-N): 36px + harf orasi −0.015em + `balance`, pastki chegara 34px, matn so'roqsiz o'zgarmaydi (2026-09-15).
+4. Mentor MATNI uzunligi 109-qonun (TMI) va PM_Prompt (400 belgi) bilan chegaralangan — joy tanqisligida
+   avval matn ortiqchaligi tekshiriladi, quti emas.
+
+**Nega:** Mentor — darsdagi o'qituvchi ovozi (5.8: vazifani Mentor beradi). Yig'ilgan qator
+kompyuterda «bosilmasa ko'rinmaydigan» matn, holbuki joy bor. Tor ekranda esa ko'rinish uchun yig'ilish qoladi.
+
+**O'lchov bilan bog'liqlik (ongli qaror):** Mentor ochiq bo'lgani uchun §34 pilotida yopilgan sig'maslik
+holatlari qaytishi mumkin; kurs qayta o'lchovi (sweep34c, self × 1366, uz → ru) shu qoida bilan yuritildi,
+qaytgan holatlar joylashuv bilan yopiladi (KATTA §34).
+
+**Tekshiruv (2026-09-14, tasdiqlangan):** `grep -rl "collapseOn = isNarrow && !mentorStatic" src` = 96 fayl;
+`grep -rl "collapseOn = !mentorStatic" src` = 12 fayl, hammasi `7-Modull/`; InternetLesson/PracticeLesson2 alohida ko'riladi.
+
+## 11-M. ✍️ 149-QONUN: JONLI SINFDA DARS-ICHI MASHQ MENTOR «TIRIKLIK» BELGISIGA BOG'LANMAYDI (2026-09-15, F-0914-11)
+
+**Kelib chiqishi:** texnik darsda 20 o'quvchidan 1 tasida praktika ochilmasdan keyingi sahifaga o'tildi. Lavha
+«Mentor N/18», kirish LMS'dan. Sabab: `next()` mashqni faqat `mentorAlive` rost bo'lganda ochardi (2026-07-29 qoidasi:
+«mentor uzilsa mashq OCHILMAYDI»). `mentorAlive` = o'quvchi mijozi mentor qatorining `updated_at` o'zgarishini oxirgi
+180 s ichida ko'rganmi. Mentor kompyuteri uxlasa, tab bo'g'ilsa yoki Wi-Fi uzilsa, o'sha oynada «Davom etish» bosgan
+o'quvchida mashq **jimgina** tashlab ketilardi. Lahzani serverdan tiklab bo'lmadi (so'rov-log o'chiq, tarix yo'q).
+
+**Qoida:**
+1. Dars-ichi mashq (`PRACTICE_AFTER`) jonli sinfdagi o'quvchida **sessiya tugamagan ekan** ochiladi:
+   `live.mode === 'student' && live.status !== 'ended'`. `live.mentorAlive` bu shartga **kirmaydi**.
+2. Mashqsiz o'tish faqat ikki holatda: mentor «Erkin qilish»ni bosgan (`status === 'ended'`) yoki o'quvchi jonli
+   sinfda emas (self/solo/review) — ular uchun mashq yakun-sahifadagi «Uyga vazifa» orqali.
+3. `mentorAlive` faqat **yumshatish** uchun ishlatiladi (darvoza-qulf, `freeRide`, flashcard yashirish, javob ochish):
+   mentor yo'q bo'lsa o'quvchi erkinroq bo'ladi, lekin hech narsa **olib tashlanmaydi**.
+4. Server mentor-jimlikni o'zi yozadi: `live_mentor_gaps` (migratsiya `0008`) — `updated_at` 180 s dan ko'p sakrasa
+   bitta satr (pin, dars, boshlanish/tugash, ekran, `mentor`/`session_end`). Klient chegarasi `LIVE_STALE_MS` o'zgarsa —
+   yangi migratsiya.
+
+**Nega:** o'quvchi sinfda o'tiribdi, mentor bir necha daqiqaga uzildi — bu o'quvchining aybi emas. Mashqni tashlab
+ketish uni boshqalardan orqada qoldiradi va mentor buni ko'rmaydi. Ochilgan mashq esa mentor qaytganda panelga
+«tugatdi» signalini baribir yuboradi (`PRACTICE_DONE_BASE + ekran`).
+
+**Tekshiruv (2026-09-15, tasdiqlangan):**
+`grep -rn "status !== 'ended' && live.mentorAlive)))) { advance" src --include='*.jsx'` = **0** ·
+`grep -rn "inLiveClass = .*mentorAlive" src --include='*.jsx'` = **0** ·
+`grep -rl "F-0914-11 (2026-09-15)" src --include='*.jsx'` = **14** (Htmllesson1 · Htmllesson2 · CssLesson1/2 · CssPractice ·
+HtmlPractice · HtmlTakrorlash · VsCode · JsVars · JsConditions · JsLoops · JsFunctions · PeanStack · PracticeLesson1).
+Yangi dars quriladigan bo'lsa, `next()` shu 14 darsdagi shakl bilan yoziladi.
+
+## 11-N. 🔠 150-QONUN: SARLAVHA — 36px, ZICH HARF ORASI, TENG BO'LINISH; MATN SO'ROQSIZ O'ZGARMAYDI (2026-09-15, F-0915-01)
+
+**Kelib chiqishi:** §34 3-C skrinshotlarida foydalanuvchi sarlavhaning oxirgi so'zi yoki 🏆 ikkinchi qatorga yolg'iz
+tushganini ko'rsatdi (m1-14 s14 «Chempionlar» sahifasi tayyor! 🏆). Sabab: 38px shriftda sarlavhaga ajratilgan joy
+matndan atigi 1–16 px kichik; 74 darsda h1 ga qo'lda `style={{ maxWidth: N }}` (760–1000 px) joyni yana toraytirgan.
+Foydalanuvchi qarori: **sarlavha matni so'roqsiz o'zgartirilmaydi**; shrift me'yorida kichraysa bo'ladi, juda kichraymasin.
+
+**O'lchov — oldin** (7-modulsiz 96 dars · self × 1366 · javobsiz va javobli holat · noyob sarlavha 1457):
+| | uz | ru |
+|---|---|---|
+| ikki+ qatorli | 112 | 242 |
+| `maxWidth` olinsa bir qatorga qaytadi | 13 | 16 |
+| + harf orasi −0.015em | 28 | 34 |
+| + 36px | 52 | 83 |
+| + 34px | 65 | 124 |
+| joydan > 12% uzun (tabiiy ikki qator) | 49 | 123 |
+(+ m3-11 alohida: uz 1 · ru 3 — asbob darvozasi `.lesson-root` dan tashqarida chizilgani uchun qayta o'lchandi.)
+
+**Qoida:**
+1. 38px oilasidagi sarlavha: `.h-title { font-size: clamp(22px,4vw,36px); letter-spacing: -0.015em; text-wrap: balance; }`.
+2. `.h-title` ga inline `maxWidth` qo'yilmaydi — kenglikni `.screen` / `.head` belgilaydi.
+3. **Pastki chegara 34px.** Tanlangan qiymat 36px (−5%, ko'zga deyarli sezilmaydi). 34px RAD: ru'da yana 41 ta sarlavhani
+   bir qatorga qaytarardi, lekin kursdagi 1457 sarlavhaning hammasi 10% kichrayardi («juda kichraymasin» sharti).
+4. Bir qatorga sig'maydigan sarlavha ikki **teng** qatorga bo'linadi (`balance`) — oxirgi qatorda yolg'iz so'z yoki emoji qolmaydi.
+5. Sarlavha **matni** sig'dirish uchun o'zgartirilmaydi — faqat foydalanuvchi roziligi bilan.
+6. 147-qonundagi va 148 (3) dagi «shriftni kichraytirib sig'dirish — RAD» oddiy matn uchun o'z kuchida qoladi;
+   `.h-title` uchun yagona istisno — shu qonundagi 36px.
+7. Qamrovdan tashqari: 7-modul (hali qayta yig'iladi) · PM 26px oilasi `clamp(20px,2.6vw,26px)` va `.h-title.h-center`
+   (32px, `balance` allaqachon bor) · `src/eski`, demo papkalari.
+
+**Nega:** sarlavha — ekranning birinchi o'qiladigan qatori. Ikkinchi qatorga yolg'iz tushgan so'z ekrandan bir qatorni
+(~40 px) behuda oladi va pastdagi kontentni pastki chiziqdan itaradi (§34), ko'zga esa «buzuq» ko'rinadi.
+
+**Tekshiruv (2026-09-15, tasdiqlangan):**
+`grep -rlF ".h-title { font-size: clamp(22px,4vw,36px); letter-spacing: -0.015em; text-wrap: balance; }" src` = **98 fayl** ·
+eski `clamp(22px,4vw,38px); }` qoidasi (7-modul/eski/demo'dan tashqari) = **0** · `h-title[^>]*maxWidth` = **0** ·
+7-modul/eski/demo 23 fayl tegilmagan · esbuild ✓ · jsx 0 · dark va til chiqishi tahrirdan oldingi bilan **farq 0 qator** · `vite build` ✓.
+Asbob: `~/.claude/projects/-home-kali-Desktop-internetLesson/olchov-2026-09-14/titleprobe-kurs.mjs` (har `.h-title` uchun qator soni,
+kerak/berilgan kenglik, variantlar, oxirgi qatordagi so'zlar soni) · xulosa `titleprobe-xulosa.mjs` · tahrir `sarlavha-tahrir.mjs --fs 36`.
+**Keyin-o'lchov** (oldin ikki qatorli sarlavhasi bo'lgan 81 dars, uz/ru; har tilda noyob sarlavha 1271, oldin bilan 100% mos):
+| | ikki+ qatorli oldin → keyin | qatori ko'paygan | oxirgi qatorda yolg'iz so'z (keyin) |
+|---|---|---|---|
+| uz | 113 → **61** | 0 | **0** |
+| ru | 245 → **160** | 0 | **0** |
+Qolgan ikki qatorlilar joydan haqiqatan uzun — `balance` bilan teng bo'lingan. 15 dars qayta o'lchanmadi: ularda oldin ham ikki qatorli
+sarlavha yo'q edi, qoida esa qator sonini oshira olmaydi (81 darsda «ko'paygan = 0» shuni tasdiqlaydi). Chegara: soxta javob bilan
+yiqiladigan 4 darsda (m1-01, m3-03, m4-15, m4a-01 — KATTA §36) o'sha ekranlarning javobli holati o'lchanmagan.
+Taqqos: `olchov-2026-09-14/taqqos-oldin-keyin.mjs uz|ru`.

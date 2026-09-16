@@ -87,6 +87,9 @@ Har dars tekshirilganda topilgan tushunarsiz/rasmiy so'z shu jadvalga qo'shiladi
 | yacheyka / yacheykali | uyacha / uyachali | rus tilidan olingan so'z; darsda «uyacha» allaqachon ishlatilgan — bir tushuncha, bir atama (DbSqlNosql SQL qutisi) |
 | registr (garaj registri) | daftar | «registr» — rasmiy/idoraviy so'z, bola bilmaydi; jadval = «daftar» (har qatori — bitta yozuv) (BackendCrudPractice RECAPS) |
 | bloklaydi / bloklandi / CORS-blok | to'sadi / to'sib qo'yadi / CORS to'sig'i | chet so'z; «to'sadi» sof o'zbekcha va shlagbaum ko'rgazmasiga to'g'ridan-to'g'ri ulanadi — bir tushuncha, bir atama (FullstackConnect CORS) |
+| turniket (attraksion kirishi) | telefon qulfi (PIN) — yoki umuman boshqa, izohsiz tanish sahna | foydalanuvchi: «turniket so'zi tushunarsiz» — izoh talab qiladigan so'z hook'da turmaydi; sahna almashtirildi, so'z emas (JsConditions m2-04 · 2026-09-14 · F-0914-02) |
+| shox (else shoxi) · ayri (ikki yo'lli ayri) · dalda | qism (else qismi) · ikki yo'l · ekrandagi matnning o'zi | kitobiy/metaforik so'z o'rniga kodda va ekranda turgan narsa (JsConditions 👦 o'qish · 2026-09-14 · F-0914) |
+| qat'iyroq (izohsiz) | «bu ham tekshirish belgisi» | qiyosiy sifat «nimasi?» degan savol tug'diradi (JsConditions `===` eslatmasi · 2026-09-14) |
 | telefon qilib so'rash / qo'ng'iroq qiladi (fetch uchun) | xat yuborib olib keladi / so'rov yuboradi | «qo'ng'iroq» metaforasi paket–yo'l–shlagbaum ko'rgazmasiga zid (qo'ng'iroq shlagbaumdan o'tmaydi); xat/so'rov YO'LGA CHIQADI — ko'rgazma bilan mos (FullstackConnect flashcard) |
 | tamoyil (UX tamoyillari) | qoida | «tamoyil» — kitobiy/rasmiy ot, bola bilmaydi; «3 qoida» aniq va sanaladigan (FullstackProjectDay s2) |
 | tolov (o'zbekcha prozada) | to'lov | `tolov` — FAQAT baza ustuni nomi (kod, ASCII, apostrofsiz). Mentor/RECAPS/flashcard matnida o'zbekcha so'z apostrof bilan: «to'lov». Bir tushuncha, ikki ko'rinish: kod=`tolov`, matn=to'lov (FullstackProjectDay) |

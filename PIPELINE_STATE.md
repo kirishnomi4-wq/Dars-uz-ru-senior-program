@@ -7807,3 +7807,483 @@ ekranlarda). Eski qator 0 qoldi, yangi 110 (m4a-03 bilan). Darvozalar `src` bo'y
 bir xil: esbuild ✓ · jsx ✓ · dark 303 va til 336 (avvaldan qizil, o'zgarmagan).
 Kurs qayta o'lchovi (self × 1366 · uz → ru, `--resume`) fonda boshlandi — natija keyingi yozuvda.
 Commit — foydalanuvchi buyrug'i bilan (push YO'Q).
+
+## 2026-09-14 — F-0914-01…06 · m2-04 «JS — if / else»: foydalanuvchi fidbeki (misollar, turniket, nomlar, = va ==, ichma-ich)
+
+**Fidbek (foydalanuvchi):** bosh sahifada misollar bir xil · 1-page «turniket» tushunarsiz · 2-page pasport/ID-karta
+16 · praktikada real shartlar (radar: 60 dan oshsa jarima) va tarjima · 8-page oxirroqqa · o'zgaruvchi nomlari
+inglizcha · 12-page ma'nosiz — olib tashlansin.
+
+**Qarorlar (savol-javob):** har bosqichga o'z misoli (108-qonun istisnosi) · hook = telefon qulfi · ichma-ich mavzusi
+butunlay olinadi · `=` beradi, `==` tekshiradi (`===` — bitta halol eslatma qatori) · ekran joyi — o'zim tanlayman.
+
+### Nima qilindi (bitta fayl · 21 → 19 ekran)
+| F-ID | Topilma | Tuzatish |
+|---|---|---|
+| 01 | `yosh >= 12` deyarli har ekranda | hook PIN · if zaryad < 20% · else + boolean ID-karta 16 · else if baho · debugging PIN · praktika radar/tarjima |
+| 02 | «Turniket» + «12 yoshdan oshganlar» ↔ `>= 12` (zid) | telefon qulfi sahnasi; hook-ack tanlovga qarab halol |
+| 03 | Reja: `yosh >= 12` + yomg'ir | `age >= 16` → ID-karta; 5-qadam «= va == farqi» (ichma-ich o'rniga) |
+| 04 | Praktikalar o'yin balli | P1 radar if/else (starter `let speed = 75`) · P2 tarjima `lang == "uz"` · P3 radar darajalari (uyga vazifa) |
+| 05 | `yosh/ball/baho/katta/chiptaBor/narx` | `age/score/grade/canGetId/battery/pin/speed/price` — testlar, arena, flashcard, uy vazifasida ham |
+| 06 | `=` va `===` erta (8-o'rin), ichma-ich ekran+test | `=`/`==` ekrani + testi debuggingdan oldin (11, 12) · ichma-ich ekran, testi, RECAPS, flashcard, reja-qadam olindi; arena savoli yangisi bilan (3/3/3/3) |
+
+Indeks-bog'liqlar qayta ulandi va dasturiy tasdiqlandi: `SCREEN_META` 19 = `screens` 19 · `INLINE_KEYS` s4=3/s5b=1/s9=0 ↔
+correctIdx · RECAPS {4,6,12} → scored · Q_LABELS {4,6,12,14} · PRACTICE_AFTER {6,12,15} · QUIZ_BANK 3/3/3/3.
+Nishon: «Gatekeeper/turniket» → «Rule Maker/zaryad» → `server/data/lesson-catalog.json` qayta yig'ildi (faqat shu dars farqi).
+
+### 👦 o'qish (darslik-oquvchi) → yana tuzatildi
+«gacha» ikki ma'noda (radar `<= 60` ↔ kino `< 7`) → «60 yoki undan kam» · hook'da o'rgatilmagan `==` qatori → olindi ·
+canGetId baho va kino orasida sababsiz → else testidan keyin (ID-karta ipi) · «shoxi/ayri/dalda/qat'iyroq» → sodda ·
+`=>` + «strelka (funksiya)» distraktori → `<` · flashcard «qolgani → 3» (darsga zid, eski xato) → «60+ → 3, qolgani → 2» ·
+«Zo'r!»×3, «quyidagi» (til-lint 🟡, eski) → adabiy.
+**Tegilmadi (bahsli):** nishon nomlari inglizcha (kurs konvensiyasi) · shart quruvchi har qanday shartni qabul qiladi
+(maqsadsiz — dizayn qarori) · jonli darsdagi 1-praktika hali ham erta (avval ham shu joyda edi, endi starter bilan).
+
+### Tekshiruv
+- Darvozalar: esbuild ✓ · jsx ✓ · til ✓ (0 error) · prompt ✓ · dark 🔴 5 — **HEAD nusxada ham aynan 5** (avvaldan).
+- Qoldiq: turniket/attraksion/`<Vr>yosh`/`<Vr>ball`/chiptaBor/ichma-ich/TASK_IF… → 0; arena fonidagi `===`/`!==` tokenlari → `==`/`!=`.
+- Skrinshot (uz, bajarilgan holat): s0 s1 s2 s5 s11 s13 — hammasi 614/614.
+- `layout-lint` m2-04 · uz/ru × self/mentor × 1280/1366 → 76+76 ekran, haqiqiy E **0** (faqat s18 yakun-skroll).
+
+### Muhrlandi
+`MATN_KORPUS.md` §181 (9 juftlik + `==` halollik qoidasi) · `DARS_ETALON.md` 108-qonun — **shart darsi istisnosi** ·
+`MATN_ETALONI.md` lug'at (turniket · shox/ayri/dalda · qat'iyroq).
+
+**Commit YO'Q** (buyruqsiz). LMS yig'masi eski — o'quvchiga `build:lms` + CRM yuklashdan keyin yetadi.
+
+## 2026-09-14 — F-0914-07 · m1-11 «Netlify va deploy»: dars amaliyotdan boshlanadi (Demo Day sayti ~1 soat → Netlify ~30 daqiqa)
+
+**Fidbek (foydalanuvchi):** o'quvchi Demo Day loyihasini oldindan o'ylab keladi, lekin qilishga ulgurmadi —
+Netlify uzun slayd bilan chuqur tushuntirilgan. Dars 1,5 soat: boshidagi ~1 soat — Demo Day saytini AI prompt
+bilan 4–5 sahifa qilib yasash, qolgan ~30 daqiqa — Netlify nima · GitHub bilan kirish · loyihani qo'yish.
+1–2-sahifada «bugun nima qilamiz» qadamlari.
+
+**Qarorlar (savol-javob):** deploy — papkani sudrab tashlash (push YO'Q) · 1-qism to'liq + yaxshilash sahifasi ·
+g'oyasi yo'q o'quvchi shu yerda yozadi (shablonlar olib tashlanadi) · testlar 3 ta · AI — **Gemini**.
+
+### Yangi tartib (17 → 17 ekran)
+hook → **reja (3 qadam)** → g'oya + sahifa nomlari → **har sahifada nima** → uslub + prompt → AI → VS Code →
+test `index.html` → **tekshirish ro'yxati + yaxshilash topshirig'i** → Netlify nima → test → GitHub bilan kirish →
+**papkani sudrab tashlash + havolani saqlash** → yakuniy test → uyga vazifa → podium · flashcard · yakun.
+Olib tashlandi: lavash/o'yin-klub/o'zim/to'garak shablonlari · GitHub push ekrani · repo orqali deploy ·
+«deploy tartibi» testi · alohida havola ekrani (drop ekraniga qo'shildi).
+
+Prompt endi o'quvchining `ccDemoDay` muammo/yechimi va har sahifa mazmuni bilan yig'iladi; g'oya shu darsda
+yozilsa, PmLesson1 shaklida `ccDemoDay` ga saqlanadi (Demo Day darsi o'qiydi). Havola `cc-site-url` + `ccPitch3.link`
+ga avvalgidek boradi. Netlify yo'riqlari rasmiy hujjat bilan tekshirildi (Projects sahifasi pastidagi maydon ·
+`app.netlify.com/drop` · yangilash — Deploys sahifasi); aniq tugma yozuvi hujjatda yo'q — joy tasvirlandi.
+
+Bog'liqlar dasturiy tasdiqlandi: `SCREEN_META` 17 = `screens` 17 · test kalitlari s6=2 / s2=0 / s12=3 ·
+RECAPS {6, 9} · Q_LABELS {6, 9, 12} · nishon `shipit` → yakuniy test · QUIZ_BANK 3/3/3/3 (push/repo savollari
+almashtirildi) · flashcard 3 ta karta almashtirildi · `lesson-catalog.json` qayta yig'ildi.
+
+### 👦 o'qish → tuzatildi
+qaysi AI (→ `gemini.google.com`, foydalanuvchi qarori) · «Open Folder» papka yaratmaydi · «nusxalang» → «qo'ying» ·
+maketdagi `menyu.html` · «serverga joylab» izohsiz · o'rgatilmagan `responsive/hosting/Commit` (arena, flashcard) ·
+«brauzer birinchi qidiradi» darsda aytilmagan (test savoli almashtirildi) · «Netlify nomni tanlaydi» ↔ maketdagi nom ·
+«Topshiriq bitta» ↔ 4 band · sahifa-namunalar qator raqamiga bog'langan · 3-sahifa ustunlari Mentor tartibiga zid ·
+«toraytiring» noaniq · uyga vazifa tugmasi podiumga olib borardi. Skrinshotdan: ✓/✗ tugmalari fonga singib ketgan,
+havola maydoni namunasi `mening-saytim` edi.
+
+### Tekshiruv
+- Darvozalar: esbuild ✓ · jsx ✓ · prompt ✓ · dark 🔴 5 va til 🔴 2 — **HEAD nusxada aynan shu** (mentor statistika
+  panelidagi «tavsiya etiladi», kurs-umumiy qolip).
+- `layout-lint` m1-11 · uz/ru × self/mentor × 1280/1366 → 68+68 ekran, haqiqiy E **0** (faqat yakun-skroll).
+- Skrinshot (uz): reja · g'oya/sahifalar · sahifa mazmuni · yaxshilash · drop — hammasi sig'adi.
+
+**Muhrlandi:** `MATN_KORPUS.md` §182 (10 juftlik + tashqi xizmat UI-yozuvi qoidasi) · memory `sinfda-gemini`.
+**Commit YO'Q.** LMS yig'masi eski — o'quvchiga `build:lms` + CRM yuklashdan keyin yetadi.
+
+## 2026-09-14 — F-0914-08/09/10 · Mentor kompyuterda ochiq (7-modul tashqari) · m1-11 Reja/3-sahifa qayta dizayn · m2-04 matn
+
+**Fidbek (foydalanuvchi, darslarni o'zi ko'rib):** desktopda Mentor yig'ilmasin, telefonda mumkin — 7-moduldan
+tashqari hamma darsda · m2-04: «PIN-kod», «Hali erta» tushunarsiz · m1-11: 2-sahifa xunuk va so'zlari tushunarsiz,
+vaqt taqsimoti faqat mentorga · 3-sahifa: g'oya to'lgach animatsiya, chapda sahifalar, o'ngda sayt; inputlar jonsiz ·
+9-sahifa «barchaga ochiladi» · podium «Bugungi g'oliblarimiz» (etalon).
+
+### Qilindi
+- **F-0914-08 Mentor:** `collapseOn = isNarrow && !mentorStatic` — 98 dars (7-modul 12 dars `!mentorStatic` bilan qoldi).
+  3a3f51f dagi kurs bo'yicha yoyish bekor. Eslatma: InternetLesson/PracticeLesson2 dagi eski «ayrim ekranda desktopda
+  yig'ilish» ham o'chdi. `src` darvozalari: esbuild ✓ · dark 303 / til 336 — asos bilan bir xil.
+  Kurs o'lchovi (sweep34b, Mentor yig'ilgan holat) yaroqsiz — to'xtatildi (TaskStop), sweep34c qayta boshlandi.
+- **m1-11:** Reja — 3 katta karta + strelka, sodda so'z; «1 soat / 30 daqiqa» faqat `live.mode === 'mentor'` da ·
+  3-sahifa — g'oya kartasi «Tayyor →» bilan chiqib ketadi (o'rovchi `.idea-out`, jsx-lint talabi), o'rniga sahifa
+  nomlari + jonli sayt maketi (menyu · yechim sarlavha · muammo matni) · **F-0914-09** yozish maydoni `.wf`: ramka,
+  ✏️/✅, navbatdagi bo'sh maydon pulsi, focus to'q sariq, to'lganda yashil, `autoFocus` · 9-sahifa «saytingiz barchaga
+  ochiladi» · podium etalon sarlavhasi (jonli «Bugungi g'oliblarimiz», mustaqil «Bugungi natijangiz»).
+- **m2-04:** «Hali erta» → «Yoshingiz hali kichik» · «PIN» → «PIN-kod» (ru «PIN-код»; ikki qadam yolg'on tutildi:
+  «PIN-код-код», ru ichida lotin «PIN-kod») · podium etalon sarlavhasi · **F-0914-10** `if/else` yozish mashqlari
+  `useState(typeof storedAnswer?.picked === 'string' ? … : '')` — matn bo'lmagan saqlangan javob oq ekran berardi
+  (sinov-ma'lumotida tutildi; server-tiklashda ham chiqishi mumkin). Xuddi shu himoyasiz qator yana **16 darsda** bor —
+  tegilmadi, alohida qaror.
+
+### Tekshiruv
+- Darvozalar: m2-04 esbuild ✓ jsx ✓ til ✓ prompt ✓ (dark eski) · m1-11 esbuild ✓ jsx ✓ prompt ✓ (dark/til eski).
+- Mentor holati brauzerda: m1-11 1366 — yig'ilmaydi · 390 — yig'iladi.
+- `layout-lint` Mentor ochiq holatda: m2-04 uz/ru 152 ekran · m1-11 uz/ru 136 ekran — haqiqiy E **0**.
+- Skrinshot: m2-04 19 sahifa (kontakt-varaq) · m1-11 Reja, 3-sahifa (g'oya va sahifalar holati), podium.
+
+**Commit YO'Q.**
+
+## 2026-09-14 — F-0914-10 · Matn maydoni himoyasi 22 darsga (KATTA §35 ✅)
+Foydalanuvchi savoli «qaysi oq ekran, qanday xavf?» → halol tashxis: xavf faqat ekran-tartibi o'zgarganda
+(sahifalar soni bir xil qolsa); kod tekshirildi — server JSON'ni o'zgartirmaydi, oddiy holatda chiqmaydi.
+Qaror: hozir qilinadi. 26 joy · 22 fayl (`|| ''` va `?? ''` shakllari, maydonlar: picked/text/name/role/
+studentAnswer/gameName/trigger/runner/trig/secret). Darvozalar HEAD bilan aynan bir xil (dark 44, til 31/63).
+Massiv qolipi (4 fayl) ochiq — KATTA §35 da. **Commit YO'Q.**
+
+## 2026-09-14 — F-0914-10 (davomi) · Massiv-qolip himoyasi: «4 fayl» → 31 qator · 16 fayl (KATTA §35 massiv-qismi ✅)
+Foydalanuvchi: «kattadagi 4 tasi, keyin qolganini; sifat biz uchun muhim». Tartib: KATTA §35 dagi 4 fayl (5 qator) → darvozalar →
+qolganlari. Grep uch bosqichda kengaytirildi, har bosqichda yangi shakl chiqdi — DAVOM'dagi «4 fayl» ham, birinchi tashxisdagi «10 joy» ham
+to'liq emas edi; halol yakun 31 qator · 16 fayl · 33 ifoda (shakllar va fayllar: KATTA §35). Har joy o'qib tasdiqlandi. Isbot node'da:
+eski ifoda `true`/obyekt/matnda yiqiladi, yangisi yiqilmaydi. Darvozalar 16 fayl: esbuild ✓ jsx ✓ prompt ✓, dark HEAD bilan diff 0,
+til sonlari HEAD bilan teng, `vite build` toza. O'lchov (sweep34c, 20:12 da `--resume` bilan qayta boshlangan — 16:13 da o'lgan edi)
+tahrir paytida m6-08…m6-11 da edi, tegilgan darslar undan uzoq; m6-01 (SystemArchitecture, tegilmagan) 15/19 chala — o'lgan seansning
+joyi, sweep tugagach qayta o'lchanadi.
+YANGI TOPILMA (yechilmadi, qaror kutilmoqda): KODING `code:` matn-shakli 16 joy · 16 fayl + 3 yakka (obyekt/son) — KATTA §35 ochiq bandi.
+**Commit YO'Q (105 fayl).**
+
+## 2026-09-14 — F-0914-10 (yakun) · KODING `code:` matn-shakli 19 qator · 17 fayl (KATTA §35 TO'LIQ ✅) + kutish-ishlari
+Foydalanuvchi: «kutamiz; ish qilmoqchi bo'lsang ayt, ruxsat bersam qilasan» → to'rt ishga ruxsat: `code:` himoyasi ·
+lint:jsx · §32 saralash (faqat o'qish) · 148-qonun qoralamasi.
+(1) `code:` 16 joy · 16 fayl + 3 yakka (links obyekt / si son / qaror matn) = 19 qator · 17 fayl. Zaxira-zanjir aynan saqlandi.
+Yiqilish-yo'li halol tekshirildi: PmLesson6 da oq ekran emas, muharrirga axlat matn tushadi. 13 fayl darhol, 4 ta m1 fayli
+ru-o'lchov m1 dan o'tgach (HMR o'lchovga tushmasin). Darvozalar 17 fayl: esbuild ✓ jsx ✓ prompt ✓, dark HEAD diff 0, til diff 0;
+`vite build` ✓ ×2 (P0 ikki-bosqich, 114 yig'ma); `lint:jsx` 156 fayl 0. Tegilmagan (ataylab): `picked ?? null`, `place || {}` — yiqitmaydi.
+(2) lint:jsx: 156 fayl, 0 topilma — commit-oldi darvozasi tayyor.
+(3) §32 saralash — alohida agent (faqat o'qish), natija skretchda `s32_saralash.md` — kutilmoqda.
+(4) 148-qonun + 147(e) kalibrovka-8/9 + ko'r-nuqta qoralamasi — `scratchpad/QONUN_148_QORALAMA.md`, DARS_ETALON'ga
+YOZILMAGAN. Raqamlar tekshirildi: `collapseOn = isNarrow && !mentorStatic` 96 fayl + InternetLesson/PracticeLesson2 o'z nomi
+bilan (98) · 7-modul 12 fayl `!mentorStatic` (ataylab).
+O'lchov: uz tugadi — 109/109 dars, faqat m6-01 chala (15/19, o'lgan seans joyi, qayta o'lchanadi); ru 21:45 da 27/109.
+**Commit YO'Q (105 fayl).**
+
+## 2026-09-14 — KATTA §32 YOPILDI · {uz,ru} obyekti tr() siz — PmLesson18 da 6 haqiqiy (7 joy, 4 qator) tuzatildi
+Foydalanuvchi: «albatta, ehtiyotkorlik bilan, halol, sifatli». Saralash alohida agentda (faqat o'qish): 267 nomzod → HAQIQIY 6 ·
+XAVFSIZ 261 · NOANIQ 0; oltovi ham o'zim o'qib tasdiqladim (CHEGARA/HODISA/HW_VARIANT xom {uz,ru}, `tr` 43-qatorda bor).
+HEAD'da ham bor edi — prodga chiqqan yiqilish; faqat «Kunni boshlash» dan keyingi fakt-jurnali/chegara-tugmalari va yakun-sahifa
+uyga-vazifasida chiqadi (audit yurishi shu yo'lni bosmagan). Tuzatish: `:955` `{tr(c.t)}` `{tr(c.res)}` · `:1022` `{tr(e.val)}`
+`(${tr(e.dav)})` `{tr(e.fakt)}` · `:1034` `{tr(c.t)}` · `:1878` `{tr(v.t)}`. Birinchi perl urinishi tire belgisiga qoqildi (diff 0,
+hech narsa o'zgarmadi), skript faylga ko'chirilib qayta: 7/7. Darvozalar: esbuild ✓ jsx ✓ prompt ✓, dark HEAD diff 0, til diff 0;
+skaner qayta yurgizildi — 4 qatorda nomzod yo'q, faylda qolgan 4 nomzod xavfsiz (`gaugeHolat`/`save()` tr() qiladi, o'qib tasdiqlandi).
+ru-o'lchov tahrir paytida m5-07 da — 4c allaqachon o'lchangan, HMR tegmagan. Hisobot barqaror joyda:
+`~/.claude/projects/-home-kali-Desktop-internetLesson/S32_SARALASH_2026-09-14.md`. Skaner-saboq: `ACHIEVEMENTS.name` va ta'rifda
+`tr()` bo'lgan massivlar 261 yolg'on-ijobiy beradi — `raw-tr-scan.mjs` ga masshtab-tahlil qo'shilsa 267 → 6 (alohida ish).
+**Commit YO'Q (105 fayl).**
+
+## 2026-09-14 — 148-QONUN MUHRLANDI · 147 (e) ga Kalibrovka-8/9 + ko'r nuqta (foydalanuvchi tasdig'i, 23:35)
+Qoralama chatda to'liq ko'rsatildi → «yaxshi, maqul; faqat 7-modulni hali qayta yig'amiz, hozir unga e'tibor berishning
+hojati yo'q». `DARS_ETALON.md`: 147 (e) oxiriga Kalibrovka-8 (yig'ilgan Mentor = o'quvchi ochgan panel, probe-saboq),
+Kalibrovka-9 (ko'rinmas matn D-detektordan chiqadi), ko'r nuqta («Orqaga» bilan qaytilgan ekran o'lchanmaydi) — 2617–2635;
+yangi **11-L. 148-QONUN** «Mentor kompyuterda ochiq turadi — joy yetmasa joylashuv o'zgaradi, Mentor emas» — 2637–2668.
+7-modul bandi foydalanuvchi so'zi bilan: «hali qayta yig'iladi, hozir e'tibor berilmaydi; qayta yig'ilganda shu qonun bilan quriladi».
+Raqamlar grep bilan tasdiqlangan (96 + 2 o'z nomi · 7-modul 12). lint:prompt 0. Eski qoralama (`QONUN_148_QORALAMA.md`,
+«Mentor kompyuterda yig'iladi») eskirgan — endi DARS_ETALON asosiy. **Commit YO'Q (105 fayl; DARS_ETALON ham shu ro'yxatda).**
+
+## 2026-09-14 — F-0914-11 · Jonli sessiyada 20 dan 1 o'quvchi praktikani ochmasdan keyingi ekranga o'tdi — TASHXIS (tuzatish YO'Q, qaror kutilmoqda)
+Foydalanuvchi (sinf kuzatuvi, texnik dars): 19 o'quvchida praktika ochildi, 1 tasida ochilmasdan keyingi sahifaga o'tdi.
+Tashxis alohida agentda (faqat o'qish), asosiy da'vo o'zim tekshirdim: `Htmllesson1.jsx:3111-3112` — `next()` ichida
+`inLiveClass = student && status!=='ended' && mentorAlive`; yolg'on bo'lsa `advance()` — praktika overlay'siz, xabarsiz o'tadi.
+Bu praktikasiz o'tishning **yagona** yo'li (praktika alohida ekran emas, `PRACTICE_AFTER` overlay; LMS `onPractice` bermaydi).
+`inLiveClass` yolg'on bo'ladigan holatlar: (a) eskirgan `liveSession:<id>` localStorage — TTL yo'q (`liveClient.js:121`), rejim undan
+o'qiladi (`useLiveSession.js:35-41`) → `self`/eski PIN → o'quvchini `choosing`ga qaytaradigan yo'l yo'q; (b) `solo`da qolib ketish
+(recheck faqat solo+joined, `:333-336`; guruh-kesh 300 s); (c) `review` — darsni avval tugatgan o'quvchi mentordan oldin kirsa
+(`join-service.js:326-328`), review uchun recheck yo'q; (d) `!mentorAlive` (180 s) — mentor noutbuki uxlasa o'sha oynada bosgan o'quvchi sakraydi.
+RAD: eski storedAnswer (`next()` unga qaramaydi, avto-onNext yo'q) · server-progress (yangi urinish screen 0) · ikki bosish (qulf `freeRide`dan ustun).
+EHTIMOL (alohida sinf): eski yig'ma-kesh → mentor↔o'quvchi ekran-indeks farqi — server `lesson_version`ni tekshirmaydi.
+Tuzatish TAKLIFI (tasdiqsiz qilinmaydi, jonli-modul prod-kritik): T1 `useLiveSession.js:35-41` qurilmadagi rejimni serverdan tasdiqlamasdan
+ishlatmaslik + `liveSession`ga TTL · T3 recheck'ni `review`ga kengaytirish · T4 sinf-kontekstda (PIN/LMS-token) praktikani rejimga
+qaramay ochish yoki ogohlantirish (Htmllesson1 + 13 dars) · T5 serverda `lesson_version` solishtirish.
+Sinfdan so'raladi: o'quvchi lavhasi nima deb turgan («Mentor N/18» · «Mustaqil» · «Ko'rish» · «Erkin» · «Mentor uzildi» · bo'sh)? mentor
+lavhasida 👥 20 mi 19 mi? kirish LMS'danmi PIN mi? darsni avval ochganmi / mentordan oldin kirganmi? F5 dan keyin praktika ochildimi?
+Hisobot: `~/.claude/projects/-home-kali-Desktop-internetLesson/JONLI_SAKRASH_TASHXIS_2026-09-14.md`. **Kod o'zgarmagan.**
+
+### F-0914-11 — davomi (foydalanuvchi javoblari, 2026-09-15 00:00): lavha «Mentor N/18» · kirish LMS · dars Htmllesson1 yoki Htmllesson2
+Javoblar tashxisni toraytirdi: «Mentor N/18» = o'quvchi rejimi va ulangan — eskirgan localStorage (self/erkin), solo va review variantlari
+TUSHDI. Qoladigan yagona a'zo: `mentorAlive` (yoki lahzalik `status`). Tekshirildi: heartbeat har 10 s `updated_at = now()`
+(`migrations/0001_live_core.sql session_heartbeat`); o'quvchi `updated_at` 180 s o'zgarmasa `mentorAlive=false` → lavha «⚠️ Mentor uzildi — erkin rejim»
+(`LiveUI.jsx:146`) → `next()` mashqni OCHMASDAN o'tadi. Rate-limit sabab EMAS: poll yo'li 6000/daqiqa/IP, RPC 600 (`routes.js:15`, `rpc-registry.js:25`);
+sessiya qatori hech qachon o'chirilmaydi (404 → 'ended' yo'li amalda yo'q). Htmllesson2 da ham aynan shu qoida (`Htmllesson2.jsx:2441`,
+2026-07-29 izohi: «mentor uzilsa mashq OCHILMAYDI, uyga vazifa orqali»). Kursda `inLiveClass` nomi faqat Htmllesson1 da, mantiq esa har darsda.
+**Xulosa:** o'sha o'quvchi «Davom etish»ni bosgan lahzada uning mijozi mentorni «uzilgan» deb hisoblagan — mentor kompyuteri/tarmog'i
+≥180 s heartbeat bermagan (uxlash, Wi-Fi uzilishi, tab bo'g'ilishi); 19 tasi boshqa lahzada bosgan. Bu xato emas, 2026-07-29 QOIDASINING
+yon ta'siri: «mentor uzildi» → mashq jimgina tashlab ketiladi. Per-qurilma boshqa mexanizm topilmadi.
+**Qaror (foydalanuvchi):** T4 — jonli sinfda (PIN/LMS orqali ulangan o'quvchi) `mentorAlive=false` bo'lsa mashq baribir OCHILADI
+(o'quvchi o'zi bajaradi; mentor tiklansa natija mentor-panelga tushadi) yoki hech bo'lmasa «Mentor uzildi — mashqni o'zingiz bajaring» xabari bilan
+ochiladi. Tegadigan joy: har darsdagi `next()` sharti (110 dars, bir xil qator) — KATTA-ish. Qo'shimcha: T1 `liveSession` TTL (alohida, ehtiyot).
+Kod o'zgarmagan.
+
+## 🔴 §34 TUZATISH REJASI (2026-09-15 00:15, o'lchov sweep34c yakuni) — foydalanuvchi uxlayapti, «navbati kelgach boshla» ruxsati bilan boshlandi
+
+**O'lchov yakuni (uz+ru birlashma, self × 1366x768):** 303 ekran · 86 dars — kritik 118 · o'rta 168 · kichik 17
+(13.09: 335 · 92 — kritik 130 · o'rta 184 · kichik 21). m6-01 uz 15/19 chala — asbob xatosi takrorlandi
+(«Target page … closed» s15 da, qayta o'lchovda ham) → alohida asbob-band, natijaga ta'sir qilmaydi.
+**7-modul tegilmaydi** (foydalanuvchi): u 118 kritikdan 38 tasini beradi. Qolgani: **73 dars · 80 kritik ekran.**
+
+**Naqshlar (kritik ekranlarda eng ko'p uchraydigan element-sinflar):** `frame-success`/`frame`/`frame-soft` 48 (javobdan keyingi
+izoh-quti — 147 (e) sinfi) · `sk-info` (ipucha-quti) · `hook-ack`/`p.small` s0 da (hook-ekran tasdiq-matni: m2-05 405px, m4-10 184px) ·
+`bp-window` 6 (brauzer-maket) · `dd-pool`/`sort-card` 10 (sudrash-hovuzi) · `lp-done-btn` 4 · `gear-slot` 4 · `jr` 2.
+**Yechim-naqshlari (147 (e) + 148):** izoh-qutini bo'sh ustunga · kutayotgan qadam ixcham · uzun kod/maket ichki skroll (`maxH`) ·
+takror izoh bitta quti · hook-ack matnini ustunga/qatorga ko'chirish · Mentor YIG'ILMAYDI · `.h-title`/shrift kichraymaydi · matn o'zgarmaydi.
+
+**Tartib (kritik soni → maks px):** m4-10 · m2-05 · m1-10 · m1-03 · m3-03 · m4-13 · m8-01 · m5-03 · m5-10 · m3-01 · m1-01 · m1-12 · m5-01 ·
+m3-13 · m1-08 · m4-08 · m1-14 · m5-05 · m4b-03 · m4-03 (20 dars, 2+ kritik) → 23 dars 1 kritik → 30 dars faqat o'rta/kichik.
+**Har dars:** ekran-JSX o'qish → naqsh bilan tuzatish → `npm run gates -- <fayl>` + dark/til HEAD-taqqosi → `--keys <dars>` bilan uz va ru qayta
+o'lchov (self 1366) → STATE'ga bir qator. Brauzerli ish bittadan. Commit/push YO'Q.
+
+### §34 tuzatish — 1-tik (2026-09-15 ~00:20, foydalanuvchi uxlayapti; vaqt-belgisi tuzatildi)
+- **m4-10 (FullstackConnectPractice):** s0 uch ustunga (sayt ichki skroll 180 · baza · savol; javobdan keyin faqat tanlangan variant) ·
+  s1/s8/s10/s11/s13 `Win maxH` (ichki skroll) · s8/s10/s11 «bajarilgan qadam ixcham» (done → izoh sk-info/kod-quti o'rnida) · s13 izoh bo'sh
+  chap ustunga + 3 amal-tugma bir qatorda · s16 «Bajardim» + izoh chap ustunga, lp-step 11→8px · takeaway 20→14px · sim-qator 11→8px.
+  Gates 5/5 · dark HEAD diff 0 · til diff 0. O'lchov: uz 21→1, ru 21→5 (oraliq); qoldiq tuzatildi, yakuniy o'lchov yuryapti.
+- **m2-05 (JsLoops):** s0 uch ustunga (xabar-ro'yxati ichki skroll 120 + oxirgisi ko'rinadi · zavod · savol) · Terminal `maxH` (s5 150, s12 110) ·
+  s5/s7/s12 izoh-quti bo'sh chap ustunga · **QuestionScreen: javobdan keyin variantlar ixcham** (padding 17→12, gap 11→8 — s10/s13 sinfi;
+  shu qator kursda 107 darsda bir xil → natija tasdiqlansa naqsh sifatida yoyiladi). esbuild ✓ · dark diff 0 · til diff 0. O'lchov navbatda.
+- **Asbob:** `shot34.mjs` (darvozani o'zi o'tadi, ekranlar sonini o'qiydi) — eski `shot.mjs` pilotga qotirilgan edi (liveSession kaliti, total 22).
+- **F-0914-11:** aniq sabab + T4 patch-qoralama `~/.claude/projects/-home-kali-Desktop-internetLesson/F-0914-11_T4_PATCH_QORALAMA.md` (14 dars, bir qator).
+  Server-dalil yo'q (`disableRequestLogging`, `updated_at` tarixi saqlanmaydi). Commit YO'Q.
+
+### §34 tuzatish — 2-tik (2026-09-15 ~00:35; vaqt-belgisi tuzatildi)
+- **m4-10 yakuniy:** uz 21→**0** · ru 21→3 (s10 kod-quti/takeaway, s11 tugma — ru matni uzunroq) → s10 kod-quti 1.85→1.6, takeaway bulb 34→26,
+  s11 «Yangilash» tugmasi sayt-yorlig'i qatoriga (o'ngga). Qayta o'lchov navbatda.
+- **m2-05 oraliq:** uz 13→8 · ru 12→6; s5/s10/s13 yopildi (**QuestionScreen ixcham-naqsh ISHLADI**). Qolgan: s0 yakuniy izoh (102/139) → 1-ustunga
+  (ikki izoh bir uyada, ro'yxat 96px) · s7 idish-kartasi ixcham (glass 124→96, padding 20→12) · s12 terminal kod ostiga, kod 2→1.7, do'st-karta 10→7 ·
+  s15 (20px) hozircha qoldi. Qayta o'lchov navbatda.
+- **m1-10 (CssPractice):** Preview `maxH` · s0 uch ustun (CSS'siz | CSS bilan | variantlar, paddingTop 34 ⛶ uchun) · s1/s15 Preview ichki skroll ·
+  s2 uch ustun (kod+legenda | yig'ish (DragDrop) | brauzer+izoh) · QuestionScreen ixcham. esbuild/jsx ✓ · dark/til diff 0. O'lchov navbatda.
+- **m1-03 (Htmllesson1, dinozavr):** s2 o'yin-ramkasi ichida `.rg-grid` — keng ekranda sahna+tugmalar chapda, kod o'ngda (≤760px bitta ustun);
+  o'yin mazmuni/matni o'zgarmagan. esbuild/jsx ✓ · dark/til diff 0. O'lchov navbatda. Qolgan s5/s7/s9/s11/s13 keyin.
+- Brauzer-navbat: m2-05 → m1-10 → m1-03 → m4-10(ru). Commit YO'Q.
+
+### §34 tuzatish — 3-tik (2026-09-15 00:45)
+- **NAQSH YOYILDI — QuestionScreen «javobdan keyin variantlar ixcham»:** m2-05 da s5/s10/s13 ni yopgan ikki qator **92 darsga** (7-modul va
+  `eski` tashqari; GithubActions qo'lda, unda ikkinchi mini-test ham bor — tegilmadi) bir xil qo'llandi. esbuild 93/93 ✓ · lint:jsx 156 fayl 0 ·
+  dark/til HEAD-taqqosi: farq faqat DeployLesson va JsConditionsLesson — ikkalasi bugun qayta qurilgan (uncommitted), naqshdan emas.
+- **m3-03 (ReactFirstComponent):** s8 done → izoh ipucha o'rnida · s9/s11 izoh bo'sh chap ustunga · s13 kod-quti 1.9→1.6 + izoh chapga. esbuild/jsx ✓.
+- **m4-13 (FullstackProjectDay):** s9 (336px!) bajarilgan prompt-qutilari ichki skroll 90px (phase ≥1/≥2) · s11 done → prompt ixcham ·
+  praktika «Bajardim»+izoh chap ustunga, lp-step 11→8. esbuild/jsx ✓. Screen5 (sk-info 73–100) hali ko'rilmadi.
+- O'lchov-navbat (brauzer band): m2-05 → m1-10 → m1-03 → m4-10(ru) yuryapti; natija kelgach m3-03/m4-13 ham o'lchanadi. Commit YO'Q.
+
+### §34 tuzatish — 4-tik (2026-09-15 ~00:55)
+- **O'lchov natijalari (self × 1366, uz+ru):** m4-10 **21/21 → 0/0** ✅ · m2-05 13/12 → 3/3 (s0 zavod-done 48/66, s7 30, s15 20 — hammasi «o'rta») ·
+  m1-10 7/6 → 1/2 (s2 dd-pool 102/116, s10 ru 9) · m1-03 6/6 → 5/5 (s2 dino ✅; qolganlari endi tahrirlandi).
+- **DD-NAQSH YOYILDI:** `DragDropOrder` — keng ekranda uyalar chapda, hovuz o'ngda (`.dd` grid), uya 56→46px — **39 darsga** (7-modulsiz);
+  esbuild 39/39 ✓, lint:jsx 0. Manba: m1-08 s2 (186px) va m1-10 s2 (102px qoldiq).
+- **Tahrirlar:** m2-05 zavod-sm/lever ixcham + s15 term ixcham · m1-03 s7 uch ustun (matn-blok · brauzer · xato-topish), s11 cmp2 kartalar ixcham ·
+  m1-08 Preview maxH · m3-13 Win maxH (s0/s3) · m3-01 s12 izoh chapga · m4-13 s5 ipucha o'ng ustunga (done → izoh) · m5-03 s7 oraliq izohlar done'da
+  yashirinadi · m5-10 s0 ogohlantirish o'ngga, pick-row ixcham.
+- Brauzer-navbat: m3-03 → m4-13 → m5-03 → m5-10 → m3-01 (yuryapti); keyin m2-05/m1-10/m1-03/m1-08/m3-13 qayta. Commit YO'Q.
+
+### §34 tuzatish — 5-tik (2026-09-15 01:05)
+- **LP-NAQSH YOYILDI:** ScreenLivePractice («Bajardim» + izoh chap ustunga, lp-step 11→8) — yana **13 darsga** (jami 15; 5 React darsi va
+  m4-10/m4-13 tuzilmasi boshqa/allaqachon). esbuild ✓ · dark/til HEAD-diff 0 (20 fayl tekshirildi).
+- **GEAR-NAQSH (5-modul):** Reja-ekranida jihozlar paneli + yorlig'i bo'sh chap ustunga (TgChat ostiga), `.gear-slot` 76/10px → 64/6px —
+  **7 darsga** (m5-01/04/05/07/09/10 + BotAiBrain). esbuild ✓. HEAD-taqqos fonda.
+- Ko'rib qo'yildi, hali tuzatilmagan (aniq qaror kerak): m1-03 s9 (ladder + izoh), m3-01 s11 (jadval) va s14, m1-01 (jr-ring 300px),
+  m6-11 s14 (367px), m2-01 s14 (cc-run), m4a-04 s0 (lg-card), m1-12 s13 (285px), m5-01 s7 (256px).
+- Brauzer-navbat (m3-03 → m4-13 → m5-03 → m5-10 → m3-01) yuryapti. Commit YO'Q.
+
+### §34 tuzatish — 8-tik (2026-09-15 01:25)
+- **O'lchov (2-to'plam):** m3-03 7/6 → 3/6 (s8 ipucha hali oshadi → endi ipucha+xulosa chap ustunga ko'chirildi) · m4-13 8/7 → 3/3 (s9 hali 312px —
+  AI-kartalar/prompt ichki skroll 150/120 qo'shildi) · m5-03 9/8 → 5/3 (hammasi ≤39px) · m5-10 6/9 → 6/6 (ru: s5 pick-row 101, s16 70 — qoldi).
+- **Halol qayd:** m3-03 tahririda skript faylni buzdi (esbuild yiqildi) → HEAD'dan tiklab, barcha tuzatishlar indeks-asosli skript bilan qayta
+  qo'llandi; esbuild ✓ jsx ✓, dark/til HEAD-diff 0. Saboq: holat-mashinali perl o'rniga indeks-asosli kesish/qo'yish.
+- Navbat: m3-01 → m1-08 → m3-13 yuryapti; keyin m3-03/m4-13/m2-05/m1-10/m1-03 qayta o'lchov. Commit YO'Q.
+
+### §34 tuzatish — 9-tik (2026-09-15 01:25)
+- m6-11 s14 (367px): ikki telefon + QR bir qatorga sig'ishi uchun `.split-wide` (1.55fr/1fr) · m1-12 s13 (285px): nutq-bloklari ikki ustunli grid
+  (auto-fit 290px), «Tayyor» tugmasi to'liq qator. esbuild/jsx ✓ · dark/til HEAD-diff 0.
+- Ko'rildi, skrinshotsiz tuzatilmaydi: m2-01 s14 (cc-console), m5-01 s7 (tungi smena), m3-01 s11/s14, m1-01 jr-ring, m1-03 s9, m5-10 ru s5/s16.
+- Navbat: m1-08 va m3-13 o'lchanmoqda; keyin qayta-o'lchov: m3-03 m4-13 m2-05 m1-10 m1-03 m6-11 m1-12 m5-09. Commit YO'Q.
+
+### §34 tuzatish — 10-tik (2026-09-15 01:35)
+- **O'lchov (2-to'plam davomi):** m1-08 3/3 → **1/1 (8px)** — DD-naqsh 186→8 ✅ · m3-13 3/3 → **0/0** ✅ (Win maxH) · m3-01 4/5 → 2/5
+  (s11 solishtirish-jadvali 132 qoldi — skrinshot kerak; ru s0 29, s12 ru).
+- Navbat (16 yurish, ~70 daqiqa): m3-03 m4-13 m2-05 m1-10 m1-03 m6-11 m1-12 m5-09 qayta o'lchov. Commit YO'Q.
+
+### §34 tuzatish — 12-tik (2026-09-15 02:00)
+- **Qayta-o'lchov (16 yurish) yakuni:** m2-05 → **0/1 (11px)** ✅ · m1-10 → **0/1 (9px)** ✅ · m3-03 → 1/1 (63) · m4-13 → 2/2 (s9 174 → kuchli ixcham
+  qo'llandi, qayta o'lchov yuryapti) · m1-03 → 4/4 (s7 ✅; s11 152→112, s9 81 — skrinshot olinmoqda) · m6-11 s14 367 → yo'q ✅ (qolgan ≤46) ·
+  m1-12 s13 285 → **285 o'zgarmadi** (grid ta'sir qilmagan — skrinshot olinmoqda) · m5-09 s1 222 → 55/120.
+- Commit YO'Q.
+
+### §34 tuzatish — 13-tik (2026-09-15 02:06)
+- **m1-12 s13 (285):** sabab topildi — Stage `narrow` (560px) → grid bitta ustun; endi `narrow={!edit}` (tahrir rejimida keng), grid 250px → 3 ustun.
+- **m1-03 s11 (112):** har kartada maket + kod yonma-yon (`.cmp2-pair`); skript ikkinchi kartani buzgan edi → qator-jarrohlik bilan tuzatildi, esbuild ✓.
+- **m1-03 s9 (81):** yakuniy izoh chap ustunga (post ostidagi bo'sh joy), narvon oralig'i 6→3.
+- **m4-13 s9 (174→88):** bajarilgan prompt 44px, AI-karta 96/60, follow-up 72/44 (ichki skroll).
+- HEAD-taqqos uchala fayl: dark/til diff 0. Skrinshot + qayta o'lchov (m1-03, m1-12, m4-13) fonda. Commit YO'Q.
+
+### §34 tuzatish — 15-tik (2026-09-15 02:25)
+- **Qayta o'lchov:** m1-03 6/6 → **3/3, kritik 0** (s9 uz 11 / ru 70, s5 10, s13 13) · m1-12 285 → yo'q, s6 100 qoldi → tuzatildi (manzil-maydoni
+  qadamlar yonida, `narrow={!done}`) · m4-13 s9 174 → 88 → **74 (o'rta)**. m1-03 narvon qatorlari 9→5px (ru 70 uchun). Qayta o'lchov fonda.
+- Commit YO'Q.
+
+### §34 tuzatish — 16-tik (2026-09-15 02:33)
+- Ertalabki hisobot (`~/.claude/projects/…/HISOBOT_2026-09-15_ERTALAB.md`) — dars-jadvali (14 dars avval/keyin) to'ldirildi.
+- **Butun kurs uz qayta sivirmasi (sweep34d)** m1-03/m1-12 o'lchovi tugagach avtomatik boshlanadi (nohup skript `olchov-2026-09-14/run34d.sh`,
+  natija `sweep34d-uz.json/log`, ~3 soat) — ertalab «avval/keyin» kurs-raqami uchun. Halol: bir necha marta o'z pgrep'imga ilinib
+  jarayonlarni o'zim to'xtatib qo'ydim (exit 144) — endi qidiruv-satr buyruq-satrida yo'q.
+- Commit YO'Q.
+
+### §34 tuzatish — 17-tik (2026-09-15 02:27)
+- **Qayta o'lchov:** m1-03 → **2/3, hammasi ≤13px** (s5 10, s13 13, ru s9 6) · m1-12 → **0/0** ✅ (s13 285 va s6 100 yopildi).
+- **Butun kurs uz qayta sivirmasi (sweep34d) 02:25 da boshlandi** — natija ~05:30; ertalabki hisobotga kurs-raqami kiradi. Commit YO'Q.
+
+### §34 tuzatish — YAKUN (2026-09-15 05:27) · butun kurs uz qayta sivirmasi (sweep34d, 02:25 → 05:25)
+**Kurs bo'ylab (uz, self × 1366x768, haqiqiy ekranlar):**
+| | Ekran | Dars | Kritik (>80px) | O'rta | Kichik |
+|---|---|---|---|---|---|
+| Avval (14.09 kech, sweep34c) — hammasi | 251 | 82 | 96 | 138 | 17 |
+| Keyin (15.09 tun, sweep34d) — hammasi | 177 | 71 | 54 | 105 | 18 |
+| Avval — 7-modulsiz (ish maydoni) | 199 | 69 | **58** | 127 | 14 |
+| Keyin — 7-modulsiz | **126** | **58** | **23** | 87 | 16 |
+7-modulsiz: ekranlar −37%, kritik −60%. m6-01 endi to'liq (chala yo'q). 7-modul (tegilmagan): kritik 38 → 31 (naqshlar u yerga yoyilmagan, farq o'lchov-tebranishi).
+**Yaxshilangan (kritik ekranlar):** m1-03 4→0 · m1-08 2→0 · m1-10 4→0 · m1-12 2→0 · m2-05 4→0 · m3-03 4→0 · m3-08 1→0 · m3-13 2→0 · m4-10 4→0 ·
+m4-13 2→0 · m5-03 2→0 · m5-05 2→0 · m5-10 1→0 · m6-11 1→0 · m3-01 2→1 · m4-08 2→1 · m5-01 2→1.
+**Halol qayd — chegaradan o'tgan 3 dars:** m1-01 s1 75→88 (jr-ring, tegilmagan) · m4-09 s1 65→84 (tegilmagan ekran) · m8-01 s0 72→84
+(streak-shelf) — 12–19px siljish, kritik chegarasi 80 dan o'tdi; sabab o'lchov-tebranishi (fade-up animatsiya vaqti) yoki ixcham-CSS'ning
+yon ta'siri — ertalab tekshiriladi. **Hali kritik (7-modulsiz, 18 dars):** m1-01:3 m8-01:3 m4-03:2 va 15 dars 1 tadan.
+**ru sivirmasi** 05:26 da boshlandi (~08:30). Commit YO'Q (105 fayl).
+
+## 2026-09-15 — F-0914-11 · T4 TUZATILDI + server mentor-jimlik dalili (foydalanuvchi qarori «1-B», commit YO'Q)
+**Topildi → qilindi:**
+- **Klient (14 dars):** mashq-darvozasidan `&& live.mentorAlive` olindi — jonli sinfda sessiya tugamagan ekan mashq ochiladi.
+  Qamrov qayta sanaldi: qoralamadagi «14» to'g'ri (13 dars `if (!(live && …)) { advance(); return; }` + Htmllesson1 `inLiveClass`).
+  Qolgan 97 fayldagi `status !== 'ended' && live.mentorAlive` shakllari (`isStudentLive` 98 · `freeRide` 98 · `flashHidden` 66 · 8) teskari
+  yo'nalish — faqat yumshatadi, mashqni yopmaydi, tegilmadi. 2026-07-29 izohlari yangilandi («uzilib qolsa» olindi, F-0914-11 izoh-qatori).
+  LMS yo'li tekshirildi: `runPractice` → `onPractice`, yiqilsa o'z kompilyatori (F-0912-04), «tugatdi» signali baribir ketadi.
+- **Darvozalar:** esbuild ✓ · jsx ✓ · prompt ✓ (14 fayl); dark va til 14 faylda oldindan qizil — patchdan oldingi zaxira bilan
+  taqqoslandi: dark topilmalar soni **teng** (14/14), til topilmalar soni **teng** (14/14) → yangi topilma 0. `lint:jsx` 156 fayl 0.
+  Zaxira: skretch `t4-backup/` (seans bilan o'ladi; git HEAD eski holatni saqlaydi).
+- **Server (B-qism):** `server/migrations/0008_mentor_gaps.sql` — `live_mentor_gaps` jadvali + `live_sessions` AFTER UPDATE trigger
+  (`old.status='live'` va `updated_at` sakrashi > 180 s → satr: pin, lesson_id, boshlanish/tugash, gap_ms, cur_screen, ended_by
+  `mentor`|`session_end`). Klientga, RPC'ga tegilmadi. Test: `test/integration/live_mentor_gaps.test.js` 6 holat.
+  Natija: integratsion **76/76** (PG18 sinov-klasteri 5433, skretch) · unit **53/53** · oxlint 0.
+- **Prodga chiqmagan:** migratsiya prod bazaga yurgizilmagan, dars-api deploy qilinmagan (alohida buyruq). LMS yig'masi (`build:lms`) ham qayta yig'ilmagan.
+- **Qo'lda sinov qoldi:** jonli-mentor rejimi 2 darsda (mentor tab yopib 3+ daqiqa → o'quvchi «Davom etish» → mashq ochiladimi).
+**Qayerga muhrlandi:** `DARS_ETALON.md` 11-M **149-qonun** · `.claude/agents/role/darslik-jonli.md` ov-bandi **S7**.
+
+### §34 — ru qayta sivirma YAKUN + 3-C skrinshotlar (2026-09-15 12:56)
+ru `sweep34d-ru` `--resume` bilan tugadi (50 → 109). **uz+ru birlashma, 7-modulsiz:** 164 ekran · 65 dars · kritik **36** · o'rta 109 · kichik 19
+(uz yakka: kritik 23). Faqat ru da kritik 13 ekran: m1-14 s4 · m1-05 s0 · m3-01 s14 · m4-01 s18 · m4-09 s3 · m4-14 s9 · m4b-03 s10 · m4c-05 s12 ·
+m5-03 s7 · m5-05 s0/s1 · m5-06 s9 · m6-08 s17. **Chala:** ru m4-09 7/21 (brauzer yopildi — asbob; qayta o'lchanadi).
+3-C: 18 dars · 23 uz-kritik ekran skrinshoti + dars-varaqlar `~/.claude/projects/-home-kali-Desktop-internetLesson/olchov-2026-09-14/shots-0915/_varaq/`.
+Foydalanuvchiga yuborish tarmoq-timeout bilan yiqildi — varaqlar lokal. Tuzatish foydalanuvchi ko'rgach. Commit YO'Q.
+
+## 2026-09-15 (kech) — F-0914-11 · T4 QO'LDA JONLI SINOV O'TDI (foydalanuvchi: «tartib to'g'ri, 1 → 2 → 3 → 4», commit YO'Q)
+**Muhit:** mashina 19:22 da qayta yongan — PG18 sinov-klasteri (5433, skretch) qayta initdb, `dars_dev` migratsiya 8/8 ·
+lokal dars-api `node --env-file=.env src/index.js` (`CORS_ORIGINS=http://localhost:5310` env bilan ustun) ·
+alohida vite `DARS_API_URL=http://127.0.0.1:3001 … --port 5310` (5300 prodga ulanadi — ishlatilmadi).
+**Asbob:** skretch `mentor-gap-test.mjs` — haqiqiy brauzer, har dars uchun 3 holat (detektor o'zini tekshiradi):
+A mentor tirik → mashq ochilishi SHART · S «o'zim ko'raman» → ochilmasligi SHART · B mentor oynasi yopildi, lavha «Mentor uzildi» → ochilishi SHART.
+Mentor ekrani RPC `advance_session` bilan mashq ekranidan keyingiga surildi, o'quvchi `ccProgress` bilan mashq ekraniga qo'yildi.
+**Natija:**
+| Dars (shakl) | A | S | B (lavha necha s da) | server `live_mentor_gaps` |
+|---|---|---|---|---|
+| m1-03 Htmllesson1 (`inLiveClass`) | ochildi | o'tdi (s10) | **ochildi** (174 s) | 183 s · ekran 10 · mentor |
+| m1-06 CssLesson1 (`if (!(live && …)) advance`) | ochildi | o'tdi (s9) | **ochildi** (175 s) | 183 s · ekran 9 · mentor |
+Skrinshot (B): muharrir ochiq, lavha «⚠️ Mentor uzildi — erkin rejim». Birinchi yurish (m1-03) 182 s satr ham yozdi — jami 3 satr.
+**Halol qayd — asbob xatolari (dars nuqsoni EMAS):** 1-yurishda B «Avval tanlang» bilan yopiq qoldi — mentor uzilgach `freeRide` o'chadi
+(149-qonun 3-band, to'g'ri) va tugma ekranning o'z shartiga qaytadi; asbob shu ekran javobini to'ldirmagan edi → tuzatildi, qayta yurish.
+CssLesson1 `NavNext` da `data-tour="next"` yo'q → tugma `margin-left:auto` bilan topiladi. «sandboxed localStorage» pageerror —
+asbobning `addInitScript` i mashqning sandbox iframe'ida ham ishlagan (himoyasiz), kompilyator kodi iframe ichida storage'ga tegmaydi → asbobda `try`.
+**Kuzatuv (tuzatilmadi, foydalanuvchiga):** jonli lavha (`LiveUI.jsx:20`, fixed · top 2 · zIndex 9998) mashq overlay'i (zIndex 2000)
+sarlavhasi ustiga tushadi — «Katta va kichik sarlavhalar» so'zini yopadi. HEAD bilan bir xil (eski holat).
+**Qolgan (buyruq bilan):** 0008 migratsiya prod bazaga · dars-api deploy · `build:lms` (14 dars) · sinfda kuzatish.
+
+## 2026-09-15 (kech) — F-0915-02 · Saqlangan javobdan obyekt-qidiruv himoyasiz — 14 yiqilish · 8 fayl (TASHXIS, tuzatish YO'Q)
+**Qanday topildi:** sarlavha-o'lchovi (F-0915-01) «javobli» holatni soxta `{picked:true,…}` bilan quradi → m1-01 da ikki pageerror
+(`reading 'l'`, `reading 'name'`). sweep34d (javobsiz) da yo'q → dars nuqsoni emas, lekin xavf-sinfi haqiqiy.
+**Sabab (m1-01):** `InternetLesson.jsx:872` `br = storedAnswer?.picked || null` → 874 `cur = BROWSERS.find(…)` → 895/896 `cur.l`
+(`done = br !== null`, `cur` tekshirilmaydi). Xuddi shu 927 → 947/949 (`cur.name/.tld/.note`). HEAD'da ham bor.
+**Qachon real bo'ladi:** ekranlar soni o'zgarmay joyi almashsa (eski indeksdagi boshqa turdagi javob shu ekranga tushadi) — KATTA §35 sinfi,
+lekin «obyekt-qidiruv / massiv-indeks» shakli u yerda yopilmagan edi.
+**Tasnif (faqat o'qish agenti + 3 tasi qo'lda tasdiqlandi):** grep-nomzodlar 14 → haqiqiy 2; qo'shimcha sivirma 12 → **jami 14 yuklanishda
+yiqilish · 8 fayl**: InternetLesson s3/s5 · PmLesson14 s0 (748 `HOOK_OPTS[picked].t`, ✔ qo'lda) · CssLesson1 s6 (1176 `COLORS[sel]`) va s7
+(1215 `cur.ff`, ✔ qo'lda) · PmLesson17 s9 (1377 `raund.hafta`) · PmLesson11 s9 (1275 `cur.bolim`) · PmLesson25 s9 (1346) + s4 (913 `S4_DUO[pick]`) ·
+PmLesson23 s9 (1324 `.find(…).t`) · PmLesson8 s9/s4/ScreenBaho/s8 (`cells[k].push`). Bosishda yiqiladigan 2: PmLesson15/21 s9.
+Eng ehtimoliylari: umumiy `picked` o'qiydiganlar (InternetLesson s3/s5, PmLesson14 s0). §35 massiv-qoldig'i: PmMetrics:1086 `.slice`, PmJtbd:1036 `.filter`.
+**Qayerga yozildi:** KATTA_TOZALASH §36 (8 fayl — dars ustida tuzatilmaydi). **Tuzatish:** foydalanuvchi ruxsati bilan.
+
+## 2026-09-15 (kech) — Axadulla: tafsilot yo'li bo'yicha TZ yuborildi (foydalanuvchi so'rovi, parallel)
+`TZ_NATIJA_TAFSILOTI_SERVER_UZ.md` — onFinished faqat «Tamom»da ketadi → tafsilot yo'qoladigan 9 holat, A-variant (lesson-results ichida
+`lang`/`questions[]`/`achievements[]`, `RESULT_DETAILS=a`), yoqish tartibi, 7 savol, «yo'q» bo'lsa cheklovlar, qabul mezonlari.
+Faktlar koddan tekshirildi: `InternetLesson.jsx:2621` «Tamom» → `finishLesson` · `result-service.js` sweeper (Erkin qilish/auto_replaced/stale 30 daq, solo completed/auto_7d) ·
+`retry.js` (1s…1h, 30 marta) · `result-builder.js` (arena `kind`, 1 MB — tafsilot tashlanadi, asosiy ketadi). Foydalanuvchi Axadullaga yubordi. Javob kutilmoqda.
+
+## 2026-09-15 (kech) — F-0915-01 · Sarlavha ikkinchi qatorga tushadi (🏆 yolg'iz) → 150-QONUN, 98 fayl (foydalanuvchi qarori, commit YO'Q)
+**Foydalanuvchi so'zi:** «sarlavhani gapi mandan so'roqsiz o'zgartirilmasin, mayli kichraytirib normal mos bo'lsin, juda kichrayib ham ketmasin» ·
+«74 ta faylga ehtiyotkorlik va aniqlikda».
+**O'lchov — oldin** (`titleprobe-kurs.mjs`, 7-modulsiz 96 dars, self × 1366, javobsiz+javobli; uz va ru parallel, ~2 soat): noyob sarlavha 1457 ·
+ikki+ qatorli uz 112 / ru 242 · variantlar ustma-ust: maxWidth 13/16 · −0.015em 28/34 · 36px 52/83 · 34px 65/124 · >12% uzun 49/123.
+**Qaror (asosli):** 36px (34px RAD — hamma sarlavha 10% kichrayardi) + `letter-spacing: -0.015em` + `text-wrap: balance` (loyihada `.h-ask`,
+`.h-title.h-center` allaqachon balance; `pretty` o'rniga — uzun sarlavhada qatorlar teng, yolg'iz so'z qolmaydi).
+**Tahrir:** `sarlavha-tahrir.mjs --fs 36` (sanoq 74/74/98 bo'lmasa yozmaydi; `--dry` ikki marta) → 74 `maxWidth` olindi · 98 fayl CSS.
+**Tekshiruv:** yangi qoida 98 · eski 0 · maxWidth qoldig'i 0 · 7-modul/eski/demo 23 tegilmagan · esbuild 98 ✓ · jsx 0 ·
+dark (281 topilma) va til chiqishi tahrirdan OLDINGI bilan farq **0 qator** · `vite build` ✓ (skretch outDir) · lint:prompt ✓.
+**Asbob-halol qayd:** (1) probe darvozani `.lesson-root` ichida kutardi — m3-11 da darvoza tashqarida (`ReactRouterPracticeLesson.jsx:3270`),
+dars «ochilmadi» deb yozilgan; asbob tuzatildi, m3-11 qayta o'lchandi (uz 1 · ru 3 ikki qatorli). (2) «javobli» holat soxta `{picked:true}` —
+5 darsda yiqilish tutildi (m1-01, m3-03, m4-15, m4a-01 + asbobdan m3-11 emas) → F-0915-02 / KATTA §36; o'sha ekranlarning javobli holati o'lchanmadi.
+**Muhrlandi:** DARS_ETALON 11-N **150-qonun** + 148 (3) istisno-qatori · KATTA §37.
+**Ochiq:** keyin-o'lchov 81 dars (uz/ru, fonda) → raqamlar 150-qonun «Tekshiruv» va KATTA §37 ga.
+
+### Avtopilot (cron 47c1c063, foydalanuvchi uxlayapti; commit/push YO'Q)
+| Tik | Holat |
+|---|---|
+| 23:29 | keyin-o'lchov uz/ru 70/81 (m6-01) yuryapti — src'ga tegilmadi; oraliq 16 dars: ikki qatorli uz 18→7, ru 27→16, yolg'iz so'z 0 |
+| 23:42 | **keyin-o'lchov YAKUN:** uz 113→61 · ru 245→160 · ko'paygan 0 · yolg'iz so'z 0 (1271 sarlavha, 100% mos) → 150-qonun «Tekshiruv» + KATTA §37 yozildi · `run-3qadam.sh` fonda boshlandi (26 dars uz→ru) |
+| 23:49 | layout qayta o'lchov uz 4/26 (m6-09) yuryapti, ~1.7 daq/dars → uz ~00:30, ru ~01:15 — src'ga tegilmadi |
+| 23:52 | oraliq taqqos (uz, sweep34d → sweep0915): m4-08 s5 141→139 · m4b-01 s15 112→110 · m4b-03 s15 95→51 (kritikdan chiqdi) · **m6-09 s3 106→120 (+14, uch javobli holatda bir xil)** — fayl 22:06 dan beri faqat sarlavha-CSS; sarlavha s3 da 1 qator (balandlik −2px bo'lishi kerak) → sabab tasdiqlanmagan (ehtimol muhit: 5300 prod-API ↔ 5310 lokal); tuzatish bosqichida skrinshot bilan tekshiriladi, hisobotga «ochiq savol» |
+| 00:09 | layout uz 16/26 (m2-01) yuryapti. Oraliq (16 dars, kritik >80): deyarli hammasi **−2px** (sarlavha qatori 38→36) · m4-03 s0 91→47 va m4b-03 s15 95→51 kritikdan chiqdi · m3-07 s3 81→78 (chegarada) · m6-09 s3 +14 yagona anomaliya · rejada yo'q yangi: m1-01 s14 84 (jr-sim) va s21 404 (gloss — yakun/glossary ekranimi, tekshiriladi) · m1-01 s15 99 va m8-01 s6 108 — TEGILMAYDI |
+| 00:14 | m1-01 s21 = Screen16 (yakun, «Tamom») — 404px `div.gloss` = asbob ochgan yig'iladigan panel (div onClick, `<summary>` emas → Kalibrovka-6 yopa olmaydi) → yakun ekrani, tuzatilmaydi. **Qaror kerak:** DARS_ETALON o'ziga zid — 193-qator «Kalit so'zlar (GLOSSARY) yakun sahifasida BO'LMAYDI» ↔ 1441 checklist 4.2 «summary … + glossary»; m1-01 `InternetLesson.jsx:2611` da gloss bor. m1-01 s14 = Screen13 (jr-sim) 84px — rejada yo'q → «qaror kerak» |
+| 00:31 | **layout uz YAKUN (26 dars):** kritik (yakun ekranlarisiz) **23 → 18** (dastlab «24 → 19» yozilgan — m5-03 s19 yakun-glossary filtrdan o'tib ketgan edi, 00:33 da tuzatildi) · kritikdan chiqdi: m4-03 s0 91→47, m4b-03 s15 95→51, m1-14 s14 117→73, m3-07 s3 81→78, m4-03 s5 83→80 · kamaydi, lekin hali kritik: m4a-04 s0 195→151 · 19 ichida: m5-03 s19 405 = yakun «Kalit so'zlar» (taqqos-filtri `span.lbl` ni tanimagan — tuzatildi), m1-01 s15 va m8-01 s6 TEGILMAYDI → **tuzatiladigan uz kritik 16** · ru o'lchovi yuryapti (1/26, ~01:15) |
+| 00:49 | layout ru 13/26 (m3-11) yuryapti, ~01:11 tugaydi — src'ga tegilmadi |
+| 00:51 | oraliq ru (13 dars): ko'pchilik −2…−5px; kritik (yakunsiz) 19 → 19. **Anomaliyalar (sarlavha kichrayishi balandlikni oshira olmaydi — skrinshot bilan tekshiriladi):** m4b-03 s15 ru **9 → 90** (uz 95→51) · m8-01 s0 ru **72 → 82** (uz 84→82) · m6-09 s3 ru 130→120 va uz 106→120 — ikki til endi bir xil, eski o'lchov o'zgaruvchan bo'lgan bo'lishi mumkin (taxmin, isbot emas) |
+| 00:57 | asbob-topilma: tungi `shot34.mjs` tilni `localStorage 'lang'` ga yozgan, ilova `cc_lang` o'qiydi (`App.jsx:398`) → uning ru skrinshotlari jimgina uz bo'lardi (3-C varaqlari faqat uz edi — ta'sir yo'q). Tuzatilgan nusxa `olchov-2026-09-14/shot0916.mjs` (cc_lang init, 5310, NAV-tekshiruv). Skrinshotlar ru o'lchovi tugagach |
+| 01:09 | layout ru 25/26 (oxirgisi m6-08) — src'ga tegilmadi; tugashi bilan ru taqqos → anomaliya skrinshotlari → 3-qadam tuzatishlar |
+| 01:14 | **layout ru YAKUN (26 dars):** kritik (yakunsiz, filtr endi harf-registrsiz) uz **23 → 18** · ru **34 → 32**. ru yaxshilanganlar: m1-05 s0 116→70 · m5-03 s7 86→57 · m5-06 s9 99→83 · m4b-03 s10 117→81. Yangi anomaliyalar: m5-05 s0 ru 88→96, m4b-03 s15 ru 9→90 (holatlar bo'yicha bir xil). **Skrinshotlar** (`shots-0916-anomaliya/`, shot0916 — soxta javob, taqribiy): m4b-03 s15 ru — o'ng ustunda `PickLines` «Тест готов» qutisi + ekranning takror xulosa-qutisi pastda (147 (e) «takror izoh» → tuzatiladi); sarlavha 36px da 2 qator, 79px — anomaliyani tushuntirmaydi, sabab tasdiqlanmagan. m8-01 s0 — 🦉 + 4 qatorli streak-panel (D qatori pastda) → **qaror kerak** (1–4-bandlarda yo'q; yechim dizayn tanlovi). m6-09 s3 — ikki ustun ham to'la, bo'sh ustun yo'q → **qaror kerak**. 3-qadam boshlandi: EdgeCasesTest `PickLines` ga ixtiyoriy `doneNote` (berilmasa xatti-harakat o'zgarmaydi) |
+| ~01:17 (vaqt-belgisi tuzatildi, dastlab «01:24») | **m4b-03 s15 (147 (e) takror izoh):** Screen15 dagi alohida xulosa-qutisi olindi, matni (o'zgarmagan) `PickLines doneNote` ga — o'ng ustunda bitta quti. Darvozalar: esbuild ✓ · jsx 0 · dark/til 10 fayl chiqishi oldingi bilan farq 0. Skrinshot (shot0916): uz 51→**−4 (sig'di)** · ru 90→**34**; ru qoldig'i = sarlavha 36px da ham 2 qator (79 vs 40px). Keyingi: bajarilgach tanlanmagan qatorlar ixcham (147 (e) 2-naqsh) — layout-lint qayta o'lchovi tugagach |
+| ~01:19 (vaqt-belgisi tuzatildi, dastlab «01:31») | layout-lint (m4b-03, haqiqiy bosishlar) tasdiqladi: uz s15 51→**0** · ru s15 90→**34** · ru s10 81 (kritik chegarada; rejadagi «izoh bo'sh chap ustunga») · yakun s20 363 (ataylab skroll). Ixcham qatorlar tahriri boshlandi (JSX: `pick-list is-done`, gap 7→5) |
+| ~01:23 (vaqt-belgisi tuzatildi, dastlab «01:40») | **m4b-03 EdgeCasesTest — 3 tahrir tugadi:** (a) `PickLines` ro'yxati bajarilgach `is-done`, gap 7→5 · (b) CSS `.pick-list.is-done .pick-row:not(.picked) { padding: 5px 12px }` — tanlanmagan qatorlar ixcham, to'g'ri tanlanganlar va xulosa to'liq (147 (e) 2-naqsh) · (c) Screen10 xulosa-qutisi o'ng ustundan bo'sh chap ustunga, kod ostiga (147 (e) 1-naqsh). Matn o'zgarmagan. Darvozalar: esbuild ✓ · jsx 0 · dark/til 10 fayl oldingi bilan farq 0. Skrinshot (shot0916): uz s15 **−42** · ru s15 **−4** · ru s10 **−23** (hammasi sig'di); ko'z bilan: ixcham qatorlar tabiiy, s10 da ikki ustun muvozanatli. layout-lint (haqiqiy bosishlar) fonda |
+| 01:27 | layout-lint m4b-03 **uz** (21/21 ekran, xato 0): s10 41→**0** · s15 51→**0** · s17 25 (kichik, o'zgarmadi) · s20 363 (yakun). **ru** birinchi urinishi ~01:25 da tizim xotira tanqisligidan o'ldirdi (12/21 da; mashinada boshqa seanslar: 3 ta `claude`, AILM headless Chrome) — 13 GB bo'shagach ru qayta boshlandi. vite 5310 va dars-api 3001 tirik |
+| 01:29 | layout-lint m4b-03 **ru** (21/21, xato 0): s10 81→**0** · s15 90→**0** · s17 25 · s20 363 (yakun) → **m4b-03 ikkala tilda YOPILDI**. Keyingi: m4b-01 JestUnitTest (PickLines `doneNote` → Screen15 takror quti → ixcham qatorlar) |
+| 01:33 | **m4b-01 JestUnitTest — 3 tahrir:** PickLines `doneNote` + bajarilgach ixcham qatorlar (CSS/JSX m4b-03 bilan bir xil) + Screen15 takror xulosa-qutisi `doneNote` ga (matn o'zgarmagan). Eslatma: PickLines Screen7 da ham ishlatiladi — ixcham qatorlar u yerda ham (faqat bajarilgach); Screen7 ning o'z takror qutisiga tegilmadi (kritik emas). Darvozalar: esbuild ✓ · jsx 0 · dark/til farq 0. Skrinshot s15: uz 110→**17** · ru 174→**81** — hali sig'maydi → (d) AgentCard'ni PickLines chap ustuniga (qo'shni EdgeCases naqshi) ko'rib chiqilmoqda |
+| 01:34 | (d) bajarildi: Screen15 butun-en `AgentCard` → `PickLines agent` (chap ustun, kod ostida; matn o'zgarmagan). Darvozalar: esbuild ✓ · jsx 0 · dark/til farq 0. Skrinshot s15: uz **−58** · ru **5** (xulosa-qutisi pastki chekinishi nav-chiziqqa tegadi, matn to'liq ko'rinadi). layout-lint m4b-01: uz tugadi, ru yuryapti — src'ga tegilmadi |
+| 01:36 | layout-lint **m4b-01** (21/21, xato 0): uz s15 110→**0** · ru s15 174→**5** (kichik: quti pastki chekinishi, matn to'liq) · s16/s17 kichik o'zgarmagan · s20 yakun → **m4b-01 YOPILDI** (ru 5px kichik qoldiq). Keyingi: m8-01 s11 — `.vsc-body` ichki skroll |
+| ~01:37 (vaqt-belgisi tuzatildi, dastlab «01:40») | **m8-01 PmMetrics (etalon, umumiy fayl) s11:** `.vsc-body` ga `overflow: auto; max-height: clamp(170px, 28vh, 320px)` + ingichka skroll, `@media (max-width: 620px)` da cheklov yo'q (PmLesson16 naqshi; qator oralig'i, rang, nusxa-taqiq o'zgarmagan; 82 (c)(d) ga mos). Tekshiruv: qoida 1 · media 1 · izohda backtick 0 · esbuild ✓ · jsx 0 · dark/til farq 0 · **pm-demo build ✓** (`vite.pm.config.js` → skretch; «exit 1» — buyruq oxiridagi `grep -c` 0 topilmada 1 qaytargani, build o'zi toza) · lint:prompt ✓. Skrinshot javobsiz: kod paneli ~512px da ichki skroll bilan, qulf-tugma 657 < 690 — **sig'adi**. Asbob cheklovi: shot0916 «over» skroll-idish ichidagi yashirin qatorlarni ham sanaydi (128 yolg'on) — haqiqiy raqam layout-lint'da (fonda) |
+| ~01:39 (vaqt-belgisi tuzatildi, dastlab «01:43») | m8-01 s11 «Bajarildi» holati skrinshoti: o'ng ustun muammosi yopildi; chapda `done-mini` («✅ MetrikaPanel loyihangizda…») nav-chiziqqa ~30–40px kiradi. Yechimlar dizayn-tanlov: Yordam/Yulduzcha yashirish (RAD — yulduzcha vazifa bajarilgach ham kerak) · tugma+chip birlashtirish · chipni kod ostiga (147 (e) mos, lekin **etalon-dalil:** PmJtbd KODING da ham `done-mini` tugma ostida, 1828→1831 = PmMetrics 1908→1911 — ko'chirish etalon juftligini buzadi) → **qaror kerak**, agar layout-lint haqiqiy bosishda ham qoldiq ko'rsatsa |
+| 01:43 | layout-lint **m8-01** (16/16, xato 0, uz=ru): s11 **st0 142 → kritik emas** (kod paneli ichki skroll ishladi) · st1 211 · st2 261 · st3 243 o'zgarmadi — uchalasida pastga tushgan element `button.lp-done-btn.locked` (panel=false): o'quvchi Yordam/Yulduzcha ni ochgach asosiy tugma itariladi. Tugmani akkordeonlar ustiga ko'chirish = etalon tartibi (PmJtbd bilan juft) → **qaror kerak**. s0 82 · s6 108 (TEGILMAYDI) · s15 265 yakun. **m5-01 BotIntro** boshlandi: NightShift `.ns` grid (varaq chapda · `ns-side` o'ngda: hovuzlar + tugma + natija) + `@media 760px` bitta ustun |
+| 01:47 | m5-01 darvozalar: esbuild ✓ · jsx 0 · dark farq 0 · til 10 qator farq = faqat qator-raqam surilishi (raqamsiz taqqos: til/dark/jsx farq **0**). Haqiqiy-bosish skrinshoti (`shot-m501-smena.mjs`: s7 → «Tungi smenani boshlash» → 4.8 s): grid ishladi (478+478) · boshlang'ich `ns-side` 575 < 694 sig'adi · smenadan keyin kartalar 750, o'ng ustun uz **878** / ru **902** (oldin 254/278 → hozir ~184/208, faqat ~70px yutuq; eng og'ir holat: varaq bo'sh, hovuzlar to'la, 4 mijoz jim + «Varaqni to'g'rilang»). Keyingi: skrinshotga qarab 147 (e) 1-naqsh (varaq haqidagi izoh varaq ostiga) va/yoki 148 (2) kartalar grid |
+| 01:48 | m5-01: varaq + natija-izohi (Xizmat ko'rsatildi N/4 · «Varaqni to'g'rilang» · «4/4») `ns-main` chap ustunga (147 (e) 1-naqsh, matn/shartlar o'zgarmagan; o'ng ustundan olib tashlandi — har matn faylda 1 marta). Darvozalar: esbuild ✓ · jsx/dark/til raqamsiz farq 0. Haqiqiy-bosish (Manrope yuklangan): boshlang'ich uz 575 / ru 599 — **sig'adi** (asl muammo «oxirgi Amallar qatori» yopildi) · smenadan keyin kartalar uz 758 (**68** ortiq, oldin 254) · ru 782 (**92**, oldin 278) · chap ustun uz 663 sig'adi, ru 711 (**21** ortiq — izoh ru da 3 qator). Qolgan kartalar qoldig'i: 2×2 grid yoki tugmani chapga — dizayn tanlovi → **qaror kerak**. layout-lint m5-01 fonda |
+| 01:52 | layout-lint m5-01 **uz** (20/20, xato 0): s7 st0 69 → **yo'q** (boshlang'ich sig'adi) · st1 254 → **80** (kutayotgan kartalar; chegarada, «>80» emas) · s4 15 / s16 6 kichik · s19 yakun. ru yuryapti — src'ga tegilmadi |
+| 01:53 | layout-lint m5-01 **ru** (20/20, xato 0): s7 st1 278 → **104** (hali kritik) → m5-01 qisman: asl muammo yopildi, smena-kartalari qoldig'i **qaror kerak**. **m4-08 s5** haqiqiy bosish (`shot-m408-s5.mjs`, aniq prompt): chap ustun uz 723 / ru 769, o'ng uz 829 / ru 877 (stage 690) — ikki ustun ham to'la, ikkita yashil izoh (takror). Bosishdan keyin «Director's Cut!» nishon-bayrami ekranni yopadi (ataylab, modal); ostidagi joylashuv o'zgarmaydi. Yopish uchun ≥3 o'zgarish birga (izohlarni birlashtirish + qolgan promptlar ixcham + JSON ichki skroll) → **qaror kerak**. **m4b-02 s10** (PmLesson16 ScreenCoding): `kdpanel` = PM KODING qolipi (18 fayl); bajarilgach tarif/shartlarni yig'ish — Yordam'dagi «⭐ 12 daqiqa» qo'shimcha vazifa shu tarifga tayanadi → **qaror kerak** |
+| 01:58 | Haqiqiy-bosish skrinshotlari (`shot-klik.mjs`, overflow-idish ichidagi yashirin qism sanalmaydi): **m4c-05 s12** — ikki ustun ham telefon-maketli baland ramka; bosishdan keyin xulosa o'ng ustundan uz 41 / ru 31 tushadi, ru da bosishdan OLDIN chap ustun 779 (89 ortiq); bo'sh ustun yo'q → **qaror kerak** (maketni kichraytirish). **m4-14 s9** — sozlamalar yopilgach xulosa («Вот боковая панель…») qorovul paneli ostida, ekrandan tashqarida (~113); chap ustun 684 (to'la); xulosa o'ng artefakt haqida — chapga ko'chirish 147 (e) ga zid → **qaror kerak**. **m4a-04 s0** — Swagger | savol + butun-en «Uch dars — bitta zanjir» kartalari (hech bosmasdan 151 pastda) → tuzilma → **qaror kerak**. **m3-11 s1** — chap: xarita + kod + «→ 3 zona» (138), o'ng: 5 qadam → xaritani kichraytirish → **qaror kerak**. **m1-14 s4** (ru 96) — umumiy `QuestionScreen` + kod-qutili savol, xato-javob izohi → **qaror kerak**. **m2-02 s0** (107) — PM hook: ovozdan keyin payoff-quti kartalar ostida; kartalar bandini yig'ish payoff'ni sindiradi → **qaror kerak**. **3-QADAM YAKUNI:** yopildi m4b-03 (0/0) · m4b-01 (0/5) · qisman m8-01 s11 st0 · m5-01 (uz 80 / ru 104, asl muammo yopildi) · qolgani qaror kerak. Keyingi: 4-qadam (lint:jsx · vite build · pm-demo · smoke) |
+| 02:01 | **4-qadam (commit-oldi):** `npm run lint:jsx` — 156 fayl **0** ✓ · `vite build --outDir <skretch>` exit 0 (1.28 s, xato 0) ✓ · pm-demo `vite.pm.config.js --outDir <skretch>` exit 0 (132 ms, xato 0) ✓ · smoke (`_smoke.mjs` skretch-nusxasi: faqat manzil 5300→5310 va import yo'li; repo fayli o'zgarmagan) 102/109 da nuqson 0, yakun kutilmoqda. git: 106 o'zgargan (son sessiya boshidagidek — tungi tahrirlar allaqachon ro'yxatdagi fayllarga tushgan) · 3 yangi (TZ_NATIJA_TAFSILOTI_SERVER_UZ.md, 0008 migratsiya + testi) · push kutayotgan 2 commit. Commit/push YO'Q |
+| 02:02 | **smoke YAKUN: 109/109, nuqson 0** → 4-qadam to'liq o'tdi. **5-qadam:** ertalabki hisobot yozildi `~/.claude/projects/-home-kali-Desktop-internetLesson/HISOBOT_2026-09-16_ERTALAB.md` (qisqacha jadval · jonli sinov · sarlavha oldin/keyin · 3-qadam yopildi/qisman/qaror kerak jadvali · tekshiruvlar · yon topilmalar · halol qaydlar · sizdan kerak 5 band). Avtopilot cron 47c1c063 o'chiriladi. **Tungi avtopilot yakunlandi.** |
+
+## 2026-09-16 — F-0916-01 · 13 SIG'MAGAN EKRAN (foydalanuvchi qarori: Q1–Q13 tavsiya bo'yicha, commit 3, push, prod A) + F-0915-02 TUZATILDI + F-0916-02 glossary
+
+Qaror-paketi: artifact «Beshta band, sizning qaroringiz» (skrinshot + variantlar). Foydalanuvchi: «shoshilmasdan, sifatli». Ish 11:15 dan.
+O'lchov: `olchov-2026-09-14/shot-klik.mjs` (split-ustunlar) + yangi `shot-klik2.mjs` (split-siz ekranlar: contentBottom/over) — HAQIQIY bosishlar, vite 5310 (lokal API, prodga tegmaydi). Chegara 690px (1366×768). Har fayl: `npm run gates` + dark/til chiqishi qator-raqamsiz baseline bilan farq 0.
+
+| Vaqt | Nima qilindi → natija (oldin → keyin, px; «−» = chegara ichida) |
+|---|---|
+| 11:15 | **Q1 m8-01 s11 (A — ichki skroll): ISHLAMADI, halol.** Chap ustunda bo'sh joy atigi 33px; Yordam 200px skroll bilan ham tugmani itaradi (901 → 856, +166). Qo'shilgan CSS QAYTARILDI (ichki+tashqi skroll chalkash). **QAROR KERAK:** B (tugma Yordam/⭐ ustiga, PmJtbd ham — 2 fayl) yoki C (qoldirish: stage skroll bo'ladi) |
+| 11:25 | **Q2 m8-01 s0 (A):** `hook-hero.is-voted` — boyo'g'li 86→48px va `position:absolute` chap-yuqori burchakka (vertikal joy egallamaydi; <900px yashirin). s0 ovozdan keyin uz/ru **+82 → −27** ✓ (D qatori + izoh sig'adi). Umumiy fayl → pm-demo build ✓ |
+| 11:40 | **Q3 m5-01 s7 (A):** `.ns-shift-cards` 2×2 grid, karta ustun-joylashuv (padding 6/10, 12/11.5px), `.ns-side/.ns-main` gap 8, pools 6px, tugma 10px, varaq 10px/5px, katak 38px, `.ns-main .frame-warn` 10/13 + lh 1.45. `shot-m501-smena.mjs`: o'ng ustun uz **758 → 666** ✓ · ru **782 → 690** (0) ✓ · chap ru **711 → 680** ✓ |
+| 12:05 | **Q4 m4-08 s5 (A, fayl = BackendCrudPracticeLesson — grep AuthEnv'ni noto'g'ri bergan, App.jsx xaritasi ishlatildi):** ikki yashil izoh bitta `note-s5` qutida (natija-jumlasi o'ng ustundan ko'chdi, matn o'sha) · tanlangach promptlar `prompts.is-done` grid (tanlangan to'liq-en, 2 dim yonma-yon, 12px) · JSON `pm-s5` 72px ichki skroll, kod 12px · rol-pasporti 6px/4px. uz **[723, 829] → [627, 648]** ✓ · ru **[769, 877] → [692, 672]** — chap **+2** (kichik, scrollSignal bor) |
+| 12:07 | **Q5 m4b-02 (A → KATTA §38):** 18 faylli qolip, darsga tegilmadi; band yozildi |
+| 12:12 | **Q6 m6-09 s3 (A):** `ph-sm`: maket 196→140px, ekran 122px, rn-matn 11.5/13px, «shisha ↔ tirik» tugmasi maket YONIDA (grid auto/1fr, <560px ustun). 3 chip + tugma bosilgach o'ng ustun uz **800 → 687** ✓ · ru **782 → 687** ✓ |
+| 12:12 | **Q7 m4c-05 s12 (A):** `.phone-body` 128×232 → 80×140 (60%), yuz 20/10/8.5px + `ph-row` (maket MATN YONIDA, note-h ikki ustun). uz **[598, 639] → [532, 573]** ✓ · ru **[779, 750] → [595, 660]** ✓ |
+| 12:18 | **Q8 m4-14 s9 (A):** `GuardPanel` ga `compact` (spot-sm) + `note` (xulosa panel ICHIDA, joylar ostida, `.guard-note`); tashqi xulosa olindi; ai-card 13/15 gap 9, ai-code 9px, prompt-box 11px. Prompt→⚙→Saqlash: uz **−43** ✓ · ru **−3** ✓ (oldin xulosa +113). Yon-tekshiruv: «Saqlash» drawer'ni yopadi (drawer-check.mjs: drawer 0, guard-note 1, spot-sm 8) |
+| 12:20 | **Q9 m4a-04 s0 (A):** flow-label + `LegacyRail` Mentor OSTIGA (Split'dan oldin), kartalar qator-joylashuv (ic 17, t 12.5, s 10.5, xodim-chiplar 8.5px), `.swg-head` 6px, `.s0-opts .hook-option` 11px. uz/ru **+151 → −12** ✓ |
+| 12:20 | **Q10 m3-11 s1 (A):** `WarpMap` preview'da `warp-scene` (katta «Bosh» qutisi) ko'rsatilmaydi — HUD + 3 zona + eshik qoldi. uz **[650+138] → [650, 571]** ✓ · ru **[650, 601]** ✓ |
+| 12:22 | **Q11 m1-14 s4 (A):** `option-compact` (javobdan keyin tanlanmagan, to'g'ri bo'lmagan variantlar 5px/13.5px) + `.feedback-block.visible` margin 10px. Xato javob: ru **+96 → −12** ✓ · uz **−44** ✓ |
+| 12:22 | **Q12 m2-02 s0 (B):** payoff-quti `hk-row` USTIGA ko'chdi (matn o'sha). Ovozdan keyin payoff birinchi ko'rinadi; kartalar pastda (over 107 ATAYLAB qoladi — skroll). Skrinshot tasdiqladi |
+| 12:22 | **Q13 m1-01 s14 (A):** `.jr-sim .jr-ring` 270→186px, `.jr-ic` 42px, `.jr-st` 70px, `.jr-sim` 12/16px gap 8. **+84 → 666 (−24)** ✓ |
+| 12:24 | **Darvozalar:** 12 dars-fayl esbuild ✓ jsx ✓ (dark/til baseline bilan farq 0) · `lint:jsx` 156 → 0 · vite build ✓ · pm-demo build ✓. Xato-saboq: JSX izohida `}` unutildi (NestArch, PmLesson4 — esbuild tutdi, sed bilan tuzatildi; 2 daqiqa vite oq ekran → o'sha paytdagi skrinshot muvaffaqiyatsiz, qayta olindi). Layout-lint (uz→ru, 11 dars) fonda: `sweep0916-{uz,ru}.json`, taqqos `layout-taqqos2.mjs` |
+| 12:30 | **F-0915-02 TUZATILDI (ruxsat «F ha»):** 14 fayl · 21 joy — boshlang'ich holat SANITIZATSIYA (`f2-fix.mjs`, har almashtirish aynan 1×): InternetLesson br/sel (BROWSERS/DOMAINS.some) · PmLesson14 picked (Number.isInteger + HOOK_OPTS[i]) · CssLesson1 sel/font/size · PmLesson17/11/15 ri · PmLesson25 raund/tanlov (S4_DUO[i]) · PmLesson23 pairs (BOT_ODAMLAR.some) · PmLesson21 qator · PmMetrics/PmJtbd cards (Array.isArray) · ReactFirstComponent picked (string) · NestArchAlive picked (string) · PmLesson8 res/placed×2/moved → `cleanKatakMap` (KATAKLAR kaliti). Gates 14/14 esbuild ✓ jsx ✓ farq 0. Probe (`f2-probe.mjs`, soxta noto'g'ri-turdagi javob, har ekran): m1-01 22/22 ✓ · m3-05 17/17 ✓ · qolgan 12 dars fonda (birinchi yurgizish asbob-xatosi: lid oldingi darsga tushgan — tuzatildi). Muhr: `darslik-tekshiruvchi.md` + `pm-tekshiruvchi.md` ov-bandi; lint:prompt ✓ |
+| 12:30 | **F-0916-02 glossary (G-A):** DARS_ETALON 1441 checklist 4.2 dan «+ glossary» olindi (193-qator to'g'ri); 22 dars ro'yxati + tartib KATTA §39 (alohida kun). Darslarga tegilmadi |
+| 12:47 | **Probe yakun:** f2-probe 14 dars (m1-01 22 · m1-06 21 · m3-03 23 · m3-05 17 · m4-02 16 · m4-15 16 · m4a-01 22 · m4a-02 16 · m4c-02 16 · m5-11 16 · m6-06 16 · m6-14 16 · m7-02 16 · m8-01 16 ekran) soxta noto'g'ri-turdagi javob bilan — **yiqilish 0**. Probe YANGI joy tutdi: PmMetrics `ScreenMetricWorkshop` northStar (`.trim`) → tuzatildi (22-joy), KATTA §36 ✅. **layout-lint uz (11 dars, haqiqiy bosishlar):** kritik (>80, yakunsiz) **12 → 5**; 13 nishon-ekran: Q2 82→0 · Q3 254→26 · Q4 139→0 · Q6 120→0 · Q7 43→0 · Q8 74→0 · Q9 151→0 · Q10 138→0 · Q11 s4 22→0 (+s1 29→0, s14 73→0) · Q13 84→0 · Q12 107→81 (ataylab, kartalar skrollda) · Q1 261 (qaror kutadi). Qolgan 5 kritik: m8-01 s6 108 va m1-01 s15 99 (TEGILMAYDI — foydalanuvchi) · m8-01 s11 261 (Q1) · m2-02 s0 81 (Q12-B dizayni) · m1-01 s1 86 (ro'yxatda yo'q edi, o'zgarmagan). **Commit-oldi:** lint:jsx 156 → 0 · vite build ✓ · pm-demo ✓ · lint:prompt ✓ · **smoke 109/109 nuqson 0** (`_smoke` skretch-nusxasi: 5310 + Linux Chrome yo'li). ru layout-lint fonda |
+| 12:55 | **layout-lint ru (11 dars):** kritik (>80, yakunsiz) **16 → 6**; nishon-ekranlar: Q2 82→0 · Q3 278→50 (kutayotgan kartalar bosqichi, yakuniy holat 0) · Q4 187→53 (lint xato-prompt holatini ham bosadi, «kichik») · Q6 120→0 · Q7 154→0 · Q8 113→19 · Q9 151→0 · Q10 138→0 (+s0 23→0) · Q11 96→0 (+s1 51→0) · Q13 84→0 · Q12 107→81 (ataylab). Qolgan 6 kritik: m8-01 s6 · m1-01 s15 (TEGILMAYDI) · m8-01 s11 (Q1) · m2-02 s0 (Q12-B) · m1-01 s1 86 · **m1-14 s14 ru 113** (uz 73→0; ru yakun-izohi — 13 ro'yxatida yo'q edi, hisobotga). Fayllar: `olchov-2026-09-14/sweep0916-{uz,ru}.json`, taqqos `layout-taqqos2.mjs` |

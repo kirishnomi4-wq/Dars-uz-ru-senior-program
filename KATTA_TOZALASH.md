@@ -1214,7 +1214,7 @@ ruschada murakkab (1-я / 2-я / 5-я) — shuning uchun **avtomatik almashtiris
 **Darvoza:** yopilgandan keyin shu grep 0 bermasa ham bo'ladi (uz-tarmoqlari qoladi) —
 tekshiruv `npm run lint:layout --lang ru` va ko'z bilan.
 
-## 32 ⬜ {uz,ru} OBYEKTI tr() SIZ CHIZILADI — DARSNI YIQITADI (2 ta tasdiqlangan, 95 nomzod)
+## 32 ✅ {uz,ru} OBYEKTI tr() SIZ CHIZILADI — DARSNI YIQITADI (YOPILDI 2026-09-14 · 267 nomzod → 6 haqiqiy tuzatildi, 261 xavfsiz)
 
 **Topilishi (F-0912-13, 2026-09-13):** 4a/4b/4c layout sivirmasida audit **sahifa-xatosini**
 qayd etdi: `Objects are not valid as a React child (found: object with keys {uz, ru})`.
@@ -1242,6 +1242,20 @@ Shablon-satr (`${…}` — CSS) va prop-o'rni (`q={x.q}`) tashlab yuboriladi.
 ro'yxatlaydi (`⚠️ sahifa-xatolari`). 1–4-modullarda bu bo'lim **bo'sh** — ya'ni o'sha
 modullarda bu sinf yo'q (yurilgan yo'llar bo'yicha).
 
+
+**Yopildi (2026-09-14 kech, foydalanuvchi ruxsati: «ehtiyotkorlik bilan, halol, sifatli»):** skaner qayta yurgizildi — bugun
+**267** nomzod («95» eskirgan). Har nomzod alohida agentda (faqat o'qish) manba-massivigacha kuzatildi:
+**HAQIQIY 6 · XAVFSIZ 261 · NOANIQ 0**. Oltovi ham `PmLesson18.jsx` (4c; HEAD'da ham bor edi — prodga chiqqan xato):
+`:955` `{c.t}` `{c.res}` (CHEGARA) · `:1022` `{e.val}` `{e.fakt}` (HODISA) va shablon-satr `(${e.dav})` → «[object Object]» ·
+`:1034` `{c.t}` · `:1878` `{v.t}` (HW_VARIANT). Nega audit tutmagan: 955/1022/1034 faqat «Kunni boshlash» bosilgandan
+keyingi fakt-jurnali va chegara-tugmalarida; 1878 — yakun-sahifada uyga vazifa ochilganda.
+Tuzatish: 7 joy `tr(...)` ga o'raldi (4 qator), matn va tuzilma o'zgarmagan. Darvozalar: esbuild ✓ jsx ✓ prompt ✓ ·
+dark HEAD bilan diff 0 · til diff 0. Skaner qayta: to'rt qatorda nomzod yo'q; faylda qolgan 4 nomzod xavfsiz
+(`gaugeHolat` va `save()` maydonni `tr()` bilan yozadi — o'qib tasdiqlandi).
+Yolg'on-ijobiylarning uch sinfi (skanerga masshtab-tahlil qo'shilsa 267 → 6): `ACHIEVEMENTS.name` (18 fayl · 54 band,
+hammasi satr) · ta'rifining o'zida `tr()` bo'lgan `HOMEWORK/GLOSSARY/OPTS/TASKS` · faqat satr saqlaydigan foydalanuvchi
+ro'yxatlari (`list`/`saved`). Batafsil jadval (296 qator): `~/.claude/projects/-home-kali-Desktop-internetLesson/S32_SARALASH_2026-09-14.md`.
+Commit YO'Q.
 ## 33 ✅ ARALASH YOZUV DARS MATNIDA — o'zbekcha so'z ichida kirill harflar (YOPILDI 2026-09-13 · F-0913-01)
 
 > **YOPILISH (2026-09-13, F-0913-01):** 321 so'z almashtirildi — 7-modul 6 dars (MvpIterate 94 ·
@@ -1356,3 +1370,117 @@ Shu nisbatda kursda ~15–25 ekran kutiladi — o'lchanmaguncha raqam aytilmaydi
 **Tayyor skretch-asboblar (seans skretchida, repoga olinmagan):** `overflow-sweep.mjs` (skroll
 nomzodlari) · `precise.mjs`/`inspect.mjs` (ota-qirqishli aniq o'lchov) · `prog.mjs` (DoSteps
 qadam-holatlari) · `fbinner.mjs` (izoh qutisi ichki qirqilishi — GitHub darslarida 0).
+
+## 35 ✅ SAQLANGAN JAVOB TURI TEKSHIRILMAYDI — matn maydoni oq ekran berishi mumkin (F-0914-10, 2026-09-14)
+
+**Topilishi:** m2-04 skrinshot-sinovida soxta `picked: true` javobi «if yozing» ekraniga tushdi →
+`value.trim is not a function` → React butun darsni chizolmadi (oq ekran). O'quvchi o'zi bunday qiymat
+yozmaydi; xavf faqat dars ekranlari **soni o'zgarmay joyi almashtirilganda** (eski indeksdagi boshqa turdagi
+javob yozma mashqqa tushadi). Server javobni JSON'da o'zgartirmasdan qaytaradi — server tomonidan xavf yo'q.
+
+**Yopildi (foydalanuvchi: «shu ishni hozir qilamiz»):** 26 joy · 22 fayl —
+`useState(storedAnswer?.X || '')` / `?? ''` → `typeof storedAnswer?.X === 'string' ? storedAnswer.X : ''`.
+Fayllar: CssLesson1 CssPractice Htmllesson1 HtmlPractice VsCodeLesson JsFunctionsLesson JsVarsLesson ReactApiPostLesson ReactBuildSiteLesson ReactCrudPracticeLesson ReactFirstComponentLesson ReactProjectDayLesson ReactPropsReuseLesson ReactRouterPracticeLesson ReactStateEffectLesson FullPipelineProjectLesson GithubActionsLesson AuthEnvLesson FullstackFeedbackLesson FullstackProjectDayLesson NodeServerLesson PostgresCrudLesson 
+Tekshiruv: 22 fayl darvozalari — esbuild ✓ · jsx ✓ · prompt ✓ · dark 44 = 44 (HEAD) · til 31/63 = 31/63 (HEAD).
+Kurs o'lchovi tahrir paytida m4-06 (PostgresCrud) ni o'lchayotgan edi — yozuvi to'liq (21/21, NAV 0), qayta o'lchov shart emas.
+
+**Massiv-tur yopildi (2026-09-14 kech, foydalanuvchi: «KATTA'dagi 4 tasi, keyin qolganini; sifat biz uchun muhim»):**
+ro'yxatdagi «4 fayl» aslida **31 qator · 16 fayl · 33 ifoda** chiqdi. Grep uch bosqichda kengaytirildi, har bosqich yangi shakl ochdi:
+`storedAnswer?.X || []` (10 joy) → `|| [null, null, null]` va to'g'ridan `.slice()/.length` (5) →
+`(storedAnswer && storedAnswer.X) || []`, zaxira-zanjirli `|| hol.X || []` / `|| readCheck() || []` bilan birga (15) →
+`(storedAnswer?.cards || readFullCards()).filter` (1). Hammasi `Array.isArray(storedAnswer?.X) ? storedAnswer.X : <eski zaxira>`
+ko'rinishiga keltirildi, zaxira-zanjir saqlandi (`: (hol.X || [])`). Har joy o'qib tasdiqlandi — hammasida massiv-metod ishlatiladi.
+Fayllar: GitLesson GithubActionsLesson JsIntroLesson HtmlPractice PmLesson9 JsVarsLesson PmUserStoryLesson PmMetricsLesson
+PmJtbdLesson PmLesson24 PmLesson16 PmLesson4 PmLesson14 PmLesson22 PmLesson12 PmLesson1.
+Isbot: node'da eski/yangi ifoda `true`/obyekt/matn bilan sinaldi — eski `.includes/.map/.every/.find/new Set` da yiqiladi, yangi hech qachon.
+Darvozalar 16 fayl: esbuild ✓ jsx ✓ prompt ✓ · dark chiqishi HEAD bilan diff 0 · til sonlari HEAD bilan teng · `vite build` toza (P0 ikki-bosqich).
+`storedAnswer ? [doimiy] : []` shakli (CssPractice, RoutingLesson, ReactPropsReuse…) ataylab tegilmadi — saqlangan qiymat massiv sifatida ishlatilmaydi.
+Saboq: «4 fayl» hisobi tor regex'dan chiqqan edi (faqat `[]`); keyingi sinf-ovida grep har shaklga kengaytirilib, qoldiq nolga tushguncha takrorlanadi.
+
+**Matn-sinfi (KODING `code:`) yopildi (2026-09-14 kech, foydalanuvchi ruxsati):** 16 joy · 16 fayl —
+`code: (typeof storedAnswer?.code === 'string' ? storedAnswer.code : null) || (saved && saved.code) || STARTER` —
+zaxira-zanjir aynan saqlandi (bo'sh matn avvalgidek STARTER'ga tushadi). Uch yakka joy ham: PmLesson13:844 `links`
+(obyekt-tekshiruv), PmLesson13:1333 `si` (son), PmLesson24:835 `qaror` (matn). Jami **19 qator · 17 fayl**.
+Halol qayd: `code` uchun yiqilish-yo'li tekshirildi (PmLesson6) — `ensureHelper` matn bo'lmagan qiymatni matnga
+qo'shib yuboradi, ya'ni oq ekran EMAS, muharrirga «true» kabi axlat tushadi; himoya shuni oldini oladi.
+Tartib: 13 fayl darhol, 4 ta m1 fayli ru-o'lchov m1 dan o'tgach (vite HMR o'lchanayotgan sahifaga tushmasin).
+Darvozalar 17 fayl: esbuild ✓ jsx ✓ prompt ✓ · dark HEAD bilan diff 0 · til sarlavhasiz diff 0 · `vite build` ✓ (ikki marta, P0) · `lint:jsx` 156 fayl 0.
+Tegilmagan (ataylab): `picked ?? null` / `pick || null` / `place || {}` — solishtirish va indeks, noto'g'ri tur yiqitmaydi.
+**§35 to'liq yopiq: matn 26 + massiv 31 + KODING 19 = 76 qator.**
+
+## 36 ✅ SAQLANGAN JAVOBDAN OBYEKT-QIDIRUV / INDEKS HIMOYASIZ — ekran yiqiladi (F-0915-02, 2026-09-15)
+
+**Topilishi:** F-0915-01 sarlavha-o'lchovi soxta `{picked:true}` javob bilan m1-01 ni yiqitdi. §35 matn/massiv/KODING
+shakllarini yopgan, lekin «saqlangan qiymat bo'yicha `.find()` yoki `ARR[qiymat]`, natija tekshirilmaydi» shakli qolgan.
+Real xavf: ekranlar joyi almashsa, eski indeksdagi boshqa turdagi javob shu ekranga tushadi.
+
+**Ro'yxat (yuklanishda yiqiladi — 14 joy · 8 fayl):**
+| Fayl | Ekran | Yiqiladigan qator | Tetik qiymat |
+|---|---|---|---|
+| InternetLesson | s3 | 895/896 `cur.l` | `picked: true` |
+| InternetLesson | s5 | 947/949 `cur.name/.tld/.note` | `picked: true` |
+| PmLesson14 | s0 | 748 `HOOK_OPTS[picked].t` | `picked: true` / `2` |
+| CssLesson1 | s6 | 1176–1178 `cur.hex/.n` | `sel: 8` / `true` |
+| CssLesson1 | s7 | 1211/1215 `cur.css/.ff` | `font: 'arial'` |
+| PmLesson17 | s9 | 1377/1380 `raund.*` | `ri: true` / `-1` |
+| PmLesson11 | s9 | 1275 `cur.bolim` | `ri: true` / `-1` |
+| PmLesson25 | s9 | 1346 `raund.juft.map` | `raund: true` |
+| PmLesson25 | s4 | 913 `S4_DUO[pick].why` | `tanlov: 2` |
+| PmLesson23 | s9 | 1324 `.find(…).t` | `pairs: { q1: true }` |
+| PmLesson8 | s9 · s4 · ScreenBaho · s8 | 1398 · 1019 · 946 · 1251 `cells[k].push` | `{ id: true }` |
+Bosishda yiqiladigan (yuklanishda emas): PmLesson15 s9 (1347/1353), PmLesson21 s9 (1321).
+§35 massiv-qoldig'i: PmMetrics:1086 `(storedAnswer?.cards || …).slice`, PmJtbd:1036 `src.filter`.
+§35 matn-qoldig'i (sarlavha-o'lchovi vite-jurnalida tutildi): ReactFirstComponentLesson (m3-03) s15 — 2338 `useState(storedAnswer?.picked || '')`
+→ 2340 `value.replace` (`picked: true` bo'lsa yiqiladi). §35 grepi `picked` kalitini qamramagan — yopishda kurs bo'yicha
+`useState(storedAnswer?.picked || '')` + matn-metodi shakli ham qidiriladi.
+Xuddi shu sinf: NestArchAliveLesson (m4a-01) s18 — 1529 `resName = storedAnswer.picked || 'Task'` → 1545 `R.toLowerCase` (`picked: true` bo'lsa yiqiladi).
+Sarlavha-o'lchovi (soxta javob) tutgan yiqilishlar jami 5 dars: m1-01 · m3-03 · m4-15 (PmLesson14 s0, yuqoridagi ro'yxatda) · m4a-01 · (m3-11 — alohida, yuklanmaydi).
+
+**Tasdiq:** tasnif faqat-o'qish agentida (57 o'qish); 3 joy qo'lda tasdiqlandi (InternetLesson:895, CssLesson1:1215, PmLesson14:748).
+Tekshirilib XAVFSIZ chiqqanlar va sabablari: PIPELINE_STATE «F-0915-02».
+
+**Nima qilinadi (buyruq bilan):** har joyda natija tekshiriladi, qiymat noto'g'ri bo'lsa ekran boshlang'ich holatda ochiladi
+(`const cur = …find(…); const done = !!cur;` · `ARR[i]` uchun `Number.isInteger(i) && ARR[i]`). Matn va ball o'zgarmaydi.
+Tekshiruv: har fayl `npm run gates` + soxta javob bilan brauzer-probe (yiqilish 0).
+
+**Qo'shimcha topilma (16.09, probe tutdi, ro'yxatda yo'q edi):** PmMetrics `ScreenMetricWorkshop` (m8-01 s7) — `storedAnswer.northStar` matn bo'lmasa `validateNorthStar(...).trim` yiqiladi → tuzatildi (typeof string). **§36 TUZATILDI 2026-09-16:** 14 fayl · 22 joy, boshlang'ich-holat sanitizatsiyasi (`f2-fix.mjs`); probe `f2-probe.mjs` 14 dars × har ekran, soxta noto'g'ri-turdagi javob: yiqilish 0. Ov-bandi: darslik-/pm-tekshiruvchi.
+
+## 37 🔄 SARLAVHA IKKINCHI QATORGA TUSHADI — oxirgi so'z / 🏆 yolg'iz qoladi (F-0915-01, 2026-09-15)
+
+**Topilishi:** foydalanuvchi §34 3-C varaqlarida (m1-14 s14 🏆). Kurs o'lchovi: 7-modulsiz 96 dars, noyob sarlavha 1457 —
+ikki+ qatorli uz 112 · ru 242. Sabab: 38px da joy 1–16 px yetmaydi + 74 darsda h1 ga qo'lda `maxWidth`.
+
+**Bajarildi (foydalanuvchi: «74 ta faylga ehtiyotkorlik va aniqlikda», matn so'roqsiz o'zgarmaydi, shrift juda kichraymasin):**
+- 74 qator · 74 fayl: `className="title h-title…" style={{ maxWidth: N }}` → style olindi.
+- 98 fayl: `.h-title { font-size: clamp(22px,4vw,38px); }` → `clamp(22px,4vw,36px); letter-spacing: -0.015em; text-wrap: balance;`.
+- Skript sanoqni tekshiradi (74/74/98 bo'lmasa yozmaydi): `olchov-2026-09-14/sarlavha-tahrir.mjs --fs 36`.
+- Qonun: `DARS_ETALON.md` 11-N **150-qonun**.
+
+**Tekshiruv:** yangi qoida 98 · eski qoida 0 · `maxWidth` qoldig'i 0 · 7-modul/eski/demo 23 fayl tegilmagan · esbuild ✓ · jsx 0 ·
+dark/til chiqishi tahrirdan oldingi bilan farq 0 · `vite build` ✓.
+**Keyin-o'lchov (2026-09-15 23:41, 81 dars, 1271 noyob sarlavha):** ikki qatorli uz 113 → **61** · ru 245 → **160** ·
+qatori ko'paygan 0 · oxirgi qatorda yolg'iz so'z **0**. Qolganlar haqiqatan uzun, `balance` bilan teng bo'lingan.
+**3-qadam yopildi (2026-09-16, F-0916-01):** 13 nishon-ekrandan 12 tasi tuzatildi (haqiqiy bosishlar bilan o'lchangan); layout-lint kritik uz 12 → 5 · ru 16 → 6 (qolganlar: tegilmaydigan m8-01 s6 / m1-01 s15, Q1 qaror, m2-02 dizayn, m1-01 s1, m1-14 s14 ru). Q1 (m8-01 s11) va Q5 (§38) ochiq.
+**Qamrovdan tashqari:** 7-modul (12 fayl) — qayta yig'ilganda 150-qonun bilan quriladi.
+
+## 38 ⬜ PM KODING PANELI — bajarilgach «Nima bajarilishi kerak» kartasi yig'ilmaydi (F-0916-01 Q5, 2026-09-16)
+
+**Topilishi:** m4b-02 (PmLesson16) s10 layout-o'lchovi: Yordam ochiq +116 · bajarilgach +124 px (chegara 690).
+`kdpanel` = PM KODING qolipi, 18 faylda bir xil. Yulduzcha (⭐) qo'shimcha vazifa tarif kartasiga tayanadi — kartani
+butunlay yashirib bo'lmaydi.
+**Foydalanuvchi qarori (2026-09-16, Q5-A):** bajarilgach tarif kartasi YIG'ILADIGAN bo'ladi (sarlavha qoladi, bosilsa
+ochiladi); 18 faylga tegadi → alohida kunda, bu yerdan. Darsga 16.09 da tegilmadi.
+**Nima qilinadi:** `kdpanel` ichida `is-done` holatida tarif/shartlar bloki `<details>`-naqshiga o'tadi (yopiq), Yordam/⭐
+o'z joyida; har faylda gates + haqiqiy-bosish skrinshoti (shot-klik2.mjs).
+
+## 39 ⬜ YAKUN EKRANIDA GLOSSARY — 193-qator qoidasiga zid 22 dars (F-0916-02, 2026-09-16)
+
+**Topilishi:** tungi o'lchov m1-01 s21 da 404px `div.gloss` topdi; DARS_ETALON 193-qator «glossary yakunda BO'LMAYDI»
+↔ 1441 checklist 4.2 «+ glossary» — o'ziga zid edi. **Foydalanuvchi qarori (G-A):** 193-qator to'g'ri; checklist 4.2
+tuzatildi (16.09). Flashcard sahifasi glossary'ni takrorlaydi, yakun Nishonlar kolleksiyasi bilan tugaydi.
+**Ro'yxat (22 faol dars, `className="gloss`):** InternetLesson · CssLesson1 · Htmllesson2 · JsFunctionsLesson ·
+PracticeLesson1 · PmLesson5 · PmLesson6 · PmLesson7 · ReactApiGetLesson · BotApiButtonsLesson · 7-Modul: MvpArch ·
+MvpBuild1 · MvpBuild2 · MvpIterate · PmLesson26 · 28 · 29 · 30 · 31 · 32 · 33 · 34.
+**Nima qilinadi (alohida kun):** yakun ekranidan glossary bloki + `GLOSSARY` const + `open/setOpen` + `.gloss*` CSS olinadi
+(m1-01 namunasi: 193-qator izohi); atamalar Flashcard sahifasida borligi tekshiriladi (yo'q bo'lsa flashcard'ga
+qo'shiladi — atama yo'qolmaydi); har fayl gates + smoke.

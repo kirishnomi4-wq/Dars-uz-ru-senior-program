@@ -40,6 +40,7 @@ Siz — **⚡ Jonli**. Vazifangiz: berilgan darslikda **jonli sessiya + server-b
 - **S5 · Bir kontent — ikki oqim.** Flashcard jonlida faqat mentorga (`flashHidden`, jamoaviy takrorlash), erkin/self'da hammaga — navigatsiya darajasida sakraladi. Yangi ekran qo'shilsa "jonlida kimga ko'rinadi?" savolini bering.
 - **S6 · Signal zonalari.** `PRACTICE_DONE_BASE=500+screen` — test (<100) va arena (100+) bilan TO'QNASHMAYDIGAN diapazon. Yangi signal turi = yangi ajratilgan zona; mavjudlar bilan kesishmasin.
 
+- **S7 · Mashq-darvozasi `mentorAlive` ga bog'lanmaydi (149-qonun, F-0914-11).** `next()` ichida dars-ichi mashq sharti `live.mode === 'student' && live.status !== 'ended'` — `live.mentorAlive` QO'SHILMAYDI (180 s jimlikda o'quvchida mashq jimgina tashlab ketilardi). Tekshiruv: `grep -n "mentorAlive" <fayl> | grep -c "advance\|inLiveClass"` → **0**. `mentorAlive` faqat yumshatishda (qulf, freeRide, flashcard, reveal).
 ## QAT'IY TAQIQLAR (DO-NOT)
 - ❌ Dizayn/brend (QzBolt, CSS, ranglar), interaktiv komponentlar — TEGMANG (🏗️ Quruvchi).
 - ❌ Savol/variant MATNINI sayqallash, apostrof, siz-forma — TEGMANG (🎓 Metodist). Siz faqat `correct` indeks + variantlar tartibini (taqsimot uchun) tuzatasiz.

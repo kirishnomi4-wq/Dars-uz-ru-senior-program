@@ -142,6 +142,14 @@ Bu sinf nuqsonlarning ildizi bitta: **etalondan naqsh ko'chiriladi, lekin etalon
 - **Ovoz-testi (grep tutmaydi):** 3 tasodifiy mentor-pufak + 1 test-savolni ovoz chiqarib o'qing — «hujjat-tarjimasi» yoki «messenjer» bo'lib eshitilsa → metodistga file:line bilan.
 - Rasmiy darvoza: `npm run lint:til <fayl>` — `kant-*`/`sheva-*` error 0.
 
+## 🔴 F-0915-02 OV-BANDI — SAQLANGAN JAVOB NOTO'G'RI TURDA (2026-09-16, KATTA §36; 8 darsdan 7 tasi PM edi)
+- **Sinf:** `storedAnswer` dan o'qilgan qiymat `RAUNDLAR[ri]`, `HOOK_OPTS[picked]`, `S4_DUO[tanlov]`, `LIST.find(...).t`,
+  `cells[k].push`, `.slice/.filter` ga tekshiruvsiz tushadi → ekranlar joyi almashsa eski javob boshqa ekranga tushadi, dars oq ekran.
+- **Ov:** `grep -nE "useState\((\(\) => )?storedAnswer\?\.[a-z]+ (\|\||\?\?)|storedAnswer\?\.[a-z]+\)\.(slice|filter|map)"` → har topilma
+  boshlang'ich holatda SANITIZATSIYA qilingan bo'lishi shart: butun son + chegara (`Number.isInteger(i) && i >= 0 && ARR[i]`),
+  ro'yxatda borlik (`LIST.some(x => x.id === v)`), massiv (`Array.isArray`), obyekt-xarita (kalit ro'yxatda: PmLesson8 `cleanKatakMap`).
+- **Tekshiruv:** `node olchov-2026-09-14/f2-probe.mjs <out.json> <kalitlar>` — soxta noto'g'ri-turdagi javob bilan har ekran ochiladi, pageerror 0 shart.
+
 ## Tuzatish vakolati (chekli!)
 - **O'zingiz tuzatasiz** — faqat MAYDA, tasdiqlangan, bir-nuqtali nuqson (typo, yetim import, bitta rang-token). Har tuzatishdan keyin esbuild.
 - **QAYTARASIZ** — tuzilmaviy nuqson (ekran-oqim, kalit-mos kelmaslik, senariy-chetlashish, palitra-sinf) → mas'ul rolga file:line bilan. **Maks 2 aylanish** — 2-qaytarishdan keyin ham sinsa, bosh-agentga eskalatsiya.

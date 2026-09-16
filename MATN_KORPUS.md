@@ -3571,3 +3571,54 @@ kursda ~40 ta qonuniy ruscha matnga tushadi (homework, ko'p qatorli ru-satr) —
 regex'idagi `вс` + lotin `e` (lotin harfi bilan yozilgan javobni ham ushlash uchun ataylab).
 
 **Tekshirish:** matn yozilgach `npm run lint:til <fayl>` — `aralash-yozuv-soz` 0 bo'lishi shart.
+
+## 181. SHART DARSI: MISOL O'QUVCHI QO'LIDAGI NARSADAN · KOD NOMI INGLIZCHA · BELGI O'RGATILGANIDAN KEYIN (F-0914-01…06, m2-04 if/else)
+
+Foydalanuvchi fidbeki (2026-09-14): «Turniket so'zi tushunarsiz» · «misollar bir xil» · «o'zgaruvchi
+nomlari english bo'lsin, ism emas name» · «= va == farqini ko'rsataylik». 👦 o'qish qo'shimcha
+beshta sinf topdi.
+
+| ❌ Eski | ✅ Yangi | Sabab |
+|---|---|---|
+| «**Turniket** qachon ochiladi?» + «Turniket — bu kirish darvozasi» *(F-0914-02)* | «**PIN kiritsangiz**, telefon qachon ochiladi?» | Izoh talab qiladigan so'z hook'da — noto'g'ri tanlov (53-bo'lim: «oxirgi haftada ko'rganmi?»). Telefon qulfini o'smir kuniga o'nlab marta ochadi |
+| Yozuv «12 yoshdan **oshganlar**» + kod `yosh >= 12` | (sahna almashdi) | Matn va kod bir-biriga zid edi: «oshgan» — 12 kirmaydi, `>=` — kiradi. Halollik xatosi |
+| `let yosh = 10` · `ball` · `baho` · `katta` · `chiptaBor` *(F-0914-05)* | `age` · `score` · `grade` · `canGetId` · `battery` · `pin` · `speed` | 11.12-band: kod identifikatori inglizcha. Prozada «ball», «yosh» o'zbekcha qoladi |
+| «**60 gacha** (`<= 60`)» — shu darsda «7 gacha» `< 7` edi | «**60 yoki undan kam** (`<= 60`)» | Bitta darsda «gacha» ikki xil chegara bo'lib qoldi (👦: «chalkashtirdi») |
+| Hook ostida `pin == 1234 → false` | (olib tashlandi) | Belgi 3-ekranda o'rgatiladi; hook'da kod-qatori o'rgatilmagan belgini ko'rsatardi |
+| «`===` … faqat **qat'iyroq**» | «AI yozgan kodda `===` ni ham ko'rasiz — bu ham tekshirish belgisi» | «Qat'iyroq» — nimasi qat'iyroq? Izohsiz qiyosiy sifat savol tug'diradi |
+| «else **shoxi** yozildi» · «ikki yo'lli **ayri**» · «yolg'on bo'lsa — **dalda**» | «else **qismi**» · «**ikki yo'l**» · «yolg'on bo'lsa — "Yana urinib ko'ring"» | Kitobiy/metaforik so'z o'rniga ekranda turgan narsaning o'zi |
+| Distraktor `=>` + «strelka (funksiya) uchun» | Distraktor `<` + «kichikligini tekshiradi» | Funksiya hali o'rgatilmagan — izohning o'zi yangi noma'lum edi (145-bo'lim ruhi) |
+| Flashcard izohi «90+ → 5, 70+ → 4, **qolgani → 3**» | «90+ → 5, 70+ → 4, 60+ → 3, qolgani → 2» | Karta darsning o'z jadvaliga zid edi |
+
+**Halollik qoidasi (`==`, F-0914-06):** dars `==` ni o'rgatadi (foydalanuvchi qarori — yangi
+o'rganuvchiga «= beradi, == tekshiradi» juftligi eng aniq). JavaScript'da `==` turlarni aralashtiradi,
+shuning uchun o'sha ekranda **bitta qator** turadi: «AI yozgan kodda `===` ni ham ko'rasiz». Distraktorlar
+orasida `===` **qo'yilmaydi** — u ham tekshiradi, ya'ni «noto'g'ri variant» bo'lib ko'rinsa, yolg'on bo'ladi
+(102-bo'lim).
+
+**Tekshirish:** `awk` bilan `turniket|<Vr>yosh|<Vr>ball|chiptaBor|shoxi|qat'iyroq` → 0; arena
+`QUIZ_BANK` da `===` variant sifatida yo'q; praktika kutgan chiqish boshqa tarmoq chiqishining
+qism-satri emas (`C.logs` — `log_includes`: «Jarima yo'q» ↔ «Siz jarimaga tushdingiz»).
+
+## 182. AMALIY DARS: YO'RIQ BAJARIB BO'LADIGAN BO'LSIN · UI-YOZUV TAXMIN QILINMAYDI · O'RGATILMAGAN ATAMA TESTDA YO'Q (F-0914-07, m1-11 Netlify)
+
+Foydalanuvchi fidbeki (2026-09-14): «o'quvchi Demo Day loyihasini qilishga ulgurmadi — Netlify darsi juda
+chuqur, uzun slayd». Dars qayta tartiblandi: ~1 soat Demo Day sayti (AI) → ~30 daqiqa Netlify (papkani sudrab
+tashlash). 👦 o'qish qo'shimcha sinflarni topdi.
+
+| ❌ Eski | ✅ Yangi | Sabab |
+|---|---|---|
+| «Nusxalagan topshiriqni AI chatiga qo'ying» | «`gemini.google.com` saytini oching, topshiriqni qo'ying» + «Google hisobingiz bilan kiring» | 👦: «qaysi AI? qayerga kirishni bilmayman» — qadam bajarib bo'lmasdi. Nom taxmin qilinmadi — foydalanuvchidan so'raldi: sinfda **Gemini** (2026-09-14) |
+| «VS Code'da yangi papka oching» + «File → Open Folder» | «Ish stolida papkani yarating va VS Code'da oching» + «Open Folder papka yaratmaydi — faqat ochadi» | Fe'l dasturning haqiqiy ishiga zid edi: Open Folder yaratmaydi |
+| «…fayl yarating va kodini **nusxalang**» | «…fayl yarating va uning kodini ichiga **qo'ying**» | Harakat yo'nalishi noto'g'ri fe'l bilan aytilgan (AI'dan nusxalanadi, faylga qo'yiladi) |
+| Maket ichida `menyu.html` | `… (har sahifa uchun .html)` | Maketdagi aniq nom bola uchun «shu nomli fayl kerak» degan buyruq bo'lib o'qiladi |
+| «Saytni **serverga joylab** internetga chiqarish deploy deyiladi» | «Saytni internetga chiqarish deploy deyiladi» | Oldin «doimo yonib turadigan kompyuter» deyilgan; «server» ikkinchi nom bo'lib izohsiz kirdi (80-bo'lim: bir tushuncha — bir nom) |
+| Test «brauzer **birinchi qaysi faylni qidiradi**?» | «Saytning bosh sahifasi fayli qanday nomlanadi?» | Darsda aytilmagan fakt so'ralardi (u faqat xato javobdan keyingi kartada edi) |
+| Arena/flashcard: `responsive` · `hosting` · `Commit` | «Telefonda ham, kompyuterda ham chiroyli ko'rinsin» (topshiriqdagi 5-shart) · «Nusxalash» | Darsda hech qachon aytilmagan atama javob ham, distraktor ham bo'lmaydi (145-bo'lim) |
+| «Nomni Netlify o'zi tanlaydi» + maketda `mening-saytim.netlify.app` | «Havola oxiri `.netlify.app`, boshidagi nomni Netlify tanlaydi» + maketda `…….netlify.app` | Matn va maket bir-biriga zid edi |
+| «Topshiriq bitta — havolani yuborish» + 4 bandli ro'yxat | «Oxirida platformaga bitta narsa yuborasiz — havolani» | Sanoq ko'rinib turgan ro'yxatga zid (176-bo'lim) |
+| Ekran-namunalar qator raqamiga bog'langan (2-sahifa → «jadval…») | 1-sahifa uchun alohida, qolganlari uchun umumiy namuna | O'quvchi o'z sahifa nomini yozadi — namuna uning nomini bilmaydi |
+
+**UI-yozuv qoidasi (tashqi xizmat):** Netlify hujjati (2026-09-14) joyni aytadi — «Projects sahifasining pastidagi
+maydon», `app.netlify.com/drop`, yangilash — «Deploys» sahifasi — lekin tugmaning aniq yozuvini bermaydi. Yo'riqda
+**joy tasvirlanadi**, taxminiy tugma yozuvi qo'shtirnoqqa olinmaydi; zaxira yo'l (`/drop`) ipuchada turadi.
