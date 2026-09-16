@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-08T05:32:52.734Z",
+  "generated_at": "2026-09-14T07:39:47.724Z",
   "count": 110,
   "lessons": [
     {
@@ -1211,15 +1211,15 @@
       "achievements": [
         {
           "id": "builder",
-          "name": "Gatekeeper",
-          "title_uz": "Turniket shartini o'zingiz tuzdingiz",
-          "title_ru": "Вы сами собрали условие турникета"
+          "name": "Rule Maker",
+          "title_uz": "Zaryad shartini o'zingiz tuzdingiz",
+          "title_ru": "Вы сами собрали условие заряда"
         },
         {
           "id": "debugger",
           "name": "Nice Catch!",
-          "title_uz": "= va === xatosini topib tuzatdingiz",
-          "title_ru": "Вы нашли и починили ошибку = и ==="
+          "title_uz": "= va == xatosini topib tuzatdingiz",
+          "title_ru": "Вы нашли и починили ошибку = и =="
         },
         {
           "id": "firstif",
@@ -1586,8 +1586,8 @@
         {
           "id": "shipit",
           "name": "Ship It!",
-          "title_uz": "Sayt chiqarish tartibini ko'rsatdingiz",
-          "title_ru": "Вы указали порядок публикации сайта"
+          "title_uz": "Saytni do'stingizga qanday ulashishni bildingiz",
+          "title_ru": "Вы узнали, как поделиться сайтом с другом"
         },
         {
           "id": "graduate",
