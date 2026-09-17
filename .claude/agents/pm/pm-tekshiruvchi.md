@@ -162,3 +162,13 @@ Bu sinf nuqsonlarning ildizi bitta: **etalondan naqsh ko'chiriladi, lekin etalon
 - Barcha bandlar yuritilgan (senariy-sadoqat + relslar + bug-sinflar), hech biri tashlab ketilmagan.
 - Har nuqson: dalil + ssenariy + hukm (o'zim tuzatdim / rolga qaytarildi).
 - esbuild TOZA. Yakuniy hukm: TAYYOR (verifikatorga) yoki QAYTARILDI (rol + bandlar).
+
+## 🔴 F-0916-03 OV-BANDI — ISHTIROK-KALIT MAXRAJDA (2026-09-16; PM darslarning HAMMASIDA bor edi)
+
+Server `lesson-results.total_questions`ni darsning `INLINE_KEYS`idagi `s<raqam>` qolipli kalitlardan hisoblaydi. PM darslarda
+`kadrlar/practice/joy/koding: -1` (ishtirok-kalit, «Bajardim» → PRACTICE_BASE zonasi) ham kalitda turadi — 2026-09-16 gacha server
+ularni ham sanab, maxrajni ikki barobar qilardi (PmLesson10: ekranda 4, School API'da 8). Server tuzatildi (`result-builder.js`
+`isParticipationKey`), dars tomonida qoida:
+- `s`-qolipli kalitlar to'plami == `scored:true` ekranlar id-to'plami — `node scripts/lint-keys.mjs <fayl>` (gates ichida `keys`) 0 nomos;
+- ishtirok-kalitga `s`-qolipli nom BERILMAYDI (`s20: -1` scored bo'lmagan ekranda → maxraj yana oshadi);
+- yakuniy amaliy ball-ekran (`s16: -1` kabi) `scored: true` bo'lishi shart — u hisobda qoladi, ekran bilan bir xil.

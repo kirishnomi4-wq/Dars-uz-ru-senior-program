@@ -304,7 +304,7 @@ Bizning tomonda buyruqsiz qiladigan ish QOLMADI: kod, testlar, yig'malar, mashq 
 
 | # | Nima | Kimdan | Aniq nima kutiladi | Kelganda biz nima qilamiz | Bizda tayyor |
 |---|---|---|---|---|---|
-| 1 | Batafsil analitika (A-variant) + arena `kind: "arena"` | Axadulla | 4 savolga javob (`feedback/lms-sinov-2026-09-10/xabar-axadulla-2026-09-10-arena.md`); 09-08 da bir marta rad etilgan — «yo'q» ham ehtimol | «ha»: Kristina'ga `RESULT_DETAILS=a` (staging) → 1 test-dars → verify → prod env. «yo'q»: hech narsa o'zgarmaydi, arena onFinished orqali ketaveradi | server kodi, 97 dars `arenaBank`, unit/int |
+| 1 | ~~Batafsil analitika (A-variant) + arena~~ **✅ 2026-09-15 QABUL** (§9) — endi kutiladigani: «staging qabul qiladi» signali → Kristina staging `RESULT_DETAILS=a` → §5 qo'shma sinov | Axadulla | 4 savolga javob (`feedback/lms-sinov-2026-09-10/xabar-axadulla-2026-09-10-arena.md`); 09-08 da bir marta rad etilgan — «yo'q» ham ehtimol | «ha»: Kristina'ga `RESULT_DETAILS=a` (staging) → 1 test-dars → verify → prod env. «yo'q»: hech narsa o'zgarmaydi, arena onFinished orqali ketaveradi | server kodi, 97 dars `arenaBank`, unit/int |
 | 2 | Jonli darsning onFinished JSON dalili | Axadulla (bazadan: `question_try`, 31352, ~09:26Z) yoki keyingi jonli sinov (Preserve log) | payload fayli | `server/tools/sinov-natija.mjs --onfinished` bilan tekshiruv, B6/B7 jonli qatori | vosita tayyor |
 | 3 | X-1 (guruhsiz o'quvchi) va V-1 (vaqtinchalik mentor) akkauntlari | IT-jamoa (so'rov №2 `feedback/lms-sinov-2026-09-09/akkaunt-sorovi-2-X1-V1.md`) | 2 login | §5.2 7, 8, 12-qadamlar (bandlar 9a, 6b, 8) | lms-watch, protokol |
 | 4 | CRM test-materialini yangilash | Foydalanuvchi | `CRM-yuklash/1-Internet-YANGI-2026-09-10.jsx` CRM'ga; `2-HtmlLesson1-…` 15-qadam uchun | keyingi jonli sinovda arena onFinished'da ko'rinadi | papka + `OQING.md` |
@@ -317,3 +317,29 @@ Bizning tomonda buyruqsiz qiladigan ish QOLMADI: kod, testlar, yig'malar, mashq 
 | 11 | Prod cutover | **server qismi ✅ 2026-09-11** (`3f751291` → `c04a84b`, qabul 19 ✓) | qolgani: 90 fayl CRM'ga | `cutover-mashq --url prod --out lms --smoke` → CRM 90 fayl → Vercel | mashq 90/90 |
 | 12 | M7: 13 dars jonli-modulsiz (v16) | Foydalanuvchi qarori (qachon) | — | darslik-jonli konveyeri | birinchi cutover'ga shart emas |
 | 13 | Uyga vazifa paketlari (42 tex + 17 PM) LMS'ga | Foydalanuvchi ko'rigi | — | yuklash ro'yxati | darvozalar o'tgan |
+
+## 9. Axadulla javobi 2026-09-15 (`JAVOB_DARS_PLATFORM_2026-09-15_UZ.md`) ↔ kod — 2026-09-16 solishtiruv (biz)
+
+Og'zaki qo'shimcha (foydalanuvchi orqali): **MVP uchun batafsil natijani hozircha `onFinished`dan oladi**; «har bitta savolni sinab ko'rdingizmi?».
+
+| Uning bandi | Bizda | Holat |
+|---|---|---|
+| §1 `correct_answers = 0` → `rank null`, `top_N` yo'q | `assignRanks(..., { requireCorrect: true })` (F-0911-02) | ✅ |
+| §2-1 A-variant: `lang`, `questions[]`, `achievements[]` `lesson-results` ichida | `result-builder.js buildStudentDetails`, `RESULT_DETAILS=a` | ✅ kod; **bayroq `off`** — «tayyorlik tasdig'imizgacha yoqmang» |
+| §2-2 arena `kind: "arena"`, ballga kirmaydi | `isArenaQ` → `kind`, `lessonQuestions` arena'siz | ✅ |
+| §2-4 ball `total_questions`/`correct_answers`dan | payload shu maydonlar; **F-0916-03**: 38/70 darsda `total_questions` ishtirok-kalitlar (`practice: -1`…) hisobiga ×2 edi → `isParticipationKey` bilan tuzatildi, unit 54/54, int 76/76, `scripts/lint-keys.mjs` 97/97 | ✅ tuzatildi 16.09 |
+| §3 `lang` majburiy (questions/achievements bilan) | detallar bo'lsa `lang` doim beriladi (`uz`/`ru`) | ✅ |
+| §3 limitlar 200 / 10 / 20, ≤ 1 MB | `DETAILS_LIMITS` bir xil; oshsa detallar tashlanadi, asosiy ketadi (`finalizePayload`) | ✅ |
+| §3 `kind: test` soni == `answered`, to'g'rilari == `correct_answers` | `validateStudentDetails` (`answered≠questions`, `correct≠questions`) — buzilsa detallar tashlanadi | ✅ |
+| §3 `correct` = birinchi urinish; `solved` = kamida bitta to'g'ri | `attempts[0].correct === correct`, `solved === some(correct)` (server + klient bir xil) | ✅ |
+| §3 jonlida har savolga aynan bitta urinish | `live_answers UNIQUE(player, screen)`; klient oneShot; **E2E 22/22** (jonli: s4 1 urinish, quiz-0 1 urinish) | ✅ |
+| §3 `at`/`earned_at` UTC `Z` | `isoUtc` (server), `iso()` (klient) | ✅ |
+| §3 aynan takror → 200 `duplicate`, o'zgargan → 409 | worker: 200/201 → delivered · 409 → `manual_review` + Telegram; **asbob `server/tools/resend-event.mjs`** (`--mutate` → 409) lokalda soxta School API bilan 200 ✓ / 409 ✓ | ✅ |
+| §4 jonli `question_try` namunasi (31352, 09-10) | kelganda `sinov-natija.mjs --onfinished` | ⏳ Axadulla |
+| §5 qo'shma sinov 5 band (staging, `RESULT_DETAILS=a`) | 1 → §5.3-«B6/B7 jonli» + `resend`; 2 → `lessonQuestions`; 3 → 10b; 4 → `resend-event` (200/409); 5 → §5.3-3/9b/19 (Axadulla LMS'da qiladi). Test-darslar: **Internet** (5 test + 12 arena) + **PmLesson10** (F-0916-03 isboti: `total_questions 4`). Yig'malar staging manzili bilan `lms-staging/` (gitignored) | ⏳ vaqt — Axadulla staging deploy tasdiqlagach |
+| §7 rotatsiya 6 qadam | `SIRLAR_ROTATSIYASI_UZ.md` J1–J7/T1–T4 bilan aynan mos; `_NEXT` juftligi kodda, `staging-check jwt_next` | ⏳ proddan keyin; kanal kelishiladi |
+
+**«Har savol sinaldi» dalili (2026-09-16):** `scripts/smoke-onfinished-all.mjs` — 70 CRM-dars × uz+ru = **140/140** (har ball-savol darsning
+o'z kalitidan urug'lanadi, 9 invariant): `feedback/lms-sinov-2026-09-16/onfinished-sweep.{json,md}`. Jonli yo'l: `tools/e2e-lms.mjs`
+22/22 — yangi 4 qadam (jonli javob s4 · arena quiz-0 · Erkin qilish · F5 → ko'rish → «Tamom» → onFinished: s4 `kind: test` 1 urinish server
+bilan bir xil, quiz-0 `kind: arena` 1 urinish, test soni == serverdagi `answered`, `lang`, `achievements[]`).

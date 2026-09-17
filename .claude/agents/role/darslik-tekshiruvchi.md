@@ -37,6 +37,9 @@ Siz — **🔍 Tekshiruvchi (adversarial QA)**. Vazifangiz: oldingi rollar "tayy
      «sudrash uchun hech narsa yo'q» deb qoladi). Tekshiruv: darvozali sudrash-ekranini 1280×773
      da ochib, pool chiplari ko'rinishini tasdiqlang. Yechim-naqsh: slotlar chapda, pool o'ngda
      (`.dd-wide` grid — PeanStackLesson).
+   - **ISHTIROK-KALIT MAXRAJDA (F-0916-03, 2026-09-16):** `INLINE_KEYS`dagi `s`-qolipli kalitlar to'plami `scored:true`
+     ekranlar bilan AYNAN teng bo'lsin (`node scripts/lint-keys.mjs <fayl>`); `-1` ishtirok-kaliti `s`-qolipsiz nomda
+     (`practice`, `koding`). Aks holda server `total_questions`ni oshirib School API'ga yuboradi (38 darsda ×2 edi).
    - **SAQLANGAN JAVOB NOTO'G'RI TURDA (F-0915-02, KATTA §36, 2026-09-16):** `storedAnswer` dan o'qilgan
      qiymat `LIST.find(...)`, `ARR[idx]`, `.slice/.filter/.replace/.toLowerCase` ga TEKSHIRUVSIZ tushsa —
      ekranlar joyi almashganda eski javob (`picked: true`, `sel: 8`, `ri: -1`, `pairs: {q1: true}`) shu ekranga

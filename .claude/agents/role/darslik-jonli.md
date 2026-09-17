@@ -18,6 +18,10 @@ Siz — **⚡ Jonli**. Vazifangiz: berilgan darslikda **jonli sessiya + server-b
 2. **2.2** `startMentor` ichida, `liveStore(...mode:'mentor'...)` dan KEYIN `set_quiz_keys` chaqiruvi bormi? Yo'q → 15-A.2. **(Busiz podium/arena 0 0 0 0.)**
 3. **2.3** `const answerKey = {...INLINE_KEYS, ...QUIZ_BANK map}; useLiveSession(id, answerKey)` — chaqiruv to'g'rimi?
 4. **2.4** HAR `scored:true` ekran uchun `INLINE_KEYS[id] === correctIdx`. Har birini QuestionScreen'ga uzatilgan `correctIdx` bilan solishtiring — mos kelmasa to'g'ri javob ham "xato" sanaladi.
+   - **2.4b ISHTIROK-KALIT MAXRAJGA KIRMASIN (F-0916-03, 2026-09-16):** server `total_questions`ni kalitdagi `s<raqam>` qolipli
+     savollardan hisoblaydi; `practice/kadrlar/joy/koding: -1` (s-qolipsiz, PRACTICE_BASE zonasi) hisobga kirmaydi. Qoida:
+     `s`-kalitlar to'plami == `scored:true` ekranlar id-to'plami (yakuniy amaliy `s16: -1` ham `scored:true` bo'lsin); ishtirok-kalitga
+     `s`-qolipli nom BERILMAYDI. Darvoza: `node scripts/lint-keys.mjs <fayl>` (gates ichida `keys`). 38/70 CRM-darsda maxraj ×2 edi.
 5. **4** `SCREEN_META.length === screens.length` (aynan teng). `PRACTICE_AFTER`/`Q_LABELS` indekslari `screens[]` o'rniga to'g'ri.
 6. **6** `MentorTestStats`: `const ok = data.rows.filter(a => a.picked === correctIdx).length` (❌ `a.correct` EMAS) → 15-B.
 7. **7** `ScreenPodium` sort: `y.okCount - x.okCount || x.time - y.time`; `okCount = mine.filter(a => a.correct).length`.
