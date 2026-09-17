@@ -28,11 +28,17 @@ export function soloEventId(subjectId, lessonId, startedAt) {
 }
 
 const isArenaQ = (id) => /^quiz-\d+$/.test(id);
+// F-0916-03 (2026-09-16): ISHTIROK-KALIT — `correct_idx = -1` VA id `s<raqam>` qolipida EMAS (`practice`, `kadrlar`, `joy`, `koding`).
+// Darsda bular amaliy ekranlar («Bajardim» → ishtirok, PRACTICE_BASE zonasi, screen_idx ≥ 500) — ball-ekran emas. Ilgari
+// lessonQuestions ularni ham sanab, total_questions'ni oshirib yuborardi (PmLesson10: 8, ekranda 4; 38/70 CRM-darsda).
+// `s16: -1` kabi yakuniy amaliy BALL-ekranlar s-qolipda va test-zonada yuboriladi — ular hisobda QOLADI (ekran bilan bir xil).
+// Dars tomonidagi darvoza: scripts/lint-keys.mjs (s-kalitlar to'plami == scored ekranlar to'plami).
+export const isParticipationKey = (k) => !!k && Number(k.correct_idx) === -1 && !/^s\d+[a-z]*$/i.test(String(k.question_id));
 
-/** Dars-testlari to'plami (arena tashqari) — tanga-hisob shu bo'yicha */
+/** Dars-testlari to'plami (arena va ishtirok-kalitlar tashqari) — tanga-hisob va total_questions shu bo'yicha */
 export function lessonQuestions(keys) {
   const ids = new Set();
-  for (const k of keys || []) if (k && typeof k.question_id === 'string' && !isArenaQ(k.question_id)) ids.add(k.question_id);
+  for (const k of keys || []) if (k && typeof k.question_id === 'string' && !isArenaQ(k.question_id) && !isParticipationKey(k)) ids.add(k.question_id);
   return ids;
 }
 /** Arena savollari (quiz-N) — faqat nishon uchun */
@@ -294,7 +300,8 @@ const dropUndefined = (o) => { for (const k of Object.keys(o)) if (o[k] === unde
  * @returns {Map<string, number>}
  */
 export function questionOrder(keys) {
-  const ids = [...new Set((keys || []).map((k) => k && k.question_id).filter((x) => typeof x === 'string' && x))];
+  // F-0916-03: ishtirok-kalitlar tartibga kirmaydi (aks holda arena `order` siljiydi: quiz-0 → 9, 5 emas)
+  const ids = [...new Set((keys || []).filter((k) => k && typeof k.question_id === 'string' && k.question_id && !isParticipationKey(k)).map((k) => k.question_id))];
   const cmp = (a, b) => {
     const na = qNum(a), nb = qNum(b);
     if (na && nb) return (na[0] - nb[0]) || na[1].localeCompare(nb[1]);

@@ -52,6 +52,30 @@ test('savol-to\'plamlari: count = dars-testlari (arena tashqari), arena alohida'
   assert.deepEqual([...arenaQuestions(keys)], ['quiz-0', 'quiz-1']);
 });
 
+// F-0916-03 (2026-09-16): PmLesson10 kalitlari — 4 ball-ekran + 4 ishtirok-kalit (-1, s-qolipsiz) + arena
+const PM10_KEYS = [
+  { question_id: 's3', correct_idx: 1 }, { question_id: 's5', correct_idx: 2 }, { question_id: 's7', correct_idx: 0 }, { question_id: 's11', correct_idx: 1 },
+  { question_id: 'kadrlar', correct_idx: -1 }, { question_id: 'practice', correct_idx: -1 }, { question_id: 'joy', correct_idx: -1 }, { question_id: 'koding', correct_idx: -1 },
+  { question_id: 'quiz-0', correct_idx: 2 }, { question_id: 'quiz-1', correct_idx: 0 },
+];
+test('F-0916-03: ishtirok-kalitlar (-1, s-qolipsiz) dars-savoli emas — total 4 (8 emas), arena order 5, s16:-1 qoladi', () => {
+  assert.deepEqual([...lessonQuestions(PM10_KEYS)], ['s3', 's5', 's7', 's11']);
+  assert.deepEqual([...arenaQuestions(PM10_KEYS)], ['quiz-0', 'quiz-1']);
+  assert.deepEqual([...questionOrder(PM10_KEYS).entries()], [['s3', 1], ['s5', 2], ['s7', 3], ['s11', 4], ['quiz-0', 5], ['quiz-1', 6]]);
+  // yakuniy amaliy ball-ekran (ReactApiPost s16: -1) — s-qolipda → hisobda qoladi
+  assert.deepEqual([...lessonQuestions([{ question_id: 's4', correct_idx: 1 }, { question_id: 's16', correct_idx: -1 }, { question_id: 'practice', correct_idx: -1 }])], ['s4', 's16']);
+  // correct_idx yo'q (eski kalit) → ishtirok emas
+  assert.deepEqual([...lessonQuestions([{ question_id: 'practice' }, { question_id: 's4' }])], ['practice', 's4']);
+  // solo payload: total_questions = 4, ishtirok-javob (screen_idx ≥ 500) sanalmaydi
+  const solo = buildSoloPayload({
+    attempt: { started_at: T0, finished_at: min(20), reached_end: true }, subjectId: 31352, lessonId: 'pm-m3d14-v1', lessonTitle: 'PM 10',
+    keys: PM10_KEYS, answers: [ans('p', 's3', 3, true, 900, 1), ans('p', 's5', 5, false, 900, 2), ans('p', 's7', 7, true, 900, 3), ans('p', 's11', 11, true, 900, 4)],
+  });
+  assert.equal(solo.payload.total_questions, 4);
+  assert.deepEqual([solo.payload.students[0].answered, solo.payload.students[0].correct_answers], [4, 3]);
+  assert.deepEqual(validatePayload(solo.payload), []);
+});
+
 test('studentStats: takror savol sanalmaydi, faqat to\'plamdagi savollar', () => {
   const q = lessonQuestions(keys);
   const s = studentStats([ans('p', 's4', 4, true, 1000, 1), ans('p', 's4', 4, false, 1, 2), ans('p', 'yoq', 7, true, 1, 3), ans('p', 'quiz-0', 100, true, 1, 4)], q);
