@@ -343,3 +343,16 @@ Og'zaki qo'shimcha (foydalanuvchi orqali): **MVP uchun batafsil natijani hozirch
 o'z kalitidan urug'lanadi, 9 invariant): `feedback/lms-sinov-2026-09-16/onfinished-sweep.{json,md}`. Jonli yo'l: `tools/e2e-lms.mjs`
 22/22 — yangi 4 qadam (jonli javob s4 · arena quiz-0 · Erkin qilish · F5 → ko'rish → «Tamom» → onFinished: s4 `kind: test` 1 urinish server
 bilan bir xil, quiz-0 `kind: arena` 1 urinish, test soni == serverdagi `answered`, `lang`, `achievements[]`).
+
+## 10. F-0917-02 — School API bo'sh `badges` ni 422 bilan rad etadi (2026-09-17, staging navbatidan topildi)
+
+| Nima | Dalil |
+|---|---|
+| Hodisa | Staging `manual_review` 3 ta, hammasi `HTTP 422 The students.0.badges field is required.` — `solo_31347_internet-01-v18_20260910T050107Z` (req `2c214518…`, 09-17 05:12Z) · `solo_35813_internet-01-v18_20260908T130054Z` (req `c65f9d7c…`, 09-15 13:07Z) · `solo_34174_agent-arch-06-04-v18_20260908T053511Z` (req `6360d066…`, 09-15 05:37Z). Payload: `badges: []`, `badges_count: 0`, `answered: 0`, `completed: false` (auto_7d) |
+| Juftlik | Yetkazilgan `sess_956510…` (`31352:[top_2,graduate,arena_top_1] 31422:[top_1]`) va `sess_782030…` (`37069:[top_1,graduate,arena_top_1]`) — nishon bo'sh emas. Farq faqat shunda |
+| Sabab | Laravel `required` bo'sh massivni «yo'q» deb hisoblaydi; kontrakt (§7.3: noyob `lower_snake_case` kalitlar, `badges_count = length`) bo'sh ro'yxatni taqiqlamaydi. Bizning `validatePayload` ham, soxta School API ham, int-stub ham bo'sh massivni o'tkazardi — shuning uchun lokal sinovda HECH QACHON tutilmagan (unit-fiksturada pC/pD doim `[]` edi) |
+| Xavf | Jonli sinfda bitta nishonsiz o'quvchi (top-3 emas · `reached_end` yo'q · hammasi to'g'ri emas) → BUTUN guruh hodisasi 422. Pilotda 1–2 o'quvchi (doim `top_N`) — ko'rinmagan. `RESULT_DETAILS`ga bog'liq emas. Prod navbati bo'sh — zarar yo'q |
+| Qaror (foydalanuvchi, 3-variant) | **A)** Axadullaga so'rov: `students.*.badges` → `present\|array` (`feedback/lms-sinov-2026-09-16/xabar-axadulla-2026-09-17-badges-422.md`) · **B)** bizning himoya: `badgesFor` ro'yxat bo'sh qolsa `participant` qo'shadi (FAQAT shu holda) |
+| Kod | `result-builder.js` `badgesFor` + `validatePayload` («badges bo'sh» — navbatga tushishidan oldin tutadi) · `tools/fake-school-api.mjs` va `test/integration/results.test.js` stub'i endi Laravel qoidasini AYNAN takrorlaydi (o'sha xabar matni bilan 422) |
+| Sinov | unit **55/55** (yangi: solo 0-javob → `['participant']`; jonli pC/pD → `['participant']`, pA/pB ga qo'shilmaydi; validator bo'sh massivni tutadi) · int **76/76** (auto_7d testi endi `badges` ni ham tekshiradi) · **teskari isbot:** tuzatishni o'chirib `results.test.js` → 9 ✓ 1 ✗ (aynan auto_7d testi) — stub xato-sinfni tutadi |
+| Qolgan | sync staging (buyruq) → qo'shma sinovga «oxirigacha yetmagan 2-o'quvchi» qadami → Axadulla qoidani o'zgartirgach 3 hodisa admin `requeue` (saqlangan payload `[]` bilan qayta ketadi — 201 = uning tuzatishi ishladi) → prod sync. Ochiq savol Axadullaga: `participant` tanga-formulaga kirmasin |

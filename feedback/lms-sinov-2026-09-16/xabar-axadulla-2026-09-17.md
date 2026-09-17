@@ -1,4 +1,4 @@
-# Axadulla'ga xabar (2026-09-17) — foydalanuvchi yuboradi
+# Axadulla'ga xabar (2026-09-17)  
 
 Assalomu alaykum, Axadulla.
 
@@ -19,7 +19,7 @@ Shuning uchun sinovda `total_questions` ekrandagi «N / jami» bilan bir xil bo'
 **3. A-variant.** Bizning kod tayyor, `RESULT_DETAILS` hozir `off`. Siz «staging qabul qiladi» deganingizda Kristinadan staging'da
 yoqishni so'raymiz, keyin sizning §5 bo'yicha 30 daqiqalik sinov. Sinovda ikki dars: «Internet qanday ishlaydi» (5 test + 12 arena)
 va bitta PM dars (`pm-m3d14-v1`) — unda `total_questions` tuzatilganini ko'rasiz. Takror-sinov (200 / 409) uchun bizda tayyor
-buyruq bor. Taklif-vaqt: <kun> <soat> Toshkent.
+buyruq bor. Taklif-vaqt: <Bugun> <15:00> Toshkent.
 
 **4. §4 jonli `onFinished` namunasi** (31352, 10-sentabr) — kutamiz, kelishi bilan tekshiramiz.
 
@@ -29,5 +29,4 @@ A-variant ishlagandan keyingi kun.
 
 Rahmat.
 
----
-Ilova: `onfinished-sweep.md` (70 dars × 2 til, 140/140).
+---Ilova: `onfinished-sweep.md` (70 dars × 2 til, 140/140).
