@@ -25,6 +25,7 @@ const RED = '\x1b[31m', GRN = '\x1b[32m', DIM = '\x1b[2m', B = '\x1b[1m', R = '\
 const TOOLS = [
   { id: 'esbuild', file: 'esbuild-gate.mjs' },
   { id: 'jsx', file: 'jsx-lint.mjs' },
+  { id: 'keys', file: 'scripts/lint-keys.mjs' }, // F-0916-03: INLINE_KEYS s-kalitlari == scored ekranlar (server total_questions shu kalitdan)
   { id: 'dark', file: 'dark-lint.mjs' },
   { id: 'til', file: 'til-lint.mjs' },
   { id: 'prompt', file: 'prompt-lint.mjs' },

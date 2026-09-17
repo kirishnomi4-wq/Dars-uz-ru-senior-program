@@ -50,3 +50,6 @@ dist-m4
 dist-fb
 arxiv/pm11-14-uz-baseline-2026-08-21
 _layout-audit.json
+
+# 2026-09-16: staging manzili bilan yig'ilgan sinov-yig'malar (CRM test-guruh materiali) — repo'ga kirmaydi
+lms-staging

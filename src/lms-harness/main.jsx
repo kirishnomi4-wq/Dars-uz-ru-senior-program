@@ -41,7 +41,7 @@ function Harness() {
       <div data-harness style={badge}>
         LMS-simulyator · {key} · {lang} · token: {token ? (liveToken ? 'berildi' : 'kutilmoqda') : "yo'q"}{finished ? ' · onFinished ✓' : ''}
       </div>
-      <Comp lang={lang} liveToken={liveToken} onFinished={() => setFinished(true)} />
+      <Comp lang={lang} liveToken={liveToken} onFinished={(p) => { window.__onFinished = p; setFinished(true); }} /> {/* payload — E2E tekshiruvi uchun (2026-09-16) */}
     </>
   );
 }

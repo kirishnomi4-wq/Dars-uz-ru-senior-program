@@ -51,7 +51,7 @@ const badgeText = (page) => page.locator('.live-badge').first().innerText();
 const waitBadge = (page, re, timeout = 15000) => page.waitForFunction(([src, flags]) => new RegExp(src, flags).test(document.querySelector('.live-badge')?.innerText || ''), [re.source, re.flags], { timeout });
 
 let pin = '';
-let mentor, ali, vali;
+let mentor, ali, vali, aliTok = '', aliS4 = null, aliQ0 = null;
 try {
   await step('tozalash: 861-guruhda oldingi yugurishdan qolgan jonli sessiya bo\'lsa yopiladi', async () => {
     const tok = mint(['--role', 'mentor', '--sub', '145', '--gid', '861']);
@@ -84,7 +84,8 @@ try {
   });
 
   await step('o\'quvchi Ali (sub 34174, guruh 861): token → avto-kirish, ism JWT\'dan, PIN yozilmadi', async () => {
-    ali = await open('ali', mint(['--role', 'student', '--sub', '34174', '--name', 'Ali Valiyev', '--crm', '17226']));
+    aliTok = mint(['--role', 'student', '--sub', '34174', '--name', 'Ali Valiyev', '--crm', '17226']);
+    ali = await open('ali', aliTok);
     await waitBadge(ali.page, /Mentor:\s*1\s*\/.*Ali Valiyev/s);
     return (await badgeText(ali.page)).replace(/\s+/g, ' ');
   });
@@ -211,16 +212,121 @@ try {
     await bad.ctx.close();
   });
 
-  await step('mentor keyingi ekran → Ali «2 / N»; mentor «Erkin qilish» → Ali «Erkin rejim»', async () => {
+  await step('mentor keyingi ekran → Ali «2 / N»', async () => {
     const go = mentor.page.locator('.urlbar-go');
     if (await go.count()) { await go.first().click({ force: true }); await mentor.page.locator('.hook-option').first().waitFor({ timeout: 15000 }); await mentor.page.locator('.hook-option').first().click({ force: true }); }
     await mentor.page.waitForFunction(() => { const b = document.querySelector('[data-tour="next"]'); return b && !b.disabled; }, null, { timeout: 15000 });
     await mentor.page.locator('[data-tour="next"]').first().click();
     await waitBadge(ali.page, /Mentor:\s*2\s*\//);
+  });
+
+  // ---- JONLI DETALLAR (2026-09-16 · JAVOB 2026-09-15 §3: jonlida har savolga AYNAN bitta urinish, arena `kind: "arena"`;
+  //      onFinished = LMS uchun MVP). Mentor ekranini RPC bilan suramiz (UI'da 22 ekran gate'i bor) — token mentor sahifasidan.
+  const LID = 'internet-01-v18';
+  const mentorLive = async () => JSON.parse(await mentor.page.evaluate((k) => localStorage.getItem('liveSession:' + k), LID) || 'null');
+  const rpc = async (name, body) => {
+    const r = await fetch(`${API}/api/v1/live/rpc/${name}`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(body) });
+    if (!r.ok) throw new Error(`${name} → ${r.status}: ${(await r.text()).slice(0, 160)}`);
+    return r;
+  };
+  const answersAt = async (screen) => { const rows = await (await fetch(`${API}/api/v1/live/answers/${pin}?screen=${screen}`)).json(); return Array.isArray(rows) ? rows : []; };
+  const waitRows = async (screen) => { for (let i = 0; i < 20; i++) { const rows = await answersAt(screen); if (rows.length) return rows; await new Promise((res) => setTimeout(res, 500)); } return []; };
+
+  // O'quvchi mentorni o'zi bosib ergashadi (avto-sakrash yo'q) — 1→4 va 4→21 gate'larini bosish o'rniga server-progress
+  // bilan ekranga qo'yamiz (PUT /me/progress + F5, Sobir-qadamidagi usul; ccDetails shu kontekstda saqlanadi).
+  const auth = (tok) => ({ authorization: `Bearer ${tok}`, 'content-type': 'application/json' });
+  const aliProgress = async () => (await fetch(`${API}/api/v1/me/progress?lesson_id=${LID}`, { headers: auth(aliTok) })).json();
+  // needKey — sahifa shu javobni serverga yozib ulgurguncha kutamiz (2 s debounce); client_ts faqat +1 ms (katta kelajak-vaqt
+  // sahifaning keyingi yozuvlarini «eskirgan» qilib qo'yadi — birinchi yugurishda s4 javobi shu sabab yo'qolgan edi)
+  const aliJump = async (screen, needKey = null) => {
+    let cur = null;
+    for (let i = 0; i < 16; i++) { cur = await aliProgress(); if (!needKey || (cur.progress?.answers && needKey in cur.progress.answers)) break; await new Promise((r) => setTimeout(r, 500)); }
+    if (!cur.attempt || cur.attempt.kind !== 'live' || cur.attempt.status !== 'active') throw new Error(`Ali urinishi: ${JSON.stringify(cur.attempt)}`);
+    const pr = cur.progress || {};
+    if (needKey && !(pr.answers && needKey in pr.answers)) throw new Error(`Ali sahifasi ${needKey}-ekran javobini serverga yozmadi: ${JSON.stringify(pr).slice(0, 200)}`);
+    const put = await fetch(`${API}/api/v1/me/progress`, { method: 'PUT', headers: auth(aliTok),
+      body: JSON.stringify({ lesson_id: LID, attempt_id: cur.attempt.id, screen, total: 22, answers: pr.answers || {}, earned: pr.earned || [], started_at_ms: pr.startedAt, client_ts: Date.now() + 1 }) });
+    if (!put.ok) throw new Error(`progress PUT ${put.status}`);
+    await ali.page.reload({ waitUntil: 'domcontentloaded' });
+    await ali.page.waitForSelector('.lesson-root', { timeout: 20000 });
+  };
+
+  await step('JONLI JAVOB: mentor 4-ekranga (advance_session) → Ali 4-ekranda s4 variantni bosadi → live_answers (bitta urinish)', async () => {
+    const m = await mentorLive();
+    if (!m || m.mode !== 'mentor' || !m.token) throw new Error('mentor live-token topilmadi (liveSession)');
+    await rpc('advance_session', { p_pin: pin, p_token: m.token, p_screen: 4 });
+    await aliJump(4);
+    await waitBadge(ali.page, /Mentor:\s*5\s*\//);
+    const opts = ali.page.locator('button.option:not([disabled])');
+    await opts.first().waitFor({ timeout: 15000 });
+    await opts.nth(1).click({ force: true });
+    const rows = await waitRows(4);
+    if (!rows.length) throw new Error('s4 javobi serverga yetmadi');
+    aliS4 = rows[0];
+    return `live_answers screen=4 picked=${aliS4.picked} correct=${aliS4.correct}`;
+  });
+
+  await step('ARENA: mentor 21-ekran + lobby → Ali CodeStrike kapsulani bosadi → mentor 0-savol → Ali variant bosadi → quiz-0 serverda', async () => {
+    const m = await mentorLive();
+    await rpc('advance_session', { p_pin: pin, p_token: m.token, p_screen: 21 });
+    await aliJump(21, '4'); // s4 javobi server-progress'ga yetganini kutib, keyin oxirgi ekranga
+    await waitBadge(ali.page, /Mentor:\s*22\s*\//);
+    await rpc('quiz_control', { p_pin: pin, p_token: m.token, p_state: 'lobby', p_q: -1 });
+    const cap = ali.page.locator('.cs-cap.cs-live').first();
+    await cap.waitFor({ timeout: 20000 });
+    await cap.evaluate((el) => el.click()); await ali.page.waitForTimeout(1000); // 430 ms «zaryad» animatsiyasi, keyin openArena
+    await rpc('quiz_control', { p_pin: pin, p_token: m.token, p_state: 'q', p_q: 0 });
+    const tile = ali.page.locator('button.qz-tile:not([disabled])');
+    await tile.first().waitFor({ timeout: 20000 });
+    await tile.first().click({ force: true });
+    const rows = await waitRows(100);
+    if (!rows.length) throw new Error('quiz-0 javobi serverga yetmadi');
+    aliQ0 = rows[0];
+    await rpc('quiz_control', { p_pin: pin, p_token: m.token, p_state: 'r', p_q: 0 });
+    await rpc('quiz_control', { p_pin: pin, p_token: m.token, p_state: 'done', p_q: 0 });
+    return `live_answers screen=100 (quiz-0) picked=${aliQ0.picked} correct=${aliQ0.correct}`;
+  });
+
+  await step('mentor «Erkin qilish» → Ali «Erkin rejim»; server: ended', async () => {
     await mentor.page.click('text=Erkin qilish');
     await waitBadge(ali.page, /Erkin rejim/);
     const s = await (await fetch(`${API}/api/v1/live/session/${pin}`)).json();
     if (s.status !== 'ended') throw new Error(`server status ${s.status}`);
+  });
+
+  await step('onFinished (JONLI): Ali F5 → ko\'rish rejimi, oxirgi ekran → «Yakunlash» → «Tamom» → s4 test 1 urinish (server bilan bir xil) · quiz-0 arena 1 urinish · test soni = serverdagi answered · lang · achievements', async () => {
+    // Sessiya yopildi → sweeper (5 s) urinishni `live_ended` qiladi → F5 = KO'RISH rejimi, server-progress 21-ekranni tiklaydi.
+    // (Hali faol bo'lsa join «student» qaytaradi va localStorage klampi 20-ekranga tushiradi — birinchi yugurish shunda yiqilgan.)
+    let fin = null;
+    for (let i = 0; i < 30; i++) { fin = await aliProgress(); if (fin.attempt?.status === 'finished') break; await new Promise((r) => setTimeout(r, 500)); }
+    if (fin.attempt?.status !== 'finished') throw new Error(`Ali urinishi hali tugamadi: ${JSON.stringify(fin.attempt)}`);
+    await ali.page.reload({ waitUntil: 'domcontentloaded' });
+    await ali.page.waitForSelector('.lesson-root', { timeout: 20000 });
+    await ali.page.waitForSelector('[data-live="badge-review"]', { timeout: 20000 });
+    await ali.page.waitForTimeout(1500);
+    const clickLast = async (re) => { const l = ali.page.locator('button', { hasText: re }).last(); if (!(await l.count())) return false; await l.evaluate((el) => el.click()); await ali.page.waitForTimeout(800); return true; };
+    let p = null;
+    if (await clickLast(/^\s*Tamom\s*$/)) p = await ali.page.evaluate(() => window.__onFinished);
+    if (!p) { await clickLast(/yakunla|tugat/i); await clickLast(/^\s*Tamom\s*$/); p = await ali.page.evaluate(() => window.__onFinished); }
+    if (!p || !Array.isArray(p.questions)) {
+      const txt = await ali.page.evaluate(() => (document.querySelector('.lesson-root')?.innerText || '').slice(0, 200).replace(/\s+/g, ' '));
+      throw new Error(`payload yo'q (${JSON.stringify(p).slice(0, 120)}); belgi: ${await badgeText(ali.page)}; ekran: ${txt}`);
+    }
+    const tests = p.questions.filter((q) => q.kind === 'test'), arena = p.questions.filter((q) => q.kind === 'arena');
+    const s4 = tests.find((q) => q.question_id === 's4');
+    if (!s4) throw new Error(`s4 yo'q: [${tests.map((q) => q.question_id)}]`);
+    if (s4.attempts.length !== 1) throw new Error(`s4 urinish ${s4.attempts.length} — jonlida 1 bo'lishi shart`);
+    if (s4.correct !== aliS4.correct || s4.attempts[0].correct !== aliS4.correct || s4.attempts[0].option !== aliS4.picked) throw new Error(`s4 server bilan mos emas: ${JSON.stringify(s4)} vs ${JSON.stringify(aliS4)}`);
+    if (s4.solved !== s4.correct || !Number.isInteger(s4.correct_option) || !Array.isArray(s4.options) || !/Z$/.test(s4.attempts[0].at)) throw new Error(`s4 maydonlari: ${JSON.stringify(s4)}`);
+    const q0 = arena.find((q) => q.question_id === 'quiz-0');
+    if (!q0 || q0.attempts.length !== 1 || q0.correct !== aliQ0.correct || q0.attempts[0].option !== aliQ0.picked) throw new Error(`quiz-0 mos emas: ${JSON.stringify(q0)} vs ${JSON.stringify(aliQ0)}`);
+    if (!q0.question || !Array.isArray(q0.options) || !/Z$/.test(q0.attempts[0].at)) throw new Error(`quiz-0 matnlari/vaqti: ${JSON.stringify(q0)}`);
+    const lessonRows = await (await fetch(`${API}/api/v1/live/answers/${pin}?range=lesson`)).json();
+    const mine = (Array.isArray(lessonRows) ? lessonRows : []).filter((r) => r.player_id === aliS4.player_id);
+    if (tests.length !== mine.length) throw new Error(`test soni ${tests.length} ≠ serverdagi answered ${mine.length}`);
+    if (p.totalQuestions !== 5 || p.correctAnswers !== (aliS4.correct ? 1 : 0) || p.lang !== 'uz' || !Array.isArray(p.achievements)) throw new Error(`asosiy maydonlar: total ${p.totalQuestions} correct ${p.correctAnswers} lang ${p.lang}`);
+    if (p.questions.some((q, i) => q.order !== i + 1)) throw new Error('order 1..n emas');
+    return `test ${tests.length} (s4 ${s4.correct ? "to'g'ri" : "noto'g'ri"}, 1 urinish) · arena ${arena.length} (quiz-0 ${q0.correct ? "to'g'ri" : "noto'g'ri"}) · yutuq ${p.achievements.length} · ${p.correctAnswers}/${p.totalQuestions}`;
   });
 
   await step('NATIJA: jonli sessiya → School API (soxta) 201 — Ali/Vali, group 861; solo → Sobir (rank null)', async () => {
