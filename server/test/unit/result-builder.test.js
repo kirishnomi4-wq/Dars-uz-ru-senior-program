@@ -112,7 +112,8 @@ test('badgesFor: all_correct/first_try/top/graduate/speedster/comeback/arena_top
   const cb = { answered: 6, correct: 5, avgElapsed: 3000, firstHalfCorrect: 1 / 3 };
   assert.deepEqual(badgesFor({ stats: cb, total: 6, rank: null, completed: false, groupMedianAvg: 2000 }), ['comeback']);
   const none = { answered: 2, correct: 0, avgElapsed: 500, firstHalfCorrect: 0 };
-  assert.deepEqual(badgesFor({ stats: none, total: 5, rank: null, completed: false, groupMedianAvg: 2000 }), []);
+  // F-0917-02: bo'sh ro'yxat yuborilmaydi (School API `required` bo'sh massivni 422 bilan rad etadi) — faqat shu holda `participant`
+  assert.deepEqual(badgesFor({ stats: none, total: 5, rank: null, completed: false, groupMedianAvg: 2000 }), ['participant']);
 });
 
 test('buildLivePayloads: count = dars-testlari; podiumda PIN-o\'quvchi ham hisobda (u 1-o\'rin → LMS-o\'quvchilar 2/3); arena nishon', () => {
@@ -185,6 +186,27 @@ test('buildSoloPayload: dars-testlari, rank null, group/teacher yo\'q, completed
   const half = buildSoloPayload({ attempt: { started_at: T0, finished_at: T0, reached_end: false }, subjectId: 1, lessonId: 'l', lessonTitle: 'L', keys: [], answers: [] });
   assert.deepEqual([half.payload.students[0].completed, half.payload.total_questions], [false, 1]);
   assert.deepEqual(validatePayload(half.payload), []);
+});
+
+test('F-0917-02: nishonsiz o\'quvchi — bo\'sh badges YUBORILMAYDI (School API 422 «students.N.badges field is required»)', () => {
+  // staging dalili: solo_31347_internet-01-v18_20260910T050107Z — answered 0, completed false, badges [] → 422 → manual_review
+  const solo = buildSoloPayload({ attempt: { started_at: T0, finished_at: min(5), reached_end: false }, subjectId: 31347, lessonId: 'internet-01-v18', lessonTitle: 'Internet', keys, answers: [] });
+  const s = solo.payload.students[0];
+  assert.deepEqual([s.answered, s.completed, s.badges, s.badges_count], [0, false, ['participant'], 1]);
+  assert.deepEqual(validatePayload(solo.payload), []);
+  // jonli sinf: pC (0 to'g'ri, oxirigacha yetmagan) va pD (hech narsa) — ilgari [] edi va BUTUN guruh hodisasi yiqilardi
+  const [ev] = buildLivePayloads(liveInput());
+  const by = new Map(ev.payload.students.map((st) => [st.student_id, st]));
+  assert.deepEqual(by.get(34176).badges, ['participant']);
+  assert.deepEqual(by.get(34177).badges, ['participant']);
+  for (const st of ev.payload.students) assert.ok(st.badges.length >= 1 && st.badges_count === st.badges.length, `bo'sh nishon: ${st.student_id}`);
+  // faqat bo'sh holatda: boshqa nishoni bor o'quvchiga qo'shilmaydi
+  assert.ok(!by.get(34174).badges.includes('participant') && !by.get(34175).badges.includes('participant'));
+  assert.deepEqual(validatePayload(ev.payload), []);
+  // validator bo'sh massivni navbatga tushishidan OLDIN tutadi
+  const bad = structuredClone(ev.payload);
+  bad.students[0].badges = []; bad.students[0].badges_count = 0;
+  assert.ok(validatePayload(bad).some((e) => e.startsWith('badges bo\'sh')), `keldi: ${validatePayload(bad)}`);
 });
 
 test('validatePayload: buzilgan holatlarni topadi', () => {

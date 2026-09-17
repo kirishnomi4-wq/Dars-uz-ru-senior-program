@@ -26,6 +26,9 @@ async function fetchStub(url, init) {
     if (resultMode === '422') return new Response(JSON.stringify({ message: 'Validation failed', errors: { total_questions: ['bad'] } }), { status: 422, headers });
     if (resultMode === '429') return new Response(JSON.stringify({ message: 'Too many' }), { status: 429, headers: { ...headers, 'retry-after': '3' } });
     if (resultMode === '500') return new Response(JSON.stringify({ message: 'boom' }), { status: 500, headers });
+    // F-0917-02: haqiqiy School API (Laravel `required`) bo'sh massivni rad etadi — stub ham AYNAN shunday (staging 2026-09-15/17 javobi)
+    const emptyIdx = payload.students.findIndex((st) => !Array.isArray(st.badges) || !st.badges.length);
+    if (emptyIdx >= 0) { const m = `The students.${emptyIdx}.badges field is required.`; return new Response(JSON.stringify({ message: m, errors: { [`students.${emptyIdx}.badges`]: [m] } }), { status: 422, headers }); }
     const dup = resultMode === 'dup';
     const students = payload.students.length;
     return new Response(JSON.stringify({ data: { event_id: payload.event_id, accepted: true, duplicate: dup, students_received: students, students_accepted: students - (payload.students.some((s) => s.student_id === 3002) ? 1 : 0), students_rejected: payload.students.some((s) => s.student_id === 3002) ? 1 : 0, rejected_students: payload.students.some((s) => s.student_id === 3002) ? [{ student_id: 3002, id_type: 'lms', reason: 'identity_not_found_or_unavailable' }] : [], reward_status: 'pending_policy' } }), { status: dup ? 200 : 201, headers });
@@ -151,6 +154,8 @@ test('auto_7d (tashlab ketilgan, tugallanmagan) → hodisa completed:false; keyi
   const auto = (await events(`where mode = 'solo'`)).find((e) => e.attempt_id === s.attempt.id);
   assert.ok(auto, 'auto_7d hodisasi bo\'lishi kerak');
   assert.deepEqual([auto.payload.students[0].completed, auto.status], [false, 'delivered']);
+  // F-0917-02: nishonsiz o'quvchi — bo'sh massiv EMAS (staging'da aynan shu hodisa-turi 422 → manual_review bo'lgan)
+  assert.deepEqual([auto.payload.students[0].badges, auto.payload.students[0].badges_count], [['participant'], 1]);
   // tugallanmagan hodisa bloklamaydi: qayta boshlab oxirigacha o'tsa → yuboriladi
   const r = await post(t.app, '/api/v1/lms/restart', { lesson_id: LESSON }, bearer(await stu(3004, 'Dilnoza')));
   const a2 = r.json().attempt.id;

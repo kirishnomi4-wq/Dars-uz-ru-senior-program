@@ -34,6 +34,14 @@ const server = createServer(async (req, res) => {
     for await (const chunk of req) body += chunk;
     if (Buffer.byteLength(body, 'utf8') > 1_000_000) return json(res, 413, { message: 'Payload too large (1 MB)' });
     let p; try { p = JSON.parse(body); } catch { return json(res, 422, { message: 'Invalid JSON' }); }
+    // F-0917-02: haqiqiy School API (Laravel `required`) bo'sh massivni «yo'q» deb hisoblaydi — soxta API ham AYNAN shunday rad etadi,
+    // aks holda bu xato-sinf lokal sinovda hech qachon tutilmaydi (pilotda 1–2 o'quvchi doim top_N olgan, 09-15 gacha sezilmagan).
+    const emptyBadges = (Array.isArray(p.students) ? p.students : []).findIndex((s) => !Array.isArray(s?.badges) || !s.badges.length);
+    if (emptyBadges >= 0) {
+      const msg = `The students.${emptyBadges}.badges field is required.`;
+      console.log(`[fake-school] 422 ${p.event_id}: ${msg}`);
+      return json(res, 422, { message: msg, errors: { [`students.${emptyBadges}.badges`]: [msg] } });
+    }
     const prev = seenEvents.get(p.event_id);
     if (prev && prev !== body) return json(res, 409, { message: 'event_id reused with different payload' });
     seenEvents.set(p.event_id, body);

@@ -109,6 +109,10 @@ export function badgesFor({ stats, total, rank, completed, groupMedianAvg, arena
   if (completed) b.push('graduate');
   if (stats.firstHalfCorrect !== null && stats.answered >= 4 && stats.firstHalfCorrect < 0.5 && ratio >= 0.7) b.push('comeback');
   if (arenaRank >= 1 && arenaRank <= 3) b.push(`arena_top_${arenaRank}`);
+  // F-0917-02 (2026-09-17): School API (Laravel `required`) BO'SH massivni «maydon yo'q» deb 422 bilan rad etadi
+  // («The students.0.badges field is required.») — jonli sinfda bitta nishonsiz o'quvchi BUTUN hodisani yiqitadi.
+  // Himoya: ro'yxat bo'sh qolsa — `participant` (faqat shu holda; boshqa nishoni bor o'quvchiga qo'shilmaydi).
+  if (!b.length) b.push('participant');
   return b;
 }
 
@@ -271,6 +275,7 @@ export function validatePayload(p) {
     if (p.mode === 'solo' && s.rank !== null) errs.push('solo rank');
     if (!Array.isArray(s.badges) || s.badges_count !== s.badges.length || new Set(s.badges).size !== s.badges.length) errs.push(`badges ${k}`);
     if (s.badges.some((b) => !/^[a-z0-9]+(?:_[a-z0-9]+)*$/.test(b) || b.length > 64)) errs.push(`badge key ${k}`);
+    if (Array.isArray(s.badges) && !s.badges.length) errs.push(`badges bo'sh ${k}`); // F-0917-02: School API bo'sh massivni 422 bilan rad etadi
     if (!(s.duration_sec >= 0 && s.duration_sec <= 86400)) errs.push(`duration ${k}`);
     errs.push(...validateStudentDetails(s));
   }
