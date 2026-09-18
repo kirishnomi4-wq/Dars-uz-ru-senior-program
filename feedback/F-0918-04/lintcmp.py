@@ -2,7 +2,7 @@
 # Ishlatish: S=<skretch-papka> python3 feedback/F-0918-04/lintcmp.py [fayl.jsx …]   (fayl berilmasa — git diff dagi hammasi)
 import subprocess, re, os, sys
 S=os.environ['S']; root=os.getcwd()
-files=[a for a in sys.argv[1:] if a.endswith('.jsx')] or [f for f in subprocess.check_output(['git','diff','--name-only','--','src'],text=True).split() if f.endswith('.jsx')]  # fayl berilsa — faqat o'shalar
+files=[a for a in sys.argv[1:] if a.endswith('.jsx')] or [f for f in subprocess.check_output(['git','diff','--name-only',os.environ.get('BASE','HEAD'),'--','src'],text=True).split() if f.endswith('.jsx') and os.path.exists(f)]  # fayl berilsa — faqat o'shalar
 ansi=re.compile(r'\x1b\[[0-9;]*m')
 def norm(out):
     out=ansi.sub('',out)
@@ -17,7 +17,7 @@ def run(tool,path):
 bad=0
 for f in files:
     hp=os.path.join(S,'head',f); os.makedirs(os.path.dirname(hp),exist_ok=True)
-    open(hp,'w',encoding='utf-8').write(subprocess.check_output(['git','show','HEAD:'+f],text=True))
+    open(hp,'w',encoding='utf-8').write(subprocess.check_output(['git','show',os.environ.get('BASE','HEAD')+':'+f],text=True))  # BASE=<commit> — boshqa asos bilan
     for tool in ('til-lint.mjs','dark-lint.mjs'):
         a,ra=run(tool,hp); b,rb=run(tool,f)
         if a!=b or ra!=rb:

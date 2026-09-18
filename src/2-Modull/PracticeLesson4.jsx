@@ -1397,13 +1397,18 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, earn, onNext, onPrev }) => {
     { id: 'check', label: tr({ uz: 'Natijani tekshir', ru: 'Проверь результат' }) },
     { id: 'deploy', label: tr({ uz: 'Deploy qil', ru: 'Сделай деплой' }) }
   ];
-  const [passed, setPassed] = useState(!!storedAnswer?.correct);
+  const [passed, setPassed] = useState(!!(storedAnswer && (storedAnswer.solved || storedAnswer.correct)));
+  // Ball — birinchi TO'LIQ urinish (MCQ bilan bir xil o'lchov, 8-A): hamma katak to'lib tartib xato chiqsa — urinish xato
+  const achMiss = useContext(AchMissCtx);
+  const wrongEverRef = useRef(false);
+  const onWrong = () => { wrongEverRef.current = true; if (achMiss) achMiss.miss(screen); };
   const passedRef = useScrollIntoViewOnMobile(passed);
   const handleSolved = () => {
     if (passed) return;
     setPassed(true);
-    if (earn) earn('planner'); // 🏅 universal yo'lni o'zi tartibladi
-    onAnswer(screen, { stage: 'final', screenIdx: screen, question: 'Har qanday loyiha qadamlari tartibi', studentAnswer: STEPS.map(s => s.id).join('>'), correct: true, firstAttemptCorrect: true, solved: true, picked: STEPS.map(s => s.id).join('>') });
+    const first = !wrongEverRef.current && !(achMiss && achMiss.missed.has(SCREEN_META[screen].id));
+    if (earn && first) earn('planner'); // 🏅 universal yo'lni o'zi tartibladi — faqat birinchi urinishda (151-qonun)
+    onAnswer(screen, { stage: 'final', screenIdx: screen, question: 'Har qanday loyiha qadamlari tartibi', studentAnswer: STEPS.map(s => s.id).join('>'), correct: first, firstAttemptCorrect: first, solved: true, picked: first ? 0 : 1 });
   };
   return (
     <Stage eyebrow={tr({ uz: 'Yakuniy · amaliy', ru: 'Финал · практика' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!passed} label={passed ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "Qadamlarni to'g'ri tartibga suring", ru: 'Расставьте шаги в правильном порядке' })} onClick={onNext} /></>}>
@@ -1411,7 +1416,7 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, earn, onNext, onPrev }) => {
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Oxirgi sinov: har qanday loyiha — <span className="italic" style={{ color: T.accent }}>bir xil 5 qadam</span></>, ru: <>Последнее испытание: любой проект — <span className="italic" style={{ color: T.accent }}>те же 5 шагов</span></> })}</h2></div>
         <Mentor>{tr({ uz: <>Mana — butun modulning siri bitta ketma-ketlikda. Do'kon, o'yin, bot — farqi yo'q: <b style={{ color: T.ink }}>hammasi shu 5 qadam bilan</b> quriladi. Bo'laklarni sudrab, to'g'ri tartibga qo'ying.</>, ru: <>Вот секрет всего модуля в одной последовательности. Магазин, игра, бот — без разницы: <b style={{ color: T.ink }}>всё строится этими 5 шагами</b>. Перетащите блоки в правильном порядке.</> })}</Mentor>
         <Zoomable>
-          <DragDropOrder items={STEPS} hints={[`1-${tr({ uz: 'qadam', ru: 'й шаг' })}`, `2-${tr({ uz: 'qadam', ru: 'й шаг' })}`, `3-${tr({ uz: 'qadam', ru: 'й шаг' })}`, `4-${tr({ uz: 'qadam', ru: 'й шаг' })}`, `5-${tr({ uz: 'qadam', ru: 'й шаг' })}`]} onSolved={handleSolved} />
+          <DragDropOrder onWrong={onWrong} items={STEPS} hints={[`1-${tr({ uz: 'qadam', ru: 'й шаг' })}`, `2-${tr({ uz: 'qadam', ru: 'й шаг' })}`, `3-${tr({ uz: 'qadam', ru: 'й шаг' })}`, `4-${tr({ uz: 'qadam', ru: 'й шаг' })}`, `5-${tr({ uz: 'qadam', ru: 'й шаг' })}`]} onSolved={handleSolved} />
           {passed && <div ref={passedRef} className="frame-success fade-step" style={{ marginTop: 12 }}><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Mukammal! Reja → MVP → qur → tekshir → deploy. Bu — istalgan loyihaning universal yo'li. Siz uni egalladingiz!", ru: 'Идеально! План → MVP → построй → проверь → деплой. Это универсальный путь любого проекта. Вы его освоили!' })}</p></div>}
         </Zoomable>
       </div>
@@ -1508,7 +1513,7 @@ const Confetti = () => {
 };
 
 // Server-baholash javob kaliti (mentor darsni ochganda avto-yuklanadi). s15 = -1 (yakuniy amaliy).
-const INLINE_KEYS = { s4: 0, s8: 2, s10: 3, s15: -1 };
+const INLINE_KEYS = { s4: 0, s8: 2, s10: 3, s15: 0 };
 
 const ScreenPodium = ({ screen, answers, onNext, onPrev }) => {
   const audio = useAudio([{ id: 's15b', text: "Mana natijalar. Tezkorlar podiumda! Kim eng tez va to'g'ri javob berdi — birga ko'ramiz.", trigger: 'on_mount', waits_for: null }]);
@@ -1680,7 +1685,7 @@ function MentorPracticeOverlay({ entry, live, onClose }) {
 
 // 🧩 Qayta ishlatiladigan DRAG-DROP TARTIB — o'quvchi bo'laklarni O'ZI to'g'ri tartibda yig'adi.
 // StrictMode-safe: YAGONA holat ({pool,slots}); setState ichida setState YO'Q.
-function DragDropOrder({ items, hints, onSolved }) {
+function DragDropOrder({ items, hints, onSolved, onWrong }) {
   const order = items.map(x => x.id);
   const byId = useMemo(() => Object.fromEntries(items.map(x => [x.id, x])), [items]);
   const [st, setSt] = useState(() => {
@@ -1694,6 +1699,7 @@ function DragDropOrder({ items, hints, onSolved }) {
   const solved = slots.every((s, i) => s === order[i]);
   const wrong = full && !solved;
   useEffect(() => { if (solved) onSolved && onSolved(); }, [solved]); // eslint-disable-line
+  useEffect(() => { if (wrong) onWrong && onWrong(); }, [wrong]); // eslint-disable-line
   const place = (id, from, slotIdx) => setSt(({ pool, slots }) => {
     const ns = slots.slice(); const occ = ns[slotIdx];
     if (typeof from === 'number') ns[from] = null;
@@ -2454,7 +2460,7 @@ export default function PracticeLesson4({ lang: langProp, onFinished, liveToken 
   const missTry = useCallback((idx) => {
     const sid = SCREEN_META[idx] && SCREEN_META[idx].id;
     const ach = ACH_TRIGGERS[sid];
-    if (!ach || missedRef.current.has(sid) || earnedRef.current.has(ach)) return;
+    if (!sid || missedRef.current.has(sid) || (ach && earnedRef.current.has(ach))) return; // nishonsiz test-ekran ham (ball — birinchi to'liq urinish, F5 dan keyin ham)
     missedRef.current.add(sid);
     setMissed(new Set(missedRef.current));
   }, []);
@@ -2491,7 +2497,7 @@ export default function PracticeLesson4({ lang: langProp, onFinished, liveToken 
   const recordAnswer = (idx, data) => {
     setAnswers(a => ({ ...a, [idx]: data }));
     const _m = SCREEN_META[idx];
-    if (_m && _m.scored && _m.scope === 'final' && data && data.correct && live.mode === 'student') live.submitAnswer(idx, _m.id, 0, true, 0);
+    if (_m && _m.scored && _m.scope === 'final' && data && (data.solved || data.correct) && live.mode === 'student') live.submitAnswer(idx, _m.id, data.picked === 1 ? 1 : 0, !!data.correct, 0); // ball — birinchi to'liq urinish (picked 0 = to'g'ri, 1 = xato; kalit 0)
     if (_m && ACH_TRIGGERS[_m.id] && data && data.correct && !missedRef.current.has(_m.id)) earn(ACH_TRIGGERS[_m.id]); // 🏅 faqat SCORED test to'g'ri bo'lsa
   };
   const reset = () => { if (!firstPassRef.current) { firstPassRef.current = { answers, durationSec: Math.floor((Date.now() - startTimeRef.current) / 1000) }; setFpPractice(true); } progClear(LESSON_META.lessonId); setAnswers({}); setScreen(0); setMentorPractice(null); startTimeRef.current = Date.now(); };

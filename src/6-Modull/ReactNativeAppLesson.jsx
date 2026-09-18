@@ -1093,10 +1093,14 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const done = placed.length === FLOW_ORDER.length;
   const need = FLOW_ORDER[placed.length];
   const fired = useRef(!!storedAnswer);
+  // Ball — birinchi TO'LIQ urinish (MCQ bilan bir xil o'lchov, 8-A): rad etilgan (noto'g'ri) bosish — urinish xato
+  const achMiss = useContext(AchMissCtx);
+  const wrongEverRef = useRef(false);
   useEffect(() => {
     if (done && !fired.current) {
       fired.current = true;
-      onAnswer(screen, { stage: 'final', screenIdx: screen, question: "Mobil ilova oqimini to'g'ri tartibda joylang", correct: true, firstAttemptCorrect: true, solved: true, picked: 0, elapsedMs: 0, order: FLOW_ORDER.join(' → ') });
+      const first = !wrongEverRef.current && !(achMiss && achMiss.missed.has(SCREEN_META[screen].id));
+      onAnswer(screen, { stage: 'final', screenIdx: screen, question: "Mobil ilova oqimini to'g'ri tartibda joylang", correct: first, firstAttemptCorrect: first, solved: true, picked: first ? 0 : 1, elapsedMs: 0, order: FLOW_ORDER.join(' → ') });
     }
   }, [done]);
   const flowById = (id) => FLOW.find(f => f.id === id);
@@ -1104,6 +1108,7 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     if (placed.includes(id) || done) return;
     if (id === need) { setPlaced(p => [...p, id]); setHint(null); }
     else {
+      wrongEverRef.current = true; if (achMiss) achMiss.miss(screen);
       const needF = flowById(need);
       setShakeId(id); setHint({ uz: `Hozir emas — avval ${needF.ico} ${needF.label.uz} bo'lishi kerak.`, ru: `Пока рано — сначала должен быть ${needF.ico} ${needF.label.ru}.` });
       setTimeout(() => setShakeId(x => (x === id ? null : x)), 450);
@@ -2054,7 +2059,7 @@ export default function ReactNativeAppLesson({ lang: langProp, onFinished, liveT
   const missTry = useCallback((idx) => {
     const sid = SCREEN_META[idx] && SCREEN_META[idx].id;
     const ach = ACH_TRIGGERS[sid];
-    if (!ach || missedRef.current.has(sid) || earnedRef.current.has(ach)) return;
+    if (!sid || missedRef.current.has(sid) || (ach && earnedRef.current.has(ach))) return; // nishonsiz test-ekran ham (ball — birinchi to'liq urinish, F5 dan keyin ham)
     missedRef.current.add(sid);
     setMissed(new Set(missedRef.current));
   }, []);

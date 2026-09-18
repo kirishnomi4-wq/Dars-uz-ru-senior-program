@@ -1486,8 +1486,11 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const CORRECT = ['wake', 'wash', 'dress', 'eat'];
   const SHUFFLED = ['dress', 'eat', 'wake', 'wash'];
   const [order, setOrder] = useState(Array.isArray(storedAnswer?.picked) ? storedAnswer.picked : []); // F-0914-10: saqlangan javob massiv bo'lmasa — bo'sh (oq ekran himoyasi)
-  const [passed, setPassed] = useState(!!storedAnswer?.correct);
-  const [phase, setPhase] = useState(storedAnswer?.correct ? 'done' : 'idle'); // idle|run|done|fail
+  const [passed, setPassed] = useState(!!(storedAnswer && (storedAnswer.solved || storedAnswer.correct)));
+  const [phase, setPhase] = useState(storedAnswer && (storedAnswer.solved || storedAnswer.correct) ? 'done' : 'idle'); // idle|run|done|fail
+  // Ball — birinchi TO'LIQ urinish (MCQ bilan bir xil o'lchov, 8-A): to'liq tartib bilan RUN bosilib, tartib xato chiqsa — urinish xato
+  const achMiss = useContext(AchMissCtx);
+  const wrongEverRef = useRef(false);
   const [running, setRunning] = useState(-1); // hozir bajarilayotgan blok indeksi
   const timer = useRef(null);
   useEffect(() => () => clearTimeout(timer.current), []);
@@ -1507,12 +1510,13 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           const ok = order.every((x, k) => x === CORRECT[k]);
           if (ok) {
             setPhase('done'); setPassed(true); setRunning(-1);
-            onAnswer(screen, { correct: true, picked: order });
+            const first = !wrongEverRef.current && !(achMiss && achMiss.missed.has(SCREEN_META[screen].id));
+            onAnswer(screen, { correct: first, firstAttemptCorrect: first, solved: true, picked: order });
             // Jonli darsda o'quvchi RUN'ni to'g'ri bajarganini serverga yozamiz — mentor «kim tugatdi»ni ko'radi va podium hisoblaydi
-            if (live && live.mode === 'student') live.submitAnswer(screen, 's15', 0, true, 0);
+            if (live && live.mode === 'student') live.submitAnswer(screen, 's15', first ? 0 : 1, first, 0);
             audio.triggerEvent('typed_ok');
             if (!audio.muted) setTimeout(() => { const e = getAudioEngine(); if (e && !audio.muted) e.pushOneOff(`Zo'r! Ketma-ketlik to'liq to'g'ri.`); }, 300);
-          } else { setPhase('fail'); setRunning(-1); }
+          } else { wrongEverRef.current = true; if (achMiss) achMiss.miss(screen); setPhase('fail'); setRunning(-1); }
         }, 520);
       }
     };
@@ -1898,7 +1902,7 @@ const QZ_BG_SHAPES = [
 // 12 ta PM savoli — dars kontentidan, chalg'ituvchilari ishonarli
 // Server-baholash javob kaliti (dars ichidagi testlar). s15 = -1 (yakuniy amaliy — bajargani hisobga olinadi).
 // quiz-N jang savollari QUIZ_BANK'dan avtomatik qo'shiladi. Mentor darsni ochganda serverga avto-yuklanadi (SQL shart emas).
-const INLINE_KEYS = { s4: 1, s5b: 0, s9: 1, s12: 1, s15: -1 };
+const INLINE_KEYS = { s4: 1, s5b: 0, s9: 1, s12: 1, s15: 0 };
 
 // ⚔️ MUSTAHKAMLASH-JANG savollari (DRAFT — foydalanuvchi tasdiqlaydi). Sistema + Algoritm.
 const QUIZ_BANK = [
@@ -2428,7 +2432,7 @@ export default function JsIntroLesson({ lang: langProp, onFinished, liveToken })
   const missTry = useCallback((idx) => {
     const sid = SCREEN_META[idx] && SCREEN_META[idx].id;
     const ach = ACH_TRIGGERS[sid];
-    if (!ach || missedRef.current.has(sid) || earnedRef.current.has(ach)) return;
+    if (!sid || missedRef.current.has(sid) || (ach && earnedRef.current.has(ach))) return; // nishonsiz test-ekran ham (ball — birinchi to'liq urinish, F5 dan keyin ham)
     missedRef.current.add(sid);
     setMissed(new Set(missedRef.current));
   }, []);

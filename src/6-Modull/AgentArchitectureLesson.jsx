@@ -541,7 +541,7 @@ const Mentor = ({ children }) => {
   );
 };
 
-function DragDropOrder({ items, hints, onSolved, doneText, onChange }) {
+function DragDropOrder({ items, hints, onSolved, doneText, onChange, onWrong }) {
   const order = items.map(x => x.id);
   const byId = useMemo(() => Object.fromEntries(items.map(x => [x.id, x])), [items]);
   const [st, setSt] = useState(() => {
@@ -555,6 +555,7 @@ function DragDropOrder({ items, hints, onSolved, doneText, onChange }) {
   const solved = slots.every((s, i) => s === order[i]);
   const wrong = full && !solved;
   useEffect(() => { if (solved) onSolved && onSolved(); }, [solved]); // eslint-disable-line
+  useEffect(() => { if (wrong) onWrong && onWrong(); }, [wrong]); // eslint-disable-line
   useEffect(() => { onChange && onChange(slots); }, [slots]); // eslint-disable-line
   const place = (id, from, slotIdx) => setSt(({ pool, slots }) => {
     const ns = slots.slice(); const occ = ns[slotIdx];
@@ -1179,12 +1180,17 @@ const Screen14 = (props) => (
 
 // ===== SCREEN 15 — YAKUNIY: detektiv oqimi (DragDropOrder) =====
 const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
+  // Ball — birinchi TO'LIQ urinish (MCQ bilan bir xil o'lchov, 8-A): hamma katak to'lib tartib xato chiqsa — urinish xato
+  const achMiss = useContext(AchMissCtx);
+  const wrongEverRef = useRef(false);
+  const onWrong = () => { wrongEverRef.current = true; if (achMiss) achMiss.miss(screen); };
   const [solved, setSolved] = useState(!!storedAnswer);
   const fired = useRef(!!storedAnswer);
   const handleSolved = () => {
     if (fired.current) return;
     fired.current = true; setSolved(true);
-    onAnswer(screen, { stage: 'final', screenIdx: screen, question: "Detektiv ish oqimini to'g'ri tartibda yig'ing", correct: true, firstAttemptCorrect: true, solved: true, picked: 0, elapsedMs: 0 });
+    const first = !wrongEverRef.current && !(achMiss && achMiss.missed.has(SCREEN_META[screen].id));
+    onAnswer(screen, { stage: 'final', screenIdx: screen, question: "Detektiv ish oqimini to'g'ri tartibda yig'ing", correct: first, firstAttemptCorrect: first, solved: true, picked: first ? 0 : 1, elapsedMs: 0 });
   };
   return (
     <Stage eyebrow={{ uz: 'Yakuniy · amaliy', ru: 'Итог · практика' }} screen={screen} scrollSignal={solved ? 1 : 0} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!solved} label={solved ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "Oqimni yig'ing", ru: 'Соберите поток' }} onClick={onNext} /></>}>
@@ -1194,7 +1200,7 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <Zoomable><div className="split">
           <Col>
             <p className="flow-label">{tr({ uz: "detektiv oqimi (siz yig'yapsiz)", ru: 'поток детектива (собираете вы)' })}</p>
-            <DragDropOrder items={FLOW_ITEMS} hints={FLOW_HINTS} onSolved={handleSolved} doneText={{ uz: "Oqim tayyor — detektiv dvigateli!", ru: 'Поток готов — двигатель детектива!' }} />
+            <DragDropOrder onWrong={onWrong} items={FLOW_ITEMS} hints={FLOW_HINTS} onSolved={handleSolved} doneText={{ uz: "Oqim tayyor — detektiv dvigateli!", ru: 'Поток готов — двигатель детектива!' }} />
           </Col>
           <Col>
             <div className="sk-info"><p className="note-h">{tr({ uz: '🔁 Nega tartib muhim?', ru: '🔁 Почему важен порядок?' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Detektiv avval kuzatmasa — xulosa qila olmaydi; xulosasiz — harakat qilolmaydi. Har qadam oldingisiga tayanadi, so'ng aylana qaytadan boshlanadi.", ru: 'Если детектив сначала не понаблюдает — не сделает вывод; без вывода — не сможет действовать. Каждый шаг опирается на предыдущий, а затем круг начинается заново.' })}</p></div>
@@ -2115,7 +2121,7 @@ export default function AgentArchitectureLesson({ lang: langProp, onFinished, li
   const missTry = useCallback((idx) => {
     const sid = SCREEN_META[idx] && SCREEN_META[idx].id;
     const ach = ACH_TRIGGERS[sid];
-    if (!ach || missedRef.current.has(sid) || earnedRef.current.has(ach)) return;
+    if (!sid || missedRef.current.has(sid) || (ach && earnedRef.current.has(ach))) return; // nishonsiz test-ekran ham (ball — birinchi to'liq urinish, F5 dan keyin ham)
     missedRef.current.add(sid);
     setMissed(new Set(missedRef.current));
   }, []);

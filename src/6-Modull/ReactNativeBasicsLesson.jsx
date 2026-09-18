@@ -590,7 +590,7 @@ const QrBox = ({ scanning }) => (
   <div className={`qr ${scanning ? 'qr-scan' : ''}`}>{QR_PAT.map((v, i) => <i key={i} className={v ? '' : 'off'} />)}</div>
 );
 
-function DragDropOrder({ items, hints, onSolved, doneText, onChange }) {
+function DragDropOrder({ items, hints, onSolved, doneText, onChange, onWrong }) {
   const order = items.map(x => x.id);
   const byId = useMemo(() => Object.fromEntries(items.map(x => [x.id, x])), [items]);
   // YAGONA holat — pool va slots birga (setState ichida setState YO'Q → StrictMode'da dublikat bo'lmaydi)
@@ -605,6 +605,7 @@ function DragDropOrder({ items, hints, onSolved, doneText, onChange }) {
   const solved = slots.every((s, i) => s === order[i]);
   const wrong = full && !solved;
   useEffect(() => { if (solved) onSolved && onSolved(); }, [solved]); // eslint-disable-line
+  useEffect(() => { if (wrong) onWrong && onWrong(); }, [wrong]); // eslint-disable-line
   useEffect(() => { onChange && onChange(slots); }, [slots]); // eslint-disable-line
   const place = (id, from, slotIdx) => setSt(({ pool, slots }) => {
     const ns = slots.slice(); const occ = ns[slotIdx];
@@ -1180,12 +1181,17 @@ const Screen14 = (props) => (
 
 // ===== SCREEN 15 — YAKUNIY: gastrol oqimini tartibda yig'ish (DragDropOrder) =====
 const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
+  // Ball — birinchi TO'LIQ urinish (MCQ bilan bir xil o'lchov, 8-A): hamma katak to'lib tartib xato chiqsa — urinish xato
+  const achMiss = useContext(AchMissCtx);
+  const wrongEverRef = useRef(false);
+  const onWrong = () => { wrongEverRef.current = true; if (achMiss) achMiss.miss(screen); };
   const fired = useRef(!!storedAnswer);
   const [solved, setSolved] = useState(!!storedAnswer);
   const onSolved = () => {
     if (fired.current) return;
     fired.current = true; setSolved(true);
-    onAnswer(screen, { stage: 'final', screenIdx: screen, question: "Birinchi RN ilova (gastrol) oqimini to'g'ri tartibda yig'ing", correct: true, firstAttemptCorrect: true, solved: true, picked: 0 });
+    const first = !wrongEverRef.current && !(achMiss && achMiss.missed.has(SCREEN_META[screen].id));
+    onAnswer(screen, { stage: 'final', screenIdx: screen, question: "Birinchi RN ilova (gastrol) oqimini to'g'ri tartibda yig'ing", correct: first, firstAttemptCorrect: first, solved: true, picked: first ? 0 : 1 });
   };
   return (
     <Stage eyebrow={tr({ uz: 'Yakuniy · amaliy', ru: 'Итоговое · практика' })} screen={screen} scrollSignal={solved ? 1 : 0} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!solved} label={solved ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "Oqimni yig'ing", ru: 'Соберите поток' }} onClick={onNext} /></>}>
@@ -1194,7 +1200,7 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <Mentor>{tr({ uz: "Bo'sh loyihadan telefondagi tirik sahnagacha yo'l: Expo loyiha → View/Text bilan ekran → StyleSheet bilan bezab → QR-chipta skan → telefonda jonli. Bo'laklarni to'g'ri tartibda sudrab joylang.", ru: 'Путь от пустого проекта до живой сцены на телефоне: проект Expo → экран на View/Text → оформление через StyleSheet → скан QR-билета → живьём на телефоне. Перетащите блоки в правильном порядке.' })}</Mentor>
         <Zoomable>
           <p className="flow-label" style={{ marginBottom: 8 }}>{tr({ uz: 'Gastrol oqimi — bo\'laklarni sudrab tartibga soling', ru: 'Гастрольный поток — перетащите блоки по порядку' })}</p>
-          <DragDropOrder items={FLOW_ITEMS} hints={FLOW_HINTS} onSolved={onSolved} doneText={{ uz: "Gastrol oqimi to'g'ri yig'ildi!", ru: 'Гастрольный поток собран верно!' }} />
+          <DragDropOrder onWrong={onWrong} items={FLOW_ITEMS} hints={FLOW_HINTS} onSolved={onSolved} doneText={{ uz: "Gastrol oqimi to'g'ri yig'ildi!", ru: 'Гастрольный поток собран верно!' }} />
           {solved && <div className="frame-success fade-step" style={{ marginTop: 12 }}><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ Oqim tayyor: <b>Expo → View/Text → StyleSheet → QR skan → Telefonda</b>. Mana birinchi mobil ilovangiz — gastrol — yo'li.</>, ru: <>✓ Поток готов: <b>Expo → View/Text → StyleSheet → QR-скан → На телефоне</b>. Вот он, путь вашего первого мобильного приложения — гастролей.</> })}</p></div>}
         </Zoomable>
       </div>
@@ -2127,7 +2133,7 @@ export default function ReactNativeBasicsLesson({ lang: langProp, onFinished, li
   const missTry = useCallback((idx) => {
     const sid = SCREEN_META[idx] && SCREEN_META[idx].id;
     const ach = ACH_TRIGGERS[sid];
-    if (!ach || missedRef.current.has(sid) || earnedRef.current.has(ach)) return;
+    if (!sid || missedRef.current.has(sid) || (ach && earnedRef.current.has(ach))) return; // nishonsiz test-ekran ham (ball — birinchi to'liq urinish, F5 dan keyin ham)
     missedRef.current.add(sid);
     setMissed(new Set(missedRef.current));
   }, []);

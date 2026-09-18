@@ -603,7 +603,7 @@ const MentorCollapseScroll = ({ targetRef }) => {
   }, [ctx.collapsed, ctx.enabled, targetRef]);
   return null;
 };
-function DragDropOrder({ items, hints, onSolved, doneText, onChange }) {
+function DragDropOrder({ items, hints, onSolved, doneText, onChange, onWrong }) {
   const order = items.map(x => x.id);
   const byId = useMemo(() => Object.fromEntries(items.map(x => [x.id, x])), [items]);
   // YAGONA holat — pool va slots birga (setState ichida setState YO'Q → StrictMode'da dublikat bo'lmaydi)
@@ -618,6 +618,7 @@ function DragDropOrder({ items, hints, onSolved, doneText, onChange }) {
   const solved = slots.every((s, i) => s === order[i]);
   const wrong = full && !solved;
   useEffect(() => { if (solved) onSolved && onSolved(); }, [solved]); // eslint-disable-line
+  useEffect(() => { if (wrong) onWrong && onWrong(); }, [wrong]); // eslint-disable-line
   useEffect(() => { onChange && onChange(slots); }, [slots]); // eslint-disable-line
   const place = (id, from, slotIdx) => setSt(({ pool, slots }) => {
     const ns = slots.slice(); const occ = ns[slotIdx];
@@ -1160,15 +1161,20 @@ const CITY_STAGES = [
 ];
 const CITY_HINTS = [{ uz: '1-bosqich', ru: '1-й этап' }, { uz: '2-bosqich', ru: '2-й этап' }, { uz: '3-bosqich', ru: '3-й этап' }, { uz: '4-bosqich', ru: '4-й этап' }, { uz: '5-bosqich', ru: '5-й этап' }];
 const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const solvedRef = useRef(!!(storedAnswer && storedAnswer.correct));
-  const [solved, setSolved] = useState(!!(storedAnswer && storedAnswer.correct));
+  // Ball — birinchi TO'LIQ urinish (MCQ bilan bir xil o'lchov, 8-A): hamma katak to'lib tartib xato chiqsa — urinish xato
+  const achMiss = useContext(AchMissCtx);
+  const wrongEverRef = useRef(false);
+  const onWrong = () => { wrongEverRef.current = true; if (achMiss) achMiss.miss(screen); };
+  const solvedRef = useRef(!!(storedAnswer && (storedAnswer.solved || storedAnswer.correct)));
+  const [solved, setSolved] = useState(!!(storedAnswer && (storedAnswer.solved || storedAnswer.correct)));
   const mountTs = useRef(Date.now());
   const workRef = useRef(null);
   const onSolved = () => {
     if (solvedRef.current) return;
     solvedRef.current = true;
     setSolved(true);
-    onAnswer(screen, { stage: 'final', screenIdx: screen, correct: true, solved: true, picked: 0, elapsedMs: Date.now() - mountTs.current });
+    const first = !wrongEverRef.current && !(achMiss && achMiss.missed.has(SCREEN_META[screen].id));
+    onAnswer(screen, { stage: 'final', screenIdx: screen, correct: first, firstAttemptCorrect: first, solved: true, picked: first ? 0 : 1, elapsedMs: Date.now() - mountTs.current });
     if (typeof window !== 'undefined' && window.innerWidth < 768 && workRef.current) { const el = workRef.current; setTimeout(() => { if (el) el.scrollIntoView({ behavior: 'smooth', block: 'end' }); }, 360); }
   };
   return (
@@ -1176,7 +1182,7 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Bitta ariza — <span className="italic" style={{ color: T.accent }}>butun shahar bo'ylab</span></>, ru: <>Одна заявка — <span className="italic" style={{ color: T.accent }}>через весь город</span></> })}</h2></div>
         <Mentor>{tr({ uz: <>Katta ochilish! Bitta ariza Peshtoqdan chiqib, butun shahar bo'ylab sayohat qiladi. Bosqichlarni <b style={{ color: T.ink }}>to'g'ri tartibda</b> joylang — ariza qayerdan qayerga o'tadi?</>, ru: <>Большое открытие! Одна заявка выходит из Фасада и путешествует через весь город. Разложите этапы <b style={{ color: T.ink }}>в правильном порядке</b> — откуда и куда идёт заявка?</> })}</Mentor>
-        <div ref={workRef}><DragDropOrder items={CITY_STAGES} hints={CITY_HINTS} onSolved={onSolved} doneText={{ uz: "To'g'ri! Ariza uchidan-uchiga sayohat qildi — shahar tirik!", ru: 'Верно! Заявка прошла путь от начала до конца — город ожил!' }} /></div>
+        <div ref={workRef}><DragDropOrder onWrong={onWrong} items={CITY_STAGES} hints={CITY_HINTS} onSolved={onSolved} doneText={{ uz: "To'g'ri! Ariza uchidan-uchiga sayohat qildi — shahar tirik!", ru: 'Верно! Заявка прошла путь от начала до конца — город ожил!' }} /></div>
         {solved && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Mana to'liq pipeline: Peshtoq → Hokimlik → Arxiv → Darvoza → Ekspert-byuro. Bitta amal — butun tizim harakatda.", ru: 'Вот полный pipeline: Фасад → Мэрия → Архив → Ворота → Бюро экспертов. Одно действие — и вся система в движении.' })}</p></div>}
       </div>
     </Stage>
@@ -2088,7 +2094,7 @@ export default function PipelineProjectLesson({ lang: langProp, onFinished, live
   const missTry = useCallback((idx) => {
     const sid = SCREEN_META[idx] && SCREEN_META[idx].id;
     const ach = ACH_TRIGGERS[sid];
-    if (!ach || missedRef.current.has(sid) || earnedRef.current.has(ach)) return;
+    if (!sid || missedRef.current.has(sid) || (ach && earnedRef.current.has(ach))) return; // nishonsiz test-ekran ham (ball — birinchi to'liq urinish, F5 dan keyin ham)
     missedRef.current.add(sid);
     setMissed(new Set(missedRef.current));
   }, []);

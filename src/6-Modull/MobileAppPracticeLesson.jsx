@@ -636,7 +636,7 @@ const Mentor = ({ children }) => {
     </div>
   );
 };
-function DragDropOrder({ items, hints, onSolved, doneText, onChange }) {
+function DragDropOrder({ items, hints, onSolved, doneText, onChange, onWrong }) {
   const order = items.map(x => x.id);
   const byId = useMemo(() => Object.fromEntries(items.map(x => [x.id, x])), [items]);
   // YAGONA holat — pool va slots birga (setState ichida setState YO'Q → StrictMode'da dublikat bo'lmaydi)
@@ -651,6 +651,7 @@ function DragDropOrder({ items, hints, onSolved, doneText, onChange }) {
   const solved = slots.every((s, i) => s === order[i]);
   const wrong = full && !solved;
   useEffect(() => { if (solved) onSolved && onSolved(); }, [solved]); // eslint-disable-line
+  useEffect(() => { if (wrong) onWrong && onWrong(); }, [wrong]); // eslint-disable-line
   useEffect(() => { onChange && onChange(slots); }, [slots]); // eslint-disable-line
   const place = (id, from, slotIdx) => setSt(({ pool, slots }) => {
     const ns = slots.slice(); const occ = ns[slotIdx];
@@ -1245,6 +1246,10 @@ const FINAL_SCENES = [
   { id: 'buyurtma', label: { uz: '✅ Buyurtma (Checkout)', ru: '✅ Заказ (Checkout)' } },
 ];
 const ScreenFinalDD = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
+  // Ball — birinchi TO'LIQ urinish (MCQ bilan bir xil o'lchov, 8-A): hamma katak to'lib tartib xato chiqsa — urinish xato
+  const achMiss = useContext(AchMissCtx);
+  const wrongEverRef = useRef(false);
+  const onWrong = () => { wrongEverRef.current = true; if (achMiss) achMiss.miss(screen); };
   const items = FINAL_SCENES;
   const hints = [{ uz: "mahsulotlar ro'yxati", ru: 'список товаров' }, { uz: "bitta mahsulot sahifasi", ru: 'страница одного товара' }, { uz: "tanlangan mahsulotlar", ru: 'выбранные товары' }, { uz: "buyurtmani yakunlash", ru: 'завершение заказа' }];
   const firedRef = useRef(!!storedAnswer);
@@ -1253,7 +1258,8 @@ const ScreenFinalDD = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     if (firedRef.current) return;
     firedRef.current = true;
     setDone(true);
-    onAnswer(screen, { stage: 'final', screenIdx: screen, question: "Mobil ilova 4 sahnasini to'g'ri tartibda yig'ing", options: FINAL_SCENES.map(f => ou(f.label)), correct: true, firstAttemptCorrect: true, solved: true, picked: 0 });
+    const first = !wrongEverRef.current && !(achMiss && achMiss.missed.has(SCREEN_META[screen].id));
+    onAnswer(screen, { stage: 'final', screenIdx: screen, question: "Mobil ilova 4 sahnasini to'g'ri tartibda yig'ing", options: FINAL_SCENES.map(f => ou(f.label)), correct: first, firstAttemptCorrect: first, solved: true, picked: first ? 0 : 1 });
   };
   return (
     <Stage eyebrow={{ uz: "Yakuniy · sahnalarni yig'ing", ru: 'Итог · соберите сцены' }} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "Sahnalarni yig'ing", ru: 'Соберите сцены' }} onClick={onNext} /></>}>
@@ -1261,7 +1267,7 @@ const ScreenFinalDD = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Oxirgi qadam: mobil ilova <span className="italic" style={{ color: T.accent }}>4 sahnasini to'g'ri tartibda</span> yig'ing.</>, ru: <>Последний шаг: соберите <span className="italic" style={{ color: T.accent }}>4 сцены мобильного приложения в верном порядке</span>.</> })}</h2></div>
         <Mentor>{tr({ uz: "Web-shouni mobil sahnaga port qildingiz. Endi 4 sahnani xarid oqimi tartibida joylang: mahsulotlar ro'yxati → mahsulot sahifasi → savat → buyurtma.", ru: 'Вы перенесли веб-шоу на мобильную сцену. Теперь разложите 4 сцены по порядку покупки: список товаров → страница товара → корзина → заказ.' })}</Mentor>
         <Zoomable>
-          <DragDropOrder items={items} hints={hints} onSolved={solve} doneText={{ uz: "To'g'ri oqim: Katalog → Detal → Savat → Buyurtma!", ru: 'Верный путь: Каталог → Детали → Корзина → Заказ!' }} />
+          <DragDropOrder onWrong={onWrong} items={items} hints={hints} onSolved={solve} doneText={{ uz: "To'g'ri oqim: Katalog → Detal → Savat → Buyurtma!", ru: 'Верный путь: Каталог → Детали → Корзина → Заказ!' }} />
         </Zoomable>
         {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ Sahnalar tayyor: <b>Katalog → Detal → Savat → Buyurtma</b>. Bitta backend, 4 sahna — mobil ilova to'liq yig'ildi.</>, ru: <>✓ Сцены готовы: <b>Каталог → Детали → Корзина → Заказ</b>. Один бэкенд, 4 сцены — мобильное приложение собрано целиком.</> })}</p></div>}
       </div>
@@ -2075,7 +2081,7 @@ export default function MobileAppPracticeLesson({ lang: langProp, onFinished, li
   const missTry = useCallback((idx) => {
     const sid = SCREEN_META[idx] && SCREEN_META[idx].id;
     const ach = ACH_TRIGGERS[sid];
-    if (!ach || missedRef.current.has(sid) || earnedRef.current.has(ach)) return;
+    if (!sid || missedRef.current.has(sid) || (ach && earnedRef.current.has(ach))) return; // nishonsiz test-ekran ham (ball — birinchi to'liq urinish, F5 dan keyin ham)
     missedRef.current.add(sid);
     setMissed(new Set(missedRef.current));
   }, []);
