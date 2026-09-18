@@ -140,6 +140,11 @@ export function loadConfig(env = process.env) {
     // achievements[] o'sha hodisa ichida). LMS kontraktni tasdiqlaguncha OFF; tasdiqlangach env'da `a`.
     resultDetails: read('RESULT_DETAILS', { def: 'off', enums: ['off', 'a'] }),
 
+    // Tanga-qoidasi jonli hodisada (F-0918-04): skip = shu dars bo'yicha oldin TUGALLANGAN natijasi bor o'quvchi yangi jonli
+    // hodisadan chiqariladi (bir o'quvchi — bir dars — bitta natija; prod shunday). send = eski xulq: har sessiya hammani
+    // yuboradi — FAQAT sinov muhiti uchun (o'sha test-o'quvchi bilan bitta darsni qayta-qayta sinash kerak bo'lganda).
+    resultLiveRepeat: read('RESULT_LIVE_REPEAT', { def: 'skip', enums: ['skip', 'send'] }),
+
     // ---- Natija-navbat ishchisi va kuzatuv
     resultsWorkerEnabled: read('RESULTS_WORKER_ENABLED', { def: true, parse: parseBool }),
     resultsTickMs: read('RESULTS_TICK_MS', { def: 5000, parse: parseInt_(1000, 600000) }),

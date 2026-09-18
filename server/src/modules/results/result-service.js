@@ -82,6 +82,29 @@ export async function hasRewardedResult(pool, subjectId, lessonId) {
   return rows.length > 0;
 }
 
+/**
+ * Tanga-qoidasi, jonli tomon (F-0918-04): berilgan o'quvchilardan qaysilarida shu dars bo'yicha oldin TUGALLANGAN
+ * (completed=true; jonli yoki solo) natija yuborilgan yoki yuborilmoqda (pending / retry_wait / delivered).
+ * - manual_review KIRMAYDI: u LMS'ga yetmagan (masalan 422) — shunga tayanib haqiqiy jonli darsni tashlab bo'lmaydi.
+ * - completed=false KIRMAYDI: uzilib qolgan sessiyadan (mentor noutbuki o'chdi) keyingi TO'LIQ dars baribir ketadi.
+ * - skipped KIRMAYDI: o'zi yuborilmagan yozuv.
+ * @returns {Promise<Set<string>>} student_id lar (satr ko'rinishida)
+ */
+export async function rewardedStudents(pool, lessonId, studentIds, exceptEventId) {
+  const ids = [...new Set((studentIds || []).map(String))];
+  if (!ids.length) return new Set();
+  const { rows } = await pool.query(
+    `select distinct st->>'student_id' as sid
+       from result_events r, jsonb_array_elements(r.payload->'students') st
+      where r.lesson_id = $1 and r.event_id <> $2
+        and r.status in ('pending', 'retry_wait', 'delivered')
+        and st->>'completed' = 'true'
+        and st->>'student_id' = any($3::text[])`,
+    [lessonId, exceptEventId, ids],
+  );
+  return new Set(rows.map((r) => r.sid));
+}
+
 async function insertEvent(pool, { event_id, mode, session_id = null, attempt_id = null, lesson_id, payload }) {
   const r = await pool.query(
     `insert into result_events (event_id, mode, session_id, attempt_id, lesson_id, payload, students_count)
@@ -106,7 +129,28 @@ export async function enqueueLiveSession(pool, log, sessionId, opts = {}) {
   }
   const events = buildLivePayloads(src);
   let created = 0;
+  let skippedAll = 0;
   for (const ev of events) {
+    // Tanga-qoidasi (F-0918-04): bir o'quvchi — bir dars — bitta natija. Takror o'quvchi hodisadan chiqadi (o'rinlar va
+    // boshqalarning nishonlari o'zgarmaydi — ular sinfdagi haqiqiy holat). RESULT_LIVE_REPEAT=send bu qadamni o'chiradi.
+    if (opts.liveRepeat !== 'send') {
+      const repeat = await rewardedStudents(pool, src.session.lesson_id, ev.payload.students.map((st) => st.student_id), ev.event_id);
+      if (repeat.size) {
+        const kept = ev.payload.students.filter((st) => !repeat.has(String(st.student_id)));
+        log.info({ sessionId, eventId: ev.event_id, repeat: [...repeat], kept: kept.length }, 'jonli natija: takror o\'quvchi(lar) chiqarildi (bu dars bo\'yicha natijasi allaqachon bor)');
+        if (!kept.length) {
+          // hamma takror → yuborilmaydi; yozuv qoladi (analitika + sweeper shu sessiyani qayta olmaydi)
+          await pool.query(
+            `insert into result_events (event_id, mode, session_id, lesson_id, payload, students_count, status, last_error)
+             values ($1, 'live', $2, $3, $4::jsonb, $5, 'skipped', 'already_rewarded') on conflict do nothing`,
+            [ev.event_id, sessionId, src.session.lesson_id, JSON.stringify(ev.payload), ev.payload.students.length],
+          );
+          skippedAll++;
+          continue;
+        }
+        ev.payload = { ...ev.payload, students: kept };
+      }
+    }
     const { payload, problems, detailsDropped } = finalizePayload(ev.payload);
     if (detailsDropped) log.warn({ sessionId, eventId: ev.event_id, reason: detailsDropped }, 'natija-detallari tashlandi (asosiy payload ketadi)');
     if (problems.length) {
@@ -121,7 +165,7 @@ export async function enqueueLiveSession(pool, log, sessionId, opts = {}) {
     if (await insertEvent(pool, { event_id: ev.event_id, mode: 'live', session_id: sessionId, lesson_id: src.session.lesson_id, payload })) created++;
   }
   if (created) log.info({ sessionId, created, students: src.participants.length }, 'natija navbatga qo\'yildi (live)');
-  return { created, skipped: null };
+  return { created, skipped: !created && skippedAll ? 'already_rewarded' : null };
 }
 
 /** Solo urinish uchun hodisa (completed yoki auto_7d). restarted — yuborilmaydi. */

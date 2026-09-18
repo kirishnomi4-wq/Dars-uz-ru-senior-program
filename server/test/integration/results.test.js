@@ -45,7 +45,9 @@ async function fetchStub(url, init) {
 }
 
 before(async () => {
-  t = await makeTestApp({ ADMIN_USER: 'admin', ADMIN_PASSWORD: 'test-admin-parol-12' }, { lms: true, fetchImpl: fetchStub });
+  // RESULT_LIVE_REPEAT=send: bu fayl navbat/qayta-urinish mexanikasini bitta o'quvchi (3001) bilan ko'p sessiyada sinaydi.
+  // Tanga-qoidasining jonli tomoni (skip — prod xulqi) alohida: results_repeat.test.js (F-0918-04).
+  t = await makeTestApp({ ADMIN_USER: 'admin', ADMIN_PASSWORD: 'test-admin-parol-12', RESULT_LIVE_REPEAT: 'send' }, { lms: true, fetchImpl: fetchStub });
   await t.seedCatalog([LESSON]);
   await t.db.query('select set_quiz_keys($1, $2, $3)', [LESSON, TEST_MENTOR_CODE, '{"s4":1,"s9":2,"quiz-0":0}']);
 });

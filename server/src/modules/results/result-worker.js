@@ -9,9 +9,9 @@ import { nextDelayMs, isRetryable, MAX_SEND_ATTEMPTS } from './retry.js';
  * @param {{ pool: import('pg').Pool, log: import('pino').Logger, schoolApi: { submitLessonResult: Function },
  *           notify?: (text: string) => Promise<void>, batch?: number }} deps
  */
-export function createResultWorker({ pool, log, schoolApi, notify, batch = 10, details = false }) {
+export function createResultWorker({ pool, log, schoolApi, notify, batch = 10, details = false, liveRepeat = 'skip' }) {
   let running = false;
-  const sweepOpts = { details: !!details };
+  const sweepOpts = { details: !!details, liveRepeat };
 
   async function claimDue(client) {
     const { rows } = await client.query(

@@ -100,7 +100,7 @@ export async function buildApp({ config, pool, logger, version, fetchImpl }) {
       log: logger,
     });
     const notify = createNotifier({ botToken: config.telegramBotToken, chatId: config.telegramChatId, log: logger, env: config.env });
-    results = createResultWorker({ pool, log: logger, schoolApi, notify, details: config.resultDetails === 'a' });
+    results = createResultWorker({ pool, log: logger, schoolApi, notify, details: config.resultDetails === 'a', liveRepeat: config.resultLiveRepeat });
   }
   app.decorate('schoolApi', schoolApi);
   app.decorate('results', results);
