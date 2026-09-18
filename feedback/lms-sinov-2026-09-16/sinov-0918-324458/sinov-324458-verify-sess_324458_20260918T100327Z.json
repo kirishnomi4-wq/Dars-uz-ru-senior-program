@@ -1,0 +1,50 @@
+{
+  "event_id": "sess_324458_20260918T100327Z",
+  "local": {
+    "event_id": "sess_324458_20260918T100327Z",
+    "status": "delivered",
+    "last_http_status": 201
+  },
+  "remote": {
+    "status": 200,
+    "found": true,
+    "data": {
+      "event_id": "sess_324458_20260918T100327Z",
+      "lesson_id": "internet-01-v18",
+      "lesson_title": "Internet qanday ishlaydi",
+      "mode": "live",
+      "group_id": 1072,
+      "teacher_id": 240,
+      "started_at": "2026-09-18T10:03:27Z",
+      "finished_at": "2026-09-18T10:08:25Z",
+      "total_questions": 5,
+      "received_at": "2026-09-18T10:08:25Z",
+      "reward_status": "pending_policy",
+      "students_received": 1,
+      "students_accepted": 1,
+      "students_rejected": 0,
+      "students": [
+        {
+          "student_id": 31422,
+          "id_type": "lms",
+          "crm_student_id": 12766,
+          "lms_student_id": 31422,
+          "correct_answers": 0,
+          "answered": 0,
+          "rank": null,
+          "badges": [
+            "participant"
+          ],
+          "badges_count": 1,
+          "duration_sec": 199,
+          "completed": false,
+          "lang": "uz",
+          "questions": [],
+          "achievements": []
+        }
+      ],
+      "rejected_students": []
+    },
+    "message": null
+  }
+}

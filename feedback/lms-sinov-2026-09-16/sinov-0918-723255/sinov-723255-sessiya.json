@@ -1,0 +1,68 @@
+{
+  "at": "2026-09-18T10:42:02.022Z",
+  "base": "https://staging-dars-api.coddycamp.uz",
+  "detail": {
+    "session": {
+      "id": "7ae983e7-31a1-4aa5-82bc-12de908c6146",
+      "pin": "723255",
+      "mode": "live",
+      "lesson_id": "pm-m3d14-v1",
+      "lesson_version": null,
+      "gid": 1072,
+      "teacher_id": 240,
+      "status": "ended",
+      "end_reason": "mentor",
+      "started_at": "2026-09-18T10:34:13.057Z",
+      "finished_at": "2026-09-18T10:36:16.004Z",
+      "title_uz": "pm-m3d14-v1",
+      "cur_screen": 15,
+      "max_screen": 15,
+      "live_status": "ended",
+      "quiz_state": "off",
+      "live_updated_at": "2026-09-18T10:36:17.284Z"
+    },
+    "participants": [
+      {
+        "role": "student",
+        "subject_id": 31422,
+        "crm_id": 12766,
+        "joined_at": "2026-09-18T10:34:23.335Z",
+        "attempt_id": "81737c3e-b72a-42d0-84d9-d390cb48dce9",
+        "attempt_status": "finished",
+        "finish_reason": "live_ended",
+        "reached_end": false,
+        "answers": 4,
+        "correct": 0,
+        "attempts": 4,
+        "achievements": 0
+      },
+      {
+        "role": "mentor",
+        "subject_id": 240,
+        "crm_id": null,
+        "joined_at": "2026-09-18T10:34:13.057Z",
+        "attempt_id": null,
+        "attempt_status": null,
+        "finish_reason": null,
+        "reached_end": null,
+        "answers": 0,
+        "correct": 0,
+        "attempts": 0,
+        "achievements": 0
+      }
+    ],
+    "pin_players": 1,
+    "results": [
+      {
+        "event_id": "sess_723255_20260918T103413Z",
+        "status": "delivered",
+        "students_count": 1,
+        "send_attempts": 1,
+        "last_http_status": 201,
+        "last_error": null,
+        "delivered_at": "2026-09-18T10:36:16.219Z",
+        "updated_at": "2026-09-18T10:36:16.219Z"
+      }
+    ]
+  }
+}

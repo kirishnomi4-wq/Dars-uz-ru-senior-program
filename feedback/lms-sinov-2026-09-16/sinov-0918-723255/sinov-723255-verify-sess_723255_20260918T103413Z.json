@@ -1,0 +1,151 @@
+{
+  "event_id": "sess_723255_20260918T103413Z",
+  "local": {
+    "event_id": "sess_723255_20260918T103413Z",
+    "status": "delivered",
+    "last_http_status": 201
+  },
+  "remote": {
+    "status": 200,
+    "found": true,
+    "data": {
+      "event_id": "sess_723255_20260918T103413Z",
+      "lesson_id": "pm-m3d14-v1",
+      "lesson_title": "pm-m3d14-v1",
+      "mode": "live",
+      "group_id": 1072,
+      "teacher_id": 240,
+      "started_at": "2026-09-18T10:34:13Z",
+      "finished_at": "2026-09-18T10:36:16Z",
+      "total_questions": 4,
+      "received_at": "2026-09-18T10:36:16Z",
+      "reward_status": "pending_policy",
+      "students_received": 1,
+      "students_accepted": 1,
+      "students_rejected": 0,
+      "students": [
+        {
+          "student_id": 31422,
+          "id_type": "lms",
+          "crm_student_id": 12766,
+          "lms_student_id": 31422,
+          "correct_answers": 0,
+          "answered": 4,
+          "rank": null,
+          "badges": [
+            "graduate"
+          ],
+          "badges_count": 1,
+          "duration_sec": 106,
+          "completed": true,
+          "lang": "uz",
+          "questions": [
+            {
+              "question_id": "s3",
+              "kind": "test",
+              "order": 1,
+              "question": "Ekranga qarab odam nimani bilmaydi",
+              "options": [
+                "Qaysi soatlar bo'sh qolganini",
+                "Bu sayt nima uchun qilinganini",
+                "«Band qilaman» tugmasi qayerdaligini"
+              ],
+              "correct_option": 1,
+              "correct_answer": "Bu sayt nima uchun qilinganini",
+              "correct": false,
+              "solved": false,
+              "attempts": [
+                {
+                  "n": 1,
+                  "option": 2,
+                  "answer": "«Band qilaman» tugmasi qayerdaligini",
+                  "correct": false,
+                  "elapsed_ms": 1216,
+                  "at": "2026-09-18T10:34:47Z"
+                }
+              ]
+            },
+            {
+              "question_id": "s5",
+              "kind": "test",
+              "order": 2,
+              "question": "Qaysi gap hech narsa qo'shmaydi",
+              "options": [
+                "Ilgari bo'sh soatni guruhda so'rardik",
+                "Mana, hozir bosdim — ro'yxatga tushdi",
+                "Pastda bandlar ro'yxati turibdi"
+              ],
+              "correct_option": 2,
+              "correct_answer": "Pastda bandlar ro'yxati turibdi",
+              "correct": false,
+              "solved": false,
+              "attempts": [
+                {
+                  "n": 1,
+                  "option": 0,
+                  "answer": "Ilgari bo'sh soatni guruhda so'rardik",
+                  "correct": false,
+                  "elapsed_ms": 1169,
+                  "at": "2026-09-18T10:34:49Z"
+                }
+              ]
+            },
+            {
+              "question_id": "s7",
+              "kind": "test",
+              "order": 3,
+              "question": "Airbnb taqdimoti nima bilan tugagan",
+              "options": [
+                "Jamoa bilan — ishni kim qilayotgani",
+                "Narx bilan — qancha turishi",
+                "Sayt ekranlari bilan — qanday ko'rinishi"
+              ],
+              "correct_option": 0,
+              "correct_answer": "Jamoa bilan — ishni kim qilayotgani",
+              "correct": false,
+              "solved": false,
+              "attempts": [
+                {
+                  "n": 1,
+                  "option": 1,
+                  "answer": "Narx bilan — qancha turishi",
+                  "correct": false,
+                  "elapsed_ms": 15845,
+                  "at": "2026-09-18T10:35:41Z"
+                }
+              ]
+            },
+            {
+              "question_id": "s11",
+              "kind": "test",
+              "order": 4,
+              "question": "Bosiladigan joy qanday tanlanadi",
+              "options": [
+                "Sahifada birinchi ko'ringan joy tanlanadi",
+                "Ish chindan bajariladigan joy tanlanadi",
+                "Eng chiroyli ko'ringan sahifa tanlanadi"
+              ],
+              "correct_option": 1,
+              "correct_answer": "Ish chindan bajariladigan joy tanlanadi",
+              "correct": false,
+              "solved": false,
+              "attempts": [
+                {
+                  "n": 1,
+                  "option": 2,
+                  "answer": "Eng chiroyli ko'ringan sahifa tanlanadi",
+                  "correct": false,
+                  "elapsed_ms": 14127,
+                  "at": "2026-09-18T10:36:09Z"
+                }
+              ]
+            }
+          ],
+          "achievements": []
+        }
+      ],
+      "rejected_students": []
+    },
+    "message": null
+  }
+}

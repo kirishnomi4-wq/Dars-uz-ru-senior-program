@@ -1,0 +1,29 @@
+{
+  "mode": "live",
+  "event_id": "sess_324458_20260918T100327Z",
+  "group_id": 1072,
+  "students": [
+    {
+      "lang": "uz",
+      "rank": null,
+      "badges": [
+        "participant"
+      ],
+      "id_type": "lms",
+      "answered": 0,
+      "completed": false,
+      "questions": [],
+      "student_id": 31422,
+      "achievements": [],
+      "badges_count": 1,
+      "duration_sec": 199,
+      "correct_answers": 0
+    }
+  ],
+  "lesson_id": "internet-01-v18",
+  "started_at": "2026-09-18T10:03:27Z",
+  "teacher_id": 240,
+  "finished_at": "2026-09-18T10:08:25Z",
+  "lesson_title": "Internet qanday ishlaydi",
+  "total_questions": 5
+}

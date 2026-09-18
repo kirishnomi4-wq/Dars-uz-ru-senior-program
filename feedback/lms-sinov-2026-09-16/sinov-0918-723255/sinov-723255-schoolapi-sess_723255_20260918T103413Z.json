@@ -1,0 +1,130 @@
+{
+  "mode": "live",
+  "event_id": "sess_723255_20260918T103413Z",
+  "group_id": 1072,
+  "students": [
+    {
+      "lang": "uz",
+      "rank": null,
+      "badges": [
+        "graduate"
+      ],
+      "id_type": "lms",
+      "answered": 4,
+      "completed": true,
+      "questions": [
+        {
+          "kind": "test",
+          "order": 1,
+          "solved": false,
+          "correct": false,
+          "options": [
+            "Qaysi soatlar bo'sh qolganini",
+            "Bu sayt nima uchun qilinganini",
+            "«Band qilaman» tugmasi qayerdaligini"
+          ],
+          "attempts": [
+            {
+              "n": 1,
+              "at": "2026-09-18T10:34:47Z",
+              "answer": "«Band qilaman» tugmasi qayerdaligini",
+              "option": 2,
+              "correct": false,
+              "elapsed_ms": 1216
+            }
+          ],
+          "question": "Ekranga qarab odam nimani bilmaydi",
+          "question_id": "s3",
+          "correct_answer": "Bu sayt nima uchun qilinganini",
+          "correct_option": 1
+        },
+        {
+          "kind": "test",
+          "order": 2,
+          "solved": false,
+          "correct": false,
+          "options": [
+            "Ilgari bo'sh soatni guruhda so'rardik",
+            "Mana, hozir bosdim — ro'yxatga tushdi",
+            "Pastda bandlar ro'yxati turibdi"
+          ],
+          "attempts": [
+            {
+              "n": 1,
+              "at": "2026-09-18T10:34:49Z",
+              "answer": "Ilgari bo'sh soatni guruhda so'rardik",
+              "option": 0,
+              "correct": false,
+              "elapsed_ms": 1169
+            }
+          ],
+          "question": "Qaysi gap hech narsa qo'shmaydi",
+          "question_id": "s5",
+          "correct_answer": "Pastda bandlar ro'yxati turibdi",
+          "correct_option": 2
+        },
+        {
+          "kind": "test",
+          "order": 3,
+          "solved": false,
+          "correct": false,
+          "options": [
+            "Jamoa bilan — ishni kim qilayotgani",
+            "Narx bilan — qancha turishi",
+            "Sayt ekranlari bilan — qanday ko'rinishi"
+          ],
+          "attempts": [
+            {
+              "n": 1,
+              "at": "2026-09-18T10:35:41Z",
+              "answer": "Narx bilan — qancha turishi",
+              "option": 1,
+              "correct": false,
+              "elapsed_ms": 15845
+            }
+          ],
+          "question": "Airbnb taqdimoti nima bilan tugagan",
+          "question_id": "s7",
+          "correct_answer": "Jamoa bilan — ishni kim qilayotgani",
+          "correct_option": 0
+        },
+        {
+          "kind": "test",
+          "order": 4,
+          "solved": false,
+          "correct": false,
+          "options": [
+            "Sahifada birinchi ko'ringan joy tanlanadi",
+            "Ish chindan bajariladigan joy tanlanadi",
+            "Eng chiroyli ko'ringan sahifa tanlanadi"
+          ],
+          "attempts": [
+            {
+              "n": 1,
+              "at": "2026-09-18T10:36:09Z",
+              "answer": "Eng chiroyli ko'ringan sahifa tanlanadi",
+              "option": 2,
+              "correct": false,
+              "elapsed_ms": 14127
+            }
+          ],
+          "question": "Bosiladigan joy qanday tanlanadi",
+          "question_id": "s11",
+          "correct_answer": "Ish chindan bajariladigan joy tanlanadi",
+          "correct_option": 1
+        }
+      ],
+      "student_id": 31422,
+      "achievements": [],
+      "badges_count": 1,
+      "duration_sec": 106,
+      "correct_answers": 0
+    }
+  ],
+  "lesson_id": "pm-m3d14-v1",
+  "started_at": "2026-09-18T10:34:13Z",
+  "teacher_id": 240,
+  "finished_at": "2026-09-18T10:36:16Z",
+  "lesson_title": "pm-m3d14-v1",
+  "total_questions": 4
+}
