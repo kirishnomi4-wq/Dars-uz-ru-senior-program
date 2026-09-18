@@ -188,3 +188,19 @@ test('sealPayload: darslar bir-biriga aralashmaydi; yaroqsiz kirish o\'zgarishsi
   assert.equal(sealPayload('S3', loop), loop);
 });
 
+// ── Y1 (B to'lqin tekshiruvi, 19.09): LMS shartnomasiga to'liq mos bo'lmagan test-yozuv detallarga kirmaydi ────────────
+test('maxsus test-ekran (variantsiz, picked 0/1) questions[] ga kirmaydi; MCQ kiradi; har yozuv shartnoma shaklida', () => {
+  const meta = [{ id: 's4', scored: true }, { id: 's15', scored: true }, { id: 's16', scored: true }];
+  const answers = {
+    0: { question: 'Savol?', options: ['a', 'b', 'c'], correctIndex: 1, correctAnswer: 'b', picked: 1, lastPicked: 1, correct: true, firstAttemptCorrect: true, solved: true },
+    1: { correct: false, firstAttemptCorrect: false, solved: true, picked: 1 },                                         // tartiblash, birinchi urinish xato
+    2: { stage: 'module-mikro', question: "Tartibda yig'ing", correct: true, firstAttemptCorrect: true, solved: true, picked: 0 }, // savol bor, variant yo'q
+  };
+  resetResultDetails('Y1');
+  const r = buildResultDetails({ lessonId: 'Y1', screenMeta: meta, answers, earned: [], achievements: {}, lang: 'uz', now: T0 });
+  assert.deepEqual(r.questions.map((q) => q.question_id), ['s4']);
+  for (const q of r.questions) {
+    assert.ok(q.question && Array.isArray(q.options) && q.options.length >= 2 && Number.isInteger(q.correct_option) && typeof q.correct_answer === 'string');
+  }
+});
+

@@ -90,6 +90,8 @@ function check(L, lang, payload, expect, errs) {
     if (q.some((x) => x.kind === 'arena')) P.push('I8 self rejimda arena chiqdi');
   }
   if (payload.lang !== lang) P.push(`I6 lang ${payload.lang} ≠ ${lang}`);
+  // I12 (19.09, Y1): questions[] dagi HAR yozuv LMS shartnomasi shaklida — question · options ≥ 2 · correct_option · correct_answer
+  for (const x of (Array.isArray(payload.questions) ? payload.questions : [])) if (!(x.question && Array.isArray(x.options) && x.options.length >= 2 && Number.isInteger(x.correct_option) && typeof x.correct_answer === 'string')) P.push(`I12 ${x.question_id}: shartnoma maydoni yo'q`);
   const a = Array.isArray(payload.achievements) ? payload.achievements : null;
   if (!a) P.push('I7 achievements yo\'q');
   else {

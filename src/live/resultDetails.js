@@ -210,6 +210,12 @@ export function buildResultDetails({ lessonId, screenMeta, answers, earned, achi
     if (correctIdx !== null && correctIdx >= 0 && correctIdx <= 5) q.correct_option = correctIdx;
     const ca = cut(typeof a.correctAnswer === 'string' ? a.correctAnswer : (options && correctIdx !== null ? options[correctIdx] : undefined), LIM.text);
     if (ca) q.correct_answer = ca;
+    // LMS shartnomasi (TZ_LESSON_RESULT_DETAILS_RU, QuestionResult.required): question · options (≥2) · correct_option ·
+    // correct_answer MAJBURIY. Variantsiz maxsus test-ekran (tartiblash, yozma kod) ko'p variantli savol EMAS — detallarga
+    // KIRMAYDI, ball `correctAnswers`/`totalQuestions` orqali ketadi (B to'lqin tekshiruvi Y1, 19.09: T9 dan keyin `picked`
+    // 0/1 bo'lib variantsiz yozuv chiqa boshlagan; Bot-darslar s15 da undan oldin ham chiqardi). `QuestionScreen` (427 chaqiruv)
+    // doim savol + variantlarni + `correctIndex` ni beradi; maxsus ekranda ikkalasi ham yo'q — aniq ajratuvchi shu.
+    if (!options && correctIdx === null) return;
     questions.push(q);
   });
 
