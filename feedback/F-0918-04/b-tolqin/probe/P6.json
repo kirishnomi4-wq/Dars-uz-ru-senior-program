@@ -594,7 +594,7 @@
  {
   "file": "src/5-Modull/PmLesson21.jsx",
   "sid": "s9",
-  "note": "4 qator: qaytish kunlarini belgilab «Tekshirish» (yoki «qaytmagan»); urinish = tekshirilgan xato qator. Katak tanlash/olib tashlash — urinish emas",
+  "note": "4 qator: qaytish kunlarini belgilab «Tekshirish» (yoki «qaytmagan»); urinish = tekshirilgan xato qator. Katak tanlash/olib tashlash — urinish emas · 19.09: har qator bir marta tekshiriladi (qayta urinish yo'q) → `once` (TEKSHIRUV P1)",
   "wrong": [
    {
     "click": ".mrk-cell.cur",
@@ -704,6 +704,7 @@
     "click": ".wsp-save:has-text(\"Keyingisi\")",
     "after": 900
    }
-  ]
+  ],
+  "once": true
  }
 ]

@@ -1399,7 +1399,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {!res && <span className="wsp-need">{sel.length === 0 ? "① Qaytish kunlarini bosing yoki «qaytmagan»ni tanlang" : '② Endi tekshiring'}</span>}
           </div>
         )}
-        {!done && <AchRule screen={screen} />}
+        {!done && <AchRule screen={screen} once />}
         {res && !done && (
           <div className="bdone fade-step">
             <p className={`sfb ${res.ok ? 'ok' : 'ask'}`}>{res.ok ? '✅ To\'g\'ri.' : xatoMatn(res, qator)} {qator.sabab}</p>
