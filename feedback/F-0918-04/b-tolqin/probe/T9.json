@@ -1,0 +1,410 @@
+[
+ {
+  "file": "src/5-Modull/BotAiAgentLesson.jsx",
+  "sid": "s15",
+  "test": true,
+  "note": "T9 ball: yakuniy tartiblash; xato = 5 katak to'lib tartib xato",
+  "wrong": [
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Idrok\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Maqsad\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Qaror\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Amal\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Natijani\")",
+    "after": 700
+   }
+  ],
+  "right": [
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Maqsad\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Idrok\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Qaror\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Amal\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Natijani\")",
+    "after": 900
+   }
+  ],
+  "rightAfterWrong": [
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0
+   },
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Maqsad\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Idrok\")",
+    "after": 900
+   }
+  ],
+  "slip": [
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Idrok\")"
+   },
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0
+   }
+  ]
+ },
+ {
+  "file": "src/5-Modull/BotAiBrainLesson.jsx",
+  "sid": "s15",
+  "test": true,
+  "note": "T9 ball: xavfsiz ishlash sikli (tartiblash)",
+  "wrong": [
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Murvatni\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Aniq yo'riqnoma\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Maslahatchidan\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Javobni tekshirish\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Muhimini\")",
+    "after": 700
+   }
+  ],
+  "right": [
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Aniq yo'riqnoma\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Murvatni\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Maslahatchidan\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Javobni tekshirish\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Muhimini\")",
+    "after": 900
+   }
+  ],
+  "rightAfterWrong": [
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0
+   },
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Aniq yo'riqnoma\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Murvatni\")",
+    "after": 900
+   }
+  ],
+  "slip": [
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Murvatni\")"
+   },
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0
+   }
+  ]
+ },
+ {
+  "file": "src/5-Modull/BotAiProjectLesson.jsx",
+  "sid": "s15",
+  "test": true,
+  "note": "T9 ball + nishon director: AI-build workflow",
+  "wrong": [
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Aniq topshiriq\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Reja (trigger\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"AI kod yozadi\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Kodni o'qish\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Test\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Iteratsiya\")",
+    "after": 700
+   }
+  ],
+  "right": [
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Reja (trigger\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Aniq topshiriq\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"AI kod yozadi\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Kodni o'qish\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Test\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Iteratsiya\")",
+    "after": 900
+   }
+  ],
+  "rightAfterWrong": [
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0
+   },
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Reja (trigger\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Aniq topshiriq\")",
+    "after": 900
+   }
+  ],
+  "slip": [
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Aniq topshiriq\")"
+   },
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0
+   }
+  ]
+ },
+ {
+  "file": "src/5-Modull/BotFullProjectLesson.jsx",
+  "sid": "s15",
+  "test": true,
+  "note": "T9 ball: deploy tartibi",
+  "wrong": [
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Laptopda\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"4 buyumni\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Kalitni .env\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Doimiy joyga\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"24/7\")",
+    "after": 700
+   }
+  ],
+  "right": [
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"4 buyumni\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Laptopda\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Kalitni .env\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Doimiy joyga\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"24/7\")",
+    "after": 900
+   }
+  ],
+  "rightAfterWrong": [
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0
+   },
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"4 buyumni\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Laptopda\")",
+    "after": 900
+   }
+  ],
+  "slip": [
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Laptopda\")"
+   },
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0
+   }
+  ]
+ },
+ {
+  "file": "src/1-Modull/HtmlTakrorlashLesson.jsx",
+  "sid": "s11",
+  "test": true,
+  "note": "T9 ball + nishon architect: usta-imtihoni (module-mikro, ekran o'zi yuboradi; kalit -1 → 0)",
+  "wrong": [
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"<html>\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"<!DOCTYPE html>\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"<head>\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"<body>\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"h1, p\")",
+    "after": 700
+   }
+  ],
+  "right": [
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"<!DOCTYPE html>\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"<html>\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"<head>\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"<body>\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"h1, p\")",
+    "after": 900
+   }
+  ],
+  "rightAfterWrong": [
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0
+   },
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"<!DOCTYPE html>\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"<html>\")",
+    "after": 900
+   }
+  ],
+  "slip": [
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"<html>\")"
+   },
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0
+   }
+  ]
+ },
+ {
+  "file": "src/3-Modull/ReactIntroLesson.jsx",
+  "sid": "s15",
+  "test": true,
+  "note": "T9 ball + nishon flow: React yangilanish oqimi (kalit -1 → 0; holat solved dan tiklanadi)",
+  "wrong": [
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"yangi nusxa\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"like bosadi\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"solishtiradi\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"farqni\")",
+    "after": 700
+   }
+  ],
+  "right": [
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"like bosadi\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"yangi nusxa\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"solishtiradi\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"farqni\")",
+    "after": 900
+   }
+  ],
+  "rightAfterWrong": [
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0
+   },
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"like bosadi\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"yangi nusxa\")",
+    "after": 900
+   }
+  ],
+  "slip": [
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"yangi nusxa\")"
+   },
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0
+   }
+  ]
+ }
+]

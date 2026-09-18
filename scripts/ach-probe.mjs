@@ -9,6 +9,8 @@
 //   S1a xato → progress.missed da sid, «lost» matn → to'g'ri → javob yozildi, nishon BERILMADI, bayram yo'q
 //   S1b xato → F5 → «lost» va missed turibdi → to'g'ri → nishon BERILMADI  S3 sirpanish (`slip`) → missed BO'SH, «lost» yo'q
 // Mentor rejimi (qator yo'q) — statik: AchRule kodi hamma darsda bir xil (scripts/codemod-achrule.mjs).
+// `"test": true` — ball beradigan test-ekran (T9): qator KUTILMAYDI (S0/S4/S5 — yo'qligi tekshiriladi); S2 da javob
+//   `correct: true`, S1a/S1b da `correct: false` (birinchi TO'LIQ urinish — ball); nishon bo'lsa — S2 da bor, S1 da yo'q.
 //
 // Spetsifikatsiya (JSON massiv, bir yoki bir nechta fayl):
 //   { "file": "src/…/X.jsx", "sid": "s13c", "once": false, "note": "…",
@@ -69,10 +71,11 @@ const browser = await chromium.launch({ executablePath: process.env.CHROME || '/
 const results = [];
 for (const sp of specs) {
   const L = lessonInfo(sp.file); const idx = L.ids.indexOf(sp.sid); const ach = L.trig[sp.sid];
-  const row = { file: sp.file, sid: sp.sid, ach, checks: {}, problems: [] };
+  const TEST = !!sp.test;
+  const row = { file: sp.file, sid: sp.sid, ach, test: TEST, checks: {}, problems: [] };
   const fail = (k, msg) => { row.checks[k] = false; row.problems.push(`${k}: ${msg}`); };
   const pass = (k) => { if (row.checks[k] !== false) row.checks[k] = true; };
-  if (idx < 0 || !ach) { row.problems.push(`ekran topilmadi (idx ${idx}) yoki ACH_TRIGGERS da yo'q (${ach})`); results.push(row); console.log(`✗ ${basename(sp.file)} ${sp.sid}: ${row.problems[0]}`); continue; }
+  if (idx < 0 || (!ach && !TEST)) { row.problems.push(`ekran topilmadi (idx ${idx}) yoki ACH_TRIGGERS da yo'q (${ach})`); results.push(row); console.log(`✗ ${basename(sp.file)} ${sp.sid}: ${row.problems[0]}`); continue; }
   try { await bundle(sp.file); } catch (e) { row.problems.push('esbuild: ' + String(e.message).slice(0, 140)); results.push(row); console.log(`✗ ${basename(sp.file)} ${sp.sid}: esbuild`); continue; }
 
   const open = async (extra, tag) => {
@@ -105,6 +108,7 @@ for (const sp of specs) {
   await scen('S0-boshida', { seed: [{}, 's0'], body: async ({ pg }) => {
     const r = await rule(pg); const p = await prog(pg);
     if (p?.screen !== idx) return fail('S0-boshida', `dars ${idx}-ekranda ochilmadi (screen ${p?.screen})`);
+    if (TEST) { if (r) fail('S0-boshida', 'test-ekranda qator ko\'rindi'); if (SHOTS) { await pg.waitForTimeout(1600); await pg.screenshot({ path: join(SHOTS, `${basename(sp.file, '.jsx')}-${sp.sid}.png`) }); } return pass('S0-boshida'); }
     if (!r) return fail('S0-boshida', 'qator yo\'q');
     if (r.n !== 1) fail('S0-boshida', `qator ${r.n} marta ko'rindi`);
     if (r.lost) fail('S0-boshida', 'boshida «lost» holatda');
@@ -112,24 +116,27 @@ for (const sp of specs) {
     if (SHOTS) { await pg.waitForTimeout(1600); await pg.screenshot({ path: join(SHOTS, `${basename(sp.file, '.jsx')}-${sp.sid}.png`) }); } // kirish animatsiyasi tugasin
     pass('S0-boshida'); } });
   await scen('S4-mashq', { seed: [{ firstPass: { answers: {}, durationSec: 1 } }, 's4'], body: async ({ pg }) => { if (await rule(pg)) return fail('S4-mashq', 'mashq-o\'tishida qator ko\'rindi'); pass('S4-mashq'); } });
-  await scen('S5-olingan', { seed: [{ earned: [ach] }, 's5'], body: async ({ pg }) => { if (await rule(pg)) return fail('S5-olingan', 'nishon olingan, qator hali ko\'rinyapti'); pass('S5-olingan'); } });
+  if (ach) await scen('S5-olingan', { seed: [{ earned: [ach] }, 's5'], body: async ({ pg }) => { if (await rule(pg)) return fail('S5-olingan', 'nishon olingan, qator hali ko\'rinyapti'); pass('S5-olingan'); } });
 
   if (!SMOKE && sp.wrong && sp.right) {
     await scen('S2-togri', { seed: [{}, 's2'], body: async ({ pg }) => {
       await run(pg, sp.right, 'right'); const p = await prog(pg);
       if (!p?.answers?.[idx]) return fail('S2-togri', 'to\'g\'ri yo\'ldan keyin javob yozilmadi (right-amallar ekranni yakunlamadi)');
-      if (!(p.earned || []).includes(ach)) return fail('S2-togri', `nishon berilmadi (earned ${JSON.stringify(p.earned)}, correct ${p.answers[idx].correct})`);
+      if (TEST && p.answers[idx].correct !== true) return fail('S2-togri', `birinchi urinishda to'g'ri — ball correct ${p.answers[idx].correct}`);
+      if (ach && !(p.earned || []).includes(ach)) return fail('S2-togri', `nishon berilmadi (earned ${JSON.stringify(p.earned)}, correct ${p.answers[idx].correct})`);
       if ((p.missed || []).length) fail('S2-togri', `to'g'ri yo'lda missed yozildi ${JSON.stringify(p.missed)}`);
-      if (await rule(pg)) fail('S2-togri', 'nishon olingach qator yo\'qolmadi');
+      if (!TEST && await rule(pg)) fail('S2-togri', 'nishon olingach qator yo\'qolmadi');
       pass('S2-togri'); } });
     await scen('S1a-xato-togri', { seed: [{}, 's1a'], body: async ({ pg }) => {
       await run(pg, sp.wrong, 'wrong'); let p = await prog(pg); const r = await rule(pg);
       if (!(p?.missed || []).includes(sp.sid)) return fail('S1a-xato-togri', `xatodan keyin missed da ${sp.sid} yo'q (${JSON.stringify(p?.missed)})`);
-      if (!r || !r.lost) fail('S1a-xato-togri', `xatodan keyin «lost» qator yo'q (${JSON.stringify(r)})`);
+      if (TEST) { if (r) fail('S1a-xato-togri', 'test-ekranda qator ko\'rindi'); }
+      else if (!r || !r.lost) fail('S1a-xato-togri', `xatodan keyin «lost» qator yo'q (${JSON.stringify(r)})`);
       else if (r.text !== LOSTTXT) fail('S1a-xato-togri', `lost matn farq: «${r.text}»`);
       await run(pg, sp.rightAfterWrong || sp.right, 'rightAfterWrong'); p = await prog(pg);
       if (!p?.answers?.[idx]) return fail('S1a-xato-togri', 'xatodan keyin to\'g\'ri yo\'l ekranni yakunlamadi (javob yozilmadi)');
-      if ((p.earned || []).includes(ach)) return fail('S1a-xato-togri', 'XATODAN KEYIN NISHON BERILDI');
+      if (TEST && p.answers[idx].correct !== false) return fail('S1a-xato-togri', `XATODAN KEYIN BALL TO'G'RI (correct ${p.answers[idx].correct})`);
+      if (ach && (p.earned || []).includes(ach)) return fail('S1a-xato-togri', 'XATODAN KEYIN NISHON BERILDI');
       if (await pg.$('.acu-overlay')) fail('S1a-xato-togri', 'bayram ko\'rindi');
       pass('S1a-xato-togri'); } });
     await scen('S1b-F5', { seed: [{}, 's1b'], body: async ({ pg }) => {
@@ -137,10 +144,11 @@ for (const sp of specs) {
       let p = await prog(pg); const r = await rule(pg);
       if (p?.screen !== idx) return fail('S1b-F5', `F5 dan keyin boshqa ekran (${p?.screen})`);
       if (!(p?.missed || []).includes(sp.sid)) return fail('S1b-F5', 'F5 dan keyin missed yo\'qoldi');
-      if (!r || !r.lost) fail('S1b-F5', `F5 dan keyin «lost» qator yo'q (${JSON.stringify(r)})`);
+      if (!TEST && (!r || !r.lost)) fail('S1b-F5', `F5 dan keyin «lost» qator yo'q (${JSON.stringify(r)})`);
       await run(pg, sp.right, 'right(F5)'); p = await prog(pg);
       if (!p?.answers?.[idx]) return fail('S1b-F5', 'F5 dan keyin to\'g\'ri yo\'l ekranni yakunlamadi');
-      if ((p.earned || []).includes(ach)) return fail('S1b-F5', 'F5 DAN KEYIN NISHON BERILDI');
+      if (TEST && p.answers[idx].correct !== false) return fail('S1b-F5', `F5 DAN KEYIN BALL TO'G'RI (correct ${p.answers[idx].correct})`);
+      if (ach && (p.earned || []).includes(ach)) return fail('S1b-F5', 'F5 DAN KEYIN NISHON BERILDI');
       pass('S1b-F5'); } });
     if (sp.slip) await scen('S3-sirpanish', { seed: [{}, 's3'], body: async ({ pg }) => {
       await run(pg, sp.slip, 'slip'); const p = await prog(pg); const r = await rule(pg);

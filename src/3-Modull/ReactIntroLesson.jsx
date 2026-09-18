@@ -653,7 +653,7 @@ const Zoomable = ({ children }) => {
 
 // 🧲 Qayta ishlatiladigan DRAG-DROP ORDER — bo'laklarni to'g'ri tartibda joylash (StrictMode-safe, atomik holat).
 // Boshqa darsga: `items` ([{id,label}] — to'g'ri tartib), `hints`, `onSolved` almashtiriladi.
-function DragDropOrder({ items, hints, onSolved }) {
+function DragDropOrder({ items, hints, onSolved, onWrong }) {
   const order = items.map(x => x.id);
   const byId = useMemo(() => Object.fromEntries(items.map(x => [x.id, x])), [items]);
   const [st, setSt] = useState(() => {
@@ -667,6 +667,7 @@ function DragDropOrder({ items, hints, onSolved }) {
   const solved = slots.every((s, i) => s === order[i]);
   const wrong = full && !solved;
   useEffect(() => { if (solved) onSolved && onSolved(); }, [solved]); // eslint-disable-line
+  useEffect(() => { if (wrong) onWrong && onWrong(); }, [wrong]); // eslint-disable-line
   const place = (id, from, slotIdx) => setSt(({ pool, slots }) => {
     const ns = slots.slice(); const occ = ns[slotIdx];
     if (typeof from === 'number') ns[from] = null;
@@ -1695,7 +1696,11 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 
 // ===== SCREEN 15 — YAKUNIY (React yangilash tartibi) — reusable DragDropOrder =====
 const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const [passed, setPassed] = useState(!!storedAnswer?.correct);
+  const [passed, setPassed] = useState(!!(storedAnswer && (storedAnswer.solved || storedAnswer.correct)));
+  // Ball — birinchi TO'LIQ urinish (MCQ bilan bir xil o'lchov, 8-A): hamma katak to'lib tartib xato chiqsa — urinish xato
+  const achMiss = useContext(AchMissCtx);
+  const wrongEverRef = useRef(false);
+  const onWrong = () => { wrongEverRef.current = true; if (achMiss) achMiss.miss(screen); };
   const ITEMS = [
     { id: 'change', label: tr({ uz: "👆 Foydalanuvchi like bosadi", ru: '👆 Пользователь нажимает лайк' }) },
     { id: 'draft',  label: tr({ uz: "📝 React yangi nusxa yaratadi", ru: '📝 React создаёт новую копию' }) },
@@ -1703,7 +1708,7 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     { id: 'update', label: tr({ uz: "⚡ Faqat farqni sahifaga qo'yadi", ru: '⚡ Переносит на страницу только разницу' }) },
   ];
   const HINTS = [tr({ uz: "1-qadam — nimadan boshlanadi?", ru: 'шаг 1 — с чего всё начинается?' }), tr({ uz: "keyin nima bo'ladi?", ru: 'что происходит потом?' }), tr({ uz: "keyin nima?", ru: 'а дальше?' }), tr({ uz: "oxirgi — natija", ru: 'последний — результат' })];
-  const solve = () => { if (passed) return; setPassed(true); onAnswer(screen, { correct: true, picked: true }); };
+  const solve = () => { if (passed) return; setPassed(true); const first = !wrongEverRef.current && !(achMiss && achMiss.missed.has(SCREEN_META[screen].id)); onAnswer(screen, { correct: first, firstAttemptCorrect: first, solved: true, picked: first ? 0 : 1 }); };
   return (
     <Stage eyebrow={tr({ uz: 'Yakuniy · amaliy', ru: 'Финал · практика' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!passed} label={passed ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Tartibni tuzing', ru: 'Составьте порядок' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
@@ -1711,7 +1716,7 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <Mentor>{tr({ uz: <>Oxirgi sinov! Like bosilgandan to sahifa yangilangunigacha React ichida <b style={{ color: T.ink }}>nima yuz beradi</b>? Bo'laklarni <b style={{ color: T.ink }}>to'g'ri tartibda</b> joylang — sudrab yoki bosib.</>, ru: <>Последнее испытание! От нажатия лайка до обновления страницы — <b style={{ color: T.ink }}>что происходит</b> внутри React? Разложите блоки <b style={{ color: T.ink }}>в правильном порядке</b> — перетаскивая или нажимая.</> })}</Mentor>
         <div className="fc-center fc-top">
           <div style={{ maxWidth: 880, width: '100%' }}>
-            <DragDropOrder items={ITEMS} hints={HINTS} onSolved={solve} />
+            <DragDropOrder items={ITEMS} hints={HINTS} onSolved={solve} onWrong={onWrong} />
             {passed && <div className="frame-success fade-step" style={{ marginTop: 12 }}><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: '✓ Mukammal! Bosildi → yangi nusxa → solishtirish → faqat o\'zgargan joy. React aynan shunday ishlaydi!', ru: '✓ Идеально! Нажатие → новая копия → сравнение → только изменившееся место. React работает именно так!' })}</p></div>}
           </div>
         </div>
@@ -1903,7 +1908,7 @@ const Confetti = () => {
 const Q_LABELS = { 4: { uz: "1 — React nima", ru: '1 — Что такое React' }, 6: { uz: "2 — Komponent", ru: '2 — Компонент' }, 10: "3 — Virtual DOM", 13: "4 — React Native", 16: { uz: "5 — Yangilash tartibi", ru: '5 — Порядок обновления' } };
 
 // Server-baholash javob kaliti (mentor darsni ochganda avto-yuklanadi). s15 = -1 (yakuniy amaliy).
-const INLINE_KEYS = { s4: 1, s5b: 2, s9: 3, s12: 1, s15: -1 };
+const INLINE_KEYS = { s4: 1, s5b: 2, s9: 3, s12: 1, s15: 0 };
 
 const ScreenPodium = ({ screen, answers, onNext, onPrev }) => {
   const gate = useContext(LiveGateCtx) || {};
@@ -2523,7 +2528,7 @@ export default function ReactIntroLesson({ lang: langProp, onFinished, liveToken
   const missTry = useCallback((idx) => {
     const sid = SCREEN_META[idx] && SCREEN_META[idx].id;
     const ach = ACH_TRIGGERS[sid];
-    if (!ach || missedRef.current.has(sid) || earnedRef.current.has(ach)) return;
+    if (!sid || missedRef.current.has(sid) || (ach && earnedRef.current.has(ach))) return; // nishonsiz test-ekran ham (ball — birinchi to'liq urinish, F5 dan keyin ham)
     missedRef.current.add(sid);
     setMissed(new Set(missedRef.current));
   }, []);
@@ -2542,7 +2547,7 @@ export default function ReactIntroLesson({ lang: langProp, onFinished, liveToken
     setAnswers(a => ({ ...a, [idx]: data }));
     const _m = SCREEN_META[idx];
     if (_m && ACH_TRIGGERS[_m.id] && data && data.correct && !missedRef.current.has(_m.id)) earn(ACH_TRIGGERS[_m.id]); // 🏅 nishon (faqat REAL solve)
-    if (_m && _m.scored && _m.scope === 'final' && data && data.correct && live.mode === 'student') live.submitAnswer(idx, _m.id, 0, true, 0);
+    if (_m && _m.scored && _m.scope === 'final' && data && (data.solved || data.correct) && live.mode === 'student') live.submitAnswer(idx, _m.id, data.picked === 1 ? 1 : 0, !!data.correct, 0); // ball — birinchi to'liq urinish (picked 0 = to'g'ri, 1 = xato; kalit 0)
   };
   // Javob kaliti: inline testlar + jang savollari (QUIZ_BANK'dan) — mentor ochganda serverga yuklanadi
   const answerKey = { ...INLINE_KEYS, ...Object.fromEntries(QUIZ_BANK.map((q, i) => [`quiz-${i}`, q.correct])) };

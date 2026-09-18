@@ -1,0 +1,920 @@
+{
+ "sana": "2026-09-18",
+ "usul": "kod o'qildi, brauzerda EMAS; server qismi migratsiya va result-builder kodidan",
+ "jami": 45,
+ "hukmlar": {
+  "TARTIBLASH-TUZATILADI": 15,
+  "DISKRET-TANLOV": 7,
+  "YOZMA-QOLADI": 23,
+  "ALLAQACHON-HALOL": 0,
+  "NOANIQ": 0
+ },
+ "umumiy_root_ozgarishlar": {
+  "missTry": "Nishonsiz ekranlarda ham belgi saqlansin (F5): `if (!ach || missedRef.current.has(sid) || earnedRef.current.has(ach)) return;` → `if (!sid || missedRef.current.has(sid) || (ach && earnedRef.current.has(ach))) return;` — AchRule va earn-guard faqat ACH ekranlarini o'qiydi, boshqa ta'sir yo'q (tuzatiladigan darslarda, 1 qator).",
+  "root_V1": "HtmlTakrorlash (ekran-darajasi), PracticeLesson4, ReactIntro, JsIntro (ekran-darajasi): `data.correct` + `true` → `data.solved` + `first ? 0 : 1` + `!!data.correct` — aks holda jonli o'quvchi xato bo'lsa serverga yozilmaydi.",
+  "kalit": "`-1` kalitda server `p_correct` ni E'TIBORGA OLMAYDI va doim `true` qo'yadi (0001_live_core.sql 202/242-qator; 0005 record_attempt ham). Server-ball halol bo'lishi uchun 4 ekranda INLINE_KEYS `-1` → `0` (6-modul/Bot DD-testlari allaqachon `0`).",
+  "solo": "⚠ Solo rejimda (uyda, `live.mode === 'solo'`) bu ekranlar serverga UMUMAN yuborilmaydi: hamma submit-joylar `live.mode === 'student'` bilan cheklangan; MCQ esa `recordAttempt` orqali solo'da ham yetadi. Natija: rasmiy solo natijada bu savol doim javobsiz (kalit s-qolipda → total'ga kiradi) — maksimal (N-1)/N, `all_correct`/`first_try` badge'lari solo'da imkonsiz. Kod bo'yicha; server E2E bilan tasdiqlanmagan. Tuzatish — ertalab qaror."
+ },
+ "ekranlar": [
+  {
+   "dars": "HtmlTakrorlashLesson",
+   "fayl": "src/1-Modull/HtmlTakrorlashLesson.jsx",
+   "sid": "s11",
+   "scope": "module-mikro",
+   "kalit": -1,
+   "nishon": "architect",
+   "mexanika": "dragdrop-tartib (DragDropOrder, ScreenExam)",
+   "xato_yoli": {
+    "bor": true,
+    "kod": "const wrong = full && !solved;  // DragDropOrder ichida; ekran onSolved: onAnswer(screen, { …, correct: true, picked: true })",
+    "ekran": "«Tartib xato — qayta joylang» (to'liq tartib xato bo'lganda)"
+   },
+   "urinish_tarifi": "hamma katak to'lib tartib xato chiqqan on (bo'lakni qaytarish — urinish emas)",
+   "server_yuborish": "ekran o'zi: `if (live && live.mode === 'student') live.submitAnswer(screen, …, 0, true, 0)` (module-mikro — root final-qatori ishlamaydi)",
+   "hukm": "TARTIBLASH-TUZATILADI",
+   "tuzatish_loyihasi": "DragDropOrder: `onWrong` prop + `useEffect(() => { if (wrong) onWrong && onWrong(); }, [wrong]);` (pilot 2 qator). Ekran: `const _am = useContext(AchMissCtx); const wrongEverRef = useRef(false); const onWrong = () => { wrongEverRef.current = true; if (_am) _am.miss(screen); };` → `<DragDropOrder … onWrong={onWrong} />`; yechilganda `const first = !wrongEverRef.current && !(_am && _am.missed.has(SCREEN_META[screen].id));` → onAnswer `correct: first, firstAttemptCorrect: first, picked: first ? 0 : 1`. Ekran-darajasidagi submit → `live.submitAnswer(screen, …, first ? 0 : 1, first, …)`; INLINE_KEYS `s11: -1` → `0` (aks holda server `-1` ni har doim to'g'ri sanaydi). DragDropOrder shu faylda 2 joyda (s10 ScreenForm ham) — prop ixtiyoriy, ta'sir yo'q.",
+   "izoh": "Meta'da `test`, saralash «C test (halol)» savatiga qo'ygan — aslida DOIM `correct: true` (P1 inventari ham topgan). Nishon `architect` avtomatik birinchi urinishga o'tadi (root earn `data.correct` ga qaraydi).",
+   "hajm_qator": 8
+  },
+  {
+   "dars": "PracticeLesson4",
+   "fayl": "src/2-Modull/PracticeLesson4.jsx",
+   "sid": "s15",
+   "scope": "final",
+   "kalit": -1,
+   "nishon": "planner (earn orqali, ACH_TRIGGERS'da emas)",
+   "mexanika": "dragdrop-tartib (DragDropOrder)",
+   "xato_yoli": {
+    "bor": true,
+    "kod": "handleSolved: … if (earn) earn('planner'); onAnswer(screen, { …, correct: true, firstAttemptCorrect: true, solved: true, … })",
+    "ekran": "DragDropOrder xato tartib ogohlantirishi"
+   },
+   "urinish_tarifi": "hamma katak to'lib tartib xato chiqqan on",
+   "server_yuborish": "root: `if (_m.scored && _m.scope === 'final' && data && data.correct && live.mode === 'student') live.submitAnswer(idx, _m.id, 0, true, 0)` — faqat to'g'ri bo'lsa, doim true",
+   "hukm": "TARTIBLASH-TUZATILADI",
+   "tuzatish_loyihasi": "DragDropOrder: `onWrong` prop + `useEffect(() => { if (wrong) onWrong && onWrong(); }, [wrong]);` (pilot 2 qator). Ekran: `const _am = useContext(AchMissCtx); const wrongEverRef = useRef(false); const onWrong = () => { wrongEverRef.current = true; if (_am) _am.miss(screen); };` → `<DragDropOrder … onWrong={onWrong} />`; yechilganda `const first = !wrongEverRef.current && !(_am && _am.missed.has(SCREEN_META[screen].id));` → onAnswer `correct: first, firstAttemptCorrect: first, picked: first ? 0 : 1`. `if (earn && first) earn('planner')`. Root V1 → V2 shakli (`data.solved`, `first ? 0 : 1`, `!!data.correct`) — aks holda jonli o'quvchi xato bo'lsa serverga umuman yozilmaydi. INLINE_KEYS `s15: -1` → `0`.",
+   "izoh": "",
+   "hajm_qator": 9
+  },
+  {
+   "dars": "ReactIntroLesson",
+   "fayl": "src/3-Modull/ReactIntroLesson.jsx",
+   "sid": "s15",
+   "scope": "final",
+   "kalit": -1,
+   "nishon": "flow",
+   "mexanika": "dragdrop-tartib (DragDropOrder)",
+   "xato_yoli": {
+    "bor": true,
+    "kod": "const solve = () => { if (passed) return; setPassed(true); onAnswer(screen, { correct: true, picked: true }); };",
+    "ekran": "DragDropOrder xato tartib ogohlantirishi"
+   },
+   "urinish_tarifi": "hamma katak to'lib tartib xato chiqqan on",
+   "server_yuborish": "root: `if (_m.scored && _m.scope === 'final' && data && data.correct && live.mode === 'student') live.submitAnswer(idx, _m.id, 0, true, 0)` — faqat to'g'ri bo'lsa, doim true",
+   "hukm": "TARTIBLASH-TUZATILADI",
+   "tuzatish_loyihasi": "DragDropOrder: `onWrong` prop + `useEffect(() => { if (wrong) onWrong && onWrong(); }, [wrong]);` (pilot 2 qator). Ekran: `const _am = useContext(AchMissCtx); const wrongEverRef = useRef(false); const onWrong = () => { wrongEverRef.current = true; if (_am) _am.miss(screen); };` → `<DragDropOrder … onWrong={onWrong} />`; yechilganda `const first = !wrongEverRef.current && !(_am && _am.missed.has(SCREEN_META[screen].id));` → onAnswer `correct: first, firstAttemptCorrect: first, picked: first ? 0 : 1`. Root V1 → V2. INLINE_KEYS `s15: -1` → `0`.",
+   "izoh": "",
+   "hajm_qator": 8
+  },
+  {
+   "dars": "BotAiAgentLesson",
+   "fayl": "src/5-Modull/BotAiAgentLesson.jsx",
+   "sid": "s15",
+   "scope": "final",
+   "kalit": 0,
+   "nishon": "-",
+   "mexanika": "dragdrop-tartib (DragDropOrder, `onChange` prop bor)",
+   "xato_yoli": {
+    "bor": true,
+    "kod": "onAnswer(screen, { stage: 'final', …, correct: true, firstAttemptCorrect: true, solved: true, picked: 0 … })",
+    "ekran": "DragDropOrder xato tartib ogohlantirishi"
+   },
+   "urinish_tarifi": "hamma katak to'lib tartib xato chiqqan on",
+   "server_yuborish": "root: `… data.solved && live.mode === 'student') live.submitAnswer(idx, _m.id, data.picked ?? 1, !!data.correct, …)`",
+   "hukm": "TARTIBLASH-TUZATILADI",
+   "tuzatish_loyihasi": "DragDropOrder: `onWrong` prop + `useEffect(() => { if (wrong) onWrong && onWrong(); }, [wrong]);` (pilot 2 qator). Ekran: `const _am = useContext(AchMissCtx); const wrongEverRef = useRef(false); const onWrong = () => { wrongEverRef.current = true; if (_am) _am.miss(screen); };` → `<DragDropOrder … onWrong={onWrong} />`; yechilganda `const first = !wrongEverRef.current && !(_am && _am.missed.has(SCREEN_META[screen].id));` → onAnswer `correct: first, firstAttemptCorrect: first, picked: first ? 0 : 1`. Root allaqachon V2 va kalit `0` — `picked: first ? 0 : 1` yetarli (server shu bilan to'g'ri hisoblaydi). Nishonsiz ekran → F5 dan keyin belgi saqlanishi uchun root `missTry` umumlashtiriladi (pastda).",
+   "izoh": "P5 «allaqachon halol» degani — `correct` yechilmaguncha kelmaydi (tekin emas) ma'nosida; 151-qonun / 8-A o'lchovi bo'yicha (birinchi TO'LIQ urinish) halol EMAS: shartsiz `correct: true, firstAttemptCorrect: true`.",
+   "hajm_qator": 7
+  },
+  {
+   "dars": "BotAiBrainLesson",
+   "fayl": "src/5-Modull/BotAiBrainLesson.jsx",
+   "sid": "s15",
+   "scope": "final",
+   "kalit": 0,
+   "nishon": "-",
+   "mexanika": "dragdrop-tartib (DragDropOrder, `onChange` prop bor)",
+   "xato_yoli": {
+    "bor": true,
+    "kod": "onAnswer(screen, { stage: 'final', …, correct: true, firstAttemptCorrect: true, solved: true, picked: 0 … })",
+    "ekran": "DragDropOrder xato tartib ogohlantirishi"
+   },
+   "urinish_tarifi": "hamma katak to'lib tartib xato chiqqan on",
+   "server_yuborish": "root: `… data.solved && live.mode === 'student') live.submitAnswer(idx, _m.id, data.picked ?? 1, !!data.correct, …)`",
+   "hukm": "TARTIBLASH-TUZATILADI",
+   "tuzatish_loyihasi": "DragDropOrder: `onWrong` prop + `useEffect(() => { if (wrong) onWrong && onWrong(); }, [wrong]);` (pilot 2 qator). Ekran: `const _am = useContext(AchMissCtx); const wrongEverRef = useRef(false); const onWrong = () => { wrongEverRef.current = true; if (_am) _am.miss(screen); };` → `<DragDropOrder … onWrong={onWrong} />`; yechilganda `const first = !wrongEverRef.current && !(_am && _am.missed.has(SCREEN_META[screen].id));` → onAnswer `correct: first, firstAttemptCorrect: first, picked: first ? 0 : 1`. Root allaqachon V2 va kalit `0` — `picked: first ? 0 : 1` yetarli (server shu bilan to'g'ri hisoblaydi). Nishonsiz ekran → F5 dan keyin belgi saqlanishi uchun root `missTry` umumlashtiriladi (pastda).",
+   "izoh": "P5 «allaqachon halol» degani — `correct` yechilmaguncha kelmaydi (tekin emas) ma'nosida; 151-qonun / 8-A o'lchovi bo'yicha (birinchi TO'LIQ urinish) halol EMAS: shartsiz `correct: true, firstAttemptCorrect: true`.",
+   "hajm_qator": 7
+  },
+  {
+   "dars": "BotAiProjectLesson",
+   "fayl": "src/5-Modull/BotAiProjectLesson.jsx",
+   "sid": "s15",
+   "scope": "final",
+   "kalit": 0,
+   "nishon": "director",
+   "mexanika": "dragdrop-tartib (DragDropOrder, `onChange` prop bor)",
+   "xato_yoli": {
+    "bor": true,
+    "kod": "onAnswer(screen, { stage: 'final', …, correct: true, firstAttemptCorrect: true, solved: true, picked: 0 … })",
+    "ekran": "DragDropOrder xato tartib ogohlantirishi"
+   },
+   "urinish_tarifi": "hamma katak to'lib tartib xato chiqqan on",
+   "server_yuborish": "root: `… data.solved && live.mode === 'student') live.submitAnswer(idx, _m.id, data.picked ?? 1, !!data.correct, …)`",
+   "hukm": "TARTIBLASH-TUZATILADI",
+   "tuzatish_loyihasi": "DragDropOrder: `onWrong` prop + `useEffect(() => { if (wrong) onWrong && onWrong(); }, [wrong]);` (pilot 2 qator). Ekran: `const _am = useContext(AchMissCtx); const wrongEverRef = useRef(false); const onWrong = () => { wrongEverRef.current = true; if (_am) _am.miss(screen); };` → `<DragDropOrder … onWrong={onWrong} />`; yechilganda `const first = !wrongEverRef.current && !(_am && _am.missed.has(SCREEN_META[screen].id));` → onAnswer `correct: first, firstAttemptCorrect: first, picked: first ? 0 : 1`. Root allaqachon V2 va kalit `0` — `picked: first ? 0 : 1` yetarli (server shu bilan to'g'ri hisoblaydi).",
+   "izoh": "P5 «allaqachon halol» degani — `correct` yechilmaguncha kelmaydi (tekin emas) ma'nosida; 151-qonun / 8-A o'lchovi bo'yicha (birinchi TO'LIQ urinish) halol EMAS: shartsiz `correct: true, firstAttemptCorrect: true`.",
+   "hajm_qator": 7
+  },
+  {
+   "dars": "BotFullProjectLesson",
+   "fayl": "src/5-Modull/BotFullProjectLesson.jsx",
+   "sid": "s15",
+   "scope": "final",
+   "kalit": 0,
+   "nishon": "-",
+   "mexanika": "dragdrop-tartib (DragDropOrder, `onChange` prop bor)",
+   "xato_yoli": {
+    "bor": true,
+    "kod": "onAnswer(screen, { stage: 'final', …, correct: true, firstAttemptCorrect: true, solved: true, picked: 0 … })",
+    "ekran": "DragDropOrder xato tartib ogohlantirishi"
+   },
+   "urinish_tarifi": "hamma katak to'lib tartib xato chiqqan on",
+   "server_yuborish": "root: `… data.solved && live.mode === 'student') live.submitAnswer(idx, _m.id, data.picked ?? 1, !!data.correct, …)`",
+   "hukm": "TARTIBLASH-TUZATILADI",
+   "tuzatish_loyihasi": "DragDropOrder: `onWrong` prop + `useEffect(() => { if (wrong) onWrong && onWrong(); }, [wrong]);` (pilot 2 qator). Ekran: `const _am = useContext(AchMissCtx); const wrongEverRef = useRef(false); const onWrong = () => { wrongEverRef.current = true; if (_am) _am.miss(screen); };` → `<DragDropOrder … onWrong={onWrong} />`; yechilganda `const first = !wrongEverRef.current && !(_am && _am.missed.has(SCREEN_META[screen].id));` → onAnswer `correct: first, firstAttemptCorrect: first, picked: first ? 0 : 1`. Root allaqachon V2 va kalit `0` — `picked: first ? 0 : 1` yetarli (server shu bilan to'g'ri hisoblaydi). Nishonsiz ekran → F5 dan keyin belgi saqlanishi uchun root `missTry` umumlashtiriladi (pastda).",
+   "izoh": "P5 «allaqachon halol» degani — `correct` yechilmaguncha kelmaydi (tekin emas) ma'nosida; 151-qonun / 8-A o'lchovi bo'yicha (birinchi TO'LIQ urinish) halol EMAS: shartsiz `correct: true, firstAttemptCorrect: true`.",
+   "hajm_qator": 7
+  },
+  {
+   "dars": "AgentArchitectureLesson",
+   "fayl": "src/6-Modull/AgentArchitectureLesson.jsx",
+   "sid": "s15",
+   "scope": "final",
+   "kalit": 0,
+   "nishon": "missionLoop",
+   "mexanika": "dragdrop-tartib (DragDropOrder, `onChange` prop bor)",
+   "xato_yoli": {
+    "bor": true,
+    "kod": "onAnswer(screen, { stage: 'final', …, correct: true, firstAttemptCorrect: true, solved: true, picked: 0 … })",
+    "ekran": "DragDropOrder xato tartib ogohlantirishi"
+   },
+   "urinish_tarifi": "hamma katak to'lib tartib xato chiqqan on",
+   "server_yuborish": "root: `… data.solved && live.mode === 'student') live.submitAnswer(idx, _m.id, data.picked ?? 1, !!data.correct, …)`",
+   "hukm": "TARTIBLASH-TUZATILADI",
+   "tuzatish_loyihasi": "DragDropOrder: `onWrong` prop + `useEffect(() => { if (wrong) onWrong && onWrong(); }, [wrong]);` (pilot 2 qator). Ekran: `const _am = useContext(AchMissCtx); const wrongEverRef = useRef(false); const onWrong = () => { wrongEverRef.current = true; if (_am) _am.miss(screen); };` → `<DragDropOrder … onWrong={onWrong} />`; yechilganda `const first = !wrongEverRef.current && !(_am && _am.missed.has(SCREEN_META[screen].id));` → onAnswer `correct: first, firstAttemptCorrect: first, picked: first ? 0 : 1`. Root allaqachon V2 va kalit `0` — `picked: first ? 0 : 1` yetarli (server shu bilan to'g'ri hisoblaydi).",
+   "izoh": "P5 «allaqachon halol» degani — `correct` yechilmaguncha kelmaydi (tekin emas) ma'nosida; 151-qonun / 8-A o'lchovi bo'yicha (birinchi TO'LIQ urinish) halol EMAS: shartsiz `correct: true, firstAttemptCorrect: true`. Fayldagi izoh «s15 (yakuniy DragDrop — noto'g'ri tartibda solve bo'lmaydi)» — manba shu.",
+   "hajm_qator": 7
+  },
+  {
+   "dars": "FullSystemProjectLesson",
+   "fayl": "src/6-Modull/FullSystemProjectLesson.jsx",
+   "sid": "s15",
+   "scope": "final",
+   "kalit": 0,
+   "nishon": "-",
+   "mexanika": "dragdrop-tartib (DragDropOrder, `onChange` prop bor)",
+   "xato_yoli": {
+    "bor": true,
+    "kod": "onAnswer(screen, { stage: 'final', …, correct: true, firstAttemptCorrect: true, solved: true, picked: 0 … })",
+    "ekran": "DragDropOrder xato tartib ogohlantirishi"
+   },
+   "urinish_tarifi": "hamma katak to'lib tartib xato chiqqan on",
+   "server_yuborish": "root: `… data.solved && live.mode === 'student') live.submitAnswer(idx, _m.id, data.picked ?? 1, !!data.correct, …)`",
+   "hukm": "TARTIBLASH-TUZATILADI",
+   "tuzatish_loyihasi": "DragDropOrder: `onWrong` prop + `useEffect(() => { if (wrong) onWrong && onWrong(); }, [wrong]);` (pilot 2 qator). Ekran: `const _am = useContext(AchMissCtx); const wrongEverRef = useRef(false); const onWrong = () => { wrongEverRef.current = true; if (_am) _am.miss(screen); };` → `<DragDropOrder … onWrong={onWrong} />`; yechilganda `const first = !wrongEverRef.current && !(_am && _am.missed.has(SCREEN_META[screen].id));` → onAnswer `correct: first, firstAttemptCorrect: first, picked: first ? 0 : 1`. Root allaqachon V2 va kalit `0` — `picked: first ? 0 : 1` yetarli (server shu bilan to'g'ri hisoblaydi). Nishonsiz ekran → F5 dan keyin belgi saqlanishi uchun root `missTry` umumlashtiriladi (pastda).",
+   "izoh": "P5 «allaqachon halol» degani — `correct` yechilmaguncha kelmaydi (tekin emas) ma'nosida; 151-qonun / 8-A o'lchovi bo'yicha (birinchi TO'LIQ urinish) halol EMAS: shartsiz `correct: true, firstAttemptCorrect: true`.",
+   "hajm_qator": 7
+  },
+  {
+   "dars": "MobileAppPracticeLesson",
+   "fayl": "src/6-Modull/MobileAppPracticeLesson.jsx",
+   "sid": "s15",
+   "scope": "final",
+   "kalit": 0,
+   "nishon": "-",
+   "mexanika": "dragdrop-tartib (DragDropOrder, `onChange` prop bor)",
+   "xato_yoli": {
+    "bor": true,
+    "kod": "onAnswer(screen, { stage: 'final', …, correct: true, firstAttemptCorrect: true, solved: true, picked: 0 … })",
+    "ekran": "DragDropOrder xato tartib ogohlantirishi"
+   },
+   "urinish_tarifi": "hamma katak to'lib tartib xato chiqqan on",
+   "server_yuborish": "root: `… data.solved && live.mode === 'student') live.submitAnswer(idx, _m.id, data.picked ?? 1, !!data.correct, …)`",
+   "hukm": "TARTIBLASH-TUZATILADI",
+   "tuzatish_loyihasi": "DragDropOrder: `onWrong` prop + `useEffect(() => { if (wrong) onWrong && onWrong(); }, [wrong]);` (pilot 2 qator). Ekran: `const _am = useContext(AchMissCtx); const wrongEverRef = useRef(false); const onWrong = () => { wrongEverRef.current = true; if (_am) _am.miss(screen); };` → `<DragDropOrder … onWrong={onWrong} />`; yechilganda `const first = !wrongEverRef.current && !(_am && _am.missed.has(SCREEN_META[screen].id));` → onAnswer `correct: first, firstAttemptCorrect: first, picked: first ? 0 : 1`. Root allaqachon V2 va kalit `0` — `picked: first ? 0 : 1` yetarli (server shu bilan to'g'ri hisoblaydi). Nishonsiz ekran → F5 dan keyin belgi saqlanishi uchun root `missTry` umumlashtiriladi (pastda).",
+   "izoh": "P5 «allaqachon halol» degani — `correct` yechilmaguncha kelmaydi (tekin emas) ma'nosida; 151-qonun / 8-A o'lchovi bo'yicha (birinchi TO'LIQ urinish) halol EMAS: shartsiz `correct: true, firstAttemptCorrect: true`.",
+   "hajm_qator": 7
+  },
+  {
+   "dars": "PipelineProjectLesson",
+   "fayl": "src/6-Modull/PipelineProjectLesson.jsx",
+   "sid": "s15",
+   "scope": "final",
+   "kalit": 0,
+   "nishon": "cityLive",
+   "mexanika": "dragdrop-tartib (DragDropOrder, `onChange` prop bor)",
+   "xato_yoli": {
+    "bor": true,
+    "kod": "onAnswer(screen, { stage: 'final', …, correct: true, firstAttemptCorrect: true, solved: true, picked: 0 … })",
+    "ekran": "DragDropOrder xato tartib ogohlantirishi"
+   },
+   "urinish_tarifi": "hamma katak to'lib tartib xato chiqqan on",
+   "server_yuborish": "root: `… data.solved && live.mode === 'student') live.submitAnswer(idx, _m.id, data.picked ?? 1, !!data.correct, …)`",
+   "hukm": "TARTIBLASH-TUZATILADI",
+   "tuzatish_loyihasi": "DragDropOrder: `onWrong` prop + `useEffect(() => { if (wrong) onWrong && onWrong(); }, [wrong]);` (pilot 2 qator). Ekran: `const _am = useContext(AchMissCtx); const wrongEverRef = useRef(false); const onWrong = () => { wrongEverRef.current = true; if (_am) _am.miss(screen); };` → `<DragDropOrder … onWrong={onWrong} />`; yechilganda `const first = !wrongEverRef.current && !(_am && _am.missed.has(SCREEN_META[screen].id));` → onAnswer `correct: first, firstAttemptCorrect: first, picked: first ? 0 : 1`. Root allaqachon V2 va kalit `0` — `picked: first ? 0 : 1` yetarli (server shu bilan to'g'ri hisoblaydi).",
+   "izoh": "P5 «allaqachon halol» degani — `correct` yechilmaguncha kelmaydi (tekin emas) ma'nosida; 151-qonun / 8-A o'lchovi bo'yicha (birinchi TO'LIQ urinish) halol EMAS: shartsiz `correct: true, firstAttemptCorrect: true`.",
+   "hajm_qator": 7
+  },
+  {
+   "dars": "ReactNativeBasicsLesson",
+   "fayl": "src/6-Modull/ReactNativeBasicsLesson.jsx",
+   "sid": "s15",
+   "scope": "final",
+   "kalit": 0,
+   "nishon": "-",
+   "mexanika": "dragdrop-tartib (DragDropOrder, `onChange` prop bor)",
+   "xato_yoli": {
+    "bor": true,
+    "kod": "onAnswer(screen, { stage: 'final', …, correct: true, firstAttemptCorrect: true, solved: true, picked: 0 … })",
+    "ekran": "DragDropOrder xato tartib ogohlantirishi"
+   },
+   "urinish_tarifi": "hamma katak to'lib tartib xato chiqqan on",
+   "server_yuborish": "root: `… data.solved && live.mode === 'student') live.submitAnswer(idx, _m.id, data.picked ?? 1, !!data.correct, …)`",
+   "hukm": "TARTIBLASH-TUZATILADI",
+   "tuzatish_loyihasi": "DragDropOrder: `onWrong` prop + `useEffect(() => { if (wrong) onWrong && onWrong(); }, [wrong]);` (pilot 2 qator). Ekran: `const _am = useContext(AchMissCtx); const wrongEverRef = useRef(false); const onWrong = () => { wrongEverRef.current = true; if (_am) _am.miss(screen); };` → `<DragDropOrder … onWrong={onWrong} />`; yechilganda `const first = !wrongEverRef.current && !(_am && _am.missed.has(SCREEN_META[screen].id));` → onAnswer `correct: first, firstAttemptCorrect: first, picked: first ? 0 : 1`. Root allaqachon V2 va kalit `0` — `picked: first ? 0 : 1` yetarli (server shu bilan to'g'ri hisoblaydi). Nishonsiz ekran → F5 dan keyin belgi saqlanishi uchun root `missTry` umumlashtiriladi (pastda).",
+   "izoh": "P5 «allaqachon halol» degani — `correct` yechilmaguncha kelmaydi (tekin emas) ma'nosida; 151-qonun / 8-A o'lchovi bo'yicha (birinchi TO'LIQ urinish) halol EMAS: shartsiz `correct: true, firstAttemptCorrect: true`.",
+   "hajm_qator": 7
+  },
+  {
+   "dars": "SystemArchitectureLesson",
+   "fayl": "src/6-Modull/SystemArchitectureLesson.jsx",
+   "sid": "s15",
+   "scope": "final",
+   "kalit": 0,
+   "nishon": "-",
+   "mexanika": "dragdrop-tartib (DragDropOrder, `onChange` prop bor)",
+   "xato_yoli": {
+    "bor": true,
+    "kod": "onAnswer(screen, { stage: 'final', …, correct: true, firstAttemptCorrect: true, solved: true, picked: 0 … })",
+    "ekran": "DragDropOrder xato tartib ogohlantirishi"
+   },
+   "urinish_tarifi": "hamma katak to'lib tartib xato chiqqan on",
+   "server_yuborish": "root: `… data.solved && live.mode === 'student') live.submitAnswer(idx, _m.id, data.picked ?? 1, !!data.correct, …)`",
+   "hukm": "TARTIBLASH-TUZATILADI",
+   "tuzatish_loyihasi": "DragDropOrder: `onWrong` prop + `useEffect(() => { if (wrong) onWrong && onWrong(); }, [wrong]);` (pilot 2 qator). Ekran: `const _am = useContext(AchMissCtx); const wrongEverRef = useRef(false); const onWrong = () => { wrongEverRef.current = true; if (_am) _am.miss(screen); };` → `<DragDropOrder … onWrong={onWrong} />`; yechilganda `const first = !wrongEverRef.current && !(_am && _am.missed.has(SCREEN_META[screen].id));` → onAnswer `correct: first, firstAttemptCorrect: first, picked: first ? 0 : 1`. Root allaqachon V2 va kalit `0` — `picked: first ? 0 : 1` yetarli (server shu bilan to'g'ri hisoblaydi). Nishonsiz ekran → F5 dan keyin belgi saqlanishi uchun root `missTry` umumlashtiriladi (pastda).",
+   "izoh": "P5 «allaqachon halol» degani — `correct` yechilmaguncha kelmaydi (tekin emas) ma'nosida; 151-qonun / 8-A o'lchovi bo'yicha (birinchi TO'LIQ urinish) halol EMAS: shartsiz `correct: true, firstAttemptCorrect: true`.",
+   "hajm_qator": 7
+  },
+  {
+   "dars": "JsIntroLesson",
+   "fayl": "src/2-Modull/JsIntroLesson.jsx",
+   "sid": "s15",
+   "scope": "final",
+   "kalit": -1,
+   "nishon": "bughunter",
+   "mexanika": "tartiblash (bloklarni bosib tizish + ▶ RUN)",
+   "xato_yoli": {
+    "bor": true,
+    "kod": "} else { setPhase('fail'); setRunning(-1); }  // run() ichida, tartib xato",
+    "ekran": "«Tartib aralashdi» + failText"
+   },
+   "urinish_tarifi": "RUN bosilib, tartib xato chiqqani (151-jadval: «Tekshirish» tugmali topshiriq)",
+   "server_yuborish": "ekran o'zi: `if (live && live.mode === 'student') live.submitAnswer(screen, 's15', 0, true, 0)` — faqat to'g'ri bo'lganda; root final-qatori YO'Q",
+   "hukm": "TARTIBLASH-TUZATILADI",
+   "tuzatish_loyihasi": "`fail` tarmog'ida `wrongEverRef.current = true; if (_am) _am.miss(screen);`; ok tarmog'ida `first` → onAnswer `correct: first, firstAttemptCorrect: first`; submit `(…, first ? 0 : 1, first, …)`; INLINE_KEYS `s15: -1` → `0`.",
+   "izoh": "DragDropOrder emas — custom; pilot qolipi ko'chmaydi, qo'lda.",
+   "hajm_qator": 7
+  },
+  {
+   "dars": "ReactNativeAppLesson",
+   "fayl": "src/6-Modull/ReactNativeAppLesson.jsx",
+   "sid": "s15",
+   "scope": "final",
+   "kalit": 0,
+   "nishon": "backstagePass",
+   "mexanika": "tartiblash (bosib qo'yish, noto'g'ri bo'lak silkinib rad etiladi)",
+   "xato_yoli": {
+    "bor": true,
+    "kod": "if (id === need) { … } else { setShakeId(id); setHint({ uz: `Hozir emas — avval …` }) }",
+    "ekran": "silkinish + «Hozir emas — avval … bo'lishi kerak»"
+   },
+   "urinish_tarifi": "rad etilgan har xato bosish (151-jadval: o'yin/tanlov qatori)",
+   "server_yuborish": "root: `… data.solved && live.mode === 'student') live.submitAnswer(idx, _m.id, data.picked ?? 1, !!data.correct, …)`",
+   "hukm": "TARTIBLASH-TUZATILADI",
+   "tuzatish_loyihasi": "`else` tarmog'ida `wrongEverRef.current = true; if (_am) _am.miss(screen);`; `done` effektida `first` → `correct: first, firstAttemptCorrect: first, picked: first ? 0 : 1`.",
+   "izoh": "Custom; maslahat («avval X bo'lishi kerak») xatodan KEYIN chiqadi — adolatli.",
+   "hajm_qator": 6
+  },
+  {
+   "dars": "PracticeLesson1",
+   "fayl": "src/2-Modull/PracticeLesson1.jsx",
+   "sid": "s15",
+   "scope": "final",
+   "kalit": -1,
+   "nishon": "-",
+   "mexanika": "tanlov (hodisa + reaksiya chiplari, har tanlovga ✓/✗)",
+   "xato_yoli": {
+    "bor": true,
+    "kod": "const ready = evtOk && reactOk; … {evtOk ? '✓ To'g'ri …' : '✗'}",
+    "ekran": "noto'g'ri chipda qizil ✗ yozuv"
+   },
+   "urinish_tarifi": "xato chip tanlangan har qadam (tanlov qatori)",
+   "server_yuborish": "root: `if (_m.scored && _m.scope === 'final' && data && data.correct && live.mode === 'student') live.submitAnswer(idx, _m.id, 0, true, 0)` — faqat to'g'ri bo'lsa, doim true",
+   "hukm": "DISKRET-TANLOV (8-A doirasidan tashqari — ertalab qaror)",
+   "tuzatish_loyihasi": "setEvt/setReact da xato qiymat → wrongEver; ready bo'lganda `first` → correct/picked; V1 → V2; kalit -1 → 0.",
+   "izoh": "",
+   "hajm_qator": 7
+  },
+  {
+   "dars": "PracticeLesson3",
+   "fayl": "src/2-Modull/PracticeLesson3.jsx",
+   "sid": "s15",
+   "scope": "final",
+   "kalit": -1,
+   "nishon": "-",
+   "mexanika": "tanlov (MvpRows: har band «MVP / keyin», xato qatorda darhol izoh)",
+   "xato_yoli": {
+    "bor": true,
+    "kod": "const wrong = b && !ok;  // MvpRows ichida — xato qatorda «Bu MVP uchun shart.»",
+    "ekran": "xato qatorda qizil izoh"
+   },
+   "urinish_tarifi": "xato joylangan har band (tanlov qatori)",
+   "server_yuborish": "root: `if (_m.scored && _m.scope === 'final' && data && data.correct && live.mode === 'student') live.submitAnswer(idx, _m.id, 0, true, 0)` — faqat to'g'ri bo'lsa, doim true",
+   "hukm": "DISKRET-TANLOV (ertalab qaror)",
+   "tuzatish_loyihasi": "MvpRows'ga `onWrong` yoki setPlaced'da tekshiruv → wrongEver; allCorrect'da `first`; V1 → V2; kalit -1 → 0.",
+   "izoh": "",
+   "hajm_qator": 8
+  },
+  {
+   "dars": "ApiPostmanLesson",
+   "fayl": "src/4-Modull/ApiPostmanLesson.jsx",
+   "sid": "s15",
+   "scope": "final",
+   "kalit": -1,
+   "nishon": "levelUp",
+   "mexanika": "tanlov + «Send» tugmasi (method tanlanadi, yuboriladi)",
+   "xato_yoli": {
+    "bor": true,
+    "kod": "const isCorrect = method === 'POST'; … sent && !isCorrect → 200/400 javobi",
+    "ekran": "noto'g'ri method bilan yuborilganda 200/400 va «Boshqa method tanlang»"
+   },
+   "urinish_tarifi": "Send bosilib, method xato chiqqani («Tekshirish» tugmasi qatori)",
+   "server_yuborish": "root: `if (_m.scored && _m.scope === 'final' && data && data.correct && live.mode === 'student') live.submitAnswer(idx, _m.id, 0, true, 0)` — faqat to'g'ri bo'lsa, doim true",
+   "hukm": "DISKRET-TANLOV (ertalab qaror)",
+   "tuzatish_loyihasi": "send() da `!isCorrect` → wrongEver; `first` → correct/picked; V1 → V2; kalit -1 → 0.",
+   "izoh": "",
+   "hajm_qator": 7
+  },
+  {
+   "dars": "DbSqlNosqlLesson",
+   "fayl": "src/4-Modull/DbSqlNosqlLesson.jsx",
+   "sid": "s15",
+   "scope": "final",
+   "kalit": -1,
+   "nishon": "compassReader",
+   "mexanika": "tanlov (4 savol → kompas strelkasi)",
+   "xato_yoli": {
+    "bor": true,
+    "kod": "const wrongLean = allAnswered && !passed;",
+    "ekran": "«Hmm — do'kon ma'lumotlari bog'langan …» ogohlantirishi"
+   },
+   "urinish_tarifi": "4 savolning hammasi javoblanib, strelka noto'g'ri tomonda qolgan on (to'liq urinish)",
+   "server_yuborish": "root: `if (_m.scored && _m.scope === 'final' && data && data.correct && live.mode === 'student') live.submitAnswer(idx, _m.id, 0, true, 0)` — faqat to'g'ri bo'lsa, doim true",
+   "hukm": "DISKRET-TANLOV (ertalab qaror)",
+   "tuzatish_loyihasi": "`wrongLean` true bo'lgan onda wrongEver (effekt); passed'da `first`; V1 → V2; kalit -1 → 0. Ekrandagi `reset` wrongEver'ni nollamasin (136-qonun).",
+   "izoh": "«To'rt savolga rostini javob bering» — o'z-qaror ohangi bor, lekin kutilgan javob SQL; ertalab bilan tekshirish.",
+   "hajm_qator": 8
+  },
+  {
+   "dars": "DataIntroLesson",
+   "fayl": "src/4-Modull/DataIntroLesson.jsx",
+   "sid": "s15",
+   "scope": "final",
+   "kalit": -1,
+   "nishon": "schemaArchitect",
+   "mexanika": "ulash (sxemada ustun ↔ ustun, xato ulash rad etiladi)",
+   "xato_yoli": {
+    "bor": true,
+    "kod": "wrongRef.current += 1;  … correct: true, firstAttemptCorrect: wrongRef.current === 0",
+    "ekran": "«Bu ustun mos emas …»"
+   },
+   "urinish_tarifi": "rad etilgan har xato ulash",
+   "server_yuborish": "root: `if (_m.scored && _m.scope === 'final' && data && data.correct && live.mode === 'student') live.submitAnswer(idx, _m.id, 0, true, 0)` — faqat to'g'ri bo'lsa, doim true",
+   "hukm": "DISKRET-TANLOV (ertalab qaror) — eng oson",
+   "tuzatish_loyihasi": "`correct: true` → `correct: wrongRef.current === 0` (1 token; hisob tayyor, 136-qonun sanog'i). V1 → V2; kalit -1 → 0. F5: wrongRef faqat storedAnswer'dan tiklanadi — yechilmasdan F5 bo'lsa sanoq yo'qoladi → `_am.miss(screen)` qo'shilsa yopiladi.",
+   "izoh": "`firstAttemptCorrect` allaqachon halol, lekin ball `correct` dan olinadi (resultDetails 179-qator, finishLesson).",
+   "hajm_qator": 4
+  },
+  {
+   "dars": "DataIntroLesson",
+   "fayl": "src/4-Modull/DataIntroLesson.jsx",
+   "sid": "s15b",
+   "scope": "final",
+   "kalit": -1,
+   "nishon": "-",
+   "mexanika": "ulash (bog'lovchi ustunni topish)",
+   "xato_yoli": {
+    "bor": true,
+    "kod": "wrongRef.current += 1;  … correct: true, firstAttemptCorrect: wrongRef.current === 0",
+    "ekran": "xato ustunda rad"
+   },
+   "urinish_tarifi": "rad etilgan har xato tanlov",
+   "server_yuborish": "root: `if (_m.scored && _m.scope === 'final' && data && data.correct && live.mode === 'student') live.submitAnswer(idx, _m.id, 0, true, 0)` — faqat to'g'ri bo'lsa, doim true",
+   "hukm": "DISKRET-TANLOV (ertalab qaror) — eng oson",
+   "tuzatish_loyihasi": "s15 bilan bir xil (1 token + V2 + kalit).",
+   "izoh": "",
+   "hajm_qator": 4
+  },
+  {
+   "dars": "RoutingLesson",
+   "fayl": "src/4-Modull/RoutingLesson.jsx",
+   "sid": "s15",
+   "scope": "final",
+   "kalit": -1,
+   "nishon": "doorbuilder",
+   "mexanika": "ulash (so'rov ↔ eshik, 3 juftlik)",
+   "xato_yoli": {
+    "bor": true,
+    "kod": "wrongRef.current += 1;  … solved: true, correct: true, firstAttemptCorrect: wrongRef.current === 0",
+    "ekran": "xato juftlikda rad"
+   },
+   "urinish_tarifi": "rad etilgan har xato juftlik",
+   "server_yuborish": "⚠ HECH QAYERDA yuborilmaydi: root recordAnswer'da final-qatori yo'q, ekranda ham submit yo'q → jonli darsda ham server bu savolni «javobsiz» sanaydi (kalit s-qolipda → total'ga kiradi)",
+   "hukm": "DISKRET-TANLOV (ertalab qaror) + SERVER-BUG",
+   "tuzatish_loyihasi": "`correct: wrongRef.current === 0` + root'ga final-qator (V2 shakli) qo'shish; kalit -1 → 0.",
+   "izoh": "Yangi topilma: bu savol serverga umuman yetmaydi — maksimal jonli natija (N-1)/N.",
+   "hajm_qator": 6
+  },
+  {
+   "dars": "CssLesson1",
+   "fayl": "src/1-Modull/CssLesson1.jsx",
+   "sid": "s15",
+   "scope": "final",
+   "kalit": -1,
+   "nishon": "-",
+   "mexanika": "yozma/regex — CSS qatori yoziladi (h1 + color), regex jonli",
+   "xato_yoli": {
+    "bor": false,
+    "kod": "`valid` harf terilishi bilan tekshiriladi; «Tekshirish» tugmasi YO'Q",
+    "ekran": "pastda qaysi bo'lak yetmayotgani ko'rinadi (jonli ipucha)"
+   },
+   "urinish_tarifi": "diskret urinish YO'Q — qiymat to'g'ri bo'lgan zahoti o'tadi; «xato urinish» hodisasi mavjud emas",
+   "server_yuborish": "root/ekran: faqat `live.mode === 'student'`",
+   "hukm": "YOZMA-QOLADI",
+   "tuzatish_loyihasi": "Tunda tegilmaydi (8-A). `correct: true` bu yerda «bajarildi» ma'nosida (136-qonun: bajarish-ekranlarida qonuniy). Ertalabga savol: shunday qoladimi yoki «Tekshirish» tugmasi qo'shilib diskret urinish yaratilsinmi (mexanika o'zgaradi — matn va qaror kerak).",
+   "izoh": "Nishon bog'langan bo'lsa — koding = MEHNAT (2-A).",
+   "hajm_qator": 0
+  },
+  {
+   "dars": "CssPractice",
+   "fayl": "src/1-Modull/CssPractice.jsx",
+   "sid": "s16",
+   "scope": "final",
+   "kalit": -1,
+   "nishon": "-",
+   "mexanika": "yozma/regex — CSS qatori, regex jonli",
+   "xato_yoli": {
+    "bor": false,
+    "kod": "`valid` harf terilishi bilan tekshiriladi; «Tekshirish» tugmasi YO'Q",
+    "ekran": "pastda qaysi bo'lak yetmayotgani ko'rinadi (jonli ipucha)"
+   },
+   "urinish_tarifi": "diskret urinish YO'Q — qiymat to'g'ri bo'lgan zahoti o'tadi; «xato urinish» hodisasi mavjud emas",
+   "server_yuborish": "root/ekran: faqat `live.mode === 'student'`",
+   "hukm": "YOZMA-QOLADI",
+   "tuzatish_loyihasi": "Tunda tegilmaydi (8-A). `correct: true` bu yerda «bajarildi» ma'nosida (136-qonun: bajarish-ekranlarida qonuniy). Ertalabga savol: shunday qoladimi yoki «Tekshirish» tugmasi qo'shilib diskret urinish yaratilsinmi (mexanika o'zgaradi — matn va qaror kerak).",
+   "izoh": "Nishon bog'langan bo'lsa — koding = MEHNAT (2-A).",
+   "hajm_qator": 0
+  },
+  {
+   "dars": "Htmllesson1",
+   "fayl": "src/1-Modull/Htmllesson1.jsx",
+   "sid": "s7",
+   "scope": "module-mikro",
+   "kalit": -1,
+   "nishon": "firsttag",
+   "mexanika": "yozma/regex — yopuvchi teg yoziladi, jonli tekshiruv",
+   "xato_yoli": {
+    "bor": false,
+    "kod": "`valid` harf terilishi bilan tekshiriladi; «Tekshirish» tugmasi YO'Q",
+    "ekran": "pastda qaysi bo'lak yetmayotgani ko'rinadi (jonli ipucha)"
+   },
+   "urinish_tarifi": "diskret urinish YO'Q — qiymat to'g'ri bo'lgan zahoti o'tadi; «xato urinish» hodisasi mavjud emas",
+   "server_yuborish": "root/ekran: faqat `live.mode === 'student'`",
+   "hukm": "YOZMA-QOLADI",
+   "tuzatish_loyihasi": "Tunda tegilmaydi (8-A). `correct: true` bu yerda «bajarildi» ma'nosida (136-qonun: bajarish-ekranlarida qonuniy). Ertalabga savol: shunday qoladimi yoki «Tekshirish» tugmasi qo'shilib diskret urinish yaratilsinmi (mexanika o'zgaradi — matn va qaror kerak).",
+   "izoh": "Nishon bog'langan bo'lsa — koding = MEHNAT (2-A).",
+   "hajm_qator": 0
+  },
+  {
+   "dars": "PmLesson1",
+   "fayl": "src/1-Modull/PmLesson1.jsx",
+   "sid": "s15",
+   "scope": "final",
+   "kalit": -1,
+   "nishon": "-",
+   "mexanika": "yozma/regex — erkin matn (o'z gapi) — ekran o'zi student-submit qiladi",
+   "xato_yoli": {
+    "bor": false,
+    "kod": "`valid` harf terilishi bilan tekshiriladi; «Tekshirish» tugmasi YO'Q",
+    "ekran": "pastda qaysi bo'lak yetmayotgani ko'rinadi (jonli ipucha)"
+   },
+   "urinish_tarifi": "diskret urinish YO'Q — qiymat to'g'ri bo'lgan zahoti o'tadi; «xato urinish» hodisasi mavjud emas",
+   "server_yuborish": "root/ekran: faqat `live.mode === 'student'`",
+   "hukm": "YOZMA-QOLADI",
+   "tuzatish_loyihasi": "Tunda tegilmaydi (8-A). `correct: true` bu yerda «bajarildi» ma'nosida (136-qonun: bajarish-ekranlarida qonuniy). Ertalabga savol: shunday qoladimi yoki «Tekshirish» tugmasi qo'shilib diskret urinish yaratilsinmi (mexanika o'zgaradi — matn va qaror kerak).",
+   "izoh": "Nishon bog'langan bo'lsa — koding = MEHNAT (2-A).",
+   "hajm_qator": 0
+  },
+  {
+   "dars": "PmLesson3",
+   "fayl": "src/1-Modull/PmLesson3.jsx",
+   "sid": "s13",
+   "scope": "final",
+   "kalit": -1,
+   "nishon": "stage",
+   "mexanika": "yozma/regex — erkin pitch-matn (textarea)",
+   "xato_yoli": {
+    "bor": false,
+    "kod": "`valid` harf terilishi bilan tekshiriladi; «Tekshirish» tugmasi YO'Q",
+    "ekran": "pastda qaysi bo'lak yetmayotgani ko'rinadi (jonli ipucha)"
+   },
+   "urinish_tarifi": "diskret urinish YO'Q — qiymat to'g'ri bo'lgan zahoti o'tadi; «xato urinish» hodisasi mavjud emas",
+   "server_yuborish": "root/ekran: faqat `live.mode === 'student'`",
+   "hukm": "YOZMA-QOLADI",
+   "tuzatish_loyihasi": "Tunda tegilmaydi (8-A). `correct: true` bu yerda «bajarildi» ma'nosida (136-qonun: bajarish-ekranlarida qonuniy). Ertalabga savol: shunday qoladimi yoki «Tekshirish» tugmasi qo'shilib diskret urinish yaratilsinmi (mexanika o'zgaradi — matn va qaror kerak).",
+   "izoh": "Nishon bog'langan bo'lsa — koding = MEHNAT (2-A).",
+   "hajm_qator": 0
+  },
+  {
+   "dars": "VsCodeLesson",
+   "fayl": "src/1-Modull/VsCodeLesson.jsx",
+   "sid": "s13",
+   "scope": "final",
+   "kalit": -1,
+   "nishon": "-",
+   "mexanika": "yozma/regex — tugma nomi yoziladi («Go Live»), jonli",
+   "xato_yoli": {
+    "bor": false,
+    "kod": "`valid` harf terilishi bilan tekshiriladi; «Tekshirish» tugmasi YO'Q",
+    "ekran": "pastda qaysi bo'lak yetmayotgani ko'rinadi (jonli ipucha)"
+   },
+   "urinish_tarifi": "diskret urinish YO'Q — qiymat to'g'ri bo'lgan zahoti o'tadi; «xato urinish» hodisasi mavjud emas",
+   "server_yuborish": "root/ekran: faqat `live.mode === 'student'`",
+   "hukm": "YOZMA-QOLADI",
+   "tuzatish_loyihasi": "Tunda tegilmaydi (8-A). `correct: true` bu yerda «bajarildi» ma'nosida (136-qonun: bajarish-ekranlarida qonuniy). Ertalabga savol: shunday qoladimi yoki «Tekshirish» tugmasi qo'shilib diskret urinish yaratilsinmi (mexanika o'zgaradi — matn va qaror kerak).",
+   "izoh": "Nishon bog'langan bo'lsa — koding = MEHNAT (2-A).",
+   "hajm_qator": 0
+  },
+  {
+   "dars": "JsConditionsLesson",
+   "fayl": "src/2-Modull/JsConditionsLesson.jsx",
+   "sid": "s15",
+   "scope": "final",
+   "kalit": -1,
+   "nishon": "firstif",
+   "mexanika": "yozma/regex — if-qator yoziladi, regex jonli (harf terilishi bilan o'tadi)",
+   "xato_yoli": {
+    "bor": false,
+    "kod": "`valid` harf terilishi bilan tekshiriladi; «Tekshirish» tugmasi YO'Q",
+    "ekran": "pastda qaysi bo'lak yetmayotgani ko'rinadi (jonli ipucha)"
+   },
+   "urinish_tarifi": "diskret urinish YO'Q — qiymat to'g'ri bo'lgan zahoti o'tadi; «xato urinish» hodisasi mavjud emas",
+   "server_yuborish": "root/ekran: faqat `live.mode === 'student'`",
+   "hukm": "YOZMA-QOLADI",
+   "tuzatish_loyihasi": "Tunda tegilmaydi (8-A). `correct: true` bu yerda «bajarildi» ma'nosida (136-qonun: bajarish-ekranlarida qonuniy). Ertalabga savol: shunday qoladimi yoki «Tekshirish» tugmasi qo'shilib diskret urinish yaratilsinmi (mexanika o'zgaradi — matn va qaror kerak).",
+   "izoh": "Nishon bog'langan bo'lsa — koding = MEHNAT (2-A).",
+   "hajm_qator": 0
+  },
+  {
+   "dars": "JsFunctionsLesson",
+   "fayl": "src/2-Modull/JsFunctionsLesson.jsx",
+   "sid": "s15",
+   "scope": "final",
+   "kalit": -1,
+   "nishon": "returnmaster",
+   "mexanika": "yozma/regex — funksiya yoziladi, regex jonli",
+   "xato_yoli": {
+    "bor": false,
+    "kod": "`valid` harf terilishi bilan tekshiriladi; «Tekshirish» tugmasi YO'Q",
+    "ekran": "pastda qaysi bo'lak yetmayotgani ko'rinadi (jonli ipucha)"
+   },
+   "urinish_tarifi": "diskret urinish YO'Q — qiymat to'g'ri bo'lgan zahoti o'tadi; «xato urinish» hodisasi mavjud emas",
+   "server_yuborish": "root/ekran: faqat `live.mode === 'student'`",
+   "hukm": "YOZMA-QOLADI",
+   "tuzatish_loyihasi": "Tunda tegilmaydi (8-A). `correct: true` bu yerda «bajarildi» ma'nosida (136-qonun: bajarish-ekranlarida qonuniy). Ertalabga savol: shunday qoladimi yoki «Tekshirish» tugmasi qo'shilib diskret urinish yaratilsinmi (mexanika o'zgaradi — matn va qaror kerak).",
+   "izoh": "Nishon bog'langan bo'lsa — koding = MEHNAT (2-A).",
+   "hajm_qator": 0
+  },
+  {
+   "dars": "JsVarsLesson",
+   "fayl": "src/2-Modull/JsVarsLesson.jsx",
+   "sid": "s15",
+   "scope": "final",
+   "kalit": -1,
+   "nishon": "-",
+   "mexanika": "yozma/regex — let-qator yoziladi, regex jonli",
+   "xato_yoli": {
+    "bor": false,
+    "kod": "`valid` harf terilishi bilan tekshiriladi; «Tekshirish» tugmasi YO'Q",
+    "ekran": "pastda qaysi bo'lak yetmayotgani ko'rinadi (jonli ipucha)"
+   },
+   "urinish_tarifi": "diskret urinish YO'Q — qiymat to'g'ri bo'lgan zahoti o'tadi; «xato urinish» hodisasi mavjud emas",
+   "server_yuborish": "root/ekran: faqat `live.mode === 'student'`",
+   "hukm": "YOZMA-QOLADI",
+   "tuzatish_loyihasi": "Tunda tegilmaydi (8-A). `correct: true` bu yerda «bajarildi» ma'nosida (136-qonun: bajarish-ekranlarida qonuniy). Ertalabga savol: shunday qoladimi yoki «Tekshirish» tugmasi qo'shilib diskret urinish yaratilsinmi (mexanika o'zgaradi — matn va qaror kerak).",
+   "izoh": "Nishon bog'langan bo'lsa — koding = MEHNAT (2-A).",
+   "hajm_qator": 0
+  },
+  {
+   "dars": "ReactApiPostLesson",
+   "fayl": "src/3-Modull/ReactApiPostLesson.jsx",
+   "sid": "s16",
+   "scope": "final",
+   "kalit": -1,
+   "nishon": "-",
+   "mexanika": "yozma/regex — method-qatori yoziladi, regex jonli",
+   "xato_yoli": {
+    "bor": false,
+    "kod": "`valid` harf terilishi bilan tekshiriladi; «Tekshirish» tugmasi YO'Q",
+    "ekran": "pastda qaysi bo'lak yetmayotgani ko'rinadi (jonli ipucha)"
+   },
+   "urinish_tarifi": "diskret urinish YO'Q — qiymat to'g'ri bo'lgan zahoti o'tadi; «xato urinish» hodisasi mavjud emas",
+   "server_yuborish": "root/ekran: faqat `live.mode === 'student'`",
+   "hukm": "YOZMA-QOLADI",
+   "tuzatish_loyihasi": "Tunda tegilmaydi (8-A). `correct: true` bu yerda «bajarildi» ma'nosida (136-qonun: bajarish-ekranlarida qonuniy). Ertalabga savol: shunday qoladimi yoki «Tekshirish» tugmasi qo'shilib diskret urinish yaratilsinmi (mexanika o'zgaradi — matn va qaror kerak).",
+   "izoh": "Nishon bog'langan bo'lsa — koding = MEHNAT (2-A).",
+   "hajm_qator": 0
+  },
+  {
+   "dars": "ReactBuildSiteLesson",
+   "fayl": "src/3-Modull/ReactBuildSiteLesson.jsx",
+   "sid": "s14",
+   "scope": "final",
+   "kalit": -1,
+   "nishon": "builder",
+   "mexanika": "yozma/regex — function TaomCard(props) yoziladi, regex jonli",
+   "xato_yoli": {
+    "bor": false,
+    "kod": "`valid` harf terilishi bilan tekshiriladi; «Tekshirish» tugmasi YO'Q",
+    "ekran": "pastda qaysi bo'lak yetmayotgani ko'rinadi (jonli ipucha)"
+   },
+   "urinish_tarifi": "diskret urinish YO'Q — qiymat to'g'ri bo'lgan zahoti o'tadi; «xato urinish» hodisasi mavjud emas",
+   "server_yuborish": "root/ekran: faqat `live.mode === 'student'`",
+   "hukm": "YOZMA-QOLADI",
+   "tuzatish_loyihasi": "Tunda tegilmaydi (8-A). `correct: true` bu yerda «bajarildi» ma'nosida (136-qonun: bajarish-ekranlarida qonuniy). Ertalabga savol: shunday qoladimi yoki «Tekshirish» tugmasi qo'shilib diskret urinish yaratilsinmi (mexanika o'zgaradi — matn va qaror kerak).",
+   "izoh": "Nishon bog'langan bo'lsa — koding = MEHNAT (2-A).",
+   "hajm_qator": 0
+  },
+  {
+   "dars": "ReactCrudPracticeLesson",
+   "fayl": "src/3-Modull/ReactCrudPracticeLesson.jsx",
+   "sid": "s14",
+   "scope": "final",
+   "kalit": -1,
+   "nishon": "finisher",
+   "mexanika": "yozma/regex — setGames([...]) yoziladi, regex jonli",
+   "xato_yoli": {
+    "bor": false,
+    "kod": "`valid` harf terilishi bilan tekshiriladi; «Tekshirish» tugmasi YO'Q",
+    "ekran": "pastda qaysi bo'lak yetmayotgani ko'rinadi (jonli ipucha)"
+   },
+   "urinish_tarifi": "diskret urinish YO'Q — qiymat to'g'ri bo'lgan zahoti o'tadi; «xato urinish» hodisasi mavjud emas",
+   "server_yuborish": "root/ekran: faqat `live.mode === 'student'`",
+   "hukm": "YOZMA-QOLADI",
+   "tuzatish_loyihasi": "Tunda tegilmaydi (8-A). `correct: true` bu yerda «bajarildi» ma'nosida (136-qonun: bajarish-ekranlarida qonuniy). Ertalabga savol: shunday qoladimi yoki «Tekshirish» tugmasi qo'shilib diskret urinish yaratilsinmi (mexanika o'zgaradi — matn va qaror kerak).",
+   "izoh": "Nishon bog'langan bo'lsa — koding = MEHNAT (2-A).",
+   "hajm_qator": 0
+  },
+  {
+   "dars": "ReactFirstComponentLesson",
+   "fayl": "src/3-Modull/ReactFirstComponentLesson.jsx",
+   "sid": "s15",
+   "scope": "final",
+   "kalit": -1,
+   "nishon": "builder",
+   "mexanika": "yozma/regex — <GameCard …/> yoziladi, regex jonli",
+   "xato_yoli": {
+    "bor": false,
+    "kod": "`valid` harf terilishi bilan tekshiriladi; «Tekshirish» tugmasi YO'Q",
+    "ekran": "pastda qaysi bo'lak yetmayotgani ko'rinadi (jonli ipucha)"
+   },
+   "urinish_tarifi": "diskret urinish YO'Q — qiymat to'g'ri bo'lgan zahoti o'tadi; «xato urinish» hodisasi mavjud emas",
+   "server_yuborish": "root/ekran: faqat `live.mode === 'student'`",
+   "hukm": "YOZMA-QOLADI",
+   "tuzatish_loyihasi": "Tunda tegilmaydi (8-A). `correct: true` bu yerda «bajarildi» ma'nosida (136-qonun: bajarish-ekranlarida qonuniy). Ertalabga savol: shunday qoladimi yoki «Tekshirish» tugmasi qo'shilib diskret urinish yaratilsinmi (mexanika o'zgaradi — matn va qaror kerak).",
+   "izoh": "Nishon bog'langan bo'lsa — koding = MEHNAT (2-A).",
+   "hajm_qator": 0
+  },
+  {
+   "dars": "ReactProjectDayLesson",
+   "fayl": "src/3-Modull/ReactProjectDayLesson.jsx",
+   "sid": "s14",
+   "scope": "final",
+   "kalit": -1,
+   "nishon": "graduate",
+   "mexanika": "yozma/regex — b.price * b.days yoziladi, regex jonli (⚠ `graduate` shu ekranga bog'langan)",
+   "xato_yoli": {
+    "bor": false,
+    "kod": "`valid` harf terilishi bilan tekshiriladi; «Tekshirish» tugmasi YO'Q",
+    "ekran": "pastda qaysi bo'lak yetmayotgani ko'rinadi (jonli ipucha)"
+   },
+   "urinish_tarifi": "diskret urinish YO'Q — qiymat to'g'ri bo'lgan zahoti o'tadi; «xato urinish» hodisasi mavjud emas",
+   "server_yuborish": "root/ekran: faqat `live.mode === 'student'`",
+   "hukm": "YOZMA-QOLADI",
+   "tuzatish_loyihasi": "Tunda tegilmaydi (8-A). `correct: true` bu yerda «bajarildi» ma'nosida (136-qonun: bajarish-ekranlarida qonuniy). Ertalabga savol: shunday qoladimi yoki «Tekshirish» tugmasi qo'shilib diskret urinish yaratilsinmi (mexanika o'zgaradi — matn va qaror kerak).",
+   "izoh": "Nishon bog'langan bo'lsa — koding = MEHNAT (2-A).",
+   "hajm_qator": 0
+  },
+  {
+   "dars": "ReactPropsReuseLesson",
+   "fayl": "src/3-Modull/ReactPropsReuseLesson.jsx",
+   "sid": "s15",
+   "scope": "final",
+   "kalit": -1,
+   "nishon": "builder",
+   "mexanika": "yozma/regex — <GameCard name={g} /> yoziladi, regex jonli",
+   "xato_yoli": {
+    "bor": false,
+    "kod": "`valid` harf terilishi bilan tekshiriladi; «Tekshirish» tugmasi YO'Q",
+    "ekran": "pastda qaysi bo'lak yetmayotgani ko'rinadi (jonli ipucha)"
+   },
+   "urinish_tarifi": "diskret urinish YO'Q — qiymat to'g'ri bo'lgan zahoti o'tadi; «xato urinish» hodisasi mavjud emas",
+   "server_yuborish": "root/ekran: faqat `live.mode === 'student'`",
+   "hukm": "YOZMA-QOLADI",
+   "tuzatish_loyihasi": "Tunda tegilmaydi (8-A). `correct: true` bu yerda «bajarildi» ma'nosida (136-qonun: bajarish-ekranlarida qonuniy). Ertalabga savol: shunday qoladimi yoki «Tekshirish» tugmasi qo'shilib diskret urinish yaratilsinmi (mexanika o'zgaradi — matn va qaror kerak).",
+   "izoh": "Nishon bog'langan bo'lsa — koding = MEHNAT (2-A).",
+   "hajm_qator": 0
+  },
+  {
+   "dars": "ReactRouterPracticeLesson",
+   "fayl": "src/3-Modull/ReactRouterPracticeLesson.jsx",
+   "sid": "s14",
+   "scope": "final",
+   "kalit": -1,
+   "nishon": "router",
+   "mexanika": "yozma/regex — <Route …/> yoziladi, regex jonli",
+   "xato_yoli": {
+    "bor": false,
+    "kod": "`valid` harf terilishi bilan tekshiriladi; «Tekshirish» tugmasi YO'Q",
+    "ekran": "pastda qaysi bo'lak yetmayotgani ko'rinadi (jonli ipucha)"
+   },
+   "urinish_tarifi": "diskret urinish YO'Q — qiymat to'g'ri bo'lgan zahoti o'tadi; «xato urinish» hodisasi mavjud emas",
+   "server_yuborish": "root/ekran: faqat `live.mode === 'student'`",
+   "hukm": "YOZMA-QOLADI",
+   "tuzatish_loyihasi": "Tunda tegilmaydi (8-A). `correct: true` bu yerda «bajarildi» ma'nosida (136-qonun: bajarish-ekranlarida qonuniy). Ertalabga savol: shunday qoladimi yoki «Tekshirish» tugmasi qo'shilib diskret urinish yaratilsinmi (mexanika o'zgaradi — matn va qaror kerak).",
+   "izoh": "Nishon bog'langan bo'lsa — koding = MEHNAT (2-A).",
+   "hajm_qator": 0
+  },
+  {
+   "dars": "ReactStateEffectLesson",
+   "fayl": "src/3-Modull/ReactStateEffectLesson.jsx",
+   "sid": "s15",
+   "scope": "final",
+   "kalit": -1,
+   "nishon": "builder",
+   "mexanika": "yozma/regex — useState qatori yoziladi, regex jonli",
+   "xato_yoli": {
+    "bor": false,
+    "kod": "`valid` harf terilishi bilan tekshiriladi; «Tekshirish» tugmasi YO'Q",
+    "ekran": "pastda qaysi bo'lak yetmayotgani ko'rinadi (jonli ipucha)"
+   },
+   "urinish_tarifi": "diskret urinish YO'Q — qiymat to'g'ri bo'lgan zahoti o'tadi; «xato urinish» hodisasi mavjud emas",
+   "server_yuborish": "root/ekran: faqat `live.mode === 'student'`",
+   "hukm": "YOZMA-QOLADI",
+   "tuzatish_loyihasi": "Tunda tegilmaydi (8-A). `correct: true` bu yerda «bajarildi» ma'nosida (136-qonun: bajarish-ekranlarida qonuniy). Ertalabga savol: shunday qoladimi yoki «Tekshirish» tugmasi qo'shilib diskret urinish yaratilsinmi (mexanika o'zgaradi — matn va qaror kerak).",
+   "izoh": "Nishon bog'langan bo'lsa — koding = MEHNAT (2-A).",
+   "hajm_qator": 0
+  },
+  {
+   "dars": "AuthEnvLesson",
+   "fayl": "src/4-Modull/AuthEnvLesson.jsx",
+   "sid": "s15",
+   "scope": "final",
+   "kalit": -1,
+   "nishon": "vaultsealed",
+   "mexanika": "yozma/regex — JWT_SECRET=… yoziladi, regex jonli (root V2)",
+   "xato_yoli": {
+    "bor": false,
+    "kod": "`valid` harf terilishi bilan tekshiriladi; «Tekshirish» tugmasi YO'Q",
+    "ekran": "pastda qaysi bo'lak yetmayotgani ko'rinadi (jonli ipucha)"
+   },
+   "urinish_tarifi": "diskret urinish YO'Q — qiymat to'g'ri bo'lgan zahoti o'tadi; «xato urinish» hodisasi mavjud emas",
+   "server_yuborish": "root/ekran: faqat `live.mode === 'student'`",
+   "hukm": "YOZMA-QOLADI",
+   "tuzatish_loyihasi": "Tunda tegilmaydi (8-A). `correct: true` bu yerda «bajarildi» ma'nosida (136-qonun: bajarish-ekranlarida qonuniy). Ertalabga savol: shunday qoladimi yoki «Tekshirish» tugmasi qo'shilib diskret urinish yaratilsinmi (mexanika o'zgaradi — matn va qaror kerak).",
+   "izoh": "Nishon bog'langan bo'lsa — koding = MEHNAT (2-A).",
+   "hajm_qator": 0
+  },
+  {
+   "dars": "FullstackFeedbackLesson",
+   "fayl": "src/4-Modull/FullstackFeedbackLesson.jsx",
+   "sid": "s16",
+   "scope": "final",
+   "kalit": -1,
+   "nishon": "guardian",
+   "mexanika": "yozma/regex — confirm yoziladi, regex jonli",
+   "xato_yoli": {
+    "bor": false,
+    "kod": "`valid` harf terilishi bilan tekshiriladi; «Tekshirish» tugmasi YO'Q",
+    "ekran": "pastda qaysi bo'lak yetmayotgani ko'rinadi (jonli ipucha)"
+   },
+   "urinish_tarifi": "diskret urinish YO'Q — qiymat to'g'ri bo'lgan zahoti o'tadi; «xato urinish» hodisasi mavjud emas",
+   "server_yuborish": "root/ekran: faqat `live.mode === 'student'`",
+   "hukm": "YOZMA-QOLADI",
+   "tuzatish_loyihasi": "Tunda tegilmaydi (8-A). `correct: true` bu yerda «bajarildi» ma'nosida (136-qonun: bajarish-ekranlarida qonuniy). Ertalabga savol: shunday qoladimi yoki «Tekshirish» tugmasi qo'shilib diskret urinish yaratilsinmi (mexanika o'zgaradi — matn va qaror kerak).",
+   "izoh": "Nishon bog'langan bo'lsa — koding = MEHNAT (2-A).",
+   "hajm_qator": 0
+  },
+  {
+   "dars": "FullstackProjectDayLesson",
+   "fayl": "src/4-Modull/FullstackProjectDayLesson.jsx",
+   "sid": "s16",
+   "scope": "final",
+   "kalit": -1,
+   "nishon": "opened",
+   "mexanika": "yozma/regex — JOIN ON sharti yoziladi, regex jonli",
+   "xato_yoli": {
+    "bor": false,
+    "kod": "`valid` harf terilishi bilan tekshiriladi; «Tekshirish» tugmasi YO'Q",
+    "ekran": "pastda qaysi bo'lak yetmayotgani ko'rinadi (jonli ipucha)"
+   },
+   "urinish_tarifi": "diskret urinish YO'Q — qiymat to'g'ri bo'lgan zahoti o'tadi; «xato urinish» hodisasi mavjud emas",
+   "server_yuborish": "root/ekran: faqat `live.mode === 'student'`",
+   "hukm": "YOZMA-QOLADI",
+   "tuzatish_loyihasi": "Tunda tegilmaydi (8-A). `correct: true` bu yerda «bajarildi» ma'nosida (136-qonun: bajarish-ekranlarida qonuniy). Ertalabga savol: shunday qoladimi yoki «Tekshirish» tugmasi qo'shilib diskret urinish yaratilsinmi (mexanika o'zgaradi — matn va qaror kerak).",
+   "izoh": "Nishon bog'langan bo'lsa — koding = MEHNAT (2-A).",
+   "hajm_qator": 0
+  },
+  {
+   "dars": "NodeServerLesson",
+   "fayl": "src/4-Modull/NodeServerLesson.jsx",
+   "sid": "s15",
+   "scope": "final",
+   "kalit": -1,
+   "nishon": "shopOpener",
+   "mexanika": "yozma/regex — app.get(…) yoziladi, regex jonli",
+   "xato_yoli": {
+    "bor": false,
+    "kod": "`valid` harf terilishi bilan tekshiriladi; «Tekshirish» tugmasi YO'Q",
+    "ekran": "pastda qaysi bo'lak yetmayotgani ko'rinadi (jonli ipucha)"
+   },
+   "urinish_tarifi": "diskret urinish YO'Q — qiymat to'g'ri bo'lgan zahoti o'tadi; «xato urinish» hodisasi mavjud emas",
+   "server_yuborish": "root/ekran: faqat `live.mode === 'student'`",
+   "hukm": "YOZMA-QOLADI",
+   "tuzatish_loyihasi": "Tunda tegilmaydi (8-A). `correct: true` bu yerda «bajarildi» ma'nosida (136-qonun: bajarish-ekranlarida qonuniy). Ertalabga savol: shunday qoladimi yoki «Tekshirish» tugmasi qo'shilib diskret urinish yaratilsinmi (mexanika o'zgaradi — matn va qaror kerak).",
+   "izoh": "Nishon bog'langan bo'lsa — koding = MEHNAT (2-A).",
+   "hajm_qator": 0
+  },
+  {
+   "dars": "PostgresCrudLesson",
+   "fayl": "src/4-Modull/PostgresCrudLesson.jsx",
+   "sid": "s15",
+   "scope": "final",
+   "kalit": -1,
+   "nishon": "dataArchitect",
+   "mexanika": "yozma/regex — INSERT yoziladi, regex jonli",
+   "xato_yoli": {
+    "bor": false,
+    "kod": "`valid` harf terilishi bilan tekshiriladi; «Tekshirish» tugmasi YO'Q",
+    "ekran": "pastda qaysi bo'lak yetmayotgani ko'rinadi (jonli ipucha)"
+   },
+   "urinish_tarifi": "diskret urinish YO'Q — qiymat to'g'ri bo'lgan zahoti o'tadi; «xato urinish» hodisasi mavjud emas",
+   "server_yuborish": "root/ekran: faqat `live.mode === 'student'`",
+   "hukm": "YOZMA-QOLADI",
+   "tuzatish_loyihasi": "Tunda tegilmaydi (8-A). `correct: true` bu yerda «bajarildi» ma'nosida (136-qonun: bajarish-ekranlarida qonuniy). Ertalabga savol: shunday qoladimi yoki «Tekshirish» tugmasi qo'shilib diskret urinish yaratilsinmi (mexanika o'zgaradi — matn va qaror kerak).",
+   "izoh": "Nishon bog'langan bo'lsa — koding = MEHNAT (2-A).",
+   "hajm_qator": 0
+  },
+  {
+   "dars": "PracticeLesson2",
+   "fayl": "src/2-Modull/PracticeLesson2.jsx",
+   "sid": "s15",
+   "scope": "final",
+   "kalit": -1,
+   "nishon": "-",
+   "mexanika": "tanlov (4 ingredient — har qanday qiymat qabul qilinadi)",
+   "xato_yoli": {
+    "bor": false,
+    "kod": "const all4 = topic && style && color && anySec;",
+    "ekran": "—"
+   },
+   "urinish_tarifi": "xato yo'li YO'Q — har qanday to'liq buyruq to'g'ri",
+   "server_yuborish": "root: `if (_m.scored && _m.scope === 'final' && data && data.correct && live.mode === 'student') live.submitAnswer(idx, _m.id, 0, true, 0)` — faqat to'g'ri bo'lsa, doim true",
+   "hukm": "YOZMA-QOLADI (xato yo'li yo'q — «bajarildi»)",
+   "tuzatish_loyihasi": "Tegilmaydi; ball = to'ldirdi.",
+   "izoh": "To'g'ri javob yo'q — o'z-qaror (3-A ruhi).",
+   "hajm_qator": 0
+  }
+ ]
+}

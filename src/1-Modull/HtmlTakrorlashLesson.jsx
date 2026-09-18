@@ -1084,7 +1084,7 @@ const ScreenBlitz = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 
 // 🧲 Qayta ishlatiladigan DRAG&DROP — bo'laklarni to'g'ri TARTIBDA joylash (sudrab yoki bosib).
 // Boshqa darsga: faqat `items` (to'g'ri tartibda) va `hints` almashtiriladi.
-function DragDropOrder({ items, hints, onSolved }) {
+function DragDropOrder({ items, hints, onSolved, onWrong }) {
   const order = items.map(x => x.id);
   const byId = useMemo(() => Object.fromEntries(items.map(x => [x.id, x])), [items]);
   // YAGONA holat — pool va slots birga (setState ichida setState YO'Q → StrictMode'da dublikat bo'lmaydi)
@@ -1099,6 +1099,7 @@ function DragDropOrder({ items, hints, onSolved }) {
   const solved = slots.every((s, i) => s === order[i]);
   const wrong = full && !solved;
   useEffect(() => { if (solved) onSolved && onSolved(); }, [solved]); // eslint-disable-line
+  useEffect(() => { if (wrong) onWrong && onWrong(); }, [wrong]); // eslint-disable-line
   const place = (id, from, slotIdx) => setSt(({ pool, slots }) => {
     const ns = slots.slice(); const occ = ns[slotIdx];
     if (typeof from === 'number') ns[from] = null;
@@ -1554,12 +1555,17 @@ const ScreenExam = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const live = gate.live;
   const isMentorLive = !!(live && live.mode === 'mentor');
   const [solved, setSolved] = useState(!!storedAnswer);
+  // Ball — birinchi TO'LIQ urinish (MCQ bilan bir xil o'lchov, 8-A): hamma katak to'lib tartib xato chiqsa — urinish xato
+  const achMiss = useContext(AchMissCtx);
+  const wrongEverRef = useRef(false);
+  const onWrong = () => { wrongEverRef.current = true; if (achMiss) achMiss.miss(screen); };
   const onSolved = () => {
     if (solved) return;
     setSolved(true);
     if (storedAnswer === undefined) {
-      onAnswer(screen, { stage: 'module-mikro', screenIdx: screen, question: "Sahifa qobig'ini to'g'ri tartibda yig'ing", correct: true, picked: true });
-      if (live && live.mode === 'student') live.submitAnswer(screen, SCREEN_META[screen]?.id || `s${screen}`, 0, true, 0);
+      const first = !wrongEverRef.current && !(achMiss && achMiss.missed.has(SCREEN_META[screen].id));
+      onAnswer(screen, { stage: 'module-mikro', screenIdx: screen, question: "Sahifa qobig'ini to'g'ri tartibda yig'ing", correct: first, firstAttemptCorrect: first, solved: true, picked: first ? 0 : 1 });
+      if (live && live.mode === 'student') live.submitAnswer(screen, SCREEN_META[screen]?.id || `s${screen}`, first ? 0 : 1, first, 0);
     }
   };
   return (
@@ -1575,7 +1581,7 @@ const ScreenExam = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               { uz: "3 — ko'rinmas sozlamalar", ru: '3 — невидимые настройки' },
               { uz: "4 — ko'rinadigan qism", ru: '4 — видимая часть' },
               { uz: '5 — sahifa mazmuni', ru: '5 — содержимое страницы' },
-            ]} onSolved={onSolved} />}
+            ]} onSolved={onSolved} onWrong={onWrong} />}
         {solved && !isMentorLive && <div className="frame-success fade-step"><p className="body" style={{ margin: 0 }}>🏗 {tr({ uz: "To'g'ri tartib! Endi yakuniy bosqich — butun sahifani bitta joyda yig'asiz.", ru: 'Верный порядок! Теперь финальный этап — соберёте всю страницу в одном месте.' })}</p></div>}
         {isMentorLive && <MentorWorkStats live={live} screenIdx={screen} taskLabel={tr({ uz: "Qobiq tartibini yig'ish", ru: 'Сборка порядка оболочки' })} />}
       </div>
@@ -1844,7 +1850,7 @@ const Confetti = () => {
   );
 };
 // Server-baholash javob kaliti (mentor darsni ochganda avto-yuklanadi). s11 = -1 (amaliy DragDrop).
-const INLINE_KEYS = { s4: 1, s8: 2, s11: -1 };
+const INLINE_KEYS = { s4: 1, s8: 2, s11: 0 };
 
 const ScreenPodium = ({ screen, answers, onNext, onPrev }) => {
   const gate = useContext(LiveGateCtx) || {};
@@ -2664,7 +2670,7 @@ export default function HtmlTakrorlashLesson({ lang: langProp, onFinished, onPra
   const missTry = useCallback((idx) => {
     const sid = SCREEN_META[idx] && SCREEN_META[idx].id;
     const ach = ACH_TRIGGERS[sid];
-    if (!ach || missedRef.current.has(sid) || earnedRef.current.has(ach)) return;
+    if (!sid || missedRef.current.has(sid) || (ach && earnedRef.current.has(ach))) return; // nishonsiz test-ekran ham (ball — birinchi to'liq urinish, F5 dan keyin ham)
     missedRef.current.add(sid);
     setMissed(new Set(missedRef.current));
   }, []);
