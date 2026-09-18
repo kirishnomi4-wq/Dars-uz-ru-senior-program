@@ -1,0 +1,756 @@
+[
+ {
+  "file": "src/4c-Modull/AiPipelineProjectLesson.jsx",
+  "sid": "s15",
+  "test": true,
+  "note": "T9c: F5-teshik — xato to'liq urinish `missed` ga yoziladi; ball = birinchi to'liq urinish (F5 dan keyin ham)",
+  "wrong": [
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Yordamchiga aniq so\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Jurnalni o\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Taklifni jurnal bilan te\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"ri tuzatasiz\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Qayta lentaga qo\")",
+    "after": 700
+   }
+  ],
+  "right": [
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Jurnalni o\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Yordamchiga aniq so\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Taklifni jurnal bilan te\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"ri tuzatasiz\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Qayta lentaga qo\")",
+    "after": 900
+   }
+  ],
+  "rightAfterWrong": [
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0
+   },
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Jurnalni o\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Yordamchiga aniq so\")",
+    "after": 900
+   }
+  ],
+  "slip": [
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Yordamchiga aniq so\")"
+   },
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0
+   }
+  ]
+ },
+ {
+  "file": "src/4c-Modull/CiCdIntroLesson.jsx",
+  "sid": "s15",
+  "test": true,
+  "note": "T9c: F5-teshik — xato to'liq urinish `missed` ga yoziladi; ball = birinchi to'liq urinish (F5 dan keyin ham)",
+  "wrong": [
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Skaner\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Yig'ish\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"lcham ramkasi\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"rash\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Uchirish\")",
+    "after": 700
+   }
+  ],
+  "right": [
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Yig'ish\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Skaner\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"lcham ramkasi\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"rash\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Uchirish\")",
+    "after": 900
+   }
+  ],
+  "rightAfterWrong": [
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0
+   },
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Yig'ish\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Skaner\")",
+    "after": 900
+   }
+  ],
+  "slip": [
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Skaner\")"
+   },
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0
+   }
+  ]
+ },
+ {
+  "file": "src/4c-Modull/FullProPipelineLesson.jsx",
+  "sid": "s15",
+  "test": true,
+  "note": "T9c: F5-teshik — xato to'liq urinish `missed` ga yoziladi; ball = birinchi to'liq urinish (F5 dan keyin ham)",
+  "wrong": [
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Cache — tezroq yig\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Matrix — parallel tekshi\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Secret — seyfdan kalit\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Staging — sinov reysi\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Production — haqiqiy rey\")",
+    "after": 700
+   }
+  ],
+  "right": [
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Matrix — parallel tekshi\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Cache — tezroq yig\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Secret — seyfdan kalit\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Staging — sinov reysi\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Production — haqiqiy rey\")",
+    "after": 900
+   }
+  ],
+  "rightAfterWrong": [
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0
+   },
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Matrix — parallel tekshi\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Cache — tezroq yig\")",
+    "after": 900
+   }
+  ],
+  "slip": [
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Cache — tezroq yig\")"
+   },
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0
+   }
+  ]
+ },
+ {
+  "file": "src/5-Modull/BotApiButtonsLesson.jsx",
+  "sid": "s15",
+  "test": true,
+  "note": "T9c: F5-teshik — xato to'liq urinish `missed` ga yoziladi; ball = birinchi to'liq urinish (F5 dan keyin ham)",
+  "wrong": [
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"const bot = new Telegraf\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"const token = process.en\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"bot.start((ctx) => ctx.r\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"bot.action(\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"bot.on(\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"bot.launch()\")",
+    "after": 700
+   }
+  ],
+  "right": [
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"const token = process.en\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"const bot = new Telegraf\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"bot.start((ctx) => ctx.r\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"bot.action(\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"bot.on(\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"bot.launch()\")",
+    "after": 900
+   }
+  ],
+  "rightAfterWrong": [
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0
+   },
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"const token = process.en\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"const bot = new Telegraf\")",
+    "after": 900
+   }
+  ],
+  "slip": [
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"const bot = new Telegraf\")"
+   },
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0
+   }
+  ]
+ },
+ {
+  "file": "src/5-Modull/BotFeedbackIterationLesson.jsx",
+  "sid": "s15",
+  "test": true,
+  "note": "T9c: F5-teshik — xato to'liq urinish `missed` ga yoziladi; ball = birinchi to'liq urinish (F5 dan keyin ham)",
+  "wrong": [
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Guruhla\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:text-matches(\"^\\\\W*Tingla\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Tanla\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Tuzat\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Qayta tingla\")",
+    "after": 700
+   }
+  ],
+  "right": [
+   {
+    "click": ".dd-pool .dd-chip:text-matches(\"^\\\\W*Tingla\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Guruhla\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Tanla\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Tuzat\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Qayta tingla\")",
+    "after": 900
+   }
+  ],
+  "rightAfterWrong": [
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0
+   },
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0
+   },
+   {
+    "click": ".dd-pool .dd-chip:text-matches(\"^\\\\W*Tingla\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Guruhla\")",
+    "after": 900
+   }
+  ],
+  "slip": [
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Guruhla\")"
+   },
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0
+   }
+  ]
+ },
+ {
+  "file": "src/5-Modull/BotIntroLesson.jsx",
+  "sid": "s15",
+  "test": true,
+  "note": "T9c: F5-teshik — xato to'liq urinish `missed` ga yoziladi; ball = birinchi to'liq urinish (F5 dan keyin ham)",
+  "wrong": [
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Signal keldi\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Kutadi\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Varaqdan qator topadi\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Amal bajaradi\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Javob qaytaradi\")",
+    "after": 700
+   }
+  ],
+  "right": [
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Kutadi\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Signal keldi\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Varaqdan qator topadi\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Amal bajaradi\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Javob qaytaradi\")",
+    "after": 900
+   }
+  ],
+  "rightAfterWrong": [
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0
+   },
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Kutadi\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Signal keldi\")",
+    "after": 900
+   }
+  ],
+  "slip": [
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Signal keldi\")"
+   },
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0
+   }
+  ]
+ },
+ {
+  "file": "src/5-Modull/BotStatefulMemoryLesson.jsx",
+  "sid": "s15",
+  "test": true,
+  "note": "T9c: F5-teshik — xato to'liq urinish `missed` ga yoziladi; ball = birinchi to'liq urinish (F5 dan keyin ham)",
+  "wrong": [
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"SELECT — daftardan o\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Xabar keladi\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Bosqichni tekshir\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Amal bajar / javob tayyo\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"UPDATE — daftarga yoz\")",
+    "after": 700
+   }
+  ],
+  "right": [
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Xabar keladi\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"SELECT — daftardan o\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Bosqichni tekshir\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Amal bajar / javob tayyo\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"UPDATE — daftarga yoz\")",
+    "after": 900
+   }
+  ],
+  "rightAfterWrong": [
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0
+   },
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Xabar keladi\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"SELECT — daftardan o\")",
+    "after": 900
+   }
+  ],
+  "slip": [
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"SELECT — daftardan o\")"
+   },
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0
+   }
+  ]
+ },
+ {
+  "file": "src/6-Modull/ArchPatternsLesson.jsx",
+  "sid": "s15",
+  "test": true,
+  "note": "T9c: F5-teshik — xato to'liq urinish `missed` ga yoziladi; ball = birinchi to'liq urinish (F5 dan keyin ham)",
+  "wrong": [
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Controller\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"So'rov\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Model\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"View\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Foydalanuvchiga\")",
+    "after": 700
+   }
+  ],
+  "right": [
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"So'rov\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Controller\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Model\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"View\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Foydalanuvchiga\")",
+    "after": 900
+   }
+  ],
+  "rightAfterWrong": [
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0
+   },
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"So'rov\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Controller\")",
+    "after": 900
+   }
+  ],
+  "slip": [
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Controller\")"
+   },
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0
+   }
+  ]
+ },
+ {
+  "file": "src/6-Modull/ClaudeSkillsLesson.jsx",
+  "sid": "s15",
+  "test": true,
+  "note": "T9c: F5-teshik — xato to'liq urinish `missed` ga yoziladi; ball = birinchi to'liq urinish (F5 dan keyin ham)",
+  "wrong": [
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"description mos\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Vazifa keladi\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Skill yuklanadi\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"riqnomaga amal\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Izchil natija\")",
+    "after": 700
+   }
+  ],
+  "right": [
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Vazifa keladi\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"description mos\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Skill yuklanadi\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"riqnomaga amal\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Izchil natija\")",
+    "after": 900
+   }
+  ],
+  "rightAfterWrong": [
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0
+   },
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Vazifa keladi\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"description mos\")",
+    "after": 900
+   }
+  ],
+  "slip": [
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"description mos\")"
+   },
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0
+   }
+  ]
+ },
+ {
+  "file": "src/6-Modull/WriteSkillLesson.jsx",
+  "sid": "s15",
+  "test": true,
+  "note": "T9c: F5-teshik — xato to'liq urinish `missed` ga yoziladi; ball = birinchi to'liq urinish (F5 dan keyin ham)",
+  "wrong": [
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Qachon ishlaydi\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Nomi\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Qadamlar\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Misol\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Mashg\")",
+    "after": 700
+   }
+  ],
+  "right": [
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Nomi\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Qachon ishlaydi\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Qadamlar\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Misol\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Mashg\")",
+    "after": 900
+   }
+  ],
+  "rightAfterWrong": [
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0
+   },
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Nomi\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Qachon ishlaydi\")",
+    "after": 900
+   }
+  ],
+  "slip": [
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Qachon ishlaydi\")"
+   },
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0
+   }
+  ]
+ },
+ {
+  "file": "src/2-Modull/PeanStackLesson.jsx",
+  "sid": "s15",
+  "test": true,
+  "note": "T9c: F5-teshik — xato to'liq urinish `missed` ga yoziladi; ball = birinchi to'liq urinish (F5 dan keyin ham)",
+  "wrong": [
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"React so\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Foydalanuvchi tugmani bo\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Express qabul qiladi (No\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"PostgreSQL saqlaydi\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Javob qaytadi — ekran ya\")",
+    "after": 700
+   }
+  ],
+  "right": [
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Foydalanuvchi tugmani bo\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"React so\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Express qabul qiladi (No\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"PostgreSQL saqlaydi\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Javob qaytadi — ekran ya\")",
+    "after": 900
+   }
+  ],
+  "rightAfterWrong": [
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0
+   },
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Foydalanuvchi tugmani bo\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"React so\")",
+    "after": 900
+   }
+  ],
+  "slip": [
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"React so\")"
+   },
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0
+   }
+  ]
+ }
+]

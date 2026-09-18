@@ -1339,13 +1339,15 @@ const BOT_ORDER = BOT_LINES.map(l => l.id);
 const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [done, setDone] = useState(!!storedAnswer);
   const [consequence, setConsequence] = useState(null);
-  const hadWrongRef = useRef(storedAnswer ? (storedAnswer.firstAttemptCorrect === false) : false);
+  // 8-A / 151-qonun: xato to'liq urinish progressga (`missed`) yoziladi — F5 dan keyin ham birinchi urinish «xato» qoladi
+  const achMiss = useContext(AchMissCtx);
+  const hadWrongRef = useRef(storedAnswer ? (storedAnswer.firstAttemptCorrect === false) : !!(achMiss && achMiss.missed.has(SCREEN_META[screen].id)));
   const fired = useRef(!!storedAnswer);
   const [recapOpen, setRecapOpen] = useState(false);
   const onSolved = () => {
     if (fired.current) { setDone(true); return; }
     fired.current = true;
-    const firstOk = !hadWrongRef.current;
+    const firstOk = !hadWrongRef.current && !(achMiss && achMiss.missed.has(SCREEN_META[screen].id));
     setDone(true);
     onAnswer(screen, { stage: 'final', screenIdx: screen, question: "bot.ts qatorlarini to'g'ri tartibda joylang", correct: firstOk, firstAttemptCorrect: firstOk, solved: true, picked: firstOk ? 0 : 1 });
   };
@@ -1355,7 +1357,7 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     if (!full) { setConsequence(null); return; }
     const solved = slots.every((s, i) => s === BOT_ORDER[i]);
     if (solved) { setConsequence(null); return; }
-    hadWrongRef.current = true;
+    hadWrongRef.current = true; if (achMiss) achMiss.miss(screen);
     const launchIdx = slots.indexOf('launch');
     const fallbackIdx = slots.indexOf('fallback');
     setConsequence(launchIdx >= 0 && fallbackIdx >= 0 && launchIdx < fallbackIdx ? 'launch-early' : 'wrong');
@@ -2387,7 +2389,7 @@ export default function BotApiButtonsLesson({ lang: langProp, onFinished, liveTo
   const missTry = useCallback((idx) => {
     const sid = SCREEN_META[idx] && SCREEN_META[idx].id;
     const ach = ACH_TRIGGERS[sid];
-    if (!ach || missedRef.current.has(sid) || earnedRef.current.has(ach)) return;
+    if (!sid || missedRef.current.has(sid) || (ach && earnedRef.current.has(ach))) return; // nishonsiz test-ekran ham (ball — birinchi to'liq urinish, F5 dan keyin ham)
     missedRef.current.add(sid);
     setMissed(new Set(missedRef.current));
   }, []);

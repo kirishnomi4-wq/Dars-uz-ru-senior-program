@@ -1417,13 +1417,15 @@ const FEEDBACK_CYCLE_ITEMS = FEEDBACK_CYCLE.map(c => ({ id: c.id, label: { uz: `
 const FEEDBACK_CYCLE_ORDER = FEEDBACK_CYCLE.map(c => c.id);
 const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [done, setDone] = useState(!!storedAnswer);
-  const hadWrongRef = useRef(storedAnswer ? (storedAnswer.firstAttemptCorrect === false) : false);
+  // 8-A / 151-qonun: xato to'liq urinish progressga (`missed`) yoziladi — F5 dan keyin ham birinchi urinish «xato» qoladi
+  const achMiss = useContext(AchMissCtx);
+  const hadWrongRef = useRef(storedAnswer ? (storedAnswer.firstAttemptCorrect === false) : !!(achMiss && achMiss.missed.has(SCREEN_META[screen].id)));
   const fired = useRef(!!storedAnswer);
   const [recapOpen, setRecapOpen] = useState(false);
   const onSolved = () => {
     if (fired.current) { setDone(true); return; }
     fired.current = true;
-    const firstOk = !hadWrongRef.current;
+    const firstOk = !hadWrongRef.current && !(achMiss && achMiss.missed.has(SCREEN_META[screen].id));
     setDone(true);
     onAnswer(screen, { stage: 'final', screenIdx: screen, question: "Yaxshilash aylanasini to'g'ri tartibda joylang", correct: firstOk, firstAttemptCorrect: firstOk, solved: true, picked: firstOk ? 0 : 1 });
   };
@@ -1432,7 +1434,7 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     const full = slots.every(s => s !== null);
     if (!full) return;
     const solved = slots.every((s, i) => s === FEEDBACK_CYCLE_ORDER[i]);
-    if (!solved) hadWrongRef.current = true;
+    if (!solved) { hadWrongRef.current = true; if (achMiss) achMiss.miss(screen); }
   };
   return (
     <Stage eyebrow={tr({ uz: 'Yakuniy · amaliy', ru: 'Итог · практика' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "Aylanani yig'ing", ru: 'Соберите круг' }} onClick={onNext} /></>}>
@@ -2386,7 +2388,7 @@ export default function BotIntroLesson({ lang: langProp, onFinished, liveToken }
   const missTry = useCallback((idx) => {
     const sid = SCREEN_META[idx] && SCREEN_META[idx].id;
     const ach = ACH_TRIGGERS[sid];
-    if (!ach || missedRef.current.has(sid) || earnedRef.current.has(ach)) return;
+    if (!sid || missedRef.current.has(sid) || (ach && earnedRef.current.has(ach))) return; // nishonsiz test-ekran ham (ball — birinchi to'liq urinish, F5 dan keyin ham)
     missedRef.current.add(sid);
     setMissed(new Set(missedRef.current));
   }, []);

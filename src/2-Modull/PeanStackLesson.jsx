@@ -1708,13 +1708,16 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     { key: 'back', label: { uz: 'Javob qaytadi — ekran yangilanadi', ru: 'Ответ возвращается — экран обновляется' }, who: 'react' }
   ];
   const [solved, setSolved] = useState(!!storedAnswer?.solved);
-  const firstCorrectRef = useRef(storedAnswer ? (storedAnswer.firstAttemptCorrect ?? storedAnswer.correct ?? null) : null);
+  // 8-A / 151-qonun: xato to'liq urinish progressga (`missed`) yoziladi — F5 dan keyin ham birinchi urinish «xato» qoladi
+  const achMiss = useContext(AchMissCtx);
+  const firstCorrectRef = useRef(storedAnswer ? (storedAnswer.firstAttemptCorrect ?? storedAnswer.correct ?? null) : ((achMiss && achMiss.missed.has(SCREEN_META[screen].id)) ? false : null));
   const items = useMemo(() => STEPS.map(s => ({ id: s.key, label: s.label })), []); // eslint-disable-line
-  const onWrong = () => { if (firstCorrectRef.current === null) firstCorrectRef.current = false; }; // ball: 1-urinish qotadi
+  const onWrong = () => { if (firstCorrectRef.current === null) firstCorrectRef.current = false; if (achMiss) achMiss.miss(screen); }; // ball: 1-urinish qotadi
   const onSolved = () => {
     if (firstCorrectRef.current === null) firstCorrectRef.current = true;
     setSolved(true);
-    if (!storedAnswer?.solved) onAnswer(screen, { stage: 'final', screenIdx: screen, correct: firstCorrectRef.current, firstAttemptCorrect: firstCorrectRef.current, solved: true, picked: STEPS.map(s => s.key).join('→') });
+    const first = firstCorrectRef.current === true && !(achMiss && achMiss.missed.has(SCREEN_META[screen].id));
+    if (!storedAnswer?.solved) onAnswer(screen, { stage: 'final', screenIdx: screen, correct: first, firstAttemptCorrect: first, solved: true, picked: STEPS.map(s => s.key).join('→') });
   };
   return (
     <Stage eyebrow={tr({ uz: 'Yakuniy · amaliy', ru: 'Финал · практика' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!solved} label={solved ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Sayohatni tuzing', ru: 'Соберите путь' })} onClick={onNext} /></>}>
@@ -1873,7 +1876,7 @@ const Confetti = () => {
 };
 
 // Server-baholash javob kaliti (mentor darsni ochganda avto-yuklanadi). s15 = -1 (yakuniy amaliy).
-const INLINE_KEYS = { s4: 1, s5b: 1, s9: 2, s12: 1, s15: -1 };
+const INLINE_KEYS = { s4: 1, s5b: 1, s9: 2, s12: 1, s15: 0 };
 
 const ScreenPodium = ({ screen, answers, onNext, onPrev }) => {
   const gate = useContext(LiveGateCtx) || {};
@@ -2670,7 +2673,7 @@ export default function PeanStackLesson({ lang: langProp, onFinished, onPractice
   const missTry = useCallback((idx) => {
     const sid = SCREEN_META[idx] && SCREEN_META[idx].id;
     const ach = ACH_TRIGGERS[sid];
-    if (!ach || missedRef.current.has(sid) || earnedRef.current.has(ach)) return;
+    if (!sid || missedRef.current.has(sid) || (ach && earnedRef.current.has(ach))) return; // nishonsiz test-ekran ham (ball — birinchi to'liq urinish, F5 dan keyin ham)
     missedRef.current.add(sid);
     setMissed(new Set(missedRef.current));
   }, []);
@@ -2751,7 +2754,7 @@ export default function PeanStackLesson({ lang: langProp, onFinished, onPractice
   const recordAnswer = (idx, data) => {
     setAnswers(a => ({ ...a, [idx]: data }));
     const _m = SCREEN_META[idx];
-    if (_m && _m.scored && _m.scope === 'final' && data && data.correct && live.mode === 'student') live.submitAnswer(idx, _m.id, 0, true, 0);
+    if (_m && _m.scored && _m.scope === 'final' && data && (data.solved || data.correct) && live.mode === 'student') live.submitAnswer(idx, _m.id, data.correct ? 0 : 1, !!data.correct, 0); // ball — birinchi to'liq urinish (kalit 0: picked 0 = to'g'ri, 1 = xato)
     if (_m && ACH_TRIGGERS[_m.id] && data && data.correct && !missedRef.current.has(_m.id)) earn(ACH_TRIGGERS[_m.id]); // 🏅 nishon
   };
   const reset = () => { if (!firstPassRef.current) { firstPassRef.current = { answers, durationSec: Math.floor((Date.now() - startTimeRef.current) / 1000) }; setFpPractice(true); } progClear(LESSON_META.lessonId); pracClear(LESSON_META.lessonId); setAnswers({}); setScreen(0); setPractice(null); setMentorPractice(null); startTimeRef.current = Date.now(); };

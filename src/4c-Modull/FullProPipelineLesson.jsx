@@ -1297,13 +1297,15 @@ const PRO_ORDER = PRO_ITEMS.map(i => i.id);
 const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [done, setDone] = useState(!!storedAnswer);
   const [consequence, setConsequence] = useState(null); // null | 'skip-staging' | 'wrong'
-  const hadWrongRef = useRef(storedAnswer ? (storedAnswer.firstAttemptCorrect === false) : false);
+  // 8-A / 151-qonun: xato to'liq urinish progressga (`missed`) yoziladi — F5 dan keyin ham birinchi urinish «xato» qoladi
+  const achMiss = useContext(AchMissCtx);
+  const hadWrongRef = useRef(storedAnswer ? (storedAnswer.firstAttemptCorrect === false) : !!(achMiss && achMiss.missed.has(SCREEN_META[screen].id)));
   const fired = useRef(!!storedAnswer);
   const [recapOpen, setRecapOpen] = useState(false);
   const onSolved = () => {
     if (fired.current) { setDone(true); return; }
     fired.current = true;
-    const firstOk = !hadWrongRef.current;
+    const firstOk = !hadWrongRef.current && !(achMiss && achMiss.missed.has(SCREEN_META[screen].id));
     setDone(true);
     onAnswer(screen, { stage: 'final', screenIdx: screen, question: "Ishonchli lenta bosqichlarini to'g'ri tartibda joylang", correct: firstOk, firstAttemptCorrect: firstOk, solved: true, picked: firstOk ? 0 : 1 });
   };
@@ -1313,7 +1315,7 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     if (!full) { setConsequence(null); return; }
     const solved = slots.every((s, i) => s === PRO_ORDER[i]);
     if (solved) { setConsequence(null); return; }
-    hadWrongRef.current = true;
+    hadWrongRef.current = true; if (achMiss) achMiss.miss(screen);
     const prodIdx = slots.indexOf('production');
     const stageIdx = slots.indexOf('staging');
     setConsequence(prodIdx >= 0 && stageIdx >= 0 && prodIdx < stageIdx ? 'skip-staging' : 'wrong');
@@ -2280,7 +2282,7 @@ export default function FullProPipelineLesson({ lang: langProp, onFinished, live
   const missTry = useCallback((idx) => {
     const sid = SCREEN_META[idx] && SCREEN_META[idx].id;
     const ach = ACH_TRIGGERS[sid];
-    if (!ach || missedRef.current.has(sid) || earnedRef.current.has(ach)) return;
+    if (!sid || missedRef.current.has(sid) || (ach && earnedRef.current.has(ach))) return; // nishonsiz test-ekran ham (ball — birinchi to'liq urinish, F5 dan keyin ham)
     missedRef.current.add(sid);
     setMissed(new Set(missedRef.current));
   }, []);
