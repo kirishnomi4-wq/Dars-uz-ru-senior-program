@@ -214,8 +214,10 @@ export function buildResultDetails({ lessonId, screenMeta, answers, earned, achi
     // correct_answer MAJBURIY. Variantsiz maxsus test-ekran (tartiblash, yozma kod) ko'p variantli savol EMAS — detallarga
     // KIRMAYDI, ball `correctAnswers`/`totalQuestions` orqali ketadi (B to'lqin tekshiruvi Y1, 19.09: T9 dan keyin `picked`
     // 0/1 bo'lib variantsiz yozuv chiqa boshlagan; Bot-darslar s15 da undan oldin ham chiqardi). `QuestionScreen` (427 chaqiruv)
-    // doim savol + variantlarni + `correctIndex` ni beradi; maxsus ekranda ikkalasi ham yo'q — aniq ajratuvchi shu.
-    if (!options && correctIdx === null) return;
+    // doim savol + variantlarni + `correctIndex` ni beradi (304 `onAnswer` chaqiruvi). Maxsus ekranda `correctIndex` yo'q —
+    // ba'zilarida `options` (bo'lak yorliqlari) bor (Y1b, 2-tekshiruv 19.09: FullSystemProject · MobileAppPractice ·
+    // SystemArchitecture s15) — `correct_option` majburiy bo'lgani uchun ajratuvchi `correctIndex`.
+    if (correctIdx === null) return;
     questions.push(q);
   });
 
