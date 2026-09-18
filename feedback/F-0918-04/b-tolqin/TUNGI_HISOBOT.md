@@ -18,7 +18,11 @@ Bundan tashqari:
 - **Ikki adversarial tekshiruvchi** butun diff'ni o'qidi: mening o'zim kiritgan 2 ta YUQORI nuqsonni ushladi (Y1, Y1b —
   `onFinished` detallarida shartnomaga zid yozuv); ikkalasi tuzatildi va unit-test bilan qotirildi.
 
-**17 lokal commit** (`16791ee` … `0ddd58a`), GitHub'dan 18 commit oldinda.
+**Yakuniy regress (hamma tuzatishlardan keyin, 01:15):** ach-probe **131/131** (118 ekran, 76 dars — har birida xato →
+nishon/ball yo'q, F5 → belgi turibdi, toza → bor) · `--seal` smoke CRM ro'yxati uz+ru **140/140** (I1–I12, shartnoma shakli
+bilan) · gates 75 dars ✓ · til/dark tun boshiga nisbatan farq 0 · unit 12/12 · server 57/57 · vite build ✓.
+
+**Lokal commitlar** (`16791ee` … hisobot), GitHub'dan ~19 commit oldinda.
 
 ## 🙋 SIZDAN KERAK — muhimlik tartibida
 
@@ -59,8 +63,8 @@ Bundan tashqari:
 | T10 matn takliflari | ✅ `MATN_TAKLIFLAR.md` — 49 taklif |
 | T11 qonun/hujjat | ✅ 152-qonun 7-band + reyestr + ulash qoidalari · KORPUS §183/§185 · KATTA §41 (`278aeac`) |
 | T11b adversarial tekshiruv | ✅ 2 o'tish (`TEKSHIRUV.md`, `TEKSHIRUV-2.md`): 2 YUQORI (Y1, Y1b) — tuzatildi · PmLesson21 `once` · O'RTA/PAST — ro'yxatda |
-| T12 regress | 🔄 1-o'tish ✅ (statik hammasi); yakuniy prob + smoke — ishlayapti |
-| T13 muhr | ⬜ |
+| T12 regress | ✅ **yakuniy (hamma tuzatishlardan keyin):** ach-probe **131/131** (118 ekran · 76 dars) · `--seal` CRM ro'yxati uz+ru **140/140** (I1–I12) · gates 75 dars ✓ · til/dark tun boshiga nisbatan farq 0 · lint-keys 97 · lint:jsx · unit 12/12 · server 57/57 · vite build ✓ |
+| T13 muhr | ✅ hisobot · DAVOM (19.09 00:30) · xotira · jurnal |
 
 ## Topilmalar (tun davomida)
 
@@ -123,3 +127,7 @@ Bundan tashqari:
 | 00:14 | T12 yakuniy regress (1-o'tish): 75 dars gates ✓ · til/dark tun boshiga nisbatan farq 0 · lint-keys 97 · lint:jsx · unit 12 · server 57 · vite build ✓. Fonda: to'liq prob (129 spec) va CRM ro'yxati `--seal` (I12 bilan) |
 | 00:18 | PmLesson21 s9 → `once` (1-tekshiruv PAST P1; har qator bir marta tekshiriladi) → `948b8d9` |
 | 00:22 | 2-tekshiruv (T9 2-qism + Y1): **Y1b YUQORI** — tuzatildi `8ec93dd` (unit 12/12, isbot «kirmadi»). Tashqi nishonlar `proofFinder` · `jobHunter` → `0ddd58a` (prob 2/2, negativ nazorat ✓) |
+| 00:25 | Eskirgan regress (tuzatishlardan oldin boshlangan) to'xtatildi; yakuniy regress hozirgi kod bo'yicha qayta boshlandi |
+| 00:30 | T13: hisobot tepasi (xulosa · qarorlar · chegaralar), DAVOM 00:30 muhri, xotira → `738fa8c` |
+| 00:48 | `--seal` smoke CRM ro'yxati uz+ru **140/140** (I1–I12) |
+| 01:15 | ach-probe **131/131** (118 ekran · 76 dars). **Rejadagi hamma band (T0–T13) yopildi** |

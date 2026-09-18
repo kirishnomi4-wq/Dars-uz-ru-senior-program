@@ -58,8 +58,8 @@
 | T10 | **Matn takliflari (darsga tegilmaydi):** 34 «javobni oldindan aytadi» + ko'chadigan nishon tavsiflari + rost bo'lmagan tavsiflar → `MATN_TAKLIFLAR.md` (KORPUS avval o'qiladi) | fayl tayyor, har qatorda ❌ eski → ✅ yangi + sabab | ✅ 23:48 — `MATN_TAKLIFLAR.md` (49 taklif, 6 partiya) |
 | T11 | **Qonun va hujjatlar:** 152-qonun 5-band (koding · o'z-qaror) + bonus reyestri · 151 jadvaliga yangi mexanikalar · §183 uchinchi matn · KORPUS juftliklari · KATTA §41 holati | `lint:prompt` 0 · commit | ✅ 23:51 — 152-qonun reyestri + ulash qoidalari · KORPUS §183/§185 · KATTA §41 · commit `278aeac` |
 | T11b | **Adversarial tekshiruvchi** (rol-zanjir): B to'lqin diff'i — probdan o'tib ketadigan nuqsonlar (boshqa xato yo'llari, to'g'ri harakat xato sanalishi, sirpanish, joylashuv, hook) → `TEKSHIRUV.md`; YUQORI topilmalar tuzatiladi va probda isbotlanadi | topilmalar yopilgan yoki ⏸ | ✅ 00:13 — 1 YUQORI (Y1 — tuzatildi `5261905`) · 4 O'RTA (3 tasi ma'lum, matn) · 3 PAST · `TEKSHIRUV.md` |
-| T12 | **Yakuniy regress:** gates hamma o'zgargan darsda · `lint:jsx` · `lint-keys` · `smoke:onfinished -- --seal` ikki tilda · `smoke-achrule` hamma ekranda · `vite build` · unit | natijalar `TUNGI_HISOBOT.md` da | ⬜ |
-| T13 | **Muhr:** `TUNGI_HISOBOT.md` yakuniy · `DAVOM` · xotira · jurnal | — | ⬜ |
+| T12 | **Yakuniy regress:** gates hamma o'zgargan darsda · `lint:jsx` · `lint-keys` · `smoke:onfinished -- --seal` ikki tilda · `smoke-achrule` hamma ekranda · `vite build` · unit | natijalar `TUNGI_HISOBOT.md` da | ✅ 01:15 — prob 131/131 · smoke 140/140 · statik hammasi ✓ |
+| T13 | **Muhr:** `TUNGI_HISOBOT.md` yakuniy · `DAVOM` · xotira · jurnal | — | ✅ 01:16 |
 
 **Tartib mantig'i:** partiyalar kichigidan (P1, P3) boshlanadi — naqsh va problar arzon joyda sinaladi; P6 (asosan
 C-halol, qolipli) — uchinchi. Birinchi to'lqin: P1 + P3 + P6 parallel; ikkinchisi: P2 + P4 + P5.
