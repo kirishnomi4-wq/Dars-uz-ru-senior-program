@@ -8,7 +8,8 @@
 
 **Misol:** o'quvchi «AI-agent nima» darsini uyda o'tadi, 5 savolning hammasiga to'g'ri javob beradi. Yakuniy savol —
 tartiblash (s15). Uning javobi serverga faqat jonli darsda yuboriladi → rasmiy natijada 4/5, «hammasi to'g'ri» nishoni
-imkonsiz. 45 ekranga (44 dars) tegishli bo'lishi mumkin; kod-zanjir to'liq tasdiqlangan, haqiqiy sinovda ko'rilmagan.
+imkonsiz. **63 ekranga (62 dars)** tegishli (19.09 01:30 aniqlashtirildi); kod-zanjir to'liq tasdiqlangan, haqiqiy sinovda
+ko'rilmagan.
 
 - **A (tavsiya):** tuzatamiz — dars ildizida `live.mode === 'student'` → `student || solo` (37+ darsda bitta qator; tunda
   qilingan «birinchi urinish» o'zgarishi bilan birga to'g'ri ishlaydi). Keyin lokal server sinovi + staging'da bitta haqiqiy
@@ -46,7 +47,9 @@ test, xato tanlasa ham ball «to'g'ri».
   ochiq yozamiz.
 - B: faqat Routing s15 (ball umuman yo'qolayotgani uchun), qolgani keyin.
 - C: tegmaymiz.
-(Kechasi yana 18 ta «hisoblangan» test-ekran tekshirilyapti — natija `inventar-hisoblangan.md` da.)
+(Kechasi yana 18 ta «hisoblangan» test-ekran tekshirildi — `inventar-hisoblangan.md`: 11 tartiblash testidagi F5-teshik
+8-A doirasida tuzatildi; **NestArchAlive s19 va NestArchResource s17** (debug turi) — F5-teshik bor, 8-A dan tashqari → shu
+Q4 ga kiradi.)
 
 ## Q5. Mayda qarorlar
 

@@ -5,8 +5,8 @@ Kod o'zgarishi — foydalanuvchi qarori bilan (rasmiy natijaga tegadi).
 
 ## Nima
 
-Uyda (solo, LMS-token bilan) darsni o'tgan o'quvchining **rasmiy natijasida** maxsus yakuniy test-ekran (tartiblash, yozma kod —
-45 ekran, 44 dars, asosan `s15`) hech qachon javob berilgan deb sanalmaydi → 5 savollik darsda eng yaxshi natija 4/5;
+Uyda (solo, LMS-token bilan) darsni o'tgan o'quvchining **rasmiy natijasida** maxsus yakuniy test-ekran (tartiblash, yozma kod,
+juftlash, karta-tanlov — **63 ekran, 62 dars**, asosan `s15`; 19.09 01:30 aniqlashtirildi: 45 + `inventar-hisoblangan` dagi 18) hech qachon javob berilgan deb sanalmaydi → 5 savollik darsda eng yaxshi natija 4/5;
 `all_correct` / `first_try` nishonlari solo'da imkonsiz.
 
 ## Zanjir (har bo'g'in — fayl:qator)
