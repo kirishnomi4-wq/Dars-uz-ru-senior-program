@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-14T07:39:47.724Z",
+  "generated_at": "2026-09-18T11:14:12.863Z",
   "count": 110,
   "lessons": [
     {
@@ -466,7 +466,7 @@
     },
     {
       "lesson_id": "cicd-full-pipeline-4c-03-v18",
-      "title_uz": "cicd-full-pipeline-4c-03-v18",
+      "title_uz": "Loyiha kuni — to'liq lentani qurish",
       "title_ru": "Проектный день — построение полного конвейера",
       "version": "v18",
       "source": "src/4c-Modull/FullPipelineProjectLesson.jsx",
@@ -664,7 +664,7 @@
     },
     {
       "lesson_id": "data-intro-04-01-v18",
-      "title_uz": "data-intro-04-01-v18",
+      "title_uz": "Ma'lumot va bog'lanishlar: JSON, jadval, sxema",
       "title_ru": "Данные и связи: JSON, таблицы, схема",
       "version": "v18",
       "source": "src/4-Modull/DataIntroLesson.jsx",
@@ -769,7 +769,7 @@
     },
     {
       "lesson_id": "full-pro-pipeline-4c-04-v18",
-      "title_uz": "full-pro-pipeline-4c-04-v18",
+      "title_uz": "Loyiha kuni: ishonchli lenta",
       "title_ru": "Проектный день: надёжная лента",
       "version": "v18",
       "source": "src/4c-Modull/FullProPipelineLesson.jsx",
@@ -802,7 +802,7 @@
     },
     {
       "lesson_id": "full-system-06-13-v18",
-      "title_uz": "full-system-06-13-v18",
+      "title_uz": "Loyiha kuni: to'liq tizim",
       "title_ru": "Проектный день: полная система",
       "version": "v18",
       "source": "src/6-Modull/FullSystemProjectLesson.jsx",
@@ -967,7 +967,7 @@
     },
     {
       "lesson_id": "github-actions-4c-02-v18",
-      "title_uz": "github-actions-4c-02-v18",
+      "title_uz": "GitHub Actions — yo'l xaritasini yozish",
       "title_ru": "GitHub Actions — написание карты маршрута",
       "version": "v18",
       "source": "src/4c-Modull/GithubActionsLesson.jsx",
@@ -1336,7 +1336,7 @@
     },
     {
       "lesson_id": "js-vars-01-v18",
-      "title_uz": "js-vars-01-v18",
+      "title_uz": "JavaScript — O'zgaruvchilar",
       "title_ru": "JavaScript — Переменные",
       "version": "v18",
       "source": "src/2-Modull/JsVarsLesson.jsx",
@@ -1698,7 +1698,7 @@
     },
     {
       "lesson_id": "pipeline-project-06-08-v18",
-      "title_uz": "pipeline-project-06-08-v18",
+      "title_uz": "Praktika: to'liq pipeline",
       "title_ru": "Практика: полный pipeline",
       "version": "v18",
       "source": "src/6-Modull/PipelineProjectLesson.jsx",
@@ -1903,7 +1903,7 @@
     },
     {
       "lesson_id": "pm-m2d7-v1",
-      "title_uz": "pm-m2d7-v1",
+      "title_uz": "Dekompozitsiya — ochilish ro'yxati",
       "title_ru": "Декомпозиция — список к открытию",
       "version": "v1",
       "source": "src/2-Modull/PmLesson5.jsx",
@@ -1969,7 +1969,7 @@
     },
     {
       "lesson_id": "pm-m3d14-v1",
-      "title_uz": "pm-m3d14-v1",
+      "title_uz": "Ishlayotgan saytingizni qanday ko'rsatasiz?",
       "title_ru": "Как показать свой работающий сайт?",
       "version": "v1",
       "source": "src/3-Modull/PmLesson10.jsx",
@@ -2035,7 +2035,7 @@
     },
     {
       "lesson_id": "pm-m3d5-v1",
-      "title_uz": "pm-m3d5-v1",
+      "title_uz": "Qaysi ishni birinchi qilasiz?",
       "title_ru": "Какую задачу сделаете первой?",
       "version": "v1",
       "source": "src/3-Modull/PmLesson8.jsx",
@@ -2134,7 +2134,7 @@
     },
     {
       "lesson_id": "pm-m4c2-v1",
-      "title_uz": "pm-m4c2-v1",
+      "title_uz": "Hammasini birdan chiqaraymi — yoki har hafta bo'lak?",
       "title_ru": "Выпустить всё разом — или по кусочку каждую неделю?",
       "version": "v1",
       "source": "src/4c-Modull/PmLesson17.jsx",
@@ -2398,7 +2398,7 @@
     },
     {
       "lesson_id": "pm-m5d8-v1",
-      "title_uz": "pm-m5d8-v1",
+      "title_uz": "Botingizni ishlatgan odamdan nimani so'raysiz?",
       "title_ru": null,
       "version": "v1",
       "source": "src/5-Modull/PmLesson20.jsx",
@@ -2530,7 +2530,7 @@
     },
     {
       "lesson_id": "pm-m6d6-v1",
-      "title_uz": "pm-m6d6-v1",
+      "title_uz": "Ilova o'zi qaror qilsa, kimga tegadi?",
       "title_ru": null,
       "version": "v1",
       "source": "src/6-Modull/PmLesson23.jsx",
@@ -2832,7 +2832,7 @@
     },
     {
       "lesson_id": "react-api-get-05-v18",
-      "title_uz": "react-api-get-05-v18",
+      "title_uz": "API bilan ishlash: GET — serverdan ma'lumot olish",
       "title_ru": "Работа с API — GET",
       "version": "v18",
       "source": "src/3-Modull/ReactApiGetLesson.jsx",
@@ -2865,7 +2865,7 @@
     },
     {
       "lesson_id": "react-api-post-06-v18",
-      "title_uz": "react-api-post-06-v18",
+      "title_uz": "API: POST/PUT/DELETE — serverga ma'lumot yuborish",
       "title_ru": "Работа с API — POST/PUT/DELETE",
       "version": "v18",
       "source": "src/3-Modull/ReactApiPostLesson.jsx",
@@ -2931,7 +2931,7 @@
     },
     {
       "lesson_id": "react-crud-practice-p1-v18",
-      "title_uz": "react-crud-practice-p1-v18",
+      "title_uz": "Praktika: CRUD — to'liq boshqariladigan ilova",
       "title_ru": "Практика: CRUD — управляемое приложение",
       "version": "v18",
       "source": "src/3-Modull/ReactCrudPracticeLesson.jsx",
@@ -3096,7 +3096,7 @@
     },
     {
       "lesson_id": "react-router-practice-p2-v18",
-      "title_uz": "react-router-practice-p2-v18",
+      "title_uz": "Praktika: React Router — ko'p sahifali ilova",
       "title_ru": "Практика: React Router — многостраничное приложение",
       "version": "v18",
       "source": "src/3-Modull/ReactRouterPracticeLesson.jsx",
@@ -3294,7 +3294,7 @@
     },
     {
       "lesson_id": "write-skill-06-07-v18",
-      "title_uz": "write-skill-06-07-v18",
+      "title_uz": "O'z Skill'ingizni yozing",
       "title_ru": "Создаём свой Skill",
       "version": "v18",
       "source": "src/6-Modull/WriteSkillLesson.jsx",

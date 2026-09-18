@@ -23,8 +23,15 @@ function walk(dir) {
 }
 
 // const LESSON_META = { lessonId: 'internet-01-v18', lessonTitle: { uz: '…', ru: '…' } };
-const META_RE = /const LESSON_META = \{\s*lessonId:\s*'([^']+)'\s*,\s*lessonTitle:\s*(\{[^}]*\}|'[^']*')/;
-const pick = (objText, key) => (new RegExp(`${key}:\\s*'((?:[^'\\\\]|\\\\.)*)'`).exec(objText) || [])[1]?.replace(/\\'/g, "'") ?? null;
+const META_RE = /const LESSON_META = \{\s*lessonId:\s*'([^']+)'\s*,\s*lessonTitle:\s*(\{[^}]*\}|'(?:[^'\\]|\\.)*'|"(?:[^"\\]|\\.)*")/;
+// F-0918-05: satr UCH xil tirnoqda kelishi mumkin. Apostrofli o'zbekcha sarlavha ("…ko'rsatasiz?") qo'sh tirnoqda yoziladi —
+// eski `pick` faqat bir tirnoqni o'qigan, 18 darsda title_uz = lesson_id bo'lib LMS'ga dars nomi o'rniga id ketgan.
+const unq = (q, v) => v.replace(new RegExp('\\\\' + q, 'g'), q);
+const pick = (objText, key) => {
+  const m = new RegExp(`${key}:\\s*(?:'((?:[^'\\\\]|\\\\.)*)'|"((?:[^"\\\\]|\\\\.)*)"|\`((?:[^\`\\\\]|\\\\.)*)\`)`).exec(objText);
+  if (!m) return null;
+  return m[1] != null ? unq("'", m[1]) : m[2] != null ? unq('"', m[2]) : unq('`', m[3]);
+};
 
 // const ACHIEVEMENTS = { firstwin: { icon: '🎯', name: 'Bullseye!', desc: { uz: '…', ru: '…' } }, … };
 // Blok sof literal (98 darsda tekshirildi) — vm sandbox'da baholanadi; buzilsa dars katalogda bo'sh ro'yxat bilan qoladi (ogohlantirish).
@@ -65,11 +72,14 @@ for (const file of walk(SRC)) {
   if (!m) continue;
   const lessonId = m[1];
   const t = m[2];
-  const titleUz = t.startsWith("'") ? t.slice(1, -1).replace(/\\'/g, "'") : pick(t, 'uz');
-  const titleRu = t.startsWith("'") ? null : pick(t, 'ru');
+  const plain = t.startsWith("'") || t.startsWith('"');
+  const titleUz = plain ? unq(t[0], t.slice(1, -1)) : pick(t, 'uz');
+  const titleRu = plain ? null : pick(t, 'ru');
   const version = (/-(v\d+)$/.exec(lessonId) || [])[1] || null;
   const rel = path.relative(ROOT, file).replace(/\\/g, '/');
   if (dupes.has(lessonId)) dupes.set(lessonId, [...dupes.get(lessonId), rel]); else dupes.set(lessonId, [rel]);
+  // F-0918-05 darvozasi: sarlavha o'qilmasa JIM o'tmaydi — id sarlavha bo'lib LMS'ga ketmasin
+  if (!titleUz) { console.error(`XATO: ${rel} — lessonTitle.uz o'qilmadi (LMS'ga dars nomi o'rniga «${lessonId}» ketadi)`); process.exitCode = 1; }
   rows.push({ lesson_id: lessonId, title_uz: titleUz || lessonId, title_ru: titleRu, version, source: rel, achievements: extractAchievements(text, rel, warnings) });
 }
 for (const w of warnings) console.error('OGOHLANTIRISH:', w);
