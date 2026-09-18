@@ -7,7 +7,7 @@
 //   review (tugagan urinish — javoblar ko'rinadi, yozilmaydi) · self (kodsiz, o'zi ko'radi) · choosing (darvoza)
 // Darslar 'student'/'mentor' bo'lmagan har rejimni 'self' kabi ko'radi — solo/review shu tufayli qo'shimcha kodsiz ishlaydi.
 import { useState, useEffect, useRef, useCallback, createContext, useContext } from 'react';
-import { logAttempt, logArena, resetResultDetails } from './resultDetails.js';
+import { logAttempt, logArena, resetResultDetails, unsealPayload } from './resultDetails.js';
 import { tr } from './i18n.js';
 import {
   LIVE_ENABLED, LIVE_POLL_MS, LIVE_POLL_MAX_MS, LIVE_HEARTBEAT_MS, LIVE_STALE_MS, LMS_SOLO_RECHECK_MS,
@@ -31,6 +31,7 @@ export function useLiveSession(lessonId, answerKey, opts = {}) {
   const liveToken = opts.liveToken || null;
   const lessonVersion = opts.lessonVersion || null;
   const keyRef = useRef(answerKey); keyRef.current = answerKey; // javob kaliti — mentor darsni ochganda serverga avto-yuklanadi (SQL shart emas)
+  useEffect(() => { unsealPayload(lessonId); }, [lessonId]); // F-0918-07: dars har ochilganda onFinished muhri toza — eski sessiya yuki yangi urinishga o'tmaydi
   const initRef = useRef(undefined);
   if (initRef.current === undefined) initRef.current = LIVE_ENABLED ? liveRead(lessonId) : null;
   const init = initRef.current;

@@ -1,7 +1,7 @@
 // node --test src/live/resultDetails.test.mjs
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { buildResultDetails, logAttempt, logArena, noteEarned, resetResultDetails, _forgetMemory } from './resultDetails.js';
+import { buildResultDetails, logAttempt, logArena, noteEarned, resetResultDetails, _forgetMemory, sealPayload, unsealPayload } from './resultDetails.js';
 
 // Brauzer saqlovi o'rnida (F-0909-02): modul localStorage'ga faqat chaqiruv paytida murojaat qiladi
 const mem = new Map();
@@ -137,3 +137,54 @@ test('arena (2026-09-10): jonli arena javoblari testlardan KEYIN kind=arena; mat
   const after = buildResultDetails({ lessonId: 'L7', screenMeta: META, answers: {}, earned: [], achievements: ACH, lang: 'uz', arenaBank: BANK });
   assert.equal(after.questions.length, 0, 'reset arena tarixini ham tozaladi');
 });
+
+// ── F-0918-07: onFinished yukini muhrlash ───────────────────────────────────────────────────────────────
+const mkPayload = (dur, extra = {}) => ({ lessonId: 'S1', lessonTitle: { uz: 'Dars', ru: 'Урок' }, livePin: null, liveMode: 'self', durationSec: dur, answers: [{ picked: 1, correct: true }], ...extra });
+
+test('sealPayload: ikkinchi bosishda AYNAN birinchi yuk qaytadi (durationSec o\'sgan bo\'lsa ham)', () => {
+  unsealPayload('S1');
+  const a = sealPayload('S1', mkPayload(603));
+  const b = sealPayload('S1', mkPayload(615, { answers: [{ picked: 2, correct: false }] }));
+  assert.equal(JSON.stringify(a), JSON.stringify(b));
+  assert.equal(b.durationSec, 603);
+  assert.equal(JSON.stringify(a), JSON.stringify(mkPayload(603))); // birinchi yuk simda o'zgarmagan
+});
+
+test('sealPayload: qabul qiluvchi obyektni o\'zgartirsa ham muhr buzilmaydi (har safar yangi nusxa)', () => {
+  unsealPayload('S1');
+  const a = sealPayload('S1', mkPayload(10));
+  a.durationSec = 999; a.answers.push({ hacked: true });
+  const b = sealPayload('S1', mkPayload(20));
+  assert.equal(b.durationSec, 10);
+  assert.equal(b.answers.length, 1);
+  assert.notEqual(a, b);
+});
+
+test('sealPayload: boshqa sessiya (PIN yoki rejim) — yangi yuk muhrlanadi', () => {
+  unsealPayload('S1');
+  sealPayload('S1', mkPayload(10, { livePin: '111111', liveMode: 'mentor' }));
+  const b = sealPayload('S1', mkPayload(20, { livePin: '222222', liveMode: 'mentor' }));
+  assert.equal(b.livePin, '222222'); assert.equal(b.durationSec, 20);
+  const c = sealPayload('S1', mkPayload(30, { livePin: '222222', liveMode: 'mentor' }));
+  assert.equal(c.durationSec, 20);
+});
+
+test('sealPayload: unsealPayload (dars ochilishi) va resetResultDetails (yangi urinish) muhrni tozalaydi', () => {
+  unsealPayload('S1');
+  sealPayload('S1', mkPayload(10));
+  unsealPayload('S1');
+  assert.equal(sealPayload('S1', mkPayload(20)).durationSec, 20);
+  resetResultDetails('S1');
+  assert.equal(sealPayload('S1', mkPayload(30)).durationSec, 30);
+});
+
+test('sealPayload: darslar bir-biriga aralashmaydi; yaroqsiz kirish o\'zgarishsiz qaytadi', () => {
+  unsealPayload('S1'); unsealPayload('S2');
+  sealPayload('S1', mkPayload(10));
+  assert.equal(sealPayload('S2', mkPayload(77)).durationSec, 77);
+  assert.equal(sealPayload('', mkPayload(5)).durationSec, 5);
+  assert.equal(sealPayload('S1', null), null);
+  const loop = { lessonId: 'S3' }; loop.self = loop; // JSON bo'lmaydigan yuk — yiqilmaydi, o'zini qaytaradi
+  assert.equal(sealPayload('S3', loop), loop);
+});
+

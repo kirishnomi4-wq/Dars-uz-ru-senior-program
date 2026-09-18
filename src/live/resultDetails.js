@@ -117,8 +117,37 @@ export function noteEarned(lessonId, ids) {
 /** Qaytadan boshlashda (restart) tarix tozalanadi — xotira ham, saqlov ham. */
 export function resetResultDetails(lessonId) {
   attemptsByLesson.delete(lessonId); earnedAtByLesson.delete(lessonId); arenaByLesson.delete(lessonId); loaded.delete(lessonId);
+  sealedByLesson.delete(lessonId); // yangi urinish — yangi yuk (F-0918-07)
   try { store()?.removeItem(KEY(lessonId)); } catch { /* jim */ }
 }
+
+// ── onFinished yukini MUHRLASH (F-0918-07) ─────────────────────────────────────────────────────────────────
+// Nega: LMS `question_try` so'roviga `idempotency_key` qo'yadi (18.09 dan) — bir kalit ostida yuk o'zgarsa
+// 409 `submission_key_mismatch` qaytadi va o'quvchi «Natijani saqlab bo'lmadi» yozuvini ko'radi. Dars esa yukni har
+// «Darsni yakunlash» bosilganda qaytadan yig'ardi (`durationSec` o'sadi, detallardagi vaqtlar o'zgaradi).
+// Qoida: shu dars ochilishi ichida birinchi yuk muhrlanadi, keyingi bosishlar AYNAN o'sha mazmunni qaytaradi.
+// Muhr xotirada turadi (F5 dan keyin yo'q). Siyosat shu yerda — darslarda bitta qator: onFinished(sealPayload(id, payload)).
+const sealedByLesson = new Map(); // dars-ID → { key, json }
+const sealKey = (p) => `${(p && p.livePin) ?? ''}|${(p && p.liveMode) ?? ''}`; // boshqa sessiya (PIN/rejim) — boshqa yuk
+
+/**
+ * Birinchi chaqiruvdagi yukni muhrlaydi; keyingi chaqiruvlarda o'sha mazmunning yangi nusxasini qaytaradi.
+ * Nusxa — qabul qiluvchi (LMS) obyektni o'zgartirsa ham muhr buzilmasligi uchun. Yuk JSON bo'lib ketadi, shuning
+ * uchun JSON-nusxa simdagi ko'rinishni o'zgartirmaydi. Nusxalab bo'lmasa (kutilmagan) — yuk o'zgarishsiz qaytadi.
+ */
+export function sealPayload(lessonId, payload) {
+  if (!lessonId || !payload || typeof payload !== 'object') return payload;
+  try {
+    const key = sealKey(payload);
+    const held = sealedByLesson.get(lessonId);
+    if (held && held.key === key) return JSON.parse(held.json);
+    const json = JSON.stringify(payload);
+    sealedByLesson.set(lessonId, { key, json });
+    return JSON.parse(json);
+  } catch { return payload; }
+}
+/** Dars ochilganda (har mount) muhr tozalanadi — oldingi sessiya/o'quvchining yuki yangi urinishga o'tib ketmasin. */
+export function unsealPayload(lessonId) { sealedByLesson.delete(lessonId); }
 
 /** Test uchun: hozirgi holatni ko'rish. */
 export const _detailsState = () => ({ attemptsByLesson, earnedAtByLesson, arenaByLesson });

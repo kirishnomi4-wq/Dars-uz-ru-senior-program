@@ -13,4 +13,4 @@ export {
 export { useLiveSession, LiveGateCtx, useLiveLock } from './useLiveSession.js';
 export { useServerProgress } from './useServerProgress.js';
 export { LiveGate, LiveBadge, LiveBigCode, LT } from './LiveUI.jsx';
-export { buildResultDetails } from './resultDetails.js'; // onFinished detallari (TZ §4) — 2026-09-08
+export { buildResultDetails, sealPayload } from './resultDetails.js'; // onFinished detallari (TZ §4) — 2026-09-08 · yukni muhrlash (F-0918-07)
