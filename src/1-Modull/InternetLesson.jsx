@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback, useMemo, createContext, useContext } from 'react';
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz). Inline nusxa 2026-09-03 da ko'chirildi.
-import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, setLiveLang, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers , buildResultDetails } from '../live/index.js';
+import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, setLiveLang, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers , buildResultDetails, sealPayload } from '../live/index.js';
 
 // ===== Mentor avatari — oddiy emoji icon (rasmga bog'liq emas) =====
 
@@ -3093,7 +3093,7 @@ export default function HtmlLesson({ lang: langProp, onFinished, liveToken }) {
       answers: SCREEN_META.map((s, i) => ans[i]).filter(Boolean),
       ...buildResultDetails({ lessonId: LESSON_META.lessonId, screenMeta: SCREEN_META, answers: ans, earned, achievements: ACHIEVEMENTS, arenaBank: QUIZ_BANK })
     };
-    if (typeof onFinished === 'function') onFinished(payload);
+    if (typeof onFinished === 'function') onFinished(sealPayload(LESSON_META.lessonId, payload)); // F-0918-07: qayta bosishda AYNAN birinchi yuk
   };
 
   const screens = [Screen0, Screen1, Screen2, Screen3, Screen4, Screen5, Screen5b, Screen6, Screen7, Screen8, Screen9, Screen10, Screen11, Screen12, Screen13, Screen13b, ScreenReqOrder, Screen14, Screen15, ScreenPodium, ScreenFlashcards, Screen16];

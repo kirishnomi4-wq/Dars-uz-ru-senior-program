@@ -22,6 +22,7 @@ const args = process.argv.slice(2);
 const opt = (k, d) => { const i = args.indexOf(k); return i >= 0 && args[i + 1] ? args[i + 1] : d; };
 const LANGS = opt('--lang', 'both') === 'both' ? ['uz', 'ru'] : [opt('--lang', 'uz')];
 const ONLY = opt('--only', null);
+const SEAL = args.includes('--seal'); // F-0918-07 + 151-qonun 6-band: I10 (qayta bosish = AYNAN o'sha yuk) · I11 («Qaytadan» → mashq → yakun = birinchi o'tish)
 const OUT = opt('--out', 'feedback/lms-sinov-2026-09-16');
 const argFiles = args.filter((a, i) => !a.startsWith('--') && !['--lang', '--only', '--out'].includes(args[i - 1]));
 const files = (argFiles.length ? argFiles : [...new Set([...readFileSync('CRM_YUKLASH_ROYXATI.md', 'utf8').matchAll(/src\/[^\s|`]+\.jsx/g)].map((m) => m[0]))].filter((f) => !/homework/.test(f)))
@@ -113,7 +114,7 @@ for (const file of files) {
   let bundle;
   try {
     const res = await build({ stdin: { contents: `import React from 'react'; import { createRoot } from 'react-dom/client'; import L from ${JSON.stringify(resolve(file))};
-      window.__payload = null; createRoot(document.getElementById('root')).render(React.createElement(L, { lang: window.__lang || 'uz', onFinished: (p) => { window.__payload = p; } }));`,
+      window.__payload = null; window.__payloads = []; createRoot(document.getElementById('root')).render(React.createElement(L, { lang: window.__lang || 'uz', onFinished: (p) => { window.__payload = p; window.__payloads.push(JSON.stringify(p)); } }));`,
       resolveDir: process.cwd(), sourcefile: 'e.jsx', loader: 'jsx' }, bundle: true, format: 'iife', jsx: 'automatic', nodePaths: [resolve('node_modules')],
       loader: { '.png': 'dataurl', '.jpg': 'dataurl', '.jpeg': 'dataurl', '.svg': 'dataurl', '.mp3': 'dataurl', '.webp': 'dataurl', '.gif': 'dataurl' },
       define: { __DARS_API_URL__: '""' }, charset: 'utf8', write: false, logLevel: 'silent' });
@@ -128,7 +129,7 @@ for (const file of files) {
     const ctx = await browser.newContext({ viewport: { width: 1280, height: 800 } });
     const p = await ctx.newPage();
     const errs = []; p.on('pageerror', (e) => errs.push(String(e.message).slice(0, 120)));
-    let payload = null, how = '', screenText = '';
+    let payload = null, how = '', screenText = '', lastLoc = null; const sealProblems = [];
     try {
       await p.goto('file://' + page, { waitUntil: 'domcontentloaded' });
       await p.waitForSelector('.lesson-root', { timeout: 15000 }); await p.waitForTimeout(900);
@@ -136,7 +137,7 @@ for (const file of files) {
       const tryClick = async (loc, tag) => {
         if (!(await loc.count())) return false;
         await loc.evaluate((el) => el.click()); await p.waitForTimeout(700);
-        payload = await p.evaluate(() => window.__payload); how += tag + ' ';
+        payload = await p.evaluate(() => window.__payload); how += tag + ' '; if (payload) lastLoc = loc;
         return true;
       };
       const label = L.finishLabel && L.finishLabel[lang];
@@ -144,9 +145,53 @@ for (const file of files) {
       if (!payload) await tryClick(p.locator('button', { hasText: /yakunla|tugat|tamom|finish|заверш|законч|готово|keyingi dars|следующий урок|bezashni boshlash/i }).last(), 'regex');
       if (!payload) await tryClick(p.locator('button', { hasText: /^\s*(tamom|готово|done)\s*$/i }).last(), 'tamom');
       if (!payload) screenText = await p.evaluate(() => (document.querySelector('.lesson-root')?.innerText || '').slice(0, 160).replace(/\s+/g, ' '));
+      if (SEAL && payload && lastLoc) {
+        // I10: o'sha tugma 1,3 s dan keyin yana bosiladi — ikkala yuk harfma-harf teng bo'lishi shart
+        await p.waitForTimeout(1300);
+        if (await lastLoc.count()) { await lastLoc.evaluate((el) => el.click()); await p.waitForTimeout(600); }
+        const all = await p.evaluate(() => window.__payloads);
+        if (all.length < 2) sealProblems.push(`I10 ikkinchi bosishda onFinished kelmadi (${all.length} ta)`);
+        else if (all[0] !== all[1]) { const a = JSON.parse(all[0]), b = JSON.parse(all[1]); sealProblems.push(`I10 qayta bosishda yuk FARQ qildi (durationSec ${a.durationSec}→${b.durationSec})`); }
+        // I11: toza sahifa → «Qaytadan» → progressda firstPass muhri, nishonlar o'zgarmagan → oxirgi ekran → yakun = BIRINCHI o'tish
+        const p2 = await ctx.newPage(); const errs2 = []; p2.on('pageerror', (e) => errs2.push(String(e.message).slice(0, 120)));
+        await p2.goto('file://' + page, { waitUntil: 'domcontentloaded' });
+        await p2.waitForSelector('.lesson-root', { timeout: 15000 }); await p2.waitForTimeout(900);
+        const again = p2.locator('button', { hasText: /^\s*(↻\s*)?(qaytadan|заново)\s*$/i }).last();
+        if (!(await again.count())) sealProblems.push('I11 «Qaytadan» tugmasi topilmadi');
+        else {
+          const KEYP = 'ccProgress:' + L.lessonId;
+          const earnedBefore = await p2.evaluate((k) => (JSON.parse(localStorage.getItem(k) || 'null')?.earned || []), KEYP); // yakun ekranida `graduate` qonuniy qo'shiladi
+          await again.evaluate((el) => el.click()); await p2.waitForTimeout(900);
+          const prog = await p2.evaluate((k) => JSON.parse(localStorage.getItem(k) || 'null'), KEYP);
+          const fpKeys = Object.keys(prog?.firstPass?.answers || {}).sort().join(','), seedKeys = Object.keys(answers).sort().join(',');
+          if (!prog?.firstPass) sealProblems.push('I11 «Qaytadan»dan keyin firstPass muhri yo\'q');
+          else if (fpKeys !== seedKeys) sealProblems.push(`I11 firstPass javoblari mos emas (${fpKeys} ≠ ${seedKeys})`);
+          if (prog && [...(prog.earned || [])].sort().join(',') !== [...earnedBefore].sort().join(',')) sealProblems.push(`I11 «Qaytadan» nishonlarni o'zgartirdi (${(prog.earned || []).join(',')})`);
+          if (prog?.firstPass) {
+            // seed-skript har yuklanishda progressni qayta yozadi — shuning uchun mashq-holati alohida sahifa-faylga urug'lanadi
+            const seed2 = seed.slice(0, seed.indexOf("localStorage.setItem('ccProgress:")) + `localStorage.setItem(${JSON.stringify(KEYP)},${JSON.stringify(JSON.stringify({ ...prog, screen: total - 1 }))});`;
+            const page2 = page.replace(/\.html$/, '-mashq.html');
+            writeFileSync(page2, `<!doctype html><html><head><meta charset="utf-8"></head><body><div id="root"></div><script>${seed2}<\/script><script>${bundle}<\/script></body></html>`);
+            await p2.goto('file://' + page2, { waitUntil: 'domcontentloaded' });
+            await p2.waitForSelector('.lesson-root', { timeout: 15000 }); await p2.waitForTimeout(900);
+            let pay2 = null;
+            const click2 = async (loc) => { if (pay2 || !(await loc.count())) return; await loc.evaluate((el) => el.click()); await p2.waitForTimeout(700); pay2 = await p2.evaluate(() => window.__payload); };
+            if (label) await click2(p2.locator('button', { hasText: label }).last());
+            await click2(p2.locator('button', { hasText: /yakunla|tugat|tamom|finish|заверш|законч|готово|keyingi dars|следующий урок|bezashni boshlash/i }).last());
+            await click2(p2.locator('button', { hasText: /^\s*(tamom|готово|done)\s*$/i }).last());
+            if (!pay2) sealProblems.push('I11 mashqdan keyin onFinished kelmadi');
+            else {
+              if (pay2.correctAnswers !== expect.correct) sealProblems.push(`I11 mashqdan keyin correctAnswers ${pay2.correctAnswers} ≠ birinchi o'tish ${expect.correct}`);
+              if (pay2.durationSec !== prog.firstPass.durationSec) sealProblems.push(`I11 durationSec ${pay2.durationSec} ≠ firstPass ${prog.firstPass.durationSec}`);
+              if ((pay2.answers || []).length !== Object.keys(answers).length) sealProblems.push(`I11 answers soni ${(pay2.answers || []).length} ≠ ${Object.keys(answers).length}`);
+            }
+          }
+        }
+        for (const e of errs2) sealProblems.push('I11 pageerror: ' + e);
+      }
     } catch (e) { errs.push('sinov: ' + String(e.message).slice(0, 120)); }
     await ctx.close();
-    const problems = payload ? check(L, lang, payload, expect, errs) : [`onFinished KELMADI (${how || 'tugma yo\'q'}; ekran: ${screenText})`, ...errs.map((e) => 'pageerror: ' + e)];
+    const problems = payload ? [...check(L, lang, payload, expect, errs), ...sealProblems] : [`onFinished KELMADI (${how || 'tugma yo\'q'}; ekran: ${screenText})`, ...errs.map((e) => 'pageerror: ' + e)];
     const q = payload?.questions || [];
     const row = { file, lessonId: L.lessonId, lang, ok: problems.length === 0, scored: expect.scored, mcq: expect.mcq, totalQuestions: payload?.totalQuestions ?? null, correctAnswers: payload?.correctAnswers ?? null,
       questionsTest: q.filter((x) => x.kind === 'test').length, achievements: payload?.achievements?.length ?? null, finish: how.trim(), problems };

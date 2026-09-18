@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-18T11:14:12.863Z",
+  "generated_at": "2026-09-18T14:43:10.474Z",
   "count": 110,
   "lessons": [
     {
@@ -375,8 +375,8 @@
         {
           "id": "keymaster",
           "name": "Key Master",
-          "title_uz": "Kalitni bekor qilib, yangisini qo'ydingiz",
-          "title_ru": "Отозвали ключ и положили новый в ящик"
+          "title_uz": "Kalitni qulfli tortmaga (.env) joyladingiz",
+          "title_ru": "Вы положили ключ в запертый ящик (.env)"
         },
         {
           "id": "sheetmaster",
@@ -1041,8 +1041,8 @@
         {
           "id": "struktura",
           "name": "Room by Room!",
-          "title_uz": "Sahifani header, main, footerga ajratdingiz",
-          "title_ru": "Вы разделили страницу на header, main, footer"
+          "title_uz": "Logotip va menyu joyini to'g'ri topdingiz",
+          "title_ru": "Вы верно нашли место логотипа и меню"
         },
         {
           "id": "forma",
@@ -1878,8 +1878,8 @@
         {
           "id": "pairfinder",
           "name": "Pair Finder!",
-          "title_uz": "Imkoniyatlarni qiyinchiliklarga bog'ladingiz",
-          "title_ru": "Вы связали возможности с трудностями"
+          "title_uz": "Imkoniyat va qiyinchilik juftlarini ochdingiz",
+          "title_ru": "Вы открыли пары возможностей и трудностей"
         },
         {
           "id": "matchmaster",
@@ -1911,8 +1911,8 @@
         {
           "id": "splitter",
           "name": "Splitter!",
-          "title_uz": "Katta ishni oltita bo'lakka bo'ldingiz",
-          "title_ru": "Вы разбили большую работу на шесть частей"
+          "title_uz": "Katta ish olti bo'lakka bo'linishini ko'rdingiz",
+          "title_ru": "Вы увидели, как работа делится на шесть частей"
         },
         {
           "id": "weigher",
