@@ -1,0 +1,465 @@
+[
+ {
+  "file": "src/2-Modull/JsConditionsLesson.jsx",
+  "sid": "s14",
+  "type": "case",
+  "badge": "debugger",
+  "desc": "= va == xatosini topib tuzatdingiz",
+  "comp": "Screen14",
+  "basket": "A challenge",
+  "fails": [
+   "bad",
+   "error",
+   "tekshir",
+   "xato"
+  ]
+ },
+ {
+  "file": "src/2-Modull/JsFunctionsLesson.jsx",
+  "sid": "s3",
+  "type": "exploration",
+  "badge": "builder",
+  "desc": "Funksiya mashinasini o'zingiz yig'dingiz",
+  "comp": "Screen3",
+  "basket": "A challenge",
+  "fails": [
+   "bad",
+   "wrong",
+   "xato"
+  ]
+ },
+ {
+  "file": "src/2-Modull/JsFunctionsLesson.jsx",
+  "sid": "s13",
+  "type": "case",
+  "badge": "coder",
+  "desc": "3 bosqichda funksiyani qo'lda yozdingiz",
+  "comp": "Screen13",
+  "basket": "A challenge",
+  "fails": [
+   ".ok",
+   "checks(",
+   "xato"
+  ]
+ },
+ {
+  "file": "src/2-Modull/JsLoopsLesson.jsx",
+  "sid": "s14",
+  "type": "rule",
+  "badge": "infinitytamer",
+  "desc": "Cheksiz siklni topib to'xtatdingiz",
+  "comp": "Screen14",
+  "basket": "A challenge",
+  "fails": [
+   "bad",
+   "tekshir",
+   "xato"
+  ]
+ },
+ {
+  "file": "src/2-Modull/PeanStackLesson.jsx",
+  "sid": "s13",
+  "type": "case",
+  "badge": "teambuilder",
+  "desc": "Mini-do'kon jamoasini o'zingiz tuzdingiz",
+  "comp": "Screen13",
+  "basket": "A challenge",
+  "fails": [
+   "bad",
+   "isok",
+   "wrong",
+   "xato"
+  ]
+ },
+ {
+  "file": "src/2-Modull/PmLesson4.jsx",
+  "sid": "s4",
+  "type": "exploration",
+  "badge": "matchMaster",
+  "desc": "Uchala imkoniyatni o'z qiyinchiligiga qo'ydingiz",
+  "comp": "Screen4",
+  "basket": "A challenge",
+  "fails": [
+   "shake",
+   "tekshir"
+  ]
+ },
+ {
+  "file": "src/2-Modull/PmLesson4.jsx",
+  "sid": "s8",
+  "type": "practice",
+  "badge": "cardWriter",
+  "desc": "Uchta juftlik-kartangizni yozib bo'ldingiz",
+  "comp": "ScreenWorkshop",
+  "basket": "A challenge",
+  "fails": [
+   "bad",
+   "tekshir",
+   "validelement(",
+   "xato"
+  ]
+ },
+ {
+  "file": "src/2-Modull/PmLesson4.jsx",
+  "sid": "s11",
+  "type": "koding",
+  "badge": "pageMaker",
+  "desc": "Juftliklarni ko'rsatadigan kodni yozdingiz",
+  "comp": "ScreenCoding",
+  "basket": "A challenge",
+  "fails": [
+   "compile",
+   "validelement("
+  ]
+ },
+ {
+  "file": "src/2-Modull/PmLesson5.jsx",
+  "sid": "s8",
+  "type": "practice",
+  "badge": "weigher",
+  "desc": "Oltala imkoniyatni tarozidan o'tkazdingiz",
+  "comp": "ScrScale",
+  "basket": "A challenge",
+  "fails": [
+   ".ok"
+  ]
+ },
+ {
+  "file": "src/2-Modull/PmLesson5.jsx",
+  "sid": "s9",
+  "type": "practice",
+  "badge": "launcher",
+  "desc": "Ochilish ro'yxatini tuzib saqladingiz",
+  "comp": "ScrLaunchList",
+  "basket": "A challenge",
+  "fails": [
+   ".ok",
+   "xato"
+  ]
+ },
+ {
+  "file": "src/2-Modull/PmLesson5.jsx",
+  "sid": "s11",
+  "type": "exploration",
+  "badge": "sharpeye",
+  "desc": "Noto'g'ri joydagi kartani topdingiz",
+  "comp": "ScrFindError",
+  "basket": "A challenge",
+  "fails": [
+   "bad",
+   "compile",
+   "error",
+   "miss",
+   "tekshir",
+   "wrong"
+  ]
+ },
+ {
+  "file": "src/2-Modull/PmLesson6.jsx",
+  "sid": "s2",
+  "type": "exploration",
+  "badge": "jargon",
+  "desc": "So'z-elagida uchala kasbiy so'zni o'zingiz topdingiz",
+  "comp": "Screen2",
+  "basket": "A challenge",
+  "fails": [
+   "bad",
+   "miss"
+  ]
+ },
+ {
+  "file": "src/2-Modull/PmLesson6.jsx",
+  "sid": "s9",
+  "type": "practice",
+  "badge": "plain",
+  "desc": "Pitchni kasbiy so'zlarsiz yozdingiz",
+  "comp": "Screen9",
+  "basket": "C' hisoblangan correct",
+  "fails": [
+   ".ok",
+   "bad",
+   "tekshir"
+  ]
+ },
+ {
+  "file": "src/2-Modull/PmLesson6.jsx",
+  "sid": "s10",
+  "type": "exploration",
+  "badge": "ear",
+  "desc": "Uchala kartaga to'g'ri hukm chiqardingiz",
+  "comp": "Screen10",
+  "basket": "C' hisoblangan correct",
+  "fails": [
+   ".ok",
+   "bad"
+  ]
+ },
+ {
+  "file": "src/2-Modull/PmLesson6.jsx",
+  "sid": "s11",
+  "type": "practice",
+  "badge": "speaker",
+  "desc": "Sistemaning uch qatlamini kodda ko'rsatdingiz",
+  "comp": "Screen11",
+  "basket": "A challenge",
+  "fails": [
+   "compile"
+  ]
+ },
+ {
+  "file": "src/2-Modull/PracticeLesson3.jsx",
+  "sid": "s5",
+  "type": "exploration",
+  "badge": "planner",
+  "desc": "Qadamlarni to'g'ri tartibga sudrab qo'ydingiz",
+  "comp": "Screen5",
+  "basket": "A challenge",
+  "fails": [
+   "bad",
+   "wrong",
+   "xato"
+  ]
+ },
+ {
+  "file": "src/4a-Modull/NestArchAliveLesson.jsx",
+  "sid": "s9",
+  "type": "case",
+  "badge": "fullFlow",
+  "desc": "3 mijozni ham oxirigacha olib bordingiz",
+  "comp": "Screen9",
+  "basket": "A challenge",
+  "fails": [
+   "bad",
+   "expected",
+   "notok",
+   "xato"
+  ]
+ },
+ {
+  "file": "src/4a-Modull/NestArchPracticeLesson.jsx",
+  "sid": "s10",
+  "type": "case",
+  "badge": "shelf",
+  "desc": "Javon chizmasini toza yig'dingiz",
+  "comp": "Screen10",
+  "basket": "A challenge",
+  "fails": [
+   "shake",
+   "tekshir",
+   "xato"
+  ]
+ },
+ {
+  "file": "src/4a-Modull/NestArchPracticeLesson.jsx",
+  "sid": "s14",
+  "type": "case",
+  "badge": "catcher",
+  "desc": "AI qo'yib yuborgan xatoni dalil bilan topdingiz.",
+  "comp": "Screen14",
+  "basket": "A challenge",
+  "fails": [
+   "bad",
+   "shake",
+   "xato"
+  ]
+ },
+ {
+  "file": "src/4a-Modull/NestArchPracticeLesson.jsx",
+  "sid": "s19",
+  "type": "case",
+  "badge": "owner",
+  "desc": "Ochiq qolgan eshikni topdingiz — KitobShop ochildi!",
+  "comp": "Screen19",
+  "basket": "A challenge",
+  "fails": [
+   ".ok",
+   "shake",
+   "tekshir",
+   "xato"
+  ]
+ },
+ {
+  "file": "src/4a-Modull/PmLesson15.jsx",
+  "sid": "s4",
+  "type": "exploration",
+  "badge": "loadTester",
+  "desc": "Birinchi sinadigan qismni o'zingiz topdingiz",
+  "comp": "Screen4",
+  "basket": "A challenge",
+  "fails": [
+   "bad",
+   "miss",
+   "tekshir",
+   "tries",
+   "xato"
+  ]
+ },
+ {
+  "file": "src/4a-Modull/PmLesson15.jsx",
+  "sid": "s8",
+  "type": "practice",
+  "badge": "wiseBuilder",
+  "desc": "Uch qarorni sabab bilan yozdingiz",
+  "comp": "Screen8",
+  "basket": "A challenge",
+  "fails": [
+   "miss2",
+   "tekshir",
+   "xato"
+  ]
+ },
+ {
+  "file": "src/4a-Modull/PmLesson15.jsx",
+  "sid": "s9",
+  "type": "practice",
+  "badge": "rankMaster",
+  "desc": "Sinish tartibini to'g'ri topdingiz",
+  "comp": "Screen9",
+  "basket": "A challenge",
+  "fails": [
+   "compile",
+   "miss",
+   "miss2",
+   "missedonce",
+   "tekshir",
+   "tries",
+   "xato"
+  ]
+ },
+ {
+  "file": "src/4a-Modull/PmLesson15.jsx",
+  "sid": "s10",
+  "type": "koding",
+  "badge": "loadCoder",
+  "desc": "Sinadigan qismlarni kod bilan topdingiz",
+  "comp": "ScreenCoding",
+  "basket": "A challenge",
+  "fails": [
+   ".ok",
+   "compile",
+   "miss",
+   "missedonce",
+   "misst"
+  ]
+ },
+ {
+  "file": "src/4b-Modull/EdgeCasesTestLesson.jsx",
+  "sid": "s9",
+  "type": "challenge",
+  "badge": "guardBuilder",
+  "desc": "Guardni o'zingiz yig'dingiz (if → throw → return)",
+  "comp": "Screen9",
+  "basket": "A challenge",
+  "fails": [
+   ".ok",
+   "bad",
+   "expected",
+   "fail",
+   "shake",
+   "xato"
+  ]
+ },
+ {
+  "file": "src/4b-Modull/EdgeCasesTestLesson.jsx",
+  "sid": "s15",
+  "type": "challenge",
+  "badge": "fakeEdgeHunter",
+  "desc": "Haqiqiy edge testlarni yolg'onlardan ajratdingiz",
+  "comp": "Screen15",
+  "basket": "A challenge",
+  "fails": [
+   "shake",
+   "tekshir",
+   "wrong",
+   "xato"
+  ]
+ },
+ {
+  "file": "src/4b-Modull/JestUnitTestLesson.jsx",
+  "sid": "s9",
+  "type": "challenge",
+  "badge": "greenSuite",
+  "desc": "Varaqani yig'dingiz: describe → it → expect",
+  "comp": "Screen9",
+  "basket": "A challenge",
+  "fails": [
+   ".ok",
+   "bad",
+   "expected",
+   "fail",
+   "shake",
+   "tekshir"
+  ]
+ },
+ {
+  "file": "src/4b-Modull/JestUnitTestLesson.jsx",
+  "sid": "s15",
+  "type": "challenge",
+  "badge": "fakeTestHunter",
+  "desc": "Yolg'on testni topdingiz — expectsiz",
+  "comp": "Screen15",
+  "basket": "A challenge",
+  "fails": [
+   "bad",
+   "shake",
+   "tekshir"
+  ]
+ },
+ {
+  "file": "src/4b-Modull/PmLesson16.jsx",
+  "sid": "s4",
+  "type": "exploration",
+  "badge": "cheapFix",
+  "desc": "Nosozlik narxini uch nuqtada ko'rdingiz",
+  "comp": "Screen4",
+  "basket": "A challenge",
+  "fails": [
+   "bad",
+   "tekshir",
+   "tries"
+  ]
+ },
+ {
+  "file": "src/4b-Modull/PmLesson16.jsx",
+  "sid": "s8",
+  "type": "practice",
+  "badge": "bugReporter",
+  "desc": "Uch sharhni karta qilib yozdingiz",
+  "comp": "Screen8",
+  "basket": "A challenge",
+  "fails": [
+   "tekshir",
+   "xato"
+  ]
+ },
+ {
+  "file": "src/4b-Modull/PmLesson16.jsx",
+  "sid": "s9",
+  "type": "practice",
+  "badge": "priorityCall",
+  "desc": "To'rt kartaga to'g'ri hukm berdingiz",
+  "comp": "Screen9",
+  "basket": "A challenge",
+  "fails": [
+   "seterr",
+   "tekshir"
+  ]
+ },
+ {
+  "file": "src/4b-Modull/PmLesson16.jsx",
+  "sid": "s10",
+  "type": "koding",
+  "badge": "redToGreen",
+  "desc": "Testni avval qizil, keyin yashil qildingiz",
+  "comp": "ScreenCoding",
+  "basket": "A challenge",
+  "fails": [
+   ".ok",
+   "miss",
+   "missedonce",
+   "misst",
+   "tekshir",
+   "xato"
+  ]
+ }
+]

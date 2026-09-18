@@ -1,0 +1,338 @@
+[
+ {
+  "file": "src/1-Modull/CssLesson1.jsx",
+  "sid": "s13",
+  "type": "case",
+  "badge": "bezak",
+  "desc": "Elementni CSS bilan chiroyli qildingiz",
+  "comp": "Screen13",
+  "basket": "A challenge",
+  "fails": [
+   "xato"
+  ]
+ },
+ {
+  "file": "src/1-Modull/CssLesson1.jsx",
+  "sid": "s14",
+  "type": "rule",
+  "badge": "debugger",
+  "desc": "Buzuq CSS kodini topib tuzatdingiz",
+  "comp": "Screen14",
+  "basket": "A challenge",
+  "fails": [
+   "bad",
+   "error",
+   "xato"
+  ]
+ },
+ {
+  "file": "src/1-Modull/CssLesson2.jsx",
+  "sid": "s3b",
+  "type": "exploration",
+  "badge": "flexbox",
+  "desc": "display: flex bilan elementlarni qatorga tizdingiz",
+  "comp": "Screen3b",
+  "basket": "A challenge",
+  "fails": [
+   "bad",
+   "wrong",
+   "xato"
+  ]
+ },
+ {
+  "file": "src/1-Modull/CssLesson2.jsx",
+  "sid": "s7",
+  "type": "exploration",
+  "badge": "markaz",
+  "desc": "Elementlarni to'liq markazga qo'ydingiz",
+  "comp": "Screen7",
+  "basket": "B xato qilib bo'lmaydi",
+  "fails": []
+ },
+ {
+  "file": "src/1-Modull/CssLesson2.jsx",
+  "sid": "s14",
+  "type": "rule",
+  "badge": "debugger",
+  "desc": "Buzuq CSS kodini topib tuzatdingiz",
+  "comp": "Screen14",
+  "basket": "A challenge",
+  "fails": [
+   "bad",
+   "error",
+   "xato"
+  ]
+ },
+ {
+  "file": "src/1-Modull/GitLesson.jsx",
+  "sid": "s3",
+  "type": "do",
+  "badge": "installed",
+  "desc": "Git dasturini kompyuteringizga o'rnatdingiz",
+  "comp": "ScreenGitInstall",
+  "basket": "A challenge",
+  "fails": [
+   "xato"
+  ]
+ },
+ {
+  "file": "src/1-Modull/GitLesson.jsx",
+  "sid": "s13",
+  "type": "practice",
+  "badge": "shipped",
+  "desc": "Kodingizni internetga chiqardingiz",
+  "comp": "ScreenPushPractice",
+  "basket": "A challenge",
+  "fails": [
+   "tekshir"
+  ]
+ },
+ {
+  "file": "src/1-Modull/HtmlPractice.jsx",
+  "sid": "s2",
+  "type": "exploration",
+  "badge": "built",
+  "desc": "Portfolio skeletini o'zingiz yig'dingiz",
+  "comp": "Screen2",
+  "basket": "A challenge",
+  "fails": [
+   "bad",
+   "wrong",
+   "xato"
+  ]
+ },
+ {
+  "file": "src/1-Modull/HtmlPractice.jsx",
+  "sid": "s14",
+  "type": "case",
+  "badge": "debugger",
+  "desc": "Buzuq kodni topib tuzatdingiz",
+  "comp": "Screen14",
+  "basket": "A challenge",
+  "fails": [
+   "error",
+   "tekshir",
+   "wrong",
+   "xato"
+  ]
+ },
+ {
+  "file": "src/1-Modull/HtmlTakrorlashLesson.jsx",
+  "sid": "s6",
+  "type": "case",
+  "badge": "bugfix",
+  "desc": "Koddagi ikkala xatoni topib tuzatdingiz",
+  "comp": "ScreenDebug",
+  "basket": "A challenge",
+  "fails": [
+   ".ok",
+   "error",
+   "shake",
+   "wrong",
+   "xato"
+  ]
+ },
+ {
+  "file": "src/1-Modull/Htmllesson1.jsx",
+  "sid": "s5",
+  "type": "exploration",
+  "badge": "skelet",
+  "desc": "Sahifa skeletini o'zingiz yig'dingiz",
+  "comp": "Screen5",
+  "basket": "A challenge",
+  "fails": [
+   "bad",
+   "wrong",
+   "xato"
+  ]
+ },
+ {
+  "file": "src/1-Modull/Htmllesson1.jsx",
+  "sid": "s6",
+  "type": "exploration",
+  "badge": "debugger",
+  "desc": "Buzuq kodni topib tuzatdingiz",
+  "comp": "Screen6",
+  "basket": "A challenge",
+  "fails": [
+   "wrong",
+   "xato"
+  ]
+ },
+ {
+  "file": "src/1-Modull/Htmllesson2.jsx",
+  "sid": "s14",
+  "type": "rule",
+  "badge": "debugger",
+  "desc": "DevTools bilan buzuq kodni topib tuzatdingiz",
+  "comp": "Screen14",
+  "basket": "A challenge",
+  "fails": [
+   "bad",
+   "error",
+   "fail",
+   "tekshir",
+   "xato"
+  ]
+ },
+ {
+  "file": "src/1-Modull/InternetLesson.jsx",
+  "sid": "s13b",
+  "type": "game",
+  "badge": "packet",
+  "desc": "So'rovni to'g'ri serverga yetkazdingiz",
+  "comp": "Screen13b",
+  "basket": "A challenge",
+  "fails": [
+   "bad",
+   "miss",
+   "missed",
+   "shake",
+   "xato"
+  ]
+ },
+ {
+  "file": "src/1-Modull/InternetLesson.jsx",
+  "sid": "s13c",
+  "type": "exploration",
+  "badge": "router",
+  "desc": "So'rov bosqichlarini to'g'ri tartibladingiz",
+  "comp": "ScreenReqOrder",
+  "basket": "A challenge",
+  "fails": [
+   "bad",
+   "miss",
+   "missed",
+   "wrong",
+   "xato"
+  ]
+ },
+ {
+  "file": "src/1-Modull/PmLesson1.jsx",
+  "sid": "s11",
+  "type": "exploration",
+  "badge": "builder",
+  "desc": "KIM + MUAMMO + YECHIM — kartani to'liq yig'dingiz",
+  "comp": "Screen11",
+  "basket": "A challenge",
+  "fails": [
+   "check(",
+   "shake",
+   "tekshir"
+  ]
+ },
+ {
+  "file": "src/1-Modull/PmLesson2.jsx",
+  "sid": "s11",
+  "type": "exploration",
+  "badge": "builder",
+  "desc": "Bo'limlarni to'g'ri tartibga keltirdingiz",
+  "comp": "Screen11",
+  "basket": "A challenge",
+  "fails": [
+   "bad",
+   "check(",
+   "wrong",
+   "xato"
+  ]
+ },
+ {
+  "file": "src/1-Modull/PmLesson2.jsx",
+  "sid": "koding",
+  "type": "koding",
+  "badge": "strategist",
+  "desc": "Yakuniy sahifa tuzilishini o'zingiz qurdingiz",
+  "comp": "ScreenCoding",
+  "basket": "A challenge",
+  "fails": [
+   "compile"
+  ]
+ },
+ {
+  "file": "src/1-Modull/VsCodeLesson.jsx",
+  "sid": "s2",
+  "type": "exploration",
+  "badge": "installed",
+  "desc": "VS Code'ni kompyuteringizga o'rnatdingiz",
+  "comp": "ScreenInstall",
+  "basket": "C' hisoblangan correct",
+  "fails": []
+ },
+ {
+  "file": "src/1-Modull/VsCodeLesson.jsx",
+  "sid": "s3",
+  "type": "exploration",
+  "badge": "pilot",
+  "desc": "VS Code oynasining 4 qismini o'rganib chiqdingiz",
+  "comp": "ScreenTour",
+  "basket": "C' hisoblangan correct",
+  "fails": [
+   "xato"
+  ]
+ },
+ {
+  "file": "src/pm/PmJtbdLesson.jsx",
+  "sid": "practice",
+  "type": "practice",
+  "badge": "cardMaster",
+  "desc": "",
+  "comp": "ScreenJobWorkshop",
+  "basket": "A challenge",
+  "fails": [
+   "tekshir",
+   "validatejob("
+  ]
+ },
+ {
+  "file": "src/pm/PmJtbdLesson.jsx",
+  "sid": "s10",
+  "type": "koding",
+  "badge": "toolMaker",
+  "desc": "",
+  "comp": "ScreenCoding",
+  "basket": "A challenge",
+  "fails": [
+   "miss",
+   "wrong"
+  ]
+ },
+ {
+  "file": "src/pm/PmMetricsLesson.jsx",
+  "sid": "practice",
+  "type": "practice",
+  "badge": "panelPro",
+  "desc": "",
+  "comp": "ScreenMetricWorkshop",
+  "basket": "A challenge",
+  "fails": [
+   "validatemetriccard(",
+   "validatenorthstar("
+  ]
+ },
+ {
+  "file": "src/pm/PmUserStoryLesson.jsx",
+  "sid": "practice",
+  "type": "practice",
+  "badge": "storyBuilder",
+  "desc": "Ustaxonada 3/3 User Story yozdingiz",
+  "comp": "ScreenStoryWorkshop",
+  "basket": "A challenge",
+  "fails": [
+   "tekshir",
+   "validatestory("
+  ]
+ },
+ {
+  "file": "src/pm/PmUserStoryLesson.jsx",
+  "sid": "s10",
+  "type": "koding",
+  "badge": "toolMaker",
+  "desc": "User Story yig'uvchini kod bilan qurdingiz",
+  "comp": "ScreenCoding",
+  "basket": "A challenge",
+  "fails": [
+   "compile",
+   "tekshir"
+  ]
+ }
+]

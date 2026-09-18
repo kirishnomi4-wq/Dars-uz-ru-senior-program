@@ -1511,6 +1511,31 @@ joylash) + **6-band «birinchi o'tish — hisob, Qaytadan — mashq»** (`firstP
 konsol xatosi 0. `npm run gates` — yangi topilma 0. Server tomoni (takror jonli natija yuborilmaydi) alohida yopildi —
 `BACKEND_REJA_UZ.md` Qoida 3, 18.09 yangilanishi.
 
+**A TO'LQIN ✅ KOD YOZILDI (18.09 tun, F-0918-07 + 6-band) — 97 dars:** `scripts/codemod-first-pass.mjs` (quruq rejim standart;
+takror yurishda SKIP; `saved` va React-import himoyasi). Pilot 1 · G1 69 · G2 22 (skript) · G3 5 (qo'lda: JsIntro / PmLesson5 /
+FullstackFeedback — `reset` endi nishonlarni o'chirmaydi; EdgeCasesTest / JestUnitTest — ikkinchi test-komponent `Screen16` ham
+`fpPractice` bilan). Har darsda: `firstPassRef` + `fpPractice`, `earn` muzlashi, `QuestionScreen` mashqda serverga yozmaydi,
+`finishLesson` birinchi o'tishni yuboradi, progressda `missed` + `firstPass`, umumiy `missed` infratuzilmasi (UI'siz — B to'lqin
+uchun tayyor), **`onFinished(sealPayload(id, payload))`**. Markaz: `src/live/resultDetails.js` (`sealPayload` / `unsealPayload`;
+kalit = dars + PIN + rejim; mount'da tozalanadi; JSON-nusxa). Doimiy sinov: `npm run smoke:onfinished -- --seal` (I10 qayta
+bosish = aynan o'sha yuk · I11 «Qaytadan» → mashq → yakun = birinchi o'tish). **QOLDI:** (1) **B to'lqin** — `AchRule` + CSS +
+`miss()` nuqtalari 76 darsda (o'lchanmagan; A savatdagi har ekran ochib tasdiqlanadi); (2) `PmLesson7` + `7-Modull` 12 dars —
+`onFinished(payload)` muhrsiz (shakli boshqa, `lms/` da yo'q); (3) ~~uy-vazifa fayllari~~ ✅ ko'rildi: 18 tasining hammasida `if (finished) return; setFinished(true)` — natija bir
+ochilishda bir marta ketadi, muhrlash kerak emas; (4) F5 dan keyingi muhr (Axadulla javobiga bog'liq — kerak bo'lsa faqat `resultDetails.js`);
+(5) `review` rejimi ko'rilmagan; (6) `lms/` qayta yig'ish.
+
+**B savat ✅ YOPILDI (18.09 kech, F-0918-06 → `DARS_ETALON.md` 152-qonun):** 19 «tekin» triggerdan 15 tasi haqiqatan
+tekin — **12 tasi bonus bo'lib qoldi** (9 o'zgarishsiz · 3 tasida faqat tavsif rostlandi: BotIntro `keyMaster`,
+PmLesson4 `pairFinder`, PmLesson5 `splitter`) · **1 tasi testga ko'chdi** (Htmllesson2 `struktura` s5 → s5b; brauzerda
+to'rt holat ✓) · **2 tasi mehnat nishoni** (PmLesson1 s6, PmMetrics s10). **4 tasi aslida tekin emas → A savatga**
+(CssLesson2 s7 · PmLesson8 s4 · ApiPostman s3 · NodeServer s14). Reyestr — 152-qonunda. Tahlil:
+`feedback/F-0918-04/b-savat-takliflar.md`. ⚠ Saralash skripti `hint` / `reject` / `frame-warn` / `!== TARGET` ni
+xato-belgi deb tanimagan — **A savatda teskari xato (aslida tekin ekran) bo'lishi mumkin**: codemod paytida har A ekran
+ochib tasdiqlanadi; tekin chiqsa — 152-qonun bo'yicha (darsda bonus yo'q bo'lsa bonus, bor bo'lsa ko'chirish).
+**Yo'l-yo'lakay topilmalar (tuzatilmagan):** JsConditions s15 `firstif` meta'da `test`, mexanika — harf terish (mehnat) ·
+CssLesson2 `markaz` tavsifi vazifaga mos emas («markazga» ↔ `space-between`) · NodeServer s14 da Mentor/audio javobni
+topshiriqdan oldin aytadi.
+
 **Qanday (sweep):**
 1. **Avval saralash, keyin kod.** 61 ta `exploration` va 29 ta `case` triggerining ko'pi — 10-bo'lim taqiqiga zid
    bog'langan bo'lishi mumkin (toggle/kashfiyot ekraniga nishon). Har trigger uch savatdan biriga tushadi:
@@ -1526,4 +1551,14 @@ konsol xatosi 0. `npm run gates` — yangi topilma 0. Server tomoni (takror jonl
 
 **Darvoza:** `npm run gates -- <fayl>` har darsda (yangi topilma 0) · `npm run lint:jsx` 0 · har mexanika turidan
 kamida bitta darsda brauzer-sinovi (to'rt holat) · `smoke:onfinished` (onFinished `achievements` shakli o'zgarmaydi).
+
+## 42 ⬜ «NISHON» → «BADGE» — BUTUN LOYIHA BO'YICHA (foydalanuvchi, 2026-09-18)
+
+**Nima:** foydalanuvchi 18.09 da 151-qonun qatorlari uchun «Nishon emas, Badge yoki Badge'lar deylik» dedi. O'lchov:
+o'quvchi ko'radigan o'zbekcha matnda «nishon» — 238 marta, «Badges» — 15 marta (asosan sarlavha). Bir darsda ikki so'z
+yurmasligi uchun (bir tushuncha — bir nom) tunda uch qator «nishon» bilan qoldi; almashtirish BUTUN loyihada bir yo'la.
+**Qanday:** (1) foydalanuvchi bilan aniq shakllar: «Badge» / «Badge'lar» / «badge'ingiz» (apostrof-qo'shimcha qoidasi
+MATN_ETALONI bilan); (2) MATN_ETALONI LUG'AT + `til-lint-rules.json` qoidasi; (3) codemod — faqat o'quvchi matnida
+(`uz:` qiymatlari, audio-matnlar), kod nomlari (`earn`, `ACH_*`) tegilmaydi; (4) KORPUS §63, §183, §184 matnlari;
+(5) `lint:til` + 👦 o'qish. ru: «значок» — alohida qaror.
 

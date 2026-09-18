@@ -1,0 +1,1746 @@
+[
+{
+"dars": "CssLesson1",
+"sid": "s15",
+"scope": "final",
+"nishon": "",
+"comp": "Screen15",
+"ichki": [],
+"correct": [
+"true"
+],
+"sinf": "DOIM correct:true"
+},
+{
+"dars": "CssPractice",
+"sid": "s16",
+"scope": "final",
+"nishon": "",
+"comp": "Screen16",
+"ichki": [],
+"correct": [
+"true"
+],
+"sinf": "DOIM correct:true"
+},
+{
+"dars": "HtmlTakrorlashLesson",
+"sid": "s11",
+"scope": "module-mikro",
+"nishon": "architect",
+"comp": "ScreenExam",
+"ichki": [
+"DragDropOrder"
+],
+"correct": [
+"true"
+],
+"sinf": "DOIM correct:true"
+},
+{
+"dars": "Htmllesson1",
+"sid": "s7",
+"scope": "module-mikro",
+"nishon": "firsttag",
+"comp": "Screen7",
+"ichki": [],
+"correct": [
+"true"
+],
+"sinf": "DOIM correct:true"
+},
+{
+"dars": "PmLesson1",
+"sid": "s15",
+"scope": "final",
+"nishon": "",
+"comp": "Screen15",
+"ichki": [],
+"correct": [
+"true"
+],
+"sinf": "DOIM correct:true"
+},
+{
+"dars": "PmLesson3",
+"sid": "s13",
+"scope": "final",
+"nishon": "stage",
+"comp": "Screen13",
+"ichki": [],
+"correct": [
+"true"
+],
+"sinf": "DOIM correct:true"
+},
+{
+"dars": "VsCodeLesson",
+"sid": "s13",
+"scope": "final",
+"nishon": "",
+"comp": "ScreenFinalTest",
+"ichki": [],
+"correct": [
+"true"
+],
+"sinf": "DOIM correct:true"
+},
+{
+"dars": "JsConditionsLesson",
+"sid": "s15",
+"scope": "final",
+"nishon": "firstif",
+"comp": "Screen15",
+"ichki": [],
+"correct": [
+"true"
+],
+"sinf": "DOIM correct:true"
+},
+{
+"dars": "JsFunctionsLesson",
+"sid": "s15",
+"scope": "final",
+"nishon": "returnmaster",
+"comp": "Screen15",
+"ichki": [],
+"correct": [
+"true"
+],
+"sinf": "DOIM correct:true"
+},
+{
+"dars": "JsIntroLesson",
+"sid": "s15",
+"scope": "final",
+"nishon": "bughunter",
+"comp": "Screen15",
+"ichki": [],
+"correct": [
+"true"
+],
+"sinf": "DOIM correct:true"
+},
+{
+"dars": "JsVarsLesson",
+"sid": "s15",
+"scope": "final",
+"nishon": "",
+"comp": "Screen15",
+"ichki": [],
+"correct": [
+"true"
+],
+"sinf": "DOIM correct:true"
+},
+{
+"dars": "PeanStackLesson",
+"sid": "s15",
+"scope": "final",
+"nishon": "fullstack",
+"comp": "Screen15",
+"ichki": [
+"DragDropOrder"
+],
+"correct": [
+"firstCorrectRef.current"
+],
+"sinf": "hisoblangan"
+},
+{
+"dars": "PracticeLesson1",
+"sid": "s15",
+"scope": "final",
+"nishon": "",
+"comp": "Screen15",
+"ichki": [],
+"correct": [],
+"sinf": "onAnswer ichki komponentda"
+},
+{
+"dars": "PracticeLesson2",
+"sid": "s15",
+"scope": "final",
+"nishon": "",
+"comp": "Screen15",
+"ichki": [],
+"correct": [],
+"sinf": "onAnswer ichki komponentda"
+},
+{
+"dars": "PracticeLesson3",
+"sid": "s15",
+"scope": "final",
+"nishon": "",
+"comp": "Screen15",
+"ichki": [],
+"correct": [],
+"sinf": "onAnswer ichki komponentda"
+},
+{
+"dars": "PracticeLesson4",
+"sid": "s15",
+"scope": "final",
+"nishon": "",
+"comp": "Screen15",
+"ichki": [
+"DragDropOrder"
+],
+"correct": [
+"true"
+],
+"sinf": "DOIM correct:true"
+},
+{
+"dars": "PmLesson10",
+"sid": "s3",
+"scope": "module-mikro",
+"nishon": "",
+"comp": "Screen3",
+"ichki": [
+"QuestionScreen"
+],
+"correct": [],
+"sinf": "QuestionScreen (halol)"
+},
+{
+"dars": "PmLesson10",
+"sid": "s5",
+"scope": "module-mikro",
+"nishon": "",
+"comp": "Screen5",
+"ichki": [
+"QuestionScreen"
+],
+"correct": [],
+"sinf": "QuestionScreen (halol)"
+},
+{
+"dars": "PmLesson10",
+"sid": "s7",
+"scope": "module-mikro",
+"nishon": "",
+"comp": "Screen7",
+"ichki": [
+"QuestionScreen"
+],
+"correct": [],
+"sinf": "QuestionScreen (halol)"
+},
+{
+"dars": "PmLesson10",
+"sid": "s11",
+"scope": "final",
+"nishon": "",
+"comp": "ScreenFinalTest",
+"ichki": [
+"QuestionScreen"
+],
+"correct": [],
+"sinf": "QuestionScreen (halol)"
+},
+{
+"dars": "PmLesson8",
+"sid": "s3",
+"scope": "module-mikro",
+"nishon": "",
+"comp": "Screen3",
+"ichki": [
+"QuestionScreen"
+],
+"correct": [],
+"sinf": "QuestionScreen (halol)"
+},
+{
+"dars": "PmLesson8",
+"sid": "s5",
+"scope": "module-mikro",
+"nishon": "",
+"comp": "Screen5",
+"ichki": [
+"QuestionScreen"
+],
+"correct": [],
+"sinf": "QuestionScreen (halol)"
+},
+{
+"dars": "PmLesson8",
+"sid": "s7",
+"scope": "module-mikro",
+"nishon": "",
+"comp": "Screen7",
+"ichki": [
+"QuestionScreen"
+],
+"correct": [],
+"sinf": "QuestionScreen (halol)"
+},
+{
+"dars": "PmLesson8",
+"sid": "s11",
+"scope": "final",
+"nishon": "",
+"comp": "ScreenFinalTest",
+"ichki": [
+"QuestionScreen"
+],
+"correct": [],
+"sinf": "QuestionScreen (halol)"
+},
+{
+"dars": "PmLesson9",
+"sid": "s3",
+"scope": "module-mikro",
+"nishon": "",
+"comp": "Screen3",
+"ichki": [
+"QuestionScreen"
+],
+"correct": [],
+"sinf": "QuestionScreen (halol)"
+},
+{
+"dars": "PmLesson9",
+"sid": "s5",
+"scope": "module-mikro",
+"nishon": "",
+"comp": "Screen5",
+"ichki": [
+"QuestionScreen"
+],
+"correct": [],
+"sinf": "QuestionScreen (halol)"
+},
+{
+"dars": "PmLesson9",
+"sid": "s7",
+"scope": "module-mikro",
+"nishon": "",
+"comp": "Screen7",
+"ichki": [
+"QuestionScreen"
+],
+"correct": [],
+"sinf": "QuestionScreen (halol)"
+},
+{
+"dars": "PmLesson9",
+"sid": "s11",
+"scope": "final",
+"nishon": "",
+"comp": "ScreenFinalTest",
+"ichki": [
+"QuestionScreen"
+],
+"correct": [],
+"sinf": "QuestionScreen (halol)"
+},
+{
+"dars": "ReactApiPostLesson",
+"sid": "s16",
+"scope": "final",
+"nishon": "",
+"comp": "Screen16",
+"ichki": [],
+"correct": [],
+"sinf": "onAnswer ichki komponentda"
+},
+{
+"dars": "ReactBuildSiteLesson",
+"sid": "s14",
+"scope": "final",
+"nishon": "builder",
+"comp": null,
+"ichki": [],
+"correct": [],
+"sinf": "komponent topilmadi"
+},
+{
+"dars": "ReactCrudPracticeLesson",
+"sid": "s14",
+"scope": "final",
+"nishon": "finisher",
+"comp": "Screen14",
+"ichki": [],
+"correct": [
+"true"
+],
+"sinf": "DOIM correct:true"
+},
+{
+"dars": "ReactFirstComponentLesson",
+"sid": "s15",
+"scope": "final",
+"nishon": "builder",
+"comp": "Screen15",
+"ichki": [],
+"correct": [
+"true"
+],
+"sinf": "DOIM correct:true"
+},
+{
+"dars": "ReactIntroLesson",
+"sid": "s15",
+"scope": "final",
+"nishon": "flow",
+"comp": "Screen15",
+"ichki": [
+"DragDropOrder"
+],
+"correct": [
+"true"
+],
+"sinf": "DOIM correct:true"
+},
+{
+"dars": "ReactProjectDayLesson",
+"sid": "s14",
+"scope": "final",
+"nishon": "graduate",
+"comp": "Screen14",
+"ichki": [],
+"correct": [
+"true"
+],
+"sinf": "DOIM correct:true"
+},
+{
+"dars": "ReactPropsReuseLesson",
+"sid": "s15",
+"scope": "final",
+"nishon": "builder",
+"comp": "Screen15",
+"ichki": [],
+"correct": [],
+"sinf": "onAnswer ichki komponentda"
+},
+{
+"dars": "ReactRouterPracticeLesson",
+"sid": "s14",
+"scope": "final",
+"nishon": "router",
+"comp": "Screen14",
+"ichki": [],
+"correct": [],
+"sinf": "onAnswer ichki komponentda"
+},
+{
+"dars": "ReactStateEffectLesson",
+"sid": "s15",
+"scope": "final",
+"nishon": "builder",
+"comp": "Screen15",
+"ichki": [],
+"correct": [
+"true"
+],
+"sinf": "DOIM correct:true"
+},
+{
+"dars": "ApiPostmanLesson",
+"sid": "s15",
+"scope": "final",
+"nishon": "levelUp",
+"comp": "Screen15",
+"ichki": [],
+"correct": [
+"true"
+],
+"sinf": "DOIM correct:true"
+},
+{
+"dars": "AuthEnvLesson",
+"sid": "s15",
+"scope": "final",
+"nishon": "vaultsealed",
+"comp": "Screen15",
+"ichki": [],
+"correct": [],
+"sinf": "onAnswer ichki komponentda"
+},
+{
+"dars": "DataIntroLesson",
+"sid": "s15",
+"scope": "final",
+"nishon": "schemaArchitect",
+"comp": "Screen15",
+"ichki": [],
+"correct": [],
+"sinf": "onAnswer ichki komponentda"
+},
+{
+"dars": "DataIntroLesson",
+"sid": "s15b",
+"scope": "final",
+"nishon": "",
+"comp": "ScreenFindFk",
+"ichki": [],
+"correct": [],
+"sinf": "onAnswer ichki komponentda"
+},
+{
+"dars": "DbSqlNosqlLesson",
+"sid": "s15",
+"scope": "final",
+"nishon": "compassReader",
+"comp": "Screen15",
+"ichki": [],
+"correct": [
+"true"
+],
+"sinf": "DOIM correct:true"
+},
+{
+"dars": "FullstackFeedbackLesson",
+"sid": "s16",
+"scope": "final",
+"nishon": "guardian",
+"comp": "Screen16",
+"ichki": [],
+"correct": [
+"true"
+],
+"sinf": "DOIM correct:true"
+},
+{
+"dars": "FullstackProjectDayLesson",
+"sid": "s16",
+"scope": "final",
+"nishon": "opened",
+"comp": "Screen16",
+"ichki": [],
+"correct": [
+"true"
+],
+"sinf": "DOIM correct:true"
+},
+{
+"dars": "NodeServerLesson",
+"sid": "s15",
+"scope": "final",
+"nishon": "shopOpener",
+"comp": "Screen15",
+"ichki": [],
+"correct": [
+"true"
+],
+"sinf": "DOIM correct:true"
+},
+{
+"dars": "PmLesson11",
+"sid": "s3",
+"scope": "module-mikro",
+"nishon": "",
+"comp": "Screen3",
+"ichki": [
+"QuestionScreen"
+],
+"correct": [],
+"sinf": "QuestionScreen (halol)"
+},
+{
+"dars": "PmLesson11",
+"sid": "s5",
+"scope": "module-mikro",
+"nishon": "",
+"comp": "Screen5",
+"ichki": [
+"QuestionScreen"
+],
+"correct": [],
+"sinf": "QuestionScreen (halol)"
+},
+{
+"dars": "PmLesson11",
+"sid": "s7",
+"scope": "module-mikro",
+"nishon": "",
+"comp": "Screen7",
+"ichki": [
+"QuestionScreen"
+],
+"correct": [],
+"sinf": "QuestionScreen (halol)"
+},
+{
+"dars": "PmLesson11",
+"sid": "s11",
+"scope": "final",
+"nishon": "",
+"comp": "ScreenFinalTest",
+"ichki": [
+"QuestionScreen"
+],
+"correct": [],
+"sinf": "QuestionScreen (halol)"
+},
+{
+"dars": "PmLesson12",
+"sid": "s3",
+"scope": "module-mikro",
+"nishon": "",
+"comp": "Screen3",
+"ichki": [
+"QuestionScreen"
+],
+"correct": [],
+"sinf": "QuestionScreen (halol)"
+},
+{
+"dars": "PmLesson12",
+"sid": "s5",
+"scope": "module-mikro",
+"nishon": "",
+"comp": "Screen5",
+"ichki": [
+"QuestionScreen"
+],
+"correct": [],
+"sinf": "QuestionScreen (halol)"
+},
+{
+"dars": "PmLesson12",
+"sid": "s7",
+"scope": "module-mikro",
+"nishon": "",
+"comp": "Screen7",
+"ichki": [
+"QuestionScreen"
+],
+"correct": [],
+"sinf": "QuestionScreen (halol)"
+},
+{
+"dars": "PmLesson12",
+"sid": "s11",
+"scope": "final",
+"nishon": "",
+"comp": "ScreenFinalTest",
+"ichki": [
+"QuestionScreen"
+],
+"correct": [],
+"sinf": "QuestionScreen (halol)"
+},
+{
+"dars": "PmLesson13",
+"sid": "s3",
+"scope": "module-mikro",
+"nishon": "",
+"comp": "Screen3",
+"ichki": [
+"QuestionScreen"
+],
+"correct": [],
+"sinf": "QuestionScreen (halol)"
+},
+{
+"dars": "PmLesson13",
+"sid": "s5",
+"scope": "module-mikro",
+"nishon": "",
+"comp": "Screen5",
+"ichki": [
+"QuestionScreen"
+],
+"correct": [],
+"sinf": "QuestionScreen (halol)"
+},
+{
+"dars": "PmLesson13",
+"sid": "s7",
+"scope": "module-mikro",
+"nishon": "",
+"comp": "Screen7",
+"ichki": [
+"QuestionScreen"
+],
+"correct": [],
+"sinf": "QuestionScreen (halol)"
+},
+{
+"dars": "PmLesson13",
+"sid": "s11",
+"scope": "final",
+"nishon": "",
+"comp": "ScreenFinalTest",
+"ichki": [
+"QuestionScreen"
+],
+"correct": [],
+"sinf": "QuestionScreen (halol)"
+},
+{
+"dars": "PmLesson14",
+"sid": "s3",
+"scope": "module-mikro",
+"nishon": "",
+"comp": "Screen3",
+"ichki": [
+"QuestionScreen"
+],
+"correct": [],
+"sinf": "QuestionScreen (halol)"
+},
+{
+"dars": "PmLesson14",
+"sid": "s5",
+"scope": "module-mikro",
+"nishon": "",
+"comp": "Screen5",
+"ichki": [
+"QuestionScreen"
+],
+"correct": [],
+"sinf": "QuestionScreen (halol)"
+},
+{
+"dars": "PmLesson14",
+"sid": "s7",
+"scope": "module-mikro",
+"nishon": "",
+"comp": "Screen7",
+"ichki": [
+"QuestionScreen"
+],
+"correct": [],
+"sinf": "QuestionScreen (halol)"
+},
+{
+"dars": "PmLesson14",
+"sid": "s11",
+"scope": "final",
+"nishon": "",
+"comp": "ScreenFinalTest",
+"ichki": [
+"QuestionScreen"
+],
+"correct": [],
+"sinf": "QuestionScreen (halol)"
+},
+{
+"dars": "PostgresCrudLesson",
+"sid": "s15",
+"scope": "final",
+"nishon": "dataArchitect",
+"comp": "Screen15",
+"ichki": [],
+"correct": [
+"true"
+],
+"sinf": "DOIM correct:true"
+},
+{
+"dars": "RoutingLesson",
+"sid": "s15",
+"scope": "final",
+"nishon": "doorbuilder",
+"comp": "ScreenDoorMatch",
+"ichki": [],
+"correct": [],
+"sinf": "onAnswer ichki komponentda"
+},
+{
+"dars": "NestArchAliveLesson",
+"sid": "s19",
+"scope": "final",
+"nishon": "rightPlace",
+"comp": "Screen19",
+"ichki": [],
+"correct": [
+"firstCorrectRef.current === true"
+],
+"sinf": "hisoblangan"
+},
+{
+"dars": "NestArchResourceLesson",
+"sid": "s17",
+"scope": "final",
+"nishon": "detective404",
+"comp": "Screen17",
+"ichki": [],
+"correct": [
+"firstCorrectRef.current === true"
+],
+"sinf": "hisoblangan"
+},
+{
+"dars": "PmLesson15",
+"sid": "s3",
+"scope": "module-mikro",
+"nishon": "",
+"comp": "Screen3",
+"ichki": [
+"QuestionScreen"
+],
+"correct": [],
+"sinf": "QuestionScreen (halol)"
+},
+{
+"dars": "PmLesson15",
+"sid": "s5",
+"scope": "module-mikro",
+"nishon": "",
+"comp": "Screen5",
+"ichki": [
+"QuestionScreen"
+],
+"correct": [],
+"sinf": "QuestionScreen (halol)"
+},
+{
+"dars": "PmLesson15",
+"sid": "s7",
+"scope": "module-mikro",
+"nishon": "",
+"comp": "Screen7",
+"ichki": [
+"QuestionScreen"
+],
+"correct": [],
+"sinf": "QuestionScreen (halol)"
+},
+{
+"dars": "PmLesson15",
+"sid": "s11",
+"scope": "final",
+"nishon": "",
+"comp": "ScreenFinalTest",
+"ichki": [
+"QuestionScreen"
+],
+"correct": [],
+"sinf": "QuestionScreen (halol)"
+},
+{
+"dars": "EdgeCasesTestLesson",
+"sid": "s16",
+"scope": "final",
+"nishon": "boundaryMaster",
+"comp": "Screen16",
+"ichki": [],
+"correct": [
+"isCorrect",
+"firstCorrectRef.current"
+],
+"sinf": "hisoblangan"
+},
+{
+"dars": "JestUnitTestLesson",
+"sid": "s16",
+"scope": "final",
+"nishon": "expectMaster",
+"comp": "Screen16",
+"ichki": [],
+"correct": [
+"isCorrect",
+"firstCorrectRef.current"
+],
+"sinf": "hisoblangan"
+},
+{
+"dars": "PmLesson16",
+"sid": "s3",
+"scope": "module-mikro",
+"nishon": "",
+"comp": "Screen3",
+"ichki": [
+"QuestionScreen"
+],
+"correct": [],
+"sinf": "QuestionScreen (halol)"
+},
+{
+"dars": "PmLesson16",
+"sid": "s5",
+"scope": "module-mikro",
+"nishon": "",
+"comp": "Screen5",
+"ichki": [
+"QuestionScreen"
+],
+"correct": [],
+"sinf": "QuestionScreen (halol)"
+},
+{
+"dars": "PmLesson16",
+"sid": "s7",
+"scope": "module-mikro",
+"nishon": "",
+"comp": "Screen7",
+"ichki": [
+"QuestionScreen"
+],
+"correct": [],
+"sinf": "QuestionScreen (halol)"
+},
+{
+"dars": "PmLesson16",
+"sid": "s11",
+"scope": "final",
+"nishon": "",
+"comp": "ScreenFinalTest",
+"ichki": [
+"QuestionScreen"
+],
+"correct": [],
+"sinf": "QuestionScreen (halol)"
+},
+{
+"dars": "AiPipelineProjectLesson",
+"sid": "s15",
+"scope": "final",
+"nishon": "finalCall",
+"comp": "Screen15",
+"ichki": [
+"DragDropOrder"
+],
+"correct": [
+"firstOk"
+],
+"sinf": "hisoblangan"
+},
+{
+"dars": "CiCdIntroLesson",
+"sid": "s15",
+"scope": "final",
+"nishon": "orderMatters",
+"comp": "Screen15",
+"ichki": [
+"DragDropOrder"
+],
+"correct": [
+"firstOk"
+],
+"sinf": "hisoblangan"
+},
+{
+"dars": "FullPipelineProjectLesson",
+"sid": "s12",
+"scope": "final",
+"nishon": "boardingComplete",
+"comp": "Screen12",
+"ichki": [
+"QuestionScreen"
+],
+"correct": [],
+"sinf": "QuestionScreen (halol)"
+},
+{
+"dars": "FullProPipelineLesson",
+"sid": "s15",
+"scope": "final",
+"nishon": "orderMatters",
+"comp": "Screen15",
+"ichki": [
+"DragDropOrder"
+],
+"correct": [
+"firstOk"
+],
+"sinf": "hisoblangan"
+},
+{
+"dars": "GithubActionsLesson",
+"sid": "s18",
+"scope": "final",
+"nishon": "logDetective",
+"comp": "Screen18",
+"ichki": [],
+"correct": [
+"isCorrect"
+],
+"sinf": "hisoblangan"
+},
+{
+"dars": "PmLesson17",
+"sid": "s3",
+"scope": "module-mikro",
+"nishon": "",
+"comp": "Screen3",
+"ichki": [
+"QuestionScreen"
+],
+"correct": [],
+"sinf": "QuestionScreen (halol)"
+},
+{
+"dars": "PmLesson17",
+"sid": "s5",
+"scope": "module-mikro",
+"nishon": "",
+"comp": "Screen5",
+"ichki": [
+"QuestionScreen"
+],
+"correct": [],
+"sinf": "QuestionScreen (halol)"
+},
+{
+"dars": "PmLesson17",
+"sid": "s7",
+"scope": "module-mikro",
+"nishon": "",
+"comp": "Screen7",
+"ichki": [
+"QuestionScreen"
+],
+"correct": [],
+"sinf": "QuestionScreen (halol)"
+},
+{
+"dars": "PmLesson17",
+"sid": "s11",
+"scope": "final",
+"nishon": "",
+"comp": "ScreenFinalTest",
+"ichki": [
+"QuestionScreen"
+],
+"correct": [],
+"sinf": "QuestionScreen (halol)"
+},
+{
+"dars": "PmLesson18",
+"sid": "s3",
+"scope": "module-mikro",
+"nishon": "",
+"comp": "Screen3",
+"ichki": [
+"QuestionScreen"
+],
+"correct": [],
+"sinf": "QuestionScreen (halol)"
+},
+{
+"dars": "PmLesson18",
+"sid": "s5",
+"scope": "module-mikro",
+"nishon": "",
+"comp": "Screen5",
+"ichki": [
+"QuestionScreen"
+],
+"correct": [],
+"sinf": "QuestionScreen (halol)"
+},
+{
+"dars": "PmLesson18",
+"sid": "s7",
+"scope": "module-mikro",
+"nishon": "",
+"comp": "Screen7",
+"ichki": [
+"QuestionScreen"
+],
+"correct": [],
+"sinf": "QuestionScreen (halol)"
+},
+{
+"dars": "PmLesson18",
+"sid": "s11",
+"scope": "final",
+"nishon": "",
+"comp": "ScreenFinalTest",
+"ichki": [
+"QuestionScreen"
+],
+"correct": [],
+"sinf": "QuestionScreen (halol)"
+},
+{
+"dars": "BotAiAgentLesson",
+"sid": "s15",
+"scope": "final",
+"nishon": "",
+"comp": "Screen15",
+"ichki": [
+"DragDropOrder"
+],
+"correct": [
+"true"
+],
+"sinf": "DOIM correct:true"
+},
+{
+"dars": "BotAiBrainLesson",
+"sid": "s15",
+"scope": "final",
+"nishon": "",
+"comp": "Screen15",
+"ichki": [
+"DragDropOrder"
+],
+"correct": [
+"true"
+],
+"sinf": "DOIM correct:true"
+},
+{
+"dars": "BotAiProjectLesson",
+"sid": "s15",
+"scope": "final",
+"nishon": "director",
+"comp": "Screen15",
+"ichki": [
+"DragDropOrder"
+],
+"correct": [
+"true"
+],
+"sinf": "DOIM correct:true"
+},
+{
+"dars": "BotApiButtonsLesson",
+"sid": "s15",
+"scope": "final",
+"nishon": "",
+"comp": "Screen15",
+"ichki": [
+"DragDropOrder"
+],
+"correct": [
+"firstOk"
+],
+"sinf": "hisoblangan"
+},
+{
+"dars": "BotFeedbackIterationLesson",
+"sid": "s15",
+"scope": "final",
+"nishon": "loopCloser",
+"comp": "Screen15",
+"ichki": [
+"DragDropOrder"
+],
+"correct": [
+"firstOk"
+],
+"sinf": "hisoblangan"
+},
+{
+"dars": "BotFullProjectLesson",
+"sid": "s15",
+"scope": "final",
+"nishon": "",
+"comp": "Screen15",
+"ichki": [
+"DragDropOrder"
+],
+"correct": [
+"true"
+],
+"sinf": "DOIM correct:true"
+},
+{
+"dars": "BotIntroLesson",
+"sid": "s15",
+"scope": "final",
+"nishon": "",
+"comp": "Screen15",
+"ichki": [
+"DragDropOrder"
+],
+"correct": [
+"firstOk"
+],
+"sinf": "hisoblangan"
+},
+{
+"dars": "BotStatefulMemoryLesson",
+"sid": "s15",
+"scope": "final",
+"nishon": "memoryKeeper",
+"comp": "Screen15",
+"ichki": [
+"DragDropOrder"
+],
+"correct": [
+"firstOk"
+],
+"sinf": "hisoblangan"
+},
+{
+"dars": "PmLesson19",
+"sid": "s3",
+"scope": "module-mikro",
+"nishon": "",
+"comp": "Screen3",
+"ichki": [
+"QuestionScreen"
+],
+"correct": [],
+"sinf": "QuestionScreen (halol)"
+},
+{
+"dars": "PmLesson19",
+"sid": "s5",
+"scope": "module-mikro",
+"nishon": "",
+"comp": "Screen5",
+"ichki": [
+"QuestionScreen"
+],
+"correct": [],
+"sinf": "QuestionScreen (halol)"
+},
+{
+"dars": "PmLesson19",
+"sid": "s7",
+"scope": "module-mikro",
+"nishon": "",
+"comp": "Screen7",
+"ichki": [
+"QuestionScreen"
+],
+"correct": [],
+"sinf": "QuestionScreen (halol)"
+},
+{
+"dars": "PmLesson19",
+"sid": "s11",
+"scope": "final",
+"nishon": "",
+"comp": "ScreenFinalTest",
+"ichki": [
+"QuestionScreen"
+],
+"correct": [],
+"sinf": "QuestionScreen (halol)"
+},
+{
+"dars": "PmLesson20",
+"sid": "s3",
+"scope": "module-mikro",
+"nishon": "",
+"comp": "Screen3",
+"ichki": [
+"QuestionScreen"
+],
+"correct": [],
+"sinf": "QuestionScreen (halol)"
+},
+{
+"dars": "PmLesson20",
+"sid": "s5",
+"scope": "module-mikro",
+"nishon": "",
+"comp": "Screen5",
+"ichki": [
+"QuestionScreen"
+],
+"correct": [],
+"sinf": "QuestionScreen (halol)"
+},
+{
+"dars": "PmLesson20",
+"sid": "s7",
+"scope": "module-mikro",
+"nishon": "",
+"comp": "Screen7",
+"ichki": [
+"QuestionScreen"
+],
+"correct": [],
+"sinf": "QuestionScreen (halol)"
+},
+{
+"dars": "PmLesson20",
+"sid": "s11",
+"scope": "final",
+"nishon": "",
+"comp": "ScreenFinalTest",
+"ichki": [
+"QuestionScreen"
+],
+"correct": [],
+"sinf": "QuestionScreen (halol)"
+},
+{
+"dars": "PmLesson21",
+"sid": "s3",
+"scope": "module-mikro",
+"nishon": "",
+"comp": "Screen3",
+"ichki": [
+"QuestionScreen"
+],
+"correct": [],
+"sinf": "QuestionScreen (halol)"
+},
+{
+"dars": "PmLesson21",
+"sid": "s5",
+"scope": "module-mikro",
+"nishon": "",
+"comp": "Screen5",
+"ichki": [
+"QuestionScreen"
+],
+"correct": [],
+"sinf": "QuestionScreen (halol)"
+},
+{
+"dars": "PmLesson21",
+"sid": "s7",
+"scope": "module-mikro",
+"nishon": "",
+"comp": "Screen7",
+"ichki": [
+"QuestionScreen"
+],
+"correct": [],
+"sinf": "QuestionScreen (halol)"
+},
+{
+"dars": "PmLesson21",
+"sid": "s11",
+"scope": "final",
+"nishon": "",
+"comp": "ScreenFinalTest",
+"ichki": [
+"QuestionScreen"
+],
+"correct": [],
+"sinf": "QuestionScreen (halol)"
+},
+{
+"dars": "AgentArchitectureLesson",
+"sid": "s15",
+"scope": "final",
+"nishon": "missionLoop",
+"comp": "Screen15",
+"ichki": [
+"DragDropOrder"
+],
+"correct": [
+"true"
+],
+"sinf": "DOIM correct:true"
+},
+{
+"dars": "ArchPatternsLesson",
+"sid": "s15",
+"scope": "final",
+"nishon": "trafficRoute",
+"comp": "Screen15",
+"ichki": [
+"DragDropOrder"
+],
+"correct": [
+"firstOk"
+],
+"sinf": "hisoblangan"
+},
+{
+"dars": "ClaudeSkillsLesson",
+"sid": "s15",
+"scope": "final",
+"nishon": "cardMaster",
+"comp": "Screen15",
+"ichki": [
+"DragDropOrder"
+],
+"correct": [
+"firstOk"
+],
+"sinf": "hisoblangan"
+},
+{
+"dars": "FullSystemProjectLesson",
+"sid": "s15",
+"scope": "final",
+"nishon": "",
+"comp": "Screen15",
+"ichki": [
+"DragDropOrder"
+],
+"correct": [
+"true"
+],
+"sinf": "DOIM correct:true"
+},
+{
+"dars": "MobileAppPracticeLesson",
+"sid": "s15",
+"scope": "final",
+"nishon": "",
+"comp": "ScreenFinalDD",
+"ichki": [
+"DragDropOrder"
+],
+"correct": [
+"true"
+],
+"sinf": "DOIM correct:true"
+},
+{
+"dars": "PipelineProjectLesson",
+"sid": "s15",
+"scope": "final",
+"nishon": "cityLive",
+"comp": "Screen15",
+"ichki": [
+"DragDropOrder"
+],
+"correct": [
+"true"
+],
+"sinf": "DOIM correct:true"
+},
+{
+"dars": "PmLesson22",
+"sid": "s3",
+"scope": "module-mikro",
+"nishon": "",
+"comp": "Screen3",
+"ichki": [
+"QuestionScreen"
+],
+"correct": [],
+"sinf": "QuestionScreen (halol)"
+},
+{
+"dars": "PmLesson22",
+"sid": "s5",
+"scope": "module-mikro",
+"nishon": "",
+"comp": "Screen5",
+"ichki": [
+"QuestionScreen"
+],
+"correct": [],
+"sinf": "QuestionScreen (halol)"
+},
+{
+"dars": "PmLesson22",
+"sid": "s7",
+"scope": "module-mikro",
+"nishon": "",
+"comp": "Screen7",
+"ichki": [
+"QuestionScreen"
+],
+"correct": [],
+"sinf": "QuestionScreen (halol)"
+},
+{
+"dars": "PmLesson22",
+"sid": "s11",
+"scope": "final",
+"nishon": "",
+"comp": "ScreenFinalTest",
+"ichki": [
+"QuestionScreen"
+],
+"correct": [],
+"sinf": "QuestionScreen (halol)"
+},
+{
+"dars": "PmLesson23",
+"sid": "s3",
+"scope": "module-mikro",
+"nishon": "",
+"comp": "Screen3",
+"ichki": [
+"QuestionScreen"
+],
+"correct": [],
+"sinf": "QuestionScreen (halol)"
+},
+{
+"dars": "PmLesson23",
+"sid": "s5",
+"scope": "module-mikro",
+"nishon": "",
+"comp": "Screen5",
+"ichki": [
+"QuestionScreen"
+],
+"correct": [],
+"sinf": "QuestionScreen (halol)"
+},
+{
+"dars": "PmLesson23",
+"sid": "s7",
+"scope": "module-mikro",
+"nishon": "",
+"comp": "Screen7",
+"ichki": [
+"QuestionScreen"
+],
+"correct": [],
+"sinf": "QuestionScreen (halol)"
+},
+{
+"dars": "PmLesson23",
+"sid": "s11",
+"scope": "final",
+"nishon": "",
+"comp": "ScreenFinalTest",
+"ichki": [
+"QuestionScreen"
+],
+"correct": [],
+"sinf": "QuestionScreen (halol)"
+},
+{
+"dars": "PmLesson24",
+"sid": "s3",
+"scope": "module-mikro",
+"nishon": "",
+"comp": "Screen3",
+"ichki": [
+"QuestionScreen"
+],
+"correct": [],
+"sinf": "QuestionScreen (halol)"
+},
+{
+"dars": "PmLesson24",
+"sid": "s5",
+"scope": "module-mikro",
+"nishon": "",
+"comp": "Screen5",
+"ichki": [
+"QuestionScreen"
+],
+"correct": [],
+"sinf": "QuestionScreen (halol)"
+},
+{
+"dars": "PmLesson24",
+"sid": "s7",
+"scope": "module-mikro",
+"nishon": "",
+"comp": "Screen7",
+"ichki": [
+"QuestionScreen"
+],
+"correct": [],
+"sinf": "QuestionScreen (halol)"
+},
+{
+"dars": "PmLesson24",
+"sid": "s11",
+"scope": "final",
+"nishon": "",
+"comp": "ScreenFinalTest",
+"ichki": [
+"QuestionScreen"
+],
+"correct": [],
+"sinf": "QuestionScreen (halol)"
+},
+{
+"dars": "PmLesson25",
+"sid": "s3",
+"scope": "module-mikro",
+"nishon": "",
+"comp": "Screen3",
+"ichki": [
+"QuestionScreen"
+],
+"correct": [],
+"sinf": "QuestionScreen (halol)"
+},
+{
+"dars": "PmLesson25",
+"sid": "s5",
+"scope": "module-mikro",
+"nishon": "",
+"comp": "Screen5",
+"ichki": [
+"QuestionScreen"
+],
+"correct": [],
+"sinf": "QuestionScreen (halol)"
+},
+{
+"dars": "PmLesson25",
+"sid": "s7",
+"scope": "module-mikro",
+"nishon": "",
+"comp": "Screen7",
+"ichki": [
+"QuestionScreen"
+],
+"correct": [],
+"sinf": "QuestionScreen (halol)"
+},
+{
+"dars": "PmLesson25",
+"sid": "s11",
+"scope": "final",
+"nishon": "",
+"comp": "ScreenFinalTest",
+"ichki": [
+"QuestionScreen"
+],
+"correct": [],
+"sinf": "QuestionScreen (halol)"
+},
+{
+"dars": "ReactNativeAppLesson",
+"sid": "s15",
+"scope": "final",
+"nishon": "backstagePass",
+"comp": "Screen15",
+"ichki": [],
+"correct": [
+"true"
+],
+"sinf": "DOIM correct:true"
+},
+{
+"dars": "ReactNativeBasicsLesson",
+"sid": "s15",
+"scope": "final",
+"nishon": "",
+"comp": "Screen15",
+"ichki": [
+"DragDropOrder"
+],
+"correct": [
+"true"
+],
+"sinf": "DOIM correct:true"
+},
+{
+"dars": "SystemArchitectureLesson",
+"sid": "s15",
+"scope": "final",
+"nishon": "",
+"comp": "Screen15",
+"ichki": [
+"DragDropOrder"
+],
+"correct": [
+"true"
+],
+"sinf": "DOIM correct:true"
+},
+{
+"dars": "WriteSkillLesson",
+"sid": "s15",
+"scope": "final",
+"nishon": "testedSkill",
+"comp": "Screen15",
+"ichki": [
+"DragDropOrder"
+],
+"correct": [
+"firstOk"
+],
+"sinf": "hisoblangan"
+},
+{
+"dars": "PmJtbdLesson",
+"sid": "s7",
+"scope": "module-mikro",
+"nishon": "",
+"comp": "Screen7",
+"ichki": [
+"QuestionScreen"
+],
+"correct": [],
+"sinf": "QuestionScreen (halol)"
+},
+{
+"dars": "PmJtbdLesson",
+"sid": "s8",
+"scope": "module-mikro",
+"nishon": "",
+"comp": "Screen8",
+"ichki": [
+"QuestionScreen"
+],
+"correct": [],
+"sinf": "QuestionScreen (halol)"
+},
+{
+"dars": "PmJtbdLesson",
+"sid": "s9",
+"scope": "module-mikro",
+"nishon": "",
+"comp": "Screen9",
+"ichki": [],
+"correct": [
+"result === 0"
+],
+"sinf": "hisoblangan"
+},
+{
+"dars": "PmMetricsLesson",
+"sid": "s7",
+"scope": "module-mikro",
+"nishon": "",
+"comp": "Screen7",
+"ichki": [
+"QuestionScreen"
+],
+"correct": [],
+"sinf": "QuestionScreen (halol)"
+},
+{
+"dars": "PmMetricsLesson",
+"sid": "s8",
+"scope": "module-mikro",
+"nishon": "",
+"comp": "Screen8",
+"ichki": [
+"QuestionScreen"
+],
+"correct": [],
+"sinf": "QuestionScreen (halol)"
+},
+{
+"dars": "PmMetricsLesson",
+"sid": "s9",
+"scope": "module-mikro",
+"nishon": "",
+"comp": "Screen9",
+"ichki": [],
+"correct": [
+"allCorrect"
+],
+"sinf": "hisoblangan"
+},
+{
+"dars": "PmUserStoryLesson",
+"sid": "s7",
+"scope": "module-mikro",
+"nishon": "",
+"comp": "Screen7",
+"ichki": [
+"QuestionScreen"
+],
+"correct": [],
+"sinf": "QuestionScreen (halol)"
+},
+{
+"dars": "PmUserStoryLesson",
+"sid": "s8",
+"scope": "module-mikro",
+"nishon": "",
+"comp": "Screen8",
+"ichki": [
+"QuestionScreen"
+],
+"correct": [],
+"sinf": "QuestionScreen (halol)"
+},
+{
+"dars": "PmUserStoryLesson",
+"sid": "s9",
+"scope": "module-mikro",
+"nishon": "",
+"comp": "Screen9",
+"ichki": [
+"QuestionScreen"
+],
+"correct": [],
+"sinf": "QuestionScreen (halol)"
+}
+]

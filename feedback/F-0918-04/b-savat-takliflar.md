@@ -346,3 +346,28 @@ Alohida uchta «ha / yo'q»:
 - Skript B/A ni ajratishda `hint`, `reject`, `frame-warn`, `!== TARGET` kabi xato-belgilarni tanimaydi (4 ta noto'g'ri B
   shundan). A savatdagi 146 trigger ichida teskari xato (aslida B) ham bo'lishi mumkin — A ni ochib tasdiqlashda
   e'tiborda tutilsin.
+
+---
+
+## F-0918-06 — qayta ko'rish «juda qismaylik, ba'zida bonus» tamoyili bilan (2026-09-18 ~20:00) — TAKLIF, tasdiq kutadi
+
+Foydalanuvchi: 1 — ha · 2 — ha · 3 — ha + «juda qismaylik, ba'zida bonus berib turaylik, qiynab zeriktirmaylik».
+O'lchov: yuqoridagi 7 texnik darsning har birida nishonlar tarkibi — 1 tekin + 2 haqiqiy + `graduate`. Tekin nishon
+bonus bo'lib qolsa: 2 kafolatli + 2 haqiqiy. Istisno — Htmllesson2: 2 tekin + 1 haqiqiy + `graduate` (3 kafolatli).
+
+| # | Ekran | Yangi tavsiya | O'zgarish |
+|---|---|---|---|
+| 1 | CssLesson1 s5 `rang` | BONUS — joyida qoladi | yo'q (tavsif rost: «…ranglarini o'zgartirdingiz») |
+| 3 | HtmlTakrorlash s12b `built` | BONUS — joyida qoladi (uzun ishning yakuni) | yo'q |
+| 4 | Htmllesson2 s5 `struktura` | KO'CHIRISH → s5b test (aks holda 4 nishondan 3 tasi kafolatli) | `ACH_TRIGGERS` 1 qator + tavsif uz/ru |
+| 5 | Htmllesson2 s7 `forma` | BONUS — joyida qoladi | yo'q (tavsif rost: «Formani to'ldirib yubordingiz») |
+| 7 | JsConditions s13 `builder` | BONUS — joyida qoladi: ekran ataylab «qum-quti» («sinab ko'ring: telefon qachon ogohlantiradi?»), keyingi ekran (s14) — haqiqiy topshiriq | yo'q (tavsif rost: «…o'zingiz tuzdingiz») |
+| 11 | ReactCrud s11 `builder` | BONUS — joyida qoladi | yo'q |
+| 16 | BotIntro s6 `keyMaster` | BONUS — joyida qoladi: ekran «sinab ko'ring» deydi, A yo'lini jazolash shu so'zga zid | faqat tavsif: ikkala yo'lda ham rost bo'lsin |
+| 6, 19 | mehnat nishoni | tasdiqlangan (2 — ha) | qonun-band |
+| 2, 10, 12, 14 | A savat | o'zgarmaydi (151-naqsh, codemod bilan) | — |
+| 8, 9, 13, 15, 17, 18 | `graduate` — tasdiqlangan (1 — ha) | **savol ochiq:** 47 PM darsdan 41 tasida `graduate` yo'q — oltitasiga kiritilsa qardoshlaridan ajraladi; muqobil — joyida bonus (4 tasining tavsifi allaqachon rost, 2 tasi tuzatiladi), katalog kalitlari o'zgarmaydi | qaror foydalanuvchida |
+
+**YAKUNIY QAROR (foydalanuvchi, 18.09 ~20:30): «1-A, 2-A, 3-C, 4-A».** 8, 9, 13, 15, 17, 18 — `graduate` EMAS, joyida
+bonus (2 tasida tavsif rostlandi: `pairFinder`, `splitter`). Bajarildi va muhrlandi: `DARS_ETALON.md` 152-qonun ·
+`MATN_KORPUS.md` §184 · jurnal `PIPELINE_STATE.md` 18.09 20:50. Yuqoridagi «Qaror-ro'yxat» bo'limi — tarixiy taklif.

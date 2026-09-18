@@ -1,0 +1,388 @@
+[
+ {
+  "file": "src/5-Modull/BotAiAgentLesson.jsx",
+  "sid": "s5",
+  "type": "builder",
+  "badge": "cycleBuilder",
+  "desc": "Idrok → qaror → amal rejasini yig'dingiz",
+  "comp": "Screen5",
+  "basket": "C' hisoblangan correct",
+  "fails": [
+   "shake",
+   "wrong"
+  ]
+ },
+ {
+  "file": "src/5-Modull/BotAiAgentLesson.jsx",
+  "sid": "s7",
+  "type": "exploration",
+  "badge": "toolPicker",
+  "desc": "Vaziyatga to'g'ri asbobni (tool-call) tanladingiz",
+  "comp": "Screen7",
+  "basket": "C' hisoblangan correct",
+  "fails": [
+   "shake",
+   "wrong"
+  ]
+ },
+ {
+  "file": "src/5-Modull/BotAiAgentLesson.jsx",
+  "sid": "s9",
+  "type": "case",
+  "badge": "guardKeeper",
+  "desc": "Agentga chegara (guardrail) qo'ydingiz",
+  "comp": "Screen9",
+  "basket": "C' hisoblangan correct",
+  "fails": [
+   "xato"
+  ]
+ },
+ {
+  "file": "src/5-Modull/BotAiAgentLesson.jsx",
+  "sid": "s11",
+  "type": "exploration",
+  "badge": "safeActor",
+  "desc": "Qaysi amal odam ruxsatini so'rashini bildingiz",
+  "comp": "Screen11",
+  "basket": "C' hisoblangan correct",
+  "fails": [
+   "bad",
+   "tekshir"
+  ]
+ },
+ {
+  "file": "src/5-Modull/BotAiBrainLesson.jsx",
+  "sid": "s5",
+  "type": "builder",
+  "badge": "ruleWriter",
+  "desc": "Maslahatchiga aniq yo'riqnoma yozdingiz",
+  "comp": "Screen5",
+  "basket": "C' hisoblangan correct",
+  "fails": [
+   "shake",
+   "wrong"
+  ]
+ },
+ {
+  "file": "src/5-Modull/BotAiBrainLesson.jsx",
+  "sid": "s7",
+  "type": "exploration",
+  "badge": "tableManager",
+  "desc": "Muhim ma'lumotni daftarga ko'chirdingiz",
+  "comp": "Screen7",
+  "basket": "C' hisoblangan correct",
+  "fails": []
+ },
+ {
+  "file": "src/5-Modull/BotAiBrainLesson.jsx",
+  "sid": "s9",
+  "type": "case",
+  "badge": "dialMaster",
+  "desc": "Erkinlik murvatini to'g'ri sozladingiz",
+  "comp": "Screen9",
+  "basket": "C' hisoblangan correct",
+  "fails": []
+ },
+ {
+  "file": "src/5-Modull/BotAiBrainLesson.jsx",
+  "sid": "s11",
+  "type": "exploration",
+  "badge": "factChecker",
+  "desc": "O'ylab topilgan pitsani menyu bilan tutdingiz",
+  "comp": "Screen11",
+  "basket": "C' hisoblangan correct",
+  "fails": [
+   "bad",
+   "tekshir"
+  ]
+ },
+ {
+  "file": "src/5-Modull/BotAiProjectLesson.jsx",
+  "sid": "s7",
+  "type": "exploration",
+  "badge": "bugCatcher",
+  "desc": "Yetishmagan handlerni test bilan topdingiz",
+  "comp": "Screen7",
+  "basket": "A challenge",
+  "fails": [
+   "tekshir",
+   "xato"
+  ]
+ },
+ {
+  "file": "src/5-Modull/BotApiButtonsLesson.jsx",
+  "sid": "s9",
+  "type": "case",
+  "badge": "buttonMaster",
+  "desc": "Tugmalar taxtasini to'liq ulab, ishga tushirdingiz",
+  "comp": "Screen9",
+  "basket": "A challenge",
+  "fails": [
+   "tekshir"
+  ]
+ },
+ {
+  "file": "src/5-Modull/BotApiButtonsLesson.jsx",
+  "sid": "s11",
+  "type": "exploration",
+  "badge": "rightEnvelope",
+  "desc": "Konvert manzili xatosini topib to'g'riladingiz",
+  "comp": "Screen11",
+  "basket": "A challenge",
+  "fails": [
+   "xato"
+  ]
+ },
+ {
+  "file": "src/5-Modull/BotApiButtonsLesson.jsx",
+  "sid": "s12",
+  "type": "case",
+  "badge": "neverSilent",
+  "desc": "Fallback qo'shib, Botjonni jim qoldirmadingiz",
+  "comp": "Screen12",
+  "basket": "A challenge",
+  "fails": [
+   "wrong"
+  ]
+ },
+ {
+  "file": "src/5-Modull/BotApiButtonsLesson.jsx",
+  "sid": "s13",
+  "type": "builder",
+  "badge": "commandWriter",
+  "desc": "Buyruqlar ro'yxatini xatosiz to'ldirdingiz",
+  "comp": "Screen13",
+  "basket": "C' hisoblangan correct",
+  "fails": [
+   "shake",
+   "wrong"
+  ]
+ },
+ {
+  "file": "src/5-Modull/BotFullProjectLesson.jsx",
+  "sid": "s5",
+  "type": "builder",
+  "badge": "assembleMaster",
+  "desc": "To'liq Botjonni o'zingiz yig'dingiz",
+  "comp": "Screen5",
+  "basket": "C' hisoblangan correct",
+  "fails": [
+   "shake",
+   "wrong"
+  ]
+ },
+ {
+  "file": "src/5-Modull/BotFullProjectLesson.jsx",
+  "sid": "s7",
+  "type": "exploration",
+  "badge": "keyMaster",
+  "desc": "Kalitni qulfli tortmaga (.env) qo'ydingiz",
+  "comp": "Screen7",
+  "basket": "C' hisoblangan correct",
+  "fails": []
+ },
+ {
+  "file": "src/5-Modull/BotFullProjectLesson.jsx",
+  "sid": "s9",
+  "type": "case",
+  "badge": "linkMaster",
+  "desc": "Botjonga to'g'ri aloqa usulini tanladingiz",
+  "comp": "Screen9",
+  "basket": "C' hisoblangan correct",
+  "fails": []
+ },
+ {
+  "file": "src/5-Modull/BotFullProjectLesson.jsx",
+  "sid": "s11",
+  "type": "exploration",
+  "badge": "checkMaster",
+  "desc": "Ko'chirishdan oldin tekshiruvni bajardingiz",
+  "comp": "Screen11",
+  "basket": "C' hisoblangan correct",
+  "fails": [
+   "bad",
+   "tekshir",
+   "xato"
+  ]
+ },
+ {
+  "file": "src/5-Modull/BotIntroLesson.jsx",
+  "sid": "s7",
+  "type": "exploration",
+  "badge": "sheetMaster",
+  "desc": "Tungi smenani 4/4 bajardingiz",
+  "comp": "Screen7",
+  "basket": "A challenge",
+  "fails": [
+   "wrong",
+   "xato"
+  ]
+ },
+ {
+  "file": "src/5-Modull/BotIntroLesson.jsx",
+  "sid": "s13",
+  "type": "builder",
+  "badge": "sheetWriter",
+  "desc": "Qoidalar varag'ini xatosiz yozdingiz",
+  "comp": "Screen13",
+  "basket": "C' hisoblangan correct",
+  "fails": [
+   "shake",
+   "wrong"
+  ]
+ },
+ {
+  "file": "src/5-Modull/BotStatefulMemoryLesson.jsx",
+  "sid": "s13",
+  "type": "builder",
+  "badge": "sqlWriter",
+  "desc": "SQL bo'shliqlarini xatosiz to'ldirdingiz",
+  "comp": "Screen13",
+  "basket": "C' hisoblangan correct",
+  "fails": [
+   "shake",
+   "tekshir",
+   "wrong"
+  ]
+ },
+ {
+  "file": "src/5-Modull/PmLesson19.jsx",
+  "sid": "s8",
+  "type": "practice",
+  "badge": "twentyPlan",
+  "desc": "",
+  "comp": "Screen8",
+  "basket": "A challenge",
+  "fails": [
+   "tekshir",
+   "xato"
+  ]
+ },
+ {
+  "file": "src/5-Modull/PmLesson19.jsx",
+  "sid": "s9",
+  "type": "practice",
+  "badge": "fullHouse",
+  "desc": "",
+  "comp": "Screen9",
+  "basket": "A challenge",
+  "fails": [
+   "tekshir"
+  ]
+ },
+ {
+  "file": "src/5-Modull/PmLesson19.jsx",
+  "sid": "s10",
+  "type": "koding",
+  "badge": "headCount",
+  "desc": "",
+  "comp": "ScreenCoding",
+  "basket": "A challenge",
+  "fails": [
+   ".ok",
+   "compile",
+   "miss",
+   "missedonce",
+   "misst"
+  ]
+ },
+ {
+  "file": "src/5-Modull/PmLesson20.jsx",
+  "sid": "s4",
+  "type": "exploration",
+  "badge": "goodListener",
+  "desc": "",
+  "comp": "Screen4",
+  "basket": "A challenge",
+  "fails": [
+   ".ok"
+  ]
+ },
+ {
+  "file": "src/5-Modull/PmLesson20.jsx",
+  "sid": "s8",
+  "type": "practice",
+  "badge": "noteTaker",
+  "desc": "",
+  "comp": "Screen8",
+  "basket": "A challenge",
+  "fails": [
+   "tekshir",
+   "xato"
+  ]
+ },
+ {
+  "file": "src/5-Modull/PmLesson20.jsx",
+  "sid": "s9",
+  "type": "practice",
+  "badge": "sharpSifter",
+  "desc": "",
+  "comp": "Screen9",
+  "basket": "A challenge",
+  "fails": [
+   "missedonce",
+   "tekshir",
+   "xato"
+  ]
+ },
+ {
+  "file": "src/5-Modull/PmLesson20.jsx",
+  "sid": "s10",
+  "type": "koding",
+  "badge": "sheetMaker",
+  "desc": "",
+  "comp": "ScreenCoding",
+  "basket": "A challenge",
+  "fails": [
+   ".ok",
+   "miss",
+   "missedonce",
+   "misst"
+  ]
+ },
+ {
+  "file": "src/5-Modull/PmLesson21.jsx",
+  "sid": "s8",
+  "type": "practice",
+  "badge": "countKeeper",
+  "desc": "",
+  "comp": "Screen8",
+  "basket": "A challenge",
+  "fails": [
+   "tekshir"
+  ]
+ },
+ {
+  "file": "src/5-Modull/PmLesson21.jsx",
+  "sid": "s9",
+  "type": "practice",
+  "badge": "twoInARow",
+  "desc": "",
+  "comp": "Screen9",
+  "basket": "A challenge",
+  "fails": [
+   ".ok",
+   "compile",
+   "missedonce",
+   "tekshir",
+   "xato"
+  ]
+ },
+ {
+  "file": "src/5-Modull/PmLesson21.jsx",
+  "sid": "s10",
+  "type": "koding",
+  "badge": "codeCounter",
+  "desc": "",
+  "comp": "ScreenCoding",
+  "basket": "A challenge",
+  "fails": [
+   ".ok",
+   "compile",
+   "miss",
+   "missedonce",
+   "misst",
+   "xato"
+  ]
+ }
+]

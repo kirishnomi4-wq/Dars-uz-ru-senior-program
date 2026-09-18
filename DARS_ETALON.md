@@ -2791,7 +2791,7 @@ nishon; ikkinchisida emas. Shunda nishon o'quvchiga qiymatli tuyuladi».
    urinish LMS'ga **ketmaydi**: serverda tanga-qoidasi (solo — azaldan; jonli — 18.09 dan, `BACKEND_REJA_UZ.md` Qoida 3).
 
 **Tegilmaydigan joylar:** test savoli (azaldan birinchi urinishga) · `graduate` (ishtirok nishoni — kafolatli) ·
-exploration/toggle ekranlar (ularga nishon umuman bog'lanmaydi — 10-bo'lim) · mentor ekrani (10.1: qator ham,
+exploration/toggle ekranlar (ularga nishon umuman bog'lanmaydi — 10-bo'lim; **istisno — 152-qonun: bitta bonus nishon**) · mentor ekrani (10.1: qator ham,
 nishon ham ko'rinmaydi) · server va School API payload'i (`achievements` ni dars yuboradi — shart faqat klientda).
 
 **Kod naqshi — etalon `src/1-Modull/InternetLesson.jsx`:**
@@ -2812,7 +2812,7 @@ if (... && data.correct && !missedRef.current.has(_m.id)) earn(ACH_TRIGGERS[_m.i
 `missed` va `practice` effekt-deps'da bo'lishi SHART — aks holda xatodan (yoki «Qaytadan»dan) keyin darhol F5 bosgan
 o'quvchi belgini yo'qotadi va yana «birinchi» imkonni oladi.
 
-**Tekshiruv (tekshiruvchi/qabulchi):** har test bo'lmagan `ACH_TRIGGERS` kaliti uchun — (a) ekranda `AchRule` bor;
+**Tekshiruv (tekshiruvchi/qabulchi):** har test bo'lmagan `ACH_TRIGGERS` kaliti uchun (bonus va mehnat nishoni bundan mustasno — 152-qonun) — (a) ekranda `AchRule` bor;
 (b) xato yo'lida `miss(screen)` chaqiriladi; (c) brauzerda olti holat: xato→to'g'ri = nishon yo'q · F5 dan keyin
 belgi turibdi · birinchi urinishda to'g'ri = nishon + bayram · «Qaytadan» → `firstPass` muhrlandi, nishonlar o'zgarmadi ·
 mashq-o'tishida test nishoni ham berilmadi, `AchRule` yo'q · mashqdan keyin `onFinished` = birinchi o'tish.
@@ -2820,3 +2820,42 @@ Dalil (pilot, 18.09): boshsiz Chrome — oltitasi ham o'tdi, konsol xatosi 0 (`f
 Ma'lum chegara: `missed` va `firstPass` faqat shu qurilmada (localStorage) — server-progress ularni tashimaydi.
 
 **Qamrov:** 98 darsda 343 trigger; 148 tasi test (halol), **195 tasi test emas — 76 faylda** → `KATTA_TOZALASH.md` §41.
+
+
+## 11-P. 🎁 152-QONUN: BONUS NISHON — O'QUVCHINI QISMAYMIZ (2026-09-18, F-0918-06)
+
+**Nega.** 151-qonun nishonni halol qildi. Lekin har nishon «birinchi urinishda to'g'ri» shartiga bog'lansa, dars
+imtihonga aylanadi va 13 yoshli o'quvchini zeriktiradi. Foydalanuvchi qarori (18.09): «juda qismaylik, ba'zida bonus
+berib turaylik». Halollik nishonning kamligida emas — nishon **nima uchun berilganini rost aytishida**.
+
+1. **Son chegarasi.** Bir darsda kafolatli nishon ko'pi bilan **ikkita**: `graduate` va **bitta bonus**. Qolgan
+   nishonlar haqiqiy topshiriqqa (151-naqsh) yoki testga bog'lanadi. Ikkinchi tekin nishon chiqsa — u testga yoki xato
+   qilish mumkin bo'lgan topshiriqqa ko'chiriladi (namuna: `Htmllesson2` — `struktura` s5 → s5b test, `forma` — bonus).
+2. **Bonus qayerda o'rinli.** O'quvchi shu ekranda biror ish qilgan (sinab ko'rdi, ochib chiqdi, to'ldirdi) yoki uzun
+   ishning yakuni (masalan, sahifa qurib bo'lingan bayram-ekran). Ekran ochilishining o'zi uchun bonus — faqat
+   shunday yakunda.
+3. **Tavsif rost aytadi** (KORPUS §133, §184): bonus `desc` faqat **qilingan ishni** aytadi, mahorat da'vo qilmaydi.
+   ✅ «…ochdingiz», «…ko'rdingiz», «…joyladingiz», «…o'tkazdingiz» · ❌ «…to'g'ri bog'ladingiz», «…bo'ldingiz»
+   (ishni ekran bajargan bo'lsa). Tanlovli ekranda tavsif **hamma yo'lda** rost bo'lishi shart.
+4. **`AchRule` qatori bonus ekranida ko'rsatilmaydi** — shart yo'q, va'da ham yo'q. «Sinab ko'ring» deb yozilgan
+   ekranda tanlovlardan birini nishonsiz qoldirish taqiqlanadi (so'zga zid).
+5. **Mehnat nishoni** — erkin yozma ish (o'z kartasi, o'z matni) va ekrandan tashqarida bajariladigan ish (VS Code'da
+   kod). Yagona to'g'ri javob yo'q, shuning uchun «birinchi urinish» ham yo'q; nishon kafolatli emas (yozmasa ololmaydi),
+   bonus hisobiga **kirmaydi**; `AchRule` siz.
+6. **151-qonunning 6-bandi** («Qaytadan» = mashq, nishonlar muzlaydi) bonus va mehnat nishoniga ham to'liq tegishli.
+
+**Reyestr (18.09, KATTA §41 B savat — har ekran kodda o'qilgan):**
+
+| Tur | Dars · ekran · kalit |
+|---|---|
+| Bonus — o'zgarishsiz | `CssLesson1` s5 `rang` · `HtmlTakrorlashLesson` s12b `built` · `Htmllesson2` s7 `forma` · `JsConditionsLesson` s13 `builder` · `ReactCrudPracticeLesson` s11 `builder` · `PmLesson17` s4 `paceSetter` · `PmLesson19` s4 `innerCircle` · `PmLesson21` s4 `dayTwo` · `DbSqlNosqlLesson` s5 `connector` |
+| Bonus — tavsif rostlandi | `BotIntroLesson` s6 `keyMaster` · `PmLesson4` s2 `pairFinder` · `PmLesson5` s2 `splitter` |
+| Testga ko'chdi | `Htmllesson2` `struktura`: s5 → s5b |
+| Mehnat nishoni | `PmLesson1` s6 `audience` · `PmMetricsLesson` s10 `calcMaster` |
+| Aslida tekin emas → 151-naqsh (codemod) | `CssLesson2` s7 · `PmLesson8` s4 · `ApiPostmanLesson` s3 · `NodeServerLesson` s14 |
+
+**Tekshiruv (tekshiruvchi/qabulchi):** har test bo'lmagan `ACH_TRIGGERS` kaliti uchta holatdan biriga tushadi —
+(a) 151-naqsh (`miss` + `AchRule`); (b) bonus: darsda yagona, tavsifi 3-bandga mos, `AchRule` yo'q; (c) mehnat nishoni.
+Hech biriga tushmagan kalit — topilma. Yangi darsda bonus ixtiyoriy; qo'yilsa — shu besh shart bilan.
+Dalil (18.09): `Htmllesson2` boshsiz Chrome — s5 da nishon yo'q · s5b birinchi urinishda to'g'ri → nishon + bayram ·
+xato → to'g'ri = nishon yo'q · s7 `forma` bonusi joyida · konsol xatosi 0.

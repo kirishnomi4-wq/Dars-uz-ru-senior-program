@@ -3643,3 +3643,19 @@ ekranda bitta xira qator turadi va u ikki holatdan birini aytadi. 76 darsda **ay
 📌 Nishon tavsifi (`desc`) **o'zgarmaydi va uzaymaydi** (§63: 48 belgi chegarasi): «So'rovni to'g'ri serverga
    yetkazdingiz» endi rost gap (§133) — nishon faqat birinchi urinishda to'g'ri bajarganga beriladi.
 
+## 184. BONUS NISHON TAVSIFI — qilingan ishni aytadi, mahorat da'vo qilmaydi (F-0918-06, 152-qonun)
+
+Bonus nishon xato qilib bo'lmaydigan ekranda beriladi (152-qonun: darsda ko'pi bilan bitta). U halol bo'lishi uchun
+tavsifi o'quvchi **haqiqatan qilgan ishni** aytadi. Ishni ekran bajargan bo'lsa, fe'l ham shuni tan oladi
+(«ko'rdingiz», «ochdingiz»). §133 ning davomi; uzunlik — §63 (48 belgi).
+
+| Dars · nishon | ❌ eski | ✅ yangi (uz · ru) | Sabab |
+|---|---|---|---|
+| PmLesson4 · `pairFinder` | «Imkoniyatlarni qiyinchiliklarga bog'ladingiz» | «Imkoniyat va qiyinchilik juftlarini ochdingiz» · «Вы открыли пары возможностей и трудностей» | o'quvchi kartani bosib ochadi; bog'lashni ekran ko'rsatadi. Haqiqiy bog'lash — s4 `matchMaster` |
+| PmLesson5 · `splitter` | «Katta ishni oltita bo'lakka bo'ldingiz» | «Katta ish olti bo'lakka bo'linishini ko'rdingiz» · «Вы увидели, как работа делится на шесть частей» | kartani bosganda u o'zi bo'linadi. «oltita» → «olti»: 49 belgi chegaradan oshardi (§63) |
+| BotIntroLesson · `keyMaster` | «Kalitni bekor qilib, yangisini qo'ydingiz» | «Kalitni qulfli tortmaga (.env) joyladingiz» · «Вы положили ключ в запертый ящик (.env)» | ekranda ikki yo'l bor; eski tavsif faqat A yo'lida rost edi. Tanlovli ekranda tavsif **hamma yo'lda** rost bo'ladi |
+| Htmllesson2 · `struktura` (testga ko'chdi) | «Sahifani header, main, footerga ajratdingiz» | «Logotip va menyu joyini to'g'ri topdingiz» · «Вы верно нашли место логотипа и меню» | nishon s5b test savoliga ko'chdi — tavsif endi o'sha savolni aytadi; «to'g'ri» bu yerda rost (birinchi urinish) |
+
+✅ O'zgarishsiz qolgan bonus-tavsiflar (allaqachon rost): «Matn va fon ranglarini o'zgartirdingiz» · «Formani to'ldirib
+yubordingiz» · «Poygani oxirigacha o'tkazdingiz» · «Uch halqani ochib solishtirdingiz».
+❌ Bonus ekraniga «🏅 Birinchi urinishda…» qatori (§183) qo'yilmaydi — shart yo'q, va'da yolg'on bo'lardi.

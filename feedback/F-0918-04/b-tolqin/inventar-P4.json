@@ -1,0 +1,1292 @@
+{
+ "partiya": "P4",
+ "sana": "2026-09-19",
+ "usul": "har ekran komponenti (va u chaqiradigan ichki komponent) kodda o'qildi; BRAUZERDA OCHILMAGAN",
+ "triggerlar": [
+  {
+   "file": "src/4-Modull/ApiPostmanLesson.jsx",
+   "sid": "s3",
+   "badge": "envelopeBuilder",
+   "desc_uz": "Konvertlarni o'zingiz yig'ib jo'natdingiz",
+   "comp": "Screen3",
+   "lines": "809–914",
+   "mexanika": "dragdrop-moslash",
+   "oquvchi_nima_qiladi": "5 bo'lakni (METHOD, URL, BODY, STATUS, DATA) ikki konvertga (so'rov / javob) sudraydi yoki bosib qo'yadi; noto'g'ri konvertda bo'lak silkinib qaytadi.",
+   "xato_yoli": {
+    "bor": true,
+    "qator": 826,
+    "kod": "if (piece.zone !== zone) { setSel(null); setReject(k); setTimeout(...,520); return; }",
+    "ekran_nima_korsatadi": "bo'lak silkinadi (env-reject), joylashmaydi"
+   },
+   "urinish_tarifi": "Tanlov/o'yin qatori: noto'g'ri konvertga qo'yilgan har qadam (ekran silkinish bilan qaytaradi). Qo'l sirpanishi ajratilgan: sudrashda zonadan tashqariga tashlansa `if (z)` sharti tufayli tryPlace chaqirilmaydi (856-qator) — urinish emas.",
+   "allaqachon_halol": {
+    "ha": false,
+    "qanday": "doim correct:true (821-qator)"
+   },
+   "miss_nuqtasi": {
+    "qator": 826,
+    "taklif_kod": "const achMiss = useContext(AchMissCtx); (komponent boshida) · if (piece.zone !== zone) { if (achMiss) achMiss.miss(screen); setSel(null); setReject(k); ... }",
+    "ichki_komponentga_prop_kerakmi": "yo'q"
+   },
+   "achrule_joyi": "chap ustundagi bo'laklar hovuzi (`env-pool`, ~890–899) dan keyin, o'sha <Col> ichida",
+   "hukm": "A-qol-ishi",
+   "tekin_bolsa_152": "",
+   "yon_topilma": "13-band klapan (`useStuckValve` rescue) NavNext'ni yechmasdan ochadi — unda onAnswer chaqirilmaydi, nishon ham yo'q (to'g'ri). Fayldagi F-0820-212 izohi nishon ataylab shu ekranga ko'chirilganini aytadi.",
+   "hajm_qator": 5,
+   "ishonch": "yuqori — xato-yo'l aniq; brauzerda ko'rilmagan"
+  },
+  {
+   "file": "src/4-Modull/ApiPostmanLesson.jsx",
+   "sid": "s14",
+   "badge": "stampReader",
+   "desc_uz": "404 shtampini o'qib, xatoni topib tuzatdingiz",
+   "comp": "Screen14",
+   "lines": "1310–1359",
+   "mexanika": "debug-qator-topish (yagona bosiladigan qator)",
+   "oquvchi_nima_qiladi": "AI so'rovidagi `/api/produts` qatorini bosadi → «🔧 produts → products» → «▶ Qaytadan Send». Boshqa qator (GET) bosilmaydi (`cursor: default`, onClick yo'q).",
+   "xato_yoli": {
+    "bor": false,
+    "qator": null,
+    "kod": "",
+    "ekran_nima_korsatadi": "xato tanlash imkoni yo'q: bosiladigan yagona qator — xato qatorning o'zi (1336)"
+   },
+   "urinish_tarifi": "Xato urinish hodisasi yo'q.",
+   "allaqachon_halol": {
+    "ha": false,
+    "qanday": "doim correct:true (1318)"
+   },
+   "miss_nuqtasi": {
+    "qator": null,
+    "taklif_kod": "—",
+    "ichki_komponentga_prop_kerakmi": "yo'q"
+   },
+   "achrule_joyi": "—",
+   "hukm": "TEKIN",
+   "tekin_bolsa_152": "Darsda hozir bonus yo'q, `graduate` ham yo'q (4 nishon: s3 topshiriq · s12 test · s14 · s15 test). Taklif-1 (kam ish): bonus bo'lib qoladi, tavsif rostlanadi — «topib» so'zi da'vo (masalan «404 xatosini tuzatib, so'rovni qayta yubordingiz»). Taklif-2 (halolroq, ~8 qator + matn): GET qatori ham bosiladigan bo'ladi va xato bosishda AuthEnv s14 / BackendCrud s10 dagidek «Bu qator to'g'ri…» fidbeki chiqadi → 151-naqsh. Qaror foydalanuvchida.",
+   "yon_topilma": "Mentor matni javobni aytadi («URL'ga diqqat bilan qarang: bir harf tushib qolgan») + `_tip` ipuchasi («Manzilda bitta harf yetishmaydi»).",
+   "hajm_qator": 0,
+   "ishonch": "yuqori"
+  },
+  {
+   "file": "src/4-Modull/AuthEnvLesson.jsx",
+   "sid": "s7",
+   "badge": "gatekeeper",
+   "desc_uz": "Qo'riqchi smenasini to'liq to'g'ri o'tdingiz",
+   "comp": "Screen7",
+   "lines": "962–1039",
+   "mexanika": "tanlov-oyin (xato tanlov belgilanadi)",
+   "oquvchi_nima_qiladi": "Navbatdagi har bilaguzukka KIRIT yoki RAD hukmini beradi (GUARD_SHIFT kartalari); har hukmdan keyin to'g'ri/xato izohi chiqadi.",
+   "xato_yoli": {
+    "bor": true,
+    "qator": 980,
+    "kod": "if (correct) setOkCount(c => c + 1); else setMistakes(m => m + 1);",
+    "ekran_nima_korsatadi": "`gq-verdict bad` bloki + sabab matni"
+   },
+   "urinish_tarifi": "Tanlov/o'yin: har xato hukm — bitta xato urinish.",
+   "allaqachon_halol": {
+    "ha": false,
+    "qanday": "QISMAN: `correct: mistakes === 0` (973) — lekin `restart` (983) mistakes'ni 0 ga qaytaradi va `savedRef`ni ochadi → ikkinchi smena xatosiz o'tilsa onAnswer `correct:true` bilan QAYTA chaqiriladi va nishon beriladi; `mistakes` faqat komponent holatida — smena o'rtasida F5 uni o'chiradi."
+   },
+   "miss_nuqtasi": {
+    "qator": 980,
+    "taklif_kod": "const achMiss = useContext(AchMissCtx); (komponent boshida) · if (correct) setOkCount(c => c + 1); else { setMistakes(m => m + 1); if (achMiss) achMiss.miss(screen); }",
+    "ichki_komponentga_prop_kerakmi": "yo'q"
+   },
+   "achrule_joyi": "KIRIT/RAD tugmalari bloki (`gq-choices`, 1012) ostida; yakun-panel (1019–1020) chiqqanda ham ko'rinib tursin",
+   "hukm": "A-qol-ishi",
+   "tekin_bolsa_152": "",
+   "yon_topilma": "Yakun matni «Ba'zi hukmlar xato bo'ldi…» + «↻ Smenani qaytadan» tugmasi o'quvchini nishon uchun qayta o'tishga undaydi — 151 dan keyin qayta o'tish nishon bermaydi; `AchRule` «lost» qatori buni aytib turadi, lekin yakun matni bilan ohang to'qnashmasligi tekshirilsin.",
+   "hajm_qator": 4,
+   "ishonch": "yuqori"
+  },
+  {
+   "file": "src/4-Modull/AuthEnvLesson.jsx",
+   "sid": "s13",
+   "badge": "tokenforged",
+   "desc_uz": "Login → token → 201 yo'lini xatosiz bosib o'tdingiz",
+   "comp": "Screen13",
+   "lines": "1230–1318",
+   "mexanika": "tanlov-oyin (3 qadam, har qadamda qaror → Send)",
+   "oquvchi_nima_qiladi": "Har qadamda server nima qaytarishini / tokenni qayerga qo'yishni tanlaydi; to'g'ri tanlovdan keyin Send bosadi.",
+   "xato_yoli": {
+    "bor": true,
+    "qator": 1248,
+    "kod": "else { setWrong(i); setMistakes(m => m + 1); }",
+    "ekran_nima_korsatadi": "variant `option-picked-wrong` + sabab (`frame-soft`, 1306)"
+   },
+   "urinish_tarifi": "Tanlov/o'yin: har xato qaror — bitta xato urinish.",
+   "allaqachon_halol": {
+    "ha": false,
+    "qanday": "QISMAN: `correct: mistakes === 0` (1240), lekin `restart` (1256) hisobni nolga tushiradi va `savedRef`ni ochadi → qayta o'tishda nishon beriladi; F5 da `mistakes` yo'qoladi."
+   },
+   "miss_nuqtasi": {
+    "qator": 1248,
+    "taklif_kod": "const achMiss = useContext(AchMissCtx); (komponent boshida) · else { setWrong(i); setMistakes(m => m + 1); if (achMiss) achMiss.miss(screen); }",
+    "ichki_komponentga_prop_kerakmi": "yo'q"
+   },
+   "achrule_joyi": "o'ng ustundagi variantlar ro'yxati (1296) ostida",
+   "hukm": "A-qol-ishi",
+   "tekin_bolsa_152": "",
+   "yon_topilma": "Yakun matni (1282) «Qadamlarni qaytadan — xatosiz — o'tib ko'ring» deydi + «↻ Qaytadan» — s7 dagi kabi ohang masalasi. Tavsif «xatosiz bosib o'tdingiz» 151 dan keyin to'liq rost bo'ladi.",
+   "hajm_qator": 4,
+   "ishonch": "yuqori"
+  },
+  {
+   "file": "src/4-Modull/AuthEnvLesson.jsx",
+   "sid": "s14",
+   "badge": "secretkeeper",
+   "desc_uz": "Kodda ochiq qolgan maxfiy kalitni topib tuzatdingiz",
+   "comp": "Screen14",
+   "lines": "1319–1366",
+   "mexanika": "debug-qator-topish (3 qator)",
+   "oquvchi_nima_qiladi": "3 qatorli server.js dan maxfiy kalit ochiq yozilgan qatorni bosadi, keyin «🔧 process.env.JWT_SECRET'ga o'zgartirish».",
+   "xato_yoli": {
+    "bor": true,
+    "qator": 1345,
+    "kod": "onClick={() => { if (!found) setFound(l.bug); }}",
+    "ekran_nima_korsatadi": "HECH NARSA — xato qator bosilsa `setFound(false)`, ekranda javob yo'q (silkinish ham, matn ham)"
+   },
+   "urinish_tarifi": "Tanlov/o'yin: xato qator bosilgani. DIQQAT: qonun jadvali «ekran ❌/silkinish bilan qaytargan har qadam» deydi — bu ekran hozir qaytarmaydi.",
+   "allaqachon_halol": {
+    "ha": false,
+    "qanday": "doim correct:true (1324)"
+   },
+   "miss_nuqtasi": {
+    "qator": 1345,
+    "taklif_kod": "const achMiss = useContext(AchMissCtx); (komponent boshida) · onClick={() => { if (found) return; if (!l.bug && achMiss) achMiss.miss(screen); setFound(l.bug); }}",
+    "ichki_komponentga_prop_kerakmi": "yo'q"
+   },
+   "achrule_joyi": "`ai-prompt` qatori (1348) ostida / «🔧» tugmasidan oldin",
+   "hukm": "A-qol-ishi",
+   "tekin_bolsa_152": "",
+   "yon_topilma": "Xato bosishga ko'rinadigan fidbek yo'q — `miss` jim yonsa, o'quvchi nishonni nega yo'qotganini faqat `AchRule` qatoridan biladi. Tavsiya: xato qatorga qisqa silkinish yoki BackendCrud s10 dagidek «Bu qator to'g'ri…» bloki (+~4 qator, matn kerak bo'lsa — foydalanuvchi tasdig'i). Mentor «maxfiy kalit ochiq turibdi» deydi, `_tip` «Kalit qiymati ochiq yozilgan qatorni bosing» — javobga juda yaqin.",
+   "hajm_qator": 6,
+   "ishonch": "o'rta — xato-yo'l kodda bor, lekin ekranda ko'rinmaydi"
+  },
+  {
+   "file": "src/4-Modull/BackendCrudPracticeLesson.jsx",
+   "sid": "s5",
+   "badge": "director",
+   "desc_uz": "AI'ga eng aniq promptni tanladingiz",
+   "comp": "Screen5",
+   "lines": "957–1013",
+   "mexanika": "tanlov-oyin (3 promptdan biri)",
+   "oquvchi_nima_qiladi": "Uch promptdan eng aniqini tanlaydi; noaniq prompt tanlansa qizil ramka + sabab chiqadi va qayta tanlaydi.",
+   "xato_yoli": {
+    "bor": true,
+    "qator": 963,
+    "kod": "setPicked(id); const ok = !!PROMPTS.find(p => p.id === id)?.precise; if (ok) onAnswer(...)",
+    "ekran_nima_korsatadi": "tanlangan tugma qizil (`T.danger`), pastda `frame-warn` + `cur.why`"
+   },
+   "urinish_tarifi": "Tanlov/o'yin: noaniq prompt tanlangan har qadam.",
+   "allaqachon_halol": {
+    "ha": false,
+    "qanday": "onAnswer faqat to'g'ri tanlovda, doim correct:true (965)"
+   },
+   "miss_nuqtasi": {
+    "qator": 964,
+    "taklif_kod": "const achMiss = useContext(AchMissCtx); (komponent boshida) · const ok = ...; if (!ok && achMiss) achMiss.miss(screen); if (ok) onAnswer(...)",
+    "ichki_komponentga_prop_kerakmi": "yo'q"
+   },
+   "achrule_joyi": "promptlar ro'yxati ostida, natija-bloki (993) dan oldin",
+   "hukm": "A-qol-ishi",
+   "tekin_bolsa_152": "",
+   "yon_topilma": "",
+   "hajm_qator": 4,
+   "ishonch": "yuqori"
+  },
+  {
+   "file": "src/4-Modull/BackendCrudPracticeLesson.jsx",
+   "sid": "s10",
+   "badge": "catcher",
+   "desc_uz": "price xatosini narx'ga tuzatdingiz (500 → 201)",
+   "comp": "Screen10",
+   "lines": "1191–1243",
+   "mexanika": "debug-qator-topish (3 qator)",
+   "oquvchi_nima_qiladi": "3 qatorli koddan `price` yozilgan xato qatorni bosadi, keyin «🔧 price → narx ga tuzatish».",
+   "xato_yoli": {
+    "bor": true,
+    "qator": 1208,
+    "kod": "onClick={() => { if (!found) setPicked('a'); }}  (1214 da 'c')",
+    "ekran_nima_korsatadi": "bosilgan qator `ok` klassi + `frame-warn`: «Bu qator to'g'ri. Yana qarang…» (1232)"
+   },
+   "urinish_tarifi": "Tanlov/o'yin: to'g'ri qatorni xato deb bosgan har qadam.",
+   "allaqachon_halol": {
+    "ha": false,
+    "qanday": "doim correct:true (1196)"
+   },
+   "miss_nuqtasi": {
+    "qator": 1208,
+    "taklif_kod": "const achMiss = useContext(AchMissCtx); (komponent boshida) · 1208 va 1214 da: onClick={() => { if (!found) { if (achMiss) achMiss.miss(screen); setPicked('a'); } }}",
+    "ichki_komponentga_prop_kerakmi": "yo'q"
+   },
+   "achrule_joyi": "`ai-code` bloki ostida, «🔧» tugmasidan (1217) oldin",
+   "hukm": "A-qol-ishi",
+   "tekin_bolsa_152": "",
+   "yon_topilma": "Xato qatorda `price` so'zi `<At>` bilan rangli ajratilgan (1210) va Mentor xato matnini («column \"price\" does not exist») oldindan o'qib beradi — topshiriq deyarli javob bilan beriladi. Alohida matn/dizayn topilma.",
+   "hajm_qator": 5,
+   "ishonch": "yuqori"
+  },
+  {
+   "file": "src/4-Modull/BackendCrudPracticeLesson.jsx",
+   "sid": "spf",
+   "badge": "finisher",
+   "desc_uz": "AvtoIjara backend'ini VS Code'da o'zingiz qurdingiz",
+   "comp": "ScreenFinalPractice → ScreenLivePractice",
+   "lines": "1480–1495 (+1427–1478)",
+   "mexanika": "tashqi-ish (VS Code, «Bajardim»)",
+   "oquvchi_nima_qiladi": "Ishni o'z kompyuterida VS Code'da bajaradi, ekrandagi 7 banddan iborat ro'yxatni belgilab boradi va «Bajardim»ni bosadi (ro'yxat belgilanmasa ham tugma ishlaydi).",
+   "xato_yoli": {
+    "bor": false,
+    "qator": null,
+    "kod": "",
+    "ekran_nima_korsatadi": "tekshiruv yo'q — vijdon asosida (`complete`, 1434)"
+   },
+   "urinish_tarifi": "«Urinish» tushunchasi yo'q (152-qonun 5-band).",
+   "allaqachon_halol": {
+    "ha": false,
+    "qanday": "—"
+   },
+   "miss_nuqtasi": {
+    "qator": null,
+    "taklif_kod": "—",
+    "ichki_komponentga_prop_kerakmi": "yo'q"
+   },
+   "achrule_joyi": "— (`AchRule` ko'rsatilmaydi)",
+   "hukm": "MEHNAT",
+   "tekin_bolsa_152": "Mehnat nishoni — bonus hisobiga kirmaydi.",
+   "yon_topilma": "«Bajardim» hech narsani tekshirmaydi — bu umumiy `ScreenLivePractice` komponentining xususiyati (4-Modulda 11 faylda bir xil nusxa).",
+   "hajm_qator": 0,
+   "ishonch": "yuqori"
+  },
+  {
+   "file": "src/4-Modull/DbSqlNosqlLesson.jsx",
+   "sid": "s3",
+   "badge": "packageMaster",
+   "desc_uz": "Kartalarni to'g'ri ustun va maydonlarga joyladingiz",
+   "comp": "Screen3 → Qadoqxona",
+   "lines": "871–887 (+792–869)",
+   "mexanika": "dragdrop-moslash (2 stansiya) — LEKIN bosish avto-joylaydi",
+   "oquvchi_nima_qiladi": "Post kartalarini SQL quti yoki NoSQL paketga taqsimlaydi. Kartani BOSSA — u o'zi to'g'ri joyga tushadi (`autoHome`, 807/822). Sudrasa: 🎵 musiqa SQL'ga tashlansa silkinib qaytadi; oddiy karta NoSQL'ga tashlansa qabul qilinadi, lekin yechim yopilmaydi.",
+   "xato_yoli": {
+    "bor": true,
+    "qator": 804,
+    "kod": "const toSql = (id) => { if (QX_BYID[id].col) setPlace(...); else rejectShake(id); };",
+    "ekran_nima_korsatadi": "faqat bitta holat rad etiladi: 🎵 → SQL (silkinish). Oddiy karta → NoSQL: jim qabul qilinadi (805), `solved` false qoladi"
+   },
+   "urinish_tarifi": "Sudrash yo'lida: 🎵 ni SQL'ga tashlash = xato qadam. BOSISH yo'lida xato qilib bo'lmaydi (avto-joylash). Zonadan tashqariga tashlash ajratilgan (826) — urinish emas.",
+   "allaqachon_halol": {
+    "ha": false,
+    "qanday": "doim correct:true (875)"
+   },
+   "miss_nuqtasi": {
+    "qator": 804,
+    "taklif_kod": "Qadoqxona'ga `onWrong` prop: toSql'ning else tarmog'ida `onWrong && onWrong()`; ixtiyoriy — toNosql'da `QX_BYID[id].col` bo'lsa ham. Screen3: <Qadoqxona ... onWrong={() => achMiss && achMiss.miss(screen)} />",
+    "ichki_komponentga_prop_kerakmi": "Qadoqxona — faqat shu ekranda ishlatiladi (792, 881)"
+   },
+   "achrule_joyi": "`<Qadoqxona>` (881) ostida",
+   "hukm": "NOANIQ",
+   "tekin_bolsa_152": "Darsda allaqachon bonus bor: `connector` s5 (152-qonun reyestri). Bosish avto-joylagani uchun bu nishon amalda ikkinchi kafolatli nishon (graduate yo'q). Variantlar: (1) `onWrong` qo'shiladi, bosish-avto-joylash qoladi — bosib o'tgan o'quvchi uchun nishon baribir kafolatli; (2) bosish avto-joylamaydi (karta tanlanadi → stansiya bosiladi, ApiPostman s3 dagidek) + `onWrong` — haqiqiy topshiriq, ~15 qator, mexanika o'zgaradi (brauzer-sinov shart); (3) nishon `s5b`/yaqin testga ko'chadi. Qaror foydalanuvchida.",
+   "yon_topilma": "Tavsif «to'g'ri … joyladingiz» — bosishda joylashni ekran bajaradi (152-qonun 3-band: da'vo). Audio/Mentor javobni to'liq aytadi («musiqa uchun ustun yo'q», «NoSQL paketiga … musiqa kartasi tushadi»).",
+   "hajm_qator": 12,
+   "ishonch": "o'rta — mexanika ikki yo'lli; brauzerda ko'rilmagan"
+  },
+  {
+   "file": "src/4-Modull/DbSqlNosqlLesson.jsx",
+   "sid": "s14",
+   "badge": "mythBuster",
+   "desc_uz": "Noto'g'ri fikrni topib to'g'irladingiz",
+   "comp": "Screen14",
+   "lines": "1316–1362",
+   "mexanika": "tanlov-oyin (3 fikrdan noto'g'risi)",
+   "oquvchi_nima_qiladi": "Uch fikrdan mifni bosadi, keyin «🔧 To'g'ri fikrga almashtirish».",
+   "xato_yoli": {
+    "bor": true,
+    "qator": 1341,
+    "kod": "onClick={() => { if (!found) setPicked(isMyth ? 'myth' : c.id); }}",
+    "ekran_nima_korsatadi": "to'g'ri fikr bosilsa `ok` klassi + `frame-warn`: «Bu fikr to'g'ri. Yana qarang…» (1351)"
+   },
+   "urinish_tarifi": "Tanlov/o'yin: to'g'ri fikrni mif deb bosgan har qadam.",
+   "allaqachon_halol": {
+    "ha": false,
+    "qanday": "doim correct:true (1327)"
+   },
+   "miss_nuqtasi": {
+    "qator": 1341,
+    "taklif_kod": "const achMiss = useContext(AchMissCtx); (komponent boshida) · onClick={() => { if (found) return; if (!isMyth && achMiss) achMiss.miss(screen); setPicked(isMyth ? 'myth' : c.id); }}",
+    "ichki_komponentga_prop_kerakmi": "yo'q"
+   },
+   "achrule_joyi": "fikrlar ro'yxati ostida, «🔧» tugmasidan (1345) oldin",
+   "hukm": "A-qol-ishi",
+   "tekin_bolsa_152": "",
+   "yon_topilma": "Mentor VA audio mifni so'zma-so'z aytib beradi («NoSQL yangi, demak har doim yaxshiroq. Bu — mif») — javob topshiriqdan OLDIN berilgan. Nishon halol bo'lishi uchun matn ko'rilishi kerak (alohida matn-topilma, foydalanuvchi tasdig'i bilan).",
+   "hajm_qator": 4,
+   "ishonch": "yuqori"
+  },
+  {
+   "file": "src/4-Modull/FullstackConnectPracticeLesson.jsx",
+   "sid": "s16",
+   "badge": "fullStack",
+   "desc_uz": "Frontni backendga o'zingiz uladingiz",
+   "comp": "ScreenConnectPractice → ScreenLivePractice",
+   "lines": "1421–1441",
+   "mexanika": "tashqi-ish (VS Code, «Bajardim»)",
+   "oquvchi_nima_qiladi": "O'z frontini backendga VS Code'da ulaydi, 6 bandli ro'yxatni belgilaydi, «Bajardim»ni bosadi.",
+   "xato_yoli": {
+    "bor": false,
+    "qator": null,
+    "kod": "",
+    "ekran_nima_korsatadi": "tekshiruv yo'q"
+   },
+   "urinish_tarifi": "«Urinish» yo'q (152-qonun 5-band).",
+   "allaqachon_halol": {
+    "ha": false,
+    "qanday": "—"
+   },
+   "miss_nuqtasi": {
+    "qator": null,
+    "taklif_kod": "—",
+    "ichki_komponentga_prop_kerakmi": "yo'q"
+   },
+   "achrule_joyi": "— (`AchRule` ko'rsatilmaydi)",
+   "hukm": "MEHNAT",
+   "tekin_bolsa_152": "Mehnat nishoni. Darsning qolgan 3 nishoni — test (s4, s9, s14).",
+   "yon_topilma": "",
+   "hajm_qator": 0,
+   "ishonch": "yuqori"
+  },
+  {
+   "file": "src/4-Modull/FullstackFeedbackLesson.jsx",
+   "sid": "s5",
+   "badge": "prioritizer",
+   "desc_uz": "Fikrlarni Foyda/Mehnat doskasiga joyladingiz",
+   "comp": "Screen5",
+   "lines": "899–1021",
+   "mexanika": "dragdrop-moslash (4 katak)",
+   "oquvchi_nima_qiladi": "Fikr-kartalarni Foyda/Mehnat doskasining 4 katagiga sudraydi yoki bosib qo'yadi; noto'g'ri katakda karta silkinadi va oqibat-izoh chiqadi.",
+   "xato_yoli": {
+    "bor": true,
+    "qator": 927,
+    "kod": "} else { setArmed(null); setNote({...CONSEQ...}); setRejectQ(q); ...; shakeCard(f.id); }",
+    "ekran_nima_korsatadi": "karta silkinadi, katak «meni emas» silkinishi, `frame-warn conseq` izohi (992)"
+   },
+   "urinish_tarifi": "Tanlov/o'yin: noto'g'ri katakka qo'yilgan har qadam. Zonadan tashqariga tashlash `place` ni chaqirmaydi (hitQuad null) — urinish emas.",
+   "allaqachon_halol": {
+    "ha": false,
+    "qanday": "doim correct:true (913)"
+   },
+   "miss_nuqtasi": {
+    "qator": 927,
+    "taklif_kod": "const achMiss = useContext(AchMissCtx); (komponent boshida) · } else { if (achMiss) achMiss.miss(screen); setArmed(null); setNote(...); ... }",
+    "ichki_komponentga_prop_kerakmi": "yo'q"
+   },
+   "achrule_joyi": "chap ustundagi kartalar hovuzi ostida, `note` blokidan (992) oldin",
+   "hukm": "A-qol-ishi",
+   "tekin_bolsa_152": "",
+   "yon_topilma": "A to'lqinda bu darsda `reset` nishonlarni o'chirishdan to'xtatilgan (G3). Tavsif «joyladingiz» — betaraf, 151 dan keyin rost.",
+   "hajm_qator": 4,
+   "ishonch": "yuqori"
+  },
+  {
+   "file": "src/4-Modull/NodeServerLesson.jsx",
+   "sid": "s13",
+   "badge": "serverArchitect",
+   "desc_uz": "Server qismlarini to'g'ri tartibda yig'dingiz",
+   "comp": "Screen13",
+   "lines": "1103–1164",
+   "mexanika": "tartib-bosish (har bosish darhol tekshiriladi)",
+   "oquvchi_nima_qiladi": "4 kod-bo'lagini to'g'ri tartibda birma-bir bosadi; navbatdagisi bo'lmagan bo'lak bosilsa — silkinadi.",
+   "xato_yoli": {
+    "bor": true,
+    "qator": 1118,
+    "kod": "else { setShake(id); setTimeout(() => setShake(null), 400); }",
+    "ekran_nima_korsatadi": "chip silkinadi (`shake`)"
+   },
+   "urinish_tarifi": "Bu DragDrop-tartib EMAS (to'liq joylash tekshirilmaydi) — har bosish alohida tekshiriladi, demak tanlov/o'yin qatori: navbatdan tashqari bosilgan har qadam.",
+   "allaqachon_halol": {
+    "ha": false,
+    "qanday": "doim correct:true (1120)"
+   },
+   "miss_nuqtasi": {
+    "qator": 1118,
+    "taklif_kod": "const achMiss = useContext(AchMissCtx); (komponent boshida) · else { if (achMiss) achMiss.miss(screen); setShake(id); ... }",
+    "ichki_komponentga_prop_kerakmi": "yo'q"
+   },
+   "achrule_joyi": "bo'laklar qatori va «Keyingi: …» ipuchasi (1138) ostida",
+   "hukm": "A-qol-ishi",
+   "tekin_bolsa_152": "",
+   "yon_topilma": "«Keyingi: <ipucha>» qatori (1138) HAR qadamdan OLDIN keyingi bo'lakning ma'nosini aytib turadi («serverni yarat» → `const app = express()`), Mentor ham tartibni to'liq sanaydi — topshiriq deyarli javob bilan. Nishon qiymatli bo'lishi uchun ipucha birinchi xatodan keyin ochilsa yaxshi (mexanika/matn — foydalanuvchi qarori).",
+   "hajm_qator": 4,
+   "ishonch": "yuqori"
+  },
+  {
+   "file": "src/4-Modull/NodeServerLesson.jsx",
+   "sid": "s14",
+   "badge": "bugHunter",
+   "desc_uz": "app.listen yetishmasligini topib tuzatdingiz",
+   "comp": "Screen14",
+   "lines": "1165–1218",
+   "mexanika": "tanlov-oyin (3 variant)",
+   "oquvchi_nima_qiladi": "«Nima yetishmayapti?» — 3 variantdan birini tanlaydi; to'g'risi (`app.listen`) dan keyin «🔧 qo'shish».",
+   "xato_yoli": {
+    "bor": true,
+    "qator": 1205,
+    "kod": "onClick={() => setPicked(o.id)}",
+    "ekran_nima_korsatadi": "`frame-warn`: «Bu qator kodda bor. Yana qarang…» (1207)"
+   },
+   "urinish_tarifi": "Tanlov/o'yin: noto'g'ri variant tanlangan har qadam.",
+   "allaqachon_halol": {
+    "ha": false,
+    "qanday": "doim correct:true (1175)"
+   },
+   "miss_nuqtasi": {
+    "qator": 1205,
+    "taklif_kod": "const achMiss = useContext(AchMissCtx); (komponent boshida) · onClick={() => { if (o.id !== 'listen' && !found && achMiss) achMiss.miss(screen); setPicked(o.id); }}",
+    "ichki_komponentga_prop_kerakmi": "yo'q"
+   },
+   "achrule_joyi": "variantlar ro'yxati (1205) ostida",
+   "hukm": "A-qol-ishi",
+   "tekin_bolsa_152": "",
+   "yon_topilma": "B savat tahlilida aytilgan: Mentor va audio javobni oldindan aytadi («server umuman yoqilmagan», to'g'ri variant yozuvida ham izoh). Matn-topilma.",
+   "hajm_qator": 4,
+   "ishonch": "yuqori"
+  },
+  {
+   "file": "src/4-Modull/PmLesson11.jsx",
+   "sid": "s4",
+   "badge": "memoryMaker",
+   "desc_uz": "Beshta tugmani sinab ko'rdingiz",
+   "comp": "Screen4",
+   "lines": "849–953",
+   "mexanika": "kashfiyot-toggle",
+   "oquvchi_nima_qiladi": "Besh tugmani yoqib-o'chirib, qaysi maydon qaysi bo'limni ochishini ko'radi; hammasi sinalgach va bittasi o'chirib ko'rilgach ekran yopiladi.",
+   "xato_yoli": {
+    "bor": false,
+    "qator": null,
+    "kod": "",
+    "ekran_nima_korsatadi": "xato qilib bo'lmaydi — har bosish qabul qilinadi"
+   },
+   "urinish_tarifi": "Xato urinish hodisasi yo'q.",
+   "allaqachon_halol": {
+    "ha": false,
+    "qanday": "doim correct:true"
+   },
+   "miss_nuqtasi": {
+    "qator": null,
+    "taklif_kod": "—",
+    "ichki_komponentga_prop_kerakmi": "yo'q"
+   },
+   "achrule_joyi": "— (bonus ekranida `AchRule` yo'q, 152-qonun 4-band)",
+   "hukm": "TEKIN",
+   "tekin_bolsa_152": "Darsda bonus ham, `graduate` ham yo'q (s8 mehnat · s9, s10 topshiriq). Taklif: BONUS bo'lib qoladi — tavsif allaqachon rost («sinab ko'rdingiz»), `AchRule` qo'yilmaydi. O'zgarish 0.",
+   "yon_topilma": "",
+   "hajm_qator": 0,
+   "ishonch": "yuqori"
+  },
+  {
+   "file": "src/4-Modull/PmLesson14.jsx",
+   "sid": "s4",
+   "badge": "threeFloors",
+   "desc_uz": "Uch qavatning ishini ochib chiqdingiz",
+   "comp": "Screen4",
+   "lines": "871–953",
+   "mexanika": "kashfiyot-toggle",
+   "oquvchi_nima_qiladi": "Uch qavatni bosib ochadi va «yo'lni ko'rish» animatsiyasini ishga tushiradi.",
+   "xato_yoli": {
+    "bor": false,
+    "qator": null,
+    "kod": "",
+    "ekran_nima_korsatadi": "xato qilib bo'lmaydi — har bosish qabul qilinadi"
+   },
+   "urinish_tarifi": "Xato urinish hodisasi yo'q.",
+   "allaqachon_halol": {
+    "ha": false,
+    "qanday": "doim correct:true"
+   },
+   "miss_nuqtasi": {
+    "qator": null,
+    "taklif_kod": "—",
+    "ichki_komponentga_prop_kerakmi": "yo'q"
+   },
+   "achrule_joyi": "— (bonus ekranida `AchRule` yo'q, 152-qonun 4-band)",
+   "hukm": "TEKIN",
+   "tekin_bolsa_152": "Darsda bonus ham, `graduate` ham yo'q. Taklif: BONUS — tavsif rost («ochib chiqdingiz»). O'zgarish 0.",
+   "yon_topilma": "",
+   "hajm_qator": 0,
+   "ishonch": "yuqori"
+  },
+  {
+   "file": "src/4-Modull/PmLesson12.jsx",
+   "sid": "s4",
+   "badge": "eyesOpen",
+   "desc_uz": "Uch qatorni sinfdoshdan yopdingiz",
+   "comp": "Screen4",
+   "lines": "874–971",
+   "mexanika": "tanlov-oyin — LEKIN dizayn bo'yicha «xato emas, qaror»",
+   "oquvchi_nima_qiladi": "Avval uch kirishni (siz / sinfdosh / …) ochib ko'radi, keyin 5 qatordan sinfdoshdan yopilishi keraklarini (3 ta) bosadi. Ochiq qolishi kerak bo'lgan qator bosilsa — 🤔 izoh chiqadi, qator yopilmaydi.",
+   "xato_yoli": {
+    "bor": true,
+    "qator": 914,
+    "kod": "} else { setTries(t => t + 1); }  → setJust({ id, ok: q.yopiladi, res: q.res })",
+    "ekran_nima_korsatadi": "`jres ask` — 🤔 + izoh (nega bu qator ochiq qoladi); qizil YO'Q"
+   },
+   "urinish_tarifi": "Kod izohi (908–909): «ochiq qolishi kerak bo'lgan qatorni bosish XATO EMAS — bu qaror»; MentorNote (966): «bu eng foydali xato». Ya'ni muallif bu qadamni ataylab jazosiz qoldirgan. Qonun jadvali bo'yicha esa bu «ekran qaytargan xato qadam»ga o'xshaydi.",
+   "allaqachon_halol": {
+    "ha": false,
+    "qanday": "doim correct:true (896)"
+   },
+   "miss_nuqtasi": {
+    "qator": 914,
+    "taklif_kod": "(agar A deb qaror qilinsa) const achMiss = useContext(AchMissCtx); (komponent boshida) · else { if (achMiss) achMiss.miss(screen); setTries(t => t + 1); }",
+    "ichki_komponentga_prop_kerakmi": "yo'q"
+   },
+   "achrule_joyi": "qatorlar ro'yxati ostida, `jres` (951) dan oldin — faqat A varianti tanlansa",
+   "hukm": "NOANIQ",
+   "tekin_bolsa_152": "Darsda bonus ham, `graduate` ham yo'q. Tavsiyam: BONUS (tavsif rost — «yopdingiz»; ekran pedagogikasi «xato — foydali» ustiga qurilgan, nishonni shu xato uchun olib qo'yish muallif niyatiga zid). Muqobil: 914 va 911 da `miss`. PM 11–14 da bir xil siyosat qulay: s4 «sinov» ekrani = darsning yagona bonusi. Qaror foydalanuvchida.",
+   "yon_topilma": "",
+   "hajm_qator": 0,
+   "ishonch": "o'rta — kod aniq, savol siyosatda"
+  },
+  {
+   "file": "src/4-Modull/PmLesson13.jsx",
+   "sid": "s4",
+   "badge": "threadMaster",
+   "desc_uz": "To'rt gapni to'rt ustunga uladingiz",
+   "comp": "Screen4",
+   "lines": "843–1003",
+   "mexanika": "dragdrop-moslash (bosib ulash: gap → ustun)",
+   "oquvchi_nima_qiladi": "Chapdan e'lon gapini tanlaydi, o'ngdan mos sxema-ustunini bosadi — ip tortiladi. To'rtinchi gap («sana») uchun ustun boshida YO'Q: ➕ uyacha faqat navbat shu gapga kelganda yoki shu gap mavjud ustunga urinib ko'rilganda ochiladi.",
+   "xato_yoli": {
+    "bor": true,
+    "qator": 931,
+    "kod": "setTries(t => t + 1); setMsg({ ok: false, t: '🤔 Gapni qayta o'qing…' })  (925 da: uyachaga noto'g'ri gap)",
+    "ekran_nima_korsatadi": "🤔 xabar (`msg.ok=false`); ip tortilmaydi"
+   },
+   "urinish_tarifi": "Tanlov/o'yin: noto'g'ri ustun bosilgan har qadam (925, 931). ISTISNO SHART: «sana» gapi tanlangan va ➕ uyacha hali ko'rinmayotgan bo'lsa (`g.col === 'sana' && !slotKor`) — ekranda to'g'ri javobning O'ZI yo'q, bu qadam kashfiyot (930: `setSlotOch(true)`), urinish EMAS. «Avval gapni tanlang» (920) ham urinish emas.",
+   "allaqachon_halol": {
+    "ha": false,
+    "qanday": "doim correct:true (906); `tries` faqat ipucha/klapan uchun, F5 da yo'qoladi; ulangan iplar localStorage'da (BOARD_KEY) saqlanadi"
+   },
+   "miss_nuqtasi": {
+    "qator": 931,
+    "taklif_kod": "const achMiss = useContext(AchMissCtx); (komponent boshida) · 925 da: if (achMiss) achMiss.miss(screen); · 930–931 da: if (g.col === 'sana' && !slotKor) { setSlotOch(true); } else if (achMiss) achMiss.miss(screen);  (setTries/setMsg o'z joyida)",
+    "ichki_komponentga_prop_kerakmi": "yo'q"
+   },
+   "achrule_joyi": "o'ng ustun (ustunlar) ostida, `msg` qatoridan oldin",
+   "hukm": "A-qol-ishi",
+   "tekin_bolsa_152": "",
+   "yon_topilma": "Rang-qonuni: bu darslarda xato 🤔 bilan, qizilsiz beriladi — `AchRule` «lost» qatori ham shu ohangda (§183 matni mos). Klapan (`rescue`, 912) NavNext'ni yechmasdan ochadi — nishonsiz. PmLesson12 s4 bilan bir xil siyosat tanlansa (s4 = bonus), bu ham bonus bo'lishi mumkin — lekin bu yerda haqiqiy moslash topshirig'i bor, shuning uchun A deb baholadim.",
+   "hajm_qator": 8,
+   "ishonch": "o'rta — «sana» istisnosi nozik; brauzerda tekshirilishi shart"
+  },
+  {
+   "file": "src/4-Modull/PmLesson11.jsx",
+   "sid": "s8",
+   "badge": "fieldWriter",
+   "desc_uz": "Uch maydonni bo'limi bilan yozdingiz",
+   "comp": "Screen8",
+   "lines": "1101–1223",
+   "mexanika": "erkin-yozma",
+   "oquvchi_nima_qiladi": "Uchta maydon va har biri ochadigan bo'limni o'z so'zi bilan yozib saqlaydi (uzunlik, umumiy so'z, takror darvozalari — tugma to'g'ri bo'lmaguncha bosilmaydi).",
+   "xato_yoli": {
+    "bor": false,
+    "qator": null,
+    "kod": "",
+    "ekran_nima_korsatadi": "yagona to'g'ri javob yo'q; saqlash tugmasi shart bajarilmaguncha o'chiq — «tekshirilgan xato urinish» hodisasi yo'q"
+   },
+   "urinish_tarifi": "«Urinish» tushunchasi yo'q (152-qonun 5-band).",
+   "allaqachon_halol": {
+    "ha": false,
+    "qanday": "—"
+   },
+   "miss_nuqtasi": {
+    "qator": null,
+    "taklif_kod": "—",
+    "ichki_komponentga_prop_kerakmi": "yo'q"
+   },
+   "achrule_joyi": "— (`AchRule` ko'rsatilmaydi)",
+   "hukm": "MEHNAT",
+   "tekin_bolsa_152": "Mehnat nishoni — bonus hisobiga kirmaydi (PmLesson1 s6 bilan bir sinf).",
+   "yon_topilma": "",
+   "hajm_qator": 0,
+   "ishonch": "yuqori"
+  },
+  {
+   "file": "src/4-Modull/PmLesson12.jsx",
+   "sid": "s8",
+   "badge": "clearReasons",
+   "desc_uz": "Uchala qatorga sababini yozdingiz",
+   "comp": "Screen8",
+   "lines": "1150–1289",
+   "mexanika": "erkin-yozma",
+   "oquvchi_nima_qiladi": "Uch qatorning har biriga ruxsat-qarorini tanlab, sababini o'z so'zi bilan yozadi (uzunlik, odam, takror darvozalari).",
+   "xato_yoli": {
+    "bor": false,
+    "qator": null,
+    "kod": "",
+    "ekran_nima_korsatadi": "yagona to'g'ri javob yo'q; saqlash tugmasi shart bajarilmaguncha o'chiq — «tekshirilgan xato urinish» hodisasi yo'q"
+   },
+   "urinish_tarifi": "«Urinish» tushunchasi yo'q (152-qonun 5-band).",
+   "allaqachon_halol": {
+    "ha": false,
+    "qanday": "—"
+   },
+   "miss_nuqtasi": {
+    "qator": null,
+    "taklif_kod": "—",
+    "ichki_komponentga_prop_kerakmi": "yo'q"
+   },
+   "achrule_joyi": "— (`AchRule` ko'rsatilmaydi)",
+   "hukm": "MEHNAT",
+   "tekin_bolsa_152": "Mehnat nishoni — bonus hisobiga kirmaydi (PmLesson1 s6 bilan bir sinf).",
+   "yon_topilma": "",
+   "hajm_qator": 0,
+   "ishonch": "yuqori"
+  },
+  {
+   "file": "src/4-Modull/PmLesson13.jsx",
+   "sid": "s8",
+   "badge": "schemaMaker",
+   "desc_uz": "Uch ustunli sxemangizni tuzdingiz",
+   "comp": "Screen8",
+   "lines": "1168–1297",
+   "mexanika": "erkin-yozma",
+   "oquvchi_nima_qiladi": "O'z sxemasining uch ustuniga savol-gap yozadi (nom-takrori, qisqalik, o'xshashlik darvozalari).",
+   "xato_yoli": {
+    "bor": false,
+    "qator": null,
+    "kod": "",
+    "ekran_nima_korsatadi": "yagona to'g'ri javob yo'q; saqlash tugmasi shart bajarilmaguncha o'chiq — «tekshirilgan xato urinish» hodisasi yo'q"
+   },
+   "urinish_tarifi": "«Urinish» tushunchasi yo'q (152-qonun 5-band).",
+   "allaqachon_halol": {
+    "ha": false,
+    "qanday": "—"
+   },
+   "miss_nuqtasi": {
+    "qator": null,
+    "taklif_kod": "—",
+    "ichki_komponentga_prop_kerakmi": "yo'q"
+   },
+   "achrule_joyi": "— (`AchRule` ko'rsatilmaydi)",
+   "hukm": "MEHNAT",
+   "tekin_bolsa_152": "Mehnat nishoni — bonus hisobiga kirmaydi (PmLesson1 s6 bilan bir sinf).",
+   "yon_topilma": "",
+   "hajm_qator": 0,
+   "ishonch": "yuqori"
+  },
+  {
+   "file": "src/4-Modull/PmLesson14.jsx",
+   "sid": "s8",
+   "badge": "plainTalk",
+   "desc_uz": "Uch qavatga oddiy gap yozdingiz",
+   "comp": "Screen8",
+   "lines": "1129–1282",
+   "mexanika": "erkin-yozma",
+   "oquvchi_nima_qiladi": "Uch qavatning har biriga texnik so'zsiz oddiy gap yozadi (texnik so'z topilsa saqlash vaqtincha qulflanadi, 3 urinishdan keyin ochiladi).",
+   "xato_yoli": {
+    "bor": false,
+    "qator": null,
+    "kod": "",
+    "ekran_nima_korsatadi": "yagona to'g'ri javob yo'q; saqlash tugmasi shart bajarilmaguncha o'chiq — «tekshirilgan xato urinish» hodisasi yo'q"
+   },
+   "urinish_tarifi": "«Urinish» tushunchasi yo'q (152-qonun 5-band).",
+   "allaqachon_halol": {
+    "ha": false,
+    "qanday": "—"
+   },
+   "miss_nuqtasi": {
+    "qator": null,
+    "taklif_kod": "—",
+    "ichki_komponentga_prop_kerakmi": "yo'q"
+   },
+   "achrule_joyi": "— (`AchRule` ko'rsatilmaydi)",
+   "hukm": "MEHNAT",
+   "tekin_bolsa_152": "Mehnat nishoni — bonus hisobiga kirmaydi (PmLesson1 s6 bilan bir sinf).",
+   "yon_topilma": "",
+   "hajm_qator": 0,
+   "ishonch": "yuqori"
+  },
+  {
+   "file": "src/4-Modull/PmLesson11.jsx",
+   "sid": "s9",
+   "badge": "sectionBuilder",
+   "desc_uz": "Uch bo'limni jadvaldan qurdingiz",
+   "comp": "Screen9",
+   "lines": "1237–1343",
+   "mexanika": "tekshirish-tugmasi (3 raund)",
+   "oquvchi_nima_qiladi": "Har raundda bo'limga mos qatorlarni belgilab, «Bo'limni qurish →» ni bosadi; tanlov to'liq mos bo'lmasa 🤔 izoh chiqadi.",
+   "xato_yoli": {
+    "bor": true,
+    "qator": 1266,
+    "kod": "setMissedOnce(true); setMiss(ortiqcha.length > 0 ? '🤔 Bu yozuv … mos kelmaydi' : '🤔 … yana bitta yozuv bor')",
+    "ekran_nima_korsatadi": "🤔 izoh-qator; bo'lim qurilmaydi"
+   },
+   "urinish_tarifi": "«Tekshirish» tugmali topshiriq: «Bo'limni qurish →» bosilib, natija xato chiqqani. Qatorni belgilab-olib tashlash (toggleRow) — urinish emas.",
+   "allaqachon_halol": {
+    "ha": false,
+    "qanday": "doim correct:true (1252); `missedOnce` faqat UI uchun, saqlanmaydi"
+   },
+   "miss_nuqtasi": {
+    "qator": 1266,
+    "taklif_kod": "const achMiss = useContext(AchMissCtx); (komponent boshida) · if (achMiss) achMiss.miss(screen); setMissedOnce(true); …",
+    "ichki_komponentga_prop_kerakmi": ""
+   },
+   "achrule_joyi": "«Bo'limni qurish →» tugmasi (1306) ostida",
+   "hukm": "A-qol-ishi",
+   "tekin_bolsa_152": "",
+   "yon_topilma": "Komponentda mahalliy `miss`/`setMiss` holati BOR — kontekst o'zgaruvchisi `achMiss` deb nomlanadi (pilotdagidek), `miss` emas.",
+   "hajm_qator": 4,
+   "ishonch": "yuqori"
+  },
+  {
+   "file": "src/4-Modull/PmLesson12.jsx",
+   "sid": "s9",
+   "badge": "cleanMessage",
+   "desc_uz": "Xabardan ortiqchasini olib tashladingiz",
+   "comp": "Screen9",
+   "lines": "1298–1386",
+   "mexanika": "tanlov-oyin (ortiqcha qatorni bosish)",
+   "oquvchi_nima_qiladi": "Juma xabaridagi 5 qatordan ortiqcha ikkitasini bosib olib tashlaydi; kerakli qator bosilsa — u qaytib chiqadi va qoida-qatori ochiladi.",
+   "xato_yoli": {
+    "bor": true,
+    "qator": 1319,
+    "kod": "setMiss(x.id); setMissedOnce(true); …",
+    "ekran_nima_korsatadi": "qator `miss` klassi bilan qaytadi + 🤔 ipucha (1360)"
+   },
+   "urinish_tarifi": "Tanlov/o'yin: kerakli qatorni ortiqcha deb bosgan har qadam.",
+   "allaqachon_halol": {
+    "ha": false,
+    "qanday": "doim correct:true (1311)"
+   },
+   "miss_nuqtasi": {
+    "qator": 1320,
+    "taklif_kod": "const achMiss = useContext(AchMissCtx); (komponent boshida) · if (achMiss) achMiss.miss(screen); setMissedOnce(true);",
+    "ichki_komponentga_prop_kerakmi": "yo'q"
+   },
+   "achrule_joyi": "xabar-qatorlar ro'yxati ostida, ipucha (1358) dan oldin",
+   "hukm": "A-qol-ishi",
+   "tekin_bolsa_152": "",
+   "yon_topilma": "Komponentda mahalliy `miss`/`setMiss` holati BOR — kontekst o'zgaruvchisi `achMiss` deb nomlanadi (pilotdagidek), `miss` emas.",
+   "hajm_qator": 4,
+   "ishonch": "yuqori"
+  },
+  {
+   "file": "src/4-Modull/PmLesson13.jsx",
+   "sid": "s9",
+   "badge": "ruleKeeper",
+   "desc_uz": "Sxemani uch shartdan o'tkazdingiz",
+   "comp": "Screen9",
+   "lines": "1331–1431",
+   "mexanika": "tanlov-oyin (3 shart, har birida ustun yoki «✓ bajarilgan»)",
+   "oquvchi_nima_qiladi": "Har shart uchun shartga mos kelmagan ustunni bosadi yoki «✓ Bu shart bajarilgan» ni tanlaydi; xatoda ipucha zinapoyasi (miss → miss2 → miss3) chiqadi.",
+   "xato_yoli": {
+    "bor": true,
+    "qator": 1363,
+    "kod": "const n = tries + 1; setTries(n); setMissedOnce(true); setMsg({ ok: false, t: … })",
+    "ekran_nima_korsatadi": "🤔 ipucha + «Bu shartda urinish: N ta» (1409)"
+   },
+   "urinish_tarifi": "Tanlov/o'yin: noto'g'ri ustun / noto'g'ri «bajarilgan» bosilgan har qadam.",
+   "allaqachon_halol": {
+    "ha": false,
+    "qanday": "doim correct:true (1350); `si` localStorage'da saqlanadi, `tries` yo'q"
+   },
+   "miss_nuqtasi": {
+    "qator": 1365,
+    "taklif_kod": "const achMiss = useContext(AchMissCtx); (komponent boshida) · if (achMiss) achMiss.miss(screen); setMissedOnce(true);",
+    "ichki_komponentga_prop_kerakmi": "yo'q"
+   },
+   "achrule_joyi": "«✓ Bu shart bajarilgan» tugmasi (1394) ostida",
+   "hukm": "A-qol-ishi",
+   "tekin_bolsa_152": "",
+   "yon_topilma": "",
+   "hajm_qator": 4,
+   "ishonch": "yuqori"
+  },
+  {
+   "file": "src/4-Modull/PmLesson14.jsx",
+   "sid": "s9",
+   "badge": "goodReason",
+   "desc_uz": "Uchala qarorga mos sababni topdingiz",
+   "comp": "Screen9",
+   "lines": "1296–1403",
+   "mexanika": "tanlov-oyin (3 qaror → sabab)",
+   "oquvchi_nima_qiladi": "Har texnik qarorga «odam tilidagi» sabablardan mosini tanlaydi; xato tanlov sanaladi, 2-xatodan keyin ko'prik-ipucha o'zi ochiladi.",
+   "xato_yoli": {
+    "bor": true,
+    "qator": 1322,
+    "kod": "setMiss(k); setMissedOnce(true); const v = errs + 1; setErrs(v); if (v >= 2) setYordamOpen(true);",
+    "ekran_nima_korsatadi": "variant `miss` klassi (2,6 s) + Yordam ochiladi"
+   },
+   "urinish_tarifi": "Tanlov/o'yin: noto'g'ri sabab tanlangan har qadam.",
+   "allaqachon_halol": {
+    "ha": false,
+    "qanday": "doim correct:true (1311); kod izohi «Xato bepul emas: sanaladi» deydi, lekin hisob (`errs`) faqat ipucha uchun"
+   },
+   "miss_nuqtasi": {
+    "qator": 1323,
+    "taklif_kod": "const achMiss = useContext(AchMissCtx); (komponent boshida) · if (achMiss) achMiss.miss(screen); setMissedOnce(true);",
+    "ichki_komponentga_prop_kerakmi": "yo'q"
+   },
+   "achrule_joyi": "sabablar ro'yxati (1363) ostida",
+   "hukm": "A-qol-ishi",
+   "tekin_bolsa_152": "",
+   "yon_topilma": "Komponentda mahalliy `miss`/`setMiss` holati BOR — kontekst o'zgaruvchisi `achMiss` deb nomlanadi (pilotdagidek), `miss` emas. Mentor rejimida `mReveal` tugmasi bor — `AchRule` mentor ekranida baribir ko'rinmaydi (pilot komponenti o'zi yashiradi).",
+   "hajm_qator": 4,
+   "ishonch": "yuqori"
+  },
+  {
+   "file": "src/4-Modull/PmLesson11.jsx",
+   "sid": "s10",
+   "badge": "dataCoder",
+   "desc_uz": "Yoqqan qo'shiqlarni kod ajratdi",
+   "comp": "ScreenCoding",
+   "lines": "1408–1540",
+   "mexanika": "pickKod (1-bosqich: kod-savol darvozasi; 2-bosqich: umumiy kompilyator (`HtmlCompiler`, onContinue faqat hamma talab o'tganda))",
+   "oquvchi_nima_qiladi": "Avval bitta kod-savoliga javob tanlaydi (xato variant silkinadi + 🤔 ipucha), keyin kod oynasida kod yozadi.",
+   "xato_yoli": {
+    "bor": true,
+    "qator": 1445,
+    "kod": "} else { setMiss(…); setMissedOnce(true); clearTimeout(missT.current); … }",
+    "ekran_nima_korsatadi": "variant `miss` klassi (0,6 s) + `cmt-tip` 🤔 ipucha"
+   },
+   "urinish_tarifi": "1-bosqich — tanlov/o'yin: noto'g'ri variant bosilgan har qadam. 2-bosqichda hisoblanadigan xato urinish YO'Q: kompilyator talablarni yozish paytida jonli tekshiradi («Tekshirish» tugmasi yo'q, `allPassed` bo'lmaguncha «Davom» o'chiq — HtmlCompiler.jsx 1446/2304–2309); VS Code variantida esa vijdon asosida.",
+   "allaqachon_halol": {
+    "ha": false,
+    "qanday": "doim correct:true; darvoza holati (`gpick`/`gateOk`) localStorage'da, `missedOnce` yo'q"
+   },
+   "miss_nuqtasi": {
+    "qator": 1445,
+    "taklif_kod": "const achMiss = useContext(AchMissCtx); (komponent boshida) · if (achMiss) achMiss.miss(screen); setMissedOnce(true);",
+    "ichki_komponentga_prop_kerakmi": "yo'q"
+   },
+   "achrule_joyi": "darvoza-savol variantlari ostida (`cmt-tip` dan oldin); 2-bosqichga o'tgach ham ko'rinib tursin (nishon olinmaguncha)",
+   "hukm": "A-qol-ishi",
+   "tekin_bolsa_152": "",
+   "yon_topilma": "Komponentda mahalliy `miss`/`setMiss` holati BOR — kontekst o'zgaruvchisi `achMiss` deb nomlanadi (pilotdagidek), `miss` emas. Nishonning katta qismi — mehnat (kod yozish); halollik sharti faqat darvoza-savolga tushadi — `AchRule` qatori shu savol yonida tursin, aks holda «birinchi urinish» nimaga tegishli ekani tushunarsiz bo'ladi.",
+   "hajm_qator": 4,
+   "ishonch": "yuqori"
+  },
+  {
+   "file": "src/4-Modull/PmLesson12.jsx",
+   "sid": "s10",
+   "badge": "columnPicker",
+   "desc_uz": "So'rovni kerakli ustunlarga qisqartirdingiz",
+   "comp": "ScreenCoding",
+   "lines": "1418–1528",
+   "mexanika": "pickKod (1-bosqich: kod-savol darvozasi; 2-bosqich: VS Code'da tashqi ish + «Bajardim» (`complete`))",
+   "oquvchi_nima_qiladi": "Avval bitta kod-savoliga javob tanlaydi (xato variant silkinadi + 🤔 ipucha), keyin kodni VS Code'da yozib «Bajardim»ni bosadi.",
+   "xato_yoli": {
+    "bor": true,
+    "qator": 1445,
+    "kod": "} else { setMiss(…); setMissedOnce(true); clearTimeout(missT.current); … }",
+    "ekran_nima_korsatadi": "variant `miss` klassi (0,6 s) + `cmt-tip` 🤔 ipucha"
+   },
+   "urinish_tarifi": "1-bosqich — tanlov/o'yin: noto'g'ri variant bosilgan har qadam. 2-bosqichda hisoblanadigan xato urinish YO'Q: kompilyator talablarni yozish paytida jonli tekshiradi («Tekshirish» tugmasi yo'q, `allPassed` bo'lmaguncha «Davom» o'chiq — HtmlCompiler.jsx 1446/2304–2309); VS Code variantida esa vijdon asosida.",
+   "allaqachon_halol": {
+    "ha": false,
+    "qanday": "doim correct:true; darvoza holati (`gpick`/`gateOk`) localStorage'da, `missedOnce` yo'q"
+   },
+   "miss_nuqtasi": {
+    "qator": 1445,
+    "taklif_kod": "const achMiss = useContext(AchMissCtx); (komponent boshida) · if (achMiss) achMiss.miss(screen); setMissedOnce(true);",
+    "ichki_komponentga_prop_kerakmi": "yo'q"
+   },
+   "achrule_joyi": "darvoza-savol variantlari ostida (`cmt-tip` dan oldin); 2-bosqichga o'tgach ham ko'rinib tursin (nishon olinmaguncha)",
+   "hukm": "A-qol-ishi",
+   "tekin_bolsa_152": "",
+   "yon_topilma": "Komponentda mahalliy `miss`/`setMiss` holati BOR — kontekst o'zgaruvchisi `achMiss` deb nomlanadi (pilotdagidek), `miss` emas. Nishonning katta qismi — mehnat (kod yozish); halollik sharti faqat darvoza-savolga tushadi — `AchRule` qatori shu savol yonida tursin, aks holda «birinchi urinish» nimaga tegishli ekani tushunarsiz bo'ladi.",
+   "hajm_qator": 4,
+   "ishonch": "yuqori"
+  },
+  {
+   "file": "src/4-Modull/PmLesson13.jsx",
+   "sid": "s10",
+   "badge": "recordBuilder",
+   "desc_uz": "Yozuvni sxema bo'yicha to'ldirdingiz",
+   "comp": "ScreenCoding",
+   "lines": "1484–1610",
+   "mexanika": "pickKod (1-bosqich: kod-savol darvozasi; 2-bosqich: umumiy kompilyator (`HtmlCompiler`))",
+   "oquvchi_nima_qiladi": "Avval bitta kod-savoliga javob tanlaydi (xato variant silkinadi + 🤔 ipucha), keyin kod oynasida kod yozadi.",
+   "xato_yoli": {
+    "bor": true,
+    "qator": 1520,
+    "kod": "} else { setMiss(…); setMissedOnce(true); clearTimeout(missT.current); … }",
+    "ekran_nima_korsatadi": "variant `miss` klassi (0,6 s) + `cmt-tip` 🤔 ipucha"
+   },
+   "urinish_tarifi": "1-bosqich — tanlov/o'yin: noto'g'ri variant bosilgan har qadam. 2-bosqichda hisoblanadigan xato urinish YO'Q: kompilyator talablarni yozish paytida jonli tekshiradi («Tekshirish» tugmasi yo'q, `allPassed` bo'lmaguncha «Davom» o'chiq — HtmlCompiler.jsx 1446/2304–2309); VS Code variantida esa vijdon asosida.",
+   "allaqachon_halol": {
+    "ha": false,
+    "qanday": "doim correct:true; darvoza holati (`gpick`/`gateOk`) localStorage'da, `missedOnce` yo'q"
+   },
+   "miss_nuqtasi": {
+    "qator": 1520,
+    "taklif_kod": "const achMiss = useContext(AchMissCtx); (komponent boshida) · if (achMiss) achMiss.miss(screen); setMissedOnce(true);",
+    "ichki_komponentga_prop_kerakmi": "yo'q"
+   },
+   "achrule_joyi": "darvoza-savol variantlari ostida (`cmt-tip` dan oldin); 2-bosqichga o'tgach ham ko'rinib tursin (nishon olinmaguncha)",
+   "hukm": "A-qol-ishi",
+   "tekin_bolsa_152": "",
+   "yon_topilma": "Komponentda mahalliy `miss`/`setMiss` holati BOR — kontekst o'zgaruvchisi `achMiss` deb nomlanadi (pilotdagidek), `miss` emas. Nishonning katta qismi — mehnat (kod yozish); halollik sharti faqat darvoza-savolga tushadi — `AchRule` qatori shu savol yonida tursin, aks holda «birinchi urinish» nimaga tegishli ekani tushunarsiz bo'ladi.",
+   "hajm_qator": 4,
+   "ishonch": "yuqori"
+  },
+  {
+   "file": "src/4-Modull/PmLesson14.jsx",
+   "sid": "s10",
+   "badge": "onScreen",
+   "desc_uz": "Ko'rinmas qavatni ekranda ko'rsatdingiz",
+   "comp": "ScreenCoding",
+   "lines": "1459–1566",
+   "mexanika": "pickKod (1-bosqich: kod-savol darvozasi; 2-bosqich: VS Code'da tashqi ish + «Bajardim» (`complete`))",
+   "oquvchi_nima_qiladi": "Avval bitta kod-savoliga javob tanlaydi (xato variant silkinadi + 🤔 ipucha), keyin kodni VS Code'da yozib «Bajardim»ni bosadi.",
+   "xato_yoli": {
+    "bor": true,
+    "qator": 1486,
+    "kod": "} else { setMiss(…); setMissedOnce(true); clearTimeout(missT.current); … }",
+    "ekran_nima_korsatadi": "variant `miss` klassi (0,6 s) + `cmt-tip` 🤔 ipucha"
+   },
+   "urinish_tarifi": "1-bosqich — tanlov/o'yin: noto'g'ri variant bosilgan har qadam. 2-bosqichda hisoblanadigan xato urinish YO'Q: kompilyator talablarni yozish paytida jonli tekshiradi («Tekshirish» tugmasi yo'q, `allPassed` bo'lmaguncha «Davom» o'chiq — HtmlCompiler.jsx 1446/2304–2309); VS Code variantida esa vijdon asosida.",
+   "allaqachon_halol": {
+    "ha": false,
+    "qanday": "doim correct:true; darvoza holati (`gpick`/`gateOk`) localStorage'da, `missedOnce` yo'q"
+   },
+   "miss_nuqtasi": {
+    "qator": 1486,
+    "taklif_kod": "const achMiss = useContext(AchMissCtx); (komponent boshida) · if (achMiss) achMiss.miss(screen); setMissedOnce(true);",
+    "ichki_komponentga_prop_kerakmi": "yo'q"
+   },
+   "achrule_joyi": "darvoza-savol variantlari ostida (`cmt-tip` dan oldin); 2-bosqichga o'tgach ham ko'rinib tursin (nishon olinmaguncha)",
+   "hukm": "A-qol-ishi",
+   "tekin_bolsa_152": "",
+   "yon_topilma": "Komponentda mahalliy `miss`/`setMiss` holati BOR — kontekst o'zgaruvchisi `achMiss` deb nomlanadi (pilotdagidek), `miss` emas. Nishonning katta qismi — mehnat (kod yozish); halollik sharti faqat darvoza-savolga tushadi — `AchRule` qatori shu savol yonida tursin, aks holda «birinchi urinish» nimaga tegishli ekani tushunarsiz bo'ladi.",
+   "hajm_qator": 4,
+   "ishonch": "yuqori"
+  },
+  {
+   "file": "src/4-Modull/PostgresCrudLesson.jsx",
+   "sid": "s10",
+   "badge": "crudMaster",
+   "desc_uz": "Menejer navbatida 4 CRUD amalini boshqardingiz",
+   "comp": "Screen10",
+   "lines": "1007–1110",
+   "mexanika": "tanlov-oyin (4 hodisa × 4 amal)",
+   "oquvchi_nima_qiladi": "Do'kondagi 4 hodisaning har biriga INSERT / SELECT / UPDATE / DELETE dan mosini tanlaydi; xato amalda ❌ izoh chiqadi, jadval o'zgarmaydi.",
+   "xato_yoli": {
+    "bor": true,
+    "qator": 1050,
+    "kod": "} else { setWrong({ op, note: ev.wrongNote[op] }); }",
+    "ekran_nima_korsatadi": "karta silkinadi (`shake`) + `frame-warn` ❌ izoh (1094)"
+   },
+   "urinish_tarifi": "Tanlov/o'yin: noto'g'ri amal tanlangan har qadam.",
+   "allaqachon_halol": {
+    "ha": false,
+    "qanday": "doim correct:true (1038)"
+   },
+   "miss_nuqtasi": {
+    "qator": 1051,
+    "taklif_kod": "const achMiss = useContext(AchMissCtx); (komponent boshida) · } else { if (achMiss) achMiss.miss(screen); setWrong({ op, note: ev.wrongNote[op] }); }",
+    "ichki_komponentga_prop_kerakmi": "yo'q"
+   },
+   "achrule_joyi": "amal-kartalari (1083–1093) ostida, ❌ izohdan (1094) oldin",
+   "hukm": "A-qol-ishi",
+   "tekin_bolsa_152": "",
+   "yon_topilma": "",
+   "hajm_qator": 4,
+   "ishonch": "yuqori"
+  },
+  {
+   "file": "src/4-Modull/PostgresCrudLesson.jsx",
+   "sid": "s14",
+   "badge": "bugHunter",
+   "desc_uz": "AI kodidagi xatoni topib tuzatdingiz",
+   "comp": "Screen14 → DebugChallenge",
+   "lines": "1242–1282 (+1212–1240)",
+   "mexanika": "debug-qator-topish (umumiy `DebugChallenge`)",
+   "oquvchi_nima_qiladi": "3 qatorli SQL'dan xato qatorni bosadi — u o'zi tuzatiladi.",
+   "xato_yoli": {
+    "bor": true,
+    "qator": 1221,
+    "kod": "else { setWrongIdx(i); setTimeout(() => setWrongIdx(w => (w === i ? -1 : w)), 500); }",
+    "ekran_nima_korsatadi": "qator `wrong` klassi (0,5 s)"
+   },
+   "urinish_tarifi": "Tanlov/o'yin: xato bo'lmagan qator bosilgan har qadam.",
+   "allaqachon_halol": {
+    "ha": false,
+    "qanday": "doim correct:true (1246)"
+   },
+   "miss_nuqtasi": {
+    "qator": 1221,
+    "taklif_kod": "DebugChallenge'ga `onWrong` prop: else tarmog'ida `onWrong && onWrong();`. Screen14: const achMiss = useContext(AchMissCtx); <DebugChallenge … onWrong={() => achMiss && achMiss.miss(screen)} />",
+    "ichki_komponentga_prop_kerakmi": "`DebugChallenge` — shu faylda faqat s14 da; RoutingLesson'da deyarli bir xil nusxa (farq: `hint` klassi va ✓ belgisi joyi)"
+   },
+   "achrule_joyi": "`<DebugChallenge>` (1262–1266) ostida",
+   "hukm": "A-umumiy-komponent",
+   "tekin_bolsa_152": "",
+   "yon_topilma": "Mentor javobni aytadi: «Jadval nomi products (ko'plik)» — xato qator (`FROM product`) shu bilan ma'lum; audio ham «jadval nomida bitta harf xato». Matn-topilma.",
+   "hajm_qator": 5,
+   "ishonch": "yuqori"
+  },
+  {
+   "file": "src/4-Modull/RoutingLesson.jsx",
+   "sid": "s11",
+   "badge": "returnSender",
+   "desc_uz": "404 xatoni topib tabelkani tuzatdingiz",
+   "comp": "Screen11 → DebugChallenge",
+   "lines": "1155–1196 (+1125–1153)",
+   "mexanika": "debug-qator-topish (umumiy `DebugChallenge`)",
+   "oquvchi_nima_qiladi": "Controller kodidan noto'g'ri dekoratorli qatorni bosadi — tabelka tuzatiladi.",
+   "xato_yoli": {
+    "bor": true,
+    "qator": 1134,
+    "kod": "else { setWrongIdx(i); setTimeout(…, 500); }",
+    "ekran_nima_korsatadi": "qator `wrong` klassi (0,5 s)"
+   },
+   "urinish_tarifi": "Tanlov/o'yin: xato bo'lmagan qator bosilgan har qadam.",
+   "allaqachon_halol": {
+    "ha": false,
+    "qanday": "doim correct:true (1158)"
+   },
+   "miss_nuqtasi": {
+    "qator": 1134,
+    "taklif_kod": "DebugChallenge'ga `onWrong` prop (PostgresCrud bilan bir xil tuzatish). Screen11: <DebugChallenge … onWrong={() => achMiss && achMiss.miss(screen)} />",
+    "ichki_komponentga_prop_kerakmi": "`DebugChallenge` — shu faylda faqat s11 da"
+   },
+   "achrule_joyi": "`<DebugChallenge>` (1170–1181) ostida",
+   "hukm": "A-umumiy-komponent",
+   "tekin_bolsa_152": "",
+   "yon_topilma": "Audio javobni to'liq aytadi: «eshik tabelkasi boshqa shtampga sozlangan, @Get turibdi» — xato qator oldindan ma'lum. Matn-topilma.",
+   "hajm_qator": 5,
+   "ishonch": "yuqori"
+  },
+  {
+   "file": "src/4-Modull/RoutingLesson.jsx",
+   "sid": "s13",
+   "badge": "sorter",
+   "desc_uz": "Barcha xatlarni to'g'ri sortladingiz",
+   "comp": "Screen13 → DragDropOrder",
+   "lines": "1213–1246 (+1049–1123)",
+   "mexanika": "dragdrop-tartib (avto-tekshiruv)",
+   "oquvchi_nima_qiladi": "Controller metodi bo'laklarini mos eshik-uyachalarga sudraydi yoki bosib joylaydi; hamma uyacha to'lganda tartib tekshiriladi.",
+   "xato_yoli": {
+    "bor": true,
+    "qator": 1061,
+    "kod": "const wrong = full && !solved;",
+    "ekran_nima_korsatadi": "komponentning «tartib xato» holati (pilotdagi bilan bir xil qolip)"
+   },
+   "urinish_tarifi": "DragDrop/tartiblash qatori: hamma uyacha to'lib, tartib xato chiqqan on. Bo'lakni qaytarib-qo'yish urinish emas (`wrong` faqat `full` bo'lganda).",
+   "allaqachon_halol": {
+    "ha": false,
+    "qanday": "doim correct:true (1216)"
+   },
+   "miss_nuqtasi": {
+    "qator": 1062,
+    "taklif_kod": "PILOT BILAN AYNAN BIR XIL: DragDropOrder({ items, hints, onSolved, onWrong }) + useEffect(() => { if (wrong) onWrong && onWrong(); }, [wrong]); Screen13: <DragDropOrder … onWrong={() => achMiss && achMiss.miss(screen)} />",
+    "ichki_komponentga_prop_kerakmi": "`DragDropOrder` — shu faylda faqat s13 da; pilot (`InternetLesson.jsx` 2655–2674) bilan bir qolip"
+   },
+   "achrule_joyi": "`<DragDropOrder>` (1225–1237) ostida, `frame-success` (1238) dan oldin",
+   "hukm": "A-umumiy-komponent",
+   "tekin_bolsa_152": "",
+   "yon_topilma": "",
+   "hajm_qator": 5,
+   "ishonch": "yuqori"
+  }
+ ],
+ "darslar": [
+  {
+   "file": "src/4-Modull/ApiPostmanLesson.jsx",
+   "nishonlar": [
+    "envelopeBuilder·s3·topshiriq",
+    "testMaster·s12·test",
+    "stampReader·s14·TEKIN",
+    "levelUp·s15·test"
+   ],
+   "kafolatli_hozir": 1,
+   "kafolatli_taklifdan_keyin": "1 (s14 bonus bo'lsa) yoki 0 (s14 ga xato-yo'l qo'shilsa)",
+   "achrule_bor": false,
+   "ach_rule_css_bor": false,
+   "style_shablon_qator": 2397,
+   "izoh": "`graduate` yo'q"
+  },
+  {
+   "file": "src/4-Modull/AuthEnvLesson.jsx",
+   "nishonlar": [
+    "gatekeeper·s7·topshiriq",
+    "tokenforged·s13·topshiriq",
+    "secretkeeper·s14·topshiriq",
+    "vaultsealed·s15·test"
+   ],
+   "kafolatli_hozir": 0,
+   "kafolatli_taklifdan_keyin": 0,
+   "achrule_bor": false,
+   "ach_rule_css_bor": false,
+   "style_shablon_qator": 2379,
+   "izoh": "`graduate` yo'q"
+  },
+  {
+   "file": "src/4-Modull/BackendCrudPracticeLesson.jsx",
+   "nishonlar": [
+    "blueprint·s4·test",
+    "director·s5·topshiriq",
+    "catcher·s10·topshiriq",
+    "finisher·spf·mehnat"
+   ],
+   "kafolatli_hozir": 0,
+   "kafolatli_taklifdan_keyin": 0,
+   "achrule_bor": false,
+   "ach_rule_css_bor": false,
+   "style_shablon_qator": 2371,
+   "izoh": "`graduate` yo'q"
+  },
+  {
+   "file": "src/4-Modull/DbSqlNosqlLesson.jsx",
+   "nishonlar": [
+    "packageMaster·s3·NOANIQ (bosishda avto-joylash)",
+    "connector·s5·BONUS (152-reyestr)",
+    "mythBuster·s14·topshiriq",
+    "compassReader·s15·test"
+   ],
+   "kafolatli_hozir": "1 + amalda 1 (s3 bosib o'tilsa)",
+   "kafolatli_taklifdan_keyin": "1 (s3 haqiqiy topshiriqqa aylansa yoki ko'chsa)",
+   "achrule_bor": false,
+   "ach_rule_css_bor": false,
+   "style_shablon_qator": 2387,
+   "izoh": "`graduate` yo'q; ikkinchi kafolatli nishon xavfi — qaror kerak"
+  },
+  {
+   "file": "src/4-Modull/FullstackConnectPracticeLesson.jsx",
+   "nishonlar": [
+    "connected·s4·test",
+    "bothOnline·s9·test",
+    "fullCircle·s14·test",
+    "fullStack·s16·mehnat"
+   ],
+   "kafolatli_hozir": 0,
+   "kafolatli_taklifdan_keyin": 0,
+   "achrule_bor": false,
+   "ach_rule_css_bor": false,
+   "style_shablon_qator": 2275,
+   "izoh": "B to'lqinda bu darsga kod kerak emas (faqat qaror: mehnat)"
+  },
+  {
+   "file": "src/4-Modull/FullstackFeedbackLesson.jsx",
+   "nishonlar": [
+    "prioritizer·s5·topshiriq",
+    "configurator·s10·test",
+    "shipper·s13·test",
+    "guardian·s16·test"
+   ],
+   "kafolatli_hozir": 0,
+   "kafolatli_taklifdan_keyin": 0,
+   "achrule_bor": false,
+   "ach_rule_css_bor": false,
+   "style_shablon_qator": 2396,
+   "izoh": ""
+  },
+  {
+   "file": "src/4-Modull/NodeServerLesson.jsx",
+   "nishonlar": [
+    "serverArchitect·s13·topshiriq",
+    "bugHunter·s14·topshiriq",
+    "shopOpener·s15·test",
+    "lightningClerk·arena (ketma-ket 2 to'g'ri javob, 1902-qator; trigger'siz)"
+   ],
+   "kafolatli_hozir": 0,
+   "kafolatli_taklifdan_keyin": 0,
+   "achrule_bor": false,
+   "ach_rule_css_bor": false,
+   "style_shablon_qator": 2275,
+   "izoh": "`lightningClerk` arenadan `_earn` orqali — B to'lqin doirasidan tashqarida"
+  },
+  {
+   "file": "src/4-Modull/PmLesson11.jsx",
+   "nishonlar": [
+    "memoryMaker·s4·TEKIN→bonus",
+    "fieldWriter·s8·mehnat",
+    "sectionBuilder·s9·topshiriq",
+    "dataCoder·s10·topshiriq (pickKod)"
+   ],
+   "kafolatli_hozir": 1,
+   "kafolatli_taklifdan_keyin": 1,
+   "achrule_bor": false,
+   "ach_rule_css_bor": false,
+   "style_shablon_qator": 3443,
+   "izoh": "`graduate` yo'q"
+  },
+  {
+   "file": "src/4-Modull/PmLesson12.jsx",
+   "nishonlar": [
+    "eyesOpen·s4·NOANIQ→bonus tavsiya",
+    "clearReasons·s8·mehnat",
+    "cleanMessage·s9·topshiriq",
+    "columnPicker·s10·topshiriq (pickKod)"
+   ],
+   "kafolatli_hozir": 1,
+   "kafolatli_taklifdan_keyin": "1 (bonus) yoki 0 (A)",
+   "achrule_bor": false,
+   "ach_rule_css_bor": false,
+   "style_shablon_qator": 3529,
+   "izoh": "`graduate` yo'q"
+  },
+  {
+   "file": "src/4-Modull/PmLesson13.jsx",
+   "nishonlar": [
+    "threadMaster·s4·topshiriq (moslash)",
+    "schemaMaker·s8·mehnat",
+    "ruleKeeper·s9·topshiriq",
+    "recordBuilder·s10·topshiriq (pickKod)"
+   ],
+   "kafolatli_hozir": 0,
+   "kafolatli_taklifdan_keyin": 0,
+   "achrule_bor": false,
+   "ach_rule_css_bor": false,
+   "style_shablon_qator": 3535,
+   "izoh": "`graduate` yo'q"
+  },
+  {
+   "file": "src/4-Modull/PmLesson14.jsx",
+   "nishonlar": [
+    "threeFloors·s4·TEKIN→bonus",
+    "plainTalk·s8·mehnat",
+    "goodReason·s9·topshiriq",
+    "onScreen·s10·topshiriq (pickKod)"
+   ],
+   "kafolatli_hozir": 1,
+   "kafolatli_taklifdan_keyin": 1,
+   "achrule_bor": false,
+   "ach_rule_css_bor": false,
+   "style_shablon_qator": 3472,
+   "izoh": "`graduate` yo'q"
+  },
+  {
+   "file": "src/4-Modull/PostgresCrudLesson.jsx",
+   "nishonlar": [
+    "shopManager·s4·test",
+    "crudMaster·s10·topshiriq",
+    "bugHunter·s14·topshiriq (DebugChallenge)",
+    "dataArchitect·s15·test"
+   ],
+   "kafolatli_hozir": 0,
+   "kafolatli_taklifdan_keyin": 0,
+   "achrule_bor": false,
+   "ach_rule_css_bor": false,
+   "style_shablon_qator": 2338,
+   "izoh": ""
+  },
+  {
+   "file": "src/4-Modull/RoutingLesson.jsx",
+   "nishonlar": [
+    "postman·s4·test",
+    "returnSender·s11·topshiriq (DebugChallenge)",
+    "sorter·s13·topshiriq (DragDropOrder)",
+    "doorbuilder·s15·test"
+   ],
+   "kafolatli_hozir": 0,
+   "kafolatli_taklifdan_keyin": 0,
+   "achrule_bor": false,
+   "ach_rule_css_bor": false,
+   "style_shablon_qator": 2344,
+   "izoh": ""
+  }
+ ]
+}

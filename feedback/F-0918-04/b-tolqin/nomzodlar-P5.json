@@ -1,0 +1,494 @@
+[
+ {
+  "file": "src/4c-Modull/AiPipelineProjectLesson.jsx",
+  "sid": "s9",
+  "type": "case",
+  "badge": "mentorVerified",
+  "desc": "Yordamchining xato taklifini tutdingiz",
+  "comp": "Screen9",
+  "basket": "C' hisoblangan correct",
+  "fails": [
+   "bad",
+   "fail",
+   "shake",
+   "tekshir",
+   "wrong"
+  ]
+ },
+ {
+  "file": "src/4c-Modull/AiPipelineProjectLesson.jsx",
+  "sid": "s13",
+  "type": "builder",
+  "badge": "roadmapReviewer",
+  "desc": "Yo'l xaritasini xatosiz tekshirdingiz",
+  "comp": "Screen13",
+  "basket": "C' hisoblangan correct",
+  "fails": [
+   "shake",
+   "tekshir",
+   "tries",
+   "wrong",
+   "xato"
+  ]
+ },
+ {
+  "file": "src/4c-Modull/CiCdIntroLesson.jsx",
+  "sid": "s9",
+  "type": "case",
+  "badge": "clearedForTakeoff",
+  "desc": "Barcha buyumlarni tuzatib, samolyotni ko'tardingiz",
+  "comp": "Screen9",
+  "basket": "A challenge",
+  "fails": [
+   "bad",
+   "fail",
+   "tekshir",
+   "xato"
+  ]
+ },
+ {
+  "file": "src/4c-Modull/CiCdIntroLesson.jsx",
+  "sid": "s13",
+  "type": "builder",
+  "badge": "routeReader",
+  "desc": "Yo'l xaritasini xatosiz o'qidingiz",
+  "comp": "Screen13",
+  "basket": "C' hisoblangan correct",
+  "fails": [
+   "shake",
+   "wrong"
+  ]
+ },
+ {
+  "file": "src/4c-Modull/FullPipelineProjectLesson.jsx",
+  "sid": "s3",
+  "type": "case",
+  "badge": "blackBox",
+  "desc": "LENTA JURNALIDAN qizil chiroq sababini topdingiz",
+  "comp": "Screen3",
+  "basket": "A challenge",
+  "fails": [
+   "wrong",
+   "xato"
+  ]
+ },
+ {
+  "file": "src/4c-Modull/FullPipelineProjectLesson.jsx",
+  "sid": "s6",
+  "type": "case",
+  "badge": "pipelineArchitect",
+  "desc": "5 nuqtani tizib, lentani ishga tushirdingiz",
+  "comp": "Screen6",
+  "basket": "A challenge",
+  "fails": [
+   "bad",
+   "fail",
+   "tekshir",
+   "wrong",
+   "xato"
+  ]
+ },
+ {
+  "file": "src/4c-Modull/FullPipelineProjectLesson.jsx",
+  "sid": "s10",
+  "type": "case",
+  "badge": "safeReturn",
+  "desc": "Oxirgi yashil versiyaga to'g'ri qaytardingiz",
+  "comp": "Screen10",
+  "basket": "A challenge",
+  "fails": [
+   "iscorrect",
+   "tekshir",
+   "tries",
+   "xato"
+  ]
+ },
+ {
+  "file": "src/4c-Modull/GithubActionsLesson.jsx",
+  "sid": "s17",
+  "type": "case",
+  "badge": "routeWriter",
+  "desc": "Yo'l xaritangizni yozib, lentani aylantirdingiz",
+  "comp": "Screen17",
+  "basket": "A challenge",
+  "fails": [
+   "bad",
+   "xato"
+  ]
+ },
+ {
+  "file": "src/4c-Modull/PmLesson17.jsx",
+  "sid": "s8",
+  "type": "practice",
+  "badge": "fastShipper",
+  "desc": "Uch haftalik rejangizni yozdingiz",
+  "comp": "Screen8",
+  "basket": "A challenge",
+  "fails": [
+   "tekshir",
+   "xato"
+  ]
+ },
+ {
+  "file": "src/4c-Modull/PmLesson17.jsx",
+  "sid": "s9",
+  "type": "practice",
+  "badge": "gateKeeper",
+  "desc": "Uch bo'lakni haftaga sig'dirdingiz",
+  "comp": "Screen9",
+  "basket": "A challenge",
+  "fails": [
+   ".ok",
+   "compile",
+   "miss",
+   "missedonce",
+   "tekshir",
+   "tries",
+   "xato"
+  ]
+ },
+ {
+  "file": "src/4c-Modull/PmLesson17.jsx",
+  "sid": "s10",
+  "type": "koding",
+  "badge": "weekPlanner",
+  "desc": "Ishni haftalarga kod bilan bo'lib chiqdingiz",
+  "comp": "ScreenCoding",
+  "basket": "A challenge",
+  "fails": [
+   ".ok",
+   "compile",
+   "miss",
+   "missedonce",
+   "misst"
+  ]
+ },
+ {
+  "file": "src/4c-Modull/PmLesson18.jsx",
+  "sid": "s4",
+  "type": "exploration",
+  "badge": "eagleEye",
+  "desc": "Uch sonni sinab, farqini ko'rdingiz",
+  "comp": "Screen4",
+  "basket": "A challenge",
+  "fails": [
+   ".ok",
+   "bad"
+  ]
+ },
+ {
+  "file": "src/4c-Modull/PmLesson18.jsx",
+  "sid": "s8",
+  "type": "practice",
+  "badge": "ruleWriter",
+  "desc": "Uch qoidani sabab bilan yozdingiz",
+  "comp": "Screen8",
+  "basket": "A challenge",
+  "fails": [
+   "tekshir",
+   "xato"
+  ]
+ },
+ {
+  "file": "src/4c-Modull/PmLesson18.jsx",
+  "sid": "s9",
+  "type": "practice",
+  "badge": "coolHead",
+  "desc": "To'rt signalning yo'lini tanladingiz",
+  "comp": "Screen9",
+  "basket": "C' hisoblangan correct",
+  "fails": [
+   "missedonce",
+   "tekshir",
+   "xato"
+  ]
+ },
+ {
+  "file": "src/4c-Modull/PmLesson18.jsx",
+  "sid": "s10",
+  "type": "koding",
+  "badge": "siteChecker",
+  "desc": "Saytingizni kod bilan o'lchadingiz",
+  "comp": "ScreenCoding",
+  "basket": "A challenge",
+  "fails": [
+   ".ok",
+   "miss",
+   "missedonce",
+   "misst",
+   "tekshir",
+   "xato"
+  ]
+ },
+ {
+  "file": "src/6-Modull/ArchPatternsLesson.jsx",
+  "sid": "s6",
+  "type": "exploration",
+  "badge": "cityPlanner",
+  "desc": "Peshtoq, Dispetcher, Arxiv rollarini joyladingiz",
+  "comp": "Screen6",
+  "basket": "A challenge",
+  "fails": [
+   "shake",
+   "wrong"
+  ]
+ },
+ {
+  "file": "src/6-Modull/ArchPatternsLesson.jsx",
+  "sid": "s12",
+  "type": "case",
+  "badge": "oneTowerVsDistrict",
+  "desc": "Monolit va mikroservisni ajratdingiz",
+  "comp": "Screen12",
+  "basket": "A challenge",
+  "fails": [
+   "shake",
+   "wrong"
+  ]
+ },
+ {
+  "file": "src/6-Modull/ClaudeSkillsLesson.jsx",
+  "sid": "s7",
+  "type": "exploration",
+  "badge": "powerCard",
+  "desc": "Qahramonga to'g'ri kartani jihozladingiz",
+  "comp": "Screen7",
+  "basket": "C' hisoblangan correct",
+  "fails": [
+   ".ok"
+  ]
+ },
+ {
+  "file": "src/6-Modull/ClaudeSkillsLesson.jsx",
+  "sid": "s13",
+  "type": "builder",
+  "badge": "rightTrigger",
+  "desc": "Kuch qaysi vaziyatda yonishini to'g'ri tanladingiz",
+  "comp": "Screen13",
+  "basket": "C' hisoblangan correct",
+  "fails": [
+   ".ok"
+  ]
+ },
+ {
+  "file": "src/6-Modull/PmLesson22.jsx",
+  "sid": "s4",
+  "type": "exploration",
+  "badge": "rightQuestion",
+  "desc": "",
+  "comp": "Screen4",
+  "basket": "C' hisoblangan correct",
+  "fails": [
+   ".ok"
+  ]
+ },
+ {
+  "file": "src/6-Modull/PmLesson22.jsx",
+  "sid": "s8",
+  "type": "practice",
+  "badge": "onePager",
+  "desc": "",
+  "comp": "Screen8",
+  "basket": "A challenge",
+  "fails": [
+   ".ok",
+   "tekshir"
+  ]
+ },
+ {
+  "file": "src/6-Modull/PmLesson22.jsx",
+  "sid": "s9",
+  "type": "practice",
+  "badge": "sharpEye",
+  "desc": "",
+  "comp": "Screen9",
+  "basket": "A challenge",
+  "fails": [
+   ".ok",
+   "miss",
+   "missedonce",
+   "misst",
+   "tekshir",
+   "xato"
+  ]
+ },
+ {
+  "file": "src/6-Modull/PmLesson22.jsx",
+  "sid": "s10",
+  "type": "koding",
+  "badge": "codeCheck",
+  "desc": "",
+  "comp": "ScreenCoding",
+  "basket": "A challenge",
+  "fails": [
+   ".ok",
+   "miss",
+   "missedonce",
+   "misst"
+  ]
+ },
+ {
+  "file": "src/6-Modull/PmLesson23.jsx",
+  "sid": "s4",
+  "type": "exploration",
+  "badge": "mirrorCheck",
+  "desc": "",
+  "comp": "Screen4",
+  "basket": "A challenge",
+  "fails": [
+   "xato"
+  ]
+ },
+ {
+  "file": "src/6-Modull/PmLesson23.jsx",
+  "sid": "s8",
+  "type": "practice",
+  "badge": "ruleMaker",
+  "desc": "",
+  "comp": "Screen8",
+  "basket": "A challenge",
+  "fails": [
+   "tekshir",
+   "xato"
+  ]
+ },
+ {
+  "file": "src/6-Modull/PmLesson23.jsx",
+  "sid": "s9",
+  "type": "practice",
+  "badge": "pairFinder",
+  "desc": "",
+  "comp": "Screen9",
+  "basket": "A challenge",
+  "fails": [
+   "compile",
+   "miss",
+   "missedonce",
+   "tekshir",
+   "xato"
+  ]
+ },
+ {
+  "file": "src/6-Modull/PmLesson23.jsx",
+  "sid": "s10",
+  "type": "koding",
+  "badge": "limitCoder",
+  "desc": "",
+  "comp": "ScreenCoding",
+  "basket": "A challenge",
+  "fails": [
+   ".ok",
+   "compile",
+   "miss",
+   "missedonce",
+   "misst",
+   "tekshir"
+  ]
+ },
+ {
+  "file": "src/6-Modull/PmLesson24.jsx",
+  "sid": "s4",
+  "type": "exploration",
+  "badge": "roadBuilder",
+  "desc": "",
+  "comp": "Screen4",
+  "basket": "A challenge",
+  "fails": [
+   ".ok"
+  ]
+ },
+ {
+  "file": "src/6-Modull/PmLesson24.jsx",
+  "sid": "s8",
+  "type": "practice",
+  "badge": "planWriter",
+  "desc": "",
+  "comp": "Screen8",
+  "basket": "A challenge",
+  "fails": [
+   "tekshir",
+   "xato"
+  ]
+ },
+ {
+  "file": "src/6-Modull/PmLesson24.jsx",
+  "sid": "s9",
+  "type": "practice",
+  "badge": "horizonMaster",
+  "desc": "",
+  "comp": "Screen9",
+  "basket": "A challenge",
+  "fails": [
+   "tekshir",
+   "xato"
+  ]
+ },
+ {
+  "file": "src/6-Modull/PmLesson24.jsx",
+  "sid": "s10",
+  "type": "koding",
+  "badge": "codePlanner",
+  "desc": "",
+  "comp": "ScreenCoding",
+  "basket": "A challenge",
+  "fails": [
+   ".ok",
+   "miss",
+   "missedonce",
+   "misst"
+  ]
+ },
+ {
+  "file": "src/6-Modull/PmLesson25.jsx",
+  "sid": "s4",
+  "type": "exploration",
+  "badge": "slideTalker",
+  "desc": "",
+  "comp": "Screen4",
+  "basket": "C' hisoblangan correct",
+  "fails": [
+   ".ok"
+  ]
+ },
+ {
+  "file": "src/6-Modull/PmLesson25.jsx",
+  "sid": "s8",
+  "type": "practice",
+  "badge": "stageReady",
+  "desc": "",
+  "comp": "Screen8",
+  "basket": "A challenge",
+  "fails": [
+   "tekshir",
+   "xato"
+  ]
+ },
+ {
+  "file": "src/6-Modull/PmLesson25.jsx",
+  "sid": "s9",
+  "type": "practice",
+  "badge": "numberDuel",
+  "desc": "",
+  "comp": "Screen9",
+  "basket": "A challenge",
+  "fails": [
+   "compile",
+   "missedonce",
+   "tekshir",
+   "xato"
+  ]
+ },
+ {
+  "file": "src/6-Modull/WriteSkillLesson.jsx",
+  "sid": "s13",
+  "type": "builder",
+  "badge": "fieldMaster",
+  "desc": "Karta maydonlarini kodda xatosiz to'ldirdingiz",
+  "comp": "Screen13",
+  "basket": "C' hisoblangan correct",
+  "fails": [
+   "shake",
+   "wrong"
+  ]
+ }
+]

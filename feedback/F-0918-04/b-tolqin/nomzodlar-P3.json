@@ -1,0 +1,307 @@
+[
+ {
+  "file": "src/3-Modull/PmLesson10.jsx",
+  "sid": "s4",
+  "type": "exploration",
+  "badge": "silentWatch",
+  "desc": "Gapsiz ko'rsatuvni ochib chiqdingiz",
+  "comp": "Screen4",
+  "basket": "A challenge",
+  "fails": [
+   "tries"
+  ]
+ },
+ {
+  "file": "src/3-Modull/PmLesson10.jsx",
+  "sid": "s8",
+  "type": "practice",
+  "badge": "threeFrames",
+  "desc": "Uch kadrlik ko'rsatuv yozdingiz",
+  "comp": "Screen8",
+  "basket": "A challenge",
+  "fails": [
+   "tekshir",
+   "xato"
+  ]
+ },
+ {
+  "file": "src/3-Modull/PmLesson10.jsx",
+  "sid": "s9",
+  "type": "practice",
+  "badge": "spotOn",
+  "desc": "Ko'rsatiladigan harakatni topdingiz",
+  "comp": "Screen9",
+  "basket": "A challenge",
+  "fails": [
+   "miss",
+   "missedonce",
+   "misst",
+   "tekshir",
+   "xato"
+  ]
+ },
+ {
+  "file": "src/3-Modull/PmLesson10.jsx",
+  "sid": "s10",
+  "type": "koding",
+  "badge": "liveProof",
+  "desc": "Natijani ekranda ko'rinadigan qildingiz",
+  "comp": "ScreenCoding",
+  "basket": "A challenge",
+  "fails": [
+   ".ok",
+   "miss",
+   "missedonce",
+   "misst"
+  ]
+ },
+ {
+  "file": "src/3-Modull/PmLesson8.jsx",
+  "sid": "s4",
+  "type": "exploration",
+  "badge": "boardMaster",
+  "desc": "Olti ishni kataklarga joylashtirdingiz",
+  "comp": "Screen4",
+  "basket": "B xato qilib bo'lmaydi",
+  "fails": []
+ },
+ {
+  "file": "src/3-Modull/PmLesson8.jsx",
+  "sid": "s8",
+  "type": "practice",
+  "badge": "quickWin",
+  "desc": "Birinchi ishingizni tanladingiz",
+  "comp": "Screen8",
+  "basket": "A challenge",
+  "fails": [
+   "tekshir"
+  ]
+ },
+ {
+  "file": "src/3-Modull/PmLesson8.jsx",
+  "sid": "s9",
+  "type": "practice",
+  "badge": "planChanger",
+  "desc": "Vaqt o'zgargach qarorni yangiladingiz",
+  "comp": "Screen9",
+  "basket": "A challenge",
+  "fails": [
+   "tekshir",
+   "xato"
+  ]
+ },
+ {
+  "file": "src/3-Modull/PmLesson8.jsx",
+  "sid": "s10",
+  "type": "koding",
+  "badge": "codePainter",
+  "desc": "Kartalarni rangi bilan chiqardingiz",
+  "comp": "ScreenCoding",
+  "basket": "A challenge",
+  "fails": [
+   "miss",
+   "missedonce",
+   "misst",
+   "xato"
+  ]
+ },
+ {
+  "file": "src/3-Modull/PmLesson9.jsx",
+  "sid": "s4",
+  "type": "exploration",
+  "badge": "bugHunter",
+  "desc": "Uch nosozlikni o'zingiz topdingiz",
+  "comp": "Screen4",
+  "basket": "A challenge",
+  "fails": [
+   ".ok",
+   "bad",
+   "tekshir",
+   "tries"
+  ]
+ },
+ {
+  "file": "src/3-Modull/PmLesson9.jsx",
+  "sid": "s8",
+  "type": "practice",
+  "badge": "clearTerms",
+  "desc": "Uchta tekshiriladigan shart yozdingiz",
+  "comp": "Screen8",
+  "basket": "A challenge",
+  "fails": [
+   "tekshir",
+   "xato"
+  ]
+ },
+ {
+  "file": "src/3-Modull/PmLesson9.jsx",
+  "sid": "s9",
+  "type": "practice",
+  "badge": "rightOrder",
+  "desc": "Qabul tartibini to\\",
+  "comp": "Screen9",
+  "basket": "A challenge",
+  "fails": [
+   "compile",
+   "miss",
+   "missedonce",
+   "misst",
+   "tekshir",
+   "xato"
+  ]
+ },
+ {
+  "file": "src/3-Modull/PmLesson9.jsx",
+  "sid": "s10",
+  "type": "koding",
+  "badge": "codeChecker",
+  "desc": "Shartlarni kodga aylantirdingiz",
+  "comp": "ScreenCoding",
+  "basket": "A challenge",
+  "fails": [
+   ".ok",
+   "compile",
+   "miss",
+   "missedonce",
+   "misst",
+   "tekshir"
+  ]
+ },
+ {
+  "file": "src/3-Modull/ReactApiGetLesson.jsx",
+  "sid": "s15",
+  "type": "practice",
+  "badge": "headWaiter",
+  "desc": "So'rov kodini o'zingiz yozdingiz",
+  "comp": "ScreenApiPractice",
+  "basket": "A challenge",
+  "fails": [
+   "tekshir"
+  ]
+ },
+ {
+  "file": "src/3-Modull/ReactApiPostLesson.jsx",
+  "sid": "s13",
+  "type": "case",
+  "badge": "dispatcher",
+  "desc": "Pultda 3 posilkani to'g'ri jo'natdingiz",
+  "comp": "Screen13",
+  "basket": "A challenge",
+  "fails": [
+   "bad",
+   "shake",
+   "wrong",
+   "xato"
+  ]
+ },
+ {
+  "file": "src/3-Modull/ReactBuildSiteLesson.jsx",
+  "sid": "s10",
+  "type": "case",
+  "badge": "debugger",
+  "desc": "AI xatosini aniqlashtiruvchi prompt bilan tuzatdingiz",
+  "comp": "Screen10",
+  "basket": "A challenge",
+  "fails": [
+   ".ok",
+   "shake",
+   "tekshir",
+   "wrong",
+   "xato"
+  ]
+ },
+ {
+  "file": "src/3-Modull/ReactCrudPracticeLesson.jsx",
+  "sid": "s13",
+  "type": "debug",
+  "badge": "debugger",
+  "desc": "push mutatsiya xatosini topib, spread'ga tuzatdingiz",
+  "comp": "Screen13",
+  "basket": "A challenge",
+  "fails": [
+   "bad",
+   "tekshir",
+   "xato"
+  ]
+ },
+ {
+  "file": "src/3-Modull/ReactFirstComponentLesson.jsx",
+  "sid": "s14",
+  "type": "debug",
+  "badge": "debugger",
+  "desc": "AI kodidagi class→className xatosini tuzatdingiz",
+  "comp": "Screen14",
+  "basket": "A challenge",
+  "fails": [
+   "tekshir",
+   "wrong",
+   "xato"
+  ]
+ },
+ {
+  "file": "src/3-Modull/ReactIntroLesson.jsx",
+  "sid": "s13",
+  "type": "case",
+  "badge": "builder",
+  "desc": "Saytni komponent bloklaridan yig'dingiz",
+  "comp": "Screen13",
+  "basket": "A challenge",
+  "fails": [
+   "xato"
+  ]
+ },
+ {
+  "file": "src/3-Modull/ReactIntroLesson.jsx",
+  "sid": "s14",
+  "type": "rule",
+  "badge": "debugger",
+  "desc": "AI kodidagi xatoni topib tuzatdingiz",
+  "comp": "Screen14",
+  "basket": "A challenge",
+  "fails": [
+   "tekshir",
+   "wrong",
+   "xato"
+  ]
+ },
+ {
+  "file": "src/3-Modull/ReactPropsReuseLesson.jsx",
+  "sid": "s14",
+  "type": "debug",
+  "badge": "debugger",
+  "desc": "map ichida yo'qolgan name={g} xatosini tuzatdingiz",
+  "comp": "Screen14",
+  "basket": "A challenge",
+  "fails": [
+   "tekshir",
+   "wrong",
+   "xato"
+  ]
+ },
+ {
+  "file": "src/3-Modull/ReactRouterPracticeLesson.jsx",
+  "sid": "s9",
+  "type": "case",
+  "badge": "builder",
+  "desc": "AI bilan Router'ni qurdingiz",
+  "comp": "Screen9",
+  "basket": "A challenge",
+  "fails": [
+   "tekshir"
+  ]
+ },
+ {
+  "file": "src/3-Modull/ReactRouterPracticeLesson.jsx",
+  "sid": "s13",
+  "type": "rule",
+  "badge": "debugger",
+  "desc": "AI kodidagi <a>→<Link> xatosini tuzatdingiz",
+  "comp": "Screen13",
+  "basket": "A challenge",
+  "fails": [
+   "tekshir",
+   "wrong",
+   "xato"
+  ]
+ }
+]
