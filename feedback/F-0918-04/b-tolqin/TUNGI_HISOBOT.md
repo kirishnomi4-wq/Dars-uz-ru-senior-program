@@ -10,7 +10,8 @@ belgisi F5 dan keyin ham saqlanadi. Har ekran haqiqiy brauzerda 7 holat bilan is
 turibdi; toza → nishon bor; sirpanish sanalmaydi; mashqda va nishon olingach qator yo'q). ⏭ o'tkazilgan ekran yo'q.
 
 Bundan tashqari:
-- **Ball halolligi (8-A):** 15 ta yakuniy tartiblash testi endi birinchi to'liq urinishni sanaydi (oldin doim «to'g'ri»).
+- **Ball halolligi (8-A):** **26 ta yakuniy tartiblash testi** endi birinchi to'liq urinishni sanaydi, F5 dan keyin ham
+  (15 tasi oldin doim «to'g'ri» yozardi; 11 tasida birinchi urinish faqat xotirada edi — F5 bilan chetlab o'tilardi).
 - **5 ta debug-ekran (Q6)** haqiqiy topshiriqqa aylandi — hamma qator bosiladi, tasdiqlagan matningiz bilan.
 - **Teshiklar yopildi:** F5 dan keyin nishon qayta ochilishi (C-halol 21 ekran) · AuthEnv «qayta boshlash» · BotIntro
   `neverSilent` · PmLesson25 `proofFinder` · PmJtbd `jobHunter`.
@@ -66,6 +67,7 @@ bilan) · gates 75 dars ✓ · til/dark tun boshiga nisbatan farq 0 · unit 12/1
 | T10 matn takliflari | ✅ `MATN_TAKLIFLAR.md` — 49 taklif |
 | T11 qonun/hujjat | ✅ 152-qonun 7-band + reyestr + ulash qoidalari · KORPUS §183/§185 · KATTA §41 (`278aeac`) |
 | T11b adversarial tekshiruv | ✅ 2 o'tish (`TEKSHIRUV.md`, `TEKSHIRUV-2.md`): 2 YUQORI (Y1, Y1b) — tuzatildi · PmLesson21 `once` · O'RTA/PAST — ro'yxatda |
+| T9c qo'shimcha | ✅ 01:51 — 18 «hisoblangan» test inventari: 11 tartiblash testida F5-teshik yopildi (`0cd0b1e`; prob 24/24, `--seal` 22/22); solo teshigi 63 ekran / 62 dars; 2 debug-test → Q4 |
 | T12 regress | ✅ **yakuniy (hamma tuzatishlardan keyin):** ach-probe **131/131** (118 ekran · 76 dars) · `--seal` CRM ro'yxati uz+ru **140/140** (I1–I12) · gates 75 dars ✓ · til/dark tun boshiga nisbatan farq 0 · lint-keys 97 · lint:jsx · unit 12/12 · server 57/57 · vite build ✓ |
 | T13 muhr | ✅ hisobot · DAVOM (19.09 00:30) · xotira · jurnal |
 
@@ -134,3 +136,6 @@ bilan) · gates 75 dars ✓ · til/dark tun boshiga nisbatan farq 0 · unit 12/1
 | 00:30 | T13: hisobot tepasi (xulosa · qarorlar · chegaralar), DAVOM 00:30 muhri, xotira → `738fa8c` |
 | 00:48 | `--seal` smoke CRM ro'yxati uz+ru **140/140** (I1–I12) |
 | 01:15 | ach-probe **131/131** (118 ekran · 76 dars). **Rejadagi hamma band (T0–T13) yopildi** |
+| 01:25 | `QARORLAR.md` — ertalab uchun qaror kartalari (Q1–Q6) → `f8a1adb` |
+| 01:30 | 18 «hisoblangan» test inventari: hammasida `correct` birinchi urinishdan, lekin 13 tasida F5-teshik; solo teshigi 18/18 → jami **63 ekran / 62 dars** → `73b753c` |
+| 01:51 | **T9c ✅:** 11 tartiblash testida F5-teshik yopildi (PeanStack — kalit -1 → 0, jonli yuborish). Mustaqil: prob 24/24 (regress bilan) · gates 11/11 · til/dark 0 · lint-keys 0 · `--seal` 22/22 → `0cd0b1e` |
