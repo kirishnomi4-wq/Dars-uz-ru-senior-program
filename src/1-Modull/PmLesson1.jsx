@@ -1376,6 +1376,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const gate11 = useContext(LiveGateCtx) || {};
   const live11 = gate11.live;
   const isMentor11 = !!(live11 && live11.mode === 'mentor');
+  const achMiss = useContext(AchMissCtx); // 🏅 151-qonun: «Egasiga ko'rsating» → RAD — xato urinish (bo'lak almashtirish, qatorni qayta ochish — urinish emas)
   // har bir g'oya — bitta butun (guruh). To'g'ri g'oya = uchala bo'lak bir guruhdan.
   // Uchala auditoriya BITTA olamdan — maktab yonidagi lavash do'koni (91-qonun: bitta misol-ip)
   const GROUPS = {
@@ -1426,11 +1427,11 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     setState('showing'); // avatar bo'lakni o'qiydi
     timer.current = setTimeout(() => {
       if (step === 'muammo') {
-        if (pick.muammo !== pick.kim) { setState('reject-p'); return; } // «menda bunday muammo yo'q»
+        if (pick.muammo !== pick.kim) { setState('reject-p'); if (achMiss) achMiss.miss(screen); return; } // «menda bunday muammo yo'q»
         setState('recognize');                                          // «ha, aynan shu muammo bor!»
         timer.current = setTimeout(() => { setConfirmed(c => ({ ...c, muammo: true })); setState('idle'); }, 1400);
       } else {
-        if (pick.yechim !== pick.kim) { setState('reject-s'); return; } // yechim muammoni yechmaydi
+        if (pick.yechim !== pick.kim) { setState('reject-s'); if (achMiss) achMiss.miss(screen); return; } // yechim muammoni yechmaydi
         setConfirmed(c => ({ ...c, yechim: true }));
         setState('convert'); // qabul qildi — gate ochiladi
       }
@@ -1561,6 +1562,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {/* 👀 Egasiga ko'rsatish — qahramon-reaksiya, endi har bosqichda (muammo, so'ng yechim) */}
             {(step === 'muammo' || step === 'yechim' || converted) &&
               <button className={`pm-show-btn ${converted ? 'done' : ''}${showTurn ? ' turn-ring' : ''}`} disabled={converted || !pick[step] || busy} onClick={showToOwner}>{tr(btnLabel)}</button>}
+            {!converted && <AchRule screen={screen} />}
             {state !== 'idle' && pick.kim && (
               <div className={`pm-react ${converted ? 'ok' : leaving ? 'no' : 'read'} fade-step`} key={state + pick.kim}>
                 <span className={`pm-ava ${leaving ? 'leaving' : ''} ${(converted || state === 'recognize') ? 'happy' : ''} ${state === 'showing' ? 'reading' : ''}`} aria-hidden="true">{AVA[pick.kim]}</span>
@@ -2711,6 +2713,22 @@ const ACHIEVEMENTS = {
 // Ekran id → nishon (recordAnswer'da data.correct bo'lsa avtomatik beriladi).
 // 🔴 FAQAT REAL tekshiriladigan harakat: s6 ustaxona-saqlash · s9 scored test · s11 convert-gate.
 const ACH_TRIGGERS = { s6: 'audience', s9: 'thinker', s11: 'builder' };
+
+// 🏅 151-qonun: amaliy topshiriq nishoni faqat BIRINCHI urinishga beriladi. Shart OLDINDAN aytiladi; birinchi urinish
+// xato bo'lsa — jazosiz qisqa xabar (`once` — qayta urinishi yo'q ekran). Mentor ekranida, «Qaytadan» mashq-o'tishida va
+// nishon olingach ko'rinmaydi. Matn — MATN_KORPUS §183 (hamma darsda aynan bir xil).
+const AchRule = ({ screen, once }) => {
+  const earned = useContext(AchCtx);
+  const am = useContext(AchMissCtx);
+  const gate = useContext(LiveGateCtx) || {};
+  const sid = SCREEN_META[screen] && SCREEN_META[screen].id;
+  const ach = ACH_TRIGGERS[sid];
+  if (!ach || !am || am.practice || (gate.live && gate.live.mode === 'mentor') || (earned && earned.has(ach))) return null;
+  const lost = am.missed.has(sid);
+  return <p className={`ach-rule ${lost ? 'lost' : ''}`}>{lost
+    ? (once ? tr({ uz: 'Nishon birinchi urinish uchun edi.', ru: 'Значок давался за первую попытку.' }) : tr({ uz: "Nishon birinchi urinish uchun edi — endi bemalol to'g'risini toping.", ru: 'Значок давался за первую попытку — теперь спокойно найдите верный ответ.' }))
+    : tr({ uz: "🏅 Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki.", ru: '🏅 Справитесь с первой попытки — значок ваш.' })}</p>;
+};
 // 🏅 O'YIN USLUBIDAGI TO'LIQ-EKRAN NISHON BAYRAMI — yorqin nurlar, medal portlashi, uchqunlar
 function AchCelebrate({ ach, onDone }) {
   useEffect(() => { const t = setTimeout(onDone, 4000); return () => clearTimeout(t); }, []); // eslint-disable-line
@@ -3852,6 +3870,8 @@ export default function PmLesson1({ lang: langProp, onFinished, liveToken }) {
         .mentor-mob.is-collapsed .mentor-col { gap: 0; }
         .mentor-mob.is-collapsed .mentor-msg { max-height: 0; opacity: 0; padding-top: 0; padding-bottom: 0; box-shadow: none; }
         .mentor-cue { font-family: 'Manrope'; font-weight: 600; font-size: 11px; color: ${T.accent}; letter-spacing: 0.01em; }
+        .ach-rule { margin: 8px 0 0; text-align: center; font-size: 13px; line-height: 1.4; color: ${T.ink2}; }
+        .ach-rule.lost { font-style: italic; }
       `}</style>
       <LiveGateCtx.Provider value={{ locked, live }}>
         <AchCtx.Provider value={earned}>

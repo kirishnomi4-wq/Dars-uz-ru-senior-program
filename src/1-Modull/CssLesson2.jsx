@@ -970,7 +970,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 };
 
 // ===== 🧩 DRAG-DROP ORDER — bo'laklarni to'g'ri tartibda slotlarga sudrash (L1'dan) =====
-function DragDropOrder({ items, hints, onSolved }) {
+function DragDropOrder({ items, hints, onSolved, onWrong }) {
   const order = items.map(x => x.id);
   const byId = useMemo(() => Object.fromEntries(items.map(x => [x.id, x])), [items]);
   // YAGONA holat — pool va slots birga (setState ichida setState YO'Q → StrictMode'da dublikat bo'lmaydi)
@@ -985,6 +985,7 @@ function DragDropOrder({ items, hints, onSolved }) {
   const solved = slots.every((s, i) => s === order[i]);
   const wrong = full && !solved;
   useEffect(() => { if (solved) onSolved && onSolved(); }, [solved]); // eslint-disable-line
+  useEffect(() => { if (wrong) onWrong && onWrong(); }, [wrong]); // eslint-disable-line
   const place = (id, from, slotIdx) => setSt(({ pool, slots }) => {
     const ns = slots.slice(); const occ = ns[slotIdx];
     if (typeof from === 'number') ns[from] = null;
@@ -1060,6 +1061,7 @@ const Screen3b = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const audio = useAudio([{ id: 's3b', text: `Endi qoidani o'zingiz yig'ing. Bo'laklarni to'g'ri tartibda kataklarga sudrang: avval selektor, so'ng ochuvchi qavs, xususiyat, qiymat, nuqta-vergul va yopuvchi qavs. To'g'ri yig'ilsa, yonidagi menyu ustma-ustdan yonma-yon qatorga o'tadi.`, trigger: 'on_mount', waits_for: null }]);
   const [flex, setFlex] = useState(!!storedAnswer);
   const done = flex;
+  const achMiss = useContext(AchMissCtx);
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true }); }, [done]); // eslint-disable-line
   return (
     <Stage eyebrow={tr({ uz: 'Qoida ustaxonasi', ru: 'Мастерская правила' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "qoidani yig'ing", ru: 'Соберите правило' })} onClick={onNext} /></>}>
@@ -1070,7 +1072,8 @@ const Screen3b = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <div className="split">
           <div className="col">
             <div className="flow-label">{tr({ uz: "bo'laklarni tartibga soling", ru: 'расставьте блоки по порядку' })}</div>
-            <DragDropOrder items={FLEX_RULE_PIECES} hints={[{ uz: 'qaysi element', ru: 'какой элемент' }, { uz: 'qoida boshlanadi', ru: 'правило открывается' }, { uz: 'qaysi xususiyat', ru: 'какое свойство' }, { uz: 'xususiyat qiymati', ru: 'значение свойства' }, { uz: 'qatorni tugatadi', ru: 'завершает строку' }, { uz: 'qoida tugaydi', ru: 'правило закрывается' }]} onSolved={() => setFlex(true)} />
+            <DragDropOrder items={FLEX_RULE_PIECES} hints={[{ uz: 'qaysi element', ru: 'какой элемент' }, { uz: 'qoida boshlanadi', ru: 'правило открывается' }, { uz: 'qaysi xususiyat', ru: 'какое свойство' }, { uz: 'xususiyat qiymati', ru: 'значение свойства' }, { uz: 'qatorni tugatadi', ru: 'завершает строку' }, { uz: 'qoida tugaydi', ru: 'правило закрывается' }]} onSolved={() => setFlex(true)} onWrong={() => { if (achMiss && !done) achMiss.miss(screen); }} />
+            {!done && <AchRule screen={screen} />}
           </div>
           <div className="col">
             <div className="flow-label">{tr({ uz: 'Natija — menyu preview', ru: 'Результат — превью меню' })}</div>
@@ -1178,7 +1181,10 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const done = solved;
   const matched = jc === TARGET;
   const isNarrow = useIsMobile(768);
+  const achMiss = useContext(AchMissCtx);
   const set = (v) => {
+    // 🏅 151-qonun: namunaga mos kelmaydigan YANGI qiymat — xato urinish (tanlangan qiymatni qayta bosish — urinish emas)
+    if (v !== TARGET && v !== jc && !solved && achMiss) achMiss.miss(screen);
     setJc(v);
     if (v === TARGET && !solved) { setSolved(true); setBurst(true); setTimeout(() => setBurst(false), 950); if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true, jc: v }); }
   };
@@ -1192,6 +1198,7 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <div className="col">
             <div className="flow-label">{tr({ uz: 'justify-content qiymatini tanlang', ru: 'выберите значение justify-content' })}</div>
             <div className="fade-up delay-2" style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>{OPTS.map(o => (<button key={o.k} className={`chip ${jc === o.k ? 'chip-on' : ''} ${!solved ? 'btn-pulse' : ''}`} onClick={() => set(o.k)}>{o.l}</button>))}</div>
+            {!done && <AchRule screen={screen} />}
             {!isNarrow && <pre className="code-box fade-up delay-2" style={{ fontSize: 'clamp(12px,1.7vw,14px)' }}><span style={{ color: CODE.tag }}>.menyu</span> {'{'}{'\n  '}<span style={{ color: CODE.attr }}>display</span>: <span style={{ color: CODE.str }}>flex</span>;{'\n  '}<span style={{ color: CODE.attr }}>justify-content</span>: <span style={{ color: CODE.str }}>{jc}</span>;{'\n'}{'}'}</pre>}
           </div>
           <div className="col">
@@ -1390,6 +1397,16 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [fixed, setFixed] = useState(!!storedAnswer);
   const isNarrow = useIsMobile(768);
   const done = fixed;
+  const achMiss = useContext(AchMissCtx);
+  // 🏅 Q6 (18.09): hamma qator bosiladi — xatosiz qator bosilsa qisqa javob + xato urinish (151-qonun)
+  const [wrongMsg, setWrongMsg] = useState(false);
+  const [flashLine, setFlashLine] = useState(-1);
+  const pickWrong = (i) => {
+    if (found) return;
+    setWrongMsg(true); setFlashLine(i);
+    setTimeout(() => setFlashLine(f => (f === i ? -1 : f)), 900);
+    if (achMiss) achMiss.miss(screen);
+  };
   const pickLine = () => { if (found) return; setFound(true); audio.triggerEvent('error_found'); if (!audio.muted) setTimeout(() => { const e = getAudioEngine(); if (e && !audio.muted) e.pushOneOff(`Topdingiz! display block yozilgan — shuning uchun flex ishlamadi va justify-content e'tiborsiz qoldi.`); }, 300); };
   const fix = () => { setFixed(true); if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); if (!audio.muted) setTimeout(() => { const e = getAudioEngine(); if (e && !audio.muted) e.pushOneOff(`Tuzatildi! display flex bo'ldi va endi menyu yonma-yon, markazda turibdi.`); }, 300); };
   return (
@@ -1402,12 +1419,13 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <div className="ai-card fade-up delay-2">
               <div className="ai-row"><span className="ai-badge">AI</span><span className="ai-bubble">{tr({ uz: "Menyuni markazga qo'ydim! (lekin ustma-ust 🤔)", ru: 'Я поставил меню по центру! (но оно в столбик 🤔)' })}</span></div>
               <div className="ai-code">
-                <div className="ai-line" style={{ cursor: 'default' }}><span className="tg">.menyu</span> {'{'}</div>
-                <div className={`ai-line ${found ? (fixed ? 'ok' : 'bad') : 'btn-pulse'}`} onClick={pickLine}>{'  '}<span className="at">display</span>: <span className="st">{fixed ? 'flex' : 'block'}</span>;</div>
-                <div className="ai-line" style={{ cursor: 'default' }}>{'  '}<span className="at">justify-content</span>: <span className="st">center</span>;</div>
-                <div className="ai-line" style={{ cursor: 'default' }}>{'}'}</div>
+                <div className={`ai-line ${flashLine === 0 ? 'bad' : ''}`} onClick={() => pickWrong(0)}><span className="tg">.menyu</span> {'{'}</div>
+                <div className={`ai-line ${found ? (fixed ? 'ok' : 'bad') : ''}`} onClick={pickLine}>{'  '}<span className="at">display</span>: <span className="st">{fixed ? 'flex' : 'block'}</span>;</div>
+                <div className={`ai-line ${flashLine === 2 ? 'bad' : ''}`} onClick={() => pickWrong(2)}>{'  '}<span className="at">justify-content</span>: <span className="st">center</span>;</div>
+                <div className={`ai-line ${flashLine === 3 ? 'bad' : ''}`} onClick={() => pickWrong(3)}>{'}'}</div>
               </div>
-              {!found && <p className="ai-prompt">{tr({ uz: 'Qaysi qator xato? Bosing.', ru: 'Какая строка с ошибкой? Нажмите.' })}</p>}
+              {!found && <p className="ai-prompt">{wrongMsg ? tr({ uz: "Bu qatorda xato yo'q — yana qarang.", ru: 'В этой строке ошибки нет — посмотрите ещё раз.' }) : tr({ uz: 'Qaysi qator xato? Bosing.', ru: 'Какая строка с ошибкой? Нажмите.' })}</p>}
+              {!done && <AchRule screen={screen} />}
               {found && !fixed && (<button className="btn fade-step btn-pulse" style={{ alignSelf: 'flex-start' }} onClick={fix}>🔧 {tr({ uz: 'display: flex ga tuzatish', ru: 'Исправить на display: flex' })}</button>)}
               {fixed && <p className="ai-prompt" style={{ color: T.success, fontStyle: 'normal', fontWeight: 600 }}>✓ {tr({ uz: 'Tuzatildi — endi flex ishlaydi!', ru: 'Исправлено — теперь flex работает!' })}</p>}
             </div>
@@ -2230,6 +2248,22 @@ const ACHIEVEMENTS = {
 // 🔴 Faqat MA'NOLI challenge ekranlar: s3b (DragDrop qoidani to'g'ri yig'ish), s7 (namunaga aynan moslash — space-between), s14 (buzuq CSS'ni topib tuzatish).
 // ❌ Toggle/exploration ekranlariga (s2/s5/s6/s8/s11) bog'lanmaydi — u yerda har bosishda correct:true yonadi → nishon TEKIN beriladi.
 const ACH_TRIGGERS = { s3b: 'flexbox', s7: 'markaz', s14: 'debugger' };
+
+// 🏅 151-qonun: amaliy topshiriq nishoni faqat BIRINCHI urinishga beriladi. Shart OLDINDAN aytiladi; birinchi urinish
+// xato bo'lsa — jazosiz qisqa xabar (`once` — qayta urinishi yo'q ekran). Mentor ekranida, «Qaytadan» mashq-o'tishida va
+// nishon olingach ko'rinmaydi. Matn — MATN_KORPUS §183 (hamma darsda aynan bir xil).
+const AchRule = ({ screen, once }) => {
+  const earned = useContext(AchCtx);
+  const am = useContext(AchMissCtx);
+  const gate = useContext(LiveGateCtx) || {};
+  const sid = SCREEN_META[screen] && SCREEN_META[screen].id;
+  const ach = ACH_TRIGGERS[sid];
+  if (!ach || !am || am.practice || (gate.live && gate.live.mode === 'mentor') || (earned && earned.has(ach))) return null;
+  const lost = am.missed.has(sid);
+  return <p className={`ach-rule ${lost ? 'lost' : ''}`}>{lost
+    ? (once ? tr({ uz: 'Nishon birinchi urinish uchun edi.', ru: 'Значок давался за первую попытку.' }) : tr({ uz: "Nishon birinchi urinish uchun edi — endi bemalol to'g'risini toping.", ru: 'Значок давался за первую попытку — теперь спокойно найдите верный ответ.' }))
+    : tr({ uz: "🏅 Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki.", ru: '🏅 Справитесь с первой попытки — значок ваш.' })}</p>;
+};
 // 🏅 O'YIN USLUBIDAGI TO'LIQ-EKRAN NISHON BAYRAMI — yorqin nurlar, medal portlashi, uchqunlar, zarba to'lqini
 function AchCelebrate({ ach, onDone }) {
   useEffect(() => { const t = setTimeout(onDone, 4000); return () => clearTimeout(t); }, []); // eslint-disable-line
@@ -3630,6 +3664,8 @@ export default function HtmlLesson({ lang: langProp, onFinished, onPractice, liv
         .acu-tap { font-family: 'Manrope', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.05em; color: rgba(255,255,255,0.5); margin-top: 4px; animation: acu-rise 0.5s ease-out 1.1s both, acu-blink 1.6s ease-in-out 1.6s infinite; }
         @keyframes acu-blink { 0%,100% { opacity: 0.5; } 50% { opacity: 0.85; } }
         @media (prefers-reduced-motion: reduce) { .acu-rays, .acu-medal, .acu-glow, .acu-tap { animation-iteration-count: 1 !important; } .acu-rays { animation: acu-fade 0.4s both !important; } }
+        .ach-rule { margin: 8px 0 0; text-align: center; font-size: 13px; line-height: 1.4; color: ${T.ink2}; }
+        .ach-rule.lost { font-style: italic; }
       `}</style>
       <LiveGateCtx.Provider value={{ locked, live }}>
         <AchCtx.Provider value={earned}>

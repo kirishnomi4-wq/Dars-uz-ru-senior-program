@@ -1407,6 +1407,16 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [found, setFound] = useState(!!storedAnswer);
   const [fixed, setFixed] = useState(!!storedAnswer);
   const done = fixed;
+  const achMiss = useContext(AchMissCtx);
+  // 🏅 Q6 (18.09): hamma qator bosiladi — xatosiz qator bosilsa qisqa javob + xato urinish (151-qonun)
+  const [wrongMsg, setWrongMsg] = useState(false);
+  const [flashLine, setFlashLine] = useState(-1);
+  const pickWrong = (i) => {
+    if (found) return;
+    setWrongMsg(true); setFlashLine(i);
+    setTimeout(() => setFlashLine(f => (f === i ? -1 : f)), 900);
+    if (achMiss) achMiss.miss(screen);
+  };
   const pickLine = () => { if (found) return; setFound(true); audio.triggerEvent('error_found'); if (!audio.muted) setTimeout(() => { const e = getAudioEngine(); if (e && !audio.muted) e.pushOneOff(`Topdingiz! color: blue qatoridan nuqta-vergul tushib qolgan. Shuning uchun keyingi qator ham ishlamadi.`); }, 300); };
   const fix = () => { setFixed(true); if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); if (!audio.muted) setTimeout(() => { const e = getAudioEngine(); if (e && !audio.muted) e.pushOneOff(`Tuzatildi! Nuqta-vergul qo'shildi va endi CSS ishladi — matn ko'k va katta bo'ldi.`); }, 300); };
   return (
@@ -1419,12 +1429,13 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <div className="ai-card fade-up delay-2">
               <div className="ai-row"><span className="ai-badge">AI</span><span className="ai-bubble">{tr({ uz: 'Mana CSS! (lekin nimadir ishlamayapti 🤔)', ru: 'Вот CSS! (но что-то не работает 🤔)' })}</span></div>
               <div className="ai-code">
-                <div className="ai-line" style={{ cursor: 'default' }}><span className="tg">.karta</span> {'{'}</div>
+                <div className={`ai-line ${flashLine === 0 ? 'bad' : ''}`} onClick={() => pickWrong(0)}><span className="tg">.karta</span> {'{'}</div>
                 <div className={`ai-line ${found ? (fixed ? 'ok' : 'bad') : ''}`} onClick={pickLine}>{'  '}<span className="at">color</span>: <span className="st">blue</span>{fixed ? <span className="st">;</span> : ''}</div>
-                <div className="ai-line" style={{ cursor: 'default' }}>{'  '}<span className="at">font-size</span>: <span className="st">24px</span>;</div>
-                <div className="ai-line" style={{ cursor: 'default' }}>{'}'}</div>
+                <div className={`ai-line ${flashLine === 2 ? 'bad' : ''}`} onClick={() => pickWrong(2)}>{'  '}<span className="at">font-size</span>: <span className="st">24px</span>;</div>
+                <div className={`ai-line ${flashLine === 3 ? 'bad' : ''}`} onClick={() => pickWrong(3)}>{'}'}</div>
               </div>
-              {!found && <p className="ai-prompt">{tr({ uz: 'Qaysi qatorda xato? Bosing.', ru: 'В какой строке ошибка? Нажмите.' })}</p>}
+              {!found && <p className="ai-prompt">{wrongMsg ? tr({ uz: "Bu qatorda xato yo'q — yana qarang.", ru: 'В этой строке ошибки нет — посмотрите ещё раз.' }) : tr({ uz: 'Qaysi qatorda xato? Bosing.', ru: 'В какой строке ошибка? Нажмите.' })}</p>}
+              {!done && <AchRule screen={screen} />}
               {found && !fixed && (<button className="btn fade-step" style={{ alignSelf: 'flex-start' }} onClick={fix}>🔧 {tr({ uz: "Nuqta-vergul (;) qo'shib tuzatish", ru: 'Исправить — добавить точку с запятой (;)' })}</button>)}
               {fixed && <p className="ai-prompt" style={{ color: T.success, fontStyle: 'normal', fontWeight: 600 }}>✓ {tr({ uz: 'Tuzatildi — endi CSS ishlaydi!', ru: 'Исправлено — теперь CSS работает!' })}</p>}
             </div>
@@ -2317,6 +2328,22 @@ const ACHIEVEMENTS = {
 };
 // Ekran id → nishon (recordAnswer'da avtomatik beriladi)
 const ACH_TRIGGERS = { s5: 'rang', s13: 'bezak', s14: 'debugger' };
+
+// 🏅 151-qonun: amaliy topshiriq nishoni faqat BIRINCHI urinishga beriladi. Shart OLDINDAN aytiladi; birinchi urinish
+// xato bo'lsa — jazosiz qisqa xabar (`once` — qayta urinishi yo'q ekran). Mentor ekranida, «Qaytadan» mashq-o'tishida va
+// nishon olingach ko'rinmaydi. Matn — MATN_KORPUS §183 (hamma darsda aynan bir xil).
+const AchRule = ({ screen, once }) => {
+  const earned = useContext(AchCtx);
+  const am = useContext(AchMissCtx);
+  const gate = useContext(LiveGateCtx) || {};
+  const sid = SCREEN_META[screen] && SCREEN_META[screen].id;
+  const ach = ACH_TRIGGERS[sid];
+  if (!ach || !am || am.practice || (gate.live && gate.live.mode === 'mentor') || (earned && earned.has(ach))) return null;
+  const lost = am.missed.has(sid);
+  return <p className={`ach-rule ${lost ? 'lost' : ''}`}>{lost
+    ? (once ? tr({ uz: 'Nishon birinchi urinish uchun edi.', ru: 'Значок давался за первую попытку.' }) : tr({ uz: "Nishon birinchi urinish uchun edi — endi bemalol to'g'risini toping.", ru: 'Значок давался за первую попытку — теперь спокойно найдите верный ответ.' }))
+    : tr({ uz: "🏅 Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki.", ru: '🏅 Справитесь с первой попытки — значок ваш.' })}</p>;
+};
 // 🏅 O'YIN USLUBIDAGI TO'LIQ-EKRAN NISHON BAYRAMI — yorqin nurlar, medal portlashi, uchqunlar, zarba to'lqini
 function AchCelebrate({ ach, onDone }) {
   useEffect(() => { const t = setTimeout(onDone, 4000); return () => clearTimeout(t); }, []); // eslint-disable-line
@@ -3630,6 +3657,8 @@ export default function HtmlLesson({ lang: langProp, onFinished, onPractice, liv
         .ach-pop-row:not(.got) .ach-pop-ic { filter: grayscale(1) opacity(0.5); font-size: 13px; }
         .ach-pop-nm { font-family: 'Manrope'; font-weight: 700; font-size: 13px; color: ${T.ink}; }
         .ach-pop-row:not(.got) .ach-pop-nm { color: ${T.ink3}; }
+        .ach-rule { margin: 8px 0 0; text-align: center; font-size: 13px; line-height: 1.4; color: ${T.ink2}; }
+        .ach-rule.lost { font-style: italic; }
       `}</style>
       <LiveGateCtx.Provider value={{ locked, live }}>
         <AchCtx.Provider value={earned}>

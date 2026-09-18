@@ -1286,6 +1286,7 @@ const ScreenDebug = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [wrongLine, setWrongLine] = useState(-1);
   const [wrongFix, setWrongFix] = useState(-1);
   const done = fixed.size === bugIdxs.length;
+  const achMiss = useContext(AchMissCtx); // 🏅 151-qonun: xato qator YOKI xato tuzatish-varianti — xato urinish
   // Xato-qatorlar indeksi DBG_LINES dan olinadi — qo'lda yozilsa massiv o'zgarganda
   // jimgina buziladi (F-0729: liOk `has(4)` deb yozilgan edi, aslida 3-qator).
   const [linkIdx, liIdx] = bugIdxs;
@@ -1293,7 +1294,7 @@ const ScreenDebug = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const tapLine = (i) => {
     if (done || fixed.has(i)) return;
     if (DBG_LINES[i].bug) { setActive(i); audio.triggerEvent('error_found'); }
-    else { setWrongLine(i); setActive(null); setTimeout(() => setWrongLine(w => (w === i ? -1 : w)), 550); }
+    else { setWrongLine(i); setActive(null); setTimeout(() => setWrongLine(w => (w === i ? -1 : w)), 550); if (achMiss) achMiss.miss(screen); }
   };
   const tapFix = (fi) => {
     const line = DBG_LINES[active];
@@ -1301,7 +1302,7 @@ const ScreenDebug = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     if (line.fixes[fi].ok) {
       const n = new Set(fixed); n.add(active); setFixed(n); setActive(null);
       if (n.size === bugIdxs.length && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true });
-    } else { setWrongFix(fi); setTimeout(() => setWrongFix(w => (w === fi ? -1 : w)), 500); }
+    } else { setWrongFix(fi); setTimeout(() => setWrongFix(w => (w === fi ? -1 : w)), 500); if (achMiss) achMiss.miss(screen); }
   };
   return (
     <Stage eyebrow={tr({ uz: 'Xato topish sinovi', ru: 'Испытание: найти ошибку' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: `Xatolarni tuzating (${fixed.size}/2)`, ru: `Исправьте ошибки (${fixed.size}/2)` })} onClick={onNext} /></>}>
@@ -1331,6 +1332,7 @@ const ScreenDebug = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             </div>
             {wrongLine >= 0 && <p className="small fade-step" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: "Bu qator to'g'ri — belgilariga qarang: havola bosilmayapti va ro'yxatda ortiqcha nuqta bor.", ru: 'Эта строка верная — смотрите на признаки: не нажимается ссылка и лишняя точка в списке.' })}</p>}
             {!done && wrongLine < 0 && active === null && <p className="dbg-hint">👆 {tr({ uz: 'Xato bor qatorni toping va bosing', ru: 'Найдите строку с ошибкой и нажмите на неё' })}</p>}
+            {!done && <AchRule screen={screen} />}
             {done && (
               <div className="frame-success fade-step">
                 <p className="note-h" style={{ color: T.success, margin: '0 0 6px' }}>🐞 {tr({ uz: 'Ikkala xato ham tuzatildi!', ru: 'Обе ошибки исправлены!' })}</p>
@@ -2572,6 +2574,22 @@ const ACHIEVEMENTS = {
 };
 // Ekran id → nishon (recordAnswer'da correct=true bo'lganda beriladi)
 const ACH_TRIGGERS = { s6: 'bugfix', s11: 'architect', s12b: 'built' };
+
+// 🏅 151-qonun: amaliy topshiriq nishoni faqat BIRINCHI urinishga beriladi. Shart OLDINDAN aytiladi; birinchi urinish
+// xato bo'lsa — jazosiz qisqa xabar (`once` — qayta urinishi yo'q ekran). Mentor ekranida, «Qaytadan» mashq-o'tishida va
+// nishon olingach ko'rinmaydi. Matn — MATN_KORPUS §183 (hamma darsda aynan bir xil).
+const AchRule = ({ screen, once }) => {
+  const earned = useContext(AchCtx);
+  const am = useContext(AchMissCtx);
+  const gate = useContext(LiveGateCtx) || {};
+  const sid = SCREEN_META[screen] && SCREEN_META[screen].id;
+  const ach = ACH_TRIGGERS[sid];
+  if (!ach || !am || am.practice || (gate.live && gate.live.mode === 'mentor') || (earned && earned.has(ach))) return null;
+  const lost = am.missed.has(sid);
+  return <p className={`ach-rule ${lost ? 'lost' : ''}`}>{lost
+    ? (once ? tr({ uz: 'Nishon birinchi urinish uchun edi.', ru: 'Значок давался за первую попытку.' }) : tr({ uz: "Nishon birinchi urinish uchun edi — endi bemalol to'g'risini toping.", ru: 'Значок давался за первую попытку — теперь спокойно найдите верный ответ.' }))
+    : tr({ uz: "🏅 Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki.", ru: '🏅 Справитесь с первой попытки — значок ваш.' })}</p>;
+};
 
 // 🏅 O'YIN USLUBIDAGI TO'LIQ-EKRAN NISHON BAYRAMI — yorqin nurlar, medal portlashi, uchqunlar, zarba to'lqini
 function AchCelebrate({ ach, onDone }) {
@@ -4035,6 +4053,8 @@ export default function HtmlTakrorlashLesson({ lang: langProp, onFinished, onPra
           .bl-streak.hot { transform: none; }
           .mdbg-broken { transform: none; }
         }
+        .ach-rule { margin: 8px 0 0; text-align: center; font-size: 13px; line-height: 1.4; color: ${T.ink2}; }
+        .ach-rule.lost { font-style: italic; }
       `}</style>
       <LiveGateCtx.Provider value={{ locked, live }}>
         <AchCtx.Provider value={earned}>

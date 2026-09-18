@@ -144,6 +144,22 @@ const ACHIEVEMENTS = {
 };
 // Ekran id → nishon (recordAnswer'da avtomatik beriladi — FAQAT scored test yoki DragDrop challenge)
 const ACH_TRIGGERS = { s4: 'firstwin', s11: 'builder', koding: 'strategist' };
+
+// 🏅 151-qonun: amaliy topshiriq nishoni faqat BIRINCHI urinishga beriladi. Shart OLDINDAN aytiladi; birinchi urinish
+// xato bo'lsa — jazosiz qisqa xabar (`once` — qayta urinishi yo'q ekran). Mentor ekranida, «Qaytadan» mashq-o'tishida va
+// nishon olingach ko'rinmaydi. Matn — MATN_KORPUS §183 (hamma darsda aynan bir xil).
+const AchRule = ({ screen, once }) => {
+  const earned = useContext(AchCtx);
+  const am = useContext(AchMissCtx);
+  const gate = useContext(LiveGateCtx) || {};
+  const sid = SCREEN_META[screen] && SCREEN_META[screen].id;
+  const ach = ACH_TRIGGERS[sid];
+  if (!ach || !am || am.practice || (gate.live && gate.live.mode === 'mentor') || (earned && earned.has(ach))) return null;
+  const lost = am.missed.has(sid);
+  return <p className={`ach-rule ${lost ? 'lost' : ''}`}>{lost
+    ? (once ? tr({ uz: 'Nishon birinchi urinish uchun edi.', ru: 'Значок давался за первую попытку.' }) : tr({ uz: "Nishon birinchi urinish uchun edi — endi bemalol to'g'risini toping.", ru: 'Значок давался за первую попытку — теперь спокойно найдите верный ответ.' }))
+    : tr({ uz: "🏅 Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki.", ru: '🏅 Справитесь с первой попытки — значок ваш.' })}</p>;
+};
 // 🏅 O'YIN USLUBIDAGI TO'LIQ-EKRAN NISHON BAYRAMI — yorqin nurlar, medal portlashi, uchqunlar
 function AchCelebrate({ ach, onDone }) {
   useEffect(() => { const t = setTimeout(onDone, 4000); return () => clearTimeout(t); }, []); // eslint-disable-line
@@ -828,7 +844,7 @@ const PagePreview = ({ order, url = 'olx.uz', minH = 240 }) => (
 );
 // 🧲 Qayta ishlatiladigan DRAG&DROP TARTIBLASH (9.1) — pool + slots, tap-to-place fallback, DOM-transform sudrash.
 // Boshqa darsga: `items` ([{id,label}] — TO'G'RI tartibda), `hints`, `onSolved`, `onOrder` almashtiriladi.
-function DragDropOrder({ items, hints, onSolved, onOrder }) {
+function DragDropOrder({ items, hints, onSolved, onOrder, onWrong }) {
   const order = items.map(x => x.id);
   const byId = React.useMemo(() => Object.fromEntries(items.map(x => [x.id, x])), [items]);
   // YAGONA holat — pool va slots birga (setState ichida setState YO'Q → StrictMode'da dublikat bo'lmaydi)
@@ -844,6 +860,7 @@ function DragDropOrder({ items, hints, onSolved, onOrder }) {
   const solved = slots.every((s, i) => s === order[i]);
   const wrong = full && !solved;
   useEffect(() => { if (solved) onSolved && onSolved(); }, [solved]); // eslint-disable-line
+  useEffect(() => { if (wrong) onWrong && onWrong(); }, [wrong]); // eslint-disable-line
   useEffect(() => { onOrder && onOrder(slots); }, [st]); // eslint-disable-line — joriy tartibni tashqariga uzatadi (Sinov mijozi uchun)
   const place = (id, from, slotIdx) => setSt(({ pool, slots }) => {
     const ns = slots.slice(); const occ = ns[slotIdx];
@@ -1397,6 +1414,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [liveArr, setLiveArr] = useState(() => correct.map(() => null));
   const [dragDone, setDragDone] = useState(!!storedAnswer);
   const done = dragDone;
+  const achMiss = useContext(AchMissCtx);
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, arr: correct }); }, [done]); // eslint-disable-line
   return (
     <Stage eyebrow={tr({ uz: 'Tartiblash', ru: 'Расстановка' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "Bo'limlarni tartiblang", ru: 'Расставьте разделы' }} onClick={onNext} /></>}>
@@ -1409,7 +1427,8 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <div className="split">
           <Col>
             <p className="flow-label">{tr({ uz: "Bo'limlar — to'g'ri tartibga joylang", ru: 'Разделы — расставьте в верном порядке' })}</p>
-            <DragDropOrder items={items} onSolved={() => setDragDone(true)} onOrder={setLiveArr} />
+            <DragDropOrder items={items} onSolved={() => setDragDone(true)} onOrder={setLiveArr} onWrong={() => { if (achMiss && !done) achMiss.miss(screen); }} />
+            {!done && <AchRule screen={screen} />}
           </Col>
           <Col>
             <CustomerRun order={liveArr} correct={correct} />
@@ -3380,6 +3399,8 @@ export default function PmLesson2({ lang: langProp, onFinished, liveToken }) {
         .ach-pop-nm { font-family: 'Manrope'; font-weight: 700; font-size: 13px; color: ${T.ink}; }
         .ach-pop-row:not(.got) .ach-pop-nm { color: ${T.ink3}; }
 
+      .ach-rule { margin: 8px 0 0; text-align: center; font-size: 13px; line-height: 1.4; color: ${T.ink2}; }
+      .ach-rule.lost { font-style: italic; }
       `}</style>
       <AchCtx.Provider value={earned}>
       <AchMissCtx.Provider value={achMissVal}>

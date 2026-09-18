@@ -1,0 +1,754 @@
+[
+ {
+  "file": "src/1-Modull/CssLesson2.jsx",
+  "sid": "s3b",
+  "note": "tartiblash (DragDropOrder, bosib joylash): .row { display: flex ; }",
+  "wrong": [
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"{\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\".row\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"display:\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"flex\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\";\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"}\")",
+    "after": 700
+   }
+  ],
+  "right": [
+   {
+    "click": ".dd-pool .dd-chip:has-text(\".row\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"{\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"display:\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"flex\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\";\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"}\")",
+    "after": 900
+   }
+  ],
+  "rightAfterWrong": [
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0
+   },
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\".row\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"{\")",
+    "after": 900
+   }
+  ],
+  "slip": [
+   {
+    "click": ".dd-pool .dd-chip:has-text(\".row\")"
+   },
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0
+   }
+  ]
+ },
+ {
+  "file": "src/1-Modull/CssLesson2.jsx",
+  "sid": "s7",
+  "note": "justify-content tanlovi; TARGET space-between; boshlang'ich flex-start",
+  "wrong": [
+   {
+    "click": "button.chip:has-text(\"center\")",
+    "after": 500
+   }
+  ],
+  "right": [
+   {
+    "click": "button.chip:has-text(\"space-between\")",
+    "after": 1100
+   }
+  ],
+  "slip": [
+   {
+    "click": "button.chip:has-text(\"flex-start\")",
+    "after": 500
+   }
+  ]
+ },
+ {
+  "file": "src/1-Modull/CssLesson2.jsx",
+  "sid": "s14",
+  "note": "Q6 debug: .menyu{ / display:block (xato) / justify-content / } — hamma qator bosiladi",
+  "wrong": [
+   {
+    "click": ".ai-line",
+    "nth": 2,
+    "after": 500
+   }
+  ],
+  "right": [
+   {
+    "click": ".ai-line",
+    "nth": 1,
+    "after": 600
+   },
+   {
+    "click": "button:has-text(\"display: flex ga tuzatish\")",
+    "after": 900
+   }
+  ]
+ },
+ {
+  "file": "src/1-Modull/CssLesson1.jsx",
+  "sid": "s14",
+  "note": "Q6 debug: .karta{ / color: blue (;yo'q — xato) / font-size / } — hamma qator bosiladi",
+  "wrong": [
+   {
+    "click": ".ai-line",
+    "nth": 2,
+    "after": 500
+   }
+  ],
+  "right": [
+   {
+    "click": ".ai-line",
+    "nth": 1,
+    "after": 600
+   },
+   {
+    "click": "button:has-text(\"Nuqta-vergul (;) qo'shib tuzatish\")",
+    "after": 900
+   }
+  ]
+ },
+ {
+  "file": "src/1-Modull/Htmllesson2.jsx",
+  "sid": "s14",
+  "note": "Q6 debug: <img src=\"\"> (xato) / <h1> — ikkala qator bosiladi",
+  "wrong": [
+   {
+    "click": ".ai-line",
+    "nth": 1,
+    "after": 500
+   }
+  ],
+  "right": [
+   {
+    "click": ".ai-line",
+    "nth": 0,
+    "after": 600
+   },
+   {
+    "click": "button:has-text(\"src ga fayl nomini qo'shib tuzatish\")",
+    "after": 1000
+   }
+  ]
+ },
+ {
+  "file": "src/1-Modull/HtmlPractice.jsx",
+  "sid": "s2",
+  "note": "skelet tartiblash: tuzilma xatosi (header/footer joyi) = urinish; faqat section'lar almashgani = sirpanish",
+  "wrong": [
+   {
+    "click": "button:has-text(\"Skeletni ko'rsatish\")",
+    "after": 600
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"<footer>\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"<header>\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Men haqimda\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Loyihalar\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Aloqa\")",
+    "after": 700
+   }
+  ],
+  "right": [
+   {
+    "click": "button:has-text(\"Skeletni ko'rsatish\")",
+    "after": 600
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"<header>\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Men haqimda\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Loyihalar\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Aloqa\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"<footer>\")",
+    "after": 900
+   }
+  ],
+  "rightAfterWrong": [
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0
+   },
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0
+   },
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0
+   },
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0
+   },
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"<header>\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Men haqimda\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Loyihalar\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Aloqa\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"<footer>\")",
+    "after": 900
+   }
+  ],
+  "slip": [
+   {
+    "click": "button:has-text(\"Skeletni ko'rsatish\")",
+    "after": 600
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"<header>\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Loyihalar\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Men haqimda\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Aloqa\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"<footer>\")",
+    "after": 700
+   }
+  ]
+ },
+ {
+  "file": "src/1-Modull/HtmlPractice.jsx",
+  "sid": "s14",
+  "note": "DebugChallenge: 4 qator, xato — 3-qator (<p> yopilmagan)",
+  "wrong": [
+   {
+    "click": ".dbg-line",
+    "nth": 0,
+    "after": 600
+   }
+  ],
+  "right": [
+   {
+    "click": ".dbg-line",
+    "nth": 2,
+    "after": 900
+   }
+  ]
+ },
+ {
+  "file": "src/1-Modull/Htmllesson1.jsx",
+  "sid": "s5",
+  "note": "avval 4 qism ko'riladi (kod bloki), keyin skelet tartiblash (DragDropOrder) · dars qo'llanma-turi `hcOnboarded_` kaliti bilan (prob faqat inetOnboarded_ qo'yadi) — birinchi amal turni yopadi",
+  "wrong": [
+   {
+    "eval": "(() => { for (const r of ['mentor','learner','student','self']) localStorage.setItem('hcOnboarded_' + r, '1'); const b = [...document.querySelectorAll('button')].find(x => /tkazib yuborish/.test(x.innerText)); if (b) b.click(); })()",
+    "after": 600
+   },
+   {
+    "click": ".code-box .ck",
+    "nth": 0
+   },
+   {
+    "click": ".code-box .ck",
+    "nth": 1
+   },
+   {
+    "click": ".code-box .ck",
+    "nth": 2
+   },
+   {
+    "click": ".code-box .ck",
+    "nth": 4,
+    "after": 700
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"<html>\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"<!DOCTYPE html>\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"<head>\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"<body>\")",
+    "after": 700
+   }
+  ],
+  "right": [
+   {
+    "eval": "(() => { for (const r of ['mentor','learner','student','self']) localStorage.setItem('hcOnboarded_' + r, '1'); const b = [...document.querySelectorAll('button')].find(x => /tkazib yuborish/.test(x.innerText)); if (b) b.click(); })()",
+    "after": 600
+   },
+   {
+    "click": ".code-box .ck",
+    "nth": 0
+   },
+   {
+    "click": ".code-box .ck",
+    "nth": 1
+   },
+   {
+    "click": ".code-box .ck",
+    "nth": 2
+   },
+   {
+    "click": ".code-box .ck",
+    "nth": 4,
+    "after": 700
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"<!DOCTYPE html>\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"<html>\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"<head>\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"<body>\")",
+    "after": 900
+   }
+  ],
+  "rightAfterWrong": [
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0
+   },
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"<!DOCTYPE html>\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"<html>\")",
+    "after": 900
+   }
+  ],
+  "slip": [
+   {
+    "eval": "(() => { for (const r of ['mentor','learner','student','self']) localStorage.setItem('hcOnboarded_' + r, '1'); const b = [...document.querySelectorAll('button')].find(x => /tkazib yuborish/.test(x.innerText)); if (b) b.click(); })()",
+    "after": 600
+   },
+   {
+    "click": ".code-box .ck",
+    "nth": 0
+   },
+   {
+    "click": ".code-box .ck",
+    "nth": 1
+   },
+   {
+    "click": ".code-box .ck",
+    "nth": 2
+   },
+   {
+    "click": ".code-box .ck",
+    "nth": 4,
+    "after": 700
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"<!DOCTYPE html>\")"
+   },
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0
+   }
+  ]
+ },
+ {
+  "file": "src/1-Modull/Htmllesson1.jsx",
+  "sid": "s6",
+  "note": "«Tegga o'rash» → debug-quti: 2 qator, xato — <h1>…<h1> · dars qo'llanma-turi `hcOnboarded_` kaliti bilan (prob faqat inetOnboarded_ qo'yadi) — birinchi amal turni yopadi",
+  "wrong": [
+   {
+    "eval": "(() => { for (const r of ['mentor','learner','student','self']) localStorage.setItem('hcOnboarded_' + r, '1'); const b = [...document.querySelectorAll('button')].find(x => /tkazib yuborish/.test(x.innerText)); if (b) b.click(); })()",
+    "after": 600
+   },
+   {
+    "click": "button:has-text(\"Tegga\")",
+    "after": 700
+   },
+   {
+    "click": ".dbg-line",
+    "nth": 1,
+    "after": 600
+   }
+  ],
+  "right": [
+   {
+    "eval": "(() => { for (const r of ['mentor','learner','student','self']) localStorage.setItem('hcOnboarded_' + r, '1'); const b = [...document.querySelectorAll('button')].find(x => /tkazib yuborish/.test(x.innerText)); if (b) b.click(); })()",
+    "after": 600
+   },
+   {
+    "click": "button:has-text(\"Tegga\")",
+    "after": 700
+   },
+   {
+    "click": ".dbg-line",
+    "nth": 0,
+    "after": 900
+   }
+  ],
+  "rightAfterWrong": [
+   {
+    "click": ".dbg-line",
+    "nth": 0,
+    "after": 900
+   }
+  ]
+ },
+ {
+  "file": "src/1-Modull/HtmlTakrorlashLesson.jsx",
+  "sid": "s6",
+  "note": "2 xato qator (1: herf, 3: <li>…<li>); har biri uchun 3 variantdan to'g'ri tuzatish. Urinish: xato qator YOKI xato variant",
+  "wrong": [
+   {
+    "click": ".dbg-code .dbg-line",
+    "nth": 0,
+    "after": 500
+   }
+  ],
+  "right": [
+   {
+    "click": ".dbg-code .dbg-line",
+    "nth": 1,
+    "after": 500
+   },
+   {
+    "click": ".mdbg-fix",
+    "nth": 0,
+    "after": 600
+   },
+   {
+    "click": ".dbg-code .dbg-line",
+    "nth": 3,
+    "after": 500
+   },
+   {
+    "click": ".mdbg-fix",
+    "nth": 2,
+    "after": 1000
+   }
+  ]
+ },
+ {
+  "file": "src/1-Modull/HtmlTakrorlashLesson.jsx",
+  "sid": "s6",
+  "note": "(2-yozuv) xato tuzatish-varianti ham urinish sanalishini isbotlaydi",
+  "wrong": [
+   {
+    "click": ".dbg-code .dbg-line",
+    "nth": 1,
+    "after": 500
+   },
+   {
+    "click": ".mdbg-fix",
+    "nth": 1,
+    "after": 600
+   }
+  ],
+  "right": [
+   {
+    "click": ".dbg-code .dbg-line",
+    "nth": 1,
+    "after": 500
+   },
+   {
+    "click": ".mdbg-fix",
+    "nth": 0,
+    "after": 600
+   },
+   {
+    "click": ".dbg-code .dbg-line",
+    "nth": 3,
+    "after": 500
+   },
+   {
+    "click": ".mdbg-fix",
+    "nth": 2,
+    "after": 1000
+   }
+  ],
+  "rightAfterWrong": [
+   {
+    "click": ".mdbg-fix",
+    "nth": 0,
+    "after": 600
+   },
+   {
+    "click": ".dbg-code .dbg-line",
+    "nth": 3,
+    "after": 500
+   },
+   {
+    "click": ".mdbg-fix",
+    "nth": 2,
+    "after": 1000
+   }
+  ]
+ },
+ {
+  "file": "src/1-Modull/PmLesson1.jsx",
+  "sid": "s11",
+  "note": "KIM (tekshiruvsiz) → MUAMMO → «Egasiga ko'rsating» → YECHIM → «Egasiga ko'rsating». Urinish: ko'rsatish RAD bilan tugashi. (1) muammo-rad",
+  "wrong": [
+   {
+    "click": ".g11-opt",
+    "nth": 0,
+    "after": 900
+   },
+   {
+    "click": ".g11-opt",
+    "nth": 0,
+    "after": 400
+   },
+   {
+    "click": ".pm-show-btn",
+    "after": 1100
+   }
+  ],
+  "right": [
+   {
+    "click": ".g11-opt",
+    "nth": 0,
+    "after": 900
+   },
+   {
+    "click": ".g11-opt",
+    "nth": 2,
+    "after": 400
+   },
+   {
+    "click": ".pm-show-btn",
+    "after": 2600
+   },
+   {
+    "click": ".g11-opt",
+    "nth": 1,
+    "after": 400
+   },
+   {
+    "click": ".pm-show-btn",
+    "after": 1600
+   }
+  ],
+  "rightAfterWrong": [
+   {
+    "click": ".g11-opt",
+    "nth": 2,
+    "after": 400
+   },
+   {
+    "click": ".pm-show-btn",
+    "after": 2600
+   },
+   {
+    "click": ".g11-opt",
+    "nth": 1,
+    "after": 400
+   },
+   {
+    "click": ".pm-show-btn",
+    "after": 1600
+   }
+  ],
+  "slip": [
+   {
+    "click": ".g11-opt",
+    "nth": 0,
+    "after": 900
+   },
+   {
+    "click": ".g11-opt",
+    "nth": 0,
+    "after": 400
+   },
+   {
+    "click": ".g11-opt",
+    "nth": 1,
+    "after": 500
+   }
+  ]
+ },
+ {
+  "file": "src/1-Modull/PmLesson1.jsx",
+  "sid": "s11",
+  "note": "(2) yechim-rad (reject-s) ham urinish",
+  "wrong": [
+   {
+    "click": ".g11-opt",
+    "nth": 0,
+    "after": 900
+   },
+   {
+    "click": ".g11-opt",
+    "nth": 2,
+    "after": 400
+   },
+   {
+    "click": ".pm-show-btn",
+    "after": 2600
+   },
+   {
+    "click": ".g11-opt",
+    "nth": 0,
+    "after": 400
+   },
+   {
+    "click": ".pm-show-btn",
+    "after": 1100
+   }
+  ],
+  "right": [
+   {
+    "click": ".g11-opt",
+    "nth": 0,
+    "after": 900
+   },
+   {
+    "click": ".g11-opt",
+    "nth": 2,
+    "after": 400
+   },
+   {
+    "click": ".pm-show-btn",
+    "after": 2600
+   },
+   {
+    "click": ".g11-opt",
+    "nth": 1,
+    "after": 400
+   },
+   {
+    "click": ".pm-show-btn",
+    "after": 1600
+   }
+  ],
+  "rightAfterWrong": [
+   {
+    "click": ".g11-opt",
+    "nth": 1,
+    "after": 400
+   },
+   {
+    "click": ".pm-show-btn",
+    "after": 1600
+   }
+  ]
+ },
+ {
+  "file": "src/1-Modull/PmLesson2.jsx",
+  "sid": "s11",
+  "note": "3 bo'lim tartiblash (DragDropOrder varianti, onOrder bilan); «↻ Qayta joylash» — urinish emas",
+  "wrong": [
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Muammo\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Birinchi blok\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Harakat tugmasi\")",
+    "after": 700
+   }
+  ],
+  "right": [
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Birinchi blok\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Muammo\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Harakat tugmasi\")",
+    "after": 900
+   }
+  ],
+  "rightAfterWrong": [
+   {
+    "click": ".dd-retry",
+    "after": 500
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Birinchi blok\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Muammo\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Harakat tugmasi\")",
+    "after": 900
+   }
+  ],
+  "slip": [
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Muammo\")"
+   },
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0
+   }
+  ]
+ }
+]

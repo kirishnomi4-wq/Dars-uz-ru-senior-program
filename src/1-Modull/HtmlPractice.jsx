@@ -526,6 +526,10 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [shown, setShown] = useState(!!storedAnswer);
   const [dragDone, setDragDone] = useState(!!storedAnswer);
   const done = dragDone;
+  const achMiss = useContext(AchMissCtx);
+  // 🏅 151-qonun: tuzilma xatosi (header birinchi emas / footer oxirgi emas) — xato urinish.
+  // Uch <section> ning o'zaro o'rni — bu ekran o'rgatayotgan bilim emas (yorliqlar yashirin) → sirpanish, sanalmaydi.
+  const onSkelWrong = (slots) => { if (!achMiss || done) return; if (slots[0] !== 'header' || slots[slots.length - 1] !== 'footer') achMiss.miss(screen); };
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   return (
     <Stage eyebrow={tr({ uz: 'Skelet', ru: 'Скелет' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Birinchi blokni quramiz →', ru: 'Строим первый блок →' } : (shown ? { uz: "Skeletni yig'ing", ru: 'Соберите скелет' } : { uz: "Skeletni ko'ring", ru: 'Посмотрите скелет' })} onClick={onNext} /></>}>
@@ -549,9 +553,10 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <div className="sk-buildbox">
                 <p className="eyebrow" style={{ color: T.accent, margin: '0 0 2px' }}>🧲 {tr({ uz: "Endi o'zingiz yig'ing", ru: 'Теперь соберите сами' })}</p>
                 <p className="body" style={{ margin: '0 0 10px', color: T.ink2, fontSize: 13.5 }}>{tr({ uz: "Bo'laklarni to'g'ri tartibda joylang — sudrab yoki bosib. Yuqoridan pastga: header → bo'limlar → footer.", ru: 'Расставьте блоки в верном порядке — перетаскивая или нажимая. Сверху вниз: header → разделы → footer.' })}</p>
-                <DragDropOrder items={SKELET_PIECES} hints={[{ uz: 'eng yuqorida', ru: 'в самом верху' }, { uz: "birinchi bo'lim", ru: 'первый раздел' }, { uz: "ikkinchi bo'lim", ru: 'второй раздел' }, { uz: "uchinchi bo'lim", ru: 'третий раздел' }, { uz: 'eng pastda', ru: 'в самом низу' }]} onSolved={() => setDragDone(true)} />
+                <DragDropOrder items={SKELET_PIECES} hints={[{ uz: 'eng yuqorida', ru: 'в самом верху' }, { uz: "birinchi bo'lim", ru: 'первый раздел' }, { uz: "ikkinchi bo'lim", ru: 'второй раздел' }, { uz: "uchinchi bo'lim", ru: 'третий раздел' }, { uz: 'eng pastda', ru: 'в самом низу' }]} onSolved={() => setDragDone(true)} onWrong={onSkelWrong} />
               </div>
             )}
+            {!done && <AchRule screen={screen} />}
           </div>
           <div className="col">
             <div className="frame-wait"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <><b>Asosiy:</b> sahifani bo'laklarga bo'lamiz. Har bo'lak — alohida teg: <span className="mono">{'<header>'}</span>, <span className="mono">{'<section>'}</span>, <span className="mono">{'<footer>'}</span>. Ularni birma-bir to'ldiramiz.</>, ru: <><b>Главное:</b> делим страницу на части. Каждая часть — отдельный тег: <span className="mono">{'<header>'}</span>, <span className="mono">{'<section>'}</span>, <span className="mono">{'<footer>'}</span>. Заполним их по очереди.</> })}</p></div>
@@ -870,6 +875,7 @@ const Screen13 = (props) => (
 const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const audio = useAudio([{ id: 's14', text: `Endi siz teglarni bilasiz — demak xatoni ham topa olasiz. AI "Men haqimda" bo'limingiz uchun kod yozdi, lekin bitta xato qoldirdi: bir teg ochilgan, ammo yopilmagan. Qaysi qatorda? Bosib toping.`, trigger: 'on_mount', waits_for: { type: 'error_found' } }]);
   const [done, setDone] = useState(!!storedAnswer);
+  const achMiss = useContext(AchMissCtx);
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   const DBG_LINES = [
     { text: <><span className="tg">&lt;section&gt;</span></> },
@@ -888,7 +894,8 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <div className="col">
             <div className="ai-card fade-up delay-2">
               <div className="ai-row"><span className="ai-badge">AI</span><span className="ai-bubble">{tr({ uz: 'Mana, "Men haqimda" bo\'limi tayyor!', ru: 'Вот, раздел «Обо мне» готов!' })}</span></div>
-              <DebugChallenge lines={DBG_LINES} fixed={DBG_FIXED} explain={{ uz: <><span className="mono">{'<p>'}</span> ochilgan edi, lekin <span className="mono">{'</p>'}</span> bilan yopilmagan edi — endi to'g'ri.</>, ru: <><span className="mono">{'<p>'}</span> был открыт, но не закрыт <span className="mono">{'</p>'}</span> — теперь всё верно.</> }} onSolved={() => setDone(true)} />
+              <DebugChallenge lines={DBG_LINES} fixed={DBG_FIXED} explain={{ uz: <><span className="mono">{'<p>'}</span> ochilgan edi, lekin <span className="mono">{'</p>'}</span> bilan yopilmagan edi — endi to'g'ri.</>, ru: <><span className="mono">{'<p>'}</span> был открыт, но не закрыт <span className="mono">{'</p>'}</span> — теперь всё верно.</> }} onSolved={() => setDone(true)} onWrong={() => { if (achMiss && !done) achMiss.miss(screen); }} />
+              {!done && <AchRule screen={screen} />}
             </div>
           </div>
           <div className="col">
@@ -1372,7 +1379,7 @@ const SKELET_PIECES = [
   { id: 'footer',   label: { uz: '<footer> — pastki qism', ru: '<footer> — нижняя часть' } },
 ];
 
-function DragDropOrder({ items, hints, onSolved }) {
+function DragDropOrder({ items, hints, onSolved, onWrong }) {
   const order = items.map(x => x.id);
   const byId = useMemo(() => Object.fromEntries(items.map(x => [x.id, x])), [items]);
   // YAGONA holat — pool va slots birga (setState ichida setState YO'Q → StrictMode'da dublikat bo'lmaydi)
@@ -1387,6 +1394,7 @@ function DragDropOrder({ items, hints, onSolved }) {
   const solved = slots.every((s, i) => s === order[i]);
   const wrong = full && !solved;
   useEffect(() => { if (solved) onSolved && onSolved(); }, [solved]); // eslint-disable-line
+  useEffect(() => { if (wrong) onWrong && onWrong(slots); }, [wrong]); // eslint-disable-line
   const place = (id, from, slotIdx) => setSt(({ pool, slots }) => {
     const ns = slots.slice(); const occ = ns[slotIdx];
     if (typeof from === 'number') ns[from] = null;
@@ -1451,7 +1459,7 @@ function DragDropOrder({ items, hints, onSolved }) {
 
 // 🐞 Qayta ishlatiladigan DEBUG CHALLENGE — buzuq koddan xato qatorni topib bosish → tuzatiladi.
 // Boshqa darsga: `lines` (bittasida bug:true), `fixed` (to'g'ri qator), `explain` almashtiriladi.
-function DebugChallenge({ lines, fixed, explain, onSolved }) {
+function DebugChallenge({ lines, fixed, explain, onSolved, onWrong }) {
   const bugIdx = lines.findIndex(l => l.bug);
   const [picked, setPicked] = useState(-1);
   const [wrongIdx, setWrongIdx] = useState(-1);
@@ -1460,7 +1468,7 @@ function DebugChallenge({ lines, fixed, explain, onSolved }) {
   const click = (i) => {
     if (solved) return;
     if (i === bugIdx) setPicked(i);
-    else { setWrongIdx(i); setTimeout(() => setWrongIdx(w => (w === i ? -1 : w)), 500); }
+    else { setWrongIdx(i); setTimeout(() => setWrongIdx(w => (w === i ? -1 : w)), 500); onWrong && onWrong(); }
   };
   return (
     <div className="dbg fade-up">
@@ -1602,6 +1610,22 @@ const ACHIEVEMENTS = {
 };
 // Ekran id → nishon (recordAnswer'da faqat SCORED/challenge ekranda, data.correct bo'lsa beriladi)
 const ACH_TRIGGERS = { s2: 'built', s14: 'debugger' };
+
+// 🏅 151-qonun: amaliy topshiriq nishoni faqat BIRINCHI urinishga beriladi. Shart OLDINDAN aytiladi; birinchi urinish
+// xato bo'lsa — jazosiz qisqa xabar (`once` — qayta urinishi yo'q ekran). Mentor ekranida, «Qaytadan» mashq-o'tishida va
+// nishon olingach ko'rinmaydi. Matn — MATN_KORPUS §183 (hamma darsda aynan bir xil).
+const AchRule = ({ screen, once }) => {
+  const earned = useContext(AchCtx);
+  const am = useContext(AchMissCtx);
+  const gate = useContext(LiveGateCtx) || {};
+  const sid = SCREEN_META[screen] && SCREEN_META[screen].id;
+  const ach = ACH_TRIGGERS[sid];
+  if (!ach || !am || am.practice || (gate.live && gate.live.mode === 'mentor') || (earned && earned.has(ach))) return null;
+  const lost = am.missed.has(sid);
+  return <p className={`ach-rule ${lost ? 'lost' : ''}`}>{lost
+    ? (once ? tr({ uz: 'Nishon birinchi urinish uchun edi.', ru: 'Значок давался за первую попытку.' }) : tr({ uz: "Nishon birinchi urinish uchun edi — endi bemalol to'g'risini toping.", ru: 'Значок давался за первую попытку — теперь спокойно найдите верный ответ.' }))
+    : tr({ uz: "🏅 Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki.", ru: '🏅 Справитесь с первой попытки — значок ваш.' })}</p>;
+};
 
 // 🏅 O'YIN USLUBIDAGI TO'LIQ-EKRAN NISHON BAYRAMI — yorqin nurlar, medal portlashi, uchqunlar, zarba to'lqini
 function AchCelebrate({ ach, onDone }) {
@@ -3306,6 +3330,8 @@ export default function HtmlPractice({ lang: langProp, onFinished, onPractice, l
         .qz-endnote { position: fixed; bottom: 16px; left: 50%; transform: translateX(-50%); z-index: 10600; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; justify-content: center; max-width: 94vw; background: rgba(27,15,63,0.86); border: 1px solid rgba(186,140,255,0.4); border-radius: 16px; padding: 10px 16px; color: #F2ECFF; font-family: 'Manrope', sans-serif; font-weight: 600; font-size: 13.5px; box-shadow: 0 0 34px rgba(124,58,237,0.35); backdrop-filter: blur(10px); }
 
 
+      .ach-rule { margin: 8px 0 0; text-align: center; font-size: 13px; line-height: 1.4; color: ${T.ink2}; }
+      .ach-rule.lost { font-style: italic; }
       `}</style>
       <LiveGateCtx.Provider value={{ locked, live }}>
         <AchCtx.Provider value={earned}>

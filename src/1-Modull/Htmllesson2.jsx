@@ -1347,6 +1347,16 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [found, setFound] = useState(!!storedAnswer);
   const [fixed, setFixed] = useState(!!storedAnswer);
   const done = fixed;
+  const achMiss = useContext(AchMissCtx);
+  // 🏅 Q6 (18.09): hamma qator bosiladi — xatosiz qator bosilsa qisqa javob + xato urinish (151-qonun)
+  const [wrongMsg, setWrongMsg] = useState(false);
+  const [flashLine, setFlashLine] = useState(-1);
+  const pickWrong = (i) => {
+    if (found) return;
+    setWrongMsg(true); setFlashLine(i);
+    setTimeout(() => setFlashLine(f => (f === i ? -1 : f)), 900);
+    if (achMiss) achMiss.miss(screen);
+  };
   const pickImg = () => { if (found) return; setFound(true); audio.triggerEvent('error_found'); if (!audio.muted) setTimeout(() => { const e = getAudioEngine(); if (e && !audio.muted) e.pushOneOff(`Topdingiz! src bo'm-bo'sh — qaysi rasmni ko'rsatishni aytmagan. Endi fayl nomini qo'shib tuzatamiz.`); }, 300); };
   const fix = () => { setFixed(true); if (!audio.muted) setTimeout(() => { const e = getAudioEngine(); if (e && !audio.muted) e.pushOneOff(`Tuzatildi! Endi src rasmni ko'rsatyapti va rasm chiqdi. DevTools xatoni topishda shunaqa yordam beradi.`); }, 300); };
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
@@ -1361,9 +1371,10 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <div className="ai-row"><span className="ai-badge">AI</span><span className="ai-bubble">{tr({ uz: 'Mana sahifangiz kodi! (lekin rasm chiqmayapti 🤔)', ru: 'Вот код вашей страницы! (но картинка не появляется 🤔)' })}</span></div>
               <div className="ai-code">
                 <div className={`ai-line ${found ? (fixed ? 'ok' : 'bad') : ''}`} onClick={pickImg}><span className="tg">&lt;img </span><span className="at">src</span>=<span className="st">"{fixed ? 'mushuk.jpg' : ''}"</span><span className="at"> alt</span>=<span className="st">"Mushukcha"</span><span className="tg">&gt;</span></div>
-                <div className="ai-line"><span className="tg">&lt;h1&gt;</span>{tr({ uz: 'Mening mushugim', ru: 'Мой кот' })}<span className="tg">&lt;/h1&gt;</span></div>
+                <div className={`ai-line ${flashLine === 1 ? 'bad' : ''}`} onClick={() => pickWrong(1)}><span className="tg">&lt;h1&gt;</span>{tr({ uz: 'Mening mushugim', ru: 'Мой кот' })}<span className="tg">&lt;/h1&gt;</span></div>
               </div>
-              {!found && <p className="ai-prompt">{tr({ uz: "Rasm nega ko'rinmayapti? img qatorini bosing.", ru: 'Почему картинка не видна? Нажмите на строку img.' })}</p>}
+              {!found && <p className="ai-prompt">{wrongMsg ? tr({ uz: "Bu qatorda xato yo'q — yana qarang.", ru: 'В этой строке ошибки нет — посмотрите ещё раз.' }) : tr({ uz: "Rasm nega ko'rinmayapti? img qatorini bosing.", ru: 'Почему картинка не видна? Нажмите на строку img.' })}</p>}
+              {!done && <AchRule screen={screen} />}
               {found && !fixed && (<button className="btn fade-step" style={{ alignSelf: 'flex-start' }} onClick={fix}>🔧 {tr({ uz: "src ga fayl nomini qo'shib tuzatish", ru: 'Исправить: добавить имя файла в src' })}</button>)}
               {fixed && <p className="ai-prompt" style={{ color: T.success, fontStyle: 'normal', fontWeight: 600 }}>✓ {tr({ uz: 'Tuzatildi — endi rasm bor!', ru: 'Исправлено — теперь картинка есть!' })}</p>}
             </div>
@@ -2288,6 +2299,22 @@ const ACHIEVEMENTS = {
 };
 // Ekran id → nishon (recordAnswer'da avtomatik beriladi)
 const ACH_TRIGGERS = { s5b: 'struktura', s7: 'forma', s14: 'debugger' }; // F-0918-06: struktura s5 (kashfiyot) → s5b (test, birinchi urinish); forma — bonus (152-qonun)
+
+// 🏅 151-qonun: amaliy topshiriq nishoni faqat BIRINCHI urinishga beriladi. Shart OLDINDAN aytiladi; birinchi urinish
+// xato bo'lsa — jazosiz qisqa xabar (`once` — qayta urinishi yo'q ekran). Mentor ekranida, «Qaytadan» mashq-o'tishida va
+// nishon olingach ko'rinmaydi. Matn — MATN_KORPUS §183 (hamma darsda aynan bir xil).
+const AchRule = ({ screen, once }) => {
+  const earned = useContext(AchCtx);
+  const am = useContext(AchMissCtx);
+  const gate = useContext(LiveGateCtx) || {};
+  const sid = SCREEN_META[screen] && SCREEN_META[screen].id;
+  const ach = ACH_TRIGGERS[sid];
+  if (!ach || !am || am.practice || (gate.live && gate.live.mode === 'mentor') || (earned && earned.has(ach))) return null;
+  const lost = am.missed.has(sid);
+  return <p className={`ach-rule ${lost ? 'lost' : ''}`}>{lost
+    ? (once ? tr({ uz: 'Nishon birinchi urinish uchun edi.', ru: 'Значок давался за первую попытку.' }) : tr({ uz: "Nishon birinchi urinish uchun edi — endi bemalol to'g'risini toping.", ru: 'Значок давался за первую попытку — теперь спокойно найдите верный ответ.' }))
+    : tr({ uz: "🏅 Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki.", ru: '🏅 Справитесь с первой попытки — значок ваш.' })}</p>;
+};
 // 🏅 O'YIN USLUBIDAGI TO'LIQ-EKRAN NISHON BAYRAMI — yorqin nurlar, medal portlashi, uchqunlar, zarba to'lqini
 function AchCelebrate({ ach, onDone }) {
   useEffect(() => { const t = setTimeout(onDone, 4000); return () => clearTimeout(t); }, []); // eslint-disable-line
@@ -3492,6 +3519,8 @@ export default function HtmlLesson({ lang: langProp, onFinished, onPractice, liv
         .qcode { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 0.92em; background: rgba(20,17,14,0.08); border-radius: 6px; padding: 1px 6px; white-space: nowrap; }
         .qz-tile .qcode { background: rgba(255,255,255,0.25); color: #fff; }
         .qz-q .qcode { background: rgba(203,173,255,0.18); color: #F2ECFF; }
+        .ach-rule { margin: 8px 0 0; text-align: center; font-size: 13px; line-height: 1.4; color: ${T.ink2}; }
+        .ach-rule.lost { font-style: italic; }
       `}</style>
       <LiveGateCtx.Provider value={{ locked, live }}>
         <AchCtx.Provider value={earned}>
