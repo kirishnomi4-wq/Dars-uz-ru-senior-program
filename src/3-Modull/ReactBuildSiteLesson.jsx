@@ -826,6 +826,22 @@ const ACHIEVEMENTS = {
 };
 // Ekran id → nishon (recordAnswer'da, faqat REAL solve: scored test / challenge). S2/S3/S7 free-pass'larga BOG'LANMAYDI.
 const ACH_TRIGGERS = { s9: 'sniper', s10: 'debugger', s14: 'builder' };
+
+// 🏅 151-qonun: amaliy topshiriq nishoni faqat BIRINCHI urinishga beriladi. Shart OLDINDAN aytiladi; birinchi urinish
+// xato bo'lsa — jazosiz qisqa xabar (`once` — qayta urinishi yo'q ekran). Mentor ekranida, «Qaytadan» mashq-o'tishida va
+// nishon olingach ko'rinmaydi. Matn — MATN_KORPUS §183 (hamma darsda aynan bir xil).
+const AchRule = ({ screen, once }) => {
+  const earned = useContext(AchCtx);
+  const am = useContext(AchMissCtx);
+  const gate = useContext(LiveGateCtx) || {};
+  const sid = SCREEN_META[screen] && SCREEN_META[screen].id;
+  const ach = ACH_TRIGGERS[sid];
+  if (!ach || !am || am.practice || (gate.live && gate.live.mode === 'mentor') || (earned && earned.has(ach))) return null;
+  const lost = am.missed.has(sid);
+  return <p className={`ach-rule ${lost ? 'lost' : ''}`}>{lost
+    ? (once ? tr({ uz: 'Nishon birinchi urinish uchun edi.', ru: 'Значок давался за первую попытку.' }) : tr({ uz: "Nishon birinchi urinish uchun edi — endi bemalol to'g'risini toping.", ru: 'Значок давался за первую попытку — теперь спокойно найдите верный ответ.' }))
+    : tr({ uz: "🏅 Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki.", ru: '🏅 Справитесь с первой попытки — значок ваш.' })}</p>;
+};
 function AchCelebrate({ ach, onDone }) {
   useEffect(() => { const t = setTimeout(onDone, 4000); return () => clearTimeout(t); }, []); // eslint-disable-line
   return (
@@ -2037,12 +2053,13 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [wrong, setWrong] = useState(null);
   const timer = useRef(null);
   const done = fixed;
+  const achMiss = useContext(AchMissCtx); // 🏅 151-qonun: noto'g'ri prompt — nishon birinchi urinishga
   useEffect(() => () => clearTimeout(timer.current), []);
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   const choose = (f) => {
     if (fixed) return;
     if (f.ok) setFixed(true);
-    else { clearTimeout(timer.current); setWrong(f.id); timer.current = setTimeout(() => setWrong(null), 2600); }
+    else { if (achMiss) achMiss.miss(screen); clearTimeout(timer.current); setWrong(f.id); timer.current = setTimeout(() => setWrong(null), 2600); }
   };
   return (
     <Stage eyebrow={tr({ uz: 'Debugging · tuzatish', ru: 'Дебаггинг · исправление' })} screen={screen} audioState={audio} scrollSignal={fixed} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Xatoni tuzating', ru: 'Исправьте ошибку' })} onClick={onNext} /></>}>
@@ -2071,6 +2088,7 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 </button>
               ))}
             </div>
+            {!fixed && <AchRule screen={screen} />}
             {wrong && <p className="small fade-step" style={{ color: T.danger, fontStyle: 'italic', margin: 0 }}>{wrong === 'redo' ? tr({ uz: "Hammasini qaytadan yozish shart emas — faqat bitta narsa (narx) yetishmayapti. Aniq, kichik prompt bering.", ru: 'Переписывать всё не нужно — не хватает лишь одного (цены). Дайте точный, маленький промпт.' }) : tr({ uz: "Rang muammo emas — narx yetishmayapti. Aniq nimani tuzatishni ayting.", ru: 'Цвет не проблема — не хватает цены. Скажите точно, что чинить.' })}</p>}
             {fixed && <div className="takeaway fade-step"><div className="ta-bulb">🛠️</div><p className="ta-h">{tr({ uz: 'Topdingiz va aniq prompt bilan tuzatdingiz!', ru: 'Вы нашли ошибку и починили точным промптом!' })}</p><p className="ta-sub">{tr({ uz: "AI tez yozadi, siz tekshirib aniq tuzatasiz — yaxshi jamoa", ru: 'ИИ быстро пишет, вы проверяете и точно чините — отличная команда' })}</p></div>}
           </Col>
@@ -3148,6 +3166,8 @@ export default function ReactBuildSiteLesson({ lang: langProp, onFinished, liveT
         @keyframes cs-portal-in { 0% { opacity: 0; transform: scale(.55); } 48% { opacity: 1; transform: scale(1.35); } 100% { opacity: 0; transform: scale(1.7); } }
         @media (prefers-reduced-motion: reduce) { .cs-cap, .cs-ring, .cs-tok, .cs-dash, .cs-thunder, .cs-word, .cs-word::before, .csn-bolt, .cs-spark, .cs-enter, .cs-livedot i, .cs-hud-i, .cs-portal { animation: none !important; } }
         @media (max-width: 560px) { .cs-word { font-size: clamp(26px,9vw,50px); } .cs-cap { border-radius: 40px; padding: 22px 18px; } .cs-livedot { top: 10px; right: 14px; } }
+        .ach-rule { margin: 8px 0 0; text-align: center; font-size: 13px; line-height: 1.4; color: ${T.ink2}; }
+        .ach-rule.lost { font-style: italic; }
       `}</style>
       <AchCtx.Provider value={earned}>
       <AchMissCtx.Provider value={achMissVal}>

@@ -1241,6 +1241,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [fixed, setFixed] = useState(!!storedAnswer);
   const [clicks, setClicks] = useState(0);
   const found = picked === 'push';
+  const achMiss = useContext(AchMissCtx); // 🏅 151-qonun: xatosiz qatorni bosish — nishon birinchi urinishga
   const done = fixed;
   const base = GAMES.slice(0, 2);
   // tuzatilmaguncha — bossang ham ro'yxat o'zgarmaydi (mutatsiya: React ko'rmaydi)
@@ -1257,17 +1258,18 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <div className="ai-card fade-up delay-2">
               <div className="ai-row"><span className="ai-badge">AI</span><span className="ai-bubble">{tr({ uz: "Qo'shish kodini yozdim:", ru: 'Я написал код добавления:' })}</span></div>
               <div className="ai-code">
-                <div className={`ai-line ${picked === 'obj' ? 'ok' : ''}`} onClick={() => { if (!found) setPicked('obj'); }}><Jx>{'const'}</Jx>{' yangi = { name: '}<St>"Piggy"</St>{' };'}</div>
+                <div className={`ai-line ${picked === 'obj' ? 'ok' : ''}`} onClick={() => { if (!found) { setPicked('obj'); if (achMiss) achMiss.miss(screen); } }}><Jx>{'const'}</Jx>{' yangi = { name: '}<St>"Piggy"</St>{' };'}</div>
                 {!fixed ? (
                   <div className={`ai-line ${found ? 'bad' : ''}`} onClick={() => { if (!found) setPicked('push'); }}>{'games.'}<At>push</At>{'(yangi);'}{'  '}<Cm>{tr({ uz: "// o'sha ro'yxatning o'ziga qo'shdi", ru: '// добавил в тот же список' })}</Cm></div>
                 ) : (
                   <div className="ai-line ok el-in">{'setGames('}<At>{'[...games, yangi]'}</At>{');'}{'  '}<Cm>{tr({ uz: "// yangi ro'yxat — React ko'radi!", ru: '// новый список — React видит!' })}</Cm></div>
                 )}
-                {!fixed && <div className={`ai-line ${picked === 'set' ? 'ok' : ''}`} onClick={() => { if (!found) setPicked('set'); }}>{'setGames(games);'}{'  '}<Cm>{tr({ uz: "// o'sha ro'yxat...", ru: '// тот же список...' })}</Cm></div>}
+                {!fixed && <div className={`ai-line ${picked === 'set' ? 'ok' : ''}`} onClick={() => { if (!found) { setPicked('set'); if (achMiss) achMiss.miss(screen); } }}>{'setGames(games);'}{'  '}<Cm>{tr({ uz: "// o'sha ro'yxat...", ru: '// тот же список...' })}</Cm></div>}
               </div>
               {!found && <p className="ai-prompt">{tr({ uz: "Ro'yxat nega yangilanmayapti? Xato qatorni bosing.", ru: 'Почему список не обновляется? Нажмите на строку с ошибкой.' })}</p>}
               {found && !fixed && <button className="btn fade-step" style={{ alignSelf: 'flex-start' }} onClick={() => { setFixed(true); setClicks(0); }}>{tr({ uz: '🔧 setGames([...games, yangi]) ga almashtirish', ru: '🔧 Заменить на setGames([...games, yangi])' })}</button>}
               {fixed && <p className="ai-prompt" style={{ color: T.success, fontStyle: 'normal', fontWeight: 600 }}>{tr({ uz: "✓ Tuzatildi — endi yangi ro'yxat yasaladi, React ko'radi!", ru: '✓ Исправлено — теперь создаётся новый список, React видит!' })}</p>}
+              {!fixed && <AchRule screen={screen} />}
             </div>
           </Col>
           <Col>
@@ -1650,6 +1652,22 @@ const ACHIEVEMENTS = {
 };
 // Ekran id → nishon (recordAnswer'da, faqat REAL solve bilan: challenge / final)
 const ACH_TRIGGERS = { s11: 'builder', s13: 'debugger', s14: 'finisher' };
+
+// 🏅 151-qonun: amaliy topshiriq nishoni faqat BIRINCHI urinishga beriladi. Shart OLDINDAN aytiladi; birinchi urinish
+// xato bo'lsa — jazosiz qisqa xabar (`once` — qayta urinishi yo'q ekran). Mentor ekranida, «Qaytadan» mashq-o'tishida va
+// nishon olingach ko'rinmaydi. Matn — MATN_KORPUS §183 (hamma darsda aynan bir xil).
+const AchRule = ({ screen, once }) => {
+  const earned = useContext(AchCtx);
+  const am = useContext(AchMissCtx);
+  const gate = useContext(LiveGateCtx) || {};
+  const sid = SCREEN_META[screen] && SCREEN_META[screen].id;
+  const ach = ACH_TRIGGERS[sid];
+  if (!ach || !am || am.practice || (gate.live && gate.live.mode === 'mentor') || (earned && earned.has(ach))) return null;
+  const lost = am.missed.has(sid);
+  return <p className={`ach-rule ${lost ? 'lost' : ''}`}>{lost
+    ? (once ? tr({ uz: 'Nishon birinchi urinish uchun edi.', ru: 'Значок давался за первую попытку.' }) : tr({ uz: "Nishon birinchi urinish uchun edi — endi bemalol to'g'risini toping.", ru: 'Значок давался за первую попытку — теперь спокойно найдите верный ответ.' }))
+    : tr({ uz: "🏅 Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki.", ru: '🏅 Справитесь с первой попытки — значок ваш.' })}</p>;
+};
 // 🏅 O'YIN USLUBIDAGI TO'LIQ-EKRAN NISHON BAYRAMI
 function AchCelebrate({ ach, onDone }) {
   useEffect(() => { const t = setTimeout(onDone, 4000); return () => clearTimeout(t); }, []); // eslint-disable-line
@@ -3136,6 +3154,8 @@ export default function ReactCrudPracticeLesson({ lang: langProp, onFinished, li
         /* === 🛠️ JONLI PRAKTIKA — mentor «kim bajardi» chiplari === */
         .lp-doer { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 12px; color: ${T.ink2}; background: rgba(58,53,48,0.07); border-radius: 99px; padding: 4px 11px; white-space: nowrap; }
         .lp-doer.done { color: ${T.success}; background: ${T.successSoft}; }
+        .ach-rule { margin: 8px 0 0; text-align: center; font-size: 13px; line-height: 1.4; color: ${T.ink2}; }
+        .ach-rule.lost { font-style: italic; }
       `}</style>
       <AchCtx.Provider value={earned}>
       <AchMissCtx.Provider value={achMissVal}>

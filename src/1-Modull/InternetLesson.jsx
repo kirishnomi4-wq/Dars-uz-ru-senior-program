@@ -1857,7 +1857,7 @@ const Screen13b = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <span className={`net-slot ${hasPage ? 'on' : ''}`}><span className="net-slot-ic">📄</span>{hasPage ? tr({ uz: 'Sahifa ✓', ru: 'Страница ✓' }) : tr({ uz: "Sahifa yo'q", ru: 'Нет страницы' })}</span>
             <span className="net-moves">{tr({ uz: 'Qadam:', ru: 'Шагов:' })} {moves}</span>
           </div>
-          <AchRule screen={screen} />
+          {phase !== 'win' && <AchRule screen={screen} />}
 
           {/* Tarmoq xaritasi */}
           <div className="net-map">
@@ -2754,7 +2754,7 @@ const ScreenReqOrder = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <div className="sk-buildbox" style={{ maxWidth: 480 }}>
           <p className="eyebrow" style={{ color: T.accent, margin: '0 0 10px' }}>{tr({ uz: '🧲 Bo\'laklarni sudrab yoki bosib joylang', ru: '🧲 Разместите части перетаскиванием или нажатием' })}</p>
           <DragDropOrder items={REQ_ORDER_PIECES} hints={[{ uz: "so'rov shu yerdan boshlanadi", ru: 'запрос начинается здесь' }, { uz: "manzilni (IP) topadi", ru: 'находит адрес (IP)' }, { uz: "sahifani beradi", ru: 'отдаёт страницу' }, { uz: "chizib ko'rsatadi", ru: 'рисует на экране' }]} onSolved={() => setDone(true)} onWrong={() => { if (achMiss && !done) achMiss.miss(screen); }} />
-          <AchRule screen={screen} />
+          {!done && <AchRule screen={screen} />}
         </div>
       </div>
     </Stage>

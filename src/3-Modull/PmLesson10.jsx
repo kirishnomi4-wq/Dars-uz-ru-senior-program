@@ -1250,6 +1250,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [step, setStep] = useState(() => (storedAnswer && storedAnswer.solved) ? 2 : (storedAnswer && storedAnswer.step) || 0);
   const [miss, setMiss] = useState(null);
   const [missedOnce, setMissedOnce] = useState(false);
+  const achMiss = useContext(AchMissCtx); // 🏅 151-qonun: noto'g'ri joy — nishon birinchi urinishga (mahalliy `miss` band)
   const [yordamOpen, setYordamOpen] = useState(false);
   const missT = useRef(null);
   useEffect(() => () => clearTimeout(missT.current), []);
@@ -1264,6 +1265,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     if (done || isMentor) return;
     const target = step === 0 ? 'tugma' : 'qator';
     if (id === target) { setStep(s => s + 1); setMiss(null); return; }
+    if (achMiss) achMiss.miss(screen);
     setMiss(id);
     setMissedOnce(true);
     clearTimeout(missT.current);
@@ -1326,6 +1328,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <MentorPracticeStats live={live} screen={screen} label={tr({ uz: "🎯 Joyni topganlar", ru: "🎯 Кто нашёл место" })} />
           </Col>
         </div>
+        {!done && <AchRule screen={screen} />}
         {done && <div className="done-mini fade-step">{tr({ uz: <>✅ Ko'rsatuvda bitta harakat bosiladi — «Band qilaman» <span className="dm-sub">— ikkinchi bosishingiz yangi harakat emas edi: u natija qayerda chiqqanini ko'rsatdi</span></>, ru: <>✅ В показе нажимают одно действие — «Забронировать» <span className="dm-sub">— второе нажатие не было новым действием: оно показало, где появился результат</span></> })}</div>}
         <MentorNote>{tr({ uz: "Eng ko'p bosiladigan noto'g'ri joy — menyu. Aynan shu yerda so'rang: menyuni ochsak, qarab turgan odam nimani bilib oladi? Sinf ish-tartibi: kadrlarni juftlikda o'qib bering — sherigi «qayerni bosasiz?» deb so'rasa, harakat aniq yozilmagan. Bu ishni o'quvchilar bajaradi, siz kuzatasiz; «Davom etish» siz uchun ochiq.", ru: 'Чаще всего ошибочно нажимают меню. Именно здесь и спросите: если открыть меню, что узнает человек, который смотрит? Порядок работы в классе: пусть читают кадры в парах — если напарник спрашивает «а куда нажимать?», значит действие записано неточно. Эту работу делают ученики, вы наблюдаете; «Продолжить» для вас открыто.' })}</MentorNote>
       </div>
@@ -1727,6 +1730,22 @@ const ACHIEVEMENTS = {
   liveProof:   { icon: '⚛️', name: 'Live Proof!',   desc: { uz: "Natijani ekranda ko'rinadigan qildingiz", ru: 'Вы сделали результат видимым на экране' } },
 };
 const ACH_TRIGGERS = { s4: 'silentWatch', s8: 'threeFrames', s9: 'spotOn', s10: 'liveProof' };
+
+// 🏅 151-qonun: amaliy topshiriq nishoni faqat BIRINCHI urinishga beriladi. Shart OLDINDAN aytiladi; birinchi urinish
+// xato bo'lsa — jazosiz qisqa xabar (`once` — qayta urinishi yo'q ekran). Mentor ekranida, «Qaytadan» mashq-o'tishida va
+// nishon olingach ko'rinmaydi. Matn — MATN_KORPUS §183 (hamma darsda aynan bir xil).
+const AchRule = ({ screen, once }) => {
+  const earned = useContext(AchCtx);
+  const am = useContext(AchMissCtx);
+  const gate = useContext(LiveGateCtx) || {};
+  const sid = SCREEN_META[screen] && SCREEN_META[screen].id;
+  const ach = ACH_TRIGGERS[sid];
+  if (!ach || !am || am.practice || (gate.live && gate.live.mode === 'mentor') || (earned && earned.has(ach))) return null;
+  const lost = am.missed.has(sid);
+  return <p className={`ach-rule ${lost ? 'lost' : ''}`}>{lost
+    ? (once ? tr({ uz: 'Nishon birinchi urinish uchun edi.', ru: 'Значок давался за первую попытку.' }) : tr({ uz: "Nishon birinchi urinish uchun edi — endi bemalol to'g'risini toping.", ru: 'Значок давался за первую попытку — теперь спокойно найдите верный ответ.' }))
+    : tr({ uz: "🏅 Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki.", ru: '🏅 Справитесь с первой попытки — значок ваш.' })}</p>;
+};
 
 function AchCelebrate({ ach, onDone }) {
   useEffect(() => { const t = setTimeout(onDone, 4000); return () => clearTimeout(t); }, []); // eslint-disable-line
@@ -3448,6 +3467,8 @@ export default function PmLesson10({ lang: langProp, onFinished, liveToken }) {
         ${CSS_BASE}
         ${CSS_LESSON}
         ${CSS_ARENA}
+        .ach-rule { margin: 8px 0 0; text-align: center; font-size: 13px; line-height: 1.4; color: ${T.ink3Deep}; }
+        .ach-rule.lost { font-style: italic; }
       `}</style>
       <AchCtx.Provider value={earned}>
       <AchMissCtx.Provider value={achMissVal}>

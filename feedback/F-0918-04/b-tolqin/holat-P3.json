@@ -1,0 +1,345 @@
+[
+ {
+  "file": "src/3-Modull/PmLesson10.jsx",
+  "sid": "s10",
+  "ach": "liveProof",
+  "status": "—",
+  "tur": "MEHNAT",
+  "nima_qilindi": "kodga tegilmadi — PM ScreenCoding (darvoza + VS Code «qo'shdim»), qaror 2-A",
+  "eslatma": "Holat ccProgress dan tashqarida (pm-m3d14-code) — «Qaytadan» mashqida ekran bajarilgan bo'lib ochiladi."
+ },
+ {
+  "file": "src/3-Modull/PmLesson10.jsx",
+  "sid": "s4",
+  "ach": "silentWatch",
+  "status": "—",
+  "tur": "BONUS",
+  "nima_qilindi": "kodga tegilmadi — PM 4-ekran = bonus (qaror 5-A); darsda graduate/boshqa bonus yo'q; tavsif rost",
+  "eslatma": ""
+ },
+ {
+  "file": "src/3-Modull/PmLesson10.jsx",
+  "sid": "s8",
+  "ach": "threeFrames",
+  "status": "—",
+  "tur": "MEHNAT",
+  "nima_qilindi": "kodga tegilmadi — erkin yozma",
+  "eslatma": ""
+ },
+ {
+  "file": "src/3-Modull/PmLesson10.jsx",
+  "sid": "s9",
+  "ach": "spotOn",
+  "status": "✅",
+  "tur": "A-qol",
+  "nima_qilindi": "Screen9: achMiss (mahalliy `miss` band), hit() xato-tarmog'ida achMiss.miss(screen); <AchRule> ikki ustun ostida, done-mini dan oldin (`!done`).",
+  "miss_joyi": "hit() — target mos kelmagan tarmoq",
+  "urinish": "har ikki bosqichda noto'g'ri zona bosilishi (zona qizarib silkinadi)",
+  "sirpanish": "topilgan (yashil) zona `disabled` — qayta bosilmaydi; mentor rejimida hit bloklangan",
+  "prob": {
+   "1-bosqich xatosi": "S0 S4 S5 S2 S1a S1b ✓",
+   "2-bosqich xatosi": "S0 S4 S5 S2 S1a S1b ✓"
+  },
+  "gates": "6/6 ✓, lintcmp 0",
+  "qaror": "",
+  "urinishlar_soni": 1,
+  "eslatma": "Rang ink3Deep 4.74:1."
+ },
+ {
+  "file": "src/3-Modull/PmLesson8.jsx",
+  "sid": "s10",
+  "ach": "codePainter",
+  "status": "—",
+  "tur": "MEHNAT",
+  "nima_qilindi": "kodga tegilmadi — PM ScreenCoding (darvoza + VS Code), foydalanuvchi qarori 2-A",
+  "eslatma": "Holat ccProgress dan tashqarida saqlanadi (alohida localStorage kaliti) — «Qaytadan» mashqida ekran bajarilgan bo'lib ochiladi."
+ },
+ {
+  "file": "src/3-Modull/PmLesson8.jsx",
+  "sid": "s4",
+  "ach": "boardMaster",
+  "status": "✅",
+  "tur": "A-qol",
+  "nima_qilindi": "Screen4: achMiss (kontekst), tryCell() else-tarmog'ida achMiss.miss(screen); <AchRule> Kataklar ostida, `!done` bilan.",
+  "miss_joyi": "tryCell() else (kartaning katak'i mos emas)",
+  "urinish": "tanlangan kartani noto'g'ri katakka qo'yish (har qadam)",
+  "sirpanish": "karta tanlanmasdan katak bosish (tryCell `!sel` → return), kartani tanlab-bekor qilish — prob S3 ✓",
+  "prob": {
+   "S0": "✓",
+   "S4": "✓",
+   "S5": "✓",
+   "S2": "✓",
+   "S1a": "✓",
+   "S1b": "✓",
+   "S3": "✓"
+  },
+  "gates": "6/6 ✓, lintcmp 0",
+  "qaror": "",
+  "urinishlar_soni": 1,
+  "eslatma": "6 karta × 3 noto'g'ri katak — bitta xato nishonni oladi (foydalanuvchi qarori 4-A: qoida bir xil). Qisman holat (placed) F5 da yo'qoladi, missed qoladi."
+ },
+ {
+  "file": "src/3-Modull/PmLesson8.jsx",
+  "sid": "s8",
+  "ach": "quickWin",
+  "status": "—",
+  "tur": "MEHNAT",
+  "nima_qilindi": "kodga tegilmadi — erkin yozma (o'z loyihasi), 152-qonun 5-band",
+  "eslatma": ""
+ },
+ {
+  "file": "src/3-Modull/PmLesson8.jsx",
+  "sid": "s9",
+  "ach": "planChanger",
+  "status": "✅",
+  "tur": "A-qol",
+  "nima_qilindi": "Screen9: achMiss, tryCell() else'da miss; <AchRule> Kataklar ostida (`!done`).",
+  "miss_joyi": "tryCell() else",
+  "urinish": "kartani yangi katak'idan boshqa katakka qo'yish (masalan eski katak'iga)",
+  "sirpanish": "karta tanlanmasdan katak bosish — prob S3 ✓",
+  "prob": {
+   "S0": "✓",
+   "S4": "✓",
+   "S5": "✓",
+   "S2": "✓",
+   "S1a": "✓",
+   "S1b": "✓",
+   "S3": "✓"
+  },
+  "gates": "6/6 ✓, lintcmp 0",
+  "qaror": "",
+  "urinishlar_soni": 1,
+  "eslatma": "Bu ekran `live.submitAnswer(PRACTICE_BASE…, true)` yuboradi — ball-mantiq, tegilmadi."
+ },
+ {
+  "file": "src/3-Modull/PmLesson9.jsx",
+  "sid": "s10",
+  "ach": "codeChecker",
+  "status": "—",
+  "tur": "MEHNAT",
+  "nima_qilindi": "kodga tegilmadi — PM ScreenCoding (darvoza + kompilyator), qaror 2-A",
+  "eslatma": ""
+ },
+ {
+  "file": "src/3-Modull/PmLesson9.jsx",
+  "sid": "s4",
+  "ach": "bugHunter",
+  "status": "—",
+  "tur": "BONUS",
+  "nima_qilindi": "kodga tegilmadi — PM 4-ekran = darsning bonusi (qaror 5-A); darsda graduate yo'q, boshqa bonus yo'q; tavsif rost («Uch nosozlikni…» — 4 shartdan 3 tasi nosoz)",
+  "eslatma": ""
+ },
+ {
+  "file": "src/3-Modull/PmLesson9.jsx",
+  "sid": "s8",
+  "ach": "clearTerms",
+  "status": "—",
+  "tur": "MEHNAT",
+  "nima_qilindi": "kodga tegilmadi — erkin yozma",
+  "eslatma": "Tavsif «tekshiriladigan shart» deydi, baho-so'zli shart ham saqlanadi → matn-P3.md"
+ },
+ {
+  "file": "src/3-Modull/PmLesson9.jsx",
+  "sid": "s9",
+  "ach": "rightOrder",
+  "status": "✅",
+  "tur": "A-qol",
+  "nima_qilindi": "Screen9: achMiss (mahalliy `miss` band), tryPlace() xato-tarmog'ida achMiss.miss(screen); <AchRule> `.tline` chizig'i ostida (`!done`).",
+  "miss_joyi": "tryPlace() else (navbatdagi o'ringa noto'g'ri karta)",
+  "urinish": "navbatdagi o'ringa noto'g'ri qadam-kartani bosish (karta qaytib chiqadi)",
+  "sirpanish": "yo'q — faqat kartalar bosiladi; mentor rejimida tryPlace bloklangan",
+  "prob": {
+   "S0": "✓",
+   "S4": "✓",
+   "S5": "✓",
+   "S2": "✓",
+   "S1a": "✓",
+   "S1b": "✓"
+  },
+  "gates": "6/6 ✓, lintcmp 0",
+  "qaror": "",
+  "urinishlar_soni": 1,
+  "eslatma": "5 qadam — bitta xato nishonni oladi (qaror 4-A). Rang ink3Deep 4.74:1 (PM palitra)."
+ },
+ {
+  "file": "src/3-Modull/ReactApiGetLesson.jsx",
+  "sid": "s15",
+  "ach": "headWaiter",
+  "status": "—",
+  "tur": "MEHNAT",
+  "nima_qilindi": "kodga tegilmadi — VS Code «Bajardim» (152-qonun 5-band)",
+  "eslatma": "Bosqichlar belgilanmasa ham «Bajardim» bosiladi — mehnat nishonining ma'lum chegarasi."
+ },
+ {
+  "file": "src/3-Modull/ReactApiPostLesson.jsx",
+  "sid": "s13",
+  "ach": "dispatcher",
+  "status": "✅",
+  "tur": "A-umumiy",
+  "nima_qilindi": "DragDropOrder ga onWrong (pilotdagi 2 qator: prop + useEffect(wrong)); DebugChallenge ga onWrong; pickAddr xato-tarmog'ida missNow(); ekranda achMiss + missNow; <AchRule> chap ustun oxirida, faqat topshiriq tugamaguncha (!done).",
+  "miss_joyi": "DragDropOrder wrong (hamma slot to'lib tartib xato) · pickAddr else · DebugChallenge.click else",
+  "urinish": "uch bosqichning istalganidagi birinchi bilim-xatosi: POST tartibi xato (to'lgan on), PUT ID'siz manzil, DELETE xato qator",
+  "sirpanish": "chipni slotdan qaytarish; DELETE tasdig'ida «Bekor qilish» — ikkalasi prob S3 bilan isbotlangan (missed bo'sh)",
+  "prob": {
+   "POST-xato": "S0 S4 S5 S2 S1a S1b S3 ✓",
+   "PUT-xato": "S0 S4 S5 S2 S1a S1b S3 ✓",
+   "DELETE-xato": "S0 S4 S5 S2 S1a S1b ✓"
+  },
+  "gates": "6/6 ✓, lintcmp 0",
+  "qaror": "<AchRule> `{!done && …}` bilan: yakunda chap ustun to'liq almashadi (takeaway «Pult sizniki!») — xatodan keyingi «endi bemalol to'g'risini toping» qatori tugagan topshiriq ostida ma'nosiz osilib qolardi. Pilotda bunday shart yo'q (u yerda qator topshiriq tugagach ham turadi) — bosh agent e'tiboriga: markazda hal qilish mumkin.",
+  "urinishlar_soni": 1,
+  "eslatma": "Probda 3 ta alohida yozuv (har bosqich xatosi uchun). DragDropOrder va DebugChallenge shu faylda faqat shu ekranda ishlatiladi."
+ },
+ {
+  "file": "src/3-Modull/ReactBuildSiteLesson.jsx",
+  "sid": "s10",
+  "ach": "debugger",
+  "status": "✅",
+  "tur": "A-qol",
+  "nima_qilindi": "Screen10: achMiss, choose() xato-tarmog'ida achMiss.miss(screen); <AchRule> prompt-variantlar ostida (`!fixed`).",
+  "miss_joyi": "choose() else (f.ok === false)",
+  "urinish": "noto'g'ri aniqlashtiruvchi promptni tanlash («hammasini qaytadan» yoki «rang»)",
+  "sirpanish": "yo'q — faqat variantlar bosiladi; tanlangach `disabled`",
+  "prob": {
+   "«qaytadan» xatosi": "S0 S4 S5 S2 S1a S1b ✓",
+   "«rang» xatosi": "S0 S4 S5 S2 S1a S1b ✓"
+  },
+  "gates": "6/6 ✓, lintcmp 0",
+  "qaror": "",
+  "urinishlar_soni": 1,
+  "eslatma": "Ekrandagi qizil «⚠ Kartochkalarda narx ko'rinmayapti!» to'g'ri variantni (narx) urinishdan oldin aytib turadi → matn-P3.md."
+ },
+ {
+  "file": "src/3-Modull/ReactCrudPracticeLesson.jsx",
+  "sid": "s13",
+  "ach": "debugger",
+  "status": "✅",
+  "tur": "A-qol",
+  "nima_qilindi": "Screen13: achMiss; `obj` va `set` qatorlarining inline onClick'ida (faqat !found) achMiss.miss(screen) — bir qatorli handlerga izoh yozilmadi; <AchRule> ai-card ichida, prompt ostida (`!fixed`).",
+  "miss_joyi": "`.ai-line` obj/set onClick (inline)",
+  "urinish": "xatosiz qatorni (obj yoki set) bosish — frame-warn chiqadi",
+  "sirpanish": "o'ng ustundagi «+ push (tez qo'l)» tajriba-tugmasi — urinish emas, prob S3 ✓",
+  "prob": {
+   "obj-xato": "S0 S4 S5 S2 S1a S1b S3 ✓",
+   "set-xato": "S0 S4 S5 S2 S1a S1b ✓"
+  },
+  "gates": "6/6 ✓, lintcmp 0",
+  "qaror": "",
+  "urinishlar_soni": 1,
+  "eslatma": "O'ng ustundagi boshlang'ich maslahat va xato qatorning o'z izohi javobni oldindan aytadi → matn-P3.md. Darsda s11 builder (bonus) + graduate — kafolatli 2, chegara ichida."
+ },
+ {
+  "file": "src/3-Modull/ReactFirstComponentLesson.jsx",
+  "sid": "s14",
+  "ach": "debugger",
+  "status": "✅",
+  "tur": "A-umumiy",
+  "nima_qilindi": "DebugChallenge onWrong; ekranda achMiss.miss; <AchRule> DebugChallenge ostida, `!done` bilan (topshiriq tugagach qator osilib qolmaydi).",
+  "miss_joyi": "DebugChallenge.click() else → onWrong",
+  "urinish": "bug bo'lmagan qatorni bosish",
+  "sirpanish": "yo'q",
+  "prob": {
+   "S0": "✓",
+   "S4": "✓",
+   "S5": "✓",
+   "S2": "✓",
+   "S1a": "✓",
+   "S1b": "✓",
+   "qayta": "`!done` qo'shilgach 4/4 qayta o'tdi"
+  },
+  "gates": "6/6 ✓, lintcmp 0",
+  "qaror": "",
+  "urinishlar_soni": 1,
+  "eslatma": "Skrinshot: qator «👆 Xato bor qatorni toping» ostida, markazda — ustma-ust yo'q."
+ },
+ {
+  "file": "src/3-Modull/ReactIntroLesson.jsx",
+  "sid": "s13",
+  "ach": "builder",
+  "status": "—",
+  "tur": "BONUS",
+  "nima_qilindi": "kodga tegilmadi — tekin (istalgan 3 blok); darsda graduate + shu bonus = kafolatli 2 (152-qonun 1-band ichida); tavsif rost",
+  "eslatma": "ACH_TRIGGERS ustidagi «faqat REAL solve» izohi bu ekran uchun noto'g'ri (izoh-qoldiq, tegilmadi)."
+ },
+ {
+  "file": "src/3-Modull/ReactIntroLesson.jsx",
+  "sid": "s14",
+  "ach": "debugger",
+  "status": "✅",
+  "tur": "A-umumiy",
+  "nima_qilindi": "DebugChallenge ga onWrong prop (xato-tarmoq boshida chaqiriladi); ekranda achMiss.miss(screen) ulandi; <AchRule> DebugChallenge ostida, `!done` bilan (topshiriq tugagach qator osilib qolmaydi) (chap ustun).",
+  "miss_joyi": "DebugChallenge.click() else-tarmog'i → onWrong",
+  "urinish": "bug bo'lmagan qatorni bosish (qator 0,5 s qizaradi)",
+  "sirpanish": "yo'q (faqat qator bosiladi)",
+  "prob": {
+   "S0": "✓",
+   "S4": "✓",
+   "S5": "✓",
+   "S2": "✓",
+   "S1a": "✓",
+   "S1b": "✓",
+   "qayta": "`!done` qo'shilgach 4/4 qayta o'tdi"
+  },
+  "gates": "esbuild/jsx/keys/dark/til/prompt ✓, lintcmp 0",
+  "qaror": "",
+  "urinishlar_soni": 1,
+  "eslatma": "Maslahat (o'ng ustun) javobni urinishdan oldin aytadi → matn-P3.md. S0 skrinshoti fade-in paytida olingan (kod bloki hali ko'rinmagan) — prob o'tgan."
+ },
+ {
+  "file": "src/3-Modull/ReactPropsReuseLesson.jsx",
+  "sid": "s14",
+  "ach": "debugger",
+  "status": "✅",
+  "tur": "A-umumiy",
+  "nima_qilindi": "DebugChallenge onWrong; ekranda achMiss.miss; <AchRule> DebugChallenge ostida, `!done` bilan (topshiriq tugagach qator osilib qolmaydi).",
+  "miss_joyi": "DebugChallenge.click() else → onWrong",
+  "urinish": "bug bo'lmagan qatorni bosish",
+  "sirpanish": "yo'q",
+  "prob": {
+   "S0": "✓",
+   "S4": "✓",
+   "S5": "✓",
+   "S2": "✓",
+   "S1a": "✓",
+   "S1b": "✓",
+   "qayta": "`!done` qo'shilgach 4/4 qayta o'tdi"
+  },
+  "gates": "6/6 ✓, lintcmp 0",
+  "qaror": "",
+  "urinishlar_soni": 1,
+  "eslatma": ""
+ },
+ {
+  "file": "src/3-Modull/ReactRouterPracticeLesson.jsx",
+  "sid": "s13",
+  "ach": "debugger",
+  "status": "✅",
+  "tur": "A-umumiy",
+  "nima_qilindi": "DebugChallenge onWrong; ekranda achMiss.miss; <AchRule> DebugChallenge ostida, `!done` bilan (topshiriq tugagach qator osilib qolmaydi).",
+  "miss_joyi": "DebugChallenge.click() else → onWrong",
+  "urinish": "bug bo'lmagan qatorni bosish",
+  "sirpanish": "yo'q",
+  "prob": {
+   "S0": "✓",
+   "S4": "✓",
+   "S5": "✓",
+   "S2": "✓",
+   "S1a": "✓",
+   "S1b": "✓",
+   "qayta": "`!done` qo'shilgach 4/4 qayta o'tdi"
+  },
+  "gates": "6/6 ✓, lintcmp 0",
+  "qaror": "",
+  "urinishlar_soni": 1,
+  "eslatma": "Maslahat «<a href> ning belgisi» javobni oldindan aytadi → matn-P3.md."
+ },
+ {
+  "file": "src/3-Modull/ReactRouterPracticeLesson.jsx",
+  "sid": "s9",
+  "ach": "builder",
+  "status": "—",
+  "tur": "BONUS",
+  "nima_qilindi": "kodga tegilmadi — tekin (istalgan buyruq); graduate + shu bonus = kafolatli 2; tavsif chegarada rost («AI bilan … qurdingiz»)",
+  "eslatma": ""
+ }
+]

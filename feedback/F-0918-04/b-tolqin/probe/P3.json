@@ -1,0 +1,694 @@
+[
+ {
+  "file": "src/3-Modull/ReactIntroLesson.jsx",
+  "sid": "s14",
+  "note": "DebugChallenge: xato = xatosiz qatorni bosish (0,5 s qizaradi)",
+  "wrong": [
+   {
+    "click": ".dbg-line",
+    "nth": 0,
+    "after": 650
+   }
+  ],
+  "right": [
+   {
+    "click": ".dbg-line",
+    "nth": 1,
+    "after": 700
+   }
+  ]
+ },
+ {
+  "file": "src/3-Modull/ReactFirstComponentLesson.jsx",
+  "sid": "s14",
+  "note": "DebugChallenge: xato = xatosiz qatorni bosish",
+  "wrong": [
+   {
+    "click": ".dbg-line",
+    "nth": 0,
+    "after": 650
+   }
+  ],
+  "right": [
+   {
+    "click": ".dbg-line",
+    "nth": 2,
+    "after": 700
+   }
+  ]
+ },
+ {
+  "file": "src/3-Modull/ReactPropsReuseLesson.jsx",
+  "sid": "s14",
+  "note": "DebugChallenge: xato = xatosiz qatorni bosish",
+  "wrong": [
+   {
+    "click": ".dbg-line",
+    "nth": 0,
+    "after": 650
+   }
+  ],
+  "right": [
+   {
+    "click": ".dbg-line",
+    "nth": 2,
+    "after": 700
+   }
+  ]
+ },
+ {
+  "file": "src/3-Modull/ReactRouterPracticeLesson.jsx",
+  "sid": "s13",
+  "note": "DebugChallenge: xato = xatosiz qatorni bosish",
+  "wrong": [
+   {
+    "click": ".dbg-line",
+    "nth": 0,
+    "after": 650
+   }
+  ],
+  "right": [
+   {
+    "click": ".dbg-line",
+    "nth": 1,
+    "after": 700
+   }
+  ]
+ },
+ {
+  "file": "src/3-Modull/ReactApiPostLesson.jsx",
+  "sid": "s13",
+  "right": [
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"method: 'POST'\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"body:\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"JSON.stringify(yangi)\")"
+   },
+   {
+    "wait": 1300
+   },
+   {
+    "click": "button.gchip",
+    "nth": 1,
+    "after": 500
+   },
+   {
+    "click": ".dbg-line",
+    "nth": 1,
+    "after": 700
+   },
+   {
+    "click": "button:has-text(\"Ha, o'chirilsin\")",
+    "after": 800
+   }
+  ],
+  "note": "POST bosqichida xato: 3 chip to'lib tartib xato; sirpanish = chipni slotdan qaytarish va DELETE da «Bekor qilish»",
+  "wrong": [
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"body:\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"method: 'POST'\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"JSON.stringify(yangi)\")"
+   },
+   {
+    "wait": 500
+   }
+  ],
+  "rightAfterWrong": [
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0
+   },
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0
+   },
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"method: 'POST'\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"body:\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"JSON.stringify(yangi)\")"
+   },
+   {
+    "wait": 1300
+   },
+   {
+    "click": "button.gchip",
+    "nth": 1,
+    "after": 500
+   },
+   {
+    "click": ".dbg-line",
+    "nth": 1,
+    "after": 700
+   },
+   {
+    "click": "button:has-text(\"Ha, o'chirilsin\")",
+    "after": 800
+   }
+  ],
+  "slip": [
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"body:\")"
+   },
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0
+   }
+  ]
+ },
+ {
+  "file": "src/3-Modull/ReactApiPostLesson.jsx",
+  "sid": "s13",
+  "right": [
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"method: 'POST'\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"body:\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"JSON.stringify(yangi)\")"
+   },
+   {
+    "wait": 1300
+   },
+   {
+    "click": "button.gchip",
+    "nth": 1,
+    "after": 500
+   },
+   {
+    "click": ".dbg-line",
+    "nth": 1,
+    "after": 700
+   },
+   {
+    "click": "button:has-text(\"Ha, o'chirilsin\")",
+    "after": 800
+   }
+  ],
+  "note": "PUT bosqichida xato: ID'siz manzil (silkinadi)",
+  "wrong": [
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"method: 'POST'\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"body:\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"JSON.stringify(yangi)\")"
+   },
+   {
+    "wait": 1300
+   },
+   {
+    "click": "button.gchip",
+    "nth": 0,
+    "after": 600
+   }
+  ],
+  "rightAfterWrong": [
+   {
+    "click": "button.gchip",
+    "nth": 1,
+    "after": 500
+   },
+   {
+    "click": ".dbg-line",
+    "nth": 1,
+    "after": 700
+   },
+   {
+    "click": "button:has-text(\"Ha, o'chirilsin\")",
+    "after": 800
+   }
+  ],
+  "slip": [
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"method: 'POST'\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"body:\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"JSON.stringify(yangi)\")"
+   },
+   {
+    "wait": 1300
+   },
+   {
+    "click": "button.gchip",
+    "nth": 1,
+    "after": 500
+   },
+   {
+    "click": ".dbg-line",
+    "nth": 1,
+    "after": 700
+   },
+   {
+    "click": "button:has-text(\"Bekor qilish\")",
+    "after": 500
+   }
+  ]
+ },
+ {
+  "file": "src/3-Modull/ReactApiPostLesson.jsx",
+  "sid": "s13",
+  "right": [
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"method: 'POST'\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"body:\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"JSON.stringify(yangi)\")"
+   },
+   {
+    "wait": 1300
+   },
+   {
+    "click": "button.gchip",
+    "nth": 1,
+    "after": 500
+   },
+   {
+    "click": ".dbg-line",
+    "nth": 1,
+    "after": 700
+   },
+   {
+    "click": "button:has-text(\"Ha, o'chirilsin\")",
+    "after": 800
+   }
+  ],
+  "note": "DELETE bosqichida xato: to'g'ri qator emas (fetch qatori) bosildi",
+  "wrong": [
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"method: 'POST'\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"body:\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"JSON.stringify(yangi)\")"
+   },
+   {
+    "wait": 1300
+   },
+   {
+    "click": "button.gchip",
+    "nth": 1,
+    "after": 500
+   },
+   {
+    "click": ".dbg-line",
+    "nth": 0,
+    "after": 650
+   }
+  ],
+  "rightAfterWrong": [
+   {
+    "click": ".dbg-line",
+    "nth": 1,
+    "after": 700
+   },
+   {
+    "click": "button:has-text(\"Ha, o'chirilsin\")",
+    "after": 800
+   }
+  ]
+ },
+ {
+  "file": "src/3-Modull/PmLesson8.jsx",
+  "sid": "s4",
+  "note": "karta → katak; xato = tanlangan kartani noto'g'ri katakka qo'yish; sirpanish = karta tanlanmasdan katak bosish, kartani tanlab-bekor qilish",
+  "wrong": [
+   {
+    "click": ".ipool .icard",
+    "nth": 0
+   },
+   {
+    "click": ".pbd-cell.darrov",
+    "after": 350
+   }
+  ],
+  "right": [
+   {
+    "click": ".ipool .icard",
+    "nth": 0
+   },
+   {
+    "click": ".pbd-cell.reja",
+    "after": 350
+   },
+   {
+    "click": ".ipool .icard",
+    "nth": 0
+   },
+   {
+    "click": ".pbd-cell.yoq",
+    "after": 350
+   },
+   {
+    "click": ".ipool .icard",
+    "nth": 0
+   },
+   {
+    "click": ".pbd-cell.darrov",
+    "after": 350
+   },
+   {
+    "click": ".ipool .icard",
+    "nth": 0
+   },
+   {
+    "click": ".pbd-cell.yoq",
+    "after": 350
+   },
+   {
+    "click": ".ipool .icard",
+    "nth": 0
+   },
+   {
+    "click": ".pbd-cell.darrov",
+    "after": 350
+   },
+   {
+    "click": ".ipool .icard",
+    "nth": 0
+   },
+   {
+    "click": ".pbd-cell.keyin",
+    "after": 350
+   }
+  ],
+  "rightAfterWrong": [
+   {
+    "click": ".pbd-cell.reja",
+    "after": 350
+   },
+   {
+    "click": ".ipool .icard",
+    "nth": 0
+   },
+   {
+    "click": ".pbd-cell.yoq",
+    "after": 350
+   },
+   {
+    "click": ".ipool .icard",
+    "nth": 0
+   },
+   {
+    "click": ".pbd-cell.darrov",
+    "after": 350
+   },
+   {
+    "click": ".ipool .icard",
+    "nth": 0
+   },
+   {
+    "click": ".pbd-cell.yoq",
+    "after": 350
+   },
+   {
+    "click": ".ipool .icard",
+    "nth": 0
+   },
+   {
+    "click": ".pbd-cell.darrov",
+    "after": 350
+   },
+   {
+    "click": ".ipool .icard",
+    "nth": 0
+   },
+   {
+    "click": ".pbd-cell.keyin",
+    "after": 350
+   }
+  ],
+  "slip": [
+   {
+    "click": ".pbd-cell.darrov",
+    "after": 350
+   },
+   {
+    "click": ".ipool .icard",
+    "nth": 0
+   },
+   {
+    "click": ".ipool .icard",
+    "nth": 0
+   }
+  ]
+ },
+ {
+  "file": "src/3-Modull/PmLesson8.jsx",
+  "sid": "s9",
+  "note": "vaqti o'zgargan 2 kartani yangi katakka; xato = joy ni eski katagiga (reja) qo'yish; sirpanish = karta tanlanmasdan katak bosish",
+  "wrong": [
+   {
+    "click": ".ipool .icard",
+    "nth": 0
+   },
+   {
+    "click": ".pbd-cell.reja",
+    "after": 350
+   }
+  ],
+  "right": [
+   {
+    "click": ".ipool .icard",
+    "nth": 0
+   },
+   {
+    "click": ".pbd-cell.darrov",
+    "after": 350
+   },
+   {
+    "click": ".ipool .icard",
+    "nth": 0
+   },
+   {
+    "click": ".pbd-cell.yoq",
+    "after": 350
+   }
+  ],
+  "rightAfterWrong": [
+   {
+    "click": ".pbd-cell.darrov",
+    "after": 350
+   },
+   {
+    "click": ".ipool .icard",
+    "nth": 0
+   },
+   {
+    "click": ".pbd-cell.yoq",
+    "after": 350
+   }
+  ],
+  "slip": [
+   {
+    "click": ".pbd-cell.keyin",
+    "after": 350
+   }
+  ]
+ },
+ {
+  "file": "src/3-Modull/PmLesson9.jsx",
+  "sid": "s9",
+  "note": "navbatdagi o'ringa karta bosiladi; xato = noto'g'ri karta (qaytib chiqadi)",
+  "wrong": [
+   {
+    "click": ".qstep:has-text(\"Dasturchi kodni yozadi\")",
+    "after": 350
+   },
+   {
+    "wait": 700
+   }
+  ],
+  "right": [
+   {
+    "click": ".qstep:has-text(\"Shartlarni yozamiz\")",
+    "after": 350
+   },
+   {
+    "click": ".qstep:has-text(\"Shartlarni dasturchiga beramiz\")",
+    "after": 350
+   },
+   {
+    "click": ".qstep:has-text(\"Dasturchi kodni yozadi\")",
+    "after": 350
+   },
+   {
+    "click": ".qstep:has-text(\"Har shartni birma-bir tekshiramiz\")",
+    "after": 350
+   },
+   {
+    "click": ".qstep:has-text(\"Hammasi bajarilsa\")",
+    "after": 350
+   }
+  ]
+ },
+ {
+  "file": "src/3-Modull/PmLesson10.jsx",
+  "sid": "s9",
+  "note": "1-bosqichda xato: menyu bosildi",
+  "wrong": [
+   {
+    "click": "button.hs-z:has-text(\"Menyu\")",
+    "after": 700
+   }
+  ],
+  "right": [
+   {
+    "click": "button.hs-z:has-text(\"Band qilaman\")",
+    "after": 450
+   },
+   {
+    "click": "button.hs-z.yangi",
+    "after": 700
+   }
+  ]
+ },
+ {
+  "file": "src/3-Modull/PmLesson10.jsx",
+  "sid": "s9",
+  "note": "2-bosqichda xato: «Band qilaman» topilgach Aloqa bosildi",
+  "wrong": [
+   {
+    "click": "button.hs-z:has-text(\"Band qilaman\")",
+    "after": 450
+   },
+   {
+    "click": "button.hs-z:has-text(\"Aloqa\")",
+    "after": 700
+   }
+  ],
+  "right": [
+   {
+    "click": "button.hs-z:has-text(\"Band qilaman\")",
+    "after": 450
+   },
+   {
+    "click": "button.hs-z.yangi",
+    "after": 700
+   }
+  ],
+  "rightAfterWrong": [
+   {
+    "click": "button.hs-z.yangi",
+    "after": 700
+   }
+  ]
+ },
+ {
+  "file": "src/3-Modull/ReactBuildSiteLesson.jsx",
+  "sid": "s10",
+  "note": "3 promptdan to'g'risi (narx); xato = «hammasini qaytadan» yoki «rang»",
+  "wrong": [
+   {
+    "click": "button.hook-option",
+    "nth": 1,
+    "after": 700
+   }
+  ],
+  "right": [
+   {
+    "click": "button.hook-option",
+    "nth": 0,
+    "after": 700
+   }
+  ]
+ },
+ {
+  "file": "src/3-Modull/ReactBuildSiteLesson.jsx",
+  "sid": "s10",
+  "note": "ikkinchi xato variant: «rang»",
+  "wrong": [
+   {
+    "click": "button.hook-option",
+    "nth": 2,
+    "after": 700
+   }
+  ],
+  "right": [
+   {
+    "click": "button.hook-option",
+    "nth": 0,
+    "after": 700
+   }
+  ]
+ },
+ {
+  "file": "src/3-Modull/ReactCrudPracticeLesson.jsx",
+  "sid": "s13",
+  "note": "xato qator = push; xato urinish = obj yoki set qatorini bosish; sirpanish = o'ng ustundagi «+ push» tajriba-tugmasi",
+  "wrong": [
+   {
+    "click": ".ai-code .ai-line",
+    "nth": 0,
+    "after": 500
+   }
+  ],
+  "right": [
+   {
+    "click": ".ai-code .ai-line",
+    "nth": 1,
+    "after": 500
+   },
+   {
+    "click": "button:has-text(\"ga almashtirish\")",
+    "after": 800
+   }
+  ],
+  "slip": [
+   {
+    "click": ".split button.chip",
+    "after": 500
+   }
+  ]
+ },
+ {
+  "file": "src/3-Modull/ReactCrudPracticeLesson.jsx",
+  "sid": "s13",
+  "note": "ikkinchi xato variant: setGames(games) qatori",
+  "wrong": [
+   {
+    "click": ".ai-code .ai-line",
+    "nth": 2,
+    "after": 500
+   }
+  ],
+  "right": [
+   {
+    "click": ".ai-code .ai-line",
+    "nth": 1,
+    "after": 500
+   },
+   {
+    "click": "button:has-text(\"ga almashtirish\")",
+    "after": 800
+   }
+  ]
+ }
+]

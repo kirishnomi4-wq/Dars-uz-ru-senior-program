@@ -551,7 +551,7 @@ const Mentor = ({ children }) => {
 
 // 🧲 Qayta ishlatiladigan DRAG-DROP ORDER — bo'laklarni to'g'ri tartibda joylash (StrictMode-safe, atomik holat).
 // Boshqa darsga: `items` ([{id,label}] — to'g'ri tartib), `hints`, `onSolved` almashtiriladi.
-function DragDropOrder({ items, hints, onSolved }) {
+function DragDropOrder({ items, hints, onSolved, onWrong }) {
   const order = items.map(x => x.id);
   const byId = useMemo(() => Object.fromEntries(items.map(x => [x.id, x])), [items]);
   const [st, setSt] = useState(() => {
@@ -565,6 +565,7 @@ function DragDropOrder({ items, hints, onSolved }) {
   const solved = slots.every((s, i) => s === order[i]);
   const wrong = full && !solved;
   useEffect(() => { if (solved) onSolved && onSolved(); }, [solved]); // eslint-disable-line
+  useEffect(() => { if (wrong) onWrong && onWrong(); }, [wrong]); // eslint-disable-line
   const place = (id, from, slotIdx) => setSt(({ pool, slots }) => {
     const ns = slots.slice(); const occ = ns[slotIdx];
     if (typeof from === 'number') ns[from] = null;
@@ -627,7 +628,7 @@ function DragDropOrder({ items, hints, onSolved }) {
 
 // 🐞 Qayta ishlatiladigan DEBUG CHALLENGE — buzuq koddan xato qatorni topib bosish → tuzatiladi.
 // Boshqa darsga: `lines` (bittasida bug:true), `fixed` (to'g'ri qator), `explain` almashtiriladi.
-function DebugChallenge({ lines, fixed, explain, onSolved }) {
+function DebugChallenge({ lines, fixed, explain, onSolved, onWrong }) {
   const bugIdx = lines.findIndex(l => l.bug);
   const [picked, setPicked] = useState(-1);
   const [wrongIdx, setWrongIdx] = useState(-1);
@@ -636,7 +637,7 @@ function DebugChallenge({ lines, fixed, explain, onSolved }) {
   const click = (i) => {
     if (solved) return;
     if (i === bugIdx) setPicked(i);
-    else { setWrongIdx(i); setTimeout(() => setWrongIdx(w => (w === i ? -1 : w)), 500); }
+    else { if (onWrong) onWrong(); setWrongIdx(i); setTimeout(() => setWrongIdx(w => (w === i ? -1 : w)), 500); }
   };
   return (
     <div className="dbg fade-up">
@@ -1509,6 +1510,8 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const shakeTimer = useRef(null);
   const flyTimer = useRef(null);
   const done = stage >= 3;
+  const achMiss = useContext(AchMissCtx);
+  const missNow = () => { if (achMiss) achMiss.miss(screen); }; // 🏅 151-qonun: uch posilkaning istalganida birinchi xato — nishon birinchi urinishga
   useEffect(() => () => { clearTimeout(shakeTimer.current); clearTimeout(flyTimer.current); }, []);
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   const POST_ITEMS = [
@@ -1519,7 +1522,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const postSolved = () => { setPostFly(true); flyTimer.current = setTimeout(() => setStage(1), 950); };
   const pickAddr = (ok) => {
     if (ok) setStage(2);
-    else { clearTimeout(shakeTimer.current); setPutShake(true); shakeTimer.current = setTimeout(() => setPutShake(false), 450); }
+    else { missNow(); clearTimeout(shakeTimer.current); setPutShake(true); shakeTimer.current = setTimeout(() => setPutShake(false), 450); }
   };
   const DEL_LINES = [
     { text: "fetch('https://robo-api.uz/games/5', {" },
@@ -1550,7 +1553,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {stage === 0 && !done && (
               <>
                 <p className="flow-label" style={{ margin: 0 }}>{tr({ uz: "Chiplarni to'g'ri tartibda yig'ing", ru: 'Соберите чипы в правильном порядке' })}</p>
-                <DragDropOrder items={POST_ITEMS} hints={[{ uz: "fe'l", ru: 'глагол' }, { uz: 'yuk kaliti', ru: 'ключ груза' }, { uz: 'qadoqlangan yuk', ru: 'упакованный груз' }]} onSolved={postSolved} />
+                <DragDropOrder items={POST_ITEMS} hints={[{ uz: "fe'l", ru: 'глагол' }, { uz: 'yuk kaliti', ru: 'ключ груза' }, { uz: 'qadoqlangan yuk', ru: 'упакованный груз' }]} onSolved={postSolved} onWrong={missNow} />
               </>
             )}
             {stage === 1 && (
@@ -1566,7 +1569,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {stage === 2 && !delAsking && (
               <>
                 <p className="flow-label" style={{ margin: 0 }}>{tr({ uz: 'Buzuq yorliqni toping va tuzating', ru: 'Найдите и исправьте сломанный ярлык' })}</p>
-                <DebugChallenge lines={DEL_LINES} fixed={delFixed} explain={{ uz: "Fe'l DELETE bo'lishi kerak — GET emas. DELETE body ham ko'tarmaydi.", ru: 'Глагол должен быть DELETE — не GET. И body DELETE не несёт.' }} onSolved={() => setDelAsking(true)} />
+                <DebugChallenge lines={DEL_LINES} fixed={delFixed} explain={{ uz: "Fe'l DELETE bo'lishi kerak — GET emas. DELETE body ham ko'tarmaydi.", ru: 'Глагол должен быть DELETE — не GET. И body DELETE не несёт.' }} onSolved={() => setDelAsking(true)} onWrong={missNow} />
               </>
             )}
             {delAsking && (
@@ -1579,6 +1582,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 </div>
               </div>
             )}
+            {!done && <AchRule screen={screen} />}
           </Col>
           <Col>
             <p className="flow-label">{tr({ uz: 'robo-api.uz — jadval (jonli)', ru: 'robo-api.uz — таблица (живая)' })}</p>
@@ -2120,6 +2124,22 @@ const ACHIEVEMENTS = {
 };
 // Ekran id → nishon (recordAnswer'da, faqat REAL solve bilan: SCORED test / gate)
 const ACH_TRIGGERS = { s4: 'poster', s5b: 'packer', s13: 'dispatcher' };
+
+// 🏅 151-qonun: amaliy topshiriq nishoni faqat BIRINCHI urinishga beriladi. Shart OLDINDAN aytiladi; birinchi urinish
+// xato bo'lsa — jazosiz qisqa xabar (`once` — qayta urinishi yo'q ekran). Mentor ekranida, «Qaytadan» mashq-o'tishida va
+// nishon olingach ko'rinmaydi. Matn — MATN_KORPUS §183 (hamma darsda aynan bir xil).
+const AchRule = ({ screen, once }) => {
+  const earned = useContext(AchCtx);
+  const am = useContext(AchMissCtx);
+  const gate = useContext(LiveGateCtx) || {};
+  const sid = SCREEN_META[screen] && SCREEN_META[screen].id;
+  const ach = ACH_TRIGGERS[sid];
+  if (!ach || !am || am.practice || (gate.live && gate.live.mode === 'mentor') || (earned && earned.has(ach))) return null;
+  const lost = am.missed.has(sid);
+  return <p className={`ach-rule ${lost ? 'lost' : ''}`}>{lost
+    ? (once ? tr({ uz: 'Nishon birinchi urinish uchun edi.', ru: 'Значок давался за первую попытку.' }) : tr({ uz: "Nishon birinchi urinish uchun edi — endi bemalol to'g'risini toping.", ru: 'Значок давался за первую попытку — теперь спокойно найдите верный ответ.' }))
+    : tr({ uz: "🏅 Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki.", ru: '🏅 Справитесь с первой попытки — значок ваш.' })}</p>;
+};
 
 // 🏅 O'YIN USLUBIDAGI TO'LIQ-EKRAN NISHON BAYRAMI — yorqin nurlar, medal portlashi, uchqunlar, zarba to'lqini
 function AchCelebrate({ ach, onDone }) {
@@ -3829,6 +3849,8 @@ export default function ReactApiPostLesson({ lang: langProp, onFinished, liveTok
         .done-mini .dm-sub { font-weight: 600; color: ${T.ink2}; }
         .lp-mstats { background: ${T.blueSoft}; border-radius: 12px; padding: 13px 15px; display: flex; flex-direction: column; gap: 6px; }
 
+      .ach-rule { margin: 8px 0 0; text-align: center; font-size: 13px; line-height: 1.4; color: ${T.ink2}; }
+      .ach-rule.lost { font-style: italic; }
       `}</style>
       <AchCtx.Provider value={earned}>
       <AchMissCtx.Provider value={achMissVal}>
