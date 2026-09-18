@@ -26,6 +26,9 @@ bilan) · gates 75 dars ✓ · til/dark tun boshiga nisbatan farq 0 · unit 12/1
 
 ## 🙋 SIZDAN KERAK — muhimlik tartibida
 
+> **Tez javob uchun: `QARORLAR.md`** — kechagidek kartalar (misol · variantlar · tavsiya). Bir qatorda javob bering:
+> «Q1-A, Q2-A, Q3 tavsiya bo'yicha, …».
+
 1. **⚠ Solo ball teshigi** — `solo-ball.md`. Uyda o'tgan o'quvchining rasmiy natijasida yakuniy maxsus test (tartiblash,
    yozma kod — 45 ekran) hech qachon sanalmaydi → 5 savollik darsda maksimal 4/5. Kod bo'yicha zanjir to'liq tasdiqlangan,
    haqiqiy E2E sinov yo'q. Tuzatish — 37+ darsda bitta qator. **A — dushanbagacha tuzatamiz (tavsiya) · B — kutamiz.**
