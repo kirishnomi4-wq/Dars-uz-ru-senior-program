@@ -1,0 +1,148 @@
+[
+ {
+  "file": "src/6-Modull/PmLesson25.jsx",
+  "sid": "s4",
+  "ach": "proofFinder",
+  "rule": false,
+  "missed": false,
+  "note": "tashqi nishon (ACH_EXTRA): duelda BIRINCHI tanlov to'g'ri bo'lsa; tanlov qotmaydi — birinchi tanlov muhrlanadi (firstPick, javobda saqlanadi)",
+  "right": [
+   {
+    "click": ".rowbtn.cur",
+    "after": 500
+   },
+   {
+    "click": ".rowbtn.cur",
+    "after": 500
+   },
+   {
+    "click": ".rowbtn.cur",
+    "after": 500
+   },
+   {
+    "click": ".duocard",
+    "nth": 1,
+    "after": 900
+   }
+  ],
+  "wrong": [
+   {
+    "click": ".rowbtn.cur",
+    "after": 500
+   },
+   {
+    "click": ".rowbtn.cur",
+    "after": 500
+   },
+   {
+    "click": ".rowbtn.cur",
+    "after": 500
+   },
+   {
+    "click": ".duocard",
+    "nth": 0,
+    "after": 900
+   }
+  ],
+  "rightAfterWrong": [
+   {
+    "click": ".duocard",
+    "nth": 1,
+    "after": 900
+   }
+  ],
+  "rightAfterF5": [
+   {
+    "click": ".duocard",
+    "nth": 1,
+    "after": 900
+   }
+  ]
+ },
+ {
+  "file": "src/pm/PmJtbdLesson.jsx",
+  "sid": "s9",
+  "ach": "jobHunter",
+  "test": true,
+  "missed": false,
+  "seed": {
+   "answers": {
+    "4": {
+     "correct": true,
+     "firstAttemptCorrect": true,
+     "picked": 1,
+     "solved": true
+    },
+    "6": {
+     "correct": true,
+     "firstAttemptCorrect": true,
+     "picked": 2,
+     "solved": true
+    }
+   }
+  },
+  "note": "agregat nishon: uchala test (s7, s8, s9) BIRINCHI urinishda to'g'ri; s7/s8 urug'langan, s9 — juftlash (birinchi to'liq urinish muhrlanadi)",
+  "right": [
+   {
+    "click": ".mp-chip.pool:has-text(\"velosiped\")"
+   },
+   {
+    "click": ".mp-target:has-text(\"maktabga tez yetib bor\")",
+    "after": 400
+   },
+   {
+    "click": ".mp-chip.pool:has-text(\"budilnik\")"
+   },
+   {
+    "click": ".mp-target:has-text(\"ertalab vaqtida uyg'on\")",
+    "after": 400
+   },
+   {
+    "click": ".mp-chip.pool:has-text(\"til o'rgatuvchi ilova\")"
+   },
+   {
+    "click": ".mp-target:has-text(\"har kuni oz-ozdan o'rg\")",
+    "after": 400
+   },
+   {
+    "click": ".mp-chip.pool:has-text(\"rangli telefon g'ilofi\")"
+   },
+   {
+    "click": ".mp-target:has-text(\"do'stlar orasida ajral\")",
+    "after": 400
+   }
+  ],
+  "wrong": [
+   {
+    "click": ".mp-chip.pool:has-text(\"velosiped\")"
+   },
+   {
+    "click": ".mp-target:has-text(\"ertalab vaqtida uyg'on\")",
+    "after": 400
+   },
+   {
+    "click": ".mp-chip.pool:has-text(\"budilnik\")"
+   },
+   {
+    "click": ".mp-target:has-text(\"maktabga tez yetib bor\")",
+    "after": 400
+   },
+   {
+    "click": ".mp-chip.pool:has-text(\"til o'rgatuvchi ilova\")"
+   },
+   {
+    "click": ".mp-target:has-text(\"har kuni oz-ozdan o'rg\")",
+    "after": 400
+   },
+   {
+    "click": ".mp-chip.pool:has-text(\"rangli telefon g'ilofi\")"
+   },
+   {
+    "click": ".mp-target:has-text(\"do'stlar orasida ajral\")",
+    "after": 400
+   }
+  ],
+  "rightAfterWrong": [],
+  "rightAfterF5": []
+ }
+]

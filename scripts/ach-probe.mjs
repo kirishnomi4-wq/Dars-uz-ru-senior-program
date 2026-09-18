@@ -60,18 +60,21 @@ async function bundle(file) {
   const text = res.outputFiles[0].text; bundles.set(file, text); return text;
 }
 function page(file, L, idx, extra, tag) {
-  const prog = { screen: idx, answers: {}, earned: [], total: L.ids.length, savedAt: Date.now(), startedAt: Date.now() - 120000, ...extra };
+  const prog = { screen: idx, answers: {}, earned: [], total: L.ids.length, savedAt: Date.now(), startedAt: Date.now() - 120000, ...(CUR_SEED || {}), ...extra }; // `seed` — boshqa ekranlar javobi (agregat nishon)
   const seed = `window.__lang=${JSON.stringify(LANG)};if(!sessionStorage.getItem('__seeded')){localStorage.clear();for(const r of ['mentor','learner','student','self']){localStorage.setItem('inetOnboarded_'+r,'1');localStorage.setItem('hcOnboarded_'+r,'1');}localStorage.setItem('liveLang',${JSON.stringify(LANG)});localStorage.setItem('liveSession:${L.lessonId}','{"mode":"self"}');localStorage.setItem('ccProgress:${L.lessonId}',${JSON.stringify(JSON.stringify(prog))});sessionStorage.setItem('__seeded','1');}`;
   const p = join(TMP, `${basename(file, '.jsx')}-${idx}-${tag}.html`);
   writeFileSync(p, `<!doctype html><html><head><meta charset="utf-8"></head><body><div id="root"></div><script>${seed}<\/script><script>${bundles.get(file)}<\/script></body></html>`);
   return 'file://' + p;
 }
 
+let CUR_SEED = null;
 const browser = await chromium.launch({ executablePath: process.env.CHROME || '/usr/bin/google-chrome', headless: true });
 const results = [];
 for (const sp of specs) {
-  const L = lessonInfo(sp.file); const idx = L.ids.indexOf(sp.sid); const ach = L.trig[sp.sid];
-  const TEST = !!sp.test;
+  const L = lessonInfo(sp.file); const idx = L.ids.indexOf(sp.sid); const ach = sp.ach || L.trig[sp.sid]; // `ach` — ACH_TRIGGERS dan tashqari nishon (ACH_EXTRA, to'g'ridan-to'g'ri earn)
+  CUR_SEED = sp.seed || null;
+  const TEST = !!sp.test || sp.rule === false; // `rule: false` — qator kutilmaydi (tashqi nishon)
+  const NOMISS = sp.missed === false;          // `missed: false` — nishon missTry orqali emas (masalan birinchi tanlov muhri)
   const row = { file: sp.file, sid: sp.sid, ach, test: TEST, checks: {}, problems: [] };
   const fail = (k, msg) => { row.checks[k] = false; row.problems.push(`${k}: ${msg}`); };
   const pass = (k) => { if (row.checks[k] !== false) row.checks[k] = true; };
@@ -122,20 +125,20 @@ for (const sp of specs) {
     await scen('S2-togri', { seed: [{}, 's2'], body: async ({ pg }) => {
       await run(pg, sp.right, 'right'); const p = await prog(pg);
       if (!p?.answers?.[idx]) return fail('S2-togri', 'to\'g\'ri yo\'ldan keyin javob yozilmadi (right-amallar ekranni yakunlamadi)');
-      if (TEST && p.answers[idx].correct !== true) return fail('S2-togri', `birinchi urinishda to'g'ri — ball correct ${p.answers[idx].correct}`);
+      if (sp.test && p.answers[idx].correct !== true) return fail('S2-togri', `birinchi urinishda to'g'ri — ball correct ${p.answers[idx].correct}`);
       if (ach && !(p.earned || []).includes(ach)) return fail('S2-togri', `nishon berilmadi (earned ${JSON.stringify(p.earned)}, correct ${p.answers[idx].correct})`);
-      if ((p.missed || []).length) fail('S2-togri', `to'g'ri yo'lda missed yozildi ${JSON.stringify(p.missed)}`);
+      if (!NOMISS && (p.missed || []).length) fail('S2-togri', `to'g'ri yo'lda missed yozildi ${JSON.stringify(p.missed)}`);
       if (!TEST && await rule(pg)) fail('S2-togri', 'nishon olingach qator yo\'qolmadi');
       pass('S2-togri'); } });
     await scen('S1a-xato-togri', { seed: [{}, 's1a'], body: async ({ pg }) => {
       await run(pg, sp.wrong, 'wrong'); let p = await prog(pg); const r = await rule(pg);
-      if (!(p?.missed || []).includes(sp.sid)) return fail('S1a-xato-togri', `xatodan keyin missed da ${sp.sid} yo'q (${JSON.stringify(p?.missed)})`);
+      if (!NOMISS && !(p?.missed || []).includes(sp.sid)) return fail('S1a-xato-togri', `xatodan keyin missed da ${sp.sid} yo'q (${JSON.stringify(p?.missed)})`);
       if (TEST) { if (r) fail('S1a-xato-togri', 'test-ekranda qator ko\'rindi'); }
       else if (!r || !r.lost) fail('S1a-xato-togri', `xatodan keyin «lost» qator yo'q (${JSON.stringify(r)})`);
       else if (r.text !== LOSTTXT) fail('S1a-xato-togri', `lost matn farq: «${r.text}»`);
       await run(pg, sp.rightAfterWrong || sp.right, 'rightAfterWrong'); p = await prog(pg);
       if (!p?.answers?.[idx]) return fail('S1a-xato-togri', 'xatodan keyin to\'g\'ri yo\'l ekranni yakunlamadi (javob yozilmadi)');
-      if (TEST && p.answers[idx].correct !== false) return fail('S1a-xato-togri', `XATODAN KEYIN BALL TO'G'RI (correct ${p.answers[idx].correct})`);
+      if (sp.test && p.answers[idx].correct !== false) return fail('S1a-xato-togri', `XATODAN KEYIN BALL TO'G'RI (correct ${p.answers[idx].correct})`);
       if (ach && (p.earned || []).includes(ach)) return fail('S1a-xato-togri', 'XATODAN KEYIN NISHON BERILDI');
       if (await pg.$('.acu-overlay')) fail('S1a-xato-togri', 'bayram ko\'rindi');
       pass('S1a-xato-togri'); } });
@@ -143,11 +146,11 @@ for (const sp of specs) {
       await run(pg, sp.wrong, 'wrong'); await pg.reload({ waitUntil: 'domcontentloaded' }); await pg.waitForSelector('.lesson-root', { timeout: 15000 }); await pg.waitForTimeout(900);
       let p = await prog(pg); const r = await rule(pg);
       if (p?.screen !== idx) return fail('S1b-F5', `F5 dan keyin boshqa ekran (${p?.screen})`);
-      if (!(p?.missed || []).includes(sp.sid)) return fail('S1b-F5', 'F5 dan keyin missed yo\'qoldi');
+      if (!NOMISS && !(p?.missed || []).includes(sp.sid)) return fail('S1b-F5', 'F5 dan keyin missed yo\'qoldi');
       if (!TEST && (!r || !r.lost)) fail('S1b-F5', `F5 dan keyin «lost» qator yo'q (${JSON.stringify(r)})`);
-      await run(pg, sp.right, 'right(F5)'); p = await prog(pg);
+      await run(pg, sp.rightAfterF5 || sp.right, 'right(F5)'); p = await prog(pg); // `rightAfterF5` — F5 dan keyin ekran oraliq holatdan tiklansa
       if (!p?.answers?.[idx]) return fail('S1b-F5', 'F5 dan keyin to\'g\'ri yo\'l ekranni yakunlamadi');
-      if (TEST && p.answers[idx].correct !== false) return fail('S1b-F5', `F5 DAN KEYIN BALL TO'G'RI (correct ${p.answers[idx].correct})`);
+      if (sp.test && p.answers[idx].correct !== false) return fail('S1b-F5', `F5 DAN KEYIN BALL TO'G'RI (correct ${p.answers[idx].correct})`);
       if (ach && (p.earned || []).includes(ach)) return fail('S1b-F5', 'F5 DAN KEYIN NISHON BERILDI');
       pass('S1b-F5'); } });
     if (sp.slip) await scen('S3-sirpanish', { seed: [{}, 's3'], body: async ({ pg }) => {

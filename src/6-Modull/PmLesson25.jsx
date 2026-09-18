@@ -850,6 +850,8 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const stage2 = n >= S4_ROWS.length;
   const done = stage2 && pick !== null;
   const sentRef = useRef({ rows: false, duel: false, proof: false, live: false });
+  // 151-qonun: `proofFinder` — BIRINCHI tanlovga (tanlov qotmaydi: xato → to'g'ri qilsa ham nishon berilardi). Javobda saqlanadi — F5 dan keyin ham.
+  const firstPickRef = useRef(storedAnswer && Number.isInteger(storedAnswer.firstPick) ? storedAnswer.firstPick : (storedAnswer && Number.isInteger(storedAnswer.tanlov) ? storedAnswer.tanlov : null));
   useEffect(() => {
     if (stage2 || isMentor) return;
     const t = setInterval(() => setSec(s => s + 1), 1000);
@@ -861,7 +863,7 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => {
     if (!stage2) return;
     const duelDone = pick !== null;
-    const proofOk = pick === S4_DUO_ANS;
+    const proofOk = firstPickRef.current === S4_DUO_ANS;
     // 🔴 Nishon-triggeri duelgacha OTMAYDI: `correct: true` faqat tanlovdan keyin yuboriladi,
     // aks holda bayram-oynasi bola tanlashi kerak bo'lgan lahzada duel ustiga tushib qoladi.
     const newRows = !sentRef.current.rows, newDuel = duelDone && !sentRef.current.duel, newProof = proofOk && !sentRef.current.proof;
@@ -869,11 +871,11 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     sentRef.current.rows = true;
     if (duelDone) sentRef.current.duel = true;
     if (proofOk) sentRef.current.proof = true;
-    onAnswer(screen, { stage: 'slayd', screenIdx: screen, rows: S4_ROWS.length, tanlov: pick, proofChosen: proofOk, solved: duelDone, correct: duelDone });
+    onAnswer(screen, { stage: 'slayd', screenIdx: screen, rows: S4_ROWS.length, tanlov: pick, firstPick: firstPickRef.current, proofChosen: proofOk, solved: duelDone, correct: duelDone });
     if (live && live.mode === 'student' && !sentRef.current.live) { sentRef.current.live = true; live.submitAnswer(PRACTICE_BASE + screen, 'slayd', 0, true, 0); }
   }, [stage2, pick]); // eslint-disable-line
   const ochish = (i) => { if (isMentor || i !== n) return; setN(i + 1); setSec(0); };
-  const tanla = (i) => { if (isMentor) return; setPick(i); };
+  const tanla = (i) => { if (isMentor) return; if (firstPickRef.current === null) firstPickRef.current = i; setPick(i); };
   const tipOn = !isMentor && n > 0 && n < S4_ROWS.length && sec >= TIP_SEC;
   const xulRef = useRef(null);
   useEffect(() => {

@@ -2682,7 +2682,7 @@ export default function PmJtbdLesson({ lang: langProp, onFinished, liveToken }) 
     // 🏅 jobHunter — 3 tekshiruvda ham javob berib yechganda (scored indekslar 4/6/9 = s7/s8/s9).
     // Shart «birinchi urinishda to'g'ri» EMAS (aks holda bitta xato nishonni butunlay yopib qo'yardi) —
     // har uch testda real javob berilgani yetarli. Ball-relsga tegmaydi (earn — faqat mahalliy nishon).
-    if (SCORED_IDX.every(i => nextA[i] && nextA[i].picked != null)) earn('jobHunter');
+    if (SCORED_IDX.every(i => nextA[i] && nextA[i].correct === true)) earn('jobHunter'); // 151-qonun: uchalasi BIRINCHI urinishda to'g'ri (`correct` = birinchi urinish) — tavsif «yechib chiqdingiz» rost; qardosh dataEye / hotspotAce bilan bir xil
     const _m = SCREEN_META[idx];
     if (_m && ACH_TRIGGERS[_m.id] && data && data.correct && !missedRef.current.has(_m.id)) earn(ACH_TRIGGERS[_m.id]); // 🏅 nishon (faqat REAL solve)
   };
