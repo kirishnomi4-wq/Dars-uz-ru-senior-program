@@ -1,0 +1,102 @@
+[
+ {
+  "file": "src/1-Modull/InternetLesson.jsx",
+  "sid": "s13b",
+  "note": "o'yin: DNS → server (IP bo'yicha) → ekran; xato = boshqa IP li server · paket harakatlanayotganda bosish e'tiborsiz qoladi (moving) — har bosishdan keyin animatsiya tugashi kutiladi",
+  "wrong": [
+   {
+    "click": ".net-node.dns",
+    "after": 1600
+   },
+   {
+    "eval": "(() => { const ip = document.querySelector('.net-hud-ip')?.innerText; [...document.querySelectorAll('.net-node.server')].find(b => b.querySelector('.net-ip')?.innerText !== ip).click(); })()",
+    "after": 1300
+   }
+  ],
+  "right": [
+   {
+    "click": ".net-node.dns",
+    "after": 1600
+   },
+   {
+    "eval": "(() => { const ip = document.querySelector('.net-hud-ip')?.innerText; [...document.querySelectorAll('.net-node.server')].find(b => b.querySelector('.net-ip')?.innerText === ip).click(); })()",
+    "after": 1000
+   },
+   {
+    "click": ".net-node.screen",
+    "after": 1500
+   }
+  ],
+  "rightAfterWrong": [
+   {
+    "eval": "(() => { const ip = document.querySelector('.net-hud-ip')?.innerText; [...document.querySelectorAll('.net-node.server')].find(b => b.querySelector('.net-ip')?.innerText === ip).click(); })()",
+    "after": 1000
+   },
+   {
+    "click": ".net-node.screen",
+    "after": 1500
+   }
+  ]
+ },
+ {
+  "file": "src/1-Modull/InternetLesson.jsx",
+  "sid": "s13c",
+  "note": "tartiblash (DragDropOrder, bosib joylash); xato = hamma katak to'lib tartib xato",
+  "wrong": [
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"DNS\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Brauzer\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Server\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Ekran\")",
+    "after": 600
+   }
+  ],
+  "right": [
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Brauzer\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"DNS\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Server\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Ekran\")",
+    "after": 900
+   }
+  ],
+  "rightAfterWrong": [
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0
+   },
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Brauzer\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"DNS\")",
+    "after": 900
+   }
+  ],
+  "slip": [
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"DNS\")"
+   },
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0
+   }
+  ]
+ }
+]

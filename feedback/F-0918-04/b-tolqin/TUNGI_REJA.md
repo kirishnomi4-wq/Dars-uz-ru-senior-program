@@ -44,9 +44,9 @@
 | # | Band | Bajarildi-mezoni | Holat |
 |---|---|---|---|
 | T0 | **A to'lqinni commit** (3 commit: `feat(live)` muhrlash · `feat(lessons)` 97 dars + B savat + skriptlar + katalog · `docs`) | `git status` toza; `vite build` ✓ | ✅ 21:50 — `16791ee` · `9eda330` · docs (pastda) |
-| T1 | **Vositalar:** `scripts/codemod-achrule.mjs` (komponent + CSS — faqat ekran ulanadigan faylga, o'lik kod qolmasin; uz-only variant; `once` — uchinchi matn) · `scripts/smoke-achrule.mjs` (boshida / lost / mentor / mashq / olingan) · `feedback/F-0918-04/b-tolqin/ach-probe.mjs` + spetsifikatsiya formati | pilotda (`InternetLesson` s13b, s13c) uchalasi o'tadi; tegilmagan darsda kutilgandek yiqiladi | ⬜ |
+| T1 | **Vositalar:** `scripts/codemod-achrule.mjs` (komponent + CSS — faqat ekran ulanadigan faylga, o'lik kod qolmasin; uz-only variant; `once` — uchinchi matn) · `scripts/smoke-achrule.mjs` (boshida / lost / mentor / mashq / olingan) · `feedback/F-0918-04/b-tolqin/ach-probe.mjs` + spetsifikatsiya formati | pilotda (`InternetLesson` s13b, s13c) uchalasi o'tadi; tegilmagan darsda kutilgandek yiqiladi | ✅ 22:20 — `codemod-achrule` 65/65 quruq ✓ · `ach-probe` pilot 2/2 (3 marta ketma-ket) · negativ nazorat (`miss()` olib tashlangan nusxa) yiqildi ✓ · smoke = `ach-probe --smoke` |
 | T2 | **Mini-inventar (fork, faqat o'qish, T1 bilan parallel):** 17 «tashqi» nishon (`earn('…')`, `ACH_EXTRA`) · 45 ball-ekran (13 tartiblash tasdiqlanadi, 32 yozma — ertalabga ro'yxat) | `inventar-tashqi.md` · `inventar-ball.md` | ⬜ |
-| T3 | **Ulash-yo'riqnomasi:** `ULASH_YORIQNOMA.md` — agent uchun to'liq brif (qonun, naqsh, vositalar, «bajarildi» mezoni, taqiqlar, hisobot shakli) | pilot bo'yicha tekshirilgan | ⬜ |
+| T3 | **Ulash-yo'riqnomasi:** `ULASH_YORIQNOMA.md` — agent uchun to'liq brif (qonun, naqsh, vositalar, «bajarildi» mezoni, taqiqlar, hisobot shakli) | pilot bo'yicha tekshirilgan | ✅ 22:20 |
 | T4 | **Partiya P1** (1-Modull + pm: 10 ekran · 7 fayl) + Q6 debug: CssLesson1 s14 · CssLesson2 s14 · Htmllesson2 s14 | har ekran 2-qoida · commit | ⬜ |
 | T5 | **Partiya P3** (3-Modull: 11 ekran · 10 fayl) | 2-qoida · commit | ⬜ |
 | T6 | **Partiya P6** (5-Modull: 21 ekran · 10 fayl; 15 tasi C-halol) | 2-qoida · commit | ⬜ |
@@ -74,5 +74,5 @@ modulgacha yetilgani hisobotda aniq turadi.
   yurgizadi, natijani JSON'ga yozadi. Commit QILMAYDI, o'z modulidan tashqariga TEGMAYDI.
 - **Uyg'onish:** fon-ish tugashi — asosiy signal; zaxira — har 20 daqiqada taymer (hech narsa o'zgarmagan bo'lsa ham
   holatni tekshiradi, osilib qolgan fork'ni aniqlaydi).
-- **Dev-server** (vite 5173) — bitta, bosh agent yoqadi; problar shu serverga boradi.
+- **Dev-server kerak emas:** `ach-probe` darsni esbuild bilan yig'ib file:// da ochadi — agentlar parallel sinay oladi.
 - **Kontekst to'lib qolsa** — suhbat avtomatik qisqaradi; shu fayl va `TUNGI_HISOBOT.md` — tiklanish nuqtasi.

@@ -221,11 +221,10 @@ const ACHIEVEMENTS = {
 // ❌ toggle/exploration ekranga BOG'LANMAYDI (nishon tekin berilmasin).
 const ACH_TRIGGERS = { s4: 'firstwin', s13b: 'packet', s13c: 'router' };
 
-// 🏅 151-qonun: amaliy topshiriq nishoni faqat BIRINCHI urinishga beriladi. Shart OLDINDAN aytiladi;
-// birinchi urinish xato bo'lsa — jazosiz qisqa xabar, topshiriq baribir oxirigacha bajariladi.
-// Mentor ekranida ko'rinmaydi (10.1: nishon — o'quvchiniki); nishon olingach ham yo'qoladi (bayram o'zi aytadi).
-// «Qaytadan» mashq-o'tishida ham ko'rinmaydi — nishonlar muzlagan, va'da yolg'on bo'lardi.
-const AchRule = ({ screen }) => {
+// 🏅 151-qonun: amaliy topshiriq nishoni faqat BIRINCHI urinishga beriladi. Shart OLDINDAN aytiladi; birinchi urinish
+// xato bo'lsa — jazosiz qisqa xabar (`once` — qayta urinishi yo'q ekran). Mentor ekranida, «Qaytadan» mashq-o'tishida va
+// nishon olingach ko'rinmaydi. Matn — MATN_KORPUS §183 (hamma darsda aynan bir xil).
+const AchRule = ({ screen, once }) => {
   const earned = useContext(AchCtx);
   const am = useContext(AchMissCtx);
   const gate = useContext(LiveGateCtx) || {};
@@ -234,7 +233,7 @@ const AchRule = ({ screen }) => {
   if (!ach || !am || am.practice || (gate.live && gate.live.mode === 'mentor') || (earned && earned.has(ach))) return null;
   const lost = am.missed.has(sid);
   return <p className={`ach-rule ${lost ? 'lost' : ''}`}>{lost
-    ? tr({ uz: "Nishon birinchi urinish uchun edi — endi bemalol to'g'risini toping.", ru: 'Значок давался за первую попытку — теперь спокойно найдите верный ответ.' })
+    ? (once ? tr({ uz: 'Nishon birinchi urinish uchun edi.', ru: 'Значок давался за первую попытку.' }) : tr({ uz: "Nishon birinchi urinish uchun edi — endi bemalol to'g'risini toping.", ru: 'Значок давался за первую попытку — теперь спокойно найдите верный ответ.' }))
     : tr({ uz: "🏅 Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki.", ru: '🏅 Справитесь с первой попытки — значок ваш.' })}</p>;
 };
 
@@ -4281,7 +4280,7 @@ export default function HtmlLesson({ lang: langProp, onFinished, liveToken }) {
         .dd-done { font-weight: 700; color: ${T.success}; font-size: 14.5px; }
         .dd-wrong { font-weight: 700; color: #E24848; font-size: 13.5px; }
         /* 151-qonun: nishon sharti — bitta xira qator; Modifikator .lost ham qizil EMAS (jazo ohangi yo'q) */
-        .ach-rule { margin: 8px 0 0; text-align: center; font-size: 13px; line-height: 1.4; color: ${T.ink3}; }
+        .ach-rule { margin: 8px 0 0; text-align: center; font-size: 13px; line-height: 1.4; color: ${T.ink2}; }
         .ach-rule.lost { font-style: italic; }
         .sk-buildbox .ach-rule { text-align: left; }
 

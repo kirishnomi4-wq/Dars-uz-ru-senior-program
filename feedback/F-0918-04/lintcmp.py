@@ -1,7 +1,8 @@
-# Har o'zgargan dars uchun til/dark/keys lint natijasini HEAD bilan solishtiradi (qator raqamlari e'tiborga olinmaydi).
+# Har o'zgargan dars uchun til/dark lint natijasini HEAD bilan solishtiradi (qator raqamlari e'tiborga olinmaydi).
+# Ishlatish: S=<skretch-papka> python3 feedback/F-0918-04/lintcmp.py [fayl.jsx …]   (fayl berilmasa — git diff dagi hammasi)
 import subprocess, re, os, sys
 S=os.environ['S']; root=os.getcwd()
-files=[f for f in subprocess.check_output(['git','diff','--name-only','--','src'],text=True).split() if f.endswith('.jsx')]
+files=[a for a in sys.argv[1:] if a.endswith('.jsx')] or [f for f in subprocess.check_output(['git','diff','--name-only','--','src'],text=True).split() if f.endswith('.jsx')]  # fayl berilsa — faqat o'shalar
 ansi=re.compile(r'\x1b\[[0-9;]*m')
 def norm(out):
     out=ansi.sub('',out)
