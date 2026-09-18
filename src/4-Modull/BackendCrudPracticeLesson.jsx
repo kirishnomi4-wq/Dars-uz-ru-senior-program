@@ -955,6 +955,7 @@ const PROMPTS = [
   { id: 'c', text: { uz: "Bazadan biror narsa olib chiqadigan kod yoz.", ru: 'Напиши код, который что-то достаёт из базы.' }, precise: false, why: { uz: "Noaniq — qaysi jadval, qaysi method, qanday javob? AI taxmin qiladi va ko'pincha xato kod chiqaradi. Aniq buyring.", ru: 'Неточно — какая таблица, какой метод, какой ответ? AI будет гадать и часто выдаёт ошибочный код. Командуйте точно.' } }
 ];
 const Screen5 = ({ screen, answers, storedAnswer, onAnswer, onNext, onPrev }) => {
+  const achMiss = useContext(AchMissCtx);
   const [picked, setPicked] = useState(storedAnswer?.picked ?? null);
   const done = picked != null && PROMPTS.find(p => p.id === picked)?.precise;
   const cur = PROMPTS.find(p => p.id === picked);
@@ -962,6 +963,7 @@ const Screen5 = ({ screen, answers, storedAnswer, onAnswer, onNext, onPrev }) =>
     if (done) return;
     setPicked(id);
     const ok = !!PROMPTS.find(p => p.id === id)?.precise;
+    if (!ok && achMiss) achMiss.miss(screen); // 🏅 151-qonun: noaniq prompt — bitta xato urinish
     if (ok) onAnswer(screen, { stage: null, screenIdx: screen, picked: id, correct: true, solved: true });
   };
   return (
@@ -989,6 +991,7 @@ const Screen5 = ({ screen, answers, storedAnswer, onAnswer, onNext, onPrev }) =>
                 );
               })}
             </div>
+            {!done && <AchRule screen={screen} />}
             {/* F-0916-01 Q4: ikki yashil izoh bitta qutida (147 (e) — takror izoh yo'q); natija-jumlasi o'ng ustundan shu yerga ko'chdi, matni o'zgarmagan */}
             {cur && <div className={cur.precise ? 'frame-success fade-step note-s5' : 'frame-warn fade-step'}><p className="body" style={{ margin: 0, color: T.ink }}>{tr(cur.why)}</p>{done && <p className="body" style={{ margin: '8px 0 0', color: T.ink }}>{tr({ uz: <>Aniq buyruq — to'g'ri kod! <span className="mono">SELECT * FROM cars</span> barcha qatorni oldi, <span className="mono">res.json</span> uni frontga JSON qilib qaytardi.</>, ru: <>Точная команда — правильный код! <span className="mono">SELECT * FROM cars</span> взял все строки, <span className="mono">res.json</span> вернул их фронту в виде JSON.</> })}</p>}</div>}
           </Col>
@@ -1189,6 +1192,7 @@ const Screen9 = ({ screen, answers, storedAnswer, onAnswer, onNext, onPrev }) =>
 
 // ===== SCREEN 10 — AI DEBUGGING (column "price" does not exist) =====
 const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
+  const achMiss = useContext(AchMissCtx);
   const [picked, setPicked] = useState(storedAnswer ? 'bad' : null);
   const [fixed, setFixed] = useState(!!storedAnswer);
   const found = picked === 'bad';
@@ -1205,18 +1209,19 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <div className="ai-card fade-up delay-1">
               <div className="ai-row"><span className="ai-badge">AI</span><span className="ai-bubble">{tr({ uz: "Qo'shish kodini yozdim:", ru: 'Я написал код добавления:' })}</span></div>
               <div className="ai-code">
-                <div className={`ai-line ${picked === 'a' ? 'ok' : ''} ${!found ? 'scan' : ''}`} style={{ animationDelay: '0s' }} onClick={() => { if (!found) setPicked('a'); }}><Jx>{'const'}</Jx>{' { nom, narx, yil } = req.body;'}</div>
+                <div className={`ai-line ${picked === 'a' ? 'ok' : ''} ${!found ? 'scan' : ''}`} style={{ animationDelay: '0s' }} onClick={() => { if (found) return; if (achMiss) achMiss.miss(screen); setPicked('a'); }}><Jx>{'const'}</Jx>{' { nom, narx, yil } = req.body;'}</div>
                 {!fixed ? (
                   <div className={`ai-line ${found ? 'bad' : ''} ${!found ? 'scan' : ''}`} style={{ animationDelay: '0.5s' }} onClick={() => { if (!found) setPicked('bad'); }}>{"pool.query('INSERT INTO cars (nom, "}<At>price</At>{", yil)...');"}{'  '}<Cm>{'// price?'}</Cm></div>
                 ) : (
                   <div className="ai-line ok fixed-line">{"pool.query('INSERT INTO cars (nom, "}<At>narx</At>{", yil)...');"}{'  '}<Cm>{'// ✓ narx'}</Cm></div>
                 )}
-                <div className={`ai-line ${picked === 'c' ? 'ok' : ''} ${!found ? 'scan' : ''}`} style={{ animationDelay: '1s' }} onClick={() => { if (!found) setPicked('c'); }}>{"res.json({ status: \"qo'shildi\" });"}</div>
+                <div className={`ai-line ${picked === 'c' ? 'ok' : ''} ${!found ? 'scan' : ''}`} style={{ animationDelay: '1s' }} onClick={() => { if (found) return; if (achMiss) achMiss.miss(screen); setPicked('c'); }}>{"res.json({ status: \"qo'shildi\" });"}</div>
               </div>
               {!found && <p className="ai-prompt">{tr({ uz: 'Qaysi qator bazadagi ustun nomiga mos emas? Bosing.', ru: 'Какая строка не совпадает с именем столбца в базе? Нажмите.' })}</p>}
               {found && !fixed && <button className="btn fade-step" style={{ alignSelf: 'flex-start' }} onClick={() => setFixed(true)}>{tr({ uz: '🔧 price → narx ga tuzatish', ru: '🔧 Исправить price → narx' })}</button>}
               {fixed && <p className="ai-prompt" style={{ color: T.success, fontStyle: 'normal', fontWeight: 600 }}>{tr({ uz: '✓ Tuzatildi — ustun nomi sxemaga mos: narx', ru: '✓ Исправлено — имя столбца совпадает со схемой: narx' })}</p>}
             </div>
+            {!done && <AchRule screen={screen} />}
           </Col>
           <Col>
             <p className="flow-label">{tr({ uz: 'Server javobi', ru: 'Ответ сервера' })}</p>
@@ -1605,6 +1610,22 @@ const ACHIEVEMENTS = {
 };
 // Ekran id → nishon (recordAnswer'da, faqat REAL solve bilan: scored test / challenge / final)
 const ACH_TRIGGERS = { s4: 'blueprint', s5: 'director', s10: 'catcher', spf: 'finisher' };
+
+// 🏅 151-qonun: amaliy topshiriq nishoni faqat BIRINCHI urinishga beriladi. Shart OLDINDAN aytiladi; birinchi urinish
+// xato bo'lsa — jazosiz qisqa xabar (`once` — qayta urinishi yo'q ekran). Mentor ekranida, «Qaytadan» mashq-o'tishida va
+// nishon olingach ko'rinmaydi. Matn — MATN_KORPUS §183 (hamma darsda aynan bir xil).
+const AchRule = ({ screen, once }) => {
+  const earned = useContext(AchCtx);
+  const am = useContext(AchMissCtx);
+  const gate = useContext(LiveGateCtx) || {};
+  const sid = SCREEN_META[screen] && SCREEN_META[screen].id;
+  const ach = ACH_TRIGGERS[sid];
+  if (!ach || !am || am.practice || (gate.live && gate.live.mode === 'mentor') || (earned && earned.has(ach))) return null;
+  const lost = am.missed.has(sid);
+  return <p className={`ach-rule ${lost ? 'lost' : ''}`}>{lost
+    ? (once ? tr({ uz: 'Nishon birinchi urinish uchun edi.', ru: 'Значок давался за первую попытку.' }) : tr({ uz: "Nishon birinchi urinish uchun edi — endi bemalol to'g'risini toping.", ru: 'Значок давался за первую попытку — теперь спокойно найдите верный ответ.' }))
+    : tr({ uz: "🏅 Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki.", ru: '🏅 Справитесь с первой попытки — значок ваш.' })}</p>;
+};
 
 // 🏅 O'YIN USLUBIDAGI TO'LIQ-EKRAN NISHON BAYRAMI
 function AchCelebrate({ ach, onDone }) {
@@ -3169,6 +3190,8 @@ export default function BackendCrudPracticeLesson({ lang: langProp, onFinished, 
         .live-badge { opacity: 0.4; transition: opacity 0.25s ease, box-shadow 0.25s ease; }
         .live-badge:hover, .live-badge:focus-within { opacity: 1; box-shadow: 0 8px 24px -6px rgba(58,53,48,0.32) !important; }
         @media (hover: none) { .live-badge { opacity: 0.62; } }
+        .ach-rule { margin: 8px 0 0; text-align: center; font-size: 13px; line-height: 1.4; color: ${T.ink2}; }
+        .ach-rule.lost { font-style: italic; }
       `}</style>
       <AchCtx.Provider value={earned}>
       <AchMissCtx.Provider value={achMissVal}>

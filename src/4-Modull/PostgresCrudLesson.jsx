@@ -1005,6 +1005,7 @@ const Screen9 = (props) => (
 
 // ===== SCREEN 10 — MENEJER NAVBATI (CRUD state-mashina) =====
 const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
+  const achMiss = useContext(AchMissCtx);
   const EVENTS = [
     { id: 'e1', icon: '🛒', title: tr({ uz: 'Yangi mahsulot keldi', ru: 'Привезли новый товар' }), desc: tr({ uz: "Mishka o'yinchoq — 50 000 so'm, 10 dona. Uni jadvalga kiriting.", ru: 'Игрушка Mishka — 50 000 сум, 10 штук. Внесите её в таблицу.' }), op: 'insert',
       sql: "INSERT INTO products (nom, narx, soni)\nVALUES ('Mishka', 50000, 10)", okNote: tr({ uz: "Yangi qator qo'shildi — Mishka jadvalga tushdi.", ru: 'Новая строка добавлена — Mishka попал в таблицу.' }),
@@ -1048,6 +1049,7 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       setResolved(true);
       setSolvedCount(c => c + 1);
     } else {
+      if (achMiss) achMiss.miss(screen); // 🏅 151-qonun: hodisaga noto'g'ri CRUD amali — bitta xato urinish
       setWrong({ op, note: ev.wrongNote[op] });
     }
   };
@@ -1091,6 +1093,7 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 })}
               </div>
             </>}
+            {!done && <AchRule screen={screen} />}
             {wrong && !resolved && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>❌ {wrong.note}</p></div>}
             {resolved && ev && <div data-dark-ok="kod oynasi" style={{ background: CODE.bg, borderRadius: 9, padding: '4px 6px' }} className="fade-step"><SqlCode mini q={ev.sql} /></div>}
           </Col>
@@ -1209,7 +1212,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 };
 
 // 🐞 Qayta ishlatiladigan DEBUG CHALLENGE — xato qatorni top → tuzat. Boshqa darsga: lines/fixed/explain almashtiriladi.
-function DebugChallenge({ lines, fixed, explain, onSolved }) {
+function DebugChallenge({ lines, fixed, explain, onSolved, onWrong }) {
   const bugIdx = lines.findIndex(l => l.bug);
   const [picked, setPicked] = useState(-1);
   const [wrongIdx, setWrongIdx] = useState(-1);
@@ -1218,7 +1221,7 @@ function DebugChallenge({ lines, fixed, explain, onSolved }) {
   const click = (i) => {
     if (solved) return;
     if (i === bugIdx) setPicked(i);
-    else { setWrongIdx(i); setTimeout(() => setWrongIdx(w => (w === i ? -1 : w)), 500); }
+    else { onWrong && onWrong(); setWrongIdx(i); setTimeout(() => setWrongIdx(w => (w === i ? -1 : w)), 500); }
   };
   return (
     <div className="dbg fade-up">
@@ -1241,6 +1244,7 @@ function DebugChallenge({ lines, fixed, explain, onSolved }) {
 // ===== SCREEN 14 — AI XATOSINI TUT (reusable DebugChallenge) =====
 const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const audio = useAudio([{ id: 's14', text: "AI doim to'g'ri yozadimi? Keling, tekshiramiz. Bu so'rov ishlamayapti — jadval nomida bitta harf xato. Xato qatorni toping va bosing, u tuzatiladi.", trigger: 'on_mount', waits_for: null }]);
+  const achMiss = useContext(AchMissCtx);
   const [solved, setSolved] = useState(!!storedAnswer);
   const done = solved;
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { stage: 'challenge', screenIdx: screen, solved: true, correct: true, picked: true }); }, [done]); // eslint-disable-line
@@ -1263,8 +1267,10 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 lines={LINES}
                 fixed={<><span className="sql-kw">FROM</span> products</>}
                 explain={tr({ uz: "Jadval nomi products (ko'plik) — bitta harf (s) butun so'rovni ishlatdi. AI yozadi — siz tekshirasiz.", ru: 'Имя таблицы products (множественное) — одна буква (s) оживила весь запрос. ИИ пишет — вы проверяете.' })}
-                onSolved={() => setSolved(true)} />
+                onSolved={() => setSolved(true)}
+                onWrong={() => achMiss && achMiss.miss(screen)} />
             </div>
+            {!done && <AchRule screen={screen} />}
           </Col>
           <Col>
             <p className="flow-label">{tr({ uz: 'Natija', ru: 'Результат' })}</p>
@@ -1448,6 +1454,22 @@ const ACHIEVEMENTS = {
 };
 // Ekran id → nishon (recordAnswer'da, faqat REAL solve bilan: SCORED test / challenge)
 const ACH_TRIGGERS = { s4: 'shopManager', s10: 'crudMaster', s14: 'bugHunter', s15: 'dataArchitect' };
+
+// 🏅 151-qonun: amaliy topshiriq nishoni faqat BIRINCHI urinishga beriladi. Shart OLDINDAN aytiladi; birinchi urinish
+// xato bo'lsa — jazosiz qisqa xabar (`once` — qayta urinishi yo'q ekran). Mentor ekranida, «Qaytadan» mashq-o'tishida va
+// nishon olingach ko'rinmaydi. Matn — MATN_KORPUS §183 (hamma darsda aynan bir xil).
+const AchRule = ({ screen, once }) => {
+  const earned = useContext(AchCtx);
+  const am = useContext(AchMissCtx);
+  const gate = useContext(LiveGateCtx) || {};
+  const sid = SCREEN_META[screen] && SCREEN_META[screen].id;
+  const ach = ACH_TRIGGERS[sid];
+  if (!ach || !am || am.practice || (gate.live && gate.live.mode === 'mentor') || (earned && earned.has(ach))) return null;
+  const lost = am.missed.has(sid);
+  return <p className={`ach-rule ${lost ? 'lost' : ''}`}>{lost
+    ? (once ? tr({ uz: 'Nishon birinchi urinish uchun edi.', ru: 'Значок давался за первую попытку.' }) : tr({ uz: "Nishon birinchi urinish uchun edi — endi bemalol to'g'risini toping.", ru: 'Значок давался за первую попытку — теперь спокойно найдите верный ответ.' }))
+    : tr({ uz: "🏅 Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki.", ru: '🏅 Справитесь с первой попытки — значок ваш.' })}</p>;
+};
 
 function AchCelebrate({ ach, onDone }) {
   useEffect(() => { const t = setTimeout(onDone, 4000); return () => clearTimeout(t); }, []); // eslint-disable-line
@@ -3100,6 +3122,8 @@ export default function PostgresCrudLesson({ lang: langProp, onFinished, liveTok
         /* --- CodeStrike bolt FX qatlami --- */
         .qz-fx { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
         .qz-bolt { filter: drop-shadow(0 8px 18px rgba(255,79,40,0.32)); }
+        .ach-rule { margin: 8px 0 0; text-align: center; font-size: 13px; line-height: 1.4; color: ${T.ink2}; }
+        .ach-rule.lost { font-style: italic; }
       `}</style>
       <AchCtx.Provider value={earned}>
       <AchMissCtx.Provider value={achMissVal}>

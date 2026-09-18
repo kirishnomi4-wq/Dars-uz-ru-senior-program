@@ -844,6 +844,7 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const gate = useContext(LiveGateCtx) || {};
   const live = gate.live;
   const isMentor = !!(live && live.mode === 'mentor');
+  const achMiss = useContext(AchMissCtx);
   const [links, setLinks] = useState(() => (storedAnswer?.links && typeof storedAnswer.links === 'object' ? storedAnswer.links : null) || readBoard() || {}); // F-0914-10: saqlangan javob obyekt bo'lmasa — zaxira-zanjir (oq ekran himoyasi)
   const [sel, setSel] = useState(null);
   const [msg, setMsg] = useState(null);
@@ -923,11 +924,15 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     if (cid === 'slot') {
       if (g.col === 'sana') { setLinks(p => ({ ...p, [g.id]: 'sana' })); setSel(null); setMsg({ ok: true, t: g.res }); return; }
       setTries(t => t + 1);
+      if (achMiss) achMiss.miss(screen); // 🏅 151-qonun: ustuni bor gapni «yangi ustun»ga ulash — bitta xato urinish
       setMsg({ ok: false, t: { uz: '🤔 Bu gap uchun ustun allaqachon bor — yuqoridagi ustunlarga qarang.', ru: '🤔 Для этой фразы столбец уже есть — посмотрите на столбцы выше.' } });
       return;
     }
     if (cid === g.col) { setLinks(p => ({ ...p, [g.id]: cid })); setSel(null); setMsg({ ok: true, t: g.res }); return; }
     if (g.col === 'sana') setSlotOch(true);
+    // 🏅 151-qonun: noto'g'ri ustun — bitta xato urinish. ISTISNO: «sana» gapi va ➕ uyacha hali ko'rinmagan —
+    // to'g'ri javobning o'zi ekranda yo'q, bu qadam kashfiyot (MentorNote: «eng foydali xato»), urinish emas.
+    if (!(g.col === 'sana' && !slotKor) && achMiss) achMiss.miss(screen);
     setTries(t => t + 1);
     setMsg({ ok: false, t: { uz: "🤔 Gapni qayta o'qing: odam bu gapda nimani ko'radi? O'sha narsa yoziladigan ustunni tanlang.", ru: '🤔 Перечитайте фразу: что человек в ней видит? Выберите столбец, куда это записывается.' } });
   };
@@ -985,6 +990,7 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             </div>
           </div>
         </div>
+        {!done && <AchRule screen={screen} />}
         {msg && <p className={`sfb ${msg.ok ? 'ok' : 'ask'} fade-step`}>{tr(msg.t)}</p>}
         {tipOn && !done && <p className="bhint fade-step">{tr({ uz: "🤔 Har gapga bitta savol: odam bu gapda nimani ko'radi? O'sha narsa yoziladigan ustunni qidiring.", ru: '🤔 К каждой фразе один вопрос: что человек в ней видит? Ищите столбец, куда это записывается.' })}</p>}
         {rescue && <p className="small fade-step" style={{ margin: 0, color: T.ink3, fontWeight: 600 }}>{tr({ uz: "Qolganini keyinroq birga ko'rib chiqamiz — «Davom etish» ochiq.", ru: 'Остальное разберём вместе позже — «Продолжить» открыто.' })}</p>}
@@ -1332,6 +1338,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const gate = useContext(LiveGateCtx) || {};
   const live = gate.live;
   const isMentor = !!(live && live.mode === 'mentor');
+  const achMiss = useContext(AchMissCtx);
   // Holat-saqlov: reload'da yuritilgan shartlar joyida qoladi (senariy «Yordamchi kalitlar»).
   const [boshSi] = useState(() => ((typeof storedAnswer?.si === 'number' ? storedAnswer.si : 0) || readCheck() || 0)); // F-0914-10: saqlangan javob son bo'lmasa — zaxira-zanjir (oq ekran himoyasi)
   const [si, setSi] = useState(boshSi);
@@ -1363,6 +1370,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     const n = tries + 1;
     setTries(n);
     setMissedOnce(true);
+    if (achMiss) achMiss.miss(screen); // 🏅 151-qonun: shartga noto'g'ri hukm — bitta xato urinish
     setMsg({ ok: false, t: n >= 3 ? cur.miss3 : n === 2 ? cur.miss2 : cur.miss });
   };
   const keyingi = () => { setHal(false); setMsg(null); setTries(0); setSi(s => s + 1); };
@@ -1393,6 +1401,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               })}
               <button type="button" className="sxm-allok" disabled={isMentor || hal || done} onClick={() => hukm('OK')}>{tr({ uz: '✓ Bu shart bajarilgan', ru: '✓ Это условие выполнено' })}</button>
             </div>
+            {!done && <AchRule screen={screen} />}
           </Col>
           <Col gap={9}>
             <div className="elon calm">
@@ -1835,6 +1844,22 @@ const ACHIEVEMENTS = {
   recordBuilder: { icon: '📄', name: 'Record Builder!', desc: { uz: "Yozuvni sxema bo'yicha to'ldirdingiz", ru: 'Вы заполнили запись по схеме' } },
 };
 const ACH_TRIGGERS = { s4: 'threadMaster', s8: 'schemaMaker', s9: 'ruleKeeper', s10: 'recordBuilder' };
+
+// 🏅 151-qonun: amaliy topshiriq nishoni faqat BIRINCHI urinishga beriladi. Shart OLDINDAN aytiladi; birinchi urinish
+// xato bo'lsa — jazosiz qisqa xabar (`once` — qayta urinishi yo'q ekran). Mentor ekranida, «Qaytadan» mashq-o'tishida va
+// nishon olingach ko'rinmaydi. Matn — MATN_KORPUS §183 (hamma darsda aynan bir xil).
+const AchRule = ({ screen, once }) => {
+  const earned = useContext(AchCtx);
+  const am = useContext(AchMissCtx);
+  const gate = useContext(LiveGateCtx) || {};
+  const sid = SCREEN_META[screen] && SCREEN_META[screen].id;
+  const ach = ACH_TRIGGERS[sid];
+  if (!ach || !am || am.practice || (gate.live && gate.live.mode === 'mentor') || (earned && earned.has(ach))) return null;
+  const lost = am.missed.has(sid);
+  return <p className={`ach-rule ${lost ? 'lost' : ''}`}>{lost
+    ? (once ? tr({ uz: 'Nishon birinchi urinish uchun edi.', ru: 'Значок давался за первую попытку.' }) : tr({ uz: "Nishon birinchi urinish uchun edi — endi bemalol to'g'risini toping.", ru: 'Значок давался за первую попытку — теперь спокойно найдите верный ответ.' }))
+    : tr({ uz: "🏅 Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki.", ru: '🏅 Справитесь с первой попытки — значок ваш.' })}</p>;
+};
 function AchCelebrate({ ach, onDone }) {
   useEffect(() => { const t = setTimeout(onDone, 4000); return () => clearTimeout(t); }, []); // eslint-disable-line
   return (
@@ -3538,6 +3563,8 @@ export default function PmLesson13({ lang: langProp, onFinished, liveToken }) {
         ${CSS_BASE}
         ${CSS_LESSON}
         ${CSS_ARENA}
+        .ach-rule { margin: 8px 0 0; text-align: center; font-size: 13px; line-height: 1.4; color: ${T.ink2}; }
+        .ach-rule.lost { font-style: italic; }
       `}</style>
       <AchCtx.Provider value={earned}>
       <AchMissCtx.Provider value={achMissVal}>

@@ -1101,6 +1101,7 @@ const Screen12 = (props) => (
 
 // ===== SCREEN 13 — BUILDER (server qismlarini tartiblash) =====
 const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
+  const achMiss = useContext(AchMissCtx);
   const ORDER = [
     { id: 'req', label: "require('express')", hint: { uz: 'asbobni chaqir', ru: 'подключи инструмент' } },
     { id: 'app', label: 'const app = express()', hint: { uz: 'serverni yarat', ru: 'создай сервер' } },
@@ -1115,7 +1116,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const click = (id) => {
     if (placed.includes(id)) return;
     if (id === nextNeeded) setPlaced(p => [...p, id]);
-    else { setShake(id); setTimeout(() => setShake(null), 400); }
+    else { if (achMiss) achMiss.miss(screen); setShake(id); setTimeout(() => setShake(null), 400); } // 🏅 151-qonun: navbatdan tashqari bo'lak — bitta xato urinish
   };
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   const audio = useAudio([{ id: 's13', text: `Server qismlarini to'g'ri tartibda yig'a olasizmi? Do'kon xuddi shunday quriladi: avval asbobni chaqir, keyin peshtaxtani yarat, so'ng eshik och, oxirida OCHIQ tabloni yoq. Pastdagi bo'laklarni to'g'ri ketma-ketlikda bosing — peshtaxta bosqichma-bosqich jonlanadi.`, trigger: 'on_mount', waits_for: null }]);
@@ -1136,6 +1137,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               })}
             </div>
             {!done && nextNeeded && <p className="small" style={{ color: T.ink3, fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Keyingi: ', ru: 'Следующий: ' })}{tr(ORDER[placed.length].hint)}</p>}
+            {!done && <AchRule screen={screen} />}
           </Col>
           <Col>
             <p className="flow-label">server.js</p>
@@ -1163,6 +1165,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 
 // ===== SCREEN 14 — DEBUGGING (app.listen yetishmaydi) =====
 const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
+  const achMiss = useContext(AchMissCtx);
   const [picked, setPicked] = useState(storedAnswer ? 'listen' : null);
   const [fixed, setFixed] = useState(!!storedAnswer);
   const found = picked === 'listen';
@@ -1202,10 +1205,11 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {!found && <>
               <p className="flow-label">{tr({ uz: 'Nima yetishmayapti?', ru: 'Чего не хватает?' })}</p>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-                {OPTS.map(o => <button key={o.id} className={`pick-row ${picked === o.id ? 'on' : ''}`} onClick={() => setPicked(o.id)}><span className="pick-box">{picked === o.id && '•'}</span><span className="body" style={{ color: T.ink }}>{tr(o.label)}</span></button>)}
+                {OPTS.map(o => <button key={o.id} className={`pick-row ${picked === o.id ? 'on' : ''}`} onClick={() => { if (o.id !== 'listen' && achMiss) achMiss.miss(screen); setPicked(o.id); }}><span className="pick-box">{picked === o.id && '•'}</span><span className="body" style={{ color: T.ink }}>{tr(o.label)}</span></button>)}
               </div>
               {picked && picked !== 'listen' && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Bu qator kodda bor. Yana qarang: serverni <b>yoqadigan</b> qator (app.listen) bormi?</>, ru: <>Эта строка в коде есть. Посмотрите ещё раз: есть ли строка, которая <b>включает</b> сервер (app.listen)?</> })}</p></div>}
             </>}
+            {!done && <AchRule screen={screen} />}
             {found && !fixed && <div className="frame-warn fade-step"><p className="note-h" style={{ color: T.accent }}>{tr({ uz: '✓ Topdingiz!', ru: '✓ Нашли!' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <><span className="mono">app.listen(3000)</span> yo'q — shuning uchun server umuman <b>yoqilmagan</b>, brauzer ulana olmaydi. Chapdagi tugma bilan qo'shing →</>, ru: <>Нет <span className="mono">app.listen(3000)</span> — поэтому сервер вообще <b>не включён</b>, браузер не может подключиться. Добавьте кнопкой слева →</> })}</p></div>}
           </Col>
         </div>
@@ -1588,6 +1592,22 @@ const ACHIEVEMENTS = {
 };
 // Ekran id → nishon (recordAnswer'da, faqat REAL solve bilan: challenge/SCORED). lightningClerk — arenadan.
 const ACH_TRIGGERS = { s13: 'serverArchitect', s14: 'bugHunter', s15: 'shopOpener' };
+
+// 🏅 151-qonun: amaliy topshiriq nishoni faqat BIRINCHI urinishga beriladi. Shart OLDINDAN aytiladi; birinchi urinish
+// xato bo'lsa — jazosiz qisqa xabar (`once` — qayta urinishi yo'q ekran). Mentor ekranida, «Qaytadan» mashq-o'tishida va
+// nishon olingach ko'rinmaydi. Matn — MATN_KORPUS §183 (hamma darsda aynan bir xil).
+const AchRule = ({ screen, once }) => {
+  const earned = useContext(AchCtx);
+  const am = useContext(AchMissCtx);
+  const gate = useContext(LiveGateCtx) || {};
+  const sid = SCREEN_META[screen] && SCREEN_META[screen].id;
+  const ach = ACH_TRIGGERS[sid];
+  if (!ach || !am || am.practice || (gate.live && gate.live.mode === 'mentor') || (earned && earned.has(ach))) return null;
+  const lost = am.missed.has(sid);
+  return <p className={`ach-rule ${lost ? 'lost' : ''}`}>{lost
+    ? (once ? tr({ uz: 'Nishon birinchi urinish uchun edi.', ru: 'Значок давался за первую попытку.' }) : tr({ uz: "Nishon birinchi urinish uchun edi — endi bemalol to'g'risini toping.", ru: 'Значок давался за первую попытку — теперь спокойно найдите верный ответ.' }))
+    : tr({ uz: "🏅 Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki.", ru: '🏅 Справитесь с первой попытки — значок ваш.' })}</p>;
+};
 
 function AchCelebrate({ ach, onDone }) {
   useEffect(() => { const t = setTimeout(onDone, 4000); return () => clearTimeout(t); }, []); // eslint-disable-line
@@ -3010,6 +3030,8 @@ export default function NodeServerLesson({ lang: langProp, onFinished, liveToken
         .qz-fx { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
         .qz-bolt { filter: drop-shadow(0 8px 18px rgba(255,79,40,0.32)); }
 
+      .ach-rule { margin: 8px 0 0; text-align: center; font-size: 13px; line-height: 1.4; color: ${T.ink2}; }
+      .ach-rule.lost { font-style: italic; }
       `}</style>
       <AchCtx.Provider value={earned}>
       <AchMissCtx.Provider value={achMissVal}>

@@ -1299,6 +1299,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const gate = useContext(LiveGateCtx) || {};
   const live = gate.live;
   const isMentor = !!(live && live.mode === 'mentor');
+  const achMiss = useContext(AchMissCtx);
   const [olindi, setOlindi] = useState(() => Array.isArray(storedAnswer?.olindi) ? storedAnswer.olindi : []); // F-0914-10: saqlangan javob massiv bo'lmasa — bo'sh (oq ekran himoyasi)
   const [miss, setMiss] = useState(null);
   const [missedOnce, setMissedOnce] = useState(false);
@@ -1318,6 +1319,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     // Ortiqcha bo'lmagan qator bosilsa — qator qaytib chiqadi va QOIDA-qatori ochiladi (korpus §98)
     setMiss(x.id);
     setMissedOnce(true);
+    if (achMiss) achMiss.miss(screen); // 🏅 151-qonun: xabarga kerakli qatorni ortiqcha deb bosish — bitta xato urinish
     clearTimeout(missT.current);
     missT.current = setTimeout(() => setMiss(null), 700);
   };
@@ -1352,6 +1354,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               </div>
               <span key={olindi.length} className="msg-n mono">{tr({ uz: <>Xabardan {olindi.length} qator olib tashlandi</>, ru: <>Из сообщения убрано строк: {olindi.length}</> })}</span>
             </div>
+            {!done && <AchRule screen={screen} />}
           </Col>
           <Col gap={9}>
             {/* YORDAM ekran boshida TURMAYDI — faqat birinchi ortiqcha bosishdan keyin ochiladi */}
@@ -1757,6 +1760,22 @@ const ACHIEVEMENTS = {
   columnPicker: { icon: '🗄',  name: 'Column Picker!', desc: { uz: "So'rovni kerakli ustunlarga qisqartirdingiz", ru: 'Вы сократили запрос до нужных столбцов' } },
 };
 const ACH_TRIGGERS = { s4: 'eyesOpen', s8: 'clearReasons', s9: 'cleanMessage', s10: 'columnPicker' };
+
+// 🏅 151-qonun: amaliy topshiriq nishoni faqat BIRINCHI urinishga beriladi. Shart OLDINDAN aytiladi; birinchi urinish
+// xato bo'lsa — jazosiz qisqa xabar (`once` — qayta urinishi yo'q ekran). Mentor ekranida, «Qaytadan» mashq-o'tishida va
+// nishon olingach ko'rinmaydi. Matn — MATN_KORPUS §183 (hamma darsda aynan bir xil).
+const AchRule = ({ screen, once }) => {
+  const earned = useContext(AchCtx);
+  const am = useContext(AchMissCtx);
+  const gate = useContext(LiveGateCtx) || {};
+  const sid = SCREEN_META[screen] && SCREEN_META[screen].id;
+  const ach = ACH_TRIGGERS[sid];
+  if (!ach || !am || am.practice || (gate.live && gate.live.mode === 'mentor') || (earned && earned.has(ach))) return null;
+  const lost = am.missed.has(sid);
+  return <p className={`ach-rule ${lost ? 'lost' : ''}`}>{lost
+    ? (once ? tr({ uz: 'Nishon birinchi urinish uchun edi.', ru: 'Значок давался за первую попытку.' }) : tr({ uz: "Nishon birinchi urinish uchun edi — endi bemalol to'g'risini toping.", ru: 'Значок давался за первую попытку — теперь спокойно найдите верный ответ.' }))
+    : tr({ uz: "🏅 Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki.", ru: '🏅 Справитесь с первой попытки — значок ваш.' })}</p>;
+};
 
 function AchCelebrate({ ach, onDone }) {
   useEffect(() => { const t = setTimeout(onDone, 4000); return () => clearTimeout(t); }, []); // eslint-disable-line
@@ -3532,6 +3551,8 @@ export default function PmLesson12({ lang: langProp, onFinished, liveToken }) {
         ${CSS_BASE}
         ${CSS_LESSON}
         ${CSS_ARENA}
+        .ach-rule { margin: 8px 0 0; text-align: center; font-size: 13px; line-height: 1.4; color: ${T.ink2}; }
+        .ach-rule.lost { font-style: italic; }
       `}</style>
       <AchCtx.Provider value={earned}>
       <AchMissCtx.Provider value={achMissVal}>

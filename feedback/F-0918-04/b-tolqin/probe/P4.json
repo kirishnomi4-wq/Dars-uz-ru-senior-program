@@ -1,0 +1,1137 @@
+[
+ {
+  "file": "src/4-Modull/ApiPostmanLesson.jsx",
+  "sid": "s3",
+  "note": "konvert: bo'lakni bosib tanlash → konvertni bosish; xato = boshqa konvert (silkinish); sirpanish = tanlab, qayta bosib bekor qilish",
+  "wrong": [
+   {
+    "click": ".envpart.chip:has-text(\"METHOD\")"
+   },
+   {
+    "click": ".envcard.res",
+    "after": 700
+   }
+  ],
+  "right": [
+   {
+    "click": ".envpart.chip:has-text(\"METHOD\")"
+   },
+   {
+    "click": ".envcard.req"
+   },
+   {
+    "click": ".envpart.chip:has-text(\"URL\")"
+   },
+   {
+    "click": ".envcard.req"
+   },
+   {
+    "click": ".envpart.chip:has-text(\"BODY\")"
+   },
+   {
+    "click": ".envcard.req"
+   },
+   {
+    "click": ".envpart.chip:has-text(\"STATUS\")"
+   },
+   {
+    "click": ".envcard.res"
+   },
+   {
+    "click": ".envpart.chip:has-text(\"DATA\")"
+   },
+   {
+    "click": ".envcard.res",
+    "after": 800
+   }
+  ],
+  "slip": [
+   {
+    "click": ".envpart.chip:has-text(\"METHOD\")"
+   },
+   {
+    "click": ".envpart.chip:has-text(\"METHOD\")"
+   }
+  ]
+ },
+ {
+  "file": "src/4-Modull/ApiPostmanLesson.jsx",
+  "sid": "s14",
+  "note": "Q6: hamma qator bosiladi; xato = GET qatori (xatosiz)",
+  "wrong": [
+   {
+    "click": ".ai-code .ai-line",
+    "nth": 0,
+    "after": 500
+   }
+  ],
+  "right": [
+   {
+    "click": ".ai-code .ai-line:has-text(\"/api/produts\")"
+   },
+   {
+    "click": "button:has-text(\"produts → products\")"
+   },
+   {
+    "click": "button:has-text(\"Qaytadan Send\")",
+    "after": 1400
+   }
+  ]
+ },
+ {
+  "file": "src/4-Modull/AuthEnvLesson.jsx",
+  "sid": "s7",
+  "note": "qo'riqchi smenasi: 5 bilaguzuk (v1 KIRIT, v2–v5 RAD); xato = noto'g'ri hukm",
+  "wrong": [
+   {
+    "click": ".gq-btn.rad",
+    "after": 500
+   }
+  ],
+  "right": [
+   {
+    "click": ".gq-btn.kirit"
+   },
+   {
+    "click": "button:has-text(\"Keyingi bilaguzuk\")"
+   },
+   {
+    "click": ".gq-btn.rad"
+   },
+   {
+    "click": "button:has-text(\"Keyingi bilaguzuk\")"
+   },
+   {
+    "click": ".gq-btn.rad"
+   },
+   {
+    "click": "button:has-text(\"Keyingi bilaguzuk\")"
+   },
+   {
+    "click": ".gq-btn.rad"
+   },
+   {
+    "click": "button:has-text(\"Keyingi bilaguzuk\")"
+   },
+   {
+    "click": ".gq-btn.rad"
+   },
+   {
+    "click": "button:has-text(\"Smenani yakunlash\")",
+    "after": 800
+   }
+  ],
+  "rightAfterWrong": [
+   {
+    "click": "button:has-text(\"Keyingi bilaguzuk\")"
+   },
+   {
+    "click": ".gq-btn.rad"
+   },
+   {
+    "click": "button:has-text(\"Keyingi bilaguzuk\")"
+   },
+   {
+    "click": ".gq-btn.rad"
+   },
+   {
+    "click": "button:has-text(\"Keyingi bilaguzuk\")"
+   },
+   {
+    "click": ".gq-btn.rad"
+   },
+   {
+    "click": "button:has-text(\"Keyingi bilaguzuk\")"
+   },
+   {
+    "click": ".gq-btn.rad"
+   },
+   {
+    "click": "button:has-text(\"Smenani yakunlash\")",
+    "after": 800
+   }
+  ]
+ },
+ {
+  "file": "src/4-Modull/AuthEnvLesson.jsx",
+  "sid": "s13",
+  "note": "3 qadam: har qadamda B to'g'ri; xato = A",
+  "wrong": [
+   {
+    "click": ".option",
+    "nth": 0,
+    "after": 500
+   }
+  ],
+  "right": [
+   {
+    "click": ".option",
+    "nth": 1
+   },
+   {
+    "click": ".pm-send",
+    "after": 1300
+   },
+   {
+    "click": "button:has-text(\"Keyingi qadam\")"
+   },
+   {
+    "click": ".option",
+    "nth": 1
+   },
+   {
+    "click": "button:has-text(\"Kirish\")",
+    "after": 1300
+   },
+   {
+    "click": "button:has-text(\"Keyingi qadam\")"
+   },
+   {
+    "click": ".option",
+    "nth": 1
+   },
+   {
+    "click": ".pm-send",
+    "after": 1500
+   }
+  ]
+ },
+ {
+  "file": "src/4-Modull/AuthEnvLesson.jsx",
+  "sid": "s14",
+  "note": "3 qatordan maxfiy kalitli qator (2-qator); xato = boshqa qator (jim — faqat AchRule «lost»)",
+  "wrong": [
+   {
+    "click": ".ai-code .ai-line",
+    "nth": 0,
+    "after": 400
+   }
+  ],
+  "right": [
+   {
+    "click": ".ai-code .ai-line",
+    "nth": 1
+   },
+   {
+    "click": "button:has-text(\"process.env.JWT_SECRET\")",
+    "after": 700
+   }
+  ]
+ },
+ {
+  "file": "src/4-Modull/AuthEnvLesson.jsx",
+  "sid": "s7",
+  "note": "restart-teshigi: xato → smena tugaydi → «Smenani qaytadan» → xatosiz o'tish → nishon YO'Q",
+  "wrong": [
+   {
+    "click": ".gq-btn.rad",
+    "after": 500
+   }
+  ],
+  "right": [
+   {
+    "click": ".gq-btn.kirit"
+   },
+   {
+    "click": "button:has-text(\"Keyingi bilaguzuk\")"
+   },
+   {
+    "click": ".gq-btn.rad"
+   },
+   {
+    "click": "button:has-text(\"Keyingi bilaguzuk\")"
+   },
+   {
+    "click": ".gq-btn.rad"
+   },
+   {
+    "click": "button:has-text(\"Keyingi bilaguzuk\")"
+   },
+   {
+    "click": ".gq-btn.rad"
+   },
+   {
+    "click": "button:has-text(\"Keyingi bilaguzuk\")"
+   },
+   {
+    "click": ".gq-btn.rad"
+   },
+   {
+    "click": "button:has-text(\"Smenani yakunlash\")",
+    "after": 800
+   }
+  ],
+  "rightAfterWrong": [
+   {
+    "click": "button:has-text(\"Keyingi bilaguzuk\")"
+   },
+   {
+    "click": ".gq-btn.rad"
+   },
+   {
+    "click": "button:has-text(\"Keyingi bilaguzuk\")"
+   },
+   {
+    "click": ".gq-btn.rad"
+   },
+   {
+    "click": "button:has-text(\"Keyingi bilaguzuk\")"
+   },
+   {
+    "click": ".gq-btn.rad"
+   },
+   {
+    "click": "button:has-text(\"Keyingi bilaguzuk\")"
+   },
+   {
+    "click": ".gq-btn.rad"
+   },
+   {
+    "click": "button:has-text(\"Smenani yakunlash\")",
+    "after": 800
+   },
+   {
+    "click": "button:has-text(\"Smenani qaytadan\")",
+    "after": 500
+   },
+   {
+    "click": ".gq-btn.kirit"
+   },
+   {
+    "click": "button:has-text(\"Keyingi bilaguzuk\")"
+   },
+   {
+    "click": ".gq-btn.rad"
+   },
+   {
+    "click": "button:has-text(\"Keyingi bilaguzuk\")"
+   },
+   {
+    "click": ".gq-btn.rad"
+   },
+   {
+    "click": "button:has-text(\"Keyingi bilaguzuk\")"
+   },
+   {
+    "click": ".gq-btn.rad"
+   },
+   {
+    "click": "button:has-text(\"Keyingi bilaguzuk\")"
+   },
+   {
+    "click": ".gq-btn.rad"
+   },
+   {
+    "click": "button:has-text(\"Smenani yakunlash\")",
+    "after": 800
+   }
+  ]
+ },
+ {
+  "file": "src/4-Modull/AuthEnvLesson.jsx",
+  "sid": "s13",
+  "note": "restart-teshigi: xato → yo'l tugaydi → «Qaytadan» → xatosiz → nishon YO'Q",
+  "wrong": [
+   {
+    "click": ".option",
+    "nth": 0,
+    "after": 500
+   }
+  ],
+  "right": [
+   {
+    "click": ".option",
+    "nth": 1
+   },
+   {
+    "click": ".pm-send",
+    "after": 1300
+   },
+   {
+    "click": "button:has-text(\"Keyingi qadam\")"
+   },
+   {
+    "click": ".option",
+    "nth": 1
+   },
+   {
+    "click": "button:has-text(\"Kirish\")",
+    "after": 1300
+   },
+   {
+    "click": "button:has-text(\"Keyingi qadam\")"
+   },
+   {
+    "click": ".option",
+    "nth": 1
+   },
+   {
+    "click": ".pm-send",
+    "after": 1500
+   }
+  ],
+  "rightAfterWrong": [
+   {
+    "click": ".option",
+    "nth": 1
+   },
+   {
+    "click": ".pm-send",
+    "after": 1300
+   },
+   {
+    "click": "button:has-text(\"Keyingi qadam\")"
+   },
+   {
+    "click": ".option",
+    "nth": 1
+   },
+   {
+    "click": "button:has-text(\"Kirish\")",
+    "after": 1300
+   },
+   {
+    "click": "button:has-text(\"Keyingi qadam\")"
+   },
+   {
+    "click": ".option",
+    "nth": 1
+   },
+   {
+    "click": ".pm-send",
+    "after": 1500
+   },
+   {
+    "click": "button:has-text(\"Qaytadan\")",
+    "after": 500
+   },
+   {
+    "click": ".option",
+    "nth": 1
+   },
+   {
+    "click": ".pm-send",
+    "after": 1300
+   },
+   {
+    "click": "button:has-text(\"Keyingi qadam\")"
+   },
+   {
+    "click": ".option",
+    "nth": 1
+   },
+   {
+    "click": "button:has-text(\"Kirish\")",
+    "after": 1300
+   },
+   {
+    "click": "button:has-text(\"Keyingi qadam\")"
+   },
+   {
+    "click": ".option",
+    "nth": 1
+   },
+   {
+    "click": ".pm-send",
+    "after": 1500
+   }
+  ]
+ },
+ {
+  "file": "src/4-Modull/BackendCrudPracticeLesson.jsx",
+  "sid": "s5",
+  "note": "uch prompt: b — aniq; xato = a yoki c",
+  "wrong": [
+   {
+    "click": ".prompts .hook-option",
+    "nth": 0,
+    "after": 500
+   }
+  ],
+  "right": [
+   {
+    "click": ".prompts .hook-option",
+    "nth": 1,
+    "after": 700
+   }
+  ]
+ },
+ {
+  "file": "src/4-Modull/BackendCrudPracticeLesson.jsx",
+  "sid": "s10",
+  "note": "3 qator: 2-qator (price) — xato; xato urinish = 1- yoki 3-qatorni bosish",
+  "wrong": [
+   {
+    "click": ".ai-code .ai-line",
+    "nth": 0,
+    "after": 500
+   }
+  ],
+  "right": [
+   {
+    "click": ".ai-code .ai-line",
+    "nth": 1
+   },
+   {
+    "click": "button:has-text(\"price → narx\")",
+    "after": 700
+   }
+  ]
+ },
+ {
+  "file": "src/4-Modull/DbSqlNosqlLesson.jsx",
+  "sid": "s14",
+  "note": "3 fikrdan mif (2-qator); xato = to'g'ri fikrni mif deb bosish",
+  "wrong": [
+   {
+    "click": ".ai-code .ai-line",
+    "nth": 0,
+    "after": 500
+   }
+  ],
+  "right": [
+   {
+    "click": ".ai-code .ai-line",
+    "nth": 1
+   },
+   {
+    "click": "button:has-text(\"fikrga almashtirish\")",
+    "after": 800
+   }
+  ]
+ },
+ {
+  "file": "src/4-Modull/FullstackFeedbackLesson.jsx",
+  "sid": "s5",
+  "note": "4 karta → Foyda/Mehnat doskasi (Q1 Q1 Q2 Q3); bosib tanlash → katakni bosish; xato = noto'g'ri katak; sirpanish = kartani qayta bosib bekor qilish",
+  "wrong": [
+   {
+    "click": ".vcard:has-text(\"Tasdiq\")"
+   },
+   {
+    "click": ".mx-grid .quad",
+    "nth": 3,
+    "after": 700,
+    "js": true
+   }
+  ],
+  "right": [
+   {
+    "click": ".vcard:has-text(\"Tasdiq\")"
+   },
+   {
+    "click": ".mx-grid .quad",
+    "nth": 0,
+    "js": true
+   },
+   {
+    "click": ".vcard:has-text(\"Dashboard\")"
+   },
+   {
+    "click": ".mx-grid .quad",
+    "nth": 0,
+    "js": true
+   },
+   {
+    "click": ".vcard:has-text(\"Narx\")"
+   },
+   {
+    "click": ".mx-grid .quad",
+    "nth": 1,
+    "js": true
+   },
+   {
+    "click": ".vcard:has-text(\"Joylar\")"
+   },
+   {
+    "click": ".mx-grid .quad",
+    "nth": 2,
+    "after": 900,
+    "js": true
+   }
+  ],
+  "slip": [
+   {
+    "click": ".vcard:has-text(\"Tasdiq\")"
+   },
+   {
+    "click": ".vcard:has-text(\"Tasdiq\")"
+   }
+  ]
+ },
+ {
+  "file": "src/4-Modull/NodeServerLesson.jsx",
+  "sid": "s13",
+  "note": "4 bo'lakni tartibda bosish (req → app → get → listen); xato = navbatdan tashqari bo'lak (silkinish)",
+  "wrong": [
+   {
+    "click": "button.chip:has-text(\"app.listen(3000)\")",
+    "after": 500
+   }
+  ],
+  "right": [
+   {
+    "click": "button.chip:has-text(\"require('express')\")"
+   },
+   {
+    "click": "button.chip:has-text(\"const app = express()\")"
+   },
+   {
+    "click": "button.chip:has-text(\"app.get('/salom'\")"
+   },
+   {
+    "click": "button.chip:has-text(\"app.listen(3000)\")",
+    "after": 800
+   }
+  ]
+ },
+ {
+  "file": "src/4-Modull/NodeServerLesson.jsx",
+  "sid": "s14",
+  "note": "«Nima yetishmayapti?» — 3 variant; to'g'ri = app.listen; keyin «🔧 qo'shish»",
+  "wrong": [
+   {
+    "click": ".pick-row",
+    "nth": 0,
+    "after": 500
+   }
+  ],
+  "right": [
+   {
+    "click": ".pick-row",
+    "nth": 1
+   },
+   {
+    "click": "button:has-text(\"app.listen(3000) qo'shish\")",
+    "after": 800
+   }
+  ]
+ },
+ {
+  "file": "src/4-Modull/PmLesson11.jsx",
+  "sid": "s9",
+  "note": "3 raund: bo'limga mos qatorlarni belgilab «Bo'limni qurish»; xato = mos kelmaydigan tanlov bilan qurish; sirpanish = qatorni belgilab, qayta bosib olib tashlash",
+  "wrong": [
+   {
+    "click": ".tbl-row",
+    "nth": 1
+   },
+   {
+    "click": "button:has-text(\"Bo'limni qurish\")",
+    "after": 500
+   }
+  ],
+  "right": [
+   {
+    "click": ".tbl-row",
+    "nth": 0
+   },
+   {
+    "click": ".tbl-row",
+    "nth": 2
+   },
+   {
+    "click": ".tbl-row",
+    "nth": 3
+   },
+   {
+    "click": "button:has-text(\"Bo'limni qurish\")",
+    "after": 500
+   },
+   {
+    "click": "button:has-text(\"Keyingi bo'lim\")"
+   },
+   {
+    "click": ".tbl-row",
+    "nth": 0
+   },
+   {
+    "click": ".tbl-row",
+    "nth": 2
+   },
+   {
+    "click": ".tbl-row",
+    "nth": 5
+   },
+   {
+    "click": "button:has-text(\"Bo'limni qurish\")",
+    "after": 500
+   },
+   {
+    "click": "button:has-text(\"Keyingi bo'lim\")"
+   },
+   {
+    "click": ".tbl-row",
+    "nth": 0
+   },
+   {
+    "click": ".tbl-row",
+    "nth": 2
+   },
+   {
+    "click": "button:has-text(\"Bo'limni qurish\")",
+    "after": 500
+   },
+   {
+    "click": "button:has-text(\"Uch bo'lim qurildi\")",
+    "after": 800
+   }
+  ],
+  "rightAfterWrong": [
+   {
+    "click": ".tbl-row",
+    "nth": 1
+   },
+   {
+    "click": ".tbl-row",
+    "nth": 0
+   },
+   {
+    "click": ".tbl-row",
+    "nth": 2
+   },
+   {
+    "click": ".tbl-row",
+    "nth": 3
+   },
+   {
+    "click": "button:has-text(\"Bo'limni qurish\")",
+    "after": 500
+   },
+   {
+    "click": "button:has-text(\"Keyingi bo'lim\")"
+   },
+   {
+    "click": ".tbl-row",
+    "nth": 0
+   },
+   {
+    "click": ".tbl-row",
+    "nth": 2
+   },
+   {
+    "click": ".tbl-row",
+    "nth": 5
+   },
+   {
+    "click": "button:has-text(\"Bo'limni qurish\")",
+    "after": 500
+   },
+   {
+    "click": "button:has-text(\"Keyingi bo'lim\")"
+   },
+   {
+    "click": ".tbl-row",
+    "nth": 0
+   },
+   {
+    "click": ".tbl-row",
+    "nth": 2
+   },
+   {
+    "click": "button:has-text(\"Bo'limni qurish\")",
+    "after": 500
+   },
+   {
+    "click": "button:has-text(\"Uch bo'lim qurildi\")",
+    "after": 800
+   }
+  ],
+  "slip": [
+   {
+    "click": ".tbl-row",
+    "nth": 1
+   },
+   {
+    "click": ".tbl-row",
+    "nth": 1
+   }
+  ]
+ },
+ {
+  "file": "src/4-Modull/PmLesson12.jsx",
+  "sid": "s9",
+  "note": "5 qatordan 2 ortiqchasi (x2, x4); xato = kerakli qatorni bosish",
+  "wrong": [
+   {
+    "click": ".msg-row",
+    "nth": 0,
+    "js": true,
+    "after": 900
+   }
+  ],
+  "right": [
+   {
+    "click": ".msg-row",
+    "nth": 1,
+    "js": true,
+    "after": 500
+   },
+   {
+    "click": ".msg-row",
+    "nth": 3,
+    "js": true,
+    "after": 900
+   }
+  ]
+ },
+ {
+  "file": "src/4-Modull/PmLesson13.jsx",
+  "sid": "s4",
+  "note": "e'lon gapi → sxema ustuni (g1 nom · g2 holat · g3 kim · g4 ➕ yangi ustun); xato = noto'g'ri ustun; sirpanish (kashfiyot) = uyacha ko'rinmay turib 4-gapni mavjud ustunga ulash",
+  "wrong": [
+   {
+    "click": ".elon-gap",
+    "nth": 0
+   },
+   {
+    "click": ".ustn-card",
+    "nth": 1
+   }
+  ],
+  "right": [
+   {
+    "click": ".elon-gap",
+    "nth": 0
+   },
+   {
+    "click": ".ustn-card",
+    "nth": 0
+   },
+   {
+    "click": ".elon-gap",
+    "nth": 1
+   },
+   {
+    "click": ".ustn-card",
+    "nth": 1
+   },
+   {
+    "click": ".elon-gap",
+    "nth": 2
+   },
+   {
+    "click": ".ustn-card",
+    "nth": 2
+   },
+   {
+    "click": ".elon-gap",
+    "nth": 3
+   },
+   {
+    "click": ".ustn-slot",
+    "after": 900
+   }
+  ],
+  "rightAfterWrong": [
+   {
+    "click": ".ustn-card",
+    "nth": 0
+   },
+   {
+    "click": ".elon-gap",
+    "nth": 1
+   },
+   {
+    "click": ".ustn-card",
+    "nth": 1
+   },
+   {
+    "click": ".elon-gap",
+    "nth": 2
+   },
+   {
+    "click": ".ustn-card",
+    "nth": 2
+   },
+   {
+    "click": ".elon-gap",
+    "nth": 3
+   },
+   {
+    "click": ".ustn-slot",
+    "after": 900
+   }
+  ],
+  "slip": [
+   {
+    "click": ".elon-gap",
+    "nth": 3
+   },
+   {
+    "click": ".ustn-card",
+    "nth": 0
+   }
+  ]
+ },
+ {
+  "file": "src/4-Modull/PmLesson13.jsx",
+  "sid": "s4",
+  "note": "uyacha KO'RINIB turganda (3 gap ulangach) 4-gapni mavjud ustunga ulash — xato urinish · iplar F5 dan keyin ham saqlanadi (writeBoard) — right: ulanmagan gaplarnigina ulaydi",
+  "wrong": [
+   {
+    "click": ".elon-gap",
+    "nth": 0
+   },
+   {
+    "click": ".ustn-card",
+    "nth": 0
+   },
+   {
+    "click": ".elon-gap",
+    "nth": 1
+   },
+   {
+    "click": ".ustn-card",
+    "nth": 1
+   },
+   {
+    "click": ".elon-gap",
+    "nth": 2
+   },
+   {
+    "click": ".ustn-card",
+    "nth": 2
+   },
+   {
+    "click": ".elon-gap",
+    "nth": 3
+   },
+   {
+    "click": ".ustn-card",
+    "nth": 0
+   }
+  ],
+  "right": [
+   {
+    "eval": "(async () => { const w = (ms) => new Promise((r) => setTimeout(r, ms)); for (let i = 0; i < 3; i++) { const g = document.querySelectorAll('.elon-gap')[i]; if (!g || g.disabled) continue; g.click(); await w(250); document.querySelectorAll('.ustn-card')[i].click(); await w(350); } document.querySelectorAll('.elon-gap')[3].click(); await w(250); document.querySelector('.ustn-slot').click(); await w(900); })()"
+   }
+  ],
+  "rightAfterWrong": [
+   {
+    "click": ".ustn-slot",
+    "after": 900
+   }
+  ]
+ },
+ {
+  "file": "src/4-Modull/PmLesson13.jsx",
+  "sid": "s9",
+  "note": "3 shart: 1 → tug'ilgan kun ustuni · 2 → telefon · 3 → «Bu shart bajarilgan»; xato = noto'g'ri hukm",
+  "wrong": [
+   {
+    "click": ".sxm-row",
+    "nth": 0,
+    "after": 400
+   }
+  ],
+  "right": [
+   {
+    "click": ".sxm-row",
+    "nth": 4,
+    "after": 400
+   },
+   {
+    "click": "button:has-text(\"Keyingi shart\")"
+   },
+   {
+    "click": ".sxm-row",
+    "nth": 3,
+    "after": 400
+   },
+   {
+    "click": "button:has-text(\"Keyingi shart\")"
+   },
+   {
+    "click": ".sxm-allok",
+    "after": 400
+   },
+   {
+    "click": "button:has-text(\"Uch shart yuritildi\")",
+    "after": 900
+   }
+  ]
+ },
+ {
+  "file": "src/4-Modull/PmLesson14.jsx",
+  "sid": "s9",
+  "note": "3 qaror → sabab (1 → 1-sabab, 2 → 2-sabab, 3 → 3-sabab); xato = boshqa qarorning sababi",
+  "wrong": [
+   {
+    "click": ".qs-opt",
+    "nth": 1,
+    "js": true,
+    "after": 600
+   }
+  ],
+  "right": [
+   {
+    "click": ".qs-opt",
+    "nth": 0,
+    "js": true,
+    "after": 500
+   },
+   {
+    "click": ".qs-opt",
+    "nth": 1,
+    "js": true,
+    "after": 500
+   },
+   {
+    "click": ".qs-opt",
+    "nth": 2,
+    "js": true,
+    "after": 900
+   }
+  ]
+ },
+ {
+  "file": "src/4-Modull/PostgresCrudLesson.jsx",
+  "sid": "s10",
+  "note": "4 hodisa → INSERT · SELECT · UPDATE · DELETE; xato = noto'g'ri amal",
+  "wrong": [
+   {
+    "click": ".crud-card",
+    "nth": 1,
+    "js": true,
+    "after": 500
+   }
+  ],
+  "right": [
+   {
+    "click": ".crud-card",
+    "nth": 0,
+    "js": true,
+    "after": 500
+   },
+   {
+    "click": "button:has-text(\"Keyingi hodisa\")"
+   },
+   {
+    "click": ".crud-card",
+    "nth": 1,
+    "js": true,
+    "after": 500
+   },
+   {
+    "click": "button:has-text(\"Keyingi hodisa\")"
+   },
+   {
+    "click": ".crud-card",
+    "nth": 2,
+    "js": true,
+    "after": 500
+   },
+   {
+    "click": "button:has-text(\"Keyingi hodisa\")"
+   },
+   {
+    "click": ".crud-card",
+    "nth": 3,
+    "js": true,
+    "after": 500
+   },
+   {
+    "click": "button:has-text(\"Smenani yakunlash\")",
+    "after": 900
+   }
+  ]
+ },
+ {
+  "file": "src/4-Modull/PostgresCrudLesson.jsx",
+  "sid": "s14",
+  "note": "DebugChallenge: 3 qatordan xatosi 2-qator (FROM product); xato = boshqa qator",
+  "wrong": [
+   {
+    "click": ".dbg-line",
+    "nth": 0,
+    "js": true,
+    "after": 600
+   }
+  ],
+  "right": [
+   {
+    "click": ".dbg-line",
+    "nth": 1,
+    "js": true,
+    "after": 900
+   }
+  ]
+ },
+ {
+  "file": "src/4-Modull/RoutingLesson.jsx",
+  "sid": "s11",
+  "note": "DebugChallenge: 5 qatordan xatosi 3-qator (@Get()); xato = boshqa qator",
+  "wrong": [
+   {
+    "click": ".dbg-line",
+    "nth": 0,
+    "js": true,
+    "after": 600
+   }
+  ],
+  "right": [
+   {
+    "click": ".dbg-line",
+    "nth": 2,
+    "js": true,
+    "after": 900
+   }
+  ]
+ },
+ {
+  "file": "src/4-Modull/RoutingLesson.jsx",
+  "sid": "s13",
+  "note": "DragDropOrder (bosib joylash): findAll → findOne → create; xato = hamma uyacha to'lib tartib xato; sirpanish = bo'lakni joylab, qaytarib olish",
+  "wrong": [
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"findOne()\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"findAll()\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"create()\")",
+    "after": 700
+   }
+  ],
+  "right": [
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"findAll()\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"findOne()\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"create()\")",
+    "after": 900
+   }
+  ],
+  "rightAfterWrong": [
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0
+   },
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"findAll()\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"findOne()\")",
+    "after": 900
+   }
+  ],
+  "slip": [
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"findOne()\")"
+   },
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0
+   }
+  ]
+ }
+]

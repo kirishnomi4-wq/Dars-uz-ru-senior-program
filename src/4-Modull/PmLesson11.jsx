@@ -1238,6 +1238,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const gate = useContext(LiveGateCtx) || {};
   const live = gate.live;
   const isMentor = !!(live && live.mode === 'mentor');
+  const achMiss = useContext(AchMissCtx);
   const [ri, setRi] = useState(() => (Number.isInteger(storedAnswer?.ri) && storedAnswer.ri >= 0 ? storedAnswer.ri : 0)); /* F-0915-02 */
   const [sel, setSel] = useState([]);
   const [built, setBuilt] = useState(null);
@@ -1264,6 +1265,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     const yetmagan = cur.togri.filter(n => !sel.includes(n));
     if (ortiqcha.length === 0 && yetmagan.length === 0) { setBuilt(sel.slice().sort((a, b) => a - b)); setMiss(''); return; }
     setMissedOnce(true);
+    if (achMiss) achMiss.miss(screen); // 🏅 151-qonun: «Bo'limni qurish» bosildi, natija xato — bitta xato urinish
     setMiss(ortiqcha.length > 0
       ? tr({ uz: '🤔 Bu yozuv bo\'lim nomiga mos kelmaydi — uni yana bir bor o\'qing.', ru: '🤔 Эта запись не подходит под название раздела — перечитайте его ещё раз.' })
       : tr({ uz: '🤔 Bo\'limga mos yana bitta yozuv bor.', ru: '🤔 Есть ещё одна запись, которая подходит разделу.' }));
@@ -1306,6 +1308,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {!built && !done && <button type="button" className="wsp-save" disabled={sel.length === 0 || isMentor} onClick={qur}>{tr({ uz: "Bo'limni qurish →", ru: 'Построить раздел →' })}</button>}
             {built && ri < RAUNDLAR.length - 1 && <button type="button" className="wsp-save" onClick={keyingi}>{tr({ uz: "Keyingi bo'lim →", ru: 'Следующий раздел →' })}</button>}
             {built && ri === RAUNDLAR.length - 1 && !done && <button type="button" className="wsp-save" onClick={keyingi}>{tr({ uz: "✓ Uch bo'lim qurildi", ru: '✓ Три раздела построены' })}</button>}
+            {!done && <AchRule screen={screen} />}
           </Col>
           <Col gap={9}>
             <Phone quiet={!korsat}>
@@ -1761,6 +1764,22 @@ const ACHIEVEMENTS = {
   dataCoder:      { icon: '🛠', name: 'Data Coder!',      desc: { uz: "Yoqqan qo'shiqlarni kod ajratdi", ru: 'Код отобрал понравившиеся песни' } },
 };
 const ACH_TRIGGERS = { s4: 'memoryMaker', s8: 'fieldWriter', s9: 'sectionBuilder', s10: 'dataCoder' };
+
+// 🏅 151-qonun: amaliy topshiriq nishoni faqat BIRINCHI urinishga beriladi. Shart OLDINDAN aytiladi; birinchi urinish
+// xato bo'lsa — jazosiz qisqa xabar (`once` — qayta urinishi yo'q ekran). Mentor ekranida, «Qaytadan» mashq-o'tishida va
+// nishon olingach ko'rinmaydi. Matn — MATN_KORPUS §183 (hamma darsda aynan bir xil).
+const AchRule = ({ screen, once }) => {
+  const earned = useContext(AchCtx);
+  const am = useContext(AchMissCtx);
+  const gate = useContext(LiveGateCtx) || {};
+  const sid = SCREEN_META[screen] && SCREEN_META[screen].id;
+  const ach = ACH_TRIGGERS[sid];
+  if (!ach || !am || am.practice || (gate.live && gate.live.mode === 'mentor') || (earned && earned.has(ach))) return null;
+  const lost = am.missed.has(sid);
+  return <p className={`ach-rule ${lost ? 'lost' : ''}`}>{lost
+    ? (once ? tr({ uz: 'Nishon birinchi urinish uchun edi.', ru: 'Значок давался за первую попытку.' }) : tr({ uz: "Nishon birinchi urinish uchun edi — endi bemalol to'g'risini toping.", ru: 'Значок давался за первую попытку — теперь спокойно найдите верный ответ.' }))
+    : tr({ uz: "🏅 Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki.", ru: '🏅 Справитесь с первой попытки — значок ваш.' })}</p>;
+};
 function AchCelebrate({ ach, onDone }) {
   useEffect(() => { const t = setTimeout(onDone, 4000); return () => clearTimeout(t); }, []); // eslint-disable-line
   return (
@@ -3446,6 +3465,8 @@ export default function PmLesson11({ lang: langProp, onFinished, liveToken }) {
         ${CSS_BASE}
         ${CSS_LESSON}
         ${CSS_ARENA}
+        .ach-rule { margin: 8px 0 0; text-align: center; font-size: 13px; line-height: 1.4; color: ${T.ink2}; }
+        .ach-rule.lost { font-style: italic; }
       `}</style>
       <AchCtx.Provider value={earned}>
       <AchMissCtx.Provider value={achMissVal}>

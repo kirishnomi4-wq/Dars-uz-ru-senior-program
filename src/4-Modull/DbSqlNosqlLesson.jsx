@@ -1315,6 +1315,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // ===== SCREEN 14 — MIF-BUSTER (debugging uslubi) =====
 const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const audio = useAudio([{ id: 's14', text: "Ko'p odam adashadi: NoSQL yangi, demak har doim yaxshiroq. Bu — mif. Tanlov modaga emas, vazifaga bog'liq. Pastdagi fikrlardan noto'g'risini toping va uni to'g'irlang.", trigger: 'on_mount', waits_for: null }]);
+  const achMiss = useContext(AchMissCtx);
   const [picked, setPicked] = useState(storedAnswer ? 'myth' : null);
   const [fixed, setFixed] = useState(!!storedAnswer);
   const found = picked === 'myth';
@@ -1338,13 +1339,14 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 {CLAIMS.map(c => {
                   const isMyth = c.id === 'myth';
                   if (isMyth && fixed) return <div key={c.id} className="ai-line ok el-in" style={{ cursor: 'default' }}>{tr({ uz: <>Do'kon bog'langan + ishonchli kerak → <b style={{ color: CODE.str }}>SQL (PostgreSQL)</b> ✓</>, ru: <>Магазину нужны связи + надёжность → <b style={{ color: CODE.str }}>SQL (PostgreSQL)</b> ✓</> })}</div>;
-                  return <div key={c.id} className={`ai-line ${found && isMyth ? 'bad' : ''} ${!found && picked === c.id && !isMyth ? 'ok' : ''}`} onClick={() => { if (!found) setPicked(isMyth ? 'myth' : c.id); }}>{c.txt}</div>;
+                  return <div key={c.id} className={`ai-line ${found && isMyth ? 'bad' : ''} ${!found && picked === c.id && !isMyth ? 'ok' : ''}`} onClick={() => { if (found) return; if (!isMyth && achMiss) achMiss.miss(screen); setPicked(isMyth ? 'myth' : c.id); }}>{c.txt}</div>;
                 })}
               </div>
               {!found && <p className="ai-prompt">{tr({ uz: "Qaysi fikr noto'g'ri? Bosing.", ru: 'Какое утверждение неверно? Нажмите.' })}</p>}
               {found && !fixed && <button className="btn fade-step" style={{ alignSelf: 'flex-start' }} onClick={() => setFixed(true)}>{tr({ uz: "🔧 To'g'ri fikrga almashtirish", ru: '🔧 Заменить на верное утверждение' })}</button>}
               {fixed && <p className="ai-prompt" style={{ color: T.success, fontStyle: 'normal', fontWeight: 600 }}>{tr({ uz: "✓ To'g'irlandi!", ru: '✓ Исправлено!' })}</p>}
             </div>
+            {!done && <AchRule screen={screen} />}
           </Col>
           <Col>
             {!found && ((picked && picked !== 'myth')
@@ -1657,6 +1659,22 @@ const ACHIEVEMENTS = {
 };
 // Ekran id → nishon (recordAnswer'da, faqat REAL solve bilan: challenge/final)
 const ACH_TRIGGERS = { s3: 'packageMaster', s5: 'connector', s14: 'mythBuster', s15: 'compassReader' };
+
+// 🏅 151-qonun: amaliy topshiriq nishoni faqat BIRINCHI urinishga beriladi. Shart OLDINDAN aytiladi; birinchi urinish
+// xato bo'lsa — jazosiz qisqa xabar (`once` — qayta urinishi yo'q ekran). Mentor ekranida, «Qaytadan» mashq-o'tishida va
+// nishon olingach ko'rinmaydi. Matn — MATN_KORPUS §183 (hamma darsda aynan bir xil).
+const AchRule = ({ screen, once }) => {
+  const earned = useContext(AchCtx);
+  const am = useContext(AchMissCtx);
+  const gate = useContext(LiveGateCtx) || {};
+  const sid = SCREEN_META[screen] && SCREEN_META[screen].id;
+  const ach = ACH_TRIGGERS[sid];
+  if (!ach || !am || am.practice || (gate.live && gate.live.mode === 'mentor') || (earned && earned.has(ach))) return null;
+  const lost = am.missed.has(sid);
+  return <p className={`ach-rule ${lost ? 'lost' : ''}`}>{lost
+    ? (once ? tr({ uz: 'Nishon birinchi urinish uchun edi.', ru: 'Значок давался за первую попытку.' }) : tr({ uz: "Nishon birinchi urinish uchun edi — endi bemalol to'g'risini toping.", ru: 'Значок давался за первую попытку — теперь спокойно найдите верный ответ.' }))
+    : tr({ uz: "🏅 Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki.", ru: '🏅 Справитесь с первой попытки — значок ваш.' })}</p>;
+};
 function AchCelebrate({ ach, onDone }) {
   useEffect(() => { const t = setTimeout(onDone, 4000); return () => clearTimeout(t); }, []); // eslint-disable-line
   return (
@@ -3175,6 +3193,8 @@ export default function DbSqlNosqlLesson({ lang: langProp, onFinished, liveToken
         .qz-tile .qcode { background: rgba(255,255,255,0.25); color: #fff; }
         .qz-q .qcode { background: rgba(203,173,255,0.18); color: #F2ECFF; }
         .qz-fx { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+        .ach-rule { margin: 8px 0 0; text-align: center; font-size: 13px; line-height: 1.4; color: ${T.ink2}; }
+        .ach-rule.lost { font-style: italic; }
       `}</style>
       <AchCtx.Provider value={earned}>
       <AchMissCtx.Provider value={achMissVal}>

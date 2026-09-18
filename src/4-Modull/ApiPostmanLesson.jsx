@@ -807,6 +807,7 @@ const S3_PIECES = [
   { k: 'data', zone: 'res', node: <><span className="mono" style={{ color: T.success }}>[ ... ]</span> <span className="ep-lbl">DATA</span></> }
 ];
 const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
+  const achMiss = useContext(AchMissCtx);
   const [placed, setPlaced] = useState(() => (storedAnswer ? Object.fromEntries(S3_PIECES.map(p => [p.k, p.zone])) : {}));
   const [active, setActive] = useState(null);   // info panelda ochilgan bo'lak
   const [sel, setSel] = useState(null);         // tap-rejim: tanlangan bo'lak
@@ -823,7 +824,10 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const tryPlace = (k, zone) => {
     const piece = S3_PIECES.find(p => p.k === k);
     if (!piece || placed[k]) return;
-    if (piece.zone !== zone) { setSel(null); setReject(k); setTimeout(() => setReject(r => (r === k ? null : r)), 520); return; }
+    if (piece.zone !== zone) {
+      if (achMiss) achMiss.miss(screen); // 🏅 151-qonun: noto'g'ri konvert — bitta xato urinish (zonadan tashqariga tashlash — sirpanish, bu yerga kelmaydi)
+      setSel(null); setReject(k); setTimeout(() => setReject(r => (r === k ? null : r)), 520); return;
+    }
     setPlaced(p => ({ ...p, [k]: zone })); setActive(k); setSel(null);
   };
   const hitZone = (x, y) => {
@@ -894,6 +898,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                     <button key={p.k} className={`envpart chip ${sel === p.k ? 'sel' : ''} ${reject === p.k ? 'reject' : ''} ${sel || reject === p.k ? '' : 'tap-hint'}`} onPointerDown={(e) => down(e, p.k)}>{p.node}</button>
                   ))}
             </div>
+            {!done && <AchRule screen={screen} />}
             {sel && <p className="env-tip small">{tr({ uz: <>Endi konvertni bosing — <b>{sel.toUpperCase()}</b> shu yerga tushadi (yoki bo'lakni sudrang).</>, ru: <>Теперь нажмите на конверт — <b>{sel.toUpperCase()}</b> ляжет туда (или перетащите деталь).</> })}</p>}
             {renderZone('req', tr({ uz: "So'rov konverti (siz → server)", ru: 'Конверт запроса (вы → сервер)' }), T.accent)}
             {renderZone('res', tr({ uz: 'Javob konverti (server → siz)', ru: 'Конверт ответа (сервер → вы)' }), T.success)}
@@ -1309,7 +1314,10 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // ===== SCREEN 14 — DEBUGGING (noto'g'ri so'rov → 404) =====
 const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   // AI noto'g'ri URL yozdi: /api/produts (typo) → 404. Topib tuzatamiz.
+  // 151-qonun (Q6, foydalanuvchi 18.09): hamma qator bosiladi — xatosiz qator bosilsa qisqa javob + birinchi urinish belgisi.
+  const achMiss = useContext(AchMissCtx);
   const [found, setFound] = useState(!!storedAnswer);
+  const [miss, setMiss] = useState(false);
   const [fixed, setFixed] = useState(!!storedAnswer);
   const [sending, setSending] = useState(false);
   const [sent, setSent] = useState(!!storedAnswer);
@@ -1330,15 +1338,17 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <div className="ai-card fade-up delay-1">
               <div className="ai-row"><span className="ai-badge">AI</span><span className="ai-bubble">{tr({ uz: "Mana so'rov:", ru: 'Вот запрос:' })}</span></div>
               <div className="ai-code">
-                <div className="ai-line" style={{ cursor: 'default' }}><MethodBadge method="GET" /></div>
+                <div className="ai-line" style={found ? { cursor: 'default' } : undefined} onClick={() => { if (found) return; setMiss(true); if (achMiss) achMiss.miss(screen); }}><MethodBadge method="GET" /></div>
                 {fixed
                   ? <div className="ai-line ok" style={{ cursor: 'default' }}>/api/products</div>
                   : <div className={`ai-line ${found ? 'bad' : ''}`} onClick={() => setFound(true)}>/api/produts</div>}
               </div>
               {!found && <p className="ai-prompt">{tr({ uz: 'Manzilda xato bor — qatorni bosing.', ru: 'В адресе ошибка — нажмите на строку.' })}</p>}
+              {miss && !found && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Bu qatorda xato yo'q — yana qarang.", ru: 'В этой строке ошибки нет — посмотрите ещё раз.' })}</p></div>}
               {found && !fixed && <button className="btn fade-step" style={{ alignSelf: 'flex-start' }} onClick={() => setFixed(true)}>🔧 produts → products</button>}
               {fixed && !sent && <button className="btn fade-step" style={{ alignSelf: 'flex-start' }} onClick={send}>{tr({ uz: '▶ Qaytadan Send', ru: '▶ Send ещё раз' })}</button>}
             </div>
+            {!done && <AchRule screen={screen} />}
           </Col>
           <Col>
             <p className="flow-label">{tr({ uz: 'Javob', ru: 'Ответ' })}</p>
@@ -1515,6 +1525,22 @@ const ACHIEVEMENTS = {
 };
 // Ekran id → nishon (recordAnswer'da, faqat REAL solve bilan: SCORED test / challenge / final)
 const ACH_TRIGGERS = { s3: 'envelopeBuilder', s12: 'testMaster', s14: 'stampReader', s15: 'levelUp' }; // F-0820-212: envelopeBuilder s13 (xato qilib bo'lmaydigan 3 Send) → s3 (konvert yig'ish — noto'g'ri zona rad etiladi)
+
+// 🏅 151-qonun: amaliy topshiriq nishoni faqat BIRINCHI urinishga beriladi. Shart OLDINDAN aytiladi; birinchi urinish
+// xato bo'lsa — jazosiz qisqa xabar (`once` — qayta urinishi yo'q ekran). Mentor ekranida, «Qaytadan» mashq-o'tishida va
+// nishon olingach ko'rinmaydi. Matn — MATN_KORPUS §183 (hamma darsda aynan bir xil).
+const AchRule = ({ screen, once }) => {
+  const earned = useContext(AchCtx);
+  const am = useContext(AchMissCtx);
+  const gate = useContext(LiveGateCtx) || {};
+  const sid = SCREEN_META[screen] && SCREEN_META[screen].id;
+  const ach = ACH_TRIGGERS[sid];
+  if (!ach || !am || am.practice || (gate.live && gate.live.mode === 'mentor') || (earned && earned.has(ach))) return null;
+  const lost = am.missed.has(sid);
+  return <p className={`ach-rule ${lost ? 'lost' : ''}`}>{lost
+    ? (once ? tr({ uz: 'Nishon birinchi urinish uchun edi.', ru: 'Значок давался за первую попытку.' }) : tr({ uz: "Nishon birinchi urinish uchun edi — endi bemalol to'g'risini toping.", ru: 'Значок давался за первую попытку — теперь спокойно найдите верный ответ.' }))
+    : tr({ uz: "🏅 Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki.", ru: '🏅 Справитесь с первой попытки — значок ваш.' })}</p>;
+};
 
 // 🏅 O'YIN USLUBIDAGI TO'LIQ-EKRAN NISHON BAYRAMI
 function AchCelebrate({ ach, onDone }) {
@@ -3189,6 +3215,8 @@ export default function ApiPostmanLesson({ lang: langProp, onFinished, liveToken
           .jenv, .jnode.on, .tick-pop, .flyenv.flying { animation: none !important; }
           .env-zone, .envpart, .pm-send, .apinode, .crud-card { transition: none !important; }
         }
+        .ach-rule { margin: 8px 0 0; text-align: center; font-size: 13px; line-height: 1.4; color: ${T.ink2}; }
+        .ach-rule.lost { font-style: italic; }
       `}</style>
       <AchCtx.Provider value={earned}>
       <AchMissCtx.Provider value={achMissVal}>

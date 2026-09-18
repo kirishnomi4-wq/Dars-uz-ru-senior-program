@@ -1046,7 +1046,7 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 };
 
 // 🧲 Qayta ishlatiladigan DRAG-DROP ORDER — bo'laklarni to'g'ri tartibda joylash (StrictMode-safe, atomik holat).
-function DragDropOrder({ items, hints, onSolved }) {
+function DragDropOrder({ items, hints, onSolved, onWrong }) {
   const order = items.map(x => x.id);
   const byId = useMemo(() => Object.fromEntries(items.map(x => [x.id, x])), [items]);
   const [st, setSt] = useState(() => {
@@ -1060,6 +1060,7 @@ function DragDropOrder({ items, hints, onSolved }) {
   const solved = slots.every((s, i) => s === order[i]);
   const wrong = full && !solved;
   useEffect(() => { if (solved) onSolved && onSolved(); }, [solved]); // eslint-disable-line
+  useEffect(() => { if (wrong) onWrong && onWrong(); }, [wrong]); // eslint-disable-line
   const place = (id, from, slotIdx) => setSt(({ pool, slots }) => {
     const ns = slots.slice(); const occ = ns[slotIdx];
     if (typeof from === 'number') ns[from] = null;
@@ -1122,7 +1123,7 @@ function DragDropOrder({ items, hints, onSolved }) {
 }
 
 // 🐞 Qayta ishlatiladigan DEBUG CHALLENGE — buzuq koddan xato qatorni topib bosish → tuzatiladi.
-function DebugChallenge({ lines, fixed, explain, onSolved }) {
+function DebugChallenge({ lines, fixed, explain, onSolved, onWrong }) {
   const bugIdx = lines.findIndex(l => l.bug);
   const [picked, setPicked] = useState(-1);
   const [wrongIdx, setWrongIdx] = useState(-1);
@@ -1131,7 +1132,7 @@ function DebugChallenge({ lines, fixed, explain, onSolved }) {
   const click = (i) => {
     if (solved) return;
     if (i === bugIdx) setPicked(i);
-    else { setWrongIdx(i); setTimeout(() => setWrongIdx(w => (w === i ? -1 : w)), 500); }
+    else { onWrong && onWrong(); setWrongIdx(i); setTimeout(() => setWrongIdx(w => (w === i ? -1 : w)), 500); }
   };
   return (
     <div className="dbg fade-up">
@@ -1153,6 +1154,7 @@ function DebugChallenge({ lines, fixed, explain, onSolved }) {
 
 // ===== SCREEN 11 — CASE / DEBUG (POST xati → eshik @Get() → 404) =====
 const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
+  const achMiss = useContext(AchMissCtx);
   const [solved, setSolved] = useState(!!storedAnswer);
   const done = solved;
   const onSolved = () => { if (!solved) { setSolved(true); onAnswer(screen, { stage: 'case', screenIdx: screen, correct: true, solved: true, picked: true }); } };
@@ -1178,8 +1180,10 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 fixed="  @Post()"
                 explain={{ uz: "Xat POST shtampli, lekin tabelka @Get() edi — eshik faqat GET'ga ochiladi. @Post() ga o'zgartirilgach, POST /games mos eshikni topdi.", ru: 'Письмо со штампом POST, а табличка была @Get() — дверь открывалась только для GET. После замены на @Post() запрос POST /games нашёл свою дверь.' }}
                 onSolved={onSolved}
+                onWrong={() => achMiss && achMiss.miss(screen)}
               />
             </div>
+            {!done && <AchRule screen={screen} />}
           </Col>
           <Col>
             {!done
@@ -1211,6 +1215,7 @@ const Screen12 = (props) => (
 
 // ===== SCREEN 13 — SO'ROV POCHTASI: xatlarni to'g'ri eshiklarga sortlash (DragDrop) =====
 const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
+  const achMiss = useContext(AchMissCtx);
   const [solved, setSolved] = useState(!!storedAnswer);
   const done = solved;
   const onSolved = () => { if (!solved) { setSolved(true); onAnswer(screen, { stage: 'exploration', screenIdx: screen, correct: true, solved: true, picked: true }); } };
@@ -1234,7 +1239,9 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               { uz: "📩 POST /games — yangi o'yin qo'sh", ru: '📩 POST /games — добавь новую игру' }
             ]}
             onSolved={onSolved}
+            onWrong={() => achMiss && achMiss.miss(screen)}
           />
+          {!done && <AchRule screen={screen} />}
           {done && <div className="frame-success fade-step" style={{ marginTop: 12 }}><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Hamma xat to'g'ri eshikka tushdi! Har method+path → o'z controller metodiga. Endi oxirgi qadam — yangi eshikni o'zingiz ochasiz!", ru: 'Все письма попали в правильные двери! Каждый method+path → к своему методу контроллера. Остался последний шаг — вы сами откроете новую дверь!' })}</p></div>}
         </div>
         </Zoomable>
@@ -1613,6 +1620,22 @@ const ACHIEVEMENTS = {
 };
 // Ekran id → nishon (recordAnswer'da, faqat REAL solve: SCORED test / challenge / praktika)
 const ACH_TRIGGERS = { s4: 'postman', s11: 'returnSender', s13: 'sorter', s15: 'doorbuilder' };
+
+// 🏅 151-qonun: amaliy topshiriq nishoni faqat BIRINCHI urinishga beriladi. Shart OLDINDAN aytiladi; birinchi urinish
+// xato bo'lsa — jazosiz qisqa xabar (`once` — qayta urinishi yo'q ekran). Mentor ekranida, «Qaytadan» mashq-o'tishida va
+// nishon olingach ko'rinmaydi. Matn — MATN_KORPUS §183 (hamma darsda aynan bir xil).
+const AchRule = ({ screen, once }) => {
+  const earned = useContext(AchCtx);
+  const am = useContext(AchMissCtx);
+  const gate = useContext(LiveGateCtx) || {};
+  const sid = SCREEN_META[screen] && SCREEN_META[screen].id;
+  const ach = ACH_TRIGGERS[sid];
+  if (!ach || !am || am.practice || (gate.live && gate.live.mode === 'mentor') || (earned && earned.has(ach))) return null;
+  const lost = am.missed.has(sid);
+  return <p className={`ach-rule ${lost ? 'lost' : ''}`}>{lost
+    ? (once ? tr({ uz: 'Nishon birinchi urinish uchun edi.', ru: 'Значок давался за первую попытку.' }) : tr({ uz: "Nishon birinchi urinish uchun edi — endi bemalol to'g'risini toping.", ru: 'Значок давался за первую попытку — теперь спокойно найдите верный ответ.' }))
+    : tr({ uz: "🏅 Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki.", ru: '🏅 Справитесь с первой попытки — значок ваш.' })}</p>;
+};
 // 🏅 TO'LIQ-EKRAN NISHON BAYRAMI
 function AchCelebrate({ ach, onDone }) {
   useEffect(() => { const t = setTimeout(onDone, 4000); return () => clearTimeout(t); }, []); // eslint-disable-line
@@ -3100,6 +3123,8 @@ export default function RoutingLesson({ lang: langProp, onFinished, liveToken })
         .rq-fb.rq-fb { margin: 0; font-size: clamp(13px,1.5vw,14.5px); line-height: 1.5; border-radius: 12px; padding: 11px 14px; }
         .rq-fb.rq-fb.ok { color: ${T.ink}; background: ${T.successSoft}; box-shadow: inset 0 0 0 1.5px ${T.success}55; }
         .rq-fb.rq-fb.miss { color: ${T.ink}; background: ${T.accentSoft}; box-shadow: inset 0 0 0 1.5px ${T.accent}66; }
+        .ach-rule { margin: 8px 0 0; text-align: center; font-size: 13px; line-height: 1.4; color: ${T.ink2}; }
+        .ach-rule.lost { font-style: italic; }
       `}</style>
       <AchCtx.Provider value={earned}>
       <AchMissCtx.Provider value={achMissVal}>

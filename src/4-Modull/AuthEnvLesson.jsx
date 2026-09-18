@@ -960,6 +960,7 @@ const GUARD_CODE = [
   { k: 'ok',     el: <>{'  '}<Kw>const</Kw>{` userId = data.userId  `}<Cm>// kim</Cm></> },
 ];
 const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
+  const achMiss = useContext(AchMissCtx);
   const [i, setI] = useState(storedAnswer ? GUARD_SHIFT.length : 0);
   const [verdict, setVerdict] = useState(null);
   const [okCount, setOkCount] = useState(storedAnswer ? (storedAnswer.okCount ?? GUARD_SHIFT.length) : 0);
@@ -977,7 +978,8 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     if (verdict || !cur) return;
     const correct = letIn === cur.ok;
     setVerdict({ correct, item: cur, letIn });
-    if (correct) setOkCount(c => c + 1); else setMistakes(m => m + 1);
+    if (correct) setOkCount(c => c + 1);
+    else { setMistakes(m => m + 1); if (achMiss) achMiss.miss(screen); } // 🏅 151-qonun: xato hukm — belgi progressda, «Smenani qaytadan» va F5 uni o'chirmaydi
   };
   const nextCard = () => { setVerdict(null); setI(n => n + 1); };
   const restart = () => { setI(0); setVerdict(null); setOkCount(0); setMistakes(0); savedRef.current = false; };
@@ -1020,6 +1022,7 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 {!perfect && <button className="btn-soft" onClick={restart}>{tr({ uz: '↻ Smenani qaytadan', ru: '↻ Смену заново' })}</button>}
               </div>
             )}
+            {!doneAll && <AchRule screen={screen} />}
           </Col>
           <Col>
             <p className="flow-label">{tr({ uz: "Qo'riqchi kodi — qaysi qator ishladi?", ru: 'Код охранника — какая строка сработала?' })}</p>
@@ -1228,6 +1231,7 @@ const FLOW_STEPS = [
   }
 ];
 const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
+  const achMiss = useContext(AchMissCtx);
   const LAST = FLOW_STEPS.length - 1;
   const [step, setStep] = useState(storedAnswer ? LAST : 0);
   const [phase, setPhase] = useState(storedAnswer ? 'sent' : 'predict'); // predict → ready → sent
@@ -1245,7 +1249,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const choose = (i) => {
     if (phase !== 'predict' || busy) return;
     if (cur.opts[i].ok) { setWrong(null); setPhase('ready'); }
-    else { setWrong(i); setMistakes(m => m + 1); }
+    else { setWrong(i); setMistakes(m => m + 1); if (achMiss) achMiss.miss(screen); } // 🏅 151-qonun: xato qaror — belgi progressda («Qaytadan» va F5 o'chirmaydi)
   };
   const send = () => {
     if (phase !== 'ready' || busy) return;
@@ -1307,6 +1311,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                     : <div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: "Avval qaror qiling — so'rov shundan keyin yuboriladi.", ru: 'Сначала примите решение — запрос отправится после этого.' })}</p></div>}
               </>
             )}
+            {!done && <AchRule screen={screen} />}
           </Col>
         </div>
         </Zoomable>
@@ -1317,6 +1322,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 
 // ===== SCREEN 14 — DEBUGGING (secret kodda qolib ketgan) =====
 const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
+  const achMiss = useContext(AchMissCtx);
   const [found, setFound] = useState(!!storedAnswer);
   const [fixed, setFixed] = useState(!!storedAnswer);
   const done = fixed;
@@ -1342,12 +1348,13 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <div className="ai-code">
                 {LINES.map(l => {
                   if (l.bug && fixed) return <div key={l.id} className="ai-line ok" style={{ cursor: 'default' }}><Kw>const</Kw>{` JWT_SECRET = `}<At>process</At>{`.`}<At>env</At>{`.`}<At>JWT_SECRET</At></div>;
-                  return <div key={l.id} className={`ai-line ${found && l.bug ? 'bad' : ''}`} onClick={() => { if (!found) setFound(l.bug); }}>{l.el}</div>;
+                  return <div key={l.id} className={`ai-line ${found && l.bug ? 'bad' : ''}`} onClick={() => { if (found) return; if (!l.bug && achMiss) achMiss.miss(screen); setFound(l.bug); }}>{l.el}</div>;
                 })}
               </div>
               {!found && <p className="ai-prompt">{tr({ uz: 'Qaysi qator maxfiylikni buzadi? Bosing.', ru: 'Какая строка нарушает секретность? Нажмите.' })}</p>}
               {found && !fixed && <button className="btn fade-step" style={{ alignSelf: 'flex-start' }} onClick={() => setFixed(true)}>{tr({ uz: "🔧 process.env.JWT_SECRET'ga o'zgartirish", ru: '🔧 Заменить на process.env.JWT_SECRET' })}</button>}
             </div>
+            {!done && <AchRule screen={screen} />}
           </Col>
           <Col>
             {!found
@@ -1647,6 +1654,22 @@ const ACHIEVEMENTS = {
 // Ekran id -> nishon (recordAnswer'da, faqat REAL solve — xato qilish mumkin bo'lgan ekranlar):
 // s7 = hukm-o'yini (mistakes===0), s13 = 3 qarorli amaliyot-challenge (mistakes===0), s14 = debug, s15 = ballik final test.
 const ACH_TRIGGERS = { s7: 'gatekeeper', s13: 'tokenforged', s14: 'secretkeeper', s15: 'vaultsealed' };
+
+// 🏅 151-qonun: amaliy topshiriq nishoni faqat BIRINCHI urinishga beriladi. Shart OLDINDAN aytiladi; birinchi urinish
+// xato bo'lsa — jazosiz qisqa xabar (`once` — qayta urinishi yo'q ekran). Mentor ekranida, «Qaytadan» mashq-o'tishida va
+// nishon olingach ko'rinmaydi. Matn — MATN_KORPUS §183 (hamma darsda aynan bir xil).
+const AchRule = ({ screen, once }) => {
+  const earned = useContext(AchCtx);
+  const am = useContext(AchMissCtx);
+  const gate = useContext(LiveGateCtx) || {};
+  const sid = SCREEN_META[screen] && SCREEN_META[screen].id;
+  const ach = ACH_TRIGGERS[sid];
+  if (!ach || !am || am.practice || (gate.live && gate.live.mode === 'mentor') || (earned && earned.has(ach))) return null;
+  const lost = am.missed.has(sid);
+  return <p className={`ach-rule ${lost ? 'lost' : ''}`}>{lost
+    ? (once ? tr({ uz: 'Nishon birinchi urinish uchun edi.', ru: 'Значок давался за первую попытку.' }) : tr({ uz: "Nishon birinchi urinish uchun edi — endi bemalol to'g'risini toping.", ru: 'Значок давался за первую попытку — теперь спокойно найдите верный ответ.' }))
+    : tr({ uz: "🏅 Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki.", ru: '🏅 Справитесь с первой попытки — значок ваш.' })}</p>;
+};
 
 function AchCelebrate({ ach, onDone }) {
   useEffect(() => { const t = setTimeout(onDone, 4000); return () => clearTimeout(t); }, []); // eslint-disable-line
@@ -3308,6 +3331,8 @@ export default function AuthEnvLesson({ lang: langProp, onFinished, liveToken })
         /* --- CodeStrike bolt FX qatlami --- */
         .qz-fx { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
         .qz-bolt { filter: drop-shadow(0 8px 18px rgba(255,79,40,0.32)); }
+        .ach-rule { margin: 8px 0 0; text-align: center; font-size: 13px; line-height: 1.4; color: ${T.ink2}; }
+        .ach-rule.lost { font-style: italic; }
 `}</style>
       <AchCtx.Provider value={earned}>
       <AchMissCtx.Provider value={achMissVal}>

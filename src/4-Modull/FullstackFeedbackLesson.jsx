@@ -897,6 +897,7 @@ const Screen4 = (props) => (
 
 // ===== SCREEN 5 — USTUVORLIK DOSKASI (haqiqiy DragDrop — pointer + DOM transform) =====
 const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
+  const achMiss = useContext(AchMissCtx);
   const initSlots = () => { const s = { Q1: [], Q2: [], Q3: [], Q4: [] }; if (storedAnswer) FEEDBACK.forEach(f => s[f.quad].push(f.id)); return s; };
   const [slots, setSlots] = useState(initSlots);
   const [armed, setArmed] = useState(null);
@@ -925,6 +926,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     if (f.quad === q) {
       setSlots(prev => ({ ...prev, [q]: [...prev[q], f.id] })); setNote(null); setArmed(null); setSc(n => n + 1);
     } else {
+      if (achMiss) achMiss.miss(screen); // 🏅 151-qonun: noto'g'ri katak — bitta xato urinish (zonadan tashqariga tashlash bu yerga kelmaydi)
       setArmed(null); setNote({ id: f.id, q, text: (CONSEQ[f.id] && CONSEQ[f.id][q]) || { uz: `${f.who}ning fikri ${QUAD[q].lbl.uz}ga to'g'ri kelmaydi — u aslida ${QUAD[f.quad].lbl.uz}.`, ru: `Отзыв ${f.who} не подходит в «${QUAD[q].lbl.ru}» — на самом деле это «${QUAD[f.quad].lbl.ru}».` } }); setSc(n => n + 1);
       setRejectQ(q); setTimeout(() => setRejectQ(r => r === q ? null : r), 460);
       shakeCard(f.id);
@@ -989,6 +991,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                   </div>
                 ))}</div>
               : <div className="frame-success board-done"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Hammasi joylandi! <b style={{ color: T.success }}>⭐ Avval shu</b> katagidagilar — <b>Tasdiq</b> va <b>Dashboard</b> — ko'p foyda, kam mehnat. Shulardan boshlaymiz.</>, ru: <>Всё разложено! В клетке <b style={{ color: T.success }}>⭐ Сначала это</b> — <b>Подтверждение</b> и <b>Дашборд</b> — много пользы, мало усилий. С них и начнём.</> })}</p></div>}
+            {!done && <AchRule screen={screen} />}
             {note && <div key={`${note.id}-${note.q}`} className="frame-warn conseq"><p className="body" style={{ margin: 0, color: T.ink }}><span className="conseq-ic">⚠️</span> {tr(note.text)}</p></div>}
           </Col>
           <Col>
@@ -1712,6 +1715,22 @@ const ACHIEVEMENTS = {
 // Ekran id → nishon (recordAnswer'da, faqat REAL solve bilan: SCORED test / DragDrop challenge).
 // ⚠️ Exploration/case ekranlarga BOG'LANMAYDI — u yerda xato qilish imkoni yo'q, nishon tekin beriladi.
 const ACH_TRIGGERS = { s5: 'prioritizer', s10: 'configurator', s13: 'shipper', s16: 'guardian' };
+
+// 🏅 151-qonun: amaliy topshiriq nishoni faqat BIRINCHI urinishga beriladi. Shart OLDINDAN aytiladi; birinchi urinish
+// xato bo'lsa — jazosiz qisqa xabar (`once` — qayta urinishi yo'q ekran). Mentor ekranida, «Qaytadan» mashq-o'tishida va
+// nishon olingach ko'rinmaydi. Matn — MATN_KORPUS §183 (hamma darsda aynan bir xil).
+const AchRule = ({ screen, once }) => {
+  const earned = useContext(AchCtx);
+  const am = useContext(AchMissCtx);
+  const gate = useContext(LiveGateCtx) || {};
+  const sid = SCREEN_META[screen] && SCREEN_META[screen].id;
+  const ach = ACH_TRIGGERS[sid];
+  if (!ach || !am || am.practice || (gate.live && gate.live.mode === 'mentor') || (earned && earned.has(ach))) return null;
+  const lost = am.missed.has(sid);
+  return <p className={`ach-rule ${lost ? 'lost' : ''}`}>{lost
+    ? (once ? tr({ uz: 'Nishon birinchi urinish uchun edi.', ru: 'Значок давался за первую попытку.' }) : tr({ uz: "Nishon birinchi urinish uchun edi — endi bemalol to'g'risini toping.", ru: 'Значок давался за первую попытку — теперь спокойно найдите верный ответ.' }))
+    : tr({ uz: "🏅 Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki.", ru: '🏅 Справитесь с первой попытки — значок ваш.' })}</p>;
+};
 function AchCelebrate({ ach, onDone }) {
   useEffect(() => { const t = setTimeout(onDone, 4000); return () => clearTimeout(t); }, []); // eslint-disable-line
   return (
@@ -3152,6 +3171,8 @@ export default function FullstackFeedbackLesson({ lang: langProp, onFinished, li
         .qz-fx { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
         .qz-bolt { filter: drop-shadow(0 8px 18px rgba(255,79,40,0.32)); }
 
+      .ach-rule { margin: 8px 0 0; text-align: center; font-size: 13px; line-height: 1.4; color: ${T.ink2}; }
+      .ach-rule.lost { font-style: italic; }
       `}</style>
       <AchCtx.Provider value={earned}>
       <AchMissCtx.Provider value={achMissVal}>
