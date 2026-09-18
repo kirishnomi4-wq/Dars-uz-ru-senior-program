@@ -10,6 +10,25 @@ import { createServer } from 'node:http';
 
 const PORT = Number(process.env.FAKE_PORT || 3999);
 const GROUPS = JSON.parse(process.env.FAKE_GROUPS || '{"34174":[861],"34175":[861],"34176":[862],"34177":[861,862],"34178":[]}');
+// F-0918-02: Laravel `required` (null / bo'sh satr / bo'sh massiv = «yo'q») + «option must reference an item in options».
+function laravelQuestionErrors(students) {
+  const errors = {};
+  const req = (path, v) => {
+    const empty = v === undefined || v === null || (typeof v === 'string' && v.trim() === '') || (Array.isArray(v) && v.length === 0);
+    if (empty) errors[path] = [`The ${path} field is required.`];
+  };
+  (Array.isArray(students) ? students : []).forEach((s, i) => (Array.isArray(s?.questions) ? s.questions : []).forEach((q, j) => {
+    const base = `students.${i}.questions.${j}`;
+    req(`${base}.question`, q?.question); req(`${base}.options`, q?.options); req(`${base}.correct_answer`, q?.correct_answer);
+    const n = Array.isArray(q?.options) ? q.options.length : 0;
+    (Array.isArray(q?.attempts) ? q.attempts : []).forEach((a, k) => {
+      req(`${base}.attempts.${k}.answer`, a?.answer);
+      if (!(Number.isInteger(a?.option) && a.option >= 0 && a.option < n)) errors[`${base}.attempts.${k}.option`] = ['The option must reference an item in options.'];
+    });
+  }));
+  return Object.keys(errors).length ? errors : null;
+}
+
 const seenEvents = new Map(); // event_id → payload (idempotentlik)
 
 const json = (res, status, body) => { res.writeHead(status, { 'content-type': 'application/json' }); res.end(JSON.stringify(body)); };
@@ -41,6 +60,15 @@ const server = createServer(async (req, res) => {
       const msg = `The students.${emptyBadges}.badges field is required.`;
       console.log(`[fake-school] 422 ${p.event_id}: ${msg}`);
       return json(res, 422, { message: msg, errors: { [`students.${emptyBadges}.badges`]: [msg] } });
+    }
+    // F-0918-02 (staging 2026-09-18, sess_018937 → 422 ×40): haqiqiy School API questions[] da question/options/correct_answer
+    // va attempts.*.answer ni `required`, attempts.*.option ni «options ichidagi element» deb tekshiradi — soxta API ham AYNAN shunday.
+    const qErrors = laravelQuestionErrors(p.students);
+    if (qErrors) {
+      const keys = Object.keys(qErrors);
+      const msg = keys.length > 1 ? `${qErrors[keys[0]][0]} (and ${keys.length - 1} more errors)` : qErrors[keys[0]][0];
+      console.log(`[fake-school] 422 ${p.event_id}: ${msg}`);
+      return json(res, 422, { message: msg, errors: qErrors });
     }
     const prev = seenEvents.get(p.event_id);
     if (prev && prev !== body) return json(res, 409, { message: 'event_id reused with different payload' });

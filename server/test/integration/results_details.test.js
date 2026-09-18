@@ -25,7 +25,7 @@ async function fetchStub(url, init) {
 before(async () => {
   t = await makeTestApp({ RESULT_DETAILS: 'a' }, { lms: true, fetchImpl: fetchStub });
   await t.seedCatalog([LESSON], { achievements: CATALOG_ACH });
-  await t.db.query('select set_quiz_keys($1, $2, $3)', [LESSON, TEST_MENTOR_CODE, '{"s4":1,"s9":2,"quiz-0":0}']);
+  await t.db.query('select set_quiz_keys($1, $2, $3)', [LESSON, TEST_MENTOR_CODE, '{"s4":1,"s9":2,"quiz-0":0,"quiz-1":1}']);
 });
 after(async () => { await t?.close(); });
 
@@ -45,9 +45,15 @@ test('jonli: s4 ikki urinish (noto\'g\'ri→to\'g\'ri) + s9 faqat submit_answer 
   assert.equal((await record(mentor.pin, ali, 4, 's4', 0, 4200, texts('ru', 'A'))).json(), 1);
   assert.equal((await record(mentor.pin, ali, 4, 's4', 1, 9800, texts('ru', 'B'))).json(), 2);
   assert.equal((await submit(mentor.pin, ali, 4, 's4', 1)).json(), false, 'ball-qatori record_attempt bilan allaqachon qo\'yilgan');
-  assert.equal((await submit(mentor.pin, ali, 9, 's9', 2)).json(), true); // eski uslub: tarixsiz
+  // F-0918-02: matnsiz test-javob (faqat submit_answer, eski dars) endi ro'yxatga kirmaydi → s9 ham matn bilan (dars `record_attempt` yozadi)
+  assert.equal((await record(mentor.pin, ali, 9, 's9', 2, 2000, { ...texts('ru', 'C'), correct: 'C' })).json(), 1);
+  assert.equal((await submit(mentor.pin, ali, 9, 's9', 2)).json(), false);
   await rpc('quiz_control', { p_pin: mentor.pin, p_token: mentor.token, p_state: 'q', p_q: 0 });
+  // arena: quiz-0 matn BILAN (KATTA: dars arena-matnini yozganda shu yo'l) → kiradi; quiz-1 matnsiz (hozirgi darslar) → kirmaydi
+  assert.equal((await record(mentor.pin, ali, 100, 'quiz-0', 0, 500, { question: 'Brauzer avval kimga?', options: ['Serverga', "DNS'ga"], picked: 'Serverga', correct: 'Serverga', lang: 'ru' })).json(), 1);
   await submit(mentor.pin, ali, 100, 'quiz-0', 0);
+  await rpc('quiz_control', { p_pin: mentor.pin, p_token: mentor.token, p_state: 'q', p_q: 1 });
+  await submit(mentor.pin, ali, 101, 'quiz-1', 1);
   const pr = await progress(await stu(3001, 'Ali Valiyev', 'd-s1p'), ali.attempt.id, { earned: ['firstWin', 'Graduate', 'firstWin', 'yomon id'] });
   assert.equal(pr.statusCode, 200, pr.body);
   const evRows = (await t.db.query('select achievement_id from achievement_events where attempt_id = $1 order by achievement_id', [ali.attempt.id])).rows;
@@ -68,8 +74,11 @@ test('jonli: s4 ikki urinish (noto\'g\'ri→to\'g\'ri) + s9 faqat submit_answer 
   assert.ok(q4.attempts.every((a) => /^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\dZ$/.test(a.at)));
   assert.ok(new Date(q4.attempts[0].at) <= new Date(q4.attempts[1].at));
   const q9 = s.questions[1];
-  assert.ok(!('question' in q9) && !('options' in q9) && q9.correct_option === 2, 'tarixsiz savol: matn yo\'q, kalit bor');
-  assert.deepEqual([q9.attempts[0].n, q9.attempts[0].option, q9.attempts[0].correct], [1, 2, true]);
+  assert.deepEqual([q9.question, q9.correct_option, q9.correct_answer, q9.attempts[0].n, q9.attempts[0].option, q9.attempts[0].answer, q9.attempts[0].correct], ['Что такое интернет?', 2, 'C', 1, 2, 'C', true]);
+  // F-0918-02: arena quiz-0 matn bilan → to'liq yozuv; quiz-1 matnsiz → ro'yxatda YO'Q (School API 422 bermasin)
+  const qa = s.questions[2];
+  assert.deepEqual([qa.question, qa.options, qa.correct_option, qa.correct_answer, qa.attempts[0].answer], ['Brauzer avval kimga?', ['Serverga', "DNS'ga"], 0, 'Serverga', 'Serverga']);
+  assert.ok(!s.questions.some((q) => q.question_id === 'quiz-1'), 'matnsiz arena-yozuv kirmaydi');
   assert.deepEqual(s.achievements.map((a) => [a.id, a.name, a.title]), [
     ['firstwin', 'Bullseye!', 'Вы правильно ответили на первый вопрос теста'],
     ['graduate', 'Level Up!', 'Вы полностью прошли урок об интернете'],

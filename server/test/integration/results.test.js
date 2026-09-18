@@ -29,6 +29,14 @@ async function fetchStub(url, init) {
     // F-0917-02: haqiqiy School API (Laravel `required`) bo'sh massivni rad etadi — stub ham AYNAN shunday (staging 2026-09-15/17 javobi)
     const emptyIdx = payload.students.findIndex((st) => !Array.isArray(st.badges) || !st.badges.length);
     if (emptyIdx >= 0) { const m = `The students.${emptyIdx}.badges field is required.`; return new Response(JSON.stringify({ message: m, errors: { [`students.${emptyIdx}.badges`]: [m] } }), { status: 422, headers }); }
+    // F-0918-02: questions[] — question/options/correct_answer/attempts.*.answer `required`, attempts.*.option ∈ options (staging 2026-09-18 javobi)
+    const qErr = {};
+    const req = (path, v) => { if (v === undefined || v === null || (typeof v === 'string' && !v.trim()) || (Array.isArray(v) && !v.length)) qErr[path] = [`The ${path} field is required.`]; };
+    payload.students.forEach((st, i) => (st.questions || []).forEach((q, j) => {
+      const b = `students.${i}.questions.${j}`; req(`${b}.question`, q.question); req(`${b}.options`, q.options); req(`${b}.correct_answer`, q.correct_answer);
+      (q.attempts || []).forEach((a, k) => { req(`${b}.attempts.${k}.answer`, a.answer); if (!(Number.isInteger(a.option) && a.option >= 0 && a.option < (q.options || []).length)) qErr[`${b}.attempts.${k}.option`] = ['The option must reference an item in options.']; });
+    }));
+    if (Object.keys(qErr).length) { const ks = Object.keys(qErr); const m = ks.length > 1 ? `${qErr[ks[0]][0]} (and ${ks.length - 1} more errors)` : qErr[ks[0]][0]; return new Response(JSON.stringify({ message: m, errors: qErr }), { status: 422, headers }); }
     const dup = resultMode === 'dup';
     const students = payload.students.length;
     return new Response(JSON.stringify({ data: { event_id: payload.event_id, accepted: true, duplicate: dup, students_received: students, students_accepted: students - (payload.students.some((s) => s.student_id === 3002) ? 1 : 0), students_rejected: payload.students.some((s) => s.student_id === 3002) ? 1 : 0, rejected_students: payload.students.some((s) => s.student_id === 3002) ? [{ student_id: 3002, id_type: 'lms', reason: 'identity_not_found_or_unavailable' }] : [], reward_status: 'pending_policy' } }), { status: dup ? 200 : 201, headers });

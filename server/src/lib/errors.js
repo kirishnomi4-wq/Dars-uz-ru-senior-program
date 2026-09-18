@@ -44,6 +44,10 @@ export function fromPgError(err) {
   if (!err || typeof err.code !== 'string') return null;
   switch (err.code) {
     case PG.RAISE_EXCEPTION:
+      // F-0918-01 (jonli sinov 2026-09-18): noto'g'ri mentor-kod 400 bo'lib ketardi, klient (`startMentor`) faqat 401/403 ni
+      // «Mentor kodi noto'g'ri» deb biladi → mentor «Server javob bermadi (xato 400)» ko'rardi va kodni qayta tekshirmasdi.
+      // Kirish-xatosi = 403 (darslar qayta yig'ilmaydi — klient tayyor).
+      if (/^Mentor kodi noto.g.ri$/.test(String(err.message || ''))) return new AppError('forbidden', 403, err.message, { cause: err });
       // SQL ichidagi xabar o'quvchiga mo'ljallangan (o'zbekcha) — shundayligicha
       return new AppError('domain_error', 400, err.message, { cause: err });
     case PG.UNIQUE_VIOLATION:

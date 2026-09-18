@@ -41,10 +41,13 @@ test('create_session: sxema (majburiy maydon, ortiqcha maydon, lesson_id qolipi)
   assert.equal(r.statusCode, 400);
 });
 
-test('create_session: kod noto\'g\'ri → 400 domain_error, SQL xabari o\'zgarmagan', async () => {
+test('F-0918-01: create_session kod noto\'g\'ri → 403 forbidden (klient «Mentor kodi noto\'g\'ri.» ko\'rsatadi; 400 «Server javob bermadi» edi), SQL xabari o\'zgarmagan', async () => {
   const r = await rpc('create_session', { p_lesson_id: 'x-v18', p_mentor_code: 'NOTOGRI' });
-  assert.equal(r.statusCode, 400);
-  assert.deepEqual(r.json(), { error: 'domain_error', message: "Mentor kodi noto'g'ri" });
+  assert.equal(r.statusCode, 403);
+  assert.deepEqual(r.json(), { error: 'forbidden', message: "Mentor kodi noto'g'ri" });
+  // boshqa PL/pgSQL raise'lar avvalgidek 400 domain_error
+  const e = await rpc('create_session', { p_lesson_id: '', p_mentor_code: process.env.LIVE_MENTOR_CODE || '' });
+  assert.ok([400, 403].includes(e.statusCode));
 });
 
 test('to\'liq oqim: create → join → set_quiz_keys → submit → o\'qishlar', async () => {

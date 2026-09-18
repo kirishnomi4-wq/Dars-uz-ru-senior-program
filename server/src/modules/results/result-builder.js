@@ -352,26 +352,39 @@ export function buildStudentDetails({ answers, attempts, keys, achievements, cat
     .map((a) => {
       const hist = (byScreen.get(Number(a.screen_idx)) || []).slice(0, L.attempts);
       const texts = (hist.find((h) => h.texts && typeof h.texts === 'object') || {}).texts;
-      const mk = (h, i) => dropUndefined({
-        n: i + 1, option: Number.isInteger(Number(h.picked)) ? Number(h.picked) : -1, answer: cutStr(h.texts && h.texts.picked, L.text), correct: h.correct === true,
-        elapsed_ms: clamp(Number(h.elapsed_ms) || 0, 0, L.elapsedMs), at: isoUtc(h.answered_at || a.answered_at || 0),
-      });
+      const options = texts && Array.isArray(texts.options) ? texts.options.slice(0, L.options).map((o) => String(o ?? '').slice(0, L.text)) : undefined;
+      // F-0918-02: urinishda matn bo'lmasa (tarmoq / eski dars) javob-matni variantlar ro'yxatidan tiklanadi: option → options[option]
+      const optText = (idx) => (options && Number.isInteger(idx) && idx >= 0 && idx < options.length ? options[idx] : undefined);
+      const mk = (h, i) => {
+        const option = Number.isInteger(Number(h.picked)) ? Number(h.picked) : -1;
+        return dropUndefined({
+          n: i + 1, option, answer: cutStr(h.texts && h.texts.picked, L.text) ?? optText(option), correct: h.correct === true,
+          elapsed_ms: clamp(Number(h.elapsed_ms) || 0, 0, L.elapsedMs), at: isoUtc(h.answered_at || a.answered_at || 0),
+        });
+      };
       // tarix yo'q (eski dars / arena / tarmoq) → ball-qatorining o'zi bitta urinish
       const atts = hist.length ? hist.map(mk) : [mk({ picked: a.picked, correct: a.correct, elapsed_ms: a.elapsed_ms, answered_at: a.answered_at }, 0)];
       const ci = correctIdx.get(a.question_id);
+      const correctOption = Number.isInteger(ci) && ci >= 0 && ci <= 5 ? ci : undefined;
       return dropUndefined({
         question_id: a.question_id,
         kind: isArenaQ(a.question_id) ? 'arena' : 'test',
         order: order.get(a.question_id),
         question: cutStr(texts && texts.question, L.text),
-        options: texts && Array.isArray(texts.options) ? texts.options.slice(0, L.options).map((o) => String(o ?? '').slice(0, L.text)) : undefined,
-        correct_option: Number.isInteger(ci) && ci >= 0 && ci <= 5 ? ci : undefined,
-        correct_answer: cutStr(texts && texts.correct, L.text),
+        options,
+        correct_option: correctOption,
+        correct_answer: cutStr(texts && texts.correct, L.text) ?? optText(correctOption),
         correct: a.correct === true,
         solved: a.correct === true || atts.some((x) => x.correct),
         attempts: atts,
       });
-    });
+    })
+    // F-0918-02 (staging 2026-09-18, sess_018937 → 422 «questions.N.question field is required» ×40): School API (Laravel)
+    // har yozuvda question/options/correct_answer va har urinishda answer ni TALAB qiladi, option esa options ichidagi
+    // elementga ishora qilishi shart. Matnsiz yozuv (hozir: arena — dars arena-matnini serverga yozmaydi) butun hodisani
+    // yiqitmasin: u ro'yxatga KIRMAYDI. Test-yozuv tushib qolsa answered≠questions → faqat o'sha o'quvchining detallari
+    // tashlanadi (finalizePayload), tanga-yetkazish to'xtamaydi. Arena matni darsdan kelganda (KATTA) o'z-o'zidan kiradi.
+    .filter(isCompleteQuestion);
 
   const cat = new Map((catalog || []).filter((c) => c && c.id).map((c) => [String(c.id).toLowerCase(), c]));
   const seenAch = new Set();
@@ -387,6 +400,17 @@ export function buildStudentDetails({ answers, attempts, keys, achievements, cat
     });
 
   return { lang, questions, achievements: achs };
+}
+
+/**
+ * F-0918-02: School API `required`-maydonlari (Laravel): question, options (bo'sh emas), correct_answer, har urinishda answer;
+ * option — options ichidagi indeks. Bo'sh satr ham «yo'q» (Laravel `required`).
+ */
+export function isCompleteQuestion(q) {
+  if (!q || typeof q.question !== 'string' || !q.question) return false;
+  if (!Array.isArray(q.options) || q.options.length === 0 || q.options.some((o) => typeof o !== 'string' || !o)) return false;
+  if (typeof q.correct_answer !== 'string' || !q.correct_answer) return false;
+  return Array.isArray(q.attempts) && q.attempts.every((a) => a && typeof a.answer === 'string' && a.answer !== '' && Number.isInteger(a.option) && a.option >= 0 && a.option < q.options.length);
 }
 
 /** StudentResult'dagi detallar (bo'lsa) TZ §4 qoidalari va invariantlariga mosmi. @returns {string[]} */
@@ -407,17 +431,20 @@ export function validateStudentDetails(s) {
         ids.add(qid);
         if (!['test', 'arena'].includes(q.kind)) errs.push(`q kind ${qid}`);
         if (!(Number.isInteger(q.order) && q.order >= 1)) errs.push(`q order ${qid}`);
-        if (q.question !== undefined && !isStr(q.question, L.text)) errs.push(`q question ${qid}`);
-        if (q.correct_answer !== undefined && !isStr(q.correct_answer, L.text)) errs.push(`q correct_answer ${qid}`);
-        if (q.options !== undefined && (!Array.isArray(q.options) || q.options.length > L.options || q.options.some((o) => !isStr(o, L.text)))) errs.push(`q options ${qid}`);
+        // F-0918-02: School API (Laravel `required`) — matn-maydonlari MAJBURIY; bo'sh satr / bo'sh massiv ham «yo'q»
+        if (!isStr(q.question, L.text) || !q.question) errs.push(`q question ${qid}`);
+        if (!isStr(q.correct_answer, L.text) || !q.correct_answer) errs.push(`q correct_answer ${qid}`);
+        const optN = Array.isArray(q.options) ? q.options.length : 0;
+        if (!optN || optN > L.options || q.options.some((o) => !isStr(o, L.text) || !o)) errs.push(`q options ${qid}`);
         if (q.correct_option !== undefined && !(Number.isInteger(q.correct_option) && q.correct_option >= 0 && q.correct_option <= 5)) errs.push(`q correct_option ${qid}`);
         if (typeof q.correct !== 'boolean' || typeof q.solved !== 'boolean') errs.push(`q flags ${qid}`);
         if (!Array.isArray(q.attempts) || q.attempts.length < 1 || q.attempts.length > L.attempts) errs.push(`q attempts ${qid}`);
         else {
           let prev = 0;
           q.attempts.forEach((a, i) => {
-            if (a.n !== i + 1 || !Number.isInteger(a.option) || typeof a.correct !== 'boolean' || !(a.elapsed_ms >= 0 && a.elapsed_ms <= L.elapsedMs)) errs.push(`q attempt ${qid}#${i + 1}`);
-            if (a.answer !== undefined && !isStr(a.answer, L.text)) errs.push(`q answer ${qid}#${i + 1}`);
+            if (a.n !== i + 1 || typeof a.correct !== 'boolean' || !(a.elapsed_ms >= 0 && a.elapsed_ms <= L.elapsedMs)) errs.push(`q attempt ${qid}#${i + 1}`);
+            if (!(Number.isInteger(a.option) && a.option >= 0 && a.option < optN)) errs.push(`q option ${qid}#${i + 1}`); // «The option must reference an item in options.»
+            if (!isStr(a.answer, L.text) || !a.answer) errs.push(`q answer ${qid}#${i + 1}`);
             const t = new Date(a.at).getTime();
             if (!(t > 0) || t < prev) errs.push(`q at ${qid}#${i + 1}`);
             prev = Math.max(prev, t || 0);
@@ -462,15 +489,25 @@ export function payloadBytes(p) { return Buffer.byteLength(JSON.stringify(p), 'u
  */
 export function finalizePayload(p) {
   if (!hasDetails(p)) return { payload: p, problems: validatePayload(p), detailsDropped: null };
-  const problems = validatePayload(p);
+  // F-0918-02: detallar O'QUVCHI-darajasida tekshiriladi — bittasiniki buzuq bo'lsa faqat o'shaniki tashlanadi, qolganlarniki ketadi
+  const dropped = [];
+  const students = (p.students || []).map((s) => {
+    const errs = validateStudentDetails(s);
+    if (!errs.length) return s;
+    dropped.push(`${s.id_type}:${s.student_id} (${errs.join(', ')})`);
+    const { lang: _l, questions: _q, achievements: _a, ...rest } = s;
+    return rest;
+  });
+  const cand = dropped.length ? { ...p, students } : p;
+  const problems = validatePayload(cand);
   if (!problems.length) {
-    const bytes = payloadBytes(p);
-    if (bytes <= DETAILS_LIMITS.payloadBytes) return { payload: p, problems: [], detailsDropped: null };
-    const base = stripDetails(p);
-    return { payload: base, problems: validatePayload(base), detailsDropped: `size:${bytes}` };
+    const bytes = payloadBytes(cand);
+    if (bytes <= DETAILS_LIMITS.payloadBytes) return { payload: cand, problems: [], detailsDropped: dropped.length ? dropped.join('; ') : null };
+    const base = stripDetails(cand);
+    return { payload: base, problems: validatePayload(base), detailsDropped: [...dropped, `size:${bytes}`].join('; ') };
   }
-  const base = stripDetails(p);
+  const base = stripDetails(cand);
   const baseProblems = validatePayload(base);
-  if (baseProblems.length) return { payload: p, problems, detailsDropped: null };
-  return { payload: base, problems: [], detailsDropped: problems.join(', ') };
+  if (baseProblems.length) return { payload: cand, problems, detailsDropped: null };
+  return { payload: base, problems: [], detailsDropped: [...dropped, ...problems].join('; ') };
 }
