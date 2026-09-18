@@ -614,7 +614,7 @@ const JestRun = ({ status, testName = '2 kitob narxini hisoblaydi', expected = '
 
 // ===== PICK LINES =====
 // doneNote — ekranning o'z xulosasi shu ustundagi yagona qutiga tushadi (147 (e): takror izoh bitta qutida); berilmasa umumiy «Test tayyor»
-const PickLines = ({ fileName, scaffoldTop, scaffoldBottom, candidates, agent, instruction, onComplete, completedInit, onProgress, doneNote }) => {
+const PickLines = ({ fileName, scaffoldTop, scaffoldBottom, candidates, agent, instruction, onComplete, completedInit, onProgress, doneNote, onWrong }) => {
   const correct = candidates.filter(c => c.correct);
   const [picked, setPicked] = useState(() => completedInit ? new Set(correct.map(c => c.id)) : new Set());
   const [shakeId, setShakeId] = useState(null);
@@ -626,7 +626,7 @@ const PickLines = ({ fileName, scaffoldTop, scaffoldBottom, candidates, agent, i
     if (picked.has(c.id) || done) return;
     if (onProgress) onProgress();
     if (c.correct) { setPicked(p => { const s = new Set(p); s.add(c.id); return s; }); setWhy(null); }
-    else { setShakeId(c.id); setWhy(c.why); setTimeout(() => setShakeId(x => (x === c.id ? null : x)), 450); }
+    else { if (onWrong) onWrong(); setShakeId(c.id); setWhy(c.why); setTimeout(() => setShakeId(x => (x === c.id ? null : x)), 450); }
   };
   const pickedCorrect = correct.filter(c => picked.has(c.id));
   return (
@@ -1122,10 +1122,12 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const full = has('describe') && has('it') && has('expect');
   const canRun = has('describe') && has('it');
   const done = full && run === 'real';
+  const achMiss = useContext(AchMissCtx); // 🏅 151-qonun: blok noto'g'ri qatorga / chalg'ituvchi blok — nishon birinchi urinishga
   const { tip: _tip, rescue: _resc } = useStuckValve(done, Object.keys(placed).length + (run ? 1 : 0));   // 13-band klapan
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]); // eslint-disable-line
   const drop = (chip, slotIdx) => {
     if (chip.id !== DD_SLOTS[slotIdx].want) {
+      if (achMiss) achMiss.miss(screen);
       setShake(chip.id); setWhy(chip.why || { uz: "Bu blok bu qatorga to'g'ri kelmaydi. Tartib: describe → it → expect.", ru: 'Этот блок не подходит к этой строке. Порядок: describe → it → expect.' });
       setTimeout(() => setShake(s => (s === chip.id ? null : s)), 460);
       setSc(n => n + 1);
@@ -1166,7 +1168,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       window.removeEventListener('pointermove', mv); window.removeEventListener('pointerup', up); window.removeEventListener('pointercancel', up);
       setOver(null);
       const t = moved ? hit(e.clientX, e.clientY) : null;
-      if (!moved) { clear(); const free = DD_SLOTS.find(s => s.want === chip.id && placed[chip.id] === undefined); if (free) drop(chip, free.i); else { setShake(chip.id); setWhy(chip.why || { uz: "Bu blok varaqaga tushmaydi.", ru: 'Этот блок в бланк не ложится.' }); setTimeout(() => setShake(s => (s === chip.id ? null : s)), 460); } return; }
+      if (!moved) { clear(); const free = DD_SLOTS.find(s => s.want === chip.id && placed[chip.id] === undefined); if (free) drop(chip, free.i); else { if (achMiss) achMiss.miss(screen); setShake(chip.id); setWhy(chip.why || { uz: "Bu blok varaqaga tushmaydi.", ru: 'Этот блок в бланк не ложится.' }); setTimeout(() => setShake(s => (s === chip.id ? null : s)), 460); } return; }
       if (t === null || t === undefined) { snapBack(300); return; }
       const okDrop = drop(chip, t);
       snapBack(okDrop ? 180 : 300);
@@ -1212,6 +1214,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 </div>
               )) : <span className="small" style={{ color: T.success, fontWeight: 700 }}>✓ {tr({ uz: 'Kerakli bloklar joylandi', ru: 'Нужные блоки на месте' })}</span>}
             </div>
+            {!done && <AchRule screen={screen} />}
             {why && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr(why)}</p></div>}
             {run === 'fake' && (
               // Lampa ATAYIN yashil — yolg'on PASS: 0 ta tasdiq (assertion) tekshirilgan.
@@ -1390,6 +1393,7 @@ const Screen14 = (props) => (
 const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [done, setDone] = useState(!!storedAnswer);
   const [prog, setProg] = useState(0);
+  const achMiss = useContext(AchMissCtx); // 🏅 151-qonun: yolg'on test tanlandi — nishon birinchi urinishga
   const { tip: _tip, rescue: _resc } = useStuckValve(done, prog);   // 13-band klapan
   const candidates = [
     { id: 'ok1', correct: true, label: "it('2 kitob', () => { expect(orderTotal(10000, 2)).toBe(20000); })", node: <><At>it</At>{'('}<St>'2 kitob'</St>{', () => { '}<At>expect</At>{'(orderTotal(10000, 2)).'}<At>toBe</At>{'(20000); });'}</> },
@@ -1416,8 +1420,10 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           onProgress={() => setProg(p => p + 1)}
           completedInit={!!storedAnswer}
           onComplete={() => { setDone(true); if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }}
+          onWrong={() => { if (achMiss) achMiss.miss(screen); }}
           doneNote={tr({ uz: <>Ikki haqiqiy testni topdingiz. Yolg'onlar: <span className="mono">expect</span>siz test (doim yashil), noto'g'ri etalon (10002) va <span className="mono">console.log</span>. AI yozsa ham — etalonni <b>siz</b> tekshirasiz.</>, ru: <>Вы нашли два настоящих теста. Ложные: тест без <span className="mono">expect</span> (всегда зелёный), неверный эталон (10002) и <span className="mono">console.log</span>. Даже если пишет ИИ — эталон проверяете <b>вы</b>.</> })}
         />
+        {!done && <AchRule screen={screen} />}
       </div>
     </Stage>
   );
@@ -1530,6 +1536,22 @@ const ACHIEVEMENTS = {
 };
 // Ekran id → nishon. FAQAT ma'noli ekranlar: SCORED test yoki challenge (exploration'ga BOG'LANMAYDI).
 const ACH_TRIGGERS = { s4: 'firstGreen', s9: 'greenSuite', s14: 'breakCatch', s15: 'fakeTestHunter', s16: 'expectMaster' };
+
+// 🏅 151-qonun: amaliy topshiriq nishoni faqat BIRINCHI urinishga beriladi. Shart OLDINDAN aytiladi; birinchi urinish
+// xato bo'lsa — jazosiz qisqa xabar (`once` — qayta urinishi yo'q ekran). Mentor ekranida, «Qaytadan» mashq-o'tishida va
+// nishon olingach ko'rinmaydi. Matn — MATN_KORPUS §183 (hamma darsda aynan bir xil).
+const AchRule = ({ screen, once }) => {
+  const earned = useContext(AchCtx);
+  const am = useContext(AchMissCtx);
+  const gate = useContext(LiveGateCtx) || {};
+  const sid = SCREEN_META[screen] && SCREEN_META[screen].id;
+  const ach = ACH_TRIGGERS[sid];
+  if (!ach || !am || am.practice || (gate.live && gate.live.mode === 'mentor') || (earned && earned.has(ach))) return null;
+  const lost = am.missed.has(sid);
+  return <p className={`ach-rule ${lost ? 'lost' : ''}`}>{lost
+    ? (once ? tr({ uz: 'Nishon birinchi urinish uchun edi.', ru: 'Значок давался за первую попытку.' }) : tr({ uz: "Nishon birinchi urinish uchun edi — endi bemalol to'g'risini toping.", ru: 'Значок давался за первую попытку — теперь спокойно найдите верный ответ.' }))
+    : tr({ uz: "🏅 Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki.", ru: '🏅 Справитесь с первой попытки — значок ваш.' })}</p>;
+};
 
 // 🏅 O'YIN USLUBIDAGI TO'LIQ-EKRAN NISHON BAYRAMI
 function AchCelebrate({ ach, onDone }) {
@@ -3262,6 +3284,8 @@ export default function JestUnitTestLesson({ lang: langProp, onFinished, liveTok
         .card-tile.off { opacity: 0.45; }
         .card-tile.bad { background: ${T.accentSoft}; color: ${T.accent}; box-shadow: inset 0 0 0 1.5px ${T.accent}; opacity: 1; }
 
+      .ach-rule { margin: 8px 0 0; text-align: center; font-size: 13px; line-height: 1.4; color: ${T.ink2}; }
+      .ach-rule.lost { font-style: italic; }
       `}</style>
       <AchCtx.Provider value={earned}>
       <AchMissCtx.Provider value={achMissVal}>

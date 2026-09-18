@@ -190,6 +190,22 @@ const ACHIEVEMENTS = {
 // Ekran id → nishon (recordAnswer'da correct:true bo'lganda avtomatik beriladi).
 const ACH_TRIGGERS = { s2: 'pairFinder', s4: 'matchMaster', s8: 'cardWriter', s11: 'pageMaker' };
 
+// 🏅 151-qonun: amaliy topshiriq nishoni faqat BIRINCHI urinishga beriladi. Shart OLDINDAN aytiladi; birinchi urinish
+// xato bo'lsa — jazosiz qisqa xabar (`once` — qayta urinishi yo'q ekran). Mentor ekranida, «Qaytadan» mashq-o'tishida va
+// nishon olingach ko'rinmaydi. Matn — MATN_KORPUS §183 (hamma darsda aynan bir xil).
+const AchRule = ({ screen, once }) => {
+  const earned = useContext(AchCtx);
+  const am = useContext(AchMissCtx);
+  const gate = useContext(LiveGateCtx) || {};
+  const sid = SCREEN_META[screen] && SCREEN_META[screen].id;
+  const ach = ACH_TRIGGERS[sid];
+  if (!ach || !am || am.practice || (gate.live && gate.live.mode === 'mentor') || (earned && earned.has(ach))) return null;
+  const lost = am.missed.has(sid);
+  return <p className={`ach-rule ${lost ? 'lost' : ''}`}>{lost
+    ? (once ? tr({ uz: 'Nishon birinchi urinish uchun edi.', ru: 'Значок давался за первую попытку.' }) : tr({ uz: "Nishon birinchi urinish uchun edi — endi bemalol to'g'risini toping.", ru: 'Значок давался за первую попытку — теперь спокойно найдите верный ответ.' }))
+    : tr({ uz: "🏅 Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki.", ru: '🏅 Справитесь с первой попытки — значок ваш.' })}</p>;
+};
+
 const fmtCode = (s) => (typeof s === 'string' && s.includes('`'))
   ? s.split('`').map((p, i) => i % 2 ? <code className="qcode" key={i}>{p}</code> : p)
   : s;
@@ -980,6 +996,7 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [place, setPlace] = useState(() => (storedAnswer && storedAnswer.place) || {}); // rowId → cardId
   const [held, setHeld] = useState(null);
   const [shake, setShake] = useState(null);
+  const achMiss = useContext(AchMissCtx); // 🏅 151-qonun: noto'g'ri qatorga qo'yish — nishon birinchi urinishga
   // F-0802-13: «javon» zonasi OLIB TASHLANDI — u majburiy emas edi (doneAll uni tekshirmaydi),
   // ya'ni ekranda ish so'ramaydigan blok turardi. Ortiqcha karta shunchaki kartalar orasida
   // qoladi — o'quvchi buni KO'RADI, yozib aytish shart emas. (Javon-mexanikasi 10-ekranda.)
@@ -992,7 +1009,11 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const drop = (rowId) => {
     if (!held) return;
     const row = MATCH_ROWS.find(r => r.id === rowId);
-    if (row.need !== held || place[rowId]) { setShake(rowId); setTimeout(() => setShake(null), 460); return; }
+    if (row.need !== held || place[rowId]) {
+      // bilim-xatosi faqat BO'SH qatorga noto'g'ri karta; band qatorga bosish — sirpanish (sanalmaydi)
+      if (row.need !== held && !place[rowId] && achMiss) achMiss.miss(screen);
+      setShake(rowId); setTimeout(() => setShake(null), 460); return;
+    }
     setPlace(p => ({ ...p, [rowId]: held })); setHeld(null);
   };
   const takeBack = (id) => { setPlace(p => { const n = { ...p }; Object.keys(n).forEach(k => { if (n[k] === id) delete n[k]; }); return n; }); setHeld(null); };
@@ -1027,6 +1048,7 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             ))}
           </div>
         </div>
+        {!doneAll && <AchRule screen={screen} />}
         {doneAll && (
           <div className="frame-success fade-step">
             <p className="body" style={{ margin: 0 }}>{tr({ uz: <>«Aylanadigan logotip»ga joy topilmadi — u hech qanday qiyinchilikka javob bermaydi.</>, ru: <>Для «вращающегося логотипа» места не нашлось — он не отвечает ни на одну трудность.</> })}</p>
@@ -3560,6 +3582,8 @@ export default function PmLesson4({ lang: langProp, onFinished, liveToken }) {
           .jws.cur .jws-n, .swed-save, .mstats-reveal.ready { animation: none !important; }
           .oc-pain, .cl-pain, .cl-warn, .done-mini { animation: none !important; }
         }
+        .ach-rule { margin: 8px 0 0; text-align: center; font-size: 13px; line-height: 1.4; color: ${T.ink2}; }
+        .ach-rule.lost { font-style: italic; }
       `}</style>
       <LiveGateCtx.Provider value={{ locked, live }}>
         <AchCtx.Provider value={earned}>

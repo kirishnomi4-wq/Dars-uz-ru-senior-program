@@ -1,0 +1,1004 @@
+[
+ {
+  "file": "src/2-Modull/JsFunctionsLesson.jsx",
+  "sid": "s3",
+  "note": "avval mashinani ishga tushirish (run, ~natija), keyin DragDropOrder 4 bo'lak; xato = hamma katak to'lib tartib xato",
+  "wrong": [
+   {
+    "click": "button:has-text(\"zarar(5)\")",
+    "after": 2500
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"zarar\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"function\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"(kuch)\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"return\")",
+    "after": 600
+   }
+  ],
+  "right": [
+   {
+    "click": "button:has-text(\"zarar(5)\")",
+    "after": 2500
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"function\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"zarar\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"(kuch)\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"return\")",
+    "after": 900
+   }
+  ],
+  "rightAfterWrong": [
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0
+   },
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"function\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"zarar\")",
+    "after": 900
+   }
+  ],
+  "slip": [
+   {
+    "click": "button:has-text(\"zarar(5)\")",
+    "after": 2500
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"zarar\")"
+   },
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0,
+    "after": 500
+   }
+  ]
+ },
+ {
+  "file": "src/2-Modull/PracticeLesson3.jsx",
+  "sid": "s5",
+  "note": "DragDropOrder 3 qadam; xato = hamma katak to'lib tartib xato; sirpanish = joylab qaytarib olish",
+  "wrong": [
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"narx\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Mahsulotlar\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"kartalarga\")",
+    "after": 600
+   }
+  ],
+  "right": [
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Mahsulotlar\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"narx\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"kartalarga\")",
+    "after": 900
+   }
+  ],
+  "rightAfterWrong": [
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0
+   },
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Mahsulotlar\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"narx\")",
+    "after": 900
+   }
+  ],
+  "slip": [
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"narx\")"
+   },
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0,
+    "after": 500
+   }
+  ]
+ },
+ {
+  "file": "src/2-Modull/JsLoopsLesson.jsx",
+  "sid": "s14",
+  "note": "for sarlavhasidan xato qismni bosish; xato = init yoki cond bosish; keyin «i-- ni i++ ga almashtirish»",
+  "wrong": [
+   {
+    "click": ".ai-code span:has-text(\"let i = 1\")",
+    "after": 500
+   }
+  ],
+  "right": [
+   {
+    "click": ".ai-code span:has-text(\"i--\")",
+    "after": 500
+   },
+   {
+    "click": "button:has-text(\"i++ ga almashtirish\")",
+    "after": 900
+   }
+  ]
+ },
+ {
+  "file": "src/2-Modull/PeanStackLesson.jsx",
+  "sid": "s13",
+  "note": "4 texnologiya → 4 vazifa, «Ishga tushirish»; xato = tugma bosilib katak xato; sirpanish = katakni bo'shatish",
+  "wrong": [
+   {
+    "click": "button.chip:has-text(\"Node.js\")"
+   },
+   {
+    "click": "button.chip:has-text(\"React\")"
+   },
+   {
+    "click": "button.chip:has-text(\"Express\")"
+   },
+   {
+    "click": "button.chip:has-text(\"PostgreSQL\")"
+   },
+   {
+    "click": "button:has-text(\"Ishga tushirish\")",
+    "after": 600
+   }
+  ],
+  "right": [
+   {
+    "click": "button.chip:has-text(\"React\")"
+   },
+   {
+    "click": "button.chip:has-text(\"Node.js\")"
+   },
+   {
+    "click": "button.chip:has-text(\"Express\")"
+   },
+   {
+    "click": "button.chip:has-text(\"PostgreSQL\")"
+   },
+   {
+    "click": "button:has-text(\"Ishga tushirish\")",
+    "after": 900
+   }
+  ],
+  "rightAfterWrong": [
+   {
+    "click": "button.slotx:has-text(\"Dvigatel\")"
+   },
+   {
+    "click": "button.slotx:has-text(\"Ko'rinish\")"
+   },
+   {
+    "click": "button.chip:has-text(\"React\")"
+   },
+   {
+    "click": "button.chip:has-text(\"Node.js\")"
+   },
+   {
+    "click": "button:has-text(\"Ishga tushirish\")",
+    "after": 900
+   }
+  ],
+  "slip": [
+   {
+    "click": "button.chip:has-text(\"Node.js\")"
+   },
+   {
+    "click": "button.slotx:has-text(\"Ko'rinish\")",
+    "after": 500
+   }
+  ]
+ },
+ {
+  "file": "src/2-Modull/PmLesson4.jsx",
+  "sid": "s4",
+  "note": "karta → qiyinchilik qatori; xato = bo'sh qatorga noto'g'ri karta (silkinadi); sirpanish = band qatorga ikkinchi karta, kartasiz qator bosish",
+  "wrong": [
+   {
+    "click": ".mt-card:has-text(\"Zal xaritasi\")"
+   },
+   {
+    "click": ".mt-row:has-text(\"Film qachon\")",
+    "after": 600
+   }
+  ],
+  "right": [
+   {
+    "click": ".mt-card:has-text(\"Seans jadvali\")"
+   },
+   {
+    "click": ".mt-row:has-text(\"Film qachon\")"
+   },
+   {
+    "click": ".mt-card:has-text(\"Zal xaritasi\")"
+   },
+   {
+    "click": ".mt-row:has-text(\"bo'sh joy\")"
+   },
+   {
+    "click": ".mt-card:has-text(\"Onlayn chipta\")"
+   },
+   {
+    "click": ".mt-row:has-text(\"Chiptani\")",
+    "after": 900
+   }
+  ],
+  "rightAfterWrong": [
+   {
+    "click": ".mt-row:has-text(\"bo'sh joy\")"
+   },
+   {
+    "click": ".mt-card:has-text(\"Seans jadvali\")"
+   },
+   {
+    "click": ".mt-row:has-text(\"Film qachon\")"
+   },
+   {
+    "click": ".mt-card:has-text(\"Onlayn chipta\")"
+   },
+   {
+    "click": ".mt-row:has-text(\"Chiptani\")",
+    "after": 900
+   }
+  ],
+  "slip": [
+   {
+    "click": ".mt-row:has-text(\"Film qachon\")"
+   },
+   {
+    "click": ".mt-card:has-text(\"Seans jadvali\")"
+   },
+   {
+    "click": ".mt-row:has-text(\"Film qachon\")"
+   },
+   {
+    "click": ".mt-card:has-text(\"Zal xaritasi\")"
+   },
+   {
+    "click": ".mt-row:has-text(\"Film qachon\")",
+    "after": 600
+   }
+  ]
+ },
+ {
+  "file": "src/2-Modull/PmLesson5.jsx",
+  "sid": "s11",
+  "note": "1-qadam: noto'g'ri ro'yxatdagi kartani topish; xato = o'z joyidagi kartani bosish",
+  "wrong": [
+   {
+    "click": ".fe-card:has-text(\"Seanslar va narxlar\")",
+    "after": 500
+   }
+  ],
+  "right": [
+   {
+    "click": ".fe-card:has-text(\"Tomoshabin sharhlari\")",
+    "after": 500
+   },
+   {
+    "click": ".fe-place-btns button:has-text(\"Keyinga qoldirilganlar\")",
+    "after": 900
+   }
+  ]
+ },
+ {
+  "file": "src/2-Modull/PmLesson5.jsx",
+  "sid": "s11",
+  "note": "2-qadam: topilgan kartani to'g'ri ro'yxatga ko'chirish; xato = boshqa ro'yxatni tanlash",
+  "wrong": [
+   {
+    "click": ".fe-card:has-text(\"Tomoshabin sharhlari\")",
+    "after": 500
+   },
+   {
+    "click": ".fe-place-btns button:has-text(\"Keyingi versiya\")",
+    "after": 500
+   }
+  ],
+  "right": [
+   {
+    "click": ".fe-card:has-text(\"Tomoshabin sharhlari\")",
+    "after": 500
+   },
+   {
+    "click": ".fe-place-btns button:has-text(\"Keyinga qoldirilganlar\")",
+    "after": 900
+   }
+  ],
+  "rightAfterWrong": [
+   {
+    "click": ".fe-place-btns button:has-text(\"Keyinga qoldirilganlar\")",
+    "after": 900
+   }
+  ]
+ },
+ {
+  "file": "src/2-Modull/PmLesson6.jsx",
+  "sid": "s2",
+  "note": "gapdan 3 kasbiy so'zni topish; xato = oddiy so'zni bosish",
+  "wrong": [
+   {
+    "click": ".sv-w:has-text(\"Menyu\")",
+    "after": 500
+   }
+  ],
+  "right": [
+   {
+    "click": ".sv-w:has-text(\"massivda\")"
+   },
+   {
+    "click": ".sv-w:has-text(\"sikl\")"
+   },
+   {
+    "click": ".sv-w:has-text(\"localStorage\")",
+    "after": 900
+   }
+  ]
+ },
+ {
+  "file": "src/2-Modull/PmLesson6.jsx",
+  "sid": "s10",
+  "once": true,
+  "note": "bir martalik: 3 gapga ✓/✕ hukm (✕ bo'lsa sabab); xato = kamida bitta hukm noto'g'ri; qayta urinish yo'q",
+  "wrong": [
+   {
+    "eval": "(async () => { const w = (ms) => new Promise(r => setTimeout(r, ms)); for (let k = 0; k < 3; k++) { const b = document.querySelector('.st-yes'); if (!b) break; b.click(); await w(450); } })()",
+    "after": 900
+   }
+  ],
+  "right": [
+   {
+    "eval": "(async () => { const w = (ms) => new Promise(r => setTimeout(r, ms)); const plan = [false, true, false]; for (const v of plan) { const card = document.querySelector('.st-card'); if (!card) break; if (v) { document.querySelector('.st-yes').click(); await w(450); } else { document.querySelector('.st-no').click(); await w(350); document.querySelector('.st-reason').click(); await w(450); } } })()",
+    "after": 900
+   }
+  ],
+  "rightAfterWrong": []
+ },
+ {
+  "file": "src/2-Modull/JsConditionsLesson.jsx",
+  "sid": "s14",
+  "note": "Q6: ikki qatordan xatosini bosish; xato = xatosiz qator (let pin = 1111) — «Bu qatorda xato yo'q — yana qarang.»; keyin «= ni == ga almashtirish»",
+  "wrong": [
+   {
+    "click": ".ai-code .ai-line",
+    "nth": 0,
+    "after": 500
+   },
+   {
+    "expect": ".ai-prompt:has-text(\"Bu qatorda xato yo'q\")"
+   }
+  ],
+  "right": [
+   {
+    "click": ".ai-code .ai-line",
+    "nth": 1,
+    "after": 600
+   },
+   {
+    "click": "button:has-text(\"== ga almashtirish\")",
+    "after": 900
+   }
+  ]
+ },
+ {
+  "file": "src/4a-Modull/NestArchAliveLesson.jsx",
+  "sid": "s9",
+  "note": "6 bekatni yo'lakka (bosib) joylash, keyin 3 mijozni yurgizish; xato = yo'lak to'lib tartib xato (avto-tekshiruv); sirpanish = kartani joylab qaytarib olish",
+  "wrong": [
+   {
+    "click": ".rz-pool .rz-card:has-text(\"Ofitsiant\")"
+   },
+   {
+    "click": ".rz-pool .rz-card:has-text(\"Eshik qo'riqchisi\")"
+   },
+   {
+    "click": ".rz-pool .rz-card:has-text(\"Nazoratchi + anketa\")"
+   },
+   {
+    "click": ".rz-pool .rz-card:has-text(\"Oshpaz + retsept kitobi\")"
+   },
+   {
+    "click": ".rz-pool .rz-card:has-text(\"Ombor + omborchi\")"
+   },
+   {
+    "click": ".rz-pool .rz-card:has-text(\"Bir xil lagan\")"
+   },
+   {
+    "wait": 400
+   }
+  ],
+  "right": [
+   {
+    "click": ".rz-pool .rz-card:has-text(\"Eshik qo'riqchisi\")"
+   },
+   {
+    "click": ".rz-pool .rz-card:has-text(\"Ofitsiant\")"
+   },
+   {
+    "click": ".rz-pool .rz-card:has-text(\"Nazoratchi + anketa\")"
+   },
+   {
+    "click": ".rz-pool .rz-card:has-text(\"Oshpaz + retsept kitobi\")"
+   },
+   {
+    "click": ".rz-pool .rz-card:has-text(\"Ombor + omborchi\")"
+   },
+   {
+    "click": ".rz-pool .rz-card:has-text(\"Bir xil lagan\")"
+   },
+   {
+    "wait": 500
+   },
+   {
+    "click": ".rz-cbtn",
+    "nth": 0,
+    "after": 5200
+   },
+   {
+    "click": ".rz-cbtn",
+    "nth": 1,
+    "after": 5200
+   },
+   {
+    "click": ".rz-cbtn",
+    "nth": 2,
+    "after": 5200
+   }
+  ],
+  "rightAfterWrong": [
+   {
+    "click": ".rz-slot .rz-card.in",
+    "nth": 0
+   },
+   {
+    "click": ".rz-slot .rz-card.in",
+    "nth": 0
+   },
+   {
+    "click": ".rz-pool .rz-card:has-text(\"Eshik qo'riqchisi\")"
+   },
+   {
+    "click": ".rz-pool .rz-card:has-text(\"Ofitsiant\")"
+   },
+   {
+    "wait": 500
+   },
+   {
+    "click": ".rz-cbtn",
+    "nth": 0,
+    "after": 5200
+   },
+   {
+    "click": ".rz-cbtn",
+    "nth": 1,
+    "after": 5200
+   },
+   {
+    "click": ".rz-cbtn",
+    "nth": 2,
+    "after": 5200
+   }
+  ],
+  "slip": [
+   {
+    "click": ".rz-pool .rz-card:has-text(\"Ofitsiant\")"
+   },
+   {
+    "click": ".rz-slot .rz-card.in",
+    "nth": 0,
+    "after": 500
+   }
+  ]
+ },
+ {
+  "file": "src/4a-Modull/NestArchPracticeLesson.jsx",
+  "sid": "s10",
+  "note": "PickLines: book.entity.ts ga tegishli 5 qatorni tanlash; xato = begona (DTO/controller) qator",
+  "wrong": [
+   {
+    "click": ".pick-row:has-text(\"@IsString\")",
+    "after": 600
+   }
+  ],
+  "right": [
+   {
+    "click": ".pick-row",
+    "nth": 0
+   },
+   {
+    "click": ".pick-row",
+    "nth": 1
+   },
+   {
+    "click": ".pick-row",
+    "nth": 2
+   },
+   {
+    "click": ".pick-row",
+    "nth": 3
+   },
+   {
+    "click": ".pick-row",
+    "nth": 4,
+    "after": 900
+   }
+  ]
+ },
+ {
+  "file": "src/4a-Modull/NestArchPracticeLesson.jsx",
+  "sid": "s14",
+  "note": "avval 3 eshikni mijoz sifatida sinash (dalil), keyin aybdor qatorni bosish; xato = dalildan keyin aybsiz qator; sirpanish = dalilsiz qator bosish (e'tiborsiz)",
+  "wrong": [
+   {
+    "click": ".dr-cell",
+    "nth": 0
+   },
+   {
+    "click": ".dr-cell",
+    "nth": 2
+   },
+   {
+    "click": ".dr-cell",
+    "nth": 4,
+    "after": 500
+   },
+   {
+    "click": ".ai-code .ai-line",
+    "nth": 0,
+    "after": 600
+   }
+  ],
+  "right": [
+   {
+    "click": ".dr-cell",
+    "nth": 0
+   },
+   {
+    "click": ".dr-cell",
+    "nth": 2
+   },
+   {
+    "click": ".dr-cell",
+    "nth": 4,
+    "after": 500
+   },
+   {
+    "click": ".ai-code .ai-line",
+    "nth": 1,
+    "after": 500
+   },
+   {
+    "click": "button:has-text(\"public\")",
+    "after": 900
+   }
+  ],
+  "rightAfterWrong": [
+   {
+    "click": ".ai-code .ai-line",
+    "nth": 1,
+    "after": 500
+   },
+   {
+    "click": "button:has-text(\"public\")",
+    "after": 900
+   }
+  ],
+  "slip": [
+   {
+    "click": ".ai-code .ai-line",
+    "nth": 0,
+    "after": 500
+   }
+  ]
+ },
+ {
+  "file": "src/4a-Modull/NestArchPracticeLesson.jsx",
+  "sid": "s19",
+  "note": "5 da'vodan ro'yxatga mos kelmaydiganini bosish, keyin qo'riqchi qo'yish; xato = to'g'ri da'voni bosish",
+  "wrong": [
+   {
+    "click": ".cl-row",
+    "nth": 0,
+    "after": 600
+   }
+  ],
+  "right": [
+   {
+    "click": ".cl-row",
+    "nth": 3,
+    "after": 500
+   },
+   {
+    "click": "button:has-text(\"DELETE /book ga\")",
+    "after": 900
+   }
+  ]
+ },
+ {
+  "file": "src/4a-Modull/PmLesson15.jsx",
+  "sid": "s4",
+  "note": "odam sonini oshirib birinchi sinishni ko'rish, keyin bitta qismni kuchaytirish; xato = o'rindiqdan boshqa qism; sirpanish = pog'onalarni bosish (kashfiyot)",
+  "wrong": [
+   {
+    "click": ".yuk-step",
+    "nth": 1,
+    "after": 600
+   },
+   {
+    "click": ".qsel-btn:has-text(\"To'lov\")",
+    "after": 600
+   }
+  ],
+  "right": [
+   {
+    "click": ".yuk-step",
+    "nth": 1,
+    "after": 600
+   },
+   {
+    "click": ".qsel-btn:has-text(\"O'rindiq tanlash\")",
+    "after": 900
+   }
+  ],
+  "rightAfterWrong": [
+   {
+    "click": ".qsel-btn:has-text(\"O'rindiq tanlash\")",
+    "after": 900
+   }
+  ],
+  "slip": [
+   {
+    "click": ".yuk-step",
+    "nth": 1,
+    "after": 400
+   },
+   {
+    "click": ".yuk-step",
+    "nth": 2,
+    "after": 400
+   },
+   {
+    "click": ".yuk-step",
+    "nth": 3,
+    "after": 500
+   }
+  ]
+ },
+ {
+  "file": "src/4a-Modull/PmLesson15.jsx",
+  "sid": "s9",
+  "note": "3 raund: qolganlardan navbatdagi birinchi sinadiganini tanlash; xato = navbatdagi bo'lmagan qism",
+  "wrong": [
+   {
+    "click": ".rnk-opt:has-text(\"Konsert jadvalini\")",
+    "after": 600
+   }
+  ],
+  "right": [
+   {
+    "click": ".rnk-opt:has-text(\"Sovg'a-kodni\")",
+    "after": 500
+   },
+   {
+    "click": ".rnk-opt:has-text(\"QR-chiptani\")",
+    "after": 500
+   },
+   {
+    "click": ".rnk-opt:has-text(\"Konsert jadvalini\")",
+    "after": 900
+   }
+  ]
+ },
+ {
+  "file": "src/4b-Modull/PmLesson16.jsx",
+  "sid": "s9",
+  "note": "4 karta × ikki belgi (kimda · nima bo'ladi); xato = ikkala belgi tanlanib kamida bittasi xato (judge → oops)",
+  "wrong": [
+   {
+    "click": ".mkbtn.a:has-text(\"Ba'zilarda\")"
+   },
+   {
+    "click": ".mkbtn.b:has-text(\"Ish to'xtaydi\")",
+    "after": 600
+   }
+  ],
+  "right": [
+   {
+    "click": ".mkbtn.a:has-text(\"Hammada\")"
+   },
+   {
+    "click": ".mkbtn.b:has-text(\"Ish to'xtaydi\")",
+    "after": 2000
+   },
+   {
+    "click": ".mkbtn.a:has-text(\"Ba'zilarda\")"
+   },
+   {
+    "click": ".mkbtn.b:has-text(\"Noqulay, lekin ishlaydi\")",
+    "after": 2000
+   },
+   {
+    "click": ".mkbtn.a:has-text(\"Hammada\")"
+   },
+   {
+    "click": ".mkbtn.b:has-text(\"Noqulay, lekin ishlaydi\")",
+    "after": 2000
+   },
+   {
+    "click": ".mkbtn.a:has-text(\"Ba'zilarda\")"
+   },
+   {
+    "click": ".mkbtn.b:has-text(\"Ish to'xtaydi\")",
+    "after": 2000
+   }
+  ],
+  "rightAfterWrong": [
+   {
+    "click": ".mkbtn.a:has-text(\"Hammada\")",
+    "after": 2000
+   },
+   {
+    "click": ".mkbtn.a:has-text(\"Ba'zilarda\")"
+   },
+   {
+    "click": ".mkbtn.b:has-text(\"Noqulay, lekin ishlaydi\")",
+    "after": 2000
+   },
+   {
+    "click": ".mkbtn.a:has-text(\"Hammada\")"
+   },
+   {
+    "click": ".mkbtn.b:has-text(\"Noqulay, lekin ishlaydi\")",
+    "after": 2000
+   },
+   {
+    "click": ".mkbtn.a:has-text(\"Ba'zilarda\")"
+   },
+   {
+    "click": ".mkbtn.b:has-text(\"Ish to'xtaydi\")",
+    "after": 2000
+   }
+  ]
+ },
+ {
+  "file": "src/4b-Modull/EdgeCasesTestLesson.jsx",
+  "sid": "s9",
+  "note": "guard yig'ish: 3 kerakli blok (bosilsa o'z qatoriga tushadi) + 2 chalg'ituvchi; keyin npm test; xato = chalg'ituvchi blok bosish yoki noto'g'ri qatorga sudrash; sirpanish = throw'siz npm test (dars ataylab ko'rsatadigan kashfiyot)",
+  "wrong": [
+   {
+    "click": ".dd-chip:has-text(\"console.log\")",
+    "after": 600
+   }
+  ],
+  "right": [
+   {
+    "click": ".dd-chip:has-text(\"if (typeof\")"
+   },
+   {
+    "click": ".dd-chip:has-text(\"throw new\")"
+   },
+   {
+    "click": ".dd-chip:has-text(\"return price\")",
+    "after": 500
+   },
+   {
+    "click": "button:has-text(\"npm test\")",
+    "after": 900
+   }
+  ],
+  "slip": [
+   {
+    "click": ".dd-chip:has-text(\"if (typeof\")"
+   },
+   {
+    "click": ".dd-chip:has-text(\"return price\")",
+    "after": 400
+   },
+   {
+    "click": "button:has-text(\"npm test\")",
+    "after": 700
+   }
+  ]
+ },
+ {
+  "file": "src/4b-Modull/EdgeCasesTestLesson.jsx",
+  "sid": "s9",
+  "note": "sudrash yo'li: «throw» blokini «if» qatoriga tashlash (noto'g'ri qator) — xato; sintetik pointer-hodisalar",
+  "wrong": [
+   {
+    "eval": "(async () => {\n  const w = (ms) => new Promise(r => setTimeout(r, ms));\n  const chip = [...document.querySelectorAll('.dd-chip')].find(c => c.innerText.includes('throw new'));\n  const slot = document.querySelectorAll('.dd-slot')[0];\n  const a = chip.getBoundingClientRect(), b = slot.getBoundingClientRect();\n  const sx = a.left + a.width / 2, sy = a.top + a.height / 2, tx = b.left + b.width / 2, ty = b.top + b.height / 2;\n  chip.dispatchEvent(new PointerEvent('pointerdown', { clientX: sx, clientY: sy, button: 0, bubbles: true, pointerId: 1 }));\n  await w(30);\n  for (let k = 1; k <= 6; k++) { window.dispatchEvent(new PointerEvent('pointermove', { clientX: sx + (tx - sx) * k / 6, clientY: sy + (ty - sy) * k / 6, bubbles: true, pointerId: 1 })); await w(20); }\n  window.dispatchEvent(new PointerEvent('pointerup', { clientX: tx, clientY: ty, bubbles: true, pointerId: 1 }));\n})()",
+    "after": 700
+   }
+  ],
+  "right": [
+   {
+    "click": ".dd-chip:has-text(\"if (typeof\")"
+   },
+   {
+    "click": ".dd-chip:has-text(\"throw new\")"
+   },
+   {
+    "click": ".dd-chip:has-text(\"return price\")",
+    "after": 500
+   },
+   {
+    "click": "button:has-text(\"npm test\")",
+    "after": 900
+   }
+  ],
+  "rightAfterWrong": [
+   {
+    "click": ".dd-chip:has-text(\"if (typeof\")"
+   },
+   {
+    "click": ".dd-chip:has-text(\"throw new\")"
+   },
+   {
+    "click": ".dd-chip:has-text(\"return price\")",
+    "after": 500
+   },
+   {
+    "click": "button:has-text(\"npm test\")",
+    "after": 900
+   }
+  ]
+ },
+ {
+  "file": "src/4b-Modull/EdgeCasesTestLesson.jsx",
+  "sid": "s15",
+  "note": "PickLines: 5 testdan 2 haqiqiy edge testni tanlash; xato = yolg'on test",
+  "wrong": [
+   {
+    "click": ".pick-row",
+    "nth": 4,
+    "after": 600
+   }
+  ],
+  "right": [
+   {
+    "click": ".pick-row",
+    "nth": 0
+   },
+   {
+    "click": ".pick-row",
+    "nth": 1,
+    "after": 900
+   }
+  ]
+ },
+ {
+  "file": "src/4b-Modull/JestUnitTestLesson.jsx",
+  "sid": "s9",
+  "note": "varaqa yig'ish: describe · it · expect (bosilsa o'z qatoriga tushadi) + 2 chalg'ituvchi; keyin npm test; xato = chalg'ituvchi blok bosish; sirpanish = expect'siz npm test (dars ataylab ko'rsatadigan kashfiyot)",
+  "wrong": [
+   {
+    "click": ".dd-chip:has-text(\"console.log\")",
+    "after": 600
+   }
+  ],
+  "right": [
+   {
+    "click": ".dd-chip:has-text(\"describe('orderTotal'\")"
+   },
+   {
+    "click": ".dd-chip:has-text(\"it('2 kitob\")"
+   },
+   {
+    "click": ".dd-chip:has-text(\"expect(orderTotal\")",
+    "after": 500
+   },
+   {
+    "click": "button:has-text(\"npm test\")",
+    "after": 900
+   }
+  ],
+  "slip": [
+   {
+    "click": ".dd-chip:has-text(\"describe('orderTotal'\")"
+   },
+   {
+    "click": ".dd-chip:has-text(\"it('2 kitob\")",
+    "after": 400
+   },
+   {
+    "click": "button:has-text(\"npm test\")",
+    "after": 700
+   }
+  ]
+ },
+ {
+  "file": "src/4b-Modull/JestUnitTestLesson.jsx",
+  "sid": "s9",
+  "note": "sudrash yo'li: «expect» blokini «describe» qatoriga tashlash (noto'g'ri qator) — xato; sintetik pointer-hodisalar",
+  "wrong": [
+   {
+    "eval": "(async () => {\n  const w = (ms) => new Promise(r => setTimeout(r, ms));\n  const chip = [...document.querySelectorAll('.dd-chip')].find(c => c.innerText.includes('expect(orderTotal'));\n  const slot = document.querySelectorAll('.dd-slot')[0];\n  const a = chip.getBoundingClientRect(), b = slot.getBoundingClientRect();\n  const sx = a.left + a.width / 2, sy = a.top + a.height / 2, tx = b.left + b.width / 2, ty = b.top + b.height / 2;\n  chip.dispatchEvent(new PointerEvent('pointerdown', { clientX: sx, clientY: sy, button: 0, bubbles: true, pointerId: 1 }));\n  await w(30);\n  for (let k = 1; k <= 6; k++) { window.dispatchEvent(new PointerEvent('pointermove', { clientX: sx + (tx - sx) * k / 6, clientY: sy + (ty - sy) * k / 6, bubbles: true, pointerId: 1 })); await w(20); }\n  window.dispatchEvent(new PointerEvent('pointerup', { clientX: tx, clientY: ty, bubbles: true, pointerId: 1 }));\n})()",
+    "after": 700
+   }
+  ],
+  "right": [
+   {
+    "click": ".dd-chip:has-text(\"describe('orderTotal'\")"
+   },
+   {
+    "click": ".dd-chip:has-text(\"it('2 kitob\")"
+   },
+   {
+    "click": ".dd-chip:has-text(\"expect(orderTotal\")",
+    "after": 500
+   },
+   {
+    "click": "button:has-text(\"npm test\")",
+    "after": 900
+   }
+  ],
+  "rightAfterWrong": [
+   {
+    "click": ".dd-chip:has-text(\"describe('orderTotal'\")"
+   },
+   {
+    "click": ".dd-chip:has-text(\"it('2 kitob\")"
+   },
+   {
+    "click": ".dd-chip:has-text(\"expect(orderTotal\")",
+    "after": 500
+   },
+   {
+    "click": "button:has-text(\"npm test\")",
+    "after": 900
+   }
+  ]
+ },
+ {
+  "file": "src/4b-Modull/JestUnitTestLesson.jsx",
+  "sid": "s15",
+  "note": "PickLines: 5 testdan haqiqatan tekshiradigan 2 tasini tanlash; xato = yolg'on test",
+  "wrong": [
+   {
+    "click": ".pick-row",
+    "nth": 2,
+    "after": 600
+   }
+  ],
+  "right": [
+   {
+    "click": ".pick-row",
+    "nth": 0
+   },
+   {
+    "click": ".pick-row",
+    "nth": 1,
+    "after": 900
+   }
+  ]
+ }
+]

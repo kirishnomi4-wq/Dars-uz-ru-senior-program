@@ -1560,6 +1560,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const usedTech = Object.values(assign);
   const full = SLOTS.every(s => assign[s.key]);
   const done = allOk;
+  const achMiss = useContext(AchMissCtx); // 🏅 151-qonun: «Ishga tushirish» xato chiqsa — nishon birinchi urinishga
   const tapSlot = (k) => {
     setChecked(false);
     if (assign[k]) { setAssign(a => { const n = { ...a }; delete n[k]; return n; }); setActiveSlot(k); }
@@ -1579,6 +1580,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     if (!full) return;
     setChecked(true);
     if (SLOTS.every(s => assign[s.key] === s.a)) setAllOk(true);
+    else if (achMiss) achMiss.miss(screen);
   };
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   return (
@@ -1618,6 +1620,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </Col>
           <Col>
             <button className="btn fade-up delay-2" onClick={launch} disabled={!full || allOk} style={{ alignSelf: 'flex-start' }}>{tr({ uz: '▶ Ishga tushirish', ru: '▶ Запуск' })}</button>
+            {!done && <AchRule screen={screen} />}
             {allOk ? (
               <div className="demo-swap" style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
                 <BWindow url="mini-dokon.uz" minH={120}>
@@ -2464,6 +2467,22 @@ const ACHIEVEMENTS = {
 };
 // Ekran id → nishon (recordAnswer'da avtomatik beriladi; faqat haqiqiy challenge ekranlarga)
 const ACH_TRIGGERS = { s13: 'teambuilder', s15: 'fullstack' };
+
+// 🏅 151-qonun: amaliy topshiriq nishoni faqat BIRINCHI urinishga beriladi. Shart OLDINDAN aytiladi; birinchi urinish
+// xato bo'lsa — jazosiz qisqa xabar (`once` — qayta urinishi yo'q ekran). Mentor ekranida, «Qaytadan» mashq-o'tishida va
+// nishon olingach ko'rinmaydi. Matn — MATN_KORPUS §183 (hamma darsda aynan bir xil).
+const AchRule = ({ screen, once }) => {
+  const earned = useContext(AchCtx);
+  const am = useContext(AchMissCtx);
+  const gate = useContext(LiveGateCtx) || {};
+  const sid = SCREEN_META[screen] && SCREEN_META[screen].id;
+  const ach = ACH_TRIGGERS[sid];
+  if (!ach || !am || am.practice || (gate.live && gate.live.mode === 'mentor') || (earned && earned.has(ach))) return null;
+  const lost = am.missed.has(sid);
+  return <p className={`ach-rule ${lost ? 'lost' : ''}`}>{lost
+    ? (once ? tr({ uz: 'Nishon birinchi urinish uchun edi.', ru: 'Значок давался за первую попытку.' }) : tr({ uz: "Nishon birinchi urinish uchun edi — endi bemalol to'g'risini toping.", ru: 'Значок давался за первую попытку — теперь спокойно найдите верный ответ.' }))
+    : tr({ uz: "🏅 Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki.", ru: '🏅 Справитесь с первой попытки — значок ваш.' })}</p>;
+};
 // 🏅 O'YIN USLUBIDAGI TO'LIQ-EKRAN NISHON BAYRAMI — yorqin nurlar, medal portlashi, uchqunlar, zarba to'lqini
 function AchCelebrate({ ach, onDone }) {
   useEffect(() => { const t = setTimeout(onDone, 4000); return () => clearTimeout(t); }, []); // eslint-disable-line
@@ -3609,6 +3628,8 @@ export default function PeanStackLesson({ lang: langProp, onFinished, onPractice
         .live-badge { opacity: 0.4; transition: opacity 0.25s ease, box-shadow 0.25s ease; }
         .live-badge:hover, .live-badge:focus-within { opacity: 1; box-shadow: 0 8px 24px -6px rgba(58,53,48,0.32) !important; }
         @media (hover: none) { .live-badge { opacity: 0.62; } }
+        .ach-rule { margin: 8px 0 0; text-align: center; font-size: 13px; line-height: 1.4; color: ${T.ink2}; }
+        .ach-rule.lost { font-style: italic; }
       `}</style>
       <LiveGateCtx.Provider value={{ locked, live }}>
         <AchCtx.Provider value={earned}>

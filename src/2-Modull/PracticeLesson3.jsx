@@ -1025,6 +1025,7 @@ const DECOMP_STEPS = [
 ];
 const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [dragDone, setDragDone] = useState(!!storedAnswer);
+  const achMiss = useContext(AchMissCtx); // 🏅 151-qonun: to'liq tartib xato — nishon birinchi urinishga
   const done = dragDone;
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   return (
@@ -1033,7 +1034,8 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>MVP'ni <span className="italic" style={{ color: T.accent }}>nimadan</span> boshlaymiz?</>, ru: <>С чего <span className="italic" style={{ color: T.accent }}>начинаем</span> MVP?</> })}</h2></div>
         <Mentor>{tr({ uz: <>Endi MVP qadamlarini <b style={{ color: T.ink }}>to'g'ri tartibda</b> qo'yamiz. Uy poydevordan quriladi: avval mahsulotlar, keyin narx, so'ng chiroyli ko'rinish. Bo'laklarni <b style={{ color: T.ink }}>sudrab</b> qurilish tartibiga joylang.</>, ru: <>Теперь расставим шаги MVP <b style={{ color: T.ink }}>в правильном порядке</b>. Дом строится с фундамента: сначала товары, потом цены, затем красивый вид. <b style={{ color: T.ink }}>Перетащите</b> блоки в порядок стройки.</> })}</Mentor>
         <Zoomable>
-          <DragDropOrder items={DECOMP_STEPS} hints={[{ uz: 'poydevor — eng avval', ru: 'фундамент — в самом начале' }, { uz: "poydevor ustiga — o'rtadagi qadam", ru: 'поверх фундамента — средний шаг' }, { uz: 'eng oxirida — bezak', ru: 'в самом конце — украшение' }]} onSolved={() => setDragDone(true)} />
+          <DragDropOrder items={DECOMP_STEPS} hints={[{ uz: 'poydevor — eng avval', ru: 'фундамент — в самом начале' }, { uz: "poydevor ustiga — o'rtadagi qadam", ru: 'поверх фундамента — средний шаг' }, { uz: 'eng oxirida — bezak', ru: 'в самом конце — украшение' }]} onSolved={() => setDragDone(true)} onWrong={() => { if (achMiss) achMiss.miss(screen); }} />
+          {!done && <AchRule screen={screen} />}
           {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "To'g'ri! Avval poydevor (mahsulotlar), keyin narx, oxirida bezak. To'g'ri tartib — tez va aniq qurilish.", ru: 'Верно! Сначала фундамент (товары), потом цены, в конце украшение. Правильный порядок — быстрая и точная стройка.' })}</p></div>}
         </Zoomable>
       </div>
@@ -1662,7 +1664,7 @@ const fmtCode = (s) => (typeof s === 'string' && s.includes('`'))
   : s;
 
 // 🔀 Qayta ishlatiladigan DRAG-DROP ORDER — qadamlarni o'zi sudrab to'g'ri tartibga qo'yadi (StrictMode-safe: yagona atomik holat).
-function DragDropOrder({ items, hints, onSolved }) {
+function DragDropOrder({ items, hints, onSolved, onWrong }) {
   const order = items.map(x => x.id);
   const byId = useMemo(() => Object.fromEntries(items.map(x => [x.id, x])), [items]);
   const [st, setSt] = useState(() => {
@@ -1676,6 +1678,7 @@ function DragDropOrder({ items, hints, onSolved }) {
   const solved = slots.every((s, i) => s === order[i]);
   const wrong = full && !solved;
   useEffect(() => { if (solved) onSolved && onSolved(); }, [solved]); // eslint-disable-line
+  useEffect(() => { if (wrong) onWrong && onWrong(); }, [wrong]); // eslint-disable-line
   const place = (id, from, slotIdx) => setSt(({ pool, slots }) => {
     const ns = slots.slice(); const occ = ns[slotIdx];
     if (typeof from === 'number') ns[from] = null;
@@ -1942,6 +1945,22 @@ const ACHIEVEMENTS = {
 };
 // Ekran id → nishon (recordAnswer'da faqat SCORED test / challenge-gate ekranda, data.correct bo'lsa beriladi)
 const ACH_TRIGGERS = { s4: 'mvp', s5: 'planner', s10: 'architect' };
+
+// 🏅 151-qonun: amaliy topshiriq nishoni faqat BIRINCHI urinishga beriladi. Shart OLDINDAN aytiladi; birinchi urinish
+// xato bo'lsa — jazosiz qisqa xabar (`once` — qayta urinishi yo'q ekran). Mentor ekranida, «Qaytadan» mashq-o'tishida va
+// nishon olingach ko'rinmaydi. Matn — MATN_KORPUS §183 (hamma darsda aynan bir xil).
+const AchRule = ({ screen, once }) => {
+  const earned = useContext(AchCtx);
+  const am = useContext(AchMissCtx);
+  const gate = useContext(LiveGateCtx) || {};
+  const sid = SCREEN_META[screen] && SCREEN_META[screen].id;
+  const ach = ACH_TRIGGERS[sid];
+  if (!ach || !am || am.practice || (gate.live && gate.live.mode === 'mentor') || (earned && earned.has(ach))) return null;
+  const lost = am.missed.has(sid);
+  return <p className={`ach-rule ${lost ? 'lost' : ''}`}>{lost
+    ? (once ? tr({ uz: 'Nishon birinchi urinish uchun edi.', ru: 'Значок давался за первую попытку.' }) : tr({ uz: "Nishon birinchi urinish uchun edi — endi bemalol to'g'risini toping.", ru: 'Значок давался за первую попытку — теперь спокойно найдите верный ответ.' }))
+    : tr({ uz: "🏅 Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki.", ru: '🏅 Справитесь с первой попытки — значок ваш.' })}</p>;
+};
 
 // 🏅 TO'LIQ-EKRAN NISHON BAYRAMI
 function AchCelebrate({ ach, onDone }) {
@@ -3265,6 +3284,8 @@ export default function PracticeLesson3({ lang: langProp, onFinished, liveToken 
         .qz-bolt { filter: drop-shadow(0 8px 18px rgba(255,79,40,0.32)); }
         .qz-wm { font-family: 'Manrope'; font-weight: 800; font-size: clamp(28px,5vw,46px); letter-spacing: -0.03em; color: #F2ECFF; line-height: 1; text-shadow: 0 0 22px rgba(150,95,255,0.4); }
         .qz-wm-h { color: #FF6A3D; }
+        .ach-rule { margin: 8px 0 0; text-align: center; font-size: 13px; line-height: 1.4; color: ${T.ink2}; }
+        .ach-rule.lost { font-style: italic; }
       `}</style>
       <LiveGateCtx.Provider value={{ locked, live }}>
         <AchCtx.Provider value={earned}>

@@ -1084,6 +1084,9 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   }, [wI, wPh, walk && walk.c.id, rsz]); // eslint-disable-line
   const full = slots.every(s => s !== null);
   const pathOk = slots.every((s, i) => s === ROUTE[i]);
+  const achMiss = useContext(AchMissCtx);
+  // 🏅 151-qonun: urinish = yo'lak to'lib, tartib xato chiqqan on (avto-tekshiruv: to'g'ri bo'lsa «✓ Yo'l to'g'ri terildi» chiqadi)
+  useEffect(() => { if (full && !pathOk && achMiss) achMiss.miss(screen); }, [full, pathOk]); // eslint-disable-line
   const doneRuns = Object.keys(runs).length >= CUSTOMERS.length;
   const done = pathOk && doneRuns;
   const { tip: _tip, rescue: _resc } = useStuckValve(done, (pathOk ? 1 : 0) + (doneRuns ? 1 : 0));   // 13-band klapan
@@ -1222,6 +1225,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </div>
         </div>
 
+        {!done && <AchRule screen={screen} />}
         <div className="rz-run fade-up delay-2">
           <div className="rz-cust">
             {CUSTOMERS.map(c => {
@@ -1729,6 +1733,22 @@ const ACHIEVEMENTS = {
 // Ekran id → nishon. ❗ FAQAT ma'noli ekranlar: s4/s10/s16 (SCORED test) · s9 (markaziy o'yin — 3 mijoz to'g'ri) · s19 (real debug, 1-urinish).
 // Passiv exploration ekranlariga (s2,s3,s5,s6,s11..s15,s18) BOG'LANMAYDI — aks holda nishon tekin beriladi.
 const ACH_TRIGGERS = { s4: 'secretKeeper', s9: 'fullFlow', s16: 'fiveSteps', s19: 'rightPlace' };
+
+// 🏅 151-qonun: amaliy topshiriq nishoni faqat BIRINCHI urinishga beriladi. Shart OLDINDAN aytiladi; birinchi urinish
+// xato bo'lsa — jazosiz qisqa xabar (`once` — qayta urinishi yo'q ekran). Mentor ekranida, «Qaytadan» mashq-o'tishida va
+// nishon olingach ko'rinmaydi. Matn — MATN_KORPUS §183 (hamma darsda aynan bir xil).
+const AchRule = ({ screen, once }) => {
+  const earned = useContext(AchCtx);
+  const am = useContext(AchMissCtx);
+  const gate = useContext(LiveGateCtx) || {};
+  const sid = SCREEN_META[screen] && SCREEN_META[screen].id;
+  const ach = ACH_TRIGGERS[sid];
+  if (!ach || !am || am.practice || (gate.live && gate.live.mode === 'mentor') || (earned && earned.has(ach))) return null;
+  const lost = am.missed.has(sid);
+  return <p className={`ach-rule ${lost ? 'lost' : ''}`}>{lost
+    ? (once ? tr({ uz: 'Nishon birinchi urinish uchun edi.', ru: 'Значок давался за первую попытку.' }) : tr({ uz: "Nishon birinchi urinish uchun edi — endi bemalol to'g'risini toping.", ru: 'Значок давался за первую попытку — теперь спокойно найдите верный ответ.' }))
+    : tr({ uz: "🏅 Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki.", ru: '🏅 Справитесь с первой попытки — значок ваш.' })}</p>;
+};
 
 // 🏅 O'YIN USLUBIDAGI TO'LIQ-EKRAN NISHON BAYRAMI
 function AchCelebrate({ ach, onDone }) {
@@ -3618,6 +3638,8 @@ export default function NestArchAliveLesson({ lang: langProp, onFinished, liveTo
           .ai-line.grabbable::before { transform: translateY(-50%); opacity: 1; }
         }
 
+      .ach-rule { margin: 8px 0 0; text-align: center; font-size: 13px; line-height: 1.4; color: ${T.ink2}; }
+      .ach-rule.lost { font-style: italic; }
       `}</style>
       <AchCtx.Provider value={earned}>
       <AchMissCtx.Provider value={achMissVal}>

@@ -1,0 +1,593 @@
+[
+ {
+  "file": "src/2-Modull/JsFunctionsLesson.jsx",
+  "sid": "s3",
+  "ach": "builder",
+  "status": "✅",
+  "tur": "A-umumiy",
+  "nima_qilindi": "DragDropOrder ga onWrong ilgagi (pilot naqshi, faylda yagona ishlatilish); Screen3 da achMiss.miss; AchRule ustun oxirida, {!done && …}",
+  "miss_joyi": "DragDropOrder useEffect([wrong]) → onWrong",
+  "urinish": "hamma 4 katak to'lib tartib xato chiqqan on",
+  "sirpanish": "bo'lakni joylab qaytarib olish (full bo'lmaydi)",
+  "prob": {
+   "S0": "✓",
+   "S4": "✓",
+   "S5": "✓",
+   "S2": "✓",
+   "S1a": "✓",
+   "S1b": "✓",
+   "S3": "✓"
+  },
+  "gates": "esbuild/jsx/keys/prompt ✓, lintcmp 0",
+  "qaror": "Topshiriq (DragDropOrder) mashina ishga tushirilgandan keyin ochiladi (showBuild) — qator build-quti ichida bo'lsa boshida ko'rinmaydi. 151-qonun 3-band (shart OLDINDAN aytiladi) bo'yicha qator ustun oxiriga (ternary'dan tashqariga) ko'chirildi: ikkala bosqichda ko'rinadi, yakundan keyin yashiriladi.",
+  "urinishlar_soni": 2,
+  "eslatma": "S0 skrinshoti: qator o'ng ustunda «zarar(5) ni chaqirish» tugmasi ostida. Slot-maslahatlari tartibni deyarli aytadi (inventar yon-topilmasi) — matn-P2.md."
+ },
+ {
+  "file": "src/2-Modull/PracticeLesson3.jsx",
+  "sid": "s5",
+  "ach": "planner",
+  "status": "✅",
+  "tur": "A-umumiy",
+  "nima_qilindi": "DragDropOrder ga onWrong (faylda yagona ishlatilish); Screen5 da achMiss.miss; AchRule DragDropOrder ostida {!done && …}",
+  "miss_joyi": "DragDropOrder useEffect([wrong]) → onWrong",
+  "urinish": "3 katak to'lib tartib xato chiqqan on",
+  "sirpanish": "bo'lakni joylab qaytarib olish",
+  "prob": {
+   "S0": "✓",
+   "S4": "✓",
+   "S5": "✓",
+   "S2": "✓",
+   "S1a": "✓",
+   "S1b": "✓",
+   "S3": "✓"
+  },
+  "gates": "esbuild/jsx/keys/prompt ✓, lintcmp 0",
+  "qaror": "",
+  "urinishlar_soni": 1,
+  "eslatma": "Skrinshot (animatsiyadan keyin): qator slotlar ostida, markazda. Mentor to'g'ri tartibni oldindan aytadi va slot-maslahatlari ham — birinchi urinishda xato qilish deyarli imkonsiz (matn-P2.md)."
+ },
+ {
+  "file": "src/2-Modull/JsLoopsLesson.jsx",
+  "sid": "s14",
+  "ach": "infinitytamer",
+  "status": "✅",
+  "tur": "A-qol",
+  "nima_qilindi": "click() bir qatorli funksiyasida part !== 'step' bo'lsa achMiss.miss (izohsiz); AchRule «Qaysi qism xato?» ostida {!done && …}",
+  "miss_joyi": "Screen14 click(part)",
+  "urinish": "xato qism (boshlanish yoki shart) bosilgan har qadam",
+  "sirpanish": "— (uch alohida span, boshqa bosiladigan joy yo'q)",
+  "prob": {
+   "S0": "✓",
+   "S4": "✓",
+   "S5": "✓",
+   "S2": "✓",
+   "S1a": "✓",
+   "S1b": "✓"
+  },
+  "gates": "esbuild/jsx/keys/prompt ✓, lintcmp 0",
+  "qaror": "",
+  "urinishlar_soni": 1,
+  "eslatma": "Skrinshot: qator AI-kartada kod va «Qaysi qism xato?» ostida. Mentor «Sir qadam qismida yashiringan» — javobni oldindan aytadi (matn-P2.md)."
+ },
+ {
+  "file": "src/2-Modull/PeanStackLesson.jsx",
+  "sid": "s13",
+  "ach": "teambuilder",
+  "status": "✅",
+  "tur": "A-qol",
+  "nima_qilindi": "launch() da tekshiruv xato chiqsa achMiss.miss; AchRule «▶ Ishga tushirish» ostida {!done && …}",
+  "miss_joyi": "Screen13 launch() — else tarmog'i",
+  "urinish": "to'rt katak to'lib «Ishga tushirish» bosilgan, kamida bitta katak xato",
+  "sirpanish": "katakni bosib bo'shatish / almashtirish (tugma bosilmaguncha tekshirilmaydi)",
+  "prob": {
+   "S0": "✓",
+   "S4": "✓",
+   "S5": "✓",
+   "S2": "✓",
+   "S1a": "✓",
+   "S1b": "✓",
+   "S3": "✓"
+  },
+  "gates": "esbuild/jsx/keys/prompt ✓, lintcmp 0",
+  "qaror": "",
+  "urinishlar_soni": 1,
+  "eslatma": "Skrinshot: qator o'ng ustunda tugma ostida. Inventar yon-topilmasi: `striker` (arena) — darsdagi ikkinchi kafolatli nishon bo'lishi mumkin (152-qonun 1-band) — tekshirilmadi, T2/bosh agent; ildizdagi o'lik `earn('coder')` — tegilmadi."
+ },
+ {
+  "file": "src/2-Modull/PmLesson4.jsx",
+  "sid": "s4",
+  "ach": "matchMaster",
+  "status": "✅",
+  "tur": "A-qol",
+  "nima_qilindi": "drop() da shart ajratildi: faqat BO'SH qatorga noto'g'ri karta → achMiss.miss; band qatorga bosish — sirpanish; AchRule kartalar havzasi ostida {!doneAll && …}",
+  "miss_joyi": "Screen4 drop(rowId)",
+  "urinish": "tanlangan karta bo'sh qatorga qo'yilib, qator silkingan (row.need !== held && !place[rowId])",
+  "sirpanish": "band qatorga ikkinchi karta (place[rowId]); karta tanlanmasdan qator bosish; kartani qaytarib olish",
+  "prob": {
+   "S0": "✓",
+   "S4": "✓",
+   "S5": "✓",
+   "S2": "✓",
+   "S1a": "✓",
+   "S1b": "✓",
+   "S3": "✓"
+  },
+  "gates": "esbuild/jsx/keys/prompt ✓, lintcmp 0",
+  "qaror": "Inventar aytgan qo'shma shart ajratildi; S3 da band qatorga noto'g'ri karta qo'yish sinaldi — sanalmadi.",
+  "urinishlar_soni": 1,
+  "eslatma": "Skrinshot: qator kartalar havzasi ostida, markazda. Meta'da turi `exploration` — aslida topshiriq (tegilmadi)."
+ },
+ {
+  "file": "src/2-Modull/PmLesson5.jsx",
+  "sid": "s11",
+  "ach": "sharpeye",
+  "status": "✅",
+  "tur": "A-qol",
+  "nima_qilindi": "tap() va place() ning xato tarmoqlarida achMiss.miss (mahalliy `miss` holati bor — kontekst `achMiss`); AchRule kartalar to'ri ostida {!done && …}",
+  "miss_joyi": "ScrFindError tap(c) else · place(k) else",
+  "urinish": "o'z joyidagi kartani bosish (1-qadam) yoki topilgan kartani noto'g'ri ro'yxatga yuborish (2-qadam) — har qadam",
+  "sirpanish": "— (topilgach kartalar disabled; topilmasdan ro'yxat tugmalari chiqmaydi)",
+  "prob": {
+   "1-qadam": {
+    "S0": "✓",
+    "S4": "✓",
+    "S5": "✓",
+    "S2": "✓",
+    "S1a": "✓",
+    "S1b": "✓"
+   },
+   "2-qadam": {
+    "S2": "✓",
+    "S1a": "✓",
+    "S1b": "✓"
+   }
+  },
+  "gates": "esbuild/jsx/keys/prompt ✓, lintcmp 0",
+  "qaror": "",
+  "urinishlar_soni": 1,
+  "eslatma": "Ikki bosqichli ekran — ikkala xato-yo'l alohida prob-yozuv bilan isbotlandi. Skrinshot: qator ro'yxatlar ostida markazda."
+ },
+ {
+  "file": "src/2-Modull/PmLesson6.jsx",
+  "sid": "s2",
+  "ach": "jargon",
+  "status": "✅",
+  "tur": "A-qol",
+  "nima_qilindi": "tap() else-tarmog'ida achMiss.miss (mahalliy `miss` bor — `achMiss`); AchRule gap-kartasi ostida {!done && …}",
+  "miss_joyi": "Screen2 tap(i) else",
+  "urinish": "kasbiy bo'lmagan so'z bosilgan har qadam",
+  "sirpanish": "— (topilgan so'z disabled)",
+  "prob": {
+   "S0": "✓",
+   "S4": "✓",
+   "S5": "✓",
+   "S2": "✓",
+   "S1a": "✓",
+   "S1b": "✓"
+  },
+  "gates": "esbuild/jsx/keys/prompt ✓, lintcmp 0",
+  "qaror": "",
+  "urinishlar_soni": 1,
+  "eslatma": "Dars 2-ekrani — induktiv ochilish (o'quvchi hali «kasbiy so'z»ni bilmaydi). Inventar muqobil: bu darsda bonus yo'q → s2 ni BONUS qilish ham qonuniy (152-qonun). Yo'riqnoma bo'yicha A qilindi; foydalanuvchi qarori uchun eslatma."
+ },
+ {
+  "file": "src/2-Modull/PmLesson6.jsx",
+  "sid": "s10",
+  "ach": "ear",
+  "status": "✅",
+  "tur": "C-halol",
+  "nima_qilindi": "Mavjud halol hisob (correct: okAll) qoldi; yakunda okAll false bo'lsa achMiss.miss (F5 dan keyin ham belgi); <AchRule screen={screen} once /> — bir martalik ekran",
+  "miss_joyi": "Screen10 done-effekti (onAnswer dan oldin)",
+  "urinish": "butun ekran — bitta urinish: uchala hukmdan kamida bittasi noto'g'ri",
+  "sirpanish": "— (sabab tanlovi natijaga ta'sir qilmaydi)",
+  "prob": {
+   "S0": "✓",
+   "S4": "✓",
+   "S5": "✓",
+   "S2": "✓",
+   "S1a": "✓ (once matni)",
+   "S1b": "✓"
+  },
+  "gates": "esbuild/jsx/keys/prompt ✓, lintcmp 0",
+  "qaror": "Prob right/wrong — async eval (hukm kartasi bo'lmasa hech narsa qilmaydi), chunki F5 dan keyin ekran yakunlangan holda ochiladi (bir martalik).",
+  "urinishlar_soni": 1,
+  "eslatma": "Qator shart qo'yilmagan (once) — yakundan keyin natija-jadvali ostida «Nishon birinchi urinish uchun edi.» turadi. Skrinshot: qator hukm-kartasi ostida."
+ },
+ {
+  "file": "src/2-Modull/JsConditionsLesson.jsx",
+  "sid": "s14",
+  "ach": "debugger",
+  "status": "✅",
+  "tur": "Q6",
+  "nima_qilindi": "Q6: xatosiz qator (`let pin = 1111`) ham bosiladigan; bosilsa 0,9 s qizaradi (mavjud `.ai-line.bad` uslubi) va «Qaysi qatorda xato?» satri tasdiqlangan matnga almashadi («Bu qatorda xato yo'q — yana qarang.» / ru) + achMiss.miss. P1 (CssLesson1 s14) naqshi bilan aynan bir xil. AchRule prompt ostida {!done && …}",
+  "miss_joyi": "Screen14 pickWrong(i)",
+  "urinish": "xatosiz qator bosilgan har qadam",
+  "sirpanish": "—",
+  "prob": {
+   "S0": "✓",
+   "S4": "✓",
+   "S5": "✓",
+   "S2": "✓",
+   "S1a": "✓ (tasdiqlangan matn ko'rindi)",
+   "S1b": "✓"
+  },
+  "gates": "esbuild/jsx/keys/prompt ✓, lintcmp 0",
+  "qaror": "",
+  "urinishlar_soni": 1,
+  "eslatma": "Ekranda faqat 2 qator (let · if) — bosiladigan tanlov kichik. Mentor va audio javobni oldindan aytadi («Shartda bitta teng belgisi turibdi»), if qatorida `// ?` belgisi ham bor — matn-P2.md. Tekin edi (152: darsda bonus + graduate bor edi) — endi haqiqiy topshiriq."
+ },
+ {
+  "file": "src/4a-Modull/NestArchAliveLesson.jsx",
+  "sid": "s9",
+  "ach": "fullFlow",
+  "status": "✅",
+  "tur": "A-qol",
+  "nima_qilindi": "useEffect([full, pathOk]): yo'lak to'lib tartib xato chiqqan onda achMiss.miss; AchRule yo'lak-taxtasi va mijoz-tugmalari orasida {!done && …}",
+  "miss_joyi": "Screen9 useEffect([full, pathOk])",
+  "urinish": "6 bekat to'lib, tartib xato (avto-tekshiruv: to'g'ri bo'lsa pool o'rnida «✓ Yo'l to'g'ri terildi»)",
+  "sirpanish": "kartani joylab qaytarib olish; slotdan slotga ko'chirish (to'liq bo'lmaydi); «bo'sh buyurtma»/«tokensiz» mijozning 400/401 bilan to'xtashi (to'g'ri yo'lakda — xato emas)",
+  "prob": {
+   "S0": "✓",
+   "S4": "✓",
+   "S5": "✓",
+   "S2": "✓ (3 mijoz yurgizildi)",
+   "S1a": "✓",
+   "S1b": "✓",
+   "S3": "✓"
+  },
+  "gates": "esbuild/jsx/keys/prompt ✓, lintcmp 0",
+  "qaror": "Inventar urinishni «to'liq, lekin xato yo'lakda mijoz yurgizish» deb taklif qilgan. Kod: yo'lak to'lishi bilan ekran o'zi signal beradi (to'g'ri bo'lsa «✓ Yo'l to'g'ri terildi», xato bo'lsa bu belgi chiqmaydi) — o'quvchi mijoz yurgizmasdan tuzatib olishi mumkin edi (teshik). Shuning uchun urinish = to'lib tartib xato chiqqan on — 151-jadvaldagi avto-tekshiruvli tartiblash qatori, DragDropOrder bilan bir xil. Mentor ataylab xato yig'ishga undamaydi (oqibatni tushuntiradi).",
+  "urinishlar_soni": 1,
+  "eslatma": "Skrinshot: qator taxta ostida, mijoz-tugmalari ustida. Ekran uzun — pastki qismi aylantirib ko'riladi (avvalgidek)."
+ },
+ {
+  "file": "src/4a-Modull/NestArchPracticeLesson.jsx",
+  "sid": "s10",
+  "ach": "shelf",
+  "status": "✅",
+  "tur": "A-umumiy",
+  "nima_qilindi": "PickLines ga onWrong (xato-tarmoq boshida; faylda yagona ishlatilish — boshqa ekranlarga ta'sir yo'q); Screen10 da achMiss.miss; AchRule PickLines ostida {!done && …}",
+  "miss_joyi": "PickLines tap(c) else → onWrong",
+  "urinish": "begona (DTO @IsString yoki controller @Roles) qator bosilgan har qadam",
+  "sirpanish": "— (tanlangan qator disabled)",
+  "prob": {
+   "S0": "✓",
+   "S4": "✓",
+   "S5": "✓",
+   "S2": "✓",
+   "S1a": "✓",
+   "S1b": "✓"
+  },
+  "gates": "esbuild/jsx/keys/prompt ✓, lintcmp 0",
+  "qaror": "",
+  "urinishlar_soni": 1,
+  "eslatma": "Skrinshot: qator ikki ustun ostida markazda. `useStuckValve` klapani nishonsiz o'tkazadi — o'zgarmadi."
+ },
+ {
+  "file": "src/4a-Modull/NestArchPracticeLesson.jsx",
+  "sid": "s14",
+  "ach": "catcher",
+  "status": "✅",
+  "tur": "A-qol",
+  "nima_qilindi": "tapLine(): aybdor qator return'idan keyin achMiss.miss (dalil yig'ilmaguncha bosish avvalgidek e'tiborsiz); AchRule AI-kartada prompt ostida {!done && …} — boshidan ko'rinadi",
+  "miss_joyi": "Screen14 tapLine(ln)",
+  "urinish": "dalil (3 eshik mijoz sifatida) yig'ilgach aybsiz qator bosilgan har qadam (yopuvchi `}` ham)",
+  "sirpanish": "dalilsiz qator bosish — e'tiborsiz (S3 isbotladi); eshik taqillatish — kashfiyot",
+  "prob": {
+   "S0": "✓",
+   "S4": "✓",
+   "S5": "✓",
+   "S2": "✓",
+   "S1a": "✓",
+   "S1b": "✓",
+   "S3": "✓"
+  },
+  "gates": "esbuild/jsx/keys/prompt ✓, lintcmp 0",
+  "qaror": "",
+  "urinishlar_soni": 1,
+  "eslatma": "Skrinshot: qator AI-kartada «Avval dalil yig'ing…» ostida. Yopuvchi `}` qatorini bosish ham xato sanaladi (inventar: maqbul)."
+ },
+ {
+  "file": "src/4a-Modull/NestArchPracticeLesson.jsx",
+  "sid": "s19",
+  "ach": "owner",
+  "status": "✅",
+  "tur": "A-qol",
+  "nima_qilindi": "tap(): to'g'ri (yolg'on bo'lmagan) da'vo bosilsa achMiss.miss; AchRule da'volar ro'yxati ostida {!done && …}",
+  "miss_joyi": "Screen19 tap(c) — c.ok tarmog'i",
+  "urinish": "ro'yxatga MOS da'vo bosilgan har qadam (Mentor: «Ro'yxatga mos kelmaydigan da'voni bosing»)",
+  "sirpanish": "—",
+  "prob": {
+   "S0": "✓",
+   "S4": "✓",
+   "S5": "✓",
+   "S2": "✓",
+   "S1a": "✓",
+   "S1b": "✓"
+  },
+  "gates": "esbuild/jsx/keys/prompt ✓, lintcmp 0",
+  "qaror": "Inventar UX-ziddiyatni ko'rsatgan: bosilgan to'g'ri da'vo «✓» bilan belgilanadi, bosilmaganlar `tap-hint` bilan yonadi — «hammasini tekshirib chiq» taassuroti. Mentor ko'rsatmasi aniq bo'lgani uchun xato sanaldi; dizaynga (tap-hint) tegilmadi.",
+  "urinishlar_soni": 1,
+  "eslatma": "⚠ UX-xavf: tap-hint yonib turishi o'quvchini to'g'ri da'volarni ham bosishga undashi mumkin — nishonni «nohaq» yo'qotish. Foydalanuvchi ko'rib chiqsin: tap-hint ni olib tashlash (dizayn, matn emas) yoki shu holicha."
+ },
+ {
+  "file": "src/4a-Modull/PmLesson15.jsx",
+  "sid": "s4",
+  "ach": "loadTester",
+  "status": "✅",
+  "tur": "A-qol",
+  "nima_qilindi": "tanla(): o'rindiqdan boshqa qism tanlansa achMiss.miss; AchRule chap ustun oxirida (qaror-kartasi bosqich-2 da ochiladi — qator boshidan ko'rinsin) {!done && …}",
+  "miss_joyi": "Screen4 tanla(id)",
+  "urinish": "«O'rindiq tanlash»dan boshqa qism kuchaytirish uchun tanlangan har qadam",
+  "sirpanish": "odam soni pog'onalarini bosish — kashfiyot (S3 isbotladi)",
+  "prob": {
+   "S0": "✓",
+   "S4": "✓",
+   "S5": "✓",
+   "S2": "✓",
+   "S1a": "✓",
+   "S1b": "✓",
+   "S3": "✓"
+  },
+  "gates": "esbuild/jsx/keys/prompt ✓, lintcmp 0",
+  "qaror": "Qaror-kartasi (qsel) faqat birinchi sinish ko'rilgach ochiladi — qator qsel ichida bo'lsa boshida ko'rinmasdi; 151-qonun 3-band bo'yicha chap ustun oxiriga qo'yildi.",
+  "urinishlar_soni": 1,
+  "eslatma": "Tanlashdan oldin o'quvchi qaysi qism birinchi sinishini o'zi ko'radi (progressiv ochilish) — tanlov taxmin emas, halol sinov. Qutqaruv-klapani nishonsiz o'tkazadi (o'zgarmadi)."
+ },
+ {
+  "file": "src/4a-Modull/PmLesson15.jsx",
+  "sid": "s9",
+  "ach": "rankMaster",
+  "status": "✅",
+  "tur": "A-qol",
+  "nima_qilindi": "tanla() da setMissedOnce yonida achMiss.miss (mahalliy `miss` bor — `achMiss`); AchRule variantlar ostida {!done && …}",
+  "miss_joyi": "Screen9 tanla(id) — xato tarmoq",
+  "urinish": "navbatdagi bo'lmagan qism tanlangan har qadam (3 raundning istalganida)",
+  "sirpanish": "—",
+  "prob": {
+   "S0": "✓",
+   "S4": "✓",
+   "S5": "✓",
+   "S2": "✓",
+   "S1a": "✓",
+   "S1b": "✓"
+  },
+  "gates": "esbuild/jsx/keys/prompt ✓, lintcmp 0",
+  "qaror": "",
+  "urinishlar_soni": 1,
+  "eslatma": "3 raund × 3–4 variant — ko'p-bandli topshiriq (qaror 4-A: bitta xato = nishon yo'q)."
+ },
+ {
+  "file": "src/4a-Modull/PmLesson15.jsx",
+  "sid": "s10",
+  "ach": "loadCoder",
+  "status": "—",
+  "tur": "MEHNAT",
+  "nima_qilindi": "kodga tegilmadi — pickKod (darvoza-savol + to'liq-ekran kompilyator)",
+  "qaror": "Nishon tavsifi «Sinadigan qismlarni KOD BILAN topdingiz» — kod yozish haqida; kompilyator jonli tekshiradi, diskret urinish yo'q → foydalanuvchi qarori 2-A: koding = MEHNAT. Darvoza-savolga miss qo'yilsa tavsif yolg'on bo'lardi (inventar taklifidan voz kechildi).",
+  "eslatma": "`gpick` alohida kalitda (KODING_KEY) saqlanadi — «Qaytadan» mashqida ekran 2-bosqichdan ochiladi (P3 dagi PM ScreenCoding bilan bir xil holat)."
+ },
+ {
+  "file": "src/4a-Modull/PmLesson15.jsx",
+  "sid": "s8",
+  "ach": "wiseBuilder",
+  "status": "—",
+  "tur": "MEHNAT",
+  "nima_qilindi": "kodga tegilmadi — erkin yozma ish (qaror: mehnat)"
+ },
+ {
+  "file": "src/4b-Modull/PmLesson16.jsx",
+  "sid": "s9",
+  "ach": "priorityCall",
+  "status": "✅",
+  "tur": "A-qol",
+  "nima_qilindi": "oops() (judge xato tarmoqlarining umumiy nuqtasi) boshida achMiss.miss; AchRule hukm-kartasi ichida belgi-tugmalari ostida (karta faqat !done da ko'rinadi)",
+  "miss_joyi": "Screen9 oops(text)",
+  "urinish": "ikkala belgi tanlanib, kamida bittasi xato chiqqan har hukm",
+  "sirpanish": "— (bitta belgi tanlash hali hukm emas)",
+  "prob": {
+   "S0": "✓",
+   "S4": "✓",
+   "S5": "✓",
+   "S2": "✓ (4 karta)",
+   "S1a": "✓",
+   "S1b": "✓"
+  },
+  "gates": "esbuild/jsx/keys/prompt ✓, lintcmp 0",
+  "qaror": "",
+  "urinishlar_soni": 1,
+  "eslatma": "4 karta × 2 belgi — birinchi urinishda hammasini topish qiyin, nishon kam uchraydi (inventar; qaror 4-A bo'yicha qoida bir xil)."
+ },
+ {
+  "file": "src/4b-Modull/PmLesson16.jsx",
+  "sid": "s10",
+  "ach": "redToGreen",
+  "status": "—",
+  "tur": "MEHNAT",
+  "nima_qilindi": "kodga tegilmadi — pickKod (darvoza-savol + VS Code «yozdim»)",
+  "qaror": "Tavsif «Testni avval qizil, keyin yashil qildingiz» — VS Code'dagi kod ishi haqida (ekrandan tashqari, diskret urinish yo'q) → qaror 2-A: MEHNAT. Darvoza-savolga miss qo'yish tavsifni yolg'on qilardi."
+ },
+ {
+  "file": "src/4b-Modull/PmLesson16.jsx",
+  "sid": "s8",
+  "ach": "bugReporter",
+  "status": "—",
+  "tur": "MEHNAT",
+  "nima_qilindi": "kodga tegilmadi — erkin yozma ish"
+ },
+ {
+  "file": "src/4b-Modull/PmLesson16.jsx",
+  "sid": "s4",
+  "ach": "cheapFix",
+  "status": "—",
+  "tur": "BONUS",
+  "nima_qilindi": "kodga tegilmadi — PM tekin 4-ekran = darsning BONUSI (qaror 5-A)",
+  "qaror": "152-qonun 1-band: darsda `graduate` yo'q, boshqa bonus yo'q → kafolatli nishon 1 ta. Tavsif «Nosozlik narxini uch nuqtada ko'rdingiz» — qilingan ishni aytadi (rost)."
+ },
+ {
+  "file": "src/4b-Modull/EdgeCasesTestLesson.jsx",
+  "sid": "s9",
+  "ach": "guardBuilder",
+  "status": "✅",
+  "tur": "A-qol",
+  "nima_qilindi": "Screen9 drop() ning xato-tarmog'i (noto'g'ri qatorga sudrash) va bosish-tarmog'idagi else (chalg'ituvchi blok) — ikkalasida achMiss.miss; AchRule bloklar havzasi ostida {!done && …}",
+  "miss_joyi": "Screen9 drop() xato-tarmoq · up() bosish else",
+  "urinish": "blok noto'g'ri qatorga tashlangan yoki chalg'ituvchi (console.log / return 0) bosilgan har qadam",
+  "sirpanish": "zonadan tashqariga tashlash (snapBack, drop chaqirilmaydi); throw'siz «npm test» — dars ataylab ko'rsatadigan kashfiyot (S3 isbotladi)",
+  "prob": {
+   "bosish": {
+    "S0": "✓",
+    "S4": "✓",
+    "S5": "✓",
+    "S2": "✓",
+    "S1a": "✓",
+    "S1b": "✓",
+    "S3": "✓"
+   },
+   "sudrash": {
+    "S2": "✓",
+    "S1a": "✓",
+    "S1b": "✓"
+   }
+  },
+  "gates": "esbuild/jsx/keys/prompt ✓, lintcmp 0",
+  "qaror": "",
+  "urinishlar_soni": 1,
+  "eslatma": "Ikki xato-yo'l alohida isbotlandi: bosish (chalg'ituvchi) va sudrash (sintetik pointer-hodisalar bilan noto'g'ri qatorga). To'g'ri blok bosilsa o'zi o'z qatoriga tushadi — bosishda joylashtirish xatosi yo'q."
+ },
+ {
+  "file": "src/4b-Modull/EdgeCasesTestLesson.jsx",
+  "sid": "s15",
+  "ach": "fakeEdgeHunter",
+  "status": "✅",
+  "tur": "A-umumiy",
+  "nima_qilindi": "PickLines ga onWrong (faylda yagona ishlatilish); Screen15 da achMiss.miss; AchRule PickLines ostida {!done && …}",
+  "miss_joyi": "PickLines tap(c) else → onWrong",
+  "urinish": "yolg'on test (o'ralmagan chaqiruv / toBe / console.log) bosilgan har qadam",
+  "sirpanish": "— (tanlangan qator disabled)",
+  "prob": {
+   "S0": "✓",
+   "S4": "✓",
+   "S5": "✓",
+   "S2": "✓",
+   "S1a": "✓",
+   "S1b": "✓"
+  },
+  "gates": "esbuild/jsx/keys/prompt ✓, lintcmp 0",
+  "qaror": "",
+  "urinishlar_soni": 1,
+  "eslatma": "2 to'g'ri + 3 yolg'on — nishon haqiqatan qiymatli. s9 (guardBuilder) skrinshotida bloklar havzasi aralashtirilmagan: to'g'ri uch blok tartib bilan birinchi turadi va Mentor tartibni aytadi — bosishda joylashtirish xatosi yo'q, xato faqat chalg'ituvchi blokda (matn-P2.md ga eslatma)."
+ },
+ {
+  "file": "src/4b-Modull/JestUnitTestLesson.jsx",
+  "sid": "s9",
+  "ach": "greenSuite",
+  "status": "✅",
+  "tur": "A-qol",
+  "nima_qilindi": "EdgeCases s9 egizagi: drop() xato-tarmog'i (noto'g'ri qatorga sudrash) va bosish-else (chalg'ituvchi blok) — achMiss.miss; AchRule bloklar havzasi ostida {!done && …}",
+  "miss_joyi": "Screen9 drop() xato-tarmoq · up() bosish else",
+  "urinish": "blok noto'g'ri qatorga tashlangan yoki chalg'ituvchi (console.log / if) bosilgan har qadam",
+  "sirpanish": "zonadan tashqariga tashlash; expect'siz «npm test» — dars ataylab ko'rsatadigan kashfiyot (S3 isbotladi)",
+  "prob": {
+   "bosish": {
+    "S0": "✓",
+    "S4": "✓",
+    "S5": "✓",
+    "S2": "✓",
+    "S1a": "✓",
+    "S1b": "✓",
+    "S3": "✓"
+   },
+   "sudrash": {
+    "S2": "✓",
+    "S1a": "✓",
+    "S1b": "✓"
+   }
+  },
+  "gates": "esbuild/jsx/keys/prompt ✓, lintcmp 0",
+  "qaror": "",
+  "urinishlar_soni": 1,
+  "eslatma": "Bloklar havzasi aralashtirilmagan (to'g'ri uchtasi tartib bilan birinchi) va Mentor tartibni aytadi — xato faqat chalg'ituvchida (matn-P2.md)."
+ },
+ {
+  "file": "src/4b-Modull/JestUnitTestLesson.jsx",
+  "sid": "s15",
+  "ach": "fakeTestHunter",
+  "status": "✅",
+  "tur": "A-umumiy",
+  "nima_qilindi": "PickLines ga onWrong — FAQAT Screen15 uzatadi; Screen7 (nishonsiz) PickLines'ni onWrong'siz chaqiradi — xatti-harakati o'zgarmadi (`if (onWrong)` qo'riqchi). AchRule PickLines ostida {!done && …}",
+  "miss_joyi": "PickLines tap(c) else → onWrong (Screen15)",
+  "urinish": "yolg'on test (expect'siz · noto'g'ri etalon · console.log) bosilgan har qadam",
+  "sirpanish": "— (tanlangan qator disabled)",
+  "prob": {
+   "S0": "✓",
+   "S4": "✓",
+   "S5": "✓",
+   "S2": "✓",
+   "S1a": "✓",
+   "S1b": "✓"
+  },
+  "gates": "esbuild/jsx/keys/prompt ✓, lintcmp 0",
+  "qaror": "",
+  "urinishlar_soni": 1,
+  "eslatma": "⚠ Tavsif vazifaga mos emas: «Yolg'on testni topdingiz — expectsiz», o'quvchi esa HAQIQIY testlarni tanlaydi — matn-P2.md (EdgeCases s15 qolipi: «Haqiqiy testlarni yolg'onlardan ajratdingiz»)."
+ },
+ {
+  "file": "src/2-Modull/JsFunctionsLesson.jsx",
+  "sid": "s13",
+  "ach": "coder",
+  "status": "—",
+  "tur": "MEHNAT",
+  "nima_qilindi": "kodga tegilmadi — kod terish (harf terilishi bilan jonli tekshiruv, diskret urinish yo'q)",
+  "eslatma": "`coder` praktika-kompilyatordan ham beriladi (ildizdagi `earn('coder')`) — T2 inventari."
+ },
+ {
+  "file": "src/2-Modull/PmLesson4.jsx",
+  "sid": "s8",
+  "ach": "cardWriter",
+  "status": "—",
+  "tur": "MEHNAT",
+  "nima_qilindi": "kodga tegilmadi — erkin yozma ish"
+ },
+ {
+  "file": "src/2-Modull/PmLesson4.jsx",
+  "sid": "s11",
+  "ach": "pageMaker",
+  "status": "—",
+  "tur": "MEHNAT",
+  "nima_qilindi": "kodga tegilmadi — to'liq-ekran kompilyator (koding, qaror 2-A)"
+ },
+ {
+  "file": "src/2-Modull/PmLesson5.jsx",
+  "sid": "s8",
+  "ach": "weigher",
+  "status": "—",
+  "tur": "MEHNAT",
+  "nima_qilindi": "kodga tegilmadi — «tarozi»: yagona to'g'ri javobi yo'q o'z-qaror mashqi (qaror 3-A)"
+ },
+ {
+  "file": "src/2-Modull/PmLesson5.jsx",
+  "sid": "s9",
+  "ach": "launcher",
+  "status": "—",
+  "tur": "MEHNAT",
+  "nima_qilindi": "kodga tegilmadi — «ochilish ro'yxati»: o'z-qaror mashqi (qaror 3-A)"
+ },
+ {
+  "file": "src/2-Modull/PmLesson6.jsx",
+  "sid": "s9",
+  "ach": "plain",
+  "status": "—",
+  "tur": "MEHNAT",
+  "nima_qilindi": "kodga tegilmadi — erkin yozma ish"
+ },
+ {
+  "file": "src/2-Modull/PmLesson6.jsx",
+  "sid": "s11",
+  "ach": "speaker",
+  "status": "—",
+  "tur": "MEHNAT",
+  "nima_qilindi": "kodga tegilmadi — to'liq-ekran kompilyator (koding, qaror 2-A)"
+ }
+]

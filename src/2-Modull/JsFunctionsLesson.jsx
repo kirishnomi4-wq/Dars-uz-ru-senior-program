@@ -697,7 +697,7 @@ const FN_PIECES = [
   { id: 'param', label: '(kuch)' },
   { id: 'body', label: '{ return kuch * 3 }' },
 ];
-function DragDropOrder({ items, hints, onSolved }) {
+function DragDropOrder({ items, hints, onSolved, onWrong }) {
   const order = items.map(x => x.id);
   const byId = useMemo(() => Object.fromEntries(items.map(x => [x.id, x])), [items]);
   // YAGONA holat — pool va slots birga (setState ichida setState YO'Q → StrictMode'da dublikat bo'lmaydi)
@@ -712,6 +712,7 @@ function DragDropOrder({ items, hints, onSolved }) {
   const solved = slots.every((s, i) => s === order[i]);
   const wrong = full && !solved;
   useEffect(() => { if (solved) onSolved && onSolved(); }, [solved]); // eslint-disable-line
+  useEffect(() => { if (wrong) onWrong && onWrong(); }, [wrong]); // eslint-disable-line
   const place = (id, from, slotIdx) => setSt(({ pool, slots }) => {
     const ns = slots.slice(); const occ = ns[slotIdx];
     if (typeof from === 'number') ns[from] = null;
@@ -1052,6 +1053,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [out, setOut] = useState(storedAnswer ? ['15'] : []);
   const [running, setRunning] = useState(false);
   const [dragDone, setDragDone] = useState(!!storedAnswer); // 2-faza: funksiya bo'laklarini O'ZI yig'adi
+  const achMiss = useContext(AchMissCtx); // 🏅 151-qonun: to'liq tartib xato — nishon birinchi urinishga
   const timer = useRef(null);
   const ran = out.length >= 1;
   const done = dragDone; // Davom etish — funksiya DRAG bilan yig'ilganda
@@ -1105,7 +1107,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {showBuild ? (
               <div className="sk-buildbox fade-step">
                 <p className="flow-label" style={{ margin: '0 0 10px' }}>{tr({ uz: "🧲 Endi o'zingiz: bo'laklarni to'g'ri tartibda joylang", ru: '🧲 Теперь сами: разложите блоки в правильном порядке' })}</p>
-                <DragDropOrder items={FN_PIECES} hints={[{ uz: "funksiya e'loni kaliti", ru: 'ключевое слово объявления' }, { uz: 'mashina nomi', ru: 'имя машины' }, { uz: 'kirish — parametr', ru: 'вход — параметр' }, { uz: 'tanasi — return bilan', ru: 'тело — с return' }]} onSolved={() => setDragDone(true)} />
+                <DragDropOrder items={FN_PIECES} hints={[{ uz: "funksiya e'loni kaliti", ru: 'ключевое слово объявления' }, { uz: 'mashina nomi', ru: 'имя машины' }, { uz: 'kirish — parametr', ru: 'вход — параметр' }, { uz: 'tanasi — return bilan', ru: 'тело — с return' }]} onSolved={() => setDragDone(true)} onWrong={() => { if (achMiss) achMiss.miss(screen); }} />
               </div>
             ) : (<>
             <div className="codebox fade-up delay-1"><div><FN>console</FN>.<FN>log</FN>(<FN>zarar</FN>(<NUM>5</NUM>))</div></div>
@@ -1130,6 +1132,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {ran && !done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ Mashina ishladi! Endi pastda funksiyani <b>o'zingiz yig'ing</b> — bo'laklarni to'g'ri tartibda joylang.</>, ru: <>✓ Машина сработала! Теперь ниже <b>соберите функцию сами</b> — разложите блоки в правильном порядке.</> })}</p></div>}
             {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ <b>5</b> qiymati <b>kuch</b> parametriga tushdi, funksiya <span className="mono">return</span> orqali <b>15</b> zararni qaytardi. Mana to'liq mashina!</>, ru: <>✓ Значение <b>5</b> попало в параметр <b>kuch</b>, и функция через <span className="mono">return</span> вернула урон <b>15</b>. Вот и вся машина!</> })}</p></div>}
             </>)}
+            {!done && <AchRule screen={screen} />}
           </Col>
         </div>
         </Zoomable>
@@ -1973,6 +1976,22 @@ const ACHIEVEMENTS = {
 // Ekran id → nishon (recordAnswer'da avtomatik beriladi) — faqat AKTIV challenge ekranlari:
 // s3 = DragDrop-gate (funksiya yig'ish), s13 = 3 bosqichli yozma praktika, s15 = yakuniy yozma test
 const ACH_TRIGGERS = { s3: 'builder', s13: 'coder', s15: 'returnmaster' };
+
+// 🏅 151-qonun: amaliy topshiriq nishoni faqat BIRINCHI urinishga beriladi. Shart OLDINDAN aytiladi; birinchi urinish
+// xato bo'lsa — jazosiz qisqa xabar (`once` — qayta urinishi yo'q ekran). Mentor ekranida, «Qaytadan» mashq-o'tishida va
+// nishon olingach ko'rinmaydi. Matn — MATN_KORPUS §183 (hamma darsda aynan bir xil).
+const AchRule = ({ screen, once }) => {
+  const earned = useContext(AchCtx);
+  const am = useContext(AchMissCtx);
+  const gate = useContext(LiveGateCtx) || {};
+  const sid = SCREEN_META[screen] && SCREEN_META[screen].id;
+  const ach = ACH_TRIGGERS[sid];
+  if (!ach || !am || am.practice || (gate.live && gate.live.mode === 'mentor') || (earned && earned.has(ach))) return null;
+  const lost = am.missed.has(sid);
+  return <p className={`ach-rule ${lost ? 'lost' : ''}`}>{lost
+    ? (once ? tr({ uz: 'Nishon birinchi urinish uchun edi.', ru: 'Значок давался за первую попытку.' }) : tr({ uz: "Nishon birinchi urinish uchun edi — endi bemalol to'g'risini toping.", ru: 'Значок давался за первую попытку — теперь спокойно найдите верный ответ.' }))
+    : tr({ uz: "🏅 Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki.", ru: '🏅 Справитесь с первой попытки — значок ваш.' })}</p>;
+};
 // 🏅 O'YIN USLUBIDAGI TO'LIQ-EKRAN NISHON BAYRAMI — yorqin nurlar, medal portlashi, uchqunlar, zarba to'lqini
 function AchCelebrate({ ach, onDone }) {
   useEffect(() => { const t = setTimeout(onDone, 4000); return () => clearTimeout(t); }, []); // eslint-disable-line
@@ -3614,6 +3633,8 @@ export default function JsFunctionsLesson({ lang: langProp, onFinished, onPracti
         .qcode { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 0.92em; background: rgba(20,17,14,0.08); border-radius: 6px; padding: 1px 6px; white-space: nowrap; }
         .qz-tile .qcode { background: rgba(255,255,255,0.25); color: #fff; }
         .qz-q .qcode { background: rgba(203,173,255,0.18); color: #F2ECFF; }
+        .ach-rule { margin: 8px 0 0; text-align: center; font-size: 13px; line-height: 1.4; color: ${T.ink2}; }
+        .ach-rule.lost { font-style: italic; }
       `}</style>
       <LiveGateCtx.Provider value={{ locked, live }}>
         <AchCtx.Provider value={earned}>

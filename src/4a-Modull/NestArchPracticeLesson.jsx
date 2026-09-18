@@ -640,7 +640,7 @@ const ShopSwagger = ({ eps = SHOP_EPS, openId, onToggle, triedIds, onTry }) => (
   </div>
 );
 // ===== PICK LINES (Dars 2 dan) =====
-const PickLines = ({ fileName, scaffoldTop, scaffoldBottom, candidates, agent, instruction, onComplete, completedInit }) => {
+const PickLines = ({ fileName, scaffoldTop, scaffoldBottom, candidates, agent, instruction, onComplete, completedInit, onWrong }) => {
   const correct = candidates.filter(c => c.correct);
   const [picked, setPicked] = useState(() => completedInit ? new Set(correct.map(c => c.id)) : new Set());
   const [shakeId, setShakeId] = useState(null);
@@ -651,7 +651,7 @@ const PickLines = ({ fileName, scaffoldTop, scaffoldBottom, candidates, agent, i
   const tap = (c) => {
     if (picked.has(c.id) || done) return;
     if (c.correct) { setPicked(p => { const s = new Set(p); s.add(c.id); return s; }); setWhy(null); }
-    else { setShakeId(c.id); setWhy(c.why); setTimeout(() => setShakeId(x => (x === c.id ? null : x)), 450); }
+    else { if (onWrong) onWrong(); setShakeId(c.id); setWhy(c.why); setTimeout(() => setShakeId(x => (x === c.id ? null : x)), 450); }
   };
   const pickedCorrect = correct.filter(c => picked.has(c.id));
   return (
@@ -1326,6 +1326,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // ===== SCREEN 10 — Book entity yig'ish (PickLines) =====
 const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [done, setDone] = useState(!!storedAnswer);
+  const achMiss = useContext(AchMissCtx); // 🏅 151-qonun: begona qator — nishon birinchi urinishga
   const { tip: _tip, rescue: _resc } = useStuckValve(done, done ? 1 : 0);   // 13-band klapan
   const candidates = [
     { id: 'title', correct: true, label: '@Column()  title: string;', node: <><At>@Column</At>{'()  title: '}<St>string</St>{';'}</> },
@@ -1350,7 +1351,9 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           instruction={{ uz: 'book.entity.ts ga qaysi qatorlar tegishli?', ru: 'Какие строки относятся к book.entity.ts?' }}
           completedInit={!!storedAnswer}
           onComplete={() => { setDone(true); if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }}
+          onWrong={() => { if (achMiss) achMiss.miss(screen); }}
         />
+        {!done && <AchRule screen={screen} />}
         {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Book entity tayyor — ustunlar + Category bog'lanishi bilan. Endi "Top kitoblar" bo'limini qo'shamiz.</>, ru: <>Book entity готов — колонки + связь с Category. Теперь добавим раздел «Топ-книги».</> })}</p></div>}
         {_tip && !done && <p className="bhint fade-step">{tr({ uz: "💡 Har qatorni o'qing: u shu faylning vazifasiga tegishlimi?", ru: '💡 Прочитайте каждую строку: относится ли она к задаче этого файла?' })}</p>}
         {_resc && !done && <p className="bhint calm fade-step">{tr({ uz: "Qolganini keyinroq birga ko'rib chiqamiz — «Davom etish» ochiq.", ru: 'Остальное разберём вместе позже — «Продолжить» открыто.' })}</p>}
@@ -1475,6 +1478,7 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [sc, setSc] = useState(0);
   const evidence = DOORS.every(d => tried.has('guest:' + d.id));
   const done = fixed;
+  const achMiss = useContext(AchMissCtx); // 🏅 151-qonun: dalildan keyin aybsiz qator — nishon birinchi urinishga
   const { tip: _tip, rescue: _resc } = useStuckValve(done, (found ? 1 : 0) + (fixed ? 1 : 0));   // 13-band klapan
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]); // eslint-disable-line
   const knock = (roleId, d) => {
@@ -1486,6 +1490,7 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const tapLine = (ln) => {
     if (!evidence || found) return;
     if (ln.id === BAD_LINE) { setFound(true); setWhy(null); setSc(n => n + 1); return; }
+    if (achMiss) achMiss.miss(screen);
     setShakeId(ln.id); setWhy(tr(ln.why)); setSc(n => n + 1);
     setTimeout(() => setShakeId(x => (x === ln.id ? null : x)), 450);
   };
@@ -1538,6 +1543,7 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               </div>
               {!evidence && <p className="ai-prompt">{tr({ uz: "Avval dalil yig'ing — uch eshikni mijoz sifatida sinang ←", ru: 'Сначала соберите улики — попробуйте три двери как клиент ←' })}</p>}
               {evidence && !found && <p className="ai-prompt">{tr({ uz: "Qaysi qator mijozni to'sib qo'ygan? Bosing.", ru: 'Какая строка не пускает клиента? Нажмите на неё.' })}</p>}
+              {!done && <AchRule screen={screen} />}
               {found && !fixed && <button className="btn fade-step" style={{ alignSelf: 'flex-start' }} onClick={fix}>{tr({ uz: "🔧 POST'ni @Roles('public') ga o'zgartirish", ru: "🔧 Поменять POST на @Roles('public')" })}</button>}
               {fixed && <p className="ai-prompt" style={{ color: T.success, fontStyle: 'normal', fontWeight: 600 }}>{tr({ uz: '✓ Tuzatildi — buyurtma endi ochiq!', ru: '✓ Исправлено — заказы снова открыты!' })}</p>}
             </div>
@@ -1671,11 +1677,13 @@ const Screen19 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [shakeId, setShakeId] = useState(null);
   const [sc, setSc] = useState(0);
   const done = found && guarded;
+  const achMiss = useContext(AchMissCtx); // 🏅 151-qonun: to'g'ri da'voni «yolg'on» deb bosish — nishon birinchi urinishga
   const { tip: _tip, rescue: _resc } = useStuckValve(done, (found ? 1 : 0) + (guarded ? 1 : 0));   // 13-band klapan
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]); // eslint-disable-line
   const tap = (c) => {
     if (found) return;
     if (c.ok) {
+      if (achMiss) achMiss.miss(screen);
       setChecked(prev => { const s = new Set(prev); s.add(c.id); return s; });
       setWhy(tr(c.why)); setShakeId(c.id); setSc(n => n + 1);
       setTimeout(() => setShakeId(x => (x === c.id ? null : x)), 450);
@@ -1701,6 +1709,7 @@ const Screen19 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 <span>{found && !c.ok ? '❗' : (checked.has(c.id) ? '✓' : '')}</span>
               </button>
             ))}
+            {!done && <AchRule screen={screen} />}
             {why && !found && <div className="hint fade-step"><p className="body" style={{ margin: 0, color: T.ink2 }}>{tr(why)}</p></div>}
             {found && !guarded && <div className="frame-warn fade-step"><p className="note-h" style={{ color: T.danger }}>{tr({ uz: "❗ Yolg'on topildi", ru: '❗ Ложь найдена' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Ro'yxatda <span className="mono">DELETE /book/:id</span> — 🌐 <b>public</b>. Agent qo'riqchi qo'ymay ketgan: <b>har kim butun do'koningiz kitoblarini o'chirib tashlashi mumkin edi</b>.</>, ru: <>В списке <span className="mono">DELETE /book/:id</span> — 🌐 <b>public</b>. Агент забыл поставить стража: <b>любой мог удалить все книги вашего магазина</b>.</> })}</p></div>}
           </Col>
@@ -1978,6 +1987,22 @@ const ACHIEVEMENTS = {
 // Ekran id -> nishon. FAQAT ma'noli ekran: s8 = scored test · s10 = PickLines · s14 = debug (Beat 3) · s19 = audit (Beat 4).
 // ❌ «Bajardim» tugmasiga va passiv «bosdim=to'g'ri» gate'larga BOG'LANMAYDI.
 const ACH_TRIGGERS = { s8: 'guard', s10: 'shelf', s14: 'catcher', s19: 'owner' };
+
+// 🏅 151-qonun: amaliy topshiriq nishoni faqat BIRINCHI urinishga beriladi. Shart OLDINDAN aytiladi; birinchi urinish
+// xato bo'lsa — jazosiz qisqa xabar (`once` — qayta urinishi yo'q ekran). Mentor ekranida, «Qaytadan» mashq-o'tishida va
+// nishon olingach ko'rinmaydi. Matn — MATN_KORPUS §183 (hamma darsda aynan bir xil).
+const AchRule = ({ screen, once }) => {
+  const earned = useContext(AchCtx);
+  const am = useContext(AchMissCtx);
+  const gate = useContext(LiveGateCtx) || {};
+  const sid = SCREEN_META[screen] && SCREEN_META[screen].id;
+  const ach = ACH_TRIGGERS[sid];
+  if (!ach || !am || am.practice || (gate.live && gate.live.mode === 'mentor') || (earned && earned.has(ach))) return null;
+  const lost = am.missed.has(sid);
+  return <p className={`ach-rule ${lost ? 'lost' : ''}`}>{lost
+    ? (once ? tr({ uz: 'Nishon birinchi urinish uchun edi.', ru: 'Значок давался за первую попытку.' }) : tr({ uz: "Nishon birinchi urinish uchun edi — endi bemalol to'g'risini toping.", ru: 'Значок давался за первую попытку — теперь спокойно найдите верный ответ.' }))
+    : tr({ uz: "🏅 Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki.", ru: '🏅 Справитесь с первой попытки — значок ваш.' })}</p>;
+};
 
 // 🏅 O'YIN USLUBIDAGI TO'LIQ-EKRAN NISHON BAYRAMI
 function AchCelebrate({ ach, onDone }) {
@@ -3554,6 +3579,8 @@ export default function NestArchPracticeLesson({ lang: langProp, onFinished, liv
         .live-badge { opacity: 0.4; transition: opacity 0.25s ease, box-shadow 0.25s ease; }
         .live-badge:hover, .live-badge:focus-within { opacity: 1; box-shadow: 0 8px 24px -6px rgba(58,53,48,0.32) !important; }
         @media (hover: none) { .live-badge { opacity: 0.62; } }
+        .ach-rule { margin: 8px 0 0; text-align: center; font-size: 13px; line-height: 1.4; color: ${T.ink2}; }
+        .ach-rule.lost { font-style: italic; }
       `}</style>
       <AchCtx.Provider value={earned}>
       <AchMissCtx.Provider value={achMissVal}>

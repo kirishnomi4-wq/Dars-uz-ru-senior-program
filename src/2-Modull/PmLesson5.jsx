@@ -69,6 +69,22 @@ const ACHIEVEMENTS = {
 // Ekran id → nishon — FAQAT real tekshiriladigan harakatga (recordAnswer'da avtomatik beriladi).
 const ACH_TRIGGERS = { s2: 'splitter', s8: 'weigher', s9: 'launcher', s11: 'sharpeye' };
 
+// 🏅 151-qonun: amaliy topshiriq nishoni faqat BIRINCHI urinishga beriladi. Shart OLDINDAN aytiladi; birinchi urinish
+// xato bo'lsa — jazosiz qisqa xabar (`once` — qayta urinishi yo'q ekran). Mentor ekranida, «Qaytadan» mashq-o'tishida va
+// nishon olingach ko'rinmaydi. Matn — MATN_KORPUS §183 (hamma darsda aynan bir xil).
+const AchRule = ({ screen, once }) => {
+  const earned = useContext(AchCtx);
+  const am = useContext(AchMissCtx);
+  const gate = useContext(LiveGateCtx) || {};
+  const sid = SCREEN_META[screen] && SCREEN_META[screen].id;
+  const ach = ACH_TRIGGERS[sid];
+  if (!ach || !am || am.practice || (gate.live && gate.live.mode === 'mentor') || (earned && earned.has(ach))) return null;
+  const lost = am.missed.has(sid);
+  return <p className={`ach-rule ${lost ? 'lost' : ''}`}>{lost
+    ? (once ? tr({ uz: 'Nishon birinchi urinish uchun edi.', ru: 'Значок давался за первую попытку.' }) : tr({ uz: "Nishon birinchi urinish uchun edi — endi bemalol to'g'risini toping.", ru: 'Значок давался за первую попытку — теперь спокойно найдите верный ответ.' }))
+    : tr({ uz: "🏅 Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki.", ru: '🏅 Справитесь с первой попытки — значок ваш.' })}</p>;
+};
+
 function useIsMobile(breakpoint = 640) {
   const [isMobile, setIsMobile] = useState(typeof window !== 'undefined' ? window.innerWidth < breakpoint : false);
   useEffect(() => {
@@ -1379,17 +1395,18 @@ const ScrFindError = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [placed, setPlaced] = useState(!!storedAnswer);
   const [miss, setMiss] = useState(null);
   const [wrongPlace, setWrongPlace] = useState(false);
+  const achMiss = useContext(AchMissCtx); // 🏅 151-qonun: xato karta yoki xato ro'yxat — nishon birinchi urinishga
   const done = found && placed;
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { stage: 'find', screenIdx: screen, correct: true }); }, [done]); // eslint-disable-line
   const tap = (c) => {
     if (found) return;
     if (c.bad) { setFound(true); setMiss(null); }
-    else { setMiss(c.id); setTimeout(() => setMiss(m => (m === c.id ? null : m)), 2600); }
+    else { if (achMiss) achMiss.miss(screen); setMiss(c.id); setTimeout(() => setMiss(m => (m === c.id ? null : m)), 2600); }
   };
   const place = (k) => {
     if (!found || placed) return;
     if (k === 'backlog') { setPlaced(true); setWrongPlace(false); }
-    else { setWrongPlace(true); setTimeout(() => setWrongPlace(false), 2600); }
+    else { if (achMiss) achMiss.miss(screen); setWrongPlace(true); setTimeout(() => setWrongPlace(false), 2600); }
   };
   return (
     <Stage eyebrow={tr({ uz: "Boshqa guruhning ro'yxati", ru: 'Список другой группы' })} screen={screen}
@@ -1409,6 +1426,7 @@ const ScrFindError = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             </div>
           ))}
         </div>
+        {!done && <AchRule screen={screen} />}
         {miss && <p className="fe-note fade-step">{tr({ uz: FE_CARDS.find(c => c.id === miss).neutralUz, ru: FE_CARDS.find(c => c.id === miss).neutralRu })}</p>}
         {found && !placed && (
           <div className="fe-place fade-step">
@@ -3448,6 +3466,8 @@ export default function PmLesson5({ lang: langProp, onFinished, liveToken }) {
         .option-wait { background: ${T.blueSoft} !important; color: ${T.blue} !important; box-shadow: inset 0 0 0 2px ${T.blue}, 0 8px 22px -8px rgba(1,154,203,0.3) !important; }
         /* frame-wait (feedback kutish) */
         .frame-wait { background: ${T.blueSoft}; border-left: 4px solid ${T.blue}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -8px rgba(1,154,203,0.22); }
+        .ach-rule { margin: 8px 0 0; text-align: center; font-size: 13px; line-height: 1.4; color: ${T.ink2}; }
+        .ach-rule.lost { font-style: italic; }
       `}</style>
       <LiveGateCtx.Provider value={{ locked, live }}>
         <AchCtx.Provider value={earned}>

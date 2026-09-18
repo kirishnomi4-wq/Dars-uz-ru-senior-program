@@ -884,6 +884,7 @@ const SIEVE_TOTAL = SIEVE.filter(w => w.j).length;
 const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [found, setFound] = useState(() => new Set(storedAnswer ? SIEVE.map((w, i) => (w.j ? i : null)).filter(i => i !== null) : []));
   const [miss, setMiss] = useState(null);
+  const achMiss = useContext(AchMissCtx); // 🏅 151-qonun: kasbiy bo'lmagan so'z — nishon birinchi urinishga
   const done = found.size >= SIEVE_TOTAL;
   const doneRef = useRef(false);
   useEffect(() => {
@@ -892,7 +893,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const tap = (i) => {
     const w = SIEVE[i];
     if (w.j) { setMiss(null); setFound(p => { const n = new Set(p); n.add(i); return n; }); }
-    else setMiss(i);
+    else { if (achMiss) achMiss.miss(screen); setMiss(i); }
   };
   const level = 20 + Math.round((found.size / SIEVE_TOTAL) * 72);
   return (
@@ -914,6 +915,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </div>
           <Uline level={level} note={done ? { uz: 'endi tushunarli', ru: 'теперь понятно' } : { uz: 'hali tushunmayapti', ru: 'пока не понимает' }} />
         </div>
+        {!done && <AchRule screen={screen} />}
         {miss !== null && !found.has(miss) && <p className="sv-neutral fade-step">{tr({ uz: "Bu so'zni do'kon egasi biladi — uni almashtirish shart emas.", ru: 'Это слово хозяин знает — заменять не нужно.' })}</p>}
         {done && (
           <div className="frame-success fade-step">
@@ -1319,10 +1321,12 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [i, setI] = useState(storedAnswer ? SEATS.length : 0);
   const [res, setRes] = useState(storedAnswer?.res || {});
   const [pend, setPend] = useState(null); // ✕ bosilgan — sabab kutilmoqda
+  const achMiss = useContext(AchMissCtx); // 🏅 151-qonun: bir martalik hukm — xato bo'lsa belgi (F5 saqlaydi)
   const done = i >= SEATS.length;
   useEffect(() => {
     if (done && storedAnswer === undefined) {
       const okAll = SEATS.every(s => res[s.id] && res[s.id].verdict === s.ok);
+      if (!okAll && achMiss) achMiss.miss(screen);
       onAnswer(screen, { stage: 'seat', screenIdx: screen, res, correct: okAll, solved: true });
       const lv = liveRef.current;
       if (lv && lv.mode === 'student') lv.submitAnswer(PRACTICE_BASE + screen, 'kursi', 0, true, 0); // praktika-signali: «Kim javob berdi» paneli shu yozuvni sanaydi
@@ -1378,6 +1382,7 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             })}
           </div>
         )}
+        <AchRule screen={screen} once />
         <StudentPracticePulse live={live} screen={screen} />
         <MentorPracticeStats live={live} screen={screen} label={tr({ uz: '👀 Kim javob berdi', ru: '👀 Кто ответил' })} />
       </div>
@@ -1870,6 +1875,22 @@ const ACHIEVEMENTS = {
 };
 // Ekran id → nishon (recordAnswer'da avtomatik beriladi). Har biri REAL tekshiriladigan harakatga ulangan.
 const ACH_TRIGGERS = { s2: 'jargon', s9: 'plain', s10: 'ear', s11: 'speaker' };
+
+// 🏅 151-qonun: amaliy topshiriq nishoni faqat BIRINCHI urinishga beriladi. Shart OLDINDAN aytiladi; birinchi urinish
+// xato bo'lsa — jazosiz qisqa xabar (`once` — qayta urinishi yo'q ekran). Mentor ekranida, «Qaytadan» mashq-o'tishida va
+// nishon olingach ko'rinmaydi. Matn — MATN_KORPUS §183 (hamma darsda aynan bir xil).
+const AchRule = ({ screen, once }) => {
+  const earned = useContext(AchCtx);
+  const am = useContext(AchMissCtx);
+  const gate = useContext(LiveGateCtx) || {};
+  const sid = SCREEN_META[screen] && SCREEN_META[screen].id;
+  const ach = ACH_TRIGGERS[sid];
+  if (!ach || !am || am.practice || (gate.live && gate.live.mode === 'mentor') || (earned && earned.has(ach))) return null;
+  const lost = am.missed.has(sid);
+  return <p className={`ach-rule ${lost ? 'lost' : ''}`}>{lost
+    ? (once ? tr({ uz: 'Nishon birinchi urinish uchun edi.', ru: 'Значок давался за первую попытку.' }) : tr({ uz: "Nishon birinchi urinish uchun edi — endi bemalol to'g'risini toping.", ru: 'Значок давался за первую попытку — теперь спокойно найдите верный ответ.' }))
+    : tr({ uz: "🏅 Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki.", ru: '🏅 Справитесь с первой попытки — значок ваш.' })}</p>;
+};
 // 🏅 O'YIN USLUBIDAGI TO'LIQ-EKRAN NISHON BAYRAMI — yorqin nurlar, medal portlashi, uchqunlar, zarba to'lqini
 function AchCelebrate({ ach, onDone }) {
   useEffect(() => { const t = setTimeout(onDone, 4000); return () => clearTimeout(t); }, []); // eslint-disable-line
@@ -3555,6 +3576,8 @@ export default function PmLesson6({ lang: langProp, onFinished, liveToken }) {
         @media (max-width: 560px) { .cs-word { font-size: clamp(26px,9vw,50px); } .cs-cap { border-radius: 40px; padding: 22px 18px; } .cs-livedot { top: 10px; right: 14px; } }
         .qz-fx { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
         .qz-bolt { filter: drop-shadow(0 8px 18px rgba(255,79,40,0.32)); }
+        .ach-rule { margin: 8px 0 0; text-align: center; font-size: 13px; line-height: 1.4; color: ${T.ink2}; }
+        .ach-rule.lost { font-style: italic; }
       `}</style>
       <AchCtx.Provider value={earned}>
       <AchMissCtx.Provider value={achMissVal}>
