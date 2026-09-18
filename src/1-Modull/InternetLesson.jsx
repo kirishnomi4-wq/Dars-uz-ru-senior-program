@@ -30,6 +30,7 @@ const CODE = { bg: '#1A2436', text: '#E8E5DD', tag: '#FF7755', attr: '#FFD380', 
 const LangContext = createContext('uz');
 const MentorCtx = createContext(null); // mobil: yig'iladigan Mentor
 const AchCtx = createContext(null); // 🏅 olingan nishonlar (Set) — Stage hisoblagichi uchun
+const AchMissCtx = createContext(null); // 🏅 151-qonun: { missed:Set<ekran id>, miss(idx), practice } — birinchi urinishi xato topshiriqlar + «Qaytadan» mashq-o'tishi
 const useLang = () => useContext(LangContext);
 const useT = () => {
   const lang = useLang();
@@ -220,6 +221,23 @@ const ACHIEVEMENTS = {
 // ❌ toggle/exploration ekranga BOG'LANMAYDI (nishon tekin berilmasin).
 const ACH_TRIGGERS = { s4: 'firstwin', s13b: 'packet', s13c: 'router' };
 
+// 🏅 151-qonun: amaliy topshiriq nishoni faqat BIRINCHI urinishga beriladi. Shart OLDINDAN aytiladi;
+// birinchi urinish xato bo'lsa — jazosiz qisqa xabar, topshiriq baribir oxirigacha bajariladi.
+// Mentor ekranida ko'rinmaydi (10.1: nishon — o'quvchiniki); nishon olingach ham yo'qoladi (bayram o'zi aytadi).
+// «Qaytadan» mashq-o'tishida ham ko'rinmaydi — nishonlar muzlagan, va'da yolg'on bo'lardi.
+const AchRule = ({ screen }) => {
+  const earned = useContext(AchCtx);
+  const am = useContext(AchMissCtx);
+  const gate = useContext(LiveGateCtx) || {};
+  const sid = SCREEN_META[screen] && SCREEN_META[screen].id;
+  const ach = ACH_TRIGGERS[sid];
+  if (!ach || !am || am.practice || (gate.live && gate.live.mode === 'mentor') || (earned && earned.has(ach))) return null;
+  const lost = am.missed.has(sid);
+  return <p className={`ach-rule ${lost ? 'lost' : ''}`}>{lost
+    ? tr({ uz: "Nishon birinchi urinish uchun edi — endi bemalol to'g'risini toping.", ru: 'Значок давался за первую попытку — теперь спокойно найдите верный ответ.' })
+    : tr({ uz: "🏅 Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki.", ru: '🏅 Справитесь с первой попытки — значок ваш.' })}</p>;
+};
+
 // 🏅 Yuqori paneldagi nishon hisoblagichi — doim ko'rinadi, yangi olinganda pulslaydi, bosilsa ro'yxat chiqadi
 function AchCounter() {
   const earned = useContext(AchCtx);
@@ -323,6 +341,8 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
   const audio = useAudio(audioText ? [{ id: `s${screen}_intro`, text: audioText, trigger: 'on_mount', waits_for: { type: 'option_picked' } }] : null);
   const gate = useContext(LiveGateCtx) || {};
   const live = gate.live;
+  const _am = useContext(AchMissCtx);
+  const practice = !!(_am && _am.practice); // 151-qonun: «Qaytadan» mashq-o'tishi — hisobga kirmaydi, hech qayerga yozilmaydi
   const oneShot = !!(live && live.mode === 'student'); // jonli dars: BITTA urinish — xato bo'lsa ham qotadi
   const isMentorLive = !!(live && live.mode === 'mentor');
   const mountTs = useRef(Date.now()); // tezlik: savol ochilgandan bosishgacha (teng ballda hal qiladi)
@@ -349,13 +369,13 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
       // Jonli dars: javob darhol qotadi (to'g'ri ham, xato ham) va serverga yoziladi
       setSolved(true);
       onAnswer(screen, { stage: scope, screenIdx: screen, question: questionText, options: options.map(ouz), correctIndex: correctIdx, correctAnswer: ouz(options[correctIdx]), picked: i, studentAnswerIndex: i, studentAnswer: ouz(options[i]), correct: isCorrect, firstAttemptCorrect: isCorrect, solved: true, lastPicked: i });
-      live.submitAnswer(screen, SCREEN_META[screen]?.id || `s${screen}`, i, isCorrect, Date.now() - mountTs.current);
+      if (!practice) live.submitAnswer(screen, SCREEN_META[screen]?.id || `s${screen}`, i, isCorrect, Date.now() - mountTs.current);
     } else {
       if (isCorrect) setSolved(true);
       onAnswer(screen, { stage: scope, screenIdx: screen, question: questionText, options: options.map(ouz), correctIndex: correctIdx, correctAnswer: ouz(options[correctIdx]), picked: i, studentAnswerIndex: i, studentAnswer: ouz(options[i]), correct: firstCorrectRef.current, firstAttemptCorrect: firstCorrectRef.current, solved: isCorrect, lastPicked: i });
     }
     // Har urinish tarixga (LMS analitika, 0005): ball emas, yozuv; modulsiz eski darsda recordAttempt yo'q
-    if (live && live.recordAttempt) live.recordAttempt(screen, SCREEN_META[screen]?.id || `s${screen}`, i, Date.now() - mountTs.current, { question: questionText, options: options.map(ouz), picked: ouz(options[i]), correct: ouz(options[correctIdx]), lang: (typeof __lang !== 'undefined' && __lang === 'ru') ? 'ru' : 'uz' });
+    if (live && live.recordAttempt && !practice) live.recordAttempt(screen, SCREEN_META[screen]?.id || `s${screen}`, i, Date.now() - mountTs.current, { question: questionText, options: options.map(ouz), picked: ouz(options[i]), correct: ouz(options[correctIdx]), lang: (typeof __lang !== 'undefined' && __lang === 'ru') ? 'ru' : 'uz' });
     if (audioText) { audio.triggerEvent('option_picked'); if (!audio.muted) setTimeout(() => { const e = getAudioEngine(); if (e && !audio.muted) e.pushOneOff(isCorrect ? (audioOk || "To'g'ri.") : (audioWrong || "Unchalik emas. Qaytadan urinib ko'ring.")); }, 300); }
   };
   const wrongLocked = oneShot && solved && picked !== correctIdx; // jonli darsda xato bosib qotgan
@@ -1759,6 +1779,7 @@ const Screen13b = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const timer = useRef(null);
   const winRef = useRef(null);
   const firstRef = useRef(true);
+  const achMiss = useContext(AchMissCtx);
 
   useEffect(() => () => clearTimeout(timer.current), []);
   // To'g'ri topilganda (g'alaba) — desktop va mobilda natijaga avtoskroll
@@ -1801,6 +1822,7 @@ const Screen13b = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     timer.current = setTimeout(() => {
       const node = nodes[to];
       const bounce = (t, type = 'bad') => {
+        if (achMiss) achMiss.miss(screen); // 🏅 151-qonun: xato qadam — nishon birinchi urinishga
         setMsg({ t, type }); setShakeNode(to); setPktPos(nodes[from].pos);
         timer.current = setTimeout(() => setShakeNode(null), 520); setMoving(false);
       };
@@ -1836,6 +1858,7 @@ const Screen13b = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <span className={`net-slot ${hasPage ? 'on' : ''}`}><span className="net-slot-ic">📄</span>{hasPage ? tr({ uz: 'Sahifa ✓', ru: 'Страница ✓' }) : tr({ uz: "Sahifa yo'q", ru: 'Нет страницы' })}</span>
             <span className="net-moves">{tr({ uz: 'Qadam:', ru: 'Шагов:' })} {moves}</span>
           </div>
+          <AchRule screen={screen} />
 
           {/* Tarmoq xaritasi */}
           <div className="net-map">
@@ -2629,7 +2652,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
 
 // 🧲 Qayta ishlatiladigan DRAG&DROP TARTIB — bo'laklarni to'g'ri ketma-ketlikda joylash (tap yoki drag).
 // Boshqa darsga: `items` ({id,label}), `hints`, `onSolved` almashtiriladi.
-function DragDropOrder({ items, hints, onSolved }) {
+function DragDropOrder({ items, hints, onSolved, onWrong }) {
   const order = items.map(x => x.id);
   const byId = useMemo(() => Object.fromEntries(items.map(x => [x.id, x])), [items]);
   // YAGONA holat — pool va slots birga (setState ichida setState YO'Q → StrictMode'da dublikat bo'lmaydi)
@@ -2647,6 +2670,8 @@ function DragDropOrder({ items, hints, onSolved }) {
   const solved = slots.every((s, i) => s === order[i]);
   const wrong = full && !solved;
   useEffect(() => { if (solved) onSolved && onSolved(); }, [solved]); // eslint-disable-line
+  // 🏅 151-qonun: «urinish» = TO'LIQ joylash (har sudrash emas) — hamma katak to'lib, tartib xato chiqqan on
+  useEffect(() => { if (wrong) onWrong && onWrong(); }, [wrong]); // eslint-disable-line
   const place = (id, from, slotIdx) => setSt(({ pool, slots }) => {
     const ns = slots.slice(); const occ = ns[slotIdx];
     if (typeof from === 'number') ns[from] = null;
@@ -2720,6 +2745,7 @@ const REQ_ORDER_PIECES = [
 const ScreenReqOrder = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const audio = useAudio([{ id: 's13c', text: `Hozirgina youtube.com ni topib, ekranga keltirdingiz. So'rov o'sha yo'lni bosib o'tdi. Endi shu tartibni o'zingiz yig'ing — bo'laklarni sudrab yoki bosib joylang.`, trigger: 'on_mount', waits_for: null }]);
   const [done, setDone] = useState(!!storedAnswer);
+  const achMiss = useContext(AchMissCtx);
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]); // eslint-disable-line
   return (
     <Stage eyebrow={tr({ uz: 'Mustahkamlash', ru: 'Закрепление' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "Tartibni yig'ing", ru: 'Соберите порядок' }} onClick={onNext} /></>}>
@@ -2728,7 +2754,8 @@ const ScreenReqOrder = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <Mentor>{tr({ uz: <>Hozirgina <b style={{ color: T.ink }}>youtube.com</b> ni topib, ekranga keltirdingiz. So'rov o'sha <b style={{ color: T.ink }}>yo'lni</b> bosib o'tdi. Endi shu tartibni o'zingiz yig'ing.</>, ru: <>Вы только что нашли <b style={{ color: T.ink }}>youtube.com</b> и вывели его на экран. Запрос прошёл этот самый <b style={{ color: T.ink }}>путь</b>. Теперь соберите этот порядок сами.</> })}</Mentor>
         <div className="sk-buildbox" style={{ maxWidth: 480 }}>
           <p className="eyebrow" style={{ color: T.accent, margin: '0 0 10px' }}>{tr({ uz: '🧲 Bo\'laklarni sudrab yoki bosib joylang', ru: '🧲 Разместите части перетаскиванием или нажатием' })}</p>
-          <DragDropOrder items={REQ_ORDER_PIECES} hints={[{ uz: "so'rov shu yerdan boshlanadi", ru: 'запрос начинается здесь' }, { uz: "manzilni (IP) topadi", ru: 'находит адрес (IP)' }, { uz: "sahifani beradi", ru: 'отдаёт страницу' }, { uz: "chizib ko'rsatadi", ru: 'рисует на экране' }]} onSolved={() => setDone(true)} />
+          <DragDropOrder items={REQ_ORDER_PIECES} hints={[{ uz: "so'rov shu yerdan boshlanadi", ru: 'запрос начинается здесь' }, { uz: "manzilni (IP) topadi", ru: 'находит адрес (IP)' }, { uz: "sahifani beradi", ru: 'отдаёт страницу' }, { uz: "chizib ko'rsatadi", ru: 'рисует на экране' }]} onSolved={() => setDone(true)} onWrong={() => { if (achMiss && !done) achMiss.miss(screen); }} />
+          <AchRule screen={screen} />
         </div>
       </div>
     </Stage>
@@ -2961,16 +2988,33 @@ export default function HtmlLesson({ lang: langProp, onFinished, liveToken }) {
   const [answers, setAnswers] = useState(() => (saved && saved.answers) || {});
   const startTimeRef = useRef(saved?.startedAt || Date.now());
   // 🏅 Nishonlar
+  // 151-qonun 5-band: BIRINCHI O'TISH — HISOB, «Qaytadan» — MASHQ. «Qaytadan» bosilgan onda birinchi o'tish javoblari shu yerga
+  // muhrlanadi: nishonlar muzlaydi, onFinished ham shu javoblarni yuboradi (bir dars — bir natija). Progressda saqlanadi (F5 o'chirmaydi).
+  const firstPassRef = useRef(saved?.firstPass || null); // { answers, durationSec } | null
+  const [practice, setPractice] = useState(!!saved?.firstPass);
   const earnedRef = useRef(new Set(saved?.earned || []));
   const [earned, setEarned] = useState(() => new Set(saved?.earned || []));
   const [achToasts, setAchToasts] = useState([]);
   const achKeyRef = useRef(0);
   const earn = useCallback((id) => {
+    if (firstPassRef.current) return; // 151-qonun: «Qaytadan» mashq-o'tishida nishonlar MUZLAGAN — ko'paymaydi ham, kamaymaydi ham
     if (!ACHIEVEMENTS[id] || earnedRef.current.has(id)) return;
     earnedRef.current.add(id);
     setEarned(new Set(earnedRef.current));
     setAchToasts(t => [...t, { id, k: ++achKeyRef.current }]);
   }, []);
+  // 🏅 151-qonun: birinchi urinishi xato bo'lgan topshiriqlar (ekran id). Progressda saqlanadi — F5 imkonni QAYTARMAYDI
+  // (F-0918-04). «Qaytadan»dan keyin esa nishonlar butunlay muzlaydi (yuqorida). Nishon allaqachon olingan bo'lsa yozilmaydi.
+  const missedRef = useRef(new Set(saved?.missed || []));
+  const [missed, setMissed] = useState(() => new Set(saved?.missed || []));
+  const missTry = useCallback((idx) => {
+    const sid = SCREEN_META[idx] && SCREEN_META[idx].id;
+    const ach = ACH_TRIGGERS[sid];
+    if (!ach || missedRef.current.has(sid) || earnedRef.current.has(ach)) return;
+    missedRef.current.add(sid);
+    setMissed(new Set(missedRef.current));
+  }, []);
+  const achMissVal = useMemo(() => ({ missed, miss: missTry, practice }), [missed, missTry, practice]);
   // ETALON — 1920px: shu kenglikda tasdiqlangan ko'rinish (1100px konteyner, 1x shrift).
   // Kengroq oynada (2K monitor, ultrawide, brauzer zoom <100%) butun dars proportsional
   // kattalashadi — ko'rinish har qanday keng ekranda ham etalondagidek qoladi.
@@ -2990,13 +3034,16 @@ export default function HtmlLesson({ lang: langProp, onFinished, liveToken }) {
   const recordAnswer = (idx, data) => {
     setAnswers(a => ({ ...a, [idx]: data }));
     const _m = SCREEN_META[idx];
-    if (_m && ACH_TRIGGERS[_m.id] && data && data.correct) earn(ACH_TRIGGERS[_m.id]); // 🏅 nishon — faqat MA'NOLI ekranlar
+    if (_m && ACH_TRIGGERS[_m.id] && data && data.correct && !missedRef.current.has(_m.id)) earn(ACH_TRIGGERS[_m.id]); // 🏅 nishon — faqat MA'NOLI ekranlar, faqat birinchi urinishga (151-qonun)
   };
-  const reset = () => { progClear(LESSON_META.lessonId); setAnswers({}); setScreen(0); startTimeRef.current = Date.now(); };
+  const reset = () => {
+    if (!firstPassRef.current) { firstPassRef.current = { answers, durationSec: Math.floor((Date.now() - startTimeRef.current) / 1000) }; setPractice(true); } // birinchi o'tish muhrlanadi (faqat bir marta)
+    progClear(LESSON_META.lessonId); setAnswers({}); setScreen(0); startTimeRef.current = Date.now();
+  };
   // F-0730-01: har o'zgarishda progress saqlanadi (screen + javoblar + nishonlar + boshlangan vaqt)
   useEffect(() => {
-    progWrite(LESSON_META.lessonId, { screen, answers, earned: [...earnedRef.current], startedAt: startTimeRef.current, total: TOTAL_SCREENS, savedAt: Date.now() });
-  }, [screen, answers, earned]);
+    progWrite(LESSON_META.lessonId, { screen, answers, earned: [...earnedRef.current], missed: [...missedRef.current], firstPass: firstPassRef.current, startedAt: startTimeRef.current, total: TOTAL_SCREENS, savedAt: Date.now() });
+  }, [screen, answers, earned, missed, practice]);
 
   // Jonli dars: o'quvchi mentordan oldinga o'tolmaydi (high-water mark)
   // Javob kaliti: inline testlar + jang savollari (QUIZ_BANK'dan) — mentor darsni ochganda serverga yuklanadi
@@ -3026,22 +3073,25 @@ export default function HtmlLesson({ lang: langProp, onFinished, liveToken }) {
   const finishLesson = () => {
     progClear(LESSON_META.lessonId); // F-0730-01: yakunlangan dars saqlovi tozalanadi
     live.endSession(); // mentor "Tamom" bossa — barcha o'quvchilarga erkinlik
+    // 151-qonun 5-band: «Qaytadan» bosilgan bo'lsa — BIRINCHI o'tish natijasi ketadi (mashq-o'tishi hisobga kirmaydi)
+    const fp = firstPassRef.current;
+    const ans = fp ? fp.answers : answers;
     const scoredMeta = SCREEN_META.filter(s => s.scored);
     const finalMeta = scoredMeta.filter(s => s.scope === 'final');
-    const scoredAnswers = SCREEN_META.map((s, i) => (s.scored ? answers[i] : null)).filter(Boolean);
+    const scoredAnswers = SCREEN_META.map((s, i) => (s.scored ? ans[i] : null)).filter(Boolean);
     const correctAnswers = scoredAnswers.filter(a => a.correct).length;
-    const finalAnswers = SCREEN_META.map((s, i) => (s.scored && s.scope === 'final' ? answers[i] : null)).filter(Boolean);
+    const finalAnswers = SCREEN_META.map((s, i) => (s.scored && s.scope === 'final' ? ans[i] : null)).filter(Boolean);
     const finalCorrect = finalAnswers.filter(a => a.correct).length;
     const payload = {
       lessonId: LESSON_META.lessonId, lessonTitle: LESSON_META.lessonTitle,
       nickname: live.nickname || null, livePin: live.pin || null, liveMode: live.mode,
-      durationSec: Math.floor((Date.now() - startTimeRef.current) / 1000),
+      durationSec: fp ? fp.durationSec : Math.floor((Date.now() - startTimeRef.current) / 1000),
       totalQuestions: scoredMeta.length, correctAnswers,
       scorePercent: scoredMeta.length ? Math.round((correctAnswers / scoredMeta.length) * 100) : 0,
       finalScore: finalCorrect, finalTotal: finalMeta.length,
       passed: finalMeta.length ? finalCorrect / finalMeta.length >= 0.6 : (scoredMeta.length ? correctAnswers / scoredMeta.length >= 0.6 : false),
-      answers: SCREEN_META.map((s, i) => answers[i]).filter(Boolean),
-      ...buildResultDetails({ lessonId: LESSON_META.lessonId, screenMeta: SCREEN_META, answers, earned, achievements: ACHIEVEMENTS, arenaBank: QUIZ_BANK })
+      answers: SCREEN_META.map((s, i) => ans[i]).filter(Boolean),
+      ...buildResultDetails({ lessonId: LESSON_META.lessonId, screenMeta: SCREEN_META, answers: ans, earned, achievements: ACHIEVEMENTS, arenaBank: QUIZ_BANK })
     };
     if (typeof onFinished === 'function') onFinished(payload);
   };
@@ -4230,6 +4280,10 @@ export default function HtmlLesson({ lang: langProp, onFinished, liveToken }) {
         .dd-chip:active { cursor: grabbing; }
         .dd-done { font-weight: 700; color: ${T.success}; font-size: 14.5px; }
         .dd-wrong { font-weight: 700; color: #E24848; font-size: 13.5px; }
+        /* 151-qonun: nishon sharti — bitta xira qator; Modifikator .lost ham qizil EMAS (jazo ohangi yo'q) */
+        .ach-rule { margin: 8px 0 0; text-align: center; font-size: 13px; line-height: 1.4; color: ${T.ink3}; }
+        .ach-rule.lost { font-style: italic; }
+        .sk-buildbox .ach-rule { text-align: left; }
 
         /* === 🃏 FLASHCARDS (reusable, 3D flip) === */
         .fc-center { flex: 1; min-height: 0; display: flex; align-items: center; justify-content: center; padding-top: 4px; }
@@ -4390,6 +4444,7 @@ export default function HtmlLesson({ lang: langProp, onFinished, liveToken }) {
       `}</style>
       <LiveGateCtx.Provider value={{ locked, live }}>
         <AchCtx.Provider value={earned}>
+        <AchMissCtx.Provider value={achMissVal}>
         <div className="lesson-root">
           {live.mode === 'choosing' ? (
             <LiveGate live={live} title={{ uz: 'Internet darsi', ru: 'Урок об интернете' }} />
@@ -4402,6 +4457,7 @@ export default function HtmlLesson({ lang: langProp, onFinished, liveToken }) {
             </>
           )}
         </div>
+        </AchMissCtx.Provider>
         </AchCtx.Provider>
       </LiveGateCtx.Provider>
     </LangContext.Provider>
