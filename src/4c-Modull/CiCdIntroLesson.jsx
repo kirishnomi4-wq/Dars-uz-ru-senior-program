@@ -1323,6 +1323,7 @@ const YAML_BLANKS = [
   { key: 'run', label: 'run:', correct: 'npm test', options: ['npm test', 'npm forget', 'npm delete'], wrong: { 'npm forget': { uz: "Bunday buyruq yo'q — skaner nuqtasida testlarni ishga tushiramiz.", ru: 'Такой команды нет — на точке сканера мы запускаем тесты.' }, 'npm delete': { uz: "Bu hech narsani tekshirmaydi — skaner uchun test buyrug'i kerak.", ru: 'Это ничего не проверяет — сканеру нужна команда тестов.' } } }
 ];
 const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
+  const achMiss = useContext(AchMissCtx);
   const [filled, setFilled] = useState(() => (storedAnswer ? Object.fromEntries(YAML_BLANKS.map(b => [b.key, b.correct])) : {}));
   const [wrongKey, setWrongKey] = useState(null);
   const [wrongMsg, setWrongMsg] = useState('');
@@ -1340,7 +1341,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const pick = (blank, val) => {
     if (filled[blank.key] === blank.correct) return;
     if (val === blank.correct) { setFilled(f => ({ ...f, [blank.key]: val })); setWrongKey(null); setSc(n => n + 1); }
-    else { wrongEverRef.current = true; setWrongKey(blank.key); setWrongMsg(tr(blank.wrong[val]) || tr({ uz: "Bu to'g'ri emas.", ru: 'Это неверно.' })); setTimeout(() => setWrongKey(k => (k === blank.key ? null : k)), 500); }
+    else { if (achMiss) achMiss.miss(screen); wrongEverRef.current = true; setWrongKey(blank.key); setWrongMsg(tr(blank.wrong[val]) || tr({ uz: "Bu to'g'ri emas.", ru: 'Это неверно.' })); setTimeout(() => setWrongKey(k => (k === blank.key ? null : k)), 500); }
   };
   return (
     <Stage eyebrow={tr({ uz: "Amaliyot · yo'l xaritasi", ru: 'Практика · маршрутная карта' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !_resc} label={(done || _resc) ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "Bo'shliqlarni to'ldiring", ru: 'Заполните пропуски' })} onClick={onNext} /></>}>
@@ -1373,6 +1374,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 </div>
               </div>
             ))}
+            {!done && <AchRule screen={screen} />}
             {wrongKey && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{wrongMsg}</p></div>}
             {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Yo'l xaritasi to'ldi! Endi bu fayl repo'ga qo'shilsa, lenta har push'da o'zi ishga tushadi.", ru: 'Маршрутная карта заполнена! Теперь, если добавить этот файл в репозиторий, лента будет запускаться сама на каждый push.' })}</p></div>}
           </Col>
@@ -1462,6 +1464,22 @@ const ACHIEVEMENTS = {
 // Ekran id → nishon. ❗ FAQAT ma'noli ekranlar: s10 (SCORED test) · s9 (markaziy o'yin — to'liq yashil) ·
 // s13 (builder — 3 bo'shliq xatosiz) · s15 (final — 1-urinishda to'g'ri tartib). Exploration ekranlarga BOG'LANMAYDI.
 const ACH_TRIGGERS = { s9: 'clearedForTakeoff', s10: 'redLight', s13: 'routeReader', s15: 'orderMatters' };
+
+// 🏅 151-qonun: amaliy topshiriq nishoni faqat BIRINCHI urinishga beriladi. Shart OLDINDAN aytiladi; birinchi urinish
+// xato bo'lsa — jazosiz qisqa xabar (`once` — qayta urinishi yo'q ekran). Mentor ekranida, «Qaytadan» mashq-o'tishida va
+// nishon olingach ko'rinmaydi. Matn — MATN_KORPUS §183 (hamma darsda aynan bir xil).
+const AchRule = ({ screen, once }) => {
+  const earned = useContext(AchCtx);
+  const am = useContext(AchMissCtx);
+  const gate = useContext(LiveGateCtx) || {};
+  const sid = SCREEN_META[screen] && SCREEN_META[screen].id;
+  const ach = ACH_TRIGGERS[sid];
+  if (!ach || !am || am.practice || (gate.live && gate.live.mode === 'mentor') || (earned && earned.has(ach))) return null;
+  const lost = am.missed.has(sid);
+  return <p className={`ach-rule ${lost ? 'lost' : ''}`}>{lost
+    ? (once ? tr({ uz: 'Nishon birinchi urinish uchun edi.', ru: 'Значок давался за первую попытку.' }) : tr({ uz: "Nishon birinchi urinish uchun edi — endi bemalol to'g'risini toping.", ru: 'Значок давался за первую попытку — теперь спокойно найдите верный ответ.' }))
+    : tr({ uz: "🏅 Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki.", ru: '🏅 Справитесь с первой попытки — значок ваш.' })}</p>;
+};
 
 function AchCelebrate({ ach, onDone }) {
   useEffect(() => { const t = setTimeout(onDone, 4000); return () => clearTimeout(t); }, []); // eslint-disable-line
@@ -3250,6 +3268,8 @@ export default function CiCdIntroLesson({ lang: langProp, onFinished, liveToken 
           .phone-face { transition: opacity 0.16s linear !important; }
         }
 
+      .ach-rule { margin: 8px 0 0; text-align: center; font-size: 13px; line-height: 1.4; color: ${T.ink2}; }
+      .ach-rule.lost { font-style: italic; }
       `}</style>
       <AchCtx.Provider value={earned}>
       <AchMissCtx.Provider value={achMissVal}>

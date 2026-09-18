@@ -1080,6 +1080,7 @@ const USTA_LOG = [
   { t: { uz: "▸ 📐 🎁 ✈️ — o'tkazib yuborildi", ru: '▸ 📐 🎁 ✈️ — пропущено' }, tone: 'skip' }
 ];
 const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
+  const achMiss = useContext(AchMissCtx);
   const [phase, setPhase] = useState(storedAnswer ? 'done' : 'log'); // log -> ask -> suggest -> verify -> fix -> push -> done
   const [queryTried, setQueryTried] = useState(() => new Set());
   const [verifyWrongPick, setVerifyWrongPick] = useState(false);
@@ -1099,7 +1100,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const askGood = () => { setQueryTried(s => new Set(s).add('good')); setPhase('suggest'); setSc(n => n + 1); };
   const toVerify = () => { setPhase('verify'); setSc(n => n + 1); };
   const verify = (isUstaRight) => {
-    if (isUstaRight) { setVerifyWrongPick(true); verifyWrongEver.current = true; return; } // Yordamchi bu safar ADASHGAN — "to'g'ri" deb tanlash — tuzoq
+    if (isUstaRight) { if (achMiss) achMiss.miss(screen); setVerifyWrongPick(true); verifyWrongEver.current = true; return; } // Yordamchi bu safar ADASHGAN — "to'g'ri" deb tanlash — tuzoq
     setVerifyWrongPick(false);
     setPhase('fix'); setSc(n => n + 1);
   };
@@ -1173,6 +1174,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </Col>
         </div>
         </Zoomable>
+        {!done && <AchRule screen={screen} />}
       </div>
     </Stage>
   );
@@ -1289,6 +1291,7 @@ const YAML_BLANKS = [
   { key: 'run', label: 'run:', correct: 'npm test', options: ['npm test', 'npm start', 'npm run build'], wrong: { 'npm start': { uz: "Serverni ishga tushiradi — Skaner nuqtasi esa testlarni yuradi.", ru: 'Запускает сервер — а точка Сканер гоняет тесты.' }, 'npm run build': { uz: "Bu O'rash nuqtasi — Skaner emas.", ru: 'Это точка Упаковка — не Сканер.' } } }
 ];
 const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
+  const achMiss = useContext(AchMissCtx);
   const [filled, setFilled] = useState(() => (storedAnswer ? Object.fromEntries(YAML_BLANKS.map(b => [b.key, b.correct])) : {}));
   const [wrongKey, setWrongKey] = useState(null);
   const [wrongMsg, setWrongMsg] = useState('');
@@ -1309,7 +1312,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     if (filled[blank.key] === blank.correct) return;
     setTries(t => t + 1);
     if (val === blank.correct) { setFilled(f => ({ ...f, [blank.key]: val })); setWrongKey(null); setSc(n => n + 1); }
-    else { wrongEverRef.current = true; setWrongKey(blank.key); setWrongMsg(blank.wrong[val] || { uz: "Bu to'g'ri emas.", ru: 'Это неверно.' }); setTimeout(() => setWrongKey(k => (k === blank.key ? null : k)), 500); }
+    else { if (achMiss) achMiss.miss(screen); wrongEverRef.current = true; setWrongKey(blank.key); setWrongMsg(blank.wrong[val] || { uz: "Bu to'g'ri emas.", ru: 'Это неверно.' }); setTimeout(() => setWrongKey(k => (k === blank.key ? null : k)), 500); }
   };
   return (
     <Stage eyebrow={tr({ uz: "Amaliyot · yo'l xaritasi", ru: 'Практика · маршрутная карта' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !_resc} label={(done || _resc) ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "Bo'shliqlarni tekshiring", ru: 'Проверьте пропуски' }} onClick={onNext} /></>}>
@@ -1344,6 +1347,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 </div>
               </div>
             ))}
+            {!done && <AchRule screen={screen} />}
             {wrongKey && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr(wrongMsg)}</p></div>}
             {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Yo'l xaritasi tekshirildi va to'g'ri! Endi bu fayl repo'ga qo'shilsa, lenta har push'da o'zi ishga tushadi.", ru: 'Маршрутная карта проверена и верна! Если добавить этот файл в репозиторий, лента будет запускаться сама при каждом push.' })}</p></div>}
           </Col>
@@ -1434,6 +1438,22 @@ const ACHIEVEMENTS = {
 // Ekran id → nishon. ❗ FAQAT ma'noli ekranlar: s10 (SCORED test) · s9 (markaziy o'yin — yordamchi adashishini tutish) ·
 // s13 (builder — 3 bo'shliq xatosiz) · s15 (final — 1-urinishda to'g'ri tartib). Exploration ekranlarga BOG'LANMAYDI.
 const ACH_TRIGGERS = { s10: 'logReader', s9: 'mentorVerified', s13: 'roadmapReviewer', s15: 'finalCall' };
+
+// 🏅 151-qonun: amaliy topshiriq nishoni faqat BIRINCHI urinishga beriladi. Shart OLDINDAN aytiladi; birinchi urinish
+// xato bo'lsa — jazosiz qisqa xabar (`once` — qayta urinishi yo'q ekran). Mentor ekranida, «Qaytadan» mashq-o'tishida va
+// nishon olingach ko'rinmaydi. Matn — MATN_KORPUS §183 (hamma darsda aynan bir xil).
+const AchRule = ({ screen, once }) => {
+  const earned = useContext(AchCtx);
+  const am = useContext(AchMissCtx);
+  const gate = useContext(LiveGateCtx) || {};
+  const sid = SCREEN_META[screen] && SCREEN_META[screen].id;
+  const ach = ACH_TRIGGERS[sid];
+  if (!ach || !am || am.practice || (gate.live && gate.live.mode === 'mentor') || (earned && earned.has(ach))) return null;
+  const lost = am.missed.has(sid);
+  return <p className={`ach-rule ${lost ? 'lost' : ''}`}>{lost
+    ? (once ? tr({ uz: 'Nishon birinchi urinish uchun edi.', ru: 'Значок давался за первую попытку.' }) : tr({ uz: "Nishon birinchi urinish uchun edi — endi bemalol to'g'risini toping.", ru: 'Значок давался за первую попытку — теперь спокойно найдите верный ответ.' }))
+    : tr({ uz: "🏅 Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki.", ru: '🏅 Справитесь с первой попытки — значок ваш.' })}</p>;
+};
 
 function AchCelebrate({ ach, onDone }) {
   useEffect(() => { const t = setTimeout(onDone, 4000); return () => clearTimeout(t); }, []); // eslint-disable-line
@@ -3187,6 +3207,8 @@ export default function AiPipelineProjectLesson({ lang: langProp, onFinished, li
           .phone-face { transition: opacity 0.16s linear !important; }
         }
 
+      .ach-rule { margin: 8px 0 0; text-align: center; font-size: 13px; line-height: 1.4; color: ${T.ink2}; }
+      .ach-rule.lost { font-style: italic; }
       `}</style>
       <AchCtx.Provider value={earned}>
       <AchMissCtx.Provider value={achMissVal}>

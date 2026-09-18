@@ -1385,6 +1385,7 @@ const RB_JOURNAL = {
   'success': [{ uz: '🔄 Lenta aylandi — ubuntu-latest mashinasi tayinlandi.', ru: '🔄 Лента закрутилась — назначена машина ubuntu-latest.' }, { uz: "📦 YIG'ISH ✓", ru: '📦 СБОРКА ✓' }, { uz: '🔍 SKANER ✓', ru: '🔍 СКАНЕР ✓' }, { uz: "🎁 O'RASH ✓", ru: '🎁 УПАКОВКА ✓' }, { uz: '✈️ UCHIRISH ✓ — YASHIL CHIROQ', ru: '✈️ ВЗЛЁТ ✓ — ЗЕЛЁНЫЙ СВЕТ' }, { uz: "✅ Foydalanuvchi yangi saytni ko'rdi.", ru: '✅ Пользователь увидел новый сайт.' }]
 };
 const Screen17 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
+  const achMiss = useContext(AchMissCtx);
   const [trigger, setTrigger] = useState(typeof storedAnswer?.trigger === 'string' ? storedAnswer.trigger : ''); // F-0914-10: saqlangan javob matn bo'lmasa — bo'sh (oq ekran himoyasi)
   const [runner, setRunner] = useState(typeof storedAnswer?.runner === 'string' ? storedAnswer.runner : ''); // F-0914-10: saqlangan javob matn bo'lmasa — bo'sh (oq ekran himoyasi)
   const [steps, setSteps] = useState(Array.isArray(storedAnswer?.steps) ? storedAnswer.steps : []); // F-0914-10: saqlangan javob massiv bo'lmasa — bo'sh (oq ekran himoyasi)
@@ -1402,6 +1403,10 @@ const Screen17 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     sendTimer.current = setTimeout(() => {
       const r = simulateBelt(trigger, runner, steps);
       setSending(false); setResult(r); setSc(n => n + 1);
+      // 151-qonun: xato urinish = TO'LIQ xarita (signal + mashina + kamida bitta amal) yuborilib, lenta qizil chiqqani.
+      // Bo'sh bo'lim bilan yuborish — tugallanmagan xarita (sirpanish), sanalmaydi.
+      const complete = !!trigger && !!runner && steps.length > 0;
+      if (!r.success && complete && !solvedOnce && achMiss) achMiss.miss(screen);
       if (r.success && !solvedOnce) {
         setSolvedOnce(true);
         onAnswer(screen, { stage: 'case', screenIdx: screen, trigger, runner, steps, correct: true, picked: true });
@@ -1443,6 +1448,7 @@ const Screen17 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 : steps.map((sid, i) => <React.Fragment key={i}>{i > 0 ? '\n' : ''}{'      - '}{tr(RB_LABEL[sid])}</React.Fragment>)}
             </CodeFile>
             <button className="btn" style={{ alignSelf: 'flex-start' }} disabled={sending} onClick={send}>{sending ? tr({ uz: '● Lenta aylanmoqda…', ru: '● Лента крутится…' }) : tr({ uz: "🚀 Lentaga qo'ying", ru: '🚀 Положить на ленту' })}</button>
+            {!solvedOnce && <AchRule screen={screen} />}
             <p className="flow-label" style={{ marginTop: 6 }}>{tr({ uz: 'natija', ru: 'результат' })}</p>
             {sending
               ? <div className="belt-run spin sending">
@@ -1551,6 +1557,22 @@ const ACHIEVEMENTS = {
 };
 // ❗ FAQAT ma'noli ekranlar: s4/s10 (SCORED test) · s15 (SCORED test) · s17 (markaziy — real oqibat) · s18 (real debug, 1-urinish).
 const ACH_TRIGGERS = { s4: 'greenLight', s15: 'runwayClear', s17: 'routeWriter', s18: 'logDetective' };
+
+// 🏅 151-qonun: amaliy topshiriq nishoni faqat BIRINCHI urinishga beriladi. Shart OLDINDAN aytiladi; birinchi urinish
+// xato bo'lsa — jazosiz qisqa xabar (`once` — qayta urinishi yo'q ekran). Mentor ekranida, «Qaytadan» mashq-o'tishida va
+// nishon olingach ko'rinmaydi. Matn — MATN_KORPUS §183 (hamma darsda aynan bir xil).
+const AchRule = ({ screen, once }) => {
+  const earned = useContext(AchCtx);
+  const am = useContext(AchMissCtx);
+  const gate = useContext(LiveGateCtx) || {};
+  const sid = SCREEN_META[screen] && SCREEN_META[screen].id;
+  const ach = ACH_TRIGGERS[sid];
+  if (!ach || !am || am.practice || (gate.live && gate.live.mode === 'mentor') || (earned && earned.has(ach))) return null;
+  const lost = am.missed.has(sid);
+  return <p className={`ach-rule ${lost ? 'lost' : ''}`}>{lost
+    ? (once ? tr({ uz: 'Nishon birinchi urinish uchun edi.', ru: 'Значок давался за первую попытку.' }) : tr({ uz: "Nishon birinchi urinish uchun edi — endi bemalol to'g'risini toping.", ru: 'Значок давался за первую попытку — теперь спокойно найдите верный ответ.' }))
+    : tr({ uz: "🏅 Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki.", ru: '🏅 Справитесь с первой попытки — значок ваш.' })}</p>;
+};
 
 function AchCelebrate({ ach, onDone }) {
   useEffect(() => { const t = setTimeout(onDone, 4000); return () => clearTimeout(t); }, []); // eslint-disable-line
@@ -3243,6 +3265,8 @@ export default function GithubActionsLesson({ lang: langProp, onFinished, liveTo
           .ghrun::after, .belt-run::after, .belt-run.spin .belt-light.red, .belt-run.sending .belt-light.off,
           .belt-run.sending .belt-suitcase, .ghrun-step.plane-ok .ghrun-ck, .plane-lift { animation: none !important; }
         }
+        .ach-rule { margin: 8px 0 0; text-align: center; font-size: 13px; line-height: 1.4; color: ${T.ink2}; }
+        .ach-rule.lost { font-style: italic; }
       `}</style>
       <AchCtx.Provider value={earned}>
       <AchMissCtx.Provider value={achMissVal}>

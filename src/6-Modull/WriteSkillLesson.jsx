@@ -1125,6 +1125,7 @@ const CARD_BLANKS = [
   { key: 'f3', label: { uz: '3-maydon (nima qiladi)', ru: 'Поле 3 (что делает)' }, correct: 'qadamlar', options: ['rasm', 'ovoz', 'qadamlar'], wrong: { rasm: { uz: 'Rasm karta ishini bajarmaydi — aniq qadamlar kerak.', ru: 'Картинка работу карты не сделает — нужны точные шаги.' }, ovoz: { uz: "Ovoz emas — AI aniq yozma qadamlarga amal qiladi.", ru: 'Не звук — ИИ следует точным письменным шагам.' } } }
 ];
 const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
+  const achMiss = useContext(AchMissCtx);
   const [filled, setFilled] = useState(() => (storedAnswer ? Object.fromEntries(CARD_BLANKS.map(b => [b.key, b.correct])) : {}));
   const [wrongKey, setWrongKey] = useState(null);
   const [wrongMsg, setWrongMsg] = useState('');
@@ -1141,7 +1142,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const pick = (blank, val) => {
     if (filled[blank.key] === blank.correct) return;
     if (val === blank.correct) { setFilled(f => ({ ...f, [blank.key]: val })); setWrongKey(null); setSc(n => n + 1); }
-    else { wrongEverRef.current = true; setWrongKey(blank.key); setWrongMsg(tr(blank.wrong[val]) || tr({ uz: "Bu to'g'ri emas.", ru: 'Это не то.' })); setTimeout(() => setWrongKey(k => (k === blank.key ? null : k)), 500); }
+    else { if (achMiss) achMiss.miss(screen); wrongEverRef.current = true; setWrongKey(blank.key); setWrongMsg(tr(blank.wrong[val]) || tr({ uz: "Bu to'g'ri emas.", ru: 'Это не то.' })); setTimeout(() => setWrongKey(k => (k === blank.key ? null : k)), 500); }
   };
   return (
     <Stage eyebrow={tr({ uz: 'Amaliyot · karta kodda', ru: 'Практика · карта в коде' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "Maydonlarni to'ldiring", ru: 'Заполните поля' }} onClick={onNext} /></>}>
@@ -1172,6 +1173,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 </div>
               </div>
             ))}
+            {!done && <AchRule screen={screen} />}
             {wrongKey && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{wrongMsg}</p></div>}
             {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Karta to'ldi! <span className="mono">name</span> = kuch nomi, <span className="mono">description</span> = qachon yonadi, <span className="mono">qadamlar</span> = nima qiladi.</>, ru: <>Карта заполнена! <span className="mono">name</span> = имя силы, <span className="mono">description</span> = когда срабатывает, <span className="mono">qadamlar</span> = что делает.</> })}</p></div>}
           </Col>
@@ -1269,6 +1271,22 @@ const ACHIEVEMENTS = {
 //   `correct:false` ketadi, nishon tekin emas) · s15 (final DragDrop — 1-urinishda to'g'ri tartib).
 // Exploration/toggle ekranlarga BOG'LANMAYDI (har bosishda correct:true — nishon tekin bo'lib qolardi).
 const ACH_TRIGGERS = { s4: 'clearTrigger', s8: 'cardWriter', s13: 'fieldMaster', s15: 'testedSkill' };
+
+// 🏅 151-qonun: amaliy topshiriq nishoni faqat BIRINCHI urinishga beriladi. Shart OLDINDAN aytiladi; birinchi urinish
+// xato bo'lsa — jazosiz qisqa xabar (`once` — qayta urinishi yo'q ekran). Mentor ekranida, «Qaytadan» mashq-o'tishida va
+// nishon olingach ko'rinmaydi. Matn — MATN_KORPUS §183 (hamma darsda aynan bir xil).
+const AchRule = ({ screen, once }) => {
+  const earned = useContext(AchCtx);
+  const am = useContext(AchMissCtx);
+  const gate = useContext(LiveGateCtx) || {};
+  const sid = SCREEN_META[screen] && SCREEN_META[screen].id;
+  const ach = ACH_TRIGGERS[sid];
+  if (!ach || !am || am.practice || (gate.live && gate.live.mode === 'mentor') || (earned && earned.has(ach))) return null;
+  const lost = am.missed.has(sid);
+  return <p className={`ach-rule ${lost ? 'lost' : ''}`}>{lost
+    ? (once ? tr({ uz: 'Nishon birinchi urinish uchun edi.', ru: 'Значок давался за первую попытку.' }) : tr({ uz: "Nishon birinchi urinish uchun edi — endi bemalol to'g'risini toping.", ru: 'Значок давался за первую попытку — теперь спокойно найдите верный ответ.' }))
+    : tr({ uz: "🏅 Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki.", ru: '🏅 Справитесь с первой попытки — значок ваш.' })}</p>;
+};
 
 function AchCelebrate({ ach, onDone }) {
   useEffect(() => { const t = setTimeout(onDone, 4000); return () => clearTimeout(t); }, []); // eslint-disable-line
@@ -2972,6 +2990,8 @@ export default function WriteSkillLesson({ lang: langProp, onFinished, liveToken
           .dd-chip.in, .dd-slot.ok, .dd-slot.bad, .shake, .tg-typing span, .bnode.sheet.thinking { animation: none !important; }
         }
 
+      .ach-rule { margin: 8px 0 0; text-align: center; font-size: 13px; line-height: 1.4; color: ${T.ink2}; }
+      .ach-rule.lost { font-style: italic; }
       `}</style>
       <AchCtx.Provider value={earned}>
       <AchMissCtx.Provider value={achMissVal}>

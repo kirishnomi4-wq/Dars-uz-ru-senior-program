@@ -1,0 +1,881 @@
+[
+ {
+  "file": "src/4c-Modull/AiPipelineProjectLesson.jsx",
+  "sid": "s13",
+  "note": "bo'shliq-to'ldirish (3 guruh chip); xato = noto'g'ri chip bosilgan har qadam; mavjud halol hisob (wrongEverRef) qoladi",
+  "wrong": [
+   {
+    "click": "button.gchip:text-is(\"pull_request\")"
+   }
+  ],
+  "right": [
+   {
+    "click": "button.gchip:text-is(\"push\")"
+   },
+   {
+    "click": "button.gchip:text-is(\"ubuntu-latest\")"
+   },
+   {
+    "click": "button.gchip:text-is(\"npm test\")",
+    "after": 700
+   }
+  ]
+ },
+ {
+  "file": "src/4c-Modull/CiCdIntroLesson.jsx",
+  "sid": "s13",
+  "note": "bo'shliq-to'ldirish (3 guruh chip); xato = noto'g'ri chip",
+  "wrong": [
+   {
+    "click": "button.gchip:text-is(\"once\")"
+   }
+  ],
+  "right": [
+   {
+    "click": "button.gchip:text-is(\"push\")"
+   },
+   {
+    "click": "button.gchip:text-is(\"ubuntu-latest\")"
+   },
+   {
+    "click": "button.gchip:text-is(\"npm test\")",
+    "after": 700
+   }
+  ]
+ },
+ {
+  "file": "src/6-Modull/WriteSkillLesson.jsx",
+  "sid": "s13",
+  "note": "bo'shliq-to'ldirish (3 maydon chip); xato = noto'g'ri chip",
+  "wrong": [
+   {
+    "click": "button.gchip:text-is(\"id\")"
+   }
+  ],
+  "right": [
+   {
+    "click": "button.gchip:text-is(\"name\")"
+   },
+   {
+    "click": "button.gchip:text-is(\"description\")"
+   },
+   {
+    "click": "button.gchip:text-is(\"qadamlar\")",
+    "after": 700
+   }
+  ]
+ },
+ {
+  "file": "src/4c-Modull/AiPipelineProjectLesson.jsx",
+  "sid": "s9",
+  "note": "ko'p bosqichli ssenariy: jurnal → aniq so'rov → taklif → TEKSHIRISH (tuzoq) → tuzatish → push; xato = «Yordamchi to'g'ri» tuzog'i; askBad (foydasiz so'rov) — muallif qarori bilan xato EMAS (S3)",
+  "wrong": [
+   {
+    "click": "button:has-text(\"Jurnalni ochish\")"
+   },
+   {
+    "click": "button:has-text(\"narx.js 8-qator\")"
+   },
+   {
+    "click": "button:has-text(\"Taklifni jurnal bilan solishtirish\")"
+   },
+   {
+    "click": "button:has-text(\"Yordamchi to'g'ri\")",
+    "after": 600
+   }
+  ],
+  "right": [
+   {
+    "click": "button:has-text(\"Jurnalni ochish\")"
+   },
+   {
+    "click": "button:has-text(\"narx.js 8-qator\")"
+   },
+   {
+    "click": "button:has-text(\"Taklifni jurnal bilan solishtirish\")"
+   },
+   {
+    "click": "button:has-text(\"yordamchi adashgan\")"
+   },
+   {
+    "click": "button:has-text(\"Number(chegirma) bilan tuzatish\")"
+   },
+   {
+    "click": "button:has-text(\"Qayta lentaga qo'yish\")",
+    "after": 700
+   }
+  ],
+  "rightAfterWrong": [
+   {
+    "click": "button:has-text(\"yordamchi adashgan\")"
+   },
+   {
+    "click": "button:has-text(\"Number(chegirma) bilan tuzatish\")"
+   },
+   {
+    "click": "button:has-text(\"Qayta lentaga qo'yish\")",
+    "after": 700
+   }
+  ],
+  "slip": [
+   {
+    "click": "button:has-text(\"Jurnalni ochish\")"
+   },
+   {
+    "click": "button:has-text(\"Ishlamayapti, nima qildim\")",
+    "after": 500
+   }
+  ]
+ },
+ {
+  "file": "src/4c-Modull/FullPipelineProjectLesson.jsx",
+  "sid": "s3",
+  "note": "debug-qator (DebugChallenge + onWrong); xato = ✗ bo'lmagan jurnal qatori bosilgani; bug — 3-qator (O'lcham ramkasi)",
+  "wrong": [
+   {
+    "click": ".dbg-line",
+    "nth": 0,
+    "after": 600
+   }
+  ],
+  "right": [
+   {
+    "click": ".dbg-line",
+    "nth": 2,
+    "after": 800
+   }
+  ]
+ },
+ {
+  "file": "src/4c-Modull/FullPipelineProjectLesson.jsx",
+  "sid": "s6",
+  "note": "4 ssenariy ochiladi → DragDropOrder (5 nuqta, onWrong) → push; xato = hamma slot to'lib tartib xato; bo'lakni slotdan qaytarish — sirpanish (S3); push lenta animatsiyasi ~5 s",
+  "wrong": [
+   {
+    "click": "button.vcard",
+    "nth": 0
+   },
+   {
+    "click": "button.vcard",
+    "nth": 1
+   },
+   {
+    "click": "button.vcard",
+    "nth": 2
+   },
+   {
+    "click": "button.vcard",
+    "nth": 3
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"npm test\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"npm install\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"eslint .\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"npm run build\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"deploy\")",
+    "after": 700
+   }
+  ],
+  "right": [
+   {
+    "click": "button.vcard",
+    "nth": 0
+   },
+   {
+    "click": "button.vcard",
+    "nth": 1
+   },
+   {
+    "click": "button.vcard",
+    "nth": 2
+   },
+   {
+    "click": "button.vcard",
+    "nth": 3
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"npm install\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"npm test\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"eslint .\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"npm run build\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"deploy\")",
+    "after": 700
+   },
+   {
+    "click": "button:has-text(\"push\")",
+    "after": 7000
+   }
+  ],
+  "rightAfterWrong": [
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0
+   },
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"npm install\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"npm test\")",
+    "after": 700
+   },
+   {
+    "click": "button:has-text(\"push\")",
+    "after": 7000
+   }
+  ],
+  "slip": [
+   {
+    "click": "button.vcard",
+    "nth": 0
+   },
+   {
+    "click": "button.vcard",
+    "nth": 1
+   },
+   {
+    "click": "button.vcard",
+    "nth": 2
+   },
+   {
+    "click": "button.vcard",
+    "nth": 3
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"npm install\")"
+   },
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0,
+    "after": 500
+   }
+  ]
+ },
+ {
+  "file": "src/4c-Modull/FullPipelineProjectLesson.jsx",
+  "sid": "s10",
+  "note": "3 versiyadan oxirgi yashilini tanlash (VERSIONS tartibi: v1, v2, v3; to'g'ri — v2); xato = v1 yoki v3 bosilgan har qadam",
+  "wrong": [
+   {
+    "click": "button.vcard",
+    "nth": 2,
+    "after": 500
+   }
+  ],
+  "right": [
+   {
+    "click": "button.vcard",
+    "nth": 1,
+    "after": 700
+   }
+  ]
+ },
+ {
+  "file": "src/4c-Modull/GithubActionsLesson.jsx",
+  "sid": "s17",
+  "note": "yo'l xaritasi: signal + mashina + amallar → «🚀 Lentaga qo'ying» (780 ms simulyatsiya); xato = to'liq xarita yuborilib qizil; bo'sh bo'lim bilan yuborish (no-trigger / no-runner) — sirpanish (S3)",
+  "wrong": [
+   {
+    "click": "button.gchip:text-is(\"push\")"
+   },
+   {
+    "click": "button.gchip:text-is(\"ubuntu-latest\")"
+   },
+   {
+    "click": "button.pick-row:has-text(\"setup-node\")"
+   },
+   {
+    "click": "button.pick-row:has-text(\"checkout\")"
+   },
+   {
+    "click": "button.pick-row:has-text(\"npm install\")"
+   },
+   {
+    "click": "button.pick-row:has-text(\"npm test\")"
+   },
+   {
+    "click": "button:has-text(\"Lentaga qo'ying\")",
+    "after": 1600
+   }
+  ],
+  "right": [
+   {
+    "click": "button.gchip:text-is(\"push\")"
+   },
+   {
+    "click": "button.gchip:text-is(\"ubuntu-latest\")"
+   },
+   {
+    "click": "button.pick-row:has-text(\"checkout\")"
+   },
+   {
+    "click": "button.pick-row:has-text(\"setup-node\")"
+   },
+   {
+    "click": "button.pick-row:has-text(\"npm install\")"
+   },
+   {
+    "click": "button.pick-row:has-text(\"npm test\")"
+   },
+   {
+    "click": "button:has-text(\"Lentaga qo'ying\")",
+    "after": 1600
+   }
+  ],
+  "rightAfterWrong": [
+   {
+    "click": "button.pick-row:has-text(\"setup-node\")"
+   },
+   {
+    "click": "button.pick-row:has-text(\"checkout\")"
+   },
+   {
+    "click": "button.pick-row:has-text(\"npm install\")"
+   },
+   {
+    "click": "button.pick-row:has-text(\"npm test\")"
+   },
+   {
+    "click": "button.pick-row:has-text(\"checkout\")"
+   },
+   {
+    "click": "button.pick-row:has-text(\"setup-node\")"
+   },
+   {
+    "click": "button.pick-row:has-text(\"npm install\")"
+   },
+   {
+    "click": "button.pick-row:has-text(\"npm test\")"
+   },
+   {
+    "click": "button:has-text(\"Lentaga qo'ying\")",
+    "after": 1600
+   }
+  ],
+  "slip": [
+   {
+    "click": "button:has-text(\"Lentaga qo'ying\")",
+    "after": 1600
+   },
+   {
+    "click": "button.gchip:text-is(\"push\")"
+   },
+   {
+    "click": "button:has-text(\"Lentaga qo'ying\")",
+    "after": 1600
+   }
+  ]
+ },
+ {
+  "file": "src/6-Modull/ArchPatternsLesson.jsx",
+  "sid": "s6",
+  "note": "moslash: 3 komponent ketma-ket (front→View, back→Controller, db→Model); xato = mos bo'lmagan rol bosilgan har qadam",
+  "wrong": [
+   {
+    "click": "button.pick-row:has-text(\"Model\")",
+    "after": 600
+   }
+  ],
+  "right": [
+   {
+    "click": "button.pick-row:has-text(\"View\")"
+   },
+   {
+    "click": "button.pick-row:has-text(\"Controller\")"
+   },
+   {
+    "click": "button.pick-row:has-text(\"Model\")",
+    "after": 700
+   }
+  ]
+ },
+ {
+  "file": "src/6-Modull/ArchPatternsLesson.jsx",
+  "sid": "s12",
+  "note": "3 tizim ketma-ket (a mono, b micro, c mono), har biriga ikki variant; xato = noto'g'ri pattern bosilgan har qadam",
+  "wrong": [
+   {
+    "click": "button.pick-row:has-text(\"Mikroservis\")",
+    "after": 600
+   }
+  ],
+  "right": [
+   {
+    "click": "button.pick-row:has-text(\"Monolit\")"
+   },
+   {
+    "click": "button.pick-row:has-text(\"Mikroservis\")"
+   },
+   {
+    "click": "button.pick-row:has-text(\"Monolit\")",
+    "after": 700
+   }
+  ]
+ },
+ {
+  "file": "src/6-Modull/ClaudeSkillsLesson.jsx",
+  "sid": "s7",
+  "note": "avval «Kartasiz sinash», keyin vazifaga mos karta; xato = mos bo'lmagan karta bosilgan har qadam. Shu ekranda BONUS `beforeAfter` (to'g'ridan-to'g'ri earn, data.bonus — tegilmagan) xatodan keyin ham beriladi: rightAfterWrong oxirida 4,6 s kutiladi — bonus bayrami (4 s) yopilsin; bayram powerCard'niki EMASligi alohida diagnostika bilan tekshirildi · «Kartasiz sinash» js-bosish bilan: F5 dan keyin ekran saqlangan javobdan tiklanadi (tugma o'chiq) — shunda bosish hech narsa qilmaydi",
+  "wrong": [
+   {
+    "click": "button:has-text(\"Kartasiz sin\")",
+    "js": true
+   },
+   {
+    "click": "button.hook-option:has-text(\"mijoz-xati\")",
+    "after": 600
+   }
+  ],
+  "right": [
+   {
+    "click": "button:has-text(\"Kartasiz sin\")",
+    "js": true
+   },
+   {
+    "click": "button.hook-option:has-text(\"mahsulot-tavsifi\")",
+    "after": 800
+   }
+  ],
+  "rightAfterWrong": [
+   {
+    "click": "button.hook-option:has-text(\"mahsulot-tavsifi\")"
+   },
+   {
+    "wait": 4600
+   }
+  ]
+ },
+ {
+  "file": "src/6-Modull/ClaudeSkillsLesson.jsx",
+  "sid": "s13",
+  "note": "3 vaziyatdan karta yonadiganini tanlash (to'g'ri — b, krossovka tavsifi); xato = boshqa vaziyat bosilgan har qadam",
+  "wrong": [
+   {
+    "click": "button.pick-row:has-text(\"uzr xati\")",
+    "after": 600
+   }
+  ],
+  "right": [
+   {
+    "click": "button.pick-row:has-text(\"krossovka\")",
+    "after": 700
+   }
+  ]
+ },
+ {
+  "file": "src/4c-Modull/PmLesson17.jsx",
+  "sid": "s9",
+  "note": "3 raund, har birida 3 nomzoddan biri darvozadan o'tadi (to'g'ri: r1c · r2a · r3b → nth 2, 0, 1); xato = noto'g'ri nomzod bosilgan har qadam",
+  "wrong": [
+   {
+    "click": "button.nmz-opt",
+    "nth": 0,
+    "after": 600
+   }
+  ],
+  "right": [
+   {
+    "click": "button.nmz-opt",
+    "nth": 2,
+    "after": 500
+   },
+   {
+    "click": "button.nmz-opt",
+    "nth": 0,
+    "after": 500
+   },
+   {
+    "click": "button.nmz-opt",
+    "nth": 1,
+    "after": 900
+   }
+  ]
+ },
+ {
+  "file": "src/4c-Modull/PmLesson18.jsx",
+  "sid": "s9",
+  "once": true,
+  "note": "4 signal, har biriga BIR MARTA yo'l (tanlov qotadi; to'g'ri: g1 jurnal · g2 hozir · g3 hozir · g4 jurnal); xato = noto'g'ri yo'l — qayta tanlab bo'lmaydi → `once` matni. Nishon faqat 4/4 da (mavjud halol hisob)",
+  "wrong": [
+   {
+    "click": "button.yolb-hozir",
+    "after": 600
+   }
+  ],
+  "right": [
+   {
+    "click": "button.yolb-jurnal",
+    "after": 500
+   },
+   {
+    "click": "button.nextsig",
+    "after": 500
+   },
+   {
+    "click": "button.yolb-hozir",
+    "after": 500
+   },
+   {
+    "click": "button.nextsig",
+    "after": 500
+   },
+   {
+    "click": "button.yolb-hozir",
+    "after": 500
+   },
+   {
+    "click": "button.nextsig",
+    "after": 500
+   },
+   {
+    "click": "button.yolb-jurnal",
+    "after": 900
+   }
+  ],
+  "rightAfterWrong": [
+   {
+    "click": "button.nextsig",
+    "after": 500
+   },
+   {
+    "click": "button.yolb-hozir",
+    "after": 500
+   },
+   {
+    "click": "button.nextsig",
+    "after": 500
+   },
+   {
+    "click": "button.yolb-hozir",
+    "after": 500
+   },
+   {
+    "click": "button.nextsig",
+    "after": 500
+   },
+   {
+    "click": "button.yolb-jurnal",
+    "after": 900
+   }
+  ]
+ },
+ {
+  "file": "src/6-Modull/PmLesson22.jsx",
+  "sid": "s9",
+  "note": "3 varaq: javobsiz katakni bosish yoki «✅ javobsiz katak yo'q» (v1 → yechim, v2 → kim, v3 → toza); xato = noto'g'ri katak yoki noo'rin «toza»; KATAKLAR tartibi: muammo, kim, yechim, olchov",
+  "wrong": [
+   {
+    "click": ".varaq-cells button",
+    "nth": 0,
+    "after": 600
+   }
+  ],
+  "right": [
+   {
+    "click": ".varaq-cells button",
+    "nth": 2,
+    "after": 450
+   },
+   {
+    "click": "button.wsp-save",
+    "after": 500
+   },
+   {
+    "click": ".varaq-cells button",
+    "nth": 1,
+    "after": 450
+   },
+   {
+    "click": "button.wsp-save",
+    "after": 500
+   },
+   {
+    "click": "button.clean-btn",
+    "after": 450
+   },
+   {
+    "click": "button.wsp-save",
+    "after": 900
+   }
+  ]
+ },
+ {
+  "file": "src/6-Modull/PmLesson23.jsx",
+  "sid": "s9",
+  "note": "qaror → odam juftlash (q1→o1, q2→o2, q3→o3; 4-juftlik o'zi qo'shiladi, 700 ms); odamlar tartibi o2, o4, o1, o3; xato = qaror tanlangan holda noto'g'ri odam; qarorsiz odam bosish («Avval chapdan…») — sirpanish (S3)",
+  "wrong": [
+   {
+    "click": "button.jft-card.q",
+    "nth": 0,
+    "after": 300
+   },
+   {
+    "click": "button.jft-card.o",
+    "nth": 0,
+    "after": 600
+   }
+  ],
+  "right": [
+   {
+    "click": "button.jft-card.q",
+    "nth": 0,
+    "after": 300
+   },
+   {
+    "click": "button.jft-card.o",
+    "nth": 2,
+    "after": 450
+   },
+   {
+    "click": "button.jft-card.q",
+    "nth": 1,
+    "after": 300
+   },
+   {
+    "click": "button.jft-card.o",
+    "nth": 0,
+    "after": 450
+   },
+   {
+    "click": "button.jft-card.q",
+    "nth": 2,
+    "after": 300
+   },
+   {
+    "click": "button.jft-card.o",
+    "nth": 3,
+    "after": 1500
+   }
+  ],
+  "rightAfterWrong": [
+   {
+    "click": "button.jft-card.o",
+    "nth": 2,
+    "after": 450
+   },
+   {
+    "click": "button.jft-card.q",
+    "nth": 1,
+    "after": 300
+   },
+   {
+    "click": "button.jft-card.o",
+    "nth": 0,
+    "after": 450
+   },
+   {
+    "click": "button.jft-card.q",
+    "nth": 2,
+    "after": 300
+   },
+   {
+    "click": "button.jft-card.o",
+    "nth": 3,
+    "after": 1500
+   }
+  ],
+  "slip": [
+   {
+    "click": "button.jft-card.o",
+    "nth": 0,
+    "after": 500
+   }
+  ]
+ },
+ {
+  "file": "src/6-Modull/PmLesson24.jsx",
+  "sid": "s9",
+  "note": "6 ish, har biriga ufq (hozir ×3, uch-oy ×2, olti-oy); xato = noto'g'ri ufq bosilgan har qadam (keyin qayta tanlash mumkin); oxirida «✓ Yo'lni ko'rish»",
+  "wrong": [
+   {
+    "click": "button.uj-b.olti-oy",
+    "after": 600
+   }
+  ],
+  "right": [
+   {
+    "click": "button.uj-b.hozir",
+    "after": 400
+   },
+   {
+    "click": "button.wsp-save",
+    "after": 400
+   },
+   {
+    "click": "button.uj-b.hozir",
+    "after": 400
+   },
+   {
+    "click": "button.wsp-save",
+    "after": 400
+   },
+   {
+    "click": "button.uj-b.hozir",
+    "after": 400
+   },
+   {
+    "click": "button.wsp-save",
+    "after": 400
+   },
+   {
+    "click": "button.uj-b.uch-oy",
+    "after": 400
+   },
+   {
+    "click": "button.wsp-save",
+    "after": 400
+   },
+   {
+    "click": "button.uj-b.uch-oy",
+    "after": 400
+   },
+   {
+    "click": "button.wsp-save",
+    "after": 400
+   },
+   {
+    "click": "button.uj-b.olti-oy",
+    "after": 400
+   },
+   {
+    "click": "button.wsp-save",
+    "after": 900
+   }
+  ],
+  "rightAfterWrong": [
+   {
+    "click": "button.uj-b.hozir",
+    "after": 400
+   },
+   {
+    "click": "button.wsp-save",
+    "after": 400
+   },
+   {
+    "click": "button.uj-b.hozir",
+    "after": 400
+   },
+   {
+    "click": "button.wsp-save",
+    "after": 400
+   },
+   {
+    "click": "button.uj-b.hozir",
+    "after": 400
+   },
+   {
+    "click": "button.wsp-save",
+    "after": 400
+   },
+   {
+    "click": "button.uj-b.uch-oy",
+    "after": 400
+   },
+   {
+    "click": "button.wsp-save",
+    "after": 400
+   },
+   {
+    "click": "button.uj-b.uch-oy",
+    "after": 400
+   },
+   {
+    "click": "button.wsp-save",
+    "after": 400
+   },
+   {
+    "click": "button.uj-b.olti-oy",
+    "after": 400
+   },
+   {
+    "click": "button.wsp-save",
+    "after": 900
+   }
+  ]
+ },
+ {
+  "file": "src/6-Modull/PmLesson25.jsx",
+  "sid": "s9",
+  "once": true,
+  "note": "3 juftlik, har birida BIR MARTA tanlov (qotadi; to'g'ri: 1, 0, 1); xato = noto'g'ri raqam — qayta tanlab bo'lmaydi → `once` matni",
+  "wrong": [
+   {
+    "click": "button.duocard",
+    "nth": 0,
+    "after": 600
+   }
+  ],
+  "right": [
+   {
+    "click": "button.duocard",
+    "nth": 1,
+    "after": 450
+   },
+   {
+    "click": "button.wsp-save",
+    "after": 450
+   },
+   {
+    "click": "button.duocard",
+    "nth": 0,
+    "after": 450
+   },
+   {
+    "click": "button.wsp-save",
+    "after": 450
+   },
+   {
+    "click": "button.duocard",
+    "nth": 1,
+    "after": 450
+   },
+   {
+    "click": "button.wsp-save",
+    "after": 900
+   }
+  ],
+  "rightAfterWrong": [
+   {
+    "click": "button.wsp-save",
+    "after": 450
+   },
+   {
+    "click": "button.duocard",
+    "nth": 0,
+    "after": 450
+   },
+   {
+    "click": "button.wsp-save",
+    "after": 450
+   },
+   {
+    "click": "button.duocard",
+    "nth": 1,
+    "after": 450
+   },
+   {
+    "click": "button.wsp-save",
+    "after": 900
+   }
+  ]
+ }
+]

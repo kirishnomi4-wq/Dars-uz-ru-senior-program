@@ -1056,6 +1056,7 @@ const CARD_OPTS = [
   { id: 'sql', label: { uz: '🎴 hisobot-sql kartasi', ru: '🎴 карта hisobot-sql' }, ok: false }
 ];
 const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
+  const achMiss = useContext(AchMissCtx);
   const [tried, setTried] = useState(!!storedAnswer);
   const [picked, setPicked] = useState(storedAnswer?.picked ?? null);
   const [sc, setSc] = useState(0);
@@ -1066,6 +1067,7 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     if (!tried || solved) return;
     setPicked(id);
     const ok = id === 'desc';
+    if (!ok && achMiss) achMiss.miss(screen);
     if (firstRef.current === null) firstRef.current = ok;
     setSc(n => n + 1);
     onAnswer(screen, { stage: 'challenge', screenIdx: screen, question: "Qahramonga qaysi super-kuch kartasini jihozlaysiz?", picked: id, correct: ok, firstAttemptCorrect: firstRef.current, solved: ok, bonus: ok });
@@ -1099,6 +1101,7 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 );
               })}
             </div>
+            {!solved && <AchRule screen={screen} />}
             {!tried && <p className="small" style={{ color: T.ink3, fontStyle: 'italic', margin: 0 }}>{tr({ uz: 'Avval kartasiz sinang ←', ru: 'Сначала попробуйте без карты ←' })}</p>}
             {picked && !solved && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Bu karta bu vazifaga mos emas — uning description'i boshqa ishga yonadi. Vazifa «mahsulot tavsifi» — mos kartani tanlang.", ru: 'Эта карта задаче не подходит — её description срабатывает на другое дело. Задача — «описание товара»: выберите подходящую карту.' })}</p></div>}
             {solved && <div className="frame-success fade-step"><p className="note-h" style={{ color: T.success }}>{tr({ uz: '✅ Karta bilan — aniq, maxsus harakat', ru: '✅ С картой — точное, особое действие' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "«Yengil va pishiq charm hamyon 👜 Kundalik uchun ideal. Atigi 120 000 so'm — Savatga qo'shing!» Bir xil qahramon, bir xil vazifa — lekin karta natijani sizning standartingizga soldi.", ru: '«Лёгкий и прочный кожаный кошелёк 👜 Идеален на каждый день. Всего 120 000 сум — Добавьте в корзину!» Тот же герой, та же задача — но карта привела результат к вашему стандарту.' })}</p></div>}
@@ -1157,6 +1160,7 @@ const TRIGGER_SITS = [
   { id: 'c', label: { uz: "«Sotuv hisobotini SQL'da chiqar»", ru: '«Выведи отчёт о продажах на SQL»' }, ok: false, why: { uz: 'Bu — hisobot/SQL vazifasi; boshqa karta kerak.', ru: 'Это задача про отчёт/SQL; нужна другая карта.' } }
 ];
 const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
+  const achMiss = useContext(AchMissCtx);
   const [picked, setPicked] = useState(storedAnswer?.picked ?? null);
   const [sc, setSc] = useState(0);
   const solved = picked === 'b';
@@ -1166,6 +1170,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     if (solved) return;
     setPicked(id); setSc(n => n + 1);
     const ok = id === 'b';
+    if (!ok && achMiss) achMiss.miss(screen);
     if (firstRef.current === null) firstRef.current = ok;
     onAnswer(screen, { stage: 'challenge', screenIdx: screen, question: "mahsulot-tavsifi kartasi qaysi vaziyatda yonadi?", picked: id, correct: ok, firstAttemptCorrect: firstRef.current, solved: ok });
   };
@@ -1187,6 +1192,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             );
           })}
         </div>
+        {!solved && <AchRule screen={screen} />}
         {cur && !solved && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr(cur.why)} {tr({ uz: "description mos kelmasa — karta yonmaydi.", ru: 'Если description не совпал — карта не сработает.' })}</p></div>}
         {solved && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "✅ To'g'ri! description «mahsulot tavsifi»ga mos vazifada karta yonadi. Aniq description = kuch aynan kerakli paytda ishga tushadi.", ru: '✅ Верно! Карта срабатывает на задаче, совпавшей с description «описание товара». Точный description = сила включается именно в нужный момент.' })}</p></div>}
       </div>
@@ -1273,6 +1279,22 @@ const ACHIEVEMENTS = {
 // · s13 (right trigger — noto'g'ri vaziyat tanlansa correct:false) · s15 (yakuniy oqim — DragDrop, xato tartib correct:false).
 // «Before/After» s7 ichida bonus shart (kartasiz vs karta) bilan alohida beriladi (root recordAnswer). Passiv/toggle ekranlarga BOG'LANMAYDI.
 const ACH_TRIGGERS = { s7: 'powerCard', s13: 'rightTrigger', s15: 'cardMaster' };
+
+// 🏅 151-qonun: amaliy topshiriq nishoni faqat BIRINCHI urinishga beriladi. Shart OLDINDAN aytiladi; birinchi urinish
+// xato bo'lsa — jazosiz qisqa xabar (`once` — qayta urinishi yo'q ekran). Mentor ekranida, «Qaytadan» mashq-o'tishida va
+// nishon olingach ko'rinmaydi. Matn — MATN_KORPUS §183 (hamma darsda aynan bir xil).
+const AchRule = ({ screen, once }) => {
+  const earned = useContext(AchCtx);
+  const am = useContext(AchMissCtx);
+  const gate = useContext(LiveGateCtx) || {};
+  const sid = SCREEN_META[screen] && SCREEN_META[screen].id;
+  const ach = ACH_TRIGGERS[sid];
+  if (!ach || !am || am.practice || (gate.live && gate.live.mode === 'mentor') || (earned && earned.has(ach))) return null;
+  const lost = am.missed.has(sid);
+  return <p className={`ach-rule ${lost ? 'lost' : ''}`}>{lost
+    ? (once ? tr({ uz: 'Nishon birinchi urinish uchun edi.', ru: 'Значок давался за первую попытку.' }) : tr({ uz: "Nishon birinchi urinish uchun edi — endi bemalol to'g'risini toping.", ru: 'Значок давался за первую попытку — теперь спокойно найдите верный ответ.' }))
+    : tr({ uz: "🏅 Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki.", ru: '🏅 Справитесь с первой попытки — значок ваш.' })}</p>;
+};
 
 function AchCelebrate({ ach, onDone }) {
   useEffect(() => { const t = setTimeout(onDone, 4000); return () => clearTimeout(t); }, []); // eslint-disable-line
@@ -3153,6 +3175,8 @@ export default function ClaudeSkillsLesson({ lang: langProp, onFinished, liveTok
         .cyc-ico { font-size: 18px; line-height: 1; } .cyc-lbl { font-family: 'Manrope'; font-weight: 700; font-size: 10px; color: ${T.ink}; text-align: center; }
         .cyc-arrow { color: ${T.ink3}; font-weight: 700; font-size: 14px; } .cyc-arrow.on { color: ${T.success}; }
 
+      .ach-rule { margin: 8px 0 0; text-align: center; font-size: 13px; line-height: 1.4; color: ${T.ink2}; }
+      .ach-rule.lost { font-style: italic; }
       `}</style>
       <AchCtx.Provider value={earned}>
       <AchMissCtx.Provider value={achMissVal}>

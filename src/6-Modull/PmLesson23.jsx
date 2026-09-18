@@ -1258,6 +1258,7 @@ const BOT_ODAMLAR = [
 ];
 const JUFT_KEY = 'pm-m6d6-juft';
 const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
+  const achMiss = useContext(AchMissCtx);
   const gate = useContext(LiveGateCtx) || {};
   const live = gate.live;
   const isMentor = !!(live && live.mode === 'mentor');
@@ -1296,6 +1297,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     const q = BOT_QARORLAR.find(x => x.id === selQ);
     if (q && q.odam === oid) { setPairs(p => ({ ...p, [q.id]: oid })); setSelQ(null); setMiss(''); return; }
     setMissedOnce(true);
+    if (achMiss) achMiss.miss(screen);
     setMiss("🤔 Bu odam ham bot bilan uchrashadi — lekin boshqa paytda. Qaysi qaror aynan shu paytga tushadi?");
   };
   const korinsin = !isMentor || mReveal;
@@ -1347,6 +1349,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <MentorPracticeStats live={live} screen={screen} label="🔗 To'rt juftlikni tuzganlar" />
           </Col>
         </div>
+        {!done && <AchRule screen={screen} />}
         {/* YORDAM-savoli ekran boshida TURMAYDI: faqat birinchi xatodan keyin ochiladi */}
         {miss && !done && <p className="bhint fade-step">{miss}</p>}
         {missedOnce && !done && (
@@ -1766,6 +1769,22 @@ const ACHIEVEMENTS = {
   limitCoder:  { icon: '🛠', name: 'Limit Coder!',  desc: 'Chegara kerak ishlarni kod bilan topdingiz' },
 };
 const ACH_TRIGGERS = { s4: 'mirrorCheck', s8: 'ruleMaker', s9: 'pairFinder', s10: 'limitCoder' };
+
+// 🏅 151-qonun: amaliy topshiriq nishoni faqat BIRINCHI urinishga beriladi. Shart OLDINDAN aytiladi; birinchi urinish
+// xato bo'lsa — jazosiz qisqa xabar (`once` — qayta urinishi yo'q ekran). Mentor ekranida, «Qaytadan» mashq-o'tishida va
+// nishon olingach ko'rinmaydi. Matn — MATN_KORPUS §183 (hamma darsda aynan bir xil).
+const AchRule = ({ screen, once }) => {
+  const earned = useContext(AchCtx);
+  const am = useContext(AchMissCtx);
+  const gate = useContext(LiveGateCtx) || {};
+  const sid = SCREEN_META[screen] && SCREEN_META[screen].id;
+  const ach = ACH_TRIGGERS[sid];
+  if (!ach || !am || am.practice || (gate.live && gate.live.mode === 'mentor') || (earned && earned.has(ach))) return null;
+  const lost = am.missed.has(sid);
+  return <p className={`ach-rule ${lost ? 'lost' : ''}`}>{lost
+    ? (once ? 'Nishon birinchi urinish uchun edi.' : "Nishon birinchi urinish uchun edi — endi bemalol to'g'risini toping.")
+    : "🏅 Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki."}</p>;
+};
 function AchCelebrate({ ach, onDone }) {
   useEffect(() => { const t = setTimeout(onDone, 4000); return () => clearTimeout(t); }, []); // eslint-disable-line
   return (
@@ -3479,6 +3498,8 @@ export default function PmLesson23({ lang: langProp, onFinished, liveToken }) {
         ${CSS_BASE}
         ${CSS_LESSON}
         ${CSS_ARENA}
+        .ach-rule { margin: 8px 0 0; text-align: center; font-size: 13px; line-height: 1.4; color: ${T.ink2}; }
+        .ach-rule.lost { font-style: italic; }
       `}</style>
       <AchCtx.Provider value={earned}>
       <AchMissCtx.Provider value={achMissVal}>

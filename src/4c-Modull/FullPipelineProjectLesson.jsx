@@ -627,7 +627,7 @@ const Tablo = ({ ok }) => (
 );
 
 // ===== 🧩 LENTA QURUVCHISI — reusable order-builder (pointer + DOM-transform, S7 naqshi) =====
-function DragDropOrder({ items, hints, onSolved, doneText, onChange }) {
+function DragDropOrder({ items, hints, onSolved, doneText, onChange, onWrong }) {
   const order = items.map(x => x.id);
   const byId = useMemo(() => Object.fromEntries(items.map(x => [x.id, x])), [items]);
   const [st, setSt] = useState(() => {
@@ -640,6 +640,7 @@ function DragDropOrder({ items, hints, onSolved, doneText, onChange }) {
   const full = slots.every(s => s !== null);
   const solved = slots.every((s, i) => s === order[i]);
   const wrong = full && !solved;
+  useEffect(() => { if (wrong) onWrong && onWrong(); }, [wrong]); // eslint-disable-line
   useEffect(() => { if (solved) onSolved && onSolved(); }, [solved]); // eslint-disable-line
   useEffect(() => { onChange && onChange(slots); }, [slots]); // eslint-disable-line
   const place = (id, from, slotIdx) => setSt(({ pool, slots }) => {
@@ -703,7 +704,7 @@ function DragDropOrder({ items, hints, onSolved, doneText, onChange }) {
 }
 
 // ===== 🐞 LENTA JURNALI — buzuq qatorni topib bosish → tuzatiladi (reusable) =====
-function DebugChallenge({ lines, fixed, explain, onSolved, onProgress }) {
+function DebugChallenge({ lines, fixed, explain, onSolved, onProgress, onWrong }) {
   const bugIdx = lines.findIndex(l => l.bug);
   const [picked, setPicked] = useState(-1);
   const [wrongIdx, setWrongIdx] = useState(-1);
@@ -713,7 +714,7 @@ function DebugChallenge({ lines, fixed, explain, onSolved, onProgress }) {
     if (solved) return;
     if (onProgress) onProgress();
     if (i === bugIdx) setPicked(i);
-    else { setWrongIdx(i); setTimeout(() => setWrongIdx(w => (w === i ? -1 : w)), 500); }
+    else { if (onWrong) onWrong(); setWrongIdx(i); setTimeout(() => setWrongIdx(w => (w === i ? -1 : w)), 500); }
   };
   return (
     <div className="dbg fade-up">
@@ -884,6 +885,7 @@ const LOG_LINES = [
   { text: { uz: "▶ ✈️ Uchirish — deploy ....................... — o'tkazib yuborildi", ru: '▶ ✈️ Взлёт — deploy ....................... — пропущено' } }
 ];
 const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
+  const achMiss = useContext(AchMissCtx);
   const [solved, setSolved] = useState(!!storedAnswer);
   const [prog, setProg] = useState(0);
   const done = solved;
@@ -898,10 +900,12 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <DebugChallenge
           lines={LOG_LINES}
           onProgress={() => setProg(p => p + 1)}
+          onWrong={() => achMiss && achMiss.miss(screen)}
           fixed={{ uz: "▶ 📐 O'lcham ramkasi — eslint . ............ ✓ 2s", ru: '▶ 📐 Габарит-рамка — eslint . ............ ✓ 2s' }}
           explain={{ uz: "O'lcham ramkasi nuqtasida xato bor edi — shu sabab O'rash va Uchirish o'tkazib yuborildi (skip). Nuqta tuzatilgach, qolganlar davom etadi.", ru: 'Ошибка была в точке Габарит-рамка — поэтому Упаковку и Взлёт пропустили (skip). Как только точку починят, остальные продолжат.' }}
           onSolved={() => { if (storedAnswer === undefined) { setSolved(true); onAnswer(screen, { stage: 'case', screenIdx: screen, correct: true, picked: true }); } else setSolved(true); }}
         />
+        {!done && <AchRule screen={screen} />}
         {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Aynan shunday LENTA JURNALI o'qiladi: qaysi nuqtada ✗, o'sha yerdan boshlab qolganlari o'tkazib yuboriladi.", ru: 'Именно так читают ЖУРНАЛ КОНВЕЙЕРА: у какой точки ✗ — с неё все следующие пропускаются.' })}</p></div>}
       </div>
     </Stage>
@@ -983,6 +987,7 @@ const CONSEQ = [
   { id: 'secret', ico: '🔐', t: { uz: 'Seyf ulanmasa', ru: 'Если СЕЙФ не подключён' }, d: { uz: "Uchirish nuqtasiga maxfiy kalit ulanmasa, deploy 401 xatosi bilan yiqiladi — token yo'q.", ru: 'Если к точке Взлёт не подключён секретный ключ, deploy падает с ошибкой 401 — токена нет.' } }
 ];
 const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
+  const achMiss = useContext(AchMissCtx);
   const [seenC, setSeenC] = useState(storedAnswer ? new Set(CONSEQ.map(c => c.id)) : new Set());
   const [activeC, setActiveC] = useState(null);
   const [built, setBuilt] = useState(!!storedAnswer);
@@ -1056,6 +1061,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                     hints={[{ uz: "avval nima yig'iladi", ru: 'сначала — что собирается' }, { uz: 'keyin nima skanerlanadi', ru: 'затем — что сканируется' }, { uz: "keyin o'lcham qanday tekshiriladi", ru: 'затем — как проверяется габарит' }, { uz: "keyin qanday o'raladi", ru: 'затем — как упаковывается' }, { uz: 'eng oxiri qanday uchadi', ru: 'в самом конце — что взлетает' }]}
                     doneText={{ uz: "Tartib to'g'ri! Endi push qiling.", ru: 'Порядок верный! Теперь сделайте push.' }}
                     onSolved={() => setBuilt(true)}
+                    onWrong={() => achMiss && achMiss.miss(screen)}
                   />
                   {built && !pushed && <button className={`btn ${!running ? 'tap-hint' : ''}`} style={{ alignSelf: 'flex-start' }} disabled={running} onClick={doPush}>{running ? tr({ uz: '● Lenta aylanmoqda…', ru: '● Конвейер крутится…' }) : '▶ git push origin main'}</button>}
                   {(running || log.length > 0) && (
@@ -1082,6 +1088,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </Col>
         </div>
         </Zoomable>
+        {!built && <AchRule screen={screen} />}
       </div>
     </Stage>
   );
@@ -1173,6 +1180,7 @@ const VERSIONS = [
   { id: 'v3', ico: '🔴', t: { uz: 'v3 — xarita integratsiyasi (joriy)', ru: 'v3 — интеграция карты (текущая)' }, tag: { uz: 'productionda xato chiqardi', ru: 'выдала ошибку в production' }, ok: false }
 ];
 const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
+  const achMiss = useContext(AchMissCtx);
   const [picked, setPicked] = useState(storedAnswer?.picked ?? null);
   const [solved, setSolved] = useState(!!storedAnswer);
   const [tries, setTries] = useState(0);
@@ -1183,7 +1191,7 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     if (id === 'v2') {
       setSolved(true);
       if (storedAnswer === undefined) onAnswer(screen, { stage: 'case', screenIdx: screen, correct: true, picked: id });
-    }
+    } else if (achMiss) achMiss.miss(screen);
   };
   return (
     <Stage eyebrow={tr({ uz: 'Amaliyot · rollback', ru: 'Практика · rollback' })} screen={screen} scrollSignal={solved ? 1 : 0} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!solved && !_resc} label={(solved || _resc) ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "To'g'ri versiyani tanlang", ru: 'Выберите правильную версию' })} onClick={onNext} /></>}>
@@ -1212,6 +1220,7 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             );
           })}
         </div>
+        {!solved && <AchRule screen={screen} />}
         {picked && !solved && (
           <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>
             {picked === 'v3' ? tr({ uz: "v3 — bu aynan buzuq, joriy versiya. Unga qaytarib bo'lmaydi.", ru: 'v3 — это и есть сломанная, текущая версия. К ней откатиться нельзя.' }) : tr({ uz: 'v1 — ishlagan, lekin v2 undan keyin chiqqan va u ham yashil edi. Oxirgi yashil versiyani qidiring.', ru: 'v1 работала, но после неё вышла v2 — и она тоже была зелёной. Ищите последнюю зелёную версию.' })}
@@ -1568,6 +1577,22 @@ const ACHIEVEMENTS = {
 // Ekran id → nishon. ❗ FAQAT ma'noli ekranlar: s3 (real debug) · s6 (markaziy — to'liq yashil push) ·
 // s10 (real rollback tanlovi) · s12 (SCORED yakuniy test). Exploration ekranlarga BOG'LANMAYDI.
 const ACH_TRIGGERS = { s3: 'blackBox', s6: 'pipelineArchitect', s10: 'safeReturn', s12: 'boardingComplete' };
+
+// 🏅 151-qonun: amaliy topshiriq nishoni faqat BIRINCHI urinishga beriladi. Shart OLDINDAN aytiladi; birinchi urinish
+// xato bo'lsa — jazosiz qisqa xabar (`once` — qayta urinishi yo'q ekran). Mentor ekranida, «Qaytadan» mashq-o'tishida va
+// nishon olingach ko'rinmaydi. Matn — MATN_KORPUS §183 (hamma darsda aynan bir xil).
+const AchRule = ({ screen, once }) => {
+  const earned = useContext(AchCtx);
+  const am = useContext(AchMissCtx);
+  const gate = useContext(LiveGateCtx) || {};
+  const sid = SCREEN_META[screen] && SCREEN_META[screen].id;
+  const ach = ACH_TRIGGERS[sid];
+  if (!ach || !am || am.practice || (gate.live && gate.live.mode === 'mentor') || (earned && earned.has(ach))) return null;
+  const lost = am.missed.has(sid);
+  return <p className={`ach-rule ${lost ? 'lost' : ''}`}>{lost
+    ? (once ? tr({ uz: 'Nishon birinchi urinish uchun edi.', ru: 'Значок давался за первую попытку.' }) : tr({ uz: "Nishon birinchi urinish uchun edi — endi bemalol to'g'risini toping.", ru: 'Значок давался за первую попытку — теперь спокойно найдите верный ответ.' }))
+    : tr({ uz: "🏅 Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki.", ru: '🏅 Справитесь с первой попытки — значок ваш.' })}</p>;
+};
 
 function AchCelebrate({ ach, onDone }) {
   useEffect(() => { const t = setTimeout(onDone, 4000); return () => clearTimeout(t); }, []); // eslint-disable-line
@@ -3034,6 +3059,8 @@ export default function FullPipelineProjectLesson({ lang: langProp, onFinished, 
         .live-badge { opacity: 0.62; transition: opacity 0.25s ease, box-shadow 0.25s ease; }
         .live-badge:hover, .live-badge:focus-within { opacity: 1; box-shadow: 0 8px 24px -6px rgba(58,53,48,0.32) !important; }
         @media (hover: none) { .live-badge { opacity: 0.62; } }
+        .ach-rule { margin: 8px 0 0; text-align: center; font-size: 13px; line-height: 1.4; color: ${T.ink2}; }
+        .ach-rule.lost { font-style: italic; }
       `}</style>
       <AchCtx.Provider value={earned}>
       <AchMissCtx.Provider value={achMissVal}>

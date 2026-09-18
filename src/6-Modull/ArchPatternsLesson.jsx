@@ -134,6 +134,22 @@ const ACHIEVEMENTS = {
 // · s14 (SCORED test — mikroservis) · s15 (yakuniy DragDrop oqim). Toggle/reveal ekranlarga BOG'LANMAYDI.
 const ACH_TRIGGERS = { s6: 'cityPlanner', s12: 'oneTowerVsDistrict', s14: 'splitBlock', s15: 'trafficRoute' };
 
+// 🏅 151-qonun: amaliy topshiriq nishoni faqat BIRINCHI urinishga beriladi. Shart OLDINDAN aytiladi; birinchi urinish
+// xato bo'lsa — jazosiz qisqa xabar (`once` — qayta urinishi yo'q ekran). Mentor ekranida, «Qaytadan» mashq-o'tishida va
+// nishon olingach ko'rinmaydi. Matn — MATN_KORPUS §183 (hamma darsda aynan bir xil).
+const AchRule = ({ screen, once }) => {
+  const earned = useContext(AchCtx);
+  const am = useContext(AchMissCtx);
+  const gate = useContext(LiveGateCtx) || {};
+  const sid = SCREEN_META[screen] && SCREEN_META[screen].id;
+  const ach = ACH_TRIGGERS[sid];
+  if (!ach || !am || am.practice || (gate.live && gate.live.mode === 'mentor') || (earned && earned.has(ach))) return null;
+  const lost = am.missed.has(sid);
+  return <p className={`ach-rule ${lost ? 'lost' : ''}`}>{lost
+    ? (once ? tr({ uz: 'Nishon birinchi urinish uchun edi.', ru: 'Значок давался за первую попытку.' }) : tr({ uz: "Nishon birinchi urinish uchun edi — endi bemalol to'g'risini toping.", ru: 'Значок давался за первую попытку — теперь спокойно найдите верный ответ.' }))
+    : tr({ uz: "🏅 Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki.", ru: '🏅 Справитесь с первой попытки — значок ваш.' })}</p>;
+};
+
 // 🏅 Yuqori paneldagi nishon hisoblagichi (Stage chrome)
 // 🏅 Yuqori paneldagi nishon hisoblagichi (Stage chrome)
 function AchCounter() {
@@ -838,6 +854,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 
 // ===== SCREEN 6 — MAP TO MVC =====
 const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
+  const achMiss = useContext(AchMissCtx);
   const [idx, setIdx] = useState(storedAnswer ? MAP_ITEMS.length : 0);
   const [wrong, setWrong] = useState(null);
   const [sc, setSc] = useState(0);
@@ -847,7 +864,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const choose = (roleId) => {
     if (done) return;
     if (roleId === cur.role) { setWrong(null); setIdx(n => n + 1); setSc(n => n + 1); }
-    else { setWrong(roleId); setTimeout(() => setWrong(w => (w === roleId ? null : w)), 450); }
+    else { if (achMiss) achMiss.miss(screen); setWrong(roleId); setTimeout(() => setWrong(w => (w === roleId ? null : w)), 450); }
   };
   return (
     <Stage eyebrow={tr({ uz: "Moslash · sizning do'kon", ru: 'Сопоставление · ваш магазин' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? NEXT_DEFAULT : { uz: `Moslang (${idx}/${MAP_ITEMS.length})`, ru: `Сопоставьте (${idx}/${MAP_ITEMS.length})` }} onClick={onNext} /></>}>
@@ -869,6 +886,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 </button>
               ))}
             </div>
+            {!done && <AchRule screen={screen} />}
             {wrong && !done && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Bu rol mos emas — komponent nima qilishini o'ylang va qayta tanlang.", ru: 'Эта роль не подходит — подумайте, что делает компонент, и выберите заново.' })}</p></div>}
           </Col>
         </div></Zoomable>
@@ -1023,6 +1041,7 @@ const Screen11 = (props) => (
 
 // ===== SCREEN 12 — PATTERN MATCHER =====
 const Screen12 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
+  const achMiss = useContext(AchMissCtx);
   const [idx, setIdx] = useState(storedAnswer ? SYSTEMS.length : 0);
   const [wrong, setWrong] = useState(false);
   const [sc, setSc] = useState(0);
@@ -1032,7 +1051,7 @@ const Screen12 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const choose = (ans) => {
     if (done) return;
     if (ans === cur.ans) { setWrong(false); setIdx(n => n + 1); setSc(n => n + 1); }
-    else { setWrong(true); setTimeout(() => setWrong(false), 450); }
+    else { if (achMiss) achMiss.miss(screen); setWrong(true); setTimeout(() => setWrong(false), 450); }
   };
   return (
     <Stage eyebrow={tr({ uz: 'Hayotiy · pattern topish', ru: 'Из жизни · определить паттерн' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? NEXT_DEFAULT : { uz: `Tasniflang (${idx}/${SYSTEMS.length})`, ru: `Определите (${idx}/${SYSTEMS.length})` }} onClick={onNext} /></>}>
@@ -1051,6 +1070,7 @@ const Screen12 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <button className={`pick-row ${wrong ? 'shake' : ''}`} disabled={done} onClick={() => choose('mono')}><span style={{ marginRight: 6 }}>🏢</span><span style={{ flex: 1 }}>{tr({ uz: 'Monolit', ru: 'Монолит' })} <span style={{ color: T.ink3, fontWeight: 500 }}>{tr({ uz: '· bitta katta ilova', ru: '· одно большое приложение' })}</span></span><span className="pick-plus">+</span></button>
               <button className={`pick-row ${wrong ? 'shake' : ''}`} disabled={done} onClick={() => choose('micro')}><span style={{ marginRight: 6 }}>🧩</span><span style={{ flex: 1 }}>{tr({ uz: 'Mikroservis', ru: 'Микросервисы' })} <span style={{ color: T.ink3, fontWeight: 500 }}>{tr({ uz: "· ko'p mustaqil xizmat", ru: '· много самостоятельных сервисов' })}</span></span><span className="pick-plus">+</span></button>
             </div>
+            {!done && <AchRule screen={screen} />}
             {wrong && !done && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Qaytadan o'ylang: bitta loyihami yoki ko'p mustaqil xizmatmi?", ru: 'Подумайте ещё раз: это один проект или много самостоятельных сервисов?' })}</p></div>}
           </Col>
         </div></Zoomable>
@@ -2890,6 +2910,8 @@ export default function ArchPatternsLesson({ lang: langProp, onFinished, liveTok
           .dd-chip.in, .dd-slot.ok, .dd-slot.bad, .shake { animation: none !important; }
         }
 
+      .ach-rule { margin: 8px 0 0; text-align: center; font-size: 13px; line-height: 1.4; color: ${T.ink2}; }
+      .ach-rule.lost { font-style: italic; }
       `}</style>
       <AchCtx.Provider value={earned}>
       <AchMissCtx.Provider value={achMissVal}>
