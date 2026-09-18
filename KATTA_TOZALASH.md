@@ -1495,3 +1495,35 @@ qo'shiladi — atama yo'qolmaydi); har fayl gates + smoke.
 
 **Darvoza:** `npm run gates -- <fayl>` har darsda · `smoke:onfinished` 140/140 (onFinished o'zgarmasligi) · E2E 22/22 · staging'da bitta jonli sinov: arena-yozuvlar `questions[]`da matn bilan, 201.
 
+## 41 ⬜ NISHON FAQAT BIRINCHI URINISHGA (76 dars, 195 trigger) + «QAYTADAN» = MASHQ (98 dars) (F-0918-04, 2026-09-18)
+
+**Nima:** DragDrop / tartiblash / o'yin / debug / koding ekranlari `onAnswer` ni faqat muvaffaqiyatda, doim
+`correct: true` bilan chaqiradi → necha marta adashsa ham nishon beriladi («tekin nishon»). 18.09 LMS sinovi:
+testda 2/5, nishon 4/4. Qonun: `DARS_ETALON.md` **151-qonun**; matn: `MATN_KORPUS.md` §183.
+
+**O'lchov (18.09):** `ACH_TRIGGERS` 98 faylda, jami 343 trigger. Test — 148 (azaldan birinchi urinishga, tegilmaydi).
+**Test emas — 195 trigger, 76 faylda:** exploration 61 · practice 50 · case 29 · koding 23 · rule 11 · builder 10 ·
+challenge 6 · debug 3 · do 1 · game 1. DragDrop ishlatadigan fayl — 44.
+
+**Pilot ✅ (18.09):** `src/1-Modull/InternetLesson.jsx` — s13b (o'yin: xato server) + s13c (tartiblash: to'liq xato
+joylash) + **6-band «birinchi o'tish — hisob, Qaytadan — mashq»** (`firstPass` muhri, `earn` muzlashi, mashqda
+`submitAnswer`/`recordAttempt` yo'q, `finishLesson` birinchi o'tishni yuboradi). Boshsiz Chrome'da olti holat o'tdi,
+konsol xatosi 0. `npm run gates` — yangi topilma 0. Server tomoni (takror jonli natija yuborilmaydi) alohida yopildi —
+`BACKEND_REJA_UZ.md` Qoida 3, 18.09 yangilanishi.
+
+**Qanday (sweep):**
+1. **Avval saralash, keyin kod.** 61 ta `exploration` va 29 ta `case` triggerining ko'pi — 10-bo'lim taqiqiga zid
+   bog'langan bo'lishi mumkin (toggle/kashfiyot ekraniga nishon). Har trigger uch savatdan biriga tushadi:
+   (a) haqiqiy challenge → 151-naqsh; (b) xato qilib bo'lmaydigan ekran → nishon boshqa ma'noli ekranga ko'chadi
+   yoki shart o'zgaradi (**foydalanuvchi qarori kerak — ro'yxat bilan**); (c) test → tegilmaydi.
+2. Umumiy bo'laklar (`AchMissCtx`, `AchRule`, ildizdagi `missTry`) har darsda bir xil — etalondan ko'chiriladi;
+   darsga xos qism faqat «xato urinish qayerda yonadi» (151-qonun jadvali bo'yicha).
+2a. **6-band HAMMA 98 darsga tegadi** (test-nishonli darslarga ham): ildizda `firstPassRef/practice`, `earn` va `reset`,
+   `QuestionScreen`da `practice` sharti, `finishLesson`da `ans`. `finishLesson` darslarda deyarli bir xil — codemod
+   bilan (97 darslik `recordAttempt` codemod'i namunasi), keyin har darsda gates.
+3. `AchRule` matni o'zgartirilmaydi (§183 — hamma darsda aynan bir xil ikki gap, uz+ru).
+4. LMS yig'malari (`lms/`, `lms-staging/`) sweep tugagach bir yo'la qayta yig'iladi — orada CRM'ga yuklanmaydi.
+
+**Darvoza:** `npm run gates -- <fayl>` har darsda (yangi topilma 0) · `npm run lint:jsx` 0 · har mexanika turidan
+kamida bitta darsda brauzer-sinovi (to'rt holat) · `smoke:onfinished` (onFinished `achievements` shakli o'zgarmaydi).
+

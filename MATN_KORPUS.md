@@ -3622,3 +3622,24 @@ tashlash). 👦 o'qish qo'shimcha sinflarni topdi.
 **UI-yozuv qoidasi (tashqi xizmat):** Netlify hujjati (2026-09-14) joyni aytadi — «Projects sahifasining pastidagi
 maydon», `app.netlify.com/drop`, yangilash — «Deploys» sahifasi — lekin tugmaning aniq yozuvini bermaydi. Yo'riqda
 **joy tasvirlanadi**, taxminiy tugma yozuvi qo'shtirnoqqa olinmaydi; zaxira yo'l (`/drop`) ipuchada turadi.
+
+## 183. NISHON SHARTI QATORI — oldindan aytiladi, xatodan keyin jazosiz (F-0918-04, 151-qonun)
+
+Amaliy topshiriq nishoni faqat birinchi urinishga beriladi. O'quvchi buni **topshiriqni boshlashdan oldin** bilishi
+kerak, xato qilgach esa aybdor his qilmasligi kerak — u baribir topshiriqni oxirigacha bajaradi. Shuning uchun
+ekranda bitta xira qator turadi va u ikki holatdan birini aytadi. 76 darsda **aynan shu ikki gap** ishlatiladi
+(har darsda o'zgacha yozilmaydi — o'quvchi uni bir marta o'qib, keyin ko'zi bilan taniydi).
+
+| Holat | ✅ uz | ✅ ru |
+|---|---|---|
+| boshida | «🏅 Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki.» | «🏅 Справитесь с первой попытки — значок ваш.» |
+| birinchi urinish xato bo'lgach | «Nishon birinchi urinish uchun edi — endi bemalol to'g'risini toping.» | «Значок давался за первую попытку — теперь спокойно найдите верный ответ.» |
+
+❌ «Afsus, nishonni qo'ldan boy berdingiz!» — jazo ohangi; o'quvchi topshiriqning qolganiga qo'l siltaydi.
+❌ «Diqqat! Xato qilsangiz, nishon berilmaydi.» — tahdid; shart yutuq tilida aytiladi («…bajarsangiz — sizniki»).
+❌ «Ushbu topshiriqda nishon faqat birinchi urinishda taqdim etiladi.» — kantselyarit («ushbu», «taqdim etiladi»).
+❌ Qizil rang yoki ⚠️ belgisi — xato haqidagi qizil yozuv allaqachon bor («Tartib xato — qayta joylang»); nishon
+   qatori uning yonida **xira va kursiv** turadi, ikkinchi ogohlantirish bo'lib emas.
+📌 Nishon tavsifi (`desc`) **o'zgarmaydi va uzaymaydi** (§63: 48 belgi chegarasi): «So'rovni to'g'ri serverga
+   yetkazdingiz» endi rost gap (§133) — nishon faqat birinchi urinishda to'g'ri bajarganga beriladi.
+

@@ -617,6 +617,7 @@ const AchCtx = createContext(null); // earned Set — Stage hisoblagichi o'qiydi
 ```
 - **Soni: 4 ta** (3 ta dars-bosqich nishoni + `graduate`). Ko'p nishon qiymatini tushiradi, kolleksiyada 🔒lar qolib ketadi.
 - **Hammasi darsni oxirigacha o'tgan bolada REAL ochilsin.** ❌ taqiq: jonli darsda yashirin ekranga bog'langan nishon (flashcard — jonli o'quvchi hech qachon ololmaydi) va "100% to'g'ri" (ace) kabi ko'pchilik bajarolmaydigan shart — ikkalasi kolleksiyada doim 🔒 bo'lib turadi.
+  > 🔁 **151-qonun (2026-09-18) aniqlashtirdi:** «REAL ochilsin» = har nishonni har o'quvchi **olishi MUMKIN** (yashirin ekran yo'q, imkonsiz shart yo'q). Bu **kafolat emas** — amaliy topshiriq nishoni faqat birinchi urinishga beriladi. Kafolatli yagona nishon — `graduate`.
 - Markazlashgan trigger: `recordAnswer` da `if (ACH_TRIGGERS[_m.id] && data.correct) earn(...)`; yakuniy ekranda `earn('graduate')`.
 - 🔴 **ACH_TRIGGERS faqat MA'NOLI ekranga bog'lanadi** (2026-07-09 CssLesson2 bug): SCORED test (`type:'test'` — `correct` = to'g'ri javob) yoki haqiqiy challenge (DragDrop/Debug). ❌ **Exploration/toggle ekranga (masalan flex-direction almashtirish) BOG'LANMAYDI** — u yerda `onAnswer({correct:true})` har bosishda yonadi → nishon **tekin** beriladi (o'quvchi bilmasdan «Davom etish» bossa ham oladi). Nishon "biror narsa evaziga" — real ko'nikma ko'rsatilganda ochilsin. Tekshiruv: har `ACH_TRIGGERS` kaliti SCREEN_META'da `type:'test'` yoki challenge ekaniga qara.
 - `earn` **`earnedRef` bilan StrictMode-safe** (setState ichida setState emas).
@@ -2749,3 +2750,73 @@ Qolgan ikki qatorlilar joydan haqiqatan uzun — `balance` bilan teng bo'lingan.
 sarlavha yo'q edi, qoida esa qator sonini oshira olmaydi (81 darsda «ko'paygan = 0» shuni tasdiqlaydi). Chegara: soxta javob bilan
 yiqiladigan 4 darsda (m1-01, m3-03, m4-15, m4a-01 — KATTA §36) o'sha ekranlarning javobli holati o'lchanmagan.
 Taqqos: `olchov-2026-09-14/taqqos-oldin-keyin.mjs uz|ru`.
+
+---
+
+## 11-O. 🏅 151-QONUN: AMALIY TOPSHIRIQ NISHONI — FAQAT BIRINCHI URINISHGA (2026-09-18, F-0918-04)
+
+**Kelib chiqishi:** 18.09 LMS sinovida o'quvchi 5 test savolidan 2 tasiga to'g'ri javob berib, **4 nishondan 4 tasini** oldi.
+Sabab: DragDrop / o'yin / tartiblash ekranlari `onAnswer` ni faqat muvaffaqiyatda chaqiradi va doim `correct: true`
+yuboradi — necha marta adashgani hech qayerda sanalmaydi. Test savolida esa nishon azaldan faqat birinchi urinishga
+(`firstAttemptCorrect`). Bitta darsda ikki xil o'lchov yurgan. Foydalanuvchi qarori: «birinchi martada to'g'ri qilsa —
+nishon; ikkinchisida emas. Shunda nishon o'quvchiga qiymatli tuyuladi».
+
+**Qoida (6 band):**
+1. `ACH_TRIGGERS` ga bog'langan **test bo'lmagan** ekranda (DragDrop, tartiblash, o'yin, debug, koding, amaliy) nishon
+   faqat **birinchi urinish to'g'ri** bo'lsa beriladi. Birinchi urinish xato bo'lsa — o'quvchi **bemalol qayta urinadi**,
+   topshiriq odatdagidek yopiladi, «to'g'ri» fidbeki chiqadi, lekin nishon berilmaydi.
+2. **«Urinish» = tekshirilgan TO'LIQ javob**, har bir harakat emas. Qo'l sirpanishi bilim xatosi emas:
+
+   | Mexanika | Bitta xato urinish |
+   |---|---|
+   | DragDrop / tartiblash (avto-tekshiruv) | hamma katak to'lib, tartib xato chiqqan on (bo'lakni qaytarib-qo'yish — urinish EMAS) |
+   | «Tekshirish» tugmali topshiriq (koding, debug, builder) | tugma bosilib, natija xato chiqqani |
+   | O'yin / tanlov (tugun, karta, hotspot) | xato tanlov — ekran «❌ / silkinish» bilan qaytargan har qadam |
+
+3. **Shart OLDINDAN aytiladi** — topshiriq ostida bitta xira qator (`AchRule`): «🏅 Birinchi urinishda to'g'ri
+   bajarsangiz — nishon sizniki.» Aytilmagan qoida bilan nishonni olib qo'yish — nohaqlik.
+4. **Jazo ohangi yo'q.** Xatodan keyin o'sha qator: «Nishon birinchi urinish uchun edi — endi bemalol to'g'risini
+   toping.» Qizil rang, undov, «afsus» — taqiq. Matn-namunalar: `MATN_KORPUS.md` §183.
+5. **Imkon qaytmaydi — topshiriq ichida:** «birinchi urinish xato bo'ldi» belgisi progressga (`ccProgress` → `missed`)
+   yoziladi; sahifani yangilash (F5) uni o'chirmaydi.
+6. **BIRINCHI O'TISH — HISOB, «Qaytadan» — MASHQ** (foydalanuvchi qarori, 18.09: «bir darsdan faqat bir marta jo'natamiz,
+   bo'lmasa nishonlar ko'payib ketadi»). Yakun ekranidagi «Qaytadan» bosilgan onda birinchi o'tish **muhrlanadi**
+   (`ccProgress` → `firstPass: { answers, durationSec }`) va shundan keyin:
+   - **nishonlar muzlaydi** — olingani qoladi, yangisi berilmaydi (`earn` jim qaytadi). Bu **test nishonlariga ham**
+     tegishli: mashq-o'tishida javobni bilib olib `firstwin` kabi nishonni «qo'lga kiritish» — eski teshik edi;
+   - `AchRule` qatori **ko'rinmaydi** (va'da yolg'on bo'lardi);
+   - test javoblari serverga ham, urinish-tarixiga ham **yozilmaydi** (`submitAnswer` / `recordAttempt` chaqirilmaydi);
+   - «Darsni yakunlash» → `onFinished` **birinchi o'tish** javoblari, bali va vaqtini yuboradi.
+   Dars yakunlanib progress tozalangach yangi urinish noldan boshlanadi — ekranda nishonlar qayta yig'iladi, lekin u
+   urinish LMS'ga **ketmaydi**: serverda tanga-qoidasi (solo — azaldan; jonli — 18.09 dan, `BACKEND_REJA_UZ.md` Qoida 3).
+
+**Tegilmaydigan joylar:** test savoli (azaldan birinchi urinishga) · `graduate` (ishtirok nishoni — kafolatli) ·
+exploration/toggle ekranlar (ularga nishon umuman bog'lanmaydi — 10-bo'lim) · mentor ekrani (10.1: qator ham,
+nishon ham ko'rinmaydi) · server va School API payload'i (`achievements` ni dars yuboradi — shart faqat klientda).
+
+**Kod naqshi — etalon `src/1-Modull/InternetLesson.jsx`:**
+```jsx
+const AchMissCtx = createContext(null);              // { missed:Set<ekran id>, miss(idx) }
+// ildiz:
+const missTry = useCallback((idx) => { /* ACH_TRIGGERS'da bor · hali belgilanmagan · nishon olinmagan → missed ga */ }, []);
+// recordAnswer:
+if (... && data.correct && !missedRef.current.has(_m.id)) earn(ACH_TRIGGERS[_m.id]);
+// progWrite: { ..., missed: [...], firstPass: firstPassRef.current }  ·  effekt deps: [screen, answers, earned, missed, practice]
+// ekran: xato urinishda achMiss.miss(screen)  ·  topshiriq ostida <AchRule screen={screen} />
+// 6-band: const firstPassRef = useRef(saved?.firstPass || null);
+//   earn:  if (firstPassRef.current) return;                     // muzlash
+//   reset: if (!firstPassRef.current) { firstPassRef.current = { answers, durationSec }; setPractice(true); }   // faqat bir marta
+//   QuestionScreen: const practice = useContext(AchMissCtx)?.practice;  if (!practice) live.submitAnswer(...) / recordAttempt(...)
+//   finishLesson:   const ans = firstPassRef.current ? firstPassRef.current.answers : answers;   // hamma hisob `ans` dan
+```
+`missed` va `practice` effekt-deps'da bo'lishi SHART — aks holda xatodan (yoki «Qaytadan»dan) keyin darhol F5 bosgan
+o'quvchi belgini yo'qotadi va yana «birinchi» imkonni oladi.
+
+**Tekshiruv (tekshiruvchi/qabulchi):** har test bo'lmagan `ACH_TRIGGERS` kaliti uchun — (a) ekranda `AchRule` bor;
+(b) xato yo'lida `miss(screen)` chaqiriladi; (c) brauzerda olti holat: xato→to'g'ri = nishon yo'q · F5 dan keyin
+belgi turibdi · birinchi urinishda to'g'ri = nishon + bayram · «Qaytadan» → `firstPass` muhrlandi, nishonlar o'zgarmadi ·
+mashq-o'tishida test nishoni ham berilmadi, `AchRule` yo'q · mashqdan keyin `onFinished` = birinchi o'tish.
+Dalil (pilot, 18.09): boshsiz Chrome — oltitasi ham o'tdi, konsol xatosi 0 (`feedback/F-0918-04/ach-test.mjs` + `harness.jsx`).
+Ma'lum chegara: `missed` va `firstPass` faqat shu qurilmada (localStorage) — server-progress ularni tashimaydi.
+
+**Qamrov:** 98 darsda 343 trigger; 148 tasi test (halol), **195 tasi test emas — 76 faylda** → `KATTA_TOZALASH.md` §41.

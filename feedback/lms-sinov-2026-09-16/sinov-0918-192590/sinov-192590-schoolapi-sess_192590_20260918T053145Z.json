@@ -1,0 +1,187 @@
+{
+  "mode": "live",
+  "event_id": "sess_192590_20260918T053145Z",
+  "group_id": 1072,
+  "students": [
+    {
+      "lang": "uz",
+      "rank": 1,
+      "badges": [
+        "top_1",
+        "graduate",
+        "arena_top_1"
+      ],
+      "id_type": "lms",
+      "answered": 5,
+      "completed": true,
+      "questions": [
+        {
+          "kind": "test",
+          "order": 1,
+          "solved": true,
+          "correct": true,
+          "options": [
+            "Server",
+            "Brauzer",
+            "Domen",
+            "DNS"
+          ],
+          "attempts": [
+            {
+              "n": 1,
+              "at": "2026-09-18T05:56:35Z",
+              "answer": "Brauzer",
+              "option": 1,
+              "correct": true,
+              "elapsed_ms": 1225
+            }
+          ],
+          "question": "Internetdagi saytlarni ochib beradigan dastur qanday nomlanadi?",
+          "question_id": "s4",
+          "correct_answer": "Brauzer",
+          "correct_option": 1
+        },
+        {
+          "kind": "test",
+          "order": 2,
+          "solved": false,
+          "correct": false,
+          "options": [
+            "Brauzer",
+            "Parol",
+            "Domen",
+            "Server"
+          ],
+          "attempts": [
+            {
+              "n": 1,
+              "at": "2026-09-18T05:56:38Z",
+              "answer": "Brauzer",
+              "option": 0,
+              "correct": false,
+              "elapsed_ms": 737
+            }
+          ],
+          "question": "youtube.com, coddycamp.uz — bunday sayt manzili nima deb ataladi?",
+          "question_id": "s5b",
+          "correct_answer": "Domen",
+          "correct_option": 2
+        },
+        {
+          "kind": "test",
+          "order": 3,
+          "solved": false,
+          "correct": false,
+          "options": [
+            "Brauzer",
+            "Domen",
+            "Server",
+            "DNS"
+          ],
+          "attempts": [
+            {
+              "n": 1,
+              "at": "2026-09-18T05:56:46Z",
+              "answer": "Domen",
+              "option": 1,
+              "correct": false,
+              "elapsed_ms": 1530
+            }
+          ],
+          "question": "Domen nomini IP raqamiga kim aylantiradi?",
+          "question_id": "s9",
+          "correct_answer": "DNS",
+          "correct_option": 3
+        },
+        {
+          "kind": "test",
+          "order": 4,
+          "solved": true,
+          "correct": true,
+          "options": [
+            "Saytning domen nomi",
+            "Sahifa kodi (HTML)",
+            "DNS server manzili",
+            "Boshqa brauzer dasturi"
+          ],
+          "attempts": [
+            {
+              "n": 1,
+              "at": "2026-09-18T05:57:16Z",
+              "answer": "Sahifa kodi (HTML)",
+              "option": 1,
+              "correct": true,
+              "elapsed_ms": 2007
+            }
+          ],
+          "question": "Server brauzerga aniq nima qaytaradi?",
+          "question_id": "s12",
+          "correct_answer": "Sahifa kodi (HTML)",
+          "correct_option": 1
+        },
+        {
+          "kind": "test",
+          "order": 5,
+          "solved": false,
+          "correct": false,
+          "options": [
+            "Server → DNS → Brauzer → Ekran",
+            "DNS → Brauzer → Server → Ekran",
+            "Brauzer → DNS → Server → Ekran",
+            "Brauzer → Server → DNS → Ekran"
+          ],
+          "attempts": [
+            {
+              "n": 1,
+              "at": "2026-09-18T05:58:12Z",
+              "answer": "DNS → Brauzer → Server → Ekran",
+              "option": 1,
+              "correct": false,
+              "elapsed_ms": 697
+            }
+          ],
+          "question": "youtube.com yozganda so'rov qaysi tartibda boradi?",
+          "question_id": "s15",
+          "correct_answer": "Brauzer → DNS → Server → Ekran",
+          "correct_option": 2
+        }
+      ],
+      "student_id": 31352,
+      "achievements": [
+        {
+          "id": "firstwin",
+          "name": "Bullseye!",
+          "title": "Birinchi test savoliga to'g'ri javob berdingiz",
+          "earned_at": "2026-09-18T05:56:48Z"
+        },
+        {
+          "id": "packet",
+          "name": "Special Delivery!",
+          "title": "So'rovni to'g'ri serverga yetkazdingiz",
+          "earned_at": "2026-09-18T05:57:39Z"
+        },
+        {
+          "id": "router",
+          "name": "Right Track!",
+          "title": "So'rov bosqichlarini to'g'ri tartibladingiz",
+          "earned_at": "2026-09-18T05:57:55Z"
+        },
+        {
+          "id": "graduate",
+          "name": "Level Up!",
+          "title": "Internet darsini to'liq yakunladingiz",
+          "earned_at": "2026-09-18T05:58:25Z"
+        }
+      ],
+      "badges_count": 3,
+      "duration_sec": 1546,
+      "correct_answers": 2
+    }
+  ],
+  "lesson_id": "internet-01-v18",
+  "started_at": "2026-09-18T05:31:45Z",
+  "teacher_id": 240,
+  "finished_at": "2026-09-18T05:59:21Z",
+  "lesson_title": "Internet qanday ishlaydi",
+  "total_questions": 5
+}
