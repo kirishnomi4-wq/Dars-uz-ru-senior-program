@@ -1250,6 +1250,7 @@ const CMD_BLANKS = [
     ], wrong: { kick: { uz: "/menu hech kimni chiqarib yubormaydi — u menyuni ko'rsatadi.", ru: '/menu никого не выгоняет — он показывает меню.' }, token: { uz: "Kalit hech qachon mijozga ko'rsatilmaydi — bu maxfiy.", ru: 'Ключ клиенту не показывают никогда — он секретный.' } } }
 ];
 const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
+  const achMiss = useContext(AchMissCtx);
   const [filled, setFilled] = useState(() => (storedAnswer ? Object.fromEntries(CMD_BLANKS.map(b => [b.key, b.correct])) : {}));
   const [wrongKey, setWrongKey] = useState(null);
   const [wrongMsg, setWrongMsg] = useState('');
@@ -1266,7 +1267,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const pick = (blank, optId) => {
     if (filled[blank.key] === blank.correct) return;
     if (optId === blank.correct) { setFilled(f => ({ ...f, [blank.key]: optId })); setWrongKey(null); setSc(n => n + 1); }
-    else { wrongEverRef.current = true; setWrongKey(blank.key); setWrongMsg(blank.wrong[optId] || { uz: "Bu to'g'ri emas.", ru: 'Это неверно.' }); setTimeout(() => setWrongKey(k => (k === blank.key ? null : k)), 500); }
+    else { wrongEverRef.current = true; if (achMiss) achMiss.miss(screen); setWrongKey(blank.key); setWrongMsg(blank.wrong[optId] || { uz: "Bu to'g'ri emas.", ru: 'Это неверно.' }); setTimeout(() => setWrongKey(k => (k === blank.key ? null : k)), 500); }
   };
   const labelOf = (blank) => { const o = blank.options.find(x => x.id === filled[blank.key]); return o ? tr(o.t) : ''; };
   return (
@@ -1295,6 +1296,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 </div>
               </div>
             ))}
+            {!done && <AchRule screen={screen} />}
             {wrongKey && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr(wrongMsg)}</p></div>}
             {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Ro'yxat to'ldi! Mijoz endi / yozganda Telegram unga tanish buyruqlarni taklif qiladi.", ru: 'Список заполнен! Теперь, когда клиент напишет /, Telegram предложит ему знакомые команды.' })}</p></div>}
           </Col>
@@ -1396,6 +1398,22 @@ const ACHIEVEMENTS = {
 };
 // Ekran id → nishon. ❗ FAQAT ma'noli, xato qilish MUMKIN bo'lgan ekranlar.
 const ACH_TRIGGERS = { s9: 'buttonMaster', s11: 'rightEnvelope', s12: 'neverSilent', s13: 'commandWriter' };
+
+// 🏅 151-qonun: amaliy topshiriq nishoni faqat BIRINCHI urinishga beriladi. Shart OLDINDAN aytiladi; birinchi urinish
+// xato bo'lsa — jazosiz qisqa xabar (`once` — qayta urinishi yo'q ekran). Mentor ekranida, «Qaytadan» mashq-o'tishida va
+// nishon olingach ko'rinmaydi. Matn — MATN_KORPUS §183 (hamma darsda aynan bir xil).
+const AchRule = ({ screen, once }) => {
+  const earned = useContext(AchCtx);
+  const am = useContext(AchMissCtx);
+  const gate = useContext(LiveGateCtx) || {};
+  const sid = SCREEN_META[screen] && SCREEN_META[screen].id;
+  const ach = ACH_TRIGGERS[sid];
+  if (!ach || !am || am.practice || (gate.live && gate.live.mode === 'mentor') || (earned && earned.has(ach))) return null;
+  const lost = am.missed.has(sid);
+  return <p className={`ach-rule ${lost ? 'lost' : ''}`}>{lost
+    ? (once ? tr({ uz: 'Nishon birinchi urinish uchun edi.', ru: 'Значок давался за первую попытку.' }) : tr({ uz: "Nishon birinchi urinish uchun edi — endi bemalol to'g'risini toping.", ru: 'Значок давался за первую попытку — теперь спокойно найдите верный ответ.' }))
+    : tr({ uz: "🏅 Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki.", ru: '🏅 Справитесь с первой попытки — значок ваш.' })}</p>;
+};
 
 function AchCelebrate({ ach, onDone }) {
   useEffect(() => { const t = setTimeout(onDone, 4000); return () => clearTimeout(t); }, []); // eslint-disable-line
@@ -3121,6 +3139,8 @@ export default function BotApiButtonsLesson({ lang: langProp, onFinished, liveTo
         @media (prefers-reduced-motion: reduce) {
           .dd-chip.in, .dd-slot.ok, .dd-slot.bad, .shake, .gchip.tap-hint, .btn-soft.tap-hint, .pick-row.tap-hint { animation: none !important; }
         }
+        .ach-rule { margin: 8px 0 0; text-align: center; font-size: 13px; line-height: 1.4; color: ${T.ink2}; }
+        .ach-rule.lost { font-style: italic; }
       `}</style>
       <div className="lesson-root">
         {live.mode === 'choosing' ? (

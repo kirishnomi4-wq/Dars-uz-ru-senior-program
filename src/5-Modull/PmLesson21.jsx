@@ -1305,6 +1305,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const gate = useContext(LiveGateCtx) || {};
   const live = gate.live;
   const isMentor = !!(live && live.mode === 'mentor');
+  const achMiss = useContext(AchMissCtx);
   const [i, setI] = useState(() => (Number.isInteger(storedAnswer?.qator) && storedAnswer.qator >= 0 ? storedAnswer.qator : 0)); /* F-0915-02 */
   const [sel, setSel] = useState([]);
   const [res, setRes] = useState(null);
@@ -1328,7 +1329,10 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     if (isMentor || done || res) return;
     const tanlov = bosh ? [] : sel;
     const ok = tengMi(tanlov, qator.javob);
-    if (!ok) setMissedOnce(true);
+    if (!ok) {
+      setMissedOnce(true);
+      if (achMiss) achMiss.miss(screen); // 🏅 151-qonun: tekshirilgan xato qator — nishon birinchi urinishga
+    }
     setRes({ ok, tanlov, bosh });
   };
   const keyingi = () => {
@@ -1395,6 +1399,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {!res && <span className="wsp-need">{sel.length === 0 ? "① Qaytish kunlarini bosing yoki «qaytmagan»ni tanlang" : '② Endi tekshiring'}</span>}
           </div>
         )}
+        {!done && <AchRule screen={screen} />}
         {res && !done && (
           <div className="bdone fade-step">
             <p className={`sfb ${res.ok ? 'ok' : 'ask'}`}>{res.ok ? '✅ To\'g\'ri.' : xatoMatn(res, qator)} {qator.sabab}</p>
@@ -1836,6 +1841,22 @@ const ACHIEVEMENTS = {
   codeCounter: { icon: '🛠', name: 'Code Counter!', desc: 'Qaytganlarni kod bilan sanadingiz' },
 };
 const ACH_TRIGGERS = { s4: 'dayTwo', s8: 'countKeeper', s9: 'twoInARow', s10: 'codeCounter' };
+
+// 🏅 151-qonun: amaliy topshiriq nishoni faqat BIRINCHI urinishga beriladi. Shart OLDINDAN aytiladi; birinchi urinish
+// xato bo'lsa — jazosiz qisqa xabar (`once` — qayta urinishi yo'q ekran). Mentor ekranida, «Qaytadan» mashq-o'tishida va
+// nishon olingach ko'rinmaydi. Matn — MATN_KORPUS §183 (hamma darsda aynan bir xil).
+const AchRule = ({ screen, once }) => {
+  const earned = useContext(AchCtx);
+  const am = useContext(AchMissCtx);
+  const gate = useContext(LiveGateCtx) || {};
+  const sid = SCREEN_META[screen] && SCREEN_META[screen].id;
+  const ach = ACH_TRIGGERS[sid];
+  if (!ach || !am || am.practice || (gate.live && gate.live.mode === 'mentor') || (earned && earned.has(ach))) return null;
+  const lost = am.missed.has(sid);
+  return <p className={`ach-rule ${lost ? 'lost' : ''}`}>{lost
+    ? (once ? 'Nishon birinchi urinish uchun edi.' : "Nishon birinchi urinish uchun edi — endi bemalol to'g'risini toping.")
+    : "🏅 Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki."}</p>;
+};
 function AchCelebrate({ ach, onDone }) {
   useEffect(() => { const t = setTimeout(onDone, 4000); return () => clearTimeout(t); }, []); // eslint-disable-line
   return (
@@ -3729,6 +3750,8 @@ export default function PmLesson21({ lang: langProp, onFinished, liveToken }) {
         ${CSS_BASE}
         ${CSS_LESSON}
         ${CSS_ARENA}
+        .ach-rule { margin: 8px 0 0; text-align: center; font-size: 13px; line-height: 1.4; color: ${T.ink2}; }
+        .ach-rule.lost { font-style: italic; }
       `}</style>
       <AchCtx.Provider value={earned}>
       <AchMissCtx.Provider value={achMissVal}>

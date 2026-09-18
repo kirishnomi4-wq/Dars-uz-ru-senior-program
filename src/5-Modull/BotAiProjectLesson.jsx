@@ -976,6 +976,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 
 // ===== SCREEN 7 — CHALLENGE: VIBECODING SIKLI (test → topish → tuzatish) · badge bugCatcher =====
 const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
+  const achMiss = useContext(AchMissCtx);
   const [started, setStarted] = useState(!!storedAnswer);
   const [bugSeen, setBugSeen] = useState(!!storedAnswer);
   const [diag, setDiag] = useState(storedAnswer ? 'ok' : null);
@@ -993,7 +994,7 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   ];
   const pressStart = () => { if (started) return; setStarted(true); setSc(n => n + 1); };
   const pressAnswerBug = () => { setBugSeen(true); setSc(n => n + 1); };
-  const pickDiag = (id) => { if (diag === 'ok') return; setDiag(id); setSc(n => n + 1); };
+  const pickDiag = (id) => { if (diag === 'ok') return; if (id !== 'ok' && achMiss) achMiss.miss(screen); setDiag(id); setSc(n => n + 1); };
   const sendFix = () => { setFixPhase('fixing'); setSc(n => n + 1); setTimeout(() => { setFixPhase('fixed'); setSc(n => n + 1); }, 1200); };
   const pressAnswerFixed = (v) => { setAnswered(v); setSc(n => n + 1); };
   return (
@@ -1012,6 +1013,7 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {!started && <p className="small" style={{ color: T.ink3, fontStyle: 'italic', margin: 0 }}>{tr({ uz: '"▶ Boshlash" tugmasini bosing ←', ru: 'Нажмите кнопку «▶ Начать» ←' })}</p>}
           </Col>
           <Col>
+            {!done && <AchRule screen={screen} />}
             {!bugSeen && started && <div className="frame-warn fade-step"><p className="body zb-notch" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>⚠️ "Boshlash" ishladi, lekin <b>A/B/C tugmalarini bosing</b> — nima bo'ladi?</>, ru: <>⚠️ «Начать» сработала, но <b>нажмите кнопки A/B/C</b> — что произойдёт?</> })}</p></div>}
             {bugSeen && diag !== 'ok' && <>
               <div className="frame-warn fade-step"><p className="body zb-notch" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>🐞 Tugmani bosdingiz — bot <b>javob bermadi</b>! Sababi nima deb o'ylaysiz?</>, ru: <>🐞 Вы нажали кнопку — бот <b>не ответил</b>! Как думаете, в чём причина?</> })}</p></div>
@@ -1269,6 +1271,22 @@ const ACHIEVEMENTS = {
 // s15 (final DragDropOrder — faqat to'g'ri tartibda yig'ilsa correct:true).
 // Exploration/toggle ekranlarga BOG'LANMAYDI (ular har bosishda correct:true qaytaradi — nishon tekin bo'lmasin).
 const ACH_TRIGGERS = { s4: 'promptSmith', s7: 'bugCatcher', s10: 'handlerPro', s15: 'director' };
+
+// 🏅 151-qonun: amaliy topshiriq nishoni faqat BIRINCHI urinishga beriladi. Shart OLDINDAN aytiladi; birinchi urinish
+// xato bo'lsa — jazosiz qisqa xabar (`once` — qayta urinishi yo'q ekran). Mentor ekranida, «Qaytadan» mashq-o'tishida va
+// nishon olingach ko'rinmaydi. Matn — MATN_KORPUS §183 (hamma darsda aynan bir xil).
+const AchRule = ({ screen, once }) => {
+  const earned = useContext(AchCtx);
+  const am = useContext(AchMissCtx);
+  const gate = useContext(LiveGateCtx) || {};
+  const sid = SCREEN_META[screen] && SCREEN_META[screen].id;
+  const ach = ACH_TRIGGERS[sid];
+  if (!ach || !am || am.practice || (gate.live && gate.live.mode === 'mentor') || (earned && earned.has(ach))) return null;
+  const lost = am.missed.has(sid);
+  return <p className={`ach-rule ${lost ? 'lost' : ''}`}>{lost
+    ? (once ? tr({ uz: 'Nishon birinchi urinish uchun edi.', ru: 'Значок давался за первую попытку.' }) : tr({ uz: "Nishon birinchi urinish uchun edi — endi bemalol to'g'risini toping.", ru: 'Значок давался за первую попытку — теперь спокойно найдите верный ответ.' }))
+    : tr({ uz: "🏅 Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki.", ru: '🏅 Справитесь с первой попытки — значок ваш.' })}</p>;
+};
 
 function AchCelebrate({ ach, onDone }) {
   useEffect(() => { const t = setTimeout(onDone, 4000); return () => clearTimeout(t); }, []); // eslint-disable-line
@@ -3093,6 +3111,8 @@ export default function BotAiProjectLesson({ lang: langProp, onFinished, liveTok
         .tg-input { display: flex; align-items: center; gap: 10px; background: #fff; padding: 10px 14px; border-top: 1px solid rgba(0,0,0,0.06); }
         .tg-input-field { flex: 1; color: #A7A6A2; font-family: 'Manrope'; font-size: 13px; }
         .tg-send { color: #5A9FD4; font-size: 17px; }
+        .ach-rule { margin: 8px 0 0; text-align: center; font-size: 13px; line-height: 1.4; color: ${T.ink2}; }
+        .ach-rule.lost { font-style: italic; }
       `}</style>
       <AchCtx.Provider value={earned}>
       <AchMissCtx.Provider value={achMissVal}>

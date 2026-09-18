@@ -1063,7 +1063,7 @@ const NS_CUSTOMERS = [
   { id: 'sardor', name: { uz: 'Sardor', ru: 'Сардор' }, sigId: 'fallback', text: { uz: 'Pitsa bormi?', ru: 'Пицца есть?' } }
 ];
 const N_ROWS = 5;
-function NightShift({ onSolved }) {
+function NightShift({ onSolved, onWrong }) {
   const [rows, setRows] = useState(() => Array.from({ length: N_ROWS }, () => ({ sig: null, act: null })));
   const [sigPool, setSigPool] = useState(() => NS_SIGNALS.map(s => s.id));
   const [actPool, setActPool] = useState(() => NS_ACTIONS.map(a => a.id));
@@ -1115,6 +1115,9 @@ function NightShift({ onSolved }) {
   const run = () => {
     if (running) return;
     setRunning(true); setResults([]); setRunN(n => n + 1);
+    // 🏅 151-qonun: smenada biror mijozga NOTO'G'RI amal ulangan bo'lsa (🟡) — bitta xato urinish. Javobsiz qolgan
+    // mijoz (💤 — qator hali yozilmagan) urinish emas: dars yarim varaq bilan sinab ko'rishga ataylab chorlaydi.
+    let anyWrong = false;
     NS_CUSTOMERS.forEach((c, i) => {
       setTimeout(() => {
         const row = rows.find(r => r.sig === c.sigId && r.act);
@@ -1125,8 +1128,9 @@ function NightShift({ onSolved }) {
           else if (row.act === 'orderok') { state = 'wrong'; msg = { uz: "Nima? Men hali hech narsa buyurtma qilmadim 😕", ru: 'Что? Я ещё ничего не заказывал 😕' }; }
           else { state = 'wrong'; msg = { uz: `${(al && al.uz) || al} (mos emas)`, ru: `${(al && al.ru) || al} (не подходит)` }; }
         }
+        if (state === 'wrong') anyWrong = true;
         setResults(prev => [...(prev || []), { id: c.id, name: c.name, text: c.text, state, msg }]);
-        if (i === NS_CUSTOMERS.length - 1) setRunning(false);
+        if (i === NS_CUSTOMERS.length - 1) { setRunning(false); if (anyWrong && onWrong) onWrong(); }
       }, 500 + i * 950);
     });
   };
@@ -1182,6 +1186,7 @@ function NightShift({ onSolved }) {
   );
 }
 const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
+  const achMiss = useContext(AchMissCtx);
   const [done, setDone] = useState(!!storedAnswer);
   const bonusRef = useRef(!!(storedAnswer && storedAnswer.bonus));
   const fired = useRef(!!storedAnswer);
@@ -1195,7 +1200,8 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Bugun <span className="italic" style={{ color: T.accent }}>siz</span> Botjonning qoidalar varag'ini yozasiz.</>, ru: <>Сегодня лист правил Ботика напишете <span className="italic" style={{ color: T.accent }}>вы</span>.</> })}</h2></div>
         <Mentor>{tr({ uz: "Signal va amal chiplarini varaqqa joylang. Varaq yarim bo'lsa ham smenani boshlashingiz mumkin — xato qilish MUMKIN. Soat 03:00, 4 mijoz keladi: Aziza, Bek, Dilnoza va Sardor (u oddiy matn yozadi — hech qaysi qatorga aynan mos kelmaydi).", ru: 'Разложите блоки сигналов и действий по листу. Смену можно запустить даже с наполовину пустым листом — ошибаться МОЖНО. 03:00, приходят 4 клиента: Азиза, Бек, Дилноза и Сардор (он пишет обычный текст — он не подходит ни к одной строке точно).' })}</Mentor>
-        <NightShift onSolved={onSolved} />
+        <NightShift onSolved={onSolved} onWrong={() => achMiss && achMiss.miss(screen)} />
+        {!done && <AchRule screen={screen} />}
         {done && <Mentor>{tr({ uz: "Botjon o'zicha o'ylamaydi. U faqat varaqda yozilgan narsani qiladi. Varaqda yo'q signal — javob yo'q. Kodda ham xuddi shunday: qator yozmasangiz, handler yo'q.", ru: 'Ботик не думает сам. Он делает только то, что записано в листе. Нет сигнала в листе — нет ответа. В коде так же: не написали строку — нет обработчика.' })}</Mentor>}
       </div>
     </Stage>
@@ -1389,6 +1395,7 @@ const BOT_BLANKS = [
   { key: 'trig2', label: "bot.____('Menyu', …)", correct: 'hears', options: ['hears', 'start', 'stop'], wrong: { start: { uz: "«start» faqat /start buyrug'i uchun — bu yerda matn signali kerak.", ru: '«start» только для команды /start — здесь нужен текстовый сигнал.' }, stop: { uz: "Bunday signal turi yo'q.", ru: 'Такого типа сигнала нет.' } } }
 ];
 const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
+  const achMiss = useContext(AchMissCtx);
   const [filled, setFilled] = useState(() => (storedAnswer ? Object.fromEntries(BOT_BLANKS.map(b => [b.key, b.correct])) : {}));
   const [wrongKey, setWrongKey] = useState(null);
   const [wrongMsg, setWrongMsg] = useState('');
@@ -1405,7 +1412,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const pick = (blank, val) => {
     if (filled[blank.key] === blank.correct) return;
     if (val === blank.correct) { setFilled(f => ({ ...f, [blank.key]: val })); setWrongKey(null); setSc(n => n + 1); }
-    else { wrongEverRef.current = true; setWrongKey(blank.key); setWrongMsg(blank.wrong[val] || { uz: "Bu to'g'ri emas.", ru: 'Это неверно.' }); setTimeout(() => setWrongKey(k => (k === blank.key ? null : k)), 500); }
+    else { wrongEverRef.current = true; if (achMiss) achMiss.miss(screen); setWrongKey(blank.key); setWrongMsg(blank.wrong[val] || { uz: "Bu to'g'ri emas.", ru: 'Это неверно.' }); setTimeout(() => setWrongKey(k => (k === blank.key ? null : k)), 500); }
   };
   return (
     <Stage eyebrow={tr({ uz: 'Amaliyot · varaq kodda', ru: 'Практика · лист в коде' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "Bo'shliqlarni to'ldiring", ru: 'Заполните пропуски' })} onClick={onNext} /></>}>
@@ -1435,6 +1442,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 </div>
               </div>
             ))}
+            {!done && <AchRule screen={screen} />}
             {wrongKey && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr(wrongMsg)}</p></div>}
             {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Varaq to'ldi! <span className="mono">bot.start</span> = /start signali, <span className="mono">bot.hears</span> = matn signali, <span className="mono">ctx.reply</span> = amal.</>, ru: <>Лист заполнен! <span className="mono">bot.start</span> = сигнал /start, <span className="mono">bot.hears</span> = текстовый сигнал, <span className="mono">ctx.reply</span> = действие.</> })}</p></div>}
           </Col>
@@ -1537,6 +1545,22 @@ const ACHIEVEMENTS = {
 // · s13 (bot.js bo'shliqlari — noto'g'ri chip tanlansa `wrongEverRef` yonadi va `correct:false` ketadi, ya'ni nishon tekin emas).
 // «Never Silent» s7 ichida bonus shart (fallback) bilan alohida qo'lda beriladi (root recordAnswer). Exploration ekranlarga BOG'LANMAYDI.
 const ACH_TRIGGERS = { s6: 'keyMaster', s7: 'sheetMaster', s13: 'sheetWriter' };
+
+// 🏅 151-qonun: amaliy topshiriq nishoni faqat BIRINCHI urinishga beriladi. Shart OLDINDAN aytiladi; birinchi urinish
+// xato bo'lsa — jazosiz qisqa xabar (`once` — qayta urinishi yo'q ekran). Mentor ekranida, «Qaytadan» mashq-o'tishida va
+// nishon olingach ko'rinmaydi. Matn — MATN_KORPUS §183 (hamma darsda aynan bir xil).
+const AchRule = ({ screen, once }) => {
+  const earned = useContext(AchCtx);
+  const am = useContext(AchMissCtx);
+  const gate = useContext(LiveGateCtx) || {};
+  const sid = SCREEN_META[screen] && SCREEN_META[screen].id;
+  const ach = ACH_TRIGGERS[sid];
+  if (!ach || !am || am.practice || (gate.live && gate.live.mode === 'mentor') || (earned && earned.has(ach))) return null;
+  const lost = am.missed.has(sid);
+  return <p className={`ach-rule ${lost ? 'lost' : ''}`}>{lost
+    ? (once ? tr({ uz: 'Nishon birinchi urinish uchun edi.', ru: 'Значок давался за первую попытку.' }) : tr({ uz: "Nishon birinchi urinish uchun edi — endi bemalol to'g'risini toping.", ru: 'Значок давался за первую попытку — теперь спокойно найдите верный ответ.' }))
+    : tr({ uz: "🏅 Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki.", ru: '🏅 Справитесь с первой попытки — значок ваш.' })}</p>;
+};
 
 function AchCelebrate({ ach, onDone }) {
   useEffect(() => { const t = setTimeout(onDone, 4000); return () => clearTimeout(t); }, []); // eslint-disable-line
@@ -2477,7 +2501,7 @@ export default function BotIntroLesson({ lang: langProp, onFinished, liveToken }
     setAnswers(a => ({ ...a, [idx]: data }));
     const _m = SCREEN_META[idx];
     if (_m && ACH_TRIGGERS[_m.id] && data && data.correct && !missedRef.current.has(_m.id)) earn(ACH_TRIGGERS[_m.id]); // 🏅 nishon (faqat REAL solve)
-    if (_m && _m.id === 's7' && data && data.bonus) earn('neverSilent'); // 🏅 bonus — fallback qatori bilan Sardorni ham ushlab qoldi
+    if (_m && _m.id === 's7' && data && data.bonus && !missedRef.current.has(_m.id)) earn('neverSilent'); // 🏅 bonus — fallback qatori bilan Sardorni ham ushlab qoldi; 151-qonun: o'sha topshiriqning birinchi urinishi xato bo'lsa — yo'q
     // Yakuniy debug-gate (s15) — XATO javob ham serverga ketadi (aks holda xato qilgan o'quvchi podiumda umuman ko'rinmaydi).
     if (_m && _m.scored && _m.scope === 'final' && data && data.solved && live.mode === 'student') live.submitAnswer(idx, _m.id, data.picked ?? 1, !!data.correct, data.elapsedMs || 0);
   };
@@ -3342,6 +3366,8 @@ export default function BotIntroLesson({ lang: langProp, onFinished, liveToken }
           .dd-chip.in, .dd-slot.ok, .dd-slot.bad, .shake, .tg-typing span, .bnode.sheet.thinking { animation: none !important; }
         }
 
+      .ach-rule { margin: 8px 0 0; text-align: center; font-size: 13px; line-height: 1.4; color: ${T.ink2}; }
+      .ach-rule.lost { font-style: italic; }
       `}</style>
       <AchCtx.Provider value={earned}>
       <AchMissCtx.Provider value={achMissVal}>

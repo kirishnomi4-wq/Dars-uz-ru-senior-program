@@ -1,0 +1,18 @@
+# P6 (5-Modull) — matn-topilmalar va takliflar (2026-09-18 tun)
+
+Hech biri darsga QO'LLANMAGAN (foydalanuvchi qarori 7-A: tunda faqat taklif). Taklif yozishdan oldin MATN_KORPUS §63
+(48 belgi), §133 (tavsif faqat real tekshirilgan ishni aytadi), §183, §184 o'qildi.
+
+| Dars · ekran | ❌ hozirgi (aynan) | ✅ taklif | Sabab |
+|---|---|---|---|
+| BotIntroLesson · s13 (kod-qutisi, 1421 va 1423-qatorlar) | ekranda `bot.____((ctx) =&gt;` — JS satri ichida `=&gt;` yozilgan, brauzer uni belgi emas, matn sifatida chiqaradi | `) => ` (ikkala qatorda) | ko'rinish xatosi (skrinshotda tasdiqlandi): o'quvchi `=&gt;` ni kod deb o'qiydi. Tuzatish 2 ta satr; matn emas, lekin o'quvchi ko'radi — shuning uchun so'rovsiz tegilmadi |
+| BotAiAgentLesson · s5 `cycleBuilder` desc | «Idrok → qaror → amal rejasini yig'dingiz» / «Вы собрали план: восприятие → решение → действие» | «Maqsad, asbob va chegarani to'g'ri tanladingiz» (46) / «Вы верно выбрали цель, инструменты и ограничение» | ekran «maqsad · asboblar · chegara» ni yig'diradi, tavsif boshqa narsani (idrok-sikl) aytadi (§133); endi nishon faqat birinchi urinishga — «to'g'ri» rost |
+| BotFullProjectLesson · s11 `checkMaster` desc (ixtiyoriy) | «Ko'chirishdan oldin tekshiruvni bajardingiz» | «Ko'chirish tekshiruvini to'g'ri bajardingiz» (43) / «Вы верно прошли проверку перед переносом» | nishon faqat hamma band to'g'ri bo'lsa beriladi; xato belgilagan o'quvchi ham «bajargan» — «to'g'ri» aniqroq |
+| PmLesson21 · s9 `twoInARow` desc (ixtiyoriy) | «To'rt qatorda qaytish kunlarini belgiladingiz» | «To'rt qatorda qaytish kunini to'g'ri topdingiz» (45) | endi nishon faqat birinchi tekshiruvda to'g'ri bo'lsa; «to'g'ri topdingiz» rost va aniqroq. («kunlarini» bilan 49 belgi — §63 chegarasidan oshadi, shuning uchun birlik) |
+| BotApiButtonsLesson · s11 `rightEnvelope` desc | «Konvert manzili xatosini topib to'g'riladingiz» | ko'chirish qaroriga bog'liq (pastda) | xatoni ekran o'zi ko'rsatadi — «topib» rost emas (§133, §184) |
+| BotApiButtonsLesson · 152-qonun (3 tekin nishon) | s9 `buttonMaster` · s11 `rightEnvelope` · s12 `neverSilent` — uchalasi xato yo'lisiz; darsda `graduate` yo'q | **A:** bonus = s12 `neverSilent` (tavsif rost: «Fallback qo'shib, Botjonni jim qoldirmadingiz»); s9 `buttonMaster` → s10 test («…tugma signalini qaysi qator ushlaydi?») — desc «Tugma signalini qaysi qator ushlashini topdingiz» (48) / «Вы нашли строку, которая ловит сигнал кнопки»; s11 `rightEnvelope` → s14 test — desc «Chaqiruv so'zlarining farqini topdingiz» (39) / «Вы нашли, чем особенны слова-вызовы» (nom «Right Envelope» mavzuga mos kelmay qoladi — nomni ham almashtirish kerak bo'ladi). **B (inventar taklifi):** bonus = s9; s11 → s10, s12 → s14 | 152-qonun 1-band: darsda ko'pi bilan bitta bonus. A da nom-mavzu mosligi yaxshiroq (tugma ↔ tugma savoli); qaror foydalanuvchida |
+| BotIntroLesson · s7 Mentor | «Varaq yarim bo'lsa ham smenani boshlashingiz mumkin — xato qilish MUMKIN.» | **o'zgartirish shart emas** | ulashda yarim varaq (💤 javobsiz mijoz) urinish sanalmaydi, faqat noto'g'ri ulangan amal (🟡) sanaladi — Mentor gapi 151-qoida bilan zid emas. `AchRule` qatori shartni o'zi aytadi |
+| PmLesson19 · s9 `fullHouse` | desc «Yigirmata odamni yig'ib bo'ldingiz» (hozir rost) | faqat (a) varianti tanlansa: shart «kam beradigan joyni bosmasdan» bo'ladi va desc shunga aniqlashtiriladi | 152-qonun: darsda bonus (s4) bor, bu ikkinchi tekin nishon |
+
+Kod-izohdagi (o'quvchi ko'rmaydi) nomuvofiqlik: `BotApiButtonsLesson` `ACH_TRIGGERS` ustidagi izoh «FAQAT ma'noli, xato
+qilish MUMKIN bo'lgan ekranlar» — amalda 4 tadan 3 tasi tekin. Ko'chirish qarori bilan birga tuzatiladi.

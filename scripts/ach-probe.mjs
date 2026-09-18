@@ -59,7 +59,7 @@ async function bundle(file) {
 }
 function page(file, L, idx, extra, tag) {
   const prog = { screen: idx, answers: {}, earned: [], total: L.ids.length, savedAt: Date.now(), startedAt: Date.now() - 120000, ...extra };
-  const seed = `window.__lang=${JSON.stringify(LANG)};if(!sessionStorage.getItem('__seeded')){localStorage.clear();for(const r of ['mentor','learner','student','self'])localStorage.setItem('inetOnboarded_'+r,'1');localStorage.setItem('liveLang',${JSON.stringify(LANG)});localStorage.setItem('liveSession:${L.lessonId}','{"mode":"self"}');localStorage.setItem('ccProgress:${L.lessonId}',${JSON.stringify(JSON.stringify(prog))});sessionStorage.setItem('__seeded','1');}`;
+  const seed = `window.__lang=${JSON.stringify(LANG)};if(!sessionStorage.getItem('__seeded')){localStorage.clear();for(const r of ['mentor','learner','student','self']){localStorage.setItem('inetOnboarded_'+r,'1');localStorage.setItem('hcOnboarded_'+r,'1');}localStorage.setItem('liveLang',${JSON.stringify(LANG)});localStorage.setItem('liveSession:${L.lessonId}','{"mode":"self"}');localStorage.setItem('ccProgress:${L.lessonId}',${JSON.stringify(JSON.stringify(prog))});sessionStorage.setItem('__seeded','1');}`;
   const p = join(TMP, `${basename(file, '.jsx')}-${idx}-${tag}.html`);
   writeFileSync(p, `<!doctype html><html><head><meta charset="utf-8"></head><body><div id="root"></div><script>${seed}<\/script><script>${bundles.get(file)}<\/script></body></html>`);
   return 'file://' + p;
@@ -109,7 +109,7 @@ for (const sp of specs) {
     if (r.n !== 1) fail('S0-boshida', `qator ${r.n} marta ko'rindi`);
     if (r.lost) fail('S0-boshida', 'boshida «lost» holatda');
     if (r.text !== TXT.RULE) fail('S0-boshida', `matn farq: «${r.text}»`);
-    if (SHOTS) await pg.screenshot({ path: join(SHOTS, `${basename(sp.file, '.jsx')}-${sp.sid}.png`) });
+    if (SHOTS) { await pg.waitForTimeout(1600); await pg.screenshot({ path: join(SHOTS, `${basename(sp.file, '.jsx')}-${sp.sid}.png`) }); } // kirish animatsiyasi tugasin
     pass('S0-boshida'); } });
   await scen('S4-mashq', { seed: [{ firstPass: { answers: {}, durationSec: 1 } }, 's4'], body: async ({ pg }) => { if (await rule(pg)) return fail('S4-mashq', 'mashq-o\'tishida qator ko\'rindi'); pass('S4-mashq'); } });
   await scen('S5-olingan', { seed: [{ earned: [ach] }, 's5'], body: async ({ pg }) => { if (await rule(pg)) return fail('S5-olingan', 'nishon olingan, qator hali ko\'rinyapti'); pass('S5-olingan'); } });

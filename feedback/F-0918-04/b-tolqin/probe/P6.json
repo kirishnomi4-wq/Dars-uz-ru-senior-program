@@ -1,0 +1,709 @@
+[
+ {
+  "file": "src/5-Modull/BotAiAgentLesson.jsx",
+  "sid": "s5",
+  "note": "3 qatorli tanlov (maqsad · asboblar · chegara); xato = noto'g'ri variant bosilishi (✗ + silkinish)",
+  "wrong": [
+   {
+    "click": ".pick-row:has-text(\"Faqat salomlashish\")"
+   }
+  ],
+  "right": [
+   {
+    "click": ".pick-row:has-text(\"Buyurtmani qabul qilib\")"
+   },
+   {
+    "click": ".pick-row:has-text(\"checkOrder, saveOrder\")"
+   },
+   {
+    "click": ".pick-row:has-text(\"Xavfli amaldan\")",
+    "after": 700
+   }
+  ]
+ },
+ {
+  "file": "src/5-Modull/BotAiAgentLesson.jsx",
+  "sid": "s7",
+  "note": "3 vaziyat — har biriga asbob; xato = mos kelmagan asbob (silkinish, vaziyat joyida qoladi)",
+  "wrong": [
+   {
+    "click": ".pick-row:has-text(\"notifyUser()\")",
+    "after": 600
+   }
+  ],
+  "right": [
+   {
+    "click": ".pick-row:has-text(\"checkOrder()\")"
+   },
+   {
+    "click": ".pick-row:has-text(\"saveOrder()\")"
+   },
+   {
+    "click": ".pick-row:has-text(\"arrangeDelivery()\")",
+    "after": 700
+   }
+  ]
+ },
+ {
+  "file": "src/5-Modull/BotAiAgentLesson.jsx",
+  "sid": "s9",
+  "once": true,
+  "note": "bir martalik ikki variantli tanlov (qotadi); to'g'ri tugma eval bilan bosiladi — qotgan holatda jim, xato bermaydi",
+  "wrong": [
+   {
+    "click": ".pick-row:has-text(\"tasdiqsiz yechib\")"
+   }
+  ],
+  "right": [
+   {
+    "eval": "[...document.querySelectorAll('.pick-row')].find(b => b.innerText.includes('Avval odamdan'))?.click()",
+    "after": 700
+   }
+  ],
+  "rightAfterWrong": []
+ },
+ {
+  "file": "src/5-Modull/BotAiAgentLesson.jsx",
+  "sid": "s11",
+  "once": true,
+  "note": "3 qator, har biri bir martalik belgilash; xato = a1 (checkOrder — xavfsiz) ni «Ruxsat kerak» deb belgilash",
+  "wrong": [
+   {
+    "click": ".claim-row:has-text(\"checkOrder()\") .claim-btn",
+    "nth": 1
+   }
+  ],
+  "right": [
+   {
+    "click": ".claim-row:has-text(\"checkOrder()\") .claim-btn",
+    "nth": 0
+   },
+   {
+    "click": ".claim-row:has-text(\"chargeCard()\") .claim-btn",
+    "nth": 1
+   },
+   {
+    "click": ".claim-row:has-text(\"notifyUser()\") .claim-btn",
+    "nth": 0,
+    "after": 700
+   }
+  ],
+  "rightAfterWrong": [
+   {
+    "click": ".claim-row:has-text(\"chargeCard()\") .claim-btn",
+    "nth": 1
+   },
+   {
+    "click": ".claim-row:has-text(\"notifyUser()\") .claim-btn",
+    "nth": 0,
+    "after": 700
+   }
+  ]
+ },
+ {
+  "file": "src/5-Modull/BotAiBrainLesson.jsx",
+  "sid": "s5",
+  "note": "3 qatorli tanlov (kim · qanday · chegara); xato = noto'g'ri variant (✗ + silkinish)",
+  "wrong": [
+   {
+    "click": ".pick-row:has-text(\"Umuman hamma narsani\")"
+   }
+  ],
+  "right": [
+   {
+    "click": ".pick-row:has-text(\"Pitsa Bek\")"
+   },
+   {
+    "click": ".pick-row:has-text(\"Qisqa, samimiy\")"
+   },
+   {
+    "click": ".pick-row:has-text(\"Faqat do'kon menyusi\")",
+    "after": 700
+   }
+  ]
+ },
+ {
+  "file": "src/5-Modull/BotAiBrainLesson.jsx",
+  "sid": "s7",
+  "once": true,
+  "note": "5 xabar yuboriladi (demo), keyin bir martalik tanlov; xato = «Bugun ob-havo…»",
+  "wrong": [
+   {
+    "click": ".btn-soft:has-text(\"Xabar yuborish\")"
+   },
+   {
+    "click": ".btn-soft:has-text(\"Xabar yuborish\")"
+   },
+   {
+    "click": ".btn-soft:has-text(\"Xabar yuborish\")"
+   },
+   {
+    "click": ".btn-soft:has-text(\"Xabar yuborish\")"
+   },
+   {
+    "click": ".btn-soft:has-text(\"Xabar yuborish\")"
+   },
+   {
+    "click": ".pick-row:has-text(\"ob-havo\")"
+   }
+  ],
+  "right": [
+   {
+    "eval": "[...document.querySelectorAll('.btn-soft')].find(b => b.innerText.includes('Xabar yuborish') && !b.disabled)?.click()",
+    "after": 300
+   },
+   {
+    "eval": "[...document.querySelectorAll('.btn-soft')].find(b => b.innerText.includes('Xabar yuborish') && !b.disabled)?.click()",
+    "after": 300
+   },
+   {
+    "eval": "[...document.querySelectorAll('.btn-soft')].find(b => b.innerText.includes('Xabar yuborish') && !b.disabled)?.click()",
+    "after": 300
+   },
+   {
+    "eval": "[...document.querySelectorAll('.btn-soft')].find(b => b.innerText.includes('Xabar yuborish') && !b.disabled)?.click()",
+    "after": 300
+   },
+   {
+    "eval": "[...document.querySelectorAll('.btn-soft')].find(b => b.innerText.includes('Xabar yuborish') && !b.disabled)?.click()",
+    "after": 300
+   },
+   {
+    "eval": "[...document.querySelectorAll('.pick-row')].find(b => b.innerText.includes('Ismim: Aziz'))?.click()",
+    "after": 700
+   }
+  ],
+  "rightAfterWrong": []
+ },
+ {
+  "file": "src/5-Modull/BotAiBrainLesson.jsx",
+  "sid": "s9",
+  "once": true,
+  "note": "ikki demo (past · baland), keyin bir martalik tanlov; xato = «Baland»",
+  "wrong": [
+   {
+    "click": ".dial-btn:has-text(\"Past (0.1)\")",
+    "nth": 0
+   },
+   {
+    "click": ".dial-btn:has-text(\"Baland (1.5)\")",
+    "nth": 0
+   },
+   {
+    "click": ".dial-btn:has-text(\"Baland (1.5)\")",
+    "nth": 1
+   }
+  ],
+  "right": [
+   {
+    "eval": "[...document.querySelectorAll('.dial-btn')].filter(b => b.innerText.includes('Past'))[0]?.click()",
+    "after": 300
+   },
+   {
+    "eval": "[...document.querySelectorAll('.dial-btn')].filter(b => b.innerText.includes('Baland'))[0]?.click()",
+    "after": 500
+   },
+   {
+    "eval": "[...document.querySelectorAll('.dial-btn')].filter(b => b.innerText.includes('Past'))[1]?.click()",
+    "after": 700
+   }
+  ],
+  "rightAfterWrong": []
+ },
+ {
+  "file": "src/5-Modull/BotAiBrainLesson.jsx",
+  "sid": "s11",
+  "once": true,
+  "note": "3 da'vo, har biri bir martalik; xato = c1 (rost) ni «O'ylab topilgan» deb belgilash",
+  "wrong": [
+   {
+    "click": ".claim-row:has-text(\"Margarita\") .claim-btn",
+    "nth": 1
+   }
+  ],
+  "right": [
+   {
+    "click": ".claim-row:has-text(\"Margarita\") .claim-btn",
+    "nth": 0
+   },
+   {
+    "click": ".claim-row:has-text(\"Ananasli\") .claim-btn",
+    "nth": 1
+   },
+   {
+    "click": ".claim-row:has-text(\"Pepperoni\") .claim-btn",
+    "nth": 0,
+    "after": 700
+   }
+  ],
+  "rightAfterWrong": [
+   {
+    "click": ".claim-row:has-text(\"Ananasli\") .claim-btn",
+    "nth": 1
+   },
+   {
+    "click": ".claim-row:has-text(\"Pepperoni\") .claim-btn",
+    "nth": 0,
+    "after": 700
+   }
+  ]
+ },
+ {
+  "file": "src/5-Modull/BotFullProjectLesson.jsx",
+  "sid": "s5",
+  "note": "3 vazifa → buyum (varaq · maslahatchi · daftar); xato = noto'g'ri buyum (✗ + silkinish)",
+  "wrong": [
+   {
+    "click": ".pick-row:has-text(\"har safar qaytadan o'ylaydi\")"
+   }
+  ],
+  "right": [
+   {
+    "click": ".pick-row:has-text(\"tayyor tugmalar va qatorlar\")"
+   },
+   {
+    "click": ".pick-row:has-text(\"o'ylab tabiiy javob\")"
+   },
+   {
+    "click": ".pick-row:has-text(\"Daftar (DB)\")",
+    "after": 700
+   }
+  ]
+ },
+ {
+  "file": "src/5-Modull/BotFullProjectLesson.jsx",
+  "sid": "s7",
+  "once": true,
+  "note": "demo-tugma, keyin bir martalik tanlov; xato = «Kod ichida ochiq»",
+  "wrong": [
+   {
+    "click": ".btn-soft:has-text(\"Kalitni ochiq qoldirib\")"
+   },
+   {
+    "click": ".pick-row:has-text(\"Kod ichida ochiq\")"
+   }
+  ],
+  "right": [
+   {
+    "eval": "[...document.querySelectorAll('.btn-soft')].find(b => b.innerText.includes('Kalitni ochiq qoldirib') && !b.disabled)?.click()",
+    "after": 500
+   },
+   {
+    "eval": "[...document.querySelectorAll('.pick-row')].find(b => b.innerText.includes('Qulfli tortmada'))?.click()",
+    "after": 700
+   }
+  ],
+  "rightAfterWrong": []
+ },
+ {
+  "file": "src/5-Modull/BotFullProjectLesson.jsx",
+  "sid": "s9",
+  "once": true,
+  "note": "ikki demo, keyin bir martalik tanlov; xato = «Qo'ng'iroq»",
+  "wrong": [
+   {
+    "click": ".dial-btn:has-text(\"so'rab-turish\")",
+    "nth": 0
+   },
+   {
+    "click": ".dial-btn:has-text(\"Qo'ng'iroq\")",
+    "nth": 0
+   },
+   {
+    "click": ".dial-btn:has-text(\"Qo'ng'iroq\")",
+    "nth": 1
+   }
+  ],
+  "right": [
+   {
+    "eval": "[...document.querySelectorAll('.dial-btn')].filter(b => b.innerText.includes('so\\u2019rab') || b.innerText.includes(\"so'rab\"))[0]?.click()",
+    "after": 300
+   },
+   {
+    "eval": "[...document.querySelectorAll('.dial-btn')].filter(b => b.innerText.includes('ng\\u2019iroq') || b.innerText.includes(\"ng'iroq\"))[0]?.click()",
+    "after": 500
+   },
+   {
+    "eval": "[...document.querySelectorAll('.dial-btn')].filter(b => b.innerText.includes('so\\u2019rab') || b.innerText.includes(\"so'rab\"))[1]?.click()",
+    "after": 700
+   }
+  ],
+  "rightAfterWrong": []
+ },
+ {
+  "file": "src/5-Modull/BotFullProjectLesson.jsx",
+  "sid": "s11",
+  "once": true,
+  "note": "3 band, har biri bir martalik; xato = c1 (to'g'ri qoida) ni «Xato» deb belgilash",
+  "wrong": [
+   {
+    "click": ".claim-row:has-text(\"qulfli tortmada\") .claim-btn",
+    "nth": 1
+   }
+  ],
+  "right": [
+   {
+    "click": ".claim-row:has-text(\"qulfli tortmada\") .claim-btn",
+    "nth": 0
+   },
+   {
+    "click": ".claim-row:has-text(\"sinalmagan\") .claim-btn",
+    "nth": 1
+   },
+   {
+    "click": ".claim-row:has-text(\"doim yoqilgan\") .claim-btn",
+    "nth": 0,
+    "after": 700
+   }
+  ],
+  "rightAfterWrong": [
+   {
+    "click": ".claim-row:has-text(\"sinalmagan\") .claim-btn",
+    "nth": 1
+   },
+   {
+    "click": ".claim-row:has-text(\"doim yoqilgan\") .claim-btn",
+    "nth": 0,
+    "after": 700
+   }
+  ]
+ },
+ {
+  "file": "src/5-Modull/BotApiButtonsLesson.jsx",
+  "sid": "s13",
+  "note": "3 bo'shliq — har biriga chip; xato = noto'g'ri chip (silkinish + sabab)",
+  "wrong": [
+   {
+    "click": ".gchip:has-text(\"Faqat rasm yuboradi\")",
+    "after": 600
+   }
+  ],
+  "right": [
+   {
+    "click": ".gchip:has-text(\"Botni ishga tushiradi\")"
+   },
+   {
+    "click": ".gchip:has-text(\"Yordam va buyruqlar\")"
+   },
+   {
+    "click": ".gchip:has-text(\"Menyuni qayta ochadi\")",
+    "after": 700
+   }
+  ]
+ },
+ {
+  "file": "src/5-Modull/BotIntroLesson.jsx",
+  "sid": "s13",
+  "note": "bot.js dagi 3 bo'shliq; xato = trig1 ga «hears»",
+  "wrong": [
+   {
+    "click": ".blank-group >> nth=0 >> button:text-is(\"hears\")",
+    "after": 600
+   }
+  ],
+  "right": [
+   {
+    "click": ".blank-group >> nth=0 >> button:text-is(\"start\")"
+   },
+   {
+    "click": ".blank-group >> nth=1 >> button:text-is(\"reply\")"
+   },
+   {
+    "click": ".blank-group >> nth=2 >> button:text-is(\"hears\")",
+    "after": 700
+   }
+  ]
+ },
+ {
+  "file": "src/5-Modull/BotStatefulMemoryLesson.jsx",
+  "sid": "s13",
+  "note": "3 SQL bo'shliq; xato = birinchisiga UPDATE",
+  "wrong": [
+   {
+    "click": ".blank-group >> nth=0 >> button:text-is(\"UPDATE\")",
+    "after": 600
+   }
+  ],
+  "right": [
+   {
+    "click": ".blank-group >> nth=0 >> button:text-is(\"SELECT\")"
+   },
+   {
+    "click": ".blank-group >> nth=1 >> button:text-is(\"UPDATE\")"
+   },
+   {
+    "click": ".blank-group >> nth=2 >> button:text-is(\"INSERT\")",
+    "after": 700
+   }
+  ]
+ },
+ {
+  "file": "src/5-Modull/BotIntroLesson.jsx",
+  "sid": "s7",
+  "note": "NightShift: signal→amal chiplari sudraladi (PointerEvent), «Smenani boshlash» — 4 mijoz; xato = smenada biror mijozga noto'g'ri amal (🟡). Yarim varaq (💤) — sirpanish, sanalmaydi",
+  "wrong": [
+   {
+    "eval": "((txt, kind, row) => { const chip = [...document.querySelectorAll('.ns-chip.' + kind + '.pool')].find(b => b.innerText.includes(txt)); const cell = document.querySelectorAll('.ns-cell.' + kind)[row]; const a = chip.getBoundingClientRect(), b = cell.getBoundingClientRect(); const o = { bubbles: true, cancelable: true, pointerId: 1, button: 0, isPrimary: true, pointerType: 'mouse' }; chip.dispatchEvent(new PointerEvent('pointerdown', { ...o, clientX: a.x + 8, clientY: a.y + 8 })); window.dispatchEvent(new PointerEvent('pointermove', { ...o, clientX: a.x + 40, clientY: a.y + 40 })); window.dispatchEvent(new PointerEvent('pointermove', { ...o, clientX: b.x + b.width / 2, clientY: b.y + b.height / 2 })); window.dispatchEvent(new PointerEvent('pointerup', { ...o, clientX: b.x + b.width / 2, clientY: b.y + b.height / 2 })); })(\"/start\", 'sig', 0)",
+    "after": 250
+   },
+   {
+    "eval": "((txt, kind, row) => { const chip = [...document.querySelectorAll('.ns-chip.' + kind + '.pool')].find(b => b.innerText.includes(txt)); const cell = document.querySelectorAll('.ns-cell.' + kind)[row]; const a = chip.getBoundingClientRect(), b = cell.getBoundingClientRect(); const o = { bubbles: true, cancelable: true, pointerId: 1, button: 0, isPrimary: true, pointerType: 'mouse' }; chip.dispatchEvent(new PointerEvent('pointerdown', { ...o, clientX: a.x + 8, clientY: a.y + 8 })); window.dispatchEvent(new PointerEvent('pointermove', { ...o, clientX: a.x + 40, clientY: a.y + 40 })); window.dispatchEvent(new PointerEvent('pointermove', { ...o, clientX: b.x + b.width / 2, clientY: b.y + b.height / 2 })); window.dispatchEvent(new PointerEvent('pointerup', { ...o, clientX: b.x + b.width / 2, clientY: b.y + b.height / 2 })); })(\"Salom beradi\", 'act', 0)",
+    "after": 250
+   },
+   {
+    "eval": "((txt, kind, row) => { const chip = [...document.querySelectorAll('.ns-chip.' + kind + '.pool')].find(b => b.innerText.includes(txt)); const cell = document.querySelectorAll('.ns-cell.' + kind)[row]; const a = chip.getBoundingClientRect(), b = cell.getBoundingClientRect(); const o = { bubbles: true, cancelable: true, pointerId: 1, button: 0, isPrimary: true, pointerType: 'mouse' }; chip.dispatchEvent(new PointerEvent('pointerdown', { ...o, clientX: a.x + 8, clientY: a.y + 8 })); window.dispatchEvent(new PointerEvent('pointermove', { ...o, clientX: a.x + 40, clientY: a.y + 40 })); window.dispatchEvent(new PointerEvent('pointermove', { ...o, clientX: b.x + b.width / 2, clientY: b.y + b.height / 2 })); window.dispatchEvent(new PointerEvent('pointerup', { ...o, clientX: b.x + b.width / 2, clientY: b.y + b.height / 2 })); })(\"Menyu\", 'sig', 1)",
+    "after": 250
+   },
+   {
+    "eval": "((txt, kind, row) => { const chip = [...document.querySelectorAll('.ns-chip.' + kind + '.pool')].find(b => b.innerText.includes(txt)); const cell = document.querySelectorAll('.ns-cell.' + kind)[row]; const a = chip.getBoundingClientRect(), b = cell.getBoundingClientRect(); const o = { bubbles: true, cancelable: true, pointerId: 1, button: 0, isPrimary: true, pointerType: 'mouse' }; chip.dispatchEvent(new PointerEvent('pointerdown', { ...o, clientX: a.x + 8, clientY: a.y + 8 })); window.dispatchEvent(new PointerEvent('pointermove', { ...o, clientX: a.x + 40, clientY: a.y + 40 })); window.dispatchEvent(new PointerEvent('pointermove', { ...o, clientX: b.x + b.width / 2, clientY: b.y + b.height / 2 })); window.dispatchEvent(new PointerEvent('pointerup', { ...o, clientX: b.x + b.width / 2, clientY: b.y + b.height / 2 })); })(\"Yordam matnini\", 'act', 1)",
+    "after": 250
+   },
+   {
+    "click": ".ns-side > .btn",
+    "after": 4200
+   }
+  ],
+  "right": [
+   {
+    "eval": "((txt, kind, row) => { const chip = [...document.querySelectorAll('.ns-chip.' + kind + '.pool')].find(b => b.innerText.includes(txt)); const cell = document.querySelectorAll('.ns-cell.' + kind)[row]; const a = chip.getBoundingClientRect(), b = cell.getBoundingClientRect(); const o = { bubbles: true, cancelable: true, pointerId: 1, button: 0, isPrimary: true, pointerType: 'mouse' }; chip.dispatchEvent(new PointerEvent('pointerdown', { ...o, clientX: a.x + 8, clientY: a.y + 8 })); window.dispatchEvent(new PointerEvent('pointermove', { ...o, clientX: a.x + 40, clientY: a.y + 40 })); window.dispatchEvent(new PointerEvent('pointermove', { ...o, clientX: b.x + b.width / 2, clientY: b.y + b.height / 2 })); window.dispatchEvent(new PointerEvent('pointerup', { ...o, clientX: b.x + b.width / 2, clientY: b.y + b.height / 2 })); })(\"/start\", 'sig', 0)",
+    "after": 250
+   },
+   {
+    "eval": "((txt, kind, row) => { const chip = [...document.querySelectorAll('.ns-chip.' + kind + '.pool')].find(b => b.innerText.includes(txt)); const cell = document.querySelectorAll('.ns-cell.' + kind)[row]; const a = chip.getBoundingClientRect(), b = cell.getBoundingClientRect(); const o = { bubbles: true, cancelable: true, pointerId: 1, button: 0, isPrimary: true, pointerType: 'mouse' }; chip.dispatchEvent(new PointerEvent('pointerdown', { ...o, clientX: a.x + 8, clientY: a.y + 8 })); window.dispatchEvent(new PointerEvent('pointermove', { ...o, clientX: a.x + 40, clientY: a.y + 40 })); window.dispatchEvent(new PointerEvent('pointermove', { ...o, clientX: b.x + b.width / 2, clientY: b.y + b.height / 2 })); window.dispatchEvent(new PointerEvent('pointerup', { ...o, clientX: b.x + b.width / 2, clientY: b.y + b.height / 2 })); })(\"Salom beradi\", 'act', 0)",
+    "after": 250
+   },
+   {
+    "eval": "((txt, kind, row) => { const chip = [...document.querySelectorAll('.ns-chip.' + kind + '.pool')].find(b => b.innerText.includes(txt)); const cell = document.querySelectorAll('.ns-cell.' + kind)[row]; const a = chip.getBoundingClientRect(), b = cell.getBoundingClientRect(); const o = { bubbles: true, cancelable: true, pointerId: 1, button: 0, isPrimary: true, pointerType: 'mouse' }; chip.dispatchEvent(new PointerEvent('pointerdown', { ...o, clientX: a.x + 8, clientY: a.y + 8 })); window.dispatchEvent(new PointerEvent('pointermove', { ...o, clientX: a.x + 40, clientY: a.y + 40 })); window.dispatchEvent(new PointerEvent('pointermove', { ...o, clientX: b.x + b.width / 2, clientY: b.y + b.height / 2 })); window.dispatchEvent(new PointerEvent('pointerup', { ...o, clientX: b.x + b.width / 2, clientY: b.y + b.height / 2 })); })(\"Menyu\", 'sig', 1)",
+    "after": 250
+   },
+   {
+    "eval": "((txt, kind, row) => { const chip = [...document.querySelectorAll('.ns-chip.' + kind + '.pool')].find(b => b.innerText.includes(txt)); const cell = document.querySelectorAll('.ns-cell.' + kind)[row]; const a = chip.getBoundingClientRect(), b = cell.getBoundingClientRect(); const o = { bubbles: true, cancelable: true, pointerId: 1, button: 0, isPrimary: true, pointerType: 'mouse' }; chip.dispatchEvent(new PointerEvent('pointerdown', { ...o, clientX: a.x + 8, clientY: a.y + 8 })); window.dispatchEvent(new PointerEvent('pointermove', { ...o, clientX: a.x + 40, clientY: a.y + 40 })); window.dispatchEvent(new PointerEvent('pointermove', { ...o, clientX: b.x + b.width / 2, clientY: b.y + b.height / 2 })); window.dispatchEvent(new PointerEvent('pointerup', { ...o, clientX: b.x + b.width / 2, clientY: b.y + b.height / 2 })); })(\"Taomlar\", 'act', 1)",
+    "after": 250
+   },
+   {
+    "eval": "((txt, kind, row) => { const chip = [...document.querySelectorAll('.ns-chip.' + kind + '.pool')].find(b => b.innerText.includes(txt)); const cell = document.querySelectorAll('.ns-cell.' + kind)[row]; const a = chip.getBoundingClientRect(), b = cell.getBoundingClientRect(); const o = { bubbles: true, cancelable: true, pointerId: 1, button: 0, isPrimary: true, pointerType: 'mouse' }; chip.dispatchEvent(new PointerEvent('pointerdown', { ...o, clientX: a.x + 8, clientY: a.y + 8 })); window.dispatchEvent(new PointerEvent('pointermove', { ...o, clientX: a.x + 40, clientY: a.y + 40 })); window.dispatchEvent(new PointerEvent('pointermove', { ...o, clientX: b.x + b.width / 2, clientY: b.y + b.height / 2 })); window.dispatchEvent(new PointerEvent('pointerup', { ...o, clientX: b.x + b.width / 2, clientY: b.y + b.height / 2 })); })(\"/help\", 'sig', 2)",
+    "after": 250
+   },
+   {
+    "eval": "((txt, kind, row) => { const chip = [...document.querySelectorAll('.ns-chip.' + kind + '.pool')].find(b => b.innerText.includes(txt)); const cell = document.querySelectorAll('.ns-cell.' + kind)[row]; const a = chip.getBoundingClientRect(), b = cell.getBoundingClientRect(); const o = { bubbles: true, cancelable: true, pointerId: 1, button: 0, isPrimary: true, pointerType: 'mouse' }; chip.dispatchEvent(new PointerEvent('pointerdown', { ...o, clientX: a.x + 8, clientY: a.y + 8 })); window.dispatchEvent(new PointerEvent('pointermove', { ...o, clientX: a.x + 40, clientY: a.y + 40 })); window.dispatchEvent(new PointerEvent('pointermove', { ...o, clientX: b.x + b.width / 2, clientY: b.y + b.height / 2 })); window.dispatchEvent(new PointerEvent('pointerup', { ...o, clientX: b.x + b.width / 2, clientY: b.y + b.height / 2 })); })(\"Yordam matnini\", 'act', 2)",
+    "after": 250
+   },
+   {
+    "eval": "((txt, kind, row) => { const chip = [...document.querySelectorAll('.ns-chip.' + kind + '.pool')].find(b => b.innerText.includes(txt)); const cell = document.querySelectorAll('.ns-cell.' + kind)[row]; const a = chip.getBoundingClientRect(), b = cell.getBoundingClientRect(); const o = { bubbles: true, cancelable: true, pointerId: 1, button: 0, isPrimary: true, pointerType: 'mouse' }; chip.dispatchEvent(new PointerEvent('pointerdown', { ...o, clientX: a.x + 8, clientY: a.y + 8 })); window.dispatchEvent(new PointerEvent('pointermove', { ...o, clientX: a.x + 40, clientY: a.y + 40 })); window.dispatchEvent(new PointerEvent('pointermove', { ...o, clientX: b.x + b.width / 2, clientY: b.y + b.height / 2 })); window.dispatchEvent(new PointerEvent('pointerup', { ...o, clientX: b.x + b.width / 2, clientY: b.y + b.height / 2 })); })(\"Hech biri mos\", 'sig', 3)",
+    "after": 250
+   },
+   {
+    "eval": "((txt, kind, row) => { const chip = [...document.querySelectorAll('.ns-chip.' + kind + '.pool')].find(b => b.innerText.includes(txt)); const cell = document.querySelectorAll('.ns-cell.' + kind)[row]; const a = chip.getBoundingClientRect(), b = cell.getBoundingClientRect(); const o = { bubbles: true, cancelable: true, pointerId: 1, button: 0, isPrimary: true, pointerType: 'mouse' }; chip.dispatchEvent(new PointerEvent('pointerdown', { ...o, clientX: a.x + 8, clientY: a.y + 8 })); window.dispatchEvent(new PointerEvent('pointermove', { ...o, clientX: a.x + 40, clientY: a.y + 40 })); window.dispatchEvent(new PointerEvent('pointermove', { ...o, clientX: b.x + b.width / 2, clientY: b.y + b.height / 2 })); window.dispatchEvent(new PointerEvent('pointerup', { ...o, clientX: b.x + b.width / 2, clientY: b.y + b.height / 2 })); })(\"Uzr, tushunmadim\", 'act', 3)",
+    "after": 250
+   },
+   {
+    "click": ".ns-side > .btn",
+    "after": 4200
+   }
+  ],
+  "rightAfterWrong": [
+   {
+    "eval": "((txt, kind, row) => { const chip = [...document.querySelectorAll('.ns-chip.' + kind + '.pool')].find(b => b.innerText.includes(txt)); const cell = document.querySelectorAll('.ns-cell.' + kind)[row]; const a = chip.getBoundingClientRect(), b = cell.getBoundingClientRect(); const o = { bubbles: true, cancelable: true, pointerId: 1, button: 0, isPrimary: true, pointerType: 'mouse' }; chip.dispatchEvent(new PointerEvent('pointerdown', { ...o, clientX: a.x + 8, clientY: a.y + 8 })); window.dispatchEvent(new PointerEvent('pointermove', { ...o, clientX: a.x + 40, clientY: a.y + 40 })); window.dispatchEvent(new PointerEvent('pointermove', { ...o, clientX: b.x + b.width / 2, clientY: b.y + b.height / 2 })); window.dispatchEvent(new PointerEvent('pointerup', { ...o, clientX: b.x + b.width / 2, clientY: b.y + b.height / 2 })); })(\"Taomlar\", 'act', 1)",
+    "after": 250
+   },
+   {
+    "eval": "((txt, kind, row) => { const chip = [...document.querySelectorAll('.ns-chip.' + kind + '.pool')].find(b => b.innerText.includes(txt)); const cell = document.querySelectorAll('.ns-cell.' + kind)[row]; const a = chip.getBoundingClientRect(), b = cell.getBoundingClientRect(); const o = { bubbles: true, cancelable: true, pointerId: 1, button: 0, isPrimary: true, pointerType: 'mouse' }; chip.dispatchEvent(new PointerEvent('pointerdown', { ...o, clientX: a.x + 8, clientY: a.y + 8 })); window.dispatchEvent(new PointerEvent('pointermove', { ...o, clientX: a.x + 40, clientY: a.y + 40 })); window.dispatchEvent(new PointerEvent('pointermove', { ...o, clientX: b.x + b.width / 2, clientY: b.y + b.height / 2 })); window.dispatchEvent(new PointerEvent('pointerup', { ...o, clientX: b.x + b.width / 2, clientY: b.y + b.height / 2 })); })(\"/help\", 'sig', 2)",
+    "after": 250
+   },
+   {
+    "eval": "((txt, kind, row) => { const chip = [...document.querySelectorAll('.ns-chip.' + kind + '.pool')].find(b => b.innerText.includes(txt)); const cell = document.querySelectorAll('.ns-cell.' + kind)[row]; const a = chip.getBoundingClientRect(), b = cell.getBoundingClientRect(); const o = { bubbles: true, cancelable: true, pointerId: 1, button: 0, isPrimary: true, pointerType: 'mouse' }; chip.dispatchEvent(new PointerEvent('pointerdown', { ...o, clientX: a.x + 8, clientY: a.y + 8 })); window.dispatchEvent(new PointerEvent('pointermove', { ...o, clientX: a.x + 40, clientY: a.y + 40 })); window.dispatchEvent(new PointerEvent('pointermove', { ...o, clientX: b.x + b.width / 2, clientY: b.y + b.height / 2 })); window.dispatchEvent(new PointerEvent('pointerup', { ...o, clientX: b.x + b.width / 2, clientY: b.y + b.height / 2 })); })(\"Yordam matnini\", 'act', 2)",
+    "after": 250
+   },
+   {
+    "eval": "((txt, kind, row) => { const chip = [...document.querySelectorAll('.ns-chip.' + kind + '.pool')].find(b => b.innerText.includes(txt)); const cell = document.querySelectorAll('.ns-cell.' + kind)[row]; const a = chip.getBoundingClientRect(), b = cell.getBoundingClientRect(); const o = { bubbles: true, cancelable: true, pointerId: 1, button: 0, isPrimary: true, pointerType: 'mouse' }; chip.dispatchEvent(new PointerEvent('pointerdown', { ...o, clientX: a.x + 8, clientY: a.y + 8 })); window.dispatchEvent(new PointerEvent('pointermove', { ...o, clientX: a.x + 40, clientY: a.y + 40 })); window.dispatchEvent(new PointerEvent('pointermove', { ...o, clientX: b.x + b.width / 2, clientY: b.y + b.height / 2 })); window.dispatchEvent(new PointerEvent('pointerup', { ...o, clientX: b.x + b.width / 2, clientY: b.y + b.height / 2 })); })(\"Hech biri mos\", 'sig', 3)",
+    "after": 250
+   },
+   {
+    "eval": "((txt, kind, row) => { const chip = [...document.querySelectorAll('.ns-chip.' + kind + '.pool')].find(b => b.innerText.includes(txt)); const cell = document.querySelectorAll('.ns-cell.' + kind)[row]; const a = chip.getBoundingClientRect(), b = cell.getBoundingClientRect(); const o = { bubbles: true, cancelable: true, pointerId: 1, button: 0, isPrimary: true, pointerType: 'mouse' }; chip.dispatchEvent(new PointerEvent('pointerdown', { ...o, clientX: a.x + 8, clientY: a.y + 8 })); window.dispatchEvent(new PointerEvent('pointermove', { ...o, clientX: a.x + 40, clientY: a.y + 40 })); window.dispatchEvent(new PointerEvent('pointermove', { ...o, clientX: b.x + b.width / 2, clientY: b.y + b.height / 2 })); window.dispatchEvent(new PointerEvent('pointerup', { ...o, clientX: b.x + b.width / 2, clientY: b.y + b.height / 2 })); })(\"Uzr, tushunmadim\", 'act', 3)",
+    "after": 250
+   },
+   {
+    "click": ".ns-side > .btn",
+    "after": 4200
+   }
+  ],
+  "slip": [
+   {
+    "eval": "((txt, kind, row) => { const chip = [...document.querySelectorAll('.ns-chip.' + kind + '.pool')].find(b => b.innerText.includes(txt)); const cell = document.querySelectorAll('.ns-cell.' + kind)[row]; const a = chip.getBoundingClientRect(), b = cell.getBoundingClientRect(); const o = { bubbles: true, cancelable: true, pointerId: 1, button: 0, isPrimary: true, pointerType: 'mouse' }; chip.dispatchEvent(new PointerEvent('pointerdown', { ...o, clientX: a.x + 8, clientY: a.y + 8 })); window.dispatchEvent(new PointerEvent('pointermove', { ...o, clientX: a.x + 40, clientY: a.y + 40 })); window.dispatchEvent(new PointerEvent('pointermove', { ...o, clientX: b.x + b.width / 2, clientY: b.y + b.height / 2 })); window.dispatchEvent(new PointerEvent('pointerup', { ...o, clientX: b.x + b.width / 2, clientY: b.y + b.height / 2 })); })(\"/start\", 'sig', 0)",
+    "after": 250
+   },
+   {
+    "eval": "((txt, kind, row) => { const chip = [...document.querySelectorAll('.ns-chip.' + kind + '.pool')].find(b => b.innerText.includes(txt)); const cell = document.querySelectorAll('.ns-cell.' + kind)[row]; const a = chip.getBoundingClientRect(), b = cell.getBoundingClientRect(); const o = { bubbles: true, cancelable: true, pointerId: 1, button: 0, isPrimary: true, pointerType: 'mouse' }; chip.dispatchEvent(new PointerEvent('pointerdown', { ...o, clientX: a.x + 8, clientY: a.y + 8 })); window.dispatchEvent(new PointerEvent('pointermove', { ...o, clientX: a.x + 40, clientY: a.y + 40 })); window.dispatchEvent(new PointerEvent('pointermove', { ...o, clientX: b.x + b.width / 2, clientY: b.y + b.height / 2 })); window.dispatchEvent(new PointerEvent('pointerup', { ...o, clientX: b.x + b.width / 2, clientY: b.y + b.height / 2 })); })(\"Salom beradi\", 'act', 0)",
+    "after": 250
+   },
+   {
+    "click": ".ns-side > .btn",
+    "after": 4200
+   }
+  ]
+ },
+ {
+  "file": "src/5-Modull/BotAiProjectLesson.jsx",
+  "sid": "s7",
+  "note": "test → tashxis → tuzatish → qayta test; urinish = tashxisdagi xato sabab (qayta tanlash mumkin)",
+  "wrong": [
+   {
+    "click": ".tg-inline-btn:has-text(\"Boshlash\")"
+   },
+   {
+    "click": ".tg-inline-btn:text-is(\"A\")"
+   },
+   {
+    "click": ".pick-row:has-text(\"Token noto\")",
+    "after": 500
+   }
+  ],
+  "right": [
+   {
+    "click": ".tg-inline-btn:has-text(\"Boshlash\")"
+   },
+   {
+    "click": ".tg-inline-btn:text-is(\"A\")"
+   },
+   {
+    "click": ".pick-row:has-text(\"handleri yozilmagan\")"
+   },
+   {
+    "click": ".btn:has-text(\"Tuzatish topshirig\")",
+    "after": 1700
+   },
+   {
+    "click": ".tg-inline-btn:text-is(\"B\")",
+    "after": 700
+   }
+  ],
+  "rightAfterWrong": [
+   {
+    "click": ".pick-row:has-text(\"handleri yozilmagan\")"
+   },
+   {
+    "click": ".btn:has-text(\"Tuzatish topshirig\")",
+    "after": 1700
+   },
+   {
+    "click": ".tg-inline-btn:text-is(\"B\")",
+    "after": 700
+   }
+  ]
+ },
+ {
+  "file": "src/5-Modull/PmLesson21.jsx",
+  "sid": "s9",
+  "note": "4 qator: qaytish kunlarini belgilab «Tekshirish» (yoki «qaytmagan»); urinish = tekshirilgan xato qator. Katak tanlash/olib tashlash — urinish emas",
+  "wrong": [
+   {
+    "click": ".mrk-cell.cur",
+    "nth": 4
+   },
+   {
+    "click": ".wsp-save:has-text(\"Tekshirish\")",
+    "after": 400
+   }
+  ],
+  "right": [
+   {
+    "click": ".mrk-cell.cur",
+    "nth": 1
+   },
+   {
+    "click": ".wsp-save:has-text(\"Tekshirish\")",
+    "after": 400
+   },
+   {
+    "click": ".wsp-save:has-text(\"Keyingisi\")",
+    "after": 400
+   },
+   {
+    "click": ".mrk-cell.cur",
+    "nth": 2
+   },
+   {
+    "click": ".mrk-cell.cur",
+    "nth": 3
+   },
+   {
+    "click": ".wsp-save:has-text(\"Tekshirish\")",
+    "after": 400
+   },
+   {
+    "click": ".wsp-save:has-text(\"Keyingisi\")",
+    "after": 400
+   },
+   {
+    "click": ".btn-soft:has-text(\"qaytmagan\")",
+    "after": 400
+   },
+   {
+    "click": ".wsp-save:has-text(\"Keyingisi\")",
+    "after": 400
+   },
+   {
+    "click": ".mrk-cell.cur",
+    "nth": 3
+   },
+   {
+    "click": ".mrk-cell.cur",
+    "nth": 4
+   },
+   {
+    "click": ".wsp-save:has-text(\"Tekshirish\")",
+    "after": 400
+   },
+   {
+    "click": ".wsp-save:has-text(\"Keyingisi\")",
+    "after": 900
+   }
+  ],
+  "rightAfterWrong": [
+   {
+    "click": ".wsp-save:has-text(\"Keyingisi\")",
+    "after": 400
+   },
+   {
+    "click": ".mrk-cell.cur",
+    "nth": 2
+   },
+   {
+    "click": ".mrk-cell.cur",
+    "nth": 3
+   },
+   {
+    "click": ".wsp-save:has-text(\"Tekshirish\")",
+    "after": 400
+   },
+   {
+    "click": ".wsp-save:has-text(\"Keyingisi\")",
+    "after": 400
+   },
+   {
+    "click": ".btn-soft:has-text(\"qaytmagan\")",
+    "after": 400
+   },
+   {
+    "click": ".wsp-save:has-text(\"Keyingisi\")",
+    "after": 400
+   },
+   {
+    "click": ".mrk-cell.cur",
+    "nth": 3
+   },
+   {
+    "click": ".mrk-cell.cur",
+    "nth": 4
+   },
+   {
+    "click": ".wsp-save:has-text(\"Tekshirish\")",
+    "after": 400
+   },
+   {
+    "click": ".wsp-save:has-text(\"Keyingisi\")",
+    "after": 900
+   }
+  ]
+ }
+]

@@ -861,6 +861,7 @@ const YR_SLOTS = [
   { id: 'limit', q: { uz: 'Chegara?', ru: 'Границы?' },        opts: [{ uz: "Faqat do'kon menyusi haqida gaplashsin", ru: 'Говори только о меню магазина' }, { uz: 'Istalgan mavzuda erkin gaplashaversin', ru: 'Говори свободно на любую тему' }, { uz: 'Hech qanday savolga javob bermasin', ru: 'Не отвечай ни на один вопрос' }], right: 0 }
 ];
 const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
+  const achMiss = useContext(AchMissCtx);
   const [choice, setChoice] = useState(() => storedAnswer ? { who: 0, how: 0, limit: 0 } : {});
   const wrongEverRef = useRef(!!(storedAnswer && storedAnswer.correct === false));
   const [tried, setTried] = useState(false);
@@ -870,7 +871,10 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const done = YR_SLOTS.every(s => choice[s.id] !== undefined) && allRight;
   const pick = (slotId, idx, right) => {
     setTried(true);
-    if (idx !== right) wrongEverRef.current = true;
+    if (idx !== right) {
+      wrongEverRef.current = true;
+      if (achMiss) achMiss.miss(screen); // 🏅 151-qonun: xato variant — nishon birinchi urinishga (F5 da ham saqlanadi)
+    }
     setChoice(c => ({ ...c, [slotId]: idx }));
     setSc(n => n + 1);
   };
@@ -903,6 +907,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 ru: <>Ты — {choice.who !== undefined ? tr(YR_SLOTS[0].opts[choice.who]) : '…'}. Говори {choice.how !== undefined ? tr(YR_SLOTS[1].opts[choice.how]) : '…'}. {choice.limit !== undefined ? tr(YR_SLOTS[2].opts[choice.limit]) : '…'}.</>
               })}
             </PromptCard>
+            {!done && <AchRule screen={screen} />}
             {tried && !done && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Ba'zi javoblar hali noto'g'ri — ✗ belgisini toping va to'g'risini tanlang.", ru: 'Часть ответов пока неверна — найдите значок ✗ и выберите правильный.' })}</p></div>}
             {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Zo'r! Endi Maslahatchiga aniq vazifa berildi: <b>kim, qanday, qaysi chegarada</b>. Shu 3 savol — har qanday yo'riqnomaning skeleti.</>, ru: <>Отлично! Теперь у Советчика есть чёткая задача: <b>кто он, как говорит, в каких рамках</b>. Эти 3 вопроса — скелет любой инструкции.</> })}</p></div>}
           </Col>
@@ -985,6 +990,7 @@ function Desk({ onAllSent, sentAll }) {
   );
 }
 const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
+  const achMiss = useContext(AchMissCtx);
   const [sentAll, setSentAll] = useState(!!storedAnswer);
   const [choice, setChoice] = useState(storedAnswer ? (storedAnswer.picked ?? 'p2') : null);
   const [sc, setSc] = useState(0);
@@ -992,7 +998,7 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const done = sentAll && choice !== null;
   const fired = useRef(!!storedAnswer);
   useEffect(() => { if (done && !fired.current) { fired.current = true; onAnswer(screen, { stage: 'central', screenIdx: screen, correct: choice === 'p2', picked: choice, solved: true }); } }, [done, choice]);
-  const pick = (id) => { if (choice !== null) return; setChoice(id); setSc(n => n + 1); };
+  const pick = (id) => { if (choice !== null) return; if (id !== 'p2' && achMiss) achMiss.miss(screen); setChoice(id); setSc(n => n + 1); };
   return (
     <Stage eyebrow={{ uz: 'Markaziy · #2', ru: 'Ключевое · #2' }} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Sinovni bajaring', ru: 'Выполните пробу' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
@@ -1012,6 +1018,7 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 })}
               </div>
             )}
+            <AchRule screen={screen} once />
             {done && choice === 'p2' && <div className="desk-note fade-step">{tr({ uz: "✓ To'g'ri! «Ismim: Aziz» — muhim ma'lumot, u tushib ketishga eng yaqin edi. Uni 📓 daftarga yozib qo'yish kerak.", ru: '✓ Верно! «Моё имя: Азиз» — важные данные, и они были ближе всего к падению. Их нужно записать в 📓 тетрадь.' })}</div>}
             {done && choice !== 'p2' && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Bu unchalik muhim emas. Eng muhimi — «Ismim: Aziz» edi, chunki u eng eski va tushib ketishga yaqin turgan mijoz ma'lumoti.", ru: 'Это не так важно. Главным было «Моё имя: Азиз» — самые старые данные клиента, ближе всего к падению.' })}</p></div>}
           </Col>
@@ -1042,6 +1049,7 @@ const DIAL_REPLIES = {
   high: [{ uz: "Bizda Margarita, Pepperoni va ajoyib taomlar bor!", ru: 'У нас есть Маргарита, Пепперони и много чего вкусного!' }, { uz: "Menyuda ko'p narsa bor — masalan ananasli pitsa 3 000 so'm 🍍", ru: 'В меню много всего — например, пицца с ананасом за 3 000 сумов 🍍' }, { uz: "Bugun Margarita va yangi maxsus taklifimiz bor, albatta sinab ko'ring!", ru: 'Сегодня есть Маргарита и наше новое спецпредложение — обязательно попробуйте!' }]
 };
 const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
+  const achMiss = useContext(AchMissCtx);
   const [seenLow, setSeenLow] = useState(!!storedAnswer);
   const [seenHigh, setSeenHigh] = useState(!!storedAnswer);
   const [choice, setChoice] = useState(storedAnswer ? (storedAnswer.picked ?? 'low') : null);
@@ -1052,7 +1060,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (done && !fired.current) { fired.current = true; onAnswer(screen, { stage: 'central', screenIdx: screen, correct: choice === 'low', picked: choice, solved: true }); } }, [done, choice]);
   const seeLow = () => { setSeenLow(true); setSc(n => n + 1); };
   const seeHigh = () => { setSeenHigh(true); setSc(n => n + 1); };
-  const pick = (v) => { if (choice !== null) return; setChoice(v); setSc(n => n + 1); };
+  const pick = (v) => { if (choice !== null) return; if (v !== 'low' && achMiss) achMiss.miss(screen); setChoice(v); setSc(n => n + 1); };
   return (
     <Stage eyebrow={{ uz: 'Markaziy · #3', ru: 'Ключевое · #3' }} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "Ikkalasini sinab ko'ring", ru: 'Попробуйте оба' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
@@ -1075,6 +1083,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 <button className={`dial-btn ${choice === 'high' ? 'on' : ''}`} disabled={choice !== null} onClick={() => pick('high')}>{tr({ uz: '🔥 Baland (1.5)', ru: '🔥 Высоко (1.5)' })}</button>
               </div>
             )}
+            <AchRule screen={screen} once />
             {done && choice === 'low' && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "✓ To'g'ri! Past murvat — qat'iy va bir xil javob beradi. Menyu kabi aniqlik kerak bo'lgan joyda shu tanlanadi.", ru: '✓ Верно! Низкая ручка даёт строгий и одинаковый ответ. Там, где нужна точность — например в меню — выбирают её.' })}</p></div>}
             {done && choice === 'high' && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Baland murvatda javob har safar boshqacha bo'ladi — hatto «ananasli pitsa» kabi yo'q narsani ham aytishi mumkin. Menyu uchun bu xavfli.", ru: 'При высокой ручке ответ каждый раз другой — он даже может назвать несуществующую «пиццу с ананасом». Для меню это опасно.' })}</p></div>}
           </Col>
@@ -1107,13 +1116,14 @@ const CLAIMS = [
   { id: 'c3', text: { uz: "Pepperoni — 42 000 so'm", ru: 'Пепперони — 42 000 сумов' }, real: true }
 ];
 const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
+  const achMiss = useContext(AchMissCtx);
   const [answers, setAnswers] = useState(() => storedAnswer ? (storedAnswer.claimAnswers || { c1: true, c2: false, c3: true }) : {});
   const [sc, setSc] = useState(0);
   const fired = useRef(!!storedAnswer);
   const done = CLAIMS.every(c => answers[c.id] !== undefined);
   const allCorrect = CLAIMS.every(c => answers[c.id] === c.real);
   useEffect(() => { if (done && !fired.current) { fired.current = true; onAnswer(screen, { stage: 'central', screenIdx: screen, correct: allCorrect, picked: true, solved: true, claimAnswers: answers }); } }, [done, allCorrect]);
-  const mark = (id, val) => { if (answers[id] !== undefined) return; setAnswers(a => ({ ...a, [id]: val })); setSc(n => n + 1); };
+  const mark = (id, val) => { if (answers[id] !== undefined) return; const c = CLAIMS.find(x => x.id === id); if (c && val !== c.real && achMiss) achMiss.miss(screen); setAnswers(prev => ({ ...prev, [id]: val })); setSc(n => n + 1); };
   return (
     <Stage eyebrow={{ uz: 'Markaziy · #4', ru: 'Ключевое · #4' }} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : tr({ uz: `Har da'voni tekshiring (${Object.keys(answers).length}/3)`, ru: `Проверьте каждое утверждение (${Object.keys(answers).length}/3)` })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
@@ -1138,6 +1148,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 </div>
               );
             })}
+            <AchRule screen={screen} once />
           </Col>
           <Col>
             {!done ? <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: 'center', fontStyle: 'italic', margin: 0 }}>{tr({ uz: "Har da'voni menyu bilan solishtiring ←", ru: 'Сверьте каждое утверждение с меню ←' })}</p></div>
@@ -1282,6 +1293,22 @@ const ACHIEVEMENTS = {
 // s9 (murvat — Baland ham tanlanishi mumkin) · s11 (fact-check — barcha da'vo noto'g'ri belgilanishi mumkin).
 // Exploration/toggle ekranlarga BOG'LANMAYDI (ular har bosishda correct:true qaytaradi — nishon tekin bo'lmasin).
 const ACH_TRIGGERS = { s5: 'ruleWriter', s7: 'tableManager', s9: 'dialMaster', s11: 'factChecker' };
+
+// 🏅 151-qonun: amaliy topshiriq nishoni faqat BIRINCHI urinishga beriladi. Shart OLDINDAN aytiladi; birinchi urinish
+// xato bo'lsa — jazosiz qisqa xabar (`once` — qayta urinishi yo'q ekran). Mentor ekranida, «Qaytadan» mashq-o'tishida va
+// nishon olingach ko'rinmaydi. Matn — MATN_KORPUS §183 (hamma darsda aynan bir xil).
+const AchRule = ({ screen, once }) => {
+  const earned = useContext(AchCtx);
+  const am = useContext(AchMissCtx);
+  const gate = useContext(LiveGateCtx) || {};
+  const sid = SCREEN_META[screen] && SCREEN_META[screen].id;
+  const ach = ACH_TRIGGERS[sid];
+  if (!ach || !am || am.practice || (gate.live && gate.live.mode === 'mentor') || (earned && earned.has(ach))) return null;
+  const lost = am.missed.has(sid);
+  return <p className={`ach-rule ${lost ? 'lost' : ''}`}>{lost
+    ? (once ? tr({ uz: 'Nishon birinchi urinish uchun edi.', ru: 'Значок давался за первую попытку.' }) : tr({ uz: "Nishon birinchi urinish uchun edi — endi bemalol to'g'risini toping.", ru: 'Значок давался за первую попытку — теперь спокойно найдите верный ответ.' }))
+    : tr({ uz: "🏅 Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki.", ru: '🏅 Справитесь с первой попытки — значок ваш.' })}</p>;
+};
 
 function AchCelebrate({ ach, onDone }) {
   useEffect(() => { const t = setTimeout(onDone, 4000); return () => clearTimeout(t); }, []); // eslint-disable-line
@@ -3092,6 +3119,8 @@ export default function BotAiBrainLesson({ lang: langProp, onFinished, liveToken
           .dd-chip.in, .dd-slot.ok, .dd-slot.bad, .shake, .tg-typing span, .desk-paper.fell { animation: none !important; }
         }
 
+      .ach-rule { margin: 8px 0 0; text-align: center; font-size: 13px; line-height: 1.4; color: ${T.ink2}; }
+      .ach-rule.lost { font-style: italic; }
       `}</style>
       <AchCtx.Provider value={earned}>
       <AchMissCtx.Provider value={achMissVal}>
