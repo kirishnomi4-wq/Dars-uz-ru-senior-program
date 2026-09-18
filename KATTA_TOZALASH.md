@@ -1484,3 +1484,14 @@ MvpBuild1 · MvpBuild2 · MvpIterate · PmLesson26 · 28 · 29 · 30 · 31 · 32
 **Nima qilinadi (alohida kun):** yakun ekranidan glossary bloki + `GLOSSARY` const + `open/setOpen` + `.gloss*` CSS olinadi
 (m1-01 namunasi: 193-qator izohi); atamalar Flashcard sahifasida borligi tekshiriladi (yo'q bo'lsa flashcard'ga
 qo'shiladi — atama yo'qolmaydi); har fayl gates + smoke.
+
+## 40 ⬜ ARENA MATNI SERVERGA HAM YOZILSIN — 97 dars (F-0918-02, 2026-09-18)
+
+**Nima:** jonli arena (CodeStrike, `quiz-N`) javobida dars serverga faqat raqam yuboradi (`submit_answer`: option/correct/elapsed); dars-testlarida esa `recordAttempt` matnlarni (`question/options/picked/correct/lang`) ham yozadi. School API (Laravel) har savol-yozuvda matn-maydonlarini `required` deb tekshiradi → 18.09 staging'da 8 arena-yozuv × 5 = 40 xato, hodisa 422. Server hozircha matnsiz yozuvni `questions[]`ga kiritmaydi (himoya), arena natijasi faqat `arena_top_N` nishonda.
+
+**Foydalanuvchi qarori (18.09):** Axadulla MVP'da onFinished'dan oladi (u to'liq, o'zgarmaydi), lekin serverga HAM yoziladi — «ikkalasi tayyor, istasang ol». 
+
+**Qanday:** `src/live/useLiveSession.js` `submitAnswer` (yoki yangi `submitArena`) arena uchun `recordAttempt`ga o'xshab `texts` qabul qilsin → `record_attempt` RPC (screen = `QUIZ_BASE_IDX + qi`, matn `QUIZ_BANK[qi]`dan: savol, variantlar, tanlangan, to'g'ri, lang) → server `byScreen` orqali matnni topadi, arena-yozuv to'liq chiqadi (int-test `results_details` «quiz-0 matn bilan» allaqachon isbotlangan). Har darsda bitta chaqiruv-joyi (`live.submitAnswer(QUIZ_BASE_IDX + qi, \`quiz-${qi}\`, i, correct, elapsed)`) → codemod 97 dars + `build-lms` qayta yig'ish (`lms/` 102 + `lms-staging/` 2) → CRM'ga yuklash SHUNDAN KEYIN (ikki marta yuklamaslik uchun) yoki hozir yuklab keyin almashtirish — foydalanuvchi tanlovi.
+
+**Darvoza:** `npm run gates -- <fayl>` har darsda · `smoke:onfinished` 140/140 (onFinished o'zgarmasligi) · E2E 22/22 · staging'da bitta jonli sinov: arena-yozuvlar `questions[]`da matn bilan, 201.
+
