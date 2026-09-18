@@ -1495,7 +1495,7 @@ qo'shiladi — atama yo'qolmaydi); har fayl gates + smoke.
 
 **Darvoza:** `npm run gates -- <fayl>` har darsda · `smoke:onfinished` 140/140 (onFinished o'zgarmasligi) · E2E 22/22 · staging'da bitta jonli sinov: arena-yozuvlar `questions[]`da matn bilan, 201.
 
-## 41 ⬜ NISHON FAQAT BIRINCHI URINISHGA (76 dars, 195 trigger) + «QAYTADAN» = MASHQ (98 dars) (F-0918-04, 2026-09-18)
+## 41 🔄 NISHON FAQAT BIRINCHI URINISHGA (76 dars, 195 trigger) + «QAYTADAN» = MASHQ (98 dars) (F-0918-04, 2026-09-18)
 
 **Nima:** DragDrop / tartiblash / o'yin / debug / koding ekranlari `onAnswer` ni faqat muvaffaqiyatda, doim
 `correct: true` bilan chaqiradi → necha marta adashsa ham nishon beriladi («tekin nishon»). 18.09 LMS sinovi:
@@ -1510,6 +1510,14 @@ joylash) + **6-band «birinchi o'tish — hisob, Qaytadan — mashq»** (`firstP
 `submitAnswer`/`recordAttempt` yo'q, `finishLesson` birinchi o'tishni yuboradi). Boshsiz Chrome'da olti holat o'tdi,
 konsol xatosi 0. `npm run gates` — yangi topilma 0. Server tomoni (takror jonli natija yuborilmaydi) alohida yopildi —
 `BACKEND_REJA_UZ.md` Qoida 3, 18.09 yangilanishi.
+
+**B TO'LQIN ✅ (18.09 tun) — 100 ekran, 66 dars:** 178 trigger 6 partiyada bittalab o'qildi (`b-tolqin/inventar-P1…P6`), har
+ulangan ekran brauzer-probda 7 holat bilan isbotlandi (`scripts/ach-probe.mjs`, `b-tolqin/probe/`), bosh agent har partiyani
+mustaqil qayta tekshirdi (prob · gates · lintcmp · lint-keys · `--seal`). ⏭ 0 · ⏸ 8 (ikkinchi tekin nishon / senariy —
+qaror). Mehnat 56 trigger / 32 dars · bonus 28 dars (hammasida ko'pi bilan bitta). Q6: 5 debug-ekran haqiqiy topshiriq.
+T9 ball (8-A): tartiblash testlari birinchi to'liq urinishga. Reja/hisobot: `b-tolqin/TUNGI_REJA.md`, `TUNGI_HISOBOT.md`.
+**QOLDI:** matn to'lqini (`MATN_TAKLIFLAR.md` — 49 taklif, tasdiq) · ⏸ 8 qaror · 7 diskret-tanlov testi (8-A dan tashqari) ·
+23 yozma test (diskret urinish yo'q) · **solo ball teshigi** (`solo-ball.md`, qaror) · o'lik `earn` (4) · `lms/` qayta yig'ish.
 
 **A TO'LQIN ✅ KOD YOZILDI (18.09 tun, F-0918-07 + 6-band) — 97 dars:** `scripts/codemod-first-pass.mjs` (quruq rejim standart;
 takror yurishda SKIP; `saved` va React-import himoyasi). Pilot 1 · G1 69 · G2 22 (skript) · G3 5 (qo'lda: JsIntro / PmLesson5 /

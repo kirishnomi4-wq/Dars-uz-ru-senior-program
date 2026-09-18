@@ -3634,8 +3634,13 @@ ekranda bitta xira qator turadi va u ikki holatdan birini aytadi. 76 darsda **ay
 |---|---|---|
 | boshida | «🏅 Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki.» | «🏅 Справитесь с первой попытки — значок ваш.» |
 | birinchi urinish xato bo'lgach | «Nishon birinchi urinish uchun edi — endi bemalol to'g'risini toping.» | «Значок давался за первую попытку — теперь спокойно найдите верный ответ.» |
+| birinchi urinish xato bo'lgach — **qayta urinishi YO'Q ekran** (tanlov qotadi; F-0918-06, foydalanuvchi 18.09) | «Nishon birinchi urinish uchun edi.» | «Значок давался за первую попытку.» |
 
 ❌ «Afsus, nishonni qo'ldan boy berdingiz!» — jazo ohangi; o'quvchi topshiriqning qolganiga qo'l siltaydi.
+❌ Bir martalik ekranda «…endi bemalol to'g'risini toping» — yolg'on: qayta urinish yo'q, to'g'risini topishning iloji yo'q.
+📌 Qator rangi — palitradagi eng xira, lekin **fonga kontrast ≥ 4.5:1** bo'lgan rang (13px matn). `ink3` (2.2–2.5:1) o'qilmaydi —
+   pilotda shunday edi, 18.09 kech tuzatildi (`scripts/codemod-achrule.mjs` rangni o'zi tanlaydi).
+📌 «nishon» so'zi hozircha qoladi (darslarda 238 marta); «Badge» ga o'tish — KATTA §42, butun loyiha bo'yicha bir yo'la.
 ❌ «Diqqat! Xato qilsangiz, nishon berilmaydi.» — tahdid; shart yutuq tilida aytiladi («…bajarsangiz — sizniki»).
 ❌ «Ushbu topshiriqda nishon faqat birinchi urinishda taqdim etiladi.» — kantselyarit («ushbu», «taqdim etiladi»).
 ❌ Qizil rang yoki ⚠️ belgisi — xato haqidagi qizil yozuv allaqachon bor («Tartib xato — qayta joylang»); nishon
@@ -3659,3 +3664,18 @@ tavsifi o'quvchi **haqiqatan qilgan ishni** aytadi. Ishni ekran bajargan bo'lsa,
 ✅ O'zgarishsiz qolgan bonus-tavsiflar (allaqachon rost): «Matn va fon ranglarini o'zgartirdingiz» · «Formani to'ldirib
 yubordingiz» · «Poygani oxirigacha o'tkazdingiz» · «Uch halqani ochib solishtirdingiz».
 ❌ Bonus ekraniga «🏅 Birinchi urinishda…» qatori (§183) qo'yilmaydi — shart yo'q, va'da yolg'on bo'lardi.
+
+## 185. DEBUG-EKRANDA XATOSIZ QATOR BOSILGANDA — qisqa, jazosiz, yo'naltiruvchi (Q6, foydalanuvchi 18.09)
+
+«Faqat xato qator bosiladigan» debug-ekran tomosha bo'lib qolardi — endi hamma qator bosiladi. Xatosiz qator bosilganda
+bitta qisqa javob (mavjud savol-qatori o'rnida, mavjud xato-rangida) — TASDIQLANGAN matn, hamma darsda aynan bir xil:
+
+| ✅ uz | ✅ ru |
+|---|---|
+| «Bu qatorda xato yo'q — yana qarang.» | «В этой строке ошибки нет — посмотрите ещё раз.» |
+
+❌ «Noto'g'ri! Bu qator to'g'ri yozilgan.» — ikki marta «to'g'ri/noto'g'ri», chalkash va jazo ohangi.
+❌ «Xato qatorni topa olmadingiz.» — o'quvchi hali izlayapti; hukm emas, yo'nalish kerak.
+📌 Shu ekranda Mentor/audio/maslahat xato qatorni urinishdan OLDIN aytsa — ekran baribir tomosha; bunday matnlar
+   `feedback/F-0918-04/b-tolqin/MATN_TAKLIFLAR.md` da taklif sifatida turibdi (tasdiq kutadi).
+

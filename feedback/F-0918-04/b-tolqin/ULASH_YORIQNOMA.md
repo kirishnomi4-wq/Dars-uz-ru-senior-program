@@ -65,6 +65,10 @@ Partiyangizdagi har **ishlanadigan** ekranda (inventar hukmi `A-umumiy-komponent
      Komponent shu faylda boshqa ekranlarda ham ishlatilsa — `onWrong` berilmagan joyda hech narsa o'zgarmasligi shart.
    - `<AchRule screen={screen} />` — topshiriq (interaktiv qism) OSTIDA, natija/muvaffaqiyat blokidan OLDIN. `Col`/
      `split` ichida topshiriq qaysi ustunda bo'lsa — o'sha ustunda.
+   - **Yakundan keyin (YAGONA qoida, 18.09 22:30, P3 topdi):** qayta urinishli ekranda qator topshiriq yakunlangach
+     yashiriladi — `{!done && <AchRule screen={screen} />}` (ekranning o'z yakun-bayrog'i: `done`/`solved`/`fixed` …), aks holda
+     «…endi bemalol to'g'risini toping» muvaffaqiyat bloki ostida osilib qoladi. **`once` ekranda shart QO'YILMAYDI** —
+     «Nishon birinchi urinish uchun edi.» aynan tanlovdan keyin ko'rinishi kerak.
 4. Probga spetsifikatsiya yozing (`b-tolqin/probe/P<n>.json` — massivga qo'shing). Format — `scripts/ach-probe.mjs`
    boshidagi izohda; namuna — `b-tolqin/probe/pilot.json`. `wrong` — bitta aniq bilim-xatosi; `right` — toza holatdan
    to'liq to'g'ri yakunlash (ekran `onAnswer` chaqiradigan nuqtagacha — kerak bo'lsa «Tekshirish»/yakun tugmasi ham);

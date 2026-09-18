@@ -352,7 +352,7 @@
   "file": "src/5-Modull/BotIntroLesson.jsx",
   "sid": "s7",
   "ach": "sheetMaster",
-  "status": "⏸",
+  "status": "✅",
   "tur": "A-umumiy",
   "nima_qilindi": "NightShift ga onWrong prop: run() smenasi tugaganda biror mijozga NOTO'G'RI amal ulangan (🟡) bo'lsa — onWrong → achMiss.miss(screen); <AchRule /> NightShift ostida",
   "miss_joyi": "NightShift.run → oxirgi mijoz (setRunning(false) yonida)",
@@ -370,7 +370,7 @@
   "gates": "esbuild/jsx/keys/prompt ✓, lintcmp 0",
   "qaror": "Inventar «4/4 bo'lmagan har smena = urinish» degan edi. Men faqat 🟡 (noto'g'ri amal) ni urinish sanadim, 💤 (qator hali yo'q) ni — yo'q. Sabab: Mentor ataylab yarim varaq bilan sinashga chorlaydi va Sardor (fallback) aynan sinovda kashf etiladi; 💤 ni sanash darsning kashfiyot-mexanikasini jazolardi. Yo'riqnoma 2-bo'limi «bo'sh holatda Tekshirish — sirpanish» ga mos. Natija: Mentor jumlasi (xato qilish MUMKIN) qoidaga zid emas.",
   "urinishlar_soni": 1,
-  "eslatma": "sheetMaster to'g'ri ulangan va isbotlangan: xatodan keyin sheetMaster BERILMAYDI (diagnostika: earned=[\"neverSilent\"]). ⏸ sababi — neverSilent: 2504-qatorda s7 data.bonus bo'lsa to'g'ridan-to'g'ri earn('neverSilent'), missed tekshiruvisiz; allOk faqat Sardor ham ok bo'lganda keladi, ya'ni neverSilent sheetMaster bilan DOIM birga va xatodan keyin ham beriladi + bayram. Direktiva: neverSilent ga tegilmaydi (T2). Taklif: 2504 ga && !missedRef.current.has('s7') qo'shish yoki neverSilent ni bonus deb 152-reyestrga yozish (lekin darsda bonus s6 keyMaster allaqachon bor → 152-qonun 1-band: ikkinchi kafolatsiz bonus bo'lib qoladi). · done-sharti: {!done && <AchRule />} — yakundan keyin qator yashiriladi (bosh agent qoidasi 22:30); diagnostik prob: xato→to'g'ri yakundan keyin qator yo'q ✓"
+  "eslatma": "sheetMaster to'g'ri ulangan va isbotlangan: xatodan keyin sheetMaster BERILMAYDI (diagnostika: earned=[\"neverSilent\"]). ⏸ sababi — neverSilent: 2504-qatorda s7 data.bonus bo'lsa to'g'ridan-to'g'ri earn('neverSilent'), missed tekshiruvisiz; allOk faqat Sardor ham ok bo'lganda keladi, ya'ni neverSilent sheetMaster bilan DOIM birga va xatodan keyin ham beriladi + bayram. Direktiva: neverSilent ga tegilmaydi (T2). Taklif: 2504 ga && !missedRef.current.has('s7') qo'shish yoki neverSilent ni bonus deb 152-reyestrga yozish (lekin darsda bonus s6 keyMaster allaqachon bor → 152-qonun 1-band: ikkinchi kafolatsiz bonus bo'lib qoladi). · done-sharti: {!done && <AchRule />} — yakundan keyin qator yashiriladi (bosh agent qoidasi 22:30); diagnostik prob: xato→to'g'ri yakundan keyin qator yo'q ✓ · BOSH AGENT (23:10): `neverSilent` 2504-qatorda `!missedRef.current.has(_m.id)` sharti qo'shildi (T2 inventari «A» hukmi) → prob 1/1, 32/32 regressda ✓; commit e6e77b9. Ochiq savol: bitta topshiriqqa ikki nishon qolsinmi (ertalab)."
  },
  {
   "file": "src/5-Modull/BotIntroLesson.jsx",

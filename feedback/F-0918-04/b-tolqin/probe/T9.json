@@ -406,5 +406,605 @@
     "nth": 0
    }
   ]
+ },
+ {
+  "file": "src/2-Modull/PracticeLesson4.jsx",
+  "sid": "s15",
+  "test": true,
+  "note": "T9 ball: 5 qadam (kalit -1 → 0; ildiz V2); tashqi nishon planner — faqat birinchi urinishga",
+  "wrong": [
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"MVP'ni\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"G'oyani\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"AI bilan qur\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Natijani tekshir\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Deploy qil\")",
+    "after": 700
+   }
+  ],
+  "right": [
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"G'oyani\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"MVP'ni\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"AI bilan qur\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Natijani tekshir\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Deploy qil\")",
+    "after": 900
+   }
+  ],
+  "rightAfterWrong": [
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0
+   },
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"G'oyani\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"MVP'ni\")",
+    "after": 900
+   }
+  ],
+  "slip": [
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"MVP'ni\")"
+   },
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0
+   }
+  ]
+ },
+ {
+  "file": "src/6-Modull/AgentArchitectureLesson.jsx",
+  "sid": "s15",
+  "test": true,
+  "note": "T9 ball + nishon missionLoop: detektiv ish oqimi",
+  "wrong": [
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Kuzat\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Vazifa\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Xulosa\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Harakat\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Natijani\")",
+    "after": 700
+   }
+  ],
+  "right": [
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Vazifa\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Kuzat\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Xulosa\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Harakat\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Natijani\")",
+    "after": 900
+   }
+  ],
+  "rightAfterWrong": [
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0
+   },
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Vazifa\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Kuzat\")",
+    "after": 900
+   }
+  ],
+  "slip": [
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Kuzat\")"
+   },
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0
+   }
+  ]
+ },
+ {
+  "file": "src/6-Modull/FullSystemProjectLesson.jsx",
+  "sid": "s15",
+  "test": true,
+  "note": "T9 ball: shaharni ishga tushirish tartibi",
+  "wrong": [
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Hokimlik (backend)\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Arxiv (baza)\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Peshtoq (frontend)\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Ikkinchi darvoza\")",
+    "after": 700
+   }
+  ],
+  "right": [
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Arxiv (baza)\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Hokimlik (backend)\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Peshtoq (frontend)\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Ikkinchi darvoza\")",
+    "after": 900
+   }
+  ],
+  "rightAfterWrong": [
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0
+   },
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Arxiv (baza)\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Hokimlik (backend)\")",
+    "after": 900
+   }
+  ],
+  "slip": [
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Hokimlik (backend)\")"
+   },
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0
+   }
+  ]
+ },
+ {
+  "file": "src/6-Modull/MobileAppPracticeLesson.jsx",
+  "sid": "s15",
+  "test": true,
+  "note": "T9 ball: 4 sahna (ScreenFinalDD)",
+  "wrong": [
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Detal (Detail)\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Katalog (List)\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Savat (Cart)\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Buyurtma (Checkout)\")",
+    "after": 700
+   }
+  ],
+  "right": [
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Katalog (List)\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Detal (Detail)\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Savat (Cart)\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Buyurtma (Checkout)\")",
+    "after": 900
+   }
+  ],
+  "rightAfterWrong": [
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0
+   },
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Katalog (List)\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Detal (Detail)\")",
+    "after": 900
+   }
+  ],
+  "slip": [
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Detal (Detail)\")"
+   },
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0
+   }
+  ]
+ },
+ {
+  "file": "src/6-Modull/PipelineProjectLesson.jsx",
+  "sid": "s15",
+  "test": true,
+  "note": "T9 ball + nishon cityLive: ariza yo'li (holat solved dan tiklanadi)",
+  "wrong": [
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Hokimlik (Node)\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Peshtoq (React)\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Arxiv (PostgreSQL)\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Darvoza (Telegram)\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Ekspert-byuro\")",
+    "after": 700
+   }
+  ],
+  "right": [
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Peshtoq (React)\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Hokimlik (Node)\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Arxiv (PostgreSQL)\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Darvoza (Telegram)\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Ekspert-byuro\")",
+    "after": 900
+   }
+  ],
+  "rightAfterWrong": [
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0
+   },
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Peshtoq (React)\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Hokimlik (Node)\")",
+    "after": 900
+   }
+  ],
+  "slip": [
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Hokimlik (Node)\")"
+   },
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0
+   }
+  ]
+ },
+ {
+  "file": "src/6-Modull/ReactNativeBasicsLesson.jsx",
+  "sid": "s15",
+  "test": true,
+  "note": "T9 ball: gastrol oqimi",
+  "wrong": [
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"View/Text\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Expo loyiha\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"StyleSheet\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"QR skan\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Telefonda\")",
+    "after": 700
+   }
+  ],
+  "right": [
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Expo loyiha\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"View/Text\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"StyleSheet\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"QR skan\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Telefonda\")",
+    "after": 900
+   }
+  ],
+  "rightAfterWrong": [
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0
+   },
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Expo loyiha\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"View/Text\")",
+    "after": 900
+   }
+  ],
+  "slip": [
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"View/Text\")"
+   },
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0
+   }
+  ]
+ },
+ {
+  "file": "src/6-Modull/SystemArchitectureLesson.jsx",
+  "sid": "s15",
+  "test": true,
+  "note": "T9 ball: ma'lumot oqimi",
+  "wrong": [
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Peshtoq\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Foydalanuvchi\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Hokimlik\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Arxiv\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Ekranda natija\")",
+    "after": 700
+   }
+  ],
+  "right": [
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Foydalanuvchi\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Peshtoq\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Hokimlik\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Arxiv\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Ekranda natija\")",
+    "after": 900
+   }
+  ],
+  "rightAfterWrong": [
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0
+   },
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Foydalanuvchi\")"
+   },
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Peshtoq\")",
+    "after": 900
+   }
+  ],
+  "slip": [
+   {
+    "click": ".dd-pool .dd-chip:has-text(\"Peshtoq\")"
+   },
+   {
+    "click": ".dd-slot .dd-chip.in",
+    "nth": 0
+   }
+  ]
+ },
+ {
+  "file": "src/2-Modull/JsIntroLesson.jsx",
+  "sid": "s15",
+  "test": true,
+  "note": "T9 ball + nishon bughunter: tartiblab ▶ RUN (kalit -1 → 0; ekran o'zi yuboradi); xato = to'liq tartib bilan RUN, natija xato; «↺ Tozalash» urinish emas",
+  "wrong": [
+   {
+    "click": "button:has-text(\"Yuvinish\")",
+    "nth": 0
+   },
+   {
+    "click": "button:has-text(\"Uyg'onish\")",
+    "nth": 0
+   },
+   {
+    "click": "button:has-text(\"Kiyinish\")",
+    "nth": 0
+   },
+   {
+    "click": "button:has-text(\"Nonushta\")",
+    "nth": 0
+   },
+   {
+    "click": ".cc-run",
+    "after": 3200
+   }
+  ],
+  "right": [
+   {
+    "click": "button:has-text(\"Uyg'onish\")",
+    "nth": 0
+   },
+   {
+    "click": "button:has-text(\"Yuvinish\")",
+    "nth": 0
+   },
+   {
+    "click": "button:has-text(\"Kiyinish\")",
+    "nth": 0
+   },
+   {
+    "click": "button:has-text(\"Nonushta\")",
+    "nth": 0
+   },
+   {
+    "click": ".cc-run",
+    "after": 3200
+   }
+  ],
+  "rightAfterWrong": [
+   {
+    "click": "button:has-text(\"Tozalash\")"
+   },
+   {
+    "click": "button:has-text(\"Uyg'onish\")",
+    "nth": 0
+   },
+   {
+    "click": "button:has-text(\"Yuvinish\")",
+    "nth": 0
+   },
+   {
+    "click": "button:has-text(\"Kiyinish\")",
+    "nth": 0
+   },
+   {
+    "click": "button:has-text(\"Nonushta\")",
+    "nth": 0
+   },
+   {
+    "click": ".cc-run",
+    "after": 3200
+   }
+  ],
+  "slip": [
+   {
+    "click": "button:has-text(\"Yuvinish\")",
+    "nth": 0
+   },
+   {
+    "click": "button:has-text(\"Uyg'onish\")",
+    "nth": 0
+   },
+   {
+    "click": "button:has-text(\"Tozalash\")"
+   }
+  ]
+ },
+ {
+  "file": "src/6-Modull/ReactNativeAppLesson.jsx",
+  "sid": "s15",
+  "test": true,
+  "note": "T9 ball + nishon backstagePass: bosib joylash; noto'g'ri bosish rad etiladi = xato urinish",
+  "wrong": [
+   {
+    "click": ".pick-row:has-text(\"FlatList\")",
+    "after": 600
+   }
+  ],
+  "right": [
+   {
+    "click": ".pick-row:has-text(\"Ilova ochildi\")"
+   },
+   {
+    "click": ".pick-row:has-text(\"Backend fetch\")"
+   },
+   {
+    "click": ".pick-row:has-text(\"FlatList\")"
+   },
+   {
+    "click": ".pick-row:has-text(\"Mahsulotni tap\")"
+   },
+   {
+    "click": ".pick-row:has-text(\"Detail ekran\")",
+    "after": 900
+   }
+  ],
+  "rightAfterWrong": [
+   {
+    "click": ".pick-row:has-text(\"Ilova ochildi\")"
+   },
+   {
+    "click": ".pick-row:has-text(\"Backend fetch\")"
+   },
+   {
+    "click": ".pick-row:has-text(\"FlatList\")"
+   },
+   {
+    "click": ".pick-row:has-text(\"Mahsulotni tap\")"
+   },
+   {
+    "click": ".pick-row:has-text(\"Detail ekran\")",
+    "after": 900
+   }
+  ]
  }
 ]

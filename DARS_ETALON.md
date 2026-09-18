@@ -2843,6 +2843,18 @@ berib turaylik». Halollik nishonning kamligida emas — nishon **nima uchun ber
    kod). Yagona to'g'ri javob yo'q, shuning uchun «birinchi urinish» ham yo'q; nishon kafolatli emas (yozmasa ololmaydi),
    bonus hisobiga **kirmaydi**; `AchRule` siz.
 6. **151-qonunning 6-bandi** («Qaytadan» = mashq, nishonlar muzlaydi) bonus va mehnat nishoniga ham to'liq tegishli.
+7. **Aniqlashtirish (foydalanuvchi qarorlari, 18.09 kech — B to'lqin inventari asosida):**
+   - **Mehnat nishoni kengaydi:** (a) kompilyatorda yoki `pickKod` / `ScreenCoding` ekranida **kod yozish** — shartlar jonli
+     tekshiriladi, diskret urinish yo'q; nishon darvoza-savolga EMAS, kod yozishga tegishli (tavsif kod haqida);
+     (b) **yagona to'g'ri javobi bo'lmagan o'z-qaror mashqi** (masalan PmLesson5 «tarozi», «ochilish ro'yxati»).
+   - **PM darslarida tekin 4-ekran** (induktiv ochilish: kartalarni ochish, «haftani o'tkazish») — o'sha darsning BONUSI;
+     darsda boshqa bonus bo'lmasligi shart (1-band). Tavsif 3-bandga mos bo'lishi shart.
+   - **«Faqat xato qator bosiladigan» debug-ekran** bonus EMAS — haqiqiy topshiriqqa aylantiriladi: hamma qator
+     bosiladigan, xatosiz qator bosilsa «Bu qatorda xato yo'q — yana qarang.» / «В этой строке ошибки нет — посмотрите
+     ещё раз.» + `miss`. Sabab: debug darsining ma'nosi — xatoni TOPISH; bitta bosiladigan qator — tomosha.
+   - **Ko'p-bandli topshiriq** (6 karta, 5 qadam): qoida bir xil — bitta bilim-xatosi = nishon yo'q; yumshoqlikni
+     bonus + `graduate` beradi. Sirpanish (zonadan tashqari, «qator band», hali ochilmagan joy) — urinish EMAS.
+   - **Qayta urinishi yo'q ekran** — `<AchRule screen={screen} once />` (KORPUS §183 uchinchi qatori).
 
 **Reyestr (18.09, KATTA §41 B savat — har ekran kodda o'qilgan):**
 
@@ -2853,6 +2865,28 @@ berib turaylik». Halollik nishonning kamligida emas — nishon **nima uchun ber
 | Testga ko'chdi | `Htmllesson2` `struktura`: s5 → s5b |
 | Mehnat nishoni | `PmLesson1` s6 `audience` · `PmMetricsLesson` s10 `calcMaster` |
 | Aslida tekin emas → 151-naqsh (codemod) | `CssLesson2` s7 · `PmLesson8` s4 · `ApiPostmanLesson` s3 · `NodeServerLesson` s14 |
+
+**Reyestr — B to'lqin (18.09 tun, 178 trigger, 6 partiya; har ekran kodda o'qilgan va brauzer-probda isbotlangan):**
+
+- **151-naqsh ulangan: 100 ekran** (66 dars; pilot 2 bilan) — ro'yxat: `feedback/F-0918-04/b-tolqin/holat-P1…P6.json`
+  (`status: "✅"`), isbot: `probe/P1…P6.json` (`scripts/ach-probe.mjs`: S0 · S4 · S5 · S2 · S1a · S1b · S3).
+- **Bonus (1-band: darsda ko'pi bilan bitta — hammasida bajarilgan):** `BotIntroLesson` s6 `keyMaster` · `CiCdIntroLesson` s9 `clearedForTakeoff` · `ClaudeSkillsLesson` s7 `beforeAfter` (tashqi earn) · `CssLesson1` s5 `rang` · `DbSqlNosqlLesson` s5 `connector` · `HtmlTakrorlashLesson` s12b `built` · `Htmllesson2` s7 `forma` · `JsConditionsLesson` s13 `builder` · `PmLesson10` s4 `silentWatch` · `PmLesson11` s4 `memoryMaker` · `PmLesson12` s4 `eyesOpen` · `PmLesson14` s4 `threeFloors` · `PmLesson16` s4 `cheapFix` · `PmLesson17` s4 `paceSetter` · `PmLesson18` s4 `eagleEye` · `PmLesson19` s4 `innerCircle` · `PmLesson21` s4 `dayTwo` · `PmLesson22` s4 `rightQuestion` · `PmLesson23` s4 `mirrorCheck` · `PmLesson24` s4 `roadBuilder` · `PmLesson25` s4 `slideTalker` · `PmLesson4` s2 `pairFinder` · `PmLesson5` s2 `splitter` · `PmLesson9` s4 `bugHunter` · `ReactCrudPracticeLesson` s11 `builder` · `ReactIntroLesson` s13 `builder` · `ReactRouterPracticeLesson` s9 `builder` · `VsCodeLesson` s3 `pilot`.
+- **Mehnat nishoni (5-band + 7-band):** `BackendCrudPracticeLesson` spf · `FullstackConnectPracticeLesson` s16 · `GitLesson` s13, s3 · `JsFunctionsLesson` s13 · `PmJtbdLesson` practice, s10 · `PmLesson1` s6 · `PmLesson10` s10, s8 · `PmLesson11` s8, s10 · `PmLesson12` s8, s10 · `PmLesson13` s8, s10 · `PmLesson14` s8, s10 · `PmLesson15` s10, s8 · `PmLesson16` s10, s8 · `PmLesson17` s8, s10 · `PmLesson18` s8, s10 · `PmLesson19` s8, s10 · `PmLesson2` koding · `PmLesson20` s8, s10 · `PmLesson21` s8, s10 · `PmLesson22` s8, s10 · `PmLesson23` s8, s10 · `PmLesson24` s8, s10 · `PmLesson25` s8 · `PmLesson4` s8, s11 · `PmLesson5` s8, s9 · `PmLesson6` s9, s11 · `PmLesson8` s10, s8 · `PmLesson9` s10, s8 · `PmMetricsLesson` practice, s10 · `PmUserStoryLesson` practice, s10 · `ReactApiGetLesson` s15 · `VsCodeLesson` s2.
+- **⏸ qaror kutadi (ikkinchi tekin nishon yoki senariy):** CssLesson1 s13 `bezak` · DbSqlNosqlLesson s3 `packageMaster` · BotApiButtonsLesson s9 `buttonMaster` · BotApiButtonsLesson s11 `rightEnvelope` · BotApiButtonsLesson s12 `neverSilent` · PmLesson19 s9 `fullHouse` · PmLesson20 s4 `goodListener` · PmLesson20 s9 `sharpSifter`.
+
+**Ulash qoidalari (tunda aniqlangan, hamma partiyada bir xil):**
+- Qator topshiriq OSTIDA; qayta urinishli ekranda **yakundan keyin yashiriladi** (`{!done && <AchRule …/>}`), aks holda
+  «…endi bemalol to'g'risini toping» muvaffaqiyat bloki ostida osilib qoladi; **`once` ekranda qoladi**.
+- Topshiriq ikkinchi bosqichda ochiladigan ekranda qator bosqich-blokdan TASHQARIDA (ustun oxirida) — shart boshidan
+  ko'rinsin (3-band).
+- Umumiy komponentlar (`DragDropOrder`, `DebugChallenge`, `PickLines`, `NightShift`) — `onWrong` ilgagi; berilmagan
+  chaqiruvda xatti-harakat o'zgarmaydi.
+- Qator rangi — palitradagi eng xira, lekin fonga kontrast ≥ 4.5:1 (`scripts/codemod-achrule.mjs` tanlaydi).
+- Ekrandan tashqari beriladigan nishon (`earn('…')` to'g'ridan-to'g'ri) ham o'sha topshiriqning `missed` belgisiga
+  bo'ysunadi (BotIntro `neverSilent`, 18.09).
+- **Ball (8-A, T9):** test deb belgilangan TARTIBLASH ekranida `correct` = birinchi TO'LIQ urinish (MCQ bilan bir xil);
+  ildiz `missTry` nishonsiz test-ekranni ham yozadi (F5); jonli server kalitni ko'radi — kalit `-1` («doim to'g'ri») → `0`,
+  `picked: first ? 0 : 1`.
 
 **Tekshiruv (tekshiruvchi/qabulchi):** har test bo'lmagan `ACH_TRIGGERS` kaliti uchta holatdan biriga tushadi —
 (a) 151-naqsh (`miss` + `AchRule`); (b) bonus: darsda yagona, tavsifi 3-bandga mos, `AchRule` yo'q; (c) mehnat nishoni.
