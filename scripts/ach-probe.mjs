@@ -23,7 +23,7 @@
 // Ishlatish: CHROME=/usr/bin/google-chrome node scripts/ach-probe.mjs [--smoke|--solo] [--lang uz|ru] [--out natija.json] [--shots <papka>] spec.json…
 import { build } from 'esbuild';
 import { chromium } from 'playwright-core';
-import { readFileSync, writeFileSync, mkdtempSync, mkdirSync } from 'node:fs';
+import { readFileSync, writeFileSync, mkdtempSync, mkdirSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, resolve, basename } from 'node:path';
 import { createServer } from 'node:http';
@@ -45,6 +45,9 @@ const TXT = {
 }[LANG];
 
 const TMP = mkdtempSync(join(tmpdir(), 'achprobe-'));
+// Chiqishda (to'xtatilsa ham) papka o'chadi — /tmp tmpfs; 19.09 da 143 ta qolib ketgan papka (7.5G) uni to'ldirgan (ENOSPC)
+process.on('exit', () => rmSync(TMP, { recursive: true, force: true }));
+for (const sig of ['SIGINT', 'SIGTERM']) process.on(sig, () => process.exit(130));
 // Soxta server (faqat --solo): har so'rov yoziladi; POST /rpc/<fn> → 204; GET → 404/[] (sessiya yo'q, ro'yxat bo'sh)
 const REQS = []; let API_URL = '';
 if (SOLO) {

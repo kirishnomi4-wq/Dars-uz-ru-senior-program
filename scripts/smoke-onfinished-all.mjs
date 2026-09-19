@@ -14,7 +14,7 @@
 //   fayl berilmasa — CRM_YUKLASH_ROYXATI.md dagi manba-darslar (uyga vazifasiz).
 import { build } from 'esbuild';
 import { chromium } from 'playwright-core';
-import { writeFileSync, readFileSync, mkdtempSync, mkdirSync } from 'node:fs';
+import { writeFileSync, readFileSync, mkdtempSync, mkdirSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, resolve, basename } from 'node:path';
 
@@ -106,6 +106,9 @@ function check(L, lang, payload, expect, errs) {
 }
 
 const TMP = mkdtempSync(join(tmpdir(), 'onfin-all-'));
+// Chiqishda (to'xtatilsa ham) papka o'chadi — /tmp tmpfs; 19.09 da qolib ketgan papkalar uni to'ldirgan (ENOSPC)
+process.on('exit', () => rmSync(TMP, { recursive: true, force: true }));
+for (const sig of ['SIGINT', 'SIGTERM']) process.on(sig, () => process.exit(130));
 const browser = await chromium.launch({ executablePath: process.env.CHROME || '/usr/bin/google-chrome', headless: true });
 const results = [];
 const t0 = Date.now();

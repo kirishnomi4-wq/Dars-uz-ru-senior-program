@@ -15,9 +15,12 @@
 | Adversarial tekshiruv | 3 o'tish: kecha 2 YUQORI (Y1, Y1b) — tuzatildi; bugungisi — YUQORI/O'RTA yo'q, 2 PAST — tuzatildi |
 | Server | o'zgarmadi: prod `5ecafd67`, staging `a2e07cf6` |
 | `lms/` yig'malari | **eski** (qayta yig'ish matnlar tasdig'idan keyin — Q6-A tartibi) |
-| GitHub | `8bd0eeb` — lokal **+7 commit** push kutadi (`! git push origin main`) |
+| GitHub | `8bd0eeb` — lokal **+8 commit** push kutadi (`! git push origin main`) |
 
-**Yakuniy regress (19.09 ~07:10, hamma o'zgarishlardan keyin):** ⏳ (pastda to'ldiriladi)
+**Yakuniy regress (19.09 06:44 → 07:42, hamma o'zgarishlardan keyin, noldan):** ✅ brauzer-prob **156/156**
+(143 ekran · 83 dars, har biri 7 holat) · solo-prob **67/67** · `--seal` CRM uz + ru **140/140** · gates 97 dars: esbuild ·
+jsx · keys · prompt ✓ (til/dark — eski qarz, asosga nisbatan farq 0, pastda S6) · lint-keys 97 · lint:jsx toza · unit 12/12 ·
+server 57/57 · vite build ✓. Birinchi yurish `/tmp` to'lib yiqilgan edi — «Halol chegaralar → Hodisa».
 
 ## 2. Sizdan kerak — savollar
 
@@ -78,6 +81,10 @@ qo'yardi, uchalasiga javob berilgani yetarli».
 - **PmLesson19–25 ruschaga tarjima** (7 dars faqat o'zbekcha; M3 ning ruscha tavsifi hozircha faqat katalogda).
 - **KATTA §42 «nishon → Badge»** — CRM dan keyin (Q5-A).
 - «Variant-indekssiz savol» tarmog'i (`resultDetails.js`) — endi ishlamaydi, tozalash.
+- **`lint:til` va `dark` eski qarzi** — 97 dars bo'yicha `gates` da til **240 🔴 / 234 🟡 (65 dars)** va dark **280** topilma
+  qizil turadi. Bu kechagi va bugungi ishdan **oldin ham bor edi** (asos `655cd93` bilan farq 0 — biz hech narsa qo'shmadik).
+  Tuzatish = o'quvchi matnini o'zgartirish, shuning uchun tasdiqsiz tegilmagan. Qachon: CRM'dan keyin, S2 dagi kabi
+  partiya-partiya taklif bilan (tavsiya).
 
 ## 3. Nima qilindi — commitlar
 
@@ -94,6 +101,8 @@ hisobot/qarorlar. Batafsil: `TUNGI_HISOBOT.md`.
 | `c0e51d5` | Q4 — 7 diskret test, Routing s15, NestArch F5; solo isboti 63/63 |
 | `036ce83` | 153-qonun (ball halolligi); KATTA §41; staging-sinov yig'masi |
 | `0df4ed1` | 3-tekshiruv PAST topilmalari (PmLesson20 qulf, izoh) |
+| `bdaddec` | jurnal, DAVOM 06:40, shu fayl |
+| (yakuniy) | sinov-vositalari `/tmp` ni to'ldirmasin (pastda «Hodisa») + yakuniy regress natijasi |
 
 ## 4. Halol chegaralar
 
@@ -102,3 +111,10 @@ hisobot/qarorlar. Batafsil: `TUNGI_HISOBOT.md`.
 - **12 ta test-kalit o'zgarishi** (`-1 → 0`, 11 dars: HtmlTakrorlash, JsIntro, PeanStack, PracticeLesson1/3/4, ReactIntro,
   ApiPostman, DataIntro ×2, DbSqlNosql, Routing) serverga mentor darsni ochganda (`set_quiz_keys`) boradi.
 - `lms/` va server katalogi hali eski — S5 tartibida.
+- **Hodisa (06:30–06:44, o'z vositam):** `ach-probe` va `smoke-onfinished-all` vaqtinchalik papkalarini hech qachon
+  o'chirmagan — 18.09 kechqurundan beri 166 papka (≈10.6G) `/tmp` ni (xotiradagi 12G disk) 99% ga to'ldirdi va regressning
+  birinchi yurishi «ENOSPC / Page crashed» bilan yiqildi (react-intro, props-reuse, router-practice; NestArchAlive s9).
+  Dars xatosi emas: papkalar o'chirildi, ikkala skript endi chiqishda (to'xtatilsa ham) o'z papkasini o'chiradi, regress
+  noldan qayta yurdi — o'sha darslar ham o'tdi.
+- Ilgarigi hisobotlarda «gates ✓» degani: esbuild · jsx · keys · prompt ✓, til/dark esa **asosga nisbatan farq 0** bilan
+  o'lchangan (eski qarz tufayli ular qizil — S6).
