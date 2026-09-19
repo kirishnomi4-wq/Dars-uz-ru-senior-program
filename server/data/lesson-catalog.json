@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-19T00:58:44.644Z",
+  "generated_at": "2026-09-19T01:07:31.456Z",
   "count": 110,
   "lessons": [
     {
@@ -281,9 +281,9 @@
         },
         {
           "id": "rightenvelope",
-          "name": "Right Envelope",
-          "title_uz": "Konvert manzili xatosini topib to'g'riladingiz",
-          "title_ru": "Нашли и исправили ошибку в адресе конверта"
+          "name": "Command Spotter",
+          "title_uz": "Chaqiruv so'zlarining farqini topdingiz",
+          "title_ru": "Вы нашли, чем особенны слова-вызовы"
         },
         {
           "id": "neversilent",
@@ -2385,8 +2385,8 @@
         {
           "id": "fullhouse",
           "name": "20 Done!",
-          "title_uz": "Yigirmata odamni yig'ib bo'ldingiz",
-          "title_ru": null
+          "title_uz": "Yigirmata odamni to'g'ri joylardan yig'dingiz",
+          "title_ru": "Вы собрали двадцать человек в нужных местах"
         },
         {
           "id": "headcount",

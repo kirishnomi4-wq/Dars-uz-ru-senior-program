@@ -1,0 +1,11 @@
+[
+ { "file": "src/5-Modull/BotApiButtonsLesson.jsx", "sid": "s14", "test": true, "missed": false, "note": "M2: rightEnvelope (Command Spotter) s11 → s14 test",
+   "right": [ {"click": "button:has-text(\"Ular / bilan boshlanadi\")", "after": 1100} ],
+   "wrong": [ {"click": "button:has-text(\"Ular faqat mentor\")", "after": 900} ],
+   "rightAfterWrong": [ {"click": "button:has-text(\"Ular / bilan boshlanadi\")", "after": 1100} ] },
+ { "file": "src/5-Modull/PmLesson19.jsx", "sid": "s9", "note": "M3: odam kam beradigan joy (ishlatdi ≤ 2) — xato urinish; to'g'ri yo'l: Sinfdoshlar 13 + To'garak 7 = 20",
+   "right": [ {"click": "button:has-text(\"To'rt joyni ko'rish\")", "after": 900}, {"click": ".qc:has-text(\"Sinfdoshlar\")", "after": 3800}, {"click": ".qc:has-text(\"garakdagilar\")", "after": 3800} ],
+   "wrong": [ {"click": "button:has-text(\"To'rt joyni ko'rish\")", "after": 900}, {"click": ".qc:has-text(\"Notanish\")", "after": 3800} ],
+   "rightAfterWrong": [ {"click": ".qc:has-text(\"Sinfdoshlar\")", "after": 3800}, {"click": ".qc:has-text(\"garakdagilar\")", "after": 3800} ],
+   "rightAfterF5": [ {"click": ".qc:has-text(\"Sinfdoshlar\")", "after": 3800}, {"click": ".qc:has-text(\"garakdagilar\")", "after": 3800} ] }
+]

@@ -129,7 +129,7 @@ function AchCounter() {
         <div className="ach-pop" onMouseLeave={() => setOpen(false)}>
           <div className="ach-pop-h">🏅 Nishonlar — {count}/{total}</div>
           {Object.entries(ACHIEVEMENTS).map(([id, a]) => { const got = !!(earned && earned.has(id)); return (
-            <div key={id} className={`ach-pop-row ${got ? 'got' : ''}`}><span className="ach-pop-ic">{got ? a.icon : '🔒'}</span><span className="ach-pop-tx"><span className="ach-pop-nm">{a.name}</span><span className="ach-pop-ds">{a.desc}</span></span></div>
+            <div key={id} className={`ach-pop-row ${got ? 'got' : ''}`}><span className="ach-pop-ic">{got ? a.icon : '🔒'}</span><span className="ach-pop-tx"><span className="ach-pop-nm">{a.name}</span><span className="ach-pop-ds">{achDesc(a.desc)}</span></span></div>
           ); })}
         </div>
       )}
@@ -1366,6 +1366,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [faza, setFaza] = useState(() => (Array.isArray(savedRef.current.bosilgan) && savedRef.current.bosilgan.length ? 'ish' : 'brief'));
   const [yordamOpen, setYordamOpen] = useState(false);
   const [kamKordi, setKamKordi] = useState(false);
+  const achMiss = useContext(AchMissCtx);
   const yigildi = bosilgan.reduce((s, id) => s + (QUVUR.find(q => q.id === id) || { ishlatdi: 0 }).ishlatdi, 0);
   const done = yigildi >= MAQSAD;
   useEffect(() => { try { localStorage.setItem(QUVUR_KEY, JSON.stringify({ bosilgan, yigildi })); } catch {} }, [bosilgan, yigildi]);
@@ -1387,7 +1388,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   }, [done]); // eslint-disable-line
   const bosish = (q) => {
     if (isMentor || run || bosilgan.includes(q.id) || done) return;
-    if (q.ishlatdi <= 2) setKamKordi(true);
+    if (q.ishlatdi <= 2) { setKamKordi(true); if (achMiss) achMiss.miss(screen); } // M3 (19.09): odam kam beradigan joy — xato urinish (151-qonun)
     if (reduce) { setBosilgan(p => [...p, q.id]); return; }
     setRun({ id: q.id, step: 0 });
   };
@@ -1431,6 +1432,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <span className="qleg-i"><i>🔁</i> Odamlar qanchalik tez-tez ko'rishadi</span>
           </div>
         )}
+        {!done && <AchRule screen={screen} />}
         {faza === 'ish' && (<div className="split">
           <Col gap={9}>
             <div className="qgrid">
@@ -1893,13 +1895,31 @@ const HwCard = ({ variant, onPick }) => {
   );
 };
 // ===== 🏅 NISHONLAR — 4 ta, faqat REAL tekshiriladigan harakatga =====
+// Nishon tavsifi `{ uz, ru }` yoki oddiy satr bo'lishi mumkin (M3, 19.09: fullHouse ikki tilda) — tilga qarab chiqariladi
+const achDesc = (d) => (d && typeof d === 'object' ? ((typeof __lang !== 'undefined' && __lang === 'ru' && d.ru) ? d.ru : d.uz) : d);
 const ACHIEVEMENTS = {
   innerCircle: { icon: '🎯', name: 'Map Pro!', desc: "Uch halqani ochib solishtirdingiz" },
   twentyPlan: { icon: '🗂', name: 'My Plan!', desc: 'Uchta joyni odam soni bilan yozdingiz' },
-  fullHouse: { icon: '👥', name: '20 Done!', desc: "Yigirmata odamni yig'ib bo'ldingiz" },
+  fullHouse: { icon: '👥', name: '20 Done!', desc: { uz: "Yigirmata odamni to'g'ri joylardan yig'dingiz", ru: 'Вы собрали двадцать человек в нужных местах' } },
   headCount: { icon: '🧮', name: 'Code Master!', desc: 'Kodingiz uch joyni sanab berdi' },
 };
 const ACH_TRIGGERS = { s4: 'innerCircle', s8: 'twentyPlan', s9: 'fullHouse', s10: 'headCount' };
+
+// 🏅 151-qonun: amaliy topshiriq nishoni faqat BIRINCHI urinishga beriladi. Shart OLDINDAN aytiladi; birinchi urinish
+// xato bo'lsa — jazosiz qisqa xabar (`once` — qayta urinishi yo'q ekran). Mentor ekranida, «Qaytadan» mashq-o'tishida va
+// nishon olingach ko'rinmaydi. Matn — MATN_KORPUS §183 (hamma darsda aynan bir xil).
+const AchRule = ({ screen, once }) => {
+  const earned = useContext(AchCtx);
+  const am = useContext(AchMissCtx);
+  const gate = useContext(LiveGateCtx) || {};
+  const sid = SCREEN_META[screen] && SCREEN_META[screen].id;
+  const ach = ACH_TRIGGERS[sid];
+  if (!ach || !am || am.practice || (gate.live && gate.live.mode === 'mentor') || (earned && earned.has(ach))) return null;
+  const lost = am.missed.has(sid);
+  return <p className={`ach-rule ${lost ? 'lost' : ''}`}>{lost
+    ? (once ? 'Nishon birinchi urinish uchun edi.' : "Nishon birinchi urinish uchun edi — endi bemalol to'g'risini toping.")
+    : "🏅 Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki."}</p>;
+};
 function AchCelebrate({ ach, onDone }) {
   useEffect(() => { const t = setTimeout(onDone, 4000); return () => clearTimeout(t); }, []); // eslint-disable-line
   return (
@@ -1917,7 +1937,7 @@ function AchCelebrate({ ach, onDone }) {
         </div>
         <div className="acu-txt">
           <span className="acu-name">{ach.name}</span>
-          {ach.desc && <span className="acu-desc">{ach.desc}</span>}
+          {ach.desc && <span className="acu-desc">{achDesc(ach.desc)}</span>}
         </div>
         <span className="acu-tap">bosib davom eting</span>
       </div>
@@ -2552,15 +2572,15 @@ const ScreenSummary = ({ screen, answers, achievements, onReset, onPrev, onFinis
               <div className="card-lbl" style={{ color: T.accent }}>🏅 Nishonlaringiz — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
               <div className="ach-grid">
                 {Object.entries(ACHIEVEMENTS).map(([id, a]) => { const got = !!(achievements && achievements.has(id)); return (
-                  <div key={id} className={`ach-badge ${got ? 'got' : 'locked'}`} title={a.desc}>
+                  <div key={id} className={`ach-badge ${got ? 'got' : 'locked'}`} title={achDesc(a.desc)}>
                     <span className="ach-badge-ic">{got ? a.icon : '🔒'}</span>
                     {got ? (<>
                       <span className="ach-badge-name">{a.name}</span>
-                      <span className="ach-badge-desc">{a.desc}</span>
+                      <span className="ach-badge-desc">{achDesc(a.desc)}</span>
                     </>) : (
                       <span className="ach-badge-tx">
                         <span className="ach-badge-name">{a.name}</span>
-                        <span className="ach-badge-desc">{a.desc}</span>
+                        <span className="ach-badge-desc">{achDesc(a.desc)}</span>
                       </span>
                     )}
                   </div>
@@ -3769,6 +3789,8 @@ export default function PmLesson19({ lang: langProp, onFinished, liveToken }) {
         ${CSS_BASE}
         ${CSS_LESSON}
         ${CSS_ARENA}
+        .ach-rule { margin: 8px 0 0; text-align: center; font-size: 13px; line-height: 1.4; color: ${T.ink2}; }
+        .ach-rule.lost { font-style: italic; }
       `}</style>
       <AchCtx.Provider value={earned}>
       <AchMissCtx.Provider value={achMissVal}>

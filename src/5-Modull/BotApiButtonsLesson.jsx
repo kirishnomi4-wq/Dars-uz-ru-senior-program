@@ -1394,12 +1394,12 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // ===== 🏅 BADGES (nishonlar) — faqat REAL bosqichlar uchun (tekin emas) =====
 const ACHIEVEMENTS = {
   buttonMaster:  { icon: '🔘', name: 'Button Master',  desc: { uz: "Tugma signalini qaysi qator ushlashini topdingiz", ru: 'Вы нашли строку, которая ловит сигнал кнопки' } },
-  rightEnvelope: { icon: '✉️', name: 'Right Envelope', desc: { uz: "Konvert manzili xatosini topib to'g'riladingiz", ru: 'Нашли и исправили ошибку в адресе конверта' } },
+  rightEnvelope: { icon: '⌨️', name: 'Command Spotter', desc: { uz: "Chaqiruv so'zlarining farqini topdingiz", ru: 'Вы нашли, чем особенны слова-вызовы' } },
   neverSilent:   { icon: '🔔', name: 'Never Silent',   desc: { uz: "Fallback qo'shib, Botjonni jim qoldirmadingiz", ru: "Добавили fallback — Ботик больше не молчит" } },
   commandWriter: { icon: '📜', name: 'Command Writer', desc: { uz: "Buyruqlar ro'yxatini xatosiz to'ldirdingiz", ru: "Заполнили список команд без ошибок" } },
 };
 // Ekran id → nishon. ❗ FAQAT ma'noli, xato qilish MUMKIN bo'lgan ekranlar.
-const ACH_TRIGGERS = { s10: 'buttonMaster', s11: 'rightEnvelope', s12: 'neverSilent', s13: 'commandWriter' }; // Q3-c (19.09): buttonMaster s9 (tekin) → s10 (test, birinchi urinish); neverSilent s12 — darsning bonusi; rightEnvelope → s14 — nom tasdig'i kutilmoqda
+const ACH_TRIGGERS = { s10: 'buttonMaster', s12: 'neverSilent', s13: 'commandWriter', s14: 'rightEnvelope' }; // Q3-c (19.09): buttonMaster s9 → s10, rightEnvelope s11 → s14 (testlar, birinchi urinish; M2 — nom «Command Spotter»); neverSilent s12 — darsning yagona bonusi (152-qonun)
 
 // 🏅 151-qonun: amaliy topshiriq nishoni faqat BIRINCHI urinishga beriladi. Shart OLDINDAN aytiladi; birinchi urinish
 // xato bo'lsa — jazosiz qisqa xabar (`once` — qayta urinishi yo'q ekran). Mentor ekranida, «Qaytadan» mashq-o'tishida va
