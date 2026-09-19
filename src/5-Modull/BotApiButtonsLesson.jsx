@@ -1398,7 +1398,8 @@ const ACHIEVEMENTS = {
   neverSilent:   { icon: '🔔', name: 'Never Silent',   desc: { uz: "Fallback qo'shib, Botjonni jim qoldirmadingiz", ru: "Добавили fallback — Ботик больше не молчит" } },
   commandWriter: { icon: '📜', name: 'Command Writer', desc: { uz: "Buyruqlar ro'yxatini xatosiz to'ldirdingiz", ru: "Заполнили список команд без ошибок" } },
 };
-// Ekran id → nishon. ❗ FAQAT ma'noli, xato qilish MUMKIN bo'lgan ekranlar.
+// Ekran id → nishon. s10, s13, s14 — xato qilish mumkin (birinchi urinishga); s12 `neverSilent` — darsning yagona BONUSI
+// (152-qonun: xato yo'li yo'q, tavsif qilingan ishni aytadi).
 const ACH_TRIGGERS = { s10: 'buttonMaster', s12: 'neverSilent', s13: 'commandWriter', s14: 'rightEnvelope' }; // Q3-c (19.09): buttonMaster s9 → s10, rightEnvelope s11 → s14 (testlar, birinchi urinish; M2 — nom «Command Spotter»); neverSilent s12 — darsning yagona bonusi (152-qonun)
 
 // 🏅 151-qonun: amaliy topshiriq nishoni faqat BIRINCHI urinishga beriladi. Shart OLDINDAN aytiladi; birinchi urinish

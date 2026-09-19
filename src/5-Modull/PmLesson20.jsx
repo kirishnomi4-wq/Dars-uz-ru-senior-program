@@ -913,7 +913,7 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   }, [done]); // eslint-disable-line
   useEffect(() => { if (allAsked || isMentor) return; const t = setInterval(() => setSec(s => s + 1), 1000); return () => clearInterval(t); }, [allAsked, isMentor]);
   const ber = (i) => { if (typing || asked.includes(i) || isMentor) return; setAsked(p => [...p, i]); setCur(i); };
-  const tanla = (k) => { if (isMentor) return; if (!YOZUV[k].ok && achMiss) achMiss.miss(screen); setYozuv(k); };
+  const tanla = (k) => { if (isMentor || done) return; if (!YOZUV[k].ok && achMiss) achMiss.miss(screen); setYozuv(k); }; // to'g'ri qatordan keyin (xulosaga 2,5 s) boshqa qator bosilsa «Davom» o'chmasin (PmLesson15 s4 bilan bir xil)
   const pend = SAVOLLAR.map((_, i) => String(i)).filter(k => !asked.includes(Number(k)));
   const lit = useTurnWalk(pend, !typing && !allAsked && !isMentor);
   const rowWave = useTurnHint(faza === 'yozuv' && yozuv === null && !isMentor);
