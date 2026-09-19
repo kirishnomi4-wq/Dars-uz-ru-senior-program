@@ -2990,6 +2990,7 @@ export default function HtmlLesson({ lang: langProp, onFinished, liveToken }) {
   // 151-qonun 5-band: BIRINCHI O'TISH — HISOB, «Qaytadan» — MASHQ. «Qaytadan» bosilgan onda birinchi o'tish javoblari shu yerga
   // muhrlanadi: nishonlar muzlaydi, onFinished ham shu javoblarni yuboradi (bir dars — bir natija). Progressda saqlanadi (F5 o'chirmaydi).
   const firstPassRef = useRef(saved?.firstPass || null); // { answers, durationSec } | null
+  const soloSentRef = useRef(new Set()); // Q1 (19.09): solo'da maxsus test javobi serverga BIR marta
   const [practice, setPractice] = useState(!!saved?.firstPass);
   const earnedRef = useRef(new Set(saved?.earned || []));
   const [earned, setEarned] = useState(() => new Set(saved?.earned || []));
@@ -3033,6 +3034,13 @@ export default function HtmlLesson({ lang: langProp, onFinished, liveToken }) {
   const recordAnswer = (idx, data) => {
     setAnswers(a => ({ ...a, [idx]: data }));
     const _m = SCREEN_META[idx];
+    // Q1 (19.09): UYDA (solo) maxsus test javobi ham serverga — rasmiy natijada sanalsin (oldin faqat jonli darsda
+    // yuborilardi → «javobsiz»). `picked` kalitdan: server `data.correct` (birinchi urinish) ni oladi. MCQ o'zi `recordAttempt`
+    // bilan yozadi — takrori serverda e'tiborsiz (on conflict do nothing). «Qaytadan» mashqida yuborilmaydi (151-qonun 6-band).
+    if (_m && _m.scored && live.mode === 'solo' && !firstPassRef.current && data && (data.solved === true || data.correct === true) && !soloSentRef.current.has(idx)) {
+      const key = INLINE_KEYS[_m.id];
+      if (Number.isInteger(key)) { soloSentRef.current.add(idx); live.submitAnswer(idx, _m.id, key < 0 ? 0 : (data.correct ? key : (key === 0 ? 1 : 0)), !!data.correct, data.elapsedMs || 0); }
+    }
     if (_m && ACH_TRIGGERS[_m.id] && data && data.correct && !missedRef.current.has(_m.id)) earn(ACH_TRIGGERS[_m.id]); // 🏅 nishon — faqat MA'NOLI ekranlar, faqat birinchi urinishga (151-qonun)
   };
   const reset = () => {

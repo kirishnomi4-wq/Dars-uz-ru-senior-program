@@ -17,16 +17,21 @@
 //     "wrong": [amal…], "right": [amal…], "rightAfterWrong": [amal…] (ixtiyoriy), "slip": [amal…] (ixtiyoriy) }
 //   amal: {"click": "<playwright selektor>", "nth": 0, "js": true} · {"fill": "<sel>", "value": "…"} · {"press": "Enter"}
 //         {"wait": 500} · {"expect": "<sel>"} (ko'rinishini kutadi) · {"eval": "<JS — sahifada>"}
-// Ishlatish: CHROME=/usr/bin/google-chrome node scripts/ach-probe.mjs [--smoke] [--lang uz|ru] [--out natija.json] [--shots <papka>] spec.json…
+// `--solo` (19.09, Q1): dars UYDA (solo, LMS-urinish) rejimida ochiladi; server o'rnida soxta HTTP-server har so'rovni yozadi.
+//   Faqat `"test": true` spetsifikatsiyalar: SOLO-togri — to'g'ri yo'ldan keyin shu ekran uchun serverga javob ketdimi
+//   (`submit_answer` p_picked 0 yoki `record_attempt`); SOLO-xato — xato birinchi urinish serverga «xato» bo'lib ketdimi.
+// Ishlatish: CHROME=/usr/bin/google-chrome node scripts/ach-probe.mjs [--smoke|--solo] [--lang uz|ru] [--out natija.json] [--shots <papka>] spec.json…
 import { build } from 'esbuild';
 import { chromium } from 'playwright-core';
 import { readFileSync, writeFileSync, mkdtempSync, mkdirSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, resolve, basename } from 'node:path';
+import { createServer } from 'node:http';
 
 const args = process.argv.slice(2);
 const opt = (k, d) => { const i = args.indexOf(k); return i >= 0 && args[i + 1] ? args[i + 1] : d; };
 const SMOKE = args.includes('--smoke');
+const SOLO = args.includes('--solo');
 const LANG = opt('--lang', 'uz');
 const OUT = opt('--out', null);
 const SHOTS = opt('--shots', null);
@@ -40,6 +45,24 @@ const TXT = {
 }[LANG];
 
 const TMP = mkdtempSync(join(tmpdir(), 'achprobe-'));
+// Soxta server (faqat --solo): har so'rov yoziladi; POST /rpc/<fn> → 204; GET → 404/[] (sessiya yo'q, ro'yxat bo'sh)
+const REQS = []; let API_URL = '';
+if (SOLO) {
+  const srv = createServer((req, res) => {
+    const h = { 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Headers': '*', 'Access-Control-Allow-Methods': 'GET,POST,PUT,OPTIONS' };
+    if (req.method === 'OPTIONS') { res.writeHead(204, h); return res.end(); }
+    let b = ''; req.on('data', (c) => { b += c; });
+    req.on('end', () => {
+      let body = null; try { body = b ? JSON.parse(b) : null; } catch { body = b; }
+      REQS.push({ at: Date.now(), method: req.method, path: req.url, fn: (/\/rpc\/([\w-]+)/.exec(req.url) || [])[1] || null, body });
+      if (req.method === 'POST' && /\/rpc\//.test(req.url)) { res.writeHead(204, h); return res.end(); }
+      if (req.method === 'GET' && /\/session\//.test(req.url)) { res.writeHead(404, h); return res.end(); }
+      res.writeHead(200, { ...h, 'Content-Type': 'application/json' }); res.end(req.method === 'GET' ? '[]' : '{}');
+    });
+  });
+  await new Promise((r) => srv.listen(0, '127.0.0.1', r)); API_URL = `http://127.0.0.1:${srv.address().port}`;
+  process.on('exit', () => srv.close());
+}
 if (SHOTS) mkdirSync(SHOTS, { recursive: true });
 const bundles = new Map();
 function lessonInfo(file) {
@@ -48,7 +71,8 @@ function lessonInfo(file) {
   const meta = (/SCREEN_META\s*=\s*\[([\s\S]*?)\n\];/.exec(src) || [])[1] || '';
   const ids = [...meta.matchAll(/\{\s*id:\s*'([^']+)'/g)].map((m) => m[1]);
   const trig = Object.fromEntries([...((/const ACH_TRIGGERS = \{([^}]*)\}/.exec(src) || [])[1] || '').matchAll(/(\w+):\s*'(\w+)'/g)].map((m) => [m[1], m[2]]));
-  return { lessonId, ids, trig };
+  const keys = Object.fromEntries([...((/const INLINE_KEYS = \{([^}]*)\}/.exec(src) || [])[1] || '').matchAll(/(\w+):\s*(-?\d+)/g)].map((m) => [m[1], Number(m[2])]));
+  return { lessonId, ids, trig, keys };
 }
 async function bundle(file) {
   if (bundles.has(file)) return bundles.get(file);
@@ -56,12 +80,12 @@ async function bundle(file) {
     createRoot(document.getElementById('root')).render(React.createElement(L, { lang: window.__lang || 'uz', onFinished: () => {} }));`,
   resolveDir: process.cwd(), sourcefile: 'p.jsx', loader: 'jsx' }, bundle: true, format: 'iife', jsx: 'automatic', nodePaths: [resolve('node_modules')],
   loader: { '.png': 'dataurl', '.jpg': 'dataurl', '.jpeg': 'dataurl', '.svg': 'dataurl', '.mp3': 'dataurl', '.webp': 'dataurl', '.gif': 'dataurl' },
-  define: { __DARS_API_URL__: '""' }, charset: 'utf8', write: false, logLevel: 'silent' });
+  define: { __DARS_API_URL__: SOLO ? JSON.stringify(API_URL) : '""' }, charset: 'utf8', write: false, logLevel: 'silent' });
   const text = res.outputFiles[0].text; bundles.set(file, text); return text;
 }
 function page(file, L, idx, extra, tag) {
   const prog = { screen: idx, answers: {}, earned: [], total: L.ids.length, savedAt: Date.now(), startedAt: Date.now() - 120000, ...(CUR_SEED || {}), ...extra }; // `seed` — boshqa ekranlar javobi (agregat nishon)
-  const seed = `window.__lang=${JSON.stringify(LANG)};if(!sessionStorage.getItem('__seeded')){localStorage.clear();for(const r of ['mentor','learner','student','self']){localStorage.setItem('inetOnboarded_'+r,'1');localStorage.setItem('hcOnboarded_'+r,'1');}localStorage.setItem('liveLang',${JSON.stringify(LANG)});localStorage.setItem('liveSession:${L.lessonId}','{"mode":"self"}');localStorage.setItem('ccProgress:${L.lessonId}',${JSON.stringify(JSON.stringify(prog))});sessionStorage.setItem('__seeded','1');}`;
+  const seed = `window.__lang=${JSON.stringify(LANG)};if(!sessionStorage.getItem('__seeded')){localStorage.clear();for(const r of ['mentor','learner','student','self']){localStorage.setItem('inetOnboarded_'+r,'1');localStorage.setItem('hcOnboarded_'+r,'1');}localStorage.setItem('liveLang',${JSON.stringify(LANG)});localStorage.setItem('liveSession:${L.lessonId}',${JSON.stringify(SOLO ? '{"mode":"solo","pin":"900001","playerId":"probe-p","playerToken":"probe-t","attemptId":"probe-a"}' : '{"mode":"self"}')});localStorage.setItem('ccProgress:${L.lessonId}',${JSON.stringify(JSON.stringify(prog))});sessionStorage.setItem('__seeded','1');}`;
   const p = join(TMP, `${basename(file, '.jsx')}-${idx}-${tag}.html`);
   writeFileSync(p, `<!doctype html><html><head><meta charset="utf-8"></head><body><div id="root"></div><script>${seed}<\/script><script>${bundles.get(file)}<\/script></body></html>`);
   return 'file://' + p;
@@ -108,6 +132,27 @@ for (const sp of specs) {
   const LOSTTXT = sp.once ? TXT.ONCE : TXT.LOST;
   const scen = async (name, fn) => { let o; try { o = await open(...fn.seed); await fn.body(o); if (o.errs.length) fail(name, 'pageerror: ' + o.errs[0]); } catch (e) { fail(name, String(e.message).slice(0, 200)); } finally { if (o) await o.ctx.close(); } };
 
+  if (SOLO) {
+    if (!sp.test) { row.problems.push('solo: faqat "test": true spetsifikatsiya'); results.push(row); console.log(`– ${basename(sp.file, '.jsx')} ${sp.sid}: test emas — o'tkazildi`); continue; }
+    const sent = (from) => REQS.filter((r) => r.at >= from && (r.fn === 'submit_answer' || r.fn === 'record_attempt') && r.body && r.body.p_screen === idx);
+    const KEY = L.keys[sp.sid]; // server kabi baholash: kalit < 0 → doim to'g'ri; aks holda picked === kalit
+    const srvOk = (x) => (Number.isInteger(KEY) ? (KEY < 0 || x.body.p_picked === KEY) : null);
+    await scen('SOLO-togri', { seed: [{}, 'solo2'], body: async ({ pg }) => {
+      const t0 = Date.now(); await run(pg, sp.right, 'right'); await pg.waitForTimeout(1500);
+      const s = sent(t0); row.solo_togri = s.map((x) => `${x.fn}:${JSON.stringify({ picked: x.body.p_picked, correct: x.body.p_correct })}`);
+      if (!s.length) return fail('SOLO-togri', 'serverga shu ekran javobi UMUMAN KETMADI (rasmiy solo natijada «javobsiz»)');
+      if (srvOk(s[0]) === false) fail('SOLO-togri', `birinchi yozuv server uchun «xato» (${s[0].fn} picked ${s[0].body.p_picked}, kalit ${KEY})`);
+      pass('SOLO-togri'); } });
+    await scen('SOLO-xato', { seed: [{}, 'solo1'], body: async ({ pg }) => {
+      const t0 = Date.now(); await run(pg, sp.wrong, 'wrong'); await run(pg, sp.rightAfterWrong || sp.right, 'rightAfterWrong'); await pg.waitForTimeout(1500);
+      const s = sent(t0); row.solo_xato = s.map((x) => `${x.fn}:${JSON.stringify({ picked: x.body.p_picked, correct: x.body.p_correct })}`);
+      if (!s.length) return fail('SOLO-xato', 'serverga shu ekran javobi UMUMAN KETMADI');
+      if (srvOk(s[0]) === true && KEY >= 0) fail('SOLO-xato', `birinchi urinish xato edi, serverga «to'g'ri» ketdi (${s[0].fn} picked ${s[0].body.p_picked}, kalit ${KEY})`);
+      pass('SOLO-xato'); } });
+    row.ok = row.problems.length === 0; row.full = true; results.push(row);
+    console.log(`${row.ok ? '✓' : '✗'} ${basename(sp.file, '.jsx')} ${sp.sid} [solo] · to'g'ri→ ${JSON.stringify(row.solo_togri || [])} · xato→ ${JSON.stringify(row.solo_xato || [])}${row.problems.length ? '\n    ' + row.problems.join('\n    ') : ''}`);
+    continue;
+  }
   await scen('S0-boshida', { seed: [{}, 's0'], body: async ({ pg }) => {
     const r = await rule(pg); const p = await prog(pg);
     if (p?.screen !== idx) return fail('S0-boshida', `dars ${idx}-ekranda ochilmadi (screen ${p?.screen})`);

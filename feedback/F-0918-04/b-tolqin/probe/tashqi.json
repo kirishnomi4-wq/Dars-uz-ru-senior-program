@@ -81,7 +81,7 @@
     }
    }
   },
-  "note": "agregat nishon: uchala test (s7, s8, s9) BIRINCHI urinishda to'g'ri; s7/s8 urug'langan, s9 — juftlash (birinchi to'liq urinish muhrlanadi)",
+  "note": "agregat nishon: uchala test (s7, s8, s9) BIRINCHI urinishda to'g'ri; s7/s8 urug'langan, s9 — juftlash (birinchi to'liq urinish muhrlanadi) · rightAfterWrong: ikki xato juftni olib (maqsadni bosish), to'g'ri joylaydi — ekran yakunlanadi",
   "right": [
    {
     "click": ".mp-chip.pool:has-text(\"velosiped\")"
@@ -142,7 +142,30 @@
     "after": 400
    }
   ],
-  "rightAfterWrong": [],
+  "rightAfterWrong": [
+   {
+    "click": ".mp-target:has-text(\"maktabga tez yetib borish\")",
+    "after": 300
+   },
+   {
+    "click": ".mp-target:has-text(\"ertalab vaqtida uyg'onish\")",
+    "after": 300
+   },
+   {
+    "click": ".mp-chip.pool:has-text(\"velosiped\")"
+   },
+   {
+    "click": ".mp-target:has-text(\"maktabga tez yetib borish\")",
+    "after": 400
+   },
+   {
+    "click": ".mp-chip.pool:has-text(\"budilnik\")"
+   },
+   {
+    "click": ".mp-target:has-text(\"ertalab vaqtida uyg'onish\")",
+    "after": 400
+   }
+  ],
   "rightAfterF5": []
  }
 ]
