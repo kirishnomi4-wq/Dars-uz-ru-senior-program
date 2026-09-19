@@ -217,7 +217,7 @@ const FeedbackBlock = ({ show, isCorrect, neutral, children }) => {
 };
 
 // JONLI JAVOB KALITI — har SCORED ekranning correctIdx'idan (praktika -1 sentinel). Kalit-to'g'riligini ⚡ Jonli tekshiradi.
-const INLINE_KEYS = { s4: 2, s5b: 1, s9: 0, s12: 3, s15: -1, practice: -1 };
+const INLINE_KEYS = { s4: 2, s5b: 1, s9: 0, s12: 3, s15: 0, practice: -1 };
 const MSTATS_COLORS = ['#019ACB', '#8B5CF6', '#E8A13A', '#E0559A'];
 const RECAP_NEED_PCT = 60;
 const RECAP_GOOD_PCT = 75;
@@ -1427,13 +1427,15 @@ const ScreenDoorMatch = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => 
   const [fb, setFb] = useState(null);          // { kind: 'ok'|'miss', node }
   const [shake, setShake] = useState(null);
   const wrongRef = useRef(storedAnswer ? (storedAnswer.wrongCount || 0) : 0);
+  const achMiss = useContext(AchMissCtx); // ball — birinchi urinish (8-A, Q4): rad etilgan juftlik progressga ham yoziladi (F5 dan keyin ham)
   const shakeT = useRef(null);
   useEffect(() => () => clearTimeout(shakeT.current), []);
   const done = DM_REQS.every(r => placed[r.id]);
   useEffect(() => {
     if (done && (storedAnswer === undefined || !storedAnswer.solved)) {
       // 135-qonun: yakun-signallar HAQIQIY holatdan hisoblanadi, shartsiz yozilmaydi.
-      onAnswer(screen, { stage: 'final', screenIdx: screen, question: tr({ uz: "So'rov qaysi eshikka boradi (3 juftlik)", ru: 'К какой двери идёт запрос (3 пары)' }), solved: true, correct: true, firstAttemptCorrect: wrongRef.current === 0, wrongCount: wrongRef.current, picked: 'matched' });
+      const first = wrongRef.current === 0 && !(achMiss && achMiss.missed.has(SCREEN_META[screen].id));
+      onAnswer(screen, { stage: 'final', screenIdx: screen, question: tr({ uz: "So'rov qaysi eshikka boradi (3 juftlik)", ru: 'К какой двери идёт запрос (3 пары)' }), solved: true, correct: first, firstAttemptCorrect: first, wrongCount: wrongRef.current, picked: first ? 0 : 1 });
     }
   }, [done]); // eslint-disable-line
   const tapReq = (id) => { if (isMentor || placed[id]) return; setFb(null); setSel(p => (p === id ? null : id)); };
@@ -1441,7 +1443,7 @@ const ScreenDoorMatch = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => 
     if (isMentor || sel === null) return;
     const r = DM_REQS.find(x => x.id === sel);
     if (r.to === tid) { setPlaced(p => ({ ...p, [r.id]: tid })); setSel(null); setFb({ kind: 'ok', node: tr(r.ok) }); return; }
-    wrongRef.current += 1;
+    wrongRef.current += 1; if (achMiss) achMiss.miss(screen);
     setFb({ kind: 'miss', node: tr(DM_MISS[r.id + '>' + tid]) });
     setShake(tid);
     clearTimeout(shakeT.current);
@@ -2304,7 +2306,7 @@ export default function RoutingLesson({ lang: langProp, onFinished, liveToken })
   const missTry = useCallback((idx) => {
     const sid = SCREEN_META[idx] && SCREEN_META[idx].id;
     const ach = ACH_TRIGGERS[sid];
-    if (!ach || missedRef.current.has(sid) || earnedRef.current.has(ach)) return;
+    if (!sid || missedRef.current.has(sid) || (ach && earnedRef.current.has(ach))) return; // nishonsiz test-ekran ham (ball — birinchi to'liq urinish, F5 dan keyin ham)
     missedRef.current.add(sid);
     setMissed(new Set(missedRef.current));
   }, []);
@@ -2337,6 +2339,8 @@ export default function RoutingLesson({ lang: langProp, onFinished, liveToken })
       if (Number.isInteger(key)) { soloSentRef.current.add(idx); live.submitAnswer(idx, _m.id, key < 0 ? 0 : (data.correct ? key : (key === 0 ? 1 : 0)), !!data.correct, data.elapsedMs || 0); }
     }
     if (_m && ACH_TRIGGERS[_m.id] && data && data.correct && !missedRef.current.has(_m.id)) earn(ACH_TRIGGERS[_m.id]); // 🏅 nishon (faqat REAL solve)
+    // Q4 (19.09): yakuniy custom ekran (s15) jonli darsda serverga UMUMAN yuborilmasdi — ball «javobsiz» edi.
+    if (_m && _m.scored && _m.scope === 'final' && data && data.solved && live.mode === 'student') live.submitAnswer(idx, _m.id, data.picked === 1 ? 1 : 0, !!data.correct, 0); // ball — birinchi urinish (picked 0/1, kalit 0)
   };
   const reset = () => { if (!firstPassRef.current) { firstPassRef.current = { answers, durationSec: Math.floor((Date.now() - startTimeRef.current) / 1000) }; setFpPractice(true); } progClear(LESSON_META.lessonId); setAnswers({}); setScreen(0); startTimeRef.current = Date.now(); };
   // F-0730-01: har o'zgarishda progress saqlanadi (screen + javoblar + nishonlar + boshlangan vaqt)

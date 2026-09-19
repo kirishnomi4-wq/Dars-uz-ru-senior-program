@@ -1622,6 +1622,9 @@ const Screen19 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [sc, setSc] = useState(0);
   const firstCorrectRef = useRef(storedAnswer ? (storedAnswer.firstAttemptCorrect ?? storedAnswer.correct ?? null) : null);
   const mountTs = useRef(Date.now()); // tezlik: ekran ochilgandan yechimgacha (podiumda teng ballda hal qiladi)
+  // Ball — birinchi urinish (8-A, Q4): xato qator bosilsa progressga ham yoziladi — F5 dan keyin «birinchi» imkon qaytmaydi
+  const achMiss = useContext(AchMissCtx);
+  const firstOk = () => firstCorrectRef.current === true && !(achMiss && achMiss.missed.has(SCREEN_META[screen].id));
   const dropRef = useRef(null);
   // 📖 Qayta tushuntirish — xato qatorni bosgan o'quvchi mavzuni kartalarda qayta ko'radi
   const [recapOpen, setRecapOpen] = useState(false);
@@ -1632,7 +1635,7 @@ const Screen19 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     if (found) return;
     if (firstCorrectRef.current === null) firstCorrectRef.current = (id === 'hash'); // 1-URINISH QOTIRILADI (soxta correct:true tugadi)
     if (id === 'hash') setPicked('hash');
-    else { setWrongId(id); setTimeout(() => setWrongId(w => (w === id ? null : w)), 520); }
+    else { if (achMiss) achMiss.miss(screen); setWrongId(id); setTimeout(() => setWrongId(w => (w === id ? null : w)), 520); }
     setSc(n => n + 1);
   };
   // Sudrab ko'chirish — noto'g'ri qator o'z faylidan uchib, service fayliga tushadi (.rz-move)
@@ -1657,7 +1660,7 @@ const Screen19 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   };
   // ⚡ JONLI BALL: picked = 0 (1-urinishda to'g'ri qatorni topdi) yoki 1 (avval xato qatorni bosdi).
   // INLINE_KEYS.s19 = 0 → serverda `picked === 0` bo'lgani to'g'ri sanaladi (soxta «hamma to'g'ri» yo'q).
-  useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { stage: 'final', screenIdx: screen, question: "AI qaysi qatorni noto'g'ri xonaga qo'ydi?", studentAnswer: picked, correct: firstCorrectRef.current === true, firstAttemptCorrect: firstCorrectRef.current === true, solved: true, picked: firstCorrectRef.current === true ? 0 : 1, elapsedMs: Date.now() - mountTs.current }); }, [done]); // eslint-disable-line
+  useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { stage: 'final', screenIdx: screen, question: "AI qaysi qatorni noto'g'ri xonaga qo'ydi?", studentAnswer: picked, correct: firstOk(), firstAttemptCorrect: firstOk(), solved: true, picked: firstOk() ? 0 : 1, elapsedMs: Date.now() - mountTs.current }); }, [done]); // eslint-disable-line
   return (
     <Stage eyebrow={tr({ uz: 'Yakuniy · debugging', ru: 'Финал · дебаггинг' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done && !_resc} label={(done || _resc) ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : (found ? tr({ uz: "Qatorni to'g'ri faylga sudrang", ru: 'Перетащите строку в нужный файл' }) : tr({ uz: 'Xato qatorni toping', ru: 'Найдите неверную строку' }))} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
@@ -2685,7 +2688,7 @@ export default function NestArchAliveLesson({ lang: langProp, onFinished, liveTo
   const missTry = useCallback((idx) => {
     const sid = SCREEN_META[idx] && SCREEN_META[idx].id;
     const ach = ACH_TRIGGERS[sid];
-    if (!ach || missedRef.current.has(sid) || earnedRef.current.has(ach)) return;
+    if (!sid || missedRef.current.has(sid) || (ach && earnedRef.current.has(ach))) return; // nishonsiz test-ekran ham (ball — birinchi to'liq urinish, F5 dan keyin ham)
     missedRef.current.add(sid);
     setMissed(new Set(missedRef.current));
   }, []);

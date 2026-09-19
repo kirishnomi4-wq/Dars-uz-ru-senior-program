@@ -1504,14 +1504,17 @@ const Screen17 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [sc, setSc] = useState(0);
   const [missed, setMissed] = useState(0); // xato qatorni bosishlar — real xato imkoniyati bor
   const firstCorrectRef = useRef(storedAnswer ? (storedAnswer.firstAttemptCorrect ?? storedAnswer.correct ?? null) : null); // 1-URINISH QOTIRILADI
+  // Ball — birinchi urinish (8-A, Q4): xato qator bosilsa progressga ham yoziladi — F5 dan keyin «birinchi» imkon qaytmaydi
+  const achMiss = useContext(AchMissCtx);
+  const firstOk = () => firstCorrectRef.current === true && !(achMiss && achMiss.missed.has(SCREEN_META[screen].id));
   const mountTs = useRef(Date.now()); // tezlik: ekran ochilgandan yechimgacha (podiumda teng ballda hal qiladi)
   const done = fixed;
   const { tip: _tip, rescue: _resc } = useStuckValve(done, (found ? 1 : 0) + (fixed ? 1 : 0));   // 13-band klapan
   // ⚡ JONLI BALL: picked = 0 (1-urinishda begona qatorni topdi) yoki 1 (avval to'g'ri qatorni bosdi).
   // INLINE_KEYS.s17 = 0 → serverda faqat `picked === 0` to'g'ri sanaladi (soxta «hamma to'g'ri» yo'q).
-  useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { stage: 'final', screenIdx: screen, question: "Agent kodidagi begona qatorni toping", correct: firstCorrectRef.current === true, firstAttemptCorrect: firstCorrectRef.current === true, solved: true, picked: firstCorrectRef.current === true ? 0 : 1, elapsedMs: Date.now() - mountTs.current }); }, [done]); // eslint-disable-line
+  useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { stage: 'final', screenIdx: screen, question: "Agent kodidagi begona qatorni toping", correct: firstOk(), firstAttemptCorrect: firstOk(), solved: true, picked: firstOk() ? 0 : 1, elapsedMs: Date.now() - mountTs.current }); }, [done]); // eslint-disable-line
   const pickBad = () => { if (found) return; if (firstCorrectRef.current === null) firstCorrectRef.current = true; setFound(true); setSc(n => n + 1); };
-  const pickGood = () => { if (found || fixed) return; if (firstCorrectRef.current === null) firstCorrectRef.current = false; setMissed(m => m + 1); setSc(n => n + 1); };
+  const pickGood = () => { if (found || fixed) return; if (firstCorrectRef.current === null) firstCorrectRef.current = false; if (achMiss) achMiss.miss(screen); setMissed(m => m + 1); setSc(n => n + 1); };
   const fix = () => { setFixed(true); setSc(n => n + 1); };
   const toggle = (id) => { setOpenId(o => o === id ? null : id); setSc(n => n + 1); };
   const onTry = (id) => { setTried(prev => { const s = new Set(prev); s.add(id); return s; }); setSc(n => n + 1); };
@@ -2495,7 +2498,7 @@ export default function NestArchResourceLesson({ lang: langProp, onFinished, liv
   const missTry = useCallback((idx) => {
     const sid = SCREEN_META[idx] && SCREEN_META[idx].id;
     const ach = ACH_TRIGGERS[sid];
-    if (!ach || missedRef.current.has(sid) || earnedRef.current.has(ach)) return;
+    if (!sid || missedRef.current.has(sid) || (ach && earnedRef.current.has(ach))) return; // nishonsiz test-ekran ham (ball — birinchi to'liq urinish, F5 dan keyin ham)
     missedRef.current.add(sid);
     setMissed(new Set(missedRef.current));
   }, []);

@@ -219,7 +219,7 @@ const FeedbackBlock = ({ show, isCorrect, neutral, children }) => {
 };
 
 // JONLI JAVOB KALITI — har SCORED ekranning correctIdx'idan (yozma/final custom -1 sentinel). Kalitni ⚡ Jonli tekshiradi.
-const INLINE_KEYS = { s4: 2, s5b: 0, s9: 3, s12: 1, s15: -1, practice: -1 };
+const INLINE_KEYS = { s4: 2, s5b: 0, s9: 3, s12: 1, s15: 0, practice: -1 };
 const MSTATS_COLORS = ['#019ACB', '#8B5CF6', '#E8A13A', '#E0559A'];
 const RECAP_NEED_PCT = 60;
 const RECAP_GOOD_PCT = 75;
@@ -1378,8 +1378,13 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const allAnswered = answered === FINAL_CRIT.length;
   const passed = allAnswered && lean >= 0.5; // do'kon → SQL/PostgreSQL
   const wrongLean = allAnswered && !passed;
+  // Ball — birinchi TO'LIQ urinish (8-A, Q4): to'rtala savol javoblanib strelka noto'g'ri tomonda qolsa — urinish xato
+  // (F5 dan keyin ham). Javoblarni almashtirish va «qaytadan» — keyingi urinish, ball o'zgarmaydi.
+  const achMiss = useContext(AchMissCtx);
+  const wrongEverRef = useRef(false);
+  useEffect(() => { if (wrongLean && !storedAnswer) { wrongEverRef.current = true; if (achMiss) achMiss.miss(screen); } }, [wrongLean]); // eslint-disable-line
   useEffect(() => {
-    if (passed && !storedAnswer) onAnswer(screen, { stage: 'final', screenIdx: screen, question: "Loyiha uchun baza tanlash (qaror ko'rsatkichi)", correct: true, firstAttemptCorrect: true, solved: true, picked: 'postgresql' });
+    if (passed && !storedAnswer) { const first = !wrongEverRef.current && !(achMiss && achMiss.missed.has(SCREEN_META[screen].id)); onAnswer(screen, { stage: 'final', screenIdx: screen, question: "Loyiha uchun baza tanlash (qaror ko'rsatkichi)", correct: first, firstAttemptCorrect: first, solved: true, picked: first ? 0 : 1 }); }
   }, [passed]);
   const setA = (id, v) => setAns(a => ({ ...a, [id]: v }));
   const reset = () => setAns({});
@@ -2341,7 +2346,7 @@ export default function DbSqlNosqlLesson({ lang: langProp, onFinished, liveToken
   const missTry = useCallback((idx) => {
     const sid = SCREEN_META[idx] && SCREEN_META[idx].id;
     const ach = ACH_TRIGGERS[sid];
-    if (!ach || missedRef.current.has(sid) || earnedRef.current.has(ach)) return;
+    if (!sid || missedRef.current.has(sid) || (ach && earnedRef.current.has(ach))) return; // nishonsiz test-ekran ham (ball — birinchi to'liq urinish, F5 dan keyin ham)
     missedRef.current.add(sid);
     setMissed(new Set(missedRef.current));
   }, []);
@@ -2373,7 +2378,7 @@ export default function DbSqlNosqlLesson({ lang: langProp, onFinished, liveToken
       const key = INLINE_KEYS[_m.id];
       if (Number.isInteger(key)) { soloSentRef.current.add(idx); live.submitAnswer(idx, _m.id, key < 0 ? 0 : (data.correct ? key : (key === 0 ? 1 : 0)), !!data.correct, data.elapsedMs || 0); }
     }
-    if (_m && _m.scored && _m.scope === 'final' && data && data.correct && live.mode === 'student') live.submitAnswer(idx, _m.id, 0, true, 0); // final custom ekran → serverga (podium s15 nuqtasi)
+    if (_m && _m.scored && _m.scope === 'final' && data && data.solved && live.mode === 'student') live.submitAnswer(idx, _m.id, data.picked === 1 ? 1 : 0, !!data.correct, 0); // final custom ekran → serverga (podium s15 nuqtasi); ball — birinchi urinish (picked 0/1, kalit 0)
     if (_m && ACH_TRIGGERS[_m.id] && data && data.correct && !missedRef.current.has(_m.id)) earn(ACH_TRIGGERS[_m.id]); // 🏅 nishon (faqat REAL solve)
   };
   const reset = () => { if (!firstPassRef.current) { firstPassRef.current = { answers, durationSec: Math.floor((Date.now() - startTimeRef.current) / 1000) }; setFpPractice(true); } progClear(LESSON_META.lessonId); setAnswers({}); setScreen(0); startTimeRef.current = Date.now(); };

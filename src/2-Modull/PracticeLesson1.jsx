@@ -1383,12 +1383,16 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [evt, setEvt] = useState(storedAnswer ? 'click' : null);
   const [react, setReact] = useState(storedAnswer ? 'color' : null);
-  const [passed, setPassed] = useState(!!storedAnswer?.correct);
+  const [passed, setPassed] = useState(!!(storedAnswer && (storedAnswer.solved || storedAnswer.correct)));
   const [bg, setBg] = useState(false);
+  // Ball — birinchi urinish (8-A, Q4): noto'g'ri hodisa yoki reaksiya chipi tanlansa — urinish xato (F5 dan keyin ham)
+  const achMiss = useContext(AchMissCtx);
+  const wrongEverRef = useRef(false);
+  const markWrong = () => { if (passed) return; wrongEverRef.current = true; if (achMiss) achMiss.miss(screen); };
   const evtOk = evt === 'click';
   const reactOk = react === 'color';
   const ready = evtOk && reactOk;
-  useEffect(() => { if (ready && !passed) { setPassed(true); onAnswer(screen, { stage: 'final', screenIdx: screen, question: tr({ uz: "Tugmani jonlantirish: hodisa + reaksiya", ru: 'Оживить кнопку: событие + реакция' }), studentAnswer: `${evt}+${react}`, correct: true, firstAttemptCorrect: true, solved: true, picked: `${evt}+${react}` }); } }, [ready]);
+  useEffect(() => { if (ready && !passed) { setPassed(true); const first = !wrongEverRef.current && !(achMiss && achMiss.missed.has(SCREEN_META[screen].id)); onAnswer(screen, { stage: 'final', screenIdx: screen, question: tr({ uz: "Tugmani jonlantirish: hodisa + reaksiya", ru: 'Оживить кнопку: событие + реакция' }), studentAnswer: `${evt}+${react}`, correct: first, firstAttemptCorrect: first, solved: true, picked: first ? 0 : 1 }); } }, [ready]);
   const EVTS = [{ id: 'click', l: tr({ uz: 'Bosilganda (click)', ru: 'При нажатии (click)' }) }, { id: 'hover', l: 'Hover' }, { id: 'scroll', l: tr({ uz: 'Aylantirilganda', ru: 'При прокрутке' }) }];
   const REACTS = [{ id: 'color', l: tr({ uz: "Rangni o'zgartir", ru: 'Изменить цвет' }) }, { id: 'delete', l: tr({ uz: "Sahifani o'chir", ru: 'Удалить страницу' }) }, { id: 'nothing', l: tr({ uz: 'Hech narsa', ru: 'Ничего' }) }];
   return (
@@ -1401,12 +1405,12 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <Col>
             <p className="flow-label">{tr({ uz: '1. Qaysi HODISA?', ru: '1. Какое СОБЫТИЕ?' })}</p>
             <div className="fade-up delay-1" style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
-              {EVTS.map(e => <button key={e.id} className={`chip ${evt === e.id ? 'chip-on' : ''}`} onClick={() => { setEvt(e.id); setBg(false); }} style={evt === e.id && e.id === 'click' ? { background: T.success, boxShadow: '0 6px 16px -5px rgba(31,122,77,0.5)' } : undefined}>{e.l}</button>)}
+              {EVTS.map(e => <button key={e.id} className={`chip ${evt === e.id ? 'chip-on' : ''}`} onClick={() => { setEvt(e.id); setBg(false); if (e.id !== 'click') markWrong(); }} style={evt === e.id && e.id === 'click' ? { background: T.success, boxShadow: '0 6px 16px -5px rgba(31,122,77,0.5)' } : undefined}>{e.l}</button>)}
             </div>
             {evt && <p className="small fade-step" style={{ margin: 0, fontWeight: 600, color: evtOk ? T.success : T.accent }}>{evtOk ? tr({ uz: "✓ To'g'ri — tugma 'bosish'ni sezadi", ru: '✓ Верно — кнопка чувствует «нажатие»' }) : tr({ uz: "✗ Bu hodisa tugma bosilishini sezmaydi. 'Bosilganda (click)' kerak.", ru: '✗ Это событие не замечает нажатие кнопки. Нужно «При нажатии (click)».' })}</p>}
             <p className="flow-label" style={{ marginTop: 4 }}>{tr({ uz: '2. Qaysi REAKSIYA?', ru: '2. Какая РЕАКЦИЯ?' })}</p>
             <div className="fade-up delay-2" style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
-              {REACTS.map(r => <button key={r.id} className={`chip ${react === r.id ? 'chip-on' : ''}`} onClick={() => { setReact(r.id); setBg(false); }} style={react === r.id && r.id === 'color' ? { background: T.success, boxShadow: '0 6px 16px -5px rgba(31,122,77,0.5)' } : undefined}>{r.l}</button>)}
+              {REACTS.map(r => <button key={r.id} className={`chip ${react === r.id ? 'chip-on' : ''}`} onClick={() => { setReact(r.id); setBg(false); if (r.id !== 'color') markWrong(); }} style={react === r.id && r.id === 'color' ? { background: T.success, boxShadow: '0 6px 16px -5px rgba(31,122,77,0.5)' } : undefined}>{r.l}</button>)}
             </div>
             {react && <p className="small fade-step" style={{ margin: 0, fontWeight: 600, color: reactOk ? T.success : T.accent }}>{reactOk ? tr({ uz: "✓ To'g'ri reaksiya — rang o'zgaradi", ru: '✓ Правильная реакция — цвет изменится' }) : (react === 'delete' ? tr({ uz: "✗ Bu sahifani o'chiradi — maqsadga mos emas", ru: '✗ Это удалит страницу — не соответствует цели' }) : tr({ uz: "✗ 'Hech narsa' bo'lsa sayt jonlanmaydi", ru: '✗ Если «ничего» — сайт не оживёт' }))}</p>}
             <div className="codebox" style={{ marginTop: 6 }}>
@@ -1549,7 +1553,7 @@ const Confetti = () => {
 };
 
 // Server-baholash javob kaliti (mentor darsni ochganda avto-yuklanadi). s15 = -1 (yakuniy amaliy).
-const INLINE_KEYS = { s4: 1, s7: 2, s11: 3, s15: -1 };
+const INLINE_KEYS = { s4: 1, s7: 2, s11: 3, s15: 0 };
 
 const ScreenPodium = ({ screen, answers, onNext, onPrev }) => {
   const gate = useContext(LiveGateCtx) || {};
@@ -2481,7 +2485,7 @@ export default function PracticeLesson1({ lang: langProp, onFinished, onPractice
   const missTry = useCallback((idx) => {
     const sid = SCREEN_META[idx] && SCREEN_META[idx].id;
     const ach = ACH_TRIGGERS[sid];
-    if (!ach || missedRef.current.has(sid) || earnedRef.current.has(ach)) return;
+    if (!sid || missedRef.current.has(sid) || (ach && earnedRef.current.has(ach))) return; // nishonsiz test-ekran ham (ball — birinchi to'liq urinish, F5 dan keyin ham)
     missedRef.current.add(sid);
     setMissed(new Set(missedRef.current));
   }, []);
@@ -2579,7 +2583,7 @@ export default function PracticeLesson1({ lang: langProp, onFinished, onPractice
       const key = INLINE_KEYS[_m.id];
       if (Number.isInteger(key)) { soloSentRef.current.add(idx); live.submitAnswer(idx, _m.id, key < 0 ? 0 : (data.correct ? key : (key === 0 ? 1 : 0)), !!data.correct, data.elapsedMs || 0); }
     }
-    if (_m && _m.scored && _m.scope === 'final' && data && data.correct && live.mode === 'student') live.submitAnswer(idx, _m.id, 0, true, 0);
+    if (_m && _m.scored && _m.scope === 'final' && data && data.solved && live.mode === 'student') live.submitAnswer(idx, _m.id, data.picked === 1 ? 1 : 0, !!data.correct, 0); // ball — birinchi urinish (picked 0 = to'g'ri, 1 = xato; kalit 0)
     if (_m && ACH_TRIGGERS[_m.id] && data && data.correct && !missedRef.current.has(_m.id)) earn(ACH_TRIGGERS[_m.id]); // 🏅 nishon (faqat SCORED test ekran)
   };
   const reset = () => { if (!firstPassRef.current) { firstPassRef.current = { answers, durationSec: Math.floor((Date.now() - startTimeRef.current) / 1000) }; setFpPractice(true); } progClear(LESSON_META.lessonId); pracClear(LESSON_META.lessonId); setAnswers({}); setScreen(0); setPractice(null); setMentorPractice(null); startTimeRef.current = Date.now(); };

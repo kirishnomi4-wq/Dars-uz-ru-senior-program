@@ -1,0 +1,805 @@
+[
+ {
+  "file": "src/1-Modull/CssLesson1.jsx",
+  "sid": "s15",
+  "test": true,
+  "missed": false,
+  "note": "yozma: faqat bajarildi (kalit -1, diskret urinish yo'q) — wrong = right; SOLO-xato ma'nosiz · CSS qoidasi",
+  "right": [
+   {
+    "fill": "input[placeholder=\"h1 { color: red; }\"]",
+    "value": "h1 { color: red; }",
+    "nth": 0,
+    "after": 500
+   }
+  ],
+  "wrong": [
+   {
+    "fill": "input[placeholder=\"h1 { color: red; }\"]",
+    "value": "h1 { color: red; }",
+    "nth": 0,
+    "after": 500
+   }
+  ],
+  "rightAfterWrong": [],
+  "rightAfterF5": []
+ },
+ {
+  "file": "src/1-Modull/CssPractice.jsx",
+  "sid": "s16",
+  "test": true,
+  "missed": false,
+  "note": "yozma: faqat bajarildi (kalit -1, diskret urinish yo'q) — wrong = right; SOLO-xato ma'nosiz · CSS qoidasi",
+  "right": [
+   {
+    "fill": "input.text-input",
+    "value": "h1 { color: tomato; }",
+    "nth": 0,
+    "after": 500
+   }
+  ],
+  "wrong": [
+   {
+    "fill": "input.text-input",
+    "value": "h1 { color: tomato; }",
+    "nth": 0,
+    "after": 500
+   }
+  ],
+  "rightAfterWrong": [],
+  "rightAfterF5": []
+ },
+ {
+  "file": "src/1-Modull/Htmllesson1.jsx",
+  "sid": "s7",
+  "test": true,
+  "missed": false,
+  "note": "yozma: faqat bajarildi (kalit -1, diskret urinish yo'q) — wrong = right; SOLO-xato ma'nosiz · yopuvchi teg",
+  "right": [
+   {
+    "fill": "input.yz-input",
+    "value": "</h1>",
+    "nth": 0,
+    "after": 500
+   }
+  ],
+  "wrong": [
+   {
+    "fill": "input.yz-input",
+    "value": "</h1>",
+    "nth": 0,
+    "after": 500
+   }
+  ],
+  "rightAfterWrong": [],
+  "rightAfterF5": []
+ },
+ {
+  "file": "src/1-Modull/PmLesson1.jsx",
+  "sid": "s15",
+  "test": true,
+  "missed": false,
+  "note": "yozma: faqat bajarildi (kalit -1, diskret urinish yo'q) — wrong = right; SOLO-xato ma'nosiz · ≥10 belgi",
+  "right": [
+   {
+    "fill": "input.reflect-input",
+    "value": "Men o'quvchilarni tanladim, chunki ular ko'p",
+    "nth": 0,
+    "after": 500
+   }
+  ],
+  "wrong": [
+   {
+    "fill": "input.reflect-input",
+    "value": "Men o'quvchilarni tanladim, chunki ular ko'p",
+    "nth": 0,
+    "after": 500
+   }
+  ],
+  "rightAfterWrong": [],
+  "rightAfterF5": []
+ },
+ {
+  "file": "src/1-Modull/PmLesson3.jsx",
+  "sid": "s13",
+  "test": true,
+  "missed": false,
+  "note": "yozma: faqat bajarildi (kalit -1, diskret urinish yo'q) — wrong = right; SOLO-xato ma'nosiz · 6 blok ≥3 belgi",
+  "right": [
+   {
+    "fill": "textarea.fld-ta",
+    "value": "Mening javobim",
+    "nth": 0,
+    "after": 250
+   },
+   {
+    "fill": "textarea.fld-ta",
+    "value": "Mening javobim",
+    "nth": 1,
+    "after": 250
+   },
+   {
+    "fill": "textarea.fld-ta",
+    "value": "Mening javobim",
+    "nth": 2,
+    "after": 250
+   },
+   {
+    "fill": "textarea.fld-ta",
+    "value": "Mening javobim",
+    "nth": 3,
+    "after": 250
+   },
+   {
+    "fill": "textarea.fld-ta",
+    "value": "Mening javobim",
+    "nth": 4,
+    "after": 250
+   },
+   {
+    "fill": "textarea.fld-ta",
+    "value": "Mening javobim",
+    "nth": 5,
+    "after": 250
+   }
+  ],
+  "wrong": [
+   {
+    "fill": "textarea.fld-ta",
+    "value": "Mening javobim",
+    "nth": 0,
+    "after": 250
+   },
+   {
+    "fill": "textarea.fld-ta",
+    "value": "Mening javobim",
+    "nth": 1,
+    "after": 250
+   },
+   {
+    "fill": "textarea.fld-ta",
+    "value": "Mening javobim",
+    "nth": 2,
+    "after": 250
+   },
+   {
+    "fill": "textarea.fld-ta",
+    "value": "Mening javobim",
+    "nth": 3,
+    "after": 250
+   },
+   {
+    "fill": "textarea.fld-ta",
+    "value": "Mening javobim",
+    "nth": 4,
+    "after": 250
+   },
+   {
+    "fill": "textarea.fld-ta",
+    "value": "Mening javobim",
+    "nth": 5,
+    "after": 250
+   }
+  ],
+  "rightAfterWrong": [],
+  "rightAfterF5": []
+ },
+ {
+  "file": "src/1-Modull/VsCodeLesson.jsx",
+  "sid": "s13",
+  "test": true,
+  "missed": false,
+  "note": "yozma: faqat bajarildi (kalit -1, diskret urinish yo'q) — wrong = right; SOLO-xato ma'nosiz · tugma nomi",
+  "right": [
+   {
+    "fill": "input.text-input",
+    "value": "Go Live",
+    "nth": 0,
+    "after": 500
+   }
+  ],
+  "wrong": [
+   {
+    "fill": "input.text-input",
+    "value": "Go Live",
+    "nth": 0,
+    "after": 500
+   }
+  ],
+  "rightAfterWrong": [],
+  "rightAfterF5": []
+ },
+ {
+  "file": "src/2-Modull/JsConditionsLesson.jsx",
+  "sid": "s15",
+  "test": true,
+  "missed": false,
+  "note": "yozma: faqat bajarildi (kalit -1, diskret urinish yo'q) — wrong = right; SOLO-xato ma'nosiz · if-shart",
+  "right": [
+   {
+    "fill": "input[placeholder=\"if (score > 90) {\"]",
+    "value": "if (score > 90) {",
+    "nth": 0,
+    "after": 500
+   }
+  ],
+  "wrong": [
+   {
+    "fill": "input[placeholder=\"if (score > 90) {\"]",
+    "value": "if (score > 90) {",
+    "nth": 0,
+    "after": 500
+   }
+  ],
+  "rightAfterWrong": [],
+  "rightAfterF5": []
+ },
+ {
+  "file": "src/2-Modull/JsFunctionsLesson.jsx",
+  "sid": "s15",
+  "test": true,
+  "missed": false,
+  "note": "yozma: faqat bajarildi (kalit -1, diskret urinish yo'q) — wrong = right; SOLO-xato ma'nosiz · funksiya",
+  "right": [
+   {
+    "fill": "input[placeholder=\"function ...\"]",
+    "value": "function zarar(kuch) { return kuch * 3; }",
+    "nth": 0,
+    "after": 500
+   }
+  ],
+  "wrong": [
+   {
+    "fill": "input[placeholder=\"function ...\"]",
+    "value": "function zarar(kuch) { return kuch * 3; }",
+    "nth": 0,
+    "after": 500
+   }
+  ],
+  "rightAfterWrong": [],
+  "rightAfterF5": []
+ },
+ {
+  "file": "src/2-Modull/JsVarsLesson.jsx",
+  "sid": "s15",
+  "test": true,
+  "missed": false,
+  "note": "yozma: faqat bajarildi (kalit -1, diskret urinish yo'q) — wrong = right; SOLO-xato ma'nosiz · o'zgaruvchi",
+  "right": [
+   {
+    "fill": "input[placeholder='let ism = \"Aziza\"']",
+    "value": "let ism = \"Aziza\"",
+    "nth": 0,
+    "after": 500
+   }
+  ],
+  "wrong": [
+   {
+    "fill": "input[placeholder='let ism = \"Aziza\"']",
+    "value": "let ism = \"Aziza\"",
+    "nth": 0,
+    "after": 500
+   }
+  ],
+  "rightAfterWrong": [],
+  "rightAfterF5": []
+ },
+ {
+  "file": "src/3-Modull/ReactApiPostLesson.jsx",
+  "sid": "s16",
+  "test": true,
+  "missed": false,
+  "note": "yozma: faqat bajarildi (kalit -1, diskret urinish yo'q) — wrong = right; SOLO-xato ma'nosiz · nom + method qatori",
+  "right": [
+   {
+    "fill": "input[placeholder=\"O'yiningiz nomi…\"]",
+    "value": "Zombie",
+    "nth": 0,
+    "after": 500
+   },
+   {
+    "fill": "input.vsc-input",
+    "value": "method: 'POST',",
+    "nth": 0,
+    "after": 500
+   }
+  ],
+  "wrong": [
+   {
+    "fill": "input[placeholder=\"O'yiningiz nomi…\"]",
+    "value": "Zombie",
+    "nth": 0,
+    "after": 500
+   },
+   {
+    "fill": "input.vsc-input",
+    "value": "method: 'POST',",
+    "nth": 0,
+    "after": 500
+   }
+  ],
+  "rightAfterWrong": [],
+  "rightAfterF5": []
+ },
+ {
+  "file": "src/3-Modull/ReactBuildSiteLesson.jsx",
+  "sid": "s14",
+  "test": true,
+  "missed": false,
+  "note": "yozma: faqat bajarildi (kalit -1, diskret urinish yo'q) — wrong = right; SOLO-xato ma'nosiz · komponent",
+  "right": [
+   {
+    "fill": "input.vsc-input",
+    "value": "function TaomCard(props) {",
+    "nth": 0,
+    "after": 500
+   }
+  ],
+  "wrong": [
+   {
+    "fill": "input.vsc-input",
+    "value": "function TaomCard(props) {",
+    "nth": 0,
+    "after": 500
+   }
+  ],
+  "rightAfterWrong": [],
+  "rightAfterF5": []
+ },
+ {
+  "file": "src/3-Modull/ReactCrudPracticeLesson.jsx",
+  "sid": "s14",
+  "test": true,
+  "missed": false,
+  "note": "yozma: faqat bajarildi (kalit -1, diskret urinish yo'q) — wrong = right; SOLO-xato ma'nosiz · spread",
+  "right": [
+   {
+    "fill": "input.vsc-input",
+    "value": "setGames([...games, yangi])",
+    "nth": 0,
+    "after": 500
+   }
+  ],
+  "wrong": [
+   {
+    "fill": "input.vsc-input",
+    "value": "setGames([...games, yangi])",
+    "nth": 0,
+    "after": 500
+   }
+  ],
+  "rightAfterWrong": [],
+  "rightAfterF5": []
+ },
+ {
+  "file": "src/3-Modull/ReactFirstComponentLesson.jsx",
+  "sid": "s15",
+  "test": true,
+  "missed": false,
+  "note": "yozma: faqat bajarildi (kalit -1, diskret urinish yo'q) — wrong = right; SOLO-xato ma'nosiz · komponent chaqiruvi",
+  "right": [
+   {
+    "fill": "input.vsc-input",
+    "value": "<GameCard name=\"Blox Fruits\" />",
+    "nth": 0,
+    "after": 500
+   }
+  ],
+  "wrong": [
+   {
+    "fill": "input.vsc-input",
+    "value": "<GameCard name=\"Blox Fruits\" />",
+    "nth": 0,
+    "after": 500
+   }
+  ],
+  "rightAfterWrong": [],
+  "rightAfterF5": []
+ },
+ {
+  "file": "src/3-Modull/ReactProjectDayLesson.jsx",
+  "sid": "s14",
+  "test": true,
+  "missed": false,
+  "note": "yozma: faqat bajarildi (kalit -1, diskret urinish yo'q) — wrong = right; SOLO-xato ma'nosiz · jami",
+  "right": [
+   {
+    "fill": "input.vsc-input",
+    "value": "b.price * b.days",
+    "nth": 0,
+    "after": 500
+   }
+  ],
+  "wrong": [
+   {
+    "fill": "input.vsc-input",
+    "value": "b.price * b.days",
+    "nth": 0,
+    "after": 500
+   }
+  ],
+  "rightAfterWrong": [],
+  "rightAfterF5": []
+ },
+ {
+  "file": "src/3-Modull/ReactPropsReuseLesson.jsx",
+  "sid": "s15",
+  "test": true,
+  "missed": false,
+  "note": "yozma: faqat bajarildi (kalit -1, diskret urinish yo'q) — wrong = right; SOLO-xato ma'nosiz · props",
+  "right": [
+   {
+    "fill": "input.vsc-input",
+    "value": "<GameCard name={g} />",
+    "nth": 0,
+    "after": 500
+   }
+  ],
+  "wrong": [
+   {
+    "fill": "input.vsc-input",
+    "value": "<GameCard name={g} />",
+    "nth": 0,
+    "after": 500
+   }
+  ],
+  "rightAfterWrong": [],
+  "rightAfterF5": []
+ },
+ {
+  "file": "src/3-Modull/ReactRouterPracticeLesson.jsx",
+  "sid": "s14",
+  "test": true,
+  "missed": false,
+  "note": "yozma: faqat bajarildi (kalit -1, diskret urinish yo'q) — wrong = right; SOLO-xato ma'nosiz · Route",
+  "right": [
+   {
+    "fill": "input.vsc-input",
+    "value": "<Route path=\"/add\" element={<AddPage />} />",
+    "nth": 0,
+    "after": 500
+   }
+  ],
+  "wrong": [
+   {
+    "fill": "input.vsc-input",
+    "value": "<Route path=\"/add\" element={<AddPage />} />",
+    "nth": 0,
+    "after": 500
+   }
+  ],
+  "rightAfterWrong": [],
+  "rightAfterF5": []
+ },
+ {
+  "file": "src/3-Modull/ReactStateEffectLesson.jsx",
+  "sid": "s15",
+  "test": true,
+  "missed": false,
+  "note": "yozma: faqat bajarildi (kalit -1, diskret urinish yo'q) — wrong = right; SOLO-xato ma'nosiz · useState",
+  "right": [
+   {
+    "fill": "input.vsc-input",
+    "value": "const [likes, setLikes] = useState(0)",
+    "nth": 0,
+    "after": 500
+   }
+  ],
+  "wrong": [
+   {
+    "fill": "input.vsc-input",
+    "value": "const [likes, setLikes] = useState(0)",
+    "nth": 0,
+    "after": 500
+   }
+  ],
+  "rightAfterWrong": [],
+  "rightAfterF5": []
+ },
+ {
+  "file": "src/4-Modull/AuthEnvLesson.jsx",
+  "sid": "s15",
+  "test": true,
+  "missed": false,
+  "note": "yozma: faqat bajarildi (kalit -1, diskret urinish yo'q) — wrong = right; SOLO-xato ma'nosiz · .env kaliti",
+  "right": [
+   {
+    "fill": "input.envinput",
+    "value": "JWT_SECRET=abc123xyz",
+    "nth": 0,
+    "after": 500
+   }
+  ],
+  "wrong": [
+   {
+    "fill": "input.envinput",
+    "value": "JWT_SECRET=abc123xyz",
+    "nth": 0,
+    "after": 500
+   }
+  ],
+  "rightAfterWrong": [],
+  "rightAfterF5": []
+ },
+ {
+  "file": "src/4-Modull/FullstackFeedbackLesson.jsx",
+  "sid": "s16",
+  "test": true,
+  "missed": false,
+  "note": "yozma: faqat bajarildi (kalit -1, diskret urinish yo'q) — wrong = right; SOLO-xato ma'nosiz · confirm",
+  "right": [
+   {
+    "fill": "input.vsc-input",
+    "value": "confirm",
+    "nth": 0,
+    "after": 500
+   }
+  ],
+  "wrong": [
+   {
+    "fill": "input.vsc-input",
+    "value": "confirm",
+    "nth": 0,
+    "after": 500
+   }
+  ],
+  "rightAfterWrong": [],
+  "rightAfterF5": []
+ },
+ {
+  "file": "src/4-Modull/FullstackProjectDayLesson.jsx",
+  "sid": "s16",
+  "test": true,
+  "missed": false,
+  "note": "yozma: faqat bajarildi (kalit -1, diskret urinish yo'q) — wrong = right; SOLO-xato ma'nosiz · JOIN ON",
+  "right": [
+   {
+    "fill": "input.vsc-input",
+    "value": "sessiyalar.joy_id = joylar.id",
+    "nth": 0,
+    "after": 500
+   }
+  ],
+  "wrong": [
+   {
+    "fill": "input.vsc-input",
+    "value": "sessiyalar.joy_id = joylar.id",
+    "nth": 0,
+    "after": 500
+   }
+  ],
+  "rightAfterWrong": [],
+  "rightAfterF5": []
+ },
+ {
+  "file": "src/4-Modull/NodeServerLesson.jsx",
+  "sid": "s15",
+  "test": true,
+  "missed": false,
+  "note": "yozma: faqat bajarildi (kalit -1, diskret urinish yo'q) — wrong = right; SOLO-xato ma'nosiz · endpoint",
+  "right": [
+   {
+    "fill": "input.vsc-input",
+    "value": "app.get('/salom', (req, res) => res.send('Salom'))",
+    "nth": 0,
+    "after": 500
+   }
+  ],
+  "wrong": [
+   {
+    "fill": "input.vsc-input",
+    "value": "app.get('/salom', (req, res) => res.send('Salom'))",
+    "nth": 0,
+    "after": 500
+   }
+  ],
+  "rightAfterWrong": [],
+  "rightAfterF5": []
+ },
+ {
+  "file": "src/4-Modull/PostgresCrudLesson.jsx",
+  "sid": "s15",
+  "test": true,
+  "missed": false,
+  "note": "yozma: faqat bajarildi (kalit -1, diskret urinish yo'q) — wrong = right; SOLO-xato ma'nosiz · INSERT",
+  "right": [
+   {
+    "fill": "input.vsc-input",
+    "value": "INSERT INTO products (nom, narx, soni) VALUES ('Olma', 5000, 10)",
+    "nth": 0,
+    "after": 500
+   }
+  ],
+  "wrong": [
+   {
+    "fill": "input.vsc-input",
+    "value": "INSERT INTO products (nom, narx, soni) VALUES ('Olma', 5000, 10)",
+    "nth": 0,
+    "after": 500
+   }
+  ],
+  "rightAfterWrong": [],
+  "rightAfterF5": []
+ },
+ {
+  "file": "src/2-Modull/PracticeLesson2.jsx",
+  "sid": "s15",
+  "test": true,
+  "missed": false,
+  "note": "yozma: faqat bajarildi (kalit -1, diskret urinish yo'q) — wrong = right; SOLO-xato ma'nosiz · 4 ingredient (xato yo'li yo'q)",
+  "right": [
+   {
+    "click": "button.chip:has-text(\"Tadbir\")"
+   },
+   {
+    "click": "button.chip:has-text(\"Zamonaviy\")"
+   },
+   {
+    "click": "button.chip:has-text(\"Ko'k\")"
+   },
+   {
+    "click": "button.chip:has-text(\"Tugma\")",
+    "after": 600
+   }
+  ],
+  "wrong": [
+   {
+    "click": "button.chip:has-text(\"Tadbir\")"
+   },
+   {
+    "click": "button.chip:has-text(\"Zamonaviy\")"
+   },
+   {
+    "click": "button.chip:has-text(\"Ko'k\")"
+   },
+   {
+    "click": "button.chip:has-text(\"Tugma\")",
+    "after": 600
+   }
+  ],
+  "rightAfterWrong": [],
+  "rightAfterF5": []
+ },
+ {
+  "file": "src/4b-Modull/EdgeCasesTestLesson.jsx",
+  "sid": "s16",
+  "test": true,
+  "missed": false,
+  "note": "karta-tanlov (kalit 1): xato → keyin to'g'ri",
+  "right": [
+   {
+    "click": "button:has(span.mono:text-is(\"1\"))",
+    "after": 800
+   }
+  ],
+  "wrong": [
+   {
+    "click": "button:has(span.mono:text-is(\"0\"))",
+    "after": 800
+   }
+  ],
+  "rightAfterWrong": [
+   {
+    "click": "button:has(span.mono:text-is(\"1\"))",
+    "after": 800
+   }
+  ]
+ },
+ {
+  "file": "src/4b-Modull/JestUnitTestLesson.jsx",
+  "sid": "s16",
+  "test": true,
+  "missed": false,
+  "note": "karta-tanlov (kalit 1): xato → keyin to'g'ri",
+  "right": [
+   {
+    "click": "button:has(span.mono:text-is(\"15000\"))",
+    "after": 800
+   }
+  ],
+  "wrong": [
+   {
+    "click": "button:has(span.mono:text-is(\"5003\"))",
+    "after": 800
+   }
+  ],
+  "rightAfterWrong": [
+   {
+    "click": "button:has(span.mono:text-is(\"15000\"))",
+    "after": 800
+   }
+  ]
+ },
+ {
+  "file": "src/4c-Modull/GithubActionsLesson.jsx",
+  "sid": "s18",
+  "test": true,
+  "missed": false,
+  "note": "bir martalik tanlov (kalit 0) — tanlov qotadi",
+  "right": [
+   {
+    "click": "button.option",
+    "nth": 0,
+    "after": 800
+   }
+  ],
+  "wrong": [
+   {
+    "click": "button.option",
+    "nth": 1,
+    "after": 800
+   }
+  ],
+  "rightAfterWrong": [],
+  "rightAfterF5": []
+ },
+ {
+  "file": "src/pm/PmMetricsLesson.jsx",
+  "sid": "s9",
+  "test": true,
+  "missed": false,
+  "note": "juftlash (kalit 0), bir martalik — 4 juft joylangach qotadi",
+  "right": [
+   {
+    "click": ".match-chip:has-text(\"DAU\")"
+   },
+   {
+    "click": ".match-target:has-text(\"Bugun nechta odam kirdi\")",
+    "after": 400
+   },
+   {
+    "click": ".match-chip:has-text(\"retention\")"
+   },
+   {
+    "click": ".match-target:has-text(\"Kelganlardan necha kishi\")",
+    "after": 400
+   },
+   {
+    "click": ".match-chip:has-text(\"churn\")"
+   },
+   {
+    "click": ".match-target:has-text(\"Necha kishi butunlay\")",
+    "after": 400
+   },
+   {
+    "click": ".match-chip:has-text(\"North Star\")"
+   },
+   {
+    "click": ".match-target:has-text(\"Mahsulot odamga haqiqiy\")",
+    "after": 400
+   }
+  ],
+  "wrong": [
+   {
+    "click": ".match-chip:has-text(\"DAU\")"
+   },
+   {
+    "click": ".match-target:has-text(\"Kelganlardan necha kishi\")",
+    "after": 400
+   },
+   {
+    "click": ".match-chip:has-text(\"retention\")"
+   },
+   {
+    "click": ".match-target:has-text(\"Bugun nechta odam kirdi\")",
+    "after": 400
+   },
+   {
+    "click": ".match-chip:has-text(\"churn\")"
+   },
+   {
+    "click": ".match-target:has-text(\"Necha kishi butunlay\")",
+    "after": 400
+   },
+   {
+    "click": ".match-chip:has-text(\"North Star\")"
+   },
+   {
+    "click": ".match-target:has-text(\"Mahsulot odamga haqiqiy\")",
+    "after": 400
+   }
+  ],
+  "rightAfterWrong": [],
+  "rightAfterF5": []
+ }
+]

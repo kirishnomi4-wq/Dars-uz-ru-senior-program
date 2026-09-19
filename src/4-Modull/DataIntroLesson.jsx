@@ -230,7 +230,7 @@ const RECAP_MIN_ANSWERS = 3;
 const RcFlow = ({ items, sep = '→' }) => (
   <div className="rc-flow">{items.map((t, i) => <React.Fragment key={i}><span className="rc-chip">{t}</span>{sep && i < items.length - 1 && <span className="rc-arr">{sep}</span>}</React.Fragment>)}</div>
 );
-const INLINE_KEYS = { s4: 0, s5b: 2, s9: 1, s12: 3, s15: -1, s15b: -1, practice: -1 };
+const INLINE_KEYS = { s4: 0, s5b: 2, s9: 1, s12: 3, s15: 0, s15b: 0, practice: -1 };
 const RECAPS = {
   4: {
     title: { uz: "JSON — tartibli kalit: qiymat", ru: 'JSON — упорядоченные ключ: значение' },
@@ -1437,12 +1437,14 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [doneRels, setDoneRels] = useState(storedAnswer ? new Set(ALL) : new Set());
   const [wrong, setWrong] = useState(false);
   const wrongRef = useRef(storedAnswer ? (storedAnswer.wrongCount || 0) : 0); // 136-qonun: xatosiz yechdimi
+  const achMiss = useContext(AchMissCtx); // ball — birinchi urinish (8-A, Q4): rad etilgan ulash progressga ham yoziladi (F5 dan keyin ham)
   const [shakeId, setShakeId] = useState(null); // faqat animatsiya: xato ulanishda vilka silkinadi
   const allDone = ALL.every(r => doneRels.has(r));
   const doneFields = new Set([...doneRels]); // FK id'lar bajarilgan
   useEffect(() => {
     if (allDone && !storedAnswer) {
-      onAnswer(screen, { stage: 'final', screenIdx: screen, question: tr({ uz: "Ilova ma'lumot sxemasini ulab chizish (3 bog'lanish)", ru: 'Соединить схему данных приложения (3 связи)' }), correct: true, firstAttemptCorrect: wrongRef.current === 0, wrongCount: wrongRef.current, solved: true, picked: 'connected' });
+      const first = wrongRef.current === 0 && !(achMiss && achMiss.missed.has(SCREEN_META[screen].id));
+      onAnswer(screen, { stage: 'final', screenIdx: screen, question: tr({ uz: "Ilova ma'lumot sxemasini ulab chizish (3 bog'lanish)", ru: 'Соединить схему данных приложения (3 связи)' }), correct: first, firstAttemptCorrect: first, wrongCount: wrongRef.current, solved: true, picked: first ? 0 : 1 });
     }
   }, [allDone]);
   const clickField = (id, col) => {
@@ -1459,7 +1461,7 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     } else if (col.fk) {
       setSel(id);                 // boshqa FK bosilsa — qayta tanlash
     } else {
-      wrongRef.current += 1;
+      wrongRef.current += 1; if (achMiss) achMiss.miss(screen);
       setWrong(true); setShakeId(sel); setSel(null);
       setTimeout(() => setShakeId(prev => (prev === sel ? null : prev)), 460);
     }
@@ -1559,16 +1561,18 @@ const ScreenFindFk = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [miss, setMiss] = useState(null);
   const [shakeId, setShakeId] = useState(null);
   const wrongRef = useRef(storedAnswer ? (storedAnswer.wrongCount || 0) : 0);
+  const achMiss = useContext(AchMissCtx); // ball — birinchi urinish (8-A, Q4): rad etilgan har bosish progressga ham yoziladi (F5 dan keyin ham)
   const marking = marked.size < ALL.length;
   const allDone = ALL.every(r => doneRels.has(r));
   const bump = (id) => {
-    wrongRef.current += 1;
+    wrongRef.current += 1; if (achMiss) achMiss.miss(screen);
     setShakeId(id);
     setTimeout(() => setShakeId(prev => (prev === id ? null : prev)), 460);
   };
   useEffect(() => {
     if (allDone && !storedAnswer) {
-      onAnswer(screen, { stage: 'final', screenIdx: screen, question: tr({ uz: "Bog'lovchi ustunlarni topib, sxemani ulash (maktab jurnali)", ru: 'Найти связующие столбцы и соединить схему (школьный журнал)' }), correct: true, firstAttemptCorrect: wrongRef.current === 0, wrongCount: wrongRef.current, solved: true, picked: 'found-and-connected' });
+      const first = wrongRef.current === 0 && !(achMiss && achMiss.missed.has(SCREEN_META[screen].id));
+      onAnswer(screen, { stage: 'final', screenIdx: screen, question: tr({ uz: "Bog'lovchi ustunlarni topib, sxemani ulash (maktab jurnali)", ru: 'Найти связующие столбцы и соединить схему (школьный журнал)' }), correct: first, firstAttemptCorrect: first, wrongCount: wrongRef.current, solved: true, picked: first ? 0 : 1 });
     }
   }, [allDone]);
   const clickField = (id, col) => {
@@ -2609,7 +2613,7 @@ export default function DataIntroLesson({ lang: langProp, onFinished, liveToken 
   const missTry = useCallback((idx) => {
     const sid = SCREEN_META[idx] && SCREEN_META[idx].id;
     const ach = ACH_TRIGGERS[sid];
-    if (!ach || missedRef.current.has(sid) || earnedRef.current.has(ach)) return;
+    if (!sid || missedRef.current.has(sid) || (ach && earnedRef.current.has(ach))) return; // nishonsiz test-ekran ham (ball — birinchi to'liq urinish, F5 dan keyin ham)
     missedRef.current.add(sid);
     setMissed(new Set(missedRef.current));
   }, []);
@@ -2642,7 +2646,7 @@ export default function DataIntroLesson({ lang: langProp, onFinished, liveToken 
       if (Number.isInteger(key)) { soloSentRef.current.add(idx); live.submitAnswer(idx, _m.id, key < 0 ? 0 : (data.correct ? key : (key === 0 ? 1 : 0)), !!data.correct, data.elapsedMs || 0); }
     }
     if (_m && ACH_TRIGGERS[_m.id] && data && data.correct && !missedRef.current.has(_m.id)) earn(ACH_TRIGGERS[_m.id]); // 🏅 nishon (faqat REAL solve)
-    if (_m && _m.scored && _m.scope === 'final' && data && data.correct && live.mode === 'student') live.submitAnswer(idx, _m.id, 0, true, 0); // yakuniy sxema-gate: serverga baholash uchun (s15 = -1, picked=0/correct=true)
+    if (_m && _m.scored && _m.scope === 'final' && data && data.solved && live.mode === 'student') live.submitAnswer(idx, _m.id, data.picked === 1 ? 1 : 0, !!data.correct, 0); // yakuniy sxema-gate: serverga baholash uchun · 19.09: kalit 0, ball — birinchi urinish (picked 0 = to'g'ri, 1 = xato)
   };
   const reset = () => { if (!firstPassRef.current) { firstPassRef.current = { answers, durationSec: Math.floor((Date.now() - startTimeRef.current) / 1000) }; setFpPractice(true); } progClear(LESSON_META.lessonId); setAnswers({}); setScreen(0); startTimeRef.current = Date.now(); };
   // F-0730-01: har o'zgarishda progress saqlanadi (screen + javoblar + nishonlar + boshlangan vaqt)

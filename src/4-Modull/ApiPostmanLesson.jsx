@@ -225,7 +225,7 @@ const FeedbackBlock = ({ show, isCorrect, neutral, children }) => {
 // JONLI JAVOB KALITI — SCORED ekranlar correctIdx (final -1). Pozitsiyalar aralashtirilgan (2/0/3/1). Kalit qiymatini ⚡ Jonli tekshiradi.
 // -1 = "ishtirok" sentineli (server: correct_idx < 0 → to'ldirgani = to'g'ri). s15 = yakuniy amaliy, 'practice' = «Bajardim» signali.
 // Kalitsiz question_id'ni server correct=false deb yozadi — shuning uchun 'practice' ham SHU YERDA bo'lishi shart.
-const INLINE_KEYS = { s4: 2, s5b: 0, s9: 3, s12: 1, s15: -1, practice: -1 };
+const INLINE_KEYS = { s4: 2, s5b: 0, s9: 3, s12: 1, s15: 0, practice: -1 };
 const MSTATS_COLORS = ['#019ACB', '#8B5CF6', '#E8A13A', '#E0559A'];
 const RECAP_NEED_PCT = 60;
 const RECAP_GOOD_PCT = 75;
@@ -1371,13 +1371,18 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [method, setMethod] = useState(storedAnswer ? 'POST' : null);
   const [sending, setSending] = useState(false);
   const [sent, setSent] = useState(false);
-  const [passed, setPassed] = useState(!!storedAnswer?.correct);
+  const [passed, setPassed] = useState(!!(storedAnswer && (storedAnswer.solved || storedAnswer.correct)));
+  // Ball — birinchi urinish (8-A, Q4): «Send» noto'g'ri method bilan bosilib javob kelsa — urinish xato (F5 dan keyin ham).
+  // Method tanlash o'zi urinish emas (yuborilmagan).
+  const achMiss = useContext(AchMissCtx);
+  const wrongEverRef = useRef(false);
   const isCorrect = method === 'POST';
   const status = isCorrect ? 201 : (method === 'GET' ? 200 : method === 'DELETE' ? 400 : method === 'PUT' ? 400 : null);
   const body = { nom: 'Mishka', narx: 50000, soni: 10 };
   const send = () => { if (!method || sending) return; setSending(true); setSent(false); setTimeout(() => { setSending(false); setSent(true); }, 850); };
   useEffect(() => {
-    if (sent && isCorrect && !passed) { setPassed(true); onAnswer(screen, { stage: 'final', screenIdx: screen, question: "Yangi mahsulot qo'shish uchun to'g'ri so'rovni yig'ing", studentAnswer: method, correct: true, firstAttemptCorrect: true, solved: true, picked: method }); }
+    if (sent && !isCorrect && !passed) { wrongEverRef.current = true; if (achMiss) achMiss.miss(screen); }
+    if (sent && isCorrect && !passed) { setPassed(true); const first = !wrongEverRef.current && !(achMiss && achMiss.missed.has(SCREEN_META[screen].id)); onAnswer(screen, { stage: 'final', screenIdx: screen, question: "Yangi mahsulot qo'shish uchun to'g'ri so'rovni yig'ing", studentAnswer: method, correct: first, firstAttemptCorrect: first, solved: true, picked: first ? 0 : 1 }); }
   }, [sent, isCorrect]);
   const pickMethod = (m) => { if (passed) return; setMethod(m); setSent(false); };
   const navLabel = passed ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : (method ? (sent ? tr({ uz: 'Boshqa method tanlang', ru: 'Выберите другой метод' }) : tr({ uz: '▶ Send bosing', ru: '▶ Нажмите Send' })) : tr({ uz: 'Method tanlang', ru: 'Выберите метод' }));
@@ -2362,7 +2367,7 @@ export default function ApiPostmanLesson({ lang: langProp, onFinished, liveToken
   const missTry = useCallback((idx) => {
     const sid = SCREEN_META[idx] && SCREEN_META[idx].id;
     const ach = ACH_TRIGGERS[sid];
-    if (!ach || missedRef.current.has(sid) || earnedRef.current.has(ach)) return;
+    if (!sid || missedRef.current.has(sid) || (ach && earnedRef.current.has(ach))) return; // nishonsiz test-ekran ham (ball — birinchi to'liq urinish, F5 dan keyin ham)
     missedRef.current.add(sid);
     setMissed(new Set(missedRef.current));
   }, []);
@@ -2392,7 +2397,7 @@ export default function ApiPostmanLesson({ lang: langProp, onFinished, liveToken
       if (Number.isInteger(key)) { soloSentRef.current.add(idx); live.submitAnswer(idx, _m.id, key < 0 ? 0 : (data.correct ? key : (key === 0 ? 1 : 0)), !!data.correct, data.elapsedMs || 0); }
     }
     if (_m && ACH_TRIGGERS[_m.id] && data && data.correct && !missedRef.current.has(_m.id)) earn(ACH_TRIGGERS[_m.id]); // 🏅 nishon (faqat REAL solve)
-    if (_m && _m.scored && _m.scope === 'final' && data && data.correct && live.mode === 'student') live.submitAnswer(idx, _m.id, 0, true, 0); // final submit (M4-P1 xato-sinfi)
+    if (_m && _m.scored && _m.scope === 'final' && data && data.solved && live.mode === 'student') live.submitAnswer(idx, _m.id, data.picked === 1 ? 1 : 0, !!data.correct, 0); // final submit (M4-P1 xato-sinfi); ball — birinchi urinish (picked 0/1, kalit 0)
   };
   const reset = () => { if (!firstPassRef.current) { firstPassRef.current = { answers, durationSec: Math.floor((Date.now() - startTimeRef.current) / 1000) }; setFpPractice(true); } progClear(LESSON_META.lessonId); setAnswers({}); setScreen(0); startTimeRef.current = Date.now(); };
   // F-0730-01: har o'zgarishda progress saqlanadi (screen + javoblar + nishonlar + boshlangan vaqt)

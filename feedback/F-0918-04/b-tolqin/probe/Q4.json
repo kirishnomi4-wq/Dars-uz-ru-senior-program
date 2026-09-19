@@ -1,0 +1,393 @@
+[
+ {
+  "file": "src/2-Modull/PracticeLesson1.jsx",
+  "sid": "s15",
+  "test": true,
+  "note": "Q4: tanlov — noto'g'ri hodisa/reaksiya chipi = xato urinish",
+  "right": [
+   {
+    "click": "button.chip:has-text(\"Bosilganda\")"
+   },
+   {
+    "click": "button.chip:has-text(\"Rangni\")",
+    "after": 900
+   }
+  ],
+  "wrong": [
+   {
+    "click": "button.chip:has-text(\"Hover\")",
+    "after": 500
+   }
+  ],
+  "rightAfterWrong": [
+   {
+    "click": "button.chip:has-text(\"Bosilganda\")"
+   },
+   {
+    "click": "button.chip:has-text(\"Rangni\")",
+    "after": 900
+   }
+  ]
+ },
+ {
+  "file": "src/2-Modull/PracticeLesson3.jsx",
+  "sid": "s15",
+  "test": true,
+  "note": "Q4: MVP/keyin tanlovi — noto'g'ri joylangan band = xato urinish",
+  "right": [
+   {
+    "click": ".frame:has-text(\"Taomlar menyusi\") >> button:has-text(\"Shart\")"
+   },
+   {
+    "click": ".frame:has-text(\"Narxlar\") >> button:has-text(\"Shart\")"
+   },
+   {
+    "click": ".frame:has-text(\"Onlayn buyurtma\") >> button:has-text(\"Keyin\")"
+   },
+   {
+    "click": ".frame:has-text(\"Mijoz sharhlari\") >> button:has-text(\"Keyin\")",
+    "after": 900
+   }
+  ],
+  "wrong": [
+   {
+    "click": ".frame:has-text(\"Taomlar menyusi\") >> button:has-text(\"Keyin\")",
+    "after": 500
+   }
+  ],
+  "rightAfterWrong": [
+   {
+    "click": ".frame:has-text(\"Taomlar menyusi\") >> button:has-text(\"Shart\")"
+   },
+   {
+    "click": ".frame:has-text(\"Narxlar\") >> button:has-text(\"Shart\")"
+   },
+   {
+    "click": ".frame:has-text(\"Onlayn buyurtma\") >> button:has-text(\"Keyin\")"
+   },
+   {
+    "click": ".frame:has-text(\"Mijoz sharhlari\") >> button:has-text(\"Keyin\")",
+    "after": 900
+   }
+  ]
+ },
+ {
+  "file": "src/4-Modull/ApiPostmanLesson.jsx",
+  "sid": "s15",
+  "test": true,
+  "note": "Q4: Send noto'g'ri method bilan = xato urinish; method tanlashning o'zi — urinish emas (S3)",
+  "right": [
+   {
+    "click": ".pm-mbtn:has-text(\"POST\")"
+   },
+   {
+    "click": ".pm-send",
+    "after": 1400
+   }
+  ],
+  "wrong": [
+   {
+    "click": ".pm-mbtn:has-text(\"GET\")"
+   },
+   {
+    "click": ".pm-send",
+    "after": 1400
+   }
+  ],
+  "rightAfterWrong": [
+   {
+    "click": ".pm-mbtn:has-text(\"POST\")"
+   },
+   {
+    "click": ".pm-send",
+    "after": 1400
+   }
+  ],
+  "slip": [
+   {
+    "click": ".pm-mbtn:has-text(\"GET\")",
+    "after": 500
+   }
+  ]
+ },
+ {
+  "file": "src/4-Modull/DbSqlNosqlLesson.jsx",
+  "sid": "s15",
+  "test": true,
+  "note": "Q4: kompas — to'rtala javob berilib strelka noto'g'ri = xato to'liq urinish; qisman javob — urinish emas (S3)",
+  "right": [
+   {
+    "eval": "(() => { const r=document.querySelectorAll('.ynrow'); [0,0,0,1].forEach((j,i)=>r[i].querySelectorAll('.ynbtns button')[j].click()); })()",
+    "after": 900
+   }
+  ],
+  "wrong": [
+   {
+    "eval": "(() => { const r=document.querySelectorAll('.ynrow'); [1,1,0,1].forEach((j,i)=>r[i].querySelectorAll('.ynbtns button')[j].click()); })()",
+    "after": 700
+   }
+  ],
+  "rightAfterWrong": [
+   {
+    "eval": "(() => { const r=document.querySelectorAll('.ynrow'); [0,0].forEach((j,i)=>r[i].querySelectorAll('.ynbtns button')[j].click()); })()",
+    "after": 900
+   }
+  ],
+  "slip": [
+   {
+    "eval": "(() => { const r=document.querySelectorAll('.ynrow'); [1,1].forEach((j,i)=>r[i].querySelectorAll('.ynbtns button')[j].click()); })()",
+    "after": 500
+   }
+  ]
+ },
+ {
+  "file": "src/4-Modull/DataIntroLesson.jsx",
+  "sid": "s15",
+  "test": true,
+  "note": "Q4: sxema ulash — FK ni PK emas ustunga ulash rad etiladi = xato urinish",
+  "right": [
+   {
+    "eval": "(() => { const n=[...document.querySelectorAll('.schema-node')].find(x=>x.querySelector('.tcard-h').innerText.trim()==='posts'); n.querySelectorAll('.tcard-row')[1].click(); })()",
+    "after": 350
+   },
+   {
+    "eval": "(() => { const n=[...document.querySelectorAll('.schema-node')].find(x=>x.querySelector('.tcard-h').innerText.trim()==='users'); n.querySelectorAll('.tcard-row')[0].click(); })()",
+    "after": 350
+   },
+   {
+    "eval": "(() => { const n=[...document.querySelectorAll('.schema-node')].find(x=>x.querySelector('.tcard-h').innerText.trim()==='comments'); n.querySelectorAll('.tcard-row')[1].click(); })()",
+    "after": 350
+   },
+   {
+    "eval": "(() => { const n=[...document.querySelectorAll('.schema-node')].find(x=>x.querySelector('.tcard-h').innerText.trim()==='posts'); n.querySelectorAll('.tcard-row')[0].click(); })()",
+    "after": 350
+   },
+   {
+    "eval": "(() => { const n=[...document.querySelectorAll('.schema-node')].find(x=>x.querySelector('.tcard-h').innerText.trim()==='comments'); n.querySelectorAll('.tcard-row')[2].click(); })()",
+    "after": 350
+   },
+   {
+    "eval": "(() => { const n=[...document.querySelectorAll('.schema-node')].find(x=>x.querySelector('.tcard-h').innerText.trim()==='users'); n.querySelectorAll('.tcard-row')[0].click(); })()",
+    "after": 900
+   }
+  ],
+  "wrong": [
+   {
+    "eval": "(() => { const n=[...document.querySelectorAll('.schema-node')].find(x=>x.querySelector('.tcard-h').innerText.trim()==='posts'); n.querySelectorAll('.tcard-row')[1].click(); })()",
+    "after": 350
+   },
+   {
+    "eval": "(() => { const n=[...document.querySelectorAll('.schema-node')].find(x=>x.querySelector('.tcard-h').innerText.trim()==='users'); n.querySelectorAll('.tcard-row')[1].click(); })()",
+    "after": 600
+   }
+  ],
+  "rightAfterWrong": [
+   {
+    "eval": "(() => { const n=[...document.querySelectorAll('.schema-node')].find(x=>x.querySelector('.tcard-h').innerText.trim()==='posts'); n.querySelectorAll('.tcard-row')[1].click(); })()",
+    "after": 350
+   },
+   {
+    "eval": "(() => { const n=[...document.querySelectorAll('.schema-node')].find(x=>x.querySelector('.tcard-h').innerText.trim()==='users'); n.querySelectorAll('.tcard-row')[0].click(); })()",
+    "after": 350
+   },
+   {
+    "eval": "(() => { const n=[...document.querySelectorAll('.schema-node')].find(x=>x.querySelector('.tcard-h').innerText.trim()==='comments'); n.querySelectorAll('.tcard-row')[1].click(); })()",
+    "after": 350
+   },
+   {
+    "eval": "(() => { const n=[...document.querySelectorAll('.schema-node')].find(x=>x.querySelector('.tcard-h').innerText.trim()==='posts'); n.querySelectorAll('.tcard-row')[0].click(); })()",
+    "after": 350
+   },
+   {
+    "eval": "(() => { const n=[...document.querySelectorAll('.schema-node')].find(x=>x.querySelector('.tcard-h').innerText.trim()==='comments'); n.querySelectorAll('.tcard-row')[2].click(); })()",
+    "after": 350
+   },
+   {
+    "eval": "(() => { const n=[...document.querySelectorAll('.schema-node')].find(x=>x.querySelector('.tcard-h').innerText.trim()==='users'); n.querySelectorAll('.tcard-row')[0].click(); })()",
+    "after": 900
+   }
+  ]
+ },
+ {
+  "file": "src/4-Modull/DataIntroLesson.jsx",
+  "sid": "s15b",
+  "test": true,
+  "note": "Q4: bog'lovchi ustunni topish — PK/oddiy ustunni belgilash rad etiladi = xato urinish",
+  "right": [
+   {
+    "eval": "(() => { const n=[...document.querySelectorAll('.schema-node')].find(x=>x.querySelector('.tcard-h').innerText.trim()==='grades'); n.querySelectorAll('.tcard-row')[1].click(); })()",
+    "after": 350
+   },
+   {
+    "eval": "(() => { const n=[...document.querySelectorAll('.schema-node')].find(x=>x.querySelector('.tcard-h').innerText.trim()==='grades'); n.querySelectorAll('.tcard-row')[2].click(); })()",
+    "after": 350
+   },
+   {
+    "eval": "(() => { const n=[...document.querySelectorAll('.schema-node')].find(x=>x.querySelector('.tcard-h').innerText.trim()==='grades'); n.querySelectorAll('.tcard-row')[1].click(); })()",
+    "after": 350
+   },
+   {
+    "eval": "(() => { const n=[...document.querySelectorAll('.schema-node')].find(x=>x.querySelector('.tcard-h').innerText.trim()==='students'); n.querySelectorAll('.tcard-row')[0].click(); })()",
+    "after": 350
+   },
+   {
+    "eval": "(() => { const n=[...document.querySelectorAll('.schema-node')].find(x=>x.querySelector('.tcard-h').innerText.trim()==='grades'); n.querySelectorAll('.tcard-row')[2].click(); })()",
+    "after": 350
+   },
+   {
+    "eval": "(() => { const n=[...document.querySelectorAll('.schema-node')].find(x=>x.querySelector('.tcard-h').innerText.trim()==='subjects'); n.querySelectorAll('.tcard-row')[0].click(); })()",
+    "after": 900
+   }
+  ],
+  "wrong": [
+   {
+    "eval": "(() => { const n=[...document.querySelectorAll('.schema-node')].find(x=>x.querySelector('.tcard-h').innerText.trim()==='grades'); n.querySelectorAll('.tcard-row')[0].click(); })()",
+    "after": 600
+   }
+  ],
+  "rightAfterWrong": [
+   {
+    "eval": "(() => { const n=[...document.querySelectorAll('.schema-node')].find(x=>x.querySelector('.tcard-h').innerText.trim()==='grades'); n.querySelectorAll('.tcard-row')[1].click(); })()",
+    "after": 350
+   },
+   {
+    "eval": "(() => { const n=[...document.querySelectorAll('.schema-node')].find(x=>x.querySelector('.tcard-h').innerText.trim()==='grades'); n.querySelectorAll('.tcard-row')[2].click(); })()",
+    "after": 350
+   },
+   {
+    "eval": "(() => { const n=[...document.querySelectorAll('.schema-node')].find(x=>x.querySelector('.tcard-h').innerText.trim()==='grades'); n.querySelectorAll('.tcard-row')[1].click(); })()",
+    "after": 350
+   },
+   {
+    "eval": "(() => { const n=[...document.querySelectorAll('.schema-node')].find(x=>x.querySelector('.tcard-h').innerText.trim()==='students'); n.querySelectorAll('.tcard-row')[0].click(); })()",
+    "after": 350
+   },
+   {
+    "eval": "(() => { const n=[...document.querySelectorAll('.schema-node')].find(x=>x.querySelector('.tcard-h').innerText.trim()==='grades'); n.querySelectorAll('.tcard-row')[2].click(); })()",
+    "after": 350
+   },
+   {
+    "eval": "(() => { const n=[...document.querySelectorAll('.schema-node')].find(x=>x.querySelector('.tcard-h').innerText.trim()==='subjects'); n.querySelectorAll('.tcard-row')[0].click(); })()",
+    "after": 900
+   }
+  ]
+ },
+ {
+  "file": "src/4-Modull/RoutingLesson.jsx",
+  "sid": "s15",
+  "test": true,
+  "note": "Q4: so'rov ↔ eshik — xato juftlik rad etiladi = xato urinish; jonli darsda endi serverga ham yuboriladi",
+  "right": [
+   {
+    "click": ".rq-card:has-text(\"GET\"):has-text(\"/games\")"
+   },
+   {
+    "click": ".rq-target:has-text(\"@Get\")"
+   },
+   {
+    "click": ".rq-card:has-text(\"POST\")"
+   },
+   {
+    "click": ".rq-target:has-text(\"@Post\")"
+   },
+   {
+    "click": ".rq-card:has-text(\"/gams\")"
+   },
+   {
+    "click": ".rq-target:has-text(\"404\")",
+    "after": 900
+   }
+  ],
+  "wrong": [
+   {
+    "click": ".rq-card:has-text(\"GET\"):has-text(\"/games\")"
+   },
+   {
+    "click": ".rq-target:has-text(\"@Post\")",
+    "after": 700
+   }
+  ],
+  "rightAfterWrong": [
+   {
+    "click": ".rq-target:has-text(\"@Get\")"
+   },
+   {
+    "click": ".rq-card:has-text(\"POST\")"
+   },
+   {
+    "click": ".rq-target:has-text(\"@Post\")"
+   },
+   {
+    "click": ".rq-card:has-text(\"/gams\")"
+   },
+   {
+    "click": ".rq-target:has-text(\"404\")",
+    "after": 900
+   }
+  ]
+ },
+ {
+  "file": "src/4a-Modull/NestArchAliveLesson.jsx",
+  "sid": "s19",
+  "test": true,
+  "note": "Q4 (F5): xato qatorni bosish = xato urinish; to'g'ri qator topilib service fayliga sudraladi",
+  "right": [
+   {
+    "click": ".ai-line:has-text(\"bcrypt.hash\")",
+    "after": 500
+   },
+   {
+    "eval": "(() => { const el=document.querySelector('.ai-line.rz-move'); const z=document.querySelector('.rz-drop'); const a=el.getBoundingClientRect(), b=z.getBoundingClientRect(); const sx=a.left+a.width/2, sy=a.top+a.height/2, ex=b.left+b.width/2, ey=b.top+b.height/2; el.dispatchEvent(new PointerEvent('pointerdown',{bubbles:true,cancelable:true,clientX:sx,clientY:sy,button:0,pointerId:1})); window.dispatchEvent(new PointerEvent('pointermove',{clientX:ex,clientY:ey,pointerId:1})); window.dispatchEvent(new PointerEvent('pointerup',{clientX:ex,clientY:ey,pointerId:1})); })()",
+    "after": 900
+   }
+  ],
+  "wrong": [
+   {
+    "click": ".ai-line:has-text(\"async create\")",
+    "after": 700
+   }
+  ],
+  "rightAfterWrong": [
+   {
+    "click": ".ai-line:has-text(\"bcrypt.hash\")",
+    "after": 500
+   },
+   {
+    "eval": "(() => { const el=document.querySelector('.ai-line.rz-move'); const z=document.querySelector('.rz-drop'); const a=el.getBoundingClientRect(), b=z.getBoundingClientRect(); const sx=a.left+a.width/2, sy=a.top+a.height/2, ex=b.left+b.width/2, ey=b.top+b.height/2; el.dispatchEvent(new PointerEvent('pointerdown',{bubbles:true,cancelable:true,clientX:sx,clientY:sy,button:0,pointerId:1})); window.dispatchEvent(new PointerEvent('pointermove',{clientX:ex,clientY:ey,pointerId:1})); window.dispatchEvent(new PointerEvent('pointerup',{clientX:ex,clientY:ey,pointerId:1})); })()",
+    "after": 900
+   }
+  ]
+ },
+ {
+  "file": "src/4a-Modull/NestArchResourceLesson.jsx",
+  "sid": "s17",
+  "test": true,
+  "note": "Q4 (F5): to'g'ri (begona emas) qatorni bosish = xato urinish; begona @Column topilib olib tashlanadi",
+  "right": [
+   {
+    "click": ".ai-line:has-text(\"@Column\")",
+    "after": 500
+   },
+   {
+    "click": "button:has-text(\"Begona @Column\")",
+    "after": 900
+   }
+  ],
+  "wrong": [
+   {
+    "click": ".ai-line:has-text(\"findAll\")",
+    "after": 600
+   }
+  ],
+  "rightAfterWrong": [
+   {
+    "click": ".ai-line:has-text(\"@Column\")",
+    "after": 500
+   },
+   {
+    "click": "button:has-text(\"Begona @Column\")",
+    "after": 900
+   }
+  ]
+ }
+]

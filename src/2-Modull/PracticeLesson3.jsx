@@ -1275,7 +1275,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 };
 
 // Qayta ishlatiladigan MVP-taxta (s12, s15)
-const MvpRows = ({ items, placed, setPlaced }) => {
+const MvpRows = ({ items, placed, setPlaced, onWrong }) => {
   const cb = (f) => (f.mvp ? 'mvp' : 'keyin');
   return (
     <Zoomable>
@@ -1289,8 +1289,8 @@ const MvpRows = ({ items, placed, setPlaced }) => {
             <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
               <span style={{ flex: 1, fontWeight: 600, fontSize: 'clamp(13px,1.7vw,15px)', color: T.ink, minWidth: 120 }}>{ok && <span style={{ color: T.success, marginRight: 6 }}>✓</span>}{tr(f.label)}</span>
               <div style={{ display: 'flex', gap: 7 }}>
-                <button className="chip" onClick={() => setPlaced(p => ({ ...p, [f.id]: 'mvp' }))} style={{ background: b === 'mvp' ? (ok ? T.success : T.accent) : T.paper, color: b === 'mvp' ? '#fff' : T.ink, boxShadow: `0 4px 12px -5px rgba(${T.shadowBase},0.18)` }}>{tr({ uz: 'Shart (MVP)', ru: 'Нужно (MVP)' })}</button>
-                <button className="chip" onClick={() => setPlaced(p => ({ ...p, [f.id]: 'keyin' }))} style={{ background: b === 'keyin' ? (ok ? T.success : T.accent) : T.paper, color: b === 'keyin' ? '#fff' : T.ink, boxShadow: `0 4px 12px -5px rgba(${T.shadowBase},0.18)` }}>{tr({ uz: 'Keyin', ru: 'Потом' })}</button>
+                <button className="chip" onClick={() => { setPlaced(p => ({ ...p, [f.id]: 'mvp' })); if (onWrong && cb(f) !== 'mvp') onWrong(); }} style={{ background: b === 'mvp' ? (ok ? T.success : T.accent) : T.paper, color: b === 'mvp' ? '#fff' : T.ink, boxShadow: `0 4px 12px -5px rgba(${T.shadowBase},0.18)` }}>{tr({ uz: 'Shart (MVP)', ru: 'Нужно (MVP)' })}</button>
+                <button className="chip" onClick={() => { setPlaced(p => ({ ...p, [f.id]: 'keyin' })); if (onWrong && cb(f) !== 'keyin') onWrong(); }} style={{ background: b === 'keyin' ? (ok ? T.success : T.accent) : T.paper, color: b === 'keyin' ? '#fff' : T.ink, boxShadow: `0 4px 12px -5px rgba(${T.shadowBase},0.18)` }}>{tr({ uz: 'Keyin', ru: 'Потом' })}</button>
               </div>
             </div>
             {wrong && <p className="small" style={{ margin: 0, color: T.accent }}>{f.mvp ? tr({ uz: 'Bu MVP uchun shart.', ru: 'Это обязательно для MVP.' }) : tr({ uz: 'Muhim, lekin keyingi bosqich uchun.', ru: 'Важно, но для следующего этапа.' })}</p>}
@@ -1433,17 +1433,21 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     { id: 'order', label: tr({ uz: 'Onlayn buyurtma', ru: 'Онлайн-заказ' }), mvp: false },
     { id: 'review', label: tr({ uz: 'Mijoz sharhlari', ru: 'Отзывы клиентов' }), mvp: false }
   ];
-  const [placed, setPlaced] = useState(storedAnswer?.correct ? Object.fromEntries(REST.map(f => [f.id, f.mvp ? 'mvp' : 'keyin'])) : {});
-  const [passed, setPassed] = useState(!!storedAnswer?.correct);
+  const [placed, setPlaced] = useState(storedAnswer && (storedAnswer.solved || storedAnswer.correct) ? Object.fromEntries(REST.map(f => [f.id, f.mvp ? 'mvp' : 'keyin'])) : {});
+  const [passed, setPassed] = useState(!!(storedAnswer && (storedAnswer.solved || storedAnswer.correct)));
+  // Ball — birinchi urinish (8-A, Q4): bitta band noto'g'ri joylansa — urinish xato (F5 dan keyin ham)
+  const achMiss = useContext(AchMissCtx);
+  const wrongEverRef = useRef(false);
+  const onWrong = () => { if (passed) return; wrongEverRef.current = true; if (achMiss) achMiss.miss(screen); };
   const passedRef = useScrollIntoViewOnMobile(passed);
   const allCorrect = REST.every(f => placed[f.id] === (f.mvp ? 'mvp' : 'keyin'));
-  useEffect(() => { if (allCorrect && !passed) { setPassed(true); onAnswer(screen, { stage: 'final', screenIdx: screen, question: tr({ uz: 'Restoran sayti dekompozitsiyasi (MVP)', ru: 'Декомпозиция сайта ресторана (MVP)' }), studentAnswer: JSON.stringify(placed), correct: true, firstAttemptCorrect: true, solved: true, picked: 'ok' }); } }, [allCorrect]);
+  useEffect(() => { if (allCorrect && !passed) { setPassed(true); const first = !wrongEverRef.current && !(achMiss && achMiss.missed.has(SCREEN_META[screen].id)); onAnswer(screen, { stage: 'final', screenIdx: screen, question: tr({ uz: 'Restoran sayti dekompozitsiyasi (MVP)', ru: 'Декомпозиция сайта ресторана (MVP)' }), studentAnswer: JSON.stringify(placed), correct: first, firstAttemptCorrect: first, solved: true, picked: first ? 0 : 1 }); } }, [allCorrect]);
   return (
     <Stage eyebrow={tr({ uz: 'Yakuniy · amaliy', ru: 'Финал · практика' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!passed} label={passed ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "MVP'ni to'g'ri belgilang", ru: 'Отметьте MVP правильно' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Oxirgi sinov: <span className="italic" style={{ color: T.accent }}>restoran sayti</span></>, ru: <>Последнее испытание: <span className="italic" style={{ color: T.accent }}>сайт ресторана</span></> })}</h2></div>
         <Mentor>{tr({ uz: <>Vazifa: <b style={{ color: T.ink }}>restoran sayti</b> uchun MVP'ni rejalashtiring. Qaysi xususiyat eng zarur (shart), qaysi biri keyin? Har birini to'g'ri joylang.</>, ru: <>Задача: спланируйте MVP для <b style={{ color: T.ink }}>сайта ресторана</b>. Какая функция самая необходимая (нужно), а какая — потом? Разложите каждую правильно.</> })}</Mentor>
-        <MvpRows items={REST} placed={placed} setPlaced={setPlaced} />
+        <MvpRows items={REST} placed={placed} setPlaced={setPlaced} onWrong={onWrong} />
         {passed ? (
           <div ref={passedRef} style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(10px,1.6vw,14px)' }}>
             <p className="flow-label">{tr({ uz: 'Natija — restoran saytining ishlaydigan asosi', ru: 'Результат — работающая основа сайта ресторана' })}</p>
@@ -1545,7 +1549,7 @@ const Confetti = () => {
 };
 
 // Server-baholash javob kaliti (mentor darsni ochganda avto-yuklanadi). s15 = -1 (yakuniy amaliy).
-const INLINE_KEYS = { s4: 0, s7: 1, s10: 0, s15: -1 };
+const INLINE_KEYS = { s4: 0, s7: 1, s10: 0, s15: 0 };
 
 const ScreenPodium = ({ screen, answers, onNext, onPrev }) => {
   const gate = useContext(LiveGateCtx) || {};
@@ -2449,7 +2453,7 @@ export default function PracticeLesson3({ lang: langProp, onFinished, liveToken 
   const missTry = useCallback((idx) => {
     const sid = SCREEN_META[idx] && SCREEN_META[idx].id;
     const ach = ACH_TRIGGERS[sid];
-    if (!ach || missedRef.current.has(sid) || earnedRef.current.has(ach)) return;
+    if (!sid || missedRef.current.has(sid) || (ach && earnedRef.current.has(ach))) return; // nishonsiz test-ekran ham (ball — birinchi to'liq urinish, F5 dan keyin ham)
     missedRef.current.add(sid);
     setMissed(new Set(missedRef.current));
   }, []);
@@ -2478,7 +2482,7 @@ export default function PracticeLesson3({ lang: langProp, onFinished, liveToken 
       const key = INLINE_KEYS[_m.id];
       if (Number.isInteger(key)) { soloSentRef.current.add(idx); live.submitAnswer(idx, _m.id, key < 0 ? 0 : (data.correct ? key : (key === 0 ? 1 : 0)), !!data.correct, data.elapsedMs || 0); }
     }
-    if (_m && _m.scored && _m.scope === 'final' && data && data.correct && live.mode === 'student') live.submitAnswer(idx, _m.id, 0, true, 0);
+    if (_m && _m.scored && _m.scope === 'final' && data && data.solved && live.mode === 'student') live.submitAnswer(idx, _m.id, data.picked === 1 ? 1 : 0, !!data.correct, 0); // ball — birinchi urinish (picked 0 = to'g'ri, 1 = xato; kalit 0)
     if (_m && ACH_TRIGGERS[_m.id] && data && data.correct && !missedRef.current.has(_m.id)) earn(ACH_TRIGGERS[_m.id]); // 🏅 nishon (faqat SCORED test / challenge-gate)
   };
   const reset = () => { if (!firstPassRef.current) { firstPassRef.current = { answers, durationSec: Math.floor((Date.now() - startTimeRef.current) / 1000) }; setFpPractice(true); } progClear(LESSON_META.lessonId); setAnswers({}); setScreen(0); startTimeRef.current = Date.now(); };
