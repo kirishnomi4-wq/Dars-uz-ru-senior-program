@@ -1511,6 +1511,11 @@ joylash) + **6-band «birinchi o'tish — hisob, Qaytadan — mashq»** (`firstP
 konsol xatosi 0. `npm run gates` — yangi topilma 0. Server tomoni (takror jonli natija yuborilmaydi) alohida yopildi —
 `BACKEND_REJA_UZ.md` Qoida 3, 18.09 yangilanishi.
 
+**19.09 ERTALAB (foydalanuvchi qarorlari Q1–Q6):** ✅ **solo ball teshigi yopildi** (97 dars ildiziga blok; brauzerda 63/63
+ekran — `ach-probe --solo`) · ✅ Q4: 7 diskret test + Routing s15 + NestArch F5 · ✅ Q3 a/c/e + M2/M3 · ✅ Q5 · 153-qonun
+(ball halolligi). **QOLDI:** `MATN_TAKLIFLAR.md` (Q2 — tasdiq) · M1 + F-0919-01 («qadoq» → sodda so'z — tasdiq) · staging'da
+haqiqiy solo sinovi (yig'ma tayyor: `b-tolqin/staging-sinov/`) · `lms/` qayta yig'ish → server-deploy (katalog) → CRM.
+
 **B TO'LQIN ✅ (18.09 tun) — 100 ekran, 66 dars:** 178 trigger 6 partiyada bittalab o'qildi (`b-tolqin/inventar-P1…P6`), har
 ulangan ekran brauzer-probda 7 holat bilan isbotlandi (`scripts/ach-probe.mjs`, `b-tolqin/probe/`), bosh agent har partiyani
 mustaqil qayta tekshirdi (prob · gates · lintcmp · lint-keys · `--seal`). ⏭ 0 · ⏸ 8 (ikkinchi tekin nishon / senariy —

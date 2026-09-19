@@ -2893,3 +2893,35 @@ berib turaylik». Halollik nishonning kamligida emas — nishon **nima uchun ber
 Hech biriga tushmagan kalit — topilma. Yangi darsda bonus ixtiyoriy; qo'yilsa — shu besh shart bilan.
 Dalil (18.09): `Htmllesson2` boshsiz Chrome — s5 da nishon yo'q · s5b birinchi urinishda to'g'ri → nishon + bayram ·
 xato → to'g'ri = nishon yo'q · s7 `forma` bonusi joyida · konsol xatosi 0.
+
+## 11-Q. ⚖️ 153-QONUN: BALL HALOLLIGI — TEST BIRINCHI TO'LIQ URINISHNI SANAYDI, HAMMA KANALDA BIR XIL (2026-09-19)
+
+**Kelib chiqishi:** 18–19.09 B to'lqin inventari. (1) 45 ta maxsus test-ekran (tartiblash, yozma kod, tanlov) natijani DOIM
+`correct: true` yozardi — o'quvchi necha marta adashsa ham LMS'ga ketadigan ball oshardi; (2) jonli server `p_correct` ni
+emas, `quiz_keys` ni ko'radi — kalit `-1` = «doim to'g'ri»; (3) 13 ta test birinchi urinishni faqat XOTIRADA ushlardi —
+F5 bilan chetlab o'tilardi; (4) **uyda (solo) o'tilgan darsda maxsus test javobi serverga UMUMAN ketmasdi** — rasmiy
+natijada «javobsiz», maksimal (N-1)/N (brauzerda isbotlangan: `ach-probe --solo`, 15/15 tartiblash testida so'rov yo'q edi).
+Foydalanuvchi qarorlari: 8-A (18.09), Q1-A, Q4-A (19.09).
+
+**Qoida:**
+1. **Ball = birinchi TO'LIQ urinish** — MCQ (`QuestionScreen`) bilan bir xil o'lchov. «To'liq urinish»: tartiblash — hamma
+   katak to'lib tartib xato chiqqan on; tanlov/ulash — rad etilgan tanlov; «Tekshirish»/«Send» — xato natija. Sirpanish
+   (bo'lakni qaytarish, qisman javob, method tanlash, tugallanmagan xarita) — urinish EMAS (151-qonun 2-band bilan bir xil).
+2. **Javob obyekti shartnomasi (maxsus ball-ekran):** yakunda `solved: true`, `correct` va `firstAttemptCorrect` = birinchi
+   urinish, `picked: first ? 0 : 1` (kalit 0) yoki haqiqiy variant indeksi (kalit = to'g'ri variant). Birinchi urinish
+   progressdagi `missed` ga ham yoziladi (`achMiss.miss(screen)`; ildiz `missTry` nishonsiz ekranni ham yozadi) — F5 dan
+   keyin ham saqlanadi. Ekran holati `storedAnswer.solved || storedAnswer.correct` dan tiklanadi.
+3. **Kalit:** `-1` («ishtirok — bajargani to'g'ri») faqat diskret urinishi YO'Q yozma testda (harf terilishi bilan jonli
+   tekshiruv). Xato yo'li bor testda kalit — `0` yoki to'g'ri variant indeksi. Kalit serverga mentor darsni ochganda
+   (`set_quiz_keys`) boradi — o'zgarish shundan keyin kuchga kiradi.
+4. **Uch kanal bir xil:** jonli (`live.mode === 'student'` — ildiz V2 qatori: `data.solved` · `data.picked` · `!!data.correct`),
+   **solo** (ildiz `recordAnswer` dagi blok: solo · «Qaytadan» mashqi emas · ball-ekran · yakunlandi · bir marta →
+   `submit_answer`, `picked` kalitdan; `scripts/codemod-solo-submit.mjs`) va `onFinished` (`correctAnswers` — birinchi
+   urinish; detallarga faqat `correctIndex` li yozuv kiradi — LMS shartnomasi, Y1/Y1b).
+5. **«Qaytadan» mashqi** (151-qonun 6-band) — hech bir kanalga yozilmaydi.
+
+**Tekshiruv (har yangi/o'zgargan ball-ekran):** `scripts/ach-probe.mjs` `"test": true` spetsifikatsiya — S2 (to'g'ri →
+`correct: true`), S1a (xato → to'g'ri → `correct: false`), S1b (xato → F5 → to'g'ri → `false`), S3 (sirpanish sanalmaydi);
+`--solo` — SOLO-togri / SOLO-xato (soxta server; server kabi kalit bo'yicha baholanadi); `smoke-onfinished-all --seal` (I1–I12).
+Holat (19.09): 26 tartiblash + 7 diskret + 2 debug testi birinchi urinishga o'tkazildi; solo 63/63 ekranda isbotlandi.
+
