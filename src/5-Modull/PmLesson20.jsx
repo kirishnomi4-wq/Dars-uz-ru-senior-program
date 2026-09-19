@@ -889,6 +889,7 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   }, [cur, reduce]);
   const allAsked = asked.length === SAVOLLAR.length && !typing;
   const done = yozuv !== null && YOZUV[yozuv] && YOZUV[yozuv].ok;
+  const achMiss = useContext(AchMissCtx); // 🏅 151-qonun (Q3-e, 19.09): varaqqa tushadigan qator — birinchi tanlovga
   // 400-belgi qoidasi: ekran to'rt bosqichga bo'lindi — bir vaqtda faqat bittasi turadi.
   // so'rash (savol-kartalari + stol) → bilingan (to'rt qator birga) → yozuv (varaq-qatori) → xulosa.
   const [faza, setFaza] = useState(() => {
@@ -912,7 +913,7 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   }, [done]); // eslint-disable-line
   useEffect(() => { if (allAsked || isMentor) return; const t = setInterval(() => setSec(s => s + 1), 1000); return () => clearInterval(t); }, [allAsked, isMentor]);
   const ber = (i) => { if (typing || asked.includes(i) || isMentor) return; setAsked(p => [...p, i]); setCur(i); };
-  const tanla = (k) => { if (isMentor) return; setYozuv(k); };
+  const tanla = (k) => { if (isMentor) return; if (!YOZUV[k].ok && achMiss) achMiss.miss(screen); setYozuv(k); };
   const pend = SAVOLLAR.map((_, i) => String(i)).filter(k => !asked.includes(Number(k)));
   const lit = useTurnWalk(pend, !typing && !allAsked && !isMentor);
   const rowWave = useTurnHint(faza === 'yozuv' && yozuv === null && !isMentor);
@@ -976,6 +977,7 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 <p className="xul-b">Uning javobida kun ham, qilingan ish ham bo'ladi. Javobidan bo'lib o'tgan ish bilinmaydigan savol — bo'sh savol. Odam aytgan gapni o'z so'zi bilan yozib qo'ysangiz — bu eshitgan javob. Varaqqa sizning xulosangiz emas, o'sha eshitgan javob tushadi.</p>
               </div>
             )}
+            {!done && <AchRule screen={screen} />}{/* 151-qonun 3-band: shart boshidan ko'rinadi (tanlov 2-bosqichda ochiladi) */}
           </Col>
           <Col gap={9}>
             {faza === 'sorash' && (
@@ -1825,6 +1827,22 @@ const ACHIEVEMENTS = {
   sheetMaker:   { icon: '📄', name: 'Sheet Maker!',   desc: "Suhbat varag'ini kod bilan chiqardingiz" },
 };
 const ACH_TRIGGERS = { s4: 'goodListener', s8: 'noteTaker', s9: 'sharpSifter', s10: 'sheetMaker' };
+
+// 🏅 151-qonun: amaliy topshiriq nishoni faqat BIRINCHI urinishga beriladi. Shart OLDINDAN aytiladi; birinchi urinish
+// xato bo'lsa — jazosiz qisqa xabar (`once` — qayta urinishi yo'q ekran). Mentor ekranida, «Qaytadan» mashq-o'tishida va
+// nishon olingach ko'rinmaydi. Matn — MATN_KORPUS §183 (hamma darsda aynan bir xil).
+const AchRule = ({ screen, once }) => {
+  const earned = useContext(AchCtx);
+  const am = useContext(AchMissCtx);
+  const gate = useContext(LiveGateCtx) || {};
+  const sid = SCREEN_META[screen] && SCREEN_META[screen].id;
+  const ach = ACH_TRIGGERS[sid];
+  if (!ach || !am || am.practice || (gate.live && gate.live.mode === 'mentor') || (earned && earned.has(ach))) return null;
+  const lost = am.missed.has(sid);
+  return <p className={`ach-rule ${lost ? 'lost' : ''}`}>{lost
+    ? (once ? 'Nishon birinchi urinish uchun edi.' : "Nishon birinchi urinish uchun edi — endi bemalol to'g'risini toping.")
+    : "🏅 Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki."}</p>;
+};
 function AchCelebrate({ ach, onDone }) {
   useEffect(() => { const t = setTimeout(onDone, 4000); return () => clearTimeout(t); }, []); // eslint-disable-line
   return (
@@ -3652,6 +3670,8 @@ export default function PmLesson20({ lang: langProp, onFinished, liveToken }) {
         ${CSS_BASE}
         ${CSS_LESSON}
         ${CSS_ARENA}
+        .ach-rule { margin: 8px 0 0; text-align: center; font-size: 13px; line-height: 1.4; color: ${T.ink2}; }
+        .ach-rule.lost { font-style: italic; }
       `}</style>
       <AchCtx.Provider value={earned}>
       <AchMissCtx.Provider value={achMissVal}>

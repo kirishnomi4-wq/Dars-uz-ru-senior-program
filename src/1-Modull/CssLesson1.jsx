@@ -2322,12 +2322,12 @@ function QuizArena({ live, onClose, startSolo }) {
 // ===== 🏅 ACHIEVEMENTS (nishonlar) — dars davomidagi real bosqichlar uchun =====
 const ACHIEVEMENTS = {
   rang:      { icon: '🎨', name: 'Painted It!', desc: { uz: "Matn va fon ranglarini o'zgartirdingiz", ru: 'Вы поменяли цвета текста и фона' } },
-  bezak:     { icon: '🖌️', name: 'Styled It!',  desc: { uz: "Elementni CSS bilan chiroyli qildingiz", ru: 'Вы украсили элемент с помощью CSS' } },
+  bezak:     { icon: '🖌️', name: 'Styled It!',  desc: { uz: "Ichki bo'shliq xususiyatini topdingiz", ru: 'Вы нашли свойство внутреннего отступа' } },
   debugger:  { icon: '🐞', name: 'Nice Catch!', desc: { uz: 'Buzuq CSS kodini topib tuzatdingiz', ru: 'Вы нашли и починили сломанный CSS' } },
   graduate:  { icon: '🏆', name: 'Level Up!',   desc: { uz: "CSS 1-darsini to'liq yakunladingiz", ru: 'Вы полностью прошли урок CSS 1' } },
 };
 // Ekran id → nishon (recordAnswer'da avtomatik beriladi)
-const ACH_TRIGGERS = { s5: 'rang', s13: 'bezak', s14: 'debugger' };
+const ACH_TRIGGERS = { s5: 'rang', s12: 'bezak', s14: 'debugger' }; // Q3-a (19.09): bezak s13 (istalgan 3 chip — tekin) → s12 (padding testi, birinchi urinish); rang — bonus (152-qonun)
 
 // 🏅 151-qonun: amaliy topshiriq nishoni faqat BIRINCHI urinishga beriladi. Shart OLDINDAN aytiladi; birinchi urinish
 // xato bo'lsa — jazosiz qisqa xabar (`once` — qayta urinishi yo'q ekran). Mentor ekranida, «Qaytadan» mashq-o'tishida va

@@ -1,0 +1,133 @@
+[
+ {
+  "file": "src/1-Modull/CssLesson1.jsx",
+  "sid": "s12",
+  "test": true,
+  "missed": false,
+  "note": "Q3-a: bezak s13 → s12 (padding testi, birinchi urinish)",
+  "right": [
+   {
+    "click": "button:has-text(\"padding\")",
+    "after": 1100
+   }
+  ],
+  "wrong": [
+   {
+    "click": "button:has-text(\"margin\")",
+    "after": 900
+   }
+  ],
+  "rightAfterWrong": [
+   {
+    "click": "button:has-text(\"padding\")",
+    "after": 1100
+   }
+  ]
+ },
+ {
+  "file": "src/5-Modull/BotApiButtonsLesson.jsx",
+  "sid": "s10",
+  "test": true,
+  "missed": false,
+  "note": "Q3-c: buttonMaster s9 → s10 (test, birinchi urinish)",
+  "right": [
+   {
+    "click": "button:has-text(\"bot.action('pizza'\")",
+    "after": 1100
+   }
+  ],
+  "wrong": [
+   {
+    "click": "button:has-text(\"bot.hears('pizza'\")",
+    "after": 900
+   }
+  ],
+  "rightAfterWrong": [
+   {
+    "click": "button:has-text(\"bot.action('pizza'\")",
+    "after": 1100
+   }
+  ]
+ },
+ {
+  "file": "src/5-Modull/PmLesson20.jsx",
+  "sid": "s4",
+  "note": "Q3-e: suhbat stoli — 4 savol, keyin varaqqa tushadigan qator (birinchi tanlov; xatodan keyin qayta tanlash mumkin) · F5 dan keyin savollar tiklanadi, bosqich «yozuv» — faqat qatorni tanlash",
+  "right": [
+   {
+    "click": ".qcard",
+    "nth": 0,
+    "after": 2600
+   },
+   {
+    "click": ".qcard:not([disabled])",
+    "nth": 0,
+    "after": 2600
+   },
+   {
+    "click": ".qcard:not([disabled])",
+    "nth": 0,
+    "after": 2600
+   },
+   {
+    "click": ".qcard:not([disabled])",
+    "nth": 0,
+    "after": 2600
+   },
+   {
+    "click": ".nextsig",
+    "after": 900
+   },
+   {
+    "click": ".wq-row",
+    "nth": 1,
+    "after": 1200
+   }
+  ],
+  "wrong": [
+   {
+    "click": ".qcard",
+    "nth": 0,
+    "after": 2600
+   },
+   {
+    "click": ".qcard:not([disabled])",
+    "nth": 0,
+    "after": 2600
+   },
+   {
+    "click": ".qcard:not([disabled])",
+    "nth": 0,
+    "after": 2600
+   },
+   {
+    "click": ".qcard:not([disabled])",
+    "nth": 0,
+    "after": 2600
+   },
+   {
+    "click": ".nextsig",
+    "after": 900
+   },
+   {
+    "click": ".wq-row",
+    "nth": 0,
+    "after": 1200
+   }
+  ],
+  "rightAfterWrong": [
+   {
+    "click": ".wq-row",
+    "nth": 1,
+    "after": 1200
+   }
+  ],
+  "rightAfterF5": [
+   {
+    "click": ".wq-row",
+    "nth": 1,
+    "after": 1200
+   }
+  ]
+ }
+]

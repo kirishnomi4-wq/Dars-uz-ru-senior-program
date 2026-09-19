@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-18T14:43:10.474Z",
+  "generated_at": "2026-09-19T00:58:44.644Z",
   "count": 110,
   "lessons": [
     {
@@ -276,8 +276,8 @@
         {
           "id": "buttonmaster",
           "name": "Button Master",
-          "title_uz": "Tugmalar taxtasini to'liq ulab, ishga tushirdingiz",
-          "title_ru": "Полностью подключили панель кнопок и запустили её"
+          "title_uz": "Tugma signalini qaysi qator ushlashini topdingiz",
+          "title_ru": "Вы нашли строку, которая ловит сигнал кнопки"
         },
         {
           "id": "rightenvelope",
@@ -579,8 +579,8 @@
         {
           "id": "bezak",
           "name": "Styled It!",
-          "title_uz": "Elementni CSS bilan chiroyli qildingiz",
-          "title_ru": "Вы украсили элемент с помощью CSS"
+          "title_uz": "Ichki bo'shliq xususiyatini topdingiz",
+          "title_ru": "Вы нашли свойство внутреннего отступа"
         },
         {
           "id": "debugger",

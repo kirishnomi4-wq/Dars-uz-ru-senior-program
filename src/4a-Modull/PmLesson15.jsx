@@ -873,7 +873,7 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     setMaxPi(m => Math.max(m, k));
   };
   const tanla = (id) => {
-    if (isMentor) return;
+    if (isMentor || done) return; // Q5 (19.09): yechilgandan keyin boshqa qism bosilsa ekran «yechilmagan»ga qaytmasin
     if (id !== 'orindiq' && achMiss) achMiss.miss(screen);
     setPick(id);
     setPi(1); setMaxPi(m => Math.max(m, 1));   // son avtomatik 300 ga yuradi

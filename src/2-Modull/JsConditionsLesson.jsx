@@ -2455,7 +2455,6 @@ export default function JsConditionsLesson({ lang: langProp, onFinished, onPract
   const runPractice = (entry, fromScreen) => {
     const done = () => {
       if (live && live.mode === 'student') live.submitAnswer(PRACTICE_DONE_BASE + fromScreen, `practice-${fromScreen}`, 0, true, 0);
-      earn('logician'); // 🏅 o'z qo'li bilan kod yozib, ishga tushirdi
       pracClear(LESSON_META.lessonId); setPractice(null); advance();
     };
     // F-0912-04 (2026-09-12): LMS praktika-yo'li yiqilsa — o'quvchi qotib qolmasin.
