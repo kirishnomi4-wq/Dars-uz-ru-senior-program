@@ -289,10 +289,55 @@ function resetResultDetails(lessonId) {
   earnedAtByLesson.delete(lessonId);
   arenaByLesson.delete(lessonId);
   loaded.delete(lessonId);
+  sealedByLesson.delete(lessonId);
   try {
     store()?.removeItem(KEY(lessonId));
   } catch {
   }
+  try {
+    store()?.removeItem(SEAL_KEY(lessonId));
+  } catch {
+  }
+}
+var sealedByLesson = /* @__PURE__ */ new Map();
+var SEAL_KEY = (lessonId) => `ccSeal:${lessonId}`;
+var attemptMark = (lessonId) => {
+  try {
+    const ls = JSON.parse(store()?.getItem(`liveSession:${lessonId}`) || "null");
+    return String(ls && (ls.attemptId || ls.pin) || "");
+  } catch {
+    return "";
+  }
+};
+var sealKey = (lessonId, p) => `${(p && p.livePin) ?? ""}|${(p && p.liveMode) ?? ""}|${attemptMark(lessonId)}`;
+function sealPayload(lessonId, payload) {
+  if (!lessonId || !payload || typeof payload !== "object") return payload;
+  try {
+    const key = sealKey(lessonId, payload);
+    let held = sealedByLesson.get(lessonId);
+    if (!held) {
+      try {
+        held = JSON.parse(store()?.getItem(SEAL_KEY(lessonId)) || "null");
+      } catch {
+        held = null;
+      }
+      if (held && held.key && held.json) sealedByLesson.set(lessonId, held);
+      else held = null;
+    }
+    if (held && held.key === key) return JSON.parse(held.json);
+    const rec = { key, json: JSON.stringify(payload) };
+    sealedByLesson.set(lessonId, rec);
+    try {
+      store()?.setItem(SEAL_KEY(lessonId), JSON.stringify(rec));
+    } catch {
+    }
+    return JSON.parse(rec.json);
+  } catch {
+    return payload;
+  }
+}
+function unsealPayload(lessonId) {
+  sealedByLesson.delete(lessonId);
 }
 function buildResultDetails({ lessonId, screenMeta, answers, earned, achievements, lang: langIn, now, arenaBank } = {}) {
   const lang = langIn === "ru" || langIn === "uz" ? langIn : getLiveLang();
@@ -336,6 +381,7 @@ function buildResultDetails({ lessonId, screenMeta, answers, earned, achievement
     if (correctIdx !== null && correctIdx >= 0 && correctIdx <= 5) q.correct_option = correctIdx;
     const ca = cut(typeof a.correctAnswer === "string" ? a.correctAnswer : options && correctIdx !== null ? options[correctIdx] : void 0, LIM.text);
     if (ca) q.correct_answer = ca;
+    if (correctIdx === null) return;
     questions.push(q);
   });
   const arena = [...(arenaByLesson.get(lessonId) || /* @__PURE__ */ new Map()).entries()].sort((x, y) => x[0] - y[0]);
@@ -456,6 +502,9 @@ function useLiveSession(lessonId, answerKey, opts = {}) {
   const lessonVersion = opts.lessonVersion || null;
   const keyRef = useRef(answerKey);
   keyRef.current = answerKey;
+  useEffect(() => {
+    unsealPayload(lessonId);
+  }, [lessonId]);
   const initRef = useRef(void 0);
   if (initRef.current === void 0) initRef.current = LIVE_ENABLED ? liveRead(lessonId) : null;
   const init = initRef.current;
@@ -1109,6 +1158,7 @@ var T = {
 };
 var CODE = { bg: "#1A2436", text: "#E8E5DD", tag: "#FF7755", attr: "#FFD380", str: "#7DD181", comment: "#6B7585", punct: "#9FB4D8" };
 var AchCtx = createContext2(null);
+var AchMissCtx = createContext2(null);
 var PRACTICE_DONE_BASE = 500;
 var useLang = () => useContext2(LangContext);
 var __lang = "uz";
@@ -1603,6 +1653,8 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
     </div>;
 }
 var QuestionScreen = ({ screen, scope, eyebrow, question, questionText, options, correctIdx, explainCorrect, explainWrong, audioText, audioOk, audioWrong, storedAnswer, onAnswer, onNext, onPrev }) => {
+  const _am = useContext2(AchMissCtx);
+  const fpPractice = !!(_am && _am.practice);
   const audio = useAudio(audioText ? [{ id: `s${screen}_intro`, text: audioText, trigger: "on_mount", waits_for: { type: "option_picked" } }] : null);
   const gate = useContext2(LiveGateCtx) || {};
   const live = gate.live;
@@ -1632,12 +1684,12 @@ var QuestionScreen = ({ screen, scope, eyebrow, question, questionText, options,
     if (oneShot) {
       setSolved(true);
       onAnswer(screen, { stage: scope, screenIdx: screen, question: questionText, options, correctIndex: correctIdx, correctAnswer: options[correctIdx], picked: i, studentAnswerIndex: i, studentAnswer: options[i], correct: isCorrect, firstAttemptCorrect: isCorrect, solved: true, lastPicked: i });
-      live.submitAnswer(screen, SCREEN_META[screen]?.id || `s${screen}`, i, isCorrect, Date.now() - mountTs.current);
+      if (!fpPractice) live.submitAnswer(screen, SCREEN_META[screen]?.id || `s${screen}`, i, isCorrect, Date.now() - mountTs.current);
     } else {
       if (isCorrect) setSolved(true);
       onAnswer(screen, { stage: scope, screenIdx: screen, question: questionText, options, correctIndex: correctIdx, correctAnswer: options[correctIdx], picked: i, studentAnswerIndex: i, studentAnswer: options[i], correct: firstCorrectRef.current, firstAttemptCorrect: firstCorrectRef.current, solved: isCorrect, lastPicked: i });
     }
-    if (live && live.recordAttempt) live.recordAttempt(screen, SCREEN_META[screen]?.id || `s${screen}`, i, Date.now() - mountTs.current, { question: questionText, options, picked: options[i], correct: options[correctIdx], lang: typeof __lang !== "undefined" && __lang === "ru" ? "ru" : "uz" });
+    if (live && live.recordAttempt && !fpPractice) live.recordAttempt(screen, SCREEN_META[screen]?.id || `s${screen}`, i, Date.now() - mountTs.current, { question: questionText, options, picked: options[i], correct: options[correctIdx], lang: typeof __lang !== "undefined" && __lang === "ru" ? "ru" : "uz" });
     if (audioText) {
       audio.triggerEvent("option_picked");
       if (!audio.muted) setTimeout(() => {
@@ -2402,20 +2454,27 @@ var Screen15 = ({ screen, storedAnswer, onAnswer, earn, onNext, onPrev }) => {
     { id: "check", label: tr2({ uz: "Natijani tekshir", ru: "Проверь результат" }) },
     { id: "deploy", label: tr2({ uz: "Deploy qil", ru: "Сделай деплой" }) }
   ];
-  const [passed, setPassed] = useState3(!!storedAnswer?.correct);
+  const [passed, setPassed] = useState3(!!(storedAnswer && (storedAnswer.solved || storedAnswer.correct)));
+  const achMiss = useContext2(AchMissCtx);
+  const wrongEverRef = useRef3(false);
+  const onWrong = () => {
+    wrongEverRef.current = true;
+    if (achMiss) achMiss.miss(screen);
+  };
   const passedRef = useScrollIntoViewOnMobile(passed);
   const handleSolved = () => {
     if (passed) return;
     setPassed(true);
-    if (earn) earn("planner");
-    onAnswer(screen, { stage: "final", screenIdx: screen, question: "Har qanday loyiha qadamlari tartibi", studentAnswer: STEPS.map((s) => s.id).join(">"), correct: true, firstAttemptCorrect: true, solved: true, picked: STEPS.map((s) => s.id).join(">") });
+    const first = !wrongEverRef.current && !(achMiss && achMiss.missed.has(SCREEN_META[screen].id));
+    if (earn && first) earn("planner");
+    onAnswer(screen, { stage: "final", screenIdx: screen, question: "Har qanday loyiha qadamlari tartibi", studentAnswer: STEPS.map((s) => s.id).join(">"), correct: first, firstAttemptCorrect: first, solved: true, picked: first ? 0 : 1 });
   };
   return <Stage eyebrow={tr2({ uz: "Yakuniy · amaliy", ru: "Финал · практика" })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!passed} label={passed ? tr2({ uz: "Davom etish", ru: "Продолжить" }) : tr2({ uz: "Qadamlarni to'g'ri tartibga suring", ru: "Расставьте шаги в правильном порядке" })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: "clamp(10px,1.6vw,16px)" }}>
         <div className="head"><h2 className="title h-title fade-up">{tr2({ uz: <>Oxirgi sinov: har qanday loyiha — <span className="italic" style={{ color: T.accent }}>bir xil 5 qadam</span></>, ru: <>Последнее испытание: любой проект — <span className="italic" style={{ color: T.accent }}>те же 5 шагов</span></> })}</h2></div>
         <Mentor>{tr2({ uz: <>Mana — butun modulning siri bitta ketma-ketlikda. Do'kon, o'yin, bot — farqi yo'q: <b style={{ color: T.ink }}>hammasi shu 5 qadam bilan</b> quriladi. Bo'laklarni sudrab, to'g'ri tartibga qo'ying.</>, ru: <>Вот секрет всего модуля в одной последовательности. Магазин, игра, бот — без разницы: <b style={{ color: T.ink }}>всё строится этими 5 шагами</b>. Перетащите блоки в правильном порядке.</> })}</Mentor>
         <Zoomable>
-          <DragDropOrder items={STEPS} hints={[`1-${tr2({ uz: "qadam", ru: "й шаг" })}`, `2-${tr2({ uz: "qadam", ru: "й шаг" })}`, `3-${tr2({ uz: "qadam", ru: "й шаг" })}`, `4-${tr2({ uz: "qadam", ru: "й шаг" })}`, `5-${tr2({ uz: "qadam", ru: "й шаг" })}`]} onSolved={handleSolved} />
+          <DragDropOrder onWrong={onWrong} items={STEPS} hints={[`1-${tr2({ uz: "qadam", ru: "й шаг" })}`, `2-${tr2({ uz: "qadam", ru: "й шаг" })}`, `3-${tr2({ uz: "qadam", ru: "й шаг" })}`, `4-${tr2({ uz: "qadam", ru: "й шаг" })}`, `5-${tr2({ uz: "qadam", ru: "й шаг" })}`]} onSolved={handleSolved} />
           {passed && <div ref={passedRef} className="frame-success fade-step" style={{ marginTop: 12 }}><p className="body" style={{ margin: 0, color: T.ink }}>{tr2({ uz: "Mukammal! Reja → MVP → qur → tekshir → deploy. Bu — istalgan loyihaning universal yo'li. Siz uni egalladingiz!", ru: "Идеально! План → MVP → построй → проверь → деплой. Это универсальный путь любого проекта. Вы его освоили!" })}</p></div>}
         </Zoomable>
       </div>
@@ -2516,7 +2575,7 @@ var Confetti = () => {
   })}
     </div>;
 };
-var INLINE_KEYS = { s4: 0, s8: 2, s10: 3, s15: -1 };
+var INLINE_KEYS = { s4: 0, s8: 2, s10: 3, s15: 0 };
 var ScreenPodium = ({ screen, answers, onNext, onPrev }) => {
   const audio = useAudio([{ id: "s15b", text: "Mana natijalar. Tezkorlar podiumda! Kim eng tez va to'g'ri javob berdi — birga ko'ramiz.", trigger: "on_mount", waits_for: null }]);
   const gate = useContext2(LiveGateCtx) || {};
@@ -2671,7 +2730,7 @@ function MentorPracticeOverlay({ entry, live, onClose }) {
       </div>
     </div>;
 }
-function DragDropOrder({ items, hints, onSolved }) {
+function DragDropOrder({ items, hints, onSolved, onWrong }) {
   const order = items.map((x) => x.id);
   const byId = useMemo(() => Object.fromEntries(items.map((x) => [x.id, x])), [items]);
   const [st, setSt] = useState3(() => {
@@ -2692,6 +2751,9 @@ function DragDropOrder({ items, hints, onSolved }) {
   useEffect4(() => {
     if (solved) onSolved && onSolved();
   }, [solved]);
+  useEffect4(() => {
+    if (wrong) onWrong && onWrong();
+  }, [wrong]);
   const place = (id, from, slotIdx) => setSt(({ pool: pool2, slots: slots2 }) => {
     const ns = slots2.slice();
     const occ = ns[slotIdx];
@@ -3463,17 +3525,31 @@ function PracticeLesson4({ lang: langProp, onFinished, liveToken }) {
   const live = useLiveSession(LESSON_META.lessonId, answerKey, { liveToken });
   const isStudentLive = live.mode === "student" && live.status !== "ended" && live.mentorAlive;
   const locked = isStudentLive && screen + 1 > live.mentorScreen;
+  const firstPassRef = useRef3(saved?.firstPass || null);
+  const soloSentRef = useRef3(/* @__PURE__ */ new Set());
+  const [fpPractice, setFpPractice] = useState3(!!saved?.firstPass);
   const earnedRef = useRef3(new Set(saved?.earned || []));
   const [earned, setEarned] = useState3(() => new Set(saved?.earned || []));
   useServerProgress(live, { setScreen, setAnswers, setEarned, earnedRef, startTimeRef, total: TOTAL_SCREENS });
   const [achToasts, setAchToasts] = useState3([]);
   const achKeyRef = useRef3(0);
   const earn = useCallback2((id) => {
+    if (firstPassRef.current) return;
     if (!ACHIEVEMENTS[id] || earnedRef.current.has(id)) return;
     earnedRef.current.add(id);
     setEarned(new Set(earnedRef.current));
     setAchToasts((t) => [...t, { id, k: ++achKeyRef.current }]);
   }, []);
+  const missedRef = useRef3(new Set(saved?.missed || []));
+  const [missed, setMissed] = useState3(() => new Set(saved?.missed || []));
+  const missTry = useCallback2((idx) => {
+    const sid = SCREEN_META[idx] && SCREEN_META[idx].id;
+    const ach = ACH_TRIGGERS[sid];
+    if (!sid || missedRef.current.has(sid) || ach && earnedRef.current.has(ach)) return;
+    missedRef.current.add(sid);
+    setMissed(new Set(missedRef.current));
+  }, []);
+  const achMissVal = useMemo(() => ({ missed, miss: missTry, practice: fpPractice }), [missed, missTry, fpPractice]);
   const FLASH_IDX = SCREEN_META.findIndex((m) => m.id === "sflash");
   const flashHidden = () => live.mode === "student" && live.status !== "ended" && live.mentorAlive;
   const advance = () => setScreen((s) => {
@@ -3512,10 +3588,21 @@ function PracticeLesson4({ lang: langProp, onFinished, liveToken }) {
   const recordAnswer = (idx, data) => {
     setAnswers((a) => ({ ...a, [idx]: data }));
     const _m = SCREEN_META[idx];
-    if (_m && _m.scored && _m.scope === "final" && data && data.correct && live.mode === "student") live.submitAnswer(idx, _m.id, 0, true, 0);
-    if (_m && ACH_TRIGGERS[_m.id] && data && data.correct) earn(ACH_TRIGGERS[_m.id]);
+    if (_m && _m.scored && live.mode === "solo" && !firstPassRef.current && data && (data.solved === true || data.correct === true) && !soloSentRef.current.has(idx)) {
+      const key = INLINE_KEYS[_m.id];
+      if (Number.isInteger(key)) {
+        soloSentRef.current.add(idx);
+        live.submitAnswer(idx, _m.id, key < 0 ? 0 : data.correct ? key : key === 0 ? 1 : 0, !!data.correct, data.elapsedMs || 0);
+      }
+    }
+    if (_m && _m.scored && _m.scope === "final" && data && (data.solved || data.correct) && live.mode === "student") live.submitAnswer(idx, _m.id, data.picked === 1 ? 1 : 0, !!data.correct, 0);
+    if (_m && ACH_TRIGGERS[_m.id] && data && data.correct && !missedRef.current.has(_m.id)) earn(ACH_TRIGGERS[_m.id]);
   };
   const reset = () => {
+    if (!firstPassRef.current) {
+      firstPassRef.current = { answers, durationSec: Math.floor((Date.now() - startTimeRef.current) / 1e3) };
+      setFpPractice(true);
+    }
     progClear(LESSON_META.lessonId);
     setAnswers({});
     setScreen(0);
@@ -3523,19 +3610,21 @@ function PracticeLesson4({ lang: langProp, onFinished, liveToken }) {
     startTimeRef.current = Date.now();
   };
   useEffect4(() => {
-    progWrite(LESSON_META.lessonId, { screen, answers, earned: [...earnedRef.current], startedAt: startTimeRef.current, total: TOTAL_SCREENS, savedAt: Date.now() });
-  }, [screen, answers, earned]);
+    progWrite(LESSON_META.lessonId, { screen, answers, earned: [...earnedRef.current], missed: [...missedRef.current], firstPass: firstPassRef.current, startedAt: startTimeRef.current, total: TOTAL_SCREENS, savedAt: Date.now() });
+  }, [screen, answers, earned, missed, fpPractice]);
   useEffect4(() => {
     live.reportScreen(screen);
   }, [screen, live.mode, live.pin]);
   const finishLesson = () => {
     progClear(LESSON_META.lessonId);
     live.endSession();
+    const fp = firstPassRef.current;
+    const ans = fp ? fp.answers : answers;
     const scoredMeta = SCREEN_META.filter((s) => s.scored);
     const finalMeta = scoredMeta.filter((s) => s.scope === "final");
-    const scoredAnswers = SCREEN_META.map((s, i) => s.scored ? answers[i] : null).filter(Boolean);
+    const scoredAnswers = SCREEN_META.map((s, i) => s.scored ? ans[i] : null).filter(Boolean);
     const correctAnswers = scoredAnswers.filter((a) => a.correct).length;
-    const finalAnswers = SCREEN_META.map((s, i) => s.scored && s.scope === "final" ? answers[i] : null).filter(Boolean);
+    const finalAnswers = SCREEN_META.map((s, i) => s.scored && s.scope === "final" ? ans[i] : null).filter(Boolean);
     const finalCorrect = finalAnswers.filter((a) => a.correct).length;
     const payload = {
       lessonId: LESSON_META.lessonId,
@@ -3543,17 +3632,17 @@ function PracticeLesson4({ lang: langProp, onFinished, liveToken }) {
       nickname: live.nickname || null,
       livePin: live.pin || null,
       liveMode: live.mode,
-      durationSec: Math.floor((Date.now() - startTimeRef.current) / 1e3),
+      durationSec: fp ? fp.durationSec : Math.floor((Date.now() - startTimeRef.current) / 1e3),
       totalQuestions: scoredMeta.length,
       correctAnswers,
       scorePercent: scoredMeta.length ? Math.round(correctAnswers / scoredMeta.length * 100) : 0,
       finalScore: finalCorrect,
       finalTotal: finalMeta.length,
       passed: finalMeta.length ? finalCorrect / finalMeta.length >= 0.6 : scoredMeta.length ? correctAnswers / scoredMeta.length >= 0.6 : false,
-      answers: SCREEN_META.map((_, i) => answers[i]).filter(Boolean),
-      ...buildResultDetails({ lessonId: LESSON_META.lessonId, screenMeta: SCREEN_META, answers, earned, achievements: ACHIEVEMENTS, arenaBank: QUIZ_BANK })
+      answers: SCREEN_META.map((_, i) => ans[i]).filter(Boolean),
+      ...buildResultDetails({ lessonId: LESSON_META.lessonId, screenMeta: SCREEN_META, answers: ans, earned, achievements: ACHIEVEMENTS, arenaBank: QUIZ_BANK })
     };
-    if (typeof onFinished === "function") onFinished(payload);
+    if (typeof onFinished === "function") onFinished(sealPayload(LESSON_META.lessonId, payload));
   };
   const screens = [Screen0, Screen1, Screen2, Screen3, Screen4, Screen5, Screen6, Screen7, Screen8, Screen9, Screen10, Screen11, Screen12, Screen13, Screen14, Screen15, ScreenPodium, ScreenFlashcards, Screen16];
   const Current = screens[screen];
@@ -4396,6 +4485,7 @@ function PracticeLesson4({ lang: langProp, onFinished, liveToken }) {
       `}</style>
       <LiveGateCtx.Provider value={{ locked, live }}>
         <AchCtx.Provider value={earned}>
+        <AchMissCtx.Provider value={achMissVal}>
           <div className="lesson-root">
             {live.mode === "choosing" ? <LiveGate live={live} title={{ uz: "Praktika", ru: "Практика" }} /> : <>
                 <Current screen={screen} storedAnswer={answers[screen]} answers={answers} achievements={earned} earn={earn} onAnswer={recordAnswer} onNext={next} onPrev={prev} onReset={reset} onFinish={finishLesson} />
@@ -4404,6 +4494,7 @@ function PracticeLesson4({ lang: langProp, onFinished, liveToken }) {
               </>}
             {mentorPractice && <MentorPracticeOverlay entry={mentorPractice} live={live} onClose={() => setMentorPractice(null)} />}
           </div>
+        </AchMissCtx.Provider>
         </AchCtx.Provider>
       </LiveGateCtx.Provider>
     </LangContext.Provider>;

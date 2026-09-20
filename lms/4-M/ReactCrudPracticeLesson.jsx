@@ -6,7 +6,7 @@
 //  Tahrir MANBAGA kiritiladi, keyin shu buyruq qayta yuriladi.
 // ============================================================
 // src/3-Modull/ReactCrudPracticeLesson.jsx
-import React3, { useState as useState3, useEffect as useEffect4, useRef as useRef3, createContext as createContext2, useContext as useContext2, useCallback as useCallback2 } from "react";
+import React3, { useState as useState3, useEffect as useEffect4, useRef as useRef3, createContext as createContext2, useContext as useContext2, useCallback as useCallback2, useMemo } from "react";
 
 // src/live/liveClient.js
 var DEFAULT_API_URL = "https://dars-api.coddycamp.uz";
@@ -289,10 +289,55 @@ function resetResultDetails(lessonId) {
   earnedAtByLesson.delete(lessonId);
   arenaByLesson.delete(lessonId);
   loaded.delete(lessonId);
+  sealedByLesson.delete(lessonId);
   try {
     store()?.removeItem(KEY(lessonId));
   } catch {
   }
+  try {
+    store()?.removeItem(SEAL_KEY(lessonId));
+  } catch {
+  }
+}
+var sealedByLesson = /* @__PURE__ */ new Map();
+var SEAL_KEY = (lessonId) => `ccSeal:${lessonId}`;
+var attemptMark = (lessonId) => {
+  try {
+    const ls = JSON.parse(store()?.getItem(`liveSession:${lessonId}`) || "null");
+    return String(ls && (ls.attemptId || ls.pin) || "");
+  } catch {
+    return "";
+  }
+};
+var sealKey = (lessonId, p) => `${(p && p.livePin) ?? ""}|${(p && p.liveMode) ?? ""}|${attemptMark(lessonId)}`;
+function sealPayload(lessonId, payload) {
+  if (!lessonId || !payload || typeof payload !== "object") return payload;
+  try {
+    const key = sealKey(lessonId, payload);
+    let held = sealedByLesson.get(lessonId);
+    if (!held) {
+      try {
+        held = JSON.parse(store()?.getItem(SEAL_KEY(lessonId)) || "null");
+      } catch {
+        held = null;
+      }
+      if (held && held.key && held.json) sealedByLesson.set(lessonId, held);
+      else held = null;
+    }
+    if (held && held.key === key) return JSON.parse(held.json);
+    const rec = { key, json: JSON.stringify(payload) };
+    sealedByLesson.set(lessonId, rec);
+    try {
+      store()?.setItem(SEAL_KEY(lessonId), JSON.stringify(rec));
+    } catch {
+    }
+    return JSON.parse(rec.json);
+  } catch {
+    return payload;
+  }
+}
+function unsealPayload(lessonId) {
+  sealedByLesson.delete(lessonId);
 }
 function buildResultDetails({ lessonId, screenMeta, answers, earned, achievements, lang: langIn, now, arenaBank } = {}) {
   const lang = langIn === "ru" || langIn === "uz" ? langIn : getLiveLang();
@@ -336,6 +381,7 @@ function buildResultDetails({ lessonId, screenMeta, answers, earned, achievement
     if (correctIdx !== null && correctIdx >= 0 && correctIdx <= 5) q.correct_option = correctIdx;
     const ca = cut(typeof a.correctAnswer === "string" ? a.correctAnswer : options && correctIdx !== null ? options[correctIdx] : void 0, LIM.text);
     if (ca) q.correct_answer = ca;
+    if (correctIdx === null) return;
     questions.push(q);
   });
   const arena = [...(arenaByLesson.get(lessonId) || /* @__PURE__ */ new Map()).entries()].sort((x, y) => x[0] - y[0]);
@@ -456,6 +502,9 @@ function useLiveSession(lessonId, answerKey, opts = {}) {
   const lessonVersion = opts.lessonVersion || null;
   const keyRef = useRef(answerKey);
   keyRef.current = answerKey;
+  useEffect(() => {
+    unsealPayload(lessonId);
+  }, [lessonId]);
   const initRef = useRef(void 0);
   if (initRef.current === void 0) initRef.current = LIVE_ENABLED ? liveRead(lessonId) : null;
   const init = initRef.current;
@@ -1113,6 +1162,7 @@ var CODE = { bg: "#1A2436", text: "#E8E5DD", tag: "#FF7755", attr: "#FFD380", st
 var LangContext = createContext2("uz");
 var MentorCtx = createContext2(null);
 var AchCtx = createContext2(null);
+var AchMissCtx = createContext2(null);
 var __lang = "uz";
 var tr2 = (node) => {
   if (node === null || node === void 0) return "";
@@ -1460,6 +1510,8 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
     </div>;
 }
 var QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, options, correctIdx, explainCorrect, explainWrong, storedAnswer, onAnswer, onNext, onPrev }) => {
+  const _am = useContext2(AchMissCtx);
+  const fpPractice = !!(_am && _am.practice);
   const gate = useContext2(LiveGateCtx) || {};
   const live = gate.live;
   const oneShot = !!(live && live.mode === "student");
@@ -1488,12 +1540,12 @@ var QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, opt
     if (oneShot) {
       setSolved(true);
       onAnswer(screen, { stage: scope, screenIdx: screen, question: questionText, options, correctIndex: correctIdx, correctAnswer: options[correctIdx], picked: i, studentAnswerIndex: i, studentAnswer: options[i], correct: isCorrect, firstAttemptCorrect: isCorrect, solved: true, lastPicked: i });
-      live.submitAnswer(screen, SCREEN_META[screen]?.id || `s${screen}`, i, isCorrect, Date.now() - mountTs.current);
+      if (!fpPractice) live.submitAnswer(screen, SCREEN_META[screen]?.id || `s${screen}`, i, isCorrect, Date.now() - mountTs.current);
     } else {
       if (isCorrect) setSolved(true);
       onAnswer(screen, { stage: scope, screenIdx: screen, question: questionText, options, correctIndex: correctIdx, correctAnswer: options[correctIdx], picked: i, studentAnswerIndex: i, studentAnswer: options[i], correct: firstCorrectRef.current, firstAttemptCorrect: firstCorrectRef.current, solved: isCorrect, lastPicked: i });
     }
-    if (live && live.recordAttempt) live.recordAttempt(screen, SCREEN_META[screen]?.id || `s${screen}`, i, Date.now() - mountTs.current, { question: questionText, options, picked: options[i], correct: options[correctIdx], lang: typeof __lang !== "undefined" && __lang === "ru" ? "ru" : "uz" });
+    if (live && live.recordAttempt && !fpPractice) live.recordAttempt(screen, SCREEN_META[screen]?.id || `s${screen}`, i, Date.now() - mountTs.current, { question: questionText, options, picked: options[i], correct: options[correctIdx], lang: typeof __lang !== "undefined" && __lang === "ru" ? "ru" : "uz" });
   };
   const wrongLocked = oneShot && solved && picked !== correctIdx;
   const revealed = !oneShot || !!(live && (live.revealScreen === screen || (live.mentorMax ?? live.mentorScreen) > screen || live.status === "ended" || !live.mentorAlive));
@@ -2242,6 +2294,7 @@ var Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [fixed, setFixed] = useState3(!!storedAnswer);
   const [clicks, setClicks] = useState3(0);
   const found = picked === "push";
+  const achMiss = useContext2(AchMissCtx);
   const done = fixed;
   const base = GAMES.slice(0, 2);
   const shown = fixed ? [...base, ...Array.from({ length: clicks }, (_, i) => POOL[i] || POOL[0])] : base;
@@ -2251,7 +2304,7 @@ var Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return <Stage eyebrow="Debugging" screen={screen} scrollSignal={found || fixed} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? tr2({ uz: "Davom etish", ru: "Продолжить" }) : found ? tr2({ uz: "Endi tuzating", ru: "Теперь исправьте" }) : tr2({ uz: "Xatoni toping", ru: "Найдите ошибку" })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: "clamp(10px,1.6vw,16px)" }}>
         <div className="head"><h2 className="title h-title fade-up">{tr2({ uz: <>AI yordam beradi — siz esa <span className="italic" style={{ color: T.accent }}>tekshirasiz</span>.</>, ru: <>AI помогает — а <span className="italic" style={{ color: T.accent }}>проверяете</span> вы.</> })}</h2></div>
-        <Mentor>{tr2({ uz: <>AI "Qo'shish"ni yozdi — lekin tugmani bosganda <b style={{ color: T.ink }}>hech narsa bo'lmayapti</b>! O'yin qo'shilmaydi. <b style={{ color: T.ink }}>State darsini</b> eslang: ro'yxatni to'g'ridan-to'g'ri o'zgartirsangiz, React buni <b style={{ color: T.ink }}>ko'rmaydi</b>. Qaysi qatorda shu xato?</>, ru: <>AI написал «Добавить» — но при нажатии кнопки <b style={{ color: T.ink }}>ничего не происходит</b>! Игра не добавляется. Вспомните <b style={{ color: T.ink }}>урок про state</b>: если менять список напрямую, React этого <b style={{ color: T.ink }}>не видит</b>. В какой строке эта ошибка?</> })}</Mentor>
+        <Mentor>{tr2({ uz: <>AI "Qo'shish"ni yozdi — lekin tugmani bosganda <b style={{ color: T.ink }}>hech narsa bo'lmayapti</b>! O'yin qo'shilmaydi. <b style={{ color: T.ink }}>State darsini</b> eslang. Qaysi qatorda xato?</>, ru: <>AI написал «Добавить» — но при нажатии кнопки <b style={{ color: T.ink }}>ничего не происходит</b>! Игра не добавляется. Вспомните <b style={{ color: T.ink }}>урок про state</b>. В какой строке ошибка?</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
@@ -2259,14 +2312,20 @@ var Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <div className="ai-row"><span className="ai-badge">AI</span><span className="ai-bubble">{tr2({ uz: "Qo'shish kodini yozdim:", ru: "Я написал код добавления:" })}</span></div>
               <div className="ai-code">
                 <div className={`ai-line ${picked === "obj" ? "ok" : ""}`} onClick={() => {
-    if (!found) setPicked("obj");
+    if (!found) {
+      setPicked("obj");
+      if (achMiss) achMiss.miss(screen);
+    }
   }}><Jx>{"const"}</Jx>{" yangi = { name: "}<St>"Piggy"</St>{" };"}</div>
                 {!fixed ? <div className={`ai-line ${found ? "bad" : ""}`} onClick={() => {
     if (!found) setPicked("push");
-  }}>{"games."}<At>push</At>{"(yangi);"}{"  "}<Cm>{tr2({ uz: "// o'sha ro'yxatning o'ziga qo'shdi", ru: "// добавил в тот же список" })}</Cm></div> : <div className="ai-line ok el-in">{"setGames("}<At>{"[...games, yangi]"}</At>{");"}{"  "}<Cm>{tr2({ uz: "// yangi ro'yxat — React ko'radi!", ru: "// новый список — React видит!" })}</Cm></div>}
+  }}>{"games."}<At>push</At>{"(yangi);"}{"  "}<Cm>{tr2({ uz: "// yangi o'yinni qo'shdi", ru: "// добавил новую игру" })}</Cm></div> : <div className="ai-line ok el-in">{"setGames("}<At>{"[...games, yangi]"}</At>{");"}{"  "}<Cm>{tr2({ uz: "// yangi ro'yxat — React ko'radi!", ru: "// новый список — React видит!" })}</Cm></div>}
                 {!fixed && <div className={`ai-line ${picked === "set" ? "ok" : ""}`} onClick={() => {
-    if (!found) setPicked("set");
-  }}>{"setGames(games);"}{"  "}<Cm>{tr2({ uz: "// o'sha ro'yxat...", ru: "// тот же список..." })}</Cm></div>}
+    if (!found) {
+      setPicked("set");
+      if (achMiss) achMiss.miss(screen);
+    }
+  }}>{"setGames(games);"}{"  "}<Cm>{tr2({ uz: "// ro'yxatni yangiladi", ru: "// обновил список" })}</Cm></div>}
               </div>
               {!found && <p className="ai-prompt">{tr2({ uz: "Ro'yxat nega yangilanmayapti? Xato qatorni bosing.", ru: "Почему список не обновляется? Нажмите на строку с ошибкой." })}</p>}
               {found && !fixed && <button className="btn fade-step" style={{ alignSelf: "flex-start" }} onClick={() => {
@@ -2274,6 +2333,7 @@ var Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     setClicks(0);
   }}>{tr2({ uz: "🔧 setGames([...games, yangi]) ga almashtirish", ru: "🔧 Заменить на setGames([...games, yangi])" })}</button>}
               {fixed && <p className="ai-prompt" style={{ color: T.success, fontStyle: "normal", fontWeight: 600 }}>{tr2({ uz: "✓ Tuzatildi — endi yangi ro'yxat yasaladi, React ko'radi!", ru: "✓ Исправлено — теперь создаётся новый список, React видит!" })}</p>}
+              {!fixed && <AchRule screen={screen} />}
             </div>
           </Col>
           <Col>
@@ -2281,7 +2341,7 @@ var Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <button className="chip" style={{ padding: "6px 12px", fontSize: 12 }} disabled={clicks >= 2} onClick={() => setClicks((c) => Math.min(c + 1, 2))}>{fixed ? tr2({ uz: "+ [...games, yangi]", ru: "+ [...games, yangi]" }) : tr2({ uz: "+ push (tez qo'l)", ru: "+ push (на скорую руку)" })}</button>
             </div>
             <Aquarium fish={shown} frozen={!fixed} minH={110} addId={fixed && clicks > 0 ? shown[shown.length - 1]?.id : null} />
-            {!found && (picked === "obj" || picked === "set" ? <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{picked === "obj" ? tr2({ uz: <>Bu qator to'g'ri — yangi o'yin tayyorlandi. Yana qarang: <span className="mono">games</span> ro'yxatining <b>o'ziga</b> tegayotgan qator qaysi?</>, ru: <>Эта строка верна — новая игра подготовлена. Посмотрите ещё раз: какая строка трогает <b>сам</b> список <span className="mono">games</span>?</> }) : tr2({ uz: <>Yaqin! Bu qator o'zi xato emas — muammo unga <b>o'sha eski ro'yxat</b> uzatilayotganida. Uni o'sha holicha kim qoldirdi? Yuqoridagi qatorga qarang.</>, ru: <>Близко! Сама строка не ошибка — проблема в том, что в неё передаётся <b>тот же старый список</b>. А кто оставил его таким? Посмотрите на строку выше.</> })}</p></div> : <div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>{tr2({ uz: <>"+ push"ni bosing — son o'zgarmaydi. <span className="mono" style={{ color: T.ink }}>push</span> o'sha eski ro'yxatning <b style={{ color: T.ink }}>o'ziga</b> qo'shadi, yangi ro'yxat yasamaydi — React esa faqat yangi ro'yxatni sezadi.</>, ru: <>Нажмите «+ push» — число не меняется. <span className="mono" style={{ color: T.ink }}>push</span> добавляет в <b style={{ color: T.ink }}>тот же</b> старый список, а нового не создаёт — React же замечает только новый список.</> })}</p></div>)}
+            {!found && (picked === "obj" || picked === "set" ? <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{picked === "obj" ? tr2({ uz: <>Bu qator to'g'ri — yangi o'yin tayyorlandi. Yana qarang: <span className="mono">games</span> ro'yxatining <b>o'ziga</b> tegayotgan qator qaysi?</>, ru: <>Эта строка верна — новая игра подготовлена. Посмотрите ещё раз: какая строка трогает <b>сам</b> список <span className="mono">games</span>?</> }) : tr2({ uz: <>Yaqin! Bu qator o'zi xato emas — muammo unga <b>o'sha eski ro'yxat</b> uzatilayotganida. Uni o'sha holicha kim qoldirdi? Yuqoridagi qatorga qarang.</>, ru: <>Близко! Сама строка не ошибка — проблема в том, что в неё передаётся <b>тот же старый список</b>. А кто оставил его таким? Посмотрите на строку выше.</> })}</p></div> : <div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>{tr2({ uz: `"+ push"ni bosing — son o'zgarmaydi. State darsini eslang: React ro'yxat o'zgarganini qachon sezadi?`, ru: "Нажмите «+ push» — число не меняется. Вспомните урок про state: когда React замечает, что список изменился?" })}</p></div>)}
             {found && !fixed && <div className="frame-warn fade-step"><p className="note-h" style={{ color: T.accent }}>{tr2({ uz: "✓ Topdingiz!", ru: "✓ Нашли!" })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr2({ uz: <><b>①</b> <span className="mono">games.push(yangi)</span> — o'sha eski ro'yxatning <b>o'ziga</b> qo'shadi, yangi ro'yxat yasamaydi. <b>②</b> <span className="mono">setGames(games)</span> React'ga <b>o'sha eski ro'yxatni</b> uzatadi — React uchun hech narsa o'zgarmagan, shuning uchun qayta chizmaydi. To'g'risi: <span className="mono">setGames([...games, yangi])</span> — yangi ro'yxat. Chapdagi tugma bilan tuzating →</>, ru: <><b>①</b> <span className="mono">games.push(yangi)</span> добавляет в <b>тот же</b> старый список, нового не создаёт. <b>②</b> <span className="mono">setGames(games)</span> передаёт React <b>тот же самый старый список</b> — для React ничего не изменилось, поэтому он не перерисовывает. Правильно: <span className="mono">setGames([...games, yangi])</span> — новый список. Исправьте кнопкой слева →</> })}</p></div>}
           </Col>
         </div>
@@ -2608,6 +2668,16 @@ var ACHIEVEMENTS = {
   graduate: { icon: "🏆", name: "Level Up!", desc: { uz: "CRUD praktikasini to'liq yakunladingiz", ru: "Полностью завершили практику CRUD" } }
 };
 var ACH_TRIGGERS = { s11: "builder", s13: "debugger", s14: "finisher" };
+var AchRule = ({ screen, once }) => {
+  const earned = useContext2(AchCtx);
+  const am = useContext2(AchMissCtx);
+  const gate = useContext2(LiveGateCtx) || {};
+  const sid = SCREEN_META[screen] && SCREEN_META[screen].id;
+  const ach = ACH_TRIGGERS[sid];
+  if (!ach || !am || am.practice || gate.live && gate.live.mode === "mentor" || earned && earned.has(ach)) return null;
+  const lost = am.missed.has(sid);
+  return <p className={`ach-rule ${lost ? "lost" : ""}`}>{lost ? once ? tr2({ uz: "Nishon birinchi urinish uchun edi.", ru: "Значок давался за первую попытку." }) : tr2({ uz: "Nishon birinchi urinish uchun edi — endi bemalol to'g'risini toping.", ru: "Значок давался за первую попытку — теперь спокойно найдите верный ответ." }) : tr2({ uz: "🏅 Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki.", ru: "🏅 Справитесь с первой попытки — значок ваш." })}</p>;
+};
 function AchCelebrate({ ach, onDone }) {
   useEffect4(() => {
     const t = setTimeout(onDone, 4e3);
@@ -3321,16 +3391,30 @@ function ReactCrudPracticeLesson({ lang: langProp, onFinished, liveToken }) {
   const [screen, setScreen] = useState3(() => saved ? Math.min(Math.max(saved.screen || 0, 0), TOTAL_SCREENS - 1) : 0);
   const [answers, setAnswers] = useState3(() => saved && saved.answers || {});
   const startTimeRef = useRef3(saved?.startedAt || Date.now());
+  const firstPassRef = useRef3(saved?.firstPass || null);
+  const soloSentRef = useRef3(/* @__PURE__ */ new Set());
+  const [fpPractice, setFpPractice] = useState3(!!saved?.firstPass);
   const earnedRef = useRef3(new Set(saved?.earned || []));
   const [earned, setEarned] = useState3(() => new Set(saved?.earned || []));
   const [achToasts, setAchToasts] = useState3([]);
   const achKeyRef = useRef3(0);
   const earn = useCallback2((id) => {
+    if (firstPassRef.current) return;
     if (!ACHIEVEMENTS[id] || earnedRef.current.has(id)) return;
     earnedRef.current.add(id);
     setEarned(new Set(earnedRef.current));
     setAchToasts((t) => [...t, { id, k: ++achKeyRef.current }]);
   }, []);
+  const missedRef = useRef3(new Set(saved?.missed || []));
+  const [missed, setMissed] = useState3(() => new Set(saved?.missed || []));
+  const missTry = useCallback2((idx) => {
+    const sid = SCREEN_META[idx] && SCREEN_META[idx].id;
+    const ach = ACH_TRIGGERS[sid];
+    if (!ach || missedRef.current.has(sid) || earnedRef.current.has(ach)) return;
+    missedRef.current.add(sid);
+    setMissed(new Set(missedRef.current));
+  }, []);
+  const achMissVal = useMemo(() => ({ missed, miss: missTry, practice: fpPractice }), [missed, missTry, fpPractice]);
   useEffect4(() => {
     const upd = () => {
       const z = Math.min(1.5, Math.max(1, Math.min(window.innerWidth / 1920, window.innerHeight / 1e3)));
@@ -3355,7 +3439,14 @@ function ReactCrudPracticeLesson({ lang: langProp, onFinished, liveToken }) {
   const recordAnswer = (idx, data) => {
     setAnswers((a) => ({ ...a, [idx]: data }));
     const _m = SCREEN_META[idx];
-    if (_m && ACH_TRIGGERS[_m.id] && data && data.correct) earn(ACH_TRIGGERS[_m.id]);
+    if (_m && _m.scored && live.mode === "solo" && !firstPassRef.current && data && (data.solved === true || data.correct === true) && !soloSentRef.current.has(idx)) {
+      const key = INLINE_KEYS[_m.id];
+      if (Number.isInteger(key)) {
+        soloSentRef.current.add(idx);
+        live.submitAnswer(idx, _m.id, key < 0 ? 0 : data.correct ? key : key === 0 ? 1 : 0, !!data.correct, data.elapsedMs || 0);
+      }
+    }
+    if (_m && ACH_TRIGGERS[_m.id] && data && data.correct && !missedRef.current.has(_m.id)) earn(ACH_TRIGGERS[_m.id]);
     if (_m && _m.scored && _m.scope === "final" && data && data.correct && live.mode === "student") live.submitAnswer(idx, _m.id, 0, true, 0);
   };
   const answerKey = { ...INLINE_KEYS, ...Object.fromEntries(QUIZ_BANK.map((q, i) => [`quiz-${i}`, q.correct])) };
@@ -3370,37 +3461,43 @@ function ReactCrudPracticeLesson({ lang: langProp, onFinished, liveToken }) {
     if (screen === TOTAL_SCREENS - 1) earn("graduate");
   }, [screen, earn]);
   const reset = () => {
+    if (!firstPassRef.current) {
+      firstPassRef.current = { answers, durationSec: Math.floor((Date.now() - startTimeRef.current) / 1e3) };
+      setFpPractice(true);
+    }
     progClear(LESSON_META.lessonId);
     setAnswers({});
     setScreen(0);
     startTimeRef.current = Date.now();
   };
   useEffect4(() => {
-    progWrite(LESSON_META.lessonId, { screen, answers, earned: [...earnedRef.current], startedAt: startTimeRef.current, total: TOTAL_SCREENS, savedAt: Date.now() });
-  }, [screen, answers, earned]);
+    progWrite(LESSON_META.lessonId, { screen, answers, earned: [...earnedRef.current], missed: [...missedRef.current], firstPass: firstPassRef.current, startedAt: startTimeRef.current, total: TOTAL_SCREENS, savedAt: Date.now() });
+  }, [screen, answers, earned, missed, fpPractice]);
   const finishLesson = () => {
     progClear(LESSON_META.lessonId);
     live.endSession();
+    const fp = firstPassRef.current;
+    const ans = fp ? fp.answers : answers;
     const scoredMeta = SCREEN_META.filter((s) => s.scored);
     const finalMeta = scoredMeta.filter((s) => s.scope === "final");
-    const scoredAnswers = SCREEN_META.map((s, i) => s.scored ? answers[i] : null).filter(Boolean);
+    const scoredAnswers = SCREEN_META.map((s, i) => s.scored ? ans[i] : null).filter(Boolean);
     const correctAnswers = scoredAnswers.filter((a) => a.correct).length;
-    const finalAnswers = SCREEN_META.map((s, i) => s.scored && s.scope === "final" ? answers[i] : null).filter(Boolean);
+    const finalAnswers = SCREEN_META.map((s, i) => s.scored && s.scope === "final" ? ans[i] : null).filter(Boolean);
     const finalCorrect = finalAnswers.filter((a) => a.correct).length;
     const payload = {
       lessonId: LESSON_META.lessonId,
       lessonTitle: LESSON_META.lessonTitle,
-      durationSec: Math.floor((Date.now() - startTimeRef.current) / 1e3),
+      durationSec: fp ? fp.durationSec : Math.floor((Date.now() - startTimeRef.current) / 1e3),
       totalQuestions: scoredMeta.length,
       correctAnswers,
       scorePercent: scoredMeta.length ? Math.round(correctAnswers / scoredMeta.length * 100) : 0,
       finalScore: finalCorrect,
       finalTotal: finalMeta.length,
       passed: finalMeta.length ? finalCorrect / finalMeta.length >= 0.6 : scoredMeta.length ? correctAnswers / scoredMeta.length >= 0.6 : false,
-      answers: SCREEN_META.map((s, i) => answers[i]).filter(Boolean),
-      ...buildResultDetails({ lessonId: LESSON_META.lessonId, screenMeta: SCREEN_META, answers, earned, achievements: ACHIEVEMENTS, arenaBank: QUIZ_BANK })
+      answers: SCREEN_META.map((s, i) => ans[i]).filter(Boolean),
+      ...buildResultDetails({ lessonId: LESSON_META.lessonId, screenMeta: SCREEN_META, answers: ans, earned, achievements: ACHIEVEMENTS, arenaBank: QUIZ_BANK })
     };
-    if (typeof onFinished === "function") onFinished(payload);
+    if (typeof onFinished === "function") onFinished(sealPayload(LESSON_META.lessonId, payload));
   };
   const screens = [Screen0, Screen1, Screen2, Screen3, Screen4, Screen5, ScreenPractice1, Screen5b, Screen6, ScreenPractice2, Screen7, ScreenPractice3, Screen8, Screen9, Screen10, Screen11, Screen12, Screen13, Screen14, ScreenPodium, ScreenFlashcards, Screen15];
   const Current = screens[screen];
@@ -4129,8 +4226,11 @@ function ReactCrudPracticeLesson({ lang: langProp, onFinished, liveToken }) {
         /* === 🛠️ JONLI PRAKTIKA — mentor «kim bajardi» chiplari === */
         .lp-doer { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 12px; color: ${T.ink2}; background: rgba(58,53,48,0.07); border-radius: 99px; padding: 4px 11px; white-space: nowrap; }
         .lp-doer.done { color: ${T.success}; background: ${T.successSoft}; }
+        .ach-rule { margin: 8px 0 0; text-align: center; font-size: 13px; line-height: 1.4; color: ${T.ink2}; }
+        .ach-rule.lost { font-style: italic; }
       `}</style>
       <AchCtx.Provider value={earned}>
+      <AchMissCtx.Provider value={achMissVal}>
       <LiveGateCtx.Provider value={{ locked, live }}>
         <div className="lesson-root">
           {live.mode === "choosing" ? <LiveGate live={live} title={{ uz: "React praktikasi", ru: "Практика React" }} /> : <>
@@ -4140,6 +4240,7 @@ function ReactCrudPracticeLesson({ lang: langProp, onFinished, liveToken }) {
             </>}
         </div>
       </LiveGateCtx.Provider>
+      </AchMissCtx.Provider>
       </AchCtx.Provider>
     </LangContext.Provider>;
 }

@@ -289,10 +289,55 @@ function resetResultDetails(lessonId) {
   earnedAtByLesson.delete(lessonId);
   arenaByLesson.delete(lessonId);
   loaded.delete(lessonId);
+  sealedByLesson.delete(lessonId);
   try {
     store()?.removeItem(KEY(lessonId));
   } catch {
   }
+  try {
+    store()?.removeItem(SEAL_KEY(lessonId));
+  } catch {
+  }
+}
+var sealedByLesson = /* @__PURE__ */ new Map();
+var SEAL_KEY = (lessonId) => `ccSeal:${lessonId}`;
+var attemptMark = (lessonId) => {
+  try {
+    const ls = JSON.parse(store()?.getItem(`liveSession:${lessonId}`) || "null");
+    return String(ls && (ls.attemptId || ls.pin) || "");
+  } catch {
+    return "";
+  }
+};
+var sealKey = (lessonId, p) => `${(p && p.livePin) ?? ""}|${(p && p.liveMode) ?? ""}|${attemptMark(lessonId)}`;
+function sealPayload(lessonId, payload) {
+  if (!lessonId || !payload || typeof payload !== "object") return payload;
+  try {
+    const key = sealKey(lessonId, payload);
+    let held = sealedByLesson.get(lessonId);
+    if (!held) {
+      try {
+        held = JSON.parse(store()?.getItem(SEAL_KEY(lessonId)) || "null");
+      } catch {
+        held = null;
+      }
+      if (held && held.key && held.json) sealedByLesson.set(lessonId, held);
+      else held = null;
+    }
+    if (held && held.key === key) return JSON.parse(held.json);
+    const rec = { key, json: JSON.stringify(payload) };
+    sealedByLesson.set(lessonId, rec);
+    try {
+      store()?.setItem(SEAL_KEY(lessonId), JSON.stringify(rec));
+    } catch {
+    }
+    return JSON.parse(rec.json);
+  } catch {
+    return payload;
+  }
+}
+function unsealPayload(lessonId) {
+  sealedByLesson.delete(lessonId);
 }
 function buildResultDetails({ lessonId, screenMeta, answers, earned, achievements, lang: langIn, now, arenaBank } = {}) {
   const lang = langIn === "ru" || langIn === "uz" ? langIn : getLiveLang();
@@ -336,6 +381,7 @@ function buildResultDetails({ lessonId, screenMeta, answers, earned, achievement
     if (correctIdx !== null && correctIdx >= 0 && correctIdx <= 5) q.correct_option = correctIdx;
     const ca = cut(typeof a.correctAnswer === "string" ? a.correctAnswer : options && correctIdx !== null ? options[correctIdx] : void 0, LIM.text);
     if (ca) q.correct_answer = ca;
+    if (correctIdx === null) return;
     questions.push(q);
   });
   const arena = [...(arenaByLesson.get(lessonId) || /* @__PURE__ */ new Map()).entries()].sort((x, y) => x[0] - y[0]);
@@ -456,6 +502,9 @@ function useLiveSession(lessonId, answerKey, opts = {}) {
   const lessonVersion = opts.lessonVersion || null;
   const keyRef = useRef(answerKey);
   keyRef.current = answerKey;
+  useEffect(() => {
+    unsealPayload(lessonId);
+  }, [lessonId]);
   const initRef = useRef(void 0);
   if (initRef.current === void 0) initRef.current = LIVE_ENABLED ? liveRead(lessonId) : null;
   const init = initRef.current;
@@ -1124,6 +1173,7 @@ var tr2 = (node) => {
 var LangContext = createContext2("uz");
 var MentorCtx = createContext2(null);
 var AchCtx = createContext2(null);
+var AchMissCtx = createContext2(null);
 var fmtCode = (s) => typeof s === "string" && s.includes("`") ? s.split("`").map((p, i) => i % 2 ? <code className="qcode" key={i}>{p}</code> : p) : s;
 var useAudio = () => ({ muted: true, isPlaying: false, currentSegment: null, waitingFor: null, triggerEvent: () => {
 }, replay: () => {
@@ -1432,6 +1482,8 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
     </div>;
 }
 var QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, options, correctIdx, explainCorrect, explainWrong, audioText, audioOk, audioWrong, storedAnswer, onAnswer, onNext, onPrev }) => {
+  const _am = useContext2(AchMissCtx);
+  const fpPractice = !!(_am && _am.practice);
   const audio = useAudio(audioText ? [{ id: `s${screen}_intro`, text: audioText, trigger: "on_mount", waits_for: { type: "option_picked" } }] : null);
   const gate = useContext2(LiveGateCtx) || {};
   const live = gate.live;
@@ -1461,12 +1513,12 @@ var QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, opt
     if (oneShot) {
       setSolved(true);
       onAnswer(screen, { stage: scope, screenIdx: screen, question: questionText, options, correctIndex: correctIdx, correctAnswer: options[correctIdx], picked: i, studentAnswerIndex: i, studentAnswer: options[i], correct: isCorrect, firstAttemptCorrect: isCorrect, solved: true, lastPicked: i });
-      live.submitAnswer(screen, SCREEN_META[screen]?.id || `s${screen}`, i, isCorrect, Date.now() - mountTs.current);
+      if (!fpPractice) live.submitAnswer(screen, SCREEN_META[screen]?.id || `s${screen}`, i, isCorrect, Date.now() - mountTs.current);
     } else {
       if (isCorrect) setSolved(true);
       onAnswer(screen, { stage: scope, screenIdx: screen, question: questionText, options, correctIndex: correctIdx, correctAnswer: options[correctIdx], picked: i, studentAnswerIndex: i, studentAnswer: options[i], correct: firstCorrectRef.current, firstAttemptCorrect: firstCorrectRef.current, solved: isCorrect, lastPicked: i });
     }
-    if (live && live.recordAttempt) live.recordAttempt(screen, SCREEN_META[screen]?.id || `s${screen}`, i, Date.now() - mountTs.current, { question: questionText, options, picked: options[i], correct: options[correctIdx], lang: typeof __lang !== "undefined" && __lang === "ru" ? "ru" : "uz" });
+    if (live && live.recordAttempt && !fpPractice) live.recordAttempt(screen, SCREEN_META[screen]?.id || `s${screen}`, i, Date.now() - mountTs.current, { question: questionText, options, picked: options[i], correct: options[correctIdx], lang: typeof __lang !== "undefined" && __lang === "ru" ? "ru" : "uz" });
   };
   const wrongLocked = oneShot && solved && picked !== correctIdx;
   const revealed = !oneShot || !!(live && (live.revealScreen === screen || (live.mentorMax ?? live.mentorScreen) > screen || live.status === "ended" || !live.mentorAlive));
@@ -2027,6 +2079,7 @@ var GUARD_CODE = [
   { k: "ok", el: <>{"  "}<Kw>const</Kw>{` userId = data.userId  `}<Cm>// kim</Cm></> }
 ];
 var Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
+  const achMiss = useContext2(AchMissCtx);
   const [i, setI] = useState3(storedAnswer ? GUARD_SHIFT.length : 0);
   const [verdict, setVerdict] = useState3(null);
   const [okCount, setOkCount] = useState3(storedAnswer ? storedAnswer.okCount ?? GUARD_SHIFT.length : 0);
@@ -2048,7 +2101,10 @@ var Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     const correct = letIn === cur.ok;
     setVerdict({ correct, item: cur, letIn });
     if (correct) setOkCount((c) => c + 1);
-    else setMistakes((m) => m + 1);
+    else {
+      setMistakes((m) => m + 1);
+      if (achMiss) achMiss.miss(screen);
+    }
   };
   const nextCard = () => {
     setVerdict(null);
@@ -2093,6 +2149,7 @@ var Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 <p className="gq-final-s">{perfect ? tr2({ uz: "Aynan shunday jwt.verify har so'rovda bilaguzukni tekshiradi.", ru: "Именно так jwt.verify проверяет браслет в каждом запросе." }) : tr2({ uz: "Ba'zi hukmlar xato bo'ldi — soxta yoki eskirgan bilaguzuk RAD etilishi kerak.", ru: "Часть вердиктов была ошибочной — поддельный или просроченный браслет нужно ОТКЛОНЯТЬ." })}</p>
                 {!perfect && <button className="btn-soft" onClick={restart}>{tr2({ uz: "↻ Smenani qaytadan", ru: "↻ Смену заново" })}</button>}
               </div>}
+            {!doneAll && <AchRule screen={screen} />}
           </Col>
           <Col>
             <p className="flow-label">{tr2({ uz: "Qo'riqchi kodi — qaysi qator ishladi?", ru: "Код охранника — какая строка сработала?" })}</p>
@@ -2307,6 +2364,7 @@ var FLOW_STEPS = [
   }
 ];
 var Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
+  const achMiss = useContext2(AchMissCtx);
   const LAST = FLOW_STEPS.length - 1;
   const [step, setStep] = useState3(storedAnswer ? LAST : 0);
   const [phase, setPhase] = useState3(storedAnswer ? "sent" : "predict");
@@ -2332,6 +2390,7 @@ var Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     } else {
       setWrong(i);
       setMistakes((m) => m + 1);
+      if (achMiss) achMiss.miss(screen);
     }
   };
   const send = () => {
@@ -2379,7 +2438,7 @@ var Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <p className="flow-label">{tr2(cur.label)}</p>
             {done ? <div className={perfect ? "frame-success fade-step" : "frame-soft fade-step"}>
                 <p className="body" style={{ margin: 0, color: T.ink }}>
-                  {perfect ? tr2({ uz: "🎉 Xatosiz! Tokensiz → 401, login → token, token bilan → 201. Mana shu — saytni himoyalashning to'liq yo'li.", ru: "🎉 Без ошибок! Без токена → 401, логин → токен, с токеном → 201. Вот он — полный путь защиты сайта." }) : tr2({ uz: `Yo'l bosib o'tildi, lekin ${mistakes} ta xato qaror bo'ldi. Qadamlarni qaytadan — xatosiz — o'tib ko'ring.`, ru: `Путь пройден, но было ошибочных решений: ${mistakes}. Попробуйте пройти шаги заново — без ошибок.` })}
+                  {perfect ? tr2({ uz: "🎉 Xatosiz! Tokensiz → 401, login → token, token bilan → 201. Mana shu — saytni himoyalashning to'liq yo'li.", ru: "🎉 Без ошибок! Без токена → 401, логин → токен, с токеном → 201. Вот он — полный путь защиты сайта." }) : tr2({ uz: `Yo'l bosib o'tildi, lekin ${mistakes} ta xato qaror bo'ldi. Qadamlarni yana bir bor — endi xatosiz — mashq qiling.`, ru: `Путь пройден, но было ошибочных решений: ${mistakes}. Потренируйтесь пройти шаги ещё раз — теперь без ошибок.` })}
                 </p>
                 {!perfect && <button className="btn-soft" style={{ alignSelf: "flex-start", marginTop: 10 }} onClick={restart}>{tr2({ uz: "↻ Qaytadan", ru: "↻ Заново" })}</button>}
               </div> : sent ? <div className="frame-success fade-step">
@@ -2401,6 +2460,7 @@ var Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 </div>
                 {phase === "ready" ? <div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>{tr2({ uz: <>To'g'ri qaror. Endi so'rovni yuboring — chapdagi <b style={{ color: T.ink }}>{step === 1 ? tr2({ uz: "→ Kirish", ru: "→ Войти" }) : "Send"}</b> tugmasini bosing.</>, ru: <>Верное решение. Теперь отправьте запрос — нажмите слева кнопку <b style={{ color: T.ink }}>{step === 1 ? tr2({ uz: "→ Kirish", ru: "→ Войти" }) : "Send"}</b>.</> })}</p></div> : wrong !== null ? <div className="frame-soft fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{fmtCode(tr2(cur.opts[wrong].why))}</p></div> : <div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>{tr2({ uz: "Avval qaror qiling — so'rov shundan keyin yuboriladi.", ru: "Сначала примите решение — запрос отправится после этого." })}</p></div>}
               </>}
+            {!done && <AchRule screen={screen} />}
           </Col>
         </div>
         </Zoomable>
@@ -2408,8 +2468,10 @@ var Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     </Stage>;
 };
 var Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
+  const achMiss = useContext2(AchMissCtx);
   const [found, setFound] = useState3(!!storedAnswer);
   const [fixed, setFixed] = useState3(!!storedAnswer);
+  const [wrong, setWrong] = useState3(false);
   const done = fixed;
   const { tip: _tip, rescue: _resc } = useStuckValve(done, (found ? 1 : 0) + (fixed ? 1 : 0));
   useEffect4(() => {
@@ -2424,7 +2486,7 @@ var Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       <div className="screen" style={{ gap: "clamp(10px,1.6vw,16px)" }}>
         <div className="head"><h2 className="title h-title fade-up">{tr2({ uz: <>AI kod yozdi — lekin bitta qator <span className="italic" style={{ color: T.danger }}>xavfli</span></>, ru: <>ИИ написал код — но одна строка <span className="italic" style={{ color: T.danger }}>опасна</span></> })}</h2></div>
         <Mentor>{tr2({ uz: <>AI server kodini yozdi va GitHub'ga yuklamoqchi. Lekin bir qatorda <b style={{ color: T.danger }}>maxfiy kalit ochiq</b> turibdi — bu GitHub'da hammaga ko'rinadi! Xavfli qatorni toping va tuzating.</>, ru: <>ИИ написал код сервера и собирается загрузить его на GitHub. Но в одной строке <b style={{ color: T.danger }}>секретный ключ лежит открыто</b> — на GitHub его увидят все! Найдите опасную строку и исправьте.</> })}</Mentor>
-        {_tip && !done && <p className="bhint fade-step">{tr2({ uz: "💡 Kalit qiymati ochiq yozilgan qatorni bosing, keyin «🔧» bilan tuzating.", ru: "💡 Нажмите строку, где значение ключа записано открыто, затем исправьте через «🔧»." })}</p>}
+        {_tip && wrong && !done && <p className="bhint fade-step">{tr2({ uz: "💡 Kalit qiymati ochiq yozilgan qatorni bosing, keyin «🔧» bilan tuzating.", ru: "💡 Нажмите строку, где значение ключа записано открыто, затем исправьте через «🔧»." })}</p>}
         {_resc && !done && <p className="bhint calm fade-step">{tr2({ uz: "Qolganini keyinroq birga ko'rib chiqamiz — «Davom etish» ochiq.", ru: "Остальное разберём вместе позже — «Продолжить» открыто." })}</p>}
         <Zoomable>
         <div className="split">
@@ -2435,16 +2497,22 @@ var Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 {LINES.map((l) => {
     if (l.bug && fixed) return <div key={l.id} className="ai-line ok" style={{ cursor: "default" }}><Kw>const</Kw>{` JWT_SECRET = `}<At>process</At>{`.`}<At>env</At>{`.`}<At>JWT_SECRET</At></div>;
     return <div key={l.id} className={`ai-line ${found && l.bug ? "bad" : ""}`} onClick={() => {
-      if (!found) setFound(l.bug);
+      if (found) return;
+      if (!l.bug) {
+        setWrong(true);
+        if (achMiss) achMiss.miss(screen);
+      }
+      setFound(l.bug);
     }}>{l.el}</div>;
   })}
               </div>
-              {!found && <p className="ai-prompt">{tr2({ uz: "Qaysi qator maxfiylikni buzadi? Bosing.", ru: "Какая строка нарушает секретность? Нажмите." })}</p>}
+              {!found && <p className="ai-prompt">{wrong ? tr2({ uz: "Bu qatorda xato yo'q — yana qarang.", ru: "В этой строке ошибки нет — посмотрите ещё раз." }) : tr2({ uz: "Qaysi qator maxfiylikni buzadi? Bosing.", ru: "Какая строка нарушает секретность? Нажмите." })}</p>}
               {found && !fixed && <button className="btn fade-step" style={{ alignSelf: "flex-start" }} onClick={() => setFixed(true)}>{tr2({ uz: "🔧 process.env.JWT_SECRET'ga o'zgartirish", ru: "🔧 Заменить на process.env.JWT_SECRET" })}</button>}
             </div>
+            {!done && <AchRule screen={screen} />}
           </Col>
           <Col>
-            {!found ? <div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>{tr2({ uz: "Maslahat: kalit qiymati to'g'ridan-to'g'ri kodda yozilgan qatorni qidiring.", ru: "Подсказка: ищите строку, где значение ключа записано прямо в коде." })}</p></div> : !fixed ? <div className="frame-warn fade-step"><p className="note-h" style={{ color: T.danger }}>{tr2({ uz: "✓ Topdingiz!", ru: "✓ Нашли!" })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr2({ uz: <>Kalit kodda ochiq — GitHub'ga ketsa hamma ko'radi. Uni .env'ga ko'chirib, <span className="mono">process.env</span> orqali o'qiymiz. Chapdagi tugmani bosing →</>, ru: <>Ключ открыт в коде — попадёт на GitHub, и увидят все. Перенесём его в .env и будем читать через <span className="mono">process.env</span>. Нажмите кнопку слева →</> })}</p></div> : <div className="takeaway fade-step"><div className="ta-bulb">🔒</div><p className="ta-h">{tr2({ uz: "Maxfiy kalit endi .env'da", ru: "Секретный ключ теперь в .env" })}</p><p className="ta-sub">{tr2({ uz: "Kodda hech qachon maxfiy kalitni ochiq qoldirmang", ru: "Никогда не оставляйте секретный ключ открытым в коде" })}</p></div>}
+            {!found ? wrong && <div className="hint fade-step"><p className="body" style={{ margin: 0, color: T.ink2 }}>{tr2({ uz: "Maslahat: kalit qiymati to'g'ridan-to'g'ri kodda yozilgan qatorni qidiring.", ru: "Подсказка: ищите строку, где значение ключа записано прямо в коде." })}</p></div> : !fixed ? <div className="frame-warn fade-step"><p className="note-h" style={{ color: T.danger }}>{tr2({ uz: "✓ Topdingiz!", ru: "✓ Нашли!" })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr2({ uz: <>Kalit kodda ochiq — GitHub'ga ketsa hamma ko'radi. Uni .env'ga ko'chirib, <span className="mono">process.env</span> orqali o'qiymiz. Chapdagi tugmani bosing →</>, ru: <>Ключ открыт в коде — попадёт на GitHub, и увидят все. Перенесём его в .env и будем читать через <span className="mono">process.env</span>. Нажмите кнопку слева →</> })}</p></div> : <div className="takeaway fade-step"><div className="ta-bulb">🔒</div><p className="ta-h">{tr2({ uz: "Maxfiy kalit endi .env'da", ru: "Секретный ключ теперь в .env" })}</p><p className="ta-sub">{tr2({ uz: "Kodda hech qachon maxfiy kalitni ochiq qoldirmang", ru: "Никогда не оставляйте секретный ключ открытым в коде" })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -2716,6 +2784,16 @@ var ACHIEVEMENTS = {
   vaultsealed: { icon: "🔒", name: "Vault Sealed!", desc: { uz: "Maxfiy kalitni .env'ga muhrladingiz", ru: "Вы запечатали секретный ключ в .env" } }
 };
 var ACH_TRIGGERS = { s7: "gatekeeper", s13: "tokenforged", s14: "secretkeeper", s15: "vaultsealed" };
+var AchRule = ({ screen, once }) => {
+  const earned = useContext2(AchCtx);
+  const am = useContext2(AchMissCtx);
+  const gate = useContext2(LiveGateCtx) || {};
+  const sid = SCREEN_META[screen] && SCREEN_META[screen].id;
+  const ach = ACH_TRIGGERS[sid];
+  if (!ach || !am || am.practice || gate.live && gate.live.mode === "mentor" || earned && earned.has(ach)) return null;
+  const lost = am.missed.has(sid);
+  return <p className={`ach-rule ${lost ? "lost" : ""}`}>{lost ? once ? tr2({ uz: "Nishon birinchi urinish uchun edi.", ru: "Значок давался за первую попытку." }) : tr2({ uz: "Nishon birinchi urinish uchun edi — endi bemalol to'g'risini toping.", ru: "Значок давался за первую попытку — теперь спокойно найдите верный ответ." }) : tr2({ uz: "🏅 Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki.", ru: "🏅 Справитесь с первой попытки — значок ваш." })}</p>;
+};
 function AchCelebrate({ ach, onDone }) {
   useEffect4(() => {
     const t = setTimeout(onDone, 4e3);
@@ -3424,16 +3502,30 @@ function AuthEnvLesson({ lang: langProp, onFinished, liveToken }) {
   const [screen, setScreen] = useState3(() => saved ? Math.min(Math.max(saved.screen || 0, 0), TOTAL_SCREENS - 1) : 0);
   const [answers, setAnswers] = useState3(() => saved && saved.answers || {});
   const startTimeRef = useRef3(saved?.startedAt || Date.now());
+  const firstPassRef = useRef3(saved?.firstPass || null);
+  const soloSentRef = useRef3(/* @__PURE__ */ new Set());
+  const [fpPractice, setFpPractice] = useState3(!!saved?.firstPass);
   const earnedRef = useRef3(new Set(saved?.earned || []));
   const [earned, setEarned] = useState3(() => new Set(saved?.earned || []));
   const [achToasts, setAchToasts] = useState3([]);
   const achKeyRef = useRef3(0);
   const earn = useCallback2((id) => {
+    if (firstPassRef.current) return;
     if (!ACHIEVEMENTS[id] || earnedRef.current.has(id)) return;
     earnedRef.current.add(id);
     setEarned(new Set(earnedRef.current));
     setAchToasts((t) => [...t, { id, k: ++achKeyRef.current }]);
   }, []);
+  const missedRef = useRef3(new Set(saved?.missed || []));
+  const [missed, setMissed] = useState3(() => new Set(saved?.missed || []));
+  const missTry = useCallback2((idx) => {
+    const sid = SCREEN_META[idx] && SCREEN_META[idx].id;
+    const ach = ACH_TRIGGERS[sid];
+    if (!ach || missedRef.current.has(sid) || earnedRef.current.has(ach)) return;
+    missedRef.current.add(sid);
+    setMissed(new Set(missedRef.current));
+  }, []);
+  const achMissVal = useMemo(() => ({ missed, miss: missTry, practice: fpPractice }), [missed, missTry, fpPractice]);
   useEffect4(() => {
     const upd = () => {
       const z = Math.min(1.5, Math.max(1, Math.min(window.innerWidth / 1920, window.innerHeight / 1e3)));
@@ -3466,41 +3558,54 @@ function AuthEnvLesson({ lang: langProp, onFinished, liveToken }) {
   const recordAnswer = (idx, data) => {
     setAnswers((a) => ({ ...a, [idx]: data }));
     const _m = SCREEN_META[idx];
-    if (_m && ACH_TRIGGERS[_m.id] && data && data.correct) earn(ACH_TRIGGERS[_m.id]);
+    if (_m && _m.scored && live.mode === "solo" && !firstPassRef.current && data && (data.solved === true || data.correct === true) && !soloSentRef.current.has(idx)) {
+      const key = INLINE_KEYS[_m.id];
+      if (Number.isInteger(key)) {
+        soloSentRef.current.add(idx);
+        live.submitAnswer(idx, _m.id, key < 0 ? 0 : data.correct ? key : key === 0 ? 1 : 0, !!data.correct, data.elapsedMs || 0);
+      }
+    }
+    if (_m && ACH_TRIGGERS[_m.id] && data && data.correct && !missedRef.current.has(_m.id)) earn(ACH_TRIGGERS[_m.id]);
     if (_m && _m.scope === "final" && data && data.solved && live.mode === "student") live.submitAnswer(idx, _m.id, 0, !!data.correct, 0);
   };
   const reset = () => {
+    if (!firstPassRef.current) {
+      firstPassRef.current = { answers, durationSec: Math.floor((Date.now() - startTimeRef.current) / 1e3) };
+      setFpPractice(true);
+    }
     progClear(LESSON_META.lessonId);
     setAnswers({});
     setScreen(0);
     startTimeRef.current = Date.now();
   };
   useEffect4(() => {
-    progWrite(LESSON_META.lessonId, { screen, answers, earned: [...earnedRef.current], startedAt: startTimeRef.current, total: TOTAL_SCREENS, savedAt: Date.now() });
-  }, [screen, answers, earned]);
+    progWrite(LESSON_META.lessonId, { screen, answers, earned: [...earnedRef.current], missed: [...missedRef.current], firstPass: firstPassRef.current, startedAt: startTimeRef.current, total: TOTAL_SCREENS, savedAt: Date.now() });
+  }, [screen, answers, earned, missed, fpPractice]);
   const finishLesson = () => {
     progClear(LESSON_META.lessonId);
     live.endSession();
+    const fp = firstPassRef.current;
+    const ans = fp ? fp.answers : answers;
     const scoredMeta = SCREEN_META.filter((s) => s.scored);
     const finalMeta = scoredMeta.filter((s) => s.scope === "final");
-    const scoredAnswers = SCREEN_META.map((s, i) => s.scored ? answers[i] : null).filter(Boolean);
+    const scoredAnswers = SCREEN_META.map((s, i) => s.scored ? ans[i] : null).filter(Boolean);
     const correctAnswers = scoredAnswers.filter((a) => a.correct).length;
-    const finalAnswers = SCREEN_META.map((s, i) => s.scored && s.scope === "final" ? answers[i] : null).filter(Boolean);
+    const finalAnswers = SCREEN_META.map((s, i) => s.scored && s.scope === "final" ? ans[i] : null).filter(Boolean);
     const finalCorrect = finalAnswers.filter((a) => a.correct).length;
     const payload = {
       lessonId: LESSON_META.lessonId,
       lessonTitle: LESSON_META.lessonTitle,
-      durationSec: Math.floor((Date.now() - startTimeRef.current) / 1e3),
+      durationSec: fp ? fp.durationSec : Math.floor((Date.now() - startTimeRef.current) / 1e3),
       totalQuestions: scoredMeta.length,
       correctAnswers,
       scorePercent: scoredMeta.length ? Math.round(correctAnswers / scoredMeta.length * 100) : 0,
       finalScore: finalCorrect,
       finalTotal: finalMeta.length,
       passed: finalMeta.length ? finalCorrect / finalMeta.length >= 0.6 : scoredMeta.length ? correctAnswers / scoredMeta.length >= 0.6 : false,
-      answers: SCREEN_META.map((s, i) => answers[i]).filter(Boolean),
-      ...buildResultDetails({ lessonId: LESSON_META.lessonId, screenMeta: SCREEN_META, answers, earned, achievements: ACHIEVEMENTS, arenaBank: QUIZ_BANK })
+      answers: SCREEN_META.map((s, i) => ans[i]).filter(Boolean),
+      ...buildResultDetails({ lessonId: LESSON_META.lessonId, screenMeta: SCREEN_META, answers: ans, earned, achievements: ACHIEVEMENTS, arenaBank: QUIZ_BANK })
     };
-    if (typeof onFinished === "function") onFinished(payload);
+    if (typeof onFinished === "function") onFinished(sealPayload(LESSON_META.lessonId, payload));
   };
   const screens = [Screen0, Screen1, Screen2, Screen3, Screen4, Screen5, Screen5b, Screen6, Screen7, Screen8, Screen9, Screen10, Screen11, Screen12, Screen13, Screen14, Screen15, ScreenAuthPractice, ScreenPodium, ScreenFlashcards, Screen16];
   const Current = screens[screen];
@@ -4437,8 +4542,11 @@ function AuthEnvLesson({ lang: langProp, onFinished, liveToken }) {
         /* --- CodeStrike bolt FX qatlami --- */
         .qz-fx { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
         .qz-bolt { filter: drop-shadow(0 8px 18px rgba(255,79,40,0.32)); }
+        .ach-rule { margin: 8px 0 0; text-align: center; font-size: 13px; line-height: 1.4; color: ${T.ink2}; }
+        .ach-rule.lost { font-style: italic; }
 `}</style>
       <AchCtx.Provider value={earned}>
+      <AchMissCtx.Provider value={achMissVal}>
       <LiveGateCtx.Provider value={{ locked, live }}>
         <div className="lesson-root">
           {live.mode === "choosing" ? <LiveGate live={live} title={{ uz: "Autentifikatsiya darsi", ru: "Урок аутентификации" }} /> : <>
@@ -4448,6 +4556,7 @@ function AuthEnvLesson({ lang: langProp, onFinished, liveToken }) {
             </>}
         </div>
       </LiveGateCtx.Provider>
+      </AchMissCtx.Provider>
       </AchCtx.Provider>
     </LangContext.Provider>;
 }

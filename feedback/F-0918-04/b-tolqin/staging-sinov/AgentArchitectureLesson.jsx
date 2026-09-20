@@ -293,18 +293,44 @@ function resetResultDetails(lessonId) {
     store()?.removeItem(KEY(lessonId));
   } catch {
   }
+  try {
+    store()?.removeItem(SEAL_KEY(lessonId));
+  } catch {
+  }
 }
 var sealedByLesson = /* @__PURE__ */ new Map();
-var sealKey = (p) => `${(p && p.livePin) ?? ""}|${(p && p.liveMode) ?? ""}`;
+var SEAL_KEY = (lessonId) => `ccSeal:${lessonId}`;
+var attemptMark = (lessonId) => {
+  try {
+    const ls = JSON.parse(store()?.getItem(`liveSession:${lessonId}`) || "null");
+    return String(ls && (ls.attemptId || ls.pin) || "");
+  } catch {
+    return "";
+  }
+};
+var sealKey = (lessonId, p) => `${(p && p.livePin) ?? ""}|${(p && p.liveMode) ?? ""}|${attemptMark(lessonId)}`;
 function sealPayload(lessonId, payload) {
   if (!lessonId || !payload || typeof payload !== "object") return payload;
   try {
-    const key = sealKey(payload);
-    const held = sealedByLesson.get(lessonId);
+    const key = sealKey(lessonId, payload);
+    let held = sealedByLesson.get(lessonId);
+    if (!held) {
+      try {
+        held = JSON.parse(store()?.getItem(SEAL_KEY(lessonId)) || "null");
+      } catch {
+        held = null;
+      }
+      if (held && held.key && held.json) sealedByLesson.set(lessonId, held);
+      else held = null;
+    }
     if (held && held.key === key) return JSON.parse(held.json);
-    const json = JSON.stringify(payload);
-    sealedByLesson.set(lessonId, { key, json });
-    return JSON.parse(json);
+    const rec = { key, json: JSON.stringify(payload) };
+    sealedByLesson.set(lessonId, rec);
+    try {
+      store()?.setItem(SEAL_KEY(lessonId), JSON.stringify(rec));
+    } catch {
+    }
+    return JSON.parse(rec.json);
   } catch {
     return payload;
   }

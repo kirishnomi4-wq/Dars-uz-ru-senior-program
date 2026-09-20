@@ -2901,10 +2901,55 @@ function resetResultDetails(lessonId) {
   earnedAtByLesson.delete(lessonId);
   arenaByLesson.delete(lessonId);
   loaded.delete(lessonId);
+  sealedByLesson.delete(lessonId);
   try {
     store()?.removeItem(KEY(lessonId));
   } catch {
   }
+  try {
+    store()?.removeItem(SEAL_KEY(lessonId));
+  } catch {
+  }
+}
+var sealedByLesson = /* @__PURE__ */ new Map();
+var SEAL_KEY = (lessonId) => `ccSeal:${lessonId}`;
+var attemptMark = (lessonId) => {
+  try {
+    const ls = JSON.parse(store()?.getItem(`liveSession:${lessonId}`) || "null");
+    return String(ls && (ls.attemptId || ls.pin) || "");
+  } catch {
+    return "";
+  }
+};
+var sealKey = (lessonId, p) => `${(p && p.livePin) ?? ""}|${(p && p.liveMode) ?? ""}|${attemptMark(lessonId)}`;
+function sealPayload(lessonId, payload) {
+  if (!lessonId || !payload || typeof payload !== "object") return payload;
+  try {
+    const key = sealKey(lessonId, payload);
+    let held = sealedByLesson.get(lessonId);
+    if (!held) {
+      try {
+        held = JSON.parse(store()?.getItem(SEAL_KEY(lessonId)) || "null");
+      } catch {
+        held = null;
+      }
+      if (held && held.key && held.json) sealedByLesson.set(lessonId, held);
+      else held = null;
+    }
+    if (held && held.key === key) return JSON.parse(held.json);
+    const rec = { key, json: JSON.stringify(payload) };
+    sealedByLesson.set(lessonId, rec);
+    try {
+      store()?.setItem(SEAL_KEY(lessonId), JSON.stringify(rec));
+    } catch {
+    }
+    return JSON.parse(rec.json);
+  } catch {
+    return payload;
+  }
+}
+function unsealPayload(lessonId) {
+  sealedByLesson.delete(lessonId);
 }
 function buildResultDetails({ lessonId, screenMeta, answers, earned, achievements, lang: langIn, now, arenaBank } = {}) {
   const lang = langIn === "ru" || langIn === "uz" ? langIn : getLiveLang();
@@ -2948,6 +2993,7 @@ function buildResultDetails({ lessonId, screenMeta, answers, earned, achievement
     if (correctIdx !== null && correctIdx >= 0 && correctIdx <= 5) q.correct_option = correctIdx;
     const ca = cut(typeof a.correctAnswer === "string" ? a.correctAnswer : options && correctIdx !== null ? options[correctIdx] : void 0, LIM.text);
     if (ca) q.correct_answer = ca;
+    if (correctIdx === null) return;
     questions.push(q);
   });
   const arena = [...(arenaByLesson.get(lessonId) || /* @__PURE__ */ new Map()).entries()].sort((x, y) => x[0] - y[0]);
@@ -3068,6 +3114,9 @@ function useLiveSession(lessonId, answerKey, opts = {}) {
   const lessonVersion = opts.lessonVersion || null;
   const keyRef = useRef2(answerKey);
   keyRef.current = answerKey;
+  useEffect2(() => {
+    unsealPayload(lessonId);
+  }, [lessonId]);
   const initRef = useRef2(void 0);
   if (initRef.current === void 0) initRef.current = LIVE_ENABLED ? liveRead(lessonId) : null;
   const init = initRef.current;
@@ -3754,6 +3803,7 @@ var codeKeyOf = (id, kind) => `ccCode:${id}:${kind}`;
 var LangContext = createContext2("uz");
 var MentorCtx = createContext2(null);
 var AchCtx = createContext2(null);
+var AchMissCtx = createContext2(null);
 var PRACTICE_DONE_BASE = 500;
 var AchEarnCtx = createContext2(null);
 function useIsMobile(breakpoint = 640) {
@@ -4136,6 +4186,8 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
     </div>;
 }
 var QuestionScreen = ({ screen, scope, eyebrow, question, questionText, options, correctIdx, explainCorrect, explainWrong, storedAnswer, onAnswer, onNext, onPrev }) => {
+  const _am = useContext2(AchMissCtx);
+  const fpPractice = !!(_am && _am.practice);
   const gate = useContext2(LiveGateCtx) || {};
   const live = gate.live;
   const oneShot = !!(live && live.mode === "student");
@@ -4164,12 +4216,12 @@ var QuestionScreen = ({ screen, scope, eyebrow, question, questionText, options,
     if (oneShot) {
       setSolved(true);
       onAnswer(screen, { stage: scope, screenIdx: screen, question: questionText, options, correctIndex: correctIdx, correctAnswer: options[correctIdx], picked: i, studentAnswerIndex: i, studentAnswer: options[i], correct: isCorrect, firstAttemptCorrect: isCorrect, solved: true, lastPicked: i });
-      live.submitAnswer(screen, SCREEN_META[screen]?.id || `s${screen}`, i, isCorrect, Date.now() - mountTs.current);
+      if (!fpPractice) live.submitAnswer(screen, SCREEN_META[screen]?.id || `s${screen}`, i, isCorrect, Date.now() - mountTs.current);
     } else {
       if (isCorrect) setSolved(true);
       onAnswer(screen, { stage: scope, screenIdx: screen, question: questionText, options, correctIndex: correctIdx, correctAnswer: options[correctIdx], picked: i, studentAnswerIndex: i, studentAnswer: options[i], correct: firstCorrectRef.current, firstAttemptCorrect: firstCorrectRef.current, solved: isCorrect, lastPicked: i });
     }
-    if (live && live.recordAttempt) live.recordAttempt(screen, SCREEN_META[screen]?.id || `s${screen}`, i, Date.now() - mountTs.current, { question: questionText, options, picked: options[i], correct: options[correctIdx], lang: typeof __lang2 !== "undefined" && __lang2 === "ru" ? "ru" : "uz" });
+    if (live && live.recordAttempt && !fpPractice) live.recordAttempt(screen, SCREEN_META[screen]?.id || `s${screen}`, i, Date.now() - mountTs.current, { question: questionText, options, picked: options[i], correct: options[correctIdx], lang: typeof __lang2 !== "undefined" && __lang2 === "ru" ? "ru" : "uz" });
   };
   const wrongLocked = oneShot && solved && picked !== correctIdx;
   const revealed = !oneShot || !!(live && (live.revealScreen === screen || (live.mentorMax ?? live.mentorScreen) > screen || live.status === "ended" || !live.mentorAlive));
@@ -5132,6 +5184,7 @@ var Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const usedTech = Object.values(assign);
   const full = SLOTS.every((s) => assign[s.key]);
   const done = allOk;
+  const achMiss = useContext2(AchMissCtx);
   const tapSlot = (k) => {
     setChecked(false);
     if (assign[k]) {
@@ -5157,6 +5210,7 @@ var Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     if (!full) return;
     setChecked(true);
     if (SLOTS.every((s) => assign[s.key] === s.a)) setAllOk(true);
+    else if (achMiss) achMiss.miss(screen);
   };
   useEffect5(() => {
     if (done && storedAnswer === void 0) onAnswer(screen, { correct: true, picked: true });
@@ -5193,6 +5247,7 @@ var Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </Col>
           <Col>
             <button className="btn fade-up delay-2" onClick={launch} disabled={!full || allOk} style={{ alignSelf: "flex-start" }}>{tr3({ uz: "▶ Ishga tushirish", ru: "▶ Запуск" })}</button>
+            {!done && <AchRule screen={screen} />}
             {allOk ? <div className="demo-swap" style={{ display: "flex", flexDirection: "column", gap: 10 }}>
                 <BWindow url="mini-dokon.uz" minH={120}>
                   <div className="rb rb-header el-in">{tr3({ uz: "Mini do'kon", ru: "Мини-магазин" })}</div>
@@ -5271,15 +5326,18 @@ var Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     { key: "back", label: { uz: "Javob qaytadi — ekran yangilanadi", ru: "Ответ возвращается — экран обновляется" }, who: "react" }
   ];
   const [solved, setSolved] = useState4(!!storedAnswer?.solved);
-  const firstCorrectRef = useRef4(storedAnswer ? storedAnswer.firstAttemptCorrect ?? storedAnswer.correct ?? null : null);
+  const achMiss = useContext2(AchMissCtx);
+  const firstCorrectRef = useRef4(storedAnswer ? storedAnswer.firstAttemptCorrect ?? storedAnswer.correct ?? null : achMiss && achMiss.missed.has(SCREEN_META[screen].id) ? false : null);
   const items = useMemo2(() => STEPS.map((s) => ({ id: s.key, label: s.label })), []);
   const onWrong = () => {
     if (firstCorrectRef.current === null) firstCorrectRef.current = false;
+    if (achMiss) achMiss.miss(screen);
   };
   const onSolved = () => {
     if (firstCorrectRef.current === null) firstCorrectRef.current = true;
     setSolved(true);
-    if (!storedAnswer?.solved) onAnswer(screen, { stage: "final", screenIdx: screen, correct: firstCorrectRef.current, firstAttemptCorrect: firstCorrectRef.current, solved: true, picked: STEPS.map((s) => s.key).join("→") });
+    const first = firstCorrectRef.current === true && !(achMiss && achMiss.missed.has(SCREEN_META[screen].id));
+    if (!storedAnswer?.solved) onAnswer(screen, { stage: "final", screenIdx: screen, correct: first, firstAttemptCorrect: first, solved: true, picked: STEPS.map((s) => s.key).join("→") });
   };
   return <Stage eyebrow={tr3({ uz: "Yakuniy · amaliy", ru: "Финал · практика" })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!solved} label={solved ? tr3({ uz: "Davom etish", ru: "Продолжить" }) : tr3({ uz: "Sayohatni tuzing", ru: "Соберите путь" })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: "clamp(10px,1.6vw,16px)" }}>
@@ -5436,7 +5494,7 @@ var Confetti = () => {
   })}
     </div>;
 };
-var INLINE_KEYS = { s4: 1, s5b: 1, s9: 2, s12: 1, s15: -1 };
+var INLINE_KEYS = { s4: 1, s5b: 1, s9: 2, s12: 1, s15: 0 };
 var ScreenPodium = ({ screen, answers, onNext, onPrev }) => {
   const gate = useContext2(LiveGateCtx) || {};
   const live = gate.live;
@@ -6053,6 +6111,16 @@ var ACHIEVEMENTS = {
   graduate: { icon: "🏆", name: "Level Up!", desc: { uz: "PERN xaritasini to'liq yakunladingiz", ru: "Вы полностью прошли карту PERN" } }
 };
 var ACH_TRIGGERS = { s13: "teambuilder", s15: "fullstack" };
+var AchRule = ({ screen, once }) => {
+  const earned = useContext2(AchCtx);
+  const am = useContext2(AchMissCtx);
+  const gate = useContext2(LiveGateCtx) || {};
+  const sid = SCREEN_META[screen] && SCREEN_META[screen].id;
+  const ach = ACH_TRIGGERS[sid];
+  if (!ach || !am || am.practice || gate.live && gate.live.mode === "mentor" || earned && earned.has(ach)) return null;
+  const lost = am.missed.has(sid);
+  return <p className={`ach-rule ${lost ? "lost" : ""}`}>{lost ? once ? tr3({ uz: "Nishon birinchi urinish uchun edi.", ru: "Значок давался за первую попытку." }) : tr3({ uz: "Nishon birinchi urinish uchun edi — endi bemalol to'g'risini toping.", ru: "Значок давался за первую попытку — теперь спокойно найдите верный ответ." }) : tr3({ uz: "🏅 Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki.", ru: "🏅 Справитесь с первой попытки — значок ваш." })}</p>;
+};
 function AchCelebrate({ ach, onDone }) {
   useEffect5(() => {
     const t = setTimeout(onDone, 4e3);
@@ -6193,16 +6261,30 @@ function PeanStackLesson({ lang: langProp, onFinished, onPractice, liveToken }) 
   const [practice, setPractice] = useState4(null);
   const [mentorPractice, setMentorPractice] = useState4(null);
   const startTimeRef = useRef4(saved?.startedAt || Date.now());
+  const firstPassRef = useRef4(saved?.firstPass || null);
+  const soloSentRef = useRef4(/* @__PURE__ */ new Set());
+  const [fpPractice, setFpPractice] = useState4(!!saved?.firstPass);
   const earnedRef = useRef4(new Set(saved?.earned || []));
   const [earned, setEarned] = useState4(() => new Set(saved?.earned || []));
   const [achToasts, setAchToasts] = useState4([]);
   const achKeyRef = useRef4(0);
   const earn = useCallback3((id) => {
+    if (firstPassRef.current) return;
     if (!ACHIEVEMENTS[id] || earnedRef.current.has(id)) return;
     earnedRef.current.add(id);
     setEarned(new Set(earnedRef.current));
     setAchToasts((t) => [...t, { id, k: ++achKeyRef.current }]);
   }, []);
+  const missedRef = useRef4(new Set(saved?.missed || []));
+  const [missed, setMissed] = useState4(() => new Set(saved?.missed || []));
+  const missTry = useCallback3((idx) => {
+    const sid = SCREEN_META[idx] && SCREEN_META[idx].id;
+    const ach = ACH_TRIGGERS[sid];
+    if (!sid || missedRef.current.has(sid) || ach && earnedRef.current.has(ach)) return;
+    missedRef.current.add(sid);
+    setMissed(new Set(missedRef.current));
+  }, []);
+  const achMissVal = useMemo2(() => ({ missed, miss: missTry, practice: fpPractice }), [missed, missTry, fpPractice]);
   useEffect5(() => {
     const upd = () => {
       const z = Math.min(1.5, Math.max(1, Math.min(window.innerWidth / 1920, window.innerHeight / 1e3)));
@@ -6222,7 +6304,6 @@ function PeanStackLesson({ lang: langProp, onFinished, onPractice, liveToken }) 
   const runPractice = (entry, fromScreen) => {
     const done = () => {
       if (live && live.mode === "student") live.submitAnswer(PRACTICE_DONE_BASE + fromScreen, `practice-${fromScreen}`, 0, true, 0);
-      earn("coder");
       pracClear(LESSON_META.lessonId);
       setPractice(null);
       advance();
@@ -6295,10 +6376,21 @@ function PeanStackLesson({ lang: langProp, onFinished, onPractice, liveToken }) 
   const recordAnswer = (idx, data) => {
     setAnswers((a) => ({ ...a, [idx]: data }));
     const _m = SCREEN_META[idx];
-    if (_m && _m.scored && _m.scope === "final" && data && data.correct && live.mode === "student") live.submitAnswer(idx, _m.id, 0, true, 0);
-    if (_m && ACH_TRIGGERS[_m.id] && data && data.correct) earn(ACH_TRIGGERS[_m.id]);
+    if (_m && _m.scored && live.mode === "solo" && !firstPassRef.current && data && (data.solved === true || data.correct === true) && !soloSentRef.current.has(idx)) {
+      const key = INLINE_KEYS[_m.id];
+      if (Number.isInteger(key)) {
+        soloSentRef.current.add(idx);
+        live.submitAnswer(idx, _m.id, key < 0 ? 0 : data.correct ? key : key === 0 ? 1 : 0, !!data.correct, data.elapsedMs || 0);
+      }
+    }
+    if (_m && _m.scored && _m.scope === "final" && data && (data.solved || data.correct) && live.mode === "student") live.submitAnswer(idx, _m.id, data.correct ? 0 : 1, !!data.correct, 0);
+    if (_m && ACH_TRIGGERS[_m.id] && data && data.correct && !missedRef.current.has(_m.id)) earn(ACH_TRIGGERS[_m.id]);
   };
   const reset = () => {
+    if (!firstPassRef.current) {
+      firstPassRef.current = { answers, durationSec: Math.floor((Date.now() - startTimeRef.current) / 1e3) };
+      setFpPractice(true);
+    }
     progClear(LESSON_META.lessonId);
     pracClear(LESSON_META.lessonId);
     setAnswers({});
@@ -6308,8 +6400,8 @@ function PeanStackLesson({ lang: langProp, onFinished, onPractice, liveToken }) 
     startTimeRef.current = Date.now();
   };
   useEffect5(() => {
-    progWrite(LESSON_META.lessonId, { screen, answers, earned: [...earnedRef.current], startedAt: startTimeRef.current, total: TOTAL_SCREENS, savedAt: Date.now() });
-  }, [screen, answers, earned]);
+    progWrite(LESSON_META.lessonId, { screen, answers, earned: [...earnedRef.current], missed: [...missedRef.current], firstPass: firstPassRef.current, startedAt: startTimeRef.current, total: TOTAL_SCREENS, savedAt: Date.now() });
+  }, [screen, answers, earned, missed, fpPractice]);
   useEffect5(() => {
     if (screen === TOTAL_SCREENS - 1) earn("graduate");
   }, [screen]);
@@ -6324,11 +6416,13 @@ function PeanStackLesson({ lang: langProp, onFinished, onPractice, liveToken }) 
   const finishLesson = () => {
     progClear(LESSON_META.lessonId);
     live.endSession();
+    const fp = firstPassRef.current;
+    const ans = fp ? fp.answers : answers;
     const scoredMeta = SCREEN_META.filter((s) => s.scored);
     const finalMeta = scoredMeta.filter((s) => s.scope === "final");
-    const scoredAnswers = SCREEN_META.map((s, i) => s.scored ? answers[i] : null).filter(Boolean);
+    const scoredAnswers = SCREEN_META.map((s, i) => s.scored ? ans[i] : null).filter(Boolean);
     const correctAnswers = scoredAnswers.filter((a) => a.correct).length;
-    const finalAnswers = SCREEN_META.map((s, i) => s.scored && s.scope === "final" ? answers[i] : null).filter(Boolean);
+    const finalAnswers = SCREEN_META.map((s, i) => s.scored && s.scope === "final" ? ans[i] : null).filter(Boolean);
     const finalCorrect = finalAnswers.filter((a) => a.correct).length;
     const payload = {
       lessonId: LESSON_META.lessonId,
@@ -6336,17 +6430,17 @@ function PeanStackLesson({ lang: langProp, onFinished, onPractice, liveToken }) 
       nickname: live.nickname || null,
       livePin: live.pin || null,
       liveMode: live.mode,
-      durationSec: Math.floor((Date.now() - startTimeRef.current) / 1e3),
+      durationSec: fp ? fp.durationSec : Math.floor((Date.now() - startTimeRef.current) / 1e3),
       totalQuestions: scoredMeta.length,
       correctAnswers,
       scorePercent: scoredMeta.length ? Math.round(correctAnswers / scoredMeta.length * 100) : 0,
       finalScore: finalCorrect,
       finalTotal: finalMeta.length,
       passed: finalMeta.length ? finalCorrect / finalMeta.length >= 0.6 : scoredMeta.length ? correctAnswers / scoredMeta.length >= 0.6 : false,
-      answers: SCREEN_META.map((_, i) => answers[i]).filter(Boolean),
-      ...buildResultDetails({ lessonId: LESSON_META.lessonId, screenMeta: SCREEN_META, answers, earned, achievements: ACHIEVEMENTS, arenaBank: QUIZ_BANK })
+      answers: SCREEN_META.map((_, i) => ans[i]).filter(Boolean),
+      ...buildResultDetails({ lessonId: LESSON_META.lessonId, screenMeta: SCREEN_META, answers: ans, earned, achievements: ACHIEVEMENTS, arenaBank: QUIZ_BANK })
     };
-    if (typeof onFinished === "function") onFinished(payload);
+    if (typeof onFinished === "function") onFinished(sealPayload(LESSON_META.lessonId, payload));
   };
   const screens = [Screen0, Screen1, Screen2, Screen3, Screen4, Screen5, Screen5b, Screen6, Screen7, Screen8, Screen9, Screen10, Screen11, Screen12, Screen13, Screen14, Screen15, ScreenPodium, ScreenFlashcards, Screen16];
   const Current = screens[screen];
@@ -7178,9 +7272,12 @@ function PeanStackLesson({ lang: langProp, onFinished, onPractice, liveToken }) 
         .live-badge { opacity: 0.4; transition: opacity 0.25s ease, box-shadow 0.25s ease; }
         .live-badge:hover, .live-badge:focus-within { opacity: 1; box-shadow: 0 8px 24px -6px rgba(58,53,48,0.32) !important; }
         @media (hover: none) { .live-badge { opacity: 0.62; } }
+        .ach-rule { margin: 8px 0 0; text-align: center; font-size: 13px; line-height: 1.4; color: ${T.ink2}; }
+        .ach-rule.lost { font-style: italic; }
       `}</style>
       <LiveGateCtx.Provider value={{ locked, live }}>
         <AchCtx.Provider value={earned}>
+        <AchMissCtx.Provider value={achMissVal}>
         <AchEarnCtx.Provider value={earn}>
         <div className="lesson-root">
           {live.mode === "choosing" ? <LiveGate live={live} title={{ uz: "JS darsi", ru: "Урок JS" }} /> : <>
@@ -7197,6 +7294,7 @@ function PeanStackLesson({ lang: langProp, onFinished, onPractice, liveToken }) 
           {mentorPractice && <MentorPracticeOverlay entry={mentorPractice} live={live} onClose={() => setMentorPractice(null)} />}
         </div>
         </AchEarnCtx.Provider>
+        </AchMissCtx.Provider>
         </AchCtx.Provider>
       </LiveGateCtx.Provider>
     </LangContext.Provider>;
